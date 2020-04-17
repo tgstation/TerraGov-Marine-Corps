@@ -516,11 +516,12 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define DEFILER_STING_AMOUNT_RECURRING		10
 
 //Boiler defines
-#define BOILER_LUMINOSITY_BASE						0 //how much the boiler glows with no ammo.
-#define BOILER_LUMINOSITY_BASE_COLOR				LIGHT_COLOR_GREEN //the color of the boiler itself with no ammo.
-#define BOILER_LUMINOSITY_AMMO						1 //how much each glob contributes to light. If you wanna set it to 0, change boiler/updateBoilerGlow()
-#define BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR		LIGHT_COLOR_YELLOW //the color of neurotoxin.
-#define BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR		LIGHT_COLOR_GREEN //the color of corrosive acid.
+#define BOILER_LUMINOSITY_BASE						0
+#define BOILER_LUMINOSITY_BASE_COLOR				LIGHT_COLOR_GREEN
+//don't set this to 0. How much each 'piece' of ammo in reserve glows by.
+#define BOILER_LUMINOSITY_AMMO						1
+#define BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR		LIGHT_COLOR_YELLOW
+#define BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR		LIGHT_COLOR_GREEN
 
 //Hivelord defines
 
