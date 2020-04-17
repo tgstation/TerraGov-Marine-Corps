@@ -599,6 +599,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 /mob/living/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+	if(status_flags & INCORPOREAL)
+		return FALSE
 	if(lying_angle && src != proj.original_target)
 		return FALSE
 	if((proj.ammo.flags_ammo_behavior & AMMO_XENO) && (isnestedhost(src) || stat == DEAD))

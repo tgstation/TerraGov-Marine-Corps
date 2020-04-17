@@ -1,4 +1,11 @@
+/mob/living/carbon/xenomorph/fire_act()
+	if(status_flags & GODMODE)
+		return
+	return ..()
+
 /mob/living/carbon/xenomorph/ex_act(severity)
+	if(status_flags & GODMODE)
+		return
 
 	flash_eyes()
 
@@ -91,6 +98,8 @@
 
 
 /mob/living/carbon/xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)
+	if(status_flags & (GODMODE))
+		return
 	var/hit_percent = (100 - blocked) * 0.01
 
 	if(hit_percent <= 0) //total negation
