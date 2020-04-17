@@ -518,7 +518,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 //Boiler defines
 #define BOILER_LUMINOSITY_BASE						0
 #define BOILER_LUMINOSITY_BASE_COLOR				LIGHT_COLOR_GREEN
-///don't set this to 0. How much each 'piece' of ammo in reserve glows by.
+//don't set this to 0. How much each 'piece' of ammo in reserve glows by.
 #define BOILER_LUMINOSITY_AMMO						1
 #define BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR		LIGHT_COLOR_YELLOW
 #define BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR		LIGHT_COLOR_GREEN
