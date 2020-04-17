@@ -11,20 +11,20 @@
 	wound_type = "boiler" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 22.5
+	melee_damage = 24
 
 	// *** Tackle *** //
 	tackle_damage = 25
 
 	// *** Speed *** //
-	speed = 0.6
+	speed = 0.3
 
 	// *** Plasma *** //
 	plasma_max = 800
 	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 230
+	max_health = 200
 
 	// *** Evolution *** //
 	upgrade_threshold = 200
@@ -71,26 +71,26 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 27.5
+	melee_damage = 28
 
 	// *** Tackle *** //
 	tackle_damage = 25
 
 	// *** Speed *** //
-	speed = 0.5
+	speed = 0.2
 
 	// *** Plasma *** //
 	plasma_max = 900
 	plasma_gain = 35
 
 	// *** Health *** //
-	max_health = 250
+	max_health = 220
 
 	// *** Evolution *** //
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor = list("melee" = 33, "bullet" = 33, "laser" = 33, "energy" = 33, "bomb" = XENO_BOMB_RESIST_0, "bio" = 33, "rad" = 33, "fire" = 20, "acid" = 33)
+	armor = list("melee" = 34, "bullet" = 34, "laser" = 34, "energy" = 34, "bomb" = XENO_BOMB_RESIST_0, "bio" = 33, "rad" = 33, "fire" = 20, "acid" = 33)
 
 	// *** Ranged Attack *** //
 	spit_delay = 3 SECONDS
@@ -107,26 +107,26 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 32.5
+	melee_damage = 32
 
 	// *** Tackle *** //
 	tackle_damage = 30
 
 	// *** Speed *** //
-	speed = 0.4
+	speed = 0.1
 
 	// *** Plasma *** //
 	plasma_max = 1000
 	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 270
+	max_health = 240
 
 	// *** Evolution *** //
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 22, "acid" = 35)
+	armor = list("melee" = 38, "bullet" = 38, "laser" = 38 , "energy" = 38, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 22, "acid" = 35)
 
 	// *** Ranged Attack *** //
 	spit_delay = 2 SECONDS
@@ -144,23 +144,23 @@
 	ancient_message = "We are the master of ranged artillery. Let's bring death from above."
 
 	// *** Melee Attacks *** //
-	melee_damage = 37.5
+	melee_damage = 36
 
 	// *** Tackle *** //
 	tackle_damage = 30
 
 	// *** Speed *** //
-	speed = 0.3
+	speed = 0.1
 
 	// *** Plasma *** //
 	plasma_max = 1000
 	plasma_gain = 50
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 275
 
 	// *** Defense *** //
-	armor = list("melee" = 37, "bullet" = 37, "laser" = 37, "energy" = 37, "bomb" = XENO_BOMB_RESIST_0, "bio" = 37, "rad" = 37, "fire" = 25, "acid" = 37)
+	armor = list("melee" = 42, "bullet" = 42, "laser" = 42, "energy" = 42, "bomb" = XENO_BOMB_RESIST_0, "bio" = 37, "rad" = 37, "fire" = 25, "acid" = 37)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS

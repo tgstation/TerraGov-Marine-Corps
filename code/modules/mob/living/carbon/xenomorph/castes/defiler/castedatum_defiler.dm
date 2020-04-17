@@ -17,14 +17,14 @@
 	tackle_damage = 30
 
 	// *** Speed *** //
-	speed = -1
+	speed = -0.7
 
 	// *** Plasma *** //
 	plasma_max = 400
 	plasma_gain = 14
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 250
 
 	// *** Evolution *** //
 	upgrade_threshold = 200
@@ -44,6 +44,7 @@
 		/datum/action/xeno_action/activable/larval_growth_sting/defiler,
 		/datum/action/xeno_action/activable/neurotox_sting,
 		/datum/action/xeno_action/activable/emit_neurogas,
+		/datum/action/xeno_action/toggle_pheromones
 		)
 		
 	// *** Pheromones *** //
@@ -68,20 +69,20 @@
 	tackle_damage = 35
 
 	// *** Speed *** //
-	speed = -1.1
+	speed = -0.8
 
 	// *** Plasma *** //
 	plasma_max = 500
 	plasma_gain = 17
 
 	// *** Health *** //
-	max_health = 310
+	max_health = 275
 
 	// *** Evolution *** //
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor = list("melee" = 35, "bullet" = 27, "laser" = 17, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 12, "acid" = 35)
+	armor = list("melee" = 35, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 12, "acid" = 35)
 	
 	// *** Pheromones *** //
 	aura_strength = 2 //Defilers aura begins at 1.7 and ends at 2.6. It's .1 better than a carrier at ancient.
@@ -99,7 +100,7 @@
 	tackle_damage = 40
 
 	// *** Speed *** //
-	speed = -1.17
+	speed = -0.9
 
 	// *** Plasma *** //
 	plasma_max = 550
@@ -112,7 +113,7 @@
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor = list("melee" = 38, "bullet" = 29, "laser" = 19, "energy" = 38, "bomb" = XENO_BOMB_RESIST_0, "bio" = 38, "rad" = 38, "fire" = 14, "acid" = 38)
+	armor = list("melee" = 38, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 38, "rad" = 38, "fire" = 14, "acid" = 38)
 
 		// *** Pheromones *** //
 	aura_strength = 2.1 //Defilers aura begins at 1.7 and ends at 2.6. It's .1 better than a carrier at ancient.
@@ -130,20 +131,20 @@
 	tackle_damage = 45
 
 	// *** Speed *** //
-	speed = -1.2
+	speed = -1
 
 	// *** Plasma *** //
 	plasma_max = 575
 	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 340
+	max_health = 300
 
 	// *** Evolution *** //
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor = list("melee" = 40, "bullet" = 31, "laser" = 20, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 40, "rad" = 40, "fire" = 20, "acid" = 40)
+	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 40, "rad" = 40, "fire" = 20, "acid" = 40)
 	
 	// *** Pheromones *** //
 	aura_strength = 2.6 //Defilers aura begins at 1.7 and ends at 2.6. It's .1 better than a carrier at ancient.
