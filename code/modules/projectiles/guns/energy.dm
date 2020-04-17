@@ -284,7 +284,7 @@
 /obj/item/weapon/gun/energy/lasgun/update_item_state(mob/user)
 	. = item_state
 	var/cell_charge = (!cell || cell.charge <= 0) ? 0 : CEILING((cell.charge / max(cell.maxcharge, 1)) * 100, 25)
-	item_state = "[base_gun_icon]_[cell_charge][flags_item & WIELDED ? "_w" : ""]"
+	item_state = "[initial(icon_state)]_[cell_charge][flags_item & WIELDED ? "_w" : ""]"
 	if(. != item_state && ishuman(user))
 		var/mob/living/carbon/human/human_user = user
 		if(src == human_user.l_hand)
