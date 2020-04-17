@@ -201,18 +201,6 @@
 	announce_medal_awards()
 	announce_round_stats()
 
-
-/datum/game_mode/infestation/distress/scale_roles(initial_players_assigned)
-	. = ..()
-	if(!.)
-		return
-	var/datum/job/scaled_job = SSjob.GetJobType(/datum/job/xenomorph) //Xenos
-	scaled_job.job_points_needed  = CONFIG_GET(number/distress_larvapoints_required)
-
-	scaled_job = SSjob.GetJobType(/datum/job/survivor/rambo) //Survivors
-	scaled_job.job_points_needed  = 3
-
-
 /datum/game_mode/infestation/distress/proc/scale_gear()
 	var/marine_pop_size = 0
 
