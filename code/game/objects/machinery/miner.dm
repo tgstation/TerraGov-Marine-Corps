@@ -20,8 +20,8 @@
 	var/miner_status = MINER_RUNNING
 	///Tracks how many ticks have passed since we last added a sheet of material
 	var/add_tick = 0
-	///How many times we neeed to tick for a resource to be created, in this case this also eqates to seconds
-	var/required_ticks = 3  //make one phoron per 3 seconds.
+	///How many times we neeed to tick for a resource to be created, in this case this is 2* the specified amount
+	var/required_ticks = 3  //make one phoron per 6 seconds.
 	///The mineral type that's produced
 	var/mineral_produced = /obj/item/stack/sheet/mineral/phoron
 
