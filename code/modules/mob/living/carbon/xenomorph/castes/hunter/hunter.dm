@@ -136,7 +136,8 @@
 			current_aura = null
 			to_chat(src, "<span class='warning'>We have ran out of plasma and stopped emitting pheromones.</span>")
 
-	hud_set_plasma() //update plasma amount on the plasma mob_hud
+	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_XENO_STATUS]
+	H.update(src, PLASMA_HUD)
 
 // ***************************************
 // *********** Death

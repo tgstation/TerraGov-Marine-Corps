@@ -48,3 +48,9 @@
 #define NOTIFY_ATTACK "attack"
 #define NOTIFY_ORBIT "orbit"
 #define NOTIFY_JOIN_AS_LARVA "join_as_larva"
+
+
+/// Macros to automate updating a single hud
+#define UPDATE_HUD(mob, hud_type, hud_name) var/datum/atom_hud/H = GLOB.huds[hud_type]; H.update(mob, hud_name)
+#define UPDATE_MULTIPLE_HUD(mob, hud_type, list_of_huds) var/datum/atom_hud/H = GLOB.huds[hud_type]; for(var/hud_name in list_of_huds) H.update(mob, hud_name)
+#define UPDATE_ALL_HUD(mob, hud_type) var/datum/atom_hud/H = GLOB.huds[hud_type]; H.update_all(mob)

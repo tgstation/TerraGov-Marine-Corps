@@ -41,6 +41,16 @@ GLOBAL_LIST_INIT(huds, list(
 	GLOB.all_huds -= src
 	return ..()
 
+/// Triggers an update of all huds
+/datum/atom_hud/proc/update_all(mob/hud_user)
+	for(var/hud_type in hud_icons)
+		update(hud_user, hud_type)
+
+/// Triggers an update of a single hud type
+/datum/atom_hud/proc/update(mob/hud_user, hud_name)
+	return FALSE
+	
+
 
 /datum/atom_hud/proc/remove_hud_from(mob/M)
 	if(!M || !hudusers[M])

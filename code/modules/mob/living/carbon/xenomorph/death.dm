@@ -34,7 +34,7 @@
 
 	xeno_death_alert()
 
-	hud_set_queen_overwatch() //updates the overwatch hud to remove the upgrade chevrons, gold star, etc
+	UPDATE_ALL_HUD(src, DATA_HUD_XENO_STATUS)
 
 	var/isAI = GetComponent(/datum/component/ai_controller)
 	if (isAI)

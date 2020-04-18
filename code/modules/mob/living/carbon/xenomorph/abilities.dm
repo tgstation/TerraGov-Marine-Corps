@@ -284,7 +284,7 @@
 		X.current_aura = null
 		if(isxenoqueen(X))
 			X.hive?.update_leader_pheromones()
-		X.hud_set_pheromone()
+		UPDATE_HUD(X, DATA_HUD_XENO_STATUS, PHEROMONE_HUD)
 		return fail_activate() // dont use plasma
 
 	X.current_aura = aura_type
@@ -294,7 +294,7 @@
 
 	if(isxenoqueen(X))
 		X.hive?.update_leader_pheromones()
-	X.hud_set_pheromone() //Visual feedback that the xeno has immediately started emitting pheromones
+	UPDATE_HUD(X, DATA_HUD_XENO_STATUS, PHEROMONE_HUD)
 	return succeed_activate()
 
 /datum/action/xeno_action/pheromones/emit_recovery //Type casted for easy removal/adding

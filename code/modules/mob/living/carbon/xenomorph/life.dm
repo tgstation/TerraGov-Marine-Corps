@@ -34,6 +34,8 @@
 	handle_living_health_updates()
 	handle_living_plasma_updates()
 	update_action_button_icons()
+
+	/// TODO: (psykzz) this should be refactored out, no need to update everything every life
 	update_icons()
 
 
@@ -125,7 +127,7 @@
 	else
 		gain_plasma(1)
 
-	hud_set_plasma() //update plasma amount on the plasma mob_hud
+	UPDATE_HUD(src, DATA_HUD_XENO_STATUS, PLASMA_HUD)
 
 /mob/living/carbon/xenomorph/proc/handle_aura_emiter()
 	//Rollercoaster of fucking stupid because Xeno life ticks aren't synchronised properly and values reset just after being applied
@@ -193,7 +195,7 @@
 		set_frenzy_aura(frenzy_new)
 		warding_aura = warding_new
 		recovery_aura = recovery_new
-	hud_set_pheromone()
+	UPDATE_HUD(src, DATA_HUD_XENO_STATUS, PHEROMONE_HUD)
 	frenzy_new = 0
 	warding_new = 0
 	recovery_new = 0

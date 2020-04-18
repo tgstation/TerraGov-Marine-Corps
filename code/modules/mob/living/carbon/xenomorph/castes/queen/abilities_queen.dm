@@ -288,7 +288,7 @@
 	watcher.observed_xeno = null
 	if(!QDELETED(observed))
 		UnregisterSignal(observed, list(COMSIG_HIVE_XENO_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED))
-		observed.hud_set_queen_overwatch()
+		UPDATE_HUD(observed, DATA_HUD_XENO_STATUS, QUEEN_OVERWATCH_HUD)
 	if(do_reset_perspective)
 		watcher.reset_perspective()
 	UnregisterSignal(watcher, COMSIG_MOVABLE_MOVED)
@@ -428,7 +428,7 @@
 		to_chat(xeno_ruler, "<span class='xenonotice'>We've demoted [selected_xeno] from Lead.</span>")
 		to_chat(selected_xeno, "<span class='xenoannounce'>[xeno_ruler] has demoted us from Hive Leader. Our leadership rights and abilities have waned.</span>")
 	selected_xeno.hive.remove_leader(selected_xeno)
-	selected_xeno.hud_set_queen_overwatch()
+	UPDATE_HUD(selected_xeno, DATA_HUD_XENO_STATUS, QUEEN_OVERWATCH_HUD)
 	selected_xeno.handle_xeno_leader_pheromones(xeno_ruler)
 
 
@@ -442,7 +442,7 @@
 		to_chat(xeno_ruler, "<span class='xenonotice'>We've selected [selected_xeno] as a Hive Leader.</span>")
 		to_chat(selected_xeno, "<span class='xenoannounce'>[xeno_ruler] has selected us as a Hive Leader. The other Xenomorphs must listen to us. We will also act as a beacon for the Queen's pheromones.</span>")
 	xeno_ruler.hive.add_leader(selected_xeno)
-	selected_xeno.hud_set_queen_overwatch()
+	UPDATE_HUD(selected_xeno, DATA_HUD_XENO_STATUS, QUEEN_OVERWATCH_HUD)
 	selected_xeno.handle_xeno_leader_pheromones(xeno_ruler)
 
 
@@ -673,7 +673,7 @@
 
 	if(T.queen_chosen_lead)
 		new_xeno.queen_chosen_lead = TRUE
-		new_xeno.hud_set_queen_overwatch()
+		UPDATE_HUD(new_xeno, DATA_HUD_XENO_STATUS, QUEEN_OVERWATCH_HUD)
 
 	SEND_SIGNAL(T, COMSIG_XENOMORPH_DEEVOLVED, new_xeno)
 

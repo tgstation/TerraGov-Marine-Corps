@@ -187,8 +187,9 @@
 
 
 /mob/living/carbon/xenomorph/med_hud_set_status()
-	hud_set_plasma()
-	hud_set_pheromone()
+	var/datum/atom_hud/H = GLOB.huds[DATA_HUD_XENO_STATUS]
+	H.update(src, PLASMA_HUD)
+	H.update(src, PHEROMONE_HUD)
 
 
 /mob/living/carbon/monkey/med_hud_set_status()
@@ -326,15 +327,44 @@
 /datum/atom_hud/xeno
 	hud_icons = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD)
 
-/mob/living/proc/hud_set_sunder()
-	return
+/datum/atom_hud/xeno/update(mob/living/carbon/xenomorph/xeno, hud_name)
+	if(!istype(xeno) || !xeno.xeno_caste) // xeno_caste is sometimes not defined if this is called too quick at round start.
+		return FALSE
 
-/mob/living/carbon/xenomorph/hud_set_sunder()
-	var/image/holder = hud_list[ARMOR_SUNDER_HUD]
+	switch(hud_name)
+		if(ARMOR_SUNDER_HUD)
+			handle_sunder_hud_update(xeno)
+			
+		if(PLASMA_HUD)
+			handle_plasma_hud_update(xeno)
+
+		if(PHEROMONE_HUD)
+			handle_pheromone_hud_update(xeno)
+
+		if(HEALTH_HUD_XENO)
+			handle_health_hud_update(xeno)
+
+		if(QUEEN_OVERWATCH_HUD)
+			handle_overwatch_hud_update(xeno)
+
+/datum/atom_hud/xeno/proc/handle_health_hud_update(mob/living/carbon/xenomorph/xeno)
+	var/image/holder = xeno.hud_list[HEALTH_HUD_XENO]
 	if(!holder)
 		return
+	if(xeno.stat == DEAD)
+		holder.icon_state = "xenohealth0"
+		return
 
-	switch(round(sunder, 1))
+	var/amount = round(xeno.health * 100 / xeno.maxHealth, 10)
+	if(!amount)
+		amount = 1 //don't want the 'zero health' icon when we still have 4% of our health
+	holder.icon_state = "xenohealth[amount]"
+
+/datum/atom_hud/xeno/proc/handle_sunder_hud_update(mob/living/carbon/xenomorph/xeno)
+	var/image/holder = xeno.hud_list[ARMOR_SUNDER_HUD]
+	if(!holder)
+		return
+	switch(round(xeno.sunder, 1))
 		if(-INFINITY to 0)
 			holder.icon_state = "sundering0"
 		if(1 to 35)
@@ -345,39 +375,35 @@
 			holder.icon_state = "sundering75"
 		if(96 to INFINITY)
 			holder.icon_state = "sundering100"
-	
 
-/mob/living/carbon/xenomorph/proc/hud_set_plasma()
-	if(!xeno_caste) // usually happens because hud ticks before New() finishes.
-		return
-	var/image/holder = hud_list[PLASMA_HUD]
+/datum/atom_hud/xeno/proc/handle_plasma_hud_update(mob/living/carbon/xenomorph/xeno)
+	var/image/holder = xeno.hud_list[PLASMA_HUD]
 	if(!holder)
 		return
-	if(stat == DEAD)
+	if(xeno.stat == DEAD)
 		holder.icon_state = "plasma0"
 	else
-		var/amount = round(plasma_stored * 100 / xeno_caste.plasma_max, 10)
+		var/amount = round(xeno.plasma_stored * 100 / xeno.xeno_caste.plasma_max, 10)
 		holder.icon_state = "plasma[amount]"
 
-
-/mob/living/carbon/xenomorph/proc/hud_set_pheromone()
-	var/image/holder = hud_list[PHEROMONE_HUD]
+/datum/atom_hud/xeno/proc/handle_pheromone_hud_update(mob/living/carbon/xenomorph/xeno)
+	var/image/holder = xeno.hud_list[PHEROMONE_HUD]
 	if(!holder)
 		return
 	holder.overlays.Cut()
 	holder.icon_state = "hudblank"
-	if(stat != DEAD)
-		var/tempname = ""
-		if(frenzy_aura)
-			tempname += "frenzy"
-		if(warding_aura)
-			tempname += "warding"
-		if(recovery_aura)
-			tempname += "recovery"
-		if(tempname)
-			holder.icon_state = "hud[tempname]"
+	if(xeno.stat != DEAD)
+		var/aura = ""
+		if(xeno.frenzy_aura)
+			aura += "frenzy"
+		if(xeno.warding_aura)
+			aura += "warding"
+		if(xeno.recovery_aura)
+			aura += "recovery"
+		if(aura)
+			holder.icon_state = "hud[aura]"
 
-		switch(current_aura)
+		switch(xeno.current_aura)
 			if("frenzy")
 				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurafrenzy")
 			if("recovery")
@@ -385,7 +411,7 @@
 			if("warding")
 				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurawarding")
 
-		switch(leader_current_aura)
+		switch(xeno.leader_current_aura)
 			if("frenzy")
 				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurafrenzy")
 			if("recovery")
@@ -393,24 +419,25 @@
 			if("warding")
 				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurawarding")
 
-	hud_list[PHEROMONE_HUD] = holder
+	// hud_list[PHEROMONE_HUD] = holder
 
-
-/mob/living/carbon/xenomorph/proc/hud_set_queen_overwatch()
-	var/image/holder = hud_list[QUEEN_OVERWATCH_HUD]
+/datum/atom_hud/xeno/proc/handle_overwatch_hud_update(mob/living/carbon/xenomorph/xeno)
+	var/image/holder = xeno.hud_list[QUEEN_OVERWATCH_HUD]
 	holder.overlays.Cut()
 	holder.icon_state = "hudblank"
-	if(stat != DEAD)
-		if(hive?.living_xeno_queen)
-			if(hive.living_xeno_queen.observed_xeno == src)
+	if(xeno.stat != DEAD)
+		if(xeno.hive?.living_xeno_queen)
+			if(xeno.hive.living_xeno_queen.observed_xeno == src)
 				holder.icon_state = "queen_overwatch"
-			if(queen_chosen_lead)
-				var/image/I = image('icons/mob/hud.dmi',src, "hudxenoleader")
+			if(xeno.queen_chosen_lead)
+				var/image/I = image('icons/mob/hud.dmi', src, "hudxenoleader")
 				holder.overlays += I
-		if(upgrade_as_number() > 0) // theres only icons for 1 2 3, not for -1
-			var/image/J = image('icons/mob/hud.dmi',src, "hudxenoupgrade[upgrade_as_number()]")
+
+		var/upgrade_number = xeno.upgrade_as_number()
+		if(upgrade_number > 0) // theres only icons for 1 2 3, not for -1
+			var/image/J = image('icons/mob/hud.dmi', src, "hudxenoupgrade[upgrade_number]")
 			holder.overlays += J
-	hud_list[QUEEN_OVERWATCH_HUD] = holder
+	// hud_list[QUEEN_OVERWATCH_HUD] = holder
 
 
 /datum/atom_hud/security

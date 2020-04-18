@@ -31,9 +31,7 @@
 	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
 	update_wounds()
 
-	hud_set_plasma()
-	med_hud_set_health()
-	hud_set_sunder()
+	UPDATE_ALL_HUD(src, DATA_HUD_XENO_STATUS)
 
 /mob/living/carbon/xenomorph/regenerate_icons()
 	..()
