@@ -19,4 +19,5 @@
 /mob/living/carbon/xenomorph/restrained(ignore_checks)
 	return FALSE
 
-
+/mob/living/carbon/xenomorph/get_death_threshold()
+	return xeno_caste.crit_health
