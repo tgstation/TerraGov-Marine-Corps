@@ -207,12 +207,14 @@
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
 	new /obj/item/weapon/gun/rifle/sniper/M42A(src)
-	new /obj/item/bodybag/tarp(src)
+	
 	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
 		new /obj/item/clothing/head/helmet/marine/standard(src)
+		new /obj/item/bodybag/tarp/snow(src)
 	else
 		new /obj/item/clothing/head/helmet/durag(src)
 		new /obj/item/facepaint/sniper(src)
+		new /obj/item/bodybag/tarp(src)
 
 /obj/item/storage/box/m42c_system_Jungle
 	name = "\improper M42A scoped rifle system (marksman set)"
