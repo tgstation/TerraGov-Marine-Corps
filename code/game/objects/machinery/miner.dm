@@ -156,7 +156,7 @@
 	if(add_tick >= required_ticks && stored_mineral <= 49)	//make one phoron per 60 ticks, or 3 seconds.
 		stored_mineral += 1			
 		add_tick = 0
-	else if(stored_mineral >= 50)
+	if(stored_mineral >= 50)
 		stop_processing()
 	else
 		add_tick += 1
