@@ -150,7 +150,7 @@
 	start_processing()
 
 /obj/machinery/miner/process()
-	if(miner_status != MINER_RUNNING || stored_mineral >= 50)
+	if(miner_status != MINER_RUNNING)
 		stop_processing()
 		return
 	if(add_tick >= required_ticks)
