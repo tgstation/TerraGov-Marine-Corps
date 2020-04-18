@@ -145,10 +145,9 @@
 	if(stored_mineral == 0)
 		to_chat(L, "<span class='warning'>[src]'s internal storage currently has no minerals stored!</span>")
 		return
-	if(stored_mineral >= 50)	//We shouldnt get more, but just in case
-		start_processing()
-	new mineral_produced(L.loc, stored_mineral)
+	new mineral_produced(user.loc, stored_mineral)
 	stored_mineral = 0
+	start_processing()
 
 /obj/machinery/miner/process()
 	if(miner_status != MINER_RUNNING || stored_mineral >= 50)
