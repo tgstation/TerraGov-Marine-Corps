@@ -466,9 +466,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 // Xeno charge types
 #define CHARGE_TYPE_SMALL			1
 #define CHARGE_TYPE_MEDIUM			2
-#define CHARGE_TYPE_LARGE			3
-#define CHARGE_TYPE_MASSIVE			4
-
+#define CHARGE_TYPE_PANTHER			3
+#define CHARGE_TYPE_LARGE			4
+#define CHARGE_TYPE_MASSIVE			5
 
 //Hunter Defines
 #define HUNTER_STEALTH_COOLDOWN					50 //5 seconds
@@ -565,16 +565,16 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define BODY_ZONE_PRECISE_L_FOOT	"l_foot"
 #define BODY_ZONE_PRECISE_R_FOOT	"r_foot"
 
-GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD, 
-										BODY_ZONE_CHEST, 
-										BODY_ZONE_PRECISE_GROIN, 
+GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
+										BODY_ZONE_CHEST,
+										BODY_ZONE_PRECISE_GROIN,
 										BODY_ZONE_L_ARM,
-										BODY_ZONE_PRECISE_L_HAND, 
-										BODY_ZONE_R_ARM, 
-										BODY_ZONE_PRECISE_R_HAND, 
-										BODY_ZONE_L_LEG, 
-										BODY_ZONE_PRECISE_L_FOOT, 
-										BODY_ZONE_R_LEG, 
+										BODY_ZONE_PRECISE_L_HAND,
+										BODY_ZONE_R_ARM,
+										BODY_ZONE_PRECISE_R_HAND,
+										BODY_ZONE_L_LEG,
+										BODY_ZONE_PRECISE_L_FOOT,
+										BODY_ZONE_R_LEG,
 										BODY_ZONE_PRECISE_R_FOOT
 										))
 
