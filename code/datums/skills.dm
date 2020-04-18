@@ -385,6 +385,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	leadership = SKILL_LEAD_TRAINED
 	powerloader = SKILL_POWERLOADER_MASTER
+	police = SKILL_POLICE_FLASH
 
 /datum/skills/ST
 	name = SHIP_TECH
