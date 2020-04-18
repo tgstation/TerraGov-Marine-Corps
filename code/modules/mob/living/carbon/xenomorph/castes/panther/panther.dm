@@ -3,7 +3,7 @@
 	name = "Panther"
 	desc = "A rather small alien that resembles one of the big cats you'd find back on Terra."
 	icon = 'icons/Xeno/2x2_Xenos.dmi' //They are now like, 2x1 or something
-	icon_state = "Panther Walking
+	icon_state = "Panther Walking"
 	health = 100
 	maxHealth = 100
 	plasma_stored = 50

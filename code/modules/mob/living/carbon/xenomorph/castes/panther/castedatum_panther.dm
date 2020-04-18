@@ -3,10 +3,10 @@
 	display_name = "Panther"
 	upgrade_name = ""
 	caste_desc = "A fast, four-legged terror, adapt at capturing prey."
-	caste_type_path = /mob/living/carbon/xenomorph/runner
+	caste_type_path = /mob/living/carbon/xenomorph/panther
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_BASETYPE
-	wound_type = "panther" //used to match appropriate wound overlays
+	wound_type = "runner" //used to match appropriate wound overlays
 
 	gib_anim = "gibbed-a-corpse-runner"
 	gib_flick = "gibbed-a-runner"
