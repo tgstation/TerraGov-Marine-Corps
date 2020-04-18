@@ -62,11 +62,12 @@
 		set_info(L,P)
 		return
 
-		for(var/mob in mob_types)	//Spawn the entire list
-			if(spawned_mobs.len >= max_mobs)	//We've hit the mob limit, let's not spawn the rest of the list
-				break
-			var/mob/living/L = new mob(P.loc)
-			set_info(L,P)
+	for(var/mob in mob_types)	//Spawn the entire list
+		if(spawned_mobs.len >= max_mobs)	//We've hit the mob limit, let's not spawn the rest of the list
+			break
+		var/mob/living/L = new mob(P.loc)
+		set_info(L,P)
+
 
 ///Sets the post-spawn info for the mob
 /datum/component/spawner/proc/set_info(mob/living/spawned, atom/parent)
