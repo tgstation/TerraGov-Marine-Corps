@@ -153,7 +153,7 @@
 	if(miner_status != MINER_RUNNING || stored_mineral >= 50)
 		stop_processing()
 		return
-	if(add_tick >= required_ticks && stored_mineral <= 49)	//make one phoron per 60 ticks, or 3 seconds.
+	if(add_tick >= required_ticks)
 		stored_mineral += 1			
 		add_tick = 0
 	if(stored_mineral >= 50)
