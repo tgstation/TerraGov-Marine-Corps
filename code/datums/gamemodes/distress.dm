@@ -258,7 +258,7 @@
 					/obj/item/attachable/burstfire_assembly = round(scale * 4),
 
 					/obj/item/attachable/stock/t35stock = round(scale * 4),
-					/obj/item/attachable/stock/t19stock = round(scale * 4) ,
+					/obj/item/attachable/stock/t19stock = round(scale * 4),
 					/obj/item/attachable/stock/tactical = round(scale * 3),
 
 					/obj/item/attachable/attached_gun/grenade = round(scale * 10),
