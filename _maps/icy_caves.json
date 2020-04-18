@@ -1,10 +1,10 @@
 {
     "map_name": "Icy Caves",
     "map_path": "map_files/icy_caves",
-	"map_file": "icy_caves.dmm",
+    "map_file": "icy_caves.dmm",
     "environment_traits": {
         "COLD":true
-	},
+    },
     "shuttles": {
     },
     "armor": "ice",
