@@ -19915,18 +19915,6 @@
 	dir = 9
 	},
 /area/lv624/lazarus/comms)
-"eyk" = (
-/obj/structure/table,
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/tile/purple/taupepurple{
-	dir = 9
-	},
-/area/lv624/lazarus/sleep_female)
 "eJQ" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral,
@@ -20018,6 +20006,14 @@
 	dir = 5
 	},
 /area/lv624/lazarus/research)
+"gvS" = (
+/obj/machinery/door/airlock/mainship/security{
+	locked = 1;
+	name = "\improper Nexus Dome Marshal Office";
+	req_access_txt = "0"
+	},
+/turf/open/floor,
+/area/lv624/lazarus/security)
 "gwG" = (
 /obj/structure/jungle/vines,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -20299,6 +20295,18 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating,
 /area/lv624/lazarus/robotics)
+"pPg" = (
+/obj/structure/table,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
+	},
+/area/lv624/lazarus/sleep_female)
 "qQj" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/wall,
@@ -20432,14 +20440,6 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/ground/river,
 /area/lv624/ground/river1)
-"uTP" = (
-/obj/machinery/door/airlock/mainship/security{
-	locked = 1;
-	name = "\improper Nexus Dome Marshal Office";
-	req_access_txt = "0"
-	},
-/turf/open/floor,
-/area/lv624/lazarus/security)
 "uVd" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -48280,7 +48280,7 @@ bbX
 bbX
 bbX
 bbX
-uTP
+gvS
 bbW
 bhs
 biq
@@ -53398,7 +53398,7 @@ aNG
 aMH
 aPs
 aQs
-eyk
+pPg
 aPr
 aSt
 aTh
