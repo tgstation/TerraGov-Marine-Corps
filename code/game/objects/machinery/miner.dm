@@ -79,7 +79,8 @@
 	return TRUE
 
 /obj/machinery/miner/wirecutter_act(mob/living/user, obj/item/I)
-	if(!(miner_status == MINER_MEDIUM_DAMAGE))
+	if(miner_status != MINER_MEDIUM_DAMAGE)
+
 		return
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s wiring.</span>",
