@@ -52,7 +52,7 @@
 
 /obj/machinery/miner/welder_act(mob/living/user, obj/item/I)
 	. = ..()
-	if(!(miner_status == MINER_DESTROYED))
+	if(miner_status != MINER_DESTROYED)
 		return
 	var/obj/item/tool/weldingtool/weldingtool= I
 	if(!weldingtool.remove_fuel(1, user))
