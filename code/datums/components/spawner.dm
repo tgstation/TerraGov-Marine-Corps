@@ -55,7 +55,8 @@
 	if(spawn_delay > world.time)	//Not time to spawn yet
 		return FALSE
 	spawn_delay = world.time + spawn_time
-	if(squad_spawn == FALSE)	//for picking ONE mob to spawn
+	if(!squad_spawn)	//for picking ONE mob to spawn
+
 		var/chosen_mob_type = pick(mob_types)
 		var/mob/living/L = new chosen_mob_type(P.loc)
 		set_info(L,P)
