@@ -574,6 +574,16 @@ WEAPONS
 	containername = "\improper Fragmentation M15 grenade crate (WARNING)"
 	group = "Weapons"
 
+/datum/supply_packs/explosives_hsdp
+	name = "M40 HSDP white phosphorous grenade box crate (x15)"
+	contains = list(
+					/obj/item/storage/box/nade_box/phos
+					)
+	cost = RO_PRICE_VERY_PRICY
+	containertype = /obj/structure/closet/crate/explosives
+	containername = "\improper explosive HSDP grenade crate (WARNING)"
+	group = "Weapons"
+
 /datum/supply_packs/plastique
 	name = "plastic explosives crate (x5)"
 	contains = list(
@@ -2038,6 +2048,23 @@ CLOTHING
 /*******************************************************************************
 MEDICAL
 *******************************************************************************/
+
+datum/supply_packs/advanced_medical
+	contains = list(
+					/obj/item/storage/pouch/autoinjector/advanced/full,
+					/obj/item/storage/pouch/autoinjector/advanced/full,
+					/obj/item/storage/pouch/autoinjector/advanced/full,
+					/obj/item/storage/pouch/autoinjector/advanced/full,
+					/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus,
+					/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus,
+					/obj/item/reagent_containers/hypospray/autoinjector/neuraline,
+					/obj/item/stack/nanopaste
+					)
+	name = "Advanced medical supplies"
+	cost = RO_PRICE_VERY_PRICY
+	containertype = /obj/structure/closet/crate
+	containername = "\improper medical crate"
+	group = "Medical"
 
 
 /datum/supply_packs/medical

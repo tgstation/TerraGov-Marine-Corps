@@ -277,11 +277,13 @@
 
 /obj/item/storage/pill_bottle/kelotane
 	name = "kelotane pill bottle"
+	desc = "Contains pills that heal burns, but cause slight pain. Take two to heal faster, but have slightly more pain."
 	icon_state = "pill_canister2"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/kelotane
 
 /obj/item/storage/pill_bottle/dylovene
 	name = "dylovene pill bottle"
+	desc = "Contains pills that heal toxic damage and purge toxins and neurotoxins of all kinds."
 	icon_state = "pill_canister6"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/dylovene
 
@@ -292,6 +294,7 @@
 
 /obj/item/storage/pill_bottle/tramadol
 	name = "tramadol pill bottle"
+	desc = "Contains pills that numb pain. Take two for a stronger effect at the cost of a toxic effect."
 	icon_state = "pill_canister5"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/tramadol
 
@@ -302,6 +305,7 @@
 
 /obj/item/storage/pill_bottle/bicaridine
 	name = "bicaridine pill bottle"
+	desc = "Contains pills that heal cuts and bruises, but cause slight pain. Take two to heal faster, but have slightly more pain."
 	icon_state = "pill_canister11"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/bicaridine
 
@@ -312,11 +316,13 @@
 
 /obj/item/storage/pill_bottle/alkysine
 	name = "alkysine pill bottle"
+	desc = "Contains pills that heal brain damage."
 	icon_state = "pill_canister7"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/alkysine
 
 /obj/item/storage/pill_bottle/imidazoline
 	name = "imidazoline pill bottle"
+	desc = "Contains pills that heal eye damage."
 	icon_state = "pill_canister9"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/imidazoline
 
@@ -354,7 +360,7 @@
 
 /obj/item/storage/pill_bottle/zoom
 	name = "zoom pill bottle"
-	desc = "Containts highly illegal drugs. Trade brain for speed."
+	desc = "Containts highly illegal drugs. Trade heart for speed."
 	max_storage_space = 7
 	pill_type_to_fill = /obj/item/reagent_containers/pill/zoom
 

@@ -36,9 +36,11 @@
 // ***************************************
 // *********** Life overrides
 // ***************************************
-/mob/living/carbon/xenomorph/defender/update_stat()
+/mob/living/carbon/xenomorph/defender/set_stat()
 	. = ..()
-	if(stat && fortify)
+	if(isnull(.))
+		return
+	if(. == CONSCIOUS && fortify) //No longer conscious.
 		set_fortify(FALSE) //Fortify prevents dragging due to the anchor component.
 
 
@@ -56,5 +58,5 @@
 	var/target_turf = get_step_away(src, H, rand(1, 2)) //This is where we blast our target
 	target_turf = get_step_rand(target_turf) //Scatter
 	H.throw_at(get_turf(target_turf), 4, 70, H)
-	H.Knockdown(40)
+	H.Paralyze(40)
 	return

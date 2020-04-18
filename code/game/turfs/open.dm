@@ -14,7 +14,7 @@
 /turf/open/Entered(atom/A, atom/OL)
 	if(iscarbon(A))
 		var/mob/living/carbon/C = A
-		if(!C.lying && !(C.buckled && istype(C.buckled,/obj/structure/bed/chair)))
+		if(!C.lying_angle && !(C.buckled && istype(C.buckled,/obj/structure/bed/chair)))
 			if(ishuman(C))
 				var/mob/living/carbon/human/H = C
 

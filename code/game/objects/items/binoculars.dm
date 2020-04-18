@@ -15,6 +15,10 @@
 /obj/item/binoculars/attack_self(mob/user)
 	zoom(user, 11, 12)
 
+#define MODE_CAS 0
+#define MODE_RANGE_FINDER 1
+#define MODE_RAILGUN 2
+#define MODE_ORBITAL 3
 
 /obj/item/binoculars/tactical
 	name = "tactical binoculars"
@@ -24,8 +28,10 @@
 	var/obj/effect/overlay/temp/laser_target/laser
 	var/obj/effect/overlay/temp/laser_coordinate/coord
 	var/target_acquisition_delay = 100 //10 seconds
-	var/mode = 0 //Able to be switched between modes, 0 for cas laser, 1 for finding coordinates.
-	var/changable = 1 //If set to 0, you can't toggle the mode between CAS and coordinate finding
+	var/mode = 0 //Able to be switched between modes, 0 for cas laser, 1 for finding coordinates, 2 for directing railgun, 3 for orbital bombardment.
+	var/changable = TRUE //If set to FALSE, you can't toggle the mode between CAS and coordinate finding
+	var/ob_fired = FALSE // If the user has fired the OB
+	var/turf/current_turf // The target turf
 
 /obj/item/binoculars/tactical/Initialize()
 	. = ..()
@@ -33,25 +39,35 @@
 
 /obj/item/binoculars/tactical/examine()
 	..()
-	to_chat(usr, "<span class='notice'>They are currently set to [mode ? "range finder" : "CAS marking"] mode.</span>")
-
+	switch(mode)
+		if(MODE_CAS)
+			to_chat(usr, "<span class='notice'>They are currently set to CAS marking mode.</span>")
+		if(MODE_RANGE_FINDER)
+			to_chat(usr, "<span class='notice'>They are currently set to range finding mode.</span>")
+		if(MODE_RAILGUN)
+			to_chat(usr, "<span class='notice'>They are currently set to railgun targeting mode.</span>")
+		if(MODE_ORBITAL)
+			to_chat(usr, "<span class='notice'>They are currently set to orbital bombardment mode.</span>")
+	
 /obj/item/binoculars/tactical/Destroy()
 	if(laser)
-		qdel(laser)
-		laser = null
+		QDEL_NULL(laser)
 	if(coord)
-		qdel(coord)
-		coord = null
+		QDEL_NULL(coord)
 	. = ..()
 
 
 /obj/item/binoculars/tactical/InterceptClickOn(mob/user, params, atom/object)
 	var/list/pa = params2list(params)
-	if(!pa.Find("ctrl"))
-		return FALSE
-	acquire_target(object, user)
-	return TRUE
+	if(pa.Find("ctrl") && !pa.Find("shift"))	
+		acquire_target(object, user)
+		return TRUE
 
+	if(pa.Find("ctrl") && pa.Find("shift"))
+		try_fire_ob(object, user)
+		return TRUE
+
+	return FALSE
 
 /obj/item/binoculars/tactical/dropped(mob/user)
 	. = ..()
@@ -87,9 +103,9 @@
 	if(zoom)
 		return
 	if(laser)
-		qdel(laser)
+		QDEL_NULL(laser)
 	if(coord)
-		qdel(coord)
+		QDEL_NULL(coord)
 
 
 /obj/item/binoculars/tactical/update_icon()
@@ -113,10 +129,21 @@
 		return
 
 	if(!zoom)
-		mode = !mode
-		to_chat(user, "<span class='notice'>You switch [src] to [mode? "range finder" : "CAS marking" ] mode.</span>")
+		mode += 1
+		if(mode > MODE_ORBITAL)
+			mode = MODE_CAS
+		switch(mode)
+			if(MODE_CAS)
+				to_chat(user, "<span class='notice'>You switch [src] to CAS marking mode.</span>")
+			if(MODE_RANGE_FINDER)
+				to_chat(user, "<span class='notice'>You switch [src] to range finder mode.</span>")
+			if(MODE_RAILGUN)
+				to_chat(user, "<span class='notice'>You switch [src] to railgun targeting mode.</span>")
+			if(MODE_ORBITAL)
+				to_chat(user, "<span class='notice'>You switch [src] to orbital bombardment targeting mode.</span>")
+		
 		update_icon()
-		playsound(usr, 'sound/items/binoculars.ogg', 15, 1)
+		playsound(user, 'sound/items/binoculars.ogg', 15, 1)
 
 /obj/item/binoculars/tactical/proc/acquire_target(atom/A, mob/living/carbon/human/user)
 	set waitfor = 0
@@ -131,7 +158,6 @@
 
 	if(!user.mind)
 		return
-
 	var/datum/squad/S = user.assigned_squad
 
 	var/laz_name = ""
@@ -161,25 +187,75 @@
 	to_chat(user, "<span class='notice'>INITIATING LASER TARGETING. Stand still.</span>")
 	if(!do_after(user, max(1.5 SECONDS, target_acquisition_delay - (2.5 SECONDS * user.skills.getRating("leadership"))), TRUE, TU, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
 		return
-	if(mode)
-		var/obj/effect/overlay/temp/laser_coordinate/LT = new (TU, laz_name, S)
-		coord = LT
-		to_chat(user, "<span class='notice'>SIMPLIFIED COORDINATES OF TARGET. LONGITUDE [coord.x]. LATITUDE [coord.y].</span>")
-		playsound(src, 'sound/effects/binoctarget.ogg', 35)
-		while(coord)
-			if(!do_after(user, 50, TRUE, coord, BUSY_ICON_GENERIC))
-				QDEL_NULL(coord)
-				break
-	else
-		to_chat(user, "<span class='notice'>TARGET ACQUIRED. LASER TARGETING IS ONLINE. DON'T MOVE.</span>")
-		var/obj/effect/overlay/temp/laser_target/LT = new (TU, laz_name, S)
-		laser = LT
-		playsound(src, 'sound/effects/binoctarget.ogg', 35)
-		while(laser)
-			if(!do_after(user, 50, TRUE, laser, BUSY_ICON_GENERIC))
-				QDEL_NULL(laser)
-				break
+	switch(mode)
+		if(MODE_CAS)
+			to_chat(user, "<span class='notice'>TARGET ACQUIRED. LASER TARGETING IS ONLINE. DON'T MOVE.</span>")
+			var/obj/effect/overlay/temp/laser_target/LT = new (TU, laz_name, S)
+			laser = LT
+			playsound(src, 'sound/effects/binoctarget.ogg', 35)
+			while(laser)
+				if(!do_after(user, 5 SECONDS, TRUE, laser, BUSY_ICON_GENERIC))
+					QDEL_NULL(laser)
+					break
+		if(MODE_RANGE_FINDER)
+			var/obj/effect/overlay/temp/laser_coordinate/LT = new (TU, laz_name, S)
+			coord = LT
+			to_chat(user, "<span class='notice'>SIMPLIFIED COORDINATES OF TARGET. LONGITUDE [coord.x]. LATITUDE [coord.y].</span>")
+			playsound(src, 'sound/effects/binoctarget.ogg', 35)
+			while(coord)
+				if(!do_after(user, 5 SECONDS, TRUE, coord, BUSY_ICON_GENERIC))
+					QDEL_NULL(coord)
+					break
+		if(MODE_RAILGUN)
+			to_chat(user, "<span class='notice'>ACQUIRING TARGET. RAILGUN TRIANGULATING. DON'T MOVE.</span>")
+			if((GLOB.marine_main_ship?.rail_gun?.last_firing + 120 SECONDS) > world.time)
+				to_chat(user, "[icon2html(src, user)] <span class='warning'>The Rail Gun hasn't cooled down yet!</span>")
+			else if(!targ_area)
+				to_chat(user, "[icon2html(src, user)] <span class='warning'>No target detected!</span>")
+			else
+				to_chat(user, "<span class='notice'>TARGET ACQUIRED. RAILGUN IS FIRING. DON'T MOVE.</span>")
+				var/obj/effect/overlay/temp/laser_target/RT = new (TU, laz_name, S)
+				laser = RT
+				playsound(src, 'sound/effects/binoctarget.ogg', 35)
+				while(laser)
+					GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(TU,user)
+					if(!do_after(user, 5 SECONDS, TRUE, laser, BUSY_ICON_GENERIC))
+						QDEL_NULL(laser)
+						break
+		if(MODE_ORBITAL)
+			to_chat(user, "<span class='notice'>ACQUIRING TARGET. ORBITAL CANNON TRIANGULATING. DON'T MOVE.</span>")
+			if((GLOB.marine_main_ship?.orbital_cannon?.last_orbital_firing + 500 SECONDS) > world.time)
+				to_chat(user, "[icon2html(src, user)] <span class='warning'>Orbital bombardment not yet available!</span>")
+			else if(!targ_area)
+				to_chat(user, "[icon2html(src, user)] <span class='warning'>No target detected!</span>")
+			else
+				var/obj/effect/overlay/temp/laser_target/OB = new (TU, laz_name, S)
+				laser = OB
+				playsound(src, 'sound/effects/binoctarget.ogg', 35)
+				if(!do_after(user, 15 SECONDS, TRUE, user, BUSY_ICON_GENERIC))
+					QDEL_NULL(laser)
+					return
+				to_chat(user, "<span class='notice'>TARGET ACQUIRED. ORBITAL CANNON IS READY TO FIRE.</span>")
+				// Wait for that ALT click to fire
+				current_turf = TU
+				ob_fired = FALSE // Reset the fired state
+				while(laser && !ob_fired)
+					if(!do_after(user, 5 SECONDS, TRUE, laser, BUSY_ICON_GENERIC))
+						QDEL_NULL(laser)
+						break
+				current_turf = null
 
+/obj/item/binoculars/tactical/proc/try_fire_ob(atom/A, mob/living/carbon/human/user)
+	if(mode != MODE_ORBITAL)
+		return
+	if(A != laser || !current_turf)
+		return // Gotta click on a laser target
+	ob_fired = TRUE
+	GLOB.marine_main_ship?.orbital_cannon?.fire_ob_cannon(get_turf(laser), user)
+	to_chat(user, "<span class='notice'>FIRING REQUEST RECIEVED. CLEAR TARGET AREA</span>")
+	log_attack("[key_name(user)] fired an orbital bombardment in [AREACOORD(current_turf)].")
+	message_admins("[ADMIN_TPMONTY(user)] fired an orbital bombardment in [ADMIN_VERBOSEJMP(current_turf)].")
+	QDEL_NULL(laser)
 
 /obj/item/binoculars/tactical/scout
 	name = "scout tactical binoculars"
@@ -192,4 +268,9 @@
 	name = "range-finder"
 	desc = "A pair of binoculars designed to find coordinates."
 	changable = 0
-	mode = 1
+	mode = MODE_RANGE_FINDER
+
+#undef MODE_CAS
+#undef MODE_RANGE_FINDER
+#undef MODE_RAILGUN
+#undef MODE_ORBITAL

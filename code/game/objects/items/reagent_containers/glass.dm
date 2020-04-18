@@ -181,7 +181,7 @@
 	materials = list(/datum/material/glass = 5000)
 	volume = 120
 	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(5,10,20,30,40,120)
+	possible_transfer_amounts = list(5,10,15,20,30,40,60,120)
 
 /obj/item/reagent_containers/glass/beaker/noreact
 	name = "cryostasis beaker"
@@ -199,8 +199,7 @@
 	materials = list(/datum/material/glass = 5000)
 	volume = 300
 	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(5,10,20,40,80,120,300)
-
+	possible_transfer_amounts = list(5,10,15,20,30,40,60,120,300)
 
 /obj/item/reagent_containers/glass/beaker/vial
 	name = "vial"

@@ -12,7 +12,7 @@
 	gib_flick = "gibbed-a-runner"
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 22
 	attack_delay = 6
 
 	savage_cooldown = 30 SECONDS
@@ -21,14 +21,14 @@
 	tackle_damage = 20
 
 	// *** Speed *** //
-	speed = -1.3
+	speed = -1.2
 
 	// *** Plasma *** //
 	plasma_max = 100
 	plasma_gain = 2
 
 	// *** Health *** //
-	max_health = 100
+	max_health = 125
 
 	// *** Evolution *** //
 	evolution_threshold = 80
@@ -67,7 +67,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 23
+	melee_damage = 27
 
 	savage_cooldown = 30 SECONDS
 
@@ -82,7 +82,7 @@
 	plasma_gain = 3
 
 	// *** Health *** //
-	max_health = 125
+	max_health = 140
 
 	// *** Evolution *** //
 	upgrade_threshold = 100
@@ -100,7 +100,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 27.5
+	melee_damage = 32
 
 	savage_cooldown = 30 SECONDS
 
@@ -108,14 +108,14 @@
 	tackle_damage = 30
 
 	// *** Speed *** //
-	speed = -1.3
+	speed = -1.4
 
 	// *** Plasma *** //
 	plasma_max = 200
 	plasma_gain = 3
 
 	// *** Health *** //
-	max_health = 150
+	max_health = 155
 
 	// *** Evolution *** //
 	upgrade_threshold = 200
@@ -134,7 +134,7 @@
 	wound_type = "runner" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 30
+	melee_damage = 37
 
 	savage_cooldown = 30 SECONDS
 
@@ -142,20 +142,20 @@
 	tackle_damage = 35
 
 	// *** Speed *** //
-	speed = -1.3
+	speed = -1.5
 
 	// *** Plasma *** //
 	plasma_max = 200
 	plasma_gain = 3
 
 	// *** Health *** //
-	max_health = 175
+	max_health = 170
 
 	// *** Evolution *** //
 	upgrade_threshold = 200
 
 	// *** Defense *** //
-	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 7, "acid" = 7)
+	armor = list("melee" = 19, "bullet" = 19, "laser" = 19, "energy" = 19, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 7, "acid" = 7)
 
 	// *** Ranged Attack *** //
 	pounce_delay = 6.0 SECONDS

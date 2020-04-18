@@ -83,6 +83,7 @@
 					/obj/item/storage/belt/knifepouch = 10,
 					/obj/item/belt_harness/marine = 10,
 					/obj/item/storage/belt/utility/full = 10,
+					/obj/item/storage/belt/sparepouch = 5,
 					/obj/item/storage/belt/grenade = 5,
 					/obj/item/storage/belt/gun/pistol/standard_pistol = 10,
 					/obj/item/storage/belt/gun/revolver/standard_revolver = 5,
@@ -273,7 +274,7 @@
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
-	if(user.stat || user.restrained() || user.lying)
+	if(user.stat || user.restrained() || user.lying_angle)
 		return
 
 	if(get_dist(user, src) > 1 || get_dist(src, A) > 1)
@@ -369,8 +370,10 @@
 					/obj/item/reagent_containers/hypospray/autoinjector/kelotane = 6,
 					/obj/item/reagent_containers/hypospray/autoinjector/oxycodone = 4,
 					/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = 8,
+					/obj/item/reagent_containers/hypospray/autoinjector/combat = 2,
 					/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 4,
 					/obj/item/reagent_containers/hypospray/autoinjector/hyperzine = 0,
+					/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
 					/obj/item/storage/pill_bottle/bicaridine = 3,
 					/obj/item/storage/pill_bottle/dexalin = 3,
 					/obj/item/storage/pill_bottle/dylovene = 3,
@@ -382,16 +385,17 @@
 					/obj/item/storage/pill_bottle/peridaxon = 2,
 					/obj/item/storage/pill_bottle/quickclot = 2,
 					/obj/item/storage/pill_bottle/hypervene = 2,
-					/obj/item/stack/medical/advanced/bruise_pack = 6,
+					/obj/item/stack/medical/advanced/bruise_pack = 8,
 					/obj/item/stack/medical/bruise_pack = 8,
-					/obj/item/stack/medical/advanced/ointment = 6,
+					/obj/item/stack/medical/advanced/ointment = 8,
 					/obj/item/stack/medical/ointment = 8,
-					/obj/item/stack/medical/splint = 2,
+					/obj/item/stack/medical/splint = 4,
 					/obj/item/healthanalyzer = 3,
 					/obj/item/bodybag/cryobag = 2)
 
 	contraband = list(/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin =3,
-					/obj/item/reagent_containers/hypospray/autoinjector/hyperzine/expired =3)
+					/obj/item/reagent_containers/hypospray/autoinjector/hyperzine/expired =3,
+					/obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired =3)
 
 
 
@@ -702,6 +706,7 @@
 					/obj/item/storage/belt/shotgun = 10,
 					/obj/item/storage/belt/knifepouch = 10,
 					/obj/item/belt_harness/marine = 10,
+					/obj/item/storage/belt/sparepouch = 10,
 					/obj/item/storage/belt/gun/pistol/standard_pistol = 10,
 					/obj/item/storage/belt/gun/revolver/standard_revolver = 10,
 					/obj/item/storage/large_holster/t19 = 10,

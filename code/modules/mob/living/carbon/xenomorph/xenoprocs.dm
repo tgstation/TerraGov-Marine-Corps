@@ -195,7 +195,7 @@
 
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/xenomorph/proc/check_state()
-	if(incapacitated() || lying || buckled)
+	if(incapacitated() || lying_angle || buckled)
 		to_chat(src, "<span class='warning'>We cannot do this in our current state.</span>")
 		return 0
 	return 1
@@ -321,13 +321,13 @@
 					if(ishuman(M) && (M.dir in reverse_nearby_direction(dir)))
 						var/mob/living/carbon/human/H = M
 						if(!H.check_shields(COMBAT_TOUCH_ATTACK, 30, "melee"))
-							Knockdown(6 SECONDS)
+							Paralyze(6 SECONDS)
 							throwing = FALSE //Reset throwing manually.
 							return FALSE
 
 					visible_message("<span class='danger'>[src] pounces on [M]!</span>",
 									"<span class='xenodanger'>We pounce on [M]!</span>", null, 5)
-					M.Knockdown(20)
+					M.Paralyze(20)
 					step_to(src, M)
 					stop_movement()
 					if(savage) //If Runner Savage is toggled on, attempt to use it.
@@ -392,7 +392,7 @@
 
 /mob/living/carbon/xenomorph/proc/do_devour(mob/living/carbon/prey)
 	LAZYADD(stomach_contents, prey)
-	prey.Knockdown(12 MINUTES)
+	prey.Paralyze(12 MINUTES)
 	prey.adjust_tinttotal(TINT_BLIND)
 	prey.forceMove(src)
 	SEND_SIGNAL(prey, COMSIG_CARBON_DEVOURED_BY_XENO)
@@ -471,6 +471,8 @@
 	client.pixel_y = 0
 
 /mob/living/carbon/xenomorph/drop_held_item()
+	if(status_flags & INCORPOREAL)
+		return FALSE
 	var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
 	if(istype(F))
 		if(locate(/turf/closed/wall/resin) in loc)
@@ -482,7 +484,6 @@
 
 //When the Queen's pheromones are updated, or we add/remove a leader, update leader pheromones
 /mob/living/carbon/xenomorph/proc/handle_xeno_leader_pheromones(mob/living/carbon/xenomorph/queen/Q)
-
 	if(QDELETED(Q) || !queen_chosen_lead || !Q.current_aura || Q.loc.z != loc.z) //We are no longer a leader, or the Queen attached to us has dropped from her ovi, disabled her pheromones or even died
 		leader_aura_strength = 0
 		leader_current_aura = ""
@@ -556,7 +557,7 @@
 	take_overall_damage(0, damage, armor_block)
 	UPDATEHEALTH(src)
 	emote("scream")
-	Knockdown(20)
+	Paralyze(20)
 
 /mob/living/carbon/xenomorph/acid_spray_act(mob/living/carbon/xenomorph/X)
 	return
@@ -694,3 +695,23 @@
 
 /mob/living/carbon/xenomorph/hivemind/setup_verbs()
 	return
+
+/mob/living/carbon/xenomorph/adjust_sunder(adjustment)
+	. = ..()
+	if(.)
+		return
+	sunder = CLAMP(sunder + adjustment, 0, xeno_caste.sunder_max)
+
+/mob/living/carbon/xenomorph/set_sunder(new_sunder)
+	. = ..()
+	if(.)
+		return
+	sunder = CLAMP(new_sunder, 0, xeno_caste.sunder_max)
+
+/mob/living/carbon/xenomorph/get_sunder()
+	. = ..()
+	if(.)
+		return
+	return (sunder * -0.01) + 1
+
+

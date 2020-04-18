@@ -391,6 +391,10 @@
 /area/mainship/hallways/hangar)
 "bj" = (
 /obj/docking_port/stationary/marine_dropship/crash_target,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bk" = (
@@ -2922,6 +2926,10 @@
 	icon_state = "comfychair";
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "iz" = (
@@ -3561,7 +3569,7 @@
 /area/mainship/hallways/stern_hallway)
 "ku" = (
 /obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "19";
+	req_access_txt = "7";
 	req_one_access_txt = "0"
 	},
 /obj/structure/disposalpipe/segment{
@@ -3602,7 +3610,7 @@
 /area/mainship/living/port_garden)
 "kx" = (
 /obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "19";
+	req_access_txt = "7";
 	req_one_access_txt = "0"
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -3654,8 +3662,9 @@
 /area/mainship/shipboard/port_missiles)
 "kD" = (
 /obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "19";
-	req_one_access_txt = "0"
+	req_access_txt = "200";
+	req_one_access = null;
+	req_one_access_txt = null
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
@@ -4221,7 +4230,7 @@
 /area/mainship/squads/general)
 "lZ" = (
 /obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "19";
+	req_access_txt = "7";
 	req_one_access_txt = "0"
 	},
 /obj/structure/cable/yellow{
@@ -6147,8 +6156,9 @@
 /area/mainship/living/cafeteria_starboard)
 "rj" = (
 /obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "19";
-	req_one_access_txt = "0"
+	req_access_txt = "1";
+	req_one_access = null;
+	req_one_access_txt = null
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
@@ -6912,7 +6922,7 @@
 /area/mainship/command/airoom)
 "tk" = (
 /obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "19";
+	req_access_txt = "7";
 	req_one_access_txt = "0"
 	},
 /turf/open/floor/plating,
@@ -8275,6 +8285,10 @@
 /area/mainship/hallways/starboard_umbilical)
 "wC" = (
 /obj/machinery/computer/camera_advanced/remote_fob,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "wD" = (
@@ -10048,7 +10062,7 @@
 /area/mainship/hull/lower_hull)
 "AU" = (
 /obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "19";
+	req_access_txt = "7";
 	req_one_access_txt = "0"
 	},
 /turf/open/floor/plating/mainship,
@@ -10060,7 +10074,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "19";
+	req_access_txt = "7";
 	req_one_access_txt = "0"
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -10162,14 +10176,14 @@
 /area/mainship/hallways/port_hallway)
 "Bh" = (
 /obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "19";
+	req_access_txt = "7";
 	req_one_access_txt = "0"
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/medical/lower_medical)
 "Bi" = (
 /obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "19";
+	req_access_txt = "7";
 	req_one_access_txt = "0"
 	},
 /turf/open/floor/plating/mainship,
@@ -10892,7 +10906,7 @@
 /area/mainship/hull/lower_hull)
 "CN" = (
 /obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "19";
+	req_access_txt = "7";
 	req_one_access_txt = "0"
 	},
 /obj/structure/cable/yellow{
@@ -11000,7 +11014,7 @@
 /area/mainship/hull/lower_hull)
 "CX" = (
 /obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "19";
+	req_access_txt = "7";
 	req_one_access_txt = "0"
 	},
 /obj/structure/cable/yellow{
@@ -15498,7 +15512,7 @@
 /area/mainship/hull/lower_hull)
 "LC" = (
 /obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "19";
+	req_access_txt = "7";
 	req_one_access_txt = "0"
 	},
 /obj/structure/cable/yellow{
@@ -17615,7 +17629,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "19";
+	req_access_txt = "7";
 	req_one_access_txt = "0"
 	},
 /turf/open/floor/mainship/mono,
@@ -17668,8 +17682,9 @@
 /area/mainship/living/cafeteria_starboard)
 "Uk" = (
 /obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "19";
-	req_one_access_txt = "0"
+	req_access_txt = "1";
+	req_one_access = null;
+	req_one_access_txt = null
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)

@@ -61,15 +61,19 @@
 
 /mob/living/proc/updatehealth()
 	if(status_flags & GODMODE)
+		health = maxHealth
+		stat = CONSCIOUS
 		return
 	health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss()
 	update_stat()
 
 /mob/living/update_stat()
+	. = ..()
 	update_cloak()
 
 /mob/living/Initialize()
 	. = ..()
+	register_init_signals()
 	update_move_intent_effects()
 	GLOB.mob_living_list += src
 	if(stat != DEAD)
@@ -93,6 +97,21 @@
 	return ..()
 
 
+///Called on /mob/living/Initialize(), for the mob to register to relevant signals.
+/mob/living/proc/register_init_signals()
+	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), .proc/on_knockedout_trait_gain)
+	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_KNOCKEDOUT), .proc/on_knockedout_trait_loss)
+
+
+///Called when TRAIT_KNOCKEDOUT is added to the mob.
+/mob/living/proc/on_knockedout_trait_gain(datum/source)
+	if(stat < UNCONSCIOUS)
+		set_stat(UNCONSCIOUS)
+
+///Called when TRAIT_KNOCKEDOUT is removed from the mob.
+/mob/living/proc/on_knockedout_trait_loss(datum/source)
+	if(stat < DEAD)
+		update_stat()
 
 
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
@@ -169,13 +188,11 @@
 				return buckled.Move(newloc, direct)
 			else
 				return FALSE
-	else if(lying)
+	else if(lying_angle)
 		if(direct & EAST)
-			lying = 90
+			set_lying_angle(90)
 		else if(direct & WEST)
-			lying = 270
-		update_transform()
-		lying_prev = lying
+			set_lying_angle(270)
 
 	. = ..()
 
@@ -570,29 +587,25 @@ below 100 is not dizzy
 
 /mob/living/update_canmove()
 
-	var/laid_down = (stat || IsKnockdown() || IsUnconscious() || !has_legs() || resting || (status_flags & FAKEDEATH) || (pulledby && pulledby.grab_state >= GRAB_NECK) || (buckled && buckled.buckle_lying != -1))
+	var/laid_down = (stat != CONSCIOUS || IsParalyzed() || !has_legs() || resting || HAS_TRAIT(src, TRAIT_FAKEDEATH) || (pulledby && pulledby.grab_state >= GRAB_NECK) || (buckled && buckled.buckle_lying != -1))
 
 	if(laid_down)
 		if(buckled && buckled.buckle_lying != -1)
-			lying = buckled.buckle_lying //Might not actually be laying down, like with chairs, but the rest of the logic applies.
-		else if(!lying)
-			lying = pick(90, 270)
-	else if(lying)
-		lying = 0
+			set_lying_angle(buckled.buckle_lying) //Might not actually be laying down, like with chairs, but the rest of the logic applies.
+		else if(!lying_angle)
+			set_lying_angle(pick(90, 270))
+	else if(lying_angle)
+		set_lying_angle(0)
 
 	set_canmove(!(IsStun() || frozen || laid_down))
 
-	if(lying)
+	if(lying_angle)
 		density = FALSE
 		drop_all_held_items()
 	else
 		density = TRUE
 
-	if(lying_prev != lying)
-		update_transform()
-		lying_prev = lying
-
-	if(lying)
+	if(lying_angle)
 		if(layer == initial(layer)) //to avoid things like hiding larvas.
 			layer = LYING_MOB_LAYER //so mob lying always appear behind standing mobs
 	else
@@ -702,22 +715,18 @@ below 100 is not dizzy
 		if(SOUTH)
 			animate(pulled_mob, pixel_x = 0, pixel_y = -offset, 0.3 SECONDS)
 		if(EAST)
-			if(pulled_mob.lying == 270) //update the dragged dude's direction if we've turned
-				pulled_mob.lying = 90
-				pulled_mob.update_transform() //force a transformation update, otherwise it'll take a few ticks for update_mobility() to do so
-				pulled_mob.lying_prev = pulled_mob.lying
+			if(pulled_mob.lying_angle == 270) //update the dragged dude's direction if we've turned
+				pulled_mob.set_lying_angle(90)
 			animate(pulled_mob, pixel_x = offset, pixel_y = 0, 0.3 SECONDS)
 		if(WEST)
-			if(pulled_mob.lying == 90)
-				pulled_mob.lying = 270
-				pulled_mob.update_transform()
-				pulled_mob.lying_prev = pulled_mob.lying
+			if(pulled_mob.lying_angle == 90)
+				pulled_mob.set_lying_angle(270)
 			animate(pulled_mob, pixel_x = -offset, pixel_y = 0, 0.3 SECONDS)
 
 /mob/living/proc/reset_pull_offsets(mob/living/pulled_mob, override)
 	if(!override && pulled_mob.buckled)
 		return
-	animate(pulled_mob, pixel_x = 0, pixel_y = 0, 0.1 SECONDS)
+	animate(pulled_mob, pixel_x = initial(pixel_x), pixel_y = initial(pixel_y), 0.1 SECONDS)
 
 
 //mob verbs are a lot faster than object verbs
@@ -746,12 +755,6 @@ below 100 is not dizzy
 				GLOB.dead_mob_list += src
 	. = ..()
 	switch(var_name)
-		if("knockdown")
-			SetKnockdown(var_value)
-		if("stun")
-			SetStun(var_value)
-		if("sleeping")
-			SetSleeping(var_value)
 		if("eye_blind")
 			set_blindness(var_value)
 		if("eye_blurry")
@@ -766,3 +769,19 @@ below 100 is not dizzy
 
 /mob/living/can_interact_with(datum/D)
 	return D.Adjacent(src)
+
+/**
+  * Changes the inclination angle of a mob, used by humans and others to differentiate between standing up and prone positions.
+  *
+  * In BYOND-angles 0 is NORTH, 90 is EAST, 180 is SOUTH and 270 is WEST.
+  * This usually means that 0 is standing up, 90 and 270 are horizontal positions to right and left respectively, and 180 is upside-down.
+  * Mobs that do now follow these conventions due to unusual sprites should require a special handling or redefinition of this proc, due to the density and layer changes.
+  * The return of this proc is the previous value of the modified lying_angle if a change was successful (might include zero), or null if no change was made.
+  */
+/mob/living/proc/set_lying_angle(new_lying)
+	if(new_lying == lying_angle)
+		return
+	. = lying_angle
+	lying_angle = new_lying
+	update_transform()
+	lying_prev = lying_angle

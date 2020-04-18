@@ -3,9 +3,6 @@
 /obj/structure/lattice,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
-"ab" = (
-/turf/closed/wall,
-/area/space)
 "ac" = (
 /turf/closed/wall/r_wall,
 /area/whiskey_outpost)
@@ -50,14 +47,6 @@
 /obj/effect/landmark/start/job/fieldcommander,
 /turf/open/floor/wood,
 /area/whiskey_outpost)
-"aj" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/suit/armor/bulletproof,
-/turf/open/floor/tile/dark,
-/area/whiskey_outpost)
 "ak" = (
 /turf/closed/mineral,
 /area/whiskey_outpost)
@@ -67,72 +56,22 @@
 	},
 /turf/open/floor/wood,
 /area/whiskey_outpost)
-"am" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/largecrate/supply/supplies/plasteel,
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost)
-"an" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost)
-"ao" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/door/airlock/mainship/engineering,
-/turf/open/floor,
-/area/whiskey_outpost)
-"ap" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor,
-/area/whiskey_outpost)
-"aq" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "yellow"
-	},
-/area/whiskey_outpost)
 "ar" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/power/smes/buildable,
-/obj/structure/cable{
+/obj/structure/cable/yellow{
+	d1 = 4;
 	d2 = 8;
-	icon_state = "0-8"
+	icon_state = "4-8"
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "yellow"
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
 	},
-/area/whiskey_outpost)
-"as" = (
-/obj/machinery/marine_selector/clothes/synth,
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
 /turf/open/floor,
 /area/whiskey_outpost)
 "at" = (
@@ -168,30 +107,27 @@
 /obj/item/binoculars,
 /obj/item/binoculars,
 /obj/item/binoculars,
+/obj/structure/paper_bin,
+/obj/item/folder/blue,
+/obj/item/tool/pen,
 /turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "az" = (
 /turf/open/floor/tile/dark,
 /area/whiskey_outpost)
-"aA" = (
-/obj/structure/table,
-/obj/structure/paper_bin,
-/obj/item/tool/pen,
-/obj/item/folder/blue,
-/turf/open/floor/tile/dark,
-/area/whiskey_outpost)
 "aB" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
+/obj/machinery/power/terminal{
+	icon_state = "term";
+	dir = 8
 	},
-/obj/structure/table,
-/obj/item/storage/toolbox/mechanical,
-/obj/item/tool/extinguisher/mini,
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/light,
 /turf/open/floor{
-	dir = 4;
-	icon_state = "yellow"
+	icon_state = "yellow";
+	dir = 2
 	},
 /area/whiskey_outpost)
 "aC" = (
@@ -213,15 +149,12 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "aE" = (
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+/obj/machinery/power/smes/buildable,
+/obj/structure/cable,
+/turf/open/floor{
+	icon_state = "yellow";
+	dir = 10
 	},
-/obj/machinery/power/apc{
-	icon_state = "apc0";
-	dir = 4
-	},
-/turf/open/floor,
 /area/whiskey_outpost)
 "aF" = (
 /turf/open/ground/coast{
@@ -232,29 +165,21 @@
 "aG" = (
 /turf/open/floor,
 /area/whiskey_outpost)
-"aH" = (
-/obj/structure/cable{
+"aI" = (
+/obj/structure/cable/yellow{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/structure/cable{
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost)
-"aI" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
 	},
 /turf/open/floor,
 /area/whiskey_outpost)
@@ -262,6 +187,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "aK" = (
@@ -277,39 +203,32 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost)
-"aM" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/item/big_ammo_box/smg,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "aN" = (
-/obj/structure/cable{
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/structure/table,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/tool/extinguisher/mini,
+/turf/open/floor{
+	icon_state = "yellow";
+	dir = 2
+	},
+/area/whiskey_outpost)
+"aO" = (
+/obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/floor,
-/area/whiskey_outpost)
-"aO" = (
-/obj/machinery/power/terminal{
-	icon_state = "term";
-	dir = 1
-	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
 /turf/open/floor{
-	dir = 8;
-	icon_state = "yellow"
+	icon_state = "yellow";
+	dir = 2
 	},
 /area/whiskey_outpost)
 "aP" = (
@@ -583,6 +502,9 @@
 /area/whiskey_outpost)
 "bC" = (
 /obj/structure/closet/walllocker/hydrant,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
 "bD" = (
@@ -612,7 +534,10 @@
 	},
 /area/whiskey_outpost)
 "bG" = (
-/obj/structure/closet/walllocker/hydrant,
+/obj/machinery/marine_selector/clothes/synth,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor{
 	dir = 8;
 	icon_state = "yellow"
@@ -623,12 +548,6 @@
 /obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 2
-	},
-/area/whiskey_outpost)
-"bI" = (
-/turf/open/floor/mainship{
-	dir = 5;
-	icon_state = "red"
 	},
 /area/whiskey_outpost)
 "bJ" = (
@@ -726,19 +645,6 @@
 	dir = 4
 	},
 /area/whiskey_outpost)
-"bY" = (
-/turf/open/floor/mainship{
-	dir = 9;
-	icon_state = "orange"
-	},
-/area/whiskey_outpost)
-"bZ" = (
-/obj/machinery/vending/MarineMed,
-/turf/open/floor{
-	icon_state = "cafeteria";
-	dir = 2
-	},
-/area/whiskey_outpost)
 "ca" = (
 /obj/structure/sink{
 	pixel_y = 32
@@ -761,11 +667,12 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "cd" = (
-/obj/structure/bed,
-/obj/item/bedsheet/red,
-/obj/effect/landmark/start/latejoin,
+/obj/machinery/marine_selector/gear/medic,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/mainship{
-	dir = 9;
+	dir = 8;
 	icon_state = "red"
 	},
 /area/whiskey_outpost)
@@ -784,15 +691,6 @@
 	dir = 5
 	},
 /area/whiskey_outpost)
-"cf" = (
-/obj/structure/bed,
-/obj/item/bedsheet/red,
-/obj/effect/landmark/start/latejoin_cryo,
-/turf/open/floor/mainship{
-	dir = 8;
-	icon_state = "red"
-	},
-/area/whiskey_outpost)
 "cg" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/toxin,
@@ -802,15 +700,6 @@
 	},
 /turf/open/floor/mainship{
 	icon_state = "sterile_green"
-	},
-/area/whiskey_outpost)
-"ch" = (
-/obj/structure/bed,
-/obj/item/bedsheet/yellow,
-/obj/effect/landmark/start/latejoin,
-/turf/open/floor/mainship{
-	dir = 4;
-	icon_state = "orange"
 	},
 /area/whiskey_outpost)
 "ci" = (
@@ -1032,16 +921,8 @@
 /area/whiskey_outpost)
 "cH" = (
 /obj/structure/rack,
-/obj/item/ammobox/m39ap,
-/obj/item/ammobox/m39ap,
+/obj/structure/largecrate/supply/supplies/metal,
 /turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost)
-"cI" = (
-/obj/structure/barricade/sandbags{
-	icon_state = "sandbag_0";
-	dir = 8
-	},
-/turf/open/floor/plating,
 /area/whiskey_outpost)
 "cJ" = (
 /obj/structure/flora/ausbushes/reedbush,
@@ -1137,15 +1018,6 @@
 "da" = (
 /turf/open/floor/plating/warning{
 	dir = 5
-	},
-/area/whiskey_outpost)
-"db" = (
-/obj/structure/bed,
-/obj/item/bedsheet/yellow,
-/obj/effect/landmark/start/latejoin_cryo,
-/turf/open/floor/mainship{
-	dir = 4;
-	icon_state = "orange"
 	},
 /area/whiskey_outpost)
 "dc" = (
@@ -1266,14 +1138,6 @@
 /obj/structure/bed/roller,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
-"du" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost)
 "dv" = (
 /obj/structure/bed/roller,
 /obj/machinery/light{
@@ -1296,14 +1160,6 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
-"dx" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost)
 "dy" = (
 /obj/machinery/landinglight/ds1/delaytwo,
 /turf/open/floor/plating/asteroidfloor,
@@ -1341,13 +1197,11 @@
 	},
 /area/whiskey_outpost)
 "dD" = (
-/obj/structure/rack,
-/obj/item/mortal_shell/flash,
-/obj/item/mortal_shell/flash,
-/obj/item/mortal_shell/flash,
-/obj/item/mortal_shell/flash,
-/obj/item/mortal_shell/flash,
-/turf/open/floor/plating,
+/obj/structure/barricade/sandbags{
+	icon_state = "sandbag_0";
+	dir = 8
+	},
+/turf/open/floor/plating/asteroidplating,
 /area/whiskey_outpost)
 "dE" = (
 /obj/structure/barricade/sandbags{
@@ -1361,37 +1215,19 @@
 	dir = 10
 	},
 /area/whiskey_outpost)
-"dF" = (
-/obj/structure/barricade/sandbags{
-	icon_state = "sandbag_0";
-	dir = 8
-	},
-/turf/open/floor/plating/warning{
-	dir = 8
-	},
-/area/whiskey_outpost)
-"dG" = (
-/obj/structure/barricade/sandbags{
-	icon_state = "sandbag_0";
-	dir = 4
-	},
-/turf/open/floor/plating/warning{
-	dir = 4
-	},
-/area/whiskey_outpost)
 "dH" = (
 /turf/open/floor/plating/asteroidwarning{
 	dir = 4
 	},
 /area/whiskey_outpost)
 "dI" = (
-/obj/machinery/m56d_hmg/mg_turret,
 /obj/structure/barricade/sandbags{
 	pixel_z = -7
 	},
-/turf/open/floor/plating/warning{
-	dir = 2
+/obj/structure/barricade/sandbags{
+	pixel_z = -7
 	},
+/turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost)
 "dJ" = (
 /turf/open/floor/stairs/rampbottom{
@@ -1399,13 +1235,14 @@
 	},
 /area/whiskey_outpost)
 "dK" = (
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 4
+	},
 /obj/structure/barricade/sandbags{
-	pixel_z = -7;
-	pixel_w = 0
+	pixel_z = -7
 	},
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
+/turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost)
 "dL" = (
 /turf/open/floor/stairs/rampbottom{
@@ -1492,13 +1329,19 @@
 /turf/open/floor,
 /area/whiskey_outpost/outside/north)
 "dY" = (
-/obj/machinery/m56d_hmg/mg_turret,
-/obj/structure/barricade/sandbags{
-	pixel_z = -7
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 1
 	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 2
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 4
 	},
+/obj/structure/platform_decoration{
+	icon_state = "platform_deco";
+	dir = 9
+	},
+/turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost)
 "dZ" = (
 /turf/open/ground/coast{
@@ -1535,11 +1378,9 @@
 	},
 /area/whiskey_outpost)
 "ee" = (
-/obj/structure/bed,
-/obj/item/bedsheet/red,
-/obj/effect/landmark/start/latejoin_gateway,
+/obj/machinery/marine_selector/clothes/medic,
 /turf/open/floor/mainship{
-	dir = 8;
+	dir = 10;
 	icon_state = "red"
 	},
 /area/whiskey_outpost)
@@ -1554,18 +1395,6 @@
 /turf/open/floor/plating/asteroidwarning{
 	dir = 6
 	},
-/area/whiskey_outpost)
-"eg" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/door/airlock/mainship/engineering{
-	dir = 2;
-	name = "\improper Engineering Workshop"
-	},
-/turf/open/floor,
 /area/whiskey_outpost)
 "eh" = (
 /obj/machinery/door/airlock/mainship/engineering{
@@ -1595,18 +1424,6 @@
 /obj/machinery/floodlight/outpost,
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/east)
-"en" = (
-/obj/structure/bed,
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/item/bedsheet/yellow,
-/obj/effect/landmark/start/latejoin_cryo,
-/turf/open/floor/mainship{
-	icon_state = "orange";
-	dir = 5
-	},
-/area/whiskey_outpost)
 "eo" = (
 /obj/machinery/light{
 	dir = 4
@@ -1623,18 +1440,13 @@
 /area/whiskey_outpost)
 "eq" = (
 /obj/machinery/vending/engivend,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor{
 	dir = 4;
 	icon_state = "yellow"
 	},
-/area/whiskey_outpost)
-"er" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/open/floor,
 /area/whiskey_outpost)
 "es" = (
 /obj/item/lightstick/red/anchored,
@@ -1649,10 +1461,6 @@
 	dir = 8
 	},
 /area/whiskey_outpost/outside/north)
-"ev" = (
-/obj/item/storage/box/explosive_mines,
-/turf/open/ground/jungle,
-/area/whiskey_outpost/outside/west)
 "ew" = (
 /turf/open/ground/coast/corner,
 /area/whiskey_outpost/outside/north)
@@ -1679,15 +1487,6 @@
 /obj/structure/table,
 /obj/item/storage/fancy/cigarettes/lucky_strikes,
 /turf/open/floor/tile/whiteyellow/full,
-/area/whiskey_outpost)
-"eB" = (
-/obj/structure/bed,
-/obj/item/bedsheet/yellow,
-/obj/effect/landmark/start/latejoin,
-/turf/open/floor/mainship{
-	dir = 6;
-	icon_state = "orange"
-	},
 /area/whiskey_outpost)
 "eC" = (
 /turf/open/floor/mainship{
@@ -1773,15 +1572,6 @@
 	},
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/north)
-"eO" = (
-/obj/structure/bed,
-/obj/item/bedsheet/yellow,
-/obj/effect/landmark/start/latejoin_gateway,
-/turf/open/floor/mainship{
-	dir = 4;
-	icon_state = "orange"
-	},
-/area/whiskey_outpost)
 "eP" = (
 /obj/structure/table,
 /obj/item/tool/lighter/zippo,
@@ -1794,18 +1584,12 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
 "eR" = (
-/obj/structure/bed,
-/obj/item/bedsheet/purple,
-/obj/effect/landmark/start/latejoin_gateway,
+/obj/machinery/marine_selector/clothes/engi,
+/obj/structure/window/reinforced,
 /turf/open/floor/mainship{
 	dir = 8;
 	icon_state = "emerald"
 	},
-/area/whiskey_outpost)
-"eS" = (
-/obj/structure/table,
-/obj/item/tool/lighter/random,
-/turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
 "eT" = (
 /obj/machinery/vending/marineFood,
@@ -1821,11 +1605,6 @@
 /turf/open/floor/marking/bot,
 /area/whiskey_outpost)
 "eV" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/structure/table,
 /obj/item/storage/toolbox/electrical,
 /obj/item/storage/toolbox/electrical,
@@ -1977,12 +1756,6 @@
 /obj/effect/landmark/start/job/squadsmartgunner,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
-"fj" = (
-/obj/structure/table,
-/obj/item/storage/box/tgmc_mre,
-/obj/item/tool/lighter/zippo,
-/turf/open/floor/tile/whiteyellow/full,
-/area/whiskey_outpost)
 "fk" = (
 /obj/structure/table,
 /obj/item/storage/fancy/cigarettes/kpack,
@@ -1999,55 +1772,93 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "fn" = (
-/obj/machinery/power/geothermal,
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+/obj/structure/closet/crate,
+/obj/item/stack/sheet/plasteel{
+	amount = 50
 	},
-/turf/open/floor,
-/area/whiskey_outpost)
-"fo" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/item/stack/sheet/plasteel{
+	amount = 50
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "yellow"
+/obj/item/stack/sheet/plasteel{
+	amount = 50
 	},
-/area/whiskey_outpost)
-"fp" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
+/obj/item/stack/sheet/plasteel{
+	amount = 50
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
+/obj/item/stack/sheet/plasteel{
+	amount = 50
 	},
-/turf/open/floor,
-/area/whiskey_outpost)
-"fq" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/item/stack/sheet/plasteel{
+	amount = 50
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "yellow"
+/obj/item/stack/sheet/plasteel{
+	amount = 50
 	},
+/obj/item/stack/sheet/plasteel{
+	amount = 50
+	},
+/obj/structure/closet/walllocker/hydrant{
+	icon_state = "hydrant";
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/open/floor/marking/bot,
 /area/whiskey_outpost)
 "fr" = (
-/obj/machinery/power/geothermal,
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
+/obj/structure/closet/crate,
+/obj/item/stack/sheet/metal{
+	amount = 50;
+	pixel_x = 2;
+	pixel_y = 2
 	},
-/turf/open/floor,
+/obj/item/stack/sheet/metal{
+	amount = 50;
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/stack/sheet/metal{
+	amount = 50;
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/stack/sheet/metal{
+	amount = 50;
+	pixel_x = 2;
+	pixel_y = 2
+	},
+/obj/item/stack/sheet/metal{
+	amount = 50
+	},
+/obj/item/stack/sheet/metal{
+	amount = 50
+	},
+/obj/item/stack/sheet/metal{
+	amount = 50
+	},
+/obj/item/stack/sheet/metal{
+	amount = 50
+	},
+/obj/item/stack/sheet/metal{
+	amount = 50
+	},
+/obj/item/stack/sheet/metal{
+	amount = 30
+	},
+/obj/item/stack/sheet/metal{
+	amount = 30
+	},
+/obj/item/stack/sheet/metal{
+	amount = 30
+	},
+/obj/item/stack/sheet/metal{
+	amount = 30
+	},
+/obj/structure/closet/walllocker/hydrant{
+	icon_state = "hydrant";
+	dir = 8
+	},
+/obj/machinery/light,
+/turf/open/floor/marking/bot,
 /area/whiskey_outpost)
 "fs" = (
 /turf/open/floor/plating/asteroidfloor,
@@ -2222,18 +2033,6 @@
 /obj/machinery/vending/coffee,
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
-"fZ" = (
-/turf/open/floor/mainship{
-	dir = 5;
-	icon_state = "emerald"
-	},
-/area/whiskey_outpost)
-"ga" = (
-/turf/open/floor/mainship{
-	dir = 9;
-	icon_state = "blue"
-	},
-/area/whiskey_outpost)
 "gb" = (
 /obj/structure/table,
 /obj/item/storage/fancy/cigarettes/kpack,
@@ -2289,18 +2088,12 @@
 	},
 /area/whiskey_outpost)
 "gm" = (
-/obj/machinery/m56d_hmg/mg_turret,
-/obj/structure/barricade/sandbags{
-	pixel_z = -7
+/obj/machinery/m56d_hmg/mg_turret{
+	icon_state = "towergun";
+	dir = 2
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
-"gn" = (
-/obj/structure/rack,
-/obj/item/ammo_magazine/standard_lmg,
-/obj/item/weapon/gun/rifle/standard_lmg,
-/turf/open/floor/tile/dark,
-/area/whiskey_outpost)
 "go" = (
 /turf/open/ground/coast/corner2{
 	dir = 4
@@ -2411,13 +2204,8 @@
 /turf/open/floor/plating,
 /area/whiskey_outpost)
 "gG" = (
-/obj/structure/rack,
-/obj/item/mortal_shell/incendiary,
-/obj/item/mortal_shell/incendiary,
-/obj/item/mortal_shell/incendiary,
-/obj/item/mortal_shell/incendiary,
-/obj/item/mortal_shell/incendiary,
-/turf/open/floor/plating,
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidplating,
 /area/whiskey_outpost)
 "gH" = (
 /turf/open/floor/plating/ground/dirtgrassborder,
@@ -2470,24 +2258,6 @@
 /obj/structure/largecrate/supply/supplies/sandbags,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 8
-	},
-/area/whiskey_outpost)
-"gQ" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/largecrate/supply/supplies/water,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 6
-	},
-/area/whiskey_outpost)
-"gR" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/largecrate/supply/supplies/flares,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 10
 	},
 /area/whiskey_outpost)
 "gS" = (
@@ -2621,11 +2391,6 @@
 /turf/open/floor/plating,
 /area/whiskey_outpost)
 "hv" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/structure/largecrate/supply/supplies/flares,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
@@ -2647,15 +2412,6 @@
 	dir = 8
 	},
 /area/whiskey_outpost/outside/west)
-"hA" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/largecrate/mule,
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost)
 "hB" = (
 /turf/closed/mineral,
 /area/whiskey_outpost/outside/west)
@@ -2730,30 +2486,10 @@
 	dir = 8
 	},
 /area/whiskey_outpost/outside/west)
-"hS" = (
-/obj/effect/landmark{
-	icon_state = "x";
-	name = "whiskey_outpost_xeno_4"
-	},
-/turf/open/ground/jungle,
-/area/whiskey_outpost/outside/south)
 "hT" = (
 /obj/structure/flora/ausbushes/leafybush,
 /turf/open/ground/grass,
 /area/whiskey_outpost/outside/west)
-"hU" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/largecrate/random/barrel/white,
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost)
-"hV" = (
-/obj/structure/largecrate/lisa,
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost)
 "hW" = (
 /turf/open/floor/plating/asteroidwarning{
 	dir = 8
@@ -2844,23 +2580,9 @@
 	},
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/east)
-"ip" = (
-/obj/effect/landmark{
-	icon_state = "x";
-	name = "whiskey_outpost_xeno_3"
-	},
-/turf/open/ground/jungle,
-/area/whiskey_outpost/outside/south)
 "iq" = (
 /turf/open/ground/grass,
 /area/whiskey_outpost/outside/east)
-"ir" = (
-/obj/effect/landmark{
-	icon_state = "x";
-	name = "whiskey_outpost_xeno_1"
-	},
-/turf/open/ground/jungle,
-/area/whiskey_outpost/outside/south)
 "is" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 8
@@ -3086,7 +2808,7 @@
 	},
 /area/whiskey_outpost/outside/east)
 "jj" = (
-/obj/structure/largecrate/random/barrel/red,
+/obj/machinery/marine_selector/clothes,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "jk" = (
@@ -3138,104 +2860,56 @@
 	},
 /area/whiskey_outpost/outside/east)
 "jt" = (
-/obj/structure/largecrate/supply/ammo/m41a_box,
+/obj/structure/largecrate/supply/ammo/standard_smg,
 /turf/open/floor/plating/warning{
 	dir = 5
 	},
 /area/whiskey_outpost/outside/north)
-"ju" = (
-/turf/open/ground/grass/beach{
-	dir = 8
-	},
-/area/whiskey_outpost/outside/east)
 "jv" = (
 /turf/open/shuttle/dropship/floor,
 /area/whiskey_outpost/outside/east)
 "jw" = (
-/turf/open/ground/river,
-/turf/closed/shuttle{
-	density = 0;
-	dir = 8;
-	icon_state = "re_corner"
+/obj/item/roller,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
 	},
 /area/whiskey_outpost)
 "jx" = (
-/turf/open/ground/jungle,
-/turf/closed/shuttle{
-	density = 0;
-	dir = 2;
-	icon_state = "re_corner"
+/obj/structure/table,
+/obj/item/storage/firstaid/adv,
+/obj/item/storage/firstaid/adv{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/item/storage/firstaid/adv{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/turf/open/floor/mainship{
+	icon_state = "sterile_green"
 	},
 /area/whiskey_outpost)
 "jy" = (
-/obj/structure/largecrate/supply/ammo/sentry,
+/obj/structure/largecrate/supply/ammo/shotgun,
 /turf/open/floor/plating/warning{
 	dir = 4
 	},
 /area/whiskey_outpost/outside/north)
-"jz" = (
-/obj/structure/bed,
-/obj/item/bedsheet/blue,
-/obj/effect/landmark/start/latejoin_cryo,
-/turf/open/floor/mainship{
-	dir = 4;
-	icon_state = "blue"
-	},
-/area/whiskey_outpost)
 "jA" = (
 /turf/closed/shuttle/dropship3/transparent{
 	icon_state = "69"
 	},
 /area/whiskey_outpost/outside/east)
-"jB" = (
-/obj/structure/bed,
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/item/bedsheet/red,
-/obj/effect/landmark/start/latejoin_cryo,
-/turf/open/floor/mainship{
-	dir = 10;
-	icon_state = "red"
-	},
-/area/whiskey_outpost)
-"jC" = (
-/obj/structure/largecrate,
-/turf/open/floor{
-	icon_state = "cafeteria";
-	dir = 2
-	},
-/area/whiskey_outpost)
 "jD" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/item/storage/firstaid/o2,
-/turf/open/floor{
-	icon_state = "cafeteria";
-	dir = 2
-	},
-/area/whiskey_outpost)
-"jE" = (
+/obj/machinery/iv_drip,
 /obj/machinery/vending/nanomed{
 	dir = 8
 	},
-/obj/item/storage/firstaid/regular,
-/turf/open/floor{
-	icon_state = "cafeteria";
-	dir = 2
-	},
-/area/whiskey_outpost)
-"jF" = (
-/obj/structure/bed,
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/item/bedsheet/blue,
-/obj/effect/landmark/start/latejoin,
 /turf/open/floor/mainship{
-	dir = 5;
-	icon_state = "blue"
+	icon_state = "dark_sterile"
 	},
 /area/whiskey_outpost)
 "jG" = (
@@ -3252,51 +2926,21 @@
 	},
 /area/whiskey_outpost/outside/west)
 "jI" = (
-/turf/closed/wall,
-/area/whiskey_outpost/outside/west)
-"jJ" = (
-/obj/item/storage/box/explosive_mines,
-/turf/open/floor/plating/warning{
-	dir = 1
-	},
-/area/whiskey_outpost/outside/west)
-"jK" = (
-/turf/open/ground/jungle,
-/turf/closed/shuttle{
-	density = 0;
-	dir = 2;
-	icon_state = "re_corner"
-	},
-/area/whiskey_outpost/outside/west)
-"jL" = (
-/obj/item/storage/box/m94,
-/turf/open/floor{
-	icon_state = "cafeteria";
-	dir = 2
+/obj/machinery/vending/MarineMed,
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
 	},
 /area/whiskey_outpost)
-"jM" = (
-/obj/item/storage/box/explosive_mines,
-/obj/item/storage/box/explosive_mines,
-/turf/open/floor{
-	icon_state = "cafeteria";
-	dir = 2
+"jK" = (
+/obj/effect/landmark/start/job/squadmarine,
+/turf/open/floor/plating/warning{
+	dir = 4
 	},
 /area/whiskey_outpost)
 "jN" = (
 /obj/structure/bed/chair,
 /obj/effect/landmark/start/job/squadcorpsman,
 /turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost)
-"jO" = (
-/obj/machinery/vending/nanomed{
-	dir = 8
-	},
-/obj/item/roller,
-/turf/open/floor{
-	icon_state = "cafeteria";
-	dir = 2
-	},
 /area/whiskey_outpost)
 "jP" = (
 /turf/closed/shuttle/dropship3/transparent{
@@ -3313,79 +2957,11 @@
 	icon_state = "64"
 	},
 /area/whiskey_outpost/outside/east)
-"jS" = (
-/obj/item/storage/box/sentry,
-/turf/open/floor/plating/platebot,
-/area/whiskey_outpost/outside/west)
 "jT" = (
-/obj/structure/bed,
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/item/bedsheet/purple,
-/obj/effect/landmark/start/latejoin,
+/obj/machinery/marine_selector/clothes/medic,
 /turf/open/floor/mainship{
 	dir = 10;
 	icon_state = "emerald"
-	},
-/area/whiskey_outpost)
-"jU" = (
-/obj/item/storage/box/sentry,
-/obj/item/storage/box/m94,
-/turf/open/floor/plating/platebot,
-/area/whiskey_outpost/outside/west)
-"jV" = (
-/obj/structure/table,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/firstaid/regular,
-/turf/open/floor{
-	icon_state = "cafeteria";
-	dir = 2
-	},
-/area/whiskey_outpost)
-"jW" = (
-/obj/structure/table,
-/obj/item/storage/firstaid/o2,
-/turf/open/floor{
-	icon_state = "cafeteria";
-	dir = 2
-	},
-/area/whiskey_outpost)
-"jX" = (
-/obj/item/storage/box/explosive_mines,
-/turf/open/floor{
-	icon_state = "cafeteria";
-	dir = 2
-	},
-/area/whiskey_outpost)
-"jY" = (
-/obj/item/storage/box/sentry,
-/obj/item/flashlight,
-/obj/item/flashlight,
-/turf/open/floor{
-	icon_state = "cafeteria";
-	dir = 2
-	},
-/area/whiskey_outpost)
-"jZ" = (
-/obj/machinery/vending/nanomed{
-	dir = 8
-	},
-/obj/item/storage/box/sentry,
-/obj/item/flashlight,
-/obj/item/flashlight,
-/turf/open/floor{
-	icon_state = "cafeteria";
-	dir = 2
-	},
-/area/whiskey_outpost)
-"ka" = (
-/obj/structure/bed,
-/obj/item/bedsheet/blue,
-/obj/effect/landmark/start/latejoin,
-/turf/open/floor/mainship{
-	dir = 4;
-	icon_state = "blue"
 	},
 /area/whiskey_outpost)
 "kb" = (
@@ -3401,25 +2977,10 @@
 /obj/item/storage/box/m94,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
-"ke" = (
-/obj/structure/largecrate/guns,
-/turf/open/floor/plating/warning{
-	dir = 8
-	},
-/area/whiskey_outpost/outside/west)
-"kf" = (
-/obj/item/storage/box/explosive_mines,
-/turf/open/floor/plating/platebot,
-/area/whiskey_outpost/outside/west)
 "kg" = (
-/obj/item/stack/medical/bruise_pack,
-/turf/open/floor/plating/platebot,
-/area/whiskey_outpost/outside/west)
-"kh" = (
-/turf/open/floor/plating/warning{
-	dir = 4
-	},
-/area/whiskey_outpost/outside/west)
+/obj/item/storage/box/explosive_mines,
+/turf/open/floor/plating,
+/area/whiskey_outpost)
 "ki" = (
 /obj/structure/largecrate/supply/weapons/flamers,
 /turf/open/floor/plating/asteroidfloor,
@@ -3491,21 +3052,11 @@
 	icon_state = "68"
 	},
 /area/whiskey_outpost/outside/east)
-"kw" = (
-/obj/structure/barricade/metal,
-/turf/open/floor/plating,
-/area/whiskey_outpost/outside/east)
 "kx" = (
-/obj/structure/largecrate/guns,
-/turf/open/floor/plating/platebot,
-/area/whiskey_outpost/outside/west)
-"ky" = (
-/obj/structure/sign/greencross{
-	icon_state = "lifestar";
-	pixel_y = 32
-	},
-/turf/open/ground/jungle,
-/area/whiskey_outpost/outside/west)
+/obj/structure/largecrate/supply/ammo/standard_smg,
+/obj/machinery/light,
+/turf/open/floor/plating,
+/area/whiskey_outpost)
 "kz" = (
 /turf/closed/mineral,
 /area/whiskey_outpost/outside/south)
@@ -3548,33 +3099,18 @@
 	},
 /area/whiskey_outpost/outside/east)
 "kI" = (
-/turf/open/ground/jungle,
-/turf/closed/shuttle{
-	density = 0;
-	dir = 1;
-	icon_state = "re_corner"
+/obj/structure/barricade/sandbags{
+	pixel_z = -7
 	},
-/area/whiskey_outpost/outside/west)
-"kJ" = (
-/obj/item/stack/medical/bruise_pack,
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
-/area/whiskey_outpost/outside/west)
-"kK" = (
-/turf/open/ground/jungle,
-/turf/closed/shuttle{
-	density = 0;
-	dir = 4;
-	icon_state = "re_corner"
-	},
-/area/whiskey_outpost/outside/west)
+/turf/open/floor/plating/warning,
+/area/whiskey_outpost)
 "kL" = (
 /turf/open/space,
 /turf/open/floor/plating/dmg2,
 /area/whiskey_outpost/outside/east)
 "kM" = (
 /obj/structure/flora/ausbushes/sparsegrass,
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "kN" = (
@@ -3582,9 +3118,10 @@
 /turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "kO" = (
-/obj/structure/bed,
-/obj/item/bedsheet/purple,
-/obj/effect/landmark/start/latejoin,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/marine_selector/gear/medic,
 /turf/open/floor/mainship{
 	dir = 8;
 	icon_state = "emerald"
@@ -3595,18 +3132,6 @@
 	dir = 1
 	},
 /area/whiskey_outpost/outside/east)
-"kQ" = (
-/obj/structure/bed,
-/obj/item/bedsheet/blue,
-/obj/effect/landmark/start/latejoin_gateway,
-/turf/open/floor/mainship{
-	dir = 6;
-	icon_state = "blue"
-	},
-/area/whiskey_outpost)
-"kR" = (
-/turf/open/floor/plating/platebot,
-/area/whiskey_outpost/outside/west)
 "kS" = (
 /obj/structure/bed/chair,
 /obj/effect/landmark/start/job/squadmarine,
@@ -3614,14 +3139,11 @@
 	dir = 4
 	},
 /area/whiskey_outpost)
-"kT" = (
-/obj/machinery/m56d_hmg/mg_turret,
-/turf/open/floor/plating/warning{
+"kU" = (
+/obj/machinery/m56d_hmg/mg_turret{
+	icon_state = "towergun";
 	dir = 2
 	},
-/area/whiskey_outpost/outside/west)
-"kU" = (
-/obj/machinery/m56d_hmg/mg_turret,
 /turf/open/floor/plating/warning{
 	dir = 2
 	},
@@ -3773,12 +3295,8 @@
 /turf/open/ground/river,
 /area/whiskey_outpost/outside/south)
 "lz" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/effect/landmark/start/job/squadmarine,
+/obj/structure/bed/roller,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "lA" = (
@@ -3838,6 +3356,9 @@
 /turf/open/ground/river,
 /area/whiskey_outpost/outside/east)
 "lK" = (
+/obj/structure/barricade/sandbags{
+	pixel_z = -7
+	},
 /turf/open/shuttle/dropship{
 	icon_state = "rasputin8"
 	},
@@ -3910,12 +3431,12 @@
 /area/whiskey_outpost)
 "lW" = (
 /obj/structure/rack,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/obj/item/mortal_shell/he,
-/turf/open/floor/plating,
+/obj/item/mortal_shell/flash,
+/obj/item/mortal_shell/flash,
+/obj/item/mortal_shell/flash,
+/obj/item/mortal_shell/flash,
+/obj/item/mortal_shell/flash,
+/turf/open/floor/plating/asteroidplating,
 /area/whiskey_outpost)
 "lX" = (
 /obj/structure/bed/chair{
@@ -3984,73 +3505,19 @@
 /obj/effect/landmark/start/job/squadspecialist,
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
-"mh" = (
-/obj/structure/barricade/sandbags{
-	pixel_z = -7
-	},
-/obj/effect/landmark/start/job/squadengineer,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 2
-	},
-/area/whiskey_outpost/outside/north)
-"mi" = (
-/obj/effect/landmark{
-	icon_state = "x";
-	name = "whiskey_outpost_xeno_2"
-	},
-/turf/open/ground/jungle{
-	bushes_spawn = 0;
-	icon_state = "grass_impenetrable"
-	},
-/area/whiskey_outpost/outside/south)
 "mj" = (
 /obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
-"mk" = (
-/obj/effect/landmark{
-	icon_state = "x";
-	name = "whiskey_outpost_xeno_1"
-	},
-/turf/open/ground/jungle{
-	bushes_spawn = 0;
-	icon_state = "grass_impenetrable"
-	},
-/area/whiskey_outpost/outside/south)
 "ml" = (
 /turf/closed/wall/r_wall,
 /area/whiskey_outpost/outside/south)
-"mm" = (
-/obj/machinery/door/poddoor/four_tile_hor,
-/turf/closed/wall/r_wall,
-/area/whiskey_outpost/outside/south)
-"mn" = (
-/obj/effect/landmark/start/job/squadmarine,
-/turf/open/floor/plating/asteroidfloor,
-/area/space)
 "mo" = (
 /obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 2
 	},
 /area/whiskey_outpost)
-"mp" = (
-/turf/open/floor/plating/asteroidfloor,
-/area/space)
-"mq" = (
-/obj/structure/barricade/sandbags{
-	pixel_z = -7
-	},
-/obj/effect/landmark/start/job/squadcorpsman,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 2
-	},
-/area/whiskey_outpost/outside/north)
-"mr" = (
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/effect/landmark/start/job/squadmarine,
-/turf/open/floor/plating/ground/dirt,
-/area/whiskey_outpost/outside/north)
 "ms" = (
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 4
@@ -4061,30 +3528,9 @@
 /obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating,
 /area/whiskey_outpost)
-"mu" = (
-/obj/structure/barricade/sandbags{
-	pixel_z = -7
-	},
-/obj/effect/landmark/start/job/squadmarine,
-/turf/open/ground/jungle,
-/area/whiskey_outpost/outside/north)
 "mv" = (
 /turf/open/space/basic,
 /area/space)
-"mw" = (
-/obj/structure/barricade/sandbags{
-	pixel_z = -7
-	},
-/obj/effect/landmark/start/job/squadcorpsman,
-/turf/open/floor/plating/ground/dirt,
-/area/whiskey_outpost/outside/north)
-"mx" = (
-/obj/structure/barricade/sandbags{
-	pixel_z = -7
-	},
-/obj/effect/landmark/start/job/squadmarine,
-/turf/open/floor/plating/ground/dirt,
-/area/whiskey_outpost/outside/west)
 "my" = (
 /obj/effect/landmark/start/job/squadmarine,
 /turf/open/ground/jungle,
@@ -4105,74 +3551,12 @@
 /obj/structure/bed/chair/dropship/passenger,
 /turf/open/shuttle/dropship/floor,
 /area/whiskey_outpost/outside/east)
-"mC" = (
-/obj/structure/barricade/metal,
-/obj/effect/landmark/start/job/squadengineer,
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
-/area/whiskey_outpost/outside/west)
-"mD" = (
-/obj/structure/barricade/metal,
-/obj/effect/landmark/start/job/squadspecialist,
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
-/area/whiskey_outpost/outside/west)
-"mE" = (
-/obj/effect/landmark/start/job/squadcorpsman,
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost/outside/east)
-"mF" = (
-/obj/effect/landmark/start/job/squadsmartgunner,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin3"
-	},
-/area/whiskey_outpost/outside/east)
 "mG" = (
-/obj/effect/landmark/start/job/squadcorpsman,
-/turf/open/floor{
-	icon_state = "cafeteria";
-	dir = 2
-	},
-/area/whiskey_outpost)
-"mH" = (
-/obj/item/roller,
-/obj/effect/landmark/start/job/squadcorpsman,
-/turf/open/floor{
-	icon_state = "cafeteria";
-	dir = 2
-	},
-/area/whiskey_outpost)
-"mI" = (
-/obj/effect/landmark/start/job/squadspecialist,
-/turf/open/floor/plating,
-/area/whiskey_outpost)
-"mJ" = (
 /obj/effect/landmark/start/job/squadmarine,
-/turf/open/floor/plating/ground/dirt,
-/area/whiskey_outpost/outside/south)
-"mK" = (
-/obj/structure/barricade/metal,
-/obj/effect/landmark/start/job/squadcorpsman,
-/turf/open/floor/plating,
-/area/whiskey_outpost/outside/east)
-"mL" = (
-/obj/item/stack/medical/bruise_pack,
-/obj/effect/landmark/start/job/squadsmartgunner,
-/turf/open/floor/plating/platebot,
-/area/whiskey_outpost/outside/west)
-"mM" = (
-/obj/effect/landmark/start/job/squadcorpsman,
-/turf/open/ground/jungle,
-/area/whiskey_outpost/outside/west)
-"mN" = (
-/obj/structure/barricade/sandbags{
-	pixel_z = -7
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
 	},
-/obj/effect/landmark/start/job/squadengineer,
-/turf/open/floor/plating/ground/dirt,
-/area/whiskey_outpost/outside/east)
+/area/whiskey_outpost)
 "mO" = (
 /turf/closed/shuttle/dropship3/transparent{
 	icon_state = "48"
@@ -4193,31 +3577,9 @@
 	icon_state = "45"
 	},
 /area/whiskey_outpost/outside/south)
-"mS" = (
-/obj/structure/barricade/sandbags{
-	pixel_z = -7
-	},
-/obj/effect/landmark/start/job/squadcorpsman,
-/turf/open/floor/plating/ground/dirt,
-/area/whiskey_outpost/outside/east)
-"mT" = (
-/obj/effect/landmark/start/job/squadmarine,
-/turf/open/floor/plating/ground/dirt,
-/area/whiskey_outpost/outside/east)
-"mU" = (
-/obj/structure/barricade/sandbags{
-	pixel_z = -7
-	},
-/obj/effect/landmark/start/job/squadspecialist,
-/turf/open/floor/plating/ground/dirt,
-/area/whiskey_outpost/outside/east)
-"mV" = (
-/obj/effect/landmark/start/job/squadengineer,
-/turf/open/ground/jungle,
-/area/whiskey_outpost/outside/west)
 "mW" = (
 /obj/effect/landmark/start/job/squadmarine,
-/turf/open/ground/jungle,
+/turf/open/floor/plating,
 /area/whiskey_outpost/outside/east)
 "mX" = (
 /turf/closed/shuttle/dropship3{
@@ -4238,27 +3600,6 @@
 "na" = (
 /obj/effect/attach_point/crew_weapon/dropship1,
 /turf/open/shuttle/dropship/floor,
-/area/whiskey_outpost/outside/south)
-"nb" = (
-/obj/structure/barricade/metal,
-/obj/effect/landmark/start/job/squadsmartgunner,
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
-/area/whiskey_outpost/outside/west)
-"nc" = (
-/obj/structure/barricade/metal,
-/obj/effect/landmark/start/job/squadcorpsman,
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
-/area/whiskey_outpost/outside/east)
-"nd" = (
-/obj/structure/barricade/sandbags{
-	pixel_z = -7
-	},
-/obj/effect/landmark/start/job/squadmarine,
-/turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
 "ne" = (
 /obj/structure/platform_decoration,
@@ -4546,9 +3887,10 @@
 	},
 /area/whiskey_outpost/outside/south)
 "nY" = (
-/obj/machinery/m56d_hmg/mg_turret,
-/obj/structure/barricade/sandbags{
-	pixel_z = -7
+/obj/effect/ai_node,
+/obj/machinery/m56d_hmg/mg_turret{
+	icon_state = "towergun";
+	dir = 2
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/south)
@@ -4984,11 +4326,11 @@
 	},
 /area/whiskey_outpost/outside/north)
 "pd" = (
-/obj/machinery/m56d_hmg/mg_turret,
-/obj/structure/barricade/sandbags{
-	pixel_z = -7
-	},
 /obj/structure/platform_decoration,
+/obj/machinery/m56d_hmg/mg_turret{
+	icon_state = "towergun";
+	dir = 2
+	},
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
 "pe" = (
@@ -4998,6 +4340,10 @@
 /obj/structure/platform_decoration{
 	icon_state = "platform_deco";
 	dir = 1
+	},
+/obj/structure/barricade/sandbags{
+	icon_state = "sandbag_0";
+	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
@@ -5100,23 +4446,11 @@
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
-"pr" = (
-/obj/structure/platform_decoration{
-	icon_state = "platform_deco";
-	dir = 1
-	},
-/obj/structure/platform_decoration,
-/turf/open/floor/plating/ground/dirt,
-/area/whiskey_outpost/outside/north)
-"ps" = (
-/obj/structure/platform_decoration,
-/obj/structure/platform_decoration{
-	icon_state = "platform_deco";
-	dir = 1
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/whiskey_outpost/outside/north)
 "pt" = (
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 1
+	},
 /obj/structure/platform{
 	icon_state = "platform";
 	dir = 8
@@ -5128,47 +4462,36 @@
 /area/whiskey_outpost/outside/north)
 "pu" = (
 /obj/structure/rack,
-/obj/item/mortal_shell/flare,
-/obj/item/mortal_shell/flare,
-/obj/item/mortal_shell/flare,
-/obj/item/mortal_shell/flare,
-/obj/item/mortal_shell/flare,
-/turf/open/floor/plating,
+/obj/item/mortal_shell/incendiary,
+/obj/item/mortal_shell/incendiary,
+/obj/item/mortal_shell/incendiary,
+/obj/item/mortal_shell/incendiary,
+/obj/item/mortal_shell/incendiary,
+/turf/open/floor/plating/asteroidplating,
 /area/whiskey_outpost)
 "pv" = (
 /obj/structure/rack,
-/obj/item/mortal_shell/smoke,
-/obj/item/mortal_shell/smoke,
-/obj/item/mortal_shell/smoke,
-/obj/item/mortal_shell/smoke,
-/obj/item/mortal_shell/smoke,
-/obj/item/mortal_shell/smoke,
-/obj/item/mortal_shell/smoke,
-/obj/item/mortal_shell/smoke,
-/obj/item/mortal_shell/smoke,
-/turf/open/floor/plating,
-/area/whiskey_outpost)
-"pw" = (
-/obj/structure/barricade/sandbags{
-	icon_state = "sandbag_0";
-	dir = 4
-	},
-/turf/open/floor/plating,
+/obj/item/mortal_shell/he,
+/obj/item/mortal_shell/he,
+/obj/item/mortal_shell/he,
+/obj/item/mortal_shell/he,
+/obj/item/mortal_shell/he,
+/turf/open/floor/plating/asteroidplating,
 /area/whiskey_outpost)
 "px" = (
 /obj/structure/largecrate/random/barrel/white,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "py" = (
-/obj/structure/mortar/fixed,
-/turf/open/floor/plating,
+/obj/effect/landmark/start/job/squadengineer,
+/turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "pz" = (
 /obj/structure/barricade/metal,
 /obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidwarning,
 /area/whiskey_outpost)
-"pA" = (
+"pB" = (
 /obj/structure/barricade/sandbags{
 	icon_state = "sandbag_0";
 	dir = 8
@@ -5176,23 +4499,7 @@
 /obj/structure/barricade/sandbags{
 	pixel_z = -7
 	},
-/turf/open/floor/plating,
-/area/whiskey_outpost)
-"pB" = (
-/obj/structure/barricade/sandbags{
-	pixel_z = -7
-	},
-/turf/open/floor/plating,
-/area/whiskey_outpost)
-"pC" = (
-/obj/structure/barricade/sandbags{
-	pixel_z = -7
-	},
-/obj/structure/barricade/sandbags{
-	icon_state = "sandbag_0";
-	dir = 4
-	},
-/turf/open/floor/plating,
+/turf/open/floor/plating/asteroidplating,
 /area/whiskey_outpost)
 "pD" = (
 /obj/structure/barricade/metal,
@@ -5230,14 +4537,6 @@
 	dir = 8
 	},
 /obj/structure/largecrate/supply/explosives/mortar_flare,
-/turf/open/floor/plating,
-/area/whiskey_outpost)
-"pI" = (
-/obj/effect/decal/warning_stripes/thick{
-	icon_state = "thick";
-	dir = 4
-	},
-/obj/structure/largecrate/supply/explosives/mortar_he,
 /turf/open/floor/plating,
 /area/whiskey_outpost)
 "pJ" = (
@@ -5318,24 +4617,8 @@
 /obj/structure/largecrate/random/barrel/red,
 /turf/open/floor/plating,
 /area/whiskey_outpost)
-"pW" = (
-/obj/effect/decal/warning_stripes/thick{
-	icon_state = "thick";
-	dir = 8
-	},
-/obj/structure/largecrate/supply/supplies/tables_racks,
-/turf/open/floor/plating,
-/area/whiskey_outpost)
 "pX" = (
 /obj/structure/largecrate/supply/supplies/flares,
-/turf/open/floor/plating,
-/area/whiskey_outpost)
-"pY" = (
-/obj/effect/decal/warning_stripes/thick{
-	icon_state = "thick";
-	dir = 4
-	},
-/obj/structure/largecrate/random/barrel/yellow,
 /turf/open/floor/plating,
 /area/whiskey_outpost)
 "pZ" = (
@@ -5414,14 +4697,30 @@
 /area/whiskey_outpost)
 "qi" = (
 /obj/structure/rack,
-/obj/item/ammobox/m39ext,
-/obj/item/ammobox/m39ext,
+/obj/item/stack/barbed_wire/full,
+/obj/item/stack/barbed_wire/full,
+/obj/item/stack/barbed_wire/full,
+/obj/item/stack/barbed_wire/full,
+/obj/item/stack/barbed_wire/full,
+/obj/item/stack/barbed_wire/full,
+/obj/item/stack/barbed_wire/full,
+/obj/item/stack/barbed_wire/full,
+/obj/item/stack/barbed_wire/full,
+/obj/item/stack/barbed_wire/full,
+/obj/item/stack/barbed_wire/full,
+/obj/item/stack/barbed_wire/full,
+/obj/item/stack/barbed_wire/full,
+/obj/item/stack/barbed_wire/full,
+/obj/item/stack/barbed_wire/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "qj" = (
 /obj/structure/rack,
-/obj/item/ammobox/ext,
-/obj/item/ammobox/ext,
+/obj/item/ammobox,
+/obj/item/ammobox,
+/obj/item/ammobox,
+/obj/item/ammobox,
+/obj/item/ammobox,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "qk" = (
@@ -5458,7 +4757,7 @@
 /turf/closed/wall/indestructible/mineral,
 /area/whiskey_outpost/outside/south)
 "qr" = (
-/obj/structure/largecrate/supply/ammo/m41a_box,
+/obj/structure/largecrate/supply/explosives/mines,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "qs" = (
@@ -5508,6 +4807,7 @@
 /area/whiskey_outpost)
 "qy" = (
 /obj/structure/rack,
+/obj/item/big_ammo_box/ap,
 /obj/item/big_ammo_box/ap,
 /obj/item/big_ammo_box/ap,
 /turf/open/floor/plating/asteroidfloor,
@@ -5571,8 +4871,11 @@
 /area/whiskey_outpost)
 "qG" = (
 /obj/structure/rack,
-/obj/item/ammobox/ap,
-/obj/item/ammobox/ap,
+/obj/item/ammobox/standard_smg,
+/obj/item/ammobox/standard_smg,
+/obj/item/ammobox/standard_smg,
+/obj/item/ammobox/standard_smg,
+/obj/item/ammobox/standard_smg,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "qH" = (
@@ -5632,6 +4935,7 @@
 	pixel_z = 2;
 	pixel_w = 0
 	},
+/obj/item/m56d_post,
 /turf/open/floor/plating/warning{
 	dir = 1
 	},
@@ -5691,6 +4995,10 @@
 	dir = 1
 	},
 /obj/structure/platform,
+/obj/structure/barricade/plasteel{
+	icon_state = "plasteel_closed_0";
+	dir = 4
+	},
 /turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
@@ -5703,13 +5011,6 @@
 /turf/open/floor/plating/asteroidwarning{
 	dir = 8
 	},
-/area/whiskey_outpost)
-"qV" = (
-/obj/structure/rack,
-/obj/item/ammobox,
-/obj/item/ammobox,
-/obj/item/ammobox,
-/turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "qW" = (
 /obj/machinery/floodlight/outpost,
@@ -5736,12 +5037,6 @@
 /turf/open/floor/plating/asteroidwarning{
 	dir = 8
 	},
-/area/whiskey_outpost)
-"ra" = (
-/obj/structure/rack,
-/obj/item/ammobox/m39,
-/obj/item/ammobox/m39,
-/turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "rb" = (
 /obj/structure/rack,
@@ -5774,9 +5069,6 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/table,
-/obj/machinery/cell_charger,
-/obj/item/tool/hand_labeler,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "rg" = (
@@ -5830,13 +5122,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "rm" = (
-/obj/structure/largecrate/supply/ammo/pistol,
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost)
-"rn" = (
-/obj/structure/rack,
-/obj/item/ammobox/m4a3ap,
-/obj/item/ammobox/m4a3ext,
+/obj/structure/largecrate/supply/powerloader,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "ro" = (
@@ -5861,13 +5147,12 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
 "rr" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/light{
 	dir = 4
+	},
+/obj/machinery/vending/marine,
+/obj/structure/window/reinforced{
+	dir = 1
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
@@ -5899,10 +5184,6 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
-"rv" = (
-/obj/machinery/floodlight/outpost,
-/turf/open/floor/plating,
-/area/whiskey_outpost)
 "rA" = (
 /obj/structure/platform_decoration{
 	icon_state = "platform_deco";
@@ -5933,6 +5214,48 @@
 /obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
+"rW" = (
+/obj/effect/landmark/start/job/squadmarine,
+/turf/open/floor/plating,
+/area/whiskey_outpost/outside/north)
+"sa" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/toxin,
+/obj/item/storage/firstaid/toxin{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/item/storage/firstaid/toxin{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship{
+	icon_state = "sterile_green"
+	},
+/area/whiskey_outpost)
+"sb" = (
+/obj/structure/barricade/metal,
+/turf/open/floor/plating/warning{
+	dir = 2
+	},
+/area/whiskey_outpost)
+"se" = (
+/obj/structure/barricade/metal,
+/obj/structure/barricade/metal{
+	icon_state = "metal_0";
+	dir = 8
+	},
+/turf/open/floor/plating/asteroidwarning{
+	dir = 2
+	},
+/area/whiskey_outpost)
+"sj" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating,
+/area/whiskey_outpost/outside/north)
 "sm" = (
 /obj/structure/flora/ausbushes/brflowers,
 /turf/open/ground/grass,
@@ -5987,6 +5310,166 @@
 	},
 /turf/open/floor/plating,
 /area/whiskey_outpost)
+"sB" = (
+/obj/machinery/marine_selector/gear/spec,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/mainship{
+	dir = 4;
+	icon_state = "orange"
+	},
+/area/whiskey_outpost)
+"sH" = (
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 8
+	},
+/obj/machinery/floodlight/outpost,
+/turf/open/ground/jungle,
+/area/whiskey_outpost/outside/west)
+"sN" = (
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 8
+	},
+/obj/effect/ai_node,
+/obj/structure/barricade/sandbags{
+	pixel_z = -7
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost)
+"sO" = (
+/obj/structure/largecrate/supply/supplies/plasteel,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"sS" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/largecrate/supply/explosives/mines,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"sU" = (
+/obj/machinery/m56d_hmg/mg_turret{
+	icon_state = "towergun";
+	dir = 2
+	},
+/turf/open/floor/plating/warning{
+	dir = 2
+	},
+/area/whiskey_outpost)
+"sV" = (
+/obj/effect/landmark/start/job/squadmarine,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/east)
+"ta" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/bed/roller,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"th" = (
+/obj/structure/mortar/fixed,
+/turf/open/floor/plating/asteroidplating,
+/area/whiskey_outpost)
+"tr" = (
+/obj/structure/table,
+/obj/item/storage/belt/combatLifesaver,
+/obj/item/storage/belt/medical,
+/obj/item/storage/belt/medical,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/healthanalyzer,
+/obj/item/healthanalyzer,
+/turf/open/floor/mainship{
+	icon_state = "sterile_green"
+	},
+/area/whiskey_outpost)
+"tN" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/closet/crate,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"tU" = (
+/turf/open/floor/mainship{
+	dir = 8;
+	icon_state = "red"
+	},
+/area/whiskey_outpost)
+"tW" = (
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 4
+	},
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 8
+	},
+/turf/open/floor/stairs/rampbottom{
+	dir = 1
+	},
+/area/whiskey_outpost/outside/north)
+"tZ" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship{
+	icon_state = "blue";
+	dir = 8
+	},
+/area/whiskey_outpost)
+"uk" = (
+/obj/machinery/marine_selector/clothes/leader,
+/turf/open/floor/mainship{
+	dir = 6;
+	icon_state = "blue"
+	},
+/area/whiskey_outpost)
+"um" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidwarning{
+	dir = 8
+	},
+/area/whiskey_outpost/outside/north)
+"uw" = (
+/obj/machinery/door/window/westright,
+/turf/open/floor/mainship{
+	icon_state = "blue"
+	},
+/area/whiskey_outpost)
+"uE" = (
+/obj/structure/bed,
+/obj/item/bedsheet/yellow,
+/obj/effect/landmark/start/latejoin,
+/obj/effect/ai_node,
+/turf/open/floor/mainship{
+	dir = 9;
+	icon_state = "orange"
+	},
+/area/whiskey_outpost)
 "uJ" = (
 /obj/machinery/computer/crew,
 /turf/open/floor/mainship{
@@ -5999,6 +5482,1991 @@
 	icon_state = "sterile_green"
 	},
 /area/whiskey_outpost)
+"uQ" = (
+/obj/structure/largecrate/supply/supplies/sandbags,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"uU" = (
+/obj/machinery/floodlight/outpost,
+/turf/open/floor/plating/asteroidplating,
+/area/whiskey_outpost)
+"vl" = (
+/obj/structure/largecrate/supply/ammo/standard_smg,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"vo" = (
+/obj/structure/barricade/metal{
+	icon_state = "metal_0";
+	dir = 4
+	},
+/obj/effect/landmark/start/job/squadmarine,
+/obj/structure/barricade/metal,
+/turf/open/floor/plating/asteroidwarning{
+	dir = 4
+	},
+/area/whiskey_outpost)
+"vv" = (
+/obj/structure/largecrate/supply/weapons/m56d,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"vz" = (
+/obj/structure/platform_decoration{
+	icon_state = "platform_deco";
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	icon_state = "sandbag_0";
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/north)
+"vB" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/whiskey_outpost/outside/east)
+"vM" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	name = "\improper Recreation Area"
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"vP" = (
+/obj/item/storage/box/explosive_mines,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/west)
+"vR" = (
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	pixel_z = -7
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/north)
+"vY" = (
+/obj/structure/barricade/sandbags{
+	pixel_z = -7
+	},
+/turf/open/shuttle/dropship{
+	icon_state = "rasputin5"
+	},
+/area/whiskey_outpost/outside/east)
+"wc" = (
+/obj/machinery/marine_selector/clothes,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"wf" = (
+/obj/structure/flora/ausbushes/leafybush,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/west)
+"wn" = (
+/obj/machinery/vending/attachments,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"wt" = (
+/obj/machinery/marine_selector/clothes,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/west)
+"ww" = (
+/obj/item/storage/box/m94,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/east)
+"wA" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/closet/crate,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/obj/item/weapon/gun/launcher/rocket,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"wM" = (
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 1
+	},
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 8
+	},
+/obj/structure/platform_decoration{
+	icon_state = "platform_deco";
+	dir = 5
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost)
+"wO" = (
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/structure/barricade/metal{
+	icon_state = "metal_0";
+	dir = 1
+	},
+/turf/open/floor/plating/asteroidwarning{
+	dir = 8
+	},
+/area/whiskey_outpost)
+"wP" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating/platebot,
+/area/whiskey_outpost)
+"xh" = (
+/obj/machinery/vending/marine,
+/turf/open/floor/tile/dark,
+/area/whiskey_outpost)
+"xj" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating/platebot,
+/area/whiskey_outpost)
+"xm" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor{
+	icon_state = "yellow";
+	dir = 1
+	},
+/area/whiskey_outpost)
+"xt" = (
+/obj/structure/barricade/metal,
+/obj/structure/barricade/metal{
+	icon_state = "metal_0";
+	dir = 4
+	},
+/turf/open/floor/plating/asteroidwarning,
+/area/whiskey_outpost)
+"xu" = (
+/obj/structure/bed,
+/obj/item/bedsheet/yellow,
+/obj/effect/landmark/start/latejoin_cryo,
+/turf/open/floor/mainship{
+	icon_state = "orange";
+	dir = 5
+	},
+/area/whiskey_outpost)
+"xz" = (
+/obj/machinery/vending/nanomed{
+	dir = 8
+	},
+/obj/machinery/light,
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
+/area/whiskey_outpost)
+"xD" = (
+/obj/machinery/marine_selector/clothes/smartgun,
+/obj/structure/window/reinforced,
+/turf/open/floor/mainship{
+	dir = 4;
+	icon_state = "blue"
+	},
+/area/whiskey_outpost)
+"xQ" = (
+/obj/machinery/marine_selector/clothes,
+/obj/structure/window/reinforced,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"xR" = (
+/obj/structure/flora/ausbushes/grassybush,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/north)
+"xU" = (
+/obj/machinery/vending/shared_vending/marine_engi,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/mainship{
+	dir = 8;
+	icon_state = "red"
+	},
+/area/whiskey_outpost)
+"xV" = (
+/obj/item/lightstick/red/anchored,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/south)
+"yd" = (
+/obj/structure/largecrate/supply/medicine/medkits,
+/turf/open/floor/plating/asteroidwarning{
+	dir = 4
+	},
+/area/whiskey_outpost)
+"yj" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/largecrate/supply/explosives/mines,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"yq" = (
+/obj/structure/barricade/plasteel,
+/turf/open/floor/plating/warning{
+	dir = 2
+	},
+/area/whiskey_outpost/outside/east)
+"yt" = (
+/obj/machinery/marine_selector/clothes,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/tile/whiteyellow/full,
+/area/whiskey_outpost)
+"yw" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"yC" = (
+/obj/machinery/floodlight/outpost,
+/turf/open/ground/jungle,
+/area/whiskey_outpost)
+"yG" = (
+/obj/item/storage/box/explosive_mines,
+/turf/open/floor/plating/platebot,
+/area/whiskey_outpost)
+"yH" = (
+/obj/structure/platform_decoration{
+	icon_state = "platform_deco";
+	dir = 1
+	},
+/obj/machinery/floodlight/outpost,
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/north)
+"yQ" = (
+/obj/structure/barricade/plasteel{
+	icon_state = "plasteel_closed_0";
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/whiskey_outpost)
+"yW" = (
+/obj/machinery/m56d_hmg/mg_turret{
+	icon_state = "towergun";
+	dir = 2
+	},
+/turf/open/floor/plating/asteroidwarning{
+	dir = 2
+	},
+/area/whiskey_outpost/outside/north)
+"zd" = (
+/obj/structure/barricade/plasteel,
+/turf/open/floor/plating,
+/area/whiskey_outpost)
+"zf" = (
+/obj/item/roller,
+/obj/item/roller,
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
+/area/whiskey_outpost)
+"zg" = (
+/obj/structure/largecrate/supply/supplies/metal,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"zi" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/west)
+"zj" = (
+/obj/structure/largecrate/supply/supplies/metal,
+/turf/open/floor/plating,
+/area/whiskey_outpost/outside/north)
+"zw" = (
+/obj/structure/window/reinforced,
+/obj/machinery/door/window/westright,
+/turf/open/floor/mainship,
+/area/whiskey_outpost)
+"zz" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/north)
+"zI" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidwarning{
+	dir = 8
+	},
+/area/whiskey_outpost/outside/east)
+"zM" = (
+/obj/structure/sign/greencross{
+	icon_state = "lifestar";
+	pixel_y = 32
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/west)
+"zP" = (
+/obj/structure/rack,
+/obj/item/mortal_shell/flare,
+/obj/item/mortal_shell/flare,
+/obj/item/mortal_shell/flare,
+/obj/item/mortal_shell/flare,
+/obj/item/mortal_shell/flare,
+/turf/open/floor/plating/asteroidplating,
+/area/whiskey_outpost)
+"zZ" = (
+/obj/machinery/m56d_hmg/mg_turret{
+	icon_state = "towergun";
+	dir = 2
+	},
+/turf/open/floor/plating/warning,
+/area/whiskey_outpost)
+"Af" = (
+/obj/structure/barricade/plasteel,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"Ag" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/whiskey_outpost/outside/north)
+"Am" = (
+/obj/structure/bed,
+/obj/item/bedsheet/red,
+/obj/effect/landmark/start/latejoin_gateway,
+/turf/open/floor/mainship{
+	dir = 9;
+	icon_state = "red"
+	},
+/area/whiskey_outpost)
+"Ap" = (
+/obj/structure/barricade/sandbags{
+	pixel_z = -7
+	},
+/obj/structure/barricade/sandbags{
+	icon_state = "sandbag_0";
+	dir = 4
+	},
+/turf/open/floor/plating/warning,
+/area/whiskey_outpost)
+"As" = (
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 4
+	},
+/turf/open/ground/grass/beach{
+	dir = 1
+	},
+/area/whiskey_outpost/outside/west)
+"AJ" = (
+/obj/machinery/vending/marine,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/tile/whiteyellow/full,
+/area/whiskey_outpost)
+"AL" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/mainship,
+/area/whiskey_outpost)
+"AR" = (
+/obj/machinery/vending/marine,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/tile/whiteyellow/full,
+/area/whiskey_outpost)
+"AV" = (
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 4
+	},
+/obj/machinery/floodlight/outpost,
+/turf/open/ground/jungle,
+/area/whiskey_outpost/outside/west)
+"AY" = (
+/obj/machinery/vending/marine_medic,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/mainship{
+	dir = 8;
+	icon_state = "red"
+	},
+/area/whiskey_outpost)
+"Bg" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/whiskey_outpost)
+"Bh" = (
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 8
+	},
+/turf/open/ground/river,
+/area/whiskey_outpost/outside/west)
+"Bj" = (
+/obj/structure/barricade/sandbags{
+	pixel_z = -7
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost)
+"Bp" = (
+/obj/structure/barricade/sandbags{
+	pixel_z = -7
+	},
+/obj/structure/barricade/sandbags{
+	icon_state = "sandbag_0";
+	dir = 4
+	},
+/turf/open/floor/plating/asteroidplating,
+/area/whiskey_outpost)
+"By" = (
+/obj/structure/platform_decoration{
+	icon_state = "platform_deco";
+	dir = 1
+	},
+/turf/open/ground/grass/beach{
+	dir = 1
+	},
+/area/whiskey_outpost/outside/west)
+"BJ" = (
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost)
+"BK" = (
+/obj/machinery/marine_selector/clothes/engi,
+/obj/structure/window/reinforced,
+/turf/open/floor/mainship{
+	dir = 8;
+	icon_state = "red"
+	},
+/area/whiskey_outpost)
+"BQ" = (
+/obj/effect/ai_node,
+/turf/open/ground/coast{
+	dir = 6
+	},
+/area/whiskey_outpost/outside/north)
+"BW" = (
+/obj/structure/barricade/plasteel,
+/turf/open/floor/plating/warning{
+	dir = 2
+	},
+/area/whiskey_outpost)
+"BZ" = (
+/turf/closed/mineral,
+/area/space)
+"Cd" = (
+/obj/structure/bed,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/bedsheet/yellow,
+/obj/effect/landmark/start/latejoin_gateway,
+/turf/open/floor/mainship{
+	dir = 1;
+	icon_state = "orange"
+	},
+/area/whiskey_outpost)
+"Ch" = (
+/obj/machinery/marine_selector/gear/spec,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/mainship{
+	dir = 4;
+	icon_state = "blue"
+	},
+/area/whiskey_outpost)
+"Ci" = (
+/obj/effect/landmark/start/job/squadmarine,
+/turf/open/floor/plating,
+/area/whiskey_outpost/outside/west)
+"Cj" = (
+/obj/structure/largecrate/supply/weapons/standard_smg,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"Cl" = (
+/obj/machinery/light,
+/turf/open/floor/tile/whiteyellow/full,
+/area/whiskey_outpost)
+"Cq" = (
+/obj/structure/barricade/plasteel,
+/turf/open/floor/plating/warning{
+	dir = 2
+	},
+/area/whiskey_outpost/outside/west)
+"Ct" = (
+/obj/effect/landmark/start/job/squadmarine,
+/obj/machinery/light,
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
+/area/whiskey_outpost)
+"Cv" = (
+/obj/structure/barricade/sandbags{
+	icon_state = "sandbag_0";
+	dir = 4
+	},
+/obj/item/m56d_post,
+/turf/open/floor/plating/warning{
+	dir = 4
+	},
+/area/whiskey_outpost/outside/north)
+"CH" = (
+/obj/structure/barricade/plasteel{
+	icon_state = "plasteel_closed_0";
+	dir = 1
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"CT" = (
+/obj/structure/platform_decoration,
+/obj/structure/platform_decoration{
+	icon_state = "platform_deco";
+	dir = 1
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/north)
+"CU" = (
+/obj/structure/bed,
+/obj/item/bedsheet/purple,
+/obj/effect/landmark/start/latejoin_cryo,
+/turf/open/floor/mainship{
+	dir = 5;
+	icon_state = "emerald"
+	},
+/area/whiskey_outpost)
+"Dl" = (
+/obj/machinery/light,
+/obj/structure/closet/crate,
+/obj/item/weapon/gun/launcher/rocket/m57a4/xmas,
+/obj/item/weapon/gun/launcher/rocket/m57a4/xmas,
+/obj/item/weapon/gun/launcher/rocket/m57a4/xmas,
+/obj/item/weapon/gun/launcher/rocket/m57a4/xmas,
+/obj/item/weapon/gun/launcher/rocket/m57a4/xmas,
+/obj/item/weapon/gun/launcher/rocket/m57a4/xmas,
+/obj/item/weapon/gun/launcher/rocket/m57a4/xmas,
+/obj/item/weapon/gun/launcher/rocket/m57a4/xmas,
+/obj/item/weapon/gun/launcher/rocket/m57a4/xmas,
+/obj/item/weapon/gun/launcher/rocket/m57a4/xmas,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"Do" = (
+/obj/machinery/vending/marine,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"DC" = (
+/obj/structure/barricade/metal,
+/obj/structure/barricade/metal{
+	icon_state = "metal_0";
+	dir = 8
+	},
+/turf/open/floor/plating/warning{
+	dir = 10
+	},
+/area/whiskey_outpost/outside/east)
+"DO" = (
+/obj/machinery/marine_selector/clothes/specialist,
+/obj/structure/window/reinforced,
+/turf/open/floor/mainship{
+	dir = 4;
+	icon_state = "blue"
+	},
+/area/whiskey_outpost)
+"DV" = (
+/obj/structure/barricade/sandbags{
+	icon_state = "sandbag_0";
+	dir = 4
+	},
+/obj/item/m56d_post,
+/turf/open/floor/plating/warning{
+	dir = 4
+	},
+/area/whiskey_outpost)
+"DZ" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/north)
+"El" = (
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	pixel_z = -7
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/north)
+"Eq" = (
+/obj/structure/barricade/sandbags{
+	icon_state = "sandbag_0";
+	dir = 4
+	},
+/obj/structure/barricade/sandbags{
+	icon_state = "sandbag_0";
+	dir = 1;
+	pixel_z = 2;
+	pixel_w = 0
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/east)
+"Et" = (
+/obj/structure/bed,
+/obj/item/bedsheet/blue,
+/obj/effect/landmark/start/latejoin,
+/turf/open/floor/mainship{
+	dir = 9;
+	icon_state = "blue"
+	},
+/area/whiskey_outpost)
+"Eu" = (
+/obj/structure/barricade/sandbags{
+	pixel_z = -7
+	},
+/obj/structure/barricade/sandbags{
+	icon_state = "sandbag_0";
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/north)
+"Ez" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/firstaid/regular,
+/turf/open/floor/mainship{
+	icon_state = "sterile_green"
+	},
+/area/whiskey_outpost)
+"ED" = (
+/turf/open/floor/mainship{
+	dir = 4;
+	icon_state = "orange"
+	},
+/area/whiskey_outpost)
+"EF" = (
+/obj/machinery/vending/uniform_supply,
+/turf/open/floor/tile/dark,
+/area/whiskey_outpost)
+"EG" = (
+/obj/machinery/vending/marine_medic,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/mainship{
+	dir = 8;
+	icon_state = "emerald"
+	},
+/area/whiskey_outpost)
+"EL" = (
+/obj/item/storage/box/explosive_mines,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/east)
+"EQ" = (
+/obj/structure/barricade/sandbags{
+	pixel_z = -7;
+	pixel_w = 0
+	},
+/turf/open/floor/plating/warning{
+	dir = 2
+	},
+/area/whiskey_outpost/outside/north)
+"EX" = (
+/obj/machinery/door/airlock/mainship/engineering,
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/turf/open/floor,
+/area/whiskey_outpost)
+"EY" = (
+/obj/machinery/marine_selector/gear/leader,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship{
+	dir = 4;
+	icon_state = "orange"
+	},
+/area/whiskey_outpost)
+"Fb" = (
+/obj/machinery/marine_selector/clothes,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"Fj" = (
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 4
+	},
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 1
+	},
+/turf/open/ground/grass/beach{
+	dir = 2
+	},
+/area/whiskey_outpost/outside/west)
+"Ft" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/south)
+"Fz" = (
+/obj/structure/grille/broken,
+/turf/open/floor/plating,
+/area/whiskey_outpost)
+"FB" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/largecrate/lisa,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"FD" = (
+/obj/structure/platform_decoration{
+	icon_state = "platform_deco";
+	dir = 1
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/north)
+"FL" = (
+/obj/effect/ai_node,
+/turf/open/ground/jungle,
+/area/whiskey_outpost/outside/east)
+"FM" = (
+/obj/machinery/marine_selector/gear/smartgun,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/mainship{
+	dir = 4;
+	icon_state = "blue"
+	},
+/area/whiskey_outpost)
+"Gs" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroidwarning{
+	dir = 6
+	},
+/area/whiskey_outpost)
+"GC" = (
+/obj/machinery/vending/MarineMed/Blood,
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
+/area/whiskey_outpost)
+"GR" = (
+/obj/structure/barricade/metal,
+/obj/structure/barricade/metal,
+/turf/open/floor/plating/warning{
+	dir = 2
+	},
+/area/whiskey_outpost/outside/west)
+"GU" = (
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost)
+"GV" = (
+/obj/machinery/power/geothermal,
+/obj/structure/cable/yellow{
+	icon_state = "0-8";
+	d1 = 2;
+	d2 = 4
+	},
+/turf/open/floor{
+	icon_state = "yellow";
+	dir = 6
+	},
+/area/whiskey_outpost)
+"Hj" = (
+/obj/machinery/marine_selector/clothes,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"Hk" = (
+/obj/item/stack/medical/bruise_pack,
+/turf/open/floor/plating,
+/area/whiskey_outpost)
+"Hm" = (
+/obj/structure/cable{
+	icon_state = "4-8";
+	d1 = 4;
+	d2 = 8
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"Hq" = (
+/obj/effect/ai_node,
+/turf/open/ground/jungle,
+/area/whiskey_outpost/outside/south)
+"Hr" = (
+/obj/machinery/m56d_hmg/mg_turret{
+	icon_state = "towergun";
+	dir = 2
+	},
+/turf/open/floor/plating/dmg2{
+	icon_state = "panelscorched"
+	},
+/area/whiskey_outpost/outside/east)
+"Hs" = (
+/obj/machinery/power/terminal{
+	icon_state = "term";
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/open/floor,
+/area/whiskey_outpost)
+"Hu" = (
+/obj/structure/jungle/plantbot1/alien,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/west)
+"HA" = (
+/obj/structure/barricade/metal,
+/obj/structure/barricade/metal{
+	icon_state = "metal_0";
+	dir = 4
+	},
+/turf/open/floor/plating/asteroidwarning{
+	dir = 2
+	},
+/area/whiskey_outpost)
+"HF" = (
+/obj/structure/bed,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/bedsheet/red,
+/obj/effect/landmark/start/latejoin,
+/turf/open/floor/mainship{
+	dir = 1;
+	icon_state = "red"
+	},
+/area/whiskey_outpost)
+"HT" = (
+/obj/machinery/marine_selector/clothes,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/tile/whiteyellow/full,
+/area/whiskey_outpost)
+"Ib" = (
+/obj/structure/bed,
+/obj/item/bedsheet/medical,
+/obj/machinery/vending/nanomed{
+	dir = 8
+	},
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
+/area/whiskey_outpost)
+"In" = (
+/obj/effect/decal/cleanable/blood/writing,
+/obj/effect/landmark/lv624/fog_blocker,
+/obj/effect/ai_node,
+/turf/open/ground/jungle,
+/area/whiskey_outpost/outside/south)
+"Ip" = (
+/obj/structure/table,
+/obj/item/tool/lighter/random,
+/obj/effect/ai_node,
+/turf/open/floor/tile/whiteyellow/full,
+/area/whiskey_outpost)
+"Iq" = (
+/obj/machinery/vending/uniform_supply,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"IN" = (
+/obj/effect/landmark/start/job/squadcorpsman,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"IT" = (
+/obj/structure/barricade/sandbags{
+	pixel_z = -7
+	},
+/obj/structure/barricade/sandbags{
+	icon_state = "sandbag_0";
+	dir = 4
+	},
+/turf/open/floor/plating/warning{
+	dir = 6
+	},
+/area/whiskey_outpost/outside/north)
+"IW" = (
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/structure/barricade/metal,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"IY" = (
+/obj/structure/bed,
+/obj/item/bedsheet/blue,
+/obj/effect/landmark/start/latejoin_gateway,
+/turf/open/floor/mainship{
+	dir = 5;
+	icon_state = "blue"
+	},
+/area/whiskey_outpost)
+"IZ" = (
+/obj/effect/ai_node,
+/turf/open/ground/grass/beach{
+	dir = 2
+	},
+/area/whiskey_outpost/outside/south)
+"Jb" = (
+/obj/machinery/vending/marine,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"Jf" = (
+/obj/structure/lattice,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/whiskey_outpost/outside/south)
+"Jt" = (
+/obj/structure/barricade/plasteel,
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
+/area/whiskey_outpost)
+"Jw" = (
+/obj/structure/barricade/metal,
+/obj/machinery/marine_turret/premade{
+	dir = 4
+	},
+/turf/open/floor/plating/platebot,
+/area/whiskey_outpost/outside/west)
+"JD" = (
+/obj/machinery/vending/marine,
+/turf/open/floor/plating,
+/area/whiskey_outpost)
+"JJ" = (
+/obj/structure/barricade/sandbags{
+	pixel_z = -7
+	},
+/obj/structure/barricade/sandbags{
+	icon_state = "sandbag_0";
+	dir = 8
+	},
+/turf/open/floor/plating/asteroidwarning{
+	dir = 10
+	},
+/area/whiskey_outpost/outside/north)
+"JP" = (
+/obj/effect/decal/warning_stripes/thick{
+	icon_state = "thick";
+	dir = 4
+	},
+/obj/structure/largecrate/random/barrel/yellow,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/whiskey_outpost)
+"JT" = (
+/obj/structure/flora/ausbushes/reedbush,
+/turf/open/ground/coast{
+	dir = 6
+	},
+/area/whiskey_outpost/outside/north)
+"JX" = (
+/obj/effect/ai_node,
+/turf/open/ground/jungle,
+/area/whiskey_outpost/outside/west)
+"Kg" = (
+/obj/structure/largecrate/supply/weapons/standard_smg,
+/turf/open/floor/plating,
+/area/whiskey_outpost)
+"Kn" = (
+/obj/machinery/light,
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
+/area/whiskey_outpost)
+"Kp" = (
+/obj/machinery/vending/shared_vending/marine_engi,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/mainship{
+	dir = 8;
+	icon_state = "emerald"
+	},
+/area/whiskey_outpost)
+"Kr" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/mainship{
+	icon_state = "emerald";
+	dir = 2
+	},
+/area/whiskey_outpost)
+"Kx" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/largecrate/supply/explosives/mines,
+/turf/open/floor/plating/asteroidwarning{
+	dir = 6
+	},
+/area/whiskey_outpost)
+"Kz" = (
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 8
+	},
+/obj/structure/platform,
+/turf/open/ground/grass/beach{
+	dir = 1
+	},
+/area/whiskey_outpost/outside/west)
+"KJ" = (
+/turf/open/floor/plating/asteroidwarning{
+	dir = 5
+	},
+/area/whiskey_outpost)
+"KL" = (
+/obj/machinery/m56d_hmg/mg_turret{
+	icon_state = "towergun";
+	dir = 2
+	},
+/turf/open/floor/plating/warning{
+	dir = 2
+	},
+/area/whiskey_outpost/outside/north)
+"KM" = (
+/obj/structure/bed,
+/obj/item/bedsheet/purple,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/landmark/start/latejoin,
+/turf/open/floor/mainship{
+	icon_state = "emerald";
+	dir = 1
+	},
+/area/whiskey_outpost)
+"KO" = (
+/obj/structure/barricade/plasteel,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/west)
+"Le" = (
+/obj/structure/barricade/sandbags{
+	pixel_z = -7
+	},
+/obj/structure/barricade/sandbags{
+	icon_state = "sandbag_0";
+	dir = 4
+	},
+/turf/open/floor/plating/asteroidwarning{
+	dir = 6
+	},
+/area/whiskey_outpost/outside/north)
+"Lo" = (
+/obj/item/storage/box/sentry,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/west)
+"Lt" = (
+/obj/structure/table,
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/fire{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/storage/firstaid/fire{
+	pixel_x = 5;
+	pixel_y = 5
+	},
+/turf/open/floor/mainship{
+	icon_state = "sterile_green"
+	},
+/area/whiskey_outpost)
+"Lz" = (
+/obj/machinery/vending/marine,
+/obj/structure/window/reinforced,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"LQ" = (
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost)
+"Mj" = (
+/obj/structure/platform_decoration{
+	icon_state = "platform_deco";
+	dir = 1
+	},
+/obj/structure/platform_decoration,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/north)
+"Mk" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/mainship,
+/area/whiskey_outpost)
+"Mo" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
+/area/whiskey_outpost)
+"Mp" = (
+/obj/machinery/floodlight/outpost,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/east)
+"Mr" = (
+/obj/machinery/vending/marine,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"Mt" = (
+/obj/machinery/marine_selector/clothes/smartgun,
+/obj/structure/window/reinforced,
+/turf/open/floor/mainship{
+	dir = 4;
+	icon_state = "orange"
+	},
+/area/whiskey_outpost)
+"Mu" = (
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/open/floor,
+/area/whiskey_outpost)
+"My" = (
+/obj/structure/barricade/sandbags{
+	pixel_z = -7
+	},
+/obj/structure/barricade/sandbags{
+	icon_state = "sandbag_0";
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/north)
+"MB" = (
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/mainship,
+/area/whiskey_outpost)
+"MV" = (
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 8
+	},
+/obj/structure/platform,
+/turf/open/ground/river,
+/area/whiskey_outpost/outside/west)
+"Nd" = (
+/obj/machinery/power/smes/buildable,
+/obj/structure/cable,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/open/floor{
+	dir = 8;
+	icon_state = "yellow"
+	},
+/area/whiskey_outpost)
+"Nl" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
+/area/whiskey_outpost)
+"Nr" = (
+/obj/structure/barricade/sandbags{
+	pixel_z = -7
+	},
+/obj/structure/barricade/sandbags{
+	pixel_z = -7
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/north)
+"NG" = (
+/obj/structure/flora/ausbushes/stalkybush,
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 4
+	},
+/turf/open/ground/river,
+/area/whiskey_outpost/outside/west)
+"NL" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/warning{
+	dir = 8
+	},
+/area/whiskey_outpost)
+"NM" = (
+/obj/item/storage/box/sentry,
+/turf/open/floor/plating/platebot,
+/area/whiskey_outpost)
+"Oa" = (
+/obj/machinery/marine_selector/gear/engi,
+/turf/open/floor/mainship{
+	dir = 8;
+	icon_state = "emerald"
+	},
+/area/whiskey_outpost)
+"Ob" = (
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 8
+	},
+/turf/open/ground/grass/beach{
+	dir = 2
+	},
+/area/whiskey_outpost/outside/west)
+"Ok" = (
+/obj/machinery/marine_turret/premade,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/west)
+"Om" = (
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/south)
+"Op" = (
+/obj/structure/barricade/sandbags{
+	icon_state = "sandbag_0";
+	dir = 8
+	},
+/obj/item/m56d_post,
+/turf/open/floor/plating/warning{
+	dir = 8
+	},
+/area/whiskey_outpost/outside/north)
+"Oq" = (
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/obj/structure/largecrate/supply/explosives/mines,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"OD" = (
+/obj/structure/bed,
+/obj/item/bedsheet/red,
+/obj/effect/landmark/start/latejoin_cryo,
+/turf/open/floor/mainship{
+	dir = 5;
+	icon_state = "red"
+	},
+/area/whiskey_outpost)
+"OH" = (
+/turf/open/floor/plating/asteroidwarning{
+	dir = 10
+	},
+/area/whiskey_outpost)
+"OI" = (
+/turf/open/floor/plating/asteroidplating,
+/area/whiskey_outpost)
+"OR" = (
+/obj/structure/barricade/sandbags{
+	pixel_z = -7
+	},
+/obj/structure/barricade/sandbags{
+	icon_state = "sandbag_0";
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/east)
+"Pc" = (
+/obj/machinery/door/window/westright{
+	icon_state = "right";
+	dir = 4
+	},
+/turf/open/floor/mainship{
+	icon_state = "cargo"
+	},
+/area/whiskey_outpost)
+"Pg" = (
+/obj/structure/barricade/sandbags{
+	pixel_z = -7
+	},
+/turf/open/floor/plating/asteroidplating,
+/area/whiskey_outpost)
+"Pi" = (
+/obj/machinery/vending/tool,
+/turf/open/floor/plating,
+/area/whiskey_outpost)
+"Pt" = (
+/obj/item/storage/box/m94,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/west)
+"Pv" = (
+/turf/open/floor/plating,
+/area/whiskey_outpost/outside/east)
+"Pw" = (
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost)
+"Py" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/whiteyellow/full,
+/area/whiskey_outpost)
+"PA" = (
+/obj/structure/barricade/sandbags{
+	pixel_z = -7
+	},
+/obj/structure/barricade/sandbags{
+	icon_state = "sandbag_0";
+	dir = 8
+	},
+/turf/open/floor/plating/warning{
+	dir = 10
+	},
+/area/whiskey_outpost/outside/north)
+"PD" = (
+/obj/structure/barricade/plasteel,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/east)
+"PF" = (
+/obj/machinery/vending/marine,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/west)
+"PG" = (
+/obj/item/roller,
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
+/area/whiskey_outpost)
+"PK" = (
+/obj/structure/platform_decoration{
+	icon_state = "platform_deco";
+	dir = 8
+	},
+/turf/open/ground/grass/beach{
+	dir = 2
+	},
+/area/whiskey_outpost/outside/west)
+"PW" = (
+/turf/open/floor/plating,
+/area/whiskey_outpost/outside/west)
+"Qd" = (
+/obj/effect/decal/warning_stripes/thick{
+	icon_state = "thick";
+	dir = 4
+	},
+/obj/structure/largecrate/supply/explosives/mortar_he,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/whiskey_outpost)
+"Qk" = (
+/obj/structure/largecrate/supply/supplies/flares,
+/obj/machinery/light,
+/turf/open/floor/plating/warning{
+	dir = 8
+	},
+/area/whiskey_outpost)
+"Qv" = (
+/obj/structure/barricade/sandbags{
+	icon_state = "sandbag_0";
+	dir = 4
+	},
+/turf/open/floor/plating/asteroidplating,
+/area/whiskey_outpost)
+"QH" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"QJ" = (
+/obj/machinery/marine_selector/clothes/leader,
+/turf/open/floor/mainship{
+	dir = 6;
+	icon_state = "orange"
+	},
+/area/whiskey_outpost)
+"QM" = (
+/obj/structure/platform_decoration{
+	icon_state = "platform_deco";
+	dir = 8
+	},
+/obj/structure/barricade/sandbags{
+	icon_state = "sandbag_0";
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/north)
+"QX" = (
+/obj/structure/largecrate/supply/weapons/sentries,
+/turf/open/floor/plating/asteroidwarning{
+	dir = 10
+	},
+/area/whiskey_outpost)
+"Rl" = (
+/obj/structure/barricade/sandbags{
+	icon_state = "sandbag_0";
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/north)
+"Rm" = (
+/obj/machinery/marine_selector/clothes/specialist,
+/obj/structure/window/reinforced,
+/turf/open/floor/mainship{
+	dir = 4;
+	icon_state = "orange"
+	},
+/area/whiskey_outpost)
+"Ry" = (
+/obj/machinery/vending/marine,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/east)
+"RE" = (
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/open/floor,
+/area/whiskey_outpost)
+"RO" = (
+/obj/machinery/floodlight/outpost,
+/obj/structure/barricade/metal,
+/turf/open/floor/plating/warning{
+	dir = 2
+	},
+/area/whiskey_outpost/outside/west)
+"RQ" = (
+/obj/effect/landmark/start/job/squadspecialist,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"RT" = (
+/obj/item/lightstick/red/anchored,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/west)
+"RW" = (
+/obj/structure/barricade/metal,
+/obj/effect/landmark/start/job/squadmarine,
+/turf/open/floor/plating/warning{
+	dir = 2
+	},
+/area/whiskey_outpost)
+"Si" = (
+/turf/open/floor/plating/asteroidwarning{
+	dir = 9
+	},
+/area/whiskey_outpost)
+"SD" = (
+/obj/structure/largecrate/supply/weapons/standard_carbine,
+/turf/open/floor/plating/asteroidwarning{
+	dir = 4
+	},
+/area/whiskey_outpost)
+"SF" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/warning{
+	dir = 4
+	},
+/area/whiskey_outpost)
+"SI" = (
+/obj/machinery/marine_selector/gear/engi,
+/turf/open/floor/mainship{
+	dir = 8;
+	icon_state = "red"
+	},
+/area/whiskey_outpost)
+"SS" = (
+/obj/item/storage/box/sentry,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/east)
+"Te" = (
+/obj/structure/barricade/sandbags{
+	pixel_z = -7
+	},
+/turf/open/floor/plating/dmg2{
+	icon_state = "platingdmg1"
+	},
+/area/whiskey_outpost/outside/east)
+"Th" = (
+/obj/structure/barricade/sandbags{
+	icon_state = "sandbag_0";
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/north)
+"Tv" = (
+/obj/machinery/door/window/westright,
+/turf/open/floor/mainship{
+	dir = 2;
+	icon_state = "orange"
+	},
+/area/whiskey_outpost)
+"Tx" = (
+/obj/structure/table,
+/obj/item/fuelCell/full,
+/obj/item/fuelCell/full,
+/obj/item/fuelCell/full,
+/obj/item/fuelCell/full,
+/obj/item/fuelCell/full,
+/obj/item/fuelCell/full,
+/turf/open/floor{
+	icon_state = "yellow";
+	dir = 5
+	},
+/area/whiskey_outpost)
+"TF" = (
+/obj/item/weapon/claymore/mercsword/machete,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"TJ" = (
+/obj/machinery/power/geothermal,
+/obj/structure/cable/yellow{
+	icon_state = "0-8";
+	d1 = 2;
+	d2 = 4
+	},
+/turf/open/floor{
+	dir = 4;
+	icon_state = "yellow"
+	},
+/area/whiskey_outpost)
+"TK" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/north)
+"TL" = (
+/obj/machinery/vending/marine,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"TT" = (
+/obj/structure/platform_decoration,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/north)
+"TX" = (
+/obj/item/lightstick/red/anchored,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/north)
+"Uc" = (
+/obj/structure/barricade/plasteel{
+	icon_state = "plasteel_closed_0";
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/whiskey_outpost/outside/north)
+"Uk" = (
+/obj/structure/largecrate/supply/weapons/shotgun,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"Ur" = (
+/obj/machinery/marine_selector/clothes,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/east)
+"Uv" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/largecrate/supply/supplies/water,
+/turf/open/floor/plating/asteroidwarning{
+	dir = 4
+	},
+/area/whiskey_outpost)
+"UL" = (
+/obj/structure/table,
+/obj/machinery/cell_charger,
+/obj/item/tool/hand_labeler,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"UP" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor{
+	icon_state = "yellow";
+	dir = 1
+	},
+/area/whiskey_outpost)
+"Vc" = (
+/obj/structure/barricade/sandbags{
+	pixel_z = -7
+	},
+/obj/structure/largecrate/supply/explosives/mines,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"Vm" = (
+/obj/structure/barricade/sandbags{
+	icon_state = "sandbag_0";
+	dir = 8
+	},
+/obj/item/m56d_post,
+/turf/open/floor/plating/warning{
+	dir = 8
+	},
+/area/whiskey_outpost)
+"Vq" = (
+/turf/open/floor/plating/asteroidwarning{
+	dir = 6
+	},
+/area/whiskey_outpost)
+"VJ" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/open/floor{
+	icon_state = "yellow";
+	dir = 9
+	},
+/area/whiskey_outpost)
+"VL" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/obj/effect/ai_node,
+/turf/open/ground/jungle,
+/area/whiskey_outpost/outside/south)
+"VN" = (
+/obj/machinery/m56d_hmg/mg_turret{
+	icon_state = "towergun";
+	dir = 2
+	},
+/turf/open/floor/plating/warning{
+	dir = 2
+	},
+/area/whiskey_outpost/outside/west)
+"Wb" = (
+/obj/machinery/power/apc/hyper,
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/open/floor{
+	icon_state = "yellow";
+	dir = 1
+	},
+/area/whiskey_outpost)
+"Wl" = (
+/obj/structure/barricade/sandbags{
+	pixel_z = -7
+	},
+/obj/structure/barricade/sandbags{
+	icon_state = "sandbag_0";
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/east)
+"Wm" = (
+/obj/effect/landmark/start/job/squadsmartgunner,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"Wq" = (
+/obj/structure/table,
+/obj/item/defibrillator,
+/obj/item/defibrillator,
+/obj/item/defibrillator,
+/obj/machinery/recharger,
+/turf/open/floor/mainship{
+	icon_state = "sterile_green"
+	},
+/area/whiskey_outpost)
+"WA" = (
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/plating,
+/area/whiskey_outpost)
+"WE" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/west)
+"WR" = (
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 1
+	},
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 8
+	},
+/obj/structure/platform_decoration{
+	icon_state = "platform_deco";
+	dir = 5
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/north)
+"WU" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/mainship{
+	icon_state = "red"
+	},
+/area/whiskey_outpost)
+"WZ" = (
+/obj/machinery/m56d_hmg/mg_turret{
+	icon_state = "towergun";
+	dir = 2
+	},
+/turf/open/floor/plating/asteroidwarning{
+	dir = 2
+	},
+/area/whiskey_outpost)
+"Xi" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/largecrate/supply/supplies/flares,
+/turf/open/floor/plating/asteroidwarning{
+	dir = 8
+	},
+/area/whiskey_outpost)
+"Xr" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/north)
+"Xt" = (
+/obj/machinery/marine_selector/clothes,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"XB" = (
+/obj/machinery/marine_selector/clothes,
+/turf/open/floor/plating,
+/area/whiskey_outpost)
+"XE" = (
+/turf/open/floor/mainship{
+	dir = 4;
+	icon_state = "blue"
+	},
+/area/whiskey_outpost)
+"XI" = (
+/obj/structure/bed,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/bedsheet/blue,
+/obj/effect/landmark/start/latejoin_cryo,
+/turf/open/floor/mainship{
+	dir = 1;
+	icon_state = "blue"
+	},
+/area/whiskey_outpost)
+"XO" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/marine_selector/gear/leader,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/mainship{
+	dir = 4;
+	icon_state = "blue"
+	},
+/area/whiskey_outpost)
+"XP" = (
+/obj/structure/platform{
+	icon_state = "platform";
+	dir = 4
+	},
+/turf/open/ground/river,
+/area/whiskey_outpost/outside/west)
+"XQ" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost)
+"XW" = (
+/obj/machinery/marine_selector/gear/smartgun,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/open/floor/mainship{
+	dir = 4;
+	icon_state = "orange"
+	},
+/area/whiskey_outpost)
+"XZ" = (
+/obj/machinery/m56d_hmg/mg_turret{
+	icon_state = "towergun";
+	dir = 2
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/south)
+"Yi" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/south)
+"Yy" = (
+/obj/structure/platform_decoration{
+	icon_state = "platform_deco";
+	dir = 1
+	},
+/turf/open/ground/river,
+/area/whiskey_outpost/outside/west)
+"YB" = (
+/obj/structure/rack,
+/obj/item/mortal_shell/smoke,
+/obj/item/mortal_shell/smoke,
+/obj/item/mortal_shell/smoke,
+/obj/item/mortal_shell/smoke,
+/obj/item/mortal_shell/smoke,
+/obj/item/mortal_shell/smoke,
+/obj/item/mortal_shell/smoke,
+/obj/item/mortal_shell/smoke,
+/obj/item/mortal_shell/smoke,
+/turf/open/floor/plating/asteroidplating,
+/area/whiskey_outpost)
+"YG" = (
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 1
+	},
+/obj/effect/landmark/start/job/squadcorpsman,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"YL" = (
+/turf/open/ground/jungle,
+/area/whiskey_outpost)
+"YU" = (
+/obj/machinery/floodlight/outpost,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/west)
+"YW" = (
+/obj/machinery/floodlight/outpost,
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/north)
+"YY" = (
+/turf/open/floor/mainship{
+	dir = 8;
+	icon_state = "emerald"
+	},
+/area/whiskey_outpost)
+"Zk" = (
+/obj/structure/barricade/sandbags{
+	pixel_z = -7
+	},
+/obj/item/m56d_post,
+/turf/open/floor/plating/warning{
+	dir = 2
+	},
+/area/whiskey_outpost)
+"Zt" = (
+/obj/structure/largecrate/guns,
+/turf/open/floor/plating/platebot,
+/area/whiskey_outpost)
+"ZP" = (
+/obj/structure/barricade/metal,
+/obj/structure/barricade/metal{
+	icon_state = "metal_0";
+	dir = 8
+	},
+/turf/open/floor/plating/asteroidwarning,
+/area/whiskey_outpost)
+"ZR" = (
+/obj/structure/sign/greencross{
+	icon_state = "lifestar";
+	pixel_y = 32
+	},
+/turf/open/ground/jungle,
+/area/whiskey_outpost/outside/east)
+"ZS" = (
+/obj/structure/largecrate/supply/supplies/plasteel,
+/turf/open/floor/plating,
+/area/whiskey_outpost/outside/north)
+"ZY" = (
+/turf/open/floor/plating/warning{
+	dir = 2
+	},
+/area/whiskey_outpost/outside/west)
 
 (1,1,1) = {"
 mv
@@ -7918,9 +9386,9 @@ hB
 hB
 hB
 hB
-hw
-hw
-hw
+bd
+bd
+bd
 hB
 hB
 hB
@@ -8070,11 +9538,11 @@ hw
 hw
 hw
 hw
-hw
-hw
-hw
-hw
-hB
+bd
+XB
+wP
+JD
+bd
 hB
 hB
 hB
@@ -8214,7 +9682,7 @@ hw
 hw
 hw
 hw
-mC
+iN
 hJ
 hq
 hq
@@ -8223,16 +9691,16 @@ hw
 hw
 hw
 hw
-hw
-hw
-bm
-hw
-hw
-hw
-hw
-hw
-hw
-iN
+bd
+gF
+gF
+gF
+bd
+YL
+gF
+YL
+gF
+sb
 hw
 hw
 hw
@@ -8353,7 +9821,7 @@ fP
 fP
 fP
 fP
-mu
+eN
 fP
 hw
 hw
@@ -8375,17 +9843,17 @@ ix
 hw
 hw
 hw
-hw
 jH
-jI
-ke
-jI
+bd
+gF
+gF
+gF
 kI
-hw
-hw
-hw
-hw
-mz
+YL
+gF
+YL
+gF
+RW
 hw
 hw
 hw
@@ -8515,12 +9983,12 @@ hw
 hw
 hw
 hw
+hX
 hw
 hw
 hw
-hw
-hw
-iN
+my
+VN
 hJ
 hq
 hq
@@ -8528,17 +9996,17 @@ ix
 hw
 hw
 hw
-hw
+Fz
 jI
-jS
-kf
-kx
-jI
-ek
-hw
-hw
-hw
-mz
+gF
+gF
+mt
+zZ
+YL
+YL
+gF
+gF
+RW
 hw
 hw
 hw
@@ -8653,45 +10121,45 @@ aS
 aS
 aS
 fP
+fs
+fs
+fs
+fs
+fs
 fP
-fP
-fP
-fP
-fP
-fP
-fP
-fP
+fs
+fs
+hX
+hX
+hw
+hw
+hX
+hX
 hw
 hw
 hw
+hX
 hw
 hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-mD
-hJ
+iN
+PK
 hq
 hq
 ix
 ek
 hw
-hw
-hw
-jJ
-kR
-kf
-mL
-kJ
-hw
-hw
-hw
-hw
-iN
+jH
+bd
+bN
+gF
+Hk
+gF
+kI
+YL
+YL
+YL
+gF
+sb
 hw
 hw
 hw
@@ -8806,45 +10274,45 @@ aS
 aS
 aS
 dm
-dm
+fs
 fP
-fP
-fP
-fP
-fP
-fP
-fP
+fs
+fs
+fs
+fs
+fs
+fs
+hX
+hX
+hX
+hX
+hX
+hX
+hX
+Ok
+hX
+hX
+hX
+hX
+KO
+Fj
+XP
+NG
+As
+AV
 hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-iy
-hw
-hw
-iN
-hJ
-hq
-hr
-ix
-hw
-hw
-hw
-hw
-jI
-jU
+bd
+Pi
+gF
+gF
 kg
 kx
-jI
-hw
-hw
-hw
-hw
-hw
+bd
+yC
+YL
+YL
+mt
+sU
 hw
 hw
 hw
@@ -8958,46 +10426,46 @@ aS
 aS
 bW
 fX
-dm
-dn
-dm
+fs
+TX
+fs
+fs
+fs
+fs
+fs
 fP
 fP
-fP
-fP
-fP
-fP
+hX
+hX
+hX
 hw
+hX
+hX
 hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hJ
-hq
-hq
-ix
-hw
-hw
-hw
-hw
+hX
+hX
+hX
+hX
+hX
+KO
+hX
+hX
+hX
+hX
+hX
+hX
+bd
+SF
 jK
-jI
-kh
-jI
-kK
-hw
-hw
-hw
-hw
-iN
+bq
+bq
+bq
+Fz
+YL
+YL
+gF
+gF
+sb
 hw
 hw
 hw
@@ -9110,47 +10578,47 @@ aS
 aS
 bW
 bW
-fT
-do
-do
-do
-do
-do
-do
-gV
-dm
-dm
+fs
+fs
+fs
+fs
+bW
+bW
+fs
+fs
+fs
+fs
+hX
+hX
+hX
+RT
+hX
+hX
+hX
+hX
 hw
-hw
-hw
-bm
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-bm
-hJ
-hq
-hq
-ix
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-mM
-hw
-hw
-ev
-hw
-hw
-iN
+hX
+hX
+hX
+KO
+hX
+hX
+hX
+hX
+hX
+PW
+CH
+bR
+bR
+bR
+bR
+bR
+Af
+gF
+gF
+gF
+gF
+BW
 hw
 hw
 hw
@@ -9181,12 +10649,12 @@ lf
 lf
 lf
 lf
-ir
-mk
-mk
-mk
-mk
-ir
+lf
+lf
+lf
+lf
+lf
+lf
 lf
 kz
 hI
@@ -9262,11 +10730,11 @@ aS
 aS
 bW
 bW
-bW
-bW
-bW
-bW
-bW
+fs
+fs
+fs
+fs
+fs
 bW
 bW
 bW
@@ -9281,29 +10749,29 @@ hw
 hw
 hw
 hw
-hw
+cQ
 hw
 hw
 my
 iN
-hJ
-hq
-hs
-ix
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-my
-kT
+hX
+hX
+Hu
+hX
+hX
+hX
+yQ
+gF
+bR
+gF
+gF
+gF
+Af
+bR
+gF
+gF
+mt
+BW
 hw
 hw
 hw
@@ -9334,12 +10802,12 @@ lN
 lN
 lN
 lN
-ir
-mk
-mk
-mk
-mk
-ir
+lf
+lf
+lf
+lf
+lf
+lf
 lf
 kz
 hI
@@ -9415,10 +10883,10 @@ bW
 bW
 bW
 bW
+fs
+fs
 bW
-bW
-bW
-bW
+fs
 bW
 bW
 cK
@@ -9439,24 +10907,24 @@ hw
 hw
 hw
 mz
-hJ
-hq
-hq
-ix
-hw
-hw
-hw
-hw
-hw
-ek
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-iN
+Ob
+Bh
+MV
+hX
+hX
+hX
+CH
+bR
+gF
+bR
+bR
+bR
+Af
+bR
+gF
+gF
+gF
+BW
 hw
 hw
 hw
@@ -9487,12 +10955,12 @@ lf
 lf
 lf
 lf
-ir
-mk
-mk
-mk
-mk
-ir
+lf
+lf
+lf
+lf
+lf
+lf
 lf
 kz
 hI
@@ -9567,15 +11035,15 @@ bW
 bW
 cy
 bW
+TK
+fs
+fs
+fs
 bW
 bW
 bW
 bW
-bW
-bW
-bW
-bW
-bW
+Xr
 fT
 do
 hl
@@ -9589,27 +11057,27 @@ hw
 hw
 hw
 hw
-hw
+JX
 hw
 iN
 iW
 hq
-hq
-ix
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
+Yy
+Kz
+hX
+hX
+CH
+gF
+bR
+bR
+gF
+yw
+zd
+gF
+gF
+gF
+gF
+BW
 hw
 hw
 hw
@@ -9617,7 +11085,7 @@ hw
 hw
 lf
 lf
-ld
+IZ
 kA
 kA
 lk
@@ -9631,6 +11099,7 @@ lT
 lf
 lf
 gx
+Hq
 lf
 lf
 lf
@@ -9640,12 +11109,11 @@ lf
 lf
 lf
 lf
-ir
-mk
-mk
-mk
-mk
-ir
+lf
+lf
+lf
+lf
+Hq
 lf
 kz
 hI
@@ -9720,17 +11188,17 @@ bW
 bW
 bW
 bW
+fs
+fs
+fs
+fs
 bW
 bW
 bW
 bW
 bW
 bW
-bW
-bW
-bW
-bW
-mw
+dS
 hm
 hy
 hk
@@ -9741,28 +11209,28 @@ if
 ik
 ik
 iw
-hB
-hB
 iI
+hB
+hB
 hB
 hJ
 hq
 hC
-ix
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
+By
+sH
+hX
+CH
+bR
+bR
+bR
+bR
+bR
+Af
+gF
+gF
+gF
+gF
+BW
 hw
 hw
 hw
@@ -9793,12 +11261,12 @@ lf
 lf
 lf
 lf
-ir
-mk
-mk
-mk
-mk
-ir
+lf
+lf
+lf
+lf
+lf
+lf
 lf
 kz
 hI
@@ -9872,10 +11340,10 @@ eZ
 cW
 cW
 pa
+fs
+fs
 bW
-bW
-bW
-bW
+fs
 nj
 bW
 bW
@@ -9904,18 +11372,18 @@ hq
 ix
 hw
 hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-iN
+bd
+NL
+bo
+bo
+bo
+Qk
+bd
+yC
+YL
+gF
+gF
+sb
 hw
 hw
 hw
@@ -9946,12 +11414,12 @@ lf
 lf
 lf
 lf
-ir
-mk
-mk
-mk
-mk
-ir
+lf
+lf
+lf
+lf
+lf
+lf
 lf
 kz
 hI
@@ -10038,7 +11506,7 @@ bW
 bW
 bW
 hm
-mx
+fh
 hm
 hy
 hk
@@ -10057,18 +11525,18 @@ hq
 ix
 hw
 hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-my
-kT
+bd
+NM
+mt
+gF
+gF
+gF
+kI
+YL
+YL
+YL
+mt
+sU
 hw
 hw
 hw
@@ -10099,12 +11567,12 @@ lf
 lf
 lf
 lf
-ir
-mk
-mk
-mk
-mk
-ir
+lf
+lf
+lf
+lf
+lf
+lf
 lf
 kz
 hI
@@ -10192,7 +11660,7 @@ bW
 bW
 hm
 hm
-mx
+fh
 hy
 hT
 hB
@@ -10210,18 +11678,18 @@ hq
 ix
 hw
 hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-iN
+Fz
+yG
+gF
+Hk
+gF
+mt
+zZ
+YL
+YL
+YL
+gF
+sb
 hw
 hw
 hw
@@ -10301,7 +11769,7 @@ gI
 gT
 ms
 no
-gI
+yw
 gT
 ms
 no
@@ -10315,7 +11783,7 @@ ms
 no
 gI
 gT
-no
+yw
 no
 bR
 pD
@@ -10363,18 +11831,18 @@ hq
 ix
 hw
 hw
-if
-ik
-ik
-ik
-iw
-hw
-hw
-hw
-hw
-hw
-hw
-iN
+Fz
+NM
+gF
+Kg
+gF
+gF
+Ap
+YL
+gF
+YL
+gF
+sb
 hw
 hw
 hw
@@ -10487,7 +11955,7 @@ nB
 dp
 fs
 fs
-mq
+de
 nJ
 dl
 cx
@@ -10516,18 +11984,18 @@ hq
 ix
 hw
 hw
-hJ
-hq
-hq
-hq
-ix
-hw
-hw
-hw
-hw
-hw
-hw
-hw
+bd
+Zt
+gF
+gF
+Fz
+Fz
+YL
+YL
+YL
+YL
+gF
+sb
 hw
 hw
 hw
@@ -10669,18 +12137,18 @@ hB
 ix
 hw
 hw
-hJ
-hq
-hs
-hq
-ix
-hw
-hw
-hw
-hw
-hw
-hw
-hw
+bd
+gF
+gF
+gF
+bd
+YL
+YL
+gF
+gF
+yC
+gF
+sb
 hw
 hw
 hw
@@ -10702,7 +12170,7 @@ kz
 gD
 gD
 gD
-lf
+Hq
 lf
 lf
 lf
@@ -10716,7 +12184,7 @@ lf
 lf
 lf
 lf
-lf
+Hq
 lf
 kz
 hI
@@ -10822,18 +12290,18 @@ hB
 hB
 hB
 hB
-hB
-hq
-hq
-hq
-ix
-hw
-hw
-hw
-hw
-hw
-hw
-mz
+bd
+XB
+xj
+JD
+bd
+YL
+YL
+YL
+YL
+gF
+gF
+RW
 hw
 hw
 hw
@@ -10976,17 +12444,17 @@ hB
 hB
 hB
 hB
-hq
-hC
-hq
-ix
-hw
-hw
-hw
-hw
-hw
-mV
-iN
+bd
+bd
+bd
+km
+YL
+YL
+gF
+YL
+gF
+gF
+sb
 hw
 hw
 if
@@ -11131,15 +12599,15 @@ hB
 hB
 hB
 hB
-hq
-ix
-hw
-hw
-hw
-hw
-hw
+YL
+YL
+yC
+YL
+YL
+YL
+YL
 hB
-iN
+sb
 hw
 hw
 hK
@@ -11249,10 +12717,10 @@ bW
 bW
 bW
 nw
+fs
 bW
-bW
-bW
-ne
+fs
+TT
 pc
 ou
 ou
@@ -11284,12 +12752,12 @@ hB
 hB
 hB
 hB
-hq
-ix
-hw
-hw
-hw
-hw
+YL
+gF
+YL
+YL
+YL
+YL
 hB
 hB
 hB
@@ -11402,9 +12870,9 @@ bW
 bW
 bW
 bW
-bW
-bW
-bW
+fs
+fs
+fs
 of
 dB
 qS
@@ -11437,8 +12905,8 @@ hB
 hB
 hB
 hB
-hr
-hq
+ik
+ik
 ik
 ik
 hB
@@ -11555,13 +13023,13 @@ bW
 bW
 bW
 bW
-bW
-bW
-bW
+fs
+fs
+fs
 of
 qN
 mt
-ez
+Zk
 nk
 cy
 aS
@@ -11697,6 +13165,7 @@ gF
 qE
 pD
 nk
+Xr
 bW
 bW
 bW
@@ -11706,11 +13175,10 @@ bW
 bW
 bW
 bW
-bW
-bW
-cw
-bW
-bW
+fs
+DZ
+TK
+fs
 of
 gC
 qT
@@ -11859,12 +13327,12 @@ bW
 bW
 bW
 bW
+fs
+fs
+fs
 bW
 bW
-bW
-bW
-bW
-nw
+yH
 ns
 pg
 ns
@@ -12011,8 +13479,8 @@ bW
 bW
 cy
 bW
-cK
-bW
+xR
+fs
 bW
 bW
 bW
@@ -12137,21 +13605,21 @@ bR
 mc
 nf
 nx
-qb
+yw
 mc
 nf
 nx
 qb
 mc
 nf
-nx
+IN
 qb
 mc
 nf
 nx
 qb
 bR
-bR
+yw
 nx
 bR
 pD
@@ -12163,8 +13631,8 @@ bW
 bW
 bW
 bW
-bW
-bW
+fs
+fs
 bW
 bW
 bW
@@ -12316,7 +13784,7 @@ bW
 bW
 bW
 bW
-bW
+fs
 bW
 bW
 bW
@@ -12467,7 +13935,7 @@ bW
 bW
 bW
 bW
-bW
+fs
 bW
 bW
 bW
@@ -12768,11 +14236,11 @@ pD
 nk
 bW
 bW
+fs
+fs
 bW
-bW
-bW
-bW
-bW
+fs
+fs
 bW
 bW
 bW
@@ -12844,7 +14312,7 @@ lf
 lf
 lf
 lf
-lf
+Hq
 lf
 lf
 gD
@@ -12858,7 +14326,7 @@ kz
 kz
 kz
 lf
-lf
+Hq
 kz
 kz
 hI
@@ -12921,7 +14389,7 @@ pD
 nk
 bW
 cK
-bW
+fs
 bW
 bW
 bW
@@ -13369,7 +14837,7 @@ hI
 hI
 hI
 aS
-rt
+Oq
 rt
 rH
 rt
@@ -13378,11 +14846,11 @@ bR
 bR
 bR
 rt
-rt
+IW
 dC
 dJ
 ey
-qO
+wO
 qO
 qR
 qZ
@@ -13400,8 +14868,8 @@ bW
 bW
 bW
 dS
-ex
-gf
+aF
+gt
 cx
 hq
 hq
@@ -13521,19 +14989,19 @@ ak
 ak
 ak
 ak
+TL
+OH
 bR
 bR
 bR
 bR
 bR
+yw
 bR
 bR
 bR
 bR
-bR
-bR
-bR
-bR
+yw
 bR
 bR
 bR
@@ -13550,10 +15018,10 @@ bH
 nk
 bW
 bW
-cK
 bW
-dS
 bW
+bW
+Eu
 dj
 cx
 hr
@@ -13667,7 +15135,7 @@ mv
 hI
 ac
 ki
-bR
+vl
 ro
 ac
 ak
@@ -13675,7 +15143,7 @@ ak
 ak
 ak
 jj
-fm
+Gs
 bR
 bR
 bR
@@ -13697,16 +15165,16 @@ bd
 bT
 bT
 bd
-bd
+Mr
 bR
 bH
 nk
 bW
 bW
 bW
+cK
 bW
-bW
-bW
+dS
 dj
 cx
 hq
@@ -13720,8 +15188,8 @@ hy
 hk
 hT
 hB
-iH
-hB
+PW
+Jw
 hw
 hw
 hw
@@ -13832,25 +15300,25 @@ ac
 cZ
 ql
 bR
-bR
+IN
 bR
 bR
 bR
 qW
 bR
-bR
+Wm
 bR
 bR
 aR
 bd
+AR
 el
-lS
-lS
-lY
-lS
-lS
+HT
+AJ
 el
+yt
 bd
+pM
 mj
 cm
 nk
@@ -13859,7 +15327,7 @@ bW
 bW
 bW
 bW
-dS
+Nr
 dj
 cx
 hq
@@ -13873,8 +15341,8 @@ hy
 hk
 hk
 hw
-hw
-mz
+PW
+iN
 hw
 hw
 hw
@@ -13997,23 +15465,23 @@ bR
 bR
 bT
 el
-eA
-fj
-eA
-fK
-fb
 el
-bT
+el
+el
+el
+el
+bd
+Fb
 bR
 cm
 nk
 bW
-bW
-bW
-bW
-bW
-dS
-dj
+ne
+ng
+ng
+ng
+vR
+oC
 cx
 hq
 hq
@@ -14026,7 +15494,7 @@ hy
 hk
 hk
 hw
-hw
+PW
 iN
 hw
 hw
@@ -14046,8 +15514,8 @@ hw
 hw
 hw
 hw
-hw
-hw
+PW
+ZY
 hB
 lf
 lf
@@ -14076,14 +15544,14 @@ lf
 lf
 lf
 lf
-mi
-mi
-mi
-mi
-mi
-mi
-mi
-mi
+lf
+lf
+lf
+lf
+lf
+lf
+lf
+lf
 kz
 hI
 mv
@@ -14129,7 +15597,7 @@ aL
 bR
 qi
 ac
-qV
+rb
 bR
 cq
 rd
@@ -14150,23 +15618,23 @@ bR
 bR
 bT
 el
-fc
-eP
-eA
-fb
-fK
-el
+lS
+lS
+lY
+lS
+lS
 bT
+bR
 bR
 cm
 nk
 bW
-ne
-ng
-ng
-ng
-ng
-oC
+of
+dQ
+Op
+Op
+PA
+oD
 cx
 hq
 hq
@@ -14179,7 +15647,7 @@ hy
 hk
 sr
 hw
-hw
+PW
 iN
 hw
 hw
@@ -14199,8 +15667,8 @@ hw
 hw
 hw
 hw
-hw
-cQ
+PW
+RO
 hw
 lf
 lf
@@ -14229,14 +15697,14 @@ lf
 lf
 lf
 lf
-mi
-mi
-mi
-mi
-mi
-mi
-mi
-mi
+lf
+lf
+lf
+lf
+lf
+lf
+lf
+lf
 kz
 hI
 mv
@@ -14278,7 +15746,7 @@ mv
 mv
 hI
 ac
-rn
+jr
 bR
 bR
 bR
@@ -14302,23 +15770,23 @@ nz
 bR
 bR
 bd
-el
-lU
-lX
-lV
-lU
-lU
-el
+Py
+fc
+eP
+eA
+fb
+fK
 bT
+bR
 bR
 cm
 nk
 bW
 of
-dB
-dF
-dF
-dE
+bd
+gE
+mt
+sU
 oD
 cJ
 hq
@@ -14332,8 +15800,8 @@ hy
 hk
 hk
 hw
-hw
-hw
+PW
+iN
 hw
 hw
 cQ
@@ -14352,7 +15820,7 @@ hw
 bm
 hw
 hw
-hw
+PW
 iN
 hw
 lf
@@ -14382,14 +15850,14 @@ lf
 lf
 lf
 lf
-mi
-mi
-mi
-mi
-mi
-mi
-mi
-mi
+lf
+lf
+lf
+lf
+lf
+lf
+lf
+lf
 kz
 hI
 mv
@@ -14435,15 +15903,15 @@ be
 bR
 qj
 ac
-ra
+re
 bR
 bR
 bR
-bR
+wn
 ac
 bs
 bR
-bR
+mj
 bR
 cO
 bR
@@ -14456,22 +15924,22 @@ bR
 bR
 ed
 el
-lS
-lS
-lS
-mg
-lS
-el
-bd
+lU
+lX
+lV
+lU
+lU
+bT
 jr
+bR
 cm
 nk
-bW
-of
-bd
-gE
-mt
-dI
+fs
+Mj
+oy
+yQ
+gF
+ez
 oD
 cx
 hq
@@ -14485,8 +15953,8 @@ hL
 hk
 hk
 hw
-hw
-hw
+PW
+iN
 hw
 hw
 hw
@@ -14505,7 +15973,7 @@ hw
 hw
 hw
 hw
-hw
+PW
 iN
 hw
 lf
@@ -14535,14 +16003,14 @@ lf
 lf
 lf
 lf
-mi
-mi
-mi
-mi
-mi
-mi
-mi
-mi
+lf
+lf
+lf
+lf
+lf
+lf
+lf
+lf
 kz
 hI
 mv
@@ -14581,18 +16049,18 @@ mv
 mv
 mv
 mv
-mv
+hI
 hI
 ac
 qy
-bR
+fm
 qG
 ac
-rb
+rk
 fm
 bR
-re
-rk
+bR
+UL
 ac
 bs
 bR
@@ -14609,22 +16077,22 @@ bR
 bR
 bx
 el
-eD
-fk
-fb
-eS
-eD
 el
+el
+el
+el
+Cl
 bd
-jr
+TF
+bR
 bH
 nk
-bW
-pr
-oy
-gF
-gF
-ez
+fs
+of
+bd
+gE
+mt
+sU
 oD
 cx
 hq
@@ -14638,19 +16106,17 @@ hk
 hk
 hk
 hw
+PW
+Cq
 hw
-iN
-hw
-hw
-hw
-hw
+hX
 hw
 hw
 hw
+hX
 hw
-hw
-hw
-hw
+hX
+hX
 hw
 hw
 hw
@@ -14658,8 +16124,10 @@ hw
 hw
 hw
 hw
-my
-kT
+hw
+hw
+Ci
+VN
 hw
 lf
 lf
@@ -14688,14 +16156,14 @@ lf
 lf
 lf
 lf
-mi
-mi
-mi
-mi
-mi
-mi
-mi
-mi
+lf
+lf
+lf
+lf
+lf
+lf
+lf
+lf
 kz
 hI
 mv
@@ -14734,8 +16202,8 @@ mv
 mv
 mv
 mv
-mv
 hI
+ac
 ac
 ac
 ac
@@ -14762,22 +16230,22 @@ bR
 bR
 bd
 bC
-eD
-eS
-fw
-fk
-gb
-el
+lS
+lS
+lS
+mg
+lS
 bT
+Uk
 bR
 cm
 nk
 bW
 of
 bd
-gE
-mt
-dI
+DV
+DV
+dM
 oD
 cx
 hs
@@ -14788,30 +16256,30 @@ hm
 hm
 hz
 hx
-hk
 iy
+hk
 hw
-hw
-mz
-hw
-hw
-hw
-hw
-ss
+PW
+Cq
+hX
 hw
 hw
 hw
+WE
 hw
 hw
-hw
+hX
+hX
+hX
+hX
 bm
+hX
 hw
 hw
 hw
 hw
 hw
-hw
-hw
+PW
 iN
 hw
 lf
@@ -14841,14 +16309,14 @@ lf
 lf
 lf
 lf
-mi
-mi
-mi
-mi
-mi
-mi
-mi
-mi
+lf
+lf
+lf
+lf
+lf
+lf
+lf
+lf
 kz
 hI
 mv
@@ -14887,22 +16355,22 @@ mv
 mv
 mv
 mv
-mv
 hI
-hI
-ak
-ak
+ac
+uQ
+Cj
+sO
 aC
+yw
+Hj
+Lz
 bR
 bR
 bR
 bR
 bR
 bR
-bR
-bR
-bR
-bR
+yw
 bR
 cY
 kS
@@ -14910,28 +16378,28 @@ lh
 bR
 bR
 bR
-bR
+yw
 bR
 bR
 bT
 el
-lV
-lU
-mb
-lU
-lU
-el
+eD
+Ip
+fw
+fk
+gb
 bT
+bR
 bR
 cm
 nk
 bW
-of
-gC
-dG
-dG
-dM
-oD
+FD
+LQ
+LQ
+LQ
+sN
+pi
 cx
 hq
 hq
@@ -14944,27 +16412,27 @@ hy
 hk
 hk
 hw
-hw
-mz
+zi
+Cq
 hw
 bm
+hX
+hX
+hw
+hw
+hw
+hw
+hX
+hX
+hw
+hw
+JX
 hw
 hw
 hw
 hw
 hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
+PW
 iN
 hw
 lf
@@ -14986,7 +16454,7 @@ lf
 lf
 lf
 lZ
-gy
+In
 lN
 lN
 lN
@@ -14994,14 +16462,14 @@ lN
 lN
 lN
 lN
-mi
-mi
-mi
-mi
-mi
-mi
-mi
-mi
+lf
+lf
+lf
+lf
+lf
+lf
+Hq
+lf
 kz
 hI
 mv
@@ -15040,19 +16508,19 @@ mv
 mv
 mv
 mv
-mv
-mv
 hI
-ak
-am
+ac
+QH
+df
+df
 aD
 bR
+KJ
+Vq
 bR
 bR
-bR
-bR
-bR
-bR
+Si
+OH
 bR
 bR
 bR
@@ -15068,23 +16536,23 @@ bR
 bR
 bT
 el
-el
-el
-el
-el
-el
-el
+lV
+lU
+mb
+lU
+lU
 bT
+bR
 bR
 bH
 nk
 bW
-nw
-ns
-ns
-ns
-ns
-pi
+bW
+bW
+bW
+bW
+dS
+dj
 cx
 hq
 hq
@@ -15097,10 +16565,8 @@ hy
 hk
 hw
 hw
-hw
-iN
-hw
-hw
+PW
+GR
 hw
 hw
 hw
@@ -15111,14 +16577,16 @@ hw
 hw
 hw
 hw
-cQ
+hw
+hX
+YU
 hw
 hw
 hw
 hw
 bm
-hw
-nb
+PW
+iN
 hw
 lf
 lf
@@ -15147,14 +16615,14 @@ lf
 lf
 lf
 lf
-mi
-mi
-mi
-mi
-mi
-mi
-mi
-mi
+lf
+lf
+lf
+lf
+lf
+lf
+lf
+lf
 kz
 hI
 hI
@@ -15193,26 +16661,26 @@ mv
 mv
 mv
 mv
-mv
-mv
 hI
 ac
-aH
-aM
-df
-df
-df
-df
-df
+Hm
+bR
+bR
+fm
+bR
+bR
+bR
+bR
+zg
 rr
-df
+xQ
 hv
-hA
-hA
-hU
-rr
-df
-du
+Iq
+ib
+px
+ta
+bR
+bR
 bR
 bR
 bR
@@ -15226,8 +16694,8 @@ fl
 fd
 fY
 fx
-eT
 bd
+bR
 bR
 cm
 nk
@@ -15248,10 +16716,10 @@ hZ
 hm
 hy
 hk
-hw
-hw
-hw
-hw
+hX
+hX
+PW
+iN
 hw
 hw
 hw
@@ -15263,14 +16731,14 @@ hw
 hw
 hw
 hw
+vP
+hX
 hw
 hw
 hw
 hw
 hw
-hw
-hw
-hw
+PW
 iN
 hw
 lf
@@ -15300,14 +16768,14 @@ lf
 lf
 lf
 lf
-mi
-mi
-mi
-mi
-mi
-mi
-mi
-mi
+lf
+lf
+lf
+lf
+lf
+lf
+lf
+lf
 kz
 kz
 hI
@@ -15346,11 +16814,11 @@ mv
 mv
 mv
 mv
-mv
-mv
 hI
 ac
-ao
+EX
+ac
+ac
 ac
 ac
 ac
@@ -15365,23 +16833,23 @@ ac
 ac
 ac
 dt
-an
+bR
 bR
 aw
 bR
-bR
+mj
 bR
 ib
 bd
 bd
-bT
-bT
+WA
+WA
 bd
 bT
 bT
-bd
 bd
 bR
+Wm
 cm
 nk
 bW
@@ -15389,7 +16857,7 @@ cw
 bW
 bW
 cK
-dS
+My
 dj
 cx
 hq
@@ -15401,9 +16869,9 @@ hm
 hm
 hy
 hk
+hX
 hw
-hw
-hw
+PW
 iN
 hw
 hw
@@ -15416,15 +16884,15 @@ hw
 hw
 hw
 hw
+hX
+hw
+hX
 hw
 hw
 hw
 hw
-hw
-hw
-hw
-hw
-hw
+PW
+iN
 hw
 lf
 lf
@@ -15499,11 +16967,11 @@ mv
 mv
 mv
 mv
-mv
-mv
 hI
 ac
-ap
+VJ
+Nd
+Nd
 aE
 ac
 aU
@@ -15517,8 +16985,8 @@ bO
 cj
 bO
 ac
-dg
-an
+Xt
+bR
 bR
 aw
 bR
@@ -15526,19 +16994,19 @@ bR
 bR
 bR
 bR
-aK
+yj
 eG
 eG
-eG
+Iq
 eG
 eG
 aK
 bR
 bR
 cm
-nm
-nj
+nk
 bW
+fs
 fS
 gc
 dS
@@ -15554,9 +17022,9 @@ hm
 hm
 hy
 hk
-hk
+hX
 hw
-hw
+PW
 iN
 hw
 hw
@@ -15576,8 +17044,8 @@ hw
 hw
 hw
 hw
-hw
-hw
+PW
+iN
 hw
 lf
 lf
@@ -15652,11 +17120,11 @@ mv
 mv
 mv
 mv
-mv
-mv
 hI
 ac
-aq
+xm
+Hs
+Hs
 aB
 ac
 aW
@@ -15670,28 +17138,28 @@ bP
 bk
 bP
 ac
-dg
-an
+pM
+bR
+aw
+bR
+bR
+IN
+bR
+bR
 aw
 bR
 bR
 bR
 bR
 bR
-aw
 bR
 bR
 bR
 bR
-bR
-bR
-bR
-bR
-bR
-dr
-dT
-nk
+cm
+Pw
 bW
+fs
 fX
 gH
 dS
@@ -15706,8 +17174,8 @@ hm
 hm
 hG
 hL
-hk
-hw
+hX
+hX
 hB
 iI
 hB
@@ -15724,12 +17192,12 @@ hw
 hw
 hw
 hw
-bm
+RT
+hw
+hX
 hw
 hw
-hw
-hw
-hw
+PW
 iN
 hw
 lf
@@ -15805,10 +17273,10 @@ mv
 mv
 mv
 mv
-mv
-mv
 hI
 ac
+Wb
+RE
 aI
 aN
 ac
@@ -15823,8 +17291,8 @@ bu
 bk
 bk
 ac
-dg
-an
+Jb
+bR
 aw
 bR
 bR
@@ -15841,9 +17309,9 @@ bR
 aw
 bR
 bR
-mo
+bs
 dY
-nk
+nj
 bW
 fX
 gH
@@ -15859,8 +17327,8 @@ hm
 hm
 hy
 hk
-hT
-hw
+wf
+hX
 hB
 hB
 hB
@@ -15878,11 +17346,11 @@ hw
 hw
 hw
 hw
+Lo
+Pt
 hw
 hw
-hw
-hw
-hw
+PW
 iN
 hw
 lf
@@ -15958,10 +17426,10 @@ mv
 mv
 mv
 mv
-mv
-mv
 hI
 ac
+UP
+Mu
 ar
 aO
 ac
@@ -15977,17 +17445,17 @@ bk
 bU
 dd
 dt
-an
+bR
 lE
 bR
 bR
 bR
 bR
+RQ
 bR
 bR
 bR
-bR
-bR
+RQ
 aw
 bR
 bR
@@ -15995,12 +17463,12 @@ lI
 bR
 bR
 dr
-ef
+dT
 nk
 bW
 fX
 gH
-bW
+dS
 bW
 dj
 cx
@@ -16012,7 +17480,7 @@ hm
 fh
 hz
 hx
-hk
+hX
 hw
 hw
 hB
@@ -16025,17 +17493,17 @@ hB
 hB
 hB
 hB
-hB
-ik
-iw
+bd
+WA
+WA
+WA
+bd
+kl
+hX
+hX
 hw
 hw
-hw
-hw
-hw
-hw
-hw
-hw
+PW
 iN
 hw
 lf
@@ -16111,12 +17579,12 @@ mv
 mv
 mv
 mv
-mv
-mv
 hI
 ac
-as
-bp
+Tx
+TJ
+TJ
+GV
 ac
 bi
 bv
@@ -16130,7 +17598,7 @@ bk
 bU
 ac
 aQ
-an
+bR
 bR
 aw
 bR
@@ -16147,14 +17615,14 @@ bR
 lI
 bR
 bR
-cm
-dw
-nl
+mo
+yW
+nk
 bW
 fX
 gH
 bW
-dS
+Eu
 dj
 cx
 cx
@@ -16163,9 +17631,9 @@ go
 eY
 hm
 fh
-hm
-hy
-hk
+hX
+hX
+hX
 hw
 hw
 hw
@@ -16177,19 +17645,19 @@ hB
 hB
 hB
 hB
-hB
-hq
-hq
-ix
-hw
-hw
-hw
-hw
-hw
-hw
+bd
+bF
+bN
+GC
+bN
+bF
+bd
+PF
+hX
+vP
 bm
-my
-kT
+Ci
+VN
 hw
 lf
 lf
@@ -16264,9 +17732,9 @@ mv
 mv
 mv
 mv
-mv
-mv
 hI
+ac
+ac
 ac
 ac
 ac
@@ -16283,11 +17751,11 @@ bk
 bk
 gL
 bR
-an
+bR
 bR
 lI
 bR
-bR
+py
 bR
 bR
 bR
@@ -16300,10 +17768,10 @@ bR
 bR
 bR
 bR
-cm
+dr
+Le
 nk
-bW
-bW
+fs
 fT
 gd
 bW
@@ -16316,8 +17784,8 @@ oz
 oI
 oK
 oM
-hm
-hy
+hX
+hX
 hk
 hw
 hw
@@ -16329,19 +17797,19 @@ hB
 hB
 hB
 hB
-hB
-hq
-hq
-hs
-ix
-hw
-my
-hw
-hw
-hw
-hw
-hw
-hw
+bd
+cE
+bk
+bk
+bk
+bk
+Ct
+bd
+wt
+hX
+hX
+hX
+PW
 iN
 hw
 lf
@@ -16417,8 +17885,8 @@ mv
 mv
 mv
 mv
-mv
-mv
+hI
+hI
 hI
 ac
 at
@@ -16432,35 +17900,35 @@ bN
 bk
 bk
 bk
-bk
+bu
 bk
 cS
 bR
-an
 bR
 bR
 bR
 bR
 bR
-fm
 bR
-aw
+wA
 bR
 aw
 bR
+aw
+bR
+IN
 bR
 bR
 bR
 bR
-bR
-cm
-nk
+HA
+dw
+nl
 bW
-bW
-bW
-bW
-bW
-cy
+fs
+fs
+fs
+YW
 gu
 gu
 gu
@@ -16468,9 +17936,9 @@ gu
 gu
 gu
 hW
-hm
-hm
-hy
+hX
+hX
+hX
 hw
 hw
 hw
@@ -16482,19 +17950,19 @@ hB
 hB
 hB
 hB
-hq
-hC
-hq
-hq
-ix
+bd
+bk
+bk
+bk
+bk
+bk
+bk
+WA
 hw
+my
 hw
-hw
-hw
-hw
-hw
-hw
-mV
+hX
+PW
 iN
 hw
 lf
@@ -16589,12 +18057,12 @@ bk
 cG
 ac
 dg
-an
+dg
 bR
 bR
 bR
 bR
-aR
+Dl
 bd
 bK
 bR
@@ -16609,10 +18077,10 @@ bR
 nu
 nl
 bW
-bW
-bW
-bW
-bW
+fs
+fs
+fs
+fs
 fs
 fs
 fs
@@ -16622,7 +18090,7 @@ fs
 fs
 hX
 hX
-hm
+hX
 hy
 hw
 hw
@@ -16635,19 +18103,19 @@ hB
 hB
 hB
 hB
-hq
+bd
 jw
-bd
-bd
-bd
-kl
+bO
+bk
+bk
+cb
+bk
+bz
+hX
+vP
+hX
 hw
-hw
-hw
-hw
-hw
-hw
-hw
+PW
 iN
 hw
 lf
@@ -16746,9 +18214,9 @@ lz
 cc
 bR
 bR
+mj
 bR
-bR
-aK
+tN
 bR
 bR
 lQ
@@ -16762,10 +18230,10 @@ bR
 dL
 bW
 bW
-bW
-bW
-bW
-bW
+fs
+fs
+fs
+fs
 fs
 fs
 fs
@@ -16775,7 +18243,7 @@ fs
 fs
 hX
 hX
-hm
+hX
 hy
 hw
 hw
@@ -16788,20 +18256,20 @@ hB
 hB
 hB
 hB
-hq
 bd
-bZ
-jL
-jV
+zf
+bP
+bk
+bk
+gw
+Kn
 bd
+zM
+hX
+hX
 hw
-bm
-hw
-hw
-hw
-hw
-hw
-hw
+PW
+iN
 hw
 lf
 lf
@@ -16809,7 +18277,7 @@ lf
 lf
 lf
 lf
-lf
+Om
 lf
 lf
 lf
@@ -16828,8 +18296,6 @@ lf
 lf
 lf
 gx
-lf
-lf
 fO
 lf
 ml
@@ -16837,6 +18303,8 @@ ml
 ml
 ml
 ml
+lf
+lf
 lf
 lf
 ml
@@ -16890,24 +18358,24 @@ bk
 bk
 uK
 bk
-bk
+bu
 bk
 bk
 gL
 bR
-an
-aw
-bR
-bR
-bR
-bR
-bR
-bR
-aw
 bR
 aw
 bR
 bR
+bR
+bR
+bR
+bR
+aw
+bR
+aw
+bR
+Wm
 bR
 lI
 bR
@@ -16915,10 +18383,10 @@ bR
 dL
 bW
 bW
-bW
-bW
-bW
-bW
+fs
+fs
+fs
+fs
 fs
 fs
 fs
@@ -16928,9 +18396,9 @@ fs
 fs
 hX
 hX
-hm
-hy
-hw
+hX
+hX
+hX
 ss
 hw
 hB
@@ -16941,63 +18409,63 @@ hB
 hB
 hB
 hB
-hq
 bd
-jC
+PG
+bk
 mG
-jW
-bd
-ky
-hw
-hw
-hw
-hw
-hw
-hw
-hw
-hw
+bk
+bk
+bk
+Jt
+hX
+hX
+PW
+hX
+PW
+Cq
+hX
+Om
 lf
 lf
 lf
 lf
 lf
 lf
+Om
+Om
+Om
 lf
 lf
+Om
+xV
+Om
+Om
 lf
-lf
-lf
-lf
-lf
-fO
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-gx
-lf
-lf
-lf
-lf
-lf
-mm
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
+Om
+Om
+Om
+Om
+Om
+Om
+Om
+Ft
+Om
+Om
+Om
+Om
+Om
+Om
+Om
+Om
+Om
+Om
+Om
+Om
+Om
+Om
+Om
+Om
+Om
 kz
 hI
 mv
@@ -17044,21 +18512,21 @@ bk
 bS
 bk
 bk
-bk
+Mo
 bk
 cS
 bR
-an
 bR
 bR
 bR
 bR
+yw
 bR
 bR
 bR
 lI
 bR
-bR
+yw
 bR
 bR
 bR
@@ -17067,12 +18535,12 @@ bR
 bR
 nv
 nj
-bW
-bW
-bW
-bW
-bW
-bW
+fs
+fs
+fs
+fs
+fs
+TK
 gv
 gv
 gv
@@ -17080,10 +18548,10 @@ gv
 gv
 gv
 hY
-hm
-hm
+hX
+hX
 hy
-hw
+hX
 hw
 hw
 hB
@@ -17094,63 +18562,63 @@ hc
 hc
 hc
 hc
-gU
 bd
-jC
-jM
-jX
-gF
-iB
-iB
-iB
-iB
-iB
-iB
-iB
-iB
-iB
+Nl
+bk
+bk
+bk
+bk
+Mo
+Jt
+Pv
+gZ
+gZ
+ww
+gZ
+yq
+gZ
+lf
+Om
 lf
 lf
-lf
-lf
-lf
-lf
-lf
-lf
+Om
+Hq
+Om
+Om
 lf
 lf
 lf
 hd
+Om
+Om
+Om
+Om
 lf
+Om
+Om
+Hq
 lf
+Om
+Om
+Om
+Ft
+Om
 lf
+Om
 lf
+Om
+Om
+Om
+Om
+Yi
+Om
+Om
+Om
+Om
+Om
+Om
 lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-gx
-lf
-lf
-lf
-lf
-lf
-ml
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
+Om
 kz
 hI
 mv
@@ -17201,7 +18669,7 @@ bT
 cp
 ac
 aQ
-an
+bR
 bR
 bR
 bR
@@ -17218,12 +18686,12 @@ bR
 bR
 bR
 bR
-cm
-nk
+se
+nm
+nj
 bW
-bW
-bW
-bW
+fs
+fs
 bW
 nw
 oE
@@ -17235,8 +18703,8 @@ oJ
 oL
 pj
 hm
-il
-iq
+gZ
+gZ
 iB
 iz
 hc
@@ -17247,63 +18715,63 @@ hc
 hc
 hc
 hc
-gU
 bd
-jC
-jL
-jX
-mI
-iB
-iB
-iB
-iB
-iB
-iB
-iB
-iB
-iB
+bN
+bF
+bk
+bk
+bk
+mG
+Jt
+Pv
+gZ
+gZ
+gZ
+gZ
+PD
+gZ
+lf
+Om
+lf
+Om
+Om
+lf
+Om
+Om
 lf
 lf
+Om
+Om
+Om
+Om
+Om
+Om
+Om
+Om
+Om
+lf
+Om
+Om
+Om
+Om
+Ft
+Om
+Om
+Om
+Om
+Om
+Om
+Om
 lf
 lf
+Om
+Om
+Om
+Om
 lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-gx
-lf
-lf
-lf
-lf
-lf
-ml
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
+Om
+Om
+Om
 kz
 hI
 mv
@@ -17341,8 +18809,8 @@ ah
 ac
 cR
 az
-az
-aA
+cT
+bc
 ac
 qz
 qD
@@ -17354,15 +18822,6 @@ cE
 bk
 dd
 dv
-an
-bR
-aw
-bR
-bR
-bR
-bR
-aw
-bR
 bR
 bR
 aw
@@ -17370,16 +18829,25 @@ bR
 bR
 bR
 bR
+aw
 bR
-cm
-nm
-nj
+bR
+bR
+aw
+bR
+IN
+bR
+mj
+bR
+dr
+JJ
+nk
 bW
 cK
-bW
+fs
 ec
 bW
-dS
+My
 dj
 cx
 cx
@@ -17388,11 +18856,11 @@ hP
 hg
 hg
 eQ
-il
+gZ
 iq
+gZ
 iB
 iB
-iB
 hc
 hc
 hc
@@ -17400,22 +18868,23 @@ hc
 hc
 hc
 hc
-gU
 bd
+Ib
 jD
-mH
-jY
+bk
+bk
+bk
+xz
 bd
-iB
-iB
-iB
-iB
-em
+ZR
+Pv
+Mp
 es
-iB
-it
-iB
-fO
+gZ
+PD
+gZ
+xV
+Om
 lf
 lf
 lf
@@ -17424,39 +18893,38 @@ lf
 lf
 lf
 lf
+Om
+Om
+Om
+Om
+lf
+Om
+Om
+Om
+Om
+Om
 lf
 lf
+Om
+xV
+Ft
+Om
+Om
+Om
+xV
+Om
+Om
+Om
 lf
 lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-fO
-gx
-lf
-lf
-lf
-fO
-lf
-ml
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
+Om
+Om
+Om
+Om
+Om
+Om
+Om
+Om
 kz
 hI
 mv
@@ -17494,8 +18962,8 @@ ae
 al
 az
 az
-cT
-bc
+az
+kN
 ac
 qA
 bk
@@ -17506,26 +18974,26 @@ bk
 bk
 bk
 ac
-dg
-an
+wc
+bR
 aw
 aw
 bR
 bR
-bR
+py
 bR
 aw
 eo
 bR
-bR
+be
 bR
 fm
 bR
 bR
 bR
 bR
-dr
-dT
+mo
+WZ
 nk
 bW
 bW
@@ -17543,9 +19011,9 @@ hg
 eQ
 il
 iB
+gZ
 iB
 iB
-iB
 hc
 hc
 hc
@@ -17553,19 +19021,19 @@ hc
 hc
 hc
 hc
-ju
 bd
-jE
-jO
-jZ
 bd
-iB
-iB
+bd
+Nl
+bk
+Kn
+bd
+bz
 es
-iB
-iB
-iB
-iB
+gZ
+gZ
+gZ
+Pv
 it
 iB
 lf
@@ -17595,13 +19063,13 @@ lf
 gx
 lf
 lf
+ml
+ml
+ml
+ml
+ml
 lf
 lf
-ml
-ml
-ml
-ml
-ml
 lf
 lf
 lf
@@ -17645,7 +19113,7 @@ ac
 af
 ae
 ac
-az
+EF
 az
 az
 kN
@@ -17659,8 +19127,8 @@ bk
 bk
 bk
 ac
-dg
-an
+pM
+bR
 lH
 bR
 bR
@@ -17669,19 +19137,19 @@ bR
 bR
 bd
 bd
-bT
-bT
-bT
+WA
+WA
+WA
 bd
 bd
-jj
+vv
 bR
 bR
-mo
-dY
+dr
+ef
 nk
 bW
-bW
+fs
 fX
 gM
 eL
@@ -17695,10 +19163,10 @@ hg
 hg
 eQ
 il
+gZ
 iB
 iB
 iB
-iB
 hc
 hc
 hc
@@ -17706,19 +19174,19 @@ hc
 hc
 hc
 hc
-iB
+bd
 jx
+bk
+mG
+bk
+bk
+Wq
 bd
-bd
-bd
-km
 iB
+gZ
+gZ
 iB
-iB
-iB
-iB
-iB
-iB
+Pv
 it
 iB
 lf
@@ -17798,10 +19266,10 @@ ac
 ag
 ai
 ac
-aj
 az
 az
-kN
+xh
+gO
 ac
 qC
 cr
@@ -17812,8 +19280,8 @@ cg
 cF
 cC
 ac
-dg
-an
+Jb
+bR
 aw
 bR
 bR
@@ -17830,11 +19298,11 @@ bd
 jq
 bR
 bR
-dr
-ef
-nk
+bs
+wM
+nl
 bW
-bW
+fs
 fT
 do
 eM
@@ -17848,8 +19316,8 @@ hg
 ie
 eQ
 il
-iq
-iB
+gZ
+gZ
 iB
 iB
 hc
@@ -17859,19 +19327,19 @@ hc
 hc
 hc
 hc
-iB
-iB
-iB
-iB
-iB
-iB
-iB
-iB
-iB
-iB
-iB
-iB
-iB
+bd
+sa
+bk
+bk
+bk
+bk
+Kn
+bd
+Ry
+gZ
+sV
+gZ
+Pv
 it
 iB
 lf
@@ -17951,10 +19419,10 @@ ac
 ac
 ac
 ac
+az
 ac
-az
-az
-gO
+ac
+ac
 ac
 ac
 ac
@@ -17966,7 +19434,7 @@ ac
 ac
 ac
 dv
-an
+bR
 bR
 bR
 bR
@@ -17978,20 +19446,20 @@ eq
 eI
 eI
 eI
-fo
-bT
+eI
+WA
 eG
 bR
 bR
 cm
-dw
-nl
+nk
+bW
+bW
+fs
 bW
 bW
 bW
-bW
-bW
-dS
+Eu
 dj
 dl
 cx
@@ -18002,7 +19470,7 @@ hg
 hg
 il
 iq
-iB
+gZ
 iB
 iB
 hc
@@ -18013,18 +19481,18 @@ hc
 hc
 hc
 hc
+bd
+Lt
+Ez
+tr
+bU
+bn
+bd
+Ur
 iB
-iB
-iB
-iB
-iB
-iB
-iB
-iB
-iB
-iB
-iB
-iB
+gZ
+gZ
+Pv
 it
 iB
 lf
@@ -18102,37 +19570,37 @@ mv
 hI
 hI
 hI
-hI
-ak
 ac
-az
-az
+kk
 az
 ac
 aP
 bB
 cU
-gQ
-bR
-bR
-bR
-bR
+Uv
+SD
+yd
+dH
+Kx
+Do
+xQ
+be
 aK
 bR
-dx
-df
-df
-df
-df
-df
-df
-eg
-er
-er
+bR
+bR
+bR
+bR
+RQ
+bR
+bR
+eh
+aG
+bp
 eV
 eV
-fp
-bT
+aG
+WA
 eG
 bR
 bR
@@ -18140,7 +19608,7 @@ cm
 nk
 bW
 bW
-bW
+fs
 bW
 bW
 bW
@@ -18156,10 +19624,10 @@ hg
 im
 is
 iz
+gZ
 iB
-iB
-hc
 in
+Pv
 hc
 hc
 hc
@@ -18167,12 +19635,12 @@ hc
 hc
 hc
 hc
-iB
-iB
-iB
-iB
-iB
-iB
+bd
+WA
+WA
+WA
+bd
+km
 iB
 iB
 iB
@@ -18254,38 +19722,38 @@ mv
 mv
 mv
 mv
-mv
 hI
-ak
 ac
-kk
-gn
 kp
+Bg
 ac
 bR
 bR
 bR
 bR
 bR
+yw
+bR
+bR
+KJ
+Vq
 bR
 bR
 bR
+Si
+OH
 bR
 bR
+yw
 bR
-bR
-bR
-bR
-bR
-bR
-bR
+py
 eh
 aG
 kj
 eW
 ff
-ap
-bT
+aG
+WA
 eG
 bR
 bR
@@ -18293,12 +19761,12 @@ bH
 nk
 bW
 bW
-ne
-ng
-ng
-ng
-ng
-oC
+bW
+bW
+bW
+bW
+dS
+dj
 cx
 cx
 gU
@@ -18309,10 +19777,10 @@ ih
 hg
 il
 iq
+gZ
 iB
 iB
-iB
-iB
+Pv
 it
 iB
 iB
@@ -18327,10 +19795,10 @@ iB
 iB
 iB
 iB
+gZ
+EL
 iB
-iB
-iB
-iB
+Pv
 it
 iB
 lf
@@ -18404,13 +19872,10 @@ mv
 mv
 mv
 mv
-mv
-mv
-mv
-mv
 hI
 hI
-ac
+hI
+hI
 ac
 ac
 ac
@@ -18418,17 +19883,20 @@ ac
 ba
 bb
 gP
-gR
+Xi
+QX
+bR
+bR
 bR
 bR
 bR
 bR
 fm
 bR
-bR
-hV
-fm
-aw
+Do
+xQ
+FB
+Vc
 bR
 bR
 gj
@@ -18437,8 +19905,8 @@ bG
 eJ
 eJ
 eJ
-fq
-bT
+eJ
+WA
 eG
 bR
 bR
@@ -18446,12 +19914,12 @@ bH
 nk
 bW
 bW
-of
-dB
-dF
-dF
-dE
-oD
+bW
+GU
+GU
+GU
+Bj
+dj
 cx
 cx
 gU
@@ -18463,9 +19931,9 @@ hg
 il
 iq
 iB
+gZ
 iB
-iB
-iB
+Pv
 it
 iB
 iB
@@ -18478,12 +19946,12 @@ iB
 iB
 iB
 iB
-iB
+gZ
 sv
+gZ
+gZ
 iB
-iB
-iB
-iB
+Pv
 it
 iB
 lf
@@ -18557,14 +20025,8 @@ mv
 mv
 mv
 mv
-mv
-mv
-mv
-mv
-mv
 hI
-hI
-ak
+BZ
 bd
 bd
 bd
@@ -18572,9 +20034,15 @@ bd
 bd
 bd
 bd
+bd
+bd
+bd
+Iq
 bR
 bR
-bR
+bd
+bd
+WA
 bd
 bd
 bd
@@ -18592,19 +20060,19 @@ eX
 fg
 fr
 bd
-bK
+sS
 bR
 bR
 cm
 nk
 bW
+fs
 bW
-of
-bd
-gE
-mt
+XQ
+GU
+GU
 dI
-oD
+dj
 cx
 cx
 gU
@@ -18617,8 +20085,8 @@ il
 iq
 iq
 iB
-iB
-iB
+gZ
+Pv
 it
 iB
 iB
@@ -18630,14 +20098,14 @@ iB
 iB
 iB
 iB
+gZ
 iB
 iB
 iB
+gZ
 iB
-iB
-iB
-iB
-nc
+Pv
+it
 iB
 lf
 lf
@@ -18710,39 +20178,39 @@ mv
 mv
 mv
 mv
-mv
-mv
-mv
-mv
-mv
-mv
 hI
-ak
+BZ
 bd
+Am
+tU
+xU
+SI
+BK
+AY
 cd
 ee
-cf
-cf
-jB
 bd
 ct
 bR
 aR
 bd
 eE
+YY
+Kp
+Oa
 eR
-eR
+EG
 kO
 jT
 bd
-ct
+YG
 bR
 lQ
 bd
 bd
-bT
-bT
-bT
+WA
+WA
+WA
 bd
 bd
 bR
@@ -18751,13 +20219,13 @@ mj
 cm
 nk
 bW
-bW
-ps
-oy
-gF
-gF
+fs
+ne
+BJ
+BJ
+BJ
 dK
-oD
+oC
 cx
 cx
 gU
@@ -18770,8 +20238,8 @@ il
 iq
 iq
 iB
-iB
-iB
+gZ
+Pv
 it
 iB
 iB
@@ -18783,13 +20251,13 @@ iB
 iB
 iB
 iB
+gZ
 iB
 iB
 iB
 iB
 iB
-iB
-iB
+Pv
 it
 iB
 lf
@@ -18863,31 +20331,31 @@ mv
 mv
 mv
 mv
-mv
-mv
-mv
-mv
-mv
-mv
 hI
-ak
+BZ
 bd
-bI
-ci
-ci
-ci
-eC
-fQ
+HF
+fR
+Mk
+Pc
+MB
+Mk
+Pc
+WU
+WA
 bR
 bR
-bR
+IN
 bd
-fZ
-gg
-gg
-gg
-gk
-fQ
+KM
+fR
+Mk
+Pc
+MB
+Mk
+Pc
+Kr
+WA
 bR
 bR
 bR
@@ -18904,12 +20372,12 @@ bR
 cm
 nk
 bW
-bW
+fs
 of
 bd
-gE
-mt
-dI
+Vm
+Vm
+dE
 oD
 cx
 cx
@@ -18924,25 +20392,25 @@ iq
 iq
 iB
 iB
+Pv
+yq
 iB
-iB
-iB
-iB
+gZ
 iB
 iB
 st
 iB
 iB
+gZ
+gZ
+iB
+gZ
+SS
+gZ
 iB
 iB
 iB
-iB
-iB
-iB
-iB
-iB
-iB
-iB
+Pv
 it
 iB
 lf
@@ -18972,13 +20440,13 @@ lf
 lf
 lf
 lf
-ip
-ip
-ip
-ip
-ip
-ip
-ip
+lf
+lf
+lf
+lf
+lf
+lf
+lf
 lf
 kz
 hI
@@ -19016,31 +20484,31 @@ mv
 mv
 mv
 mv
-mv
-mv
-mv
-mv
-mv
-mv
 hI
-ak
+BZ
 bd
-bY
-cl
-cl
-cl
-fJ
-fR
+OD
+ci
+ci
+ci
+ci
+ci
+ci
+eC
+vM
 bR
 bR
 bR
 bd
-ga
-gh
-gh
-gh
-gl
-fR
+CU
+gg
+gg
+gg
+gg
+gg
+gg
+gk
+fQ
 bR
 bR
 bR
@@ -19057,12 +20525,12 @@ bX
 cu
 nk
 bW
-bW
+fs
 of
-gC
-dG
-dG
-dM
+bd
+gE
+mt
+sU
 oD
 cx
 cx
@@ -19074,9 +20542,18 @@ hg
 hg
 im
 is
-iq
 ij
 iB
+gZ
+Pv
+yq
+iB
+iB
+gZ
+iB
+iB
+gZ
+gZ
 iB
 iB
 iB
@@ -19086,17 +20563,8 @@ iB
 iB
 iB
 iB
-iB
-iB
-iB
-iB
-iB
-iB
-iB
-iB
-iB
-iB
-iB
+Pv
+it
 iB
 lf
 lf
@@ -19125,13 +20593,13 @@ lf
 lf
 lf
 lf
-ip
-ip
-ip
-ip
-ip
-ip
-ip
+lf
+lf
+lf
+lf
+lf
+lf
+lf
 lf
 kz
 hI
@@ -19169,38 +20637,38 @@ mv
 mv
 mv
 mv
-mv
-mv
-mv
-mv
-mv
-mv
 hI
-ak
+BZ
 bd
-en
-db
-eO
-ch
-eB
+uE
+cl
+cl
+cl
+cl
+cl
+cl
+fJ
+bR
+bR
+yw
+bR
 bd
-bK
-bR
-aR
-bd
-jF
-jz
-ka
-jz
-kQ
-bd
-bK
+Et
+tZ
+gh
+gh
+gh
+gh
+gh
+gl
+fR
 bR
 bR
+mj
 bR
 bR
-cm
-dw
+HA
+WR
 pp
 ce
 dN
@@ -19210,13 +20678,13 @@ nt
 ns
 nl
 bW
-bW
-nw
-ns
-ns
-ns
-ns
-pi
+fs
+CT
+tW
+Uc
+sj
+EQ
+oD
 cx
 cx
 gU
@@ -19228,29 +20696,35 @@ hg
 hg
 im
 iD
-iD
+vB
 iB
+Pv
+yq
+gZ
 iB
-it
-iB
-iB
-iB
-em
-iB
-iB
-iB
+gZ
+Mp
 iB
 iB
 iB
 iB
+gZ
 iB
-iB
+FL
 iB
 iB
 iB
 iB
 iB
 iB
+Pv
+DC
+lf
+lf
+lf
+lf
+lf
+Hq
 lf
 lf
 lf
@@ -19264,13 +20738,7 @@ lf
 lf
 lf
 lf
-lf
-lf
-lf
-lf
-lf
-lf
-lf
+Hq
 gx
 lf
 lf
@@ -19278,13 +20746,13 @@ lf
 lf
 lf
 lf
-ip
-ip
-ip
-ip
-ip
-ip
-ip
+Hq
+lf
+lf
+lf
+lf
+lf
+Hq
 lf
 kz
 hI
@@ -19322,31 +20790,31 @@ mv
 mv
 mv
 mv
-mv
-mv
-mv
-mv
-mv
-mv
 hI
-ak
+BZ
 bd
-bd
-bd
-bd
-bd
-bd
-bd
+Cd
+fR
+AL
+zw
+AL
+zw
+AL
+Tv
+WA
 bR
-bJ
+bR
 bR
 bd
-bd
-bd
-bd
-bd
-bd
-bd
+XI
+fR
+AL
+zw
+AL
+zw
+AL
+uw
+WA
 bR
 bR
 bR
@@ -19362,14 +20830,14 @@ nl
 bW
 bW
 bW
+fs
 bW
-bW
-bW
-bW
-bW
-bW
-dS
-dj
+of
+dQ
+Ag
+rW
+KL
+oD
 cx
 cx
 gU
@@ -19382,8 +20850,8 @@ hg
 hg
 hg
 hg
-im
-is
+il
+Pv
 it
 iB
 iB
@@ -19402,7 +20870,7 @@ iB
 iB
 iB
 em
-iB
+Pv
 it
 lf
 lf
@@ -19431,13 +20899,13 @@ lf
 lf
 lf
 lf
-ip
-ip
-ip
-ip
-ip
-ip
-ip
+lf
+lf
+lf
+lf
+lf
+lf
+lf
 lf
 kz
 hI
@@ -19475,54 +20943,54 @@ mv
 mv
 mv
 mv
-mv
-mv
-mv
-mv
-mv
-mv
 hI
-ak
-gS
+BZ
+bd
+xu
+ED
+XW
+Mt
+sB
+Rm
+EY
+QJ
+bd
+ct
 bR
-aK
-bR
-bR
-bR
-aK
-bR
-bR
-bR
-bR
-aK
-bR
-bR
-bR
-aK
-bR
-bR
+aR
+bd
+IY
+XE
+FM
+xD
+Ch
+DO
+XO
+uk
+bd
+ct
 bR
 bR
 bR
 bR
-cm
+se
 nk
+fs
+fs
 bW
 bW
 bW
 bW
+fs
+fs
 bW
 bW
-bW
-bW
-bW
-bW
-bW
-bW
-bW
-bW
-dS
-dj
+of
+dQ
+Cv
+Cv
+IT
+oD
 cx
 cx
 gU
@@ -19535,8 +21003,8 @@ hg
 hg
 hg
 hg
-hg
 il
+Pv
 it
 iB
 iB
@@ -19584,13 +21052,13 @@ lf
 lf
 lf
 lf
-ip
-ip
-ip
-ip
-ip
-ip
-ip
+lf
+lf
+lf
+lf
+lf
+lf
+lf
 lf
 kz
 hI
@@ -19628,31 +21096,31 @@ mv
 mv
 mv
 mv
-mv
-mv
-mv
-mv
-mv
-mv
 hI
-ak
-ak
+BZ
+bd
+bd
+WA
+bd
+bd
+bd
+bd
+bd
+bd
+bd
 bR
-hu
-pH
-pQ
-pW
-pP
-pT
+bJ
 bR
-bR
-bR
-bR
-bR
-bR
-bR
-bR
-bR
+bd
+bd
+WA
+bd
+bd
+bd
+bd
+bd
+bd
+bd
 bR
 bX
 bX
@@ -19662,20 +21130,20 @@ cu
 nk
 bW
 bW
+fs
 bW
-bW
-bW
-bW
-bW
+fs
+fs
+fs
 bW
 cw
 bW
-bW
-bW
-bW
-ew
-cW
-dk
+nw
+ns
+El
+ns
+ns
+pi
 cx
 cX
 gU
@@ -19688,8 +21156,8 @@ hg
 hg
 hg
 hg
-hg
 il
+Pv
 it
 iB
 iB
@@ -19708,7 +21176,7 @@ iB
 iB
 iB
 iB
-iB
+Pv
 it
 lf
 lf
@@ -19737,13 +21205,13 @@ lf
 lf
 lf
 lf
-ip
-ip
-ip
-ip
-ip
-ip
-ip
+lf
+lf
+lf
+lf
+lf
+lf
+lf
 lf
 kz
 hI
@@ -19781,30 +21249,30 @@ mv
 mv
 mv
 mv
-mv
-mv
-mv
-mv
-mv
-mv
 hI
 hI
-ak
-ak
-pG
-pI
-pV
-pX
-pS
-pU
+hI
+gS
 bR
-cI
-cI
-cI
-cI
-pA
+sO
+zg
+aK
 bR
 bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+bR
+aK
+bR
+bR
+bR
+aK
 bR
 pz
 dw
@@ -19814,9 +21282,9 @@ ns
 ns
 nl
 bW
-bW
-bW
-bW
+fs
+fs
+fs
 bW
 bW
 bW
@@ -19861,7 +21329,7 @@ iB
 iB
 iB
 iB
-iB
+Pv
 it
 lf
 lf
@@ -19890,13 +21358,13 @@ lf
 lf
 lf
 lf
-ip
-ip
-ip
-ip
-ip
-ip
-ip
+lf
+lf
+lf
+lf
+lf
+lf
+lf
 lf
 kz
 hI
@@ -19936,30 +21404,30 @@ mv
 mv
 mv
 mv
-mv
-mv
-mv
-mv
-mv
 hI
 hI
-ak
-ak
-ak
-ak
-pR
-pY
-pZ
+hI
+hI
+hI
+hI
+hI
+BZ
+hu
+pH
+pQ
+pP
+pP
+pT
 bR
-gF
-gF
+bR
+bR
 py
-gF
-pB
 bR
 bR
 bR
-pD
+bR
+bR
+xt
 nk
 bW
 bW
@@ -19967,9 +21435,9 @@ bW
 bW
 bW
 bW
-bW
-bW
-bW
+fs
+fs
+fs
 bW
 bW
 ec
@@ -19977,8 +21445,8 @@ bW
 bW
 cy
 bW
-bW
-dS
+Th
+My
 dj
 cx
 cx
@@ -20096,40 +21564,40 @@ mv
 mv
 mv
 hI
-hI
-hI
-ak
-ak
-ak
-ak
-ak
-aT
+BZ
+pG
+Qd
+pV
+pX
+pS
+pU
+bR
 dD
-gF
-gF
-gF
+dD
+dD
+dD
 pB
 bR
 bR
 bR
 pJ
 nl
-bW
-bW
-bW
-bW
-bW
-bW
-bW
-bW
-bW
+fs
+fs
+fs
+fs
+fs
+fs
+fs
+fs
+fs
 bW
 bW
 fS
 gc
 bW
 bW
-bW
+dS
 ew
 cW
 dk
@@ -20248,41 +21716,41 @@ mv
 mv
 mv
 mv
-mv
-mv
 hI
 hI
-hI
-hI
-hI
-ak
-ak
-gG
-gF
-gF
-rv
-pB
+BZ
+BZ
+BZ
+pR
+JP
+pZ
 bR
+gG
+OI
+th
+OI
+Pg
+yw
 bR
 bR
 pK
 bW
-bW
-bW
-cK
-bW
-bW
-bW
-bW
-cw
-bW
+fs
+fs
+xR
+fs
+fs
+fs
+fs
+zz
+fs
 bW
 bW
 fT
 gd
 bW
-bW
-dS
+Th
+My
 dj
 cx
 cx
@@ -20401,20 +21869,20 @@ mv
 mv
 mv
 mv
-mv
-mv
-mv
-mv
-mv
-mv
 hI
+hI
+hI
+BZ
+BZ
+BZ
+BZ
 ak
-ak
+aT
 lW
-gF
-gF
-gF
-pB
+OI
+OI
+OI
+Pg
 bR
 bR
 bR
@@ -20422,18 +21890,18 @@ pL
 nj
 bW
 bW
-bW
-bW
-bW
-bW
 fs
 fs
 fs
+fs
+fs
+fs
+fs
 bW
 bW
 bW
 bW
-bW
+dS
 ew
 cW
 dk
@@ -20493,8 +21961,8 @@ lf
 lf
 lf
 lf
-kz
-kz
+lf
+lf
 gD
 kz
 kz
@@ -20554,24 +22022,24 @@ mv
 mv
 mv
 mv
-mv
-mv
-mv
-mv
-mv
-mv
 hI
 hI
-aS
+hI
+hI
+hI
+hI
+hI
+BZ
+ak
 pu
-gF
-py
-gF
-pB
+OI
+OI
+uU
+Pg
 bR
 bR
 bR
-pD
+ZP
 nm
 nj
 bW
@@ -20586,7 +22054,7 @@ bW
 bW
 bW
 bW
-bW
+dS
 dj
 cx
 cx
@@ -20647,7 +22115,7 @@ lf
 lf
 lf
 lf
-kz
+lf
 gD
 kz
 kz
@@ -20715,14 +22183,14 @@ mv
 mv
 mv
 hI
-aS
+ak
 pv
-pw
-pw
-pw
-pC
+OI
+OI
+OI
+Pg
 bR
-bR
+py
 bR
 pM
 dT
@@ -20739,7 +22207,7 @@ bW
 bW
 bW
 bW
-dS
+Nr
 dj
 cx
 cx
@@ -20800,7 +22268,7 @@ lf
 lf
 lf
 lf
-kz
+lf
 gD
 kz
 kz
@@ -20868,12 +22336,12 @@ mv
 mv
 mv
 hI
-aS
-aS
-px
-bR
-bR
-bR
+ak
+zP
+OI
+th
+OI
+Pg
 bR
 bR
 bR
@@ -20889,10 +22357,10 @@ fs
 fs
 fs
 cy
-nj
-bW
-bW
-dS
+QM
+Th
+Th
+My
 dj
 cx
 cJ
@@ -20953,7 +22421,7 @@ lf
 lf
 lf
 lf
-kz
+lf
 gD
 kz
 kz
@@ -21021,12 +22489,12 @@ mv
 mv
 mv
 hI
-aS
-aS
-aS
-bR
-bR
-bR
+ak
+YB
+Qv
+Qv
+Qv
+Bp
 bR
 bR
 bR
@@ -21053,7 +22521,7 @@ cx
 dZ
 eu
 hf
-eQ
+OR
 hE
 gU
 gU
@@ -21106,7 +22574,7 @@ lf
 lf
 lf
 lf
-kz
+lf
 gD
 kz
 kz
@@ -21174,14 +22642,14 @@ mv
 mv
 mv
 hI
-aS
-aS
-aS
+ak
+ak
+jj
+OH
 bR
 bR
-bX
-bX
-lR
+bR
+bR
 bX
 cu
 pb
@@ -21259,7 +22727,7 @@ kz
 lf
 lf
 lf
-kz
+lf
 gD
 kz
 kz
@@ -21327,14 +22795,14 @@ mv
 mv
 mv
 hI
-aS
-aS
-aS
+ak
+ak
+TL
+Vq
 bR
-bH
-dw
-ns
-ns
+bR
+bR
+bs
 pt
 pE
 pF
@@ -21347,7 +22815,7 @@ dp
 fs
 fs
 fs
-mh
+de
 nJ
 cx
 cx
@@ -21358,8 +22826,8 @@ cx
 cx
 eZ
 eY
-hg
-eQ
+Eq
+Wl
 hE
 gU
 gU
@@ -21412,15 +22880,15 @@ gD
 gx
 gx
 gD
+VL
 gD
-gD
 kz
 kz
 kz
 kz
 kz
 kz
-lf
+Hq
 lf
 lf
 kz
@@ -21480,15 +22948,15 @@ mv
 mv
 mv
 hI
-aS
-aS
-aS
+ak
+ak
+ak
 bR
-cm
-nk
-bW
-bW
-dj
+bR
+bX
+bX
+vo
+oD
 cx
 cx
 cx
@@ -21565,7 +23033,7 @@ gD
 lf
 lf
 lf
-kz
+lf
 kz
 kz
 kz
@@ -21633,15 +23101,15 @@ mv
 mv
 mv
 hI
-aS
-aS
-aS
-aS
-aS
-pm
-di
-cW
-dk
+ak
+ak
+ak
+bR
+bH
+dw
+ns
+ns
+pi
 cx
 cx
 cx
@@ -21786,15 +23254,15 @@ mv
 mv
 mv
 hI
-aS
-aS
-aS
-aS
-aS
+ak
+ak
+ak
+sO
+cm
+nk
+bW
 bW
 dj
-cx
-cx
 cx
 cx
 cx
@@ -21845,7 +23313,7 @@ hg
 kn
 kn
 hg
-mS
+eQ
 hE
 gU
 gU
@@ -21854,7 +23322,7 @@ gU
 hP
 kn
 kn
-nd
+fF
 kn
 ll
 lf
@@ -21939,15 +23407,15 @@ mv
 mv
 mv
 hI
-aS
-aS
-aS
-aS
-aS
+ak
+ak
+ak
+ak
+ak
+pm
+di
 cW
-dk
-cx
-cJ
+JT
 cx
 cx
 cx
@@ -21960,10 +23428,10 @@ fs
 fs
 fs
 bW
-nl
-bW
-bW
-dS
+vz
+Rl
+Rl
+Eu
 dj
 cx
 cx
@@ -22007,7 +23475,7 @@ gU
 hP
 kn
 kn
-nd
+fF
 lc
 ll
 lf
@@ -22095,10 +23563,10 @@ hI
 aS
 aS
 aS
-cx
-cx
-cx
-cx
+aS
+aS
+bW
+dj
 cx
 cx
 cx
@@ -22115,7 +23583,7 @@ fs
 bW
 bW
 cy
-mr
+cw
 pd
 ow
 oz
@@ -22160,7 +23628,7 @@ gU
 hP
 kn
 kY
-nd
+fF
 kn
 ll
 lf
@@ -22247,11 +23715,11 @@ mv
 hI
 aS
 aS
-cx
-cx
-cx
-cx
-cx
+aS
+aS
+aS
+cW
+BQ
 cx
 cx
 cx
@@ -22263,9 +23731,9 @@ cx
 ei
 bW
 fs
+TK
 fs
 fs
-bW
 bW
 bW
 bW
@@ -22274,7 +23742,7 @@ gu
 gu
 gu
 gu
-gu
+um
 gY
 gY
 gY
@@ -22288,7 +23756,7 @@ gY
 gY
 gY
 gY
-gY
+zI
 gY
 gY
 gY
@@ -22304,7 +23772,7 @@ hg
 ko
 kM
 hg
-mT
+hg
 gm
 hE
 gU
@@ -22313,10 +23781,10 @@ gU
 hP
 kn
 kn
-kn
+fF
 kn
 ll
-lf
+Hq
 sw
 lf
 lf
@@ -22399,12 +23867,12 @@ mv
 mv
 hI
 aS
+aS
+aS
 cx
 cx
-cX
 cx
 cx
-dl
 cx
 cx
 cx
@@ -22443,7 +23911,7 @@ gZ
 gZ
 gZ
 gZ
-mE
+gZ
 gZ
 gZ
 gZ
@@ -22456,7 +23924,7 @@ hg
 hg
 ko
 kn
-mN
+eQ
 hg
 eQ
 hE
@@ -22552,7 +24020,7 @@ mv
 mv
 hI
 aS
-cx
+aS
 cx
 cx
 cx
@@ -22587,9 +24055,9 @@ gZ
 gZ
 gZ
 gZ
-gZ
-gZ
 ij
+gZ
+gZ
 gZ
 gZ
 gZ
@@ -22619,7 +24087,7 @@ hb
 hP
 kn
 kn
-fF
+XZ
 kn
 ll
 lf
@@ -22707,10 +24175,10 @@ hI
 aS
 cx
 cx
+cX
 cx
 cx
-cx
-cx
+dl
 cx
 cx
 cx
@@ -22721,7 +24189,7 @@ cx
 cx
 ei
 bW
-fs
+bW
 fs
 fs
 fs
@@ -22772,7 +24240,7 @@ gU
 hP
 kn
 lc
-kn
+fF
 kn
 ll
 lf
@@ -22862,7 +24330,7 @@ cx
 cx
 cx
 cx
-cJ
+cx
 cx
 cx
 cx
@@ -22925,7 +24393,7 @@ gU
 hP
 kn
 kn
-kn
+fF
 kn
 lm
 lv
@@ -22944,13 +24412,13 @@ lf
 lf
 md
 lN
-hS
-hS
-hS
-hS
-hS
-hS
-hS
+lf
+lf
+lf
+lf
+lf
+lf
+lf
 lf
 lf
 lf
@@ -23012,7 +24480,7 @@ mv
 hI
 aS
 cx
-cJ
+cx
 cx
 cx
 cx
@@ -23070,7 +24538,7 @@ kn
 kn
 hg
 hg
-mU
+eQ
 hg
 hE
 hH
@@ -23097,13 +24565,13 @@ lN
 lN
 lN
 lf
-hS
-hS
-hS
-hS
-hS
-hS
-hS
+lf
+lf
+lf
+lf
+lf
+lf
+lf
 lf
 lf
 lf
@@ -23168,7 +24636,7 @@ cx
 cx
 cx
 cx
-cx
+cJ
 cx
 cx
 cx
@@ -23186,7 +24654,7 @@ fE
 fE
 fE
 fV
-bW
+dS
 di
 dk
 cx
@@ -23250,13 +24718,13 @@ lf
 lf
 lf
 lf
-hS
-hS
-hS
-hS
-hS
-hS
-hS
+lf
+lf
+lf
+lf
+lf
+lf
+lf
 lf
 lf
 lf
@@ -23318,9 +24786,9 @@ mv
 hI
 aS
 cx
+cJ
 cx
 cx
-dl
 cx
 cx
 cx
@@ -23403,13 +24871,13 @@ lf
 lf
 lf
 lf
-hS
-hS
-hS
-hS
-hS
-hS
-hS
+lf
+lf
+lf
+lf
+lf
+lf
+lf
 lf
 lf
 lf
@@ -23488,8 +24956,8 @@ bW
 bW
 fu
 fC
-fC
-fC
+ZS
+zj
 fC
 fV
 dS
@@ -23522,10 +24990,10 @@ jf
 kr
 ku
 aa
-mF
+ku
 aa
 aa
-mJ
+kn
 nY
 hg
 hg
@@ -23533,14 +25001,14 @@ hg
 aa
 iY
 ku
-kE
+Te
 kL
 mY
 mY
 nO
 mY
 nr
-og
+Jf
 ok
 lf
 lf
@@ -23554,15 +25022,15 @@ gx
 lf
 lf
 lf
+Hq
 lf
 lf
-hS
-hS
-hS
-hS
-hS
-hS
-hS
+lf
+lf
+lf
+lf
+lf
+Hq
 lf
 lf
 lf
@@ -23623,10 +25091,10 @@ mv
 mv
 hI
 aS
-aS
 cx
 cx
 cx
+dl
 cx
 cx
 cx
@@ -23645,7 +25113,7 @@ fC
 fG
 fL
 fV
-bW
+dS
 dj
 cx
 cx
@@ -23661,8 +25129,8 @@ hc
 hc
 hc
 hc
-io
 hc
+io
 iA
 gU
 gU
@@ -23686,7 +25154,7 @@ hg
 aa
 jm
 jm
-ks
+vY
 ku
 mZ
 mZ
@@ -23709,13 +25177,13 @@ lf
 lf
 lf
 lf
-hS
-hS
-hS
-hS
-hS
-hS
-hS
+lf
+lf
+lf
+lf
+lf
+lf
+lf
 lf
 lf
 lf
@@ -23775,13 +25243,13 @@ mv
 mv
 mv
 hI
-hI
 aS
-aS
-aS
-aS
-aS
-aS
+cx
+cx
+cx
+cx
+cx
+cx
 aS
 aS
 aS
@@ -23839,7 +25307,7 @@ aa
 aa
 kC
 lF
-ks
+vY
 mB
 na
 nr
@@ -23862,13 +25330,13 @@ lf
 lf
 lf
 lf
-hS
-hS
-hS
-hS
-hS
-hS
-hS
+lf
+lf
+lf
+lf
+lf
+lf
+lf
 lf
 lf
 lf
@@ -23927,15 +25395,15 @@ mv
 mv
 mv
 mv
-mv
 hI
-hI
-hI
-hI
-hI
-hI
-hI
-hI
+aS
+aS
+cx
+cx
+cx
+cx
+cx
+aS
 hI
 hI
 hI
@@ -23992,7 +25460,7 @@ kL
 kr
 jv
 jl
-kr
+Hr
 ku
 mZ
 nC
@@ -24080,16 +25548,16 @@ mv
 mv
 mv
 mv
-mv
-mv
-mv
-mv
-mv
-mv
-mv
-mv
-mv
-mv
+hI
+hI
+aS
+aS
+aS
+aS
+aS
+aS
+aS
+hI
 mv
 mv
 mv
@@ -24234,15 +25702,15 @@ mv
 mv
 mv
 mv
-mv
-mv
-mv
-mv
-mv
-mv
-mv
-mv
-mv
+hI
+hI
+hI
+hI
+hI
+hI
+hI
+hI
+hI
 mv
 mv
 mv
@@ -24749,7 +26217,7 @@ hg
 hg
 hg
 iJ
-mK
+it
 hg
 kH
 hh
@@ -24902,7 +26370,7 @@ hg
 hg
 hg
 hg
-kw
+it
 kH
 iA
 gU
@@ -25414,22 +26882,22 @@ mv
 mv
 mv
 mv
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
 "}
 (128,1,1) = {"
 mv
@@ -25567,22 +27035,22 @@ mv
 mv
 mv
 mv
-ab
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-ab
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
 "}
 (129,1,1) = {"
 mv
@@ -25720,22 +27188,22 @@ mv
 mv
 mv
 mv
-ab
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-ab
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
 "}
 (130,1,1) = {"
 mv
@@ -25873,22 +27341,22 @@ mv
 mv
 mv
 mv
-ab
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-ab
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
 "}
 (131,1,1) = {"
 mv
@@ -26026,22 +27494,22 @@ mv
 mv
 mv
 mv
-ab
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-ab
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
 "}
 (132,1,1) = {"
 mv
@@ -26179,22 +27647,22 @@ mv
 mv
 mv
 mv
-ab
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-ab
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
 "}
 (133,1,1) = {"
 mv
@@ -26332,22 +27800,22 @@ mv
 mv
 mv
 mv
-ab
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-ab
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
 "}
 (134,1,1) = {"
 mv
@@ -26485,22 +27953,22 @@ mv
 mv
 mv
 mv
-ab
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-ab
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
 "}
 (135,1,1) = {"
 mv
@@ -26638,22 +28106,22 @@ mv
 mv
 mv
 mv
-ab
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-ab
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
 "}
 (136,1,1) = {"
 mv
@@ -26791,22 +28259,22 @@ mv
 mv
 mv
 mv
-ab
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-ab
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
 "}
 (137,1,1) = {"
 mv
@@ -26944,22 +28412,22 @@ mv
 mv
 mv
 mv
-ab
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-ab
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
 "}
 (138,1,1) = {"
 mv
@@ -27097,22 +28565,22 @@ mv
 mv
 mv
 mv
-ab
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-ab
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
 "}
 (139,1,1) = {"
 mv
@@ -27250,22 +28718,22 @@ mv
 mv
 mv
 mv
-ab
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-ab
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
 "}
 (140,1,1) = {"
 mv
@@ -27403,22 +28871,22 @@ mv
 mv
 mv
 mv
-ab
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-ab
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
 "}
 (141,1,1) = {"
 mv
@@ -27556,22 +29024,22 @@ mv
 mv
 mv
 mv
-ab
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-ab
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
 "}
 (142,1,1) = {"
 mv
@@ -27709,22 +29177,22 @@ mv
 mv
 mv
 mv
-ab
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-ab
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
 "}
 (143,1,1) = {"
 mv
@@ -27862,22 +29330,22 @@ mv
 mv
 mv
 mv
-ab
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-ab
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
 "}
 (144,1,1) = {"
 mv
@@ -28015,22 +29483,22 @@ mv
 mv
 mv
 mv
-ab
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-ab
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
 "}
 (145,1,1) = {"
 mv
@@ -28168,22 +29636,22 @@ mv
 mv
 mv
 mv
-ab
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-ab
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
 "}
 (146,1,1) = {"
 mv
@@ -28321,22 +29789,22 @@ mv
 mv
 mv
 mv
-ab
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-ab
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
 "}
 (147,1,1) = {"
 mv
@@ -28474,22 +29942,22 @@ mv
 mv
 mv
 mv
-ab
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-ab
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
 "}
 (148,1,1) = {"
 mv
@@ -28627,22 +30095,22 @@ mv
 mv
 mv
 mv
-ab
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-ab
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
 "}
 (149,1,1) = {"
 mv
@@ -28780,22 +30248,22 @@ mv
 mv
 mv
 mv
-ab
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-ab
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
 "}
 (150,1,1) = {"
 mv
@@ -28933,22 +30401,22 @@ mv
 mv
 mv
 mv
-ab
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-mn
-mp
-ab
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
 "}
 (151,1,1) = {"
 mv
@@ -29086,20 +30554,20 @@ mv
 mv
 mv
 mv
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
+mv
 "}
