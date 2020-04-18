@@ -72,7 +72,7 @@
 	if(miner_status != MINER_DESTROYED )
 		return FALSE
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
-	obj_integrity += 33
+	obj_integrity = 0.33 * max_integrity
 	set_miner_status()
 	user.visible_message("<span class='notice'>[user] welds [src]'s internal damage.</span>",
 	"<span class='notice'>You weld [src]'s internal damage.</span>")
