@@ -60,7 +60,8 @@
 		var/chosen_mob_type = pick(mob_types)
 		var/mob/living/L = new chosen_mob_type(P.loc)
 		set_info(L,P)
-	else
+		return
+
 		for(var/mob in mob_types)	//Spawn the entire list
 			if(spawned_mobs.len >= max_mobs)	//We've hit the mob limit, let's not spawn the rest of the list
 				break
