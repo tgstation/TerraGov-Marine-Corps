@@ -605,15 +605,16 @@ can cause issues with ammo types getting mixed up during the burst.
 									/obj/item/attachable/mosinbarrel,
 									/obj/item/attachable/stock/mosin)
 
-	fire_delay = 24
-	accuracy_mult = 1.3
+	fire_delay = 17.5
+	accuracy_mult = 1.4
 	accuracy_mult_unwielded = 0.7
-	scatter = 15
+	scatter = -10
 	scatter_unwielded = 40
-	recoil = 2
+	recoil = 0
 	recoil_unwielded = 4
 	pump_delay = 12
-	aim_slowdown = 0.5
+	aim_slowdown = 1
+	wield_delay = 1 SECONDS
 
 /obj/item/weapon/gun/shotgun/pump/bolt/unique_action(mob/user)
 	return pump_shotgun(user)
