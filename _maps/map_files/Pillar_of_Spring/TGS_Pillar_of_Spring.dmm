@@ -565,6 +565,9 @@
 	icon_state = "alarm0";
 	dir = 4
 	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
 /turf/open/floor/mainship{
 	dir = 8;
 	icon_state = "sterile_green_side"
@@ -779,6 +782,9 @@
 /obj/structure/cable{
 	icon_state = "0-4";
 	d2 = 4
+	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
 	},
 /turf/open/floor/mainship{
 	icon_state = "sterile_green_corner";
@@ -1753,6 +1759,9 @@
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/box/monkeycubes,
 /obj/machinery/vending/nanomed,
+/obj/machinery/camera/autoname/mainship{
+	dir = 2
+	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
@@ -2719,6 +2728,11 @@
 	icon_state = "door_open";
 	dir = 8
 	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
@@ -3147,13 +3161,13 @@
 	},
 /area/mainship/command/cic)
 "jg" = (
-/obj/structure/dropship_equipment/electronics/targeting_system,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/dropship_equipment/sentry_holder,
 /turf/open/floor/mainship{
 	dir = 4;
 	icon_state = "orange"
@@ -3544,6 +3558,11 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -5279,6 +5298,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/holopad,
+/obj/structure/cable,
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
@@ -5662,6 +5683,11 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -10448,6 +10474,11 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
@@ -10469,6 +10500,11 @@
 "BK" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -10604,6 +10640,7 @@
 	pixel_x = 5
 	},
 /obj/item/tool/pen,
+/obj/item/storage/belt/utility,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "BZ" = (
@@ -13094,6 +13131,9 @@
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 2
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "Hl" = (
@@ -14062,6 +14102,11 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/holopad,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "Jj" = (
@@ -16053,6 +16098,9 @@
 	icon_state = "alarm0";
 	dir = 4
 	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
 /turf/open/floor/mainship{
 	dir = 8;
 	icon_state = "sterile_green_side"
@@ -16408,6 +16456,15 @@
 /obj/machinery/door/airlock/mainship/engineering/engine,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engine_monitoring)
+"NE" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/disposalpipe/segment{
+	icon_state = "pipe-s";
+	dir = 1
+	},
+/obj/machinery/autolathe,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/squads/req)
 "NF" = (
 /obj/structure/bed/chair/sofa{
 	icon_state = "sofamiddle";
@@ -18069,6 +18126,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
+"XZ" = (
+/obj/machinery/suit_storage_unit/carbon_unit,
+/obj/machinery/camera/autoname/mainship,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/starboard_umbilical)
 "Ya" = (
 /obj/machinery/light{
 	dir = 4
@@ -18172,6 +18234,16 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"YM" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
+/area/mainship/medical/medical_science)
 "YR" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
@@ -43603,7 +43675,7 @@ Fg
 id
 nD
 ek
-iL
+YM
 oR
 oS
 iL
@@ -48434,7 +48506,7 @@ ad
 aj
 aj
 cA
-cx
+aJ
 aA
 aC
 aE
@@ -48947,7 +49019,7 @@ aa
 ad
 ah
 ah
-aJ
+cx
 Gg
 az
 az
@@ -48993,7 +49065,7 @@ vl
 jr
 pn
 og
-ok
+NE
 ok
 CC
 CH
@@ -56741,7 +56813,7 @@ Po
 Mb
 aO
 Mb
-uG
+XZ
 tA
 In
 tA
