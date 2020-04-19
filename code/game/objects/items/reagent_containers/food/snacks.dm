@@ -2801,7 +2801,7 @@
 	icon_state = "lollipop_stick"
 	item_state = "lollipop_stick"
 	flags_equip_slot = ITEM_SLOT_MASK
-	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/sugar = 15)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/sugar = 4)
 	tastes = list("candy" = 1)	
 	var/mutable_appearance/head
 	var/headcolor = rgb(0, 0, 0)
@@ -2843,19 +2843,15 @@
 		next_succ = world.time + succ_int
  
 /obj/item/reagent_containers/food/snacks/lollipop/equipped(mob/user, slot)
-	to_chat(world, "equpped: [user] :: [slot]")
 	. = ..()
 	if(!iscarbon(user))
 		return
 	if(slot != SLOT_WEAR_MASK)
+		owner = null
+		STOP_PROCESSING(SSobj, src) //equipped is triggered when moving from hands to mouth and vice versa
 		return
 	owner = user
 	START_PROCESSING(SSobj, src)
-
-/obj/item/reagent_containers/food/snacks/lollipop/dropped(mob/user)
-	. = ..()
-	owner = null
-	STOP_PROCESSING(SSobj, src)		
  
 /obj/item/reagent_containers/food/snacks/lollipop/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -2871,5 +2867,5 @@
 /obj/item/reagent_containers/food/snacks/lollipop/tramadol
 	name = "Tram-pop"
 	desc = "Your reward for behaving so well in the medbay."
-	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/sugar = 15, /datum/reagent/medicine/tramadol = 5)
+	list_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/medicine/tramadol = 4)
 	tastes = list("cough syrup" = 1)
