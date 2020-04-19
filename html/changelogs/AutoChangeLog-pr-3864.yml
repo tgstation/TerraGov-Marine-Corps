@@ -1,6 +1,0 @@
-author: "BobSlim"
-delete-after: True
-changes: 
-  - balance: "Xeno Neurotoxin begins its effects immediately, and ramp up over time."
-  - balance: "Xeno Neurotoxin deals a small amount of toxin damage if overdosed."
-  - bugfix: "A single Neurotoxin Sting will no longer trigger an overdose."
