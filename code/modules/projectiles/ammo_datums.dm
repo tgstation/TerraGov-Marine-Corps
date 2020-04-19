@@ -808,8 +808,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "crude sniper bullet"
 	hud_state = "sniper_crude"
 	iff_signal = null
-	damage = 65
-	penetration = 40
+	damage = 75
+	penetration = 35
 
 /datum/ammo/bullet/sniper/elite
 	name = "supersonic sniper bullet"
