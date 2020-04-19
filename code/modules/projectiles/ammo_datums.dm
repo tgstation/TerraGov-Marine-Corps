@@ -382,14 +382,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 30
 	sundering = 3
 
-/datum/ammo/bullet/smg/ppsh
-	name = "submachinegun light bullet"
-	hud_state = "smg_light"
-	damage = 23
-	penetration = 0
-	accuracy = -10
-	sundering = 0.5
-
 /*
 //================================================
 					Rifle Ammo
