@@ -113,7 +113,9 @@
 	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
 	user.visible_message("<span class='notice'>[user] starts repairing [src]'s tubing and plating.</span>",
 	"<span class='notice'>You start repairing [src]'s tubing and plating.</span>")
-	if(!do_after(user, 150, TRUE, src, BUSY_ICON_BUILD) && miner_status == MINER_SMALL_DAMAGE)
+	if(!do_after(user, 150, TRUE, src, BUSY_ICON_BUILD))
+		return FALSE
+	if(miner_status != MINER_SMALL_DAMAGE)
 		return FALSE
 	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
 	obj_integrity = max_integrity
