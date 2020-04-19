@@ -53,7 +53,6 @@
 
 	log_talk(message, LOG_SAY, "ghost")
 
-	var/name = real_name
 	for(var/i in GLOB.player_list)
 		var/mob/M = i
 
@@ -64,6 +63,7 @@
 			continue
 
 		// Admin links for name
+		var/name = real_name
 		if(check_other_rights(M.client, R_ADMIN, FALSE))
 			name = "<a href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[name]</a>"
 
