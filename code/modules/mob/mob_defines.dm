@@ -43,7 +43,8 @@
 	var/inertia_dir = 0
 	var/move_on_shuttle = TRUE // Can move on the shuttle.
 	var/canmove = TRUE
-	var/lying = 0
+	///Mob's angle in BYOND degrees. 0 is north (up/standing for humans), 90 and 270 are east and west respectively (lying horizontally), and 90 is south (upside-down).
+	var/lying_angle = 0
 	var/lying_prev = 0
 
 	//Security
@@ -84,7 +85,7 @@
 
 	//Input
 	var/datum/focus //What receives our keyboard inputs. src by default
-
+	var/memory_throttle_time = 0
 	var/updating_glide_size = TRUE //Whether the mob is updating glide size when movespeed updates or not
 
 	/// Can they interact with station electronics

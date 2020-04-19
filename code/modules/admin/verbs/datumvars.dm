@@ -101,6 +101,10 @@
 		var/typename = "[type]"
 		var/static/list/TYPES_SHORTCUTS = list(
 			/obj/effect/decal/cleanable = "CLEANABLE",
+			/obj/item/radio/headset = "HEADSET",
+			/obj/item/reagent_containers/food/drinks = "DRINK", //longest paths comes first
+			/obj/item/reagent_containers/food = "FOOD",
+			/obj/item/reagent_containers = "REAGENT_CONTAINERS",
 			/obj/item/organ = "ORGAN",
 			/obj/item = "ITEM",
 			/obj/machinery = "MACHINERY",
@@ -116,8 +120,8 @@
 			/mob/living = "LIVING",
 			/mob = "M"
 		)
-		for(var/tn in TYPES_SHORTCUTS)
-			if(copytext(typename, 1, length("[tn]/") + 1)=="[tn]/" /*findtextEx(typename,"[tn]/",1,2)*/)
+		for (var/tn in TYPES_SHORTCUTS)
+			if(copytext(typename, 1, length("[tn]/") + 1) == "[tn]/" /*findtextEx(typename,"[tn]/",1,2)*/ )
 				typename = TYPES_SHORTCUTS[tn] + copytext(typename, length("[tn]/"))
 				break
 		.[typename] = type

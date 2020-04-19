@@ -57,7 +57,6 @@
 
 	do_evolve(castetype, castepick)
 
-
 /mob/living/carbon/xenomorph/proc/do_evolve(forced_caste_type, forced_caste_name)
 	if(is_ventcrawling)
 		to_chat(src, "<span class='warning'>This place is too constraining to evolve.</span>")
@@ -196,6 +195,21 @@
 			to_chat(src, "<span class='warning'>Something in this place is interfering with our link to Queen Mother. We are unable to evolve to a psychic caste here!</span>")
 			return
 
+	else if(new_caste_type == /mob/living/carbon/xenomorph/hivemind) //Special case for dealing with hiveminds - this may be subject to heavy change, such as multiple hiveminds potentially being an option
+		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]))
+			to_chat(src, "<span class='warning'>There cannot be two manifestations of the hivemind's will at once.</span>")
+			return
+
+		if(isxenoresearcharea(get_area(src)))
+			to_chat(src, "<span class='warning'>Something in this place is interfering with our link to the Hivemind. We are unable to evolve to be its manifestation!</span>")
+			return
+			
+		var/turf/T = get_turf(src)
+
+		if(!T.check_alien_construction(src))
+			return			
+		
+
 	else
 		var/potential_queens = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) + length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/drone])
 
@@ -248,6 +262,10 @@
 	else if(new_caste_type == /mob/living/carbon/xenomorph/shrike)
 		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/shrike]))
 			to_chat(src, "<span class='warning'>There already is a Shrike.</span>")
+			return
+	else if(new_caste_type == /mob/living/carbon/xenomorph/hivemind) //Special case for dealing with hiveminds - this may be subject to heavy change, such as multiple hiveminds potentially being an option
+		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]))
+			to_chat(src, "<span class='warning'>There cannot be two manifestations of the hivemind's will at once.</span>")
 			return
 	else if(!forced_caste_type) // these shouldnt be checked if trying to become a queen.
 		if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierzeros + tierones, tiertwos, tierthrees))

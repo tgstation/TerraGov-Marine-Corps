@@ -416,7 +416,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 			user.put_in_hands(H)
 
 		H.update_icon()
-		in_chamber = null
+		QDEL_NULL(in_chamber)
 	else
 		user.visible_message("<span class='notice'>[user] cocks [src].</span>",
 		"<span class='notice'>You cock [src].</span>", null, 4)
@@ -461,7 +461,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		Fire(A, user, params) //Otherwise, fire normally.
 
 /*
-load_into_chamber(), reload_into_chamber(), and clear_jam() do all of the heavy lifting.
+load_into_chamber() and reload_into_chamber() do all of the heavy lifting.
 If you need to change up how a gun fires, just change these procs for that subtype
 and you're good to go.
 */
@@ -512,7 +512,8 @@ and you're good to go.
 		return in_chamber
 
 	make_casing(type_of_casings) // Drop a casing if needed.
-	in_chamber = null //If we didn't fire from attachable, let's set this so the next pass doesn't think it still exists.
+	if(in_chamber)
+		QDEL_NULL(in_chamber) //If we didn't fire from attachable, let's set this so the next pass doesn't think it still exists.
 
 	if(current_mag) //If there is no mag, we can't reload.
 		ready_in_chamber(user)
@@ -530,13 +531,6 @@ and you're good to go.
 			active_attachable.current_rounds += ammo_per_shot //Refund the bullet.
 		return TRUE
 
-
-/obj/item/weapon/gun/proc/clear_jam(obj/projectile/projectile_to_fire, mob/user) //Guns jamming, great.
-	flags_gun_features &= ~GUN_BURST_FIRING // Also want to turn off bursting, in case that was on. It probably was.
-	delete_bullet(projectile_to_fire, TRUE) //We're going to clear up anything inside if we need to.
-	//If it's a regular bullet, we're just going to keep it chambered.
-	extra_delay = 0.2 SECONDS + ((burst_delay + extra_delay) * 2) // Some extra delay before firing again.
-	to_chat(user, "<span class='warning'>[src] jammed! You'll need a second to get it fixed!</span>")
 
 //----------------------------------------------------------
 		//									   \\
@@ -581,6 +575,7 @@ and you're good to go.
 
 		//The gun should return the bullet that it already loaded from the end cycle of the last Fire().
 		var/obj/projectile/projectile_to_fire = load_into_chamber(user) //Load a bullet in or check for existing one.
+		in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.
 		if(!projectile_to_fire) //If there is nothing to fire, click.
 			click_empty(user)
 			break
@@ -672,6 +667,7 @@ and you're good to go.
 		if(active_attachable && !CHECK_BITFIELD(active_attachable.flags_attach_features, ATTACH_PROJECTILE))
 			active_attachable.activate_attachment(null, TRUE)//No way.
 		var/obj/projectile/projectile_to_fire = load_into_chamber(user)
+		in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.
 		if(!projectile_to_fire) //We actually have a projectile, let's move on. We're going to simulate the fire cycle.
 			return // no ..(), already invoked above
 
@@ -722,6 +718,7 @@ and you're good to go.
 	if(active_attachable && !CHECK_BITFIELD(active_attachable.flags_attach_features, ATTACH_PROJECTILE))
 		active_attachable.activate_attachment(null, TRUE)//We're not firing off a nade into our mouth.
 	var/obj/projectile/projectile_to_fire = load_into_chamber(user)
+	in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.
 
 	if(!projectile_to_fire) //We actually have a projectile, let's move on.
 		click_empty(user)//If there's no projectile, we can't do much.

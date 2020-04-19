@@ -28,7 +28,7 @@
 	var/locate_cooldown = 0 //Cooldown for SL locator
 	var/list/armor_overlays
 	actions_types = list(/datum/action/item_action/toggle)
-	flags_armor_features = ARMOR_SQUAD_OVERLAY|ARMOR_LAMP_OVERLAY
+	flags_armor_features = ARMOR_LAMP_OVERLAY
 	w_class = WEIGHT_CLASS_HUGE
 	time_to_unequip = 2 SECONDS
 	time_to_equip = 2 SECONDS
@@ -70,7 +70,7 @@
 
 /obj/item/clothing/suit/storage/marine/Destroy()
 	if(pockets)
-		qdel(pockets)
+		QDEL_NULL(pockets)
 	return ..()
 
 /obj/item/clothing/suit/storage/marine/attack_self(mob/user)
@@ -101,10 +101,6 @@
 	armor = list("melee" = 65, "bullet" = 70, "laser" = 60, "energy" = 30, "bomb" = 60, "bio" = 50, "rad" = 20, "fire" = 50, "acid" = 50)
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 
-/obj/item/clothing/suit/storage/marine/M3HB/Initialize()
-	icon_state = pick("1","5")
-	. = ..()
-
 /obj/item/clothing/suit/storage/marine/M3LB
 	name = "\improper M3-LB pattern marine armor"
 	desc = "A standard Marine M3 Light Build Pattern Chestplate. Lesser encumbrance and protection."
@@ -115,9 +111,9 @@
 
 /obj/item/clothing/suit/storage/marine/harness
 	name = "\improper M3 pattern marine harness"
-	desc = "A standard Marine M3 Pattern Harness. No encumbrance and no protection."
+	desc = "A standard Marine M3 Pattern Harness. No encumbrance and almost no protection."
 	icon_state = "10"
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list("melee" = 7, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 7)
 	slowdown = 0
 	flags_atom = NONE
 

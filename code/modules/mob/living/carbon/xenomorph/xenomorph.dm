@@ -16,7 +16,16 @@
 	create_reagents(1000)
 	gender = NEUTER
 
-	GLOB.alive_xeno_list += src
+	switch(stat)
+		if(CONSCIOUS)
+			GLOB.alive_xeno_list += src
+			see_in_dark = xeno_caste.conscious_see_in_dark
+		if(UNCONSCIOUS)
+			GLOB.alive_xeno_list += src
+			see_in_dark = xeno_caste.unconscious_see_in_dark
+		if(DEAD)
+			see_in_dark = xeno_caste.unconscious_see_in_dark
+
 	GLOB.xeno_mob_list += src
 	GLOB.round_statistics.total_xenos_created++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_xenos_created")
@@ -213,7 +222,7 @@
 /mob/living/carbon/xenomorph/pull_response(mob/puller)
 	var/mob/living/carbon/human/H = puller
 	if(stat == CONSCIOUS && H.species?.count_human) // If the Xeno is conscious, fight back against a grab/pull
-		H.Knockdown(rand(xeno_caste.tacklemin,xeno_caste.tacklemax) * 20)
+		H.Paralyze(rand(xeno_caste.tacklemin,xeno_caste.tacklemax) * 20)
 		playsound(H.loc, 'sound/weapons/pierce.ogg', 25, 1)
 		H.visible_message("<span class='warning'>[H] tried to pull [src] but instead gets a tail swipe to the head!</span>")
 		H.stop_pulling()
@@ -309,3 +318,14 @@
 	if(!. || can_reenter_corpse)
 		return
 	set_afk_status(MOB_RECENTLY_DISCONNECTED, 5 SECONDS)
+
+/mob/living/carbon/xenomorph/set_stat(new_stat)
+	. = ..()
+	if(isnull(.))
+		return
+	switch(stat)
+		if(UNCONSCIOUS)
+			see_in_dark = xeno_caste.unconscious_see_in_dark
+		if(DEAD, CONSCIOUS)
+			if(. == UNCONSCIOUS)
+				see_in_dark = xeno_caste.conscious_see_in_dark

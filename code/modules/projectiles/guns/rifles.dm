@@ -59,22 +59,28 @@
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/gyro,
 						/obj/item/attachable/flashlight,
-						/obj/item/attachable/t18barrel,
 						/obj/item/attachable/bipod,
 						/obj/item/attachable/stock/t18stock,
 						/obj/item/attachable/burstfire_assembly,
 						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/compensator,
 						/obj/item/attachable/attached_gun/grenade,
 						/obj/item/attachable/attached_gun/flamer,
+						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/attached_gun/shotgun)
 
     flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
     gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
-    starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/t18barrel)
-    attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 10, "rail_y" = 19, "under_x" = 24, "under_y" = 12, "stock_x" = 11, "stock_y" = 10)
+    starting_attachment_types = list(/obj/item/attachable/stock/t18stock)
+    attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 10, "rail_y" = 19, "under_x" = 18, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
 
-    fire_delay = 0.25 SECONDS
-    burst_delay = 0.10 SECONDS
+    fire_delay = 0.3 SECONDS
+    burst_delay = 0.125 SECONDS
     accuracy_mult = 1.10
     scatter = -5
     burst_amount = 4
@@ -104,19 +110,25 @@
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/gyro,
 						/obj/item/attachable/flashlight,
-						/obj/item/attachable/t12barrel,
 						/obj/item/attachable/bipod,
-						/obj/item/attachable/stock/t18stock,
+						/obj/item/attachable/stock/t12stock,
 						/obj/item/attachable/burstfire_assembly,
 						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/attached_gun/grenade,
 						/obj/item/attachable/attached_gun/flamer,
 						/obj/item/attachable/attached_gun/shotgun)
 
     flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
     gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST, GUN_FIREMODE_AUTOMATIC)
-    starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/t12barrel)
-    attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 5, "rail_y" = 24, "under_x" = 24, "under_y" = 12, "stock_x" = 11, "stock_y" = 10)
+    starting_attachment_types = list(/obj/item/attachable/stock/t12stock)
+    attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 23, "under_x" = 20, "under_y" = 11, "stock_x" = 0, "stock_y" = 13)
 
     fire_delay = 0.2 SECONDS
     burst_delay = 0.15 SECONDS
@@ -148,7 +160,6 @@
 	max_shells = 10 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/standard_dmr
 	attachable_allowed = list(
-						/obj/item/attachable/quickfire,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/compensator,
@@ -169,7 +180,7 @@
 						/obj/item/attachable/scope,
 						/obj/item/attachable/scope/mini)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_CAN_POINTBLANK
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	starting_attachment_types = list(/obj/item/attachable/stock/dmr, /obj/item/attachable/scope/mini)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 13, "rail_y" = 18, "under_x" = 24, "under_y" = 13, "stock_x" = 14, "stock_y" = 10)
@@ -185,7 +196,7 @@
 
 /obj/item/weapon/gun/rifle/m41a1
 	name = "\improper M41A1 pulse rifle"
-	desc = "An outdated rifle for the TerraGov Marine Corps, carried by a few coporate mercenaries. However, the M41A1 is a very rare sight in TerraGov systems. Uses 10x24mm caseless ammunition."
+	desc = "An outdated rifle for the TerraGov Marine Corps, carried by a few coporate mercenaries,the M41A1 is a very rare sight in TerraGov systems. Uses 10x24mm caseless ammunition."
 	icon_state = "m41a1"
 	item_state = "m41a1"
 	muzzleflash_iconstate = "muzzle_flash_medium"
@@ -413,16 +424,22 @@
 						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/lasersight,
-						/obj/item/attachable/t42barrel,
 						/obj/item/attachable/bipod,
-						/obj/item/attachable/stock/dmr,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/mini,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/stock/t42stock,
 						/obj/item/attachable/magnetic_harness)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	starting_attachment_types = list(/obj/item/attachable/stock/dmr, /obj/item/attachable/t42barrel)
+	starting_attachment_types = list(/obj/item/attachable/stock/t42stock)
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 10, "rail_y" = 20, "under_x" = 24, "under_y" = 13, "stock_x" = 12, "stock_y" = 12)
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 20, "under_x" = 16, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
 	fire_delay = 0.2 SECONDS
 	burst_amount = 1
 	accuracy_mult_unwielded = 0.5
@@ -596,7 +613,7 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	starting_attachment_types = list(/obj/item/attachable/stock/tx15)
-	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 12, "rail_y" = 17, "under_x" = 26, "under_y" = 15, "stock_x" = 26, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 12, "rail_y" = 17, "under_x" = 24, "under_y" = 11, "stock_x" = 26, "stock_y" = 13)
 	gun_skill_category = GUN_SKILL_SHOTGUNS
 
 	fire_delay = 1.1 SECONDS

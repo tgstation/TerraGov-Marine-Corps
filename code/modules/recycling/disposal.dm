@@ -119,17 +119,23 @@
 
 //Mouse drop another mob or self
 /obj/machinery/disposal/MouseDrop_T(mob/target, mob/user)
-	if(!istype(target) || target.anchored || target.buckled || get_dist(user, src) > 1 || get_dist(user, target) > 1 || user.incapacitated(TRUE) || isAI(user) || target.mob_size >= MOB_SIZE_BIG)
+	// Check the user, if they can do all the things, are they close, alive?
+	if(isAI(user) || isxeno(user) || !isliving(user) || get_dist(user, target) > 1 || !in_range(user, src) || user.incapacitated(TRUE))
 		return
-	if(isanimal(user) && target != user) return //Animals cannot put mobs other than themselves into disposal
+	// Check the target, are they valid, small enough, and not tied down
+	if(!istype(target) || target.anchored || target.buckled || target.mob_size >= MOB_SIZE_BIG)
+		return
+	if(target != user && (isanimal(user) || user.restrained())) 
+		return //Animals cannot put mobs other than themselves into disposal
 
 	if(target == user)
 		visible_message("<span class='notice'>[user] starts climbing into the disposal.</span>")
 	else
-		if(user.restrained()) return //can't stuff someone other than you if restrained.
 		visible_message("<span class ='warning'>[user] starts stuffing [target] into the disposal.</span>")
-	if(!do_after(user, 40, FALSE, target, BUSY_ICON_HOSTILE))
+		
+	if(!do_after(user, 4 SECONDS, FALSE, target, BUSY_ICON_HOSTILE))
 		return
+
 	if(target == user)
 		user.visible_message("<span class='notice'>[user] climbs into [src].</span>",
 		"<span class ='notice'>You climb into [src].</span>")
@@ -149,7 +155,7 @@
 	if(!isliving(user))
 		return
 	var/mob/living/L = user
-	if(L.stat || L.IsStun() || L.IsKnockdown() || flushing)
+	if(L.stat || L.IsStun() || L.IsParalyzed() || flushing)
 		return
 	if(L.loc == src)
 		go_out(L)
@@ -165,7 +171,7 @@
 	if(isliving(user))
 		var/mob/living/L = user
 		L.Stun(40)
-	if(!user.lying)
+	if(!user.lying_angle)
 		user.visible_message("<span class='warning'>[user] suddenly climbs out of [src]!",
 		"<span class='warning'>You climb out of [src] and get your bearings!")
 		update()
@@ -247,7 +253,7 @@
 		if(isliving(AM))
 			var/mob/M = AM
 			M.update_canmove() //Force the delay to go in action immediately
-			if(!M.lying)
+			if(!M.lying_angle)
 				M.visible_message("<span class='warning'>[M] is suddenly pushed out of [src]!",
 				"<span class='warning'>You get pushed out of [src] and get your bearings!")
 			if(isliving(M))

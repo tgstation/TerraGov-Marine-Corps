@@ -488,6 +488,7 @@
 	new /obj/item/clothing/gloves/white(src)
 	new /obj/item/clothing/under/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
+	new /obj/item/flash(src)
 
 /obj/structure/closet/secure_closet/shiptech
 	name = "Requisitions' Locker"

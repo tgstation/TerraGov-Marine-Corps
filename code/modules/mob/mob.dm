@@ -11,6 +11,14 @@
 			D.reset_perspective(null)
 	ghostize()
 	clear_fullscreens()
+	if(mind)
+		stack_trace("Found a reference to an undeleted mind in mob/Destroy()")
+		mind = null
+	if(hud_used)
+		QDEL_NULL(hud_used)
+	for(var/a in actions)
+		var/datum/action/action_to_remove = a
+		action_to_remove.remove_action(src)
 	return ..()
 
 /mob/Initialize()
@@ -105,7 +113,7 @@
 	if(!client)
 		return
 
-	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+	msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 
 	to_chat(src, msg)
 
@@ -114,7 +122,7 @@
 	if(!client)
 		return
 
-	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+	msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 
 	if(type)
 		if(type == EMOTE_VISIBLE && eye_blind) //Vision related
@@ -573,9 +581,9 @@
 	overlay_fullscreen("pain", /obj/screen/fullscreen/pain, 1)
 	clear_fullscreen("pain")
 
-
+///Called to update the stat var, returns a boolean to indicate if it has been handled.
 /mob/proc/update_stat()
-	return
+	return FALSE
 
 /mob/proc/can_inject()
 	return reagents
@@ -840,3 +848,10 @@
 		remove_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE)
 		return
 	add_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE, TRUE, 100, NONE, TRUE, grab_state * 3)
+
+/mob/proc/set_stat(new_stat)
+	if(new_stat == stat)
+		return
+	. = stat //old stat
+	stat = new_stat
+	update_canmove()

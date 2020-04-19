@@ -264,7 +264,7 @@
 	if(token(i) == "*")
 		node += "*"
 		i++
-	else if(copytext(token(i), 1, 2) == "/")
+	else if(token(i)[1] == "/")
 		i = object_type(i, node)
 	else
 		i = parse_error("Expected '*' or type path for select item")
@@ -394,7 +394,7 @@
 
 //object_type:	<type path>
 /datum/SDQL_parser/proc/object_type(i, list/node)
-	if(copytext(token(i), 1, 2) != "/")
+	if(token(i)[1] != "/")
 		return parse_error("Expected type, but it didn't begin with /")
 
 	var/path = text2path(token(i))
@@ -428,7 +428,7 @@
 
 //string:	''' <some text> ''' | '"' <some text > '"'
 /datum/SDQL_parser/proc/string(i, list/node)
-	if(copytext(token(i), 1, 2) in list("'", "\""))
+	if(token(i)[1] in list("'", "\""))
 		node += token(i)
 	else
 		parse_error("Expected string but found '[token(i)]'")
@@ -438,7 +438,7 @@
 //array:	'[' expression_list ']'
 /datum/SDQL_parser/proc/array(i, list/node)
 	// Arrays get turned into this: list("[", list(exp_1a = exp_1b, ...), ...), "[" is to mark the next node as an array.
-	if(copytext(token(i), 1, 2) != "\[")
+	if(token(i)[1] != "\[")
 		parse_error("Expected an array but found '[token(i)]'")
 		return i + 1
 
@@ -591,21 +591,21 @@
 	if(token(i) == "null")
 		node += "null"
 		i++
-	else if(lowertext(copytext(token(i), 1, 3)) == "0x" && isnum(hex2num(copytext(token(i), 3))))
+	else if(lowertext(copytext(token(i), 1, 3)) == "0x" && isnum(hex2num(copytext(token(i), 3))))//3 == length("0x") + 1
 		node += hex2num(copytext(token(i), 3))
 		i++
 	else if(isnum(text2num(token(i))))
 		node += text2num(token(i))
 		i++
-	else if(copytext(token(i), 1, 2) in list("'", "\""))
+	else if(token(i)[1] in list("'", "\""))
 		i = string(i, node)
-	else if(copytext(token(i), 1, 2) == "\[") // Start a list.
+	else if(token(i)[1] == "\[") // Start a list.
 		i = array(i, node)
 
-	else if(copytext(token(i), 1, 3) == "@\[")
+	else if(copytext(token(i), 1, 3) == "@\[")//3 == length("@\[") + 1
 		i = selectors_array(i, node)
 
-	else if(copytext(token(i), 1, 2) == "/")
+	else if(token(i)[1] == "/")
 		i = object_type(i, node)
 	else
 		i = variable(i, node)

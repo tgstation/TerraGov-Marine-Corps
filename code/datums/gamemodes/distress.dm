@@ -258,8 +258,7 @@
 					/obj/item/attachable/burstfire_assembly = round(scale * 4),
 
 					/obj/item/attachable/stock/t35stock = round(scale * 4),
-					/obj/item/attachable/stock/revolver = round(scale * 4),
-					/obj/item/attachable/stock/smg = round(scale * 4) ,
+					/obj/item/attachable/stock/t19stock = round(scale * 4),
 					/obj/item/attachable/stock/tactical = round(scale * 3),
 
 					/obj/item/attachable/attached_gun/grenade = round(scale * 10),
@@ -490,7 +489,7 @@
 		return
 	var/eta = timeleft(orphan_hive_timer) * 0.1
 	if(eta > 0)
-		return "[(eta / 60) % 60]:[add_zero(num2text(eta % 60), 2)]"
+		return "[(eta / 60) % 60]:[add_leading(num2text(eta % 60), 2, "0")]"
 
 
 /datum/game_mode/infestation/distress/attempt_to_join_as_larva(mob/xeno_candidate)

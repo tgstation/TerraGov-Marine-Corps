@@ -1,7 +1,3 @@
-//shorthand
-#define GET_COMPONENT_FROM(varname, path, target) var##path/##varname = ##target.GetComponent(##path)
-#define GET_COMPONENT(varname, path) GET_COMPONENT_FROM(varname, path, src)
-
 // All signals. Format:
 // When the signal is called: (signal arguments)
 // All signals send the source datum of the signal as the first argument
@@ -30,10 +26,21 @@
 //////////////////////////////////////////////////////////////////
 
 // /datum signals
+/// when a component is added to a datum: (/datum/component)
+#define COMSIG_COMPONENT_ADDED "component_added"
+/// before a component is removed from a datum because of RemoveComponent: (/datum/component)
+#define COMSIG_COMPONENT_REMOVING "component_removing"
 /// before a datum's Destroy() is called: (force), returning a nonzero value will cancel the qdel operation
 #define COMSIG_PARENT_PREQDELETED "parent_preqdeleted"
+/// just before a datum's Destroy() is called: (force), at this point none of the other components chose to interrupt qdel and Destroy will be called
+#define COMSIG_PARENT_QDELETING "parent_qdeleting"
 /// generic topic handler (usr, href_list)
 #define COMSIG_TOPIC "handle_topic"
+
+/// fires on the target datum when an element is attached to it (/datum/element)
+#define COMSIG_ELEMENT_ATTACH "element_attach"
+/// fires on the target datum when an element is attached to it  (/datum/element)
+#define COMSIG_ELEMENT_DETACH "element_detach"
 
 // /datum/component signals
 #define COMSIG_AUTOFIRE_ONMOUSEDOWN "autofire_onmousedown"
@@ -382,7 +389,6 @@
 #define COMSIG_XENOABILITY_CREST_DEFENSE "xenoability_crest_defense"
 #define COMSIG_XENOABILITY_FORTIFY "xenoability_fortify"
 
-#define COMSIG_XENOABILITY_NEUROCLAWS "xenoability_neuroclaws"
 #define COMSIG_XENOABILITY_EMIT_NEUROGAS "xenoability_emit_neurogas"
 
 #define COMSIG_XENOABILITY_SALVAGE_PLASMA "xenoability_salvage_plasma"
@@ -427,6 +433,14 @@
 #define COMSIG_KB_QUICKEQUIP "keybinding_quickequip"
 #define COMSIG_KB_HOLSTER "keybinding_holster"
 #define COMSIG_KB_UNIQUEACTION "keybinding_uniqueaction"
+
+// Ability adding/removing signals
+#define ACTION_GIVEN "gave_an_action"		//from base of /datum/action/proc/give_action(): (datum/action)
+#define ACTION_REMOVED "removed_an_action"	//from base of /datum/action/proc/remove_action(): (datum/action)
+
+// Action state signal that's sent whenever the action state has a distance maintained with the target being walked to
+#define COMSIG_STATE_MAINTAINED_DISTANCE "action_state_maintained_dist_with_target"
+#define COMSIG_OBSTRUCTED_MOVE "unable_to_step_towards_thing" //Tried to step in a direction and there was a obstruction
 
 /*******Non-Signal Component Related Defines*******/
 

@@ -162,6 +162,7 @@
 						/obj/item/attachable/bipod,
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/attached_gun/grenade,
+						/obj/item/attachable/scope,
 						/obj/item/attachable/attached_gun/flamer,
 						/obj/item/attachable/attached_gun/shotgun,
 						/obj/item/attachable/scope/mini,

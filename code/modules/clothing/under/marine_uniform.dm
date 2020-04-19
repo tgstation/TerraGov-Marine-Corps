@@ -13,20 +13,18 @@
 	has_sensor = 2
 
 /obj/item/clothing/under/marine/standard
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
+	flags_item_map_variant = null
 
 /obj/item/clothing/under/marine/corpsman
 	name = "\improper TGMC corpsman fatigues"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented combat corpsman fatigues. You suspect it's not as robust-proof as advertised."
 	icon_state = "marine_medic"
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_ICE_PROTECTION)
 
 
 /obj/item/clothing/under/marine/engineer
 	name = "\improper TGMC engineer fatigues"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented combat engineer fatigues. You suspect it's not as robust-proof as advertised."
 	icon_state = "marine_engineer"
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_ICE_PROTECTION)
 
 
 /obj/item/clothing/under/marine/sniper
@@ -35,7 +33,6 @@
 	item_state = "s_marine_sniper"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	rollable_sleeves = FALSE
-
 
 /obj/item/clothing/under/marine/tanker
 	name = "\improper TGMC tanker uniform"

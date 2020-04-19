@@ -511,7 +511,7 @@
 			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
 			return
 		L.forceMove(loc)
-		L.Knockdown(10 SECONDS)
+		L.Paralyze(10 SECONDS)
 		for(var/obj/machinery/scoreboard/X in GLOB.machines)
 			if(X.id == id)
 				X.score(side, 3)// 3 points for dunking a mob

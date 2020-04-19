@@ -171,6 +171,11 @@
 
 		if("distress")
 			if(state == STATE_DISTRESS)
+				if(!CONFIG_GET(flag/distress_ert_allowed))
+					log_admin_private("[key_name(usr)] may have attempted a href exploit on a [src]. [AREACOORD(usr)].")
+					message_admins("[ADMIN_TPMONTY(usr)] may be attempting a href exploit on a [src]. [ADMIN_VERBOSEJMP(usr)].")
+					return FALSE
+					
 				if(world.time < DISTRESS_TIME_LOCK)
 					to_chat(usr, "<span class='warning'>The distress beacon cannot be launched this early in the operation. Please wait another [round((DISTRESS_TIME_LOCK-world.time)/600)] minutes before trying again.</span>")
 					return FALSE
@@ -221,7 +226,7 @@
 				else
 					var/chosen_call = admin_response
 
-					if(chosen_call == "Random")
+					if(chosen_call == "random")
 						SSticker.mode.activate_distress()
 					else
 						SSticker.mode.activate_distress(chosen_call)
@@ -273,10 +278,10 @@
 					post_status(href_list["statdisp"])
 
 		if("setmsg1")
-			stat_msg1 = reject_bad_text(trim(copytext(sanitize(input("Line 1", "Enter Message Text", stat_msg1) as text|null), 1, 40)), 40)
+			stat_msg1 = reject_bad_text(input("Line 1", "Enter Message Text", stat_msg1) as text|null, 40)
 
 		if("setmsg2")
-			stat_msg2 = reject_bad_text(trim(copytext(sanitize(input("Line 2", "Enter Message Text", stat_msg2) as text|null), 1, 40)), 40)
+			stat_msg2 = reject_bad_text(input("Line 2", "Enter Message Text", stat_msg2) as text|null, 40)
 
 		if("messageTGMC")
 			if(authenticated == 2)
@@ -337,7 +342,8 @@
 					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=announce'>Make an announcement</A> \]"
 					dat += length(GLOB.admins) > 0 ? "<BR>\[ <A HREF='?src=\ref[src];operation=messageTGMC'>Send a message to TGMC</A> \]" : "<BR>\[ TGMC communication offline \]"
 					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=award'>Award a medal</A> \]"
-					dat += "<BR>\[ <A HREF='?src=\ref[src];operation=distress'>Send Distress Beacon</A> \]"
+					if(CONFIG_GET(flag/distress_ert_allowed)) // We only add the UI if the flag is allowed
+						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=distress'>Send Distress Beacon</A> \]"
 					switch(SSevacuation.evac_status)
 						if(EVACUATION_STATUS_STANDING_BY) dat += "<BR>\[ <A HREF='?src=\ref[src];operation=evacuation_start'>Initiate emergency evacuation</A> \]"
 						if(EVACUATION_STATUS_INITIATING) dat += "<BR>\[ <A HREF='?src=\ref[src];operation=evacuation_cancel'>Cancel emergency evacuation</A> \]"
@@ -352,7 +358,8 @@
 			dat += "Are you sure you want to cancel the evacuation of the [SSmapping.configs[SHIP_MAP].map_name]? \[ <A HREF='?src=\ref[src];operation=evacuation_cancel'>Confirm</A>\]"
 
 		if(STATE_DISTRESS)
-			dat += "Are you sure you want to trigger a distress signal? The signal can be picked up by anyone listening, friendly or not. \[ <A HREF='?src=\ref[src];operation=distress'>Confirm</A>\]"
+			if(CONFIG_GET(flag/distress_ert_allowed))
+				dat += "Are you sure you want to trigger a distress signal? The signal can be picked up by anyone listening, friendly or not. \[ <A HREF='?src=\ref[src];operation=distress'>Confirm</A>\]"
 
 		if(STATE_MESSAGELIST)
 			dat += "Messages:"

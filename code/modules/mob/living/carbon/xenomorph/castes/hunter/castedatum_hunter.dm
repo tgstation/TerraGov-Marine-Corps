@@ -18,14 +18,14 @@
 	tackle_damage = 30
 
 	// *** Speed *** //
-	speed = -1.5
+	speed = -1.2
 
 	// *** Plasma *** //
 	plasma_max = 100
 	plasma_gain = 10
 
 	// *** Health *** //
-	max_health = 150
+	max_health = 160
 
 	// *** Evolution *** //
 	evolution_threshold = 180
@@ -38,7 +38,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 0, "acid" = 10)
+	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 0, "acid" = 10)
 
 	// *** Ranged Attack *** //
 	charge_type = 2 //Pounce - Hunter
@@ -70,20 +70,20 @@
 	tackle_damage = 35
 
 	// *** Speed *** //
-	speed = -1.6
+	speed = -1.3
 
 	// *** Plasma *** //
 	plasma_max = 150
 	plasma_gain = 15
 
 	// *** Health *** //
-	max_health = 175
+	max_health = 160
 
 	// *** Evolution *** //
 	upgrade_threshold = 200
 
 	// *** Defense *** //
-	armor = list("melee" = 13, "bullet" = 13, "laser" = 13, "energy" = 13, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 5, "acid" = 15)
+	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 5, "acid" = 15)
 
 	// *** Ranged Attack *** //
 	pounce_delay = 12.5 SECONDS
@@ -101,20 +101,20 @@
 	tackle_damage = 40
 
 	// *** Speed *** //
-	speed = -1.7
+	speed = -1.4
 
 	// *** Plasma *** //
 	plasma_max = 200
 	plasma_gain = 18
 
 	// *** Health *** //
-	max_health = 190
+	max_health = 180
 
 	// *** Evolution *** //
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 18, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 7, "acid" = 18)
+	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 7, "acid" = 18)
 
 	// *** Ranged Attack *** //
 	pounce_delay = 11.0 SECONDS
@@ -133,7 +133,7 @@
 	tackle_damage = 45
 
 	// *** Speed *** //
-	speed = -1.7
+	speed = -1.5
 
 	// *** Plasma *** //
 	plasma_max = 200
@@ -146,7 +146,7 @@
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor = list("melee" = 18, "bullet" = 18, "laser" = 18, "energy" = 18, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 10, "acid" = 18)
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 10, "acid" = 18)
 
 	// *** Ranged Attack *** //
 	pounce_delay = 10.0 SECONDS

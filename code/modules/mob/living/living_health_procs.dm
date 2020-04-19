@@ -75,11 +75,11 @@
 /mob/living/proc/updateStamina(feedback = TRUE)
 	if(staminaloss < maxHealth * 1.5)
 		return
-	if(!IsKnockdown())
+	if(!IsParalyzed())
 		if(feedback)
 			visible_message("<span class='warning'>\The [src] slumps to the ground, too weak to continue fighting.</span>",
 				"<span class='warning'>You slump to the ground, you're too exhausted to keep going...</span>")
-	Knockdown(80)
+	Paralyze(80)
 
 
 /mob/living/carbon/human/updateStamina(feedback = TRUE)
@@ -276,7 +276,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 		timeofdeath = 0
 
 	// restore us to conciousness
-	stat = CONSCIOUS
+	set_stat(CONSCIOUS)
 	updatehealth()
 
 	// make the icons look correct

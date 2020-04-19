@@ -125,7 +125,7 @@
 
 			adjust_stagger(6 * armor)
 			add_slowdown(round(6 * armor,0.1))
-			Knockdown(80 * armor)
+			Paralyze(80 * armor)
 
 		if(3)
 			b_loss += (rand(40, 50) * armor)
@@ -136,7 +136,7 @@
 
 			adjust_stagger(3 * armor)
 			add_slowdown(round(3 * armor,0.1))
-			Knockdown(40 * armor)
+			Paralyze(40 * armor)
 
 	var/update = 0
 	#ifdef DEBUG_HUMAN_ARMOR
@@ -624,7 +624,7 @@
 					for (var/datum/data/record/R in GLOB.datacore.security)
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"security"))
-								var/t1 = copytext(sanitize(input("Add Comment:", "Sec. records", null, null)  as message),1,MAX_MESSAGE_LEN)
+								var/t1 = stripped_input(usr, "Add Comment:", "Sec. records")
 								if ( !(t1) || usr.stat || usr.restrained() || !(hasHUD(usr,"security")) )
 									return
 								var/counter = 1
@@ -733,7 +733,7 @@
 					for (var/datum/data/record/R in GLOB.datacore.medical)
 						if (R.fields["id"] == E.fields["id"])
 							if(hasHUD(usr,"medical"))
-								var/t1 = copytext(sanitize(input("Add Comment:", "Med. records", null, null)  as message),1,MAX_MESSAGE_LEN)
+								var/t1 = stripped_input(usr, "Add Comment:", "Med. records")
 								if ( !(t1) || usr.stat || usr.restrained() || !(hasHUD(usr,"medical")) )
 									return
 								var/counter = 1

@@ -151,7 +151,7 @@
 /obj/machinery/optable/proc/check_victim()
 	if(locate(/mob/living/carbon/human, loc))
 		var/mob/living/carbon/human/M = locate(/mob/living/carbon/human, loc)
-		if(M.lying)
+		if(M.lying_angle)
 			victim = M
 			icon_state = M.handle_pulse() ? "table2-active" : "table2-idle"
 			return 1

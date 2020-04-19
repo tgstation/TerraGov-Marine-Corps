@@ -53,7 +53,7 @@
 		C.visible_message("<span class='danger'>[C] convulses in pain!</span>", "<span class='danger'>Excruciating pain shoots through [part ? "your [part.display_name]" : "you"]!</span>")
 		C.flash_eyes(1, TRUE)
 		C.AdjustStun(20 SECONDS)
-		C.Knockdown(20 SECONDS)
+		C.Paralyze(20 SECONDS)
 		C.apply_damage(100, HALLOSS, part)
 		C.apply_damage(5, BURN, part)
 		UPDATEHEALTH(C)
@@ -63,7 +63,7 @@
 
 
 /obj/item/implant/neurostim/implanted(mob/source, mob/user)
-	var/p = sanitize(input(user, "Choose activation phrase:"))
+	var/p = stripped_input(user, "Choose activation phrase:")
 	if(!p)
 		return 0
 	phrase = p

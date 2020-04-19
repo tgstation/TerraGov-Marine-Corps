@@ -270,6 +270,6 @@
 	jobtype = /datum/job/survivor/rambo
 	w_uniform = /obj/item/clothing/under/color/grey
 	wear_suit = /obj/item/clothing/suit/armor/rugged
-	shoes = /obj/item/clothing/shoes/ruggetboot
+	shoes = /obj/item/clothing/shoes/ruggedboot
 	back = /obj/item/storage/backpack/satchel/rugged
 	gloves = /obj/item/clothing/gloves/ruggedgloves

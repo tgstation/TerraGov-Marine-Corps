@@ -23,6 +23,7 @@
 	var/verb_ask = "asks"
 	var/verb_exclaim = "exclaims"
 	var/verb_whisper = "whispers"
+	var/verb_sing = "sings"
 	var/verb_yell = "yells"
 	var/speech_span
 
@@ -31,7 +32,7 @@
 	var/list/mob/living/buckled_mobs // mobs buckled to this mob
 	var/buckle_flags = NONE
 	var/max_buckled_mobs = 1
-	var/buckle_lying = -1 //bed-like behaviour, forces mob.lying = buckle_lying if != -1
+	var/buckle_lying = -1 //bed-like behaviour, forces mob.lying_angle = buckle_lying if != -1
 
 	var/datum/component/orbiter/orbiting
 
@@ -354,7 +355,7 @@
 			continue
 		if(isliving(A))
 			var/mob/living/L = A
-			if(L.lying)
+			if(L.lying_angle)
 				continue
 			throw_impact(A, speed)
 		if(isobj(A) && A.density && !(A.flags_atom & ON_BORDER) && (!A.throwpass || iscarbon(src)))

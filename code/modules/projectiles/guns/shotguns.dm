@@ -24,6 +24,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	aim_slowdown = 0.35
 	wield_delay = 0.6 SECONDS //Shotguns are really easy to put up to fire, since they are designed for CQC (at least compared to a rifle)
 	gun_skill_category = GUN_SKILL_SHOTGUNS
+	flags_item_map_variant = NONE
 
 	fire_delay = 6
 	accuracy_mult = 1.15
@@ -72,7 +73,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	if(!in_chamber)
 		to_chat(user, "<span class='warning'>[src] is already empty.</span>")
 		return TRUE
-	in_chamber = null
+	QDEL_NULL(in_chamber)
 	var/obj/item/ammo_magazine/handful/new_handful = retrieve_shell(ammo.type)
 	playsound(user, reload_sound, 25, 1)
 	new_handful.forceMove(get_turf(src))
@@ -163,7 +164,8 @@ can cause issues with ammo types getting mixed up during the burst.
 		make_casing(active_attachable.type_of_casings)
 	else
 		make_casing(type_of_casings)
-		in_chamber = null
+		if(in_chamber)
+			QDEL_NULL(in_chamber)
 
 		//Time to move the tube position.
 		ready_in_chamber() //We're going to try and reload. If we don't get anything, icon change.
@@ -301,7 +303,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 //Turns out it has some attachments.
 /obj/item/weapon/gun/shotgun/double/update_icon()
-	icon_state = current_mag.chamber_closed ? copytext(icon_state,1,-2) : icon_state + "_o"
+	icon_state = "[initial(icon_state)][current_mag.chamber_closed ? "" : "_o"]"
 
 /obj/item/weapon/gun/shotgun/double/check_chamber_position()
 	if(current_mag.chamber_closed)
@@ -358,7 +360,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	return TRUE
 
 /obj/item/weapon/gun/shotgun/double/reload_into_chamber(mob/user)
-	in_chamber = null
+	if(in_chamber)
+		QDEL_NULL(in_chamber)
 	current_mag.chamber_contents[current_mag.chamber_position] = "empty"
 	current_mag.chamber_position--
 	current_mag.used_casings++
@@ -459,7 +462,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		return TRUE
 
 	if(in_chamber) //eject the chambered round
-		in_chamber = null
+		QDEL_NULL(in_chamber)
 		var/obj/item/ammo_magazine/handful/new_handful = retrieve_shell(ammo.type)
 		new_handful.forceMove(get_turf(src))
 
@@ -494,9 +497,10 @@ can cause issues with ammo types getting mixed up during the burst.
 	else
 		pump_lock = FALSE //fired successfully; unlock the pump
 		current_mag.used_casings++ //The shell was fired successfully. Add it to used.
-		in_chamber = null
+		if(in_chamber)
+			QDEL_NULL(in_chamber)
 		//Time to move the tube position.
-		if(!current_mag.current_rounds && !in_chamber)
+		if(!current_mag.current_rounds)
 			update_icon()//No rounds, nothing chambered.
 
 	return TRUE
@@ -709,7 +713,6 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/quickfire,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,

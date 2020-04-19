@@ -59,15 +59,25 @@
 	return TRUE
 
 
+/**
+Apply status effect to mob
 
+Arguments
+	effect {int} how much of an effect to apply
+	effecttype {enum} which affect to apply
+	blocked {int} an amount of the effect that is blocked
+	updating_health {boolean} if we should update health [/mob/living/updatehealth]  
+*/
 /mob/living/proc/apply_effect(effect = 0, effecttype = STUN, blocked = 0, updating_health = FALSE)
+	if(status_flags & GODMODE)
+		return FALSE
 	if(!effect || (blocked >= 2))
-		return 0
+		return FALSE
 	switch(effecttype)
 		if(STUN)
 			Stun(effect/(blocked+1) * 20) // TODO: replace these * 20 with proper amounts in apply_effect() calls
 		if(WEAKEN)
-			Knockdown(effect/(blocked+1) * 20)
+			Paralyze(effect/(blocked+1) * 20)
 		if(PARALYZE)
 			Unconscious(effect/(blocked+1) * 20)
 		if(AGONY)

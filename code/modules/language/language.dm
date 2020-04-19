@@ -8,6 +8,7 @@
 	var/ask_verb = "asks"             // Used when sentence ends in a ?
 	var/exclaim_verb = "exclaims"     // Used when sentence ends in a !
 	var/whisper_verb = "whispers"     // Optional. When not specified speech_verb + quietly/softly is used instead.
+	var/sing_verb = "sings"			  // Used for singing.
 	var/list/signlang_verb = list("signs", "gestures") // list of emotes that might be displayed if this language has NONVERBAL or SIGNLANG flags
 	var/key                           // Character used to speak in language
 	// If key is null, then the language isn't real or learnable.
@@ -79,11 +80,11 @@
 	if(lookup)
 		return lookup
 
-	var/input_size = length(input)
+	var/input_size = length_char(input)
 	var/scrambled_text = ""
 	var/capitalize = TRUE
 
-	while(length(scrambled_text) < input_size)
+	while(length_char(scrambled_text) < input_size)
 		var/next = pick(syllables)
 		if(capitalize)
 			next = capitalize(next)
@@ -97,11 +98,11 @@
 			scrambled_text += " "
 
 	scrambled_text = trim(scrambled_text)
-	var/ending = copytext(scrambled_text, length(scrambled_text))
+	var/ending = copytext_char(scrambled_text, -1)
 	if(ending == ".")
-		scrambled_text = copytext(scrambled_text, 1, length(scrambled_text) - 1)
-	var/input_ending = copytext(input, input_size)
-	if(input_ending in list("!", "?", "."))
+		scrambled_text = copytext_char(scrambled_text, 1, -2)
+	var/input_ending = copytext_char(input, -1)
+	if(input_ending in list("!","?","."))
 		scrambled_text += input_ending
 
 	add_to_cache(input, scrambled_text)

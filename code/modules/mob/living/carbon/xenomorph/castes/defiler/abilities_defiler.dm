@@ -1,54 +1,3 @@
-// ***************************************
-// *********** Neuroclaws
-// ***************************************
-/datum/action/xeno_action/neuroclaws
-	name = "Toggle Neuroinjectors"
-	action_icon_state = "neuroclaws_off"
-	mechanics_text = "Toggle on to add neurotoxin to your melee slashes."
-	cooldown_timer = 1 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_NEUROCLAWS
-	var/active = FALSE
-
-/datum/action/xeno_action/neuroclaws/action_activate()
-	var/mob/living/carbon/xenomorph/Defiler/X = owner
-
-	add_cooldown()
-	active = !active
-	to_chat(X, "<span class='notice'>You [active ? "extend" : "retract"] your claws' neuro spines.</span>")
-
-	if(active)
-		playsound(X, 'sound/weapons/slash.ogg', 15, 1)
-		RegisterSignal(X, list(
-			COMSIG_XENOMORPH_DISARM_HUMAN,
-			COMSIG_XENOMORPH_ATTACK_HUMAN),
-			.proc/slash)
-	else
-		playsound(X, 'sound/weapons/slashmiss.ogg', 15, 1)
-		UnregisterSignal(X, list(
-			COMSIG_XENOMORPH_DISARM_HUMAN,
-			COMSIG_XENOMORPH_ATTACK_HUMAN))
-
-	update_button_icon()
-
-/datum/action/xeno_action/neuroclaws/update_button_icon()
-	button.overlays.Cut()
-	if(active)
-		button.overlays += image('icons/mob/actions.dmi', button, "neuroclaws_on")
-	else
-		button.overlays += image('icons/mob/actions.dmi', button, "neuroclaws_off")
-	return ..()
-
-/datum/action/xeno_action/neuroclaws/proc/slash(datum/source, mob/living/carbon/human/H, damage, list/damage_mod)
-	if(!active)
-		CRASH("neuroclaws slash callback invoked without neuroclaws active")
-	if(!H)
-		CRASH("neuroclaws slash callback invoked with a null human reference")
-	var/mob/living/carbon/xenomorph/Defiler/X = owner
-	if(!X.check_plasma(50))
-		return
-	X.use_plasma(50)
-	H.reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, X.xeno_caste.neuro_claws_amount)
-	to_chat(X, "<span class='xenowarning'>Your claw spines inject your victim with neurotoxin!</span>")
 
 // ***************************************
 // *********** Sting
@@ -155,7 +104,7 @@
 		if(X.stagger) //If we got staggered, return
 			to_chat(X, "<span class='xenowarning'>We try to emit neurogas but are staggered!</span>")
 			return
-		if(X.IsStun() || X.IsKnockdown())
+		if(X.IsStun() || X.IsParalyzed())
 			to_chat(X, "<span class='xenowarning'>We try to emit neurogas but are disabled!</span>")
 			return
 		var/turf/T = get_turf(X)

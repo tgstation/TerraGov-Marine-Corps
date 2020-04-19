@@ -22,7 +22,7 @@
 	plasma_gain = 25
 
 	// *** Health *** //
-	max_health = 210
+	max_health = 240
 
 	// *** Evolution *** //
 	upgrade_threshold = 200
@@ -33,7 +33,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor = list("melee" = 28, "bullet" = 28, "laser" = 28, "energy" = 28, "bomb" = XENO_BOMB_RESIST_0, "bio" = 28, "rad" = 28, "fire" = 10, "acid" = 28)
+	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 28, "rad" = 28, "fire" = 10, "acid" = 28)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
@@ -67,26 +67,26 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 32
+	melee_damage = 34
 
 	// *** Tackle *** //
 	tackle_damage = 42
 
 	// *** Speed *** //
-	speed = -0.15
+	speed = -0.1
 
 	// *** Plasma *** //
 	plasma_max = 900
 	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 250
+	max_health = 270
 
 	// *** Evolution *** //
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor = list("melee" = 33, "bullet" = 33, "laser" = 33, "energy" = 33, "bomb" = XENO_BOMB_RESIST_0, "bio" = 33, "rad" = 33, "fire" = 13, "acid" = 33)
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 33, "rad" = 33, "fire" = 13, "acid" = 33)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
@@ -107,14 +107,14 @@
 	tackle_damage = 47
 
 	// *** Speed *** //
-	speed = -0.22
+	speed = -0.2
 
 	// *** Plasma *** //
 	plasma_max = 1000
 	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 270
+	max_health = 290
 
 	// *** Evolution *** //
 	upgrade_threshold = 800
@@ -142,17 +142,17 @@
 	tackle_damage = 50
 
 	// *** Speed *** //
-	speed = -0.25
+	speed = -0.3
 
 	// *** Plasma *** //
 	plasma_max = 1000
 	plasma_gain = 50
 
 	// *** Health *** //
-	max_health = 280
+	max_health = 310
 
 	// *** Defense *** //
-	armor = list("melee" = 38, "bullet" = 38, "laser" = 38, "energy" = 38, "bomb" = XENO_BOMB_RESIST_0, "bio" = 38, "rad" = 38, "fire" = 18, "acid" = 38)
+	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 38, "rad" = 38, "fire" = 18, "acid" = 38)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS

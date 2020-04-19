@@ -195,7 +195,7 @@
 
 //A simple handler for checking your state. Used in pretty much all the procs.
 /mob/living/carbon/xenomorph/proc/check_state()
-	if(incapacitated() || lying || buckled)
+	if(incapacitated() || lying_angle || buckled)
 		to_chat(src, "<span class='warning'>We cannot do this in our current state.</span>")
 		return 0
 	return 1
@@ -258,7 +258,11 @@
 					if(health == maxHealth && !incapacitated() && !handcuffed && !legcuffed)
 						upgrade_xeno(upgrade_next())
 				else
-					upgrade_stored = min(upgrade_stored + 1, xeno_caste.upgrade_threshold)
+					// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.
+					var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+					var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+					var/upgrade_points = 1 + (FLOOR(stored_larva / 3, 1))
+					upgrade_stored = min(upgrade_stored + upgrade_points, xeno_caste.upgrade_threshold)
 
 /mob/living/carbon/xenomorph/proc/update_evolving()
 	if(!client || !ckey) // stop evolve progress for ssd/ghosted xenos
@@ -267,8 +271,14 @@
 		return
 	if(!hive.check_ruler())
 		return
-	evolution_stored++
-	if(evolution_stored == xeno_caste.evolution_threshold - 1)
+
+	// Evolution is increased based on marine to xeno population taking stored_larva as a modifier.
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+	var/evolution_points = 1 + (FLOOR(stored_larva / 3, 1))
+	evolution_stored = min(evolution_stored + evolution_points, xeno_caste.evolution_threshold)
+
+	if(evolution_stored == xeno_caste.evolution_threshold)
 		to_chat(src, "<span class='xenodanger'>Our carapace crackles and our tendons strengthen. We are ready to evolve!</span>")
 		SEND_SOUND(src, sound('sound/effects/xeno_evolveready.ogg'))
 
@@ -311,13 +321,13 @@
 					if(ishuman(M) && (M.dir in reverse_nearby_direction(dir)))
 						var/mob/living/carbon/human/H = M
 						if(!H.check_shields(COMBAT_TOUCH_ATTACK, 30, "melee"))
-							Knockdown(6 SECONDS)
+							Paralyze(6 SECONDS)
 							throwing = FALSE //Reset throwing manually.
 							return FALSE
 
 					visible_message("<span class='danger'>[src] pounces on [M]!</span>",
 									"<span class='xenodanger'>We pounce on [M]!</span>", null, 5)
-					M.Knockdown(20)
+					M.Paralyze(20)
 					step_to(src, M)
 					stop_movement()
 					if(savage) //If Runner Savage is toggled on, attempt to use it.
@@ -382,7 +392,7 @@
 
 /mob/living/carbon/xenomorph/proc/do_devour(mob/living/carbon/prey)
 	LAZYADD(stomach_contents, prey)
-	prey.Knockdown(12 MINUTES)
+	prey.Paralyze(12 MINUTES)
 	prey.adjust_tinttotal(TINT_BLIND)
 	prey.forceMove(src)
 	SEND_SIGNAL(prey, COMSIG_CARBON_DEVOURED_BY_XENO)
@@ -461,6 +471,8 @@
 	client.pixel_y = 0
 
 /mob/living/carbon/xenomorph/drop_held_item()
+	if(status_flags & INCORPOREAL)
+		return FALSE
 	var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
 	if(istype(F))
 		if(locate(/turf/closed/wall/resin) in loc)
@@ -472,7 +484,6 @@
 
 //When the Queen's pheromones are updated, or we add/remove a leader, update leader pheromones
 /mob/living/carbon/xenomorph/proc/handle_xeno_leader_pheromones(mob/living/carbon/xenomorph/queen/Q)
-
 	if(QDELETED(Q) || !queen_chosen_lead || !Q.current_aura || Q.loc.z != loc.z) //We are no longer a leader, or the Queen attached to us has dropped from her ovi, disabled her pheromones or even died
 		leader_aura_strength = 0
 		leader_current_aura = ""
@@ -546,7 +557,7 @@
 	take_overall_damage(0, damage, armor_block)
 	UPDATEHEALTH(src)
 	emote("scream")
-	Knockdown(20)
+	Paralyze(20)
 
 /mob/living/carbon/xenomorph/acid_spray_act(mob/living/carbon/xenomorph/X)
 	return
@@ -684,3 +695,23 @@
 
 /mob/living/carbon/xenomorph/hivemind/setup_verbs()
 	return
+
+/mob/living/carbon/xenomorph/adjust_sunder(adjustment)
+	. = ..()
+	if(.)
+		return
+	sunder = CLAMP(sunder + adjustment, 0, xeno_caste.sunder_max)
+
+/mob/living/carbon/xenomorph/set_sunder(new_sunder)
+	. = ..()
+	if(.)
+		return
+	sunder = CLAMP(new_sunder, 0, xeno_caste.sunder_max)
+
+/mob/living/carbon/xenomorph/get_sunder()
+	. = ..()
+	if(.)
+		return
+	return (sunder * -0.01) + 1
+
+

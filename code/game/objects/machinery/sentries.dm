@@ -299,6 +299,7 @@
 	//START_PROCESSING(SSobj, src)
 	ammo = GLOB.ammo_list[ammo]
 	update_icon()
+	GLOB.marine_turrets += src
 
 
 /obj/machinery/marine_turret/Destroy() //Clear these for safety's sake.
@@ -310,6 +311,7 @@
 	target = null
 	alert_list = list()
 	stop_processing()
+	GLOB.marine_turrets -= src
 	. = ..()
 
 /obj/machinery/marine_turret/attack_hand(mob/living/user)
@@ -512,7 +514,7 @@
 		DISABLE_BITFIELD(turret_flags, TURRET_MANUAL)
 
 /obj/machinery/marine_turret/check_eye(mob/user)
-	if(user.incapacitated() || get_dist(user, src) > 1 || is_blind(user) || user.lying || !user.client)
+	if(user.incapacitated() || get_dist(user, src) > 1 || is_blind(user) || user.lying_angle || !user.client)
 		user.unset_interaction()
 
 /obj/machinery/marine_turret/attackby(obj/item/I, mob/user, params)
@@ -911,46 +913,49 @@
 		setDir(target_dir)
 
 
-	if(load_into_chamber())
-		if(istype(in_chamber,/obj/projectile))
+	if(!load_into_chamber())
+		return
 
-			if (CHECK_BITFIELD(turret_flags, TURRET_BURSTFIRE))
-				//Apply scatter
-				var/scatter_chance = in_chamber.ammo.scatter
-				var/burst_value = CLAMP(burst_size - 1, 1, 5)
-				scatter_chance += (burst_value * burst_value * 2)
-				in_chamber.accuracy = round(in_chamber.accuracy - (burst_value * burst_value * 1.2), 0.01) //Accuracy penalty scales with burst count.
+	var/obj/projectile/proj_to_fire = in_chamber
+	in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.
 
-				if (prob(scatter_chance))
-					var/scatter_x = rand(-1, 1)
-					var/scatter_y = rand(-1, 1)
-					var/turf/new_target = locate(targloc.x + round(scatter_x),targloc.y + round(scatter_y),targloc.z) //Locate an adjacent turf.
-					if(new_target) //Looks like we found a turf.
-						target = new_target
+	if (CHECK_BITFIELD(turret_flags, TURRET_BURSTFIRE))
+		//Apply scatter
+		var/scatter_chance = proj_to_fire.ammo.scatter
+		var/burst_value = CLAMP(burst_size - 1, 1, 5)
+		scatter_chance += (burst_value * burst_value * 2)
+		proj_to_fire.accuracy = round(proj_to_fire.accuracy - (burst_value * burst_value * 1.2), 0.01) //Accuracy penalty scales with burst count.
 
-			else //gains +50% accuracy, damage, and penetration on singlefire, and no spread.
-				in_chamber.accuracy = round(in_chamber.accuracy * 1.5, 0.01)
-				in_chamber.damage = round(in_chamber.damage * 1.5, 0.01)
-				in_chamber.ammo.penetration = round(in_chamber.ammo.penetration * 1.5, 0.01)
+		if (prob(scatter_chance))
+			var/scatter_x = rand(-1, 1)
+			var/scatter_y = rand(-1, 1)
+			var/turf/new_target = locate(targloc.x + round(scatter_x), targloc.y + round(scatter_y), targloc.z) //Locate an adjacent turf.
+			if(new_target) //Looks like we found a turf.
+				target = new_target
 
-			//Setup projectile
-			in_chamber.original_target = target
-			in_chamber.setDir(dir)
-			in_chamber.def_zone = pick("chest", "chest", "chest", "head")
+	else //gains +50% accuracy, damage, and penetration on singlefire, and no spread.
+		proj_to_fire.accuracy = round(proj_to_fire.accuracy * 1.5, 0.01)
+		proj_to_fire.damage = round(proj_to_fire.damage * 1.5, 0.01)
+		proj_to_fire.ammo.penetration = round(proj_to_fire.ammo.penetration * 1.5, 0.01)
 
-			//Shoot at the thing
-			playsound(loc, 'sound/weapons/guns/fire/rifle.ogg', 75, 1)
-			in_chamber.fire_at(target, src, null, ammo.max_range, ammo.shell_speed)
-			if(target)
-				var/angle = round(Get_Angle(src,target))
-				muzzle_flash(angle)
-			in_chamber = null
-			rounds--
-			if(rounds == 0)
-				visible_message("<span class='warning'>The [name] beeps steadily and its ammo light blinks red.</span>")
-				playsound(loc, 'sound/weapons/guns/misc/smg_empty_alarm.ogg', 50, FALSE)
-				if(CHECK_BITFIELD(turret_flags, TURRET_ALERTS))
-					sentry_alert(SENTRY_ALERT_AMMO)
+	//Setup projectile
+	proj_to_fire.original_target = target
+	proj_to_fire.setDir(dir)
+	proj_to_fire.def_zone = pick("chest", "chest", "chest", "head")
+
+	//Shoot at the thing
+	playsound(loc, 'sound/weapons/guns/fire/rifle.ogg', 75, TRUE)
+	
+	proj_to_fire.fire_at(target, src, null, ammo.max_range, ammo.shell_speed)
+	if(target)
+		var/angle = round(Get_Angle(src, target))
+		muzzle_flash(angle)
+	rounds--
+	if(rounds == 0)
+		visible_message("<span class='warning'>The [name] beeps steadily and its ammo light blinks red.</span>")
+		playsound(loc, 'sound/weapons/guns/misc/smg_empty_alarm.ogg', 50, FALSE)
+		if(CHECK_BITFIELD(turret_flags, TURRET_ALERTS))
+			sentry_alert(SENTRY_ALERT_AMMO)
 
 	return TRUE
 

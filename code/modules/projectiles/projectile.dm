@@ -599,7 +599,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 /mob/living/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	if(lying && src != proj.original_target)
+	if(status_flags & INCORPOREAL)
+		return FALSE
+	if(lying_angle && src != proj.original_target)
 		return FALSE
 	if((proj.ammo.flags_ammo_behavior & AMMO_XENO) && (isnestedhost(src) || stat == DEAD))
 		return FALSE
@@ -621,7 +623,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	#endif
 
 	. = max(5, .) //default hit chance is at least 5%.
-	if(lying && stat != CONSCIOUS)
+	if(lying_angle && stat != CONSCIOUS)
 		. += 15 //Bonus hit against unconscious people.
 
 	if(isliving(proj.firer))
@@ -658,7 +660,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			proj.def_zone = new_def_zone
 			return TRUE
 
-	if(!lying) //Narrow miss!
+	if(!lying_angle) //Narrow miss!
 		animatation_displace_reset(src)
 		if(proj.ammo.sound_miss)
 			playsound_local(get_turf(src), proj.ammo.sound_miss, 75, 1)
@@ -734,10 +736,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		bullet_ping(proj)
 		return
 
-	if(proj.ammo.debilitate && ( damage || (proj.ammo.flags_ammo_behavior & AMMO_IGNORE_RESIST) ) )
-		apply_bullet_effects(proj)
-		. = TRUE
-
 	if(!damage)
 		return
 
@@ -776,6 +774,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			adjust_fire_stacks(CEILING(10 - (10 * (living_armor / 100)), 1)) //We could add an ammo fire strength in time, as a variable.
 			IgniteMob()
 			feedback_flags |= (BULLET_FEEDBACK_FIRE|BULLET_FEEDBACK_SCREAM)
+
+	if(proj.ammo.flags_ammo_behavior & AMMO_SUNDERING)
+		adjust_sunder(proj.ammo.sundering)
 
 	if(damage)
 		var/shrapnel_roll = do_shrapnel_roll(proj, damage)
@@ -829,44 +830,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 /mob/living/carbon/xenomorph/get_living_armor(armor_type, proj_def_zone, proj_dir)
-	. = armor.getRating(armor_type) + armor_bonus + armor_pheromone_bonus
-
-	if(is_charging >= CHARGE_ON)
-		. += round(get_movespeed_modifier(MOVESPEED_ID_XENO_CHARGE) * 5) //Some armor deflection when charging.
-
-
-/mob/living/carbon/xenomorph/queen/get_living_armor(armor_type, proj_def_zone, proj_dir)
-	. = ..()
-	if(!.)
-		return
-	if(proj_dir & REVERSE_DIR(dir)) //+50% armor if the bullets come from the direction we are facing.
-		return . + (armor.getRating(armor_type) * 0.5)
-	if(proj_dir == dir) //-50% if being shot directly in the back.
-		return . - (armor.getRating(armor_type) * 0.5)
-
-
-/mob/living/carbon/xenomorph/crusher/get_living_armor(armor_type, proj_def_zone, proj_dir)
-	. = ..()
-	if(!.)
-		return
-	if(proj_dir & REVERSE_DIR(dir)) //+75% armor if the bullets come from the direction we are facing.
-		return . + (armor.getRating(armor_type) * 0.75)
-	if(proj_dir == dir) //-75% if being shot directly in the back.
-		return . - (armor.getRating(armor_type) * 0.75)
-
-
-/mob/living/proc/apply_bullet_effects(obj/projectile/proj)
-	apply_effects(arglist(proj.ammo.debilitate))
-
-
-/mob/living/carbon/human/apply_bullet_effects(obj/projectile/proj)
-	if(issynth(src))
-		return
-	return ..()
-
-
-/mob/living/carbon/xenomorph/apply_bullet_effects(obj/projectile/proj)
-	return
+	. = (armor.getRating(armor_type) + armor_bonus + armor_pheromone_bonus) * get_sunder()
 
 
 /mob/living/proc/bullet_soak_effect(obj/projectile/proj)
@@ -1046,6 +1010,15 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	visible_message("<span class='danger'>[onlooker_feedback]</span>",
 	"<span class='xenodanger'>[victim_feedback]", null, 4)
 
+// Sundering procs
+/mob/living/proc/adjust_sunder(adjustment)
+	return 0
+
+/mob/living/proc/set_sunder(new_sunder)
+	return FALSE
+
+/mob/living/proc/get_sunder()
+	return 0
 
 #undef BULLET_FEEDBACK_PEN
 #undef BULLET_FEEDBACK_SOAK

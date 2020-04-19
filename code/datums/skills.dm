@@ -208,7 +208,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	construction = SKILL_CONSTRUCTION_MASTER
 	engineer = SKILL_ENGINEER_MASTER
 	powerloader = SKILL_POWERLOADER_MASTER
-	police = SKILL_POLICE_FLASH 
+	police = SKILL_POLICE_FLASH
 
 /datum/skills/civilian/survivor/doctor
 	name = "Survivor Doctor"
@@ -262,6 +262,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	engineer = SKILL_ENGINEER_ENGI
 	construction = SKILL_CONSTRUCTION_ADVANCED
 	leadership = SKILL_LEAD_BEGINNER
+	powerloader = SKILL_POWERLOADER_DABBLING
 
 /datum/skills/combat_medic
 	name = "Combat Medic"
@@ -296,17 +297,13 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	name = SYNTHETIC
 	engineer = SKILL_ENGINEER_MASTER
 	construction = SKILL_CONSTRUCTION_MASTER
-	firearms = SKILL_FIREARMS_TRAINED
-	smartgun = SKILL_SMART_TRAINED
-	spec_weapons = SKILL_SPEC_TRAINED
+	firearms = SKILL_FIREARMS_UNTRAINED
 	medical = SKILL_MEDICAL_EXPERT
+	cqc = SKILL_CQC_MASTER
 	surgery = SKILL_SURGERY_EXPERT
 	pilot = SKILL_PILOT_TRAINED
+	melee_weapons = SKILL_MELEE_TRAINED
 	pistols = SKILL_PISTOLS_TRAINED
-	smgs = SKILL_SMGS_TRAINED
-	rifles = SKILL_RIFLES_TRAINED
-	shotguns = SKILL_SHOTGUNS_TRAINED
-	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
 	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_MASTER
 	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
@@ -315,15 +312,14 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	name = "Early Synthetic"
 	engineer = SKILL_ENGINEER_MASTER
 	construction = SKILL_CONSTRUCTION_MASTER
-	firearms = SKILL_FIREARMS_TRAINED
-	smartgun = SKILL_SMART_TRAINED
-	spec_weapons = SKILL_SPEC_TRAINED
+	firearms = SKILL_FIREARMS_UNTRAINED
 	medical = SKILL_MEDICAL_COMPETENT
+	cqc = SKILL_CQC_MASTER
 	surgery = SKILL_SURGERY_PROFESSIONAL
 	melee_weapons = SKILL_MELEE_SUPER
 	pilot = SKILL_PILOT_TRAINED
 	police = SKILL_POLICE_MP
-	powerloader = SKILL_POWERLOADER_TRAINED
+	powerloader = SKILL_POWERLOADER_MASTER
 	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
 
 /datum/skills/captain
@@ -382,13 +378,14 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	construction = SKILL_CONSTRUCTION_MASTER
 	leadership = SKILL_LEAD_MASTER
 	police = SKILL_POLICE_FLASH
-	powerloader = SKILL_POWERLOADER_TRAINED
+	powerloader = SKILL_POWERLOADER_MASTER
 
 /datum/skills/RO
 	name = "Requisition Officer"
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	leadership = SKILL_LEAD_TRAINED
-	powerloader = SKILL_POWERLOADER_TRAINED
+	powerloader = SKILL_POWERLOADER_MASTER
+	police = SKILL_POLICE_FLASH
 
 /datum/skills/ST
 	name = SHIP_TECH
@@ -652,4 +649,3 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 	medical = SKILL_MEDICAL_EXPERT
 	surgery = SKILL_SURGERY_EXPERT
-

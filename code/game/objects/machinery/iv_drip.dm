@@ -40,7 +40,7 @@
 
 	if(ishuman(usr))
 		var/mob/living/carbon/human/H = usr
-		if(H.stat || get_dist(H, src) > 1 || is_blind(H) || H.lying)
+		if(H.stat || get_dist(H, src) > 1 || is_blind(H) || H.lying_angle)
 			return
 
 		if(attached)
@@ -154,7 +154,7 @@
 	if(!isliving(usr))
 		return
 
-	if(usr.stat || usr.lying)
+	if(usr.stat || usr.lying_angle)
 		return
 
 	mode = !mode

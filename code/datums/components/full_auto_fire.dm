@@ -62,7 +62,7 @@
 
 	autofire_stat = AUTOFIRE_STAT_IDLE
 
-	RegisterSignal(parent, list(COMSIG_PARENT_QDELETING), .proc/sleep_up)
+	RegisterSignal(parent, list(COMSIG_PARENT_PREQDELETED), .proc/sleep_up)
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/itemgun_equipped)
 
 	if(usercli)
@@ -79,7 +79,7 @@
 
 	autofire_off()
 
-	UnregisterSignal(parent, list(COMSIG_PARENT_QDELETING, COMSIG_ITEM_EQUIPPED))
+	UnregisterSignal(parent, list(COMSIG_PARENT_PREQDELETED, COMSIG_ITEM_EQUIPPED))
 
 	autofire_stat = AUTOFIRE_STAT_SLEEPING
 
@@ -344,6 +344,7 @@
 /obj/item/weapon/gun/proc/do_autofire(datum/source, atom/target, mob/living/shooter, params, shots_fired)
 	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIRE, target, shooter)
 	var/obj/projectile/projectile_to_fire = load_into_chamber(shooter)
+	in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.
 	if(!projectile_to_fire)
 		click_empty(shooter)
 		return NONE

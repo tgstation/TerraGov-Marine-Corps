@@ -8,7 +8,7 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
-	melee_damage = 15
+	melee_damage = 18
 
 	// *** Tackle *** //
 	tackle_damage = 25
@@ -60,7 +60,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 21
 
 	// *** Tackle *** //
 	tackle_damage = 30
@@ -73,7 +73,7 @@
 	plasma_gain = 15
 
 	// *** Health *** //
-	max_health = 180
+	max_health = 170
 
 	// *** Evolution *** //
 	upgrade_threshold = 100
@@ -92,13 +92,13 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 23
+	melee_damage = 24
 
 	// *** Tackle *** //
 	tackle_damage = 35
 
 	// *** Speed *** //
-	speed = -1.05
+	speed = -0.8
 
 	// *** Plasma *** //
 	plasma_max = 550
@@ -124,26 +124,26 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 25
+	melee_damage = 27
 
 	// *** Tackle *** //
 	tackle_damage = 40
 
 	// *** Speed *** //
-	speed = -1.1
+	speed = -0.8
 
 	// *** Plasma *** //
 	plasma_max = 600
 	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 195
+	max_health = 210
 
 	// *** Evolution *** //
 	upgrade_threshold = 200
 
 	// *** Defense *** //
-	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 25, "rad" = 25, "fire" = 15, "acid" = 25)
+	armor = list("melee" = 26, "bullet" = 26, "laser" = 26, "energy" = 26, "bomb" = XENO_BOMB_RESIST_0, "bio" = 25, "rad" = 25, "fire" = 15, "acid" = 25)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
