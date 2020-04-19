@@ -468,10 +468,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "heavy rifle bullet"
 	hud_state = "rifle_heavy"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	accuracy = -15
 	damage = 30
-	penetration = 20
-	sundering = 3
+	penetration = 15
+	sundering = 1.75
 
 /datum/ammo/bullet/rifle/standard_dmr
 	name = "marksman bullet"
