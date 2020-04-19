@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes: 
+  - admin: "adds links to OOC, Dead chat, and Say chat (when ghosting) as admin"
