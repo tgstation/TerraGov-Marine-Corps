@@ -398,7 +398,6 @@
 	icon_state = "officer_hat"
 	armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 22, "bomb" = 12, "bio" = 45, "rad" = 5, "fire" = 22, "acid" = 55)
 
-
 /obj/item/clothing/head/helmet/marine/veteran/PMC/sniper
 	name = "\improper PMC sniper helmet"
 	desc = "A helmet worn by PMC Marksmen"
