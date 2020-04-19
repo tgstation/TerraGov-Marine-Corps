@@ -237,6 +237,7 @@
 	accuracy_mult = 1.50
 	scatter = 15
 	recoil = 5
+	burst_amount = 1
 
 
 /obj/item/weapon/gun/rifle/sniper/elite/simulate_recoil(total_recoil = 0, mob/user)
