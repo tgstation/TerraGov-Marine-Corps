@@ -508,7 +508,7 @@
 	cocked_sound = 'sound/weapons/guns/interact/type71_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/type71
 	aim_slowdown = 0.6
-	wield_delay = 0.4 SECONDS
+	wield_delay = 0.7 SECONDS
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 
@@ -516,7 +516,6 @@
 	burst_amount = 2
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.8
-	wield_delay = 0.7
 
 
 /obj/item/weapon/gun/rifle/type71/flamer
