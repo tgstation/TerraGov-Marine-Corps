@@ -176,7 +176,7 @@
 	scatter_unwielded = 40
 	damage_mult = 1.30
 	aim_slowdown = 0.35
-	wield_delay = 0.5
+	wield_delay = 0.5 SECONDS
 
 
 //-------------------------------------------------------
