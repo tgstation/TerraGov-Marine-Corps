@@ -92,17 +92,20 @@
 	playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE)
 	user.visible_message("<span class='notice'>[user] starts securing [src]'s wiring.</span>",
 	"<span class='notice'>You start securing [src]'s wiring.</span>")
-	if(!do_after(user, 120, TRUE, src, BUSY_ICON_BUILD) || miner_status != MINER_MEDIUM_DAMAGE)
+	if(!do_after(user, 120, TRUE, src, BUSY_ICON_BUILD))
+		return FALSE
+	if(miner_status != MINER_MEDIUM_DAMAGE)
 		return FALSE
 	playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE)
-	obj_integrity += 33
+	obj_integrity = 0.66 * max_integrity
 	set_miner_status()
 	user.visible_message("<span class='notice'>[user] secures [src]'s wiring.</span>",
 	"<span class='notice'>You secure [src]'s wiring.</span>")
 	return TRUE
 
 /obj/machinery/miner/wrench_act(mob/living/user, obj/item/I)
-	if(!(miner_status == MINER_SMALL_DAMAGE))
+	if(miner_status != MINER_SMALL_DAMAGE)
+
 		return
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s tubing and plating.</span>",
@@ -140,12 +143,14 @@
 			to_chat(user, "<span class='info'>[src]'s internal storage currently has [stored_mineral] sheets stored.</span>")
 
 /obj/machinery/miner/attack_hand(mob/living/user)
-	var/mob/living/L = user
 	if(miner_status != MINER_RUNNING)
-		to_chat(L, "<span class='warning'>[src] is damaged!</span>")
+		to_chat(user, "<span class='warning'>[src] is damaged!</span>")
+
 		return
-	if(stored_mineral == 0)
-		to_chat(L, "<span class='warning'>[src]'s internal storage currently has no minerals stored!</span>")
+	if(!stored_mineral)
+
+		to_chat(user, "<span class='warning'>[src]'s internal storage currently has no minerals stored!</span>")
+
 		return
 	new mineral_produced(user.loc, stored_mineral)
 	stored_mineral = 0
@@ -167,7 +172,7 @@
 	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	xeno_attacker.visible_message("<span class='danger'>[xeno_attacker] slashes \the [src]!</span>", \
 	"<span class='danger'>We slash \the [src]!</span>", null, 5)
-	playsound(loc, "alien_claw_metal", 25, 1)
+	playsound(loc, "alien_claw_metal", 25, TRUE)
 	if(miner_status == MINER_DESTROYED)
 		to_chat(xeno_attacker, "<span class='warning'>[src] is already destroyed!</span>")
 		return
