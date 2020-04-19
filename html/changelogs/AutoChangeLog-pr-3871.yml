@@ -1,0 +1,5 @@
+author: "BobSlim"
+delete-after: True
+changes: 
+  - tweak: "Boilers glow a mix of yellow/green, based on amount of neuro/corrosive ammo stored."
+  - bugfix: "Boilers don't stop glowing when they are extinguished"
