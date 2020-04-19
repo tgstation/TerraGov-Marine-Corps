@@ -1,6 +1,6 @@
 
 
-//old style retardo-cart
+///old style janicart
 /obj/structure/bed/chair/janicart
 	name = "janicart"
 	icon = 'icons/obj/vehicles.dmi'
@@ -8,7 +8,7 @@
 	icon_state = "pussywagon"
 	anchored = FALSE
 	density = TRUE
-	buildstacktype = null //can't be disassembled and doesn't drop anything when destroyed
+	buildstacktype = null ///can't be disassembled and doesn't drop anything when destroyed
 	buckle_flags = CAN_BUCKLE
 	//copypaste sorry
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
