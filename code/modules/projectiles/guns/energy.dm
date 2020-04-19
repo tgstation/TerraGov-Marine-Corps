@@ -511,7 +511,11 @@
 /obj/item/weapon/gun/energy/lasgun/lasrifle/proc/switch_modes(mob/user)
 	if(!user)
 		CRASH("switch_modes called with no user.")
-	
+
+	if (!do_after(user, 0.4 SECONDS, FALSE, user))
+		to_chat(user, "<span class ='warning'>You fumble the Lasrifle's charge mode.</span>")
+		return
+
 	mode_index = WRAP(mode_index + 1, 1, length(mode_list))
 	
 	playsound(user, 'sound/weapons/emitter.ogg', 5, FALSE, 2)
