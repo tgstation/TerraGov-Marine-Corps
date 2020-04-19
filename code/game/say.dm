@@ -73,7 +73,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	Allows us to wrap the name for specific cases like AI tracking or observer tracking
 
 	Arguments
-	 - name {string} the name of the mob to modify.
+	- name {string} the name of the mob to modify.
 */
 /atom/movable/proc/compose_name_href(name)
 	return name
