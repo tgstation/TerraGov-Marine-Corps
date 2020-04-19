@@ -140,7 +140,6 @@
 	scatter = 10
 	
 
-
 //-------------------------------------------------------
 //M5, a classic SMG used in a lot of action movies.
 
