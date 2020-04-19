@@ -401,6 +401,8 @@
 	burst_delay = 0.15 SECONDS
 	accuracy_mult = 1.3
 	wield_delay = 0.5 SECONDS
+	damage_mult = 1.2
+
 
 
 //-------------------------------------------------------
