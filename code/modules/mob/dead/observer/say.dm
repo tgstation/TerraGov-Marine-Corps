@@ -30,6 +30,6 @@
 
 
 /mob/dead/observer/compose_name_href(name)
-	if(!check_rights(R_ADMIN, FALSE))
+	if(!check_other_rights(client, R_ADMIN, FALSE))
 		return name
 	return "<a href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[name]</a>"
