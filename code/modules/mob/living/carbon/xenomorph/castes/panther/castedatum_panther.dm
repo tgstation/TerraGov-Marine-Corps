@@ -20,14 +20,14 @@
 	tackle_damage = 33
 
 	// *** Speed *** //
-	speed = 0.9
+	speed = .5
 
 	// *** Plasma *** //
 	plasma_max = 100
 	plasma_gain = 2
 
 	// *** Health *** //
-	max_health = 130
+	max_health = 140
 
 	// *** Evolution *** //
 	evolution_threshold = 80
@@ -43,7 +43,7 @@
 
 	// *** Ranged Attack *** //
 	charge_type = 3 //Heavy Pounce - Panther
-	pounce_delay = 45.0 SECONDS
+	pounce_delay = 35.0 SECONDS
 
 	// *** Abilities *** ///
 	actions = list(
@@ -79,7 +79,7 @@
 	plasma_gain = 3
 
 	// *** Health *** //
-	max_health = 140
+	max_health = 160
 
 	// *** Evolution *** //
 	upgrade_threshold = 100
@@ -88,7 +88,7 @@
 	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 3, "rad" = 3, "fire" = 3, "acid" = 3)
 
 	// *** Ranged Attack *** //
-	pounce_delay = 45.0 SECONDS
+	pounce_delay = 35.0 SECONDS
 
 /datum/xeno_caste/panther/elder
 	upgrade_name = "Elder"
@@ -104,14 +104,14 @@
 	tackle_damage = 44
 
 	// *** Speed *** //
-	speed = -1.1
+	speed = -1.2
 
 	// *** Plasma *** //
 	plasma_max = 200
 	plasma_gain = 3
 
 	// *** Health *** //
-	max_health = 155
+	max_health = 180
 
 	// *** Evolution *** //
 	upgrade_threshold = 200
@@ -137,14 +137,14 @@
 	tackle_damage = 50
 
 	// *** Speed *** //
-	speed = -1.2
+	speed = -1.4
 
 	// *** Plasma *** //
 	plasma_max = 200
 	plasma_gain = 3
 
 	// *** Health *** //
-	max_health = 170
+	max_health = 200
 
 	// *** Evolution *** //
 	upgrade_threshold = 200
@@ -153,5 +153,5 @@
 	armor = list("melee" = 24, "bullet" = 24, "laser" = 24, "energy" = 124, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 7, "acid" = 7)
 
 	// *** Ranged Attack *** //
-	pounce_delay = 45.0 SECONDS
+	pounce_delay = 35.0 SECONDS
 
