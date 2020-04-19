@@ -40,4 +40,4 @@ GLOBAL_LIST_EMPTY_TYPED(namepool, /datum/namepool)
 	lastname_pool = "names/sectoid_last"
 
 /datum/namepool/sectoid/get_random_name()
-	return "Sectoid [pick(ascii2text(rand(49, 57)))][pick(ascii2text(rand(65, 90)))][pick(ascii2text(rand(65, 90)))]"
+	return "Sectoid [pick("1", "2", "3", "4", "5", "6", "7", "8", "9")]X[pick("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W")]"
