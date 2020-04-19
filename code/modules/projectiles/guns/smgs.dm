@@ -275,7 +275,7 @@
 	scatter = 25
 	scatter_unwielded = 45
 	aim_slowdown = 0.8
-	wield_delay = 0.8
+	wield_delay = 0.8 SECONDS
 
 
 //-------------------------------------------------------
@@ -303,7 +303,7 @@
 	scatter = 15
 	scatter_unwielded = 60
 	aim_slowdown = 0.15
-	wield_delay = 0.5
+	wield_delay = 0.5 SECONDS
 
 //-------------------------------------------------------
 //FP9000 //Based on the FN P90
@@ -337,4 +337,4 @@
 	scatter_unwielded = 60
 	scatter = 10
 	aim_slowdown = 0.5
-	wield_delay = 0.65
+	wield_delay = 0.65 SECONDS
