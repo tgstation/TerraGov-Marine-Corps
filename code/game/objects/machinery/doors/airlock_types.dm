@@ -640,6 +640,7 @@
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	no_panel = TRUE
 	not_weldable = TRUE
+	aiControlDisabled = TRUE
 
 /obj/machinery/door/airlock/dropship_hatch/proc/lockdown()
 	unlock()
@@ -673,6 +674,7 @@
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	no_panel = TRUE
 	not_weldable = TRUE
+	aiControlDisabled = TRUE
 
 /obj/machinery/door/airlock/hatch/cockpit/two
 	icon = 'icons/obj/doors/mainship/dropship2_pilot.dmi'
