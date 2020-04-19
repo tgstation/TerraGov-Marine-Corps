@@ -2805,7 +2805,6 @@
 	tastes = list("candy" = 1)	
 	var/mutable_appearance/head
 	var/headcolor = rgb(0, 0, 0)
-	var/succ_dur = 180
 	var/succ_int = 100
 	var/next_succ = 0
 	var/mob/living/carbon/human/owner
@@ -2817,28 +2816,24 @@
  
 //makes lollipops actually wearable as masks and still edible the old fashioned way.
 /obj/item/reagent_containers/food/snacks/lollipop/proc/handle_reagents()
-	var/mob/living/carbon/C = loc
-	var/fraction = min(REAGENTS_METABOLISM/reagents.total_volume, 1)
-	reagents.reaction(C, INGEST, fraction)
-	if(!reagents.trans_to(C, REAGENTS_METABOLISM))
-		reagents.remove_any(REAGENTS_METABOLISM)
-	return
-	reagents.remove_any(REAGENTS_METABOLISM)
- 
+	var/fraction = min(FOOD_METABOLISM/reagents.total_volume, 1)
+	reagents.reaction(owner, INGEST, fraction)
+	if(!reagents.trans_to(owner, FOOD_METABOLISM))
+		reagents.remove_any(FOOD_METABOLISM)
+
 /obj/item/reagent_containers/food/snacks/lollipop/process()
-	if(!iscarbon(loc))
-		stack_trace("lollipop processing outside of a carbon loc")
+	if(!owner)
+		stack_trace("lollipop processing without an owner")
 		return PROCESS_KILL
 	if(!reagents)
 		stack_trace("lollipop processing without a reagents datum")
 		return PROCESS_KILL
 	if(owner.stat == DEAD)	
 		return PROCESS_KILL
-	if(succ_dur < 1)
+	if(!reagents.total_volume)
 		qdel(src)
 		return
-	succ_dur--
-	if((reagents.total_volume) && (next_succ <= world.time))
+	if(next_succ <= world.time)
 		handle_reagents()
 		next_succ = world.time + succ_int
  
