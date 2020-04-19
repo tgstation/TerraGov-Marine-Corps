@@ -22,7 +22,7 @@
 	item_state = "helmet"
 	icon_state = "pmc_mask"
 	anti_hug = 3
-	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 1, "rad" = 1, "fire" = 5, "acid" = 5)
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 1, "rad" = 1, "fire" = 10, "acid" = 10)
 	flags_inventory = COVERMOUTH|ALLOWINTERNALS|BLOCKGASEFFECT|ALLOWREBREATH
 	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
 
