@@ -13,7 +13,7 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 6
-	movement_acc_penalty_mult = 2
+	movement_acc_penalty_mult = 0
 	wield_delay = 0.2 SECONDS //If you modify your pistol to be two-handed, it will still be fast to aim
 	type_of_casings = "bullet"
 	gun_skill_category = GUN_SKILL_PISTOLS
@@ -25,7 +25,7 @@
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/heavy_barrel,
-						/obj/item/attachable/quickfire,
+						/obj/item/attachable/gyro,
 						/obj/item/attachable/burstfire_assembly)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
@@ -62,8 +62,8 @@
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17)
 
 	fire_delay = 0.125 SECONDS
-	accuracy_mult = 1
-	accuracy_mult_unwielded = 0.85
+	accuracy_mult = 1.1
+	accuracy_mult_unwielded = 0.95
 	scatter = -5
 	scatter_unwielded = 10
 

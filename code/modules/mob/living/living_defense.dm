@@ -17,10 +17,23 @@
 	return 0
 
 //Handles the effects of "stun" weapons
+/**
+	stun_effect_act(stun_amount, agony_amount, def_zone)
+
+	Handle the effects of a "stun" weapon
+
+	Arguments
+		stun_amount {int} applied as Stun and Paralyze
+		agony_amount {int} dealt as HALLOSS damage to the def_zone
+		def_zone {enum} which body part to target
+*/
 /mob/living/proc/stun_effect_act(stun_amount, agony_amount, def_zone)
+	if(status_flags & GODMODE)
+		return FALSE
+
 	flash_pain()
 
-	if (stun_amount)
+	if(stun_amount)
 		Stun(stun_amount * 20) // TODO: replace these amounts in stun_effect_stun() calls
 		Paralyze(stun_amount * 20)
 		apply_effect(STUTTER, stun_amount)
@@ -166,7 +179,7 @@
 
 /mob/living/carbon/xenomorph/boiler/ExtinguishMob()
 	. = ..()
-	set_light(BOILER_LUMINOSITY)
+	updateBoilerGlow()
 
 /mob/living/proc/update_fire()
 	return

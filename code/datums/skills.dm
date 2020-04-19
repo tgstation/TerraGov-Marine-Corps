@@ -649,7 +649,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 	medical = SKILL_MEDICAL_EXPERT
 	surgery = SKILL_SURGERY_EXPERT
-
+  
 
 /datum/skills/sectoid
 	name = "Sectoid"
