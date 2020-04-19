@@ -2802,12 +2802,13 @@
 	item_state = "lollipop_stick"
 	flags_equip_slot = ITEM_SLOT_MASK
 	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/sugar = 15)
+	tastes = list("candy" = 1)	
 	var/mutable_appearance/head
 	var/headcolor = rgb(0, 0, 0)
 	var/succ_dur = 180
 	var/succ_int = 100
 	var/next_succ = 0
-	tastes = list("candy" = 1)
+	var/mob/living/carbon/human/owner
  
 /obj/item/reagent_containers/food/snacks/lollipop/Initialize()
 	. = ..()
@@ -2817,12 +2818,11 @@
 //makes lollipops actually wearable as masks and still edible the old fashioned way.
 /obj/item/reagent_containers/food/snacks/lollipop/proc/handle_reagents()
 	var/mob/living/carbon/C = loc
-	if(src == C.wear_mask) // if it's in the human/monkey mouth, transfer reagents to the mob
-		var/fraction = min(REAGENTS_METABOLISM/reagents.total_volume, 1)
-		reagents.reaction(C, INGEST, fraction)
-		if(!reagents.trans_to(C, REAGENTS_METABOLISM))
-			reagents.remove_any(REAGENTS_METABOLISM)
-		return
+	var/fraction = min(REAGENTS_METABOLISM/reagents.total_volume, 1)
+	reagents.reaction(C, INGEST, fraction)
+	if(!reagents.trans_to(C, REAGENTS_METABOLISM))
+		reagents.remove_any(REAGENTS_METABOLISM)
+	return
 	reagents.remove_any(REAGENTS_METABOLISM)
  
 /obj/item/reagent_containers/food/snacks/lollipop/process()
@@ -2831,6 +2831,8 @@
 		return PROCESS_KILL
 	if(!reagents)
 		stack_trace("lollipop processing without a reagents datum")
+		return PROCESS_KILL
+	if(owner.stat == DEAD)	
 		return PROCESS_KILL
 	if(succ_dur < 1)
 		qdel(src)
@@ -2841,13 +2843,19 @@
 		next_succ = world.time + succ_int
  
 /obj/item/reagent_containers/food/snacks/lollipop/equipped(mob/user, slot)
+	to_chat(world, "equpped: [user] :: [slot]")
 	. = ..()
 	if(!iscarbon(user))
 		return
-	if(slot == SLOT_WEAR_MASK)
-		START_PROCESSING(SSobj, src)
-	else
-		STOP_PROCESSING(SSobj, src)
+	if(slot != SLOT_WEAR_MASK)
+		return
+	owner = user
+	START_PROCESSING(SSobj, src)
+
+/obj/item/reagent_containers/food/snacks/lollipop/dropped(mob/user)
+	. = ..()
+	owner = null
+	STOP_PROCESSING(SSobj, src)		
  
 /obj/item/reagent_containers/food/snacks/lollipop/Destroy()
 	STOP_PROCESSING(SSobj, src)
