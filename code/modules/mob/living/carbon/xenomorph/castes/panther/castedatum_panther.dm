@@ -20,7 +20,7 @@
 	tackle_damage = 33
 
 	// *** Speed *** //
-	speed = .5
+	speed = 0.5
 
 	// *** Plasma *** //
 	plasma_max = 100
@@ -154,4 +154,3 @@
 
 	// *** Ranged Attack *** //
 	pounce_delay = 35.0 SECONDS
-
