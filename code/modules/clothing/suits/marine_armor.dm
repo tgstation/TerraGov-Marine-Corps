@@ -106,7 +106,7 @@
 	desc = "A standard Marine M3 Light Build Pattern Chestplate. Lesser encumbrance and protection."
 	icon_state = "2"
 	armor = list("melee" = 45, "bullet" = 55, "laser" = 55, "energy" = 20, "bomb" = 45, "bio" = 30, "rad" = 10, "fire" = 25, "acid" = 35)
-	slowdown = SLOWDOWN_ARMOR_LIGHT
+	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
 	brightness_on = 8 //because it's LIGHT armor, get it?
 
 /obj/item/clothing/suit/storage/marine/harness
