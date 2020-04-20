@@ -2801,6 +2801,7 @@
 	icon_state = "lollipop_stick"
 	item_state = "lollipop_stick"
 	flags_equip_slot = ITEM_SLOT_MASK
+	w_class = WEIGHT_CLASS_TINY	
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/sugar = 4)
 	tastes = list("candy" = 1)	
 	var/mutable_appearance/head
