@@ -186,8 +186,11 @@
 		max_integrity = min(max_integrity + max_upgrade_per_tick, max_upgradable_health)
 
 /turf/closed/wall/resin/regenerating/take_damage(damage)
+	var/destroyed = (wall_integrity - damage <= 0)
 	. = ..()
 	STOP_PROCESSING(SSobj, src)
+	if(destroyed) // I can't check qdel because the turf is replaced instead
+		return
 	addtimer(CALLBACK(src, .proc/start_healing), cooldown_on_taking_dmg)
 
 
