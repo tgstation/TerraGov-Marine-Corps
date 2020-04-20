@@ -193,7 +193,7 @@
 
 
 /turf/open/shuttle/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
-	if(planned_building == /turf/closed/wall/resin)
+	if(ispath(planned_building, /turf/closed/wall/)) // Shuttles move and will leave holes in the floor during transit
 		if(!silent)
 			to_chat(builder, "<span class='warning'>This place seems unable to support a wall.</span>")
 		return FALSE
