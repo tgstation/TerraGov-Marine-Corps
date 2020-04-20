@@ -18,7 +18,7 @@
     frontier outposts. They focus on phoron research and mining.<br> NanoTrasen was started in in 2057, their main invention back then being a phoron-engine design. \
     Ever since, NT has gained the favor of the ISA and TG, allowing them to rapidly expand operations, eventually encompasssing most human space. \
     Despite their generally good PR and wide acclaim, vocal critics of NT indicate their abuses of workers, as well as their controversial production of \
-    vatborns and synthetics for the military. Despite this, NT is projected to keep growing, even with the TG-ICC war.<br> \
+    vatborns for the military. Despite this, NT is projected to keep growing, even with the TG-ICC war.<br> \
     mechanics_text = "Several million employees.<br><br>Has a few thousand armed security officers.<br><br>~100 FTL ships, mainly non-combatant or escorts<br><br>\
     ++Great scientific capabilities.<br>\
     +Posseses a large amount of influence.<br>\
@@ -43,8 +43,7 @@
 /datum/codex_entry/SoM_faction
     display_name = "Sons of Mars (faction)"
     lore_text = "The Sons of Mars, known informally as the SoM, is an organized government with major holdings in the ICC space, \
-    tracing its roots back being to a crime syndicate on Mars.<br> The Sons of Mars center of operations is on Cydonia, a planet inhabited by , \
-    known as the diplomatic and governmental center and formed by the two habitat stations that fled Earth orbit, Caelus, formed by Earth nationalists, \
+    tracing its roots back being to a major rebellion on Mars.<br> The Sons of Mars center of operations is on Cydonia, a planet inhabited by \
     descendants and survivors of the Martian rioters, fueled by their collective hatred of the Terran Government. Their expertise in engineering \
     allowed them to build space stations, habitats and small colonies in nearby areas, making them the naval powerhouse of the ICC.<br>\
     mechanics_text = "~40 million people.<br><br>Standing army of 200.000.<br><br>150 FTL ships, largely formed of converted ships<br><br>\
