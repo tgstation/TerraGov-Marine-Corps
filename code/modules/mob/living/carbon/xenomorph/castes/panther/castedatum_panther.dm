@@ -42,7 +42,7 @@
 	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 5, "bomb" = XENO_BOMB_RESIST_0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 	// *** Ranged Attack *** //
-	charge_type = 3 //Heavy Pounce - Panther
+	charge_type = CHARGE_TYPE_PANTHER //Heavy Pounce - Panther
 	pounce_delay = 35.0 SECONDS
 
 	// *** Abilities *** ///
