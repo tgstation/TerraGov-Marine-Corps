@@ -27,3 +27,9 @@
 	// Recompose the message, because it's scrambled by default
 	message = compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mode)
 	to_chat(src, "[link] [message]")
+
+
+/mob/dead/observer/compose_name_href(name)
+	if(!check_other_rights(client, R_ADMIN, FALSE))
+		return name
+	return "<a href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[name]</a>"
