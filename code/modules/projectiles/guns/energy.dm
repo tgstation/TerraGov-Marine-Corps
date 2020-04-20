@@ -516,7 +516,7 @@
 		to_chat(user, "<span class ='warning'>You fumble the Lasrifle's charge mode.</span>")
 		return
 
-	mode_index = WRAP(mode_index + 1, 1, length(mode_list))
+	mode_index = WRAP(mode_index + 1, 1, length(mode_list)+1)
 	
 	playsound(user, 'sound/weapons/emitter.ogg', 5, FALSE, 2)
 	charge_cost = initial(mode_list[mode_index].charge_cost)
