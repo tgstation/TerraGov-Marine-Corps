@@ -6,7 +6,7 @@
 ///Resource generator that produces a certain material that can be repaired by marines and attacked by xenos, Intended as an objective for marines to play towards to get more req gear
 /obj/machinery/miner
 	name = "\improper Nanotrasen phoron Mining Well"
-	desc = "Top-of-the-line Nanotrasen research drill, used to extract phoron in vast quantities. Selling the phoron mined by these would net a nice profit..."
+	desc = "Top-of-the-line Nanotrasen research drill with it's own packaging module, used to extract phoron in vast quantities. Selling the phoron mined by these would net a nice profit..."
 	icon = 'icons/obj/mining_drill.dmi'
 	density = TRUE
 	icon_state = "mining_drill_active"
@@ -21,7 +21,7 @@
 	///Tracks how many ticks have passed since we last added a sheet of material
 	var/add_tick = 0
 	///How many times we neeed to tick for a resource to be created, in this case this is 2* the specified amount
-	var/required_ticks = 3  //make one phoron per 6 seconds.
+	var/required_ticks = 30  //make one crate every 60 seconds
 	///The mineral type that's produced
 	var/mineral_produced = /obj/structure/ore_box/phoron
 
@@ -31,7 +31,7 @@
 
 /obj/machinery/miner/damaged/platinum
 	name = "\improper Nanotrasen platinum Mining Well"
-	desc = "A Nanotrasen platinum drill. Produces even more valuable materials than it's phoron counterpart"
+	desc = "A Nanotrasen platinum drill with an internal packaging module. Produces even more valuable materials than it's phoron counterpart"
 	mineral_produced = /obj/structure/ore_box/platinum
 
 /obj/machinery/miner/Initialize()
@@ -140,7 +140,7 @@
 		if(MINER_SMALL_DAMAGE)
 			to_chat(user, "<span class='info'>It's lightly damaged, and you can see some dents and loose piping.</span>\n<span class='info'>Use a wrench to repair it.</span>")
 		if(MINER_RUNNING)
-			to_chat(user, "<span class='info'>[src]'s internal storage currently has [stored_mineral] sheets stored.</span>")
+			to_chat(user, "<span class='info'>[src]'s storage module displays [stored_mineral] crates are ready to be deposited.</span>")
 
 /obj/machinery/miner/attack_hand(mob/living/user)
 	if(miner_status != MINER_RUNNING)
@@ -149,11 +149,11 @@
 		return
 	if(!stored_mineral)
 
-		to_chat(user, "<span class='warning'>[src]'s internal storage currently has no minerals stored!</span>")
+		to_chat(user, "<span class='warning'>[src] is not ready to produce a shipment yet!</span>")
 
 		return
 	new mineral_produced(user.loc, stored_mineral)
-	stored_mineral = 0
+	stored_mineral -= 1
 	start_processing()
 
 /obj/machinery/miner/process()
@@ -163,7 +163,7 @@
 	if(add_tick >= required_ticks)
 		stored_mineral += 1
 		add_tick = 0
-	if(stored_mineral >= 50)
+	if(stored_mineral >= 4)	//Stores 4 boxes worth of minerals
 		stop_processing()
 	else
 		add_tick += 1

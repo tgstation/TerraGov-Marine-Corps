@@ -200,8 +200,6 @@ GLOBAL_LIST_EMPTY(exports_types)
 	if(!GLOB.exports_types.len) // No exports list? Generate it!
 		setupExports()
 
-	var/plat_count = 0
-	var/phor_count = 0
 
 	for(var/place in shuttle_areas)
 		var/area/shuttle/shuttle_area = place
@@ -235,19 +233,14 @@ GLOBAL_LIST_EMPTY(exports_types)
 				SSpoints.supply_points += cost
 			// Sell ore boxes
 			if(istype(AM, /obj/structure/ore_box/platinum))
-				var/obj/structure/ore_box/platinum/P = AM
-				plat_count += P.get_amount()
 
-			if(istype(AM, /obj/structure/ore_box/phoron)
-				var/obj/structure/ore_box/phoron/P = AM
-				phor_count += P.get_amount()
+				SSpoints.supply_points += POINTS_PER_PLATINUM
+
+			if(istype(AM, /obj/structure/ore_box/phoron))
+
+				SSpoints.supply_points += POINTS_PER_PHORON
 
 			qdel(AM)
-
-	if(plat_count)
-		SSpoints.supply_points += plat_count * POINTS_PER_PLATINUM
-	if(phor_count)
-		SSpoints.supply_points += phor_count * POINTS_PER_PHORON
 
 /obj/machinery/computer/supplycomp
 	name = "ASRS console"
