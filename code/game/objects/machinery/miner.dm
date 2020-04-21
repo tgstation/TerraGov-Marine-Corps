@@ -23,7 +23,7 @@
 	///How many times we neeed to tick for a resource to be created, in this case this is 2* the specified amount
 	var/required_ticks = 3  //make one phoron per 6 seconds.
 	///The mineral type that's produced
-	var/mineral_produced = /obj/item/stack/sheet/mineral/phoron
+	var/mineral_produced = /obj/structure/ore_box/phoron
 
 /obj/machinery/miner/damaged	//mapping and all that shebang
 	miner_status = MINER_DESTROYED
@@ -31,8 +31,8 @@
 
 /obj/machinery/miner/damaged/platinum
 	name = "\improper Nanotrasen platinum Mining Well"
-	desc = "A Nanotrasen platinum drill. Produces even more valuable materials than it's phoron counterpart"		
-	mineral_produced = /obj/item/stack/sheet/mineral/platinum
+	desc = "A Nanotrasen platinum drill. Produces even more valuable materials than it's phoron counterpart"
+	mineral_produced = /obj/structure/ore_box/platinum
 
 /obj/machinery/miner/Initialize()
 	. = ..()
@@ -48,7 +48,7 @@
 			icon_state = "mining_drill"
 		if(MINER_DESTROYED)
 			icon_state = "mining_drill_error"
-	
+
 
 /obj/machinery/miner/welder_act(mob/living/user, obj/item/I)
 	. = ..()
@@ -161,7 +161,7 @@
 		stop_processing()
 		return
 	if(add_tick >= required_ticks)
-		stored_mineral += 1			
+		stored_mineral += 1
 		add_tick = 0
 	if(stored_mineral >= 50)
 		stop_processing()

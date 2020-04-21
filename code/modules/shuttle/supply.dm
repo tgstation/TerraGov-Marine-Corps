@@ -233,13 +233,13 @@ GLOBAL_LIST_EMPTY(exports_types)
 					if(AM.type == E.export_obj)
 						cost = E.cost
 				SSpoints.supply_points += cost
-			// Sell platinum
-			if(istype(AM, /obj/item/stack/sheet/mineral/platinum))
-				var/obj/item/stack/sheet/mineral/platinum/P = AM
+			// Sell ore boxes
+			if(istype(AM, /obj/structure/ore_box/platinum))
+				var/obj/structure/ore_box/platinum/P = AM
 				plat_count += P.get_amount()
-			
-			if(istype(AM, /obj/item/stack/sheet/mineral/phoron))
-				var/obj/item/stack/sheet/mineral/phoron/P = AM
+
+			if(istype(AM, /obj/structure/ore_box/phoron)
+				var/obj/structure/ore_box/phoron/P = AM
 				phor_count += P.get_amount()
 
 			qdel(AM)

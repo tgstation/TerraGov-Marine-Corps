@@ -6,3 +6,13 @@
 	density = TRUE
 	anchored = FALSE
 	resistance_flags = XENO_DAMAGEABLE
+
+/obj/structure/ore_box/phoron
+	name = "phoron ore crate"
+	desc = "A large crate filled with raw phoron crystals."
+	icon_state = "orebox_phoron"
+
+/obj/structure/ore_box/platinum
+	name = "platinum ore crate"
+	desc = "A large crate filled with raw platinum ore."
+	icon_state = "orebox_platinum"
