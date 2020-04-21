@@ -95,7 +95,7 @@
 
 		// Admins open straight to player panel
 		if(check_other_rights(C, R_ADMIN, FALSE))
-			display_name = "<a href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[display_name]</a>"
+			display_name = "<a class='hidelink' href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[display_name]</a>"
 
 		if(display_colour)
 			to_chat(C, "<font color='[display_colour]'><span class='ooc'><span class='prefix'>OOC: [display_name]</span>: <span class='message linkify'>[msg]</span></span></font>")

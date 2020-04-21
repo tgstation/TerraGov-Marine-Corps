@@ -374,3 +374,12 @@ h1.alert, h2.alert		{color: #99aab5;}
 /* HELPER CLASSES */
 .text-normal {font-weight: normal; font-style: normal;}
 .hidden {display: none; visibility: hidden;}
+
+
+.hidelink {
+	text-decoration: none;
+	color: inherit;
+}
+.hidelink:hover {
+	text-decoration: underline;
+}
