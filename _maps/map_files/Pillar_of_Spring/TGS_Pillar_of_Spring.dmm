@@ -17327,15 +17327,6 @@
 	icon_state = "tcomms"
 	},
 /area/mainship/command/telecomms)
-"RY" = (
-/obj/structure/table/mainship,
-/obj/item/stack/sheet/glass/reinforced{
-	amount = 30
-	},
-/obj/item/stack/sheet/cardboard,
-/obj/item/stack/sheet/wood/large_stack,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "Sc" = (
 /obj/machinery/light{
 	dir = 8
@@ -17674,6 +17665,17 @@
 /obj/machinery/marine_selector/clothes,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
+"UV" = (
+/obj/structure/table/mainship,
+/obj/item/stack/sheet/glass/reinforced{
+	amount = 30
+	},
+/obj/item/stack/sheet/cardboard{
+	amount = 30
+	},
+/obj/item/stack/sheet/wood/large_stack,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "UX" = (
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 8
@@ -49713,7 +49715,7 @@ QS
 kM
 Qb
 kM
-RY
+UV
 kM
 kM
 QE
