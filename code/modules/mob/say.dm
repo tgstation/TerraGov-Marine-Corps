@@ -35,8 +35,6 @@
 
 
 /mob/proc/say_dead(message)
-	var/name = real_name
-
 	if(!client)
 		return
 
@@ -61,11 +59,16 @@
 		if(isnewplayer(M))
 			continue
 
-		var/rendered = "[M != src ? FOLLOW_LINK(M, src) : ""] <span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span> says, <span class='message'>\"[emoji_parse(message)]\"</span></span>"
-		if(M.client && M.stat == DEAD && (M.client.prefs.toggles_chat & CHAT_DEAD))
-			to_chat(M, rendered)
+		if(!(M.client.prefs.toggles_chat & CHAT_DEAD))
+			continue
 
-		else if(check_other_rights(M.client, R_ADMIN, FALSE) && (M.client.prefs.toggles_chat & CHAT_DEAD)) // Show the message to admins/mods with deadchat toggled on
+		// Admin links for name
+		var/name = real_name
+		if(check_other_rights(M.client, R_ADMIN, FALSE))
+			name = "<a href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[name]</a>"
+
+		var/rendered = "[M != src ? FOLLOW_LINK(M, src) : ""] <span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span> says, <span class='message'>\"[emoji_parse(message)]\"</span></span>"
+		if(M.client && (M.stat == DEAD || check_other_rights(M.client, R_ADMIN, FALSE)))
 			to_chat(M, rendered)
 
 

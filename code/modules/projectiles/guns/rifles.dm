@@ -70,6 +70,8 @@
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/attached_gun/grenade,
 						/obj/item/attachable/attached_gun/flamer,
+						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/attached_gun/shotgun)
 
     flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
@@ -117,6 +119,8 @@
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/compensator,
+						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/attached_gun/grenade,
 						/obj/item/attachable/attached_gun/flamer,
 						/obj/item/attachable/attached_gun/shotgun)
@@ -425,6 +429,8 @@
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/stock/t42stock,
 						/obj/item/attachable/magnetic_harness)
