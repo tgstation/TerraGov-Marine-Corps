@@ -607,35 +607,30 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/ammobox/standard_smg
 	name = "T-19 SMG Ammo Box"
 	icon_state = "ammoboxm39"
-	base_icon_state = "ammoboxm39"
 	ammo_type = /datum/ammo/bullet/smg
 	magazine_type = /obj/item/ammo_magazine/smg/standard_smg
 
 /obj/item/ammobox/standard_pistol
 	name = "TP-14 Pistol Ammo Box"
 	icon_state = "ammoboxm4a3"
-	base_icon_state = "ammoboxm4a3"
 	ammo_type = /datum/ammo/bullet/pistol
 	magazine_type = /obj/item/ammo_magazine/pistol/standard_pistol
 
 /obj/item/ammobox/standard_rifle
 	name = "T-12 AR Ammo Box"
 	icon_state = "ammoboxext"
-	base_icon_state = "ammoboxext"
 	ammo_type = /datum/ammo/bullet/rifle
 	magazine_type = /obj/item/ammo_magazine/rifle/standard_assaultrifle
 
 /obj/item/ammobox/standard_dmr
 	name = "T-64 DMR Ammo Box"
 	icon_state = "ammoboxap"
-	base_icon_state = "ammoboxap"
 	ammo_type = /datum/ammo/bullet/rifle/standard_dmr
 	magazine_type = /obj/item/ammo_magazine/rifle/standard_dmr
 
 /obj/item/ammobox/standard_lmg
 	name = "T-42 LMG Ammo Box"
 	icon_state = "big_ammo_box"
-	base_icon_state = "big_ammo_box"
 	ammo_type = /datum/ammo/bullet/rifle
 	magazine_type = /obj/item/ammo_magazine/standard_lmg
 
