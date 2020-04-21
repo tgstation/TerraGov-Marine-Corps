@@ -2308,7 +2308,7 @@ Imports
 	name = "Sawn Off Shotgun"
 	contains = list(
 					/obj/item/weapon/gun/shotgun/double/sawn,
-					/ojb/item/ammo_magazine/shotgun
+					/obj/item/ammo_magazine/shotgun
 					)
 	cost = 30
 	containertype = /obj/structure/closet/crate
@@ -2319,7 +2319,7 @@ Imports
 	name = "M37A2 Pump Shotgun"
 	contains = list(
 					/obj/item/weapon/gun/shotgun/pump,
-					/ojb/item/ammo_magazine/shotgun
+					/obj/item/ammo_magazine/shotgun
 					)
 	cost = 30
 	containertype = /obj/structure/closet/crate
@@ -2330,7 +2330,7 @@ Imports
 	name = "Paladin-12 Shotgun"
 	contains = list(
 					/obj/item/weapon/gun/shotgun/pump/cmb,
-					/ojb/item/ammo_magazine/shotgun
+					/obj/item/ammo_magazine/shotgun
 					)
 	cost = 30
 	containertype = /obj/structure/closet/crate
@@ -2341,7 +2341,7 @@ Imports
 	name = "Kronos Shotgun"
 	contains = list(
 					/obj/item/weapon/gun/shotgun/pump/ksg,
-					/ojb/item/ammo_magazine/shotgun
+					/obj/item/ammo_magazine/shotgun
 					)
 	cost = 30
 	containertype = /obj/structure/closet/crate
