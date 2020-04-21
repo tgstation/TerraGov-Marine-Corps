@@ -48,7 +48,7 @@
 			to_chat(usr, "<span class='notice'>They are currently set to railgun targeting mode.</span>")
 		if(MODE_ORBITAL)
 			to_chat(usr, "<span class='notice'>They are currently set to orbital bombardment mode.</span>")
-	
+
 /obj/item/binoculars/tactical/Destroy()
 	if(laser)
 		QDEL_NULL(laser)
@@ -59,7 +59,7 @@
 
 /obj/item/binoculars/tactical/InterceptClickOn(mob/user, params, atom/object)
 	var/list/pa = params2list(params)
-	if(pa.Find("ctrl") && !pa.Find("shift"))	
+	if(pa.Find("ctrl") && !pa.Find("shift"))
 		acquire_target(object, user)
 		return TRUE
 
@@ -141,7 +141,7 @@
 				to_chat(user, "<span class='notice'>You switch [src] to railgun targeting mode.</span>")
 			if(MODE_ORBITAL)
 				to_chat(user, "<span class='notice'>You switch [src] to orbital bombardment targeting mode.</span>")
-		
+
 		update_icon()
 		playsound(user, 'sound/items/binoculars.ogg', 15, 1)
 
@@ -178,8 +178,10 @@
 				is_outside = TRUE
 			if(CEILING_GLASS)
 				is_outside = TRUE
+			if(CEILING_METAL)
+				is_outside = TRUE
 	if(!is_outside)
-		to_chat(user, "<span class='warning'>INVALID TARGET: target must be visible from high altitude.</span>")
+		to_chat(user, "<span class='warning'>DEPTH WARNING: Target too deep for ordnance.</span>")
 		return
 	if(user.action_busy)
 		return
