@@ -8,7 +8,8 @@ const ensureConnection = () => {
       return;
     }
     if (!socket || socket.readyState === WebSocket.CLOSED) {
-      socket = new WebSocket('ws://127.0.0.1:3000');
+      const DEV_SERVER_IP = process.env.DEV_SERVER_IP || '127.0.0.1';
+      socket = new WebSocket(`ws://${DEV_SERVER_IP}:3000`);
       socket.onopen = () => {
         // Empty the message queue
         while (queue.length !== 0) {
@@ -37,8 +38,24 @@ const subscribe = fn => subscribers.push(fn);
  */
 const serializeObject = obj => {
   let refs = [];
-  const json = JSON.stringify(obj, (key, value) => {
-    if (typeof value === 'object' && value !== null) {
+  const primitiveReviver = value => {
+    if (typeof value === 'number' && !Number.isFinite(value)) {
+      return {
+        __number__: String(value),
+      };
+    }
+    if (typeof value === 'undefined') {
+      return {
+        __undefined__: true,
+      };
+    }
+    return value;
+  };
+  const objectReviver = (key, value) => {
+    if (typeof value === 'object') {
+      if (value === null) {
+        return value;
+      }
       // Circular reference
       if (refs.includes(value)) {
         return '[circular ref]';
@@ -47,15 +64,20 @@ const serializeObject = obj => {
       // Error object
       if (value instanceof Error) {
         return {
-          __type__: 'error',
+          __error__: true,
           string: String(value),
           stack: value.stack,
         };
       }
+      // Array
+      if (Array.isArray(value)) {
+        return value.map(primitiveReviver);
+      }
       return value;
     }
-    return value;
-  });
+    return primitiveReviver(value);
+  };
+  const json = JSON.stringify(obj, objectReviver);
   refs = null;
   return json;
 };
@@ -79,8 +101,10 @@ const sendRawMessage = msg => {
     }
     // Send message using plain HTTP request.
     else {
+      const DEV_SERVER_IP = process.env.DEV_SERVER_IP || '127.0.0.1';
       const req = new XMLHttpRequest();
-      req.open('POST', 'http://127.0.0.1:3001', true);
+      req.open('POST', `http://${DEV_SERVER_IP}:3001`);
+      req.timeout = 500;
       req.send(json);
     }
   }

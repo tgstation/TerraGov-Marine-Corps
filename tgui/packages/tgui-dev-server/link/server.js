@@ -29,11 +29,24 @@ export const broadcastMessage = (link, msg) => {
   }
 };
 
-const deserializeObject = obj => {
-  return JSON.parse(obj, (key, value) => {
+const deserializeObject = str => {
+  return JSON.parse(str, (key, value) => {
     if (typeof value === 'object' && value !== null) {
-      if (value.__type__ === 'error') {
+      if (value.__error__) {
+        if (!value.stack) {
+          return value.string;
+        }
         return retrace(value.stack);
+      }
+      if (value.__number__) {
+        return parseFloat(value.__number__);
+      }
+      if (value.__undefined__) {
+        // NOTE: You should not rely on deserialized object's undefined,
+        // this is purely for inspection purposes.
+        return {
+          [inspect.custom]: () => undefined,
+        };
       }
       return value;
     }
@@ -68,7 +81,6 @@ const handleLinkMessage = msg => {
 
 // WebSocket-based client link
 const setupWebSocketLink = () => {
-  const logger = createLogger('link');
   const port = 3000;
   const wss = new WebSocket.Server({ port });
 
@@ -91,7 +103,6 @@ const setupWebSocketLink = () => {
 
 // One way HTTP-based client link for IE8
 const setupHttpLink = () => {
-  const logger = createLogger('link');
   const port = 3001;
 
   const server = http.createServer((req, res) => {
@@ -101,12 +112,13 @@ const setupHttpLink = () => {
         body += chunk.toString();
       });
       req.on('end', () => {
-        const msg = JSON.parse(body);
+        const msg = deserializeObject(body);
         handleLinkMessage(msg);
         res.end();
       });
       return;
     }
+    res.write('Hello');
     res.end();
   });
 
