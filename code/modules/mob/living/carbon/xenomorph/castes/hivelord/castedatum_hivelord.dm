@@ -52,8 +52,8 @@
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/plant_weeds,
-		/datum/action/xeno_action/choose_resin,
-		/datum/action/xeno_action/activable/secrete_resin/hivelord,
+		/datum/action/xeno_action/choose_resin/hivelord,
+		/datum/action/xeno_action/activable/secrete_resin/hivelord, // TODO: (psykzz) Disabled until this is fixed.
 		/datum/action/xeno_action/activable/transfer_plasma/improved,
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/build_tunnel,
