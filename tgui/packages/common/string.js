@@ -1,8 +1,5 @@
 /**
  * Removes excess whitespace and indentation from the string.
- *
- * This function is not called directly in runtime, but instead is called
- * by the macro, which is defined below, and it runs at compile time.
  */
 export const multiline = str => {
   if (Array.isArray(str)) {
@@ -35,15 +32,44 @@ export const multiline = str => {
 };
 
 /**
+ * Creates a glob pattern matcher.
+ *
  * Matches strings with wildcards.
- * Example: testGlobPattern('*@domain')('user@domain') === true
+ *
+ * Example: createGlobPattern('*@domain')('user@domain') === true
  */
-export const testGlobPattern = pattern => {
+export const createGlobPattern = pattern => {
   const escapeString = str => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&');
   const regex = new RegExp('^'
     + pattern.split(/\*+/).map(escapeString).join('.*')
     + '$');
   return str => regex.test(str);
+};
+
+/**
+ * Creates a search terms matcher.
+ *
+ * Returns true if given string matches the search text.
+ *
+ * @template T
+ * @param {string} searchText
+ * @param {(obj: T) => string} stringifier
+ * @returns {(obj: T) => boolean}
+ */
+export const createSearch = (searchText, stringifier) => {
+  const preparedSearchText = searchText.toLowerCase().trim();
+  return obj => {
+    if (!preparedSearchText) {
+      return true;
+    }
+    const str = stringifier ? stringifier(obj) : obj;
+    if (!str) {
+      return false;
+    }
+    return str
+      .toLowerCase()
+      .includes(preparedSearchText);
+  };
 };
 
 export const capitalize = str => {
@@ -67,8 +93,8 @@ export const toTitleCase = str => {
   // Handle string
   const WORDS_UPPER = ['Id', 'Tv'];
   const WORDS_LOWER = [
-    'A', 'An', 'And', 'As', 'At', 'But', 'By', 'For', 'For', 'From', 'In', 'Into',
-    'Near', 'Nor', 'Of', 'On', 'Onto', 'Or', 'The', 'To', 'With',
+    'A', 'An', 'And', 'As', 'At', 'But', 'By', 'For', 'For', 'From', 'In',
+    'Into', 'Near', 'Nor', 'Of', 'On', 'Onto', 'Or', 'The', 'To', 'With',
   ];
   let currentStr = str.replace(/([^\W_]+[^\s-]*) */g, str => {
     return str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
