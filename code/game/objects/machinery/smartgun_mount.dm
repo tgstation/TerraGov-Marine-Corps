@@ -27,7 +27,7 @@
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "M56D_case" // I guess a placeholder? Not actually going to show up ingame for now.
 	w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 6
+	storage_slots = 7
 	bypass_w_limit = list(
 		/obj/item/m56d_gun,
 		/obj/item/ammo_magazine/m56d,
@@ -41,6 +41,8 @@
 	new /obj/item/tool/wrench(src) //wrench to hold it down into the ground
 	new /obj/item/tool/screwdriver(src) //screw the gun onto the post.
 	new /obj/item/ammo_magazine/m56d(src)
+	new /obj/item/m56d_post(src) //spare post for the gun
+
 
 // The actual gun itself.
 /obj/item/m56d_gun

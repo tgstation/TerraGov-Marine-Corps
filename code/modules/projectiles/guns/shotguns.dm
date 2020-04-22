@@ -24,6 +24,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	aim_slowdown = 0.35
 	wield_delay = 0.6 SECONDS //Shotguns are really easy to put up to fire, since they are designed for CQC (at least compared to a rifle)
 	gun_skill_category = GUN_SKILL_SHOTGUNS
+	flags_item_map_variant = NONE
 
 	fire_delay = 6
 	accuracy_mult = 1.15
@@ -302,7 +303,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 //Turns out it has some attachments.
 /obj/item/weapon/gun/shotgun/double/update_icon()
-	icon_state = current_mag.chamber_closed ? copytext(icon_state,1,-2) : icon_state + "_o"
+	icon_state = "[initial(icon_state)][current_mag.chamber_closed ? "" : "_o"]"
 
 /obj/item/weapon/gun/shotgun/double/check_chamber_position()
 	if(current_mag.chamber_closed)
@@ -712,7 +713,6 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/quickfire,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
