@@ -1417,24 +1417,6 @@
 /obj/item/radio/intercom/general,
 /turf/closed/wall/mainship,
 /area/mainship/hallways/hangar)
-"dC" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 1
-	},
-/turf/open/floor/mainship{
-	icon_state = "test_floor4"
-	},
-/area/mainship/hallways/aft_hallway)
 "dD" = (
 /obj/docking_port/stationary/ert/target{
 	id = "port_target";
@@ -2042,6 +2024,17 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/commandbunks)
+"fW" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/obj/structure/table/mainship,
+/obj/machinery/cell_charger,
+/obj/effect/spawner/random/powercell,
+/obj/effect/spawner/random/powercell,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "fY" = (
 /obj/structure/window/reinforced/tinted{
 	dir = 8;
@@ -3869,19 +3862,6 @@
 /obj/machinery/firealarm,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/ce_room)
-"lo" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 1
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/aft_hallway)
 "lp" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/security/marinemainship{
@@ -10701,17 +10681,16 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_emb)
-"Cz" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
-	dir = 6
+"Cy" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
 	},
-/obj/structure/table/mainship,
-/obj/machinery/cell_charger,
-/obj/effect/spawner/random/powercell,
-/obj/effect/spawner/random/powercell,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
+/area/mainship/medical/medical_science)
 "CC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -12077,16 +12056,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/airoom)
-"Fq" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/turf/open/floor/mainship{
-	icon_state = "dark_sterile"
-	},
-/area/mainship/medical/medical_science)
 "Fr" = (
 /obj/machinery/telecomms/receiver/preset_right,
 /turf/open/floor/mainship{
@@ -17218,7 +17187,7 @@
 /obj/structure/rack,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
-"QL" = (
+"QK" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable{
@@ -17440,17 +17409,6 @@
 	icon_state = "tcomms"
 	},
 /area/mainship/command/telecomms)
-"RZ" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 1
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/squads/req)
 "Sc" = (
 /obj/machinery/light{
 	dir = 8
@@ -17503,6 +17461,19 @@
 /obj/docking_port/stationary/escape_pod/escape_shuttle,
 /turf/open/floor/plating/mainship,
 /area/mainship/command/self_destruct)
+"SG" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/aft_hallway)
 "SH" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -17636,6 +17607,24 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
+"TE" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 1
+	},
+/turf/open/floor/mainship{
+	icon_state = "test_floor4"
+	},
+/area/mainship/hallways/aft_hallway)
 "TH" = (
 /obj/structure/bed/chair/comfy{
 	dir = 8;
@@ -18091,6 +18080,17 @@
 /obj/machinery/landinglight/ds2/delaytwo,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"Xn" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/squads/req)
 "Xq" = (
 /obj/structure/table/mainship,
 /obj/item/ashtray/glass,
@@ -18148,6 +18148,19 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"Yg" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/aft_hallway)
 "Yr" = (
 /obj/machinery/status_display,
 /turf/closed/wall/mainship,
@@ -18238,19 +18251,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks)
-"YU" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 1
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/aft_hallway)
 "YX" = (
 /obj/machinery/door/airlock/mainship/marine/requisitions,
 /obj/machinery/door/firedoor/mainship{
@@ -43684,7 +43684,7 @@ Fg
 id
 nD
 ek
-Fq
+Cy
 oR
 oS
 iL
@@ -49071,7 +49071,7 @@ kE
 oG
 oD
 TO
-Cz
+fW
 pn
 og
 ok
@@ -51131,7 +51131,7 @@ NY
 gq
 oi
 ip
-RZ
+Xn
 QD
 JN
 JN
@@ -51891,16 +51891,16 @@ mU
 iZ
 JL
 MO
-QL
-lo
-QL
+QK
+Yg
+QK
 JL
 JL
-QL
-YU
-dC
+QK
+SG
+TE
 JL
-QL
+QK
 JL
 JL
 Rj
