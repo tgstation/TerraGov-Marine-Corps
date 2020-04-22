@@ -56,6 +56,12 @@ matrix:
             - g++-7
             - g++-7-multilib
             - libstdc++-7-dev
+            - gcc-7
+            - gcc-7-multilib
+            - gcc-5-multilib
+            - libmariadb2:i386
+            - libc6:i386
+            - libssl1.0.0:i386
             - libmariadb-client-lgpl-dev:i386
             - libmariadbd-dev
       cache:
