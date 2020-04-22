@@ -1,140 +1,106 @@
-import { classes } from 'common/react';
 import { useBackend } from '../backend';
-import { Box, Button, Section, Table } from '../components';
+import { Button, Section, Box } from '../components';
+import { decodeHtmlEntities } from 'common/string';
 import { Window } from '../layouts';
-
-const VendingRow = (props, context) => {
-  const { act, data } = useBackend(context);
-  const {
-    product,
-    productStock,
-    custom,
-  } = props;
-  const free = (
-    !data.onstation
-    || product.price === 0
-    || (
-      !product.premium
-      && data.department
-      && data.user
-      && data.department === data.user.department
-    )
-  );
-  return (
-    <Table.Row>
-      <Table.Cell collapsing>
-        {product.base64 ? (
-          <img
-            src={`data:image/jpeg;base64,${product.img}`}
-            style={{
-              'vertical-align': 'middle',
-              'horizontal-align': 'middle',
-            }} />
-        ) : (
-          <span
-            className={classes([
-              'vending32x32',
-              product.path,
-            ])}
-            style={{
-              'vertical-align': 'middle',
-              'horizontal-align': 'middle',
-            }} />
-        )}
-      </Table.Cell>
-      <Table.Cell bold>
-        {product.name}
-      </Table.Cell>
-      <Table.Cell collapsing textAlign="center">
-        <Box
-          color={custom
-            ? 'good'
-            : productStock <= 0
-              ? 'bad'
-              : productStock <= (product.max_amount / 2)
-                ? 'average'
-                : 'good'}>
-          {productStock} in stock
-        </Box>
-      </Table.Cell>
-      <Table.Cell collapsing textAlign="center">
-        {custom && (
-          <Button
-            fluid
-            content={data.access ? 'FREE' : product.price + ' cr'}
-            onClick={() => act('dispense', {
-              'item': product.name,
-            })} />
-        ) || (
-          <Button
-            fluid
-            disabled={(
-              productStock === 0
-              || !free && (
-                !data.user
-                || product.price > data.user.cash
-              )
-            )}
-            content={free ? 'FREE' : product.price + ' cr'}
-            onClick={() => act('vend', {
-              'ref': product.ref,
-            })} />
-        )}
-      </Table.Cell>
-    </Table.Row>
-  );
-};
 
 export const Vending = (props, context) => {
   const { act, data } = useBackend(context);
-  let inventory;
-  let custom = false;
-  if (data.vending_machine_input) {
-    inventory = data.vending_machine_input;
-    custom = true;
-  } else if (data.extended_inventory) {
-    inventory = [
-      ...data.product_records,
-      ...data.coin_records,
-      ...data.hidden_records,
-    ];
-  } else {
-    inventory = [
-      ...data.product_records,
-      ...data.coin_records,
-    ];
-  }
+
   return (
-    <Window resizable>
-      <Window.Content scrollable>
-        {!!data.onstation && (
-          <Section title="User">
-            {data.user && (
-              <Box>
-                Welcome, <b>{data.user.name}</b>,
-                {' '}
-                <b>{data.user.job || 'Unemployed'}</b>!
-                <br />
-                Your balance is <b>{data.user.cash} credits</b>.
+    <Window>
+      <Window.Content>
+        {data.currently_vending_name ? (
+          <Section
+            title={"You have selected "+data.currently_vending_name}
+            buttons={
+              <Button
+                onClick={() => act('cancel_buying')}
+                icon="times">
+                Cancel
+              </Button>
+            }>
+            <Box>
+              Please swipe your ID to pay for the article.
+              <Button
+                onClick={() => act('swipe')}
+                icon="id-card"
+                ml={1}>
+                Swipe
+              </Button>
+            </Box>
+          </Section>
+        ) : (
+          (!!((data.premium_length > 0) || (data.isshared > 0))) && (
+            <Section
+              title={"Coin slot: "+(data.coin ? data.coin : "No coin inserted")}
+              buttons={data.coin && (
+                <Button
+                  icon="donate"
+                  onClick={() => act("remove_coin")}>
+                  Remove
+                </Button>)}>
+              {!!data.coin && (
+                <Section title="Select an item">
+                  {data.coin_records.map(coin_record => (
+                    <Box key={coin_record.id}>
+                      <Button
+                        selected={data.currently_vending_index
+                          === coin_record.prod_index}
+                        onClick={() => act(
+                          "vend",
+                          { vend: coin_record.prod_index,
+                            cat: coin_record.prod_cat })}
+                        disabled={!coin_record.amount}>
+                        <Box color={coin_record.product_color} bold={1}>
+                          { decodeHtmlEntities(coin_record.product_name)}
+                        </Box>
+                      </Button>
+                    </Box>
+                  ))}
+                </Section>)}
+            </Section>
+          ))}
+        {data.hidden_records.length > 0 && (
+          <Section title="$*FD!!F">
+            {data.hidden_records.map(hidden_record => (
+              <Box key={hidden_record.id}>
+                <Button
+                  selected={data.currently_vending_index
+                    === hidden_record.prod_index}
+                  onClick={() => act(
+                    'vend',
+                    { vend: hidden_record.prod_index,
+                      cat: hidden_record.prod_cat })}
+                  disabled={!hidden_record.amount}>
+                  <Box color={hidden_record.product_color} bold={1}>
+                    { decodeHtmlEntities(hidden_record.product_name)}
+                  </Box>
+                </Button>
               </Box>
-            ) || (
-              <Box color="light-gray">
-                No registered ID card!<br />
-                Please contact your local HoP!
-              </Box>
-            )}
+            ))}
           </Section>
         )}
-        <Section title="Products" >
-          <Table>
-            {inventory.map(product => (
-              <VendingRow
-                key={product.name}
-                custom={custom}
-                product={product}
-                productStock={data.stock[product.name]} />
-            ))}
-          </Table>
+        <Section title="Select an item">
+          {data.displayed_records.length > 0 ? (
+            data.displayed_records.map(display_record => (
+              <Box key={display_record.id}>
+                <Button
+                  selected={data.currently_vending_index
+                    === display_record.prod_index}
+                  onClick={() => act(
+                    'vend',
+                    { vend: display_record.prod_index,
+                      cat: display_record.prod_cat })}
+                  disabled={!display_record.amount}>
+                  <Box color={display_record.product_color} bold={1}>
+                    { decodeHtmlEntities(display_record.product_name)}
+                  </Box>
+                </Button>
+              </Box>
+            ))
+          ) : (
+            <Box color="red">No product loaded!</Box>
+          )}
         </Section>
       </Window.Content>
     </Window>
