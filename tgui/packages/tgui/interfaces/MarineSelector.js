@@ -42,7 +42,7 @@ export const MarineSelector = (props, context) => {
                           </Box>
                         </Button>
                       </Box>
-                    )}
+                    ); }
                   )}
                 </Section>
               ));
