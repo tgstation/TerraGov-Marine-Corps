@@ -9,7 +9,6 @@ export const Sentry = (props, context) => {
   return (
     <Window>
       <Window.Content>
-        <TitleBar>Sentry Gun</TitleBar>
         <Section title={data.name}
           buttons={
             <Button
