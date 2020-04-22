@@ -1,167 +1,43 @@
-import { AirlockElectronics } from './interfaces/AirlockElectronics';
-import { Apc } from './interfaces/APC';
-import { AtmosAlertConsole } from './interfaces/AtmosAlertConsole';
-import { AtmosControlConsole } from './interfaces/AtmosControlConsole';
-import { AtmosFilter } from './interfaces/AtmosFilter';
-import { AtmosMixer } from './interfaces/AtmosMixer';
-import { AtmosPump } from './interfaces/AtmosPump';
-import { BorgPanel } from './interfaces/BorgPanel';
-import { BrigTimer } from './interfaces/BrigTimer';
-import { Canister } from './interfaces/Canister';
-import { Cargo } from './interfaces/Cargo';
-import { CAS } from './interfaces/CAS';
-import { ChemDispenser } from './interfaces/ChemDispenser';
-import { Crayon } from './interfaces/Crayon';
-import { Crew } from './interfaces/Crew';
-import { Cryo } from './interfaces/Cryo';
-import { DisposalUnit } from './interfaces/DisposalUnit';
-import { KitchenSink } from './interfaces/KitchenSink';
-import { ThermoMachine } from './interfaces/ThermoMachine';
-import { Wires } from './interfaces/Wires';
-import { MarineSelector } from './interfaces/MarineSelector';
-import { SelfDestruct } from './interfaces/SelfDestruct';
-import { Sentry } from './interfaces/Sentry';
-import { Vending } from './interfaces/Vending';
-import { MarineDropship } from './interfaces/MarineDropship';
-import { CentcomPodLauncher } from './interfaces/CentcomPodLauncher';
-import { PortableVendor } from './interfaces/PortableVendor';
-import { PortableGenerator } from './interfaces/PortableGenerator';
-import { ShuttleManipulator } from './interfaces/ShuttleManipulator';
-import { SmartVend } from './interfaces/SmartVend';
-import { SMES } from './interfaces/SMES';
+import { Window } from './layouts';
 
+const requireInterface = require.context('./interfaces', false, /\.js$/);
 
-const ROUTES = {
-  airlock_electronics: {
-    component: () => AirlockElectronics,
-    scrollable: false,
-  },
-  apc: {
-    component: () => Apc,
-    scrollable: false,
-  },
-  atmos_alert: {
-    component: () => AtmosAlertConsole,
-    scrollable: true,
-  },
-  atmos_control: {
-    component: () => AtmosControlConsole,
-    scrollable: true,
-  },
-  atmos_filter: {
-    component: () => AtmosFilter,
-    scrollable: false,
-  },
-  atmos_mixer: {
-    component: () => AtmosMixer,
-    scrollable: false,
-  },
-  atmos_pump: {
-    component: () => AtmosPump,
-    scrollable: false,
-  },
-  borgopanel: {
-    component: () => BorgPanel,
-    scrollable: true,
-  },
-  brig_timer: {
-    component: () => BrigTimer,
-    scrollable: false,
-  },
-  canister: {
-    component: () => Canister,
-    scrollable: false,
-  },
-  cargo: {
-    component: () => Cargo,
-    scrollable: true,
-  },
-  cas: {
-    component: () => CAS,
-    scrollable: true,
-  },
-  crew: {
-    component: () => Crew,
-    scrollable: true,
-  },
-  chem_dispenser: {
-    component: () => ChemDispenser,
-    scrollable: true,
-  },
-  crayon: {
-    component: () => Crayon,
-    scrollable: true,
-  },
-  cryo: {
-    component: () => Cryo,
-    scrollable: true,
-  },
-  disposal_unit: {
-    component: () => DisposalUnit,
-    scrollable: false,
-  },
-  marineselector: {
-    component: () => MarineSelector,
-    scrollable: true,
-  },
-  marinedropship: {
-    component: () => MarineDropship,
-    scrollable: true,
-  },
-  centcom_podlauncher: {
-    component: () => CentcomPodLauncher,
-    scrollable: false,
-  },
-  portable_generator: {
-    component: () => PortableGenerator,
-    scrollable: false,
-  },
-  portablevendor: {
-    component: () => PortableVendor,
-    scrollable: true,
-  },
-  selfdestruct: {
-    component: () => SelfDestruct,
-    scrollable: false,
-  },
-  sentry: {
-    component: () => Sentry,
-    scrollable: false,
-  },
-  shuttle_manipulator: {
-    component: () => ShuttleManipulator,
-    scrollable: true,
-  },
-  smartvend: {
-    component: () => SmartVend,
-    scrollable: true,
-  },
-  smes: {
-    component: () => SMES,
-    scrollable: true,
-  },
-  vending: {
-    component: () => Vending,
-    scrollable: true,
-  },
-  thermomachine: {
-    component: () => ThermoMachine,
-    scrollable: false,
-  },
-  wires: {
-    component: () => Wires,
-    scrollable: false,
-  },
+const routingError = (type, name) => () => {
+  return (
+    <Window resizable>
+      <Window.Content scrollable>
+        {type === 'notFound' && (
+          <div>Interface <b>{name}</b> was not found.</div>
+        )}
+        {type === 'missingExport' && (
+          <div>Interface <b>{name}</b> is missing an export.</div>
+        )}
+      </Window.Content>
+    </Window>
+  );
 };
 
-export const getRoute = state => {
-  // Show a kitchen sink
-  if (state.showKitchenSink) {
-    return {
-      component: () => KitchenSink,
-      scrollable: true,
-    };
+export const getRoutedComponent = state => {
+  if (process.env.NODE_ENV !== 'production') {
+    // Show a kitchen sink
+    if (state.showKitchenSink) {
+      return require('./interfaces/manually-routed/KitchenSink').KitchenSink;
+    }
   }
-  // Refer to the routing table
-  return ROUTES[state.config && state.config.interface];
+  const name = state.config?.interface;
+  let esModule;
+  try {
+    esModule = requireInterface(`./${name}.js`);
+  }
+  catch (err) {
+    if (err.code === 'MODULE_NOT_FOUND') {
+      return routingError('notFound', name);
+    }
+    throw err;
+  }
+  const Component = esModule[name];
+  if (!Component) {
+    return routingError('missingExport', name);
+  }
+  return Component;
 };

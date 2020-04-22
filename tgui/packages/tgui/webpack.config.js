@@ -3,13 +3,25 @@ const path = require('path');
 const BuildNotifierPlugin = require('webpack-build-notifier');
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin');
 
+const createStats = verbose => ({
+  assets: verbose,
+  builtAt: verbose,
+  cached: false,
+  children: false,
+  chunks: false,
+  colors: true,
+  hash: false,
+  timings: verbose,
+  version: verbose,
+  modules: false,
+});
+
 module.exports = (env = {}, argv) => {
   const config = {
     mode: argv.mode === 'production' ? 'production' : 'development',
     context: __dirname,
     entry: {
       tgui: [
-        path.resolve(__dirname, './styles/main.scss'),
         path.resolve(__dirname, './index.js'),
       ],
     },
@@ -48,6 +60,7 @@ module.exports = (env = {}, argv) => {
                   '@babel/plugin-transform-jscript',
                   'babel-plugin-inferno',
                   'babel-plugin-transform-remove-console',
+                  'common/string.babel-plugin.cjs',
                 ],
               },
             },
@@ -59,7 +72,7 @@ module.exports = (env = {}, argv) => {
             {
               loader: ExtractCssChunks.loader,
               options: {
-                hot: argv.hot,
+                hmr: argv.hot,
               },
             },
             {
@@ -68,21 +81,6 @@ module.exports = (env = {}, argv) => {
             },
             {
               loader: 'sass-loader',
-              options: {},
-            },
-          ],
-        },
-        {
-          test: /\.css$/,
-          use: [
-            {
-              loader: ExtractCssChunks.loader,
-              options: {
-                hot: argv.hot,
-              },
-            },
-            {
-              loader: 'css-loader',
               options: {},
             },
           ],
@@ -105,10 +103,12 @@ module.exports = (env = {}, argv) => {
       hints: false,
     },
     devtool: false,
+    stats: createStats(true),
     plugins: [
       new webpack.EnvironmentPlugin({
         NODE_ENV: env.NODE_ENV || argv.mode || 'development',
         WEBPACK_HMR_ENABLED: env.WEBPACK_HMR_ENABLED || argv.hot || false,
+        DEV_SERVER_IP: env.DEV_SERVER_IP || null,
       }),
       new ExtractCssChunks({
         filename: '[name].bundle.css',
@@ -136,11 +136,8 @@ module.exports = (env = {}, argv) => {
         extractComments: false,
         terserOptions: {
           ie8: true,
-          // mangle: false,
           output: {
             ascii_only: true,
-            // beautify: true,
-            // indent_level: 2,
           },
         },
       }),
@@ -166,31 +163,20 @@ module.exports = (env = {}, argv) => {
   if (argv.mode !== 'production') {
     config.plugins = [
       ...config.plugins,
-      new BuildNotifierPlugin(),
+      new BuildNotifierPlugin({
+        suppressSuccess: true,
+      }),
     ];
     if (argv.hot) {
       config.plugins.push(new webpack.HotModuleReplacementPlugin());
     }
     config.devtool = 'cheap-module-source-map';
     config.devServer = {
-      // Informational flags
       progress: false,
       quiet: false,
       noInfo: false,
-      // Fine-grained logging control
       clientLogLevel: 'silent',
-      stats: {
-        assets: false,
-        builtAt: false,
-        cached: false,
-        children: false,
-        chunks: false,
-        colors: true,
-        hash: false,
-        timings: false,
-        version: false,
-        modules: false,
-      },
+      stats: createStats(false),
     };
   }
 

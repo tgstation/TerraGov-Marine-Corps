@@ -1,29 +1,39 @@
-import 'core-js/stable';
+// Polyfills
+import 'core-js/es';
+import 'core-js/web/immediate';
+import 'core-js/web/queue-microtask';
+import 'core-js/web/timers';
 import 'regenerator-runtime/runtime';
-import './polyfills';
+import './polyfills/html5shiv';
+import './polyfills/ie8';
+import './polyfills/dom4';
+import './polyfills/css-om';
+import './polyfills/inferno';
+
+// Themes
+import './styles/main.scss';
+import './styles/themes/cardtable.scss';
+import './styles/themes/malfunction.scss';
+import './styles/themes/ntos.scss';
+import './styles/themes/hackerman.scss';
+import './styles/themes/retro.scss';
+import './styles/themes/syndicate.scss';
 
 import { loadCSS } from 'fg-loadcss';
 import { render } from 'inferno';
 import { setupHotReloading } from 'tgui-dev-server/link/client';
 import { backendUpdate } from './backend';
-import { tridentVersion } from './byond';
+import { IS_IE8 } from './byond';
 import { setupDrag } from './drag';
-import { createLogger } from './logging';
-import { getRoute } from './routes';
-import { createStore } from './store';
+import { logger } from './logging';
+import { createStore, StoreProvider } from './store';
 
-const logger = createLogger();
+const enteredBundleAt = Date.now();
 const store = createStore();
-const reactRoot = document.getElementById('react-root');
-
+let reactRoot;
 let initialRender = true;
-let handedOverToOldTgui = false;
 
 const renderLayout = () => {
-  // Short-circuit the renderer
-  if (handedOverToOldTgui) {
-    return;
-  }
   // Mark the beginning of the render
   let startedAt;
   if (process.env.NODE_ENV !== 'production') {
@@ -34,60 +44,42 @@ const renderLayout = () => {
     // Initial render setup
     if (initialRender) {
       logger.log('initial render', state);
-
-      // ----- Old TGUI chain-loader: begin -----
-      const route = getRoute(state);
-      // Route was not found, load old TGUI
-      if (!route) {
-        logger.info('loading old tgui');
-        // Short-circuit the renderer
-        handedOverToOldTgui = true;
-        // Unsubscribe from updates
-        window.update = window.initialize = () => {};
-        // Load old TGUI using redirection method for IE8
-        if (tridentVersion <= 4) {
-          setTimeout(() => {
-            location.href = 'tgui-fallback.html?ref=' + window.__ref__;
-          }, 10);
-          return;
-        }
-        // Inject current state into the data holder
-        const holder = document.getElementById('data');
-        holder.textContent = JSON.stringify(state);
-        // Load old TGUI by injecting new scripts
-        loadCSS('v4shim.css');
-        loadCSS('tgui.css');
-        const head = document.getElementsByTagName('head')[0];
-        const script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src = 'tgui.js';
-        head.appendChild(script);
-        // Bail
-        return;
-      }
-      // ----- Old TGUI chain-loader: end -----
-
       // Setup dragging
       setupDrag(state);
     }
     // Start rendering
-    const { Layout } = require('./layout');
-    const element = <Layout state={state} dispatch={store.dispatch} />;
+    const { getRoutedComponent } = require('./routes');
+    const Component = getRoutedComponent(state);
+    const element = (
+      <StoreProvider store={store}>
+        <Component />
+      </StoreProvider>
+    );
+    if (!reactRoot) {
+      reactRoot = document.getElementById('react-root');
+    }
     render(element, reactRoot);
   }
   catch (err) {
     logger.error('rendering error', err);
+    throw err;
   }
   // Report rendering time
   if (process.env.NODE_ENV !== 'production') {
     const finishedAt = Date.now();
-    const diff = finishedAt - startedAt;
-    const diffFrames = (diff / 16.6667).toFixed(2);
-    logger.debug(`rendered in ${diff}ms (${diffFrames} frames)`);
     if (initialRender) {
-      const diff = finishedAt - window.__inception__;
-      const diffFrames = (diff / 16.6667).toFixed(2);
-      logger.log(`fully loaded in ${diff}ms (${diffFrames} frames)`);
+      logger.debug('serving from:', location.href);
+      logger.debug('bundle entered in', timeDiff(
+        window.__inception__, enteredBundleAt));
+      logger.debug('initialized in', timeDiff(
+        enteredBundleAt, startedAt));
+      logger.log('rendered in', timeDiff(
+        startedAt, finishedAt));
+      logger.log('fully loaded in', timeDiff(
+        window.__inception__, finishedAt));
+    }
+    else {
+      logger.debug('rendered in', timeDiff(startedAt, finishedAt));
     }
   }
   if (initialRender) {
@@ -95,14 +87,35 @@ const renderLayout = () => {
   }
 };
 
+const timeDiff = (startedAt, finishedAt) => {
+  const diff = finishedAt - startedAt;
+  const diffFrames = (diff / 16.6667).toFixed(2);
+  return `${diff}ms (${diffFrames} frames)`;
+};
+
 // Parse JSON and report all abnormal JSON strings coming from BYOND
 const parseStateJson = json => {
+  let reviver = (key, value) => {
+    if (typeof value === 'object' && value !== null) {
+      if (value.__number__) {
+        return parseFloat(value.__number__);
+      }
+    }
+    return value;
+  };
+  // IE8: No reviver for you!
+  // See: https://stackoverflow.com/questions/1288962
+  if (IS_IE8) {
+    reviver = undefined;
+  }
   try {
-    return JSON.parse(json);
+    return JSON.parse(json, reviver);
   }
   catch (err) {
-    logger.error('JSON parsing error: ' + err.message + '\n' + json);
-    throw err;
+    logger.log(err);
+    logger.log('What we got:', json);
+    const msg = err && err.message;
+    throw new Error('JSON parsing error: ' + msg);
   }
 };
 
@@ -113,8 +126,12 @@ const setupApp = () => {
   });
 
   // Subscribe for bankend updates
-  window.update = window.initialize = stateJson => {
-    const state = parseStateJson(stateJson);
+  window.update = stateJson => {
+    // NOTE: stateJson can be an object only if called manually from console.
+    // This is useful for debugging tgui in external browsers, like Chrome.
+    const state = typeof stateJson === 'string'
+      ? parseStateJson(stateJson)
+      : stateJson;
     // Backend update dispatches a store action
     store.dispatch(backendUpdate(state));
   };
@@ -122,7 +139,11 @@ const setupApp = () => {
   // Enable hot module reloading
   if (module.hot) {
     setupHotReloading();
-    module.hot.accept(['./layout', './routes'], () => {
+    module.hot.accept([
+      './components',
+      './layouts',
+      './routes',
+    ], () => {
       renderLayout();
     });
   }
@@ -140,16 +161,9 @@ const setupApp = () => {
   loadCSS('font-awesome.css');
 };
 
-// Wait for DOM to properly load on IE8
-if (tridentVersion <= 4) {
-  if (document.readyState !== 'loading') {
-    setupApp();
-  }
-  else {
-    document.addEventListener('DOMContentLoaded', setupApp);
-  }
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', setupApp);
 }
-// Load right away on all other browsers
 else {
   setupApp();
 }
