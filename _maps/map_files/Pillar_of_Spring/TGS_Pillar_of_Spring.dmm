@@ -3299,13 +3299,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
-"jO" = (
-/obj/structure/rack,
-/obj/item/tool/pickaxe/plasmacutter,
-/obj/item/tool/pickaxe/plasmacutter,
-/obj/item/storage/belt/utility,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "jP" = (
 /turf/open/floor/mainship{
 	dir = 4;
@@ -3423,6 +3416,13 @@
 	icon_state = "cargo"
 	},
 /area/mainship/hallways/port_hallway)
+"km" = (
+/obj/structure/table/mainship,
+/obj/item/clipboard,
+/obj/item/paper{
+	pixel_x = 5
+	},
+/obj/item/tool/pen,
 "kk" = (
 /obj/machinery/light{
 	dir = 1
@@ -12873,6 +12873,10 @@
 	},
 /area/mainship/medical/lower_medical)
 "Hb" = (
+/obj/structure/disposalpipe/junction{
+	dir = 8;
+	icon_state = "pipe-j1"
+	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -49866,6 +49870,9 @@ go
 kM
 kP
 qG
+QS
+kM
+Qb
 qG
 qG
 kk
@@ -50127,11 +50134,14 @@ Vi
 qG
 kT
 nr
+CP
+nJ
 nt
 kM
 fR
 kM
 kM
+hJ
 nF
 kM
 kM
