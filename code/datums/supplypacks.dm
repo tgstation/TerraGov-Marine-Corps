@@ -2213,7 +2213,7 @@ Imports
 					/obj/item/ammo_magazine/smg/mp5
 					)
 	cost = 30
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper MP5 SMG Crate"
 	group = "Imports"
 
@@ -2226,7 +2226,7 @@ Imports
 					/obj/item/ammo_magazine/smg/mp7
 					)
 	cost = 30
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper MP7 SMG Crate"
 	group = "Imports"
 
@@ -2239,7 +2239,7 @@ Imports
 					/obj/item/ammo_magazine/smg/skorpion
 					)
 	cost = 30
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper Skorpion SMG Crate"
 	group = "Imports"
 
@@ -2252,7 +2252,7 @@ Imports
 					/obj/item/ammo_magazine/smg/uzi
 					)
 	cost = 30
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper GAL-9 SMG Crate"
 	group = "Imports"
 
@@ -2265,7 +2265,7 @@ Imports
 					/obj/item/ammo_magazine/smg/ppsh
 					)
 	cost = 30
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper PPSH SMG Crate"
 	group = "Imports"
 
@@ -2278,7 +2278,7 @@ Imports
 					/obj/item/ammo_magazine/smg/p90
 					)
 	cost = 30
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper FN P9000 SMG Crate"
 	group = "Imports"
 
@@ -2289,7 +2289,7 @@ Imports
 					/obj/item/ammo_magazine/shotgun
 					)
 	cost = 30
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper Custom Built Shotgun Crate"
 	group = "Imports"
 
@@ -2300,7 +2300,7 @@ Imports
 					/obj/item/ammo_magazine/shotgun
 					)
 	cost = 30
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper Double Barrel Shotgun Crate"
 	group = "Imports"
 
@@ -2311,7 +2311,7 @@ Imports
 					/obj/item/ammo_magazine/shotgun
 					)
 	cost = 30
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper Sawn Off Shotgun Crate"
 	group = "Imports"
 
@@ -2322,7 +2322,7 @@ Imports
 					/obj/item/ammo_magazine/shotgun
 					)
 	cost = 30
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper M37A2 Pump Shotgun Crate"
 	group = "Imports"
 
@@ -2333,7 +2333,7 @@ Imports
 					/obj/item/ammo_magazine/shotgun
 					)
 	cost = 30
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper Paladin-12 Shotgun Crate"
 	group = "Imports"
 
@@ -2344,7 +2344,7 @@ Imports
 					/obj/item/ammo_magazine/shotgun
 					)
 	cost = 30
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper Kronos Shotgun Crate"
 	group = "Imports"
 
@@ -2355,7 +2355,7 @@ Imports
 					/obj/item/ammo_magazine/magnum
 					)
 	cost = 30
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper Lever Action Rifle Crate"
 	group = "Imports"
 
@@ -2367,7 +2367,7 @@ Imports
 					/obj/item/ammo_magazine/rifle/bolt
 					)
 	cost = 30
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper Mosin Nagant Sniper Crate"
 	group = "Imports"
 
@@ -2380,7 +2380,7 @@ Imports
 					/obj/item/ammo_magazine/sniper/svd
 					)
 	cost = 30
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper SVD Dragunov Sniper Crate"
 	group = "Imports"
 
@@ -2393,7 +2393,7 @@ Imports
 					/obj/item/ammo_magazine/rifle/ak47
 					)
 	cost = 30
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper AK-47 Assault Rifle Crate"
 	group = "Imports"
 
@@ -2406,7 +2406,7 @@ Imports
 					/obj/item/ammo_magazine/rifle/ak47
 					)
 	cost = 30
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper AK-47U Battle Carbine Crate"
 	group = "Imports"
 
@@ -2419,7 +2419,7 @@ Imports
 					/obj/item/ammo_magazine/revolver/small
 					)
 	cost = 30
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper S&W .357 Revolver Crate"
 	group = "Imports"
 
@@ -2432,7 +2432,7 @@ Imports
 					/obj/item/ammo_magazine/revolver/cmb
 					)
 	cost = 30
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper CMB Autorevolver Crate"
 	group = "Imports"
 
@@ -2445,7 +2445,7 @@ Imports
 					/obj/item/ammo_magazine/pistol/b92fs
 					)
 	cost = 30
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper Beretta 92FS Handgun Crate"
 	group = "Imports"
 
@@ -2458,7 +2458,7 @@ Imports
 					/obj/item/ammo_magazine/pistol/b93r
 					)
 	cost = 30
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper Beretta 93R Handgun Crate"
 	group = "Imports"
 
@@ -2471,7 +2471,7 @@ Imports
 					/obj/item/ammo_magazine/pistol/heavy
 					)
 	cost = 30
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper Desert Eagle Handgun Crate"
 	group = "Imports"
 
@@ -2484,7 +2484,7 @@ Imports
 					/obj/item/ammo_magazine/pistol/automatic
 					)
 	cost = 30
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper KT-42 Automag Crate"
 	group = "Imports"
 
@@ -2497,7 +2497,7 @@ Imports
 					/obj/item/ammo_magazine/pistol/vp78
 					)
 	cost = 30
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper VP78 Handgun Crate"
 	group = "Imports"
 
@@ -2510,7 +2510,7 @@ Imports
 					/obj/item/ammo_magazine/pistol/highpower
 					)
 	cost = 30
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper Highpower Automag Crate"
 	group = "Imports"
 
@@ -2523,6 +2523,6 @@ Imports
 					/obj/item/ammo_magazine/pistol/holdout
 					)
 	cost = 10
-	containertype = /obj/structure/closet/crate
+	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper Holdout Crate"
 	group = "Imports"
