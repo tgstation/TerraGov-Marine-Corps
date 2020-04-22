@@ -43,7 +43,7 @@ export const Crew = (props, context) => {
   ];
   return (
     <Window>
-      <Window.Content>
+      <Window.Content scrollable>
         <Section label="Location to scan">
           {locations.map(location => (
             <Button

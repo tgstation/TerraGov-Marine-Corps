@@ -8,7 +8,7 @@ export const Vending = (props, context) => {
 
   return (
     <Window>
-      <Window.Content>
+      <Window.Content scrollable>
         {data.currently_vending_name ? (
           <Section
             title={"You have selected "+data.currently_vending_name}

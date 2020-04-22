@@ -8,7 +8,7 @@ export const CAS = (props, context) => {
 
   return (
     <Window>
-      <Window.Content>
+      <Window.Content scrollable>
         {data.screen_mode === 0 && (
           <Section title="Equipment Installed">
             {data.equipment_data.length > 0 ? (

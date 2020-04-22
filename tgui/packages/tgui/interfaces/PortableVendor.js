@@ -6,7 +6,7 @@ export const PortableVendor = (props, context) => {
   const { act, data } = useBackend(context);
   return (
     <Window>
-      <Window.Content>
+      <Window.Content scrollable>
         {(data.show_points > 0) && (
           <NoticeBox>Points: {data.current_points}/{data.max_points}</NoticeBox>
         )}

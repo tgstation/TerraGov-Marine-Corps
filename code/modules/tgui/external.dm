@@ -89,7 +89,7 @@
  * For example: inserting a custom stylesheet that you need in the head
  *
  * For this purpose, some tags are available in the html, to be parsed out
- ^ with replacetext
+ * with replacetext
  * (customheadhtml) - Additions to the head tag
  *
  * required html the html base text

@@ -25,7 +25,7 @@ export const MarineDropship = (props, context) => {
 
   return (
     <Window>
-      <Window.Content>
+      <Window.Content scrollable>
         {data.hijack_state !== "hijack_state_normal" ? (
           <NoticeBox>
             <Box>POSSIBLE HIJACK</Box>

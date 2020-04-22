@@ -1,13 +1,13 @@
 import { useBackend } from '../backend';
 import { Button, Section, Table, NoticeBox } from '../components';
-import { map } from 'common/fp';
+import { map } from 'common/collections';
 import { Window } from '../layouts';
 
 export const SmartVend = (props, context) => {
   const { act, data } = useBackend(context);
   return (
     <Window>
-      <Window.Content>
+      <Window.Content scrollable>
         <Section
           title="Storage"
           buttons={!!data.isdryer && (
