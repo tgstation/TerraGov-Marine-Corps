@@ -2371,6 +2371,19 @@ Imports
 	containername = "\improper Mosin Nagant Sniper Crate"
 	group = "Imports"
 
+/datum/supply_packs/imports_dragunov
+	name = "SVD Dragunov Sniper"
+	contains = list(
+					/obj/item/weapon/gun/rifle/sniper/svd,
+					/obj/item/ammo_magazine/sniper/svd,
+					/obj/item/ammo_magazine/sniper/svd,
+					/obj/item/ammo_magazine/sniper/svd
+					)
+	cost = 30
+	containertype = /obj/structure/closet/crate
+	containername = "\improper SVD Dragunov Sniper Crate"
+	group = "Imports"
+
 /datum/supply_packs/imports_ak47
 	name = "AK-47 Assault Rifle"
 	contains = list(
@@ -2509,7 +2522,7 @@ Imports
 					/obj/item/ammo_magazine/pistol/holdout,
 					/obj/item/ammo_magazine/pistol/holdout
 					)
-	cost = 20
+	cost = 10
 	containertype = /obj/structure/closet/crate
 	containername = "\improper Holdout Crate"
 	group = "Imports"
