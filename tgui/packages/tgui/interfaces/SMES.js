@@ -1,6 +1,6 @@
 import { Fragment } from 'inferno';
 import { act } from '../byond';
-import { Box, Button, LabeledList, ProgressBar, Section} from '../components';
+import { Box, Button, LabeledList, ProgressBar, Section } from '../components';
 
 export const SMES = props => {
   const { state } = props;
@@ -57,7 +57,9 @@ export const SMES = props => {
               </Button>
             }>
             <Box color={inputState}>
-              {data.capacityPercent >= 100 ? "Fully Charged" : data.inputting ? "Charging" : "Not Charging"}
+              {data.capacityPercent >= 100
+                ? "Fully Charged"
+                : data.inputting ? "Charging" : "Not Charging"}
             </Box>
           </LabeledList.Item>
           <LabeledList.Item label="Target Input">
@@ -69,19 +71,19 @@ export const SMES = props => {
             <Button
               icon="fast-backward"
               disabled={data.inputLevel === 0}
-              onClick={() => act(ref, 'input', {target: "min"})} />
+              onClick={() => act(ref, 'input', { target: "min" })} />
             <Button
               icon="backward"
               disabled={data.inputLevel === 0}
-              onClick={() => act(ref, 'input', {adjust: -10000})} />
+              onClick={() => act(ref, 'input', { adjust: -10000 })} />
             <Button
               icon="forward"
               disabled={data.inputLevel === data.inputLevelMax}
-              onClick={() => act(ref, 'input', {adjust: 10000})} />
+              onClick={() => act(ref, 'input', { adjust: 10000 })} />
             <Button
               icon="fast-forward"
               disabled={data.inputLevel === data.inputLevelMax}
-              onClick={() => act(ref, 'input', {target: "max"})} />
+              onClick={() => act(ref, 'input', { target: "max" })} />
           </LabeledList.Item>
           <LabeledList.Item label="Available">
             {data.inputAvailable}
@@ -101,7 +103,11 @@ export const SMES = props => {
               </Button>
             }>
             <Box color={outputState}>
-              {data.outputting ? "Sending" : data.charge > 0 ? "Not Sending" : "No Charge"}
+              {data.outputting
+                ? "Sending"
+                : data.charge > 0
+                  ? "Not Sending"
+                  : "No Charge"}
             </Box>
           </LabeledList.Item>
           <LabeledList.Item label="Target Output">
@@ -113,19 +119,19 @@ export const SMES = props => {
             <Button
               icon="fast-backward"
               disabled={data.outputLevel === 0}
-              onClick={() => act(ref, 'output', {target: "min"})} />
+              onClick={() => act(ref, 'output', { target: "min" })} />
             <Button
               icon="backward"
               disabled={data.outputLevel === 0}
-              onClick={() => act(ref, 'output', {adjust: -10000})} />
+              onClick={() => act(ref, 'output', { adjust: -10000 })} />
             <Button
               icon="forward"
               disabled={data.outputLevel === data.outputLevelMax}
-              onClick={() => act(ref, 'output', {adjust: 10000})} />
+              onClick={() => act(ref, 'output', { adjust: 10000 })} />
             <Button
               icon="fast-forward"
               disabled={data.outputLevel === data.outputLevelMax}
-              onClick={() => act(ref, 'output', {target: "max"})} />
+              onClick={() => act(ref, 'output', { target: "max" })} />
           </LabeledList.Item>
           <LabeledList.Item label="Outputting">
             {data.outputUsed}

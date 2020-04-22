@@ -42,7 +42,8 @@ export const MarineDropship = props => {
                 onClick={() => act(ref, "move", {
                   move: destination.id,
                 })}
-                disabled={!(data.shuttle_mode === "idle" || data.shuttle_mode === "call")}>
+                disabled={!(data.shuttle_mode === "idle"
+                  || data.shuttle_mode === "call")}>
                 {destination.name}
               </Button>
             </Box>

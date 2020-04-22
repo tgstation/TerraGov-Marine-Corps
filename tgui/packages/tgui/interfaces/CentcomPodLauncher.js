@@ -324,7 +324,7 @@ export const CentcomPodLauncher = props => {
                 content={style[1]}
                 selected={data.styleChoice === style[3]}
                 tooltip={style[2]}
-                onClick={() => act(ref, 'setstyle', {style: style[0]})} />
+                onClick={() => act(ref, 'setstyle', { style: style[0] })} />
             ))}
           </LabeledList.Item>
         </LabeledList>

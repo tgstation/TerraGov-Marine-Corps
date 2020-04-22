@@ -16,7 +16,10 @@ export const PortableVendor = props => {
           {display_record.prod_color ? (
             <Button
               disabled={!display_record.prod_available}
-              onClick={() => act(ref, 'vend', { vend: display_record.prod_index})}>
+              onClick={() => act(
+                ref,
+                'vend',
+                { vend: display_record.prod_index })}>
               {display_record.prod_name}
             </Button>
           ) : (

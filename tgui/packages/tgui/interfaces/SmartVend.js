@@ -37,12 +37,18 @@ export const SmartVend = props => {
                   <Table.Cell>
                     <Button
                       disabled={value.amount < 1}
-                      onClick={() => act(ref, 'Release', {name: value.name, amount: 1})}>
+                      onClick={() => act(
+                        ref,
+                        'Release',
+                        { name: value.name, amount: 1 })}>
                       One
                     </Button>
                     <Button
                       disabled={value.amount <= 1}
-                      onClick={() => act(ref, 'Release', {name: value.name})}>
+                      onClick={() => act(
+                        ref,
+                        'Release',
+                        { name: value.name })}>
                       Many
                     </Button>
                   </Table.Cell>

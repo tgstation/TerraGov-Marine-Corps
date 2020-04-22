@@ -28,22 +28,30 @@ export const Sentry = props => {
           <LabeledList.Item
             label="Power Cell Status">
             <ProgressBar
-              content={data.has_cell?data.cell_charge + ' W out of ' + data.cell_maxcharge + ' W' : 'No cell inserted'}
+              content={data.has_cell
+                ?data.cell_charge + ' W out of ' + data.cell_maxcharge + ' W'
+                : 'No cell inserted'}
               value={data.cell_charge/data.cell_maxcharge}
-              color={(data.cell_charge > cellgood)?"good":((data.cell_charge > cellaver)?"average":"bad")} />
+              color={(data.cell_charge > cellgood)
+                ?"good"
+                :((data.cell_charge > cellaver)?"average":"bad")} />
           </LabeledList.Item>
           <LabeledList.Item
             label="Structural Integrity">
             <ProgressBar
               value={data.health/data.health_max}
-              color={(data.health > healgood) ? "good" : ((data.health > healaver) ? "average" : "bad")} />
+              color={(data.health > healgood)
+                ? "good"
+                : ((data.health > healaver) ? "average" : "bad")} />
           </LabeledList.Item>
           <LabeledList.Item
             label="Current Rounds">
             <ProgressBar
               value={data.rounds/data.rounds_max}
               content={data.rounds + ' out of ' +data.rounds_max}
-              color={(data.rounds > roungood) ? "good" : ((data.rounds > rounaver) ? "average" : "bad")} />
+              color={(data.rounds > roungood)
+                ? "good"
+                : ((data.rounds > rounaver) ? "average" : "bad")} />
           </LabeledList.Item>
           <LabeledList.Item
             buttons={
@@ -78,7 +86,7 @@ export const Sentry = props => {
                 onClick={() => act(ref, 'safety')}
                 icon={data.safety_toggle ? "check" : "times"}
                 disabled={!data.is_on}>
-                 Safety
+                Safety
               </Button>
             }
             label="Weapon Safety">
@@ -95,8 +103,7 @@ export const Sentry = props => {
                   Manual Override
                 </Button>
               }
-              label="Manual Override">
-            </LabeledList.Item>
+              label="Manual Override" />
           )}
           <LabeledList.Item
             buttons={
@@ -116,7 +123,7 @@ export const Sentry = props => {
                 onClick={() => act(ref, 'toggle_alert')}
                 icon={data.alerts_on ? "check" : "times"}
                 disabled={!data.is_on}>
-                  Alert Mode
+                Alert Mode
               </Button>
             }
             label="Alert Mode" />

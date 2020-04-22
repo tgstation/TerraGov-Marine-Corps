@@ -49,7 +49,7 @@ export const Crew = props => {
           <Button
             key={location.id}
             selected={location.zlevel === data.zlevel}
-            onClick={() => act(ref, 'zlevel', { zlevel: location.zlevel})}>
+            onClick={() => act(ref, 'zlevel', { zlevel: location.zlevel })}>
             {location.label}
           </Button>
         ))}
@@ -61,7 +61,10 @@ export const Crew = props => {
               <Table.Cell key={header.id}>
                 <Button
                   icon={header.icon}
-                  onClick={() => act(ref, 'sortkey', { sortkey: header.sortkey})}>
+                  onClick={() => act(
+                    ref,
+                    'sortkey',
+                    { sortkey: header.sortkey })}>
                   {header.label}
                 </Button>
               </Table.Cell>
@@ -72,8 +75,12 @@ export const Crew = props => {
               <Table.Cell>{crewmember.name}</Table.Cell>
               <Table.Cell>{crewmember.rank}</Table.Cell>
               <Table.Cell
-                color={crewmember.status === 0 ? "good" : (crewmember.status === 1 ? "average":"bad")}>
-                {crewmember.status === 0 ? "Living" : (crewmember.status === 1 ? "Unconscious":"Deceased")}
+                color={crewmember.status === 0
+                  ? "good"
+                  : (crewmember.status === 1 ? "average":"bad")}>
+                {crewmember.status === 0
+                  ? "Living"
+                  : (crewmember.status === 1 ? "Unconscious":"Deceased")}
               </Table.Cell>
               <Table.Cell>
                 {crewmember.sensor_type === 1 && ("Not Available")}
