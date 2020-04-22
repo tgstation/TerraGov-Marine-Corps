@@ -2410,6 +2410,19 @@ Imports
 	containername = "\improper AK-47U Battle Carbine Crate"
 	group = "Imports"
 
+/datum/supply_packs/imports_m16	//Vietnam time
+	name = "FN M16A Assault Rifle"
+	contains = list(
+					/obj/item/weapon/gun/rifle/m16
+					/obj/item/ammo_magazine/rifle/m16,
+					/obj/item/ammo_magazine/rifle/m16,
+					/obj/item/ammo_magazine/rifle/m16
+					)
+	cost = 30
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "\improper FN M16A Assault Rifle Crate"
+	group = "Imports"
+
 /datum/supply_packs/imports_357
 	name = "S&W .357 Revolver"
 	contains = list(
