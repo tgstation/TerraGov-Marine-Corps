@@ -1,5 +1,6 @@
 import { classes, pureComponentHooks } from 'common/react';
-import { unit } from './Box';
+import { Box, unit } from './Box';
+import { Divider } from './Divider';
 
 export const LabeledList = props => {
   const { children } = props;
@@ -16,8 +17,9 @@ export const LabeledListItem = props => {
   const {
     className,
     label,
-    labelColor,
+    labelColor = 'label',
     color,
+    textAlign,
     buttons,
     content,
     children,
@@ -28,24 +30,27 @@ export const LabeledListItem = props => {
         'LabeledList__row',
         className,
       ])}>
-      <td
+      <Box
+        as="td"
+        color={labelColor}
         className={classes([
           'LabeledList__cell',
           'LabeledList__label',
-          'color-' + (labelColor ? labelColor : 'label'),
         ])}>
-        {label}:
-      </td>
-      <td
+        {label ? label + ':' : null}
+      </Box>
+      <Box
+        as="td"
+        color={color}
+        textAlign={textAlign}
         className={classes([
           'LabeledList__cell',
           'LabeledList__content',
-          color && 'color-' + color,
         ])}
         colSpan={buttons ? undefined : 2}>
         {content}
         {children}
-      </td>
+      </Box>
       {buttons && (
         <td className="LabeledList__cell LabeledList__buttons">
           {buttons}
@@ -58,12 +63,19 @@ export const LabeledListItem = props => {
 LabeledListItem.defaultHooks = pureComponentHooks;
 
 export const LabeledListDivider = props => {
-  const { size = 1 } = props;
+  const padding = props.size
+    ? unit(Math.max(0, props.size - 1))
+    : 0;
   return (
     <tr className="LabeledList__row">
-      <td style={{
-        'padding-bottom': unit(size),
-      }} />
+      <td
+        colSpan={3}
+        style={{
+          'padding-top': padding,
+          'padding-bottom': padding,
+        }}>
+        <Divider />
+      </td>
     </tr>
   );
 };
