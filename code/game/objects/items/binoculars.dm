@@ -148,7 +148,7 @@
 /obj/item/binoculars/tactical/proc/acquire_target(atom/A, mob/living/carbon/human/user)
 	set waitfor = 0
 
-	if(laser || coord)
+	if(laser)
 		to_chat(user, "<span class='warning'>You're already targeting something.</span>")
 		return
 
@@ -186,9 +186,10 @@
 	if(user.action_busy)
 		return
 	playsound(src, 'sound/effects/nightvision.ogg', 35)
-	to_chat(user, "<span class='notice'>INITIATING LASER TARGETING. Stand still.</span>")
-	if(!do_after(user, max(1.5 SECONDS, target_acquisition_delay - (2.5 SECONDS * user.skills.getRating("leadership"))), TRUE, TU, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
-		return
+	if(!MODE_RANGE_FINDER)
+		to_chat(user, "<span class='notice'>INITIATING LASER TARGETING. Stand still.</span>")
+		if(!do_after(user, max(1.5 SECONDS, target_acquisition_delay - (2.5 SECONDS * user.skills.getRating("leadership"))), TRUE, TU, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
+			return
 	switch(mode)
 		if(MODE_CAS)
 			to_chat(user, "<span class='notice'>TARGET ACQUIRED. LASER TARGETING IS ONLINE. DON'T MOVE.</span>")
@@ -202,12 +203,8 @@
 		if(MODE_RANGE_FINDER)
 			var/obj/effect/overlay/temp/laser_coordinate/LT = new (TU, laz_name, S)
 			coord = LT
-			to_chat(user, "<span class='notice'>SIMPLIFIED COORDINATES OF TARGET. LONGITUDE [coord.x]. LATITUDE [coord.y].</span>")
+			to_chat(user, "<span class='notice'>COORDINATES: LONGITUDE [coord.x]. LATITUDE [coord.y].</span>")
 			playsound(src, 'sound/effects/binoctarget.ogg', 35)
-			while(coord)
-				if(!do_after(user, 5 SECONDS, TRUE, coord, BUSY_ICON_GENERIC))
-					QDEL_NULL(coord)
-					break
 		if(MODE_RAILGUN)
 			to_chat(user, "<span class='notice'>ACQUIRING TARGET. RAILGUN TRIANGULATING. DON'T MOVE.</span>")
 			if((GLOB.marine_main_ship?.rail_gun?.last_firing + 120 SECONDS) > world.time)

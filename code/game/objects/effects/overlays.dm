@@ -77,6 +77,7 @@
 	icon_state = "laser_target_coordinate"
 	effect_duration = 600
 	var/obj/item/binoculars/tactical/source_binoc
+	invisibility = INVISIBILITY_MAXIMUM
 
 /obj/effect/overlay/temp/laser_coordinate/Destroy()
 	if(source_binoc)
