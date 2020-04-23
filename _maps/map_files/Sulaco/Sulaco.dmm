@@ -13280,15 +13280,19 @@
 /turf/open/floor,
 /area/sulaco/hallway/central_hall)
 "aAS" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/grille,
-/turf/open/floor/plating,
-/turf/closed/wall/indestructible/fakeglass{
-	icon = 'icons/obj/structures/windows.dmi';
-	icon_state = "rwindow3";
-	layer = 3.2
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
 	},
-/area/sulaco/engineering/engine)
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4";
+	layer = 2.1
+	},
+/turf/open/floor{
+	icon_state = "yellowfull"
+	},
+/area/sulaco/engineering)
 "aAT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
@@ -13331,6 +13335,12 @@
 	d2 = 2;
 	icon_state = "1-2";
 	layer = 2.2
+	},
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8";
+	layer = 2.1
 	},
 /turf/open/floor{
 	icon_state = "yellowfull"
@@ -13851,8 +13861,9 @@
 	},
 /area/sulaco/engineering)
 "aCa" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 4
+/obj/structure/cable/yellow{
+	icon_state = "1-16";
+	id = "mainshiplink"
 	},
 /turf/open/floor{
 	icon_state = "yellowfull"
@@ -14360,13 +14371,9 @@
 	},
 /area/sulaco/engineering)
 "aDd" = (
-/obj/structure/closet/walllocker/emerglocker{
-	dir = 1
-	},
-/turf/open/floor{
-	icon_state = "yellowfull"
-	},
-/area/sulaco/engineering)
+/obj/machinery/holopad,
+/turf/open/floor/tile/white,
+/area/sulaco/bridge)
 "aDe" = (
 /turf/open/floor{
 	icon_state = "white"
@@ -14660,8 +14667,15 @@
 /turf/open/space,
 /area/space)
 "aDT" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/grille,
 /turf/open/floor/plating,
-/area/shuttle/drop2/sulaco)
+/turf/closed/wall/indestructible/fakeglass{
+	icon = 'icons/obj/structures/windows.dmi';
+	icon_state = "rwindow3";
+	layer = 3.2
+	},
+/area/sulaco/engineering/engine)
 "aDU" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
@@ -20391,15 +20405,11 @@
 /turf/closed/wall/sulaco,
 /area/sulaco/maintenance/lower_maint2)
 "aRs" = (
-/obj/machinery/light{
-	dir = 1
+/obj/machinery/holopad,
+/turf/open/floor{
+	icon_state = "floor4"
 	},
-/obj/effect/decal/warning_stripes/thin,
-/obj/machinery/camera/autoname,
-/turf/open/floor/mainship{
-	icon_state = "ai_floors"
-	},
-/area/sulaco/hangar)
+/area/sulaco/brig)
 "aRt" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -23289,16 +23299,14 @@
 	},
 /area/sulaco/maintenance/lower_maint)
 "aXS" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/effect/decal/warning_stripes/thin,
+/obj/machinery/light{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/manifold/cyan/hidden,
-/turf/open/floor{
-	icon_state = "dark"
+/turf/open/floor/mainship{
+	icon_state = "ai_floors"
 	},
-/area/sulaco/maintenance/lower_maint)
+/area/sulaco/hangar)
 "aXT" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -24138,12 +24146,16 @@
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "aZP" = (
-/obj/machinery/computer/operating,
-/obj/machinery/camera/autoname,
-/turf/open/floor{
-	icon_state = "whitebluefull"
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
 	},
-/area/sulaco/medbay/hangar)
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
+/turf/open/floor/mainship{
+	icon_state = "ai_floors"
+	},
+/area/sulaco/hangar)
 "aZQ" = (
 /obj/structure/rack,
 /obj/item/shotgunbox/buckshot,
@@ -24425,6 +24437,31 @@
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "baE" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/cyan/hidden,
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/sulaco/maintenance/lower_maint)
+"baF" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-16";
+	id = "mainshiplink"
+	},
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/sulaco/maintenance/lower_maint)
+"baG" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 10
 	},
@@ -24434,6 +24471,20 @@
 	dir = 1
 	},
 /area/space)
+"baH" = (
+/obj/machinery/computer/operating,
+/obj/machinery/camera/autoname,
+/obj/structure/table,
+/turf/open/floor{
+	icon_state = "whitebluefull"
+	},
+/area/sulaco/medbay/hangar)
+"baI" = (
+/obj/machinery/holopad,
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/sulaco/telecomms/office)
 "baJ" = (
 /obj/structure/table/woodentable,
 /obj/item/folder/black_random,
@@ -24453,6 +24504,10 @@
 "baK" = (
 /turf/open/floor/carpet,
 /area/sulaco/liaison)
+"baL" = (
+/obj/machinery/holopad,
+/turf/open/floor/mainship,
+/area/mainship/command/self_destruct)
 "baM" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -45205,7 +45260,7 @@ apu
 aqP
 ash
 atq
-ase
+aDd
 awv
 axf
 ayH
@@ -50874,7 +50929,7 @@ aIB
 aJF
 aKs
 aKU
-aEx
+aRs
 aBw
 aFz
 aEw
@@ -51492,7 +51547,7 @@ aYS
 aYS
 aYS
 aYi
-bcI
+baI
 bcI
 bdB
 aYS
@@ -52790,7 +52845,7 @@ aUi
 aUi
 aUi
 aUi
-aUi
+baL
 aUi
 aUi
 aUi
@@ -54806,17 +54861,16 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aYY
+ayZ
 aQb
 aQb
-aPh
+aQb
+aQb
+aQb
+aQb
+aQb
 aPY
 aNe
-aQi
 aPY
 aPY
 aPY
@@ -54824,7 +54878,8 @@ aPY
 aPY
 aPY
 aPY
-aVY
+aPY
+aPY
 aWL
 aXw
 aWC
@@ -55063,11 +55118,11 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
 aQb
+aPF
+aPF
+aPF
+aPF
 aPF
 aQr
 aPF
@@ -55320,12 +55375,12 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
 aQb
 aPK
+aRx
+aRx
+aRx
+aRx
 aRx
 aRx
 aRx
@@ -55577,20 +55632,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
 aQb
 aQa
 aPZ
-aDT
-aDT
-aDT
-aDT
-aDT
-aDT
-aDT
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
 aPZ
 aPZ
 aSl
@@ -55834,25 +55889,25 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
 aQb
 aQa
 aPZ
-aDT
-aDT
-aDT
-aDT
-aDT
-aDT
-aDT
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
 aPZ
 aPZ
 aSl
 aPF
-aVY
+aPY
 aWN
 aXw
 aWC
@@ -56091,20 +56146,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
 aQb
 aQa
 aPZ
-aDT
-aDT
-aDT
-aDT
-aDT
-aDT
-aDT
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
 aPZ
 aPZ
 aSl
@@ -56348,25 +56403,25 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
 aQb
-aRs
+aXS
 aMI
-aDT
-aDT
-aDT
-aDT
-aDT
-aDT
-aDT
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
 aPZ
 aPZ
 aSl
 aSw
-aVY
+aPY
 aQB
 aXD
 aQS
@@ -56605,25 +56660,25 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
 aQb
 aQa
 aPZ
-aDT
-aDT
-aDT
-aDT
-aDT
-aDT
-aDT
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
 aPZ
 aPZ
 aSr
 aPY
-aVY
+aPY
 aWQ
 aXE
 aYy
@@ -56862,20 +56917,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
 aQb
 aQa
 aPZ
-aDT
-aDT
-aDT
-aDT
-aDT
-aDT
-aDT
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
 aPZ
 aPZ
 aSl
@@ -57119,20 +57174,20 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
 aQb
 aQa
 aPZ
-aDT
-aDT
-aDT
-aDT
-aDT
-aDT
-aDT
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
 aPZ
 aPZ
 aSl
@@ -57376,12 +57431,12 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
 aQb
 aQf
+aRE
+aRE
+aZP
+aRE
 aRE
 aRE
 aRE
@@ -57633,10 +57688,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
+aaj
+aQb
+aQb
+aQb
 aQb
 aPF
 aPF
@@ -57893,7 +57948,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aaj
 aQb
 aPF
 aRQ
@@ -58413,7 +58468,7 @@ aQb
 aQg
 aQt
 aQI
-aZP
+baH
 aRv
 aRP
 aSz
@@ -62781,7 +62836,7 @@ aaa
 aaa
 aaa
 aaa
-baE
+baG
 aPm
 aPm
 aRf
@@ -64849,8 +64904,8 @@ aLt
 aMM
 aWl
 aXa
-aXS
-aVG
+baE
+baF
 aZs
 bam
 aNT
@@ -70912,9 +70967,9 @@ aAw
 aAG
 aBS
 aCq
-aAS
-aAS
-aAS
+aDT
+aDT
+aDT
 aYQ
 aJp
 aKh
@@ -71680,8 +71735,8 @@ awe
 awe
 avR
 aAC
+aAS
 aCa
-aDd
 aje
 aEc
 aFr
