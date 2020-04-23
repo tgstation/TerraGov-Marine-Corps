@@ -2413,7 +2413,7 @@ Imports
 /datum/supply_packs/imports_m16	//Vietnam time
 	name = "FN M16A Assault Rifle"
 	contains = list(
-					/obj/item/weapon/gun/rifle/m16
+					/obj/item/weapon/gun/rifle/m16,
 					/obj/item/ammo_magazine/rifle/m16,
 					/obj/item/ammo_magazine/rifle/m16,
 					/obj/item/ammo_magazine/rifle/m16
