@@ -137,6 +137,7 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 	for(var/path in subtypesof(/datum/reagent))
 		var/datum/reagent/D = new path()
 		GLOB.chemical_reagents_list[path] = D
+		GLOB.chemical_required_reagents[path] = list()
 
 	for(var/path in subtypesof(/datum/chemical_reaction))
 
@@ -144,8 +145,16 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 		var/list/reaction_ids = list()
 
 		if(D.required_reagents && D.required_reagents.len)
+			for(var/result in D.results)
+				GLOB.chemical_required_reagents[result] = list(
+					"catalysts" = D.required_catalysts,
+					"reagents" = D.required_reagents
+				)
+
 			for(var/reaction in D.required_reagents)
 				reaction_ids += reaction
+
+
 
 		// Create filters based on each reagent id in the required reagents list
 		for(var/id in reaction_ids)

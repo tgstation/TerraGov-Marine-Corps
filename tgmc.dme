@@ -1381,6 +1381,7 @@
 #include "code\modules\reagents\chemistry_reactions\medical.dm"
 #include "code\modules\reagents\chemistry_reactions\other.dm"
 #include "code\modules\reagents\chemistry_reagents\alcohol.dm"
+#include "code\modules\reagents\chemistry_reagents\cloning.dm"
 #include "code\modules\reagents\chemistry_reagents\drink.dm"
 #include "code\modules\reagents\chemistry_reagents\food.dm"
 #include "code\modules\reagents\chemistry_reagents\medical.dm"
