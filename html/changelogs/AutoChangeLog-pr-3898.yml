@@ -1,0 +1,5 @@
+author: "XElectricX"
+delete-after: True
+changes: 
+  - rscadd: "Pillar of Spring's req department gets an autolathe. A requests console is installed next to the req line."
+  - tweak: "Remapping of Pillar's requisitions. Several items removed and added in the department."
