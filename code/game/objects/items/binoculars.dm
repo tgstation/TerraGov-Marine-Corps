@@ -186,7 +186,7 @@
 	if(user.action_busy)
 		return
 	playsound(src, 'sound/effects/nightvision.ogg', 35)
-	if(!MODE_RANGE_FINDER)
+	if(mode != MODE_RANGE_FINDER)
 		to_chat(user, "<span class='notice'>INITIATING LASER TARGETING. Stand still.</span>")
 		if(!do_after(user, max(1.5 SECONDS, target_acquisition_delay - (2.5 SECONDS * user.skills.getRating("leadership"))), TRUE, TU, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
 			return
