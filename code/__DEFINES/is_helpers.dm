@@ -103,6 +103,7 @@
 #define isxenodefiler(A) (istype(A, /mob/living/carbon/xenomorph/Defiler))
 #define isxenobull(A) (istype(A, /mob/living/carbon/xenomorph/bull))
 #define isxenohivemind(A) (istype(A, /mob/living/carbon/xenomorph/hivemind))
+#define isxenopanther(A) (istype(A, /mob/living/carbon/xenomorph/panther))
 
 //Silicon mobs
 #define issilicon(A) (istype(A, /mob/living/silicon))
