@@ -657,12 +657,14 @@
 	accuracy_mult_unwielded = 0.8
 
 //only sectoids can fire it
-/obj/item/weapon/gun/rifle/sectoid_rifle/Fire(atom/target, mob/living/user, params, reflex)
-
+/obj/item/weapon/gun/rifle/sectoid_rifle/able_to_fire(mob/user)
+	. = ..()
+	if(!.)
+		return
 	if(!ishuman(user))
-		return
+		return FALSE
 	var/mob/living/carbon/human/H = user
-	if(!(H.species?.species_flags & USES_ALIEN_WEAPONS))
-		to_chat(user, "<span class='alert'>There's no trigger on this gun, you have no idea how to fire it!</span>")
-		return
-	return ..()
+	if(!(H.species.species_flags & USES_ALIEN_WEAPONS))
+		to_chat(user, "<span class='warning'>There's no trigger on this gun, you have no idea how to fire it!</span>")
+		return FALSE
+	return TRUE
