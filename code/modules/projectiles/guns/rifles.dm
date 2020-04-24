@@ -655,6 +655,4 @@
 	if(!(H.species?.species_flags & USES_ALIEN_WEAPONS))
 		to_chat(user, "<span class='alert'>There's no trigger on this gun, you have no idea how to fire it!</span>")
 		return
-	. = ..()
-
-
+	return ..()
