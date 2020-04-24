@@ -1342,14 +1342,12 @@
 	},
 /area/sulaco/cryosleep)
 "adB" = (
-/obj/structure/table,
-/obj/item/tool/surgery/surgicaldrill,
-/obj/machinery/vending/nanomed,
-/obj/item/tool/surgery/FixOVein,
-/turf/open/floor{
-	icon_state = "white"
+/obj/structure/sign/ROsign{
+	desc = "STANDARD ISSUE MEDICINE\nDylovene:  Anti-toxin\nBicaridine: Wound stabilization\nDexalin: Oxygen Deprivation\nInaprovaline: Critical stabilization/respiration\nKelotane: Burn damage\nSpaceacillin: Infections\nTramadol: Light Pain Killer\nOxycodone: Strong Pain Killer\nTricordrazine: General treatment";
+	name = "\improper USCM Medicine guide"
 	},
-/area/sulaco/medbay/surgery_one)
+/turf/open/space/basic,
+/area/space)
 "adC" = (
 /turf/open/floor{
 	icon_state = "white"
@@ -1690,12 +1688,8 @@
 /turf/closed/wall/sulaco,
 /area/sulaco/engineering/atmos)
 "aer" = (
-/obj/structure/table,
-/obj/item/tool/surgery/bonesetter,
-/obj/item/tool/surgery/bonegel,
-/turf/open/floor{
-	icon_state = "white"
-	},
+/obj/machinery/vending/nanomed,
+/turf/closed/wall/sulaco,
 /area/sulaco/medbay/surgery_one)
 "aes" = (
 /obj/machinery/optable,
@@ -2008,12 +2002,11 @@
 /turf/open/floor/engine,
 /area/sulaco/engineering/atmos)
 "afc" = (
-/obj/structure/sign/ROsign{
-	desc = "STANDARD ISSUE MEDICINE\nDylovene:  Anti-toxin\nBicaridine: Wound stabilization\nDexalin: Oxygen Deprivation\nInaprovaline: Critical stabilization/respiration\nKelotane: Burn damage\nSpaceacillin: Infections\nTramadol: Light Pain Killer\nOxycodone: Strong Pain Killer\nTricordrazine: General treatment";
-	name = "\improper USCM Medicine guide"
+/obj/structure/table,
+/turf/open/floor{
+	icon_state = "white"
 	},
-/turf/closed/wall/sulaco/unmeltable,
-/area/sulaco/medbay)
+/area/sulaco/medbay/surgery_one)
 "afd" = (
 /turf/open/floor/engine/nitrogen,
 /area/sulaco/engineering/atmos)
@@ -2051,12 +2044,12 @@
 	desc = "STANDARD ISSUE MEDICINE\nDylovene:  Anti-toxin\nBicaridine: Wound stabilization\nDexalin: Oxygen Deprivation\nInaprovaline: Critical stabilization/respiration\nKelotane: Burn damage\nSpaceacillin: Infections\nTramadol: Light Pain Killer\nOxycodone: Strong Pain Killer\nTricordrazine: General treatment";
 	name = "\improper USCM Medicine guide"
 	},
-/turf/closed/wall/sulaco,
-/area/sulaco/medbay/surgery_two)
+/turf/open/floor{
+	icon_state = "white"
+	},
+/area/space)
 "afm" = (
 /obj/structure/table,
-/obj/item/tool/surgery/cautery,
-/obj/item/tool/surgery/hemostat,
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
 	},
@@ -2375,12 +2368,19 @@
 	},
 /area/sulaco/cryosleep)
 "afT" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /obj/structure/sign/ROsign{
 	desc = "STANDARD ISSUE MEDICINE\nDylovene:  Anti-toxin\nBicaridine: Wound stabilization\nDexalin: Oxygen Deprivation\nInaprovaline: Critical stabilization/respiration\nKelotane: Burn damage\nSpaceacillin: Infections\nTramadol: Light Pain Killer\nOxycodone: Strong Pain Killer\nTricordrazine: General treatment";
 	name = "\improper USCM Medicine guide"
 	},
-/turf/closed/wall/sulaco/unmeltable,
-/area/sulaco/medbay/storage2)
+/turf/open/floor{
+	icon_state = "white"
+	},
+/area/sulaco/medbay)
 "afU" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /obj/machinery/atmospherics/pipe/simple/general/visible,
@@ -2441,24 +2441,21 @@
 /area/sulaco/medbay/surgery_two)
 "agc" = (
 /obj/structure/table,
-/obj/item/tool/surgery/scalpel,
-/obj/item/tool/surgery/circular_saw{
-	pixel_y = 8
-	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/item/storage/surgical_tray,
 /turf/open/floor{
 	icon_state = "white"
 	},
 /area/sulaco/medbay/surgery_one)
 "agd" = (
 /obj/structure/table,
-/obj/item/tool/surgery/retractor,
-/obj/item/stack/medical/advanced/bruise_pack,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/item/stack/nanopaste,
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
+	},
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/sulaco/medbay/surgery_one)
+/area/sulaco/medbay/surgery_two)
 "age" = (
 /obj/structure/table,
 /obj/item/reagent_containers/spray/cleaner{
@@ -2827,16 +2824,9 @@
 	},
 /area/sulaco/medbay)
 "agA" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2
-	},
-/obj/structure/sign/ROsign{
-	desc = "STANDARD ISSUE MEDICINE\nDylovene:  Anti-toxin\nBicaridine: Wound stabilization\nDexalin: Oxygen Deprivation\nInaprovaline: Critical stabilization/respiration\nKelotane: Burn damage\nSpaceacillin: Infections\nTramadol: Light Pain Killer\nOxycodone: Strong Pain Killer\nTricordrazine: General treatment";
-	name = "\improper USCM Medicine guide"
-	},
+/obj/machinery/vending/nanomed,
 /turf/closed/wall/sulaco,
-/area/sulaco/medbay)
+/area/sulaco/bridge/office)
 "agB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -4219,11 +4209,7 @@
 /area/sulaco/engineering/atmos)
 "ajw" = (
 /obj/structure/table,
-/obj/item/tool/surgery/surgicaldrill,
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 4
-	},
-/obj/item/tool/surgery/FixOVein,
+/obj/item/storage/surgical_tray,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -4717,11 +4703,6 @@
 /area/sulaco/bridge/office)
 "akw" = (
 /obj/structure/table,
-/obj/item/tool/surgery/bonesetter,
-/obj/item/tool/surgery/bonegel,
-/obj/machinery/vending/nanomed{
-	dir = 8
-	},
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -5260,8 +5241,10 @@
 /area/sulaco/engineering)
 "alF" = (
 /obj/structure/table,
-/obj/item/tool/surgery/cautery,
-/obj/item/tool/surgery/hemostat,
+/obj/item/reagent_containers/spray/cleaner{
+	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
+	name = "Surgery Cleaner"
+	},
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -5993,10 +5976,9 @@
 /turf/closed/wall/sulaco,
 /area/sulaco/bridge/office)
 "amX" = (
+/obj/machinery/light,
 /obj/structure/table,
-/obj/item/tool/surgery/retractor,
-/obj/item/stack/medical/advanced/bruise_pack,
-/obj/item/stack/nanopaste,
+/obj/structure/sign/prop3,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -7448,17 +7430,9 @@
 /turf/open/floor,
 /area/sulaco/cargo/office)
 "aqj" = (
-/obj/machinery/light,
-/obj/structure/table,
-/obj/item/tool/surgery/scalpel,
-/obj/item/tool/surgery/circular_saw{
-	pixel_y = 8
-	},
-/obj/structure/sign/prop3,
-/turf/open/floor{
-	icon_state = "white"
-	},
-/area/sulaco/medbay/surgery_two)
+/obj/machinery/camera/autoname,
+/turf/open/floor,
+/area/sulaco/briefing)
 "aqk" = (
 /obj/machinery/vending/tool,
 /turf/open/floor,
@@ -10692,11 +10666,15 @@
 	},
 /area/sulaco/hallway/central_hall2)
 "awl" = (
-/obj/machinery/camera/autoname{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/turf/closed/wall/indestructible/fakeglass{
+	icon = 'icons/obj/structures/windows.dmi';
+	icon_state = "rwindow3";
+	layer = 3.2
 	},
-/turf/open/floor,
-/area/sulaco/briefing)
+/area/sulaco/engineering/engine)
 "awm" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -14447,7 +14425,7 @@
 /turf/open/floor,
 /area/sulaco/marine/delta)
 "aDk" = (
-/obj/machinery/vending/marine_special,
+/obj/machinery/marine_selector/gear/leader,
 /turf/open/floor,
 /area/sulaco/marine/delta)
 "aDl" = (
@@ -14694,15 +14672,9 @@
 /turf/open/space,
 /area/space)
 "aDT" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/grille,
-/turf/open/floor/plating,
-/turf/closed/wall/indestructible/fakeglass{
-	icon = 'icons/obj/structures/windows.dmi';
-	icon_state = "rwindow3";
-	layer = 3.2
-	},
-/area/sulaco/engineering/engine)
+/obj/machinery/marine_selector/gear/leader,
+/turf/open/floor,
+/area/sulaco/marine/charlie)
 "aDU" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
@@ -16036,6 +16008,10 @@
 "aGN" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/structure/sign/securearea{
+	name = "\improper ARMORY";
+	pixel_x = -30
+	},
 /turf/closed/wall/sulaco,
 /area/sulaco/research)
 "aGO" = (
@@ -18601,9 +18577,9 @@
 	},
 /area/sulaco/maintenance/lower_maint)
 "aMS" = (
-/obj/machinery/vending/marine_leader,
+/obj/machinery/marine_selector/gear/leader,
 /turf/open/floor,
-/area/sulaco/marine/delta)
+/area/sulaco/marine/bravo)
 "aMT" = (
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /obj/docking_port/stationary/marine_dropship/hangar/one,
@@ -19597,9 +19573,9 @@
 	},
 /area/sulaco/hangar)
 "aPf" = (
-/obj/machinery/vending/marine_leader,
+/obj/machinery/marine_selector/gear/leader,
 /turf/open/floor,
-/area/sulaco/marine/charlie)
+/area/sulaco/marine/alpha)
 "aPg" = (
 /turf/closed/wall/sulaco/unmeltable,
 /area/sulaco/maintenance/lower_maint2)
@@ -19607,9 +19583,9 @@
 /turf/closed/wall/sulaco/unmeltable,
 /area/sulaco/morgue)
 "aPi" = (
-/obj/machinery/vending/marine_leader,
+/obj/machinery/marine_selector/gear/spec,
 /turf/open/floor,
-/area/sulaco/marine/bravo)
+/area/sulaco/marine/delta)
 "aPj" = (
 /obj/machinery/door_timer/cell_4,
 /turf/closed/wall/sulaco,
@@ -19621,9 +19597,9 @@
 	},
 /area/sulaco/research)
 "aPl" = (
-/obj/machinery/vending/marine_leader,
+/obj/machinery/marine_selector/gear/spec,
 /turf/open/floor,
-/area/sulaco/marine/alpha)
+/area/sulaco/marine/charlie)
 "aPm" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /turf/closed/wall/sulaco/unmeltable,
@@ -19797,16 +19773,19 @@
 /turf/open/floor/plating,
 /area/sulaco/hangar)
 "aPH" = (
-/obj/machinery/vending/marine_special,
+/obj/machinery/marine_selector/gear/spec,
 /turf/open/floor,
-/area/sulaco/marine/alpha)
+/area/sulaco/marine/bravo)
 "aPI" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/structure/sign/securearea{
 	name = "\improper ARMORY";
 	pixel_x = -30
 	},
-/turf/closed/wall/sulaco/unmeltable,
-/area/sulaco/command/armory)
+/turf/open/floor{
+	icon_state = "vault"
+	},
+/area/sulaco/hallway/lower_main_hall)
 "aPJ" = (
 /obj/machinery/light{
 	dir = 4;
@@ -21836,9 +21815,9 @@
 /turf/open/floor,
 /area/sulaco/marine/bravo)
 "aUI" = (
-/obj/machinery/vending/marine_special,
+/obj/machinery/marine_selector/gear/spec,
 /turf/open/floor,
-/area/sulaco/marine/charlie)
+/area/sulaco/marine/alpha)
 "aUJ" = (
 /turf/open/floor{
 	icon_state = "bot"
@@ -21900,9 +21879,15 @@
 	},
 /area/sulaco/morgue)
 "aUQ" = (
-/obj/machinery/vending/marine_special,
-/turf/open/floor,
-/area/sulaco/marine/bravo)
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 10
+	},
+/turf/open/space,
+/turf/closed/shuttle/wall3/diagonal{
+	icon_state = "diagonalWall3";
+	dir = 1
+	},
+/area/space)
 "aUR" = (
 /obj/machinery/door/poddoor/mainship/ai/exterior{
 	icon_state = "pdoor0";
@@ -21988,13 +21973,6 @@
 "aVc" = (
 /turf/closed/wall/sulaco/unmeltable,
 /area/sulaco/research)
-"aVd" = (
-/obj/structure/sign/securearea{
-	name = "\improper ARMORY";
-	pixel_x = -30
-	},
-/turf/closed/wall/indestructible/bulkhead,
-/area/sulaco/command/armory)
 "aVe" = (
 /obj/machinery/door_control/ai/exterior,
 /turf/closed/wall/sulaco/unmeltable,
@@ -22052,12 +22030,6 @@
 	icon_state = "white"
 	},
 /area/sulaco/research)
-"aVj" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/turf/open/floor{
-	icon_state = "vault"
-	},
-/area/sulaco/hallway/lower_main_hall)
 "aVk" = (
 /obj/machinery/light/small,
 /turf/open/floor{
@@ -24622,16 +24594,6 @@
 "baT" = (
 /turf/open/floor/plating,
 /area/sulaco/hallway/lower_main_hall)
-"baU" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
-	dir = 10
-	},
-/turf/open/space,
-/turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
-	dir = 1
-	},
-/area/space)
 "baV" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -47421,8 +47383,8 @@ aaa
 aas
 aas
 acG
-acG
 afl
+afk
 agb
 ahp
 ahp
@@ -47677,14 +47639,14 @@ aaa
 aDS
 agX
 acb
-acb
+aer
 acb
 acb
 acb
 acb
 aig
 afk
-akt
+agA
 amW
 akt
 aob
@@ -47934,15 +47896,15 @@ aaa
 aaa
 agX
 acQ
-adB
-aer
+afc
+afc
 afm
-agc
+afc
 acb
 ahp
+agd
 ajw
 akw
-alF
 akt
 akt
 apz
@@ -48194,13 +48156,13 @@ acR
 adC
 adC
 afn
-agd
+agc
 ahq
 aik
 ajx
 akx
 ahp
-amX
+alF
 akt
 aoq
 alO
@@ -48457,7 +48419,7 @@ ail
 ajy
 aky
 ahp
-aqj
+amX
 afk
 apB
 aqX
@@ -48573,9 +48535,9 @@ aPB
 aPB
 aPB
 aPB
-aPI
+aPB
 aQo
-aVd
+aPT
 aQD
 aPM
 aPM
@@ -48832,7 +48794,7 @@ aZV
 aGu
 aGN
 aWG
-aVj
+aPI
 aYj
 aYM
 aZF
@@ -52556,8 +52518,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
-afc
+adB
+aeZ
 ack
 adf
 adM
@@ -54618,8 +54580,8 @@ aem
 adh
 acs
 adf
-aeX
-agA
+afT
+agB
 ahF
 aiC
 ajQ
@@ -55126,8 +55088,8 @@ aaa
 aaa
 aaa
 aaa
-aaa
-afT
+adB
+agH
 act
 adi
 adP
@@ -58503,7 +58465,7 @@ aFY
 aHb
 aDH
 aFY
-aMS
+aDk
 aDH
 aFY
 aFY
@@ -59027,7 +58989,7 @@ aLE
 aLE
 aDH
 aDj
-aDk
+aPi
 aOJ
 aaa
 aaa
@@ -59537,8 +59499,8 @@ aFY
 aFY
 aFY
 aFY
-aLF
 aFY
+aLF
 aDH
 aFY
 aDy
@@ -59766,7 +59728,7 @@ aaY
 aaY
 ame
 akW
-awl
+aqj
 apV
 aru
 aru
@@ -60564,7 +60526,7 @@ aKA
 aLb
 aJS
 aKA
-aPf
+aDT
 aJS
 aKA
 aKA
@@ -61088,7 +61050,7 @@ aOB
 aOB
 aJS
 aQX
-aUI
+aPl
 aDz
 aaa
 aaa
@@ -61598,8 +61560,8 @@ aKA
 aKA
 aKA
 aKA
-aMm
 aKA
+aMm
 aJS
 aKA
 aUK
@@ -62620,7 +62582,7 @@ aKF
 aLd
 aJX
 aKF
-aPi
+aMS
 aJX
 aKF
 aKF
@@ -62955,7 +62917,7 @@ aaa
 aaa
 aaa
 aaa
-baU
+aUQ
 aPm
 aPm
 aRf
@@ -63144,7 +63106,7 @@ aOD
 aOD
 aJX
 aUH
-aUQ
+aPH
 aMF
 aaa
 aaa
@@ -63654,8 +63616,8 @@ aKF
 aKF
 aKF
 aKF
-aMs
 aKF
+aMs
 aJX
 aKF
 aVa
@@ -64676,7 +64638,7 @@ aKK
 aLf
 aKb
 aKK
-aPl
+aPf
 aKb
 aKK
 aKK
@@ -65200,7 +65162,7 @@ aOF
 aOF
 aKb
 aMG
-aPH
+aUI
 aOX
 aaa
 aaa
@@ -65710,8 +65672,8 @@ aKK
 aKK
 aKK
 aKK
-aMH
 aKK
+aMH
 aKb
 aKK
 aPJ
@@ -71086,9 +71048,9 @@ aAw
 aAG
 aBS
 aCq
-aDT
-aDT
-aDT
+awl
+awl
+awl
 aYQ
 aJp
 aKh
