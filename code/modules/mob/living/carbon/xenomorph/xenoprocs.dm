@@ -302,7 +302,7 @@
 		if(!O.anchored) step(O, dir) //Not anchored? Knock the object back a bit. Ie. canisters.
 
 		switch(xeno_caste.charge_type) //Determine how to handle it depending on charge type.
-			if(CHARGE_TYPE_SMALL to CHARGE_TYPE_MEDIUM)
+			if(CHARGE_TYPE_SMALL to CHARGE_TYPE_PANTHER)
 				if(!istype(O, /obj/structure/table) && !istype(O, /obj/structure/rack))
 					O.hitby(src, speed) //This resets throwing.
 			if(CHARGE_TYPE_LARGE to CHARGE_TYPE_MASSIVE)
@@ -317,7 +317,7 @@
 		var/mob/living/carbon/M = hit_atom
 		if(!M.stat && !isxeno(M))
 			switch(xeno_caste.charge_type)
-				if(CHARGE_TYPE_SMALL to CHARGE_TYPE_MEDIUM)
+				if(CHARGE_TYPE_SMALL to CHARGE_TYPE_PANTHER)
 					if(ishuman(M) && (M.dir in reverse_nearby_direction(dir)))
 						var/mob/living/carbon/human/H = M
 						if(!H.check_shields(COMBAT_TOUCH_ATTACK, 30, "melee"))
@@ -327,7 +327,10 @@
 
 					visible_message("<span class='danger'>[src] pounces on [M]!</span>",
 									"<span class='xenodanger'>We pounce on [M]!</span>", null, 5)
-					M.Paralyze(20)
+					if(xeno_caste.charge_type == CHARGE_TYPE_PANTHER)
+						M.Paralyze(45)
+					else
+						M.Paralyze(20)
 					step_to(src, M)
 					stop_movement()
 					if(savage) //If Runner Savage is toggled on, attempt to use it.
