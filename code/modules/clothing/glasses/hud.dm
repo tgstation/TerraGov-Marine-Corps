@@ -68,6 +68,12 @@
 	hud_type = DATA_HUD_MEDICAL_ADVANCED
 	actions_types = list(/datum/action/item_action/toggle)
 
+/obj/item/clothing/glasses/hud/health/eyepatch
+	name = "\improper Medpatch HUD"
+	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status. For the disabled and/or edgy Corpsman."
+	icon_state = "medpatchhud"
+	deactive_state = "degoggles_medpatch"
+
 /obj/item/clothing/glasses/hud/security
 	name = "\improper PatrolMate HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status and security records."
