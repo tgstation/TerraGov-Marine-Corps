@@ -116,7 +116,7 @@
 	hud_state = "grenade_frag"
 	underslug_launchable = FALSE
 
-/obj/item/explosive/grenade/frag/alien/prime()
+/obj/item/explosive/grenade/frag/sectoid/prime()
 	explosion(loc, -1, -1, 5)
 	qdel(src)
 
