@@ -45,10 +45,11 @@
 	icon_state = "pilot"
 	sprite_sheet_id = 1
 	blood_overlay_type = "armor"
-	flags_armor_protection = CHEST|GROIN
-	flags_cold_protection = CHEST|GROIN
-	flags_heat_protection = CHEST|GROIN
-	armor = list("melee" = 50, "bullet" = 60, "laser" = 35, "energy" = 20, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20)
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	armor = list("melee" = 35, "bullet" = 45, "laser" = 45, "energy" = 20, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 25)
+	slowdown = 0.25
 	allowed = list(/obj/item/weapon/gun/,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/flashlight,
