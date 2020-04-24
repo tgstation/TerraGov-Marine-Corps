@@ -10245,16 +10245,12 @@
 	},
 /area/sulaco/bridge)
 "avw" = (
-/obj/machinery/light,
+/obj/machinery/holopad,
 /obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 2;
+	icon_state = "0-2"
 	},
-/turf/open/floor{
-	icon_state = "whitered";
-	dir = 2
-	},
+/turf/open/floor/tile/white,
 /area/sulaco/bridge)
 "avx" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -10787,6 +10783,12 @@
 	dir = 6
 	},
 /obj/effect/landmark/start/job/staffofficer,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	layer = 2.1
+	},
 /turf/open/floor/tile/white,
 /area/sulaco/bridge)
 "aww" = (
@@ -11182,6 +11184,12 @@
 /area/sulaco/briefing)
 "axf" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	layer = 2.1
+	},
 /turf/open/floor/tile/white,
 /area/sulaco/bridge)
 "axg" = (
@@ -12154,6 +12162,12 @@
 "ayH" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 9
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	layer = 2.1
 	},
 /turf/open/floor/tile/white,
 /area/sulaco/bridge)
@@ -14371,8 +14385,21 @@
 	},
 /area/sulaco/engineering)
 "aDd" = (
-/obj/machinery/holopad,
-/turf/open/floor/tile/white,
+/obj/machinery/light,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor{
+	icon_state = "whitered";
+	dir = 2
+	},
 /area/sulaco/bridge)
 "aDe" = (
 /turf/open/floor{
@@ -18192,6 +18219,12 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	layer = 2.1
+	},
 /turf/open/floor{
 	icon_state = "floor4"
 	},
@@ -20405,7 +20438,12 @@
 /turf/closed/wall/sulaco,
 /area/sulaco/maintenance/lower_maint2)
 "aRs" = (
-/obj/machinery/holopad,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	layer = 2.1
+	},
 /turf/open/floor{
 	icon_state = "floor4"
 	},
@@ -24462,15 +24500,20 @@
 	},
 /area/sulaco/maintenance/lower_maint)
 "baG" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
-	dir = 10
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4;
+	layer = 2
 	},
-/turf/open/space,
-/turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
-	dir = 1
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	layer = 2.1
 	},
-/area/space)
+/turf/open/floor{
+	icon_state = "floor4"
+	},
+/area/sulaco/brig)
 "baH" = (
 /obj/machinery/computer/operating,
 /obj/machinery/camera/autoname,
@@ -24481,10 +24524,14 @@
 /area/sulaco/medbay/hangar)
 "baI" = (
 /obj/machinery/holopad,
-/turf/open/floor{
-	icon_state = "dark"
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
 	},
-/area/sulaco/telecomms/office)
+/turf/open/floor{
+	icon_state = "floor4"
+	},
+/area/sulaco/brig)
 "baJ" = (
 /obj/structure/table/woodentable,
 /obj/item/folder/black_random,
@@ -24505,9 +24552,15 @@
 /turf/open/floor/carpet,
 /area/sulaco/liaison)
 "baL" = (
-/obj/machinery/holopad,
-/turf/open/floor/mainship,
-/area/mainship/command/self_destruct)
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor{
+	icon_state = "floor4"
+	},
+/area/sulaco/brig)
 "baM" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -24544,6 +24597,16 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison)
+"baP" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor{
+	icon_state = "floor4"
+	},
+/area/sulaco/brig)
 "baQ" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/plating,
@@ -24559,6 +24622,77 @@
 "baT" = (
 /turf/open/floor/plating,
 /area/sulaco/hallway/lower_main_hall)
+"baU" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 10
+	},
+/turf/open/space,
+/turf/closed/shuttle/wall3/diagonal{
+	icon_state = "diagonalWall3";
+	dir = 1
+	},
+/area/space)
+"baV" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/sulaco/telecomms/office)
+"baW" = (
+/obj/machinery/holopad,
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/sulaco/telecomms/office)
+"baX" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/sulaco/telecomms/office)
+"baY" = (
+/obj/machinery/holopad,
+/obj/structure/cable{
+	icon_state = "0-4";
+	d2 = 4
+	},
+/turf/open/floor/mainship,
+/area/mainship/command/self_destruct)
+"baZ" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor/mainship,
+/area/mainship/command/self_destruct)
 "bbk" = (
 /turf/closed/wall/sulaco/unmeltable,
 /area/sulaco/hangar/two)
@@ -24705,21 +24839,6 @@
 /area/sulaco/telecomms/office)
 "bbZ" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
-/turf/open/floor{
-	icon_state = "dark"
-	},
-/area/sulaco/telecomms/office)
-"bcb" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
 /turf/open/floor{
 	icon_state = "dark"
 	},
@@ -45260,11 +45379,11 @@ apu
 aqP
 ash
 atq
-aDd
+avw
 awv
 axf
 ayH
-avw
+aDd
 anV
 aas
 aaa
@@ -50929,7 +51048,7 @@ aIB
 aJF
 aKs
 aKU
-aRs
+baI
 aBw
 aFz
 aEw
@@ -51186,7 +51305,7 @@ aEx
 aJG
 aKt
 aEx
-aEx
+baL
 aEx
 aVm
 aEx
@@ -51439,11 +51558,11 @@ aGC
 aHt
 aHD
 aLT
-aEx
-aJH
-aEx
-aEx
-aEx
+aRs
+baG
+aRs
+aRs
+baP
 aEx
 aEP
 aNn
@@ -51547,7 +51666,7 @@ aYS
 aYS
 aYS
 aYi
-baI
+baW
 bcI
 bdB
 aYS
@@ -51803,8 +51922,8 @@ aYS
 bcI
 aTV
 bbw
-bcb
-bcI
+baV
+baX
 bcI
 bdg
 aTL
@@ -52845,7 +52964,7 @@ aUi
 aUi
 aUi
 aUi
-baL
+baY
 aUi
 aUi
 aUi
@@ -53102,7 +53221,7 @@ aUk
 aUk
 aUk
 aUk
-aUk
+baZ
 aUk
 aUk
 aUC
@@ -62836,7 +62955,7 @@ aaa
 aaa
 aaa
 aaa
-baG
+baU
 aPm
 aPm
 aRf
@@ -74041,7 +74160,7 @@ alA
 aeq
 aaZ
 aoN
-aqg
+aoN
 aqO
 aqg
 aqg
