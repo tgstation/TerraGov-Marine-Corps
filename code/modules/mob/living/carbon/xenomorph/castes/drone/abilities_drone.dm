@@ -69,9 +69,10 @@
 	succeed_activate()
 	add_cooldown()
 
-/mob/living/carbon/xenomorph/proc/salve_healing()	//Slight modification of the heal_wounds proc
+/mob/living/carbon/xenomorph/proc/salve_healing() //Slight modification of the heal_wounds proc
 	var/amount = 40	//Smaller than psychic cure, less useful on xenos with large health pools
 	if(recovery_aura)	//Leaving in the recovery aura bonus, not sure if it is too high the way it is
 		amount += recovery_aura * maxHealth * 0.008 // +0.8% max health per recovery level, up to +4%
 	adjustBruteLoss(-amount)
 	adjustFireLoss(-amount, updating_health = TRUE)
+	adjust_sunder(-amount/20)

@@ -250,6 +250,8 @@
 
 /mob/living/carbon/xenomorph/updatehealth()
 	if(status_flags & GODMODE)
+		health = maxHealth
+		stat = CONSCIOUS
 		return
 	health = maxHealth - getFireLoss() - getBruteLoss() //Xenos can only take brute and fire damage.
 	med_hud_set_health()
