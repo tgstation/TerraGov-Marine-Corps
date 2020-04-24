@@ -286,12 +286,12 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 	if(dir in list(NORTH, SOUTH))
 		pixel_x = -32
 		pixel_y = -48
-		icon = 'icons/obj/tank_NS.dmi'
+		icon = 'icons/obj/vehicles/tank_NS.dmi'
 
 	else if(dir in list(EAST, WEST))
 		pixel_x = -48
 		pixel_y = -32
-		icon = 'icons/obj/tank_EW.dmi'
+		icon = 'icons/obj/vehicles/tank_EW.dmi'
 
 	//Basic iteration that snags the overlay from the hardpoint module object
 	for(var/i in hardpoints)
