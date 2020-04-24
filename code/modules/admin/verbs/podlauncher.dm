@@ -146,7 +146,7 @@
 			var/list/turfs = list()
 			for(var/turf/T in A)
 				turfs.Add(T)
-			var/turf/T = safepick(turfs)
+			var/turf/T = SAFEPICK(turfs)
 			if(!T)
 				to_chat(M, "<span class='warning'>Nowhere to jump to!</span>")
 				return

@@ -13,7 +13,9 @@
 	layer = OBJ_LAYER
 	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
 	flags_atom = ON_BORDER
-	resistance_flags = UNACIDABLE
+	resistance_flags = XENO_DAMAGEABLE	//TEMP PATCH UNTIL XENO AI PATHFINDING IS BETTER, SET THIS TO INDESTRUCTIBLE ONCE IT IS - Tivi
+	obj_integrity = 1000	//Ditto
+	max_integrity = 1000	//Ditto
 
 /obj/structure/platform/Initialize()
 	. = ..()

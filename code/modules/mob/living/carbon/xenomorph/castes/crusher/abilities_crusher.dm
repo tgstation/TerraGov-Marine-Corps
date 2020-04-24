@@ -40,7 +40,7 @@
 			shake_camera(M, 2, 2)
 			to_chat(M, "<span class='highdanger'>You reel from the shockwave of [X]'s stomp!</span>")
 		if(distance < 2) //If we're beside or adjacent to the Crusher, we get knocked down.
-			M.Knockdown(20)
+			M.Paralyze(20)
 		else
 			M.Stun(20) //Otherwise we just get stunned.
 		M.apply_damage(damage, STAMINA) //Armour ignoring Stamina

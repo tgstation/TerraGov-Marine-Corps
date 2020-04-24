@@ -9,20 +9,20 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
-	melee_damage = 14
+	melee_damage = 20
 
 	// *** Tackle *** //
 	tackle_damage = 25
 
 	// *** Speed *** //
-	speed = -0.8
+	speed = -0.7
 
 	// *** Plasma *** //
 	plasma_max = 750
 	plasma_gain = 25
 
 	// *** Health *** //
-	max_health = 120
+	max_health = 150
 
 	// *** Evolution *** //
 	evolution_threshold = 80
@@ -36,7 +36,7 @@
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 
 	// *** Defense *** //
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = XENO_BOMB_RESIST_0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 	// *** Pheromones *** //
 	aura_strength = 1 //Drone's aura is the weakest. At the top of their evolution, it's equivalent to a Young Queen Climbs by 0.5 to 2
@@ -69,26 +69,26 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 17.5
+	melee_damage = 24
 
 	// *** Tackle *** //
 	tackle_damage = 30
 
 	// *** Speed *** //
-	speed = -0.9
+	speed = -0.8
 
 	// *** Plasma *** //
 	plasma_max = 800
 	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 150
+	max_health = 180
 
 	// *** Evolution *** //
 	upgrade_threshold = 100
 
 	// *** Defense *** //
-	armor = list("melee" = 5, "bullet" = 3, "laser" = 3, "energy" = 5, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
+	armor = list("melee" = 17, "bullet" = 17, "laser" = 17, "energy" = 17, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
 
 	// *** Pheromones *** //
 	aura_strength = 1.5
@@ -100,26 +100,26 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 28
 
 	// *** Tackle *** //
 	tackle_damage = 35
 
 	// *** Speed *** //
-	speed = -1.0
+	speed = -0.9
 
 	// *** Plasma *** //
 	plasma_max = 900
 	plasma_gain = 35
 
 	// *** Health *** //
-	max_health = 170
+	max_health = 185
 
 	// *** Evolution *** //
 	upgrade_threshold = 200
 
 	// *** Defense *** //
-	armor = list("melee" = 10, "bullet" = 5, "laser" = 5, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	armor = list("melee" = 24, "bullet" = 24, "laser" = 24, "energy" = 24, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 
 	// *** Pheromones *** //
 	aura_strength = 1.8
@@ -131,23 +131,23 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 22.5
+	melee_damage = 32
 
 	// *** Tackle *** //
 	tackle_damage = 40
 
 	// *** Speed *** //
-	speed = -1.1
+	speed = -1.0
 
 	// *** Plasma *** //
 	plasma_max = 1000
 	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 180
+	max_health = 205
 
 	// *** Defense *** //
-	armor = list("melee" = 15, "bullet" = 6, "laser" = 6, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
+	armor = list("melee" = 31, "bullet" = 31, "laser" = 31, "energy" = 31, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 
 	// *** Pheromones *** //
 	aura_strength = 2

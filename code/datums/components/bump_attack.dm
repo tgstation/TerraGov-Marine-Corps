@@ -1,5 +1,5 @@
 /datum/component/bump_attack
-	var/active = FALSE
+	var/active = TRUE
 	var/bump_action_path
 	var/datum/action/bump_attack_toggle/toggle_action
 
@@ -20,6 +20,8 @@
 	toggle_action.give_action(parent)
 	toggle_action.update_button_icon(active)
 	RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, toggle_path)
+	if(active)
+		RegisterSignal(parent, COMSIG_MOVABLE_BUMP, bump_action_path)
 
 
 /datum/component/bump_attack/Destroy(force, silent)

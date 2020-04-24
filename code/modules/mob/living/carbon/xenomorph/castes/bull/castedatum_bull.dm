@@ -9,13 +9,13 @@
 	wound_type = "bull" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 28
+	melee_damage = 25
 
 	// *** Tackle *** //
 	tackle_damage = 30
 
 	// *** Speed *** //
-	speed = -1
+	speed = -0.7
 
 	// *** Plasma *** //
 	plasma_max = 200 //High plasma is need for charging
@@ -58,23 +58,26 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 33
+	melee_damage = 29
 
 	// *** Tackle *** //
 	tackle_damage = 35
+	
+	// *** Speed *** //
+	speed = -0.8
 
 	// *** Plasma *** //
 	plasma_max = 250
 	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 200
+	max_health = 225
 
 	// *** Evolution *** //
 	upgrade_threshold = 220
 
 	// *** Defense *** //
-	armor = list("melee" = 28, "bullet" = 28, "laser" = 28, "energy" = 28, "bomb" = XENO_BOMB_RESIST_0, "bio" = 28, "rad" = 28, "fire" = 18, "acid" = 28)
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 28, "rad" = 28, "fire" = 18, "acid" = 28)
 
 /datum/xeno_caste/bull/elder
 	upgrade_name = "Elder"
@@ -83,23 +86,26 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 37
+	melee_damage = 33
 
 	// *** Tackle *** //
 	tackle_damage = 40
+	
+	// *** Speed *** //
+	speed = -0.9
 
 	// *** Plasma *** //
 	plasma_max = 260
 	plasma_gain = 22
 
 	// *** Health *** //
-	max_health = 240
+	max_health = 250
 
 	// *** Evolution *** //
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 20, "acid" = 30)
+	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 20, "acid" = 30)
 
 /datum/xeno_caste/bull/ancient
 	upgrade_name = "Ancient"
@@ -108,20 +114,23 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 42
+	melee_damage = 37
 
 	// *** Tackle *** //
 	tackle_damage = 45
+	
+	// *** Speed *** //
+	speed = -1
 
 	// *** Plasma *** //
 	plasma_max = 270
 	plasma_gain = 24
 
 	// *** Health *** //
-	max_health = 260
-
+	max_health = 275
+	
 	// *** Evolution *** //
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor = list("melee" = 33, "bullet" = 33, "laser" = 33, "energy" = 33, "bomb" = XENO_BOMB_RESIST_0, "bio" = 33, "rad" = 33, "fire" = 25, "acid" = 33)
+	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 33, "rad" = 33, "fire" = 25, "acid" = 33)

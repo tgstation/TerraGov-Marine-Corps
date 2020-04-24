@@ -169,38 +169,13 @@
 	name = "rolling pin"
 	desc = "Used to knock out the Bartender."
 	icon_state = "rolling_pin"
-	force = 8.0
-	throwforce = 10.0
+	force = 8
+	throwforce = 10
 	throw_speed = 2
 	throw_range = 7
 	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb = list("bashed", "battered", "bludgeoned", "thrashed", "whacked") //I think the rollingpin attackby will end up ignoring this anyway.
+	attack_verb = list("bashed", "battered", "bludgeoned", "thrashed", "whacked")
 
-/obj/item/tool/kitchen/rollingpin/attack(mob/living/M as mob, mob/living/user as mob)
-	log_combat(user, M, "attacked", src)
-
-	var/t = user:zone_selected
-	if (t == "head")
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			var/obj/item/head_protection = H.head
-			if (H.stat < 2 && H.health < 50 && prob(90))
-				// ******* Check
-				if (istype(head_protection) && head_protection.flags_inventory & BLOCKSHARPOBJ  && prob(80))
-					to_chat(H, "<span class='warning'>The helmet protects you from being hit hard in the head!</span>")
-					return
-				var/time = rand(4 SECONDS, 12 SECONDS)
-				if (prob(75))
-					H.Unconscious(time)
-				else
-					H.Stun(time)
-				if(H.stat != 2)	H.stat = 1
-				user.visible_message("<span class='danger'>[H] has been knocked unconscious!</span>", "<span class='danger'>You knock [H] unconscious!</span>")
-				return
-			else
-				H.visible_message("<span class='warning'> [user] tried to knock [H] unconscious!</span>", "<span class='warning'> [user] tried to knock you unconscious!</span>")
-				H.blur_eyes(3)
-	return ..()
 
 /*
 * Trays - Agouri
@@ -264,7 +239,7 @@
 		log_combat(user, M, "attacked", src)
 
 		if(prob(15))
-			M.Knockdown(60)
+			M.Paralyze(60)
 			M.take_limb_damage(3)
 		else
 			M.take_limb_damage(5)
@@ -329,7 +304,7 @@
 		else
 			M.take_limb_damage(8)
 			if(prob(30))
-				M.Knockdown(40)
+				M.Paralyze(40)
 				return
 			return
 

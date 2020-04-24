@@ -236,9 +236,9 @@
 				to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.</span>")
 				return
 			var/datum/job/job_datum = locate(href_list["job_selected"])
-			if(!SSticker.mode.CanLateSpawn(src, job_datum))
+			if(!SSticker.mode.CanLateSpawn(src, job_datum)) // Try to assigns job to new player
 				return
-			SSticker.mode.LateSpawn(src, job_datum)
+			SSticker.mode.LateSpawn(src)
 
 
 	if(href_list["showpoll"])
@@ -463,8 +463,7 @@
 /mob/new_player/proc/transfer_character()
 	. = new_character
 	if(.)
-		new_character.key = key		//Manually transfer the key to log them in
-		new_character = null
+		mind.transfer_to(new_character, TRUE) //Manually transfer the key to log them in
 		qdel(src)
 
 
