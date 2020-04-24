@@ -115,10 +115,10 @@
 	accuracy_mult = 0.95
 	accuracy_mult_unwielded = 0.9
 	scatter = 20
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.175 SECONDS
 	scatter_unwielded = 30
 	aim_slowdown = 0.15
-	burst_amount = 2
+	burst_amount = 3
 
 
 /obj/item/weapon/gun/smg/m39/elite
@@ -133,10 +133,12 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 
 	burst_amount = 4
-	accuracy_mult = 1.2
+	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.95
-	damage_mult = 1.1
-
+	damage_mult = 1.2
+	aim_slowdown = 0.4
+	scatter = 10
+	
 
 //-------------------------------------------------------
 //M5, a classic SMG used in a lot of action movies.
@@ -169,8 +171,11 @@
 	burst_amount = 4
 	accuracy_mult = 1.25
 	accuracy_mult_unwielded = 1.05
-	scatter = 25
+	scatter = 15
 	scatter_unwielded = 40
+	damage_mult = 1.30
+	aim_slowdown = 0.35
+	wield_delay = 0.5 SECONDS
 
 
 //-------------------------------------------------------
@@ -225,10 +230,11 @@
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 22, "under_x" = 23, "under_y" = 15, "stock_x" = 23, "stock_y" = 15)
 
 	burst_delay = 0.2 SECONDS
-	accuracy_mult = 1.05
+	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.75
 	scatter_unwielded = 40
-	damage_mult = 1.3
+	fire_delay = 0.15 SECONDS
+	aim_slowdown = 0.3
 
 
 /obj/item/weapon/gun/smg/skorpion/upp
@@ -261,13 +267,14 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 19, "under_x" = 26, "under_y" = 15, "stock_x" = 26, "stock_y" = 15)
 
-	fire_delay = 0.1 SECONDS
+	fire_delay = 0.125 SECONDS
 	burst_amount = 6
-	accuracy_mult = 0.95
+	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.65
-	scatter = 35
-	scatter_unwielded = 55
-
+	scatter = 25
+	scatter_unwielded = 45
+	aim_slowdown = 0.8
+	wield_delay = 0.8 SECONDS
 
 
 //-------------------------------------------------------
@@ -289,13 +296,13 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
 
-	fire_delay = 0.15 SECONDS
+	fire_delay = 0.175 SECONDS
 	burst_amount = 4
 	accuracy_mult_unwielded = 0.85
-	scatter = 30
+	scatter = 15
 	scatter_unwielded = 60
-	damage_mult = 0.8
-	movement_acc_penalty_mult = 0.1
+	aim_slowdown = 0.15
+	wield_delay = 0.5 SECONDS
 
 //-------------------------------------------------------
 //FP9000 //Based on the FN P90
@@ -322,10 +329,11 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 20, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
 
-	fire_delay = 0.35 SECONDS
+	fire_delay = 0.175 SECONDS
 	burst_delay = 0.2 SECONDS
-	accuracy_mult = 1.4
-	accuracy_mult_unwielded = 1.1
+	accuracy_mult = 1.15
+	accuracy_mult_unwielded = 0.65
 	scatter_unwielded = 60
-	damage_mult = 1.1
 	scatter = 10
+	aim_slowdown = 0.5
+	wield_delay = 0.65 SECONDS

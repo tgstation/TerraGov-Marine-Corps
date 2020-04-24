@@ -198,7 +198,7 @@ REAGENT SCANNER
 	if (M.getBrainLoss() >= 100 || !M.has_brain())
 		dat += "\t<span class='scanner'> *Subject is <b>brain dead</b></span>.\n"
 	else if (M.getBrainLoss() >= 60)
-		dat += "\t<span class='scanner'> *<b>Severe brain damage</b> detected. Subject likely to have mental retardation.</span>\n"
+		dat += "\t<span class='scanner'> *<b>Severe brain damage</b> detected. Subject likely to have intellectual disabilities.</span>\n"
 	else if (M.getBrainLoss() >= 10)
 		dat += "\t<span class='scanner'> *<b>Significant brain damage</b> detected. Subject may have had a concussion.</span>\n"
 
