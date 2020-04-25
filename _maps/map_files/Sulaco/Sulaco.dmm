@@ -4472,12 +4472,8 @@
 	},
 /area/sulaco/cryosleep)
 "ajY" = (
-/obj/structure/mirror{
-	pixel_y = 30
-	},
-/turf/open/floor{
-	icon_state = "freezerfloor"
-	},
+/obj/structure/mirror,
+/turf/closed/wall/sulaco,
 /area/sulaco/showers)
 "ajZ" = (
 /obj/machinery/disposal,
@@ -8694,17 +8690,15 @@
 /turf/closed/wall/sulaco,
 /area/sulaco/bridge/quarters)
 "asR" = (
-/obj/structure/window/reinforced{
-	dir = 5
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/turf/closed/wall/indestructible/fakeglass{
+	icon = 'icons/obj/structures/windows.dmi';
+	icon_state = "rwindow3";
+	layer = 3.2
 	},
-/obj/machinery/door/poddoor/shutters{
-	dir = 2;
-	id = "bar";
-	layer = 3.9;
-	name = "Briefing Shutters"
-	},
-/turf/open/floor,
-/area/sulaco/briefing)
+/area/sulaco/engineering/engine)
 "asS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -10666,15 +10660,18 @@
 	},
 /area/sulaco/hallway/central_hall2)
 "awl" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/grille,
-/turf/open/floor/plating,
-/turf/closed/wall/indestructible/fakeglass{
-	icon = 'icons/obj/structures/windows.dmi';
-	icon_state = "rwindow3";
-	layer = 3.2
+/obj/structure/window/reinforced{
+	dir = 5
 	},
-/area/sulaco/engineering/engine)
+/obj/machinery/door/poddoor/shutters{
+	dir = 2;
+	id = "bar";
+	layer = 3.9;
+	name = "Briefing Shutters"
+	},
+/obj/structure/grille,
+/turf/open/floor,
+/area/sulaco/briefing)
 "awm" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -16006,14 +16003,15 @@
 	},
 /area/sulaco/brig)
 "aGN" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/structure/sign/securearea{
-	name = "\improper ARMORY";
-	pixel_x = -30
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 10
 	},
-/turf/closed/wall/sulaco,
-/area/sulaco/research)
+/turf/open/space,
+/turf/closed/shuttle/wall3/diagonal{
+	icon_state = "diagonalWall3";
+	dir = 1
+	},
+/area/space)
 "aGO" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/multi_tile/mainship/research,
@@ -19777,15 +19775,12 @@
 /turf/open/floor,
 /area/sulaco/marine/bravo)
 "aPI" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/structure/sign/securearea{
-	name = "\improper ARMORY";
-	pixel_x = -30
+/turf/open/space,
+/turf/closed/shuttle/wall3/diagonal{
+	icon_state = "diagonalWall3";
+	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "vault"
-	},
-/area/sulaco/hallway/lower_main_hall)
+/area/sulaco/command/armory)
 "aPJ" = (
 /obj/machinery/light{
 	dir = 4;
@@ -19853,7 +19848,11 @@
 	},
 /area/sulaco/hangar/one)
 "aPT" = (
-/turf/closed/wall/indestructible/bulkhead,
+/turf/open/space/basic,
+/turf/closed/shuttle/wall3/diagonal{
+	icon_state = "diagonalWall3";
+	dir = 1
+	},
 /area/sulaco/command/armory)
 "aPU" = (
 /obj/structure/cable{
@@ -19980,11 +19979,9 @@
 	},
 /area/sulaco/marine/bravo)
 "aQo" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
-	dir = 4
-	},
-/turf/closed/wall/sulaco/unmeltable,
-/area/sulaco/command/armory)
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/turf/closed/wall/sulaco,
+/area/sulaco/research)
 "aQp" = (
 /turf/open/floor{
 	dir = 4;
@@ -20081,11 +20078,12 @@
 	},
 /area/sulaco/hangar)
 "aQD" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 4
+/obj/machinery/door/airlock/mainship/maint{
+	icon_state = "door_closed";
+	dir = 1
 	},
-/turf/closed/wall/sulaco/unmeltable,
-/area/sulaco/command/armory)
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint2)
 "aQE" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/launcher/m92,
@@ -21880,14 +21878,10 @@
 /area/sulaco/morgue)
 "aUQ" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
-	dir = 10
+	dir = 4
 	},
-/turf/open/space,
-/turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
-	dir = 1
-	},
-/area/space)
+/turf/closed/wall/sulaco/unmeltable,
+/area/sulaco/hallway/lower_main_hall)
 "aUR" = (
 /obj/machinery/door/poddoor/mainship/ai/exterior{
 	icon_state = "pdoor0";
@@ -21973,6 +21967,9 @@
 "aVc" = (
 /turf/closed/wall/sulaco/unmeltable,
 /area/sulaco/research)
+"aVd" = (
+/turf/closed/wall/indestructible/bulkhead,
+/area/sulaco/hallway/lower_main_hall)
 "aVe" = (
 /obj/machinery/door_control/ai/exterior,
 /turf/closed/wall/sulaco/unmeltable,
@@ -22030,6 +22027,12 @@
 	icon_state = "white"
 	},
 /area/sulaco/research)
+"aVj" = (
+/obj/machinery/door/airlock/mainship/generic,
+/turf/open/floor{
+	icon_state = "vault"
+	},
+/area/sulaco/hallway/lower_main_hall)
 "aVk" = (
 /obj/machinery/light/small,
 /turf/open/floor{
@@ -24594,6 +24597,12 @@
 "baT" = (
 /turf/open/floor/plating,
 /area/sulaco/hallway/lower_main_hall)
+"baU" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/turf/open/floor{
+	icon_state = "vault"
+	},
+/area/sulaco/hallway/lower_main_hall)
 "baV" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -24655,6 +24664,23 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/command/self_destruct)
+"bba" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
+	dir = 4
+	},
+/turf/closed/wall/sulaco/unmeltable,
+/area/sulaco/hallway/lower_main_hall)
+"bbb" = (
+/turf/open/space,
+/turf/closed/shuttle/wall3/diagonal,
+/area/sulaco/command/armory)
+"bbc" = (
+/turf/open/space,
+/turf/closed/shuttle/wall3/diagonal{
+	icon_state = "diagonalWall3";
+	dir = 4
+	},
+/area/sulaco/command/armory)
 "bbk" = (
 /turf/closed/wall/sulaco/unmeltable,
 /area/sulaco/hangar/two)
@@ -46474,17 +46500,17 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aPI
+aPB
+aPB
+aPB
+aPB
+aPB
+aPB
+aPB
+aPB
+aPB
+bbb
 aaa
 aaa
 aaa
@@ -46731,17 +46757,17 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aPB
+aPB
+aSY
+aLr
+aLu
+aVL
+aMf
+aVb
+aMk
+aPB
+aPB
 aaa
 aaa
 aaa
@@ -46988,17 +47014,17 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aPB
+aPB
+aTS
+aUw
+aUw
+aUw
+aWt
+aUw
+aYf
+aPB
+aPB
 aaa
 aaa
 aaa
@@ -47245,17 +47271,17 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
+aPB
+aPB
+aQx
+aQE
+aLv
+aLK
+aSS
+aLK
+aMl
+aPB
+aPB
 aaa
 aaa
 aaa
@@ -47502,17 +47528,17 @@ aaa
 aaa
 aaa
 aaa
-aYY
+aPT
 aPB
 aPB
 aPB
 aPB
 aPB
 aPB
+aUw
 aPB
 aPB
-aPB
-aZe
+bbc
 aaa
 aaa
 aaa
@@ -47759,17 +47785,17 @@ aaa
 aaa
 aaa
 aDS
-aas
-aPB
-aSY
-aLr
-aLu
-aVL
-aMf
-aVb
-aMk
-aPB
-aas
+aaa
+aaa
+aaa
+aaa
+aaa
+aaa
+aPQ
+aVd
+aPQ
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -48017,16 +48043,16 @@ aPg
 aPg
 aPg
 aPg
-aPB
-aTS
-aUw
-aUw
-aUw
-aWt
-aUw
-aYf
-aPB
-aas
+aPg
+aPg
+aPg
+aPg
+aPg
+aPQ
+aXw
+aPQ
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -48274,17 +48300,17 @@ aRg
 aQw
 aQw
 aQw
-aPT
-aQx
-aQE
-aLv
-aLK
-aSS
-aLK
-aMl
-aPB
-aas
-aZb
+aRg
+aQw
+aQw
+aQw
+aRg
+aQD
+aXw
+aPQ
+aaa
+aaa
+aaa
 aaa
 aaa
 aaa
@@ -48531,14 +48557,14 @@ aVc
 aVc
 aVc
 aVc
-aPB
-aPB
-aPB
-aPB
-aPB
-aQo
-aPT
-aQD
+aVc
+aVc
+aVc
+aVc
+aVc
+aUQ
+aVj
+bba
 aPM
 aPM
 aPM
@@ -48792,9 +48818,9 @@ aFv
 aFP
 aZV
 aGu
-aGN
+aQo
 aWG
-aPI
+baU
 aYj
 aYM
 aZF
@@ -57161,11 +57187,11 @@ akW
 akW
 apM
 akW
-asR
+awl
 asT
 atX
 avC
-asR
+awl
 akW
 aoB
 aoB
@@ -62917,7 +62943,7 @@ aaa
 aaa
 aaa
 aaa
-aUQ
+aGN
 aPm
 aPm
 aRf
@@ -64091,9 +64117,9 @@ adZ
 aea
 aea
 ads
-ads
-ads
 ajY
+ads
+aea
 aea
 amr
 anw
@@ -71048,9 +71074,9 @@ aAw
 aAG
 aBS
 aCq
-awl
-awl
-awl
+asR
+asR
+asR
 aYQ
 aJp
 aKh
