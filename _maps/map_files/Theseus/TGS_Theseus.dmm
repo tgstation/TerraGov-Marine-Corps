@@ -34866,12 +34866,6 @@
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"bKr" = (
-/obj/machinery/alarm,
-/turf/open/floor/mainship{
-	icon_state = "dark_sterile"
-	},
-/area/mainship/medical/medical_science)
 "bKz" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -44492,15 +44486,6 @@
 /obj/machinery/holopad,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cryo_cells)
-"cpp" = (
-/obj/machinery/medical_help_button{
-	pixel_y = 32
-	},
-/turf/open/floor/mainship{
-	dir = 1;
-	icon_state = "sterile_green_side"
-	},
-/area/mainship/medical/medical_science)
 "crd" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -44633,6 +44618,12 @@
 	icon_state = "carpetside"
 	},
 /area/mainship/shipboard/chief_mp_office)
+"dgp" = (
+/obj/item/reagent_containers/glass/bucket,
+/turf/open/floor/mainship{
+	icon_state = "sterile_green"
+	},
+/area/mainship/medical/medical_science)
 "dlC" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/structure/disposalpipe/segment,
@@ -44662,6 +44653,12 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/stern_hallway)
+"dyI" = (
+/obj/machinery/alarm,
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
+/area/mainship/medical/medical_science)
 "dAA" = (
 /obj/machinery/light{
 	dir = 8
@@ -45073,6 +45070,15 @@
 	icon_state = "red"
 	},
 /area/mainship/shipboard/chief_mp_office)
+"fAd" = (
+/obj/machinery/medical_help_button{
+	pixel_y = 32
+	},
+/turf/open/floor/mainship{
+	dir = 1;
+	icon_state = "sterile_green_side"
+	},
+/area/mainship/medical/medical_science)
 "fCG" = (
 /obj/machinery/marine_selector/gear/engi,
 /obj/docking_port/stationary/marine_dropship/crash_target,
@@ -46536,12 +46542,6 @@
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
-"mRQ" = (
-/obj/machinery/alarm,
-/turf/open/floor/mainship{
-	icon_state = "sterile_green"
-	},
-/area/mainship/medical/medical_science)
 "mTf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -47264,12 +47264,6 @@
 /obj/item/toy/farwadoll,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_emb)
-"qny" = (
-/obj/item/reagent_containers/glass/bucket,
-/turf/open/floor/mainship{
-	icon_state = "sterile_green"
-	},
-/area/mainship/medical/medical_science)
 "qoU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/decal/warning_stripes/thin,
@@ -47794,6 +47788,12 @@
 	icon_state = "dark_sterile"
 	},
 /area/mainship/medical/lower_medical)
+"tMY" = (
+/obj/machinery/alarm,
+/turf/open/floor/mainship{
+	icon_state = "sterile_green"
+	},
+/area/mainship/medical/medical_science)
 "tQY" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating/plating_catwalk,
@@ -78837,7 +78837,7 @@ ahD
 ajb
 akt
 alz
-cpp
+fAd
 aow
 alz
 alz
@@ -79353,7 +79353,7 @@ akv
 alz
 ane
 aoy
-qny
+dgp
 apK
 hnm
 iVl
@@ -79615,7 +79615,7 @@ aoz
 aoz
 aoz
 alz
-bKr
+dyI
 aoz
 aBW
 aDx
@@ -80122,7 +80122,7 @@ dSL
 ajc
 akv
 alz
-mRQ
+tMY
 aoz
 anh
 alz
