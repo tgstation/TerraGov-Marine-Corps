@@ -359,7 +359,7 @@
 	cold_level_3 = 20
 
 //To show them we mean business.
-/datum/species/human/spook/handle_unique_behavior(var/mob/living/carbon/human/H)
+/datum/species/human/spook/handle_unique_behavior(mob/living/carbon/human/H)
 	if(prob(25))
 		animation_horror_flick(H)
 
