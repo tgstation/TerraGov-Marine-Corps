@@ -11,20 +11,20 @@
 	wound_type = "shrike" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 20
 
 	// *** Tackle *** //
 	tackle_damage = 30
 
 	// *** Speed *** //
-	speed = 0
+	speed = 0.1
 
 	// *** Plasma *** //
 	plasma_max = 750
 	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 240
+	max_health = 250
 
 	// *** Evolution *** //
 	evolution_threshold = 180
@@ -39,7 +39,7 @@
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 
 	// *** Defense *** //
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_2, "bio" = 10, "rad" = 10, "fire" = 5, "acid" = 10)
+	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_2, "bio" = 10, "rad" = 10, "fire" = 5, "acid" = 10)
 
 	// *** Pheromones *** //
 	aura_strength = 2 //The Shrike's aura is decent.
@@ -81,20 +81,20 @@
 	tackle_damage = 35
 
 	// *** Speed *** //
-	speed = -0.1
+	speed = 0
 
 	// *** Plasma *** //
 	plasma_max = 850
 	plasma_gain = 35
 
 	// *** Health *** //
-	max_health = 260
+	max_health = 270
 
 	// *** Evolution *** //
 	upgrade_threshold = 200
 
 	// *** Defense *** //
-	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_2, "bio" = 15, "rad" = 15, "fire" = 10, "acid" = 15)
+	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_2, "bio" = 15, "rad" = 15, "fire" = 10, "acid" = 15)
 
 	// *** Pheromones *** //
 	aura_strength = 2.5
@@ -106,7 +106,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 29
+	melee_damage = 30
 
 	// *** Tackle *** //
 	tackle_damage = 40
@@ -119,13 +119,13 @@
 	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 280
+	max_health = 290
 
 	// *** Evolution *** //
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor = list("melee" = 18, "bullet" = 18, "laser" = 18, "energy" = 18, "bomb" = XENO_BOMB_RESIST_2, "bio" = 18, "rad" = 18, "fire" = 15, "acid" = 18)
+	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_2, "bio" = 18, "rad" = 18, "fire" = 15, "acid" = 18)
 
 	// *** Pheromones *** //
 	aura_strength = 2.8
@@ -137,7 +137,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 31
+	melee_damage = 30
 
 	// *** Tackle *** //
 	tackle_damage = 45
@@ -150,13 +150,13 @@
 	plasma_gain = 45
 
 	// *** Health *** //
-	max_health = 290
+	max_health = 310
 
 	// *** Evolution *** //
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor = list("melee" = 23, "bullet" = 23, "laser" = 23, "energy" = 23, "bomb" = XENO_BOMB_RESIST_2, "bio" = 23, "rad" = 23, "fire" = 18, "acid" = 20)
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_2, "bio" = 23, "rad" = 23, "fire" = 18, "acid" = 20)
 
 	// *** Pheromones *** //
 	aura_strength = 3

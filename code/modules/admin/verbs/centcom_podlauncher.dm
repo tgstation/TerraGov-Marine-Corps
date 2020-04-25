@@ -128,7 +128,7 @@ force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.adm
 			var/list/turfs = list()
 			for(var/turf/T in A)
 				turfs.Add(T) //Fill a list with turfs in the area
-			var/turf/T = safepick(turfs) //Only teleport if the list isn't empty
+			var/turf/T = SAFEPICK(turfs) //Only teleport if the list isn't empty
 			if(!T) //If the list is empty, error and cancel
 				to_chat(M, "Nowhere to jump to!")
 				return

@@ -89,7 +89,7 @@ SUBSYSTEM_DEF(direction)
 	if(!mobs_in_processing[C])
 		return TRUE // already removed
 	var/tracking_id = mobs_in_processing[C]
-	mobs_in_processing[C] = FALSE
+	mobs_in_processing -= C
 
 	if(tracking_id != squad_id)
 		if(!force)

@@ -139,7 +139,7 @@
 
 		else if(user.grab_state >= GRAB_AGGRESSIVE)
 			M.forceMove(loc)
-			M.Knockdown(10 SECONDS)
+			M.Paralyze(10 SECONDS)
 			user.visible_message("<span class='danger'>[user] throws [M] on [src].</span>",
 			"<span class='danger'>You throw [M] on [src].</span>")
 		return

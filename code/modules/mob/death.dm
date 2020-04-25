@@ -45,7 +45,7 @@
 	if(!gibbed)
 		src.visible_message("<b>\The [src.name]</b> [deathmessage]")
 
-	stat = DEAD
+	set_stat(DEAD)
 
 	update_canmove()
 

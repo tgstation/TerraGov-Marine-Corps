@@ -293,11 +293,13 @@ SUBSYSTEM_DEF(job)
 		JobDebug("Player already assigned a role :[player]")
 		unassigned -= player
 		player.ready = FALSE
+		GLOB.ready_players -= player
 		return
 	JobDebug("Player rejected :[player]")
 	to_chat(player, "<b>You have failed to qualify for any job you desired.</b>")
 	unassigned -= player
 	player.ready = FALSE
+	GLOB.ready_players -= player
 
 
 /datum/controller/subsystem/job/Recover()

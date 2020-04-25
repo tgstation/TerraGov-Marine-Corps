@@ -53,7 +53,7 @@
 		if(H.cooldowns[COOLDOWN_NEST])
 			to_chat(user, "<span class='warning'>[H] was recently unbuckled. Wait a bit.</span>")
 			return FALSE
-		if(!H.lying)
+		if(!H.lying_angle)
 			to_chat(user, "<span class='warning'>[H] is resisting, ground [H.p_them()].</span>")
 			return FALSE
 
@@ -67,7 +67,7 @@
 	if(LAZYLEN(buckled_mobs))
 		to_chat(user, "<span class='warning'>There's already someone in [src].</span>")
 		return FALSE
-	if(ishuman(buckling_mob) && !buckling_mob.lying) //Improperly stunned Marines won't be nested
+	if(ishuman(buckling_mob) && !buckling_mob.lying_angle) //Improperly stunned Marines won't be nested
 		to_chat(user, "<span class='warning'>[buckling_mob] is resisting, ground [buckling_mob.p_them()].</span>")
 		return FALSE
 

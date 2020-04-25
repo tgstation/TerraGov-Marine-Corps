@@ -58,7 +58,7 @@
 			to_chat(owner, "<span class='warning'>We can't do this while incapacitated!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_LYING) && X.lying)
+	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_LYING) && X.lying_angle)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We can't do this while lying down!</span>")
 		return FALSE

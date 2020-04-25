@@ -1,21 +1,38 @@
 //These procs handle putting s tuff in your hand. It's probably best to use these rather than setting l_hand = ...etc
 //as they handle all relevant stuff like adding it to the player's screen and updating their overlays.
 
-//Returns the thing in our active hand
+/**
+	returns the thing in our currently active hand
+*/
 /mob/proc/get_active_held_item()
+	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+		return
 	if(hand)
 		return l_hand
 	return r_hand
 
-//Returns the thing in our inactive hand
+/**
+	returns the thing in our currently inactive hand
+*/
 /mob/proc/get_inactive_held_item()
+	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+		return
 	if(hand)
 		return r_hand
 	return l_hand
 
-//Puts the item into your l_hand if possible and calls all necessary triggers/updates. returns 1 on success.
+/**
+	Puts the item into your l_hand if possible and calls all necessary triggers/updates. 
+
+	Arguments
+	* obj/item/W is the item you are trying to equip
+	
+	Returns TRUE on success.
+*/
 /mob/proc/put_in_l_hand(obj/item/W)
-	if(lying)
+	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+		return FALSE
+	if(lying_angle)
 		return FALSE
 	if(!istype(W))
 		return FALSE
@@ -29,9 +46,18 @@
 		return TRUE
 	return FALSE
 
-//Puts the item into your r_hand if possible and calls all necessary triggers/updates. returns 1 on success.
+/**
+	Puts the item into your r_hand if possible and calls all necessary triggers/updates. 
+
+	Arguments
+	* obj/item/W is the item you are trying to equip
+	
+	Returns TRUE on success.
+*/
 /mob/proc/put_in_r_hand(obj/item/W)
-	if(lying)
+	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+		return FALSE
+	if(lying_angle)
 		return FALSE
 	if(!istype(W))
 		return FALSE
@@ -45,22 +71,48 @@
 		return TRUE
 	return FALSE
 
-//Puts the item into our active hand if possible. returns 1 on success.
+/**
+	Puts the item into our active hand if possible. 
+
+	Arguments
+	* obj/item/W is the item you are trying to equip
+
+	Returns TRUE on success.
+*/
 /mob/proc/put_in_active_hand(obj/item/W)
+	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+		return FALSE
 	if(hand)
 		return put_in_l_hand(W)
 	return put_in_r_hand(W)
 
-//Puts the item into our inactive hand if possible. returns 1 on success.
+/**
+	Puts the item into our inactive hand if possible. 
+
+	Arguments
+	* obj/item/W is the item you are trying to equip
+	Returns TRUE on success.
+*/
 /mob/proc/put_in_inactive_hand(obj/item/W)
+	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+		return FALSE
 	if(hand)
 		return put_in_r_hand(W)
 	return put_in_l_hand(W)
 
-//Puts the item our active hand if possible. Failing that it tries our inactive hand. Returns 1 on success.
-//If both fail it drops it on the floor and returns 0.
-//This is probably the main one you need to know :)
+/**
+	Puts the item our active hand if possible. Failing that it tries our inactive hand.
+	If both hands fail the item falls to the floor.
+
+	Arguments
+	* obj/item/W is the item you are trying to equip
+	* del_on_fail if true will delete the item instead of dropping it to the floor
+
+	Returns TURE if it was able to put the thing into one of our hands.
+*/
 /mob/proc/put_in_hands(obj/item/W, del_on_fail = FALSE)
+	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+		return FALSE
 	if(!W)
 		return FALSE
 	if(put_in_active_hand(W))
@@ -76,33 +128,63 @@
 	W.dropped(src)
 	return FALSE
 
+/**
+	Helper proc used by the drop_item verb and on screen button.
 
-/mob/proc/drop_item_v()		//this is dumb.
+	Returns TURE if it was successful.
+*/
+/mob/proc/drop_item_v()
+	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+		return FALSE
 	if(stat == CONSCIOUS && isturf(loc))
 		return drop_held_item()
 	return FALSE
 
 
-//Drops the item in our left hand
+/**
+	Drops the item in our left hand.
+
+	Returns TURE if it was successful.
+*/
 /mob/proc/drop_l_hand()
+	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+		return FALSE
 	if(l_hand)
 		return dropItemToGround(l_hand)
 	return FALSE
 
-//Drops the item in our right hand
+/**
+	Drops the item in our right hand.
+
+	Returns TURE if it was successful.
+*/
 /mob/proc/drop_r_hand()
+	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+		return FALSE
 	if(r_hand)
 		return dropItemToGround(r_hand)
 	return FALSE
 
-//Drops the item in our active hand.
+/**
+	Drops the item in our active hand.
+
+	Returns TURE if it was successful.
+*/
 /mob/proc/drop_held_item()
+	if(status_flags & INCORPOREAL) // INCORPOREAL things don't have hands
+		return FALSE
 	if(hand)
 		return drop_l_hand()
 	return drop_r_hand()
 
-//Drops the items in our hands.
+/**
+	Drops the items in our hands.
+
+	Returns TURE if it was successful.
+*/
 /mob/proc/drop_all_held_items()
+	if(status_flags & INCORPOREAL)
+		return
 	drop_r_hand()
 	drop_l_hand()
 
@@ -213,6 +295,8 @@
 
 //proc to get the item in the active hand.
 /mob/proc/get_held_item()
+	if(status_flags & INCORPOREAL)
+		return
 	if (hand)
 		return l_hand
 	else

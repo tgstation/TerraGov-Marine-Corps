@@ -234,7 +234,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		ghost.mind?.current = ghost
 
 	if(!T)
-		T = safepick(GLOB.latejoin)
+		T = SAFEPICK(GLOB.latejoin)
 	if(!T)
 		stack_trace("no latejoin landmark detected")
 
@@ -653,7 +653,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		else //Circular
 			rot_seg = 36
 
-	orbit(target,orbitsize, FALSE, 20, rot_seg)
+	orbit(target, orbitsize, FALSE, 20, rot_seg)
 
 
 /mob/dead/observer/orbit()

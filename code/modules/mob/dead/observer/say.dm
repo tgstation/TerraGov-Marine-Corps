@@ -19,9 +19,17 @@
 			to_follow = S.eyeobj
 		else
 			to_follow = V.source
-	else if(client && (to_follow in range(client.view)))
+
+	else if(client && in_view_range(src, to_follow))
 		raw_message = "<b>[raw_message]</b>"
+
 	var/link = FOLLOW_LINK(src, to_follow)
 	// Recompose the message, because it's scrambled by default
 	message = compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mode)
 	to_chat(src, "[link] [message]")
+
+
+/mob/dead/observer/compose_name_href(name)
+	if(!check_other_rights(client, R_ADMIN, FALSE))
+		return name
+	return "<a class='hidelink' href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[name]</a>"

@@ -510,6 +510,10 @@ function ehjaxCallback(data) {
 	opts.lastPang = Date.now();
 	if (data == 'softPang') {
 		return;
+	} else if (data == 'pang') {
+		opts.pingCounter = 0; //reset
+		opts.pingTime = Date.now();
+		runByond('?_src_=chat&proc=ping');
 
 	} else if (data == 'roundrestart') {
 		opts.restarting = true;

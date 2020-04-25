@@ -100,7 +100,7 @@
 	mechanics_text = "Selects which structure you will build with the (secrete resin) ability."
 	keybind_signal = COMSIG_XENOABILITY_CHOOSE_RESIN
 	var/list/buildable_structures = list(
-		/turf/closed/wall/resin,
+		/turf/closed/wall/resin/regenerating,
 		/obj/structure/bed/nest,
 		/obj/effect/alien/resin/sticky,
 		/obj/structure/mineral_door/resin)
@@ -226,7 +226,7 @@
 
 	var/atom/new_resin
 
-	if(X.selected_resin == /turf/closed/wall/resin)
+	if(X.selected_resin == /turf/closed/wall/resin/regenerating)
 		T.ChangeTurf(X.selected_resin)
 		new_resin = T
 	else

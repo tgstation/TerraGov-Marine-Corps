@@ -29,7 +29,7 @@
 		else
 			to_chat(M, "<span class='warning'>The floor jolts under your feet!</span>")
 			shake_camera(M, 10, 1)
-			M.Knockdown(60)
+			M.Paralyze(60)
 		CHECK_TICK
 
 	for(var/i in GLOB.ai_list)
@@ -529,7 +529,7 @@
 	else
 		data["lockdown"] = 1
 
-	var/list/options = params2list(possible_destinations)
+	var/list/options = valid_destinations()
 	var/list/valid_destionations = list()
 	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
 		if(!options.Find(S.id))
@@ -974,7 +974,7 @@
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access Denied!</span>")
 		return
-	var/list/options = params2list(possible_destinations)
+	var/list/options = valid_destinations()
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
 	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
 	if(M)
@@ -1024,16 +1024,15 @@
 	possible_destinations = "canterbury_loadingdock"
 
 /obj/machinery/computer/shuttle/shuttle_control/canterbury/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
-
 	if(!href_list["move"] || !iscrashgamemode(SSticker.mode))
+		to_chat(usr, "<span class='warning'>[src] is unresponsive.</span>")
 		return
-	var/datum/game_mode/infestation/crash/C = SSticker.mode
 
 	if(!length(GLOB.active_nuke_list) && alert(usr, "Are you sure you want to launch the shuttle? Without sufficiently dealing with the threat, you will be in direct violation of your orders!", "Are you sure?", "Yes", "Cancel") != "Yes")
 		return
 
-	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_INPROGRESS), 15 SECONDS)
-	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_COMPLETED), 5 MINUTES)
+	. = ..()
+	if(.)
+		var/datum/game_mode/infestation/crash/C = SSticker.mode
+		addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_INPROGRESS), 15 SECONDS)
+		addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_COMPLETED), 5 MINUTES)

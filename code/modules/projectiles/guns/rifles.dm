@@ -70,6 +70,8 @@
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/attached_gun/grenade,
 						/obj/item/attachable/attached_gun/flamer,
+						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/attached_gun/shotgun)
 
     flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
@@ -77,8 +79,8 @@
     starting_attachment_types = list(/obj/item/attachable/stock/t18stock)
     attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 10, "rail_y" = 19, "under_x" = 18, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
 
-    fire_delay = 0.25 SECONDS
-    burst_delay = 0.10 SECONDS
+    fire_delay = 0.3 SECONDS
+    burst_delay = 0.125 SECONDS
     accuracy_mult = 1.10
     scatter = -5
     burst_amount = 4
@@ -117,6 +119,8 @@
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/compensator,
+						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/attached_gun/grenade,
 						/obj/item/attachable/attached_gun/flamer,
 						/obj/item/attachable/attached_gun/shotgun)
@@ -156,7 +160,6 @@
 	max_shells = 10 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/standard_dmr
 	attachable_allowed = list(
-						/obj/item/attachable/quickfire,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/compensator,
@@ -177,7 +180,7 @@
 						/obj/item/attachable/scope,
 						/obj/item/attachable/scope/mini)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_CAN_POINTBLANK
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	starting_attachment_types = list(/obj/item/attachable/stock/dmr, /obj/item/attachable/scope/mini)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 13, "rail_y" = 18, "under_x" = 24, "under_y" = 13, "stock_x" = 14, "stock_y" = 10)
@@ -233,7 +236,7 @@
 	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
-	fire_delay = 0.4 SECONDS
+	fire_delay = 0.25 SECONDS
 	burst_delay = 0.15 SECONDS
 	accuracy_mult = 1.15
 	scatter = -10
@@ -252,9 +255,9 @@
 	flags_item_map_variant = NONE
 
 	burst_delay = 0.2 SECONDS
-	accuracy_mult = 1.5
+	accuracy_mult = 1.15
 	damage_mult = 1.5
-	scatter = -10
+	scatter = 0
 
 
 //-------------------------------------------------------
@@ -320,6 +323,7 @@
 	reload_sound = 'sound/weapons/guns/interact/ak47_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/ak47
+	aim_slowdown = 0.7
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
@@ -330,9 +334,12 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 17, "under_x" = 24, "under_y" = 13, "stock_x" = 17, "stock_y" = 12)
 	starting_attachment_types = list(/obj/item/attachable/stock/ak47)
 
-	accuracy_mult = 1.05
+	accuracy_mult = 1
 	burst_amount = 1
 	fire_delay = 0.25 SECONDS
+	scatter = 5
+	wield_delay = 0.7 SECONDS
+
 
 
 /obj/item/weapon/gun/rifle/ak47/carbine
@@ -343,9 +350,9 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 	starting_attachment_types = null
 
-	fire_delay = 0.23 SECONDS
+	fire_delay = 0.25 SECONDS
 	burst_amount = 3
-	accuracy_mult = 0.9
+	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.5
 
 
@@ -366,6 +373,7 @@
 	reload_sound = 'sound/weapons/guns/interact/m16_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m16_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/m16
+	aim_slowdown = 0.4
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
@@ -393,9 +401,12 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 18, "under_x" = 22, "under_y" = 15, "stock_x" = 19, "stock_y" = 13)
 	starting_attachment_types = list(/obj/item/attachable/stock/m16, /obj/item/attachable/m16sight)
 
-	damage_mult = 0.8
 	fire_delay = 0.2 SECONDS
-	burst_delay = 0.14 SECONDS
+	burst_delay = 0.15 SECONDS
+	accuracy_mult = 1.3
+	wield_delay = 0.5 SECONDS
+	damage_mult = 1.2
+
 
 
 //-------------------------------------------------------
@@ -426,6 +437,8 @@
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/stock/t42stock,
 						/obj/item/attachable/magnetic_harness)
@@ -502,13 +515,14 @@
 	reload_sound = 'sound/weapons/guns/interact/type71_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/type71_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/type71
-	wield_delay = 0.4 SECONDS
+	aim_slowdown = 0.6
+	wield_delay = 0.7 SECONDS
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 
-	fire_delay = 0.35 SECONDS
+	fire_delay = 0.25 SECONDS
 	burst_amount = 2
-	accuracy_mult = 1.5
+	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.8
 
 
@@ -539,6 +553,7 @@
 	burst_amount = 2
 	accuracy_mult = 2
 	accuracy_mult_unwielded = 0.8
+	damage_mult = 1.3
 
 
 //-------------------------------------------------------

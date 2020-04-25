@@ -428,7 +428,7 @@
 // Scout Cloak
 /obj/item/storage/backpack/marine/satchel/scout_cloak
 	name = "\improper M68 Thermal Cloak"
-	desc = "The lightweight thermal dampeners and optical camouflage provided by this cloak are weaker than those found in standard TGMC ghillie suits. In exchange, the cloak can be worn over combat armor and offers the wearer high manueverability and adaptability to many environments."
+	desc = "The lightweight thermal dampeners and optical camouflage provided by this cloak are weaker than those found in standard TGMC ghillie suits. In exchange, the cloak can be worn over combat armor and offers the wearer high manueverability and adaptability to many environments. Serves as a satchel."
 	icon_state = "scout_cloak"
 	var/camo_active = 0
 	var/camo_active_timer = 0
@@ -649,7 +649,7 @@
 /obj/item/storage/backpack/marine/satchel/scout_cloak/sniper
 	name = "\improper M68-B Thermal Cloak"
 	icon_state = "smock"
-	desc = "The M68-B thermal cloak is a variant custom-purposed for snipers, allowing for faster, superior, stationary concealment at the expense of mobile concealment. It is designed to be paired with the lightweight M3 recon battle armor."
+	desc = "The M68-B thermal cloak is a variant custom-purposed for snipers, allowing for faster, superior, stationary concealment at the expense of mobile concealment. It is designed to be paired with the lightweight M3 recon battle armor. Serves as a satchel."
 	shimmer_alpha = SCOUT_CLOAK_RUN_ALPHA * 0.5 //Half the normal shimmer transparency.
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/sniper/process()

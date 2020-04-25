@@ -80,7 +80,7 @@
 			victims++
 			step_away(H, X, sweep_range, 2)
 			shake_camera(H, 2, 1)
-			H.Knockdown(2 SECONDS)
+			H.Paralyze(2 SECONDS)
 
 	succeed_activate()
 	add_cooldown()

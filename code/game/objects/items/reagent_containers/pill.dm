@@ -174,7 +174,7 @@
 
 /obj/item/reagent_containers/pill/zoom
 	pill_desc = "A Zoom pill! Gotta go fast!"
-	list_reagents = list(/datum/reagent/medicine/synaptizine = 5, /datum/reagent/medicine/hyperzine = 5, /datum/reagent/consumable/nutriment = 2)
+	list_reagents = list(/datum/reagent/medicine/synaptizine = 3, /datum/reagent/medicine/hyperzine = 5, /datum/reagent/consumable/nutriment = 3)
 	pill_id = 14
 
 /obj/item/reagent_containers/pill/russianRed
@@ -189,7 +189,7 @@
 
 /obj/item/reagent_containers/pill/imidazoline
 	pill_desc = "An imidazoline pill. Heals eye damage."
-	list_reagents = list(/datum/reagent/medicine/alkysine = 10)
+	list_reagents = list(/datum/reagent/medicine/imidazoline = 10)
 	pill_id = 17
 
 /obj/item/reagent_containers/pill/alkysine

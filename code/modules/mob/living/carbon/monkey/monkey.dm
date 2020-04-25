@@ -184,7 +184,7 @@
 			if(H.a_intent == INTENT_HARM)//Stungloves. Any contact will stun the alien.
 				if(G.cell.charge >= 2500)
 					G.cell.use(2500)
-					Knockdown(10 SECONDS)
+					Paralyze(10 SECONDS)
 					if (stuttering < 5)
 						stuttering = 5
 					Stun(10 SECONDS)
