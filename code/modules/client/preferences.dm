@@ -109,6 +109,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	// Hud tooltip
 	var/tooltips = TRUE
 
+	/// Chat on map
+	var/chat_on_map = TRUE
+
 
 /datum/preferences/New(client/C)
 	if(!istype(C))
@@ -325,6 +328,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<b>Tooltips:</b> <a href='?_src_=prefs;preference=tooltips'>[(tooltips) ? "Shown" : "Hidden"]</a><br>"
 	dat += "<b>FPS:</b> <a href='?_src_=prefs;preference=clientfps'>[clientfps]</a><br>"
 
+	dat += "<br>"
+	dat += "<b>Show Runescape-style Chat Messages:</b> <a href='?_src_=prefs;preference=chat_on_map'>[chat_on_map ? "Enabled" : "Disabled"]</a><br>"
+	dat += "<small>Note: the above pref is reset each round during test merge, it will not reset after the PR is fully merged. Maintainers required this.</small><br><br>"
+	dat += "<br>"
 
 
 	dat += "<h2>UI Customization:</h2>"
@@ -944,6 +951,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			desiredfps = CLAMP(desiredfps, 0, 240)
 			clientfps = desiredfps
 			parent.fps = desiredfps
+
+		if("chat_on_map")
+			chat_on_map = !chat_on_map
 
 		if("tooltips")
 			tooltips = !tooltips

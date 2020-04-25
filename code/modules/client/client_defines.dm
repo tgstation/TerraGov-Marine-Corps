@@ -82,3 +82,6 @@
 
 	//assoc list with all the active maps - when a screen obj is added to a map, it's put in here as well. "mapname" = list(screen objs in map)
 	var/list/screen_maps
+
+	/// Messages currently seen by this client
+	var/list/seen_messages

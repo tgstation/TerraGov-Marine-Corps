@@ -335,6 +335,7 @@
 	GLOB.ahelp_tickets.ClientLogout(src)
 	GLOB.directory -= ckey
 	GLOB.clients -= src
+	seen_messages = null
 	QDEL_LIST_ASSOC_VAL(char_render_holders)
 	Master.UpdateTickRate()
 	return ..()
