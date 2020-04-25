@@ -303,14 +303,13 @@
 	name_plural = "Human clones"
 	brute_mod = 1.3
 	burn_mod = 1.3
-	slowdown = 0.3
-	unarmed_type = /datum/unarmed_attack/punch/strong
+	slowdown = 1.3
 
 	var/timerid
 
 /datum/species/human/clone/handle_post_spawn(mob/living/carbon/human/H)
 	. = ..()
-	// addtimer(CALLBACK(src, .proc/handle_age, H), 15 MINUTES)
+	// addtimer(CALLBACK(src, .proc/handle_age, H), 20 MINUTES)
 	timerid = addtimer(CALLBACK(src, .proc/handle_age, H), 15 SECONDS, TIMER_STOPPABLE)
 
 /datum/species/human/clone/post_species_loss(mob/living/carbon/human/H)
@@ -328,7 +327,7 @@
 	name_plural = "Aged Human clones"
 	brute_mod = 1.05
 	burn_mod = 1.05
-	slowdown = 0.95
+	slowdown = 1.05
 
 /datum/species/human/clone/aged/handle_post_spawn(mob/living/carbon/human/H)
 	return
