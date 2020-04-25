@@ -144,7 +144,7 @@ The vat then needs to be repaired and refilled with biomass.
 	if(.)
 		return
 
-	if(!ispath(I, /obj/item/reagent_containers/glass/beaker))
+	if(istype(I, /obj/item/reagent_containers/glass/beaker))
 		if(beaker)
 			to_chat(user, "<span class='warning'>A beaker is already loaded into the machine.</span>")
 			return
@@ -167,10 +167,10 @@ The vat then needs to be repaired and refilled with biomass.
 /obj/machinery/cloning/vats/examine(mob/user)
 	. = ..()
 	if(!beaker)
-		to_chat(user, "<span class='notice'>It doesn't have a beaker attached</span>")
+		to_chat(user, "<span class='notice'>It doesn't have a beaker attached.</span>")
 		return
 	if(timerid)
-		to_chat(user, "<span class='notice'>There is something weird inside</span>")
+		to_chat(user, "<span class='notice'>There is something weird inside.</span>")
 		return
 	if(occupant)
 		to_chat(user, "<span class='notice'>It looks like there is a human in there!</span>")
@@ -236,4 +236,3 @@ You are weak, best rest up and get your strength before fighting.</span>"})
 	// Cleanup the timers
 	deltimer(timerid)
 	timerid = null
-
