@@ -349,3 +349,10 @@
 	desc = "A heavily modified mining uniform based off the ones used by mining colonies. Seems to have more care and wear on it."
 	icon_state = "som_uniform_leader"
 	item_state = "som_uniform_leader"
+
+/obj/item/clothing/under/sectoid
+	name = "psionic field"
+	desc = "A field of invisible energy, it protects the wearer but prevents any clothing from being worn."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "shield-blue"
+	flags_item = NODROP|DELONDROP
