@@ -600,6 +600,7 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define COOLDOWN_VENTCRAWL	"ventcrawl"
 #define COOLDOWN_BUCKLE		"buckle"
 #define COOLDOWN_RESIST		"resist"
+#define COOLDOWN_RELAYMOVE	"relaymove"
 #define COOLDOWN_ORDER		"order"
 #define COOLDOWN_DISPOSAL	"disposal"
 #define COOLDOWN_ACID		"acid"
@@ -610,6 +611,8 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define COOLDOWN_NEST		"nest"
 #define COOLDOWN_TASTE		"taste"
 #define COOLDOWN_VENTSOUND	"vendsound"
+
+#define CHECK_COOLDOWN(mob, cooldown_type, wait_time, default_return) if(mob.cooldowns[cooldown_type]) return default_return; mob.cooldowns[cooldown_type] = addtimer(VARSET_LIST_CALLBACK(mob.cooldowns, cooldown_type, null), wait_time)
 
 #define UPDATEHEALTH(MOB) (addtimer(CALLBACK(MOB, /mob/living.proc/updatehealth), 1, TIMER_UNIQUE))
 

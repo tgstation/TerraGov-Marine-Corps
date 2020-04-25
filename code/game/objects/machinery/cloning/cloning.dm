@@ -15,6 +15,7 @@ Cloning shit
 
 
 /obj/machinery/cloning/relaymove(mob/user)
+	CHECK_COOLDOWN(user, COOLDOWN_RELAYMOVE, 2 SECONDS, FALSE)
 	user.visible_message("You hear something bang on the window of \the [src]", "The door won't budge")
 	return FALSE
 
@@ -77,9 +78,9 @@ The vat then needs to be repaired and refilled with biomass.
 /obj/machinery/cloning/vats
 	name = "Clone Vat"
 	icon = 'icons/obj/machines/cloning.dmi'
-	icon_state = "cell_100"
+	icon_state = "cell_0"
 	use_power = IDLE_POWER_USE
-	idle_power_usage = 900
+	idle_power_usage = 30000
 
 	var/timerid
 	var/mob/living/carbon/human/occupant
@@ -92,6 +93,7 @@ The vat then needs to be repaired and refilled with biomass.
 /obj/machinery/cloning/vats/Initialize()
 	. = ..()
 	beaker = new /obj/item/reagent_containers/glass/beaker/biomass
+	update_icon()
 
 
 /obj/machinery/cloning/vats/Destroy()
@@ -102,7 +104,7 @@ The vat then needs to be repaired and refilled with biomass.
 	if(occupant?.client)
 		eject_user()
 
-	QDEL_NULL(occupant)
+	occupant = null
 	QDEL_NULL(beaker)
 	return ..()
 

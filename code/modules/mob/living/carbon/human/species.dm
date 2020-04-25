@@ -330,6 +330,7 @@
 
 /datum/species/human/clone/aged/handle_post_spawn(mob/living/carbon/human/H)
 	return
+
 //Various horrors that spawn in and haunt the living.
 /datum/species/human/spook
 	name = "Horror"
