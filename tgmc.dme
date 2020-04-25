@@ -654,6 +654,7 @@
 #include "code\game\objects\machinery\camera\camera.dm"
 #include "code\game\objects\machinery\camera\camera_assembly.dm"
 #include "code\game\objects\machinery\camera\tracking.dm"
+#include "code\game\objects\machinery\cloning\cloning.dm"
 #include "code\game\objects\machinery\computer\aifixer.dm"
 #include "code\game\objects\machinery\computer\arcade.dm"
 #include "code\game\objects\machinery\computer\area_air_control.dm"

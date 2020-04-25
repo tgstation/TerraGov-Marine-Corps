@@ -15,3 +15,7 @@
 
 /datum/reagent/medicine/clone/blood_o
 	for_blood_type = "O"
+
+
+/datum/reagent/medicine/biomass
+	name = "Biomass"

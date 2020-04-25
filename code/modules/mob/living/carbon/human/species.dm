@@ -298,7 +298,40 @@
 	heat_level_2 = 480
 	heat_level_3 = 1100
 
+/datum/species/human/clone
+	name = "Human clone"
+	name_plural = "Human clones"
+	brute_mod = 1.3
+	burn_mod = 1.3
+	slowdown = 0.3
+	unarmed_type = /datum/unarmed_attack/punch/strong
 
+	var/timerid
+
+/datum/species/human/clone/handle_post_spawn(mob/living/carbon/human/H)
+	. = ..()
+	// addtimer(CALLBACK(src, .proc/handle_age, H), 15 MINUTES)
+	timerid = addtimer(CALLBACK(src, .proc/handle_age, H), 15 SECONDS, TIMER_STOPPABLE)
+
+/datum/species/human/clone/post_species_loss(mob/living/carbon/human/H)
+	. = ..()
+	// Ensure we don't update the species again
+	if(timerid)
+		deltimer(timerid)
+		timerid = null
+
+/datum/species/human/clone/proc/handle_age(mob/living/carbon/human/H)
+	H.set_species("Aged Human clone")
+
+/datum/species/human/clone/aged
+	name = "Aged Human clone"
+	name_plural = "Aged Human clones"
+	brute_mod = 1.05
+	burn_mod = 1.05
+	slowdown = 0.95
+
+/datum/species/human/clone/aged/handle_post_spawn(mob/living/carbon/human/H)
+	return
 //Various horrors that spawn in and haunt the living.
 /datum/species/human/spook
 	name = "Horror"
@@ -326,15 +359,16 @@
 	cold_level_2 = 50
 	cold_level_3 = 20
 
-	//To show them we mean business.
-	handle_unique_behavior(var/mob/living/carbon/human/H)
-		if(prob(25)) animation_horror_flick(H)
+//To show them we mean business.
+/datum/species/human/spook/handle_unique_behavior(var/mob/living/carbon/human/H)
+	if(prob(25))
+		animation_horror_flick(H)
 
-		//Organ damage will likely still take them down eventually.
-		H.adjustBruteLoss(-3)
-		H.adjustFireLoss(-3)
-		H.adjustOxyLoss(-15)
-		H.adjustToxLoss(-15)
+	//Organ damage will likely still take them down eventually.
+	H.adjustBruteLoss(-3)
+	H.adjustFireLoss(-3)
+	H.adjustOxyLoss(-15)
+	H.adjustToxLoss(-15)
 
 /datum/species/unathi
 	name = "Unathi"
