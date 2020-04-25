@@ -23,7 +23,7 @@ Cloning shit
 	list_reagents = list(/datum/reagent/blood/xeno_blood = 120)
 
 /obj/item/reagent_containers/glass/beaker/biomass
-	list_reagents = list(/datum/reagent/medicine/biomass/ = 60)
+	list_reagents = list(/datum/reagent/medicine/biomass = 60)
 
 
 /**
@@ -149,7 +149,7 @@ The vat then needs to be repaired and refilled with biomass.
 
 		// Check if the beaker contains anything other than biomass juice
 		for(var/datum/reagent/R in I.reagents.reagent_list)
-			if(!ispath(R, /datum/reagent/medicine/biomass))
+			if(!istype(R, /datum/reagent/medicine/biomass) && !istype(R, /datum/reagent/medicine/biomass/xeno))
 				to_chat(user, "<span class='warning'>\The [src] rejects the beaker.</span>")
 				return
 

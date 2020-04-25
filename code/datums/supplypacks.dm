@@ -2049,7 +2049,7 @@ CLOTHING
 MEDICAL
 *******************************************************************************/
 
-datum/supply_packs/advanced_medical
+/datum/supply_packs/advanced_medical
 	contains = list(
 					/obj/item/storage/pouch/autoinjector/advanced/full,
 					/obj/item/storage/pouch/autoinjector/advanced/full,
@@ -2064,6 +2064,30 @@ datum/supply_packs/advanced_medical
 	cost = RO_PRICE_VERY_PRICY
 	containertype = /obj/structure/closet/crate
 	containername = "\improper medical crate"
+	group = "Medical"
+
+
+/datum/supply_packs/dogtags
+	contains = list(
+					/obj/item/storage/box/ids/dogtag,
+					/obj/item/storage/box/ids/dogtag,
+					/obj/item/storage/box/ids/dogtag,
+					)
+	name = "dogtags crate"
+	cost = RO_PRICE_NEAR_FREE
+	containertype = /obj/structure/closet/crate
+	containername = "\improper dogtags crate"
+	group = "Medical"
+
+
+/datum/supply_packs/biomass
+	contains = list(
+					/obj/item/reagent_containers/glass/beaker/biomass,
+					)
+	name = "biomass crate"
+	cost = RO_PRICE_VERY_CHEAP
+	containertype = /obj/structure/closet/crate/secure/nanotrasen
+	containername = "\improper biomass crate"
 	group = "Medical"
 
 
