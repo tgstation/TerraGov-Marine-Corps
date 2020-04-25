@@ -19,8 +19,11 @@ Cloning shit
 	return FALSE
 
 
+/obj/item/reagent_containers/glass/bucket/xeno_blood
+	list_reagents = list(/datum/reagent/blood/xeno_blood = 120)
+
 /obj/item/reagent_containers/glass/beaker/biomass
-	list_reagents = list(/datum/reagent/medicine/biomass = 60)
+	list_reagents = list(/datum/reagent/medicine/biomass/ = 60)
 
 
 /**
@@ -37,6 +40,7 @@ The vat then needs to be repaired and refilled with biomass.
 	anchored = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 3
+	resistance_flags = UNACIDABLE | INDESTRUCTIBLE // For now, we should work out how we want xenos to counter this
 
 	var/obj/machinery/cloning/vats/linked_machine
 
@@ -58,7 +62,7 @@ The vat then needs to be repaired and refilled with biomass.
 		visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps as its boots up and connects to \the [linked_machine]</span>")
 		return TRUE
 
-	if(linked_machine.occupant)
+	if(linked_machine.occupant || linked_machine.timerid)
 		visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps in error, 'already processing clone'.</span>")
 		return TRUE
 
@@ -75,7 +79,7 @@ The vat then needs to be repaired and refilled with biomass.
 	icon = 'icons/obj/machines/cloning.dmi'
 	icon_state = "cell_100"
 	use_power = IDLE_POWER_USE
-	idle_power_usage = 300
+	idle_power_usage = 900
 
 	var/timerid
 	var/mob/living/carbon/human/occupant
@@ -217,9 +221,12 @@ You are weak, best rest up and get your strength before fighting.</span>"})
 
 /obj/machinery/cloning/vats/proc/finish_growing_human()
 	occupant = new(src)
+	occupant.faction = "TerraGov"
+	occupant.fully_replace_character_name(occupant.real_name, "CS-[occupant.gender == MALE ? "F": "M"]-[rand(111,999)]")
 	occupant.set_species("Human clone")
 	occupant.disabilities |= (BLIND & DEAF)
 	// Blindness needs to be fixed, but that is for another PR.
+	// Blindness doenst't trigger with just the disability, you need to set_blindness (which we do when you spawn)
 
 	GLOB.offered_mob_list += occupant
 	notify_ghosts("<span class='boldnotice'>A new clone is available! Name: [name]</span>", enter_link = "claim=[REF(occupant)]", source = src, action = NOTIFY_ORBIT)

@@ -166,6 +166,11 @@
 
 
 // Cloning chemicals
+/datum/chemical_reaction/expanded_biomass
+	name = "Biomass" // 3 random characters
+	results = list(/datum/reagent/medicine/biomass = 10)
+	required_reagents = list(/datum/reagent/blood/xeno_blood = 10, /datum/reagent/medicine/biomass = 1)
+
 /datum/chemical_reaction/clone
 	hidden_from_codex = TRUE
 	name = "Clone base - SHOULD NOT APPEAR"
