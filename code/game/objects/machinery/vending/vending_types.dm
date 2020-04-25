@@ -89,7 +89,8 @@
 					/obj/item/reagent_containers/food/snacks/enrg_bar = 12,
 					/obj/item/reagent_containers/food/snacks/wrapped/booniebars = 6,
 					/obj/item/reagent_containers/food/snacks/wrapped/chunk = 6,
-					/obj/item/reagent_containers/food/snacks/wrapped/barcardine = 6)
+					/obj/item/reagent_containers/food/snacks/wrapped/barcardine = 6,
+					/obj/item/reagent_containers/food/snacks/lollipop = 12)
 
 	prices = list()
 

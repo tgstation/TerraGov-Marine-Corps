@@ -311,6 +311,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define IS_SYNTHETIC 			(1<<14)
 #define NO_STAMINA 				(1<<15)
 #define DETACHABLE_HEAD			(1<<16)
+#define USES_ALIEN_WEAPONS		(1<<17)
+#define NO_DAMAGE_OVERLAY		(1<<18)
 //=================================================
 
 //Some on_mob_life() procs check for alien races.
@@ -322,6 +324,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define IS_UNATHI (1<<5)
 #define IS_HORROR (1<<6)
 #define IS_MOTH (1<<7)
+#define IS_SECTOID (1<<8)
 //=================================================
 
 //AFK status
@@ -434,7 +437,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_LARVAL_AMOUNT_RECURRING		10
 #define XENO_LARVAL_CHANNEL_TIME			1.5 SECONDS
 
-#define XENO_NEURO_AMOUNT_RECURRING			15
+#define XENO_NEURO_AMOUNT_RECURRING			10
 #define XENO_NEURO_CHANNEL_TIME				1.5 SECONDS
 
 #define CANNOT_HOLD_EGGS 0
@@ -466,9 +469,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 // Xeno charge types
 #define CHARGE_TYPE_SMALL			1
 #define CHARGE_TYPE_MEDIUM			2
-#define CHARGE_TYPE_LARGE			3
-#define CHARGE_TYPE_MASSIVE			4
-
+#define CHARGE_TYPE_PANTHER			3
+#define CHARGE_TYPE_LARGE			4
+#define CHARGE_TYPE_MASSIVE			5
 
 //Hunter Defines
 #define HUNTER_STEALTH_COOLDOWN					50 //5 seconds
@@ -516,7 +519,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define DEFILER_STING_AMOUNT_RECURRING		10
 
 //Boiler defines
-#define BOILER_LUMINOSITY					0
+#define BOILER_LUMINOSITY_BASE						0
+#define BOILER_LUMINOSITY_BASE_COLOR				LIGHT_COLOR_GREEN
+#define BOILER_LUMINOSITY_AMMO						1 //don't set this to 0. How much each 'piece' of ammo in reserve glows by.
+#define BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR		LIGHT_COLOR_YELLOW
+#define BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR		LIGHT_COLOR_GREEN
 
 //Hivelord defines
 
@@ -565,16 +572,16 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define BODY_ZONE_PRECISE_L_FOOT	"l_foot"
 #define BODY_ZONE_PRECISE_R_FOOT	"r_foot"
 
-GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD, 
-										BODY_ZONE_CHEST, 
-										BODY_ZONE_PRECISE_GROIN, 
+GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
+										BODY_ZONE_CHEST,
+										BODY_ZONE_PRECISE_GROIN,
 										BODY_ZONE_L_ARM,
-										BODY_ZONE_PRECISE_L_HAND, 
-										BODY_ZONE_R_ARM, 
-										BODY_ZONE_PRECISE_R_HAND, 
-										BODY_ZONE_L_LEG, 
-										BODY_ZONE_PRECISE_L_FOOT, 
-										BODY_ZONE_R_LEG, 
+										BODY_ZONE_PRECISE_L_HAND,
+										BODY_ZONE_R_ARM,
+										BODY_ZONE_PRECISE_R_HAND,
+										BODY_ZONE_L_LEG,
+										BODY_ZONE_PRECISE_L_FOOT,
+										BODY_ZONE_R_LEG,
 										BODY_ZONE_PRECISE_R_FOOT
 										))
 

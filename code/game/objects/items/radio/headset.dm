@@ -526,3 +526,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/distress/som
 	name = "\improper Sons of Mars headset"
 	keyslot = /obj/item/encryptionkey/som
+
+/obj/item/radio/headset/distress/sectoid
+	name = "\improper alien headset"
+	keyslot = /obj/item/encryptionkey/sectoid
