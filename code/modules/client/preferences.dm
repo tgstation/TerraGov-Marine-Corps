@@ -111,6 +111,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	/// Chat on map
 	var/chat_on_map = TRUE
+	var/see_chat_non_mob = TRUE
+	var/max_chat_length = CHAT_MESSAGE_MAX_LENGTH
 
 
 /datum/preferences/New(client/C)
@@ -329,8 +331,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<b>FPS:</b> <a href='?_src_=prefs;preference=clientfps'>[clientfps]</a><br>"
 
 	dat += "<br>"
-	dat += "<b>Show Runescape-style Chat Messages:</b> <a href='?_src_=prefs;preference=chat_on_map'>[chat_on_map ? "Enabled" : "Disabled"]</a><br>"
-	dat += "<small>Note: the above pref is reset each round during test merge, it will not reset after the PR is fully merged. Maintainers required this.</small><br><br>"
+	dat += "<b>Show Runechat Chat Bubbles:</b> <a href='?_src_=prefs;preference=chat_on_map'>[chat_on_map ? "Enabled" : "Disabled"]</a><br>"
+	dat += "<b>Runechat message char limit:</b> <a href='?_src_=prefs;preference=max_chat_length;task=input'>[max_chat_length]</a><br>"
+	dat += "<b>See Runechat for non-mobs:</b> <a href='?_src_=prefs;preference=see_chat_non_mob'>[see_chat_non_mob ? "Enabled" : "Disabled"]</a><br>"
+	dat += "<small>Note: the above prefs are reset each round during test merge, it will not reset after the PR is fully merged. Maintainers required this.</small><br><br>"
 	dat += "<br>"
 
 
@@ -954,6 +958,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		if("chat_on_map")
 			chat_on_map = !chat_on_map
+
+		if ("max_chat_length")
+			var/desiredlength = input(user, "Choose the max character length of shown Runechat messages. Valid range is 1 to [CHAT_MESSAGE_MAX_LENGTH] (default: [initial(max_chat_length)]))", "Character Preference", max_chat_length)  as null|num
+			if (!isnull(desiredlength))
+				max_chat_length = clamp(desiredlength, 1, CHAT_MESSAGE_MAX_LENGTH)
+
+		if("see_chat_non_mob")
+			see_chat_non_mob = !see_chat_non_mob
 
 		if("tooltips")
 			tooltips = !tooltips
