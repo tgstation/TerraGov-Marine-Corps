@@ -36,8 +36,5 @@ GLOBAL_LIST_EMPTY_TYPED(namepool, /datum/namepool)
 	firstname_female_pool = "names/moth_first"
 	lastname_pool = "names/moth_last"
 
-/datum/namepool/sectoid
-	lastname_pool = "names/sectoid_last"
-
 /datum/namepool/sectoid/get_random_name()
 	return "Sectoid [rand(1,9)]X[ascii2text(rand(65, 87))]" //65 to 87 is (uppercase) A to W
