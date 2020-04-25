@@ -41,15 +41,6 @@ The vat then needs to be repaired and refilled with biomass.
 	var/obj/machinery/cloning/vats/linked_machine
 
 
-/obj/machinery/cloning_console/vats/Initialize()
-	. = ..()
-	return INITIALIZE_HINT_LATELOAD
-
-
-/obj/machinery/cloning_console/vats/LateInitialize()
-	/// find the vat and link them together
-	linked_machine = locate() in range(1)
-
 /obj/machinery/cloning_console/vats/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
@@ -57,15 +48,21 @@ The vat then needs to be repaired and refilled with biomass.
 	if(user.a_intent != INTENT_HELP)
 		return
 
-	if(!linked_machine || !linked_machine.beaker)
-		visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps in error, 'system error'.</span>")
+	if(!linked_machine)
+		// Try to find the machine nearby
+		linked_machine = locate() in range(1)
+		if(!linked_machine)
+			visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps in error, 'connection not available'.</span>")
+			return TRUE
+
+		visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps as its boots up and connects to \the [linked_machine]</span>")
 		return TRUE
 
 	if(linked_machine.occupant)
 		visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps in error, 'already processing clone'.</span>")
 		return TRUE
 
-	if(linked_machine.beaker.reagents.total_volume < linked_machine.biomass_required)
+	if(!linked_machine.beaker || linked_machine.beaker.reagents.total_volume < linked_machine.biomass_required)
 		visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps in error, 'not enough biomass'.</span>")
 		return TRUE
 
