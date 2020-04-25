@@ -4,7 +4,6 @@ Cloning shit
 */
 /obj/machinery/cloning
 	name = "broken cloning machine"
-	desc = "this shouldn't even be here"
 	bound_width = 32
 	bound_height = 64
 	density = TRUE
@@ -48,7 +47,7 @@ The vat then needs to be repaired and refilled with biomass.
 
 
 /obj/machinery/cloning_console/vats/LateInitialize()
-	/// find the vaat and link them together
+	/// find the vat and link them together
 	linked_machine = locate() in range(1)
 
 /obj/machinery/cloning_console/vats/attack_hand(mob/living/user)
@@ -59,18 +58,18 @@ The vat then needs to be repaired and refilled with biomass.
 		return
 
 	if(!linked_machine || !linked_machine.beaker)
-		visible_message("[icon2html(src, viewers(src))] <span><b>[linked_machine]</b> beeps in error, 'system error'.</span>")
+		visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps in error, 'system error'.</span>")
 		return TRUE
 
 	if(linked_machine.occupant)
-		visible_message("[icon2html(src, viewers(src))] <span><b>[linked_machine]</b> beeps in error, 'already processing clone'.</span>")
+		visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps in error, 'already processing clone'.</span>")
 		return TRUE
 
 	if(linked_machine.beaker.reagents.total_volume < linked_machine.biomass_required)
-		visible_message("[icon2html(src, viewers(src))] <span><b>[linked_machine]</b> beeps in error, 'not enough biomass'.</span>")
+		visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps in error, 'not enough biomass'.</span>")
 		return TRUE
 
-	visible_message("[icon2html(src, viewers(src))] <span><b>[linked_machine]</b> whirls as it starts to create a new clone.</span>")
+	visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> whirls as it starts to create a new clone.</span>")
 	linked_machine.grow_human()
 
 
@@ -170,7 +169,7 @@ The vat then needs to be repaired and refilled with biomass.
 	if(timerid)
 		to_chat(user, "<span class='notice'>There is something weird inside</span>")
 		return
-	if(timerid)
+	if(occupant)
 		to_chat(user, "<span class='notice'>It looks like there is a human in there!</span>")
 		return
 
