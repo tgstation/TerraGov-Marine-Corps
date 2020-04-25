@@ -149,8 +149,8 @@ The vat then needs to be repaired and refilled with biomass.
 
 		// Check if the beaker contains anything other than biomass juice
 		for(var/datum/reagent/R in I.reagents.reagent_list)
-			if(!istype(R, /datum/reagent/medicine/biomass))
-				to_chat(world, "That beaker contains some shit that won't work.")
+			if(!ispath(R, /datum/reagent/medicine/biomass))
+				to_chat(user, "<span class='warning'>\The [src] rejects the beaker.</span>")
 				return
 
 		beaker = I

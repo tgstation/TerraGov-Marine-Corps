@@ -164,11 +164,10 @@
 	required_reagents = list(/datum/reagent/medicine/bicaridine = 52, /datum/reagent/medicine/kelotane = 58, /datum/reagent/medicine/meralyne = 33, /datum/reagent/medicine/dermaline = 27, /datum/reagent/medicine/synaptizine = 9, /datum/reagent/medicine/hyperzine = 11, /datum/reagent/medicine/leporazine = 5, /datum/reagent/medicine/tricordrazine = 29, /datum/reagent/medicine/dexalinplus = 1, /datum/reagent/medicine/clonexadone = 5, /datum/reagent/toxin/mutagen = 7, /datum/reagent/space_drugs = 33, /datum/reagent/toxin/mindbreaker = 29, /datum/reagent/consumable/sodiumchloride = 1)
 
 
-
 // Cloning chemicals
 /datum/chemical_reaction/expanded_biomass
-	name = "Biomass" // 3 random characters
-	results = list(/datum/reagent/medicine/biomass = 10)
+	name = "Biomass"
+	results = list(/datum/reagent/medicine/biomass/xeno = 10)
 	required_reagents = list(/datum/reagent/blood/xeno_blood = 10, /datum/reagent/medicine/biomass = 1)
 
 /datum/chemical_reaction/clone
