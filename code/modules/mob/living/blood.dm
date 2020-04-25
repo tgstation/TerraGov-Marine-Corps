@@ -195,7 +195,8 @@
 	if(blood_type)
 		return
 
-	for(var/datum/reagent/R in container.reagents.reagent_list)
+	for(var/r in container.reagents.reagent_list)
+		var/datum/reagent/R = r
 		// If its blood, lets check its compatible or not and cause some toxins.
 		if(istype(R, /datum/reagent/blood))
 			if(!R.data || !R.data["blood_type"])
