@@ -309,8 +309,7 @@
 
 /datum/species/human/clone/handle_post_spawn(mob/living/carbon/human/H)
 	. = ..()
-	// addtimer(CALLBACK(src, .proc/handle_age, H), 20 MINUTES)
-	timerid = addtimer(CALLBACK(src, .proc/handle_age, H), 15 SECONDS, TIMER_STOPPABLE)
+	timerid = addtimer(CALLBACK(src, .proc/handle_age, H), 15 MINUTES, TIMER_STOPPABLE)
 
 /datum/species/human/clone/post_species_loss(mob/living/carbon/human/H)
 	. = ..()

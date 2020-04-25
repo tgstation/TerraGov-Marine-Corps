@@ -86,7 +86,7 @@ The vat then needs to be repaired and refilled with biomass.
 	var/obj/item/reagent_containers/glass/beaker
 
 	var/biomass_required = 40
-	var/grow_timer = 10 SECONDS
+	var/grow_timer = 15 MINUTES
 
 
 /obj/machinery/cloning/vats/Initialize()
