@@ -201,11 +201,9 @@
 					QDEL_NULL(laser)
 					break
 		if(MODE_RANGE_FINDER)
-			var/obj/effect/overlay/temp/laser_coordinate/LT = new (TU, laz_name, S)
-			coord = LT
+			coord = TU
 			to_chat(user, "<span class='notice'>COORDINATES: LONGITUDE [coord.x]. LATITUDE [coord.y].</span>")
 			playsound(src, 'sound/effects/binoctarget.ogg', 35)
-			QDEL_NULL(coord)
 		if(MODE_RAILGUN)
 			to_chat(user, "<span class='notice'>ACQUIRING TARGET. RAILGUN TRIANGULATING. DON'T MOVE.</span>")
 			if((GLOB.marine_main_ship?.rail_gun?.last_firing + 120 SECONDS) > world.time)
