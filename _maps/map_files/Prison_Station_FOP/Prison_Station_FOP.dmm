@@ -1,7 +1,22 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aaa" = (
+/obj/structure/table/woodentable,
+/obj/machinery/computer/med_data/laptop,
+/turf/open/floor/carpet,
+/area/prison/command/office)
 "aab" = (
 /turf/open/beach/sea,
 /area/space)
+"aac" = (
+/obj/machinery/computer/nuke_disk_generator/green,
+/turf/open/floor/prison/trim/red{
+	dir = 1
+	},
+/area/prison/security/checkpoint/maxsec_highsec)
+"aad" = (
+/obj/effect/landmark/nuke_spawn,
+/turf/open/floor/plating/platebot,
+/area/prison/pirate)
 "acD" = (
 /obj/effect/step_trigger/teleporter/random{
 	name = "tele_space";
@@ -4266,7 +4281,7 @@
 	},
 /area/prison/research/secret/chemistry)
 "any" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/medbay)
 "anz" = (
@@ -5613,12 +5628,6 @@
 	dir = 4
 	},
 /area/prison/hangar_storage/research)
-"aqR" = (
-/obj/structure/filingcabinet,
-/turf/open/floor/prison/trim/red{
-	dir = 1
-	},
-/area/prison/security/checkpoint/maxsec_highsec)
 "aqS" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/prison/trim/red{
@@ -8966,7 +8975,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/whitegreen{
 	dir = 10
 	},
@@ -9754,7 +9763,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/trim/red,
 /area/prison/medbay/foyer)
 "aAU" = (
@@ -12555,7 +12564,7 @@
 	},
 /area/prison/residential/north)
 "aHp" = (
-/obj/effect/landmark/start/xeno_spawn,
+/obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
 	dir = 10
@@ -13019,7 +13028,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/north)
 "aIA" = (
-/obj/effect/landmark/start/xeno_spawn,
+/obj/effect/landmark/start/job/xenomorph,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
@@ -16623,11 +16632,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/carpet,
 /area/prison/command/office)
-"aQw" = (
-/obj/structure/table/woodentable,
-/obj/machinery/computer/med_data/laptop,
-/turf/open/floor/carpet,
-/area/prison/command/office)
 "aQx" = (
 /obj/effect/decal/cleanable/blood,
 /obj/item/tool/pen,
@@ -18514,7 +18518,7 @@
 /turf/open/floor/wood,
 /area/prison/recreation/staff)
 "aVj" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/prison/recreation/staff)
 "aVk" = (
@@ -21595,7 +21599,7 @@
 	},
 /area/prison/security/monitoring/maxsec/panopticon)
 "bdt" = (
-/obj/effect/landmark/start/xeno_spawn,
+/obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/prison{
 	icon_state = "bright_clean2";
 	dir = 10
@@ -30370,7 +30374,7 @@
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/prison/maintenance/residential/se)
 "bxO" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/yellow{
 	dir = 9
 	},
@@ -35765,7 +35769,7 @@
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/south)
 "bKD" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
 	dir = 10
@@ -36274,7 +36278,7 @@
 /area/prison/storage/highsec/s)
 "bLT" = (
 /obj/structure/rack,
-/obj/item/clothing/under/color/orange,
+/obj/item/clothing/under/rank/prisoner,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
@@ -38805,7 +38809,7 @@
 /area/prison/laundry)
 "bSp" = (
 /obj/structure/rack,
-/obj/item/clothing/under/color/orange,
+/obj/item/clothing/under/rank/prisoner,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -38819,7 +38823,7 @@
 /area/prison/laundry)
 "bSq" = (
 /obj/structure/rack,
-/obj/item/clothing/under/color/orange,
+/obj/item/clothing/under/rank/prisoner,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -39660,7 +39664,7 @@
 	},
 /area/prison/maintenance/residential/access/south)
 "bUn" = (
-/obj/item/clothing/under/color/orange,
+/obj/item/clothing/under/rank/prisoner,
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
@@ -39771,7 +39775,7 @@
 	},
 /area/prison/storage/medsec)
 "bUz" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison,
 /area/prison/storage/medsec)
 "bUA" = (
@@ -41318,7 +41322,7 @@
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/protective)
 "bYN" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/prison/library)
 "bYP" = (
@@ -46809,7 +46813,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/monitoring/protective)
 "cmv" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/blue{
 	dir = 8
 	},
@@ -47928,7 +47932,7 @@
 /obj/machinery/conveyor{
 	dir = 8
 	},
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/plating,
 /area/prison/disposal)
 "cpu" = (
@@ -48900,7 +48904,7 @@
 /turf/open/floor/carpet,
 /area/prison/pirate)
 "csr" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/carpet,
 /area/prison/pirate)
 "css" = (
@@ -50800,10 +50804,6 @@
 	dir = 4
 	},
 /area/prison/cellblock/mediumsec/south)
-"cxE" = (
-/obj/effect/landmark/nuke_spawn,
-/turf/open/floor/plating,
-/area/prison/pirate)
 "cxF" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -51768,10 +51768,6 @@
 	},
 /turf/closed/wall/r_wall/prison,
 /area/prison/hangar/civilian)
-"ium" = (
-/obj/machinery/computer/nuke_disk_generator/green,
-/turf/open/floor/wood,
-/area/prison/residential/north)
 "iOM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -58468,7 +58464,7 @@ aab
 aab
 aab
 avm
-ium
+axb
 awi
 axa
 avN
@@ -74771,7 +74767,7 @@ cio
 cwS
 cjw
 cjw
-cxE
+cjw
 cjw
 ckn
 cyt
@@ -76808,7 +76804,7 @@ ckn
 cmg
 cmS
 ckn
-ckn
+aad
 coq
 coq
 cfL
@@ -77734,7 +77730,7 @@ adO
 aab
 aab
 aqq
-aqR
+aac
 arw
 arN
 asV
@@ -111431,7 +111427,7 @@ aab
 aab
 aNH
 aOW
-aQw
+aaa
 aRP
 aSK
 aOW

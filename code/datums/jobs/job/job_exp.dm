@@ -11,7 +11,7 @@ GLOBAL_PROTECT(exp_to_update)
 		return FALSE
 	if(!exp_requirements || !exp_type)
 		return FALSE
-	if(!job_is_xp_locked(title))
+	if(!job_is_xp_locked(src))
 		return FALSE
 	if(CONFIG_GET(flag/use_exp_restrictions_admin_bypass) && check_other_rights(C, R_ADMIN, FALSE))
 		return FALSE
@@ -24,7 +24,7 @@ GLOBAL_PROTECT(exp_to_update)
 
 
 /datum/job/proc/get_exp_req_amount()
-	if(title in GLOB.jobs_command)
+	if(job_flags & JOB_FLAG_ISCOMMAND)
 		var/uerhh = CONFIG_GET(number/use_exp_restrictions_command_hours)
 		if(uerhh)
 			return uerhh * 60
@@ -32,16 +32,16 @@ GLOBAL_PROTECT(exp_to_update)
 
 
 /datum/job/proc/get_exp_req_type()
-	if(title in GLOB.jobs_command)
+	if(job_flags & JOB_FLAG_ISCOMMAND)
 		if(CONFIG_GET(flag/use_exp_restrictions_command_department) && exp_type_department)
 			return exp_type_department
 	return exp_type
 
 
-/proc/job_is_xp_locked(jobtitle)
-	if(!CONFIG_GET(flag/use_exp_restrictions_command) && jobtitle in GLOB.jobs_command)
+/proc/job_is_xp_locked(datum/job/job)
+	if(!CONFIG_GET(flag/use_exp_restrictions_command) && job.job_flags & JOB_FLAG_ISCOMMAND)
 		return FALSE
-	if(!CONFIG_GET(flag/use_exp_restrictions_other) && !(jobtitle in GLOB.jobs_command))
+	if(!CONFIG_GET(flag/use_exp_restrictions_other) && !(job.job_flags & JOB_FLAG_ISCOMMAND))
 		return FALSE
 	return TRUE
 
@@ -107,9 +107,10 @@ GLOBAL_PROTECT(exp_to_update)
 	return_text += "</UL>"
 	var/list/jobs_locked = list()
 	var/list/jobs_unlocked = list()
-	for(var/datum/job/job in SSjob.occupations)
+	for(var/j in SSjob.joinable_occupations)
+		var/datum/job/job = j
 		if(job.exp_requirements && job.exp_type)
-			if(!job_is_xp_locked(job.title))
+			if(!job_is_xp_locked(job))
 				continue
 			else if(!job.required_playtime_remaining(mob.client))
 				jobs_unlocked += job.title
@@ -198,26 +199,16 @@ GLOBAL_PROTECT(exp_to_update)
 			to_chat(src,"<span class='notice'>You got: [minutes] Admin EXP!</span>")
 
 	if(isliving(mob))
+		var/mob/living/living_mob = mob
 		if(mob.stat != DEAD)
-			var/rolefound = FALSE
 			play_records[EXP_TYPE_LIVING] += minutes
 			if(announce_changes)
 				to_chat(src,"<span class='notice'>You got: [minutes] Living EXP!</span>")
-			if(mob.mind?.assigned_role)
-				for(var/job in SSjob.name_occupations)
-					if(mob.mind.assigned_role == job)
-						rolefound = TRUE
-						play_records[job] += minutes
-						if(announce_changes)
-							to_chat(src,"<span class='notice'>You got: [minutes] [job] EXP!</span>")
-				if(!rolefound)
-					for(var/role in GLOB.exp_specialmap[EXP_TYPE_SPECIAL])
-						if(mob.mind.assigned_role == role)
-							rolefound = TRUE
-							play_records[role] += minutes
-							if(announce_changes)
-								to_chat(mob,"<span class='notice'>You got: [minutes] [role] EXP!</span>")
-			if(!rolefound)
+			if(living_mob.job)
+				play_records[living_mob.job.title] += minutes
+				if(announce_changes)
+					to_chat(src,"<span class='notice'>You got: [minutes] [living_mob.job] EXP!</span>")
+			else
 				play_records["Unknown"] += minutes
 		else
 			play_records[EXP_TYPE_GHOST] += minutes

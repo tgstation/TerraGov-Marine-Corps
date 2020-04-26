@@ -51,7 +51,16 @@ GLOBAL_LIST_EMPTY(exports_types)
 	movement_force = list("KNOCKDOWN" = 0, "THROW" = 0)
 	use_ripples = FALSE
 	var/list/gears = list()
-	var/list/railings = list()
+	var/list/obj/machinery/door/poddoor/railing/railings = list()
+
+
+/obj/docking_port/mobile/supply/Destroy(force)
+	for(var/i in railings)
+		var/obj/machinery/door/poddoor/railing/railing = i
+		railing.linked_pad = null
+	railings.Cut()
+	return ..()
+
 
 	//Export categories for this run, this is set by console sending the shuttle.
 //	var/export_categories = EXPORT_CARGO
@@ -91,6 +100,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 	for(var/obj/machinery/door/poddoor/railing/R in GLOB.machines)
 		if(R.id == "supply_elevator_railing")
 			railings += R
+			R.linked_pad = src
 			R.open()
 
 /obj/docking_port/mobile/supply/canMove()
@@ -321,7 +331,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 		if(!istype(P))	return
 
 		var/timeout = world.time + 600
-		var/reason = copytext(sanitize(input(usr,"Reason:","Why do you require this item?","") as null|text),1,MAX_MESSAGE_LEN)
+		var/reason = stripped_input(usr, "Reason:","Why do you require this item?")
 		if(world.time > timeout)	return
 		if(!reason)	return
 
@@ -343,7 +353,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 		reqform.info += "RANK: [idrank]<br>"
 		reqform.info += "REASON: [reason]<br>"
 		reqform.info += "SUPPLY CRATE TYPE: [P.name]<br>"
-		reqform.info += "ACCESS RESTRICTION: [oldreplacetext(get_access_desc(P.access))]<br>"
+		reqform.info += "ACCESS RESTRICTION: [get_access_desc(P.access)]<br>"
 		reqform.info += "CONTENTS:<br>"
 		reqform.info += P.manifest
 		reqform.info += "<hr>"
@@ -478,7 +488,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 		if(!istype(P))	return
 
 		var/timeout = world.time + 600
-		//var/reason = copytext(sanitize(input(usr,"Reason:","Why do you require this item?","") as null|text),1,MAX_MESSAGE_LEN)
+		//var/reason = stripped_input(usr,"Reason:","Why do you require this item?","") as null|text), MAX_MESSAGE_LEN)
 		var/reason = "*None Provided*"
 		if(world.time > timeout)	return
 		if(!reason)	return
@@ -501,7 +511,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 		reqform.info += "RANK: [idrank]<br>"
 		reqform.info += "REASON: [reason]<br>"
 		reqform.info += "SUPPLY CRATE TYPE: [P.name]<br>"
-		reqform.info += "ACCESS RESTRICTION: [oldreplacetext(get_access_desc(P.access))]<br>"
+		reqform.info += "ACCESS RESTRICTION: [get_access_desc(P.access)]<br>"
 		reqform.info += "CONTENTS:<br>"
 		reqform.info += P.manifest
 		reqform.info += "<hr>"

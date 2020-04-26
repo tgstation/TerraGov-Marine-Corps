@@ -73,7 +73,7 @@
 		var/obj/item/card/id/I = H.wear_id
 		if(!istype(I) || !check_access(I))
 			H.visible_message("<span class='notice'> [src] beeeps as [H] picks it up</span>", "<span class='danger'>WARNING: Unauthorized user detected. Denying access...</span>")
-			H.knock_down(20)
+			H.Paralyze(40 SECONDS)
 			H.visible_message("<span class='warning'>[src] beeps and sends a shock through [H]'s body!</span>")
 			deductcharge(hitcost)
 			return FALSE
@@ -101,15 +101,16 @@
 		if(!bcell)
 			return
 
+		bcell.forceMove(get_turf(src))
 		bcell.update_icon()
-		bcell.forceMove(loc)
+		bcell = null
 		to_chat(user, "<span class='notice'>You remove the cell from the [src].</span>")
 		status = 0
 
 	update_icon()
 
 /obj/item/weapon/baton/attack_self(mob/user)
-	if(has_user_lock && user.mind && user.mind.cm_skills && user.mind.cm_skills.police < SKILL_POLICE_MP)
+	if(has_user_lock && user.skills.getRating("police") < SKILL_POLICE_MP)
 		to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
 		return
 	if(bcell && bcell.charge > hitcost)
@@ -126,7 +127,7 @@
 
 
 /obj/item/weapon/baton/attack(mob/M, mob/user)
-	if(has_user_lock && user.mind && user.mind.cm_skills && user.mind.cm_skills.police < SKILL_POLICE_MP)
+	if(has_user_lock && user.skills.getRating("police") < SKILL_POLICE_MP)
 		to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
 		return
 
@@ -168,10 +169,9 @@
 				L.visible_message("<span class='danger'>[L] has been prodded with [src] by [user]!</span>")
 
 	//stun effects
-	if(!istype(L,/mob/living/carbon/xenomorph)) //Xenos are IMMUNE to all baton stuns.
+	if(!HAS_TRAIT(L, TRAIT_BATONIMMUNE))
 		L.stun_effect_act(stun, agony, target_zone)
-		if(!L.knocked_down)
-			L.knock_down(4)
+		L.ParalyzeNoChain(80)
 
 	playsound(loc, 'sound/weapons/egloves.ogg', 25, 1, 6)
 	log_combat(user, L, "stunned", src)
@@ -247,7 +247,7 @@
 
 	if(status && isliving(M))
 		var/mob/living/L = M
-		L.knock_down(6)
+		L.Paralyze(12 SECONDS)
 		charges -= 2
 		L.visible_message("<span class='danger'>[L] has been prodded with the [src] by [user]!</span>")
 
@@ -283,7 +283,7 @@
 	if(!isliving(M))
 		return
 	var/mob/living/L = M
-	L.knock_down(14)
+	L.Paralyze(28 SECONDS)
 
 
 /obj/item/weapon/stunprod/improved/examine(mob/user)

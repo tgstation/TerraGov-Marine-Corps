@@ -10,7 +10,7 @@
 	density = TRUE
 	anchored = TRUE
 	circuit = /obj/item/circuitboard/computer/powermonitor
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 300
 	active_power_usage = 300
 
@@ -62,8 +62,8 @@
 
 			for(var/obj/machinery/power/apc/A in L)
 
-				t += copytext(add_tspace("\The [A.area]", 30), 1, 30)
-				t += " [S[A.equipment+1]] [S[A.lighting+1]] [S[A.environ+1]] [add_lspace(A.lastused_total, 6)]  [A.cell ? "[add_lspace(round(A.cell.percent()), 3)]% [chg[A.charging+1]]" : "  N/C"]<BR>"
+				t += copytext(add_trailing("\The [A.area]", 30, " "), 1, 30)
+				t += " [S[A.equipment+1]] [S[A.lighting+1]] [S[A.environ+1]] [add_leading(num2text(A.lastused_total), 6, " ")]  [A.cell ? "[add_leading(num2text(round(A.cell.percent())), 3, " ")]% [chg[A.charging+1]]" : "  N/C"]<BR>"
 				total_demand += A.lastused_total
 
 			t += "<HR>Total demand: [total_demand] W</FONT>"

@@ -52,7 +52,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 /proc/GUID()
 	var/const/GUID_VERSION = "b"
 	var/const/GUID_VARIANT = "d"
-	var/node_id = copytext(md5("[rand()*rand(1,9999999)][world.name][world.hub][world.hub_password][world.internet_address][world.address][world.contents.len][world.status][world.port][rand()*rand(1,9999999)]"), 1, 13)
+	var/node_id = copytext_char(md5("[rand()*rand(1,9999999)][world.name][world.hub][world.hub_password][world.internet_address][world.address][world.contents.len][world.status][world.port][rand()*rand(1,9999999)]"), 1, 13)
 
 	var/time_high = "[num2hex(text2num(time2text(world.realtime,"YYYY")), 2)][num2hex(world.realtime, 6)]"
 
@@ -217,17 +217,14 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 
 //Returns whether or not a player is a guest using their ckey as an input
 /proc/IsGuestKey(key)
-	if(!findtext(key, "Guest-", 1, 7))
+	if (findtext(key, "Guest-", 1, 7) != 1) //was findtextEx
 		return FALSE
 
-	var/i = 7, ch, len = length(key)
+	var/i, ch, len = length(key)
 
-	if(copytext(key, 7, 8) == "W") //webclient
-		i++
-
-	for(var/j in i to len)
-		ch = text2ascii(key, j)
-		if(ch < 48 || ch > 57)
+	for (i = 7, i <= len, ++i) //we know the first 6 chars are Guest-
+		ch = text2ascii(key, i)
+		if (ch < 48 || ch > 57) //0-9
 			return FALSE
 	return TRUE
 
@@ -550,7 +547,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 						corner.density = TRUE
 						corner.anchored = TRUE
 						corner.icon = X.icon
-						corner.icon_state = oldreplacetext(X.icon_state, "_s", "_f")
+						corner.icon_state = replacetext(X.icon_state, "_s", "_f")
 						corner.tag = "delete me"
 						corner.name = "wall"
 
@@ -569,7 +566,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 						// Reset the shuttle corners
 						if(O.tag == "delete me")
 							X.icon = 'icons/turf/shuttle.dmi'
-							X.icon_state = oldreplacetext(O.icon_state, "_f", "_s") // revert the turf to the old icon_state
+							X.icon_state = replacetext(O.icon_state, "_f", "_s") // revert the turf to the old icon_state
 							X.name = "wall"
 							qdel(O) // prevents multiple shuttle corners from stacking
 							continue
@@ -802,14 +799,6 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	return (rand(1, value) == value)
 
 
-/proc/view_or_range(distance = world.view , center = usr , type)
-	switch(type)
-		if("view")
-			. = view(distance,center)
-		if("range")
-			. = range(distance,center)
-
-
 /proc/parse_zone(zone)
 	if(zone == "r_hand")
 		return "right hand"
@@ -889,7 +878,7 @@ GLOBAL_LIST_INIT(common_tools, typecacheof(list(
 	tY = tY[1]
 	tX = splittext(tX[1], ":")
 	tX = tX[1]
-	var/list/actual_view = getviewsize(C ? C.view : world.view)
+	var/list/actual_view = getviewsize(C ? C.view : WORLD_VIEW)
 	tX = CLAMP(origin.x + text2num(tX) - round(actual_view[1] / 2) - 1, 1, world.maxx)
 	tY = CLAMP(origin.y + text2num(tY) - round(actual_view[2] / 2) - 1, 1, world.maxy)
 	return locate(tX, tY, tZ)
@@ -999,7 +988,7 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 
 
 /proc/format_text(text)
-	return oldreplacetext(oldreplacetext(text,"\proper ",""),"\improper ","")
+	return replacetext(replacetext(text,"\proper ",""),"\improper ","")
 
 
 //Reasonably Optimized Bresenham's Line Drawing
@@ -1221,10 +1210,6 @@ will handle it, but:
 	animate(I, alpha = 0, time = 0.5 SECONDS, easing = EASE_IN)
 	addtimer(CALLBACK(GLOBAL_PROC, /.proc/remove_images_from_clients, I, show_to), 0.5 SECONDS)
 
-
-/proc/send_global_signal(signal) //Wrapper for callbacks and the likes.
-	SEND_GLOBAL_SIGNAL(signal)
-
 //takes an input_key, as text, and the list of keys already used, outputting a replacement key in the format of "[input_key] ([number_of_duplicates])" if it finds a duplicate
 //use this for lists of things that might have the same name, like mobs or objects, that you plan on giving to a player as input
 /proc/avoid_assoc_duplicate_keys(input_key, list/used_key_list)
@@ -1259,3 +1244,14 @@ will handle it, but:
 		pois[name] = M
 
 	return pois
+
+//Returns the left and right dir of the input dir, used for AI stutter step while attacking
+/proc/LeftAndRightOfDir(direction, diagonal_check = FALSE)
+	if(diagonal_check)
+		if(ISDIAGONALDIR(direction))
+			return list(turn(direction, 45), turn(direction, -45))
+	return list(turn(direction, 90), turn(direction, -90))
+
+/proc/CallAsync(datum/source, proctype, list/arguments)
+	set waitfor = FALSE
+	return call(source, proctype)(arglist(arguments))

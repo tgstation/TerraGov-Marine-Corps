@@ -36,6 +36,7 @@
 
 
 /mob/proc/death(gibbed, deathmessage = "seizes up and falls limp...")
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_LOGIN, src)
 	SEND_SIGNAL(src, COMSIG_MOB_DEATH, gibbed)
 	log_combat(src, src, "[deathmessage]")
 	if(stat == DEAD)
@@ -44,12 +45,12 @@
 	if(!gibbed)
 		src.visible_message("<b>\The [src.name]</b> [deathmessage]")
 
-	stat = DEAD
+	set_stat(DEAD)
 
 	update_canmove()
 
 	if(client)
-		client.change_view(world.view) //just so we never get stuck with a large view somehow
+		client.change_view(WORLD_VIEW) //just so we never get stuck with a large view somehow
 
 	hide_fullscreens()
 
@@ -73,4 +74,7 @@
 
 	update_icons()
 
+	if(SSticker.HasRoundStarted())
+		SSblackbox.ReportDeath(src)
+		
 	return TRUE

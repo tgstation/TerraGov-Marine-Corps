@@ -18,3 +18,11 @@ Contains most of the procs that are called when a xeno is attacked by something
 			to_chat(src, "<span class='xenowarning'>We feel our plasma reserves being drained.</span>")
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		S.reagents?.reaction(src, TOUCH, S.fraction)
+
+/mob/living/carbon/xenomorph/Stun(amount, updating, ignore_canstun)
+	amount *= 0.5 // half length
+	return ..()
+
+/mob/living/carbon/xenomorph/Paralyze(amount, updating, ignore_canstun)
+	amount *= 0.2 // replaces the old knock_down -5
+	return ..()

@@ -1,9 +1,8 @@
 //Updates the mob's health from limbs and mob damage variables
 /mob/living/carbon/human/updatehealth()
-
 	if(status_flags & GODMODE)
 		health = species.total_health
-		stat = CONSCIOUS
+		set_stat(CONSCIOUS)
 		return
 	var/total_burn	= 0
 	var/total_brute	= 0
@@ -294,7 +293,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 	if(picked.take_damage_limb(brute, burn, sharp, edge, 0, updating_health))
 		UpdateDamageIcon()
 
-	SEND_SIGNAL(src, COMSIG_HUMAN_DAMAGE_TAKEN, src, brute + burn)
+	SEND_SIGNAL(src, COMSIG_HUMAN_DAMAGE_TAKEN, brute + burn)
 
 	speech_problem_flag = 1
 
@@ -327,14 +326,15 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 	if(status_flags & GODMODE)
 		return	//godmode
 
-	if(blocked >= 1) //Complete negation
+	var/hit_percent = (100 - blocked) * 0.01
+
+	if(hit_percent <= 0) //total negation
 		return FALSE
 
-	if(blocked)
-		if(brute)
-			brute *= CLAMP(1-blocked,0.00,1.00) //Percentage reduction
-		if(burn)
-			burn *= CLAMP(1-blocked,0.00,1.00) //Percentage reduction
+	if(brute)
+		brute *= CLAMP01(hit_percent) //Percentage reduction
+	if(burn)
+		burn *= CLAMP01(hit_percent) //Percentage reduction
 
 	if(!brute && !burn) //Complete negation
 		return FALSE
@@ -345,7 +345,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 		if(burn)
 			burn = round(burn * ((15 - protection_aura) / 15))
 
-	SEND_SIGNAL(src, COMSIG_HUMAN_DAMAGE_TAKEN, src, brute + burn)
+	SEND_SIGNAL(src, COMSIG_HUMAN_DAMAGE_TAKEN, brute + burn)
 
 	var/list/datum/limb/parts = get_damageable_limbs()
 	var/update = 0
@@ -363,7 +363,8 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 
 	if(updating_health)
 		updatehealth()
-	if(update)	UpdateDamageIcon()
+	if(update)
+		UpdateDamageIcon()
 
 
 ////////////////////////////////////////////
@@ -399,8 +400,9 @@ This function restores all limbs.
 	zone = check_zone(zone)
 	for(var/X in limbs)
 		var/datum/limb/EO = X
-		if(EO.name == zone)
-			return EO
+		if(EO.name != zone)
+			continue
+		return EO
 
 /mob/living/carbon/human/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)
 	return species.apply_damage(damage, damagetype, def_zone, blocked, sharp, edge, updating_health, src)

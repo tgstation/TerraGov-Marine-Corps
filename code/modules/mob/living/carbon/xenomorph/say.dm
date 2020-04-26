@@ -1,6 +1,17 @@
+/**
+	Called to create the prefix for xeno hivemind messages
+	
+	Used to apply styling for queen/shrike/hivemind, giving them largetext and specific colouring.
+	This is also paired with [/mob/living/carbon/xenomorph/hivemind_end]
+*/
 /mob/living/carbon/xenomorph/proc/hivemind_start()
 	return "<span class='game say hivemind'>Hivemind, <span class='name'>[name]</span>"
 
+/**
+	Called to create the suffix for xeno hivemind messages
+	
+	This should be used to close off any opened elements from [/mob/living/carbon/xenomorph/hivemind_start].
+*/
 /mob/living/carbon/xenomorph/proc/hivemind_end()
 	return "</span>"
 
@@ -8,15 +19,11 @@
 /mob/living/carbon/xenomorph/queen/hivemind_start()
 	return "<span class='game say hivemind xenoqueen'>Hivemind, <span class='name'>[name]</span>"
 
-/mob/living/carbon/xenomorph/queen/hivemind_end()
-	return "</span>"
-
-
 /mob/living/carbon/xenomorph/shrike/hivemind_start()
 	return "<span class='game say hivemind xenoshrike'>Hivemind, <span class='name'>[name]</span>"
 
-/mob/living/carbon/xenomorph/shrike/hivemind_end()
-	return "</span>"
+/mob/living/carbon/xenomorph/hivemind/hivemind_start()
+	return "<span class='game say hivemind xenohivemind'><span class='name'>The Hivemind</span>"
 
 
 /mob/living/carbon/xenomorph/proc/render_hivemind_message(message)

@@ -2,8 +2,6 @@
 	return src
 
 /atom/proc/get_specific_codex_entry()
-	if(SScodex.entries_by_path[type])
-		return SScodex.entries_by_path[type]
 
 	var/lore = get_lore_info()
 	var/mechanics = get_mechanics_info()

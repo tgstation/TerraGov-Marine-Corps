@@ -296,6 +296,24 @@
 	icon_state = "som_belt"
 	item_state = "som_belt"
 
+/obj/item/storage/belt/marine/sectoid
+	name = "\improper strange ammo belt"
+	desc = "A belt made of a strong but unusual fabric, with clips to hold your equipment."
+	icon_state = "swatbelt"
+	item_state = "swatbelt"
+	can_hold = list(
+		/obj/item/weapon/combat_knife,
+		/obj/item/explosive/grenade,
+		/obj/item/ammo_magazine/rifle,
+		/obj/item/cell/lasgun,
+		/obj/item/ammo_magazine/smg,
+		/obj/item/ammo_magazine/pistol,
+		/obj/item/ammo_magazine/revolver,
+		/obj/item/ammo_magazine/sniper,
+		/obj/item/ammo_magazine/handful,
+		/obj/item/explosive/grenade,
+		/obj/item/tool/crowbar
+		)
 
 /obj/item/storage/belt/shotgun
 	name = "\improper shotgun shell load rig"
@@ -382,7 +400,7 @@
 	new /obj/item/explosive/grenade/frag(src)
 	new /obj/item/explosive/grenade/frag(src)
 
-/obj/item/storage/belt/grenade/b18
+/obj/item/storage/belt/grenade/b17
 	name = "\improper M276 pattern M40 HEDP rig Mk II"
 	w_class = WEIGHT_CLASS_BULKY
 	storage_slots = 16
@@ -390,7 +408,7 @@
 	max_storage_space = 48
 	can_hold = list(/obj/item/explosive/grenade)
 
-/obj/item/storage/belt/grenade/b18/Initialize()
+/obj/item/storage/belt/grenade/b17/Initialize()
 	. = ..()
 	new /obj/item/explosive/grenade/incendiary(src)
 	new /obj/item/explosive/grenade/incendiary(src)
@@ -414,7 +432,6 @@
 	desc= "A small, lightweight pouch that can be clipped onto Armat Systems M3 Pattern armor or your belt to provide additional storage."
 	storage_slots = 3
 	w_class = WEIGHT_CLASS_BULKY
-	cant_hold = list(/obj/item/ammo_magazine/lmg)
 	max_w_class = 3
 	icon_state= "sparepouch"
 	item_state= "sparepouch"
@@ -570,6 +587,29 @@
 	icon_state = "som_belt_pistol"
 	item_state = "som_belt_pistol"
 
+/obj/item/storage/belt/gun/stand
+	name = "\improper M276 pattern M4A3 holster rig"
+	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry the M4A3 comfortably secure. It also contains side pouches that can store 9mm or .45 magazines."
+	can_hold = list(
+		/obj/item/weapon/gun/pistol,
+		/obj/item/ammo_magazine/pistol
+		)
+
+/obj/item/storage/belt/gun/pistol/standard_pistol
+	name = "\improper T457 pattern pistol holster rig"
+	desc = "The T457 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips."
+	icon_state = "tp14_holster"
+	item_state = "tp14_holster"
+
+/obj/item/storage/belt/gun/revolver/standard_revolver
+	name = "\improper T457 pattern revolver holster rig"
+	desc = "The T457 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips."
+	icon_state = "tp44_holster"
+	item_state = "tp44_holster"
+	can_hold = list(
+		/obj/item/weapon/gun/revolver,
+		/obj/item/ammo_magazine/revolver
+		)
 
 /obj/item/storage/belt/gun/m44
 	name = "\improper M276 pattern M44 holster rig"

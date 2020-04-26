@@ -17,6 +17,9 @@
 	var/list/mode_names
 
 	var/motd
+	var/policy
+
+	var/static/regex/ic_filter_regex
 
 /datum/controller/configuration/proc/admin_reload()
 	if(IsAdminAdvancedProcCall())
@@ -47,6 +50,8 @@
 	loadmaplist(CONFIG_GROUND_MAPS_FILE, GROUND_MAP)
 	loadmaplist(CONFIG_SHIP_MAPS_FILE, SHIP_MAP)
 	LoadMOTD()
+	LoadPolicy()
+	LoadChatFilter()
 
 
 /datum/controller/configuration/proc/full_wipe()
@@ -113,13 +118,13 @@
 		if(!L)
 			continue
 
-		var/firstchar = copytext(L, 1, 2)
+		var/firstchar = L[1]
 		if(firstchar == "#")
 			continue
 
 		var/lockthis = firstchar == "@"
 		if(lockthis)
-			L = copytext(L, 2)
+			L = copytext(L, length(firstchar) + 1)
 
 		var/pos = findtext(L, " ")
 		var/entry = null
@@ -127,7 +132,7 @@
 
 		if(pos)
 			entry = lowertext(copytext(L, 1, pos))
-			value = copytext(L, pos + 1)
+			value = copytext(L, pos + length(L[pos]))
 		else
 			entry = lowertext(L)
 
@@ -156,7 +161,7 @@
 			var/good_update = istext(new_value)
 			log_config("Entry [entry] is deprecated and will be removed soon. Migrate to [new_ver.name]![good_update ? " Suggested new value is: [new_value]" : ""]")
 			if(!warned_deprecated_configs)
-				addtimer(CALLBACK(GLOBAL_PROC, /proc/message_admins, "This server is using deprecated configuration settings. Please check the logs and update accordingly."), 0)
+				DelayedMessageAdmins("This server is using deprecated configuration settings. Please check the logs and update accordingly.")
 				warned_deprecated_configs = TRUE
 			if(good_update)
 				value = new_value
@@ -242,6 +247,35 @@
 
 /datum/controller/configuration/proc/LoadMOTD()
 	GLOB.motd = file2text("[directory]/motd.txt")
+/*
+Policy file should be a json file with a single object.
+Value is raw html.
+
+Possible keywords :
+Job titles / Assigned roles (ghost spawners for example) : Assistant , Captain , Ash Walker
+Mob types : /mob/living/simple_animal/hostile/carp
+Antagonist types : /datum/antagonist/highlander
+Species types : /datum/species/lizard
+special keywords defined in _DEFINES/admin.dm
+
+Example config:
+{
+    "Assistant" : "Don't kill everyone",
+    "/datum/antagonist/highlander" : "<b>Kill everyone</b>",
+    "Ash Walker" : "Kill all spacemans"
+}
+
+*/
+/datum/controller/configuration/proc/LoadPolicy()
+	policy = list()
+	var/rawpolicy = file2text("[directory]/policy.json")
+	if(rawpolicy)
+		var/parsed = safe_json_decode(rawpolicy)
+		if(!parsed)
+			log_config("JSON parsing failure for policy.json")
+			DelayedMessageAdmins("JSON parsing failure for policy.json")
+		else
+			policy = parsed
 
 
 /datum/controller/configuration/proc/loadmaplist(filename, maptype)
@@ -309,3 +343,27 @@
 		if(ct && ct == mode_name)
 			return new T
 	return new /datum/game_mode/extended()
+
+
+/datum/controller/configuration/proc/LoadChatFilter()
+	var/list/in_character_filter = list()
+
+	if(!fexists("[directory]/in_character_filter.txt"))
+		return
+
+	log_config("Loading config file in_character_filter.txt...")
+
+	for(var/line in world.file2list("[directory]/in_character_filter.txt"))
+		if(!line)
+			continue
+		if(findtextEx(line,"#",1,2))
+			continue
+		in_character_filter += REGEX_QUOTE(line)
+
+	ic_filter_regex = in_character_filter.len ? regex("\\b([jointext(in_character_filter, "|")])\\b", "i") : null
+
+	syncChatRegexes()
+
+//Message admins when you can.
+/datum/controller/configuration/proc/DelayedMessageAdmins(text)
+	addtimer(CALLBACK(GLOBAL_PROC, /proc/message_admins, text), 0)

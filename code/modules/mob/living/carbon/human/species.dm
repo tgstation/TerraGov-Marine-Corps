@@ -165,6 +165,33 @@
 /datum/species/proc/random_name(gender)
 	return GLOB.namepool[namepool].get_random_name(gender)
 
+/datum/species/human/random_name(gender)
+	. = ..()
+	if(CONFIG_GET(flag/humans_need_surnames))
+		. += " " + pick(SSstrings.get_list_from_file("names/last_name"))
+
+/datum/species/proc/prefs_name(datum/preferences/prefs)
+	return prefs.real_name
+
+/datum/species/human/prefs_name(datum/preferences/prefs)
+	. = ..()
+	if(CONFIG_GET(flag/humans_need_surnames))
+		var/firstspace = findtext(., " ")
+		if(!firstspace || firstspace == length(.))
+			. += " " + pick(SSstrings.get_list_from_file("names/last_name"))
+
+/datum/species/synthetic/prefs_name(datum/preferences/prefs)
+	. = prefs.synthetic_name
+	if(!. || . == "Undefined") //In case they don't have a name set.
+		switch(prefs.gender)
+			if(MALE)
+				. = "David"
+			if(FEMALE)
+				. = "Anna"
+			else
+				. = "Jeri"
+		to_chat(prefs.parent, "<span class='warning'>You forgot to set your synthetic name in your preferences. Please do so next time.</span>")
+
 //special things to change after we're no longer that species
 /datum/species/proc/post_species_loss(mob/living/carbon/human/H)
 	return
@@ -435,6 +462,29 @@
 	H.remove_overlay(MOTH_WINGS_LAYER)
 	H.remove_underlay(MOTH_WINGS_BEHIND_LAYER)
 
+/datum/species/sectoid
+	name = "Sectoid"
+	name_plural = "Sectoids"
+	icobase = 'icons/mob/human_races/r_sectoid.dmi'
+	deform = 'icons/mob/human_races/r_sectoid.dmi'
+	default_language_holder = /datum/language_holder/sectoid
+	eyes = "blank_eyes"
+	speech_verb_override = "transmits"
+	show_paygrade = TRUE
+	count_human = TRUE
+
+	species_flags = HAS_NO_HAIR|NO_BREATHE|NO_POISON|NO_PAIN|USES_ALIEN_WEAPONS|NO_DAMAGE_OVERLAY
+
+	paincries = list("neuter" = 'sound/voice/sectoid_death.ogg')
+	death_sound = 'sound/voice/sectoid_death.ogg'
+
+	blood_color = "#00FF00"
+	flesh_color = "#C0C0C0"
+
+	reagent_tag = IS_SECTOID
+
+	namepool = /datum/namepool/sectoid
+
 /datum/species/vox
 	name = "Vox"
 	name_plural = "Vox"
@@ -542,7 +592,7 @@
 
 	body_temperature = 350
 
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD
 
 	blood_color = "#EEEEEE"
 	flesh_color = "#272757"
@@ -563,7 +613,7 @@
 	total_health = 150 //more health than regular humans
 
 	brute_mod = 0.75
-	burn_mod = 1.1
+	burn_mod = 0.90 //Synthetics should not be instantly melted by acid compared to humans - This is a test to hopefully fix very glaring issues involving synthetics taking 2.6 trillion damage when so much as touching acid
 
 	cold_level_1 = -1
 	cold_level_2 = -1
@@ -575,7 +625,7 @@
 
 	body_temperature = 350
 
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD
 
 	blood_color = "#EEEEEE"
 
@@ -615,8 +665,8 @@
 	slowdown = 1.3 //Slower than later synths
 	total_health = 200 //But more durable
 	insulated = 1
-	brute_mod = 0.75
-	burn_mod = 1.1
+	brute_mod = 0.60 //but more durable
+	burn_mod = 0.90 //previous comment
 
 	cold_level_1 = -1
 	cold_level_2 = -1
@@ -628,7 +678,7 @@
 
 	body_temperature = 350
 
-	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD
 
 	blood_color = "#EEEEEE"
 	hair_color = "#000000"
@@ -808,12 +858,12 @@
 
 
 /datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, mob/living/carbon/human/victim)
+	var/hit_percent = (100 - blocked) * 0.01
 
-	if(blocked >= 1) //total negation
+	if(hit_percent <= 0) //total negation
 		return 0
 
-	if(blocked)
-		damage *= CLAMP01(1-blocked) //Percentage reduction
+	damage *= CLAMP01(hit_percent) //Percentage reduction
 
 	if(!damage) //Complete negation
 		return 0
@@ -869,7 +919,7 @@
 			victim.adjustStaminaLoss(damage)
 
 	// Will set our damageoverlay icon to the next level, which will then be set back to the normal level the next mob.Life().
-	SEND_SIGNAL(victim, COMSIG_HUMAN_DAMAGE_TAKEN, src, damage)
+	SEND_SIGNAL(victim, COMSIG_HUMAN_DAMAGE_TAKEN, damage)
 
 	if(updating_health)
 		victim.updatehealth()

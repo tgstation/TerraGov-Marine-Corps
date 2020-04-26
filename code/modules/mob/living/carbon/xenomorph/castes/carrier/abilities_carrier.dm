@@ -7,12 +7,13 @@
 	mechanics_text = "Click once to bring a facehugger into your hand. Click again to ready that facehugger for throwing at a target or tile."
 	ability_name = "throw facehugger"
 	keybind_signal = COMSIG_XENOABILITY_THROW_HUGGER
+	cooldown_timer = 3 SECONDS
 
 /datum/action/xeno_action/activable/throw_hugger/get_cooldown()
 	var/mob/living/carbon/xenomorph/carrier/X = owner
 	return X.xeno_caste.hugger_delay
 
-/datum/action/xeno_action/activable/throw_hugger/can_use_ability(atom/A, silent = FALSE, override_flags = XACT_IGNORE_COOLDOWN) // true
+/datum/action/xeno_action/activable/throw_hugger/can_use_ability(atom/A, silent = FALSE, override_flags) // true
 	. = ..()
 	if(!.)
 		return FALSE
@@ -42,6 +43,7 @@
 		X.put_in_active_hand(F)
 		F.GoActive(TRUE)
 		to_chat(X, "<span class='xenonotice'>We grab one of the facehugger in our storage. Now sheltering: [X.huggers.len] / [X.xeno_caste.huggers_max].</span>")
+		add_cooldown()
 		return succeed_activate()
 
 	if(!istype(F)) //something else in our hand
@@ -54,7 +56,6 @@
 		F.throw_at(A, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
 		X.visible_message("<span class='xenowarning'>\The [X] throws something towards \the [A]!</span>", \
 		"<span class='xenowarning'>We throw a facehugger towards \the [A]!</span>")
-		add_cooldown()
 
 /mob/living/carbon/xenomorph/carrier/proc/store_hugger(obj/item/clothing/mask/facehugger/F, message = TRUE, forced = FALSE)
 	if(huggers.len < xeno_caste.huggers_max)
@@ -133,7 +134,7 @@
 	name = "Place hugger trap"
 	action_icon_state = "place_trap"
 	mechanics_text = "Place a hole on weeds that can be filled with a hugger. Activates when a marine steps on it."
-	plasma_cost = 200
+	plasma_cost = 400
 	keybind_signal = COMSIG_XENOABILITY_PLACE_TRAP
 
 /datum/action/xeno_action/place_trap/can_use_action(silent = FALSE, override_flags)
@@ -157,6 +158,7 @@
 			to_chat(owner, "<span class='warning'>There is a resin node in the way!</span>")
 		return FALSE
 
+
 /datum/action/xeno_action/place_trap/action_activate()
 	var/turf/T = get_turf(owner)
 
@@ -164,6 +166,7 @@
 
 	playsound(T, "alien_resin_build", 25)
 	GLOB.round_statistics.carrier_traps++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "carrier_traps")
 	new /obj/effect/alien/resin/trap(T, owner)
 	to_chat(owner, "<span class='xenonotice'>We place a hugger trap on the weeds, it still needs a facehugger.</span>")
 
@@ -174,7 +177,7 @@
 	name = "Spawn Facehugger"
 	action_icon_state = "spawn_hugger"
 	mechanics_text = "Spawn a facehugger that is stored on your body."
-	plasma_cost = 100
+	plasma_cost = 200
 	cooldown_timer = 10 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_SPAWN_HUGGER
 

@@ -49,9 +49,7 @@
 
 		user.visible_message("<span class='warning'>[user] attempts to force [M] to swallow [src].</span>")
 
-		var/ingestion_time = 30
-		if(user.mind && user.mind.cm_skills)
-			ingestion_time = max(10, 30 - 10*user.mind.cm_skills.medical)
+		var/ingestion_time = max(1 SECONDS, 3 SECONDS - 1 SECONDS * user.skills.getRating("medical"))
 
 		if(!do_mob(user, M, ingestion_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 			return
@@ -176,7 +174,7 @@
 
 /obj/item/reagent_containers/pill/zoom
 	pill_desc = "A Zoom pill! Gotta go fast!"
-	list_reagents = list(/datum/reagent/medicine/synaptizine = 5, /datum/reagent/medicine/hyperzine = 5, /datum/reagent/consumable/nutriment = 2)
+	list_reagents = list(/datum/reagent/medicine/synaptizine = 3, /datum/reagent/medicine/hyperzine = 5, /datum/reagent/consumable/nutriment = 3)
 	pill_id = 14
 
 /obj/item/reagent_containers/pill/russianRed
@@ -191,7 +189,7 @@
 
 /obj/item/reagent_containers/pill/imidazoline
 	pill_desc = "An imidazoline pill. Heals eye damage."
-	list_reagents = list(/datum/reagent/medicine/alkysine = 10)
+	list_reagents = list(/datum/reagent/medicine/imidazoline = 10)
 	pill_id = 17
 
 /obj/item/reagent_containers/pill/alkysine

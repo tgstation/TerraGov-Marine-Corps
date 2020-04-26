@@ -21,15 +21,15 @@
 	var/final_pixel_y = pixel_y
 	var/final_dir = dir
 	var/changed = 0
-	if(lying != lying_prev && rotate_on_lying)
+	if(lying_angle != lying_prev && rotate_on_lying)
 		changed++
-		ntransform.TurnTo(lying_prev,lying)
-		if(lying == 0) //Lying to standing
-			final_pixel_y = lying ? -6 : initial(pixel_y)
-		else //if(lying != 0)
-			if(lying_prev == 0) //Standing to lying
-				pixel_y = lying ? -6 : initial(pixel_y)
-				final_pixel_y = lying ? -6 : initial(pixel_y)
+		ntransform.TurnTo(lying_prev, lying_angle)
+		if(!lying_angle) //Lying to standing
+			final_pixel_y = lying_angle ? -6 : initial(pixel_y)
+		else //if(lying_angle != 0)
+			if(lying_prev == 0) //Standing to lying down
+				pixel_y = lying_angle ? -6 : initial(pixel_y)
+				final_pixel_y = lying_angle ? -6 : initial(pixel_y)
 				if(dir & (EAST|WEST)) //Facing east or west
 					final_dir = pick(NORTH, SOUTH) //So you fall on your side rather than your face or ass
 
@@ -39,4 +39,4 @@
 		resize = RESIZE_DEFAULT_SIZE
 
 	if(changed)
-		animate(src, transform = ntransform, time = 2, pixel_y = final_pixel_y, dir = final_dir, easing = EASE_IN|EASE_OUT)
+		animate(src, transform = ntransform, time = (lying_prev == 0 || lying_angle == 0) ? 0.2 SECONDS : 0, pixel_y = final_pixel_y, dir = final_dir, easing = (EASE_IN|EASE_OUT))

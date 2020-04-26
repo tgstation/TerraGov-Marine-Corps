@@ -3,6 +3,9 @@
 	set category = "Object"
 	set src = usr
 
+	if(next_move > world.time)
+		return
+
 	if(istype(loc, /obj/vehicle/multitile/root/cm_armored))
 		return
 
@@ -16,9 +19,9 @@
 		if (W)
 			W.attack_self(src)
 			update_inv_r_hand()
-	if(next_move < world.time)
-		next_move = world.time + 2
-	return
+
+	if(next_move <= world.time)
+		changeNext_move(CLICK_CD_FASTEST)
 
 
 /mob/verb/memory()
@@ -32,17 +35,16 @@
 /mob/verb/add_memory(msg as message)
 	set name = "Add Note"
 	set category = "IC"
-
-	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
-	msg = sanitize(msg)
-
 	if(mind)
+		if (world.time < memory_throttle_time)
+			return
+		memory_throttle_time = world.time + 5 SECONDS
+		msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
+		msg = sanitize(msg)
+
 		mind.store_memory(msg)
 	else
-		to_chat(src, "The game appears to have misplaced your mind datum, so we can't show you your notes.")
-
-
-
+		to_chat(src, "You don't have a mind datum for some reason, so you can't add a note to it.")
 
 
 /mob/verb/respawn()

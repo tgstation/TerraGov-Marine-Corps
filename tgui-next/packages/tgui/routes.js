@@ -26,6 +26,7 @@ import { MarineDropship } from './interfaces/MarineDropship';
 import { CentcomPodLauncher } from './interfaces/CentcomPodLauncher';
 import { PortableVendor } from './interfaces/PortableVendor';
 import { PortableGenerator } from './interfaces/PortableGenerator';
+import { ShuttleManipulator } from './interfaces/ShuttleManipulator';
 import { SmartVend } from './interfaces/SmartVend';
 import { SMES } from './interfaces/SMES';
 
@@ -126,6 +127,10 @@ const ROUTES = {
   sentry: {
     component: () => Sentry,
     scrollable: false,
+  },
+  shuttle_manipulator: {
+    component: () => ShuttleManipulator,
+    scrollable: true,
   },
   smartvend: {
     component: () => SmartVend,

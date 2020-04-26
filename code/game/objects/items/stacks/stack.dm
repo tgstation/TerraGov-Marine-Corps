@@ -160,8 +160,8 @@
 		if(usr.action_busy)
 			return
 		var/building_time = R.time
-		if(R.skill_req && usr.mind?.cm_skills?.construction < R.skill_req)
-			building_time += R.time * ( R.skill_req - usr.mind.cm_skills.construction ) * 0.5 // +50% time each skill point lacking.
+		if(R.skill_req && usr.skills.getRating("construction") < R.skill_req)
+			building_time += R.time * ( R.skill_req - usr.skills.getRating("construction") ) * 0.5 // +50% time each skill point lacking.
 		if(building_time)
 			if(building_time > R.time)
 				usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to build \a [R.title].</span>",

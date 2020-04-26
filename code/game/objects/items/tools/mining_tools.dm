@@ -110,31 +110,33 @@
 	else
 		to_chat(user, "<span class='warning'>It does not have a power source installed!</span>")
 
-/obj/item/tool/pickaxe/plasmacutter/attack_self(mob/user as mob)
-	toggle()
-	return
+/obj/item/tool/pickaxe/plasmacutter/attack_self(mob/user)
+	toggle(user)
+	user.changeNext_move(CLICK_CD_LONG)
+
 
 //Toggles the cutter off and on
-/obj/item/tool/pickaxe/plasmacutter/proc/toggle(message = 0)
-	var/mob/M
-	if(ismob(loc))
-		M = loc
-	if(!powered)
-		if(!cell || cell.charge <= 0)
-			fizzle_message(M)
-			return
-		playsound(loc, 'sound/weapons/saberon.ogg', 25)
-		powered = TRUE
-		if(M)
-			to_chat(M, "<span class='notice'>You switch [src] on. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
-		update_plasmacutter()
-
-	else
-		playsound(loc, 'sound/weapons/saberoff.ogg', 25)
+/obj/item/tool/pickaxe/plasmacutter/proc/toggle(mob/user, silent)
+	if(powered)
+		playsound(loc, 'sound/weapons/saberoff.ogg', 15)
 		powered = FALSE
-		if(M)
-			to_chat(M, "<span class='notice'>You switch [src] off. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
+		if(!silent && user)
+			user.visible_message("<span class='notice'>[user] turns [src] off.</span>",
+		"<span class='notice'>You switch [src] off. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
 		update_plasmacutter()
+		return
+
+	if(!cell || cell.charge <= 0)
+		fizzle_message(user)
+		return
+	playsound(loc, 'sound/weapons/saberon.ogg', 15)
+	powered = TRUE
+	if(!silent && user)
+		user.visible_message("<span class='notice'>[user] turns [src] on.</span>",
+		"<span class='notice'>You switch [src] on. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
+
+	update_plasmacutter()
+
 
 /obj/item/tool/pickaxe/plasmacutter/proc/fizzle_message(mob/user)
 	playsound(src, 'sound/machines/buzz-two.ogg', 25, 1)
@@ -201,16 +203,14 @@
 	update_plasmacutter()
 
 /obj/item/tool/pickaxe/plasmacutter/proc/calc_delay(mob/user)
-	var/final_delay = PLASMACUTTER_CUT_DELAY
-	if (!istype(user) || !user.mind || !user.mind.cm_skills)
-		return
-	if(user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI) //We don't have proper skills; time to fumble and bumble.
+	. = PLASMACUTTER_CUT_DELAY
+	var/skill = user.skills.getRating("engineer")
+	if(skill < SKILL_ENGINEER_ENGI) //We don't have proper skills; time to fumble and bumble.
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
-		final_delay *= max(1, 4 + (user.mind.cm_skills.engineer * -1)) //Takes twice to four times as long depending on your skill.
-	else
-		final_delay -= min(PLASMACUTTER_CUT_DELAY,(user.mind.cm_skills.engineer - 3)*5) //We have proper skills; delay lowered by 0.5 per skill point in excess of a field engineer's.
-	return final_delay
+		return . *= max(1, 4 - skill) //Takes twice to four times as long depending on your skill.
+	. -= min(PLASMACUTTER_CUT_DELAY, (skill - 3) * 5) //We have proper skills; delay lowered by 0.5 per skill point in excess of a field engineer's.
+
 
 /obj/item/tool/pickaxe/plasmacutter/emp_act(severity)
 	cell.use(round(cell.maxcharge / severity))

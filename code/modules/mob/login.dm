@@ -28,7 +28,7 @@
 	add_click_catcher()
 
 	if(client)
-		client.change_view(world.view)
+		client.change_view(WORLD_VIEW)
 		client.pixel_x = 0
 		client.pixel_y = 0
 
@@ -37,3 +37,6 @@
 				var/datum/callback/CB = foo
 				CB.Invoke()
 			log_played_names(client.ckey, name, real_name)
+
+	update_movespeed()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_LOGIN, src)

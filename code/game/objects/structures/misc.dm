@@ -161,15 +161,15 @@ obj/item/alienjar
 		return prob(60)
 
 	var/obj/structure/bed/B = A
-	if (istype(A, /obj/structure/bed) && B.buckled_mob)//if it's a bed/chair and someone is buckled, it will not pass
-		return 0
+	if(istype(A, /obj/structure/bed) && LAZYLEN(B.buckled_mobs))//if it's a bed/chair and someone is buckled, it will not pass
+		return FALSE
 
 	if(istype(A, /obj/vehicle))	//no vehicles
 		return 0
 
 	if(isliving(A)) // You Shall Not Pass!
 		var/mob/living/M = A
-		if(!M.lying && !ismonkey(M) && !istype(M, /mob/living/simple_animal/mouse))  //If your not laying down, or a small creature, no pass.
+		if(!M.lying_angle && !ismonkey(M) && !istype(M, /mob/living/simple_animal/mouse))  //If your not laying down, or a small creature, no pass.
 			return 0
 	return ..()
 

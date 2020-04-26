@@ -5,8 +5,6 @@
 	icon_state = "closed_basic"
 	icon_opened = "open_basic"
 	icon_closed = "closed_basic"
-	climbable = 1
-	climb_delay = 20 //Doesn't need as long to climb over a crate
 	anchored = FALSE
 	mob_storage_capacity = 0
 	var/rigged = 0
@@ -71,7 +69,7 @@
 			continue
 		if(istype(O, /obj/structure/bed)) //This is only necessary because of rollerbeds and swivel chairs.
 			var/obj/structure/bed/B = O
-			if(B.buckled_mob)
+			if(LAZYLEN(B.buckled_mobs))
 				continue
 		O.loc = src
 		itemcount++

@@ -10,7 +10,7 @@
 	var/maxlength = 8
 	var/list/obj/effect/beam/i_beam/beams
 	var/olddir = 0
-	var/datum/component/redirect/listener
+	var/turf/listeningTo
 	var/hearing_range = 3
 
 
@@ -18,12 +18,12 @@
 	. = ..()
 	beams = list()
 	START_PROCESSING(SSobj, src)
-	AddComponent(
-		/datum/component/simple_rotation,
-		ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_FLIP | ROTATION_VERBS,
-		null,
-		null,
-		CALLBACK(src,.proc/after_rotation)
+	AddComponent(\
+		/datum/component/simple_rotation,\
+		ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_FLIP | ROTATION_VERBS,\
+		null,\
+		null,\
+		CALLBACK(src,.proc/after_rotation)\
 		)
 
 
@@ -33,7 +33,7 @@
 
 /obj/item/assembly/infra/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	QDEL_NULL(listener)
+	listeningTo = null
 	QDEL_LIST(beams)
 	return ..()
 
@@ -177,8 +177,12 @@
 
 
 /obj/item/assembly/infra/proc/switchListener(turf/newloc)
-	QDEL_NULL(listener)
-	listener = newloc.AddComponent(/datum/component/redirect, list(COMSIG_ATOM_EXITED = CALLBACK(src, .proc/check_exit)))
+	if(listeningTo == newloc)
+		return
+	if(listeningTo)
+		UnregisterSignal(listeningTo, COMSIG_ATOM_EXITED)
+	RegisterSignal(newloc, COMSIG_ATOM_EXITED, .proc/check_exit)
+	listeningTo = newloc
 
 
 /obj/item/assembly/infra/proc/check_exit(datum/source, atom/movable/offender)

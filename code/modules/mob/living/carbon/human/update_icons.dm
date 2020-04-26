@@ -107,6 +107,10 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 //DAMAGE OVERLAYS
 //constructs damage icon for each organ from mask * damage field and saves it in our overlays_ lists
 /mob/living/carbon/human/UpdateDamageIcon()
+
+	if(species.species_flags & NO_DAMAGE_OVERLAY)
+		return
+
 	// first check whether something actually changed about damage appearance
 	var/damage_appearance = ""
 
@@ -278,7 +282,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		if(underwear >0 && underwear < 3)
 			stand_icon.Blend(new /icon('icons/mob/human.dmi', "cryo[underwear]_[g]_s"), ICON_OVERLAY)
 
-		if(job in GLOB.jobs_marines) //undoing override
+		if(ismarinejob(job)) //undoing override
 			if(undershirt>0 && undershirt < 5)
 				stand_icon.Blend(new /icon('icons/mob/human.dmi', "cryoshirt[undershirt]_s"), ICON_OVERLAY)
 		else if(undershirt > 0 && undershirt < 7)
@@ -310,7 +314,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 	if(f_style && !(wear_suit && (wear_suit.flags_inv_hide & HIDELOWHAIR)) && !(wear_mask && (wear_mask.flags_inv_hide & HIDELOWHAIR)))
 		var/datum/sprite_accessory/facial_hair_style = GLOB.facial_hair_styles_list[f_style]
-		if(facial_hair_style && facial_hair_style.species_allowed && src.species.name in facial_hair_style.species_allowed)
+		if(facial_hair_style && facial_hair_style.species_allowed && (species.name in facial_hair_style.species_allowed))
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 			if(facial_hair_style.do_colouration)
 				facial_s.Blend(rgb(r_facial, g_facial, b_facial), ICON_ADD)
@@ -319,7 +323,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 	if(h_style && !(head && (head.flags_inv_hide & HIDETOPHAIR)))
 		var/datum/sprite_accessory/hair_style = GLOB.hair_styles_list[h_style]
-		if(hair_style && src.species.name in hair_style.species_allowed)
+		if(hair_style && (species.name in hair_style.species_allowed))
 			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 			if(hair_style.do_colouration)
 				hair_s.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
@@ -646,6 +650,23 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 						if(I)
 							I = image('icons/mob/suit_1.dmi',src,I.icon_state)
 							standing.overlays += I
+
+		if(istype(wear_suit, /obj/item/clothing/suit/storage/marine))
+			var/obj/item/clothing/suit/storage/marine/marine_armor = wear_suit
+			if(marine_armor.flags_armor_features & ARMOR_SQUAD_OVERLAY)
+				if(assigned_squad)
+					var/datum/squad/S = assigned_squad
+					var/leader = S.squad_leader == src
+					if(GLOB.armormarkings[S.type])
+						standing.overlays += leader? GLOB.armormarkings_sl[S.type] : GLOB.armormarkings[S.type]
+
+			if(length(marine_armor.armor_overlays))
+				var/image/I
+				for(var/i in marine_armor.armor_overlays)
+					I = marine_armor.armor_overlays[i]
+					if(I)
+						I = image('icons/mob/suit_1.dmi',src,I.icon_state)
+						standing.overlays += I
 
 		if(wear_suit.blood_overlay)
 			var/obj/item/clothing/suit/S = wear_suit

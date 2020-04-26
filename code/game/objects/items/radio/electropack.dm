@@ -68,7 +68,7 @@
 		s.set_up(3, 1, L)
 		s.start()
 
-		L.knock_down(10)
+		L.Paralyze(20 SECONDS)
 
 	if(master)
 		master.receive_signal()

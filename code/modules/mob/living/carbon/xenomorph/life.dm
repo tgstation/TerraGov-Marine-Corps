@@ -1,5 +1,5 @@
 #define DEBUG_XENO_LIFE	0
-#define XENO_RESTING_HEAL 1
+#define XENO_RESTING_HEAL 1.1
 #define XENO_STANDING_HEAL 0.2
 #define XENO_CRIT_DAMAGE 5
 
@@ -23,12 +23,13 @@
 			zoom_out()
 	else
 		if(is_zoomed)
-			if(loc != zoom_turf || lying)
+			if(loc != zoom_turf || lying_angle)
 				zoom_out()
 		update_progression()
 		update_evolving()
 		handle_aura_emiter()
 
+	adjust_sunder(xeno_caste.sunder_recover * -1) 
 	handle_aura_receiver()
 	handle_living_health_updates()
 	handle_living_plasma_updates()
@@ -37,39 +38,13 @@
 
 
 /mob/living/carbon/xenomorph/update_stat()
-
-	update_cloak()
-
-	if(status_flags & GODMODE)
+	. = ..()
+	if(.)
 		return
-
-	if(stat == DEAD)
-		return
-
-	if(health <= xeno_caste.crit_health)
-		if(prob(gib_chance + 0.5*(xeno_caste.crit_health - health)))
-			gib()
-		else
-			death()
-		return
-
-	if(knocked_out || sleeping || health < get_crit_threshold())
-		if(stat != UNCONSCIOUS)
-			blind_eyes(1)
-		stat = UNCONSCIOUS
-		see_in_dark = 5
-	else if(stat == UNCONSCIOUS)
-		stat = CONSCIOUS
-		adjust_blindness(-1)
-		see_in_dark = 8
-	update_canmove()
 
 	//Deal with devoured things and people
-	if(length(stomach_contents) && world.time > devour_timer && !is_ventcrawling)
+	if(LAZYLEN(stomach_contents) && world.time > devour_timer && !is_ventcrawling)
 		empty_gut()
-
-	return TRUE
-
 
 
 /mob/living/carbon/xenomorph/handle_status_effects()
@@ -80,12 +55,6 @@
 
 /mob/living/carbon/xenomorph/hunter/handle_status_effects()
 	. = ..()
-	if(sneak_bonus < HUNTER_SNEAKATTACK_MAX_MULTIPLIER)
-		if(last_move_intent < world.time - HUNTER_SNEAKATTACK_MULTI_RECOVER_DELAY || !stealth)
-			sneak_bonus = round(min(sneak_bonus + HUNTER_SNEAKATTACK_WALK_INCREASE, 3.5), 0.01) //Recover sneak attack multiplier rapidly when stationary or unstealthed
-
-		if(sneak_bonus >= HUNTER_SNEAKATTACK_MAX_MULTIPLIER)
-			to_chat(src, "<span class='xenodanger'>Our sneak attack is now at maximum power.</span>")
 	handle_stealth()
 
 /mob/living/carbon/xenomorph/handle_fire()
@@ -112,7 +81,7 @@
 		ruler_healing_penalty = 1
 
 	if(locate(/obj/effect/alien/weeds) in T || xeno_caste.caste_flags & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
-		if(lying || resting || xeno_caste.caste_flags & CASTE_QUICK_HEAL_STANDING)
+		if(lying_angle || resting || xeno_caste.caste_flags & CASTE_QUICK_HEAL_STANDING)
 			heal_wounds(XENO_RESTING_HEAL * ruler_healing_penalty)
 		else
 			heal_wounds(XENO_STANDING_HEAL * ruler_healing_penalty) //Major healing nerf if standing.
@@ -148,8 +117,11 @@
 		else
 			use_plasma(5)
 
-	if(locate(/obj/effect/alien/weeds) in T)
-		gain_plasma(xeno_caste.plasma_gain + round(xeno_caste.plasma_gain * recovery_aura * 0.25)) // Empty recovery aura will always equal 0
+	if((locate(/obj/effect/alien/weeds) in T) || (xeno_caste.caste_flags & CASTE_INNATE_PLASMA_REGEN))
+		if(lying_angle || resting)
+			gain_plasma((xeno_caste.plasma_gain + round(xeno_caste.plasma_gain * recovery_aura * 0.25)) * 2) // Empty recovery aura will always equal 0
+		else
+			gain_plasma(max(((xeno_caste.plasma_gain + round(xeno_caste.plasma_gain * recovery_aura * 0.25)) * 0.5), 1))
 	else
 		gain_plasma(1)
 
@@ -218,7 +190,7 @@
 
 /mob/living/carbon/xenomorph/proc/handle_aura_receiver()
 	if(frenzy_aura != frenzy_new || warding_aura != warding_new || recovery_aura != recovery_new)
-		frenzy_aura = frenzy_new
+		set_frenzy_aura(frenzy_new)
 		warding_aura = warding_new
 		recovery_aura = recovery_new
 	hud_set_pheromone()
@@ -278,21 +250,13 @@
 
 /mob/living/carbon/xenomorph/updatehealth()
 	if(status_flags & GODMODE)
+		health = maxHealth
+		stat = CONSCIOUS
 		return
 	health = maxHealth - getFireLoss() - getBruteLoss() //Xenos can only take brute and fire damage.
 	med_hud_set_health()
 	update_stat()
 	update_wounds()
-
-/mob/living/carbon/xenomorph/handle_stunned()
-	if(stunned)
-		adjust_stunned(-2)
-	return stunned
-
-/mob/living/carbon/xenomorph/handle_knocked_down()
-	if(knocked_down && client)
-		adjust_knocked_down(-5)
-	return knocked_down
 
 /mob/living/carbon/xenomorph/handle_slowdown()
 	if(slowdown)
@@ -305,39 +269,16 @@
 		#endif
 	return slowdown
 
-
-/mob/living/carbon/xenomorph/add_slowdown(amount)
-	if(is_charging >= CHARGE_ON) //If we're charging we're immune to slowdown.
-		return 0
-	slowdown = adjust_slowdown(amount * XENO_SLOWDOWN_REGEN)
-	return slowdown
-
-
 /mob/living/carbon/xenomorph/adjust_stagger(amount)
 	if(is_charging >= CHARGE_ON) //If we're charging we don't accumulate more stagger stacks.
 		return FALSE
 	return ..()
 
-
-/mob/living/carbon/xenomorph/proc/handle_afk_takeover()
-	if(QDELETED(src)) // Deleted by an admin.
+/mob/living/carbon/xenomorph/proc/set_frenzy_aura(new_aura)
+	if(frenzy_aura == new_aura)
 		return
-	if(client)
+	frenzy_aura = new_aura
+	if(frenzy_aura)
+		add_movespeed_modifier(MOVESPEED_ID_FRENZY_AURA, TRUE, 0, NONE, TRUE, -frenzy_aura * 0.1)
 		return
-	if(isclientedaghost(src)) // If aghosted, and admin still online
-		return
-	if(stat == DEAD)
-		return
-
-	if(afk_timer_id)
-		INVOKE_NEXT_TICK(GLOBAL_PROC, /proc/deltimer, afk_timer_id)
-		afk_timer_id = null
-
-	var/mob/picked = get_alien_candidate()
-	if(!picked)
-		return
-
-	SSticker.mode.transfer_xeno(picked, src)
-
-	to_chat(src, "<span class='xenoannounce'>We are an old xenomorph re-awakened from slumber!</span>")
-	playsound_local(get_turf(src), 'sound/effects/xeno_newlarva.ogg')
+	remove_movespeed_modifier(MOVESPEED_ID_FRENZY_AURA)

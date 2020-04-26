@@ -84,6 +84,12 @@
 	return ..()
 
 
+/obj/structure/closet/bodybag/is_buckled()
+	if(roller_buckled)
+		return roller_buckled
+	return ..()
+
+
 /obj/structure/closet/bodybag/proc/update_name()
 	if(opened)
 		name = bag_name
@@ -175,7 +181,8 @@
 
 
 /obj/structure/closet/bodybag/forceMove(atom/destination)
-	roller_buckled?.unbuckle()
+	if(roller_buckled)
+		roller_buckled.unbuckle_bodybag()
 	return ..()
 
 
@@ -192,7 +199,7 @@
 /obj/structure/closet/bodybag/attack_alien(mob/living/carbon/xenomorph/xeno)
 	if(opened)
 		return FALSE // stop xeno closing things
-	xeno.do_attack_animation(src)
+	xeno.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	open()
 	xeno.visible_message("<span class='danger'>\The [xeno] slashes \the [src] open!</span>", \
 		"<span class='danger'>We slash \the [src] open!</span>", null, 5)
@@ -241,7 +248,7 @@
 /obj/structure/closet/bodybag/cryobag/open()
 	if(bodybag_occupant)
 		REMOVE_TRAIT(bodybag_occupant, TRAIT_STASIS, STASIS_BAG_TRAIT)
-		UnregisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING))
+		UnregisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED))
 	return ..()
 
 
@@ -257,7 +264,7 @@
 	. = ..()
 	if(bodybag_occupant)
 		ADD_TRAIT(bodybag_occupant, TRAIT_STASIS, STASIS_BAG_TRAIT)
-		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING), .proc/on_bodybag_occupant_death)
+		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED), .proc/on_bodybag_occupant_death)
 
 
 /obj/structure/closet/bodybag/cryobag/proc/on_bodybag_occupant_death(datum/source, gibbed)
@@ -290,7 +297,7 @@
 	if(href_list["scanreport"])
 		if(!hasHUD(usr,"medical"))
 			return
-		if(get_dist(usr, src) > world.view)
+		if(get_dist(usr, src) > WORLD_VIEW_NUM)
 			to_chat(usr, "<span class='warning'>[src] is too far away.</span>")
 			return
 		for(var/datum/data/record/R in GLOB.datacore.medical)

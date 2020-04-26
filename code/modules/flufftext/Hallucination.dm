@@ -1,422 +1,298 @@
-/*
-Ideas for the subtle effects of hallucination:
+#define HAL_LINES_FILE "hallucinations.json"
 
-Light up oxygen/phoron indicators (done)
-Cause health to look critical/dead, even when standing (done)
-Characters silently watching you
-Brief flashes of fire/space/bombs/c4/dangerous shit (done)
-Items that are rare/traitorous/don't exist appearing in your inventory slots (done)
-Strange audio (should be rare) (done)
-Gunshots/explosions/opening doors/less rare audio (done)
+GLOBAL_LIST_INIT(hallucination_list, list(
+	/datum/hallucination/sounds = 100,
+	/datum/hallucination/chat = 50,
+	/datum/hallucination/battle = 20,
+	/datum/hallucination/xeno_attack = 12,
+	/datum/hallucination/death = 1,
+))
 
-*/
 
-mob/living/carbon/var
-	image/halimage
-	image/halbody
-	obj/halitem
-	hal_screwyhud = 0 //1 - critical, 2 - dead, 3 - oxygen indicator, 4 - toxin indicator
-	handling_hal = 0
-	hal_crit = 0
-
-mob/living/carbon/proc/handle_hallucinations()
+/mob/living/carbon/proc/handle_hallucinations()
 	if(!hallucination)
 		return
 
-	handling_hal = 1
-	while(client && hallucination > 20)
-		sleep(rand(200,500)/(hallucination/25))
-		var/halpick = rand(1,100)
-		switch(halpick)
-			if(0 to 15)
-				//Screwy HUD
-				//to_chat(src, "Screwy HUD")
-				hal_screwyhud = pick(1,2,3,3,4,4)
-				addtimer(VARSET_CALLBACK(src, hal_screwyhud, 0), rand(10,25) SECONDS)
+	hallucination = max(0, hallucination - 2) // Life ticks happen every 2 seconds
 
-			if(16 to 25)
-				//Strange items
-				//to_chat(src, "Traitor Items")
-				if(!halitem)
-					halitem = new
-					var/list/slots_free = list(ui_lhand,ui_rhand)
-					if(l_hand) slots_free -= ui_lhand
-					if(r_hand) slots_free -= ui_rhand
-					if(istype(src,/mob/living/carbon/human))
-						var/mob/living/carbon/human/H = src
-						if(!H.belt) slots_free += ui_belt
-						if(!H.l_store) slots_free += ui_storage1
-						if(!H.r_store) slots_free += ui_storage2
-					if(slots_free.len)
-						halitem.screen_loc = pick(slots_free)
-						halitem.layer = 50
-						switch(rand(1,6))
-							if(1) //revolver
-								halitem.icon = 'icons/obj/items/gun.dmi'
-								halitem.icon_state = "revolver"
-								halitem.name = "Revolver"
-							if(2) //c4
-								halitem.icon = 'icons/obj/items/assemblies.dmi'
-								halitem.icon_state = "plastic-explosive0"
-								halitem.name = "Mysterious Package"
-								if(prob(25))
-									halitem.icon_state = "c4small_1"
-							if(3) //sword
-								halitem.icon = 'icons/obj/items/weapons.dmi'
-								halitem.icon_state = "sword1"
-								halitem.name = "Sword"
-							if(4) //stun baton
-								halitem.icon = 'icons/obj/items/weapons.dmi'
-								halitem.icon_state = "stunbaton"
-								halitem.name = "Stun Baton"
-							if(5) //emag
-								halitem.icon = 'icons/obj/items/card.dmi'
-								halitem.icon_state = "emag"
-								halitem.name = "Cryptographic Sequencer"
-							if(6) //flashbang
-								halitem.icon = 'icons/obj/items/grenade.dmi'
-								halitem.icon_state = "flashbang1"
-								halitem.name = "Flashbang"
-						if(client) client.screen += halitem
-						spawn(rand(100,250))
-							if(client)
-								client.screen -= halitem
-							halitem = null
-			if(26 to 40)
-				//Flashes of danger
-				//to_chat(src, "Danger Flash")
-				if(!halimage)
-					var/list/possible_points = list()
-					for(var/turf/open/floor/F in view(src,world.view))
-						possible_points += F
-					if(possible_points.len)
-						var/turf/open/floor/target = pick(possible_points)
-
-						switch(rand(1,3))
-							if(1)
-								//to_chat(src, "Space")
-								halimage = image('icons/turf/space.dmi',target,"[rand(1,25)]",TURF_LAYER)
-							if(2)
-								//to_chat(src, "Fire")
-								halimage = image('icons/effects/fire.dmi',target,"1",TURF_LAYER)
-							if(3)
-								//to_chat(src, "C4")
-								halimage = image('icons/obj/items/assemblies.dmi',target,"plastic-explosive2",OBJ_LAYER+0.01)
-
-
-						if(client) client.images += halimage
-						spawn(rand(10,50)) //Only seen for a brief moment.
-							if(client) client.images -= halimage
-							halimage = null
-
-
-			if(41 to 65)
-				//Strange audio
-				//to_chat(src, "Strange Audio")
-				switch(rand(1,12))
-					if(1)
-						playsound_local(get_turf(src), 'sound/machines/airlock.ogg')
-					if(2)
-						if(prob(50))
-							playsound_local(get_turf(src), 'sound/effects/explosion1.ogg')
-						else
-							playsound_local(get_turf(src), 'sound/effects/explosion2.ogg')
-					if(3)
-						playsound_local(get_turf(src), 'sound/effects/explosionfar.ogg')
-					if(4)
-						playsound_local(get_turf(src), 'sound/effects/glassbr1.ogg')
-					if(5)
-						playsound_local(get_turf(src), 'sound/effects/glassbr2.ogg')
-					if(6)
-						playsound_local(get_turf(src), 'sound/effects/glassbr3.ogg')
-					if(7)
-						playsound_local(get_turf(src), 'sound/machines/twobeep.ogg')
-					if(8)
-						playsound_local(get_turf(src), 'sound/machines/windowdoor.ogg')
-					if(9)
-						//To make it more realistic, I added two gunshots (enough to kill)
-						playsound_local(get_turf(src), 'sound/weapons/guns/fire/gunshot.ogg')
-						spawn(rand(10,30))
-							playsound_local(get_turf(src), 'sound/weapons/guns/fire/gunshot.ogg')
-					if(10)
-						playsound_local(get_turf(src), 'sound/weapons/smash.ogg')
-					if(11)
-						//Same as above, but with tasers.
-						playsound_local(get_turf(src), 'sound/weapons/guns/fire/taser.ogg')
-						spawn(rand(10,30))
-							playsound_local(get_turf(src), 'sound/weapons/guns/fire/taser.ogg')
-				//Rare audio
-					if(12)
-//These sounds are (mostly) taken from Hidden: Source
-						var/list/creepyasssounds = list('sound/effects/ghost.ogg', 'sound/effects/ghost2.ogg', 'sound/effects/Heart Beat.ogg', 'sound/effects/screech.ogg',\
-							'sound/hallucinations/behind_you1.ogg', 'sound/hallucinations/behind_you2.ogg', 'sound/hallucinations/far_noise.ogg', 'sound/hallucinations/growl1.ogg', 'sound/hallucinations/growl2.ogg',\
-							'sound/hallucinations/growl3.ogg', 'sound/hallucinations/im_here1.ogg', 'sound/hallucinations/im_here2.ogg', 'sound/hallucinations/i_see_you1.ogg', 'sound/hallucinations/i_see_you2.ogg',\
-							'sound/hallucinations/look_up1.ogg', 'sound/hallucinations/look_up2.ogg', 'sound/hallucinations/over_here1.ogg', 'sound/hallucinations/over_here2.ogg', 'sound/hallucinations/over_here3.ogg',\
-							'sound/hallucinations/turn_around1.ogg', 'sound/hallucinations/turn_around2.ogg', 'sound/hallucinations/veryfar_noise.ogg', 'sound/hallucinations/wail.ogg')
-						playsound_local(get_turf(src), pick(creepyasssounds))
-			if(66 to 70)
-				//Flashes of danger
-				//to_chat(src, "Danger Flash")
-				if(!halbody)
-					var/list/possible_points = list()
-					for(var/turf/open/floor/F in view(src,world.view))
-						possible_points += F
-					if(possible_points.len)
-						var/turf/open/floor/target = pick(possible_points)
-						switch(rand(1,4))
-							if(1)
-								halbody = image('icons/mob/human.dmi',target,"husk_l",TURF_LAYER)
-							if(2,3)
-								halbody = image('icons/mob/human.dmi',target,"husk_s",TURF_LAYER)
-							if(4)
-								halbody = image('icons/mob/alien.dmi',target,"alienother",TURF_LAYER)
-	//						if(5)
-	//							halbody = image('xcomalien.dmi',target,"chryssalid",TURF_LAYER)
-
-						if(client) client.images += halbody
-						spawn(rand(50,80)) //Only seen for a brief moment.
-							if(client) client.images -= halbody
-							halbody = null
-			if(71 to 72)
-				//Fake death
-//				src.sleeping_willingly = 1
-				src.sleeping = 20
-				hal_crit = 1
-				hal_screwyhud = 1
-				spawn(rand(50,100))
-//					src.sleeping_willingly = 0
-					src.sleeping = 0
-					hal_crit = 0
-					hal_screwyhud = 0
-	handling_hal = 0
-
-
-
-
-/*obj/machinery/proc/mockpanel(list/buttons,start_txt,end_txt,list/mid_txts)
-
-	if(!mocktxt)
-
-		mocktxt = ""
-
-		var/possible_txt = list("Launch Escape Pods","Self-Destruct Sequence","\[Swipe ID\]","De-Monkify",\
-		"Reticulate Splines","Plasma","Open Valve","Lockdown","Nerf Airflow","Kill Traitor","Nihilism",\
-		"OBJECTION!","Arrest Stephen Bowman","Engage Anti-Trenna Defenses","Increase Captain IQ","Retrieve Arms",\
-		"Play Charades","Oxygen","Inject BeAcOs","Ninja Lizards","Limit Break","Build Sentry")
-
-		if(mid_txts)
-			while(mid_txts.len)
-				var/mid_txt = pick(mid_txts)
-				mocktxt += mid_txt
-				mid_txts -= mid_txt
-
-		while(buttons.len)
-
-			var/button = pick(buttons)
-
-			var/button_txt = pick(possible_txt)
-
-			mocktxt += "<a href='?src=\ref[src];[button]'>[button_txt]</a><br>"
-
-			buttons -= button
-			possible_txt -= button_txt
-
-	return start_txt + mocktxt + end_txt + "</TT></BODY></HTML>"
-
-proc/check_panel(mob/M)
-	if (ishuman(M) || isAI(M))
-		if(M.hallucination < 15)
-			return 1
-	return 0*/
-
-/obj/effect/fake_attacker
-	icon = null
-	icon_state = null
-	name = ""
-	desc = ""
-	density = FALSE
-	anchored = TRUE
-	opacity = FALSE
-	var/mob/living/carbon/human/my_target = null
-	var/weapon_name = null
-	var/obj/item/weap = null
-	var/image/currentimage = null
-	var/image/left
-	var/image/right
-	var/image/up
-	var/collapse
-	var/image/down
-
-	var/health = 100
-
-	attackby(var/obj/item/P as obj, mob/user as mob)
-		step_away(src,my_target,2)
-		visible_message("<span class='danger'>[my_target] flails around wildly.</span>")
-		my_target.show_message("<span class='danger'>[src] has been attacked by [my_target] </span>", 1) //Lazy.
-
-		src.health -= P.force
-
-
+	if(world.time < next_hallucination)
 		return
 
-	Crossed(var/mob/M, somenumber)
-		if(M == my_target)
-			step_away(src,my_target,2)
-			if(prob(30))
-				for(var/mob/O in oviewers(world.view , my_target))
-					to_chat(O, "<span class='danger'>[my_target] stumbles around.</span>")
+	var/halpick = pickweight(GLOB.hallucination_list)
+	new halpick(src, FALSE)
 
-	New()
-		..()
-		spawn(300)
-			if(my_target)
-				my_target.hallucinations -= src
-			qdel(src)
-		step_away(src,my_target,2)
-		spawn attack_loop()
+	next_hallucination = world.time + rand(10 SECONDS, 60 SECONDS)
 
-	Destroy()
-		if(my_target)
-			my_target.hallucinations -= src
-			my_target = null
-		weap = null
-		if(currentimage)
-			qdel(currentimage)
-			currentimage = null
-		if(left)
-			qdel(left)
-			left = null
-		if(right)
-			qdel(right)
-			right = null
-		if(up)
-			qdel(up)
-			up = null
-		if(down)
-			qdel(down)
-			down = null
-		. = ..()
+/mob/living/carbon/proc/set_screwyhud(hud_type)
+	hal_screwyhud = hud_type
+	handle_healths_hud_updates()
 
-	proc/updateimage()
+/datum/hallucination
+	var/natural = TRUE
+	var/mob/living/carbon/target
 
-		if(src.dir == NORTH)
-			qdel(src.currentimage)
-			src.currentimage = new /image(up,src)
-		else if(src.dir == SOUTH)
-			qdel(src.currentimage)
-			src.currentimage = new /image(down,src)
-		else if(src.dir == EAST)
-			qdel(src.currentimage)
-			src.currentimage = new /image(right,src)
-		else if(src.dir == WEST)
-			qdel(src.currentimage)
-			src.currentimage = new /image(left,src)
-		SEND_IMAGE(my_target, currentimage)
+/datum/hallucination/New(mob/living/carbon/C, forced = TRUE)
+	set waitfor = FALSE
+	target = C
+	natural = !forced
 
+/datum/hallucination/Destroy()
+	target = null
+	return ..()
 
-	proc/attack_loop()
-		while(1)
-			sleep(rand(5,10))
-			if(src.health < 0)
-				collapse()
-				continue
-			if(get_dist(src,my_target) > 1)
-				src.dir = get_dir(src,my_target)
-				step_towards(src,my_target)
-				updateimage()
-			else
-				if(prob(15))
-					if(weapon_name)
-						my_target << sound(pick('sound/weapons/genhit1.ogg', 'sound/weapons/genhit2.ogg', 'sound/weapons/genhit3.ogg'))
-						my_target.show_message("<span class='danger'>[my_target] has been attacked with [weapon_name] by [src.name] </span>", 1)
-						my_target.halloss += 8
-						if(prob(20)) my_target.adjust_blurriness(3)
-						if(prob(33))
-							if(!locate(/obj/effect/overlay) in my_target.loc)
-								fake_blood(my_target)
-					else
-						my_target << sound(pick('sound/weapons/punch1.ogg','sound/weapons/punch2.ogg','sound/weapons/punch3.ogg','sound/weapons/punch4.ogg'))
-						my_target.show_message("<span class='danger'>[src.name] has punched [my_target]!</span>", 1)
-						my_target.halloss += 4
-						if(prob(33))
-							if(!locate(/obj/effect/overlay) in my_target.loc)
-								fake_blood(my_target)
+//Returns a random turf in a ring around the target mob, useful for sound hallucinations
+/datum/hallucination/proc/random_far_turf()
+	var/x_based = prob(50)
+	var/first_offset = pick(-8,-7,-6,-5,5,6,7,8)
+	var/second_offset = rand(-8,8)
+	var/x_off
+	var/y_off
+	if(x_based)
+		x_off = first_offset
+		y_off = second_offset
+	else
+		y_off = first_offset
+		x_off = second_offset
+	var/turf/T = locate(target.x + x_off, target.y + y_off, target.z)
+	return T
 
-			if(prob(15))
-				step_away(src,my_target,2)
+/obj/effect/hallucination
+	invisibility = INVISIBILITY_OBSERVER
+	anchored = TRUE
+	var/mob/living/carbon/target = null
 
-	proc/collapse()
-		collapse = 1
-		updateimage()
+/obj/effect/hallucination/simple
+	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon_state = "Runner Walking"
+	var/px = 0
+	var/py = 0
+	var/col_mod = null
+	var/image/current_image = null
+	var/image_layer = MOB_LAYER
+	var/active = TRUE //qdelery
 
-/proc/fake_blood(mob/target)
-	var/obj/effect/overlay/O = new/obj/effect/overlay(target.loc)
-	O.name = "blood"
-	var/image/I = image('icons/effects/blood.dmi',O,"floor[rand(1,7)]",O.dir,1)
-	SEND_IMAGE(target, I)
-	QDEL_IN(O, 30 SECONDS)
+/obj/effect/hallucination/simple/Initialize(mapload, mob/living/carbon/T)
+	. = ..()
+	target = T
+	current_image = GetImage()
+	if(target.client)
+		target.client.images |= current_image
 
-GLOBAL_LIST_INIT(non_fakeattack_weapons, list(/obj/item/clothing/shoes/magboots, /obj/item/disk/nuclear,\
-	/obj/item/clothing/suit/space/tgmc, /obj/item/tank))
+/obj/effect/hallucination/simple/proc/GetImage()
+	var/image/I = image(icon,src,icon_state,image_layer,dir=src.dir)
+	I.pixel_x = px
+	I.pixel_y = py
+	if(col_mod)
+		I.color = col_mod
+	return I
 
-/proc/fake_attack(mob/living/target)
-//	var/list/possible_clones = new/list()
-	var/mob/living/carbon/human/clone = null
-	var/clone_weapon = null
+/obj/effect/hallucination/simple/proc/Show(update=1)
+	if(active)
+		if(target.client)
+			target.client.images.Remove(current_image)
+		if(update)
+			current_image = GetImage()
+		if(target.client)
+			target.client.images |= current_image
 
-	for(var/mob/living/carbon/human/H in GLOB.alive_human_list)
-		if(H.stat || H.lying) continue
-//		possible_clones += H
-		clone = H
-		break	//changed the code a bit. Less randomised, but less work to do. Should be ok, world.contents aren't stored in any particular order.
+/obj/effect/hallucination/simple/update_icon(new_state,new_icon,new_px=0,new_py=0)
+	icon_state = new_state
+	if(new_icon)
+		icon = new_icon
+	else
+		icon = initial(icon)
+	px = new_px
+	py = new_py
+	Show()
 
-//	if(!possible_clones.len) return
-//	clone = pick(possible_clones)
-	if(!clone)	return
+/obj/effect/hallucination/simple/Moved(atom/OldLoc, Dir)
+	Show()
 
-	//var/obj/effect/fake_attacker/F = new/obj/effect/fake_attacker(outside_range(target))
-	var/obj/effect/fake_attacker/F = new/obj/effect/fake_attacker(target.loc)
-	if(clone.l_hand)
-		if(!(locate(clone.l_hand) in GLOB.non_fakeattack_weapons))
-			clone_weapon = clone.l_hand.name
-			F.weap = clone.l_hand
-	else if (clone.r_hand)
-		if(!(locate(clone.r_hand) in GLOB.non_fakeattack_weapons))
-			clone_weapon = clone.r_hand.name
-			F.weap = clone.r_hand
+/obj/effect/hallucination/simple/Destroy()
+	if(target.client)
+		target.client.images.Remove(current_image)
+	active = FALSE
+	return ..()
 
-	F.name = clone.name
-	F.my_target = target
-	F.weapon_name = clone_weapon
-	target.hallucinations += F
+/obj/effect/hallucination/simple/xeno
+	name = "Mature Runner"
+	desc = "A small red alien that looks like it could run fairly quickly..."
+	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon_state = "Runner Walking"
 
+/obj/effect/hallucination/simple/xeno/Initialize(mapload, mob/living/carbon/T)
+	. = ..()
+	name = "Mature Runner ([rand(100, 999)])"
 
-	F.left = image(clone,dir = WEST)
-	F.right = image(clone,dir = EAST)
-	F.up = image(clone,dir = NORTH)
-	F.down = image(clone,dir = SOUTH)
+/obj/effect/hallucination/simple/xeno/throw_impact(atom/hit_atom, speed)
+	if(hit_atom == target && target.stat != DEAD)
+		target.Paralyze(3 SECONDS, TRUE, TRUE)
+		target.visible_message("<span class='danger'>[target] flails around wildly.</span>","<span class='xenowarning'>\The [src] pounces at [target]!</span>")
 
-//	F.base = new /icon(clone.stand_icon)
-//	F.currentimage = new /image(clone)
+/datum/hallucination/xeno_attack
+	//Xeno crawls from nearby vent,jumps at you, and goes back in
+	var/obj/machinery/atmospherics/components/unary/vent_pump/pump = null
+	var/obj/effect/hallucination/simple/xeno/xeno = null
 
-/*
+/datum/hallucination/xeno_attack/New(mob/living/carbon/C, forced = TRUE)
+	set waitfor = FALSE
+	..()
+	for(var/obj/machinery/atmospherics/components/unary/vent_pump/U in orange(7,target))
+		if(!U.welded)
+			pump = U
+			break
+	if(pump)
+		xeno = new(pump.loc, target)
+		playsound(src, get_sfx("alien_ventpass"), 35, 1)
+		sleep(1 SECONDS)
+		xeno.throw_at(target, 7, 1, xeno, FALSE, TRUE)
+		sleep(1 SECONDS)
+		xeno.throw_at(pump.loc, 7, 1, xeno, FALSE, TRUE)
+		sleep(1 SECONDS)
+		to_chat(target, "<span class='notice'>[xeno.name] begins climbing into the ventilation system...</span>")
+		sleep(3.5 SECONDS)
+		to_chat(target, "<span class='notice'>[xeno.name] scrambles into the ventilation ducts!</span>")
+		playsound(src, get_sfx("alien_ventpass"), 35, 1)
+		qdel(xeno)
+	qdel(src)
 
+/datum/hallucination/battle
 
+/datum/hallucination/battle/New(mob/living/carbon/C, forced = TRUE, battle_type)
+	set waitfor = FALSE
+	..()
+	var/turf/source = random_far_turf()
+	if(!battle_type)
+		battle_type = pick("xeno")
+	switch(battle_type)
+		if("xeno")
+			var/hits = 0
+			for(var/i in 1 to rand(5, 10))
+				target.playsound_local(source, get_sfx("alien_claw_flesh"), 25, TRUE)
+				sleep(rand(CLICK_CD_RANGE, CLICK_CD_RANGE + 6))
+				if(hits >= 4 && prob(70))
+					target.playsound_local(source, get_sfx(pick("male_scream", "female_scream")), 35, TRUE)
+					break
+	qdel(src)
 
-	F.left = new /icon(clone.stand_icon,dir=WEST)
-	for(var/icon/i in clone.overlays)
-		F.left.Blend(i)
-	F.up = new /icon(clone.stand_icon,dir=NORTH)
-	for(var/icon/i in clone.overlays)
-		F.up.Blend(i)
-	F.down = new /icon(clone.stand_icon,dir=SOUTH)
-	for(var/icon/i in clone.overlays)
-		F.down.Blend(i)
-	F.right = new /icon(clone.stand_icon,dir=EAST)
-	for(var/icon/i in clone.overlays)
-		F.right.Blend(i)
+/datum/hallucination/chat
 
-	to_chat(target, F.up)
-	*/
+/datum/hallucination/chat/New(mob/living/carbon/C, forced = TRUE, force_radio, specific_message)
+	set waitfor = FALSE
+	..()
+	var/target_name = target.real_name
+	var/speak_messages = list(
+		"[pick_list_replacements(HAL_LINES_FILE, "suspicion")]",
+		"[pick_list_replacements(HAL_LINES_FILE, "conversation")]",
+		"[pick_list_replacements(HAL_LINES_FILE, "greetings")]",
+		"[pick_list_replacements(HAL_LINES_FILE, "getout")]",
+		"[pick_list_replacements(HAL_LINES_FILE, "weird")]",
+		"[pick_list_replacements(HAL_LINES_FILE, "didyouhearthat")]",
+		"[pick_list_replacements(HAL_LINES_FILE, "nuke")]",
+		"[pick_list_replacements(HAL_LINES_FILE, "doubt")]",
+		"[pick_list_replacements(HAL_LINES_FILE, "aggressive")]",
+		"[pick_list_replacements(HAL_LINES_FILE, "help")]",
+		"[pick_list_replacements(HAL_LINES_FILE, "escape")]"
+	)
+	var/radio_messages = list( // only a subset, because not everything makes sense over radio
+		"[pick_list_replacements(HAL_LINES_FILE, "didyouhearthat")]",
+		"[pick_list_replacements(HAL_LINES_FILE, "nuke")]",
+		"[pick_list_replacements(HAL_LINES_FILE, "doubt")]",
+		"[pick_list_replacements(HAL_LINES_FILE, "help")]",
+		"[pick_list_replacements(HAL_LINES_FILE, "escape")]"
+	)
 
-	F.updateimage()
+	var/mob/living/carbon/person = null
+	var/datum/language/understood_language = target.get_random_understood_language()
+	for(var/mob/living/carbon/H in view(target))
+		if(H == target)
+			continue
+		if(!person)
+			person = H
+		else
+			if(get_dist(target, H) < get_dist(target,person))
+				person = H
+	if(person && !force_radio) //Basic talk
+		var/chosen = specific_message
+		if(!chosen)
+			chosen = capitalize(pick(speak_messages))
+		chosen = replacetext(chosen, "%TARGETNAME%", target_name)
+		var/image/speech_overlay = image('icons/mob/talk.dmi', person, "default0", layer = ABOVE_MOB_LAYER)
+		var/message = target.compose_message(person,understood_language,chosen,null,list(person.speech_span),face_name = TRUE)
+		to_chat(target, message)
+		if(target.client)
+			target.client.images |= speech_overlay
+			sleep(3 SECONDS)
+			target.client.images.Remove(speech_overlay)
+	else // Radio talk
+		var/chosen = specific_message
+		if(!chosen)
+			chosen = capitalize(pick(radio_messages))
+		chosen = replacetext(chosen, "%TARGETNAME%", target_name)
+		var/list/humans = list()
+		for(var/mob/living/carbon/human/H in GLOB.alive_human_list)
+			humans += H
+		person = pick(humans)
+		var/message = target.compose_message(person,understood_language,chosen,"[FREQ_COMMON]",list(person.speech_span),face_name = TRUE)
+		to_chat(target, message)
+	qdel(src)
+
+/datum/hallucination/sounds
+
+/datum/hallucination/sounds/New(mob/living/carbon/C, forced = TRUE, sound_type)
+	set waitfor = FALSE
+	..()
+	var/turf/source = random_far_turf()
+	if(!sound_type)
+		sound_type = pick("airlock pry", "hugged", "glass step", "grill hit", "weed placed", "gunshots")
+	//Strange audio
+	switch(sound_type)
+		if("airlock pry")
+			target.playsound_local(source,'sound/effects/metal_creaking.ogg', 35, TRUE)
+		if("glass step")
+			for(var/i in 1 to rand(1, 2))
+				target.playsound_local(source,'sound/effects/glass_step.ogg', 35, TRUE)
+				sleep(rand(CLICK_CD_RANGE, CLICK_CD_RANGE + 2))
+		if("grill hit")
+			for(var/i in 1 to rand(5, 10))
+				target.playsound_local(source,'sound/effects/grillehit.ogg', 35, TRUE)
+				sleep(rand(CLICK_CD_RANGE, CLICK_CD_RANGE + 6))
+		if("apc sparks")
+			target.playsound_local(source, get_sfx("sparks"), 35, TRUE)
+		if("hugged")
+			target.playsound_local(source, 'sound/effects/alien_egg_move.ogg', 35, TRUE)
+			sleep(1 SECONDS)
+			target.playsound_local(source, get_sfx("[pick("male", "female")]_hugged"), 35, TRUE)
+		if("weed placed")
+			target.playsound_local(source, get_sfx("alien_resin_build"), 35, TRUE)
+		if("gunshots")
+			target.playsound_local(source, get_sfx("alien_resin_build"), 35, TRUE)
+			for(var/i in 1 to rand(5, 10))
+				target.playsound_local(source, get_sfx("ballistic_hit"), 35, TRUE)
+				sleep(rand(CLICK_CD_RANGE, CLICK_CD_RANGE + 6))
+
+	qdel(src)
+
+/datum/hallucination/death
+
+/datum/hallucination/death/New(mob/living/carbon/C, forced = TRUE)
+	set waitfor = FALSE
+	..()
+	target.set_screwyhud(SCREWYHUD_DEAD)
+	target.Sleeping(30 SECONDS)
+	if(prob(50))
+		var/mob/fakemob
+		var/list/dead_people = list()
+		for(var/mob/dead/observer/G in GLOB.player_list)
+			dead_people += G
+		if(LAZYLEN(dead_people))
+			fakemob = pick(dead_people)
+		else
+			fakemob = target //ever been so lonely you had to haunt yourself?
+		if(fakemob)
+			sleep(rand(20, 50))
+			to_chat(target, "<span class='deadsay'><b>DEAD: [fakemob.name]</b> says, \"[pick("rip","why did i just drop dead?","hey [target.real_name]","git gud","you too?","did we get the [pick("nuke", "blue disk", "red disk", "green disk", "yellow disk")]?","i[prob(50)?" fucking":""] hate [pick("runners", "queens", "shrikes", "xenos", "this", "myself", "admins", "you")]")]\"</span>")
+	sleep(rand(7 SECONDS, 9 SECONDS))
+	target.set_screwyhud(SCREWYHUD_NONE)
+	target.SetSleeping(0)
+	qdel(src)

@@ -113,22 +113,22 @@
 						dir_sum += 128
 
 	var/table_type = 0 //stand_alone table
-	if(dir_sum%16 in GLOB.cardinals)
+	if((dir_sum%16) in GLOB.cardinals)
 		table_type = 1 //endtable
 		dir_sum %= 16
-	if(dir_sum%16 in list(3, 12))
+	if((dir_sum%16) in list(3, 12))
 		table_type = 2 //1 tile thick, streight table
 		if(dir_sum%16 == 3) //3 doesn't exist as a dir
 			dir_sum = 2
 		if(dir_sum%16 == 12) //12 doesn't exist as a dir.
 			dir_sum = 4
-	if(dir_sum%16 in list(5, 6, 9, 10))
+	if((dir_sum%16) in list(5, 6, 9, 10))
 		if(locate(/obj/structure/table, get_step(src.loc, dir_sum%16)))
 			table_type = 3 //full table (not the 1 tile thick one, but one of the 'tabledir' tables)
 		else
 			table_type = 2 //1 tile thick, corner table (treated the same as streight tables in code later on)
 		dir_sum %= 16
-	if(dir_sum%16 in list(13, 14, 7, 11)) //Three-way intersection
+	if((dir_sum%16) in list(13, 14, 7, 11)) //Three-way intersection
 		table_type = 5 //full table as three-way intersections are not sprited, would require 64 sprites to handle all combinations.  TOO BAD -- SkyMarshal
 		switch(dir_sum%16)	//Begin computation of the special type tables.  --SkyMarshal
 			if(7)
@@ -283,12 +283,12 @@
 
 		var/mob/living/M = G.grabbed_thing
 		if(user.a_intent == INTENT_HARM)
-			if(user.grab_level <= GRAB_AGGRESSIVE)
+			if(user.grab_state <= GRAB_AGGRESSIVE)
 				to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
 				return
 
 			if(prob(15))
-				M.knock_down(5)
+				M.Paralyze(10 SECONDS)
 			M.apply_damage(8, BRUTE, "head")
 			UPDATEHEALTH(M)
 			user.visible_message("<span class='danger'>[user] slams [M]'s face against [src]!</span>",
@@ -296,9 +296,9 @@
 			log_combat(user, M, "slammed", "", "against \the [src]")
 			playsound(loc, 'sound/weapons/tablehit1.ogg', 25, 1)
 
-		else if(user.grab_level >= GRAB_AGGRESSIVE)
+		else if(user.grab_state >= GRAB_AGGRESSIVE)
 			M.forceMove(loc)
-			M.knock_down(5)
+			M.Paralyze(10 SECONDS)
 			user.visible_message("<span class='danger'>[user] throws [M] on [src].</span>",
 			"<span class='danger'>You throw [M] on [src].</span>")
 		return

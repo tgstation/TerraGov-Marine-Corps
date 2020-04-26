@@ -79,10 +79,10 @@ REAGENT SCANNER
 		user.show_message("<span class='notice'>Key: Suffocation/Toxin/Burns/Brute</span>", 1)
 		user.show_message("<span class='notice'>Body Temperature: ???</span>", 1)
 		return
-	if(user.mind?.cm_skills && user.mind.cm_skills.medical < skill_threshold)
+	if(user.skills.getRating("medical") < skill_threshold)
 		to_chat(user, "<span class='warning'>You start fumbling around with [src]...</span>")
-		var/fduration = max(SKILL_TASK_AVERAGE - (user.mind.cm_skills.medical * 10), 0)
-		if(!do_after(user, fduration, TRUE, M, BUSY_ICON_UNSKILLED))
+		var/fduration = max(SKILL_TASK_AVERAGE - (1 SECONDS * user.skills.getRating("medical")), 0)
+		if(!do_mob(user, M, fduration, BUSY_ICON_UNSKILLED))
 			return
 	if(isxeno(M))
 		to_chat(user, "<span class='warning'>[src] can't make sense of this creature.</span>")
@@ -108,7 +108,7 @@ REAGENT SCANNER
 	var/BR = M.getBruteLoss() > 50 	? 	"<b>[M.getBruteLoss()]</b>" 	: M.getBruteLoss()
 
 	// Show overall
-	if(M.status_flags & FAKEDEATH)
+	if(HAS_TRAIT(M, TRAIT_FAKEDEATH))
 		OX = fake_oxy > 50 			? 	"<b>[fake_oxy]</b>" 			: fake_oxy
 		dat += "\n<span class='notice'> Health Analyzer for [M]:\n\tOverall Status: <b>DEAD</b>\n</span>"
 	else
@@ -198,7 +198,7 @@ REAGENT SCANNER
 	if (M.getBrainLoss() >= 100 || !M.has_brain())
 		dat += "\t<span class='scanner'> *Subject is <b>brain dead</b></span>.\n"
 	else if (M.getBrainLoss() >= 60)
-		dat += "\t<span class='scanner'> *<b>Severe brain damage</b> detected. Subject likely to have mental retardation.</span>\n"
+		dat += "\t<span class='scanner'> *<b>Severe brain damage</b> detected. Subject likely to have intellectual disabilities.</span>\n"
 	else if (M.getBrainLoss() >= 10)
 		dat += "\t<span class='scanner'> *<b>Significant brain damage</b> detected. Subject may have had a concussion.</span>\n"
 

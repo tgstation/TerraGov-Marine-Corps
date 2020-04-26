@@ -4,9 +4,9 @@
 	icon_state = "autolathe"
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
-	active_power_usage = 100
+	active_power_usage = 2000
 
 	var/list/stored_material =  list(/datum/material/metal = 0, /datum/material/glass = 0)
 	var/list/storage_capacity = list(/datum/material/metal = 0, /datum/material/glass = 0)
@@ -227,7 +227,7 @@
 			return
 
 		//This needs some work.
-		use_power(max(2000, (making.power_use*multiplier)))
+		use_power(max(active_power_usage, (making.power_use * multiplier)))
 
 		//Check if we still have the materials.
 		for(var/material in making.resources)

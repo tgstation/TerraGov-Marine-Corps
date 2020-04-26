@@ -13,7 +13,7 @@
 /mob/living/proc/has_vision()
 	if(disabilities & BLIND)
 		return FALSE
-	if(get_total_tint() >= TINT_BLIND)
+	if(tinttotal >= TINT_BLIND)
 		return FALSE
 	return has_eyes()
 
@@ -24,10 +24,10 @@
 	return
 
 
-/mob/living/incapacitated(ignore_restrained)
+/mob/living/incapacitated(ignore_restrained, restrained_flags)
 	. = ..()
 	if(!.)
-		return (stunned || knocked_down || knocked_out)
+		return HAS_TRAIT(src, TRAIT_INCAPACITATED)
 
 
 /mob/living/restrained(ignore_checks)
@@ -36,3 +36,9 @@
 	if(ignore_checks)
 		DISABLE_BITFIELD(flags_to_check, ignore_checks)
 	return (. || CHECK_BITFIELD(restrained_flags, flags_to_check))
+
+
+/mob/living/get_policy_keywords()
+	. = ..()
+	if(job)
+		. += job.title

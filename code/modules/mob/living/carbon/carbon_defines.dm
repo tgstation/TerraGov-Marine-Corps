@@ -1,7 +1,7 @@
 /mob/living/carbon
 	gender = MALE
+	buckle_flags = CAN_BE_BUCKLED|BUCKLE_PREVENTS_PULL
 	var/datum/species/species //Contains icon generation and language information, set during New().
-	var/list/stomach_contents = list()
 
 	var/life_tick = 0      // The amount of life ticks that have processed on this mob.
 	var/analgesic = 0 // when this is set, the mob isn't affected by shock or pain
@@ -33,7 +33,7 @@
 	var/stagger = 0 //Temporary inability to use special actions; hurts accuracy. Regenerates each tick.
 
 	var/losebreath = 0
-	var/nutrition = 400
+	var/nutrition = NUTRITION_WELLFED
 
 	var/obj/item/back //Human/Monkey
 	var/obj/item/tank/internal = null//Human/Monkey
@@ -44,3 +44,13 @@
 	var/overeatduration = 0		// How long this guy is overeating
 
 	var/afk_timer_id
+	var/afk_status = MOB_DISCONNECTED
+
+	var/middle_mouse_toggle = TRUE //This toggles whether special clicks use middle mouse clicking or shift clicking
+
+	// halucination vars
+	var/hal_screwyhud = SCREWYHUD_NONE
+	var/next_hallucination = 0
+
+	/// % Chance of exploding on death, incremented by total damage taken if not initially zero.
+	var/gib_chance = 0

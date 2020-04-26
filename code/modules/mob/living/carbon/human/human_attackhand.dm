@@ -3,14 +3,14 @@
 	if(.)
 		return
 
-	if((user != src) && check_shields(0, user.name))
-		visible_message("<span class='danger'>[user] attempted to touch [src]!</span>", null, null, 5)
-		return 0
-
 	if(!ishuman(user))
 		return
 
 	var/mob/living/carbon/human/H = user
+
+	if(user != src && !check_shields(COMBAT_TOUCH_ATTACK, H.melee_damage, "melee"))
+		visible_message("<span class='danger'>[user] attempted to touch [src]!</span>", null, null, 5)
+		return 0
 
 	H.changeNext_move(7)
 	switch(H.a_intent)
@@ -74,17 +74,14 @@
 
 			log_combat(H, src, "[pick(attack.attack_verb)]ed")
 
-			H.do_attack_animation(src)
-			H.flick_attack_overlay(src, "punch")
-
 			if(!H.melee_damage || !prob(H.melee_accuracy))
+				H.do_attack_animation(src)
 				playsound(loc, attack.miss_sound, 25, TRUE)
 				visible_message("<span class='danger'>[H] tried to [pick(attack.attack_verb)] [src]!</span>", null, null, 5)
 				return FALSE
 
-			var/max_dmg = H.melee_damage
-			if(H.mind.cm_skills)
-				max_dmg += H.mind.cm_skills.cqc
+			H.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
+			var/max_dmg = H.melee_damage + H.skills.getRating("cqc")
 			var/damage = rand(1, max_dmg)
 
 			var/datum/limb/affecting = get_limb(ran_zone(H.zone_selected))
@@ -105,13 +102,12 @@
 		if(INTENT_DISARM)
 			log_combat(user, src, "disarmed")
 
-			H.do_attack_animation(src)
-			H.flick_attack_overlay(src, "disarm")
+			H.do_attack_animation(src, ATTACK_EFFECT_DISARM)
 
 			var/datum/limb/affecting = get_limb(ran_zone(H.zone_selected))
 
 			//Accidental gun discharge
-			if(!H.mind?.cm_skills || H.mind.cm_skills.cqc < SKILL_CQC_MP)
+			if(user.skills.getRating("cqc") < SKILL_CQC_MP)
 				if (istype(r_hand,/obj/item/weapon/gun) || istype(l_hand,/obj/item/weapon/gun))
 					var/obj/item/weapon/gun/W = null
 					var/chance = 0
@@ -133,13 +129,7 @@
 						var/turf/target = pick(turfs)
 						return W.afterattack(target,src)
 
-			var/randn = rand(1, 100)
-			if(H.mind && H.mind.cm_skills)
-				randn -= 5 * H.mind.cm_skills.cqc //attacker's martial arts training
-
-			if(mind && mind.cm_skills)
-				randn += 5 * mind.cm_skills.cqc //defender's martial arts training
-
+			var/randn = rand(1, 100) + skills.getRating("cqc") * 5 - H.skills.getRating("cqc") * 5
 
 			if (randn <= 25)
 				apply_effect(3, WEAKEN, run_armor_check(affecting, "melee"))

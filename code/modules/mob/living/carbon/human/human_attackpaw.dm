@@ -6,7 +6,7 @@
 		if (istype(wear_mask, /obj/item/clothing/mask/muzzle))
 			return
 
-		user.do_attack_animation(src)
+		user.do_attack_animation(src, ATTACK_EFFECT_BITE)
 		visible_message("<span class='danger'>[user] has bit [src]!</span>", null, null, 5)
 		var/damage = rand(1, 3)
 		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")

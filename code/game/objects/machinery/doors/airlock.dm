@@ -3,6 +3,9 @@
 	icon = 'icons/obj/doors/Doorint.dmi'
 	icon_state = "door_closed"
 	power_channel = ENVIRON
+	use_power = IDLE_POWER_USE
+	idle_power_usage = 5
+	active_power_usage = 360
 
 	var/aiControlDisabled = 0 //If 1, AI control is disabled until the AI hacks back in and disables the lock. If 2, the AI has bypassed the lock. If -1, the control is enabled but the AI had bypassed it earlier, so if it is disabled again the AI would have no trouble getting back in.
 	var/hackProof = 0 // if 1, this door can't be hacked by the AI
@@ -222,7 +225,7 @@
 	M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins to pry it open.</span>", \
 	"<span class='warning'>We dig into \the [src] and begin to pry it open.</span>", null, 5)
 
-	if(do_after(M, 40, FALSE, src, BUSY_ICON_HOSTILE) && !M.lying)
+	if(do_after(M, 40, FALSE, src, BUSY_ICON_HOSTILE) && !M.lying_angle)
 		if(locked)
 			to_chat(M, "<span class='warning'>\The [src] is bolted down tight.</span>")
 			return FALSE
@@ -309,16 +312,6 @@
 								"<span class='notice'>You finish repairing the airlock.</span>")
 			update_icon()
 
-
-	else if(isscrewdriver(I))
-		if(no_panel)
-			to_chat(user, "<span class='warning'>\The [src] has no panel to open!</span>")
-			return
-
-		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
-		to_chat(user, "<span class='notice'>You [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "open" : "close"] [src]'s panel.</span>")
-		update_icon()
-
 	else if(iswirecutter(I))
 		return attack_hand(user)
 
@@ -332,11 +325,11 @@
 		return
 
 	else if(I.pry_capable == IS_PRY_CAPABLE_CROWBAR && CHECK_BITFIELD(machine_stat, PANEL_OPEN) && (operating == -1 || (density && welded && operating != 1 && !hasPower() && !locked)))
-		if(user.mind?.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
+		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to deconstruct [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to deconstruct [src].</span>")
 
-			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
@@ -409,6 +402,21 @@
 
 	return TRUE
 
+/obj/machinery/door/airlock/screwdriver_act(mob/user, obj/item/I)
+	. = ..()
+	if(no_panel)
+		to_chat(user, "<span class='warning'>\The [src] has no panel to open!</span>")
+		return
+
+	machine_stat ^= PANEL_OPEN
+	if(machine_stat & PANEL_OPEN)
+		to_chat(user, "<span class='notice'>You open [src]'s panel.</span>")
+		playsound(loc, 'sound/items/screwdriver2.ogg', 25, 1)
+	else
+		to_chat(user, "<span class='notice'>You close [src]'s panel.</span>")
+		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+	update_icon()
+
 
 ///obj/machinery/door/airlock/phoron/attackby(C as obj, mob/user as mob)
 //	if(C)
@@ -421,7 +429,7 @@
 	if(!forced)
 		if(!hasPower() || wires.is_cut(WIRE_OPEN))
 			return 0
-	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
+	use_power(active_power_usage)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
 	if(istype(src, /obj/machinery/door/airlock/glass))
 		playsound(src.loc, 'sound/machines/windowdoor.ogg', 25, 1)
 	else
@@ -447,8 +455,8 @@
 	for(var/turf/turf in locs)
 		for(var/mob/living/M in turf)
 			M.apply_damage(DOOR_CRUSH_DAMAGE, BRUTE)
-			M.set_stunned(5)
-			M.set_knocked_down(5)
+			M.Stun(10 SECONDS)
+			M.Paralyze(10 SECONDS)
 			if (iscarbon(M))
 				var/mob/living/carbon/C = M
 				var/datum/species/S = C.species
@@ -459,7 +467,7 @@
 				location.add_mob_blood(M)
 			UPDATEHEALTH(M)
 
-	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
+	use_power(active_power_usage)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
 	if(istype(src, /obj/machinery/door/airlock/glass))
 		playsound(src.loc, 'sound/machines/windowdoor.ogg', 25, 1)
 	else

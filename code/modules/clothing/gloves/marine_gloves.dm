@@ -6,8 +6,8 @@
 /obj/item/clothing/gloves/marine
 	name = "marine combat gloves"
 	desc = "Standard issue marine tactical gloves. It reads: 'knit by Marine Widows Association'."
-	icon_state = "gray"
-	item_state = "graygloves"
+	icon_state = "gloves_marine"
+	item_state = "gloves_marine"
 	siemens_coefficient = 0.6
 	permeability_coefficient = 0.05
 	flags_cold_protection = HANDS
@@ -17,57 +17,8 @@
 	flags_armor_protection = HANDS
 	armor = list("melee" = 15, "bullet" = 20, "laser" = 15, "energy" = 20, "bomb" = 20, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 20)
 
-
-/obj/item/clothing/gloves/marine/Initialize(mapload, squad, rank)
-	. = ..()
-	if(squad)
-		var/dat = ""
-		if(rank == SQUAD_ENGINEER)
-			dat += "insulated "
-			siemens_coefficient = 0
-			desc = "Insulated marine tactical gloves that protect against electrical shocks."
-		name = dat + "[lowertext(squad)] squad gloves"
-		icon_state = "gloves_marine_[lowertext(squad)]"
-		item_state = "gloves_marine_[lowertext(squad)]"
-
-
-/obj/item/clothing/gloves/marine/alpha
-	name = "alpha squad gloves"
-	icon_state = "gloves_marine_alpha"
-	item_state = "gloves_marine_alpha"
-
-/obj/item/clothing/gloves/marine/alpha/insulated
-	name = "insulated alpha squad gloves"
-	desc = "Insulated marine tactical gloves that protect against electrical shocks."
-	siemens_coefficient = 0
-
-/obj/item/clothing/gloves/marine/bravo
-	name = "bravo squad gloves"
-	icon_state = "gloves_marine_bravo"
-	item_state = "gloves_marine_bravo"
-
-/obj/item/clothing/gloves/marine/bravo/insulated
-	name = "insulated bravo squad gloves"
-	desc = "Insulated marine tactical gloves that protect against electrical shocks."
-	siemens_coefficient = 0
-
-/obj/item/clothing/gloves/marine/charlie
-	name = "charlie squad gloves"
-	icon_state = "gloves_marine_charlie"
-	item_state = "gloves_marine_charlie"
-
-/obj/item/clothing/gloves/marine/charlie/insulated
-	name = "insulated charlie squad gloves"
-	desc = "Insulated marine tactical gloves that protect against electrical shocks."
-	siemens_coefficient = 0
-
-/obj/item/clothing/gloves/marine/delta
-	name = "delta squad gloves"
-	icon_state = "gloves_marine_delta"
-	item_state = "gloves_marine_delta"
-
-/obj/item/clothing/gloves/marine/delta/insulated
-	name = "insulated delta squad gloves"
+/obj/item/clothing/gloves/marine/insulated
+	name = "insulated marine combat gloves"
 	desc = "Insulated marine tactical gloves that protect against electrical shocks."
 	siemens_coefficient = 0
 
@@ -115,14 +66,14 @@
 	icon_state = "black"
 	item_state = "bgloves"
 	siemens_coefficient = 0
-	armor = list("melee" = 60, "bullet" = 60, "laser" = 35, "energy" = 30, "bomb" = 30, "bio" = 15, "rad" = 15, "fire" = 30, "acid" = 30)
+	armor = list("melee" = 15, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 15)
 
 /obj/item/clothing/gloves/marine/veteran/PMC/commando
 	name = "\improper PMC commando gloves"
 	desc = "A pair of heavily armored, insulated, acid-resistant gloves."
 	icon_state = "brown"
 	item_state = "browngloves"
-	armor = list("melee" = 90, "bullet" = 120, "laser" = 100, "energy" = 90, "bomb" = 50, "bio" = 30, "rad" = 30, "fire" = 90, "acid" = 90)
+	armor = list("melee" = 25, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 25)
 	resistance_flags = UNACIDABLE
 
 
@@ -131,7 +82,7 @@
 	desc = "Gloves with origins dating back to the old mining colonies."
 	icon_state = "som"
 	item_state = "som"
-	armor = list("melee" = 60, "bullet" = 60, "laser" = 35, "energy" = 30, "bomb" = 30, "bio" = 15, "rad" = 15, "fire" = 30, "acid" = 30)
+	armor = list("melee" = 15, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 15)
 
 
 /obj/item/clothing/gloves/marine/som/veteran
@@ -139,4 +90,11 @@
 	desc = "Gloves with origins dating back to the old mining colonies. Seem to have more care and wear on them."
 	icon_state = "som_veteran"
 	item_state = "som_veteran"
-	armor = list("melee" = 70, "bullet" = 70, "laser" = 45, "energy" = 40, "bomb" = 40, "bio" = 25, "rad" = 25, "fire" = 40, "acid" = 40)
+	armor = list("melee" = 25, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 25)
+
+/obj/item/clothing/gloves/marine/commissar
+	name = "\improper commissar gloves"
+	desc = "Gloves worn by commissars of the Imperial Army so that they do not soil their hands with the blood of their men."
+	icon_state = "gloves_commissar"
+	item_state = "gloves_commissar"
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 15, "bio" = 10, "rad" = 0, "fire" = 20, "acid" = 20)

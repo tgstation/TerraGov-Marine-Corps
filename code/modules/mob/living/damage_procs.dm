@@ -9,11 +9,12 @@
 	standard 0 if fail
 */
 /mob/living/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE)
-	if(blocked >= 1) //total negation
-		return 0
+	var/hit_percent = (100 - blocked) * 0.01
 
-	if(blocked)
-		damage *= CLAMP(1-blocked,0.00,1.00) //Percentage reduction
+	if(hit_percent <= 0) //total negation
+		return FALSE
+
+	damage *= CLAMP01(hit_percent) //Percentage reduction
 
 	if(!damage) //no damage
 		return 0
@@ -35,11 +36,11 @@
 			adjustStaminaLoss(damage)
 	if(updating_health)
 		updatehealth()
-	return TRUE
+	return damage
 
 
 /mob/living/proc/apply_damages(brute = 0, burn = 0, tox = 0, oxy = 0, clone = 0, halloss = 0, def_zone = null, blocked = 0, updating_health = FALSE)
-	if(blocked >= 1) //Complete negation/100% reduction
+	if(blocked >= 100) //Complete negation/100% reduction
 		return FALSE
 	if(brute)
 		apply_damage(brute, BRUTE, def_zone, blocked)
@@ -58,21 +59,31 @@
 	return TRUE
 
 
+/**
+Apply status effect to mob
 
+Arguments
+	effect {int} how much of an effect to apply
+	effecttype {enum} which affect to apply
+	blocked {int} an amount of the effect that is blocked
+	updating_health {boolean} if we should update health [/mob/living/updatehealth]  
+*/
 /mob/living/proc/apply_effect(effect = 0, effecttype = STUN, blocked = 0, updating_health = FALSE)
+	if(status_flags & GODMODE)
+		return FALSE
 	if(!effect || (blocked >= 2))
-		return 0
+		return FALSE
 	switch(effecttype)
 		if(STUN)
-			stun(effect/(blocked+1))
+			Stun(effect/(blocked+1) * 20) // TODO: replace these * 20 with proper amounts in apply_effect() calls
 		if(WEAKEN)
-			knock_down(effect/(blocked+1))
+			Paralyze(effect/(blocked+1) * 20)
 		if(PARALYZE)
-			knock_out(effect/(blocked+1))
+			Unconscious(effect/(blocked+1) * 20)
 		if(AGONY)
 			adjustHalLoss(effect/(blocked+1))
 		if(IRRADIATE)
-			var/rad_protection = getarmor(null, "rad")/100
+			var/rad_protection = getarmor(null, "rad") * 0.01
 			radiation += max((1-rad_protection)*effect/(blocked+1),0)//Rads auto check armor
 		if(STUTTER)
 			if(status_flags & CANSTUN) // stun is usually associated with stutter
@@ -80,7 +91,7 @@
 		if(EYE_BLUR)
 			blur_eyes(effect/(blocked+1))
 		if(DROWSY)
-			drowsyness = max(drowsyness,(effect/(blocked+1)))
+			adjustDrowsyness(effect / (blocked + 1))
 	if(updating_health)
 		updatehealth()
 	return TRUE

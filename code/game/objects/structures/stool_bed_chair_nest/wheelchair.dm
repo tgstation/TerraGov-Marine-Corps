@@ -3,23 +3,17 @@
 	desc = "You sit in this. Either by will or force."
 	icon_state = "wheelchair"
 	anchored = FALSE
+	buckle_flags = CAN_BUCKLE
 	drag_delay = 1 //pulling something on wheels is easy
 	var/bloodiness = 0
 	var/move_delay = 6
 
 
-/obj/structure/bed/chair/wheelchair/handle_rotation()
-	overlays.Cut()
-	var/image/O = image(icon = 'icons/obj/objects.dmi', icon_state = "w_overlay", layer = FLY_LAYER, dir = src.dir)
-	overlays += O
-	if(buckled_mob)
-		buckled_mob.setDir(dir)
-
 /obj/structure/bed/chair/wheelchair/relaymove(mob/user, direction)
 	if(world.time <= last_move_time + move_delay)
 		return
 	// Redundant check?
-	if(user.incapacitated() || user.lying)
+	if(user.incapacitated() || user.lying_angle)
 		return
 
 	if(propelled) //can't manually move it mid-propelling.
@@ -49,7 +43,7 @@
 				var/mob/M = driver.pulling
 				if(M.buckled) //if the pulled mob is buckled to an object, we use that object's drag_delay.
 					pull_delay = M.buckled.drag_delay
-			move_delay += max(driver.pull_speed + pull_delay + 3*driver.grab_level, 0) //harder grab makes you slower
+			move_delay += max(driver.pull_speed + pull_delay + 3 * driver.grab_state, 0) //harder grab makes you slower
 
 		if(istype(driver.get_active_held_item(), /obj/item/weapon/gun)) //Wheelchair user has a gun out, so obviously can't move
 			return
@@ -58,24 +52,51 @@
 			move_delay += driver.next_move_slowdown
 			driver.next_move_slowdown = 0
 
-		if(driver.temporary_slowdown)
-			move_delay += 2 //Temporary slowdown slows hard
-
 	step(src, direction)
 
 
-/obj/structure/bed/chair/wheelchair/Move()
+/obj/structure/bed/chair/wheelchair/Moved()
 	. = ..()
-	if(. && bloodiness)
+	if(bloodiness)
 		create_track()
+	cut_overlays()
+	if(LAZYLEN(buckled_mobs))
+		handle_rotation_overlayed()
+
+
+/obj/structure/bed/chair/wheelchair/post_buckle_mob(mob/living/user)
+	. = ..()
+	handle_rotation_overlayed()
+
+/obj/structure/bed/chair/wheelchair/post_unbuckle_mob()
+	. = ..()
+	cut_overlays()
+
+/obj/structure/bed/chair/wheelchair/setDir(newdir)
+	. = ..()
+	handle_rotation(newdir)
+
+/obj/structure/bed/chair/wheelchair/handle_rotation(direction)
+	if(LAZYLEN(buckled_mobs))
+		handle_rotation_overlayed()
+		for(var/m in buckled_mobs)
+			var/mob/living/buckled_mob = m
+			buckled_mob.setDir(direction)
+
+/obj/structure/bed/chair/wheelchair/proc/handle_rotation_overlayed()
+	cut_overlays()
+	var/image/V = image(icon = icon, icon_state = "w_overlay", layer = FLY_LAYER, dir = src.dir)
+	add_overlay(V)
+
 
 /obj/structure/bed/chair/wheelchair/Bump(atom/A)
 	..()
-	if(!buckled_mob)	return
+	if(!LAZYLEN(buckled_mobs))
+		return
 
 	if(propelled)
-		var/mob/living/occupant = buckled_mob
-		unbuckle()
+		var/mob/living/occupant = buckled_mobs[1]
+		unbuckle_mob(occupant)
 
 		if (propelled)
 			occupant.throw_at(A, 3, propelled)

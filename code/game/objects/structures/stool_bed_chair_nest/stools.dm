@@ -3,7 +3,7 @@
 	desc = "Apply butt."
 	icon_state = "stool"
 	anchored = TRUE
-	can_buckle = FALSE
+	buckle_flags = NONE
 	foldabletype = /obj/item/stool
 
 
@@ -43,7 +43,7 @@
 		m.loc = get_turf(src)
 		var/mob/living/T = M
 		if(istype(T) && !isxeno(T))
-			T.knock_down(10)
+			T.Paralyze(20 SECONDS)
 		T.apply_damage(20)
 		UPDATEHEALTH(T)
 		qdel(src)

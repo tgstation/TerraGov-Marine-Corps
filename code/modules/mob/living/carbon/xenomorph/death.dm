@@ -3,7 +3,7 @@
 	playsound(loc, prob(50) == 1 ? 'sound/voice/alien_death.ogg' : 'sound/voice/alien_death2.ogg', 25, 1)
 
 /mob/living/carbon/xenomorph/death(gibbed)
-	if(length(stomach_contents))
+	if(LAZYLEN(stomach_contents))
 		empty_gut()
 		visible_message("<span class='danger'>Something bursts out of [src]!</span>")
 
@@ -36,7 +36,12 @@
 
 	hud_set_queen_overwatch() //updates the overwatch hud to remove the upgrade chevrons, gold star, etc
 
+	var/isAI = GetComponent(/datum/component/ai_controller)
+	if (isAI)
+		gib()
+
 	GLOB.round_statistics.total_xeno_deaths++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_xeno_deaths")
 
 /mob/living/carbon/xenomorph/proc/xeno_death_alert()
 	if(is_centcom_level(z))

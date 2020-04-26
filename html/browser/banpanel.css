@@ -44,6 +44,10 @@
     text-align: center;
 }
 
+.civilian {
+	background-color: #b6a99b;
+}
+
 .command {
     background-color: #948f02;
 }
@@ -60,12 +64,24 @@
     background-color: #337296;
 }
 
-.marines {
-    background-color: #993399;
+.marine {
+	background-color: #993399;
 }
 
 .requisitions {
     background-color: #a8732b;
+}
+
+.unassigned {
+	background-color: #b0b0b0;
+}
+
+.silicon {
+	background-color: #88b64d;
+}
+
+.xenomorph {
+	background-color: #8972AA;
 }
 
 

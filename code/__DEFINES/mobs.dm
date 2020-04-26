@@ -11,6 +11,13 @@
 #define PAIN_REDUCTION_FULL			-200 //oxycodone, neuraline
 
 
+//Nutrition
+
+#define NUTRITION_STARVING 150
+#define NUTRITION_HUNGRY 250
+#define NUTRITION_WELLFED 400
+#define NUTRITION_OVERFED 450
+
 //=================================================
 /*
 	Germs and infections
@@ -115,10 +122,13 @@
 #define CANKNOCKOUT		(1<<2)
 #define CANPUSH			(1<<3)
 #define GODMODE			(1<<4)
-#define FAKEDEATH		(1<<5)	//Replaces stuff like changeling.changeling_fakedeath
+#define FAKEDEATH		(1<<5)	//Unused
 #define DISFIGURED		(1<<6)	//I'll probably move this elsewhere if I ever get wround to writing a bitflag mob-damage system
 #define XENO_HOST		(1<<7)	//Tracks whether we're gonna be a baby alien's mummy.
 #define TK_USER			(1<<8)
+#define CANUNCONSCIOUS	(1<<9)
+#define CANCONFUSE		(1<<10)
+#define INCORPOREAL 	(1<<11) // Whether not this unit should be detectable by automated means (like turrets). Used by hivemind
 
 // =============================
 // hive types
@@ -300,6 +310,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define IS_PLANT 				(1<<13)
 #define IS_SYNTHETIC 			(1<<14)
 #define NO_STAMINA 				(1<<15)
+#define DETACHABLE_HEAD			(1<<16)
+#define USES_ALIEN_WEAPONS		(1<<17)
+#define NO_DAMAGE_OVERLAY		(1<<18)
 //=================================================
 
 //Some on_mob_life() procs check for alien races.
@@ -311,7 +324,13 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define IS_UNATHI (1<<5)
 #define IS_HORROR (1<<6)
 #define IS_MOTH (1<<7)
+#define IS_SECTOID (1<<8)
 //=================================================
+
+//AFK status
+#define MOB_CONNECTED 0
+#define MOB_RECENTLY_DISCONNECTED 1 //Still within the grace period.
+#define MOB_DISCONNECTED 2
 
 //Mob sizes
 #define MOB_SIZE_SMALL			0
@@ -356,36 +375,37 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define REST_HALLOSS_RECOVERY_RATE -32
 
 // Human Overlay Indexes
-#define LASER_LAYER				28		//For sniper targeting laser
-#define MOTH_WINGS_LAYER		27
-#define MUTANTRACE_LAYER		26
-#define MUTATIONS_LAYER			25
-#define DAMAGE_LAYER			24
-#define UNIFORM_LAYER			23
-#define TAIL_LAYER				22		//bs12 specific. this hack is probably gonna come back to haunt me
-#define ID_LAYER				21
-#define SHOES_LAYER				20
-#define GLOVES_LAYER			19
-#define BELT_LAYER   			18
-#define GLASSES_LAYER			17
-#define SUIT_LAYER				16		//Possible make this an overlay of somethign required to wear a belt?
-#define SUIT_STORE_LAYER		15
-#define BACK_LAYER				14
-#define HAIR_LAYER				13		//TODO: make part of head layer?
-#define EARS_LAYER				12
-#define FACEMASK_LAYER			11
-#define GOGGLES_LAYER           10    //For putting Ballistic goggles and potentially other things above masks
-#define HEAD_LAYER				9
-#define COLLAR_LAYER			8
-#define HANDCUFF_LAYER			7
-#define LEGCUFF_LAYER			6
-#define L_HAND_LAYER			5
-#define R_HAND_LAYER			4
-#define BURST_LAYER				3 	//Chestburst overlay
-#define TARGETED_LAYER			2	//for target sprites when held at gun point, and holo cards.
-#define FIRE_LAYER				1		//If you're on fire		//BS12: Layer for the target overlay from weapon targeting system
+#define LASER_LAYER				29 //For sniper targeting laser
+#define MOTH_WINGS_LAYER		28
+#define MUTANTRACE_LAYER		27
+#define MUTATIONS_LAYER			26
+#define DAMAGE_LAYER			25
+#define UNIFORM_LAYER			24
+#define TAIL_LAYER				23 //bs12 specific. this hack is probably gonna come back to haunt me
+#define ID_LAYER				22
+#define SHOES_LAYER				21
+#define GLOVES_LAYER			20
+#define BELT_LAYER   			19
+#define GLASSES_LAYER			18
+#define SUIT_LAYER				17 //Possible make this an overlay of somethign required to wear a belt?
+#define SUIT_STORE_LAYER		16
+#define BACK_LAYER				15
+#define HAIR_LAYER				14 //TODO: make part of head layer?
+#define EARS_LAYER				13
+#define FACEMASK_LAYER			12
+#define GOGGLES_LAYER			11	//For putting Ballistic goggles and potentially other things above masks
+#define HEAD_LAYER				10
+#define COLLAR_LAYER			9
+#define HANDCUFF_LAYER			8
+#define LEGCUFF_LAYER			7
+#define L_HAND_LAYER			6
+#define R_HAND_LAYER			5
+#define BURST_LAYER				4 //Chestburst overlay
+#define OVERHEALTH_SHIELD_LAYER	3
+#define TARGETED_LAYER			2 //for target sprites when held at gun point, and holo cards.
+#define FIRE_LAYER				1 //If you're on fire
 
-#define TOTAL_LAYERS			27
+#define TOTAL_LAYERS			29
 
 #define MOTH_WINGS_BEHIND_LAYER	1
 
@@ -417,7 +437,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_LARVAL_AMOUNT_RECURRING		10
 #define XENO_LARVAL_CHANNEL_TIME			1.5 SECONDS
 
-#define XENO_NEURO_AMOUNT_RECURRING			15
+#define XENO_NEURO_AMOUNT_RECURRING			10
 #define XENO_NEURO_CHANNEL_TIME				1.5 SECONDS
 
 #define CANNOT_HOLD_EGGS 0
@@ -435,8 +455,10 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_DECAY_PROOF			(1<<8)
 #define CASTE_CAN_BE_LEADER			(1<<9)
 #define CASTE_HIDE_IN_STATUS		(1<<10)
-#define CASTE_QUICK_HEAL_STANDING (1<<11) // Xenomorphs heal standing same if they were resting.
+#define CASTE_QUICK_HEAL_STANDING 	(1<<11) // Xenomorphs heal standing same if they were resting.
 #define CASTE_CAN_HEAL_WIHOUT_QUEEN	(1<<12) // Xenomorphs can heal even without a queen on the same z level
+#define CASTE_INNATE_PLASMA_REGEN 	(1<<13) // Xenos get full plasma regardless if they are on weeds or not
+#define CASTE_ACID_BLOOD (1<<13) //The acid blood effect which damages humans near xenos that take damage
 
 //Charge-Crush
 #define CHARGE_OFF			0
@@ -447,9 +469,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 // Xeno charge types
 #define CHARGE_TYPE_SMALL			1
 #define CHARGE_TYPE_MEDIUM			2
-#define CHARGE_TYPE_LARGE			3
-#define CHARGE_TYPE_MASSIVE			4
-
+#define CHARGE_TYPE_PANTHER			3
+#define CHARGE_TYPE_LARGE			4
+#define CHARGE_TYPE_MASSIVE			5
 
 //Hunter Defines
 #define HUNTER_STEALTH_COOLDOWN					50 //5 seconds
@@ -483,7 +505,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CRUSHER_CHARGE_RAZORWIRE_MULTI	100
 #define CRUSHER_CHARGE_TANK_MULTI		100
 
-#define CRUSHER_STOMP_UPGRADE_BONUS(Xenomorph) (( ( 1 + Xenomorph.upgrade_as_number() ) * 0.05 ))
+#define CRUSHER_STOMP_UPGRADE_BONUS(Xenomorph) (1 + ( (  Xenomorph.upgrade_as_number() ) * 0.05 ))
 
 //carrier defines
 #define CARRIER_HUGGER_THROW_SPEED 2
@@ -497,7 +519,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define DEFILER_STING_AMOUNT_RECURRING		10
 
 //Boiler defines
-#define BOILER_LUMINOSITY					3
+#define BOILER_LUMINOSITY_BASE						0
+#define BOILER_LUMINOSITY_BASE_COLOR				LIGHT_COLOR_GREEN
+#define BOILER_LUMINOSITY_AMMO						1 //don't set this to 0. How much each 'piece' of ammo in reserve glows by.
+#define BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR		LIGHT_COLOR_YELLOW
+#define BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR		LIGHT_COLOR_GREEN
 
 //Hivelord defines
 
@@ -546,6 +572,18 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define BODY_ZONE_PRECISE_L_FOOT	"l_foot"
 #define BODY_ZONE_PRECISE_R_FOOT	"r_foot"
 
+GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
+										BODY_ZONE_CHEST,
+										BODY_ZONE_PRECISE_GROIN,
+										BODY_ZONE_L_ARM,
+										BODY_ZONE_PRECISE_L_HAND,
+										BODY_ZONE_R_ARM,
+										BODY_ZONE_PRECISE_R_HAND,
+										BODY_ZONE_L_LEG,
+										BODY_ZONE_PRECISE_L_FOOT,
+										BODY_ZONE_R_LEG,
+										BODY_ZONE_PRECISE_R_FOOT
+										))
 
 //Hostile simple animals
 #define AI_ON		1
@@ -577,3 +615,21 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define COOLDOWN_VENTSOUND	"vendsound"
 
 #define UPDATEHEALTH(MOB) (addtimer(CALLBACK(MOB, /mob/living.proc/updatehealth), 1, TIMER_UNIQUE))
+
+#define GRAB_PIXEL_SHIFT_PASSIVE 6
+#define GRAB_PIXEL_SHIFT_AGGRESSIVE 12
+#define GRAB_PIXEL_SHIFT_NECK 16
+
+#define HUMAN_CARRY_SLOWDOWN 0.35
+
+
+// =============================
+// Hallucinations - health hud screws for carbon mobs
+#define SCREWYHUD_NONE 0
+#define SCREWYHUD_CRIT 1
+#define SCREWYHUD_DEAD 2
+#define SCREWYHUD_HEALTHY 3
+
+//do_mob() flags
+#define IGNORE_LOC_CHANGE (1<<0)
+#define IGNORE_HAND (1<<1)

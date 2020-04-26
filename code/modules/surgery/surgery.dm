@@ -117,18 +117,18 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 		return 0
 	if(user.action_busy) //already doing an action
 		return 1
-	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.surgery < SKILL_SURGERY_PROFESSIONAL)
+	if(user.skills.getRating("surgery") < SKILL_SURGERY_PROFESSIONAL)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to operate [M].</span>",
 		"<span class='notice'>You fumble around figuring out how to operate [M].</span>")
-		var/fumbling_time = SKILL_TASK_FORMIDABLE - ( SKILL_TASK_AVERAGE * user.mind.cm_skills.surgery ) // 20 secs non-trained, 15 amateur, 10 semi-prof
+		var/fumbling_time = SKILL_TASK_FORMIDABLE - ( 6 SECONDS * user.skills.getRating("surgery") ) // 20 secs non-trained, 14 amateur, 8 trained, 2 prof
 		if(!do_after(user, fumbling_time, TRUE, M, BUSY_ICON_UNSKILLED))
 			return
-	var/datum/limb/affected = M.get_limb(user.zone_selected)
+	var/datum/limb/affected = user.client.prefs.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(M, user) : M.get_limb(user.zone_selected)
 	if(!affected)
-		return 0
+		return TRUE
 	if(affected.in_surgery_op) //two surgeons can't work on same limb at same time
 		to_chat(user, "<span class='warning'>You can't operate on the patient's [affected.display_name] while it's already being operated on.</span>")
-		return 1
+		return TRUE
 
 	for(var/i in GLOB.surgery_steps)
 		var/datum/surgery_step/S = i
@@ -165,10 +165,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 					multipler = 1
 
 				//calculate step duration
-				var/step_duration = rand(S.min_duration, S.max_duration)
-				if(user.mind && user.mind.cm_skills)
-					//1 second reduction per level above minimum for performing surgery
-					step_duration = max(5, step_duration - 10*user.mind.cm_skills.surgery)
+				var/step_duration = max(0.5 SECONDS, rand(S.min_duration, S.max_duration) - 1 SECONDS * user.skills.getRating("surgery"))
 
 				//Multiply tool success rate with multipler
 				if(do_mob(user, M, step_duration, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(user, /mob/proc/break_do_after_checks, null, null, user.zone_selected)) && prob(S.tool_quality(tool) * CLAMP01(multipler)))

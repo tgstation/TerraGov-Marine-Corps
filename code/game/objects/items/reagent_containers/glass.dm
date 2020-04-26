@@ -10,7 +10,7 @@
 	icon_state = "null"
 	item_state = "null"
 	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(5,10,15,25,30,60)
+	possible_transfer_amounts = list(5,10,15,20,30,60)
 	volume = 60
 	init_reagent_flags = OPENCONTAINER
 
@@ -108,7 +108,7 @@
 	. = ..()
 
 	if(istype(I, /obj/item/tool/pen) || istype(I, /obj/item/flashlight/pen))
-		var/tmp_label = sanitize(input(user, "Enter a label for [name]", "Label", label_text))
+		var/tmp_label = stripped_input(user, "Enter a label for [name]", "Label", label_text)
 		if(length(tmp_label) > MAX_NAME_LEN)
 			to_chat(user, "<span class='warning'>The label can be at most [MAX_NAME_LEN] characters long.</span>")
 			return
@@ -181,7 +181,7 @@
 	materials = list(/datum/material/glass = 5000)
 	volume = 120
 	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(5,10,15,25,30,60,120)
+	possible_transfer_amounts = list(5,10,15,20,30,40,60,120)
 
 /obj/item/reagent_containers/glass/beaker/noreact
 	name = "cryostasis beaker"
@@ -199,8 +199,7 @@
 	materials = list(/datum/material/glass = 5000)
 	volume = 300
 	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(5,10,15,25,30,60,120,300)
-
+	possible_transfer_amounts = list(5,10,15,20,30,40,60,120,300)
 
 /obj/item/reagent_containers/glass/beaker/vial
 	name = "vial"

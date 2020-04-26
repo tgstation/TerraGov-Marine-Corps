@@ -66,7 +66,7 @@
 	layer = FULLSCREEN_LAYER
 	mouse_opacity = 0
 	var/severity = 0
-	var/fs_view = 7
+	var/fs_view = WORLD_VIEW
 
 /obj/screen/fullscreen/Destroy()
 	severity = 0

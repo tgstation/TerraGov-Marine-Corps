@@ -132,6 +132,25 @@
 	new /obj/item/stack/medical/splint (src)
 
 
+/obj/item/storage/pouch/firstaid/injectors
+	name = "first-aid pouch"
+	desc = "It can contain autoinjectors."
+	icon_state = "firstaid"
+	storage_slots = 5
+	can_hold = list(/obj/item/reagent_containers/hypospray/autoinjector)
+
+/obj/item/storage/pouch/firstaid/injectors/full
+	desc = "Contains 3 combat autoinjectors, an oxycodone injector, and a stimulant injector."
+
+/obj/item/storage/pouch/firstaid/injectors/full/Initialize()
+	. = ..()
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired (src)
+
+
 /obj/item/storage/pouch/firstaid/som
 	name = "mining first aid pouch"
 	desc = "A basic first aid pouch used by miners due to dangerous working conditions on the mining colonies."
@@ -218,6 +237,10 @@
 	fill_type = /obj/item/ammo_magazine/revolver/mateba
 	fill_number = 3
 
+/obj/item/storage/pouch/magazine/pistol/large/mateba
+	fill_type = /obj/item/ammo_magazine/revolver/mateba
+	fill_number = 6
+
 /obj/item/storage/pouch/magazine/pistol/vp70
 	fill_type = /obj/item/ammo_magazine/pistol/vp70
 	fill_number = 3
@@ -247,7 +270,7 @@
 	fill_number = 3
 
 /obj/item/storage/pouch/magazine/large/pmc_lmg
-	fill_type = /obj/item/ammo_magazine/lmg
+	fill_type = /obj/item/ammo_magazine/standard_lmg
 	fill_number = 3
 
 /obj/item/storage/pouch/magazine/large/pmc_sniper
@@ -314,8 +337,37 @@
 	storage_slots = 7
 	max_storage_space = 14
 	can_hold = list(
-		/obj/item/reagent_containers/hypospray/autoinjector
-	)
+		/obj/item/reagent_containers/hypospray/autoinjector)
+
+/obj/item/storage/pouch/autoinjector/full/Initialize()
+	. = ..()
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/quickclot (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine(src)
+
+/obj/item/storage/pouch/autoinjector/advanced
+	name = "auto-injector pouch"
+	desc = "A pouch specifically for auto-injectors. This one comes pre-loaded with goodies!"
+	icon_state = "autoinjector"
+	storage_slots = 7
+	max_storage_space = 14
+	can_hold = list(
+		/obj/item/reagent_containers/hypospray/autoinjector)
+
+/obj/item/storage/pouch/autoinjector/advanced/full/Initialize()
+	. = ..()
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine (src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/hyperzine(src)
+
 
 
 /obj/item/storage/pouch/syringe

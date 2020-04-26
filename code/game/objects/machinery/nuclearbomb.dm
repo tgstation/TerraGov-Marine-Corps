@@ -12,7 +12,9 @@
 	icon_state = "nuclearbomb0"
 	density = TRUE
 	anchored = TRUE
+	flags_atom = CRITICAL_ATOM
 	resistance_flags = RESIST_ALL
+	layer = BELOW_MOB_LAYER
 	var/deployable = TRUE
 	var/extended = FALSE
 	var/lighthack = FALSE
@@ -66,6 +68,7 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_STOP, src)
 	countdown.stop()
 	GLOB.active_nuke_list -= src
+	timeleft = initial(timeleft)
 	return ..()
 
 
@@ -271,6 +274,9 @@
 			if(safety)
 				to_chat(usr, "<span class='warning'>The safety is still on.</span>")
 				return
+			if(!anchored)
+				to_chat(usr, "<span class='warning'>The anchors are not set.</span>")
+				return
 			timer_enabled = !timer_enabled
 			if(timer_enabled)
 				start_processing()
@@ -289,12 +295,17 @@
 				anchored = FALSE
 				visible_message("<span class='warning'>\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
 				return
+			if(istype(get_area(loc), /area/shuttle))
+				to_chat(usr, "<span class='warning'>This doesn't look like a good spot to anchor the nuke.</span>")
+				return
 
 			anchored = !anchored
 			if(anchored)
 				visible_message("<span class='warning'>With a steely snap, bolts slide out of [src] and anchor it to the flooring.</span>")
 			else
 				visible_message("<span class='warning'>The anchoring bolts slide back into the depths of [src].</span>")
+				timer_enabled = FALSE
+				stop_processing()
 
 	updateUsrDialog()
 

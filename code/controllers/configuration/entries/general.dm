@@ -106,6 +106,8 @@ Administrative related.
 
 /datum/config_entry/flag/allow_admin_ooccolor // Allows admins to customize their OOC color.
 
+/datum/config_entry/flag/usewhitelist
+
 /datum/config_entry/flag/use_age_restriction_for_jobs	//Do jobs use account age restrictions? --requires database
 
 /datum/config_entry/flag/use_exp_tracking
@@ -122,6 +124,8 @@ Administrative related.
 /datum/config_entry/flag/use_exp_restrictions_command_department
 
 /datum/config_entry/flag/use_exp_restrictions_other
+
+/datum/config_entry/flag/prevent_dupe_names
 
 /datum/config_entry/flag/kick_inactive	//force disconnect for inactive players
 
@@ -182,6 +186,8 @@ Administrative related.
 	integer = FALSE
 	min_val = 0
 
+/datum/config_entry/number/glide_size_mod
+	config_entry_value = 0
 /*
 Voting
 */
@@ -333,6 +339,9 @@ The default value assumes youtube-dl is in your system PATH
 	config_entry_value = "The server is currently serving a high number of users, joining the server has been disabled."
 
 
+/datum/config_entry/flag/byond_member_bypass_popcap
+
+
 /datum/config_entry/flag/panic_bunker
 
 
@@ -352,3 +361,18 @@ The default value assumes youtube-dl is in your system PATH
 
 /datum/config_entry/string/panic_bunker_message
 	config_entry_value = "Sorry but the server is currently not accepting connections from never before seen players."
+
+
+/datum/config_entry/string/default_view
+	config_entry_value = "15x15"
+
+/datum/config_entry/string/default_view_square
+	config_entry_value = "15x15"
+
+/*
+This maintains a list of ip addresses that are able to bypass topic filtering.
+*/
+/datum/config_entry/keyed_list/topic_filtering_whitelist
+	key_mode = KEY_MODE_TEXT
+	value_mode = VALUE_MODE_FLAG
+	protection = CONFIG_ENTRY_LOCKED

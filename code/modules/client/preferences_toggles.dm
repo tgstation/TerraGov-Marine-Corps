@@ -77,6 +77,15 @@
 
 	to_chat(src, "<span class='notice'>You will [(prefs.toggles_sound & SOUND_MIDI) ? "now" : "no longer"] hear admin music.</span>")
 
+/client/verb/toggle_radial_medical()
+	set category = "Preferences"
+	set name = "Toggle Radial Medical Wheel"
+
+	prefs.toggles_gameplay ^= RADIAL_MEDICAL
+	prefs.save_preferences()
+
+	to_chat(src, "<span class='notice'>You will [(prefs.toggles_gameplay & RADIAL_MEDICAL) ? "now" : "no longer"] use the radial menu for medical purposes.</span>")
+
 
 /client/verb/toggle_lobby_music()
 	set category = "Preferences"
@@ -89,7 +98,8 @@
 		to_chat(src, "<span class='notice'>You will now hear music in the game lobby.</span>")
 		if(!isnewplayer(mob))
 			return
-		playtitlemusic()
+		play_title_music()
+
 	else
 		to_chat(src, "<span class='notice'>You will no longer hear music in the game lobby.</span>")
 		if(!isnewplayer(mob))

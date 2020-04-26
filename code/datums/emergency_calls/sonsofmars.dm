@@ -21,9 +21,6 @@
 	var/mob/original = M.current
 	var/mob/living/carbon/human/H = .
 
-	H.name = GLOB.namepool[/datum/namepool/clf].random_name(H)
-	H.real_name = H.name
-
 	M.transfer_to(H, TRUE)
 
 	if(original)
@@ -34,23 +31,23 @@
 	if(!leader)
 		leader = H
 		var/datum/job/J = SSjob.GetJobType(/datum/job/som/leader)
-		J.assign_equip(H)
+		H.apply_assigned_role_to_spawn(J)
 		to_chat(H, "<span class='notice'>You are a member of the Sons of Mars assigned to lead this fireteam to the TGMC distress signal sent out nearby. Lead your fireteam to top-working conidition!</span>")
 		return
 
 	if(medics < max_medics)
 		var/datum/job/J = SSjob.GetJobType(/datum/job/som/medic)
-		J.assign_equip(H)
+		H.apply_assigned_role_to_spawn(J)
 		to_chat(H, "<span class='notice'>You are a Sons of Mars medic assigned to this fireteam to respond to the TGMC distress signal sent out nearby. Keep your squad alive in this fight!</span>")
 		medics++
 		return
 
 	if(prob(20))
 		var/datum/job/J = SSjob.GetJobType(/datum/job/som/veteran)
-		J.assign_equip(H)
+		H.apply_assigned_role_to_spawn(J)
 		to_chat(H, "<span class='notice'>You are a veteran of the Sons of Mars and are assigned to this fireteam to respond to the TGMC distress signal sent out nearby. Do them proud and kill all who stand in your teams way!</span>")
 		return
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/som/standard)
-	J.assign_equip(H)
+	H.apply_assigned_role_to_spawn(J)
 	to_chat(H, "<span class='notice'>You are a member of the Sons of Mars assigned to compose this fireteam to the TGMC distress signal sent out nearby. Protect yourself and your other teammembers, kill all who stand in your team's way!</span>")

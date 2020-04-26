@@ -9,24 +9,24 @@
 	wound_type = "ravager" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 40
+	melee_damage = 42
 	attack_delay = 7
 
 	// *** Tackle *** //
 	tackle_damage = 35
 
 	// *** Speed *** //
-	speed = -0.8
+	speed = -0.5
 
 	// *** Plasma *** //
-	plasma_max = 150
-	plasma_gain = 10
+	plasma_max = 400
+	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 225
+	max_health = 240
 
 	// *** Evolution *** //
-	upgrade_threshold = 400
+	upgrade_threshold = 200
 
 	deevolves_to = /mob/living/carbon/xenomorph/hunter
 
@@ -34,9 +34,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_1, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 45)
-
-	fire_resist = 0.5 //0 to 1; lower is better as it is a multiplier.
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_1, "bio" = 30, "rad" = 30, "fire" = 15, "acid" = 30)
 
 	// *** Ranged Attack *** //
 	charge_type = 3 //Claw at end of charge
@@ -46,6 +44,7 @@
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/activable/charge,
+		/datum/action/xeno_action/activable/ravage
 		)
 
 /datum/xeno_caste/ravager/young
@@ -60,28 +59,26 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 43
+	melee_damage = 44
 
 	// *** Tackle *** //
 	tackle_damage = 40
 
 	// *** Speed *** //
-	speed = -0.9
+	speed = -0.6
 
 	// *** Plasma *** //
-	plasma_max = 175
-	plasma_gain = 13
+	plasma_max = 500 //Enables using either both abilities at once or one after another
+	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 275
+	max_health = 265
 
 	// *** Evolution *** //
-	upgrade_threshold = 800
+	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor = list("melee" = 55, "bullet" = 55, "laser" = 55, "energy" = 55, "bomb" = XENO_BOMB_RESIST_2, "bio" = 55, "rad" = 55, "fire" = 55, "acid" = 55)
-
-	fire_resist = 0.5 //0 to 1; lower is better as it is a multiplier.
+	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_1, "bio" = 35, "rad" = 35, "fire" = 20, "acid" = 35)
 
 /datum/xeno_caste/ravager/elder
 	upgrade_name = "Elder"
@@ -90,28 +87,26 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 48
+	melee_damage = 46
 
 	// *** Tackle *** //
 	tackle_damage = 45
 
 	// *** Speed *** //
-	speed = -0.97
+	speed = -0.7
 
 	// *** Plasma *** //
-	plasma_max = 190
-	plasma_gain = 14
+	plasma_max = 550
+	plasma_gain = 35
 
 	// *** Health *** //
 	max_health = 290
 
 	// *** Evolution *** //
-	upgrade_threshold = 1600
+	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor = list("melee" = 58, "bullet" = 58, "laser" = 58, "energy" = 58, "bomb" = XENO_BOMB_RESIST_2, "bio" = 58, "rad" = 58, "fire" = 58, "acid" = 58)
-
-	fire_resist = 0.5 //0 to 1; lower is better as it is a multiplier.
+	armor = list("melee" = 40, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_1, "bio" = 38, "rad" = 38, "fire" = 25, "acid" = 38)
 
 /datum/xeno_caste/ravager/ancient
 	upgrade_name = "Ancient"
@@ -120,26 +115,23 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 50
+	melee_damage = 48
 
 	// *** Tackle *** //
 	tackle_damage = 50
 
 	// *** Speed *** //
-	speed = -1
+	speed = -0.8
 
 	// *** Plasma *** //
-	plasma_max = 200
-	plasma_gain = 15
+	plasma_max = 600
+	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 315
 
 	// *** Evolution *** //
-	upgrade_threshold = 1600
+	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = XENO_BOMB_RESIST_2, "bio" = 60, "rad" = 60, "fire" = 60, "acid" = 60)
-
-	fire_resist = 0.5 //0 to 1; lower is better as it is a multiplier.
-
+	armor = list("melee" = 45, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_1, "bio" = 40, "rad" = 40, "fire" = 28, "acid" = 40)

@@ -3,7 +3,7 @@
 // ***************************************
 /datum/action/xeno_action/choose_resin/hivelord
 	buildable_structures = list(
-		/turf/closed/wall/resin/thick,
+		/turf/closed/wall/resin/regenerating/thick,
 		/obj/structure/bed/nest,
 		/obj/effect/alien/resin/sticky,
 		/obj/structure/mineral_door/resin/thick)
@@ -20,31 +20,33 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	if(get_dist(owner, A) != 1)
 		return ..()
 
-	if(!is_type_in_typecache(A, GLOB.thickenable_resin))
-		return build_resin(get_turf(A))
+	return build_resin(get_turf(owner)) // TODO: (psykzz) 
 
-	if(istype(A, /turf/closed/wall/resin))
-		var/turf/closed/wall/resin/WR = A
-		var/oldname = WR.name
-		if(WR.thicken())
-			owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a thick substance and thickens [oldname].</span>", \
-			"<span class='xenonotice'>You regurgitate some resin and thicken [oldname].</span>", null, 5)
-			playsound(owner.loc, "alien_resin_build", 25)
-			return succeed_activate()
-		to_chat(owner, "<span class='xenowarning'>[WR] can't be made thicker.</span>")
-		return fail_activate()
+	// if(!is_type_in_typecache(A, GLOB.thickenable_resin))
+	// 	return build_resin(get_turf(A))
 
-	if(istype(A, /obj/structure/mineral_door/resin))
-		var/obj/structure/mineral_door/resin/DR = A
-		var/oldname = DR.name
-		if(DR.thicken())
-			owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a thick substance and thickens [oldname].</span>", \
-				"<span class='xenonotice'>We regurgitate some resin and thicken [oldname].</span>", null, 5)
-			playsound(owner.loc, "alien_resin_build", 25)
-			return succeed_activate()
-		to_chat(owner, "<span class='xenowarning'>[DR] can't be made thicker.</span>")
-		return fail_activate()
-	return fail_activate() //will never be reached but failsafe
+	// if(istype(A, /turf/closed/wall/resin))
+	// 	var/turf/closed/wall/resin/WR = A
+	// 	var/oldname = WR.name
+	// 	if(WR.thicken())
+	// 		owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a thick substance and thickens [oldname].</span>", \
+	// 		"<span class='xenonotice'>You regurgitate some resin and thicken [oldname].</span>", null, 5)
+	// 		playsound(owner.loc, "alien_resin_build", 25)
+	// 		return succeed_activate()
+	// 	to_chat(owner, "<span class='xenowarning'>[WR] can't be made thicker.</span>")
+	// 	return fail_activate()
+
+	// if(istype(A, /obj/structure/mineral_door/resin))
+	// 	var/obj/structure/mineral_door/resin/DR = A
+	// 	var/oldname = DR.name
+	// 	if(DR.thicken())
+	// 		owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a thick substance and thickens [oldname].</span>", \
+	// 			"<span class='xenonotice'>We regurgitate some resin and thicken [oldname].</span>", null, 5)
+	// 		playsound(owner.loc, "alien_resin_build", 25)
+	// 		return succeed_activate()
+	// 	to_chat(owner, "<span class='xenowarning'>[DR] can't be made thicker.</span>")
+	// 	return fail_activate()
+	// return fail_activate() //will never be reached but failsafe
 
 // ***************************************
 // *********** Resin walker
@@ -55,23 +57,65 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	mechanics_text = "Move faster on resin."
 	plasma_cost = 50
 	keybind_signal = COMSIG_XENOABILITY_RESIN_WALKER
+	var/speed_activated = FALSE
+	var/speed_bonus_active = FALSE
+
+/datum/action/xeno_action/toggle_speed/remove_action()
+	resinwalk_off(TRUE) // Ensure we remove the movespeed
+	return ..()
 
 /datum/action/xeno_action/toggle_speed/can_use_action(silent = FALSE, override_flags)
 	. = ..()
-	var/mob/living/carbon/xenomorph/hivelord/X = owner
-	if(X.speed_activated)
+	if(speed_activated)
 		return TRUE
 
 /datum/action/xeno_action/toggle_speed/action_activate()
-	var/mob/living/carbon/xenomorph/hivelord/X = owner
-	if(X.speed_activated)
-		to_chat(X, "<span class='warning'>We feel less in tune with the resin.</span>")
-		X.speed_activated = FALSE
+	if(speed_activated)
+		resinwalk_off()
 		return fail_activate()
-
+	resinwalk_on()
 	succeed_activate()
-	X.speed_activated = TRUE
-	to_chat(X, "<span class='notice'>We become one with the resin. We feel the urge to run!</span>")
+
+
+/datum/action/xeno_action/toggle_speed/proc/resinwalk_on(silent = FALSE)
+	var/mob/living/carbon/xenomorph/walker = owner
+	speed_activated = TRUE
+	if(!silent)
+		to_chat(owner, "<span class='notice'>We become one with the resin. We feel the urge to run!</span>")
+	if(locate(/obj/effect/alien/weeds) in walker.loc)
+		speed_bonus_active = TRUE
+		walker.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1.5)
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/resinwalk_on_moved)
+
+
+/datum/action/xeno_action/toggle_speed/proc/resinwalk_off(silent = FALSE)
+	var/mob/living/carbon/xenomorph/walker = owner
+	if(!silent)
+		to_chat(owner, "<span class='warning'>We feel less in tune with the resin.</span>")
+	if(speed_bonus_active)
+		walker.remove_movespeed_modifier(type)
+		speed_bonus_active = FALSE
+	speed_activated = FALSE
+	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+
+
+/datum/action/xeno_action/toggle_speed/proc/resinwalk_on_moved(datum/source, atom/oldloc, direction, Forced = FALSE)
+	var/mob/living/carbon/xenomorph/walker = owner
+	if(!isturf(walker.loc) || !walker.check_plasma(10, TRUE))
+		to_chat(owner, "<span class='warning'>We feel dizzy as the world slows down.</span>")
+		resinwalk_off(TRUE)
+		return
+	if(locate(/obj/effect/alien/weeds) in walker.loc)
+		if(!speed_bonus_active)
+			speed_bonus_active = TRUE
+			walker.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1.5)
+		walker.use_plasma(10)
+		return
+	if(!speed_bonus_active)
+		return
+	speed_bonus_active = FALSE
+	walker.remove_movespeed_modifier(type)
+
 
 // ***************************************
 // *********** Tunnel
@@ -149,7 +193,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	to_chat(X, "<span class='xenonotice'>We dig our tunnel all the way to the original entrance, connecting both entrances! We now have [length(X.tunnels) * 0.5] of [HIVELORD_TUNNEL_SET_LIMIT] tunnel sets.</span>")
 
-	var/msg = copytext(sanitize(input("Add a description to the tunnel:", "Tunnel Description") as text|null), 1, MAX_MESSAGE_LEN)
+	var/msg = stripped_input(X, "Add a description to the tunnel:", "Tunnel Description")
 	newt.other.tunnel_desc = "[get_area(newt.other)] (X: [newt.other.x], Y: [newt.other.y]) [msg]"
 	newt.tunnel_desc = "[get_area(newt)] (X: [newt.x], Y: [newt.y]) [msg]"
 

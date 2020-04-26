@@ -2,31 +2,38 @@ SUBSYSTEM_DEF(job)
 	name = "Jobs"
 	init_order = INIT_ORDER_JOBS
 	flags = SS_NO_FIRE
+	var/ssjob_flags = NONE
 
-	var/list/occupations = list()		//List of all jobs.
+	var/list/occupations = list() //List of all jobs.
+	var/list/joinable_occupations = list() //List of jobs that can be joined as through the lobby.
+	var/list/joinable_occupations_by_category = list()
+	var/list/active_occupations	= list() //Jobs in use by the game mode at roundstart.
+	var/list/active_joinable_occupations = list() //Jobs currently joineable through the lobby (roundstart-only removed after).
+	var/list/active_joinable_occupations_by_category = list()
 	var/list/datum/job/name_occupations = list()	//Dict of all jobs, keys are titles.
 	var/list/type_occupations = list()	//Dict of all jobs, keys are types.
 
-	var/list/squads = list()			//List of squads.
+	var/list/squads = list()			//List of potential squads.
+	var/list/active_squads = list()		//Squads being used by the game mode.
 
 	var/list/unassigned = list()		//Players who need jobs.
-	var/initial_players_to_assign = 0 	//Used for checking against population caps.
+	var/list/occupations_reroll //Jobs scaled up during job assignments.
+	var/initial_players_assigned = 0 	//Used for checking against population caps.
 
-	var/list/prioritized_jobs = list()
-	var/list/latejoin_trackers = list()	//Don't read this list, use GetLateJoinTurfs() instead.
-
-	var/overflow_role = SQUAD_MARINE
+	var/datum/job/overflow_role = /datum/job/terragov/squad/standard
 
 
 /datum/controller/subsystem/job/Initialize(timeofday)
-	if(!length(occupations))
-		SetupOccupations()
+	SetupOccupations()
+	overflow_role = GetJobType(overflow_role)
 	return ..()
 
 
 /datum/controller/subsystem/job/proc/SetupOccupations()
-	occupations = list()
-	squads = list()
+	occupations.Cut()
+	joinable_occupations.Cut()
+	GLOB.jobs_command.Cut()
+	squads.Cut()
 	var/list/all_jobs = subtypesof(/datum/job)
 	var/list/all_squads = subtypesof(/datum/squad)
 	if(!length(all_jobs))
@@ -44,6 +51,15 @@ SUBSYSTEM_DEF(job)
 		occupations += job
 		name_occupations[job.title] = job
 		type_occupations[J] = job
+	sortTim(occupations, /proc/cmp_job_display_asc)
+
+	for(var/j in occupations)
+		var/datum/job/job = j
+		if(job.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE))
+			joinable_occupations += job
+			joinable_occupations_by_category[job.job_category] += list(job)
+		if(job.job_flags & JOB_FLAG_ISCOMMAND)
+			GLOB.jobs_command[job.title] = job
 
 	for(var/S in all_squads)
 		var/datum/squad/squad = new S()
@@ -55,65 +71,61 @@ SUBSYSTEM_DEF(job)
 
 /datum/controller/subsystem/job/proc/GetJob(rank)
 	if(!length(occupations))
-		SetupOccupations()
+		CRASH("GetJob called with no occupations")
 	return name_occupations[rank]
 
 
 /datum/controller/subsystem/job/proc/GetJobType(jobtype)
 	if(!length(occupations))
-		SetupOccupations()
+		CRASH("GetJobType called with no occupations")
 	return type_occupations[jobtype]
 
 
-/datum/controller/subsystem/job/proc/AssignRole(mob/new_player/player, rank, latejoin = FALSE)
-	JobDebug("Running AR, Player: [player], Rank: [rank], LJ: [latejoin]")
-	if(player?.mind && rank)
-		var/datum/job/job = GetJob(rank)
-		if(!job)
-			JobDebug("AR job doesn't exists ! Player: [player], Rank:[rank]")
+/datum/controller/subsystem/job/proc/AssignRole(mob/new_player/player, datum/job/job, latejoin = FALSE)
+	if(!job)
+		JobDebug("AR job doesn't exist! Player: [player], Job: [job]")
+		return FALSE
+	JobDebug("Running AR, Player: [player], Job: [job.title], LJ: [latejoin]")
+	if(is_banned_from(player.ckey, job.title))
+		JobDebug("AR isbanned failed, Player: [player], Job:[job.title]")
+		return FALSE
+	if(QDELETED(player))
+		JobDebug("AR player deleted during job ban check")
+		return FALSE
+	if(!job.player_old_enough(player.client))
+		JobDebug("AR player not old enough, Player: [player], Job:[job.title]")
+		return FALSE
+	if(ismarinejob(job))
+		if(!handle_initial_squad(player, job, latejoin))
+			JobDebug("Failed to assign marine role to a squad. Player: [player.key] Job: [job.title]")
 			return FALSE
-		if(is_banned_from(player.ckey, rank))
-			JobDebug("AR isbanned failed, Player: [player], Job:[job.title]")
-			return FALSE
-		if(QDELETED(player))
-			JobDebug("AR player deleted during job ban check")
-			return FALSE
-		if(!job.player_old_enough(player.client))
-			JobDebug("AR player not old enough, Player: [player], Job:[job.title]")
-			return FALSE
-		if(length(SSticker.mode.valid_job_types) && !(job.type in SSticker.mode.valid_job_types))
-			JobDebug("AR job disallowed by gamemode, Player: [player], Job:[job.title]")
-			return FALSE
-		if(rank in GLOB.jobs_marines)
-			if(handle_initial_squad(player, rank, latejoin))
-				JobDebug("Successfuly assigned marine role to a squad. Player: [player.key], Rank: [rank], Squad: [player.mind.assigned_squad]")
-			else
-				JobDebug("Failed to assign marine role to a squad. Player: [player.key] Rank: [rank]")
-				return FALSE
-		player.mind.assigned_role = rank
+		JobDebug("Successfuly assigned marine role to a squad. Player: [player.key], Job: [job.title], Squad: [player.assigned_squad]")
+	if(!latejoin)
 		unassigned -= player
-		job.current_positions++
-		JobDebug("Player: [player] is now Rank: [rank], JCP:[job.current_positions], JPL:[job.total_positions]")
-		return TRUE
-	JobDebug("AR has failed, Player: [player], Mind: [player?.mind], Rank: [rank]")
-	return FALSE
+	job.occupy_job_positions(1)
+	player.assigned_role = job
+	JobDebug("Player: [player] is now Job: [job.title], JCP:[job.current_positions], JPL:[job.total_positions]")
+	return TRUE
 
 /datum/controller/subsystem/job/proc/GiveRandomJob(mob/new_player/player)
 	JobDebug("GRJ Giving random job, Player: [player]")
 	. = FALSE
-	for(var/datum/job/job in shuffle(occupations))
-		if((job.current_positions < job.total_positions) || job.total_positions == -1)
-			JobDebug("GRJ Random job given, Player: [player], Job: [job]")
-			if(AssignRole(player, job.title))
-				return TRUE
+	for(var/j in shuffle(active_joinable_occupations))
+		var/datum/job/job = j
+		if(job.total_positions != -1 && job.current_positions >= job.total_positions)
+			continue
+		JobDebug("GRJ Random job given, Player: [player], Job: [job]")
+		if(AssignRole(player, job))
+			return TRUE
 
 /datum/controller/subsystem/job/proc/ResetOccupations()
 	JobDebug("Occupations reset.")
-	for(var/mob/new_player/player in GLOB.player_list)
-		if(player?.mind)
-			player.mind.assigned_role = null
+	for(var/p in GLOB.new_player_list)
+		var/mob/new_player/player = p
+		player.assigned_role = null
+		player.assigned_squad = null
 	SetupOccupations()
-	unassigned = list()
+	unassigned.Cut()
 	return
 
 
@@ -124,17 +136,23 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/proc/DivideOccupations()
 	//Setup new player list and get the jobs list
 	JobDebug("Running DO")
-
 	//Get the players who are ready
-	for(var/mob/new_player/player in GLOB.player_list)
-		if(player.ready && player.mind && !player.mind.assigned_role)//don't get assigned roles, as Xenos and Survivors
-			unassigned += player
+	unassigned.Cut()
+	occupations_reroll = null
+	for(var/p in GLOB.ready_players)
+		var/mob/new_player/player = p
+		if(player.assigned_role)
+			continue
+		unassigned += player
 
-	initial_players_to_assign = length(unassigned)
+	initial_players_assigned += length(GLOB.ready_players)
 
 	JobDebug("DO, Len: [length(unassigned)]")
-	if(length(unassigned) == 0)
+	if(!initial_players_assigned)
+		clean_roundstart_occupations()
 		return FALSE
+
+	SSticker.mode.scale_roles()
 
 	//Jobs will use the default access unless the population is below a certain level.
 	var/mat = CONFIG_GET(number/minimal_access_threshold)
@@ -155,126 +173,107 @@ SUBSYSTEM_DEF(job)
 	// Hopefully this will add more randomness and fairness to job giving.
 
 	// Loop through all levels from high to low
-	var/list/shuffledoccupations = shuffle(occupations)
-	var/list/levels = list(JOBS_PRIORITY_HIGH, JOBS_PRIORITY_MEDIUM, JOBS_PRIORITY_LOW)
+	var/list/shuffledoccupations = shuffle(active_joinable_occupations)
 
-	for(var/level in levels)
+	for(var/level = JOBS_PRIORITY_HIGH; level >= JOBS_PRIORITY_LOW; level--)
 		// Loop through all unassigned players
-		for(var/mob/new_player/player in unassigned)
-			if(PopcapReached())
-				RejectPlayer(player)
+		assign_players_to_occupations(level, shuffledoccupations)
 
-			// Loop through all jobs
-			for(var/datum/job/job in shuffledoccupations) // SHUFFLE ME BABY
-				// If the player wants that job on this level, then try give it to him.
-				if(player.client.prefs.job_preferences[job.title] == level)
-					// If the job isn't filled
-					if((job.current_positions < job.total_positions) || job.total_positions == -1)
-						JobDebug("DO pass, Trying to assign Player: [player], Level:[level], Job:[job.title]")
-						if(AssignRole(player, job.title))
-							break
-
+		if(LAZYLEN(occupations_reroll)) //Jobs that were scaled up due to the assignment of other jobs.
+			for(var/reroll_level = JOBS_PRIORITY_HIGH; reroll_level >= level; reroll_level--)
+				assign_players_to_occupations(level, occupations_reroll)
+			occupations_reroll = null
 
 	JobDebug("DO, Handling unassigned.")
 	// Hand out random jobs to the people who didn't get any in the last check
 	// Also makes sure that they got their preference correct
-	for(var/mob/new_player/player in unassigned)
-		HandleUnassigned(player)
+	for(var/p in unassigned)
+		HandleUnassigned(p)
 
+	clean_roundstart_occupations()
 	return TRUE
+
+
+/datum/controller/subsystem/job/proc/assign_players_to_occupations(level, list/occupations_to_assign)
+	for(var/p in unassigned)
+		var/mob/new_player/player = p
+		if(PopcapReached())
+			RejectPlayer(player)
+		// Loop through all jobs
+		for(var/j in occupations_to_assign)
+			var/datum/job/job = j
+			// If the player wants that job on this level, then try give it to him.
+			if(player.client.prefs.job_preferences[job.title] != level)
+				continue
+			// If the job isn't filled
+			if((job.total_positions != -1 && job.current_positions >= job.total_positions))
+				continue
+			JobDebug("DO pass, Trying to assign Player: [player], Level:[level], Job:[job.title]")
+			if(AssignRole(player, job))
+				break
 
 
 //We couldn't find a job from prefs for this guy.
 /datum/controller/subsystem/job/proc/HandleUnassigned(mob/new_player/player)
 	if(PopcapReached())
 		RejectPlayer(player)
-	else if(player.client.prefs.alternate_option == BE_OVERFLOW)
-		if(!AssignRole(player, SSjob.overflow_role))
+		return
+	switch(player.client.prefs.alternate_option)
+		if(BE_OVERFLOW)
+			if(!AssignRole(player, overflow_role))
+				RejectPlayer(player)
+			return
+		if(GET_RANDOM_JOB)
+			if(!GiveRandomJob(player))
+				RejectPlayer(player)
+			return
+		if(RETURN_TO_LOBBY)
 			RejectPlayer(player)
-	else if(player.client.prefs.alternate_option == GET_RANDOM_JOB)
-		if(!GiveRandomJob(player))
-			RejectPlayer(player)
-	else if(player.client.prefs.alternate_option == RETURN_TO_LOBBY)
-		RejectPlayer(player)
-	else //Something gone wrong if we got here.
-		var/message = "DO: [player] fell through handling unassigned"
-		JobDebug(message)
-		message_admins(message)
-		RejectPlayer(player)
+			return
+	//Something gone wrong if we got here.
+	var/message = "DO: [player] fell through handling unassigned"
+	JobDebug(message)
+	message_admins(message)
+	RejectPlayer(player)
 
 
-//Gives the player the stuff he should have with his rank
-/datum/controller/subsystem/job/proc/EquipRank(mob/M, rank, joined_late = FALSE)
-	var/mob/new_player/N
-	var/mob/living/L
-	if(!joined_late)
-		N = M
-		L = N.new_character
-	else
-		L = M
+/datum/controller/subsystem/job/proc/clean_roundstart_occupations()
+	if(ssjob_flags & SSJOB_OVERRIDE_JOBS_START)
+		return
+	for(var/j in active_joinable_occupations) //Roundstart selection is over. Remove the roundstart-only jobs.
+		var/datum/job/job = j
+		if(job.job_flags & JOB_FLAG_LATEJOINABLE)
+			continue
+		job.set_job_positions(0)
 
-	var/datum/job/job = GetJob(rank)
 
-	L.job = rank
+//Gives the player the stuff they should have with their rank.
+/datum/controller/subsystem/job/proc/spawn_character(mob/new_player/player, joined_late = FALSE)
+	var/mob/living/new_character = player.new_character
+	var/datum/job/job = player.assigned_role
+
+	new_character.apply_assigned_role_to_spawn(job, player.client, player.assigned_squad)
 
 	//If we joined at roundstart we should be positioned at our workstation
-	if(!joined_late && job)
-		var/turf/S
-		for(var/i in GLOB.marine_spawns_by_job)
-			if(i != job.type)
-				continue
-			S = pick(GLOB.marine_spawns_by_job[i])
-			break
-		if(length(GLOB.jobspawn_overrides[rank]))
-			S = pick(GLOB.jobspawn_overrides[rank])
-		if(S)
-			SendToAtom(L, S, buckle = FALSE)
-		if(!S)
-			SendToLateJoin(L)
+	var/turf/spawn_turf
+	if(joined_late)
+		if(job.job_flags & JOB_FLAG_OVERRIDELATEJOINSPAWN)
+			spawn_turf = job.return_spawn_turf()
+	else
+		if(length(GLOB.jobspawn_overrides[job.title]))
+			spawn_turf = pick(GLOB.jobspawn_overrides[job.title])
+		else
+			spawn_turf = job.return_spawn_turf()
+	if(spawn_turf)
+		SendToAtom(new_character, spawn_turf)
+	else
+		SendToLateJoin(new_character, job)
 
-	if(job && L.mind)
-		var/new_mob = job.assign_equip(L, null, null, joined_late , null, M.client)
-		if(ismob(new_mob))
-			L = new_mob
-			if(!joined_late)
-				N.new_character = L
-			else
-				M = L
-		if(rank in GLOB.jobs_marines)
-			if(L.mind.assigned_squad)
-				var/datum/squad/S = L.mind.assigned_squad
-				S.insert_into_squad(L)
-			else
-				JobDebug("Failed to put marine role in squad. Player: [L.key] Rank: [rank]")
-	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
-		//Give them an account in the database.
-		var/datum/money_account/A = create_account(H.real_name, rand(50,500) * 10, null)
-		if(H.mind)
-			var/remembered_info = ""
-			remembered_info += "<b>Your account number is:</b> #[A.account_number]<br>"
-			remembered_info += "<b>Your account pin is:</b> [A.remote_access_pin]<br>"
-			remembered_info += "<b>Your account funds are:</b> $[A.money]<br>"
-			if(length(A.transaction_log))
-				var/datum/transaction/T = A.transaction_log[1]
-				remembered_info += "<b>Your account was created:</b> [T.time], [T.date] at [T.source_terminal]<br>"
-			H.mind.store_memory(remembered_info)
-			H.mind.initial_account = A
-		if(M.client)
-			H.equip_preference_gear(M.client)
-		else if(H.client)
-			H.equip_preference_gear(H.client)
-	if(job)
-		job.radio_help_message(M)
-		if(job.req_admin_notify)
-			to_chat(M, "<span clas='danger'>You are playing a job that is important for game progression. If you have to disconnect, please head to hypersleep, if you can't make it there, notify the admins via adminhelp.</span>")
-		if(CONFIG_GET(number/minimal_access_threshold))
-			to_chat(M, "<span class='notice'><b>As this ship was initially staffed with a [CONFIG_GET(flag/jobs_have_minimal_access) ? "skeleton crew, additional access may" : "full crew, only your job's necessities"] have been added to your ID card.</b></span>")
+	job.radio_help_message(player)
 
-	if(job && L)
-		job.after_spawn(L, M, joined_late) // note: this happens before the mob has a key! M will always have a client, H might not.
+	job.after_spawn(new_character, player, joined_late) // note: this happens before new_character has a key!
 
-	return L
+	return new_character
 
 
 /datum/controller/subsystem/job/proc/PopcapReached()
@@ -282,7 +281,7 @@ SUBSYSTEM_DEF(job)
 	var/epc = CONFIG_GET(number/extreme_popcap)
 	if(hpc || epc)
 		var/relevent_cap = max(hpc, epc)
-		if((initial_players_to_assign - length(unassigned)) >= relevent_cap)
+		if((initial_players_assigned - length(unassigned)) >= relevent_cap)
 			return TRUE
 	return FALSE
 
@@ -290,15 +289,17 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/proc/RejectPlayer(mob/new_player/player)
 	if(PopcapReached())
 		JobDebug("Popcap overflow Check observer located, Player: [player]")
-	if(player.mind?.assigned_role)
+	if(player.assigned_role)
 		JobDebug("Player already assigned a role :[player]")
 		unassigned -= player
 		player.ready = FALSE
+		GLOB.ready_players -= player
 		return
 	JobDebug("Player rejected :[player]")
 	to_chat(player, "<b>You have failed to qualify for any job you desired.</b>")
 	unassigned -= player
 	player.ready = FALSE
+	GLOB.ready_players -= player
 
 
 /datum/controller/subsystem/job/Recover()
@@ -318,25 +319,47 @@ SUBSYSTEM_DEF(job)
 
 
 /datum/controller/subsystem/job/proc/SendToAtom(mob/M, atom/A, buckle)
-	if(buckle && isliving(M) && istype(A, /obj/structure/bed/chair))
-		var/obj/structure/bed/chair/C = A
-		if(C.buckle_mob(M, M))
-			return
-	M.forceMove(get_turf(A))
+	var/turf/spawn_loc = get_turf(A)
+	M.forceMove(spawn_loc)
+	if(buckle && isliving(M))
+		var/obj/structure/bed/chair/to_sit = locate() in spawn_loc
+		if(!to_sit)
+			CRASH("[M] SendToAtom [A] in ([spawn_loc.x], [spawn_loc.y], [spawn_loc.z]) with no chairs to buckle in.")
+		to_sit.buckle_mob(M, silent = TRUE)
 
 
-/datum/controller/subsystem/job/proc/SendToLateJoin(mob/M, buckle = TRUE)
-	if(M.mind?.assigned_role && length(GLOB.jobspawn_overrides[M.mind.assigned_role])) //We're doing something special today.
-		SendToAtom(M, pick(GLOB.jobspawn_overrides[M.mind.assigned_role]), FALSE)
+/datum/controller/subsystem/job/proc/SendToLateJoin(mob/M, datum/job/assigned_role)
+	if(assigned_role && length(GLOB.jobspawn_overrides[assigned_role])) //We're doing something special today.
+		SendToAtom(M, pick(GLOB.jobspawn_overrides[assigned_role]))
 		return
-
 	if(length(GLOB.latejoin))
-		SendToAtom(M, pick(GLOB.latejoin), buckle)
-	else
-		var/msg = "Unable to send mob [M] to late join!"
-		message_admins(msg)
-		CRASH(msg)
+		SendToAtom(M, pick(GLOB.latejoin))
+		return
+	message_admins("Unable to send mob [M] to late join!")
+	CRASH("Unable to send mob [M] to late join!")
 
 
 /datum/controller/subsystem/job/proc/JobDebug(message)
 	log_manifest(message)
+
+
+/datum/controller/subsystem/job/proc/set_active_joinable_occupations_by_category()
+	active_joinable_occupations_by_category.Cut()
+	for(var/j in active_joinable_occupations)
+		var/datum/job/job = j
+		active_joinable_occupations_by_category[job.job_category] += list(job)
+
+/datum/controller/subsystem/job/proc/add_active_occupation(datum/job/occupation)
+	active_joinable_occupations += occupation
+	if(length(active_joinable_occupations) > 1)
+		sortTim(active_joinable_occupations, /proc/cmp_job_display_asc)
+	active_joinable_occupations_by_category[occupation.job_category] += list(occupation)
+	if(length(active_joinable_occupations_by_category[occupation.job_category]) > 1)
+		sortTim(active_joinable_occupations_by_category[occupation.job_category], /proc/cmp_job_display_asc)
+
+/datum/controller/subsystem/job/proc/remove_active_occupation(datum/job/occupation)
+	active_joinable_occupations -= occupation
+	if(active_joinable_occupations_by_category[occupation.job_category])
+		active_joinable_occupations_by_category[occupation.job_category] -= occupation
+		if(!length(active_joinable_occupations_by_category[occupation.job_category]))
+			active_joinable_occupations_by_category -= occupation.job_category

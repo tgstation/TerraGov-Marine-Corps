@@ -10,9 +10,9 @@
 	density = TRUE
 	anchored = TRUE
 
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 60
-	active_power_usage = 10000	//10 kW. It's a big all-body scanner.
+	active_power_usage = 16000	//16 kW. It's a big all-body scanner - This is used on scan / examine
 
 
 /obj/machinery/bodyscanner/relaymove(mob/user)
@@ -46,7 +46,7 @@
 		qdel(O)
 
 /obj/machinery/bodyscanner/MouseDrop_T(mob/M, mob/user)
-	if(!isliving(M))
+	if(!isliving(M) || !ishuman(user))
 		return
 	move_inside_wrapper(M, user)
 
@@ -56,6 +56,11 @@
 	set name = "Enter Body Scanner"
 
 	move_inside_wrapper(usr, usr)
+
+/obj/machinery/bodyscanner/Destroy()
+	locked = FALSE
+	go_out()
+	return ..()
 
 /obj/machinery/bodyscanner/proc/go_out()
 	if (!occupant || locked)
@@ -163,16 +168,17 @@
 	return
 
 /obj/machinery/body_scanconsole
-	var/obj/machinery/bodyscanner/connected
-	var/known_implants = list(/obj/item/implant/neurostim)
-	var/delete
-	var/temphtml
 	name = "Body Scanner Console"
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "body_scannerconsole"
 	density = FALSE
 	anchored = TRUE
-
+	use_power = IDLE_POWER_USE
+	idle_power_usage = 3
+	var/obj/machinery/bodyscanner/connected
+	var/known_implants = list(/obj/item/implant/neurostim)
+	var/delete
+	var/temphtml
 
 /obj/machinery/body_scanconsole/Initialize()
 	. = ..()

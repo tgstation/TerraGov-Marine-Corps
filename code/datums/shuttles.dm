@@ -3,7 +3,7 @@
 	var/prefix = "_maps/shuttles/"
 	var/suffix
 	var/port_id
-	var/shuttle_id
+	var/shuttle_id = "SHOULD NEVER EXIST"
 
 	var/description
 	var/prerequisites
@@ -21,6 +21,8 @@
 	return TRUE
 
 /datum/map_template/shuttle/New()
+	if(shuttle_id == "SHOULD NEVER EXIST")
+		stack_trace("invalid shuttle datum")
 	//shuttle_id = "[port_id]_[suffix]"
 	mappath = "[prefix][shuttle_id].dmm"
 	. = ..()
@@ -102,32 +104,46 @@
 		M.movement_force = movement_force.Copy()
 
 // Shuttles start here:
-/datum/map_template/shuttle/dropship/one
+/datum/map_template/shuttle/dropship_one
 	shuttle_id = "alamo"
+	name = "Alamo"
 
-/datum/map_template/shuttle/dropship/two
+/datum/map_template/shuttle/dropship_two
 	shuttle_id = "normandy"
+	name = "Normandy"
 
 /datum/map_template/shuttle/escape_pod
 	shuttle_id = "escape_pod"
+	name = "Escape Pod"
 
 /datum/map_template/shuttle/small_ert
 	shuttle_id = "distress"
+	name = "Distress"
 
 /datum/map_template/shuttle/small_ert/pmc
 	shuttle_id = "distress_pmc"
+	name = "Distress PMC"
 
 /datum/map_template/shuttle/small_ert/upp
 	shuttle_id = "distress_upp"
+	name = "Distress UPP"
+
+/datum/map_template/shuttle/small_ert/ufo
+	shuttle_id = "distress_ufo"
+	name = "Small UFO"
 
 /datum/map_template/shuttle/big_ert
 	shuttle_id = "big_ert"
+	name = "Big ERT"
 
 /datum/map_template/shuttle/supply
 	shuttle_id = "supply"
+	name = "Supply"
 
 /datum/map_template/shuttle/tgs_canterbury
 	shuttle_id = "tgs_canterbury"
+	name = "Canterbury"
 
 /datum/map_template/shuttle/escape_shuttle
 	shuttle_id = "escape_shuttle"
+	name = "Escape Shuttle"

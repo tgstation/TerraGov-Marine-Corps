@@ -136,7 +136,7 @@
 /obj/item/grown/nettle/death/pickup(mob/living/carbon/human/user as mob)
 
 	if(..() && prob(50))
-		user.knock_out(5)
+		user.Unconscious(10 SECONDS)
 		to_chat(user, "<span class='warning'>You are stunned by the deathnettle when you try picking it up!</span>")
 
 /obj/item/grown/nettle/attack(mob/living/carbon/M as mob, mob/user as mob)
@@ -156,8 +156,8 @@
 
 		M.adjust_blurriness(force/7)
 		if(prob(20))
-			M.knock_out(force/6)
-			M.knock_down(force/15)
+			M.Unconscious(force/6 *20)
+			M.Paralyze(force/15 *20)
 		M.drop_held_item()
 
 /obj/item/corncob

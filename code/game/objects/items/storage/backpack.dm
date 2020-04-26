@@ -187,6 +187,11 @@
 	desc = "A trendy looking satchel."
 	icon_state = "satchel-norm"
 
+/obj/item/storage/backpack/satchel/rugged
+	name = "satchel"
+	desc = "A rugged satchel for workers of all types."
+	icon_state = "satchel-norm"
+
 /obj/item/storage/backpack/satchel/eng
 	name = "industrial satchel"
 	desc = "A tough satchel with extra pockets."
@@ -423,7 +428,7 @@
 // Scout Cloak
 /obj/item/storage/backpack/marine/satchel/scout_cloak
 	name = "\improper M68 Thermal Cloak"
-	desc = "The lightweight thermal dampeners and optical camouflage provided by this cloak are weaker than those found in standard TGMC ghillie suits. In exchange, the cloak can be worn over combat armor and offers the wearer high manueverability and adaptability to many environments."
+	desc = "The lightweight thermal dampeners and optical camouflage provided by this cloak are weaker than those found in standard TGMC ghillie suits. In exchange, the cloak can be worn over combat armor and offers the wearer high manueverability and adaptability to many environments. Serves as a satchel."
 	icon_state = "scout_cloak"
 	var/camo_active = 0
 	var/camo_active_timer = 0
@@ -608,7 +613,8 @@
 		to_chat(user, "<span class='danger'>Your thermal cloak lacks sufficient energy to remain active.</span>")
 		camo_off(user)
 
-/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/damage_taken(datum/source, mob/living/carbon/human/wearer, damage)
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/damage_taken(datum/source, damage)
+	var/mob/living/carbon/human/wearer = source
 	if(damage >= 15)
 		to_chat(wearer, "<span class='danger'>Your cloak shimmers from the damage!</span>")
 		apply_shimmer()
@@ -625,7 +631,7 @@
 	if(!wearer)
 		camo_off()
 		return
-	else if(wearer.stat == DEAD)
+	else if(wearer.stat != CONSCIOUS)
 		camo_off(wearer)
 		return
 
@@ -643,7 +649,7 @@
 /obj/item/storage/backpack/marine/satchel/scout_cloak/sniper
 	name = "\improper M68-B Thermal Cloak"
 	icon_state = "smock"
-	desc = "The M68-B thermal cloak is a variant custom-purposed for snipers, allowing for faster, superior, stationary concealment at the expense of mobile concealment. It is designed to be paired with the lightweight M3 recon battle armor."
+	desc = "The M68-B thermal cloak is a variant custom-purposed for snipers, allowing for faster, superior, stationary concealment at the expense of mobile concealment. It is designed to be paired with the lightweight M3 recon battle armor. Serves as a satchel."
 	shimmer_alpha = SCOUT_CLOAK_RUN_ALPHA * 0.5 //Half the normal shimmer transparency.
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/sniper/process()
@@ -671,6 +677,7 @@
 	var/max_fuel = 260
 	storage_slots = null
 	max_storage_space = 15
+	worn_accessible = TRUE
 
 /obj/item/storage/backpack/marine/engineerpack/Initialize(mapload, ...)
 	. = ..()
@@ -731,6 +738,7 @@
 	name = "\improper TGMC Pyrotechnician fueltank"
 	desc = "A specialized fueltank worn by TGMC Pyrotechnicians for use with the M240-T incinerator unit. A small general storage compartment is installed."
 	icon_state = "flamethrower_tank"
+	worn_accessible = TRUE
 	max_fuel = 500
 
 

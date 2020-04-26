@@ -71,11 +71,14 @@
 /obj/structure/ladder/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	return attack_hand(M)
 
+/obj/structure/ladder/attack_hivemind(mob/living/carbon/xenomorph/hivemind/M)
+	return attack_hand(M)
+
 /obj/structure/ladder/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
-	if(user.incapacitated() || !Adjacent(user) || user.lying || user.buckled || user.anchored)
+	if(user.incapacitated() || !Adjacent(user) || user.lying_angle || user.buckled || user.anchored)
 		return
 	var/ladder_dir_name
 	var/obj/structure/ladder/ladder_dest
@@ -97,7 +100,7 @@
 	step(user, get_dir(user, src))
 	user.visible_message("<span class='notice'>[user] starts climbing [ladder_dir_name] [src].</span>",
 	"<span class='notice'>You start climbing [ladder_dir_name] [src].</span>")
-	if(!do_after(user, 20, FALSE, src, BUSY_ICON_GENERIC) || user.lying || user.anchored)
+	if(!do_after(user, 20, FALSE, src, BUSY_ICON_GENERIC) || user.lying_angle || user.anchored)
 		return
 	user.trainteleport(ladder_dest.loc)
 	visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>") //Hack to give a visible message to the people here without duplicating user message
@@ -130,7 +133,7 @@
 
 /obj/structure/ladder/check_eye(mob/user)
 	//Are we capable of looking?
-	if(user.incapacitated() || get_dist(user, src) > 1 || is_blind(user) || user.lying || !user.client)
+	if(user.incapacitated() || get_dist(user, src) > 1 || is_blind(user) || user.lying_angle || !user.client)
 		user.unset_interaction()
 
 	//Are ladder cameras ok?
@@ -165,7 +168,7 @@
 //Peeking up/down
 /obj/structure/ladder/MouseDrop(over_object, src_location, over_location)
 	if((over_object == usr && (in_range(src, usr))))
-		if(isxenolarva(usr) || isobserver(usr) || usr.incapacitated() || is_blind(usr) || usr.lying)
+		if(isxenolarva(usr) || isobserver(usr) || usr.incapacitated() || is_blind(usr) || usr.lying_angle)
 			to_chat(usr, "You can't do that in your current state.")
 			return
 		if(is_watching)

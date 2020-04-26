@@ -4,6 +4,7 @@
 #define AUTODOC_NOTICE_NO_POWER 4
 #define AUTODOC_NOTICE_XENO_FUCKERY 5
 #define AUTODOC_NOTICE_IDIOT_EJECT 6
+#define AUTODOC_NOTICE_FORCE_EJECT 7
 
 #define ADSURGERY_INTERNAL 1
 #define ADSURGERY_GERMS 2
@@ -46,13 +47,14 @@
 	var/heal_toxin = 0
 	var/automaticmode = 0
 	var/event = 0
+	var/forceeject = FALSE
 
 	var/obj/machinery/autodoc_console/connected
 
 	//It uses power
-	use_power = 1
+	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 15
-	active_power_usage = 450 //Capable of doing various activities
+	active_power_usage = 120000 // It rebuilds you from nothing...
 
 	var/stored_metal = 1000 // starts with 500 metal loaded
 	var/stored_metal_max = 2000
@@ -78,72 +80,77 @@
 		icon_state = "autodoc_open"
 
 /obj/machinery/autodoc/process()
-	if(occupant)
-		if(occupant.stat == DEAD)
-			visible_message("\The [src] speaks: Patient has expired.")
-			surgery = FALSE
-			go_out(AUTODOC_NOTICE_DEATH)
-			return
-		if(surgery)
-			// keep them alive
-			var/updating_health = FALSE
-			occupant.adjustToxLoss(-1 * REM) // pretend they get IV dylovene
-			occupant.adjustOxyLoss(-occupant.getOxyLoss()) // keep them breathing, pretend they get IV dexalinplus
-			if(filtering)
-				var/filtered = 0
-				for(var/datum/reagent/x in occupant.reagents.reagent_list)
-					occupant.reagents.remove_reagent(x.type, 10) // same as sleeper, may need reducing
-					filtered += 10
-				if(!filtered)
-					filtering = 0
-					visible_message("[src] speaks: Blood filtering complete.")
-				else if(prob(10))
-					visible_message("[src] whirrs and gurgles as the dialysis module operates.")
-					to_chat(occupant, "<span class='info'>You feel slightly better.</span>")
-			if(blood_transfer)
-				if(connected && occupant.blood_volume < BLOOD_VOLUME_NORMAL)
-					if(connected.blood_pack.reagents.get_reagent_amount(/datum/reagent/blood) < 4)
-						connected.blood_pack.reagents.add_reagent(/datum/reagent/blood, 195, list("donor"=null,"blood_DNA"=null,"blood_type"="O-"))
-						visible_message("[src] speaks: Blood reserves depleted, switching to fresh bag.")
-					occupant.inject_blood(connected.blood_pack, 8) // double iv stand rate
-					if(prob(10))
-						visible_message("[src] whirrs and gurgles as it tranfuses blood.")
-						to_chat(occupant, "<span class='info'>You feel slightly less faint.</span>")
-				else
-					blood_transfer = 0
-					visible_message("[src] speaks: Blood transfer complete.")
-			if(heal_brute)
-				if(occupant.getexternalBruteLoss() > 0)
-					occupant.heal_limb_damage(3, 0)
-					updating_health = TRUE
-					if(prob(10))
-						visible_message("[src] whirrs and clicks as it stitches flesh together.")
-						to_chat(occupant, "<span class='info'>You feel your wounds being stitched and sealed shut.</span>")
-				else
-					heal_brute = 0
-					visible_message("[src] speaks: Trauma repair surgery complete.")
-			if(heal_burn)
-				if(occupant.getFireLoss() > 0)
-					occupant.heal_limb_damage(0, 3)
-					updating_health = TRUE
-					if(prob(10))
-						visible_message("[src] whirrs and clicks as it grafts synthetic skin.")
-						to_chat(occupant, "<span class='info'>You feel your burned flesh being sliced away and replaced.</span>")
-				else
-					heal_burn = 0
-					visible_message("[src] speaks: Skin grafts complete.")
-			if(heal_toxin)
-				if(occupant.getToxLoss() > 0)
-					occupant.adjustToxLoss(-3)
-					updating_health = TRUE
-					if(prob(10))
-						visible_message("[src] whirrs and gurgles as it kelates the occupant.")
-						to_chat(occupant, "<span class='info'>You feel slighly less ill.</span>")
-				else
-					heal_toxin = 0
-					visible_message("[src] speaks: Chelation complete.")
-			if(updating_health)
-				occupant.updatehealth()
+	if(!occupant)
+		return
+
+	if(occupant.stat == DEAD)
+		visible_message("\The [src] speaks: Patient has expired.")
+		surgery = FALSE
+		go_out(AUTODOC_NOTICE_DEATH)
+		return
+
+	if(!surgery)
+		return
+		
+	// keep them alive
+	var/updating_health = FALSE
+	occupant.adjustToxLoss(-1 * REM) // pretend they get IV dylovene
+	occupant.adjustOxyLoss(-occupant.getOxyLoss()) // keep them breathing, pretend they get IV dexalinplus
+	if(filtering)
+		var/filtered = 0
+		for(var/datum/reagent/x in occupant.reagents.reagent_list)
+			occupant.reagents.remove_reagent(x.type, 10) // same as sleeper, may need reducing
+			filtered += 10
+		if(!filtered)
+			filtering = 0
+			visible_message("[src] speaks: Blood filtering complete.")
+		else if(prob(10))
+			visible_message("[src] whirrs and gurgles as the dialysis module operates.")
+			to_chat(occupant, "<span class='info'>You feel slightly better.</span>")
+	if(blood_transfer)
+		if(connected && occupant.blood_volume < BLOOD_VOLUME_NORMAL)
+			if(connected.blood_pack.reagents.get_reagent_amount(/datum/reagent/blood) < 4)
+				connected.blood_pack.reagents.add_reagent(/datum/reagent/blood, 195, list("donor"=null,"blood_DNA"=null,"blood_type"="O-"))
+				visible_message("[src] speaks: Blood reserves depleted, switching to fresh bag.")
+			occupant.inject_blood(connected.blood_pack, 8) // double iv stand rate
+			if(prob(10))
+				visible_message("[src] whirrs and gurgles as it tranfuses blood.")
+				to_chat(occupant, "<span class='info'>You feel slightly less faint.</span>")
+		else
+			blood_transfer = 0
+			visible_message("[src] speaks: Blood transfer complete.")
+	if(heal_brute)
+		if(occupant.getexternalBruteLoss() > 0)
+			occupant.heal_limb_damage(3, 0)
+			updating_health = TRUE
+			if(prob(10))
+				visible_message("[src] whirrs and clicks as it stitches flesh together.")
+				to_chat(occupant, "<span class='info'>You feel your wounds being stitched and sealed shut.</span>")
+		else
+			heal_brute = 0
+			visible_message("[src] speaks: Trauma repair surgery complete.")
+	if(heal_burn)
+		if(occupant.getFireLoss() > 0)
+			occupant.heal_limb_damage(0, 3)
+			updating_health = TRUE
+			if(prob(10))
+				visible_message("[src] whirrs and clicks as it grafts synthetic skin.")
+				to_chat(occupant, "<span class='info'>You feel your burned flesh being sliced away and replaced.</span>")
+		else
+			heal_burn = 0
+			visible_message("[src] speaks: Skin grafts complete.")
+	if(heal_toxin)
+		if(occupant.getToxLoss() > 0)
+			occupant.adjustToxLoss(-3)
+			updating_health = TRUE
+			if(prob(10))
+				visible_message("[src] whirrs and gurgles as it kelates the occupant.")
+				to_chat(occupant, "<span class='info'>You feel slighly less ill.</span>")
+		else
+			heal_toxin = 0
+			visible_message("[src] speaks: Chelation complete.")
+	if(updating_health)
+		occupant.updatehealth()
 
 
 #define LIMB_SURGERY 1
@@ -674,6 +681,16 @@
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, 1)
 		return
 	if(occupant)
+		if(forceeject)
+			if(!surgery)
+				visible_message("\The [src] is destroyed, ejecting [occupant] and showering them in debris.")
+				occupant.take_limb_damage(rand(10,20),rand(10,20))
+				go_out(AUTODOC_NOTICE_FORCE_EJECT)
+				return
+			visible_message("\The [src] malfunctions as it is destroyed mid-surgery, ejecting [occupant] with surgical wounds and showering them in debris.")
+			occupant.take_limb_damage(rand(30,50),rand(30,50))
+			go_out(AUTODOC_NOTICE_FORCE_EJECT)
+			return
 		if(isxeno(usr) && !surgery) // let xenos eject people hiding inside; a xeno ejecting someone during surgery does so like someone untrained
 			go_out(AUTODOC_NOTICE_XENO_FUCKERY)
 			return
@@ -685,15 +702,15 @@
 				return
 			else
 				visible_message("[usr] engages the internal release mechanism, and climbs out of \the [src].")
-		if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED && !event)
+		if(usr.skills.getRating("surgery") < SKILL_SURGERY_TRAINED && !event)
 			usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to use [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to use [src].</span>")
-			var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * usr.mind.cm_skills.surgery ))// 8 secs non-trained, 5 amateur
+			var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * usr.skills.getRating("surgery") ))// 8 secs non-trained, 5 amateur
 			if(!do_after(usr, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || !occupant)
 				return
 		if(surgery)
 			surgery = 0
-			if(usr.mind && usr.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED) //Untrained people will fail to terminate the surgery properly.
+			if(usr.skills.getRating("surgery") < SKILL_SURGERY_TRAINED) //Untrained people will fail to terminate the surgery properly.
 				visible_message("\The [src] malfunctions as [usr] aborts the surgery in progress.")
 				occupant.take_limb_damage(rand(30,50),rand(30,50))
 				log_game("[key_name(usr)] ejected [key_name(occupant)] from the autodoc during surgery causing damage.")
@@ -713,10 +730,10 @@
 		to_chat(M, "<span class='notice'>[src] is non-functional!</span>")
 		return
 
-	if(M.mind?.cm_skills && M.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED && !event)
+	if(M.skills.getRating("surgery") < SKILL_SURGERY_TRAINED && !event)
 		M.visible_message("<span class='notice'>[M] fumbles around figuring out how to get into \the [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to get into \the [src].</span>")
-		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * M.mind.cm_skills.surgery ))// 8 secs non-trained, 5 amateur
+		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * M.skills.getRating("surgery") ))// 8 secs non-trained, 5 amateur
 		if(!do_after(M, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 
@@ -739,7 +756,7 @@
 			qdel(O)
 
 /obj/machinery/autodoc/MouseDrop_T(mob/M, mob/user)
-	if(!isliving(M))
+	if(!isliving(M) || !ishuman(user))
 		return
 	move_inside_wrapper(M, user)
 
@@ -774,6 +791,9 @@
 			if(AUTODOC_NOTICE_IDIOT_EJECT)
 				playsound(src.loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
 				reason = "Reason for discharge: Unauthorized manual release during surgery. Alerting security advised."
+			if(AUTODOC_NOTICE_FORCE_EJECT)
+				playsound(src.loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
+				reason = "Reason for discharge: Destruction of linked Autodoc Medical System. Alerting security advised."
 		connected.radio.talk_into(src, "<b>Patient: [occupant] has been released from [src] at: [get_area(src)]. [reason]</b>", RADIO_CHANNEL_MEDICAL)
 	occupant = null
 	surgery_todo_list = list()
@@ -841,10 +861,10 @@
 		to_chat(user, "<span class='warning'>Subject cannot have abiotic items on.</span>")
 		return
 
-	if(user.mind?.cm_skills && user.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED && !event)
+	if(user.skills.getRating("surgery") < SKILL_SURGERY_TRAINED && !event)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to put [M] into [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to put [M] into [src].</span>")
-		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * user.mind.cm_skills.surgery ))// 8 secs non-trained, 5 amateur
+		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * user.skills.getRating("surgery") ))// 8 secs non-trained, 5 amateur
 		if(!do_after(user, fumbling_time, TRUE, M, BUSY_ICON_UNSKILLED) || QDELETED(src))
 			return
 
@@ -868,6 +888,11 @@
 	med_scan(H, null, implants, TRUE)
 	start_processing()
 
+obj/machinery/autodoc/Destroy()
+	forceeject = TRUE
+	eject()
+	return ..()
+
 /////////////////////////////////////////////////////////////
 
 //Auto Doc console that links up to it.
@@ -882,7 +907,7 @@
 	anchored = TRUE //About time someone fixed this.
 	density = FALSE
 
-	use_power = 1
+	use_power = IDLE_POWER_USE
 	idle_power_usage = 40
 	var/obj/item/radio/radio
 	var/obj/item/reagent_containers/blood/OMinus/blood_pack

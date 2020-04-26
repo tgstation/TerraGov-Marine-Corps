@@ -45,10 +45,11 @@
 	icon_state = "pilot"
 	sprite_sheet_id = 1
 	blood_overlay_type = "armor"
-	flags_armor_protection = CHEST|GROIN
-	flags_cold_protection = CHEST|GROIN
-	flags_heat_protection = CHEST|GROIN
-	armor = list("melee" = 50, "bullet" = 60, "laser" = 35, "energy" = 20, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20)
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	armor = list("melee" = 35, "bullet" = 45, "laser" = 45, "energy" = 20, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 25)
+	slowdown = 0.25
 	allowed = list(/obj/item/weapon/gun/,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/flashlight,
@@ -84,14 +85,14 @@
 	name = "security armor"
 	desc = "An armored vest that protects against some damage."
 	icon_state = "armorsec"
-	item_state = "armor"
+	item_state = "armorsec"
 	slowdown = SLOWDOWN_ARMOR_MEDIUM //prevents powergaming marine by swapping armor.
 
 /obj/item/clothing/suit/armor/vest/warden
 	name = "Warden's jacket"
 	desc = "An armoured jacket with silver rank pips and livery."
 	icon_state = "warden_jacket"
-	item_state = "armor"
+	item_state = "warden_jacket"
 	flags_armor_protection = CHEST|GROIN|ARMS
 
 /obj/item/clothing/suit/armor/laserproof
@@ -107,7 +108,7 @@
 	name = "bulletproof vest"
 	desc = "A vest that excels in protecting the wearer against high-velocity solid projectiles."
 	icon_state = "bulletproof"
-	item_state = "armor"
+	item_state = "bulletproof"
 	blood_overlay_type = "armor"
 	flags_armor_protection = CHEST
 	armor = list("melee" = 20, "bullet" = 50, "laser" = 25, "energy" = 10, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
@@ -172,18 +173,16 @@
 	name = "armor"
 	desc = "An armored vest with a detective's badge on it."
 	icon_state = "detective-armor"
-	item_state = "armor"
+	item_state = "detective-armor"
 	blood_overlay_type = "armor"
 	flags_armor_protection = CHEST|GROIN
 	armor = list("melee" = 50, "bullet" = 15, "laser" = 50, "energy" = 10, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 
 
 //Reactive armor
-//When the wearer gets hit, this armor will teleport the user a short distance away (to safety or to more danger, no one knows. That's the fun of it!)
 /obj/item/clothing/suit/armor/reactive
-	name = "Reactive Teleport Armor"
-	desc = "Someone seperated our Research Director from his own head!"
-	var/active = 0.0
+	name = "Reactive Shield Armor"
+	desc = "Highly experimental armor. Do not use outside of controlled lab conditions."
 	icon_state = "reactiveoff"
 	item_state = "reactiveoff"
 	blood_overlay_type = "armor"
@@ -191,32 +190,43 @@
 	flags_atom = CONDUCT
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
-/obj/item/clothing/suit/armor/reactive/IsShield()
-	if(active)
-		return 1
-	return 0
+/obj/item/clothing/suit/armor/reactive/Initialize()
+	. = ..()
+	AddComponent(/datum/component/shield/overhealth)
 
-/obj/item/clothing/suit/armor/reactive/attack_self(mob/user as mob)
-	src.active = !( src.active )
-	if (src.active)
-		to_chat(user, "<span class='notice'>The reactive armor is now active.</span>")
-		src.icon_state = "reactive"
-		src.item_state = "reactive"
-	else
-		to_chat(user, "<span class='notice'>The reactive armor is now inactive.</span>")
-		src.icon_state = "reactiveoff"
-		src.item_state = "reactiveoff"
-	return
+/obj/item/clothing/suit/armor/reactive/red
+	shield_state = "shield-red"
 
-/obj/item/clothing/suit/armor/reactive/emp_act(severity)
-	active = 0
-	src.icon_state = "reactiveoff"
-	src.item_state = "reactiveoff"
-	..()
+/obj/item/clothing/suit/armor/rugged
+	name = "rugged armor"
+	desc = "A suit of armor used by workers in dangerous environments."
+	icon_state = "swatarmor"
+	item_state = "swatarmor"
+	var/obj/item/weapon/gun/holstered = null
+	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	slowdown = 0
+	armor = list("melee" = 50, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 50, "acid" = 50)
+	siemens_coefficient = 0.7
 
 
+/obj/item/clothing/suit/armor/sectoid
+	name = "psionic field"
+	desc = "A field of invisible energy, it protects the wearer but prevents any clothing from being worn."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "shield-blue"
+	flags_item = NODROP|DELONDROP
+	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	armor = list("melee" = 55, "bullet" = 55, "laser" = 35, "energy" = 20, "bomb" = 40, "bio" = 40, "rad" = 10, "fire" = 40, "acid" = 40)
+	allowed = list()//how would you put a gun onto a field of energy?
 
+/obj/item/clothing/suit/armor/sectoid/shield
+	name = "powerful psionic field"
+	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	armor = list("melee" = 55, "bullet" = 55, "laser" = 35, "energy" = 20, "bomb" = 40, "bio" = 40, "rad" = 10, "fire" = 40, "acid" = 40)
 
+/obj/item/clothing/suit/armor/sectoid/shield/Initialize()
+	. = ..()
+	AddComponent(/datum/component/shield/overhealth)
 
 
 //All of the armor below is mostly unused
@@ -270,7 +280,7 @@
 	name = "tactical armor"
 	desc = "A suit of armor most often used by Special Weapons and Tactics squads. Includes padded vest with pockets along with shoulder and kneeguards."
 	icon_state = "swatarmor"
-	item_state = "armor"
+	item_state = "swatarmor"
 	var/obj/item/weapon/gun/holstered = null
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	slowdown = 1
@@ -315,7 +325,7 @@
 	name = "emergency response team armor"
 	desc = "A set of armor worn by members of the NanoTrasen Emergency Response Team."
 	icon_state = "ertarmor_cmd"
-	item_state = "armor"
+	item_state = "ertarmor_cmd"
 	armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 40, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 40, "acid" = 40)
 
 //Captain
@@ -328,18 +338,21 @@
 	name = "emergency response team security armor"
 	desc = "A set of armor worn by security members of the NanoTrasen Emergency Response Team. Has red highlights."
 	icon_state = "ertarmor_sec"
+	item_state = "ertarmor_sec"
 
 //Engineer
 /obj/item/clothing/suit/armor/vest/ert/engineer
 	name = "emergency response team engineer armor"
 	desc = "A set of armor worn by engineering members of the NanoTrasen Emergency Response Team. Has orange highlights."
 	icon_state = "ertarmor_eng"
+	item_state = "ertarmor_eng"
 
 //Medical
 /obj/item/clothing/suit/armor/vest/ert/medical
 	name = "emergency response team medical armor"
 	desc = "A set of armor worn by medical members of the NanoTrasen Emergency Response Team. Has red and white highlights."
 	icon_state = "ertarmor_med"
+	item_state = "ertarmor_med"
 
 
 

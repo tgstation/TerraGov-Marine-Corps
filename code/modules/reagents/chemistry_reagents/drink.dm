@@ -19,9 +19,9 @@
 	if(adj_dizzy != 0)
 		L.dizzy(adj_dizzy)
 	if(adj_drowsy != 0)
-		L.drowsyness = max(0,L.drowsyness + adj_drowsy)
+		L.adjustDrowsyness(adj_drowsy)
 	if(adj_sleepy != 0)
-		L.adjust_sleeping(adj_sleepy)
+		L.AdjustSleeping(adj_sleepy)
 	return ..()
 
 /datum/reagent/consumable/drink/orangejuice
@@ -200,41 +200,68 @@
 	description = "Coffee is a brewed drink prepared from roasted seeds, commonly called coffee beans, of the coffee plant."
 	color = "#482000" // rgb: 72, 32, 0
 	nutriment_factor = 0
-	overdose_threshold = REAGENTS_OVERDOSE * 3
+	overdose_threshold = REAGENTS_OVERDOSE * 2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 3
+	custom_metabolism = REAGENTS_METABOLISM * 5 //1u/tick
 	adj_dizzy = -5
 	adj_drowsy = -3
 	adj_sleepy = -2
 	adj_temp = 20
 	taste_description = "bitterness"
+	purge_list = list(/datum/reagent/consumable/frostoil, /datum/reagent/medicine/oxycodone)
+	purge_rate = 2
 	trait_flags = TACHYCARDIC
 
+/datum/reagent/consumable/drink/coffee/on_mob_add(mob/living/L, metabolism)
+	. = ..()
+	L.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -0.2)
+
+/datum/reagent/consumable/drink/coffee/on_mob_delete(mob/living/L, metabolism)
+	L.remove_movespeed_modifier(type)
+	var/amount = (current_cycle * 0.5) // 15/cup
+	L.adjustStaminaLoss(amount)
+
+
 /datum/reagent/consumable/drink/coffee/on_mob_life(mob/living/L, metabolism)
-	L.jitter(2)
-	if(adj_temp > 0 && holder.has_reagent(/datum/reagent/consumable/frostoil))
-		holder.remove_reagent(/datum/reagent/consumable/frostoil, 5)
+	switch(current_cycle)
+		if(1 to 10)
+			L.adjustStaminaLoss(-2*REM)
+		if(11 to 30)
+			L.adjustStaminaLoss(-1*REM)
+		if(11 to 60)
+			L.adjustStaminaLoss(-0.5*REM)
+			L.jitter(1)
+		if(61 to 150)
+			L.adjustStaminaLoss(0.5*REM)
+			L.apply_damage(0.2, TOX)
+			L.jitter(2)
+		if(151 to INFINITY)
+			L.adjustStaminaLoss(5*REM)
+			L.apply_damage(0.5, TOX) //someone'll antitox you eventually, which purges coffee at 3x speed
+			L.jitter(5)
 	return ..()
 
 /datum/reagent/consumable/drink/coffee/overdose_process(mob/living/L, metabolism)
-	L.jitter(5)
+	L.apply_damage(0.2, TOX)
+	L.jitter(2)
 	if(prob(5) && ishuman(L))
 		var/mob/living/carbon/human/H = L
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 		if(E)
-			E.take_damage(0.1, TRUE)
+			E.take_damage(1, TRUE)
 		L.emote(pick("twitch", "blink_r", "shiver"))
 
 /datum/reagent/consumable/drink/coffee/overdose_crit_process(mob/living/L, metabolism)
-	L.apply_damage(0.2, TOX)
+	L.apply_damage(0.5, TOX)
 	L.jitter(5)
 	if(prob(5) && L.stat != UNCONSCIOUS)
 		to_chat(L, "<span class='warning'>You spasm and pass out!</span>")
-		L.knock_out(5)
-	if(prob(5) && ishuman(L))
+		L.Unconscious(10 SECONDS)
+	if(prob(30) && ishuman(L))
 		var/mob/living/carbon/human/H = L
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 		if(E)
-			E.take_damage(0.1, TRUE)
+			E.take_damage(1, TRUE)
 
 /datum/reagent/consumable/drink/coffee/icecoffee
 	name = "Iced Coffee"
@@ -433,7 +460,7 @@
 	L.adjustFireLoss(-0.5, 0)
 	L.adjustToxLoss(-0.5, 0)
 	L.adjustOxyLoss(-0.5, 0)
-	L.confused = max(L.confused - 5, 0)
+	L.AdjustConfused(-10 SECONDS)
 	return ..()
 
 /datum/reagent/consumable/drink/atomicbomb
@@ -445,15 +472,15 @@
 
 /datum/reagent/consumable/drink/atomicbomb/on_mob_life(mob/living/L, metabolism)
 	L.set_drugginess(50)
-	L.confused += 2
+	L.AdjustConfused(40)
 	L.slurring += 2
 	switch(current_cycle)
 		if(40 to 49)
-			L.drowsyness += 2
+			L.adjustDrowsyness(2)
 		if(51 to 200)
-			L.sleeping(3)
+			L.Sleeping(60)
 		if(201 to INFINITY)
-			L.sleeping(3)
+			L.Sleeping(60)
 			L.adjustToxLoss(2)
 	return ..()
 
@@ -470,7 +497,7 @@
 			L.slurring += 2
 			L.jitter(2)
 		if(46 to 65)
-			L.confused += 2
+			L.AdjustConfused(40)
 			L.slurring += 2
 			L.jitter(3)
 		if(66 to 199)
@@ -479,16 +506,16 @@
 				L.vomit()
 			L.jitter(4)
 			if(prob(5))
-				L.sleeping(8)
+				L.Sleeping(16 SECONDS)
 		if(200 to INFINITY)
 			L.set_drugginess(50)
-			L.confused += 2
+			L.AdjustConfused(40)
 			L.slurring += 2
 			L.adjustToxLoss(2)
 			L.jitter(5)
 			if(prob(10))
 				L.vomit()
-			L.sleeping(3)
+			L.Sleeping(60)
 	return ..()
 
 /datum/reagent/consumable/drink/neurotoxin
@@ -500,16 +527,16 @@
 	trait_flags = BRADYCARDICS
 
 /datum/reagent/consumable/drink/neurotoxin/on_mob_life(mob/living/L, metabolism)
-	L.knock_down(3)
+	L.Paralyze(60)
 	switch(current_cycle)
 		if(15 to 35)
 			L.stuttering += 2
 		if(36 to 55)
 			L.stuttering +=2
-			L.confused += 2
+			L.AdjustConfused(40)
 		if(56 to 200)
 			L.stuttering +=2
-			L.confused += 2
+			L.AdjustConfused(40)
 			L.set_drugginess(30)
 		if(201 to INFINITY)
 			L.set_drugginess(30)

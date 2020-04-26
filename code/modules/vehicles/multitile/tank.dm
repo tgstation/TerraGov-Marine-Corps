@@ -7,7 +7,7 @@
 	name = "\improper M34A2 Longstreet Light Tank"
 	desc = "A giant piece of armor with a big gun, you know what to do. Entrance in the back."
 
-	icon = 'icons/obj/tank_NS.dmi'
+	icon = 'icons/obj/vehicles/tank_NS.dmi'
 	icon_state = "tank_base"
 	pixel_x = -32
 	pixel_y = -32
@@ -150,11 +150,7 @@
 		return
 	M.visible_message("<span class='warning'>[M] starts pulling [occupant] out of \the [src].</span>",
 	"<span class='warning'>You start pulling [occupant] out of \the [src]. (this will take a while...)</span>", null, 6)
-	var/fumbling_time = 20 SECONDS
-	if(M.mind?.cm_skills?.police)
-		fumbling_time -= 2 SECONDS * M.mind.cm_skills.police
-	if(M.mind?.cm_skills?.large_vehicle)
-		fumbling_time -= 2 SECONDS * M.mind.cm_skills.large_vehicle
+	var/fumbling_time = 20 SECONDS - 2 SECONDS * M.skills.getRating("police") - 2 SECONDS * M.skills.getRating("large_vehicle")
 	if(!do_after(M, fumbling_time, TRUE, src, BUSY_ICON_HOSTILE))
 		return
 	exit_tank(occupant, TRUE, TRUE)
@@ -163,7 +159,7 @@
 	if(!isliving(occupant))
 		return
 	var/mob/living/L = occupant
-	L.knock_down(4)
+	L.Paralyze(80)
 
 //Two seats, gunner and driver
 //Must have the skills to do so
@@ -195,10 +191,10 @@
 		to_chat(M, "<span class='warning'>You need your hands free to climb on [src].</span>")
 		return
 
-	if(M.mind?.cm_skills && M.mind.cm_skills.large_vehicle < SKILL_LARGE_VEHICLE_TRAINED)
+	if(M.skills.getRating("large_vehicle") < SKILL_LARGE_VEHICLE_TRAINED)
 		M.visible_message("<span class='notice'>[M] fumbles around figuring out how to get into the [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to get into [src].</span>")
-		var/fumbling_time = 10 SECONDS - 2 SECONDS * M.mind.cm_skills.large_vehicle
+		var/fumbling_time = 10 SECONDS - 2 SECONDS * M.skills.getRating("large_vehicle")
 		if(!do_after(M, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || (offhand && !(offhand.flags_item & (NODROP|DELONDROP))))
 			return
 

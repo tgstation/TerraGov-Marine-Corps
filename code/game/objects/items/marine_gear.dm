@@ -55,7 +55,7 @@
 		alpha = initial(alpha) //stealth mode disengaged
 		animate(src) //Cancel the fade out if still ongoing.
 	if(bodybag_occupant)
-		UnregisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING))
+		UnregisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED))
 	return ..()
 
 
@@ -70,7 +70,7 @@
 /obj/structure/closet/bodybag/tarp/close()
 	. = ..()
 	if(bodybag_occupant)
-		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_QDELETING), .proc/on_bodybag_occupant_death)
+		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED), .proc/on_bodybag_occupant_death)
 
 
 /obj/structure/closet/bodybag/tarp/proc/on_bodybag_occupant_death(datum/source, gibbed)
@@ -103,7 +103,7 @@
 			visible_message("<span class='danger'>\The shockwave blows [src] apart!</span>")
 			qdel(src) //blown apart
 
-/obj/structure/closet/bodybag/tarp/bullet_act(obj/item/projectile/Proj)
+/obj/structure/closet/bodybag/tarp/bullet_act(obj/projectile/Proj)
 	var/mob/M = locate() in src //need to be occupied
 	if(!opened && M)
 		M.bullet_act(Proj) //tarp isn't bullet proof; concealment, not cover; pass it on to the occupant.
@@ -326,5 +326,6 @@
 	item_state = "heavy_harness"
 
 /obj/item/belt_harness/marine/equipped(mob/living/carbon/human/user, slot)
+	. = ..()
 	if(slot == SLOT_BELT)
 		playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)

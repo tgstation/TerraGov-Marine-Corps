@@ -22,7 +22,7 @@
 	else if(action_busy)
 		to_chat(src, "<span class='warning'>You are still in the process of standing up.</span>")
 		return
-	else if(do_mob(src, src, 2 SECONDS, uninterruptible = TRUE))
+	else if(do_mob(src, src, 2 SECONDS, ignore_flags = (IGNORE_LOC_CHANGE|IGNORE_HAND)))
 		get_up()
 
 /mob/living/proc/get_up()
@@ -32,6 +32,8 @@
 		to_chat(src, "<span class='notice'>You fail to get up.</span>")
 
 /mob/living/proc/set_resting(rest, silent = TRUE)
+	if(status_flags & INCORPOREAL)
+		return
 	if(!silent)
 		if(rest)
 			to_chat(src, "<span class='notice'>You are now resting.</span>")
@@ -63,20 +65,20 @@
 		ghost.timeofdeath = world.time
 
 
-/mob/living/verb/point_to(atom/A in view(client.view + client.get_offset(), loc))
+/mob/living/verb/point_to(atom/A in view(client.view, loc))
 	set name = "Point To"
 	set category = "Object"
 
 	if(!isturf(loc))
 		return FALSE
 
-	if(!(A in view(client.view + client.get_offset(), loc))) //Target is no longer visible to us.
+	if(!(A in view(client.view, loc))) //Target is no longer visible to us.
 		return FALSE
 
 	if(!A.mouse_opacity) //Can't click it? can't point at it.
 		return FALSE
 
-	if(incapacitated() || (status_flags & FAKEDEATH)) //Incapacitated, can't point.
+	if(incapacitated() || HAS_TRAIT(src, TRAIT_FAKEDEATH)) //Incapacitated, can't point.
 		return FALSE
 
 	var/tile = get_turf(A)

@@ -204,7 +204,6 @@
 	if(!SSmapping.shuttle_templates[shuttle_id])
 		message_admins("Distress beacon: [name] couldn't find a valid shuttle template")
 		CRASH("ert called with invalid shuttle_id")
-		return
 	var/datum/map_template/shuttle/S = SSmapping.shuttle_templates[shuttle_id]
 
 	var/obj/docking_port/stationary/L = SSshuttle.getDock("distress_loading")
@@ -251,7 +250,7 @@
 	if(!M.client)
 		return FALSE  //Not connected
 
-	if(M.mind && M.mind in candidates)
+	if(M.mind && (M.mind in candidates))
 		return FALSE  //Already there.
 
 	if(M.stat != DEAD)
@@ -280,7 +279,7 @@
 	if(!istype(spawn_loc))
 		CRASH("[type] failed to find a proper spawn_loc")
 
-	return new spawn_type(spawn_loc)
+	return spawn_type ? new spawn_type(spawn_loc) : spawn_loc
 
 
 /datum/emergency_call/proc/spawn_items() //Allows us to spawn various things around the shuttle.

@@ -9,11 +9,11 @@
 	icon_state = "default"
 
 /turf/open/floor/mainship/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
-	if(planned_building == /turf/closed/wall/resin) //The Canterbury moves and will leave a hole in space if there's a resin wall.
+	if(ispath(planned_building, /turf/closed/wall/)) // The Canterbury moves and will leave a hole in space if there's a resin wall.
 		if(!silent)
 			to_chat(builder, "<span class='warning'>This place seems unable to support a wall.</span>")
 		return FALSE
-	return TRUE
+	return ..()
 
 /turf/open/floor/mainship/mono
 	icon_state = "mono"
@@ -149,6 +149,9 @@
 	name = "floor"
 	icon_state = "wood"
 	floor_tile = new/obj/item/stack/tile/wood
+	shoefootstep = FOOTSTEP_WOOD
+	barefootstep = FOOTSTEP_WOOD
+	mediumxenofootstep = FOOTSTEP_WOOD
 
 /turf/open/floor/wood/broken
 	icon_state = "wood-broken"
@@ -232,6 +235,9 @@
 	name = "Grass patch"
 	icon_state = "grass1"
 	floor_tile = new/obj/item/stack/tile/grass
+	shoefootstep = FOOTSTEP_GRASS
+	barefootstep = FOOTSTEP_GRASS
+	mediumxenofootstep = FOOTSTEP_GRASS
 
 
 /turf/open/floor/grass/Initialize()
@@ -423,6 +429,9 @@
 /turf/open/floor/carpet
 	name = "Carpet"
 	icon_state = "carpet"
+	shoefootstep = FOOTSTEP_CARPET
+	barefootstep = FOOTSTEP_CARPET
+	mediumxenofootstep = FOOTSTEP_CARPET
 
 
 /turf/open/floor/carpet/Initialize()

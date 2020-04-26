@@ -136,7 +136,7 @@
 	desc = "A lighting fixture."
 	anchored = TRUE
 	layer = FLY_LAYER
-	use_power = 2
+	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
@@ -367,7 +367,7 @@
 			s.set_up(3, 1, src)
 			s.start()
 			if(prob(75))
-				electrocute_mob(user, get_area(src), src, rand(0.7, 1))
+				electrocute_mob(user, get_area(src), src, rand(7, 10) * 0.1)
 
 
 // returns whether this light has power
@@ -402,7 +402,7 @@
 /obj/machinery/light/attack_alien(mob/living/carbon/xenomorph/M)
 	if(status == 2) //Ignore if broken.
 		return FALSE
-	M.do_attack_animation(src)
+	M.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 	M.visible_message("<span class='danger'>\The [M] smashes [src]!</span>", \
 	"<span class='danger'>We smash [src]!</span>", null, 5)
 	broken() //Smashola!
@@ -658,7 +658,7 @@
 	anchored = TRUE
 	density = FALSE
 	layer = BELOW_TABLE_LAYER
-	use_power = 2
+	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list

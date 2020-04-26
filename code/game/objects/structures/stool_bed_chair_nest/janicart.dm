@@ -1,6 +1,6 @@
 
 
-//old style retardo-cart
+///old style janicart
 /obj/structure/bed/chair/janicart
 	name = "janicart"
 	icon = 'icons/obj/vehicles.dmi'
@@ -8,7 +8,8 @@
 	icon_state = "pussywagon"
 	anchored = FALSE
 	density = TRUE
-	buildstacktype = null //can't be disassembled and doesn't drop anything when destroyed
+	buildstacktype = null ///can't be disassembled and doesn't drop anything when destroyed
+	buckle_flags = CAN_BUCKLE
 	//copypaste sorry
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 	var/obj/item/storage/bag/trash/mybag	= null
@@ -62,50 +63,17 @@
 	if(world.time <= last_move_time + move_delay)
 		return
 	if(user.incapacitated(TRUE))
-		unbuckle()
+		unbuckle_mob(user)
 	if(istype(user.l_hand, /obj/item/key) || istype(user.r_hand, /obj/item/key))
 		step(src, direction)
 	else
 		to_chat(user, "<span class='notice'>You'll need the keys in one of your hands to drive this [callme].</span>")
 
 
-/obj/structure/bed/chair/janicart/send_buckling_message(mob/M, mob/user)
-	M.visible_message(\
-		"<span class='notice'>[M] climbs onto the [callme]!</span>",\
-		"<span class='notice'>You climb onto the [callme]!</span>")
-
-
-/obj/structure/bed/chair/janicart/handle_rotation()
-	if(dir == SOUTH)
-		layer = FLY_LAYER
-	else
-		layer = OBJ_LAYER
-
-	update_mob()
-
-
-/obj/structure/bed/chair/janicart/proc/update_mob()
-	if(buckled_mob)
-		buckled_mob.setDir(dir)
-		switch(dir)
-			if(SOUTH)
-				buckled_mob.pixel_x = 0
-				buckled_mob.pixel_y = 7
-			if(WEST)
-				buckled_mob.pixel_x = 13
-				buckled_mob.pixel_y = 7
-			if(NORTH)
-				buckled_mob.pixel_x = 0
-				buckled_mob.pixel_y = 4
-			if(EAST)
-				buckled_mob.pixel_x = -13
-				buckled_mob.pixel_y = 7
-
-
-/obj/structure/bed/chair/janicart/bullet_act(obj/item/projectile/Proj)
-	if(buckled_mob)
+/obj/structure/bed/chair/janicart/bullet_act(obj/projectile/Proj)
+	if(LAZYLEN(buckled_mobs))
 		if(prob(85))
-			return buckled_mob.bullet_act(Proj)
+			return buckled_mobs[1].bullet_act(Proj)
 	visible_message("<span class='warning'>[Proj] ricochets off the [callme]!</span>")
 	return 1
 

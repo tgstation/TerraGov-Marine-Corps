@@ -20,7 +20,7 @@
 	var/list/formatted = list()
 	for(var/job in jobs)
 		formatted.Add(list(list(
-			"display_name" = oldreplacetext(job, " ", "&nbsp"),
+			"display_name" = replacetext(job, " ", "&nbsp"),
 			"target_rank" = get_target_rank(),
 			"job" = job)))
 
@@ -31,7 +31,8 @@
 	set name = "Eject ID Card"
 	set src in oview(1)
 
-	if(!usr || usr.stat || usr.lying)	return
+	if(!usr || usr.stat || usr.lying_angle)
+		return
 
 	if(scan)
 		to_chat(usr, "You remove \the [scan] from \the [src].")
@@ -57,7 +58,7 @@
 
 	var/obj/item/card/id/C = I
 
-	if(!scan && ACCESS_MARINE_LOGISTICS in C.access)
+	if(!scan && (ACCESS_MARINE_LOGISTICS in C.access))
 		if(!user.drop_held_item())
 			return
 
@@ -118,7 +119,7 @@
 			for(var/access in get_region_accesses(i))
 				if (get_access_desc(access))
 					accesses.Add(list(list(
-						"desc" = oldreplacetext(get_access_desc(access), " ", "&nbsp"),
+						"desc" = replacetext(get_access_desc(access), " ", "&nbsp"),
 						"ref" = access,
 						"allowed" = (access in modify.access) ? 1 : 0)))
 
@@ -190,7 +191,7 @@
 			if (is_authenticated() && modify)
 				var/t1 = href_list["assign_target"]
 				if(t1 == "Custom")
-					var/temp_t = copytext(sanitize(input("Enter a custom job assignment.","Assignment")),1,45)
+					var/temp_t = stripped_input("Enter a custom job assignment.","Assignment")), 45)
 					//let custom jobs function as an impromptu alt title, mainly for sechuds
 					if(temp_t && modify)
 						modify.assignment = temp_t

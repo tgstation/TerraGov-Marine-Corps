@@ -169,38 +169,13 @@
 	name = "rolling pin"
 	desc = "Used to knock out the Bartender."
 	icon_state = "rolling_pin"
-	force = 8.0
-	throwforce = 10.0
+	force = 8
+	throwforce = 10
 	throw_speed = 2
 	throw_range = 7
 	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb = list("bashed", "battered", "bludgeoned", "thrashed", "whacked") //I think the rollingpin attackby will end up ignoring this anyway.
+	attack_verb = list("bashed", "battered", "bludgeoned", "thrashed", "whacked")
 
-/obj/item/tool/kitchen/rollingpin/attack(mob/living/M as mob, mob/living/user as mob)
-	log_combat(user, M, "attacked", src)
-
-	var/t = user:zone_selected
-	if (t == "head")
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			var/obj/item/head_protection = H.head
-			if (H.stat < 2 && H.health < 50 && prob(90))
-				// ******* Check
-				if (istype(head_protection) && head_protection.flags_inventory & BLOCKSHARPOBJ  && prob(80))
-					to_chat(H, "<span class='warning'>The helmet protects you from being hit hard in the head!</span>")
-					return
-				var/time = rand(2, 6)
-				if (prob(75))
-					H.knock_out(time)
-				else
-					H.stun(time)
-				if(H.stat != 2)	H.stat = 1
-				user.visible_message("<span class='danger'>[H] has been knocked unconscious!</span>", "<span class='danger'>You knock [H] unconscious!</span>")
-				return
-			else
-				H.visible_message("<span class='warning'> [user] tried to knock [H] unconscious!</span>", "<span class='warning'> [user] tried to knock you unconscious!</span>")
-				H.blur_eyes(3)
-	return ..()
 
 /*
 * Trays - Agouri
@@ -264,7 +239,7 @@
 		log_combat(user, M, "attacked", src)
 
 		if(prob(15))
-			M.knock_down(3)
+			M.Paralyze(60)
 			M.take_limb_damage(3)
 		else
 			M.take_limb_damage(5)
@@ -301,7 +276,7 @@
 			playsound(M, 'sound/items/trayhit2.ogg', 25, 1)  //sound playin'
 			visible_message("<span class='danger'>[user] slams [M] with the tray!</span>")
 		if(prob(10))
-			M.stun(rand(1,3))
+			M.Stun(rand(20,60))
 			M.take_limb_damage(3)
 			return
 		else
@@ -323,13 +298,13 @@
 			playsound(M, 'sound/items/trayhit2.ogg', 25, 1)  //sound playin' again
 			visible_message("<span class='danger'>[user] slams [M] in the face with the tray!</span>")
 		if(prob(30))
-			M.stun(rand(2,4))
+			M.Stun(rand(40,80))
 			M.take_limb_damage(4)
 			return
 		else
 			M.take_limb_damage(8)
 			if(prob(30))
-				M.knock_down(2)
+				M.Paralyze(40)
 				return
 			return
 
@@ -371,7 +346,7 @@
 		return
 
 	for(var/obj/item/I in loc)
-		if( I != src && !I.anchored && !istype(I, /obj/item/clothing/under) && !istype(I, /obj/item/clothing/suit) && !istype(I, /obj/item/projectile) )
+		if( I != src && !I.anchored && !istype(I, /obj/item/clothing/under) && !istype(I, /obj/item/clothing/suit))
 			var/add = 0
 			if(I.w_class == 1.0)
 				add = 1

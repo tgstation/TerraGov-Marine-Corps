@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/UnarmedAttack(atom/A, proximity_flag)
-	if(lying)
+	if(lying_angle)
 		return FALSE
 
 	if(xeno_caste)
@@ -16,27 +16,21 @@
 
 
 /mob/living/carbon/xenomorph/larva/UnarmedAttack(atom/A, proximity_flag)
-	if(lying)
+	if(lying_angle)
 		return FALSE
 
 	A.attack_larva(src)
-
 
 /atom/proc/attack_larva(mob/living/carbon/xenomorph/larva/L)
 	return
 
 
-/mob/living/carbon/xenomorph/MiddleClickOn(atom/A)
-	. = ..()
-	if(!middle_mouse_toggle || !selected_ability)
-		return
-	if(selected_ability.can_use_ability(A))
-		selected_ability.use_ability(A)
 
+/mob/living/carbon/xenomorph/hivemind/UnarmedAttack(atom/A, proximity_flag)
+	if(lying_angle)
+		return FALSE
 
-/mob/living/carbon/xenomorph/ShiftClickOn(atom/A)
-	if(!selected_ability || middle_mouse_toggle)
-		return ..()
-	if(selected_ability.can_use_ability(A))
-		selected_ability.use_ability(A)
-	return TRUE
+	A.attack_hivemind(src)
+
+/atom/proc/attack_hivemind(mob/living/carbon/xenomorph/hivemind/attacker)
+	return

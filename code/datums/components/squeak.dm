@@ -45,12 +45,11 @@
 		return
 	if(!squeak_sound)
 		CRASH("Squeak component attempted to play invalid sound.")
-		return
 
 	if(islist(squeak_sound))
-		playsound(parent, sound(pick(squeak_sound)), volume)
+		playsound(parent, sound(pick(squeak_sound)), volume, TRUE, 10)
 	else
-		playsound(parent, sound(squeak_sound), volume)
+		playsound(parent, sound(squeak_sound), volume, TRUE, 10)
 
 
 /datum/component/squeak/proc/step_squeak()
@@ -66,10 +65,11 @@
 		var/obj/item/I = AM
 		if(I.flags_item & ITEM_ABSTRACT)
 			return
-		else if(istype(AM, /obj/item/projectile))
-			var/obj/item/projectile/P = AM
-			if(P.original_target != parent)
-				return
+
+	if(istype(AM, /obj/projectile))
+		var/obj/projectile/P = AM
+		if(P.original_target != parent)
+			return
 
 	if(isobserver(AM))
 		return

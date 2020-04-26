@@ -41,10 +41,15 @@
 		empulse(location, round(created_volume / 24), round(created_volume / 14), 1)
 		holder.clear_reagents()
 
-/datum/chemical_reaction/pttoxin
-	name = "Toxin"
-	results = list(/datum/reagent/toxin/pttoxin = 2)
+/datum/chemical_reaction/water_two
+	name = "Water"
+	results = list(/datum/reagent/water = 2)
 	required_reagents = list(/datum/reagent/medicine/paracetamol = 1, /datum/reagent/medicine/tramadol = 1)
+
+/datum/chemical_reaction/toxin_two //Space Atropine!
+	name = "Toxin"
+	results = list(/datum/reagent/toxin = 3)
+	required_reagents = list(/datum/reagent/medicine/synaptizine = 1, /datum/reagent/toxin/xeno_neurotoxin = 10)
 
 /datum/chemical_reaction/sdtoxin
 	name = "Toxin"
@@ -139,15 +144,15 @@
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(2, 1, location)
 	s.start()
-	for(var/mob/living/carbon/M in viewers(world.view, location))
+	for(var/mob/living/carbon/M in viewers(WORLD_VIEW, location))
 		switch(get_dist(M, location))
 			if(0 to 3)
 				if(M.flash_eyes())
-					M.knock_down(15)
+					M.Paralyze(30 SECONDS)
 
 			if(4 to 5)
 				if(M.flash_eyes())
-					M.stun(5)
+					M.Stun(10 SECONDS)
 
 
 /datum/chemical_reaction/napalm

@@ -36,27 +36,23 @@
 	if(!leader)
 		leader = H
 		var/datum/job/J = SSjob.GetJobType(/datum/job/upp/leader)
-		SSjob.AssignRole(H, J.title)
-		J.assign_equip(H)
+		H.apply_assigned_role_to_spawn(J)
 		to_chat(H, "<span class='notice'>You are the leader of the UPP squad in responding to the TGMC distress signal sent nearby. Let your squadmates march to battle, for glory!</span>")
 		return
 
 	if(medics < max_medics)
 		var/datum/job/J = SSjob.GetJobType(/datum/job/upp/medic)
-		SSjob.AssignRole(H, J.title)
-		J.assign_equip(H)
+		H.apply_assigned_role_to_spawn(J)
 		to_chat(H, "<span class='notice'>You are a medic of the UPP army to respond to the TGMC distress signal sent nearby. Kit up and get ready to tend wounds!</span>")
 		medics++
 		return
 
 	if(prob(20))
 		var/datum/job/J = SSjob.GetJobType(/datum/job/upp/heavy)
-		SSjob.AssignRole(H, J.title)
-		J.assign_equip(H)
+		H.apply_assigned_role_to_spawn(J)
 		to_chat(H, "<span class='notice'>You are a specialist of the UPP army to respond to the TGMC distress signal sent nearby. Crush the vermin!</span>")
 		return
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/upp/standard)
-	SSjob.AssignRole(H, J.title)
-	J.assign_equip(H)
+	H.apply_assigned_role_to_spawn(J)
 	to_chat(H, "<span class='notice'>You are a member of the UPP army to respond to the TGMC distress signal sent nearby. Do not forget your training, stand tall with your other comrades!</span>")

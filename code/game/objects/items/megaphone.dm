@@ -23,13 +23,13 @@
 		to_chat(user, "<span class='warning'>\The [src] needs to recharge!</span>")
 		return
 
-	var/message = copytext(sanitize(input(user, "Shout a message?", "Megaphone", null)  as text),1,MAX_MESSAGE_LEN)
+	var/message = stripped_input(user, "Shout a message?", "Megaphone")
 	if(!message)
 		return
 	message = capitalize(message)
 	user.log_talk(message, LOG_SAY, "(megaphone)")
 	if ((src.loc == user && usr.stat == 0))
-		audible_message("<B>[user]</B> broadcasts, <FONT size=3>\"[message]\"</FONT>")
+		user.send_speech("<FONT size=4>[message]</FONT>", message_language = user.get_default_language())
 
 		spamcheck = TRUE
 		addtimer(VARSET_CALLBACK(src, spamcheck, FALSE), 2 SECONDS)

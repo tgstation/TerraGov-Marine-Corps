@@ -21,8 +21,8 @@
 
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
+	active_power_usage = 100
 	interaction_flags = INTERACT_MACHINE_NANO
-	var/vend_power_usage = 150 //actuators and stuff
 
 	var/active = TRUE //No sales pitches if off!
 	var/vend_ready = TRUE //Are we ready to vend?? Is it time??
@@ -112,8 +112,19 @@
 	return
 
 GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
-	/obj/item/weapon/gun/rifle/m41a,
-	/obj/item/ammo_magazine/rifle,
+	/obj/item/ammo_magazine/pistol/standard_pistol,
+	/obj/item/ammo_magazine/revolver/standard_revolver,
+	/obj/item/weapon/gun/smg/standard_smg,
+	/obj/item/weapon/gun/rifle/standard_carbine,
+	/obj/item/weapon/gun/rifle/standard_assaultrifle,
+	/obj/item/weapon/gun/rifle/standard_lmg,
+	/obj/item/weapon/gun/rifle/standard_dmr,
+	/obj/item/weapon/gun/energy/lasgun/M43,
+	/obj/item/weapon/gun/shotgun/pump/t35,
+	/obj/item/weapon/gun/rifle/standard_autoshotgun,
+	/obj/item/ammobox,
+	/obj/item/shotgunbox,
+	/obj/item/smartgun_powerpack,
 	/obj/item/weapon/combat_knife,
 	/obj/item/radio/headset/mainship/marine,
 	/obj/item/clothing/gloves/marine,
@@ -174,7 +185,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 		return FALSE
 
 	if(M.a_intent == INTENT_HARM)
-		M.do_attack_animation(src)
+		M.do_attack_animation(src, ATTACK_EFFECT_SMASH)
 		if(prob(M.xeno_caste.melee_damage))
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
 			M.visible_message("<span class='danger'>\The [M] smashes \the [src] beyond recognition!</span>", \
@@ -304,33 +315,34 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 			to_chat(usr, "[icon2html(src, usr)]<span class='warning'>Error: Unable to access your account. Please contact technical support if problem persists.</span>")
 
 /obj/machinery/vending/proc/transfer_and_vend(datum/money_account/acc)
-	if(acc)
-		var/transaction_amount = currently_vending.price
-		if(transaction_amount <= acc.money)
-
-			//transfer the money
-			acc.money -= transaction_amount
-
-			//create entries in the two account transaction logs
-			var/datum/transaction/T = new()
-			T.purpose = "Purchase of [currently_vending.product_name]"
-			if(transaction_amount > 0)
-				T.amount = "([transaction_amount])"
-			else
-				T.amount = "[transaction_amount]"
-			T.source_terminal = src.name
-			T.date = GLOB.current_date_string
-			T.time = worldtime2text()
-			acc.transaction_log.Add(T)
-
-			// Vend the item
-			src.vend(src.currently_vending, usr)
-			currently_vending = null
-			currently_vending_index = null
-		else
-			to_chat(usr, "[icon2html(src, usr)]<span class='warning'>You don't have that much money!</span>")
-	else
+	if(!acc)
 		to_chat(usr, "[icon2html(src, usr)]<span class='warning'>Error: Unable to access your account. Please contact technical support if problem persists.</span>")
+		return
+
+	var/transaction_amount = currently_vending.price
+	if(transaction_amount > acc.money)
+		to_chat(usr, "[icon2html(src, usr)]<span class='warning'>You don't have that much money!</span>")
+		return
+
+	//transfer the money
+	acc.money -= transaction_amount
+
+	//create entries in the two account transaction logs
+	var/datum/transaction/T = new()
+	T.purpose = "Purchase of [currently_vending.product_name]"
+	if(transaction_amount > 0)
+		T.amount = "([transaction_amount])"
+	else
+		T.amount = "[transaction_amount]"
+	T.source_terminal = src.name
+	T.date = GLOB.current_date_string
+	T.time = worldtime2text()
+	acc.transaction_log.Add(T)
+
+	// Vend the item
+	src.vend(src.currently_vending, usr)
+	currently_vending = null
+	currently_vending_index = null
 
 
 /obj/machinery/vending/proc/GetProductIndex(datum/data/vending_product/P)
@@ -504,20 +516,21 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	set waitfor = 0
 	if(delay_vending)
 		if(powered(power_channel))
-			use_power(vend_power_usage)	//actuators and stuff
+			use_power(active_power_usage)	//actuators and stuff
 			if (icon_vend)
-				flick(icon_vend,src) //Show the vending animation if needed
+				flick(icon_vend, src) //Show the vending animation if needed
 			sleep(delay_vending)
-		else if(machine_current_charge > vend_power_usage) //if no power, use the machine's battery.
-			machine_current_charge -= min(machine_current_charge, vend_power_usage) //Sterilize with min; no negatives allowed.
-			//to_chat(world, "<span class='warning'>DEBUG: Machine Auto_Use_Power: Vend Power Usage: [vend_power_usage] Machine Current Charge: [machine_current_charge].</span>")
+		else if(machine_current_charge > active_power_usage) //if no power, use the machine's battery.
+			machine_current_charge -= min(machine_current_charge, active_power_usage) //Sterilize with min; no negatives allowed.
+			//to_chat(world, "<span class='warning'>DEBUG: Machine Auto_Use_Power: Vend Power Usage: [active_power_usage] Machine Current Charge: [machine_current_charge].</span>")
 			if (icon_vend)
 				flick(icon_vend,src) //Show the vending animation if needed
 			sleep(delay_vending)
 		else
 			return
+	SSblackbox.record_feedback("tally", "vendored", 1, R.name)
 	if(ispath(R.product_path,/obj/item/weapon/gun))
-		return new R.product_path(get_turf(src),1)
+		return new R.product_path(get_turf(src), 1)
 	else
 		return new R.product_path(get_turf(src))
 
@@ -527,7 +540,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
-	if(user.stat || user.restrained() || user.lying)
+	if(user.stat || user.restrained() || user.lying_angle)
 		return
 
 	if(get_dist(user, src) > 1 || get_dist(src, A) > 1)

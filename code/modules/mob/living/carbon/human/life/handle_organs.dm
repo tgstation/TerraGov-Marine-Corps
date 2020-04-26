@@ -10,16 +10,12 @@
 		if(!(status_flags & GODMODE)) //godmode doesn't work as intended anyway
 			reagents.metabolize(src, overdosable, L ? FALSE : TRUE)
 
-	if(issynth(src))
-		nutrition = 350 //synthetics are never hungry
-
-	else
-
+	if(!issynth(src)) //synthetics are never hungry
 		//Nutrition decrease
-		if(nutrition > 0 && stat != 2)
-			nutrition = max (0, nutrition - HUNGER_FACTOR)
+		if(nutrition > 0 && stat != DEAD)
+			adjust_nutrition(-HUNGER_FACTOR)
 
-		if(nutrition > 450)
+		if(nutrition > NUTRITION_OVERFED)
 			if(overeatduration < 600) //Capped so people don't take forever to unfat
 				overeatduration++
 		else
@@ -40,7 +36,7 @@
 
 		E.process()
 
-		if(!lying && world.time - last_move_time < 15 && m_intent != MOVE_INTENT_WALK || pulledby)
+		if(!lying_angle && world.time - last_move_time < 15 && m_intent != MOVE_INTENT_WALK || pulledby)
 			if(E.is_broken() && E.internal_organs && prob(15))
 				var/datum/internal_organ/I = pick(E.internal_organs)
 				custom_pain("You feel broken bones moving in your [E.display_name]!", 1)
@@ -53,13 +49,13 @@
 					continue
 				W.germ_level += 1
 
-		if(E.name in list("l_leg", "l_foot", "r_leg", "r_foot") && !lying)
+		if(E.name in list("l_leg", "l_foot", "r_leg", "r_foot") && !lying_angle)
 			if(!E.is_usable() || E.is_malfunctioning() || ( E.is_broken() && !(E.limb_status & LIMB_SPLINTED) && !(E.limb_status & LIMB_STABILIZED) ) )
 				leg_tally--			//let it fail even if just foot&leg
 
 	//standing is poor
-	if(leg_tally <= 0 && !knocked_out && !lying && prob(5))
+	if(leg_tally <= 0 && !IsUnconscious() && !lying_angle && prob(5))
 		if(!(species.species_flags & NO_PAIN))
 			emote("pain")
 		emote("collapse")
-		set_knocked_out(10)
+		SetUnconscious(20 SECONDS)

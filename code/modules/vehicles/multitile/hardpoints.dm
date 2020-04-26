@@ -8,7 +8,7 @@ Currently only has the tank hardpoints
 	var/slot //What slot do we attach to?
 	var/obj/vehicle/multitile/root/cm_armored/owner //Who do we work for?
 
-	icon = 'icons/obj/hardpoint_modules.dmi'
+	icon = 'icons/obj/vehicles/hardpoint_modules.dmi'
 	icon_state = "tires" //Placeholder
 
 	max_integrity = 100
@@ -40,7 +40,7 @@ Currently only has the tank hardpoints
 	. = ..()
 	var/status = obj_integrity <= 0.1 ? "broken" : "functional"
 	var/span_class = obj_integrity <= 0.1 ? "<span class = 'danger'>" : "<span class = 'notice'>"
-	if((user?.mind?.cm_skills && user.mind.cm_skills.engineer >= SKILL_ENGINEER_METAL) || isobserver(user))
+	if((user.skills.getRating("engineer") >= SKILL_ENGINEER_METAL) || isobserver(user))
 		switch(PERCENT(obj_integrity / max_integrity))
 			if(0.1 to 33)
 				status = "heavily damaged"
@@ -273,7 +273,7 @@ Currently only has the tank hardpoints
 
 	if(!prob(owner.accuracies["primary"] * 100 * owner.misc_ratios["prim_acc"]))
 		T = get_step(T, pick(GLOB.cardinals))
-	var/obj/item/projectile/P = new
+	var/obj/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
 	log_combat(usr, usr, "fired the [src].")
 	log_explosion("[usr] fired the [src] at [AREACOORD(loc)].")
@@ -335,7 +335,7 @@ Currently only has the tank hardpoints
 	next_use = world.time + (chained > length(chain_delays) ? 0.5 : chain_delays[chained]) * owner.misc_ratios["prim_cool"]
 	if(!prob(owner.accuracies["primary"] * 100 * owner.misc_ratios["prim_acc"]))
 		A = get_step(A, pick(GLOB.cardinals))
-	var/obj/item/projectile/P = new
+	var/obj/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
 	P.fire_at(A, owner, src, P.ammo.max_range, P.ammo.shell_speed)
 
@@ -378,7 +378,7 @@ Currently only has the tank hardpoints
 	next_use = world.time + owner.cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
 	if(!prob(owner.accuracies["secondary"] * 100 * owner.misc_ratios["secd_acc"]))
 		A = get_step(A, pick(GLOB.cardinals))
-	var/obj/item/projectile/P = new
+	var/obj/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
 	P.fire_at(A, owner, src, P.ammo.max_range, P.ammo.shell_speed)
 	playsound(get_turf(src), 'sound/weapons/guns/fire/tank_flamethrower.ogg', 60, 1)
@@ -436,7 +436,7 @@ Currently only has the tank hardpoints
 
 	if(!prob(owner.accuracies["secondary"] * 100 * owner.misc_ratios["secd_acc"]))
 		T = get_step(T, pick(GLOB.cardinals))
-	var/obj/item/projectile/P = new
+	var/obj/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
 	log_combat(usr, usr, "fired the [src].")
 	log_explosion("[usr] fired the [src] at [AREACOORD(loc)].")
@@ -476,7 +476,7 @@ Currently only has the tank hardpoints
 	next_use = world.time + owner.cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
 	if(!prob(owner.accuracies["secondary"] * 100 * owner.misc_ratios["secd_acc"]))
 		A = get_step(A, pick(GLOB.cardinals))
-	var/obj/item/projectile/P = new
+	var/obj/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
 	P.fire_at(A, owner, src, P.ammo.max_range, P.ammo.shell_speed)
 	playsound(get_turf(src), pick(list('sound/weapons/guns/fire/smartgun1.ogg', 'sound/weapons/guns/fire/smartgun2.ogg', 'sound/weapons/guns/fire/smartgun3.ogg')), 60, 1)
@@ -511,7 +511,7 @@ Currently only has the tank hardpoints
 	next_use = world.time + owner.cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
 	if(!prob(owner.accuracies["secondary"] * 100 * owner.misc_ratios["secd_acc"]))
 		A = get_step(A, pick(GLOB.cardinals))
-	var/obj/item/projectile/P = new
+	var/obj/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
 	log_combat(usr, usr, "fired the [src].")
 	log_explosion("[usr] fired the [src] at [AREACOORD(loc)].")
@@ -559,7 +559,7 @@ Currently only has the tank hardpoints
 	next_use = world.time + owner.cooldowns["support"] * owner.misc_ratios["supp_cool"]
 	if(!prob(owner.accuracies["support"] * 100 * owner.misc_ratios["supp_acc"]))
 		A = get_step(A, pick(GLOB.cardinals))
-	var/obj/item/projectile/P = new
+	var/obj/projectile/P = new
 	P.generate_bullet(new ammo.default_ammo)
 	P.fire_at(A, owner, src, P.ammo.max_range, P.ammo.shell_speed)
 	playsound(get_turf(src), 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 60, 1)
@@ -694,7 +694,7 @@ Currently only has the tank hardpoints
 	is_activatable = TRUE
 	var/is_active = FALSE
 
-	var/view_buff = 12 //This way you can VV for more or less fun
+	var/view_buff = "25x25" //This way you can VV for more or less fun
 	var/view_tile_offset = 5
 
 	icon_state = "artillery"
@@ -710,7 +710,7 @@ Currently only has the tank hardpoints
 	if(!M.client)
 		return
 	if(is_active)
-		M.client.change_view(7)
+		M.client.change_view(WORLD_VIEW)
 		M.client.pixel_x = 0
 		M.client.pixel_y = 0
 		is_active = FALSE
@@ -741,7 +741,7 @@ Currently only has the tank hardpoints
 	if(!M.client)
 		return
 	is_active = FALSE
-	M.client.change_view(7)
+	M.client.change_view(WORLD_VIEW)
 	M.client.pixel_x = 0
 	M.client.pixel_y = 0
 

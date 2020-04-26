@@ -1,7 +1,7 @@
 /datum/job/pmc
 	access = ALL_PMC_ACCESS
 	minimal_access = ALL_PMC_ACCESS
-	skills_type = /datum/skills/pfc/pmc
+	skills_type = /datum/skills/pmc
 	faction = "Nanotrasen"
 
 
@@ -162,7 +162,7 @@
 	head = /obj/item/clothing/head/helmet/marine/veteran/PMC/leader
 	mask = /obj/item/clothing/mask/gas/PMC/leader
 	glasses = /obj/item/clothing/glasses/night/m42_night_goggles
-	suit_store = /obj/item/weapon/gun/rifle/m41a/elite
+	suit_store = /obj/item/weapon/gun/rifle/m41a1/elite
 	r_store = /obj/item/storage/pouch/magazine/large/pmc_rifle
 	l_store = /obj/item/storage/pouch/firstaid/full
 	back = /obj/item/storage/backpack/satchel

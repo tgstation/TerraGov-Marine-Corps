@@ -5,13 +5,17 @@
 	desc = "A wall-mounted flashbulb device."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "mflash1"
+	anchored = TRUE
+	power_channel = EQUIP
+	use_power = IDLE_POWER_USE
+	idle_power_usage = 2
+	active_power_usage = 1500
 	var/id = null
 	var/range = 2 //this is roughly the size of brig cell
 	var/disable = 0
 	var/last_flash = 0 //Don't want it getting spammed like regular flashes
-	var/strength = 10 //How knocked down targets are when flashed.
+	var/strength = 20 SECONDS //How knocked down targets are when flashed.
 	var/base_state = "mflash"
-	anchored = TRUE
 
 /obj/machinery/flasher/cell1
 	name = "Cell 1 Flash"
@@ -58,7 +62,7 @@
 	playsound(loc, 'sound/weapons/flash.ogg', 25, 1)
 	flick("[base_state]_flash", src)
 	last_flash = world.time
-	use_power(1500)
+	use_power(active_power_usage)
 
 	for(var/mob/living/L in viewers(src, null))
 		if (get_dist(src, L) > range)
@@ -79,7 +83,7 @@
 			L.flash_eyes()
 
 
-		L.knock_down(strength)
+		L.Paralyze(strength)
 
 
 /obj/machinery/flasher/emp_act(severity)
@@ -134,7 +138,7 @@
 		to_chat(user, "<span class='warning'>Access Denied.</span>")
 		return
 
-	use_power(5)
+	use_power(active_power_usage)
 
 	active = 1
 	icon_state = "launcheract"

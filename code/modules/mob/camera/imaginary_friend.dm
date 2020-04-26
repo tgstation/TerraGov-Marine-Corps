@@ -47,7 +47,7 @@
 	name = client.prefs.real_name
 	real_name = name
 	gender = client.prefs.gender
-	human_image = get_flat_human_icon(null, SSjob.GetJobType(/datum/job/other/spatial_agent), client.prefs)
+	human_image = get_flat_human_icon(null, SSjob.GetJobType(/datum/job/spatial_agent), client.prefs)
 
 
 /mob/camera/imaginary_friend/proc/Show()
@@ -98,7 +98,7 @@
 
 
 /mob/camera/imaginary_friend/proc/friend_talk(message)
-	message = capitalize(trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN)))
+	message = capitalize(trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN)))
 
 	if(!message)
 		return
@@ -111,9 +111,10 @@
 	to_chat(owner, "[rendered]")
 	to_chat(src, "[rendered]")
 
-	var/image/I = image('icons/mob/talk.dmi', src, "default[say_test(message)]", FLY_LAYER)
-	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
-	INVOKE_ASYNC(GLOBAL_PROC, /.proc/flick_overlay, I, owner.client ? list(client, owner.client) : list(client), 3 SECONDS)
+	//speech bubble
+	var/mutable_appearance/MA = mutable_appearance('icons/mob/talk.dmi', src, "default[say_test(message)]", FLY_LAYER)
+	MA.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
+	INVOKE_ASYNC(GLOBAL_PROC, /proc/flick_overlay, MA, owner.client ? list(client, owner.client) : list(client), 3 SECONDS)
 
 	for(var/i in GLOB.dead_mob_list)
 		var/mob/M = i

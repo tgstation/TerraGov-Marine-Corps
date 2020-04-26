@@ -117,6 +117,9 @@
 	if(!do_after(user, climb_delay, FALSE, src, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, .proc/can_climb, user)))
 		return
 
+	for(var/m in user.buckled_mobs)
+		user.unbuckle_mob(m)
+
 	if(!(flags_atom & ON_BORDER)) //If not a border structure or we are not on its tile, assume default behavior
 		user.forceMove(get_turf(src))
 
@@ -150,10 +153,10 @@
 
 	for(var/mob/living/M in get_turf(src))
 
-		if(M.lying)
+		if(M.lying_angle)
 			return //No spamming this on people.
 
-		M.knock_down(5)
+		M.Paralyze(10 SECONDS)
 		to_chat(M, "<span class='warning'>You topple as \the [src] moves under you!</span>")
 
 		if(prob(25))

@@ -13,8 +13,8 @@
 	anchored = TRUE
 	use_power = NO_POWER_USE
 	interaction_flags = INTERACT_MACHINE_NANO
-	var/capacity = 5e6		//Maximum amount of power it can hold
-	var/charge = 1e6		//Current amount of power it holds
+	var/capacity = 5e5		//Maximum amount of power it can hold
+	var/charge = 1e5		//Current amount of power it holds
 
 	var/input_attempt = TRUE //attempting to charge ?
 	var/inputting = TRUE

@@ -37,6 +37,7 @@ GLOBAL_LIST_INIT(huds, list(
 		remove_hud_from(v)
 	for(var/v in hudatoms)
 		remove_from_hud(v)
+	next_time_allowed.Cut()
 	GLOB.all_huds -= src
 	return ..()
 
@@ -44,19 +45,20 @@ GLOBAL_LIST_INIT(huds, list(
 /datum/atom_hud/proc/remove_hud_from(mob/M)
 	if(!M || !hudusers[M])
 		return
-	if(!--hudusers[M])
-		hudusers -= M
-		if(queued_to_see[M])
-			queued_to_see -= M
-		else
-			for(var/atom/A in hudatoms)
-				remove_from_single_hud(M, A)
+	hudusers -= M
+	if(queued_to_see[M])
+		queued_to_see -= M
+		return
+	for(var/h in hudatoms)
+		var/atom/A = h
+		remove_from_single_hud(M, A)
 
 
 /datum/atom_hud/proc/remove_from_hud(atom/A)
 	if(!A)
 		return FALSE
-	for(var/mob/M in hudusers)
+	for(var/u in hudusers)
+		var/mob/M = u
 		remove_from_single_hud(M, A)
 	hudatoms -= A
 	return TRUE
@@ -70,35 +72,36 @@ GLOBAL_LIST_INIT(huds, list(
 
 
 /datum/atom_hud/proc/add_hud_to(mob/M)
-	if(!M)
+	if(!M || hudusers[M])
 		return
-	if(!hudusers[M])
-		hudusers[M] = 1
-		if(next_time_allowed[M] > world.time)
-			if(!queued_to_see[M])
-				addtimer(CALLBACK(src, .proc/show_hud_images_after_cooldown, M), next_time_allowed[M] - world.time)
-				queued_to_see[M] = TRUE
-		else
-			next_time_allowed[M] = world.time + ADD_HUD_TO_COOLDOWN
-			for(var/atom/A in hudatoms)
-				add_to_single_hud(M, A)
+	hudusers[M] = TRUE
+	if(next_time_allowed[M] > world.time)
+		if(!queued_to_see[M])
+			addtimer(CALLBACK(src, .proc/show_hud_images_after_cooldown, M), next_time_allowed[M] - world.time)
+			queued_to_see[M] = TRUE
 	else
-		hudusers[M]++
+		if(!next_time_allowed[M])
+			RegisterSignal(M, COMSIG_PARENT_QDELETING, .proc/clean_mob_refs)
+		next_time_allowed[M] = world.time + ADD_HUD_TO_COOLDOWN
+		for(var/atom/A in hudatoms)
+			add_to_single_hud(M, A)
 
 
 /datum/atom_hud/proc/show_hud_images_after_cooldown(M)
 	if(queued_to_see[M])
 		queued_to_see -= M
 		next_time_allowed[M] = world.time + ADD_HUD_TO_COOLDOWN
-		for(var/atom/A in hudatoms)
-			add_to_single_hud(M, A)
+		for(var/h in hudatoms)
+			var/atom/hud_atom = h
+			add_to_single_hud(M, hud_atom)
 
 
 /datum/atom_hud/proc/add_to_hud(atom/A)
-	if(!A)
+	if(!A || (A in hudatoms))
 		return FALSE
 	hudatoms |= A
-	for(var/mob/M in hudusers)
+	for(var/u in hudusers)
+		var/mob/M = u
 		if(!queued_to_see[M])
 			add_to_single_hud(M, A)
 	return TRUE
@@ -111,6 +114,11 @@ GLOBAL_LIST_INIT(huds, list(
 		if(A.hud_list[i])
 			M.client.images |= A.hud_list[i]
 
+
+/datum/atom_hud/proc/clean_mob_refs(datum/source, force)
+	remove_hud_from(source)
+	remove_from_hud(source)
+	next_time_allowed -= source
 
 
 /mob/proc/reload_huds()
