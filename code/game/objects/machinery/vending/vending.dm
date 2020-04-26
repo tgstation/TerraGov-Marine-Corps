@@ -391,7 +391,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "vending", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, ui_key, "Vending", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /obj/machinery/vending/ui_data(mob/user)
