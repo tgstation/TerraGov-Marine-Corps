@@ -224,6 +224,9 @@ You are also in charge of communicating with command and letting them know about
 	job_flags = JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR)
 
+/datum/job/terragov/squad/vatgrown/return_spawn_type(datum/preferences/prefs)
+	return /mob/living/carbon/human/species/vatgrowth
+
 /datum/outfit/job/marine/vatgrown
 	name = SQUAD_VATGROWN
 	jobtype = /datum/job/terragov/squad/vatgrown

@@ -309,6 +309,11 @@
 /datum/species/human/vatgrown/random_name(gender)
 	. = "CS-[gender == FEMALE ? "F": "M"]-[rand(111,999)]"
 
+/datum/species/human/vatgrown/handle_post_spawn(mob/living/carbon/human/H)
+	. = ..()
+	H.h_style = "Bald"
+	skills = /datum/skills/vatgrown
+
 /datum/species/human/vatgrown/early
 	name = "Early Vat-Grown Human"
 	name_plural = "Early Vat-Grown Humans"
@@ -320,6 +325,7 @@
 
 /datum/species/human/vatgrown/early/handle_post_spawn(mob/living/carbon/human/H)
 	. = ..()
+	skills = /datum/skills/vatgrown/early
 	timerid = addtimer(CALLBACK(src, .proc/handle_age, H), 15 MINUTES, TIMER_STOPPABLE)
 
 /datum/species/human/vatgrown/early/post_species_loss(mob/living/carbon/human/H)
