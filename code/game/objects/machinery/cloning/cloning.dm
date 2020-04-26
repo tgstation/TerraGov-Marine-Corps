@@ -153,7 +153,8 @@ The vat then needs to be repaired and refilled with biomass.
 			return
 
 		// Check if the beaker contains anything other than biomass juice
-		for(var/datum/reagent/R in I.reagents.reagent_list)
+		for(var/r in I.reagents.reagent_list)
+			var/datum/reagent/R = r
 			if(!istype(R, /datum/reagent/medicine/biomass) && !istype(R, /datum/reagent/medicine/biomass/xeno))
 				to_chat(user, "<span class='warning'>\The [src] rejects the beaker.</span>")
 				return
