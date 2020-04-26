@@ -210,3 +210,21 @@ You are also in charge of communicating with command and letting them know about
 		if(H.assigned_squad.squad_leader)
 			H.assigned_squad.demote_leader()
 		H.assigned_squad.promote_leader(H)
+
+
+/datum/job/terragov/squad/vatgrown
+	title = SQUAD_MARINE
+	paygrade = "VM"
+	comm_title = "Mar"
+	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_DROPSHIP)
+	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
+	outfit = /datum/outfit/job/marine/vatgrown
+	total_positions = 0
+	job_flags = JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
+	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR)
+
+/datum/outfit/job/marine/vatgrown
+	name = SQUAD_VATGROWN
+	jobtype = /datum/job/terragov/squad/vatgrown
+	id = /obj/item/card/id/dogtag

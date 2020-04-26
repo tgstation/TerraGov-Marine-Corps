@@ -298,38 +298,39 @@
 	heat_level_2 = 480
 	heat_level_3 = 1100
 
-/datum/species/human/clone
-	name = "Human clone"
-	name_plural = "Human clones"
+/datum/species/human/vatgrown
+	name = "Vat-Grown Human"
+	name_plural = "Vat-Grown Humans"
+	species_flags = HAS_SKIN_TONE
+	brute_mod = 1.05
+	burn_mod = 1.05
+	slowdown = 1.05
+
+/datum/species/human/vatgrown/random_name(gender)
+	. = "CS-[gender == FEMALE ? "F": "M"]-[rand(111,999)]"
+
+/datum/species/human/vatgrown/early
+	name = "Early Vat-Grown Human"
+	name_plural = "Early Vat-Grown Humans"
 	brute_mod = 1.3
 	burn_mod = 1.3
 	slowdown = 1.3
 
 	var/timerid
 
-/datum/species/human/clone/handle_post_spawn(mob/living/carbon/human/H)
+/datum/species/human/vatgrown/early/handle_post_spawn(mob/living/carbon/human/H)
 	. = ..()
 	timerid = addtimer(CALLBACK(src, .proc/handle_age, H), 15 MINUTES, TIMER_STOPPABLE)
 
-/datum/species/human/clone/post_species_loss(mob/living/carbon/human/H)
+/datum/species/human/vatgrown/early/post_species_loss(mob/living/carbon/human/H)
 	. = ..()
 	// Ensure we don't update the species again
 	if(timerid)
 		deltimer(timerid)
 		timerid = null
 
-/datum/species/human/clone/proc/handle_age(mob/living/carbon/human/H)
-	H.set_species("Aged Human clone")
-
-/datum/species/human/clone/aged
-	name = "Aged Human clone"
-	name_plural = "Aged Human clones"
-	brute_mod = 1.05
-	burn_mod = 1.05
-	slowdown = 1.05
-
-/datum/species/human/clone/aged/handle_post_spawn(mob/living/carbon/human/H)
-	return
+/datum/species/human/vatgrown/early/proc/handle_age(mob/living/carbon/human/H)
+	H.set_species("Vat-Grown Human")
 
 //Various horrors that spawn in and haunt the living.
 /datum/species/human/spook

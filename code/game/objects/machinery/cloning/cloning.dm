@@ -13,6 +13,9 @@ Cloning shit
 
 	resistance_flags = UNACIDABLE | INDESTRUCTIBLE // For now, we should work out how we want xenos to counter this
 
+/obj/machinery/cloning/Initialize(mapload, ...)
+	. = ..()
+	START_PROCESSING(SSmachines, src) // Registered for power usage
 
 /obj/machinery/cloning/relaymove(mob/user)
 	CHECK_COOLDOWN(user, COOLDOWN_RELAYMOVE, 2 SECONDS, FALSE)
@@ -223,12 +226,13 @@ You are weak, best rest up and get your strength before fighting.</span>"})
 
 /obj/machinery/cloning/vats/proc/finish_growing_human()
 	occupant = new(src)
-	occupant.faction = "TerraGov"
-	occupant.fully_replace_character_name(occupant.real_name, "CS-[occupant.gender == MALE ? "F": "M"]-[rand(111,999)]")
-	occupant.set_species("Human clone")
+	var/datum/job/J = SSjob.GetJobType(/datum/job/terragov/squad/vatgrown)
+	occupant.apply_assigned_role_to_spawn(J)
+	occupant.set_species("Early Vat-Grown Human")
+	occupant.fully_replace_character_name(occupant.real_name, occupant.species.random_name(occupant.gender))
 	occupant.disabilities |= (BLIND & DEAF)
-	// Blindness needs to be fixed, but that is for another PR.
-	// Blindness doenst't trigger with just the disability, you need to set_blindness (which we do when you spawn)
+	occupant.set_blindness(10) // Temp fix until blindness is fixed.
+	// Blindness doenst't trigger with just the disability, you need to set_blindness
 
 	GLOB.offered_mob_list += occupant
 	notify_ghosts("<span class='boldnotice'>A new clone is available! Name: [name]</span>", enter_link = "claim=[REF(occupant)]", source = src, action = NOTIFY_ORBIT)
