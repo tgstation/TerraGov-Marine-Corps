@@ -109,6 +109,16 @@
 		del(src)
 	return
 
+/obj/item/explosive/grenade/frag/sectoid
+	desc = "An odd, squishy, organ-like grenade. It will explode 3 seconds after squeezing it."
+	icon_state = "alien_grenade"
+	item_state = "grenade_ex"
+	hud_state = "grenade_frag"
+	underslug_launchable = FALSE
+
+/obj/item/explosive/grenade/frag/sectoid/prime()
+	explosion(loc, -1, -1, 5)
+	qdel(src)
 
 /obj/item/explosive/grenade/incendiary
 	name = "\improper M40 HIDP incendiary grenade"

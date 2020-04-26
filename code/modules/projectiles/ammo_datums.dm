@@ -1142,6 +1142,20 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 	return ..()
 
+
+/datum/ammo/energy/plasma
+	name = "plasma bolt"
+	icon_state = "pulse2"
+	hud_state = "plasma"
+	armor_type = "laser"
+	shell_speed = 4
+	accurate_range = 15
+	damage = 40
+	penetration = 15
+	max_range = 30
+	accuracy_var_low = 3
+	accuracy_var_high = 3
+
 /*
 //================================================
 					Xeno Spits
