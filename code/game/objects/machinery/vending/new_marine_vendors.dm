@@ -134,7 +134,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "marineselector", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, ui_key, "MarineSelector", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /obj/machinery/marine_selector/ui_data(mob/user)
@@ -515,6 +515,8 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 	listed_products = list(
 		/obj/effect/essentials_set/basic_smartgunner = list(CAT_STD, "Standard Kit", 0, "white"),
+		/obj/item/clothing/head/helmet/marine/standard = list(CAT_HEL, "Regular Helmet", 0, "orange"),
+		/obj/item/clothing/head/helmet/marine/heavy = list(CAT_HEL, "Heavy Helmet", 0, "black"),
 		/obj/item/clothing/tie/storage/black_vest = list(CAT_WEB, "Tactical Black Vest", 0, "orange"),
 		/obj/item/clothing/tie/storage/webbing = list(CAT_WEB, "Tactical Webbing", 0, "black"),
 		/obj/item/clothing/tie/holster = list(CAT_WEB, "Shoulder Handgun Holster", 0, "black"),

@@ -2413,16 +2413,6 @@
 	icon_state = "red"
 	},
 /area/lv624/lazarus/security)
-"aiP" = (
-/obj/structure/cable/yellow{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/machinery/power/apc{
-	dir = 1
-	},
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/armory)
 "aiQ" = (
 /obj/machinery/power/apc,
 /obj/structure/cable/yellow{
@@ -6175,11 +6165,6 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 8
 	},
@@ -6271,22 +6256,6 @@
 	dir = 1
 	},
 /area/lv624/lazarus/hydroponics)
-"axJ" = (
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/turf/open/floor/tile/red/full,
-/area/lv624/lazarus/security)
-"axK" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/tile/red/full,
-/area/lv624/lazarus/security)
 "axL" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
@@ -6374,11 +6343,6 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/medbay)
 "axY" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /turf/open/floor/tile/red/redtaupe{
 	dir = 8
 	},
@@ -6576,32 +6540,7 @@
 	name = "\improper Nexus Dome Armory";
 	req_access_txt = "0"
 	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/open/floor/plating,
-/area/lv624/lazarus/armory)
-"ayD" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/tile/red/redtaupe{
-	dir = 5
-	},
-/area/lv624/lazarus/security)
-"ayE" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/tile/red/redtaupe{
-	dir = 9
-	},
 /area/lv624/lazarus/security)
 "ayF" = (
 /obj/structure/cable/yellow{
@@ -6693,32 +6632,17 @@
 	},
 /area/lv624/ground/jungle5)
 "ayU" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/security)
 "ayV" = (
 /obj/machinery/light/small,
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/open/floor/tile/red/redtaupe{
 	dir = 1
 	},
 /area/lv624/lazarus/security)
 "ayW" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /turf/open/floor/tile/red/redtaupe{
 	dir = 1
 	},
@@ -14846,9 +14770,6 @@
 	icon_state = "whiteyellowcorner"
 	},
 /area/lv624/lazarus/main_hall)
-"bbV" = (
-/turf/closed/wall/r_wall,
-/area/lv624/lazarus/armory)
 "bbW" = (
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/security)
@@ -15085,7 +15006,7 @@
 /obj/item/ammo_magazine/shotgun,
 /obj/item/weapon/gun/shotgun/pump/cmb,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/armory)
+/area/lv624/lazarus/security)
 "bcM" = (
 /obj/effect/decal/cleanable/cobweb2,
 /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine,
@@ -15100,7 +15021,7 @@
 	},
 /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/armory)
+/area/lv624/lazarus/security)
 "bcN" = (
 /obj/item/target/syndicate,
 /obj/structure/target_stake,
@@ -15402,7 +15323,7 @@
 /obj/effect/decal/cleanable/cobweb,
 /obj/machinery/computer/nuke_disk_generator/green,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/armory)
+/area/lv624/lazarus/security)
 "bdL" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -15415,10 +15336,10 @@
 /obj/item/ammo_magazine/pistol/b92fs,
 /obj/item/ammo_magazine/pistol/b92fs,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/armory)
+/area/lv624/lazarus/security)
 "bdM" = (
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/armory)
+/area/lv624/lazarus/security)
 "bdN" = (
 /obj/item/explosive/plastique{
 	pixel_x = 3;
@@ -15622,7 +15543,7 @@
 "beu" = (
 /obj/machinery/deployable/barrier,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/armory)
+/area/lv624/lazarus/security)
 "bev" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/smg/mp5,
@@ -15632,7 +15553,7 @@
 /obj/item/ammo_magazine/smg/mp5,
 /obj/item/ammo_magazine/smg/mp5,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/armory)
+/area/lv624/lazarus/security)
 "bew" = (
 /turf/open/floor/tile/red/redtaupe{
 	dir = 5
@@ -15914,7 +15835,7 @@
 /obj/item/storage/toolbox/syndicate,
 /obj/structure/rack,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/armory)
+/area/lv624/lazarus/security)
 "bfp" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -16135,7 +16056,7 @@
 "bge" = (
 /obj/structure/jungle/vines,
 /turf/closed/wall/r_wall,
-/area/lv624/lazarus/armory)
+/area/lv624/lazarus/security)
 "bgl" = (
 /obj/structure/closet/lawcloset,
 /turf/open/floor/tile/red/redtaupe{
@@ -16412,6 +16333,11 @@
 	},
 /area/lv624/lazarus/atmos)
 "bhn" = (
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/open/ground/grass/beach/corner{
 	dir = 1
 	},
@@ -20175,6 +20101,18 @@
 	},
 /turf/open/floor,
 /area/lv624/ground/compound/n)
+"jGu" = (
+/obj/structure/table,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
+	},
+/area/lv624/lazarus/sleep_female)
 "jOz" = (
 /obj/structure/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -20279,6 +20217,14 @@
 	},
 /turf/closed/wall/r_wall,
 /area/shuttle/drop1/lz1)
+"mGh" = (
+/obj/machinery/door/airlock/mainship/security{
+	locked = 1;
+	name = "\improper Nexus Dome Marshal Office";
+	req_access_txt = "0"
+	},
+/turf/open/floor,
+/area/lv624/lazarus/security)
 "mWY" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral,
@@ -20482,13 +20428,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/ground/jungle3)
-"uqX" = (
-/obj/structure/bed/chair/wood/wings,
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/tile/purple/taupepurple{
-	dir = 9
-	},
-/area/lv624/lazarus/sleep_female)
 "usu" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 1
@@ -46286,10 +46225,10 @@ bah
 aNB
 aNB
 aNB
-bbV
-bbV
-bbV
-bbV
+bbW
+bbW
+bbW
+bbW
 bet
 aFB
 aFB
@@ -46543,12 +46482,12 @@ aRd
 aNC
 aNz
 aNz
-bbV
+bbW
 bdK
 bdM
-bbV
+bbW
 bge
-bbV
+bbW
 aFB
 aFB
 aFB
@@ -46799,13 +46738,13 @@ aNB
 aRd
 aNB
 bbw
-bbV
-bbV
+bbW
+bbW
 bdL
 bdM
 beu
 beu
-bbV
+bbW
 bhs
 bhs
 aFB
@@ -47056,13 +46995,13 @@ aNz
 aRd
 aNz
 aNz
-bbV
+bbW
 bcL
 bdM
 bdM
 bdM
 bdM
-bbV
+bbW
 bht
 bhs
 bjc
@@ -47313,13 +47252,13 @@ aNz
 aRd
 aNz
 aNz
-bbV
+bbW
 bcM
 bdN
 bev
 bfo
-aiP
-bbV
+bdM
+bbW
 bhu
 bim
 bhs
@@ -47570,13 +47509,13 @@ aZz
 bai
 baZ
 aNz
-bbV
-bbV
-bbV
-bbV
-bbV
+bbW
+bbW
+bbW
+bbW
+bbW
 ayC
-bbV
+bbW
 azh
 bin
 aiS
@@ -47832,7 +47771,7 @@ bcN
 bdO
 bew
 bfp
-ayD
+bew
 bbW
 bhw
 bio
@@ -48089,7 +48028,7 @@ bcO
 bdP
 bdP
 bfq
-ayE
+bdP
 bbW
 bhx
 bip
@@ -48346,7 +48285,7 @@ bbX
 bbX
 bbX
 bbX
-beC
+mGh
 bbW
 bhs
 biq
@@ -49116,7 +49055,7 @@ bbX
 bfs
 bdS
 bey
-axJ
+bdR
 ayW
 bbW
 bhA
@@ -49373,7 +49312,7 @@ bbX
 bcS
 bdT
 bez
-axK
+bdR
 bgl
 bbW
 bhB
@@ -49630,7 +49569,7 @@ bbW
 bbX
 bbW
 aiO
-axK
+bdR
 bgM
 bbW
 bhC
@@ -53463,8 +53402,8 @@ aJF
 aNG
 aMH
 aPs
-uqX
-aRi
+aQs
+jGu
 aPr
 aSt
 aTh

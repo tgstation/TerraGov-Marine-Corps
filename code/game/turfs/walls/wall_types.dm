@@ -1,5 +1,4 @@
 //----- Marine ship walls ---//
-
 /turf/closed/wall/mainship
 	name = "hull"
 	desc = "A huge chunk of metal used to seperate rooms and make up the ship."
@@ -241,7 +240,7 @@
 /turf/closed/wall/indestructible/splashscreen/New()
 	..()
 	if(icon_state == "title_painting1")
-		icon_state = "title_painting[rand(1,9)]"
+		icon_state = "title_painting[rand(1,11)]"
 
 /turf/closed/wall/indestructible/other
 	icon_state = "r_wall"
@@ -387,140 +386,3 @@
 				icon_state = "wood_variant"
 	else
 		icon_state = "[walltype][junction]"
-
-
-
-
-//Xenomorph's Resin Walls
-
-/turf/closed/wall/resin
-	name = "resin wall"
-	desc = "Weird slime solidified into a wall."
-	icon = 'icons/Xeno/structures.dmi'
-	icon_state = "resin0"
-	walltype = "resin"
-	max_integrity = 200
-	layer = RESIN_STRUCTURE_LAYER
-	tiles_with = list(/turf/closed/wall/resin, /turf/closed/wall/resin/membrane, /obj/structure/mineral_door/resin)
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
-
-
-/turf/closed/wall/resin/New()
-	..()
-	if(!locate(/obj/effect/alien/weeds) in loc)
-		new /obj/effect/alien/weeds(loc)
-
-/turf/closed/wall/resin/ChangeTurf(path, new_baseturf, flags)
-	. = ..()
-	new /obj/effect/alien/weeds(.)
-
-/turf/closed/wall/resin/flamer_fire_act()
-	take_damage(50, BURN, "fire")
-
-/turf/closed/wall/resin/proc/thicken()
-	ChangeTurf(/turf/closed/wall/resin/thick)
-	return TRUE
-
-/turf/closed/wall/resin/thick
-	name = "thick resin wall"
-	desc = "Weird slime solidified into a thick wall."
-	max_integrity = 300
-	icon_state = "thickresin0"
-	walltype = "thickresin"
-
-/turf/closed/wall/resin/thick/thicken()
-	return FALSE
-
-/turf/closed/wall/resin/membrane
-	name = "resin membrane"
-	desc = "Weird slime translucent enough to let light pass through."
-	icon_state = "membrane0"
-	walltype = "membrane"
-	max_integrity = 120
-	opacity = FALSE
-	alpha = 180
-
-/turf/closed/wall/resin/membrane/thicken()
-	ChangeTurf(/turf/closed/wall/resin/membrane/thick)
-
-
-/turf/closed/wall/resin/membrane/thick
-	name = "thick resin membrane"
-	desc = "Weird thick slime just translucent enough to let light pass through."
-	max_integrity = 240
-	icon_state = "thickmembrane0"
-	walltype = "thickmembrane"
-	alpha = 210
-
-
-/turf/closed/wall/resin/ex_act(severity)
-	switch(severity)
-		if(1)
-			take_damage(500)
-		if(2)
-			take_damage(rand(140, 300))
-		if(3)
-			take_damage(rand(50, 100))
-
-
-/turf/closed/wall/resin/attack_alien(mob/living/carbon/xenomorph/M)
-	M.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	M.visible_message("<span class='xenonotice'>\The [M] claws \the [src]!</span>", \
-	"<span class='xenonotice'>We claw \the [src].</span>")
-	playsound(src, "alien_resin_break", 25)
-	take_damage(M.melee_damage + 50) //Beef up the damage a bit
-
-
-/turf/closed/wall/resin/attack_hand(mob/living/user)
-	to_chat(user, "<span class='warning'>You scrape ineffectively at \the [src].</span>")
-	return TRUE
-
-
-/turf/closed/wall/resin/attackby(obj/item/I, mob/living/user, params)
-	if(I.flags_item & NOBLUDGEON || !isliving(user))
-		return attack_hand(user)
-
-	user.changeNext_move(I.attack_speed)
-	user.do_attack_animation(src, used_item = I)
-
-	var/damage = I.force
-	var/multiplier = 1
-	if(I.damtype == "fire") //Burn damage deals extra vs resin structures (mostly welders).
-		multiplier += 1
-
-	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
-		var/obj/item/tool/pickaxe/plasmacutter/P = I
-		if(P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
-			multiplier += PLASMACUTTER_RESIN_MULTIPLIER
-			P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)
-
-	damage *= max(0, multiplier)
-	take_damage(damage)
-	playsound(src, "alien_resin_break", 25)
-
-
-/turf/closed/wall/resin/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
-		return !opacity
-	return !density
-
-/turf/closed/wall/resin/dismantle_wall(devastated = 0, explode = 0)
-	ScrapeAway()
-
-
-/turf/closed/wall/resin/ChangeTurf(newtype)
-	. = ..()
-	if(.)
-		var/turf/T
-		for(var/i in GLOB.cardinals)
-			T = get_step(src, i)
-			if(!istype(T))
-				continue
-			for(var/obj/structure/mineral_door/resin/R in T)
-				R.check_resin_support()
-
-
-
-
-/turf/closed/wall/resin/can_be_dissolved()
-	return FALSE
