@@ -2143,6 +2143,20 @@ SUPPLIES
 	containername = "\improper MRE crate"
 	group = "Supplies"
 
+/datum/supply_packs/crayons
+	name = "PFC Jim Special Crayon Packs (x5)"
+	contains = list(
+					/obj/item/storage/fancy/crayons,
+					/obj/item/storage/fancy/crayons,
+					/obj/item/storage/fancy/crayons,
+					/obj/item/storage/fancy/crayons,
+					/obj/item/storage/fancy/crayons
+					)
+	cost = 20
+	containertype = /obj/structure/largecrate/random/case
+	containername = "\improper Crayon Box"
+	group = "Supplies"
+
 /datum/supply_packs/boxes
 	name = "empty boxes (x10)"
 	contains = list(
