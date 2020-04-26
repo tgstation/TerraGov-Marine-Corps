@@ -312,7 +312,7 @@
 /datum/species/human/vatgrown/handle_post_spawn(mob/living/carbon/human/H)
 	. = ..()
 	H.h_style = "Bald"
-	skills = /datum/skills/vatgrown
+	H.skills = /datum/skills/vatgrown
 
 /datum/species/human/vatgrown/early
 	name = "Early Vat-Grown Human"
