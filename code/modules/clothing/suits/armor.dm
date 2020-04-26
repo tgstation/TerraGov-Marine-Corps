@@ -45,10 +45,11 @@
 	icon_state = "pilot"
 	sprite_sheet_id = 1
 	blood_overlay_type = "armor"
-	flags_armor_protection = CHEST|GROIN
-	flags_cold_protection = CHEST|GROIN
-	flags_heat_protection = CHEST|GROIN
-	armor = list("melee" = 50, "bullet" = 60, "laser" = 35, "energy" = 20, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20)
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	armor = list("melee" = 35, "bullet" = 45, "laser" = 45, "energy" = 20, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 25)
+	slowdown = 0.25
 	allowed = list(/obj/item/weapon/gun/,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/flashlight,
@@ -208,7 +209,24 @@
 	siemens_coefficient = 0.7
 
 
+/obj/item/clothing/suit/armor/sectoid
+	name = "psionic field"
+	desc = "A field of invisible energy, it protects the wearer but prevents any clothing from being worn."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "shield-blue"
+	flags_item = NODROP|DELONDROP
+	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	armor = list("melee" = 55, "bullet" = 55, "laser" = 35, "energy" = 20, "bomb" = 40, "bio" = 40, "rad" = 10, "fire" = 40, "acid" = 40)
+	allowed = list()//how would you put a gun onto a field of energy?
 
+/obj/item/clothing/suit/armor/sectoid/shield
+	name = "powerful psionic field"
+	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	armor = list("melee" = 55, "bullet" = 55, "laser" = 35, "energy" = 20, "bomb" = 40, "bio" = 40, "rad" = 10, "fire" = 40, "acid" = 40)
+
+/obj/item/clothing/suit/armor/sectoid/shield/Initialize()
+	. = ..()
+	AddComponent(/datum/component/shield/overhealth)
 
 
 //All of the armor below is mostly unused
