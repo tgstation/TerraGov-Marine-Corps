@@ -54,7 +54,7 @@
 
 
 /obj/machinery/proc/spawn_frame(disassembled)
-	var/obj/machinery/constructable_frame/machine_frame/M = new(loc)
+	var/obj/machinery/constructable_frame/machine/M = new(loc)
 	. = M
 	M.setAnchored(anchored)
 	if(!disassembled)
