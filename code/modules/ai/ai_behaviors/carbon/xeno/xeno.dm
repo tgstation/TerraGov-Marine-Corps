@@ -22,14 +22,12 @@
 		var/mob/nearby_xeno = x
 		if(nearby_xeno.stat == DEAD)
 			continue
-		if((nearby_xeno.status_flags & GODMODE) || (nearby_xeno.status_flags & GODMODE)) //No attacking the hivemind!
+		if((nearby_xeno.status_flags & GODMODE) || (nearby_xeno.status_flags & INCORPOREAL)) //No attacking invulnerable/ai's eye!
 			continue
 		return_result += x
 	for(var/turret in GLOB.marine_turrets)
 		var/atom/atom_turret = turret
-		if(QDELETED(atom_turret))
-			continue
-		if(!get_dist(mob_parent, atom_turret) <= 8)
+		if(!(get_dist(mob_parent, atom_turret) <= 8))
 			continue
 		if(mob_parent.z != atom_turret.z)
 			continue
