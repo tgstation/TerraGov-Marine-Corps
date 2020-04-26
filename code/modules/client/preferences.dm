@@ -593,7 +593,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			return TRUE
 
 		if("synth_name")
-			var/newname = stripped_input(user, "Choose your Synthetic's name:", "Synthetic Name")
+			var/newname = input(user, "Choose your Synthetic's name:", "Synthetic Name")
 			newname = reject_bad_name(newname)
 			if(!newname)
 				to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
@@ -607,7 +607,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			synthetic_type = new_synth_type
 
 		if("xeno_name")
-			var/newname = stripped_input(user, "Choose your Xenomorph name:", "Xenomorph Name")
+			var/newname = input(user, "Choose your Xenomorph name:", "Xenomorph Name")
 			if(newname == "")
 				xeno_name = "Undefined"
 			else
@@ -618,7 +618,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				xeno_name = newname
 
 		if("ai_name")
-			var/newname = stripped_input(user, "Choose your AI name:", "AI Name")
+			var/newname = input(user, "Choose your AI name:", "AI Name")
 			if(newname == "")
 				ai_name = "ARES v3.2"
 			else
@@ -629,7 +629,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				ai_name = newname
 
 		if("name_real")
-			var/newname = stripped_input(user, "Choose your character's name:", "Character Name")
+			var/newname = input(user, "Choose your character's name:", "Character Name")
 			newname = reject_bad_name(newname)
 			if(!newname)
 				to_chat(user, "<font color='red'>Invalid name. Your name should be at least 2 and at most [MAX_NAME_LEN] characters long. It may only contain the characters A-Z, a-z, -, ' and .</font>")
