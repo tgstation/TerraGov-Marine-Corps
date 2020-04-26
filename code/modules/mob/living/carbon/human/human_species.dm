@@ -63,3 +63,6 @@
 
 /mob/living/carbon/human/species/vatgrown
 	race = "Vat-Grown"
+
+/mob/living/carbon/human/species/sectoid
+	race = "Sectoid"
