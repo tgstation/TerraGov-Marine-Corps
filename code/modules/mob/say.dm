@@ -65,7 +65,7 @@
 		// Admin links for name
 		var/name = real_name
 		if(check_other_rights(M.client, R_ADMIN, FALSE))
-			name = "<a href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[name]</a>"
+			name = "<a class='hidelink' href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[name]</a>"
 
 		var/rendered = "[M != src ? FOLLOW_LINK(M, src) : ""] <span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span> says, <span class='message'>\"[emoji_parse(message)]\"</span></span>"
 		if(M.client && (M.stat == DEAD || check_other_rights(M.client, R_ADMIN, FALSE)))
