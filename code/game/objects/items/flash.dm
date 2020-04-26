@@ -63,10 +63,10 @@
 	if(iscarbon(M))
 		flashfail = !M.flash_eyes()
 		if(!flashfail)
-			M.Knockdown(20 SECONDS)
+			M.Paralyze(20 SECONDS)
 
 	else if(issilicon(M))
-		M.Knockdown(rand(10 SECONDS,20 SECONDS))
+		M.Paralyze(rand(10 SECONDS,20 SECONDS))
 	else
 		flashfail = 1
 
@@ -141,7 +141,7 @@
 			if(iscarbon(loc))
 				var/mob/living/carbon/M = loc
 				if(M.flash_eyes())
-					M.Knockdown(20 SECONDS)
+					M.Paralyze(20 SECONDS)
 					M.visible_message("<span class='disarm'>[M] is blinded by the flash!</span>")
 	..()
 

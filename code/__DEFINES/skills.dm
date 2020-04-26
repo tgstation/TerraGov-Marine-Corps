@@ -115,10 +115,10 @@
 //hidden
 //proficiency with powerloader, changes powerloader speed.
 #define SKILL_POWERLOADER_DEFAULT	0
-#define SKILL_POWERLOADER_DABBLING	1 //Pilot
-#define SKILL_POWERLOADER_TRAINED	2 //Req
-#define SKILL_POWERLOADER_PRO		3 //ST
-#define SKILL_POWERLOADER_MASTER	4 //CE
+#define SKILL_POWERLOADER_DABBLING	1 //Combat Engineer
+#define SKILL_POWERLOADER_TRAINED	2 //Captain, FC
+#define SKILL_POWERLOADER_PRO		3 //Pilot
+#define SKILL_POWERLOADER_MASTER	4 //CE, RO, ST
 
 
 //leadership skill

@@ -10,7 +10,7 @@
 	desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is heavily damaged. Use a blowtorch, then wirecutters, and then a wrench to repair it."
 	anchored = TRUE
 	density = TRUE
-	resistance_flags = UNACIDABLE
+	resistance_flags = UNACIDABLE | INDESTRUCTIBLE
 	var/power_gen_percent = 0 //100,000W at full capacity
 	var/power_generation_max = 100000 //Full capacity
 	var/buildstate = GEOTHERMAL_HEAVY_DAMAGE //What state of building it are we on, 0-3, 1 is "broken", the default

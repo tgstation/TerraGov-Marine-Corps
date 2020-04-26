@@ -522,8 +522,8 @@
 	if(!GLOB.marine_main_ship.rail_gun)
 		GLOB.marine_main_ship.rail_gun = src
 	rail_gun_ammo = new /obj/structure/ship_ammo/heavygun/highvelocity(src)
-	rail_gun_ammo.max_ammo_count = 16000 //400 uses
-	rail_gun_ammo.ammo_count = 16000
+	rail_gun_ammo.max_ammo_count = 8000 //200 uses or 15 full minutes of firing.
+	rail_gun_ammo.ammo_count = 8000
 
 /obj/structure/ship_rail_gun/proc/fire_rail_gun(turf/T, mob/user)
 	set waitfor = 0
@@ -540,4 +540,5 @@
 	var/turf/target = locate(T.x + pick(-2,2), T.y + pick(-2,2), T.z)
 	sleep(15)
 	rail_gun_ammo.detonate_on(target)
+	rail_gun_ammo.ammo_count = max(0, rail_gun_ammo.ammo_count - rail_gun_ammo.ammo_used_per_firing)
 	cannon_busy = FALSE

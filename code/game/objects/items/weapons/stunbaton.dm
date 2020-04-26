@@ -73,7 +73,7 @@
 		var/obj/item/card/id/I = H.wear_id
 		if(!istype(I) || !check_access(I))
 			H.visible_message("<span class='notice'> [src] beeeps as [H] picks it up</span>", "<span class='danger'>WARNING: Unauthorized user detected. Denying access...</span>")
-			H.Knockdown(40 SECONDS)
+			H.Paralyze(40 SECONDS)
 			H.visible_message("<span class='warning'>[src] beeps and sends a shock through [H]'s body!</span>")
 			deductcharge(hitcost)
 			return FALSE
@@ -101,8 +101,9 @@
 		if(!bcell)
 			return
 
+		bcell.forceMove(get_turf(src))
 		bcell.update_icon()
-		bcell.forceMove(loc)
+		bcell = null
 		to_chat(user, "<span class='notice'>You remove the cell from the [src].</span>")
 		status = 0
 
@@ -170,7 +171,7 @@
 	//stun effects
 	if(!HAS_TRAIT(L, TRAIT_BATONIMMUNE))
 		L.stun_effect_act(stun, agony, target_zone)
-		L.KnockdownNoChain(80)
+		L.ParalyzeNoChain(80)
 
 	playsound(loc, 'sound/weapons/egloves.ogg', 25, 1, 6)
 	log_combat(user, L, "stunned", src)
@@ -246,7 +247,7 @@
 
 	if(status && isliving(M))
 		var/mob/living/L = M
-		L.Knockdown(12 SECONDS)
+		L.Paralyze(12 SECONDS)
 		charges -= 2
 		L.visible_message("<span class='danger'>[L] has been prodded with the [src] by [user]!</span>")
 
@@ -282,7 +283,7 @@
 	if(!isliving(M))
 		return
 	var/mob/living/L = M
-	L.Knockdown(28 SECONDS)
+	L.Paralyze(28 SECONDS)
 
 
 /obj/item/weapon/stunprod/improved/examine(mob/user)

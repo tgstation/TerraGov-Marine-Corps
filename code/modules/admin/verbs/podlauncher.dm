@@ -74,7 +74,7 @@
 	to_chat(world, "ui_interact called")
 
 	if(!ui)
-		ui = new(user, src, ui_key, "podlauncher", "podlauncher", 1000, 700, master_ui, state)
+		ui = new(user, src, ui_key, "PodLauncher", "podlauncher", 1000, 700, master_ui, state)
 		ui.open()
 
 /datum/podlauncher/ui_data(mob/user)
@@ -146,7 +146,7 @@
 			var/list/turfs = list()
 			for(var/turf/T in A)
 				turfs.Add(T)
-			var/turf/T = safepick(turfs)
+			var/turf/T = SAFEPICK(turfs)
 			if(!T)
 				to_chat(M, "<span class='warning'>Nowhere to jump to!</span>")
 				return

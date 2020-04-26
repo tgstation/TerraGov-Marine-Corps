@@ -296,6 +296,24 @@
 	icon_state = "som_belt"
 	item_state = "som_belt"
 
+/obj/item/storage/belt/marine/sectoid
+	name = "\improper strange ammo belt"
+	desc = "A belt made of a strong but unusual fabric, with clips to hold your equipment."
+	icon_state = "swatbelt"
+	item_state = "swatbelt"
+	can_hold = list(
+		/obj/item/weapon/combat_knife,
+		/obj/item/explosive/grenade,
+		/obj/item/ammo_magazine/rifle,
+		/obj/item/cell/lasgun,
+		/obj/item/ammo_magazine/smg,
+		/obj/item/ammo_magazine/pistol,
+		/obj/item/ammo_magazine/revolver,
+		/obj/item/ammo_magazine/sniper,
+		/obj/item/ammo_magazine/handful,
+		/obj/item/explosive/grenade,
+		/obj/item/tool/crowbar
+		)
 
 /obj/item/storage/belt/shotgun
 	name = "\improper shotgun shell load rig"
@@ -578,23 +596,19 @@
 		)
 
 /obj/item/storage/belt/gun/pistol/standard_pistol
-	name = "\improper T457 pattern TP-14 holster rig"
-	desc = "The T457 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the TP-14 Pistol."
+	name = "\improper T457 pattern pistol holster rig"
+	desc = "The T457 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips."
 	icon_state = "tp14_holster"
 	item_state = "tp14_holster"
-	can_hold = list(
-		/obj/item/weapon/gun/pistol/standard_pistol,
-		/obj/item/ammo_magazine/pistol/standard_pistol
-		)
 
 /obj/item/storage/belt/gun/revolver/standard_revolver
-	name = "\improper T457 pattern TP-44 holster rig"
-	desc = "The T457 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the TP-44 Revolver."
+	name = "\improper T457 pattern revolver holster rig"
+	desc = "The T457 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips."
 	icon_state = "tp44_holster"
 	item_state = "tp44_holster"
 	can_hold = list(
-		/obj/item/weapon/gun/revolver/standard_revolver,
-		/obj/item/ammo_magazine/revolver/standard_revolver
+		/obj/item/weapon/gun/revolver,
+		/obj/item/ammo_magazine/revolver
 		)
 
 /obj/item/storage/belt/gun/m44

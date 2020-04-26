@@ -109,6 +109,16 @@
 		del(src)
 	return
 
+/obj/item/explosive/grenade/frag/sectoid
+	desc = "An odd, squishy, organ-like grenade. It will explode 3 seconds after squeezing it."
+	icon_state = "alien_grenade"
+	item_state = "grenade_ex"
+	hud_state = "grenade_frag"
+	underslug_launchable = FALSE
+
+/obj/item/explosive/grenade/frag/sectoid/prime()
+	explosion(loc, -1, -1, 5)
+	qdel(src)
 
 /obj/item/explosive/grenade/incendiary
 	name = "\improper M40 HIDP incendiary grenade"
@@ -221,11 +231,12 @@
 
 /obj/item/explosive/grenade/phosphorus/prime()
 	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(4, loc, 7)
+	smoke.set_up(5, loc, 7)
 	smoke.start()
+	flame_radius(4, get_turf(src))
+	flame_radius(1, get_turf(src), burn_intensity = 45, burn_duration = 75, burn_damage = 15, fire_stacks = 75)	//The closer to the middle you are the more it hurts
 	qdel(src)
-
-
+	
 /obj/item/explosive/grenade/phosphorus/upp
 	name = "\improper Type 8 WP grenade"
 	desc = "A deadly gas grenade found within the ranks of the UPP. Designed to spill white phosporus on the target. It explodes 2 seconds after the pin has been pulled."

@@ -49,6 +49,11 @@
 	var/list/evolves_to = list() //type paths to the castes that can be evolved to
 	var/deevolves_to // type path to the caste to deevolve to
 
+	///see_in_dark value while consicious
+	var/conscious_see_in_dark = 8
+	///see_in_dark value while unconscious
+	var/unconscious_see_in_dark = 5
+
 	// *** Flags *** //
 	var/caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER
 
@@ -58,6 +63,10 @@
 	var/list/armor
 
 	var/fire_resist = 1 //0 to 1; lower is better as it is a multiplier.
+
+	// *** Sunder *** //
+	var/sunder_recover = 0.5 // How much sunder is recovered per tick
+	var/sunder_max = 100 // What is the max amount of sunder that can be applied to a xeno (100 = 100%)
 
 	// *** Ranged Attack *** //
 	var/spit_delay = 6 SECONDS //Delay timer for spitting
@@ -116,9 +125,12 @@
 	sight = SEE_SELF|SEE_OBJS|SEE_TURFS|SEE_MOBS
 	see_infrared = TRUE
 	hud_type = /datum/hud/alien
-	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD)
+	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD)
 	buckle_flags = NONE
 	faction = "Xeno"
+	initial_language_holder = /datum/language_holder/xeno
+	gib_chance = 5
+
 	var/hivenumber = XENO_HIVE_NORMAL
 
 	var/datum/hive_status/hive
@@ -143,11 +155,11 @@
 
 	var/upgrade_stored = 0 //How much upgrade points they have stored.
 	var/upgrade = XENO_UPGRADE_INVALID  //This will track their upgrade level.
-	var/gib_chance = 5 // % chance of them exploding when taking damage. Goes up with damage inflicted.
 
 	var/datum/armor/armor
 	var/armor_bonus = 0
 	var/armor_pheromone_bonus = 0
+	var/sunder = 0 // sunder affects armour values and does a % removal before dmg is applied. 50 sunder == 50% effective armour values
 
 	var/fire_resist_modifier = 0
 
@@ -181,8 +193,6 @@
 	//If they're not a xeno subtype it might crash or do weird things, like using human verb procs
 	//It should add them properly on New() and should reset/readd them on evolves
 	var/list/inherent_verbs = list()
-
-	initial_language_holder = /datum/language_holder/xeno
 
 	//Lord forgive me for this horror, but Life code is awful
 	//These are tally vars, yep. Because resetting the aura value directly leads to fuckups

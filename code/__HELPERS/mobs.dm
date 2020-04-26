@@ -48,7 +48,7 @@
 	return playable_species
 
 
-/proc/do_mob(mob/user, mob/target, delay = 30, user_display, target_display, prog_bar = PROGRESS_GENERIC, uninterruptible = FALSE, datum/callback/extra_checks)
+/proc/do_mob(mob/user, mob/target, delay = 30, user_display, target_display, prog_bar = PROGRESS_GENERIC, ignore_flags = NONE, datum/callback/extra_checks)
 	if(!user || !target)
 		return FALSE
 	var/user_loc = user.loc
@@ -69,14 +69,22 @@
 		if(QDELETED(user) || QDELETED(target) || (extra_checks && !extra_checks.Invoke()))
 			. = FALSE
 			break
-		if(uninterruptible)
-			continue
 
-		if(user.loc != user_loc || target.loc != target_loc || user.get_active_held_item() != holding || user.incapacitated())
+		if(!(ignore_flags & IGNORE_LOC_CHANGE) && (user.loc != user_loc || target.loc != target_loc))
 			. = FALSE
 			break
+
+		if(!(ignore_flags & IGNORE_HAND) && user.get_active_held_item() != holding)
+			. = FALSE
+			break
+
+		if(user.incapacitated())
+			. = FALSE
+			break
+
 	if(P)
 		qdel(P)
+
 	user.action_busy--
 
 

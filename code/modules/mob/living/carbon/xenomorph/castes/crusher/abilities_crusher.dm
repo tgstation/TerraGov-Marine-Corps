@@ -24,7 +24,7 @@
 	"<span class='xenodanger'>We smash into the ground!</span>")
 	X.create_stomp() //Adds the visual effect. Wom wom wom
 
-	for(var/mob/living/M in range(2,X.loc))
+	for(var/mob/living/M in range(0,X.loc))
 		if(isxeno(M) || M.stat == DEAD || isnestedhost(M))
 			continue
 		var/distance = get_dist(M, X)
@@ -40,7 +40,7 @@
 			shake_camera(M, 2, 2)
 			to_chat(M, "<span class='highdanger'>You reel from the shockwave of [X]'s stomp!</span>")
 		if(distance < 2) //If we're beside or adjacent to the Crusher, we get knocked down.
-			M.Knockdown(20)
+			M.Paralyze(20)
 		else
 			M.Stun(20) //Otherwise we just get stunned.
 		M.apply_damage(damage, STAMINA) //Armour ignoring Stamina

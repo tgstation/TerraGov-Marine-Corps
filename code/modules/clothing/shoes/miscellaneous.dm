@@ -24,8 +24,8 @@
 	flags_inventory = NOSLIPPING
 	siemens_coefficient = 0.6
 
-/obj/item/clothing/shoes/ruggetboot
-	name = "Rugget Boots"
+/obj/item/clothing/shoes/ruggedboot
+	name = "Rugged Boots"
 	desc = "A pair of boots used by workers in dangerous environments."
 	icon_state = "swat"
 	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 25, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
