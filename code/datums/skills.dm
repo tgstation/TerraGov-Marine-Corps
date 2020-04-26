@@ -208,7 +208,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	construction = SKILL_CONSTRUCTION_MASTER
 	engineer = SKILL_ENGINEER_MASTER
 	powerloader = SKILL_POWERLOADER_MASTER
-	police = SKILL_POLICE_FLASH 
+	police = SKILL_POLICE_FLASH
 
 /datum/skills/civilian/survivor/doctor
 	name = "Survivor Doctor"
@@ -262,6 +262,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	engineer = SKILL_ENGINEER_ENGI
 	construction = SKILL_CONSTRUCTION_ADVANCED
 	leadership = SKILL_LEAD_BEGINNER
+	powerloader = SKILL_POWERLOADER_DABBLING
 
 /datum/skills/combat_medic
 	name = "Combat Medic"
@@ -318,7 +319,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	melee_weapons = SKILL_MELEE_SUPER
 	pilot = SKILL_PILOT_TRAINED
 	police = SKILL_POLICE_MP
-	powerloader = SKILL_POWERLOADER_TRAINED
+	powerloader = SKILL_POWERLOADER_MASTER
 	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
 
 /datum/skills/captain
@@ -377,13 +378,14 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	construction = SKILL_CONSTRUCTION_MASTER
 	leadership = SKILL_LEAD_MASTER
 	police = SKILL_POLICE_FLASH
-	powerloader = SKILL_POWERLOADER_TRAINED
+	powerloader = SKILL_POWERLOADER_MASTER
 
 /datum/skills/RO
 	name = "Requisition Officer"
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	leadership = SKILL_LEAD_TRAINED
-	powerloader = SKILL_POWERLOADER_TRAINED
+	powerloader = SKILL_POWERLOADER_MASTER
+	police = SKILL_POLICE_FLASH
 
 /datum/skills/ST
 	name = SHIP_TECH
@@ -647,4 +649,20 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 	medical = SKILL_MEDICAL_EXPERT
 	surgery = SKILL_SURGERY_EXPERT
+  
 
+/datum/skills/sectoid
+	name = "Sectoid"
+
+	cqc = SKILL_CQC_TRAINED
+	engineer = SKILL_ENGINEER_ENGI
+	construction = SKILL_CONSTRUCTION_PLASTEEL
+	firearms = SKILL_FIREARMS_TRAINED
+	medical = SKILL_MEDICAL_COMPETENT
+	surgery = SKILL_SURGERY_EXPERT//how else will they probe marines?
+	melee_weapons = SKILL_MELEE_TRAINED
+	pistols = SKILL_PISTOLS_TRAINED
+	smgs = SKILL_SMGS_TRAINED
+	rifles = SKILL_RIFLES_TRAINED
+	shotguns = SKILL_SHOTGUNS_TRAINED
+	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED

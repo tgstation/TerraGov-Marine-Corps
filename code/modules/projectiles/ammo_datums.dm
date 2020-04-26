@@ -382,14 +382,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 30
 	sundering = 3
 
-/datum/ammo/bullet/smg/ppsh
-	name = "submachinegun light bullet"
-	hud_state = "smg_light"
-	damage = 23
-	penetration = 0
-	accuracy = -10
-	sundering = 0.5
-
 /*
 //================================================
 					Rifle Ammo
@@ -468,10 +460,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "heavy rifle bullet"
 	hud_state = "rifle_heavy"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	accuracy = -15
 	damage = 30
-	penetration = 20
-	sundering = 3
+	penetration = 15
+	sundering = 1.75
 
 /datum/ammo/bullet/rifle/standard_dmr
 	name = "marksman bullet"
@@ -817,17 +808,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "crude sniper bullet"
 	hud_state = "sniper_crude"
 	iff_signal = null
-	damage = 65
-	penetration = 40
+	damage = 75
+	penetration = 35
 
 /datum/ammo/bullet/sniper/elite
 	name = "supersonic sniper bullet"
 	hud_state = "sniper_supersonic"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	iff_signal = ACCESS_IFF_PMC
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SKIPS_HUMANS
+	iff_signal = ACCESS_IFF_MARINE|ACCESS_IFF_PMC
 	accuracy = 40
-	damage = 120
-	sundering = 50
+	damage = 150
+	sundering = 75
 
 /*
 //================================================
@@ -1150,6 +1141,20 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	staggerstun(C, P, stagger = 1, slowdown = 1) //Staggers and slows down briefly
 
 	return ..()
+
+
+/datum/ammo/energy/plasma
+	name = "plasma bolt"
+	icon_state = "pulse2"
+	hud_state = "plasma"
+	armor_type = "laser"
+	shell_speed = 4
+	accurate_range = 15
+	damage = 40
+	penetration = 15
+	max_range = 30
+	accuracy_var_low = 3
+	accuracy_var_high = 3
 
 /*
 //================================================
