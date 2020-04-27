@@ -656,7 +656,7 @@ Defined in conflicts.dm of the #defines folder.
 	name = "T-45 rail scope"
 	aim_speed_mod = 0
 	attach_icon = "none"
-	desc = "A rail mounted zoom sight scope specialized for the T-45A Battle Rifle . Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	desc = "A rail mounted zoom sight scope specialized for the T-45 Battle Rifle . Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	flags_attach_features = ATTACH_ACTIVATION
 
 /obj/item/attachable/scope/m42a
