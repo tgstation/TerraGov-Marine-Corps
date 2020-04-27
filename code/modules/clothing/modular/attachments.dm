@@ -25,9 +25,9 @@
 
 
 /** Check if the module can be attached to, messages the user if not silent */
-/obj/item/armor_module/proc/can_attach(mob/living/user, obj/item/clothing/suit/modular/armor, silent = FALSE)
+/obj/item/armor_module/proc/can_attach(mob/living/user, obj/item/clothing/suit/modular/parent, silent = FALSE)
 	. = TRUE
-	if(!istype(armor))
+	if(!istype(parent))
 		return FALSE
 
 	// if(is_type_in_list(src, armor.allowed_modules_path))
@@ -36,21 +36,23 @@
 	// 	return FALSE
 
 	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))
-		return
+		return FALSE
+
 
 /** Check if the module can be attached to, messages the user if not silent */
-/obj/item/armor_module/proc/can_detach(mob/living/user, obj/item/clothing/suit/modular/armor, silent = FALSE)
+/obj/item/armor_module/proc/can_detach(mob/living/user, obj/item/clothing/suit/modular/parent, silent = FALSE)
 	. = TRUE
-	if(!istype(armor))
+	if(!istype(parent))
+		to_world("wrong armor type?")
 		return FALSE
 
 	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))
-		return
+		return FALSE
 
 
 /** Called when the module is added to the armor */
 /obj/item/armor_module/proc/on_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
-	SEND_SIGNAL(src, COMSIG_ARMOR_MODULE_ATTACH, user, parent)
+	SEND_SIGNAL(parent, COMSIG_ARMOR_MODULE_ATTACH, user, src)
 	user.dropItemToGround(src)
 	forceMove(parent)
 	parent.armor = parent.armor.attachArmor(src.armor)
@@ -61,5 +63,5 @@
 	parent.armor = parent.armor.detachArmor(src.armor)
 	forceMove(get_turf(parent))
 	user.put_in_any_hand_if_possible(src, warning = FALSE)
-	SEND_SIGNAL(src, COMSIG_ARMOR_MODULE_DEATTACH, user, parent)
-
+	parent.update_overlays()
+	SEND_SIGNAL(parent, COMSIG_ARMOR_MODULE_DEATTACH, user, src)

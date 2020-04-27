@@ -2,14 +2,19 @@
 	Modular armor
 */
 /obj/item/clothing/suit/modular
-	name = "under-armor"
-	icon = 'icons/obj/clothing/suits.dmi'
+	name = "Modular under armor"
+	desc = "Some modular armor that can have attachments"
+	icon = 'icons/mob/modular/modular.dmi'
 	icon_state = "under-armor"
+	item_state = "under-armor"
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	allowed = list() /// What is allowed to be equipped in suit storage
 	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	flags_equip_slot = ITEM_SLOT_OCLOTHING
 	w_class = WEIGHT_CLASS_NORMAL
+
+	/// The human that is wearing the armor
+	var/mob/living/carbon/human/owner
 
 	// Attachment slots for armor pieces
 	var/obj/item/armor_module/armor/slot_chest
@@ -38,7 +43,7 @@
 	. = ..()
 
 
-/obj/item/clothing/suit/modular/Destroy(mob/living/carbon/human/user)
+/obj/item/clothing/suit/modular/Destroy()
 	QDEL_NULL(slot_chest)
 	QDEL_NULL(slot_arms)
 	QDEL_NULL(slot_legs)
@@ -60,8 +65,26 @@
 	else if(length(armor_slots) > 1) // Multi item, ask which piece
 		armor_slot = input(user, "Which armor piece would you like to remove", "Remove armor piece") as null|anything in armor_slots
 	if(!armor_slot)
+		to_world("no armor slot")
 		return
 
-	if(!armor_slot.can_detach())
+	if(!armor_slot.can_detach(user, src))
+		to_world("can't detatch")
 		return
 	armor_slot.on_deattach(user, src)
+
+
+/obj/item/clothing/suit/modular/update_overlays()
+	. = ..()
+
+	if(overlays)
+		cut_overlays()
+
+	if(slot_chest)
+		add_overlay(mutable_appearance(slot_chest.icon, slot_chest.icon_state))
+	if(slot_arms)
+		add_overlay(mutable_appearance(slot_arms.icon, slot_arms.icon_state))
+	if(slot_legs)
+		add_overlay(mutable_appearance(slot_legs.icon, slot_legs.icon_state))
+
+	update_clothing_icon()
