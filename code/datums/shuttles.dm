@@ -128,6 +128,10 @@
 	shuttle_id = "distress_upp"
 	name = "Distress UPP"
 
+/datum/map_template/shuttle/small_ert/ufo
+	shuttle_id = "distress_ufo"
+	name = "Small UFO"
+
 /datum/map_template/shuttle/big_ert
 	shuttle_id = "big_ert"
 	name = "Big ERT"

@@ -192,5 +192,4 @@
 		return ..()
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return ..()
-	use_ability(target)
 	return TRUE

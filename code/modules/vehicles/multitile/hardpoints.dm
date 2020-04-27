@@ -8,7 +8,7 @@ Currently only has the tank hardpoints
 	var/slot //What slot do we attach to?
 	var/obj/vehicle/multitile/root/cm_armored/owner //Who do we work for?
 
-	icon = 'icons/obj/hardpoint_modules.dmi'
+	icon = 'icons/obj/vehicles/hardpoint_modules.dmi'
 	icon_state = "tires" //Placeholder
 
 	max_integrity = 100
