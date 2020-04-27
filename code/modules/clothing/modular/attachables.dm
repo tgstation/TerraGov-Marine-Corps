@@ -1,3 +1,9 @@
+/**
+	Modular armor attachments
+
+	These are utilty attachments that equip into module slots on modular armor
+*/
+
 /** Shoulder lamp stength module */
 /obj/item/armor_module/attachable/better_shoulder_lamp
 	name = "Baldur Light Amplification System"

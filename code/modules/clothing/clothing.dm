@@ -65,7 +65,6 @@
 		set_light(0)
 	else
 		set_light(light_strength)
-		visible_message("[user] turns on the flashlight on \the [src]")
 	flags_armor_features ^= ARMOR_LAMP_ON
 	playsound(src, 'sound/items/flashlight.ogg', 15, 1)
 	update_icon(user)

@@ -1,5 +1,8 @@
 /**
-	Armor module
+	Core armor module
+
+	This is the core of the armor modules
+	here we define the base attach / detach system of each module.
 */
 /obj/item/armor_module
 	name = "armor module"

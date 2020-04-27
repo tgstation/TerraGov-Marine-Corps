@@ -1,3 +1,9 @@
+/**
+	Modular armor storage storage attachments
+
+	These are storage attachments that equip into storage slots on modular armor
+*/
+
 /** Storage modules */
 /obj/item/armor_module/storage
 	icon = 'icons/mob/modular/modular_armor.dmi'
