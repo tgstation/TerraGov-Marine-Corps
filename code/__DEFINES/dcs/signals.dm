@@ -165,6 +165,13 @@
 #define COMSIG_CLOTHING_MECHANICS_INFO "clothing_mechanics_info"	//from base of /obj/item/clothing/get_mechanics_info()
 	#define COMPONENT_CLOTHING_MECHANICS_TINTED	(1<<0)
 
+// /obj/item/armor_module signals
+#define COMSIG_ARMOR_MODULE_ATTACH "armor_module__attach"
+#define COMSIG_ARMOR_MODULE_DEATTACH "armor_module__deattach"
+#define COMSIG_ARMOR_MODULE_PRE_ATTACH "armor_module__pre_attach"
+#define COMSIG_ARMOR_MODULE_PRE_DEATTACH "armor_module__pre_deattach"
+
+
 // /obj/item/weapon/gun signals
 #define COMSIG_GUN_FIRE "gun_fire"
 	#define COMPONENT_GUN_FIRED 1
