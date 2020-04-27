@@ -2092,7 +2092,6 @@
 	},
 /area/mainship/shipboard/weapon_room)
 "agu" = (
-/obj/effect/landmark/start/job/masteratarms,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
@@ -2403,7 +2402,6 @@
 	},
 /area/mainship/shipboard/weapon_room)
 "ahp" = (
-/obj/effect/landmark/start/job/commandmasteratarms,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},

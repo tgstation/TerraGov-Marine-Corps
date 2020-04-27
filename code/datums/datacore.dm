@@ -60,9 +60,6 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 		if(GLOB.jobs_command[rank])
 			heads[name] = rank
 			department = 1
-		if(rank in GLOB.jobs_police)
-			police[name] = rank
-			department = 1
 		if(rank in GLOB.jobs_engineering)
 			eng[name] = rank
 			department = 1

@@ -60,7 +60,6 @@
 
 //Job/role helpers
 #define ismarinefaction(H) (H.faction == "TerraGov")
-#define ispolicejob(J) (istype(J, /datum/job/terragov/police))
 #define ismedicaljob(J) (istype(J, /datum/job/terragov/medical))
 #define isengineeringjob(J) (istype(J, /datum/job/terragov/engineering))
 #define ismarinejob(J) (istype(J, /datum/job/terragov/squad))

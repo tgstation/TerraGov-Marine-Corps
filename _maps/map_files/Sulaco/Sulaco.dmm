@@ -9923,7 +9923,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
 	},
-/obj/effect/landmark/start/job/masteratarms,
 /turf/open/floor/tile/lightred/full,
 /area/sulaco/brig)
 "aDv" = (
@@ -10380,10 +10379,6 @@
 	dir = 6
 	},
 /area/sulaco/marine/delta)
-"aEW" = (
-/obj/effect/landmark/start/job/masteratarms,
-/turf/open/floor/tile/lightred/full,
-/area/sulaco/brig)
 "aEX" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -11275,10 +11270,6 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/turf/open/floor/tile/lightred/full,
-/area/sulaco/brig)
-"aHF" = (
-/obj/effect/landmark/start/job/commandmasteratarms,
 /turf/open/floor/tile/lightred/full,
 /area/sulaco/brig)
 "aHG" = (
@@ -42496,7 +42487,7 @@ aEx
 aGE
 aHB
 aIA
-aHF
+aEx
 aEx
 aEx
 aFJ
@@ -46093,9 +46084,9 @@ aEC
 aFN
 aGL
 aDu
-aEW
-aEW
-aEW
+aEx
+aEx
+aEx
 aDG
 aEx
 aFQ
