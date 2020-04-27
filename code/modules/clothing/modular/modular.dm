@@ -44,7 +44,7 @@
 	/** Installed modules */
 	/// How many modules you can have
 	var/max_modules = 1
-	 /// What modules are installed
+	/// What modules are installed
 	var/list/obj/item/armor_module/attachable/installed_modules
 	/// What storage is installed
 	var/obj/item/armor_module/storage/installed_storage
