@@ -319,7 +319,7 @@
 				circuit = B
 				components = list()
 				req_components = B.req_components.Copy()
-					to_chat(user, "components copied")
+				to_chat(user, "components copied")
 				update_namelist()
 
 			else if(isscrewdriver(I) && circuit)
