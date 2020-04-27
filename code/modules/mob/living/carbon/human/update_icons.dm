@@ -668,10 +668,30 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 						I = image('icons/mob/suit_1.dmi',src,I.icon_state)
 						standing.overlays += I
 
-		// TODO: (psykzz) This needs to be MUCH BETTER wtf
 		if(istype(wear_suit, /obj/item/clothing/suit/modular))
 			var/obj/item/clothing/suit/modular/mod_armor = wear_suit
-			standing.overlays += mod_armor.overlays
+			var/t_icon = mod_armor.item_state ? mod_armor.item_state : mod_armor.icon_state
+			var/image/core_suit = image("icon" = mod_armor.icon, "icon_state" = t_icon)
+			standing.overlays += core_suit
+
+			// Handle attachments and modules
+			if(mod_armor.slot_chest)
+				var/chest_icon = mod_armor.slot_chest.item_state ? mod_armor.slot_chest.item_state : mod_armor.slot_chest.icon_state
+				standing.overlays += image(mod_armor.slot_chest.icon, chest_icon)
+			if(mod_armor.slot_arms)
+				var/arms_icon = mod_armor.slot_arms.item_state ? mod_armor.slot_arms.item_state : mod_armor.slot_arms.icon_state
+				standing.overlays += image(mod_armor.slot_arms.icon, arms_icon)
+			if(mod_armor.slot_legs)
+				var/legs_icon = mod_armor.slot_legs.item_state ? mod_armor.slot_legs.item_state : mod_armor.slot_legs.icon_state
+				standing.overlays += image(mod_armor.slot_legs.icon, legs_icon)
+			for(var/mod in mod_armor.installed_modules)
+				var/obj/item/armor_module/module = mod
+				var/mod_icon = module.item_state ? module.item_state : module.icon_state
+				standing.overlays += image(module.icon, mod_icon)
+			if(mod_armor.installed_storage)
+				var/storage_icon = mod_armor.installed_storage.item_state ? mod_armor.installed_storage.item_state : mod_armor.installed_storage.icon_state
+				standing.overlays += image(mod_armor.installed_storage.icon, storage_icon)
+
 
 		if(wear_suit.blood_overlay)
 			var/obj/item/clothing/suit/S = wear_suit
@@ -679,7 +699,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 			bloodsies.color = wear_suit.blood_color
 			standing.overlays += bloodsies
 
-		overlays_standing[SUIT_LAYER]	= standing
+		overlays_standing[SUIT_LAYER] = standing
 
 	update_tail_showing()
 

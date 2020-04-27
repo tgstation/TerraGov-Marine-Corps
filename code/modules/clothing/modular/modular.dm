@@ -201,22 +201,16 @@
 	if(overlays)
 		cut_overlays()
 
-	var/equipped = FALSE
-	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
-		equipped = H.wear_suit = src
-
 	if(slot_chest)
-		add_overlay(mutable_appearance(slot_chest.icon, equipped ? slot_chest.item_state : slot_chest.icon_state))
+		add_overlay(mutable_appearance(slot_chest.icon, slot_chest.icon_state))
 	if(slot_arms)
-		add_overlay(mutable_appearance(slot_arms.icon, equipped ? slot_arms.item_state : slot_arms.icon_state))
+		add_overlay(mutable_appearance(slot_arms.icon, slot_arms.icon_state))
 	if(slot_legs)
-		add_overlay(mutable_appearance(slot_legs.icon, equipped ? slot_legs.item_state : slot_legs.icon_state))
-	if(equipped)
-		for(var/mod in installed_modules)
-			var/obj/item/armor_module/module = mod
-			add_overlay(mutable_appearance(module.icon, module.item_state))
+		add_overlay(mutable_appearance(slot_legs.icon, slot_legs.icon_state))
+	for(var/mod in installed_modules)
+		var/obj/item/armor_module/module = mod
+		add_overlay(mutable_appearance(module.icon, module.icon_state))
 	if(installed_storage)
-		add_overlay(mutable_appearance(installed_storage.icon, equipped ? installed_storage.item_state : installed_storage.icon_state))
+		add_overlay(mutable_appearance(installed_storage.icon, installed_storage.icon_state))
 
 	update_clothing_icon()
