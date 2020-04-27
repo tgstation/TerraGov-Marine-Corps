@@ -41,7 +41,8 @@
 	/// Installed modules
 	var/max_modules = 2
 	var/list/obj/item/armor_module/attachable/installed_modules
-	var/obj/item/armor_module/module/storage/installed_storage
+	var/obj/item/armor_module/storage/installed_storage
+	var/obj/item/storage/internal/storage
 
 	///List of allowed types [/obj/item/armor_module] that can be installed into this modular armor.
 	var/allowed_armor_path = list(
@@ -68,13 +69,30 @@
 	QDEL_NULL(slot_legs)
 
 	QDEL_NULL(installed_modules)
+	QDEL_NULL(installed_storage)
+	QDEL_NULL(storage)
 	return ..()
 
 
-// /obj/item/clothing/suit/modular/proc/adjust_armor_stat_mod(mod)
-// 	switch(mod)
-// 		if(MODULAR_LIGHT_MOD)
-// 			return
+
+/obj/item/clothing/suit/modular/attack_hand(mob/living/user)
+	to_world("/obj/item/clothing/suit/modular/attack_hand storage:[storage]")
+	if(storage?.handle_attack_hand(user))
+		to_world("/obj/item/clothing/suit/modular/attack_hand YES storage:[storage]")
+		return ..()
+
+/obj/item/clothing/suit/modular/MouseDrop(over_object, src_location, over_location)
+	to_world("/obj/item/clothing/suit/modular/MouseDrop storage:[storage]")
+	if(storage?.handle_mousedrop(usr, over_object))
+		to_world("/obj/item/clothing/suit/modular/MouseDrop YES storage:[storage]")
+		return ..()
+
+/obj/item/clothing/suit/modular/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	to_world("/obj/item/clothing/suit/modular/attack_hand ??[.]?? storage:[storage]")
+	return storage?.attackby(I, user, params)
+
+
 
 /obj/item/clothing/suit/modular/screwdriver_act(mob/living/user, obj/item/I)
 	. = ..()
@@ -118,6 +136,20 @@
 	if(!armor_slot.can_detach(user, src))
 		return
 	armor_slot.on_detach(user, src)
+	update_overlays()
+
+
+
+
+/obj/item/clothing/suit/modular/wirecutter_act(mob/living/user, obj/item/I)
+	. = ..()
+	if(!installed_storage)
+		to_chat(user, "<span class='notice'>There is nothing to remove</span>")
+		return
+
+	if(!installed_storage.can_detach(user, src))
+		return
+	installed_storage.on_detach(user, src)
 	update_overlays()
 
 

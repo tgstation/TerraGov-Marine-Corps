@@ -65,7 +65,6 @@
 
 /** Called when the module is removed from the armor */
 /obj/item/armor_module/proc/on_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
-	parent.armor = parent.armor.detachArmor(src.armor)
 	forceMove(get_turf(parent))
 	user.put_in_any_hand_if_possible(src, warning = FALSE)
 	parent.update_overlays()
