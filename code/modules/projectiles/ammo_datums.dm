@@ -438,13 +438,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "A19 high velocity impact bullet"
 	hud_state = "hivelo_impact"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	damage = 30
+	damage = 25
 	accuracy = -10
-	penetration = 30
+	penetration = 45
 	sundering = 10
 
 /datum/ammo/bullet/rifle/m4ra/impact/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, weaken = 1, slowdown = 2, knockback = 1)
+	staggerstun(M, P, slowdown = 3.5, knockback = 1)
 
 /datum/ammo/bullet/rifle/m4ra/smart
 	name = "A19 high velocity smart bullet"
