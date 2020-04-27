@@ -109,7 +109,7 @@
 /obj/item/clothing/suit/modular/MouseDrop(over_object, src_location, over_location)
 	if(!storage)
 		return ..()
-	if(storage?.handle_mousedrop(usr, over_object))
+	if(storage.handle_mousedrop(usr, over_object))
 		return ..()
 
 
