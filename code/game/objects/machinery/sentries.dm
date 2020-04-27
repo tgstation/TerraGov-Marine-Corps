@@ -354,12 +354,11 @@
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "sentry", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, ui_key, "Sentry", "Sentry Gun", ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /obj/machinery/marine_turret/ui_data(mob/user)
-	var/list/data = list(
-		"self_ref" = "\ref[src]",
+	. = list(
 		"name" = copytext(src.name, 2),
 		"is_on" = CHECK_BITFIELD(turret_flags, TURRET_ON),
 		"rounds" = rounds,
@@ -378,7 +377,6 @@
 		"burst_size" = burst_size,
 		"mini" = istype(src, /obj/machinery/marine_turret/mini)
 	)
-	return data
 
 /obj/machinery/marine_turret/ui_act(action, params)
 	if(..())

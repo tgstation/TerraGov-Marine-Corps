@@ -1,7 +1,7 @@
 //Generic template for application to a xeno/ mob, contains specific obstacle dealing alongside targeting only humans, xenos of a different hive and sentry turrets
 
 /datum/ai_behavior/carbon/xeno
-	sidestep_prob = 100 //Kill everything
+	sidestep_prob = 25
 
 /datum/ai_behavior/carbon/xeno/New(loc, parent_to_assign)
 	..()
