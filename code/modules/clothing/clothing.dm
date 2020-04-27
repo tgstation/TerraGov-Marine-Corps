@@ -1,7 +1,7 @@
 /obj/item/clothing
 	name = "clothing"
 	var/eye_protection = 0 //used for headgear, masks, and glasses, to see how much they protect eyes from bright lights.
-	var/accuracy_mod = 0 
+	var/accuracy_mod = 0
 
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
@@ -44,6 +44,32 @@
 	var/blood_overlay_type = "suit"
 	var/fire_resist = T0C + 100
 	var/shield_state = "shield-blue"
+
+	var/flags_armor_features = NONE
+	var/light_strength = 5 //Average attachable pocket light
+
+/obj/item/clothing/suit/dropped(mob/user)
+	if(loc != user)
+		turn_off_light(user)
+	return ..()
+
+/obj/item/clothing/suit/proc/turn_off_light(mob/wearer)
+	if(flags_armor_features & ARMOR_LAMP_ON)
+		toggle_armor_light(wearer) //turn the light off
+		return TRUE
+	return FALSE
+
+/obj/item/clothing/suit/proc/toggle_armor_light(mob/user)
+	cooldowns[COOLDOWN_ARMOR_LIGHT] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_ARMOR_LIGHT, null), 2.5 SECONDS)
+	if(flags_armor_features & ARMOR_LAMP_ON)
+		set_light(0)
+	else
+		set_light(light_strength)
+		visible_message("[user] turns on the flashlight on \the [src]")
+	flags_armor_features ^= ARMOR_LAMP_ON
+	playsound(src, 'sound/items/flashlight.ogg', 15, 1)
+	update_icon(user)
+	update_action_button_icons()
 
 
 /obj/item/clothing/suit/update_clothing_icon()

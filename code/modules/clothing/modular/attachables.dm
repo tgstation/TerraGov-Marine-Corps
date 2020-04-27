@@ -3,14 +3,14 @@
 	name = "Baldur Light Amplification System"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Substantially increases the power output of the Jaeger Combat Exoskeletons mounted flashlight. Doesn’t really slow you down."
 
-	var/light_amount = 4 /// The amount of light provided
+	var/power_boost = 4 /// The boost to armor shoulder light
 
 /obj/item/armor_module/attachable/better_shoulder_lamp/on_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
-	parent.set_light(light_amount)
+	parent.light_strength += power_boost
 
 /obj/item/armor_module/attachable/better_shoulder_lamp/on_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
-	parent.set_light(light_amount * -1)
+	parent.light_strength -= power_boost
 	return ..()
 
 
@@ -22,14 +22,15 @@
 
 /obj/item/armor_module/attachable/valkyrie_autodoc/on_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
-	parent?.AddComponent(/datum/component/suit_autodoc)
+	var/list/tricord = list(/datum/reagent/medicine/tricordrazine)
+	var/list/tramadol = list(/datum/reagent/medicine/tramadol)
+	parent?.AddComponent(/datum/component/suit_autodoc, 2.5 MINUTES, tricord, tricord, tricord, tricord, tramadol, 0.5)
 
 
 /obj/item/armor_module/attachable/valkyrie_autodoc/on_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	var/datum/component/suit_autodoc/autodoc = parent?.GetComponent(/datum/component/suit_autodoc)
 	autodoc.RemoveComponent()
 	return ..()
-
 
 
 /** Fire poof module */
@@ -44,10 +45,9 @@
 	parent.max_heat_protection_temperature += FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/armor_module/attachable/fire_proof/on_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
-	parent.max_heat_protection_temperature += FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE * -1
 	parent.armor = parent.armor.detachArmor(src.armor)
+	parent.max_heat_protection_temperature -= FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	return ..()
-
 
 
 /** Extra armor module */
@@ -61,13 +61,11 @@
 /obj/item/armor_module/attachable/tyr_extra_armor/on_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
 	parent.armor = parent.armor.attachArmor(armor)
-	parent.max_heat_protection_temperature += FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	parent.slowdown += slowdown
 
 /obj/item/armor_module/attachable/tyr_extra_armor/on_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	parent.armor = parent.armor.detachArmor(armor)
-	parent.max_heat_protection_temperature += FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE * -1
-	parent.slowdown += slowdown * -1
+	parent.slowdown -= slowdown
 	return ..()
 
 
@@ -88,5 +86,5 @@
 /obj/item/armor_module/attachable/fire_proof/on_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	parent.max_heat_protection_temperature += FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE * -1
 	parent.armor = parent.armor.detachArmor(armor)
-	parent.slowdown += slowdown * -1
+	parent.slowdown -= slowdown
 	return ..()

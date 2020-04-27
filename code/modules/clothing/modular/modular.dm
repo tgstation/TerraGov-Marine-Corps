@@ -2,8 +2,8 @@
 	Modular armor
 */
 /obj/item/clothing/suit/modular
-	name = "Modular exo suit"
-	desc = "Some modular armor that can have attachments"
+	name = "Jaeger XM-02 combat exoskeleton"
+	desc = "Designed to mount a variety of modular armor components and support systems. It comes installed with light-plating and a shoulder lamp. Mount armor pieces to it by clicking on the frame with the components"
 	icon = 'icons/mob/modular/modular_armor.dmi'
 	icon_state = "underarmor"
 	item_state = "underarmor_icon"
@@ -26,6 +26,7 @@
 	permeability_coefficient = 1
 	gas_transfer_coefficient = 1
 
+	actions_types = list(/datum/action/item_action/toggle)
 
 	/// An assoc list of stat mods
 	var/list/stat_mod
@@ -33,15 +34,21 @@
 	/// The human that is wearing the armor
 	var/mob/living/carbon/human/owner
 
-	// Attachment slots for armor pieces
+	/// Attachment slots for chest armor
 	var/obj/item/armor_module/armor/slot_chest
+	/// Attachment slots for arm armor
 	var/obj/item/armor_module/armor/slot_arms
+	/// Attachment slots for leg armor
 	var/obj/item/armor_module/armor/slot_legs
 
-	/// Installed modules
-	var/max_modules = 2
+	/** Installed modules */
+	/// How many modules you can have
+	var/max_modules = 1
+	 /// What modules are installed
 	var/list/obj/item/armor_module/attachable/installed_modules
+	/// What storage is installed
 	var/obj/item/armor_module/storage/installed_storage
+	/// Holder for the actual storage implementation
 	var/obj/item/storage/internal/storage
 
 	///List of allowed types [/obj/item/armor_module] that can be installed into this modular armor.
@@ -56,6 +63,9 @@
 	var/allowed_storage_path = list(
 		/obj/item/armor_module,
 	)
+
+	/// Misc stats
+	light_strength = 4
 
 
 /obj/item/clothing/suit/modular/Initialize()
@@ -74,19 +84,58 @@
 	return ..()
 
 
+/obj/item/clothing/suit/modular/attack_self(mob/user)
+	to_world("/obj/item/clothing/suit/modular/attack_self")
+	if(!isturf(user.loc))
+		to_chat(user, "<span class='warning'>You cannot turn the light on while in [user.loc].</span>")
+		return
+	if(cooldowns[COOLDOWN_ARMOR_LIGHT] || !ishuman(user))
+		to_world("/obj/item/clothing/suit/modular/attack_self 2")
+		return
+	var/mob/living/carbon/human/H = user
+	if(H.wear_suit != src)
+		to_world("/obj/item/clothing/suit/modular/attack_self 3")
+		return
+	toggle_armor_light(user)
+	to_world("/obj/item/clothing/suit/modular/attack_self4")
+	return TRUE
+
+/obj/item/clothing/suit/modular/item_action_slot_check(mob/user, slot)
+	if(!light_strength) // No light no ability
+		return FALSE
+	if(!ishuman(user))
+		return FALSE
+	if(slot != SLOT_WEAR_SUIT)
+		return FALSE
+	return TRUE //only give action button when armor is worn.
+
 
 /obj/item/clothing/suit/modular/attack_hand(mob/living/user)
-	if(storage?.handle_attack_hand(user))
+	if(!storage)
+		return ..()
+	if(storage.handle_attack_hand(user))
 		return ..()
 
+
 /obj/item/clothing/suit/modular/MouseDrop(over_object, src_location, over_location)
+	if(!storage)
+		return ..()
 	if(storage?.handle_mousedrop(usr, over_object))
 		return ..()
 
+
 /obj/item/clothing/suit/modular/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	return storage?.attackby(I, user, params)
+	if(.)
+		return
+	if(!storage)
+		return
+	return storage.attackby(I, user, params)
 
+
+/obj/item/clothing/suit/modular/emp_act(severity)
+	storage?.emp_act(severity)
+	return ..()
 
 
 /obj/item/clothing/suit/modular/screwdriver_act(mob/living/user, obj/item/I)

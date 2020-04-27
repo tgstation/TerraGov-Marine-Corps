@@ -55,7 +55,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		"abstract" = 1.0) //abstract for when you just want to hurt it
 
 	//Decisecond cooldowns for the slots
-	var/list/cooldowns = list(
+	cooldowns = list(
 		"primary" = 300,
 		"secondary" = 200,
 		"support" = 150)
