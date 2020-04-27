@@ -532,6 +532,7 @@
 	},
 /area/sulaco/medbay/storage)
 "abG" = (
+/obj/machinery/iv_drip,
 /turf/open/floor{
 	icon_state = "whitebluefull"
 	},
@@ -682,7 +683,7 @@
 /turf/closed/wall/sulaco,
 /area/sulaco/medbay/surgery_one)
 "acc" = (
-/obj/machinery/atmospherics/components/unary/cryo_cell,
+/obj/machinery/chem_dispenser,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -698,12 +699,7 @@
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "acf" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
-	dir = 8;
-	icon_state = "freezer_1";
-	idle_power_usage = 5;
-	on = 0
-	},
+/obj/machinery/vending/medical,
 /turf/open/floor{
 	icon_state = "whitebluefull"
 	},
@@ -733,10 +729,11 @@
 	},
 /area/sulaco/medbay/storage)
 "aci" = (
+/obj/machinery/chem_master,
 /turf/open/floor{
 	icon_state = "white"
 	},
-/area/sulaco/medbay/storage)
+/area/sulaco/medbay/west)
 "acj" = (
 /obj/structure/table,
 /obj/item/roller,
@@ -1067,40 +1064,31 @@
 	},
 /area/sulaco/medbay/west)
 "acW" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	layer = 2.1
-	},
-/obj/machinery/atmospherics/pipe/manifold/general/visible{
-	layer = 2.3
-	},
-/turf/open/floor{
-	icon_state = "white"
-	},
-/area/sulaco/medbay/west)
-"acX" = (
-/obj/machinery/atmospherics/pipe/manifold/general/visible{
-	layer = 2.3
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 5
 	},
 /turf/open/floor{
 	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
-"acY" = (
-/obj/machinery/atmospherics/pipe/manifold/general/visible{
-	layer = 2.3
-	},
+"acX" = (
+/obj/machinery/camera/autoname,
 /turf/open/floor{
 	icon_state = "white"
 	},
 /area/sulaco/medbay/west)
-"acZ" = (
-/obj/machinery/atmospherics/components/unary/portables_connector{
-	dir = 8
+"acY" = (
+/obj/machinery/iv_drip,
+/turf/open/floor{
+	icon_state = "white"
 	},
-/obj/machinery/portable_atmospherics/canister/oxygen,
+/area/sulaco/medbay/storage)
+"acZ" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 5
+	},
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -1367,30 +1355,21 @@
 	},
 /area/sulaco/medbay/surgery_one)
 "adF" = (
-/obj/item/reagent_containers/blood/OMinus,
-/obj/item/reagent_containers/blood/OMinus,
-/obj/item/reagent_containers/blood/OMinus,
-/obj/item/reagent_containers/blood/OMinus{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/reagent_containers/blood/OMinus,
 /obj/machinery/light{
 	icon_state = "tube1";
 	dir = 8
 	},
 /obj/structure/table,
+/obj/item/storage/box/beakers,
+/obj/item/storage/box/beakers,
 /turf/open/floor{
 	icon_state = "white"
 	},
 /area/sulaco/medbay/west)
 "adG" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	layer = 2.1
-	},
+/obj/structure/table,
+/obj/item/reagent_containers/glass/beaker/bluespace,
+/obj/item/reagent_containers/glass/beaker/bluespace,
 /turf/open/floor{
 	icon_state = "whitebluefull"
 	},
@@ -1409,7 +1388,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/vending/medical,
+/obj/machinery/atmospherics/components/unary/cryo_cell,
 /turf/open/floor{
 	icon_state = "whitebluefull"
 	},
@@ -1716,7 +1695,10 @@
 	},
 /area/sulaco/medbay/surgery_one)
 "aev" = (
-/obj/machinery/iv_drip,
+/obj/structure/window/reinforced{
+	dir = 5
+	},
+/obj/structure/grille,
 /turf/open/floor{
 	icon_state = "whitebluefull"
 	},
@@ -2095,18 +2077,12 @@
 	},
 /area/sulaco/medbay/west)
 "afr" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2";
-	layer = 2.1
+/obj/structure/window/reinforced{
+	dir = 5
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
+/obj/structure/grille,
 /turf/open/floor{
-	icon_state = "whitebluefull"
+	icon_state = "white"
 	},
 /area/sulaco/medbay/west)
 "afs" = (
@@ -2516,19 +2492,11 @@
 	},
 /area/sulaco/medbay/west)
 "agj" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+/obj/machinery/door/airlock/mainship/medical/glass/chemistry{
+	dir = 2
 	},
 /turf/open/floor{
-	icon_state = "white"
+	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
 "agk" = (
@@ -3428,27 +3396,12 @@
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "ahY" = (
-/obj/structure/table,
-/obj/item/tool/wrench,
-/obj/item/reagent_containers/glass/beaker/cryoxadone{
-	pixel_x = 3;
-	pixel_y = 3
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/obj/item/reagent_containers/glass/beaker/cryoxadone,
-/obj/item/reagent_containers/glass/beaker/cryoxadone,
-/obj/item/reagent_containers/glass/beaker/cryoxadone{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	dir = 6;
-	icon_state = "intact"
-	},
-/obj/item/storage/pill_bottle/peridaxon,
-/obj/item/storage/pill_bottle/dylovene,
-/obj/machinery/camera/autoname,
 /turf/open/floor{
-	icon_state = "white"
+	icon_state = "whitebluefull"
 	},
 /area/sulaco/medbay/west)
 "ahZ" = (
@@ -14926,15 +14879,15 @@
 	},
 /area/sulaco/brig)
 "aED" = (
-/obj/structure/cable/yellow,
-/obj/machinery/camera/autoname{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/turf/closed/wall/indestructible/fakeglass{
+	icon = 'icons/obj/structures/windows.dmi';
+	icon_state = "rwindow3";
+	layer = 3.2
 	},
-/obj/machinery/power/apc/mainship{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/sulaco/cap_office)
+/area/sulaco/engineering/engine)
 "aEE" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -16208,15 +16161,16 @@
 /turf/closed/wall/sulaco/unmeltable,
 /area/sulaco/engineering/engine)
 "aHp" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/grille,
-/turf/open/floor/plating,
-/turf/closed/wall/indestructible/fakeglass{
-	icon = 'icons/obj/structures/windows.dmi';
-	icon_state = "rwindow3";
-	layer = 3.2
+/obj/structure/cable/yellow,
+/obj/machinery/camera/autoname{
+	dir = 1
 	},
-/area/sulaco/engineering/engine)
+/obj/machinery/power/apc/mainship{
+	dir = 1
+	},
+/mob/living/simple_animal/cat/Jones,
+/turf/open/floor/wood,
+/area/sulaco/cap_office)
 "aHq" = (
 /obj/machinery/door/airlock/mainship/maint{
 	icon_state = "door_closed";
@@ -24504,6 +24458,7 @@
 /obj/machinery/computer/operating,
 /obj/machinery/camera/autoname,
 /obj/structure/table,
+/obj/item/storage/surgical_tray,
 /turf/open/floor{
 	icon_state = "whitebluefull"
 	},
@@ -25006,6 +24961,19 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison)
+"bbI" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/metal/large_stack,
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/sulaco/maintenance/lower_maint)
+"bbJ" = (
+/obj/machinery/computer/camera_advanced/remote_fob,
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/sulaco/maintenance/lower_maint)
 "bbV" = (
 /obj/machinery/telecomms/server/presets/security,
 /obj/machinery/light/small{
@@ -47634,7 +47602,7 @@ aCw
 azu
 aEk
 aEk
-aED
+aHp
 aDi
 aIw
 aJx
@@ -49921,12 +49889,12 @@ aaa
 aaa
 aaa
 aew
-acd
-acW
+acf
+adH
 adG
-ahb
 afr
-agj
+ahY
+ael
 ahv
 ael
 ajD
@@ -50178,10 +50146,10 @@ aaa
 aaa
 aaa
 aew
-acc
-acX
-adH
+aci
 adI
+adH
+agj
 afs
 aae
 ahb
@@ -50435,10 +50403,10 @@ aaa
 aaa
 aaa
 aew
-acd
-acY
-adI
-adH
+acW
+acZ
+acW
+afr
 aft
 agk
 adI
@@ -50692,8 +50660,8 @@ aaa
 aaa
 aaa
 aew
-ahY
 acX
+adI
 adH
 aex
 afu
@@ -50949,8 +50917,8 @@ aaa
 aaa
 ayZ
 aew
-acf
-acZ
+acd
+adH
 adJ
 adH
 afv
@@ -51977,7 +51945,7 @@ aaa
 aaa
 add
 abG
-aci
+acY
 abG
 abo
 aeB
@@ -64697,7 +64665,7 @@ aTt
 aUq
 aUO
 aVE
-aXa
+bbI
 aXa
 aXQ
 aXa
@@ -64954,7 +64922,7 @@ aSN
 aUr
 aZl
 aUu
-aVG
+bbJ
 aVG
 aXR
 aVG
@@ -71276,9 +71244,9 @@ aAw
 aAG
 aBS
 aCq
-aHp
-aHp
-aHp
+aED
+aED
+aED
 aYQ
 aJp
 aKh
