@@ -37,7 +37,7 @@
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_1, "bio" = 30, "rad" = 30, "fire" = 15, "acid" = 30)
 
 	// *** Ranged Attack *** //
-	charge_type = 3 //Claw at end of charge
+	charge_type = CHARGE_TYPE_LARGE
 
 	// *** Abilities *** //
 	actions = list(
