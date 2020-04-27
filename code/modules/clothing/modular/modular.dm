@@ -119,9 +119,11 @@
 
 /obj/item/clothing/suit/modular/screwdriver_act(mob/living/user, obj/item/I)
 	. = ..()
+	if(.)
+		return
 	if(!length(installed_modules))
 		to_chat(user, "<span class='notice'>There is nothing to remove</span>")
-		return
+		return TRUE
 
 	var/obj/item/armor_module/attachable/attachment
 	if(length(installed_modules) == 1) // Single item (just take it)
@@ -129,23 +131,26 @@
 	else if(length(installed_modules) > 1) // Multi item, ask which piece
 		attachment = input(user, "Which module would you like to remove", "Remove module") as null|anything in installed_modules
 	if(!attachment)
-		return
+		return TRUE
 
 	if(!attachment.can_detach(user, src))
-		return
+		return TRUE
 
 	attachment.do_detach(user, src)
 	update_overlays()
+	return TRUE
 
 
 /obj/item/clothing/suit/modular/crowbar_act(mob/living/user, obj/item/I)
 	. = ..()
+	if(.)
+		return
 	var/list/obj/item/armor_module/armor/armor_slots = list(slot_chest, slot_arms, slot_legs)
 	listclearnulls(armor_slots)
 
 	if(!length(armor_slots))
 		to_chat(user, "<span class='notice'>There is nothing to remove</span>")
-		return
+		return TRUE
 
 	var/obj/item/armor_module/armor/armor_slot
 	if(length(armor_slots) == 1) // Single item (just take it)
@@ -153,25 +158,28 @@
 	else if(length(armor_slots) > 1) // Multi item, ask which piece
 		armor_slot = input(user, "Which armor piece would you like to remove", "Remove armor piece") as null|anything in armor_slots
 	if(!armor_slot)
-		return
+		return TRUE
 
 	if(!armor_slot.can_detach(user, src))
-		return
+		return TRUE
 	armor_slot.do_detach(user, src)
 	update_overlays()
+	return TRUE
 
 
 /obj/item/clothing/suit/modular/wirecutter_act(mob/living/user, obj/item/I)
 	. = ..()
+	if(.)
+		return
 	if(!installed_storage)
 		to_chat(user, "<span class='notice'>There is nothing to remove</span>")
-		return
+		return TRUE
 
 	if(!installed_storage.can_detach(user, src))
-		return
+		return TRUE
 	installed_storage.do_detach(user, src)
 	update_overlays()
-
+	return TRUE
 
 /obj/item/clothing/suit/modular/update_overlays()
 	. = ..()
