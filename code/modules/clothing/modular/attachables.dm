@@ -12,12 +12,12 @@
 	item_state = "mod_lamp"
 	var/power_boost = 4 /// The boost to armor shoulder light
 
-/obj/item/armor_module/attachable/better_shoulder_lamp/on_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
+/obj/item/armor_module/attachable/better_shoulder_lamp/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
 	parent.light_strength += power_boost
 	parent.update_overlays()
 
-/obj/item/armor_module/attachable/better_shoulder_lamp/on_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
+/obj/item/armor_module/attachable/better_shoulder_lamp/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	parent.light_strength -= power_boost
 	return ..()
 
@@ -29,7 +29,7 @@
 	icon_state = "mod_autodoc_icon"
 	item_state = "mod_autodoc"
 
-/obj/item/armor_module/attachable/valkyrie_autodoc/on_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
+/obj/item/armor_module/attachable/valkyrie_autodoc/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
 	var/list/tricord = list(/datum/reagent/medicine/tricordrazine)
 	var/list/tramadol = list(/datum/reagent/medicine/tramadol)
@@ -37,7 +37,7 @@
 	parent.update_overlays()
 
 
-/obj/item/armor_module/attachable/valkyrie_autodoc/on_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
+/obj/item/armor_module/attachable/valkyrie_autodoc/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	var/datum/component/suit_autodoc/autodoc = parent?.GetComponent(/datum/component/suit_autodoc)
 	autodoc.RemoveComponent()
 	return ..()
@@ -51,13 +51,13 @@
 	item_state = "mod_fire"
 	armor = list("fire" = 100)
 
-/obj/item/armor_module/attachable/fire_proof/on_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
+/obj/item/armor_module/attachable/fire_proof/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
 	parent.armor = parent.armor.attachArmor(armor)
 	parent.max_heat_protection_temperature += FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	parent.update_overlays()
 
-/obj/item/armor_module/attachable/fire_proof/on_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
+/obj/item/armor_module/attachable/fire_proof/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	parent.armor = parent.armor.detachArmor(armor)
 	parent.max_heat_protection_temperature -= FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	return ..()
@@ -72,13 +72,13 @@
 	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	slowdown = 10
 
-/obj/item/armor_module/attachable/tyr_extra_armor/on_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
+/obj/item/armor_module/attachable/tyr_extra_armor/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
 	parent.armor = parent.armor.attachArmor(armor)
 	parent.slowdown += slowdown
 	parent.update_overlays()
 
-/obj/item/armor_module/attachable/tyr_extra_armor/on_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
+/obj/item/armor_module/attachable/tyr_extra_armor/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	parent.armor = parent.armor.detachArmor(armor)
 	parent.slowdown -= slowdown
 	return ..()
@@ -97,7 +97,7 @@
 	var/permeability_coefficient_mod = -1
 	var/gas_transfer_coefficient_mod = -1
 
-/obj/item/armor_module/attachable/mimir_environment_protection/on_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
+/obj/item/armor_module/attachable/mimir_environment_protection/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
 	parent.armor = parent.armor.attachArmor(armor)
 	parent.siemens_coefficient += siemens_coefficient_mod
@@ -106,7 +106,7 @@
 	parent.slowdown += slowdown
 	parent.update_overlays()
 
-/obj/item/armor_module/attachable/mimir_environment_protection/on_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
+/obj/item/armor_module/attachable/mimir_environment_protection/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	parent.armor = parent.armor.detachArmor(armor)
 	parent.siemens_coefficient -= siemens_coefficient_mod
 	parent.permeability_coefficient -= permeability_coefficient_mod

@@ -42,12 +42,12 @@
 		return FALSE
 
 
-/obj/item/armor_module/storage/on_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
+/obj/item/armor_module/storage/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
 	parent.installed_storage = src
 	parent.storage = new storage_type(parent)
 
-/obj/item/armor_module/storage/on_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
+/obj/item/armor_module/storage/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	parent.installed_storage = null
 	QDEL_NULL(parent.storage)
 	return ..()

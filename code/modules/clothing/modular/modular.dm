@@ -43,19 +43,6 @@
 	/// Holder for the actual storage implementation
 	var/obj/item/storage/internal/storage
 
-	///List of allowed types [/obj/item/armor_module] that can be installed into this modular armor.
-	var/allowed_armor_path = list(
-		/obj/item/armor_module,
-	)
- 	///List of allowed types [/obj/item/armor_module] that can be installed into this modular armor.
-	var/allowed_modules_path = list(
-		/obj/item/armor_module,
-	)
-	///List of allowed types [/obj/item/armor_module] that can be installed into this modular armor.
-	var/allowed_storage_path = list(
-		/obj/item/armor_module,
-	)
-
 	/// Misc stats
 	light_strength = 4
 
@@ -147,7 +134,7 @@
 	if(!attachment.can_detach(user, src))
 		return
 
-	attachment.on_detach(user, src)
+	attachment.do_detach(user, src)
 	update_overlays()
 
 
@@ -170,10 +157,8 @@
 
 	if(!armor_slot.can_detach(user, src))
 		return
-	armor_slot.on_detach(user, src)
+	armor_slot.do_detach(user, src)
 	update_overlays()
-
-
 
 
 /obj/item/clothing/suit/modular/wirecutter_act(mob/living/user, obj/item/I)
@@ -184,7 +169,7 @@
 
 	if(!installed_storage.can_detach(user, src))
 		return
-	installed_storage.on_detach(user, src)
+	installed_storage.do_detach(user, src)
 	update_overlays()
 
 

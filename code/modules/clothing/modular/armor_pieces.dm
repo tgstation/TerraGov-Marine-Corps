@@ -16,12 +16,12 @@
 	/// Addititve Slowdown of this armor piece
 	slowdown = 0
 
-/obj/item/armor_module/armor/on_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
+/obj/item/armor_module/armor/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
 	parent.armor = parent.armor.attachArmor(armor)
 	parent.slowdown += slowdown
 
-/obj/item/armor_module/armor/on_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
+/obj/item/armor_module/armor/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	parent.armor = parent.armor.detachArmor(armor)
 	parent.slowdown -= slowdown
 	return ..()
@@ -43,12 +43,12 @@
 			to_chat(user, "<span class='notice'>There is already something in that slot.</span>")
 		return FALSE
 
-/obj/item/armor_module/armor/chest/on_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
+/obj/item/armor_module/armor/chest/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
 	parent.slot_chest = src
 	parent.update_overlays()
 
-/obj/item/armor_module/armor/chest/on_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
+/obj/item/armor_module/armor/chest/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	parent.slot_chest = null
 	return ..()
 
@@ -90,12 +90,12 @@
 			to_chat(user, "<span class='notice'>There is already something in that slot.</span>")
 		return FALSE
 
-/obj/item/armor_module/armor/legs/on_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
+/obj/item/armor_module/armor/legs/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
 	parent.slot_legs = src
 	parent.update_overlays()
 
-/obj/item/armor_module/armor/legs/on_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
+/obj/item/armor_module/armor/legs/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	parent.slot_legs = null
 	return ..()
 
@@ -137,12 +137,12 @@
 			to_chat(user, "<span class='notice'>There is already something in that slot.</span>")
 		return FALSE
 
-/obj/item/armor_module/armor/arms/on_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
+/obj/item/armor_module/armor/arms/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
 	parent.slot_arms = src
 	parent.update_overlays()
 
-/obj/item/armor_module/armor/arms/on_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
+/obj/item/armor_module/armor/arms/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	parent.slot_arms = null
 	return ..()
 
