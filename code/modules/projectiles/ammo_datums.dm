@@ -421,19 +421,18 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 0
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	accurate_range_min = 6
-	damage = 50
-	scatter = -15
-	penetration = 30
-	sundering = 3
+	damage = 40
+	penetration = 20
+	sundering = 5
 
 /datum/ammo/bullet/rifle/m4ra/incendiary
 	name = "A19 high velocity incendiary bullet"
 	hud_state = "hivelo_fire"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SUNDERING
-	damage = 40
+	damage = 25
 	accuracy = 10
 	penetration = 20
-	sundering = 2
+	sundering = 2.5
 
 /datum/ammo/bullet/rifle/m4ra/impact
 	name = "A19 high velocity impact bullet"
@@ -441,11 +440,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	damage = 30
 	accuracy = -10
-	penetration = 20
-	sundering = 3
+	penetration = 30
+	sundering = 10
 
 /datum/ammo/bullet/rifle/m4ra/impact/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, max_range = 40, weaken = 1, stagger = 1, knockback = 1)
+	staggerstun(M, P, weaken = 1, slowdown = 2, knockback = 1)
 
 /datum/ammo/bullet/rifle/m4ra/smart
 	name = "A19 high velocity smart bullet"
@@ -453,7 +452,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	iff_signal = ACCESS_IFF_MARINE
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SKIPS_HUMANS|AMMO_SUNDERING
 	damage = 30
-	penetration = 30
+	penetration = 15
 	sundering = 3
 
 /datum/ammo/bullet/rifle/ak47
