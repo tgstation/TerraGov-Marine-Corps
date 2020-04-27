@@ -76,20 +76,15 @@
 
 
 /obj/item/clothing/suit/modular/attack_hand(mob/living/user)
-	to_world("/obj/item/clothing/suit/modular/attack_hand storage:[storage]")
 	if(storage?.handle_attack_hand(user))
-		to_world("/obj/item/clothing/suit/modular/attack_hand YES storage:[storage]")
 		return ..()
 
 /obj/item/clothing/suit/modular/MouseDrop(over_object, src_location, over_location)
-	to_world("/obj/item/clothing/suit/modular/MouseDrop storage:[storage]")
 	if(storage?.handle_mousedrop(usr, over_object))
-		to_world("/obj/item/clothing/suit/modular/MouseDrop YES storage:[storage]")
 		return ..()
 
 /obj/item/clothing/suit/modular/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	to_world("/obj/item/clothing/suit/modular/attack_hand ??[.]?? storage:[storage]")
 	return storage?.attackby(I, user, params)
 
 
@@ -97,7 +92,6 @@
 /obj/item/clothing/suit/modular/screwdriver_act(mob/living/user, obj/item/I)
 	. = ..()
 	if(!length(installed_modules))
-		to_world("huh: [installed_modules] [length(installed_modules)]")
 		to_chat(user, "<span class='notice'>There is nothing to remove</span>")
 		return
 
