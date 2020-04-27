@@ -26,9 +26,6 @@
 
 	actions_types = list(/datum/action/item_action/toggle)
 
-	/// An assoc list of stat mods
-	var/list/stat_mod
-
 	/// The human that is wearing the armor
 	var/mob/living/carbon/human/owner
 
