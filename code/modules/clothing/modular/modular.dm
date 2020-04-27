@@ -204,5 +204,10 @@
 		add_overlay(mutable_appearance(slot_arms.icon, slot_arms.icon_state))
 	if(slot_legs)
 		add_overlay(mutable_appearance(slot_legs.icon, slot_legs.icon_state))
+	for(var/mod in installed_modules)
+		var/obj/item/armor_module/module = mod
+		add_overlay(mutable_appearance(module.icon, module.icon_state))
+	if(installed_storage)
+		add_overlay(mutable_appearance(installed_storage.icon, installed_storage.icon_state))
 
 	update_clothing_icon()
