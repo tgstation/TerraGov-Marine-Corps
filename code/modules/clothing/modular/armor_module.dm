@@ -20,7 +20,7 @@
 
 	if(!proximity_flag)
 		return
-	if(!user || user.stat != CONSCIOUS)
+	if(QDELETED(user) || user.stat != CONSCIOUS)
 		return
 
 	if(!can_attach(user, target))
@@ -95,4 +95,3 @@
 /obj/item/armor_module/attachable/on_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	parent.installed_modules -= src
 	return ..()
-

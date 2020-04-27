@@ -18,11 +18,11 @@
 
 /obj/item/armor_module/armor/on_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
-	parent.armor = parent.armor.attachArmor(src.armor)
+	parent.armor = parent.armor.attachArmor(armor)
 	parent.slowdown += slowdown
 
 /obj/item/armor_module/armor/on_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
-	parent.armor = parent.armor.detachArmor(src.armor)
+	parent.armor = parent.armor.detachArmor(armor)
 	parent.slowdown -= slowdown
 	return ..()
 

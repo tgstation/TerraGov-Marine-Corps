@@ -49,8 +49,7 @@
 	var/light_strength = 5 //Average attachable pocket light
 
 /obj/item/clothing/suit/dropped(mob/user)
-	if(loc != user)
-		turn_off_light(user)
+	turn_off_light(user)
 	return ..()
 
 /obj/item/clothing/suit/proc/turn_off_light(mob/wearer)
@@ -66,7 +65,7 @@
 	else
 		set_light(light_strength)
 	flags_armor_features ^= ARMOR_LAMP_ON
-	playsound(src, 'sound/items/flashlight.ogg', 15, 1)
+	playsound(src, 'sound/items/flashlight.ogg', 15, TRUE)
 	update_icon(user)
 	update_action_button_icons()
 

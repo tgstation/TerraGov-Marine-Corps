@@ -53,12 +53,12 @@
 
 /obj/item/armor_module/attachable/fire_proof/on_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
-	parent.armor = parent.armor.attachArmor(src.armor)
+	parent.armor = parent.armor.attachArmor(armor)
 	parent.max_heat_protection_temperature += FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	parent.update_overlays()
 
 /obj/item/armor_module/attachable/fire_proof/on_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
-	parent.armor = parent.armor.detachArmor(src.armor)
+	parent.armor = parent.armor.detachArmor(armor)
 	parent.max_heat_protection_temperature -= FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	return ..()
 

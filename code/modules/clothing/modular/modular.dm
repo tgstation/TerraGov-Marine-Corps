@@ -10,9 +10,7 @@
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	/// What is allowed to be equipped in suit storage
 	allowed = list(
-		/obj/item/weapon/gun/,
-		/obj/item/tank/emergency_oxygen,
-		/obj/item/storage/bible,
+		/obj/item/weapon/gun,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/large_holster/machete,
 		/obj/item/weapon/claymore,
