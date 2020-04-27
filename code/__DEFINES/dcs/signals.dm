@@ -166,8 +166,8 @@
 	#define COMPONENT_CLOTHING_MECHANICS_TINTED	(1<<0)
 
 // /obj/item/armor_module signals
-#define COMSIG_ARMOR_MODULE_ATTACH "armor_module__attach"
-#define COMSIG_ARMOR_MODULE_DEATTACH "armor_module__deattach"
+#define COMSIG_ARMOR_MODULE_ATTACH "armor_module_attach"
+#define COMSIG_ARMOR_MODULE_DETACH "armor_module_detach"
 
 
 // /obj/item/weapon/gun signals
