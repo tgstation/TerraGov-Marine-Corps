@@ -207,9 +207,10 @@
 		add_overlay(mutable_appearance(slot_arms.icon, slot_arms.icon_state))
 	if(slot_legs)
 		add_overlay(mutable_appearance(slot_legs.icon, slot_legs.icon_state))
-	for(var/mod in installed_modules)
-		var/obj/item/armor_module/module = mod
-		add_overlay(mutable_appearance(module.icon, module.icon_state))
+
+	// we intentionally do not add modules here
+	// as the icons are not made to be added in world, only on mobs.
+
 	if(installed_storage)
 		add_overlay(mutable_appearance(installed_storage.icon, installed_storage.icon_state))
 
