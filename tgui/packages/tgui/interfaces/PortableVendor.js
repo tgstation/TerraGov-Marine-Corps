@@ -16,8 +16,8 @@ export const PortableVendor = (props, context) => {
             }}
             value={data.current_points
               / data.max_points}>
-              {data.current_points+"/"+data.max_points}
-            </ProgressBar>
+            {data.current_points+"/"+data.max_points}
+          </ProgressBar>
         )}
         {data.displayed_records.map(display_record => (
           <Section key={display_record.id}>

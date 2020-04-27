@@ -17,12 +17,12 @@ export const Vending = (props, context) => {
     <Window>
       <Window.Content scrollable>
         {!!showDesc && (
-        <Modal>
-          <Box>{showDesc}</Box>
-          <Button
-            content="Dismiss"
-            onClick={() => setShowDesc(null)} />
-        </Modal>
+          <Modal>
+            <Box>{showDesc}</Box>
+            <Button
+              content="Dismiss"
+              onClick={() => setShowDesc(null)} />
+          </Modal>
         )}
         {data.currently_vending_name ? (
           <Buying />
@@ -156,65 +156,67 @@ const Products = (props, context) => {
       title="Select an item"
       buttons={
         <Button
-        icon="power-off"
-        selected={showEmpty}
-        onClick={() => setShowEmpty(!showEmpty)}>
-        Show sold-out items
-      </Button>
+          icon="power-off"
+          selected={showEmpty}
+          onClick={() => setShowEmpty(!showEmpty)}>
+          Show sold-out items
+        </Button>
       }>
       <LabeledList>
-      {data.displayed_records.length > 0 ? (
-        data.displayed_records.map(display_record => {
-          const {
-            amount,
-            id,
-            prod_index,
-            prod_cat,
-            product_color,
-            product_name,
-            prod_desc
-          } = display_record;
-          return (
-          ((showEmpty || !!amount) && (
-          <LabeledListItem key={id}
-          labelColor = "white"
-          buttons={
-            <Fragment>
-            <ProgressBar
-              width="60px"
-              value={amount}
-              maxValue={amount}
-              ranges={{
-                good: [10, Infinity],
-                average: [5, 10],
-                bad: [-Infinity, 5],
-              }}>{amount} left</ProgressBar>
-            <Box inline width="4px"/>
-            <Button
-              selected={data.currently_vending_index
-                === prod_index}
-              onClick={() => act(
-                'vend',
-                { vend: prod_index,
-                  cat: prod_cat })}
-              disabled={!amount}>
-              <Box color={product_color} bold={1}>
-                Vend
-              </Box>
-            </Button>
-            </Fragment>
-          }
-          label={ decodeHtmlEntities(product_name)}>
-            {!!prod_desc && (
-              <Button
-                onClick={() => setShowDesc(prod_desc)}
-              >?</Button>)}
-          </LabeledListItem>
-          ))
-        );})
-      ) : (
-        <Box color="red">No product loaded!</Box>
-      )}
+        {data.displayed_records.length > 0 ? (
+          data.displayed_records.map(display_record => {
+            const {
+              amount,
+              id,
+              prod_index,
+              prod_cat,
+              product_color,
+              product_name,
+              prod_desc,
+            } = display_record;
+            return (
+              ((showEmpty || !!amount) && (
+                <LabeledListItem key={id}
+                  labelColor="white"
+                  buttons={
+                    <Fragment>
+                      <ProgressBar
+                        width="60px"
+                        value={amount}
+                        maxValue={amount}
+                        ranges={{
+                          good: [10, Infinity],
+                          average: [5, 10],
+                          bad: [-Infinity, 5],
+                        }}>{amount} left
+                      </ProgressBar>
+                      <Box inline width="4px" />
+                      <Button
+                        selected={data.currently_vending_index
+                          === prod_index}
+                        onClick={() => act(
+                          'vend',
+                          { vend: prod_index,
+                            cat: prod_cat })}
+                        disabled={!amount}>
+                        <Box color={product_color} bold={1}>
+                          Vend
+                        </Box>
+                      </Button>
+                    </Fragment>
+                  }
+                  label={decodeHtmlEntities(product_name)}>
+                  {!!prod_desc && (
+                    <Button
+                      onClick={() => setShowDesc(prod_desc)}>?
+                    </Button>)}
+                </LabeledListItem>
+              ))
+            );
+          })
+        ) : (
+          <Box color="red">No product loaded!</Box>
+        )}
       </LabeledList>
     </Section>
   );

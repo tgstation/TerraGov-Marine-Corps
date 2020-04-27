@@ -27,19 +27,16 @@ export const MarineSelector = (props, context) => {
     show_points,
   } = data;
 
-//  const categories = displayed_records
-//    .filter(([x, y]) => x.length > 0 && (showEmpty || (cats[y].remaining > 0 || (!cats[y].total && !!current_m_points))));
-
   return (
     <Window>
       <Window.Content scrollable>
-      {!!showDesc && (
-        <Modal>
-          <Box>{showDesc}</Box>
-          <Button
-            content="Dismiss"
-            onClick={() => setShowDesc(null)} />
-        </Modal>
+        {!!showDesc && (
+          <Modal>
+            <Box>{showDesc}</Box>
+            <Button
+              content="Dismiss"
+              onClick={() => setShowDesc(null)} />
+          </Modal>
         )}
         <Section
           title="Choose your equipment"
@@ -47,36 +44,38 @@ export const MarineSelector = (props, context) => {
             <Fragment>
               {!!show_points && (
                 <ProgressBar
-                width="100px"
-                value={current_m_points / total_marine_points}
-                ranges={{
-                  good: [0.67, Infinity],
-                  average: [0.33, 0.67],
-                  bad: [-Infinity, 0.33],
-                }} >
+                  width="100px"
+                  value={current_m_points / total_marine_points}
+                  ranges={{
+                    good: [0.67, Infinity],
+                    average: [0.33, 0.67],
+                    bad: [-Infinity, 0.33],
+                  }} >
                   {current_m_points +"/"+ total_marine_points + " Points"}
                 </ProgressBar>
               )}
 
-            <Button
-              icon="power-off"
-              selected={showEmpty}
-              onClick={() => setShowEmpty(!showEmpty)}>
-              Show Empty Categories
-            </Button>
+              <Button
+                icon="power-off"
+                selected={showEmpty}
+                onClick={() => setShowEmpty(!showEmpty)}>
+                Show Empty Categories
+              </Button>
             </Fragment>
           }>
 
           {map((entry, category_name) => {
             const {
               remaining,
-              total
+              total,
             } = cats[category_name];
             return (
-              entry.length > 0 && (showEmpty || (remaining > 0 || (!total && !!current_m_points))) && (
+              entry.length > 0
+              && (showEmpty || (remaining > 0
+                || (!total && !!current_m_points))) && (
                 <ItemCategory
-                  category_name = {category_name}
-                  entries = {entry}
+                  category_name={category_name}
+                  entries={entry}
                   key={category_name} />
               ));
           })(displayed_records)}
@@ -93,7 +92,7 @@ const ItemCategory = (props, context) => {
 
   const {
     remaining,
-    total
+    total,
   } = data.cats[category_name];
 
   const [
@@ -115,47 +114,57 @@ const ItemCategory = (props, context) => {
             average: [0.1, 1],
             bad: [-Infinity, 0.1],
           }} >
-            {remaining +"/"+ total + " Choices"}
-          </ProgressBar>)}>
+          {remaining +"/"+ total + " Choices"}
+        </ProgressBar>)}>
       <LabeledList>
-      {entries.map(display_record => {
-        const {
-          id,
-          prod_cost,
-          prod_index,
-          prod_color,
-          prod_name,
-          prod_desc
-        } = display_record;
-        return (
-          <LabeledListItem
-            key={id}
-            buttons={
-              <Fragment>
-              {prod_color === "white" && (<Box inline mr={1} ml={1}>Essential!</Box>)}
-              {prod_color === "orange" && (<Box inline mr={1} ml={1} color="orange">Recommended</Box>)}
-              {prod_cost > 0 && (<Box inline width="75px" mr={1} ml={1}>{prod_cost} points</Box>)}
-              <Button
-              disabled={cant_buy || prod_cost > data.current_m_points}
-              onClick={() => act(
-                'vend',
-                { vend: prod_index })}
-              selected={prod_color === "white"}>
-              Vend
-              </Button>
-              </Fragment>
-            }
-            label={prod_name}
-            labelColor="white">
+        {entries.map(display_record => {
+          const {
+            id,
+            prod_cost,
+            prod_index,
+            prod_color,
+            prod_name,
+            prod_desc,
+          } = display_record;
+          return (
+            <LabeledListItem
+              key={id}
+              buttons={
+                <Fragment>
+                  {prod_color === "white"
+                  && (<Box inline mr={1} ml={1}>Essential!</Box>)}
+                  {prod_color === "orange"
+                  && (
+                    <Box inline mr={1} ml={1} color="orange">
+                      Recommended
+                    </Box>
+                  )}
+                  {prod_cost > 0
+                  && (
+                    <Box inline width="75px" mr={1} ml={1}>
+                      {prod_cost} points
+                    </Box>
+                  )}
+                  <Button
+                    disabled={cant_buy || prod_cost > data.current_m_points}
+                    onClick={() => act(
+                      'vend',
+                      { vend: prod_index })}
+                    selected={prod_color === "white"}>
+                    Vend
+                  </Button>
+                </Fragment>
+              }
+              label={prod_name}
+              labelColor="white">
               {!!prod_desc && (
-              <Button
-                onClick={() => setShowDesc(prod_desc)}
-              >?</Button>)}
+                <Button onClick={() => setShowDesc(prod_desc)}>
+                  ?
+                </Button>)}
             </LabeledListItem>
-        ); }
-
-      )}
-</LabeledList>
+          ); }
+        )}
+      </LabeledList>
     </Section>
   );
 };
