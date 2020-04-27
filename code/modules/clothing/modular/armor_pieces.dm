@@ -56,18 +56,21 @@
 	name = "Jaeger Pattern light Chestplates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides a light amount of protection and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor provides somewhat minimal defensive qualities, but has very little impact on the users mobility."
 	icon_state = "light_chest"
+	item_state = "light_chest_icon"
 	armor = list("melee" = 10)
 
 /obj/item/armor_module/armor/chest/medium
 	name = "medium chest armor module"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides a medium amount of protection and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor provides moderate defensive qualities, with a moderate impact on the users mobility."
 	icon_state = "medium_chest"
+	item_state = "medium_chest_icon"
 	armor = list("melee" = 25)
 
 /obj/item/armor_module/armor/chest/heavy
 	name = "heavy chest armor module"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides a heavy amount of protection and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor provides heavy defensive qualities, with a notable impact on the users mobility."
 	icon_state = "heavy_chest"
+	item_state = "heavy_chest_icon"
 	armor = list("melee" = 50)
 
 
@@ -100,18 +103,21 @@
 	name = "Jaeger Pattern light Leg Plates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides a light amount of protection and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor provides somewhat minimal defensive qualities, but has very little impact on the users mobility."
 	icon_state = "light_legs"
+	item_state = "light_legs_icon"
 	armor = list("melee" = 10)
 
 /obj/item/armor_module/armor/legs/medium
 	name = "Jaeger Pattern medium Leg Plates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides a medium amount of protection and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor provides moderate defensive qualities, with a moderate impact on the users mobility."
 	icon_state = "medium_legs"
+	item_state = "medium_legs_icon"
 	armor = list("melee" = 25)
 
 /obj/item/armor_module/armor/legs/heavy
 	name = "Jaeger Pattern heavy Leg Plates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides a heavy amount of protection and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor provides heavy defensive qualities, with a notable impact on the users mobility."
 	icon_state = "heavy_legs"
+	item_state = "heavy_legs_icon"
 	armor = list("melee" = 50)
 
 
@@ -144,16 +150,19 @@
 	name = "Jaeger Pattern light Arm Plates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides a light amount of protection and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor provides somewhat minimal defensive qualities, but has very little impact on the users mobility."
 	icon_state = "light_arms"
+	item_state = "light_arms_icon"
 	armor = list("melee" = 10)
 
 /obj/item/armor_module/armor/arms/medium
 	name = "Jaeger Pattern medium Arm Plates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides a medium amount of protection and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor provides moderate defensive qualities, with a moderate impact on the users mobility."
 	icon_state = "medium_arms"
+	item_state = "medium_arms_icon"
 	armor = list("melee" = 25)
 
 /obj/item/armor_module/armor/arms/heavy
 	name = "Jaeger Pattern heavy Arm Plates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides a heavy amount of protection and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor provides heavy defensive qualities, with a notable impact on the users mobility."
-	icon_state = "heaavy_arms"
+	icon_state = "heavy_arms"
+	item_state = "heavy_arms_icon"
 	armor = list("melee" = 50)

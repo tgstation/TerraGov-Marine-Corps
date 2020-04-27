@@ -126,6 +126,9 @@
 		return
 	if(!storage)
 		return
+	if(I.tool_behaviour)
+		return
+
 	return storage.attackby(I, user, params)
 
 

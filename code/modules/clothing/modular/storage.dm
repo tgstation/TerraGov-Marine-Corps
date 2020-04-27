@@ -36,7 +36,7 @@
 /obj/item/armor_module/storage/can_detach(mob/living/user, obj/item/clothing/suit/modular/parent, silent)
 	. = ..()
 
-	if(parent.storage.contents)
+	if(length(parent.storage.contents))
 		if(!silent)
 			to_chat(user, "You can't remove this while there are items inside")
 		return FALSE
@@ -56,7 +56,7 @@
 /obj/item/armor_module/storage/general
 	name = "General Purpose Storage Rig"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Certainly not as specialised as any other storage rigs, but definitely able to hold some larger things, like binoculars, maps, and motion detectors."
-	icon_state = "mod_"
+	icon_state = "mod_general_bag"
 
 /obj/item/armor_module/storage/ammo_mag
 	name = "Magazine Storage Rig"
