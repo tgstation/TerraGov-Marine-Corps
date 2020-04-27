@@ -36,6 +36,12 @@
 
 	var/datum/component/orbiter/orbiting
 
+	/** General use assoc list for cooldowns.
+		Example usage
+		cooldowns[COOLDOWN_CHEW] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_CHEW, null), 7.5 SECONDS)
+	 */
+	var/list/cooldowns = list()
+
 //===========================================================================
 /atom/movable/Destroy()
 	QDEL_NULL(proximity_monitor)
@@ -718,7 +724,7 @@
 			M.set_glide_size(glide_size)
 		log_combat(src, M, "grabbed", addition = "passive grab")
 		if(!suppress_message)
-			visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>")		
+			visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>")
 	else
 		pulling.set_glide_size(glide_size)
 	return TRUE

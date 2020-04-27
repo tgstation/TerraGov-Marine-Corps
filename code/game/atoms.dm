@@ -33,7 +33,6 @@
 
 	var/datum/wires/wires = null
 
-	var/list/cooldowns = list()
 
 /*
 We actually care what this returns, since it can return different directives.
