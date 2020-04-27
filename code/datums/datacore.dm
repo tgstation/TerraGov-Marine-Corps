@@ -20,7 +20,6 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	var/list/med = list()
 	var/list/mar = list()
 	var/list/heads = list()
-	var/list/police = list()
 	var/list/misc = list()
 	var/list/isactive = list()
 	var/list/squads = list()
@@ -76,11 +75,6 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 		dat += "<tr><th colspan=3>Command Staff</th></tr>"
 		for(var/name in heads)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[heads[name]]</td><td>[isactive[name]]</td></tr>"
-			even = !even
-	if(length(police) > 0)
-		dat += "<tr><th colspan=3>Military Police</th></tr>"
-		for(var/name in police)
-			dat += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[police[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
 	if(length(mar) > 0)
 		dat += "<tr><th colspan=3>Marines</th></tr>"
