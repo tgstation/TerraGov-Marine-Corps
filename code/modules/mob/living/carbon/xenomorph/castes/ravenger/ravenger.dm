@@ -34,7 +34,7 @@
 	fire_resist = 0.5 //0 to 1; lower is better as it is a multiplier.
 
 	// *** Ranged Attack *** //
-	charge_type = 3 //Claw at end of charge
+	charge_type = CHARGE_TYPE_LARGE
 
 	actions = list(
 		/datum/action/xeno_action/activable/breathe_fire,
