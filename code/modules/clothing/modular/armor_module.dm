@@ -70,7 +70,6 @@
 	SEND_SIGNAL(parent, COMSIG_ARMOR_MODULE_DETACH, user, src)
 
 
-
 /obj/item/armor_module/attachable/can_attach(mob/living/user, obj/item/clothing/suit/modular/parent, silent)
 	. = ..()
 
