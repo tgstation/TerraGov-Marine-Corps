@@ -668,11 +668,16 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 						I = image('icons/mob/suit_1.dmi',src,I.icon_state)
 						standing.overlays += I
 
+		// TODO: (psykzz) This needs to be MUCH BETTER wtf
+		if(istype(wear_suit, /obj/item/clothing/suit/modular))
+			var/obj/item/clothing/suit/modular/mod_armor = wear_suit
+			standing.overlays += mod_armor.overlays
+
 		if(wear_suit.blood_overlay)
 			var/obj/item/clothing/suit/S = wear_suit
 			var/image/bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "[S.blood_overlay_type]blood")
 			bloodsies.color = wear_suit.blood_color
-			standing.overlays	+= bloodsies
+			standing.overlays += bloodsies
 
 		overlays_standing[SUIT_LAYER]	= standing
 
