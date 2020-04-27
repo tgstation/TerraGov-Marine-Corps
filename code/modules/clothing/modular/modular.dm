@@ -26,9 +26,6 @@
 
 	actions_types = list(/datum/action/item_action/toggle)
 
-	/// The human that is wearing the armor
-	var/mob/living/carbon/human/owner
-
 	/// Attachment slots for chest armor
 	var/obj/item/armor_module/armor/slot_chest
 	/// Attachment slots for arm armor
@@ -73,7 +70,8 @@
 	QDEL_NULL(slot_arms)
 	QDEL_NULL(slot_legs)
 
-	QDEL_NULL(installed_modules)
+	QDEL_LIST(installed_modules)
+	installed_modules = null
 	QDEL_NULL(installed_storage)
 	QDEL_NULL(storage)
 	return ..()
