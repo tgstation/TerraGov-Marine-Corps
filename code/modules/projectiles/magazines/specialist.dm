@@ -53,7 +53,7 @@
 
 /obj/item/ammo_magazine/rifle/m4ra
 	name = "\improper A19 high velocity magazine (10x28mm)"
-		desc = "A magazine of A19 high velocity rounds for use in the T-45 battle rifle. The T-45 battle rifle is the only gun that can chamber these rounds."
+	desc = "A magazine of A19 high velocity rounds for use in the T-45 battle rifle. The T-45 battle rifle is the only gun that can chamber these rounds."
 	icon_state = "m4ra"
 	caliber = "10x28mm caseless"
 	default_ammo = /datum/ammo/bullet/rifle/m4ra
