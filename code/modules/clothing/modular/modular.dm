@@ -85,19 +85,15 @@
 
 
 /obj/item/clothing/suit/modular/attack_self(mob/user)
-	to_world("/obj/item/clothing/suit/modular/attack_self")
 	if(!isturf(user.loc))
 		to_chat(user, "<span class='warning'>You cannot turn the light on while in [user.loc].</span>")
 		return
 	if(cooldowns[COOLDOWN_ARMOR_LIGHT] || !ishuman(user))
-		to_world("/obj/item/clothing/suit/modular/attack_self 2")
 		return
 	var/mob/living/carbon/human/H = user
 	if(H.wear_suit != src)
-		to_world("/obj/item/clothing/suit/modular/attack_self 3")
 		return
 	toggle_armor_light(user)
-	to_world("/obj/item/clothing/suit/modular/attack_self4")
 	return TRUE
 
 /obj/item/clothing/suit/modular/item_action_slot_check(mob/user, slot)
