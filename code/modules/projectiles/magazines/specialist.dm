@@ -55,6 +55,7 @@
 	name = "\improper A19 high velocity magazine (10x28mm)"
 	desc = "A magazine of A19 high velocity rounds for use in the M4RA battle rifle. The M4RA battle rifle is the only gun that can chamber these rounds."
 	icon_state = "m4ra"
+	caliber = "10x28mm caseless"
 	default_ammo = /datum/ammo/bullet/rifle/m4ra
 	max_rounds = 20
 	gun_type = /obj/item/weapon/gun/rifle/m4ra
@@ -62,6 +63,7 @@
 /obj/item/ammo_magazine/rifle/m4ra/incendiary
 	name = "\improper A19 high velocity incendiary magazine (10x28mm)"
 	desc = "A magazine of A19 high velocity incendiary rounds for use in the M4RA battle rifle. The M4RA battle rifle is the only gun that can chamber these rounds."
+	caliber = "10x28mm"
 	icon_state = "m4ra_incendiary"
 	default_ammo = /datum/ammo/bullet/rifle/m4ra/incendiary
 	max_rounds = 20
