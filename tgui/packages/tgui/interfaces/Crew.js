@@ -44,7 +44,7 @@ export const Crew = (props, context) => {
   return (
     <Window>
       <Window.Content scrollable>
-        <Section label="Location to scan">
+        <Section title="Location to scan">
           {locations.map(location => (
             <Button
               key={location.id}
@@ -54,7 +54,7 @@ export const Crew = (props, context) => {
             </Button>
           ))}
         </Section>
-        <Section label="Found signals">
+        <Section title="Found signals">
           <Table>
             <Table.Row>
               {tableheaders.map(header => (
