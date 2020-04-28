@@ -36,9 +36,14 @@
 
 	var/datum/component/orbiter/orbiting
 
-	/** General use assoc list for cooldowns.
+	/**
+		General use assoc list for cooldowns.
+
 		Example usage
+
+		```
 		cooldowns[COOLDOWN_CHEW] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_CHEW, null), 7.5 SECONDS)
+		```
 	 */
 	var/list/cooldowns = list()
 
