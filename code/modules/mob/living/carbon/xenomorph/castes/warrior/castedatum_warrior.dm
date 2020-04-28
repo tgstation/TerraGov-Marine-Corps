@@ -35,7 +35,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_2, "bio" = 36, "rad" = 36, "fire" = 0, "acid" = 36)
+	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_2, "bio" = 36, "rad" = 36, "fire" = 0, "acid" = 36)
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0
@@ -80,7 +80,7 @@
 	upgrade_threshold = 200
 
 	// *** Defense *** //
-	armor = list("melee" = 34, "bullet" = 34, "laser" = 34, "energy" = 34, "bomb" = XENO_BOMB_RESIST_2, "bio" = 36, "rad" = 36, "fire" = 0, "acid" = 36)
+	armor = list("melee" = 39, "bullet" = 39, "laser" = 39, "energy" = 39, "bomb" = XENO_BOMB_RESIST_2, "bio" = 36, "rad" = 36, "fire" = 0, "acid" = 36)
 
 	// *** Warrior Abilities *** //
 
@@ -110,7 +110,7 @@
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor = list("melee" = 38, "bullet" = 38, "laser" = 38, "energy" = 38, "bomb" = XENO_BOMB_RESIST_2, "bio" = 40, "rad" = 40, "fire" = 0, "acid" = 40)
+	armor = list("melee" = 43, "bullet" = 43, "laser" = 43, "energy" = 43, "bomb" = XENO_BOMB_RESIST_2, "bio" = 40, "rad" = 40, "fire" = 0, "acid" = 40)
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0
@@ -141,7 +141,7 @@
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor = list("melee" = 42, "bullet" = 42, "laser" = 42, "energy" = 42, "bomb" = XENO_BOMB_RESIST_2, "bio" = 50, "rad" = 50, "fire" = 0, "acid" = 50)
+	armor = list("melee" = 47, "bullet" = 47, "laser" = 47, "energy" = 47, "bomb" = XENO_BOMB_RESIST_2, "bio" = 50, "rad" = 50, "fire" = 0, "acid" = 50)
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0
