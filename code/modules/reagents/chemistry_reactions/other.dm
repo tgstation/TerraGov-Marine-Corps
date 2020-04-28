@@ -41,9 +41,9 @@
 		empulse(location, round(created_volume / 24), round(created_volume / 14), 1)
 		holder.clear_reagents()
 
-/datum/chemical_reaction/water_two
-	name = "Water"
-	results = list(/datum/reagent/holywater = 2) //Regular water has a purge effect, holy water has no associated effects.
+/datum/chemical_reaction/serotrotium
+	name = "Serotrotium"
+	results = list(/datum/reagent/serotrotium = 1) //Weird emotes, chance of minor drowsiness.
 	required_reagents = list(/datum/reagent/medicine/paracetamol = 1, /datum/reagent/medicine/tramadol = 1)
 
 /datum/chemical_reaction/toxin_two //Space Atropine!
