@@ -5,15 +5,15 @@
 	faction = "United Space Lepidoptera"
 
 
-//UPP Commando Standard
+//USL Elite Powder Monkey
 /datum/job/upp/commando/standard
-	title = "USL Commando Standard"
+	title = "USL Elite Powder Monkey"
 	paygrade = "UPPC1"
 	outfit = /datum/outfit/job/upp/commando/standard
 
 
 /datum/outfit/job/upp/commando/standard
-	name = "USL Commando Standard"
+	name = "USL Elite Powder Monkey"
 	jobtype = /datum/job/upp/commando/standard
 
 	id = /obj/item/card/id/silver
@@ -57,16 +57,16 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife/upp, SLOT_IN_BOOT)
 
 
-//UPP Commando Medic
+//USL Elite Surgeon
 /datum/job/upp/commando/medic
-	title = "USL Commando Medic"
+	title = "USL Elite Surgeon"
 	paygrade = "UPPC2"
 	skills_type = /datum/skills/commando/medic
 	outfit = /datum/outfit/job/upp/commando/medic
 
 
 /datum/outfit/job/upp/commando/medic
-	name = "USL Commando Medic"
+	name = "USL Elite Surgeon"
 	jobtype = /datum/job/upp/commando/medic
 
 	id = /obj/item/card/id/silver
@@ -114,16 +114,16 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife/upp, SLOT_IN_BOOT)
 
 
-//UPP Commando Leader
+//USL Elite Captain
 /datum/job/upp/commando/leader
-	title = "USL Commando Leader"
+	title = "USL Elite Captain"
 	paygrade = "UPPC3"
 	skills_type = /datum/skills/commando/leader
 	outfit = /datum/outfit/job/upp/commando/leader
 
 
 /datum/outfit/job/upp/commando/leader
-	name = "USL Commando Leader"
+	name = "USL Elite Captain"
 	jobtype = /datum/job/upp/commando/leader
 
 	id = /obj/item/card/id/silver
@@ -164,9 +164,3 @@
 	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_R_POUCH)
 
 	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife/upp, SLOT_IN_BOOT)
-
-/datum/emergency_call/upp_commando
-	name = "USL Commandos"
-	probability = 0
-	shuttle_id = "distress_upp"
-	spawn_type = /mob/living/carbon/human/species/moth

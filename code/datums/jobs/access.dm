@@ -294,15 +294,15 @@
 		if("MO4")
 			. = size ? "MAJ " : "Major"
 		if("UPP1")
-			. = size ? "UPVT " : "USL Private"
+			. = size ? "UGNR " : "USL Gunner"
 		if("UPP2")
-			. = size ? "UFC " : "USL Private First Class"
+			. = size ? "USUR " : "USL Surgeon"
 		if("UPP3")
-			. = size ? "UCPL " : "USL Corporal"
+			. = size ? "UPOM " : "USL Powder Monkey"
 		if("UPP4")
-			. = size ? "ULCPL " : "USL Lance Corporal"
+			. = size ? "UCPT " : "USL Captain"
 		if("UPP5")
-			. = size ? "USGT " : "USL Sergeant"
+			. = size ? "UQM " : "USL Quartermaster"
 		if("UPP6")
 			. = size ? "USSGT " : "USL Staff Sergeant"
 		if("UPP7")
@@ -316,11 +316,11 @@
 		if("UPP11")
 			. = size ? "UADM " : "USL Admiral"
 		if("UPPC1")
-			. = size ? "UPPC " : "USL Commando Standard"
+			. = size ? "UEPM " : "USL Elite Powder Monkey"
 		if("UPPC2")
-			. = size ? "UPPC " : "USL Commando Medic"
+			. = size ? "UESUR " : "USL Elite Surgeon"
 		if("UPPC3")
-			. = size ? "UPPC " : "USL Commando Leader"
+			. = size ? "UECPT " : "USL Elite Captain"
 		if("FRE1")
 			. = size ? "FRE " : "Freelancer Standard"
 		if("FRE2")

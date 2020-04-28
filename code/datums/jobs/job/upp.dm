@@ -4,15 +4,15 @@
 	skills_type = /datum/skills/crafty
 	faction = "United Space Lepidoptera"
 
-//USL Standard
+//USL Gunner
 /datum/job/upp/standard
-	title = "USL Standard"
+	title = "USL Gunner"
 	paygrade = "UPP1"
 	outfit = /datum/outfit/job/upp/standard
 
 
 /datum/outfit/job/upp/standard
-	name = "USL Standard"
+	name = "USL Gunner"
 	jobtype = /datum/job/upp/standard
 
 	id = /obj/item/card/id/silver
@@ -61,16 +61,16 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife/upp, SLOT_IN_BOOT)
 
 
-//USL Medic
+//SL Surgeon
 /datum/job/upp/medic
-	title = "USL Medic"
+	title = "USL Surgeon"
 	paygrade = "UPP2"
 	skills_type = /datum/skills/combat_medic/crafty
 	outfit = /datum/outfit/job/upp/medic
 
 
 /datum/outfit/job/upp/medic
-	name = "USL Medic"
+	name = "USL Surgeon"
 	jobtype = /datum/job/upp/medic
 
 	id = /obj/item/card/id/silver
@@ -116,16 +116,16 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife/upp, SLOT_IN_BOOT)
 
 
-//UPP Heavy
+//USL Powder Monkey
 /datum/job/upp/heavy
-	title = "USL Heavy"
+	title = "USL Powder Monkey"
 	paygrade = "UPP3"
 	skills_type = /datum/skills/specialist/upp
 	outfit = /datum/outfit/job/upp/heavy
 
 
 /datum/outfit/job/upp/heavy
-	name = "USL Heavy"
+	name = "USL Powder Monkey"
 	jobtype = /datum/job/upp/heavy
 
 	id = /obj/item/card/id/silver
@@ -167,16 +167,16 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife/upp, SLOT_IN_BOOT)
 
 
-//UPP Leader
+//USL Captain
 /datum/job/upp/leader
-	title = "USL Leader"
+	title = "USL Captain"
 	paygrade = "UPP4"
 	skills_type = /datum/skills/SL/upp
 	outfit = /datum/outfit/job/upp/leader
 
 
 /datum/outfit/job/upp/leader
-	name = "USM Leader"
+	name = "USL Captain"
 	jobtype = /datum/job/upp/leader
 
 	id = /obj/item/card/id/silver
@@ -216,9 +216,3 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_R_POUCH)
 
 	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife/upp, SLOT_IN_BOOT)
-
-/datum/emergency_call/upp
-	name = "USL"
-	probability = 10
-	shuttle_id = "distress_upp"
-	spawn_type = /mob/living/carbon/human/species/moth
