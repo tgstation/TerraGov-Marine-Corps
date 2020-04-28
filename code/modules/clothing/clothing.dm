@@ -45,8 +45,10 @@
 	var/fire_resist = T0C + 100
 	var/shield_state = "shield-blue"
 
+	/// Bitflags used to determine the state of the armor (light on, overlay used, or reinfornced), currently support flags are in [equipment.dm:100]
 	var/flags_armor_features = NONE
-	var/light_strength = 5 //Average attachable pocket light
+	/// Strength of the armor light used by [proc/set_light()]
+	var/light_strength = 5
 
 /obj/item/clothing/suit/dropped(mob/user)
 	turn_off_light(user)
