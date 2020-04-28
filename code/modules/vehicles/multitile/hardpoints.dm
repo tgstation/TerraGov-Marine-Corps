@@ -237,7 +237,7 @@ Currently only has the tank hardpoints
 	buyable = FALSE
 
 /obj/item/hardpoint/primary/cannon/apply_buff()
-	owner.cooldowns["primary"] = 200
+	owner.internal_cooldowns["primary"] = 200
 	owner.accuracies["primary"] = 0.97
 
 /obj/item/hardpoint/primary/cannon/active_effect(atom/A)
@@ -246,10 +246,10 @@ Currently only has the tank hardpoints
 		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
 		return
 
-	next_use = world.time + owner.cooldowns["primary"] * owner.misc_ratios["prim_cool"]
+	next_use = world.time + owner.internal_cooldowns["primary"] * owner.misc_ratios["prim_cool"]
 	var/obj/item/hardpoint/secondary/towlauncher/HP = owner.hardpoints[HDPT_SECDGUN]
 	if(istype(HP))
-		HP.next_use = world.time + owner.cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
+		HP.next_use = world.time + owner.internal_cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
 
 	var/delay = 5
 	var/turf/T = get_turf(A)
@@ -313,7 +313,7 @@ Currently only has the tank hardpoints
 	//Now the cutoff is a little abrupt, but at least it exists. --MadSnailDisease
 
 /obj/item/hardpoint/primary/minigun/apply_buff()
-	owner.cooldowns["primary"] = 2 //will be overridden, please ignore
+	owner.internal_cooldowns["primary"] = 2 //will be overridden, please ignore
 	owner.accuracies["primary"] = 0.33
 
 /obj/item/hardpoint/primary/minigun/active_effect(atom/A)
@@ -366,7 +366,7 @@ Currently only has the tank hardpoints
 	max_angle = 90
 
 /obj/item/hardpoint/secondary/flamer/apply_buff()
-	owner.cooldowns["secondary"] = 20
+	owner.internal_cooldowns["secondary"] = 20
 	owner.accuracies["secondary"] = 0.5
 
 /obj/item/hardpoint/secondary/flamer/active_effect(atom/A)
@@ -375,7 +375,7 @@ Currently only has the tank hardpoints
 		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
 		return
 
-	next_use = world.time + owner.cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
+	next_use = world.time + owner.internal_cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
 	if(!prob(owner.accuracies["secondary"] * 100 * owner.misc_ratios["secd_acc"]))
 		A = get_step(A, pick(GLOB.cardinals))
 	var/obj/projectile/P = new
@@ -401,7 +401,7 @@ Currently only has the tank hardpoints
 	max_angle = 90
 
 /obj/item/hardpoint/secondary/towlauncher/apply_buff()
-	owner.cooldowns["secondary"] = 150
+	owner.internal_cooldowns["secondary"] = 150
 	owner.accuracies["secondary"] = 0.8
 
 /obj/item/hardpoint/secondary/towlauncher/active_effect(atom/A)
@@ -429,10 +429,10 @@ Currently only has the tank hardpoints
 
 	qdel(TL)
 
-	next_use = world.time + owner.cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
+	next_use = world.time + owner.internal_cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
 	var/obj/item/hardpoint/primary/cannon/HP = owner.hardpoints[HDPT_PRIMARY]
 	if(istype(HP))
-		HP.next_use = world.time + owner.cooldowns["primary"] * owner.misc_ratios["prim_cool"]
+		HP.next_use = world.time + owner.internal_cooldowns["primary"] * owner.misc_ratios["prim_cool"]
 
 	if(!prob(owner.accuracies["secondary"] * 100 * owner.misc_ratios["secd_acc"]))
 		T = get_step(T, pick(GLOB.cardinals))
@@ -464,7 +464,7 @@ Currently only has the tank hardpoints
 	buyable = FALSE
 
 /obj/item/hardpoint/secondary/m56cupola/apply_buff()
-	owner.cooldowns["secondary"] = 3
+	owner.internal_cooldowns["secondary"] = 3
 	owner.accuracies["secondary"] = 0.7
 
 /obj/item/hardpoint/secondary/m56cupola/active_effect(atom/A)
@@ -473,7 +473,7 @@ Currently only has the tank hardpoints
 		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
 		return
 
-	next_use = world.time + owner.cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
+	next_use = world.time + owner.internal_cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
 	if(!prob(owner.accuracies["secondary"] * 100 * owner.misc_ratios["secd_acc"]))
 		A = get_step(A, pick(GLOB.cardinals))
 	var/obj/projectile/P = new
@@ -499,7 +499,7 @@ Currently only has the tank hardpoints
 	max_angle = 90
 
 /obj/item/hardpoint/secondary/grenade_launcher/apply_buff()
-	owner.cooldowns["secondary"] = 30
+	owner.internal_cooldowns["secondary"] = 30
 	owner.accuracies["secondary"] = 0.4
 
 /obj/item/hardpoint/secondary/grenade_launcher/active_effect(atom/A)
@@ -508,7 +508,7 @@ Currently only has the tank hardpoints
 		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
 		return
 
-	next_use = world.time + owner.cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
+	next_use = world.time + owner.internal_cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
 	if(!prob(owner.accuracies["secondary"] * 100 * owner.misc_ratios["secd_acc"]))
 		A = get_step(A, pick(GLOB.cardinals))
 	var/obj/projectile/P = new
@@ -547,7 +547,7 @@ Currently only has the tank hardpoints
 	buyable = FALSE
 
 /obj/item/hardpoint/support/smoke_launcher/apply_buff()
-	owner.cooldowns["support"] = 30
+	owner.internal_cooldowns["support"] = 30
 	owner.accuracies["support"] = 0.8
 
 /obj/item/hardpoint/support/smoke_launcher/active_effect(atom/A)
@@ -556,7 +556,7 @@ Currently only has the tank hardpoints
 		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
 		return
 
-	next_use = world.time + owner.cooldowns["support"] * owner.misc_ratios["supp_cool"]
+	next_use = world.time + owner.internal_cooldowns["support"] * owner.misc_ratios["supp_cool"]
 	if(!prob(owner.accuracies["support"] * 100 * owner.misc_ratios["supp_acc"]))
 		A = get_step(A, pick(GLOB.cardinals))
 	var/obj/projectile/P = new
