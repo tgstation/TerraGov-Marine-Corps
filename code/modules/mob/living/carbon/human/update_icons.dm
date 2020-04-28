@@ -591,10 +591,15 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 					I = image('icons/mob/helmet_garb.dmi',src,I.icon_state)
 					standing.overlays += I
 
+		if(istype(head, /obj/item/clothing/head/modular))
+			var/obj/item/clothing/head/modular/helmet = head
+			var/t_icon = helmet.item_state ? helmet.item_state : helmet.icon_state
+			standing = image("icon" = helmet.icon, "icon_state" = t_icon)
+
 		if(head.blood_overlay)
 			var/image/bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "helmetblood")
 			bloodsies.color = head.blood_color
-			standing.overlays	+= bloodsies
+			standing.overlays += bloodsies
 
 		overlays_standing[HEAD_LAYER] = standing
 

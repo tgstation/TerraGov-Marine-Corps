@@ -140,10 +140,15 @@
 			to_chat(user, "<span class='warning'>You need to remove the armor first.</span>")
 		return FALSE
 
-	if(istype(module, /obj/item/armor_module/attachable) && length(installed_modules) > max_modules)
-		if(!silent)
-			to_chat(user,"<span class='warning'>There are too many pieces installed already.</span>")
-		return FALSE
+	if(istype(module, /obj/item/armor_module/attachable))
+		if(length(installed_modules) >= max_modules)
+			if(!silent)
+				to_chat(user,"<span class='warning'>There are too many pieces installed already.</span>")
+			return FALSE
+		if(module in installed_modules)
+			if(!silent)
+				to_chat(user,"<span class='warning'>That module is already installed.</span>")
+			return FALSE
 
 
 	if(istype(module, /obj/item/armor_module/storage) && installed_storage)
@@ -168,7 +173,7 @@
 		return FALSE
 
 /obj/item/clothing/suit/modular/proc/can_detach(mob/living/user, obj/item/armor_module/module, silent = FALSE)
-	. = FALSE
+	. = TRUE
 
 	if(istype(module, /obj/item/armor_module/storage) && length(storage.contents))
 		if(!silent)
@@ -390,7 +395,25 @@
 		return FALSE
 
 /obj/item/clothing/head/modular/proc/can_detach(mob/living/user, obj/item/helmet_module/module, silent = FALSE)
-	. = FALSE
+	. = TRUE
 
 	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))
 		return FALSE
+
+/obj/item/clothing/head/modular/light
+	name = "Jaeger Pattern light Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
+	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
+	accuracy_mod = 10
+
+/obj/item/clothing/head/modular/medium
+	name = "Jaeger Pattern medium Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
+	armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = 60, "bio" = 60, "rad" = 60, "fire" = 60, "acid" = 60)
+	accuracy_mod = 0
+
+/obj/item/clothing/head/modular/heavy
+	name = "Jaeger Pattern heavy Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
+	armor = list("melee" = 75, "bullet" = 75, "laser" = 75, "energy" = 75, "bomb" = 75, "bio" = 75, "rad" = 75, "fire" = 75, "acid" = 75)
+	accuracy_mod = -10
