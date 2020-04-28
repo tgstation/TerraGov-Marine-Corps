@@ -38,7 +38,7 @@
 		leader = H
 		var/datum/job/J = SSjob.GetJobType(/datum/job/upp/leader)
 		H.apply_assigned_role_to_spawn(J)
-		to_chat(H, "<span class='notice'>You are the leader of the USL squad in responding to the TGMC distress signal sent nearby. Let your squadmates march to battle, for shinies!</span>")
+		to_chat(H, "<span class='notice'>You are the leader of the USL squad in responding to the TGMC distress signal sent nearby. Let your squadmates march to battle, for the USL!</span>")
 		return
 
 	if(medics < max_medics)
