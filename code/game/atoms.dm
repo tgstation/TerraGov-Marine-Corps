@@ -33,7 +33,6 @@
 
 	var/datum/wires/wires = null
 
-
 /*
 We actually care what this returns, since it can return different directives.
 Not specifically here, but in other variations of this. As a general safety,
