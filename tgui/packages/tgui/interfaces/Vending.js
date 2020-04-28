@@ -15,15 +15,15 @@ export const Vending = (props, context) => {
 
   return (
     <Window>
+      {!!showDesc && (
+        <Modal>
+          <Box>{showDesc}</Box>
+          <Button
+            content="Dismiss"
+            onClick={() => setShowDesc(null)} />
+        </Modal>
+      )}
       <Window.Content scrollable>
-        {!!showDesc && (
-          <Modal>
-            <Box>{showDesc}</Box>
-            <Button
-              content="Dismiss"
-              onClick={() => setShowDesc(null)} />
-          </Modal>
-        )}
         {data.currently_vending_name ? (
           <Buying />
         ) : (
@@ -76,33 +76,49 @@ const Premium = (props, context) => {
     setShowDesc,
   ] = useLocalState(context, 'showDesc', null);
 
+  const {
+    coin_records,
+    currently_vending_index,
+    coin_stock,
+    coin,
+  } = data;
+
   return (
     <Section
-      title={"Coin slot: "+(data.coin ? data.coin : "No coin inserted")}
-      buttons={data.coin && (
+      title={"Coin slot: "+(coin ? coin : "No coin inserted")}
+      buttons={coin && (
         <Button
           icon="donate"
           onClick={() => act("remove_coin")}>
           Remove
         </Button>)}>
-      {!!data.coin && (
+      {!!coin && (
         <Section title="Select an item">
-          {data.coin_records.map(coin_record => (
-            <Box key={coin_record.id}>
-              <Button
-                selected={data.currently_vending_index
-                  === coin_record.prod_index}
-                onClick={() => act(
-                  "vend",
-                  { vend: coin_record.prod_index,
-                    cat: coin_record.prod_cat })}
-                disabled={!coin_record.amount}>
-                <Box color={coin_record.product_color} bold={1}>
-                  { decodeHtmlEntities(coin_record.product_name)}
-                </Box>
-              </Button>
-            </Box>
-          ))}
+          {coin_records.map(coin_record => {
+            const {
+              id,
+              prod_index,
+              prod_cat,
+              product_color,
+              product_name,
+            } = coin_record;
+            return (
+              <Box key={id}>
+                <Button
+                  selected={currently_vending_index
+                    === prod_index}
+                  onClick={() => act(
+                    "vend",
+                    { vend: prod_index,
+                      cat: prod_cat })}
+                  disabled={!coin_stock[prod_index]}>
+                  <Box color={product_color} bold={1}>
+                    { decodeHtmlEntities(product_name)}
+                  </Box>
+                </Button>
+              </Box>
+            );
+          })}
         </Section>)}
     </Section>
   );
@@ -116,24 +132,37 @@ const Hacked = (props, context) => {
     setShowDesc,
   ] = useLocalState(context, 'showDesc', null);
 
+  const {
+    currently_vending_index,
+    hidden_records,
+    hidden_stock,
+  } = data;
+
   return (
     <Section title="$*FD!!F">
-      {data.hidden_records.map(hidden_record => (
-        <Box key={hidden_record.id}>
-          <Button
-            selected={data.currently_vending_index
-              === hidden_record.prod_index}
-            onClick={() => act(
-              'vend',
-              { vend: hidden_record.prod_index,
-                cat: hidden_record.prod_cat })}
-            disabled={!hidden_record.amount}>
-            <Box color={hidden_record.product_color} bold={1}>
-              { decodeHtmlEntities(hidden_record.product_name)}
-            </Box>
-          </Button>
-        </Box>
-      ))}
+      {hidden_records.map(hidden_record => {
+        const {
+          id,
+          prod_index,
+          prod_cat,
+          product_color,
+          product_name,
+        } = hidden_record;
+        return (
+          <Box key={id}>
+            <Button
+              selected={currently_vending_index === prod_index}
+              onClick={() => act(
+                'vend',
+                { vend: prod_index, cat: prod_cat })}
+              disabled={!hidden_stock[prod_index]}>
+              <Box color={product_color} bold={1}>
+                { decodeHtmlEntities(product_name)}
+              </Box>
+            </Button>
+          </Box>
+        );
+      })}
     </Section>
   );
 };
@@ -151,6 +180,12 @@ const Products = (props, context) => {
     setShowEmpty,
   ] = useLocalState(context, 'showEmpty', 0);
 
+  const {
+    displayed_records,
+    currently_vending_index,
+    displayed_stock,
+  } = data;
+
   return (
     <Section
       title="Select an item"
@@ -163,10 +198,11 @@ const Products = (props, context) => {
         </Button>
       }>
       <LabeledList>
-        {data.displayed_records.length > 0 ? (
-          data.displayed_records.map(display_record => {
+        {displayed_records.length === 0 ? (
+          <Box color="red">No product loaded!</Box>
+        ) : (
+          displayed_records.map(display_record => {
             const {
-              amount,
               id,
               prod_index,
               prod_cat,
@@ -175,30 +211,30 @@ const Products = (props, context) => {
               prod_desc,
             } = display_record;
             return (
-              ((showEmpty || !!amount) && (
+              ((showEmpty || !!displayed_stock[prod_index]) && (
                 <LabeledListItem key={id}
                   labelColor="white"
                   buttons={
                     <Fragment>
                       <ProgressBar
                         width="60px"
-                        value={amount}
-                        maxValue={amount}
+                        value={displayed_stock[prod_index]}
+                        maxValue={displayed_stock[prod_index]}
                         ranges={{
                           good: [10, Infinity],
                           average: [5, 10],
                           bad: [-Infinity, 5],
-                        }}>{amount} left
+                        }}>{displayed_stock[prod_index]} left
                       </ProgressBar>
                       <Box inline width="4px" />
                       <Button
-                        selected={data.currently_vending_index
+                        selected={currently_vending_index
                           === prod_index}
                         onClick={() => act(
                           'vend',
                           { vend: prod_index,
                             cat: prod_cat })}
-                        disabled={!amount}>
+                        disabled={!displayed_stock[prod_index]}>
                         <Box color={product_color} bold={1}>
                           Vend
                         </Box>
@@ -214,8 +250,6 @@ const Products = (props, context) => {
               ))
             );
           })
-        ) : (
-          <Box color="red">No product loaded!</Box>
         )}
       </LabeledList>
     </Section>

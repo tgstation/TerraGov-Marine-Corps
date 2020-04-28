@@ -29,15 +29,15 @@ export const MarineSelector = (props, context) => {
 
   return (
     <Window>
+      {!!showDesc && (
+        <Modal>
+          <Box>{showDesc}</Box>
+          <Button
+            content="Dismiss"
+            onClick={() => setShowDesc(null)} />
+        </Modal>
+      )}
       <Window.Content scrollable>
-        {!!showDesc && (
-          <Modal>
-            <Box>{showDesc}</Box>
-            <Button
-              content="Dismiss"
-              onClick={() => setShowDesc(null)} />
-          </Modal>
-        )}
         <Section
           title="Choose your equipment"
           buttons={

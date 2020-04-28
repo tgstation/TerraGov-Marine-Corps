@@ -402,19 +402,29 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	.["coin_records"] = list()
 	for(var/datum/data/vending_product/R in product_records)
 		var/prodname = adminscrub(R.product_name)
-		.["displayed_records"] += list(list("product_name" = prodname, "product_color" = R.display_color, "amount" = R.amount, "prod_index" = GetProductIndex(R), "prod_cat" = R.category, "prod_price" = R.price, "prod_desc" = initial(R.product_path.desc)))
+		.["displayed_records"] += list(list("product_name" = prodname, "product_color" = R.display_color, "prod_index" = GetProductIndex(R), "prod_cat" = R.category, "prod_price" = R.price, "prod_desc" = initial(R.product_path.desc)))
 	for(var/datum/data/vending_product/R in hidden_records)
 		var/prodname = adminscrub(R.product_name)
-		.["hidden_records"] += list(list("product_name" = prodname, "product_color" = R.display_color, "amount" = R.amount, "prod_index" = GetProductIndex(R), "prod_cat" = R.category, "prod_price" = R.price, "prod_desc" = initial(R.product_path.desc)))
+		.["hidden_records"] += list(list("product_name" = prodname, "product_color" = R.display_color, "prod_index" = GetProductIndex(R), "prod_cat" = R.category, "prod_price" = R.price, "prod_desc" = initial(R.product_path.desc)))
 	for(var/datum/data/vending_product/R in coin_records)
 		var/prodname = adminscrub(R.product_name)
-		.["coin_records"] += list(list("product_name" = prodname, "product_color" = R.display_color, "amount" = R.amount, "prod_index" = GetProductIndex(R), "prod_cat" = R.category, "prod_price" = R.price, "prod_desc" = initial(R.product_path.desc)))
+		.["coin_records"] += list(list("product_name" = prodname, "product_color" = R.display_color, "prod_index" = GetProductIndex(R), "prod_cat" = R.category, "prod_price" = R.price, "prod_desc" = initial(R.product_path.desc)))
 
 	.["premium_length"] = premium.len
-	
 
 /obj/machinery/vending/ui_data(mob/user)
 	. = list()
+	.["displayed_stock"] = list()
+	.["hidden_stock"] = list()
+	.["coin_stock"] = list()
+
+	for(var/datum/data/vending_product/R in product_records)
+		.["displayed_stock"]["[GetProductIndex(R)]"] = R.amount
+	for(var/datum/data/vending_product/R in hidden_records)
+		.["hidden_stock"]["[GetProductIndex(R)]"] = R.amount
+	for(var/datum/data/vending_product/R in coin_records)
+		.["coin_stock"]["[GetProductIndex(R)]"] = R.amount
+
 	.["currently_vending_name"] = currently_vending ? sanitize(currently_vending.product_name) : null
 	.["currently_vending_index"] = currently_vending_index
 	.["extended"] = extended_inventory
