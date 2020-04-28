@@ -647,7 +647,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 // returns just the brute/burn damage code
 /datum/limb/proc/damage_state_text()
 	if(limb_status & LIMB_DESTROYED)
-		return "--"
+		return "00"
 
 	var/tburn = 0
 	var/tbrute = 0
@@ -695,7 +695,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	return null
 
 //Handles dismemberment
-/datum/limb/proc/droplimb(amputation, delete_limb = 0)
+/datum/limb/proc/droplimb(amputation, delete_limb = FALSE)
 	if(limb_status & LIMB_DESTROYED)
 		return FALSE
 
@@ -736,63 +736,81 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	var/obj/organ	//Dropped limb object
 	switch(body_part)
-			if(HEAD)
-				if(owner.species.species_flags & IS_SYNTHETIC) //special head for synth to allow brainmob to talk without an MMI
-					organ = new /obj/item/limb/head/synth(owner.loc, owner)
-				else
-					organ = new /obj/item/limb/head(owner.loc, owner)
-				owner.dropItemToGround(owner.glasses, null, TRUE)
-				owner.dropItemToGround(owner.head, null, TRUE)
-				owner.dropItemToGround(owner.wear_ear, null, TRUE)
-				owner.dropItemToGround(owner.wear_mask, null, TRUE)
-				owner.update_hair()
-			if(ARM_RIGHT)
-				if(limb_status & LIMB_ROBOT) 	organ = new /obj/item/robot_parts/r_arm(owner.loc)
-				else 						organ = new /obj/item/limb/r_arm(owner.loc, owner)
-			if(ARM_LEFT)
-				if(limb_status & LIMB_ROBOT) 	organ = new /obj/item/robot_parts/l_arm(owner.loc)
-				else 						organ = new /obj/item/limb/l_arm(owner.loc, owner)
-			if(LEG_RIGHT)
-				if(limb_status & LIMB_ROBOT) 	organ = new /obj/item/robot_parts/r_leg(owner.loc)
-				else 						organ = new /obj/item/limb/r_leg(owner.loc, owner)
-			if(LEG_LEFT)
-				if(limb_status & LIMB_ROBOT) 	organ = new /obj/item/robot_parts/l_leg(owner.loc)
-				else 						organ = new /obj/item/limb/l_leg(owner.loc, owner)
-			if(HAND_RIGHT)
-				if(!(limb_status & LIMB_ROBOT)) organ= new /obj/item/limb/r_hand(owner.loc, owner)
-				owner.dropItemToGround(owner.gloves, null, TRUE)
-				owner.dropItemToGround(owner.r_hand, null, TRUE)
-			if(HAND_LEFT)
-				if(!(limb_status & LIMB_ROBOT)) organ= new /obj/item/limb/l_hand(owner.loc, owner)
-				owner.dropItemToGround(owner.gloves, null, TRUE)
-				owner.dropItemToGround(owner.l_hand, null, TRUE)
-			if(FOOT_RIGHT)
-				if(!(limb_status & LIMB_ROBOT)) organ= new /obj/item/limb/r_foot/(owner.loc, owner)
-				owner.dropItemToGround(owner.shoes, null, TRUE)
-			if(FOOT_LEFT)
-				if(!(limb_status & LIMB_ROBOT)) organ = new /obj/item/limb/l_foot(owner.loc, owner)
-				owner.dropItemToGround(owner.shoes, null, TRUE)
+		if(HEAD)
+			if(owner.species.species_flags & IS_SYNTHETIC) //special head for synth to allow brainmob to talk without an MMI
+				organ = new /obj/item/limb/head/synth(owner.loc, owner)
+			else
+				organ = new /obj/item/limb/head(owner.loc, owner)
+			owner.dropItemToGround(owner.glasses, null, TRUE)
+			owner.dropItemToGround(owner.head, null, TRUE)
+			owner.dropItemToGround(owner.wear_ear, null, TRUE)
+			owner.dropItemToGround(owner.wear_mask, null, TRUE)
+			owner.update_hair()
+		if(ARM_RIGHT)
+			if(limb_status & LIMB_ROBOT)
+				organ = new /obj/item/robot_parts/r_arm(owner.loc)
+			else
+				organ = new /obj/item/limb/r_arm(owner.loc, owner)
+		if(ARM_LEFT)
+			if(limb_status & LIMB_ROBOT)
+				organ = new /obj/item/robot_parts/l_arm(owner.loc)
+			else
+				organ = new /obj/item/limb/l_arm(owner.loc, owner)
+		if(LEG_RIGHT)
+			if(limb_status & LIMB_ROBOT)
+				organ = new /obj/item/robot_parts/r_leg(owner.loc)
+			else
+				organ = new /obj/item/limb/r_leg(owner.loc, owner)
+		if(LEG_LEFT)
+			if(limb_status & LIMB_ROBOT)
+				organ = new /obj/item/robot_parts/l_leg(owner.loc)
+			else
+				organ = new /obj/item/limb/l_leg(owner.loc, owner)
+		if(HAND_RIGHT)
+			if(!(limb_status & LIMB_ROBOT))
+				organ= new /obj/item/limb/r_hand(owner.loc, owner)
+			owner.dropItemToGround(owner.gloves, null, TRUE)
+			owner.dropItemToGround(owner.r_hand, null, TRUE)
+		if(HAND_LEFT)
+			if(!(limb_status & LIMB_ROBOT))
+				organ= new /obj/item/limb/l_hand(owner.loc, owner)
+			owner.dropItemToGround(owner.gloves, null, TRUE)
+			owner.dropItemToGround(owner.l_hand, null, TRUE)
+		if(FOOT_RIGHT)
+			if(!(limb_status & LIMB_ROBOT))
+				organ= new /obj/item/limb/r_foot/(owner.loc, owner)
+			owner.dropItemToGround(owner.shoes, null, TRUE)
+		if(FOOT_LEFT)
+			if(!(limb_status & LIMB_ROBOT))
+				organ = new /obj/item/limb/l_foot(owner.loc, owner)
+			owner.dropItemToGround(owner.shoes, null, TRUE)
 
-		if(delete_limb)
-			qdel(organ)
-		else
-			owner.visible_message("<span class='warning'>[owner.name]'s [display_name] flies off in an arc!</span>",
-			"<span class='highdanger'><b>Your [display_name] goes flying off!</b></span>",
-			"<span class='warning'>You hear a terrible sound of ripping tendons and flesh!</span>", 3)
+	if(delete_limb)
+		QDEL_NULL(organ)
+	else
+		owner.visible_message("<span class='warning'>[owner.name]'s [display_name] flies off in an arc!</span>",
+		"<span class='highdanger'><b>Your [display_name] goes flying off!</b></span>",
+		"<span class='warning'>You hear a terrible sound of ripping tendons and flesh!</span>", 3)
 
-			if(organ)
-				//Throw organs around
-				var/lol = pick(GLOB.cardinals)
-				step(organ,lol)
+	if(organ)
+		//Throw organs around
+		var/lol = pick(GLOB.cardinals)
+		step(organ, lol)
 
-		owner.update_body(1, 1)
+	owner.update_body(1, 1)
 
-		// OK so maybe your limb just flew off, but if it was attached to a pair of cuffs then hooray! Freedom!
-		release_restraints()
+	// OK so maybe your limb just flew off, but if it was attached to a pair of cuffs then hooray! Freedom!
+	release_restraints()
 
-		if(vital)
-			owner.death()
-		return TRUE
+	if(vital)
+		owner.death()
+	return TRUE
+
+/datum/limb/hand/l_hand/droplimb(amputation, delete_limb = FALSE)
+	. = ..()
+	if(!.)
+		return
+	owner.update_inv_gloves()
 
 
 /****************************************************
@@ -1117,7 +1135,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	body_part = FOOT_RIGHT
 	icon_position = RIGHT
 
-/datum/limb/r_hand
+/datum/limb/hand/r_hand
 	name = "r_hand"
 	display_name = "right hand"
 	icon_name = "r_hand"
@@ -1129,7 +1147,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		..()
 		process_grasp(owner.r_hand, "right hand")
 
-/datum/limb/l_hand
+/datum/limb/hand/l_hand
 	name = "l_hand"
 	display_name = "left hand"
 	icon_name = "l_hand"
