@@ -219,6 +219,7 @@
 
 /datum/emergency_call/upp
     name = "USL"
-    probability = 8
+    probability = 10
     shuttle_id = "distress_upp"
     spawn_type = /mob/living/carbon/human/species/moth
+	
