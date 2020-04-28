@@ -115,10 +115,10 @@
 #define SNIPER_LASER_ARMOR_MULTIPLIER	1.5 //+50% penetration vs the aimed target
 #define SNIPER_LASER_SLOWDOWN_STACKS	3
 
-//Define lasgun
-#define M43_STANDARD_AMMO_COST			20
-#define M43_OVERCHARGE_AMMO_COST		80
-#define M43_OVERCHARGE_FIRE_DELAY		10
+//Define lasrifle
+#define ENERGY_STANDARD_AMMO_COST			20
+#define ENERGY_OVERCHARGE_AMMO_COST		80
+#define ENERGY_OVERCHARGE_FIRE_DELAY		10
 
 //Define smoke effects
 #define SMOKE_COUGH			(1<<0)
