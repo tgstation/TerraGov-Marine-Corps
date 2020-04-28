@@ -21,14 +21,14 @@
 	tackle_damage = 20
 
 	// *** Speed *** //
-	speed = -1.2
+	speed = -1.3
 
 	// *** Plasma *** //
 	plasma_max = 100
 	plasma_gain = 2
 
 	// *** Health *** //
-	max_health = 125
+	max_health = 150
 
 	// *** Evolution *** //
 	evolution_threshold = 80
@@ -82,7 +82,7 @@
 	plasma_gain = 3
 
 	// *** Health *** //
-	max_health = 140
+	max_health = 175
 
 	// *** Evolution *** //
 	upgrade_threshold = 100
@@ -115,7 +115,7 @@
 	plasma_gain = 3
 
 	// *** Health *** //
-	max_health = 155
+	max_health = 200
 
 	// *** Evolution *** //
 	upgrade_threshold = 200
@@ -149,7 +149,7 @@
 	plasma_gain = 3
 
 	// *** Health *** //
-	max_health = 170
+	max_health = 225
 
 	// *** Evolution *** //
 	upgrade_threshold = 200

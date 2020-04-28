@@ -35,7 +35,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 25, "rad" = 25, "fire" = 15, "acid" = 25)
+	armor = list("melee" = 25, "bullet" = 45, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 25, "rad" = 25, "fire" = 15, "acid" = 25)
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -62,7 +62,7 @@
 
 	// *** Tackle *** //
 	tackle_damage = 35
-	
+
 	// *** Speed *** //
 	speed = -0.8
 
@@ -77,7 +77,7 @@
 	upgrade_threshold = 220
 
 	// *** Defense *** //
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 28, "rad" = 28, "fire" = 18, "acid" = 28)
+	armor = list("melee" = 30, "bullet" = 50, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 28, "rad" = 28, "fire" = 18, "acid" = 28)
 
 /datum/xeno_caste/bull/elder
 	upgrade_name = "Elder"
@@ -90,7 +90,7 @@
 
 	// *** Tackle *** //
 	tackle_damage = 40
-	
+
 	// *** Speed *** //
 	speed = -0.9
 
@@ -105,7 +105,7 @@
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 20, "acid" = 30)
+	armor = list("melee" = 35, "bullet" = 55, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 20, "acid" = 30)
 
 /datum/xeno_caste/bull/ancient
 	upgrade_name = "Ancient"
@@ -118,7 +118,7 @@
 
 	// *** Tackle *** //
 	tackle_damage = 45
-	
+
 	// *** Speed *** //
 	speed = -1
 
@@ -128,9 +128,9 @@
 
 	// *** Health *** //
 	max_health = 275
-	
+
 	// *** Evolution *** //
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 33, "rad" = 33, "fire" = 25, "acid" = 33)
+	armor = list("melee" = 40, "bullet" = 60, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 33, "rad" = 33, "fire" = 25, "acid" = 33)

@@ -17,7 +17,7 @@
 	tackle_damage = 30
 
 	// *** Speed *** //
-	speed = -0.7
+	speed = -1
 
 	// *** Plasma *** //
 	plasma_max = 400
@@ -46,7 +46,7 @@
 		/datum/action/xeno_action/activable/emit_neurogas,
 		/datum/action/xeno_action/toggle_pheromones
 		)
-		
+
 	// *** Pheromones *** //
 	aura_strength = 1.7 //Defilers aura begins at 1.7 and ends at 2.6. It's .1 better than a carrier at ancient.
 	aura_allowed = list("frenzy", "warding", "recovery")
@@ -83,7 +83,7 @@
 
 	// *** Defense *** //
 	armor = list("melee" = 35, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 12, "acid" = 35)
-	
+
 	// *** Pheromones *** //
 	aura_strength = 2 //Defilers aura begins at 1.7 and ends at 2.6. It's .1 better than a carrier at ancient.
 
@@ -117,7 +117,7 @@
 
 		// *** Pheromones *** //
 	aura_strength = 2.1 //Defilers aura begins at 1.7 and ends at 2.6. It's .1 better than a carrier at ancient.
-	
+
 /datum/xeno_caste/defiler/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "Being within mere eyeshot of this hulking, dripping monstrosity fills you with a deep, unshakeable sense of unease."
@@ -145,7 +145,7 @@
 
 	// *** Defense *** //
 	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 40, "rad" = 40, "fire" = 20, "acid" = 40)
-	
+
 	// *** Pheromones *** //
 	aura_strength = 2.6 //Defilers aura begins at 1.7 and ends at 2.6. It's .1 better than a carrier at ancient.
 
