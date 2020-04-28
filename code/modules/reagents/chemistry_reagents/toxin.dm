@@ -454,13 +454,13 @@
 
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
-		if(1 to 22)
+		if(1 to 20)
 			L.adjustStaminaLoss(4*REM) //While stamina loss is going, stamina regen apparently doesn't happen, so I can keep this smaller.
 			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
-		if(23 to 46)
-			L.adjustStaminaLoss(8*REM)
+		if(21 to 45)
+			L.adjustStaminaLoss(12*REM)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY
-		if(47 to INFINITY)
+		if(46 to INFINITY)
 			L.adjustStaminaLoss(30*REM)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY
 	L.adjust_drugginess(1.1)
