@@ -65,6 +65,9 @@
 
 
 /obj/item/clothing/suit/modular/attack_self(mob/user)
+	. = ..()
+	if(.)
+		return
 	if(!isturf(user.loc))
 		to_chat(user, "<span class='warning'>You cannot turn the light on while in [user.loc].</span>")
 		return
@@ -106,8 +109,6 @@
 		return
 	if(!storage)
 		return
-	if(I.tool_behaviour)
-		return
 
 	return storage.attackby(I, user, params)
 
@@ -145,8 +146,14 @@
 	. = ..()
 	if(.)
 		return
-	var/list/obj/item/armor_module/armor/armor_slots = list(slot_chest, slot_arms, slot_legs)
-	listclearnulls(armor_slots)
+
+	var/list/obj/item/armor_module/armor/armor_slots = list()
+	if(slot_chest)
+		armor_slots += slot_chest
+	if(slot_arms)
+		armor_slots += slot_arms
+	if(slot_legs)
+		armor_slots += slot_legs
 
 	if(!length(armor_slots))
 		to_chat(user, "<span class='notice'>There is nothing to remove</span>")
