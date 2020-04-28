@@ -222,9 +222,9 @@
 
 /datum/reagent/medicine/dexalin/on_mob_life(mob/living/L,metabolism)
 	if(metabolism & IS_VOX)
-		L.adjustToxLoss(2*REM)
+		L.adjustToxLoss(6*REM)
 	else
-		L.adjustOxyLoss(-2*REM)
+		L.adjustOxyLoss(-6*REM)
 	holder.remove_reagent("lexorin", 2 * REM)
 	return ..()
 
@@ -298,7 +298,7 @@
 	L.adjustDrowsyness(-2 * REM)
 	L.hallucination = max(0, L.hallucination -  5 * REM)
 	L.adjustToxLoss(-2 * REM)
-		if(volume > 10)
+	if(volume > 10)
 		L.adjustStaminaLoss(REM)
 	return ..()
 
