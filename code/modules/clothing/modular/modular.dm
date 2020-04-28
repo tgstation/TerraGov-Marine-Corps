@@ -75,6 +75,14 @@
 	QDEL_NULL(storage)
 	return ..()
 
+/obj/item/clothing/suit/modular/mob_can_equip(mob/user, slot, warning)
+	if(slot == SLOT_WEAR_SUIT && ishuman(user))
+		var/mob/living/carbon/human/H = user
+		var/obj/item/clothing/under/marine/undersuit = H.w_uniform
+		if(!istype(undersuit))
+			to_chat(user, "<span class='warning'>You must be wearing a marine jumpsuit to equip this.</span>")
+			return FALSE
+	return ..()
 
 /obj/item/clothing/suit/modular/attack_self(mob/user)
 	. = ..()
