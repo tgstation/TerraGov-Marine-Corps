@@ -54,12 +54,24 @@
 	turn_off_light(user)
 	return ..()
 
+
+/**
+	Turn off the armor light
+
+	This proc forces the light to off, useful when the armor is dropped or if a xeno slashes the armor to disable it.
+*/
 /obj/item/clothing/suit/proc/turn_off_light(mob/wearer)
 	if(flags_armor_features & ARMOR_LAMP_ON)
 		toggle_armor_light(wearer) //turn the light off
 		return TRUE
 	return FALSE
 
+
+/**
+	Toggles the armor light
+
+	This proc will toggle the light enabled or disabled on the armor, playing a sound and updating the action button for the user.
+*/
 /obj/item/clothing/suit/proc/toggle_armor_light(mob/user)
 	cooldowns[COOLDOWN_ARMOR_LIGHT] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_ARMOR_LIGHT, null), 2.5 SECONDS)
 	if(flags_armor_features & ARMOR_LAMP_ON)
