@@ -170,7 +170,7 @@ should be alright.
 		if(!istype(B, /obj/item/belt_harness))
 			return FALSE
 	var/obj/item/I = owner.wear_suit
-	if(!istype(I, /obj/item/clothing/suit/storage) && !istype(I, /obj/item/clothing/suit/armor))
+	if(!is_type_in_list(I, list(/obj/item/clothing/suit/storage, /obj/item/clothing/suit/armor, /obj/item/clothing/suit/modular)))
 		return FALSE
 	addtimer(CALLBACK(src, .proc/harness_return, user), 0.3 SECONDS, TIMER_UNIQUE)
 	return TRUE
