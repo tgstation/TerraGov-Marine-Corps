@@ -222,4 +222,4 @@
     probability = 10
     shuttle_id = "distress_upp"
     spawn_type = /mob/living/carbon/human/species/moth
-	
+	                                                  
