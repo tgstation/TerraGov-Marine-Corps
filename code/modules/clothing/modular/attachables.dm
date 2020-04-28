@@ -39,7 +39,7 @@
 
 
 /obj/item/armor_module/attachable/valkyrie_autodoc/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
-	var/datum/component/suit_autodoc/autodoc = parent?.GetComponent(/datum/component/suit_autodoc)
+	var/datum/component/suit_autodoc/autodoc = parent.GetComponent(/datum/component/suit_autodoc)
 	autodoc.RemoveComponent()
 	return ..()
 
