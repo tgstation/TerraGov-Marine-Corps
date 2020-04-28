@@ -443,7 +443,7 @@
 	description = "A debilitating nerve toxin. Impedes motor control in high doses. Causes progressive loss of mobility over time."
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
-	custom_metabolism = REAGENTS_METABOLISM //otherwise it defaults to half of that
+	custom_metabolism = REAGENTS_METABOLISM * 2 //otherwise it defaults to half of that
 	purge_list = list(/datum/reagent/medicine) 
 	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE
@@ -455,13 +455,13 @@
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(1 to 22)
-			L.adjustStaminaLoss(8*REM) //Exactly counters stamina regen rate in the 0 to -50 buffer, should shut down running real fast.
+			L.adjustStaminaLoss(4*REM) //While stamina loss is going, stamina regen apparently doesn't happen, so I can keep this smaller.
 			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 		if(23 to 46)
-			L.adjustStaminaLoss(20*REM)
+			L.adjustStaminaLoss(8*REM)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY
 		if(47 to INFINITY)
-			L.adjustStaminaLoss(60*REM)
+			L.adjustStaminaLoss(30*REM)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY
 	L.adjust_drugginess(1.1)
 	L.stuttering = max(L.stuttering, 1)
