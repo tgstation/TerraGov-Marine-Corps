@@ -671,8 +671,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		if(istype(wear_suit, /obj/item/clothing/suit/modular))
 			var/obj/item/clothing/suit/modular/mod_armor = wear_suit
 			var/t_icon = mod_armor.item_state ? mod_armor.item_state : mod_armor.icon_state
-			var/image/core_suit = image("icon" = mod_armor.icon, "icon_state" = t_icon)
-			standing.overlays += core_suit
+			standing = image("icon" = mod_armor.icon, "icon_state" = t_icon)
 
 			// Handle attachments and modules
 			if(mod_armor.slot_chest)

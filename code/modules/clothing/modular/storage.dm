@@ -22,26 +22,6 @@
 		/obj/item/stack/
 	)
 
-
-
-/obj/item/armor_module/storage/can_attach(mob/living/user, obj/item/clothing/suit/modular/parent, silent)
-	. = ..()
-
-	if(parent.storage)
-		if(!silent)
-			to_chat(user, "There is already another storage module installed")
-		return FALSE
-
-
-/obj/item/armor_module/storage/can_detach(mob/living/user, obj/item/clothing/suit/modular/parent, silent)
-	. = ..()
-
-	if(length(parent.storage.contents))
-		if(!silent)
-			to_chat(user, "You can't remove this while there are items inside")
-		return FALSE
-
-
 /obj/item/armor_module/storage/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
 	parent.installed_storage = src

@@ -1,5 +1,13 @@
 /**
 	Modular armor
+
+	Modular armor consists of a a suit and helmet.
+	The suit is able to have a storage, module, and 3x armor attachments (chest, arms, and legs)
+	Helmets only have a single module slot.
+
+	Suits have a single action, which is to toggle the flashlight.
+	Helmets have diffrnet actions based on what module you have installed.
+
 */
 /obj/item/clothing/suit/modular
 	name = "Jaeger XM-02 combat exoskeleton"
@@ -43,6 +51,10 @@
 	/// Holder for the actual storage implementation
 	var/obj/item/storage/internal/storage
 
+	/// How long it takes to attach or detach to this item
+	var/equip_delay = 3 SECONDS
+
+
 	/// Misc stats
 	light_strength = 4
 
@@ -78,6 +90,7 @@
 		return
 	toggle_armor_light(user)
 	return TRUE
+
 
 /obj/item/clothing/suit/modular/item_action_slot_check(mob/user, slot)
 	if(!light_strength) // No light no ability
@@ -117,6 +130,54 @@
 	storage?.emp_act(severity)
 	return ..()
 
+/obj/item/clothing/suit/modular/proc/can_attach(mob/living/user, obj/item/armor_module/module, silent = FALSE)
+	. = TRUE
+	if(!istype(module))
+		return FALSE
+
+	if(ismob(loc))
+		if(!silent)
+			to_chat(user, "<span class='warning'>You need to remove the armor first.</span>")
+		return FALSE
+
+	if(istype(module, /obj/item/armor_module/attachable) && length(installed_modules) > max_modules)
+		if(!silent)
+			to_chat(user,"<span class='warning'>There are too many pieces installed already.</span>")
+		return FALSE
+
+
+	if(istype(module, /obj/item/armor_module/storage) && installed_storage)
+		if(!silent)
+			to_chat(user,"<span class='warning'>There is already an installed storage module.</span>")
+		return FALSE
+
+	if(istype(module, /obj/item/armor_module/armor/chest) && slot_chest)
+		if(!silent)
+			to_chat(user, "<span class='notice'>There is already an armor piece installed in that slot.</span>")
+		return FALSE
+	if(istype(module, /obj/item/armor_module/armor/arms) && slot_arms)
+		if(!silent)
+			to_chat(user, "<span class='notice'>There is already an armor piece installed in that slot.</span>")
+		return FALSE
+	if(istype(module, /obj/item/armor_module/armor/legs) && slot_legs)
+		if(!silent)
+			to_chat(user, "<span class='notice'>There is already an armor piece installed in that slot.</span>")
+		return FALSE
+
+	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))
+		return FALSE
+
+/obj/item/clothing/suit/modular/proc/can_detach(mob/living/user, obj/item/armor_module/module, silent = FALSE)
+	. = FALSE
+
+	if(istype(module, /obj/item/armor_module/storage) && length(storage.contents))
+		if(!silent)
+			to_chat(user, "You can't remove this while there are items inside")
+		return FALSE
+
+	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))
+		return FALSE
+
 
 /obj/item/clothing/suit/modular/screwdriver_act(mob/living/user, obj/item/I)
 	. = ..()
@@ -134,7 +195,7 @@
 	if(!attachment)
 		return TRUE
 
-	if(!attachment.can_detach(user, src))
+	if(!can_detach(user, attachment))
 		return TRUE
 
 	attachment.do_detach(user, src)
@@ -167,7 +228,7 @@
 	if(!armor_slot)
 		return TRUE
 
-	if(!armor_slot.can_detach(user, src))
+	if(!can_detach(user, armor_slot))
 		return TRUE
 	armor_slot.do_detach(user, src)
 	update_overlays()
@@ -182,7 +243,7 @@
 		to_chat(user, "<span class='notice'>There is nothing to remove</span>")
 		return TRUE
 
-	if(!installed_storage.can_detach(user, src))
+	if(!can_detach(user, installed_storage))
 		return TRUE
 	installed_storage.do_detach(user, src)
 	update_overlays()
@@ -208,3 +269,128 @@
 		add_overlay(mutable_appearance(installed_storage.icon, installed_storage.icon_state))
 
 	update_clothing_icon()
+
+
+/obj/item/clothing/suit/modular/get_mechanics_info()
+	. = ..()
+	. += "<br><br />This is a piece of modular armor, It can equip different attachments.<br />"
+	. += "<br>It currently has [length(installed_modules)] / [max_modules] modules installed."
+	. += "<ul>"
+	for(var/obj/item/armor_module/mod in installed_modules)
+		. += "<li>[mod]</li>"
+	. += "</ul>"
+
+	if(slot_chest)
+		. += "<br> It has a [slot_chest] installed."
+	if(slot_arms)
+		. += "<br> It has a [slot_chest] installed."
+	if(slot_legs)
+		. += "<br> It has a [slot_chest] installed."
+	if(installed_storage)
+		. += "<br> It has a [installed_storage] installed."
+
+
+/** Core helmet module */
+/obj/item/clothing/head/modular
+	name = "Jaeger Pattern Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
+	icon = 'icons/mob/modular/modular_armor.dmi'
+	icon_state = "medium_helmet_icon"
+	item_state = "medium_helmet"
+	flags_armor_protection = HEAD
+	allowed = list()
+	flags_equip_slot = ITEM_SLOT_HEAD
+	w_class = WEIGHT_CLASS_NORMAL
+
+	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+
+	actions_types = list(/datum/action/item_action/toggle)
+
+	/// Reference to the installed module
+	var/obj/item/helmet_module/installed_module
+
+	/// How long it takes to attach or detach to this item
+	var/equip_delay = 3 SECONDS
+
+
+/obj/item/clothing/head/modular/Destroy()
+	QDEL_NULL(installed_module)
+	return ..()
+
+
+/obj/item/clothing/head/modular/item_action_slot_check(mob/user, slot)
+	if(!ishuman(user))
+		return FALSE
+	if(slot != SLOT_HEAD)
+		return FALSE
+	if(installed_module?.module_type != ARMOR_MODULE_TOGGLE)
+		return FALSE
+	return TRUE //only give action button when armor is worn.
+
+
+/obj/item/clothing/head/modular/attack_self(mob/user)
+	. = ..()
+	if(.)
+		return
+	if(!isturf(user.loc))
+		to_chat(user, "<span class='warning'>You cannot turn the light on while in [user.loc].</span>")
+		return
+	if(cooldowns[COOLDOWN_ARMOR_ACTION] || !ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	if(H.head != src)
+		return
+	installed_module?.toggle_module(user, src)
+	return TRUE
+
+
+
+/obj/item/clothing/head/modular/screwdriver_act(mob/living/user, obj/item/I)
+	. = ..()
+	if(.)
+		return
+	if(!installed_module)
+		to_chat(user, "<span class='notice'>There is nothing to remove</span>")
+		return TRUE
+
+	var/obj/item/armor_module/attachable/attachment = installed_module
+	if(!can_detach(user, attachment))
+		return TRUE
+
+	attachment.do_detach(user, src)
+	update_overlays()
+	return TRUE
+
+
+/obj/item/clothing/head/modular/update_overlays()
+	. = ..()
+	update_clothing_icon()
+
+
+/obj/item/clothing/head/modular/get_mechanics_info()
+	. = ..()
+
+
+/obj/item/clothing/head/modular/proc/can_attach(mob/living/user, obj/item/helmet_module/module, silent = FALSE)
+	. = TRUE
+	if(!istype(module))
+		return FALSE
+
+	if(ismob(loc))
+		if(!silent)
+			to_chat(user, "<span class='warning'>You need to remove the armor first.</span>")
+		return FALSE
+
+	if(installed_module)
+		if(!silent)
+			to_chat(user,"<span class='warning'>There is already an installed module.</span>")
+		return FALSE
+
+	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))
+		return FALSE
+
+/obj/item/clothing/head/modular/proc/can_detach(mob/living/user, obj/item/helmet_module/module, silent = FALSE)
+	. = FALSE
+
+	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))
+		return FALSE

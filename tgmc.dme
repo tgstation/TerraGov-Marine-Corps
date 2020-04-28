@@ -959,6 +959,8 @@
 #include "code\modules\clothing\modular\armor_module.dm"
 #include "code\modules\clothing\modular\armor_pieces.dm"
 #include "code\modules\clothing\modular\attachables.dm"
+#include "code\modules\clothing\modular\helmet_module.dm"
+#include "code\modules\clothing\modular\helmets.dm"
 #include "code\modules\clothing\modular\modular.dm"
 #include "code\modules\clothing\modular\storage.dm"
 #include "code\modules\clothing\outfits\vv_outfit.dm"
