@@ -34,7 +34,7 @@
 	. = ..()
 	var/list/tricord = list(/datum/reagent/medicine/tricordrazine)
 	var/list/tramadol = list(/datum/reagent/medicine/tramadol)
-	parent?.AddComponent(/datum/component/suit_autodoc, 2.5 MINUTES, tricord, tricord, tricord, tricord, tramadol, 0.5)
+	parent.AddComponent(/datum/component/suit_autodoc, 2.5 MINUTES, tricord, tricord, tricord, tricord, tramadol, 0.5)
 	parent.update_overlays()
 
 
@@ -115,4 +115,3 @@
 	parent.gas_transfer_coefficient -= siemens_coefficient_mod
 	parent.slowdown -= slowdown
 	return ..()
-
