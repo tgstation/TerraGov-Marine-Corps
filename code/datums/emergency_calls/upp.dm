@@ -7,7 +7,7 @@
 
 /datum/emergency_call/upp/print_backstory(mob/living/carbon/human/H)
 	to_chat(H, "<B>You grew up on a asteroid with few belongings or luxuries.</B>")
-	to_chat(H, "<B>The family you grew up with were [pick(50;"getting by", 25;"impoverished", 25;"starving")] and you were one of [pick(10;"two", 20;"one", 20;"three", 30;"four", 20;"five")] children.</B>")
+	to_chat(H, "<B>The family you grew up with were [pick(50;"getting by", 25;"impoverished", 25;"starving")] and you were one of [pick(10;"two", 20;"three", 30;"four", 20;"five", 20;"six")] children.</B>")
 	to_chat(H, "<B>You come from a long line of pirates and quickly joined the local band to improve your living conditions.</B>")
 	to_chat(H, "")
 	to_chat(H, "<B>Today, a TGMC vessel, [SSmapping.configs[SHIP_MAP].map_name], has sent out a distress signal on the orbit of [SSmapping.configs[GROUND_MAP].map_name]. Your USL Assault Pirate warband heads out and your stealing begins!</b>")
