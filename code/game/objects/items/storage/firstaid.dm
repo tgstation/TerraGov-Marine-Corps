@@ -298,6 +298,12 @@
 	icon_state = "pill_canister5"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/tramadol
 
+/obj/item/storage/pill_bottle/paracetamol
+	name = "paracetamol pill bottle"
+	desc = "Contains pills that mildly numb pain. Take two for a slightly stronger effect."
+	icon_state = "pill_canister5"
+	pill_type_to_fill = /obj/item/reagent_containers/pill/paracetamol
+
 /obj/item/storage/pill_bottle/spaceacillin
 	name = "spaceacillin pill bottle"
 	icon_state = "pill_canister4"
