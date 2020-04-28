@@ -133,9 +133,9 @@
 	H.limbs += LA
 	var/datum/limb/r_arm/RA = new(C, H)
 	H.limbs += RA
-	var/datum/limb/l_leg/LL = new(G, H)
+	var/datum/limb/leg/l_leg/LL = new(G, H)
 	H.limbs += LL
-	var/datum/limb/r_leg/RL = new(G, H)
+	var/datum/limb/leg/r_leg/RL = new(G, H)
 	H.limbs += RL
 	H.limbs +=  new/datum/limb/l_hand(LA, H)
 	H.limbs +=  new/datum/limb/r_hand(RA, H)

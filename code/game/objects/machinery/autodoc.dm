@@ -354,7 +354,7 @@
 						if(!surgery)
 							break
 						if(istype(S.organ_ref,/datum/internal_organ))
-							S.organ_ref.rejuvenate()
+							S.organ_ref.rejuvenate(TRUE)
 						else
 							visible_message("[src] speaks, Organ is missing.")
 

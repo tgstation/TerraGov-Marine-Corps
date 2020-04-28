@@ -89,3 +89,4 @@
 #define TRAIT_SLEEPIMMUNE		"sleep_immunity"
 #define TRAIT_FLASHBANGIMMUNE	"flashbang_immunity"
 #define TRAIT_FAKEDEATH			"fakedeath" //Makes the owner appear as dead to most forms of medical examination
+#define TRAIT_LEGLESS			"legless" //Has lost all the appendages needed to stay standing up.
