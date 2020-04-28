@@ -294,33 +294,33 @@
 		if("MO4")
 			. = size ? "MAJ " : "Major"
 		if("UPP1")
-			. = size ? "UPVT " : "UPP Private"
+			. = size ? "UPVT " : "USL Private"
 		if("UPP2")
-			. = size ? "UPFC " : "UPP Private First Class"
+			. = size ? "UFC " : "USL Private First Class"
 		if("UPP3")
-			. = size ? "UCPL " : "UPP Corporal"
+			. = size ? "UCPL " : "USL Corporal"
 		if("UPP4")
-			. = size ? "ULCPL " : "UPP Lance Corporal"
+			. = size ? "ULCPL " : "USL Lance Corporal"
 		if("UPP5")
-			. = size ? "USGT " : "UPP Sergeant"
+			. = size ? "USGT " : "USL Sergeant"
 		if("UPP6")
-			. = size ? "USSGT " : "UPP Staff Sergeant"
+			. = size ? "USSGT " : "USL Staff Sergeant"
 		if("UPP7")
-			. = size ? "UENS " : "UPP Ensign"
+			. = size ? "UENS " : "USL Ensign"
 		if("UPP8")
-			. = size ? "ULT " : "UPP Lieutenant"
+			. = size ? "ULT " : "USL Lieutenant"
 		if("UPP9")
-			. = size ? "ULCDR " : "UPP Lieutenant Commander"
+			. = size ? "ULCDR " : "USL Lieutenant Commander"
 		if("UPP10")
-			. = size ? "UCDR " : "UPP Commander"
+			. = size ? "UCDR " : "USL Commander"
 		if("UPP11")
-			. = size ? "UADM " : "UPP Admiral"
+			. = size ? "UADM " : "USL Admiral"
 		if("UPPC1")
-			. = size ? "UPPC " : "UPP Commando Standard"
+			. = size ? "UPPC " : "USL Commando Standard"
 		if("UPPC2")
-			. = size ? "UPPC " : "UPP Commando Medic"
+			. = size ? "UPPC " : "USL Commando Medic"
 		if("UPPC3")
-			. = size ? "UPPC " : "UPP Commando Leader"
+			. = size ? "UPPC " : "USL Commando Leader"
 		if("FRE1")
 			. = size ? "FRE " : "Freelancer Standard"
 		if("FRE2")

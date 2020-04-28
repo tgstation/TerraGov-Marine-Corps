@@ -2,18 +2,17 @@
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/crafty
-	faction = "Union of Progressive People"
+	faction = "United Space Lepidoptera"
 
-
-//UPP Standard
+//USL Standard
 /datum/job/upp/standard
-	title = "UPP Standard"
+	title = "USL Standard"
 	paygrade = "UPP1"
 	outfit = /datum/outfit/job/upp/standard
 
 
 /datum/outfit/job/upp/standard
-	name = "UPP Standard"
+	name = "USL Standard"
 	jobtype = /datum/job/upp/standard
 
 	id = /obj/item/card/id/silver
@@ -62,16 +61,16 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife/upp, SLOT_IN_BOOT)
 
 
-//UPP Medic
+//USL Medic
 /datum/job/upp/medic
-	title = "UPP Medic"
+	title = "USL Medic"
 	paygrade = "UPP2"
 	skills_type = /datum/skills/combat_medic/crafty
 	outfit = /datum/outfit/job/upp/medic
 
 
 /datum/outfit/job/upp/medic
-	name = "UPP Medic"
+	name = "USL Medic"
 	jobtype = /datum/job/upp/medic
 
 	id = /obj/item/card/id/silver
@@ -119,14 +118,14 @@
 
 //UPP Heavy
 /datum/job/upp/heavy
-	title = "UPP Heavy"
+	title = "USL Heavy"
 	paygrade = "UPP3"
 	skills_type = /datum/skills/specialist/upp
 	outfit = /datum/outfit/job/upp/heavy
 
 
 /datum/outfit/job/upp/heavy
-	name = "UPP Heavy"
+	name = "USL Heavy"
 	jobtype = /datum/job/upp/heavy
 
 	id = /obj/item/card/id/silver
@@ -170,14 +169,14 @@
 
 //UPP Leader
 /datum/job/upp/leader
-	title = "UPP Leader"
+	title = "USL Leader"
 	paygrade = "UPP4"
 	skills_type = /datum/skills/SL/upp
 	outfit = /datum/outfit/job/upp/leader
 
 
 /datum/outfit/job/upp/leader
-	name = "UPP Leader"
+	name = "USM Leader"
 	jobtype = /datum/job/upp/leader
 
 	id = /obj/item/card/id/silver
@@ -217,3 +216,9 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_R_POUCH)
 
 	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife/upp, SLOT_IN_BOOT)
+
+/datum/emergency_call/upp
+    name = "USL"
+    probability = 8
+    shuttle_id = "distress_upp"
+    spawn_type = /mob/living/carbon/human/species/moth

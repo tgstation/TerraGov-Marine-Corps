@@ -2,18 +2,18 @@
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/commando
-	faction = "Union of Progressive People"
+	faction = "United Space Lepidoptera"
 
 
 //UPP Commando Standard
 /datum/job/upp/commando/standard
-	title = "UPP Commando Standard"
-	paygrade = "UPPC1"
+	title = "USL Commando Standard"
+	paygrade = "USLC1"
 	outfit = /datum/outfit/job/upp/commando/standard
 
 
 /datum/outfit/job/upp/commando/standard
-	name = "UPP Commando Standard"
+	name = "USL Commando Standard"
 	jobtype = /datum/job/upp/commando/standard
 
 	id = /obj/item/card/id/silver
@@ -59,14 +59,14 @@
 
 //UPP Commando Medic
 /datum/job/upp/commando/medic
-	title = "UPP Commando Medic"
+	title = "USL Commando Medic"
 	paygrade = "UPPC2"
 	skills_type = /datum/skills/commando/medic
 	outfit = /datum/outfit/job/upp/commando/medic
 
 
 /datum/outfit/job/upp/commando/medic
-	name = "UPP Commando Medic"
+	name = "USL Commando Medic"
 	jobtype = /datum/job/upp/commando/medic
 
 	id = /obj/item/card/id/silver
@@ -116,14 +116,14 @@
 
 //UPP Commando Leader
 /datum/job/upp/commando/leader
-	title = "UPP Commando Leader"
+	title = "USL Commando Leader"
 	paygrade = "UPPC3"
 	skills_type = /datum/skills/commando/leader
 	outfit = /datum/outfit/job/upp/commando/leader
 
 
 /datum/outfit/job/upp/commando/leader
-	name = "UPP Commando Leader"
+	name = "USL Commando Leader"
 	jobtype = /datum/job/upp/commando/leader
 
 	id = /obj/item/card/id/silver
@@ -164,3 +164,9 @@
 	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_R_POUCH)
 
 	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife/upp, SLOT_IN_BOOT)
+
+/datum/emergency_call/upp_commando
+    name = "USL Commandos"
+    probability = 0
+    shuttle_id = "distress_upp"
+    spawn_type = /mob/living/carbon/human/species/moth
