@@ -25959,7 +25959,7 @@
 	},
 /area/bigredv2/outside/w)
 "owM" = (
-/obj/machinery/miner,
+/obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/w)
 "oEN" = (

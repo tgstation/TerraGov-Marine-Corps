@@ -12,8 +12,6 @@
 	icon_state = "mining_drill_active"
 	anchored = TRUE
 	resistance_flags = INDESTRUCTIBLE
-	obj_integrity = 100
-	max_integrity = 100
 	///How many sheets of material we have stored
 	var/stored_mineral = 0
 	///Current status of the miner
@@ -24,6 +22,10 @@
 	var/required_ticks = 30  //make one crate every 60 seconds
 	///The mineral type that's produced
 	var/mineral_produced = /obj/structure/ore_box/phoron
+	///Health for the miner we use because changing obj_integrity is apparently bad
+	var/miner_integrity = 100
+	///Max health of the miner
+	var/max_miner_integrity = 100
 
 /obj/machinery/miner/damaged	//mapping and all that shebang
 	miner_status = MINER_DESTROYED
@@ -73,7 +75,7 @@
 	if(miner_status != MINER_DESTROYED )
 		return FALSE
 	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
-	obj_integrity = 0.33 * max_integrity
+	miner_integrity = 0.33 * max_miner_integrity
 	set_miner_status()
 	user.visible_message("<span class='notice'>[user] welds [src]'s internal damage.</span>",
 	"<span class='notice'>You weld [src]'s internal damage.</span>")
@@ -97,7 +99,7 @@
 	if(miner_status != MINER_MEDIUM_DAMAGE)
 		return FALSE
 	playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE)
-	obj_integrity = 0.66 * max_integrity
+	miner_integrity = 0.66 * max_miner_integrity
 	set_miner_status()
 	user.visible_message("<span class='notice'>[user] secures [src]'s wiring.</span>",
 	"<span class='notice'>You secure [src]'s wiring.</span>")
@@ -121,7 +123,7 @@
 	if(miner_status != MINER_SMALL_DAMAGE)
 		return FALSE
 	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
-	obj_integrity = max_integrity
+	miner_integrity = max_miner_integrity
 	set_miner_status()
 	user.visible_message("<span class='notice'>[user] repairs [src]'s tubing and plating.</span>",
 	"<span class='notice'>You repair [src]'s tubing and plating.</span>")
@@ -176,11 +178,12 @@
 	if(miner_status == MINER_DESTROYED)
 		to_chat(xeno_attacker, "<span class='warning'>[src] is already destroyed!</span>")
 		return
-	obj_integrity -= 25
+	miner_integrity -= 25
 	set_miner_status()
 
 /obj/machinery/miner/proc/set_miner_status()
-	var/health_percent = round((max_integrity / obj_integrity) * 100)
+	var/health_percent = round((miner_integrity / max_miner_integrity) * 100)
+	to_chat(world, "health percent is [health_percent]")
 	switch(health_percent)
 		if(-INFINITY to 0)
 			miner_status = MINER_DESTROYED
