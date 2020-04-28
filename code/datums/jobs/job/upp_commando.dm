@@ -166,8 +166,7 @@
 	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife/upp, SLOT_IN_BOOT)
 
 /datum/emergency_call/upp_commando
-    name = "USL Commandos"
-    probability = 0
-    shuttle_id = "distress_upp"
-    spawn_type = /mob/living/carbon/human/species/moth
-	
+	name = "USL Commandos"
+	probability = 0
+	shuttle_id = "distress_upp"
+	spawn_type = /mob/living/carbon/human/species/moth
