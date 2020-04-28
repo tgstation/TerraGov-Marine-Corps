@@ -10,10 +10,10 @@
 
 /obj/item/helmet_module/welding/do_attach(mob/living/user, obj/item/clothing/head/modular/parent)
 	. = ..()
-	parent?.AddComponent(/datum/component/clothing_tint, TINT_5, active)
+	parent.AddComponent(/datum/component/clothing_tint, TINT_5, active)
 
 /obj/item/helmet_module/welding/do_detach(mob/living/user, obj/item/clothing/head/modular/parent)
-	parent?.GetComponent(/datum/component/clothing_tint)
+	parent.GetComponent(/datum/component/clothing_tint)
 	var/datum/component/clothing_tint/tints = parent?.GetComponent(/datum/component/clothing_tint)
 	tints.RemoveComponent()
 	return ..()
@@ -32,4 +32,3 @@
 
 	active = !active
 	to_chat(user, "<span class='notice'>You toggle \the [src]. [active ? "enabling" : "disabling"] it.</span>")
-
