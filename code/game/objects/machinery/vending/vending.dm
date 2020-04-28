@@ -468,6 +468,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 
 		if("cancel_buying")
 			currently_vending = null
+			currently_vending_index = null
 			. = TRUE
 
 		if("swipe")
@@ -511,7 +512,9 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 			src.speak(src.vend_reply)
 			src.last_reply = world.time
 
-	release_item(R, vend_delay)
+	var/obj/item/new_item = release_item(R, vend_delay)
+	if(istype(new_item))
+		user.put_in_any_hand_if_possible(new_item, warning = FALSE)
 	vend_ready = 1
 	updateUsrDialog()
 

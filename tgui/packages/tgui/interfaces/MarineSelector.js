@@ -30,57 +30,64 @@ export const MarineSelector = (props, context) => {
   return (
     <Window>
       {!!showDesc && (
-        <Modal>
+        <Modal width="400px">
           <Box>{showDesc}</Box>
           <Button
             content="Dismiss"
             onClick={() => setShowDesc(null)} />
         </Modal>
       )}
-      <Window.Content scrollable>
-        <Section
-          title="Choose your equipment"
-          buttons={
-            <Fragment>
-              {!!show_points && (
-                <ProgressBar
-                  width="100px"
-                  value={current_m_points / total_marine_points}
-                  ranges={{
-                    good: [0.67, Infinity],
-                    average: [0.33, 0.67],
-                    bad: [-Infinity, 0.33],
-                  }} >
-                  {current_m_points +"/"+ total_marine_points + " Points"}
-                </ProgressBar>
-              )}
-
-              <Button
-                icon="power-off"
-                selected={showEmpty}
-                onClick={() => setShowEmpty(!showEmpty)}>
-                Show Empty Categories
-              </Button>
-            </Fragment>
-          }>
-
-          {map((entry, category_name) => {
-            const {
-              remaining,
-              total,
-            } = cats[category_name];
-            return (
-              entry.length > 0
-              && (showEmpty || (remaining > 0
-                || (!total && !!current_m_points))) && (
-                <ItemCategory
-                  category_name={category_name}
-                  entries={entry}
-                  key={category_name} />
-              ));
-          })(displayed_records)}
-        </Section>
-      </Window.Content>
+      <div>
+        <div
+          className="VendingWindow__header">
+          <Section
+            title="Choose your equipment"
+            buttons={
+              <Fragment>
+                {!!show_points && (
+                  <ProgressBar
+                    width="100px"
+                    value={current_m_points / total_marine_points}
+                    ranges={{
+                      good: [0.67, Infinity],
+                      average: [0.33, 0.67],
+                      bad: [-Infinity, 0.33],
+                    }} >
+                    {current_m_points +"/"+ total_marine_points + " Points"}
+                  </ProgressBar>
+                )}
+                <Box inline width="4px" />
+                <Button
+                  icon="power-off"
+                  selected={showEmpty}
+                  onClick={() => setShowEmpty(!showEmpty)}>
+                  Show Empty Categories
+                </Button>
+              </Fragment>
+            } />
+        </div>
+        <div className="VendingWindow__content">
+          <Window.Content scrollable>
+            <Section>
+              {map((entry, category_name) => {
+                const {
+                  remaining,
+                  total,
+                } = cats[category_name];
+                return (
+                  entry.length > 0
+                  && (showEmpty || (remaining > 0
+                    || (!total && !!current_m_points))) && (
+                    <ItemCategory
+                      category_name={category_name}
+                      entries={entry}
+                      key={category_name} />
+                  ));
+              })(displayed_records)}
+            </Section>
+          </Window.Content>
+        </div>
+      </div>
     </Window>
   );
 };
