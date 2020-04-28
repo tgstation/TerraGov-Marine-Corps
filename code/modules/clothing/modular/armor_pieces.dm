@@ -47,21 +47,24 @@
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides a light amount of protection and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor provides somewhat minimal defensive qualities, but has very little impact on the users mobility."
 	icon_state = "light_chest_icon"
 	item_state = "light_chest"
-	armor = list("melee" = 10)
+	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15)
+	slowdown = 0.2
 
 /obj/item/armor_module/armor/chest/medium
 	name = "medium chest armor module"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides a medium amount of protection and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor provides moderate defensive qualities, with a moderate impact on the users mobility."
 	icon_state = "medium_chest_icon"
 	item_state = "medium_chest"
-	armor = list("melee" = 25)
+	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25)
+	slowdown = 0.7
 
 /obj/item/armor_module/armor/chest/heavy
 	name = "heavy chest armor module"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides a heavy amount of protection and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor provides heavy defensive qualities, with a notable impact on the users mobility."
 	icon_state = "heavy_chest_icon"
 	item_state = "heavy_chest"
-	armor = list("melee" = 50)
+	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35)
+	slowdown = 1.5
 
 
 
@@ -84,22 +87,24 @@
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides a light amount of protection and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor provides somewhat minimal defensive qualities, but has very little impact on the users mobility."
 	icon_state = "light_legs_icon"
 	item_state = "light_legs"
-	armor = list("melee" = 10)
+	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15)
+	slowdown = 0.2
 
 /obj/item/armor_module/armor/legs/medium
 	name = "Jaeger Pattern medium Leg Plates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides a medium amount of protection and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor provides moderate defensive qualities, with a moderate impact on the users mobility."
 	icon_state = "medium_legs_icon"
 	item_state = "medium_legs"
-	armor = list("melee" = 25)
+	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25)
+	slowdown = 0.7
 
 /obj/item/armor_module/armor/legs/heavy
 	name = "Jaeger Pattern heavy Leg Plates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides a heavy amount of protection and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor provides heavy defensive qualities, with a notable impact on the users mobility."
 	icon_state = "heavy_legs_icon"
 	item_state = "heavy_legs"
-	armor = list("melee" = 50)
-
+	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35)
+	slowdown = 1.5
 
 
 /** Arms pieces */
@@ -121,18 +126,21 @@
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides a light amount of protection and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor provides somewhat minimal defensive qualities, but has very little impact on the users mobility."
 	icon_state = "light_arms_icon"
 	item_state = "light_arms"
-	armor = list("melee" = 10)
+	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15)
+	slowdown = 0.2
 
 /obj/item/armor_module/armor/arms/medium
 	name = "Jaeger Pattern medium Arm Plates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides a medium amount of protection and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor provides moderate defensive qualities, with a moderate impact on the users mobility."
 	icon_state = "medium_arms_icon"
 	item_state = "medium_arms"
-	armor = list("melee" = 25)
+	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25)
+	slowdown = 0.7
 
 /obj/item/armor_module/armor/arms/heavy
 	name = "Jaeger Pattern heavy Arm Plates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides a heavy amount of protection and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor provides heavy defensive qualities, with a notable impact on the users mobility."
 	icon_state = "heavy_arms_icon"
 	item_state = "heavy_arms"
-	armor = list("melee" = 50)
+	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 35)
+	slowdown = 1.5
