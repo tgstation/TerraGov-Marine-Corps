@@ -7,7 +7,7 @@
 
 /datum/emergency_call/upp_commando/print_backstory(mob/living/carbon/human/H)
 	to_chat(H, "<B>You grew up on a asteroid with few belongings or luxuries.</B>")
-	to_chat(H, "<B>The family you grew up with were [pick(50;"getting by", 25;"impoverished", 25;"starving")] and you were one of [pick(10;"two", 20;"one", 20;"three", 30;"four", 20;"five")] children.</B>")
+	to_chat(H, "<B>The family you grew up with were [pick(50;"getting by", 25;"impoverished", 25;"starving")] and you were one of [pick(10;"two", 20;"three", 30;"four", 20;"five", 20;"six")] children.</B>")
 	to_chat(H, "<B>You come from a long line of pirates and quickly joined the local band to improve your living conditions.</B>")
 	to_chat(H, "")
 	to_chat(H, "<B>Today, you and your teammates are sent by the United Space Lepidoptera to [SSmapping.configs[SHIP_MAP].map_name] after a long period of lying still in a local asteroid belt. Commence the infiltration mission!</b>")
