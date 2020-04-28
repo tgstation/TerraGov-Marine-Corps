@@ -43,13 +43,13 @@
 
 /datum/chemical_reaction/water_two
 	name = "Water"
-	results = list(/datum/reagent/water = 2)
+	results = list(/datum/reagent/holywater = 2) //Regular water has a purge effect, holy water has no associated effects.
 	required_reagents = list(/datum/reagent/medicine/paracetamol = 1, /datum/reagent/medicine/tramadol = 1)
 
 /datum/chemical_reaction/toxin_two //Space Atropine!
 	name = "Toxin"
 	results = list(/datum/reagent/toxin = 3)
-	required_reagents = list(/datum/reagent/medicine/synaptizine = 1, /datum/reagent/toxin/xeno_neurotoxin = 10)
+	required_reagents = list(/datum/reagent/medicine/synaptizine = 1, /datum/reagent/toxin/xeno_neurotoxin = 8)
 
 /datum/chemical_reaction/sdtoxin
 	name = "Toxin"
