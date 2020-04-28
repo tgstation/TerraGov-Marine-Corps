@@ -8,7 +8,7 @@
 //UPP Commando Standard
 /datum/job/upp/commando/standard
 	title = "USL Commando Standard"
-	paygrade = "USLC1"
+	paygrade = "UPPC1"
 	outfit = /datum/outfit/job/upp/commando/standard
 
 
