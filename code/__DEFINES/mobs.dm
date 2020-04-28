@@ -614,6 +614,7 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define COOLDOWN_TASTE			"taste"
 #define COOLDOWN_VENTSOUND		"vendsound"
 #define COOLDOWN_ARMOR_LIGHT	"armor_light"
+#define COOLDOWN_ARMOR_ACTION	"armor_action"
 
 #define UPDATEHEALTH(MOB) (addtimer(CALLBACK(MOB, /mob/living.proc/updatehealth), 1, TIMER_UNIQUE))
 
