@@ -11,7 +11,7 @@
 	to_chat(H, "<B>You come from a long line of pirates and quickly joined the local band to improve your living conditions.</B>")
 	to_chat(H, "")
 	to_chat(H, "<B>Today, a TGMC vessel, [SSmapping.configs[SHIP_MAP].map_name], has sent out a distress signal on the orbit of [SSmapping.configs[GROUND_MAP].map_name]. Your USL Assault Pirate warband heads out and your stealing begins!</b>")
-	to_chat(H, "<B>Eliminate the TGMC force if necessiary. Do not harm the civilians unless they attack you first.</B>")
+	to_chat(H, "<B>Eliminate the TGMC force if necessary. Do not harm the civilians unless they attack you first.</B>")
 	to_chat(H, "<span class='notice'>Use say :3 <text> to speak in your native tongue.</span>")
 
 
