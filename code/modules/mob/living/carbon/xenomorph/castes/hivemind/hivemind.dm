@@ -48,7 +48,7 @@
 
 	// Don't allow them over the timed_late doors
 	var/obj/machinery/door/poddoor/timed_late/door = locate() in NewLoc
-	if(door?.CanPass(src, NewLoc))
+	if(door && !door.CanPass(src, NewLoc))
 		return FALSE
 
 	// Hiveminds are scared of fire.
@@ -80,8 +80,12 @@
 /mob/living/carbon/xenomorph/hivemind/update_icons()
 	return FALSE
 
+/// Override hivemind can_move to stop hivemind being made dense again
+/mob/living/carbon/xenomorph/hivemind/update_canmove()
+	set_canmove(TRUE)
+	return canmove
 
-/* 
+/*
 These specifically override the default click actions for a hivemind
 If we want to be able to add other on click actions this would be where.
  */
@@ -90,6 +94,9 @@ If we want to be able to add other on click actions this would be where.
 		return
 
 	forceMove(get_turf(A))
+
+/mob/living/carbon/xenomorph/hivemind/CtrlClick(mob/user)
+	return FALSE
 
 /mob/living/carbon/xenomorph/hivemind/CtrlClickOn(atom/A)
 	return FALSE
@@ -117,7 +124,7 @@ If we want to be able to add other on click actions this would be where.
 /mob/living/carbon/xenomorph/hivemind/med_hud_set_status()
 	return
 
-	
+
 // =================
 // hivemind core
 /obj/effect/alien/hivemindcore
