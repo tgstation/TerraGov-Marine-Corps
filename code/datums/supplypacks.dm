@@ -2260,6 +2260,20 @@ Imports
 	containername = "\improper M41AE2 Heavy Pulse Rifle Crate"
 	group = "Imports"
 
+/datum/supply_packs/imports_type71	//Moff gun
+	name = "Type 71 Pulse Rifle"
+	contains = list(
+					/obj/item/weapon/gun/rifle/type71,
+					/obj/item/ammo_magazine/rifle/type71,
+					/obj/item/ammo_magazine/rifle/type71,
+					/obj/item/ammo_magazine/rifle/type71,
+					/obj/item/ammo_magazine/rifle/type71
+					)
+	cost = 30
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "\improper Type 71 Pulse Rifle Crate"
+	group = "Imports"
+
 /datum/supply_packs/imports_mp5
 	name = "MP5 SMG"
 	contains = list(
