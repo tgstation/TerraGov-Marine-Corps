@@ -41,7 +41,7 @@
 	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 0, "acid" = 10)
 
 	// *** Ranged Attack *** //
-	charge_type = 2 //Pounce - Hunter
+	charge_type = CHARGE_TYPE_MEDIUM
 	pounce_delay = 15 SECONDS
 
 	// *** Abilities *** //
