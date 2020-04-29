@@ -385,8 +385,8 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "ammobox"
-	var/magazine_amount = 10
-	var/max_magazine_amount = 10
+	var/magazine_amount = 30
+	var/max_magazine_amount = 30
 	var/max_magazine_rounds = 32
 	var/ammo_type = /datum/ammo/bullet/rifle
 	var/magazine_type = /obj/item/ammo_magazine/rifle/standard_carbine
@@ -488,8 +488,8 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "ammoboxslug"
 	w_class = WEIGHT_CLASS_HUGE
-	var/current_rounds = 100
-	var/max_rounds = 100
+	var/current_rounds = 200
+	var/max_rounds = 200
 	var/ammo_type = /datum/ammo/bullet/shotgun/slug
 	var/deployed = FALSE
 	var/caliber = "12g"

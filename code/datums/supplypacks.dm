@@ -1081,7 +1081,7 @@ AMMO
 	contains = list(
 					/obj/item/shotgunbox
 					)
-	cost = 20
+	cost = 30
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper Slug ammo box crate"
 	group = "Ammo"
@@ -1091,7 +1091,7 @@ AMMO
 	contains = list(
 					/obj/item/shotgunbox/buckshot
 					)
-	cost = 20
+	cost = 30
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper Buckshot ammo box crate"
 	group = "Ammo"
@@ -1101,7 +1101,7 @@ AMMO
 	contains = list(
 					/obj/item/shotgunbox/flechette
 					)
-	cost = 20
+	cost = 30
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper Flechette ammo box crate"
 	group = "Ammo"
@@ -1111,7 +1111,7 @@ AMMO
 	contains = list(
 					/obj/item/ammobox
 					)
-	cost = 20
+	cost = 30
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper T-18 Carbine ammo box crate"
 	group = "Ammo"
@@ -1121,7 +1121,7 @@ AMMO
 	contains = list(
 					/obj/item/ammobox/standard_rifle
 					)
-	cost = 20
+	cost = 30
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper T-12 Assault Rifle ammo box crate"
 	group = "Ammo"
@@ -1131,7 +1131,7 @@ AMMO
 	contains = list(
 					/obj/item/ammobox/standard_smg
 					)
-	cost = 20
+	cost = 30
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper T-19 SMG ammo box crate"
 	group = "Ammo"
@@ -1141,7 +1141,7 @@ AMMO
 	contains = list(
 					/obj/item/ammobox/standard_lmg
 					)
-	cost = 20
+	cost = 30
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper T-42 LMG ammo box crate"
 	group = "Ammo"
@@ -1151,7 +1151,7 @@ AMMO
 	contains = list(
 					/obj/item/ammobox/standard_dmr
 					)
-	cost = 20
+	cost = 30
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper T-64 DMR ammo box crate"
 	group = "Ammo"
@@ -1161,7 +1161,7 @@ AMMO
 	contains = list(
 					/obj/item/ammobox/standard_pistol
 					)
-	cost = 20
+	cost = 30
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper TP-14 Pistol ammo box crate"
 	group = "Ammo"
