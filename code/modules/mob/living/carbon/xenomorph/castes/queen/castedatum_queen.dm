@@ -26,7 +26,7 @@
 	max_health = 300
 
 	// *** Evolution *** //
-	upgrade_threshold = 400
+	upgrade_threshold = 480
 
 	// *** Flags *** //
 	caste_flags = CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_FIRE_IMMUNE|CASTE_HIDE_IN_STATUS
@@ -96,7 +96,7 @@
 	max_health = 350
 
 	// *** Evolution *** //
-	upgrade_threshold = 800
+	upgrade_threshold = 960
 
 	// *** Defense *** //
 	armor = list("melee" = 55, "bullet" = 55, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_3, "bio" = 50, "rad" = 50, "fire" = 100, "acid" = 50)
@@ -132,7 +132,7 @@
 	max_health = 400
 
 	// *** Evolution *** //
-	upgrade_threshold = 1600
+	upgrade_threshold = 1920
 
 	// *** Defense *** //
 	armor = list("melee" = 60, "bullet" = 60, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_3, "bio" = 55, "rad" = 55, "fire" = 100, "acid" = 55)
@@ -168,7 +168,7 @@
 	max_health = 450
 
 	// *** Evolution *** //
-	upgrade_threshold = 1600
+	upgrade_threshold = 1920
 
 	// *** Defense *** //
 	armor = list("melee" = 65, "bullet" = 65, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_3, "bio" = 60, "rad" = 60, "fire" = 100, "acid" = 60)

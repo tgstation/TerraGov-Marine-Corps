@@ -26,7 +26,7 @@
 
 	// *** Evolution *** //
 	evolution_threshold = 180
-	upgrade_threshold = 100
+	upgrade_threshold = 120
 
 	evolves_to = list(/mob/living/carbon/xenomorph/crusher)
 	deevolves_to = /mob/living/carbon/xenomorph/defender
@@ -77,7 +77,7 @@
 	max_health = 260
 
 	// *** Evolution *** //
-	upgrade_threshold = 200
+	upgrade_threshold = 240
 
 	// *** Defense *** //
 	armor = list("melee" = 34, "bullet" = 45, "laser" = 45, "energy" = 34, "bomb" = XENO_BOMB_RESIST_2, "bio" = 36, "rad" = 36, "fire" = 0, "acid" = 36)
@@ -107,7 +107,7 @@
 	max_health = 280
 
 	// *** Evolution *** //
-	upgrade_threshold = 400
+	upgrade_threshold = 480
 
 	// *** Defense *** //
 	armor = list("melee" = 38, "bullet" = 50, "laser" = 50, "energy" = 38, "bomb" = XENO_BOMB_RESIST_2, "bio" = 40, "rad" = 40, "fire" = 0, "acid" = 40)
@@ -138,7 +138,7 @@
 	max_health = 300
 
 	// *** Evolution *** //
-	upgrade_threshold = 400
+	upgrade_threshold = 480
 
 	// *** Defense *** //
 	armor = list("melee" = 42, "bullet" = 55, "laser" = 55, "energy" = 42, "bomb" = XENO_BOMB_RESIST_2, "bio" = 50, "rad" = 50, "fire" = 0, "acid" = 50)
