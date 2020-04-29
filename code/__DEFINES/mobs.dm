@@ -595,25 +595,6 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define STAMINA_STATE_IDLE 0
 #define STAMINA_STATE_ACTIVE 1
 
-//Cooldowns
-#define COOLDOWN_CHEW 		"chew"
-#define COOLDOWN_PUKE 		"puke"
-#define COOLDOWN_POINT 		"point"
-#define COOLDOWN_EMOTE		"emote"
-#define COOLDOWN_VENTCRAWL	"ventcrawl"
-#define COOLDOWN_BUCKLE		"buckle"
-#define COOLDOWN_RESIST		"resist"
-#define COOLDOWN_ORDER		"order"
-#define COOLDOWN_DISPOSAL	"disposal"
-#define COOLDOWN_ACID		"acid"
-#define COOLDOWN_GUT		"gut"
-#define COOLDOWN_ZOOM		"zoom"
-#define COOLDOWN_BUMP		"bump"
-#define COOLDOWN_ENTANGLE	"entangle"
-#define COOLDOWN_NEST		"nest"
-#define COOLDOWN_TASTE		"taste"
-#define COOLDOWN_VENTSOUND	"vendsound"
-
 #define UPDATEHEALTH(MOB) (addtimer(CALLBACK(MOB, /mob/living.proc/updatehealth), 1, TIMER_UNIQUE))
 
 #define GRAB_PIXEL_SHIFT_PASSIVE 6

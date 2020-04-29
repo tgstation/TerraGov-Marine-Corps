@@ -1,5 +1,7 @@
 /atom/movable
 	layer = OBJ_LAYER
+	glide_size = 8
+	appearance_flags = TILE_BOUND|PIXEL_SCALE
 	var/last_move = null
 	var/last_move_time = 0
 	var/anchored = FALSE
@@ -13,9 +15,7 @@
 	var/atom/movable/pulling
 	var/moving_diagonally = 0 //to know whether we're in the middle of a diagonal move,
 	var/atom/movable/moving_from_pull		//attempt to resume grab after moving instead of before.
-	glide_size = 8
 	var/glide_modifier_flags = NONE
-	appearance_flags = TILE_BOUND|PIXEL_SCALE
 
 	var/initial_language_holder = /datum/language_holder
 	var/datum/language_holder/language_holder
@@ -35,6 +35,9 @@
 	var/buckle_lying = -1 //bed-like behaviour, forces mob.lying_angle = buckle_lying if != -1
 
 	var/datum/component/orbiter/orbiting
+
+	///Lazy associative list of currently active cooldowns.
+	var/list/cooldowns
 
 //===========================================================================
 /atom/movable/Destroy()
@@ -877,3 +880,7 @@
 
 /atom/movable/proc/setGrabState(newstate)
 	grab_state = newstate
+
+
+/atom/movable/proc/end_cooldown(index)
+	COOLDOWN_END(src, index)
