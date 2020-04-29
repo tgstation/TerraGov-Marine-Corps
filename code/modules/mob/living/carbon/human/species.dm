@@ -133,14 +133,14 @@
 	H.limbs += LA
 	var/datum/limb/r_arm/RA = new(C, H)
 	H.limbs += RA
-	var/datum/limb/leg/l_leg/LL = new(G, H)
+	var/datum/limb/l_leg/LL = new(G, H)
 	H.limbs += LL
-	var/datum/limb/leg/r_leg/RL = new(G, H)
+	var/datum/limb/r_leg/RL = new(G, H)
 	H.limbs += RL
 	H.limbs +=  new/datum/limb/hand/l_hand(LA, H)
 	H.limbs +=  new/datum/limb/hand/r_hand(RA, H)
-	H.limbs +=  new/datum/limb/l_foot(LL, H)
-	H.limbs +=  new/datum/limb/r_foot(RL, H)
+	H.limbs +=  new/datum/limb/foot/l_foot(LL, H)
+	H.limbs +=  new/datum/limb/foot/r_foot(RL, H)
 
 	for(var/organ in has_organ)
 		var/organ_type = has_organ[organ]

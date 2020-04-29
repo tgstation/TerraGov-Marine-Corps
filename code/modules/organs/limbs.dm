@@ -621,7 +621,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	limb_status |= LIMB_DESTROYED
 	return new_status
 
-/datum/limb/leg/set_limb_destroyed(new_status = TRUE)
+/datum/limb/foot/set_limb_destroyed(new_status = TRUE)
 	. = ..()
 	if(!owner)
 		return
@@ -1087,7 +1087,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		..()
 		process_grasp(owner.l_hand, "left hand")
 
-/datum/limb/leg/l_leg
+/datum/limb/l_leg
 	name = "l_leg"
 	display_name = "left leg"
 	icon_name = "l_leg"
@@ -1108,7 +1108,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		..()
 		process_grasp(owner.r_hand, "right hand")
 
-/datum/limb/leg/r_leg
+/datum/limb/r_leg
 	name = "r_leg"
 	display_name = "right leg"
 	icon_name = "r_leg"
@@ -1117,7 +1117,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	body_part = LEG_RIGHT
 	icon_position = RIGHT
 
-/datum/limb/l_foot
+/datum/limb/foot/l_foot
 	name = "l_foot"
 	display_name = "left foot"
 	icon_name = "l_foot"
@@ -1126,7 +1126,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	body_part = FOOT_LEFT
 	icon_position = LEFT
 
-/datum/limb/r_foot
+/datum/limb/foot/r_foot
 	name = "r_foot"
 	display_name = "right foot"
 	icon_name = "r_foot"
