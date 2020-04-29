@@ -2218,6 +2218,45 @@ Imports
 	containertype = /obj/structure/closet/crate
 	containername = "\improper M39B2 SMG Crate"
 */
+/datum/supply_packs/imports_m41a
+	name = "M41A Pulse Rifle"
+	contains = list(
+					/obj/item/weapon/gun/rifle/m41a,
+					/obj/item/ammo_magazine/rifle/m41a,
+					/obj/item/ammo_magazine/rifle/m41a,
+					/obj/item/ammo_magazine/rifle/m41a
+					)
+	cost = 30
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "\improper M41A Pulse Rifle Crate"
+	group = "Imports"
+
+/datum/supply_packs/imports_m41a1
+	name = "M41A1 Pulse Rifle"
+	contains = list(
+					/obj/item/weapon/gun/rifle/m41a1,
+					/obj/item/ammo_magazine/rifle,
+					/obj/item/ammo_magazine/rifle,
+					/obj/item/ammo_magazine/rifle
+					)
+	cost = 30
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "\improper M41A1 Pulse Rifle Crate"
+	group = "Imports"
+
+/datum/supply_packs/imports_m41ae2
+	name = "M41AE2 Heavy Pulse Rifle"
+	contains = list(
+					/obj/item/weapon/gun/rifle/m41ae2_hpr,
+					/obj/item/ammo_magazine/m41ae2_hpr,
+					/obj/item/ammo_magazine/m41ae2_hpr,
+					/obj/item/ammo_magazine/m41ae2_hpr
+					)
+	cost = 30
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "\improper M41AE2 Heavy Pulse Rifle Crate"
+	group = "Imports"
+
 /datum/supply_packs/imports_mp5
 	name = "MP5 SMG"
 	contains = list(
