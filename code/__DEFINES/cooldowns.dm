@@ -18,7 +18,7 @@
 
 #define COOLDOWN_START(cd_source, cd_index, cd_time) LAZYSET(cd_source.cooldowns, cd_index, addtimer(CALLBACK(src, /atom/movable.proc/end_cooldown, cd_index), cd_time))
 
-#define COOLDOWN_CHECK(cd_source, cd_index) (cd_source.cooldowns && cd_source.cooldowns[cd_index])
+#define COOLDOWN_CHECK(cd_source, cd_index) LAZYACCESS(cd_source.cooldowns, cd_index)
 
 #define COOLDOWN_END(cd_source, cd_index) LAZYREMOVE(cd_source.cooldowns, cd_index)
 
