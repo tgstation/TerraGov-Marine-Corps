@@ -14,12 +14,6 @@ if [[ -e ~/.nvm/nvm.sh ]]; then
 	nvm use "${NODE_VERSION}"
 fi
 
-##echo "Building 'tgui'"
-##cd "${base_dir}/tgui"
-##npm ci
-##node node_modules/gulp/bin/gulp.js --min
-
-echo "Building 'tgui-next'"
-cd "${base_dir}/tgui-next"
-bin/tgui --clean
-bin/tgui
+echo "Building 'tgui'"
+cd "${base_dir}/tgui"
+bin/tgui --ci

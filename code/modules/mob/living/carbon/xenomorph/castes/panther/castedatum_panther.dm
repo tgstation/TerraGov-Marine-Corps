@@ -42,7 +42,7 @@
 	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 5, "bomb" = XENO_BOMB_RESIST_0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 	// *** Ranged Attack *** //
-	charge_type = CHARGE_TYPE_PANTHER //Heavy Pounce - Panther
+	charge_type = CHARGE_TYPE_PANTHER
 	pounce_delay = 35.0 SECONDS
 
 	// *** Abilities *** ///
@@ -50,7 +50,7 @@
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/xenohide,
-		/datum/action/xeno_action/activable/pounce,
+		/datum/action/xeno_action/activable/pounce/panther,
 		)
 
 /datum/xeno_caste/panther/young

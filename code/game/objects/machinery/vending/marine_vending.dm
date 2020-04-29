@@ -27,8 +27,8 @@
 					/obj/item/ammo_magazine/standard_lmg = 30,
 					/obj/item/weapon/gun/rifle/standard_dmr = 10,
 					/obj/item/ammo_magazine/rifle/standard_dmr = 25,
-					/obj/item/weapon/gun/energy/lasgun/M43 = 10,
-					/obj/item/cell/lasgun/M43 = 20,
+					/obj/item/weapon/gun/energy/lasgun/lasrifle = 10,
+					/obj/item/cell/lasgun/lasrifle = 20,
 					/obj/item/weapon/gun/shotgun/pump/t35 = 10,
 					/obj/item/ammo_magazine/shotgun = 10,
 					/obj/item/ammo_magazine/shotgun/buckshot = 10,
@@ -116,7 +116,7 @@
 					/obj/item/weapon/gun/rifle/standard_assaultrifle = 20,
 					/obj/item/weapon/gun/rifle/standard_lmg = 10,
 					/obj/item/weapon/gun/rifle/standard_dmr = 10,
-					/obj/item/weapon/gun/energy/lasgun/M43 = 10,
+					/obj/item/weapon/gun/energy/lasgun/lasrifle = 10,
 					/obj/item/weapon/gun/shotgun/pump/t35 = 10,
 					/obj/item/weapon/gun/rifle/standard_autoshotgun = 10,
 					/obj/item/explosive/mine = 2,
@@ -175,8 +175,8 @@
 					/obj/item/ammo_magazine/rifle/standard_assaultrifle = 15,
 					/obj/item/ammo_magazine/standard_lmg = 10,
 					/obj/item/ammo_magazine/rifle/standard_dmr = 25,
-					/obj/item/cell/lasgun/M43 = 15,
-					/obj/item/cell/lasgun/M43/highcap = 5,
+					/obj/item/cell/lasgun/lasrifle = 15,
+					/obj/item/cell/lasgun/lasrifle/highcap = 5,
 					/obj/item/ammo_magazine/shotgun = 10,
 					/obj/item/ammo_magazine/shotgun/buckshot = 10,
 					/obj/item/ammo_magazine/shotgun/flechette = 15,
@@ -208,7 +208,7 @@
 	GLOB.cargo_ammo_vendors.Remove(src)
 
 /obj/machinery/vending/lasgun
-	name = "ColMarTech Lasgun Field Charger"
+	name = "ColMarTech lasrifle Field Charger"
 	desc = "An automated power cell dispenser and charger. Used to recharge energy weapon power cells, including in the field. Has an internal battery that charges off the power grid when wrenched down."
 	icon_state = "lascharger"
 	icon_vend = "lascharger-vend"
@@ -223,10 +223,10 @@
 	machine_current_charge = 50000 //integrated battery for recharging energy weapons. Normally 10000.
 	machine_max_charge = 50000
 
-	product_ads = "Lasgun running low? Recharge here!;Need a charge?;Power up!;Electrifying!;Empower yourself!"
+	product_ads = "Lasrifle running low? Recharge here!;Need a charge?;Power up!;Electrifying!;Empower yourself!"
 	products = list(
-					/obj/item/cell/lasgun/M43 = 10,
-					/obj/item/cell/lasgun/M43/highcap = 2,
+					/obj/item/cell/lasgun/lasrifle = 10,
+					/obj/item/cell/lasgun/lasrifle/highcap = 2,
 					)
 
 	contraband =   list()
@@ -625,11 +625,6 @@
 						/obj/item/attachable/extended_barrel = 8,
 						/obj/item/attachable/heavy_barrel = 2,
 						/obj/item/attachable/suppressor = 8,
-						/obj/item/attachable/widelens = 4,
-						/obj/item/attachable/heatlens = 4,
-						/obj/item/attachable/focuslens = 4,
-						/obj/item/attachable/efflens = 4,
-						/obj/item/attachable/pulselens = 4,
 
 						/obj/item/attachable/flashlight = 20,
 						/obj/item/attachable/magnetic_harness = 8,
