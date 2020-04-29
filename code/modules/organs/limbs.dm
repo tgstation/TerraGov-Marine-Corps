@@ -925,7 +925,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			var/obj/item/clothing/suit/suit = H.wear_suit
 
 			suit.secure_limb(src, H)
-		return
+	return
 
 
 /datum/limb/proc/robotize()
