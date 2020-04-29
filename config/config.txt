@@ -118,3 +118,5 @@ LOBBY_MUSIC 10 https://youtu.be/ud6LiVJkwyA 1 180
 LOBBY_MUSIC 11 https://youtu.be/uB2CFA2RyLE 1 180
 #Space camp song!
 LOBBY_MUSIC 12 https://youtu.be/guXqg_Bnl74 1 180
+#The Real Folk Blues
+LOBBY_MUSIC 13 https://youtu.be/eyI635o2pmk 1 180
