@@ -261,7 +261,7 @@
 		var/obj/structure/closet/crate/OB = target
 		OB.forceMove(linked_powerloader)
 		loaded = OB
-		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
+		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, TRUE)
 		update_icon()
 		user.visible_message("<span class='notice'>[user] grabs [loaded] with [src].</span>",
 		"<span class='notice'>You grab [loaded] with [src].</span>")
