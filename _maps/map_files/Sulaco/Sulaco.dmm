@@ -469,12 +469,13 @@
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "abx" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/structure/closet/crate,
-/turf/open/floor/plating,
-/area/sulaco/disposal)
+/obj/structure/rack,
+/obj/item/ammo_magazine/rifle/ak47/extended,
+/obj/item/ammo_magazine/rifle/ak47/extended,
+/obj/item/ammo_magazine/rifle/ak47/extended,
+/obj/item/ammo_magazine/rifle/ak47/extended,
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
 "aby" = (
 /obj/machinery/status_display,
 /turf/closed/wall/sulaco,
@@ -2271,12 +2272,11 @@
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "afL" = (
-/obj/structure/rack,
-/obj/item/weapon/gun/smg/mp5,
-/obj/item/weapon/gun/smg/mp5,
-/obj/item/weapon/gun/smg/mp5,
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/sulaco/disposal)
 "afM" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
 /obj/structure/window/reinforced/toughened{
@@ -3322,7 +3322,10 @@
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "ahN" = (
-/turf/open/floor/mech_bay_recharge_floor,
+/obj/structure/rack,
+/obj/item/weapon/gun/smg/mp5,
+/obj/item/weapon/gun/smg/mp5,
+/turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "ahO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -4496,14 +4499,15 @@
 /turf/open/floor,
 /area/sulaco/cargo/office)
 "aki" = (
-/obj/structure/rack,
-/obj/item/ammo_magazine/rifle/ak47/extended,
-/obj/item/ammo_magazine/rifle/ak47/extended,
-/obj/item/ammo_magazine/rifle/ak47/extended,
-/obj/item/ammo_magazine/rifle/ak47/extended,
-/obj/item/ammo_magazine/rifle/ak47/extended,
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/grille,
+/turf/open/floor/plating,
+/turf/closed/wall/indestructible/fakeglass{
+	icon = 'icons/obj/structures/windows.dmi';
+	icon_state = "rwindow3";
+	layer = 3.2
+	},
+/area/sulaco/engineering/engine)
 "akj" = (
 /obj/machinery/fuelcell_recycler,
 /turf/open/floor/plating/mainship,
@@ -14879,15 +14883,15 @@
 	},
 /area/sulaco/brig)
 "aED" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/grille,
-/turf/open/floor/plating,
-/turf/closed/wall/indestructible/fakeglass{
-	icon = 'icons/obj/structures/windows.dmi';
-	icon_state = "rwindow3";
-	layer = 3.2
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 10
 	},
-/area/sulaco/engineering/engine)
+/turf/open/space,
+/turf/closed/shuttle/wall3/diagonal{
+	icon_state = "diagonalWall3";
+	dir = 1
+	},
+/area/space)
 "aEE" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -18227,8 +18231,6 @@
 /obj/item/weapon/gun/smg/m39,
 /obj/structure/window/reinforced,
 /obj/item/ammo_magazine/smg/m39,
-/obj/item/ammo_magazine/smg/m39,
-/obj/item/ammo_magazine/smg/m39,
 /turf/open/floor,
 /area/sulaco/hangar/one)
 "aMf" = (
@@ -20882,15 +20884,13 @@
 	},
 /area/sulaco/hallway/lower_main_hall)
 "aSC" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
-	dir = 10
-	},
-/turf/open/space,
-/turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
-	dir = 1
-	},
-/area/space)
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/structure/table,
+/obj/item/explosive/grenade/frag/training,
+/obj/item/explosive/grenade/frag/training,
+/obj/item/explosive/grenade/frag/training,
+/turf/open/floor,
+/area/sulaco/hangar/one)
 "aSD" = (
 /obj/machinery/door/firedoor,
 /obj/structure/grille,
@@ -21627,10 +21627,12 @@
 /turf/open/floor,
 /area/sulaco/hangar/one)
 "aUp" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 4
+	},
 /obj/structure/table,
-/obj/item/folder/red,
-/obj/item/tool/pen/red,
+/obj/item/ammo_magazine/rifle,
+/obj/item/weapon/gun/rifle/m41a1,
 /turf/open/floor,
 /area/sulaco/hangar/one)
 "aUq" = (
@@ -21788,16 +21790,16 @@
 /turf/open/floor,
 /area/sulaco/hangar/one)
 "aUM" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
-	dir = 4
+/obj/structure/rack,
+/obj/item/clothing/head/helmet/marine/veteran/mercenary/engineer,
+/obj/item/clothing/head/helmet/marine/veteran/mercenary/engineer,
+/obj/item/clothing/suit/armor/swat,
+/obj/item/clothing/suit/armor/swat,
+/turf/open/floor{
+	icon_state = "red";
+	dir = 5
 	},
-/obj/structure/table,
-/obj/item/ammo_magazine/rifle,
-/obj/item/ammo_magazine/rifle,
-/obj/item/ammo_magazine/rifle,
-/obj/item/weapon/gun/rifle/m41a1,
-/turf/open/floor,
-/area/sulaco/hangar/one)
+/area/sulaco/command/armory)
 "aUN" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 9
@@ -24717,14 +24719,12 @@
 /area/sulaco/command/armory)
 "bbj" = (
 /obj/structure/rack,
-/obj/item/clothing/suit/armor/heavy,
-/obj/item/clothing/suit/armor/heavy,
-/obj/item/clothing/suit/armor/heavy,
-/obj/item/clothing/head/helmet/marine/veteran/mercenary/engineer,
-/obj/item/clothing/head/helmet/marine/veteran/mercenary/engineer,
+/obj/item/storage/box/nade_box/phos,
+/obj/item/storage/box/nade_box,
+/obj/item/storage/box/nade_box/M15,
 /turf/open/floor{
 	icon_state = "red";
-	dir = 5
+	dir = 4
 	},
 /area/sulaco/command/armory)
 "bbk" = (
@@ -43728,8 +43728,8 @@ aaa
 aaa
 aaa
 aaa
-aaf
-aaf
+aas
+aas
 aaa
 aaa
 aas
@@ -43747,8 +43747,8 @@ aas
 aas
 aaa
 aaa
-aaf
-aaf
+aas
+aas
 aaa
 aaa
 aaa
@@ -43985,8 +43985,8 @@ aaa
 aaa
 aaa
 aaa
-aaf
-aaf
+aas
+aas
 aaa
 aaa
 aas
@@ -44004,8 +44004,8 @@ aaf
 aas
 aaa
 aaa
-aaf
-aaf
+aas
+aas
 aaa
 aaa
 aaa
@@ -44242,8 +44242,8 @@ aaa
 aaa
 aaa
 aaa
-aaf
-aaf
+aas
+aas
 aaa
 aaa
 aas
@@ -44261,8 +44261,8 @@ anV
 aas
 aaa
 aaa
-aaf
-aaf
+aas
+aas
 aaa
 aaa
 aaa
@@ -44499,8 +44499,8 @@ aaa
 aaa
 aaa
 aaa
-aaf
-aaf
+aas
+aas
 aaa
 aaa
 aas
@@ -44518,8 +44518,8 @@ aCn
 aas
 aaa
 aaa
-aaf
-aaf
+aas
+aas
 aaa
 aaa
 aaa
@@ -44756,8 +44756,8 @@ aaa
 aaa
 aaa
 aaa
-aaf
-aaf
+aas
+aas
 aaa
 aaa
 aas
@@ -44775,8 +44775,8 @@ aCo
 aas
 aaa
 aaa
-aaf
-aaf
+aas
+aas
 aaa
 aaa
 aaa
@@ -45013,8 +45013,8 @@ aaa
 aaa
 aaa
 aaa
-aaf
-aaf
+aas
+aas
 aaa
 aaa
 aas
@@ -45032,8 +45032,8 @@ anV
 aas
 aaa
 aaa
-aaf
-aaf
+aas
+aas
 aaa
 aaa
 aaa
@@ -45270,8 +45270,8 @@ aaa
 aaa
 aaa
 aaa
-aaf
-aaf
+aas
+aas
 aaa
 aaa
 aas
@@ -45289,8 +45289,8 @@ anV
 aas
 aaa
 aaa
-aaf
-aaf
+aas
+aas
 aFy
 aFy
 aIz
@@ -45527,8 +45527,8 @@ aaa
 aaa
 aaa
 aaa
-aaf
-aaf
+aas
+aas
 aaa
 aaa
 aop
@@ -45546,8 +45546,8 @@ anV
 aas
 aaa
 aaa
-aaf
-aaf
+aas
+aas
 aFG
 aFG
 aIz
@@ -45784,8 +45784,8 @@ aaa
 aaa
 aaa
 aaa
-aaf
-aaf
+aas
+aas
 aaa
 aaa
 aas
@@ -45803,8 +45803,8 @@ aBh
 aas
 aaa
 aaa
-aaf
-aaf
+aas
+aas
 aFy
 aFy
 aIz
@@ -46041,8 +46041,8 @@ aaa
 aaa
 aaa
 aYY
-aaf
-aaf
+aas
+aas
 aaa
 aaa
 aas
@@ -46060,8 +46060,8 @@ aBR
 aas
 aaa
 aaa
-aaf
-aaf
+aas
+aas
 aFH
 aGD
 aJz
@@ -46297,9 +46297,9 @@ aaa
 aaa
 aaa
 aYY
-aaf
-aaf
-aaf
+aas
+aas
+aas
 aaa
 aaa
 aas
@@ -46317,8 +46317,8 @@ apb
 aas
 aaa
 aaa
-aaf
-aaf
+aas
+aas
 aEm
 aHz
 aHz
@@ -46553,10 +46553,10 @@ aaa
 aaa
 aaa
 aYY
-aaf
-aaf
-aaf
-aaf
+aas
+aas
+aas
+aas
 aaa
 aaa
 aas
@@ -46574,8 +46574,8 @@ apb
 aGN
 aaa
 aaa
-aaf
-aaf
+aas
+aas
 aEm
 aHz
 aHz
@@ -46809,11 +46809,11 @@ aaa
 aaa
 aaa
 aYY
-aaf
-aaf
-aaf
-aaf
-aaf
+aas
+aas
+aas
+aas
+aas
 aaa
 aDS
 aas
@@ -46831,8 +46831,8 @@ apb
 aas
 aDS
 aaa
-aaf
-aaf
+aas
+aas
 aFL
 aHA
 aJA
@@ -47443,10 +47443,10 @@ aaa
 aaa
 aPB
 aPB
-bbj
+aUM
 aQE
 aLv
-aLK
+bbj
 aSS
 aLK
 aMl
@@ -63113,7 +63113,7 @@ aaa
 aaa
 aaa
 aaa
-aSC
+aED
 aPm
 aPm
 aRf
@@ -63378,7 +63378,7 @@ aSG
 aPO
 aTq
 aUo
-aUp
+aSC
 aPY
 aPX
 aMO
@@ -63892,7 +63892,7 @@ aSI
 aPR
 aSN
 aSN
-aUM
+aUp
 aRy
 aVG
 aWX
@@ -66079,7 +66079,7 @@ aaq
 aaK
 abd
 afN
-aki
+abx
 abj
 abj
 abj
@@ -66343,7 +66343,7 @@ aaK
 aaK
 agR
 ahg
-ahN
+aaK
 ajp
 aka
 alg
@@ -66594,7 +66594,7 @@ aat
 aaK
 abj
 aeT
-afL
+ahN
 abj
 abj
 aaK
@@ -70961,8 +70961,8 @@ aaa
 aar
 aai
 aai
-abx
-aaQ
+aai
+afL
 acL
 adq
 adV
@@ -71244,9 +71244,9 @@ aAw
 aAG
 aBS
 aCq
-aED
-aED
-aED
+aki
+aki
+aki
 aYQ
 aJp
 aKh
