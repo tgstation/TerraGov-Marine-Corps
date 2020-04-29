@@ -326,9 +326,9 @@
 	Add the actions to the user
 
 	Actions include
-	 - Enable and disable the suit
-	 - Manually do a health scan
-	 - Open suit settings
+	- Enable and disable the suit
+	- Manually do a health scan
+	- Open suit settings
 */
 /datum/component/suit_autodoc/proc/give_actions()
 	toggle_action.give_action(wearer)
@@ -339,9 +339,9 @@
 	Remove the actions from the user
 
 	Actions include
-	 - Enable and disable the suit
-	 - Manually do a health scan
-	 - Open suit settings
+	- Enable and disable the suit
+	- Manually do a health scan
+	- Open suit settings
 */
 /datum/component/suit_autodoc/proc/remove_actions()
 	if(!wearer)
