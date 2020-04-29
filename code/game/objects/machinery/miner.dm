@@ -56,7 +56,8 @@
 	. = ..()
 	if(miner_status != MINER_DESTROYED)
 		return
-	var/obj/item/tool/weldingtool/weldingtool= I
+	var/obj/item/tool/weldingtool/weldingtool = I
+
 	if(!weldingtool.remove_fuel(1, user))
 
 		to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
