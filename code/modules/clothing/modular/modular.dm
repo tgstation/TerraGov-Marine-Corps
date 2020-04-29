@@ -296,9 +296,9 @@
 	if(slot_chest)
 		. += "<br> It has a [slot_chest] installed."
 	if(slot_arms)
-		. += "<br> It has a [slot_chest] installed."
+		. += "<br> It has a [slot_arms] installed."
 	if(slot_legs)
-		. += "<br> It has a [slot_chest] installed."
+		. += "<br> It has a [slot_legs] installed."
 	if(installed_storage)
 		. += "<br> It has a [installed_storage] installed."
 
