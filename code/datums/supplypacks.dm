@@ -2224,6 +2224,7 @@ Imports
 					/obj/item/weapon/gun/rifle/m41a,
 					/obj/item/ammo_magazine/rifle/m41a,
 					/obj/item/ammo_magazine/rifle/m41a,
+					/obj/item/ammo_magazine/rifle/m41a,
 					/obj/item/ammo_magazine/rifle/m41a
 					)
 	cost = 30
@@ -2235,6 +2236,7 @@ Imports
 	name = "M41A1 Pulse Rifle"
 	contains = list(
 					/obj/item/weapon/gun/rifle/m41a1,
+					/obj/item/ammo_magazine/rifle,
 					/obj/item/ammo_magazine/rifle,
 					/obj/item/ammo_magazine/rifle,
 					/obj/item/ammo_magazine/rifle
@@ -2250,6 +2252,7 @@ Imports
 					/obj/item/weapon/gun/rifle/m41ae2_hpr,
 					/obj/item/ammo_magazine/m41ae2_hpr,
 					/obj/item/ammo_magazine/m41ae2_hpr,
+					/obj/item/ammo_magazine/m41ae2_hpr,
 					/obj/item/ammo_magazine/m41ae2_hpr
 					)
 	cost = 30
@@ -2261,6 +2264,7 @@ Imports
 	name = "MP5 SMG"
 	contains = list(
 					/obj/item/weapon/gun/smg/mp5,
+					/obj/item/ammo_magazine/smg/mp5,
 					/obj/item/ammo_magazine/smg/mp5,
 					/obj/item/ammo_magazine/smg/mp5,
 					/obj/item/ammo_magazine/smg/mp5
@@ -2276,6 +2280,7 @@ Imports
 					/obj/item/weapon/gun/smg/mp7,
 					/obj/item/ammo_magazine/smg/mp7,
 					/obj/item/ammo_magazine/smg/mp7,
+					/obj/item/ammo_magazine/smg/mp7,
 					/obj/item/ammo_magazine/smg/mp7
 					)
 	cost = 30
@@ -2287,6 +2292,7 @@ Imports
 	name = "Skorpion SMG"
 	contains = list(
 					/obj/item/weapon/gun/smg/skorpion,
+					/obj/item/ammo_magazine/smg/skorpion,
 					/obj/item/ammo_magazine/smg/skorpion,
 					/obj/item/ammo_magazine/smg/skorpion,
 					/obj/item/ammo_magazine/smg/skorpion
@@ -2302,6 +2308,7 @@ Imports
 					/obj/item/weapon/gun/smg/uzi,
 					/obj/item/ammo_magazine/smg/uzi,
 					/obj/item/ammo_magazine/smg/uzi,
+					/obj/item/ammo_magazine/smg/uzi,
 					/obj/item/ammo_magazine/smg/uzi
 					)
 	cost = 30
@@ -2315,6 +2322,7 @@ Imports
 					/obj/item/weapon/gun/smg/ppsh,
 					/obj/item/ammo_magazine/smg/ppsh,
 					/obj/item/ammo_magazine/smg/ppsh,
+					/obj/item/ammo_magazine/smg/ppsh,
 					/obj/item/ammo_magazine/smg/ppsh
 					)
 	cost = 30
@@ -2326,6 +2334,7 @@ Imports
 	name = "FN P9000 SMG"
 	contains = list(
 					/obj/item/weapon/gun/smg/p90,
+					/obj/item/ammo_magazine/smg/p90,
 					/obj/item/ammo_magazine/smg/p90,
 					/obj/item/ammo_magazine/smg/p90,
 					/obj/item/ammo_magazine/smg/p90
@@ -2405,6 +2414,7 @@ Imports
 	name = "Lever Action Rifle"
 	contains = list(
 					/obj/item/weapon/gun/shotgun/pump/lever,
+					/obj/item/ammo_magazine/magnum,
 					/obj/item/ammo_magazine/magnum
 					)
 	cost = 30
@@ -2417,6 +2427,7 @@ Imports
 	contains = list(
 					/obj/item/weapon/gun/shotgun/pump/bolt,
 					/obj/item/ammo_magazine/rifle/bolt,
+					/obj/item/ammo_magazine/rifle/bolt,
 					/obj/item/ammo_magazine/rifle/bolt
 					)
 	cost = 30
@@ -2428,6 +2439,7 @@ Imports
 	name = "SVD Dragunov Sniper"
 	contains = list(
 					/obj/item/weapon/gun/rifle/sniper/svd,
+					/obj/item/ammo_magazine/sniper/svd,
 					/obj/item/ammo_magazine/sniper/svd,
 					/obj/item/ammo_magazine/sniper/svd,
 					/obj/item/ammo_magazine/sniper/svd
@@ -2443,6 +2455,7 @@ Imports
 					/obj/item/weapon/gun/rifle/ak47,
 					/obj/item/ammo_magazine/rifle/ak47,
 					/obj/item/ammo_magazine/rifle/ak47,
+					/obj/item/ammo_magazine/rifle/ak47,
 					/obj/item/ammo_magazine/rifle/ak47
 					)
 	cost = 30
@@ -2454,6 +2467,7 @@ Imports
 	name = "AK-47U Battle Carbine"
 	contains = list(
 					/obj/item/weapon/gun/rifle/ak47/carbine,
+					/obj/item/ammo_magazine/rifle/ak47,
 					/obj/item/ammo_magazine/rifle/ak47,
 					/obj/item/ammo_magazine/rifle/ak47,
 					/obj/item/ammo_magazine/rifle/ak47
@@ -2469,6 +2483,7 @@ Imports
 					/obj/item/weapon/gun/rifle/m16,
 					/obj/item/ammo_magazine/rifle/m16,
 					/obj/item/ammo_magazine/rifle/m16,
+					/obj/item/ammo_magazine/rifle/m16,
 					/obj/item/ammo_magazine/rifle/m16
 					)
 	cost = 30
@@ -2480,6 +2495,7 @@ Imports
 	name = "S&W .357 Revolver"
 	contains = list(
 					/obj/item/weapon/gun/revolver/small,
+					/obj/item/ammo_magazine/revolver/small,
 					/obj/item/ammo_magazine/revolver/small,
 					/obj/item/ammo_magazine/revolver/small,
 					/obj/item/ammo_magazine/revolver/small
@@ -2495,6 +2511,7 @@ Imports
 					/obj/item/weapon/gun/revolver/cmb,
 					/obj/item/ammo_magazine/revolver/cmb,
 					/obj/item/ammo_magazine/revolver/cmb,
+					/obj/item/ammo_magazine/revolver/cmb,
 					/obj/item/ammo_magazine/revolver/cmb
 					)
 	cost = 30
@@ -2506,6 +2523,7 @@ Imports
 	name = "Beretta 92FS Handgun"
 	contains = list(
 					/obj/item/weapon/gun/pistol/b92fs,
+					/obj/item/ammo_magazine/pistol/b92fs,
 					/obj/item/ammo_magazine/pistol/b92fs,
 					/obj/item/ammo_magazine/pistol/b92fs,
 					/obj/item/ammo_magazine/pistol/b92fs
@@ -2521,6 +2539,7 @@ Imports
 					/obj/item/weapon/gun/pistol/b92fs/raffica,
 					/obj/item/ammo_magazine/pistol/b93r,
 					/obj/item/ammo_magazine/pistol/b93r,
+					/obj/item/ammo_magazine/pistol/b93r,
 					/obj/item/ammo_magazine/pistol/b93r
 					)
 	cost = 30
@@ -2532,6 +2551,7 @@ Imports
 	name = "Desert Eagle Handgun"
 	contains = list(
 					/obj/item/weapon/gun/pistol/heavy,
+					/obj/item/ammo_magazine/pistol/heavy,
 					/obj/item/ammo_magazine/pistol/heavy,
 					/obj/item/ammo_magazine/pistol/heavy,
 					/obj/item/ammo_magazine/pistol/heavy
@@ -2547,6 +2567,7 @@ Imports
 					/obj/item/weapon/gun/pistol/kt42,
 					/obj/item/ammo_magazine/pistol/automatic,
 					/obj/item/ammo_magazine/pistol/automatic,
+					/obj/item/ammo_magazine/pistol/automatic,
 					/obj/item/ammo_magazine/pistol/automatic
 					)
 	cost = 30
@@ -2558,6 +2579,7 @@ Imports
 	name = "VP78 Handgun"
 	contains = list(
 					/obj/item/weapon/gun/pistol/vp78,
+					/obj/item/ammo_magazine/pistol/vp78,
 					/obj/item/ammo_magazine/pistol/vp78,
 					/obj/item/ammo_magazine/pistol/vp78,
 					/obj/item/ammo_magazine/pistol/vp78
@@ -2573,6 +2595,7 @@ Imports
 					/obj/item/weapon/gun/pistol/highpower,
 					/obj/item/ammo_magazine/pistol/highpower,
 					/obj/item/ammo_magazine/pistol/highpower,
+					/obj/item/ammo_magazine/pistol/highpower,
 					/obj/item/ammo_magazine/pistol/highpower
 					)
 	cost = 30
@@ -2584,6 +2607,7 @@ Imports
 	name = "Holdout Handgun"
 	contains = list(
 					/obj/item/weapon/gun/pistol/holdout,
+					/obj/item/ammo_magazine/pistol/holdout,
 					/obj/item/ammo_magazine/pistol/holdout,
 					/obj/item/ammo_magazine/pistol/holdout,
 					/obj/item/ammo_magazine/pistol/holdout
