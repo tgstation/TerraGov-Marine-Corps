@@ -223,7 +223,7 @@
 			owner.updatehealth()
 		return update_icon()
 	var/obj/item/clothing/worn_helmet = owner.head
-	if(body_part == HEAD && istype(worn_helmet, /obj/item/clothing/head/helmet)) //Early return if the body part is a head but target is wearing a helmet
+	if(body_part == HEAD && !(worn_helmet.flags_armor_features & ARMOR_NO_DECAP)) //Early return if the body part is a head but target is wearing a helmet
 		if(updating_health)
 			owner.updatehealth()
 		return update_icon()

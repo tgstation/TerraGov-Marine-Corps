@@ -1,6 +1,13 @@
 /obj/item/clothing
 	name = "clothing"
-	var/eye_protection = 0 //used for headgear, masks, and glasses, to see how much they protect eyes from bright lights.
+
+	/// Bitflags used to determine the state of the armor (light on, overlay used, or reinfornced), currently support flags are in [equipment.dm:100]
+	var/flags_armor_features = NONE
+
+	/// used for headgear, masks, and glasses, to see how much they protect eyes from bright lights.
+	var/eye_protection = 0
+
+	/// Used by headgear mostly to affect accuracy
 	var/accuracy_mod = 0
 
 //Updates the icons of the mob wearing the clothing item, if any.
@@ -45,8 +52,7 @@
 	var/fire_resist = T0C + 100
 	var/shield_state = "shield-blue"
 
-	/// Bitflags used to determine the state of the armor (light on, overlay used, or reinfornced), currently support flags are in [equipment.dm:100]
-	var/flags_armor_features = NONE
+
 	/// Strength of the armor light used by [proc/set_light()]
 	var/light_strength = 5
 
