@@ -34,7 +34,9 @@
 	. = ..()
 	var/list/tricord = list(/datum/reagent/medicine/tricordrazine)
 	var/list/tramadol = list(/datum/reagent/medicine/tramadol)
-	parent.AddComponent(/datum/component/suit_autodoc, 2.5 MINUTES, tricord, tricord, tricord, tricord, tramadol, 0.5)
+	/// This will do nothing without the autodoc update
+	var/list/supported_limbs = list(CHEST, GROIN, ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT, LEG_LEFT, LEG_RIGHT, FOOT_LEFT, FOOT_RIGHT)
+	parent.AddComponent(/datum/component/suit_autodoc, 2.5 MINUTES, tricord, tricord, tricord, tricord, tramadol, 0.5, supported_limbs)
 	parent.update_overlays()
 
 
