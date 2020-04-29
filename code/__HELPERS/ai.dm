@@ -20,3 +20,14 @@
 			continue
 		. += nearby_human
 	return .
+
+//Ditto above but xenomorphs
+/proc/cheap_get_xenos_near(atom/movable/source, distance)
+	. = list()
+	for(var/xeno in GLOB.alive_xeno_list)
+		var/mob/living/carbon/xenomorph/nearby_xeno = xeno
+		if(source.z != nearby_xeno.z)
+			continue
+		if(get_dist(source, nearby_xeno) > distance)
+			continue
+		. += nearby_xeno
