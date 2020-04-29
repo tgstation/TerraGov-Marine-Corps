@@ -611,15 +611,14 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 
 /datum/limb/proc/set_limb_destroyed(new_status = TRUE)
-	if(limb_status & LIMB_DESTROYED)
-		if(new_status != FALSE)
-			return
-		limb_status &= ~LIMB_DESTROYED
-		return new_status
-	if(new_status != TRUE)
-		return
-	limb_status |= LIMB_DESTROYED
+	if(new_status)
+		if((limb_status & LIMB_DESTROYED))
+			return // limb is already the state we want
+	else if(!(limb_status & LIMB_DESTROYED))
+		return // limb is already the state we want
+	limb_status ^= LIMB_DESTROYED // toggle the limb destroyed
 	return new_status
+
 
 /datum/limb/foot/set_limb_destroyed(new_status = TRUE)
 	. = ..()
