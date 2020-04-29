@@ -2492,7 +2492,7 @@ Imports
 	group = "Imports"
 
 /datum/supply_packs/imports_357
-	name = "S&W .357 Revolver"
+	name = "Smith and Wesson 357 Revolver"
 	contains = list(
 					/obj/item/weapon/gun/revolver/small,
 					/obj/item/ammo_magazine/revolver/small,
