@@ -855,17 +855,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if (prob(25))
 		release_restraints()
 
-	// This is mostly for the ninja suit to stop ninja being so crippled by breaks.
-	// TODO: consider moving this to a suit proc or process() or something during
-	// hardsuit rewrite.
-	if(ishuman(owner))
+	/// Emit a signal for autodoc to support the life if available
+	SEND_SIGNAL(owner, COMSIG_HUMAN_LIMB_FRACTURED, src)
 
-		var/mob/living/carbon/human/H = owner
-		if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit))
-
-			var/obj/item/clothing/suit/suit = H.wear_suit
-
-			suit.secure_limb(src, H)
 	return
 
 /datum/limb/proc/robotize()

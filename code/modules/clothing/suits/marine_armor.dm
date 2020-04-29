@@ -246,7 +246,7 @@
 
 /obj/item/clothing/suit/storage/marine/specialist/Initialize(mapload, ...)
 	. = ..()
-	AddComponent(/datum/component/suit_autodoc)
+	AddComponent(/datum/component/suit_autodoc, supporting_limbs=src.supporting_limbs)
 
 /obj/item/clothing/suit/storage/marine/B17
 	name = "\improper B17 defensive armor"
