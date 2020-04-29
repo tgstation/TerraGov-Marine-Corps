@@ -156,6 +156,19 @@
 			continue
 		L.screech_act(X, WORLD_VIEW_NUM, L in nearby_living)
 
+/datum/action/xeno_action/activable/screech/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/activable/screech/ai_should_use(target)
+	if(!iscarbon(target))
+		return ..()
+	if(get_dist(target, owner) > 4)
+		return ..()
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return ..()
+	return TRUE
+
+
 // ***************************************
 // *********** Gut
 // ***************************************
@@ -489,6 +502,7 @@
 	add_cooldown()
 	patient.adjustBruteLoss(-100)
 	patient.adjustFireLoss(-100)
+	patient.adjust_sunder(-10)
 	succeed_activate()
 	to_chat(owner, "<span class='xenonotice'>We channel our plasma to heal [target]'s wounds.</span>")
 	to_chat(patient, "<span class='xenonotice'>We feel our wounds heal. Bless the Queen!</span>")

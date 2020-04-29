@@ -18,7 +18,7 @@
 /mob/living/carbon/xenomorph/update_icons()
 	if(stat == DEAD)
 		icon_state = "[xeno_caste.caste_name] Dead"
-	else if(lying)
+	else if(lying_angle)
 		if((resting || IsSleeping()) && (!IsParalyzed() && !IsUnconscious() && health > 0))
 			icon_state = "[xeno_caste.caste_name] Sleeping"
 		else
@@ -97,7 +97,7 @@
 	if(on_fire)
 		var/image/I
 		if(mob_size == MOB_SIZE_BIG)
-			if((!initial(pixel_y) || lying) && !resting && !IsSleeping())
+			if((!initial(pixel_y) || lying_angle) && !resting && !IsSleeping())
 				I = image("icon"='icons/Xeno/2x2_Xenos.dmi', "icon_state"="alien_fire", "layer"=-X_FIRE_LAYER)
 			else
 				I = image("icon"='icons/Xeno/2x2_Xenos.dmi', "icon_state"="alien_fire_lying", "layer"=-X_FIRE_LAYER)
@@ -114,7 +114,7 @@
 	remove_overlay(X_WOUND_LAYER)
 	if(health < maxHealth * 0.5) //Injuries appear at less than 50% health
 		var/image/I
-		if(lying)
+		if(lying_angle)
 			if((resting || IsSleeping()) && (!IsParalyzed() && !IsUnconscious() && health > 0))
 				I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="[xeno_caste.wound_type]_wounded_resting", "layer"=-X_WOUND_LAYER)
 			else

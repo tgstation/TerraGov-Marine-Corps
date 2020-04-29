@@ -32,6 +32,8 @@
 		to_chat(src, "<span class='notice'>You fail to get up.</span>")
 
 /mob/living/proc/set_resting(rest, silent = TRUE)
+	if(status_flags & INCORPOREAL)
+		return
 	if(!silent)
 		if(rest)
 			to_chat(src, "<span class='notice'>You are now resting.</span>")
@@ -76,7 +78,7 @@
 	if(!A.mouse_opacity) //Can't click it? can't point at it.
 		return FALSE
 
-	if(incapacitated() || (status_flags & FAKEDEATH)) //Incapacitated, can't point.
+	if(incapacitated() || HAS_TRAIT(src, TRAIT_FAKEDEATH)) //Incapacitated, can't point.
 		return FALSE
 
 	var/tile = get_turf(A)

@@ -467,7 +467,7 @@
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "marinedropship", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, ui_key, "MarineDropship", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /obj/machinery/computer/shuttle/marine_dropship/ui_data(mob/user)
@@ -1024,16 +1024,15 @@
 	possible_destinations = "canterbury_loadingdock"
 
 /obj/machinery/computer/shuttle/shuttle_control/canterbury/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
-
 	if(!href_list["move"] || !iscrashgamemode(SSticker.mode))
+		to_chat(usr, "<span class='warning'>[src] is unresponsive.</span>")
 		return
-	var/datum/game_mode/infestation/crash/C = SSticker.mode
 
 	if(!length(GLOB.active_nuke_list) && alert(usr, "Are you sure you want to launch the shuttle? Without sufficiently dealing with the threat, you will be in direct violation of your orders!", "Are you sure?", "Yes", "Cancel") != "Yes")
 		return
 
-	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_INPROGRESS), 15 SECONDS)
-	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_COMPLETED), 5 MINUTES)
+	. = ..()
+	if(.)
+		var/datum/game_mode/infestation/crash/C = SSticker.mode
+		addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_INPROGRESS), 15 SECONDS)
+		addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_COMPLETED), 5 MINUTES)

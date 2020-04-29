@@ -233,17 +233,18 @@
 	flags_item_map_variant = NONE
 	starting_attachment_types = list(/obj/item/attachable/scope/pmc, /obj/item/attachable/sniperbarrel)
 
-	fire_delay = 2.5 SECONDS
+	fire_delay = 1.5 SECONDS
 	accuracy_mult = 1.50
 	scatter = 15
 	recoil = 5
+	burst_amount = 1
 
 
 /obj/item/weapon/gun/rifle/sniper/elite/simulate_recoil(total_recoil = 0, mob/user)
 	. = ..()
 	if(.)
 		var/mob/living/carbon/human/PMC_sniper = user
-		if(PMC_sniper.lying == 0 && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC) && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/veteran))
+		if(PMC_sniper.lying_angle == 0 && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC) && !istype(PMC_sniper.wear_suit,/obj/item/clothing/suit/storage/marine/veteran))
 			PMC_sniper.visible_message("<span class='warning'>[PMC_sniper] is blown backwards from the recoil of the [src]!</span>","<span class='highdanger'>You are knocked prone by the blowback!</span>")
 			step(PMC_sniper,turn(PMC_sniper.dir,180))
 			PMC_sniper.Paralyze(10 SECONDS)
@@ -867,7 +868,7 @@
 	smoke.set_up(0, backblast_loc)
 	smoke.start()
 	for(var/mob/living/carbon/victim in backblast_loc)
-		if(victim.lying || victim.stat == DEAD) //Have to be standing up to get the fun stuff
+		if(victim.lying_angle || victim.stat == DEAD) //Have to be standing up to get the fun stuff
 			continue
 		victim.adjustBruteLoss(15) //The shockwave hurts, quite a bit. It can knock unarmored targets unconscious in real life
 		victim.Paralyze(60) //For good measure

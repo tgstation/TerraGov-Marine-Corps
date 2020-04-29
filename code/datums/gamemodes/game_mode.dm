@@ -508,6 +508,11 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 			continue
 		if((!(X.z in z_levels) && !X.is_ventcrawling) || isspaceturf(X.loc))
 			continue
+
+		// Never count hivemind
+		if(isxenohivemind(X))
+			continue
+
 		num_xenos++
 
 	return list(num_humans, num_xenos)
@@ -619,12 +624,13 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	return TRUE
 
 
-/datum/game_mode/proc/LateSpawn(mob/new_player/player, datum/job/job)
+/datum/game_mode/proc/LateSpawn(mob/new_player/player)
 	player.close_spawn_windows()
 	player.spawning = TRUE
 	player.create_character()
 	SSjob.spawn_character(player, TRUE)
 	player.mind.transfer_to(player.new_character)
+	var/datum/job/job = player.assigned_role
 	job.on_late_spawn(player.new_character)
 	qdel(player)
 

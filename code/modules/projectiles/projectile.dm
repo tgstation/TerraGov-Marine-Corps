@@ -599,7 +599,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 /mob/living/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	if(lying && src != proj.original_target)
+	if(status_flags & INCORPOREAL)
+		return FALSE
+	if(lying_angle && src != proj.original_target)
 		return FALSE
 	if((proj.ammo.flags_ammo_behavior & AMMO_XENO) && (isnestedhost(src) || stat == DEAD))
 		return FALSE
@@ -621,7 +623,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	#endif
 
 	. = max(5, .) //default hit chance is at least 5%.
-	if(lying && stat != CONSCIOUS)
+	if(lying_angle && stat != CONSCIOUS)
 		. += 15 //Bonus hit against unconscious people.
 
 	if(isliving(proj.firer))
@@ -658,7 +660,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			proj.def_zone = new_def_zone
 			return TRUE
 
-	if(!lying) //Narrow miss!
+	if(!lying_angle) //Narrow miss!
 		animatation_displace_reset(src)
 		if(proj.ammo.sound_miss)
 			playsound_local(get_turf(src), proj.ammo.sound_miss, 75, 1)

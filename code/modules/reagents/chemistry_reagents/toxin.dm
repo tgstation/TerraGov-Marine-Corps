@@ -124,7 +124,7 @@
 	taste_description = "death"
 
 /datum/reagent/toxin/zombiepowder/on_mob_add(mob/living/L, metabolism)
-	L.status_flags |= FAKEDEATH
+	ADD_TRAIT(L, TRAIT_FAKEDEATH, type)
 	return ..()
 
 /datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/L, metabolism)
@@ -133,7 +133,7 @@
 	return ..()
 
 /datum/reagent/toxin/zombiepowder/on_mob_delete(mob/living/L, metabolism)
-	L.status_flags &= ~FAKEDEATH
+	REMOVE_TRAIT(L, TRAIT_FAKEDEATH, type)
 	return ..()
 
 /datum/reagent/toxin/mindbreaker
@@ -452,18 +452,16 @@
 
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
 	var/pain_damage = volume * REM
-	L.apply_damage(pain_damage, AGONY) //1st level neurotoxin effects: pain
-	if(volume > 5) //2nd level neurotoxin effects: drug overlay, stuttering, kept to let you know you're stung.
-		L.adjust_drugginess(1.1)
-		L.stuttering = max(L.stuttering, 1)
-	switch(current_cycle)
-		if(10 to INFINITY)
-			L.adjustStaminaLoss((current_cycle/1.5 - 5)*REM)
+	L.apply_damage(pain_damage, AGONY)
+	L.adjustStaminaLoss((current_cycle/2.0)*REM) //stamina damage prevents stamina regen. The host can be immediately tackled down, or followed until the toxin takes effect.
+	L.adjust_drugginess(1.1)
+	L.stuttering = max(L.stuttering, 1)
 	return ..()
 
 
 /datum/reagent/toxin/xeno_neurotoxin/overdose_process(mob/living/L, metabolism)
-	L.adjustOxyLoss(2) //Overdose starts applying more oxy damage
+	L.adjustToxLoss(REM) //Overdose starts applying toxin and oxygen damage. Long-term overdose will kill the host.
+	L.adjustOxyLoss(REM)
 	L.jitter(4) //Lets Xenos know they're ODing and should probably stop.
 
 

@@ -89,7 +89,7 @@
 	else if(handcuffed || legcuffed)
 		icon_state = "[bloody][base_icon_state] Cuff"
 
-	else if(lying)
+	else if(lying_angle)
 		if((resting || IsSleeping()) && (!IsParalyzed() && !IsUnconscious() && health > 0))
 			icon_state = "[bloody][base_icon_state] Sleeping"
 		else
@@ -101,6 +101,6 @@
 // *********** Death
 // ***************************************
 /mob/living/carbon/xenomorph/larva/death(gibbed, deathmessage)
-	log_game("[key_name(src)] died as a Larva at [AREACOORD(src.loc)].")
+	log_game("[key_name(src)] died as a Larva at [AREACOORD(src)].")
 	message_admins("[ADMIN_TPMONTY(src)] died as a Larva.")
 	return ..()

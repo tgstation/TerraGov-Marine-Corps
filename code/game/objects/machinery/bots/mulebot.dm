@@ -639,9 +639,7 @@
 	var/mob/living/L = A
 	visible_message("<span class='warning'>[src] knocks over [L]!</span>")
 	L.stop_pulling()
-	L.Stun(16 SECONDS)
 	L.Paralyze(10 SECONDS)
-	L.lying = TRUE
 
 
 // called from mob/living/carbon/human/Crossed()

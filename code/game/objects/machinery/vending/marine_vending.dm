@@ -27,8 +27,8 @@
 					/obj/item/ammo_magazine/standard_lmg = 30,
 					/obj/item/weapon/gun/rifle/standard_dmr = 10,
 					/obj/item/ammo_magazine/rifle/standard_dmr = 25,
-					/obj/item/weapon/gun/energy/lasgun/M43 = 10,
-					/obj/item/cell/lasgun/M43 = 20,
+					/obj/item/weapon/gun/energy/lasgun/lasrifle = 10,
+					/obj/item/cell/lasgun/lasrifle = 20,
 					/obj/item/weapon/gun/shotgun/pump/t35 = 10,
 					/obj/item/ammo_magazine/shotgun = 10,
 					/obj/item/ammo_magazine/shotgun/buckshot = 10,
@@ -83,6 +83,7 @@
 					/obj/item/storage/belt/knifepouch = 10,
 					/obj/item/belt_harness/marine = 10,
 					/obj/item/storage/belt/utility/full = 10,
+					/obj/item/storage/belt/sparepouch = 5,
 					/obj/item/storage/belt/grenade = 5,
 					/obj/item/storage/belt/gun/pistol/standard_pistol = 10,
 					/obj/item/storage/belt/gun/revolver/standard_revolver = 5,
@@ -115,7 +116,7 @@
 					/obj/item/weapon/gun/rifle/standard_assaultrifle = 20,
 					/obj/item/weapon/gun/rifle/standard_lmg = 10,
 					/obj/item/weapon/gun/rifle/standard_dmr = 10,
-					/obj/item/weapon/gun/energy/lasgun/M43 = 10,
+					/obj/item/weapon/gun/energy/lasgun/lasrifle = 10,
 					/obj/item/weapon/gun/shotgun/pump/t35 = 10,
 					/obj/item/weapon/gun/rifle/standard_autoshotgun = 10,
 					/obj/item/explosive/mine = 2,
@@ -176,8 +177,8 @@
 					/obj/item/ammo_magazine/rifle/standard_assaultrifle = 15,
 					/obj/item/ammo_magazine/standard_lmg = 10,
 					/obj/item/ammo_magazine/rifle/standard_dmr = 25,
-					/obj/item/cell/lasgun/M43 = 15,
-					/obj/item/cell/lasgun/M43/highcap = 5,
+					/obj/item/cell/lasgun/lasrifle = 15,
+					/obj/item/cell/lasgun/lasrifle/highcap = 5,
 					/obj/item/shotgunbox = 3,
 					/obj/item/ammo_magazine/shotgun = 10,
 					/obj/item/shotgunbox/buckshot = 3,
@@ -212,7 +213,7 @@
 	GLOB.cargo_ammo_vendors.Remove(src)
 
 /obj/machinery/vending/lasgun
-	name = "ColMarTech Lasgun Field Charger"
+	name = "ColMarTech lasrifle Field Charger"
 	desc = "An automated power cell dispenser and charger. Used to recharge energy weapon power cells, including in the field. Has an internal battery that charges off the power grid when wrenched down."
 	icon_state = "lascharger"
 	icon_vend = "lascharger-vend"
@@ -227,10 +228,10 @@
 	machine_current_charge = 50000 //integrated battery for recharging energy weapons. Normally 10000.
 	machine_max_charge = 50000
 
-	product_ads = "Lasgun running low? Recharge here!;Need a charge?;Power up!;Electrifying!;Empower yourself!"
+	product_ads = "Lasrifle running low? Recharge here!;Need a charge?;Power up!;Electrifying!;Empower yourself!"
 	products = list(
-					/obj/item/cell/lasgun/M43 = 10,
-					/obj/item/cell/lasgun/M43/highcap = 2,
+					/obj/item/cell/lasgun/lasrifle = 10,
+					/obj/item/cell/lasgun/lasrifle/highcap = 2,
 					)
 
 	contraband =   list()
@@ -273,7 +274,7 @@
 	if(machine_stat & (BROKEN|NOPOWER))
 		return
 
-	if(user.stat || user.restrained() || user.lying)
+	if(user.stat || user.restrained() || user.lying_angle)
 		return
 
 	if(get_dist(user, src) > 1 || get_dist(src, A) > 1)
@@ -379,6 +380,9 @@
 					/obj/item/storage/pill_bottle/kelotane = 3,
 					/obj/item/storage/pill_bottle/spaceacillin = 3,
 					/obj/item/storage/pill_bottle/inaprovaline = 3,
+					/obj/item/storage/pill_bottle/alkysine = 3,
+					/obj/item/storage/pill_bottle/tricordrazine = 3,
+					/obj/item/storage/pill_bottle/imidazoline = 3,
 					/obj/item/storage/pill_bottle/tramadol = 3,
 					/obj/item/storage/pill_bottle/russianRed = 5,
 					/obj/item/storage/pill_bottle/peridaxon = 2,
@@ -626,11 +630,6 @@
 						/obj/item/attachable/extended_barrel = 8,
 						/obj/item/attachable/heavy_barrel = 2,
 						/obj/item/attachable/suppressor = 8,
-						/obj/item/attachable/widelens = 4,
-						/obj/item/attachable/heatlens = 4,
-						/obj/item/attachable/focuslens = 4,
-						/obj/item/attachable/efflens = 4,
-						/obj/item/attachable/pulselens = 4,
 
 						/obj/item/attachable/flashlight = 20,
 						/obj/item/attachable/magnetic_harness = 8,
@@ -705,6 +704,7 @@
 					/obj/item/storage/belt/shotgun = 10,
 					/obj/item/storage/belt/knifepouch = 10,
 					/obj/item/belt_harness/marine = 10,
+					/obj/item/storage/belt/sparepouch = 10,
 					/obj/item/storage/belt/gun/pistol/standard_pistol = 10,
 					/obj/item/storage/belt/gun/revolver/standard_revolver = 10,
 					/obj/item/storage/large_holster/t19 = 10,

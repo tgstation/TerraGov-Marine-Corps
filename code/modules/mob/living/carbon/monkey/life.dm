@@ -39,7 +39,7 @@
 		if (radiation > 100)
 			radiation = 100
 			Paralyze(20 SECONDS)
-			if(!lying)
+			if(!lying_angle)
 				to_chat(src, "<span class='warning'>You feel weak.</span>")
 				emote("collapse")
 
@@ -55,7 +55,7 @@
 				if(prob(5))
 					radiation -= 5
 					Paralyze(60)
-					if(!lying)
+					if(!lying_angle)
 						to_chat(src, "<span class='warning'>You feel weak.</span>")
 						emote("collapse")
 

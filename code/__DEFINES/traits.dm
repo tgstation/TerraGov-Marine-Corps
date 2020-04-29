@@ -88,3 +88,4 @@
 #define TRAIT_BATONIMMUNE		"baton_immunity"
 #define TRAIT_SLEEPIMMUNE		"sleep_immunity"
 #define TRAIT_FLASHBANGIMMUNE	"flashbang_immunity"
+#define TRAIT_FAKEDEATH			"fakedeath" //Makes the owner appear as dead to most forms of medical examination

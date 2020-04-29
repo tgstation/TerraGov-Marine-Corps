@@ -27,7 +27,7 @@
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "M56D_case" // I guess a placeholder? Not actually going to show up ingame for now.
 	w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 6
+	storage_slots = 7
 	bypass_w_limit = list(
 		/obj/item/m56d_gun,
 		/obj/item/ammo_magazine/m56d,
@@ -41,6 +41,8 @@
 	new /obj/item/tool/wrench(src) //wrench to hold it down into the ground
 	new /obj/item/tool/screwdriver(src) //screw the gun onto the post.
 	new /obj/item/ammo_magazine/m56d(src)
+	new /obj/item/m56d_post(src) //spare post for the gun
+
 
 // The actual gun itself.
 /obj/item/m56d_gun
@@ -509,7 +511,7 @@
 /obj/machinery/m56d_hmg/InterceptClickOn(mob/user, params, atom/object)
 	if(is_bursting)
 		return TRUE
-	if(user.lying || !Adjacent(user) || user.incapacitated())
+	if(user.lying_angle || !Adjacent(user) || user.incapacitated())
 		user.unset_interaction()
 		return FALSE
 	if(user.get_active_held_item())
@@ -575,7 +577,7 @@
 	user.verbs -= /mob/living/proc/toogle_mg_burst_fire
 
 /obj/machinery/m56d_hmg/check_eye(mob/user)
-	if(user.lying || !Adjacent(user) || user.incapacitated() || !user.client)
+	if(user.lying_angle || !Adjacent(user) || user.incapacitated() || !user.client)
 		user.unset_interaction()
 
 /mob/living/proc/toogle_mg_burst_fire(obj/machinery/m56d_hmg/MG in list(interactee))

@@ -65,14 +65,14 @@
 	var/fire_resist = 1 //0 to 1; lower is better as it is a multiplier.
 
 	// *** Sunder *** //
-	var/sunder_recover = 3 // How much sunder is recovered per tick
+	var/sunder_recover = 0.5 // How much sunder is recovered per tick
 	var/sunder_max = 100 // What is the max amount of sunder that can be applied to a xeno (100 = 100%)
 
 	// *** Ranged Attack *** //
 	var/spit_delay = 6 SECONDS //Delay timer for spitting
 	var/list/spit_types //list of datum projectile types the xeno can use.
 
-	var/charge_type = 0 //0: normal. 1: warrior/hunter style pounce. 2: ravager free attack.
+	var/charge_type = 0
 	var/pounce_delay = 4 SECONDS
 
 	var/acid_spray_range = 0

@@ -24,7 +24,7 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_agility_toggles")
 	if (X.agility)
 		to_chat(X, "<span class='xenowarning'>We lower ourselves to all fours and loosen our armored scales to ease our movement.</span>")
-		X.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1)
+		X.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -0.6)
 		X.armor_bonus -= WARRIOR_AGILITY_ARMOR
 	else
 		to_chat(X, "<span class='xenowarning'>We raise ourselves to stand on two feet, hard scales setting back into place.</span>")
@@ -81,6 +81,18 @@
 	var/mob/living/carbon/human/H = A
 	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_DEAD_TARGET) && H.stat == DEAD)
 		return FALSE
+
+/datum/action/xeno_action/activable/lunge/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/activable/lunge/ai_should_use(target)
+	if(!iscarbon(target))
+		return ..()
+	if(get_dist(target, owner) > 2)
+		return ..()
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return ..()
+	return TRUE
 
 /datum/action/xeno_action/activable/lunge/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -169,6 +181,18 @@
 
 	add_cooldown()
 
+/datum/action/xeno_action/activable/fling/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/activable/fling/ai_should_use(target)
+	if(!iscarbon(target))
+		return ..()
+	if(get_dist(target, owner) > 1)
+		return ..()
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return ..()
+	return TRUE
+
 // ***************************************
 // *********** Punch
 // ***************************************
@@ -247,6 +271,18 @@
 
 	apply_damage(damage, STAMINA) //Armor penetrating halloss also applies.
 	UPDATEHEALTH(src)
+
+/datum/action/xeno_action/activable/punch/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/activable/punch/ai_should_use(target)
+	if(!iscarbon(target))
+		return ..()
+	if(get_dist(target, owner) > 1)
+		return ..()
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return ..()
+	return TRUE
 
 // ***************************************
 // *********** Rip limb
