@@ -130,7 +130,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 	var/icon/standing = new('icons/mob/dam_human.dmi', "00")
 
-	var/image/standing_image = image("icon" = standing, "layer" = DAMAGE_LAYER)
+	var/image/standing_image = image("icon" = standing, "layer" = -DAMAGE_LAYER)
 
 	// blend the individual damage states with our icons
 	for(var/o in limbs)
