@@ -73,6 +73,17 @@
 			owner.hud_used.move_intent.icon_state = "running"
 		owner.update_icons()
 
+/datum/action/xeno_action/activable/pounce/hunter/mob_hit(datum/source, mob/living/M)
+	if(M.stat || isxeno(M))
+		return
+	. = ..()
+	var/mob/living/carbon/xenomorph/hunter/X = owner
+	// TODO: remove stealth router in favour of a signal
+	if(X.stealth_router(HANDLE_STEALTH_CHECK))
+		M.adjust_stagger(3)
+		M.add_slowdown(1)
+		to_chat(X, "<span class='xenodanger'>Pouncing from the shadows, we stagger our victim.</span>")
+
 /datum/action/xeno_action/activable/pounce/hunter/sneak_attack()
 	var/mob/living/carbon/xenomorph/hunter/X = owner
 	if(X.can_sneak_attack) //If we could sneak attack, add a cooldown to sneak attack
