@@ -119,7 +119,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	/obj/item/weapon/gun/rifle/standard_assaultrifle,
 	/obj/item/weapon/gun/rifle/standard_lmg,
 	/obj/item/weapon/gun/rifle/standard_dmr,
-	/obj/item/weapon/gun/energy/lasgun/M43,
+	/obj/item/weapon/gun/energy/lasgun/lasrifle,
 	/obj/item/weapon/gun/shotgun/pump/t35,
 	/obj/item/weapon/gun/rifle/standard_autoshotgun,
 	/obj/item/ammobox,
