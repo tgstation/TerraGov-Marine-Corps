@@ -2603,7 +2603,6 @@
 /obj/machinery/crema_switch{
 	pixel_x = 24
 	},
-/obj/structure/curtain/medical,
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/lower_medical)
 "hP" = (
