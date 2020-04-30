@@ -57,10 +57,6 @@
 
 
 /mob/living/proc/embed_item(obj/item/embedding, target_zone, silent)
-	return
-
-
-/mob/living/embed_item(obj/item/embedding, target_zone, silent)
 	embedded_objects += embedding
 	embedded_objects[embedding] = loc
 
