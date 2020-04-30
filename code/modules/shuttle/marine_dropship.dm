@@ -495,7 +495,7 @@
 		locked++
 	else
 		data["rear"] = 1
-	
+
 	var/leftdoor = 0
 	for(var/i in shuttle.left_airlocks)
 		var/obj/machinery/door/airlock/A = i
@@ -584,9 +584,9 @@
 		if(!allowed(usr))
 			return
 		if(href_list["lockdown"])
-			
+
 		else if(href_list["release"])
-			
+
 		else if(href_list["lock"])
 			M.lockdown_airlocks(href_list["lock"])
 		else if(href_list["unlock"])
@@ -1030,6 +1030,9 @@
 
 	if(!length(GLOB.active_nuke_list) && alert(usr, "Are you sure you want to launch the shuttle? Without sufficiently dealing with the threat, you will be in direct violation of your orders!", "Are you sure?", "Yes", "Cancel") != "Yes")
 		return
+
+	log_admin("[key_name(usr)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
+	message_admins("[ADMIN_TPMONTY(usr)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
 
 	. = ..()
 	if(.)
