@@ -1071,7 +1071,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "overcharged laser bolt"
 	icon_state = "heavylaser"
 	hud_state = "laser_sniper"
-	damage = 42 //requires mod with -0.15 multiplier should math out to 40
+	damage = 42 
 	max_range = 40
 	penetration = 20
 	sundering = 5
@@ -1096,7 +1096,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 9
 	accurate_range = 5
 	max_range = 5
-	damage = 42 //requires mod with -0.15 multiplier should math out to 40
+	damage = 42 
 	damage_falloff = 10
 	penetration = 0
 	sundering = 2.5
@@ -1141,6 +1141,20 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	staggerstun(C, P, stagger = 1, slowdown = 1) //Staggers and slows down briefly
 
 	return ..()
+
+
+/datum/ammo/energy/plasma
+	name = "plasma bolt"
+	icon_state = "pulse2"
+	hud_state = "plasma"
+	armor_type = "laser"
+	shell_speed = 4
+	accurate_range = 15
+	damage = 40
+	penetration = 15
+	max_range = 30
+	accuracy_var_low = 3
+	accuracy_var_high = 3
 
 /*
 //================================================
