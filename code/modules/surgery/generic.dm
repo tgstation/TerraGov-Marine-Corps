@@ -45,7 +45,7 @@
 	affected.surgery_open_stage = 1
 
 	if(istype(target) && !(target.species.species_flags & NO_BLOOD))
-		affected.limb_status |= LIMB_BLEEDING
+		affected.add_limb_flags(LIMB_BLEEDING)
 
 	affected.createwound(CUT, 1)
 	affected.clamp_bleeder() //Hemostat function, clamp bleeders
@@ -87,7 +87,7 @@
 	affected.surgery_open_stage = 1
 
 	if(istype(target) && !(target.species.species_flags & NO_BLOOD))
-		affected.limb_status |= LIMB_BLEEDING
+		affected.add_limb_flags(LIMB_BLEEDING)
 
 	affected.createwound(CUT, 1)
 	affected.clamp_bleeder() //Hemostat function, clamp bleeders
@@ -129,7 +129,7 @@
 	affected.surgery_open_stage = 1
 
 	if(istype(target) && !(target.species.species_flags & NO_BLOOD))
-		affected.limb_status |= LIMB_BLEEDING
+		affected.add_limb_flags(LIMB_BLEEDING)
 
 	affected.createwound(CUT, 1)
 	target.updatehealth()
@@ -249,7 +249,7 @@
 	"<span class='notice'>You cauterize the incision on [target]'s [affected.display_name] with \the [tool].</span>")
 	affected.surgery_open_stage = 0
 	affected.germ_level = 0
-	affected.limb_status &= ~LIMB_BLEEDING
+	affected.remove_limb_flags(LIMB_BLEEDING)
 
 /datum/surgery_step/generic/cauterize/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message("<span class='warning'>[user]'s hand slips, leaving a small burn on [target]'s [affected.display_name] with \the [tool]!</span>", \

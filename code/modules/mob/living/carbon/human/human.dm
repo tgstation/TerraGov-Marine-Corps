@@ -467,7 +467,7 @@
 					for(var/organ in list("l_leg","r_leg","l_arm","r_arm","r_hand","l_hand","r_foot","l_foot","chest","head","groin"))
 						var/datum/limb/o = get_limb(organ)
 						if (o && o.limb_status & LIMB_SPLINTED)
-							o.limb_status &= ~LIMB_SPLINTED
+							o.remove_limb_flags(LIMB_SPLINTED)
 							limbcount++
 					if(limbcount)
 						new /obj/item/stack/medical/splint(loc, limbcount)
