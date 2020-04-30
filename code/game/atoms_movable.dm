@@ -36,9 +36,6 @@
 
 	var/datum/component/orbiter/orbiting
 
-	///Lazy associative list of currently active cooldowns.
-	var/list/cooldowns
-
 //===========================================================================
 /atom/movable/Destroy()
 	QDEL_NULL(proximity_monitor)
@@ -880,7 +877,3 @@
 
 /atom/movable/proc/setGrabState(newstate)
 	grab_state = newstate
-
-
-/atom/movable/proc/end_cooldown(index)
-	COOLDOWN_END(src, index)

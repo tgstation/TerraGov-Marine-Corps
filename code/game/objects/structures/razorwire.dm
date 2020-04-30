@@ -82,7 +82,6 @@
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 	entangled_list -= M
 	M.entangled_by = null
-	COOLDOWN_EARLY_END(M, COOLDOWN_ENTANGLE)
 	M.set_frozen(FALSE)
 	M.update_canmove()
 	M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, TRUE) //Apply damage as we tear free
@@ -107,7 +106,6 @@
 		L.update_canmove()
 		if(L.entangled_by == src)
 			L.entangled_by = null
-			COOLDOWN_EARLY_END(L, COOLDOWN_ENTANGLE)
 	entangled_list.Cut()
 	return ..()
 
