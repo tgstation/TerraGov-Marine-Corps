@@ -18,7 +18,9 @@ Cloning shit
 	START_PROCESSING(SSmachines, src) // Registered for power usage
 
 /obj/machinery/cloning/relaymove(mob/user)
-	CHECK_COOLDOWN(user, COOLDOWN_RELAYMOVE, 2 SECONDS, FALSE)
+	if(COOLDOWN_CHECK(user, COOLDOWN_RELAYMOVE))
+		return
+	COOLDOWN_START(user, COOLDOWN_RELAYMOVE, 2 SECONDS)
 	user.visible_message("You hear something bang on the window of \the [src]", "The door won't budge")
 	return FALSE
 

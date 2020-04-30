@@ -14,6 +14,7 @@
 #define COOLDOWN_ENTANGLE	"entangle"
 #define COOLDOWN_NEST		"nest"
 #define COOLDOWN_TASTE		"taste"
+#define COOLDOWN_RELAYMOVE	"relaymove"
 #define COOLDOWN_VENTSOUND	"vendsound"
 
 #define COOLDOWN_START(cd_source, cd_index, cd_time) LAZYSET(cd_source.cooldowns, cd_index, addtimer(CALLBACK(GLOBAL_PROC, /proc/end_cooldown, cd_source, cd_index), cd_time))
