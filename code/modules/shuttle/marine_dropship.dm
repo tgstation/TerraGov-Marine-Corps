@@ -495,7 +495,7 @@
 		locked++
 	else
 		.["rear"] = 1
-	
+
 	var/leftdoor = 0
 	for(var/i in shuttle.left_airlocks)
 		var/obj/machinery/door/airlock/A = i
