@@ -122,7 +122,7 @@
 	UPDATEHEALTH(owner)
 
 	if(!(limb_status & LIMB_ROBOT) && !(owner.species.species_flags & NO_BLOOD)) //There is no blood in protheses.
-		limb_status |= LIMB_BLEEDING
+		add_limb_flags(LIMB_BLEEDING)
 
 	if(prob(embedded.embedding.embedded_fall_chance))
 		take_damage_limb(embedded.embedding.embed_limb_damage * embedded.embedding.embedded_fall_dmg_multiplier)

@@ -147,9 +147,11 @@
 		H.internal_organs_by_name[organ] = new organ_type(H)
 
 	if(species_flags & IS_SYNTHETIC)
-		for(var/datum/limb/E in H.limbs)
-			if(E.limb_status & LIMB_DESTROYED) continue
-			E.limb_status |= LIMB_ROBOT
+		for(var/datum/limb/l in H.limbs)
+			var/datum/limb/robotic_limb = l
+			if(robotic_limb.limb_status & LIMB_DESTROYED)
+				continue
+			robotic_limb.add_limb_flags(LIMB_ROBOT)
 		for(var/datum/internal_organ/I in H.internal_organs)
 			I.mechanize()
 
