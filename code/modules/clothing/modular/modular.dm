@@ -26,6 +26,8 @@
 	)
 	flags_equip_slot = ITEM_SLOT_OCLOTHING
 	w_class = WEIGHT_CLASS_BULKY
+	time_to_equip = 2 SECONDS
+	time_to_unequip = 1 SECONDS
 
 	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	siemens_coefficient = 0.9
