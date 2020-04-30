@@ -69,7 +69,7 @@
 	ENABLE_BITFIELD(L.restrained_flags, RESTRAINED_NECKGRAB)
 	RegisterSignal(L, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
 	L.drop_all_held_items()
-	L.Knockdown(1)
+	L.Paralyze(1)
 	visible_message("<span class='xenowarning'>\The [src] grabs [L] by the throat!</span>", \
 	"<span class='xenowarning'>We grab [L] by the throat!</span>")
 	return TRUE

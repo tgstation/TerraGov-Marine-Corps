@@ -40,7 +40,7 @@
 		return
 
 	var/mob/living/LM = parent
-	if(LM.buckled || LM.lying || LM.throwing || LM.is_ventcrawling)
+	if(LM.buckled || LM.lying_angle || LM.throwing || LM.is_ventcrawling)
 		return
 
 	steps++

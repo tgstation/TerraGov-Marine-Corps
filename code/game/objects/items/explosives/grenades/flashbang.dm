@@ -53,7 +53,7 @@
 //Flashing everyone
 	if(M.flash_eyes())
 		M.Stun(40)
-		M.Knockdown(20 SECONDS)
+		M.Paralyze(20 SECONDS)
 
 
 
@@ -61,10 +61,10 @@
 	if((get_dist(M, T) <= 2 || src.loc == M.loc || src.loc == M))
 		if(ear_safety > 0)
 			M.Stun(40)
-			M.Knockdown(20)
+			M.Paralyze(20)
 		else
 			M.Stun(20 SECONDS)
-			M.Knockdown(60)
+			M.Paralyze(60)
 			if ((prob(14) || (M == src.loc && prob(70))))
 				M.adjust_ear_damage(rand(1, 10))
 			else

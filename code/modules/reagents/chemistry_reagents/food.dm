@@ -188,7 +188,7 @@
 		victim.blur_eyes(15)
 		victim.blind_eyes(5)
 		victim.Stun(10 SECONDS)
-		victim.Knockdown(10 SECONDS)
+		victim.Paralyze(10 SECONDS)
 		//victim.Unconscious(10)
 		//victim.drop_held_item()
 		return
@@ -209,7 +209,7 @@
 		victim.blur_eyes(25)
 		victim.blind_eyes(10)
 		victim.Stun(10 SECONDS)
-		victim.Knockdown(10 SECONDS)
+		victim.Paralyze(10 SECONDS)
 		//victim.Unconscious(10)
 		//victim.drop_held_item()
 
@@ -246,7 +246,7 @@
 /datum/reagent/consumable/sodiumchloride/overdose_crit_process(mob/living/L, metabolism)
 	L.jitter(5) //Turn super salty
 	if(prob(10))
-		L.Knockdown(20 SECONDS)
+		L.Paralyze(20 SECONDS)
 	if(prob(10))
 		L.emote(pick("cry","moan","pain"))
 

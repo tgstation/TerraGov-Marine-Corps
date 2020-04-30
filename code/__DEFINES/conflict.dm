@@ -49,8 +49,9 @@
 #define AMMO_SKIPS_ALIENS 		(1<<8)
 #define AMMO_IS_SILENCED 		(1<<9) //Unused right now.
 #define AMMO_IGNORE_ARMOR		(1<<10)
-#define AMMO_IGNORE_RESIST		(1<<11)
+#define AMMO_IGNORE_RESIST		(1<<11) //Unused.
 #define AMMO_BALLISTIC			(1<<12)
+#define AMMO_SUNDERING			(1<<13)
 
 //Gun defines for gun related thing. More in the projectile folder.
 //flags_gun_features
@@ -114,10 +115,10 @@
 #define SNIPER_LASER_ARMOR_MULTIPLIER	1.5 //+50% penetration vs the aimed target
 #define SNIPER_LASER_SLOWDOWN_STACKS	3
 
-//Define lasgun
-#define M43_STANDARD_AMMO_COST			20
-#define M43_OVERCHARGE_AMMO_COST		80
-#define M43_OVERCHARGE_FIRE_DELAY		10
+//Define lasrifle
+#define ENERGY_STANDARD_AMMO_COST			20
+#define ENERGY_OVERCHARGE_AMMO_COST		80
+#define ENERGY_OVERCHARGE_FIRE_DELAY		10
 
 //Define smoke effects
 #define SMOKE_COUGH			(1<<0)

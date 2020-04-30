@@ -347,7 +347,7 @@
 	if(prob(10 + (L.m_intent == MOVE_INTENT_RUN ? 40 : 0)))
 		to_chat(L, pick("<span class='notice'> You slip on something slimy.</span>", "<span class='notice'>You fall over into the murk.</span>"))
 		L.Stun(40)
-		L.Knockdown(20)
+		L.Paralyze(20)
 
 	//piranhas
 	if(prob(25))

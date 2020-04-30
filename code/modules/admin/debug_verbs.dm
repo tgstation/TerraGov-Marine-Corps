@@ -456,7 +456,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	var/spatial = FALSE
 	if(ishuman(M))
 		H = M
-		var/datum/job/J = SSjob.GetJob(H.job)
+		var/datum/job/J = H.job
 		spatial = istype(J, /datum/job/spatial_agent)
 
 	if(spatial)
@@ -468,7 +468,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		M.client.prefs.copy_to(H)
 		M.mind.transfer_to(H, TRUE)
 		var/datum/job/J = SSjob.GetJobType(/datum/job/spatial_agent)
-		J.assign_equip(H)
+		H.apply_assigned_role_to_spawn(J)
 		qdel(M)
 
 		log_admin("[key_name(H)] became a spatial agent.")

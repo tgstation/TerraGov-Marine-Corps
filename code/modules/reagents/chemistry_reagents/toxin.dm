@@ -24,13 +24,6 @@
 	toxpwr = 1
 	taste_description = "alchemy" //just anti-pwr-game stuff, no sci-fi or anything
 
-/datum/reagent/toxin/pttoxin
-	name = "Toxin"
-	description = "A toxic chemical."
-	custom_metabolism = REAGENTS_METABOLISM * 5
-	toxpwr = 1
-	taste_description = "alchemy"
-
 /datum/reagent/toxin/sdtoxin
 	name = "Toxin"
 	description = "A toxic chemical."
@@ -131,16 +124,16 @@
 	taste_description = "death"
 
 /datum/reagent/toxin/zombiepowder/on_mob_add(mob/living/L, metabolism)
+	ADD_TRAIT(L, TRAIT_FAKEDEATH, type)
 	return ..()
-	L.status_flags |= FAKEDEATH
 
 /datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/L, metabolism)
 	L.adjustOxyLoss(0.5*REM)
-	L.Knockdown(20 SECONDS)
+	L.Paralyze(20 SECONDS)
 	return ..()
 
 /datum/reagent/toxin/zombiepowder/on_mob_delete(mob/living/L, metabolism)
-	L.status_flags &= ~FAKEDEATH
+	REMOVE_TRAIT(L, TRAIT_FAKEDEATH, type)
 	return ..()
 
 /datum/reagent/toxin/mindbreaker
@@ -301,7 +294,7 @@
 	L.adjustOxyLoss(2)
 	switch(current_cycle)
 		if(7 to 15)
-			L.Knockdown(10 SECONDS)
+			L.Paralyze(10 SECONDS)
 		if(16 to INFINITY)
 			L.Unconscious(10 SECONDS)
 	return ..()
@@ -321,7 +314,7 @@
 		L.adjustOxyLoss(2)
 	switch(current_cycle)
 		if(7 to 15)
-			L.Knockdown(10 SECONDS)
+			L.Paralyze(10 SECONDS)
 		if(16 to INFINITY)
 			L.Unconscious(10 SECONDS)
 	return ..()
@@ -447,10 +440,10 @@
 
 /datum/reagent/toxin/xeno_neurotoxin
 	name = "Neurotoxin"
-	description = "A debilitating nerve toxin. Impedes motor control. Causes temporary blindness, hallucinations and deafness at higher doses."
+	description = "A debilitating nerve toxin. Impedes motor control in high doses. Causes progressive loss of mobility over time."
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
-	custom_metabolism = REAGENTS_METABOLISM * 6
+	custom_metabolism = REAGENTS_METABOLISM * 2
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 1.2 //make this a little more forgiving in light of the lethality
 	scannable = TRUE
@@ -458,45 +451,45 @@
 
 
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
-	var/halloss_damage = volume * 2 * REM
-	L.apply_damage(halloss_damage, HALLOSS) //1st level neurotoxin effects: halloss/pain
-	if(volume > 5) //2nd level neurotoxin effects: screen shake, drug overlay, stuttering, minor toxin damage
-		L.adjust_drugginess(1.1)
-		L.stuttering = max(L.stuttering, 1)
-	if(volume > 15) //3rd level neurotoxin effects: eye blur
-		L.blur_eyes(5)
-	if(volume > 20) //4th level neurotoxin effects: blindness, deafness
-		L.adjust_ear_damage(0, 1)
-		L.blind_eyes(5)
-	if(volume > 25) //5th level neurotoxin effects: paralysis
-		L.Knockdown(20)
+	var/pain_damage = volume * REM
+	L.apply_damage(pain_damage, AGONY)
+	L.adjustStaminaLoss((current_cycle/2.0)*REM) //stamina damage prevents stamina regen. The host can be immediately tackled down, or followed until the toxin takes effect.
+	L.adjust_drugginess(1.1)
+	L.stuttering = max(L.stuttering, 1)
 	return ..()
 
 
 /datum/reagent/toxin/xeno_neurotoxin/overdose_process(mob/living/L, metabolism)
-	L.adjustOxyLoss(5) //Overdose starts applying more oxy damage
+	L.adjustToxLoss(REM) //Overdose starts applying toxin and oxygen damage. Long-term overdose will kill the host.
+	L.adjustOxyLoss(REM)
 	L.jitter(4) //Lets Xenos know they're ODing and should probably stop.
 
 
 /datum/reagent/toxin/xeno_neurotoxin/overdose_crit_process(mob/living/L, metabolism)
-	L.Losebreath(2) //Can't breathe; for punishing the bullies
+	L.Losebreath(1) //Can't breathe; for punishing the bullies
 
 /datum/reagent/toxin/xeno_growthtoxin
 	name = "Larval Accelerant"
 	description = "A metabolic accelerant that dramatically increases the rate of larval growth in a host."
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
+	purge_list = list(/datum/reagent/toxin/xeno_neurotoxin) 
+	purge_rate = 10
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	toxpwr = 0
 	scannable = TRUE
 
 /datum/reagent/toxin/xeno_growthtoxin/on_mob_life(mob/living/L)
+	var/target_temp = L.get_standard_bodytemperature()
 	if(L.getBruteLoss() || L.getFireLoss())
 		L.heal_limb_damage(REM, REM)
 	if(L.getToxLoss())
 		L.adjustToxLoss(-REM)
+	if(L.bodytemperature > target_temp) 
+		L.adjust_bodytemperature(-20 * TEMPERATURE_DAMAGE_COEFFICIENT, target_temp)
 	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
+	L.jitter(1) //So unga know to get treated
 	return ..()
 
 /datum/reagent/toxin/xeno_growthtoxin/overdose_process(mob/living/L, metabolism)
@@ -505,4 +498,3 @@
 
 /datum/reagent/toxin/xeno_growthtoxin/overdose_crit_process(mob/living/L, metabolism)
 	L.Losebreath(2)
-

@@ -1,8 +1,7 @@
 GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		/mob/living,
 		/obj/item/disk/nuclear,
-		/obj/item/radio/beacon,
-		/obj/item/stack/sheet/mineral/phoron
+		/obj/item/radio/beacon
 	)))
 
 GLOBAL_LIST_EMPTY(exports_types)
@@ -201,7 +200,6 @@ GLOBAL_LIST_EMPTY(exports_types)
 	if(!GLOB.exports_types.len) // No exports list? Generate it!
 		setupExports()
 
-	var/plat_count = 0
 
 	for(var/place in shuttle_areas)
 		var/area/shuttle/shuttle_area = place
@@ -225,11 +223,6 @@ GLOBAL_LIST_EMPTY(exports_types)
 							find_slip = 0
 						continue
 
-					// Sell platinum
-					if(istype(A, /obj/item/stack/sheet/mineral/platinum))
-						var/obj/item/stack/sheet/mineral/platinum/P = A
-						plat_count += P.get_amount()
-
 			//Sell Xeno Corpses
 			if (isxeno(AM))
 				var/cost = 0
@@ -238,10 +231,15 @@ GLOBAL_LIST_EMPTY(exports_types)
 					if(AM.type == E.export_obj)
 						cost = E.cost
 				SSpoints.supply_points += cost
-			qdel(AM)
 
-	if(plat_count)
-		SSpoints.supply_points += plat_count * POINTS_PER_PLATINUM
+			// Sell ore boxes
+			if(istype(AM, /obj/structure/ore_box/platinum))
+				SSpoints.supply_points += POINTS_PER_PLATINUM
+
+			if(istype(AM, /obj/structure/ore_box/phoron))
+				SSpoints.supply_points += POINTS_PER_PHORON
+
+			qdel(AM)
 
 /obj/machinery/computer/supplycomp
 	name = "ASRS console"
@@ -329,7 +327,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 		if(!istype(P))	return
 
 		var/timeout = world.time + 600
-		var/reason = copytext(sanitize(input(usr,"Reason:","Why do you require this item?","") as null|text),1,MAX_MESSAGE_LEN)
+		var/reason = stripped_input(usr, "Reason:","Why do you require this item?")
 		if(world.time > timeout)	return
 		if(!reason)	return
 
@@ -486,7 +484,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 		if(!istype(P))	return
 
 		var/timeout = world.time + 600
-		//var/reason = copytext(sanitize(input(usr,"Reason:","Why do you require this item?","") as null|text),1,MAX_MESSAGE_LEN)
+		//var/reason = stripped_input(usr,"Reason:","Why do you require this item?","") as null|text), MAX_MESSAGE_LEN)
 		var/reason = "*None Provided*"
 		if(world.time > timeout)	return
 		if(!reason)	return

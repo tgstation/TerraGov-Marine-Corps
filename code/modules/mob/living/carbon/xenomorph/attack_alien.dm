@@ -43,7 +43,7 @@
 	. = ..()
 	if(!.)
 		return
-	Knockdown(16 SECONDS)
+	Paralyze(16 SECONDS)
 
 /mob/living/carbon/human/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
 	var/tackle_pain = X.xeno_caste.tackle_damage
@@ -66,8 +66,8 @@
 		return FALSE
 	X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 
-	if(!IsKnockdown() && !no_stun && (traumatic_shock > 100))
-		Knockdown(20)
+	if(!IsParalyzed() && !no_stun && (traumatic_shock > 100))
+		Paralyze(20)
 		X.visible_message("<span class='danger'>\The [X] slams [src] to the ground!</span>", \
 		"<span class='danger'>We slam [src] to the ground!</span>", null, 5)
 
@@ -92,7 +92,7 @@
 				staggerslow_stacks *= 2
 				X.visible_message("<span class='danger'>\The [X] strikes [src] with deadly precision!</span>", \
 				"<span class='danger'>We strike [src] with deadly precision!</span>")
-			KnockdownNoChain(1.5 SECONDS) //...And we knock
+			ParalyzeNoChain(1.5 SECONDS) //...And we knock
 			adjust_stagger(staggerslow_stacks)
 			add_slowdown(staggerslow_stacks)
 

@@ -214,7 +214,8 @@
 			if(iscarbon(M)) //Carbon stuff
 				if(ishuman(M))
 					var/mob/living/carbon/human/H = M
-					M_job = H.job
+					if(H.job)
+						M_job = H.job.title
 				else if(ismonkey(M))
 					M_job = "Monkey"
 				else if(isxeno(M))
@@ -394,9 +395,8 @@
 	if(isliving(M))
 		var/mob/living/L = M
 		body += "<b>Mob Faction:</b> [L.faction]<br>"
-
-	if(M.mind?.assigned_role)
-		body += "<b>Mob Role:</b> [M.mind.assigned_role]<br>"
+		if(L.job)
+			body += "<b>Mob Role:</b> [L.job.title]<br>"
 
 	body += "<b>CID:</b> [M.computer_id] | <b>IP:</b> [M.ip_address]<br>"
 
@@ -447,6 +447,7 @@
 		<a href='?src=[ref];transform=larva;mob=[REF(M)]'>Larva</a>
 		<br> Alien Tier 1:
 		<a href='?src=[ref];transform=runner;mob=[REF(M)]'>Runner</a> |
+		<a href='?src=[ref];transform=panther;mob=[REF(M)]'>Panther</a> |
 		<a href='?src=[ref];transform=drone;mob=[REF(M)]'>Drone</a> |
 		<a href='?src=[ref];transform=sentinel;mob=[REF(M)]'>Sentinel</a> |
 		<a href='?src=[ref];transform=defender;mob=[REF(M)]'>Defender</a>

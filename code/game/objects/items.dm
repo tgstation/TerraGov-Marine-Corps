@@ -112,6 +112,10 @@
 	return ..()
 
 
+/obj/item/proc/update_item_state(mob/user)
+	item_state = "[initial(icon_state)][flags_item & WIELDED ? "_w" : ""]"
+
+
 //user: The mob that is suiciding
 //damagetype: The type of damage the item will inflict on the user
 //BRUTELOSS = 1
@@ -662,7 +666,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			user.unset_interaction()
 
 		if(user.client)
-			user.client.change_view(world.view)
+			user.client.change_view(WORLD_VIEW)
 			user.client.pixel_x = 0
 			user.client.pixel_y = 0
 
@@ -672,7 +676,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.cooldowns[COOLDOWN_ZOOM] = addtimer(VARSET_LIST_CALLBACK(user.cooldowns, COOLDOWN_ZOOM, null), 2 SECONDS)
 
 		if(user.client)
-			user.client.change_view(viewsize)
+			user.client.change_view(VIEW_NUM_TO_STRING(viewsize))
 
 			var/tilesize = 32
 			var/viewoffset = tilesize * tileoffset

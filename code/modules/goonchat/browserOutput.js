@@ -44,8 +44,8 @@ var opts = {
 	'highlightColor': '#FFFF00', //The color of the highlighted message
 
 	//Ping display
-	'lastPinged': 0, //Timestamp of the last response from the server.
-	'pingedLimit': 35000,
+	'lastPang': 0, //Timestamp of the last response from the server.
+	'pangLimit': 35000,
 	'noResponse': false, //Tracks the state of the previous ping request
 	'noResponseCount': 0, //How many failed pings?
 
@@ -55,7 +55,7 @@ var opts = {
 	'preventFocus': false, //Prevents switching focus to the game window
 
 	//Client Connection Data
-	'clientDataLimit': 5,
+	'clientDataLimit': 5, //Should match MAX_COOKIE_LENGTH in browserOutput.dm
 	'clientData': [],
 
 	//Admin music volume update
@@ -65,20 +65,15 @@ var opts = {
 	'musicStartAt': 0, //The position the music starts playing
 	'musicEndAt': 0, //The position the music... stops playing... if null, doesn't apply (so the music runs through)
 
-	'defaultMusicVolume': 10,
+	'defaultMusicVolume': 25,
 
 	'messageCombining': true,
 
 };
+var replaceRegexes = {};
 
 function clamp(val, min, max) {
 	return Math.max(min, Math.min(val, max))
-}
-
-function outerHTML(el) {
-    var wrap = document.createElement('div');
-    wrap.appendChild(el.cloneNode(true));
-    return wrap.innerHTML;
 }
 
 //Polyfill for fucking date now because of course IE8 and below don't support it
@@ -170,58 +165,72 @@ function byondDecode(message) {
 	return message;
 }
 
-//Actually turns the highlight term match into appropriate html
-function addHighlightMarkup(match) {
+function replaceRegex() {
+	var selectedRegex = replaceRegexes[$(this).attr('replaceRegex')];
+	if (selectedRegex) {
+		var replacedText = $(this).html().replace(selectedRegex[0], selectedRegex[1]);
+		$(this).html(replacedText);
+	}
+	$(this).removeAttr('replaceRegex');
+}
+
+// Get a highlight markup span
+function createHighlightMarkup() {
 	var extra = '';
 	if (opts.highlightColor) {
-		extra += ' style="background-color: '+opts.highlightColor+'"';
+		extra += ' style="background-color: ' + opts.highlightColor + '"';
 	}
-	return '<span class="highlight"'+extra+'>'+match+'</span>';
+	return '<span class="highlight"' + extra + '></span>';
 }
 
-//Highlights words based on user settings
-function highlightTerms(el) {
-	if (el.children.length > 0) {
-		for(var h = 0; h < el.children.length; h++){
-			highlightTerms(el.children[h]);
+// Get all child text nodes that match a regex pattern
+function getTextNodes(elem, pattern) {
+	var result = $([]);
+	$(elem).contents().each(function(idx, child) {
+		if (child.nodeType === 3 && /\S/.test(child.nodeValue) && pattern.test(child.nodeValue)) {
+			result = result.add(child);
 		}
-	}
-
-	var hasTextNode = false;
-	for (var node = 0; node < el.childNodes.length; node++)
-	{
-		if (el.childNodes[node].nodeType === 3)
-		{
-			hasTextNode = true;
-			break;
+		else {
+			result = result.add(getTextNodes(child, pattern));
 		}
-	}
+	});
+	return result;
+}
 
-	if (hasTextNode) { //If element actually has text
-		var newText = '';
-		for (var c = 0; c < el.childNodes.length; c++) { //Each child element
-			if (el.childNodes[c].nodeType === 3) { //Is it text only?
-				var words = el.childNodes[c].data.split(' ');
-				for (var w = 0; w < words.length; w++) { //Each word in the text
-					var newWord = null;
-					for (var i = 0; i < opts.highlightTerms.length; i++) { //Each highlight term
-						if (opts.highlightTerms[i] && words[w].toLowerCase().indexOf(opts.highlightTerms[i].toLowerCase()) > -1) { //If a match is found
-							newWord = words[w].replace("<", "&lt;").replace(new RegExp(opts.highlightTerms[i], 'gi'), addHighlightMarkup);
-							break;
-						}
-						if (window.console)
-							console.log(newWord)
-					}
-					newText += newWord || words[w].replace("<", "&lt;");
-					newText += w >= words.length ? '' : ' ';
+	// Highlight all text terms matching the registered regex patterns
+	function highlightTerms(el) {
+		var pattern = new RegExp("(" + opts.highlightTerms.join('|') + ")", 'gi');
+		var nodes = getTextNodes(el, pattern);
+
+		nodes.each(function (idx, node) {
+			var content = $(node).text();
+			var parent = $(node).parent();
+			var pre = $(node.previousSibling);
+			$(node).remove();
+			content.split(pattern).forEach(function (chunk) {
+				// Get our highlighted span/text node
+				var toInsert = null;
+				if (pattern.test(chunk)) {
+					var tmpElem = $(createHighlightMarkup());
+					tmpElem.text(chunk);
+					toInsert = tmpElem;
 				}
-			} else { //Every other type of element
-				newText += outerHTML(el.childNodes[c]);
-			}
-		}
-		el.innerHTML = newText;
+				else {
+					toInsert = document.createTextNode(chunk);
+				}
+
+				// Insert back into our element
+				if (pre.length == 0) {
+					var result = parent.prepend(toInsert);
+					pre = $(result[0].firstChild);
+				}
+				else {
+					pre.after(toInsert);
+					pre = $(pre[0].nextSibling);
+				}
+			});
+		});
 	}
-}
 
 function iconError(E) {
 	var that = this;
@@ -249,7 +258,7 @@ function output(message, flag) {
 	}
 
 	if (flag !== 'internal')
-		opts.lastPinged = Date.now();
+		opts.lastPang = Date.now();
 
 	message = byondDecode(message).trim();
 
@@ -363,6 +372,7 @@ function output(message, flag) {
 				badge = $('<span/>', {'class': 'r', 'text': 2});
 			}
 			lastmessages.html(message);
+			lastmessages.find('[replaceRegex]').each(replaceRegex);
 			lastmessages.append(badge);
 			badge.animate({
 				"font-size": "0.9em"
@@ -385,6 +395,8 @@ function output(message, flag) {
 			entry.setAttribute('data-filter', filteredOut);
 		}
 
+		$(entry).find('[replaceRegex]').each(replaceRegex);
+
 		$last_message = trimmed_message;
 		$messages[0].appendChild(entry);
 		$(entry).find("img.icon").error(iconError);
@@ -405,7 +417,7 @@ function output(message, flag) {
 		//Actually do the snap
 		//Stuff we can do after the message shows can go here, in the interests of responsiveness
 		if (opts.highlightTerms && opts.highlightTerms.length > 0) {
-			highlightTerms(entry);
+			highlightTerms($(entry));
 		}
 	}
 
@@ -479,8 +491,8 @@ function handleClientData(ckey, ip, compid) {
 				return; //Record already exists
 			}
 		}
-
-		if (opts.clientData.length >= opts.clientDataLimit) {
+		//Lets make sure we obey our limit (can connect from server with higher limit)
+		while (opts.clientData.length >= opts.clientDataLimit) {
 			opts.clientData.shift();
 		}
 	} else {
@@ -495,15 +507,17 @@ function handleClientData(ckey, ip, compid) {
 //Server calls this on ehjax response
 //Or, y'know, whenever really
 function ehjaxCallback(data) {
-	opts.lastPinged = Date.now();
-	if (data == 'ping') {
+	opts.lastPang = Date.now();
+	if (data == 'softPang') {
 		return;
+	} else if (data == 'pang') {
+		opts.pingCounter = 0; //reset
+		opts.pingTime = Date.now();
+		runByond('?_src_=chat&proc=ping');
 
 	} else if (data == 'roundrestart') {
 		opts.restarting = true;
 		internalOutput('<div class="connectionClosed internal restarting">The connection has been closed because the server is restarting. Please wait while you automatically reconnect.</div>', 'internal');
-	} else if (data == 'shutdown') {
-		internalOutput('<div class="connectionClosed internal">The connection has been closed because the server is shutting down. See you next time!</div>', 'internal');
 	} else if (data == 'stopMusic') {
 		$('#adminMusic').prop('src', '');
 	} else {
@@ -530,22 +544,6 @@ function ehjaxCallback(data) {
 				handleClientData(data.clientData.ckey, data.clientData.ip, data.clientData.compid);
 			}
 			sendVolumeUpdate();
-		} else if (data.firebug) {
-			if (data.trigger) {
-				internalOutput('<span class="internal boldnshit">Loading firebug console, triggered by '+data.trigger+'...</span>', 'internal');
-			} else {
-				internalOutput('<span class="internal boldnshit">Loading firebug console...</span>', 'internal');
-			}
-			var firebugEl = document.createElement('script');
-			firebugEl.src = 'https://getfirebug.com/firebug-lite-debug.js';
-			document.body.appendChild(firebugEl);
-		} else if (data.clientCSS) {
-			var css = data.clientCSS.replace(/\;/g, "").replace(/\|{2}/g, ";");
-			var $clientCSS = $('style#client-css');
-			if (!$clientCSS) {
-				return;
-			}
-			$clientCSS.text(css);
 		} else if (data.adminMusic) {
 			if (typeof data.adminMusic === 'string') {
 				var adminMusic = byondDecode(data.adminMusic);
@@ -575,6 +573,16 @@ function ehjaxCallback(data) {
 				$('#adminMusic').prop('src', adminMusic);
 				$('#adminMusic').trigger("play");
 			}
+		} else if (data.syncRegex) {
+			for (var i in data.syncRegex) {
+
+				var regexData = data.syncRegex[i];
+				var regexName = regexData[0];
+				var regexFlags = regexData[1];
+				var regexReplaced = regexData[2];
+
+				replaceRegexes[i] = [new RegExp(regexName, regexFlags), regexReplaced];
+			}
 		}
 	}
 }
@@ -602,6 +610,27 @@ function sendVolumeUpdate() {
 	opts.volumeUpdating = false;
 	if(opts.updatedVolume) {
 		runByond('?_src_=chat&proc=setMusicVolume&param[volume]='+opts.updatedVolume);
+	}
+}
+
+function adminMusicEndCheck(event) {
+	if (opts.musicEndAt) {
+		if ($('#adminMusic').prop('currentTime') >= opts.musicEndAt) {
+			$('#adminMusic').off(event);
+			$('#adminMusic').trigger('pause');
+			$('#adminMusic').prop('src', '');
+		}
+	} else {
+		$('#adminMusic').off(event);
+	}
+}
+
+function adminMusicLoadedData(event) {
+	if (opts.musicStartAt && ($('#adminMusic').prop('duration') === Infinity || (opts.musicStartAt <= $('#adminMusic').prop('duration'))) ) {
+		$('#adminMusic').prop('currentTime', opts.musicStartAt);
+	}
+	if (opts.musicEndAt) {
+		$('#adminMusic').on('timeupdate', adminMusicEndCheck);
 	}
 }
 
@@ -644,25 +673,6 @@ function handleToggleClick($sub, $toggle) {
 		opts.selectedSubLoop = startSubLoop();
 	}
 }
-function adminMusicEndCheck(event) {
-	if (opts.musicEndAt) {
-		if ($('#adminMusic').prop('currentTime') >= opts.musicEndAt) {
-			$('#adminMusic').off(event);
-			$('#adminMusic').trigger('pause');
-			$('#adminMusic').prop('src', '');
-		}
-	} else {
-		$('#adminMusic').off(event);
-	}
-}
-function adminMusicLoadedData(event) {
-	if (opts.musicStartAt && ($('#adminMusic').prop('duration') === Infinity || (opts.musicStartAt <= $('#adminMusic').prop('duration'))) ) {
-		$('#adminMusic').prop('currentTime', opts.musicStartAt);
-	}
-	if (opts.musicEndAt) {
-		$('#adminMusic').on('timeupdate', adminMusicEndCheck);
-	}
-}
 
 /*****************************************
 *
@@ -683,7 +693,7 @@ $(function() {
 
 	//Hey look it's a controller loop!
 	setInterval(function() {
-		if (opts.lastPinged + opts.pingedLimit < Date.now() && !opts.restarting) { //Every pingLimit
+		if (opts.lastPang + opts.pangLimit < Date.now() && !opts.restarting) { //Every pingLimit
 				if (!opts.noResponse) { //Only actually append a message if the previous ping didn't also fail (to prevent spam)
 					opts.noResponse = true;
 					opts.noResponseCount++;
@@ -723,15 +733,11 @@ $(function() {
 		swap();
 	}
 	if (savedConfig.shighlightTerms) {
-		var savedTerms = $.parseJSON(savedConfig.shighlightTerms);
-		var actualTerms = '';
-		for (var i = 0; i < savedTerms.length; i++) {
-			if (savedTerms[i]) {
-				actualTerms += savedTerms[i] + ', ';
-			}
-		}
+		var savedTerms = $.parseJSON(savedConfig.shighlightTerms).filter(function (entry) {
+			return entry !== null && /\S/.test(entry);
+		});
+		var actualTerms = savedTerms.length != 0 ? savedTerms.join(', ') : null;
 		if (actualTerms) {
-			actualTerms = actualTerms.substring(0, actualTerms.length - 2);
 			internalOutput('<span class="internal boldnshit">Loaded highlight strings of: ' + actualTerms+'</span>', 'internal');
 			opts.highlightTerms = savedTerms;
 		}
@@ -1026,20 +1032,12 @@ $(function() {
 	$('body').on('submit', '#highlightTermForm', function(e) {
 		e.preventDefault();
 
-		var count = 0;
-		while (count < opts.highlightLimit) {
+		opts.highlightTerms = [];
+		for (var count = 0; count < opts.highlightLimit; count++) {
 			var term = $('#highlightTermInput'+count).val();
-			if (term) {
-				term = term.trim();
-				if (term === '') {
-					opts.highlightTerms[count] = null;
-				} else {
-					opts.highlightTerms[count] = term.toLowerCase();
-				}
-			} else {
-				opts.highlightTerms[count] = null;
+			if (term !== null && /\S/.test(term)) {
+				opts.highlightTerms.push(term.trim().toLowerCase());
 			}
-			count++;
 		}
 
 		var color = $('#highlightColor').val();

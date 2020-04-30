@@ -276,11 +276,23 @@ window "outputwindow"
 		is-default = true
 		saved-params = ""
 
+window "popupwindow"
+	elem "popupwindow"
+		type = MAIN
+		pos = 281,0
+		size = 120x120
+		anchor1 = none
+		anchor2 = none
+		background-color = none
+		is-visible = false
+		saved-params = "pos;size;is-minimized;is-maximized"
+		statusbar = false
+		can-resize = false
 
 window "preferences_window"
 	elem "preferences_window"
 		type = MAIN
-		pos = 372,0
+		pos = 281,0
 		size = 1280x1000
 		anchor1 = none
 		anchor2 = none
@@ -309,7 +321,7 @@ window "preferences_window"
 window "statwindow"
 	elem "statwindow"
 		type = MAIN
-		pos = 0,0
+		pos = 281,0
 		size = 640x480
 		anchor1 = none
 		anchor2 = none

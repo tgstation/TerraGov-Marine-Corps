@@ -58,7 +58,7 @@
 			to_chat(owner, "<span class='warning'>We can't do this while incapacitated!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_LYING) && X.lying)
+	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_LYING) && X.lying_angle)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We can't do this while lying down!</span>")
 		return FALSE
@@ -100,7 +100,7 @@
 
 	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_PLASMA) && X.plasma_stored < plasma_cost)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We don't have enough plasma to do this!</span>")
+			to_chat(owner, "<span class='warning'>We don't have enough plasma, we need [plasma_cost - X.plasma_stored] more.</span>")
 		return FALSE
 
 	return TRUE

@@ -25,9 +25,9 @@
 	var/valid_steps_taken = 0
 	var/crush_sound = "punch"
 	var/speed_per_step = 0.15
-	var/steps_for_charge = 5
+	var/steps_for_charge = 7
 	var/max_steps_buildup = 14
-	var/crush_living_damage = 40
+	var/crush_living_damage = 10
 	var/next_special_attack = 0 //Little var to keep track on special attack timers.
 
 
@@ -213,7 +213,7 @@
 						continue
 					if(victim.client)
 						shake_camera(victim, 1, 1)
-					if(victim.loc != charger.loc || !victim.lying || isnestedhost(victim))
+					if(victim.loc != charger.loc || !victim.lying_angle || isnestedhost(victim))
 						continue
 					charger.visible_message("<span class='danger'>[charger] runs [victim] over!</span>",
 						"<span class='danger'>We run [victim] over!</span>", null, 5)
@@ -327,9 +327,9 @@
 /datum/action/xeno_action/ready_charge/bull_charge
 	charge_type = CHARGE_BULL
 	speed_per_step = 0.1
-	steps_for_charge = 3
+	steps_for_charge = 5
 	max_steps_buildup = 10
-	crush_living_damage = 40 // This is multiplied by speed, which in this case will range from 0.1 to 1.
+	crush_living_damage = 30
 
 
 /datum/action/xeno_action/ready_charge/bull_charge/give_action(mob/living/L)
@@ -472,7 +472,7 @@
 	razorwire_tangle(charger, RAZORWIRE_ENTANGLE_DELAY * 0.5) //entangled for only half as long
 	charger.visible_message("<span class='danger'>The barbed wire slices into [charger]!</span>",
 	"<span class='danger'>The barbed wire slices into you!</span>", null, 5)
-	charger.Knockdown(20)
+	charger.Paralyze(20)
 	charger.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED, RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MAX_DAMAGE_MULT_MED), BRUTE, ran_zone(), 0, TRUE) //Armor is being ignored here.
 	UPDATEHEALTH(charger)
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
@@ -512,9 +512,9 @@
 
 	switch(charge_datum.charge_type)
 		if(CHARGE_CRUSH)
-			Knockdown(CHARGE_SPEED(charge_datum) * 80)
+			Paralyze(CHARGE_SPEED(charge_datum) * 20)
 		if(CHARGE_BULL_HEADBUTT)
-			Knockdown(CHARGE_SPEED(charge_datum) * 60)
+			Paralyze(CHARGE_SPEED(charge_datum) * 60)
 
 	if(anchored)
 		charge_datum.do_stop_momentum(FALSE)

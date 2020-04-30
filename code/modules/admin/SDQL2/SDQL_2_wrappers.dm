@@ -54,7 +54,7 @@
 	return get_step(Ref, Dir)
 
 
-/proc/_hearers(Depth = world.view, Center = usr)
+/proc/_hearers(Depth = WORLD_VIEW, Center = usr)
 	return hearers(Depth, Center)
 
 
@@ -332,7 +332,7 @@
 	return view(Dist, Center)
 
 
-/proc/_viewers(Depth = world.view, Center = usr)
+/proc/_viewers(Depth = WORLD_VIEW, Center = usr)
 	return viewers(Depth, Center)
 
 

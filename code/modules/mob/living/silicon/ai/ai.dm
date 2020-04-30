@@ -6,7 +6,6 @@
 	anchored = TRUE
 	density = TRUE
 	canmove = FALSE
-	job = "AI"
 	status_flags = CANSTUN|CANKNOCKOUT
 	sight = SEE_TURFS | SEE_MOBS | SEE_OBJS
 	hud_type = /datum/hud/ai
@@ -60,6 +59,12 @@
 	laws += "Preserve: Do not allow unauthorized personnel to tamper with your equipment."
 
 	create_eye()
+
+	if(!job)
+		var/datum/job/terragov/silicon/ai/ai_job = SSjob.type_occupations[/datum/job/terragov/silicon/ai]
+		if(!ai_job)
+			stack_trace("Unemployment has reached to an AI, who has failed to find a job.")
+		apply_assigned_role_to_spawn(ai_job)
 
 	GLOB.ai_list += src
 
@@ -185,7 +190,7 @@
 	if(iscarbon(speaker))
 		var/mob/living/carbon/S = speaker
 		if(S.job)
-			jobpart = "[S.job]"
+			jobpart = "[S.job.title]"
 	else
 		jobpart = "Unknown"
 

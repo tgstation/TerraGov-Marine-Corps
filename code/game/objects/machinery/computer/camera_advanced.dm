@@ -39,7 +39,7 @@
 	eyeobj.origin = src
 
 
-/obj/machinery/computer/camera_advanced/proc/GrantActions(mob/living/user)
+/obj/machinery/computer/camera_advanced/proc/give_actions(mob/living/user)
 	if(off_action)
 		off_action.target = user
 		off_action.give_action(user)
@@ -99,7 +99,7 @@
 	return TRUE
 
 
-/obj/machinery/computer/camera_advanced/attack_hand(mob/living/user)
+/obj/machinery/computer/camera_advanced/interact(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -153,7 +153,7 @@
 
 
 /obj/machinery/computer/camera_advanced/proc/give_eye_control(mob/user)
-	GrantActions(user)
+	give_actions(user)
 	current_user = user
 	eyeobj.eye_user = user
 	eyeobj.name = "Camera Eye ([user.name])"

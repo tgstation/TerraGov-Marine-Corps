@@ -33,3 +33,10 @@
 	log_talk(message, LOG_SAY, tag = "HOLOPAD in [padloc]")
 	send_speech(message, 7, T, "robot", message_language = language)
 	to_chat(src, "<span class='notice'>Holopad transmitted: [real_name]: \"[message]\"</span>")
+
+
+/mob/living/silicon/ai/get_message_mode(message)
+	var/static/regex/holopad_finder = regex(@"[:.#][hH]")
+	if(holopad_finder.Find(message, 1, 1))
+		return MODE_HOLOPAD
+	return ..()

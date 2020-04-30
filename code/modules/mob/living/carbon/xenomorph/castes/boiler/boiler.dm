@@ -16,27 +16,31 @@
 	drag_delay = 6 //pulling a big dead xeno is hard
 	var/obj/item/explosive/grenade/grenade_type = "/obj/item/explosive/grenade/xeno"
 	var/datum/effect_system/smoke_spread/xeno/smoke
+	//Boiler ammo
+	var/corrosive_ammo = 0
+	var/neuro_ammo = 0
 
+///updates the boiler's glow, based on its base glow/color, and its ammo reserves. More green ammo = more green glow; more yellow = more yellow.
+/mob/living/carbon/xenomorph/boiler/proc/updateBoilerGlow()
+	var/current_ammo = corrosive_ammo + neuro_ammo
+	var/ammo_glow = BOILER_LUMINOSITY_AMMO * current_ammo
+	var/glow = BOILER_LUMINOSITY_BASE + ammo_glow
+	var/color = BOILER_LUMINOSITY_BASE_COLOR
+	if(current_ammo)
+		var/ammo_color = BlendRGB(BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR, BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR, neuro_ammo/current_ammo)
+		color = BlendRGB(color, ammo_color, ammo_glow/glow)
+	set_light(glow, l_color = color)
 
 // ***************************************
 // *********** Init
 // ***************************************
 /mob/living/carbon/xenomorph/boiler/Initialize()
 	. = ..()
-	set_light(BOILER_LUMINOSITY)
 	smoke = new /datum/effect_system/smoke_spread/xeno/acid(src)
-	see_in_dark = 20
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas]
+	updateBoilerGlow()
 	RegisterSignal(src, COMSIG_XENOMORPH_GIBBING, .proc/gib_explode)
 
-
-// ***************************************
-// *********** Life overrides
-// ***************************************
-/mob/living/carbon/xenomorph/boiler/update_stat()
-	. = ..()
-	if(stat == CONSCIOUS)
-		see_in_dark = 20
 
 // ***************************************
 // *********** Gibbing behaviour

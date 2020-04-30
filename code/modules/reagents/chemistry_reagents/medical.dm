@@ -77,7 +77,8 @@
 
 /datum/reagent/paracetamol/overdose_process(mob/living/L, metabolism)
 	L.hallucination = max(L.hallucination, 2)
-	L.apply_damage(2*REM, TOX)
+	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_LIGHT
+	L.apply_damage(REM, TOX)
 
 /datum/reagent/paracetamol/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(6*REM, TOX)
@@ -93,6 +94,9 @@
 
 /datum/reagent/medicine/tramadol/on_mob_life(mob/living/L)
 	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
+	if(volume > 20)
+		L.reagent_pain_modifier += PAIN_REDUCTION_LIGHT
+		L.apply_damage(REM*0.5, TOX)
 	return ..()
 
 /datum/reagent/medicine/tramadol/overdose_process(mob/living/L, metabolism)
@@ -119,9 +123,16 @@
 	L.hallucination = max(L.hallucination, 3)
 	L.set_drugginess(10)
 	L.apply_damage(2*REM, TOX)
+	L.jitter(3)
 
 /datum/reagent/medicine/oxycodone/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(6*REM, TOX)
+	L.reagent_pain_modifier += PAIN_REDUCTION_FULL
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
+		if(E)
+			E.take_damage(6*REM, TRUE)
 
 /datum/reagent/medicine/leporazine
 	name = "Leporazine"
@@ -155,7 +166,15 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 
 /datum/reagent/medicine/kelotane/on_mob_life(mob/living/L, metabolism)
+	var/target_temp = L.get_standard_bodytemperature()
 	L.heal_limb_damage(0, 2 * REM)
+	if(L.bodytemperature > target_temp)
+		L.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, target_temp)
+	if(volume > 10)
+		L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT
+	if(volume > 20)
+		L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT
+		L.heal_limb_damage(0, 1 * REM)
 	return ..()
 
 /datum/reagent/medicine/kelotane/overdose_process(mob/living/L, metabolism)
@@ -168,12 +187,22 @@
 	name = "Dermaline"
 	description = "Dermaline is the next step in burn medication. Works twice as good as kelotane and enables the body to restore even the direst heat-damaged tissue."
 	color = "#F8C57C"
-	overdose_threshold = REAGENTS_OVERDOSE/2
-	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2
+	overdose_threshold = REAGENTS_OVERDOSE*0.66
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*0.5
 	scannable = TRUE
+	purge_list = list(/datum/reagent/medicine/oxycodone)
+	purge_rate = 0.2
 
 /datum/reagent/medicine/dermaline/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(0, 3 * REM)
+	var/target_temp = L.get_standard_bodytemperature()
+	L.heal_limb_damage(0, 4 * REM)
+	if(L.bodytemperature > target_temp)
+		L.adjust_bodytemperature(-10 * TEMPERATURE_DAMAGE_COEFFICIENT, target_temp)
+	if(volume > 5)
+		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
+	if(volume > 15)
+		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
+		L.heal_limb_damage(0, 2 * REM)
 	return ..()
 
 /datum/reagent/medicine/dermaline/overdose_process(mob/living/L, metabolism)
@@ -242,7 +271,7 @@
 		L.heal_limb_damage(REM, 0)
 	if(L.getFireLoss() && prob(80))
 		L.heal_limb_damage(0, REM)
-	if(L.getToxLoss() && prob(80))
+	if(L.getToxLoss() && prob(40))
 		L.adjustToxLoss(-REM)
 	return ..()
 
@@ -258,12 +287,13 @@
 	description = "Dylovene is a broad-spectrum antitoxin."
 	color = "#A8F59C"
 	scannable = TRUE
+	purge_list = list(/datum/reagent/toxin, /datum/reagent/toxin/xeno_neurotoxin, /datum/reagent/consumable/drink/coffee)
+	purge_rate = 2
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "a roll of gauze"
 
 /datum/reagent/medicine/dylovene/on_mob_life(mob/living/L,metabolism)
-	L.reagents.remove_all_type(/datum/reagent/toxin, REM, 0, 1)
 	L.adjustDrowsyness(-2 * REM)
 	L.hallucination = max(0, L.hallucination -  5 * REM)
 	L.adjustToxLoss(-2 * REM)
@@ -304,7 +334,7 @@
 	L.set_blindness(0, TRUE)
 	L.SetStun(0, FALSE)
 	L.SetUnconscious(0, FALSE)
-	L.SetKnockdown(0, FALSE)
+	L.SetParalyzed(0, FALSE)
 	L.dizziness = 0
 	L.setDrowsyness(0)
 	L.stuttering = 0
@@ -317,40 +347,45 @@
 		C.disabilities = 0
 	return ..()
 
-
 /datum/reagent/medicine/synaptizine
 	name = "Synaptizine"
 	description = "Synaptizine is used to treat various diseases."
 	color = "#C8A5DC" // rgb: 200, 165, 220
-	custom_metabolism = REAGENTS_METABOLISM * 0.5
 	overdose_threshold = REAGENTS_OVERDOSE/5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/5
 	scannable = TRUE
+	purge_list = list(/datum/reagent/toxin/mindbreaker)
+	purge_rate = 5
 
-datum/reagent/medicine/synaptizine/on_mob_life(mob/living/L, metabolism)
+/datum/reagent/medicine/synaptizine/on_mob_life(mob/living/L, metabolism)
 	L.reagent_shock_modifier += PAIN_REDUCTION_MEDIUM
 	L.adjustDrowsyness(-5)
 	L.AdjustUnconscious(-20)
 	L.AdjustStun(-20)
-	L.AdjustKnockdown(-20)
-	holder.remove_reagent("mindbreaker", 5)
+	L.AdjustParalyzed(-20)
+	L.adjustToxLoss(4*REM)
 	L.hallucination = max(0, L.hallucination - 10)
-	if(prob(80))
-		L.adjustToxLoss(2*REM)
+	switch(current_cycle)
+		if(1 to 5)
+			L.adjustStaminaLoss(-10*REM)
+		if(6 to 20)
+			L.adjustStaminaLoss((current_cycle*2 - 22)*REM)
+		if(20 to INFINITY)
+			L.adjustStaminaLoss(20*REM)
 	return ..()
 
-datum/reagent/medicine/synaptizine/overdose_process(mob/living/L, metabolism)
+/datum/reagent/medicine/synaptizine/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(2*REM, TOX)
 
-datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolism)
+/datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(2*REM, 2*REM, 2*REM)
 
-/datum/reagent/medicine/neuraline //injected by neurostimulator implant
+/datum/reagent/medicine/neuraline //injected by neurostimulator implant and medic-only injector
 	name = "Neuraline"
 	description = "A chemical cocktail tailored to enhance or dampen specific neural processes."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = REAGENTS_METABOLISM * 2
-	overdose_threshold = 4
+	overdose_threshold = 5
 	overdose_crit_threshold = 6
 	scannable = FALSE
 
@@ -366,15 +401,18 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	L.adjust_blurriness(-5)
 	L.AdjustUnconscious(-40)
 	L.AdjustStun(-40)
-	L.AdjustKnockdown(-20)
+	L.AdjustParalyzed(-20)
 	L.AdjustSleeping(-40)
+	L.adjustStaminaLoss(-60*REM)
+	L.heal_limb_damage(10*REM, 10 * REM)
+	L.adjustToxLoss(5*REM)
 	return ..()
 
 /datum/reagent/medicine/neuraline/overdose_process(mob/living/L, metabolism)
-	L.adjustBrainLoss(2*REM, TRUE)
+	L.adjustToxLoss(5*REM, TRUE)
 
 /datum/reagent/medicine/neuraline/overdose_crit_process(mob/living/L, metabolism)
-	L.adjustToxLoss(2*REM)
+	L.adjustBrainLoss(20*REM, TRUE) //if you double inject, you're fucked till surgery. This is the downside of a very strong chem.
 
 /datum/reagent/medicine/hyronalin
 	name = "Hyronalin"
@@ -514,6 +552,31 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 /datum/reagent/peridaxon/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(2*REM, 6*REM, 6*REM)
 
+/datum/reagent/medicine/peridaxon_plus
+	name = "Peridaxon Plus"
+	description = "Used to heal severely damaged internal organs in the field. EXTREMELY toxic. Medicate cautiously."
+	color = "#C845DC"
+	overdose_threshold = REAGENTS_OVERDOSE/30
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/25
+	custom_metabolism = REAGENTS_METABOLISM * 0.5
+	scannable = TRUE
+
+/datum/reagent/medicine/peridaxon_plus/on_mob_life(mob/living/L, metabolism)
+	L.adjustToxLoss(20*REM)
+	if(!ishuman(L))
+		return ..()
+	var/mob/living/carbon/human/H = L
+	for(var/datum/internal_organ/I in H.internal_organs)
+		if(I.damage)
+			I.heal_organ_damage(4*REM)
+	return ..()
+
+/datum/reagent/medicine/peridaxon_plus/overdose_process(mob/living/L, metabolism)
+	L.apply_damage(10*REM, TOX)
+
+/datum/reagent/peridaxon_plus/overdose_crit_process(mob/living/L, metabolism)
+	L.apply_damages(30*REM, TOX) //Ya triple-clicked. Ya shouldn'ta did that.
+
 /datum/reagent/medicine/bicaridine
 	name = "Bicaridine"
 	description = "Bicaridine is an analgesic medication and can be used to treat blunt trauma."
@@ -524,6 +587,11 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 /datum/reagent/medicine/bicaridine/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(2*REM, 0)
+	if(volume > 10)
+		L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT
+	if(volume > 20)
+		L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT
+		L.heal_limb_damage(1*REM, 0)
 	return ..()
 
 
@@ -537,12 +605,19 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	name = "Meralyne"
 	description = "Meralyne is a concentrated form of bicardine and can be used to treat extensive blunt trauma."
 	color = "#E6666C"
-	overdose_threshold = REAGENTS_OVERDOSE*0.5
+	overdose_threshold = REAGENTS_OVERDOSE*0.66
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*0.5
 	scannable = TRUE
-
+	purge_list = list(/datum/reagent/medicine/oxycodone)
+	purge_rate = 0.2
+	
 /datum/reagent/medicine/meralyne/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(4*REM, 0)
+	if(volume > 5)
+		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
+	if(volume > 15)
+		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
+		L.heal_limb_damage(2*REM, 0)
 	return ..()
 
 
@@ -614,7 +689,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 			if(4 to 20)
 				to_chat(L, "<span class='warning'>You feel a bit tired.</span>")
 			if(21 to 50)
-				L.Knockdown(amount * 2)
+				L.Paralyze(amount * 2)
 				to_chat(L, "<span class='danger'>You collapse as a sudden wave of fatigue washes over you.</span>")
 			if(50 to INFINITY)
 				L.Unconscious(amount * 2)
@@ -673,7 +748,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 
 /datum/reagent/medicine/ultrazine/on_mob_life(mob/living/L, metabolism)
 	if(prob(50))
-		L.AdjustKnockdown(-20)
+		L.AdjustParalyzed(-20)
 		L.AdjustStun(-20)
 		L.AdjustUnconscious(-20)
 	L.adjustHalLoss(-4*REM)
@@ -696,7 +771,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	if(prob(5))
 		L.emote("me", EMOTE_VISIBLE, pick("winces slightly.", "grimaces."))
 		L.adjustHalLoss(35)
-		L.Stun(40)
+		L.Stun(20)
 	if(prob(20))
 		L.hallucination += 15
 		L.AdjustConfused(60)
@@ -708,7 +783,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	if(prob(5))
 		L.emote("me", EMOTE_VISIBLE, pick("winces.", "grimaces.", "groans!"))
 		L.adjustHalLoss(50)
-		L.Stun(60)
+		L.Stun(30)
 	if(prob(20))
 		L.hallucination += 20
 		L.AdjustConfused(10 SECONDS)
@@ -734,7 +809,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 		var/mob/living/carbon/human/H = L
 		var/affected_organ = pick("heart","lungs","liver","kidneys")
 		var/datum/internal_organ/I =  H.internal_organs_by_name[affected_organ]
-		I.take_damage(4*REM)
+		I.take_damage(11*REM)
 	return
 
 
@@ -802,7 +877,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	scannable = TRUE
 	taste_description = "fish"
 
-/datum/reagent/medicine/clonexadone/on_mob_life(mob/living/L, metabolism)
+/datum/reagent/medicine/rezadone/on_mob_life(mob/living/L, metabolism)
 	switch(current_cycle)
 		if(1 to 15)
 			L.adjustCloneLoss(-2*REM)
@@ -840,6 +915,29 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	L.apply_damage(2*REM, TOX)
 
 /datum/reagent/medicine/spaceacillin/overdose_crit_process(mob/living/L, metabolism)
+	L.apply_damage(4*REM, TOX)
+
+/datum/reagent/medicine/polyhexanide
+	name = "Polyhexanide"
+	description = "A sterilizing agent designed for internal use. Powerful, but dangerous."
+	color = "#C8A5DC" // rgb: 200, 165, 220
+	custom_metabolism = REAGENTS_METABOLISM * 2
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
+	scannable = TRUE
+
+/datum/reagent/medicine/polyhexanide/on_mob_life(mob/living/L, metabolism)
+	switch(current_cycle)
+		if(1 to 9)
+			L.adjustToxLoss(2*REM)
+			L.adjustDrowsyness(5)
+		if(10 to 50)
+			L.adjustToxLoss(2.5*REM)
+			L.Sleeping(10 SECONDS)
+		if(51 to INFINITY)
+			L.adjustToxLoss((current_cycle/5-35)*REM) //why yes, the sleeping stops after it stops working. Yay screaming patients running off!
+	return ..()
+
+/datum/reagent/medicine/polyhexanide/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(4*REM, TOX)
 
 /datum/reagent/medicine/ethylredoxrazine	// FUCK YOU, ALCOHOL
@@ -899,3 +997,23 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/L, metabolis
 	if(prob(20)) //violent vomiting
 		L.vomit()
 	L.reagent_shock_modifier -= PAIN_REDUCTION_FULL //Unlimited agony.
+
+
+/datum/reagent/medicine/roulettium
+	name = "Roulettium"
+	description = "The concentrated essence of unga. Unsafe to ingest in any quantity"
+	color = "#19C832"
+	custom_metabolism = REAGENTS_METABOLISM * 0.5
+	taste_description = "Poor life choices"
+
+/datum/reagent/medicine/roulettium/on_mob_life(mob/living/L, metabolism)
+	L.reagent_shock_modifier += PAIN_REDUCTION_FULL
+	L.adjustToxLoss(-60 * REM)
+	L.heal_limb_damage(60*REM, 60 * REM)
+	L.adjustStaminaLoss(-60*REM)
+	L.AdjustStun(-100)
+	if(prob(5))
+		L.adjustBruteLoss(2400*REM) //the big oof. No, it's not kill or gib, I want them to nugget.
+
+
+

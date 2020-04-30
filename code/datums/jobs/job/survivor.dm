@@ -1,19 +1,56 @@
 /datum/job/survivor
+	title = "Generic Survivor"
 	access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
 	minimal_access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
+	display_order = JOB_DISPLAY_ORDER_SURVIVOR
 	skills_type = /datum/skills/civilian/survivor
-	faction = "Marine"
-	larvaworth = LARVA_POINTS_SHIPSIDE_STRONG
+	faction = "TerraGov"
+
+/datum/job/survivor/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
+	. = ..()
+
+	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
+		C.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(C), SLOT_HEAD)
+		C.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit(C), SLOT_WEAR_SUIT)
+		C.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather(C), SLOT_WEAR_MASK)
+		C.equip_to_slot_or_del(new /obj/item/clothing/shoes/snow(C), SLOT_SHOES)
+		C.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(C), SLOT_GLOVES)
+
+	var/weapons = pick(SURVIVOR_WEAPONS)
+	var/obj/item/weapon/W = weapons[1]
+	var/obj/item/ammo_magazine/A = weapons[2]
+	C.equip_to_slot_or_del(new /obj/item/belt_harness(C), SLOT_BELT)
+	C.put_in_hands(new W(C))
+	C.equip_to_slot_or_del(new A(C), SLOT_IN_BACKPACK)
+	C.equip_to_slot_or_del(new A(C), SLOT_IN_BACKPACK)
+	C.equip_to_slot_or_del(new A(C), SLOT_IN_BACKPACK)
+
+	C.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(C), SLOT_GLASSES)
+	C.equip_to_slot_or_del(new /obj/item/storage/pouch/tools/full(C), SLOT_R_STORE)
+	C.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(C), SLOT_L_STORE)
+
+	to_chat(M, "<h2>You are a survivor!</h2>")
+	switch(SSmapping.configs[GROUND_MAP].map_name)
+		if(MAP_PRISON_STATION)
+			to_chat(M, "<span class='notice'>You are a survivor of the attack on Fiorina Orbital Penitentiary. You worked or lived on the prison station, and managed to avoid the alien attacks.. until now.</span>")
+		if(MAP_ICE_COLONY)
+			to_chat(M, "<span class='notice'>You are a survivor of the attack on the ice habitat. You worked or lived on the colony, and managed to avoid the alien attacks.. until now.</span>")
+		if(MAP_BIG_RED)
+			to_chat(M, "<span class='notice'>You are a survivor of the attack on the colony. You worked or lived in the archaeology colony, and managed to avoid the alien attacks...until now.</span>")
+		if(MAP_LV_624)
+			to_chat(M, "<span class='notice'>You are a survivor of the attack on the colony. You suspected something was wrong and tried to warn others, but it was too late...</span>")
+		else
+			to_chat(M, "<span class='notice'>Through a miracle you managed to survive the attack. But are you truly safe now?</span>")
 
 
 //Assistant
 /datum/job/survivor/assistant
-	title = "Assistant"
+	title = "Assistant Survivor"
 	outfit = /datum/outfit/job/survivor/assistant
 
 
 /datum/outfit/job/survivor/assistant
-	name = "Assistant"
+	name = "Assistant Survivor"
 	jobtype = /datum/job/survivor/assistant
 
 	w_uniform = /obj/item/clothing/under/color/grey
@@ -24,13 +61,13 @@
 
 //Scientist
 /datum/job/survivor/scientist
-	title = "Scientist"
+	title = "Scientist Survivor"
 	skills_type = /datum/skills/civilian/survivor/scientist
 	outfit = /datum/outfit/job/survivor/scientist
 
 
 /datum/outfit/job/survivor/scientist
-	name = "Scientist"
+	name = "Scientist Survivor"
 	jobtype = /datum/job/survivor/scientist
 
 	w_uniform = /obj/item/clothing/under/rank/scientist
@@ -41,13 +78,13 @@
 
 //Doctor
 /datum/job/survivor/doctor
-	title = "Doctor's Assistant"
+	title = "Doctor's Assistant Survivor"
 	skills_type = /datum/skills/civilian/survivor/doctor
 	outfit = /datum/outfit/job/survivor/doctor
 
 
 /datum/outfit/job/survivor/doctor
-	name = "Doctor's Assistant"
+	name = "Doctor's Assistant Survivor"
 	jobtype = /datum/job/survivor/doctor
 
 	w_uniform = /obj/item/clothing/under/rank/medical
@@ -58,12 +95,12 @@
 
 //Liaison
 /datum/job/survivor/liaison
-	title = "Liaison"
+	title = "Liaison Survivor"
 	outfit = /datum/outfit/job/survivor/liaison
 
 
 /datum/outfit/job/survivor/liaison
-	name = "Liaison"
+	name = "Liaison Survivor"
 	jobtype = /datum/job/survivor/liaison
 
 	w_uniform = /obj/item/clothing/under/liaison_suit
@@ -74,13 +111,13 @@
 
 //Security Guard
 /datum/job/survivor/security
-	title = "Security Guard"
+	title = "Security Guard Survivor"
 	skills_type = /datum/skills/civilian/survivor/marshal
 	outfit = /datum/outfit/job/survivor/security
 
 
 /datum/outfit/job/survivor/security
-	name = "Security Guard"
+	name = "Security Guard Survivor"
 	jobtype = /datum/job/survivor/security
 
 	w_uniform = /obj/item/clothing/under/rank/security/corp
@@ -91,12 +128,12 @@
 
 //Civilian
 /datum/job/survivor/civilian
-	title = "Civilian"
+	title = "Civilian Survivor"
 	outfit = /datum/outfit/job/survivor/civilian
 
 
 /datum/outfit/job/survivor/civilian
-	name = "Civilian"
+	name = "Civilian Survivor"
 	jobtype = /datum/job/survivor/civilian
 
 	w_uniform = /obj/item/clothing/under/pj/red
@@ -107,13 +144,13 @@
 
 //Chef
 /datum/job/survivor/chef
-	title = "Chef"
+	title = "Chef Survivor"
 	skills_type = /datum/skills/civilian/survivor/chef
 	outfit = /datum/outfit/job/survivor/chef
 
 
 /datum/outfit/job/survivor/chef
-	name = "Chef"
+	name = "Chef Survivor"
 	jobtype = /datum/job/survivor/chef
 
 	w_uniform = /obj/item/clothing/under/rank/chef
@@ -124,12 +161,12 @@
 
 //Botanist
 /datum/job/survivor/botanist
-	title = "Botanist"
+	title = "Botanist Survivor"
 	outfit = /datum/outfit/job/survivor/botanist
 
 
 /datum/outfit/job/survivor/botanist
-	name = "Botanist"
+	name = "Botanist Survivor"
 	jobtype = /datum/job/survivor/botanist
 
 	w_uniform = /obj/item/clothing/under/rank/hydroponics
@@ -140,13 +177,13 @@
 
 //Atmospherics Technician
 /datum/job/survivor/atmos
-	title = "Atmospherics Technician"
+	title = "Atmospherics Technician Survivor"
 	skills_type = /datum/skills/civilian/survivor/atmos
 	outfit = /datum/outfit/job/survivor/atmos
 
 
 /datum/outfit/job/survivor/atmos
-	name = "Atmospherics Technician"
+	name = "Atmospherics Technician Survivor"
 	jobtype = /datum/job/survivor/atmos
 
 	w_uniform = /obj/item/clothing/under/rank/atmospheric_technician
@@ -157,12 +194,12 @@
 
 //Chaplain
 /datum/job/survivor/chaplain
-	title = "Chaplain"
+	title = "Chaplain Survivor"
 	outfit = /datum/outfit/job/survivor/chaplain
 
 
 /datum/outfit/job/survivor/chaplain
-	name = "Chaplain"
+	name = "Chaplain Survivor"
 	jobtype = /datum/job/survivor/chaplain
 
 	w_uniform = /obj/item/clothing/under/rank/chaplain
@@ -173,13 +210,13 @@
 
 //Miner
 /datum/job/survivor/miner
-	title = "Miner"
+	title = "Miner Survivor"
 	skills_type = /datum/skills/civilian/survivor/miner
 	outfit = /datum/outfit/job/survivor/miner
 
 
 /datum/outfit/job/survivor/miner
-	name = "Miner"
+	name = "Miner Survivor"
 	jobtype = /datum/job/survivor/miner
 
 	w_uniform = /obj/item/clothing/under/rank/miner
@@ -190,12 +227,12 @@
 
 //Salesman
 /datum/job/survivor/salesman
-	title = "Salesman"
+	title = "Salesman Survivor"
 	outfit = /datum/outfit/job/survivor/salesman
 
 
 /datum/outfit/job/survivor/salesman
-	name = "Salesman"
+	name = "Salesman Survivor"
 	jobtype = /datum/job/survivor/salesman
 
 	w_uniform = /obj/item/clothing/under/liaison_suit
@@ -206,13 +243,13 @@
 
 //Colonial Marshal
 /datum/job/survivor/marshal
-	title = "Colonial Marshal"
+	title = "Colonial Marshal Survivor"
 	skills_type = /datum/skills/civilian/survivor/marshal
 	outfit = /datum/outfit/job/survivor/marshal
 
 
 /datum/outfit/job/survivor/marshal
-	name = "Colonial Marshal"
+	name = "Colonial Marshal Survivor"
 	jobtype = /datum/job/survivor/marshal
 
 	w_uniform = /obj/item/clothing/under/CM_uniform
@@ -221,21 +258,18 @@
 	back = /obj/item/storage/backpack/satchel/sec
 
 
-
-// Rambo Survivors
-
-//Generic
-/datum/job/rambosurvivor/generic
+// Rambo Survivor
+/datum/job/survivor/rambo
 	title = "Survivor"
 	skills_type = /datum/skills/civilian/survivor/master
-	outfit = /datum/outfit/job/survivor/rgeneric
+	outfit = /datum/outfit/job/survivor/rambo
+	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_NOHEADSET|JOB_FLAG_OVERRIDELATEJOINSPAWN
 
-/datum/outfit/job/survivor/rgeneric
+/datum/outfit/job/survivor/rambo
 	name = "Survivor"
-	jobtype = /datum/job/rambosurvivor/generic
-
+	jobtype = /datum/job/survivor/rambo
 	w_uniform = /obj/item/clothing/under/color/grey
 	wear_suit = /obj/item/clothing/suit/armor/rugged
-	shoes = /obj/item/clothing/shoes/ruggetboot
+	shoes = /obj/item/clothing/shoes/ruggedboot
 	back = /obj/item/storage/backpack/satchel/rugged
 	gloves = /obj/item/clothing/gloves/ruggedgloves

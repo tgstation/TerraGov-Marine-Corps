@@ -43,7 +43,7 @@
 		m.loc = get_turf(src)
 		var/mob/living/T = M
 		if(istype(T) && !isxeno(T))
-			T.Knockdown(20 SECONDS)
+			T.Paralyze(20 SECONDS)
 		T.apply_damage(20)
 		UPDATEHEALTH(T)
 		qdel(src)

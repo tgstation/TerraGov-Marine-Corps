@@ -141,7 +141,8 @@
 /datum/admins/proc/banpanel(player_key, player_ip, player_cid, role, duration = 1440, applies_to_admins, reason, edit_id, page, admin_key)
 	if(!check_rights(R_BAN))
 		return
-
+	if(!SSjob?.initialized)
+		return
 	var/panel_height = 620
 	if(edit_id)
 		panel_height = 240
@@ -258,49 +259,32 @@
 			while(query_get_banned_roles.NextRow())
 				banned_from += query_get_banned_roles.item[1]
 			qdel(query_get_banned_roles)
-		var/break_counter = 0
-		output += "<div class='row'><div class='column'><label class='rolegroup command'><input type='checkbox' name='Command' class='hidden'>Command</label><div class='content'>"
-		//all heads are listed twice so have a javascript call to toggle both their checkboxes when one is pressed
-		//for simplicity this also includes the captain even though it doesn't do anything
-		for(var/job in GLOB.jobs_officers)
-			if(break_counter > 0 && (break_counter % 3 == 0))
-				output += "<br>"
-			output += {"<label class='inputlabel checkbox'>[job]
-						<input type='checkbox' id='[job]_com' name='[job]' class='Command' value='1'>
-						<div class='inputbox[(job in banned_from) ? " banned" : ""]'></div></label>
-			"}
-			break_counter++
-		output += "</div></div>"
-		//standard departments all have identical handling
-		var/list/job_lists = list("Police" = GLOB.jobs_police,
-							"Engineering" = GLOB.jobs_engineering,
-							"Medical" = GLOB.jobs_medical,
-							"Requisitions" = GLOB.jobs_requisitions,
-							"Marines" = GLOB.jobs_marines)
-		for(var/department in job_lists)
+		for(var/department in SSjob.joinable_occupations_by_category)
 			//the first element is the department head so they need the same javascript call as above
+			var/datum/job/job = SSjob.joinable_occupations_by_category[department][1]
 			output += "<div class='column'><label class='rolegroup [ckey(department)]'><input type='checkbox' name='[department]' class='hidden'>[department]</label><div class='content'>"
-			output += {"<label class='inputlabel checkbox'>[job_lists[department][1]]
-						<input type='checkbox' id='[job_lists[department][1]]_dep' name='[job_lists[department][1]]' class='[department]' value='1'>
-						<div class='inputbox[(job_lists[department][1] in banned_from) ? " banned" : ""]'></div></label>
+			output += {"<label class='inputlabel checkbox'>[job.title]
+						<input type='checkbox' id='[job.title]_dep' name='[job.title]' class='[department]' value='1'>
+						<div class='inputbox[(job.title in banned_from) ? " banned" : ""]'></div></label>
 			"}
-			break_counter = 1
-			for(var/job in job_lists[department] - job_lists[department][1]) //skip the first element since it's already been done
+			var/break_counter = 1
+			for(var/j in (SSjob.joinable_occupations_by_category[department] - SSjob.joinable_occupations_by_category[department][1])) //skip the first element since it's already been done
+				job = j
 				if(break_counter % 3 == 0)
 					output += "<br>"
-				output += {"<label class='inputlabel checkbox'>[job]
-							<input type='checkbox' name='[job]' class='[department]' value='1'>
-							<div class='inputbox[(job in banned_from) ? " banned" : ""]'></div></label>
+				output += {"<label class='inputlabel checkbox'>[job.title]
+							<input type='checkbox' name='[job.title]' class='[department]' value='1'>
+							<div class='inputbox[(job.title in banned_from) ? " banned" : ""]'></div></label>
 				"}
 				break_counter++
 			output += "</div></div>"
 		//departments/groups that don't have command staff would throw a javascript error since there's no corresponding reference for toggle_head()
 		var/list/headless_job_lists = list("Abstract" = list("Appearance", "Emote", "OOC", "LOOC"))
 		for(var/department in headless_job_lists)
-			output += "<div class='column'><label class='rolegroup [ckey(department)]'><input type='checkbox' name='[department]' class='hidden'>[department]</label><div class='content'>"
-			break_counter = 0
+			output += "<div class='column'><label class='rolegroup long [ckey(department)]'><input type='checkbox' name='[department]' class='hidden'>[department]</label><div class='content'>"
+			var/break_counter = 0
 			for(var/job in headless_job_lists[department])
-				if(break_counter > 0 && (break_counter % 3 == 0))
+				if(break_counter > 0 && (break_counter % 10 == 0))
 					output += "<br>"
 				output += {"<label class='inputlabel checkbox'>[job]
 							<input type='checkbox' name='[job]' class='[department]' value='1'>
@@ -308,10 +292,10 @@
 				"}
 				break_counter++
 			output += "</div></div>"
-		var/list/long_job_lists = list("Role Positions" = list(ROLE_XENOMORPH, ROLE_XENO_QUEEN, ROLE_SURVIVOR, ROLE_ERT))
+		var/list/long_job_lists = list("Role Positions" = list(ROLE_ERT))
 		for(var/department in long_job_lists)
 			output += "<div class='column'><label class='rolegroup long [ckey(department)]'><input type='checkbox' name='[department]' class='hidden'>[department]</label><div class='content'>"
-			break_counter = 0
+			var/break_counter = 0
 			for(var/job in long_job_lists[department])
 				if(break_counter > 0 && (break_counter % 10 == 0))
 					output += "<br>"
@@ -543,7 +527,7 @@
 	log_admin_private("[kn] [msg][roles_to_ban[1] == "Server" ? "" : " Roles: [roles_to_ban.Join(", ")]"] Reason: [reason]")
 	message_admins("[kna] [msg][roles_to_ban[1] == "Server" ? "" : " Roles: [roles_to_ban.Join("\n")]"]\nReason: [reason]")
 	if(applies_to_admins)
-		send2irc("BAN ALERT", "[kn] [msg] | Reason: [reason]")
+		send2tgs("BAN ALERT", "[kn] [msg] | Reason: [reason]")
 	if(player_ckey)
 		create_message("note", player_ckey, admin_ckey, note_reason, null, null, 0, 0, null, 0, severity)
 	var/client/C = GLOB.directory[player_ckey]
@@ -794,7 +778,7 @@
 	log_admin_private("[kn] has edited the [changes_keys_text] of a ban for [old_key ? "[old_key]" : "[old_ip]-[old_cid]"].") //if a ban doesn't have a key it must have an ip and/or a cid to have reached this point normally
 	message_admins("[kna] has edited the [changes_keys_text] of a ban for [old_key ? "[old_key]" : "[old_ip]-[old_cid]"].")
 	if(changes["Applies to admins"])
-		send2irc("BAN ALERT","[kn] has edited a ban for [old_key ? "[old_key]" : "[old_ip]-[old_cid]"] to [applies_to_admins ? "" : "not"]affect admins")
+		send2tgs("BAN ALERT","[kn] has edited a ban for [old_key ? "[old_key]" : "[old_ip]-[old_cid]"] to [applies_to_admins ? "" : "not"]affect admins")
 	var/client/C = GLOB.directory[old_key]
 	if(C)
 		build_ban_cache(C)
@@ -839,391 +823,3 @@
 		else
 			. += "NULL"
 	. = jointext(., "/")
-
-
-/datum/admins/proc/stickyban(action, data)
-	if(!check_rights(R_BAN))
-		return
-
-	switch(action)
-		if("show")
-			sticky_ban_panel()
-		if("add")
-			var/list/ban = list()
-			var/ckey
-			ban["admin"] = usr.key
-			ban["type"] = list("sticky")
-			ban["reason"] = "(InGameBan)([usr.key])" //this will be displayed in dd only
-
-			if(data["ckey"])
-				ckey = ckey(data["ckey"])
-			else
-				ckey = input(usr,"Ckey","Ckey","") as text|null
-				if(!ckey)
-					return
-				ckey = ckey(ckey)
-			ban["ckey"] = ckey
-
-			if(get_stickyban_from_ckey(ckey))
-				to_chat(usr, "<span class='warning'>Error: Can not add a stickyban: User already has a current sticky ban</span>")
-
-			if(data["reason"])
-				ban["message"] = data["reason"]
-			else
-				var/reason = input(usr, "Reason", "Reason", "Ban Evasion") as text|null
-				if(!reason)
-					return
-				ban["message"] = "[reason]"
-
-			world.SetConfig("ban",ckey,list2stickyban(ban))
-
-			log_admin_private("[key_name(usr)] has stickybanned [ckey].\nReason: [ban["message"]]")
-			message_admins("[ADMIN_TPMONTY(usr)] has stickybanned [ckey].\nReason: [ban["message"]]")
-
-		if("remove")
-			if(!data["ckey"])
-				return
-			var/ckey = data["ckey"]
-
-			var/ban = get_stickyban_from_ckey(ckey)
-			if(!ban)
-				to_chat(usr, "<span class='warning'>Error: No sticky ban for [ckey] found!</span>")
-				return
-			if(alert("Are you sure you want to remove the sticky ban on [ckey]?","Are you sure","Yes","No") == "No")
-				return
-			if(!get_stickyban_from_ckey(ckey))
-				to_chat(usr, "<span class='warning'>Error: The ban disappeared.</span>")
-				return
-			world.SetConfig("ban",ckey, null)
-
-			log_admin_private("[key_name(usr)] removed [ckey]'s stickyban.")
-			message_admins("[ADMIN_TPMONTY(usr)] removed [ckey]'s stickyban.")
-
-		if("remove_alt")
-			if(!data["ckey"])
-				return
-			var/ckey = data["ckey"]
-			if(!data["alt"])
-				return
-			var/alt = ckey(data["alt"])
-			var/ban = get_stickyban_from_ckey(ckey)
-			if(!ban)
-				to_chat(usr, "<span class='warning'>Error: No sticky ban for [ckey] found!</span>")
-				return
-
-			var/found = 0
-			//we have to do it this way because byond keeps the case in its sticky ban matches WHY!!!
-			for (var/key in ban["keys"])
-				if (ckey(key) == alt)
-					found = 1
-					break
-
-			if(!found)
-				to_chat(usr, "<span class='warning'>Error: [alt] is not linked to [ckey]'s sticky ban!</span>")
-				return
-
-			if(alert("Are you sure you want to disassociate [alt] from [ckey]'s sticky ban? \nNote: Nothing stops byond from re-linking them","Are you sure","Yes","No") == "No")
-				return
-
-			ban = get_stickyban_from_ckey(ckey)
-			if(!ban)
-				to_chat(usr, "<span class='warning'>Error: The ban disappeared.</span>")
-				return
-
-			found = 0
-			for(var/key in ban["keys"])
-				if(ckey(key) == alt)
-					ban["keys"] -= key
-					found = 1
-					break
-
-			if(!found)
-				to_chat(usr, "<span class='warning'>Error: [alt] link to [ckey]'s sticky ban disappeared.</span>")
-				return
-
-			world.SetConfig("ban",ckey,list2stickyban(ban))
-
-			log_admin_private("[key_name(usr)] has disassociated [alt] from [ckey]'s sticky ban.")
-			message_admins("[ADMIN_TPMONTY(usr)] has disassociated [alt] from [ckey]'s sticky ban.")
-
-		if("edit")
-			if(!data["ckey"])
-				return
-			var/ckey = data["ckey"]
-			var/ban = get_stickyban_from_ckey(ckey)
-			if(!ban)
-				to_chat(usr, "<span class='warning'>Error: No sticky ban for [ckey] found!</span>")
-				return
-			var/oldreason = ban["message"]
-			var/reason = input(usr,"Reason","Reason","[ban["message"]]") as text|null
-			if(!reason || reason == oldreason)
-				return
-			//we have to do this again incase something changed while we waited for input
-			ban = get_stickyban_from_ckey(ckey)
-			if(!ban)
-				to_chat(usr, "<span class='warning'>Error: The ban disappeared.</span>")
-				return
-			ban["message"] = "[reason]"
-
-			world.SetConfig("ban",ckey,list2stickyban(ban))
-
-			log_admin_private("[key_name(usr)] has edited [ckey]'s sticky ban reason from [oldreason] to [reason]")
-			message_admins("[ADMIN_TPMONTY(usr)] has edited [ckey]'s sticky ban reason from [oldreason] to [reason]")
-
-		if("revert")
-			if(!data["ckey"])
-				return
-			var/ckey = data["ckey"]
-			if(alert("Are you sure you want to revert the sticky ban on [ckey] to its state at round start?","Are you sure","Yes","No") == "No")
-				return
-			var/ban = get_stickyban_from_ckey(ckey)
-			if(!ban)
-				to_chat(usr, "<span class='warning'>Error: No sticky ban for [ckey] found!</span>")
-				return
-			var/cached_ban = SSstickyban.cache[ckey]
-			if(!cached_ban)
-				to_chat(usr, "<span class='warning'>Error: No cached sticky ban for [ckey] found!</span>")
-			world.SetConfig("ban",ckey,null)
-
-			log_admin_private("[key_name(usr)] has reverted [ckey]'s sticky ban to its state at round start.")
-			message_admins("[ADMIN_TPMONTY(usr)] has reverted [ckey]'s sticky ban to its state at round start.")
-			//revert is mostly used when shit goes rouge, so we have to set it to null
-			//and wait a byond tick before assigning it to ensure byond clears its shit.
-			sleep(world.tick_lag)
-			world.SetConfig("ban",ckey,list2stickyban(cached_ban))
-
-
-/datum/admins/proc/stickyban_gethtml(ckey, ban)
-	. = {"
-		<a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=remove&ckey=[ckey]'>Remove</a>
-		<a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=revert&ckey=[ckey]'>Revert</a>
-		<b>[ckey]</b>
-		<br />"
-		[ban["message"]] <b><a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=edit&ckey=[ckey]'>Edit</a></b><br />
-	"}
-	if (ban["admin"])
-		. += "[ban["admin"]]<br />"
-	else
-		. += "LEGACY<br />"
-	. += "Caught keys<br />\n<ol>"
-	for (var/key in ban["keys"])
-		if (ckey(key) == ckey)
-			continue
-		. += "<li><a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=remove_alt&ckey=[ckey]&alt=[ckey(key)]'>Remove</a>[key]</li>"
-	. += "</ol>\n"
-
-
-/proc/get_stickyban_from_ckey(ckey)
-	if (!ckey)
-		return null
-	ckey = ckey(ckey)
-	. = null
-	for (var/key in world.GetConfig("ban"))
-		if (ckey(key) == ckey)
-			. = stickyban2list(world.GetConfig("ban",key))
-			break
-
-/proc/stickyban2list(ban)
-	if (!ban)
-		return null
-	. = params2list(ban)
-	if (.["keys"])
-		var/keys = splittext(.["keys"], ",")
-		var/ckeys = list()
-		for (var/key in keys)
-			var/ckey = ckey(key)
-			ckeys[ckey] = ckey //to make searching faster.
-		.["keys"] = ckeys
-	.["type"] = splittext(.["type"], ",")
-	.["IP"] = splittext(.["IP"], ",")
-	.["computer_id"] = splittext(.["computer_id"], ",")
-
-
-/proc/list2stickyban(list/ban)
-	if (!ban || !islist(ban))
-		return null
-	. = ban.Copy()
-	if (.["keys"])
-		.["keys"] = jointext(.["keys"], ",")
-	if (.["type"])
-		.["type"] = jointext(.["type"], ",")
-
-	//internal tracking only, shouldn't be stored
-	. -= "existing_user_matches_this_round"
-	. -= "admin_matches_this_round"
-	. -= "matches_this_round"
-	. -= "reverting"
-
-	//storing these can sometimes cause sticky bans to start matching everybody
-	//	and isn't even needed for sticky ban matching, as the hub tracks these separately
-	. -= "IP"
-	. -= "computer_id"
-
-	. = list2params(.)
-
-
-/datum/admins/proc/sticky_ban_panel()
-	set name = "Sticky Ban Panel"
-	set category = "Admin"
-
-	if(!check_rights(R_BAN))
-		return
-
-	var/list/bans = sortList(world.GetConfig("ban"))
-	var/banhtml = ""
-	for(var/key in bans)
-		var/ckey = ckey(key)
-		var/ban = stickyban2list(world.GetConfig("ban",key))
-		banhtml += "<br /><hr />\n"
-		banhtml += usr.client.holder.stickyban_gethtml(ckey,ban)
-
-	var/html = "<a href='?src=[REF(usr.client.holder)];[HrefToken()];stickyban=add'>Add</a><br>[banhtml]"
-
-	var/datum/browser/browser = new(usr, "stickybans", "<div align='center'>Sticky Bans</div>", 700, 400)
-	browser.set_content(html)
-	browser.open()
-
-
-//Blocks an attempt to connect before even creating our client datum thing.
-/world/IsBanned(key, address, computer_id, type, real_bans_only = FALSE)
-	if(!key || !address || !computer_id)
-		if(real_bans_only)
-			return FALSE
-		log_access("Failed Login (invalid data): [key] [address]-[computer_id]")
-		return list("reason"="invalid login data", "desc"="Error: Could not check ban status, Please try again. Error message: Your computer provided invalid or blank information to the server on connection (byond username, IP, and Computer ID.) Provided information for reference: Username:'[key]' IP:'[address]' Computer ID:'[computer_id]'. (If you continue to get this error, please restart byond or contact byond support.)")
-
-	if(text2num(computer_id) == 2147483647) //this cid causes stickybans to go haywire
-		log_access("Failed Login (invalid cid): [key] [address]-[computer_id]")
-		return list("reason"="invalid login data", "desc"="Error: Could not check ban status, Please try again. Error message: Your computer provided an invalid Computer ID.)")
-	var/admin = FALSE
-	var/ckey = ckey(key)
-	if(GLOB.admin_datums[ckey] || GLOB.deadmins[ckey])
-		admin = TRUE
-
-	var/client/C = GLOB.directory[ckey]
-
-	//Guest Checking
-	if(!real_bans_only && !C && IsGuestKey(key))
-		if(CONFIG_GET(flag/guest_ban))
-			log_access("Failed Login: [key] - Guests not allowed")
-			return list("reason"="guest", "desc"="\nReason: Guests not allowed. Please sign in with a byond account.")
-		if(CONFIG_GET(flag/panic_bunker) && SSdbcore.Connect())
-			log_access("Failed Login: [key] - Guests not allowed during panic bunker")
-			return list("reason"="guest", "desc"="\nReason: Sorry but the server is currently not accepting connections from never before seen players or guests. If you have played on this server with a byond account before, please log in to the byond account you have played from.")
-
-
-	//Population Cap Checking
-	var/extreme_popcap = CONFIG_GET(number/extreme_popcap)
-	if(!real_bans_only && !C && extreme_popcap && !admin)
-		var/popcap_value = length(GLOB.clients)
-		if(popcap_value >= extreme_popcap && !GLOB.joined_player_list.Find(ckey))
-			log_access("Failed Login: [key] - Population cap reached")
-			return list("reason" = "popcap", "desc" = "\nReason: [CONFIG_GET(string/extreme_popcap_message)]")
-
-	if(CONFIG_GET(flag/sql_enabled))
-		if(!SSdbcore.Connect())
-			var/msg = "Ban database connection failure. Key [ckey] not checked"
-			log_world(msg)
-			message_admins(msg)
-		else
-			var/list/ban_details = is_banned_from_with_details(ckey, address, computer_id, "Server")
-			for(var/i in ban_details)
-				if(admin)
-					if(text2num(i["applies_to_admins"]))
-						var/msg = "Admin [key] is admin banned, and has been disallowed access."
-						log_admin(msg)
-						message_admins(msg)
-					else
-						var/msg = "Admin [key] has been allowed to bypass a matching non-admin ban on [i["key"]] [i["ip"]]-[i["computerid"]]."
-						log_admin(msg)
-						message_admins(msg)
-						addclientmessage(ckey,"<span class='adminnotice'>Admin [key] has been allowed to bypass a matching non-admin ban on [i["key"]] [i["ip"]]-[i["computerid"]].</span>")
-						continue
-				var/expires = "This is a permanent ban."
-				if(i["expiration_time"])
-					expires = " The ban is for [DisplayTimeText(text2num(i["duration"]) MINUTES)] and expires on [i["expiration_time"]] (server time)."
-				var/desc = {"You, or another user of this computer or connection ([i["key"]]) is banned from playing here.
-				The ban reason is: [i["reason"]]
-				This ban (BanID #[i["id"]]) was applied by [i["admin_key"]] on [i["bantime"]] during round ID [i["round_id"]].
-				[expires]"}
-				log_access("Failed Login: [key] [computer_id] [address] - Banned (#[i["id"]])")
-				return list("reason"="Banned","desc"="[desc]")
-	var/list/ban = ..()	//default pager ban stuff
-	if(ban)
-		var/bannedckey = "ERROR"
-		if(ban["ckey"])
-			bannedckey = ban["ckey"]
-
-		var/newmatch = FALSE
-		var/cachedban = SSstickyban.cache[bannedckey]
-
-		//rogue ban in the process of being reverted.
-		if(cachedban && cachedban["reverting"])
-			return null
-
-		if(cachedban && ckey != bannedckey)
-			newmatch = TRUE
-			if(cachedban["keys"])
-				if(cachedban["keys"][ckey])
-					newmatch = FALSE
-			if(cachedban["matches_this_round"][ckey])
-				newmatch = FALSE
-
-		if(newmatch && cachedban)
-			var/list/newmatches = cachedban["matches_this_round"]
-			var/list/newmatches_connected = cachedban["existing_user_matches_this_round"]
-			var/list/newmatches_admin = cachedban["admin_matches_this_round"]
-
-			newmatches[ckey] = ckey
-			if(C)
-				newmatches_connected[ckey] = ckey
-			if(admin)
-				newmatches_admin[ckey] = ckey
-
-			if(\
-				length(newmatches) > STICKYBAN_MAX_MATCHES || \
-				length(newmatches_connected) > STICKYBAN_MAX_EXISTING_USER_MATCHES || \
-				length(newmatches_admin) > STICKYBAN_MAX_ADMIN_MATCHES \
-				)
-				if (cachedban["reverting"])
-					return null
-				cachedban["reverting"] = TRUE
-
-				world.SetConfig("ban", bannedckey, null)
-
-				log_admin_private("Stickyban on [bannedckey] detected as rogue, reverting to its roundstart state")
-				message_admins("Stickyban on [bannedckey] detected as rogue, reverting to its roundstart state")
-				//do not convert to timer.
-				spawn(5)
-					world.SetConfig("ban", bannedckey, null)
-					sleep(1)
-					world.SetConfig("ban", bannedckey, null)
-					cachedban["matches_this_round"] = list()
-					cachedban["existing_user_matches_this_round"] = list()
-					cachedban["admin_matches_this_round"] = list()
-					cachedban -= "reverting"
-					world.SetConfig("ban", bannedckey, list2stickyban(cachedban))
-				return null
-
-		//byond will not trigger isbanned() for "global" host bans,
-		//ie, ones where the "apply to this game only" checkbox is not checked (defaults to not checked)
-		//So it's safe to let admins walk thru host/sticky bans here
-		if(admin)
-			log_admin("The admin [key] has been allowed to bypass a matching host/sticky ban on [bannedckey]")
-			message_admins("<span class='adminnotice'>The admin [key] has been allowed to bypass a matching host/sticky ban on [bannedckey]</span>")
-			addclientmessage(ckey,"<span class='adminnotice'>You have been allowed to bypass a matching host/sticky ban on [bannedckey]</span>")
-			return null
-
-		if(C) //user is already connected!.
-			to_chat(C, "You are about to get disconnected for matching a sticky ban after you connected. If this turns out to be the ban evasion detection system going haywire, we will automatically detect this and revert the matches. if you feel that this is the case, please wait EXACTLY 6 seconds then reconnect using file -> reconnect to see if the match was reversed.")
-
-		var/desc = "\nReason:(StickyBan) You, or another user of this computer or connection ([bannedckey]) is banned from playing here. The ban reason is:\n[ban["message"]]\nThis ban was applied by [ban["admin"]]\nThis is a BanEvasion Detection System ban, if you think this ban is a mistake, please wait EXACTLY 6 seconds, then try again before filing an appeal.\n"
-		. = list("reason" = "Stickyban", "desc" = desc)
-		log_access("Failed Login: [key] [computer_id] [address] - StickyBanned [ban["message"]] Target Username: [bannedckey] Placed by [ban["admin"]]")
-
-	return .
-
-
-#undef STICKYBAN_MAX_MATCHES
-#undef STICKYBAN_MAX_EXISTING_USER_MATCHES
-#undef STICKYBAN_MAX_ADMIN_MATCHES

@@ -23,12 +23,13 @@
 			zoom_out()
 	else
 		if(is_zoomed)
-			if(loc != zoom_turf || lying)
+			if(loc != zoom_turf || lying_angle)
 				zoom_out()
 		update_progression()
 		update_evolving()
 		handle_aura_emiter()
 
+	adjust_sunder(xeno_caste.sunder_recover * -1) 
 	handle_aura_receiver()
 	handle_living_health_updates()
 	handle_living_plasma_updates()
@@ -37,39 +38,13 @@
 
 
 /mob/living/carbon/xenomorph/update_stat()
-
-	update_cloak()
-
-	if(status_flags & GODMODE)
+	. = ..()
+	if(.)
 		return
-
-	if(stat == DEAD)
-		return
-
-	if(health <= xeno_caste.crit_health)
-		if(prob(gib_chance + 0.5*(xeno_caste.crit_health - health)))
-			gib()
-		else
-			death()
-		return
-
-	if(IsUnconscious() || IsSleeping() || IsAdminSleeping() || health < get_crit_threshold())
-		if(stat != UNCONSCIOUS)
-			blind_eyes(1)
-		stat = UNCONSCIOUS
-		see_in_dark = 5
-	else if(stat == UNCONSCIOUS)
-		stat = CONSCIOUS
-		adjust_blindness(-1)
-		see_in_dark = 8
-	update_canmove()
 
 	//Deal with devoured things and people
 	if(LAZYLEN(stomach_contents) && world.time > devour_timer && !is_ventcrawling)
 		empty_gut()
-
-	return TRUE
-
 
 
 /mob/living/carbon/xenomorph/handle_status_effects()
@@ -106,7 +81,7 @@
 		ruler_healing_penalty = 1
 
 	if(locate(/obj/effect/alien/weeds) in T || xeno_caste.caste_flags & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
-		if(lying || resting || xeno_caste.caste_flags & CASTE_QUICK_HEAL_STANDING)
+		if(lying_angle || resting || xeno_caste.caste_flags & CASTE_QUICK_HEAL_STANDING)
 			heal_wounds(XENO_RESTING_HEAL * ruler_healing_penalty)
 		else
 			heal_wounds(XENO_STANDING_HEAL * ruler_healing_penalty) //Major healing nerf if standing.
@@ -142,8 +117,8 @@
 		else
 			use_plasma(5)
 
-	if(locate(/obj/effect/alien/weeds) in T)
-		if(lying || resting)
+	if((locate(/obj/effect/alien/weeds) in T) || (xeno_caste.caste_flags & CASTE_INNATE_PLASMA_REGEN))
+		if(lying_angle || resting)
 			gain_plasma((xeno_caste.plasma_gain + round(xeno_caste.plasma_gain * recovery_aura * 0.25)) * 2) // Empty recovery aura will always equal 0
 		else
 			gain_plasma(max(((xeno_caste.plasma_gain + round(xeno_caste.plasma_gain * recovery_aura * 0.25)) * 0.5), 1))
@@ -275,6 +250,8 @@
 
 /mob/living/carbon/xenomorph/updatehealth()
 	if(status_flags & GODMODE)
+		health = maxHealth
+		stat = CONSCIOUS
 		return
 	health = maxHealth - getFireLoss() - getBruteLoss() //Xenos can only take brute and fire damage.
 	med_hud_set_health()

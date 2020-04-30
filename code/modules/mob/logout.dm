@@ -1,4 +1,5 @@
 /mob/Logout()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_LOGOUT, src)
 	SEND_SIGNAL(src, COMSIG_MOB_LOGOUT)
 	SStgui.on_logout(src)
 	unset_machine()

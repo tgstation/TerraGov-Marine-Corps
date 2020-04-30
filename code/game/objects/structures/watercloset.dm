@@ -454,7 +454,7 @@
 		flick("baton_active", src)
 		L.Stun(20 SECONDS)
 		L.stuttering = 10
-		L.Knockdown(20 SECONDS)
+		L.Paralyze(20 SECONDS)
 		L.visible_message("<span class='danger'>[L] was stunned by [L.p_their()] wet [I]!</span>")
 
 	if(I.flags_item & ITEM_ABSTRACT)

@@ -17,7 +17,8 @@
 		if(C.mob && C.mob.stat != DEAD)
 			if(ishuman(C.mob))
 				count_humans++
-				if(C.mob.mind.assigned_role in (GLOB.jobs_marines))
+				var/mob/living/carbon/human/human_mob = C.mob
+				if(ismarinejob(human_mob.job))
 					count_marine_humans++
 				if(C.mob.status_flags & XENO_HOST)
 					count_infectedhumans++

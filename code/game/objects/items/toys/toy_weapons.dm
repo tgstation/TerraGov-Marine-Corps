@@ -144,7 +144,7 @@
 			return
 		else if(!bullets && isliving(user))
 			var/mob/living/L = user
-			L.Knockdown(10 SECONDS)
+			L.Paralyze(10 SECONDS)
 			visible_message("<span class='warning'>[user] realized they were out of ammo and starting scrounging for some!</span>")
 
 
@@ -152,17 +152,17 @@
 
 // ******* Check
 
-		if (src.bullets > 0 && M.lying)
+		if (bullets > 0 && M.lying_angle)
 			visible_message("<span class='danger'>[user] casually lines up a shot with [M]'s head and pulls the trigger!</span>", null, "<span class='warning'>You hear the sound of foam against skull</span>")
 			visible_message("<span class='warning'>[M] was hit in the head by the foam dart!</span>")
 
 			playsound(user.loc, 'sound/items/syringeproj.ogg', 15, 1)
 			new /obj/item/toy/crossbow_ammo(M.loc)
 			src.bullets--
-		else if(M.lying && !bullets && isliving(M))
+		else if(M.lying_angle && !bullets && isliving(M))
 			var/mob/living/L = M
 			L.visible_message("<span class='danger'>[user] casually lines up a shot with [L]'s head, pulls the trigger, then realizes they are out of ammo and drops to the floor in search of some!</span>")
-			L.Knockdown(10 SECONDS)
+			L.Paralyze(10 SECONDS)
 		return
 
 /obj/item/toy/crossbow_ammo

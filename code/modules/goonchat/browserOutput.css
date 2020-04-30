@@ -285,6 +285,8 @@ h1.alert, h2.alert		{color: #99aab5;}
 .emote					{					font-style: italic;}
 .selecteddna			{color: #FFFFFF; 	background-color: #001B1B}
 
+.singing				{font-family: "Trebuchet MS", cursive, sans-serif; font-style: italic;}
+
 .attack					{color: #ff0000;}
 .moderate				{color: #CC0000;}
 .disarm					{color: #780202;}
@@ -308,10 +310,11 @@ h1.alert, h2.alert		{color: #99aab5;}
 .highdanger				{color: #f44747;	font-weight: bold; font-size: 1.5em;}
 .xenohighdanger			{color: #6a9955; 	font-weight: bold; font-size: 1.5em;}
 .xenoannounce           {color: #4EC9B0;    font-family: book-antiqua; font-weight: bold; font-style: italic; font-size: 1.5em;}
-.hivemind				{color: #c586c0;}
 .xenoqueen				{font-size: 1.4em;}
 .xenoshrike				{font-size: 1.2em;}
-
+.xenohivemind			{font-size: 1.2em;}
+.hivemind				{color: #c586c0;}
+ 
 .alien					{color: #543354;}
 .newscaster				{color: #800000;}
 
@@ -371,3 +374,12 @@ h1.alert, h2.alert		{color: #99aab5;}
 /* HELPER CLASSES */
 .text-normal {font-weight: normal; font-style: normal;}
 .hidden {display: none; visibility: hidden;}
+
+
+.hidelink {
+	text-decoration: none;
+	color: inherit;
+}
+.hidelink:hover {
+	text-decoration: underline;
+}

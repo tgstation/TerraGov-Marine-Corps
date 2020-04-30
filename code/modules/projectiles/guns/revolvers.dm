@@ -296,6 +296,36 @@
 	return current_mag ? current_mag.current_rounds : 0
 
 //-------------------------------------------------------
+//TP-44 COMBAT REVOLVER
+
+/obj/item/weapon/gun/revolver/standard_revolver
+	name = "\improper TP-44 combat revolver"
+	desc = "The TP-44, Produced by Terran Armories. A sturdy and hard hitting firearm that loads .44 Magnum rounds. Holds 7 rounds in the cylinder. Due to the nature of the weapon, it’s rate of fire doesn’t quite match the output of other guns, but does hit much harder."
+	icon_state = "tp44"
+	item_state = "tp44"
+	caliber = ".44 Magnum" //codex
+	max_shells = 7 //codex
+	current_mag = /obj/item/ammo_magazine/internal/revolver/standard_revolver
+	force = 8
+	attachable_allowed = list(
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/gyro,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/lasersight)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 23, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 19)
+	fire_delay = 0.3
+	accuracy_mult_unwielded = 0.85
+	accuracy_mult = 1
+	scatter_unwielded = 15
+	scatter = 0
+	recoil = 0
+	recoil_unwielded = 1
+
+//-------------------------------------------------------
 //M44 MAGNUM REVOLVER //Not actually cannon, but close enough.
 
 /obj/item/weapon/gun/revolver/m44
@@ -394,13 +424,10 @@
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/heavy_barrel,
-						/obj/item/attachable/quickfire,
 						/obj/item/attachable/compensator)
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
 
-	fire_delay = 0.7 SECONDS
-	burst_amount = 2
-	burst_delay = 0.4 SECONDS
+	fire_delay = 0.2 SECONDS
 	accuracy_mult_unwielded = 0.6
 	scatter_unwielded = 20
 	damage_mult = 1.05

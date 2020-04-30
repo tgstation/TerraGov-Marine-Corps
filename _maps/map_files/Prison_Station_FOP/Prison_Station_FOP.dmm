@@ -4281,7 +4281,7 @@
 	},
 /area/prison/research/secret/chemistry)
 "any" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/medbay)
 "anz" = (
@@ -8975,7 +8975,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/whitegreen{
 	dir = 10
 	},
@@ -9763,7 +9763,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/trim/red,
 /area/prison/medbay/foyer)
 "aAU" = (
@@ -12564,7 +12564,7 @@
 	},
 /area/prison/residential/north)
 "aHp" = (
-/obj/effect/landmark/start/xeno_spawn,
+/obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
 	dir = 10
@@ -13028,7 +13028,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/north)
 "aIA" = (
-/obj/effect/landmark/start/xeno_spawn,
+/obj/effect/landmark/start/job/xenomorph,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison{
@@ -18518,7 +18518,7 @@
 /turf/open/floor/wood,
 /area/prison/recreation/staff)
 "aVj" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/prison/recreation/staff)
 "aVk" = (
@@ -21599,7 +21599,7 @@
 	},
 /area/prison/security/monitoring/maxsec/panopticon)
 "bdt" = (
-/obj/effect/landmark/start/xeno_spawn,
+/obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/prison{
 	icon_state = "bright_clean2";
 	dir = 10
@@ -30374,7 +30374,7 @@
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/prison/maintenance/residential/se)
 "bxO" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/yellow{
 	dir = 9
 	},
@@ -35769,7 +35769,7 @@
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/south)
 "bKD" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison{
 	icon_state = "bright_clean";
 	dir = 10
@@ -39775,7 +39775,7 @@
 	},
 /area/prison/storage/medsec)
 "bUz" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison,
 /area/prison/storage/medsec)
 "bUA" = (
@@ -41322,7 +41322,7 @@
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/protective)
 "bYN" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/prison/library)
 "bYP" = (
@@ -46813,7 +46813,7 @@
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/monitoring/protective)
 "cmv" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/blue{
 	dir = 8
 	},
@@ -47932,7 +47932,7 @@
 /obj/machinery/conveyor{
 	dir = 8
 	},
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/plating,
 /area/prison/disposal)
 "cpu" = (
@@ -48904,7 +48904,7 @@
 /turf/open/floor/carpet,
 /area/prison/pirate)
 "csr" = (
-/obj/effect/landmark/start/surv_spawn,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/carpet,
 /area/prison/pirate)
 "css" = (

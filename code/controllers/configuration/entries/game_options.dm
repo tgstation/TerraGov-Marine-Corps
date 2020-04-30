@@ -87,28 +87,8 @@
 
 /datum/config_entry/flag/fun_allowed //a lot of LRP features
 
-/datum/config_entry/number/xeno_number
-	integer = FALSE
-	config_entry_value = 4
-	min_val = 1
-
 /datum/config_entry/number/min_xenos
 	config_entry_value = 5
-	min_val = 1
-
-/datum/config_entry/number/xeno_coefficient
-	integer = FALSE
-	config_entry_value = 0.04
-	min_val = 0.001
-
-/datum/config_entry/number/crash_coefficient
-	integer = FALSE
-	config_entry_value = 0.04
-	min_val = 0.001
-
-/datum/config_entry/number/survivor_coefficient
-	integer = FALSE
-	config_entry_value = 15
 	min_val = 1
 
 /datum/config_entry/number/crash_larvapoints_required
@@ -119,3 +99,9 @@
 	config_entry_value = 8
 	min_val = 1
 
+/datum/config_entry/keyed_list/lobby_music
+	key_mode = KEY_MODE_TEXT
+	value_mode = VALUE_MODE_TEXT
+
+/datum/config_entry/flag/distress_ert_allowed
+	config_entry_value = TRUE

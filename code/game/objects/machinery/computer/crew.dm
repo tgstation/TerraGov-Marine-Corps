@@ -37,7 +37,7 @@
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "crew", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, ui_key, "Crew", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /obj/machinery/computer/crew/ui_data(mob/user)
@@ -56,7 +56,7 @@
 
 				var/mob/living/carbon/human/H = C.loc
 
-				if(issurvivor(H) && is_ground_level(H.loc.z))
+				if(issurvivorjob(H.job) && is_ground_level(H.loc.z))
 					continue // survivors
 
 				if(H.w_uniform != C)
@@ -100,6 +100,8 @@
 		if(DISPLAY_IN_TRANSIT)
 			data["zlevel"] = 2
 			data["crewmembers"] = sortListUsingKey(crewmembers_in_transit, cmp_proc, sortkey)
+
+	data["zlevel"] = displayed_z_level
 
 	return data
 

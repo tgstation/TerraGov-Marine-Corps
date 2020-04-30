@@ -3,7 +3,7 @@
 	var/desig = "Silicon"
 	if(issilicon(src))
 		var/mob/living/silicon/S = src
-		desig = trim_left(S.job)
+		desig = trim_left(S.job.title)
 	var/message_a = say_quote(message)
 	var/rendered = "Robotic Talk, <span class='name'>[name]</span> <span class='message'>[message_a]</span>"
 	for(var/mob/M in GLOB.player_list)

@@ -51,7 +51,7 @@
 	var/list/possible = list()
 	for(var/dt in languages)
 		possible += dt
-	. = safepick(possible)
+	. = SAFEPICK(possible)
 
 
 /datum/language_holder/proc/remove_language(datum/language/dt, shadow = FALSE)
@@ -139,6 +139,9 @@
 
 /datum/language_holder/machine
 	languages = list(/datum/language/common, /datum/language/machine)
+
+/datum/language_holder/sectoid
+	languages = list(/datum/language/sectoid)
 
 
 /mob/living/verb/language_menu()

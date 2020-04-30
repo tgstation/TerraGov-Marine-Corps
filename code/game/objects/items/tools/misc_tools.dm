@@ -41,7 +41,7 @@
 	icon_state = "labeler[on]"
 	if(on)
 		to_chat(user, "<span class='notice'>You turn on \the [src].</span>")
-		var/str = copytext(sanitize(input(user,"What do you want to label things as?", "Label Text", "")), 1, MAX_NAME_LEN)
+		var/str = reject_bad_text(stripped_input(user, "Label text?", "Set label","", MAX_NAME_LEN))
 		if(!str)
 			to_chat(user, "<span class='notice'>Invalid label.</span>")
 			return

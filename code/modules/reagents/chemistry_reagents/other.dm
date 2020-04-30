@@ -34,7 +34,10 @@
 	description = "A ubiquitous chemical substance that is composed of hydrogen and oxygen."
 	reagent_state = LIQUID
 	color = "#0064C8" // rgb: 0, 100, 200
-	custom_metabolism = REAGENTS_METABOLISM * 0.05
+	overdose_threshold = REAGENTS_OVERDOSE*2
+	custom_metabolism = REAGENTS_METABOLISM * 5 //1.0/tick
+	purge_list = list(/datum/reagent/toxin, /datum/reagent/medicine, /datum/reagent/consumable)
+	purge_rate = 1
 	taste_description = "water"
 
 /datum/reagent/water/reaction_turf(turf/T, volume)
@@ -53,6 +56,22 @@
 		L.adjust_fire_stacks(-(volume / 10))
 		if(L.fire_stacks <= 0)
 			L.ExtinguishMob()
+
+
+/datum/reagent/water/on_mob_life(mob/living/L,metabolism)
+	switch(current_cycle)
+		if(4 to 5) //1 sip, starting at the end
+			L.adjustStaminaLoss(-4*REM)	
+			L.heal_limb_damage(2*REM, 2*REM)
+		if(6 to 10) //sip 2
+			L.adjustStaminaLoss(-REM)
+			L.heal_limb_damage(0.2*REM, 0.2*REM)
+	return ..()
+
+/datum/reagent/water/overdose_process(mob/living/L, metabolism)
+	if(prob(10))
+		L.adjustStaminaLoss(100*REM)
+		to_chat(L, "<span class='warning'>You cramp up! Too much water!</span>")
 
 /datum/reagent/water/holywater
 	name = "Holy Water"

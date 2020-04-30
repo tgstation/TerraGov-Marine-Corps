@@ -68,12 +68,10 @@
 	if(!network)
 		user.unset_interaction()
 		CRASH("No camera network")
-		return
 
 	if(!(islist(network)))
 		user.unset_interaction()
 		CRASH("Camera network is not a list")
-		return
 
 	var/list/camera_list = get_available_cameras()
 	if(!(user in watchers))

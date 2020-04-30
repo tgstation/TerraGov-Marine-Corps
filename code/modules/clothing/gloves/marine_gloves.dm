@@ -15,18 +15,12 @@
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 	flags_armor_protection = HANDS
-	var/flags_marine_gloves = GLOVES_SQUAD_OVERLAY
 	armor = list("melee" = 15, "bullet" = 20, "laser" = 15, "energy" = 20, "bomb" = 20, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 20)
 
-/obj/item/clothing/gloves/marine/Initialize(mapload, squad, rank)
-	. = ..()
-	if(squad)
-		var/dat = ""
-		if(rank == SQUAD_ENGINEER)
-			dat += "insulated "
-			siemens_coefficient = 0
-			desc = "Insulated marine tactical gloves that protect against electrical shocks."
-		name = dat + "marine combat gloves"
+/obj/item/clothing/gloves/marine/insulated
+	name = "insulated marine combat gloves"
+	desc = "Insulated marine tactical gloves that protect against electrical shocks."
+	siemens_coefficient = 0
 
 /obj/item/clothing/gloves/marine/officer
 	name = "officer gloves"
@@ -97,3 +91,10 @@
 	icon_state = "som_veteran"
 	item_state = "som_veteran"
 	armor = list("melee" = 25, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 25)
+
+/obj/item/clothing/gloves/marine/commissar
+	name = "\improper commissar gloves"
+	desc = "Gloves worn by commissars of the Imperial Army so that they do not soil their hands with the blood of their men."
+	icon_state = "gloves_commissar"
+	item_state = "gloves_commissar"
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 15, "bio" = 10, "rad" = 0, "fire" = 20, "acid" = 20)

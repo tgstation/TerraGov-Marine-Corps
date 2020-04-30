@@ -49,13 +49,12 @@
 /mob/dead/observer/MouseWheelOn(atom/A, delta_x, delta_y, params)
 	var/list/modifier = params2list(params)
 	if(modifier["shift"])
-		var/view = client.view
+		var/view_change = 0
 		if(delta_y > 0)
-			view--
+			view_change = -1
 		else
-			view++
-		view = CLAMP(view, world.view, 14)
-		client.change_view(view)
+			view_change = 1
+		add_view_range(view_change)
 
 
 // Oh by the way this didn't work with old click code which is why clicking shit didn't spam you

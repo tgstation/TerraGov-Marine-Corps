@@ -1,9 +1,8 @@
 //Updates the mob's health from limbs and mob damage variables
 /mob/living/carbon/human/updatehealth()
-
 	if(status_flags & GODMODE)
 		health = species.total_health
-		stat = CONSCIOUS
+		set_stat(CONSCIOUS)
 		return
 	var/total_burn	= 0
 	var/total_brute	= 0

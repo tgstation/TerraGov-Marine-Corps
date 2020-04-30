@@ -3,7 +3,7 @@
 // ***************************************
 /datum/action/xeno_action/choose_resin/hivelord
 	buildable_structures = list(
-		/turf/closed/wall/resin/thick,
+		/turf/closed/wall/resin/regenerating/thick,
 		/obj/structure/bed/nest,
 		/obj/effect/alien/resin/sticky,
 		/obj/structure/mineral_door/resin/thick)
@@ -20,31 +20,33 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	if(get_dist(owner, A) != 1)
 		return ..()
 
-	if(!is_type_in_typecache(A, GLOB.thickenable_resin))
-		return build_resin(get_turf(A))
+	return build_resin(get_turf(owner)) // TODO: (psykzz) 
 
-	if(istype(A, /turf/closed/wall/resin))
-		var/turf/closed/wall/resin/WR = A
-		var/oldname = WR.name
-		if(WR.thicken())
-			owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a thick substance and thickens [oldname].</span>", \
-			"<span class='xenonotice'>You regurgitate some resin and thicken [oldname].</span>", null, 5)
-			playsound(owner.loc, "alien_resin_build", 25)
-			return succeed_activate()
-		to_chat(owner, "<span class='xenowarning'>[WR] can't be made thicker.</span>")
-		return fail_activate()
+	// if(!is_type_in_typecache(A, GLOB.thickenable_resin))
+	// 	return build_resin(get_turf(A))
 
-	if(istype(A, /obj/structure/mineral_door/resin))
-		var/obj/structure/mineral_door/resin/DR = A
-		var/oldname = DR.name
-		if(DR.thicken())
-			owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a thick substance and thickens [oldname].</span>", \
-				"<span class='xenonotice'>We regurgitate some resin and thicken [oldname].</span>", null, 5)
-			playsound(owner.loc, "alien_resin_build", 25)
-			return succeed_activate()
-		to_chat(owner, "<span class='xenowarning'>[DR] can't be made thicker.</span>")
-		return fail_activate()
-	return fail_activate() //will never be reached but failsafe
+	// if(istype(A, /turf/closed/wall/resin))
+	// 	var/turf/closed/wall/resin/WR = A
+	// 	var/oldname = WR.name
+	// 	if(WR.thicken())
+	// 		owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a thick substance and thickens [oldname].</span>", \
+	// 		"<span class='xenonotice'>You regurgitate some resin and thicken [oldname].</span>", null, 5)
+	// 		playsound(owner.loc, "alien_resin_build", 25)
+	// 		return succeed_activate()
+	// 	to_chat(owner, "<span class='xenowarning'>[WR] can't be made thicker.</span>")
+	// 	return fail_activate()
+
+	// if(istype(A, /obj/structure/mineral_door/resin))
+	// 	var/obj/structure/mineral_door/resin/DR = A
+	// 	var/oldname = DR.name
+	// 	if(DR.thicken())
+	// 		owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a thick substance and thickens [oldname].</span>", \
+	// 			"<span class='xenonotice'>We regurgitate some resin and thicken [oldname].</span>", null, 5)
+	// 		playsound(owner.loc, "alien_resin_build", 25)
+	// 		return succeed_activate()
+	// 	to_chat(owner, "<span class='xenowarning'>[DR] can't be made thicker.</span>")
+	// 	return fail_activate()
+	// return fail_activate() //will never be reached but failsafe
 
 // ***************************************
 // *********** Resin walker
@@ -191,7 +193,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	to_chat(X, "<span class='xenonotice'>We dig our tunnel all the way to the original entrance, connecting both entrances! We now have [length(X.tunnels) * 0.5] of [HIVELORD_TUNNEL_SET_LIMIT] tunnel sets.</span>")
 
-	var/msg = copytext(sanitize(input("Add a description to the tunnel:", "Tunnel Description") as text|null), 1, MAX_MESSAGE_LEN)
+	var/msg = stripped_input(X, "Add a description to the tunnel:", "Tunnel Description")
 	newt.other.tunnel_desc = "[get_area(newt.other)] (X: [newt.other.x], Y: [newt.other.y]) [msg]"
 	newt.tunnel_desc = "[get_area(newt)] (X: [newt.x], Y: [newt.y]) [msg]"
 

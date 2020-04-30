@@ -28,34 +28,7 @@
 		if(M.mind)
 			M.mind.name = new_name
 
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(subspecies)
-			H.set_species(subspecies)
-		if(H.client)
-			H.name = H.client.prefs.real_name
-			H.real_name = H.client.prefs.real_name
-			H.gender = H.client.prefs.gender
-			H.h_style = H.client.prefs.h_style
-			H.f_style = H.client.prefs.f_style
-			H.r_hair = H.client.prefs.r_hair
-			H.g_hair = H.client.prefs.g_hair
-			H.b_hair = H.client.prefs.b_hair
-			H.r_facial = H.client.prefs.r_facial
-			H.g_facial = H.client.prefs.g_facial
-			H.b_facial = H.client.prefs.b_facial
-			H.r_eyes = H.client.prefs.r_eyes
-			H.g_eyes = H.client.prefs.g_eyes
-			H.b_eyes = H.client.prefs.b_eyes
-			H.age = H.client.prefs.age
-			H.ethnicity = H.client.prefs.ethnicity
-			H.body_type = H.client.prefs.body_type
-			H.flavor_text = H.client.prefs.flavor_text
-			H.update_body()
-			H.update_hair()
-			H.regenerate_icons()
-		if(H.mind)
-			H.mind.name = H.real_name
+	on_transformation(subspecies)
 
 	if(delete_old_mob)
 		QDEL_IN(src, 1)
@@ -65,3 +38,38 @@
 
 /mob/new_player/change_mob_type(new_type, turf/location, new_name, delete_old_mob, subspecies)
 	return
+
+/mob/proc/on_transformation(subspecies)
+	return
+
+/mob/living/carbon/human/on_transformation(subspecies)
+	if(subspecies)
+		set_species(subspecies)
+	if(client)
+		name = client.prefs.real_name
+		real_name = client.prefs.real_name
+		gender = client.prefs.gender
+		h_style = client.prefs.h_style
+		f_style = client.prefs.f_style
+		r_hair = client.prefs.r_hair
+		g_hair = client.prefs.g_hair
+		b_hair = client.prefs.b_hair
+		r_facial = client.prefs.r_facial
+		g_facial = client.prefs.g_facial
+		b_facial = client.prefs.b_facial
+		r_eyes = client.prefs.r_eyes
+		g_eyes = client.prefs.g_eyes
+		b_eyes = client.prefs.b_eyes
+		age = client.prefs.age
+		ethnicity = client.prefs.ethnicity
+		body_type = client.prefs.body_type
+		flavor_text = client.prefs.flavor_text
+		update_body()
+		update_hair()
+		regenerate_icons()
+	if(mind)
+		mind.name = real_name
+
+/mob/living/silicon/ai/on_transformation(subspecies)
+	if(client?.prefs?.ai_name && !is_banned_from(ckey, "Appearance"))
+		fully_replace_character_name(real_name, client.prefs.ai_name)

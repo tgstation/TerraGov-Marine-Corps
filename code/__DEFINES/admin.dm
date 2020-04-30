@@ -90,17 +90,16 @@
 ///Maximum keys allowed per keybind
 #define MAX_KEYS_PER_KEYBIND 3
 
-#define IRCREPLYCOUNT 2
+/// Shown on top of policy verb window
+#define POLICY_VERB_HEADER "policy_verb_header"
+
+#define STICKYBAN_DB_CACHE_TIME 10 SECONDS
+#define STICKYBAN_ROGUE_CHECK_TIME 5
+
+#define EXTERNALREPLYCOUNT 2
 #define IRC_STATUS_THROTTLE 5
 
 #define IRC_AHELP_USAGE "Usage: ticket <close|resolve|icissue|reject|reopen \[ticket #\]|list>"
-
-
-//How many new ckey matches before we revert the stickyban to it's roundstart state
-//These are exclusive, so once it goes over one of these numbers, it reverts the ban
-#define STICKYBAN_MAX_MATCHES 20
-#define STICKYBAN_MAX_EXISTING_USER_MATCHES 5 //ie, users who were connected before the ban triggered
-#define STICKYBAN_MAX_ADMIN_MATCHES 2
 
 
 #define MAX_ADMINBANS_PER_ADMIN 1

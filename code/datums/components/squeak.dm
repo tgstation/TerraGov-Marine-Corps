@@ -45,12 +45,11 @@
 		return
 	if(!squeak_sound)
 		CRASH("Squeak component attempted to play invalid sound.")
-		return
 
 	if(islist(squeak_sound))
-		playsound(parent, sound(pick(squeak_sound)), volume)
+		playsound(parent, sound(pick(squeak_sound)), volume, TRUE, 10)
 	else
-		playsound(parent, sound(squeak_sound), volume)
+		playsound(parent, sound(squeak_sound), volume, TRUE, 10)
 
 
 /datum/component/squeak/proc/step_squeak()

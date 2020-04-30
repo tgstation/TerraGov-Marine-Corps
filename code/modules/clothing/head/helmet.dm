@@ -190,7 +190,7 @@
 	var/helmet_overlays[]
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS
-	var/flags_marine_helmet = HELMET_SQUAD_OVERLAY|HELMET_GARB_OVERLAY|HELMET_DAMAGE_OVERLAY|HELMET_STORE_GARB
+	var/flags_marine_helmet = HELMET_GARB_OVERLAY|HELMET_DAMAGE_OVERLAY|HELMET_STORE_GARB
 	var/obj/item/storage/internal/pockets = /obj/item/storage/internal/marinehelmet
 	var/list/allowed_helmet_items = list(
 						/obj/item/tool/lighter/random = "helmet_lighter_",
@@ -297,12 +297,8 @@
 	desc = "A standard M10H Pattern Helmet. This is a upgraded version of the standard M10 helmet, offering more protection and face cover in expense of accuracy and visibility."
 	icon_state = "heavyhelmet"
 	armor = list("melee" = 75, "bullet" = 70, "laser" = 60, "energy" = 40, "bomb" = 60, "bio" = 50, "rad" = 0, "fire" = 50, "acid" = 55)
-	accuracy_mod = -10
+	accuracy_mod = -15
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
-
-/obj/item/clothing/head/helmet/marine/heavy/Initialize()
-	. = ..()
-	AddComponent(/datum/component/clothing_tint, TINT_1)
 
 /obj/item/clothing/head/helmet/marine/leader
 	name = "\improper M11 pattern leader helmet"
@@ -390,7 +386,7 @@
 	name = "\improper PMC tactical cap"
 	desc = "A protective cap made from flexible kevlar. Standard issue for most security forms in the place of a helmet."
 	icon_state = "pmc_hat"
-	armor = list("melee" = 38, "bullet" = 38, "laser" = 32, "energy" = 22, "bomb" = 12, "bio" = 5, "rad" = 5, "fire" = 22, "acid" = 22)
+	armor = list("melee" = 55, "bullet" = 55, "laser" = 55, "energy" = 22, "bomb" = 12, "bio" = 40, "rad" = 5, "fire" = 22, "acid" = 50)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = NONE
@@ -400,13 +396,14 @@
 	name = "\improper PMC beret"
 	desc = "The pinacle of fashion for any aspiring mercenary leader. Designed to protect the head from light impacts."
 	icon_state = "officer_hat"
+	armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 22, "bomb" = 12, "bio" = 45, "rad" = 5, "fire" = 22, "acid" = 55)
 
 /obj/item/clothing/head/helmet/marine/veteran/PMC/sniper
 	name = "\improper PMC sniper helmet"
 	desc = "A helmet worn by PMC Marksmen"
 	icon_state = "pmc_sniper_hat"
 	flags_armor_protection = HEAD|FACE|EYES
-	armor = list("melee" = 55, "bullet" = 65, "laser" = 45, "energy" = 55, "bomb" = 60, "bio" = 10, "rad" = 10, "fire" = 55, "acid" = 55)
+	armor = list("melee" = 55, "bullet" = 65, "laser" = 45, "energy" = 55, "bomb" = 60, "bio" = 45, "rad" = 10, "fire" = 55, "acid" = 55)
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
 	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
@@ -416,7 +413,7 @@
 	desc = "A modification of the standard Armat Systems M3 armor."
 	icon_state = "heavy_helmet"
 	flags_armor_protection = HEAD|FACE|EYES
-	armor = list("melee" = 80, "bullet" = 80, "laser" = 50, "energy" = 60, "bomb" = 70, "bio" = 10, "rad" = 10, "fire" = 60, "acid" = 60)
+	armor = list("melee" = 65, "bullet" = 75, "laser" = 75, "energy" = 60, "bomb" = 70, "bio" = 50, "rad" = 10, "fire" = 60, "acid" = 60)
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
 	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
@@ -426,10 +423,11 @@
 	desc = "A fully enclosed, armored helmet made for Nanotrasen elite commandos."
 	icon_state = "commando_helmet"
 	flags_armor_protection = HEAD|FACE|EYES
-	armor = list("melee" = 90, "bullet" = 120, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 90)
+	armor = list("melee" = 95, "bullet" = 120, "laser" = 200, "energy" = 200, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 95)
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ|BLOCKGASEFFECT
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
 	flags_marine_helmet = HELMET_DAMAGE_OVERLAY
+	anti_hug = 50
 	resistance_flags = UNACIDABLE
 
 //==========================//DISTRESS\\=================================\\
@@ -590,7 +588,7 @@
 	desc = "A helmet with origns of heavily modified head protection used back in the mining colonies. Protection from threats is bad but it's better than nothing."
 	icon_state = "som_helmet"
 	item_state = "som_helmet"
-	armor = list("melee" = 38, "bullet" = 38, "laser" = 32, "energy" = 22, "bomb" = 12, "bio" = 5, "rad" = 5, "fire" = 22, "acid" = 22)
+	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 22, "bomb" = 12, "bio" = 50, "rad" = 5, "fire" = 22, "acid" = 45)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = NONE
@@ -602,7 +600,7 @@
 	desc = "A helmet of origins off of heavily modified helmets used back in the mining colonies. Seems to have extensive modification."
 	icon_state = "som_helmet_veteran"
 	item_state = "som_helmet_veteran"
-	armor = list("melee" = 50, "bullet" = 50, "laser" = 45, "energy" = 35, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 35, "acid" = 35)
+	armor = list("melee" = 65, "bullet" = 65, "laser" = 65, "energy" = 35, "bomb" = 30, "bio" = 50, "rad" = 20, "fire" = 35, "acid" = 50)
 
 
 /obj/item/clothing/head/helmet/marine/som/leader
@@ -610,5 +608,13 @@
 	desc = "A helmet of origins off of heavily modified helmets used back in the mining colonies."
 	icon_state = "som_helmet_leader"
 	item_state = "som_helmet_leader"
-	armor = list("melee" = 45, "bullet" = 38, "laser" = 48, "energy" = 30, "bomb" = 20, "bio" = 15, "rad" = 15, "fire" = 30, "acid" = 30)
+	armor = list("melee" = 55, "bullet" = 65, "laser" = 65, "energy" = 30, "bomb" = 20, "bio" = 50, "rad" = 15, "fire" = 30, "acid" = 50)
 
+/obj/item/clothing/head/helmet/sectoid
+	name = "psionic field"
+	desc = "A field of invisible energy, it protects the wearer but prevents any clothing from being worn."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "shield-blue"
+	flags_item = NODROP|DELONDROP
+	armor = list("melee" = 65, "bullet" = 60, "laser" = 30, "energy" = 20, "bomb" = 25, "bio" = 40, "rad" = 0, "fire" = 20, "acid" = 20)
+	anti_hug = 5

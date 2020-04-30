@@ -75,7 +75,7 @@
 /mob/living/carbon/xenomorph/hunter/proc/handle_stealth()
 	if(!stealth_router(HANDLE_STEALTH_CHECK))
 		return
-	if(stat != CONSCIOUS || stealth == FALSE || lying || resting) //Can't stealth while unconscious/resting
+	if(stat != CONSCIOUS || stealth == FALSE || lying_angle || resting) //Can't stealth while unconscious/resting
 		cancel_stealth()
 		return
 	//Initial stealth

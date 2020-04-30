@@ -16,23 +16,25 @@
 	if(!isnormalhive(caller.hive))
 		to_chat(caller, "<span class='warning'>Burrowed larva? What a strange concept... It's not for our hive.</span>")
 		return FALSE
-	var/datum/hive_status/normal/shrike_hive = caller.hive
-	if(!shrike_hive.stored_larva)
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+	if(!stored_larva)
 		to_chat(caller, "<span class='warning'>Our hive currently has no burrowed to call forth!</span>")
 		return FALSE
 
-	playsound(caller,'sound/magic/invoke_general.ogg', 75, 1)
+	playsound(caller,'sound/magic/invoke_general.ogg', 75, TRUE)
 	new /obj/effect/temp_visual/telekinesis(get_turf(caller))
 	caller.visible_message("<span class='xenowarning'>A strange buzzing hum starts to emanate from \the [caller]!</span>", \
 	"<span class='xenodanger'>We call forth the larvas to rise from their slumber!</span>")
-	for(var/i in 1 to shrike_hive.stored_larva)
+
+	var/datum/hive_status/normal/shrike_hive = caller.hive
+	for(var/i in 1 to stored_larva)
 		var/mob/M = get_alien_candidate()
 		if(!M)
 			break
-
 		shrike_hive.spawn_larva(M, src)
 
-	if(shrike_hive.stored_larva)
+	if(stored_larva)
 		RegisterSignal(shrike_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), .proc/is_burrowed_larva_host)
 		notify_ghosts("\The <b>[caller]</b> is calling for the burrowed larvas to wake up!", enter_link = "join_larva=1", enter_text = "Join as Larva", source = caller, action = NOTIFY_JOIN_AS_LARVA)
 		addtimer(CALLBACK(src, .proc/calling_larvas_end, caller), CALLING_BURROWED_DURATION)
@@ -306,6 +308,18 @@
 		return FALSE
 	if(QDELETED(target))
 		return FALSE
+	if(!check_distance(target, silent))
+		return FALSE
+	if(!isxeno(target))
+		return FALSE
+	var/mob/living/carbon/xenomorph/patient = target
+	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>It's too late. This sister won't be coming back.</span>")
+		return FALSE
+
+
+/datum/action/xeno_action/activable/psychic_cure/proc/check_distance(atom/target, silent)
 	var/dist = get_dist(owner, target)
 	switch(dist)
 		if(-1)
@@ -320,13 +334,7 @@
 			if(!silent)
 				to_chat(owner, "<span class='warning'>Too far, our mind power does not reach it...</span>")
 			return FALSE
-	if(!isxeno(target))
-		return FALSE
-	var/mob/living/carbon/xenomorph/patient = target
-	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
-		if(!silent)
-			to_chat(owner, "<span class='warning'>It's too late. This sister won't be coming back.</span>")
-		return FALSE
+	return TRUE
 
 
 /datum/action/xeno_action/activable/psychic_cure/use_ability(atom/target)
@@ -350,7 +358,7 @@
 	if(patient.health > 0) //If they are not in crit after the heal, let's remove evil debuffs.
 		patient.SetUnconscious(0)
 		patient.SetStun(0)
-		patient.SetKnockdown(0)
+		patient.SetParalyzed(0)
 		patient.set_stagger(0)
 		patient.set_slowdown(0)
 	patient.updatehealth()

@@ -130,6 +130,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_BOMB
 
+/datum/keybinding/xeno/create_bomb
+	name = "create_bomb"
+	full_name = "Boiler: Create Bombard Ammo"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_CREATE_BOMB
+
 /datum/keybinding/xeno/bombard
 	name = "bombard"
 	full_name = "Boiler: Bombard"
@@ -184,6 +190,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_HEADBUTT
 
+/datum/keybinding/xeno/forward_charge
+	name = "forward charge"
+	full_name = "Defender: Forward charge"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_FORWARD_CHARGE
+
 /datum/keybinding/xeno/tail_sweep
 	name = "tail_sweep"
 	full_name = "Defender: Tail Sweep"
@@ -201,12 +213,6 @@
 	full_name = "Defender: Fortify"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_FORTIFY
-
-/datum/keybinding/xeno/neuroclaws
-	name = "neuroclaws"
-	full_name = "Defiler: Toggle Neuroclaws"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_NEUROCLAWS
 
 /datum/keybinding/xeno/emit_neurogas
 	name = "emit_neurogas"
@@ -333,6 +339,12 @@
 	full_name = "Ravager: Eviscerating Charge"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_RAVAGER_CHARGE
+
+/datum/keybinding/xeno/ravage
+	name = "ravage"
+	full_name = "Ravager: Ravage"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_RAVAGE
 
 /datum/keybinding/xeno/toggle_savage
 	name = "toggle_savage"

@@ -234,7 +234,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		ghost.mind?.current = ghost
 
 	if(!T)
-		T = safepick(GLOB.latejoin)
+		T = SAFEPICK(GLOB.latejoin)
 	if(!T)
 		stack_trace("no latejoin landmark detected")
 
@@ -274,7 +274,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(statpanel("Status"))
 		if(SSticker.current_state == GAME_STATE_PREGAME)
 			stat("Time To Start:", "[SSticker.time_left > 0 ? SSticker.GetTimeLeft() : "(DELAYED)"]")
-			stat("Players: [length(GLOB.player_list)]", "Players Ready: [GLOB.ready_players]")
+			stat("Players: [length(GLOB.player_list)]", "Players Ready: [length(GLOB.ready_players)]")
 			for(var/i in GLOB.player_list)
 				if(isnewplayer(i))
 					var/mob/new_player/N = i
@@ -294,16 +294,18 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			if(status_value <= 0)
 				stat("Respawn timer:", "<b>READY</b>")
 			else
-				stat("Respawn timer:", "[(status_value / 60) % 60]:[add_zero(num2text(status_value % 60), 2)]")
+				stat("Respawn timer:", "[(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]")
 			if(SSticker.mode?.flags_round_type & MODE_INFESTATION)
 				status_value = (timeofdeath + GLOB.xenorespawntime - world.time) * 0.1
 				if(status_value <= 0)
 					stat("Xeno respawn timer:", "<b>READY</b>")
 				else
-					stat("Xeno respawn timer:", "[(status_value / 60) % 60]:[add_zero(num2text(status_value % 60), 2)]")
+					stat("Xeno respawn timer:", "[(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]")
+				var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+				var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+				if(stored_larva)
+					stat("Burrowed larva:", stored_larva)
 				var/datum/hive_status/normal/normal_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
-				if(normal_hive.stored_larva)
-					stat("Burrowed larva:", normal_hive.stored_larva)
 				if(LAZYLEN(normal_hive.ssd_xenos))
 					stat("SSD xenos:", normal_hive.ssd_xenos.Join(", "))
 
@@ -505,9 +507,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			name += " as ([H.real_name])"
 		if(issynth(H))
 			name += " - Synth"
-		else if(issurvivor(H))
+		else if(issurvivorjob(H.job))
 			name += " - Survivor"
-		else if(H.faction != "Marine")
+		else if(H.faction != "TerraGov")
 			name += " - [H.faction]"
 		if((H.client && H.client.is_afk()) || (!H.client && (H.key || H.ckey)))
 			if(isaghost(H))
@@ -651,7 +653,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		else //Circular
 			rot_seg = 36
 
-	orbit(target,orbitsize, FALSE, 20, rot_seg)
+	orbit(target, orbitsize, FALSE, 20, rot_seg)
 
 
 /mob/dead/observer/orbit()
@@ -672,10 +674,17 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(!client)
 		return
 
-	if(client.view != world.view)
-		client.change_view(world.view)
+	if(client.view != WORLD_VIEW)
+		client.change_view(WORLD_VIEW)
 	else
-		client.change_view(14)
+		client.change_view("29x29")
+
+
+/mob/dead/observer/verb/add_view_range(input as num)
+	set name = "Add View Range"
+	set hidden = TRUE
+	if(input)
+		client.rescale_view(input, 15, 21)
 
 
 /mob/dead/observer/verb/toggle_darkness()
@@ -831,6 +840,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	if(can_reenter_corpse && alert("Are you sure? You won't be able to get revived.", "Confirmation", "Yes", "No") == "Yes")
 		can_reenter_corpse = FALSE
 		to_chat(usr, "<span class='notice'>You can no longer be revived.</span>")
+		mind.current.med_hud_set_status()
 	else if(!can_reenter_corpse)
 		to_chat(usr, "<span class='warning'>You already can't be revived.</span>")
 

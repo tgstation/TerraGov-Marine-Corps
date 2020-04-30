@@ -24,6 +24,16 @@
 	caliber = ".44"
 	icon_state = "h_m44"
 
+/obj/item/ammo_magazine/revolver/standard_revolver
+	name = "\improper TP-44 magnum speed loader (.44)"
+	desc = "A revolver speed loader."
+	default_ammo = /datum/ammo/bullet/revolver
+	flags_equip_slot = NONE
+	caliber = ".44"
+	icon_state = "tp44"
+	w_class = WEIGHT_CLASS_SMALL
+	max_rounds = 7
+	gun_type = /obj/item/weapon/gun/revolver/standard_revolver
 
 /obj/item/ammo_magazine/revolver/upp
 	name = "\improper N-Y speed loader (7.62x38mmR)"
@@ -76,6 +86,16 @@
 	name = "revolver cylinder"
 	default_ammo = /datum/ammo/bullet/revolver
 	max_rounds = 6
+
+//-------------------------------------------------------
+
+//TP-44 COMBAT REVOLVER //
+
+/obj/item/ammo_magazine/internal/revolver/standard_revolver
+	caliber = ".44"
+	default_ammo = /datum/ammo/bullet/revolver
+	max_rounds = 7
+	gun_type = /obj/item/weapon/gun/revolver/standard_revolver
 
 //-------------------------------------------------------
 //M44 MAGNUM REVOLVER //

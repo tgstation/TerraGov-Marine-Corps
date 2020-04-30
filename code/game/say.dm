@@ -67,8 +67,16 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	if(istype(D) && D.display_icon(src))
 		languageicon = "[D.get_icon()] "
 
-	return "[spanpart1][spanpart2][CMSG_FREQPART][languageicon][CMSG_JOBPART][namepart][endspanpart][messagepart]"
+	return "[spanpart1][spanpart2][CMSG_FREQPART][languageicon][CMSG_JOBPART][compose_name_href(namepart)][endspanpart][messagepart]"
 
+/**
+	Allows us to wrap the name for specific cases like AI tracking or observer tracking
+
+	Arguments
+	- name {string} the name of the mob to modify.
+*/
+/atom/movable/proc/compose_name_href(name)
+	return name
 
 /atom/movable/proc/compose_freq(atom/movable/speaker, radio_freq)
 	var/job = speaker.GetJob()
@@ -79,7 +87,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	if(ishuman(speaker))
 		var/mob/living/carbon/human/H = speaker
 
-		var/datum/job/J = SSjob.GetJob(H.mind ? H.mind.assigned_role : H.job)
+		var/datum/job/J = H.job
 		if(!istype(J))
 			return ""
 
@@ -89,7 +97,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 		if(!ishuman(VT.source))
 			return
 		var/mob/living/carbon/human/H = VT.source
-		var/datum/job/J = SSjob.GetJob(H.mind ? H.mind.assigned_role : H.job)
+		var/datum/job/J = H.job
 		if(!istype(J))
 			return ""
 
@@ -100,12 +108,12 @@ GLOBAL_LIST_INIT(freqtospan, list(
 
 
 /atom/movable/proc/say_mod(input, message_mode, datum/language/language)
-	var/ending = copytext(input, length(input))
-	if(copytext(input, length(input) - 1) == "!!")
+	var/ending = copytext_char(input, -1)
+	if(copytext_char(input, -2) == "!!")
 		return verb_yell
 	else if(language)
 		var/datum/language/L = GLOB.language_datum_instances[language]
-		return L.get_spoken_verb(copytext(input, length(input)))
+		return L.get_spoken_verb(copytext_char(input, length(input)))
 	else if(ending == "?")
 		return verb_ask
 	else if(ending == "!")
@@ -118,7 +126,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	if(!input)
 		input = "..."
 
-	if(copytext(input, length(input) - 1) == "!!")
+	if(copytext_char(input, -2) == "!!")
 		spans |= SPAN_YELL
 
 	var/spanned = attach_spans(input, spans)
@@ -155,7 +163,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	var/returntext = GLOB.reverseradiochannels["[freq]"]
 	if(returntext)
 		return returntext
-	return "[copytext("[freq]", 1, 4)].[copytext("[freq]", 4, 5)]"
+	return "[copytext_char("[freq]", 1, 4)].[copytext_char("[freq]", 4, 5)]"
 
 
 /proc/attach_spans(input, list/spans)
@@ -171,7 +179,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 
 
 /proc/say_test(text)
-	var/ending = copytext(text, length(text))
+	var/ending = copytext_char(text, -1)
 	if (ending == "?")
 		return "1"
 	else if (ending == "!")
@@ -245,19 +253,12 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 		verb_exclaim = M.verb_exclaim
 		verb_yell = M.verb_yell
 
-	// The mob's job identity
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-
-		var/datum/job/J = SSjob.GetJob(H.mind ? H.mind.assigned_role : H.job)
-		if(!istype(J))
-			job = ""
-		else if(H.mind)
-			job = H.mind.comm_title
+	if(isliving(M))
+		var/mob/living/living_speaker = M
+		if(living_speaker.job)
+			job = living_speaker.job.comm_title
 		else
-			job = J.comm_title
-	else if(isAI(M))  // AI
-		job = "AI"
+			job = ""
 	else if(isobj(M))  // Cold, emotionless machines
 		job = "Machine"
 

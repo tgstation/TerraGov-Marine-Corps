@@ -39,6 +39,15 @@
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
 
+/obj/item/weapon/claymore/mercsword/commissar_sword
+	name = "\improper commissars sword"
+	desc = "The pride of an imperial commissar, held high as they charge into battle."
+	icon_state = "comsword"
+	item_state = "comsword"
+	force = 80
+	attack_speed = 10
+	w_class = WEIGHT_CLASS_BULKY
+
 /obj/item/weapon/claymore/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
 	return ..()

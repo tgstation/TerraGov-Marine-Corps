@@ -23,7 +23,7 @@
 	key = ckey(key)
 
 	//Loading list of notes for this key
-	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
+	var/savefile/info = new("data/player_saves/[key[1]]/[key]/info.sav")
 	var/list/infos
 	info >> infos
 	if(!infos) infos = list()
@@ -80,7 +80,7 @@
 		return
 
 	key = ckey(key)
-	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
+	var/savefile/info = new("data/player_saves/[key[1]]/[key]/info.sav")
 	var/list/infos
 	info >> infos
 	if(!infos || length(infos) < index)
@@ -101,7 +101,7 @@
 		return
 
 	key = ckey(key)
-	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
+	var/savefile/info = new("data/player_saves/[key[1]]/[key]/info.sav")
 	var/list/infos
 	info >> infos
 	if(!infos || length(infos) < index)
@@ -122,7 +122,7 @@
 		return
 
 	key = ckey(key)
-	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
+	var/savefile/info = new("data/player_saves/[key[1]]/[key]/info.sav")
 	var/list/infos
 	info >> infos
 	if(!infos || length(infos) < index)
@@ -143,7 +143,7 @@
 		return
 
 	key = ckey(key)
-	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
+	var/savefile/info = new("data/player_saves/[key[1]]/[key]/info.sav")
 	var/list/infos
 	info >> infos
 	if(!infos || length(infos) < index)
@@ -186,7 +186,7 @@
 
 	key = ckey(key)
 
-	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
+	var/savefile/info = new("data/player_saves/[key[1]]/[key]/info.sav")
 	var/list/infos
 	info >> infos
 	if(!infos)

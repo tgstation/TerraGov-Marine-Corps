@@ -19,6 +19,7 @@
 #define ORDER_HUD					"human_order_hud" //shows what orders are applied to marines
 #define AI_DETECT_HUD				"ai_detect_hud" //hud for displaying the AI eye's location
 #define PAIN_HUD					"pain_hud" //displays human pain / preceived health.
+#define ARMOR_SUNDER_HUD			"armor_sunder_hud" //displays how much sunder has been applied.
 
 #define ADD_HUD_TO_COOLDOWN 20 //cooldown for being shown the images for any particular data hud
 

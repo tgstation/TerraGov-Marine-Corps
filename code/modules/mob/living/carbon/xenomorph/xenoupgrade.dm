@@ -51,6 +51,15 @@
 /mob/living/carbon/xenomorph/runner/ancient
 	upgrade = XENO_UPGRADE_THREE
 
+/mob/living/carbon/xenomorph/panther/mature
+	upgrade = XENO_UPGRADE_ONE
+
+/mob/living/carbon/xenomorph/panther/elder
+	upgrade = XENO_UPGRADE_TWO
+
+/mob/living/carbon/xenomorph/panther/ancient
+	upgrade = XENO_UPGRADE_THREE
+
 /mob/living/carbon/xenomorph/bull/mature
 	upgrade = XENO_UPGRADE_ONE
 
@@ -85,6 +94,15 @@
 	upgrade = XENO_UPGRADE_TWO
 
 /mob/living/carbon/xenomorph/hivelord/ancient
+	upgrade = XENO_UPGRADE_THREE
+
+/mob/living/carbon/xenomorph/hivemind/mature
+	upgrade = XENO_UPGRADE_ONE
+
+/mob/living/carbon/xenomorph/hivemind/elder
+	upgrade = XENO_UPGRADE_TWO
+
+/mob/living/carbon/xenomorph/hivemind/ancient
 	upgrade = XENO_UPGRADE_THREE
 
 /mob/living/carbon/xenomorph/praetorian/mature

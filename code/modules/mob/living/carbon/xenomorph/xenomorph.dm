@@ -5,7 +5,7 @@
 //This is so they can be easily transferred between them without copypasta
 
 /mob/living/carbon/xenomorph/Initialize(mapload, can_spawn_in_centcomm)
-	verbs += /mob/living/proc/lay_down
+	setup_verbs()
 	. = ..()
 
 	set_datum()
@@ -16,7 +16,16 @@
 	create_reagents(1000)
 	gender = NEUTER
 
-	GLOB.alive_xeno_list += src
+	switch(stat)
+		if(CONSCIOUS)
+			GLOB.alive_xeno_list += src
+			see_in_dark = xeno_caste.conscious_see_in_dark
+		if(UNCONSCIOUS)
+			GLOB.alive_xeno_list += src
+			see_in_dark = xeno_caste.unconscious_see_in_dark
+		if(DEAD)
+			see_in_dark = xeno_caste.unconscious_see_in_dark
+
 	GLOB.xeno_mob_list += src
 	GLOB.round_statistics.total_xenos_created++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_xenos_created")
@@ -40,6 +49,9 @@
 	update_spits()
 
 	update_action_button_icons()
+
+	if(!job) //It might be setup on spawn.
+		setup_job()
 
 	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, .proc/devour_grabbed) //Devour ability.
 
@@ -139,6 +151,13 @@
 		if(XENO_UPGRADE_THREE)
 			return XENO_UPGRADE_TWO
 
+/mob/living/carbon/xenomorph/proc/setup_job()
+	var/datum/job/xenomorph/xeno_job = SSjob.type_occupations[xeno_caste.job_type]
+	if(!xeno_job)
+		CRASH("Unemployment has reached to a xeno, who has failed to become a [xeno_caste.job_type]")
+	apply_assigned_role_to_spawn(xeno_job)
+
+
 /mob/living/carbon/xenomorph/examine(mob/user)
 	..()
 	if(isxeno(user) && xeno_caste.caste_desc)
@@ -203,7 +222,7 @@
 /mob/living/carbon/xenomorph/pull_response(mob/puller)
 	var/mob/living/carbon/human/H = puller
 	if(stat == CONSCIOUS && H.species?.count_human) // If the Xeno is conscious, fight back against a grab/pull
-		H.Knockdown(rand(xeno_caste.tacklemin,xeno_caste.tacklemax) * 20)
+		H.Paralyze(rand(xeno_caste.tacklemin,xeno_caste.tacklemax) * 20)
 		playsound(H.loc, 'sound/weapons/pierce.ogg', 25, 1)
 		H.visible_message("<span class='warning'>[H] tried to pull [src] but instead gets a tail swipe to the head!</span>")
 		H.stop_pulling()
@@ -299,3 +318,14 @@
 	if(!. || can_reenter_corpse)
 		return
 	set_afk_status(MOB_RECENTLY_DISCONNECTED, 5 SECONDS)
+
+/mob/living/carbon/xenomorph/set_stat(new_stat)
+	. = ..()
+	if(isnull(.))
+		return
+	switch(stat)
+		if(UNCONSCIOUS)
+			see_in_dark = xeno_caste.unconscious_see_in_dark
+		if(DEAD, CONSCIOUS)
+			if(. == UNCONSCIOUS)
+				see_in_dark = xeno_caste.conscious_see_in_dark

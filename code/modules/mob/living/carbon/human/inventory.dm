@@ -1,7 +1,7 @@
 /mob/living/carbon/human/proc/do_quick_equip()
 	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
 
-	if(incapacitated() || lying || istype(loc, /obj/vehicle/multitile/root/cm_armored))
+	if(incapacitated() || lying_angle || istype(loc, /obj/vehicle/multitile/root/cm_armored))
 		return
 
 	var/obj/item/I = get_active_held_item()
@@ -200,7 +200,6 @@
 		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == wear_id)
 		wear_id = null
-		hud_set_squad()
 		update_inv_wear_id()
 		name = get_visible_name()
 		. = ITEM_UNEQUIP_UNEQUIPPED
@@ -299,7 +298,6 @@
 		if(SLOT_WEAR_ID)
 			wear_id = W
 			W.equipped(src, slot)
-			hud_set_squad()
 			update_inv_wear_id()
 			name = get_visible_name()
 		if(SLOT_EARS)

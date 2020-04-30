@@ -87,7 +87,7 @@
 		T = temp
 
 	H.throw_at(T, headbutt_distance, 1, src)
-	H.Knockdown(20)
+	H.Paralyze(20)
 	playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
 
 // ***************************************
@@ -143,7 +143,7 @@
 			H.apply_damage(damage, BRUTE, affecting, armor_block) //Crap base damage after armour...
 			H.apply_damage(damage, STAMINA) //...But some sweet armour ignoring Stamina
 			UPDATEHEALTH(H)
-			H.Knockdown(20)
+			H.Paralyze(20)
 		GLOB.round_statistics.defender_tail_sweep_hits++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_tail_sweep_hits")
 		shake_camera(H, 2, 1)
@@ -156,6 +156,18 @@
 		X.use_plasma(plasma_cost)
 	add_cooldown()
 
+/datum/action/xeno_action/activable/tail_sweep/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/activable/tail_sweep/ai_should_use(target)
+	if(!iscarbon(target))
+		return ..()
+	if(get_dist(target, owner) > 1)
+		return ..()
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return ..()
+	return TRUE
+
 // ***************************************
 // *********** Forward Charge
 // ***************************************
@@ -167,6 +179,27 @@
 	cooldown_timer = 15 SECONDS
 	plasma_cost = 80
 	use_state_flags = XACT_USE_CRESTED
+	keybind_signal = COMSIG_XENOABILITY_FORWARD_CHARGE
+
+/datum/action/xeno_action/activable/forward_charge/proc/charge_complete()
+	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENO_LIVING_THROW_HIT, COMSIG_XENO_NONE_THROW_HIT))
+
+/datum/action/xeno_action/activable/forward_charge/proc/mob_hit(datum/source, mob/M)
+	if(M.stat || isxeno(M))
+		return
+	return COMPONENT_KEEP_THROWING
+
+/datum/action/xeno_action/activable/forward_charge/proc/obj_hit(datum/source, obj/target, speed)
+	var/mob/living/carbon/xenomorph/X = owner
+	if(istype(target, /obj/structure/table) || istype(target, /obj/structure/rack))
+		var/obj/structure/S = target
+		X.visible_message("<span class='danger'>[X] plows straight through [S]!</span>", null, null, 5)
+		S.deconstruct(FALSE) //We want to continue moving, so we do not reset throwing.
+		return // stay registered
+	else
+		target.hitby(X, speed) //This resets throwing.
+	charge_complete()
+
 /datum/action/xeno_action/activable/forward_charge/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
@@ -181,6 +214,10 @@
 
 /datum/action/xeno_action/activable/forward_charge/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
+
+	RegisterSignal(X, COMSIG_XENO_OBJ_THROW_HIT, .proc/obj_hit)
+	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, .proc/mob_hit)
+	RegisterSignal(X, COMSIG_XENO_NONE_THROW_HIT, .proc/charge_complete)
 
 	if(!do_after(X, 0.5 SECONDS, FALSE, X, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, .proc/can_use_ability, A, FALSE, XACT_USE_BUSY)))
 		return fail_activate()

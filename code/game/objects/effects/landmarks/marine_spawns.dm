@@ -1,93 +1,107 @@
 // these use typepaths to avoid issues caused by mispellings when mapping or job titles changing
-/obj/effect/landmark/start/marine
+/obj/effect/landmark/start/job
 	var/job
 
-/obj/effect/landmark/start/marine/Initialize()
+/obj/effect/landmark/start/job/Initialize()
 	. = ..()
-	if(!GLOB.marine_spawns_by_job[job])
-		GLOB.marine_spawns_by_job[job] = list()
-	GLOB.marine_spawns_by_job[job] += loc
+	GLOB.spawns_by_job[job] += list(loc)
 
-/obj/effect/landmark/start/marine/captain
+/obj/effect/landmark/start/job/captain
 	icon_state = "CAP"
-	job = /datum/job/command/captain
+	job = /datum/job/terragov/command/captain
 
-/obj/effect/landmark/start/marine/fieldcommander
+/obj/effect/landmark/start/job/fieldcommander
 	icon_state = "FC"
-	job = /datum/job/command/fieldcommander
+	job = /datum/job/terragov/command/fieldcommander
 
-/obj/effect/landmark/start/marine/staffofficer
+/obj/effect/landmark/start/job/staffofficer
 	icon_state = "IO"
-	job = /datum/job/command/staffofficer
+	job = /datum/job/terragov/command/staffofficer
 
-/obj/effect/landmark/start/marine/pilotofficer
+/obj/effect/landmark/start/job/pilotofficer
 	icon_state = "PO"
-	job = /datum/job/command/pilot
+	job = /datum/job/terragov/command/pilot
 
-/obj/effect/landmark/start/marine/tankcrewman
+/obj/effect/landmark/start/job/tankcrewman
 	icon_state = "TC"
-	job = /datum/job/command/tank_crew
+	job = /datum/job/terragov/command/tank_crew
 
-/obj/effect/landmark/start/marine/masteratarms
+/obj/effect/landmark/start/job/masteratarms
 	icon_state = "MAA"
-	job = /datum/job/police/officer
+	job = /datum/job/terragov/police/officer
 
-/obj/effect/landmark/start/marine/commandmasteratarms
+/obj/effect/landmark/start/job/commandmasteratarms
 	icon_state = "CMAA"
-	job = /datum/job/police/chief
+	job = /datum/job/terragov/police/chief
 
-/obj/effect/landmark/start/marine/chiefshipengineer
+/obj/effect/landmark/start/job/chiefshipengineer
 	icon_state = "CSE"
-	job = /datum/job/engineering/chief
+	job = /datum/job/terragov/engineering/chief
 
-/obj/effect/landmark/start/marine/requisitionsofficer
+/obj/effect/landmark/start/job/requisitionsofficer
 	icon_state = "RO"
-	job = /datum/job/requisitions/officer
+	job = /datum/job/terragov/requisitions/officer
 
-/obj/effect/landmark/start/marine/shiptech
+/obj/effect/landmark/start/job/shiptech
 	icon_state = "SE"
-	job = /datum/job/engineering/tech
+	job = /datum/job/terragov/engineering/tech
 
-/obj/effect/landmark/start/marine/cmo
+/obj/effect/landmark/start/job/cmo
 	icon_state = "CMO"
-	job = /datum/job/medical/professor
+	job = /datum/job/terragov/medical/professor
 
-/obj/effect/landmark/start/marine/medicalofficer
+/obj/effect/landmark/start/job/medicalofficer
 	icon_state = "MD"
-	job = /datum/job/medical/medicalofficer
+	job = /datum/job/terragov/medical/medicalofficer
 
-/obj/effect/landmark/start/marine/researcher
+/obj/effect/landmark/start/job/researcher
 	icon_state = "MD"
-	job = /datum/job/medical/researcher
+	job = /datum/job/terragov/medical/researcher
 
-/obj/effect/landmark/start/marine/corporateliaison
+/obj/effect/landmark/start/job/corporateliaison
 	icon_state = "CL"
-	job = /datum/job/civilian/liaison
+	job = /datum/job/terragov/civilian/liaison
 
-/obj/effect/landmark/start/marine/synthetic
+/obj/effect/landmark/start/job/synthetic
 	icon_state = "Synth"
-	job = /datum/job/civilian/synthetic
+	job = /datum/job/terragov/silicon/synthetic
 
-/obj/effect/landmark/start/marine/squadmarine
+/obj/effect/landmark/start/job/squadmarine
 	icon_state = "PFC"
-	job = /datum/job/marine/standard
+	job = /datum/job/terragov/squad/standard
 
-/obj/effect/landmark/start/marine/squadengineer
+/obj/effect/landmark/start/job/squadengineer
 	icon_state = "Eng"
-	job = /datum/job/marine/engineer
+	job = /datum/job/terragov/squad/engineer
 
-/obj/effect/landmark/start/marine/squadcorpsman
+/obj/effect/landmark/start/job/squadcorpsman
 	icon_state = "HM"
-	job = /datum/job/marine/corpsman
+	job = /datum/job/terragov/squad/corpsman
 
-/obj/effect/landmark/start/marine/squadsmartgunner
+/obj/effect/landmark/start/job/squadsmartgunner
 	icon_state = "SGnr"
-	job = /datum/job/marine/smartgunner
+	job = /datum/job/terragov/squad/smartgunner
 
-/obj/effect/landmark/start/marine/squadspecialist
+/obj/effect/landmark/start/job/squadspecialist
 	icon_state = "Spec"
-	job = /datum/job/marine/specialist
+	job = /datum/job/terragov/squad/specialist
 
-/obj/effect/landmark/start/marine/squadleader
+/obj/effect/landmark/start/job/squadleader
 	icon_state = "SL"
-	job = /datum/job/marine/leader
+	job = /datum/job/terragov/squad/leader
+
+/obj/effect/landmark/start/job/squadleader
+	icon_state = "SL"
+	job = /datum/job/terragov/squad/leader
+
+/obj/effect/landmark/start/job/ai
+	icon_state = "AI"
+	job = /datum/job/terragov/silicon/ai
+
+/obj/effect/landmark/start/job/survivor
+	icon_state = "Shaft Miner"
+	job = /datum/job/survivor/rambo
+
+/obj/effect/landmark/start/job/xenomorph
+	icon_state = "xeno_spawn"
+	job = /datum/job/xenomorph

@@ -107,7 +107,6 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 	H.regenerate_icons()
 
 	if(braindeath_on_decap)
-		brainmob.stat = DEAD
 		brainmob.death()
 
 	GLOB.head_list += src

@@ -10,6 +10,13 @@
 	forceMove(master_item)
 	verbs -= /obj/item/verb/verb_pickup	//make sure this is never picked up.
 
+/obj/item/storage/internal/Destroy()
+	for(var/i in contents)
+		var/obj/item/content_item = i
+		qdel(content_item)
+	master_item = null
+	return ..()
+
 /obj/item/storage/internal/attack_hand(mob/living/user)
 	return TRUE
 
@@ -28,7 +35,7 @@
 /obj/item/storage/internal/proc/handle_mousedrop(mob/user as mob, obj/over_object as obj)
 	if(ishuman(user) || ismonkey(user)) //so monkeys can take off their backpacks -- Urist
 
-		if(user.lying) //Can't use your inventory when lying
+		if(user.lying_angle) //Can't use your inventory when lying
 			return
 
 		if(istype(user.loc, /obj/vehicle/multitile/root/cm_armored)) //Stops inventory actions in a mech/tank
@@ -82,7 +89,7 @@
 //It's strange, but no other way of doing it without the ability to call another proc's parent, really.
 /obj/item/storage/internal/proc/handle_attack_hand(mob/user as mob)
 
-	if(user.lying)
+	if(user.lying_angle)
 		return 0
 
 	if(ishuman(user))
@@ -109,12 +116,12 @@
 	return master_item.Adjacent(neighbor)
 
 
-/obj/item/storage/internal/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
+/obj/item/storage/internal/handle_item_insertion(obj/item/W, prevent_warning = FALSE)
 	. = ..()
 	master_item.on_pocket_insertion()
 
 
-/obj/item/storage/internal/remove_from_storage(obj/item/W as obj, atom/new_location)
+/obj/item/storage/internal/remove_from_storage(obj/item/W, atom/new_location)
 	. = ..()
 	master_item.on_pocket_removal()
 

@@ -1,16 +1,14 @@
 /mob/new_player
-	var/ready = FALSE
-	var/spawning = FALSE
-
 	invisibility = INVISIBILITY_MAXIMUM
-
 	stat = DEAD
-
 	density = FALSE
 	canmove = FALSE
 	anchored = TRUE
-
-	var/mob/living/new_character	//for instant transfer once the round is set up
+	var/datum/job/assigned_role
+	var/datum/squad/assigned_squad
+	var/mob/living/new_character
+	var/ready = FALSE
+	var/spawning = FALSE
 
 
 /mob/new_player/Initialize()
@@ -19,20 +17,18 @@
 		forceMove(spawn_loc)
 	else
 		forceMove(locate(1, 1, 1))
-
 	lastarea = get_area(loc)
-
 	GLOB.new_player_list += src
-
 	return ..()
 
 
 /mob/new_player/Destroy()
 	if(ready)
-		GLOB.ready_players--
-
+		GLOB.ready_players -= src
 	GLOB.new_player_list -= src
-
+	assigned_role = null
+	assigned_squad = null
+	new_character = null
 	return ..()
 
 
@@ -46,12 +42,13 @@
 	output +="<hr>"
 	output += "<p><a href='byond://?src=[REF(src)];lobby_choice=show_preferences'>Setup Character</A> | <a href='byond://?src=[REF(src)];lobby_choice=lore'>Background</A><br><br><a href='byond://?src=[REF(src)];lobby_choice=observe'>Observe</A></p>"
 	output +="<hr>"
+	output += "<center><p>Current character: <b>[client ? client.prefs.real_name : "Unknown User"]</b></p>"
 
 	if(!SSticker?.mode || SSticker.current_state <= GAME_STATE_PREGAME)
 		output += "<p>\[ [ready? "<b>Ready</b>":"<a href='byond://?src=\ref[src];lobby_choice=ready'>Ready</a>"] | [ready? "<a href='byond://?src=[REF(src)];lobby_choice=ready'>Not Ready</a>":"<b>Not Ready</b>"] \]</p>"
 	else
 		output += "<a href='byond://?src=[REF(src)];lobby_choice=manifest'>View the Crew Manifest</A><br>"
-		output += "<p><a href='byond://?src=[REF(src)];lobby_choice=late_join'>Join the TGMC!</A></p>"
+		output += "<p><a href='byond://?src=[REF(src)];lobby_choice=late_join'>Join the Game!</A></p>"
 
 	if(!IsGuestKey(key))
 		if(SSdbcore.Connect())
@@ -90,7 +87,7 @@
 
 		if(SSticker.current_state == GAME_STATE_PREGAME)
 			stat("Time To Start:", "[SSticker.time_left > 0 ? SSticker.GetTimeLeft() : "(DELAYED)"]")
-			stat("Players: [length(GLOB.player_list)]", "Players Ready: [GLOB.ready_players]")
+			stat("Players: [length(GLOB.player_list)]", "Players Ready: [length(GLOB.ready_players)]")
 			for(var/i in GLOB.player_list)
 				if(isnewplayer(i))
 					var/mob/new_player/N = i
@@ -131,9 +128,9 @@
 			if(!SSticker || SSticker.current_state <= GAME_STATE_PREGAME)
 				ready = !ready
 				if(ready)
-					GLOB.ready_players++
+					GLOB.ready_players += src
 				else
-					GLOB.ready_players--
+					GLOB.ready_players -= src
 			new_player_panel()
 
 
@@ -146,7 +143,7 @@
 			if(!SSticker || SSticker.current_state == GAME_STATE_STARTUP)
 				to_chat(src, "<span class='warning'>The game is still setting up, please try again later.</span>")
 				return
-			if(alert("Are you sure you wish to observe?\nYou will have to wait at least 5 minutes before being able to respawn!", "Observe", "Yes", "No") == "Yes")
+			if(alert("Are you sure you wish to observe?[SSticker.mode?.observe_respawn_message()]", "Observe", "Yes", "No") == "Yes")
 				if(!client)
 					return TRUE
 				var/mob/dead/observer/observer = new()
@@ -220,28 +217,6 @@
 				return
 			LateChoices()
 
-
-		if("late_join_xeno")
-			if(!SSticker?.mode || SSticker.current_state != GAME_STATE_PLAYING)
-				to_chat(src, "<span class='warning'>The round is either not ready, or has already finished.</span>")
-				return
-
-			if(is_banned_from(ckey, ROLE_XENOMORPH))
-				to_chat(src, "<span class='warning'>You are jobbaned from the [ROLE_XENOMORPH] role.</span>")
-				return
-
-			switch(alert("Would you like to try joining as a burrowed larva or as a living xenomorph?", "Select", "Burrowed Larva", "Living Xenomorph", "Cancel"))
-				if("Burrowed Larva")
-					var/mob/new_xeno = SSticker.mode.attempt_to_join_as_larva(src)
-					if(new_xeno)
-						close_spawn_windows(new_xeno)
-				if("Living Xenomorph")
-					var/mob/new_xeno = SSticker.mode.attempt_to_join_as_xeno(src, 0)
-					if(new_xeno)
-						close_spawn_windows(new_xeno)
-						SSticker.mode.transfer_xeno(src, new_xeno)
-
-
 		if("manifest")
 			ViewManifest()
 
@@ -255,13 +230,15 @@
 			ViewAliens()
 
 		if("SelectedJob")
+			if(!SSticker)
+				return
 			if(!GLOB.enter_allowed)
 				to_chat(usr, "<span class='warning'>Spawning currently disabled, please observe.</span>")
 				return
-			var/rank = href_list["job_selected"]
-			if(!SSticker?.mode.CanLateSpawn(src, rank))
+			var/datum/job/job_datum = locate(href_list["job_selected"])
+			if(!SSticker.mode.CanLateSpawn(src, job_datum)) // Try to assigns job to new player
 				return
-			SSticker?.mode.AttemptLateSpawn(src, rank)
+			SSticker.mode.LateSpawn(src)
 
 
 	if(href_list["showpoll"])
@@ -347,34 +324,36 @@
 					return
 				to_chat(src, "<span class='notice'>Vote successful.</span>")
 
+/datum/game_mode/proc/observe_respawn_message()
+	return "\nYou might have to wait a certain time to respawn or be unable to, depending on the game mode!"
+
+/datum/game_mode/infestation/observe_respawn_message()
+	return "\nYou will have to wait at least [GLOB.respawntime * 0.1] or [GLOB.xenorespawntime * 0.1] seconds before being able to respawn as a marine or alien, respectively!"
 
 /mob/new_player/proc/LateChoices()
 	var/list/dat = list("<div class='notice'>Round Duration: [DisplayTimeText(world.time - SSticker.round_start_time)]</div>")
 	if(!GLOB.enter_allowed)
 		dat += "<div class='notice red'>You may no longer join the round.</div><br>"
-	dat += "<table><tr><td valign='top'>"
-	var/column_counter = 0
-	for(var/list/category in (list(GLOB.jobs_officers) + list(GLOB.jobs_requisitions) + list(GLOB.jobs_police) + list(GLOB.jobs_medical) + list(GLOB.jobs_engineering) + list(GLOB.jobs_marines)))
-		var/cat_color = SSjob.name_occupations[category[1]].selection_color //use the color of the first job in the category (the department head) as the category color
-		dat += "<fieldset class='latejoin' style='border-color: [cat_color]'>"
-		dat += "<legend align='center' style='color: [cat_color]'>[SSjob.name_occupations[category[1]].exp_type_department]</legend>"
+	dat += "<div class='latejoin-container' style='width: 100%'>"
+	for(var/cat in SSjob.active_joinable_occupations_by_category)
+		var/list/category = SSjob.active_joinable_occupations_by_category[cat]
+		var/datum/job/job_datum = category[1] //use the color of the first job in the category (the department head) as the category color
+		dat += "<fieldset class='latejoin' style='border-color: [job_datum.selection_color]'>"
+		dat += "<legend align='center' style='color: [job_datum.selection_color]'>[job_datum.job_category]</legend>"
 		var/list/dept_dat = list()
 		for(var/job in category)
-			var/datum/job/job_datum = SSjob.name_occupations[job]
-			if(job_datum && IsJobAvailable(job_datum.title, TRUE))
-				var/command_bold = ""
-				if(job in GLOB.jobs_command)
-					command_bold = " command"
-				dept_dat += "<a class='job[command_bold]' href='byond://?src=[REF(src)];lobby_choice=SelectedJob;job_selected=[job_datum.title]'>[job_datum.title] ([job_datum.current_positions])</a>"
+			job_datum = job
+			if(!IsJobAvailable(job_datum, TRUE))
+				continue
+			var/command_bold = ""
+			if(job_datum.job_flags & JOB_FLAG_BOLD_NAME_ON_SELECTION)
+				command_bold = " command"
+			dept_dat += "<a class='job[command_bold]' href='byond://?src=[REF(src)];lobby_choice=SelectedJob;job_selected=[REF(job_datum)]'>[job_datum.title] ([job_datum.job_flags & JOB_FLAG_HIDE_CURRENT_POSITIONS ? "?" : job_datum.current_positions])</a>"
 		if(!length(dept_dat))
 			dept_dat += "<span class='nopositions'>No positions open.</span>"
 		dat += jointext(dept_dat, "")
 		dat += "</fieldset><br>"
-		column_counter++
-		if(column_counter > 0 && (column_counter % 3 == 0))
-			dat += "</td><td valign='top'>"
-	dat += "</td></tr></table></center>"
-	dat += "</div></div>"
+	dat += "</div>"
 	var/datum/browser/popup = new(src, "latechoices", "Choose Occupation", 680, 580)
 	popup.add_stylesheet("latechoices", 'html/browser/latechoices.css')
 	popup.set_content(jointext(dat, ""))
@@ -453,45 +432,47 @@
 	return
 
 
-/mob/new_player/proc/create_character(transfer_after)
+/mob/new_player/proc/create_character()
+	if(!assigned_role)
+		CRASH("create_character called for [key] without an assigned_role")
 	spawning = TRUE
 	close_spawn_windows()
-
-	var/mob/living/carbon/human/spawning_human = new(loc)
+	var/spawn_type = assigned_role.return_spawn_type(client.prefs)
+	var/mob/living/spawning_living = new spawn_type()
 	GLOB.joined_player_list += ckey
 
-	if(!is_banned_from(ckey, "Appearance"))
-		client.prefs.copy_to(spawning_human)
+	spawning_living.on_spawn(src)
 
-	update_names_joined_list(spawning_human.real_name)
+	new_character = spawning_living
 
-	if(mind)
-		if(transfer_after)
-			mind.late_joiner = TRUE
-		mind.active = FALSE					//we wish to transfer the key manually
-		mind.transfer_to(spawning_human)	//won't transfer key since the mind is not active
 
-	. = spawning_human
-	new_character = .
-	if(transfer_after)
-		transfer_character()
+/mob/living/proc/on_spawn(mob/new_player/summoner)
+	return
+
+/mob/living/carbon/human/on_spawn(mob/new_player/summoner)
+	if(!is_banned_from(summoner.ckey, "Appearance") && summoner.client)
+		summoner.client.prefs.copy_to(src)
+	update_names_joined_list(real_name)
+
+/mob/living/silicon/ai/on_spawn(mob/new_player/summoner)
+	if(!is_banned_from(summoner.ckey, "Appearance") && summoner.client?.prefs?.ai_name)
+		fully_replace_character_name(real_name, summoner.client.prefs.ai_name)
+	update_names_joined_list(real_name)
 
 
 /mob/new_player/proc/transfer_character()
 	. = new_character
 	if(.)
-		new_character.key = key		//Manually transfer the key to log them in
-		new_character = null
+		mind.transfer_to(new_character, TRUE) //Manually transfer the key to log them in
 		qdel(src)
 
 
-/mob/new_player/proc/IsJobAvailable(rank, latejoin = FALSE)
-	var/datum/job/job = SSjob.GetJob(rank)
+/mob/new_player/proc/IsJobAvailable(datum/job/job, latejoin = FALSE)
 	if(!job)
 		return FALSE
 	if((job.current_positions >= job.total_positions) && job.total_positions != -1)
 		return FALSE
-	if(is_banned_from(ckey, rank))
+	if(is_banned_from(ckey, job.title))
 		return FALSE
 	if(QDELETED(src))
 		return FALSE

@@ -71,14 +71,14 @@
 
 /mob/living/proc/get_ghost()
 	if(client) //Let's call up the correct ghost!
-		return FALSE
+		return
 	for(var/g in GLOB.observer_list)
 		var/mob/dead/observer/ghost = g
 		if(ghost.mind.current != src)
 			continue
 		if(ghost.client && ghost.can_reenter_corpse)
 			return ghost
-	return FALSE
+	return
 
 
 /mob/living/carbon/human/proc/is_revivable()
@@ -209,7 +209,7 @@
 	user.visible_message("<span class='notice'>[icon2html(src, viewers(user))] \The [src] beeps: Defibrillation successful.</span>")
 	H.on_revive()
 	H.timeofdeath = 0
-	H.stat = UNCONSCIOUS
+	H.set_stat(UNCONSCIOUS)
 	H.emote("gasp")
 	H.regenerate_icons()
 	H.reload_fullscreens()

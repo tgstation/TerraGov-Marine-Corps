@@ -44,8 +44,8 @@
 	Also where the gun will do final attachment calculations if the gun fired an attachment bullet.
 	This must return positive to continue burst firing or so that you don't hear *click*.
 
-	delete_bullet() //Important for point blanking and and jams, but can be called on for other reasons (that are
-	not currently used). If the gun makes a bullet but doesn't fire it, this will be called on through clear_jam().
+	delete_bullet() //Important for point blanking, but can be called on for other reasons (that are
+	not currently used).
 	This is also used to delete the bullet when you directly fire a bullet without going through the Fire() process,
 	like with the mentioned point blanking/suicide.
 
@@ -267,7 +267,7 @@ should be alright.
 
 /mob/living/carbon/human/proc/do_unique_action()
 	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
-	if(incapacitated() || lying)
+	if(incapacitated() || lying_angle)
 		return
 
 	var/obj/item/weapon/gun/G = get_active_held_item()
@@ -347,7 +347,7 @@ should be alright.
 		"<span class='notice'>You begin attaching [attachment] to [src].</span>", null, 4)
 		if(user.skills.getRating("firearms") >= SKILL_FIREARMS_DEFAULT) //See if the attacher is super skilled/panzerelite born to defeat never retreat etc
 			final_delay *= 0.5
-	else //If the user has no training, attaching takes twice as long and they fumble about, looking like a retard.
+	else //If the user has no training, attaching takes twice as long and they fumble about.
 		final_delay *= 2
 		user.visible_message("<span class='notice'>[user] begins fumbling about, trying to attach [attachment] to [src].</span>",
 		"<span class='notice'>You begin fumbling about, trying to attach [attachment] to [src].</span>", null, 4)
@@ -396,7 +396,7 @@ should be alright.
 		attachable_overlays[slot] = null
 
 
-/obj/item/weapon/gun/proc/update_mag_overlay()
+/obj/item/weapon/gun/proc/update_mag_overlay(mob/user)
 	var/image/I = attachable_overlays["mag"]
 	overlays -= I
 	qdel(I)
@@ -520,7 +520,7 @@ should be alright.
 		"<span class='notice'>You begin stripping [A] from [src].</span>", null, 4)
 		if(usr.skills.getRating("firearms") > SKILL_FIREARMS_DEFAULT) //See if the attacher is super skilled/panzerelite born to defeat never retreat etc
 			final_delay *= 0.5 //Half normal time
-	else //If the user has no training, attaching takes twice as long and they fumble about, looking like a retard.
+	else //If the user has no training, attaching takes twice as long and they fumble about.
 		final_delay *= 2
 		usr.visible_message("<span class='notice'>[usr] begins fumbling about, trying to strip [A] from [src].</span>",
 		"<span class='notice'>You begin fumbling about, trying to strip [A] from [src].</span>", null, 4)

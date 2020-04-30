@@ -88,6 +88,10 @@
 #define MAX_BROADCAST_LEN 512
 
 
+// Is something in the IC chat filter? This is config dependent.
+#define CHAT_FILTER_CHECK(T) (config.ic_filter_regex && findtext(T, config.ic_filter_regex))
+
+
 //for whether AI eyes see static, and whether it is mouse-opaque or not
 #define USE_STATIC_NONE			0
 #define USE_STATIC_TRANSPARENT	1
@@ -104,3 +108,7 @@
 #define CINEMATIC_NUKE_FAKE 8
 #define CINEMATIC_NUKE_NO_CORE 9
 #define CINEMATIC_NUKE_FAR 10
+
+#define WORLD_VIEW "15x15"
+#define WORLD_VIEW_NUM 7
+#define VIEW_NUM_TO_STRING(v) "[1 + 2 * v]x[1 + 2 * v]"

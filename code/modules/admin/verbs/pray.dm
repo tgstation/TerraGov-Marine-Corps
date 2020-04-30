@@ -1,8 +1,8 @@
-/mob/verb/pray(msg as text)
+/mob/living/verb/pray(msg as text)
 	set category = "IC"
 	set name = "Pray"
 
-	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
+	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
 
 	if(!msg)
 		return
@@ -17,7 +17,7 @@
 	var/mentor_msg = msg
 	var/liaison = FALSE
 
-	if(mind?.assigned_role && mind.assigned_role == CORPORATE_LIAISON)
+	if(iscorporateliaisonjob(job))
 		liaison = TRUE
 
 	msg = "<b><font color=purple>[liaison ? "LIAISON " : ""]PRAY:</font> <span class='notice linkify'>[ADMIN_FULLMONTY(usr)] [ADMIN_SC(usr)] [ADMIN_SFC(usr)]: [msg]</b></span>"
@@ -39,7 +39,7 @@
 
 
 /proc/tgmc_message(text, mob/sender)
-	text = copytext(sanitize(text), 1, MAX_MESSAGE_LEN)
+	text = copytext_char(sanitize(text), 1, MAX_MESSAGE_LEN)
 	var/sound/S = sound('sound/effects/sos-morse-code.ogg', channel = CHANNEL_ADMIN)
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE))

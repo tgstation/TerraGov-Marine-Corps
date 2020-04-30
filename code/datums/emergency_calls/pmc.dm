@@ -22,9 +22,6 @@
 	var/mob/original = M.current
 	var/mob/living/carbon/human/H = .
 
-	H.name = GLOB.namepool[/datum/namepool/pmc].random_name(H)
-	H.real_name = H.name
-
 	M.transfer_to(H, TRUE)
 	H.fully_replace_character_name(M.name, H.real_name)
 
@@ -36,26 +33,22 @@
 	if(!leader)
 		leader = H
 		var/datum/job/J = SSjob.GetJobType(/datum/job/pmc/leader)
-		SSjob.AssignRole(H, J.title)
-		J.assign_equip(H)
+		H.apply_assigned_role_to_spawn(J)
 		to_chat(H, "<span class='notice'>You are the leader of this Nanotrasen contractor team in responding to the TGMC distress signal sent out nearby. Address the situation and get your team to safety!</span>")
 		return
 
 	if(prob(50))
 		var/datum/job/J = SSjob.GetJobType(/datum/job/pmc/gunner)
-		SSjob.AssignRole(H, J.title)
-		J.assign_equip(H)
+		H.apply_assigned_role_to_spawn(J)
 		to_chat(H, "<span class='notice'>You are a Nanostrasen heavy gunner assigned to this team to respond to the TGMC distress signal sent out nearby. Be the back guard of your squad!</span>")
 		return
 
 	if(prob(30))
 		var/datum/job/J = SSjob.GetJobType(/datum/job/pmc/sniper)
-		SSjob.AssignRole(H, J.title)
-		J.assign_equip(H)
+		H.apply_assigned_role_to_spawn(J)
 		to_chat(H, "<span class='notice'>You are a Nanotrasen heavy sniper assigned to this team to respond to the TGMC distress signal sent out nearby. Support your squad with long ranged firepower!</span>")
 		return
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/pmc/standard)
-	SSjob.AssignRole(H, J.title)
-	J.assign_equip(H)
+	H.apply_assigned_role_to_spawn(J)
 	to_chat(H, "<span class='notice'>You are a Nanotrasen contractor assigned to this team to respond to the TGMC distress signal sent out nearby. Assist your team and protect NT's interests whenever possible!</span>")

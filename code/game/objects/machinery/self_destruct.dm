@@ -46,7 +46,7 @@
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "selfdestruct", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, ui_key, "SelfDestruct", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /obj/machinery/self_destruct/console/ui_data(mob/user)
@@ -72,7 +72,10 @@
 				SStgui.close_user_uis(usr, src, "main")
 
 		if("dest_cancel")
-			if(!usr.mind?.assigned_role || !(usr.mind.assigned_role in GLOB.jobs_command))
+			if(!isliving(usr))
+				return
+			var/mob/living/user = usr
+			if(!ismarinecommandjob(user.job))
 				to_chat(usr, "<span class='notice'>You don't have the necessary clearance to cancel the emergency destruct system.</span>")
 				return
 			if(SSevacuation.cancel_self_destruct())

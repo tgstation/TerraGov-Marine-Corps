@@ -64,7 +64,9 @@
 /obj/structure/resin/silo/Destroy()
 	GLOB.xeno_resin_silos -= src
 	if(associated_hive)
+		UnregisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
 		associated_hive.xeno_message("<span class='xenoannounce'>A resin silo has been destroyed at [silo_area]!</span>", 2, TRUE)
+		associated_hive = null
 	return ..()
 
 
@@ -85,4 +87,5 @@
 
 
 /obj/structure/resin/silo/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos)
-	silos += src
+	if(associated_hive)
+		silos += src

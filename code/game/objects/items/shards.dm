@@ -69,26 +69,31 @@
 		qdel(src)
 
 
-/obj/item/shard/Crossed(AM as mob|obj)
-	if(isliving(AM))
-		var/mob/living/M = AM
-		playsound(src.loc, 'sound/effects/glass_step.ogg', 25, 1) // not sure how to handle metal shards with sounds
-		if(!M.buckled)
-			to_chat(M, "<span class='danger'>[isxeno(M) ? "We" : "You"] step on \the [src]!</span>")
-			if(ishuman(M))
-				var/mob/living/carbon/human/H = M
+/obj/item/shard/Crossed(AM)
+	if(!isliving(AM))
+		return ..()
 
-				if(H.species.species_flags & IS_SYNTHETIC || H.species.insulated)
+	var/mob/living/M = AM
+	if(M.status_flags & INCORPOREAL)
+		return ..()
+
+	playsound(src.loc, 'sound/effects/glass_step.ogg', 25, 1) // not sure how to handle metal shards with sounds
+	if(!M.buckled)
+		to_chat(M, "<span class='danger'>[isxeno(M) ? "We" : "You"] step on \the [src]!</span>")
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+
+			if(H.species.species_flags & IS_SYNTHETIC || H.species.insulated)
+				return
+
+			if( !H.shoes && ( !H.wear_suit || !(H.wear_suit.flags_armor_protection & FEET) ) )
+				var/datum/limb/affecting = H.get_limb(pick("l_foot", "r_foot"))
+				if(affecting.limb_status & LIMB_ROBOT)
 					return
-
-				if( !H.shoes && ( !H.wear_suit || !(H.wear_suit.flags_armor_protection & FEET) ) )
-					var/datum/limb/affecting = H.get_limb(pick("l_foot", "r_foot"))
-					if(affecting.limb_status & LIMB_ROBOT)
-						return
-					H.Knockdown(60)
-					if(affecting.take_damage_limb(5))
-						UPDATEHEALTH(H)
-						H.UpdateDamageIcon()
+				H.Paralyze(60)
+				if(affecting.take_damage_limb(5))
+					UPDATEHEALTH(H)
+					H.UpdateDamageIcon()
 	return ..()
 
 // Shrapnel

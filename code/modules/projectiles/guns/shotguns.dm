@@ -24,6 +24,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	aim_slowdown = 0.35
 	wield_delay = 0.6 SECONDS //Shotguns are really easy to put up to fire, since they are designed for CQC (at least compared to a rifle)
 	gun_skill_category = GUN_SKILL_SHOTGUNS
+	flags_item_map_variant = NONE
 
 	fire_delay = 6
 	accuracy_mult = 1.15
@@ -72,7 +73,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	if(!in_chamber)
 		to_chat(user, "<span class='warning'>[src] is already empty.</span>")
 		return TRUE
-	in_chamber = null
+	QDEL_NULL(in_chamber)
 	var/obj/item/ammo_magazine/handful/new_handful = retrieve_shell(ammo.type)
 	playsound(user, reload_sound, 25, 1)
 	new_handful.forceMove(get_turf(src))
@@ -163,7 +164,8 @@ can cause issues with ammo types getting mixed up during the burst.
 		make_casing(active_attachable.type_of_casings)
 	else
 		make_casing(type_of_casings)
-		in_chamber = null
+		if(in_chamber)
+			QDEL_NULL(in_chamber)
 
 		//Time to move the tube position.
 		ready_in_chamber() //We're going to try and reload. If we don't get anything, icon change.
@@ -173,6 +175,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	return TRUE
 
 /obj/item/weapon/gun/shotgun/get_ammo_type()
+	if(in_chamber)
+		return list(in_chamber.ammo.hud_state, in_chamber.ammo.hud_state_empty)
 	if(!ammo)
 		return list("unknown", "unknown")
 	else
@@ -222,7 +226,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/combat
 	name = "\improper MK221 tactical shotgun"
-	desc = "The Nanotrasen MK221 Shotgun, a semi-automatic shotgun with a quick fire rate and a pre-attached grenade launcher."
+	desc = "The Nanotrasen MK221 Shotgun, a quick-firing semi-automatic shotgun."
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "mk221"
 	item_state = "mk221"
@@ -299,7 +303,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 //Turns out it has some attachments.
 /obj/item/weapon/gun/shotgun/double/update_icon()
-	icon_state = current_mag.chamber_closed ? copytext(icon_state,1,-2) : icon_state + "_o"
+	icon_state = "[initial(icon_state)][current_mag.chamber_closed ? "" : "_o"]"
 
 /obj/item/weapon/gun/shotgun/double/check_chamber_position()
 	if(current_mag.chamber_closed)
@@ -356,7 +360,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	return TRUE
 
 /obj/item/weapon/gun/shotgun/double/reload_into_chamber(mob/user)
-	in_chamber = null
+	if(in_chamber)
+		QDEL_NULL(in_chamber)
 	current_mag.chamber_contents[current_mag.chamber_position] = "empty"
 	current_mag.chamber_position--
 	current_mag.used_casings++
@@ -457,7 +462,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		return TRUE
 
 	if(in_chamber) //eject the chambered round
-		in_chamber = null
+		QDEL_NULL(in_chamber)
 		var/obj/item/ammo_magazine/handful/new_handful = retrieve_shell(ammo.type)
 		new_handful.forceMove(get_turf(src))
 
@@ -473,6 +478,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	recent_pump = world.time
 	if(in_chamber) //Lock only if we have ammo loaded.
 		pump_lock = TRUE
+		var/obj/screen/ammo/A = user.hud_used.ammo
+		A.update_hud(user)
 
 	return TRUE
 
@@ -490,9 +497,10 @@ can cause issues with ammo types getting mixed up during the burst.
 	else
 		pump_lock = FALSE //fired successfully; unlock the pump
 		current_mag.used_casings++ //The shell was fired successfully. Add it to used.
-		in_chamber = null
+		if(in_chamber)
+			QDEL_NULL(in_chamber)
 		//Time to move the tube position.
-		if(!current_mag.current_rounds && !in_chamber)
+		if(!current_mag.current_rounds)
 			update_icon()//No rounds, nothing chambered.
 
 	return TRUE
@@ -524,13 +532,14 @@ can cause issues with ammo types getting mixed up during the burst.
 	flags_item_map_variant = NONE
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 16,"rail_x" = 14, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 17)
 
-	fire_delay = 24
-	accuracy_mult = 1.30
-	accuracy_mult_unwielded = 0.7
-	scatter = 15
-	scatter_unwielded = 40
-	recoil = 2
-	recoil_unwielded = 4
+	fire_delay = 15
+	damage_mult = 0.75
+	accuracy_mult = 1.25
+	accuracy_mult_unwielded = 1
+	scatter = 5
+	scatter_unwielded = 35
+	recoil = 0 // It has a stock. It's on the sprite.
+	recoil_unwielded = 0
 	pump_delay = 12
 
 //-------------------------------------------------------
@@ -597,15 +606,16 @@ can cause issues with ammo types getting mixed up during the burst.
 									/obj/item/attachable/mosinbarrel,
 									/obj/item/attachable/stock/mosin)
 
-	fire_delay = 24
-	accuracy_mult = 1.3
+	fire_delay = 17.5
+	accuracy_mult = 1.4
 	accuracy_mult_unwielded = 0.7
-	scatter = 15
+	scatter = -10
 	scatter_unwielded = 40
-	recoil = 2
+	recoil = 0
 	recoil_unwielded = 4
 	pump_delay = 12
-	aim_slowdown = 0.5
+	aim_slowdown = 1
+	wield_delay = 1 SECONDS
 
 /obj/item/weapon/gun/shotgun/pump/bolt/unique_action(mob/user)
 	return pump_shotgun(user)
@@ -705,7 +715,6 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/quickfire,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/scope,
 		/obj/item/attachable/scope/mini,
@@ -728,7 +737,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	icon_state = "t35"
 	item_state = "t35"
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump
-	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
+	fire_sound = 'sound/weapons/guns/fire/t35.ogg'
 	max_shells = 9
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
@@ -745,7 +754,7 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/attached_gun/shotgun,
 						/obj/item/attachable/stock/t35stock)
 
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 21, "under_x" = 20, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 20, "under_x" = 21, "under_y" = 12, "stock_x" = 20, "stock_y" = 16)
 
 	flags_item_map_variant = NONE
 

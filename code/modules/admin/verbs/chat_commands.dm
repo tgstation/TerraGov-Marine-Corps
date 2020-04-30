@@ -1,14 +1,16 @@
-/datum/tgs_chat_command/irccheck
+#define TGS_STATUS_THROTTLE 5
+
+/datum/tgs_chat_command/tgscheck
 	name = "check"
 	help_text = "Gets the playercount, gamemode, and address of the server"
-	var/last_irc_check = 0
+	var/last_tgs_check = 0
 
 
-/datum/tgs_chat_command/irccheck/Run(datum/tgs_chat_user/sender, params)
+/datum/tgs_chat_command/tgscheck/Run(datum/tgs_chat_user/sender, params)
 	var/rtod = REALTIMEOFDAY
-	if(rtod - last_irc_check < IRC_STATUS_THROTTLE)
+	if(rtod - last_tgs_check < TGS_STATUS_THROTTLE)
 		return
-	last_irc_check = rtod
+	last_tgs_check = rtod
 	var/server = CONFIG_GET(string/server)
 	return "Round ID: [GLOB.round_id] | Players: [length(GLOB.clients)] | Ground Map: [length(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : "Loading..."] | Ship Map: [length(SSmapping.configs) ? SSmapping.configs[SHIP_MAP].map_name : "Loading..."] | Mode: [GLOB.master_mode] | Round Status: [SSticker.HasRoundStarted() ? (SSticker.IsRoundInProgress() ? "Active" : "Finishing") : "Starting"] | Link: [server ? server : "<byond://[world.internet_address]:[world.port]>"]"
 
@@ -32,7 +34,7 @@
 			target = AH.initiator_ckey
 		else
 			return "Ticket #[id] not found!"
-	var/res = IrcPm(target, all_params.Join(" "), sender.friendly_name)
+	var/res = TgsPm(target, all_params.Join(" "), sender.friendly_name)
 	return res
 
 
@@ -58,7 +60,7 @@
 
 
 /datum/tgs_chat_command/adminwho/Run(datum/tgs_chat_user/sender, params)
-	return ircadminwho()
+	return tgsadminwho()
 
 
 /datum/tgs_chat_command/sdql

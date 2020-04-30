@@ -20,7 +20,7 @@
 
 
 /mob/living/simple_animal/hostile/retaliate/proc/Retaliate()
-	var/list/around = view(src, world.view)
+	var/list/around = view(src, WORLD_VIEW)
 
 	for(var/atom/movable/A in around)
 		if(A == src)

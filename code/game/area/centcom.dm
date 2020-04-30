@@ -56,3 +56,6 @@
 
 /area/centcom/supplypod/loading/ert
 	name = "ERT Bay"
+
+/area/centcom/aitest //Part of the centcom zlevel, basically an arena for AI that ultilizes nodes
+	name = "Artificial Intelligence Test Zone"
