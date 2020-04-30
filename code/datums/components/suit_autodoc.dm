@@ -9,9 +9,7 @@
 /**
 	Autodoc component
 
-	The autodoc is an item component that can be eqiupped to support the following:
-	- inject the wearer with chemicals overtime.
-	- Stabalize broken limbs
+	The autodoc is an item component that can be eqiupped to inject the wearer with chemicals.
 
 	Parameters
 	* chem_cooldown {time} default time between injections of chemicals
@@ -21,13 +19,11 @@
 	* list/tox_chems {list/datum/reagent/medicine} chemicals available to be injected to treat toxin injuries
 	* list/pain_chems {list/datum/reagent/medicine} chemicals available to be injected to treat pain injuries
 	* overdose_threshold_mod {float} how close to overdosing will drugs inject to
-	* list/supporting_limbs {string} list of body_parts that are supported by the autodoc
 
 */
 /datum/component/suit_autodoc
 	var/obj/item/healthanalyzer/integrated/analyzer
 
-	var/list/cooldowns = list()
 	var/chem_cooldown = 2.5 MINUTES
 
 	var/enabled = FALSE
@@ -73,9 +69,10 @@
 /**
 	Setup the default cooldown, chemicals and supported limbs
 */
-/datum/component/suit_autodoc/Initialize(chem_cooldown, list/burn_chems, list/oxy_chems, list/brute_chems, list/tox_chems, list/pain_chems, overdose_threshold_mod, list/supporting_limbs)
+/datum/component/suit_autodoc/Initialize(chem_cooldown, list/burn_chems, list/oxy_chems, list/brute_chems, list/tox_chems, list/pain_chems, overdose_threshold_mod)
 	if(!istype(parent, /obj/item))
 		return COMPONENT_INCOMPATIBLE
+
 	analyzer = new
 	if(!isnull(chem_cooldown))
 		src.chem_cooldown = chem_cooldown
@@ -88,9 +85,6 @@
 
 	if(!isnull(overdose_threshold_mod))
 		src.overdose_threshold_mod = overdose_threshold_mod
-
-	if(!isnull(supporting_limbs))
-		src.supporting_limbs = supporting_limbs
 
 /**
 	Cleans up any actions, and internal items used by the autodoc component
@@ -137,14 +131,14 @@
 	Specifically registers signals with the wearer to ensure we capture damage taken events
 */
 /datum/component/suit_autodoc/proc/RegisterSignals(mob/user)
-	RegisterSignal(user, list(COMSIG_HUMAN_DAMAGE_TAKEN, COMSIG_HUMAN_LIMB_FRACTURED), .proc/damage_taken)
+	RegisterSignal(user, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/damage_taken)
 
 
 /**
 	Removes specific user signals
 */
 /datum/component/suit_autodoc/proc/UnregisterSignals(mob/user)
-	UnregisterSignal(user, list(COMSIG_HUMAN_DAMAGE_TAKEN, COMSIG_HUMAN_LIMB_FRACTURED))
+	UnregisterSignal(user, COMSIG_HUMAN_DAMAGE_TAKEN)
 
 /**
 	Hook into the examine of the parent to show additional information about the suit_autodoc
@@ -203,8 +197,6 @@
 	toggle_action.remove_selected_frame()
 	UnregisterSignals(wearer)
 	STOP_PROCESSING(SSobj, src)
-	if(ishuman(wearer))
-		update_limb_support(wearer, TRUE, silent)
 	if(!silent)
 		to_chat(wearer, "<span class='warning'>[parent] lets out a beep as its automedical suite deactivates.</span>")
 		playsound(parent,'sound/machines/click.ogg', 15, 0, 1)
@@ -221,8 +213,6 @@
 	toggle_action.add_selected_frame()
 	RegisterSignals(wearer)
 	START_PROCESSING(SSobj, src)
-	if(ishuman(wearer))
-		update_limb_support(wearer, FALSE, silent)
 	if(!silent)
 		to_chat(wearer, "<span class='notice'>[parent] lets out a hum as its automedical suite activates.</span>")
 		playsound(parent,'sound/voice/b18_activate.ogg', 15, 0, 1)
@@ -247,7 +237,7 @@
 	chemicals into the user and sets the cooldown again
 */
 /datum/component/suit_autodoc/proc/inject_chems(list/chems, mob/living/carbon/human/H, cooldown_type, damage, threshold, treatment_message, message_prefix)
-	if(!length(chems) || cooldowns[cooldown_type] || damage < threshold)
+	if(!length(chems) || COOLDOWN_CHECK(src, cooldown_type) || damage < threshold)
 		return
 
 	var/drugs
@@ -264,7 +254,7 @@
 
 	if(LAZYLEN(drugs))
 		. = "[message_prefix] administered. <span class='bold'>Dosage:[drugs]</span><br/>"
-		cooldowns[cooldown_type] = addtimer(VARSET_LIST_CALLBACK(cooldowns, cooldown_type, null), chem_cooldown)
+		COOLDOWN_START(src, cooldown_type, chem_cooldown)
 		addtimer(CALLBACK(src, .proc/nextuse_ready, treatment_message), chem_cooldown)
 
 /**
@@ -286,26 +276,6 @@
 	if(burns || brute || oxy || tox || pain)
 		playsound(parent,'sound/items/hypospray.ogg', 25, 0, 1)
 		to_chat(wearer, "<span class='notice'>[icon2html(parent, wearer)] beeps:</br>[burns][brute][oxy][tox][pain]Estimated [chem_cooldown/600] minute replenishment time for each dosage.</span>")
-
-/**
-	Updates limb support adding LIMB_STABILIZED if required
-*/
-/datum/component/suit_autodoc/proc/update_limb_support(mob/living/carbon/human/user, dropped = FALSE, silent = FALSE)
-	for(var/datum/limb/limb in user.limbs)
-		if(!supporting_limbs.Find(limb.body_part))
-			continue
-
-		if(dropped && (limb.limb_status & LIMB_STABILIZED))
-			limb.limb_status &= ~LIMB_STABILIZED
-			to_chat(user, "<span class='danger'>You feel the pressure from [parent] about your [limb.display_name] release, leaving it unsupported.</span>")
-			playsound(parent, 'sound/machines/hiss.ogg', 15, 0, 1)
-			continue
-
-		if((limb.limb_status & LIMB_BROKEN) && !(limb.limb_status & LIMB_STABILIZED))
-			limb.limb_status |= LIMB_STABILIZED
-			playsound(parent, 'sound/voice/b18_fracture.ogg', 15, 0, 1)
-			to_chat(user, "<span class='notice'><b>You feel [parent] constrict about your [limb.display_name], stabilizing it.</b></span>")
-			playsound(parent, 'sound/machines/hydraulics_1.ogg', 15, 0, 1)
 
 /**
 	Plays a sound and message to the user informing the user chemicals are ready again
