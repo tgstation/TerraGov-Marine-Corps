@@ -156,8 +156,3 @@
 	name = "Hypervene"
 	results = list(/datum/reagent/medicine/hypervene = 3)
 	required_reagents = list(/datum/reagent/medicine/arithrazine = 1, /datum/reagent/medicine/dylovene = 1, /datum/reagent/medicine/ethylredoxrazine = 1)
-
-/datum/chemical_reaction/roulettium
-	name = "Roulettium"
-	results = list(/datum/reagent/medicine/roulettium = 1)
-	required_reagents = list(/datum/reagent/medicine/bicaridine = 52, /datum/reagent/medicine/kelotane = 58, /datum/reagent/medicine/meralyne = 33, /datum/reagent/medicine/dermaline = 27, /datum/reagent/medicine/synaptizine = 9, /datum/reagent/medicine/hyperzine = 11, /datum/reagent/medicine/leporazine = 5, /datum/reagent/medicine/tricordrazine = 29, /datum/reagent/medicine/dexalinplus = 1, /datum/reagent/medicine/clonexadone = 5, /datum/reagent/toxin/mutagen = 7, /datum/reagent/space_drugs = 33, /datum/reagent/toxin/mindbreaker = 29, /datum/reagent/consumable/sodiumchloride = 1)
