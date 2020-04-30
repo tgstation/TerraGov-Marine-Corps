@@ -80,7 +80,7 @@
 #define STASIS_BAG_TRAIT "stasis_bag"
 #define CRYOPOD_TRAIT "cryopod"
 #define TRAIT_XENO "xeno"
-#define TRAIT_ARMOR "armor"
+#define ARMOR_TRAIT "armor"
 
 //mob traits
 #define TRAIT_KNOCKEDOUT		"knockedout" //Forces the user to stay unconscious.

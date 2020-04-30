@@ -76,7 +76,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	without a suit, you need >100 fire protection from head, chest, gloves and shoes seperately (otherwise the fire can get in)
 */
 /mob/living/carbon/human/proc/update_fire_resistant(equipped)
-	if((equipped && HAS_TRAIT_FROM_ONLY(src, TRAIT_FIRERESISTANT, TRAIT_ARMOR)) || (!equipped && !HAS_TRAIT_FROM_ONLY(src, TRAIT_FIRERESISTANT, TRAIT_ARMOR)))
+	if((equipped && HAS_TRAIT_FROM_ONLY(src, TRAIT_FIRERESISTANT, ARMOR_TRAIT)) || (!equipped && !HAS_TRAIT_FROM_ONLY(src, TRAIT_FIRERESISTANT, ARMOR_TRAIT)))
 		return // Checks if we actually need to add / remove this trait
 	var/fire_protection = FALSE
 
@@ -92,9 +92,9 @@ Contains most of the procs that are called when a mob is attacked by something
 				fire_protection = FALSE
 				break
 	if(fire_protection)
-		ADD_TRAIT(src, TRAIT_FIRERESISTANT, TRAIT_ARMOR)
+		ADD_TRAIT(src, TRAIT_FIRERESISTANT, ARMOR_TRAIT)
 	else
-		REMOVE_TRAIT(src, TRAIT_FIRERESISTANT, TRAIT_ARMOR)
+		REMOVE_TRAIT(src, TRAIT_FIRERESISTANT, ARMOR_TRAIT)
 
 
 /mob/living/carbon/human/proc/add_limb_armor(obj/item/armor_item)
