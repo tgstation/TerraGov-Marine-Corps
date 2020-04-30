@@ -56,7 +56,7 @@
 
 
 	/// Misc stats
-	light_strength = 6
+	light_strength = 5
 
 
 /obj/item/clothing/suit/modular/Initialize()
@@ -428,3 +428,44 @@
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
 	armor = list("melee" = 75, "bullet" = 75, "laser" = 75, "energy" = 75, "bomb" = 75, "bio" = 75, "rad" = 75, "fire" = 75, "acid" = 75)
 	accuracy_mod = -10
+
+
+
+/// Admeme vendor
+/obj/machinery/vending/modular_armor
+	name = "Modular Armor Vendor"
+	desc = "A jaegar pattern modular armor vendor."
+	icon_state = "cart"
+	products = list(
+		// Core suit
+		/obj/item/clothing/suit/modular = 10,
+
+		// Heavy
+		/obj/item/clothing/head/modular/heavy = 10,
+		/obj/item/armor_module/armor/chest/heavy = 10,
+		/obj/item/armor_module/armor/arms/heavy = 10,
+		/obj/item/armor_module/armor/legs/heavy = 10,
+
+		// medium
+		/obj/item/clothing/head/modular/medium = 10,
+		/obj/item/armor_module/armor/chest/medium = 10,
+		/obj/item/armor_module/armor/arms/medium = 10,
+		/obj/item/armor_module/armor/legs/medium = 10,
+
+		// light
+		/obj/item/clothing/head/modular/light = 10,
+		/obj/item/armor_module/armor/chest/light = 10,
+		/obj/item/armor_module/armor/arms/light = 10,
+		/obj/item/armor_module/armor/legs/light = 10,
+
+		// Storage
+		/obj/item/armor_module/storage/ammo_mag = 10,
+		/obj/item/armor_module/storage/medical = 10,
+
+		// Attachments
+		/obj/item/armor_module/attachable/better_shoulder_lamp = 10,
+		/obj/item/armor_module/attachable/valkyrie_autodoc = 2,
+		/obj/item/armor_module/attachable/fire_proof = 2,
+		/obj/item/armor_module/attachable/tyr_extra_armor = 2,
+		/obj/item/armor_module/attachable/mimir_environment_protection = 2
+	)
