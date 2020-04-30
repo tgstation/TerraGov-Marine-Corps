@@ -230,7 +230,7 @@
 		l_hand = null
 		update_inv_l_hand()
 		return ITEM_UNEQUIP_DROPPED
-	return ITEM_UNEQUIP_FAIL
+	return ITEM_UNEQUIP_FAILED
 
 
 //Remove an item on a mob's inventory.  It does not change the item's loc, just unequips it from the mob.

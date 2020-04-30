@@ -313,6 +313,10 @@
 	SLOT_IN_HEAD\
 	)
 
-#define ITEM_NOT_EQUIPPED 0
-#define ITEM_EQUIPPED_CARRIED 1 //To hands, a storage or the likes.
-#define ITEM_EQUIPPED_WORN 2 //Actually worn on the body.
+#define ITEM_EQUIP_FAILED 0
+#define ITEM_EQUIP_CARRIED 1 //To hands, a storage or the likes.
+#define ITEM_EQUIP_EQUIPPED 2 //Actually worn on the body.
+
+#define ITEM_UNEQUIP_FAILED 0
+#define ITEM_UNEQUIP_DROPPED 1
+#define ITEM_UNEQUIP_UNEQUIPPED 2

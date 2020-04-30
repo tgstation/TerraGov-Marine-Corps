@@ -242,11 +242,11 @@
 //set redraw_mob to 0 if you don't wish the hud to be updated - if you're doing it manually in your own proc.
 /mob/living/carbon/human/equip_to_slot(obj/item/W, slot)
 	if(!slot)
-		return
+		return ITEM_EQUIP_FAILED
 	if(!istype(W))
-		return
+		return ITEM_EQUIP_FAILED
 	if(!has_limb_for_slot(slot))
-		return
+		return ITEM_EQUIP_FAILED
 
 	if(W == l_hand)
 		l_hand = null
@@ -412,6 +412,9 @@
 		else
 			CRASH("[src] tried to equip [W] to [slot] in equip_to_slot().")
 
+	var/equipped_to_hands = slot == SLOT_R_HAND || slot == SLOT_L_HAND
+	if(equipped_to_hands)
+		return ITEM_EQUIP_CARRIED
 	if(W.flags_armor_protection)
 		add_limb_armor(W)
 	if(W.slowdown)
@@ -421,7 +424,7 @@
 		if(equipped_clothing.accuracy_mod)
 			adjust_mob_accuracy(equipped_clothing.accuracy_mod)
 
-	return TRUE
+	return ITEM_EQUIP_EQUIPPED
 
 
 /mob/living/carbon/human/get_item_by_slot(slot_id)
