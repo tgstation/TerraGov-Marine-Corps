@@ -72,6 +72,7 @@
 
 /obj/machinery/vending/Initialize(mapload, ...)
 	. = ..()
+	GLOB.vendors += src
 	wires = new /datum/wires/vending(src)
 	src.slogan_list = text2list(src.product_slogans, ";")
 
@@ -95,6 +96,7 @@
 
 /obj/machinery/vending/Destroy()
 	QDEL_NULL(wires)
+	GLOB.vendors -= src
 	return ..()
 
 /obj/machinery/vending/ex_act(severity)
@@ -416,7 +418,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 				hidden_list += list(list("product_name" = prodname, "product_color" = R.display_color, "amount" = R.amount, "prod_index" = GetProductIndex(R), "prod_cat" = R.category))
 			if(CAT_COIN)
 				coin_list += list(list("product_name" = prodname, "product_color" = R.display_color, "amount" = R.amount, "prod_index" = GetProductIndex(R), "prod_cat" = R.category))
-		
+
 
 	var/list/data = list(
 		"vendor_name" = name,

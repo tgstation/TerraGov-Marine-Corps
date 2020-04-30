@@ -1102,3 +1102,32 @@
 
 	log_admin("[key_name(usr)] has [usr.client.holder.ghost_interact ? "enabled" : "disabled"] ghost interact.")
 	message_admins("[ADMIN_TPMONTY(usr)] has [usr.client.holder.ghost_interact ? "enabled" : "disabled"] ghost interact.")
+
+
+/datum/admins/proc/manage_vendor(obj/machinery/vending/vendor in GLOB.vendors)
+	set category = null
+	set name = "Manage Vendor"
+
+	if(!check_rights(R_FUN))
+		return
+
+	if(!vendor)
+		return
+
+	var/adminREF = "[REF(usr.client.holder)];[HrefToken()]"
+
+	var/html = "<br /><strong>Products</strong>"
+	for(var/datum/data/vending_product/record in vendor.product_records)
+		html += {"<br /><a href='?src=[adminREF];vendor=[REF(vendor)];action=delete_product;product=[REF(record)]]'>DEL</a>
+			 [record.product_name]
+			 x<a href='?src=[adminREF];vendor=[REF(vendor)];action=update_amount;product=[REF(record)]'>[record.amount]</a>
+			 = <a href='?src=[adminREF];vendor=[REF(vendor)];action=update_price;product=[REF(record)]'>[record.price ? record.price : "free"]</a>"}
+
+	html += "<hr /><a href='?src=[REF(usr.client.holder)];[HrefToken()];vendor=[REF(vendor)];action=add_product'>Add product</a>"
+
+	var/datum/browser/browser = new(usr, "edit_vendor", "<div align='center'>Edit Vendor [vendor]</div>", 600, 550)
+	browser.set_content(html)
+	browser.open(FALSE)
+
+	log_admin("[key_name(usr)] is managing the inventory of \the [vendor]")
+	message_admins("[ADMIN_TPMONTY(usr)] is managing the inventory of \the [vendor] at [ADMIN_COORDJMP(vendor)]")

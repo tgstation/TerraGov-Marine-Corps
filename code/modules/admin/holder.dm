@@ -311,6 +311,7 @@ GLOBAL_PROTECT(admin_verbs_admin)
 	/datum/admins/proc/toggle_adminhelp_sound,
 	/datum/admins/proc/toggle_prayers,
 	/datum/admins/proc/imaginary_friend,
+	/datum/admins/proc/manage_vendor,
 	/client/proc/private_message_panel,
 	/client/proc/private_message_context,
 	/client/proc/msay,

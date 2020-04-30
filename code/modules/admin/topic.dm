@@ -2130,7 +2130,11 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		log_admin("[key_name(usr)] changed [href_list["xeno"]] of [X] from [previous] to [change].")
 		message_admins("[ADMIN_TPMONTY(usr)] changed [href_list["xeno"]] of [ADMIN_TPMONTY(X)] from [previous] to [change].")
+
 	else if(href_list["adminapproval"])
+		if(!check_rights(R_ADMIN))
+			return
+
 		var/approval_id = href_list["adminapproval"] // Already text at this point
 		if(GLOB.admin_approvals[approval_id] != -1)
 			to_chat(usr, "<span class='warning'>That approval has already been answered with '[GLOB.admin_approvals[approval_id]]'</span>")
@@ -2138,3 +2142,60 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		GLOB.admin_approvals[approval_id] = href_list["option"]
 		log_admin("[key_name(usr)] answered '[href_list["option"]]' to the admin approval ([approval_id]).")
 		message_admins("[key_name(usr)] answered '[href_list["option"]]' to the admin approval ([approval_id]).")
+
+
+	else if(href_list["vendor"]) // FUN -> Manage vendor
+		if(!check_rights(R_FUN))
+			return
+
+		var/obj/machinery/vending/vendor = locate(href_list["vendor"]) in GLOB.machines
+		if(!vendor)
+			to_chat(usr, "Error: Can't find vendor")
+			return
+
+		if(!href_list["action"])
+			to_chat(usr, "Error: No action")
+			return
+
+		var/datum/data/vending_product/product
+		if(href_list["product"])
+			product = locate(href_list["product"]) in vendor.product_records
+
+		switch(href_list["action"])
+			if("add_product")
+				var/typepath = input(usr, "What is the EXACT path of the item you want to add", "Add product") as null|anything in typesof(/obj/item)
+				var/obj/item/temp_path = typepath
+				product = new /datum/data/vending_product()
+				product.product_name = initial(temp_path.name)
+				product.product_path = typepath
+				product.amount = 1
+				product.price = null
+				vendor.product_records += product
+				log_admin("[key_name(usr)] modified the contents of \the [vendor] adding [product.product_name].")
+				message_admins("[key_name(usr)] modified the contents of \the [vendor] adding [product.product_name].")
+			if("update_amount")
+				if(!product)
+					return
+				var/new_amount = input(usr, "What is the new amount?", "update amount") as text|null
+				if(new_amount != product.amount)
+					product.amount = new_amount
+				log_admin("[key_name(usr)] modified the contents of \the [vendor] updating the number of [product.product_name].")
+				message_admins("[key_name(usr)] modified the contents of \the [vendor] updating the number of [product.product_name].")
+			if("update_price")
+				if(!product)
+					return
+				var/new_price = input(usr, "What is the new price?", "update price") as text|null
+				if(new_price != product.price)
+					product.price = new_price ? new_price : null
+				log_admin("[key_name(usr)] modified the contents of \the [vendor] updating the price of [product.product_name].")
+				message_admins("[key_name(usr)] modified the contents of \the [vendor] updating the price of [product.product_name].")
+			if("delete_product")
+				if(!product)
+					return
+				if(alert(usr, "Are you sure you want to delete [product.product_name]?", "Delete product", "Yes", "No") != "Yes")
+					return
+				vendor.product_records -= product
+				log_admin("[key_name(usr)] modified the contents of \the [vendor] removing [product.product_name].")
+				message_admins("[key_name(usr)] modified the contents of \the [vendor] removing [product.product_name].")
+
+		usr.client.holder.manage_vendor(vendor)
