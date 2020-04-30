@@ -20338,19 +20338,19 @@
 /area/mainship/shipboard/ex_firing_range)
 "aTw" = (
 /obj/structure/rack,
-/obj/item/cell/lasgun/M43,
-/obj/item/cell/lasgun/M43,
-/obj/item/cell/lasgun/M43,
+/obj/item/cell/lasgun/lasrifle,
+/obj/item/cell/lasgun/lasrifle,
+/obj/item/cell/lasgun/lasrifle,
 /turf/open/floor/mainship{
 	icon_state = "blue"
 	},
 /area/mainship/shipboard/ex_firing_range)
 "aTx" = (
 /obj/structure/rack,
-/obj/item/cell/lasgun/M43,
-/obj/item/cell/lasgun/M43,
-/obj/item/cell/lasgun/M43,
-/obj/item/cell/lasgun/M43,
+/obj/item/cell/lasgun/lasrifle,
+/obj/item/cell/lasgun/lasrifle,
+/obj/item/cell/lasgun/lasrifle,
+/obj/item/cell/lasgun/lasrifle,
 /turf/open/floor/mainship{
 	icon_state = "blue"
 	},
@@ -45079,6 +45079,7 @@
 	icon_state = "sterile_green_side"
 	},
 /area/mainship/medical/medical_science)
+
 "fCG" = (
 /obj/machinery/marine_selector/gear/engi,
 /obj/docking_port/stationary/marine_dropship/crash_target,
@@ -45895,7 +45896,7 @@
 /area/mainship/hallways/stern_hallway)
 "jqz" = (
 /obj/structure/rack,
-/obj/item/weapon/gun/energy/lasgun/M43/stripped,
+/obj/item/weapon/gun/energy/lasgun/lasrifle,
 /turf/open/floor/mainship{
 	dir = 8;
 	icon_state = "blue"

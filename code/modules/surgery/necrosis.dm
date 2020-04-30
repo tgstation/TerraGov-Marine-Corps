@@ -64,7 +64,7 @@
 	..()
 
 /datum/surgery_step/necro/treat_necrosis/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
-	affected.limb_status &= ~LIMB_NECROTIZED
+	affected.remove_limb_flags(LIMB_NECROTIZED)
 	target.update_body()
 
 	user.visible_message("<span class='notice'>[user] applies \the [tool] on the affected tissue in [target]'s [affected.display_name].</span>", \

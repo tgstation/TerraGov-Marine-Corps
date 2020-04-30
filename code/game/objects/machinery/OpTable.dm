@@ -98,10 +98,8 @@
 	if(buckling_human.wear_mask && !buckling_human.dropItemToGround(buckling_human.wear_mask))
 		to_chat(user, "<span class='danger'>You can't remove their mask!</span>")
 		return FALSE
-	var/obj/item/clothing/mask/breath/medical/anesthetic_mask = new()
-	if(!buckling_human.equip_if_possible(anesthetic_mask, SLOT_WEAR_MASK))
+	if(!buckling_human.equip_to_slot_or_del(new /obj/item/clothing/mask/breath/medical(buckling_human), SLOT_WEAR_MASK))
 		to_chat(user, "<span class='danger'>You can't fit the gas mask over their face!</span>")
-		qdel(anesthetic_mask)
 		return FALSE
 	buckling_human.internal = anes_tank
 	buckling_human.visible_message("<span class='notice'>[user] fits the mask over [buckling_human]'s face and turns on the anesthetic.</span>'")
