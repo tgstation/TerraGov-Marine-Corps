@@ -5666,27 +5666,6 @@
 	icon_state = "sterile_green"
 	},
 /area/mainship/medical/medical_science)
-"ani" = (
-/obj/machinery/botany/extractor,
-/turf/open/floor/mainship{
-	icon_state = "sterile_green"
-	},
-/area/mainship/medical/medical_science)
-"anj" = (
-/obj/machinery/vending/hydronutrients,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mainship{
-	icon_state = "sterile_green"
-	},
-/area/mainship/medical/medical_science)
-"ank" = (
-/obj/machinery/vending/hydroseeds,
-/turf/open/floor/mainship{
-	icon_state = "sterile_green"
-	},
-/area/mainship/medical/medical_science)
 "anl" = (
 /turf/open/floor/mainship{
 	icon_state = "bluecorner"
@@ -6247,14 +6226,6 @@
 	icon_state = "dark_sterile"
 	},
 /area/mainship/medical/medical_science)
-"aoA" = (
-/obj/structure/sink{
-	dir = 4
-	},
-/turf/open/floor/mainship{
-	icon_state = "sterile_green"
-	},
-/area/mainship/medical/medical_science)
 "aoB" = (
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor,
 /turf/open/floor/mainship/mono,
@@ -6688,37 +6659,6 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 1
 	},
-/turf/open/floor/mainship{
-	icon_state = "sterile_green"
-	},
-/area/mainship/medical/medical_science)
-"apJ" = (
-/obj/structure/table/mainship,
-/obj/item/storage/box/botanydisk,
-/obj/item/tool/hand_labeler,
-/turf/open/floor/mainship{
-	icon_state = "sterile_green"
-	},
-/area/mainship/medical/medical_science)
-"apK" = (
-/obj/machinery/portable_atmospherics/hydroponics,
-/turf/open/floor/mainship{
-	icon_state = "sterile_green"
-	},
-/area/mainship/medical/medical_science)
-"apL" = (
-/obj/machinery/biogenerator,
-/turf/open/floor/mainship{
-	icon_state = "sterile_green"
-	},
-/area/mainship/medical/medical_science)
-"apM" = (
-/obj/item/reagent_containers/glass/bucket,
-/obj/item/reagent_containers/glass/bucket,
-/obj/structure/table/mainship,
-/obj/item/tool/minihoe,
-/obj/item/tool/hatchet,
-/obj/item/tool/shovel/spade,
 /turf/open/floor/mainship{
 	icon_state = "sterile_green"
 	},
@@ -8292,15 +8232,6 @@
 	icon_state = "cargo"
 	},
 /area/mainship/engineering/lower_engine_monitoring)
-"atA" = (
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mainship{
-	icon_state = "sterile_green"
-	},
-/area/mainship/medical/medical_science)
 "atB" = (
 /obj/machinery/light{
 	dir = 1
@@ -9693,15 +9624,6 @@
 "awB" = (
 /turf/open/floor/mainship{
 	icon_state = "sterile_green_side"
-	},
-/area/mainship/medical/medical_science)
-"awC" = (
-/obj/machinery/door/airlock/mainship/research{
-	dir = 2;
-	req_access_txt = "20"
-	},
-/turf/open/floor/mainship{
-	icon_state = "dark_sterile"
 	},
 /area/mainship/medical/medical_science)
 "awD" = (
@@ -19392,7 +19314,7 @@
 /area/mainship/shipboard/ex_firing_range)
 "aQT" = (
 /obj/structure/rack,
-/obj/item/cell/lasgun/M43/highcap,
+/obj/item/cell/lasgun/lasrifle/highcap,
 /turf/open/floor/mainship{
 	dir = 1;
 	icon_state = "blue"
@@ -20424,19 +20346,19 @@
 /area/mainship/shipboard/ex_firing_range)
 "aTw" = (
 /obj/structure/rack,
-/obj/item/cell/lasgun/M43,
-/obj/item/cell/lasgun/M43,
-/obj/item/cell/lasgun/M43,
+/obj/item/cell/lasgun/lasrifle,
+/obj/item/cell/lasgun/lasrifle,
+/obj/item/cell/lasgun/lasrifle,
 /turf/open/floor/mainship{
 	icon_state = "blue"
 	},
 /area/mainship/shipboard/ex_firing_range)
 "aTx" = (
 /obj/structure/rack,
-/obj/item/cell/lasgun/M43,
-/obj/item/cell/lasgun/M43,
-/obj/item/cell/lasgun/M43,
-/obj/item/cell/lasgun/M43,
+/obj/item/cell/lasgun/lasrifle,
+/obj/item/cell/lasgun/lasrifle,
+/obj/item/cell/lasgun/lasrifle,
+/obj/item/cell/lasgun/lasrifle,
 /turf/open/floor/mainship{
 	icon_state = "blue"
 	},
@@ -34226,6 +34148,17 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"bIj" = (
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
+/obj/structure/table/mainship,
+/obj/item/tool/minihoe,
+/obj/item/tool/hatchet,
+/obj/item/tool/shovel/spade,
+/turf/open/floor/mainship{
+	icon_state = "sterile_green"
+	},
+/area/mainship/medical/medical_science)
 "bIn" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk,
@@ -44754,6 +44687,14 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/brig)
+"dCa" = (
+/obj/structure/sink{
+	dir = 4
+	},
+/turf/open/floor/mainship{
+	icon_state = "sterile_green"
+	},
+/area/mainship/medical/medical_science)
 "dDe" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -45218,6 +45159,15 @@
 	icon_state = "blue"
 	},
 /area/mainship/hallways/aft_hallway)
+"fYf" = (
+/obj/machinery/vending/hydronutrients,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship{
+	icon_state = "sterile_green"
+	},
+/area/mainship/medical/medical_science)
 "gas" = (
 /turf/open/floor/stairs/rampbottom{
 	dir = 1
@@ -45397,6 +45347,12 @@
 /obj/machinery/light/small,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
+"hcq" = (
+/obj/machinery/portable_atmospherics/hydroponics,
+/turf/open/floor/mainship{
+	icon_state = "sterile_green"
+	},
+/area/mainship/medical/medical_science)
 "hem" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -45943,7 +45899,7 @@
 /area/mainship/hallways/stern_hallway)
 "jqz" = (
 /obj/structure/rack,
-/obj/item/weapon/gun/energy/lasgun/M43/stripped,
+/obj/item/weapon/gun/energy/lasgun/lasrifle,
 /turf/open/floor/mainship{
 	dir = 8;
 	icon_state = "blue"
@@ -46502,6 +46458,14 @@
 	icon_state = "blue"
 	},
 /area/mainship/living/numbertwobunks)
+"mxt" = (
+/obj/structure/table/mainship,
+/obj/item/storage/box/botanydisk,
+/obj/item/tool/hand_labeler,
+/turf/open/floor/mainship{
+	icon_state = "sterile_green"
+	},
+/area/mainship/medical/medical_science)
 "myc" = (
 /obj/structure/janitorialcart,
 /obj/machinery/light/small{
@@ -47267,6 +47231,12 @@
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/closed/wall/mainship,
 /area/mainship/hallways/repair_bay)
+"qfP" = (
+/obj/machinery/botany/extractor,
+/turf/open/floor/mainship{
+	icon_state = "sterile_green"
+	},
+/area/mainship/medical/medical_science)
 "qhO" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -47597,6 +47567,15 @@
 	icon_state = "tcomms"
 	},
 /area/mainship/command/self_destruct)
+"swd" = (
+/obj/machinery/door/airlock/mainship/research{
+	dir = 2;
+	req_access_txt = "20"
+	},
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
+/area/mainship/medical/medical_science)
 "swf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -47729,6 +47708,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
+"tgd" = (
+/obj/machinery/vending/hydroseeds,
+/turf/open/floor/mainship{
+	icon_state = "sterile_green"
+	},
+/area/mainship/medical/medical_science)
 "tjn" = (
 /obj/machinery/door/airlock/mainship/security{
 	name = "\improper Security Post"
@@ -48031,6 +48016,15 @@
 	icon_state = "carpetside"
 	},
 /area/mainship/shipboard/chief_mp_office)
+"uQd" = (
+/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship{
+	icon_state = "sterile_green"
+	},
+/area/mainship/medical/medical_science)
 "uQj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -48628,6 +48622,12 @@
 /obj/machinery/holopad,
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
+	},
+/area/mainship/medical/medical_science)
+"xOC" = (
+/obj/machinery/biogenerator,
+/turf/open/floor/mainship{
+	icon_state = "sterile_green"
 	},
 /area/mainship/medical/medical_science)
 "xSm" = (
@@ -79385,10 +79385,10 @@ akv
 alz
 ane
 aoy
-apJ
-apK
-apK
-apK
+mxt
+hcq
+hcq
+hcq
 alz
 alz
 aAe
@@ -79646,7 +79646,7 @@ aoz
 aoz
 aoz
 aoz
-awC
+swd
 aoz
 aoz
 aBW
@@ -79899,9 +79899,9 @@ akt
 alz
 ang
 aoz
-apK
+hcq
 arL
-apK
+hcq
 aoz
 alz
 afn
@@ -80156,9 +80156,9 @@ akv
 alz
 anh
 aoz
-apL
+xOC
 alz
-atA
+uQd
 aoz
 alz
 ayp
@@ -80411,11 +80411,11 @@ acf
 ajf
 akw
 alz
-ani
+qfP
 aoz
-apK
+hcq
 arM
-apK
+hcq
 aSx
 alz
 ayq
@@ -80668,13 +80668,13 @@ ahE
 ajg
 akw
 alz
-anj
+fYf
 aoz
 aoz
 aoz
 aoz
 aoz
-awC
+swd
 aoz
 aoz
 xjQ
@@ -80925,12 +80925,12 @@ hMM
 wxo
 eoj
 alz
-ank
-aoA
-apM
-apK
-apK
-apK
+tgd
+dCa
+bIj
+hcq
+hcq
+hcq
 alz
 aSs
 awE

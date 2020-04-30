@@ -62,3 +62,25 @@
 
 /obj/item/cell/lasgun/update_icon()
 	return FALSE
+
+/obj/item/cell/lasgun/lasrifle
+	name = "\improper TX-73 lasrifle battery"
+	desc = "A specialized high density battery used to power the TX-73 lasrifle."
+	base_ammo_icon = "tx73"
+	icon_state = "tx73"
+	gun_type = /obj/item/weapon/gun/energy/lasgun/lasrifle
+
+/obj/item/cell/lasgun/lasrifle/highcap// Large battery
+	name = "\improper TX-73 highcap lasrifle battery"
+	desc = "An advanced, ultrahigh capacity battery used to power the TX-73 lasrifle; has sixty percent more charge capacity than standard laspacks."
+	base_ammo_icon = "tx73_e"
+	icon_state = "tx73_e"
+	maxcharge = 1600
+
+/obj/item/cell/lasgun/lasrifle/Initialize()
+	. = ..()
+	update_icon()
+
+/obj/item/cell/lasgun/lasrifle/update_icon()
+	var/remaining = CEILING((charge / max(maxcharge, 1)) * 100, 25)
+	icon_state = "[base_ammo_icon]_[remaining]"

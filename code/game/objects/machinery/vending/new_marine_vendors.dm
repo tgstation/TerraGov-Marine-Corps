@@ -134,7 +134,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "marineselector", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, ui_key, "MarineSelector", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /obj/machinery/marine_selector/ui_data(mob/user)
@@ -177,6 +177,12 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		if(!display_list[i]) // vendor doesnt have this category
 			continue
 		cats[i] = 0
+
+		// If we don't have buy flags, we use points
+		if(!length(GLOB.marine_selector_cats[i]))
+			cats[i] = m_points
+			continue
+
 		for(var/flag in GLOB.marine_selector_cats[i])
 			if(buy_flags & flag)
 				cats[i]++
@@ -350,11 +356,6 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0,"black"),
 		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0,"orange"),
 		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil compensator", 0,"black"),
-		/obj/item/attachable/efflens = list(CAT_ATT, "M43 Efficient lens", 0,"black"),
-		/obj/item/attachable/focuslens = list(CAT_ATT, "M43 Focus lens", 0,"black"),
-		/obj/item/attachable/widelens = list(CAT_ATT, "M43 Wide lens", 0,"black"),
-		/obj/item/attachable/heatlens = list(CAT_ATT, "M43 Heat lens", 0,"black"),
-		/obj/item/attachable/pulselens = list(CAT_ATT, "M43 pulse lens", 0,"black"),
 		/obj/item/attachable/magnetic_harness = list(CAT_ATT, "Magnetic harness", 0,"orange"),
 		/obj/item/attachable/reddot = list(CAT_ATT, "Red dot sight", 0,"black"),
 		/obj/item/attachable/quickfire = list(CAT_ATT, "Quickfire assembly", 0,"black"),

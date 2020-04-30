@@ -48,7 +48,7 @@
 			to_chat(usr, "<span class='notice'>They are currently set to railgun targeting mode.</span>")
 		if(MODE_ORBITAL)
 			to_chat(usr, "<span class='notice'>They are currently set to orbital bombardment mode.</span>")
-	
+
 /obj/item/binoculars/tactical/Destroy()
 	if(laser)
 		QDEL_NULL(laser)
@@ -59,7 +59,7 @@
 
 /obj/item/binoculars/tactical/InterceptClickOn(mob/user, params, atom/object)
 	var/list/pa = params2list(params)
-	if(pa.Find("ctrl") && !pa.Find("shift"))	
+	if(pa.Find("ctrl") && !pa.Find("shift"))
 		acquire_target(object, user)
 		return TRUE
 
@@ -141,14 +141,14 @@
 				to_chat(user, "<span class='notice'>You switch [src] to railgun targeting mode.</span>")
 			if(MODE_ORBITAL)
 				to_chat(user, "<span class='notice'>You switch [src] to orbital bombardment targeting mode.</span>")
-		
+
 		update_icon()
 		playsound(user, 'sound/items/binoculars.ogg', 15, 1)
 
 /obj/item/binoculars/tactical/proc/acquire_target(atom/A, mob/living/carbon/human/user)
 	set waitfor = 0
 
-	if(laser || coord)
+	if(laser)
 		to_chat(user, "<span class='warning'>You're already targeting something.</span>")
 		return
 
@@ -178,15 +178,18 @@
 				is_outside = TRUE
 			if(CEILING_GLASS)
 				is_outside = TRUE
+			if(CEILING_METAL)
+				is_outside = TRUE
 	if(!is_outside)
-		to_chat(user, "<span class='warning'>INVALID TARGET: target must be visible from high altitude.</span>")
+		to_chat(user, "<span class='warning'>DEPTH WARNING: Target too deep for ordnance.</span>")
 		return
 	if(user.action_busy)
 		return
 	playsound(src, 'sound/effects/nightvision.ogg', 35)
-	to_chat(user, "<span class='notice'>INITIATING LASER TARGETING. Stand still.</span>")
-	if(!do_after(user, max(1.5 SECONDS, target_acquisition_delay - (2.5 SECONDS * user.skills.getRating("leadership"))), TRUE, TU, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
-		return
+	if(mode != MODE_RANGE_FINDER)
+		to_chat(user, "<span class='notice'>INITIATING LASER TARGETING. Stand still.</span>")
+		if(!do_after(user, max(1.5 SECONDS, target_acquisition_delay - (2.5 SECONDS * user.skills.getRating("leadership"))), TRUE, TU, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
+			return
 	switch(mode)
 		if(MODE_CAS)
 			to_chat(user, "<span class='notice'>TARGET ACQUIRED. LASER TARGETING IS ONLINE. DON'T MOVE.</span>")
@@ -198,14 +201,9 @@
 					QDEL_NULL(laser)
 					break
 		if(MODE_RANGE_FINDER)
-			var/obj/effect/overlay/temp/laser_coordinate/LT = new (TU, laz_name, S)
-			coord = LT
-			to_chat(user, "<span class='notice'>SIMPLIFIED COORDINATES OF TARGET. LONGITUDE [coord.x]. LATITUDE [coord.y].</span>")
+			coord = TU
+			to_chat(user, "<span class='notice'>COORDINATES: LONGITUDE [coord.x]. LATITUDE [coord.y].</span>")
 			playsound(src, 'sound/effects/binoctarget.ogg', 35)
-			while(coord)
-				if(!do_after(user, 5 SECONDS, TRUE, coord, BUSY_ICON_GENERIC))
-					QDEL_NULL(coord)
-					break
 		if(MODE_RAILGUN)
 			to_chat(user, "<span class='notice'>ACQUIRING TARGET. RAILGUN TRIANGULATING. DON'T MOVE.</span>")
 			if((GLOB.marine_main_ship?.rail_gun?.last_firing + 120 SECONDS) > world.time)
