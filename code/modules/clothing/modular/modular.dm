@@ -56,7 +56,7 @@
 
 
 	/// Misc stats
-	light_strength = 4
+	light_strength = 6
 
 
 /obj/item/clothing/suit/modular/Initialize()
