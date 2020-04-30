@@ -15,7 +15,7 @@
 	icon = 'icons/mob/modular/modular_armor.dmi'
 	icon_state = "underarmor_icon"
 	item_state = "underarmor"
-	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	/// What is allowed to be equipped in suit storage
 	allowed = list(
 		/obj/item/weapon/gun,
