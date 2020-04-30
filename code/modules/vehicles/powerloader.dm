@@ -258,7 +258,7 @@
 		"<span class='notice'>You grab [loaded] with [src].</span>")
 
 	else if(istype(target, /obj/structure/ore_box))
-		var/obj/structure/closet/crate/OB = target
+		var/obj/structure/ore_box/OB = target
 		OB.forceMove(linked_powerloader)
 		loaded = OB
 		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, TRUE)

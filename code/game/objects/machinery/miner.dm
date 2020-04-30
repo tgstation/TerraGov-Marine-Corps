@@ -59,7 +59,6 @@
 	var/obj/item/tool/weldingtool/weldingtool = I
 
 	if(!weldingtool.remove_fuel(1, user))
-
 		to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 		return FALSE
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
@@ -84,7 +83,6 @@
 
 /obj/machinery/miner/wirecutter_act(mob/living/user, obj/item/I)
 	if(miner_status != MINER_MEDIUM_DAMAGE)
-
 		return
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s wiring.</span>",
@@ -108,7 +106,6 @@
 
 /obj/machinery/miner/wrench_act(mob/living/user, obj/item/I)
 	if(miner_status != MINER_SMALL_DAMAGE)
-
 		return
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s tubing and plating.</span>",
@@ -148,13 +145,12 @@
 /obj/machinery/miner/attack_hand(mob/living/user)
 	if(miner_status != MINER_RUNNING)
 		to_chat(user, "<span class='warning'>[src] is damaged!</span>")
-
 		return
+
 	if(!stored_mineral)
-
 		to_chat(user, "<span class='warning'>[src] is not ready to produce a shipment yet!</span>")
-
 		return
+	
 	new mineral_produced(user.loc, stored_mineral)
 	stored_mineral -= 1
 	start_processing()
