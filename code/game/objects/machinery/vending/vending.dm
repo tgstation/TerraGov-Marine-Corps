@@ -119,7 +119,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	/obj/item/weapon/gun/rifle/standard_assaultrifle,
 	/obj/item/weapon/gun/rifle/standard_lmg,
 	/obj/item/weapon/gun/rifle/standard_dmr,
-	/obj/item/weapon/gun/energy/lasgun/M43,
+	/obj/item/weapon/gun/energy/lasgun/lasrifle,
 	/obj/item/weapon/gun/shotgun/pump/t35,
 	/obj/item/weapon/gun/rifle/standard_autoshotgun,
 	/obj/item/ammobox,
@@ -391,7 +391,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "vending", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, ui_key, "Vending", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /obj/machinery/vending/ui_data(mob/user)

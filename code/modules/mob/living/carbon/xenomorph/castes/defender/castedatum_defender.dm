@@ -28,7 +28,7 @@
 
 	// *** Evolution *** //
 	evolution_threshold = 80
-	upgrade_threshold = 50
+	upgrade_threshold = 60
 
 	evolves_to = list(/mob/living/carbon/xenomorph/warrior)
 
@@ -81,7 +81,7 @@
 	max_health = 260
 
 	// *** Evolution *** //
-	upgrade_threshold = 100
+	upgrade_threshold = 120
 
 	// *** Defense *** //
 	armor = list("melee" = 33, "bullet" = 33, "laser" = 28, "energy" = 25, "bomb" = XENO_BOMB_RESIST_2, "bio" = 25, "rad" = 25, "fire" = 7, "acid" = 25)
@@ -112,7 +112,7 @@
 	max_health = 280
 
 	// *** Evolution *** //
-	upgrade_threshold = 200
+	upgrade_threshold = 240
 
 	// *** Defense *** //
 	armor = list("melee" = 35, "bullet" = 35, "laser" = 30, "energy" = 28, "bomb" = XENO_BOMB_RESIST_2, "bio" = 28, "rad" = 28, "fire" = 9, "acid" = 28)
@@ -144,7 +144,7 @@
 	max_health = 300
 
 	// *** Evolution *** //
-	upgrade_threshold = 200
+	upgrade_threshold = 240
 
 	// *** Defense *** //
 	armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_2, "bio" = 30, "rad" = 30, "fire" = 10, "acid" = 30)
