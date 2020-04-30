@@ -501,25 +501,10 @@
 		M.flamer_fire_crossed(burnlevel, firelevel)
 
 /mob/living/proc/IsFireResistant()
-	return FALSE
+	return HAS_TRAIT(src, TRAIT_FIRERESISTANT)
 
 /mob/living/carbon/human/IsFireResistant()
 	. = ..()
-
-	// For fire protection, suits provide full body protection
-	// without a suit, you need protection from head, chest, gloves and shoes
-
-	var/obj/item/worn_suit = wear_suit
-	if(istype(wear_suit) && worn_suit.armor.fire > 100) // outer suits provide total protection
-		. = TRUE
-	else if(!.)
-		var/list/required_for_full_coverage = list(head, w_uniform, gloves, shoes)
-		. = TRUE
-		for(var/part in required_for_full_coverage)
-			var/obj/item/worn_item = part
-			if(istype(worn_item) && worn_item.armor.fire <= 100)
-				. = FALSE
-				break
 
 	// Some legacy shit for now / ideally we remove this
 	if(istype(wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(shoes, /obj/item/clothing/shoes/marine/pyro) && istype(head, /obj/item/clothing/head/helmet/marine/pyro))

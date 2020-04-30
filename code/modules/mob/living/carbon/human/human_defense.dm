@@ -69,6 +69,33 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	return siemens_coefficient
 
+/**
+	Helper proc to determine if a mob is fire resistant (wont catch on fire)
+
+	For fire protection, suits provide full body protection with > 100 fire protection
+	without a suit, you need >100 fire protection from head, chest, gloves and shoes seperately (otherwise the fire can get in)
+*/
+/mob/living/carbon/human/proc/update_fire_resistant(equipped)
+	if((equipped && HAS_TRAIT_FROM_ONLY(src, TRAIT_FIRERESISTANT, TRAIT_ARMOR)) || (!equipped && !HAS_TRAIT_FROM_ONLY(src, TRAIT_FIRERESISTANT, TRAIT_ARMOR)))
+		return // Checks if we actually need to add / remove this trait
+	var/fire_protection = FALSE
+
+	var/obj/item/worn_suit = wear_suit
+	if(istype(wear_suit) && worn_suit.armor.fire > 100) // outer suits provide total protection
+		fire_protection = TRUE
+	else
+		var/list/required_for_full_coverage = list(head, w_uniform, gloves, shoes)
+		fire_protection = TRUE
+		for(var/part in required_for_full_coverage)
+			var/obj/item/worn_item = part
+			if(istype(worn_item) && worn_item.armor.fire <= 100)
+				fire_protection = FALSE
+				break
+	if(fire_protection)
+		ADD_TRAIT(src, TRAIT_FIRERESISTANT, TRAIT_ARMOR)
+	else
+		REMOVE_TRAIT(src, TRAIT_FIRERESISTANT, TRAIT_ARMOR)
+
 
 /mob/living/carbon/human/proc/add_limb_armor(obj/item/armor_item)
 	for(var/i in limbs)
@@ -76,6 +103,8 @@ Contains most of the procs that are called when a mob is attacked by something
 		if(!(limb_to_check.body_part & armor_item.flags_armor_protection))
 			continue
 		limb_to_check.armor = limb_to_check.armor.attachArmor(armor_item.armor)
+
+	update_fire_resistant(TRUE)
 
 
 /mob/living/carbon/human/dummy/add_limb_armor(obj/item/armor_item)
@@ -89,6 +118,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			continue
 		limb_to_check.armor = limb_to_check.armor.detachArmor(armor_item.armor)
 
+	update_fire_resistant(FALSE)
 
 /mob/living/carbon/human/dummy/remove_limb_armor(obj/item/armor_item)
 	return
@@ -182,7 +212,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			armor_verb = " [p_their(TRUE)] armor has absorbed part of the impact!"
 		if(75 to 100)
 			armor_verb = " [p_their(TRUE)] armor has deflected most of the blow!"
-	
+
 	visible_message("<span class='danger'>[src] has been [attack_verb] in the [hit_area] with [I.name] by [user]![armor_verb]</span>", null, null, 5)
 
 	var/weapon_sharp = is_sharp(I)
