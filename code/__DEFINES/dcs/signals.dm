@@ -49,6 +49,10 @@
 	#define COMPONENT_AUTOFIRE_SHOT_SUCCESS (1<<0)
 #define ELEMENT_CLOSE_SHUTTER_LINKED "close_shutter_linked"
 
+// /datum/limb signals
+#define COMSIG_LIMB_DESTROYED "limb_destroyed"
+#define COMSIG_LIMB_UNDESTROYED "limb_undestroyed"
+
 // /area signals
 #define COMSIG_AREA_ENTERED "area_entered" 						//from base of area/Entered(): (atom/movable/M)
 #define COMSIG_AREA_EXITED "area_exited" 							//from base of area/Exited(): (atom/movable/M)
