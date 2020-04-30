@@ -464,7 +464,7 @@
 
 /mob/living/proc/adjust_mob_accuracy(accuracy_mod)
 	ranged_accuracy_mod += accuracy_mod
-	
+
 
 /mob/living/proc/smokecloak_on()
 
@@ -726,7 +726,7 @@ below 100 is not dizzy
 /mob/living/proc/reset_pull_offsets(mob/living/pulled_mob, override)
 	if(!override && pulled_mob.buckled)
 		return
-	animate(pulled_mob, pixel_x = initial(pixel_x), pixel_y = initial(pixel_y), 0.1 SECONDS)
+	animate(pulled_mob, pixel_x = initial(pulled_mob.pixel_x), pixel_y = initial(pulled_mob.pixel_y), 0.1 SECONDS)
 
 
 //mob verbs are a lot faster than object verbs
