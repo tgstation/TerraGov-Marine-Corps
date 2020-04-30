@@ -21,7 +21,7 @@
 		/obj/item/reagent_containers/food/drinks/flask
 	)
 	cant_hold = list(
-		/obj/item/stack/
+		/obj/item/stack
 	)
 
 
