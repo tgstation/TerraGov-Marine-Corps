@@ -47,6 +47,7 @@
 @include meta.load-css('./layouts/NtosWindow.scss');
 @include meta.load-css('./layouts/TitleBar.scss');
 @include meta.load-css('./layouts/Window.scss');
+@include meta.load-css('./layouts/Vending.scss');
 
 // NT Theme
 .Layout__content {
