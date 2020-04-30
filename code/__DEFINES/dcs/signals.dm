@@ -170,8 +170,8 @@
 #define COMSIG_ARMOR_MODULE_DETACH "armor_module_detach"
 
 // /obj/item/helmet_module signals
-#define COMSIG_HELMET_MODULE_ATTACH "helmet_module_attach"
-#define COMSIG_HELMET_MODULE_DETACH "helmet_module_detach"
+#define COMSIG_HELMET_MODULE_ATTACHING "helmet_module_attaching"
+#define COMSIG_HELMET_MODULE_DETACHED "helmet_module_detached"
 
 
 // /obj/item/weapon/gun signals

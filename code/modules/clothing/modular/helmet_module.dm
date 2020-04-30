@@ -44,7 +44,7 @@
 	user.put_in_any_hand_if_possible(src, warning = FALSE)
 	parent.installed_module = null
 	parent.update_overlays()
-	SEND_SIGNAL(parent, COMSIG_HELMET_MODULE_DETACHED user, src)
+	SEND_SIGNAL(parent, COMSIG_HELMET_MODULE_DETACHED, user, src)
 
 
 /obj/item/helmet_module/proc/toggle_module(mob/living/user, obj/item/clothing/head/modular/parent)
