@@ -47,7 +47,7 @@
 	max_ammo = 4
 	bomb_strength = 1 //Multiplier to the effectiveness of the boiler glob.
 	acid_delay = 9 SECONDS
-	bomb_delay = 25 SECONDS
+	bomb_delay = 30 SECONDS
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -99,7 +99,7 @@
 	max_ammo = 5
 	bomb_strength = 1.1
 	acid_delay = 9 SECONDS
-	bomb_delay = 25 SECONDS
+	bomb_delay = 30 SECONDS
 
 /datum/xeno_caste/boiler/elder
 	upgrade_name = "Elder"
@@ -135,7 +135,7 @@
 	max_ammo = 6
 	bomb_strength = 1.2
 	acid_delay = 9 SECONDS
-	bomb_delay = 25 SECONDS
+	bomb_delay = 30 SECONDS
 
 /datum/xeno_caste/boiler/ancient
 	upgrade_name = "Ancient"
@@ -169,4 +169,4 @@
 	max_ammo = 7
 	bomb_strength = 1.3
 	acid_delay = 9 SECONDS
-	bomb_delay = 20 SECONDS
+	bomb_delay = 25 SECONDS
