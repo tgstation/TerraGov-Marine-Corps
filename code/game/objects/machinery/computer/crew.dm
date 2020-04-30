@@ -101,6 +101,8 @@
 			data["zlevel"] = 2
 			data["crewmembers"] = sortListUsingKey(crewmembers_in_transit, cmp_proc, sortkey)
 
+	data["zlevel"] = displayed_z_level
+
 	return data
 
 /obj/machinery/computer/crew/ui_act(action, params)
