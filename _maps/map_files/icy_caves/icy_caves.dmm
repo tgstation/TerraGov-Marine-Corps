@@ -2476,8 +2476,8 @@
 /obj/item/explosive/plastique,
 /obj/item/explosive/plastique,
 /obj/item/explosive/plastique,
-/obj/item/cell/lasgun/M43/highcap,
-/obj/item/cell/lasgun/M43/highcap,
+/obj/item/cell/lasgun/lasrifle/highcap,
+/obj/item/cell/lasgun/lasrifle/highcap,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/garage)
 "iF" = (

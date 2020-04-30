@@ -11,6 +11,25 @@
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_RAVAGER_CHARGE
 
+/datum/action/xeno_action/activable/charge/proc/charge_complete()
+	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENO_NONE_THROW_HIT, COMSIG_XENO_LIVING_THROW_HIT))
+
+/datum/action/xeno_action/activable/charge/proc/obj_hit(datum/source, obj/target, speed)
+	var/mob/living/carbon/xenomorph/ravager/X = owner
+	if(istype(target, /obj/structure/table) || istype(target, /obj/structure/rack))
+		var/obj/structure/S = target
+		X.visible_message("<span class='danger'>[X] plows straight through [S]!</span>", null, null, 5)
+		S.deconstruct(FALSE) //We want to continue moving, so we do not reset throwing.
+		return //stay registered
+	else
+		target.hitby(X, speed) //This resets throwing.
+	charge_complete()
+
+/datum/action/xeno_action/activable/charge/proc/mob_hit(datum/source, mob/M)
+	if(M.stat || isxeno(M))
+		return
+	return COMPONENT_KEEP_THROWING //Ravagers plow straight through humans; we only stop on hitting a dense turf
+
 /datum/action/xeno_action/activable/charge/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
@@ -27,6 +46,10 @@
 
 /datum/action/xeno_action/activable/charge/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/ravager/X = owner
+
+	RegisterSignal(X, COMSIG_XENO_OBJ_THROW_HIT, .proc/obj_hit)
+	RegisterSignal(X, COMSIG_XENO_NONE_THROW_HIT, .proc/charge_complete)
+	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, .proc/mob_hit)
 
 	X.visible_message("<span class='danger'>[X] charges towards \the [A]!</span>", \
 	"<span class='danger'>We charge towards \the [A]!</span>" )
