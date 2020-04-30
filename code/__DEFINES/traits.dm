@@ -86,11 +86,8 @@
 #define TRAIT_KNOCKEDOUT		"knockedout" //Forces the user to stay unconscious.
 #define TRAIT_INCAPACITATED		"incapacitated"
 #define TRAIT_STUNIMMUNE		"stun_immunity"
+#define TRAIT_FIRERESISTANT		"fire_resistant" // Won't catch on fire
 #define TRAIT_BATONIMMUNE		"baton_immunity"
 #define TRAIT_SLEEPIMMUNE		"sleep_immunity"
 #define TRAIT_FLASHBANGIMMUNE	"flashbang_immunity"
 #define TRAIT_FAKEDEATH			"fakedeath" //Makes the owner appear as dead to most forms of medical examination
-#define TRAIT_FIRERESISTANT		"fire_resistant" // Won't catch on fire
-
-
-// Armor traits
