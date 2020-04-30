@@ -7,9 +7,9 @@
 
 // non destructively tastes a reagent container
 /mob/living/proc/taste(datum/reagents/from)
-	if(cooldowns[COOLDOWN_TASTE])
+	if(COOLDOWN_CHECK(src, COOLDOWN_TASTE))
 		return
-	cooldowns[COOLDOWN_TASTE] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_TASTE, null), 15 SECONDS)
+	COOLDOWN_START(src, COOLDOWN_TASTE, 15 SECONDS)
 
 	var/taste_sensitivity = get_taste_sensitivity()
 	var/text_output = from.generate_taste_message(taste_sensitivity)

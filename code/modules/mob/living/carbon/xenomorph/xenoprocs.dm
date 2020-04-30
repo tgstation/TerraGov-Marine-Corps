@@ -499,11 +499,14 @@
 	if(isnestedhost(src))
 		return
 
+	if(COOLDOWN_CHECK(src, COOLDOWN_ACID))
+		return
+	COOLDOWN_START(src, COOLDOWN_ACID, 2 SECONDS)
+
 	if(isxenopraetorian(X))
 		GLOB.round_statistics.praetorian_spray_direct_hits++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "praetorian_spray_direct_hits")
 
-	cooldowns[COOLDOWN_ACID] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_ACID, null), 2 SECONDS)
 	var/armor_block = run_armor_check("chest", "acid")
 	var/damage = rand(30,40) + SPRAY_MOB_UPGRADE_BONUS(X)
 	apply_acid_spray_damage(damage, armor_block)

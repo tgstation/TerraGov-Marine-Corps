@@ -52,6 +52,9 @@
 	/// A weak reference to another datum
 	var/datum/weakref/weak_reference
 
+	///Lazy associative list of currently active cooldowns.
+	var/list/cooldowns
+
 #ifdef TESTING
 	var/running_find_references
 	var/last_find_references = 0
@@ -83,6 +86,8 @@
 	tag = null
 	datum_flags &= ~DF_USE_TAG //In case something tries to REF us
 	weak_reference = null	//ensure prompt GCing of weakref.
+
+	cooldowns = null
 
 	var/list/timers = active_timers
 	active_timers = null
@@ -257,3 +262,9 @@
 	if(interaction_flags & INTERACT_UI_INTERACT)
 		return ui_interact(user)
 	return FALSE
+
+
+/proc/end_cooldown(datum/source, index)
+	if(QDELETED(source))
+		return
+	COOLDOWN_END(source, index)
