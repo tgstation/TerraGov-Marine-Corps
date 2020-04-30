@@ -4499,15 +4499,11 @@
 /turf/open/floor,
 /area/sulaco/cargo/office)
 "aki" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/grille,
-/turf/open/floor/plating,
-/turf/closed/wall/indestructible/fakeglass{
-	icon = 'icons/obj/structures/windows.dmi';
-	icon_state = "rwindow3";
-	layer = 3.2
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
 	},
-/area/sulaco/engineering/engine)
+/turf/closed/wall/sulaco/unmeltable,
+/area/sulaco/engineering)
 "akj" = (
 /obj/machinery/fuelcell_recycler,
 /turf/open/floor/plating/mainship,
@@ -13726,7 +13722,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/turf/closed/wall/sulaco,
+/turf/closed/wall/sulaco/unmeltable,
 /area/sulaco/engineering)
 "aBT" = (
 /obj/item/radio/intercom/general{
@@ -13967,7 +13963,7 @@
 /area/sulaco/marine/charlie)
 "aCq" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/closed/wall/sulaco,
+/turf/closed/wall/sulaco/unmeltable,
 /area/sulaco/engineering/engine)
 "aCr" = (
 /obj/structure/table,
@@ -14278,11 +14274,15 @@
 /turf/open/floor,
 /area/sulaco/marine)
 "aDa" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 5
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/window/reinforced{
+	dir = 4
 	},
-/turf/closed/wall/sulaco,
-/area/sulaco/engineering)
+/turf/closed/wall/indestructible/fakeglass{
+	icon_state = "fakewindows";
+	dir = 8
+	},
+/area/sulaco/engineering/engine)
 "aDb" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -14883,15 +14883,9 @@
 	},
 /area/sulaco/brig)
 "aED" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
-	dir = 10
-	},
-/turf/open/space,
-/turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
-	dir = 1
-	},
-/area/space)
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/closed/wall/sulaco/unmeltable,
+/area/sulaco/engineering)
 "aEE" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -23713,9 +23707,15 @@
 /turf/closed/wall/sulaco,
 /area/sulaco/telecomms)
 "aYQ" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/closed/wall/sulaco,
-/area/sulaco/engineering)
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 10
+	},
+/turf/open/space,
+/turf/closed/shuttle/wall3/diagonal{
+	icon_state = "diagonalWall3";
+	dir = 1
+	},
+/area/space)
 "aYR" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/structure/cable/yellow{
@@ -24974,6 +24974,21 @@
 	icon_state = "dark"
 	},
 /area/sulaco/maintenance/lower_maint)
+"bbK" = (
+/turf/open/space/basic,
+/area/mainship/command/self_destruct)
+"bbL" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/light/small{
+	icon_state = "bulb1";
+	dir = 4
+	},
+/turf/open/floor/mainship,
+/area/mainship/command/self_destruct)
 "bbV" = (
 /obj/machinery/telecomms/server/presets/security,
 /obj/machinery/light/small{
@@ -52347,7 +52362,7 @@ aTR
 aTU
 aaa
 aaa
-aTU
+bbK
 aTU
 baj
 aUi
@@ -52603,9 +52618,9 @@ aTX
 aTR
 aTU
 aaa
+bbK
+bbK
 aTU
-aTU
-aUi
 aUi
 aUi
 aUi
@@ -52861,8 +52876,8 @@ aTR
 aTU
 aTU
 aTU
-aUi
-aUi
+aTU
+aTU
 aUi
 aUi
 aUi
@@ -53376,7 +53391,7 @@ aVf
 aUj
 aUk
 aUk
-aUk
+bbL
 aUk
 aUk
 baZ
@@ -53631,9 +53646,9 @@ aTR
 aTR
 aTU
 aTU
+aTU
+aTU
 aVe
-aUi
-aUl
 aUi
 aUi
 aUi
@@ -53888,8 +53903,8 @@ aTR
 aUg
 aTU
 aUe
-aTU
-aTU
+bbK
+bbK
 aTU
 aUh
 aUh
@@ -54146,7 +54161,7 @@ aTR
 aTU
 aUe
 aaa
-aTU
+bbK
 aTU
 aUi
 aUi
@@ -63113,7 +63128,7 @@ aaa
 aaa
 aaa
 aaa
-aED
+aYQ
 aPm
 aPm
 aRf
@@ -69957,11 +69972,11 @@ axm
 axT
 ayz
 avV
-aje
-aje
-aje
-aje
-aje
+aIt
+aIt
+aIt
+aIt
+aIt
 aIt
 aJk
 avV
@@ -70214,12 +70229,12 @@ auD
 avY
 azk
 avV
-aje
+aIt
 aEb
 aEb
 aEb
 aEb
-aje
+aIt
 aFV
 avV
 avV
@@ -70471,12 +70486,12 @@ axY
 aje
 azl
 ayD
-aje
+aIt
 aEb
 aEb
 aEb
 aEb
-aje
+aIt
 aJk
 avV
 avV
@@ -70728,12 +70743,12 @@ axZ
 azn
 azS
 ajh
-aje
+aIt
 aEb
 aEb
 aEb
 aEb
-aje
+aIt
 aYX
 aHL
 aHL
@@ -70985,12 +71000,12 @@ awc
 ajg
 aAp
 aBW
-aDa
+aki
 aEb
 aEb
 aEb
 aEb
-aje
+aIt
 aJo
 aKg
 aKl
@@ -71244,10 +71259,10 @@ aAw
 aAG
 aBS
 aCq
-aki
-aki
-aki
-aYQ
+aDa
+aDa
+aDa
+aED
 aJp
 aKh
 aKh
