@@ -1094,6 +1094,13 @@
 "cC" = (
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/operating_room_one)
+"cD" = (
+/obj/structure/morgue/crematorium,
+/obj/machinery/crema_switch{
+	pixel_x = 24
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/medical/lower_medical)
 "cE" = (
 /obj/machinery/light{
 	dir = 1
@@ -1108,6 +1115,19 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"cG" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/med_data/laptop,
+/turf/open/floor/mainship/mono,
+/area/mainship/medical/lower_medical)
+"cH" = (
+/obj/machinery/optable,
+/obj/machinery/light,
+/turf/open/floor/mainship{
+	dir = 8;
+	icon_state = "sterile_green_side"
+	},
+/area/mainship/medical/lower_medical)
 "cI" = (
 /obj/machinery/iv_drip,
 /turf/open/floor/mainship{
@@ -2473,9 +2493,6 @@
 	icon_state = "test_floor4"
 	},
 /area/mainship/hallways/starboard_hallway)
-"hC" = (
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/medical/lower_medical)
 "hD" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/lower_medical)
@@ -2599,12 +2616,6 @@
 /obj/structure/curtain/medical,
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/lower_medical)
-"hO" = (
-/obj/machinery/crema_switch{
-	pixel_x = 24
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/medical/lower_medical)
 "hP" = (
 /obj/machinery/door/airlock/mainship/research/pen,
 /obj/machinery/door/firedoor/mainship{
@@ -2689,10 +2700,6 @@
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
-/area/mainship/medical/lower_medical)
-"hW" = (
-/obj/structure/morgue/crematorium,
-/turf/open/floor/plating/plating_catwalk,
 /area/mainship/medical/lower_medical)
 "hX" = (
 /obj/structure/closet/secure_closet/CMO,
@@ -2925,12 +2932,6 @@
 	dir = 9
 	},
 /area/mainship/medical/medical_science)
-"iQ" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/med_data/laptop,
-/obj/machinery/light,
-/turf/open/floor/mainship/mono,
-/area/mainship/medical/lower_medical)
 "iR" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -11780,16 +11781,6 @@
 /obj/item/tool/pen,
 /obj/machinery/light,
 /turf/open/floor/wood,
-/area/mainship/medical/lower_medical)
-"EI" = (
-/obj/machinery/optable,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/mainship{
-	dir = 8;
-	icon_state = "sterile_green_side"
-	},
 /area/mainship/medical/lower_medical)
 "EJ" = (
 /obj/machinery/disposal,
@@ -39815,11 +39806,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+fI
+fI
+fI
+fI
+fI
 aa
 aa
 aa
@@ -40072,11 +40063,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+fI
+fI
+fI
+fI
+fI
 aa
 aa
 aa
@@ -40843,7 +40834,7 @@ aa
 aa
 aa
 aa
-aa
+fI
 aa
 ad
 ad
@@ -42901,10 +42892,10 @@ nH
 nN
 bd
 hj
-hC
-EI
+hD
+cG
 hN
-iQ
+cH
 bd
 iq
 iv
@@ -43158,10 +43149,10 @@ IM
 tK
 bd
 hj
-hC
-aY
-hO
-hW
+hD
+hD
+hN
+hI
 bd
 ir
 iw
@@ -43414,9 +43405,9 @@ nz
 IN
 vg
 bd
-hl
+cD
 hD
-hI
+hl
 bd
 bd
 bd
