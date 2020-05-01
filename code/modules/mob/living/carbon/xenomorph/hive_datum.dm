@@ -10,6 +10,8 @@
 	var/color = null
 	var/prefix = ""
 	var/hive_flags = NONE
+	var/upgrade_stored = 0
+	var/active_hive = FALSE
 	var/list/xeno_leader_list
 	var/list/list/xenos_by_typepath
 	var/list/list/xenos_by_tier
@@ -38,10 +40,16 @@
 	for(var/upgrade in GLOB.xenoupgradetiers)
 		xenos_by_upgrade[upgrade] = list()
 
-
+	
 // ***************************************
 // *********** Helpers
 // ***************************************
+/datum/hive_status/proc/start_processing()
+	START_PROCESSING(SSobj, src)
+
+/datum/hive_status/proc/stop_processing()
+	STOP_PROCESSING(SSobj, src)
+
 /datum/hive_status/proc/get_total_xeno_number() // unsafe for use by gamemode code
 	. = 0
 	for(var/t in xenos_by_tier)
@@ -49,9 +57,15 @@
 
 /datum/hive_status/proc/post_add(mob/living/carbon/xenomorph/X)
 	X.color = color
+	if(active_hive == FALSE)
+		start_processing()
+		active_hive = TRUE
 
 /datum/hive_status/proc/post_removal(mob/living/carbon/xenomorph/X)
 	X.color = null
+	if(!xenos_by_typepath)
+		stop_processing()
+		active_hive = FALSE
 
 // for clean transfers between hives
 /mob/living/carbon/xenomorph/proc/transfer_to_hive(hivenumber)
@@ -757,3 +771,15 @@ to_chat will check for valid clients itself already so no need to double check f
 
 /mob/living/carbon/xenomorph/get_xeno_hivenumber()
 	return hivenumber
+
+// ***************************************
+// *********** Processing
+// ***************************************
+
+/datum/hive_status/process()
+	if(living_xeno_ruler)
+		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+		var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+		var/upgrade_points = 1 + (FLOOR(stored_larva / 3, 1))
+		//upgrade_stored = min(upgrade_stored + upgrade_points, xeno_caste.upgrade_threshold)
+		upgrade_stored = upgrade_stored + upgrade_points
