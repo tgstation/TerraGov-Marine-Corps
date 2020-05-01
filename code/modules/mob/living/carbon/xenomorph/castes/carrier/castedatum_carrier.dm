@@ -46,7 +46,7 @@
 	aura_allowed = list("frenzy", "warding", "recovery")
 
 	// *** Carrier Abilities *** //
-	huggers_max = 8
+	huggers_max = 4
 	hugger_delay = 2.5 SECONDS
 	eggs_max = 3
 
@@ -98,7 +98,7 @@
 	aura_strength = 2
 
 	// *** Carrier Abilities *** //
-	huggers_max = 9
+	huggers_max = 5
 	hugger_delay = 2.5 SECONDS
 	eggs_max = 4
 
@@ -134,7 +134,7 @@
 	aura_strength = 2.3
 
 	// *** Carrier Abilities *** //
-	huggers_max = 10
+	huggers_max = 6
 	hugger_delay = 2 SECONDS
 	eggs_max = 5
 
@@ -170,7 +170,7 @@
 	aura_strength = 2.5
 
 	// *** Carrier Abilities *** //
-	huggers_max = 11
+	huggers_max = 7
 	hugger_delay = 1.5 SECONDS
 	eggs_max = 6
 
