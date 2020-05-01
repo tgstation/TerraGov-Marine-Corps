@@ -241,5 +241,4 @@ You are weak, best rest up and get your strength before fighting.</span>"})
 	notify_ghosts("<span class='boldnotice'>A new clone is available! Name: [name]</span>", enter_link = "claim=[REF(occupant)]", source = src, action = NOTIFY_ORBIT)
 
 	// Cleanup the timers
-	deltimer(timerid)
 	timerid = null
