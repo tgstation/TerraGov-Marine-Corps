@@ -102,8 +102,9 @@ The vat then needs to be repaired and refilled with biomass.
 
 
 /obj/machinery/cloning/vats/Destroy()
-	deltimer(timerid)
-	timerid = null
+	if(timerid)
+		deltimer(timerid)
+		timerid = null
 
 	// Force tthe clone out, if they have a client
 	if(occupant?.client)
