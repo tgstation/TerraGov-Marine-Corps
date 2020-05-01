@@ -102,8 +102,9 @@ The vat then needs to be repaired and refilled with biomass.
 
 
 /obj/machinery/cloning/vats/Destroy()
-	deltimer(timerid)
-	timerid = null
+	if(timerid)
+		deltimer(timerid)
+		timerid = null
 
 	// Force tthe clone out, if they have a client
 	if(occupant)
@@ -241,5 +242,4 @@ You are weak, best rest up and get your strength before fighting.</span>"})
 	notify_ghosts("<span class='boldnotice'>A new clone is available! Name: [name]</span>", enter_link = "claim=[REF(occupant)]", source = src, action = NOTIFY_ORBIT)
 
 	// Cleanup the timers
-	deltimer(timerid)
 	timerid = null

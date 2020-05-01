@@ -93,7 +93,6 @@
 
 
 
-
 //police skill, hidden
 #define SKILL_POLICE_DEFAULT 	0
 #define SKILL_POLICE_FLASH 		1 //flash use (CE, CMO, any officer starting with a flash)
