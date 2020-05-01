@@ -253,7 +253,7 @@
 /mob/living/carbon/xenomorph/proc/update_progression()
 	if(upgrade_possible()) //upgrade possible
 		if(client && ckey) // pause for ssd/ghosted
-			if(!hive?.living_xeno_ruler || hive.living_xeno_ruler.loc.z == loc.z)
+			if(!hive?.living_xeno_ruler || hive.living_xeno_ruler.loc.z == loc.z) //if your hive has a ruler, and if they're on your z-level.
 				if(hive?.upgrade_stored >= xeno_caste.upgrade_threshold)
 					if(health == maxHealth && !incapacitated() && !handcuffed && !legcuffed)
 						upgrade_xeno(upgrade_next())
