@@ -106,10 +106,10 @@ The vat then needs to be repaired and refilled with biomass.
 	timerid = null
 
 	// Force tthe clone out, if they have a client
-	if(occupant?.client)
+	if(occupant)
 		eject_user()
-
 	occupant = null
+
 	QDEL_NULL(beaker)
 	return ..()
 
@@ -144,25 +144,25 @@ The vat then needs to be repaired and refilled with biomass.
 	return TRUE
 
 
-/obj/machinery/cloning/vats/attackby(obj/item/I, mob/living/user, params)
+/obj/machinery/cloning/vats/attackby(obj/item/hit_by, mob/living/user, params)
 	. = ..()
 	if(.)
 		return
 
-	if(istype(I, /obj/item/reagent_containers/glass/beaker))
+	if(istype(hit_by, /obj/item/reagent_containers/glass/beaker))
 		if(beaker)
 			to_chat(user, "<span class='warning'>A beaker is already loaded into the machine.</span>")
 			return
 
 		// Check if the beaker contains anything other than biomass juice
-		for(var/r in I.reagents.reagent_list)
-			var/datum/reagent/R = r
-			if(!istype(R, /datum/reagent/medicine/biomass) && !istype(R, /datum/reagent/medicine/biomass/xeno))
+		for(var/instance in hit_by.reagents.reagent_list)
+			var/datum/reagent/regent = instance
+			if(!istype(regent, /datum/reagent/medicine/biomass) && !istype(regent, /datum/reagent/medicine/biomass/xeno))
 				to_chat(user, "<span class='warning'>\The [src] rejects the beaker.</span>")
 				return
 
-		beaker = I
-		if(!user.transferItemToLoc(I, src))
+		beaker = hit_by
+		if(!user.transferItemToLoc(hit_by, src))
 			return
 
 		update_icon()
@@ -229,8 +229,8 @@ You are weak, best rest up and get your strength before fighting.</span>"})
 
 /obj/machinery/cloning/vats/proc/finish_growing_human()
 	occupant = new(src)
-	var/datum/job/J = SSjob.GetJobType(/datum/job/terragov/squad/vatgrown)
-	occupant.apply_assigned_role_to_spawn(J)
+	var/datum/job/job_instance = SSjob.GetJobType(/datum/job/terragov/squad/vatgrown)
+	occupant.apply_assigned_role_to_spawn(job_instance)
 	occupant.set_species("Early Vat-Grown Human")
 	occupant.fully_replace_character_name(occupant.real_name, occupant.species.random_name(occupant.gender))
 	occupant.disabilities |= (BLIND & DEAF)
