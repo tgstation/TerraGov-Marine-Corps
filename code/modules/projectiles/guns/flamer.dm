@@ -267,7 +267,7 @@
 				else
 					log_combat(user, H, "shot", src)
 
-			if(H.IsFireResistant())
+			if(HAS_TRAIT(H, TRAIT_FIRERESISTANT))
 				continue
 
 		var/armor_block = M.run_armor_check(null, "fire")
@@ -500,16 +500,6 @@
 	if(istype(M))
 		M.flamer_fire_crossed(burnlevel, firelevel)
 
-/mob/living/proc/IsFireResistant()
-	return HAS_TRAIT(src, TRAIT_FIRERESISTANT)
-
-/mob/living/carbon/human/IsFireResistant()
-	. = ..()
-
-	// Some legacy shit for now / ideally we remove this
-	if(istype(wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(shoes, /obj/item/clothing/shoes/marine/pyro) && istype(head, /obj/item/clothing/head/helmet/marine/pyro))
-		. = TRUE
-
 
 // override this proc to give different walking-over-fire effects
 /mob/living/proc/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
@@ -524,7 +514,7 @@
 
 
 /mob/living/carbon/human/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
-	if(IsFireResistant())
+	if(HAS_TRAIT(H, TRAIT_FIRERESISTANT))
 		var/armor_block = run_armor_check(null, "fire")
 		if(apply_damage(round(burnlevel * 0.2) * fire_mod, BURN, null, armor_block))
 			UPDATEHEALTH(src)
@@ -592,7 +582,7 @@
 
 // override this proc to give different idling-on-fire effects
 /mob/living/flamer_fire_act(burnlevel, firelevel)
-	if(IsFireResistant())
+	if(HAS_TRAIT(H, TRAIT_FIRERESISTANT))
 		to_chat(src, "<span class='warning'>Your suit protects you from most of the flames.</span>")
 		adjustFireLoss(rand(0 ,burnlevel * 0.25)) //Does small burn damage to a person wearing one of the suits.
 		return

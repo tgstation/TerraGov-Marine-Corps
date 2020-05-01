@@ -91,6 +91,11 @@ Contains most of the procs that are called when a mob is attacked by something
 			if(istype(worn_item) && worn_item.armor.fire <= 100)
 				fire_protection = FALSE
 				break
+
+	// Some legacy shit for now / ideally we remove this
+	if(istype(wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(shoes, /obj/item/clothing/shoes/marine/pyro) && istype(head, /obj/item/clothing/head/helmet/marine/pyro))
+		fire_protection = TRUE
+
 	if(fire_protection)
 		ADD_TRAIT(src, TRAIT_FIRERESISTANT, ARMOR_TRAIT)
 	else
