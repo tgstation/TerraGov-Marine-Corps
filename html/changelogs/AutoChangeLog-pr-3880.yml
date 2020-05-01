@@ -1,6 +1,0 @@
-author: "XElectricX"
-delete-after: True
-changes: 
-  - tweak: "RO lockers spawn a flash, which the RO can now use"
-  - balance: "RO, CE, and early gen synths have level 4 powerloader skill"
-  - balance: "Combet engis gain level 1 powerloader skill"

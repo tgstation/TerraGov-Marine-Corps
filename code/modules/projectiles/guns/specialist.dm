@@ -233,10 +233,11 @@
 	flags_item_map_variant = NONE
 	starting_attachment_types = list(/obj/item/attachable/scope/pmc, /obj/item/attachable/sniperbarrel)
 
-	fire_delay = 2.5 SECONDS
+	fire_delay = 1.5 SECONDS
 	accuracy_mult = 1.50
 	scatter = 15
 	recoil = 5
+	burst_amount = 1
 
 
 /obj/item/weapon/gun/rifle/sniper/elite/simulate_recoil(total_recoil = 0, mob/user)

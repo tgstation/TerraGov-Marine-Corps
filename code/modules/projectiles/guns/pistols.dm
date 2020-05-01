@@ -177,10 +177,11 @@
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/quickfire)
 
-	fire_delay = 0.15 SECONDS
+	fire_delay = 0.2 SECONDS
 	burst_amount = 3
 	accuracy_mult = 1.15
 	scatter_unwielded = 25
+	aim_slowdown = 0.2
 
 /obj/item/weapon/gun/pistol/b92fs/M9
 	name = "\improper M9 Custom pistol"
@@ -268,12 +269,13 @@
 	//Making the gun have an invisible silencer since it's supposed to have one.
 	starting_attachment_types = list(/obj/item/attachable/suppressor/unremovable/invisible)
 
-	fire_delay = 0.4 SECONDS
+	fire_delay = 0.175 SECONDS
 	accuracy_mult = 1.65
 	accuracy_mult_unwielded = 1.5
 	scatter = 5
 	scatter_unwielded = 10
 	damage_mult = 1.3
+	aim_slowdown = 0.1
 
 /obj/item/weapon/gun/pistol/c99/russian
 	icon_state = "pk9r"
@@ -370,7 +372,7 @@
 
 /obj/item/weapon/gun/pistol/vp70
 	name = "\improper 88 Mod 4 combat pistol"
-	desc = "A powerful sidearm issued mainly to Nanotrasen private contractors, but issued to the TGMC in small numbers, based on the original VP70 more than a century ago. Fires 9mm armor piercing rounds and is capable of 3-round burst."
+	desc = "A powerful sidearm issued mainly to Nanotrasen private contractors, but issued to the TGMC in small numbers, based on the original VP70 more than a century ago. Fires 9mm armor piercing rounds and is capable of 3-round burst or automatic fire."
 	icon_state = "88m4"
 	item_state = "88m4"
 	caliber = "9x19mm Parabellum" //codex
@@ -390,17 +392,21 @@
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/heavy_barrel,
-						/obj/item/attachable/quickfire,
 						/obj/item/attachable/burstfire_assembly,
 						/obj/item/attachable/stock/vp70)
+     
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 18, "stock_y" = 11)
 
-	fire_delay = 0.3 SECONDS
+	fire_delay = 0.2 SECONDS
 	burst_amount = 3
-	accuracy_mult = 1.05
+	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.95
 	damage_mult = 1.2
 	recoil_unwielded = 2
+	aim_slowdown = 0.2
+	scatter = 5
+	
 
 //-------------------------------------------------------
 //VP78
@@ -426,7 +432,6 @@
 	burst_delay = 0.3 SECONDS
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.85
-	recoil = 2
 	recoil_unwielded = 3
 
 //-------------------------------------------------------
@@ -446,10 +451,11 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	current_mag = /obj/item/ammo_magazine/pistol/auto9
 	force = 15
 	attachable_allowed = list()
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 
-	fire_delay = 0.4 SECONDS
+
+	fire_delay = 0.1 SECONDS
 	burst_amount = 3
-	recoil = 2
 	recoil_unwielded = 3
 
 //-------------------------------------------------------

@@ -532,13 +532,14 @@ can cause issues with ammo types getting mixed up during the burst.
 	flags_item_map_variant = NONE
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 16,"rail_x" = 14, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 17)
 
-	fire_delay = 24
-	accuracy_mult = 1.30
-	accuracy_mult_unwielded = 0.7
-	scatter = 15
-	scatter_unwielded = 40
-	recoil = 2
-	recoil_unwielded = 4
+	fire_delay = 15
+	damage_mult = 0.75
+	accuracy_mult = 1.25
+	accuracy_mult_unwielded = 1
+	scatter = 5
+	scatter_unwielded = 35
+	recoil = 0 // It has a stock. It's on the sprite.
+	recoil_unwielded = 0
 	pump_delay = 12
 
 //-------------------------------------------------------
@@ -605,15 +606,16 @@ can cause issues with ammo types getting mixed up during the burst.
 									/obj/item/attachable/mosinbarrel,
 									/obj/item/attachable/stock/mosin)
 
-	fire_delay = 24
-	accuracy_mult = 1.3
+	fire_delay = 17.5
+	accuracy_mult = 1.4
 	accuracy_mult_unwielded = 0.7
-	scatter = 15
+	scatter = -10
 	scatter_unwielded = 40
-	recoil = 2
+	recoil = 0
 	recoil_unwielded = 4
 	pump_delay = 12
-	aim_slowdown = 0.5
+	aim_slowdown = 1
+	wield_delay = 1 SECONDS
 
 /obj/item/weapon/gun/shotgun/pump/bolt/unique_action(mob/user)
 	return pump_shotgun(user)
