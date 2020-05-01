@@ -773,8 +773,8 @@ to_chat will check for valid clients itself already so no need to double check f
 // *********** Processing
 // ***************************************
 
-/datum/hive_status/process() //happens when the hive is processed, (currently) once per 2 secs.
-	if(living_xeno_ruler) //if there is a ruler.
+/datum/hive_status/process()
+	if(living_xeno_ruler)
 		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 		var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 		var/upgrade_points = 1 + (FLOOR(stored_larva / 3, 1))
