@@ -240,7 +240,7 @@ Contains most of the procs that are called when a mob is attacked by something
 					bloody_body(src)
 
 	//Melee weapon embedded object code.
-	if (I.damtype == BRUTE && !(I.flags_item & (NODROP|DELONDROP)))
+	if(!(affecting.limb_status & LIMB_DESTROYED) && I.damtype == BRUTE && !(I.flags_item & (NODROP|DELONDROP)))
 		if(damage > 40)
 			damage = 40
 		if (!armor && weapon_sharp && prob(I.embedding.embed_chance))
@@ -315,7 +315,7 @@ Contains most of the procs that are called when a mob is attacked by something
 				log_combat(M, src, "hit", O, "(thrown)")
 
 		//thrown weapon embedded object code.
-		if(dtype == BRUTE && istype(O,/obj/item))
+		if(dtype == BRUTE && !(affecting.limb_status & LIMB_DESTROYED) && isitem(O))
 			var/obj/item/I = O
 
 			if(is_sharp(I) && prob(I.embedding.embed_chance))
