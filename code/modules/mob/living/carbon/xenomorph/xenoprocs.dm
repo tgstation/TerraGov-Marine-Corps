@@ -126,7 +126,7 @@
 		stat("Evolve Progress:", "[evolution_stored]/[xeno_caste.evolution_threshold]")
 
 	if(upgrade_possible())
-		stat("Upgrade Progress:", "[hive?.upgrade_stored]/[xeno_caste.upgrade_threshold]")
+		stat("Upgrade Progress:", "[upgrade_stored]/[xeno_caste.upgrade_threshold]")
 	else //Upgrade process finished or impossible
 		stat("Upgrade Progress:", "(FINISHED)")
 
@@ -254,9 +254,15 @@
 	if(upgrade_possible()) //upgrade possible
 		if(client && ckey) // pause for ssd/ghosted
 			if(!hive?.living_xeno_ruler || hive.living_xeno_ruler.loc.z == loc.z)
-				if(hive?.upgrade_stored >= xeno_caste.upgrade_threshold)
+				if(upgrade_stored >= xeno_caste.upgrade_threshold)
 					if(health == maxHealth && !incapacitated() && !handcuffed && !legcuffed)
 						upgrade_xeno(upgrade_next())
+				else
+					// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.
+					var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+					var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
+					var/upgrade_points = 1 + (FLOOR(stored_larva / 3, 1))
+					upgrade_stored = min(upgrade_stored + upgrade_points, xeno_caste.upgrade_threshold)
 
 /mob/living/carbon/xenomorph/proc/update_evolving()
 	if(!client || !ckey) // stop evolve progress for ssd/ghosted xenos
