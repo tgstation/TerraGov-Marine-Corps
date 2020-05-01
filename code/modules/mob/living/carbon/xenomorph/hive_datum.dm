@@ -186,6 +186,8 @@
 
 	SSdirection.start_tracking(HS.hivenumber, src)
 
+	check_hive_activity()
+
 /mob/living/carbon/xenomorph/queen/add_to_hive(datum/hive_status/HS, force=FALSE) // override to ensure proper queen/hive behaviour
 	. = ..()
 	if(HS.living_xeno_queen) // theres already a queen
@@ -779,7 +781,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		upgrade_stored = upgrade_stored + upgrade_points
 
 /datum/hive_status/proc/check_hive_activity() //called whenever a change in xeno numbers occurs. so that auxillary hives don't use up processing for no reason.
-	if(!xenos_by_typepath && active_hive == TRUE) //if there are no live xenos, and the hive is currently alive.
+	if(!xenos_by_typepath && active_hive == TRUE) //if there are no live xenos, and the hive is currently alive. 
 		STOP_PROCESSING(SSobj, src)
 		active_hive = FALSE
 	if(xenos_by_typepath && active_hive == FALSE) //if there are live xenos, and the hive is currently dead.
