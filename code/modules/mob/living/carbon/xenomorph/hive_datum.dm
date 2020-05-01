@@ -40,32 +40,24 @@
 	for(var/upgrade in GLOB.xenoupgradetiers)
 		xenos_by_upgrade[upgrade] = list()
 
-	
+	check_hive_activity()
+
 // ***************************************
 // *********** Helpers
 // ***************************************
-/datum/hive_status/proc/start_processing()
-	START_PROCESSING(SSobj, src)
-
-/datum/hive_status/proc/stop_processing()
-	STOP_PROCESSING(SSobj, src)
-
 /datum/hive_status/proc/get_total_xeno_number() // unsafe for use by gamemode code
 	. = 0
 	for(var/t in xenos_by_tier)
 		. += length(xenos_by_tier[t])
 
+
 /datum/hive_status/proc/post_add(mob/living/carbon/xenomorph/X)
 	X.color = color
-	if(active_hive == FALSE)
-		start_processing()
-		active_hive = TRUE
+
 
 /datum/hive_status/proc/post_removal(mob/living/carbon/xenomorph/X)
 	X.color = null
-	if(!xenos_by_typepath)
-		stop_processing()
-		active_hive = FALSE
+
 
 // for clean transfers between hives
 /mob/living/carbon/xenomorph/proc/transfer_to_hive(hivenumber)
@@ -193,6 +185,8 @@
 	generate_name()
 
 	SSdirection.start_tracking(HS.hivenumber, src)
+
+	check_hive_activity()
 
 /mob/living/carbon/xenomorph/queen/add_to_hive(datum/hive_status/HS, force=FALSE) // override to ensure proper queen/hive behaviour
 	. = ..()
@@ -346,6 +340,8 @@
 	if(X == living_xeno_ruler)
 		on_ruler_death(X)
 
+	check_hive_activity()
+
 	return TRUE
 
 
@@ -354,6 +350,7 @@
 	add_to_lists(X)
 	return TRUE
 
+	check_hive_activity()
 
 // ***************************************
 // *********** Ruler
@@ -781,5 +778,12 @@ to_chat will check for valid clients itself already so no need to double check f
 		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 		var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 		var/upgrade_points = 1 + (FLOOR(stored_larva / 3, 1))
-		//upgrade_stored = min(upgrade_stored + upgrade_points, xeno_caste.upgrade_threshold)
 		upgrade_stored = upgrade_stored + upgrade_points
+
+/datum/hive_status/proc/check_hive_activity() //called whenever a change in xeno numbers occurs. so that auxillary hives don't use up processing for no reason.
+	if(!xenos_by_typepath && active_hive == TRUE) //if there are no live xenos, and the hive is currently alive. 
+		STOP_PROCESSING(SSobj, src)
+		active_hive = FALSE
+	if(xenos_by_typepath && active_hive == FALSE) //if there are live xenos, and the hive is currently dead.
+		START_PROCESSING(SSobj, src)
+		active_hive = TRUE
