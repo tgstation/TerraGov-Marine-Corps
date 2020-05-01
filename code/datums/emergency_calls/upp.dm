@@ -1,6 +1,6 @@
 /datum/emergency_call/upp
 	name = "USL"
-	probability = 10
+	probability = 0
 	shuttle_id = "distress_upp"
 	spawn_type = /mob/living/carbon/human/species/moth
 
@@ -23,7 +23,7 @@
 	var/mob/original = M.current
 	var/mob/living/carbon/human/H = .
 
-	H.name = GLOB.namepool[/datum/namepool/russian].random_name(H)
+	H.name = GLOB.namepool[/datum/namepool/moth].random_name(H)
 	H.real_name = H.name
 
 	M.transfer_to(H, TRUE)
