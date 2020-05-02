@@ -280,9 +280,6 @@
 	walltype = "diamond"
 	mineral = "diamond"
 
-/turf/closed/wall/mineral/diamond/thermitemelt(mob/user)
-	return
-
 
 /turf/closed/wall/mineral/sandstone
 	name = "sandstone wall"
