@@ -1,5 +1,7 @@
 /atom/movable
 	layer = OBJ_LAYER
+	glide_size = 8
+	appearance_flags = TILE_BOUND|PIXEL_SCALE
 	var/last_move = null
 	var/last_move_time = 0
 	var/anchored = FALSE
@@ -13,9 +15,7 @@
 	var/atom/movable/pulling
 	var/moving_diagonally = 0 //to know whether we're in the middle of a diagonal move,
 	var/atom/movable/moving_from_pull		//attempt to resume grab after moving instead of before.
-	glide_size = 8
 	var/glide_modifier_flags = NONE
-	appearance_flags = TILE_BOUND|PIXEL_SCALE
 
 	var/initial_language_holder = /datum/language_holder
 	var/datum/language_holder/language_holder
@@ -876,4 +876,7 @@
 
 
 /atom/movable/proc/setGrabState(newstate)
+	if(newstate == grab_state)
+		return
+	. = grab_state
 	grab_state = newstate

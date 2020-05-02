@@ -134,61 +134,43 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "marineselector", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, ui_key, "MarineSelector", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
-/obj/machinery/marine_selector/ui_data(mob/user)
-	var/list/display_list = list()
-
+/obj/machinery/marine_selector/ui_static_data(mob/user)
+	. = list()
+	.["displayed_records"] = list()
 	for(var/c in categories)
-		display_list[c] = list()
+		.["displayed_records"][c] = list()
 
-	var/m_points = 0
-	var/buy_flags = NONE
-	var/obj/item/card/id/I = user.get_idcard()
-	if(istype(I)) //wearing an ID
-		m_points = I.marine_points
-		buy_flags = I.marine_buy_flags
-
+	.["vendor_name"] = name
+	.["show_points"] = use_points
+	.["total_marine_points"] = MARINE_TOTAL_BUY_POINTS
 
 	for(var/i in listed_products)
 		var/list/myprod = listed_products[i]
 		var/category = myprod[1]
 		var/p_name = myprod[2]
 		var/p_cost = myprod[3]
-		if(p_cost > 0)
-			p_name += " ([p_cost] points)"
+		var/atom/productpath = i
 
-		var/prod_available = FALSE
-		var/list/avail_flags = GLOB.marine_selector_cats[category]
-		var/flags = NONE
-		if(LAZYLEN(avail_flags))
-			for(var/f in avail_flags)
-				flags |= f
-			if(buy_flags & flags)
-				prod_available = TRUE
-		else if(m_points >= p_cost)
-			prod_available = TRUE
+		LAZYADD(.["displayed_records"][category], list(list("prod_index" = i, "prod_name" = p_name, "prod_color" = myprod[4], "prod_cost" = p_cost, "prod_desc" = initial(productpath.desc))))
 
-		LAZYADD(display_list[category], list(list("prod_index" = i, "prod_name" = p_name, "prod_available" = prod_available, "prod_color" = myprod[4])))
+/obj/machinery/marine_selector/ui_data(mob/user)
+	. = list()
 
-	var/list/cats = list()
+	var/obj/item/card/id/I = user.get_idcard()
+	.["current_m_points"] = I?.marine_points || 0
+	var/buy_flags = I?.marine_buy_flags || NONE
+
+
+	.["cats"] = list()
 	for(var/i in GLOB.marine_selector_cats)
-		if(!display_list[i]) // vendor doesnt have this category
-			continue
-		cats[i] = 0
+		.["cats"][i] = list("remaining" = 0, "total" = 0)
 		for(var/flag in GLOB.marine_selector_cats[i])
+			.["cats"][i]["total"]++
 			if(buy_flags & flag)
-				cats[i]++
-
-	var/list/data = list(
-		"vendor_name" = name,
-		"show_points" = use_points,
-		"current_m_points" = m_points,
-		"displayed_records" = display_list,
-		"cats" = cats,
-	)
-	return data
+				.["cats"][i]["remaining"]++
 
 /obj/machinery/marine_selector/ui_act(action, params)
 	if(..())
@@ -260,7 +242,10 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 					to_chat(usr, "<span class='warning'>You can't buy things from this category anymore.</span>")
 					return
 
-			new idx(loc)
+			var/obj/item/vended_item = new idx(loc)
+
+			if(istype(vended_item)) // in case of spawning /obj
+				usr.put_in_any_hand_if_possible(vended_item, warning = FALSE)
 
 			if(icon_vend)
 				flick(icon_vend, src)
@@ -350,11 +335,6 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0,"black"),
 		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0,"orange"),
 		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil compensator", 0,"black"),
-		/obj/item/attachable/efflens = list(CAT_ATT, "M43 Efficient lens", 0,"black"),
-		/obj/item/attachable/focuslens = list(CAT_ATT, "M43 Focus lens", 0,"black"),
-		/obj/item/attachable/widelens = list(CAT_ATT, "M43 Wide lens", 0,"black"),
-		/obj/item/attachable/heatlens = list(CAT_ATT, "M43 Heat lens", 0,"black"),
-		/obj/item/attachable/pulselens = list(CAT_ATT, "M43 pulse lens", 0,"black"),
 		/obj/item/attachable/magnetic_harness = list(CAT_ATT, "Magnetic harness", 0,"orange"),
 		/obj/item/attachable/reddot = list(CAT_ATT, "Red dot sight", 0,"black"),
 		/obj/item/attachable/quickfire = list(CAT_ATT, "Quickfire assembly", 0,"black"),

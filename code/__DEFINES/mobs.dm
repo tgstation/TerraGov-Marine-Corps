@@ -311,6 +311,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define IS_SYNTHETIC 			(1<<14)
 #define NO_STAMINA 				(1<<15)
 #define DETACHABLE_HEAD			(1<<16)
+#define USES_ALIEN_WEAPONS		(1<<17)
+#define NO_DAMAGE_OVERLAY		(1<<18)
 //=================================================
 
 //Some on_mob_life() procs check for alien races.
@@ -322,6 +324,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define IS_UNATHI (1<<5)
 #define IS_HORROR (1<<6)
 #define IS_MOTH (1<<7)
+#define IS_SECTOID (1<<8)
 //=================================================
 
 //AFK status
@@ -591,25 +594,6 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 //Stamina
 #define STAMINA_STATE_IDLE 0
 #define STAMINA_STATE_ACTIVE 1
-
-//Cooldowns
-#define COOLDOWN_CHEW 		"chew"
-#define COOLDOWN_PUKE 		"puke"
-#define COOLDOWN_POINT 		"point"
-#define COOLDOWN_EMOTE		"emote"
-#define COOLDOWN_VENTCRAWL	"ventcrawl"
-#define COOLDOWN_BUCKLE		"buckle"
-#define COOLDOWN_RESIST		"resist"
-#define COOLDOWN_ORDER		"order"
-#define COOLDOWN_DISPOSAL	"disposal"
-#define COOLDOWN_ACID		"acid"
-#define COOLDOWN_GUT		"gut"
-#define COOLDOWN_ZOOM		"zoom"
-#define COOLDOWN_BUMP		"bump"
-#define COOLDOWN_ENTANGLE	"entangle"
-#define COOLDOWN_NEST		"nest"
-#define COOLDOWN_TASTE		"taste"
-#define COOLDOWN_VENTSOUND	"vendsound"
 
 #define UPDATEHEALTH(MOB) (addtimer(CALLBACK(MOB, /mob/living.proc/updatehealth), 1, TIMER_UNIQUE))
 

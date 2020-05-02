@@ -46,6 +46,17 @@
 		M.apply_damage(damage, STAMINA) //Armour ignoring Stamina
 		UPDATEHEALTH(M)
 
+/datum/action/xeno_action/activable/stomp/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/activable/stomp/ai_should_use(target)
+	if(!iscarbon(target))
+		return ..()
+	if(get_dist(target, owner) > 1)
+		return ..()
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return ..()
+	return TRUE
 
 // ***************************************
 // *********** Cresttoss
@@ -134,3 +145,15 @@
 
 	add_cooldown()
 	addtimer(CALLBACK(X, /mob/.proc/update_icons), 3)
+
+/datum/action/xeno_action/activable/cresttoss/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/activable/cresttoss/ai_should_use(target)
+	if(!iscarbon(target))
+		return ..()
+	if(get_dist(target, owner) > 1)
+		return ..()
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return ..()
+	return TRUE

@@ -508,6 +508,11 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 			continue
 		if((!(X.z in z_levels) && !X.is_ventcrawling) || isspaceturf(X.loc))
 			continue
+
+		// Never count hivemind
+		if(isxenohivemind(X))
+			continue
+
 		num_xenos++
 
 	return list(num_humans, num_xenos)
