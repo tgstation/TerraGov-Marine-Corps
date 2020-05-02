@@ -2667,7 +2667,8 @@
 	},
 /obj/machinery/door_control{
 	id = "mbayexit";
-	name = "medbay exit"pixel_y = -32
+	name = "medbay exit";
+	pixel_y = -32
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
