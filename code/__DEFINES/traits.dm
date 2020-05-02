@@ -81,10 +81,14 @@
 #define CRYOPOD_TRAIT "cryopod"
 #define TRAIT_XENO "xeno"
 #define ARMOR_TRAIT "armor"
+#define FROZEN_TRAIT "frozen"
+#define STAT_TRAIT "stat"
+#define NECKGRAB_TRAIT "neckgrab"
 
 //mob traits
 #define TRAIT_KNOCKEDOUT		"knockedout" //Forces the user to stay unconscious.
 #define TRAIT_INCAPACITATED		"incapacitated"
+#define TRAIT_IMMOBILE			"immobile" //User is unable to move by its own volition.
 #define TRAIT_STUNIMMUNE		"stun_immunity"
 #define TRAIT_FIRERESISTANT		"fire_resistant" // Won't catch on fire
 #define TRAIT_BATONIMMUNE		"baton_immunity"
