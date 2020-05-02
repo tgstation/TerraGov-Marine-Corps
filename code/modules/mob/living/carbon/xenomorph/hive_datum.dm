@@ -10,7 +10,6 @@
 	var/color = null
 	var/prefix = ""
 	var/hive_flags = NONE
-	var/upgrade_stored = 0
 	var/list/xeno_leader_list
 	var/list/list/xenos_by_typepath
 	var/list/list/xenos_by_tier

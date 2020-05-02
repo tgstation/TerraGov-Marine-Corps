@@ -4,6 +4,7 @@
 		return // smelly badmins
 	hive.upgrade_xeno(src, upgrade, newlevel)
 	upgrade = newlevel
+	upgrade_stored = 0
 	visible_message("<span class='xenonotice'>\The [src] begins to twist and contort.</span>", \
 	"<span class='xenonotice'>We begin to twist and contort.</span>")
 	do_jitter_animation(1000)

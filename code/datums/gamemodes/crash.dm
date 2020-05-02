@@ -103,7 +103,8 @@
 			X.amount_grown = X.max_grown
 		else // Handles Shrike etc
 			var/mob/living/carbon/xenomorph/X = i
-			X.hive?.upgrade_stored = X.xeno_caste.upgrade_threshold
+			X.upgrade_stored = X.xeno_caste.upgrade_threshold
+
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH)
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, .proc/on_nuclear_explosion)
