@@ -366,9 +366,17 @@
 			priority_absorb_key["stuns_absorbed"] += amount
 		return TRUE
 
+
 /mob/living/proc/set_frozen(freeze = TRUE)
+	if(freeze == frozen)
+		return
+	. = frozen
 	frozen = freeze
-	return TRUE
+	if(frozen)
+		ADD_TRAIT(src, TRAIT_IMMOBILE, FROZEN_TRAIT)
+	else
+		REMOVE_TRAIT(src, TRAIT_IMMOBILE, FROZEN_TRAIT)
+
 
 /mob/living/proc/adjust_drugginess(amount)
 	return
