@@ -1899,7 +1899,8 @@
 /area/mainship/living/numbertwobunks)
 "fq" = (
 /obj/machinery/door/airlock/mainship/generic{
-	dir = 1name = "\improper Kitchen"
+	dir = 1;
+	name = "\improper Kitchen"
 	},
 /turf/open/floor/mainship{
 	icon_state = "plate";
