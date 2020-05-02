@@ -199,7 +199,7 @@
 	recovery_new = 0
 	armor_pheromone_bonus = 0
 	if(warding_aura > 0)
-		armor_pheromone_bonus = warding_aura * 5 //Bonus armor from pheromones, no matter what the armor was previously.
+		armor_pheromone_bonus = warding_aura * 2.5 //Bonus armor from pheromones, no matter what the armor was previously.
 
 /mob/living/carbon/xenomorph/handle_regular_hud_updates()
 	if(!client)
