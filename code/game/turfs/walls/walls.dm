@@ -6,12 +6,7 @@
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "metal"
 	baseturfs = /turf/open/floor/plating
-
 	opacity = TRUE
-	var/hull = 0 //1 = Can't be deconstructed by tools or thermite. Used for Sulaco walls
-	var/walltype = "metal"
-	var/junctiontype //when walls smooth with one another, the type of junction each wall is.
-	var/thermite = 0
 
 	tiles_with = list(
 		/turf/closed/wall,
@@ -19,6 +14,13 @@
 		/obj/structure/window_frame,
 		/obj/structure/girder,
 		/obj/machinery/door)
+
+	armor = list("melee" = 0, "bullet" = 80, "laser" = 80, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+
+	var/hull = 0 //1 = Can't be deconstructed / destroyed. Used for Sulaco walls
+	var/walltype = "metal"
+	var/junctiontype //when walls smooth with one another, the type of junction each wall is.
+
 
 	var/wall_integrity
 	var/max_integrity = 1000 //Wall will break down to girders if damage reaches this point
@@ -36,8 +38,6 @@
 	var/d_state = 0 //Normal walls are now as difficult to remove as reinforced walls
 
 	var/obj/effect/acid_hole/acided_hole //the acid hole inside the wall
-
-	armor = list("melee" = 0, "bullet" = 80, "laser" = 80, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 
 /turf/closed/wall/Initialize(mapload, ...)
@@ -279,27 +279,6 @@
 		if(3)
 			take_damage(rand(0, 250))
 
-/turf/closed/wall/proc/thermitemelt(mob/user)
-	if(hull)
-		return
-	var/obj/effect/overlay/O = new/obj/effect/overlay(src)
-	O.name = "Thermite"
-	O.desc = "Looks hot."
-	O.icon = 'icons/effects/fire.dmi'
-	O.icon_state = "2"
-	O.anchored = TRUE
-	O.density = TRUE
-	O.layer = FLY_LAYER
-
-	to_chat(user, "<span class='warning'>The thermite starts melting through [src].</span>")
-	spawn(50)
-		dismantle_wall()
-
-	spawn(50)
-		if(O) qdel(O)
-	return
-
-
 //Interactions
 /turf/closed/wall/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
@@ -329,17 +308,6 @@
 	if(!ishuman(user))
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
-
-	//THERMITE related stuff. Calls src.thermitemelt() which handles melting simulated walls and the relevant effects
-	if(thermite && I.heat >= 1000)
-		if(hull)
-			to_chat(user, "<span class='warning'>[src] is much too tough for you to do anything to it with [I]</span>.")
-			return
-
-		if(iswelder(I))
-			var/obj/item/tool/weldingtool/WT = I
-			WT.remove_fuel(0, user)
-		thermitemelt(user)
 
 	else if(istype(I, /obj/item/frame/apc))
 		var/obj/item/frame/apc/AH = I

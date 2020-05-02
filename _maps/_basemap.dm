@@ -17,6 +17,7 @@
 		#include "map_files\icy_caves\icy_caves.dmm"
 		#include "map_files\desert\desert.dmm"
 		#include "map_files\MarineHQ\MarineHQ.dmm"
+		#include "map_files\Sulaco\Sulaco.dmm"
 		#include "map_files\Research_Outpost\Research_Outpost.dmm"
 		#ifdef TRAVISBUILDING
 		#endif
