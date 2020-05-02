@@ -88,7 +88,7 @@
 	if(next_move > world.time)
 		return FALSE
 
-	if(cooldowns[COOLDOWN_POINT])
+	if(COOLDOWN_CHECK(src, COOLDOWN_POINT))
 		return FALSE
 
 	next_move = world.time + 2

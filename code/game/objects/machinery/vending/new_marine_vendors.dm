@@ -137,64 +137,40 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		ui = new(user, src, ui_key, "MarineSelector", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
-/obj/machinery/marine_selector/ui_data(mob/user)
-	var/list/display_list = list()
-
+/obj/machinery/marine_selector/ui_static_data(mob/user)
+	. = list()
+	.["displayed_records"] = list()
 	for(var/c in categories)
-		display_list[c] = list()
+		.["displayed_records"][c] = list()
 
-	var/m_points = 0
-	var/buy_flags = NONE
-	var/obj/item/card/id/I = user.get_idcard()
-	if(istype(I)) //wearing an ID
-		m_points = I.marine_points
-		buy_flags = I.marine_buy_flags
-
+	.["vendor_name"] = name
+	.["show_points"] = use_points
+	.["total_marine_points"] = MARINE_TOTAL_BUY_POINTS
 
 	for(var/i in listed_products)
 		var/list/myprod = listed_products[i]
 		var/category = myprod[1]
 		var/p_name = myprod[2]
 		var/p_cost = myprod[3]
-		if(p_cost > 0)
-			p_name += " ([p_cost] points)"
+		var/atom/productpath = i
 
-		var/prod_available = FALSE
-		var/list/avail_flags = GLOB.marine_selector_cats[category]
-		var/flags = NONE
-		if(LAZYLEN(avail_flags))
-			for(var/f in avail_flags)
-				flags |= f
-			if(buy_flags & flags)
-				prod_available = TRUE
-		else if(m_points >= p_cost)
-			prod_available = TRUE
+		LAZYADD(.["displayed_records"][category], list(list("prod_index" = i, "prod_name" = p_name, "prod_color" = myprod[4], "prod_cost" = p_cost, "prod_desc" = initial(productpath.desc))))
 
-		LAZYADD(display_list[category], list(list("prod_index" = i, "prod_name" = p_name, "prod_available" = prod_available, "prod_color" = myprod[4])))
+/obj/machinery/marine_selector/ui_data(mob/user)
+	. = list()
 
-	var/list/cats = list()
+	var/obj/item/card/id/I = user.get_idcard()
+	.["current_m_points"] = I?.marine_points || 0
+	var/buy_flags = I?.marine_buy_flags || NONE
+
+
+	.["cats"] = list()
 	for(var/i in GLOB.marine_selector_cats)
-		if(!display_list[i]) // vendor doesnt have this category
-			continue
-		cats[i] = 0
-
-		// If we don't have buy flags, we use points
-		if(!length(GLOB.marine_selector_cats[i]))
-			cats[i] = m_points
-			continue
-
+		.["cats"][i] = list("remaining" = 0, "total" = 0)
 		for(var/flag in GLOB.marine_selector_cats[i])
+			.["cats"][i]["total"]++
 			if(buy_flags & flag)
-				cats[i]++
-
-	var/list/data = list(
-		"vendor_name" = name,
-		"show_points" = use_points,
-		"current_m_points" = m_points,
-		"displayed_records" = display_list,
-		"cats" = cats,
-	)
-	return data
+				.["cats"][i]["remaining"]++
 
 /obj/machinery/marine_selector/ui_act(action, params)
 	if(..())
@@ -266,7 +242,10 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 					to_chat(usr, "<span class='warning'>You can't buy things from this category anymore.</span>")
 					return
 
-			new idx(loc)
+			var/obj/item/vended_item = new idx(loc)
+
+			if(istype(vended_item)) // in case of spawning /obj
+				usr.put_in_any_hand_if_possible(vended_item, warning = FALSE)
 
 			if(icon_vend)
 				flick(icon_vend, src)
