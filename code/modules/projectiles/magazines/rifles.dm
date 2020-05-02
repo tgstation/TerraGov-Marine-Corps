@@ -220,6 +220,20 @@
 	gun_type = /obj/item/weapon/gun/rifle/standard_autoshotgun
 
 //-------------------------------------------------------
+//SMARTMACHINEGUN AMMUNITION
+
+/obj/item/ammo_magazine/standard_smartmachinegun
+	name = "\improper T-29 drum magazine (10x24mm)"
+	desc = "A 10mm drum magazine."
+	caliber = "10x26mm caseless"
+	icon_state = "t29"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/smartgun
+	max_rounds = 300
+	gun_type = /obj/item/weapon/gun/rifle/standard_smartmachinegun
+
+
+//-------------------------------------------------------
 //Sectoid Rifle
 
 /obj/item/ammo_magazine/rifle/sectoid_rifle

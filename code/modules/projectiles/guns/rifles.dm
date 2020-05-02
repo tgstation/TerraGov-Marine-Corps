@@ -629,6 +629,47 @@
 	fire_delay = 1.1 SECONDS
 	burst_amount = 1
 
+//T-29 Smart Machine Gun (It's more of a rifle than the SG.)
+
+/obj/item/weapon/gun/rifle/standard_smartmachinegun
+	name = "\improper T-29 smart machine gun"
+	desc = "The T-29 LMG is the TGMC's current standard IFF-capable Machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
+	icon_state = "t29"
+	item_state = "t29"
+	caliber = "10x26mm caseless" //codex
+	max_shells = 300 //codex
+	force = 30
+	aim_slowdown = 0.95
+	wield_delay = 0.9 SECONDS
+	fire_sound =  'sound/weapons/guns/fire/rifle.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
+	current_mag = /obj/item/ammo_magazine/standard_smartmachinegun
+	attachable_allowed = list(
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/verticalgrip,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/lasersight,
+						/obj/item/attachable/t42barrel,
+						/obj/item/attachable/bipod,
+						/obj/item/attachable/stock/dmr,
+						/obj/item/attachable/magnetic_harness)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	starting_attachment_types = list(/obj/item/attachable/stock/t29stock, /obj/item/attachable/t29barrel)
+	gun_skill_category = GUN_SKILL_SMARTGUN //Uses SG skill for the penalties.
+	attachable_offset = list("muzzle_x" = 42, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 12, "stock_y" = 12)
+	fire_delay = 0.25 SECONDS
+	burst_amount = 0
+	accuracy_mult_unwielded = 0.5
+	accuracy_mult = 1.3
+	scatter = -15
+	scatter_unwielded = 80
+
+
+
 //-------------------------------------------------------
 //Sectoid Rifle
 
