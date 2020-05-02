@@ -963,7 +963,6 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/door/airlock/mainship/marine/requisitions{
-	icon_state = "door_closed";
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -3603,7 +3602,6 @@
 "aiv" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock/mainship/marine/requisitions{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor{
@@ -4227,7 +4225,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/mainship/marine/requisitions{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor{
@@ -13069,7 +13066,6 @@
 /area/sulaco/bridge)
 "aAO" = (
 /obj/machinery/door/airlock/mainship/security{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /turf/open/floor{
@@ -13556,7 +13552,6 @@
 /area/sulaco/brig)
 "aBJ" = (
 /obj/machinery/door/airlock/mainship/marine/alpha/medic{
-	icon_state = "door_closed";
 	dir = 4
 	},
 /turf/open/floor{
@@ -13633,7 +13628,6 @@
 /area/sulaco/hallway/central_hall3)
 "aBV" = (
 /obj/machinery/door/airlock/mainship/marine/alpha/sl{
-	icon_state = "door_closed";
 	dir = 4
 	},
 /turf/open/floor{
@@ -13816,7 +13810,6 @@
 /area/sulaco/marine/delta)
 "aCm" = (
 /obj/machinery/door/airlock/mainship/marine/alpha/engineer{
-	icon_state = "door_closed";
 	dir = 4
 	},
 /turf/open/floor{
@@ -14078,14 +14071,12 @@
 /area/sulaco/marine/delta)
 "aCO" = (
 /obj/machinery/door/airlock/mainship/marine/delta/smart{
-	icon_state = "door_closed";
 	dir = 4
 	},
 /turf/open/floor,
 /area/sulaco/marine/delta)
 "aCP" = (
 /obj/machinery/door/airlock/mainship/marine/alpha/smart{
-	icon_state = "door_closed";
 	dir = 4
 	},
 /turf/open/floor,
@@ -15866,7 +15857,6 @@
 /area/sulaco/marine/delta)
 "aGT" = (
 /obj/machinery/door/airlock/mainship/marine/delta/medic{
-	icon_state = "door_closed";
 	dir = 4
 	},
 /turf/open/floor{
@@ -17157,7 +17147,6 @@
 /area/mainship/shipboard/weapon_room)
 "aJN" = (
 /obj/machinery/door/airlock/mainship/marine/delta/sl{
-	icon_state = "door_closed";
 	dir = 4
 	},
 /turf/open/floor{
@@ -17644,7 +17633,6 @@
 /area/sulaco/hangar/two)
 "aKW" = (
 /obj/machinery/door/airlock/mainship/marine/charlie/medic{
-	icon_state = "door_closed";
 	dir = 4
 	},
 /turf/open/floor{
@@ -17653,7 +17641,6 @@
 /area/sulaco/marine/charlie)
 "aKX" = (
 /obj/machinery/door/airlock/mainship/marine/bravo/medic{
-	icon_state = "door_closed";
 	dir = 8
 	},
 /turf/open/floor{
@@ -17668,7 +17655,6 @@
 /area/sulaco/marine/delta)
 "aKZ" = (
 /obj/machinery/door/airlock/mainship/marine/delta/engineer{
-	icon_state = "door_closed";
 	dir = 4
 	},
 /turf/open/floor{
@@ -17739,7 +17725,6 @@
 /area/sulaco/brig)
 "aLk" = (
 /obj/machinery/door/airlock/mainship/marine/charlie/sl{
-	icon_state = "door_closed";
 	dir = 8
 	},
 /turf/open/floor{
@@ -17748,7 +17733,6 @@
 /area/sulaco/marine/charlie)
 "aLl" = (
 /obj/machinery/door/airlock/mainship/marine/bravo/sl{
-	icon_state = "door_closed";
 	dir = 4
 	},
 /turf/open/floor{
@@ -18044,7 +18028,6 @@
 /area/sulaco/brig)
 "aLX" = (
 /obj/machinery/door/airlock/mainship/marine/charlie/engineer{
-	icon_state = "door_closed";
 	dir = 8
 	},
 /turf/open/floor{
@@ -18067,7 +18050,6 @@
 /area/sulaco/marine/bravo)
 "aMa" = (
 /obj/machinery/door/airlock/mainship/marine/bravo/engineer{
-	icon_state = "door_closed";
 	dir = 8
 	},
 /turf/open/floor{
@@ -18188,7 +18170,6 @@
 /area/sulaco/hallway/central_hall3)
 "aMo" = (
 /obj/machinery/door/airlock/mainship/marine/charlie/smart{
-	icon_state = "door_closed";
 	dir = 4
 	},
 /turf/open/floor,
@@ -18255,7 +18236,6 @@
 /area/sulaco/command/eva)
 "aMz" = (
 /obj/machinery/door/airlock/mainship/marine/bravo/smart{
-	icon_state = "door_closed";
 	dir = 4
 	},
 /turf/open/floor,
@@ -19971,7 +19951,6 @@
 /area/sulaco/morgue)
 "aQR" = (
 /obj/machinery/door/airlock/mainship/marine/requisitions{
-	icon_state = "door_closed";
 	dir = 8
 	},
 /turf/open/floor/mainship{

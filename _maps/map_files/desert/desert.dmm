@@ -388,7 +388,6 @@
 "bq" = (
 /obj/machinery/door/airlock/colony/engineering{
 	name = "\improper Maintenance Airlock";
-	icon_state = "door_closed";
 	dir = 1
 	},
 /obj/structure/cable/yellow{
@@ -701,7 +700,6 @@
 "cp" = (
 /obj/machinery/door/airlock/colony/engineering{
 	name = "\improper Maintenance Airlock";
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -752,7 +750,6 @@
 /area/shuttle/drop1/lz1)
 "cw" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /turf/open/floor/tile/white,
@@ -1088,7 +1085,6 @@
 "dt" = (
 /obj/machinery/door/airlock/colony/engineering{
 	name = "\improper Maintenance Airlock";
-	icon_state = "door_closed";
 	dir = 1
 	},
 /obj/structure/cable/yellow{
@@ -1535,7 +1531,6 @@
 	},
 /obj/machinery/door/airlock/colony/engineering{
 	name = "\improper Storage";
-	icon_state = "door_closed";
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -2375,7 +2370,6 @@
 "hc" = (
 /obj/machinery/door/airlock/colony/engineering{
 	name = "\improper Maintenance Airlock";
-	icon_state = "door_closed";
 	dir = 1
 	},
 /obj/structure/cable/yellow{
@@ -2783,7 +2777,6 @@
 "ie" = (
 /obj/machinery/door/airlock/colony/engineering{
 	name = "\improper Maintenance Airlock";
-	icon_state = "door_closed";
 	dir = 1
 	},
 /obj/structure/cable/yellow{
@@ -3206,7 +3199,6 @@
 "jh" = (
 /obj/machinery/door/airlock/colony/engineering{
 	name = "\improper Maintenance Airlock";
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -3604,7 +3596,6 @@
 /area/desert/outside/sw)
 "kq" = (
 /obj/machinery/door/airlock/multi_tile/secure2_glass{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
@@ -3632,7 +3623,6 @@
 /area/desert/outside/sw)
 "ku" = (
 /obj/machinery/door/airlock/multi_tile/secure2_glass{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -3771,7 +3761,6 @@
 "kQ" = (
 /obj/machinery/door/airlock/colony/engineering{
 	name = "\improper Maintenance Airlock";
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -3924,7 +3913,6 @@
 /area/desert/interior/shipping/south)
 "lt" = (
 /obj/machinery/door/airlock/multi_tile/secure2_glass{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
@@ -3932,7 +3920,6 @@
 /area/desert/interior/shipping/south)
 "lu" = (
 /obj/machinery/door/airlock/multi_tile/secure2_glass{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -4103,7 +4090,6 @@
 "Bv" = (
 /obj/machinery/door/airlock/colony/engineering{
 	name = "\improper Storage";
-	icon_state = "door_closed";
 	dir = 8
 	},
 /turf/open/floor/plating,

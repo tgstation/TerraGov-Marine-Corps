@@ -5944,7 +5944,6 @@
 /area/mainship/hallways/hangar)
 "pm" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,

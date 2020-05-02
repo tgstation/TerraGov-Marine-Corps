@@ -5087,7 +5087,6 @@
 /area/icy_caves/outpost/research)
 "qI" = (
 /obj/machinery/door/airlock/colony/research{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor/tile/dark2,
@@ -5147,7 +5146,6 @@
 /area/icy_caves/outpost/research)
 "qP" = (
 /obj/machinery/door/airlock/colony/research{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /obj/structure/cable/yellow{
