@@ -629,6 +629,7 @@
 	fire_delay = 1.1 SECONDS
 	burst_amount = 1
 
+//-------------------------------------------------------
 //T-29 Smart Machine Gun (It's more of a rifle than the SG.)
 
 /obj/item/weapon/gun/rifle/standard_smartmachinegun
@@ -640,7 +641,7 @@
 	max_shells = 300 //codex
 	force = 30
 	aim_slowdown = 0.95
-	wield_delay = 0.9 SECONDS
+	wield_delay = 1.3 SECONDS
 	fire_sound =  'sound/weapons/guns/fire/rifle.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
@@ -664,7 +665,7 @@
 	fire_delay = 0.25 SECONDS
 	burst_amount = 0
 	accuracy_mult_unwielded = 0.5
-	accuracy_mult = 1.3
+	accuracy_mult = 1.2
 	scatter = -15
 	scatter_unwielded = 80
 
