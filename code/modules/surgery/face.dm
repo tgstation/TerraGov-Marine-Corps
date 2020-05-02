@@ -124,7 +124,7 @@
 /datum/surgery_step/face/cauterize/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/head/affected)
 	user.visible_message("<span class='notice'>[user] cauterizes the incision on [target]'s face and neck with \the [tool].</span>", \
 	"<span class='notice'>You cauterize the incision on [target]'s face and neck with \the [tool].</span>")
-	affected.limb_status &= ~LIMB_BLEEDING
+	affected.remove_limb_flags(LIMB_BLEEDING)
 	affected.disfigured = 0
 	affected.owner.name = affected.owner.get_visible_name()
 	affected.face_surgery_stage = 0

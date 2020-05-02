@@ -80,12 +80,17 @@
 #define STASIS_BAG_TRAIT "stasis_bag"
 #define CRYOPOD_TRAIT "cryopod"
 #define TRAIT_XENO "xeno"
+#define FROZEN_TRAIT "frozen"
+#define STAT_TRAIT "stat"
+#define NECKGRAB_TRAIT "neckgrab"
 
 //mob traits
 #define TRAIT_KNOCKEDOUT		"knockedout" //Forces the user to stay unconscious.
 #define TRAIT_INCAPACITATED		"incapacitated"
+#define TRAIT_IMMOBILE			"immobile" //User is unable to move by its own volition.
 #define TRAIT_STUNIMMUNE		"stun_immunity"
 #define TRAIT_BATONIMMUNE		"baton_immunity"
 #define TRAIT_SLEEPIMMUNE		"sleep_immunity"
 #define TRAIT_FLASHBANGIMMUNE	"flashbang_immunity"
 #define TRAIT_FAKEDEATH			"fakedeath" //Makes the owner appear as dead to most forms of medical examination
+#define TRAIT_LEGLESS			"legless" //Has lost all the appendages needed to stay standing up.
