@@ -208,7 +208,7 @@
 	desc = "A well-crafted suit of M3 Pattern Armor typically found in the hands of higher-ranking officers. Useful for letting your men know who is in charge when taking to the field"
 
 /obj/item/clothing/suit/storage/marine/smartgunner
-	name = "M56 combat harness"
+	name = "M26 combat harness"
 	desc = "A heavy protective vest designed to be worn with the T26 Smartmachinegun System. \nIt has specially designed straps and reinforcement to carry the Smartmachineguns drums inside of it."
 	icon_state = "8"
 	item_state = "armor"
@@ -222,6 +222,7 @@
 					/obj/item/ammo_magazine,
 					/obj/item/explosive/mine,
 					/obj/item/weapon/combat_knife,
+					/obj/item/weapon/gun/smartgun,
                     /obj/item/weapon/gun/rifle/standard_smartmachinegun,
 					/obj/item/storage/belt/sparepouch)
 	pockets = /obj/item/storage/internal/suit/marine/smartgunner
