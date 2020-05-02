@@ -597,7 +597,7 @@ below 100 is not dizzy
 	else if(lying_angle)
 		set_lying_angle(0)
 
-	set_canmove(!(IsStun() || frozen || laid_down))
+	set_canmove(!(HAS_TRAIT(src, TRAIT_IMMOBILE) || laid_down))
 
 	if(lying_angle)
 		density = FALSE
@@ -785,3 +785,24 @@ below 100 is not dizzy
 	lying_angle = new_lying
 	update_transform()
 	lying_prev = lying_angle
+
+
+/mob/living/set_stat(new_stat)
+	. = ..()
+	if(isnull(.))
+		return
+	if(stat == CONSCIOUS) //From unconscious to conscious.
+		REMOVE_TRAIT(src, TRAIT_IMMOBILE, STAT_TRAIT)
+	else if(. == CONSCIOUS) //From conscious to unconscious.
+		ADD_TRAIT(src, TRAIT_IMMOBILE, STAT_TRAIT)
+
+
+/mob/living/setGrabState(newstate)
+	. = ..()
+	if(isnull(.))
+		return
+	if(grab_state >= GRAB_NECK)
+		if(. < GRAB_NECK) //Neckgrabbed.
+			ADD_TRAIT(pulling, TRAIT_IMMOBILE, NECKGRAB_TRAIT)
+	else if(. >= GRAB_NECK) //Released from neckgrab.
+		REMOVE_TRAIT(pulling, TRAIT_IMMOBILE, NECKGRAB_TRAIT)
