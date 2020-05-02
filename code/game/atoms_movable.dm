@@ -876,4 +876,7 @@
 
 
 /atom/movable/proc/setGrabState(newstate)
+	if(newstate == grab_state)
+		return
+	. = grab_state
 	grab_state = newstate
