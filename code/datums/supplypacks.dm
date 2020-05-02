@@ -1664,11 +1664,11 @@ AMMO
                     /obj/item/ammo_magazine/standard_smartmachinegun,
 					/obj/item/ammo_magazine/standard_smartmachinegun
 					)
-	cost = RO_PRICE_CHEAP
+	cost = 30
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper smartgun powerpack crate"
 	group = "Ammo"
-	
+
 /datum/supply_packs/ammo_sentry
 	name = "UA 571-C sentry ammunition (x2)"
 	contains = list(
