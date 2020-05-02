@@ -231,6 +231,7 @@
 	default_ammo = /datum/ammo/bullet/smartgun
 	max_rounds = 300
 	gun_type = /obj/item/weapon/gun/rifle/standard_smartmachinegun
+	reload_delay = 20
 
 
 //-------------------------------------------------------
