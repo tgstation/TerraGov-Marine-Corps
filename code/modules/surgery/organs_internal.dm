@@ -23,7 +23,7 @@
 	max_duration = 80
 
 /datum/surgery_step/internal/remove_embryo/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
-	if(target_zone != "chest")
+	if(affected.body_part != CHEST)
 		return 0
 	if(..())
 		var/obj/item/alien_embryo/A = locate() in target

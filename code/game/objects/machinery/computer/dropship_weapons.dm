@@ -26,55 +26,35 @@
 		WARNING("[src] could not find shuttle [shuttle_tag] from SSshuttle")
 		return
 
-	var/list/data = list()
-	var/list/equipment_data = list()
-	var/list/targets_data = list()
+	. = list()
+	.["equipment_data"] = list()
+	.["targets_data"] = list()
 	for(var/X in GLOB.active_laser_targets)
 		var/obj/effect/overlay/temp/laser_target/LT = X
 		var/area/laser_area = get_area(LT)
-		targets_data += list(list("target_name" = "[LT.name] ([laser_area.name])", "target_tag" = LT.target_id))
+		.["targets_data"] += list(list("target_name" = "[LT.name] ([laser_area.name])", "target_tag" = LT.target_id))
 	shuttle_equipments = shuttle.equipments
 	var/element_nbr = 1
 	for(var/X in shuttle.equipments)
 		var/obj/structure/dropship_equipment/E = X
-		equipment_data += list(list("name"= sanitize(copytext(E.name,1,MAX_MESSAGE_LEN)), "eqp_tag" = element_nbr, "is_weapon" = E.is_weapon, "is_interactable" = E.is_interactable))
+		.["equipment_data"] += list(list("name"= sanitize(copytext(E.name,1,MAX_MESSAGE_LEN)), "eqp_tag" = element_nbr, "is_weapon" = E.is_weapon, "is_interactable" = E.is_interactable))
 		element_nbr++
 
-	var/selected_eqp_name = ""
-	var/selected_eqp_ammo_name = ""
-	var/selected_eqp_ammo_amt = 0
-	var/selected_eqp_max_ammo_amt = 0
-	var/screen_mode = 0
-	var/ammo_status = ""
+	.["selected_eqp_name"] = ""
+	.["selected_eqp_ammo_name"] = ""
+	.["selected_eqp_ammo_amt"] = 0
+	.["selected_eqp_max_ammo_amt"] = 0
+	.["screen_mode"] = 0
 	if(selected_equipment)
-		selected_eqp_name = sanitize(copytext(selected_equipment.name,1,MAX_MESSAGE_LEN))
+		.["selected_eqp_name"] = sanitize(copytext(selected_equipment.name,1,MAX_MESSAGE_LEN))
+		.["selected_eqp"] = .["selected_eqp_name"]
 		if(selected_equipment.ammo_equipped)
-			selected_eqp_ammo_name = sanitize(copytext(selected_equipment.ammo_equipped.name,1,MAX_MESSAGE_LEN))
-			selected_eqp_ammo_amt = selected_equipment.ammo_equipped.ammo_count
-			selected_eqp_max_ammo_amt = selected_equipment.ammo_equipped.max_ammo_count
+			.["selected_eqp_ammo_name"] = sanitize(copytext(selected_equipment.ammo_equipped.name,1,MAX_MESSAGE_LEN))
+			.["selected_eqp_ammo_amt"] = selected_equipment.ammo_equipped.ammo_count
+			.["selected_eqp_max_ammo_amt"] = selected_equipment.ammo_equipped.max_ammo_count
+		.["screen_mode"] = selected_equipment.screen_mode
 
-			switch((selected_eqp_ammo_amt / selected_eqp_max_ammo_amt) * 100)
-				if(50 to INFINITY)
-					ammo_status = "good"
-				if(0 to 50)
-					ammo_status = "average"
-				if(-INFINITY to 0)
-					ammo_status = "bad"
-		screen_mode = selected_equipment.screen_mode
-
-	data = list(
-		"shuttle_mode" = shuttle.mode,
-		"equipment_data" = equipment_data,
-		"targets_data" = targets_data,
-		"selected_eqp" = selected_eqp_name,
-		"selected_eqp_ammo_name" = selected_eqp_ammo_name,
-		"selected_eqp_ammo_amt" = selected_eqp_ammo_amt,
-		"selected_eqp_max_ammo_amt" = selected_eqp_max_ammo_amt,
-		"selected_eqp_ammo_status" = ammo_status,
-		"screen_mode" = screen_mode,
-	)
-
-	return data
+	.["shuttle_mode"] = shuttle.mode == SHUTTLE_CALL
 
 /obj/machinery/computer/dropship_weapons/ui_act(action, params)
 	. = ..()

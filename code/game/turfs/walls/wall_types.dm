@@ -176,12 +176,11 @@
 /turf/closed/wall/sulaco/hull
 	name = "outer hull"
 	desc = "A reinforced outer hull, probably to prevent breaches"
-	hull = 1
-	max_temperature = 50000 // Nearly impossible to melt
 	walltype = "sulaco"
 
 
 /turf/closed/wall/sulaco/unmeltable
+	hull = 1
 
 /turf/closed/wall/sulaco/unmeltable/ex_act(severity) //Should make it indestructable
 	return
@@ -280,9 +279,6 @@
 	icon_state = "diamond0"
 	walltype = "diamond"
 	mineral = "diamond"
-
-/turf/closed/wall/mineral/diamond/thermitemelt(mob/user)
-	return
 
 
 /turf/closed/wall/mineral/sandstone
