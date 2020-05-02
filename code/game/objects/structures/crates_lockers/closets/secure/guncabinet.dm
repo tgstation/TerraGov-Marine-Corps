@@ -1,6 +1,5 @@
 /obj/structure/closet/secure_closet/guncabinet
 	name = "gun cabinet"
-	req_access_txt = "0"
 	icon = 'icons/obj/structures/misc.dmi'
 	icon_state = "base"
 	icon_off ="base"

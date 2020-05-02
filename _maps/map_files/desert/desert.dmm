@@ -1502,8 +1502,7 @@
 	icon_state = "pipe11-2";
 	dir = 1
 	},
-/obj/machinery/door/airlock/mainship/command/CPToffice{
-	icon_state = "door_closed";
+/obj/machinery/door/airlock/mainship/command/free_access{
 	dir = 2
 	},
 /obj/structure/cable/yellow{
@@ -1810,8 +1809,7 @@
 /area/desert/interior/toilet)
 "ft" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/door/airlock/mainship/medical{
-	icon_state = "door_closed";
+/obj/machinery/door/airlock/mainship/medical/free_access{
 	dir = 1
 	},
 /obj/structure/cable/yellow{
@@ -1833,8 +1831,7 @@
 /area/desert/interior/science)
 "fw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/door/airlock/mainship/research{
-	icon_state = "door_closed";
+/obj/machinery/door/airlock/mainship/research/free_access{
 	dir = 2
 	},
 /obj/structure/cable/yellow{
@@ -2221,8 +2218,7 @@
 /turf/open/floor/tile/white,
 /area/desert/interior/medbay)
 "gD" = (
-/obj/machinery/door/airlock/mainship/research{
-	icon_state = "door_closed";
+/obj/machinery/door/airlock/mainship/research/free_access{
 	dir = 2
 	},
 /turf/open/floor/tile/white,

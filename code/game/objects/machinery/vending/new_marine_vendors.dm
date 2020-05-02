@@ -73,9 +73,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
 	req_access = null
-	req_access_txt = "0"
 	req_one_access = null
-	req_one_access_txt = "0"
 	interaction_flags = INTERACT_MACHINE_NANO
 
 	idle_power_usage = 60
