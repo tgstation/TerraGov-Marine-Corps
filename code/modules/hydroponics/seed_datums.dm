@@ -206,7 +206,6 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 			/datum/reagent/radium,
 			/datum/reagent/medicine/ryetalyn,
 			/datum/reagent/medicine/alkysine,
-			/datum/reagent/thermite,
 			/datum/reagent/medicine/tramadol,
 			/datum/reagent/cryptobiolin,
 			/datum/reagent/medicine/dermaline,
