@@ -153,7 +153,6 @@
 
 	var/evolution_stored = 0 //How much evolution they have stored
 
-	var/upgrade_stored = 0 //How much upgrade points they have stored.
 	var/upgrade = XENO_UPGRADE_INVALID  //This will track their upgrade level.
 
 	var/datum/armor/armor
