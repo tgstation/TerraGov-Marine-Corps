@@ -109,3 +109,8 @@
 /obj/item/encryptionkey/som
 	name = "\improper Sons of Mars encryption key"
 	channels = list(RADIO_CHANNEL_SOM = TRUE)
+
+
+/obj/item/encryptionkey/sectoid
+	name = "\improper alien encryption key"
+	channels = list(RADIO_CHANNEL_SECTOID = TRUE)

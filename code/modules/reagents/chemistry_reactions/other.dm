@@ -71,11 +71,6 @@
 	results = list(/datum/reagent/water = 1)
 	required_reagents = list(/datum/reagent/oxygen = 1, /datum/reagent/hydrogen = 2)
 
-/datum/chemical_reaction/thermite
-	name = "Thermite"
-	results = list(/datum/reagent/thermite = 3)
-	required_reagents = list(/datum/reagent/aluminum = 10, /datum/reagent/iron = 10, /datum/reagent/oxygen = 10, /datum/reagent/toxin/phoron = 1)
-
 /datum/chemical_reaction/lexorin
 	name = "Lexorin"
 	results = list(/datum/reagent/toxin/lexorin = 3)

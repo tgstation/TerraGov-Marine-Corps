@@ -48,6 +48,7 @@
 #define RADIO_CHANNEL_DEATHSQUAD "Deathsquad"
 #define RADIO_CHANNEL_IMPERIAL "Imperial"
 #define RADIO_CHANNEL_SOM "Sons of Mars"
+#define RADIO_CHANNEL_SECTOID "Alien"
 #define RADIO_CHANNEL_DS1 "Alamo"
 #define RADIO_CHANNEL_DS2 "Normandy"
 
@@ -62,6 +63,7 @@
 #define FREQ_IMPERIAL	1341
 #define FREQ_SOM		1343
 #define FREQ_AI			1345
+#define FREQ_SECTOID	1347
 
 #define FREQ_COMMAND 		1353
 #define FREQ_MEDICAL		1355

@@ -60,3 +60,12 @@
 				to_chat(user, "You must be wearing an M56 Powerpack on your back to wear these.")
 				return 0
 	return ..()
+
+/obj/item/clothing/glasses/night/sectoid
+	name = "alien lens"
+	desc = "A thick, black coating over an alien's eyes, allowing them to see in the dark."
+	icon_state = "alien_lens"
+	item_state = "alien_lens"
+	darkness_view = 7
+	lighting_alpha = LIGHTING_PLANE_ALPHA_INVISIBLE
+	flags_item = NODROP|DELONDROP
