@@ -1378,11 +1378,7 @@
 /turf/open/floor/prison/marked,
 /area/prison/research/secret/bioengineering)
 "agn" = (
-/obj/machinery/door/airlock/prison{
-	density = 0;
-	icon_state = "door_open";
-	opacity = 0
-	},
+/obj/machinery/door/airlock/prison/open,
 /turf/open/floor/prison/cellstripe{
 	dir = 4
 	},
@@ -4044,11 +4040,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/airlock/prison{
-	density = 0;
-	icon_state = "door_open";
-	opacity = 0
-	},
+/obj/machinery/door/airlock/prison/open,
 /turf/open/floor/prison,
 /area/prison/cellblock/maxsec/south)
 "anc" = (
@@ -4091,11 +4083,7 @@
 	},
 /area/prison/cellblock/maxsec/south)
 "anh" = (
-/obj/machinery/door/airlock/prison{
-	density = 0;
-	icon_state = "door_open";
-	opacity = 0
-	},
+/obj/machinery/door/airlock/prison/open,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -5000,11 +4988,7 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/north)
 "apj" = (
-/obj/machinery/door/airlock/prison{
-	density = 0;
-	icon_state = "door_open";
-	opacity = 0
-	},
+/obj/machinery/door/airlock/prison/open,
 /turf/open/floor/prison/red/full,
 /area/prison/cellblock/highsec/north/north)
 "apk" = (
@@ -7731,11 +7715,7 @@
 /turf/open/floor/wood,
 /area/prison/residential/north)
 "avU" = (
-/obj/machinery/door/airlock/prison/horizontal{
-	density = 0;
-	icon_state = "door_open";
-	opacity = 0
-	},
+/obj/machinery/door/airlock/prison/horizontal/open,
 /turf/open/floor/prison/red/full,
 /area/prison/cellblock/highsec/north/north)
 "avV" = (
@@ -12847,11 +12827,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/north)
 "aIs" = (
-/obj/machinery/door/airlock/prison{
-	density = 0;
-	icon_state = "door_open";
-	opacity = 0
-	},
+/obj/machinery/door/airlock/prison/open,
 /turf/open/floor/prison/red/full,
 /area/prison/cellblock/highsec/north/south)
 "aIt" = (
@@ -17590,11 +17566,7 @@
 /turf/open/floor/prison,
 /area/prison/canteen)
 "aTH" = (
-/obj/machinery/door/airlock/prison/horizontal{
-	density = 0;
-	icon_state = "door_open";
-	opacity = 0
-	},
+/obj/machinery/door/airlock/prison/horizontal/open,
 /turf/open/floor/prison/green/full,
 /area/prison/cellblock/lowsec/nw)
 "aTI" = (
@@ -17674,11 +17646,7 @@
 	},
 /area/prison/yard)
 "aTS" = (
-/obj/machinery/door/airlock/prison/horizontal{
-	density = 0;
-	icon_state = "door_open";
-	opacity = 0
-	},
+/obj/machinery/door/airlock/prison/horizontal/open,
 /turf/open/floor/prison/green/full,
 /area/prison/cellblock/lowsec/ne)
 "aTT" = (
@@ -18911,11 +18879,7 @@
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/prison/security/monitoring/highsec)
 "aWA" = (
-/obj/machinery/door/airlock/prison/horizontal{
-	density = 0;
-	icon_state = "door_open";
-	opacity = 0
-	},
+/obj/machinery/door/airlock/prison/horizontal/open,
 /turf/open/floor/prison/red/full,
 /area/prison/cellblock/highsec/north/south)
 "aWB" = (
@@ -19543,11 +19507,7 @@
 	},
 /area/prison/cellblock/lowsec/ne)
 "aYp" = (
-/obj/machinery/door/airlock/prison{
-	density = 0;
-	icon_state = "door_open";
-	opacity = 0
-	},
+/obj/machinery/door/airlock/prison/open,
 /turf/open/floor/prison/green/full,
 /area/prison/cellblock/lowsec/ne)
 "aYq" = (
@@ -20679,11 +20639,7 @@
 	},
 /area/prison/cellblock/lowsec/nw)
 "bbm" = (
-/obj/machinery/door/airlock/prison{
-	density = 0;
-	icon_state = "door_open";
-	opacity = 0
-	},
+/obj/machinery/door/airlock/prison/open,
 /turf/open/floor/prison/green/full,
 /area/prison/cellblock/lowsec/nw)
 "bbn" = (
@@ -28226,11 +28182,7 @@
 	},
 /area/prison/cellblock/lowsec/se)
 "bsM" = (
-/obj/machinery/door/airlock/prison/horizontal{
-	density = 0;
-	icon_state = "door_open";
-	opacity = 0
-	},
+/obj/machinery/door/airlock/prison/horizontal/open,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/prison/blue/full,
@@ -30372,11 +30324,7 @@
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/se)
 "byq" = (
-/obj/machinery/door/airlock/prison{
-	density = 0;
-	icon_state = "door_open";
-	opacity = 0
-	},
+/obj/machinery/door/airlock/prison/open,
 /turf/open/floor/prison/green/full,
 /area/prison/cellblock/lowsec/sw)
 "byr" = (
@@ -30779,11 +30727,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/central)
 "bzs" = (
-/obj/machinery/door/airlock/prison{
-	density = 0;
-	icon_state = "door_open";
-	opacity = 0
-	},
+/obj/machinery/door/airlock/prison/open,
 /turf/open/floor/prison/green/full,
 /area/prison/cellblock/lowsec/se)
 "bzt" = (
@@ -32030,11 +31974,7 @@
 	},
 /area/prison/hallway/central)
 "bCA" = (
-/obj/machinery/door/airlock/prison/horizontal{
-	density = 0;
-	icon_state = "door_open";
-	opacity = 0
-	},
+/obj/machinery/door/airlock/prison/horizontal/open,
 /turf/open/floor/prison/red/full,
 /area/prison/cellblock/highsec/south/north)
 "bCB" = (
@@ -34963,11 +34903,7 @@
 	},
 /area/prison/holding/holding2)
 "bJb" = (
-/obj/machinery/door/airlock/prison/horizontal{
-	density = 0;
-	icon_state = "door_open";
-	opacity = 0
-	},
+/obj/machinery/door/airlock/prison/horizontal/open,
 /turf/open/floor/prison/green/full,
 /area/prison/cellblock/lowsec/sw)
 "bJc" = (
@@ -35141,11 +35077,7 @@
 /turf/open/floor/wood,
 /area/prison/residential/south)
 "bJC" = (
-/obj/machinery/door/airlock/prison/horizontal{
-	density = 0;
-	icon_state = "door_open";
-	opacity = 0
-	},
+/obj/machinery/door/airlock/prison/horizontal/open,
 /turf/open/floor/prison/green/full,
 /area/prison/cellblock/lowsec/se)
 "bJE" = (
@@ -37430,11 +37362,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/south)
 "bPg" = (
-/obj/machinery/door/airlock/prison{
-	density = 0;
-	icon_state = "door_open";
-	opacity = 0
-	},
+/obj/machinery/door/airlock/prison/open,
 /turf/open/floor/prison/red/full,
 /area/prison/cellblock/highsec/south/north)
 "bPh" = (
@@ -46542,11 +46470,7 @@
 /turf/open/floor/plating,
 /area/prison/cellblock/protective)
 "cmy" = (
-/obj/machinery/door/airlock/prison/horizontal{
-	density = 0;
-	icon_state = "door_open";
-	opacity = 0
-	},
+/obj/machinery/door/airlock/prison/horizontal/open,
 /turf/open/floor/plating,
 /area/prison/cellblock/highsec/south/south)
 "cmz" = (
@@ -47054,11 +46978,7 @@
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/south/south)
 "cnO" = (
-/obj/machinery/door/airlock/prison/horizontal{
-	density = 0;
-	icon_state = "door_open";
-	opacity = 0
-	},
+/obj/machinery/door/airlock/prison/horizontal/open,
 /turf/open/floor/prison/red/full,
 /area/prison/cellblock/highsec/south/south)
 "cnQ" = (
@@ -48119,11 +48039,7 @@
 	},
 /area/prison/cellblock/mediumsec/east)
 "cqS" = (
-/obj/machinery/door/airlock/prison/horizontal{
-	density = 0;
-	icon_state = "door_open";
-	opacity = 0
-	},
+/obj/machinery/door/airlock/prison/horizontal/open,
 /turf/open/floor/prison/blue/full,
 /area/prison/cellblock/protective)
 "cqT" = (
@@ -48651,11 +48567,7 @@
 /turf/open/floor/plating,
 /area/prison/cellblock/mediumsec/west)
 "csA" = (
-/obj/machinery/door/airlock/prison/horizontal{
-	density = 0;
-	icon_state = "door_open";
-	opacity = 0
-	},
+/obj/machinery/door/airlock/prison/horizontal/open,
 /turf/open/floor/prison/yellow/full,
 /area/prison/cellblock/mediumsec/west)
 "csB" = (
@@ -48736,11 +48648,7 @@
 	},
 /area/prison/cellblock/mediumsec/north)
 "csK" = (
-/obj/machinery/door/airlock/prison/horizontal{
-	density = 0;
-	icon_state = "door_open";
-	opacity = 0
-	},
+/obj/machinery/door/airlock/prison/horizontal/open,
 /turf/open/floor/prison/yellow/full,
 /area/prison/cellblock/mediumsec/east)
 "csL" = (
@@ -49446,11 +49354,7 @@
 	},
 /area/prison/cellblock/mediumsec/east)
 "cuy" = (
-/obj/machinery/door/airlock/prison{
-	density = 0;
-	icon_state = "door_open";
-	opacity = 0
-	},
+/obj/machinery/door/airlock/prison/open,
 /turf/open/floor/prison/yellow/full,
 /area/prison/cellblock/mediumsec/north)
 "cuz" = (
@@ -49497,11 +49401,7 @@
 	},
 /area/prison/cellblock/mediumsec/west)
 "cuI" = (
-/obj/machinery/door/airlock/prison{
-	density = 0;
-	icon_state = "door_open";
-	opacity = 0
-	},
+/obj/machinery/door/airlock/prison/open,
 /turf/open/floor/prison/red/full,
 /area/prison/cellblock/highsec/south/south)
 "cuJ" = (
@@ -49531,11 +49431,7 @@
 	},
 /area/prison/cellblock/mediumsec/south)
 "cuO" = (
-/obj/machinery/door/airlock/prison{
-	density = 0;
-	icon_state = "door_open";
-	opacity = 0
-	},
+/obj/machinery/door/airlock/prison/open,
 /turf/open/floor/prison/yellow/full,
 /area/prison/cellblock/mediumsec/east)
 "cuP" = (
@@ -50060,11 +49956,7 @@
 	},
 /area/prison/security/monitoring/medsec/central)
 "cwk" = (
-/obj/machinery/door/airlock/prison{
-	density = 0;
-	icon_state = "door_open";
-	opacity = 0
-	},
+/obj/machinery/door/airlock/prison/open,
 /turf/open/floor/prison/yellow/full,
 /area/prison/cellblock/mediumsec/south)
 "cwl" = (
@@ -50197,11 +50089,7 @@
 	},
 /area/prison/security/monitoring/medsec/central)
 "cwC" = (
-/obj/machinery/door/airlock/prison{
-	density = 0;
-	icon_state = "door_open";
-	opacity = 0
-	},
+/obj/machinery/door/airlock/prison/open,
 /turf/open/floor/plating,
 /area/prison/cellblock/mediumsec/west)
 "cwE" = (
@@ -50224,11 +50112,7 @@
 /turf/open/floor/plating,
 /area/prison/pirate)
 "cwG" = (
-/obj/machinery/door/airlock/prison{
-	density = 0;
-	icon_state = "door_open";
-	opacity = 0
-	},
+/obj/machinery/door/airlock/prison/open,
 /turf/open/floor/prison/yellow/full,
 /area/prison/cellblock/mediumsec/west)
 "cwH" = (
@@ -50831,11 +50715,7 @@
 	},
 /area/prison/cellblock/mediumsec/south)
 "czk" = (
-/obj/machinery/door/airlock/prison/horizontal{
-	density = 0;
-	icon_state = "door_open";
-	opacity = 0
-	},
+/obj/machinery/door/airlock/prison/horizontal/open,
 /turf/open/floor/prison/yellow/full,
 /area/prison/cellblock/mediumsec/south)
 "czl" = (

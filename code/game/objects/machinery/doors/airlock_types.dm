@@ -792,13 +792,23 @@
 	icon = 'icons/obj/doors/mainship/dropship2_pilot.dmi'
 
 //PRISON AIRLOCKS
-/obj/machinery/door/airlock/prison/
+/obj/machinery/door/airlock/prison
 	name = "\improper Cell Door"
 	icon = 'icons/obj/doors/prison/celldoor.dmi'
 	glass = FALSE
 
+/obj/machinery/door/airlock/prison/open
+	icon_state = "door_open"
+	density = FALSE
+	opacity = FALSE
+
 /obj/machinery/door/airlock/prison/horizontal
 	dir = SOUTH
+
+/obj/machinery/door/airlock/prison/horizontal/open
+	icon_state = "door_open"
+	density = FALSE
+	opacity = FALSE
 
 
 //Colony Mapped Doors
