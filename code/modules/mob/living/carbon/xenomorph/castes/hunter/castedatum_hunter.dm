@@ -29,7 +29,7 @@
 
 	// *** Evolution *** //
 	evolution_threshold = 180
-	upgrade_threshold = 120
+	upgrade_threshold = XENO_UPGRADETHRESHOLD_TIER2_MATURE //20 minutes
 
 	evolves_to = list(/mob/living/carbon/xenomorph/ravager)
 	deevolves_to = /mob/living/carbon/xenomorph/runner
@@ -80,7 +80,7 @@
 	max_health = 160
 
 	// *** Evolution *** //
-	upgrade_threshold = 240
+	upgrade_threshold = XENO_UPGRADETHRESHOLD_TIER2_ELDER //60 minutes
 
 	// *** Defense *** //
 	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 5, "acid" = 15)
@@ -111,7 +111,7 @@
 	max_health = 180
 
 	// *** Evolution *** //
-	upgrade_threshold = 480
+	upgrade_threshold = XENO_UPGRADETHRESHOLD_TIER2_ANCIENT //90 minutes
 
 	// *** Defense *** //
 	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 7, "acid" = 18)
@@ -141,9 +141,6 @@
 
 	// *** Health *** //
 	max_health = 200
-
-	// *** Evolution *** //
-	upgrade_threshold = 480
 
 	// *** Defense *** //
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 10, "acid" = 18)

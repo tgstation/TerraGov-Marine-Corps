@@ -31,7 +31,7 @@
 
 	// *** Evolution *** //
 	evolution_threshold = 80
-	upgrade_threshold = 50
+	upgrade_threshold = XENO_UPGRADETHRESHOLD_TIER1_MATURE //10 minutes
 
 	evolves_to = list(/mob/living/carbon/xenomorph/hunter, /mob/living/carbon/xenomorph/bull, /mob/living/carbon/xenomorph/runner)
 
@@ -82,7 +82,7 @@
 	max_health = 160
 
 	// *** Evolution *** //
-	upgrade_threshold = 100
+	upgrade_threshold = XENO_UPGRADETHRESHOLD_TIER1_ELDER //30 minutes
 
 	// *** Defense *** //
 	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 3, "rad" = 3, "fire" = 3, "acid" = 3)
@@ -114,7 +114,7 @@
 	max_health = 180
 
 	// *** Evolution *** //
-	upgrade_threshold = 200
+	upgrade_threshold = XENO_UPGRADETHRESHOLD_TIER1_ANCIENT //60 minutes
 
 	// *** Defense *** //
 	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
@@ -145,9 +145,6 @@
 
 	// *** Health *** //
 	max_health = 200
-
-	// *** Evolution *** //
-	upgrade_threshold = 200
 
 	// *** Defense *** //
 	armor = list("melee" = 24, "bullet" = 24, "laser" = 24, "energy" = 124, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 7, "acid" = 7)

@@ -27,7 +27,7 @@
 	max_health = 200
 
 	// *** Evolution *** //
-	upgrade_threshold = 250
+	upgrade_threshold = XENO_UPGRADETHRESHOLD_TIER3_MATURE //30 minutes
 
 	deevolves_to = /mob/living/carbon/xenomorph/spitter
 
@@ -87,7 +87,7 @@
 	max_health = 220
 
 	// *** Evolution *** //
-	upgrade_threshold = 500
+	upgrade_threshold = XENO_UPGRADETHRESHOLD_TIER3_ELDER //90 minutes
 
 	// *** Defense *** //
 	armor = list("melee" = 34, "bullet" = 34, "laser" = 34, "energy" = 34, "bomb" = XENO_BOMB_RESIST_0, "bio" = 33, "rad" = 33, "fire" = 20, "acid" = 33)
@@ -123,7 +123,7 @@
 	max_health = 240
 
 	// *** Evolution *** //
-	upgrade_threshold = 1000
+	upgrade_threshold = XENO_UPGRADETHRESHOLD_TIER3_ANCIENT //120 minutes
 
 	// *** Defense *** //
 	armor = list("melee" = 38, "bullet" = 38, "laser" = 38 , "energy" = 38, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 22, "acid" = 35)

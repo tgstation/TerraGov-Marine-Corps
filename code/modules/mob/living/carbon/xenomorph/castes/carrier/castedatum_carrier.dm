@@ -28,7 +28,7 @@
 
 	// *** Evolution *** //
 	evolution_threshold = 180
-	upgrade_threshold = 120
+	upgrade_threshold = XENO_UPGRADETHRESHOLD_TIER2_MATURE //20 minutes
 
 	deevolves_to = /mob/living/carbon/xenomorph/drone
 
@@ -89,7 +89,7 @@
 	max_health = 225
 
 	// *** Evolution *** //
-	upgrade_threshold = 240
+	upgrade_threshold = XENO_UPGRADETHRESHOLD_TIER2_ELDER //60 minutes
 
 	// *** Defense *** //
 	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 0, "acid" = 5)
@@ -125,7 +125,7 @@
 	max_health = 250
 
 	// *** Evolution *** //
-	upgrade_threshold = 480
+	upgrade_threshold = XENO_UPGRADETHRESHOLD_TIER2_ANCIENT //90 minutes
 
 	// *** Defense *** //
 	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 0, "acid" = 7)
@@ -159,9 +159,6 @@
 
 	// *** Health *** //
 	max_health = 275
-
-	// *** Evolution *** //
-	upgrade_threshold = 480
 
 	// *** Defense *** //
 	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 0, "acid" = 10)

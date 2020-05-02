@@ -24,7 +24,7 @@
 	max_health = 1000
 
 	// *** Evolution *** //
-	upgrade_threshold = 300
+	upgrade_threshold = XENO_UPGRADETHRESHOLD_TIER4_MATURE //40 minutes
 
 	deevolves_to = null
 
@@ -65,7 +65,7 @@
 	plasma_gain = 45 // This is 3 weed every 10 secs.
 
 	// *** Evolution *** //
-	upgrade_threshold = 500
+	upgrade_threshold = XENO_UPGRADETHRESHOLD_TIER4_ELDER //120 minutes
 
 	// *** Abilities *** //
 	actions = list(
@@ -86,7 +86,7 @@
 	max_health = 1000
 
 	// *** Evolution *** //
-	upgrade_threshold = 700
+	upgrade_threshold = XENO_UPGRADETHRESHOLD_TIER4_ANCIENT //150 minutes
 
 	// *** Abilities *** //
 	actions = list(
@@ -106,9 +106,6 @@
 
 	// *** Health *** //
 	max_health = 1000
-
-	// *** Evolution *** //
-	upgrade_threshold = 1000
 
 	// *** Abilities *** //
 	actions = list(
