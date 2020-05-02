@@ -209,7 +209,7 @@
 
 /obj/item/clothing/suit/storage/marine/smartgunner
 	name = "M56 combat harness"
-	desc = "A heavy protective vest designed to be worn with the M56 Smartgun System. \nIt has specially designed straps and reinforcement to carry the Smartgun and accessories."
+	desc = "A heavy protective vest designed to be worn with the T26 Smartmachinegun System. \nIt has specially designed straps and reinforcement to carry the Smartmachineguns drums inside of it."
 	icon_state = "8"
 	item_state = "armor"
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
@@ -222,8 +222,19 @@
 					/obj/item/ammo_magazine,
 					/obj/item/explosive/mine,
 					/obj/item/weapon/combat_knife,
-					/obj/item/weapon/gun/smartgun,
+                    /obj/item/weapon/gun/rifle/standard_smartmachinegun,
 					/obj/item/storage/belt/sparepouch)
+	pockets = /obj/item/storage/internal/suit/marine/smartgunner
+
+/obj/item/storage/internal/suit/marine/smartgunner
+	bypass_w_limit = list(
+		/obj/item/ammo_magazine/rifle,
+		/obj/item/ammo_magazine/standard_smartmachinegun,
+		/obj/item/ammo_magazine/smg,
+		/obj/item/ammo_magazine/sniper,
+		/obj/item/cell/lasgun
+	)
+	max_storage_space = 6
 
 /obj/item/clothing/suit/storage/marine/smartgunner/fancy
 	desc = "A heavy protective vest designed to be worn with the M56 Smartgun System. \nIt has specially designed straps and reinforcement to carry the Smartgun and accessories. This luxury model appears to belong to the CO. You feel like you probably could get fired for touching this.."

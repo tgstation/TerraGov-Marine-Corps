@@ -52,15 +52,6 @@
 	actions_types = list(/datum/action/item_action/toggle)
 	vision_flags = SEE_TURFS
 
-/obj/item/clothing/glasses/night/m56_goggles/mob_can_equip(mob/user, slot)
-	if(slot == SLOT_GLASSES)
-		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
-			if(!istype(H.back, /obj/item/smartgun_powerpack))
-				to_chat(user, "You must be wearing an M56 Powerpack on your back to wear these.")
-				return 0
-	return ..()
-
 /obj/item/clothing/glasses/night/sectoid
 	name = "alien lens"
 	desc = "A thick, black coating over an alien's eyes, allowing them to see in the dark."
