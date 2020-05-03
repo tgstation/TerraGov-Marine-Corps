@@ -228,7 +228,7 @@
 	caliber = "10x26mm caseless"
 	icon_state = "t29"
 	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/bullet/smartgun
+	default_ammo = /datum/ammo/bullet/smartmachinegun
 	max_rounds = 300
 	gun_type = /obj/item/weapon/gun/rifle/standard_smartmachinegun
 	reload_delay = 20
