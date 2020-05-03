@@ -15,51 +15,51 @@
 	var/obj/item/storage/internal/pockets = /obj/item/storage/internal/shoes/boot_knife
 
 /obj/item/storage/internal/shoes/boot_knife
-    max_storage_space = 3
-    storage_slots = 1
-    can_hold = list(
-        /obj/item/weapon/combat_knife,
-        /obj/item/attachable/bayonetknife,
+	max_storage_space = 3
+	storage_slots = 1
+	can_hold = list(
+		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
 		/obj/item/weapon/throwing_knife
-    )
+	)
 
 /obj/item/clothing/shoes/marine/Initialize()
-    . = ..()
-    pockets = new pockets(src)
+	. = ..()
+	pockets = new pockets(src)
 
 /obj/item/clothing/shoes/marine/attack_hand(mob/living/user)
-    if(!pockets)
-        return ..()
-    if(pockets.handle_attack_hand(user))
-        return ..()
+	if(!pockets)
+		return ..()
+	if(pockets.handle_attack_hand(user))
+		return ..()
 
 
 /obj/item/clothing/shoes/marine/MouseDrop(over_object, src_location, over_location)
-    if(!pockets)
-        return ..()
-    if(pockets.handle_mousedrop(usr, over_object))
-        return ..()
+	if(!pockets)
+		return ..()
+	if(pockets.handle_mousedrop(usr, over_object))
+		return ..()
 
 
 /obj/item/clothing/shoes/marine/attackby(obj/item/I, mob/user, params)
-    . = ..()
-    if(.)
-        return
-    if(!pockets)
-        return
+	. = ..()
+	if(.)
+		return
+	if(!pockets)
+		return
 
-    return pockets.attackby(I, user, params)
+	return pockets.attackby(I, user, params)
 
 
 /obj/item/clothing/shoes/marine/emp_act(severity)
-    pockets?.emp_act(severity)
-    return ..()
+	pockets?.emp_act(severity)
+	return ..()
 
 /obj/item/clothing/shoes/marine/update_icon()
-    if(length(pockets.contents))
-        icon_state = "[initial(icon_state)]-knife"
-    else
-        icon_state = initial(icon_state)
+	if(length(pockets.contents))
+		icon_state = "[initial(icon_state)]-knife"
+	else
+		icon_state = initial(icon_state)
 
 
 /obj/item/clothing/shoes/marine/pyro
