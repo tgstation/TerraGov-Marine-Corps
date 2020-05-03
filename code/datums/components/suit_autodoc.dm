@@ -64,8 +64,6 @@
 
 	var/overdose_threshold_mod = 0.5
 
-	var/list/supporting_limbs = list()
-
 /**
 	Setup the default cooldown, chemicals and supported limbs
 */
