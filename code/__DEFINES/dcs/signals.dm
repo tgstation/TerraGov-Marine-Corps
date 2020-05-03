@@ -170,8 +170,8 @@
 	#define COMPONENT_CLOTHING_MECHANICS_TINTED	(1<<0)
 
 // /obj/item/armor_module signals
-#define COMSIG_ARMOR_MODULE_ATTACH "armor_module_attach"
-#define COMSIG_ARMOR_MODULE_DETACH "armor_module_detach"
+#define COMSIG_ARMOR_MODULE_ATTACHING "armor_module_attaching"
+#define COMSIG_ARMOR_MODULE_DETACHED "armor_module_detached"
 
 // /obj/item/helmet_module signals
 #define COMSIG_HELMET_MODULE_ATTACHING "helmet_module_attaching"

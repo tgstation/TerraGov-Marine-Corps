@@ -31,7 +31,7 @@
 
 /** Called when the module is added to the armor */
 /obj/item/armor_module/proc/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
-	SEND_SIGNAL(parent, COMSIG_ARMOR_MODULE_ATTACH, user, src)
+	SEND_SIGNAL(parent, COMSIG_ARMOR_MODULE_ATTACHING, user, src)
 	user.dropItemToGround(src)
 	forceMove(parent)
 
@@ -41,7 +41,7 @@
 	forceMove(get_turf(user))
 	user.put_in_any_hand_if_possible(src, warning = FALSE)
 	parent.update_overlays()
-	SEND_SIGNAL(parent, COMSIG_ARMOR_MODULE_DETACH, user, src)
+	SEND_SIGNAL(parent, COMSIG_ARMOR_MODULE_DETACHED, user, src)
 
 
 /obj/item/armor_module/attachable/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
