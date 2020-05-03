@@ -19,7 +19,7 @@
     storage_slots = 1
     can_hold = list(
         /obj/item/weapon/combat_knife,
-        /obj/item/attachable/bayonetknife
+        /obj/item/attachable/bayonetknife,
 		/obj/item/weapon/throwing_knife
     )
 
