@@ -209,7 +209,7 @@
 
 /obj/item/clothing/suit/storage/marine/smartgunner
 	name = "M26 combat harness"
-	desc = "A heavy protective vest designed to be worn with the T26 Smartmachinegun System. \nIt has specially designed straps and reinforcement to carry the Smartmachineguns drums inside of it."
+	desc = "A heavy protective vest designed to be worn with the T26 smart machinegun system. \nIt has specially designed straps and reinforcement to carry the smart machinegun drums inside of it."
 	icon_state = "8"
 	item_state = "armor"
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
