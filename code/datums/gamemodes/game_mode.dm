@@ -421,6 +421,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 				H.regenerate_icons()
 
 		to_chat(L, "<br><br><h1><span class='danger'>Fight for your life!</span></h1><br><br>")
+		L.verbs += /mob/proc/eord_respawn
 		CHECK_TICK
 
 
