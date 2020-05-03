@@ -7,7 +7,7 @@
 	name = "\improper M34A2 Longstreet Light Tank"
 	desc = "A giant piece of armor with a big gun, you know what to do. Entrance in the back."
 
-	icon = 'icons/obj/tank_NS.dmi'
+	icon = 'icons/obj/vehicles/tank_NS.dmi'
 	icon_state = "tank_base"
 	pixel_x = -32
 	pixel_y = -32
