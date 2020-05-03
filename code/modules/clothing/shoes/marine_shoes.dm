@@ -20,7 +20,7 @@
     can_hold = list(
         /obj/item/weapon/combat_knife,
         /obj/item/attachable/bayonetknife,
-		/obj/item/weapon/throwing_knife
+		/obj/item/weapon/throwing_knife	
     )
 
 /obj/item/clothing/shoes/marine/Initialize()
