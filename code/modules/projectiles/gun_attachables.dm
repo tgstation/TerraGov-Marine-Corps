@@ -836,7 +836,7 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/t29stock
-	name = "T-29 Stock"
+	name = "T-29 stock"
 	desc = "A standard machinegun stock."
 	icon_state = "t29stock"
 	wield_delay_mod = 0 SECONDS
