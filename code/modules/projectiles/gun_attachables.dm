@@ -349,6 +349,10 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "bayonetknife_a"
 	force = 25
 	throwforce = 10
+	throwforce = 20
+	throw_speed = 3
+	throw_range = 6
+	attack_speed = 7
 	attach_delay = 10 //Bayonets attach/detach quickly.
 	detach_delay = 10
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
