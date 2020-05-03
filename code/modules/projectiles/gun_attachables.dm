@@ -837,7 +837,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/stock/t29stock
 	name = "T-29 Stock"
-	desc = "A standard MG Stock."
+	desc = "A standard machinegun stock."
 	icon_state = "t29stock"
 	wield_delay_mod = 0 SECONDS
 	pixel_shift_x = 32
