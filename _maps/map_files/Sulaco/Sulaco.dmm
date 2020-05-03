@@ -18,8 +18,8 @@
 "aac" = (
 /turf/open/space/basic,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
-	dir = 8
+	dir = 8;
+	icon_state = "diagonalWall3"
 	},
 /area/sulaco/maintenance/north_solar_maint)
 "aad" = (
@@ -58,8 +58,8 @@
 "aaj" = (
 /turf/open/space/basic,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
-	dir = 1
+	dir = 1;
+	icon_state = "diagonalWall3"
 	},
 /area/space)
 "aak" = (
@@ -132,8 +132,8 @@
 "aay" = (
 /obj/effect/landmark/start/job/squadspecialist,
 /turf/open/floor{
-	icon_state = "warnwhite";
-	dir = 1
+	dir = 1;
+	icon_state = "warnwhite"
 	},
 /area/sulaco/cryosleep)
 "aaz" = (
@@ -142,46 +142,46 @@
 	dir = 1
 	},
 /turf/open/floor{
-	icon_state = "warnwhite";
-	dir = 1
+	dir = 1;
+	icon_state = "warnwhite"
 	},
 /area/sulaco/cryosleep)
 "aaA" = (
 /obj/machinery/cryopod/right,
 /turf/open/floor{
-	icon_state = "warnwhite";
-	dir = 1
+	dir = 1;
+	icon_state = "warnwhite"
 	},
 /area/sulaco/cryosleep)
 "aaB" = (
 /obj/machinery/vending/nanomed,
 /obj/effect/landmark/start/job/squadleader,
 /turf/open/floor{
-	icon_state = "warnwhite";
-	dir = 1
+	dir = 1;
+	icon_state = "warnwhite"
 	},
 /area/sulaco/cryosleep)
 "aaC" = (
 /obj/machinery/cryopod,
 /turf/open/floor{
-	icon_state = "warnwhite";
-	dir = 1
+	dir = 1;
+	icon_state = "warnwhite"
 	},
 /area/sulaco/cryosleep)
 "aaD" = (
 /obj/machinery/vending/nanomed,
 /obj/effect/landmark/start/job/squadspecialist,
 /turf/open/floor{
-	icon_state = "warnwhite";
-	dir = 1
+	dir = 1;
+	icon_state = "warnwhite"
 	},
 /area/sulaco/cryosleep)
 "aaE" = (
 /obj/machinery/alarm,
 /obj/effect/landmark/start/job/squadleader,
 /turf/open/floor{
-	icon_state = "warnwhite";
-	dir = 1
+	dir = 1;
+	icon_state = "warnwhite"
 	},
 /area/sulaco/cryosleep)
 "aaF" = (
@@ -190,8 +190,8 @@
 	dir = 1
 	},
 /turf/open/floor{
-	icon_state = "warnwhite";
-	dir = 1
+	dir = 1;
+	icon_state = "warnwhite"
 	},
 /area/sulaco/cryosleep)
 "aaG" = (
@@ -200,22 +200,22 @@
 	dir = 1
 	},
 /turf/open/floor{
-	icon_state = "warnwhite";
-	dir = 1
+	dir = 1;
+	icon_state = "warnwhite"
 	},
 /area/sulaco/cryosleep)
 "aaH" = (
 /obj/effect/landmark/start/job/squadengineer,
 /turf/open/floor{
-	icon_state = "warnwhite";
-	dir = 1
+	dir = 1;
+	icon_state = "warnwhite"
 	},
 /area/sulaco/cryosleep)
 "aaI" = (
 /obj/effect/landmark/start/job/squadcorpsman,
 /turf/open/floor{
-	icon_state = "warnwhite";
-	dir = 1
+	dir = 1;
+	icon_state = "warnwhite"
 	},
 /area/sulaco/cryosleep)
 "aaJ" = (
@@ -321,8 +321,8 @@
 /area/sulaco/cryosleep)
 "abb" = (
 /turf/open/floor{
-	icon_state = "warnwhite";
-	dir = 1
+	dir = 1;
+	icon_state = "warnwhite"
 	},
 /area/sulaco/cryosleep)
 "abc" = (
@@ -338,8 +338,8 @@
 /area/sulaco/cryosleep)
 "abd" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
@@ -620,8 +620,8 @@
 "abT" = (
 /obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor{
-	icon_state = "warnwhite";
-	dir = 1
+	dir = 1;
+	icon_state = "warnwhite"
 	},
 /area/sulaco/cryosleep)
 "abU" = (
@@ -965,8 +965,8 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/door/airlock/mainship/marine/requisitions{
-	icon_state = "door_closed";
-	dir = 8
+	dir = 8;
+	icon_state = "door_closed"
 	},
 /turf/open/floor/plating,
 /area/sulaco/disposal)
@@ -1294,8 +1294,8 @@
 "adx" = (
 /obj/machinery/portable_atmospherics/canister/air,
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 8
+	dir = 8;
+	icon_state = "intercom"
 	},
 /turf/open/floor/plating,
 /area/sulaco/disposal)
@@ -1324,8 +1324,8 @@
 	opacity = 0
 	},
 /turf/closed/wall/indestructible/fakeglass{
-	icon_state = "fakewindows";
-	dir = 8
+	dir = 8;
+	icon_state = "fakewindows"
 	},
 /area/sulaco/bridge)
 "adA" = (
@@ -1362,8 +1362,8 @@
 /area/sulaco/medbay/surgery_one)
 "adF" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /obj/structure/table,
 /obj/item/storage/box/beakers,
@@ -1407,8 +1407,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/mainship/medical{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "whitebluefull"
@@ -1486,8 +1486,8 @@
 /area/sulaco/maintenance/north_solar_maint)
 "adV" = (
 /obj/machinery/door/airlock/mainship/engineering/CSEoffice{
-	icon_state = "door_closed";
-	dir = 2
+	dir = 2;
+	icon_state = "door_closed"
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -1551,8 +1551,8 @@
 /area/sulaco/showers)
 "aec" = (
 /obj/machinery/shower{
-	icon_state = "shower";
-	dir = 8
+	dir = 8;
+	icon_state = "shower"
 	},
 /obj/machinery/door/window/westleft,
 /obj/structure/window/reinforced/tinted/frosted,
@@ -1566,8 +1566,8 @@
 	dir = 8
 	},
 /turf/open/floor{
-	icon_state = "cult";
-	dir = 2
+	dir = 2;
+	icon_state = "cult"
 	},
 /area/sulaco/cargo)
 "aee" = (
@@ -1577,8 +1577,8 @@
 "aef" = (
 /obj/structure/bed/roller,
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -1586,8 +1586,8 @@
 /area/sulaco/medbay/storage2)
 "aeg" = (
 /turf/open/floor{
-	icon_state = "warnwhite";
-	dir = 4
+	dir = 4;
+	icon_state = "warnwhite"
 	},
 /area/sulaco/showers)
 "aeh" = (
@@ -1921,8 +1921,8 @@
 	dir = 4
 	},
 /turf/open/floor{
-	icon_state = "cult";
-	dir = 2
+	dir = 2;
+	icon_state = "cult"
 	},
 /area/sulaco/cargo)
 "aeV" = (
@@ -2256,8 +2256,8 @@
 "afI" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 8
+	dir = 8;
+	icon_state = "intercom"
 	},
 /turf/open/floor{
 	icon_state = "yellowfull"
@@ -2271,8 +2271,8 @@
 /area/sulaco/showers)
 "afK" = (
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 8
+	dir = 8;
+	icon_state = "intercom"
 	},
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
@@ -2300,8 +2300,8 @@
 "afO" = (
 /obj/structure/supply_drop/charlie,
 /turf/open/floor{
-	icon_state = "cult";
-	dir = 2
+	dir = 2;
+	icon_state = "cult"
 	},
 /area/sulaco/cargo)
 "afP" = (
@@ -2789,8 +2789,8 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock/mainship/medical/glass/CMO{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -2894,8 +2894,8 @@
 	dir = 4
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
@@ -2947,8 +2947,8 @@
 	pixel_x = 30
 	},
 /turf/open/floor{
-	icon_state = "cult";
-	dir = 2
+	dir = 2;
+	icon_state = "cult"
 	},
 /area/sulaco/cargo)
 "agU" = (
@@ -3429,8 +3429,8 @@
 "aib" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/mainship/engineering/CSEoffice{
-	icon_state = "door_closed";
-	dir = 2
+	dir = 2;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	dir = 4;
@@ -3439,8 +3439,8 @@
 /area/sulaco/engineering/ce)
 "aic" = (
 /obj/machinery/door/airlock/mainship/engineering/CSEoffice{
-	icon_state = "door_closed";
-	dir = 2
+	dir = 2;
+	icon_state = "door_closed"
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -3520,8 +3520,8 @@
 	dir = 9
 	},
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 8
+	dir = 8;
+	icon_state = "intercom"
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -3541,8 +3541,8 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 8
+	dir = 8;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall2)
 "aio" = (
@@ -3566,8 +3566,8 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 8
+	dir = 8;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall2)
 "aiq" = (
@@ -3615,8 +3615,8 @@
 "aiv" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock/mainship/marine/requisitions{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -3656,20 +3656,6 @@
 	icon_state = "white"
 	},
 /area/sulaco/medbay)
-"aiB" = (
-/obj/structure/table/reinforced{
-	layer = 2.1
-	},
-/obj/machinery/door/poddoor/shutters{
-	dir = 2;
-	id = "ROlobby1";
-	name = "RO Line 1"
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	icon_state = "dark"
-	},
-/area/sulaco/cargo/office)
 "aiC" = (
 /obj/machinery/computer/crew,
 /turf/open/floor{
@@ -3778,8 +3764,8 @@
 	},
 /obj/item/megaphone,
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 4
+	dir = 4;
+	icon_state = "intercom"
 	},
 /turf/open/floor,
 /area/sulaco/cargo/office)
@@ -3830,20 +3816,6 @@
 	icon_state = "warnwhite"
 	},
 /area/sulaco/cryosleep)
-"aiS" = (
-/obj/structure/table/reinforced{
-	layer = 2.1
-	},
-/obj/machinery/door/poddoor/shutters{
-	dir = 2;
-	id = "ROlobby2";
-	name = "RO Line 2"
-	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/turf/open/floor{
-	icon_state = "dark"
-	},
-/area/sulaco/cargo/office)
 "aiT" = (
 /turf/closed/wall/sulaco,
 /area/sulaco/cargo/office)
@@ -3859,8 +3831,8 @@
 	dir = 4
 	},
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 8
+	dir = 8;
+	icon_state = "intercom"
 	},
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
@@ -3870,8 +3842,8 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /obj/machinery/power/apc/mainship{
 	dir = 4
@@ -4242,8 +4214,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/mainship/marine/requisitions{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -4603,8 +4575,8 @@
 	layer = 2.1
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall2)
 "akt" = (
@@ -4666,8 +4638,8 @@
 /area/sulaco/medbay/surgery_two)
 "akz" = (
 /obj/machinery/light/small{
-	icon_state = "bulb1";
-	dir = 4
+	dir = 4;
+	icon_state = "bulb1"
 	},
 /obj/structure/rack,
 /obj/item/weapon/gun/rifle/standard_lmg,
@@ -4903,8 +4875,8 @@
 "ala" = (
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor{
-	icon_state = "warnwhite";
-	dir = 1
+	dir = 1;
+	icon_state = "warnwhite"
 	},
 /area/sulaco/cryosleep)
 "alb" = (
@@ -4952,8 +4924,8 @@
 /area/sulaco/medbay/west)
 "alf" = (
 /obj/structure/disposalpipe/junction{
-	icon_state = "pipe-j2";
-	dir = 4
+	dir = 4;
+	icon_state = "pipe-j2"
 	},
 /turf/open/floor,
 /area/sulaco/cargo/office)
@@ -4981,42 +4953,10 @@
 /obj/effect/landmark/start/job/squadmarine,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
-	icon_state = "warnwhite";
-	dir = 1
+	dir = 1;
+	icon_state = "warnwhite"
 	},
 /area/sulaco/cryosleep)
-"alk" = (
-/obj/machinery/atmospherics/pipe/manifold/green/hidden{
-	dir = 4
-	},
-/obj/machinery/line_nexter{
-	icon_state = "turnstile";
-	dir = 2
-	},
-/turf/open/floor{
-	icon_state = "bot"
-	},
-/area/sulaco/cargo)
-"all" = (
-/turf/open/floor{
-	dir = 2;
-	icon_state = "loadingarea"
-	},
-/area/sulaco/cargo)
-"alm" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/structure/barricade/metal{
-	icon_state = "metal_0";
-	dir = 4
-	},
-/obj/machinery/line_nexter{
-	icon_state = "turnstile";
-	dir = 2
-	},
-/turf/open/floor{
-	icon_state = "bot"
-	},
-/area/sulaco/cargo)
 "aln" = (
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -5025,14 +4965,6 @@
 	},
 /turf/open/floor,
 /area/sulaco/cargo/office)
-"alo" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/turf/open/floor,
-/area/sulaco/cargo)
 "alp" = (
 /obj/structure/bed/chair/wheelchair,
 /turf/open/floor{
@@ -5056,8 +4988,8 @@
 "alr" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /turf/open/floor{
 	dir = 4;
@@ -5112,8 +5044,8 @@
 	name = "RO Office"
 	},
 /turf/open/floor{
-	icon_state = "bot";
-	dir = 1
+	dir = 1;
+	icon_state = "bot"
 	},
 /area/sulaco/cargo/office)
 "alw" = (
@@ -5248,8 +5180,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/mainship/command/FCDRquarters{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /turf/open/floor/wood,
 /area/sulaco/bridge/office)
@@ -5327,8 +5259,8 @@
 /area/sulaco/medbay)
 "alT" = (
 /obj/structure/disposalpipe/junction{
-	icon_state = "pipe-j2";
-	dir = 4
+	dir = 4;
+	icon_state = "pipe-j2"
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -5419,19 +5351,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/sulaco/cargo)
-"amd" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 5
-	},
-/turf/open/floor{
-	icon_state = "bot"
-	},
-/area/sulaco/cargo)
 "ame" = (
 /obj/structure/table,
 /obj/item/flashlight/flare,
@@ -5458,18 +5377,6 @@
 	icon_state = "warnwhite"
 	},
 /area/sulaco/cryosleep)
-"amh" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8";
-	layer = 2.1
-	},
-/turf/open/floor{
-	icon_state = "bot"
-	},
-/area/sulaco/cargo)
 "ami" = (
 /obj/structure/table,
 /obj/machinery/light,
@@ -5654,26 +5561,6 @@
 /obj/item/tool/wrench,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
-"amC" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8";
-	layer = 2.1
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 10
-	},
-/obj/structure/barricade/metal{
-	icon_state = "metal_0";
-	dir = 4
-	},
-/obj/structure/barricade/metal{
-	icon_state = "metal_0";
-	dir = 8
-	},
-/turf/open/floor,
-/area/sulaco/cargo)
 "amD" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -5694,12 +5581,6 @@
 	},
 /turf/open/floor,
 /area/sulaco/cargo/office)
-"amF" = (
-/obj/structure/bed/chair{
-	dir = 8
-	},
-/turf/open/floor,
-/area/sulaco/cargo)
 "amG" = (
 /obj/machinery/vending/marine/cargo_ammo,
 /turf/open/floor/mainship/mono,
@@ -5991,8 +5872,8 @@
 /area/sulaco/cafeteria)
 "anh" = (
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /turf/open/floor/plating,
 /area/sulaco/hallway/central_hall2)
@@ -6070,8 +5951,8 @@
 /obj/item/clothing/glasses/welding,
 /obj/effect/spawner/random/toolbox,
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 8
+	dir = 8;
+	icon_state = "intercom"
 	},
 /turf/open/floor{
 	dir = 4;
@@ -6173,9 +6054,9 @@
 "anF" = (
 /obj/structure/table,
 /obj/item/stack/sheet/glass{
+	amount = 50;
 	pixel_x = 3;
-	pixel_y = 3;
-	amount = 50
+	pixel_y = 3
 	},
 /obj/item/stack/sheet/metal{
 	amount = 50
@@ -6242,12 +6123,12 @@
 	range = 3
 	},
 /obj/structure/barricade/metal{
-	icon_state = "metal_0";
-	dir = 4
+	dir = 4;
+	icon_state = "metal_0"
 	},
 /obj/structure/barricade/metal{
-	icon_state = "metal_0";
-	dir = 8
+	dir = 8;
+	icon_state = "metal_0"
 	},
 /turf/open/floor,
 /area/sulaco/cargo/office)
@@ -6408,8 +6289,8 @@
 /area/sulaco/bridge)
 "anZ" = (
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/north_solar_maint)
@@ -6440,8 +6321,8 @@
 "aoc" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/mainship/engineering/workshop{
-	icon_state = "door_closed";
-	dir = 2
+	dir = 2;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	dir = 4;
@@ -6451,8 +6332,8 @@
 "aod" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /turf/open/floor/plating,
 /area/sulaco/briefing)
@@ -6507,13 +6388,13 @@
 	opacity = 0
 	},
 /obj/machinery/door/airlock/mainship/command/cic{
-	icon_state = "door_closed";
-	dir = 8
+	dir = 8;
+	icon_state = "door_closed"
 	},
 /obj/structure/sign/prop3,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/bridge)
 "aol" = (
@@ -6525,8 +6406,8 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/engineering/atmos{
-	icon_state = "door_closed";
-	dir = 2
+	dir = 2;
+	icon_state = "door_closed"
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -6661,12 +6542,12 @@
 "aoC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/barricade/metal{
-	icon_state = "metal_0";
-	dir = 4
+	dir = 4;
+	icon_state = "metal_0"
 	},
 /obj/structure/barricade/metal{
-	icon_state = "metal_0";
-	dir = 8
+	dir = 8;
+	icon_state = "metal_0"
 	},
 /turf/open/floor,
 /area/sulaco/cargo/office)
@@ -6689,8 +6570,8 @@
 "aoF" = (
 /obj/item/radio/intercom/general,
 /turf/open/floor{
-	icon_state = "whitered";
-	dir = 1
+	dir = 1;
+	icon_state = "whitered"
 	},
 /area/sulaco/bridge)
 "aoG" = (
@@ -6758,8 +6639,8 @@
 	req_one_access_txt = "0"
 	},
 /turf/open/floor/stairs/rampbottom{
-	icon_state = "rampbottom";
-	dir = 4
+	dir = 4;
+	icon_state = "rampbottom"
 	},
 /area/sulaco/bridge)
 "aoP" = (
@@ -6823,15 +6704,6 @@
 	icon_state = "bot"
 	},
 /area/sulaco/cargo/office)
-"aoX" = (
-/obj/structure/bed/chair{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor,
-/area/sulaco/cargo)
 "aoY" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -6847,8 +6719,8 @@
 	},
 /obj/item/storage/box/tgmc_mre,
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 8
+	dir = 8;
+	icon_state = "intercom"
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -6861,8 +6733,8 @@
 	icon_state = "4-8"
 	},
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 4
+	dir = 4;
+	icon_state = "intercom"
 	},
 /turf/open/floor,
 /area/sulaco/briefing)
@@ -6933,16 +6805,6 @@
 /obj/item/tool/hand_labeler,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
-"apj" = (
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo/office)
-"apk" = (
-/obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 8
-	},
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo/office)
 "apl" = (
 /turf/closed/wall/sulaco,
 /area/sulaco/engineering/engine)
@@ -6961,23 +6823,23 @@
 	},
 /obj/structure/table,
 /turf/open/floor{
-	icon_state = "whitered";
-	dir = 9
+	dir = 9;
+	icon_state = "whitered"
 	},
 /area/sulaco/bridge)
 "apo" = (
 /obj/structure/disposalpipe/trunk,
 /obj/machinery/disposal,
 /turf/open/floor{
-	icon_state = "whitered";
-	dir = 1
+	dir = 1;
+	icon_state = "whitered"
 	},
 /area/sulaco/bridge)
 "app" = (
 /obj/machinery/alarm,
 /turf/open/floor{
-	icon_state = "whitered";
-	dir = 1
+	dir = 1;
+	icon_state = "whitered"
 	},
 /area/sulaco/bridge)
 "apq" = (
@@ -6993,8 +6855,8 @@
 	layer = 2
 	},
 /turf/open/floor/stairs/rampbottom{
-	icon_state = "rampbottom";
-	dir = 4
+	dir = 4;
+	icon_state = "rampbottom"
 	},
 /area/sulaco/bridge)
 "apr" = (
@@ -7003,8 +6865,8 @@
 	dir = 1
 	},
 /turf/open/floor{
-	icon_state = "whitered";
-	dir = 1
+	dir = 1;
+	icon_state = "whitered"
 	},
 /area/sulaco/bridge)
 "aps" = (
@@ -7034,14 +6896,14 @@
 /area/sulaco/cafeteria)
 "apu" = (
 /turf/open/floor{
-	icon_state = "whitered";
-	dir = 1
+	dir = 1;
+	icon_state = "whitered"
 	},
 /area/sulaco/bridge)
 "apv" = (
 /turf/open/floor{
-	icon_state = "whitered";
-	dir = 5
+	dir = 5;
+	icon_state = "whitered"
 	},
 /area/sulaco/bridge)
 "apw" = (
@@ -7192,8 +7054,8 @@
 	},
 /obj/structure/bed/chair,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 5
+	dir = 5;
+	icon_state = "red"
 	},
 /area/sulaco/briefing)
 "apP" = (
@@ -7215,8 +7077,8 @@
 	},
 /obj/structure/bed/chair,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 9
+	dir = 9;
+	icon_state = "red"
 	},
 /area/sulaco/briefing)
 "apR" = (
@@ -7346,9 +7208,9 @@
 /area/sulaco/cargo)
 "aqf" = (
 /obj/item/stack/sheet/glass{
+	amount = 50;
 	pixel_x = 3;
-	pixel_y = 3;
-	amount = 50
+	pixel_y = 3
 	},
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
@@ -7362,8 +7224,8 @@
 /obj/effect/spawner/random/tech_supply,
 /obj/effect/spawner/random/tech_supply,
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 8
+	dir = 8;
+	icon_state = "intercom"
 	},
 /turf/open/floor,
 /area/sulaco/cargo/office)
@@ -7387,8 +7249,8 @@
 	dir = 8
 	},
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 8
+	dir = 8;
+	icon_state = "intercom"
 	},
 /turf/open/floor,
 /area/sulaco/hallway/central_hall2)
@@ -7435,8 +7297,8 @@
 	dir = 8
 	},
 /obj/machinery/light/small{
-	icon_state = "bulb1";
-	dir = 4
+	dir = 4;
+	icon_state = "bulb1"
 	},
 /turf/open/floor,
 /area/sulaco/cargo/office)
@@ -7560,8 +7422,8 @@
 /area/sulaco/engineering/engine)
 "aqG" = (
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/power/terminal{
 	dir = 8
@@ -7599,8 +7461,8 @@
 	layer = 2.1
 	},
 /turf/open/floor{
-	icon_state = "whiteredcorner";
-	dir = 1
+	dir = 1;
+	icon_state = "whiteredcorner"
 	},
 /area/sulaco/bridge)
 "aqK" = (
@@ -7618,8 +7480,8 @@
 	},
 /obj/machinery/power/apc/super,
 /turf/open/floor{
-	icon_state = "whitered";
-	dir = 9
+	dir = 9;
+	icon_state = "whitered"
 	},
 /area/sulaco/bridge)
 "aqM" = (
@@ -7650,9 +7512,9 @@
 /area/sulaco/bridge)
 "aqO" = (
 /obj/structure/cable{
-	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/sulaco/engineering/engine)
@@ -7670,8 +7532,8 @@
 	dir = 4
 	},
 /turf/open/floor{
-	icon_state = "whitered";
-	dir = 5
+	dir = 5;
+	icon_state = "whitered"
 	},
 /area/sulaco/bridge)
 "aqR" = (
@@ -7686,16 +7548,16 @@
 	opacity = 0
 	},
 /obj/machinery/door/airlock/mainship/command/FCDRquarters{
-	icon_state = "door_closed";
-	dir = 8
+	dir = 8;
+	icon_state = "door_closed"
 	},
 /turf/open/floor/carpet,
 /area/sulaco/bridge/office)
 "aqS" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/structure/disposalpipe/junction{
-	icon_state = "pipe-j2";
-	dir = 4
+	dir = 4;
+	icon_state = "pipe-j2"
 	},
 /turf/open/floor/carpet,
 /area/sulaco/bridge/office)
@@ -7747,8 +7609,8 @@
 	dir = 4
 	},
 /turf/open/floor{
-	icon_state = "bot";
-	dir = 1
+	dir = 1;
+	icon_state = "bot"
 	},
 /area/sulaco/hallway/central_hall)
 "aqY" = (
@@ -7775,8 +7637,8 @@
 	dir = 4
 	},
 /turf/open/floor{
-	icon_state = "whiteredcorner";
-	dir = 4
+	dir = 4;
+	icon_state = "whiteredcorner"
 	},
 /area/sulaco/bridge)
 "arc" = (
@@ -7802,9 +7664,9 @@
 	icon_state = "1-8"
 	},
 /obj/structure/cable{
-	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/sulaco/engineering/engine)
@@ -7884,8 +7746,8 @@
 "arn" = (
 /obj/structure/bed/chair,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 4
+	dir = 4;
+	icon_state = "red"
 	},
 /area/sulaco/briefing)
 "aro" = (
@@ -7897,8 +7759,8 @@
 "arp" = (
 /obj/structure/bed/chair,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 8
+	dir = 8;
+	icon_state = "red"
 	},
 /area/sulaco/briefing)
 "arq" = (
@@ -8124,8 +7986,8 @@
 /area/sulaco/engineering)
 "arO" = (
 /obj/machinery/door/airlock/mainship/engineering/workshop{
-	icon_state = "door_closed";
-	dir = 2
+	dir = 2;
+	icon_state = "door_closed"
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -8245,8 +8107,8 @@
 "arY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 8
+	dir = 8;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall)
 "arZ" = (
@@ -8256,8 +8118,8 @@
 	pixel_y = 10
 	},
 /turf/open/floor{
-	icon_state = "whitered";
-	dir = 9
+	dir = 9;
+	icon_state = "whitered"
 	},
 /area/sulaco/bridge)
 "asa" = (
@@ -8268,8 +8130,8 @@
 /area/sulaco/cafeteria)
 "asb" = (
 /turf/open/floor{
-	icon_state = "whiteredcorner";
-	dir = 1
+	dir = 1;
+	icon_state = "whiteredcorner"
 	},
 /area/sulaco/bridge)
 "asc" = (
@@ -8313,8 +8175,8 @@
 	icon_state = "tube1"
 	},
 /turf/open/floor{
-	icon_state = "whitered";
-	dir = 4
+	dir = 4;
+	icon_state = "whitered"
 	},
 /area/sulaco/bridge)
 "asj" = (
@@ -8369,8 +8231,8 @@
 /area/sulaco/bridge)
 "asn" = (
 /turf/open/floor{
-	icon_state = "bot";
-	dir = 1
+	dir = 1;
+	icon_state = "bot"
 	},
 /area/sulaco/hallway/central_hall)
 "aso" = (
@@ -8386,8 +8248,8 @@
 	dir = 4
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 4
+	dir = 4;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall)
 "asr" = (
@@ -8416,24 +8278,14 @@
 	req_one_access_txt = "0"
 	},
 /turf/open/floor/stairs/rampbottom{
-	icon_state = "rampbottom";
-	dir = 4
+	dir = 4;
+	icon_state = "rampbottom"
 	},
 /area/sulaco/bridge)
-"asu" = (
-/obj/machinery/door/poddoor{
-	density = 0;
-	icon_state = "pdoor0";
-	id = "port blast";
-	name = "Blast Doors";
-	opacity = 0
-	},
-/turf/open/floor,
-/area/sulaco/cargo/office)
 "asv" = (
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /turf/open/floor/plating,
 /area/sulaco/briefing)
@@ -8521,8 +8373,8 @@
 /area/sulaco/hallway/central_hall2)
 "asF" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/structure/disposalpipe/trunk,
@@ -8563,8 +8415,8 @@
 "asI" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/mainship/engineering{
-	icon_state = "door_closed";
-	dir = 2
+	dir = 2;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	dir = 4;
@@ -8775,8 +8627,8 @@
 "ate" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
 /obj/structure/disposalpipe/junction{
-	icon_state = "pipe-j2";
-	dir = 4
+	dir = 4;
+	icon_state = "pipe-j2"
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -8988,8 +8840,8 @@
 	layer = 2
 	},
 /turf/open/floor{
-	icon_state = "whitered";
-	dir = 4
+	dir = 4;
+	icon_state = "whitered"
 	},
 /area/sulaco/bridge)
 "atv" = (
@@ -9074,8 +8926,8 @@
 	layer = 2
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 6
+	dir = 6;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall)
 "atD" = (
@@ -9176,8 +9028,8 @@
 "atN" = (
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 10
+	dir = 10;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall)
 "atO" = (
@@ -9296,8 +9148,8 @@
 	dir = 1
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 4
+	dir = 4;
+	icon_state = "red"
 	},
 /area/sulaco/briefing)
 "aua" = (
@@ -9321,8 +9173,8 @@
 	layer = 2
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 8
+	dir = 8;
+	icon_state = "red"
 	},
 /area/sulaco/briefing)
 "auc" = (
@@ -9458,8 +9310,8 @@
 /area/sulaco/briefing)
 "aun" = (
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /turf/open/floor/plating,
 /area/sulaco/bridge/quarters)
@@ -9586,8 +9438,8 @@
 	layer = 2
 	},
 /obj/machinery/door/airlock/mainship/command/cic{
-	icon_state = "door_closed";
-	dir = 8
+	dir = 8;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "red"
@@ -9624,8 +9476,8 @@
 	},
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor{
-	icon_state = "cafeteria";
-	dir = 2
+	dir = 2;
+	icon_state = "cafeteria"
 	},
 /area/sulaco/cafeteria)
 "auy" = (
@@ -9696,8 +9548,8 @@
 	dir = 4
 	},
 /turf/open/floor{
-	icon_state = "bot";
-	dir = 1
+	dir = 1;
+	icon_state = "bot"
 	},
 /area/sulaco/hallway/central_hall3)
 "auE" = (
@@ -9755,8 +9607,8 @@
 /area/sulaco/engineering/smes)
 "auJ" = (
 /obj/machinery/door/airlock/mainship/engineering{
-	icon_state = "door_closed";
-	dir = 2
+	dir = 2;
+	icon_state = "door_closed"
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -9837,8 +9689,8 @@
 	},
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor{
-	icon_state = "cafeteria";
-	dir = 2
+	dir = 2;
+	icon_state = "cafeteria"
 	},
 /area/sulaco/cafeteria)
 "auO" = (
@@ -9898,8 +9750,8 @@
 /area/sulaco/briefing)
 "auT" = (
 /obj/structure/platform_decoration{
-	icon_state = "platform_deco";
-	dir = 1
+	dir = 1;
+	icon_state = "platform_deco"
 	},
 /turf/open/floor{
 	icon_state = "purple"
@@ -10023,8 +9875,8 @@
 	dir = 8
 	},
 /turf/open/floor{
-	icon_state = "whitered";
-	dir = 4
+	dir = 4;
+	icon_state = "whitered"
 	},
 /area/sulaco/bridge)
 "avh" = (
@@ -10063,14 +9915,14 @@
 	dir = 4
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall2)
 "avm" = (
 /turf/open/floor{
-	icon_state = "red";
-	dir = 4
+	dir = 4;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall)
 "avn" = (
@@ -10112,15 +9964,15 @@
 /area/sulaco/hallway/central_hall2)
 "avr" = (
 /obj/machinery/door/airlock/mainship/command/cic{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /turf/open/floor/wood,
 /area/sulaco/bridge/quarters)
 "avs" = (
 /obj/structure/disposalpipe/junction{
-	icon_state = "pipe-j2";
-	dir = 4
+	dir = 4;
+	icon_state = "pipe-j2"
 	},
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -10161,8 +10013,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/stairs/rampbottom{
-	icon_state = "rampbottom";
-	dir = 4
+	dir = 4;
+	icon_state = "rampbottom"
 	},
 /area/sulaco/bridge)
 "avw" = (
@@ -10181,8 +10033,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 8
+	dir = 8;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall2)
 "avy" = (
@@ -10192,8 +10044,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 8
+	dir = 8;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall2)
 "avz" = (
@@ -10201,8 +10053,8 @@
 	dir = 4
 	},
 /turf/open/floor{
-	icon_state = "redcorner";
-	dir = 1
+	dir = 1;
+	icon_state = "redcorner"
 	},
 /area/sulaco/hallway/central_hall2)
 "avA" = (
@@ -10253,8 +10105,8 @@
 /obj/structure/bed/chair,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 4
+	dir = 4;
+	icon_state = "red"
 	},
 /area/sulaco/briefing)
 "avF" = (
@@ -10352,8 +10204,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 4
+	dir = 4;
+	icon_state = "red"
 	},
 /area/sulaco/briefing)
 "avQ" = (
@@ -10372,8 +10224,8 @@
 /area/sulaco/briefing)
 "avR" = (
 /obj/structure/cable{
-	icon_state = "4-8";
-	d2 = 8
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	icon_state = "yellowfull"
@@ -10392,8 +10244,8 @@
 	opacity = 0
 	},
 /obj/structure/cable{
-	icon_state = "4-8";
-	d2 = 8
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /obj/structure/window/reinforced{
 	dir = 5
@@ -10403,8 +10255,8 @@
 /area/sulaco/engineering)
 "avT" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /turf/open/floor,
 /area/sulaco/hallway/central_hall3)
@@ -10432,8 +10284,8 @@
 /area/sulaco/hallway/central_hall3)
 "avY" = (
 /turf/open/floor{
-	icon_state = "bot";
-	dir = 1
+	dir = 1;
+	icon_state = "bot"
 	},
 /area/sulaco/hallway/central_hall3)
 "avZ" = (
@@ -10453,8 +10305,8 @@
 	opacity = 0
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall3)
 "awa" = (
@@ -10482,8 +10334,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 8
+	dir = 8;
+	icon_state = "red"
 	},
 /area/sulaco/briefing)
 "awc" = (
@@ -10497,8 +10349,8 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/mainship/engineering{
-	icon_state = "door_closed";
-	dir = 2
+	dir = 2;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	dir = 4;
@@ -10526,8 +10378,8 @@
 	sensors = list("core_sensor" = "Tank")
 	},
 /obj/structure/cable{
-	icon_state = "4-8";
-	d2 = 8
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	icon_state = "yellowfull"
@@ -10575,8 +10427,8 @@
 	req_access_txt = "7"
 	},
 /obj/structure/cable{
-	icon_state = "4-8";
-	d2 = 8
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	icon_state = "yellowfull"
@@ -10632,8 +10484,8 @@
 	icon_state = "1-8"
 	},
 /obj/structure/cable{
-	icon_state = "4-8";
-	d2 = 8
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/open/floor/plating/mainship,
 /area/sulaco/engineering/engine)
@@ -10647,8 +10499,8 @@
 	dir = 4
 	},
 /turf/open/floor/stairs/rampbottom{
-	icon_state = "rampbottom";
-	dir = 4
+	dir = 4;
+	icon_state = "rampbottom"
 	},
 /area/sulaco/bridge)
 "awo" = (
@@ -10677,15 +10529,15 @@
 	dir = 1
 	},
 /obj/structure/platform{
-	icon_state = "platform";
-	dir = 4
+	dir = 4;
+	icon_state = "platform"
 	},
 /turf/open/floor,
 /area/sulaco/briefing)
 "aws" = (
 /obj/structure/platform{
-	icon_state = "platform";
-	dir = 8
+	dir = 8;
+	icon_state = "platform"
 	},
 /turf/open/floor,
 /area/sulaco/briefing)
@@ -10770,8 +10622,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	icon_state = "whitered";
-	dir = 2
+	dir = 2;
+	icon_state = "whitered"
 	},
 /area/sulaco/bridge)
 "awC" = (
@@ -10779,8 +10631,8 @@
 	dir = 4
 	},
 /turf/open/floor{
-	icon_state = "whitered";
-	dir = 4
+	dir = 4;
+	icon_state = "whitered"
 	},
 /area/sulaco/bridge)
 "awD" = (
@@ -10797,8 +10649,8 @@
 "awE" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/bridge)
 "awF" = (
@@ -10812,8 +10664,8 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/bridge)
 "awG" = (
@@ -10821,8 +10673,8 @@
 	dir = 1
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/bridge)
 "awH" = (
@@ -10830,8 +10682,8 @@
 	dir = 4
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/bridge)
 "awI" = (
@@ -10839,8 +10691,8 @@
 	dir = 4
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall)
 "awJ" = (
@@ -10848,8 +10700,8 @@
 	dir = 1
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall)
 "awK" = (
@@ -10858,8 +10710,8 @@
 	dir = 4
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall)
 "awL" = (
@@ -10867,8 +10719,8 @@
 	dir = 4
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 5
+	dir = 5;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall)
 "awM" = (
@@ -10883,12 +10735,12 @@
 	opacity = 0
 	},
 /obj/machinery/door/airlock/mainship/command/cic{
-	icon_state = "door_closed";
-	dir = 8
+	dir = 8;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/bridge)
 "awN" = (
@@ -10992,8 +10844,8 @@
 	dir = 4
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 9
+	dir = 9;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall)
 "awW" = (
@@ -11010,8 +10862,8 @@
 	dir = 4
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall)
 "awX" = (
@@ -11067,8 +10919,8 @@
 "axa" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall2)
 "axb" = (
@@ -11076,8 +10928,8 @@
 	dir = 4
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall2)
 "axc" = (
@@ -11203,8 +11055,8 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall3)
 "axl" = (
@@ -11225,8 +11077,8 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall3)
 "axm" = (
@@ -11244,8 +11096,8 @@
 	icon_state = "2-8"
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall3)
 "axn" = (
@@ -11263,8 +11115,8 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/engineering{
-	icon_state = "door_closed";
-	dir = 2
+	dir = 2;
+	icon_state = "door_closed"
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -11497,8 +11349,8 @@
 	dir = 1
 	},
 /obj/structure/platform{
-	icon_state = "platform";
-	dir = 8
+	dir = 8;
+	icon_state = "platform"
 	},
 /turf/open/floor,
 /area/sulaco/briefing)
@@ -11553,8 +11405,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall3)
 "axL" = (
@@ -11571,8 +11423,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall3)
 "axM" = (
@@ -11599,8 +11451,8 @@
 	icon_state = "pipe-c"
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall3)
 "axO" = (
@@ -11613,8 +11465,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall3)
 "axP" = (
@@ -11628,8 +11480,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall3)
 "axQ" = (
@@ -11645,14 +11497,14 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall3)
 "axR" = (
 /obj/machinery/door/airlock/mainship/engineering{
-	icon_state = "door_closed";
-	dir = 2
+	dir = 2;
+	icon_state = "door_closed"
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -11674,8 +11526,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall3)
 "axT" = (
@@ -11703,9 +11555,9 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/stack/sheet/glass{
+	amount = 50;
 	pixel_x = 3;
-	pixel_y = 3;
-	amount = 50
+	pixel_y = 3
 	},
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -11732,8 +11584,8 @@
 	},
 /obj/item/radio/intercom/general,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall)
 "axY" = (
@@ -11792,8 +11644,8 @@
 	pixel_y = 4
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /obj/item/stack/sheet/metal{
 	amount = 50;
@@ -11910,8 +11762,8 @@
 /area/sulaco/cafeteria)
 "ayn" = (
 /obj/structure/cable{
-	icon_state = "4-8";
-	d2 = 8
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 10
@@ -11934,8 +11786,8 @@
 	opacity = 0
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall)
 "ayq" = (
@@ -11945,8 +11797,8 @@
 	pixel_y = 12
 	},
 /turf/open/floor{
-	icon_state = "whitered";
-	dir = 10
+	dir = 10;
+	icon_state = "whitered"
 	},
 /area/sulaco/bridge)
 "ayr" = (
@@ -11962,8 +11814,8 @@
 /area/sulaco/engineering/storage)
 "ays" = (
 /turf/open/floor{
-	icon_state = "whiteredcorner";
-	dir = 8
+	dir = 8;
+	icon_state = "whiteredcorner"
 	},
 /area/sulaco/bridge)
 "ayt" = (
@@ -11972,10 +11824,6 @@
 	},
 /turf/closed/wall/sulaco,
 /area/sulaco/bridge/quarters)
-"ayu" = (
-/obj/item/tool/wirecutters,
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo/office)
 "ayv" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -11983,8 +11831,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /turf/open/floor/plating,
 /area/sulaco/bridge/quarters)
@@ -11995,8 +11843,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 8
+	dir = 8;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall)
 "ayx" = (
@@ -12022,8 +11870,8 @@
 /area/sulaco/hallway/central_hall3)
 "ayA" = (
 /turf/open/floor{
-	icon_state = "whitered";
-	dir = 10
+	dir = 10;
+	icon_state = "whitered"
 	},
 /area/sulaco/bridge)
 "ayB" = (
@@ -12148,8 +11996,8 @@
 /obj/structure/bed/chair,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 6
+	dir = 6;
+	icon_state = "red"
 	},
 /area/sulaco/briefing)
 "ayO" = (
@@ -12164,8 +12012,8 @@
 "ayP" = (
 /obj/structure/bed/chair,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 10
+	dir = 10;
+	icon_state = "red"
 	},
 /area/sulaco/briefing)
 "ayQ" = (
@@ -12236,16 +12084,16 @@
 "ayY" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /turf/open/floor/plating,
 /area/sulaco/engineering/storage)
 "ayZ" = (
 /turf/open/space/basic,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
-	dir = 8
+	dir = 8;
+	icon_state = "diagonalWall3"
 	},
 /area/space)
 "aza" = (
@@ -12352,8 +12200,8 @@
 /area/sulaco/engineering)
 "azm" = (
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 8
+	dir = 8;
+	icon_state = "intercom"
 	},
 /obj/structure/closet/firecloset,
 /turf/open/floor{
@@ -12370,8 +12218,8 @@
 /area/sulaco/engineering)
 "azo" = (
 /turf/open/floor/mainship{
-	icon_state = "plating";
-	dir = 5
+	dir = 5;
+	icon_state = "plating"
 	},
 /area/shuttle/distress/arrive_1)
 "azp" = (
@@ -12391,12 +12239,12 @@
 /area/sulaco/maintenance/south_solar_maint)
 "azr" = (
 /obj/docking_port/stationary/ert/target{
-	name = "Port";
-	id = "port_target"
+	id = "port_target";
+	name = "Port"
 	},
 /turf/open/floor/mainship{
-	icon_state = "plating";
-	dir = 5
+	dir = 5;
+	icon_state = "plating"
 	},
 /area/shuttle/distress/arrive_1)
 "azs" = (
@@ -12415,8 +12263,8 @@
 	dir = 6
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall)
 "azu" = (
@@ -12426,8 +12274,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/mainship/command/CPToffice{
-	icon_state = "door_closed";
-	dir = 2
+	dir = 2;
+	icon_state = "door_closed"
 	},
 /turf/open/floor/wood,
 /area/sulaco/cap_office)
@@ -12453,8 +12301,8 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/mainship/security/glass{
-	icon_state = "door_closed";
-	dir = 2
+	dir = 2;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "floor4"
@@ -12493,8 +12341,8 @@
 	icon_state = "1-4"
 	},
 /turf/open/floor{
-	icon_state = "whitered";
-	dir = 2
+	dir = 2;
+	icon_state = "whitered"
 	},
 /area/sulaco/bridge)
 "azB" = (
@@ -12504,8 +12352,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	icon_state = "whitered";
-	dir = 6
+	dir = 6;
+	icon_state = "whitered"
 	},
 /area/sulaco/bridge)
 "azC" = (
@@ -12515,8 +12363,8 @@
 	icon_state = "4-8"
 	},
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 8
+	dir = 8;
+	icon_state = "intercom"
 	},
 /turf/open/floor{
 	icon_state = "floor4"
@@ -12538,14 +12386,14 @@
 /area/sulaco/brig)
 "azE" = (
 /turf/open/floor{
-	icon_state = "whiteredcorner";
-	dir = 5
+	dir = 5;
+	icon_state = "whiteredcorner"
 	},
 /area/sulaco/bridge)
 "azF" = (
 /turf/open/floor{
-	icon_state = "whitered";
-	dir = 6
+	dir = 6;
+	icon_state = "whitered"
 	},
 /area/sulaco/bridge)
 "azG" = (
@@ -12608,8 +12456,8 @@
 /area/sulaco/hallway/central_hall)
 "azM" = (
 /turf/open/floor{
-	icon_state = "redcorner";
-	dir = 4
+	dir = 4;
+	icon_state = "redcorner"
 	},
 /area/sulaco/hallway/central_hall)
 "azN" = (
@@ -12618,15 +12466,15 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
-	dir = 8
+	dir = 8;
+	icon_state = "door_closed"
 	},
 /turf/open/floor/plating,
 /area/sulaco/engineering/storage)
 "azO" = (
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall)
 "azP" = (
@@ -12649,8 +12497,8 @@
 	dir = 1
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall)
 "azR" = (
@@ -12683,8 +12531,8 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/hallway/central_hall)
 "azU" = (
@@ -12701,8 +12549,8 @@
 "azW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
-	icon_state = "redcorner";
-	dir = 1
+	dir = 1;
+	icon_state = "redcorner"
 	},
 /area/sulaco/hallway/central_hall)
 "azX" = (
@@ -12720,8 +12568,8 @@
 "azZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/mainship/command{
-	icon_state = "door_closed";
-	dir = 8
+	dir = 8;
+	icon_state = "door_closed"
 	},
 /turf/open/floor,
 /area/sulaco/briefing)
@@ -12735,8 +12583,8 @@
 /area/sulaco/briefing)
 "aAc" = (
 /obj/machinery/door/airlock/mainship/engineering/atmos{
-	icon_state = "door_closed";
-	dir = 2
+	dir = 2;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "yellowfull"
@@ -12744,8 +12592,8 @@
 /area/sulaco/engineering/smes)
 "aAd" = (
 /obj/machinery/door/airlock/mainship/engineering{
-	icon_state = "door_closed";
-	dir = 2
+	dir = 2;
+	icon_state = "door_closed"
 	},
 /turf/open/floor/tile,
 /area/mainship/shipboard/weapon_room)
@@ -12814,8 +12662,8 @@
 /area/sulaco/brig)
 "aAl" = (
 /obj/machinery/door/airlock/mainship/security/glass{
-	icon_state = "door_closed";
-	dir = 2
+	dir = 2;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "floor4"
@@ -13003,8 +12851,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/mainship/security/glass/cells{
-	icon_state = "door_closed";
-	dir = 8
+	dir = 8;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "floor4"
@@ -13059,8 +12907,8 @@
 /obj/item/book/manual/supermatter_engine,
 /obj/item/clothing/glasses/meson,
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 8
+	dir = 8;
+	icon_state = "intercom"
 	},
 /obj/structure/cable/yellow{
 	d1 = 2;
@@ -13083,8 +12931,8 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor{
-	icon_state = "whitered";
-	dir = 2
+	dir = 2;
+	icon_state = "whitered"
 	},
 /area/sulaco/bridge)
 "aAG" = (
@@ -13097,8 +12945,8 @@
 /area/sulaco/engineering)
 "aAH" = (
 /obj/machinery/door/airlock/mainship/security/glass{
-	icon_state = "door_closed";
-	dir = 8
+	dir = 8;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "floor4"
@@ -13133,8 +12981,8 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/security/glass/cells{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "floor4"
@@ -13173,14 +13021,14 @@
 "aAN" = (
 /obj/structure/table,
 /turf/open/floor{
-	icon_state = "whitered";
-	dir = 10
+	dir = 10;
+	icon_state = "whitered"
 	},
 /area/sulaco/bridge)
 "aAO" = (
 /obj/machinery/door/airlock/mainship/security{
-	icon_state = "door_closed";
-	dir = 2
+	dir = 2;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "floor4"
@@ -13193,8 +13041,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	icon_state = "whitered";
-	dir = 2
+	dir = 2;
+	icon_state = "whitered"
 	},
 /area/sulaco/bridge)
 "aAQ" = (
@@ -13243,8 +13091,8 @@
 /area/sulaco/engineering/storage)
 "aAU" = (
 /turf/open/floor{
-	icon_state = "whitered";
-	dir = 2
+	dir = 2;
+	icon_state = "whitered"
 	},
 /area/sulaco/bridge)
 "aAV" = (
@@ -13336,8 +13184,8 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /turf/open/floor/plating,
 /area/sulaco/hallway/central_hall2)
@@ -13356,8 +13204,8 @@
 	dir = 4
 	},
 /turf/open/floor{
-	icon_state = "bot";
-	dir = 1
+	dir = 1;
+	icon_state = "bot"
 	},
 /area/sulaco/hallway/central_hall)
 "aBf" = (
@@ -13377,8 +13225,8 @@
 	icon_state = "pipe-c"
 	},
 /obj/structure/disposalpipe/junction{
-	icon_state = "pipe-j2";
-	dir = 4
+	dir = 4;
+	icon_state = "pipe-j2"
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -13406,8 +13254,8 @@
 /obj/machinery/door/window/northright,
 /obj/structure/cable/yellow,
 /turf/open/floor{
-	icon_state = "bcircuit";
-	dir = 2
+	dir = 2;
+	icon_state = "bcircuit"
 	},
 /area/sulaco/bridge)
 "aBi" = (
@@ -13479,8 +13327,8 @@
 /area/sulaco/hallway/central_hall)
 "aBo" = (
 /obj/machinery/door/airlock/mainship/engineering{
-	icon_state = "door_closed";
-	dir = 2
+	dir = 2;
+	icon_state = "door_closed"
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -13537,8 +13385,8 @@
 /area/sulaco/maintenance/south_solar_maint)
 "aBt" = (
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
-	dir = 8
+	dir = 8;
+	icon_state = "door_closed"
 	},
 /turf/open/floor,
 /area/sulaco/maintenance/south_solar_maint)
@@ -13660,8 +13508,8 @@
 	opacity = 0
 	},
 /obj/machinery/door/airlock/mainship/security/glass{
-	icon_state = "door_closed";
-	dir = 8
+	dir = 8;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "floor4"
@@ -13672,8 +13520,8 @@
 /area/sulaco/brig)
 "aBJ" = (
 /obj/machinery/door/airlock/mainship/marine/alpha/medic{
-	icon_state = "door_closed";
-	dir = 4
+	dir = 4;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "bot"
@@ -13738,8 +13586,8 @@
 /area/sulaco/engineering)
 "aBT" = (
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 1
+	dir = 1;
+	icon_state = "intercom"
 	},
 /turf/open/floor,
 /area/sulaco/briefing)
@@ -13749,8 +13597,8 @@
 /area/sulaco/hallway/central_hall3)
 "aBV" = (
 /obj/machinery/door/airlock/mainship/marine/alpha/sl{
-	icon_state = "door_closed";
-	dir = 4
+	dir = 4;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "bot"
@@ -13904,8 +13752,8 @@
 	dir = 4
 	},
 /turf/closed/wall/indestructible/fakeglass{
-	icon_state = "fakewindows";
-	dir = 8
+	dir = 8;
+	icon_state = "fakewindows"
 	},
 /area/sulaco/bridge)
 "aCk" = (
@@ -13932,8 +13780,8 @@
 /area/sulaco/marine/delta)
 "aCm" = (
 /obj/machinery/door/airlock/mainship/marine/alpha/engineer{
-	icon_state = "door_closed";
-	dir = 4
+	dir = 4;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "bot"
@@ -13947,8 +13795,8 @@
 /obj/structure/window/reinforced,
 /obj/machinery/door/window/northleft,
 /turf/open/floor{
-	icon_state = "bcircuit";
-	dir = 2
+	dir = 2;
+	icon_state = "bcircuit"
 	},
 /area/sulaco/bridge)
 "aCo" = (
@@ -13959,8 +13807,8 @@
 /obj/structure/window/reinforced,
 /obj/machinery/door/window/northright,
 /turf/open/floor{
-	icon_state = "bcircuit";
-	dir = 2
+	dir = 2;
+	icon_state = "bcircuit"
 	},
 /area/sulaco/bridge)
 "aCp" = (
@@ -14044,8 +13892,8 @@
 	},
 /obj/structure/table/reinforced,
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 8
+	dir = 8;
+	icon_state = "intercom"
 	},
 /turf/open/floor/carpet,
 /area/sulaco/cap_office)
@@ -14078,8 +13926,8 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/mainship/security/glass{
-	icon_state = "door_closed";
-	dir = 2
+	dir = 2;
+	icon_state = "door_closed"
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -14183,8 +14031,8 @@
 "aCL" = (
 /obj/machinery/camera/autoname,
 /turf/open/floor{
-	icon_state = "yellow";
-	dir = 1
+	dir = 1;
+	icon_state = "yellow"
 	},
 /area/sulaco/engineering/engine)
 "aCM" = (
@@ -14197,15 +14045,15 @@
 /area/sulaco/marine/delta)
 "aCO" = (
 /obj/machinery/door/airlock/mainship/marine/delta/smart{
-	icon_state = "door_closed";
-	dir = 4
+	dir = 4;
+	icon_state = "door_closed"
 	},
 /turf/open/floor,
 /area/sulaco/marine/delta)
 "aCP" = (
 /obj/machinery/door/airlock/mainship/marine/alpha/smart{
-	icon_state = "door_closed";
-	dir = 4
+	dir = 4;
+	icon_state = "door_closed"
 	},
 /turf/open/floor,
 /area/sulaco/marine/alpha)
@@ -14215,13 +14063,6 @@
 	icon_state = "bot"
 	},
 /area/sulaco/marine/alpha)
-"aCR" = (
-/obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
-	},
-/turf/open/floor,
-/area/sulaco/hallway/central_hall3)
 "aCS" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/structure/cable/yellow{
@@ -14274,8 +14115,8 @@
 	},
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
-	icon_state = "pipe-t";
-	dir = 4
+	dir = 4;
+	icon_state = "pipe-t"
 	},
 /turf/open/floor,
 /area/sulaco/hallway/central_hall3)
@@ -14291,8 +14132,8 @@
 	dir = 8
 	},
 /turf/closed/wall/indestructible/fakeglass{
-	icon_state = "fakewindows";
-	dir = 4
+	dir = 4;
+	icon_state = "fakewindows"
 	},
 /area/sulaco/engineering/engine)
 "aDb" = (
@@ -14329,8 +14170,8 @@
 	icon_state = "1-4"
 	},
 /turf/open/floor{
-	icon_state = "whitered";
-	dir = 2
+	dir = 2;
+	icon_state = "whitered"
 	},
 /area/sulaco/bridge)
 "aDe" = (
@@ -14338,8 +14179,8 @@
 	icon_state = "white"
 	},
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
-	dir = 4
+	dir = 4;
+	icon_state = "diagonalWall3"
 	},
 /area/sulaco/cryosleep)
 "aDf" = (
@@ -14395,8 +14236,8 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/mainship/security/glass/cells{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "floor4"
@@ -14589,8 +14430,8 @@
 	icon_state = "0-4"
 	},
 /turf/open/floor{
-	icon_state = "yellow";
-	dir = 1
+	dir = 1;
+	icon_state = "yellow"
 	},
 /area/sulaco/engineering/engine)
 "aDN" = (
@@ -14689,8 +14530,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	icon_state = "yellow";
-	dir = 1
+	dir = 1;
+	icon_state = "yellow"
 	},
 /area/sulaco/engineering/engine)
 "aEd" = (
@@ -14728,8 +14569,8 @@
 	dir = 8
 	},
 /turf/open/floor{
-	icon_state = "yellow";
-	dir = 1
+	dir = 1;
+	icon_state = "yellow"
 	},
 /area/sulaco/engineering/engine)
 "aEk" = (
@@ -14743,8 +14584,8 @@
 "aEl" = (
 /obj/machinery/alarm,
 /turf/open/floor{
-	icon_state = "yellow";
-	dir = 1
+	dir = 1;
+	icon_state = "yellow"
 	},
 /area/sulaco/engineering/engine)
 "aEm" = (
@@ -14815,8 +14656,8 @@
 /area/sulaco/brig)
 "aEt" = (
 /turf/open/floor{
-	icon_state = "yellow";
-	dir = 1
+	dir = 1;
+	icon_state = "yellow"
 	},
 /area/sulaco/engineering/engine)
 "aEu" = (
@@ -14927,8 +14768,8 @@
 	icon_state = "pipe-c"
 	},
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 8
+	dir = 8;
+	icon_state = "intercom"
 	},
 /turf/open/floor/plating,
 /area/sulaco/engineering/storage)
@@ -15181,8 +15022,8 @@
 	icon_state = "1-8"
 	},
 /turf/open/floor{
-	icon_state = "yellow";
-	dir = 1
+	dir = 1;
+	icon_state = "yellow"
 	},
 /area/sulaco/engineering/engine)
 "aFk" = (
@@ -15191,8 +15032,8 @@
 	dir = 4
 	},
 /obj/structure/cable{
-	icon_state = "4-8";
-	d2 = 8
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /obj/structure/table/reinforced,
 /turf/open/floor{
@@ -15238,8 +15079,8 @@
 /obj/item/bedsheet/captain,
 /obj/item/storage/belt/champion,
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 1
+	dir = 1;
+	icon_state = "intercom"
 	},
 /turf/open/floor/wood,
 /area/sulaco/cap_office)
@@ -15270,8 +15111,8 @@
 /area/sulaco/research)
 "aFv" = (
 /turf/closed/wall/mainship/research/containment/wall/purple{
-	icon_state = "containment_window";
-	dir = 10
+	dir = 10;
+	icon_state = "containment_window"
 	},
 /area/sulaco/research)
 "aFw" = (
@@ -15280,8 +15121,8 @@
 /area/sulaco/engineering/engine)
 "aFx" = (
 /turf/closed/wall/mainship/research/containment/wall/purple{
-	icon_state = "containment_window";
-	dir = 6
+	dir = 6;
+	icon_state = "containment_window"
 	},
 /area/sulaco/research)
 "aFy" = (
@@ -15317,8 +15158,8 @@
 /obj/item/tool/pen,
 /obj/item/folder/blue,
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /obj/item/megaphone,
 /obj/item/ammo_magazine/pistol/ap,
@@ -15344,8 +15185,8 @@
 /area/sulaco/cap_office)
 "aFF" = (
 /obj/machinery/door/window/brigdoor/mainship/cell_1{
-	icon_state = "leftsecure";
-	dir = 2
+	dir = 2;
+	icon_state = "leftsecure"
 	},
 /turf/open/floor{
 	icon_state = "floor4"
@@ -15371,8 +15212,8 @@
 /area/sulaco/brig)
 "aFJ" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /turf/open/floor{
 	icon_state = "floor4"
@@ -15398,8 +15239,8 @@
 /area/mainship/shipboard/weapon_room)
 "aFM" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/rack,
@@ -15483,8 +15324,8 @@
 /obj/machinery/suit_storage_unit/standard_unit,
 /obj/machinery/camera/autoname,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/command/eva)
 "aFV" = (
@@ -15504,8 +15345,8 @@
 /area/sulaco/hallway/central_hall3)
 "aFW" = (
 /obj/machinery/door/airlock/mainship/research/pen{
-	icon_state = "door_closed";
-	dir = 8
+	dir = 8;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -15728,8 +15569,8 @@
 "aGo" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 8
+	dir = 8;
+	icon_state = "intercom"
 	},
 /turf/open/floor,
 /area/sulaco/marine)
@@ -15791,8 +15632,8 @@
 /obj/item/clothing/mask/breath,
 /obj/machinery/power/apc/mainship,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/command/eva)
 "aGx" = (
@@ -15808,8 +15649,8 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor{
-	icon_state = "vault";
-	dir = 8
+	dir = 8;
+	icon_state = "vault"
 	},
 /area/sulaco/hangar)
 "aGz" = (
@@ -15852,8 +15693,8 @@
 /area/mainship/shipboard/weapon_room)
 "aGE" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /obj/structure/table/reinforced,
 /obj/item/detective_scanner,
@@ -15998,8 +15839,8 @@
 /area/sulaco/marine/delta)
 "aGT" = (
 /obj/machinery/door/airlock/mainship/marine/delta/medic{
-	icon_state = "door_closed";
-	dir = 4
+	dir = 4;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "bot"
@@ -16050,8 +15891,8 @@
 	pixel_x = 11
 	},
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 1
+	dir = 1;
+	icon_state = "intercom"
 	},
 /turf/open/floor{
 	icon_state = "freezerfloor"
@@ -16131,8 +15972,8 @@
 	dir = 8
 	},
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 8
+	dir = 8;
+	icon_state = "intercom"
 	},
 /turf/open/floor,
 /area/sulaco/marine/alpha)
@@ -16183,8 +16024,8 @@
 /area/sulaco/cap_office)
 "aHq" = (
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/weapon_room)
@@ -16211,8 +16052,8 @@
 /area/sulaco/command/eva)
 "aHt" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -16229,8 +16070,8 @@
 	dir = 1
 	},
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 8
+	dir = 8;
+	icon_state = "intercom"
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -16294,8 +16135,8 @@
 /area/sulaco/brig)
 "aHD" = (
 /obj/machinery/door/airlock/mainship/security/glass{
-	icon_state = "door_closed";
-	dir = 2
+	dir = 2;
+	icon_state = "door_closed"
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -16397,8 +16238,8 @@
 /area/shuttle/distress/arrive_1)
 "aHO" = (
 /obj/machinery/door/airlock/mainship/engineering{
-	icon_state = "door_closed";
-	dir = 2
+	dir = 2;
+	icon_state = "door_closed"
 	},
 /turf/open/floor/plating,
 /area/sulaco/engineering/storage)
@@ -16432,8 +16273,8 @@
 	dir = 8
 	},
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 8
+	dir = 8;
+	icon_state = "intercom"
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -16692,8 +16533,8 @@
 /area/mainship/shipboard/weapon_room)
 "aIA" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -17079,8 +16920,8 @@
 	dir = 1
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 9
+	dir = 9;
+	icon_state = "red"
 	},
 /area/sulaco/command/eva)
 "aJp" = (
@@ -17098,8 +16939,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/command/eva)
 "aJq" = (
@@ -17114,8 +16955,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/command/eva)
 "aJr" = (
@@ -17132,21 +16973,21 @@
 "aJs" = (
 /obj/machinery/suit_storage_unit/standard_unit,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/command/eva)
 "aJt" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/command/eva)
 "aJu" = (
 /turf/open/floor{
-	icon_state = "red";
-	dir = 5
+	dir = 5;
+	icon_state = "red"
 	},
 /area/sulaco/command/eva)
 "aJv" = (
@@ -17181,8 +17022,8 @@
 	dir = 1
 	},
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 8
+	dir = 8;
+	icon_state = "intercom"
 	},
 /turf/open/floor,
 /area/sulaco/marine/charlie)
@@ -17296,8 +17137,8 @@
 /area/mainship/shipboard/weapon_room)
 "aJN" = (
 /obj/machinery/door/airlock/mainship/marine/delta/sl{
-	icon_state = "door_closed";
-	dir = 4
+	dir = 4;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "bot"
@@ -17426,15 +17267,15 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 5
+	dir = 5;
+	icon_state = "red"
 	},
 /area/sulaco/marine/alpha)
 "aKe" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 9
+	dir = 9;
+	icon_state = "red"
 	},
 /area/sulaco/marine/alpha)
 "aKf" = (
@@ -17486,14 +17327,14 @@
 	dir = 4
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 4
+	dir = 4;
+	icon_state = "red"
 	},
 /area/sulaco/command/eva)
 "aKn" = (
 /obj/machinery/door/airlock/mainship/command/CPToffice{
-	icon_state = "door_closed";
-	dir = 2
+	dir = 2;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "freezerfloor"
@@ -17570,8 +17411,8 @@
 	icon_state = "0-2"
 	},
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/door/poddoor/shutters{
 	density = 0;
@@ -17590,8 +17431,8 @@
 "aKw" = (
 /obj/machinery/recharge_station,
 /obj/machinery/light/small{
-	icon_state = "bulb1";
-	dir = 4
+	dir = 4;
+	icon_state = "bulb1"
 	},
 /turf/open/floor,
 /area/sulaco/engineering/engine)
@@ -17620,8 +17461,8 @@
 /area/sulaco/liaison)
 "aKy" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /turf/open/floor,
 /area/sulaco/marine/delta)
@@ -17710,15 +17551,15 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 4
+	dir = 4;
+	icon_state = "red"
 	},
 /area/sulaco/marine/alpha)
 "aKN" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 8
+	dir = 8;
+	icon_state = "red"
 	},
 /area/sulaco/marine/alpha)
 "aKO" = (
@@ -17726,8 +17567,8 @@
 	dir = 1
 	},
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 8
+	dir = 8;
+	icon_state = "intercom"
 	},
 /turf/open/floor,
 /area/sulaco/marine/bravo)
@@ -17755,8 +17596,8 @@
 /area/sulaco/command/eva)
 "aKS" = (
 /turf/open/floor{
-	icon_state = "red";
-	dir = 4
+	dir = 4;
+	icon_state = "red"
 	},
 /area/sulaco/command/eva)
 "aKT" = (
@@ -17784,8 +17625,8 @@
 /area/sulaco/hangar/two)
 "aKW" = (
 /obj/machinery/door/airlock/mainship/marine/charlie/medic{
-	icon_state = "door_closed";
-	dir = 4
+	dir = 4;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "bot"
@@ -17793,8 +17634,8 @@
 /area/sulaco/marine/charlie)
 "aKX" = (
 /obj/machinery/door/airlock/mainship/marine/bravo/medic{
-	icon_state = "door_closed";
-	dir = 8
+	dir = 8;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "bot"
@@ -17808,8 +17649,8 @@
 /area/sulaco/marine/delta)
 "aKZ" = (
 /obj/machinery/door/airlock/mainship/marine/delta/engineer{
-	icon_state = "door_closed";
-	dir = 4
+	dir = 4;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "bot"
@@ -17879,8 +17720,8 @@
 /area/sulaco/brig)
 "aLk" = (
 /obj/machinery/door/airlock/mainship/marine/charlie/sl{
-	icon_state = "door_closed";
-	dir = 8
+	dir = 8;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "bot"
@@ -17888,8 +17729,8 @@
 /area/sulaco/marine/charlie)
 "aLl" = (
 /obj/machinery/door/airlock/mainship/marine/bravo/sl{
-	icon_state = "door_closed";
-	dir = 4
+	dir = 4;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "bot"
@@ -17906,8 +17747,8 @@
 	dir = 1
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 8
+	dir = 8;
+	icon_state = "red"
 	},
 /area/sulaco/marine/alpha)
 "aLo" = (
@@ -17922,14 +17763,14 @@
 /area/sulaco/hallway/central_hall3)
 "aLq" = (
 /turf/open/floor{
-	icon_state = "red";
-	dir = 8
+	dir = 8;
+	icon_state = "red"
 	},
 /area/sulaco/command/eva)
 "aLr" = (
 /turf/open/floor{
-	icon_state = "red";
-	dir = 8
+	dir = 8;
+	icon_state = "red"
 	},
 /area/sulaco/command/armory)
 "aLs" = (
@@ -17954,8 +17795,8 @@
 /obj/item/storage/belt/combatLifesaver,
 /obj/item/storage/belt/combatLifesaver,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 8
+	dir = 8;
+	icon_state = "red"
 	},
 /area/sulaco/command/armory)
 "aLv" = (
@@ -17964,8 +17805,8 @@
 	icon_state = "tube1"
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 4
+	dir = 4;
+	icon_state = "red"
 	},
 /area/sulaco/command/armory)
 "aLw" = (
@@ -17977,8 +17818,8 @@
 "aLx" = (
 /obj/structure/prop/mainship/cannon_cable_connector,
 /turf/open/floor/mainship{
-	icon_state = "redcorner";
-	dir = 4
+	dir = 4;
+	icon_state = "redcorner"
 	},
 /area/mainship/shipboard/weapon_room)
 "aLy" = (
@@ -18051,8 +17892,8 @@
 	dir = 4
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 4
+	dir = 4;
+	icon_state = "red"
 	},
 /area/sulaco/marine/alpha)
 "aLH" = (
@@ -18073,14 +17914,14 @@
 /area/mainship/shipboard/weapon_room)
 "aLJ" = (
 /turf/open/floor{
-	icon_state = "red";
-	dir = 8
+	dir = 8;
+	icon_state = "red"
 	},
 /area/sulaco/marine/alpha)
 "aLK" = (
 /turf/open/floor{
-	icon_state = "red";
-	dir = 4
+	dir = 4;
+	icon_state = "red"
 	},
 /area/sulaco/command/armory)
 "aLL" = (
@@ -18152,12 +17993,12 @@
 "aLU" = (
 /obj/structure/table,
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 8
+	dir = 8;
+	icon_state = "intercom"
 	},
 /turf/open/floor{
-	icon_state = "cult";
-	dir = 2
+	dir = 2;
+	icon_state = "cult"
 	},
 /area/sulaco/morgue)
 "aLV" = (
@@ -18185,8 +18026,8 @@
 /area/sulaco/brig)
 "aLX" = (
 /obj/machinery/door/airlock/mainship/marine/charlie/engineer{
-	icon_state = "door_closed";
-	dir = 8
+	dir = 8;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "bot"
@@ -18208,8 +18049,8 @@
 /area/sulaco/marine/bravo)
 "aMa" = (
 /obj/machinery/door/airlock/mainship/marine/bravo/engineer{
-	icon_state = "door_closed";
-	dir = 8
+	dir = 8;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "bot"
@@ -18253,8 +18094,8 @@
 /obj/item/ammo_magazine/sniper,
 /obj/item/ammo_magazine/sniper,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 8
+	dir = 8;
+	icon_state = "red"
 	},
 /area/sulaco/command/armory)
 "aMg" = (
@@ -18297,8 +18138,8 @@
 /obj/item/weapon/gun/flamer,
 /obj/item/weapon/gun/flamer,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 10
+	dir = 10;
+	icon_state = "red"
 	},
 /area/sulaco/command/armory)
 "aMl" = (
@@ -18311,8 +18152,8 @@
 /obj/item/ammo_magazine/pistol/heavy,
 /obj/item/ammo_magazine/pistol/heavy,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 6
+	dir = 6;
+	icon_state = "red"
 	},
 /area/sulaco/command/armory)
 "aMm" = (
@@ -18329,8 +18170,8 @@
 /area/sulaco/hallway/central_hall3)
 "aMo" = (
 /obj/machinery/door/airlock/mainship/marine/charlie/smart{
-	icon_state = "door_closed";
-	dir = 4
+	dir = 4;
+	icon_state = "door_closed"
 	},
 /turf/open/floor,
 /area/sulaco/marine/charlie)
@@ -18396,8 +18237,8 @@
 /area/sulaco/command/eva)
 "aMz" = (
 /obj/machinery/door/airlock/mainship/marine/bravo/smart{
-	icon_state = "door_closed";
-	dir = 4
+	dir = 4;
+	icon_state = "door_closed"
 	},
 /turf/open/floor,
 /area/sulaco/marine/bravo)
@@ -18411,8 +18252,8 @@
 	name = "Holy Bible"
 	},
 /turf/open/floor{
-	icon_state = "floorgrimecaution";
-	dir = 2
+	dir = 2;
+	icon_state = "floorgrimecaution"
 	},
 /area/sulaco/brig)
 "aMB" = (
@@ -18421,14 +18262,14 @@
 /area/sulaco/marine/alpha)
 "aMC" = (
 /turf/open/floor{
-	icon_state = "podhatch";
-	dir = 10
+	dir = 10;
+	icon_state = "podhatch"
 	},
 /area/sulaco/brig)
 "aMD" = (
 /turf/open/floor{
-	icon_state = "podhatch";
-	dir = 6
+	dir = 6;
+	icon_state = "podhatch"
 	},
 /area/sulaco/brig)
 "aME" = (
@@ -18507,8 +18348,8 @@
 "aMQ" = (
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
@@ -18559,8 +18400,8 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/mainship/engineering,
 /turf/open/floor{
-	icon_state = "vault";
-	dir = 8
+	dir = 8;
+	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
 "aMZ" = (
@@ -18590,8 +18431,8 @@
 	},
 /obj/machinery/door/firedoor,
 /turf/open/floor{
-	icon_state = "vault";
-	dir = 8
+	dir = 8;
+	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
 "aNc" = (
@@ -18603,18 +18444,18 @@
 "aNd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 4
+	dir = 4;
+	icon_state = "red"
 	},
 /area/sulaco/marine/alpha)
 "aNe" = (
 /obj/machinery/door/airlock/mainship/medical/morgue{
-	icon_state = "door_closed";
-	dir = 8
+	dir = 8;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
-	icon_state = "cult";
-	dir = 2
+	dir = 2;
+	icon_state = "cult"
 	},
 /area/sulaco/morgue)
 "aNf" = (
@@ -18653,12 +18494,12 @@
 /area/sulaco/maintenance/lower_maint)
 "aNi" = (
 /obj/machinery/door/airlock/mainship/medical/morgue{
-	icon_state = "door_closed";
-	dir = 8
+	dir = 8;
+	icon_state = "door_closed"
 	},
 /obj/structure/cable{
-	icon_state = "4-8";
-	d2 = 8
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
@@ -18673,15 +18514,15 @@
 /area/sulaco/maintenance/lower_maint)
 "aNk" = (
 /obj/structure/morgue{
-	icon_state = "morgue1";
-	dir = 8
+	dir = 8;
+	icon_state = "morgue1"
 	},
 /obj/machinery/light/small{
 	dir = 4
 	},
 /turf/open/floor{
-	icon_state = "cult";
-	dir = 2
+	dir = 2;
+	icon_state = "cult"
 	},
 /area/sulaco/morgue)
 "aNl" = (
@@ -18745,8 +18586,8 @@
 	dir = 5
 	},
 /turf/open/floor{
-	icon_state = "floorgrime";
-	dir = 4
+	dir = 4;
+	icon_state = "floorgrime"
 	},
 /area/sulaco/brig)
 "aNr" = (
@@ -18758,8 +18599,8 @@
 	dir = 1
 	},
 /turf/open/floor{
-	icon_state = "floorgrime";
-	dir = 4
+	dir = 4;
+	icon_state = "floorgrime"
 	},
 /area/sulaco/brig)
 "aNs" = (
@@ -18782,8 +18623,8 @@
 /area/mainship/shipboard/weapon_room)
 "aNu" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /turf/open/floor,
 /area/sulaco/marine/charlie)
@@ -18794,14 +18635,14 @@
 	icon_state = "2-8"
 	},
 /turf/open/floor{
-	icon_state = "cult";
-	dir = 2
+	dir = 2;
+	icon_state = "cult"
 	},
 /area/sulaco/morgue)
 "aNw" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /turf/open/floor,
 /area/sulaco/marine/bravo)
@@ -18809,8 +18650,8 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/mainship/engineering/atmos{
-	icon_state = "door_closed";
-	dir = 2
+	dir = 2;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -18818,8 +18659,8 @@
 /area/sulaco/hangar/two)
 "aNy" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /turf/open/floor,
 /area/sulaco/marine/alpha)
@@ -18886,8 +18727,8 @@
 "aNF" = (
 /turf/open/space,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
-	dir = 1
+	dir = 1;
+	icon_state = "diagonalWall3"
 	},
 /area/sulaco/hangar)
 "aNG" = (
@@ -18896,8 +18737,8 @@
 	icon_state = "tube1"
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 8
+	dir = 8;
+	icon_state = "red"
 	},
 /area/sulaco/command/eva)
 "aNH" = (
@@ -18908,8 +18749,8 @@
 /area/sulaco/command/eva)
 "aNI" = (
 /turf/open/floor{
-	icon_state = "red";
-	dir = 6
+	dir = 6;
+	icon_state = "red"
 	},
 /area/sulaco/command/eva)
 "aNJ" = (
@@ -18919,8 +18760,8 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor{
-	icon_state = "cult";
-	dir = 2
+	dir = 2;
+	icon_state = "cult"
 	},
 /area/sulaco/morgue)
 "aNK" = (
@@ -19018,8 +18859,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
-	icon_state = "floorgrimecaution";
-	dir = 2
+	dir = 2;
+	icon_state = "floorgrimecaution"
 	},
 /area/sulaco/brig)
 "aNV" = (
@@ -19032,8 +18873,8 @@
 	req_access_txt = "1"
 	},
 /turf/open/floor{
-	icon_state = "floorgrimecaution";
-	dir = 2
+	dir = 2;
+	icon_state = "floorgrimecaution"
 	},
 /area/sulaco/brig)
 "aNW" = (
@@ -19063,8 +18904,8 @@
 	dir = 1
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 4
+	dir = 4;
+	icon_state = "red"
 	},
 /area/sulaco/marine/alpha)
 "aOa" = (
@@ -19186,8 +19027,8 @@
 "aOn" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 10
+	dir = 10;
+	icon_state = "red"
 	},
 /area/sulaco/command/eva)
 "aOo" = (
@@ -19237,8 +19078,8 @@
 	dir = 4
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 6
+	dir = 6;
+	icon_state = "red"
 	},
 /area/sulaco/command/eva)
 "aOv" = (
@@ -19249,8 +19090,8 @@
 /area/sulaco/hangar/two)
 "aOw" = (
 /turf/open/floor{
-	icon_state = "podhatch";
-	dir = 9
+	dir = 9;
+	icon_state = "podhatch"
 	},
 /area/sulaco/brig)
 "aOx" = (
@@ -19258,14 +19099,14 @@
 	dir = 1
 	},
 /turf/open/floor{
-	icon_state = "podhatch";
-	dir = 1
+	dir = 1;
+	icon_state = "podhatch"
 	},
 /area/sulaco/brig)
 "aOy" = (
 /turf/open/floor{
-	icon_state = "podhatch";
-	dir = 5
+	dir = 5;
+	icon_state = "podhatch"
 	},
 /area/sulaco/brig)
 "aOz" = (
@@ -19309,8 +19150,8 @@
 /area/sulaco/hangar/two)
 "aOF" = (
 /turf/open/floor{
-	icon_state = "red";
-	dir = 4
+	dir = 4;
+	icon_state = "red"
 	},
 /area/sulaco/marine/alpha)
 "aOG" = (
@@ -19365,16 +19206,16 @@
 	dir = 8
 	},
 /turf/open/floor{
-	icon_state = "podhatch";
-	dir = 8
+	dir = 8;
+	icon_state = "podhatch"
 	},
 /area/sulaco/brig)
 "aON" = (
 /obj/structure/bed/chair,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor{
-	icon_state = "podhatchfloor";
-	dir = 2
+	dir = 2;
+	icon_state = "podhatchfloor"
 	},
 /area/sulaco/brig)
 "aOO" = (
@@ -19382,8 +19223,8 @@
 	dir = 4
 	},
 /turf/open/floor{
-	icon_state = "podhatch";
-	dir = 4
+	dir = 4;
+	icon_state = "podhatch"
 	},
 /area/sulaco/brig)
 "aOP" = (
@@ -19478,8 +19319,8 @@
 /area/mainship/shipboard/weapon_room)
 "aOZ" = (
 /turf/open/floor{
-	icon_state = "podhatch";
-	dir = 2
+	dir = 2;
+	icon_state = "podhatch"
 	},
 /area/sulaco/brig)
 "aPa" = (
@@ -19565,8 +19406,8 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	icon_state = "door_closed";
-	dir = 2
+	dir = 2;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "whitebluefull"
@@ -19575,8 +19416,8 @@
 "aPr" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	icon_state = "door_closed";
-	dir = 2
+	dir = 2;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "whitebluefull"
@@ -19613,8 +19454,8 @@
 	},
 /turf/open/space,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
-	dir = 1
+	dir = 1;
+	icon_state = "diagonalWall3"
 	},
 /area/space)
 "aPw" = (
@@ -19697,8 +19538,8 @@
 "aPI" = (
 /turf/open/space,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
-	dir = 8
+	dir = 8;
+	icon_state = "diagonalWall3"
 	},
 /area/sulaco/command/armory)
 "aPJ" = (
@@ -19770,8 +19611,8 @@
 "aPT" = (
 /turf/open/space/basic,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
-	dir = 1
+	dir = 1;
+	icon_state = "diagonalWall3"
 	},
 /area/sulaco/command/armory)
 "aPU" = (
@@ -19831,8 +19672,8 @@
 	},
 /obj/machinery/camera/autoname,
 /turf/open/floor{
-	icon_state = "floorgrime";
-	dir = 4
+	dir = 4;
+	icon_state = "floorgrime"
 	},
 /area/sulaco/brig)
 "aQe" = (
@@ -19960,8 +19801,8 @@
 /area/sulaco/hangar)
 "aQy" = (
 /turf/open/floor{
-	icon_state = "cult";
-	dir = 2
+	dir = 2;
+	icon_state = "cult"
 	},
 /area/sulaco/morgue)
 "aQz" = (
@@ -19969,18 +19810,18 @@
 	id = "crema"
 	},
 /turf/open/floor{
-	icon_state = "cult";
-	dir = 2
+	dir = 2;
+	icon_state = "cult"
 	},
 /area/sulaco/morgue)
 "aQA" = (
 /obj/structure/morgue{
-	icon_state = "morgue1";
-	dir = 8
+	dir = 8;
+	icon_state = "morgue1"
 	},
 /turf/open/floor{
-	icon_state = "cult";
-	dir = 2
+	dir = 2;
+	icon_state = "cult"
 	},
 /area/sulaco/morgue)
 "aQB" = (
@@ -20002,8 +19843,8 @@
 /area/sulaco/hangar)
 "aQD" = (
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
@@ -20022,8 +19863,8 @@
 /obj/item/ammo_magazine/m41ae2_hpr,
 /obj/item/weapon/gun/rifle/m41ae2_hpr,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 4
+	dir = 4;
+	icon_state = "red"
 	},
 /area/sulaco/command/armory)
 "aQF" = (
@@ -20083,8 +19924,8 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /obj/machinery/vending/medical,
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 8
+	dir = 8;
+	icon_state = "intercom"
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -20108,8 +19949,8 @@
 	req_one_access_txt = "2;8;19"
 	},
 /turf/open/floor{
-	icon_state = "cult";
-	dir = 2
+	dir = 2;
+	icon_state = "cult"
 	},
 /area/sulaco/morgue)
 "aQQ" = (
@@ -20118,14 +19959,14 @@
 	dir = 1
 	},
 /turf/open/floor{
-	icon_state = "cult";
-	dir = 2
+	dir = 2;
+	icon_state = "cult"
 	},
 /area/sulaco/morgue)
 "aQR" = (
 /obj/machinery/door/airlock/mainship/marine/requisitions{
-	icon_state = "door_closed";
-	dir = 8
+	dir = 8;
+	icon_state = "door_closed"
 	},
 /turf/open/floor/mainship{
 	icon_state = "ai_floors"
@@ -20150,8 +19991,8 @@
 "aQT" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/door/airlock/mainship/secure/tcomms{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -20176,8 +20017,8 @@
 	dir = 8
 	},
 /turf/closed/wall/indestructible/fakeglass{
-	icon_state = "fakewindows";
-	dir = 4
+	dir = 4;
+	icon_state = "fakewindows"
 	},
 /area/sulaco/maintenance/lower_maint)
 "aQW" = (
@@ -20196,12 +20037,12 @@
 	dir = 4
 	},
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /turf/open/floor{
-	icon_state = "cult";
-	dir = 2
+	dir = 2;
+	icon_state = "cult"
 	},
 /area/sulaco/morgue)
 "aQZ" = (
@@ -20234,8 +20075,8 @@
 /area/sulaco/medbay/hangar)
 "aRe" = (
 /obj/machinery/door/airlock/mainship/generic/corporate{
-	icon_state = "door_closed";
-	dir = 2
+	dir = 2;
+	icon_state = "door_closed"
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
@@ -20265,8 +20106,8 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor{
-	icon_state = "cult";
-	dir = 2
+	dir = 2;
+	icon_state = "cult"
 	},
 /area/sulaco/morgue)
 "aRj" = (
@@ -20288,23 +20129,23 @@
 	dir = 8
 	},
 /turf/open/floor{
-	icon_state = "cult";
-	dir = 2
+	dir = 2;
+	icon_state = "cult"
 	},
 /area/sulaco/morgue)
 "aRm" = (
 /obj/machinery/camera/autoname,
 /turf/open/floor{
-	icon_state = "cult";
-	dir = 2
+	dir = 2;
+	icon_state = "cult"
 	},
 /area/sulaco/morgue)
 "aRn" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /obj/structure/morgue,
 /turf/open/floor{
-	icon_state = "cult";
-	dir = 2
+	dir = 2;
+	icon_state = "cult"
 	},
 /area/sulaco/morgue)
 "aRo" = (
@@ -20325,8 +20166,8 @@
 /area/sulaco/maintenance/lower_maint2)
 "aRq" = (
 /obj/machinery/door/airlock/mainship/secure/tcomms{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /turf/open/floor/plating,
 /area/sulaco/telecomms/office)
@@ -20355,8 +20196,8 @@
 	icon_state = "1-8"
 	},
 /turf/open/floor{
-	icon_state = "cult";
-	dir = 2
+	dir = 2;
+	icon_state = "cult"
 	},
 /area/sulaco/morgue)
 "aRu" = (
@@ -20430,8 +20271,8 @@
 /area/sulaco/liaison/quarters)
 "aRC" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /turf/open/floor{
 	icon_state = "vault"
@@ -20482,8 +20323,8 @@
 "aRJ" = (
 /obj/structure/morgue,
 /turf/open/floor{
-	icon_state = "cult";
-	dir = 2
+	dir = 2;
+	icon_state = "cult"
 	},
 /area/sulaco/morgue)
 "aRK" = (
@@ -20553,8 +20394,8 @@
 /area/sulaco/hangar)
 "aRS" = (
 /obj/machinery/door/airlock/mainship/generic/pilot/bunk{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -20581,12 +20422,12 @@
 /area/sulaco/hangar)
 "aRV" = (
 /obj/machinery/door/airlock/mainship/research/glass/cell/cell1{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /obj/machinery/door/poddoor/shutters/mainship/cell/cell1{
-	icon_state = "shutter1";
-	dir = 1
+	dir = 1;
+	icon_state = "shutter1"
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -20639,14 +20480,14 @@
 /area/sulaco/research)
 "aSb" = (
 /turf/open/floor{
-	icon_state = "red";
-	dir = 9
+	dir = 9;
+	icon_state = "red"
 	},
 /area/sulaco/hangar/one)
 "aSc" = (
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/hangar/one)
 "aSd" = (
@@ -20654,14 +20495,14 @@
 	dir = 1
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/hangar/one)
 "aSe" = (
 /turf/open/floor{
-	icon_state = "red";
-	dir = 5
+	dir = 5;
+	icon_state = "red"
 	},
 /area/sulaco/hangar/one)
 "aSf" = (
@@ -20785,8 +20626,8 @@
 	},
 /obj/structure/morgue,
 /turf/open/floor{
-	icon_state = "cult";
-	dir = 2
+	dir = 2;
+	icon_state = "cult"
 	},
 /area/sulaco/morgue)
 "aSt" = (
@@ -20824,8 +20665,8 @@
 /area/sulaco/research)
 "aSy" = (
 /obj/machinery/door/airlock/mainship/medical/morgue{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -20833,8 +20674,8 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor{
-	icon_state = "cult";
-	dir = 2
+	dir = 2;
+	icon_state = "cult"
 	},
 /area/sulaco/morgue)
 "aSz" = (
@@ -20888,8 +20729,8 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /obj/machinery/door/airlock/mainship/research{
-	icon_state = "door_closed";
-	dir = 2
+	dir = 2;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -20949,8 +20790,8 @@
 	dir = 1
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 8
+	dir = 8;
+	icon_state = "red"
 	},
 /area/sulaco/hangar/one)
 "aSM" = (
@@ -20968,8 +20809,8 @@
 /area/sulaco/hangar/one)
 "aSP" = (
 /turf/open/floor{
-	icon_state = "red";
-	dir = 4
+	dir = 4;
+	icon_state = "red"
 	},
 /area/sulaco/hangar/one)
 "aSQ" = (
@@ -20982,8 +20823,8 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /obj/machinery/door/firedoor,
 /turf/open/floor{
-	icon_state = "vault";
-	dir = 8
+	dir = 8;
+	icon_state = "vault"
 	},
 /area/sulaco/hangar)
 "aSS" = (
@@ -21004,8 +20845,8 @@
 /obj/item/weapon/gun/rifle/m41a,
 /obj/item/weapon/gun/rifle/m41a,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 4
+	dir = 4;
+	icon_state = "red"
 	},
 /area/sulaco/command/armory)
 "aST" = (
@@ -21062,8 +20903,8 @@
 /obj/item/smartgun_powerpack/fancy,
 /obj/item/clothing/suit/storage/marine/smartgunner/fancy,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 9
+	dir = 9;
+	icon_state = "red"
 	},
 /area/sulaco/command/armory)
 "aSZ" = (
@@ -21082,8 +20923,8 @@
 "aTb" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /turf/open/floor{
-	icon_state = "cult";
-	dir = 2
+	dir = 2;
+	icon_state = "cult"
 	},
 /area/sulaco/morgue)
 "aTc" = (
@@ -21178,8 +21019,8 @@
 /area/sulaco/medbay/hangar)
 "aTl" = (
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /turf/open/floor/plating,
 /area/sulaco/engineering/storage)
@@ -21244,8 +21085,8 @@
 "aTt" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 8
+	dir = 8;
+	icon_state = "red"
 	},
 /area/sulaco/hangar/one)
 "aTu" = (
@@ -21325,8 +21166,8 @@
 	dir = 1
 	},
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 8
+	dir = 8;
+	icon_state = "intercom"
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -21409,8 +21250,8 @@
 	name = "Blast Door"
 	},
 /obj/machinery/door/airlock/mainship/secure/tcomms{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /turf/open/floor/plating,
 /area/sulaco/telecomms/office)
@@ -21429,8 +21270,8 @@
 /area/sulaco/telecomms/office)
 "aTO" = (
 /obj/machinery/door/airlock/mainship/secure/tcomms{
-	icon_state = "door_closed";
-	dir = 8
+	dir = 8;
+	icon_state = "door_closed"
 	},
 /turf/open/floor/plating,
 /area/sulaco/telecomms/office)
@@ -21504,8 +21345,8 @@
 /area/mainship/command/self_destruct)
 "aTZ" = (
 /obj/machinery/light/small{
-	icon_state = "bulb1";
-	dir = 4
+	dir = 4;
+	icon_state = "bulb1"
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/command/self_destruct)
@@ -21528,8 +21369,8 @@
 	},
 /obj/structure/morgue,
 /turf/open/floor{
-	icon_state = "cult";
-	dir = 2
+	dir = 2;
+	icon_state = "cult"
 	},
 /area/sulaco/morgue)
 "aUd" = (
@@ -21572,8 +21413,8 @@
 /area/mainship/command/self_destruct)
 "aUj" = (
 /obj/machinery/light/small{
-	icon_state = "bulb1";
-	dir = 4
+	dir = 4;
+	icon_state = "bulb1"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -21592,8 +21433,8 @@
 /area/mainship/command/self_destruct)
 "aUl" = (
 /obj/machinery/light/small{
-	icon_state = "bulb1";
-	dir = 4
+	dir = 4;
+	icon_state = "bulb1"
 	},
 /turf/open/floor/mainship,
 /area/mainship/command/self_destruct)
@@ -21626,8 +21467,8 @@
 "aUq" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 10
+	dir = 10;
+	icon_state = "red"
 	},
 /area/sulaco/hangar/one)
 "aUr" = (
@@ -21637,8 +21478,8 @@
 /area/sulaco/hangar/one)
 "aUs" = (
 /turf/open/floor{
-	icon_state = "red";
-	dir = 6
+	dir = 6;
+	icon_state = "red"
 	},
 /area/sulaco/hangar/one)
 "aUt" = (
@@ -21653,8 +21494,8 @@
 /area/mainship/command/self_destruct)
 "aUw" = (
 /turf/open/floor{
-	icon_state = "redfull";
-	dir = 9
+	dir = 9;
+	icon_state = "redfull"
 	},
 /area/sulaco/command/armory)
 "aUx" = (
@@ -21712,16 +21553,16 @@
 /area/mainship/command/self_destruct)
 "aUE" = (
 /obj/machinery/power/apc/mainship/hardened{
-	icon_state = "apc0";
-	dir = 8
+	dir = 8;
+	icon_state = "apc0"
 	},
 /obj/structure/cable{
 	d2 = 8;
 	icon_state = "0-8"
 	},
 /obj/machinery/light/small{
-	icon_state = "bulb1";
-	dir = 4
+	dir = 4;
+	icon_state = "bulb1"
 	},
 /turf/open/floor/mainship,
 /area/mainship/command/self_destruct)
@@ -21784,8 +21625,8 @@
 /obj/item/clothing/suit/armor/swat,
 /obj/item/clothing/suit/armor/swat,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 5
+	dir = 5;
+	icon_state = "red"
 	},
 /area/sulaco/command/armory)
 "aUN" = (
@@ -21794,12 +21635,12 @@
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	icon_state = "door_closed";
-	dir = 2
+	dir = 2;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
-	icon_state = "vault";
-	dir = 8
+	dir = 8;
+	icon_state = "vault"
 	},
 /area/sulaco/hangar)
 "aUO" = (
@@ -21808,12 +21649,12 @@
 /area/sulaco/hangar/one)
 "aUP" = (
 /obj/machinery/door/airlock/mainship/medical/morgue{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
-	icon_state = "cult";
-	dir = 2
+	dir = 2;
+	icon_state = "cult"
 	},
 /area/sulaco/morgue)
 "aUQ" = (
@@ -21824,8 +21665,8 @@
 /area/sulaco/hallway/lower_main_hall)
 "aUR" = (
 /obj/machinery/door/poddoor/mainship/ai/exterior{
-	icon_state = "pdoor0";
-	dir = 1
+	dir = 1;
+	icon_state = "pdoor0"
 	},
 /turf/open/floor/mainship{
 	icon_state = "ai_floors"
@@ -21848,8 +21689,8 @@
 /area/sulaco/hangar)
 "aUU" = (
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 8
+	dir = 8;
+	icon_state = "intercom"
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison)
@@ -21900,8 +21741,8 @@
 	dir = 4
 	},
 /turf/open/floor{
-	icon_state = "red";
-	dir = 8
+	dir = 8;
+	icon_state = "red"
 	},
 /area/sulaco/command/armory)
 "aVc" = (
@@ -21916,8 +21757,8 @@
 /area/mainship/command/self_destruct)
 "aVf" = (
 /obj/machinery/door/poddoor/mainship/ai/exterior{
-	icon_state = "pdoor0";
-	dir = 1
+	dir = 1;
+	icon_state = "pdoor0"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -21930,8 +21771,8 @@
 /area/mainship/command/self_destruct)
 "aVg" = (
 /obj/machinery/door/window/brigdoor/mainship/cell_2{
-	icon_state = "leftsecure";
-	dir = 2
+	dir = 2;
+	icon_state = "leftsecure"
 	},
 /turf/open/floor{
 	icon_state = "floor4"
@@ -21948,8 +21789,8 @@
 	dir = 1
 	},
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 8
+	dir = 8;
+	icon_state = "intercom"
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -21976,8 +21817,8 @@
 "aVk" = (
 /obj/machinery/light/small,
 /turf/open/floor{
-	icon_state = "cult";
-	dir = 2
+	dir = 2;
+	icon_state = "cult"
 	},
 /area/sulaco/morgue)
 "aVl" = (
@@ -21985,14 +21826,14 @@
 /obj/item/storage/box/bodybags,
 /obj/item/storage/box/bodybags,
 /turf/open/floor{
-	icon_state = "cult";
-	dir = 2
+	dir = 2;
+	icon_state = "cult"
 	},
 /area/sulaco/morgue)
 "aVm" = (
 /obj/machinery/door/window/brigdoor/mainship/cell_3{
-	icon_state = "leftsecure";
-	dir = 2
+	dir = 2;
+	icon_state = "leftsecure"
 	},
 /turf/open/floor{
 	icon_state = "floor4"
@@ -22000,8 +21841,8 @@
 /area/sulaco/brig)
 "aVn" = (
 /obj/machinery/door/window/brigdoor/mainship/cell_4{
-	icon_state = "leftsecure";
-	dir = 2
+	dir = 2;
+	icon_state = "leftsecure"
 	},
 /turf/open/floor{
 	icon_state = "floor4"
@@ -22009,8 +21850,8 @@
 /area/sulaco/brig)
 "aVo" = (
 /obj/machinery/door/window/brigdoor/mainship/cell_5{
-	icon_state = "leftsecure";
-	dir = 2
+	dir = 2;
+	icon_state = "leftsecure"
 	},
 /turf/open/floor{
 	icon_state = "floor4"
@@ -22066,8 +21907,8 @@
 	layer = 2
 	},
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /turf/open/floor/mainship/mono,
 /area/sulaco/maintenance/south_solar_maint)
@@ -22088,8 +21929,8 @@
 "aVz" = (
 /obj/machinery/computer/secure_data/detective_computer,
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/power/apc/mainship,
 /turf/open/floor/carpet,
@@ -22170,8 +22011,8 @@
 	},
 /obj/machinery/nuclearbomb,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 8
+	dir = 8;
+	icon_state = "red"
 	},
 /area/sulaco/command/armory)
 "aVM" = (
@@ -22233,8 +22074,8 @@
 /area/sulaco/hallway/lower_main_hall)
 "aVT" = (
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /turf/open/floor/plating,
 /area/sulaco/research)
@@ -22292,8 +22133,8 @@
 "aVZ" = (
 /obj/machinery/door/firedoor,
 /turf/open/floor{
-	icon_state = "vault";
-	dir = 8
+	dir = 8;
+	icon_state = "vault"
 	},
 /area/sulaco/hangar)
 "aWa" = (
@@ -22360,8 +22201,8 @@
 /area/sulaco/maintenance/lower_maint)
 "aWg" = (
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /turf/open/floor/plating,
 /area/sulaco/hallway/lower_main_hall)
@@ -22440,8 +22281,8 @@
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/mainship/secure/tcomms{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -22449,8 +22290,8 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor{
-	icon_state = "podhatch";
-	dir = 1
+	dir = 1;
+	icon_state = "podhatch"
 	},
 /area/sulaco/telecomms)
 "aWs" = (
@@ -22464,8 +22305,8 @@
 	dir = 4
 	},
 /turf/open/floor{
-	icon_state = "redfull";
-	dir = 9
+	dir = 9;
+	icon_state = "redfull"
 	},
 /area/sulaco/command/armory)
 "aWu" = (
@@ -22540,8 +22381,8 @@
 	dir = 1
 	},
 /obj/structure/cable{
-	icon_state = "4-8";
-	d2 = 8
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	icon_state = "vault"
@@ -22552,8 +22393,8 @@
 	dir = 4
 	},
 /obj/structure/cable{
-	icon_state = "4-8";
-	d2 = 8
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	icon_state = "vault"
@@ -22569,8 +22410,8 @@
 	icon_state = "2-4"
 	},
 /obj/structure/cable{
-	icon_state = "4-8";
-	d2 = 8
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	icon_state = "vault"
@@ -22592,8 +22433,8 @@
 	dir = 4
 	},
 /obj/structure/cable{
-	icon_state = "4-8";
-	d2 = 8
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	icon_state = "vault"
@@ -22617,8 +22458,8 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /obj/structure/cable{
-	icon_state = "4-8";
-	d2 = 8
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	icon_state = "vault"
@@ -22639,8 +22480,8 @@
 	dir = 4
 	},
 /obj/structure/cable{
-	icon_state = "4-8";
-	d2 = 8
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/open/floor{
 	icon_state = "vault"
@@ -22716,8 +22557,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor{
-	icon_state = "vault";
-	dir = 8
+	dir = 8;
+	icon_state = "vault"
 	},
 /area/sulaco/hangar)
 "aWP" = (
@@ -22775,8 +22616,8 @@
 /obj/item/tool/crowbar,
 /obj/item/multitool,
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
-	dir = 8
+	dir = 8;
+	icon_state = "intercom"
 	},
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
@@ -22981,8 +22822,8 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/mainship/generic/corporate{
-	icon_state = "door_closed";
-	dir = 2
+	dir = 2;
+	icon_state = "door_closed"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -22995,12 +22836,12 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	icon_state = "door_closed";
-	dir = 2
+	dir = 2;
+	icon_state = "door_closed"
 	},
 /turf/open/floor{
-	icon_state = "vault";
-	dir = 8
+	dir = 8;
+	icon_state = "vault"
 	},
 /area/sulaco/hangar)
 "aXr" = (
@@ -23031,8 +22872,8 @@
 /area/sulaco/maintenance/lower_maint)
 "aXu" = (
 /obj/machinery/door/airlock/mainship/secure/tcomms{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -23141,8 +22982,8 @@
 "aXI" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/mainship/engineering/atmos{
-	icon_state = "door_closed";
-	dir = 2
+	dir = 2;
+	icon_state = "door_closed"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -23166,8 +23007,8 @@
 	dir = 1
 	},
 /obj/structure/cable{
-	icon_state = "4-8";
-	d2 = 8
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
@@ -23186,8 +23027,8 @@
 	},
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -23351,8 +23192,8 @@
 	id = "engi"
 	},
 /turf/open/floor{
-	icon_state = "vault";
-	dir = 8
+	dir = 8;
+	icon_state = "vault"
 	},
 /area/sulaco/maintenance/lower_maint)
 "aYd" = (
@@ -23527,9 +23368,9 @@
 /area/sulaco/hangar)
 "aYx" = (
 /obj/structure/cable{
-	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/mainship{
@@ -23822,15 +23663,15 @@
 "aYY" = (
 /turf/open/space,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
-	dir = 8
+	dir = 8;
+	icon_state = "diagonalWall3"
 	},
 /area/space)
 "aYZ" = (
 /turf/open/space,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
-	dir = 8
+	dir = 8;
+	icon_state = "diagonalWall3"
 	},
 /area/sulaco/maintenance/north_solar_maint)
 "aZa" = (
@@ -23847,8 +23688,8 @@
 "aZd" = (
 /turf/open/space,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
-	dir = 4
+	dir = 4;
+	icon_state = "diagonalWall3"
 	},
 /area/sulaco/engineering/atmos)
 "aZe" = (
@@ -23912,43 +23753,43 @@
 "aZk" = (
 /turf/open/space,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
-	dir = 4
+	dir = 4;
+	icon_state = "diagonalWall3"
 	},
 /area/sulaco/engineering/engine)
 "aZl" = (
 /turf/open/floor,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
-	dir = 8
+	dir = 8;
+	icon_state = "diagonalWall3"
 	},
 /area/sulaco/maintenance/lower_maint)
 "aZm" = (
 /turf/open/space,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
-	dir = 4
+	dir = 4;
+	icon_state = "diagonalWall3"
 	},
 /area/space)
 "aZn" = (
 /turf/open/space/basic,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
-	dir = 4
+	dir = 4;
+	icon_state = "diagonalWall3"
 	},
 /area/space)
 "aZo" = (
 /turf/open/space,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
-	dir = 1
+	dir = 1;
+	icon_state = "diagonalWall3"
 	},
 /area/space)
 "aZp" = (
 /turf/open/floor,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
-	dir = 1
+	dir = 1;
+	icon_state = "diagonalWall3"
 	},
 /area/sulaco/maintenance/lower_maint)
 "aZq" = (
@@ -23963,8 +23804,8 @@
 "aZr" = (
 /turf/open/space,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
-	dir = 4
+	dir = 4;
+	icon_state = "diagonalWall3"
 	},
 /area/sulaco/maintenance/lower_maint)
 "aZs" = (
@@ -23987,8 +23828,8 @@
 "aZu" = (
 /turf/open/space,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
-	dir = 1
+	dir = 1;
+	icon_state = "diagonalWall3"
 	},
 /area/sulaco/maintenance/lower_maint)
 "aZv" = (
@@ -24280,15 +24121,6 @@
 /obj/machinery/camera/autoname,
 /turf/open/floor/mainship,
 /area/mainship/command/self_destruct)
-"bak" = (
-/obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
-	},
-/turf/open/floor/mainship{
-	icon_state = "ai_floors"
-	},
-/area/sulaco/hangar)
 "bal" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/closed/wall/sulaco,
@@ -24579,8 +24411,8 @@
 "baW" = (
 /obj/machinery/holopad,
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -24599,8 +24431,8 @@
 "baY" = (
 /obj/machinery/holopad,
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /turf/open/floor/mainship,
 /area/mainship/command/self_destruct)
@@ -24630,8 +24462,8 @@
 "bbc" = (
 /turf/open/space,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
-	dir = 4
+	dir = 4;
+	icon_state = "diagonalWall3"
 	},
 /area/sulaco/command/armory)
 "bbd" = (
@@ -24687,8 +24519,8 @@
 	icon_state = "2-4"
 	},
 /obj/structure/cable{
-	icon_state = "4-8";
-	d2 = 8
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/open/floor/mainship{
 	icon_state = "ai_floors"
@@ -24698,8 +24530,8 @@
 /obj/machinery/alarm,
 /obj/machinery/camera/autoname,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 1
+	dir = 1;
+	icon_state = "red"
 	},
 /area/sulaco/command/armory)
 "bbj" = (
@@ -24708,8 +24540,8 @@
 /obj/item/storage/box/nade_box,
 /obj/item/storage/box/nade_box/M15,
 /turf/open/floor{
-	icon_state = "red";
-	dir = 4
+	dir = 4;
+	icon_state = "red"
 	},
 /area/sulaco/command/armory)
 "bbk" = (
@@ -24868,8 +24700,8 @@
 /area/sulaco/hangar)
 "bbB" = (
 /obj/structure/cable{
-	icon_state = "4-8";
-	d2 = 8
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /obj/machinery/light,
 /obj/effect/decal/warning_stripes/thin{
@@ -24881,8 +24713,8 @@
 /area/sulaco/hangar)
 "bbC" = (
 /obj/structure/cable{
-	icon_state = "4-8";
-	d2 = 8
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -24893,8 +24725,8 @@
 /area/sulaco/hangar)
 "bbD" = (
 /obj/structure/cable{
-	icon_state = "4-8";
-	d2 = 8
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /obj/machinery/camera/autoname{
 	dir = 1
@@ -25399,6 +25231,138 @@
 /obj/item/storage/fancy/cigarettes/dromedaryco,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
+"cyy" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 4
+	},
+/obj/machinery/line_nexter{
+	dir = 2;
+	icon_state = "turnstile"
+	},
+/turf/open/floor{
+	icon_state = "bot"
+	},
+/area/sulaco/cargo/office)
+"czG" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor,
+/area/sulaco/cargo/office)
+"cLb" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/turf/open/floor,
+/area/sulaco/cargo/office)
+"eiU" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/structure/barricade/metal{
+	dir = 4;
+	icon_state = "metal_0"
+	},
+/obj/machinery/line_nexter{
+	dir = 2;
+	icon_state = "turnstile"
+	},
+/turf/open/floor{
+	icon_state = "bot"
+	},
+/area/sulaco/cargo/office)
+"gBA" = (
+/obj/structure/table/reinforced{
+	layer = 2.1
+	},
+/obj/machinery/door/poddoor/shutters{
+	dir = 2;
+	id = "ROlobby1";
+	name = "RO Line 1"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/sulaco/cargo)
+"jhE" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/open/floor,
+/area/sulaco/cargo/office)
+"jMC" = (
+/turf/open/floor{
+	dir = 2;
+	icon_state = "loadingarea"
+	},
+/area/sulaco/cargo/office)
+"kSd" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/turf/open/floor{
+	icon_state = "bot"
+	},
+/area/sulaco/cargo/office)
+"pWb" = (
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8";
+	layer = 2.1
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/obj/structure/barricade/metal{
+	dir = 4;
+	icon_state = "metal_0"
+	},
+/obj/structure/barricade/metal{
+	dir = 8;
+	icon_state = "metal_0"
+	},
+/turf/open/floor,
+/area/sulaco/cargo/office)
+"rBD" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8";
+	layer = 2.1
+	},
+/turf/open/floor{
+	icon_state = "bot"
+	},
+/area/sulaco/cargo/office)
+"vPF" = (
+/obj/item/tool/wirecutters,
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
+"xsY" = (
+/obj/structure/table/reinforced{
+	layer = 2.1
+	},
+/obj/machinery/door/poddoor/shutters{
+	dir = 2;
+	id = "ROlobby2";
+	name = "RO Line 2"
+	},
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/turf/open/floor{
+	icon_state = "dark"
+	},
+/area/sulaco/cargo)
 
 (1,1,1) = {"
 aaa
@@ -60811,7 +60775,7 @@ aPZ
 bbC
 aUx
 aPF
-bak
+aGx
 aPF
 bap
 bay
@@ -66087,7 +66051,7 @@ axK
 avV
 avV
 aBL
-aCR
+avT
 avV
 avV
 avV
@@ -66868,7 +66832,7 @@ aJc
 avV
 avV
 avV
-aCR
+avT
 avV
 avV
 aIb
@@ -66877,7 +66841,7 @@ aIb
 aIb
 avV
 avV
-aCR
+avT
 avV
 aIp
 avV
@@ -67615,14 +67579,14 @@ aaM
 ahi
 aiy
 aja
-aiB
-alk
-amd
+gBA
+cyy
+kSd
 aoL
 aph
 aqc
 arE
-asu
+asl
 auw
 avU
 axP
@@ -67872,9 +67836,9 @@ aaM
 ahj
 ahX
 ajb
-aiT
-all
-amC
+aap
+jMC
+pWb
 anJ
 aoC
 aoC
@@ -67896,7 +67860,7 @@ aJe
 avV
 avV
 avV
-aCR
+avT
 avV
 avV
 avV
@@ -67905,7 +67869,7 @@ avV
 avV
 avV
 avV
-aCR
+avT
 avV
 avV
 avV
@@ -68129,14 +68093,14 @@ aaM
 ahk
 aiz
 ajc
-aiS
-alm
-amh
+xsY
+eiU
+rBD
 anK
 aoW
 apg
 arE
-asu
+asl
 auw
 avW
 axO
@@ -68386,7 +68350,7 @@ aaM
 ahx
 aiI
 ajd
-aiT
+aap
 aln
 amE
 anL
@@ -68644,10 +68608,10 @@ ahx
 aiU
 ajf
 ajF
-alo
-amF
-amF
-aoX
+jhE
+cLb
+cLb
+czG
 aqq
 anq
 apA
@@ -69418,7 +69382,7 @@ aaK
 alx
 amB
 aaK
-ayu
+vPF
 aaK
 aaK
 aap
@@ -69675,7 +69639,7 @@ aaK
 alx
 aaK
 aaK
-apj
+aaK
 aqe
 asy
 aap
@@ -69932,7 +69896,7 @@ amV
 aap
 amD
 aaK
-apj
+aaK
 aqf
 asC
 aap
@@ -70189,7 +70153,7 @@ akS
 aap
 amG
 aoU
-apk
+afK
 aqn
 atU
 aap
