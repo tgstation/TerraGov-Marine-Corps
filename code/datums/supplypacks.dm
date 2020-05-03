@@ -1660,8 +1660,8 @@ AMMO
 /datum/supply_packs/ammo_smartmachinegun
 	name = "T26 smartmachinegun ammo crate (x3)"
 	contains = list(
-                    /obj/item/ammo_magazine/standard_smartmachinegun,
-                    /obj/item/ammo_magazine/standard_smartmachinegun,
+					/obj/item/ammo_magazine/standard_smartmachinegun,
+					/obj/item/ammo_magazine/standard_smartmachinegun,
 					/obj/item/ammo_magazine/standard_smartmachinegun
 					)
 	cost = 30
