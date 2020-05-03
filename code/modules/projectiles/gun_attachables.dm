@@ -341,6 +341,25 @@ Defined in conflicts.dm of the #defines folder.
 			F.forceMove(loc)
 		qdel(src) //Delete da old bayonet
 
+/obj/item/attachable/bayonetknife
+	name = "T-22 bayonet"
+	desc = "A sharp knife that can be attached to a weapon at will. Seems nice in a fight."
+	icon_state = "bayonetknife"
+	item_state = "combat_knife"
+	attach_icon = "bayonetknife_a"
+	force = 25
+	throwforce = 10
+	attach_delay = 10 //Bayonets attach/detach quickly.
+	detach_delay = 10
+	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	melee_mod = 25
+	slot = "muzzle"
+	pixel_shift_x = 14 //Below the muzzle.
+	pixel_shift_y = 18
+	accuracy_mod = -0.05
+	accuracy_unwielded_mod = -0.1
+	size_mod = 1
+
 /obj/item/attachable/extended_barrel
 	name = "extended barrel"
 	desc = "A lengthened barrel allows for lessened scatter, greater accuracy and muzzle velocity due to increased stabilization and shockwave exposure."

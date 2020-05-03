@@ -455,13 +455,6 @@
 				if(!U || U.hastie)
 					return FALSE
 				return TRUE
-			if(SLOT_IN_BOOT)
-				if(!istype(src, /obj/item/weapon/combat_knife) && !istype(src, /obj/item/weapon/throwing_knife))
-					return FALSE
-				var/obj/item/clothing/shoes/marine/B = H.shoes
-				if(!B || !istype(B) || B.knife)
-					return FALSE
-				return TRUE
 			if(SLOT_IN_BACKPACK)
 				if (!H.back || !istype(H.back, /obj/item/storage/backpack))
 					return FALSE

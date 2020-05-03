@@ -305,14 +305,6 @@
 		B.remove_from_storage(W)
 		put_in_hands(W)
 		return TRUE
-	else if(istype(I, /obj/item/clothing/shoes/marine))
-		var/obj/item/clothing/shoes/marine/S = I
-		if(!S.knife)
-			return FALSE
-		put_in_hands(S.knife)
-		S.knife = null
-		S.update_icon()
-		return TRUE
 	else if(istype(I, /obj/item/clothing/under))
 		var/obj/item/clothing/under/U = I
 		if(!U.hastie)
