@@ -60,7 +60,8 @@
 	var/can_hold_eggs = CANNOT_HOLD_EGGS
 
 	// *** Defense *** //
-	var/list/armor
+	var/list/soft_armor
+	var/list/hard_armor
 
 	var/fire_resist = 1 //0 to 1; lower is better as it is a multiplier.
 
