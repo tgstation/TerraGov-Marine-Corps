@@ -128,6 +128,8 @@
 			owner.hud_used.move_intent.icon_state = "running"
 		owner.update_icons()
 
+	cancel_stealth()
+
 	if(!can_sneak_attack)
 		return
 	to_chat(owner, "<span class='xenodanger'>Our pounce has left us off-balance; we'll need to wait [HUNTER_POUNCE_SNEAKATTACK_DELAY*0.1] seconds before we can Sneak Attack again.</span>")
