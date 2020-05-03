@@ -1666,7 +1666,7 @@ AMMO
 					)
 	cost = 30
 	containertype = /obj/structure/closet/crate/ammo
-	containername = "\improper smartgun powerpack crate"
+	containername = "\improper T-26 ammo crate"
 	group = "Ammo"
 
 /datum/supply_packs/ammo_sentry
