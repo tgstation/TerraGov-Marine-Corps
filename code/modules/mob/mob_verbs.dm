@@ -111,7 +111,6 @@
 		H.regenerate_icons()
 
 	to_chat(L, "<br><br><h1><span class='danger'>Fight for your life (again), try not to die this time!</span></h1><br><br>")
-	L.verbs += /mob/proc/eord_respawn // Ensure the new mob can also respawn
 
 
 /mob/verb/cancel_camera()
