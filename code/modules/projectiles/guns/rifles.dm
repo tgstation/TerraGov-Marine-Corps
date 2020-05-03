@@ -362,7 +362,7 @@
 
 /obj/item/weapon/gun/rifle/m16
 	name = "\improper FN M16A4 assault rifle"
-	desc = "A light, versatile assault rifle with a 30 round magazine, chambered to fire the 5.56x45mm NATO cartridge. The 4th generation in the M16 platform, this FN variant substitutes automatic for burst fire and retains relevance among mercenaries and militias thanks to its high customizability."
+	desc = "A light, versatile assault rifle with a 30 round magazine, chambered to fire the 5.56x45mm NATO cartridge. The 4th generation in the M16 platform, this FN variant has added automatic fire selection and retains relevance among mercenaries and militias thanks to its high customizability."
 	icon_state = "m16"
 	item_state = "m16"
 	muzzleflash_iconstate = "muzzle_flash_medium"
@@ -397,7 +397,7 @@
 						/obj/item/attachable/scope/mini)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST, GUN_FIREMODE_AUTOMATIC)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 18, "under_x" = 22, "under_y" = 15, "stock_x" = 19, "stock_y" = 13)
 	starting_attachment_types = list(/obj/item/attachable/stock/m16, /obj/item/attachable/m16sight)
 

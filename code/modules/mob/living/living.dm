@@ -243,9 +243,9 @@
 /mob/living/proc/do_resist_grab()
 	if(restrained(RESTRAINED_NECKGRAB))
 		return FALSE
-	if(cooldowns[COOLDOWN_RESIST])
+	if(COOLDOWN_CHECK(src, COOLDOWN_RESIST))
 		return FALSE
-	cooldowns[COOLDOWN_RESIST] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_RESIST, null), CLICK_CD_RESIST)
+	COOLDOWN_START(src, COOLDOWN_RESIST, CLICK_CD_RESIST)
 	if(pulledby.grab_state >= GRAB_AGGRESSIVE)
 		visible_message("<span class='danger'>[src] resists against [pulledby]'s grip!</span>")
 	return resist_grab()
@@ -254,9 +254,9 @@
 /mob/living/proc/do_move_resist_grab()
 	if(restrained(RESTRAINED_NECKGRAB))
 		return FALSE
-	if(cooldowns[COOLDOWN_RESIST])
+	if(COOLDOWN_CHECK(src, COOLDOWN_RESIST))
 		return FALSE
-	cooldowns[COOLDOWN_RESIST] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_RESIST, null), CLICK_CD_RESIST)
+	COOLDOWN_START(src, COOLDOWN_RESIST, CLICK_CD_RESIST)
 	if(pulledby.grab_state >= GRAB_AGGRESSIVE)
 		visible_message("<span class='danger'>[src] struggles to break free of [pulledby]'s grip!</span>", null, null, 5)
 	return resist_grab()
@@ -597,7 +597,7 @@ below 100 is not dizzy
 	else if(lying_angle)
 		set_lying_angle(0)
 
-	set_canmove(!(IsStun() || frozen || laid_down))
+	set_canmove(!(HAS_TRAIT(src, TRAIT_IMMOBILE) || laid_down))
 
 	if(lying_angle)
 		density = FALSE
@@ -669,10 +669,10 @@ below 100 is not dizzy
 /mob/living/proc/point_to_atom(atom/A, turf/T)
 	//Squad Leaders and above have reduced cooldown and get a bigger arrow
 	if(skills.getRating("leadership") < SKILL_LEAD_TRAINED)
-		cooldowns[COOLDOWN_POINT] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_POINT, null), 5 SECONDS)
+		COOLDOWN_START(src, COOLDOWN_POINT, 5 SECONDS)
 		new /obj/effect/overlay/temp/point(T)
 	else
-		cooldowns[COOLDOWN_POINT] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_POINT, null), 1 SECONDS)
+		COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)
 		new /obj/effect/overlay/temp/point/big(T)
 	visible_message("<b>[src]</b> points to [A]")
 	return TRUE
@@ -785,3 +785,24 @@ below 100 is not dizzy
 	lying_angle = new_lying
 	update_transform()
 	lying_prev = lying_angle
+
+
+/mob/living/set_stat(new_stat)
+	. = ..()
+	if(isnull(.))
+		return
+	if(stat == CONSCIOUS) //From unconscious to conscious.
+		REMOVE_TRAIT(src, TRAIT_IMMOBILE, STAT_TRAIT)
+	else if(. == CONSCIOUS) //From conscious to unconscious.
+		ADD_TRAIT(src, TRAIT_IMMOBILE, STAT_TRAIT)
+
+
+/mob/living/setGrabState(newstate)
+	. = ..()
+	if(isnull(.))
+		return
+	if(grab_state >= GRAB_NECK)
+		if(. < GRAB_NECK) //Neckgrabbed.
+			ADD_TRAIT(pulling, TRAIT_IMMOBILE, NECKGRAB_TRAIT)
+	else if(. >= GRAB_NECK) //Released from neckgrab.
+		REMOVE_TRAIT(pulling, TRAIT_IMMOBILE, NECKGRAB_TRAIT)
