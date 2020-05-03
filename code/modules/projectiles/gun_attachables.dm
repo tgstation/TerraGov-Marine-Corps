@@ -348,7 +348,6 @@ Defined in conflicts.dm of the #defines folder.
 	item_state = "combat_knife"
 	attach_icon = "bayonetknife_a"
 	force = 25
-	throwforce = 10
 	throwforce = 20
 	throw_speed = 3
 	throw_range = 6
