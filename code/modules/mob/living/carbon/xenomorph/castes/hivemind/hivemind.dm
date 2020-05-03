@@ -81,7 +81,7 @@
 	return FALSE
 
 /mob/living/carbon/xenomorph/hivemind/set_lying_angle()
-	stack_trace("Something caused a hivemind to change its lying angle. Add checks to prevent that.")
+	CRASH("Something caused a hivemind to change its lying angle. Add checks to prevent that.")
 
 /mob/living/carbon/xenomorph/hivemind/DblClickOn(atom/A, params)
 	if(!istype(A, /obj/effect/alien/weeds))
