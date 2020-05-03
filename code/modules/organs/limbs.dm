@@ -1073,13 +1073,13 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 /datum/limb/proc/add_limb_soft_armor(datum/armor/added_armor)
 	soft_armor = soft_armor.attachArmor(added_armor)
-	var/datum/armor/scaled_armor = added_armor.scaleAllRatings(cover_index * 0.01)
+	var/datum/armor/scaled_armor = added_armor.scaleAllRatings(cover_index * 0.01, 1)
 	owner.soft_armor = owner.soft_armor.attachArmor(scaled_armor)
 
 
 /datum/limb/proc/remove_limb_soft_armor(datum/armor/removed_armor)
 	soft_armor = soft_armor.detachArmor(removed_armor)
-	var/datum/armor/scaled_armor = removed_armor.scaleAllRatings(cover_index * 0.01)
+	var/datum/armor/scaled_armor = removed_armor.scaleAllRatings(cover_index * 0.01, 1)
 	owner.soft_armor = owner.soft_armor.detachArmor(scaled_armor)
 
 
