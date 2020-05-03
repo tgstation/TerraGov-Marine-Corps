@@ -79,12 +79,12 @@
 /// Hivemind just doesn't have any icons to update, disabled for now
 /mob/living/carbon/xenomorph/hivemind/update_icons()
 	return FALSE
-
+/* TO DO: Find out what caused this and fix it.
 /// Override hivemind can_move to stop hivemind being made dense again
 /mob/living/carbon/xenomorph/hivemind/update_canmove()
 	set_canmove(TRUE)
 	return canmove
-
+*/
 /*
 These specifically override the default click actions for a hivemind
 If we want to be able to add other on click actions this would be where.

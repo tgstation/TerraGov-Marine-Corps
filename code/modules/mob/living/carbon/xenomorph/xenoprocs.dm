@@ -319,11 +319,9 @@
 
 /mob/living/carbon/xenomorph/proc/reset_movement()
 	set_frozen(FALSE)
-	update_canmove()
 
 /mob/living/carbon/xenomorph/proc/stop_movement()
 	set_frozen(TRUE)
-	update_canmove()
 
 /mob/living/carbon/xenomorph/set_frozen(freeze = TRUE)
 	if(fortify && !freeze)
