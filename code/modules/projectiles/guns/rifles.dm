@@ -362,7 +362,7 @@
 
 /obj/item/weapon/gun/rifle/m16
 	name = "\improper FN M16A4 assault rifle"
-	desc = "A light, versatile assault rifle with a 30 round magazine, chambered to fire the 5.56x45mm NATO cartridge. The 4th generation in the M16 platform, this FN variant substitutes automatic for burst fire and retains relevance among mercenaries and militias thanks to its high customizability."
+	desc = "A light, versatile assault rifle with a 30 round magazine, chambered to fire the 5.56x45mm NATO cartridge. The 4th generation in the M16 platform, this FN variant has added automatic fire selection and retains relevance among mercenaries and militias thanks to its high customizability."
 	icon_state = "m16"
 	item_state = "m16"
 	muzzleflash_iconstate = "muzzle_flash_medium"
@@ -397,7 +397,7 @@
 						/obj/item/attachable/scope/mini)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST, GUN_FIREMODE_AUTOMATIC)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 18, "under_x" = 22, "under_y" = 15, "stock_x" = 19, "stock_y" = 13)
 	starting_attachment_types = list(/obj/item/attachable/stock/m16, /obj/item/attachable/m16sight)
 
@@ -628,3 +628,43 @@
 
 	fire_delay = 1.1 SECONDS
 	burst_amount = 1
+
+//-------------------------------------------------------
+//Sectoid Rifle
+
+/obj/item/weapon/gun/rifle/sectoid_rifle
+	name = "\improper alien rifle"
+	desc = "An unusual gun of alien origin. It is lacking a trigger or any obvious way to fire it."
+	icon_state = "alien_rifle"
+	item_state = "alien_rifle"
+	fire_sound = 'sound/weapons/guns/fire/alienplasma.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/vp70_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m4ra_reload.ogg'
+	max_shells = 20//codex stuff
+	ammo = /datum/ammo/energy/plasma
+	muzzleflash_iconstate = "muzzle_flash_pulse"
+	current_mag = /obj/item/ammo_magazine/rifle/sectoid_rifle
+	wield_delay = 0.4 SECONDS
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
+
+	fire_delay = 0.5 SECONDS
+	burst_amount = 3
+	accuracy_mult = 2
+	accuracy_mult_unwielded = 0.8
+
+//only sectoids can fire it
+/obj/item/weapon/gun/rifle/sectoid_rifle/able_to_fire(mob/user)
+	. = ..()
+	if(!.)
+		return
+	if(!ishuman(user))
+		return FALSE
+	var/mob/living/carbon/human/H = user
+	if(!(H.species.species_flags & USES_ALIEN_WEAPONS))
+		to_chat(user, "<span class='warning'>There's no trigger on this gun, you have no idea how to fire it!</span>")
+		return FALSE
+	return TRUE

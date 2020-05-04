@@ -536,7 +536,7 @@
 	icon_state = "spec"
 	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 15, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 15, "acid" = 15)
 	flags_inventory = BLOCKSHARPOBJ
-	flags_inv_hide = HIDEEARS|HIDETOPHAIR
+	flags_inv_hide = HIDEEARS
 
 /obj/item/clothing/head/helmet/durag
 	name = "durag"
@@ -610,3 +610,11 @@
 	item_state = "som_helmet_leader"
 	armor = list("melee" = 55, "bullet" = 65, "laser" = 65, "energy" = 30, "bomb" = 20, "bio" = 50, "rad" = 15, "fire" = 30, "acid" = 50)
 
+/obj/item/clothing/head/helmet/sectoid
+	name = "psionic field"
+	desc = "A field of invisible energy, it protects the wearer but prevents any clothing from being worn."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "shield-blue"
+	flags_item = NODROP|DELONDROP
+	armor = list("melee" = 65, "bullet" = 60, "laser" = 30, "energy" = 20, "bomb" = 25, "bio" = 40, "rad" = 0, "fire" = 20, "acid" = 20)
+	anti_hug = 5

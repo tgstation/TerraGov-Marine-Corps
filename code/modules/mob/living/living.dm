@@ -97,23 +97,6 @@
 	return ..()
 
 
-///Called on /mob/living/Initialize(), for the mob to register to relevant signals.
-/mob/living/proc/register_init_signals()
-	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), .proc/on_knockedout_trait_gain)
-	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_KNOCKEDOUT), .proc/on_knockedout_trait_loss)
-
-
-///Called when TRAIT_KNOCKEDOUT is added to the mob.
-/mob/living/proc/on_knockedout_trait_gain(datum/source)
-	if(stat < UNCONSCIOUS)
-		set_stat(UNCONSCIOUS)
-
-///Called when TRAIT_KNOCKEDOUT is removed from the mob.
-/mob/living/proc/on_knockedout_trait_loss(datum/source)
-	if(stat < DEAD)
-		update_stat()
-
-
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
 //affects them once clothing is factored in. ~Errorage
 /mob/living/proc/calculate_affecting_pressure(pressure)
@@ -243,9 +226,9 @@
 /mob/living/proc/do_resist_grab()
 	if(restrained(RESTRAINED_NECKGRAB))
 		return FALSE
-	if(cooldowns[COOLDOWN_RESIST])
+	if(COOLDOWN_CHECK(src, COOLDOWN_RESIST))
 		return FALSE
-	cooldowns[COOLDOWN_RESIST] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_RESIST, null), CLICK_CD_RESIST)
+	COOLDOWN_START(src, COOLDOWN_RESIST, CLICK_CD_RESIST)
 	if(pulledby.grab_state >= GRAB_AGGRESSIVE)
 		visible_message("<span class='danger'>[src] resists against [pulledby]'s grip!</span>")
 	return resist_grab()
@@ -254,9 +237,9 @@
 /mob/living/proc/do_move_resist_grab()
 	if(restrained(RESTRAINED_NECKGRAB))
 		return FALSE
-	if(cooldowns[COOLDOWN_RESIST])
+	if(COOLDOWN_CHECK(src, COOLDOWN_RESIST))
 		return FALSE
-	cooldowns[COOLDOWN_RESIST] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_RESIST, null), CLICK_CD_RESIST)
+	COOLDOWN_START(src, COOLDOWN_RESIST, CLICK_CD_RESIST)
 	if(pulledby.grab_state >= GRAB_AGGRESSIVE)
 		visible_message("<span class='danger'>[src] struggles to break free of [pulledby]'s grip!</span>", null, null, 5)
 	return resist_grab()
@@ -285,7 +268,6 @@
 			//resist_grab uses long movement cooldown durations to prevent message spam
 			//so we must undo it here so the victim can move right away
 			M.client.move_delay = world.time
-		M.update_canmove()
 
 		if(isliving(pulling))
 			var/mob/living/L = pulling
@@ -418,10 +400,8 @@
 	if(pulledby)
 		pulledby.stop_pulling()
 	set_frozen(TRUE) //can't move while being thrown
-	update_canmove()
 	. = ..()
 	set_frozen(FALSE)
-	update_canmove()
 
 
 /mob/living/proc/offer_mob()
@@ -464,7 +444,7 @@
 
 /mob/living/proc/adjust_mob_accuracy(accuracy_mod)
 	ranged_accuracy_mod += accuracy_mod
-	
+
 
 /mob/living/proc/smokecloak_on()
 
@@ -585,42 +565,12 @@ below 100 is not dizzy
 	return TRUE
 
 
-/mob/living/update_canmove()
-
-	var/laid_down = (stat != CONSCIOUS || IsParalyzed() || !has_legs() || resting || HAS_TRAIT(src, TRAIT_FAKEDEATH) || (pulledby && pulledby.grab_state >= GRAB_NECK) || (buckled && buckled.buckle_lying != -1))
-
-	if(laid_down)
-		if(buckled && buckled.buckle_lying != -1)
-			set_lying_angle(buckled.buckle_lying) //Might not actually be laying down, like with chairs, but the rest of the logic applies.
-		else if(!lying_angle)
-			set_lying_angle(pick(90, 270))
-	else if(lying_angle)
-		set_lying_angle(0)
-
-	set_canmove(!(IsStun() || frozen || laid_down))
-
-	if(lying_angle)
-		density = FALSE
-		drop_all_held_items()
-	else
-		density = TRUE
-
-	if(lying_angle)
-		if(layer == initial(layer)) //to avoid things like hiding larvas.
-			layer = LYING_MOB_LAYER //so mob lying always appear behind standing mobs
-	else
-		if(layer == LYING_MOB_LAYER)
-			layer = initial(layer)
-
-	return canmove
-
-
 /mob/living/proc/set_canmove(newcanmove)
 	if(canmove == newcanmove)
 		return
+	. = canmove
 	canmove = newcanmove
 	SEND_SIGNAL(src, COMSIG_LIVING_SET_CANMOVE, canmove)
-
 
 
 /mob/living/proc/update_leader_tracking(mob/living/L)
@@ -669,10 +619,10 @@ below 100 is not dizzy
 /mob/living/proc/point_to_atom(atom/A, turf/T)
 	//Squad Leaders and above have reduced cooldown and get a bigger arrow
 	if(skills.getRating("leadership") < SKILL_LEAD_TRAINED)
-		cooldowns[COOLDOWN_POINT] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_POINT, null), 5 SECONDS)
+		COOLDOWN_START(src, COOLDOWN_POINT, 5 SECONDS)
 		new /obj/effect/overlay/temp/point(T)
 	else
-		cooldowns[COOLDOWN_POINT] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_POINT, null), 1 SECONDS)
+		COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)
 		new /obj/effect/overlay/temp/point/big(T)
 	visible_message("<b>[src]</b> points to [A]")
 	return TRUE
@@ -726,7 +676,7 @@ below 100 is not dizzy
 /mob/living/proc/reset_pull_offsets(mob/living/pulled_mob, override)
 	if(!override && pulled_mob.buckled)
 		return
-	animate(pulled_mob, pixel_x = initial(pixel_x), pixel_y = initial(pixel_y), 0.1 SECONDS)
+	animate(pulled_mob, pixel_x = initial(pulled_mob.pixel_x), pixel_y = initial(pulled_mob.pixel_y), 0.1 SECONDS)
 
 
 //mob verbs are a lot faster than object verbs
@@ -785,3 +735,38 @@ below 100 is not dizzy
 	lying_angle = new_lying
 	update_transform()
 	lying_prev = lying_angle
+
+	if(lying_angle)
+		density = FALSE
+		drop_all_held_items()
+		if(layer == initial(layer)) //to avoid things like hiding larvas.
+			layer = LYING_MOB_LAYER //so mob lying always appear behind standing mobs
+	else
+		density = TRUE
+		if(layer == LYING_MOB_LAYER)
+			layer = initial(layer)
+
+
+/mob/living/set_stat(new_stat)
+	. = ..()
+	if(isnull(.))
+		return
+	if(stat == CONSCIOUS) //From unconscious to conscious.
+		REMOVE_TRAIT(src, TRAIT_IMMOBILE, STAT_TRAIT)
+		REMOVE_TRAIT(src, TRAIT_FLOORED, STAT_TRAIT)
+	else if(. == CONSCIOUS) //From conscious to unconscious.
+		ADD_TRAIT(src, TRAIT_IMMOBILE, STAT_TRAIT)
+		ADD_TRAIT(src, TRAIT_FLOORED, STAT_TRAIT)
+
+
+/mob/living/setGrabState(newstate)
+	. = ..()
+	if(isnull(.))
+		return
+	if(grab_state >= GRAB_NECK)
+		if(. < GRAB_NECK) //Neckgrabbed.
+			ADD_TRAIT(pulling, TRAIT_IMMOBILE, NECKGRAB_TRAIT)
+			ADD_TRAIT(pulling, TRAIT_FLOORED, NECKGRAB_TRAIT)
+	else if(. >= GRAB_NECK) //Released from neckgrab.
+		REMOVE_TRAIT(pulling, TRAIT_IMMOBILE, NECKGRAB_TRAIT)
+		REMOVE_TRAIT(pulling, TRAIT_FLOORED, NECKGRAB_TRAIT)

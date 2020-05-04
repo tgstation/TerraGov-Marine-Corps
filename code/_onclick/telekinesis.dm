@@ -256,7 +256,6 @@ Redefine as needed.
 		DISABLE_BITFIELD(victim.restrained_flags, RESTRAINED_PSYCHICGRAB)
 		victim.SetStun(0)
 		victim.grab_resist_level = 0
-		victim.update_canmove()
 		focus = null
 
 	if(master_action && master_action.psychic_hold == src)
@@ -275,9 +274,9 @@ Redefine as needed.
 	var/mob/living/carbon/human/victim = source
 	if(victim.restrained(RESTRAINED_PSYCHICGRAB))
 		return COMSIG_LIVING_RESIST_SUCCESSFUL
-	if(victim.cooldowns[COOLDOWN_RESIST])
+	if(COOLDOWN_CHECK(victim, COOLDOWN_RESIST))
 		return COMSIG_LIVING_RESIST_SUCCESSFUL
-	victim.cooldowns[COOLDOWN_RESIST] = addtimer(VARSET_LIST_CALLBACK(victim.cooldowns, COOLDOWN_RESIST, null), CLICK_CD_RESIST_PSYCHIC_GRAB)
+	COOLDOWN_START(victim, COOLDOWN_RESIST, CLICK_CD_RESIST_PSYCHIC_GRAB)
 
 	var/mob/living/carbon/xenomorph/shrike/master = tk_user
 

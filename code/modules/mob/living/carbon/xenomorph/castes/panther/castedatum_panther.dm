@@ -27,7 +27,7 @@
 	plasma_gain = 2
 
 	// *** Health *** //
-	max_health = 140
+	max_health = 160
 
 	// *** Evolution *** //
 	evolution_threshold = 80
@@ -42,7 +42,7 @@
 	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 5, "bomb" = XENO_BOMB_RESIST_0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 	// *** Ranged Attack *** //
-	charge_type = CHARGE_TYPE_PANTHER //Heavy Pounce - Panther
+	charge_type = CHARGE_TYPE_PANTHER
 	pounce_delay = 35.0 SECONDS
 
 	// *** Abilities *** ///
@@ -50,7 +50,7 @@
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/xenohide,
-		/datum/action/xeno_action/activable/pounce,
+		/datum/action/xeno_action/activable/pounce/panther,
 		)
 
 /datum/xeno_caste/panther/young
@@ -79,7 +79,7 @@
 	plasma_gain = 3
 
 	// *** Health *** //
-	max_health = 160
+	max_health = 180
 
 	// *** Evolution *** //
 	upgrade_threshold = 100
@@ -111,7 +111,7 @@
 	plasma_gain = 3
 
 	// *** Health *** //
-	max_health = 180
+	max_health = 200
 
 	// *** Evolution *** //
 	upgrade_threshold = 200
@@ -144,7 +144,7 @@
 	plasma_gain = 3
 
 	// *** Health *** //
-	max_health = 200
+	max_health = 220
 
 	// *** Evolution *** //
 	upgrade_threshold = 200
