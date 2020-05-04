@@ -182,7 +182,7 @@
 					/obj/item/ammo_magazine/shotgun/flechette = 15,
 					/obj/item/ammo_magazine/rifle/tx15_slug = 25,
 					/obj/item/ammo_magazine/rifle/tx15_flechette = 25,
-					/obj/item/ammo_magazine/rifle/standard_smartmachinegun = 2
+					/obj/item/ammo_magazine/standard_smartmachinegun = 2
 					)
 
 	contraband = list(
