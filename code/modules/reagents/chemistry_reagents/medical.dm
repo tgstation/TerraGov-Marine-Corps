@@ -333,13 +333,13 @@
 	L.set_blurriness(0, TRUE)
 	L.set_blindness(0, TRUE)
 	L.SetStun(0, FALSE)
-	L.SetUnconscious(0, FALSE)
-	L.SetParalyzed(0, FALSE)
+	L.SetUnconscious(0)
+	L.SetParalyzed(0)
 	L.dizziness = 0
 	L.setDrowsyness(0)
 	L.stuttering = 0
-	L.SetConfused(0, FALSE)
-	L.SetSleeping(0, FALSE)
+	L.SetConfused(0)
+	L.SetSleeping(0)
 	L.jitteriness = 0
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L

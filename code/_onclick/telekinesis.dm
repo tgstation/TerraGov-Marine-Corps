@@ -256,7 +256,6 @@ Redefine as needed.
 		DISABLE_BITFIELD(victim.restrained_flags, RESTRAINED_PSYCHICGRAB)
 		victim.SetStun(0)
 		victim.grab_resist_level = 0
-		victim.update_canmove()
 		focus = null
 
 	if(master_action && master_action.psychic_hold == src)

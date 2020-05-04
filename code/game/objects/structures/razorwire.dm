@@ -83,7 +83,6 @@
 	entangled_list -= M
 	M.entangled_by = null
 	M.set_frozen(FALSE)
-	M.update_canmove()
 	M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, TRUE) //Apply damage as we tear free
 	UPDATEHEALTH(M)
 	M.next_move_slowdown += RAZORWIRE_SLOWDOWN //big slowdown
@@ -103,7 +102,6 @@
 	for(var/i in entangled_list)
 		var/mob/living/L = i
 		L.set_frozen(FALSE)
-		L.update_canmove()
 		if(L.entangled_by == src)
 			L.entangled_by = null
 	entangled_list.Cut()
