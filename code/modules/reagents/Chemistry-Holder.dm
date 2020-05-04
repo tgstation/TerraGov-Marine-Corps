@@ -272,9 +272,8 @@
 							to_chat(L, "<span class='notice'>You feel like you've gotten over your need for [R.name].</span>")
 							cached_addictions.Remove(R)
 		addiction_tick++
-	if(L && need_mob_update)
+	if(!QDELETED(L) && need_mob_update)
 		L.updatehealth()
-		L.update_canmove()
 	update_total()
 
 /datum/reagents/proc/conditional_update_move(atom/A, Running = 0)
