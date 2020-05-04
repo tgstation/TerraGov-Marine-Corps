@@ -491,6 +491,8 @@
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
 	opacity = FALSE
 	glass = TRUE
+	max_integrity = 20000
+	no_panel = TRUE
 
 /obj/machinery/door/airlock/mainship/marine/alpha
 	name = "\improper Alpha Squad Preparations"
