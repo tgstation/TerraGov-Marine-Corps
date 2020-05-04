@@ -9,6 +9,7 @@
 	max_temperature = 6000
 
 	walltype = "rwall"
+	explosion_block = 2
 
 /turf/closed/wall/r_wall/can_be_dissolved()
 	if(hull)
@@ -83,10 +84,10 @@
 	hull = 1
 
 /turf/closed/wall/r_wall/prison_unmeltable/ex_act(severity) //Should make it indestructable
-		return
+	return
 
 /turf/closed/wall/r_wall/prison_unmeltable/fire_act(exposed_temperature, exposed_volume)
-		return
+	return
 
 /turf/closed/wall/r_wall/prison_unmeltable/attackby(obj/item/I, mob/user, params) //This should fix everything else. No cables, etc
 	return

@@ -493,13 +493,13 @@
 
 /obj/machinery/light/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
 			return
-		if(2.0)
+		if(EXPLODE_HEAVY)
 			if (prob(75))
 				broken()
-		if(3.0)
+		if(EXPLODE_LIGHT)
 			if (prob(50))
 				broken()
 	return

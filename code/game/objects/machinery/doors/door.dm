@@ -7,6 +7,7 @@
 	opacity = TRUE
 	density = TRUE
 	layer = DOOR_OPEN_LAYER
+	explosion_block = 1
 	var/open_layer = DOOR_OPEN_LAYER
 	var/closed_layer = DOOR_CLOSED_LAYER
 	var/id
@@ -22,6 +23,8 @@
 	var/not_weldable = FALSE // stops people welding the door if true
 	var/openspeed = 10 //How many seconds does it take to open it? Default 1 second. Use only if you have long door opening animations
 	var/list/fillers
+	///Optimization for dynamic explosion block values, for things that change between dense and non-dense states.
+	var/real_explosion_block
 
 	//Multi-tile doors
 	dir = EAST
@@ -148,12 +151,12 @@
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		return
 	switch(severity)
-		if(1.0)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-		if(2.0)
+		if(EXPLODE_HEAVY)
 			if(prob(25))
 				qdel(src)
-		if(3.0)
+		if(EXPLODE_LIGHT)
 			if(prob(80))
 				var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 				s.set_up(2, 1, src)

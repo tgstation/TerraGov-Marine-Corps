@@ -203,22 +203,21 @@
 /obj/item/cell/ex_act(severity)
 
 	switch(severity)
-		if(1.0)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-			return
-		if(2.0)
+		if(EXPLODE_HEAVY)
 			if (prob(50))
 				qdel(src)
 				return
 			if (prob(50))
 				corrupt()
-		if(3.0)
+		if(EXPLODE_LIGHT)
 			if (prob(25))
 				qdel(src)
 				return
 			if (prob(25))
 				corrupt()
-	return
+
 
 /obj/item/cell/proc/get_electrocute_damage()
 	switch (charge)

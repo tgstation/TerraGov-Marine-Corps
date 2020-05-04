@@ -17,7 +17,7 @@
 	var/b_loss = 0
 	var/f_loss = 0
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			switch(bomb_armor)
 				if(XENO_BOMB_RESIST_4 to INFINITY)
 					add_slowdown(2)
@@ -40,7 +40,7 @@
 					add_slowdown(5)
 				else //Lower than XENO_BOMB_RESIST_1
 					return gib()
-		if(2)
+		if(EXPLODE_HEAVY)
 			switch(bomb_armor)
 				if(XENO_BOMB_RESIST_4 to INFINITY)
 					add_slowdown(1)
@@ -67,7 +67,7 @@
 					Paralyze(16 SECONDS)
 					adjust_stagger(5)
 					add_slowdown(5)
-		if(3)
+		if(EXPLODE_LIGHT)
 			switch(bomb_armor)
 				if(XENO_BOMB_RESIST_4 to INFINITY)
 					return //Immune

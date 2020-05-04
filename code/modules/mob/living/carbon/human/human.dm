@@ -102,7 +102,7 @@
 	var/f_loss = null
 	var/armor = max(0, 1 - (getarmor(null, "bomb") * 0.01))
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			b_loss += rand(160, 200) * armor	//Probably instant death
 			f_loss += rand(160, 200) * armor	//Probably instant death
 
@@ -116,7 +116,7 @@
 			add_slowdown(round(12 * armor,0.1))
 			Unconscious(160 * armor) //This should kill you outright, so if you're somehow alive I don't feel too bad if you get KOed
 
-		if(2)
+		if(EXPLODE_HEAVY)
 			b_loss += (rand(80, 100) * armor)	//Ouchie time. Armor makes it survivable
 			f_loss += (rand(80, 100) * armor)	//Ouchie time. Armor makes it survivable
 
@@ -127,7 +127,7 @@
 			add_slowdown(round(6 * armor,0.1))
 			Paralyze(80 * armor)
 
-		if(3)
+		if(EXPLODE_LIGHT)
 			b_loss += (rand(40, 50) * armor)
 			f_loss += (rand(40, 50) * armor)
 

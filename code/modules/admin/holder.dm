@@ -382,6 +382,7 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/force_distress,
 	/datum/admins/proc/object_sound,
 	/datum/admins/proc/drop_bomb,
+	/datum/admins/proc/drop_dynex_bomb,
 	/datum/admins/proc/change_security_level,
 	/datum/admins/proc/edit_appearance,
 	/datum/admins/proc/outfit_manager,

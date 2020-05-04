@@ -173,7 +173,7 @@
 		linked_to_shuttle = TRUE
 
 /obj/machinery/cryopod/evacuation/ex_act(severity)
-	return FALSE
+	return
 
 /obj/machinery/cryopod/evacuation/attackby(obj/item/grab/G, mob/user)
 	if(istype(G))

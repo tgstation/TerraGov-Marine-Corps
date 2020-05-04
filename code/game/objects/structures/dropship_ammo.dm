@@ -237,7 +237,7 @@
 	detonate_on(turf/impact)
 		impact.ceiling_debris_check(3)
 		spawn(5)
-			explosion(impact,1,3,6,6,1,0,7) //more spread out, with flames
+			explosion(impact, 1, 3, 6, 6, flame_range = 7) //more spread out, with flames
 			qdel(src)
 
 /obj/structure/ship_ammo/rocket/keeper
@@ -250,7 +250,7 @@
 	detonate_on(turf/impact)
 		impact.ceiling_debris_check(3)
 		spawn(5)
-			explosion(impact,3,4,4,6) //tighter blast radius, but more devastating near center
+			explosion(impact, 3, 4, 4, 6) //tighter blast radius, but more devastating near center
 			qdel(src)
 
 
@@ -290,7 +290,7 @@
 	detonate_on(turf/impact)
 		impact.ceiling_debris_check(3)
 		spawn(5)
-			explosion(impact,1,2,3,6,1,0) //relatively weak
+			explosion(impact, 1, 2, 3, 6) //relatively weak
 			for(var/turf/T in range(4,impact))
 				T.ignite(60, 30) //cooking for a long time
 			qdel(src)
@@ -315,7 +315,7 @@
 	detonate_on(turf/impact)
 		impact.ceiling_debris_check(2)
 		spawn(5)
-			explosion(impact,-1,1,3, 5, 0)//no messaging admin, that'd spam them.
+			explosion(impact, -1, 1, 3, 5, FALSE)//no messaging admin, that'd spam them.
 			var/datum/effect_system/expl_particles/P = new/datum/effect_system/expl_particles()
 			P.set_up(4, 0, impact)
 			P.start()
@@ -356,7 +356,7 @@
 	impact.ceiling_debris_check(2)
 	spawn(5)
 		var/turf/T = pick(range(5, impact))
-		explosion(T,-1,-1,1, 2, 0)// Smaller explosion to prevent this becoming the PO meta
+		explosion(T, -1, -1, 1, 2, FALSE)// Smaller explosion to prevent this becoming the PO meta
 		var/datum/effect_system/expl_particles/P = new/datum/effect_system/expl_particles()
 		P.set_up(4, 0, T)
 		P.start()

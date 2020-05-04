@@ -7,6 +7,7 @@
 	icon_state = "metal"
 	baseturfs = /turf/open/floor/plating
 	opacity = TRUE
+	explosion_block = 1
 
 	tiles_with = list(
 		/turf/closed/wall,
@@ -17,7 +18,6 @@
 
 	armor = list("melee" = 0, "bullet" = 80, "laser" = 80, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
-	var/hull = 0 //1 = Can't be deconstructed / destroyed. Used for Sulaco walls
 	var/walltype = "metal"
 	var/junctiontype //when walls smooth with one another, the type of junction each wall is.
 
@@ -269,14 +269,14 @@
 	if(hull)
 		return
 	switch(severity)
-		if(1)
-			dismantle_wall(0, 1)
-		if(2)
+		if(EXPLODE_DEVASTATE)
+			dismantle_wall(FALSE, TRUE)
+		if(EXPLODE_HEAVY)
 			if(prob(75))
 				take_damage(rand(150, 250))
 			else
-				dismantle_wall(1, 1)
-		if(3)
+				dismantle_wall(TRUE, TRUE)
+		if(EXPLODE_LIGHT)
 			take_damage(rand(0, 250))
 
 //Interactions

@@ -32,21 +32,17 @@
 
 /obj/structure/reagent_dispensers/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-			return
-		if(2.0)
+		if(EXPLODE_HEAVY)
 			if (prob(50))
-				new /obj/effect/particle_effect/water(src.loc)
+				new /obj/effect/particle_effect/water(loc)
 				qdel(src)
-				return
-		if(3.0)
+		if(EXPLODE_LIGHT)
 			if (prob(5))
-				new /obj/effect/particle_effect/water(src.loc)
+				new /obj/effect/particle_effect/water(loc)
 				qdel(src)
-				return
-		else
-	return
+
 
 /obj/structure/reagent_dispensers/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))

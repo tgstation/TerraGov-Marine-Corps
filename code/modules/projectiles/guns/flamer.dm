@@ -457,7 +457,7 @@
 	if(F)
 		qdel(F)
 
-	new /obj/flamer_fire(src, fire_lvl, burn_lvl, f_color, fire_stacks, fire_damage)
+	new /obj/flamer_fire(src, max(1, rand(0, 25) + rand(0, 25), rand(0, 25)), rand(1, 25), max(1, rand(0, 25) + rand(0, 25), rand(0, 25)), fire_damage)
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //Time to redo part of abby's code.

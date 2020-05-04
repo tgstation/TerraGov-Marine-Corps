@@ -557,7 +557,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/choice = input("What size explosion would you like to produce?", "Drop Bomb") as null|anything in list("CANCEL", "Small Bomb", "Medium Bomb", "Big Bomb", "Custom Bomb")
+	var/choice = input("What size explosion would you like to produce?", "Drop Bomb") as null|anything in list("CANCEL", "Small Bomb", "Medium Bomb", "Big Bomb", "Maxcap", "Custom Bomb")
 	switch(choice)
 		if("CANCEL")
 			return
@@ -567,26 +567,41 @@
 			explosion(usr.loc, 2, 3, 4, 4)
 		if("Big Bomb")
 			explosion(usr.loc, 3, 5, 7, 5)
+		if("Maxcap")
+			explosion(usr.loc, GLOB.MAX_EX_DEVESTATION_RANGE, GLOB.MAX_EX_HEAVY_RANGE, GLOB.MAX_EX_LIGHT_RANGE, GLOB.MAX_EX_FLASH_RANGE)
 		if("Custom Bomb")
 			var/devastation_range = input("Devastation range (in tiles):", "Drop Bomb") as null|num
 			var/heavy_impact_range = input("Heavy impact range (in tiles):", "Drop Bomb") as null|num
 			var/light_impact_range = input("Light impact range (in tiles):", "Drop Bomb") as null|num
 			var/flash_range = input("Flash range (in tiles):", "Drop Bomb") as null|num
-			var/flame_range = input("Flame range (in tiles):", "Drop Bomb") as null|num
-			if(isnull(devastation_range) || isnull(heavy_impact_range) || isnull(light_impact_range) || isnull(flash_range) || isnull(flame_range))
+			var/input_flame_range = input("Flame range (in tiles):", "Drop Bomb") as null|num
+			if(isnull(devastation_range) || isnull(heavy_impact_range) || isnull(light_impact_range) || isnull(flash_range) || isnull(input_flame_range))
 				return
 			var/world_max = max(world.maxy, world.maxy)
 			devastation_range = CLAMP(devastation_range, -1, world_max)
 			heavy_impact_range = CLAMP(heavy_impact_range, -1, world_max)
 			light_impact_range = CLAMP(light_impact_range, -1, world_max)
 			flash_range = CLAMP(flash_range, -1, world_max)
-			flame_range = CLAMP(flame_range, -1, world_max)
-			explosion(usr.loc, devastation_range, heavy_impact_range, light_impact_range, flash_range, TRUE, FALSE, flame_range)
+			input_flame_range = CLAMP(input_flame_range, -1, world_max)
+			explosion(usr.loc, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range = input_flame_range)
 		else
 			return
 
-	log_admin("[key_name(usr)] dropped a bomb at [AREACOORD(usr.loc)].")
-	message_admins("[ADMIN_TPMONTY(usr)] dropped a bomb at [ADMIN_VERBOSEJMP(usr.loc)].")
+	log_admin("[key_name(usr)] dropped a [choice] at [AREACOORD(usr.loc)].")
+	message_admins("[ADMIN_TPMONTY(usr)] dropped a [choice] at [ADMIN_VERBOSEJMP(usr.loc)].")
+
+
+/datum/admins/proc/drop_dynex_bomb()
+	set category = "Fun"
+	set name = "Drop DynEx Bomb"
+	set desc = "Cause an explosion of varying strength at your location."
+
+	var/ex_power = input("Explosive Power:") as null|num
+	var/turf/epicenter = usr.loc
+	if(ex_power && epicenter)
+		dyn_explosion(epicenter, ex_power)
+		message_admins("[ADMIN_LOOKUPFLW(usr)] creating an admin explosion of power [ex_power] at [epicenter.loc].")
+		log_admin("[key_name(usr)] created a admin explosion of power [ex_power] at [epicenter.loc].")
 
 
 /datum/admins/proc/change_security_level()

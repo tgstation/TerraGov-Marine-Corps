@@ -162,16 +162,16 @@
 
 /turf/closed/wall/sulaco/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			ChangeTurf(/turf/open/floor/plating)
-		if(2)
+		if(EXPLODE_HEAVY)
 			if(prob(75))
 				take_damage(rand(100, 250))
 			else
 				dismantle_wall(1, 1)
-		if(3)
+		if(EXPLODE_LIGHT)
 			take_damage(rand(0, 250))
-	return
+
 
 /turf/closed/wall/sulaco/hull
 	name = "outer hull"
@@ -261,8 +261,7 @@
 	icon_state = "gold0"
 	walltype = "gold"
 	mineral = "gold"
-	//var/electro = 1
-	//var/shocked = null
+	explosion_block = 0 //gold is a soft metal you dingus.
 
 /turf/closed/wall/mineral/silver
 	name = "silver wall"
@@ -279,6 +278,7 @@
 	icon_state = "diamond0"
 	walltype = "diamond"
 	mineral = "diamond"
+	explosion_block = 3
 
 
 /turf/closed/wall/mineral/sandstone
@@ -287,6 +287,7 @@
 	icon_state = "sandstone0"
 	walltype = "sandstone"
 	mineral = "sandstone"
+	explosion_block = 0
 
 /turf/closed/wall/mineral/uranium
 	name = "uranium wall"
@@ -368,6 +369,7 @@
 	icon = 'icons/turf/wood.dmi'
 	icon_state = "wood0"
 	walltype = "wood"
+	explosion_block = 0
 
 /turf/closed/wall/wood/handle_icon_junction(junction)
 	if (!walltype)

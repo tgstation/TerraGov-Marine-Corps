@@ -152,18 +152,18 @@
 // this should probably use dump_contents()
 /obj/structure/closet/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			for(var/atom/movable/A as mob|obj in src)//pulls everything out of the locker and hits it with an explosion
 				A.loc = loc
 				A.ex_act(severity++)
 			qdel(src)
-		if(2)
+		if(EXPLODE_HEAVY)
 			if(prob(50))
 				for (var/atom/movable/A as mob|obj in src)
 					A.loc = loc
 					A.ex_act(severity++)
 				qdel(src)
-		if(3)
+		if(EXPLODE_LIGHT)
 			if(prob(5))
 				for(var/atom/movable/A as mob|obj in src)
 					A.loc = loc

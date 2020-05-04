@@ -38,9 +38,18 @@
 	// This shouldn't be modified directly, use the helper procs.
 	var/list/baseturfs = /turf/baseturf_bottom
 	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
+
+	/// For preventing explosion dodging
+	var/explosion_level = 0
+	var/list/explosion_throw_details
+
+	/// Can't be deconstructed / destroyed. Used for Sulaco walls.
+	var/hull = FALSE
+
 	var/changing_turf = FALSE
 
 	var/datum/armor/armor
+
 
 /turf/Initialize(mapload)
 	if(flags_atom & INITIALIZED)
@@ -96,9 +105,6 @@
 	visibilityChanged()
 	DISABLE_BITFIELD(flags_atom, INITIALIZED)
 	..()
-
-/turf/ex_act(severity)
-	return 0
 
 
 /turf/Enter(atom/movable/mover, atom/oldloc)
@@ -238,6 +244,8 @@
 	var/old_lighting_object = lighting_object
 	var/old_corners = corners
 
+	var/old_exl = explosion_level
+
 	var/list/old_baseturfs = baseturfs
 
 	var/list/transferring_comps = list()
@@ -258,6 +266,7 @@
 	else
 		W.baseturfs = old_baseturfs
 
+	W.explosion_level = old_exl
 
 	if(!(flags & CHANGETURF_DEFER_CHANGE))
 		W.AfterChange(flags)
@@ -847,11 +856,26 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	return TRUE
 
 
+/*
 /turf/contents_explosion(severity, target)
 	for(var/i in contents)
 		var/atom/A = i
 		if(!QDELETED(A) && A.level >= severity)
 			A.ex_act(severity, target)
+*/
+/turf/contents_explosion(severity, target)
+	for(var/thing in contents)
+		var/atom/movable/movable_content = thing
+		if(QDELETED(movable_content))
+			stack_trace("Qdeleted [movable_content.type] found in the contents of [type]")
+			continue
+		switch(severity)
+			if(EXPLODE_DEVASTATE)
+				SSexplosions.highobj += movable_content
+			if(EXPLODE_HEAVY)
+				SSexplosions.medobj += movable_content
+			if(EXPLODE_LIGHT)
+				SSexplosions.lowobj += movable_content
 
 
 /turf/vv_edit_var(var_name, new_value)

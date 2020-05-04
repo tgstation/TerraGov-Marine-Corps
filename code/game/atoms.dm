@@ -26,6 +26,9 @@
 
 	var/list/image/hud_list //This atom's HUD (med/sec, etc) images. Associative list.
 
+	///Value used to increment ex_act() if reactionary_explosions is on
+	var/explosion_block = 0
+
 	var/list/managed_overlays //overlays managed by update_overlays() to prevent removing overlays that weren't added by the same proc
 
 	var/datum/component/orbiter/orbiters
