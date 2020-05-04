@@ -11,6 +11,7 @@
 	var/datum/reagents/R = new/datum/reagents(1000)
 	reagents = R
 	R.my_atom = src
+	ADD_TRAIT(src, TRAIT_IMMOBILE, INNATE_TRAIT)
 
 /mob/living/brain/Destroy()
 	if(key)
@@ -18,8 +19,3 @@
 			death()
 		ghostize()
 	return ..()
-
-
-/mob/living/brain/update_canmove()
-	set_canmove(FALSE)
-	return canmove

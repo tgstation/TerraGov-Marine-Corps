@@ -254,8 +254,8 @@
 			burn = W.heal_wound_damage(burn)
 
 	if(internal)
-		limb_status &= ~LIMB_BROKEN
-		limb_status |= LIMB_REPAIRED
+		remove_limb_flags(LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED)
+		add_limb_flags(LIMB_REPAIRED)
 		perma_injury = 0
 
 	//Sync the organ's damage with its wounds
@@ -269,12 +269,9 @@
 /*
 This function completely restores a damaged organ to perfect condition.
 */
-/datum/limb/proc/rejuvenate()
+/datum/limb/proc/rejuvenate(updating_health = FALSE, updating_icon = FALSE)
 	damage_state = "00"
-	if(limb_status & LIMB_ROBOT)	//Robotic organs stay robotic.  Fix because right click rejuvinate makes IPC's organs organic.
-		limb_status = LIMB_ROBOT
-	else
-		limb_status = NONE
+	remove_limb_flags(LIMB_BROKEN | LIMB_BLEEDING | LIMB_SPLINTED | LIMB_STABILIZED | LIMB_AMPUTATED | LIMB_DESTROYED | LIMB_NECROTIZED | LIMB_MUTATED | LIMB_REPAIRED)
 	perma_injury = 0
 	brute_dam = 0
 	burn_dam = 0
@@ -283,16 +280,31 @@ This function completely restores a damaged organ to perfect condition.
 	number_wounds = 0
 
 	// heal internal organs
-	for(var/datum/internal_organ/current_organ in internal_organs)
+	for(var/o in internal_organs)
+		var/datum/internal_organ/current_organ = o
 		current_organ.rejuvenate()
 
 	// remove embedded objects and drop them on the floor
-	for(var/obj/implanted_object in implants)
-		if(!istype(implanted_object,/obj/item/implant))	// We don't want to remove REAL implants. Just shrapnel etc.
-			implanted_object.loc = owner.loc
-			implants -= implanted_object
+	for(var/o in implants)
+		if(istype(o, /obj/item/implant)) // We don't want to remove REAL implants. Just shrapnel etc.
+			continue
+		var/obj/implanted_object = o
+		implanted_object.forceMove(get_turf(owner))
+		implants -= implanted_object
 
-	owner.updatehealth()
+	reset_limb_surgeries()
+
+	if(updating_icon)
+		update_icon()
+
+	if(updating_health)
+		owner.updatehealth()
+
+/datum/limb/head/rejuvenate(updating_health = FALSE)
+	. = ..()
+	disfigured = FALSE
+	if(owner)
+		owner.name = owner.get_visible_name()
 
 
 /datum/limb/proc/createwound(type = CUT, damage)
@@ -307,7 +319,7 @@ This function completely restores a damaged organ to perfect condition.
 		owner.custom_pain("You feel something rip in your [display_name]!", 1)
 
 	if(limb_status & LIMB_SPLINTED && damage > 5 && prob(50 + damage * 2.5)) //If they have it splinted, the splint won't hold.
-		limb_status &= ~LIMB_SPLINTED
+		remove_limb_flags(LIMB_SPLINTED)
 		to_chat(owner, "<span class='danger'>The splint on your [display_name] comes apart!</span>")
 
 	// first check whether we can widen an existing wound
@@ -494,7 +506,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 //LEVEL III
 	if(germ_level >= INFECTION_LEVEL_THREE && spaceacillin < 25 && polyhexanide <2)	//overdosing is necessary to stop severe infections, or a doc-only chem
 		if (!(limb_status & LIMB_NECROTIZED))
-			limb_status |= LIMB_NECROTIZED
+			add_limb_flags(LIMB_NECROTIZED)
 			to_chat(owner, "<span class='notice'>You can't feel your [display_name] anymore...</span>")
 			owner.update_body(1)
 
@@ -565,8 +577,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	number_wounds = 0
 	brute_dam = 0
 	burn_dam = 0
-	limb_status &= ~LIMB_BLEEDING
-	var/clamped = 0
+	var/is_bleeding = FALSE
+	var/clamped = FALSE
 
 	var/mob/living/carbon/human/H
 	if(istype(owner,/mob/living/carbon/human))
@@ -580,15 +592,67 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 		if(!(limb_status & LIMB_ROBOT) && W.bleeding() && (H && !(H.species.species_flags & NO_BLOOD)))
 			W.bleed_timer--
-			limb_status |= LIMB_BLEEDING
+			is_bleeding = TRUE
 
 		clamped |= W.clamped
 
 		number_wounds += W.amount
 
-	if (surgery_open_stage && !clamped && (H && !(H.species.species_flags & NO_BLOOD)))	//things tend to bleed if they are CUT OPEN
-		limb_status |= LIMB_BLEEDING
+	if(surgery_open_stage && !clamped && (H && !(H.species.species_flags & NO_BLOOD)))	//things tend to bleed if they are CUT OPEN
+		is_bleeding = TRUE
 
+	if(is_bleeding)
+		add_limb_flags(LIMB_BLEEDING)
+	else
+		remove_limb_flags(LIMB_BLEEDING)
+
+
+/datum/limb/proc/set_limb_flags(flags_to_set)
+	if(flags_to_set == limb_status)
+		return
+	. = limb_status
+	var/unchanging_flags = flags_to_set & limb_status
+	if(limb_status & unchanging_flags)
+		remove_limb_flags(limb_status & unchanging_flags)
+	if(flags_to_set & unchanging_flags)
+		add_limb_flags(flags_to_set & unchanging_flags)
+
+
+/datum/limb/proc/remove_limb_flags(flags_to_remove)
+	if(!(limb_status & flags_to_remove))
+		return //Nothing old to remove.
+	. = limb_status
+	limb_status &= ~flags_to_remove
+	var/changed_flags = ~(. & flags_to_remove) & flags_to_remove
+	if((changed_flags & LIMB_DESTROYED))
+		SEND_SIGNAL(src, COMSIG_LIMB_UNDESTROYED)
+
+
+/datum/limb/proc/add_limb_flags(flags_to_add)
+	if(flags_to_add == (limb_status & flags_to_add))
+		return //Nothing new to add.
+	. = limb_status
+	limb_status |= flags_to_add
+	var/changed_flags = ~(. & flags_to_add) & flags_to_add
+	if((changed_flags & LIMB_DESTROYED))
+		SEND_SIGNAL(src, COMSIG_LIMB_DESTROYED)
+
+
+/datum/limb/foot/remove_limb_flags(flags_to_remove)
+	. = ..()
+	if(isnull(.))
+		return
+	var/changed_flags = ~(. & flags_to_remove) & flags_to_remove
+	if((changed_flags & LIMB_DESTROYED) && owner.has_legs())
+		REMOVE_TRAIT(owner, TRAIT_LEGLESS, TRAIT_LEGLESS)
+
+/datum/limb/foot/add_limb_flags(flags_to_add)
+	. = ..()
+	if(isnull(.))
+		return
+	var/changed_flags = ~(. & flags_to_add) & flags_to_add
+	if((changed_flags & LIMB_DESTROYED) && !owner.has_legs())
+		ADD_TRAIT(owner, TRAIT_LEGLESS, TRAIT_LEGLESS)
 
 
 // new damage icon system
@@ -604,7 +668,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 // returns just the brute/burn damage code
 /datum/limb/proc/damage_state_text()
 	if(limb_status & LIMB_DESTROYED)
-		return "--"
+		return "00"
 
 	var/tburn = 0
 	var/tbrute = 0
@@ -634,8 +698,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 //Recursive setting of all child organs to amputated
 /datum/limb/proc/setAmputatedTree()
-	for(var/datum/limb/O in children)
-		O.limb_status |= LIMB_AMPUTATED
+	for(var/c in children)
+		var/datum/limb/O = c
+		O.add_limb_flags(LIMB_AMPUTATED)
 		O.setAmputatedTree()
 
 /mob/living/carbon/human/proc/remove_random_limb(delete_limb = 0)
@@ -652,105 +717,123 @@ Note that amputating the affected organ does in fact remove the infection from t
 	return null
 
 //Handles dismemberment
-/datum/limb/proc/droplimb(amputation, delete_limb = 0)
+/datum/limb/proc/droplimb(amputation, delete_limb = FALSE)
 	if(limb_status & LIMB_DESTROYED)
 		return FALSE
-	else
-		if(body_part == CHEST)
-			return FALSE
 
-		if(limb_status & LIMB_ROBOT)
-			limb_status = LIMB_DESTROYED|LIMB_ROBOT
+	if(body_part == CHEST)
+		return FALSE
+
+	remove_limb_flags()
+	add_limb_flags(LIMB_BLEEDING | LIMB_DESTROYED)
+
+	for(var/i in implants)
+		var/obj/item/embedded_thing = i
+		embedded_thing.unembed_ourself(TRUE)
+
+	germ_level = 0
+	if(hidden)
+		hidden.forceMove(owner.loc)
+		hidden = null
+
+	// If any organs are attached to this, destroy them
+	for(var/c in children)
+		var/datum/limb/appendage = c
+		appendage.droplimb(amputation, delete_limb)
+
+	//Replace all wounds on that arm with one wound on parent organ.
+	wounds.Cut()
+	if(parent && !amputation)
+		var/datum/wound/W
+		if(max_damage < 50)
+			W = new/datum/wound/lost_limb/small(max_damage * 0.25)
 		else
-			limb_status = LIMB_DESTROYED
-		for(var/i in implants)
-			var/obj/item/embedded_thing = i
-			embedded_thing.unembed_ourself(TRUE)
+			W = new/datum/wound/lost_limb(max_damage * 0.25)
 
-		germ_level = 0
-		if(hidden)
-			hidden.forceMove(owner.loc)
-			hidden = null
+		parent.wounds += W
+		parent.update_damages()
+	update_damages()
 
-		// If any organs are attached to this, destroy them
-		for(var/datum/limb/O in children)
-			O.droplimb(amputation, delete_limb)
+	//we reset the surgery related variables
+	reset_limb_surgeries()
 
-		//Replace all wounds on that arm with one wound on parent organ.
-		wounds.Cut()
-		if(parent && !amputation)
-			var/datum/wound/W
-			if(max_damage < 50)
-				W = new/datum/wound/lost_limb/small(max_damage * 0.25)
+	var/obj/organ	//Dropped limb object
+	switch(body_part)
+		if(HEAD)
+			if(owner.species.species_flags & IS_SYNTHETIC) //special head for synth to allow brainmob to talk without an MMI
+				organ = new /obj/item/limb/head/synth(owner.loc, owner)
 			else
-				W = new/datum/wound/lost_limb(max_damage * 0.25)
+				organ = new /obj/item/limb/head(owner.loc, owner)
+			owner.dropItemToGround(owner.glasses, null, TRUE)
+			owner.dropItemToGround(owner.head, null, TRUE)
+			owner.dropItemToGround(owner.wear_ear, null, TRUE)
+			owner.dropItemToGround(owner.wear_mask, null, TRUE)
+			owner.update_hair()
+		if(ARM_RIGHT)
+			if(limb_status & LIMB_ROBOT)
+				organ = new /obj/item/robot_parts/r_arm(owner.loc)
+			else
+				organ = new /obj/item/limb/r_arm(owner.loc, owner)
+		if(ARM_LEFT)
+			if(limb_status & LIMB_ROBOT)
+				organ = new /obj/item/robot_parts/l_arm(owner.loc)
+			else
+				organ = new /obj/item/limb/l_arm(owner.loc, owner)
+		if(LEG_RIGHT)
+			if(limb_status & LIMB_ROBOT)
+				organ = new /obj/item/robot_parts/r_leg(owner.loc)
+			else
+				organ = new /obj/item/limb/r_leg(owner.loc, owner)
+		if(LEG_LEFT)
+			if(limb_status & LIMB_ROBOT)
+				organ = new /obj/item/robot_parts/l_leg(owner.loc)
+			else
+				organ = new /obj/item/limb/l_leg(owner.loc, owner)
+		if(HAND_RIGHT)
+			if(!(limb_status & LIMB_ROBOT))
+				organ= new /obj/item/limb/r_hand(owner.loc, owner)
+			owner.dropItemToGround(owner.gloves, null, TRUE)
+			owner.dropItemToGround(owner.r_hand, null, TRUE)
+		if(HAND_LEFT)
+			if(!(limb_status & LIMB_ROBOT))
+				organ= new /obj/item/limb/l_hand(owner.loc, owner)
+			owner.dropItemToGround(owner.gloves, null, TRUE)
+			owner.dropItemToGround(owner.l_hand, null, TRUE)
+		if(FOOT_RIGHT)
+			if(!(limb_status & LIMB_ROBOT))
+				organ= new /obj/item/limb/r_foot/(owner.loc, owner)
+			owner.dropItemToGround(owner.shoes, null, TRUE)
+		if(FOOT_LEFT)
+			if(!(limb_status & LIMB_ROBOT))
+				organ = new /obj/item/limb/l_foot(owner.loc, owner)
+			owner.dropItemToGround(owner.shoes, null, TRUE)
 
-			parent.wounds += W
-			parent.update_damages()
-		update_damages()
+	if(delete_limb)
+		QDEL_NULL(organ)
+	else
+		owner.visible_message("<span class='warning'>[owner.name]'s [display_name] flies off in an arc!</span>",
+		"<span class='highdanger'><b>Your [display_name] goes flying off!</b></span>",
+		"<span class='warning'>You hear a terrible sound of ripping tendons and flesh!</span>", 3)
 
-		//we reset the surgery related variables
-		reset_limb_surgeries()
+	if(organ)
+		//Throw organs around
+		var/lol = pick(GLOB.cardinals)
+		step(organ, lol)
 
-		var/obj/organ	//Dropped limb object
-		switch(body_part)
-			if(HEAD)
-				if(owner.species.species_flags & IS_SYNTHETIC) //special head for synth to allow brainmob to talk without an MMI
-					organ = new /obj/item/limb/head/synth(owner.loc, owner)
-				else
-					organ = new /obj/item/limb/head(owner.loc, owner)
-				owner.dropItemToGround(owner.glasses, null, TRUE)
-				owner.dropItemToGround(owner.head, null, TRUE)
-				owner.dropItemToGround(owner.wear_ear, null, TRUE)
-				owner.dropItemToGround(owner.wear_mask, null, TRUE)
-				owner.update_hair()
-			if(ARM_RIGHT)
-				if(limb_status & LIMB_ROBOT) 	organ = new /obj/item/robot_parts/r_arm(owner.loc)
-				else 						organ = new /obj/item/limb/r_arm(owner.loc, owner)
-			if(ARM_LEFT)
-				if(limb_status & LIMB_ROBOT) 	organ = new /obj/item/robot_parts/l_arm(owner.loc)
-				else 						organ = new /obj/item/limb/l_arm(owner.loc, owner)
-			if(LEG_RIGHT)
-				if(limb_status & LIMB_ROBOT) 	organ = new /obj/item/robot_parts/r_leg(owner.loc)
-				else 						organ = new /obj/item/limb/r_leg(owner.loc, owner)
-			if(LEG_LEFT)
-				if(limb_status & LIMB_ROBOT) 	organ = new /obj/item/robot_parts/l_leg(owner.loc)
-				else 						organ = new /obj/item/limb/l_leg(owner.loc, owner)
-			if(HAND_RIGHT)
-				if(!(limb_status & LIMB_ROBOT)) organ= new /obj/item/limb/r_hand(owner.loc, owner)
-				owner.dropItemToGround(owner.gloves, null, TRUE)
-				owner.dropItemToGround(owner.r_hand, null, TRUE)
-			if(HAND_LEFT)
-				if(!(limb_status & LIMB_ROBOT)) organ= new /obj/item/limb/l_hand(owner.loc, owner)
-				owner.dropItemToGround(owner.gloves, null, TRUE)
-				owner.dropItemToGround(owner.l_hand, null, TRUE)
-			if(FOOT_RIGHT)
-				if(!(limb_status & LIMB_ROBOT)) organ= new /obj/item/limb/r_foot/(owner.loc, owner)
-				owner.dropItemToGround(owner.shoes, null, TRUE)
-			if(FOOT_LEFT)
-				if(!(limb_status & LIMB_ROBOT)) organ = new /obj/item/limb/l_foot(owner.loc, owner)
-				owner.dropItemToGround(owner.shoes, null, TRUE)
+	owner.update_body(1, 1)
 
-		if(delete_limb)
-			qdel(organ)
-		else
-			owner.visible_message("<span class='warning'>[owner.name]'s [display_name] flies off in an arc!</span>",
-			"<span class='highdanger'><b>Your [display_name] goes flying off!</b></span>",
-			"<span class='warning'>You hear a terrible sound of ripping tendons and flesh!</span>", 3)
+	// OK so maybe your limb just flew off, but if it was attached to a pair of cuffs then hooray! Freedom!
+	release_restraints()
 
-			if(organ)
-				//Throw organs around
-				var/lol = pick(GLOB.cardinals)
-				step(organ,lol)
+	if(vital)
+		owner.death()
+	return TRUE
 
-		owner.update_body(1, 1)
-
-		// OK so maybe your limb just flew off, but if it was attached to a pair of cuffs then hooray! Freedom!
-		release_restraints()
-
-		if(vital)
-			owner.death()
-		return TRUE
+/datum/limb/hand/l_hand/droplimb(amputation, delete_limb = FALSE)
+	. = ..()
+	if(!.)
+		return
+	owner.update_inv_gloves()
 
 
 /****************************************************
@@ -774,7 +857,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 /datum/limb/proc/bandage()
 	var/rval = 0
-	limb_status &= ~LIMB_BLEEDING
+	remove_limb_flags(LIMB_BLEEDING)
 	for(var/datum/wound/W in wounds)
 		if(W.internal) continue
 		rval |= !W.bandaged
@@ -810,7 +893,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 /datum/limb/proc/clamp_bleeder()
 	var/rval = 0
-	src.limb_status &= ~LIMB_BLEEDING
+	remove_limb_flags(LIMB_BLEEDING)
 	for(var/datum/wound/W in wounds)
 		if(W.internal) continue
 		rval |= !W.clamped
@@ -846,8 +929,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(owner.species && !(owner.species.species_flags & NO_PAIN))
 		owner.emote("scream")
 
-	limb_status |= LIMB_BROKEN
-	limb_status &= ~LIMB_REPAIRED
+	add_limb_flags(LIMB_BROKEN)
+	remove_limb_flags(LIMB_REPAIRED)
 	broken_description = pick("broken","fracture","hairline fracture")
 	perma_injury = brute_dam
 
@@ -855,45 +938,25 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if (prob(25))
 		release_restraints()
 
-	// This is mostly for the ninja suit to stop ninja being so crippled by breaks.
-	// TODO: consider moving this to a suit proc or process() or something during
-	// hardsuit rewrite.
-	if(ishuman(owner))
+	/// Emit a signal for autodoc to support the life if available
+	SEND_SIGNAL(owner, COMSIG_HUMAN_LIMB_FRACTURED, src)
 
-		var/mob/living/carbon/human/H = owner
-		if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit))
-
-			var/obj/item/clothing/suit/suit = H.wear_suit
-
-			suit.secure_limb(src, H)
 	return
 
+
 /datum/limb/proc/robotize()
-	limb_status &= ~LIMB_BROKEN
-	limb_status &= ~LIMB_BLEEDING
-	limb_status &= ~LIMB_SPLINTED
-	limb_status &= ~LIMB_STABILIZED
-	limb_status &= ~LIMB_AMPUTATED
-	limb_status &= ~LIMB_DESTROYED
-	limb_status &= ~LIMB_NECROTIZED
-	limb_status &= ~LIMB_MUTATED
-	limb_status &= ~LIMB_REPAIRED
-	limb_status |= LIMB_ROBOT
+	rejuvenate()
+	for(var/c in children)
+		var/datum/limb/child_limb = c
+		child_limb.robotize()
 
-	reset_limb_surgeries()
-
-	germ_level = 0
-	perma_injury = 0
-	for (var/datum/limb/T in children)
-		if(T)
-			T.robotize()
 
 /datum/limb/proc/mutate()
-	src.limb_status |= LIMB_MUTATED
+	add_limb_flags(LIMB_MUTATED)
 	owner.update_body()
 
 /datum/limb/proc/unmutate()
-	src.limb_status &= ~LIMB_MUTATED
+	remove_limb_flags(LIMB_MUTATED)
 	owner.update_body()
 
 /datum/limb/proc/get_damage()	//returns total damage
@@ -989,7 +1052,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		user.visible_message(
 		"[text1]",
 		"[text2]")
-		limb_status |= LIMB_SPLINTED
+		add_limb_flags(LIMB_SPLINTED)
 		return TRUE
 
 
@@ -1070,7 +1133,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	body_part = LEG_RIGHT
 	icon_position = RIGHT
 
-/datum/limb/l_foot
+/datum/limb/foot/l_foot
 	name = "l_foot"
 	display_name = "left foot"
 	icon_name = "l_foot"
@@ -1079,7 +1142,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	body_part = FOOT_LEFT
 	icon_position = LEFT
 
-/datum/limb/r_foot
+/datum/limb/foot/r_foot
 	name = "r_foot"
 	display_name = "right foot"
 	icon_name = "r_foot"
@@ -1088,7 +1151,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	body_part = FOOT_RIGHT
 	icon_position = RIGHT
 
-/datum/limb/r_hand
+/datum/limb/hand/r_hand
 	name = "r_hand"
 	display_name = "right hand"
 	icon_name = "r_hand"
@@ -1100,7 +1163,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		..()
 		process_grasp(owner.r_hand, "right hand")
 
-/datum/limb/l_hand
+/datum/limb/hand/l_hand
 	name = "l_hand"
 	display_name = "left hand"
 	icon_name = "l_hand"

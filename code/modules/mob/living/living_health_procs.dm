@@ -311,20 +311,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 
 
 /mob/living/carbon/human/revive()
-	for(var/datum/limb/O in limbs)
-		if(O.limb_status & LIMB_ROBOT)
-			O.limb_status = LIMB_ROBOT
-		else
-			O.limb_status = NONE
-		O.perma_injury = 0
-		O.germ_level = 0
-		O.wounds.Cut()
-		O.heal_limb_damage(1000, 1000, TRUE, TRUE)
-		O.reset_limb_surgeries()
-
-	var/datum/limb/head/h = get_limb("head")
-	h.disfigured = FALSE
-	name = get_visible_name()
+	restore_all_organs()
 
 	if(species && !(species.species_flags & NO_BLOOD))
 		restore_blood()

@@ -2473,9 +2473,6 @@
 	icon_state = "test_floor4"
 	},
 /area/mainship/hallways/starboard_hallway)
-"hC" = (
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/medical/lower_medical)
 "hD" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/lower_medical)
@@ -2599,13 +2596,6 @@
 /obj/structure/curtain/medical,
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/lower_medical)
-"hO" = (
-/obj/machinery/crema_switch{
-	pixel_x = 24
-	},
-/obj/structure/curtain/medical,
-/turf/open/floor/mainship/mono,
-/area/mainship/medical/lower_medical)
 "hP" = (
 /obj/machinery/door/airlock/mainship/research/pen,
 /obj/machinery/door/firedoor/mainship{
@@ -2690,10 +2680,6 @@
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
-/area/mainship/medical/lower_medical)
-"hW" = (
-/obj/structure/morgue/crematorium,
-/turf/open/floor/plating/plating_catwalk,
 /area/mainship/medical/lower_medical)
 "hX" = (
 /obj/structure/closet/secure_closet/CMO,
@@ -2927,10 +2913,12 @@
 	},
 /area/mainship/medical/medical_science)
 "iQ" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/med_data/laptop,
+/obj/machinery/optable,
 /obj/machinery/light,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship{
+	dir = 8;
+	icon_state = "sterile_green_side"
+	},
 /area/mainship/medical/lower_medical)
 "iR" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -11783,14 +11771,9 @@
 /turf/open/floor/wood,
 /area/mainship/medical/lower_medical)
 "EI" = (
-/obj/machinery/optable,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/mainship{
-	dir = 8;
-	icon_state = "sterile_green_side"
-	},
+/obj/structure/table/mainship,
+/obj/machinery/computer/med_data/laptop,
+/turf/open/floor/mainship/mono,
 /area/mainship/medical/lower_medical)
 "EJ" = (
 /obj/machinery/disposal,
@@ -18108,6 +18091,16 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
+"Xv" = (
+/obj/structure/morgue{
+	dir = 2;
+	icon_state = "morgue1"
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/medical/lower_medical)
 "XD" = (
 /turf/closed/wall/mainship,
 /area/mainship/medical/medical_science)
@@ -18273,6 +18266,13 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
+"Ze" = (
+/obj/structure/morgue/crematorium,
+/obj/machinery/crema_switch{
+	pixel_x = 24
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/medical/lower_medical)
 "Zf" = (
 /obj/structure/table/mainship,
 /obj/item/toy/deck,
@@ -39816,11 +39816,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+fI
+fI
+fI
+fI
+fI
 aa
 aa
 aa
@@ -40073,11 +40073,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+fI
+fI
+fI
+fI
+fI
 aa
 aa
 aa
@@ -40844,7 +40844,7 @@ aa
 aa
 aa
 aa
-aa
+fI
 aa
 ad
 ad
@@ -42902,7 +42902,7 @@ nH
 nN
 bd
 hj
-hC
+hD
 EI
 hN
 iQ
@@ -43158,11 +43158,11 @@ Of
 IM
 tK
 bd
-hj
-hC
-aY
-hO
-hW
+Xv
+hD
+hD
+hN
+hI
 bd
 ir
 iw
@@ -43415,9 +43415,9 @@ nz
 IN
 vg
 bd
-hl
+Ze
 hD
-hI
+hl
 bd
 bd
 bd
@@ -48805,8 +48805,8 @@ gd
 kM
 kM
 qG
-PB
-PB
+Zq
+Zq
 qG
 qG
 qG

@@ -137,19 +137,21 @@
 	H.limbs += LL
 	var/datum/limb/r_leg/RL = new(G, H)
 	H.limbs += RL
-	H.limbs +=  new/datum/limb/l_hand(LA, H)
-	H.limbs +=  new/datum/limb/r_hand(RA, H)
-	H.limbs +=  new/datum/limb/l_foot(LL, H)
-	H.limbs +=  new/datum/limb/r_foot(RL, H)
+	H.limbs +=  new/datum/limb/hand/l_hand(LA, H)
+	H.limbs +=  new/datum/limb/hand/r_hand(RA, H)
+	H.limbs +=  new/datum/limb/foot/l_foot(LL, H)
+	H.limbs +=  new/datum/limb/foot/r_foot(RL, H)
 
 	for(var/organ in has_organ)
 		var/organ_type = has_organ[organ]
 		H.internal_organs_by_name[organ] = new organ_type(H)
 
 	if(species_flags & IS_SYNTHETIC)
-		for(var/datum/limb/E in H.limbs)
-			if(E.limb_status & LIMB_DESTROYED) continue
-			E.limb_status |= LIMB_ROBOT
+		for(var/datum/limb/l in H.limbs)
+			var/datum/limb/robotic_limb = l
+			if(robotic_limb.limb_status & LIMB_DESTROYED)
+				continue
+			robotic_limb.add_limb_flags(LIMB_ROBOT)
 		for(var/datum/internal_organ/I in H.internal_organs)
 			I.mechanize()
 
