@@ -1056,14 +1056,19 @@
 	},
 /area/sulaco/medbay/surgery_one)
 "acV" = (
-/obj/machinery/atmospherics/pipe/simple/general/visible{
-	icon_state = "intact";
-	dir = 5
+/obj/structure/table/reinforced{
+	icon_state = "table"
 	},
-/turf/open/floor{
-	icon_state = "whitebluefull"
+/obj/item/stack/sheet/metal{
+	amount = 50
 	},
-/area/sulaco/medbay/west)
+/obj/item/stack/sheet/plasteel{
+	amount = 30;
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/turf/open/floor,
+/area/sulaco/marine/delta)
 "acW" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
@@ -4499,15 +4504,11 @@
 /turf/open/floor,
 /area/sulaco/cargo/office)
 "aki" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/grille,
-/turf/open/floor/plating,
-/turf/closed/wall/indestructible/fakeglass{
-	icon = 'icons/obj/structures/windows.dmi';
-	icon_state = "rwindow3";
-	layer = 3.2
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
 	},
-/area/sulaco/engineering/engine)
+/turf/closed/wall/sulaco/unmeltable,
+/area/sulaco/engineering)
 "akj" = (
 /obj/machinery/fuelcell_recycler,
 /turf/open/floor/plating/mainship,
@@ -6467,12 +6468,19 @@
 /turf/closed/wall/sulaco,
 /area/sulaco/hallway/central_hall)
 "aog" = (
-/obj/structure/rack,
-/obj/item/weapon/gun/rifle/standard_assaultrifle,
-/obj/item/weapon/gun/rifle/standard_assaultrifle,
-/obj/item/weapon/gun/rifle/standard_assaultrifle,
-/turf/open/floor/mainship,
-/area/mainship/command/self_destruct)
+/obj/structure/table/reinforced{
+	icon_state = "table"
+	},
+/obj/item/stack/sheet/metal{
+	amount = 50
+	},
+/obj/item/stack/sheet/plasteel{
+	amount = 30;
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/turf/open/floor,
+/area/sulaco/marine/charlie)
 "aoh" = (
 /obj/machinery/light{
 	dir = 8;
@@ -13726,7 +13734,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/turf/closed/wall/sulaco,
+/turf/closed/wall/sulaco/unmeltable,
 /area/sulaco/engineering)
 "aBT" = (
 /obj/item/radio/intercom/general{
@@ -13967,7 +13975,7 @@
 /area/sulaco/marine/charlie)
 "aCq" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/closed/wall/sulaco,
+/turf/closed/wall/sulaco/unmeltable,
 /area/sulaco/engineering/engine)
 "aCr" = (
 /obj/structure/table,
@@ -14278,11 +14286,15 @@
 /turf/open/floor,
 /area/sulaco/marine)
 "aDa" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 5
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/window/reinforced{
+	dir = 8
 	},
-/turf/closed/wall/sulaco,
-/area/sulaco/engineering)
+/turf/closed/wall/indestructible/fakeglass{
+	icon_state = "fakewindows";
+	dir = 4
+	},
+/area/sulaco/engineering/engine)
 "aDb" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -14883,15 +14895,9 @@
 	},
 /area/sulaco/brig)
 "aED" = (
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
-	dir = 10
-	},
-/turf/open/space,
-/turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
-	dir = 1
-	},
-/area/space)
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/closed/wall/sulaco/unmeltable,
+/area/sulaco/engineering)
 "aEE" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -18618,16 +18624,19 @@
 	},
 /area/sulaco/maintenance/lower_maint)
 "aNg" = (
-/obj/machinery/camera/autoname{
-	dir = 8
+/obj/structure/table/reinforced{
+	icon_state = "table"
 	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
+/obj/item/stack/sheet/metal{
+	amount = 50
 	},
-/turf/open/floor/mainship{
-	icon_state = "ai_floors"
+/obj/item/stack/sheet/plasteel{
+	amount = 30;
+	pixel_x = 4;
+	pixel_y = 4
 	},
-/area/sulaco/hangar)
+/turf/open/floor,
+/area/sulaco/marine/bravo)
 "aNh" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -19391,16 +19400,13 @@
 /obj/item/stack/sheet/metal{
 	amount = 50
 	},
-/obj/item/stack/sheet/metal{
-	amount = 50
-	},
 /obj/item/stack/sheet/plasteel{
 	amount = 30;
 	pixel_x = 4;
 	pixel_y = 4
 	},
 /turf/open/floor,
-/area/sulaco/marine/delta)
+/area/sulaco/marine/alpha)
 "aOS" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
@@ -19602,64 +19608,40 @@
 /turf/open/floor,
 /area/sulaco/marine/charlie)
 "aPv" = (
-/obj/structure/table/reinforced{
-	icon_state = "table"
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
+	dir = 10
 	},
-/obj/item/stack/sheet/metal{
-	amount = 50
+/turf/open/space,
+/turf/closed/shuttle/wall3/diagonal{
+	icon_state = "diagonalWall3";
+	dir = 1
 	},
-/obj/item/stack/sheet/metal{
-	amount = 50
-	},
-/obj/item/stack/sheet/plasteel{
-	amount = 30;
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/turf/open/floor,
-/area/sulaco/marine/charlie)
+/area/space)
 "aPw" = (
 /obj/machinery/vending/shared_vending/marine_engi,
 /turf/open/floor,
 /area/sulaco/marine/bravo)
 "aPx" = (
-/obj/structure/table/reinforced{
-	icon_state = "table"
+/obj/machinery/camera/autoname{
+	dir = 8
 	},
-/obj/item/stack/sheet/metal{
-	amount = 50
+/turf/open/floor{
+	icon_state = "dark"
 	},
-/obj/item/stack/sheet/metal{
-	amount = 50
-	},
-/obj/item/stack/sheet/plasteel{
-	amount = 30;
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/turf/open/floor,
-/area/sulaco/marine/bravo)
+/area/sulaco/maintenance/lower_maint)
 "aPy" = (
 /obj/machinery/vending/shared_vending/marine_engi,
 /turf/open/floor,
 /area/sulaco/marine/alpha)
 "aPz" = (
-/obj/item/stack/sheet/metal{
-	amount = 50
+/obj/structure/closet/emcloset,
+/obj/machinery/camera/autoname{
+	dir = 8
 	},
-/obj/structure/table/reinforced{
-	icon_state = "table"
+/turf/open/floor/mainship{
+	icon_state = "ai_floors"
 	},
-/obj/item/stack/sheet/metal{
-	amount = 50
-	},
-/obj/item/stack/sheet/plasteel{
-	amount = 30;
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/turf/open/floor,
-/area/sulaco/marine/alpha)
+/area/sulaco/hangar)
 "aPA" = (
 /obj/structure/window/reinforced{
 	dir = 5
@@ -21561,8 +21543,14 @@
 	},
 /area/sulaco/maintenance/lower_maint2)
 "aUe" = (
-/turf/open/space/basic,
-/area/sulaco/liaison/quarters)
+/obj/structure/rack,
+/obj/item/shotgunbox/buckshot,
+/obj/item/shotgunbox/flechette,
+/obj/machinery/camera/autoname,
+/obj/item/weapon/gun/shotgun/pump/t35,
+/obj/item/weapon/gun/shotgun/pump/t35,
+/turf/open/floor/mainship,
+/area/mainship/command/self_destruct)
 "aUf" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -23713,9 +23701,13 @@
 /turf/closed/wall/sulaco,
 /area/sulaco/telecomms)
 "aYQ" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/closed/wall/sulaco,
-/area/sulaco/engineering)
+/obj/structure/rack,
+/obj/item/weapon/gun/rifle/standard_assaultrifle,
+/obj/item/weapon/gun/rifle/standard_assaultrifle,
+/obj/item/weapon/gun/rifle/standard_assaultrifle,
+/obj/item/weapon/gun/smg/standard_smg,
+/turf/open/floor/mainship,
+/area/mainship/command/self_destruct)
 "aYR" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/structure/cable/yellow{
@@ -24125,13 +24117,6 @@
 	icon_state = "ai_floors"
 	},
 /area/sulaco/hangar)
-"aZQ" = (
-/obj/structure/rack,
-/obj/item/shotgunbox/buckshot,
-/obj/item/shotgunbox/flechette,
-/obj/machinery/camera/autoname,
-/turf/open/floor/mainship,
-/area/mainship/command/self_destruct)
 "aZR" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor{
@@ -49633,7 +49618,7 @@ aaa
 aaa
 aew
 acc
-acV
+adI
 adF
 aev
 afq
@@ -52603,7 +52588,7 @@ aTX
 aTR
 aTU
 aaa
-aTU
+aaa
 aTU
 aUi
 aUi
@@ -52861,7 +52846,7 @@ aTR
 aTU
 aTU
 aTU
-aUi
+aTU
 aUi
 aUi
 aUi
@@ -53632,7 +53617,7 @@ aTR
 aTU
 aTU
 aVe
-aUi
+aTU
 aUl
 aUi
 aUi
@@ -53887,8 +53872,8 @@ aQh
 aTR
 aUg
 aTU
-aUe
-aTU
+aaa
+aaa
 aTU
 aTU
 aUh
@@ -54144,9 +54129,9 @@ aTR
 aTR
 aTR
 aTU
-aUe
 aaa
-aTU
+aaa
+aaa
 aTU
 aUi
 aUi
@@ -54411,9 +54396,9 @@ aUi
 aTU
 aUb
 aTU
-aZQ
+aUe
 akz
-aog
+aYQ
 aCh
 aTU
 aaa
@@ -58665,7 +58650,7 @@ aDk
 aDH
 aFY
 aFY
-aOR
+acV
 aDH
 aFY
 aFY
@@ -60726,7 +60711,7 @@ aDT
 aJS
 aKA
 aKA
-aPv
+aog
 aJS
 aKA
 aKA
@@ -62782,7 +62767,7 @@ aMS
 aJX
 aKF
 aKF
-aPx
+aNg
 aJX
 aKF
 aKF
@@ -62872,7 +62857,7 @@ aPF
 aPD
 aPF
 aRQ
-aSu
+aPz
 aPF
 aPF
 aTe
@@ -63113,7 +63098,7 @@ aaa
 aaa
 aaa
 aaa
-aED
+aPv
 aPm
 aPm
 aRf
@@ -63125,7 +63110,7 @@ aPY
 aPY
 aPK
 aRx
-aNg
+aRx
 aXb
 aQK
 aPY
@@ -64838,7 +64823,7 @@ aPf
 aKb
 aKK
 aKK
-aPz
+aOR
 aKb
 aKK
 aKK
@@ -65693,7 +65678,7 @@ aSN
 aUr
 aZp
 aUu
-aVG
+aPx
 aMV
 aXR
 aVV
@@ -69957,11 +69942,11 @@ axm
 axT
 ayz
 avV
-aje
-aje
-aje
-aje
-aje
+aIt
+aIt
+aIt
+aIt
+aIt
 aIt
 aJk
 avV
@@ -70214,12 +70199,12 @@ auD
 avY
 azk
 avV
-aje
+aIt
 aEb
 aEb
 aEb
 aEb
-aje
+aIt
 aFV
 avV
 avV
@@ -70471,12 +70456,12 @@ axY
 aje
 azl
 ayD
-aje
+aIt
 aEb
 aEb
 aEb
 aEb
-aje
+aIt
 aJk
 avV
 avV
@@ -70728,12 +70713,12 @@ axZ
 azn
 azS
 ajh
-aje
+aIt
 aEb
 aEb
 aEb
 aEb
-aje
+aIt
 aYX
 aHL
 aHL
@@ -70985,12 +70970,12 @@ awc
 ajg
 aAp
 aBW
-aDa
+aki
 aEb
 aEb
 aEb
 aEb
-aje
+aIt
 aJo
 aKg
 aKl
@@ -71244,10 +71229,10 @@ aAw
 aAG
 aBS
 aCq
-aki
-aki
-aki
-aYQ
+aDa
+aDa
+aDa
+aED
 aJp
 aKh
 aKh
