@@ -223,7 +223,7 @@
 					/obj/item/explosive/mine,
 					/obj/item/weapon/combat_knife,
 					/obj/item/weapon/gun/smartgun,
-                    /obj/item/weapon/gun/rifle/standard_smartmachinegun,
+					/obj/item/weapon/gun/rifle/standard_smartmachinegun,
 					/obj/item/storage/belt/sparepouch)
 	pockets = /obj/item/storage/internal/suit/marine/smartgunner
 
