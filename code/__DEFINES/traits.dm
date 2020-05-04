@@ -74,7 +74,8 @@
 //Traits
 #define TRAIT_STASIS "stasis"
 
-// common trait sources
+// common trait
+#define INNATE_TRAIT "innate"
 #define ROUNDSTART_TRAIT "roundstart" //cannot be removed without admin intervention
 #define SLEEPER_TRAIT "sleeper"
 #define STASIS_BAG_TRAIT "stasis_bag"
@@ -84,10 +85,13 @@
 #define FROZEN_TRAIT "frozen"
 #define STAT_TRAIT "stat"
 #define NECKGRAB_TRAIT "neckgrab"
+#define RESTING_TRAIT "resting"
+#define BUCKLE_TRAIT "buckle"
 
 //mob traits
 #define TRAIT_KNOCKEDOUT		"knockedout" //Forces the user to stay unconscious.
 #define TRAIT_INCAPACITATED		"incapacitated"
+#define TRAIT_FLOORED			"floored" //User is forced to the ground on a prone position.
 #define TRAIT_IMMOBILE			"immobile" //User is unable to move by its own volition.
 #define TRAIT_STUNIMMUNE		"stun_immunity"
 #define TRAIT_FIRERESISTANT		"fire_resistant" // Won't catch on fire
