@@ -89,7 +89,7 @@
 	set category = "OOC"
 
 	if(stat != DEAD)
-		to_chat(src, "You can only use this when your dead.")
+		to_chat(src, "You can only use this when you're dead.")
 		return
 
 	var/list/spawn_types = pick(subtypesof(/mob/living/carbon/xenomorph) + list(/mob/living/carbon/human))
