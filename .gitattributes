@@ -6,11 +6,14 @@
 html/changelog.html merge=union
 
 # force line endings
+* text eol=lf
 
 # dm stuff
 *.dm text eol=lf
 *.dmm text eol=lf
 *.dme text eol=lf
+*.dmf text eol=lf
+
 *.json text eol=lf
 *.txt text eol=lf
 
@@ -19,9 +22,8 @@ html/changelog.html merge=union
 *.bat text eol=lf
 *.yml text eol=lf
 *.toml text eol=lf
-Dockerfile text eol=lf
+*.py text eol=lf
 *.md text eol=lf
-LICENSE* text eol=lf
 
 # tgui
 *.js text eol=lf
@@ -31,12 +33,20 @@ LICENSE* text eol=lf
 
 # definitely don't convert these
 *.dmi binary
+
 *.ogg binary
+*.wav binary
+
 *.png binary
 *.jpg binary
 *.jpeg binary
 
 *.eot binary
 *.woff binary
+*.ttf binary
+*.woff2 binary
 
 *.dll binary
+*.pdb binary
+
+*.exe binary
