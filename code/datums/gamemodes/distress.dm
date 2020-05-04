@@ -292,7 +292,7 @@
 						/obj/item/ammo_magazine/shotgun/flechette = round(scale * 15),
 						/obj/item/ammo_magazine/rifle/tx15_flechette = round(scale * 10),
 						/obj/item/ammo_magazine/rifle/tx15_slug = round(scale * 10),
-						/obj/item/ammo_magazine/rifle/standard_smartmachinegun = round(scale * 2)
+						/obj/item/ammo_magazine/standard_smartmachinegun = round(scale * 2)
 						)
 
 		CA.contraband = list(
