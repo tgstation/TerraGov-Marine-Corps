@@ -34,17 +34,24 @@
 /mob/living/proc/set_resting(rest, silent = TRUE)
 	if(status_flags & INCORPOREAL)
 		return
-	if(!silent)
-		if(rest)
-			to_chat(src, "<span class='notice'>You are now resting.</span>")
-		else
-			to_chat(src, "<span class='notice'>You get up.</span>")
+	if(rest == resting)
+		return
+	. = resting
 	resting = rest
+	if(resting)
+		ADD_TRAIT(src, TRAIT_FLOORED, RESTING_TRAIT)
+		if(!silent)
+			to_chat(src, "<span class='notice'>You are now resting.</span>")
+	else
+		REMOVE_TRAIT(src, TRAIT_FLOORED, RESTING_TRAIT)
+		if(!silent)
+			to_chat(src, "<span class='notice'>You get up.</span>")
 	update_resting()
+
 
 /mob/living/proc/update_resting()
 	hud_used?.rest_icon?.update_icon(src)
-	update_canmove()
+
 
 /mob/living/verb/ghost()
 	set category = "OOC"
