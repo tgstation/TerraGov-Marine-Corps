@@ -144,6 +144,19 @@
 	idle_power_usage = 2
 	active_power_usage = 4
 
+/obj/machinery/req_button
+	name = "Requisitions button"
+	desc = "A remote control switch for the Requisitions door bolts."
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "launcherbtt"
+	var/id = null
+	var/active = 0
+	anchored = TRUE
+	use_power = IDLE_POWER_USE
+	idle_power_usage = 2
+	active_power_usage = 4
+	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
+
 /obj/machinery/crema_switch
 	desc = "Burn baby burn!"
 	name = "crematorium igniter"
