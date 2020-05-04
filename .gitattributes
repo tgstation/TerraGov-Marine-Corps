@@ -4,3 +4,49 @@
 
 # force changelog merging to use union
 html/changelog.html merge=union
+
+# force line endings
+* text eol=lf
+
+# dm stuff
+*.dm text eol=lf
+*.dmm text eol=lf
+*.dme text eol=lf
+*.dmf text eol=lf
+
+*.json text eol=lf
+*.txt text eol=lf
+
+# tools
+*.sh text eol=lf
+*.bat text eol=lf
+*.yml text eol=lf
+*.toml text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+
+# tgui
+*.js text eol=lf
+*.scss text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+
+# definitely don't convert these
+*.dmi binary
+
+*.ogg binary
+*.wav binary
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+
+*.eot binary
+*.woff binary
+*.ttf binary
+*.woff2 binary
+
+*.dll binary
+*.pdb binary
+
+*.exe binary
