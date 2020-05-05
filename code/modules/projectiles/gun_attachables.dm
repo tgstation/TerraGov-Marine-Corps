@@ -343,7 +343,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/bayonetknife
 	name = "T-22 bayonet"
-	desc = "A sharp knife that can be attached to a weapon at will. Seems nice in a fight."
+	desc = "A sharp knife that is the standard issue combat knife of the TerraGov Marine Corps can be attached to a variety of weapons at will or used as a standard knife."
 	icon_state = "bayonetknife"
 	item_state = "combat_knife"
 	attach_icon = "bayonetknife_a"
