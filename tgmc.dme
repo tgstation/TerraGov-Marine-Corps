@@ -36,6 +36,7 @@
 #include "code\__DEFINES\construction.dm"
 #include "code\__DEFINES\coordinates.dm"
 #include "code\__DEFINES\equipment.dm"
+#include "code\__DEFINES\factions.dm"
 #include "code\__DEFINES\flags.dm"
 #include "code\__DEFINES\footsteps.dm"
 #include "code\__DEFINES\interaction.dm"

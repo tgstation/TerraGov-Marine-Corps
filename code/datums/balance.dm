@@ -1,4 +1,4 @@
-/*// Balance datum
+/** Balance datum
 
 This is for tracking and storing balance values that are automatically added to the database on edit.
 
@@ -25,9 +25,9 @@ GLOBAL_DATUM_INIT(balance, /datum/balance, new())
 		return FALSE
 	var/mob/living/living = source
 	switch(living.faction)
-		if("Xeno")
+		if(FACTION_XENO)
 			balance_values["xeno"]--
-		if("TerraGov")
+		if (FACTION_TERRAGOV)
 			balance_values["marine"]--
 		else
 			balance_values["other"]--
