@@ -4,12 +4,12 @@
 
 /obj/item/restraints/resisted_against(datum/source)
 	var/mob/living/carbon/perp = source
-	if(perp.cooldowns[COOLDOWN_RESIST])
+	if(COOLDOWN_CHECK(perp, COOLDOWN_RESIST))
 		return FALSE
 
 	perp.changeNext_move(CLICK_CD_RESIST)
 
-	perp.cooldowns[COOLDOWN_RESIST] = addtimer(VARSET_LIST_CALLBACK(perp.cooldowns, COOLDOWN_RESIST, null), CLICK_CD_BREAKOUT)
+	COOLDOWN_START(perp, COOLDOWN_RESIST, CLICK_CD_BREAKOUT)
 
 	perp.resist_restraints(src)
 

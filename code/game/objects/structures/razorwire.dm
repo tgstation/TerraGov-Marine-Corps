@@ -55,7 +55,7 @@
 /obj/structure/razorwire/proc/razorwire_tangle(mob/living/M, duration = RAZORWIRE_ENTANGLE_DELAY)
 	if(QDELETED(src)) //Sanity check so that you can't get entangled if the razorwire is destroyed; this happens apparently.
 		return
-	M.cooldowns[COOLDOWN_ENTANGLE] = addtimer(VARSET_LIST_CALLBACK(M.cooldowns, COOLDOWN_ENTANGLE, null), duration)
+	COOLDOWN_START(M, COOLDOWN_ENTANGLE, duration)
 	M.visible_message("<span class='danger'>[M] gets entangled in the barbed wire!</span>",
 	"<span class='danger'>You got entangled in the barbed wire! Resist to untangle yourself after [duration * 0.1] seconds since you were entangled!</span>", null, null, 5)
 	M.set_frozen(TRUE)
@@ -67,7 +67,7 @@
 
 /obj/structure/razorwire/resisted_against(datum/source)
 	var/mob/living/entangled = source
-	if(entangled.cooldowns[COOLDOWN_ENTANGLE])
+	if(COOLDOWN_CHECK(entangled, COOLDOWN_ENTANGLE))
 		entangled.visible_message("<span class='danger'>[entangled] attempts to disentangle itself from [src] but is unsuccessful!</span>",
 		"<span class='warning'>You fail to disentangle yourself!</span>")
 		return FALSE
@@ -82,9 +82,7 @@
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 	entangled_list -= M
 	M.entangled_by = null
-	M.cooldowns[COOLDOWN_ENTANGLE] = FALSE
 	M.set_frozen(FALSE)
-	M.update_canmove()
 	M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, TRUE) //Apply damage as we tear free
 	UPDATEHEALTH(M)
 	M.next_move_slowdown += RAZORWIRE_SLOWDOWN //big slowdown
@@ -104,10 +102,8 @@
 	for(var/i in entangled_list)
 		var/mob/living/L = i
 		L.set_frozen(FALSE)
-		L.update_canmove()
 		if(L.entangled_by == src)
 			L.entangled_by = null
-			L.cooldowns[COOLDOWN_ENTANGLE] = FALSE
 	entangled_list.Cut()
 	return ..()
 
