@@ -653,10 +653,10 @@ Defined in conflicts.dm of the #defines folder.
 	scope_zoom_mod = TRUE
 
 /obj/item/attachable/scope/mini/m4ra
-	name = "M4RA rail scope"
+	name = "T-45 rail scope"
 	aim_speed_mod = 0
 	attach_icon = "none"
-	desc = "A rail mounted zoom sight scope specialized for the M4RA Battle Rifle . Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	desc = "A rail mounted zoom sight scope specialized for the T-45 Battle Rifle . Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	flags_attach_features = ATTACH_ACTIVATION
 
 /obj/item/attachable/scope/m42a
@@ -781,7 +781,7 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = 0.1
 
 /obj/item/attachable/stock/rifle/marksman
-	name = "\improper M4RA marksman stock"
+	name = "\improper T-45 marksman stock"
 	icon_state = "m4markstock"
 	attach_icon = "m4markstock"
 	flags_attach_features = NONE
