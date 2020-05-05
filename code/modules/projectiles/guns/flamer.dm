@@ -502,6 +502,7 @@
 	return ..()
 
 /obj/flamer_fire/Crossed(mob/living/M) //Only way to get it to reliable do it when you walk into it.
+	. = ..()
 	if(istype(M))
 		M.flamer_fire_crossed(burnlevel, firelevel)
 
