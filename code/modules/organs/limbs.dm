@@ -56,7 +56,7 @@
 	var/vital //Lose a vital limb, die immediately.
 	var/germ_level = 0		// INTERNAL germs inside the organ, this is BAD if it's greater than INFECTION_LEVEL_ONE
 
-	///What % of the body does this limb cover.
+	///What % of the body does this limb cover. Make sure that the sum is always 100.
 	var/cover_index = 0
 
 

@@ -1012,32 +1012,32 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /mob/living/carbon/xenomorph/bullet_message(obj/projectile/proj, feedback_flags)
 	. = ..()
-	var/onlooker_feedback = "[src] is hit by the [proj] in the [parse_zone(proj.def_zone)]!"
+	var/list/onlooker_feedback = list("[src] is hit by the [proj] in the [parse_zone(proj.def_zone)]!")
 
-	var/victim_feedback
+	var/list/victim_feedback
 	if(proj.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
-		victim_feedback = "We've been shot in the [parse_zone(proj.def_zone)] by [proj]!"
+		victim_feedback = list("We've been shot in the [parse_zone(proj.def_zone)] by [proj]!")
 	else
-		victim_feedback = "We are hit by the [proj] in the [parse_zone(proj.def_zone)]!"
+		victim_feedback = list("We are hit by the [proj] in the [parse_zone(proj.def_zone)]!")
 
 	if(feedback_flags & BULLET_FEEDBACK_IMMUNE)
-		victim_feedback += " Our exoskeleton deflects it!"
-		onlooker_feedback += " [p_their(TRUE)] thick exoskeleton deflects it!"
+		victim_feedback += "Our exoskeleton deflects it!"
+		onlooker_feedback += "[p_their(TRUE)] thick exoskeleton deflects it!"
 	else if(feedback_flags & BULLET_FEEDBACK_SOAK)
-		victim_feedback += " Our exoskeleton absorbs it!"
-		onlooker_feedback += " [p_their(TRUE)] thick exoskeleton absorbs it!"
+		victim_feedback += "Our exoskeleton absorbs it!"
+		onlooker_feedback += "[p_their(TRUE)] thick exoskeleton absorbs it!"
 	else if(feedback_flags & BULLET_FEEDBACK_PEN)
-		victim_feedback += " Our exoskeleton was penetrated!"
+		victim_feedback += "Our exoskeleton was penetrated!"
 
 	if(feedback_flags & BULLET_FEEDBACK_FIRE)
-		victim_feedback += " We burst into flames!! Auuugh! Resist to put out the flames!"
+		victim_feedback += "We burst into flames!! Auuugh! Resist to put out the flames!"
 		onlooker_feedback += "[p_they(TRUE)] burst into flames!"
 
 	if(feedback_flags & BULLET_FEEDBACK_SCREAM && stat == CONSCIOUS)
 		emote(prob(70) ? "hiss" : "roar")
 
-	visible_message("<span class='danger'>[onlooker_feedback]</span>",
-	"<span class='xenodanger'>[victim_feedback]", null, 4)
+	visible_message("<span class='danger'>[onlooker_feedback.Join(" ")]</span>",
+	"<span class='xenodanger'>[victim_feedback.Join(" ")]", null, 4)
 
 // Sundering procs
 /mob/living/proc/adjust_sunder(adjustment)
