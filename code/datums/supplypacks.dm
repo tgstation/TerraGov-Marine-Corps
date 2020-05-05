@@ -1892,7 +1892,7 @@ MEDICAL
 					/obj/item/storage/box/ids/dogtag,
 					)
 	name = "dogtags crate"
-	cost = RO_PRICE_NEAR_FREE
+	cost = 10
 	containertype = /obj/structure/closet/crate
 	containername = "\improper dogtags crate"
 	group = "Medical"
@@ -1903,7 +1903,7 @@ MEDICAL
 					/obj/item/reagent_containers/glass/beaker/biomass,
 					)
 	name = "biomass crate"
-	cost = RO_PRICE_VERY_CHEAP
+	cost = 15
 	containertype = /obj/structure/closet/crate/secure/nanotrasen
 	containername = "\improper biomass crate"
 	group = "Medical"
