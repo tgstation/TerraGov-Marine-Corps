@@ -789,8 +789,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		if(apply_damage(damage, proj.ammo.damage_type, proj.def_zone)) //This could potentially delete the source.
 			UPDATEHEALTH(src)
 		if(shrapnel_roll)
-			var/obj/item/shard/shrapnel/shrap = new(get_turf(src), "[proj] shrapnel", " It looks like it was fired from [proj.shot_from ? proj.shot_from : "something unknown"].")
-			shrap.embed_into(src, proj.def_zone, TRUE)
+			embed_projectile_shrapnel(proj)
 	else
 		bullet_message(proj, feedback_flags)
 
@@ -819,6 +818,19 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if(proj.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
 		GLOB.round_statistics.total_bullet_hits_on_xenos++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "total_bullet_hits_on_xenos")
+
+
+/mob/living/proc/embed_projectile_shrapnel(obj/projectile/proj)
+	var/obj/item/shard/shrapnel/shrap = new(get_turf(src), "[proj] shrapnel", " It looks like it was fired from [proj.shot_from ? proj.shot_from : "something unknown"].")
+	if(!shrap.embed_into(src, proj.def_zone, TRUE))
+		qdel(shrap)
+
+
+/mob/living/carbon/human/embed_projectile_shrapnel(obj/projectile/proj)
+	var/datum/limb/affected_limb = get_limb(check_zone(proj.def_zone))
+	if(affected_limb.limb_status & LIMB_DESTROYED)
+		return
+	return ..()
 
 
 /mob/living/proc/get_living_armor(armor_type, proj_def_zone, proj_dir)

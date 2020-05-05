@@ -96,8 +96,8 @@ LIMBS_CAN_BREAK
 
 #Space Hero
 LOBBY_MUSIC 1 https://youtu.be/fNdMC6_eUGk 1 180
-#Man of War
-LOBBY_MUSIC 2 https://youtu.be/KflMk8O18LI 1 180
+#Man of War, the good version
+LOBBY_MUSIC 2 https://youtu.be/EslVBQL3Zt8 1 180
 #Praise the lord and pass the ammunition
 LOBBY_MUSIC 3 https://youtu.be/uV9s1a6AZT0 1 180
 #Blood upon the risers
@@ -106,3 +106,15 @@ LOBBY_MUSIC 4 https://youtu.be/vzrYgDnewSI 1 180
 LOBBY_MUSIC 5 https://youtu.be/w34fSnJNP-4 1 180
 #Bomber
 LOBBY_MUSIC 6 https://youtu.be/OlkH687M4YM 1 180
+#Sam Jones
+LOBBY_MUSIC 7 https://youtu.be/-mO7vkdkJhg 1 180
+#Carry On Wayward Son
+LOBBY_MUSIC 8 https://youtu.be/2X_2IdybTV0 1 180
+#Pioneer's Song
+LOBBY_MUSIC 9 https://youtu.be/80VU36nKUZc 1 180
+#Pushin' The Speed Of Light
+LOBBY_MUSIC 10 https://youtu.be/ud6LiVJkwyA 1 180
+#Spilit of Motherwill
+LOBBY_MUSIC 11 https://youtu.be/uB2CFA2RyLE 1 180
+#Space camp song!
+LOBBY_MUSIC 12 https://youtu.be/guXqg_Bnl74 1 180
