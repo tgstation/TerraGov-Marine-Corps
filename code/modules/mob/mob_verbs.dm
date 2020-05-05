@@ -92,15 +92,14 @@
 		to_chat(src, "You can only use this when you're dead.")
 		return
 
-	var/list/spawn_types = pick(list(
-		// Human added a few times to increase the chances without having to set ratios on every mob
+	var/list/spawn_types = pick(
 		500 ; /mob/living/carbon/human,
 		/mob/living/carbon/xenomorph/runner,
 		/mob/living/carbon/xenomorph/hunter,
 		/mob/living/carbon/xenomorph/spitter,
 		/mob/living/carbon/xenomorph/defender,
 		/mob/living/carbon/xenomorph/warrior,
-	))
+	)
 	var/spawn_location = pick(GLOB.deathmatch)
 	var/mob/living/L = new spawn_types(spawn_location)
 	mind.transfer_to(L, TRUE)
