@@ -648,12 +648,10 @@
 /area/sulaco/disposal)
 "abX" = (
 /obj/item/stool,
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/engineering{
 	id = "Disposal Exit";
 	name = "Disposal Vent Control";
-	pixel_y = 36;
-	req_access_txt = "0";
-	req_one_access_txt = "7;21"
+	pixel_y = 36
 	},
 /obj/machinery/camera/autoname,
 /obj/machinery/driver_button{
@@ -965,7 +963,6 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/door/airlock/mainship/marine/requisitions{
-	icon_state = "door_closed";
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -1117,9 +1114,7 @@
 	},
 /area/sulaco/medbay/storage)
 "adc" = (
-/obj/structure/closet/secure_closet/chemical{
-	req_access = null
-	},
+/obj/structure/closet/secure_closet/chemical,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -1407,7 +1402,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/mainship/medical{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor{
@@ -1486,7 +1480,6 @@
 /area/sulaco/maintenance/north_solar_maint)
 "adV" = (
 /obj/machinery/door/airlock/mainship/engineering/CSEoffice{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /obj/structure/cable/yellow{
@@ -2675,7 +2668,6 @@
 /obj/machinery/door_control{
 	id = "mbayexit";
 	name = "medbay exit";
-	normaldoorcontrol = 1;
 	pixel_y = -32
 	},
 /obj/structure/cable/yellow{
@@ -2789,7 +2781,6 @@
 	dir = 1
 	},
 /obj/machinery/door/airlock/mainship/medical/glass/CMO{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor{
@@ -3231,11 +3222,10 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/structure/closet/walllocker/hydrant,
 /obj/structure/table,
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/medbay{
 	id = "Medbay";
 	name = "Medbay Lockdown";
-	pixel_x = -4;
-	req_one_access_txt = "5"
+	pixel_x = -4
 	},
 /turf/open/floor{
 	icon_state = "white"
@@ -3429,7 +3419,6 @@
 "aib" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/mainship/engineering/CSEoffice{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /turf/open/floor{
@@ -3439,7 +3428,6 @@
 /area/sulaco/engineering/ce)
 "aic" = (
 /obj/machinery/door/airlock/mainship/engineering/CSEoffice{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /obj/structure/cable/yellow{
@@ -3615,7 +3603,6 @@
 "aiv" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock/mainship/marine/requisitions{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor{
@@ -3906,11 +3893,10 @@
 /area/sulaco/medbay)
 "aja" = (
 /obj/structure/bed/chair/office/dark,
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/req{
 	id = "ROlobby1";
 	name = "RO Line 1 Shutters";
-	pixel_x = -30;
-	req_one_access_txt = "1;21"
+	pixel_x = -30
 	},
 /obj/machinery/flasher_button{
 	id = "req";
@@ -3927,13 +3913,11 @@
 /area/sulaco/cargo)
 "ajc" = (
 /obj/structure/bed/chair/office/dark,
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/req{
 	id = "ROlobby2";
 	name = "RO Line 2 Shutters";
 	pixel_x = 30;
-	pixel_y = -30;
-	pixel_z = 0;
-	req_one_access_txt = "1;21"
+	pixel_y = -30
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/flasher_button{
@@ -4242,7 +4226,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/mainship/marine/requisitions{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor{
@@ -4484,14 +4467,6 @@
 	icon_state = "platebotc"
 	},
 /area/sulaco/medbay)
-"akg" = (
-/obj/machinery/door/airlock/mainship/maint{
-	dir = 1;
-	icon_state = "door_closed";
-	req_one_access = "2;8;19"
-	},
-/turf/open/floor/plating,
-/area/sulaco/maintenance/north_solar_maint)
 "akh" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -5248,7 +5223,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/mainship/command/FCDRquarters{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor/wood,
@@ -5523,11 +5497,10 @@
 	},
 /area/sulaco/cryosleep)
 "amo" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/req{
 	id = "qm_warehouse";
 	name = "RO Warehouse Shutters";
-	pixel_x = -30;
-	req_one_access_txt = "1;21"
+	pixel_x = -30
 	},
 /obj/machinery/vending/lasgun,
 /turf/open/floor/mainship/mono,
@@ -5900,11 +5873,10 @@
 /area/sulaco/cargo/office)
 "amV" = (
 /obj/machinery/light,
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/req{
 	id = "qm_warehouse";
 	name = "RO Warehouse Shutters";
-	pixel_y = -30;
-	req_one_access_txt = "2;21"
+	pixel_y = -30
 	},
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/mono,
@@ -5991,7 +5963,6 @@
 /area/sulaco/cafeteria)
 "anh" = (
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -6190,10 +6161,9 @@
 /area/sulaco/cargo/office)
 "anG" = (
 /obj/structure/table,
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/req{
 	id = "ROoffice";
-	name = "RO Office Shutters";
-	req_one_access_txt = "1;21"
+	name = "RO Office Shutters"
 	},
 /obj/item/tool/stamp{
 	pixel_x = -3;
@@ -6408,7 +6378,6 @@
 /area/sulaco/bridge)
 "anZ" = (
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -6440,7 +6409,6 @@
 "aoc" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/mainship/engineering/workshop{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /turf/open/floor{
@@ -6451,7 +6419,6 @@
 "aod" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -6507,7 +6474,6 @@
 	opacity = 0
 	},
 /obj/machinery/door/airlock/mainship/command/cic{
-	icon_state = "door_closed";
 	dir = 8
 	},
 /obj/structure/sign/prop3,
@@ -6525,7 +6491,6 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/engineering/atmos{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /obj/structure/cable/yellow{
@@ -6554,14 +6519,8 @@
 /turf/closed/wall/sulaco/unmeltable,
 /area/space)
 "aoq" = (
-/obj/machinery/door/window/westleft{
-	layer = 3.1;
-	req_access_txt = "0";
-	req_one_access_txt = "2"
-	},
-/obj/machinery/door/window/eastleft{
-	layer = 3.1
-	},
+/obj/machinery/door/window/westleft,
+/obj/machinery/door/window/eastleft,
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor{
 	density = 0;
@@ -6752,10 +6711,8 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/machinery/door/window{
-	name = "interior door";
-	req_access_txt = "19";
-	req_one_access_txt = "0"
+/obj/machinery/door/window/mainship/bridge{
+	name = "interior door"
 	},
 /turf/open/floor/stairs/rampbottom{
 	icon_state = "rampbottom";
@@ -6981,10 +6938,7 @@
 	},
 /area/sulaco/bridge)
 "apq" = (
-/obj/machinery/door/window/eastright{
-	req_access = null;
-	req_access_txt = "19"
-	},
+/obj/machinery/door/window/eastright/bridge,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -7686,7 +7640,6 @@
 	opacity = 0
 	},
 /obj/machinery/door/airlock/mainship/command/FCDRquarters{
-	icon_state = "door_closed";
 	dir = 8
 	},
 /turf/open/floor/carpet,
@@ -7872,12 +7825,10 @@
 /turf/closed/wall/sulaco,
 /area/sulaco/hallway/central_hall2)
 "arm" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "bar";
 	name = "Briefing Shutters";
-	pixel_x = -30;
-	req_one_access_txt = "2;3;12;19";
-	throw_range = 15
+	pixel_x = -30
 	},
 /turf/open/floor,
 /area/sulaco/briefing)
@@ -7965,17 +7916,15 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/medbay{
 	id = "Medbay";
 	name = "Medbay Lockdown";
-	pixel_y = -3;
-	req_one_access_txt = "5"
+	pixel_y = -3
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/cic{
 	id = "sb blast";
 	name = "Fore Lockdown";
-	pixel_y = 6;
-	req_access_txt = "19"
+	pixel_y = 6
 	},
 /obj/structure/table/reinforced,
 /turf/open/floor/prison,
@@ -8124,7 +8073,6 @@
 /area/sulaco/engineering)
 "arO" = (
 /obj/machinery/door/airlock/mainship/engineering/workshop{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /obj/structure/cable/yellow{
@@ -8150,12 +8098,8 @@
 /area/sulaco/engineering)
 "arQ" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/machinery/door/airlock/hatch{
-	icon_state = "door_locked";
-	id_tag = "engine_electrical_maintenance";
-	locked = 1;
-	name = "Engine Electrical Maintenance";
-	req_access_txt = "7"
+/obj/machinery/door/airlock/hatch/engineering{
+	name = "Engine Electrical Maintenance"
 	},
 /obj/machinery/door/poddoor{
 	density = 0;
@@ -8332,8 +8276,7 @@
 /area/sulaco/engineering)
 "ask" = (
 /obj/machinery/door/airlock/glass{
-	name = "Stern Tool Storage";
-	req_access_txt = "7"
+	name = "Stern Tool Storage"
 	},
 /turf/open/floor,
 /area/sulaco/cargo/office)
@@ -8351,19 +8294,17 @@
 /obj/structure/bed/chair/comfy/black{
 	dir = 8
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/cic{
 	id = "port blast";
 	name = "Aft Lockdown";
 	pixel_x = -1;
-	pixel_y = -32;
-	req_access_txt = "19"
+	pixel_y = -32
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/cic{
 	id = "bridge blast";
 	name = "Bridge Blast Door Control";
 	pixel_x = -1;
-	pixel_y = -24;
-	req_access_txt = "19"
+	pixel_y = -24
 	},
 /turf/open/floor/prison,
 /area/sulaco/bridge)
@@ -8410,10 +8351,8 @@
 	},
 /area/sulaco/hallway/central_hall)
 "ast" = (
-/obj/machinery/door/window{
-	name = "Commander's Deck";
-	req_access_txt = "19";
-	req_one_access_txt = "0"
+/obj/machinery/door/window/mainship/bridge{
+	name = "Commander's Deck"
 	},
 /turf/open/floor/stairs/rampbottom{
 	icon_state = "rampbottom";
@@ -8432,7 +8371,6 @@
 /area/sulaco/cargo/office)
 "asv" = (
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -8546,12 +8484,10 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "bar";
 	name = "Briefing Shutters";
-	pixel_y = 30;
-	req_one_access_txt = "2;3;12;19";
-	throw_range = 15
+	pixel_y = 30
 	},
 /obj/structure/ladder{
 	height = 2;
@@ -8563,7 +8499,6 @@
 "asI" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/mainship/engineering{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /turf/open/floor{
@@ -8700,13 +8635,10 @@
 /turf/closed/wall/sulaco,
 /area/sulaco/engineering)
 "asX" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/engineering{
 	id = "engine_electrical_maintenance";
 	name = "Door Bolt Control";
-	normaldoorcontrol = 1;
-	pixel_x = 30;
-	req_access_txt = "7";
-	specialfunctions = 4
+	pixel_x = 30
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/plating,
@@ -8997,9 +8929,8 @@
 	icon_state = "table";
 	layer = 2.1
 	},
-/obj/machinery/door/window/westleft{
-	dir = 4;
-	req_one_access_txt = "7"
+/obj/machinery/door/window/westleft/engineering{
+	dir = 4
 	},
 /obj/machinery/door/window/westleft{
 	base_state = "right";
@@ -9458,7 +9389,6 @@
 /area/sulaco/briefing)
 "aun" = (
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -9586,7 +9516,6 @@
 	layer = 2
 	},
 /obj/machinery/door/airlock/mainship/command/cic{
-	icon_state = "door_closed";
 	dir = 8
 	},
 /turf/open/floor{
@@ -9755,7 +9684,6 @@
 /area/sulaco/engineering/smes)
 "auJ" = (
 /obj/machinery/door/airlock/mainship/engineering{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /obj/structure/cable/yellow{
@@ -10112,7 +10040,6 @@
 /area/sulaco/hallway/central_hall2)
 "avr" = (
 /obj/machinery/door/airlock/mainship/command/cic{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor/wood,
@@ -10151,10 +10078,7 @@
 /area/sulaco/briefing)
 "avv" = (
 /obj/structure/window/reinforced,
-/obj/machinery/door/window/eastright{
-	req_access = null;
-	req_access_txt = "19"
-	},
+/obj/machinery/door/window/eastright/bridge,
 /obj/structure/cable/yellow{
 	d1 = 4;
 	d2 = 8;
@@ -10497,7 +10421,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/mainship/engineering{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /turf/open/floor{
@@ -10567,12 +10490,11 @@
 	dir = 5
 	},
 /obj/structure/table/reinforced,
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/engineering{
 	desc = "A remote control-switch for the engine control room blast doors.";
 	id = "EngineBlast";
 	name = "Engine Room Blast Doors";
-	pixel_y = -3;
-	req_access_txt = "7"
+	pixel_y = -3
 	},
 /obj/structure/cable{
 	icon_state = "4-8";
@@ -10638,10 +10560,8 @@
 /turf/open/floor/plating/mainship,
 /area/sulaco/engineering/engine)
 "awn" = (
-/obj/machinery/door/window{
-	name = "interior door";
-	req_access_txt = "19";
-	req_one_access_txt = "0"
+/obj/machinery/door/window/mainship/bridge{
+	name = "interior door"
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -10883,7 +10803,6 @@
 	opacity = 0
 	},
 /obj/machinery/door/airlock/mainship/command/cic{
-	icon_state = "door_closed";
 	dir = 8
 	},
 /turf/open/floor{
@@ -11263,7 +11182,6 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/engineering{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /obj/structure/cable/yellow{
@@ -11651,7 +11569,6 @@
 /area/sulaco/hallway/central_hall3)
 "axR" = (
 /obj/machinery/door/airlock/mainship/engineering{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /obj/structure/cable/yellow{
@@ -11865,11 +11782,10 @@
 "ayj" = (
 /obj/machinery/computer/secure_data,
 /obj/structure/table/reinforced,
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/brigarmory{
 	id = "Secure Gate";
 	name = "Security Lockdown";
-	pixel_x = 30;
-	req_access_txt = "3"
+	pixel_x = 30
 	},
 /turf/open/floor{
 	icon_state = "floor4"
@@ -11983,7 +11899,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -12236,7 +12151,6 @@
 "ayY" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -12307,12 +12221,8 @@
 /turf/closed/wall/sulaco,
 /area/sulaco/engineering/storage)
 "azj" = (
-/obj/machinery/door/airlock/hatch{
-	icon_state = "door_locked";
-	id_tag = "engine_electrical_maintenance";
-	locked = 1;
-	name = "Engine Electrical Maintenance";
-	req_access_txt = "7"
+/obj/machinery/door/airlock/hatch/engineering{
+	name = "Engine Electrical Maintenance"
 	},
 /obj/machinery/door/poddoor{
 	density = 0;
@@ -12426,7 +12336,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/mainship/command/CPToffice{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /turf/open/floor/wood,
@@ -12453,7 +12362,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/mainship/security/glass{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /turf/open/floor{
@@ -12549,13 +12457,8 @@
 	},
 /area/sulaco/bridge)
 "azG" = (
-/obj/machinery/door/window/westleft{
-	layer = 3.1;
-	req_access_txt = "1"
-	},
-/obj/machinery/door/window/eastleft{
-	layer = 3.1
-	},
+/obj/machinery/door/window/westleft/bridge,
+/obj/machinery/door/window/eastleft,
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor{
 	density = 0;
@@ -12618,7 +12521,6 @@
 	icon_state = "pipe-c"
 	},
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -12720,7 +12622,6 @@
 "azZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/mainship/command{
-	icon_state = "door_closed";
 	dir = 8
 	},
 /turf/open/floor,
@@ -12735,7 +12636,6 @@
 /area/sulaco/briefing)
 "aAc" = (
 /obj/machinery/door/airlock/mainship/engineering/atmos{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /turf/open/floor{
@@ -12744,7 +12644,6 @@
 /area/sulaco/engineering/smes)
 "aAd" = (
 /obj/machinery/door/airlock/mainship/engineering{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /turf/open/floor/tile,
@@ -12763,10 +12662,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
 	},
-/obj/machinery/door/window/northleft{
-	layer = 2.9;
-	req_one_access_txt = "2"
-	},
+/obj/machinery/door/window/northleft/req,
 /turf/open/floor,
 /area/sulaco/briefing)
 "aAg" = (
@@ -12814,7 +12710,6 @@
 /area/sulaco/brig)
 "aAl" = (
 /obj/machinery/door/airlock/mainship/security/glass{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /turf/open/floor{
@@ -12951,12 +12846,8 @@
 	},
 /area/sulaco/engineering)
 "aAx" = (
-/obj/machinery/door/airlock/hatch{
-	icon_state = "door_locked";
-	id_tag = "engine_electrical_maintenance";
-	locked = 1;
-	name = "Engine Electrical Maintenance";
-	req_access_txt = "7"
+/obj/machinery/door/airlock/hatch/engineering{
+	name = "Engine Electrical Maintenance"
 	},
 /turf/open/floor/plating/mainship,
 /area/sulaco/engineering/engine)
@@ -13003,7 +12894,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/mainship/security/glass/cells{
-	icon_state = "door_closed";
 	dir = 8
 	},
 /turf/open/floor{
@@ -13097,7 +12987,6 @@
 /area/sulaco/engineering)
 "aAH" = (
 /obj/machinery/door/airlock/mainship/security/glass{
-	icon_state = "door_closed";
 	dir = 8
 	},
 /turf/open/floor{
@@ -13133,7 +13022,6 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/security/glass/cells{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor{
@@ -13179,7 +13067,6 @@
 /area/sulaco/bridge)
 "aAO" = (
 /obj/machinery/door/airlock/mainship/security{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /turf/open/floor{
@@ -13336,7 +13223,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -13479,7 +13365,6 @@
 /area/sulaco/hallway/central_hall)
 "aBo" = (
 /obj/machinery/door/airlock/mainship/engineering{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /obj/structure/cable/yellow{
@@ -13537,7 +13422,6 @@
 /area/sulaco/maintenance/south_solar_maint)
 "aBt" = (
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
 	dir = 8
 	},
 /turf/open/floor,
@@ -13569,12 +13453,10 @@
 	},
 /area/sulaco/brig)
 "aBx" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "bar";
 	name = "Briefing Shutters";
-	pixel_y = 30;
-	req_one_access_txt = "2;3;12;19";
-	throw_range = 15
+	pixel_y = 30
 	},
 /obj/structure/window/reinforced{
 	dir = 8
@@ -13660,7 +13542,6 @@
 	opacity = 0
 	},
 /obj/machinery/door/airlock/mainship/security/glass{
-	icon_state = "door_closed";
 	dir = 8
 	},
 /turf/open/floor{
@@ -13672,7 +13553,6 @@
 /area/sulaco/brig)
 "aBJ" = (
 /obj/machinery/door/airlock/mainship/marine/alpha/medic{
-	icon_state = "door_closed";
 	dir = 4
 	},
 /turf/open/floor{
@@ -13749,7 +13629,6 @@
 /area/sulaco/hallway/central_hall3)
 "aBV" = (
 /obj/machinery/door/airlock/mainship/marine/alpha/sl{
-	icon_state = "door_closed";
 	dir = 4
 	},
 /turf/open/floor{
@@ -13932,7 +13811,6 @@
 /area/sulaco/marine/delta)
 "aCm" = (
 /obj/machinery/door/airlock/mainship/marine/alpha/engineer{
-	icon_state = "door_closed";
 	dir = 4
 	},
 /turf/open/floor{
@@ -14078,7 +13956,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/mainship/security/glass{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /obj/structure/cable/yellow{
@@ -14175,9 +14052,7 @@
 /turf/open/floor,
 /area/sulaco/maintenance/south_solar_maint)
 "aCK" = (
-/obj/machinery/door/window/westleft{
-	req_one_access_txt = "2"
-	},
+/obj/machinery/door/window/westleft/req,
 /turf/open/floor,
 /area/sulaco/briefing)
 "aCL" = (
@@ -14197,14 +14072,12 @@
 /area/sulaco/marine/delta)
 "aCO" = (
 /obj/machinery/door/airlock/mainship/marine/delta/smart{
-	icon_state = "door_closed";
 	dir = 4
 	},
 /turf/open/floor,
 /area/sulaco/marine/delta)
 "aCP" = (
 /obj/machinery/door/airlock/mainship/marine/alpha/smart{
-	icon_state = "door_closed";
 	dir = 4
 	},
 /turf/open/floor,
@@ -14343,13 +14216,10 @@
 	},
 /area/sulaco/cryosleep)
 "aDf" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/engineering{
 	id = "engine_electrical_maintenance";
 	name = "Door Bolt Control";
-	normaldoorcontrol = 1;
-	pixel_y = -30;
-	req_access_txt = "7";
-	specialfunctions = 4
+	pixel_y = -30
 	},
 /turf/open/floor{
 	icon_state = "yellowfull"
@@ -14395,7 +14265,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/mainship/security/glass/cells{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor{
@@ -14844,16 +14713,12 @@
 /area/sulaco/brig)
 "aEy" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/eastleft{
-	req_access = null;
-	req_access_txt = "3"
-	},
+/obj/machinery/door/window/eastleft/brig,
 /obj/machinery/door/window/westleft,
 /obj/structure/paper_bin,
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/brigarmory{
 	id = "Secure Gate";
-	name = "Security Lockdown";
-	req_access_txt = "3"
+	name = "Security Lockdown"
 	},
 /turf/open/floor{
 	icon_state = "floor4"
@@ -15382,10 +15247,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/westright,
 /obj/item/folder/red,
-/obj/machinery/door/window/eastright{
-	req_access = null;
-	req_access_txt = "3"
-	},
+/obj/machinery/door/window/eastright/briefing,
 /turf/open/floor{
 	icon_state = "floor4"
 	},
@@ -15426,11 +15288,10 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/brigarmory{
 	id = "Secure Gate";
 	name = "Security Lockdown";
-	pixel_x = 30;
-	req_access_txt = "3"
+	pixel_x = 30
 	},
 /turf/open/floor{
 	icon_state = "floor4"
@@ -15504,7 +15365,6 @@
 /area/sulaco/hallway/central_hall3)
 "aFW" = (
 /obj/machinery/door/airlock/mainship/research/pen{
-	icon_state = "door_closed";
 	dir = 8
 	},
 /turf/open/floor{
@@ -15998,7 +15858,6 @@
 /area/sulaco/marine/delta)
 "aGT" = (
 /obj/machinery/door/airlock/mainship/marine/delta/medic{
-	icon_state = "door_closed";
 	dir = 4
 	},
 /turf/open/floor{
@@ -16183,7 +16042,6 @@
 /area/sulaco/cap_office)
 "aHq" = (
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
@@ -16294,7 +16152,6 @@
 /area/sulaco/brig)
 "aHD" = (
 /obj/machinery/door/airlock/mainship/security/glass{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /obj/structure/cable/yellow{
@@ -16381,10 +16238,8 @@
 	},
 /area/sulaco/brig)
 "aHL" = (
-/obj/machinery/door/airlock/hatch{
-	name = "EVA";
-	req_access_txt = "0";
-	req_one_access_txt = "1;6"
+/obj/machinery/door/airlock/hatch/engineering{
+	name = "EVA"
 	},
 /turf/open/floor,
 /area/sulaco/command/eva)
@@ -16397,7 +16252,6 @@
 /area/shuttle/distress/arrive_1)
 "aHO" = (
 /obj/machinery/door/airlock/mainship/engineering{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -16812,9 +16666,7 @@
 /area/space)
 "aIP" = (
 /obj/machinery/door/airlock/mainship/maint{
-	dir = 2;
-	req_access_txt = "1";
-	req_one_access_txt = ""
+	dir = 2
 	},
 /turf/open/floor/plating,
 /area/sulaco/cap_office)
@@ -17296,7 +17148,6 @@
 /area/mainship/shipboard/weapon_room)
 "aJN" = (
 /obj/machinery/door/airlock/mainship/marine/delta/sl{
-	icon_state = "door_closed";
 	dir = 4
 	},
 /turf/open/floor{
@@ -17492,7 +17343,6 @@
 /area/sulaco/command/eva)
 "aKn" = (
 /obj/machinery/door/airlock/mainship/command/CPToffice{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /turf/open/floor{
@@ -17784,7 +17634,6 @@
 /area/sulaco/hangar/two)
 "aKW" = (
 /obj/machinery/door/airlock/mainship/marine/charlie/medic{
-	icon_state = "door_closed";
 	dir = 4
 	},
 /turf/open/floor{
@@ -17793,7 +17642,6 @@
 /area/sulaco/marine/charlie)
 "aKX" = (
 /obj/machinery/door/airlock/mainship/marine/bravo/medic{
-	icon_state = "door_closed";
 	dir = 8
 	},
 /turf/open/floor{
@@ -17808,7 +17656,6 @@
 /area/sulaco/marine/delta)
 "aKZ" = (
 /obj/machinery/door/airlock/mainship/marine/delta/engineer{
-	icon_state = "door_closed";
 	dir = 4
 	},
 /turf/open/floor{
@@ -17879,7 +17726,6 @@
 /area/sulaco/brig)
 "aLk" = (
 /obj/machinery/door/airlock/mainship/marine/charlie/sl{
-	icon_state = "door_closed";
 	dir = 8
 	},
 /turf/open/floor{
@@ -17888,7 +17734,6 @@
 /area/sulaco/marine/charlie)
 "aLl" = (
 /obj/machinery/door/airlock/mainship/marine/bravo/sl{
-	icon_state = "door_closed";
 	dir = 4
 	},
 /turf/open/floor{
@@ -17995,9 +17840,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/external{
-	name = "Execution Chamber";
-	req_access_txt = "3"
+/obj/machinery/door/airlock/external/brig{
+	name = "Execution Chamber"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
@@ -18185,7 +18029,6 @@
 /area/sulaco/brig)
 "aLX" = (
 /obj/machinery/door/airlock/mainship/marine/charlie/engineer{
-	icon_state = "door_closed";
 	dir = 8
 	},
 /turf/open/floor{
@@ -18208,7 +18051,6 @@
 /area/sulaco/marine/bravo)
 "aMa" = (
 /obj/machinery/door/airlock/mainship/marine/bravo/engineer{
-	icon_state = "door_closed";
 	dir = 8
 	},
 /turf/open/floor{
@@ -18329,7 +18171,6 @@
 /area/sulaco/hallway/central_hall3)
 "aMo" = (
 /obj/machinery/door/airlock/mainship/marine/charlie/smart{
-	icon_state = "door_closed";
 	dir = 4
 	},
 /turf/open/floor,
@@ -18396,16 +18237,13 @@
 /area/sulaco/command/eva)
 "aMz" = (
 /obj/machinery/door/airlock/mainship/marine/bravo/smart{
-	icon_state = "door_closed";
 	dir = 4
 	},
 /turf/open/floor,
 /area/sulaco/marine/bravo)
 "aMA" = (
 /obj/structure/window/reinforced,
-/obj/structure/closet/secure_closet/injection{
-	req_access_txt = "1"
-	},
+/obj/structure/closet/secure_closet/injection,
 /obj/item/storage/bible{
 	desc = "As the legendary US Army chaplain once said, 'There are no Athiests in fancy offices'.";
 	name = "Holy Bible"
@@ -18609,7 +18447,6 @@
 /area/sulaco/marine/alpha)
 "aNe" = (
 /obj/machinery/door/airlock/mainship/medical/morgue{
-	icon_state = "door_closed";
 	dir = 8
 	},
 /turf/open/floor{
@@ -18653,7 +18490,6 @@
 /area/sulaco/maintenance/lower_maint)
 "aNi" = (
 /obj/machinery/door/airlock/mainship/medical/morgue{
-	icon_state = "door_closed";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -18809,7 +18645,6 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/mainship/engineering/atmos{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /turf/open/floor{
@@ -19013,9 +18848,7 @@
 	},
 /area/sulaco/hangar/two)
 "aNU" = (
-/obj/machinery/door/window/brigdoor/southright{
-	req_access_txt = "3"
-	},
+/obj/machinery/door/window/brigdoor/southright,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor{
 	icon_state = "floorgrimecaution";
@@ -19024,12 +18857,11 @@
 /area/sulaco/brig)
 "aNV" = (
 /obj/structure/window/reinforced,
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/engineering{
 	id = "ex_chamber";
 	name = "Vacuum Switch";
 	pixel_x = 26;
-	pixel_y = 5;
-	req_access_txt = "1"
+	pixel_y = 5
 	},
 /turf/open/floor{
 	icon_state = "floorgrimecaution";
@@ -19565,7 +19397,6 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /turf/open/floor{
@@ -19575,7 +19406,6 @@
 "aPr" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /turf/open/floor{
@@ -20002,7 +19832,6 @@
 /area/sulaco/hangar)
 "aQD" = (
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -20104,8 +19933,7 @@
 /obj/machinery/crema_switch{
 	id = "crema";
 	pixel_x = 28;
-	pixel_y = 28;
-	req_one_access_txt = "2;8;19"
+	pixel_y = 28
 	},
 /turf/open/floor{
 	icon_state = "cult";
@@ -20124,7 +19952,6 @@
 /area/sulaco/morgue)
 "aQR" = (
 /obj/machinery/door/airlock/mainship/marine/requisitions{
-	icon_state = "door_closed";
 	dir = 8
 	},
 /turf/open/floor/mainship{
@@ -20150,7 +19977,6 @@
 "aQT" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/door/airlock/mainship/secure/tcomms{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor{
@@ -20234,7 +20060,6 @@
 /area/sulaco/medbay/hangar)
 "aRe" = (
 /obj/machinery/door/airlock/mainship/generic/corporate{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /turf/open/floor/wood,
@@ -20309,10 +20134,7 @@
 /area/sulaco/morgue)
 "aRo" = (
 /obj/structure/table/woodentable,
-/obj/machinery/faxmachine{
-	density = 0;
-	req_one_access_txt = "200"
-	},
+/obj/machinery/faxmachine,
 /turf/open/floor/carpet,
 /area/sulaco/liaison/quarters)
 "aRp" = (
@@ -20325,7 +20147,6 @@
 /area/sulaco/maintenance/lower_maint2)
 "aRq" = (
 /obj/machinery/door/airlock/mainship/secure/tcomms{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -20553,7 +20374,6 @@
 /area/sulaco/hangar)
 "aRS" = (
 /obj/machinery/door/airlock/mainship/generic/pilot/bunk{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /obj/structure/cable{
@@ -20581,7 +20401,6 @@
 /area/sulaco/hangar)
 "aRV" = (
 /obj/machinery/door/airlock/mainship/research/glass/cell/cell1{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /obj/machinery/door/poddoor/shutters/mainship/cell/cell1{
@@ -20824,7 +20643,6 @@
 /area/sulaco/research)
 "aSy" = (
 /obj/machinery/door/airlock/mainship/medical/morgue{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /obj/structure/cable{
@@ -20888,7 +20706,6 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /obj/machinery/door/airlock/mainship/research{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /turf/open/floor{
@@ -21178,7 +20995,6 @@
 /area/sulaco/medbay/hangar)
 "aTl" = (
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -21409,7 +21225,6 @@
 	name = "Blast Door"
 	},
 /obj/machinery/door/airlock/mainship/secure/tcomms{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -21429,7 +21244,6 @@
 /area/sulaco/telecomms/office)
 "aTO" = (
 /obj/machinery/door/airlock/mainship/secure/tcomms{
-	icon_state = "door_closed";
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -21794,7 +21608,6 @@
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /turf/open/floor{
@@ -21808,7 +21621,6 @@
 /area/sulaco/hangar/one)
 "aUP" = (
 /obj/machinery/door/airlock/mainship/medical/morgue{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor{
@@ -22066,7 +21878,6 @@
 	layer = 2
 	},
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -22233,7 +22044,6 @@
 /area/sulaco/hallway/lower_main_hall)
 "aVT" = (
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -22360,7 +22170,6 @@
 /area/sulaco/maintenance/lower_maint)
 "aWg" = (
 /obj/machinery/door/airlock/mainship/maint{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -22440,7 +22249,6 @@
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/mainship/secure/tcomms{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /obj/structure/cable{
@@ -22981,7 +22789,6 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/mainship/generic/corporate{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /obj/structure/cable{
@@ -22995,7 +22802,6 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /turf/open/floor{
@@ -23031,7 +22837,6 @@
 /area/sulaco/maintenance/lower_maint)
 "aXu" = (
 /obj/machinery/door/airlock/mainship/secure/tcomms{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /obj/structure/cable{
@@ -23141,7 +22946,6 @@
 "aXI" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/mainship/engineering/atmos{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /obj/structure/cable{
@@ -23886,9 +23690,7 @@
 	},
 /area/sulaco/hallway/lower_main_hall)
 "aZi" = (
-/obj/structure/closet/secure_closet/guncabinet{
-	req_access_txt = "3"
-	},
+/obj/structure/closet/secure_closet/guncabinet/mp_armory,
 /obj/item/weapon/gun/pistol/m4a3,
 /obj/item/ammo_magazine/pistol,
 /obj/item/ammo_magazine/shotgun/buckshot,
@@ -24518,7 +24320,7 @@
 /obj/item/tool/stamp/internalaffairs{
 	pixel_y = 6
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/corporate{
 	id = "wyoffice";
 	name = "Window Shutters";
 	pixel_y = -5
@@ -24940,10 +24742,7 @@
 /area/sulaco/liaison)
 "bbH" = (
 /obj/structure/table/woodentable,
-/obj/machinery/computer/skills{
-	density = 0;
-	req_one_access = list(200)
-	},
+/obj/machinery/computer/skills,
 /turf/open/floor/wood,
 /area/sulaco/liaison)
 "bbI" = (
@@ -24971,9 +24770,7 @@
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "bbX" = (
-/obj/machinery/computer/telecomms/monitor{
-	req_one_access_txt = "19;200"
-	},
+/obj/machinery/computer/telecomms/monitor,
 /turf/open/floor{
 	icon_state = "dark"
 	},
@@ -25129,10 +24926,7 @@
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "bdf" = (
-/obj/machinery/computer/telecomms/server{
-	req_access = null;
-	req_one_access_txt = "19;200"
-	},
+/obj/machinery/computer/telecomms/server,
 /turf/open/floor{
 	icon_state = "dark"
 	},
@@ -25145,7 +24939,7 @@
 /area/sulaco/telecomms/office)
 "bdh" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/tcomms{
 	id = "tcomwind";
 	name = "Telecomms Window Control"
 	},
@@ -25223,10 +25017,9 @@
 /area/sulaco/telecomms/office)
 "bdC" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/tcomms{
 	id = "tcomdoor";
-	name = "Telecomms Door Control";
-	req_one_access_txt = "6"
+	name = "Telecomms Door Control"
 	},
 /turf/open/floor{
 	icon_state = "dark"
@@ -25275,9 +25068,7 @@
 /turf/open/floor/plating,
 /area/sulaco/hallway/lower_main_hall)
 "bdY" = (
-/obj/machinery/computer/crew{
-	req_access_txt = "200"
-	},
+/obj/machinery/computer/crew,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -55537,7 +55328,7 @@ agD
 afX
 afX
 ajS
-akg
+anZ
 aaW
 aaw
 ank
