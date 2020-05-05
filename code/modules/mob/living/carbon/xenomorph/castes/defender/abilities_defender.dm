@@ -345,6 +345,5 @@
 	fortify = on
 	set_frozen(on)
 	anchored = on
-	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 30, 1)
-	update_canmove()
+	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 30, TRUE)
 	update_icons()
