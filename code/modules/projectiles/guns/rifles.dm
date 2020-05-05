@@ -642,7 +642,7 @@
 	force = 30
 	aim_slowdown = 0.95
 	wield_delay = 1.3 SECONDS
-	fire_sound =  'sound/weapons/guns/fire/smartmachinegun.ogg'
+	fire_sound =  'sound/weapons/guns/fire/rifle.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
