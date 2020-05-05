@@ -43,6 +43,8 @@
 		W.layer = ABOVE_HUD_LAYER
 		W.plane = ABOVE_HUD_PLANE
 		update_inv_l_hand()
+		W.pixel_x = initial(W.pixel_x)
+		W.pixel_y = initial(W.pixel_y)
 		return TRUE
 	return FALSE
 
@@ -68,6 +70,8 @@
 		W.layer = ABOVE_HUD_LAYER
 		W.plane = ABOVE_HUD_PLANE
 		update_inv_r_hand()
+		W.pixel_x = initial(W.pixel_x)
+		W.pixel_y = initial(W.pixel_y)
 		return TRUE
 	return FALSE
 
