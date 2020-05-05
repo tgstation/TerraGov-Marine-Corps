@@ -72,6 +72,9 @@
 			if(!attack.is_usable(H))
 				return FALSE
 
+			if(!user.mind?.bypass_ff && !H.mind?.bypass_ff && user.faction == H.faction)
+				log_ffattack("[key_name(H)] [pick(attack.attack_verb)]ed [key_name(src)] in [AREACOORD(src)].")
+				msg_admin_ff("[ADMIN_TPMONTY(H)] [pick(attack.attack_verb)]ed [ADMIN_TPMONTY(src)] in [ADMIN_VERBOSEJMP(src)].")
 			log_combat(H, src, "[pick(attack.attack_verb)]ed")
 
 			if(!H.melee_damage || !prob(H.melee_accuracy))
