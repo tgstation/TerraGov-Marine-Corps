@@ -423,7 +423,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range_min = 6
 	damage = 40
 	penetration = 20
-	sundering = 5
+	sundering = 10
 
 /datum/ammo/bullet/rifle/m4ra/incendiary
 	name = "A19 high velocity incendiary bullet"
@@ -439,9 +439,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "hivelo_impact"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	damage = 25
-	accuracy = -10
 	penetration = 45
-	sundering = 10
+	sundering = 5
 
 /datum/ammo/bullet/rifle/m4ra/impact/on_hit_mob(mob/M, obj/projectile/P)
 	staggerstun(M, P, max_range = 40, stagger = 2, slowdown = 3.5, knockback = 1)
@@ -452,7 +451,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	iff_signal = ACCESS_IFF_MARINE
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SKIPS_HUMANS|AMMO_SUNDERING
 	damage = 30
-	penetration = 15
+	penetration = 20
 	sundering = 3
 
 /datum/ammo/bullet/rifle/ak47
