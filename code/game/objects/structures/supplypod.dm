@@ -16,7 +16,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	list("", "", "", STYLE_SEETHROUGH)\
 ))
 
-//PREVENT_CONTENTS_EXPLOSION
+
 /obj/structure/closet/supplypod
 	name = "supply pod"
 	desc = "A Nanotrasen supply drop pod."
