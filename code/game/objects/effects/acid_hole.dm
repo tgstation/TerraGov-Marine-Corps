@@ -43,7 +43,7 @@
 
 /obj/effect/acid_hole/specialclick(mob/living/carbon/user)
 	if(!isxeno(user))
-		return	
+		return
 	if(holed_wall)
 		if(user.mob_size == MOB_SIZE_BIG)
 			expand_hole(user)
@@ -88,6 +88,10 @@
 		if(!O.CanPass(user, user.loc))
 			to_chat(user, "<span class='warning'>The hole's exit is blocked by something!</span>")
 			return
+
+	if(locate(/obj/machinery/door/poddoor/timed_late/containment) in get_turf(src))
+		to_chat(user, "<span class='warning'>You can't reach the hole's entrance under the shutters.</span>")
+		return
 
 	if(user.action_busy)
 		return
