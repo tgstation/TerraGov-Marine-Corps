@@ -339,7 +339,7 @@
 		put_in_hands(W)
 		return TRUE
 	else
-		UnEquip(I)
+		temporarilyRemoveItemFromInventory(I)
 		put_in_hands(I)
 		return TRUE
 
