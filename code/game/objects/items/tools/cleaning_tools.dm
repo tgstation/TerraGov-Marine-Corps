@@ -82,6 +82,7 @@
 	throw_range = 20
 
 /obj/item/tool/soap/Crossed(atom/movable/AM)
+	. = ..()
 	if (iscarbon(AM))
 		var/mob/living/carbon/C =AM
 		C.slip("soap", 3, 2)
