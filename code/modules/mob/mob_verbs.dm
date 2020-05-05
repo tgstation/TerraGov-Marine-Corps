@@ -94,7 +94,7 @@
 
 	var/list/spawn_types = pick(list(
 		// Human added a few times to increase the chances without having to set ratios on every mob
-		/mob/living/carbon/human, /mob/living/carbon/human, /mob/living/carbon/human, /mob/living/carbon/human, /mob/living/carbon/human,
+		500 ; /mob/living/carbon/human,
 		/mob/living/carbon/xenomorph/runner,
 		/mob/living/carbon/xenomorph/hunter,
 		/mob/living/carbon/xenomorph/spitter,
