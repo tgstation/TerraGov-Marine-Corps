@@ -288,7 +288,8 @@ directive is properly returned.
 	return
 
 /atom/proc/ex_act(severity, epicenter_dist, impact_range)
-	contents_explosion(severity, epicenter_dist, impact_range)
+	if(!(flags_atom & PREVENT_CONTENTS_EXPLOSION))
+		contents_explosion(severity, epicenter_dist, impact_range)
 	SEND_SIGNAL(src, COMSIG_ATOM_EX_ACT, severity, epicenter_dist, impact_range)
 
 /atom/proc/fire_act()
