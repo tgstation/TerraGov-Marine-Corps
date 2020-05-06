@@ -235,8 +235,11 @@
 
 
 //oldloc = old location on atom, inserted when forceMove is called and ONLY when forceMove is called!
-/atom/movable/Crossed(atom/movable/AM, oldloc)
-	SEND_SIGNAL(src, COMSIG_MOVABLE_CROSSED, AM)
+/atom/movable/Crossed(atom/movable/mover, oldloc)
+	SHOULD_CALL_PARENT(TRUE)
+	. = ..()
+	SEND_SIGNAL(src, COMSIG_MOVABLE_CROSSED_BY, mover, oldloc)
+	SEND_SIGNAL(mover, COMSIG_MOVABLE_CROSSED, src, oldloc)
 
 
 /atom/movable/Uncross(atom/movable/AM, atom/newloc)

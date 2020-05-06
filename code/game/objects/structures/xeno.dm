@@ -204,6 +204,7 @@
 
 
 /obj/effect/alien/resin/trap/Crossed(atom/A)
+	. = ..()
 	if(iscarbon(A))
 		HasProximity(A)
 
@@ -555,6 +556,7 @@
 
 
 /obj/effect/egg_trigger/Crossed(atom/A)
+	. = ..()
 	if(!linked_egg) //something went very wrong
 		qdel(src)
 	else if(get_dist(src, linked_egg) != 1 || !isturf(linked_egg.loc)) //something went wrong
