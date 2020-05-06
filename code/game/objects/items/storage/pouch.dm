@@ -303,8 +303,17 @@
 	fill_type = /obj/item/explosive/grenade/frag
 	fill_number = 4
 
-/obj/item/storage/pouch/explosive/upp
-	fill_type = /obj/item/explosive/plastique
+/obj/item/storage/pouch/grenade
+	name = "Grenade pouch"
+	desc = "It can contain grenades."
+	icon_state = "large_explosive"
+	storage_slots = 6
+	max_w_class = 3
+	can_hold = list(
+		/obj/item/explosive/grenade)
+
+/obj/item/storage/pouch/grenade/slightlyfull
+	fill_type = /obj/item/explosive/grenade/frag
 	fill_number = 4
 
 /obj/item/storage/pouch/medical
