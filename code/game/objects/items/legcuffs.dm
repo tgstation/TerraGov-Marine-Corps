@@ -54,4 +54,4 @@
 					armed = FALSE
 					var/mob/living/simple_animal/SA = AM
 					SA.health -= 20
-	..()
+	return ..()
