@@ -346,7 +346,6 @@
 	vend_delay = 15
 	//product_slogans = "Standard Issue Marine food!;It's good for you, and not the worst thing in the world.;Just fucking eat it.;"
 	product_ads = "Try the cornbread.;Try the pizza.;Try the pasta.;Try the tofu, wimp.;Try the pork."
-	req_access_txt = ""
 
 
 /obj/machinery/vending/MarineMed

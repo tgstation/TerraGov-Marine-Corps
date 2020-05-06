@@ -30,7 +30,7 @@
 
 
 /obj/structure/coatrack/Crossed(atom/movable/AM)
-	..()
+	. = ..()
 	if(!coat)
 		for(var/T in allowed)
 			if(istype(AM,T))

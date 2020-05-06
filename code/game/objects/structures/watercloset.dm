@@ -241,7 +241,7 @@
 				ismist = 0
 
 /obj/machinery/shower/Crossed(atom/movable/O)
-	..()
+	. = ..()
 	wash(O)
 	if(ismob(O))
 		mobpresent += 1

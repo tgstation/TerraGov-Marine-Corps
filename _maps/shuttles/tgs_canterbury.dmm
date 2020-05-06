@@ -220,9 +220,7 @@
 "aw" = (
 /obj/machinery/door/airlock/mainship/command{
 	dir = 1;
-	icon_state = "door_closed";
-	name = "\improper Combat Information Center";
-	req_access = null
+	name = "\improper Combat Information Center"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -391,17 +389,13 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aN" = (
-/obj/machinery/vending/marine/cargo_guns{
-	req_one_access = null
-	},
+/obj/machinery/vending/marine/cargo_guns,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
 /area/shuttle/canterbury)
 "aO" = (
-/obj/machinery/vending/attachments{
-	req_access = null
-	},
+/obj/machinery/vending/attachments,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
@@ -458,9 +452,7 @@
 	icon_state = "rwindow";
 	dir = 4
 	},
-/obj/machinery/vending/marine/cargo_guns{
-	req_one_access = null
-	},
+/obj/machinery/vending/marine/cargo_guns,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
@@ -520,9 +512,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "bb" = (
-/obj/machinery/door/airlock/mainship/engineering{
-	req_one_access = null
-	},
+/obj/machinery/door/airlock/mainship/engineering/free_access,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -1171,10 +1161,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
 "cs" = (
-/obj/machinery/door/airlock/mainship/medical/glass{
-	icon_state = "door_closed";
-	dir = 2;
-	req_one_access = null
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -1316,10 +1304,7 @@
 /area/shuttle/canterbury)
 "cG" = (
 /obj/machinery/door/airlock/mainship/marine{
-	icon_state = "door_closed";
-	dir = 8;
-	req_access = list();
-	req_one_access = list()
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
