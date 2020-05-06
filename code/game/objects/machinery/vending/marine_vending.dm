@@ -707,6 +707,7 @@
 					/obj/item/storage/pouch/magazine/pistol = 10,
 					/obj/item/storage/pouch/shotgun = 10,
 					/obj/item/storage/pouch/firstaid = 10,
+					/obj/item/storage/pouch/grenade = 10,
 					/obj/item/storage/pouch/medkit = 10,
 					/obj/item/storage/pouch/flare = 10,
 					/obj/item/storage/pouch/construction = 10,
