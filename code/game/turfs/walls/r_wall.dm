@@ -12,7 +12,7 @@
 	explosion_block = 2
 
 /turf/closed/wall/r_wall/can_be_dissolved()
-	if(hull)
+	if(resistance_flags & INDESTRUCTIBLE)
 		return 0
 	else
 		return 2
@@ -26,14 +26,14 @@
 /turf/closed/wall/r_wall/dense
 	icon_state = "iron0"
 	walltype = "iron"
-	hull = 1
+	resistance_flags = RESIST_ALL
 
 /turf/closed/wall/r_wall/unmeltable
 	name = "heavy reinforced wall"
 	desc = "A huge chunk of ultra-reinforced metal used to seperate rooms. Looks virtually indestructible."
 	icon_state = "rwall"
 	walltype = "rwall"
-	hull = 1
+	resistance_flags = RESIST_ALL
 
 /turf/closed/wall/r_wall/unmeltable/attackby(obj/item/I, mob/user, params) //This should fix everything else. No cables, etc
 	return
@@ -81,7 +81,7 @@
 	icon = 'icons/turf/walls/prison.dmi'
 	icon_state = "rwall0"
 	walltype = "rwall"
-	hull = 1
+	resistance_flags = RESIST_ALL
 
 /turf/closed/wall/r_wall/prison_unmeltable/ex_act(severity) //Should make it indestructable
 	return

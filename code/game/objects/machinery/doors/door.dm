@@ -6,6 +6,7 @@
 	anchored = TRUE
 	opacity = TRUE
 	density = TRUE
+	move_resist = MOVE_FORCE_VERY_STRONG
 	layer = DOOR_OPEN_LAYER
 	explosion_block = 1
 	var/open_layer = DOOR_OPEN_LAYER
@@ -23,8 +24,6 @@
 	var/not_weldable = FALSE // stops people welding the door if true
 	var/openspeed = 10 //How many seconds does it take to open it? Default 1 second. Use only if you have long door opening animations
 	var/list/fillers
-	///Optimization for dynamic explosion block values, for things that change between dense and non-dense states.
-	var/real_explosion_block
 
 	//Multi-tile doors
 	dir = EAST

@@ -1,4 +1,4 @@
-#define EXPLOSION_THROW_SPEED 4
+#define EXPLOSION_THROW_SPEED 1
 GLOBAL_LIST_EMPTY(explosions)
 
 SUBSYSTEM_DEF(explosions)
@@ -9,60 +9,58 @@ SUBSYSTEM_DEF(explosions)
 	flags = SS_TICKER|SS_NO_INIT
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 
-	var/cost_lowturf = 0
-	var/cost_medturf = 0
-	var/cost_highturf = 0
+	var/cost_lowTurf = 0
+	var/cost_medTurf = 0
+	var/cost_highTurf = 0
 	var/cost_flameturf = 0
 
-	var/cost_throwturf = 0
+	var/cost_throwTurf = 0
 
-	var/cost_lowobj = 0
-	var/cost_medobj = 0
-	var/cost_highobj = 0
+	var/cost_lowMovAtom = 0
+	var/cost_medMovAtom = 0
+	var/cost_highMovAtom = 0
 
 
-	var/list/lowturf = list()
-	var/list/medturf = list()
-	var/list/highturf = list()
+	var/list/lowTurf = list()
+	var/list/medTurf = list()
+	var/list/highTurf = list()
 	var/list/flameturf = list()
 
-	var/list/throwturf = list()
+	var/list/throwTurf = list()
 
-	var/list/lowobj = list()
-	var/list/medobj = list()
-	var/list/highobj = list()
-
-	var/list/explosions = list()
+	var/list/lowMovAtom = list()
+	var/list/medMovAtom = list()
+	var/list/highMovAtom = list()
 
 	var/currentpart = SSEXPLOSIONS_TURFS
 
 
 /datum/controller/subsystem/explosions/stat_entry(msg)
 	msg += "C:{"
-	msg += "LT:[round(cost_lowturf,1)]|"
-	msg += "MT:[round(cost_medturf,1)]|"
-	msg += "HT:[round(cost_highturf,1)]|"
+	msg += "LT:[round(cost_lowTurf,1)]|"
+	msg += "MT:[round(cost_medTurf,1)]|"
+	msg += "HT:[round(cost_highTurf,1)]|"
 	msg += "FT:[round(cost_flameturf,1)]||"
 
-	msg += "LO:[round(cost_lowobj,1)]|"
-	msg += "MO:[round(cost_medobj,1)]|"
-	msg += "HO:[round(cost_highobj,1)]|"
+	msg += "LO:[round(cost_lowMovAtom,1)]|"
+	msg += "MO:[round(cost_medMovAtom,1)]|"
+	msg += "HO:[round(cost_highMovAtom,1)]|"
 
-	msg += "TO:[round(cost_throwturf,1)]"
+	msg += "TO:[round(cost_throwTurf,1)]"
 
 	msg += "} "
 
 	msg += "AMT:{"
-	msg += "LT:[lowturf.len]|"
-	msg += "MT:[medturf.len]|"
-	msg += "HT:[highturf.len]|"
-	msg += "FT:[flameturf.len]||"
+	msg += "LT:[length(lowTurf)]|"
+	msg += "MT:[length(medTurf)]|"
+	msg += "HT:[length(highTurf)]|"
+	msg += "FT:[length(flameturf)]||"
 
-	msg += "LO:[lowobj.len]|"
-	msg += "MO:[medobj.len]|"
-	msg += "HO:[highobj.len]|"
+	msg += "LO:[length(lowMovAtom)]|"
+	msg += "MO:[length(medMovAtom)]|"
+	msg += "HO:[length(highMovAtom)]|"
 
-	msg += "TO:[throwturf.len]"
+	msg += "TO:[length(throwTurf)]"
 
 	msg += "} "
 	..(msg)
@@ -88,49 +86,24 @@ SUBSYSTEM_DEF(explosions)
 // 5 explosion power is a (0, 1, 3) explosion.
 // 1 explosion power is a (0, 0, 1) explosion.
 
-/proc/explosion(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = TRUE, ignorecap = TRUE, flame_range = 0, silent = FALSE, smoke = FALSE)
-	. = SSexplosions.explode(arglist(args))
+/proc/explosion(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = TRUE, flame_range = 0, silent = FALSE, smoke = FALSE)
+	return SSexplosions.explode(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog, flame_range, silent, smoke)
 
-/datum/controller/subsystem/explosions/proc/explode(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog, ignorecap, flame_range, silent, smoke)
+/datum/controller/subsystem/explosions/proc/explode(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog, flame_range, silent, smoke)
 	epicenter = get_turf(epicenter)
 	if(!epicenter)
 		return
 
-	if(isnull(flame_range))
-		flame_range = light_impact_range
 	if(isnull(flash_range))
 		flash_range = devastation_range
 
-	// Archive the uncapped explosion for the doppler array
-	var/orig_dev_range = devastation_range
-	var/orig_heavy_range = heavy_impact_range
-	var/orig_light_range = light_impact_range
-
 	var/orig_max_distance = max(devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range)
-
-	//Zlevel specific bomb cap multiplier
-	var/cap_multiplier = SSmapping.level_trait(epicenter.z, ZTRAIT_BOMBCAP_MULTIPLIER)
-	if (isnull(cap_multiplier))
-		cap_multiplier = 1
-
-	if(!ignorecap)
-		devastation_range = min(GLOB.MAX_EX_DEVESTATION_RANGE * cap_multiplier, devastation_range)
-		heavy_impact_range = min(GLOB.MAX_EX_HEAVY_RANGE * cap_multiplier, heavy_impact_range)
-		light_impact_range = min(GLOB.MAX_EX_LIGHT_RANGE * cap_multiplier, light_impact_range)
-		flash_range = min(GLOB.MAX_EX_FLASH_RANGE * cap_multiplier, flash_range)
-		flame_range = min(GLOB.MAX_EX_FLAME_RANGE * cap_multiplier, flame_range)
 
 	var/max_range = max(devastation_range, heavy_impact_range, light_impact_range, flame_range)
 	var/started_at = REALTIMEOFDAY
 	if(adminlog)
 		message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) in [ADMIN_VERBOSEJMP(epicenter)]")
 		log_game("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) in [loc_name(epicenter)]")
-
-	var/x0 = epicenter.x
-	var/y0 = epicenter.y
-	var/z0 = epicenter.z
-	var/area/areatype = get_area(epicenter)
-	SSblackbox.record_feedback("associative", "explosion", 1, list("dev" = devastation_range, "heavy" = heavy_impact_range, "light" = light_impact_range, "flash" = flash_range, "flame" = flame_range, "orig_dev" = orig_dev_range, "orig_heavy" = orig_heavy_range, "orig_light" = orig_light_range, "x" = x0, "y" = y0, "z" = z0, "area" = areatype.type, "time" = time_stamp("YYYY-MM-DD hh:mm:ss", 1)))
 
 	// Play sounds; we want sounds to be different depending on distance so we will manually do it ourselves.
 	// Stereo users will also hear the direction of the explosion!
@@ -151,7 +124,7 @@ SUBSYSTEM_DEF(explosions)
 			var/mob/M = MN
 			// Double check for client
 			var/turf/M_turf = get_turf(M)
-			if(M_turf && M_turf.z == z0)
+			if(M_turf && M_turf.z == epicenter.z)
 				var/dist = get_dist(M_turf, epicenter)
 				var/baseshakeamount
 				if(orig_max_distance - dist > 0)
@@ -183,145 +156,121 @@ SUBSYSTEM_DEF(explosions)
 		for(var/mob/living/carbon/carbon_viewers in viewers(flash_range, epicenter))
 			carbon_viewers.flash_eyes()
 
-	var/list/affected_turfs = GatherSpiralTurfs(max_range, epicenter)
+	if(flame_range)
+		flameturf += epicenter
 
-	var/list/cached_exp_block
+	var/max_dmg_range
 
-	cached_exp_block = CaculateExplosionBlock(affected_turfs)
+	if(devastation_range > 0)
+		max_dmg_range = EXPLODE_DEVASTATE
+		SSexplosions.highTurf[epicenter] += list(epicenter)
+		SSexplosions.highTurf[epicenter][epicenter] = list(0, devastation_range)
+	else if(heavy_impact_range > 0)
+		max_dmg_range = EXPLODE_HEAVY
+		SSexplosions.highTurf[epicenter] += list(epicenter)
+		SSexplosions.highTurf[epicenter][epicenter] = list(0, heavy_impact_range)
+	else if(light_impact_range > 0)
+		max_dmg_range = EXPLODE_LIGHT
+		SSexplosions.highTurf[epicenter] += list(epicenter)
+		SSexplosions.highTurf[epicenter][epicenter] = list(0, light_impact_range)
+	else if(flame_range <= 0)
+		return //Our job is done here.
 
-	//lists are guaranteed to contain at least 1 turf at this point
+	var/list/turfs_in_range = block(
+		locate(
+			max(epicenter.x - max_range, 1),
+			max(epicenter.y - max_range, 1),
+			epicenter.z
+			),
+		locate(
+			min(epicenter.x + max_range, world.maxx),
+			min(epicenter.y + max_range, world.maxy),
+			epicenter.z
+			)
+		)
 
-	for(var/TI in affected_turfs)
-		var/turf/T = TI
-		var/init_dist = cheap_hypotenuse(T.x, T.y, x0, y0)
-		var/dist = init_dist
+	var/current_exp_block = epicenter.density ? epicenter.explosion_block : 0
+	for(var/obj/blocking_object in epicenter)
+		if(!blocking_object.density)
+			continue
+			current_exp_block += ( (blocking_object.explosion_block == EXPLOSION_BLOCK_PROC) ? blocking_object.GetExplosionBlock(0) : blocking_object.explosion_block ) //0 is the result of get_dir between two atoms on the same tile.
 
-		var/turf/Trajectory = T
-		while(Trajectory != epicenter)
-			Trajectory = get_step_towards(Trajectory, epicenter)
-			dist += cached_exp_block[Trajectory]
+	turfs_in_range[epicenter] = current_exp_block
 
-		var/flame_dist = dist < flame_range
-		var/throw_dist = dist
+	throwTurf[epicenter] += list(epicenter)
+	throwTurf[epicenter][epicenter] = list(max_range, 0) //Random direction.
+
+	switch(max_dmg_range)
+		if(EXPLODE_DEVASTATE)
+			epicenter.ex_act(EXPLODE_DEVASTATE, 0, devastation_range)
+		if(EXPLODE_HEAVY)
+			epicenter.ex_act(EXPLODE_HEAVY, 0, heavy_impact_range)
+		if(EXPLODE_LIGHT)
+			epicenter.ex_act(EXPLODE_LIGHT, 0, light_impact_range)
+
+	for(var/t in turfs_in_range)
+		if(turfs_in_range[t]) //Already processed.
+			continue
+		var/turf/affected_turf = t
+		var/dist = 0
+		var/turf/expansion_wave_loc = epicenter
+
+		while(expansion_wave_loc != affected_turf)
+			if(turfs_in_range[expansion_wave_loc])
+				dist += turfs_in_range[expansion_wave_loc]
+			else
+				current_exp_block = expansion_wave_loc.density ? expansion_wave_loc.explosion_block : 0
+				for(var/obj/blocking_object in expansion_wave_loc)
+					if(!blocking_object.density)
+						continue
+					current_exp_block += ( (blocking_object.explosion_block == EXPLOSION_BLOCK_PROC) ? blocking_object.GetExplosionBlock(get_dir(epicenter, expansion_wave_loc)) : blocking_object.explosion_block )
+				dist += current_exp_block
+				turfs_in_range[expansion_wave_loc] = dist
+				if(dist < devastation_range)
+					SSexplosions.highTurf[expansion_wave_loc] += list(epicenter)
+					SSexplosions.highTurf[expansion_wave_loc][epicenter] = list(dist, devastation_range)
+				else if(dist < heavy_impact_range)
+					SSexplosions.medTurf[expansion_wave_loc] += list(epicenter)
+					SSexplosions.medTurf[expansion_wave_loc][epicenter] = list(dist, heavy_impact_range)
+				else if(dist < light_impact_range)
+					SSexplosions.lowTurf[expansion_wave_loc] += list(epicenter)
+					SSexplosions.lowTurf[expansion_wave_loc][epicenter] = list(dist, light_impact_range)
+				else
+					break //Explosion ran out of gas, no use continuing.
+
+				if(dist < flame_range)
+					flameturf += expansion_wave_loc
+
+				throwTurf[expansion_wave_loc] += list(epicenter)
+				throwTurf[expansion_wave_loc][epicenter] =  list(max_range - dist, get_dir(epicenter, expansion_wave_loc))
+
+			expansion_wave_loc = get_step_towards(expansion_wave_loc, affected_turf)
+
+		turfs_in_range[affected_turf] = dist
 
 		if(dist < devastation_range)
-			dist = EXPLODE_DEVASTATE
+			SSexplosions.highTurf[affected_turf] += list(epicenter)
+			SSexplosions.highTurf[affected_turf][epicenter] = list(dist, devastation_range)
 		else if(dist < heavy_impact_range)
-			dist = EXPLODE_HEAVY
+			SSexplosions.medTurf[affected_turf] += list(epicenter)
+			SSexplosions.medTurf[affected_turf][epicenter] = list(dist, heavy_impact_range)
 		else if(dist < light_impact_range)
-			dist = EXPLODE_LIGHT
+			SSexplosions.lowTurf[affected_turf] += list(epicenter)
+			SSexplosions.lowTurf[affected_turf][epicenter] = list(dist, light_impact_range)
 		else
-			dist = EXPLODE_NONE
+			continue
 
-		if(T == epicenter) // Ensures explosives detonating from bags trigger other explosives in that bag
-			var/list/items = list()
-			for(var/I in T)
-				var/atom/A = I
-				if (length(A.contents) && !(A.flags_atom & PREVENT_CONTENTS_EXPLOSION)) //The atom/contents_explosion() proc returns null if the contents ex_acting has been handled by the atom, and TRUE if it hasn't.
-					items += A.GetAllContents()
-			for(var/O in items)
-				var/atom/A = O
-				if(!QDELETED(A))
-					switch(dist)
-						if(EXPLODE_DEVASTATE)
-							SSexplosions.highobj += A
-						if(EXPLODE_HEAVY)
-							SSexplosions.medobj += A
-						if(EXPLODE_LIGHT)
-							SSexplosions.lowobj += A
-		switch(dist)
-			if(EXPLODE_DEVASTATE)
-				SSexplosions.highturf += T
-			if(EXPLODE_HEAVY)
-				SSexplosions.medturf += T
-			if(EXPLODE_LIGHT)
-				SSexplosions.lowturf += T
+		if(dist < flame_range)
+			flameturf += affected_turf
+
+		throwTurf[affected_turf] += list(epicenter)
+		throwTurf[affected_turf][epicenter] = list(max_range - dist, get_dir(epicenter, affected_turf))
+
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_EXPLOSION, epicenter, devastation_range, heavy_impact_range, light_impact_range, (REALTIMEOFDAY - started_at) * 0.1)
 
 
-		if(flame_dist && prob(40) && !isspaceturf(T) && !T.density)
-			flameturf += T
-
-		//--- THROW ITEMS AROUND ---
-		var/throw_dir = get_dir(epicenter,T)
-		var/throw_range = max_range-throw_dist
-		var/list/throwingturf = T.explosion_throw_details
-		if (throwingturf)
-			if (throwingturf[1] < throw_range)
-				throwingturf[1] = throw_range
-				throwingturf[2] = throw_dir
-				throwingturf[3] = max_range
-		else
-			T.explosion_throw_details = list(throw_range, throw_dir, max_range)
-			throwturf += T
-
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_EXPLOSION, epicenter, devastation_range, heavy_impact_range, light_impact_range, (REALTIMEOFDAY - started_at) * 0.1, orig_dev_range, orig_heavy_range, orig_light_range)
-
-
-/datum/controller/subsystem/explosions/proc/GatherSpiralTurfs(range, turf/epicenter)
-	var/list/outlist = list()
-	var/center = epicenter
-	var/dist = range
-	if(!dist)
-		outlist += center
-		return outlist
-
-	var/turf/t_center = get_turf(center)
-	if(!t_center)
-		return outlist
-
-	var/list/L = outlist
-	var/turf/T
-	var/y
-	var/x
-	var/c_dist = 1
-	L += t_center
-
-	while( c_dist <= dist )
-		y = t_center.y + c_dist
-		x = t_center.x - c_dist + 1
-		for(x in x to t_center.x+c_dist)
-			T = locate(x,y,t_center.z)
-			if(T)
-				L += T
-
-		y = t_center.y + c_dist - 1
-		x = t_center.x + c_dist
-		for(y in t_center.y-c_dist to y)
-			T = locate(x,y,t_center.z)
-			if(T)
-				L += T
-
-		y = t_center.y - c_dist
-		x = t_center.x + c_dist - 1
-		for(x in t_center.x-c_dist to x)
-			T = locate(x,y,t_center.z)
-			if(T)
-				L += T
-
-		y = t_center.y - c_dist + 1
-		x = t_center.x - c_dist
-		for(y in y to t_center.y+c_dist)
-			T = locate(x,y,t_center.z)
-			if(T)
-				L += T
-		c_dist++
-	. = L
-
-/datum/controller/subsystem/explosions/proc/CaculateExplosionBlock(list/affected_turfs)
-	. = list()
-	var/I
-	for(I in 1 to affected_turfs.len) // we cache the explosion block rating of every turf in the explosion area
-		var/turf/T = affected_turfs[I]
-		var/current_exp_block = T.density ? T.explosion_block : 0
-
-		for(var/obj/O in T)
-			var/the_block = O.explosion_block
-			current_exp_block += the_block == EXPLOSION_BLOCK_PROC ? O.GetExplosionBlock() : the_block
-
-		.[T] = current_exp_block
-
-/datum/controller/subsystem/explosions/fire(resumed = 0)
-	if(!(length(lowturf) || length(medturf) || length(highturf) || length(flameturf) || length(throwturf) || length(lowobj) || length(medobj) || length(highobj)))
+/datum/controller/subsystem/explosions/fire(resumed = FALSE)
+	if(!(length(lowTurf) || length(medTurf) || length(highTurf) || length(flameturf) || length(throwTurf) || length(lowMovAtom) || length(medMovAtom) || length(highMovAtom)))
 		return
 	var/timer
 	Master.current_ticklimit = TICK_LIMIT_RUNNING //force using the entire tick if we need it.
@@ -330,34 +279,55 @@ SUBSYSTEM_DEF(explosions)
 		currentpart = SSEXPLOSIONS_MOVABLES
 
 		timer = TICK_USAGE_REAL
-		var/list/low_turf = lowturf
-		lowturf = list()
-		for(var/thing in low_turf)
-			if(thing)
-				var/turf/T = thing
-				T.explosion_level = max(T.explosion_level, EXPLODE_LIGHT)
-				T.ex_act(EXPLODE_LIGHT)
-		cost_lowturf = MC_AVERAGE(cost_lowturf, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
+		var/list/low_turf = lowTurf
+		lowTurf = list()
+		for(var/t in low_turf)
+			var/turf/turf_to_explode = t
+			if(QDELETED(turf_to_explode))
+				continue
+			for(var/explosion_source in low_turf[turf_to_explode])
+				turf_to_explode.ex_act(
+					EXPLODE_LIGHT,
+					low_turf[turf_to_explode][explosion_source][1], // Distance to epicenter.
+					low_turf[turf_to_explode][explosion_source][2] // light_impact_range
+					)
+				if(QDELETED(turf_to_explode))
+					break
+		cost_lowTurf = MC_AVERAGE(cost_lowTurf, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
 
 		timer = TICK_USAGE_REAL
-		var/list/med_turf = medturf
-		medturf = list()
-		for(var/thing in med_turf)
-			if(thing)
-				var/turf/T = thing
-				T.explosion_level = max(T.explosion_level, EXPLODE_HEAVY)
-				T.ex_act(EXPLODE_HEAVY)
-		cost_medturf = MC_AVERAGE(cost_medturf, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
+		var/list/med_turf = medTurf
+		medTurf = list()
+		for(var/t in med_turf)
+			var/turf/turf_to_explode = t
+			if(QDELETED(turf_to_explode))
+				continue
+			for(var/explosion_source in med_turf[turf_to_explode])
+				turf_to_explode.ex_act(
+					EXPLODE_HEAVY,
+					med_turf[turf_to_explode][explosion_source][1], // Distance to epicenter.
+					med_turf[turf_to_explode][explosion_source][2] // heavy_impact_range
+					)
+				if(QDELETED(turf_to_explode))
+					break
+		cost_medTurf = MC_AVERAGE(cost_medTurf, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
 
 		timer = TICK_USAGE_REAL
-		var/list/high_turf = highturf
-		highturf = list()
-		for(var/thing in high_turf)
-			if(thing)
-				var/turf/T = thing
-				T.explosion_level = max(T.explosion_level, EXPLODE_DEVASTATE)
-				T.ex_act(EXPLODE_DEVASTATE)
-		cost_highturf = MC_AVERAGE(cost_highturf, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
+		var/list/high_turf = highTurf
+		highTurf = list()
+		for(var/t in high_turf)
+			var/turf/turf_to_explode = t
+			if(QDELETED(turf_to_explode))
+				continue
+			for(var/explosion_source in high_turf[turf_to_explode])
+				turf_to_explode.ex_act(
+					EXPLODE_DEVASTATE,
+					high_turf[turf_to_explode][explosion_source][1], // Distance to epicenter.
+					high_turf[turf_to_explode][explosion_source][2] // devastation_range
+					)
+				if(QDELETED(turf_to_explode))
+					break
+		cost_highTurf = MC_AVERAGE(cost_highTurf, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
 
 		timer = TICK_USAGE_REAL
 		for(var/flamed_turf in flameturf)
@@ -368,61 +338,89 @@ SUBSYSTEM_DEF(explosions)
 		flameturf.Cut()
 		cost_flameturf = MC_AVERAGE(cost_flameturf, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
 
-		if (low_turf.len || med_turf.len || high_turf.len)
+		if(length(low_turf) || length(med_turf) || length(high_turf))
 			Master.laggy_byond_map_update_incoming()
 
 	if(currentpart == SSEXPLOSIONS_MOVABLES)
 		currentpart = SSEXPLOSIONS_THROWS
 
 		timer = TICK_USAGE_REAL
-		var/list/high_obj = highobj
-		highobj = list()
-		for(var/thing in high_obj)
-			if(thing)
-				var/obj/O = thing
-				O.ex_act(EXPLODE_DEVASTATE)
-		cost_highobj = MC_AVERAGE(cost_highobj, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
+		var/list/high_mov_atom = highMovAtom
+		highMovAtom = list()
+		for(var/o in high_mov_atom)
+			var/obj/object_to_explode = o
+			if(QDELETED(object_to_explode))
+				continue
+			for(var/explosion_source in high_mov_atom[object_to_explode])
+				object_to_explode.ex_act(
+					EXPLODE_DEVASTATE,
+					high_mov_atom[object_to_explode][explosion_source][1], // Distance to epicenter.
+					high_mov_atom[object_to_explode][explosion_source][2] // devastation_range
+					)
+				if(QDELETED(object_to_explode))
+					break
+		cost_highMovAtom = MC_AVERAGE(cost_highMovAtom, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
 
 		timer = TICK_USAGE_REAL
-		var/list/med_obj = medobj
-		medobj = list()
-		for(var/thing in med_obj)
-			if(thing)
-				var/obj/O = thing
-				O.ex_act(EXPLODE_HEAVY)
-		cost_medobj = MC_AVERAGE(cost_medobj, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
+		var/list/med_mov_atom = medMovAtom
+		medMovAtom = list()
+		for(var/o in med_mov_atom)
+			var/obj/object_to_explode = o
+			if(QDELETED(object_to_explode))
+				continue
+			for(var/explosion_source in med_mov_atom[object_to_explode])
+				object_to_explode.ex_act(
+					EXPLODE_HEAVY,
+					med_mov_atom[object_to_explode][explosion_source][1], // Distance to epicenter.
+					med_mov_atom[object_to_explode][explosion_source][2] // heavy_impact_range
+					)
+				if(QDELETED(object_to_explode))
+					break
+		cost_medMovAtom = MC_AVERAGE(cost_medMovAtom, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
 
 		timer = TICK_USAGE_REAL
-		var/list/low_obj = lowobj
-		lowobj = list()
-		for(var/thing in low_obj)
-			if(thing)
-				var/obj/O = thing
-				O.ex_act(EXPLODE_LIGHT)
-		cost_lowobj = MC_AVERAGE(cost_lowobj, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
+		var/list/low_mov_atom = lowMovAtom
+		lowMovAtom = list()
+		for(var/o in low_mov_atom)
+			var/obj/object_to_explode = o
+			if(QDELETED(object_to_explode))
+				continue
+			for(var/explosion_source in low_mov_atom[object_to_explode])
+				object_to_explode.ex_act(
+					EXPLODE_LIGHT,
+					low_mov_atom[object_to_explode][explosion_source][1], // Distance to epicenter.
+					low_mov_atom[object_to_explode][explosion_source][2] // light_impact_range
+					)
+				if(QDELETED(object_to_explode))
+					break
+		cost_lowMovAtom = MC_AVERAGE(cost_lowMovAtom, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
 
 
-	if (currentpart == SSEXPLOSIONS_THROWS)
+	if(currentpart == SSEXPLOSIONS_THROWS)
 		currentpart = SSEXPLOSIONS_TURFS
 		timer = TICK_USAGE_REAL
-		var/list/throw_turf = throwturf
-		throwturf = list()
-		for (var/thing in throw_turf)
-			if (!thing)
+		var/list/throw_turf = throwTurf
+		throwTurf = list()
+		for(var/t in throw_turf)
+			var/turf/affected_turf = t
+			if(QDELETED(affected_turf))
 				continue
-			var/turf/T = thing
-			var/list/L = T.explosion_throw_details
-			T.explosion_throw_details = null
-			if (length(L) != 3)
-				continue
-			var/throw_range = L[1]
-			var/throw_dir = L[2]
-			var/max_range = L[3]
-			for(var/atom/movable/A in T)
-				if(!A.anchored)
-					var/atom_throw_range = rand(throw_range, max_range)
-					var/turf/throw_at = get_ranged_target_turf(A, throw_dir, atom_throw_range)
-					A.throw_at(throw_at, atom_throw_range, EXPLOSION_THROW_SPEED)
-		cost_throwturf = MC_AVERAGE(cost_throwturf, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
+			for(var/am in affected_turf)
+				var/atom/movable/thing_to_throw = am
+				if(thing_to_throw.anchored || thing_to_throw.move_resist == INFINITY)
+					continue
+				for(var/throw_source in throw_turf[affected_turf])
+					thing_to_throw.throw_at(
+						get_ranged_target_turf(
+							thing_to_throw,
+							throw_turf[affected_turf][throw_source][2] ? throw_turf[affected_turf][throw_source][2] : pick(GLOB.alldirs), // Direction
+							throw_turf[affected_turf][throw_source][1] // Distance
+							),
+						throw_turf[affected_turf][throw_source][1], // Distance
+						EXPLOSION_THROW_SPEED,
+						null, //Thrower
+						TRUE //Spin
+					)
+		cost_throwTurf = MC_AVERAGE(cost_throwTurf, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
 
 	currentpart = SSEXPLOSIONS_TURFS

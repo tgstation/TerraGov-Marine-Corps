@@ -263,8 +263,8 @@
 		take_damage(round(exposed_volume / 100), BURN, "fire")
 	return ..()
 
-/obj/structure/window/GetExplosionBlock()
-	return ISDIAGONALDIR(dir) ? ..() : 0
+/obj/structure/window/GetExplosionBlock(explosion_dir)
+	return (!explosion_dir || ISDIAGONALDIR(dir) || dir & explosion_dir || REVERSE_DIR(dir) & explosion_dir) ? real_explosion_block : 0
 
 /obj/structure/window/phoronbasic
 	name = "phoron window"
@@ -273,7 +273,8 @@
 	icon_state = "phoronwindow"
 	shardtype = /obj/item/shard/phoron
 	max_integrity = 120
-	explosion_block = 1
+	explosion_block = EXPLOSION_BLOCK_PROC
+	real_explosion_block = 1
 
 /obj/structure/window/phoronbasic/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > T0C + 32000)
@@ -288,7 +289,8 @@
 	shardtype = /obj/item/shard/phoron
 	reinf = TRUE
 	max_integrity = 160
-	explosion_block = 2
+	explosion_block = EXPLOSION_BLOCK_PROC
+	real_explosion_block = 2
 
 /obj/structure/window/phoronreinforced/fire_act(exposed_temperature, exposed_volume)
 	return
@@ -300,7 +302,8 @@
 	basestate = "rwindow"
 	max_integrity = 40
 	reinf = TRUE
-	explosion_block = 1
+	explosion_block = EXPLOSION_BLOCK_PROC
+	real_explosion_block = 1
 
 /obj/structure/window/reinforced/toughened
 	name = "safety glass"

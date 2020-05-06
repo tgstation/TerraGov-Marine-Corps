@@ -13,6 +13,8 @@
 	var/flags_pass = NONE
 	var/throwpass = FALSE
 
+	var/resistance_flags = NONE
+
 	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
 
 	var/list/priority_overlays	//overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
@@ -285,9 +287,9 @@ directive is properly returned.
 /atom/proc/relaymove()
 	return
 
-/atom/proc/ex_act(severity, target)
-	contents_explosion(severity, target)
-	SEND_SIGNAL(src, COMSIG_ATOM_EX_ACT, severity, target)
+/atom/proc/ex_act(severity, epicenter_dist, impact_range)
+	contents_explosion(severity, epicenter_dist, impact_range)
+	SEND_SIGNAL(src, COMSIG_ATOM_EX_ACT, severity, epicenter_dist, impact_range)
 
 /atom/proc/fire_act()
 	return
@@ -306,7 +308,7 @@ directive is properly returned.
 	return FALSE
 
 
-/atom/proc/contents_explosion(severity, target)
+/atom/proc/contents_explosion(severity, epicenter_dist, impact_range)
 	return //For handling the effects of explosions on contents that would not normally be effected
 
 

@@ -411,10 +411,10 @@
 	return TRUE
 
 
-/obj/structure/closet/contents_explosion(severity, target)
+/obj/structure/closet/contents_explosion(severity)
 	for(var/i in contents)
-		var/atom/A = i
-		A.ex_act(severity, target)
+		var/atom/movable/closet_contents = i
+		closet_contents.ex_act(severity)
 
 
 /obj/structure/closet/proc/closet_special_handling(mob/living/mob_to_stuff)

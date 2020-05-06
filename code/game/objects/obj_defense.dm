@@ -174,5 +174,5 @@
 	return FALSE
 
 ///returns how much the object blocks an explosion. Used by subtypes.
-/obj/proc/GetExplosionBlock()
-	return density ? explosion_block : 0
+/obj/proc/GetExplosionBlock(explosion_dir)
+	CRASH("Unimplemented GetExplosionBlock()")

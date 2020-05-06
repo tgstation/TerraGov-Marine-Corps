@@ -863,5 +863,5 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 
 
 
-/obj/vehicle/multitile/root/cm_armored/contents_explosion(severity, target)
+/obj/vehicle/multitile/root/cm_armored/contents_explosion(severity)
 	return

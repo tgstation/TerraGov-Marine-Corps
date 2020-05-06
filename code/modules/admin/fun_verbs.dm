@@ -570,20 +570,21 @@
 		if("Maxcap")
 			explosion(usr.loc, GLOB.MAX_EX_DEVESTATION_RANGE, GLOB.MAX_EX_HEAVY_RANGE, GLOB.MAX_EX_LIGHT_RANGE, GLOB.MAX_EX_FLASH_RANGE)
 		if("Custom Bomb")
-			var/devastation_range = input("Devastation range (in tiles):", "Drop Bomb") as null|num
-			var/heavy_impact_range = input("Heavy impact range (in tiles):", "Drop Bomb") as null|num
-			var/light_impact_range = input("Light impact range (in tiles):", "Drop Bomb") as null|num
-			var/flash_range = input("Flash range (in tiles):", "Drop Bomb") as null|num
+			var/input_devastation_range = input("Devastation range (in tiles):", "Drop Bomb") as null|num
+			var/input_heavy_impact_range = input("Heavy impact range (in tiles):", "Drop Bomb") as null|num
+			var/input_light_impact_range = input("Light impact range (in tiles):", "Drop Bomb") as null|num
+			var/input_flash_range = input("Flash range (in tiles):", "Drop Bomb") as null|num
 			var/input_flame_range = input("Flame range (in tiles):", "Drop Bomb") as null|num
-			if(isnull(devastation_range) || isnull(heavy_impact_range) || isnull(light_impact_range) || isnull(flash_range) || isnull(input_flame_range))
+			if(isnull(input_devastation_range) || isnull(input_heavy_impact_range) || isnull(input_light_impact_range) || isnull(input_flash_range) || isnull(input_flame_range))
 				return
 			var/world_max = max(world.maxy, world.maxy)
-			devastation_range = CLAMP(devastation_range, -1, world_max)
-			heavy_impact_range = CLAMP(heavy_impact_range, -1, world_max)
-			light_impact_range = CLAMP(light_impact_range, -1, world_max)
-			flash_range = CLAMP(flash_range, -1, world_max)
+			input_devastation_range = CLAMP(input_devastation_range, -1, world_max)
+			input_heavy_impact_range = CLAMP(input_heavy_impact_range, -1, world_max)
+			input_light_impact_range = CLAMP(input_light_impact_range, -1, world_max)
+			input_flash_range = CLAMP(input_flash_range, -1, world_max)
 			input_flame_range = CLAMP(input_flame_range, -1, world_max)
-			explosion(usr.loc, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range = input_flame_range)
+			explosion(usr.loc, input_devastation_range, input_heavy_impact_range, input_light_impact_range, input_flash_range, flame_range = input_flame_range)
+			choice = "[choice] ([input_devastation_range], [input_heavy_impact_range], [input_light_impact_range], [input_flash_range], [input_flame_range])" //For better logging.
 		else
 			return
 

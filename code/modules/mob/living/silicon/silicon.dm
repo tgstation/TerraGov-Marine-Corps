@@ -71,7 +71,7 @@
 	return
 
 
-/mob/living/silicon/contents_explosion(severity, target)
+/mob/living/silicon/contents_explosion(severity)
 	return
 
 

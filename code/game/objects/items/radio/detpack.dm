@@ -232,14 +232,8 @@
 		return FALSE
 	if(istype(target, /obj/item) || istype(target, /mob))
 		return FALSE
-	if(isobj(target))
-		var/obj/O = target
-		if(CHECK_BITFIELD(O.resistance_flags, INDESTRUCTIBLE))
-			return FALSE
-	if(iswallturf(target))
-		var/turf/closed/wall/W = target
-		if(W.hull)
-			return FALSE
+	if(target.resistance_flags & INDESTRUCTIBLE)
+		return FALSE
 	if(istype(target, /obj/structure/window))
 		var/obj/structure/window/W = target
 		if(!W.damageable)

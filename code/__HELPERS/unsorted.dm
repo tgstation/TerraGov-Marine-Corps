@@ -436,11 +436,11 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	var/y = A.y
 	if(direction & NORTH)
 		y = min(world.maxy, y + range)
-	if(direction & SOUTH)
+	else if(direction & SOUTH)
 		y = max(1, y - range)
 	if(direction & EAST)
 		x = min(world.maxx, x + range)
-	if(direction & WEST)
+	else if(direction & WEST)
 		x = max(1, x - range)
 
 	return locate(x, y, A.z)
