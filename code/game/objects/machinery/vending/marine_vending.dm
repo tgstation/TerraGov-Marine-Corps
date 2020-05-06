@@ -181,7 +181,7 @@
 					/obj/item/ammo_magazine/shotgun/flechette = 15,
 					/obj/item/ammo_magazine/rifle/tx15_slug = 25,
 					/obj/item/ammo_magazine/rifle/tx15_flechette = 25,
-					/obj/item/smartgun_powerpack = 2
+					/obj/item/ammo_magazine/standard_smartmachinegun = 2
 					)
 
 	contraband = list(
@@ -551,7 +551,7 @@
 
 	products = list(
 						/obj/item/clothing/tie/storage/webbing = 1,
-						/obj/item/storage/box/m56_system = 1,
+						/obj/item/storage/box/t26_system = 1,
 						/obj/item/smartgun_powerpack = 1,
 						/obj/item/storage/pouch/magazine = 1,
 						/obj/item/clothing/mask/gas = 1

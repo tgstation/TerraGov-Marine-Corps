@@ -523,6 +523,13 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "t12barrel"
 	flags_attach_features = NONE
 
+/obj/item/attachable/t29barrel
+	name = "T-29 barrel"
+	icon_state = "t29barrel"
+	desc = "A heavy barrel. CANNOT BE REMOVED."
+	slot = "muzzle"
+	flags_attach_features = NONE
+
 ///////////// Rail attachments ////////////////////////
 
 /obj/item/attachable/reddot
@@ -840,6 +847,20 @@ Defined in conflicts.dm of the #defines folder.
 	name = "TX-15 Stock"
 	desc = "The standard stock for the TX-15. Cannot be removed."
 	icon_state = "tx15stock"
+	wield_delay_mod = 0 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+	accuracy_mod = 0
+	recoil_mod = 0
+	melee_mod = 0
+	scatter_mod = 0
+	movement_acc_penalty_mod = 0
+
+/obj/item/attachable/stock/t29stock
+	name = "T-29 stock"
+	desc = "A standard machinegun stock."
+	icon_state = "t29stock"
 	wield_delay_mod = 0 SECONDS
 	pixel_shift_x = 32
 	pixel_shift_y = 13
