@@ -303,6 +303,10 @@
 	fill_type = /obj/item/explosive/grenade/frag
 	fill_number = 4
 
+/obj/item/storage/pouch/explosive/upp
+	fill_type = /obj/item/explosive/grenade/frag/upp
+	fill_number = 4
+
 /obj/item/storage/pouch/grenade
 	name = "Grenade pouch"
 	desc = "It can contain grenades."
