@@ -203,6 +203,7 @@
 	return TRUE
 
 /obj/item/clothing/mask/facehugger/Crossed(atom/target)
+	. = ..()
 	if(stat == CONSCIOUS)
 		HasProximity(target)
 

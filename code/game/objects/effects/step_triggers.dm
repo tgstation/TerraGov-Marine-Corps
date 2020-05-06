@@ -9,8 +9,8 @@
 /obj/effect/step_trigger/proc/Trigger(atom/movable/A)
 	return 0
 
-/obj/effect/step_trigger/Crossed(H as mob|obj)
-	..()
+/obj/effect/step_trigger/Crossed(atom/movable/H)
+	. = ..()
 	if(!H)
 		return
 	if(isobserver(H) && !affect_ghosts)

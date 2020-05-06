@@ -388,7 +388,6 @@
 "bq" = (
 /obj/machinery/door/airlock/colony/engineering{
 	name = "\improper Maintenance Airlock";
-	icon_state = "door_closed";
 	dir = 1
 	},
 /obj/structure/cable/yellow{
@@ -701,7 +700,6 @@
 "cp" = (
 /obj/machinery/door/airlock/colony/engineering{
 	name = "\improper Maintenance Airlock";
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -752,7 +750,6 @@
 /area/shuttle/drop1/lz1)
 "cw" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	icon_state = "door_closed";
 	dir = 2
 	},
 /turf/open/floor/tile/white,
@@ -1088,7 +1085,6 @@
 "dt" = (
 /obj/machinery/door/airlock/colony/engineering{
 	name = "\improper Maintenance Airlock";
-	icon_state = "door_closed";
 	dir = 1
 	},
 /obj/structure/cable/yellow{
@@ -1502,8 +1498,7 @@
 	icon_state = "pipe11-2";
 	dir = 1
 	},
-/obj/machinery/door/airlock/mainship/command/CPToffice{
-	icon_state = "door_closed";
+/obj/machinery/door/airlock/mainship/command/free_access{
 	dir = 2
 	},
 /obj/structure/cable/yellow{
@@ -1536,7 +1531,6 @@
 	},
 /obj/machinery/door/airlock/colony/engineering{
 	name = "\improper Storage";
-	icon_state = "door_closed";
 	dir = 2
 	},
 /turf/open/floor/plating,
@@ -1810,8 +1804,7 @@
 /area/desert/interior/toilet)
 "ft" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/door/airlock/mainship/medical{
-	icon_state = "door_closed";
+/obj/machinery/door/airlock/mainship/medical/free_access{
 	dir = 1
 	},
 /obj/structure/cable/yellow{
@@ -1833,8 +1826,7 @@
 /area/desert/interior/science)
 "fw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/machinery/door/airlock/mainship/research{
-	icon_state = "door_closed";
+/obj/machinery/door/airlock/mainship/research/free_access{
 	dir = 2
 	},
 /obj/structure/cable/yellow{
@@ -2221,8 +2213,7 @@
 /turf/open/floor/tile/white,
 /area/desert/interior/medbay)
 "gD" = (
-/obj/machinery/door/airlock/mainship/research{
-	icon_state = "door_closed";
+/obj/machinery/door/airlock/mainship/research/free_access{
 	dir = 2
 	},
 /turf/open/floor/tile/white,
@@ -2379,7 +2370,6 @@
 "hc" = (
 /obj/machinery/door/airlock/colony/engineering{
 	name = "\improper Maintenance Airlock";
-	icon_state = "door_closed";
 	dir = 1
 	},
 /obj/structure/cable/yellow{
@@ -2787,7 +2777,6 @@
 "ie" = (
 /obj/machinery/door/airlock/colony/engineering{
 	name = "\improper Maintenance Airlock";
-	icon_state = "door_closed";
 	dir = 1
 	},
 /obj/structure/cable/yellow{
@@ -3210,7 +3199,6 @@
 "jh" = (
 /obj/machinery/door/airlock/colony/engineering{
 	name = "\improper Maintenance Airlock";
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -3608,7 +3596,6 @@
 /area/desert/outside/sw)
 "kq" = (
 /obj/machinery/door/airlock/multi_tile/secure2_glass{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
@@ -3636,7 +3623,6 @@
 /area/desert/outside/sw)
 "ku" = (
 /obj/machinery/door/airlock/multi_tile/secure2_glass{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -3775,7 +3761,6 @@
 "kQ" = (
 /obj/machinery/door/airlock/colony/engineering{
 	name = "\improper Maintenance Airlock";
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -3928,7 +3913,6 @@
 /area/desert/interior/shipping/south)
 "lt" = (
 /obj/machinery/door/airlock/multi_tile/secure2_glass{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
@@ -3936,7 +3920,6 @@
 /area/desert/interior/shipping/south)
 "lu" = (
 /obj/machinery/door/airlock/multi_tile/secure2_glass{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
@@ -4107,7 +4090,6 @@
 "Bv" = (
 /obj/machinery/door/airlock/colony/engineering{
 	name = "\improper Storage";
-	icon_state = "door_closed";
 	dir = 8
 	},
 /turf/open/floor/plating,
