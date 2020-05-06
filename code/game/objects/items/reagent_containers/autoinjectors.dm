@@ -59,7 +59,7 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/quickclot
 	name = "quick-clot autoinjector"
-	desc = "An autoinjector loaded with 10 units of quick-clot, a chemical designed to pause all bleeding. Renew doses as needed."
+	desc = "An autoinjector loaded with 30 units of quick-clot, a chemical designed to pause all bleeding. Renew doses as needed."
 	amount_per_transfer_from_this = 10
 	volume = 30
 	icon_state = "autoinjector-7"
@@ -190,4 +190,3 @@
 	volume = 1
 	icon_state = "autoinjector-6"
 	list_reagents = list(/datum/reagent/medicine/roulettium = 1)
-
