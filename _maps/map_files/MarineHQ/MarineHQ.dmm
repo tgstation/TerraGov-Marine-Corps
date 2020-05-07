@@ -403,7 +403,6 @@
 "bp" = (
 /obj/machinery/door/airlock/mainship/research/glass{
 	id = "Containment Cell 3";
-	locked = 1;
 	name = "\improper Containment Cell 3"
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -612,8 +611,7 @@
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	id = 5;
-	name = "\improper Quarters 5";
-	req_access_txt = "0"
+	name = "\improper Quarters 5"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -879,7 +877,7 @@
 "cL" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 4;
-	name = "Toilet"
+	name = "\improper Toilet"
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -935,9 +933,8 @@
 	},
 /area/mainship/hallways/hangar)
 "cV" = (
-/obj/machinery/door/airlock/mainship/secure{
-	name = "Telecommunications";
-	req_access_txt = "6"
+/obj/machinery/door/airlock/mainship/secure/tcomms{
+	name = "\improper Telecommunications"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
@@ -1011,11 +1008,9 @@
 	},
 /area/mainship/medical/medical_science)
 "dh" = (
-/obj/machinery/door/airlock/mainship/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1;
-	name = "Animal Control Closet";
-	req_access_txt = "14";
-	req_one_access_txt = "0"
+	name = "Animal Control Closet"
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -1143,9 +1138,8 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/airlock/mainship/research{
-	dir = 2;
-	req_access_txt = "20"
+/obj/machinery/door/airlock/mainship/research/chemistry{
+	dir = 2
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/medical_science)
@@ -1268,9 +1262,8 @@
 	},
 /area/mainship/medical/medical_science)
 "dH" = (
-/obj/machinery/door/airlock/mainship/research{
-	dir = 2;
-	req_access_txt = "20"
+/obj/machinery/door/airlock/mainship/research/chemistry{
+	dir = 2
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -1336,8 +1329,7 @@
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	id = 6;
-	name = "\improper Quarters 6";
-	req_access_txt = "0"
+	name = "\improper Quarters 6"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -1517,7 +1509,7 @@
 "es" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 4;
-	name = "Freezer"
+	name = "\improper Freezer"
 	},
 /turf/open/floor/mainship,
 /area/mainship/living/captain_mess)
@@ -1647,7 +1639,7 @@
 "eH" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
-	name = "Bathroom"
+	name = "\improper Bathroom"
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -1656,8 +1648,7 @@
 "eI" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
-	icon_state = "door_closed";
-	name = "Kitchen"
+	name = "\improper Kitchen"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -1674,16 +1665,14 @@
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	id = 1;
-	id_tag = 1;
-	name = "\improper Quarters 1";
-	req_access_txt = "0"
+	name = "\improper Quarters 1"
 	},
 /turf/open/floor/wood,
 /area/mainship/living/bridgebunks)
 "eK" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
-	name = "Bathroom"
+	name = "\improper Bathroom"
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -1693,8 +1682,7 @@
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	id = 2;
-	name = "\improper Quarters 2";
-	req_access_txt = "0"
+	name = "\improper Quarters 2"
 	},
 /turf/open/floor/wood,
 /area/mainship/squads/alpha)
@@ -1779,7 +1767,7 @@
 "eW" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
-	name = "Bathroom"
+	name = "\improper Bathroom"
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -1789,15 +1777,14 @@
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	id = 3;
-	name = "\improper Quarters 3";
-	req_access_txt = "0"
+	name = "\improper Quarters 3"
 	},
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
 "eY" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
-	name = "Bathroom"
+	name = "\improper Bathroom"
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -1807,8 +1794,7 @@
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	id = 4;
-	name = "\improper Quarters 4";
-	req_access_txt = "0"
+	name = "\improper Quarters 4"
 	},
 /turf/open/floor/wood,
 /area/mainship/squads/bravo)
@@ -1914,8 +1900,7 @@
 "fq" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
-	icon_state = "door_closed";
-	name = "Kitchen"
+	name = "\improper Kitchen"
 	},
 /turf/open/floor/mainship{
 	icon_state = "plate";
@@ -2054,9 +2039,8 @@
 /turf/open/floor/wood,
 /area/mainship/squads/req)
 "fK" = (
-/obj/machinery/door/airlock/mainship/medical/glass{
-	name = "\improper Unform Airlock";
-	req_one_access = 0
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	name = "\improper Unform Airlock"
 	},
 /turf/open/floor/wood,
 /area/mainship/squads/req)
@@ -2311,9 +2295,7 @@
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	id = 998;
-	id_tag = 999;
-	name = "\improper Quarters 1";
-	req_access_txt = "0"
+	name = "\improper Quarters 1"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -2374,8 +2356,7 @@
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	id = 2;
-	name = "\improper Quarters 2";
-	req_access_txt = "0"
+	name = "\improper Quarters 2"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -2397,8 +2378,7 @@
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	id = 3;
-	name = "\improper Quarters 3";
-	req_access_txt = "0"
+	name = "\improper Quarters 3"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -2431,8 +2411,7 @@
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	id = 4;
-	name = "\improper Quarters 4";
-	req_access_txt = "0"
+	name = "\improper Quarters 4"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -2734,8 +2713,7 @@
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	id = 7;
-	name = "\improper Quarters 7";
-	req_access_txt = "0"
+	name = "\improper Quarters 7"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -2827,8 +2805,7 @@
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	id = 8;
-	name = "\improper Quarters 8";
-	req_access_txt = "0"
+	name = "\improper Quarters 8"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -3057,7 +3034,7 @@
 "ig" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
-	name = "Bathroom"
+	name = "\improper Bathroom"
 	},
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
@@ -3303,7 +3280,6 @@
 "iU" = (
 /obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Extended Operations Bunks";
-	icon_state = "door_closed";
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
@@ -3342,7 +3318,6 @@
 "ja" = (
 /obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Extended Operations Bunks";
-	icon_state = "door_closed";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -4171,7 +4146,6 @@
 "ls" = (
 /obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Extended Operations Bunks";
-	icon_state = "door_closed";
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
@@ -4264,8 +4238,7 @@
 "lE" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
-	name = "\improper Leisure Dome";
-	req_access_txt = "0"
+	name = "\improper Leisure Dome"
 	},
 /obj/structure/cable{
 	icon_state = "4-8";
@@ -4434,12 +4407,10 @@
 	},
 /area/mainship/shipboard/sensors)
 "lZ" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "hangarentrancenorth";
 	name = "North Hangar Shutters";
-	pixel_x = -30;
-	req_one_access_txt = "2;3;12;19";
-	throw_range = 15
+	pixel_x = -30
 	},
 /turf/open/floor/mainship{
 	dir = 8;
@@ -4522,9 +4493,8 @@
 	},
 /area/mainship/shipboard/sensors)
 "mh" = (
-/obj/machinery/door/airlock/mainship/security/glass{
-	dir = 2;
-	req_access_txt = "0"
+/obj/machinery/door/airlock/mainship/security/glass/free_access{
+	dir = 2
 	},
 /turf/open/floor/mainship{
 	dir = 8;
@@ -5099,9 +5069,7 @@
 "nr" = (
 /obj/machinery/door/airlock/mainship/command{
 	dir = 1;
-	icon_state = "door_closed";
-	name = "\improper Combat Information Center";
-	req_access = null
+	name = "\improper Combat Information Center"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -5385,9 +5353,7 @@
 	},
 /area/mainship/hallways/hangar)
 "oa" = (
-/obj/machinery/vending/attachments{
-	req_access = null
-	},
+/obj/machinery/vending/attachments,
 /turf/open/floor/mainship{
 	icon_state = "cargo"
 	},
@@ -5509,9 +5475,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "oq" = (
-/obj/machinery/door/airlock/mainship/engineering{
-	req_one_access = null
-	},
+/obj/machinery/door/airlock/mainship/engineering/free_access,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -5980,10 +5944,8 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "pm" = (
-/obj/machinery/door/airlock/mainship/medical/glass{
-	icon_state = "door_closed";
-	dir = 2;
-	req_one_access = null
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -6016,10 +5978,7 @@
 /area/mainship/hallways/hangar)
 "pq" = (
 /obj/machinery/door/airlock/mainship/marine{
-	icon_state = "door_closed";
-	dir = 8;
-	req_access = list();
-	req_one_access = list()
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -6267,7 +6226,7 @@
 "pW" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
-	name = "Bathroom"
+	name = "\improper Bathroom"
 	},
 /obj/structure/disposalpipe/segment{
 	icon_state = "pipe-s";
@@ -6619,12 +6578,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
 "rQ" = (
-/obj/machinery/door/airlock/mainship/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 4;
-	name = "Killhouse";
-	req_access_txt = "0";
-	req_one_access = 0;
-	req_one_access_txt = "0"
+	name = "Killhouse"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/firing_range)
@@ -6639,12 +6595,9 @@
 	},
 /area/mainship/shipboard/firing_range)
 "rS" = (
-/obj/machinery/door/airlock/mainship/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1;
-	name = "Killhouse";
-	req_access_txt = "0";
-	req_one_access = 0;
-	req_one_access_txt = "0"
+	name = "Killhouse"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -6842,9 +6795,7 @@
 	},
 /area/mainship/command/cic)
 "sR" = (
-/obj/structure/closet/secure_closet/personal/cabinet{
-	req_access = null
-	},
+/obj/structure/closet/secure_closet/personal/cabinet,
 /turf/open/floor/carpet{
 	icon_state = "carpetside";
 	dir = 5
@@ -7214,12 +7165,9 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "vU" = (
-/obj/machinery/door/airlock/mainship/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 4;
-	name = "Killhouse";
-	req_access_txt = "0";
-	req_one_access = 0;
-	req_one_access_txt = "0"
+	name = "Killhouse"
 	},
 /turf/open/floor/mainship,
 /area/mainship/shipboard/firing_range)
@@ -7376,12 +7324,9 @@
 	},
 /area/mainship/shipboard/firing_range)
 "xz" = (
-/obj/machinery/door/airlock/mainship/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1;
-	name = "Killhouse";
-	req_access_txt = "0";
-	req_one_access = 0;
-	req_one_access_txt = "0"
+	name = "Killhouse"
 	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
@@ -7423,9 +7368,7 @@
 /area/mainship/living/commandbunks)
 "xQ" = (
 /obj/machinery/door_control{
-	id = 1006;
-	pixel_w = 0;
-	pixel_z = -7
+	id = 1006
 	},
 /turf/closed/wall,
 /area/mainship/medical/medical_science)
@@ -7510,9 +7453,7 @@
 /area/mainship/medical/medical_science)
 "yJ" = (
 /obj/machinery/door_control{
-	id = 1002;
-	pixel_w = 0;
-	pixel_z = -7
+	id = 1002
 	},
 /turf/closed/wall,
 /area/mainship/living/tankerbunks)
@@ -7748,7 +7689,6 @@
 "Ap" = (
 /obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Extended Operations Bunks";
-	icon_state = "door_closed";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -8000,10 +7940,9 @@
 /turf/open/floor/grass,
 /area/lv624/ground/compound/se)
 "Bh" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "northcheckpoint";
-	name = "North Checkpoint Shutters";
-	req_one_access_txt = "0"
+	name = "North Checkpoint Shutters"
 	},
 /turf/closed/wall,
 /area/mainship/living/starboard_emb)
@@ -8170,10 +8109,9 @@
 /area/mainship/shipboard/sensors)
 "BL" = (
 /obj/structure/table/mainship,
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "northcheckpoint";
-	name = "North Checkpoint Shutters";
-	req_one_access_txt = "0"
+	name = "North Checkpoint Shutters"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/sensors)
@@ -8353,9 +8291,7 @@
 /area/mainship/squads/charlie)
 "Cy" = (
 /obj/machinery/door_control{
-	id = 1003;
-	pixel_w = 0;
-	pixel_z = -7
+	id = 1003
 	},
 /turf/closed/wall,
 /area/mainship/squads/charlie)
@@ -8467,7 +8403,7 @@
 "CT" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
-	name = "Bathroom"
+	name = "\improper Bathroom"
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -8477,15 +8413,14 @@
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	id = 5;
-	name = "\improper Quarters 5";
-	req_access_txt = "0"
+	name = "\improper Quarters 5"
 	},
 /turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
 "CV" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
-	name = "Bathroom"
+	name = "\improper Bathroom"
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -8495,15 +8430,14 @@
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	id = 6;
-	name = "\improper Quarters 6";
-	req_access_txt = "0"
+	name = "\improper Quarters 6"
 	},
 /turf/open/floor/wood,
 /area/mainship/squads/charlie)
 "CX" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
-	name = "Bathroom"
+	name = "\improper Bathroom"
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -8513,15 +8447,14 @@
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	id = 7;
-	name = "\improper Quarters 7";
-	req_access_txt = "0"
+	name = "\improper Quarters 7"
 	},
 /turf/open/floor/wood,
 /area/mainship/living/pilotbunks)
 "CZ" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
-	name = "Bathroom"
+	name = "\improper Bathroom"
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -8531,8 +8464,7 @@
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
 	id = 8;
-	name = "\improper Quarters 8";
-	req_access_txt = "0"
+	name = "\improper Quarters 8"
 	},
 /turf/open/floor/wood,
 /area/mainship/squads/delta)
@@ -9164,9 +9096,7 @@
 /area/mainship/engineering/engine_core)
 "Fl" = (
 /obj/machinery/door/airlock/mainship/maint{
-	dir = 2;
-	req_access_txt = "0";
-	req_one_access_txt = "2;7"
+	dir = 2
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -9372,9 +9302,7 @@
 /area/mainship/engineering/engine_core)
 "FJ" = (
 /obj/machinery/door/airlock/mainship/security{
-	locked = 1;
-	name = "\improper Nexus Dome Marshal Office";
-	req_access_txt = "0"
+	name = "\improper Nexus Dome Marshal Office"
 	},
 /turf/open/floor/mainship/mono,
 /area/lv624/lazarus/security)
@@ -9600,8 +9528,7 @@
 "Gn" = (
 /obj/machinery/door/airlock/mainship/security{
 	dir = 2;
-	name = "\improper Security Checkpoint";
-	req_access = 0
+	name = "\improper Security Checkpoint"
 	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -9905,9 +9832,7 @@
 "Hw" = (
 /obj/machinery/door/airlock/mainship/security{
 	dir = 1;
-	locked = 1;
-	name = "\improper Nexus Dome Marshal Office";
-	req_access_txt = "0"
+	name = "\improper Nexus Dome Marshal Office"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -10327,7 +10252,7 @@
 "IF" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 4;
-	name = "Toilet"
+	name = "\improper Toilet"
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -10343,8 +10268,7 @@
 /area/lv624/lazarus/armory)
 "IH" = (
 /obj/machinery/door_control{
-	id = 1000;
-	pixel_z = 8
+	id = 1000
 	},
 /turf/closed/wall,
 /area/mainship/living/numbertwobunks)
@@ -10355,7 +10279,7 @@
 "IL" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
-	name = "Toilet"
+	name = "\improper Toilet"
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -10383,7 +10307,7 @@
 "IR" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
-	name = "Bathroom"
+	name = "\improper Bathroom"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/starboard_emb)
@@ -10644,7 +10568,7 @@
 "Ju" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
-	name = "Bathroom"
+	name = "\improper Bathroom"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -10699,9 +10623,7 @@
 "Jz" = (
 /obj/machinery/door/airlock/mainship/security{
 	dir = 1;
-	locked = 1;
-	name = "\improper Nexus Dome Marshal Office";
-	req_access_txt = "0"
+	name = "\improper Nexus Dome Marshal Office"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -11178,10 +11100,9 @@
 	},
 /area/mainship/shipboard/firing_range)
 "Ly" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "northcheckpoint";
-	name = "North Checkpoint Shutters";
-	req_one_access_txt = "0"
+	name = "North Checkpoint Shutters"
 	},
 /turf/closed/wall,
 /area/mainship/living/commandbunks)
@@ -11200,12 +11121,9 @@
 	},
 /area/mainship/shipboard/weapon_room)
 "LJ" = (
-/obj/machinery/door/airlock/mainship/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1;
-	name = "Killhouse";
-	req_access_txt = "0";
-	req_one_access = 0;
-	req_one_access_txt = "0"
+	name = "Killhouse"
 	},
 /turf/open/floor/mainship,
 /area/mainship/shipboard/firing_range)
@@ -11945,9 +11863,7 @@
 /area/mainship/shipboard/firing_range)
 "Sv" = (
 /obj/machinery/door_control{
-	id = 1005;
-	pixel_w = 0;
-	pixel_z = -7
+	id = 1005
 	},
 /turf/closed/wall,
 /area/mainship/squads/delta)
@@ -12131,9 +12047,7 @@
 /area/mainship/shipboard/firing_range)
 "UV" = (
 /obj/machinery/door_control{
-	id = 1004;
-	pixel_w = 0;
-	pixel_z = -7
+	id = 1004
 	},
 /turf/closed/wall,
 /area/mainship/living/pilotbunks)
@@ -12489,8 +12403,7 @@
 /area/mainship/shipboard/firing_range)
 "YU" = (
 /obj/machinery/door_control{
-	id = 1001;
-	pixel_z = 8
+	id = 1001
 	},
 /turf/closed/wall,
 /area/mainship/squads/bravo)

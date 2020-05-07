@@ -26,9 +26,6 @@
 	var/list/req_access = null
 	var/list/req_one_access = null
 
-	//Don't directly use these two, please. No: magic numbers, Yes: defines.
-	var/req_one_access_txt = "0"
-	var/req_access_txt = "0"
 
 /obj/Initialize()
 	. = ..()
@@ -41,6 +38,21 @@
 
 	if(obj_integrity == null)
 		obj_integrity = max_integrity
+
+	if(LAZYLEN(req_access))
+		var/txt_access = req_access.Join("-")
+		if(!GLOB.all_req_access[txt_access])
+			GLOB.all_req_access[txt_access] = req_access
+		else
+			req_access = GLOB.all_req_access[txt_access]
+
+	if(LAZYLEN(req_one_access))
+		var/txt_access = req_one_access.Join("-")
+		if(!GLOB.all_req_one_access[txt_access])
+			GLOB.all_req_one_access[txt_access] = req_one_access
+		else
+			req_one_access = GLOB.all_req_one_access[txt_access]
+
 
 /obj/proc/setAnchored(anchorvalue)
 	SEND_SIGNAL(src, COMSIG_OBJ_SETANCHORED, anchorvalue)

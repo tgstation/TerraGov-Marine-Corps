@@ -237,6 +237,11 @@
 	density = FALSE
 
 
+/obj/structure/closet/secure_closet/evidence
+	name = "Secure Evidence Locker"
+	req_access = list(ACCESS_MARINE_BRIG)
+
+
 /obj/structure/closet/secure_closet/detective
 	name = "Detective's Cabinet"
 	req_access = list(ACCESS_MARINE_BRIG)
