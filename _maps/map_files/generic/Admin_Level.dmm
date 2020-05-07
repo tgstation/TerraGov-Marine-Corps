@@ -249,8 +249,7 @@
 "aN" = (
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor{
 	dir = 2;
-	name = "\improper Centcomm Security";
-	req_access = list(200)
+	name = "\improper Centcomm Security"
 	},
 /turf/open/floor/mainship{
 	dir = 8;
@@ -387,11 +386,7 @@
 	},
 /area/centcom)
 "bk" = (
-/obj/machinery/door/airlock/command{
-	name = "Thunderdome Administration";
-	req_access = null;
-	req_access_txt = "102"
-	},
+/obj/machinery/door/airlock/command/thunderdome,
 /turf/open/floor,
 /area/tdome)
 "bl" = (
@@ -694,8 +689,7 @@
 "ci" = (
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor{
 	dir = 2;
-	name = "\improper Centcomm Security";
-	req_access = list(200)
+	name = "\improper Centcomm Security"
 	},
 /turf/open/floor/mainship{
 	dir = 4;
@@ -705,8 +699,7 @@
 /area/centcom)
 "cj" = (
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor{
-	dir = 2;
-	req_access = null
+	dir = 2
 	},
 /turf/open/floor/mainship{
 	dir = 4;
@@ -761,24 +754,12 @@
 	icon_state = "cargo"
 	},
 /area/centcom/supplypod/loading/ert)
-"cs" = (
-/obj/machinery/door/airlock/multi_tile/mainship/comdoor{
-	name = "\improper Cargo Pads";
-	req_access_txt = 200
-	},
-/turf/open/floor/mainship,
-/area/centcom)
 "ct" = (
-/obj/machinery/door/airlock/multi_tile/mainship/comdoor{
-	name = "\improper Cargo Pads";
-	req_access_txt = null
-	},
+/obj/machinery/door/airlock/multi_tile/mainship/comdoor/cargopads,
 /turf/open/floor/mainship,
 /area/centcom)
 "cu" = (
-/obj/machinery/door/airlock/multi_tile/mainship/secdoor{
-	req_access = null
-	},
+/obj/machinery/door/airlock/multi_tile/mainship/secdoor,
 /turf/open/floor/mainship,
 /area/centcom)
 "cv" = (
@@ -910,10 +891,8 @@
 	},
 /area/centcom/control)
 "ff" = (
-/obj/machinery/door/airlock/mainship/engineering{
-	dir = 1;
-	name = "\improper Server Room";
-	req_one_access_txt = null
+/obj/machinery/door/airlock/mainship/engineering/server_room{
+	dir = 1
 	},
 /turf/open/floor/mainship,
 /area/centcom/control)
@@ -989,10 +968,8 @@
 	},
 /area/centcom/supply)
 "gg" = (
-/obj/machinery/door/airlock/mainship/marine/requisitions{
-	dir = 1;
-	name = "\improper ASRS Lift";
-	req_one_access_txt = null
+/obj/machinery/door/airlock/mainship/marine/requisitions/lift{
+	dir = 1
 	},
 /turf/open/floor/mainship,
 /area/centcom/supply)
@@ -1229,10 +1206,7 @@
 	},
 /area/shuttle/distress/start_big)
 "kL" = (
-/obj/machinery/door/airlock/mainship/medical{
-	name = "Operating Theatre";
-	req_one_access_txt = "0"
-	},
+/obj/machinery/door/airlock/mainship/medical/or,
 /turf/open/floor/mainship{
 	icon_state = "plate"
 	},
@@ -1365,10 +1339,8 @@
 	},
 /area/shuttle/distress/start_big)
 "lc" = (
-/obj/machinery/door/airlock/mainship/medical{
-	dir = 2;
-	name = "Operating Theatre";
-	req_one_access_txt = "0"
+/obj/machinery/door/airlock/mainship/medical/or{
+	dir = 2
 	},
 /turf/open/floor/mainship{
 	icon_state = "plate"
@@ -11795,7 +11767,7 @@ eo
 eo
 eo
 Xu
-cs
+ct
 eo
 eo
 yW

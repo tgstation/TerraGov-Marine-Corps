@@ -360,7 +360,11 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 			stoplag()
 
 
+/datum/game_mode/proc/grant_eord_respawn(datum/dcs, mob/source)
+	source.verbs += /mob/proc/eord_respawn
+
 /datum/game_mode/proc/end_of_round_deathmatch()
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_LOGIN, .proc/grant_eord_respawn) // New mobs can now respawn into EORD
 	var/list/spawns = GLOB.deathmatch.Copy()
 
 	CONFIG_SET(flag/allow_synthetic_gun_use, TRUE)
