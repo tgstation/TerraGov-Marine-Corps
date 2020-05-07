@@ -12,7 +12,7 @@ They're all essentially identical when it comes to getting the job done.
 	var/bonus_overlay = null //Sprite pointer in ammo.dmi to an overlay to add to the gun, for extended mags, box mags, and so on
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
-	materials = list(/datum/material/metal = 1000)
+	materials = list(/datum/material/metal = 100)
 	throwforce = 2
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 2
