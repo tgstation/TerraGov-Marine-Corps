@@ -380,8 +380,7 @@
 "bj" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
-	name = "\improper Airlock";
-	req_access_txt = "0"
+	name = "\improper Airlock"
 	},
 /turf/open/floor/plating,
 /area/maintenance/apmaint)
@@ -3885,8 +3884,7 @@
 "lK" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
-	name = "\improper Airlock";
-	req_access_txt = "0"
+	name = "\improper Airlock"
 	},
 /turf/open/floor/plating,
 /area/vapor_processing/cargo_maint_s)
@@ -5673,8 +5671,7 @@
 /obj/machinery/door_control{
 	id = "secure_blast";
 	name = "Vault Access";
-	pixel_x = 25;
-	req_access_txt = "0"
+	pixel_x = 25
 	},
 /turf/open/floor,
 /area/lv624/lazarus/research)
@@ -6640,8 +6637,7 @@
 /obj/machinery/door_control{
 	id = "secure_blast";
 	name = "Vault Access";
-	pixel_x = 25;
-	req_access_txt = "0"
+	pixel_x = 25
 	},
 /turf/open/floor/plating/dmg3,
 /area/lv624/lazarus/research)

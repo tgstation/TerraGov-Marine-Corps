@@ -252,7 +252,8 @@
 	icon_on = "smartfridge"
 	icon_off = "smartfridge-off"
 	is_secure_fridge = TRUE
-	req_one_access_txt = "5;33"
+	req_one_access = list(ACCESS_MARINE_CMO, ACCESS_CIVILIAN_MEDICAL)
+
 
 /obj/machinery/smartfridge/secure/medbay/accept_check(obj/item/O as obj)
 	if(istype(O,/obj/item/reagent_containers/glass/))
@@ -268,7 +269,7 @@
 	name = "\improper Refrigerated Virus Storage"
 	desc = "A refrigerated storage unit for storing viral material."
 	is_secure_fridge = TRUE
-	req_access_txt = "39"
+	req_access = list(ACCESS_CIVILIAN_MEDICAL)
 	icon_state = "smartfridge"
 	icon_on = "smartfridge"
 	icon_off = "smartfridge-off"

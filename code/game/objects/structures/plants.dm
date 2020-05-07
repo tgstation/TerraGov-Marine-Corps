@@ -35,6 +35,7 @@
 
 
 /obj/structure/bush/Crossed(atom/movable/AM)
+	. = ..()
 	if(!stump)
 		if(isliving(AM))
 			var/mob/living/L = AM

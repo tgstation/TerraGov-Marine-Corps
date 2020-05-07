@@ -15,42 +15,18 @@
 
 
 /obj/proc/check_access(obj/item/card/id/ID)
-	//These generations have been moved out of /obj/New() because they were slowing down the creation of objects that never even used the access system.
-	var/i
-	if(!req_access)
-		req_access = list()
-		if(req_access_txt)
-			var/list/req_access_str = text2list(req_access_txt, ";")
-			var/n
-			for(i in req_access_str)
-				n = text2num(i)
-				if(!n)
-					continue
-				req_access += n
-
-	if(!req_one_access)
-		req_one_access = list()
-		if(req_one_access_txt)
-			var/list/req_one_access_str = text2list(req_one_access_txt, ";")
-			var/n
-			for(i in req_one_access_str)
-				n = text2num(i)
-				if(!n)
-					continue
-				req_one_access += n
-
-	if(!length(req_access) && !length(req_one_access))
+	if(!LAZYLEN(req_access) && !LAZYLEN(req_one_access))
 		return TRUE
 
 	if(!istype(ID))
 		return FALSE
 
-	for(i in req_access)
+	for(var/i in req_access)
 		if(!(i in ID.access))
 			return FALSE
 
-	if(length(req_one_access))
-		for(i in req_one_access)
+	if(LAZYLEN(req_one_access))
+		for(var/i in req_one_access)
 			if(!(i in ID.access))
 				continue
 			return TRUE
