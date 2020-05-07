@@ -73,9 +73,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
 	req_access = null
-	req_access_txt = "0"
 	req_one_access = null
-	req_one_access_txt = "0"
 	interaction_flags = INTERACT_MACHINE_NANO
 
 	idle_power_usage = 60
@@ -853,9 +851,9 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	req_access = list(ACCESS_MARINE_SMARTPREP)
 
 	listed_products = list(
-		/obj/item/storage/box/m56_system = list(CAT_ESS, "Essential Smartgunner Set", 0, "white"),
+		/obj/item/storage/box/t26_system = list(CAT_ESS, "Essential Smartgunner Set", 0, "white"),
 
-		/obj/item/smartgun_powerpack = list(CAT_SPEAMM, "M56 powerpack", 45, "black"),
+		/obj/item/ammo_magazine/standard_smartmachinegun = list(CAT_SPEAMM, "T26 ammo drum", 45, "black"),
 
 		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
 		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
