@@ -28,7 +28,7 @@
 	var/cooldown = 0 //shield bash cooldown. based on world.time
 
 
-/obj/item/weapon/shield/ballistic/examine(mob/user, distance, infix, suffix)
+/obj/item/weapon/shield/riot/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	var/health_status = (obj_integrity * 100) / max_integrity
 	switch(health_status)
@@ -42,7 +42,6 @@
 			to_chat(user, "<span class='notice'>It appears in decent condition, with some damage marks.</span>")
 		if(80 to 100)
 			to_chat(user, "<span class='notice'>It appears in perfect condition.</span>")
-
 
 /obj/item/weapon/shield/riot/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/baton) && world.time >= cooldown)
