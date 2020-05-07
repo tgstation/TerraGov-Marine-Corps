@@ -28,7 +28,7 @@
 	var/cooldown = 0 //shield bash cooldown. based on world.time
 
 
-/obj/item/weapon/shield/riot/examine(mob/user, distance, infix, suffix)
+/obj/item/weapon/shield/ballistic/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	var/health_status = (obj_integrity * 100) / max_integrity
 	switch(health_status)
@@ -42,7 +42,7 @@
 			to_chat(user, "<span class='notice'>It appears in decent condition, with some damage marks.</span>")
 		if(80 to 100)
 			to_chat(user, "<span class='notice'>It appears in perfect condition.</span>")
-	
+
 
 /obj/item/weapon/shield/riot/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/baton) && world.time >= cooldown)
@@ -89,7 +89,7 @@
 	name = "Ballistic shield"
 	desc = "A mlitary grade ballistic shield adept at blocking bullets and melee objects from connecting with the shield wielder."
 	icon = 'icons/obj/items/weapons.dmi'
-	icon_state = "riot"
+	icon_state = "ballistic_shield"
 	max_integrity = 200
 	flags_equip_slot = ITEM_SLOT_BACK
 	force = 5
@@ -99,12 +99,15 @@
 	w_class = WEIGHT_CLASS_BULKY
 	materials = list(/datum/material/metal = 1000)
 	attack_verb = list("shoved", "bashed")
-	armor = list("melee" = 40, "bullet" = 20, "laser" = 0, "energy" = 100, "bomb" = 0, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 0)
 	hit_sound = 'sound/effects/grillehit.ogg'
 	destroy_sound = 'sound/effects/glassbr3.ogg'
 	var/cooldown = 0 //shield bash cooldown. based on world.time
 
-	/obj/item/weapon/shield/ballistic/examine(mob/user, distance, infix, suffix)
+/obj/item/weapon/shield/ballistic/set_shield()
+    AddComponent(/datum/component/shield, SHIELD_PARENT_INTEGRITY,shield_cover = list("melee" = 100, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 80, "bio" = 30, "rad" = 0, "fire" = 80, "acid" = 80))
+
+
+/obj/item/weapon/shield/ballistic/examine(mob/user, distance, infix, suffix)
 	. = ..()
 	var/health_status = (obj_integrity * 100) / max_integrity
 	switch(health_status)
@@ -118,7 +121,6 @@
 			to_chat(user, "<span class='notice'>It appears in decent condition, with some damage marks.</span>")
 		if(80 to 100)
 			to_chat(user, "<span class='notice'>It appears in perfect condition.</span>")
-	
 
 /obj/item/weapon/shield/ballistic/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/weapon/baton) && world.time >= cooldown)
