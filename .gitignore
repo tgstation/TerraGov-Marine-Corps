@@ -24,6 +24,3 @@ tools/BalanceTool/raw.json
 #extra map stuff
 /_maps/**/backup/
 /_maps/templates.dm
-
-# DM Doc ignores
-dmdoc/*
