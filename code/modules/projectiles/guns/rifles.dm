@@ -627,6 +627,7 @@
 	gun_skill_category = GUN_SKILL_SHOTGUNS
 
 	fire_delay = 1.1 SECONDS
+	accuracy_mult = 1.15
 	burst_amount = 1
 
 //-------------------------------------------------------
