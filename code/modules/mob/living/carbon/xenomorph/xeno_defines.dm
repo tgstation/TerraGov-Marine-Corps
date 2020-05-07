@@ -101,9 +101,9 @@
 
 	// *** Queen Abilities *** //
 	var/queen_leader_limit = 0 //Amount of leaders allowed
-	
+
 	var/list/actions
-		
+
 /mob/living/carbon/xenomorph
 	name = "Drone"
 	desc = "What the hell is THAT?"
@@ -127,7 +127,7 @@
 	hud_type = /datum/hud/alien
 	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD)
 	buckle_flags = NONE
-	faction = "Xeno"
+	faction = FACTION_XENO
 	initial_language_holder = /datum/language_holder/xeno
 	gib_chance = 5
 
