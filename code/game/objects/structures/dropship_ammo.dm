@@ -245,7 +245,7 @@
 	ammo_id = "k"
 	point_cost = 300
 
-/obj/structure/ship_ammo/rocket/banshee/detonate_on(turf/impact)
+/obj/structure/ship_ammo/rocket/keeper/detonate_on(turf/impact)
 	impact.ceiling_debris_check(3)
 	explosion(impact, 4, 5, 5, 6) //tighter blast radius, but more devastating near center
 	qdel(src)
@@ -272,7 +272,7 @@
 		var/list/coords = impact_coords[i]
 		var/turf/detonation_target = locate(impact.x+coords[1],impact.y+coords[2],impact.z)
 		detonation_target.ceiling_debris_check(2)
-		explosion(detonation_target, 2, 3, 4)
+		explosion(detonation_target, 2, 3, 4, adminlog = FALSE)
 	qdel(src)
 
 /obj/structure/ship_ammo/rocket/napalm
