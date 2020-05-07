@@ -173,11 +173,11 @@ SUBSYSTEM_DEF(explosions)
 		)
 
 	if(devastation_range > 0)
-		SSexplosions.highTurf[epicenter] += list(epicenter)
+		highTurf[epicenter] += list(epicenter)
 	else if(heavy_impact_range > 0)
-		SSexplosions.medTurf[epicenter] += list(epicenter)
+		medTurf[epicenter] += list(epicenter)
 	else if(light_impact_range > 0)
-		SSexplosions.lowTurf[epicenter] += list(epicenter)
+		lowTurf[epicenter] += list(epicenter)
 	else
 		if(flame_range > 0) //this proc shouldn't be used for flames only, but here we are
 			if(usr)
@@ -277,11 +277,11 @@ This way we'll be able to draw the explosion's expansion path without having to 
 	for(var/t in (turfs_by_dist - epicenter))
 		var/dist = turfs_by_dist[t]
 		if(devastation_range > dist)
-			SSexplosions.highTurf[t] += list(epicenter)
+			highTurf[t] += list(epicenter)
 		else if(heavy_impact_range > dist)
-			SSexplosions.medTurf[t] += list(epicenter)
+			medTurf[t] += list(epicenter)
 		else if(light_impact_range > dist)
-			SSexplosions.lowTurf[t] += list(epicenter)
+			lowTurf[t] += list(epicenter)
 		if(flame_range > dist)
 			flameturf += t
 		if(throw_range > dist)
