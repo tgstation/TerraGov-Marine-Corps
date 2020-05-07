@@ -328,9 +328,9 @@
 	playsound(src.loc, 'sound/weapons/ring.ogg', 200, FALSE)
 	boom = TRUE
 	if(det_mode == TRUE) //If we're on demolition mode, big boom.
-		explosion(get_turf(plant_target), 2, 4, 5, 6)
+		explosion(plant_target, 3, 5, 6, 6)
 	else //if we're not, focused boom.
-		explosion(get_turf(plant_target), 1, 1, 2, 3)
+		explosion(plant_target, 2, 2, 3, 3, throw_range = FALSE)
 	if(plant_target)
 		if(isobj(plant_target))
 			plant_target = null

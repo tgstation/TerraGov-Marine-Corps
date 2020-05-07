@@ -9,15 +9,13 @@
 	underslug_launchable = TRUE
 
 /obj/item/explosive/grenade/frag/prime()
-	spawn(0)
-		explosion(loc, -1, -1, 3)
-		qdel(src)
-	return
+	explosion(loc, light_impact_range = 4)
+	qdel(src)
 
 /obj/item/explosive/grenade/frag/flamer_fire_act()
 	var/turf/T = loc
 	qdel(src)
-	explosion(T, -1, -1, 3)
+	explosion(T, light_impact_range = 4)
 
 
 
@@ -52,10 +50,8 @@
 	underslug_launchable = FALSE
 
 /obj/item/explosive/grenade/frag/PMC/prime()
-	spawn(0)
-		explosion(loc, -1, -1, 4)
-		qdel(src)
-	return
+	explosion(loc, light_impact_range = 5)
+	qdel(src)
 
 
 /obj/item/explosive/grenade/frag/m15
@@ -67,10 +63,8 @@
 	underslug_launchable = FALSE
 
 /obj/item/explosive/grenade/frag/m15/prime()
-	spawn(0)
-		explosion(loc, -1, -1, 4)
-		qdel(src)
-	return
+	explosion(loc, light_impact_range = 5)
+	qdel(src)
 
 
 /obj/item/explosive/grenade/frag/stick
@@ -87,10 +81,8 @@
 	underslug_launchable = FALSE
 
 /obj/item/explosive/grenade/frag/stick/prime()
-	spawn(0)
-		explosion(src.loc,-1,-1,3)
-		del(src)
-	return
+	explosion(loc, light_impact_range = 4)
+	del(src)
 
 
 /obj/item/explosive/grenade/frag/upp
@@ -104,10 +96,9 @@
 	underslug_launchable = FALSE
 
 /obj/item/explosive/grenade/frag/upp/prime()
-	spawn(0)
-		explosion(src.loc,-1,-1,3)
-		del(src)
-	return
+	explosion(loc, light_impact_range = 4)
+	del(src)
+
 
 /obj/item/explosive/grenade/frag/sectoid
 	desc = "An odd, squishy, organ-like grenade. It will explode 3 seconds after squeezing it."
@@ -117,8 +108,9 @@
 	underslug_launchable = FALSE
 
 /obj/item/explosive/grenade/frag/sectoid/prime()
-	explosion(loc, -1, -1, 5)
+	explosion(loc, light_impact_range = 6)
 	qdel(src)
+
 
 /obj/item/explosive/grenade/incendiary
 	name = "\improper M40 HIDP incendiary grenade"
@@ -254,20 +246,17 @@
 	underslug_launchable = TRUE
 
 /obj/item/explosive/grenade/impact/prime()
-	spawn(0)
-		explosion(loc, -1, -1, 1, 2)
-		qdel(src)
-	return
+	explosion(loc, light_impact_range = 3)
+	qdel(src)
 
 /obj/item/explosive/grenade/impact/flamer_fire_act()
-	var/turf/T = loc
+	explosion(loc, light_impact_range = 3)
 	qdel(src)
-	explosion(T, -1, -1, 1, 2)
 
 /obj/item/explosive/grenade/impact/throw_impact(atom/hit_atom, speed)
 	. = ..()
 	if(launched && active && !istype(hit_atom, /turf/open)) //Only contact det if active, we actually hit something, and we're fired from a grenade launcher.
-		explosion(loc, -1, -1, 1, 2)
+		explosion(loc, light_impact_range = 1, flash_range = 2)
 		qdel(src)
 
 

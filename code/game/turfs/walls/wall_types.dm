@@ -261,7 +261,6 @@
 	icon_state = "gold0"
 	walltype = "gold"
 	mineral = "gold"
-	explosion_block = 0 //gold is a soft metal you dingus.
 
 /turf/closed/wall/mineral/silver
 	name = "silver wall"
@@ -278,7 +277,6 @@
 	icon_state = "diamond0"
 	walltype = "diamond"
 	mineral = "diamond"
-	explosion_block = 3
 
 
 /turf/closed/wall/mineral/sandstone
@@ -287,7 +285,6 @@
 	icon_state = "sandstone0"
 	walltype = "sandstone"
 	mineral = "sandstone"
-	explosion_block = 0
 
 /turf/closed/wall/mineral/uranium
 	name = "uranium wall"
@@ -369,7 +366,7 @@
 	icon = 'icons/turf/wood.dmi'
 	icon_state = "wood0"
 	walltype = "wood"
-	explosion_block = 0
+	explosion_block = 1
 
 /turf/closed/wall/wood/handle_icon_junction(junction)
 	if (!walltype)

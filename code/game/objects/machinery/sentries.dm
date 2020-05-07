@@ -737,7 +737,7 @@
 
 /obj/machinery/marine_turret/deconstruct(disassembled = TRUE)
 	if(!disassembled)
-		explosion(loc, -1, -1, 2, 0)
+		explosion(loc, light_impact_range = 3)
 	return ..()
 
 

@@ -9,7 +9,7 @@
 	max_temperature = 6000
 
 	walltype = "rwall"
-	explosion_block = 2
+	explosion_block = 4
 
 /turf/closed/wall/r_wall/can_be_dissolved()
 	if(resistance_flags & INDESTRUCTIBLE)

@@ -60,7 +60,7 @@
 /obj/docking_port/mobile/escape_pod/proc/explode()
 	var/turf/T = return_center_turf()
 	var/average_dimension = (width+height)*0.25
-	explosion(T, -1, -1, average_dimension, average_dimension)
+	explosion(T, 0, 0, average_dimension, average_dimension)
 	launch_status = NOLAUNCH
 	open_all_doors()
 	SSshuttle.escape_pods -= src // no longer a valid pod

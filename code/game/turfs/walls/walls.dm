@@ -7,7 +7,7 @@
 	icon_state = "metal"
 	baseturfs = /turf/open/floor/plating
 	opacity = TRUE
-	explosion_block = 1
+	explosion_block = 2
 
 	tiles_with = list(
 		/turf/closed/wall,

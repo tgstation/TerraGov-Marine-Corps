@@ -86,20 +86,23 @@ SUBSYSTEM_DEF(explosions)
 // 5 explosion power is a (0, 1, 3) explosion.
 // 1 explosion power is a (0, 0, 1) explosion.
 
-/proc/explosion(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = TRUE, flame_range = 0, silent = FALSE, smoke = FALSE)
-	return SSexplosions.explode(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog, flame_range, silent, smoke)
+/proc/explosion(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range = 0, throw_range, adminlog = TRUE, silent = FALSE, smoke = FALSE)
+	return SSexplosions.explode(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range, throw_range, adminlog, silent, smoke)
 
-/datum/controller/subsystem/explosions/proc/explode(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog, flame_range, silent, smoke)
+/datum/controller/subsystem/explosions/proc/explode(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range, throw_range, adminlog, silent, smoke)
 	epicenter = get_turf(epicenter)
 	if(!epicenter)
 		return
 
 	if(isnull(flash_range))
 		flash_range = devastation_range
+	
+	if(isnull(throw_range))
+		throw_range = max(devastation_range, heavy_impact_range, light_impact_range)
 
 	var/orig_max_distance = max(devastation_range, heavy_impact_range, light_impact_range, flash_range, flame_range)
 
-	var/max_range = max(devastation_range, heavy_impact_range, light_impact_range, flame_range)
+	var/max_range = max(devastation_range, heavy_impact_range, light_impact_range, flame_range, throw_range)
 	var/started_at = REALTIMEOFDAY
 	if(adminlog)
 		message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range], [flame_range]) in [ADMIN_VERBOSEJMP(epicenter)]")
@@ -156,8 +159,18 @@ SUBSYSTEM_DEF(explosions)
 		for(var/mob/living/carbon/carbon_viewers in viewers(flash_range, epicenter))
 			carbon_viewers.flash_eyes()
 
-	if(flame_range)
-		flameturf += epicenter
+	var/list/turfs_in_range = block(
+		locate(
+			max(epicenter.x - max_range, 1),
+			max(epicenter.y - max_range, 1),
+			epicenter.z
+			),
+		locate(
+			min(epicenter.x + max_range, world.maxx),
+			min(epicenter.y + max_range, world.maxy),
+			epicenter.z
+			)
+		)
 
 	var/max_dmg_range
 
@@ -173,21 +186,22 @@ SUBSYSTEM_DEF(explosions)
 		max_dmg_range = EXPLODE_LIGHT
 		SSexplosions.highTurf[epicenter] += list(epicenter)
 		SSexplosions.highTurf[epicenter][epicenter] = list(0, light_impact_range)
-	else if(flame_range <= 0)
-		return //Our job is done here.
+	else
+		if(flame_range > 0) //this proc shouldn't be used for flames only, but here we are
+			if(usr)
+				to_chat(usr, "<span class='narsie'>Stop using explosions for memes!</span>")
+			flameturf += turfs_in_range
+		if(throw_range > 0) //admemes, what have you done
+			if(usr)
+				to_chat(usr, "<span class='narsie'>Stop using explosions for memes!</span>")
+			for(var/t in turfs_in_range)
+				var/turf/throw_turf = t
+				throwTurf[throw_turf] += list(epicenter)
+				throwTurf[throw_turf][epicenter] = list(throw_range, get_dir(epicenter, throw_turf))
+		return //Our job here is done.
 
-	var/list/turfs_in_range = block(
-		locate(
-			max(epicenter.x - max_range, 1),
-			max(epicenter.y - max_range, 1),
-			epicenter.z
-			),
-		locate(
-			min(epicenter.x + max_range, world.maxx),
-			min(epicenter.y + max_range, world.maxy),
-			epicenter.z
-			)
-		)
+	if(flame_range)
+		flameturf += epicenter
 
 	var/current_exp_block = epicenter.density ? epicenter.explosion_block : 0
 	for(var/obj/blocking_object in epicenter)
@@ -195,6 +209,8 @@ SUBSYSTEM_DEF(explosions)
 			continue
 			current_exp_block += ( (blocking_object.explosion_block == EXPLOSION_BLOCK_PROC) ? blocking_object.GetExplosionBlock(0) : blocking_object.explosion_block ) //0 is the result of get_dir between two atoms on the same tile.
 
+	var/list/turfs_by_dist = list()
+	turfs_by_dist[epicenter] = current_exp_block
 	turfs_in_range[epicenter] = current_exp_block
 
 	throwTurf[epicenter] += list(epicenter)
@@ -202,69 +218,97 @@ SUBSYSTEM_DEF(explosions)
 
 	switch(max_dmg_range)
 		if(EXPLODE_DEVASTATE)
-			epicenter.ex_act(EXPLODE_DEVASTATE, 0, devastation_range)
+			SSexplosions.highTurf[epicenter] += list(epicenter)
+			//epicenter.ex_act(EXPLODE_DEVASTATE, 0, devastation_range)
 		if(EXPLODE_HEAVY)
-			epicenter.ex_act(EXPLODE_HEAVY, 0, heavy_impact_range)
+			SSexplosions.medTurf[epicenter] += list(epicenter)
+			//epicenter.ex_act(EXPLODE_HEAVY, 0, heavy_impact_range)
 		if(EXPLODE_LIGHT)
-			epicenter.ex_act(EXPLODE_LIGHT, 0, light_impact_range)
+			SSexplosions.lowTurf[epicenter] += list(epicenter)
+			//epicenter.ex_act(EXPLODE_LIGHT, 0, light_impact_range)
+
+/*
+We'll store how much each turf blocks the explosion's movement in turfs_in_range[turf] and how much movement is needed to reach it in turfs_by_dist[turf].
+This way we'll be able to draw the explosion's expansion path without having to waste time processing the edge turfs, scanning their contents.
+*/
 
 	for(var/t in turfs_in_range)
-		if(turfs_in_range[t]) //Already processed.
+		if(turfs_by_dist[t]) //Already processed.
 			continue
 		var/turf/affected_turf = t
-		var/dist = 0
+		var/dist = turfs_in_range[epicenter]
 		var/turf/expansion_wave_loc = epicenter
 
-		while(expansion_wave_loc != affected_turf)
-			if(turfs_in_range[expansion_wave_loc])
-				dist += turfs_in_range[expansion_wave_loc]
+		do
+			var/expansion_dir = get_dir(expansion_wave_loc, affected_turf)
+			if(ISDIAGONALDIR(expansion_dir)) //If diagonal we'll try to choose the easy path, even if it might be longer. Damn, we're lazy.
+				var/turf/step_NS = get_step(expansion_wave_loc, expansion_dir & (NORTH|SOUTH))
+				if(!turfs_in_range[step_NS])
+					current_exp_block = step_NS.density ? step_NS.explosion_block : 0
+					for(var/obj/blocking_object in step_NS)
+						if(!blocking_object.density)
+							continue
+						current_exp_block += ( (blocking_object.explosion_block == EXPLOSION_BLOCK_PROC) ? blocking_object.GetExplosionBlock(get_dir(epicenter, expansion_wave_loc)) : blocking_object.explosion_block )
+					turfs_in_range[step_NS] = current_exp_block
+
+				var/turf/step_EW = get_step(expansion_wave_loc, expansion_dir & (EAST|WEST))
+				if(!turfs_in_range[step_EW])
+					current_exp_block = step_EW.density ? step_EW.explosion_block : 0
+					for(var/obj/blocking_object in step_EW)
+						if(!blocking_object.density)
+							continue
+						current_exp_block += ( (blocking_object.explosion_block == EXPLOSION_BLOCK_PROC) ? blocking_object.GetExplosionBlock(get_dir(epicenter, expansion_wave_loc)) : blocking_object.explosion_block )
+					turfs_in_range[step_EW] = current_exp_block
+
+				if(turfs_in_range[step_NS] < turfs_in_range[step_EW])
+					expansion_wave_loc = step_NS
+				else if(turfs_in_range[step_NS] > turfs_in_range[step_EW])
+					expansion_wave_loc = step_EW
+				else if(abs(expansion_wave_loc.x - affected_turf.x) < abs(expansion_wave_loc.y - affected_turf.y)) //Both directions offer the same resistance. Lets check if the direction pends towards either cardinal.
+					expansion_wave_loc = step_NS
+				else //Either perfect diagonal, in which case it doesn't matter, or leaning towards the X axis.
+					expansion_wave_loc = step_EW
 			else
+				expansion_wave_loc = get_step(expansion_wave_loc, expansion_dir)
+
+			dist++
+
+			if(isnull(turfs_in_range[expansion_wave_loc]))
 				current_exp_block = expansion_wave_loc.density ? expansion_wave_loc.explosion_block : 0
 				for(var/obj/blocking_object in expansion_wave_loc)
 					if(!blocking_object.density)
 						continue
 					current_exp_block += ( (blocking_object.explosion_block == EXPLOSION_BLOCK_PROC) ? blocking_object.GetExplosionBlock(get_dir(epicenter, expansion_wave_loc)) : blocking_object.explosion_block )
-				dist += current_exp_block
-				turfs_in_range[expansion_wave_loc] = dist
-				if(dist < devastation_range)
-					SSexplosions.highTurf[expansion_wave_loc] += list(epicenter)
-					SSexplosions.highTurf[expansion_wave_loc][epicenter] = list(dist, devastation_range)
-				else if(dist < heavy_impact_range)
-					SSexplosions.medTurf[expansion_wave_loc] += list(epicenter)
-					SSexplosions.medTurf[expansion_wave_loc][epicenter] = list(dist, heavy_impact_range)
-				else if(dist < light_impact_range)
-					SSexplosions.lowTurf[expansion_wave_loc] += list(epicenter)
-					SSexplosions.lowTurf[expansion_wave_loc][epicenter] = list(dist, light_impact_range)
-				else
-					break //Explosion ran out of gas, no use continuing.
+				turfs_in_range[expansion_wave_loc] = current_exp_block
 
-				if(dist < flame_range)
-					flameturf += expansion_wave_loc
+			if(isnull(turfs_by_dist[expansion_wave_loc]) || turfs_by_dist[expansion_wave_loc] > dist) //Either not processed yet or we found a better path.
+				turfs_by_dist[expansion_wave_loc] = dist
 
-				throwTurf[expansion_wave_loc] += list(epicenter)
-				throwTurf[expansion_wave_loc][epicenter] =  list(max_range - dist, get_dir(epicenter, expansion_wave_loc))
+			dist += turfs_in_range[expansion_wave_loc]
 
-			expansion_wave_loc = get_step_towards(expansion_wave_loc, affected_turf)
+			if(dist >= max_range)
+				break //Explosion ran out of gas, no use continuing.
+		while(expansion_wave_loc != affected_turf)
 
-		turfs_in_range[affected_turf] = dist
+		if(isnull(turfs_by_dist[affected_turf]))
+			turfs_by_dist[affected_turf] = 9999 //Edge turfs, they don't even border the explosion. We won't bother calculating their distance as it's irrelevant.
 
-		if(dist < devastation_range)
-			SSexplosions.highTurf[affected_turf] += list(epicenter)
-			SSexplosions.highTurf[affected_turf][epicenter] = list(dist, devastation_range)
-		else if(dist < heavy_impact_range)
-			SSexplosions.medTurf[affected_turf] += list(epicenter)
-			SSexplosions.medTurf[affected_turf][epicenter] = list(dist, heavy_impact_range)
-		else if(dist < light_impact_range)
-			SSexplosions.lowTurf[affected_turf] += list(epicenter)
-			SSexplosions.lowTurf[affected_turf][epicenter] = list(dist, light_impact_range)
-		else
-			continue
-
-		if(dist < flame_range)
-			flameturf += affected_turf
-
-		throwTurf[affected_turf] += list(epicenter)
-		throwTurf[affected_turf][epicenter] = list(max_range - dist, get_dir(epicenter, affected_turf))
+	for(var/t in turfs_by_dist)
+		var/dist = turfs_by_dist[t]
+		if(devastation_range > dist)
+			SSexplosions.highTurf[t] += list(epicenter)
+			SSexplosions.highTurf[t][epicenter] = list(dist, devastation_range)
+		else if(heavy_impact_range > dist)
+			SSexplosions.medTurf[t] += list(epicenter)
+			SSexplosions.medTurf[t][epicenter] = list(dist, heavy_impact_range)
+		else if(light_impact_range > dist)
+			SSexplosions.lowTurf[t] += list(epicenter)
+			SSexplosions.lowTurf[t][epicenter] = list(dist, light_impact_range)
+		if(flame_range > dist)
+			flameturf += t
+		if(throw_range > dist)
+			throwTurf[t] += list(epicenter)
+			throwTurf[t][epicenter] =  list(max_range - dist, get_dir(epicenter, t))
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_EXPLOSION, epicenter, devastation_range, heavy_impact_range, light_impact_range, (REALTIMEOFDAY - started_at) * 0.1)
 

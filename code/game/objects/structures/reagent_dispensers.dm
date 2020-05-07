@@ -159,13 +159,12 @@
 		return
 	exploding = TRUE
 	if (reagents.total_volume > 500)
-		explosion(src.loc,0,0,3, flame_range = 4)
+		explosion(loc, light_impact_range = 4, flame_range = 4)
 	else if (reagents.total_volume > 100)
-		explosion(src.loc,0,0,2, flame_range = 3)
+		explosion(loc, light_impact_range = 3, flame_range = 3)
 	else
-		explosion(src.loc,0,0,1, flame_range = 2)
-	if(src)
-		qdel(src)
+		explosion(loc, light_impact_range = 2, flame_range = 2)
+	qdel(src)
 
 /obj/structure/reagent_dispensers/fueltank/fire_act(temperature, volume)
 	if(temperature > T0C+500)

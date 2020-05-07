@@ -366,7 +366,7 @@
 	icon_state = "ob_warhead_1"
 
 /obj/structure/ob_ammo/warhead/explosive/warhead_impact(turf/target, inaccuracy_amt = 0)
-	explosion(target, 4 - inaccuracy_amt, 6 - inaccuracy_amt, 9 - inaccuracy_amt, 11 - inaccuracy_amt)
+	explosion(target, 5 - inaccuracy_amt, 7 - inaccuracy_amt, 10 - inaccuracy_amt, 11 - inaccuracy_amt)
 
 
 
@@ -396,7 +396,7 @@
 	var/total_amt = max(25 - inaccuracy_amt, 20)
 	for(var/i = 1 to total_amt)
 		var/turf/U = pick_n_take(turf_list)
-		explosion(U, 1, 3, 5, 6, TRUE) //rocket barrage
+		explosion(U, 1, 4, 6, 6, throw_range = 0, adminlog = FALSE) //rocket barrage
 		sleep(1)
 
 /obj/structure/ob_ammo/ob_fuel
