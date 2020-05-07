@@ -559,8 +559,6 @@
 
 	var/choice = input("What size explosion would you like to produce?", "Drop Bomb") as null|anything in list("CANCEL", "Small Bomb", "Medium Bomb", "Big Bomb", "Maxcap", "Custom Bomb")
 	switch(choice)
-		if("CANCEL")
-			return
 		if("Small Bomb")
 			explosion(usr.loc, 1, 2, 3, 3)
 		if("Medium Bomb")
@@ -575,15 +573,20 @@
 			var/input_light_impact_range = input("Light impact range (in tiles):", "Drop Bomb") as null|num
 			var/input_flash_range = input("Flash range (in tiles):", "Drop Bomb") as null|num
 			var/input_flame_range = input("Flame range (in tiles):", "Drop Bomb") as null|num
-			if(isnull(input_devastation_range) || isnull(input_heavy_impact_range) || isnull(input_light_impact_range) || isnull(input_flash_range) || isnull(input_flame_range))
+			var/input_throw_range = input("Throw range (in tiles):", "Drop Bomb") as null|num
+			if(input_devastation_range < 1 && input_heavy_impact_range < 1 && input_light_impact_range < 1 && input_flash_range < 1 && input_flame_range < 1 && input_throw_range < 1)
 				return
 			var/world_max = max(world.maxy, world.maxy)
-			input_devastation_range = CLAMP(input_devastation_range, -1, world_max)
-			input_heavy_impact_range = CLAMP(input_heavy_impact_range, -1, world_max)
-			input_light_impact_range = CLAMP(input_light_impact_range, -1, world_max)
-			input_flash_range = CLAMP(input_flash_range, -1, world_max)
-			input_flame_range = CLAMP(input_flame_range, -1, world_max)
-			explosion(usr.loc, input_devastation_range, input_heavy_impact_range, input_light_impact_range, input_flash_range, flame_range = input_flame_range)
+			input_devastation_range = CLAMP(input_devastation_range, 0, world_max)
+			input_heavy_impact_range = CLAMP(input_heavy_impact_range, 0, world_max)
+			input_light_impact_range = CLAMP(input_light_impact_range, 0, world_max)
+			input_flash_range = CLAMP(input_flash_range, 0, world_max)
+			input_flame_range = CLAMP(input_flame_range, 0, world_max)
+			switch(tgalert(usr, "Deploy payload?", "DIR: [input_devastation_range] | HIR: [input_heavy_impact_range] | LIR: [input_light_impact_range] | FshR: [input_flash_range] | FlmR: [input_flame_range] | ThR: [input_throw_range]", "Launch!", "Cancel"))
+				if("Launch!")
+					explosion(usr.loc, input_devastation_range, input_heavy_impact_range, input_light_impact_range, input_flash_range, input_flame_range, input_throw_range)
+				else
+					return
 			choice = "[choice] ([input_devastation_range], [input_heavy_impact_range], [input_light_impact_range], [input_flash_range], [input_flame_range])" //For better logging.
 		else
 			return
