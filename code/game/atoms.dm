@@ -309,7 +309,7 @@ directive is properly returned.
 	return FALSE
 
 
-/atom/proc/contents_explosion(severity, epicenter_dist, impact_range)
+/atom/proc/contents_explosion(severity)
 	return //For handling the effects of explosions on contents that would not normally be effected
 
 

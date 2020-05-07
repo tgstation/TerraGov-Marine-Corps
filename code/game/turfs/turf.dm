@@ -845,7 +845,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	return TRUE
 
 
-/turf/contents_explosion(severity, epicenter_dist, impact_range)
+/turf/contents_explosion(severity)
 	for(var/thing in contents)
 		var/atom/movable/thing_in_turf = thing
 		if(thing_in_turf.resistance_flags & INDESTRUCTIBLE)
@@ -853,28 +853,22 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 		switch(severity)
 			if(EXPLODE_DEVASTATE)
 				SSexplosions.highMovAtom[thing_in_turf] += list(src)
-				SSexplosions.highMovAtom[thing_in_turf][src] = list(epicenter_dist, impact_range)
 				if(thing_in_turf.flags_atom & PREVENT_CONTENTS_EXPLOSION)
 					continue
 				for(var/a in thing_in_turf.contents)
 					SSexplosions.highMovAtom[a] += list(src)
-					SSexplosions.highMovAtom[a][src] = list(epicenter_dist, impact_range)
 			if(EXPLODE_HEAVY)
 				SSexplosions.medMovAtom[thing_in_turf] += list(src)
-				SSexplosions.medMovAtom[thing_in_turf][src] = list(epicenter_dist, impact_range)
 				if(thing_in_turf.flags_atom & PREVENT_CONTENTS_EXPLOSION)
 					continue
 				for(var/a in thing_in_turf.contents)
 					SSexplosions.medMovAtom[a] += list(src)
-					SSexplosions.medMovAtom[a][src] = list(epicenter_dist, impact_range)
 			if(EXPLODE_LIGHT)
 				SSexplosions.lowMovAtom[thing_in_turf] += list(src)
-				SSexplosions.lowMovAtom[thing_in_turf][src] = list(epicenter_dist, impact_range)
 				if(thing_in_turf.flags_atom & PREVENT_CONTENTS_EXPLOSION)
 					continue
 				for(var/a in thing_in_turf.contents)
 					SSexplosions.lowMovAtom[a] += list(src)
-					SSexplosions.lowMovAtom[a][src] = list(epicenter_dist, impact_range)
 
 
 /turf/vv_edit_var(var_name, new_value)

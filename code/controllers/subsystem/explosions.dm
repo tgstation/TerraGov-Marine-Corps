@@ -172,20 +172,12 @@ SUBSYSTEM_DEF(explosions)
 			)
 		)
 
-	var/max_dmg_range
-
 	if(devastation_range > 0)
-		max_dmg_range = EXPLODE_DEVASTATE
 		SSexplosions.highTurf[epicenter] += list(epicenter)
-		SSexplosions.highTurf[epicenter][epicenter] = list(0, devastation_range)
 	else if(heavy_impact_range > 0)
-		max_dmg_range = EXPLODE_HEAVY
-		SSexplosions.highTurf[epicenter] += list(epicenter)
-		SSexplosions.highTurf[epicenter][epicenter] = list(0, heavy_impact_range)
+		SSexplosions.medTurf[epicenter] += list(epicenter)
 	else if(light_impact_range > 0)
-		max_dmg_range = EXPLODE_LIGHT
-		SSexplosions.highTurf[epicenter] += list(epicenter)
-		SSexplosions.highTurf[epicenter][epicenter] = list(0, light_impact_range)
+		SSexplosions.lowTurf[epicenter] += list(epicenter)
 	else
 		if(flame_range > 0) //this proc shouldn't be used for flames only, but here we are
 			if(usr)
@@ -216,23 +208,12 @@ SUBSYSTEM_DEF(explosions)
 	throwTurf[epicenter] += list(epicenter)
 	throwTurf[epicenter][epicenter] = list(max_range, 0) //Random direction.
 
-	switch(max_dmg_range)
-		if(EXPLODE_DEVASTATE)
-			SSexplosions.highTurf[epicenter] += list(epicenter)
-			//epicenter.ex_act(EXPLODE_DEVASTATE, 0, devastation_range)
-		if(EXPLODE_HEAVY)
-			SSexplosions.medTurf[epicenter] += list(epicenter)
-			//epicenter.ex_act(EXPLODE_HEAVY, 0, heavy_impact_range)
-		if(EXPLODE_LIGHT)
-			SSexplosions.lowTurf[epicenter] += list(epicenter)
-			//epicenter.ex_act(EXPLODE_LIGHT, 0, light_impact_range)
-
 /*
 We'll store how much each turf blocks the explosion's movement in turfs_in_range[turf] and how much movement is needed to reach it in turfs_by_dist[turf].
 This way we'll be able to draw the explosion's expansion path without having to waste time processing the edge turfs, scanning their contents.
 */
 
-	for(var/t in turfs_in_range)
+	for(var/t in (turfs_in_range - epicenter))
 		if(turfs_by_dist[t]) //Already processed.
 			continue
 		var/turf/affected_turf = t
@@ -293,17 +274,14 @@ This way we'll be able to draw the explosion's expansion path without having to 
 		if(isnull(turfs_by_dist[affected_turf]))
 			turfs_by_dist[affected_turf] = 9999 //Edge turfs, they don't even border the explosion. We won't bother calculating their distance as it's irrelevant.
 
-	for(var/t in turfs_by_dist)
+	for(var/t in (turfs_by_dist - epicenter))
 		var/dist = turfs_by_dist[t]
 		if(devastation_range > dist)
 			SSexplosions.highTurf[t] += list(epicenter)
-			SSexplosions.highTurf[t][epicenter] = list(dist, devastation_range)
 		else if(heavy_impact_range > dist)
 			SSexplosions.medTurf[t] += list(epicenter)
-			SSexplosions.medTurf[t][epicenter] = list(dist, heavy_impact_range)
 		else if(light_impact_range > dist)
 			SSexplosions.lowTurf[t] += list(epicenter)
-			SSexplosions.lowTurf[t][epicenter] = list(dist, light_impact_range)
 		if(flame_range > dist)
 			flameturf += t
 		if(throw_range > dist)
@@ -330,11 +308,7 @@ This way we'll be able to draw the explosion's expansion path without having to 
 			if(QDELETED(turf_to_explode))
 				continue
 			for(var/explosion_source in low_turf[turf_to_explode])
-				turf_to_explode.ex_act(
-					EXPLODE_LIGHT,
-					low_turf[turf_to_explode][explosion_source][1], // Distance to epicenter.
-					low_turf[turf_to_explode][explosion_source][2] // light_impact_range
-					)
+				turf_to_explode.ex_act(EXPLODE_LIGHT)
 				if(QDELETED(turf_to_explode))
 					break
 		cost_lowTurf = MC_AVERAGE(cost_lowTurf, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
@@ -347,11 +321,7 @@ This way we'll be able to draw the explosion's expansion path without having to 
 			if(QDELETED(turf_to_explode))
 				continue
 			for(var/explosion_source in med_turf[turf_to_explode])
-				turf_to_explode.ex_act(
-					EXPLODE_HEAVY,
-					med_turf[turf_to_explode][explosion_source][1], // Distance to epicenter.
-					med_turf[turf_to_explode][explosion_source][2] // heavy_impact_range
-					)
+				turf_to_explode.ex_act(EXPLODE_HEAVY)
 				if(QDELETED(turf_to_explode))
 					break
 		cost_medTurf = MC_AVERAGE(cost_medTurf, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
@@ -364,11 +334,7 @@ This way we'll be able to draw the explosion's expansion path without having to 
 			if(QDELETED(turf_to_explode))
 				continue
 			for(var/explosion_source in high_turf[turf_to_explode])
-				turf_to_explode.ex_act(
-					EXPLODE_DEVASTATE,
-					high_turf[turf_to_explode][explosion_source][1], // Distance to epicenter.
-					high_turf[turf_to_explode][explosion_source][2] // devastation_range
-					)
+				turf_to_explode.ex_act(EXPLODE_DEVASTATE)
 				if(QDELETED(turf_to_explode))
 					break
 		cost_highTurf = MC_AVERAGE(cost_highTurf, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
@@ -396,11 +362,7 @@ This way we'll be able to draw the explosion's expansion path without having to 
 			if(QDELETED(object_to_explode))
 				continue
 			for(var/explosion_source in high_mov_atom[object_to_explode])
-				object_to_explode.ex_act(
-					EXPLODE_DEVASTATE,
-					high_mov_atom[object_to_explode][explosion_source][1], // Distance to epicenter.
-					high_mov_atom[object_to_explode][explosion_source][2] // devastation_range
-					)
+				object_to_explode.ex_act(EXPLODE_DEVASTATE)
 				if(QDELETED(object_to_explode))
 					break
 		cost_highMovAtom = MC_AVERAGE(cost_highMovAtom, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
@@ -413,11 +375,7 @@ This way we'll be able to draw the explosion's expansion path without having to 
 			if(QDELETED(object_to_explode))
 				continue
 			for(var/explosion_source in med_mov_atom[object_to_explode])
-				object_to_explode.ex_act(
-					EXPLODE_HEAVY,
-					med_mov_atom[object_to_explode][explosion_source][1], // Distance to epicenter.
-					med_mov_atom[object_to_explode][explosion_source][2] // heavy_impact_range
-					)
+				object_to_explode.ex_act(EXPLODE_HEAVY)
 				if(QDELETED(object_to_explode))
 					break
 		cost_medMovAtom = MC_AVERAGE(cost_medMovAtom, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))
@@ -430,11 +388,7 @@ This way we'll be able to draw the explosion's expansion path without having to 
 			if(QDELETED(object_to_explode))
 				continue
 			for(var/explosion_source in low_mov_atom[object_to_explode])
-				object_to_explode.ex_act(
-					EXPLODE_LIGHT,
-					low_mov_atom[object_to_explode][explosion_source][1], // Distance to epicenter.
-					low_mov_atom[object_to_explode][explosion_source][2] // light_impact_range
-					)
+				object_to_explode.ex_act(EXPLODE_LIGHT)
 				if(QDELETED(object_to_explode))
 					break
 		cost_lowMovAtom = MC_AVERAGE(cost_lowMovAtom, TICK_DELTA_TO_MS(TICK_USAGE_REAL - timer))

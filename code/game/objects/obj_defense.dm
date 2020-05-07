@@ -58,14 +58,11 @@
 			playsound(loc, 'sound/items/welder.ogg', 50, 1)
 
 
-/obj/ex_act(severity, target)
+/obj/ex_act(severity)
 	if(resistance_flags & INDESTRUCTIBLE)
 		return
 	. = ..() //contents explosion
 	if(QDELETED(src))
-		return
-	if(target == src)
-		take_damage(INFINITY, BRUTE, "bomb", 0)
 		return
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
