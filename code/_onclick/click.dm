@@ -19,7 +19,7 @@
 /atom/Click(location, control, params)
 	if(flags_atom & INITIALIZED)
 		SEND_SIGNAL(src, COMSIG_CLICK, location, control, params, usr)
-		usr.ClickOn(src, params, location)
+		usr.ClickOn(src, location, control, params)
 
 
 /atom/DblClick(location, control, params)
@@ -45,7 +45,7 @@
 	* item/afterattack(atom, user, adjacent, params) - used both ranged and adjacent when not handled by attackby
 	* mob/RangedAttack(atom, params) - used only ranged, only used for tk and laser eyes but could be changed
 */
-/mob/proc/ClickOn(atom/A, params, location)
+/mob/proc/ClickOn(atom/A, location, control, params)
 
 	//Adjusts the target when shooting into darkness AND view is offset
 	if(isnull(location) && (src.client.pixel_x != 0 || src.client.pixel_y != 0))
