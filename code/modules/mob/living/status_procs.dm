@@ -140,12 +140,16 @@
 
 ///Immobilize only if not already immobilized.
 /mob/living/proc/ImmobilizeNoChain(amount, ignore_canstun = FALSE)
+	if(status_flags & GODMODE)
+		return
 	if(IsImmobilized())
 		return 0
 	return Immobilize(amount, ignore_canstun)
 
 ///Can't go below remaining duration.
 /mob/living/proc/Immobilize(amount, ignore_canstun = FALSE)
+	if(status_flags & GODMODE)
+		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_IMMOBILIZE, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if(((status_flags & CANKNOCKDOWN) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
@@ -160,6 +164,8 @@
 
 ///Sets remaining duration.
 /mob/living/proc/SetImmobilized(amount, ignore_canstun = FALSE) //Sets remaining duration
+	if(status_flags & GODMODE)
+		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_IMMOBILIZE, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if(((status_flags & CANKNOCKDOWN) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
@@ -178,6 +184,8 @@
 
 ///Adds to remaining duration.
 /mob/living/proc/AdjustImmobilized(amount, ignore_canstun = FALSE)
+	if(status_flags & GODMODE)
+		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_IMMOBILIZE, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if(((status_flags & CANKNOCKDOWN) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
