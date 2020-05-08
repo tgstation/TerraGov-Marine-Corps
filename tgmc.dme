@@ -1457,6 +1457,7 @@
 #include "code\modules\tgui\states\physical.dm"
 #include "code\modules\tgui\states\self.dm"
 #include "code\modules\tgui\states\zlevel.dm"
+#include "code\modules\tier_weapon_spawns\tier_spawn.dm"
 #include "code\modules\tooltip\tooltip.dm"
 #include "code\modules\unit_tests\_unit_tests.dm"
 #include "code\modules\vehicles\cargo_train.dm"

@@ -145,26 +145,59 @@
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 
-/obj/effect/landmark/tier1_weapon_spawn
+/obj/effect/landmark/weapon_spawn
+	name = "Base Weapon Spawn"
+	icon_state = "x"
+
+/obj/effect/landmark/weapon_spawn/Initialize()
+	GLOB.weapon_spawn_list += loc
+	. = ..()
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn
 	name = "Tier 1 Weapon Spawn"
 	icon_state = "weapon1"
 
-/obj/effect/landmark/tier2_weapon_spawn
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn/Initialize()
+	tier_1()
+	. = ..()
+	
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn
 	name = "Tier 2 Weapon Spawn"
 	icon_state = "weapon2"
 
-/obj/effect/landmark/tier3_weapon_spawn
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn/Initialize()
+	tier_2()
+	. = ..()
+
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn
 	name = "Tier 3 Weapon Spawn"
 	icon_state = "weapon3"
 
-/obj/effect/landmark/tier4_weapon_spawn
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn/Initialize()
+	tier_3()
+	. = ..()
+
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn
 	name = "Tier 4 Weapon Spawn"
 	icon_state = "weapon4"
 
-/obj/effect/landmark/tier5_weapon_spawn
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn/Initialize()
+	tier_4()
+	. = ..()
+
+/obj/effect/landmark/weapon_spawn/tier5_weapon_spawn
 	name = "Tier 5 Weapon Spawn"
 	icon_state = "weapon5"
 
-/obj/effect/landmark/tier6_weapon_spawn
+/obj/effect/landmark/weapon_spawn/tier5_weapon_spawn/Initialize()
+	tier_5()
+	. = ..()
+
+/obj/effect/landmark/weapon_spawn/tier6_weapon_spawn
 	name = "Tier 6 Weapon Spawn"
 	icon_state = "weapon6"
+
+/obj/effect/landmark/weapon_spawn/tier6_weapon_spawn/Initialize()
+	tier_6()
+	. = ..()
