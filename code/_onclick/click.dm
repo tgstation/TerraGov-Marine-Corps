@@ -19,7 +19,7 @@
 /atom/Click(location, control, params)
 	if(flags_atom & INITIALIZED)
 		SEND_SIGNAL(src, COMSIG_CLICK, location, control, params, usr)
-		usr.ClickOn(src, params)
+		usr.ClickOn(src, params, location)
 
 
 /atom/DblClick(location, control, params)
@@ -45,7 +45,12 @@
 	* item/afterattack(atom, user, adjacent, params) - used both ranged and adjacent when not handled by attackby
 	* mob/RangedAttack(atom, params) - used only ranged, only used for tk and laser eyes but could be changed
 */
-/mob/proc/ClickOn(atom/A, params)
+/mob/proc/ClickOn(atom/A, params, location)
+
+	//Adjusts the target when shooting into darkness AND view is offset
+	if(isnull(location) && (src.client.pixel_x != 0 || src.client.pixel_y != 0))
+		A = darkness_adjust(A, src)
+
 	if(world.time <= next_click)
 		return
 	next_click = world.time + 1
@@ -69,7 +74,7 @@
 	if(modifiers["ctrl"] && modifiers["middle"])
 		CtrlMiddleClickOn(A)
 		return
-	if(modifiers["middle"] && MiddleClickOn(A))		
+	if(modifiers["middle"] && MiddleClickOn(A))
 		return
 	if(modifiers["shift"] && ShiftClickOn(A))
 		return
@@ -138,7 +143,7 @@
 			if(proximity && A.attackby(W, src, params))
 				attack = TRUE
 			if(!attack)
-				W.afterattack(A, src, proximity, params)
+				W.afterattack(A, src, proximity, params, location)
 		else
 			if(A.Adjacent(src))
 				A.attack_hand(src)

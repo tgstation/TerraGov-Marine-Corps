@@ -141,6 +141,19 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	else if(. >= 360)
 		. -= 360
 
+// Adjusts the target if the user has their view offset and is firing onto a null location (deep darknes)
+proc/darkness_adjust(atom/target, mob/living/user)
+	var/newtargetX = target.x
+	var/newtargetY = target.y
+	var/newtarget
+	if (user.client.pixel_x != 0)
+		newtargetX = target.x + (user.client.pixel_x/32)
+	if (user.client.pixel_y != 0)
+		newtargetY = target.y + (user.client.pixel_y/32)
+
+	newtarget = locate(newtargetX,newtargetY,target.z)
+
+	return newtarget
 
 /proc/angle_to_dir(angle)
 	switch(angle)
