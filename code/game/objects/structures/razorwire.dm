@@ -63,7 +63,7 @@
 
 
 /obj/structure/razorwire/proc/do_razorwire_tangle(mob/living/entangled)
-	entangled.set_frozen(TRUE)
+	ADD_TRAIT(entangled, TRAIT_IMMOBILE, type)
 	ENABLE_BITFIELD(entangled.restrained_flags, RESTRAINED_RAZORWIRE)
 	entangled.entangled_by = src
 	LAZYADD(entangled_list, entangled) //Add the entangled person to the trapped list.
@@ -97,7 +97,7 @@
 	LAZYREMOVE(entangled_list, entangled)
 	entangled.entangled_by = null
 	DISABLE_BITFIELD(entangled.restrained_flags, RESTRAINED_RAZORWIRE)
-	entangled.set_frozen(FALSE)
+	REMOVE_TRAIT(entangled, TRAIT_IMMOBILE, type)
 
 
 /obj/structure/razorwire/CheckExit(atom/movable/O as mob|obj, target as turf)
