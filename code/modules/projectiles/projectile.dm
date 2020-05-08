@@ -745,40 +745,42 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	var/feedback_flags = NONE
 
-	var/hard_armor = (proj.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) ? 0 : get_hard_armor(proj.armor_type, proj.def_zone, proj.dir)
-	var/soft_armor = (proj.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) ? 0 : get_soft_armor(proj.armor_type, proj.def_zone, proj.dir)
-	if(hard_armor || soft_armor)
+	var/living_hard_armor = (proj.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) ? 0 : get_hard_armor(proj.armor_type, proj.def_zone, proj.dir)
+	var/living_soft_armor = (proj.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) ? 0 : get_soft_armor(proj.armor_type, proj.def_zone, proj.dir)
+	if(living_hard_armor || living_soft_armor)
 		var/penetration = proj.ammo.penetration
 		if(penetration > 0)
 			if(proj.shot_from && src == proj.shot_from.sniper_target(src))
 				damage *= SNIPER_LASER_DAMAGE_MULTIPLIER
 				penetration *= SNIPER_LASER_ARMOR_MULTIPLIER
 				add_slowdown(SNIPER_LASER_SLOWDOWN_STACKS)
-			if(hard_armor)
-				hard_armor = max(0, hard_armor - (hard_armor * penetration * 0.01)) //AP reduces a % of hard armor.
-			if(soft_armor)
-				soft_armor = max(0, soft_armor - penetration) //Flat removal.
+			if(living_hard_armor)
+				living_hard_armor = max(0, living_hard_armor - (living_hard_armor * penetration * 0.01)) //AP reduces a % of hard armor.
+			if(living_soft_armor)
+				living_soft_armor = max(0, living_soft_armor - penetration) //Flat removal.
 
-		if(!hard_armor && !soft_armor) //Armor fully penetrated.
+		if(!living_hard_armor && !living_soft_armor) //Armor fully penetrated.
 			feedback_flags |= BULLET_FEEDBACK_PEN
 		else
-			if(hard_armor)
-				damage = max(0, damage - hard_armor) //Damage soak.
+			if(living_hard_armor)
+				damage = max(0, damage - living_hard_armor) //Damage soak.
 			if(!damage) //Damage fully soaked.
 				bullet_soak_effect(proj)
 				feedback_flags |= BULLET_FEEDBACK_IMMUNE
-			else if(soft_armor >= 100) //Damage invulnerability.
+			else if(living_soft_armor >= 100) //Damage invulnerability.
 				damage = 0
 				bullet_soak_effect(proj)
 				feedback_flags |= BULLET_FEEDBACK_IMMUNE
-			else if(soft_armor) //Soft armor/padding, damage reduction.
+			else if(living_soft_armor) //Soft armor/padding, damage reduction.
 				feedback_flags |= BULLET_FEEDBACK_SOAK
-				damage -= damage * soft_armor * 0.01
+				damage -= damage * living_soft_armor * 0.01
 
 	if(proj.ammo.flags_ammo_behavior & AMMO_INCENDIARY)
-		soft_armor = get_soft_armor("fire", proj.def_zone) //This value could potentially be negative, indicating fire weakness.
-		if(soft_armor < 100) //If armor is 100 or over the mob is fireproof.
-			adjust_fire_stacks(CEILING(10 - (soft_armor * 0.1), 1)) //We could add an ammo fire strength in time, as a variable.
+		//We are checking the total distributed mob's armor now, not just the limb.
+		//Fire hard armor represents flammability and how much fuel sticks to the armor.
+		living_hard_armor = hard_armor.getRating("fire")
+		if(living_hard_armor < 100) //If armor is 100% then the mob is fireproof.
+			adjust_fire_stacks(CEILING(10 - (living_hard_armor * 0.1), 1)) //We could add an ammo fire strength in time, as a variable.
 			IgniteMob()
 			feedback_flags |= (BULLET_FEEDBACK_FIRE|BULLET_FEEDBACK_SCREAM)
 
