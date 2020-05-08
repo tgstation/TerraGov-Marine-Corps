@@ -65,10 +65,10 @@
 /obj/structure/razorwire/proc/do_razorwire_tangle(mob/living/entangled)
 	ADD_TRAIT(entangled, TRAIT_IMMOBILE, type)
 	ENABLE_BITFIELD(entangled.restrained_flags, RESTRAINED_RAZORWIRE)
-	entangled.entangled_by = src
 	LAZYADD(entangled_list, entangled) //Add the entangled person to the trapped list.
 	RegisterSignal(entangled, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
 	RegisterSignal(entangled, COMSIG_PARENT_QDELETING, .proc/do_razorwire_untangle)
+	RegisterSignal(entangled, COMSIG_MOVABLE_UNCROSS, .proc/on_entangled_uncross)
 
 
 /obj/structure/razorwire/resisted_against(datum/source)
@@ -92,20 +92,16 @@
 	return TRUE
 
 
+///This proc is used for signals, so if you plan on adding a second argument, or making it return a value, then change those RegisterSignal's referncing it first.
 /obj/structure/razorwire/proc/do_razorwire_untangle(mob/living/entangled)
-	UnregisterSignal(entangled, list(COMSIG_PARENT_QDELETING, COMSIG_LIVING_DO_RESIST))
+	UnregisterSignal(entangled, list(COMSIG_PARENT_QDELETING, COMSIG_LIVING_DO_RESIST, COMSIG_MOVABLE_UNCROSS))
 	LAZYREMOVE(entangled_list, entangled)
-	entangled.entangled_by = null
 	DISABLE_BITFIELD(entangled.restrained_flags, RESTRAINED_RAZORWIRE)
 	REMOVE_TRAIT(entangled, TRAIT_IMMOBILE, type)
 
 
-/obj/structure/razorwire/CheckExit(atom/movable/O as mob|obj, target as turf)
-	if(isliving(O))
-		var/mob/living/M = O
-		if(M.entangled_by)
-			razorwire_untangle(M)
-	return ..()
+/obj/structure/razorwire/proc/on_entangled_uncross(datum/source, atom/movable/uncrosser)
+	razorwire_untangle(uncrosser)
 
 
 /obj/structure/razorwire/Destroy()

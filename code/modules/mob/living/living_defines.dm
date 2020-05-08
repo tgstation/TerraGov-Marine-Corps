@@ -102,8 +102,6 @@
 
 	var/fire_resist = 1 //0 to 1; lower is better as it is a multiplier.
 
-	var/entangled_by
-
 	var/ventcrawl_layer = PIPING_LAYER_DEFAULT
 
 	var/grab_resist_level = 0 //Every time we try to resist a grab, we increment this by 1 until it exceeds the grab level, thereby breaking the grab.
