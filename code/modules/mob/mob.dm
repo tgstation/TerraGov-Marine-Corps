@@ -847,6 +847,15 @@
 	else if(. == GRAB_PASSIVE)
 		add_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE, TRUE, 100, NONE, TRUE, grab_state * 3)
 
+/mob/set_throwing(new_throwing)
+	. = ..()
+	if(isnull(.))
+		return
+	if(throwing)
+		ADD_TRAIT(src, TRAIT_IMMOBILE, THROW_TRAIT)
+	else
+		REMOVE_TRAIT(src, TRAIT_IMMOBILE, THROW_TRAIT)
+
 /mob/proc/set_stat(new_stat)
 	if(new_stat == stat)
 		return

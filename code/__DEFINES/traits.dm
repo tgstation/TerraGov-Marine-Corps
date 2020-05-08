@@ -86,6 +86,8 @@
 #define NECKGRAB_TRAIT "neckgrab"
 #define RESTING_TRAIT "resting"
 #define BUCKLE_TRAIT "buckle"
+#define THROW_TRAIT "throw"
+#define FORTIFY_TRAIT "fortify" //Defender fortify ability.
 
 //mob traits
 #define TRAIT_KNOCKEDOUT		"knockedout" //Forces the user to stay unconscious.

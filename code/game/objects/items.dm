@@ -162,7 +162,7 @@
 		var/obj/item/storage/S = loc
 		S.remove_from_storage(src, user.loc)
 
-	throwing = FALSE
+	set_throwing(FALSE)
 
 	if(loc == user && !user.temporarilyRemoveItemFromInventory(src))
 		return

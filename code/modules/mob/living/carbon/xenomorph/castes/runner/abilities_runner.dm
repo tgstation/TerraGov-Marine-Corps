@@ -101,7 +101,7 @@
 		var/mob/living/carbon/human/H = M
 		if(!H.check_shields(COMBAT_TOUCH_ATTACK, 30, "melee"))
 			X.Paralyze(6 SECONDS)
-			X.throwing = FALSE //Reset throwing manually.
+			X.set_throwing(FALSE) //Reset throwing manually.
 			return COMPONENT_KEEP_THROWING
 
 	X.visible_message("<span class='danger'>[X] pounces on [M]!</span>",
@@ -110,7 +110,7 @@
 	M.Paralyze(paralyze_time)
 
 	step_to(X, M)
-	X.stop_movement()
+	X.Immobilize(X.xeno_caste.charge_type == CHARGE_TYPE_SMALL ? 0.5 SECONDS : 1.5 SECONDS)
 	if(X.savage) //If Runner Savage is toggled on, attempt to use it.
 		if(!X.savage_used)
 			if(X.plasma_stored >= 10)
@@ -120,8 +120,7 @@
 		else
 			to_chat(X, "<span class='xenodanger'>We attempt to savage our victim, but we aren't yet ready.</span>")
 
-	playsound(X.loc, prob(95) ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, 1)
-	addtimer(CALLBACK(X, /mob/living/carbon/xenomorph.proc/reset_movement), X.xeno_caste.charge_type == 1 ? 5 : 15)
+	playsound(X.loc, prob(95) ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, TRUE)
 
 	pounce_complete()
 

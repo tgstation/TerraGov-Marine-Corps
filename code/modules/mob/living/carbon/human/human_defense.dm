@@ -314,7 +314,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		log_combat(living_thrower, src, "thrown at", thrown_item, "(FAILED: target limb missing)")
 		return
 
-	thrown_item.throwing = FALSE // Hit the limb.
+	thrown_item.set_throwing(FALSE) // Hit the limb.
 
 	var/armor = run_armor_check(affecting, "melee") //I guess "melee" is the best fit here
 
