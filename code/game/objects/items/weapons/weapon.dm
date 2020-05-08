@@ -10,4 +10,3 @@
 	var/max_shots = 0 //codex, energy weapons
 	var/scope_zoom = FALSE//codex
 	var/self_recharge = FALSE //codex
-	var/obj/item/ammo_magazine/internal/current_mag = null

@@ -161,9 +161,9 @@
 	icon_state = "weapon1"
 
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn/Initialize()
-	tier_1()
 	. = ..()
-	
+	tier_1()
+		
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn
 	name = "Tier 2 Weapon Spawn"
 	icon_state = "weapon2"
