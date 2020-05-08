@@ -148,6 +148,8 @@
 		modifiers["icon-x"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-x"])))
 		modifiers["icon-y"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-y"])))
 		params = list2params(modifiers)
+		if(source.pixel_x != 0 || source.pixel_y != 0)
+			target = darkness_adjust(target, shooter)
 
 	if(SEND_SIGNAL(src, COMSIG_AUTOFIRE_ONMOUSEDOWN, source, target, location, control, params) & COMPONENT_AUTOFIRE_ONMOUSEDOWN_BYPASS)
 		return
@@ -257,6 +259,8 @@
 		modifiers["icon-y"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-y"])))
 		params = list2params(modifiers)
 		mouse_parameters = params
+		if(source.pixel_x != 0 || source.pixel_y != 0)
+			new_target = darkness_adjust(target, shooter)
 		if(!new_target)
 			if(QDELETED(target)) //No new target acquired, and old one was deleted, get us out of here.
 				stop_autofiring()
@@ -281,7 +285,7 @@
 		if(-1 to 0)
 			target = get_step(shooter, shooter.dir) //Shoot in the direction faced if the mouse is on the same tile as we are.
 			target_loc = target
-		if(8 to INFINITY) //Can technically only go as far as 127 right now.
+		if(127 to INFINITY) //Can technically only go as far as 127 right now.
 			stop_autofiring() //Elvis has left the building.
 			return FALSE
 	shooter.face_atom(target)
