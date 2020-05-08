@@ -572,11 +572,10 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 						return
 
 			else if(istype(item_to_stock, /obj/item/ammo_magazine))
-				if(!istype(item_to_stock, /obj/item/ammo_magazine/standard_smartmachinegun))
-					var/obj/item/ammo_magazine/A = item_to_stock
-					if(A.current_rounds < A.max_rounds)
-						to_chat(user, "<span class='warning'>[A] isn't full. Fill it before you can restock it.</span>")
-						return
+				var/obj/item/ammo_magazine/A = item_to_stock
+				if(A.current_rounds < A.max_rounds)
+					to_chat(user, "<span class='warning'>[A] isn't full. Fill it before you can restock it.</span>")
+					return
 			else if(istype(item_to_stock, /obj/item/smartgun_powerpack))
 				var/obj/item/smartgun_powerpack/P = item_to_stock
 				if(!P.pcell)
