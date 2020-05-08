@@ -281,7 +281,7 @@
 		if(-1 to 0)
 			target = get_step(shooter, shooter.dir) //Shoot in the direction faced if the mouse is on the same tile as we are.
 			target_loc = target
-		if(8 to INFINITY) //Can technically only go as far as 127 right now.
+		if(127 to INFINITY) //Can technically only go as far as 127 right now.
 			stop_autofiring() //Elvis has left the building.
 			return FALSE
 	shooter.face_atom(target)
