@@ -144,3 +144,27 @@
 	GLOB.nuke_spawn_locs += loc
 	. = ..()
 	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/tier1_weapon_spawn
+	name = "Tier 1 Weapon Spawn"
+	icon_state = "weapon1"
+
+/obj/effect/landmark/tier2_weapon_spawn
+	name = "Tier 2 Weapon Spawn"
+	icon_state = "weapon2"
+
+/obj/effect/landmark/tier3_weapon_spawn
+	name = "Tier 3 Weapon Spawn"
+	icon_state = "weapon3"
+
+/obj/effect/landmark/tier4_weapon_spawn
+	name = "Tier 4 Weapon Spawn"
+	icon_state = "weapon4"
+
+/obj/effect/landmark/tier5_weapon_spawn
+	name = "Tier 5 Weapon Spawn"
+	icon_state = "weapon5"
+
+/obj/effect/landmark/tier6_weapon_spawn
+	name = "Tier 6 Weapon Spawn"
+	icon_state = "weapon6"
