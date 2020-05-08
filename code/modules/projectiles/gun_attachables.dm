@@ -33,7 +33,7 @@ Defined in conflicts.dm of the #defines folder.
 	var/pixel_shift_y = 16 //Uses the bottom left corner of the item.
 
 	flags_atom = CONDUCT
-	materials = list(/datum/material/metal = 1000)
+	materials = list(/datum/material/metal = 100)
 	w_class = WEIGHT_CLASS_SMALL
 	force = 1.0
 	var/slot = null //"muzzle", "rail", "under", "stock"

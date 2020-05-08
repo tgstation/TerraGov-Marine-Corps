@@ -2,7 +2,7 @@
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/crafty
-	faction = "Sons of Mars"
+	faction = FACTION_SOM
 
 
 /datum/outfit/job/som/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
