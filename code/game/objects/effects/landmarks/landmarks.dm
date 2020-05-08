@@ -148,6 +148,8 @@
 /obj/effect/landmark/weapon_spawn
 	name = "Base Weapon Spawn"
 	icon_state = "x"
+	var/weapon_list = list()
+	var/weapon_to_spawn = null
 
 /obj/effect/landmark/weapon_spawn/Initialize()
 	GLOB.weapon_spawn_list += loc

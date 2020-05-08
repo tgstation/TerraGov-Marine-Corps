@@ -34,7 +34,7 @@
 	/*Ammo mags may or may not be internal, though the difference is a few additional variables. If they are not internal, don't call
 	on those unique vars. This is done for quicker pathing. Just keep in mind most mags aren't internal, though some are.
 	This is also the default magazine path loaded into a projectile weapon for reverse lookups on New(). Leave this null to do your own thing.*/
-	var/obj/item/ammo_magazine/internal/current_mag = null
+
 	var/type_of_casings = null					//Can be "bullet", "shell", or "cartridge". Bullets are generic casings, shells are used by shotguns, cartridges are for rifles.
 
 	//Basic stats.
