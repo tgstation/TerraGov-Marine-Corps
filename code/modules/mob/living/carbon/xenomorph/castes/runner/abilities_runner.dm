@@ -79,9 +79,13 @@
 	mechanics_text = "Leap at your target, tackling and disarming them."
 	ability_name = "pounce"
 	plasma_cost = 10
-	var/range = 6
 	keybind_signal = COMSIG_XENOABILITY_POUNCE
-	var/paralyze_time = 2 SECONDS
+	///How far can we pounce.
+	var/range = 6
+	///For how long will we stun the victim
+	var/victim_paralyze_time = 2 SECONDS
+	///For how long will we freeze upon hitting our target
+	var/freeze_on_hit_time = 0.5 SECONDS
 
 // TODO: merge defender/ravager pounces into this typepath since they are essentially the same thing
 /datum/action/xeno_action/activable/pounce/proc/pounce_complete()
@@ -107,10 +111,12 @@
 	X.visible_message("<span class='danger'>[X] pounces on [M]!</span>",
 					"<span class='xenodanger'>We pounce on [M]!</span>", null, 5)
 
-	M.Paralyze(paralyze_time)
+	if(victim_paralyze_time)
+		M.Paralyze(victim_paralyze_time)
 
 	step_to(X, M)
-	X.Immobilize(X.xeno_caste.charge_type == CHARGE_TYPE_SMALL ? 0.5 SECONDS : 1.5 SECONDS)
+	if(freeze_on_hit_time)
+		X.Immobilize(freeze_on_hit_time)
 	if(X.savage) //If Runner Savage is toggled on, attempt to use it.
 		if(!X.savage_used)
 			if(X.plasma_stored >= 10)
