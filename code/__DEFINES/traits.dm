@@ -81,7 +81,6 @@
 #define STASIS_BAG_TRAIT "stasis_bag"
 #define CRYOPOD_TRAIT "cryopod"
 #define TRAIT_XENO "xeno"
-#define FROZEN_TRAIT "frozen"
 #define STAT_TRAIT "stat"
 #define NECKGRAB_TRAIT "neckgrab"
 #define RESTING_TRAIT "resting"
