@@ -1035,6 +1035,9 @@
 
 	. = ..()
 	if(.)
-		var/datum/game_mode/infestation/crash/C = SSticker.mode
-		addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_INPROGRESS), 15 SECONDS)
-		addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_COMPLETED), 5 MINUTES)
+		return
+
+	var/datum/game_mode/infestation/crash/C = SSticker.mode
+	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_INPROGRESS), 15 SECONDS)
+	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_COMPLETED), 5 MINUTES)
+	return TRUE
