@@ -366,7 +366,6 @@
 					/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = 8,
 					/obj/item/reagent_containers/hypospray/autoinjector/combat = 2,
 					/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 4,
-					/obj/item/reagent_containers/hypospray/autoinjector/hyperzine = 0,
 					/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
 					/obj/item/storage/pill_bottle/bicaridine = 3,
 					/obj/item/storage/pill_bottle/dexalin = 3,
@@ -391,7 +390,6 @@
 					/obj/item/bodybag/cryobag = 2)
 
 	contraband = list(/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin =3,
-					/obj/item/reagent_containers/hypospray/autoinjector/hyperzine/expired =3,
 					/obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired =3)
 
 

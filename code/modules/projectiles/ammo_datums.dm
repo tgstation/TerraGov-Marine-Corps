@@ -950,7 +950,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 100
 
 /datum/ammo/rocket/drop_nade(turf/T)
-	explosion(T, -1, 3, 5, 5)
+	explosion(T, 0, 4, 6, 5)
 
 /datum/ammo/rocket/on_hit_mob(mob/M, obj/projectile/P)
 	drop_nade(get_turf(M))
@@ -973,7 +973,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 325
 
 /datum/ammo/rocket/ap/drop_nade(turf/T)
-	explosion(T, -1, -1, -1, 1)
+	explosion(T, flash_range = 1)
 
 /datum/ammo/rocket/ltb
 	name = "cannon round"
@@ -986,7 +986,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 300
 
 /datum/ammo/rocket/ltb/drop_nade(turf/T)
-	explosion(T, -1, 3, 5, 6)
+	explosion(T, 0, 4, 6, 7)
 
 /datum/ammo/rocket/wp
 	name = "white phosphorous rocket"
@@ -1018,7 +1018,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	. = ..()
 	if(!.)
 		return
-	explosion(T,  -1, 2, 4, 5)
+	explosion(T, 0, 3, 5, 5, throw_range = 0)
 
 
 /*
