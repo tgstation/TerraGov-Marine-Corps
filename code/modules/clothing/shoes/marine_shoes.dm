@@ -17,6 +17,7 @@
 /obj/item/storage/internal/shoes/boot_knife
 	max_storage_space = 3
 	storage_slots = 1
+	draw_mode = TRUE
 	can_hold = list(
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
