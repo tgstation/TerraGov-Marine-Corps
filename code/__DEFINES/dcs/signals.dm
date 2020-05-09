@@ -275,7 +275,7 @@
 #define COMSIG_XENOMORPH_PLASMA_REGEN "xenomorph_plasma_regen"
 
 #define COMSIG_XENOMORPH_ZONE_SELECT "xenomorph_zone_select"
-	#define COMSIG_ACCURATE_ZONE 1
+	#define COMSIG_ACCURATE_ZONE (1<<0)
 
 #define COMSIG_XENOMORPH_POUNCE "xenomorph_pounce"
 
