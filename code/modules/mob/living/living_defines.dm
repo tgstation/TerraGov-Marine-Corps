@@ -15,6 +15,11 @@
 	/// Health at which a mob goes into crit
 	var/health_threshold_crit = 0
 
+	/// %-reduction-based armor.
+	var/datum/armor/soft_armor
+	/// Flat-damage-reduction-based armor.
+	var/datum/armor/hard_armor
+
 	/* Damage related vars, NOTE: THESE SHOULD ONLY BE MODIFIED BY PROCS */
 	/// Brutal damage caused by brute force (punching, being clubbed by a toolbox ect... this also accounts for pressure damage)
 	var/bruteloss = 0
