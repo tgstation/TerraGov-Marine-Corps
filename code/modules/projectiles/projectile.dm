@@ -19,8 +19,9 @@
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "bullet"
 	density = FALSE
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 	anchored = TRUE //You will not have me, space wind!
+	move_resist = INFINITY
 	flags_atom = NOINTERACT //No real need for this, but whatever. Maybe this flag will do something useful in the future.
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	invisibility = INVISIBILITY_MAXIMUM // We want this thing to be invisible when it drops on a turf because it will be on the user's turf. We then want to make it visible as it travels.

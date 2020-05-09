@@ -22,17 +22,12 @@
 
 /obj/machinery/sleep_console/ex_act(severity)
 	switch(severity)
-		if(1.0)
-			//SN src = null
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-			return
-		if(2.0)
+		if(EXPLODE_HEAVY)
 			if (prob(50))
-				//SN src = null
 				qdel(src)
-				return
-		else
-	return
+
 
 /obj/machinery/sleep_console/Initialize()
 	. = ..()
@@ -314,12 +309,12 @@
 	if(filtering)
 		toggle_filter()
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-		if(2)
+		if(EXPLODE_HEAVY)
 			if(prob(50))
 				qdel(src)
-		if(3)
+		if(EXPLODE_LIGHT)
 			if(prob(25))
 				qdel(src)
 
