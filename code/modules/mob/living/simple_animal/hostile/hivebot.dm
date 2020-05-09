@@ -13,7 +13,7 @@
 	attacktext = "claws"
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	projectilesound = 'sound/weapons/guns/fire/gunshot.ogg'
-	faction = "Hivebot"
+	faction = FACTION_HIVEBOT
 	check_friendly_fire = TRUE
 	speak_emote = list("states")
 	del_on_death = TRUE

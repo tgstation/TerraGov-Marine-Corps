@@ -150,7 +150,7 @@
 	if(!stored_mineral)
 		to_chat(user, "<span class='warning'>[src] is not ready to produce a shipment yet!</span>")
 		return
-	
+
 	new mineral_produced(user.loc, stored_mineral)
 	stored_mineral -= 1
 	start_processing()
@@ -180,7 +180,6 @@
 
 /obj/machinery/miner/proc/set_miner_status()
 	var/health_percent = round((miner_integrity / max_miner_integrity) * 100)
-	to_chat(world, "health percent is [health_percent]")
 	switch(health_percent)
 		if(-INFINITY to 0)
 			miner_status = MINER_DESTROYED

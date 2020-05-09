@@ -764,10 +764,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 				organ = new /obj/item/limb/head/synth(owner.loc, owner)
 			else
 				organ = new /obj/item/limb/head(owner.loc, owner)
-			owner.dropItemToGround(owner.glasses, null, TRUE)
-			owner.dropItemToGround(owner.head, null, TRUE)
-			owner.dropItemToGround(owner.wear_ear, null, TRUE)
-			owner.dropItemToGround(owner.wear_mask, null, TRUE)
+			owner.dropItemToGround(owner.glasses, force = TRUE)
+			owner.dropItemToGround(owner.head, force = TRUE)
+			owner.dropItemToGround(owner.wear_ear, force = TRUE)
+			owner.dropItemToGround(owner.wear_mask, force = TRUE)
 			owner.update_hair()
 		if(ARM_RIGHT)
 			if(limb_status & LIMB_ROBOT)
@@ -792,21 +792,21 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(HAND_RIGHT)
 			if(!(limb_status & LIMB_ROBOT))
 				organ= new /obj/item/limb/r_hand(owner.loc, owner)
-			owner.dropItemToGround(owner.gloves, null, TRUE)
-			owner.dropItemToGround(owner.r_hand, null, TRUE)
+			owner.dropItemToGround(owner.gloves, force = TRUE)
+			owner.dropItemToGround(owner.r_hand, force = TRUE)
 		if(HAND_LEFT)
 			if(!(limb_status & LIMB_ROBOT))
 				organ= new /obj/item/limb/l_hand(owner.loc, owner)
-			owner.dropItemToGround(owner.gloves, null, TRUE)
-			owner.dropItemToGround(owner.l_hand, null, TRUE)
+			owner.dropItemToGround(owner.gloves, force = TRUE)
+			owner.dropItemToGround(owner.l_hand, force = TRUE)
 		if(FOOT_RIGHT)
 			if(!(limb_status & LIMB_ROBOT))
 				organ= new /obj/item/limb/r_foot/(owner.loc, owner)
-			owner.dropItemToGround(owner.shoes, null, TRUE)
+			owner.dropItemToGround(owner.shoes, force = TRUE)
 		if(FOOT_LEFT)
 			if(!(limb_status & LIMB_ROBOT))
 				organ = new /obj/item/limb/l_foot(owner.loc, owner)
-			owner.dropItemToGround(owner.shoes, null, TRUE)
+			owner.dropItemToGround(owner.shoes, force = TRUE)
 
 	if(delete_limb)
 		QDEL_NULL(organ)
@@ -938,17 +938,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if (prob(25))
 		release_restraints()
 
-	// This is mostly for the ninja suit to stop ninja being so crippled by breaks.
-	// TODO: consider moving this to a suit proc or process() or something during
-	// hardsuit rewrite.
-	if(ishuman(owner))
+	/// Emit a signal for autodoc to support the life if available
+	SEND_SIGNAL(owner, COMSIG_HUMAN_LIMB_FRACTURED, src)
 
-		var/mob/living/carbon/human/H = owner
-		if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit))
-
-			var/obj/item/clothing/suit/suit = H.wear_suit
-
-			suit.secure_limb(src, H)
 	return
 
 
