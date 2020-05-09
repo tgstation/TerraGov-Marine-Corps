@@ -5,6 +5,8 @@
 	var/last_move = null
 	var/last_move_time = 0
 	var/anchored = FALSE
+	///How much the atom resists being thrown or moved.
+	var/move_resist = MOVE_RESIST_DEFAULT
 	var/drag_delay = 3 //delay (in deciseconds) added to mob's move_delay when pulling it.
 	var/throwing = FALSE
 	var/thrower = null

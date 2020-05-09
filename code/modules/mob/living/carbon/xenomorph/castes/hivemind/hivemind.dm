@@ -8,6 +8,7 @@
 	icon = 'icons/mob/cameramob.dmi'
 
 	status_flags = GODMODE | INCORPOREAL
+	resistance_flags = RESIST_ALL
 	density = FALSE
 	throwpass = TRUE
 

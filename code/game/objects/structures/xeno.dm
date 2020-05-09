@@ -35,11 +35,11 @@
 
 /obj/effect/alien/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			take_damage(500)
-		if(2)
+		if(EXPLODE_HEAVY)
 			take_damage((rand(140, 300)))
-		if(3)
+		if(EXPLODE_LIGHT)
 			take_damage((rand(50, 100)))
 
 /obj/effect/alien/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -628,11 +628,11 @@ TUNNEL
 
 /obj/structure/tunnel/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			take_damage(210)
-		if(2)
+		if(EXPLODE_HEAVY)
 			take_damage(140)
-		if(3)
+		if(EXPLODE_LIGHT)
 			take_damage(70)
 
 /obj/structure/tunnel/attackby(obj/item/I, mob/user, params)
