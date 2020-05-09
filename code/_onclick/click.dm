@@ -61,7 +61,7 @@
 		return
 
 	var/list/modifiers = params2list(params)
-	if(isnull(location) && isturf(A)) //Checks if the intended target is in deep darkness and adjusts A based on params.
+	if(isnull(location) && A.plane == CLICKCATCHER_PLANE) //Checks if the intended target is in deep darkness and adjusts A based on params.
 		A = params2turf(modifiers["screen-loc"], get_turf(src.client.eye), src.client)
 		modifiers["icon-x"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-x"])))
 		modifiers["icon-y"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-y"])))
