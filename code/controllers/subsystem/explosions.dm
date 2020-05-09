@@ -290,7 +290,7 @@ This way we'll be able to draw the explosion's expansion path without having to 
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_EXPLOSION, epicenter, devastation_range, heavy_impact_range, light_impact_range, (REALTIMEOFDAY - started_at) * 0.1)
 
-/datum/controller/subsystem/explosions/proc/wipe_turf(var/turf/T)
+/datum/controller/subsystem/explosions/proc/wipe_turf(turf/T)
 	highTurf -= T
 	medTurf -= T
 	lowTurf -= T
