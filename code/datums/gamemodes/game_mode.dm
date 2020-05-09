@@ -92,8 +92,17 @@
 		var/datum/DBQuery/query_round_game_mode = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET [sql] WHERE id = [GLOB.round_id]")
 		query_round_game_mode.Execute()
 		qdel(query_round_game_mode)
-	if(GLOB.weapon_spawn_list)
-		for(var/i in GLOB.weapon_spawn_list)
+	spawn_roundstart_weapons()
+
+/datum/game_mode/proc/spawn_roundstart_weapons()
+	while(GLOB.weapon_spawn_list.len)
+		var/obj/effect/landmark/weapon_spawn/spawn_effect = GLOB.weapon_spawn_list[GLOB.weapon_spawn_list.len]
+		GLOB.weapon_spawn_list.len--
+
+		spawn_effect.choose_weapon()
+
+		qdel(spawn_effect)
+
 
 
 /datum/game_mode/proc/new_player_topic(mob/new_player/NP, href, list/href_list)

@@ -152,7 +152,7 @@
 	var/weapon_to_spawn = null
 
 /obj/effect/landmark/weapon_spawn/Initialize()
-	GLOB.weapon_spawn_list += loc
+	GLOB.weapon_spawn_list += src
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 
