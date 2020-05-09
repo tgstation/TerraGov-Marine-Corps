@@ -16,8 +16,8 @@
 	var/list/view_range = getviewsize(user.client.view)
 	var/turf/source = get_turf(user)
 	var/turf/target = get_turf(A)
-	var/view_x = FLOOR(view_range[1]* 0.5, 1)
-	var/view_y = FLOOR(view_range[2]* 0.5, 1)
+	var/view_x = round(view_range[1]* 0.5, 1)
+	var/view_y = round(view_range[2]* 0.5, 1)
 	var/x_offset = user.client.pixel_x / 32
 	var/y_offset = user.client.pixel_y / 32
 	return ISINRANGE(target.x, source.x - view_x + x_offset, source.x + view_x + x_offset) && ISINRANGE(target.y, source.y - view_y + y_offset, source.y + view_y + y_offset)
