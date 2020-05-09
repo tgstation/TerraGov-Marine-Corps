@@ -690,13 +690,12 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		"<span class='notice'>You look up from [zoom_device].</span>")
 		zoom = FALSE
 		COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)
-		if(user.client.click_intercept)
-			user.client.click_intercept = null
 
 		if(user.interactee == src)
 			user.unset_interaction()
 
 		if(user.client)
+			user.client.click_intercept = null
 			user.client.change_view(WORLD_VIEW)
 			user.client.pixel_x = 0
 			user.client.pixel_y = 0
