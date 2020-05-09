@@ -152,22 +152,25 @@
 // this should probably use dump_contents()
 /obj/structure/closet/ex_act(severity)
 	switch(severity)
-		if(1)
-			for(var/atom/movable/A as mob|obj in src)//pulls everything out of the locker and hits it with an explosion
-				A.loc = loc
-				A.ex_act(severity++)
+		if(EXPLODE_DEVASTATE)
+			for(var/am in contents)//pulls everything out of the locker and hits it with an explosion
+				var/atom/movable/movable_content = am
+				movable_content.forceMove(loc)
+				movable_content.ex_act(severity)
 			qdel(src)
-		if(2)
+		if(EXPLODE_HEAVY)
 			if(prob(50))
-				for (var/atom/movable/A as mob|obj in src)
-					A.loc = loc
-					A.ex_act(severity++)
+				for(var/am in contents)
+					var/atom/movable/movable_content = am
+					movable_content.forceMove(loc)
+					movable_content.ex_act(severity)
 				qdel(src)
-		if(3)
+		if(EXPLODE_LIGHT)
 			if(prob(5))
-				for(var/atom/movable/A as mob|obj in src)
-					A.loc = loc
-					A.ex_act(severity++)
+				for(var/am in contents)
+					var/atom/movable/movable_content = am
+					movable_content.forceMove(loc)
+					movable_content.ex_act(severity)
 				qdel(src)
 
 /obj/structure/closet/attack_animal(mob/living/user)
@@ -411,10 +414,10 @@
 	return TRUE
 
 
-/obj/structure/closet/contents_explosion(severity, target)
+/obj/structure/closet/contents_explosion(severity)
 	for(var/i in contents)
-		var/atom/A = i
-		A.ex_act(severity, target)
+		var/atom/movable/closet_contents = i
+		closet_contents.ex_act(severity)
 
 
 /obj/structure/closet/proc/closet_special_handling(mob/living/mob_to_stuff)

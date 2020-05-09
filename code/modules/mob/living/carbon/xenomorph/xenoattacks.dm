@@ -81,7 +81,7 @@
 			H.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 			playsound(loc, attack.attack_sound, 25, TRUE)
 			visible_message("<span class='danger'>[H] [pick(attack.attack_verb)]ed [src]!</span>", null, null, 5)
-			apply_damage(melee_damage + attack.damage, BRUTE, "chest", armor.getRating("melee") + armor_bonus + armor_pheromone_bonus)
+			apply_damage(melee_damage + attack.damage, BRUTE, "chest", soft_armor.getRating("melee") + armor_bonus + armor_pheromone_bonus)
 			UPDATEHEALTH(src)
 
 
