@@ -635,8 +635,8 @@
 /proc/delayed_detonate_bomb_napalm(turf/impact)
 	impact.ceiling_debris_check(3)
 	explosion(impact, 2, 3, 4, 6)
-	for(var/turf/T in range(4, impact))
-		T.ignite(60, 30)
+	flame_radius(5, impact, 60, 30)
+
 
 /datum/admins/proc/drop_dynex_bomb()
 	set category = "Fun"
