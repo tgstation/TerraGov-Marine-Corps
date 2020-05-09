@@ -148,8 +148,6 @@
 		modifiers["icon-x"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-x"])))
 		modifiers["icon-y"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-y"])))
 		params = list2params(modifiers)
-		if(source.pixel_x != 0 || source.pixel_y != 0)
-			target = darkness_adjust(target, shooter)
 
 	if(SEND_SIGNAL(src, COMSIG_AUTOFIRE_ONMOUSEDOWN, source, target, location, control, params) & COMPONENT_AUTOFIRE_ONMOUSEDOWN_BYPASS)
 		return
@@ -259,8 +257,6 @@
 		modifiers["icon-y"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-y"])))
 		params = list2params(modifiers)
 		mouse_parameters = params
-		if(source.pixel_x != 0 || source.pixel_y != 0)
-			new_target = darkness_adjust(target, shooter)
 		if(!new_target)
 			if(QDELETED(target)) //No new target acquired, and old one was deleted, get us out of here.
 				stop_autofiring()
