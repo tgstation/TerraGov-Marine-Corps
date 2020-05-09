@@ -223,7 +223,7 @@
 //SMARTMACHINEGUN AMMUNITION
 
 /obj/item/ammo_magazine/standard_smartmachinegun
-	name = "\improper T-29 drum magazine (10x24mm)"
+	name = "\improper T-29 drum magazine (10x26mm)"
 	desc = "A 10mm drum magazine."
 	caliber = "10x26mm caseless"
 	icon_state = "t29"
