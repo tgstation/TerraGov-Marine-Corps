@@ -156,22 +156,25 @@ obj/item/alienjar
 	anchored = TRUE
 	layer = MOB_LAYER
 
-/obj/structure/plasticflaps/CanPass(atom/A, turf/T)
-	if(istype(A) && CHECK_BITFIELD(A.flags_pass, PASSGLASS))
+/obj/structure/plasticflaps/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+
+	if(mover.flags_pass & PASSGLASS)
 		return prob(60)
 
-	var/obj/structure/bed/B = A
-	if(istype(A, /obj/structure/bed) && LAZYLEN(B.buckled_mobs))//if it's a bed/chair and someone is buckled, it will not pass
+	if(istype(mover, /obj/structure/bed))//if it's a bed/chair and someone is buckled, it will not pass
+		var/obj/structure/bed/moving_bed = mover
+		if(LAZYLEN(moving_bed.buckled_mobs))
+			return FALSE
+
+	if(istype(mover, /obj/vehicle))	//no vehicles
 		return FALSE
 
-	if(istype(A, /obj/vehicle))	//no vehicles
-		return 0
+	if(isliving(mover)) // You Shall Not Pass!
+		var/mob/living/living_mover = mover
+		if(!living_mover.lying_angle && M.mob_size > MOB_SIZE_SMALL)  //If your not laying down, or a small creature, no pass.
+			return FALSE
 
-	if(isliving(A)) // You Shall Not Pass!
-		var/mob/living/M = A
-		if(!M.lying_angle && !ismonkey(M) && !istype(M, /mob/living/simple_animal/mouse))  //If your not laying down, or a small creature, no pass.
-			return 0
-	return ..()
 
 /obj/structure/plasticflaps/ex_act(severity)
 	switch(severity)

@@ -44,17 +44,12 @@
 	else
 		return 1
 
-/obj/machinery/door/poddoor/railing/CanPass(atom/movable/mover, turf/target)
-	if(!density)
-		return 1
 
-	if(mover && mover.throwing)
-		return 1
+/obj/machinery/door/poddoor/railing/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(mover.movement_type & (FLYING|FLOATING))
+		return TRUE
 
-	if(get_dir(loc, target) == dir)
-		return 0
-	else
-		return 1
 
 /obj/machinery/door/poddoor/railing/open()
 	if(!SSticker || operating || !density)

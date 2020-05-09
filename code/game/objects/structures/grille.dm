@@ -67,14 +67,11 @@
 	shock(user, 70)
 
 
-/obj/structure/grille/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGRILLE))
+/obj/structure/grille/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+
+	if(mover.flags_pass & PASSGRILLE)
 		return TRUE
-	else
-		if(istype(mover, /obj/projectile))
-			return prob(90)
-		else
-			return !density
 
 
 /obj/structure/grille/attackby(obj/item/I, mob/user, params)

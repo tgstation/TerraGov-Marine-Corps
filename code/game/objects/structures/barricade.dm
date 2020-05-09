@@ -64,15 +64,11 @@
 	else
 		return TRUE
 
-/obj/structure/barricade/CanPass(atom/movable/mover, turf/target)
-	if(closed)
-		return TRUE
+/obj/structure/barricade/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 
-	if(mover && mover.throwing)
-		if(is_wired && iscarbon(mover)) //Leaping mob against barbed wire fails
-			if(get_dir(loc, target) & dir)
-				return FALSE
-		return TRUE
+	if(mover.throwing && is_wired && iscarbon(mover) && get_dir(loc, target) & dir) 
+		return FALSE //Leaping mob against barbed wire fails
 
 	if(istype(mover, /obj/vehicle/multitile))
 		visible_message("<span class='danger'>[mover] drives over and destroys [src]!</span>")
@@ -83,10 +79,6 @@
 	if(S && S.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
 		return TRUE
 
-	if(get_dir(loc, target) & dir)
-		return FALSE
-	else
-		return TRUE
 
 /obj/structure/barricade/attack_animal(mob/user as mob)
 	return attack_alien(user)

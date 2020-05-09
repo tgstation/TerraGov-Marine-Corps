@@ -118,11 +118,10 @@
 	return ..()
 
 
-/obj/machinery/optable/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return 1
-	else
-		return 0
+/obj/machinery/optable/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(mover.flags_pass & PASSTABLE)
+		return TRUE
 
 
 /obj/machinery/optable/MouseDrop_T(atom/A, mob/user)

@@ -109,15 +109,15 @@
 	return attack_hand(M)
 
 
-/obj/effect/forcefield/fog/CanPass(atom/movable/mover, turf/target)
+/obj/effect/forcefield/fog/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(isobj(mover))
 		return TRUE
 	if(isxeno(mover))
 		var/mob/living/carbon/xenomorph/moving_xeno = mover
 		if(LAZYLEN(moving_xeno.stomach_contents))
-			return FALSE
+			return
 		return TRUE
-	return FALSE
 
 
 //used to control opacity of multitiles doors

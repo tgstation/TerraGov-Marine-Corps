@@ -14,7 +14,12 @@
 	var/throw_speed = 2
 	var/throw_range = 7
 	var/mob/pulledby = null
+	///Incase you have multiple types, you automatically use the most useful one. IE: Skating on ice, flippers on water, flying over chasm/space, etc.
+	var/movement_type = GROUND
 	var/atom/movable/pulling
+	var/pass_flags = NONE
+	/// If false makes [CanPass][/atom/proc/CanPass] call [CanPassThrough][/atom/movable/proc/CanPassThrough] on this type instead of using default behaviour
+	var/generic_canpass = TRUE
 	var/moving_diagonally = 0 //to know whether we're in the middle of a diagonal move,
 	var/atom/movable/moving_from_pull		//attempt to resume grab after moving instead of before.
 	var/glide_modifier_flags = NONE
@@ -348,6 +353,19 @@
 				M.turf_collision(T, speed)
 
 	SEND_SIGNAL(src, COMSIG_MOVABLE_IMPACT, hit_atom)
+
+
+/atom/movable/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(mover in buckled_mobs) //can't collide with the thing you're buckled to
+		return TRUE
+
+
+/// Returns true or false to allow src to move through the blocker, mover has final say
+/atom/movable/proc/CanPassThrough(atom/blocker, turf/target, blocker_opinion)
+	SHOULD_CALL_PARENT(TRUE)
+	SHOULD_BE_PURE(TRUE)
+	return blocker_opinion
 
 
 //decided whether a movable atom being thrown can pass through the turf it is in.

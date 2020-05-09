@@ -25,11 +25,10 @@
 				return 0
 	return 1
 
-/obj/machinery/line_nexter/CanPass(atom/movable/mover, turf/target)
-	if(get_dir(loc, target) == dir)
-		return 0
-	else
-		return 1
+/obj/machinery/line_nexter/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(get_dir(loc, target) != dir)
+		return TRUE
 
 /obj/machinery/line_nexter/proc/next()
 	//if((last_use + 20) > world.time) // 20 seconds

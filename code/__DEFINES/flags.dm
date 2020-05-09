@@ -15,3 +15,11 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define DF_USE_TAG		(1<<0)
 #define DF_VAR_EDITED	(1<<1)
 #define DF_ISPROCESSING (1<<2)
+
+//Movement Types
+#define GROUND			(1<<0)
+#define FLYING			(1<<1)
+#define VENTCRAWLING	(1<<2)
+#define FLOATING		(1<<3)
+/// When moving, will Bump()/Cross()/Uncross() everything, but won't be stopped.
+#define UNSTOPPABLE		(1<<4)

@@ -107,18 +107,26 @@ directive is properly returned.
 /atom/proc/Bumped(atom/movable/AM)
 	return
 
+///Can the mover object pass this atom, while heading for the target turf
 /atom/proc/CanPass(atom/movable/mover, turf/target)
-	//Purpose: Determines if the object can pass this atom.
-	//Called by: Movement.
-	//Inputs: The moving atom (optional), target turf
-	//Outputs: Boolean if can pass.
-	if(density)
-		if( (flags_atom & ON_BORDER) && !(get_dir(loc, target) & dir) )
-			return 1
-		else
-			return 0
-	else
-		return 1
+	SHOULD_CALL_PARENT(TRUE)
+	SHOULD_BE_PURE(TRUE)
+	if(mover.movement_type & UNSTOPPABLE)
+		return TRUE
+	. = CanAllowThrough(mover, target)
+	// This is cheaper than calling the proc every time since most things dont override CanPassThrough
+	if(!mover.generic_canpass)
+		return mover.CanPassThrough(src, target, .)
+
+/// Returns true or false to allow the mover to move through src
+/atom/proc/CanAllowThrough(atom/movable/mover, turf/target)
+	SHOULD_CALL_PARENT(TRUE)
+	SHOULD_BE_PURE(TRUE)
+	if(!density)
+		return TRUE
+	if((flags_atom & ON_BORDER) && !(get_dir(loc, target) & dir))
+		return TRUE
+	return FALSE
 
 
 /atom/proc/CheckExit(atom/movable/mover, turf/target)
