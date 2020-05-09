@@ -172,7 +172,7 @@
 		STOP_PROCESSING(SSmachines, src)
 
 /obj/machinery/power/port_gen/pacman/proc/overheat()
-	explosion(src.loc, 2, 5, 2, -1)
+	explosion(loc, 3, 6)
 
 /obj/machinery/power/port_gen/pacman/attackby(obj/item/O, mob/user, params)
 	if(istype(O, sheet_path))
@@ -273,7 +273,7 @@
 	time_per_sheet = 85
 
 /obj/machinery/power/port_gen/pacman/super/overheat()
-	explosion(loc, 3, 3, 3, -1)
+	explosion(loc, 4)
 
 /obj/machinery/power/port_gen/pacman/mrs
 	name = "\improper M.R.S.P.A.C.M.A.N.-type portable generator"
@@ -285,4 +285,4 @@
 	time_per_sheet = 80
 
 /obj/machinery/power/port_gen/pacman/mrs/overheat()
-	explosion(loc, 4, 4, 4, -1)
+	explosion(loc, 4)

@@ -52,6 +52,7 @@
 		T.ceiling_desc(user)
 
 /obj/effect/alien/weeds/Crossed(atom/movable/AM)
+	. = ..()
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		H.next_move_slowdown += 1

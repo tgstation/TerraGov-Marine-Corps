@@ -162,7 +162,7 @@
 		var/obj/item/storage/S = loc
 		S.remove_from_storage(src, user.loc)
 
-	throwing = FALSE
+	set_throwing(FALSE)
 
 	if(loc == user && !user.temporarilyRemoveItemFromInventory(src))
 		return
@@ -223,10 +223,6 @@
 	if(user?.client && zoom) //Dropped when disconnected, whoops
 		zoom(user, 11, 12)
 
-	for(var/X in actions)
-		var/datum/action/A = X
-		A.remove_action(user)
-
 	SEND_SIGNAL(src, COMSIG_ITEM_DROPPED, user)
 
 	if(flags_item & DELONDROP)
@@ -284,14 +280,49 @@
 /obj/item/proc/equipped(mob/user, slot)
 	SHOULD_CALL_PARENT(TRUE) // no exceptions
 	SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED, user, slot)
-	if(flags_equip_slot & slotdefine2slotbit(slot)) // flags_equip_slot is a bitfield
+
+	var/equipped_to_slot = flags_equip_slot & slotdefine2slotbit(slot)
+	if(equipped_to_slot) // flags_equip_slot is a bitfield
 		SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED_TO_SLOT, user)
 	else
 		SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, user, slot)
+
 	for(var/X in actions)
 		var/datum/action/A = X
 		if(item_action_slot_check(user, slot)) //some items only give their actions buttons when in a specific slot.
 			A.give_action(user)
+
+	if(!equipped_to_slot)
+		return
+
+	if(ishuman(user))
+		var/mob/living/carbon/human/human_user = user
+		if(flags_armor_protection)
+			human_user.add_limb_armor(src)
+		if(slowdown)
+			human_user.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, slowdown)
+
+
+///Called when an item is removed from an equipment slot. The loc should still be in the unequipper.
+/obj/item/proc/unequipped(mob/unequipper, slot)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_ITEM_UNEQUIPPED, unequipper, slot)
+
+	var/equipped_from_slot = flags_equip_slot & slotdefine2slotbit(slot)
+
+	for(var/X in actions)
+		var/datum/action/A = X
+		A.remove_action(unequipper)
+
+	if(!equipped_from_slot)
+		return
+
+	if(ishuman(unequipper))
+		var/mob/living/carbon/human/human_unequipper = unequipper
+		if(flags_armor_protection)
+			human_unequipper.remove_limb_armor(src)
+		if(slowdown)
+			human_unequipper.remove_movespeed_modifier(type)
 
 
 //sometimes we only want to grant the item's action if it's equipped in a specific slot.
@@ -659,13 +690,12 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		"<span class='notice'>You look up from [zoom_device].</span>")
 		zoom = FALSE
 		COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)
-		if(user.client.click_intercept)
-			user.client.click_intercept = null
 
 		if(user.interactee == src)
 			user.unset_interaction()
 
 		if(user.client)
+			user.client.click_intercept = null
 			user.client.change_view(WORLD_VIEW)
 			user.client.pixel_x = 0
 			user.client.pixel_y = 0

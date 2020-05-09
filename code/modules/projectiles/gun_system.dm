@@ -4,7 +4,7 @@
 	icon = 'icons/obj/items/gun.dmi'
 	icon_state = ""
 	item_state = "gun"
-	materials = list(/datum/material/metal = 5000)
+	materials = list(/datum/material/metal = 100)
 	w_class 	= 3
 	throwforce 	= 5
 	throw_speed = 4

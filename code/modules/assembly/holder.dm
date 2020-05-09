@@ -69,6 +69,7 @@
 
 
 /obj/item/assembly_holder/Crossed(atom/movable/AM)
+	. = ..()
 	if(a_left)
 		a_left.Crossed(AM)
 	if(a_right)
