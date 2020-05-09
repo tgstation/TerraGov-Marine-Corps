@@ -285,6 +285,7 @@
 /obj/structure/ship_ammo/rocket/napalm/detonate_on(turf/impact)
 	impact.ceiling_debris_check(3)
 	explosion(impact, 2, 3, 4, 6) //relatively weak
+	flame_radius(5, impact, 60, 30)
 	for(var/turf/T in range(4, impact))
 		T.ignite(60, 30) //cooking for a long time
 	qdel(src)

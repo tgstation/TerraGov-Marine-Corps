@@ -122,24 +122,23 @@
 	underslug_launchable = TRUE
 
 /obj/item/explosive/grenade/incendiary/prime()
-	spawn(0)
-		flame_radius(2, get_turf(src))
-		playsound(src.loc, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
-		qdel(src)
-	return
+	flame_radius(2, get_turf(src))
+	playsound(loc, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, TRUE, 4)
+	qdel(src)
 
 
-/proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, burn_damage = 25, fire_stacks = 15, int_var = 0.5, dur_var = 0.5, colour = "red") //~Art updated fire.
-	if(!T || !isturf(T))
-		return
+/proc/flame_radius(radius = 1, turf/epicenter, burn_intensity = 25, burn_duration = 25, burn_damage = 25, fire_stacks = 15, int_var = 0.5, dur_var = 0.5, colour = "red") //~Art updated fire.
+	if(!isturf(epicenter))
+		CRASH("flame_radius used without a valid turf parameter")
 	radius = CLAMP(radius, 1, 50) //Sanitize inputs
 	int_var = CLAMP(int_var, 0.1,0.5)
 	dur_var = CLAMP(int_var, 0.1,0.5)
 	fire_stacks = rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) ) + rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) )
 	burn_damage = rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) ) + rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) )
 
-	for(var/turf/IT in filled_turfs(T, radius, "circle"))
-		IT.ignite(rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)) + rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)), rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)) + rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)), colour, burn_damage, fire_stacks)
+	for(var/t in filled_turfs(epicenter, radius, "circle"))
+		var/turf/turf_to_flame = t
+		turf_to_flame.ignite(rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)) + rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)), rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)) + rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)), colour, burn_damage, fire_stacks)
 
 
 /obj/item/explosive/grenade/incendiary/molotov
@@ -155,12 +154,10 @@
 	det_time = rand(10,40)//Adds some risk to using this thing.
 
 /obj/item/explosive/grenade/incendiary/molotov/prime()
-	spawn(0)
-		playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 35, 1, 4)
-		flame_radius(2, get_turf(src))
-		playsound(src.loc, 'sound/weapons/guns/fire/flamethrower2.ogg', 30, 1, 4)
-		qdel(src)
-	return
+	playsound(loc, 'sound/effects/hit_on_shattered_glass.ogg', 35, TRUE, 4)
+	flame_radius(2, get_turf(src))
+	playsound(loc, 'sound/weapons/guns/fire/flamethrower2.ogg', 30, TRUE, 4)
+	qdel(src)
 
 
 /obj/item/explosive/grenade/smokebomb
