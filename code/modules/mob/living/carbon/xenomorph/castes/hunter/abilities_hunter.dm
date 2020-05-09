@@ -20,6 +20,7 @@
 	RegisterSignal(L, COMSIG_XENO_LIVING_THROW_HIT, .proc/mob_hit)
 	RegisterSignal(L, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/sneak_attack_slash)
 	RegisterSignal(L, COMSIG_XENOMORPH_DISARM_HUMAN, .proc/sneak_attack_disarm)
+	RegisterSignal(L, COMSIG_XENOMORPH_ZONE_SELECT, .proc/sneak_attack_zone)
 
 	// TODO: attack_alien() overrides are a mess and need a lot of work to make them require parentcalling
 	RegisterSignal(L, list(
@@ -65,7 +66,8 @@
 		COMSIG_XENOMORPH_FIRE_BURNING,
 		COMSIG_LIVING_ADD_VENTCRAWL,
 		SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT),
-		SIGNAL_ADDTRAIT(TRAIT_FLOORED)))
+		SIGNAL_ADDTRAIT(TRAIT_FLOORED),
+		COMSIG_XENOMORPH_ZONE_SELECT))
 	return ..()
 
 /datum/action/xeno_action/stealth/can_use_action(silent = FALSE, override_flags)
