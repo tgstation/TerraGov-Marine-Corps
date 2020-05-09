@@ -9,9 +9,6 @@
 	. = ..()
 	baseturfs = type
 
-/turf/open/ground/ex_act(severity) //Should make it indestructable
-	return
-
 /turf/open/ground/fire_act(exposed_temperature, exposed_volume)
 	return
 

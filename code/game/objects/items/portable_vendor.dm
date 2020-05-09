@@ -182,16 +182,16 @@
 
 /obj/item/portable_vendor/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
 			return
-		if(2.0)
+		if(EXPLODE_HEAVY)
 			if(prob(50))
 				qdel(src)
 				return
 			else
 				malfunction()
-		else
+		if(EXPLODE_LIGHT)
 			if(prob(80))
 				malfunction()
 

@@ -76,13 +76,12 @@
 
 /obj/machinery/chem_dispenser/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-			return
-		if(2.0)
+		if(EXPLODE_HEAVY)
 			if (prob(50))
 				qdel(src)
-				return
+
 
 /obj/machinery/chem_dispenser/proc/work_animation()
 	if(working_state)
@@ -330,13 +329,12 @@
 
 /obj/machinery/chem_master/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-			return
-		if(2.0)
+		if(EXPLODE_HEAVY)
 			if (prob(50))
 				qdel(src)
-				return
+
 
 /obj/machinery/chem_master/attackby(obj/item/I, mob/user, params)
 	. = ..()
