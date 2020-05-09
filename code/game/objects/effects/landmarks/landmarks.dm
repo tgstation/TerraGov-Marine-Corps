@@ -159,17 +159,22 @@
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn
 	name = "Tier 1 Weapon Spawn"
 	icon_state = "weapon1"
+	weapon_list = list(	/obj/item/weapon/gun/pistol/standard_pistol,
+					/obj/item/weapon/gun/pistol/m4a3,
+					/obj/item/weapon/combat_knife,
+					/obj/item/weapon/throwing_knife
+					)
 
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn/Initialize()
 	. = ..()
-	tier_1()
-		
+	choose_weapon()
+
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn
 	name = "Tier 2 Weapon Spawn"
 	icon_state = "weapon2"
 
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn/Initialize()
-	tier_2()
+	choose_weapon()
 	. = ..()
 
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn
@@ -177,7 +182,7 @@
 	icon_state = "weapon3"
 
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn/Initialize()
-	tier_3()
+	choose_weapon()
 	. = ..()
 
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn
@@ -185,7 +190,7 @@
 	icon_state = "weapon4"
 
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn/Initialize()
-	tier_4()
+	choose_weapon()
 	. = ..()
 
 /obj/effect/landmark/weapon_spawn/tier5_weapon_spawn
@@ -193,7 +198,7 @@
 	icon_state = "weapon5"
 
 /obj/effect/landmark/weapon_spawn/tier5_weapon_spawn/Initialize()
-	tier_5()
+	choose_weapon()
 	. = ..()
 
 /obj/effect/landmark/weapon_spawn/tier6_weapon_spawn
@@ -201,5 +206,5 @@
 	icon_state = "weapon6"
 
 /obj/effect/landmark/weapon_spawn/tier6_weapon_spawn/Initialize()
-	tier_6()
+	choose_weapon()
 	. = ..()
