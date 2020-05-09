@@ -50,8 +50,6 @@
 	var/ear_deaf = 0
 	var/ear_damage = 0
 
-	var/frozen = 0
-
 	var/dizziness = 0
 	var/jitteriness = 0
 

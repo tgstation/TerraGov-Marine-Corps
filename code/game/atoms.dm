@@ -297,7 +297,7 @@ directive is properly returned.
 
 /atom/proc/hitby(atom/movable/AM)
 	if(density)
-		AM.throwing = FALSE
+		AM.set_throwing(FALSE)
 	return
 
 

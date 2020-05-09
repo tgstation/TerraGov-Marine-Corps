@@ -338,7 +338,7 @@
 		O.hitby(src, speed)
 
 	else if(isturf(hit_atom))
-		throwing = FALSE
+		set_throwing(FALSE)
 		var/turf/T = hit_atom
 		if(T.density)
 			spawn(2)
@@ -378,7 +378,7 @@
 	if(spin)
 		animation_spin(5, 1)
 
-	throwing = TRUE
+	set_throwing(TRUE)
 	src.thrower = thrower
 	throw_source = get_turf(src)	//store the origin turf
 
@@ -463,7 +463,7 @@
 	if(isobj(src) && throwing)
 		throw_impact(get_turf(src), speed)
 	if(loc)
-		throwing = FALSE
+		set_throwing(FALSE)
 		thrower = null
 		throw_source = null
 
@@ -884,3 +884,10 @@
 		return
 	. = grab_state
 	grab_state = newstate
+
+
+/atom/movable/proc/set_throwing(new_throwing)
+	if(new_throwing == throwing)
+		return
+	. = throwing
+	throwing = new_throwing

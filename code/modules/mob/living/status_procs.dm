@@ -125,6 +125,79 @@
 			K = apply_status_effect(STATUS_EFFECT_KNOCKDOWN, amount)
 		return K
 
+///////////////////////////////// IMMOBILIZED /////////////////////////////////////
+
+///If we're immobilized.
+/mob/living/proc/IsImmobilized()
+	return has_status_effect(STATUS_EFFECT_IMMOBILIZED)
+
+///How many deciseconds remain in our Immobilized status effect.
+/mob/living/proc/AmountImmobilized()
+	var/datum/status_effect/incapacitating/immobilized/I = IsImmobilized()
+	if(I)
+		return I.duration - world.time
+	return 0
+
+///Immobilize only if not already immobilized.
+/mob/living/proc/ImmobilizeNoChain(amount, ignore_canstun = FALSE)
+	if(status_flags & GODMODE)
+		return
+	if(IsImmobilized())
+		return 0
+	return Immobilize(amount, ignore_canstun)
+
+///Can't go below remaining duration.
+/mob/living/proc/Immobilize(amount, ignore_canstun = FALSE)
+	if(status_flags & GODMODE)
+		return
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_IMMOBILIZE, amount, ignore_canstun) & COMPONENT_NO_STUN)
+		return
+	if(((status_flags & CANKNOCKDOWN) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
+		if(absorb_stun(amount, ignore_canstun))
+			return
+		var/datum/status_effect/incapacitating/immobilized/I = IsImmobilized()
+		if(I)
+			I.duration = max(world.time + amount, I.duration)
+		else if(amount > 0)
+			I = apply_status_effect(STATUS_EFFECT_IMMOBILIZED, amount)
+		return I
+
+///Sets remaining duration.
+/mob/living/proc/SetImmobilized(amount, ignore_canstun = FALSE) //Sets remaining duration
+	if(status_flags & GODMODE)
+		return
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_IMMOBILIZE, amount, ignore_canstun) & COMPONENT_NO_STUN)
+		return
+	if(((status_flags & CANKNOCKDOWN) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
+		var/datum/status_effect/incapacitating/immobilized/I = IsImmobilized()
+		if(amount <= 0)
+			if(I)
+				qdel(I)
+		else
+			if(absorb_stun(amount, ignore_canstun))
+				return
+			if(I)
+				I.duration = world.time + amount
+			else
+				I = apply_status_effect(STATUS_EFFECT_IMMOBILIZED, amount)
+		return I
+
+///Adds to remaining duration.
+/mob/living/proc/AdjustImmobilized(amount, ignore_canstun = FALSE)
+	if(status_flags & GODMODE)
+		return
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_IMMOBILIZE, amount, ignore_canstun) & COMPONENT_NO_STUN)
+		return
+	if(((status_flags & CANKNOCKDOWN) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
+		if(absorb_stun(amount, ignore_canstun))
+			return
+		var/datum/status_effect/incapacitating/immobilized/I = IsImmobilized()
+		if(I)
+			I.duration += amount
+		else if(amount > 0)
+			I = apply_status_effect(STATUS_EFFECT_IMMOBILIZED, amount)
+		return I
+
 ///////////////////////////////// PARALYZED //////////////////////////////////
 /mob/living/proc/IsParalyzed() //If we're immobilized
 	return has_status_effect(STATUS_EFFECT_PARALYZED)
@@ -405,17 +478,6 @@
 					to_chat(src, "<span class='boldwarning'>[priority_absorb_key["self_message"]]</span>")
 			priority_absorb_key["stuns_absorbed"] += amount
 		return TRUE
-
-
-/mob/living/proc/set_frozen(freeze = TRUE)
-	if(freeze == frozen)
-		return
-	. = frozen
-	frozen = freeze
-	if(frozen)
-		ADD_TRAIT(src, TRAIT_IMMOBILE, FROZEN_TRAIT)
-	else
-		REMOVE_TRAIT(src, TRAIT_IMMOBILE, FROZEN_TRAIT)
 
 
 /mob/living/proc/adjust_drugginess(amount)

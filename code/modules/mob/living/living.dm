@@ -417,9 +417,7 @@
 		stop_pulling() //being thrown breaks pulls.
 	if(pulledby)
 		pulledby.stop_pulling()
-	set_frozen(TRUE) //can't move while being thrown
-	. = ..()
-	set_frozen(FALSE)
+	return ..()
 
 
 /mob/living/proc/offer_mob()
