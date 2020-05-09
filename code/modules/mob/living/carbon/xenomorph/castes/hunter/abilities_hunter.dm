@@ -38,6 +38,8 @@
 		COMSIG_XENOMORPH_THROW_HIT,
 		COMSIG_XENOMORPH_FIRE_BURNING,
 		COMSIG_LIVING_ADD_VENTCRAWL), .proc/cancel_stealth)
+		
+	RegisterSignal(L, list(SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), SIGNAL_ADDTRAIT(TRAIT_FLOORED)), .proc/cancel_stealth)
 
 	RegisterSignal(src, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/damage_taken)
 
@@ -61,7 +63,9 @@
 		COMSIG_XENOMORPH_ATTACK_TANK,
 		COMSIG_XENOMORPH_THROW_HIT,
 		COMSIG_XENOMORPH_FIRE_BURNING,
-		COMSIG_LIVING_ADD_VENTCRAWL))
+		COMSIG_LIVING_ADD_VENTCRAWL,
+		SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT),
+		SIGNAL_ADDTRAIT(TRAIT_FLOORED)))
 	return ..()
 
 /datum/action/xeno_action/stealth/can_use_action(silent = FALSE, override_flags)
@@ -115,10 +119,6 @@
 
 /datum/action/xeno_action/stealth/proc/handle_stealth()
 	if(!stealth)
-		return
-	var/mob/living/livingowner = owner
-	if(owner.stat != CONSCIOUS || owner.lying_angle || livingowner.resting) //Can't stealth while unconscious/resting
-		cancel_stealth()
 		return
 	//Initial stealth
 	if(last_stealth > world.time - HUNTER_STEALTH_INITIAL_DELAY) //We don't start out at max invisibility
