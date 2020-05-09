@@ -83,6 +83,43 @@
 	M.key = key
 
 
+/// This is only available to mobs once they join EORD.
+/mob/proc/eord_respawn()
+	set name = "EORD Respawn"
+	set category = "OOC"
+
+	if(stat != DEAD)
+		to_chat(src, "You can only use this when you're dead.")
+		return
+
+	var/list/spawn_types = pick(
+		500 ; /mob/living/carbon/human,
+		/mob/living/carbon/xenomorph/runner,
+		/mob/living/carbon/xenomorph/hunter,
+		/mob/living/carbon/xenomorph/spitter,
+		/mob/living/carbon/xenomorph/defender,
+		/mob/living/carbon/xenomorph/warrior,
+	)
+	var/spawn_location = pick(GLOB.deathmatch)
+	var/mob/living/L = new spawn_types(spawn_location)
+	mind.transfer_to(L, TRUE)
+	L.mind.bypass_ff = TRUE
+	L.revive()
+
+	if(isxeno(L))
+		var/mob/living/carbon/xenomorph/X = L
+		X.transfer_to_hive(pick(XENO_HIVE_NORMAL, XENO_HIVE_CORRUPTED, XENO_HIVE_ALPHA, XENO_HIVE_BETA, XENO_HIVE_ZETA))
+
+	else if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		var/job = pick(/datum/job/clf/leader, /datum/job/freelancer/leader, /datum/job/upp/leader, /datum/job/som/leader, /datum/job/pmc/leader, /datum/job/freelancer/standard, /datum/job/som/standard, /datum/job/clf/standard)
+		var/datum/job/J = SSjob.GetJobType(job)
+		H.apply_assigned_role_to_spawn(J)
+		H.regenerate_icons()
+
+	to_chat(L, "<br><br><h1><span class='danger'>Fight for your life (again), try not to die this time!</span></h1><br><br>")
+
+
 /mob/verb/cancel_camera()
 	set name = "Cancel Camera View"
 	set category = "Object"

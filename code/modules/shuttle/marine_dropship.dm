@@ -67,10 +67,10 @@
 	var/turf/left = locate(C.x - leftright, C.y, C.z)
 	var/turf/right = locate(C.x + leftright, C.y, C.z)
 
-	explosion(front, 0, 4, 8, 0)
-	explosion(rear, 2, 5, 9, 0)
-	explosion(left, 2, 5, 9, 0)
-	explosion(right, 2, 5, 9, 0)
+	explosion(front, 2, 4, 7, 0)
+	explosion(rear, 3, 5, 8, 0)
+	explosion(left, 3, 5, 8, 0)
+	explosion(right, 3, 5, 8, 0)
 
 /obj/docking_port/stationary/marine_dropship/crash_target
 	name = "dropshipcrash"

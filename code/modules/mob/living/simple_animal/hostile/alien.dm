@@ -16,7 +16,7 @@
 	attacktext = "slashes"
 	a_intent = INTENT_HARM
 	attack_sound = 'sound/weapons/alien_claw_flesh1.ogg'
-	faction = "alien"
+	faction = FACTION_ALIEN
 	stop_automated_movement_when_pulled = TRUE
 
 

@@ -143,20 +143,20 @@
 */
 /datum/component/suit_autodoc/proc/examine(datum/source, mob/user)
 	var/details
-	if(cooldowns[COOLDOWN_CHEM_BURN])
-		details += "Its burn treatment injector is currently refilling. It will resupply in [(timeleft(cooldowns[COOLDOWN_CHEM_BURN])) * 0.1] seconds.</br>"
+	if(COOLDOWN_CHECK(src, COOLDOWN_CHEM_BURN))
+		details += "Its burn treatment injector is currently refilling.</br>"
 
-	if(cooldowns[COOLDOWN_CHEM_BRUTE])
-		details += "Its trauma treatment injector is currently refilling. It will resupply in [(timeleft(cooldowns[COOLDOWN_CHEM_BRUTE])) * 0.1] seconds.</br>"
+	if(COOLDOWN_CHECK(src, COOLDOWN_CHEM_BRUTE))
+		details += "Its trauma treatment injector is currently refilling.</br>"
 
-	if(cooldowns[COOLDOWN_CHEM_OXY])
-		details += "Its oxygenating injector is currently refilling. It will resupply in [(timeleft(cooldowns[COOLDOWN_CHEM_OXY])) * 0.1] seconds.</br>"
+	if(COOLDOWN_CHECK(src, COOLDOWN_CHEM_OXY))
+		details += "Its oxygenating injector is currently refilling.</br>"
 
-	if(cooldowns[COOLDOWN_CHEM_TOX])
-		details += "Its anti-toxin injector is currently refilling. It will resupply in [(timeleft(cooldowns[COOLDOWN_CHEM_TOX])) * 0.1] seconds.</br>"
+	if(COOLDOWN_CHECK(src, COOLDOWN_CHEM_TOX))
+		details += "Its anti-toxin injector is currently refilling.</br>"
 
-	if(cooldowns[COOLDOWN_CHEM_PAIN])
-		details += "Its painkiller injector is currently refilling. It will resupply in [(timeleft(cooldowns[COOLDOWN_CHEM_PAIN])) * 0.1] seconds.</br>"
+	if(COOLDOWN_CHECK(src, COOLDOWN_CHEM_PAIN))
+		details += "Its painkiller injector is currently refilling.</br>"
 
 	if(details)
 		to_chat(user, "<span class='danger'>[details]</span>")
