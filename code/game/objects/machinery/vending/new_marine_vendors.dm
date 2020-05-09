@@ -73,9 +73,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
 	req_access = null
-	req_access_txt = "0"
 	req_one_access = null
-	req_one_access_txt = "0"
 	interaction_flags = INTERACT_MACHINE_NANO
 
 	idle_power_usage = 60
@@ -780,7 +778,6 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = list(CAT_MEDSUP, "Injector (Advanced)", 5, "orange"),
 		/obj/item/reagent_containers/hypospray/autoinjector/oxycodone = list(CAT_MEDSUP, "Injector (Oxycodone)", 1, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/hypervene = list(CAT_MEDSUP, "Injector (Hypervene)", 1, "black"),
-		/obj/item/reagent_containers/hypospray/autoinjector/hyperzine = list(CAT_MEDSUP, "Injector (Hyperzine)", 5, "orange"),
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_MEDSUP, "Injector (Synaptizine)", 5, "orange"),
 		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = list(CAT_MEDSUP, "Injector (Perdiaxon Plus)", 5, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/neuraline = list(CAT_MEDSUP, "Injector (Neuraline)", 15, "orange"),
@@ -853,9 +850,9 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	req_access = list(ACCESS_MARINE_SMARTPREP)
 
 	listed_products = list(
-		/obj/item/storage/box/m56_system = list(CAT_ESS, "Essential Smartgunner Set", 0, "white"),
+		/obj/item/storage/box/t26_system = list(CAT_ESS, "Essential Smartgunner Set", 0, "white"),
 
-		/obj/item/smartgun_powerpack = list(CAT_SPEAMM, "M56 powerpack", 45, "black"),
+		/obj/item/ammo_magazine/standard_smartmachinegun = list(CAT_SPEAMM, "T26 ammo drum", 45, "black"),
 
 		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
 		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),

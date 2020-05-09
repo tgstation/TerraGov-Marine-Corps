@@ -38,9 +38,11 @@
 	// This shouldn't be modified directly, use the helper procs.
 	var/list/baseturfs = /turf/baseturf_bottom
 	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
+
 	var/changing_turf = FALSE
 
 	var/datum/armor/armor
+
 
 /turf/Initialize(mapload)
 	if(flags_atom & INITIALIZED)
@@ -96,9 +98,6 @@
 	visibilityChanged()
 	DISABLE_BITFIELD(flags_atom, INITIALIZED)
 	..()
-
-/turf/ex_act(severity)
-	return 0
 
 
 /turf/Enter(atom/movable/mover, atom/oldloc)
@@ -257,7 +256,6 @@
 		W.baseturfs = new_baseturfs
 	else
 		W.baseturfs = old_baseturfs
-
 
 	if(!(flags & CHANGETURF_DEFER_CHANGE))
 		W.AfterChange(flags)
@@ -847,11 +845,30 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	return TRUE
 
 
-/turf/contents_explosion(severity, target)
-	for(var/i in contents)
-		var/atom/A = i
-		if(!QDELETED(A) && A.level >= severity)
-			A.ex_act(severity, target)
+/turf/contents_explosion(severity)
+	for(var/thing in contents)
+		var/atom/movable/thing_in_turf = thing
+		if(thing_in_turf.resistance_flags & INDESTRUCTIBLE)
+			continue
+		switch(severity)
+			if(EXPLODE_DEVASTATE)
+				SSexplosions.highMovAtom[thing_in_turf] += list(src)
+				if(thing_in_turf.flags_atom & PREVENT_CONTENTS_EXPLOSION)
+					continue
+				for(var/a in thing_in_turf.contents)
+					SSexplosions.highMovAtom[a] += list(src)
+			if(EXPLODE_HEAVY)
+				SSexplosions.medMovAtom[thing_in_turf] += list(src)
+				if(thing_in_turf.flags_atom & PREVENT_CONTENTS_EXPLOSION)
+					continue
+				for(var/a in thing_in_turf.contents)
+					SSexplosions.medMovAtom[a] += list(src)
+			if(EXPLODE_LIGHT)
+				SSexplosions.lowMovAtom[thing_in_turf] += list(src)
+				if(thing_in_turf.flags_atom & PREVENT_CONTENTS_EXPLOSION)
+					continue
+				for(var/a in thing_in_turf.contents)
+					SSexplosions.lowMovAtom[a] += list(src)
 
 
 /turf/vv_edit_var(var_name, new_value)

@@ -1005,17 +1005,17 @@
 
 /obj/machinery/power/apc/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			cell?.ex_act(1) //More lags woohoo
 			qdel(src)
-		if(2)
+		if(EXPLODE_HEAVY)
 			if(prob(50))
 				return
 			set_broken()
 			if(!cell || prob(50))
 				return
 			cell.ex_act(2)
-		if(3)
+		if(EXPLODE_LIGHT)
 			if(prob(75))
 				return
 			set_broken()

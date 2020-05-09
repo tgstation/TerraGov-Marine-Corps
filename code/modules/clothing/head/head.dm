@@ -17,7 +17,7 @@
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	sprite_sheet_id = 1
 	icon_state = "band"
-	flags_inv_hide = HIDETOPHAIR
+	flags_inv_hide = NONE
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 
 /obj/item/clothing/head/tgmcbandanna/tan

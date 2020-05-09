@@ -53,9 +53,6 @@
 /turf/open/floor/mainship/empty/is_weedable()
 	return FALSE
 
-/turf/open/floor/mainship/empty/ex_act(severity) //Should make it indestructable
-	return
-
 /turf/open/floor/mainship/empty/fire_act(exposed_temperature, exposed_volume)
 	return
 
@@ -191,15 +188,6 @@
 		ChangeTurf(/turf/open/floor)
 		var/turf/open/floor/F = src
 		F.make_plating()
-
-
-/turf/open/floor/engine/ex_act(severity)
-	switch(severity)
-		if(1)
-			break_tile_to_plating()
-		if(2)
-			if(prob(25))
-				break_tile_to_plating()
 
 
 /turf/open/floor/engine/nitrogen

@@ -170,24 +170,19 @@
 					/obj/item/ammo_magazine/pistol/standard_pistol = 25,
 					/obj/item/ammo_magazine/pistol/m1911 = 10,
 					/obj/item/ammo_magazine/revolver/standard_revolver = 20,
-					/obj/item/ammobox/standard_smg = 3,
 					/obj/item/ammo_magazine/smg/standard_smg = 15,
-					/obj/item/ammobox = 3,
 					/obj/item/ammo_magazine/rifle/standard_carbine = 15,
 					/obj/item/ammo_magazine/rifle/standard_assaultrifle = 15,
 					/obj/item/ammo_magazine/standard_lmg = 10,
 					/obj/item/ammo_magazine/rifle/standard_dmr = 25,
 					/obj/item/cell/lasgun/lasrifle = 15,
 					/obj/item/cell/lasgun/lasrifle/highcap = 5,
-					/obj/item/shotgunbox = 3,
 					/obj/item/ammo_magazine/shotgun = 10,
-					/obj/item/shotgunbox/buckshot = 3,
 					/obj/item/ammo_magazine/shotgun/buckshot = 10,
-					/obj/item/shotgunbox/flechette = 3,
 					/obj/item/ammo_magazine/shotgun/flechette = 15,
 					/obj/item/ammo_magazine/rifle/tx15_slug = 25,
 					/obj/item/ammo_magazine/rifle/tx15_flechette = 25,
-					/obj/item/smartgun_powerpack = 2
+					/obj/item/ammo_magazine/standard_smartmachinegun = 2
 					)
 
 	contraband = list(
@@ -351,7 +346,6 @@
 	vend_delay = 15
 	//product_slogans = "Standard Issue Marine food!;It's good for you, and not the worst thing in the world.;Just fucking eat it.;"
 	product_ads = "Try the cornbread.;Try the pizza.;Try the pasta.;Try the tofu, wimp.;Try the pork."
-	req_access_txt = ""
 
 
 /obj/machinery/vending/MarineMed
@@ -372,7 +366,6 @@
 					/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = 8,
 					/obj/item/reagent_containers/hypospray/autoinjector/combat = 2,
 					/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 4,
-					/obj/item/reagent_containers/hypospray/autoinjector/hyperzine = 0,
 					/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
 					/obj/item/storage/pill_bottle/bicaridine = 3,
 					/obj/item/storage/pill_bottle/dexalin = 3,
@@ -397,7 +390,6 @@
 					/obj/item/bodybag/cryobag = 2)
 
 	contraband = list(/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin =3,
-					/obj/item/reagent_containers/hypospray/autoinjector/hyperzine/expired =3,
 					/obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired =3)
 
 
@@ -558,7 +550,7 @@
 
 	products = list(
 						/obj/item/clothing/tie/storage/webbing = 1,
-						/obj/item/storage/box/m56_system = 1,
+						/obj/item/storage/box/t26_system = 1,
 						/obj/item/smartgun_powerpack = 1,
 						/obj/item/storage/pouch/magazine = 1,
 						/obj/item/clothing/mask/gas = 1
@@ -767,5 +759,3 @@
 /obj/machinery/vending/uniform_supply/Destroy()
 	. = ..()
 	GLOB.marine_vendors.Remove(src)
-
-

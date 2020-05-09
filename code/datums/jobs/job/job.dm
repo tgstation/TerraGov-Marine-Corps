@@ -27,7 +27,7 @@ GLOBAL_PROTECT(exp_specialmap)
 
 	var/department_head = list()
 
-	var/faction = "None"
+	var/faction = FACTION_NEUTRAL
 
 	var/total_positions = 0
 	var/current_positions = 0
@@ -51,7 +51,7 @@ GLOBAL_PROTECT(exp_specialmap)
 
 	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
 	var/job_flags = NONE
-	
+
 	var/list/jobworth = list() //Associative list of indexes increased when someone joins as this job.
 
 /datum/job/New()
@@ -212,7 +212,7 @@ GLOBAL_PROTECT(exp_specialmap)
 	if(total_positions >= max_positions)
 		return
 	if(job_points >= job_points_needed )
-		job_points -= job_points_needed 
+		job_points -= job_points_needed
 		add_job_positions(1)
 
 /datum/job/proc/add_job_positions(amount)

@@ -9,7 +9,6 @@
 	cocked_sound = 'sound/weapons/guns/interact/pistol_cocked.ogg'
 	muzzleflash_iconstate = "muzzle_flash_light"
 	load_method = MAGAZINE //codex
-	materials = list(/datum/material/metal = 2000)
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 6

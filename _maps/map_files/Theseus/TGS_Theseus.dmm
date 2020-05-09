@@ -1869,9 +1869,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/upper_hull)
 "aeT" = (
-/obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "19"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /obj/structure/cable/yellow{
 	d1 = 4;
 	d2 = 8;
@@ -2388,23 +2386,19 @@
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/reagent_containers/spray/cleaner,
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/research{
 	dir = 1;
 	id = "researchdoorext";
 	name = "Exterior Doors";
-	normaldoorcontrol = 1;
 	pixel_x = -10;
-	pixel_y = 8;
-	req_access_txt = "14"
+	pixel_y = 8
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/research{
 	dir = 1;
 	id = "researchdoorint";
 	name = "Interior Doors";
-	normaldoorcontrol = 1;
 	pixel_x = -10;
-	pixel_y = -4;
-	req_access_txt = "14"
+	pixel_y = -4
 	},
 /obj/machinery/firealarm{
 	dir = 4
@@ -3499,9 +3493,7 @@
 	},
 /area/mainship/command/corporateliaison)
 "aiQ" = (
-/obj/structure/closet/secure_closet/personal/cabinet{
-	req_access = null
-	},
+/obj/structure/closet/secure_closet/personal/cabinet,
 /turf/open/floor/carpet{
 	dir = 4;
 	icon_state = "carpetside"
@@ -3756,8 +3748,7 @@
 "ajz" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 1;
-	name = "\improper Emergency Air Storage";
-	req_one_access_txt = "2;7"
+	name = "\improper Emergency Air Storage"
 	},
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -4410,13 +4401,6 @@
 	icon_state = "cargo"
 	},
 /area/mainship/squads/bravo)
-"akR" = (
-/obj/machinery/door/airlock/mainship/maint{
-	dir = 2;
-	req_one_access_txt = "2;7"
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hull/upper_hull)
 "akS" = (
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/brig)
@@ -4598,11 +4582,10 @@
 "alp" = (
 /obj/structure/table/mainship,
 /obj/item/portable_vendor/corporate,
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/corporate{
 	id = "quarters_shutters";
 	name = "Quarters Shutters";
-	pixel_x = -25;
-	req_access_txt = "200"
+	pixel_x = -25
 	},
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
@@ -5534,8 +5517,7 @@
 /area/mainship/command/cic)
 "amO" = (
 /obj/machinery/door/airlock/mainship/generic{
-	name = "\improper Quarters";
-	req_access_txt = "200"
+	name = "\improper Quarters"
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "quarters_shutters";
@@ -5581,9 +5563,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/upper_medical)
 "amW" = (
-/obj/machinery/door/airlock/mainship/medical{
-	name = "Morgue";
-	req_access_txt = "20"
+/obj/machinery/door/airlock/mainship/medical/morgue{
+	name = "Morgue"
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/medical/upper_medical)
@@ -6098,10 +6079,7 @@
 /area/mainship/command/cic)
 "aoj" = (
 /obj/structure/table/woodentable,
-/obj/machinery/computer/skills{
-	density = 0;
-	req_one_access = list(200)
-	},
+/obj/machinery/computer/skills,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "aok" = (
@@ -6174,10 +6152,9 @@
 	},
 /area/mainship/medical/upper_medical)
 "aov" = (
-/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/research{
 	dir = 2;
-	name = "Research Botanical Lab";
-	req_access_txt = "20"
+	name = "Research Botanical Lab"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -6587,10 +6564,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/corporate{
 	id = "cl_shutters";
-	name = "Privacy Shutters";
-	req_access_txt = "200"
+	name = "Privacy Shutters"
 	},
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
@@ -7764,8 +7740,7 @@
 /area/mainship/engineering/ce_room)
 "asu" = (
 /obj/machinery/door/airlock/mainship/maint{
-	dir = 2;
-	req_one_access_txt = "2;7"
+	dir = 2
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -8298,7 +8273,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/tcomms{
 	id = "tcomms_apc";
 	name = "Telecommuncation Power";
 	pixel_x = -25
@@ -8306,10 +8281,9 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
-/obj/machinery/door/airlock/mainship/secure{
+/obj/machinery/door/airlock/mainship/secure/tcomms{
 	dir = 2;
-	name = "Telecommunications";
-	req_access_txt = "6"
+	name = "Telecommunications"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
@@ -8753,9 +8727,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "auG" = (
-/obj/structure/closet/secure_closet{
-	name = "secure evidence locker";
-	req_access_txt = "3"
+/obj/structure/closet/secure_closet/evidence{
+	name = "secure evidence locker"
 	},
 /obj/structure/window/reinforced{
 	dir = 8
@@ -8911,11 +8884,10 @@
 /obj/structure/table/mainship,
 /obj/structure/paper_bin,
 /obj/item/tool/pen,
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/cic{
 	id = "CIC Checkpoint Shutters";
 	name = "CIC Checkpoint Shutters";
-	pixel_x = 25;
-	req_access_txt = "1"
+	pixel_x = 25
 	},
 /obj/item/tool/pen,
 /turf/open/floor/mainship{
@@ -9125,9 +9097,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/door/airlock/mainship/research{
-	name = "\improper Experimental Operating Theatre"
-	},
+/obj/machinery/door/airlock/mainship/research/or,
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
@@ -10169,13 +10139,8 @@
 	name = "\improper CIC Checkpoint Shutters"
 	},
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor/westleft{
-	req_access = null;
-	req_access_txt = "13"
-	},
-/obj/machinery/door/window/brigdoor/eastleft{
-	req_access = null
-	},
+/obj/machinery/door/window/brigdoor/westleft,
+/obj/machinery/door/window/eastleft,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "axV" = (
@@ -10297,11 +10262,10 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/aft_hallway)
 "ayh" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/corporate{
 	id = "cl_shutters";
 	name = "Privacy Shutters";
-	pixel_y = 30;
-	req_access_txt = "200"
+	pixel_y = 30
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -10898,11 +10862,10 @@
 /turf/open/floor/plating,
 /area/mainship/command/cic)
 "azs" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/brigarmory{
 	id = "Brig Armoury";
 	name = "Brig Armoury";
-	pixel_y = 30;
-	req_access_txt = "3"
+	pixel_y = 30
 	},
 /turf/open/floor/mainship{
 	dir = 1;
@@ -10939,13 +10902,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/window/brigdoor/westleft{
-	req_access = null;
-	req_access_txt = "3"
-	},
-/obj/machinery/door/window/brigdoor/eastleft{
-	req_access = null
-	},
+/obj/machinery/door/window/brigdoor/westleft,
+/obj/machinery/door/window/eastleft,
 /turf/open/floor/plating,
 /area/mainship/shipboard/brig)
 "azx" = (
@@ -11241,10 +11199,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "azY" = (
-/obj/machinery/door/airlock/mainship/medical{
+/obj/machinery/door/airlock/mainship/medical/morgue{
 	dir = 2;
-	name = "Morgue";
-	req_access_txt = "20"
+	name = "Morgue"
 	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -11295,7 +11252,6 @@
 	dir = 1;
 	id = "Surgery Hallway 2";
 	name = "Door Release";
-	normaldoorcontrol = 1;
 	pixel_x = -23
 	},
 /turf/open/floor/mainship{
@@ -11345,9 +11301,8 @@
 	},
 /area/mainship/medical/medical_science)
 "aAj" = (
-/obj/machinery/door/airlock/mainship/medical/glass{
-	name = "Animal Control Closet";
-	req_access_txt = "14"
+/obj/machinery/door/airlock/mainship/medical/glass/research{
+	name = "\improper Animal Control Closet"
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -11494,9 +11449,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/mainship/secure{
-	name = "Telecommunications";
-	req_access_txt = "6"
+/obj/machinery/door/airlock/mainship/secure/tcomms{
+	name = "Telecommunications"
 	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 8
@@ -11976,10 +11930,7 @@
 	},
 /area/mainship/shipboard/chief_mp_office)
 "aBn" = (
-/obj/structure/closet/secure_closet{
-	name = "secure evidence locker";
-	req_access_txt = "3"
-	},
+/obj/structure/closet/secure_closet/evidence,
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -12261,10 +12212,9 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor/mainship,
-/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/research{
 	dir = 2;
-	name = "Research Wing";
-	req_access_txt = "20"
+	name = "Research Wing"
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -12975,8 +12925,7 @@
 "aDj" = (
 /obj/machinery/door/airlock/mainship/security{
 	dir = 2;
-	name = "\improper CIC Security Checkpoint";
-	req_one_access_txt = "3;22"
+	name = "\improper CIC Security Checkpoint"
 	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/aft_hallway)
@@ -13133,11 +13082,10 @@
 	},
 /area/mainship/medical/medical_science)
 "aDC" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/research{
 	id = "containmentlockdown";
 	name = "Containment Lockdown";
-	pixel_x = 25;
-	req_one_access_txt = "19"
+	pixel_x = 25
 	},
 /turf/open/floor/mainship{
 	dir = 4;
@@ -13794,7 +13742,7 @@
 /turf/open/floor/wood,
 /area/mainship/medical/upper_medical)
 "aEU" = (
-/obj/machinery/door/airlock/mainship/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass/research{
 	name = "\improper Medical Research Lounge"
 	},
 /obj/machinery/door/firedoor/mainship,
@@ -14437,10 +14385,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/mainship/maint{
-	no_panel = 1;
-	not_weldable = 1
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/upper_hull)
 "aGm" = (
@@ -14466,10 +14411,7 @@
 	},
 /area/mainship/squads/delta)
 "aGo" = (
-/obj/structure/closet/secure_closet{
-	name = "secure evidence locker";
-	req_access_txt = "3"
-	},
+/obj/structure/closet/secure_closet/evidence,
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -14483,10 +14425,7 @@
 	},
 /area/mainship/shipboard/brig)
 "aGp" = (
-/obj/structure/closet/secure_closet{
-	name = "secure evidence locker";
-	req_access_txt = "3"
-	},
+/obj/structure/closet/secure_closet/evidence,
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -14505,10 +14444,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/captain_mess)
 "aGt" = (
-/obj/machinery/door/airlock/mainship/medical{
+/obj/machinery/door/airlock/mainship/medical/morgue{
 	dir = 2;
-	name = "Morgue Processing";
-	req_access_txt = "20"
+	name = "Morgue Processing"
 	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -14689,10 +14627,9 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
-/obj/machinery/door/airlock/mainship/secure{
+/obj/machinery/door/airlock/mainship/secure/tcomms{
 	dir = 2;
-	name = "Telecommunications";
-	req_access_txt = "6"
+	name = "Telecommunications"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
@@ -15115,10 +15052,8 @@
 /turf/open/floor/plating,
 /area/mainship/medical/lower_medical)
 "aHM" = (
-/obj/machinery/door/airlock/mainship/medical/glass{
-	dir = 2;
-	name = "\improper CMO's Office";
-	req_access_txt = "5"
+/obj/machinery/door/airlock/mainship/medical/glass/CMO{
+	dir = 2
 	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -15172,12 +15107,11 @@
 /turf/open/floor/wood,
 /area/mainship/medical/upper_medical)
 "aHT" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/research{
 	dir = 1;
 	id = "researchlockdownext";
 	name = "Research Lockdown";
-	pixel_x = -27;
-	req_access_txt = "14"
+	pixel_x = -27
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship{
@@ -15277,7 +15211,7 @@
 	},
 /area/mainship/command/airoom)
 "aIe" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/tcomms{
 	id = "tcomms";
 	name = "Telecommunications Entrance";
 	pixel_y = 25
@@ -16405,10 +16339,9 @@
 	id = "researchlockdownext";
 	name = "\improper Research Lockdown"
 	},
-/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/research{
 	dir = 2;
-	name = "Research Wing";
-	req_access_txt = "20"
+	name = "Research Wing"
 	},
 /turf/open/floor/mainship{
 	icon_state = "sterile_green_side"
@@ -16501,10 +16434,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/research{
 	dir = 2;
-	name = "Research Chemical Lab";
-	req_access_txt = "20"
+	name = "Research Chemical Lab"
 	},
 /turf/open/floor/mainship{
 	icon_state = "sterile_green_side"
@@ -17444,7 +17376,7 @@
 "aMS" = (
 /obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 2;
-	name = "Morgue Waiting Room"
+	name = "\improper Morgue Waiting Room"
 	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -18248,7 +18180,7 @@
 /area/mainship/shipboard/brig_cells)
 "aOl" = (
 /obj/structure/table/mainship,
-/obj/item/storage/fancy/cigarettes/lucky_strikes,
+/obj/item/storage/fancy/cigarettes/luckystars,
 /obj/item/tool/lighter,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/brig_cells)
@@ -19549,9 +19481,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/starboard_point_defense)
 "aRA" = (
-/obj/machinery/door/airlock/mainship/secure{
-	name = "Telecommunications";
-	req_access_txt = "6"
+/obj/machinery/door/airlock/mainship/secure/tcomms{
+	name = "Telecommunications"
 	},
 /turf/open/floor/mainship{
 	icon_state = "ai_floors"
@@ -19773,9 +19704,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/bridgebunks)
 "aSc" = (
-/obj/structure/closet/secure_closet/personal/cabinet{
-	req_access = null
-	},
+/obj/structure/closet/secure_closet/personal/cabinet,
 /turf/open/floor/wood,
 /area/mainship/living/bridgebunks)
 "aSd" = (
@@ -20018,9 +19947,8 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/hallways/aft_hallway)
 "aSL" = (
-/obj/machinery/door/airlock/mainship/secure{
-	name = "Telecommunications";
-	req_access_txt = "6"
+/obj/machinery/door/airlock/mainship/secure/tcomms{
+	name = "Telecommunications"
 	},
 /turf/open/floor/mainship{
 	icon_plating = "tcomms";
@@ -20163,12 +20091,10 @@
 /turf/open/floor/mainship,
 /area/mainship/powered)
 "aTc" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "garage1";
 	name = "Vehicle Garage 1";
-	pixel_x = 30;
-	req_one_access_txt = "2;3;7;12;19;22";
-	throw_range = 15
+	pixel_x = 30
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
@@ -20293,12 +20219,10 @@
 	},
 /area/mainship/living/captain_mess)
 "aTr" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "garage2";
 	name = "Vehicle Garage 2";
-	pixel_x = 30;
-	req_one_access_txt = "2;3;7;12;19;22";
-	throw_range = 15
+	pixel_x = 30
 	},
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
@@ -20367,12 +20291,10 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "hangarentrancesouth";
 	name = "South Hangar Shutters";
-	pixel_y = 30;
-	req_one_access_txt = "2;3;12;19;22";
-	throw_range = 15
+	pixel_y = 30
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
@@ -20380,12 +20302,10 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "hangarentrancenorth";
 	name = "North Hangar Shutters";
-	pixel_y = 30;
-	req_one_access_txt = "2;3;12;19;22";
-	throw_range = 15
+	pixel_y = 30
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
@@ -20393,12 +20313,10 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "hangarentrancenorth";
 	name = "North Hangar Shutters";
-	pixel_y = 30;
-	req_one_access_txt = "2;3;12;19;22";
-	throw_range = 15
+	pixel_y = 30
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
@@ -20406,12 +20324,10 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "hangarentrancesouth";
 	name = "South Hangar Shutters";
-	pixel_y = 30;
-	req_one_access_txt = "2;3;12;19;22";
-	throw_range = 15
+	pixel_y = 30
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
@@ -20999,22 +20915,18 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/starboard_point_defense)
 "aWx" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "laddernortheast";
 	name = "North East Ladders Shutters";
-	pixel_x = 25;
-	req_one_access_txt = "2;3;12;19";
-	throw_range = 15
+	pixel_x = 25
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "aWy" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "laddernortheast";
 	name = "North East Ladders Shutters";
-	pixel_x = -25;
-	req_one_access_txt = "2;3;12;19";
-	throw_range = 15
+	pixel_x = -25
 	},
 /turf/open/floor/mainship{
 	dir = 1;
@@ -21022,12 +20934,10 @@
 	},
 /area/mainship/hallways/starboard_hallway)
 "aWz" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "laddernortheast";
 	name = "North East Ladders Shutters";
-	pixel_x = 25;
-	req_one_access_txt = "2;3;12;19";
-	throw_range = 15
+	pixel_x = 25
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
@@ -21197,12 +21107,10 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/starboard_hallway)
 "aWZ" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "laddernortheast";
 	name = "North East Ladders Shutters";
-	pixel_x = 25;
-	req_one_access_txt = "2;3;12;19";
-	throw_range = 15
+	pixel_x = 25
 	},
 /turf/open/floor/mainship{
 	dir = 4;
@@ -23343,12 +23251,10 @@
 /area/mainship/shipboard/firing_range)
 "bcZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "laddernorthwest";
 	name = "North West Ladders Shutters";
-	pixel_x = -25;
-	req_one_access_txt = "2;3;12;19";
-	throw_range = 15
+	pixel_x = -25
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship{
@@ -24015,12 +23921,10 @@
 	height = 1;
 	id = "l1"
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "laddernorthwest";
 	name = "North West Ladders Shutters";
-	pixel_y = 30;
-	req_one_access_txt = "2;3;12;19";
-	throw_range = 15
+	pixel_y = 30
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/hallways/starboard_hallway)
@@ -24383,12 +24287,10 @@
 	},
 /area/mainship/hallways/hangar)
 "bgd" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "ammo2";
 	name = "Ammo Storage";
-	pixel_x = 30;
-	req_one_access_txt = "2;3;7;12;19;22";
-	throw_range = 15
+	pixel_x = 30
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -24880,12 +24782,10 @@
 	height = 1;
 	id = "l6"
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "laddernorthwest";
 	name = "North West Ladders Shutters";
-	pixel_y = -25;
-	req_one_access_txt = "2;3;12;19";
-	throw_range = 15
+	pixel_y = -25
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/hallways/starboard_hallway)
@@ -25166,12 +25066,10 @@
 	},
 /area/mainship/hallways/hangar)
 "bie" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "ammo2";
 	name = "Ammo Storage";
-	pixel_x = 30;
-	req_one_access_txt = "2;3;7;12;19;22";
-	throw_range = 15
+	pixel_x = 30
 	},
 /turf/open/floor/mainship{
 	icon_state = "test_floor4"
@@ -25509,12 +25407,10 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/starboard_hallway)
 "bjf" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "laddernorthwest";
 	name = "North West Ladders Shutters";
-	pixel_y = 30;
-	req_one_access_txt = "2;3;12;19";
-	throw_range = 15
+	pixel_y = 30
 	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/starboard_hallway)
@@ -25642,10 +25538,9 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
-/obj/machinery/door/airlock/mainship/generic{
+/obj/machinery/door/airlock/mainship/generic/corporate{
 	dir = 2;
-	name = "\improper Corporate Liason Office";
-	req_access_txt = "200"
+	name = "\improper Corporate Liason Office"
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 1;
@@ -27242,10 +27137,9 @@
 /area/mainship/hull/lower_hull)
 "bnt" = (
 /obj/structure/table/mainship,
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "northcheckpoint";
-	name = "North Checkpoint Shutters";
-	req_one_access_txt = "2;3;12;19"
+	name = "North Checkpoint Shutters"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
@@ -27763,12 +27657,10 @@
 	},
 /area/mainship/medical/operating_room_one)
 "boV" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "hangarentrancenorth";
 	name = "North Hangar Shutters";
-	pixel_x = -30;
-	req_one_access_txt = "2;3;12;19";
-	throw_range = 15
+	pixel_x = -30
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
@@ -28280,7 +28172,7 @@
 /area/mainship/medical/lower_medical)
 "bqC" = (
 /obj/machinery/door/airlock/mainship/medical/glass{
-	name = "break room"
+	name = "\improper Break Room"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -28400,9 +28292,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/mainship,
-/obj/machinery/door/airlock/mainship/medical{
-	name = "Operating Theatre 1"
-	},
+/obj/machinery/door/airlock/mainship/medical/or/or1,
 /obj/machinery/holosign/surgery{
 	id = "or1sign"
 	},
@@ -29502,10 +29392,8 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/airlock/mainship/medical/glass{
-	dir = 2;
-	name = "\improper Chemistry Laboratory";
-	req_access_txt = "20"
+/obj/machinery/door/airlock/mainship/medical/glass/chemistry{
+	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship{
@@ -29538,10 +29426,8 @@
 /turf/open/floor/wood,
 /area/mainship/medical/lower_medical)
 "bux" = (
-/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay{
 	dir = 2;
-	id = "Surgery Hallway 1";
-	id_tag = "Surgery Hallway 1";
 	name = "Surgery Hallway 1"
 	},
 /obj/machinery/door/firedoor/mainship,
@@ -29588,8 +29474,7 @@
 "buF" = (
 /obj/machinery/door/airlock/mainship/marine/requisitions{
 	dir = 2;
-	name = "\improper Requisition's Office";
-	req_one_access_txt = "1;26"
+	name = "\improper Requisition's Office"
 	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -30016,12 +29901,11 @@
 	},
 /area/mainship/hull/lower_hull)
 "bvV" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/research{
 	dir = 1;
 	id = "Research Armory";
 	name = "Research Armory";
-	pixel_x = -27;
-	req_access_txt = "14"
+	pixel_x = -27
 	},
 /turf/open/floor/mainship{
 	dir = 8;
@@ -30468,7 +30352,6 @@
 /obj/machinery/door_control{
 	id = "Surgery Hallway 1";
 	name = "Door Release";
-	normaldoorcontrol = 1;
 	pixel_x = -23
 	},
 /turf/open/floor/mainship{
@@ -30989,11 +30872,10 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "byR" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	dir = 8;
 	id = "medicalemergency";
-	name = "Medical Emergency Shutters";
-	req_one_access_txt = "2;3;8;12;19"
+	name = "Medical Emergency Shutters"
 	},
 /turf/closed/wall/mainship/white,
 /area/mainship/medical/lower_medical)
@@ -31121,9 +31003,7 @@
 /obj/machinery/holosign/surgery{
 	id = "or2sign"
 	},
-/obj/machinery/door/airlock/mainship/medical{
-	name = "Operating Theatre 2"
-	},
+/obj/machinery/door/airlock/mainship/medical/or/or2,
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
@@ -31502,12 +31382,10 @@
 	name = "\improper Hangar Lockdown Blast Door";
 	opacity = 0
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "medicalemergency";
 	name = "Medical Emergency Shutters";
-	pixel_y = 30;
-	req_one_access_txt = "2;3;8;12;19";
-	throw_range = 15
+	pixel_y = 30
 	},
 /turf/open/floor/mainship{
 	icon_state = "test_floor4"
@@ -31730,9 +31608,7 @@
 /area/mainship/squads/req)
 "bAH" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/eastleft{
-	req_one_access_txt = "2;21"
-	},
+/obj/machinery/door/window/eastleft/req,
 /obj/machinery/door/window/westright,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "ROlobby1";
@@ -31750,11 +31626,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "bAJ" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/req{
 	id = "ROlobby1";
 	name = "RO Line 1 Shutters";
-	pixel_y = -25;
-	req_one_access_txt = "1;21"
+	pixel_y = -25
 	},
 /turf/open/floor/mainship{
 	dir = 10;
@@ -32057,8 +31932,7 @@
 	id = "briefing_flash";
 	name = "Briefing Flasher";
 	pixel_x = 32;
-	pixel_y = 27;
-	req_access_txt = "19"
+	pixel_y = 27
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -32097,14 +31971,12 @@
 /obj/machinery/line_nexter_control{
 	id = "line2";
 	pixel_x = -20;
-	pixel_y = -4;
-	req_one_access_txt = "1;21"
+	pixel_y = -4
 	},
 /obj/machinery/line_nexter_control{
 	id = "line1";
 	pixel_x = -20;
-	pixel_y = 8;
-	req_one_access_txt = "1;21"
+	pixel_y = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
@@ -32142,13 +32014,6 @@
 	icon_state = "cargo_arrow"
 	},
 /area/mainship/squads/req)
-"bBZ" = (
-/obj/machinery/door/airlock/mainship/maint{
-	no_panel = 1;
-	not_weldable = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
 "bCa" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/living/cryo_cells)
@@ -32723,9 +32588,7 @@
 /area/mainship/squads/req)
 "bDC" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/eastleft{
-	req_one_access_txt = "2;21"
-	},
+/obj/machinery/door/window/eastleft/req,
 /obj/machinery/door/window/westright,
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "ROlobby2";
@@ -32737,11 +32600,10 @@
 	},
 /area/mainship/squads/req)
 "bDD" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/req{
 	id = "ROlobby2";
 	name = "RO Line 2 Shutters";
-	pixel_y = 27;
-	req_one_access_txt = "1;21"
+	pixel_y = 27
 	},
 /turf/open/floor/mainship{
 	dir = 9;
@@ -33434,9 +33296,7 @@
 	},
 /area/mainship/medical/surgery_hallway)
 "bFW" = (
-/obj/machinery/door/airlock/mainship/medical{
-	name = "Operating Theatre 3"
-	},
+/obj/machinery/door/airlock/mainship/medical/or/or3,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -33720,11 +33580,10 @@
 	},
 /area/mainship/shipboard/weapon_room)
 "bGQ" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/corporate{
 	id = "quarters_shutters";
 	name = "Quarters Shutters";
-	pixel_x = 25;
-	req_access_txt = "200"
+	pixel_x = 25
 	},
 /turf/open/floor/mainship{
 	dir = 5;
@@ -34718,7 +34577,7 @@
 	pixel_y = 3
 	},
 /obj/item/storage/box/tgmc_mre,
-/obj/item/storage/fancy/cigarettes/lucky_strikes,
+/obj/item/storage/fancy/cigarettes/luckystars,
 /turf/open/floor/mainship{
 	dir = 4;
 	icon_state = "greencorner"
@@ -35584,9 +35443,7 @@
 	},
 /area/mainship/medical/surgery_hallway)
 "bMj" = (
-/obj/machinery/door/airlock/mainship/medical{
-	name = "Operating Theatre 4"
-	},
+/obj/machinery/door/airlock/mainship/medical/or/or4,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -35644,12 +35501,10 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "bMo" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "hangarentrancesouth";
 	name = "South Hangar Shutters";
-	pixel_x = -30;
-	req_one_access_txt = "2;3;12;19";
-	throw_range = 15
+	pixel_x = -30
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
@@ -36170,10 +36025,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
 "bNK" = (
-/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay{
 	dir = 2;
-	id = "Surgery Hallway 2";
-	id_tag = "Surgery Hallway 2";
 	name = "Surgery Hallway 2"
 	},
 /obj/machinery/door/firedoor/mainship,
@@ -36218,10 +36071,9 @@
 /area/mainship/hull/lower_hull)
 "bNQ" = (
 /obj/structure/table/mainship,
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "southcheckpoint";
-	name = "South Checkpoint Shutters";
-	req_one_access_txt = "2;3;12;19"
+	name = "South Checkpoint Shutters"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
@@ -37511,12 +37363,10 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/port_hallway)
 "bRc" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "laddersouthwest";
 	name = "South West Ladders Shutters";
-	pixel_y = -25;
-	req_one_access_txt = "2;3;12;19";
-	throw_range = 15
+	pixel_y = -25
 	},
 /obj/machinery/light,
 /turf/open/floor/mainship,
@@ -38055,12 +37905,10 @@
 	height = 1;
 	id = "l10"
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "laddersouthwest";
 	name = "South West Ladders Shutters";
-	pixel_y = 30;
-	req_one_access_txt = "2;3;12;19";
-	throw_range = 15
+	pixel_y = 30
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/hallways/port_hallway)
@@ -38380,8 +38228,7 @@
 /area/mainship/living/tankerbunks)
 "bTy" = (
 /obj/machinery/door/airlock/mainship/generic{
-	name = "\improper Tanker Quarters";
-	req_one_access_txt = "22;2;7"
+	name = "\improper Tanker Quarters"
 	},
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/mono,
@@ -38397,9 +38244,8 @@
 /area/mainship/hallways/hangar)
 "bTA" = (
 /obj/machinery/door/firedoor/mainship,
-/obj/machinery/door/airlock/mainship/generic{
-	name = "\improper Pilot's Quarters";
-	req_one_access_txt = "22"
+/obj/machinery/door/airlock/mainship/generic/pilot{
+	name = "\improper Pilot's Quarters"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
@@ -38839,8 +38685,7 @@
 	},
 /obj/machinery/door/firedoor/mainship,
 /obj/machinery/door/airlock/mainship/generic{
-	name = "\improper Tanker Quarters";
-	req_one_access_txt = "22;2;7"
+	name = "\improper Tanker Quarters"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/tankerbunks)
@@ -38905,9 +38750,8 @@
 /area/mainship/hallways/hangar)
 "bVf" = (
 /obj/machinery/door/firedoor/mainship,
-/obj/machinery/door/airlock/mainship/generic{
-	name = "\improper Pilot's Quarters";
-	req_one_access_txt = "22"
+/obj/machinery/door/airlock/mainship/generic/pilot{
+	name = "\improper Pilot's Quarters"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -39068,12 +38912,10 @@
 	height = 1;
 	id = "l12"
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "laddersouthwest";
 	name = "South West Ladders Shutters";
-	pixel_y = -25;
-	req_one_access_txt = "2;3;12;19";
-	throw_range = 15
+	pixel_y = -25
 	},
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
@@ -39467,12 +39309,10 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "pilotentrance";
 	name = "Pilot Workshop Shutters";
-	pixel_y = 30;
-	req_one_access_txt = "2;3;12;19;22";
-	throw_range = 15
+	pixel_y = 30
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/repair_bay)
@@ -39490,12 +39330,10 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "pilotentrance";
 	name = "Pilot Workshop Shutters";
-	pixel_y = 30;
-	req_one_access_txt = "2;3;12;19;22";
-	throw_range = 15
+	pixel_y = 30
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/repair_bay)
@@ -39834,12 +39672,10 @@
 	},
 /area/mainship/hallways/port_hallway)
 "bXE" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "laddersouthwest";
 	name = "South West Ladders Shutters";
-	pixel_x = 25;
-	req_one_access_txt = "2;3;12;19";
-	throw_range = 15
+	pixel_x = 25
 	},
 /turf/open/floor/mainship{
 	dir = 8;
@@ -40248,10 +40084,9 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
 	},
-/obj/machinery/door/airlock/mainship/generic{
+/obj/machinery/door/airlock/mainship/generic/pilot{
 	dir = 2;
-	name = "\improper Pilot's Office";
-	req_one_access_txt = "22"
+	name = "\improper Pilot's Office"
 	},
 /turf/open/floor/mainship,
 /area/mainship/living/pilotbunks)
@@ -40613,9 +40448,8 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/mainship,
-/obj/machinery/door/airlock/mainship/generic{
-	name = "\improper Pilot's Office";
-	req_one_access_txt = "22"
+/obj/machinery/door/airlock/mainship/generic/pilot{
+	name = "\improper Pilot's Office"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
@@ -40883,9 +40717,8 @@
 /area/mainship/living/pilotbunks)
 "cat" = (
 /obj/machinery/door/firedoor/mainship,
-/obj/machinery/door/airlock/mainship/generic{
-	name = "\improper Pilot's Office";
-	req_one_access_txt = "22"
+/obj/machinery/door/airlock/mainship/generic/pilot{
+	name = "\improper Pilot's Office"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -41955,12 +41788,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "cdL" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "laddersoutheast";
 	name = "South East Ladders Shutters";
-	pixel_x = 25;
-	req_one_access_txt = "2;3;12;19";
-	throw_range = 15
+	pixel_x = 25
 	},
 /turf/open/floor/mainship{
 	dir = 4;
@@ -42179,22 +42010,18 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/delta)
 "ceo" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "laddersoutheast";
 	name = "South East Ladders Shutters";
-	pixel_x = 25;
-	req_one_access_txt = "2;3;12;19";
-	throw_range = 15
+	pixel_x = 25
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "cep" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "laddersoutheast";
 	name = "South East Ladders Shutters";
-	pixel_x = -25;
-	req_one_access_txt = "2;3;12;19";
-	throw_range = 15
+	pixel_x = -25
 	},
 /turf/open/floor/mainship{
 	dir = 8;
@@ -42202,12 +42029,10 @@
 	},
 /area/mainship/hallways/port_hallway)
 "ceq" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/checkpoint{
 	id = "laddersoutheast";
 	name = "South East Ladders Shutters";
-	pixel_x = 25;
-	req_one_access_txt = "2;3;12;19";
-	throw_range = 15
+	pixel_x = 25
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
@@ -42967,7 +42792,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/brig_cells)
 "cgL" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/brigarmory{
 	id = "CMP Office Shutters";
 	name = "CMP Office Shutters";
 	pixel_y = -20
@@ -42984,16 +42809,15 @@
 	pixel_x = -10;
 	pixel_y = -30
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/brigarmory{
 	id = "Brig Lockdown";
 	name = "Brig Lockdown";
 	pixel_y = -30
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/brigarmory{
 	id = "Brig Armoury";
 	name = "Brig Armoury";
-	pixel_y = -40;
-	req_access_txt = "3"
+	pixel_y = -40
 	},
 /turf/open/floor/mainship{
 	icon_state = "red"
@@ -44597,9 +44421,7 @@
 /area/mainship/command/cic)
 "cSa" = (
 /obj/machinery/door/airlock/mainship/maint{
-	dir = 2;
-	req_access_txt = "200";
-	req_one_access_txt = ""
+	dir = 2
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
@@ -44913,11 +44735,10 @@
 /area/mainship/hull/upper_hull)
 "eGx" = (
 /obj/structure/table/mainship,
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/research{
 	id = "researchlockdownext";
 	name = "Research Lockdown";
-	pixel_x = -7;
-	req_access_txt = "5"
+	pixel_x = -7
 	},
 /turf/open/floor/mainship{
 	dir = 1;
@@ -45859,19 +45680,17 @@
 	pixel_x = -7;
 	pixel_y = 2
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/cic{
 	id = "CIC Lockdown";
 	name = "CIC Lockdown";
 	pixel_x = -7;
-	pixel_y = 9;
-	req_access_txt = "1"
+	pixel_y = 9
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/mainship/cic{
 	id = "bot_armory";
 	name = "Armory Lockdown";
 	pixel_x = -7;
-	pixel_y = -5;
-	req_access_txt = "1"
+	pixel_y = -5
 	},
 /obj/structure/window/reinforced/toughened{
 	dir = 4
@@ -46875,9 +46694,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/weapon_room)
 "oLS" = (
-/obj/machinery/door/airlock/mainship/medical/glass{
-	name = "\improper CMO's Bunks";
-	req_access_txt = "5"
+/obj/machinery/door/airlock/mainship/medical/glass/CMO{
+	name = "\improper CMO's Bunks"
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -47377,8 +47195,7 @@
 /area/mainship/living/numbertwobunks)
 "qOH" = (
 /obj/machinery/door/airlock/mainship/maint{
-	dir = 2;
-	req_one_access_txt = "2;7;200"
+	dir = 2
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -47568,9 +47385,8 @@
 	},
 /area/mainship/command/self_destruct)
 "swd" = (
-/obj/machinery/door/airlock/mainship/research{
-	dir = 2;
-	req_access_txt = "20"
+/obj/machinery/door/airlock/mainship/research/chemistry{
+	dir = 2
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -47921,9 +47737,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "19"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/upper_hull)
 "unT" = (
@@ -93395,7 +93209,7 @@ aVs
 aVs
 aVs
 aVs
-bBZ
+brq
 aVs
 aVs
 aVs
@@ -95335,7 +95149,7 @@ aJt
 aLa
 akP
 aTX
-akR
+aaq
 aam
 aai
 aai
@@ -95829,7 +95643,7 @@ aag
 aag
 aai
 aal
-akR
+aaq
 amo
 ant
 aoM
@@ -97391,7 +97205,7 @@ aJz
 aoM
 akL
 aMj
-akR
+aaq
 aUZ
 aai
 aag

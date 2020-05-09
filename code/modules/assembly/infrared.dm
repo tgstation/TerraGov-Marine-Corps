@@ -258,6 +258,7 @@
 
 
 /obj/effect/beam/i_beam/Crossed(atom/movable/AM)
+	. = ..()
 	if(istype(AM, /obj/effect/beam))
 		return
 	if(isitem(AM))

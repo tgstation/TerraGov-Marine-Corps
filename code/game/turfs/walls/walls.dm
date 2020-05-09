@@ -7,6 +7,7 @@
 	icon_state = "metal"
 	baseturfs = /turf/open/floor/plating
 	opacity = TRUE
+	explosion_block = 2
 
 	tiles_with = list(
 		/turf/closed/wall,
@@ -17,7 +18,6 @@
 
 	armor = list("melee" = 0, "bullet" = 80, "laser" = 80, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
-	var/hull = 0 //1 = Can't be deconstructed / destroyed. Used for Sulaco walls
 	var/walltype = "metal"
 	var/junctiontype //when walls smooth with one another, the type of junction each wall is.
 
@@ -210,7 +210,7 @@
 
 //Damage
 /turf/closed/wall/proc/take_damage(damage)
-	if(hull) //Hull is literally invincible
+	if(resistance_flags & INDESTRUCTIBLE) //Hull is literally invincible
 		return
 
 	if(!damage)
@@ -229,7 +229,7 @@
 
 
 /turf/closed/wall/proc/repair_damage(repair_amount)
-	if(hull) //Hull is literally invincible
+	if(resistance_flags & INDESTRUCTIBLE) //Hull is literally invincible
 		return
 
 	if(!repair_amount)
@@ -253,7 +253,7 @@
 // Walls no longer spawn a metal sheet when destroyed to reduce clutter and
 // improve visual readability.
 /turf/closed/wall/proc/dismantle_wall(devastated = 0, explode = 0)
-	if(hull) //Hull is literally invincible
+	if(resistance_flags & INDESTRUCTIBLE) //Hull is literally invincible
 		return
 	if(devastated)
 		make_girder(TRUE)
@@ -266,17 +266,17 @@
 
 
 /turf/closed/wall/ex_act(severity)
-	if(hull)
+	if(resistance_flags & INDESTRUCTIBLE)
 		return
 	switch(severity)
-		if(1)
-			dismantle_wall(0, 1)
-		if(2)
+		if(EXPLODE_DEVASTATE)
+			dismantle_wall(FALSE, TRUE)
+		if(EXPLODE_HEAVY)
 			if(prob(75))
 				take_damage(rand(150, 250))
 			else
-				dismantle_wall(1, 1)
-		if(3)
+				dismantle_wall(TRUE, TRUE)
+		if(EXPLODE_LIGHT)
 			take_damage(rand(0, 250))
 
 //Interactions
@@ -286,7 +286,7 @@
 
 /turf/closed/wall/attack_animal(mob/living/M as mob)
 	if(M.wall_smash)
-		if((isrwallturf(src)) || hull)
+		if((isrwallturf(src)) || (resistance_flags & INDESTRUCTIBLE))
 			to_chat(M, "<span class='warning'>This [name] is far too strong for you to destroy.</span>")
 			return
 		else
@@ -337,7 +337,7 @@
 	else if(istype(I, /obj/item/contraband/poster))
 		place_poster(I, user)
 
-	else if(hull)
+	else if(resistance_flags & INDESTRUCTIBLE)
 		to_chat(user, "<span class='warning'>[src] is much too tough for you to do anything to it with [I]</span>.")
 
 	else if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
@@ -498,4 +498,4 @@
 		return attack_hand(user)
 
 /turf/closed/wall/can_be_dissolved()
-	return !hull
+	return !(resistance_flags & INDESTRUCTIBLE)
