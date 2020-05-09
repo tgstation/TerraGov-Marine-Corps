@@ -1,7 +1,7 @@
-/obj/effect/landmark/weapon_spawn/proc/spawn_weapon(var/obj/item/weapon/weapon_to_spawn)
+/obj/effect/landmark/weapon_spawn/proc/spawn_weapon(/obj/item/weapon/weapon_to_spawn)
 	new weapon_to_spawn (src)
 
-/obj/effect/landmark/weapon_spawn/proc/spawn_associated_ammo(var/obj/item/weapon/gun/weapon_to_spawn)
+/obj/effect/landmark/weapon_spawn/proc/spawn_associated_ammo(/obj/item/weapon/gun/weapon_to_spawn)
 	if(weapon_to_spawn.current_mag)
 		for(var/i in 1 to 3) //hardcoded 3 mags.
 			new weapon_to_spawn.current_mag
@@ -16,8 +16,10 @@
 	weapon_to_spawn = pick(weapon_list)
 
 	spawn_weapon(weapon_to_spawn)
-	if(istype(weapon_to_spawn,/obj/item/weapon/gun))
-		spawn_associated_ammo(weapon_to_spawn)
+	if(isgun(weapon_to_spawn))
+		var/obj/item/weapon/gun/gun_to_spawn = weapon_to_spawn
+  		if(gun_to_spawn.current_mag)
+			spawn_associated_ammo(gun_to_spawn)
 
 //pistols and smgs
 /obj/effect/landmark/weapon_spawn/proc/tier_2()
