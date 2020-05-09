@@ -326,6 +326,8 @@
 	throwpass = TRUE
 	climbable = TRUE
 	icon = 'icons/Marine/mainship_props.dmi'
+	resistance_flags = XENO_DAMAGEABLE
+	coverage = 100
 	var/is_solid_fuel = 0
 
 /obj/structure/ob_ammo/attackby(obj/item/I, mob/user, params)
@@ -350,6 +352,11 @@
 /obj/structure/ob_ammo/examine(mob/user)
 	..()
 	to_chat(user, "Moving this will require some sort of lifter.")
+
+
+/obj/structure/ob_ammo/obj_destruction(damage_flag)
+	explosion(loc, light_impact_range = 2, flash_range = 3, flame_range = 2)
+	return ..()
 
 
 /obj/structure/ob_ammo/warhead
