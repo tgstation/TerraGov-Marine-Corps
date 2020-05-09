@@ -95,6 +95,10 @@ GLOBAL_VAR_INIT(global_unique_id, 1)
 #define GHOST_DEFAULT_FORM 		"ghost"
 
 
+//for obj explosion block calculation
+#define EXPLOSION_BLOCK_PROC -1
+
+
 //Luma coefficients suggested for HDTVs. If you change these, make sure they add up to 1.
 #define LUMA_R 0.213
 #define LUMA_G 0.715

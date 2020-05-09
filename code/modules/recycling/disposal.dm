@@ -262,14 +262,12 @@
 //Pipe affected by explosion
 /obj/machinery/disposal/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-			return
-		if(2)
+		if(EXPLODE_HEAVY)
 			if(prob(60))
 				qdel(src)
-			return
-		if(3)
+		if(EXPLODE_LIGHT)
 			if(prob(25))
 				qdel(src)
 
@@ -673,11 +671,11 @@
 //Pipe affected by explosion
 /obj/structure/disposalpipe/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-		if(2)
+		if(EXPLODE_HEAVY)
 			take_damage(rand(5, 15))
-		if(3)
+		if(EXPLODE_LIGHT)
 			take_damage(rand(0, 15))
 
 //Attack by item. Weldingtool: unfasten and convert to obj/disposalconstruct

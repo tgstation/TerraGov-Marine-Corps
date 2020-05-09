@@ -98,13 +98,13 @@
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		return FALSE
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-		if(2)
+		if(EXPLODE_HEAVY)
 			if(!prob(50))
 				return
 			qdel(src)
-		if(3)
+		if(EXPLODE_LIGHT)
 			if(!prob(25))
 				return
 			qdel(src)
