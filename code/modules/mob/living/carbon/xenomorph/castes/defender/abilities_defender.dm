@@ -333,6 +333,7 @@
 	GLOB.round_statistics.defender_fortifiy_toggles++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_fortifiy_toggles")
 	if(on)
+		ADD_TRAIT(src, TRAIT_IMMOBILE, FORTIFY_TRAIT)
 		if(!silent)
 			to_chat(src, "<span class='xenowarning'>We tuck ourselves into a defensive stance.</span>")
 		armor_bonus += xeno_caste.fortify_armor
@@ -342,8 +343,8 @@
 			to_chat(src, "<span class='xenowarning'>We resume our normal stance.</span>")
 		armor_bonus -= xeno_caste.fortify_armor
 		soft_armor = soft_armor.setRating(bomb = XENO_BOMB_RESIST_0)
+		REMOVE_TRAIT(src, TRAIT_IMMOBILE, FORTIFY_TRAIT)
 	fortify = on
-	set_frozen(on)
 	anchored = on
 	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 30, TRUE)
 	update_icons()

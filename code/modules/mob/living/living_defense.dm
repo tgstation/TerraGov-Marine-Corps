@@ -84,7 +84,7 @@
 		if(CHECK_BITFIELD(O.resistance_flags, ON_FIRE))
 			IgniteMob()
 
-		O.throwing = 0		//it hit, so stop moving
+		O.set_throwing(FALSE) //it hit, so stop moving
 
 		if(ismob(O.thrower))
 			var/mob/M = O.thrower
