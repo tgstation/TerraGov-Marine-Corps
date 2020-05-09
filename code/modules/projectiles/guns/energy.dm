@@ -81,7 +81,6 @@
 	item_state = "taser"
 	muzzle_flash = null //TO DO.
 	fire_sound = 'sound/weapons/guns/fire/taser.ogg'
-	materials = list(/datum/material/metal = 2000)
 	ammo = /datum/ammo/energy/taser
 	charge_cost = 500
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER|GUN_ALLOW_SYNTHETIC

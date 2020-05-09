@@ -23,8 +23,8 @@
 
 	flash_eyes()
 
-	if(severity == 1)
-		adjustBruteLoss(rand(200, 300), TRUE)
+	if(severity == EXPLODE_DEVASTATE)
+		adjustBruteLoss(rand(200, 300))
 		UPDATEHEALTH(src)
 
 

@@ -123,7 +123,7 @@
 
 /obj/machinery/bodyscanner/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(EXPLODE_DEVASTATE)
 			for(var/atom/movable/A as mob|obj in src)
 				A.loc = src.loc
 				ex_act(severity)
@@ -131,7 +131,7 @@
 			//SN src = null
 			qdel(src)
 			return
-		if(2.0)
+		if(EXPLODE_HEAVY)
 			if (prob(50))
 				for(var/atom/movable/A as mob|obj in src)
 					A.loc = src.loc
@@ -140,7 +140,7 @@
 				//SN src = null
 				qdel(src)
 				return
-		if(3.0)
+		if(EXPLODE_LIGHT)
 			if (prob(25))
 				for(var/atom/movable/A as mob|obj in src)
 					A.loc = src.loc
@@ -155,17 +155,12 @@
 /obj/machinery/body_scanconsole/ex_act(severity)
 
 	switch(severity)
-		if(1.0)
-			//SN src = null
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-			return
-		if(2.0)
+		if(EXPLODE_HEAVY)
 			if (prob(50))
-				//SN src = null
 				qdel(src)
-				return
-		else
-	return
+
 
 /obj/machinery/body_scanconsole
 	name = "Body Scanner Console"

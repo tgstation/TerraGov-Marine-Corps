@@ -57,12 +57,12 @@
 
 /obj/structure/inflatable/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-		if(2)
+		if(EXPLODE_HEAVY)
 			deflate(1)
 
-		if(3)
+		if(EXPLODE_LIGHT)
 			if(prob(50))
 				deflate(1)
 

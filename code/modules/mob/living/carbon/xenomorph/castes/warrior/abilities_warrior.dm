@@ -226,6 +226,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/M = A
 	if(X.issamexenohive(M))
+		X.changeNext_move(CLICK_CD_MELEE) // Add a delaay in to avoid spam
 		return M.attack_alien(X) //harmless nibbling.
 
 	GLOB.round_statistics.warrior_punches++

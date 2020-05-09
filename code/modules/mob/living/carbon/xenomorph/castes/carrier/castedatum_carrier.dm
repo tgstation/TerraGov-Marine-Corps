@@ -39,7 +39,7 @@
 	can_hold_eggs = CAN_HOLD_ONE_HAND
 
 	// *** Defense *** //
-	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 0, "acid" = 5)
+	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 0, "acid" = 5)
 
 	// *** Pheromones *** //
 	aura_strength = 1.5
@@ -92,7 +92,7 @@
 	upgrade_threshold = 240
 
 	// *** Defense *** //
-	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 0, "acid" = 5)
+	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 0, "acid" = 5)
 
 	// *** Pheromones *** //
 	aura_strength = 2
@@ -128,7 +128,7 @@
 	upgrade_threshold = 480
 
 	// *** Defense *** //
-	armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 0, "acid" = 7)
+	soft_armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 0, "acid" = 7)
 
 	// *** Pheromones *** //
 	aura_strength = 2.3
@@ -164,7 +164,7 @@
 	upgrade_threshold = 480
 
 	// *** Defense *** //
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 0, "acid" = 10)
+	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 0, "acid" = 10)
 
 	// *** Pheromones *** //
 	aura_strength = 2.5

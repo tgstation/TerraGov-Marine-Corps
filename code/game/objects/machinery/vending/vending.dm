@@ -99,12 +99,12 @@
 
 /obj/machinery/vending/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-		if(2)
+		if(EXPLODE_HEAVY)
 			if(prob(50))
 				qdel(src)
-		if(3)
+		if(EXPLODE_LIGHT)
 			if(prob(25))
 				INVOKE_ASYNC(src, .proc/malfunction)
 
