@@ -43,34 +43,6 @@
 
 	GLOB.enter_allowed = FALSE //No joining after dropship crash
 
-	//clear areas around the shuttle with explosions
-	var/turf/C = return_center_turf()
-
-	var/cos = 1
-	var/sin = 0
-	switch(dir)
-		if(WEST)
-			cos = 0
-			sin = 1
-		if(SOUTH)
-			cos = -1
-			sin = 0
-		if(EAST)
-			cos = 0
-			sin = -1
-
-	var/updown = (round(width/2))*sin + (round(height/2))*cos
-	var/leftright = (round(width/2))*cos - (round(height/2))*sin
-
-	var/turf/front = locate(C.x, C.y - updown, C.z)
-	var/turf/rear = locate(C.x, C.y + updown, C.z)
-	var/turf/left = locate(C.x - leftright, C.y, C.z)
-	var/turf/right = locate(C.x + leftright, C.y, C.z)
-
-	// explosion(front, 2, 4, 7, 0)
-	// explosion(rear, 3, 5, 8, 0)
-	// explosion(left, 3, 5, 8, 0)
-	// explosion(right, 3, 5, 8, 0)
 
 /obj/docking_port/stationary/marine_dropship/crash_target
 	name = "dropshipcrash"
