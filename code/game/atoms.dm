@@ -400,7 +400,7 @@ Proc for attack log creation, because really why not
 	user.log_message(message, LOG_ATTACK, color = "#f46666")
 
 	if(target && user != target)
-		var/reverse_message = "has been [what_done] by [ssource][postfix]"
+		var/reverse_message = "has been [what_done] by [ssource][postfix] in [AREACOORD(user)]"
 		target.log_message(reverse_message, LOG_ATTACK, color = "#eabd7e", log_globally = FALSE)
 
 
