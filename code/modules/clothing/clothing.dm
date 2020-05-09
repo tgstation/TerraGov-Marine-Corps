@@ -3,6 +3,29 @@
 	var/eye_protection = 0 //used for headgear, masks, and glasses, to see how much they protect eyes from bright lights.
 	var/accuracy_mod = 0
 
+
+/obj/item/clothing/equipped(mob/user, slot)
+	. = ..()
+	if(!(flags_equip_slot & slotdefine2slotbit(slot)))
+		return
+	if(!ishuman(user))
+		return
+	if(accuracy_mod)
+		var/mob/living/carbon/human/human_user = user
+		human_user.adjust_mob_accuracy(accuracy_mod)
+
+
+/obj/item/clothing/unequipped(mob/unequipper, slot)
+	if(!(flags_equip_slot & slotdefine2slotbit(slot)))
+		return ..()
+	if(!ishuman(unequipper))
+		return ..()
+	if(accuracy_mod)
+		var/mob/living/carbon/human/human_unequipper = unequipper
+		human_unequipper.adjust_mob_accuracy(-accuracy_mod)
+	return ..()
+
+
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
 	return

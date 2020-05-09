@@ -297,6 +297,7 @@
 
 
 /obj/item/stack/Crossed(obj/item/stack/S)
+	. = ..()
 	if(istype(S, merge_type) && !S.throwing)
 		merge(S)
 	return ..()
