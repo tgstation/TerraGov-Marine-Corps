@@ -332,7 +332,7 @@
 
 /obj/item/clothing/mask/facehugger/proc/Attach(mob/living/carbon/M)
 
-	throwing = FALSE
+	set_throwing(FALSE)
 	leaping = FALSE
 	update_icon()
 
