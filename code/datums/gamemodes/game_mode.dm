@@ -92,6 +92,8 @@
 		var/datum/DBQuery/query_round_game_mode = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET [sql] WHERE id = [GLOB.round_id]")
 		query_round_game_mode.Execute()
 		qdel(query_round_game_mode)
+	if(GLOB.weapon_spawn_list)
+		for(var/i in GLOB.weapon_spawn_list)
 
 
 /datum/game_mode/proc/new_player_topic(mob/new_player/NP, href, list/href_list)

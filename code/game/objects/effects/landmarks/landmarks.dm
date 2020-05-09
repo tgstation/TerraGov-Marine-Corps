@@ -165,46 +165,22 @@
 					/obj/item/weapon/throwing_knife
 					)
 
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn/Initialize()
-	. = ..()
-	choose_weapon()
-
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn
 	name = "Tier 2 Weapon Spawn"
 	icon_state = "weapon2"
-
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn/Initialize()
-	choose_weapon()
-	. = ..()
 
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn
 	name = "Tier 3 Weapon Spawn"
 	icon_state = "weapon3"
 
-/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn/Initialize()
-	choose_weapon()
-	. = ..()
-
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn
 	name = "Tier 4 Weapon Spawn"
 	icon_state = "weapon4"
-
-/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn/Initialize()
-	choose_weapon()
-	. = ..()
 
 /obj/effect/landmark/weapon_spawn/tier5_weapon_spawn
 	name = "Tier 5 Weapon Spawn"
 	icon_state = "weapon5"
 
-/obj/effect/landmark/weapon_spawn/tier5_weapon_spawn/Initialize()
-	choose_weapon()
-	. = ..()
-
 /obj/effect/landmark/weapon_spawn/tier6_weapon_spawn
 	name = "Tier 6 Weapon Spawn"
 	icon_state = "weapon6"
-
-/obj/effect/landmark/weapon_spawn/tier6_weapon_spawn/Initialize()
-	choose_weapon()
-	. = ..()
