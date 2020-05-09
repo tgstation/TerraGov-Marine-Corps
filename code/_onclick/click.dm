@@ -19,7 +19,7 @@
 /atom/Click(location, control, params)
 	if(flags_atom & INITIALIZED)
 		SEND_SIGNAL(src, COMSIG_CLICK, location, control, params, usr)
-		usr.ClickOn(src, location, control, params)
+		usr.ClickOn(src, location, params)
 
 
 /atom/DblClick(location, control, params)
@@ -45,7 +45,7 @@
 	* item/afterattack(atom, user, adjacent, params) - used both ranged and adjacent when not handled by attackby
 	* mob/RangedAttack(atom, params) - used only ranged, only used for tk and laser eyes but could be changed
 */
-/mob/proc/ClickOn(atom/A, location, control, params)
+/mob/proc/ClickOn(atom/A, location, params)
 
 	if(world.time <= next_click)
 		return
