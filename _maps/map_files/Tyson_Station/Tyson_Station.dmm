@@ -6475,7 +6475,7 @@
 /area/hallway/secondary/entry)
 "avs" = (
 /obj/structure/window/framed/colony,
-/obj/item/storage/fancy/cigarettes/luckystarss{
+/obj/item/storage/fancy/cigarettes/luckystars{
 	pixel_x = 31
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{

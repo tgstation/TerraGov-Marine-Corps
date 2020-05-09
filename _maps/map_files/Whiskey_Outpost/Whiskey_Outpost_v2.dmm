@@ -1478,7 +1478,7 @@
 /area/whiskey_outpost)
 "eA" = (
 /obj/structure/table,
-/obj/item/storage/fancy/cigarettes/luckystarss,
+/obj/item/storage/fancy/cigarettes/luckystars,
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
 "eC" = (
@@ -1954,7 +1954,7 @@
 /area/whiskey_outpost)
 "fK" = (
 /obj/structure/table,
-/obj/item/storage/fancy/cigarettes/luckystarss,
+/obj/item/storage/fancy/cigarettes/luckystars,
 /obj/item/tool/lighter/zippo,
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
