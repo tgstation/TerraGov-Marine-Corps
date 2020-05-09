@@ -13,7 +13,7 @@
 		for(var/i in stomach_contents)
 			var/mob/living/carbon/prey = i
 			prey.ex_act(severity + 1)
-	var/bomb_armor = armor.getRating("bomb")
+	var/bomb_armor = soft_armor.getRating("bomb")
 	var/b_loss = 0
 	var/f_loss = 0
 	switch(severity)

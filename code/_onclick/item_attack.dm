@@ -105,9 +105,9 @@
 
 	switch(I.damtype)
 		if(BRUTE)
-			apply_damage(power, BRUTE, user.zone_selected, get_living_armor("melee", user.zone_selected))
+			apply_damage(power, BRUTE, user.zone_selected, get_soft_armor("melee", user.zone_selected))
 		if(BURN)
-			if(apply_damage(power, BURN, user.zone_selected, get_living_armor("fire", user.zone_selected)))
+			if(apply_damage(power, BURN, user.zone_selected, get_soft_armor("fire", user.zone_selected)))
 				attack_message_local = "[attack_message_local] It burns!"
 
 	visible_message("<span class='danger'>[attack_message]</span>",
