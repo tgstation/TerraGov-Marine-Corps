@@ -18180,7 +18180,7 @@
 /area/mainship/shipboard/brig_cells)
 "aOl" = (
 /obj/structure/table/mainship,
-/obj/item/storage/fancy/cigarettes/lucky_strikes,
+/obj/item/storage/fancy/cigarettes/luckystarss,
 /obj/item/tool/lighter,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/brig_cells)
@@ -34577,7 +34577,7 @@
 	pixel_y = 3
 	},
 /obj/item/storage/box/tgmc_mre,
-/obj/item/storage/fancy/cigarettes/lucky_strikes,
+/obj/item/storage/fancy/cigarettes/luckystarss,
 /turf/open/floor/mainship{
 	dir = 4;
 	icon_state = "greencorner"
