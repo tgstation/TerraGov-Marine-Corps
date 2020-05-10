@@ -53,7 +53,9 @@
 		WRITE_FILE(S["toggles_gameplay"], toggles_gameplay)
 
 	if(savefile_version < 41)
-		WRITE_FILE(S["toggles_gameplay"], toggles_gameplay)
+		WRITE_FILE(S["chat_on_map"], chat_on_map)
+		WRITE_FILE(S["max_chat_length"], max_chat_length)
+		WRITE_FILE(S["see_chat_non_mob"], see_chat_non_mob)
 
 	savefile_version = SAVEFILE_VERSION_MAX
 	return TRUE
