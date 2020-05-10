@@ -123,7 +123,7 @@
 	else if(!hive.check_ruler())
 		stat("Evolve Progress:", "(HALTED - NO RULER)")
 	else
-		stat("Evolve Progress:", "[evolution_stored]/[xeno_caste.evolution_threshold]")
+		stat("Evolve Progress:", "[FLOOR(evolution_stored,1)]/[xeno_caste.evolution_threshold]")
 
 	if(upgrade_possible())
 		stat("Upgrade Progress:", "[FLOOR(upgrade_stored,1)]/[xeno_caste.upgrade_threshold]")

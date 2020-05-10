@@ -474,10 +474,10 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CHARGE_TYPE_MASSIVE			5
 
 //Upgrade/Evolution Defines
-#define XENO_PROGRESS_UPTICK_BASE						2 //a normal rate is 1 per second.
-#define XENO_PROGRESS_UPTICK_ADDITION_SILO			0.2 //per additional silo, +0.1 per second.
+#define XENO_PROGRESS_UPTICK_BASE				2 //a normal rate is 1 per second.
+#define XENO_PROGRESS_UPTICK_ADDITION_SILO		0.2 //per additional silo, +0.1 per second.
 
-#define XENO_EVOLVE_UPGRADE_REDUCTION			-60 //reduce upgrade by 1 minute's progress when evolving.
+#define XENO_EVOLVE_UPGRADE_REDUCTION			-60 //reduce upgrade by 1 minute's progress when evolving or regressing.
 
 #define XENO_UPGRADETHRESHOLD_TIER1_MATURE		300 //5 minutes
 #define XENO_UPGRADETHRESHOLD_TIER1_ELDER		900 //15 minutes
