@@ -126,7 +126,7 @@
 		stat("Evolve Progress:", "[evolution_stored]/[xeno_caste.evolution_threshold]")
 
 	if(upgrade_possible())
-		stat("Upgrade Progress:", "[upgrade_stored]/[xeno_caste.upgrade_threshold]")
+		stat("Upgrade Progress:", "[FLOOR(upgrade_stored,1)]/[xeno_caste.upgrade_threshold]")
 	else //Upgrade process finished or impossible
 		stat("Upgrade Progress:", "(FINISHED)")
 
@@ -264,7 +264,7 @@
 				var/silo_count_ratio = silo_count_current / silo_count_default
 				var/upgrade_stored_ruler_ratio = 1
 				if(upgrade_stored > 0)
-					upgrade_stored_ruler_ratio = min(10, hive?.living_xeno_ruler.upgrade_stored / upgrade_stored) //at maximum, will modify uptick rate by a factor of 10.
+					upgrade_stored_ruler_ratio = min(2, hive?.living_xeno_ruler.upgrade_stored / upgrade_stored) //at maximum, will double upticks.
 				if(silo_count_ratio <= 1)
 					upgrade_points *= silo_count_ratio
 				else
