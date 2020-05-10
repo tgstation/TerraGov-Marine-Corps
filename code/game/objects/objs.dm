@@ -15,7 +15,6 @@
 
 	var/throwforce = 1
 
-	var/resistance_flags = NONE
 	var/obj_flags = NONE
 	var/hit_sound //Sound this object makes when hit, overrides specific item hit sound.
 	var/destroy_sound //Sound this object makes when destroyed.
@@ -25,6 +24,9 @@
 
 	var/list/req_access = null
 	var/list/req_one_access = null
+
+	///Optimization for dynamic explosion block values, for things whose explosion block is dependent on certain conditions.
+	var/real_explosion_block
 
 
 /obj/Initialize()

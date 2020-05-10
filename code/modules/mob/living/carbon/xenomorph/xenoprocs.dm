@@ -309,24 +309,12 @@
 	if(isliving(hit_atom)) //Hit a mob! This overwrites normal throw code.
 		if(SEND_SIGNAL(src, COMSIG_XENO_LIVING_THROW_HIT, hit_atom) & COMPONENT_KEEP_THROWING)
 			return FALSE
-		throwing = FALSE //Resert throwing since something was hit.
-		reset_movement()
+		set_throwing(FALSE) //Resert throwing since something was hit.
 		return TRUE
 	SEND_SIGNAL(src, COMSIG_XENO_NONE_THROW_HIT)
-	throwing = FALSE //Resert throwing since something was hit.
-	reset_movement()
+	set_throwing(FALSE) //Resert throwing since something was hit.
 	return ..() //Do the parent otherwise, for turfs.
 
-/mob/living/carbon/xenomorph/proc/reset_movement()
-	set_frozen(FALSE)
-
-/mob/living/carbon/xenomorph/proc/stop_movement()
-	set_frozen(TRUE)
-
-/mob/living/carbon/xenomorph/set_frozen(freeze = TRUE)
-	if(fortify && !freeze)
-		return FALSE
-	return ..()
 
 //Bleuugh
 

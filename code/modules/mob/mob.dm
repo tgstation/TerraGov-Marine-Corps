@@ -12,7 +12,7 @@
 	ghostize()
 	clear_fullscreens()
 	if(mind)
-		stack_trace("Found a reference to an undeleted mind in mob/Destroy()")
+		stack_trace("Found a reference to an undeleted mind in mob/Destroy(). Mind name: [mind.name]. Mind mob: [mind.current]")
 		mind = null
 	if(hud_used)
 		QDEL_NULL(hud_used)
@@ -846,6 +846,15 @@
 		remove_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE)
 	else if(. == GRAB_PASSIVE)
 		add_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE, TRUE, 100, NONE, TRUE, grab_state * 3)
+
+/mob/set_throwing(new_throwing)
+	. = ..()
+	if(isnull(.))
+		return
+	if(throwing)
+		ADD_TRAIT(src, TRAIT_IMMOBILE, THROW_TRAIT)
+	else
+		REMOVE_TRAIT(src, TRAIT_IMMOBILE, THROW_TRAIT)
 
 /mob/proc/set_stat(new_stat)
 	if(new_stat == stat)

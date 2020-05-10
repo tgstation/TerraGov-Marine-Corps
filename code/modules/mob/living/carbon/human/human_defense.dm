@@ -75,7 +75,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		var/datum/limb/limb_to_check = i
 		if(!(limb_to_check.body_part & armor_item.flags_armor_protection))
 			continue
-		limb_to_check.armor = limb_to_check.armor.attachArmor(armor_item.armor)
+		limb_to_check.add_limb_soft_armor(armor_item.armor)
 
 
 /mob/living/carbon/human/dummy/add_limb_armor(obj/item/armor_item)
@@ -87,16 +87,16 @@ Contains most of the procs that are called when a mob is attacked by something
 		var/datum/limb/limb_to_check = i
 		if(!(limb_to_check.body_part & armor_item.flags_armor_protection))
 			continue
-		limb_to_check.armor = limb_to_check.armor.detachArmor(armor_item.armor)
+		limb_to_check.remove_limb_soft_armor(armor_item.armor)
 
 
 /mob/living/carbon/human/dummy/remove_limb_armor(obj/item/armor_item)
 	return
 
 
-//this proc returns the armour value for a particular external organ.
+///This proc returns the armour value for a particular external organ.
 /mob/living/carbon/human/proc/getarmor_organ(datum/limb/affected_limb, type)
-	return affected_limb.armor.getRating(type)
+	return affected_limb.soft_armor.getRating(type)
 
 
 /mob/living/carbon/human/proc/check_head_coverage()
@@ -314,7 +314,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		log_combat(living_thrower, src, "thrown at", thrown_item, "(FAILED: target limb missing)")
 		return
 
-	thrown_item.throwing = FALSE // Hit the limb.
+	thrown_item.set_throwing(FALSE) // Hit the limb.
 
 	var/armor = run_armor_check(affecting, "melee") //I guess "melee" is the best fit here
 

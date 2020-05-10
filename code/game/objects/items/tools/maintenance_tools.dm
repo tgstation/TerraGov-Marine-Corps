@@ -401,7 +401,7 @@
 		if(T.welding)
 			to_chat(user, "<span class='warning'>That was stupid of you.</span>")
 			log_explosion("[key_name(user)] triggered a weldpack explosion at [AREACOORD(user.loc)].")
-			explosion(get_turf(src),-1,0,2)
+			explosion(src, light_impact_range = 3)
 			qdel(src)
 		if(T.get_fuel() == T.max_fuel || !reagents.total_volume)
 			return ..()

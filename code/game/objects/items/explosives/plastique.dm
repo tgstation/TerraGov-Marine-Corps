@@ -36,14 +36,8 @@
 		return FALSE
 	if(istype(target, /obj/item) || isopenturf(target))
 		return FALSE
-	if(isobj(target))
-		var/obj/O = target
-		if(CHECK_BITFIELD(O.resistance_flags, INDESTRUCTIBLE))
-			return FALSE
-	if(iswallturf(target))
-		var/turf/closed/wall/W = target
-		if(W.hull)
-			return FALSE
+	if(target.resistance_flags & INDESTRUCTIBLE)
+		return FALSE
 	if(istype(target, /obj/structure/window))
 		var/obj/structure/window/W = target
 		if(!W.damageable)
@@ -130,15 +124,5 @@
 	if(QDELETED(plant_target))
 		qdel(src)
 		return
-	explosion(plant_target, -1, -1, 3)
-	if(QDELETED(plant_target))
-		qdel(src)
-		return
-	if(istype(plant_target,/turf/closed/wall))
-		var/turf/closed/wall/W = plant_target
-		W.ChangeTurf(/turf/open/floor/plating)
-	else if(istype(plant_target,/obj/machinery/door))
-		qdel(plant_target)
-	else
-		plant_target.ex_act(1)
+	plant_target.ex_act(EXPLODE_DEVASTATE)
 	qdel(src)
