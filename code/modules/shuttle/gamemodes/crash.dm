@@ -73,7 +73,7 @@
 
 	callTime = 10 MINUTES
 	ignitionTime = 5 SECONDS
-	prearrivalTime = 12 SECONDS
+	prearrivalTime = 2 SECONDS //We only need time for the arrival sound here.
 
 	var/list/spawnpoints = list()
 	var/list/latejoins = list()

@@ -636,13 +636,15 @@
 	set_idle()
 
 /obj/docking_port/mobile/proc/check_effects(time_left)
-	if(time_left <= SHUTTLE_RIPPLE_TIME && use_ripples == SHUTTLE_ARRIVING && ((mode == SHUTTLE_CALL) || (mode == SHUTTLE_RECALL)))
-		create_ripples(destination, time_left)
+	switch(mode)
+		if(SHUTTLE_CALL, SHUTTLE_RECALL)
+			if(time_left <= SHUTTLE_RIPPLE_TIME && use_ripples == SHUTTLE_ARRIVING)
+				create_ripples(destination, time_left)
 
-	if(time_left <= SHUTTLE_PRE_CRASH_TIME && crashing && pre_crash_status == SHUTTLE_ARRIVING && !istype(destination, /obj/docking_port/stationary/transit))
-		destination.pre_crash_impact()
-		pre_crash_impact()
-		pre_crash_status = initial(pre_crash_status)
+			if(time_left <= SHUTTLE_PRE_CRASH_TIME && crashing && pre_crash_status == SHUTTLE_ARRIVING && !istype(destination, /obj/docking_port/stationary/transit))
+				destination.pre_crash_impact()
+				pre_crash_impact()
+				pre_crash_status = initial(pre_crash_status)
 
 	//var/obj/docking_port/stationary/S0 = get_docked()
 	//if(istype(S0, /obj/docking_port/stationary/transit) && timeLeft(1) <= PARALLAX_LOOP_TIME)
