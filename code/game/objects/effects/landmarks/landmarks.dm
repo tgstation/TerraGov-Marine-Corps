@@ -156,6 +156,10 @@
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/weapon_spawn/Destroy()
+	GLOB.weapon_spawn_list -= src
+	return ..()
+
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn
 	name = "Tier 1 Weapon Spawn"
 	icon_state = "weapon1"

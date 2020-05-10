@@ -1,15 +1,14 @@
-/obj/effect/landmark/weapon_spawn/proc/spawn_weapon(/obj/item/weapon/weapon_to_spawn)
-	new weapon_to_spawn(src.loc)
-
 /obj/effect/landmark/weapon_spawn/proc/spawn_associated_ammo(obj/item/weapon/gun/gun_to_spawn)
 	for(var/i in 1 to 3) //hardcoded 3 mags.
-		new gun_to_spawn.current_mag
+		new gun_to_spawn.current_mag (get_turf(src))
 
 //pistols and knives
 /obj/effect/landmark/weapon_spawn/proc/choose_weapon()
 	weapon_to_spawn = pick(weapon_list)
 
-	spawn_weapon(weapon_to_spawn)
+	to_chat(world, "ahhhhahhahahahah why aren't you spawning?")
+	new weapon_to_spawn (get_turf(src))
+
 	if(isgun(weapon_to_spawn))
 		var/obj/item/weapon/gun/gun_to_spawn = weapon_to_spawn
 		if(gun_to_spawn.current_mag)
