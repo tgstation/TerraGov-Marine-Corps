@@ -603,7 +603,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
 	caliber = "16 gauge" //codex
 	max_shells = 12 //codex
-	force = 20.0
+	force = 20
 	current_mag = /obj/item/ammo_magazine/rifle/tx15_slug
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
