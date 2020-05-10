@@ -251,39 +251,40 @@
 
 
 /mob/living/carbon/xenomorph/proc/update_progression()
-	if(upgrade_possible()) //upgrade possible
-		if(client && ckey) // pause for ssd/ghosted
-			if(!hive?.living_xeno_ruler || hive.living_xeno_ruler.loc.z == loc.z)
-				if(upgrade_stored >= xeno_caste.upgrade_threshold)
-					if(health == maxHealth && !incapacitated() && !handcuffed && !legcuffed)
-						upgrade_xeno(upgrade_next())
-				//Upgrade is increased based on the amount of active silos.
-				var/upgrade_points = XENO_UPGRADE_UPTICK_BASE
-				var/silo_count_current = length(GLOB.xeno_resin_silos)
-				var/silo_count_default = length(GLOB.xeno_resin_silo_turfs)
-				var/silo_count_ratio = silo_count_current / silo_count_default
-				var/upgrade_stored_ruler_ratio = 1
-				if(upgrade_stored > 0)
-					upgrade_stored_ruler_ratio = min(2, hive?.living_xeno_ruler.upgrade_stored / upgrade_stored) //at maximum, will double upticks.
-				if(silo_count_ratio <= 1)
-					upgrade_points *= silo_count_ratio
-				else
-					upgrade_points += XENO_UPGRADE_UPTICK_ADDITION_SILO * (silo_count_current - silo_count_default)
-				upgrade_stored += upgrade_stored_ruler_ratio * upgrade_points
-
-/mob/living/carbon/xenomorph/proc/update_evolving()
-	if(!client || !ckey) // stop evolve progress for ssd/ghosted xenos
-		return
-	if(evolution_stored >= xeno_caste.evolution_threshold || !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
+	if(!client || !ckey) // pause for ssd/ghosted
 		return
 	if(!hive.check_ruler())
 		return
+	
+	//Upgrade is increased based on the number of active silos.
+	var/progress_points = XENO_PROGRESS_UPTICK_BASE
+	var/silo_count_current = length(GLOB.xeno_resin_silos)
+	var/silo_count_default = length(GLOB.xeno_resin_silo_turfs)
+	if(silo_count_default == 0) //checks for when there are no default resin silo spawns, sets to <<number>> if there aren't.
+		silo_count_default = 5
+	var/silo_count_ratio = silo_count_current / silo_count_default	
+	if(silo_count_ratio <= 1)
+		progress_points *= silo_count_ratio
+	else
+		progress_points += XENO_PROGRESS_UPTICK_ADDITION_SILO * (silo_count_current - silo_count_default)
+	update_upgrade(progress_points)
+	update_evolving(progress_points)
 
-	// Evolution is increased based on marine to xeno population taking stored_larva as a modifier.
-	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	var/evolution_points = 1 + (FLOOR(stored_larva / 3, 1))
-	evolution_stored = min(evolution_stored + evolution_points, xeno_caste.evolution_threshold)
+/mob/living/carbon/xenomorph/proc/update_upgrade(upgrade_points)
+	var/upgrade_stored_ruler_ratio = 1
+	if(upgrade_possible()) //upgrade possible
+		if(upgrade_stored >= xeno_caste.upgrade_threshold)
+			if(health == maxHealth && !incapacitated() && !handcuffed && !legcuffed)
+				upgrade_xeno(upgrade_next())
+		if(upgrade_stored > 0)
+			upgrade_stored_ruler_ratio = min(2, hive?.living_xeno_ruler.upgrade_stored / upgrade_stored) //at maximum, will double upticks.
+		upgrade_stored += upgrade_stored_ruler_ratio * upgrade_points
+
+/mob/living/carbon/xenomorph/proc/update_evolving(evolve_points)
+	if(evolution_stored >= xeno_caste.evolution_threshold || !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
+		return
+
+	evolution_stored += min(evolve_points, xeno_caste.evolution_threshold)
 
 	if(evolution_stored == xeno_caste.evolution_threshold)
 		to_chat(src, "<span class='xenodanger'>Our carapace crackles and our tendons strengthen. We are ready to evolve!</span>")

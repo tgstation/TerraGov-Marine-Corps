@@ -26,7 +26,6 @@
 			if(loc != zoom_turf || lying_angle)
 				zoom_out()
 		update_progression()
-		update_evolving()
 		handle_aura_emiter()
 
 	adjust_sunder(xeno_caste.sunder_recover * -1) 
