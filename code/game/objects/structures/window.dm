@@ -404,6 +404,7 @@
 
 /obj/structure/window/framed/mainship/hull/canterbury //So we can wallsmooth properly.
 	tiles_with = list(/turf/closed/wall/mainship/outer/canterbury)
+	tiles_special = list(/obj/structure/window/framed/mainship/hull/canterbury)
 
 /obj/structure/window/framed/mainship/requisitions
 	name = "kevlar-weave infused bulletproof window"
