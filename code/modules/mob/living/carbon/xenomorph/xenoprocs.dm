@@ -259,14 +259,18 @@
 						upgrade_xeno(upgrade_next())
 					// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.
 				var/upgrade_points = XENO_UPGRADE_UPTICK_BASE
-				var/silos_count_current = length(GLOB.xeno_resin_silos)
-				var/silos_count_default = length(GLOB.xeno_resin_silo_turfs)
-				var/resin_silo_ratio = silos_count_current / silos_count_default
-				if(resin_silo_ratio <= 1)
-					upgrade_points *= resin_silo_ratio
+				var/silo_count_current = length(GLOB.xeno_resin_silos)
+				var/silo_count_default = length(GLOB.xeno_resin_silo_turfs)
+				var/silo_count_ratio = silo_count_current / silo_count_default
+				var/upgrade_stored_ruler = hive?.living_xeno_ruler.upgrade_stored
+				var/upgrade_stored_ruler_ratio = 1
+				if(upgrade_stored > 0)
+					upgrade_stored_ruler_ratio = min(10, hive?.living_xeno_ruler.upgrade_stored / upgrade_stored) //at maximum, will modify uptick rate by a factor of 10.
+				if(silo_ratio <= 1)
+					upgrade_points *= silo_ratio
 				else
-					upgrade_points += XENO_UPGRADE_UPTICK_ADDITION_SILO * (silos_count_current - silos_count_default)
-				upgrade_stored += upgrade_points
+					upgrade_points += XENO_UPGRADE_UPTICK_ADDITION_SILO * (silo_count_current - silo_count_default)
+				upgrade_stored += upgrade_stored_ruler_ratio * upgrade_points
 
 /mob/living/carbon/xenomorph/proc/update_evolving()
 	if(!client || !ckey) // stop evolve progress for ssd/ghosted xenos
