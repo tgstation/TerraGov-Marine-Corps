@@ -257,17 +257,16 @@
 				if(upgrade_stored >= xeno_caste.upgrade_threshold)
 					if(health == maxHealth && !incapacitated() && !handcuffed && !legcuffed)
 						upgrade_xeno(upgrade_next())
-					// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.
+				//Upgrade is increased based on the amount of active silos.
 				var/upgrade_points = XENO_UPGRADE_UPTICK_BASE
 				var/silo_count_current = length(GLOB.xeno_resin_silos)
 				var/silo_count_default = length(GLOB.xeno_resin_silo_turfs)
 				var/silo_count_ratio = silo_count_current / silo_count_default
-				var/upgrade_stored_ruler = hive?.living_xeno_ruler.upgrade_stored
 				var/upgrade_stored_ruler_ratio = 1
 				if(upgrade_stored > 0)
 					upgrade_stored_ruler_ratio = min(10, hive?.living_xeno_ruler.upgrade_stored / upgrade_stored) //at maximum, will modify uptick rate by a factor of 10.
-				if(silo_ratio <= 1)
-					upgrade_points *= silo_ratio
+				if(silo_count_ratio <= 1)
+					upgrade_points *= silo_count_ratio
 				else
 					upgrade_points += XENO_UPGRADE_UPTICK_ADDITION_SILO * (silo_count_current - silo_count_default)
 				upgrade_stored += upgrade_stored_ruler_ratio * upgrade_points
