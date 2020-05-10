@@ -47,6 +47,8 @@
 
 /obj/machinery/door/poddoor/railing/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
+	if(mover.throwing)
+		return TRUE
 	if(mover.movement_type & (FLYING|FLOATING))
 		return TRUE
 
