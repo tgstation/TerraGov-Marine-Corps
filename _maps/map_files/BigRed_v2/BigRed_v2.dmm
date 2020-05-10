@@ -9846,20 +9846,6 @@
 	dir = 1
 	},
 /area/bigredv2/outside/nw)
-"aDz" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 1
-	},
-/area/bigredv2/outside/nw)
 "aDA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -18740,8 +18726,8 @@
 "bhA" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/landinglight/ds2/delaytwo,
-/turf/open/floor/marking/asteroidwarning,
-/area/bigredv2/outside/w)
+/turf/open/floor/plating,
+/area/shuttle/drop2/lz2)
 "bhD" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/lightred/full,
@@ -24956,6 +24942,10 @@
 /obj/machinery/computer/nuke_disk_generator/blue,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"eIZ" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/nw)
 "eQO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
@@ -24986,10 +24976,6 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"fgm" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/outside/c)
 "fgX" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -25677,10 +25663,6 @@
 	dir = 6
 	},
 /area/bigredv2/outside/se)
-"nDW" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/outside/w)
 "nFd" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -25770,13 +25752,9 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"owL" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 1
-	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 8
-	},
+"owM" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/w)
 "oEN" = (
 /obj/machinery/vending/coffee,
@@ -25863,10 +25841,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/space_port)
-"psl" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/outside/nw)
 "ptp" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/bigred,
@@ -25957,6 +25931,10 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
+"qlr" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/c)
 "qnu" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
@@ -25970,6 +25948,12 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
+"qpW" = (
+/obj/machinery/landinglight/ds2{
+	dir = 1
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/sw)
 "qtI" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	on = 1
@@ -26190,6 +26174,12 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
+"sWt" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/sw)
 "sZi" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor,
@@ -26474,6 +26464,15 @@
 	dir = 1
 	},
 /area/bigredv2/outside/c)
+"wVm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 1
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/bigredv2/outside/w)
 "wZg" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/sw)
@@ -33242,7 +33241,7 @@ aFv
 aFv
 aFv
 aQF
-nDW
+owM
 sBV
 aSB
 aVG
@@ -34483,8 +34482,7 @@ aeI
 aeI
 aeI
 aeI
-psl
-aeI
+eIZ
 aeI
 aeI
 aeI
@@ -34500,55 +34498,56 @@ ahP
 ahP
 ahP
 ajy
-ajx
+aoN
 axX
-ajx
+aoN
 ahR
 ahP
 ahP
 ahP
 ahP
-aDz
-ahR
+qUm
+akK
 ahP
 ahP
 ajy
 cuW
 ahP
 ama
-aHn
 aeI
+aHn
 gON
 gON
 gON
 gON
-aQF
+vDI
 aQF
 aQF
 aQF
 sBV
-aVF
+aUQ
 aWk
 aWk
+aWk
+aWk
+aWk
+aWk
+wVm
 aWk
 aWk
 aWk
 aVI
-owL
 aWk
-aWk
-aVI
-aWk
-aWk
-aVH
+aVG
+bev
 bdZ
 bdZ
 bev
 bev
-bdZ
 bdZ
 bdZ
 aVG
+beQ
 bhA
 bie
 bie
@@ -34570,14 +34569,14 @@ bie
 bie
 bie
 bie
-bie
-bsb
+buP
+qpW
 bpv
 bpv
-bpv
-dXK
+sWt
 aac
 hzx
+aac
 aac
 aac
 aac
@@ -34605,15 +34604,15 @@ aac
 aac
 aac
 aac
-aac
 aad
 aad
 aad
-aac
+aad
 aac
 aac
 aac
 aab
+aaa
 aaa
 aaa
 aaa
@@ -35160,8 +35159,8 @@ avr
 ahP
 aDy
 ajx
-aiw
-aiw
+aqp
+aqp
 ajx
 cuW
 ahP
@@ -48435,7 +48434,7 @@ aKl
 aKl
 aIm
 aBR
-fgm
+qlr
 hlD
 aIn
 aIn
