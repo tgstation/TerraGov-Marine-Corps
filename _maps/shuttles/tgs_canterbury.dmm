@@ -3,10 +3,10 @@
 /turf/template_noop,
 /area/template_noop)
 "ab" = (
-/turf/closed/wall/mainship/outer,
+/turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/canterbury/cic)
 "ac" = (
-/obj/structure/window/framed/mainship/hull,
+/obj/structure/window/framed/mainship/hull/canterbury,
 /turf/open/floor/plating,
 /area/shuttle/canterbury/cic)
 "ad" = (
@@ -102,7 +102,7 @@
 	},
 /area/shuttle/canterbury/cic)
 "an" = (
-/turf/closed/wall/mainship/outer,
+/turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/canterbury)
 "ao" = (
 /obj/structure/cable{
@@ -218,9 +218,9 @@
 	},
 /area/shuttle/canterbury)
 "aw" = (
-/obj/machinery/door/airlock/mainship/command{
+/obj/machinery/door/airlock/mainship/command/canterbury{
 	dir = 1;
-	name = "\improper Combat Information Center"
+	name = "\improper Command Cockpit"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -413,7 +413,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aR" = (
-/obj/structure/window/framed/mainship,
+/obj/structure/window/framed/mainship/canterbury,
 /turf/open/floor/plating,
 /area/shuttle/canterbury)
 "aS" = (
@@ -641,7 +641,7 @@
 /turf/open/floor/mainship,
 /area/shuttle/canterbury)
 "bo" = (
-/turf/closed/wall/mainship/outer,
+/turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/canterbury/medical)
 "bp" = (
 /obj/machinery/light/small{
@@ -841,7 +841,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "bK" = (
-/obj/structure/window/framed/mainship/white,
+/obj/structure/window/framed/mainship/white/canterbury,
 /turf/open/floor/plating,
 /area/shuttle/canterbury/medical)
 "bL" = (
@@ -1303,7 +1303,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "cG" = (
-/obj/machinery/door/airlock/mainship/marine{
+/obj/machinery/door/airlock/mainship/marine/canterbury{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -1327,7 +1327,7 @@
 /turf/open/floor/mainship,
 /area/shuttle/canterbury)
 "cI" = (
-/turf/closed/wall/mainship/white,
+/turf/closed/wall/mainship/white/canterbury,
 /area/shuttle/canterbury/medical)
 "cJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
