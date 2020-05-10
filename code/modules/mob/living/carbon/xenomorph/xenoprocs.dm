@@ -284,7 +284,7 @@
 	if(evolution_stored >= xeno_caste.evolution_threshold || !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED))
 		return
 
-	evolution_stored += min(evolve_points, xeno_caste.evolution_threshold)
+	evolution_stored = min(evolution_stored + evolve_points, xeno_caste.evolution_threshold)
 
 	if(evolution_stored == xeno_caste.evolution_threshold)
 		to_chat(src, "<span class='xenodanger'>Our carapace crackles and our tendons strengthen. We are ready to evolve!</span>")
