@@ -15,6 +15,7 @@ Thanks to spacemaniac and mcdonald for help with the JS side of this.
 	//Main windows
 	winset(src, "infowindow", "background-color = [LIGHTMODE_BACKGROUND] ; text-color = [LIGHTMODE_TEXT]")
 	winset(src, "info", "background-color = [LIGHTMODE_BACKGROUND] ; text-color = [LIGHTMODE_TEXT]")
+	winset(src, "chatoutput", "background-color = [LIGHTMODE_BACKGROUND] ; text-color = [LIGHTMODE_TEXT]")
 	winset(src, "browseroutput", "background-color = [LIGHTMODE_BACKGROUND] ; text-color = [LIGHTMODE_TEXT]")
 	winset(src, "outputwindow", "background-color = [LIGHTMODE_BACKGROUND] ; text-color = [LIGHTMODE_TEXT]")
 	winset(src, "mainwindow", "background-color = [LIGHTMODE_BACKGROUND]")
@@ -44,6 +45,7 @@ Thanks to spacemaniac and mcdonald for help with the JS side of this.
 	//Main windows
 	winset(src, "infowindow", "background-color = [DARKMODE_BACKGROUND] ; text-color = [DARKMODE_TEXT]")
 	winset(src, "info", "background-color = [DARKMODE_BACKGROUND] ; text-color = [DARKMODE_TEXT]")
+	winset(src, "chatoutput", "background-color = [DARKMODE_BACKGROUND] ; text-color = [DARKMODE_TEXT]")
 	winset(src, "browseroutput", "background-color = [DARKMODE_BACKGROUND] ; text-color = [DARKMODE_TEXT]")
 	winset(src, "outputwindow", "background-color = [DARKMODE_BACKGROUND] ; text-color = [DARKMODE_TEXT]")
 	winset(src, "mainwindow", "background-color = [DARKMODE_BACKGROUND]")

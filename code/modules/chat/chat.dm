@@ -10,14 +10,15 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 
 #define CHAT_RENDERER_GOON(X) new /datum/chatRenderer/goon(X)
-#define DEFAULT_CHAT_RENDERER(X) CHAT_RENDERER_GOON(X)
+#define CHAT_RENDERER_VCHAT(X) new /datum/chatRenderer/vchat(X)
+#define DEFAULT_CHAT_RENDERER(X) CHAT_RENDERER_VCHAT(X)
 
 /*
 	The Chat system datum
 
-	This is the main system for chat in TGMC. All outgoing chat is sent via the chatSystem 
+	This is the main system for chat in TGMC. All outgoing chat is sent via the chatSystem
 	which is able to work with different renderers to support multiple outputs
-	
+
 	Currently supported are byond, goonchat, and vchat.
 
 */
@@ -25,15 +26,15 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	var/client/owner ///Client ref
 	var/datum/chatRenderer/renderer /// Chat renderer
 	// How many times client data has been checked
-	var/total_checks = 0
+	var/total_checks			= 0
 	// When to next clear the client data checks counter
-	var/next_time_to_clear = 0
-	var/loaded       = FALSE // Has the client loaded the browser output area?
+	var/next_time_to_clear		= 0
+	var/loaded					= FALSE // Has the client loaded the browser output area?
 	var/list/messageQueue //If they haven't loaded chat, this is where messages will go until they do
-	var/cookieSent   = FALSE // Has the client sent a cookie for analysis
-	var/working      = TRUE
+	var/cookieSent				= FALSE // Has the client sent a cookie for analysis
+	var/working					= TRUE
 	var/list/connectionHistory //Contains the connection history passed from chat cookie
-	var/adminMusicVolume = 10 //This is for the Play Global Sound verb
+	var/adminMusicVolume		= 10 //This is for the Play Global Sound verb
 
 /datum/chatSystem/New(client/C)
 	owner = C
@@ -41,7 +42,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	connectionHistory = list()
 
 	//TODO: choose renderer this from prefs
-	renderer = DEFAULT_CHAT_RENDERER(src) 
+	renderer = DEFAULT_CHAT_RENDERER(src)
 
 /datum/chatSystem/proc/start()
 	//Check for existing chat
@@ -51,7 +52,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	if(!istype(owner))
 		CRASH("chatOutput/proc/start() called with owner of type: [owner?.type]")
 
-	if(!winexists(owner, "browseroutput")) // Oh goddamnit.
+	if(!winexists(owner, "chatoutput")) // Oh goddamnit.
 		set waitfor = FALSE
 		working = FALSE
 		message_admins("Couldn't start chat for [key_name_admin(owner)]!")
@@ -59,7 +60,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 		alert(owner.mob, "Updated chat window does not exist. If you are using a custom skin file please allow the game to update.")
 		return
 
-	if(winget(owner, "browseroutput", "is-visible") == "true") //Already setup
+	if(winget(owner, "chatoutput", "is-visible") == "true") //Already setup
 		doneLoading()
 
 	else //Not setup
@@ -76,49 +77,13 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	stuff.send(owner)
 
 	var/main_page = renderer.get_main_page()
-	owner << browse(main_page, "window=browseroutput")
+	owner << browse(main_page, "window=chatoutput")
 
 /datum/chatSystem/Topic(href, list/href_list)
 	if(usr.client != owner)
 		return TRUE
 
-	// Build arguments.
-	// Arguments are in the form "param[paramname]=thing"
-	var/list/params = list()
-	for(var/key in href_list)
-		if(length_char(key) > 7 && findtext(key, "param")) // 7 is the amount of characters in the basic param key template.
-			var/param_name = copytext_char(key, 7, -1)
-			var/item       = href_list[key]
-
-			params[param_name] = item
-
-	var/data // Data to be sent back to the chat.
-	switch(href_list["proc"])
-		if("doneLoading")
-			data = doneLoading(arglist(params))
-
-		if("debug")
-			// TODO: VChat has different topics and handling
-			var/msg = params["message"]
-			if(params["message"] == "VChat Loaded!")
-				doneLoading()
-			else
-				data = debug(list2params(params))
-
-		if("analyzeClientData")
-			data = analyzeClientData(arglist(params))
-
-		if("setMusicVolume")
-			data = setMusicVolume(arglist(params))
-
-		if("swaptodarkmode")
-			swaptodarkmode()
-
-		if("swaptolightmode")
-			swaptolightmode()
-
-	if(data)
-		ehjax_send(data = data)
+	renderer.Topic(href, href_list)
 
 
 //Called on chat output done-loading by JS.
@@ -129,8 +94,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	if(!owner)
 		return FALSE
 
-	loaded = TRUE
-	showChat()
+	renderer.show_chat()
 
 	for(var/message in messageQueue)
 		// whitespace has already been handled by the original to_chat
@@ -168,10 +132,9 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	if (regexes.len)
 		ehjax_send(data = list("syncRegex" = regexes))
 
-/datum/chatSystem/proc/ehjax_send(client/C = owner, window = "browseroutput", data)
-	if(islist(data))
-		data = json_encode(data)
-	C << output("[data]", "[window]:ehjaxCallback")
+/datum/chatSystem/proc/ehjax_send(client/C = owner, window = "chatoutput", data)
+	renderer.send_data(C, data)
+
 
 /datum/chatSystem/proc/sendMusic(music, list/extra_data)
 	if(!findtext(music, GLOB.is_http_protocol))
@@ -251,7 +214,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 //Called by js client on js error
 /datum/chatSystem/proc/debug(error)
 	to_chat(world, "FUCK: [error]")
-	log_world("\[[time2text(world.realtime, "YYYY-MM-DD hh:mm:ss")]\] Client: [(src.owner.key ? src.owner.key : src.owner)] triggered JS error: [error]")
+	log_world("Client: [(src.owner.key ? src.owner.key : src.owner)] Error: [error]")
 
 
 //Global chat procs

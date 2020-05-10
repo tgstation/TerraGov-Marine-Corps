@@ -256,7 +256,7 @@ window "outputwindow"
 		anchor2 = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		is-pane = true
-	elem "browseroutput"
+	elem "chatoutput"
 		type = BROWSER
 		pos = 0,0
 		size = 640x480

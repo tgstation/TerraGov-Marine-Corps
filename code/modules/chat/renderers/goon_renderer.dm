@@ -2,7 +2,6 @@
 	verify = FALSE
 	assets = list(
 		"json2.min.js"             = 'code/modules/chat/renderers/goonchat/js/json2.min.js',
-		"jquery.min.js"            = 'code/modules/chat/renderers/goonchat/js/jquery.min.js',
 		"browserOutput.js"         = 'code/modules/chat/renderers/goonchat/js/browserOutput.js',
 		"fontawesome-webfont.eot"  = 'code/modules/chat/renderers/goonchat/fonts/fontawesome-webfont.eot',
 		"fontawesome-webfont.svg"  = 'code/modules/chat/renderers/goonchat/fonts/fontawesome-webfont.svg',
@@ -11,6 +10,12 @@
 		"goonchatfont-awesome.css" = 'code/modules/chat/renderers/goonchat/css/font-awesome.css',
 		"browserOutput.css"	       = 'code/modules/chat/renderers/goonchat/css/browserOutput.css',
 		"browserOutput_white.css"  = 'code/modules/chat/renderers/goonchat/css/browserOutput_white.css',
+	)
+
+/datum/asset/simple/jquery
+	verify = FALSE
+	assets = list(
+		"jquery.min.js"            = 'code/modules/chat/renderers/goonchat/js/jquery.min.js',
 	)
 
 /datum/asset/spritesheet/goonchat
@@ -35,6 +40,7 @@
 
 /datum/asset/group/goonchat
 	children = list(
+		/datum/asset/simple/jquery,
 		/datum/asset/simple/goonchat,
 		/datum/asset/spritesheet/goonchat
 	)
@@ -48,6 +54,41 @@ Goon specific chat renderer (default for most clients)
 /datum/chatRenderer/goon/get_main_page()
 	return file('code/modules/chat/renderers/goonchat/html/browserOutput.html')
 
-/datum/chatRenderer/show_chat()
-	winset(chat.owner, "output", "is-visible=false")
-	winset(chat.owner, "browseroutput", "is-disabled=false;is-visible=true")
+/datum/chatRenderer/goon/show_chat()
+	return ..()
+
+/datum/chatRenderer/Topic(href, list/href_list)
+	. = ..()
+	if(.)
+		return
+
+	var/list/params = list()
+	for(var/key in href_list)
+		if(length_char(key) > 7 && findtext(key, "param")) // 7 is the amount of characters in the basic param key template.
+			var/param_name = copytext_char(key, 7, -1)
+			var/item       = href_list[key]
+
+			params[param_name] = item
+
+	var/data // Data to be sent back to the chat.
+	switch(href_list["proc"])
+		if("doneLoading")
+			data = chat.doneLoading(arglist(params))
+
+		if("debug")
+			data = chat.debug(list2params(params))
+
+		if("analyzeClientData")
+			data = chat.analyzeClientData(arglist(params))
+
+		if("setMusicVolume")
+			data = chat.setMusicVolume(arglist(params))
+
+		if("swaptodarkmode")
+			chat.swaptodarkmode()
+
+		if("swaptolightmode")
+			chat.swaptolightmode()
+
+	if(data)
+		chat.ehjax_send(data = data)

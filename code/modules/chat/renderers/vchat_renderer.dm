@@ -36,14 +36,75 @@
 
 
 /*
-Goon specific chat renderer (default for most clients)
+vchat specific chat renderer (default for most clients)
 */
-/datum/chatRenderer/goon
+/datum/chatRenderer/vchat
 	asset_datum = /datum/asset/group/vchat
 
-/datum/chatRenderer/goon/get_main_page()
+/datum/chatRenderer/vchat/get_main_page()
 	return file('code/modules/chat/renderers/vchat/html/vchat.html')
 
-/datum/chatRenderer/show_chat()
-	winset(chat.owner, "output", "is-visible=false")
-	winset(chat.owner, "browseroutput", "is-disabled=false;is-visible=true")
+/datum/chatRenderer/vchat/show_chat()
+	ping_cycle()
+	return ..()
+
+
+/datum/chatRenderer/vchat/send_message(client/target, message, time = world.time)
+	debug(message)
+	var/list/tojson = list("time" = time, "message" = url_decode(url_decode(message)));
+	target << output(url_encode(url_encode(json_encode(tojson))), "[skinOutputTag]:putmessage")
+
+
+/datum/chatRenderer/vchat/Topic(href, list/href_list)
+	. = ..()
+	if(.)
+		return
+
+	var/list/params = list()
+	for(var/key in href_list)
+		if(length_char(key) > 7 && findtext(key, "param")) // 7 is the amount of characters in the basic param key template.
+			var/param_name = copytext_char(key, 7, -1)
+			var/item       = href_list[key]
+
+			params[param_name] = item
+
+
+	var/data
+	switch(href_list["proc"])
+		if("not_ready")
+			CRASH("Tried to send a message to [chat.owner.ckey] chatOutput before it was ready!")
+		if("done_loading")
+			data = chat.doneLoading(arglist(params))
+		if("ping")
+			data = latency_check(arglist(params))
+		// if("ident")
+		// 	data = bancheck(arglist(params))
+		if("unloading")
+			loaded = FALSE
+		if("debug")
+			data = debug(arglist(params))
+
+	if(data)
+		send_data(data = data)
+
+
+// Custom vchat shit
+/datum/chatRenderer/vchat/proc/debug(message)
+	chat.debug(message)
+
+/datum/chatRenderer/vchat/proc/keep_alive()
+	return list("evttype" = "keepalive")
+
+//A response to a latency check from the client
+/datum/chatRenderer/vchat/proc/latency_check()
+	return list("evttype" = "pong")
+
+//Looping sleeping proc that just pings the client and dies when we die
+/datum/chatRenderer/vchat/proc/ping_cycle()
+	set waitfor = FALSE
+	while(!QDELING(src))
+		if(!chat.owner)
+			qdel(src)
+			return
+		send_data(data = keep_alive())
+		sleep(20 SECONDS) //Make sure this makes sense with what the js client is expecting

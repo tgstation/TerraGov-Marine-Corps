@@ -431,13 +431,6 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	)
 
 
-/datum/asset/group/goonchat
-	children = list(
-		/datum/asset/simple/jquery,
-		/datum/asset/simple/goonchat,
-		/datum/asset/spritesheet/goonchat
-	)
-
 /datum/asset/simple/fontawesome
 	verify = FALSE
 	assets = list(

@@ -144,15 +144,6 @@ GLOBAL_LIST_INIT(vchatFiles, list(
 /datum/chatOutput/proc/send_event(var/event, var/client/C = owner)
 	C << output(jsEncode(event), "htmloutput:get_event")
 
-//Looping sleeping proc that just pings the client and dies when we die
-/datum/chatOutput/proc/ping_cycle()
-	set waitfor = FALSE
-	while(!QDELING(src))
-		if(!owner)
-			qdel(src)
-			return
-		send_event(event = keep_alive())
-		sleep(20 SECONDS) //Make sure this makes sense with what the js client is expecting
 
 //Just produces a message for using in keepalives from the server to the client
 /datum/chatOutput/proc/keep_alive()

@@ -12,12 +12,12 @@
         oldError.apply(console, arguments);
     }
     window.onerror = function (message, url, line, col, error) {
-	var stacktrace = "";
-	if(error && error.stack) {
-		stacktrace = error.stack;
-	}
-        send_debug(message+" ("+url+"@"+line+":"+col+") "+error+"|UA: "+navigator.userAgent+"|Stack: "+stacktrace);
-	return true;
+		var stacktrace = "";
+		if(error && error.stack) {
+			stacktrace = error.stack;
+		}
+		send_debug(message+" ("+url+"@"+line+":"+col+") "+error+"|UA: "+navigator.userAgent+"|Stack: "+stacktrace);
+		return true;
     }
 })();
 
@@ -91,10 +91,10 @@ function start_vchat() {
 	push_Topic('done_loading');
 
 	//I'll do my own winsets
-	doWinset("htmloutput", {"is-visible": true});
-	doWinset("oldoutput", {"is-visible": false});
-	doWinset("chatloadlabel", {"is-visible": false});
-	
+	// doWinset("htmloutput", {"is-visible": true});
+	// doWinset("oldoutput", {"is-visible": false});
+	// doWinset("chatloadlabel", {"is-visible": false});
+
 	//Commence the pingening
 	setInterval(check_ping, vchat_opts.msBeforeDropped);
 
@@ -275,7 +275,7 @@ function start_vue() {
 					document.body.classList.remove("inverted");
 					switch_ui_mode(LIGHTMODE_COLORS);
 				}
-			}, 
+			},
 			crushing: function (newSetting) {
 				set_storage("crushing",newSetting);
 			},
@@ -311,7 +311,7 @@ function start_vue() {
 					this.showingnum = oldSetting;
 					return;
 				}
-				
+
 				newSetting = Math.floor(newSetting);
 				if(newSetting < 50) {
 					this.showingnum = 50;
@@ -341,7 +341,7 @@ function start_vue() {
 			ping_classes: function() {
 				if(!this.latency) {
 					return this.reconnecting ? "red" : "green"; //Standard
-				} 
+				}
 
 				if (this.latency == "?") { return "grey"; } //Waiting for latency test reply
 				else if(this.latency < 0 ) {return "red"; }
@@ -400,9 +400,9 @@ function start_vue() {
 				this.tabs.forEach(function(tab){
 					if(tab.immutable)
 						return;
-					
+
 					var name = tab.name;
-					
+
 					var categories = [];
 					tab.categories.forEach(function(category){categories.push(category);});
 
@@ -599,7 +599,7 @@ function start_vue() {
 					event.preventDefault ? event.preventDefault() : (event.returnValue = false); //The second one is the weird IE method.
 
 					var href = ele.getAttribute('href'); // Gets actual href without transformation into fully qualified URL
-					
+
 					if (href[0] == '?' || (href.length >= 8 && href.substring(0,8) == "byond://")) {
 						window.location = href; //Internal byond link
 					} else { //It's an external link
@@ -630,7 +630,7 @@ function start_vue() {
 			},
 			save_chatlog: function() {
 				var textToSave = "<html><head><style>"+this.ext_styles+"</style></head><body>";
-				
+
 				var messagesToSave = this.archived_messages.concat(this.messages);
 
 				messagesToSave.forEach( function(message) {
@@ -705,7 +705,7 @@ function check_ping() {
 function send_latency_check() {
 	if(vchat_state.latency_sent)
 			return;
-	
+
 	vchat_state.latency_sent = Date.now();
 	vueapp.latency = "?";
 	push_Topic("ping");
@@ -730,10 +730,9 @@ function get_latency_check() {
 
 //We accept double-url-encoded JSON strings because Byond is garbage and UTF-8 encoded url_encode() text has crazy garbage in it.
 function byondDecode(message) {
-	
 	//Byond encodes spaces as pluses?! This is 1998 I guess.
 	message = message.replace(/\+/g, "%20");
-	try { 
+	try {
 		message = decodeURIComponent(message);
 	} catch (err) {
 		message = unescape(message);
@@ -782,13 +781,13 @@ function get_event(event) {
 
 	var parsed_event = {evttype: 'internal_error', event: event};
 	parsed_event = byondDecode(event);
-
+	send_debug(JSON.stringify(parsed_event));
 	switch(parsed_event.evttype) {
 		//We didn't parse it very well
 		case 'internal_error':
 			system_message("Event parse error: " + event);
 			break;
-		
+
 		//They provided byond data.
 		case 'byond_player':
 			send_client_data();
@@ -816,8 +815,8 @@ function get_event(event) {
 		case 'availability':
 			push_Topic("done_loading");
 			break;
-	
-		default: 
+
+		default:
 			system_message("Didn't know what to do with event: " + event);
 	}
 }
@@ -841,7 +840,7 @@ function set_localstorage(key, value) {
 function get_localstorage(key, deffo) {
 	let localstorage = window.localStorage;
 	let value = localstorage.getItem(vchat_opts.cookiePrefix+key);
-	
+
 	//localstorage only stores strings.
 	if(value === "null" || value === null) {
 		value = deffo;
@@ -893,7 +892,7 @@ function get_cookie(key, deffo) {
 var SKIN_BUTTONS = [
 	/* Rpane */ "rpane.textb", "rpane.infob", "rpane.wikib", "rpane.forumb", "rpane.rulesb", "rpane.github", "rpane.mapb", "rpane.changelog",
 	/* Mainwindow */ "mainwindow.saybutton", "mainwindow.mebutton", "mainwindow.hotkey_toggle"
-	
+
 ];
 // Windows or controls that need background-color set.
 var SKIN_ELEMENTS = [
@@ -931,4 +930,14 @@ function doWinset(control_id, params) {
 		return ctl + "=" + encodeURIComponent(params[ctl]);
 	}).join("&");
 	window.location = url;
+}
+
+/** This is for straight chat messages data */
+function recieveMessage(message) {
+	return;
+}
+
+/** This is for generic data */
+function receiveData(data) {
+	return putmessage(data);
 }
