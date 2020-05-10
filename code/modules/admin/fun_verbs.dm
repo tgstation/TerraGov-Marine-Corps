@@ -1044,6 +1044,7 @@
 /datum/admins/proc/force_dropship()
 	set category = "Fun"
 	set name = "Force Dropship"
+	set waitfor = FALSE
 
 	if(!check_rights(R_FUN))
 		return
@@ -1096,9 +1097,28 @@
 		to_chat(usr, "<span class='warning'>No valid dock found!</span>")
 		return
 
+	var/crashing = FALSE
+	switch(alert("Do you want to crash [D.name] on arrivals?", "Force Dropship", "Yes", "No", "Cancel"))
+		if("Yes")
+			crashing = TRUE
+		if("Cancel")
+			return
+
 	var/instant = FALSE
-	if(alert("Do you want to move the [D.name] instantly?", "Force Dropship", "Yes", "No") == "Yes")
-		instant = TRUE
+	switch(alert("Do you want to move the [D.name] instantly?", "Force Dropship", "Yes", "No", "Cancel"))
+		if("Yes")
+			instant = TRUE
+		if("Cancel")
+			return
+
+	if(crashing)
+		D.crashing = TRUE
+		D.pre_crash_status = SHUTTLE_ARRIVING
+		if(instant) //Give it a second to process the crashing.
+			target.pre_crash_impact()
+			D.pre_crash_impact()
+			D.pre_crash_status = initial(D.pre_crash_status)
+			sleep(SHUTTLE_PRE_CRASH_TIME)
 
 	var/success = SSshuttle.moveShuttleToDock(D.id, target, !instant)
 	switch(success)

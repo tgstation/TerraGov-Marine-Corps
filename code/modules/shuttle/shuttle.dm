@@ -212,6 +212,9 @@
 /obj/docking_port/stationary/proc/on_crash()
 	return
 
+/obj/docking_port/stationary/proc/pre_crash_impact()
+	return
+
 //returns first-found touching shuttleport
 /obj/docking_port/stationary/get_docked()
 	. = locate(/obj/docking_port/mobile) in loc
@@ -275,7 +278,10 @@
 	var/list/movement_force = list("KNOCKDOWN" = 3, "THROW" = 0)
 
 	var/list/ripples = list()
-	var/use_ripples = TRUE
+	///Whether to use ripples to signalize shuttle arrival.
+	var/use_ripples = SHUTTLE_ARRIVING
+	///Whether to enable pre-crash interactions, such as explosions around the area of arrivals.
+	var/pre_crash_status = NO_ARRIVALS_INTERACTION
 	var/engine_coeff = 1 //current engine coeff
 	var/current_engines = 0 //current engine power
 	var/initial_engines = 0 //initial engine power
@@ -431,9 +437,12 @@
 /obj/docking_port/mobile/proc/on_prearrival()
 	playsound(destination.return_center_turf(), landing_sound, 60, 0)
 	playsound(return_center_turf(), landing_sound, 60, 0)
-	return
+
 
 /obj/docking_port/mobile/proc/on_crash()
+	return
+
+/obj/docking_port/mobile/proc/pre_crash_impact()
 	return
 
 /obj/docking_port/mobile/proc/set_idle()
@@ -522,15 +531,19 @@
 	jumpToNullSpace()
 
 /obj/docking_port/mobile/proc/create_ripples(obj/docking_port/stationary/S1, animate_time)
-	if(!use_ripples)
-		return FALSE
+	if(use_ripples != SHUTTLE_ARRIVING)
+		CRASH("create_ripples called with use_ripples value of [use_ripples]")
+	use_ripples = SHUTTLE_ARRIVED
 	var/list/turfs = ripple_area(S1)
 	for(var/t in turfs)
 		ripples += new /obj/effect/abstract/ripple(t, animate_time)
 	return TRUE
 
 /obj/docking_port/mobile/proc/remove_ripples()
+	if(use_ripples != SHUTTLE_ARRIVED)
+		return
 	QDEL_LIST(ripples)
+	use_ripples = initial(use_ripples)
 
 /obj/docking_port/mobile/proc/ripple_area(obj/docking_port/stationary/S1)
 	if(!S1)
@@ -571,13 +584,17 @@
 
 //used by shuttle subsystem to check timers
 /obj/docking_port/mobile/proc/check()
-	check_effects()
 
 	if(mode == SHUTTLE_IGNITING)
 		check_transit_zone()
 
+	var/time_left = timeLeft(1)
+
+	check_effects(time_left)
+
 	if(timeLeft(1) > 0)
 		return
+
 	// If we can't dock or we don't have a transit slot, wait for 20 ds,
 	// then try again
 	switch(mode)
@@ -618,12 +635,14 @@
 
 	set_idle()
 
-/obj/docking_port/mobile/proc/check_effects()
-	if(!ripples.len)
-		if((mode == SHUTTLE_CALL) || (mode == SHUTTLE_RECALL))
-			var/tl = timeLeft(1)
-			if(tl <= SHUTTLE_RIPPLE_TIME)
-				create_ripples(destination, tl)
+/obj/docking_port/mobile/proc/check_effects(time_left)
+	if(time_left <= SHUTTLE_RIPPLE_TIME && use_ripples == SHUTTLE_ARRIVING && ((mode == SHUTTLE_CALL) || (mode == SHUTTLE_RECALL)))
+		create_ripples(destination, time_left)
+
+	if(time_left <= SHUTTLE_PRE_CRASH_TIME && crashing && pre_crash_status == SHUTTLE_ARRIVING && !istype(destination, /obj/docking_port/stationary/transit))
+		destination.pre_crash_impact()
+		pre_crash_impact()
+		pre_crash_status = initial(pre_crash_status)
 
 	//var/obj/docking_port/stationary/S0 = get_docked()
 	//if(istype(S0, /obj/docking_port/stationary/transit) && timeLeft(1) <= PARALLAX_LOOP_TIME)

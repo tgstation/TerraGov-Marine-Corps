@@ -10,6 +10,9 @@
 
 
 /obj/docking_port/stationary/crashmode/on_crash()
+	return
+
+/obj/docking_port/stationary/crashmode/pre_crash_impact()
 	//clear areas around the shuttle with explosions
 	var/turf/C = return_center_turf()
 
@@ -56,7 +59,7 @@
 	id = "canterbury_loadingdock"
 	name = "Low Orbit"
 
-/obj/docking_port/stationary/crashmode/loading/on_crash()
+/obj/docking_port/stationary/crashmode/loading/pre_crash_impact()
 	return // No explosions please and thank you.
 
 // -- Shuttles

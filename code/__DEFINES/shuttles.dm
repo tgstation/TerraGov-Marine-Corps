@@ -10,6 +10,11 @@
 #define SHUTTLE_RECHARGING	"recharging"
 #define SHUTTLE_PREARRIVAL	"pre-arrival"
 
+///Whether specific shuttle effects happen on arrivals or not.
+#define NO_ARRIVALS_INTERACTION 0
+#define SHUTTLE_ARRIVING 1
+#define SHUTTLE_ARRIVED 2
+
 #define EMERGENCY_IDLE_OR_RECALLED (SSshuttle.emergency && ((SSshuttle.emergency.mode == SHUTTLE_IDLE) || (SSshuttle.emergency.mode == SHUTTLE_RECALL)))
 #define EMERGENCY_ESCAPED_OR_ENDGAMED (SSshuttle.emergency && ((SSshuttle.emergency.mode == SHUTTLE_ESCAPE) || (SSshuttle.emergency.mode == SHUTTLE_ENDGAME)))
 #define EMERGENCY_AT_LEAST_DOCKED (SSshuttle.emergency && SSshuttle.emergency.mode != SHUTTLE_IDLE && SSshuttle.emergency.mode != SHUTTLE_RECALL && SSshuttle.emergency.mode != SHUTTLE_CALL)
@@ -31,8 +36,9 @@
 #define EARLY_LAUNCHED 2
 #define ENDGAME_TRANSIT 3
 
-// Ripples, effects that signal a shuttle's arrival
-#define SHUTTLE_RIPPLE_TIME 100
+//How long before arrival the effects take place.
+#define SHUTTLE_RIPPLE_TIME 10 SECONDS
+#define SHUTTLE_PRE_CRASH_TIME 1 SECONDS
 
 #define TRANSIT_REQUEST 1
 #define TRANSIT_READY 2

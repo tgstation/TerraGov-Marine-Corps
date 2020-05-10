@@ -43,6 +43,8 @@
 
 	GLOB.enter_allowed = FALSE //No joining after dropship crash
 
+
+/obj/docking_port/stationary/marine_dropship/pre_crash_impact()
 	//clear areas around the shuttle with explosions
 	var/turf/C = return_center_turf()
 
@@ -625,6 +627,7 @@
 	crashing_dropship.set_hijack_state(HIJACK_STATE_CRASHING)
 	crashing_dropship.callTime = 2 MINUTES
 	crashing_dropship.crashing = TRUE
+	crashing_dropship.pre_crash_status = SHUTTLE_ARRIVING
 	crashing_dropship.unlock_all()
 	priority_announce("Unscheduled dropship departure detected from operational area. Hijack likely. Shutting down autopilot.", "Dropship Alert", sound = 'sound/AI/hijack.ogg')
 	to_chat(user, "<span class='danger'>A loud alarm erupts from [src]! The fleshy hosts must know that you can access it!</span>")

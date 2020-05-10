@@ -78,6 +78,7 @@
 	var/obj/docking_port/stationary/crashmode/actual_crash_site = pick(valid_docks)
 
 	shuttle.crashing = TRUE
+	shuttle.pre_crash_status = SHUTTLE_ARRIVING
 	SSshuttle.moveShuttleToDock(shuttle.id, actual_crash_site, TRUE) // FALSE = instant arrival
 	addtimer(CALLBACK(src, .proc/crash_shuttle, actual_crash_site), 10 MINUTES)
 
@@ -137,6 +138,7 @@
 /datum/game_mode/infestation/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
 	shuttle_landed = TRUE
 	shuttle.crashing = FALSE
+	shuttle.pre_crash_status = initial(shuttle.pre_crash_status)
 
 	// We delay this a little because the shuttle takes some time to land, and we want to the xenos to know the position of the marines.
 	bioscan_interval = world.time + 30 SECONDS
