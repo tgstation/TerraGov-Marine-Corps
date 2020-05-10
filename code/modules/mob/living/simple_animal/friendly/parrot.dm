@@ -606,6 +606,7 @@
 	color = "#FFFFFF77"
 	speak_chance = 20
 	status_flags = GODMODE
+	resistance_flags = RESIST_ALL
 
 
 /mob/living/simple_animal/parrot/Poly/ghost/Initialize()

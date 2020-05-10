@@ -302,7 +302,7 @@
 	cocked_sound = 'sound/weapons/guns/interact/m4ra_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/m4ra
 	force = 16
-	aim_slowdown = 0.5
+	aim_slowdown = 0.35
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/extended_barrel,
@@ -321,10 +321,10 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 	starting_attachment_types = list(/obj/item/attachable/scope/mini/m4ra, /obj/item/attachable/stock/rifle/marksman)
 
-	fire_delay = 0.4 SECONDS
+	fire_delay = 0.45 SECONDS
 	burst_amount = 1
-	accuracy_mult = 1.05
-	scatter = 15
+	accuracy_mult = 1.75
+	scatter = -15
 	recoil = 2
 
 //-------------------------------------------------------

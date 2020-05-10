@@ -2,7 +2,7 @@
 	access = ALL_PMC_ACCESS
 	minimal_access = ALL_PMC_ACCESS
 	skills_type = /datum/skills/pmc
-	faction = "Nanotrasen"
+	faction = FACTION_NANOTRASEN
 
 
 //PMC Standard

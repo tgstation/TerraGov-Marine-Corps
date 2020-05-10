@@ -77,7 +77,12 @@
 	maxHealth = xeno_caste.max_health
 	health = maxHealth
 	setXenoCasteSpeed(xeno_caste.speed)
-	armor = getArmor(arglist(xeno_caste.armor))
+	soft_armor = getArmor(arglist(xeno_caste.soft_armor))
+	hard_armor = getArmor(arglist(xeno_caste.hard_armor))
+
+
+/mob/living/carbon/xenomorph/set_armor_datum()
+	return //Handled in set_datum()
 
 
 /mob/living/carbon/xenomorph/proc/generate_nicknumber()

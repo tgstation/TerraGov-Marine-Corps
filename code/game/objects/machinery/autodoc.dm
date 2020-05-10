@@ -678,6 +678,9 @@
 		to_chat(usr, "<span class='warning'>Access denied.</span>")
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, 1)
 		return
+	do_eject()
+
+/obj/machinery/autodoc/proc/do_eject()
 	if(occupant)
 		if(forceeject)
 			if(!surgery)
@@ -886,9 +889,9 @@
 	med_scan(H, null, implants, TRUE)
 	start_processing()
 
-obj/machinery/autodoc/Destroy()
+/obj/machinery/autodoc/Destroy()
 	forceeject = TRUE
-	eject()
+	do_eject()
 	return ..()
 
 /////////////////////////////////////////////////////////////

@@ -37,6 +37,11 @@
 /datum/armor/proc/modifyAllRatings(modifier = 0)
 	return getArmor(melee+modifier, bullet+modifier, laser+modifier, energy+modifier, bomb+modifier, bio+modifier, rad+modifier, fire+modifier, acid+modifier, magic+modifier)
 
+/datum/armor/proc/scaleAllRatings(modifier = 1, round_to = 0)
+	if(round_to >= 1)
+		return getArmor(round(melee*modifier,round_to), round(bullet*modifier,round_to), round(laser*modifier,round_to), round(energy*modifier,round_to), round(bomb*modifier,round_to), round(bio*modifier,round_to), round(rad*modifier,round_to), round(fire*modifier,round_to), round(acid*modifier,round_to), round(magic*modifier,round_to))
+	return getArmor(melee*modifier, bullet*modifier, laser*modifier, energy*modifier, bomb*modifier, bio*modifier, rad*modifier, fire*modifier, acid*modifier, magic*modifier)
+
 /datum/armor/proc/setRating(melee, bullet, laser, energy, bomb, bio, rad, fire, acid, magic)
 	return getArmor((isnull(melee) ? src.melee : melee),\
 					(isnull(bullet) ? src.bullet : bullet),\

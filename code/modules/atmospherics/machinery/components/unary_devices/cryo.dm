@@ -102,10 +102,10 @@
 	QDEL_NULL(beaker)
 	return ..()
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/contents_explosion(severity, target)
+/obj/machinery/atmospherics/components/unary/cryo_cell/contents_explosion(severity)
 	. = ..()
 	if(beaker)
-		beaker.ex_act(severity, target)
+		beaker.ex_act(severity)
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/handle_atom_del(atom/A)
 	. = ..()

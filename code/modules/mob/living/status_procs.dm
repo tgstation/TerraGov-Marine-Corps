@@ -10,6 +10,8 @@
 	return 0
 
 /mob/living/proc/Stun(amount, ignore_canstun = FALSE) //Can't go below remaining duration
+	if(status_flags & GODMODE)
+		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_STUN, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if(((status_flags & CANSTUN) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
@@ -23,6 +25,8 @@
 		return S
 
 /mob/living/proc/SetStun(amount, ignore_canstun = FALSE) //Sets remaining duration
+	if(status_flags & GODMODE)
+		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_STUN, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if(((status_flags & CANSTUN) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
@@ -40,6 +44,8 @@
 		return S
 
 /mob/living/proc/AdjustStun(amount, ignore_canstun = FALSE) //Adds to remaining duration
+	if(status_flags & GODMODE)
+		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_STUN, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if(((status_flags & CANSTUN) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
@@ -64,11 +70,15 @@
 	return 0
 
 /mob/living/proc/KnockdownNoChain(amount, ignore_canstun = FALSE) // knockdown only if not already knockeddown
+	if(status_flags & GODMODE)
+		return
 	if(IsKnockdown())
 		return 0
 	return Knockdown(amount, ignore_canstun)
 
 /mob/living/proc/Knockdown(amount, ignore_canstun = FALSE) //Can't go below remaining duration
+	if(status_flags & GODMODE)
+		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_KNOCKDOWN, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if(((status_flags & CANKNOCKDOWN) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
@@ -82,6 +92,8 @@
 		return K
 
 /mob/living/proc/SetKnockdown(amount, ignore_canstun = FALSE) //Sets remaining duration
+	if(status_flags & GODMODE)
+		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_KNOCKDOWN, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if(((status_flags & CANKNOCKDOWN) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
@@ -99,6 +111,8 @@
 		return K
 
 /mob/living/proc/AdjustKnockdown(amount, ignore_canstun = FALSE) //Adds to remaining duration
+	if(status_flags & GODMODE)
+		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_KNOCKDOWN, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if(((status_flags & CANKNOCKDOWN) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
@@ -111,6 +125,79 @@
 			K = apply_status_effect(STATUS_EFFECT_KNOCKDOWN, amount)
 		return K
 
+///////////////////////////////// IMMOBILIZED /////////////////////////////////////
+
+///If we're immobilized.
+/mob/living/proc/IsImmobilized()
+	return has_status_effect(STATUS_EFFECT_IMMOBILIZED)
+
+///How many deciseconds remain in our Immobilized status effect.
+/mob/living/proc/AmountImmobilized()
+	var/datum/status_effect/incapacitating/immobilized/I = IsImmobilized()
+	if(I)
+		return I.duration - world.time
+	return 0
+
+///Immobilize only if not already immobilized.
+/mob/living/proc/ImmobilizeNoChain(amount, ignore_canstun = FALSE)
+	if(status_flags & GODMODE)
+		return
+	if(IsImmobilized())
+		return 0
+	return Immobilize(amount, ignore_canstun)
+
+///Can't go below remaining duration.
+/mob/living/proc/Immobilize(amount, ignore_canstun = FALSE)
+	if(status_flags & GODMODE)
+		return
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_IMMOBILIZE, amount, ignore_canstun) & COMPONENT_NO_STUN)
+		return
+	if(((status_flags & CANKNOCKDOWN) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
+		if(absorb_stun(amount, ignore_canstun))
+			return
+		var/datum/status_effect/incapacitating/immobilized/I = IsImmobilized()
+		if(I)
+			I.duration = max(world.time + amount, I.duration)
+		else if(amount > 0)
+			I = apply_status_effect(STATUS_EFFECT_IMMOBILIZED, amount)
+		return I
+
+///Sets remaining duration.
+/mob/living/proc/SetImmobilized(amount, ignore_canstun = FALSE) //Sets remaining duration
+	if(status_flags & GODMODE)
+		return
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_IMMOBILIZE, amount, ignore_canstun) & COMPONENT_NO_STUN)
+		return
+	if(((status_flags & CANKNOCKDOWN) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
+		var/datum/status_effect/incapacitating/immobilized/I = IsImmobilized()
+		if(amount <= 0)
+			if(I)
+				qdel(I)
+		else
+			if(absorb_stun(amount, ignore_canstun))
+				return
+			if(I)
+				I.duration = world.time + amount
+			else
+				I = apply_status_effect(STATUS_EFFECT_IMMOBILIZED, amount)
+		return I
+
+///Adds to remaining duration.
+/mob/living/proc/AdjustImmobilized(amount, ignore_canstun = FALSE)
+	if(status_flags & GODMODE)
+		return
+	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_IMMOBILIZE, amount, ignore_canstun) & COMPONENT_NO_STUN)
+		return
+	if(((status_flags & CANKNOCKDOWN) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
+		if(absorb_stun(amount, ignore_canstun))
+			return
+		var/datum/status_effect/incapacitating/immobilized/I = IsImmobilized()
+		if(I)
+			I.duration += amount
+		else if(amount > 0)
+			I = apply_status_effect(STATUS_EFFECT_IMMOBILIZED, amount)
+		return I
+
 ///////////////////////////////// PARALYZED //////////////////////////////////
 /mob/living/proc/IsParalyzed() //If we're immobilized
 	return has_status_effect(STATUS_EFFECT_PARALYZED)
@@ -122,11 +209,15 @@
 	return 0
 
 /mob/living/proc/ParalyzeNoChain(amount, ignore_canstun = FALSE) // knockdown only if not already knockeddown
+	if(status_flags & GODMODE)
+		return
 	if(IsParalyzed())
 		return 0
 	return Paralyze(amount, ignore_canstun)
 
 /mob/living/proc/Paralyze(amount, ignore_canstun = FALSE) //Can't go below remaining duration
+	if(status_flags & GODMODE)
+		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_PARALYZE, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if(((status_flags & CANKNOCKDOWN) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
@@ -140,6 +231,8 @@
 		return P
 
 /mob/living/proc/SetParalyzed(amount, ignore_canstun = FALSE) //Sets remaining duration
+	if(status_flags & GODMODE)
+		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_PARALYZE, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if(((status_flags & CANKNOCKDOWN) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
@@ -157,6 +250,8 @@
 		return P
 
 /mob/living/proc/AdjustParalyzed(amount, ignore_canstun = FALSE) //Adds to remaining duration
+	if(status_flags & GODMODE)
+		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_PARALYZE, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if(((status_flags & CANKNOCKDOWN) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
@@ -181,6 +276,8 @@
 	return 0
 
 /mob/living/proc/Sleeping(amount, ignore_canstun = FALSE) //Can't go below remaining duration
+	if(status_flags & GODMODE)
+		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_SLEEP, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if((!HAS_TRAIT(src, TRAIT_SLEEPIMMUNE)) || ignore_canstun)
@@ -192,6 +289,8 @@
 		return S
 
 /mob/living/proc/SetSleeping(amount, ignore_canstun = FALSE) //Sets remaining duration
+	if(status_flags & GODMODE)
+		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_SLEEP, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if((!HAS_TRAIT(src, TRAIT_SLEEPIMMUNE)) || ignore_canstun)
@@ -206,6 +305,8 @@
 		return S
 
 /mob/living/proc/AdjustSleeping(amount, ignore_canstun = FALSE) //Adds to remaining duration
+	if(status_flags & GODMODE)
+		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_SLEEP, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if((!HAS_TRAIT(src, TRAIT_SLEEPIMMUNE)) || ignore_canstun)
@@ -248,6 +349,8 @@
 	return 0
 
 /mob/living/proc/Unconscious(amount, ignore_canstun = FALSE) //Can't go below remaining duration
+	if(status_flags & GODMODE)
+		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_UNCONSCIOUS, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if(((status_flags & CANUNCONSCIOUS) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE))  || ignore_canstun)
@@ -259,6 +362,8 @@
 		return U
 
 /mob/living/proc/SetUnconscious(amount, ignore_canstun = FALSE) //Sets remaining duration
+	if(status_flags & GODMODE)
+		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_UNCONSCIOUS, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if(((status_flags & CANUNCONSCIOUS) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
@@ -273,6 +378,8 @@
 		return U
 
 /mob/living/proc/AdjustUnconscious(amount, ignore_canstun = FALSE) //Adds to remaining duration
+	if(status_flags & GODMODE)
+		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_UNCONSCIOUS, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if(((status_flags & CANUNCONSCIOUS) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
@@ -294,6 +401,8 @@
 	return 0
 
 /mob/living/proc/Confused(amount, ignore_canstun = FALSE) //Can't go below remaining duration
+	if(status_flags & GODMODE)
+		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_CONFUSED, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if(((status_flags & CANCONFUSE) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE))  || ignore_canstun)
@@ -305,6 +414,8 @@
 		return C
 
 /mob/living/proc/SetConfused(amount, ignore_canstun = FALSE) //Sets remaining duration
+	if(status_flags & GODMODE)
+		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_CONFUSED, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if(((status_flags & CANCONFUSE) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
@@ -319,6 +430,8 @@
 		return C
 
 /mob/living/proc/AdjustConfused(amount, ignore_canstun = FALSE) //Adds to remaining duration
+	if(status_flags & GODMODE)
+		return
 	if(SEND_SIGNAL(src, COMSIG_LIVING_STATUS_CONFUSED, amount, ignore_canstun) & COMPONENT_NO_STUN)
 		return
 	if(((status_flags & CANCONFUSE) && !HAS_TRAIT(src, TRAIT_STUNIMMUNE)) || ignore_canstun)
@@ -365,17 +478,6 @@
 					to_chat(src, "<span class='boldwarning'>[priority_absorb_key["self_message"]]</span>")
 			priority_absorb_key["stuns_absorbed"] += amount
 		return TRUE
-
-
-/mob/living/proc/set_frozen(freeze = TRUE)
-	if(freeze == frozen)
-		return
-	. = frozen
-	frozen = freeze
-	if(frozen)
-		ADD_TRAIT(src, TRAIT_IMMOBILE, FROZEN_TRAIT)
-	else
-		REMOVE_TRAIT(src, TRAIT_IMMOBILE, FROZEN_TRAIT)
 
 
 /mob/living/proc/adjust_drugginess(amount)

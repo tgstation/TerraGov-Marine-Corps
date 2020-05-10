@@ -698,10 +698,10 @@
 		show_to(M)
 
 
-/obj/item/storage/contents_explosion(severity, target)
+/obj/item/storage/contents_explosion(severity)
 	for(var/i in contents)
 		var/atom/A = i
-		A.ex_act(severity, target)
+		A.ex_act(severity)
 
 
 /obj/item/storage/AltClick(mob/user)

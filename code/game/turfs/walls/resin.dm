@@ -76,11 +76,11 @@
 
 /turf/closed/wall/resin/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			take_damage(500)
-		if(2)
+		if(EXPLODE_HEAVY)
 			take_damage(rand(140, 300))
-		if(3)
+		if(EXPLODE_LIGHT)
 			take_damage(rand(50, 100))
 
 

@@ -156,6 +156,8 @@
 #define FULLSCREEN_PAIN_LAYER	18.2 //pain flashes
 #define FULLSCREEN_CRIT_LAYER 18.25 //in critical
 
+#define FULLSCREEN_PLANE 20
+
 #define HUD_PLANE 21
 #define HUD_LAYER 21
 #define ABOVE_HUD_PLANE 22

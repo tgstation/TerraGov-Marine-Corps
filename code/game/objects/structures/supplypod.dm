@@ -28,6 +28,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	closet_flags = CLOSET_ALLOW_OBJS|CLOSET_ALLOW_DENSE_OBJ
 	armor = list("melee" = 30, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 100, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 80)
 	anchored = TRUE
+	flags_atom = PREVENT_CONTENTS_EXPLOSION
 	var/adminNamed = FALSE
 	var/bluespace = FALSE
 	var/landingDelay = 30

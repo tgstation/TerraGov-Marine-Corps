@@ -407,7 +407,8 @@
 	qdel(src)
 	return
 
-/obj/item/reagent_containers/food/snacks/grown/bluetomato/Crossed(AM as mob|obj)
+/obj/item/reagent_containers/food/snacks/grown/bluetomato/Crossed(atom/movable/AM)
+	. = ..()
 	if (iscarbon(AM))
 		var/mob/living/carbon/C = AM
 		C.slip(name, 8, 5)
