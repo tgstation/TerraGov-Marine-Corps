@@ -1,21 +1,16 @@
 /datum/asset/simple/goonchat
 	verify = FALSE
 	assets = list(
-		"json2.min.js"             = 'code/modules/chat/renderers/goonchat/json2.min.js',
-		"browserOutput.js"         = 'code/modules/chat/renderers/goonchat/browserOutput.js',
+		"json2.min.js"             = 'code/modules/chat/renderers/goonchat/js/json2.min.js',
+		"jquery.min.js"            = 'code/modules/chat/renderers/goonchat/js/jquery.min.js',
+		"browserOutput.js"         = 'code/modules/chat/renderers/goonchat/js/browserOutput.js',
 		"fontawesome-webfont.eot"  = 'code/modules/chat/renderers/goonchat/fonts/fontawesome-webfont.eot',
 		"fontawesome-webfont.svg"  = 'code/modules/chat/renderers/goonchat/fonts/fontawesome-webfont.svg',
 		"fontawesome-webfont.ttf"  = 'code/modules/chat/renderers/goonchat/fonts/fontawesome-webfont.ttf',
 		"fontawesome-webfont.woff" = 'code/modules/chat/renderers/goonchat/fonts/fontawesome-webfont.woff',
-		"goonchatfont-awesome.css" = 'code/modules/chat/renderers/goonchat/font-awesome.css',
-		"browserOutput.css"	       = 'code/modules/chat/renderers/goonchat/browserOutput.css',
-		"browserOutput_white.css"  = 'code/modules/chat/renderers/goonchat/browserOutput_white.css',
-	)
-
-/datum/asset/simple/jquery
-	verify = FALSE
-	assets = list(
-		"jquery.min.js"            = 'code/modules/chat/renderers/goonchat/jquery.min.js',
+		"goonchatfont-awesome.css" = 'code/modules/chat/renderers/goonchat/css/font-awesome.css',
+		"browserOutput.css"	       = 'code/modules/chat/renderers/goonchat/css/browserOutput.css',
+		"browserOutput_white.css"  = 'code/modules/chat/renderers/goonchat/css/browserOutput_white.css',
 	)
 
 /datum/asset/spritesheet/goonchat
@@ -40,7 +35,6 @@
 
 /datum/asset/group/goonchat
 	children = list(
-		/datum/asset/simple/jquery,
 		/datum/asset/simple/goonchat,
 		/datum/asset/spritesheet/goonchat
 	)
@@ -52,7 +46,7 @@ Goon specific chat renderer (default for most clients)
 	asset_datum = /datum/asset/group/goonchat
 
 /datum/chatRenderer/goon/get_main_page()
-	return file('code/modules/chat/renderers/goonchat/browserOutput.html')
+	return file('code/modules/chat/renderers/goonchat/html/browserOutput.html')
 
 /datum/chatRenderer/show_chat()
 	winset(chat.owner, "output", "is-visible=false")
