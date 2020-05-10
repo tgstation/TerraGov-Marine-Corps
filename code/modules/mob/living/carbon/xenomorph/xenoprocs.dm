@@ -257,12 +257,16 @@
 				if(upgrade_stored >= xeno_caste.upgrade_threshold)
 					if(health == maxHealth && !incapacitated() && !handcuffed && !legcuffed)
 						upgrade_xeno(upgrade_next())
-				else
 					// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.
-					var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-					var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-					var/upgrade_points = 1 + (FLOOR(stored_larva / 3, 1))
-					upgrade_stored = min(upgrade_stored + upgrade_points, xeno_caste.upgrade_threshold)
+				var/upgrade_points = XENO_UPGRADE_UPTICK_BASE
+				var/silos_count_current = length(GLOB.xeno_resin_silos)
+				var/silos_count_default = length(GLOB.xeno_resin_silo_turfs)
+				var/resin_silo_ratio = silos_count_current / silos_count_default
+				if(resin_silo_ratio <= 1)
+					upgrade_points *= resin_silo_ratio
+				else
+					upgrade_points += XENO_UPGRADE_UPTICK_ADDITION_SILO * (silos_count_current - silos_count_default)
+				upgrade_stored += upgrade_points
 
 /mob/living/carbon/xenomorph/proc/update_evolving()
 	if(!client || !ckey) // stop evolve progress for ssd/ghosted xenos
