@@ -307,7 +307,7 @@
 	new_xeno.transfer_to_hive(hivenumber)
 	new_xeno.generate_name()
 
-	new_xeno.upgrade_stored = MIN(0, upgrade_stored + XENO_UPGRADE_REDUCTION_ON_EVOLVE)
+	new_xeno.upgrade_stored = min(0, upgrade_stored + XENO_UPGRADE_REDUCTION_ON_EVOLVE)
 
 	if(new_xeno.health - getBruteLoss(src) - getFireLoss(src) > 0) //Cmon, don't kill the new one! Shouldnt be possible though
 		new_xeno.bruteloss = src.bruteloss //Transfers the damage over.
