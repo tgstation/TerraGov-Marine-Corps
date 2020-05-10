@@ -933,12 +933,9 @@
 /turf/open/floor/tile/dark,
 /area/lv624/ground/caves/central1)
 "adk" = (
-/obj/machinery/door/airlock/mainship/secure{
+/obj/machinery/door/airlock/mainship/secure/locked/free_access{
 	dir = 4;
-	icon_state = "door_locked";
-	locked = 1;
-	name = "Mining Storage";
-	req_access_txt = "0"
+	name = "\improper Mining Storage"
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/ground/caves/central1)
@@ -2413,16 +2410,6 @@
 	icon_state = "red"
 	},
 /area/lv624/lazarus/security)
-"aiP" = (
-/obj/structure/cable/yellow{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/machinery/power/apc{
-	dir = 1
-	},
-/turf/open/floor/tile/dark,
-/area/lv624/lazarus/armory)
 "aiQ" = (
 /obj/machinery/power/apc,
 /obj/structure/cable/yellow{
@@ -3584,10 +3571,9 @@
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "ana" = (
-/obj/machinery/door/airlock/mainship/secure{
+/obj/machinery/door/airlock/mainship/secure/free_access{
 	dir = 4;
-	name = "Water Filtration Plant";
-	req_access_txt = "0"
+	name = "\improper Water Filtration Plant"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -3627,10 +3613,9 @@
 	},
 /area/lv624/ground/sand8)
 "anf" = (
-/obj/machinery/door/airlock/mainship/secure{
+/obj/machinery/door/airlock/mainship/secure/free_access{
 	dir = 4;
-	name = "Water Filtration Plant";
-	req_access_txt = "0"
+	name = "\improper Water Filtration Plant"
 	},
 /turf/open/floor/plating/platebot,
 /area/lv624/ground/sand8)
@@ -6175,11 +6160,6 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 8
 	},
@@ -6188,8 +6168,7 @@
 /obj/machinery/door_control{
 	id = "secure_blast";
 	name = "Vault Access";
-	pixel_x = -25;
-	req_access_txt = "0"
+	pixel_x = -25
 	},
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
@@ -6271,22 +6250,6 @@
 	dir = 1
 	},
 /area/lv624/lazarus/hydroponics)
-"axJ" = (
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/turf/open/floor/tile/red/full,
-/area/lv624/lazarus/security)
-"axK" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/tile/red/full,
-/area/lv624/lazarus/security)
 "axL" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
@@ -6374,11 +6337,6 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/medbay)
 "axY" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /turf/open/floor/tile/red/redtaupe{
 	dir = 8
 	},
@@ -6571,37 +6529,11 @@
 	},
 /area/lv624/lazarus/medbay)
 "ayC" = (
-/obj/machinery/door/airlock/mainship/secure{
+/obj/machinery/door/airlock/mainship/secure/free_access{
 	locked = 1;
-	name = "\improper Nexus Dome Armory";
-	req_access_txt = "0"
-	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	name = "\improper Nexus Dome Armory"
 	},
 /turf/open/floor/plating,
-/area/lv624/lazarus/armory)
-"ayD" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/tile/red/redtaupe{
-	dir = 5
-	},
-/area/lv624/lazarus/security)
-"ayE" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/tile/red/redtaupe{
-	dir = 9
-	},
 /area/lv624/lazarus/security)
 "ayF" = (
 /obj/structure/cable/yellow{
@@ -6651,11 +6583,9 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "ayL" = (
-/obj/machinery/door/airlock/mainship/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 4;
-	name = "\improper Hydroponics Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+	name = "\improper Hydroponics Dome"
 	},
 /turf/open/floor/tile/green/greentaupe{
 	dir = 1
@@ -6693,32 +6623,17 @@
 	},
 /area/lv624/ground/jungle5)
 "ayU" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
 /area/lv624/lazarus/security)
 "ayV" = (
 /obj/machinery/light/small,
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/open/floor/tile/red/redtaupe{
 	dir = 1
 	},
 /area/lv624/lazarus/security)
 "ayW" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /turf/open/floor/tile/red/redtaupe{
 	dir = 1
 	},
@@ -6767,9 +6682,7 @@
 "azf" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 1;
-	name = "\improper Medical Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+	name = "\improper Medical Dome"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -6794,8 +6707,7 @@
 "azj" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
-	name = "\improper Hydroponics Dome";
-	req_access_txt = "0"
+	name = "\improper Hydroponics Dome"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -6930,8 +6842,7 @@
 /obj/machinery/door_control{
 	id = "secure_blast";
 	name = "Vault Access";
-	pixel_x = 25;
-	req_access_txt = "0"
+	pixel_x = 25
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -7618,11 +7529,9 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/ground/compound/n)
 "aCB" = (
-/obj/machinery/door/airlock/mainship/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1;
-	name = "\improper Hydroponics Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+	name = "\improper Hydroponics Dome"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/tile/green/greentaupe{
@@ -7686,11 +7595,9 @@
 	},
 /area/lv624/ground/jungle6)
 "aCY" = (
-/obj/machinery/door/airlock/mainship/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1;
-	name = "\improper Medical Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+	name = "\improper Medical Dome"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/tile/blue/whitebluecorner{
@@ -7871,13 +7778,9 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "aDN" = (
-/obj/machinery/door/airlock/mainship/engineering{
-	density = 0;
+/obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1;
-	icon_state = "door_open";
-	name = "\improper Storage Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+	name = "\improper Storage Dome"
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
@@ -8006,11 +7909,9 @@
 	id = "science_blast";
 	name = "\improper Science Wing Blast Door"
 	},
-/obj/machinery/door/airlock/mainship/research{
+/obj/machinery/door/airlock/mainship/research/locked/free_access{
 	dir = 1;
-	locked = 1;
-	name = "\improper Research Dome";
-	req_access_txt = "0"
+	name = "\improper Research Dome"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/tile/white,
@@ -8134,11 +8035,9 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/fitness)
 "aFy" = (
-/obj/machinery/door/airlock/mainship/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1;
-	name = "\improper Leisure Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+	name = "\improper Leisure Dome"
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -8390,11 +8289,9 @@
 	},
 /area/lv624/lazarus/research)
 "aGy" = (
-/obj/machinery/door/airlock/mainship/research{
+/obj/machinery/door/airlock/mainship/research/locked/free_access{
 	dir = 4;
-	locked = 1;
-	name = "\improper Research Dome";
-	req_access_txt = "0"
+	name = "\improper Research Dome"
 	},
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
@@ -8656,13 +8553,9 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/quartstorage/outdoors)
 "aHx" = (
-/obj/machinery/door/airlock/mainship/engineering{
-	density = 1;
+/obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 4;
-	icon_state = "door_closed";
-	name = "\improper Storage Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+	name = "\improper Storage Dome"
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
@@ -8726,35 +8619,25 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/robotics)
 "aHK" = (
-/obj/machinery/door/airlock/mainship/engineering{
-	density = 0;
+/obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1;
-	icon_state = "door_open";
-	name = "\improper Robotics Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+	name = "\improper Robotics Dome"
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/robotics)
 "aHM" = (
-/obj/machinery/door/airlock/mainship/research{
+/obj/machinery/door/airlock/mainship/research/locked/free_access{
 	dir = 1;
-	locked = 1;
-	name = "\improper Research Dome";
-	req_access_txt = "0"
+	name = "\improper Research Dome"
 	},
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
 /area/lv624/lazarus/research)
 "aHN" = (
-/obj/machinery/door/airlock/mainship/research{
-	density = 0;
+/obj/machinery/door/airlock/mainship/research/open/free_access{
 	dir = 1;
-	icon_state = "door_open";
-	name = "\improper Research Dome";
-	opacity = 0;
-	req_access_txt = "0"
+	name = "\improper Research Dome"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/tile/white,
@@ -9073,11 +8956,9 @@
 	id = "science_blast";
 	name = "\improper Science Wing Blast Door"
 	},
-/obj/machinery/door/airlock/mainship/research{
+/obj/machinery/door/airlock/mainship/research/locked/free_access{
 	dir = 4;
-	locked = 1;
-	name = "\improper Research Dome";
-	req_access_txt = "0"
+	name = "\improper Research Dome"
 	},
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
@@ -9096,12 +8977,8 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
 "aJn" = (
-/obj/machinery/door/airlock/mainship/research{
-	density = 0;
-	icon_state = "door_open";
-	name = "\improper Research Dome";
-	opacity = 0;
-	req_access_txt = "0"
+/obj/machinery/door/airlock/mainship/research/open/free_access{
+	name = "\improper Research Dome"
 	},
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
@@ -9133,9 +9010,8 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/research)
 "aJr" = (
-/obj/machinery/door/airlock/mainship/research{
-	name = "\improper Research Dome";
-	req_access_txt = "0"
+/obj/machinery/door/airlock/mainship/research/free_access{
+	name = "\improper Research Dome"
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -9172,12 +9048,8 @@
 	name = "\improper Forced Blast Door";
 	opacity = 0
 	},
-/obj/machinery/door/airlock/mainship/research{
-	density = 0;
-	icon_state = "door_open";
-	name = "\improper Research Dome";
-	opacity = 0;
-	req_access_txt = "0"
+/obj/machinery/door/airlock/mainship/research/open/free_access{
+	name = "\improper Research Dome"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -9320,10 +9192,8 @@
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "aJX" = (
-/obj/machinery/door/airlock/mainship/engineering{
-	name = "\improper Robotics Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+/obj/machinery/door/airlock/mainship/engineering/free_access{
+	name = "\improper Robotics Dome"
 	},
 /turf/open/floor/tile/vault{
 	dir = 8
@@ -9378,12 +9248,8 @@
 	name = "\improper Forced Blast Door";
 	opacity = 0
 	},
-/obj/machinery/door/airlock/mainship/research{
-	density = 0;
-	icon_state = "door_open";
-	name = "\improper Research Dome";
-	opacity = 0;
-	req_access_txt = "0"
+/obj/machinery/door/airlock/mainship/research/open/free_access{
+	name = "\improper Research Dome"
 	},
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
@@ -9396,8 +9262,7 @@
 "aKj" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
-	name = "\improper Leisure Dome";
-	req_access_txt = "0"
+	name = "\improper Leisure Dome"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -9472,11 +9337,9 @@
 	},
 /area/lv624/lazarus/fitness)
 "aKq" = (
-/obj/machinery/door/airlock/mainship/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 4;
-	name = "\improper Leisure Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+	name = "\improper Leisure Dome"
 	},
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
@@ -9520,13 +9383,9 @@
 /turf/open/ground/grass,
 /area/lv624/ground/compound/ne)
 "aKy" = (
-/obj/machinery/door/airlock/mainship/engineering{
-	density = 1;
+/obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1;
-	icon_state = "door_closed";
-	name = "\improper Storage Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+	name = "\improper Storage Dome"
 	},
 /turf/open/floor/vault,
 /area/lv624/lazarus/quartstorage)
@@ -9616,13 +9475,9 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
 "aKT" = (
-/obj/machinery/door/airlock/mainship/research{
-	density = 0;
+/obj/machinery/door/airlock/mainship/research/open/free_access{
 	dir = 1;
-	icon_state = "door_open";
-	name = "\improper Research Dome";
-	opacity = 0;
-	req_access_txt = "0"
+	name = "\improper Research Dome"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable/yellow{
@@ -9713,11 +9568,9 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
 "aLq" = (
-/obj/machinery/door/airlock/mainship/engineering{
+/obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1;
-	name = "\improper Robotics Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+	name = "\improper Robotics Dome"
 	},
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
@@ -9835,8 +9688,7 @@
 /area/lv624/lazarus/main_hall)
 "aLM" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	name = "\improper Nexus Dome";
-	req_access_txt = "0"
+	name = "\improper Nexus Dome"
 	},
 /obj/machinery/door/poddoor/mainship{
 	density = 0;
@@ -10020,9 +9872,8 @@
 /turf/open/floor/freezer,
 /area/lv624/lazarus/research)
 "aMr" = (
-/obj/machinery/door/airlock/mainship/research{
-	name = "\improper Research Dome";
-	req_access_txt = "0"
+/obj/machinery/door/airlock/mainship/research/free_access{
+	name = "\improper Research Dome"
 	},
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
@@ -10202,12 +10053,8 @@
 /turf/open/ground/river,
 /area/lv624/ground/jungle6)
 "aNa" = (
-/obj/machinery/door/airlock/mainship/engineering{
-	density = 0;
-	icon_state = "door_open";
-	name = "\improper Robotics Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+/obj/machinery/door/airlock/mainship/engineering/free_access{
+	name = "\improper Robotics Dome"
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/robotics)
@@ -10287,12 +10134,8 @@
 	},
 /area/lv624/lazarus/robotics)
 "aNj" = (
-/obj/machinery/door/airlock/mainship/engineering{
-	density = 0;
-	icon_state = "door_open";
-	name = "\improper Robotics Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+/obj/machinery/door/airlock/mainship/engineering/free_access{
+	name = "\improper Robotics Dome"
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -11202,13 +11045,9 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "aQx" = (
-/obj/machinery/door/airlock/mainship/engineering{
-	density = 1;
+/obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 4;
-	icon_state = "door_closed";
-	name = "\improper Storage Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+	name = "\improper Storage Dome"
 	},
 /turf/open/floor/vault,
 /area/lv624/lazarus/quartstorage)
@@ -11285,18 +11124,6 @@
 /obj/structure/largecrate,
 /obj/item/mecha_parts/part/gygax_armour,
 /turf/open/floor/plating/platebot,
-/area/lv624/lazarus/robotics)
-"aQO" = (
-/obj/machinery/door/airlock/mainship/engineering{
-	density = 0;
-	icon_state = "door_open";
-	name = "\improper Robotics Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
-	},
-/turf/open/floor/tile/vault{
-	dir = 8
-	},
 /area/lv624/lazarus/robotics)
 "aQP" = (
 /obj/structure/cable/yellow{
@@ -11402,8 +11229,7 @@
 "aRb" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
-	name = "\improper Nexus Dome Male Dormitories";
-	req_access_txt = "0"
+	name = "\improper Nexus Dome Male Dormitories"
 	},
 /turf/open/floor/tile/blue/taupebluecorner{
 	dir = 2
@@ -11438,8 +11264,7 @@
 "aRe" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
-	name = "\improper Nexus Dome Female Dormitories";
-	req_access_txt = "0"
+	name = "\improper Nexus Dome Female Dormitories"
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -11992,13 +11817,9 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "aSN" = (
-/obj/machinery/door/airlock/mainship/engineering{
-	density = 0;
+/obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1;
-	icon_state = "door_open";
-	name = "\improper Robotics Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+	name = "\improper Robotics Dome"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -12311,13 +12132,9 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/quart)
 "aTN" = (
-/obj/machinery/door/airlock/mainship/engineering{
-	density = 1;
+/obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1;
-	icon_state = "door_closed";
-	name = "\improper Storage Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+	name = "\improper Storage Dome"
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -12648,12 +12465,8 @@
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/chapel)
 "aUW" = (
-/obj/machinery/door/airlock/mainship/engineering{
-	density = 0;
-	icon_state = "door_open";
-	name = "\improper Nexus Cargo Storage";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+/obj/machinery/door/airlock/mainship/engineering/free_access{
+	name = "\improper Nexus Cargo Storage"
 	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
@@ -12713,13 +12526,9 @@
 /area/lv624/lazarus/quartstorage)
 "aVg" = (
 /obj/effect/decal/cleanable/blood/oil,
-/obj/machinery/door/airlock/mainship/engineering{
-	density = 0;
+/obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1;
-	icon_state = "door_open";
-	name = "\improper Storage Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+	name = "\improper Storage Dome"
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 1
@@ -12869,13 +12678,9 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aVI" = (
-/obj/machinery/door/airlock/mainship/engineering{
-	density = 1;
+/obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 4;
-	icon_state = "door_closed";
-	name = "\improper Storage Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+	name = "\improper Storage Dome"
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/quart)
@@ -13201,24 +13006,16 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "aWS" = (
-/obj/machinery/door/airlock/mainship/engineering{
-	density = 0;
+/obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1;
-	icon_state = "door_open";
-	name = "\improper Storage Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+	name = "\improper Storage Dome"
 	},
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/quartstorage)
 "aWT" = (
-/obj/machinery/door/airlock/mainship/engineering{
-	density = 0;
+/obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1;
-	icon_state = "door_open";
-	name = "\improper Storage Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+	name = "\improper Storage Dome"
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -13514,8 +13311,7 @@
 "aXW" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
-	name = "\improper Nexus Dome Bathroom";
-	req_access_txt = "0"
+	name = "\improper Nexus Dome Bathroom"
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -13527,8 +13323,7 @@
 /area/lv624/lazarus/toilet)
 "aXX" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	name = "\improper Nexus Dome Chapel";
-	req_access_txt = "0"
+	name = "\improper Nexus Dome Chapel"
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -13662,8 +13457,7 @@
 "aYz" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
-	name = "\improper Nexus Dome";
-	req_access_txt = "0"
+	name = "\improper Nexus Dome"
 	},
 /obj/machinery/door/poddoor/mainship{
 	density = 0;
@@ -13802,8 +13596,7 @@
 "aYS" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
-	name = "\improper Nexus Dome";
-	req_access_txt = "0"
+	name = "\improper Nexus Dome"
 	},
 /obj/machinery/door/poddoor/mainship{
 	density = 0;
@@ -14093,11 +13886,8 @@
 /area/lv624/lazarus/internal_affairs)
 "aZQ" = (
 /obj/machinery/door/airlock/mainship/generic/corporate{
-	density = 0;
 	dir = 4;
-	icon_state = "door_open";
-	name = "Corporate Dome";
-	opacity = 0
+	name = "Corporate Dome"
 	},
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
@@ -14653,16 +14443,6 @@
 /obj/structure/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
-"bbm" = (
-/obj/machinery/door/airlock/mainship/generic/corporate{
-	density = 0;
-	dir = 1;
-	icon_state = "door_open";
-	name = "Corporate Dome";
-	opacity = 0
-	},
-/turf/open/floor/wood,
-/area/lv624/lazarus/internal_affairs)
 "bbn" = (
 /obj/machinery/door/airlock/mainship/generic/corporate{
 	dir = 1;
@@ -14830,8 +14610,7 @@
 "bbU" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
-	name = "\improper Nexus Dome";
-	req_access_txt = "0"
+	name = "\improper Nexus Dome"
 	},
 /obj/machinery/door/poddoor/mainship{
 	density = 0;
@@ -14846,9 +14625,6 @@
 	icon_state = "whiteyellowcorner"
 	},
 /area/lv624/lazarus/main_hall)
-"bbV" = (
-/turf/closed/wall/r_wall,
-/area/lv624/lazarus/armory)
 "bbW" = (
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/security)
@@ -14891,8 +14667,7 @@
 /area/lv624/lazarus/canteen)
 "bce" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	name = "\improper Nexus Dome Canteen";
-	req_access_txt = "0"
+	name = "\improper Nexus Dome Canteen"
 	},
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/canteen)
@@ -15085,7 +14860,7 @@
 /obj/item/ammo_magazine/shotgun,
 /obj/item/weapon/gun/shotgun/pump/cmb,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/armory)
+/area/lv624/lazarus/security)
 "bcM" = (
 /obj/effect/decal/cleanable/cobweb2,
 /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine,
@@ -15100,7 +14875,7 @@
 	},
 /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/armory)
+/area/lv624/lazarus/security)
 "bcN" = (
 /obj/item/target/syndicate,
 /obj/structure/target_stake,
@@ -15402,7 +15177,7 @@
 /obj/effect/decal/cleanable/cobweb,
 /obj/machinery/computer/nuke_disk_generator/green,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/armory)
+/area/lv624/lazarus/security)
 "bdL" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -15415,10 +15190,10 @@
 /obj/item/ammo_magazine/pistol/b92fs,
 /obj/item/ammo_magazine/pistol/b92fs,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/armory)
+/area/lv624/lazarus/security)
 "bdM" = (
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/armory)
+/area/lv624/lazarus/security)
 "bdN" = (
 /obj/item/explosive/plastique{
 	pixel_x = 3;
@@ -15536,11 +15311,9 @@
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "beb" = (
-/obj/machinery/door/airlock/mainship/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1;
-	name = "\improper Nexus Dome Canteen";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+	name = "\improper Nexus Dome Canteen"
 	},
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/canteen)
@@ -15622,7 +15395,7 @@
 "beu" = (
 /obj/machinery/deployable/barrier,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/armory)
+/area/lv624/lazarus/security)
 "bev" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/smg/mp5,
@@ -15632,7 +15405,7 @@
 /obj/item/ammo_magazine/smg/mp5,
 /obj/item/ammo_magazine/smg/mp5,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/armory)
+/area/lv624/lazarus/security)
 "bew" = (
 /turf/open/floor/tile/red/redtaupe{
 	dir = 5
@@ -15654,10 +15427,8 @@
 	},
 /area/lv624/lazarus/security)
 "beC" = (
-/obj/machinery/door/airlock/mainship/security{
-	locked = 1;
-	name = "\improper Nexus Dome Marshal Office";
-	req_access_txt = "0"
+/obj/machinery/door/airlock/mainship/security/locked/free_access{
+	name = "\improper Nexus Dome Marshal Office"
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -15914,7 +15685,7 @@
 /obj/item/storage/toolbox/syndicate,
 /obj/structure/rack,
 /turf/open/floor/tile/dark,
-/area/lv624/lazarus/armory)
+/area/lv624/lazarus/security)
 "bfp" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -15972,10 +15743,8 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "bfx" = (
-/obj/machinery/door/airlock/mainship/medical/glass{
-	name = "\improper Nexus Dome Canteen";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	name = "\improper Nexus Dome Canteen"
 	},
 /turf/open/floor/tile/barber,
 /area/lv624/lazarus/kitchen)
@@ -16135,7 +15904,7 @@
 "bge" = (
 /obj/structure/jungle/vines,
 /turf/closed/wall/r_wall,
-/area/lv624/lazarus/armory)
+/area/lv624/lazarus/security)
 "bgl" = (
 /obj/structure/closet/lawcloset,
 /turf/open/floor/tile/red/redtaupe{
@@ -16268,11 +16037,9 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/comms)
 "bgK" = (
-/obj/machinery/door/airlock/mainship/engineering{
+/obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1;
-	name = "\improper Communications Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+	name = "\improper Communications Dome"
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -16412,6 +16179,11 @@
 	},
 /area/lv624/lazarus/atmos)
 "bhn" = (
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/open/ground/grass/beach/corner{
 	dir = 1
 	},
@@ -16689,10 +16461,8 @@
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "biq" = (
-/obj/machinery/door/airlock/mainship/command{
-	locked = 1;
-	name = "\improper Nexus Dome Marshal's Quarter";
-	req_access_txt = "0"
+/obj/machinery/door/airlock/mainship/command/locked/free_access{
+	name = "\improper Nexus Dome Marshal's Quarter"
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -17089,11 +16859,9 @@
 /area/lv624/lazarus/engineering)
 "bjI" = (
 /obj/structure/foamedmetal,
-/obj/machinery/door/airlock/mainship/engineering{
+/obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1;
-	name = "\improper Engineering Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+	name = "\improper Engineering Dome"
 	},
 /obj/structure/jungle/vines/heavy,
 /obj/structure/cable/yellow{
@@ -17155,9 +16923,8 @@
 /turf/open/floor/wood,
 /area/lv624/lazarus/hop)
 "bjQ" = (
-/obj/machinery/door/airlock/mainship/command{
-	name = "\improper Nexus Dome Command Quarter";
-	req_access_txt = "0"
+/obj/machinery/door/airlock/mainship/command/free_access{
+	name = "\improper Nexus Dome Command Quarter"
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -17481,8 +17248,7 @@
 "bkP" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
-	name = "\improper Nexus Dome Freezer";
-	req_access_txt = "0"
+	name = "\improper Nexus Dome Freezer"
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -17615,10 +17381,8 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "blk" = (
-/obj/machinery/door/airlock/mainship/engineering{
-	name = "\improper Engineering Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+/obj/machinery/door/airlock/mainship/engineering/free_access{
+	name = "\improper Engineering Dome"
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -17688,11 +17452,9 @@
 /turf/open/floor/grimy,
 /area/lv624/lazarus/hop)
 "bls" = (
-/obj/machinery/door/airlock/mainship/command{
+/obj/machinery/door/airlock/mainship/command/locked/free_access{
 	dir = 1;
-	locked = 1;
-	name = "\improper Nexus Dome Director's Quarter";
-	req_access_txt = "0"
+	name = "\improper Nexus Dome Director's Quarter"
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/hop)
@@ -17801,10 +17563,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/sw)
 "blJ" = (
-/obj/machinery/door/airlock/mainship/engineering{
-	name = "\improper Communications Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+/obj/machinery/door/airlock/mainship/engineering/free_access{
+	name = "\improper Communications Dome"
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -18589,10 +18349,8 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "bnW" = (
-/obj/machinery/door/airlock/mainship/engineering{
-	name = "\improper Engineering Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+/obj/machinery/door/airlock/mainship/engineering/free_access{
+	name = "\improper Engineering Dome"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -18797,10 +18555,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/atmos/outside)
 "boC" = (
-/obj/machinery/door/airlock/mainship/engineering{
-	name = "\improper Engineering Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+/obj/machinery/door/airlock/mainship/engineering/free_access{
+	name = "\improper Engineering Dome"
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -19198,11 +18954,9 @@
 	},
 /area/lv624/lazarus/engineering)
 "bpM" = (
-/obj/machinery/door/airlock/mainship/engineering{
+/obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1;
-	name = "\improper Engineering Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+	name = "\improper Engineering Dome"
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
@@ -19450,11 +19204,9 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle2)
 "bqP" = (
-/obj/machinery/door/airlock/mainship/engineering{
+/obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1;
-	name = "\improper Communications Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+	name = "\improper Communications Dome"
 	},
 /turf/open/floor/tile/brown{
 	dir = 9
@@ -19999,13 +19751,9 @@
 /turf/closed/mineral,
 /area/lv624/ground/sand4)
 "eLi" = (
-/obj/machinery/door/airlock/mainship/engineering{
-	density = 1;
+/obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1;
-	icon_state = "door_closed";
-	name = "\improper Storage Dome";
-	req_access_txt = "0";
-	req_one_access_txt = "0"
+	name = "\improper Storage Dome"
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 1
@@ -20030,10 +19778,18 @@
 	},
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
+"eXV" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle6)
 "fgu" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/cult,
 /area/lv624/ground/caves/east1)
+"fiA" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/lazarus/quartstorage/outdoors)
 "flw" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral,
@@ -20175,6 +19931,18 @@
 	},
 /turf/open/floor,
 /area/lv624/ground/compound/n)
+"jGu" = (
+/obj/structure/table,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/tile/purple/taupepurple{
+	dir = 9
+	},
+/area/lv624/lazarus/sleep_female)
 "jOz" = (
 /obj/structure/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -20279,6 +20047,12 @@
 	},
 /turf/closed/wall/r_wall,
 /area/shuttle/drop1/lz1)
+"mGh" = (
+/obj/machinery/door/airlock/mainship/security/locked/free_access{
+	name = "\improper Nexus Dome Marshal Office"
+	},
+/turf/open/floor,
+/area/lv624/lazarus/security)
 "mWY" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral,
@@ -20395,6 +20169,10 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/internal_affairs)
+"rds" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central1)
 "rpH" = (
 /obj/structure/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -20482,13 +20260,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/ground/jungle3)
-"uqX" = (
-/obj/structure/bed/chair/wood/wings,
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/tile/purple/taupepurple{
-	dir = 9
-	},
-/area/lv624/lazarus/sleep_female)
 "usu" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 1
@@ -29814,7 +29585,7 @@ axx
 aIZ
 aBP
 aKK
-aCr
+eXV
 aEa
 auU
 aNR
@@ -33177,7 +32948,7 @@ qYr
 aZc
 aZP
 baE
-bbm
+bbn
 bbG
 bct
 aZR
@@ -34446,7 +34217,7 @@ aNg
 aJY
 aHI
 aHI
-aQO
+aJX
 aHI
 aHI
 aHI
@@ -46286,10 +46057,10 @@ bah
 aNB
 aNB
 aNB
-bbV
-bbV
-bbV
-bbV
+bbW
+bbW
+bbW
+bbW
 bet
 aFB
 aFB
@@ -46543,12 +46314,12 @@ aRd
 aNC
 aNz
 aNz
-bbV
+bbW
 bdK
 bdM
-bbV
+bbW
 bge
-bbV
+bbW
 aFB
 aFB
 aFB
@@ -46799,13 +46570,13 @@ aNB
 aRd
 aNB
 bbw
-bbV
-bbV
+bbW
+bbW
 bdL
 bdM
 beu
 beu
-bbV
+bbW
 bhs
 bhs
 aFB
@@ -47056,13 +46827,13 @@ aNz
 aRd
 aNz
 aNz
-bbV
+bbW
 bcL
 bdM
 bdM
 bdM
 bdM
-bbV
+bbW
 bht
 bhs
 bjc
@@ -47313,13 +47084,13 @@ aNz
 aRd
 aNz
 aNz
-bbV
+bbW
 bcM
 bdN
 bev
 bfo
-aiP
-bbV
+bdM
+bbW
 bhu
 bim
 bhs
@@ -47570,13 +47341,13 @@ aZz
 bai
 baZ
 aNz
-bbV
-bbV
-bbV
-bbV
-bbV
+bbW
+bbW
+bbW
+bbW
+bbW
 ayC
-bbV
+bbW
 azh
 bin
 aiS
@@ -47832,7 +47603,7 @@ bcN
 bdO
 bew
 bfp
-ayD
+bew
 bbW
 bhw
 bio
@@ -48089,7 +47860,7 @@ bcO
 bdP
 bdP
 bfq
-ayE
+bdP
 bbW
 bhx
 bip
@@ -48346,7 +48117,7 @@ bbX
 bbX
 bbX
 bbX
-beC
+mGh
 bbW
 bhs
 biq
@@ -48999,7 +48770,7 @@ abe
 abe
 abe
 mWY
-abf
+rds
 acS
 acS
 acS
@@ -49116,7 +48887,7 @@ bbX
 bfs
 bdS
 bey
-axJ
+bdR
 ayW
 bbW
 bhA
@@ -49373,7 +49144,7 @@ bbX
 bcS
 bdT
 bez
-axK
+bdR
 bgl
 bbW
 bhB
@@ -49630,7 +49401,7 @@ bbW
 bbX
 bbW
 aiO
-axK
+bdR
 bgM
 bbW
 bhC
@@ -53463,8 +53234,8 @@ aJF
 aNG
 aMH
 aPs
-uqX
-aRi
+aQs
+jGu
 aPr
 aSt
 aTh
@@ -54212,6 +53983,7 @@ arW
 azK
 aAk
 aAk
+fiA
 aAk
 aAk
 aAk
@@ -54279,7 +54051,6 @@ bdk
 bdk
 bdk
 bdk
-aab
 "}
 (132,1,1) = {"
 aaa

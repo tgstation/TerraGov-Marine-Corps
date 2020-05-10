@@ -106,12 +106,12 @@
 /obj/machinery/bot/mulebot/ex_act(severity)
 	unload(0)
 	switch(severity)
-		if(2)
+		if(EXPLODE_HEAVY)
 			wires.cut_all()
-		if(3)
+		if(EXPLODE_LIGHT)
 			wires.cut_random()
-	..()
-	return
+	return ..()
+
 
 /obj/machinery/bot/mulebot/bullet_act()
 	if(prob(50) && !isnull(load))

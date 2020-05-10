@@ -77,9 +77,6 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 	armorsl.color = color
 	GLOB.armormarkings[type] = armor
 	GLOB.armormarkings_sl[type] = armorsl
-	var/image/gloves = image('icons/mob/hands.dmi',icon_state = "std-gloves")
-	gloves.color = color
-	GLOB.glovemarkings[type] = gloves
 	var/image/helmet = image('icons/mob/head_1.dmi',icon_state = "std-helmet")
 	var/image/helmetsl = image('icons/mob/head_1.dmi',icon_state = "sql-helmet")
 	helmet.color = color

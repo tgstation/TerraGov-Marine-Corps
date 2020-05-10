@@ -71,7 +71,7 @@
 	return
 
 
-/mob/living/silicon/contents_explosion(severity, target)
+/mob/living/silicon/contents_explosion(severity)
 	return
 
 
@@ -164,24 +164,24 @@
 	flash_eyes()
 
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			if(stat == DEAD)
 				return
 			adjustBruteLoss(100)
 			adjustFireLoss(100)
 			if(!anchored)
 				gib()
-		if(2)
+		if(EXPLODE_HEAVY)
 			if(stat == DEAD)
 				return
 			adjustBruteLoss(60)
 			adjustFireLoss(60)
-		if(3)
+		if(EXPLODE_LIGHT)
 			if(stat == DEAD)
 				return
 			adjustBruteLoss(30)
 
-	updatehealth()
+	UPDATEHEALTH(src)
 
 
 /mob/living/silicon/emp_act(severity)

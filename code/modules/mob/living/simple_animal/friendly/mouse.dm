@@ -34,6 +34,7 @@
 
 
 /mob/living/simple_animal/mouse/Crossed(atom/movable/AM)
+	. = ..()
 	if(ishuman(AM) && stat == CONSCIOUS)
 		var/mob/living/carbon/human/H = AM
 		to_chat(H, "<span class='notice'>[icon2html(src, H)] Squeak!</span>")

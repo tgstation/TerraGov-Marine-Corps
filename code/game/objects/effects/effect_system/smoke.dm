@@ -252,7 +252,7 @@
 
 //Xeno acid smoke.
 /obj/effect/particle_effect/smoke/xeno/burn
-	lifetime = 9
+	lifetime = 6
 	color = "#86B028" //Mostly green?
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_ACID|SMOKE_GASP|SMOKE_COUGH
 

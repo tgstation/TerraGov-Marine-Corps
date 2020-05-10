@@ -78,7 +78,7 @@
 				var/sound = "pulse"
 				var/sound_strength
 
-				if(M.stat == DEAD || (M.status_flags&FAKEDEATH))
+				if(M.stat == DEAD || HAS_TRAIT(M, TRAIT_FAKEDEATH))
 					sound_strength = "cannot hear"
 					sound = "anything"
 				else

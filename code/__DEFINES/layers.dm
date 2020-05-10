@@ -132,6 +132,8 @@
 
 #define POINT_LAYER 12
 
+#define CHAT_LAYER 12.1
+
 #define LIGHTING_PLANE 15
 
 #define ABOVE_LIGHTING_PLANE 16
@@ -153,6 +155,8 @@
 #define FULLSCREEN_BLIND_LAYER 18.15 //unconscious
 #define FULLSCREEN_PAIN_LAYER	18.2 //pain flashes
 #define FULLSCREEN_CRIT_LAYER 18.25 //in critical
+
+#define FULLSCREEN_PLANE 20
 
 #define HUD_PLANE 21
 #define HUD_LAYER 21

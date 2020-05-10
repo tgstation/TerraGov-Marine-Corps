@@ -145,7 +145,7 @@
 
 //-------------------------------------------------------
 //M41AE2 HEAVY PULSE RIFLE
- 
+
 /obj/item/ammo_magazine/m41ae2_hpr
     name = "\improper M41AE2 ammo box (10x24mm)"
     desc = "A semi-rectangular box of rounds for the M41AE2 Heavy Pulse Rifle."
@@ -218,3 +218,30 @@
 	default_ammo = /datum/ammo/bullet/shotgun/tx15_slug
 	max_rounds = 12
 	gun_type = /obj/item/weapon/gun/rifle/standard_autoshotgun
+
+//-------------------------------------------------------
+//SMARTMACHINEGUN AMMUNITION
+
+/obj/item/ammo_magazine/standard_smartmachinegun
+	name = "\improper T-29 drum magazine (10x26mm)"
+	desc = "A 10mm drum magazine."
+	caliber = "10x26mm caseless"
+	icon_state = "t29"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/smartmachinegun
+	max_rounds = 300
+	gun_type = /obj/item/weapon/gun/rifle/standard_smartmachinegun
+	reload_delay = 2 SECONDS
+
+
+//-------------------------------------------------------
+//Sectoid Rifle
+
+/obj/item/ammo_magazine/rifle/sectoid_rifle
+	name = "\improper Alien Rifle plasma magazine"
+	desc = "A magazine filled with powerful plasma rounds. The ammo inside doesn't look like anything you've seen before."
+	caliber = "alien alloy"
+	icon_state = "alien_rifle"
+	default_ammo = /datum/ammo/energy/plasma
+	max_rounds = 20
+	gun_type = /obj/item/weapon/gun/rifle/sectoid_rifle

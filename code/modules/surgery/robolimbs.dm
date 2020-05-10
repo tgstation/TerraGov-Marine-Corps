@@ -100,7 +100,7 @@
 /datum/surgery_step/limb/prepare/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message("<span class='notice'>[user] has finished adjusting the area around [target]'s [affected.display_name] with \the [tool].</span>",	\
 	"<span class='notice'>You have finished adjusting the area around [target]'s [affected.display_name] with \the [tool].</span>")
-	affected.limb_status |= LIMB_AMPUTATED
+	affected.add_limb_flags(LIMB_AMPUTATED)
 	affected.setAmputatedTree()
 	affected.limb_replacement_stage = 0
 

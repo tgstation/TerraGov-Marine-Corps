@@ -29,12 +29,12 @@
 	caste_flags = CASTE_IS_INTELLIGENT|CASTE_HIDE_IN_STATUS
 
 	// *** Defense *** //
-	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
+	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
 
 	fire_resist = 0.5 //0 to 1; lower is better as it is a multiplier.
 
 	// *** Ranged Attack *** //
-	charge_type = 3 //Claw at end of charge
+	charge_type = CHARGE_TYPE_LARGE
 
 	actions = list(
 		/datum/action/xeno_action/activable/breathe_fire,

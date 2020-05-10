@@ -139,7 +139,7 @@
 /obj/machinery/smartfridge/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "smartvend", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, ui_key, "SmartVend", name, ui_x, ui_y, master_ui, state)
 		ui.set_autoupdate(FALSE)
 		ui.open()
 
@@ -252,7 +252,8 @@
 	icon_on = "smartfridge"
 	icon_off = "smartfridge-off"
 	is_secure_fridge = TRUE
-	req_one_access_txt = "5;33"
+	req_one_access = list(ACCESS_MARINE_CMO, ACCESS_CIVILIAN_MEDICAL)
+
 
 /obj/machinery/smartfridge/secure/medbay/accept_check(obj/item/O as obj)
 	if(istype(O,/obj/item/reagent_containers/glass/))
@@ -268,7 +269,7 @@
 	name = "\improper Refrigerated Virus Storage"
 	desc = "A refrigerated storage unit for storing viral material."
 	is_secure_fridge = TRUE
-	req_access_txt = "39"
+	req_access = list(ACCESS_CIVILIAN_MEDICAL)
 	icon_state = "smartfridge"
 	icon_on = "smartfridge"
 	icon_off = "smartfridge-off"

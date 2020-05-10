@@ -45,6 +45,9 @@
 /area/shuttle/big_ert
 	name = "Big ERT Ship"
 
+/area/shuttle/ert/ufo
+	name = "Small UFO"
+
 /area/shuttle/transit
 	name = "Hyperspace"
 	desc = "Weeeeee"

@@ -4,7 +4,6 @@
 /obj/item/weapon/gun/revolver
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
-	materials = list(/datum/material/metal = 2000)
 	fire_sound = 'sound/weapons/guns/fire/44mag.ogg'
 	reload_sound = 'sound/weapons/guns/interact/revolver_cocked.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/revolver_spun.ogg'
@@ -312,7 +311,7 @@
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/heavy_barrel,
-						/obj/item/attachable/quickfire,
+						/obj/item/attachable/gyro,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/lasersight)
@@ -424,13 +423,10 @@
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/heavy_barrel,
-						/obj/item/attachable/quickfire,
 						/obj/item/attachable/compensator)
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
 
-	fire_delay = 0.7 SECONDS
-	burst_amount = 2
-	burst_delay = 0.4 SECONDS
+	fire_delay = 0.2 SECONDS
 	accuracy_mult_unwielded = 0.6
 	scatter_unwielded = 20
 	damage_mult = 1.05

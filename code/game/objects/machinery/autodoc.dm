@@ -354,7 +354,7 @@
 						if(!surgery)
 							break
 						if(istype(S.organ_ref,/datum/internal_organ))
-							S.organ_ref.rejuvenate()
+							S.organ_ref.rejuvenate(TRUE)
 						else
 							visible_message("[src] speaks, Organ is missing.")
 
@@ -442,10 +442,8 @@
 							S.limb_ref.heal_limb_damage(S.limb_ref.brute_dam - 20)
 						if(!surgery)
 							break
-						S.limb_ref.limb_status &= ~LIMB_BROKEN
-						S.limb_ref.limb_status &= ~LIMB_SPLINTED
-						S.limb_ref.limb_status &= ~LIMB_STABILIZED
-						S.limb_ref.limb_status |= LIMB_REPAIRED
+						S.limb_ref.remove_limb_flags(LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED)
+						S.limb_ref.add_limb_flags(LIMB_REPAIRED)
 						S.limb_ref.perma_injury = 0
 						close_incision(occupant, S.limb_ref)
 
@@ -478,7 +476,7 @@
 
 						if(!surgery)
 							break
-						S.limb_ref.limb_status |= LIMB_AMPUTATED
+						S.limb_ref.add_limb_flags(LIMB_AMPUTATED)
 						S.limb_ref.setAmputatedTree()
 						S.limb_ref.limb_replacement_stage = 0
 
@@ -506,7 +504,7 @@
 						open_incision(occupant, S.limb_ref)
 						sleep(NECRO_REMOVE_MAX_DURATION*surgery_mod)
 						sleep(NECRO_TREAT_MAX_DURATION*surgery_mod)
-						S.limb_ref.limb_status &= ~LIMB_NECROTIZED
+						S.limb_ref.remove_limb_flags(LIMB_NECROTIZED)
 						occupant.update_body()
 
 						close_incision(occupant, S.limb_ref)
@@ -596,7 +594,7 @@
 								sleep(FACIAL_CAUTERISE_MAX_DURATION)
 								if(!surgery)
 									break
-								F.limb_status &= ~LIMB_BLEEDING
+								F.remove_limb_flags(LIMB_BLEEDING)
 								F.disfigured = 0
 								F.owner.name = F.owner.get_visible_name()
 								F.face_surgery_stage = 0
@@ -641,7 +639,7 @@
 			return
 		L.surgery_open_stage = 0
 		L.germ_level = 0
-		L.limb_status &= ~LIMB_BLEEDING
+		L.remove_limb_flags(LIMB_BLEEDING)
 		target.updatehealth()
 
 /obj/machinery/autodoc/proc/open_encased(mob/living/carbon/human/target, datum/limb/L)
@@ -680,6 +678,9 @@
 		to_chat(usr, "<span class='warning'>Access denied.</span>")
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, 1)
 		return
+	do_eject()
+
+/obj/machinery/autodoc/proc/do_eject()
 	if(occupant)
 		if(forceeject)
 			if(!surgery)
@@ -888,9 +889,9 @@
 	med_scan(H, null, implants, TRUE)
 	start_processing()
 
-obj/machinery/autodoc/Destroy()
+/obj/machinery/autodoc/Destroy()
 	forceeject = TRUE
-	eject()
+	do_eject()
 	return ..()
 
 /////////////////////////////////////////////////////////////

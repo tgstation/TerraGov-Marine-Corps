@@ -1191,12 +1191,9 @@
 /turf/open/floor/tile/dark2,
 /area/icy_caves/caves/west)
 "eF" = (
-/obj/machinery/door/airlock/mainship/secure{
+/obj/machinery/door/airlock/mainship/secure/locked/free_access{
 	dir = 4;
-	icon_state = "door_locked";
-	locked = 1;
-	name = "Mining Storage";
-	req_access_txt = "0"
+	name = "\improper Mining Storage"
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -2321,7 +2318,7 @@
 	},
 /area/icy_caves/caves/west)
 "ip" = (
-/obj/machinery/door/airlock/mainship/engineering,
+/obj/machinery/door/airlock/mainship/engineering/free_access,
 /obj/structure/cable/yellow{
 	d1 = 4;
 	d2 = 8;
@@ -2356,7 +2353,7 @@
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/engineering)
 "is" = (
-/obj/machinery/door/airlock/mainship/engineering,
+/obj/machinery/door/airlock/mainship/engineering/free_access,
 /obj/structure/cable/yellow{
 	d1 = 4;
 	d2 = 8;
@@ -2476,8 +2473,8 @@
 /obj/item/explosive/plastique,
 /obj/item/explosive/plastique,
 /obj/item/explosive/plastique,
-/obj/item/cell/lasgun/M43/highcap,
-/obj/item/cell/lasgun/M43/highcap,
+/obj/item/cell/lasgun/lasrifle/highcap,
+/obj/item/cell/lasgun/lasrifle/highcap,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/garage)
 "iF" = (
@@ -2652,10 +2649,9 @@
 /turf/closed/wall,
 /area/icy_caves/outpost/engineering)
 "jj" = (
-/obj/machinery/door/airlock/mainship/engineering{
+/obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1;
-	name = "\improper Colony Power Substation";
-	req_access_txt = "100"
+	name = "\improper Colony Power Substation"
 	},
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/engineering)
@@ -2943,7 +2939,7 @@
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/medbay)
 "jZ" = (
-/obj/machinery/door/airlock/mainship/medical,
+/obj/machinery/door/airlock/mainship/medical/free_access,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -3507,8 +3503,7 @@
 "lS" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 1;
-	name = "\improper Medical Clinic";
-	req_one_access_txt = "0"
+	name = "\improper Medical Clinic"
 	},
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/medbay)
@@ -3840,8 +3835,7 @@
 /area/icy_caves/outpost/dorms)
 "mU" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	name = "\improper Colony Dormitories Canteen";
-	req_access_txt = "100"
+	name = "\improper Colony Dormitories Canteen"
 	},
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/dorms)
@@ -4372,7 +4366,7 @@
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/dorms)
 "oL" = (
-/obj/machinery/door/airlock/mainship/security,
+/obj/machinery/door/airlock/mainship/security/free_access,
 /obj/structure/cable/yellow{
 	d1 = 4;
 	d2 = 8;
@@ -4404,8 +4398,7 @@
 "oO" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
-	name = "\improper Colony Dormitories";
-	req_access_txt = "100"
+	name = "\improper Colony Dormitories"
 	},
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/dorms)
@@ -4909,10 +4902,9 @@
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/security)
 "ql" = (
-/obj/machinery/door/airlock/mainship/security/glass{
+/obj/machinery/door/airlock/mainship/security/glass/free_access{
 	dir = 1;
-	name = "\improper Underground Security Armory";
-	req_access_txt = "100"
+	name = "\improper Underground Security Armory"
 	},
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -5095,7 +5087,6 @@
 /area/icy_caves/outpost/research)
 "qI" = (
 /obj/machinery/door/airlock/colony/research{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /turf/open/floor/tile/dark2,
@@ -5155,7 +5146,6 @@
 /area/icy_caves/outpost/research)
 "qP" = (
 /obj/machinery/door/airlock/colony/research{
-	icon_state = "door_closed";
 	dir = 1
 	},
 /obj/structure/cable/yellow{
@@ -5879,6 +5869,10 @@
 "MQ" = (
 /turf/closed/wall/r_wall,
 /area/icy_caves/caves/northern)
+"MV" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/northern)
 "Nf" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/ice,
@@ -5903,6 +5897,10 @@
 	},
 /turf/closed/ice_rock/singleEnd,
 /area/icy_caves/outpost/outside)
+"PU" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/east)
 "Ql" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area)
@@ -6006,6 +6004,14 @@
 	dir = 4
 	},
 /area/icy_caves/outpost/outside)
+"Zk" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/east)
+"Zp" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/west)
 
 (1,1,1) = {"
 aa
@@ -14175,7 +14181,7 @@ fs
 eb
 dc
 dF
-kv
+Zp
 dc
 de
 cZ
@@ -21834,7 +21840,7 @@ aJ
 aJ
 aJ
 aR
-aJ
+MV
 dm
 dP
 eh
@@ -32664,7 +32670,7 @@ ds
 ds
 ds
 fm
-ds
+PU
 fm
 ds
 ds
@@ -34755,7 +34761,7 @@ hv
 ds
 fn
 ds
-ds
+Zk
 nz
 ds
 lm

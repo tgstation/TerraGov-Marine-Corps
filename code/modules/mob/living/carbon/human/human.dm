@@ -96,87 +96,50 @@
 			stat(null, "You are affected by a FOCUS order.")
 
 /mob/living/carbon/human/ex_act(severity)
-	flash_eyes()
+	if(status_flags & GODMODE)
+		return
 
-	var/b_loss = null
-	var/f_loss = null
-	var/armor = max(0, 1 - (getarmor(null, "bomb") * 0.01))
+	var/b_loss = 0
+	var/f_loss = 0
+	var/armor = getarmor(null, "bomb") * 0.01
+
 	switch(severity)
-		if(1)
-			b_loss += rand(160, 200) * armor	//Probably instant death
-			f_loss += rand(160, 200) * armor	//Probably instant death
-
-			var/atom/target = get_edge_target_turf(src, get_dir(src, get_step_away(src, src)))
-			throw_at(target, 200, 4)
+		if(EXPLODE_DEVASTATE)
+			b_loss += rand(160, 200)
+			f_loss += rand(160, 200)
 
 			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
-				adjust_ear_damage(60 * armor, 240 * armor)
+				adjust_ear_damage(60 - (60 * armor), 240 - (240 * armor))
 
-			adjust_stagger(12 * armor)
-			add_slowdown(round(12 * armor,0.1))
-			Unconscious(160 * armor) //This should kill you outright, so if you're somehow alive I don't feel too bad if you get KOed
+			adjust_stagger(12 - (12 * armor))
+			add_slowdown((120 - round(120 * armor, 1)) * 0.01)
 
-		if(2)
-			b_loss += (rand(80, 100) * armor)	//Ouchie time. Armor makes it survivable
-			f_loss += (rand(80, 100) * armor)	//Ouchie time. Armor makes it survivable
-
-			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
-				adjust_ear_damage(30 * armor, 120 * armor)
-
-			adjust_stagger(6 * armor)
-			add_slowdown(round(6 * armor,0.1))
-			Paralyze(80 * armor)
-
-		if(3)
-			b_loss += (rand(40, 50) * armor)
-			f_loss += (rand(40, 50) * armor)
+		if(EXPLODE_HEAVY)
+			b_loss += rand(80, 100)
+			f_loss += rand(80, 100)
 
 			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
-				adjust_ear_damage(10 * armor, 30 * armor)
+				adjust_ear_damage(30 - (30 * armor), 120 - (120 * armor))
 
-			adjust_stagger(3 * armor)
-			add_slowdown(round(3 * armor,0.1))
-			Paralyze(40 * armor)
+			adjust_stagger(6 - (6 * armor))
+			add_slowdown((60 - round(60 * armor, 1)) * 0.1)
 
-	var/update = 0
+		if(EXPLODE_LIGHT)
+			b_loss += rand(40, 50)
+			f_loss += rand(40, 50)
+
+			if(!istype(wear_ear, /obj/item/clothing/ears/earmuffs))
+				adjust_ear_damage(10 - (10 * armor), 30 - (30 * armor))
+
+			adjust_stagger(3 - (3 * armor))
+			add_slowdown((30 - round(30 * armor, 1)) * 0.1)
+
 	#ifdef DEBUG_HUMAN_ARMOR
-	to_chat(src, "DEBUG EX_ACT: armor: [armor], b_loss: [b_loss], f_loss: [f_loss]")
+	to_chat(world, "DEBUG EX_ACT: armor: [armor * 100], b_loss: [b_loss], f_loss: [f_loss]")
 	#endif
-	//Focus half the blast on one organ
-	var/datum/limb/take_blast = pick(limbs)
-	update |= take_blast.take_damage_limb(b_loss * 0.5, f_loss * 0.5)
 
-	//Distribute the remaining half all limbs equally
-	b_loss *= 0.5
-	f_loss *= 0.5
-
-	for(var/datum/limb/temp in limbs)
-		switch(temp.name)
-			if("head")
-				update |= temp.take_damage_limb(b_loss * 0.2, f_loss * 0.2)
-			if("chest")
-				update |= temp.take_damage_limb(b_loss * 0.4, f_loss * 0.4)
-			if("l_arm")
-				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
-			if("r_arm")
-				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
-			if("l_leg")
-				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
-			if("r_leg")
-				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
-			if("r_foot")
-				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
-			if("l_foot")
-				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
-			if("r_arm")
-				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
-			if("l_arm")
-				update |= temp.take_damage_limb(b_loss * 0.05, f_loss * 0.05)
-	if(update)
-		UpdateDamageIcon()
-		UPDATEHEALTH(src)
-	return TRUE
-
+	take_overall_damage(b_loss, f_loss, armor * 100)
+	UPDATEHEALTH(src)
 
 /mob/living/carbon/human/attack_animal(mob/living/M as mob)
 	if(M.melee_damage == 0)
@@ -233,6 +196,7 @@
 // called when something steps onto a human
 // this handles mulebots and vehicles
 /mob/living/carbon/human/Crossed(atom/movable/AM)
+	. = ..()
 	if(istype(AM, /obj/machinery/bot/mulebot))
 		var/obj/machinery/bot/mulebot/MB = AM
 		MB.RunOver(src)
@@ -467,7 +431,7 @@
 					for(var/organ in list("l_leg","r_leg","l_arm","r_arm","r_hand","l_hand","r_foot","l_foot","chest","head","groin"))
 						var/datum/limb/o = get_limb(organ)
 						if (o && o.limb_status & LIMB_SPLINTED)
-							o.limb_status &= ~LIMB_SPLINTED
+							o.remove_limb_flags(LIMB_SPLINTED)
 							limbcount++
 					if(limbcount)
 						new /obj/item/stack/medical/splint(loc, limbcount)

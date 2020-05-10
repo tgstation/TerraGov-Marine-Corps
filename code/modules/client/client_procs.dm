@@ -335,6 +335,7 @@
 	GLOB.ahelp_tickets.ClientLogout(src)
 	GLOB.directory -= ckey
 	GLOB.clients -= src
+	seen_messages = null
 	QDEL_LIST_ASSOC_VAL(char_render_holders)
 	Master.UpdateTickRate()
 	return ..()
@@ -628,6 +629,8 @@
 	view = new_size
 	apply_clickcatcher()
 	mob.reload_fullscreens()
+	if(prefs.auto_fit_viewport)
+		addtimer(CALLBACK(src, .verb/fit_viewport, 1 SECONDS)) //Delayed to avoid wingets from Login calls.
 
 
 /client/proc/generate_clickcatcher()

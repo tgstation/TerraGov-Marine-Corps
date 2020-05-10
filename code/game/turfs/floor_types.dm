@@ -9,7 +9,7 @@
 	icon_state = "default"
 
 /turf/open/floor/mainship/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
-	if(planned_building == /turf/closed/wall/resin) //The Canterbury moves and will leave a hole in space if there's a resin wall.
+	if(ispath(planned_building, /turf/closed/wall/)) // The Canterbury moves and will leave a hole in space if there's a resin wall.
 		if(!silent)
 			to_chat(builder, "<span class='warning'>This place seems unable to support a wall.</span>")
 		return FALSE
@@ -52,9 +52,6 @@
 
 /turf/open/floor/mainship/empty/is_weedable()
 	return FALSE
-
-/turf/open/floor/mainship/empty/ex_act(severity) //Should make it indestructable
-	return
 
 /turf/open/floor/mainship/empty/fire_act(exposed_temperature, exposed_volume)
 	return
@@ -191,15 +188,6 @@
 		ChangeTurf(/turf/open/floor)
 		var/turf/open/floor/F = src
 		F.make_plating()
-
-
-/turf/open/floor/engine/ex_act(severity)
-	switch(severity)
-		if(1)
-			break_tile_to_plating()
-		if(2)
-			if(prob(25))
-				break_tile_to_plating()
 
 
 /turf/open/floor/engine/nitrogen

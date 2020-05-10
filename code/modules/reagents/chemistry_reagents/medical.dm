@@ -333,13 +333,13 @@
 	L.set_blurriness(0, TRUE)
 	L.set_blindness(0, TRUE)
 	L.SetStun(0, FALSE)
-	L.SetUnconscious(0, FALSE)
-	L.SetParalyzed(0, FALSE)
+	L.SetUnconscious(0)
+	L.SetParalyzed(0)
 	L.dizziness = 0
 	L.setDrowsyness(0)
 	L.stuttering = 0
-	L.SetConfused(0, FALSE)
-	L.SetSleeping(0, FALSE)
+	L.SetConfused(0)
+	L.SetSleeping(0)
 	L.jitteriness = 0
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
@@ -351,7 +351,6 @@
 	name = "Synaptizine"
 	description = "Synaptizine is used to treat various diseases."
 	color = "#C8A5DC" // rgb: 200, 165, 220
-	custom_metabolism = REAGENTS_METABOLISM * 0.5
 	overdose_threshold = REAGENTS_OVERDOSE/5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/5
 	scannable = TRUE
@@ -922,6 +921,7 @@
 	name = "Polyhexanide"
 	description = "A sterilizing agent designed for internal use. Powerful, but dangerous."
 	color = "#C8A5DC" // rgb: 200, 165, 220
+	custom_metabolism = REAGENTS_METABOLISM * 2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
 
@@ -1003,7 +1003,7 @@
 	name = "Roulettium"
 	description = "The concentrated essence of unga. Unsafe to ingest in any quantity"
 	color = "#19C832"
-	custom_metabolism = REAGENTS_METABOLISM * 0.25
+	custom_metabolism = REAGENTS_METABOLISM * 0.5
 	taste_description = "Poor life choices"
 
 /datum/reagent/medicine/roulettium/on_mob_life(mob/living/L, metabolism)

@@ -156,6 +156,18 @@
 		X.use_plasma(plasma_cost)
 	add_cooldown()
 
+/datum/action/xeno_action/activable/tail_sweep/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/activable/tail_sweep/ai_should_use(target)
+	if(!iscarbon(target))
+		return ..()
+	if(get_dist(target, owner) > 1)
+		return ..()
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return ..()
+	return TRUE
+
 // ***************************************
 // *********** Forward Charge
 // ***************************************
@@ -168,6 +180,25 @@
 	plasma_cost = 80
 	use_state_flags = XACT_USE_CRESTED
 	keybind_signal = COMSIG_XENOABILITY_FORWARD_CHARGE
+
+/datum/action/xeno_action/activable/forward_charge/proc/charge_complete()
+	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENO_LIVING_THROW_HIT, COMSIG_XENO_NONE_THROW_HIT))
+
+/datum/action/xeno_action/activable/forward_charge/proc/mob_hit(datum/source, mob/M)
+	if(M.stat || isxeno(M))
+		return
+	return COMPONENT_KEEP_THROWING
+
+/datum/action/xeno_action/activable/forward_charge/proc/obj_hit(datum/source, obj/target, speed)
+	var/mob/living/carbon/xenomorph/X = owner
+	if(istype(target, /obj/structure/table) || istype(target, /obj/structure/rack))
+		var/obj/structure/S = target
+		X.visible_message("<span class='danger'>[X] plows straight through [S]!</span>", null, null, 5)
+		S.deconstruct(FALSE) //We want to continue moving, so we do not reset throwing.
+		return // stay registered
+	else
+		target.hitby(X, speed) //This resets throwing.
+	charge_complete()
 
 /datum/action/xeno_action/activable/forward_charge/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -183,6 +214,10 @@
 
 /datum/action/xeno_action/activable/forward_charge/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
+
+	RegisterSignal(X, COMSIG_XENO_OBJ_THROW_HIT, .proc/obj_hit)
+	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, .proc/mob_hit)
+	RegisterSignal(X, COMSIG_XENO_NONE_THROW_HIT, .proc/charge_complete)
 
 	if(!do_after(X, 0.5 SECONDS, FALSE, X, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, .proc/can_use_ability, A, FALSE, XACT_USE_BUSY)))
 		return fail_activate()
@@ -242,7 +277,7 @@
 			to_chat(src, "<span class='xenowarning'>We tuck ourselves into a defensive stance.</span>")
 		GLOB.round_statistics.defender_crest_lowerings++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_crest_lowerings")
-		armor = armor.setRating(bomb = XENO_BOMB_RESIST_2)
+		soft_armor = soft_armor.setRating(bomb = XENO_BOMB_RESIST_2)
 		armor_bonus += xeno_caste.crest_defense_armor
 		add_movespeed_modifier(MOVESPEED_ID_CRESTDEFENSE, TRUE, 0, NONE, TRUE, DEFENDER_CRESTDEFENSE_SLOWDOWN)
 	else
@@ -250,7 +285,7 @@
 			to_chat(src, "<span class='xenowarning'>We raise our crest.</span>")
 		GLOB.round_statistics.defender_crest_raises++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_crest_raises")
-		armor = armor.setRating(bomb = XENO_BOMB_RESIST_0)
+		soft_armor = soft_armor.setRating(bomb = XENO_BOMB_RESIST_0)
 		armor_bonus -= xeno_caste.crest_defense_armor
 		remove_movespeed_modifier(MOVESPEED_ID_CRESTDEFENSE)
 	update_icons()
@@ -298,18 +333,18 @@
 	GLOB.round_statistics.defender_fortifiy_toggles++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_fortifiy_toggles")
 	if(on)
+		ADD_TRAIT(src, TRAIT_IMMOBILE, FORTIFY_TRAIT)
 		if(!silent)
 			to_chat(src, "<span class='xenowarning'>We tuck ourselves into a defensive stance.</span>")
 		armor_bonus += xeno_caste.fortify_armor
-		armor = armor.setRating(bomb = XENO_BOMB_RESIST_3)
+		soft_armor = soft_armor.setRating(bomb = XENO_BOMB_RESIST_3)
 	else
 		if(!silent)
 			to_chat(src, "<span class='xenowarning'>We resume our normal stance.</span>")
 		armor_bonus -= xeno_caste.fortify_armor
-		armor = armor.setRating(bomb = XENO_BOMB_RESIST_0)
+		soft_armor = soft_armor.setRating(bomb = XENO_BOMB_RESIST_0)
+		REMOVE_TRAIT(src, TRAIT_IMMOBILE, FORTIFY_TRAIT)
 	fortify = on
-	set_frozen(on)
 	anchored = on
-	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 30, 1)
-	update_canmove()
+	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 30, TRUE)
 	update_icons()
