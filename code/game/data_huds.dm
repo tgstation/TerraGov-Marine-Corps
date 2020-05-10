@@ -338,30 +338,8 @@
 		holder.icon_state = "sundering0"
 		return
 
-	switch(round(sunder, 1))
-		if(-INFINITY to 0)
-			holder.icon_state = "sundering0"
-		if(1 to 15)
-			holder.icon_state = "sundering10"
-		if(16 to 25)
-			holder.icon_state = "sundering20"
-		if(26 to 35)
-			holder.icon_state = "sundering30"
-		if(36 to 45)
-			holder.icon_state = "sundering40"
-		if(46 to 55)
-			holder.icon_state = "sundering50"
-		if(56 to 65)
-			holder.icon_state = "sundering60"
-		if(66 to 75)
-			holder.icon_state = "sundering70"				
-		if(76 to 85)
-			holder.icon_state = "sundering80"
-		if(86 to 95)
-			holder.icon_state = "sundering90"	
-		if(96 to INFINITY)
-			holder.icon_state = "sundering100"
-	
+	var/amount = min(round(sunder * 100 / sunder_max, 10,100)
+	holder.icon_state = "sundering[amount]"
 
 /mob/living/carbon/xenomorph/proc/hud_set_plasma()
 	if(!xeno_caste) // usually happens because hud ticks before New() finishes.
