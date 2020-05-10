@@ -24956,10 +24956,6 @@
 /obj/machinery/computer/nuke_disk_generator/blue,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"eIZ" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/outside/nw)
 "eQO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
@@ -24990,6 +24986,10 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"fgm" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/c)
 "fgX" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -25677,6 +25677,10 @@
 	dir = 6
 	},
 /area/bigredv2/outside/se)
+"nDW" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/w)
 "nFd" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -25774,10 +25778,6 @@
 	dir = 8
 	},
 /area/bigredv2/outside/w)
-"owM" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/outside/w)
 "oEN" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/tile/white,
@@ -25863,6 +25863,10 @@
 	},
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/space_port)
+"psl" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/nw)
 "ptp" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/bigred,
@@ -25953,10 +25957,6 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
-"qlr" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/outside/c)
 "qnu" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
@@ -33242,7 +33242,7 @@ aFv
 aFv
 aFv
 aQF
-owM
+nDW
 sBV
 aSB
 aVG
@@ -34483,7 +34483,7 @@ aeI
 aeI
 aeI
 aeI
-eIZ
+psl
 aeI
 aeI
 aeI
@@ -48435,7 +48435,7 @@ aKl
 aKl
 aIm
 aBR
-qlr
+fgm
 hlD
 aIn
 aIn
