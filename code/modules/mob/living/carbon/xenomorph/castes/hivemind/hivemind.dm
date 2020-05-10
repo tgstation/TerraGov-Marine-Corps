@@ -8,6 +8,7 @@
 	icon = 'icons/mob/cameramob.dmi'
 
 	status_flags = GODMODE | INCORPOREAL
+	resistance_flags = RESIST_ALL
 	density = FALSE
 	throwpass = TRUE
 
@@ -80,15 +81,9 @@
 /mob/living/carbon/xenomorph/hivemind/update_icons()
 	return FALSE
 
-/// Override hivemind can_move to stop hivemind being made dense again
-/mob/living/carbon/xenomorph/hivemind/update_canmove()
-	set_canmove(TRUE)
-	return canmove
+/mob/living/carbon/xenomorph/hivemind/set_lying_angle()
+	CRASH("Something caused a hivemind to change its lying angle. Add checks to prevent that.")
 
-/*
-These specifically override the default click actions for a hivemind
-If we want to be able to add other on click actions this would be where.
- */
 /mob/living/carbon/xenomorph/hivemind/DblClickOn(atom/A, params)
 	if(!istype(A, /obj/effect/alien/weeds))
 		return

@@ -260,12 +260,12 @@
 			var/mob/living/carbon/human/H = M //fixed :s
 
 			if(user)
-				var/area/A = get_area(user)
 				if(!user.mind?.bypass_ff && !H.mind?.bypass_ff && user.faction == H.faction)
-					log_combat(user, H, "shot", src)
-					msg_admin_ff("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with \a [name] in [ADMIN_VERBOSEJMP(A)].")
+					log_combat(user, H, "flamed", src)
+					log_ffattack("[key_name(user)] flamed [key_name(H)] with \a [name] in [AREACOORD(T)].")
+					msg_admin_ff("[ADMIN_TPMONTY(user)] flamed [ADMIN_TPMONTY(H)] with \a [name] in [ADMIN_VERBOSEJMP(T)].")
 				else
-					log_combat(user, H, "shot", src)
+					log_combat(user, H, "flamed", src)
 
 			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || (istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(H.head, /obj/item/clothing/head/helmet/marine/pyro)))
 				continue
@@ -502,6 +502,7 @@
 	return ..()
 
 /obj/flamer_fire/Crossed(mob/living/M) //Only way to get it to reliable do it when you walk into it.
+	. = ..()
 	if(istype(M))
 		M.flamer_fire_crossed(burnlevel, firelevel)
 

@@ -129,13 +129,12 @@
 		if(ITEM_UNEQUIP_DROPPED)
 			return
 		if(ITEM_UNEQUIP_UNEQUIPPED)
-			if(I.flags_armor_protection)
-				remove_limb_armor(I)
 			return
 	if(I == wear_suit)
 		if(s_store)
 			dropItemToGround(s_store)
 		wear_suit = null
+		I.unequipped(src, SLOT_WEAR_SUIT)
 		if(I.flags_inv_hide & HIDESHOES)
 			update_inv_shoes()
 		if(I.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR) )
@@ -154,6 +153,7 @@
 		if(wear_suit && istype(wear_suit, /obj/item/clothing/suit))
 			dropItemToGround(wear_suit)
 		w_uniform = null
+		I.unequipped(src, SLOT_W_UNIFORM)
 		update_suit_sensors()
 		update_inv_w_uniform()
 		. = ITEM_UNEQUIP_UNEQUIPPED
@@ -162,6 +162,7 @@
 		if(head.flags_inv_hide & HIDEFACE)
 			updatename = 1
 		head = null
+		I.unequipped(src, SLOT_HEAD)
 		if(updatename)
 			name = get_visible_name()
 		if(I.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR))
@@ -176,10 +177,12 @@
 		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == gloves)
 		gloves = null
+		I.unequipped(src, SLOT_GLOVES)
 		update_inv_gloves()
 		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == glasses)
 		glasses = null
+		I.unequipped(src, SLOT_GLASSES)
 		var/obj/item/clothing/glasses/G = I
 		if(G.vision_flags || G.darkness_view || G.invis_override || G.invis_view || !isnull(G.lighting_alpha))
 			update_sight()
@@ -188,43 +191,40 @@
 		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == wear_ear)
 		wear_ear = null
+		I.unequipped(src, SLOT_EARS)
 		update_inv_ears()
 		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == shoes)
 		shoes = null
+		I.unequipped(src, SLOT_SHOES)
 		update_inv_shoes()
 		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == belt)
 		belt = null
+		I.unequipped(src, SLOT_BELT)
 		update_inv_belt()
 		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == wear_id)
 		wear_id = null
+		I.unequipped(src, SLOT_WEAR_ID)
 		update_inv_wear_id()
 		name = get_visible_name()
 		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == r_store)
 		r_store = null
+		I.unequipped(src, SLOT_R_STORE)
 		update_inv_pockets()
 		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == l_store)
 		l_store = null
+		I.unequipped(src, SLOT_L_STORE)
 		update_inv_pockets()
 		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == s_store)
 		s_store = null
+		I.unequipped(src, SLOT_S_STORE)
 		update_inv_s_store()
 		. = ITEM_UNEQUIP_UNEQUIPPED
-
-	if(. == ITEM_UNEQUIP_UNEQUIPPED)
-		if(I.flags_armor_protection)
-			remove_limb_armor(I)
-		if(I.slowdown)
-			remove_movespeed_modifier(I.type)
-		if(isclothing(I))
-			var/obj/item/clothing/unequipped_clothing = I
-			if(unequipped_clothing.accuracy_mod)
-				adjust_mob_accuracy(-unequipped_clothing.accuracy_mod)
 
 
 /mob/living/carbon/human/wear_mask_update(obj/item/I, equipping)
@@ -250,6 +250,7 @@
 
 	if(W == l_hand)
 		l_hand = null
+		W.unequipped(src, SLOT_L_HAND)
 		update_inv_l_hand()
 		//removes item's actions, may be readded once re-equipped to the new slot
 		for(var/X in W.actions)
@@ -258,6 +259,7 @@
 
 	else if(W == r_hand)
 		r_hand = null
+		W.unequipped(src, SLOT_R_HAND)
 		update_inv_r_hand()
 		//removes item's actions, may be readded once re-equipped to the new slot
 		for(var/X in W.actions)
@@ -411,15 +413,6 @@
 			S.handle_item_insertion(W, FALSE, src)
 		else
 			CRASH("[src] tried to equip [W] to [slot] in equip_to_slot().")
-
-	if(W.flags_armor_protection)
-		add_limb_armor(W)
-	if(W.slowdown)
-		add_movespeed_modifier(W.type, TRUE, 0, NONE, TRUE, W.slowdown)
-	if(isclothing(W))
-		var/obj/item/clothing/equipped_clothing = W
-		if(equipped_clothing.accuracy_mod)
-			adjust_mob_accuracy(equipped_clothing.accuracy_mod)
 
 	return TRUE
 

@@ -6475,7 +6475,7 @@
 /area/hallway/secondary/entry)
 "avs" = (
 /obj/structure/window/framed/colony,
-/obj/item/storage/fancy/cigarettes/lucky_strikes{
+/obj/item/storage/fancy/cigarettes/luckystars{
 	pixel_x = 31
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -7399,8 +7399,7 @@
 /obj/machinery/door_control{
 	id = "areslockdowninterior";
 	name = "ARES Lockdown";
-	pixel_x = -25;
-	req_one_access_txt = "19"
+	pixel_x = -25
 	},
 /mob/living/silicon/decoy/ship_ai,
 /turf/open/floor/tile/dark/brown2/corner,
@@ -11144,8 +11143,7 @@
 	},
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 1;
-	name = "\improper Medical Clinic Treatment";
-	req_one_access_txt = "0"
+	name = "\improper Medical Clinic Treatment"
 	},
 /turf/open/floor/tile/white/warningstripe{
 	dir = 4
@@ -11695,8 +11693,7 @@
 	},
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 1;
-	name = "\improper Medical Clinic Treatment";
-	req_one_access_txt = "0"
+	name = "\improper Medical Clinic Treatment"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -11820,8 +11817,7 @@
 /area/medical/biostorage)
 "aMP" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	name = "\improper Medical Clinic Treatment";
-	req_one_access_txt = "0"
+	name = "\improper Medical Clinic Treatment"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -11923,8 +11919,7 @@
 	},
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 1;
-	name = "\improper Medical Clinic Treatment";
-	req_one_access_txt = "0"
+	name = "\improper Medical Clinic Treatment"
 	},
 /obj/machinery/door/firedoor,
 /turf/open/floor/tile/white/warningstripe{
@@ -12050,8 +12045,7 @@
 /area/maintenance/substation)
 "aND" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	name = "\improper Medical Clinic Treatment";
-	req_one_access_txt = "0"
+	name = "\improper Medical Clinic Treatment"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -12240,10 +12234,9 @@
 /area/medical/reception)
 "aOh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/mainship/medical/glass{
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1;
-	name = "\improper Medical Clinic";
-	req_one_access_txt = "0"
+	name = "\improper Medical Clinic"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -19522,8 +19515,7 @@
 /area/hallway/primary/starboard)
 "bhJ" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	name = "\improper Medical Clinic Treatment";
-	req_one_access_txt = "0"
+	name = "\improper Medical Clinic Treatment"
 	},
 /obj/machinery/door/firedoor,
 /turf/open/floor/tile/white,

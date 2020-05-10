@@ -39,10 +39,12 @@
 	if(!l_hand)
 		W.forceMove(src)
 		l_hand = W
+		W.equipped(src,SLOT_L_HAND)
 		W.layer = ABOVE_HUD_LAYER
 		W.plane = ABOVE_HUD_PLANE
-		W.equipped(src,SLOT_L_HAND)
 		update_inv_l_hand()
+		W.pixel_x = initial(W.pixel_x)
+		W.pixel_y = initial(W.pixel_y)
 		return TRUE
 	return FALSE
 
@@ -64,10 +66,12 @@
 	if(!r_hand)
 		W.forceMove(src)
 		r_hand = W
+		W.equipped(src,SLOT_R_HAND)
 		W.layer = ABOVE_HUD_LAYER
 		W.plane = ABOVE_HUD_PLANE
-		W.equipped(src,SLOT_R_HAND)
 		update_inv_r_hand()
+		W.pixel_x = initial(W.pixel_x)
+		W.pixel_y = initial(W.pixel_y)
 		return TRUE
 	return FALSE
 
@@ -188,19 +192,41 @@
 	drop_r_hand()
 	drop_l_hand()
 
-//drop the inventory item on a specific location
-/mob/proc/transferItemToLoc(obj/item/I, atom/newloc, nomoveupdate, force)
-	return UnEquip(I, newloc, nomoveupdate, force)
+/**
+  * Used to drop an item (if it exists) to the ground.
+  * * Will return TRUE is successfully dropped.
+  * * Will return FALSE if the item can not be dropped due to TRAIT_NODROP via doUnEquip().
+  * * Will return null if there is no item.
+  * If the item can be dropped, it will be forceMove()'d to the ground and the turf's Entered() will be called.
+*/
+/mob/proc/dropItemToGround(obj/item/I, force = FALSE)
+	. = UnEquip(I, force, drop_location())
+	if(.)
+		I.pixel_x = rand(-6,6)
+		I.pixel_y = rand(-6,6)
 
-//drop the inventory item on the ground
-/mob/proc/dropItemToGround(obj/item/I, nomoveupdate, force)
-	return UnEquip(I, loc, nomoveupdate, force)
+/**
+  * For when the item will be immediately placed in a loc other than the ground.
+*/
+/mob/proc/transferItemToLoc(obj/item/I, atom/newloc, force = FALSE)
+	return UnEquip(I, force, newloc)
 
-//Never use this proc directly. nomoveupdate is used when we don't want the item to react to
-// its new loc (e.g.triggering mousetraps)
-/mob/proc/UnEquip(obj/item/I, atom/newloc, nomoveupdate, force)
+/**
+  *Removes an item on a mob's inventory.
+  * * It does not change the item's loc, just unequips it from the mob.
+  * * Used just before you want to delete the item, or moving it afterwards.
+*/
+/mob/proc/temporarilyRemoveItemFromInventory(obj/item/I, force = FALSE)
+	return UnEquip(I, force)
+
+/**
+  * DO NOT CALL THIS PROC
+  * * Use one of the above 3 helper procs.
+  * * You may override it, but do not modify the args.
+*/
+/mob/proc/UnEquip(obj/item/I, force, atom/newloc)
 	if(!I)
-		return TRUE
+		return
 
 	if((I.flags_item & NODROP) && !force)
 		return FALSE //UnEquip() only fails if item has NODROP
@@ -212,10 +238,7 @@
 	I.layer = initial(I.layer)
 	I.plane = initial(I.plane)
 	if(newloc)
-		if(!nomoveupdate)
-			I.forceMove(newloc)
-		else
-			I.loc = newloc
+		I.forceMove(newloc)
 	I.dropped(src)
 
 	return TRUE
@@ -224,19 +247,15 @@
 /mob/proc/doUnEquip(obj/item/I)
 	if(I == r_hand)
 		r_hand = null
+		I.unequipped(src, SLOT_R_HAND)
 		update_inv_r_hand()
 		return ITEM_UNEQUIP_DROPPED
 	else if (I == l_hand)
 		l_hand = null
+		I.unequipped(src, SLOT_L_HAND)
 		update_inv_l_hand()
 		return ITEM_UNEQUIP_DROPPED
 	return ITEM_UNEQUIP_FAIL
-
-
-//Remove an item on a mob's inventory.  It does not change the item's loc, just unequips it from the mob.
-//Used just before you want to delete the item, or moving it afterwards.
-/mob/proc/temporarilyRemoveItemFromInventory(obj/item/I, force)
-	return UnEquip(I, force = force)
 
 
 //Outdated but still in use apparently. This should at least be a human proc.

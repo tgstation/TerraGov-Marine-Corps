@@ -36,7 +36,7 @@
 
 
 /obj/item/grab/attack_self(mob/living/user)
-	if(!ismob(grabbed_thing) || user.action_busy)
+	if(!isliving(grabbed_thing) || user.action_busy)
 		return
 
 	if(!ishuman(user)) //only humans can reinforce a grab.
@@ -52,13 +52,15 @@
 	user.changeNext_move(CLICK_CD_GRABBING)
 	if(!do_mob(user, victim, 2 SECONDS, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(user, /datum/.proc/Adjacent, victim)) || !user.pulling)
 		return
-	user.advance_grab_state(victim)
+	user.advance_grab_state()
 	if(user.grab_state == GRAB_NECK)
 		RegisterSignal(victim, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
-	victim.update_canmove()
 
 
-/mob/living/proc/advance_grab_state(mob/living/victim)
+/mob/living/proc/advance_grab_state()
+	if(!isliving(pulling))
+		CRASH("advance_grab_state() called without a living pulling victim")
+	var/mob/living/victim = pulling
 	playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
 	setGrabState(grab_state + 1)
 	switch(grab_state)
@@ -80,7 +82,6 @@
 			to_chat(victim, "<span class='userdanger'>[src] grabs you by the neck!</span>")
 			victim.drop_all_held_items()
 			ENABLE_BITFIELD(victim.restrained_flags, RESTRAINED_NECKGRAB)
-			victim.update_canmove()
 			if(!victim.buckled && !victim.density)
 				victim.Move(loc)
 		if(GRAB_KILL)
@@ -92,7 +93,6 @@
 			to_chat(victim, "<span class='userdanger'>[src] is strangling you!</span>")
 			victim.drop_all_held_items()
 			ENABLE_BITFIELD(victim.restrained_flags, RESTRAINED_NECKGRAB)
-			victim.update_canmove()
 			if(!victim.buckled && !victim.density)
 				victim.Move(loc)
 	set_pull_offsets(victim)

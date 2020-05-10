@@ -38,7 +38,7 @@
 	var/amount_grown = 0
 	var/poison_type = /datum/reagent/toxin
 	var/poison_per_bite = 5
-	var/list/faction = list("spiders")
+	var/faction = FACTION_SPIDER
 
 
 /obj/structure/spider/eggcluster/Initialize()
@@ -69,7 +69,7 @@
 	var/grow_as = null
 	var/obj/machinery/atmospherics/components/unary/vent_pump/entry_vent
 	var/travelling_in_vent = 0
-	var/list/faction = "Spiders"
+	var/faction = FACTION_SPIDER
 
 
 /obj/structure/spider/spiderling/Initialize()
@@ -147,7 +147,7 @@
 				else
 					grow_as = pick(/mob/living/simple_animal/hostile/poison/giant_spider, /mob/living/simple_animal/hostile/poison/giant_spider/hunter, /mob/living/simple_animal/hostile/poison/giant_spider/nurse)
 			var/mob/living/simple_animal/hostile/poison/giant_spider/S = new grow_as(loc)
-			S.faction = faction.Copy()
+			S.faction = faction
 			qdel(src)
 
 

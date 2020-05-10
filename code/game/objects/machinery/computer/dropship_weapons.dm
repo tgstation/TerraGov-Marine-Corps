@@ -33,6 +33,7 @@
 		var/obj/effect/overlay/temp/laser_target/LT = X
 		var/area/laser_area = get_area(LT)
 		.["targets_data"] += list(list("target_name" = "[LT.name] ([laser_area.name])", "target_tag" = LT.target_id))
+	shuttle_equipments = shuttle.equipments
 	var/element_nbr = 1
 	for(var/X in shuttle.equipments)
 		var/obj/structure/dropship_equipment/E = X
