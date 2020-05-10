@@ -161,7 +161,7 @@ window "mapwindow"
 		is-default = true
 		saved-params = "icon-size"
 		zoom-mode = distort
-
+		style=".center { text-align: center; } .maptext { font-family: 'Small Fonts'; font-size: 7px; -dm-text-outline: 1px black; color: white; line-height: 1.1; } .command_headset { font-weight: bold; font-size: 8px; } .small, .italics { font-size: 6px; } .big, .reallybig, .extremelybig { font-size: 8px; } .yell { font-weight: bold; }"
 
 window "infowindow"
 	elem "infowindow"
