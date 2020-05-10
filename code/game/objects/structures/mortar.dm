@@ -268,7 +268,7 @@
 
 /obj/item/mortal_shell/he/detonate(turf/T)
 
-	explosion(T, 0, 3, 5, 7)
+	explosion(T, 0, 3, 6, 7)
 
 /obj/item/mortal_shell/incendiary
 	name = "\improper 80mm incendiary mortar shell"
@@ -277,7 +277,7 @@
 
 /obj/item/mortal_shell/incendiary/detonate(turf/T)
 
-	explosion(T, 0, 2, 4, 7)
+	explosion(T, 0, 2, 5, 7, throw_range = 0)
 	flame_radius(3, T)
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
@@ -293,7 +293,7 @@
 
 /obj/item/mortal_shell/smoke/detonate(turf/T)
 
-	explosion(T, 0, 1, 2, 7)
+	explosion(T, 0, 1, 3, 7, throw_range = 0)
 	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
 	forceMove(T) //AAAAAAAA
 	smoke.set_up(6, T, 7)
@@ -308,7 +308,7 @@
 
 /obj/item/mortal_shell/flash/detonate(turf/T)
 
-	explosion(T, 0, 1, 2, 7)
+	explosion(T, 0, 1, 2, 7, throw_range = 0)
 	var/obj/item/explosive/grenade/flashbang/flash = new(T)
 	flash.icon_state = ""
 	flash.prime()

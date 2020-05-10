@@ -7,17 +7,15 @@
 	if(status_flags & GODMODE)
 		return
 
-	flash_eyes()
-
-	if(severity < 3)
+	if(severity < EXPLODE_LIGHT) //Actually means higher.
 		for(var/i in stomach_contents)
 			var/mob/living/carbon/prey = i
 			prey.ex_act(severity + 1)
-	var/bomb_armor = armor.getRating("bomb")
+	var/bomb_armor = soft_armor.getRating("bomb")
 	var/b_loss = 0
 	var/f_loss = 0
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			switch(bomb_armor)
 				if(XENO_BOMB_RESIST_4 to INFINITY)
 					add_slowdown(2)
@@ -29,18 +27,16 @@
 				if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
 					b_loss = rand(75, 85)
 					f_loss = rand(75, 85)
-					Paralyze(12 SECONDS)
 					adjust_stagger(4)
 					add_slowdown(4)
 				if(XENO_BOMB_RESIST_1 to XENO_BOMB_RESIST_2)
 					b_loss = rand(80, 90)
 					f_loss = rand(80, 90)
-					Paralyze(16 SECONDS)
 					adjust_stagger(5)
 					add_slowdown(5)
 				else //Lower than XENO_BOMB_RESIST_1
 					return gib()
-		if(2)
+		if(EXPLODE_HEAVY)
 			switch(bomb_armor)
 				if(XENO_BOMB_RESIST_4 to INFINITY)
 					add_slowdown(1)
@@ -52,22 +48,19 @@
 				if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
 					b_loss = rand(55, 55)
 					f_loss = rand(55, 55)
-					Paralyze(80)
 					adjust_stagger(1)
 					add_slowdown(3)
 				if(XENO_BOMB_RESIST_1 to XENO_BOMB_RESIST_2)
 					b_loss = rand(60, 70)
 					f_loss = rand(60, 70)
-					Paralyze(12 SECONDS)
 					adjust_stagger(4)
 					add_slowdown(4)
 				else //Lower than XENO_BOMB_RESIST_1
 					b_loss = rand(65, 75)
 					f_loss = rand(65, 75)
-					Paralyze(16 SECONDS)
 					adjust_stagger(5)
 					add_slowdown(5)
-		if(3)
+		if(EXPLODE_LIGHT)
 			switch(bomb_armor)
 				if(XENO_BOMB_RESIST_4 to INFINITY)
 					return //Immune
@@ -77,18 +70,15 @@
 				if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
 					b_loss = rand(35, 45)
 					f_loss = rand(35, 45)
-					ParalyzeNoChain(40)
 					add_slowdown(1)
 				if(XENO_BOMB_RESIST_1 to XENO_BOMB_RESIST_2)
 					b_loss = rand(40, 50)
 					f_loss = rand(40, 50)
-					ParalyzeNoChain(60)
 					adjust_stagger(2)
 					add_slowdown(2)
 				else //Lower than XENO_BOMB_RESIST_1
 					b_loss = rand(45, 55)
 					f_loss = rand(45, 55)
-					ParalyzeNoChain(80)
 					adjust_stagger(4)
 					add_slowdown(4)
 

@@ -64,6 +64,7 @@
 /datum/action/xeno_action/activable/pounce/hunter
 	plasma_cost = 20
 	range = 7
+	freeze_on_hit_time = 2 SECONDS
 
 /datum/action/xeno_action/activable/pounce/hunter/prepare_to_pounce()
 	. = ..()
