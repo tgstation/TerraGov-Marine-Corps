@@ -387,17 +387,15 @@
 
 		qdel(H)
 
-/obj/machinery/disposal/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover, /obj/item) && mover.throwing)
-		var/obj/item/I = mover
+/obj/machinery/disposal/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(isitem(mover) && mover.throwing)
 		if(prob(75))
-			I.loc = src
-			visible_message("<span class='notice'>[I] lands into [src].</span>")
+			mover.forceMove(src)
+			visible_message("<span class='notice'>[mover] lands into [src].</span>")
 		else
-			visible_message("<span class='warning'>[I] bounces off of [src]'s rim!</span>")
-		return 0
-	else
-		return ..()
+			visible_message("<span class='warning'>[mover] bounces off of [src]'s rim!</span>")
+
 
 //Virtual disposal object, travels through pipes in lieu of actual items
 //Contents will be items flushed by the disposal, this allows the gas flushed to be tracked

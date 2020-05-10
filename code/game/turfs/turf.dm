@@ -609,17 +609,6 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 	return DIRT_TYPE_SNOW
 
 
-
-
-
-
-
-/turf/CanPass(atom/movable/mover, turf/target)
-	if(!target) return 0
-
-	if(istype(mover)) // turf/Enter(...) will perform more advanced checks
-		return !density
-
 GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	/turf/open/space,
 	/turf/baseturf_bottom,

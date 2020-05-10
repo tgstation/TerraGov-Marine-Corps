@@ -1,3 +1,13 @@
+/mob/living/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(status_flags & INCORPOREAL)
+		return TRUE
+	if((mover.pass_flags & PASSMOB))
+		return TRUE
+	if(buckled == mover)
+		return TRUE
+
+
 /mob/living/proc/update_pull_movespeed()
 	if(!pulling?.drag_delay)
 		remove_movespeed_modifier(MOVESPEED_ID_BULKY_DRAGGING)

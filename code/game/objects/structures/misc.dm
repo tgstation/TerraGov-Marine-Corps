@@ -172,7 +172,7 @@ obj/item/alienjar
 
 	if(isliving(mover)) // You Shall Not Pass!
 		var/mob/living/living_mover = mover
-		if(!living_mover.lying_angle && M.mob_size > MOB_SIZE_SMALL)  //If your not laying down, or a small creature, no pass.
+		if(!living_mover.lying_angle && living_mover.mob_size > MOB_SIZE_SMALL)  //If your not laying down, or a small creature, no pass.
 			return FALSE
 
 

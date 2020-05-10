@@ -133,12 +133,11 @@
 	start_processing()
 
 
-/obj/machinery/portable_atmospherics/hydroponics/CanPass(atom/movable/mover, turf/target)
-	if(!density) return 1
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return 1
-	else
-		return 0
+/obj/machinery/portable_atmospherics/hydroponics/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(mover.flags_pass & PASSTABLE)
+		return TRUE
+
 
 /obj/machinery/portable_atmospherics/hydroponics/process()
 

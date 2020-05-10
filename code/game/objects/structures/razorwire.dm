@@ -196,10 +196,11 @@
 	update_icon()
 
 
-/obj/structure/razorwire/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGRILLE))
+/obj/structure/razorwire/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(mover.flags_pass & PASSGRILLE)
 		return TRUE
-	if(mover.throwing && istype(mover,/obj/item))
+	if(mover.throwing && isitem(mover))
 		return TRUE
 	if(istype(mover, /obj/vehicle/multitile))
 		visible_message("<span class='danger'>[mover] drives over and destroys [src]!</span>")

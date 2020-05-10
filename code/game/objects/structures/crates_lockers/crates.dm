@@ -18,16 +18,16 @@
 		return 0
 	return 1
 
-/obj/structure/closet/crate/CanPass(atom/movable/mover, turf/target)
-	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
-		return 1
+/obj/structure/closet/crate/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(mover.flags_pass & PASSTABLE)
+		return TRUE
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
 	if(S && S.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border objects allow you to universally climb over others
-		return 1
+		return TRUE
 	if(opened) //Open crate, you can cross over it
-		return 1
-	else
-		return 0
+		return TRUE
+
 
 /obj/structure/closet/crate/open()
 	if(opened)
