@@ -79,6 +79,7 @@
 
 /datum/game_mode/proc/post_setup()
 	addtimer(CALLBACK(src, .proc/display_roundstart_logout_report), ROUNDSTART_LOGOUT_REPORT_TIME)
+	spawn_roundstart_weapons()
 	if(!SSdbcore.Connect())
 		return
 	var/sql
@@ -92,7 +93,7 @@
 		var/datum/DBQuery/query_round_game_mode = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET [sql] WHERE id = [GLOB.round_id]")
 		query_round_game_mode.Execute()
 		qdel(query_round_game_mode)
-	spawn_roundstart_weapons()
+
 
 /datum/game_mode/proc/spawn_roundstart_weapons()
 	for(var/i in GLOB.weapon_spawn_list)

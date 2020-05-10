@@ -6,7 +6,6 @@
 /obj/effect/landmark/weapon_spawn/proc/choose_weapon()
 	weapon_to_spawn = pick(weapon_list)
 
-	to_chat(world, "ahhhhahhahahahah why aren't you spawning?")
 	new weapon_to_spawn (get_turf(src))
 
 	if(isgun(weapon_to_spawn))
