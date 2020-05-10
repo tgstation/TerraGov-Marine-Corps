@@ -225,7 +225,7 @@
 
 	var/atom/new_resin
 
-	if(X.selected_resin == /turf/closed/wall/resin/regenerating)
+	if(ispath(X.selected_resin, /turf)) // We should change turfs, not spawn them in directly
 		T.ChangeTurf(X.selected_resin)
 		new_resin = T
 	else
