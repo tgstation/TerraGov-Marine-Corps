@@ -516,11 +516,7 @@
 /area/whiskey_outpost)
 "bE" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/eastleft{
-	icon_state = "left";
-	dir = 1;
-	req_one_access_txt = "2;21"
-	},
+/obj/machinery/door/window/northleft,
 /obj/machinery/door/window/westright{
 	icon_state = "right";
 	dir = 2
@@ -597,10 +593,7 @@
 	},
 /area/whiskey_outpost)
 "bQ" = (
-/obj/machinery/door/airlock/mainship/medical{
-	dir = 1;
-	name = "Operating Theatre 1"
-	},
+/obj/machinery/door/airlock/mainship/medical/or/or1,
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
@@ -1485,7 +1478,7 @@
 /area/whiskey_outpost)
 "eA" = (
 /obj/structure/table,
-/obj/item/storage/fancy/cigarettes/lucky_strikes,
+/obj/item/storage/fancy/cigarettes/luckystars,
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
 "eC" = (
@@ -1961,7 +1954,7 @@
 /area/whiskey_outpost)
 "fK" = (
 /obj/structure/table,
-/obj/item/storage/fancy/cigarettes/lucky_strikes,
+/obj/item/storage/fancy/cigarettes/luckystars,
 /obj/item/tool/lighter/zippo,
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
@@ -2221,9 +2214,8 @@
 /turf/open/ground/grass,
 /area/whiskey_outpost/outside/north)
 "gK" = (
-/obj/machinery/door/airlock/mainship/medical{
-	dir = 1;
-	name = "Operating Theatre 2"
+/obj/machinery/door/airlock/mainship/medical/or/or2{
+	dir = 1
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -4630,11 +4622,8 @@
 /turf/open/floor/plating,
 /area/whiskey_outpost)
 "qa" = (
-/obj/machinery/door/airlock/mainship/medical/glass{
-	dir = 2;
-	name = "\improper Chemistry Laboratory";
-	req_access_txt = "20";
-	req_one_access_txt = "0"
+/obj/machinery/door/airlock/mainship/medical/glass/chemistry{
+	dir = 2
 	},
 /turf/open/floor/plating,
 /area/whiskey_outpost)

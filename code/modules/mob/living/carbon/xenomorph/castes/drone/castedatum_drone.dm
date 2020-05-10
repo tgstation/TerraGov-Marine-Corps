@@ -22,7 +22,7 @@
 	plasma_gain = 25
 
 	// *** Health *** //
-	max_health = 150
+	max_health = 175
 
 	// *** Evolution *** //
 	evolution_threshold = 80
@@ -36,7 +36,7 @@
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 
 	// *** Defense *** //
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 	// *** Pheromones *** //
 	aura_strength = 1 //Drone's aura is the weakest. At the top of their evolution, it's equivalent to a Young Queen Climbs by 0.5 to 2
@@ -82,13 +82,13 @@
 	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 180
+	max_health = 200
 
 	// *** Evolution *** //
 	upgrade_threshold = 120
 
 	// *** Defense *** //
-	armor = list("melee" = 17, "bullet" = 17, "laser" = 17, "energy" = 17, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
+	soft_armor = list("melee" = 17, "bullet" = 17, "laser" = 17, "energy" = 17, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
 
 	// *** Pheromones *** //
 	aura_strength = 1.5
@@ -113,13 +113,13 @@
 	plasma_gain = 35
 
 	// *** Health *** //
-	max_health = 185
+	max_health = 225
 
 	// *** Evolution *** //
 	upgrade_threshold = 240
 
 	// *** Defense *** //
-	armor = list("melee" = 24, "bullet" = 24, "laser" = 24, "energy" = 24, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	soft_armor = list("melee" = 24, "bullet" = 24, "laser" = 24, "energy" = 24, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 
 	// *** Pheromones *** //
 	aura_strength = 1.8
@@ -144,10 +144,10 @@
 	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 205
+	max_health = 250
 
 	// *** Defense *** //
-	armor = list("melee" = 31, "bullet" = 31, "laser" = 31, "energy" = 31, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
+	soft_armor = list("melee" = 31, "bullet" = 31, "laser" = 31, "energy" = 31, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 
 	// *** Pheromones *** //
 	aura_strength = 2

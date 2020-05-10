@@ -6,11 +6,11 @@
 
 /obj/structure/resin/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			take_damage(210)
-		if(2)
+		if(EXPLODE_HEAVY)
 			take_damage(140)
-		if(3)
+		if(EXPLODE_LIGHT)
 			take_damage(70)
 
 /obj/structure/resin/attack_hand(mob/living/user)

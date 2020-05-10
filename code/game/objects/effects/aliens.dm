@@ -55,8 +55,8 @@
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
 
-/obj/effect/xenomorph/spray/Crossed(AM as mob|obj)
-	..()
+/obj/effect/xenomorph/spray/Crossed(atom/movable/AM)
+	. = ..()
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		var/armor_block

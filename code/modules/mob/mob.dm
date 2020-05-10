@@ -12,7 +12,7 @@
 	ghostize()
 	clear_fullscreens()
 	if(mind)
-		stack_trace("Found a reference to an undeleted mind in mob/Destroy()")
+		stack_trace("Found a reference to an undeleted mind in mob/Destroy(). Mind name: [mind.name]. Mind mob: [mind.current]")
 		mind = null
 	if(hud_used)
 		QDEL_NULL(hud_used)
@@ -347,7 +347,7 @@
 		put_in_hands(W)
 		return TRUE
 	else
-		UnEquip(I)
+		temporarilyRemoveItemFromInventory(I)
 		put_in_hands(I)
 		return TRUE
 
@@ -552,10 +552,6 @@
 	if(restrained())
 		return FALSE
 	return TRUE
-
-//Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
-/mob/proc/update_canmove()
-	return
 
 
 /mob/proc/facedir(ndir)
@@ -844,14 +840,24 @@
 /// Updates the grab state of the mob and updates movespeed
 /mob/setGrabState(newstate)
 	. = ..()
+	if(isnull(.))
+		return
 	if(grab_state == GRAB_PASSIVE)
 		remove_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE)
+	else if(. == GRAB_PASSIVE)
+		add_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE, TRUE, 100, NONE, TRUE, grab_state * 3)
+
+/mob/set_throwing(new_throwing)
+	. = ..()
+	if(isnull(.))
 		return
-	add_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE, TRUE, 100, NONE, TRUE, grab_state * 3)
+	if(throwing)
+		ADD_TRAIT(src, TRAIT_IMMOBILE, THROW_TRAIT)
+	else
+		REMOVE_TRAIT(src, TRAIT_IMMOBILE, THROW_TRAIT)
 
 /mob/proc/set_stat(new_stat)
 	if(new_stat == stat)
 		return
 	. = stat //old stat
 	stat = new_stat
-	update_canmove()

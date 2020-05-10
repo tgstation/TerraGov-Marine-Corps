@@ -17,14 +17,14 @@
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		return
 	switch(severity)
-		if(1.0)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
 			return
-		if(2.0)
+		if(EXPLODE_HEAVY)
 			if(prob(50))
 				qdel(src)
 				return
-		if(3.0)
+		if(EXPLODE_LIGHT)
 			return
 
 /obj/structure/Initialize()

@@ -32,21 +32,17 @@
 
 /obj/structure/reagent_dispensers/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-			return
-		if(2.0)
+		if(EXPLODE_HEAVY)
 			if (prob(50))
-				new /obj/effect/particle_effect/water(src.loc)
+				new /obj/effect/particle_effect/water(loc)
 				qdel(src)
-				return
-		if(3.0)
+		if(EXPLODE_LIGHT)
 			if (prob(5))
-				new /obj/effect/particle_effect/water(src.loc)
+				new /obj/effect/particle_effect/water(loc)
 				qdel(src)
-				return
-		else
-	return
+
 
 /obj/structure/reagent_dispensers/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSTABLE))
@@ -163,13 +159,12 @@
 		return
 	exploding = TRUE
 	if (reagents.total_volume > 500)
-		explosion(src.loc,0,0,3, flame_range = 4)
+		explosion(loc, light_impact_range = 4, flame_range = 4)
 	else if (reagents.total_volume > 100)
-		explosion(src.loc,0,0,2, flame_range = 3)
+		explosion(loc, light_impact_range = 3, flame_range = 3)
 	else
-		explosion(src.loc,0,0,1, flame_range = 2)
-	if(src)
-		qdel(src)
+		explosion(loc, light_impact_range = 2, flame_range = 2)
+	qdel(src)
 
 /obj/structure/reagent_dispensers/fueltank/fire_act(temperature, volume)
 	if(temperature > T0C+500)
