@@ -641,6 +641,7 @@
 			if(time_left <= SHUTTLE_RIPPLE_TIME && use_ripples == SHUTTLE_ARRIVING)
 				create_ripples(destination, time_left)
 
+		if(SHUTTLE_PREARRIVAL)
 			if(time_left <= SHUTTLE_PRE_CRASH_TIME && crashing && pre_crash_status == SHUTTLE_ARRIVING && !istype(destination, /obj/docking_port/stationary/transit))
 				destination.pre_crash_impact()
 				pre_crash_impact()
