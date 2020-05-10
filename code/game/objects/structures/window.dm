@@ -67,6 +67,7 @@
 
 
 /obj/structure/window/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
 	if(mover.flags_pass & PASSGLASS)
 		return TRUE
 	if(is_full_window())
