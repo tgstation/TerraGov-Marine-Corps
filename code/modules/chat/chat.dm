@@ -213,8 +213,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 //Called by js client on js error
 /datum/chatSystem/proc/debug(error)
-	to_chat(world, "FUCK: [error]")
-	log_world("Client: [(src.owner.key ? src.owner.key : src.owner)] Error: [error]")
+	log_world("Client: [(src.owner.key ? src.owner.key : src.owner)] JS Error: [error]")
 
 
 //Global chat procs
@@ -255,7 +254,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 				C.chatOutput.messageQueue += message
 				continue
 
-			C << output(twiceEncoded, "browseroutput:output")
+			C.chatOutput.renderer.send_message(twiceEncoded)
 	else
 		var/client/C = CLIENT_FROM_VAR(target)
 
@@ -275,7 +274,8 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 			return
 
 		// url_encode it TWICE, this way any UTF-8 characters are able to be decoded by the Javascript.
-		C << output(url_encode(url_encode(message)), "browseroutput:output")
+		C.chatOutput.renderer.send_message(url_encode(url_encode(message)))
+
 
 
 /proc/to_chat(target, message, handle_whitespace = TRUE)

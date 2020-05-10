@@ -45,12 +45,10 @@ vchat specific chat renderer (default for most clients)
 	return file('code/modules/chat/renderers/vchat/html/vchat.html')
 
 /datum/chatRenderer/vchat/show_chat()
-	ping_cycle()
 	return ..()
 
 
 /datum/chatRenderer/vchat/send_message(client/target, message, time = world.time)
-	debug(message)
 	var/list/tojson = list("time" = time, "message" = url_decode(url_decode(message)));
 	target << output(url_encode(url_encode(json_encode(tojson))), "[skinOutputTag]:putmessage")
 
@@ -92,19 +90,9 @@ vchat specific chat renderer (default for most clients)
 /datum/chatRenderer/vchat/proc/debug(message)
 	chat.debug(message)
 
-/datum/chatRenderer/vchat/proc/keep_alive()
-	return list("evttype" = "keepalive")
+/datum/chatRenderer/vchat/send_ping()
+	send_data(data = list("evttype" = "keepalive"))
 
 //A response to a latency check from the client
 /datum/chatRenderer/vchat/proc/latency_check()
 	return list("evttype" = "pong")
-
-//Looping sleeping proc that just pings the client and dies when we die
-/datum/chatRenderer/vchat/proc/ping_cycle()
-	set waitfor = FALSE
-	while(!QDELING(src))
-		if(!chat.owner)
-			qdel(src)
-			return
-		send_data(data = keep_alive())
-		sleep(20 SECONDS) //Make sure this makes sense with what the js client is expecting

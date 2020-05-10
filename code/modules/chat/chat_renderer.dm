@@ -5,6 +5,7 @@
 	For example vue.js for vchat, or to the custom format of goonchat.
 */
 /datum/chatRenderer
+	var/client/owner
 	var/datum/chatSystem/chat /// datum/chatSystem reference
 	var/datum/asset/group/asset_datum /// Assets required by the renderer
 
@@ -15,6 +16,7 @@
 
 /datum/chatRenderer/New(datum/chatSystem/parentChat)
 	chat = parentChat
+	owner = chat.owner
 
 /** Gets the asset datum to to send during initialization */
 /datum/chatRenderer/proc/get_assets()
@@ -31,12 +33,15 @@
 	loaded = TRUE
 	chat.loaded = loaded
 
-/datum/chatRenderer/proc/send_message(client/target, message)
-	target << output(url_encode(url_encode(json_encode(list("message" = message)))), "[skinOutputTag]:receiveMessage")
+/datum/chatRenderer/proc/send_message(message)
+	owner << output(url_encode(url_encode(json_encode(list("message" = message)))), "[skinOutputTag]:receiveMessage")
 
 
-/datum/chatRenderer/proc/send_data(client/target, list/data)
-	target << output(url_encode(url_encode(json_encode(data))), "[skinOutputTag]:receiveData")
+/datum/chatRenderer/proc/send_data(list/data)
+	owner << output(url_encode(url_encode(json_encode(data))), "[skinOutputTag]:receiveData")
+
+/datum/chatRenderer/proc/send_ping()
+	send_data(list("ping" = world.time))
 
 
 /** Handle the topics from the frontend */

@@ -932,12 +932,14 @@ function doWinset(control_id, params) {
 	window.location = url;
 }
 
+
+/* Rendering system hacks */
 /** This is for straight chat messages data */
-function recieveMessage(message) {
-	return;
+function recieveMessage(data) {
+	return putmessage(data);
 }
 
 /** This is for generic data */
 function receiveData(data) {
-	return putmessage(data);
+	return get_event(data);
 }
