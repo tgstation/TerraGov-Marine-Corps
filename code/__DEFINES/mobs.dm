@@ -474,6 +474,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CHARGE_TYPE_MASSIVE			5
 
 //Upgrade/Evolution Defines
+#define XENO_UPGRADE_REDUCTION_ON_EVOLVE		-60 //reduce upgrade by 1 minute's progress when evolving.
+
 #define XENO_UPGRADETHRESHOLD_TIER1_MATURE		300 //5 minutes
 #define XENO_UPGRADETHRESHOLD_TIER1_ELDER		900 //15 minutes
 #define XENO_UPGRADETHRESHOLD_TIER1_ANCIENT		1800 //30 minutes
