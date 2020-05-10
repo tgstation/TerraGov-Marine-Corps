@@ -338,7 +338,7 @@
 		holder.icon_state = "sundering0"
 		return
 
-	var/amount = min(round(sunder * 100 / sunder_max, 10,100)
+	var/amount = min(round(sunder * 100 / xeno_caste.sunder_max, 10), 100)
 	holder.icon_state = "sundering[amount]"
 
 /mob/living/carbon/xenomorph/proc/hud_set_plasma()
