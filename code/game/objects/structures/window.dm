@@ -386,6 +386,8 @@
 	dir = 5
 	window_frame = /obj/structure/window_frame/mainship
 
+/obj/structure/window/framed/mainship/canterbury //So we can wallsmooth properly.
+
 /obj/structure/window/framed/mainship/toughened
 	name = "safety glass"
 	desc = "A very tough looking glass window with a special rod matrice, probably bullet proof."
@@ -400,6 +402,10 @@
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	max_integrity = 1000000 //Failsafe, shouldn't matter
 
+/obj/structure/window/framed/mainship/hull/canterbury //So we can wallsmooth properly.
+	tiles_with = list(/turf/closed/wall/mainship/outer/canterbury)
+	tiles_special = list(/obj/structure/window/framed/mainship/hull/canterbury)
+
 /obj/structure/window/framed/mainship/requisitions
 	name = "kevlar-weave infused bulletproof window"
 	desc = "A borosilicate glass window infused with kevlar fibres and mounted within a special shock-absorbing frame, this is gonna be seriously hard to break through."
@@ -411,7 +417,7 @@
 	basestate = "white_rwindow"
 	window_frame = /obj/structure/window_frame/mainship/white
 
-
+/obj/structure/window/framed/mainship/white/canterbury //So we can wallsmooth properly.
 
 /obj/structure/window/framed/colony
 	name = "window"
