@@ -683,7 +683,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	bonus_projectiles_amount = 4
 	bonus_projectiles_scatter = 2
 	max_range = 15
-	damage = 20
+	damage = 17
 	damage_falloff = 0.25
 	penetration = 15
 	sundering = 1.5
@@ -692,7 +692,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "additional flechette"
 	icon_state = "flechette"
 	max_range = 15
-	damage = 20
+	damage = 17
 	damage_falloff = 0.25
 	penetration = 15
 
@@ -702,7 +702,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	shell_speed = 3
 	max_range = 15
-	damage = 50
+	damage = 60
 	penetration = 30
 	sundering = 3.5
 
