@@ -1,5 +1,5 @@
 //The 'V' is for 'VORE' but you can pretend it's for Vue.js if you really want.
-
+/*
 //These are sent to the client via browse_rsc() in advance so the HTML can access them.
 GLOBAL_LIST_INIT(vchatFiles, list(
 	"code/modules/vchat/css/vchat-font-embedded.css",

@@ -1,4 +1,4 @@
-#define VCHAT_FILENAME "data/vchat.db"
+/*#define VCHAT_FILENAME "data/vchat.db"
 GLOBAL_DATUM(vchatdb, /database)
 
 //Boot up db file
