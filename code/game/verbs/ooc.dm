@@ -20,7 +20,7 @@
 		return
 
 	msg = emoji_parse(msg)
-	
+
 	if(!(prefs.toggles_chat & CHAT_OOC))
 		to_chat(src, "<span class='warning'>You have OOC muted.</span>")
 		return
@@ -352,7 +352,7 @@
 				return
 
 			if("Refresh")
-				chatOutput.showChat()
+				chatOutput.show_chat()
 				action = alert(src, "Goon chat refreshing, wait a bit and state if it's fixed", "Fixed", "Yes", "No, force a reload")
 				if(action == "Yes")
 					log_game("GOONCHAT: [key_name(src)] Had to fix their goonchat by forcing a show()")

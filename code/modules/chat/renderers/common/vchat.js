@@ -3,7 +3,7 @@
 */
 
 /** This is for straight chat messages data */
-function recieveMessage(data) {
+function receiveMessage(data) {
 	return putmessage(data);
 }
 

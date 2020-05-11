@@ -56,8 +56,8 @@ Goon specific chat renderer (default for most clients)
 /datum/chatRenderer/goon/get_main_page()
 	return file('code/modules/chat/renderers/goonchat/html/browserOutput.html')
 
-/datum/chatRenderer/goon/show_chat()
-	return ..()
+/datum/chatRenderer/goon/send_message(message)
+	owner << output(message, "[skinOutputTag]:receiveMessage")
 
 /datum/chatRenderer/goon/send_client_data()
 	var/list/deets = list("clientData" = list())
@@ -65,7 +65,6 @@ Goon specific chat renderer (default for most clients)
 	deets["clientData"]["ip"] = owner.address
 	deets["clientData"]["compid"] = owner.computer_id
 	send_data(deets)
-
 
 /datum/chatRenderer/Topic(href, list/href_list)
 	. = ..()

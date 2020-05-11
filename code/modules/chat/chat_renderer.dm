@@ -42,13 +42,19 @@
 		// whitespace has already been handled by the original to_chat
 		to_chat_immediate(owner, message, handle_whitespace = FALSE)
 
+/** Show the chat, replacing the default chat system with the specific chat renderer */
+/datum/chatRenderer/proc/hide_chat()
+	winset(chat.owner, skinRawOutputTag, "is-visible=true")
+	winset(chat.owner, skinOutputTag, "is-disabled=true;is-visible=false")
+	loaded = FALSE
+	chat.loaded = loaded
 
 /datum/chatRenderer/proc/send_message(message)
-	owner << output(url_encode(url_encode(json_encode(list("message" = message)))), "[skinOutputTag]:receiveMessage")
+	owner << output(json_encode(list("message" = message)), "[skinOutputTag]:receiveMessage")
 
 
 /datum/chatRenderer/proc/send_data(list/data)
-	owner << output(url_encode(url_encode(json_encode(data))), "[skinOutputTag]:receiveData")
+	owner << output(json_encode(data), "[skinOutputTag]:receiveData")
 
 /datum/chatRenderer/proc/send_ping()
 	send_data(list("ping" = world.time))
@@ -59,13 +65,4 @@
 
 /** Handle the topics from the frontend */
 /datum/chatRenderer/Topic(href, list/href_list)
-
-	var/list/params = list()
-	for(var/key in href_list)
-		if(length_char(key) > 7 && findtext(key, "param")) // 7 is the amount of characters in the basic param key template.
-			var/param_name = copytext_char(key, 7, -1)
-			var/item       = href_list[key]
-
-			params[param_name] = item
-
 	return FALSE

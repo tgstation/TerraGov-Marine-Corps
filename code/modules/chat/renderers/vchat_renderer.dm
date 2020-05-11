@@ -46,12 +46,9 @@ vchat specific chat renderer (default for most clients)
 /datum/chatRenderer/vchat/get_main_page()
 	return file('code/modules/chat/renderers/vchat/html/vchat.html')
 
-/datum/chatRenderer/vchat/show_chat()
-	return ..()
-
 /datum/chatRenderer/vchat/send_message(client/target, message, time = world.time)
-	var/list/data = list("time" = time, "message" = url_decode(url_decode(message)));
-	target << output(url_encode(url_encode(json_encode(data))), "[skinOutputTag]:putmessage")
+	var/list/data = list("time" = time, "message" = message);
+	target << output(json_encode(data), "[skinOutputTag]:putmessage")
 
 /datum/chatRenderer/vchat/send_client_data()
 	var/list/playerinfo = list(

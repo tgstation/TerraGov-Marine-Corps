@@ -27,7 +27,7 @@ SUBSYSTEM_DEF(ping)
 				return
 			continue
 
-		// softPang isn't handled anywhere but it'll always reset the opts.lastPang.
-		C.chatOutput.renderer.send_ping()
+		C.chatOutput.send_ping()
+
 		if(MC_TICK_CHECK)
 			return

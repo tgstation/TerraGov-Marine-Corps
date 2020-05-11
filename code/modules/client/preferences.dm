@@ -817,7 +817,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		if("chat_renderer")
 			chat_renderer = chat_renderer == "GOON" ? "VCHAT" : "GOON"
-			parent.chatOutput.hideChat()
+			parent.chatOutput.hide_chat()
 			QDEL_NULL(parent.chatOutput)
 			parent.chatOutput = new
 			parent.chatOutput.start()

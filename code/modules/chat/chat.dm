@@ -110,11 +110,6 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 	renderer.show_chat()
 
-	for(var/message in messageQueue)
-		// whitespace has already been handled by the original to_chat
-		to_chat_immediate(owner, message, handle_whitespace = FALSE)
-
-	messageQueue = null
 	sendClientData()
 
 	syncRegex()
@@ -122,13 +117,14 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	//do not convert to to_chat()
 	SEND_TEXT(owner, "<span class=\"userdanger\">Failed to load fancy chat, reverting to old chat. Certain features won't work.</span>")
 
-/datum/chatSystem/proc/showChat()
-	winset(owner, "output", "is-visible=false")
-	winset(owner, "browseroutput", "is-disabled=false;is-visible=true")
+/datum/chatSystem/proc/send_ping()
+	renderer.send_ping()
 
-/datum/chatSystem/proc/hideChat()
-	winset(owner, "output", "is-visible=true")
-	winset(owner, "browseroutput", "is-disabled=true;is-visible=false")
+/datum/chatSystem/proc/show_chat()
+	renderer.show_chat()
+
+/datum/chatSystem/proc/hide_chat()
+	renderer.hide_chat()
 
 /proc/syncChatRegexes()
 	for (var/user in GLOB.clients)
@@ -187,10 +183,10 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 			var/list/found = new()
 
 			if(connectionHistory.len > MAX_COOKIE_LENGTH)
-				message_admins("[key_name(src.owner)] was kicked for an invalid ban cookie)")
+				log_admin("[key_name(owner)] was kicked for a malformed ban cookie (Size greater [MAX_COOKIE_LENGTH])")
+				message_admins("[key_name(owner)] was kicked for a malformed ban cookie (Size greater [MAX_COOKIE_LENGTH])")
 				qdel(owner)
 				return
-
 
 			for(var/i in connectionHistory.len to 1 step -1)
 				if(QDELETED(owner))
@@ -213,6 +209,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 //Called by js client on js error
 /datum/chatSystem/proc/debug(error)
+	stack_trace("JS Error: [error]")
 	log_world("Client: [(src.owner.key ? src.owner.key : src.owner)] JS Error: [error]")
 
 
@@ -235,7 +232,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 	if(islist(target))
 		// Do the double-encoding outside the loop to save nanoseconds
-		var/twiceEncoded = url_encode(url_encode(message))
+		var/twiceEncoded = message
 		for(var/I in target)
 			var/client/C = CLIENT_FROM_VAR(I)
 

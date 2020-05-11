@@ -41,7 +41,7 @@ SUBSYSTEM_DEF(chat)
 
 	//url_encode it TWICE, this way any UTF-8 characters are able to be decoded by the Javascript.
 	//Do the double-encoding here to save nanoseconds
-	var/twiceEncoded = url_encode(url_encode(message))
+	var/twiceEncoded = message
 
 	if(islist(target))
 		for(var/I in target)
