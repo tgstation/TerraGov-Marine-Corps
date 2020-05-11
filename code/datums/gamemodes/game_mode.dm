@@ -78,8 +78,8 @@
 
 
 /datum/game_mode/proc/post_setup()
-	addtimer(CALLBACK(src, .proc/display_roundstart_logout_report), ROUNDSTART_LOGOUT_REPORT_TIME)
 	spawn_roundstart_weapons()
+	addtimer(CALLBACK(src, .proc/display_roundstart_logout_report), ROUNDSTART_LOGOUT_REPORT_TIME)
 	if(!SSdbcore.Connect())
 		return
 	var/sql
@@ -96,6 +96,7 @@
 
 
 /datum/game_mode/proc/spawn_roundstart_weapons()
+	to_chat(world,"If this actually gets called it'd be a miracle, this is the spawn roundstart weapons proc")
 	for(var/i in GLOB.weapon_spawn_list)
 		var/obj/effect/landmark/weapon_spawn/spawn_effect = i
 		spawn_effect.choose_weapon()

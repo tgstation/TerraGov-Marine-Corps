@@ -76,6 +76,9 @@
 	scale_gear()
 	for(var/i in GLOB.xeno_resin_silo_turfs)
 		new /obj/structure/resin/silo(i)
+	
+	spawn_roundstart_weapons()
+
 	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
 
 /datum/game_mode/infestation/distress/proc/map_announce()

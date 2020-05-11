@@ -105,6 +105,7 @@
 			var/mob/living/carbon/xenomorph/X = i
 			X.upgrade_stored = X.xeno_caste.upgrade_threshold
 
+	spawn_roundstart_weapons()
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH)
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, .proc/on_nuclear_explosion)
