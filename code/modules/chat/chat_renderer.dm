@@ -50,11 +50,12 @@
 	chat.loaded = loaded
 
 /datum/chatRenderer/proc/send_message(message)
-	owner << output(json_encode(list("message" = message)), "[skinOutputTag]:receiveMessage")
+	return
 
 
 /datum/chatRenderer/proc/send_data(list/data)
-	owner << output(json_encode(data), "[skinOutputTag]:receiveData")
+	return
+
 
 /datum/chatRenderer/proc/send_ping()
 	send_data(list("ping" = world.time))

@@ -271,7 +271,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 			return
 
 		// url_encode it TWICE, this way any UTF-8 characters are able to be decoded by the Javascript.
-		C.chatOutput.renderer.send_message(url_encode(url_encode(message)))
+		C.chatOutput.renderer.send_message(message)
 
 
 

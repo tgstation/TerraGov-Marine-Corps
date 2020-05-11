@@ -92,11 +92,6 @@ function start_vchat() {
 
 	//Commence the pingening
 	setInterval(check_ping, vchat_opts.msBeforeDropped);
-
-	//For fun
-	send_debug("VChat Loaded!");
-	//throw new Error("VChat Loaded!");
-
 }
 
 //Loads vue for chat usage
@@ -758,7 +753,6 @@ function get_event(event) {
 
 	var parsed_event = {evttype: 'internal_error', event: event};
 	parsed_event = byondDecode(event);
-	send_debug(JSON.stringify(parsed_event));
 	switch(parsed_event.evttype) {
 		//We didn't parse it very well
 		case 'internal_error':
