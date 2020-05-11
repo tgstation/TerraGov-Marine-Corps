@@ -12,7 +12,7 @@ SUBSYSTEM_DEF(chat)
 	for(var/i in payload)
 		var/client/C = i
 
-		C.chatOutput.renderer.send_message(C, payload[C])
+		C.chatOutput.renderer.send_message(payload[C])
 		payload -= C
 
 		if(MC_TICK_CHECK)

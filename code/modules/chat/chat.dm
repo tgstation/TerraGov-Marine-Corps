@@ -42,7 +42,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	connectionHistory = list()
 
 	//TODO: choose renderer this from prefs
-	renderer = CHAT_RENDERER_GOON(src)
+	renderer = CHAT_RENDERER_VCHAT(src)
 
 /datum/chatSystem/proc/start()
 	//Check for existing chat
