@@ -4,6 +4,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 /datum/preferences
 	var/client/parent
 
+	var/chat_renderer = "GOON"
+
 	//Basics
 	var/path
 	var/default_slot = 1
@@ -343,6 +345,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<b>Color</b>: <a href='?_src_=prefs;preference=uicolor'>[ui_style_color]</a> <table style='display:inline;' bgcolor='[ui_style_color]'><tr><td>__</td></tr></table><br>"
 	dat += "<b>Alpha</b>: <a href='?_src_=prefs;preference=uialpha'>[ui_style_alpha]</a>"
 
+	dat += "<h2>UI Customization:</h2>"
+	dat += "<b>Toggle chat renderer</b>: <a href='?_src_=prefs;preference=chat_renderer'>[chat_renderer]</a>"
 
 
 	dat += "</div></div>"
@@ -810,6 +814,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				return
 			ui_style_alpha_new = round(ui_style_alpha_new)
 			ui_style_alpha = CLAMP(ui_style_alpha_new, 55, 230)
+
+		if("chat_renderer")
+			chat_renderer = chat_renderer == "GOON" ? "VCHAT" : "GOON"
+			parent.chatOutput.hideChat()
+			QDEL_NULL(parent.chatOutput)
+			parent.chatOutput = new
+			parent.chatOutput.start()
 
 		if("hairstyle")
 			var/list/valid_hairstyles = list()

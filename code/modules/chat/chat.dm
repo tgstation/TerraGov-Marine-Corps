@@ -42,7 +42,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	connectionHistory = list()
 
 	//TODO: choose renderer this from prefs
-	renderer = DEFAULT_CHAT_RENDERER(src)
+	renderer = CHAT_RENDERER_GOON(src)
 
 /datum/chatSystem/proc/start()
 	//Check for existing chat
@@ -79,9 +79,23 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	var/main_page = renderer.get_main_page()
 	owner << browse(main_page, "window=chatoutput")
 
+
 /datum/chatSystem/Topic(href, list/href_list)
 	if(usr.client != owner)
 		return TRUE
+
+	//Spam check
+	if(!COOLDOWN_CHECK(src, COOLDOWN_TOPIC_SPAM))
+		COOLDOWN_START(src, COOLDOWN_TOPIC_SPAM, 3 SECONDS)
+		total_checks = 0
+
+	total_checks += 1
+
+	if(total_checks > SPAM_TRIGGER_AUTOMUTE)
+		log_admin("[key_name(owner)] kicked for goonchat topic spam")
+		message_admins("[key_name(owner)] kicked for goonchat topic spam")
+		qdel(owner)
+		return
 
 	renderer.Topic(href, href_list)
 
@@ -112,6 +126,10 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	winset(owner, "output", "is-visible=false")
 	winset(owner, "browseroutput", "is-disabled=false;is-visible=true")
 
+/datum/chatSystem/proc/hideChat()
+	winset(owner, "output", "is-visible=true")
+	winset(owner, "browseroutput", "is-disabled=true;is-visible=false")
+
 /proc/syncChatRegexes()
 	for (var/user in GLOB.clients)
 		var/client/C = user
@@ -132,8 +150,8 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	if (regexes.len)
 		ehjax_send(data = list("syncRegex" = regexes))
 
-/datum/chatSystem/proc/ehjax_send(client/C = owner, window = "chatoutput", data)
-	renderer.send_data(C, data)
+/datum/chatSystem/proc/ehjax_send(data)
+	renderer.send_data(data)
 
 
 /datum/chatSystem/proc/sendMusic(music, list/extra_data)
@@ -155,28 +173,10 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 
 //Sends client connection details to the chat to handle and save
 /datum/chatSystem/proc/sendClientData()
-	//Get dem deets
-	var/list/deets = list("clientData" = list())
-	deets["clientData"]["ckey"] = owner.ckey
-	deets["clientData"]["ip"] = owner.address
-	deets["clientData"]["compid"] = owner.computer_id
-	var/data = json_encode(deets)
-	ehjax_send(data = data)
+	renderer.send_client_data()
 
 //Called by client, sent data to investigate (cookie history so far)
 /datum/chatSystem/proc/analyzeClientData(cookie)
-	//Spam check
-	if(world.time  >  next_time_to_clear)
-		next_time_to_clear = world.time + (3 SECONDS)
-		total_checks = 0
-
-	total_checks += 1
-
-	if(total_checks > SPAM_TRIGGER_AUTOMUTE)
-		message_admins("[key_name(owner)] kicked for goonchat topic spam")
-		qdel(owner)
-		return
-
 	if(!cookie)
 		return
 

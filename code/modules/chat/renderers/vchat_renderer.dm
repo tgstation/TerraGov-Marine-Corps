@@ -1,12 +1,13 @@
 /datum/asset/simple/vchat
 	verify = FALSE
 	assets = list(
-		"semantic.min.css"        = 'code/modules/chat/renderers/vchat/css/semantic.min.css',
-		"vchat-font-embedded.css" = 'code/modules/chat/renderers/vchat/css/vchat-font-embedded.css',
-		"ss13styles.css"          = 'code/modules/chat/renderers/vchat/css/ss13styles.css',
-		"polyfills.js"            = 'code/modules/chat/renderers/vchat/js/polyfills.js',
-		"vue.min.js"              = 'code/modules/chat/renderers/vchat/js/vue.min.js',
-		"vchat.js"                = 'code/modules/chat/renderers/vchat/js/vchat.js',
+		"common.js"					= 'code/modules/chat/renderers/common/vchat.js',
+		"semantic.min.css"			= 'code/modules/chat/renderers/vchat/css/semantic.min.css',
+		"vchat-font-embedded.css"	= 'code/modules/chat/renderers/vchat/css/vchat-font-embedded.css',
+		"ss13styles.css"			= 'code/modules/chat/renderers/vchat/css/ss13styles.css',
+		"polyfills.js"				= 'code/modules/chat/renderers/vchat/js/polyfills.js',
+		"vue.min.js"				= 'code/modules/chat/renderers/vchat/js/vue.min.js',
+		"vchat.js"					= 'code/modules/chat/renderers/vchat/js/vchat.js',
 	)
 
 /datum/asset/spritesheet/vchat
@@ -39,6 +40,7 @@
 vchat specific chat renderer (default for most clients)
 */
 /datum/chatRenderer/vchat
+	name = "vchat"
 	asset_datum = /datum/asset/group/vchat
 
 /datum/chatRenderer/vchat/get_main_page()
@@ -47,11 +49,19 @@ vchat specific chat renderer (default for most clients)
 /datum/chatRenderer/vchat/show_chat()
 	return ..()
 
-
 /datum/chatRenderer/vchat/send_message(client/target, message, time = world.time)
-	var/list/tojson = list("time" = time, "message" = url_decode(url_decode(message)));
-	target << output(url_encode(url_encode(json_encode(tojson))), "[skinOutputTag]:putmessage")
+	var/list/data = list("time" = time, "message" = url_decode(url_decode(message)));
+	target << output(url_encode(url_encode(json_encode(data))), "[skinOutputTag]:putmessage")
 
+/datum/chatRenderer/vchat/send_client_data()
+	var/list/playerinfo = list(
+		"evttype" = "byond_player",
+		"cid" = owner.computer_id,
+		"ckey" = owner.ckey,
+		"address" = owner.address,
+		"admin" = owner.holder ? "true" : "false"
+	)
+	send_data(playerinfo)
 
 /datum/chatRenderer/vchat/Topic(href, list/href_list)
 	. = ..()
@@ -65,7 +75,6 @@ vchat specific chat renderer (default for most clients)
 			var/item       = href_list[key]
 
 			params[param_name] = item
-
 
 	var/data
 	switch(href_list["proc"])

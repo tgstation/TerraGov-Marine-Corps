@@ -7,4 +7,4 @@
 	hub = "Exadv1.spacestation13"
 	fps = 20
 
-#define RECOMMENDED_VERSION 511
+#define RECOMMENDED_VERSION 513

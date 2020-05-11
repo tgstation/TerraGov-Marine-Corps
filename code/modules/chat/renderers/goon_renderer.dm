@@ -1,15 +1,16 @@
 /datum/asset/simple/goonchat
 	verify = FALSE
 	assets = list(
-		"json2.min.js"             = 'code/modules/chat/renderers/goonchat/js/json2.min.js',
-		"browserOutput.js"         = 'code/modules/chat/renderers/goonchat/js/browserOutput.js',
-		"fontawesome-webfont.eot"  = 'code/modules/chat/renderers/goonchat/fonts/fontawesome-webfont.eot',
-		"fontawesome-webfont.svg"  = 'code/modules/chat/renderers/goonchat/fonts/fontawesome-webfont.svg',
-		"fontawesome-webfont.ttf"  = 'code/modules/chat/renderers/goonchat/fonts/fontawesome-webfont.ttf',
-		"fontawesome-webfont.woff" = 'code/modules/chat/renderers/goonchat/fonts/fontawesome-webfont.woff',
-		"goonchatfont-awesome.css" = 'code/modules/chat/renderers/goonchat/css/font-awesome.css',
-		"browserOutput.css"	       = 'code/modules/chat/renderers/goonchat/css/browserOutput.css',
-		"browserOutput_white.css"  = 'code/modules/chat/renderers/goonchat/css/browserOutput_white.css',
+		"common.js"					= 'code/modules/chat/renderers/common/goon.js',
+		"json2.min.js"				= 'code/modules/chat/renderers/goonchat/js/json2.min.js',
+		"browserOutput.js"			= 'code/modules/chat/renderers/goonchat/js/browserOutput.js',
+		"fontawesome-webfont.eot"	= 'code/modules/chat/renderers/goonchat/fonts/fontawesome-webfont.eot',
+		"fontawesome-webfont.svg"	= 'code/modules/chat/renderers/goonchat/fonts/fontawesome-webfont.svg',
+		"fontawesome-webfont.ttf"	= 'code/modules/chat/renderers/goonchat/fonts/fontawesome-webfont.ttf',
+		"fontawesome-webfont.woff"	= 'code/modules/chat/renderers/goonchat/fonts/fontawesome-webfont.woff',
+		"goonchatfont-awesome.css"	= 'code/modules/chat/renderers/goonchat/css/font-awesome.css',
+		"browserOutput.css"			= 'code/modules/chat/renderers/goonchat/css/browserOutput.css',
+		"browserOutput_white.css"	= 'code/modules/chat/renderers/goonchat/css/browserOutput_white.css'
 	)
 
 /datum/asset/simple/jquery
@@ -49,6 +50,7 @@
 Goon specific chat renderer (default for most clients)
 */
 /datum/chatRenderer/goon
+	name = "goon"
 	asset_datum = /datum/asset/group/goonchat
 
 /datum/chatRenderer/goon/get_main_page()
@@ -56,6 +58,14 @@ Goon specific chat renderer (default for most clients)
 
 /datum/chatRenderer/goon/show_chat()
 	return ..()
+
+/datum/chatRenderer/goon/send_client_data()
+	var/list/deets = list("clientData" = list())
+	deets["clientData"]["ckey"] = owner.ckey
+	deets["clientData"]["ip"] = owner.address
+	deets["clientData"]["compid"] = owner.computer_id
+	send_data(deets)
+
 
 /datum/chatRenderer/Topic(href, list/href_list)
 	. = ..()
@@ -91,4 +101,4 @@ Goon specific chat renderer (default for most clients)
 			chat.swaptolightmode()
 
 	if(data)
-		chat.ehjax_send(data = data)
+		send_data(data = data)

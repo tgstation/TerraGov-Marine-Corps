@@ -90,11 +90,6 @@ function start_vchat() {
 	vchat_state.ready = true;
 	push_Topic('done_loading');
 
-	//I'll do my own winsets
-	// doWinset("htmloutput", {"is-visible": true});
-	// doWinset("oldoutput", {"is-visible": false});
-	// doWinset("chatloadlabel", {"is-visible": false});
-
 	//Commence the pingening
 	setInterval(check_ping, vchat_opts.msBeforeDropped);
 
@@ -144,10 +139,10 @@ function start_vue() {
 					admin: false
 				},
 				{
-					matches: ".alert, .syndradio, .centradio, .airadio, .entradio, .comradio, .secradio, .engradio, .medradio, .sciradio, .supradio, .srvradio, .expradio, .radio, .deptradio, .newscaster",
+					matches: ".hivemind, .alert, .syndradio, .centradio, .airadio, .entradio, .comradio, .secradio, .engradio, .medradio, .sciradio, .supradio, .srvradio, .expradio, .radio, .deptradio, .newscaster",
 					becomes: "vc_radio",
-					pretty: "Radio Comms",
-					tooltip: "All departments of radio messages",
+					pretty: "Radio / Hivemind Comms",
+					tooltip: "Radio or hivemind messages (; prefixed)",
 					required: false,
 					admin: false
 				},
@@ -183,16 +178,6 @@ function start_vue() {
 					required: false,
 					admin: false
 				},
-				//VOREStation Add Start
-				{
-					matches: ".nif",
-					becomes: "vc_nif",
-					pretty: "NIF Messages",
-					tooltip: "Messages from the NIF itself and people inside",
-					required: false,
-					admin: false
-				},
-				//VOREStation Add End
 				{
 					matches: ".pm",
 					becomes: "vc_adminpm",
@@ -202,7 +187,7 @@ function start_vue() {
 					admin: false
 				},
 				{
-					matches: ".admin_channel",
+					matches: ".admin_channel, .asay, .headminasay",
 					becomes: "vc_adminchat",
 					pretty: "Admin Chat",
 					tooltip: "ASAY messages",
@@ -210,18 +195,10 @@ function start_vue() {
 					admin: true
 				},
 				{
-					matches: ".mod_channel",
+					matches: ".mod_channel, .msay, .adminmsay, .headminmsay",
 					becomes: "vc_modchat",
-					pretty: "Mod Chat",
+					pretty: "Mentor Chat",
 					tooltip: "MSAY messages",
-					required: false,
-					admin: true
-				},
-				{
-					matches: ".event_channel",
-					becomes: "vc_eventchat",
-					pretty: "Event Chat",
-					tooltip: "ESAY messages",
 					required: false,
 					admin: true
 				},
@@ -930,16 +907,4 @@ function doWinset(control_id, params) {
 		return ctl + "=" + encodeURIComponent(params[ctl]);
 	}).join("&");
 	window.location = url;
-}
-
-
-/* Rendering system hacks */
-/** This is for straight chat messages data */
-function recieveMessage(data) {
-	return putmessage(data);
-}
-
-/** This is for generic data */
-function receiveData(data) {
-	return get_event(data);
 }

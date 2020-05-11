@@ -297,11 +297,11 @@ For the main html chat area
 		C << output(url_encode(url_encode(message)), "browseroutput:output")
 
 
-/proc/to_chat(target, message, handle_whitespace = TRUE)
-	if(Master.current_runlevel == RUNLEVEL_INIT || !SSchat?.initialized)
-		to_chat_immediate(target, message, handle_whitespace)
-		return
-	SSchat.queue(target, message, handle_whitespace)
+// /proc/to_chat(target, message, handle_whitespace = TRUE)
+// 	if(Master.current_runlevel == RUNLEVEL_INIT || !SSchat?.initialized)
+// 		to_chat_immediate(target, message, handle_whitespace)
+// 		return
+// 	SSchat.queue(target, message, handle_whitespace)
 
 /datum/chatOutput/proc/swaptolightmode()
 	owner.force_white_theme()

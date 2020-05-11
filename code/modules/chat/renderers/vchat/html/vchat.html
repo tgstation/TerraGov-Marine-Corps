@@ -13,6 +13,7 @@
 	<!-- Important scripts -->
 	<script type="text/javascript" src="polyfills.js"></script>
 	<script type="text/javascript" src="vue.min.js"></script>
+	<script type="text/javascript" src="common.js"></script>
 	<script type="text/javascript" src="vchat.js"></script>
 </head>
 
@@ -32,7 +33,7 @@
 			<i v-show="editing && !tab.immutable && index != tabs.length-1" class="icon-right-open-outline" @click.stop.prevent="movetab(tab,1)" title="Move tab right"></i>
 			<div v-if="tab_unread_count(tab) > 0" class="ui top right attached red label">{{tab_unread_count(tab)}}</div>
 		</div>
-		
+
 		<div class="right menu">
 			<div class="item" @click="newtab" title="New Tab"><i class="icon-folder-add"></i></div>
 			<div class="item" @click="pause" title="Pause Autoscroll">
@@ -49,9 +50,9 @@
 				</span>
 			</div>
 		</div>
-		
+
 	</div>
-	
+
 	<!-- Editor box -->
 	<div id="contentbox">
 		<div v-show="editing" id="editbox" class="ui segment" :class="{ inverted: inverted }">
@@ -175,7 +176,7 @@
 		shown_messages.length: {{shown_messages.length}}<br>
 	</div>
 	-->
-	
+
 
 </div>
 
