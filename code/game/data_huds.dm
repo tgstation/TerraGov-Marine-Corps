@@ -339,7 +339,7 @@
 		return
 
 	var/amount = min(round(sunder * 100 / xeno_caste.sunder_max, 10), 100)
-	holder.icon_state = "sundering[amount]"
+	holder.icon_state = "sundering[amount][sunder_break ? "break" : ""]"
 
 /mob/living/carbon/xenomorph/proc/hud_set_plasma()
 	if(!xeno_caste) // usually happens because hud ticks before New() finishes.
