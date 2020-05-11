@@ -41,15 +41,15 @@
 
 
 	// Big explosions
-	explosion(front, 2, 3, 6)
-	explosion(rear, 2, 3, 6)
-	explosion(left, 2, 3, 6)
-	explosion(right, 2, 3, 6)
+	explosion(front, 3, 4, 7, 0)
+	explosion(rear, 3, 4, 7, 0)
+	explosion(left, 3, 4, 7, 0)
+	explosion(right, 3, 4, 7, 0)
 
-	explosion(front_right, 3, 5, 9)
-	explosion(front_left, 3, 5, 9)
-	explosion(rear_right, 3, 5, 9)
-	explosion(rear_left, 2, 3, 6)
+	explosion(front_right, 4, 6, 10, 0)
+	explosion(front_left, 4, 6, 10, 0)
+	explosion(rear_right, 4, 6, 10, 0)
+	explosion(rear_left, 3, 4, 7, 0)
 
 
 /obj/docking_port/stationary/crashmode/loading

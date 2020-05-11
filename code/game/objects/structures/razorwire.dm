@@ -185,13 +185,13 @@
 
 /obj/structure/razorwire/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			visible_message("<span class='danger'>[src] is blown apart!</span>")
 			deconstruct(FALSE)
 			return
-		if(2)
+		if(EXPLODE_HEAVY)
 			take_damage(rand(33, 66))
-		if(3)
+		if(EXPLODE_LIGHT)
 			take_damage(rand(10, 33))
 	update_icon()
 

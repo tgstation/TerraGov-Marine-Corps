@@ -208,8 +208,8 @@
 	max_inaccuracy = 5
 	point_cost = 0
 
-	detonate_on(turf/impact)
-		qdel(src)
+/obj/structure/ship_ammo/rocket/detonate_on(turf/impact)
+	qdel(src)
 
 
 //this one is air-to-air only
@@ -221,11 +221,10 @@
 	ammo_id = ""
 	point_cost = 300
 
-	detonate_on(turf/impact)
-		impact.ceiling_debris_check(3)
-		spawn(5)
-			explosion(impact,1,3,5)
-			qdel(src)
+/obj/structure/ship_ammo/rocket/widowmaker/detonate_on(turf/impact)
+	impact.ceiling_debris_check(3)
+	explosion(impact, 2, 4, 6)
+	qdel(src)
 
 /obj/structure/ship_ammo/rocket/banshee
 	name = "\improper AGM-227 'Banshee'"
@@ -234,11 +233,10 @@
 	ammo_id = "b"
 	point_cost = 300
 
-	detonate_on(turf/impact)
-		impact.ceiling_debris_check(3)
-		spawn(5)
-			explosion(impact,1,3,6,6,1,0,7) //more spread out, with flames
-			qdel(src)
+/obj/structure/ship_ammo/rocket/banshee/detonate_on(turf/impact)
+	impact.ceiling_debris_check(3)
+	explosion(impact, 2, 4, 7, 6, flame_range = 7) //more spread out, with flames
+	qdel(src)
 
 /obj/structure/ship_ammo/rocket/keeper
 	name = "\improper GBU-67 'Keeper II'"
@@ -247,11 +245,10 @@
 	ammo_id = "k"
 	point_cost = 300
 
-	detonate_on(turf/impact)
-		impact.ceiling_debris_check(3)
-		spawn(5)
-			explosion(impact,3,4,4,6) //tighter blast radius, but more devastating near center
-			qdel(src)
+/obj/structure/ship_ammo/rocket/keeper/detonate_on(turf/impact)
+	impact.ceiling_debris_check(3)
+	explosion(impact, 4, 5, 5, 6) //tighter blast radius, but more devastating near center
+	qdel(src)
 
 
 /obj/structure/ship_ammo/rocket/fatty
@@ -263,22 +260,20 @@
 	max_inaccuracy = 1
 	point_cost = 450
 
-	detonate_on(turf/impact)
-		set waitfor = 0
-		impact.ceiling_debris_check(2)
-		spawn(5)
-			explosion(impact,1,2,3) //first explosion is small to trick xenos into thinking its a minirocket.
-		sleep(20)
-		var/list/impact_coords = list(list(-3,3),list(0,4),list(3,3),list(-4,0),list(4,0),list(-3,-3),list(0,-4), list(3,-3))
-		var/turf/T
-		var/list/coords
-		for(var/i=1 to 8)
-			coords = impact_coords[i]
-			T = locate(impact.x+coords[1],impact.y+coords[2],impact.z)
-			T.ceiling_debris_check(2)
-			spawn(5)
-				explosion(T,1,2,3)
-		qdel(src)
+/obj/structure/ship_ammo/rocket/fatty/detonate_on(turf/impact)
+	impact.ceiling_debris_check(2)
+	explosion(impact, 2, 3, 4) //first explosion is small to trick xenos into thinking its a minirocket.
+	addtimer(CALLBACK(src, .proc/delayed_detonation, impact), 3 SECONDS)
+
+
+/obj/structure/ship_ammo/rocket/fatty/proc/delayed_detonation(turf/impact)
+	var/list/impact_coords = list(list(-3,3),list(0,4),list(3,3),list(-4,0),list(4,0),list(-3,-3),list(0,-4), list(3,-3))
+	for(var/i in 1 to 8)
+		var/list/coords = impact_coords[i]
+		var/turf/detonation_target = locate(impact.x+coords[1],impact.y+coords[2],impact.z)
+		detonation_target.ceiling_debris_check(2)
+		explosion(detonation_target, 2, 3, 4, adminlog = FALSE)
+	qdel(src)
 
 /obj/structure/ship_ammo/rocket/napalm
 	name = "\improper XN-99 'Napalm'"
@@ -287,14 +282,11 @@
 	ammo_id = "n"
 	point_cost = 500
 
-	detonate_on(turf/impact)
-		impact.ceiling_debris_check(3)
-		spawn(5)
-			explosion(impact,1,2,3,6,1,0) //relatively weak
-			for(var/turf/T in range(4,impact))
-				T.ignite(60, 30) //cooking for a long time
-			qdel(src)
-
+/obj/structure/ship_ammo/rocket/napalm/detonate_on(turf/impact)
+	impact.ceiling_debris_check(3)
+	explosion(impact, 2, 3, 4, 6) //relatively weak
+	flame_radius(5, impact, 60, 30) //cooking for a long time
+	qdel(src)
 
 
 //minirockets
@@ -312,27 +304,29 @@
 	transferable_ammo = TRUE
 	point_cost = 300
 
-	detonate_on(turf/impact)
-		impact.ceiling_debris_check(2)
-		spawn(5)
-			explosion(impact,-1,1,3, 5, 0)//no messaging admin, that'd spam them.
-			var/datum/effect_system/expl_particles/P = new/datum/effect_system/expl_particles()
-			P.set_up(4, 0, impact)
-			P.start()
-			spawn(5)
-				var/datum/effect_system/smoke_spread/S = new
-				S.set_up(1, impact)
-				S.start()
-			if(!ammo_count && loc)
-				qdel(src) //deleted after last minirocket is fired and impact the ground.
+/obj/structure/ship_ammo/minirocket/detonate_on(turf/impact)
+	impact.ceiling_debris_check(2)
 
-	show_loaded_desc(mob/user)
-		if(ammo_count)
-			to_chat(user, "It's loaded with \a [src] containing [ammo_count] minirocket\s.")
+	explosion(impact, 0, 2, 4, 5, adminlog = FALSE)//no messaging admin, that'd spam them.
+	var/datum/effect_system/expl_particles/P
+	P.set_up(4, 0, impact)
+	P.start()
+	addtimer(CALLBACK(src, .proc/delayed_smoke_spread, impact), 0.5 SECONDS)
+	if(!ammo_count)
+		qdel(src) //deleted after last minirocket is fired
 
-	examine(mob/user)
-		..()
-		to_chat(user, "It has [ammo_count] minirocket\s.")
+/obj/structure/ship_ammo/minirocket/proc/delayed_smoke_spread(turf/impact)
+	var/datum/effect_system/smoke_spread/S = new
+	S.set_up(1, impact)
+	S.start()
+
+/obj/structure/ship_ammo/minirocket/show_loaded_desc(mob/user)
+	if(ammo_count)
+		to_chat(user, "It's loaded with \a [src] containing [ammo_count] minirocket\s.")
+
+/obj/structure/ship_ammo/minirocket/examine(mob/user)
+	. = ..()
+	to_chat(user, "It has [ammo_count] minirocket\s.")
 
 
 /obj/structure/ship_ammo/minirocket/incendiary
@@ -341,10 +335,9 @@
 	icon_state = "minirocket_inc"
 	point_cost = 500
 
-	detonate_on(turf/impact)
-		..()
-		spawn(5)
-			impact.ignite()
+/obj/structure/ship_ammo/detonate_on(turf/impact)
+	. = ..()
+	impact.ignite()
 
 /obj/structure/ship_ammo/minirocket/illumination
 	name = "illumination rocket-launched flare stack"
@@ -354,20 +347,18 @@
 
 /obj/structure/ship_ammo/minirocket/illumination/detonate_on(turf/impact)
 	impact.ceiling_debris_check(2)
-	spawn(5)
-		var/turf/T = pick(range(5, impact))
-		explosion(T,-1,-1,1, 2, 0)// Smaller explosion to prevent this becoming the PO meta
-		var/datum/effect_system/expl_particles/P = new/datum/effect_system/expl_particles()
-		P.set_up(4, 0, T)
-		P.start()
-		spawn(5)
-			var/datum/effect_system/smoke_spread/S = new
-			S.set_up(1,T)
-			S.start()
-		spawn(10)
-			new/obj/item/flashlight/flare/on/cas(T)
-		if(!ammo_count && loc)
-			qdel(src) //deleted after last minirocket is fired and impact the ground.
+	var/turf/offset_impact = pick(range(5, impact))
+	explosion(offset_impact, 0, 0, 2, 2, throw_range = 0)// Smaller explosion to prevent this becoming the PO meta
+	var/datum/effect_system/expl_particles/P = new/datum/effect_system/expl_particles()
+	P.set_up(4, 0, offset_impact)
+	P.start()
+	addtimer(CALLBACK(src, .proc/delayed_smoke_spread, offset_impact), 0.5 SECONDS)
+	addtimer(CALLBACK(src, .proc/drop_cas_flare, offset_impact), 1.5 SECONDS)
+	if(!ammo_count)
+		qdel(src) //deleted after last minirocket is fired and impact the ground.
+
+/obj/structure/ship_ammo/minirocket/illumination/proc/drop_cas_flare(turf/impact)
+	new/obj/item/flashlight/flare/on/cas(impact)
 
 /obj/item/flashlight/flare/on/cas
 	name = "illumination flare"

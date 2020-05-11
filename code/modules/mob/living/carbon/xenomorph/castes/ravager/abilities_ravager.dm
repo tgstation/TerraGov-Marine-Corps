@@ -120,7 +120,7 @@
 
 	succeed_activate()
 	add_cooldown()
-	X.reset_movement()
+
 
 /datum/action/xeno_action/activable/ravage/ai_should_start_consider()
 	return TRUE

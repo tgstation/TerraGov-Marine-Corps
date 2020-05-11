@@ -9846,20 +9846,6 @@
 	dir = 1
 	},
 /area/bigredv2/outside/nw)
-"aDz" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 1
-	},
-/area/bigredv2/outside/nw)
 "aDA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -18740,8 +18726,8 @@
 "bhA" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/landinglight/ds2/delaytwo,
-/turf/open/floor/marking/asteroidwarning,
-/area/bigredv2/outside/w)
+/turf/open/floor/plating,
+/area/shuttle/drop2/lz2)
 "bhD" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/lightred/full,
@@ -25766,14 +25752,6 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"owL" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 1
-	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 8
-	},
-/area/bigredv2/outside/w)
 "owM" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -25970,6 +25948,12 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
+"qpW" = (
+/obj/machinery/landinglight/ds2{
+	dir = 1
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/sw)
 "qtI" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	on = 1
@@ -26190,6 +26174,12 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
+"sWt" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/sw)
 "sZi" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor,
@@ -26474,6 +26464,15 @@
 	dir = 1
 	},
 /area/bigredv2/outside/c)
+"wVm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 1
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 8
+	},
+/area/bigredv2/outside/w)
 "wZg" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/sw)
@@ -34490,7 +34489,6 @@ aeI
 aeI
 aeI
 aeI
-aeI
 aiA
 ajy
 aoN
@@ -34500,55 +34498,56 @@ ahP
 ahP
 ahP
 ajy
-ajx
+aoN
 axX
-ajx
+aoN
 ahR
 ahP
 ahP
 ahP
 ahP
-aDz
-ahR
+qUm
+akK
 ahP
 ahP
 ajy
 cuW
 ahP
 ama
-aHn
 aeI
+aHn
 gON
 gON
 gON
 gON
-aQF
+vDI
 aQF
 aQF
 aQF
 sBV
-aVF
+aUQ
 aWk
 aWk
+aWk
+aWk
+aWk
+aWk
+wVm
 aWk
 aWk
 aWk
 aVI
-owL
 aWk
-aWk
-aVI
-aWk
-aWk
-aVH
+aVG
+bev
 bdZ
 bdZ
 bev
 bev
-bdZ
 bdZ
 bdZ
 aVG
+beQ
 bhA
 bie
 bie
@@ -34570,14 +34569,14 @@ bie
 bie
 bie
 bie
-bie
-bsb
+buP
+qpW
 bpv
 bpv
-bpv
-dXK
+sWt
 aac
 hzx
+aac
 aac
 aac
 aac
@@ -34605,15 +34604,15 @@ aac
 aac
 aac
 aac
-aac
 aad
 aad
 aad
-aac
+aad
 aac
 aac
 aac
 aab
+aaa
 aaa
 aaa
 aaa
@@ -35160,8 +35159,8 @@ avr
 ahP
 aDy
 ajx
-aiw
-aiw
+aqp
+aqp
 ajx
 cuW
 ahP

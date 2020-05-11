@@ -176,16 +176,16 @@ By design, d1 is the smallest direction and d2 is the highest
 		return
 
 	switch(severity)
-		if(1.0)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-		if(2.0)
+		if(EXPLODE_HEAVY)
 			if (prob(50))
-				new/obj/item/stack/cable_coil(loc, d1 ? 2 : 1, color)
+				new /obj/item/stack/cable_coil(loc, d1 ? 2 : 1, color)
 				qdel(src)
 
-		if(3.0)
+		if(EXPLODE_LIGHT)
 			if (prob(25))
-				new/obj/item/stack/cable_coil(loc, d1 ? 2 : 1, color)
+				new /obj/item/stack/cable_coil(loc, d1 ? 2 : 1, color)
 				qdel(src)
 
 ////////////////////////////////////////////

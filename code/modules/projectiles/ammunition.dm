@@ -139,10 +139,9 @@ They're all essentially identical when it comes to getting the job done.
 
 //~Art interjecting here for explosion when using flamer procs.
 /obj/item/ammo_magazine/flamer_fire_act()
-	switch(current_rounds)
-		if(0) return
-		if(1 to 100) explosion(loc,  -1, -1, 0, 2) //blow it up.
-		else explosion(loc,  -1, -1, 1, 2) //blow it up HARDER
+	if(!current_rounds)
+		return
+	explosion(loc, 0, 0, 1, 2, throw_range = FALSE) //blow it up.
 	qdel(src)
 
 //Magazines that actually cannot be removed from the firearm. Functionally the same as the regular thing, but they do have three extra vars.
@@ -370,12 +369,10 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 //explosion when using flamer procs.
 /obj/item/big_ammo_box/flamer_fire_act()
-	switch(bullet_amount)
-		if(0) return
-		if(1 to 100) explosion(loc,  0, 0, 1, 2) //blow it up.
-		else explosion(loc,  0, 0, 2, 3) //blow it up HARDER
+	if(!bullet_amount)
+		return
+	explosion(loc, 0, 0, 1, 2, throw_range = FALSE) //blow it up.
 	qdel(src)
-
 
 
 //Deployable ammo box-Unnused until they have proper sprites for the guns
