@@ -20,6 +20,8 @@ SUBSYSTEM_DEF(shuttle)
 	var/ordernum = 1					//order number given to next order
 
 	var/list/supply_packs = list()
+	var/list/supply_packs_ui = list()
+
 	var/list/shoppinglist = list()
 	var/list/requestlist = list()
 	var/list/orderhistory = list()
@@ -52,6 +54,7 @@ SUBSYSTEM_DEF(shuttle)
 		if(!P.contains)
 			continue
 		supply_packs[P.name] = P
+		LAZYADD(supply_packs_ui[P.group], list(list("path" = pack, "name" = P.name, "contains" = P.contains_name, "cost" = P.cost, "hidden" = P.hidden, "container_name" = initial(P.containertype.name))))
 
 	initial_load()
 

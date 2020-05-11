@@ -11,20 +11,26 @@ GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Hardpoint Mod
 	var/list/contains = list()
 	var/manifest = ""
 	var/cost = null
-	var/containertype = null
+	var/obj/containertype = null
 	var/containername = null
 	var/access = null
 	var/hidden = 0
 	var/contraband = 0
 	var/group = null
 	var/randomised_num_contained = 0 //Randomly picks X of items out of the contains list instead of using all.
+	var/list/contains_name = list()
 
 /datum/supply_packs/New()
 	if(randomised_num_contained)
 		manifest += "Contains any [randomised_num_contained] of:"
 	manifest += "<ul>"
-	for(var/atom/movable/path in contains)
+	for(var/i in contains)
+		var/atom/movable/path = i
 		if(!path)	continue
+		if(!contains_name[path])
+			contains_name[path] = list("name" = initial(path.name), "count" = 1)
+		else
+			contains_name[path]["count"]++
 		manifest += "<li>[initial(path.name)]</li>"
 	manifest += "</ul>"
 
@@ -2028,7 +2034,7 @@ ENGINEERING
 	name = "empty sandbags crate (x50)"
 	contains = list(/obj/item/stack/sandbags_empty/full)
 	cost = 15
-	containertype = "/obj/structure/closet/crate/supply"
+	containertype = /obj/structure/closet/crate/supply
 	containername = "\improper empty sandbags crate"
 	group = "Engineering"
 
@@ -2184,7 +2190,7 @@ SUPPLIES
 					/obj/item/storage/box
 					)
 	cost = 10
-	containertype = "/obj/structure/closet/crate/supply"
+	containertype = /obj/structure/closet/crate/supply
 	containername = "\improper empty box crate"
 	group = "Supplies"
 

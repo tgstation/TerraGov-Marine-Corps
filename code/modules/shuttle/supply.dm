@@ -249,11 +249,29 @@ GLOBAL_LIST_EMPTY(exports_types)
 	icon_state = "supply"
 	req_access = list(ACCESS_MARINE_CARGO)
 	circuit = null
+	interaction_flags = INTERACT_MACHINE_NANO
 	var/temp = null
 	var/reqtime = 0 //Cooldown for requisitions - Quarxink
 	var/hacked = 0
 	var/can_order_contraband = 0
 	var/last_viewed_group = "categories"
+
+/obj/machinery/computer/supplycomp/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
+										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+	. = ..()
+	if(!ui)
+		ui = new(user, src, ui_key, "Cargo", name, ui_x, ui_y, master_ui, state)
+		ui.open()
+
+/obj/machinery/computer/supplycomp/ui_static_data(mob/user)
+	. = list()
+	.["categories"] = GLOB.all_supply_groups
+	.["supplypacks"] = SSshuttle.supply_packs_ui
+
+/obj/machinery/computer/supplycomp/ui_data(mob/user)
+	. = list()
+	.["currentpoints"] = round(SSpoints.supply_points)
+	
 
 /obj/machinery/computer/ordercomp
 	name = "Supply ordering console"
@@ -388,7 +406,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 
 	updateUsrDialog()
 
-
+/*
 /obj/machinery/computer/supplycomp/interact(mob/user)
 	. = ..()
 	if(.)
@@ -593,3 +611,5 @@ GLOBAL_LIST_EMPTY(exports_types)
 		temp = null
 
 	updateUsrDialog()
+
+*/
