@@ -862,13 +862,16 @@ function get_cookie(key, deffo) {
 // Button Controls that need background-color and text-color set.
 var SKIN_BUTTONS = [
 	/* Rpane */ "rpane.textb", "rpane.infob", "rpane.wikib", "rpane.forumb", "rpane.rulesb", "rpane.github", "rpane.mapb", "rpane.changelog",
-	/* Mainwindow */ "mainwindow.saybutton", "mainwindow.mebutton", "mainwindow.hotkey_toggle"
-
+	/* Mainwindow */ "mainwindow.saybutton", "mainwindow.oocbutton", "mainwindow.mebutton", "mainwindow.hotkey_toggle",
+	/* infowindow */ "infowindow.changelog", "infowindow.discord", "infowindow.rules", "infowindow.wiki","infowindow.forum",  "infowindow.github", "infowindow.webmap",
 ];
 // Windows or controls that need background-color set.
 var SKIN_ELEMENTS = [
-	/* Mainwindow */ "mainwindow", "mainwindow.mainvsplit", "mainwindow.tooltip",
+	/* Mainwindow */ "mainwindow", "mainwindow.mainwindow", "mainwindow.split", "mainwindow.mainvsplit", "mainwindow.tooltip",
 	/* Rpane */ "rpane", "rpane.rpanewindow", "rpane.mediapanel",
+	/* infowindow */ "infowindow", "infowindow.infowindow", "infowindow.info",
+	/* popupwindow */ "popupwindow", "popupwindow.popupwindow",
+	/* statwindow */ "statwindow", "statwindow.statwindow", "statwindow.stat"
 ];
 
 function switch_ui_mode(options) {
@@ -880,6 +883,17 @@ function switch_ui_mode(options) {
 		"text-color": options.tabTextColor
 	});
 	doWinset("infowindow.info", {
+		"background-color": options.tabBackgroundColor,
+		"text-color": options.tabTextColor,
+		"highlight-color": options.highlightColor,
+		"tab-text-color": options.tabTextColor,
+		"tab-background-color": options.tabBackgroundColor
+	});
+	doWinset("statwindow", {
+		"background-color": options.tabBackgroundColor,
+		"text-color": options.tabTextColor
+	});
+	doWinset("statwindow.stat", {
 		"background-color": options.tabBackgroundColor,
 		"text-color": options.tabTextColor,
 		"highlight-color": options.highlightColor,
