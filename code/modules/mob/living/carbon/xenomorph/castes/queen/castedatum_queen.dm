@@ -138,7 +138,7 @@
 	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_3, "bio" = 55, "rad" = 55, "fire" = 100, "acid" = 55)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.3 SECONDS
+	spit_delay = 0.35 SECONDS
 
 	// *** Pheromones *** //
 	aura_strength = 4.5
