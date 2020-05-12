@@ -252,6 +252,9 @@
 
 
 /datum/component/automatic_fire/proc/on_mouse_drag(client/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
+	if (over_control == "statwindow.stat") // The mouse has been dragged over the statwindow
+		stop_autofiring()
+		return
 	if(isnull(over_location)) //This happens when the mouse is over an inventory or screen object, or on entering deep darkness, for example.
 		var/list/modifiers = params2list(params)
 		var/new_target = params2turf(modifiers["screen-loc"], get_turf(source.eye), source)
