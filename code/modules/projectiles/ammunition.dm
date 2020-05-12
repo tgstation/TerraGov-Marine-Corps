@@ -95,7 +95,7 @@ They're all essentially identical when it comes to getting the job done.
 		return
 
 	if(!source.current_rounds)
-		to_chat(user, "[source] is empty.")
+		to_chat(user, "<span class='warning'>\The [source] is empty.</span>")
 		return
 
 	if(!istype(source, /obj/item/ammo_magazine/handful)) //if it isn't a handful, give a delay.
