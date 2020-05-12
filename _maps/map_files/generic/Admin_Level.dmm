@@ -3137,10 +3137,6 @@
 	},
 /turf/open/floor/wood,
 /area/centcom)
-"sx" = (
-/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
-/turf/open/ground/grass,
-/area/deathmatch)
 "sO" = (
 /turf/open/floor/mainship{
 	dir = 4;
@@ -15022,11 +15018,11 @@ aa
 aa
 pc
 pt
-sx
-sx
-sx
-sx
-sx
+pt
+pt
+pt
+pt
+pt
 pt
 pS
 pZ
@@ -15124,11 +15120,11 @@ aa
 aa
 pc
 pt
-sx
-sx
-sx
-sx
-sx
+pt
+pt
+pt
+pt
+pt
 pt
 pS
 pS
