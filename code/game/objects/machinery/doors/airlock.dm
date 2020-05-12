@@ -235,9 +235,8 @@
 				return FALSE
 	
 	if(density) //Make sure it's still closed
-		spawn(0)
-			open(1)
-			M.visible_message("<span class='danger'>\The [M] pries \the [src] open.</span>", \
+		open(1)
+		M.visible_message("<span class='danger'>\The [M] pries \the [src] open.</span>", \
 			"<span class='danger'>We pry \the [src] open.</span>", null, 5)
 
 /obj/machinery/door/airlock/attack_larva(mob/living/carbon/xenomorph/larva/M)
