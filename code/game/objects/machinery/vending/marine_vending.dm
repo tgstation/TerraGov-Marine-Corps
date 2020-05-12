@@ -36,11 +36,10 @@
 					/obj/item/weapon/gun/rifle/standard_autoshotgun = 10,
 					/obj/item/ammo_magazine/rifle/tx15_slug = 25,
 					/obj/item/ammo_magazine/rifle/tx15_flechette = 25,
-					/obj/item/weapon/combat_knife = 20,
+					/obj/item/attachable/bayonetknife = 20,
 					/obj/item/weapon/throwing_knife = 5,
 					/obj/item/storage/box/m94 = 5,
 					/obj/item/attachable/flashlight = 10,
-					/obj/item/attachable/bayonet = 10,
 					)
 	prices = list()
 
