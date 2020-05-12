@@ -153,6 +153,7 @@
 
 /obj/effect/landmark/weapon_spawn/Initialize()
 	GLOB.weapon_spawn_list += src
+	choose_weapon()
 	. = ..()
 	return INITIALIZE_HINT_QDEL
 

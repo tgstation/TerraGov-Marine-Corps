@@ -13,8 +13,6 @@
 	. = ..()
 	addtimer(CALLBACK(.proc/start_round_end), 10 SECONDS)
 
-	spawn_roundstart_weapons()
-
 	if(!operation_start_timer)
 		return TRUE
 
