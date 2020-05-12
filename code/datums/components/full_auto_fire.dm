@@ -137,6 +137,8 @@
 		return
 	if(get_dist(source.mob, target) < 2) //Adjacent clicking.
 		return
+	if(QDELETED(target)) //Checks if the target has been destroyed just before being clicked on
+		return
 
 	if(isnull(location)) //Clicking on a screen object.
 		if(target.plane != CLICKCATCHER_PLANE) //The clickcatcher is a special case. We want the click to trigger then, under it.
