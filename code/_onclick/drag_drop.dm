@@ -48,6 +48,8 @@
 
 
 /client/MouseDrag(atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params) //The order seems to be wrong in the reference.
+	if(over_control != "mapwindow.map") //You can drag the mouse to the stat panel, in which case this variable will be "statwindow.stat"
+		return
 	var/list/L = params2list(params)
 	if(L["middle"])
 		if(src_object && src_location != over_location)
