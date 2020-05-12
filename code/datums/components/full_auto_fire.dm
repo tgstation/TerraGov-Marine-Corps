@@ -275,7 +275,7 @@
 /datum/component/automatic_fire/proc/process_shot()
 	if(autofire_stat != AUTOFIRE_STAT_FIRING)
 		return
-	if(get_turf(target) != target_loc) //Target moved since we last aimed.
+	if(QDELETED(target) || get_turf(target) != target_loc) //Target moved or got destroyed since we last aimed.
 		target = target_loc //So we keep firing on the emptied tile until we move our mouse and find a new target.
 	if(get_dist(shooter, target) <= 0)
 		target = get_step(shooter, shooter.dir) //Shoot in the direction faced if the mouse is on the same tile as we are.
