@@ -408,7 +408,7 @@
 
 		reagents.trans_to(I, T.max_fuel)
 		to_chat(user, "<span class='notice'>Welder refilled!</span>")
-		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+		playsound(loc, 'sound/effects/refill.ogg', 25, TRUE, 3)
 
 	else if(istype(I, /obj/item/ammo_magazine/flamer_tank))
 		var/obj/item/ammo_magazine/flamer_tank/FT = I
