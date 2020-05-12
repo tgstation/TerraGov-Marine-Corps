@@ -334,6 +334,10 @@
 	if(!holder)
 		return
 
+	if(stat == DEAD)
+		holder.icon_state = "sundering0"
+		return
+
 	switch(round(sunder, 1))
 		if(-INFINITY to 0)
 			holder.icon_state = "sundering0"

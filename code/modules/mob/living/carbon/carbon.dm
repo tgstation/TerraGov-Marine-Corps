@@ -58,11 +58,9 @@
 			"<span class='warning'> You hear a heavy electrical crack.</span>" \
 		)
 		if(isxeno(src) && mob_size == MOB_SIZE_BIG)
-			Stun(20)//Sadly, something has to stop them from bumping them 10 times in a second
-			Paralyze(20)
+			Paralyze(4 SECONDS)
 		else
-			Stun(20 SECONDS)//This should work for now, more is really silly and makes you lay there forever
-			Paralyze(20 SECONDS)
+			Paralyze(8 SECONDS)
 	else
 		src.visible_message(
 			"<span class='warning'> [src] was mildly shocked by the [source].</span>", \

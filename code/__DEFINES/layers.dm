@@ -132,6 +132,8 @@
 
 #define POINT_LAYER 12
 
+#define CHAT_LAYER 12.1
+
 #define LIGHTING_PLANE 15
 
 #define ABOVE_LIGHTING_PLANE 16
