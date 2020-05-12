@@ -69,14 +69,11 @@ They're all essentially identical when it comes to getting the job done.
 	. = ..()
 
 	if(istype(I, /obj/item/ammo_magazine))
-		var/obj/item/ammo_magazine/MG = I
-		if(!(MG.flags_magazine & AMMUNITION_HANDFUL)) //got a handful of bullets
-			return
 
 		if(!(flags_magazine & AMMUNITION_REFILLABLE)) //and a refillable magazine
 			return
 
-		var/obj/item/ammo_magazine/handful/H = I
+		var/obj/item/ammo_magazine/H = I
 		if(src != user.get_inactive_held_item()) //It has to be held.
 			to_chat(user, "Try holding [src] before you attempt to restock it.")
 			return
@@ -87,7 +84,6 @@ They're all essentially identical when it comes to getting the job done.
 
 		transfer_ammo(H, user, H.current_rounds) // This takes care of the rest.
 
-
 //Generic proc to transfer ammo between ammo mags. Can work for anything, mags, handfuls, etc.
 /obj/item/ammo_magazine/proc/transfer_ammo(obj/item/ammo_magazine/source, mob/user, transfer_amount = 1)
 	if(current_rounds == max_rounds) //Does the mag actually need reloading?
@@ -97,6 +93,17 @@ They're all essentially identical when it comes to getting the job done.
 	if(source.caliber != caliber) //Are they the same caliber?
 		to_chat(user, "The rounds don't match up. Better not mix them up.")
 		return
+
+	if(!source.current_rounds)
+		to_chat(user, "[source] is empty.")
+		return
+
+	if(!istype(source, /obj/item/ammo_magazine/handful)) //if it isn't a handful, give a delay.
+		to_chat(user, "<span class='notice'>You start refilling [src] with [source].</span>")
+		if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
+			return
+
+	to_chat(user, "<span class='notice'>You refill [src] with [source].</span>")
 
 	var/S = min(transfer_amount, max_rounds - current_rounds)
 	source.current_rounds -= S
