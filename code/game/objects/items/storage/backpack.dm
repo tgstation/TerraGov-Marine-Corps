@@ -722,7 +722,7 @@
 		var/fuel_transfer_amount = min(reagents.total_volume, (FT.max_rounds - FT.current_rounds))
 		reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
 		FT.current_rounds += fuel_transfer_amount
-		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+		playsound(loc, 'sound/effects/refill.ogg', 25, TRUE, 3)
 		to_chat(user, "<span class='notice'>You refill [FT] with fuel.</span>")
 		FT.update_icon()
 
