@@ -10,7 +10,7 @@
 	wound_type = "queen" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 30
+	melee_damage = 35
 
 	// *** Tackle *** //
 	tackle_damage = 45
@@ -23,7 +23,7 @@
 	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 375
 
 	// *** Evolution *** //
 	upgrade_threshold = 480
@@ -41,11 +41,11 @@
 	spit_types = list(/datum/ammo/xeno/sticky, /datum/ammo/xeno/acid/medium)
 
 	// *** Pheromones *** //
-	aura_strength = 3 //The Queen's aura is strong and stays so, and gets devastating late game. Climbs by 1 to 5
+	aura_strength = 3.5 //The Queen's aura is strong and stays so, and gets devastating late game. Climbs by 1 to 5
 	aura_allowed = list("frenzy", "warding", "recovery")
 
 	// *** Queen Abilities *** //
-	queen_leader_limit = 1 //Amount of leaders allowed
+	queen_leader_limit = 2 //Amount of leaders allowed
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -80,7 +80,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Melee Attacks *** //
-	melee_damage = 35
+	melee_damage = 40
 
 	// *** Tackle *** //
 	tackle_damage = 50
@@ -93,7 +93,7 @@
 	plasma_gain = 50
 
 	// *** Health *** //
-	max_health = 350
+	max_health = 400
 
 	// *** Evolution *** //
 	upgrade_threshold = 960
@@ -108,7 +108,7 @@
 	aura_strength = 4
 
 	// *** Queen Abilities *** //
-	queen_leader_limit = 2
+	queen_leader_limit = 3
 
 /datum/xeno_caste/queen/elder
 	caste_desc = "The biggest and baddest xeno. The Empress controls multiple hives and planets."
@@ -129,7 +129,7 @@
 	plasma_gain = 60
 
 	// *** Health *** //
-	max_health = 400
+	max_health = 425
 
 	// *** Evolution *** //
 	upgrade_threshold = 1920
@@ -141,7 +141,7 @@
 	spit_delay = 1.3 SECONDS
 
 	// *** Pheromones *** //
-	aura_strength = 4.7
+	aura_strength = 4.5
 
 	// *** Queen Abilities *** //
 	queen_leader_limit = 3
@@ -152,7 +152,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 55
+	melee_damage = 50
 
 	// *** Tackle *** //
 	tackle_damage = 60
