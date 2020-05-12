@@ -21,7 +21,7 @@
 
 /mob/living/carbon/xenomorph/crusher/ex_act(severity)
 
-	flash_eyes()
+	flash_act()
 
 	if(severity == EXPLODE_DEVASTATE)
 		adjustBruteLoss(rand(200, 300))
