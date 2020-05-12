@@ -216,8 +216,8 @@
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
 	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
-	armor = list("melee" = 50, "bullet" = 65, "laser" = 65, "energy" = 35, "bomb" = 35, "bio" = 30, "rad" = 10, "fire" = 35, "acid" = 45)
-	slowdown = SLOWDOWN_ARMOR_LIGHT
+	armor = list("melee" = 55, "bullet" = 65, "laser" = 65, "energy" = 35, "bomb" = 35, "bio" = 30, "rad" = 10, "fire" = 35, "acid" = 45)
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	allowed = list(/obj/item/tank/emergency_oxygen,
 					/obj/item/flashlight,
 					/obj/item/ammo_magazine,
