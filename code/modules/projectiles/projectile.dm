@@ -765,16 +765,15 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		else
 			if(living_hard_armor)
 				damage = max(0, damage - living_hard_armor) //Damage soak.
-			if(!damage) //Damage fully soaked.
+			if(!damage) //Damage fully negated by hard armor.
 				bullet_soak_effect(proj)
 				feedback_flags |= BULLET_FEEDBACK_IMMUNE
-			else if(living_soft_armor >= 100) //Damage invulnerability.
+			else if(living_soft_armor >= 100) //Damage fully negated by soft armor.
 				damage = 0
 				bullet_soak_effect(proj)
-				feedback_flags |= BULLET_FEEDBACK_IMMUNE
-			else if(living_soft_armor) //Soft armor/padding, damage reduction.
 				feedback_flags |= BULLET_FEEDBACK_SOAK
-				damage -= damage * living_soft_armor * 0.01
+			else if(living_soft_armor) //Soft armor/padding, damage reduction.
+				damage = max(0, damage - (damage * living_soft_armor * 0.01))
 
 	if(proj.ammo.flags_ammo_behavior & AMMO_INCENDIARY)
 		//We are checking the total distributed mob's armor now, not just the limb.
@@ -848,7 +847,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /mob/living/carbon/human/get_soft_armor(armor_type, proj_def_zone, proj_dir)
 	var/datum/limb/affected_limb = get_limb(check_zone(proj_def_zone))
-	return affected_limb.soft_armor.getRating(type)
+	return affected_limb.soft_armor.getRating(armor_type)
 
 /mob/living/carbon/xenomorph/get_soft_armor(armor_type, proj_def_zone, proj_dir)
 	return ..() * get_sunder()
