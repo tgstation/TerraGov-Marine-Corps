@@ -410,12 +410,11 @@
 						/obj/item/ammo_magazine/rifle/tx15_slug = round(scale * 10),
 						/obj/item/cell/lasgun/lasrifle = round(scale * 25),
 
-						/obj/item/weapon/combat_knife = round(scale * 30),
+						/obj/item/attachable/bayonetknife = round(scale * 30),
 						/obj/item/weapon/throwing_knife = round(scale * 10),
 						/obj/item/storage/box/m94 = round(scale * 10),
 
-						/obj/item/attachable/flashlight = round(scale * 25),
-						/obj/item/attachable/bayonet = round(scale * 25)
+						/obj/item/attachable/flashlight = round(scale * 25)
 						)
 
 		M.contraband =   list(/obj/item/ammo_magazine/revolver/marksman = round(scale * 2),
