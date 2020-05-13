@@ -702,10 +702,11 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 			if(mod_armor.slot_legs)
 				var/legs_icon = mod_armor.slot_legs.item_state ? mod_armor.slot_legs.item_state : mod_armor.slot_legs.icon_state
 				standing.overlays += image(mod_armor.slot_legs.icon, legs_icon)
-			for(var/mod in mod_armor.installed_modules)
-				var/obj/item/armor_module/module = mod
-				var/mod_icon = module.item_state ? module.item_state : module.icon_state
-				standing.overlays += image(module.icon, mod_icon)
+			if(LAZYLEN(mod_armor.installed_modules))
+				for(var/mod in mod_armor.installed_modules)
+					var/obj/item/armor_module/module = mod
+					var/mod_icon = module.item_state ? module.item_state : module.icon_state
+					standing.overlays += image(module.icon, mod_icon)
 			if(mod_armor.installed_storage)
 				var/storage_icon = mod_armor.installed_storage.item_state ? mod_armor.installed_storage.item_state : mod_armor.installed_storage.icon_state
 				standing.overlays += image(mod_armor.installed_storage.icon, storage_icon)

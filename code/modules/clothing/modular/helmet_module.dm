@@ -31,7 +31,6 @@
 
 /** Called when the module is added to the armor */
 /obj/item/helmet_module/proc/do_attach(mob/living/user, obj/item/clothing/head/modular/parent)
-	SEND_SIGNAL(parent, COMSIG_HELMET_MODULE_ATTACHING, user, src)
 	user.dropItemToGround(src)
 	forceMove(parent)
 	parent.installed_module = src

@@ -46,9 +46,9 @@
 
 /obj/item/armor_module/attachable/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
-	parent.installed_modules += src
+	LAZYADD(parent.installed_modules, src)
 
 
 /obj/item/armor_module/attachable/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
-	parent.installed_modules -= src
+	LAZYREMOVE(parent.installed_modules, src)
 	return ..()

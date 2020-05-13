@@ -61,11 +61,6 @@
 	light_strength = 5
 
 
-/obj/item/clothing/suit/modular/Initialize()
-	. = ..()
-	installed_modules = list()
-
-
 /obj/item/clothing/suit/modular/Destroy()
 	QDEL_NULL(slot_chest)
 	QDEL_NULL(slot_arms)
@@ -151,11 +146,11 @@
 		return FALSE
 
 	if(istype(module, /obj/item/armor_module/attachable))
-		if(length(installed_modules) >= max_modules)
+		if(LAZYLEN(installed_modules) >= max_modules)
 			if(!silent)
 				to_chat(user,"<span class='warning'>There are too many pieces installed already.</span>")
 			return FALSE
-		if(module in installed_modules)
+		if(LAZYFIND(installed_modules, module))
 			if(!silent)
 				to_chat(user,"<span class='warning'>That module is already installed.</span>")
 			return FALSE
@@ -198,14 +193,14 @@
 	. = ..()
 	if(.)
 		return
-	if(!length(installed_modules))
+	if(!LAZYLEN(installed_modules))
 		to_chat(user, "<span class='notice'>There is nothing to remove</span>")
 		return TRUE
 
 	var/obj/item/armor_module/attachable/attachment
-	if(length(installed_modules) == 1) // Single item (just take it)
+	if(LAZYLEN(installed_modules) == 1) // Single item (just take it)
 		attachment = installed_modules[1]
-	else if(length(installed_modules) > 1) // Multi item, ask which piece
+	else if(LAZYLEN(installed_modules) > 1) // Multi item, ask which piece
 		attachment = input(user, "Which module would you like to remove", "Remove module") as null|anything in installed_modules
 	if(!attachment)
 		return TRUE
@@ -289,10 +284,11 @@
 /obj/item/clothing/suit/modular/get_mechanics_info()
 	. = ..()
 	. += "<br><br />This is a piece of modular armor, It can equip different attachments.<br />"
-	. += "<br>It currently has [length(installed_modules)] / [max_modules] modules installed."
+	. += "<br>It currently has [LAZYLEN(installed_modules)] / [max_modules] modules installed."
 	. += "<ul>"
-	for(var/obj/item/armor_module/mod in installed_modules)
-		. += "<li>[mod]</li>"
+	if(LAZYLEN(installed_modules))
+		for(var/obj/item/armor_module/mod in installed_modules)
+			. += "<li>[mod]</li>"
 	. += "</ul>"
 
 	if(slot_chest)
