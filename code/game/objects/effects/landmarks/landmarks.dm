@@ -162,29 +162,47 @@
 	return ..()
 
 /obj/effect/landmark/weapon_spawn/proc/spawn_associated_ammo(obj/item/weapon/gun/gun_to_spawn)
+	//fuck you grenade launchers you snowflake pieces of shit
+	if(istype(gun_to_spawn, /obj/item/weapon/gun/launcher/m92) || istype(gun_to_spawn, /obj/item/weapon/gun/launcher/m81))
+		new /obj/item/storage/box/nade_box (get_turf(src))
+		return
+
+	if(!gun_to_spawn.current_mag)
+		log_admin("Attempted to spawn ammo for a gun that has no current_mag. Someone make a bugreport for this weapon [initial(gun_to_spawn.name)] as related to the tiered weapon spawning.")
+		return
 	var/obj/item/ammo_magazine/gun_mag = gun_to_spawn.current_mag.type
+
+	if(istype(gun_to_spawn, /obj/item/weapon/gun/shotgun))
+		var/obj/item/ammo_magazine/handful/handful_to_generate
+		for(var/i in 1 to 3)
+			handful_to_generate = new (get_turf(src))
+			handful_to_generate.generate_handful(initial(gun_mag.default_ammo), initial(gun_mag.caliber), 5,5, /obj/item/weapon/gun/shotgun)
+		return
+
+	if(istype(gun_to_spawn, /obj/item/weapon/gun/revolver))
+		var/obj/item/ammo_magazine/handful/handful_to_generate
+		for(var/i in 1 to 3)
+			handful_to_generate = new (get_turf(src))
+			handful_to_generate.generate_handful(initial(gun_mag.default_ammo), initial(gun_mag.caliber), 8,8, /obj/item/weapon/gun/shotgun)
+		return
+
 	for(var/i in 1 to 3) //hardcoded 3 mags.
 		new gun_mag (get_turf(src))
 
-//pistols and knives
 /obj/effect/landmark/weapon_spawn/proc/choose_weapon()
 	weapon_to_spawn = pick(weapon_list)
 
 	weapon_to_spawn = new weapon_to_spawn (get_turf(src))
 
 	if(isgun(weapon_to_spawn))
-		var/obj/item/weapon/gun/gun_to_spawn = weapon_to_spawn
-		if(gun_to_spawn.current_mag)
-			spawn_associated_ammo(gun_to_spawn)
+		spawn_associated_ammo(weapon_to_spawn)
 
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn
 	name = "Tier 1 Weapon Spawn"
 	icon_state = "weapon1"
-	weapon_list = list(	/obj/item/weapon/gun/pistol/standard_pistol,
-					/obj/item/weapon/gun/pistol/m4a3,
-					/obj/item/weapon/combat_knife,
-					/obj/item/weapon/throwing_knife
-					)
+	weapon_list = list(	/obj/item/weapon/gun/revolver/standard_revolver,
+						/obj/item/weapon/gun/revolver/upp
+						)
 
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn
 	name = "Tier 2 Weapon Spawn"
