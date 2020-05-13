@@ -260,12 +260,12 @@
 			var/mob/living/carbon/human/H = M //fixed :s
 
 			if(user)
-				var/area/A = get_area(user)
 				if(!user.mind?.bypass_ff && !H.mind?.bypass_ff && user.faction == H.faction)
-					log_combat(user, H, "shot", src)
-					msg_admin_ff("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with \a [name] in [ADMIN_VERBOSEJMP(A)].")
+					log_combat(user, H, "flamed", src)
+					log_ffattack("[key_name(user)] flamed [key_name(H)] with \a [name] in [AREACOORD(T)].")
+					msg_admin_ff("[ADMIN_TPMONTY(user)] flamed [ADMIN_TPMONTY(H)] with \a [name] in [ADMIN_VERBOSEJMP(T)].")
 				else
-					log_combat(user, H, "shot", src)
+					log_combat(user, H, "flamed", src)
 
 			if(HAS_TRAIT(H, TRAIT_FIRERESISTANT))
 				continue

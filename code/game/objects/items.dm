@@ -162,7 +162,7 @@
 		var/obj/item/storage/S = loc
 		S.remove_from_storage(src, user.loc)
 
-	throwing = FALSE
+	set_throwing(FALSE)
 
 	if(loc == user && !user.temporarilyRemoveItemFromInventory(src))
 		return
@@ -486,13 +486,6 @@
 				if(!U || U.hastie)
 					return FALSE
 				return TRUE
-			if(SLOT_IN_BOOT)
-				if(!istype(src, /obj/item/weapon/combat_knife) && !istype(src, /obj/item/weapon/throwing_knife))
-					return FALSE
-				var/obj/item/clothing/shoes/marine/B = H.shoes
-				if(!B || !istype(B) || B.knife)
-					return FALSE
-				return TRUE
 			if(SLOT_IN_BACKPACK)
 				if (!H.back || !istype(H.back, /obj/item/storage/backpack))
 					return FALSE
@@ -637,7 +630,6 @@
 //The default action is attack_self().
 //Checks before we get to here are: mob is alive, mob is not restrained, paralyzed, asleep, resting, laying, item is on the mob.
 /obj/item/proc/ui_action_click(mob/user, datum/action/item_action/action)
-	toggle_item_state(user)
 	attack_self(user)
 
 /obj/item/proc/toggle_item_state(mob/user)
@@ -690,13 +682,12 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		"<span class='notice'>You look up from [zoom_device].</span>")
 		zoom = FALSE
 		COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)
-		if(user.client.click_intercept)
-			user.client.click_intercept = null
 
 		if(user.interactee == src)
 			user.unset_interaction()
 
 		if(user.client)
+			user.client.click_intercept = null
 			user.client.change_view(WORLD_VIEW)
 			user.client.pixel_x = 0
 			user.client.pixel_y = 0

@@ -199,7 +199,7 @@
 						/obj/item/storage/box/matches = "helmet_matches",
 						/obj/item/storage/fancy/cigarettes = "helmet_cig_kpack",
 						/obj/item/storage/fancy/cigarettes/kpack = "helmet_cig_kpack",
-						/obj/item/storage/fancy/cigarettes/lucky_strikes = "helmet_cig_ls",
+						/obj/item/storage/fancy/cigarettes/luckystars = "helmet_cig_ls",
 						/obj/item/storage/fancy/cigarettes/dromedaryco = "helmet_cig_kpack",
 						/obj/item/storage/fancy/cigarettes/lady_finger = "helmet_cig_lf",
 						/obj/item/toy/deck = "helmet_card_card",

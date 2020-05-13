@@ -52,18 +52,20 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 
 /turf/open/floor/ex_act(severity)
 	if(hull_floor)
-		return
+		return ..()
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			break_tile_to_plating()
-		if(2)
+		if(EXPLODE_HEAVY)
 			if(prob(80))
 				break_tile_to_plating()
 			else
 				break_tile()
-		if(3)
+		if(EXPLODE_LIGHT)
 			if(prob(50))
 				break_tile()
+	return ..()
+
 
 /turf/open/floor/fire_act(exposed_temperature, exposed_volume)
 	if(hull_floor)

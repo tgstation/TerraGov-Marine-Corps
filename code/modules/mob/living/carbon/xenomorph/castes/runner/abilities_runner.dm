@@ -79,9 +79,13 @@
 	mechanics_text = "Leap at your target, tackling and disarming them."
 	ability_name = "pounce"
 	plasma_cost = 10
-	var/range = 6
 	keybind_signal = COMSIG_XENOABILITY_POUNCE
-	var/paralyze_time = 2 SECONDS
+	///How far can we pounce.
+	var/range = 6
+	///For how long will we stun the victim
+	var/victim_paralyze_time = 2 SECONDS
+	///For how long will we freeze upon hitting our target
+	var/freeze_on_hit_time = 0.5 SECONDS
 
 // TODO: merge defender/ravager pounces into this typepath since they are essentially the same thing
 /datum/action/xeno_action/activable/pounce/proc/pounce_complete()
@@ -101,16 +105,18 @@
 		var/mob/living/carbon/human/H = M
 		if(!H.check_shields(COMBAT_TOUCH_ATTACK, 30, "melee"))
 			X.Paralyze(6 SECONDS)
-			X.throwing = FALSE //Reset throwing manually.
+			X.set_throwing(FALSE) //Reset throwing manually.
 			return COMPONENT_KEEP_THROWING
 
 	X.visible_message("<span class='danger'>[X] pounces on [M]!</span>",
 					"<span class='xenodanger'>We pounce on [M]!</span>", null, 5)
 
-	M.Paralyze(paralyze_time)
+	if(victim_paralyze_time)
+		M.Paralyze(victim_paralyze_time)
 
 	step_to(X, M)
-	X.stop_movement()
+	if(freeze_on_hit_time)
+		X.Immobilize(freeze_on_hit_time)
 	if(X.savage) //If Runner Savage is toggled on, attempt to use it.
 		if(!X.savage_used)
 			if(X.plasma_stored >= 10)
@@ -120,8 +126,7 @@
 		else
 			to_chat(X, "<span class='xenodanger'>We attempt to savage our victim, but we aren't yet ready.</span>")
 
-	playsound(X.loc, prob(95) ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, 1)
-	addtimer(CALLBACK(X, /mob/living/carbon/xenomorph.proc/reset_movement), X.xeno_caste.charge_type == 1 ? 5 : 15)
+	playsound(X.loc, prob(95) ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, TRUE)
 
 	pounce_complete()
 
@@ -136,9 +141,6 @@
 /datum/action/xeno_action/activable/pounce/proc/prepare_to_pounce()
 	if(owner.layer == XENO_HIDING_LAYER) //Xeno is currently hiding, unhide him
 		owner.layer = MOB_LAYER
-
-/datum/action/xeno_action/activable/pounce/proc/sneak_attack()
-	return
 
 /datum/action/xeno_action/activable/pounce/get_cooldown()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -163,7 +165,7 @@
 	X.visible_message("<span class='xenowarning'>\The [X] pounces at [A]!</span>", \
 	"<span class='xenowarning'>We pounce at [A]!</span>")
 
-	sneak_attack()
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_POUNCE)
 
 	succeed_activate()
 	add_cooldown()

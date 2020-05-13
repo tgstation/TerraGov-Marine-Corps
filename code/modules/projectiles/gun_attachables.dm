@@ -33,7 +33,7 @@ Defined in conflicts.dm of the #defines folder.
 	var/pixel_shift_y = 16 //Uses the bottom left corner of the item.
 
 	flags_atom = CONDUCT
-	materials = list(/datum/material/metal = 1000)
+	materials = list(/datum/material/metal = 100)
 	w_class = WEIGHT_CLASS_SMALL
 	force = 1.0
 	var/slot = null //"muzzle", "rail", "under", "stock"
@@ -340,6 +340,28 @@ Defined in conflicts.dm of the #defines folder.
 		if(F.loc != user) //It ended up on the floor, put it whereever the old flashlight is.
 			F.forceMove(loc)
 		qdel(src) //Delete da old bayonet
+
+/obj/item/attachable/bayonetknife
+	name = "M-22 bayonet"
+	desc = "A sharp knife that is the standard issue combat knife of the TerraGov Marine Corps can be attached to a variety of weapons at will or used as a standard knife."
+	icon_state = "bayonetknife"
+	item_state = "combat_knife"
+	attach_icon = "bayonetknife_a"
+	force = 25
+	throwforce = 20
+	throw_speed = 3
+	throw_range = 6
+	attack_speed = 7
+	attach_delay = 10 //Bayonets attach/detach quickly.
+	detach_delay = 10
+	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	melee_mod = 25
+	slot = "muzzle"
+	pixel_shift_x = 14 //Below the muzzle.
+	pixel_shift_y = 18
+	accuracy_mod = -0.05
+	accuracy_unwielded_mod = -0.1
+	size_mod = 1
 
 /obj/item/attachable/extended_barrel
 	name = "extended barrel"
@@ -1423,6 +1445,7 @@ Defined in conflicts.dm of the #defines folder.
 	if(bipod_deployed)
 		bipod_deployed = FALSE
 		to_chat(user, "<span class='notice'>You retract [src].</span>")
+		master_gun.aim_slowdown -= 1
 		master_gun.wield_delay -= 0.4 SECONDS
 		master_gun.accuracy_mult -= deployment_accuracy_mod
 		master_gun.recoil -= deployment_recoil_mod

@@ -72,12 +72,15 @@
 			if(!attack.is_usable(H))
 				return FALSE
 
-			log_combat(H, src, "[pick(attack.attack_verb)]ed")
-
 			if(!H.melee_damage || !prob(H.melee_accuracy))
 				H.do_attack_animation(src)
 				playsound(loc, attack.miss_sound, 25, TRUE)
 				visible_message("<span class='danger'>[H] tried to [pick(attack.attack_verb)] [src]!</span>", null, null, 5)
+				log_combat(H, src, "[pick(attack.attack_verb)]ed", "(missed)")
+				if(!H.mind?.bypass_ff && !mind?.bypass_ff && H.faction == faction)
+					var/turf/T = get_turf(src)
+					log_ffattack("[key_name(H)] missed a punch against [key_name(src)] in [AREACOORD(T)].")
+					msg_admin_ff("[ADMIN_TPMONTY(H)] missed a punch against [ADMIN_TPMONTY(src)] in [ADMIN_VERBOSEJMP(T)].")
 				return FALSE
 
 			H.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
@@ -90,17 +93,27 @@
 			playsound(loc, attack.attack_sound, 25, TRUE)
 
 			visible_message("<span class='danger'>[H] [pick(attack.attack_verb)]ed [src]!</span>", null, null, 5)
+			var/list/hit_report = list()
 			if(damage >= 5 && prob(50))
 				visible_message("<span class='danger'>[H] has weakened [src]!</span>", null, null, 5)
 				apply_effect(3, WEAKEN, armor_block)
+				hit_report += "(KO)"
 
 			damage += attack.damage
 			apply_damage(damage, BRUTE, affecting, armor_block, attack.sharp, attack.edge)
+
+			hit_report += "(RAW DMG: [damage])"
+
+			log_combat(H, src, "[pick(attack.attack_verb)]ed", "[hit_report.Join(" ")]")
+			if(!H.mind?.bypass_ff && !mind?.bypass_ff && H.faction == faction)
+				var/turf/T = get_turf(src)
+				log_ffattack("[key_name(H)] punched [key_name(src)] in [AREACOORD(T)] [hit_report.Join(" ")].")
+				msg_admin_ff("[ADMIN_TPMONTY(H)] punched [ADMIN_TPMONTY(src)] in [ADMIN_VERBOSEJMP(T)] [hit_report.Join(" ")].")
+
 			UPDATEHEALTH(src)
 
 
 		if(INTENT_DISARM)
-			log_combat(user, src, "disarmed")
 
 			H.do_attack_animation(src, ATTACK_EFFECT_DISARM)
 
@@ -121,8 +134,8 @@
 						chance = !hand ? 40 : 20
 
 					if(prob(chance))
-						log_combat(H, src, "disarmed, making their [W] go off")
 						visible_message("<span class='danger'>[src]'s [W] goes off during struggle!", null, null, 5)
+						log_combat(H, src, "disarmed", "making their [W] go off")
 						var/list/turfs = list()
 						for(var/turf/T in view())
 							turfs += T
@@ -135,6 +148,7 @@
 				apply_effect(3, WEAKEN, run_armor_check(affecting, "melee"))
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 				visible_message("<span class='danger'>[H] has pushed [src]!</span>", null, null, 5)
+				log_combat(user, src, "pushed")
 				return
 
 			if(randn <= 60)
@@ -146,11 +160,13 @@
 					drop_held_item()
 					visible_message("<span class='danger'>[H] has disarmed [src]!</span>", null, null, 5)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+				log_combat(user, src, "disarmed")
 				return
 
 
 			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, 7)
 			visible_message("<span class='danger'>[H] attempted to disarm [src]!</span>", null, null, 5)
+			log_combat(user, src, "missed a disarm")
 	return
 
 /mob/living/carbon/human/proc/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, inrange, params)

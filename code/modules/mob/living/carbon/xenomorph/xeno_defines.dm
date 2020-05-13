@@ -60,7 +60,8 @@
 	var/can_hold_eggs = CANNOT_HOLD_EGGS
 
 	// *** Defense *** //
-	var/list/armor
+	var/list/soft_armor
+	var/list/hard_armor
 
 	var/fire_resist = 1 //0 to 1; lower is better as it is a multiplier.
 
@@ -101,9 +102,9 @@
 
 	// *** Queen Abilities *** //
 	var/queen_leader_limit = 0 //Amount of leaders allowed
-	
+
 	var/list/actions
-		
+
 /mob/living/carbon/xenomorph
 	name = "Drone"
 	desc = "What the hell is THAT?"
@@ -127,7 +128,7 @@
 	hud_type = /datum/hud/alien
 	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD)
 	buckle_flags = NONE
-	faction = "Xeno"
+	faction = FACTION_XENO
 	initial_language_holder = /datum/language_holder/xeno
 	gib_chance = 5
 
@@ -156,7 +157,6 @@
 	var/upgrade_stored = 0 //How much upgrade points they have stored.
 	var/upgrade = XENO_UPGRADE_INVALID  //This will track their upgrade level.
 
-	var/datum/armor/armor
 	var/armor_bonus = 0
 	var/armor_pheromone_bonus = 0
 	var/sunder = 0 // sunder affects armour values and does a % removal before dmg is applied. 50 sunder == 50% effective armour values

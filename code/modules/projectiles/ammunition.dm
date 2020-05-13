@@ -12,7 +12,7 @@ They're all essentially identical when it comes to getting the job done.
 	var/bonus_overlay = null //Sprite pointer in ammo.dmi to an overlay to add to the gun, for extended mags, box mags, and so on
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
-	materials = list(/datum/material/metal = 1000)
+	materials = list(/datum/material/metal = 100)
 	throwforce = 2
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 2
@@ -139,10 +139,9 @@ They're all essentially identical when it comes to getting the job done.
 
 //~Art interjecting here for explosion when using flamer procs.
 /obj/item/ammo_magazine/flamer_fire_act()
-	switch(current_rounds)
-		if(0) return
-		if(1 to 100) explosion(loc,  -1, -1, 0, 2) //blow it up.
-		else explosion(loc,  -1, -1, 1, 2) //blow it up HARDER
+	if(!current_rounds)
+		return
+	explosion(loc, 0, 0, 1, 2, throw_range = FALSE) //blow it up.
 	qdel(src)
 
 //Magazines that actually cannot be removed from the firearm. Functionally the same as the regular thing, but they do have three extra vars.
@@ -370,12 +369,10 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 //explosion when using flamer procs.
 /obj/item/big_ammo_box/flamer_fire_act()
-	switch(bullet_amount)
-		if(0) return
-		if(1 to 100) explosion(loc,  0, 0, 1, 2) //blow it up.
-		else explosion(loc,  0, 0, 2, 3) //blow it up HARDER
+	if(!bullet_amount)
+		return
+	explosion(loc, 0, 0, 1, 2, throw_range = FALSE) //blow it up.
 	qdel(src)
-
 
 
 //Deployable ammo box-Unnused until they have proper sprites for the guns

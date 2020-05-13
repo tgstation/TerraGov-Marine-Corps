@@ -223,15 +223,15 @@
 //SMARTMACHINEGUN AMMUNITION
 
 /obj/item/ammo_magazine/standard_smartmachinegun
-	name = "\improper T-29 drum magazine (10x24mm)"
+	name = "\improper T-29 drum magazine (10x26mm)"
 	desc = "A 10mm drum magazine."
 	caliber = "10x26mm caseless"
 	icon_state = "t29"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/smartmachinegun
-	max_rounds = 300
+	max_rounds = 200
 	gun_type = /obj/item/weapon/gun/rifle/standard_smartmachinegun
-	reload_delay = 2 SECONDS
+	reload_delay = 2.5 SECONDS
 
 
 //-------------------------------------------------------

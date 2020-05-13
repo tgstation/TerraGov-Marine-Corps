@@ -42,7 +42,7 @@
 	density = TRUE
 	icon_state = "hydra-off"
 	sleep(20)
-	explosion(loc, -1, 0, 8, 12)
+	explosion(loc, 0, 1, 9, 12)
 
 
 /mob/living/silicon/decoy/say(message, new_sound, datum/language/language) //General communication across the ship.

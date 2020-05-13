@@ -80,6 +80,8 @@
 		GLOB.alive_living_list += src
 	START_PROCESSING(SSmobs, src)
 
+	set_armor_datum()
+
 /mob/living/Destroy()
 	for(var/i in embedded_objects)
 		var/obj/item/embedded = i
@@ -149,6 +151,22 @@
 		if(O.type == A)
 			return TRUE
 	return FALSE
+
+
+/mob/living/proc/set_armor_datum()
+	if(islist(soft_armor))
+		soft_armor = getArmor(arglist(soft_armor))
+	else if (!soft_armor)
+		soft_armor = getArmor()
+	else if (!istype(soft_armor, /datum/armor))
+		stack_trace("Invalid type [soft_armor.type] found in .soft_armor during [type] Initialize()")
+
+	if(islist(hard_armor))
+		hard_armor = getArmor(arglist(hard_armor))
+	else if (!hard_armor)
+		hard_armor = getArmor()
+	else if (!istype(hard_armor, /datum/armor))
+		stack_trace("Invalid type [hard_armor.type] found in .hard_armor during [type] Initialize()")
 
 
 /mob/living/proc/get_limbzone_target()
@@ -399,9 +417,7 @@
 		stop_pulling() //being thrown breaks pulls.
 	if(pulledby)
 		pulledby.stop_pulling()
-	set_frozen(TRUE) //can't move while being thrown
-	. = ..()
-	set_frozen(FALSE)
+	return ..()
 
 
 /mob/living/proc/offer_mob()
@@ -412,10 +428,10 @@
 /mob/living/proc/get_permeability_protection()
 	return LIVING_PERM_COEFF
 
-/mob/proc/flash_eyes(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
+/mob/proc/flash_act(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
 	return
 
-/mob/living/carbon/flash_eyes(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
+/mob/living/carbon/flash_act(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
 	if( bypass_checks || (get_eye_protection() < intensity && !(disabilities & BLIND)) )
 		overlay_fullscreen_timer(40, 20, "flash", type)
 		return TRUE

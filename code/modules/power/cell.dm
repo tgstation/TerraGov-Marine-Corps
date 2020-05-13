@@ -172,14 +172,14 @@
 /obj/item/cell/proc/explode()
 	var/turf/T = get_turf(src.loc)
 /*
-* 1000-cell	explosion(T, -1, 0, 1, 1)
-* 2500-cell	explosion(T, -1, 0, 1, 1)
-* 10000-cell	explosion(T, -1, 1, 3, 3)
-* 15000-cell	explosion(T, -1, 2, 4, 4)
+* 1000-cell	explosion(T, 0, 0, 1, 1)
+* 2500-cell	explosion(T, 0, 0, 1, 1)
+* 10000-cell	explosion(T, 0, 1, 3, 3)
+* 15000-cell	explosion(T, 0, 2, 4, 4)
 * */
-	var/devastation_range = -1 //round(charge/11000)
-	var/heavy_impact_range = CLAMP(round(sqrt(charge) * 0.01), -1, 2)
-	var/light_impact_range = CLAMP(round(sqrt(charge) * 0.15), -1, 3)
+	var/devastation_range = 0 //round(charge/11000)
+	var/heavy_impact_range = CLAMP(round(sqrt(charge) * 0.01), 0, 3)
+	var/light_impact_range = CLAMP(round(sqrt(charge) * 0.15), 0, 4)
 	var/flash_range = CLAMP(round(sqrt(charge) * 0.15), -1, 4)
 
 	explosion(T, devastation_range, heavy_impact_range, light_impact_range, flash_range)
@@ -203,22 +203,21 @@
 /obj/item/cell/ex_act(severity)
 
 	switch(severity)
-		if(1.0)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-			return
-		if(2.0)
+		if(EXPLODE_HEAVY)
 			if (prob(50))
 				qdel(src)
 				return
 			if (prob(50))
 				corrupt()
-		if(3.0)
+		if(EXPLODE_LIGHT)
 			if (prob(25))
 				qdel(src)
 				return
 			if (prob(25))
 				corrupt()
-	return
+
 
 /obj/item/cell/proc/get_electrocute_damage()
 	switch (charge)
