@@ -577,7 +577,7 @@
 				if(!cont)
 					break
 
-			playsound(user.loc, "rustle", 15, 1, 6)
+			playsound(user.loc, "rustle", 15, TRUE, 6)
 			to_chat(user, "<span class='notice'>You refill [src] with [M].</span>")
 			return TRUE
 
