@@ -12,40 +12,50 @@
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.7
-	var/obj/item/knife
+	var/obj/item/storage/internal/pockets = /obj/item/storage/internal/shoes/boot_knife
 
-/obj/item/clothing/shoes/marine/Destroy()
-	if(knife)
-		QDEL_NULL(knife)
-	return ..()
+/obj/item/storage/internal/shoes/boot_knife
+	max_storage_space = 3
+	storage_slots = 1
+	draw_mode = TRUE
+	can_hold = list(
+		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/weapon/throwing_knife
+	)
 
-//ATTACK HAND IGNORING PARENT RETURN VALUE
+/obj/item/clothing/shoes/marine/Initialize()
+	. = ..()
+	pockets = new pockets(src)
+
 /obj/item/clothing/shoes/marine/attack_hand(mob/living/user)
-	if(knife && src.loc == user && !user.incapacitated()) //Only allow someone to take out the knife if it's being worn or held. So you can pick them up off the floor
-		if(user.put_in_active_hand(knife))
-			to_chat(user, "<span class='notice'>You slide [knife] out of [src].</span>")
-			playsound(user, 'sound/weapons/guns/interact/shotgun_shell_insert.ogg', 15, 1)
-			knife = 0
-			update_icon()
-	else
+	if(pockets.handle_attack_hand(user))
 		return ..()
+
+
+/obj/item/clothing/shoes/marine/MouseDrop(over_object, src_location, over_location)
+	if(!pockets)
+		return ..()
+	if(pockets.handle_mousedrop(usr, over_object))
+		return ..()
+
 
 /obj/item/clothing/shoes/marine/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
+	if(!pockets)
+		return
 
-	if(istype(I, /obj/item/weapon/combat_knife) || istype(I, /obj/item/weapon/throwing_knife))
-		if(knife)
-			return
-		user.drop_held_item()
-		knife = I
-		I.forceMove(src)
-		to_chat(user, "<div class='notice'>You slide the [I] into [src].</div>")
-		playsound(user, 'sound/weapons/guns/interact/shotgun_shell_insert.ogg', 15, 1)
-		update_icon()
+	return pockets.attackby(I, user, params)
 
+
+/obj/item/clothing/shoes/marine/emp_act(severity)
+	pockets?.emp_act(severity)
+	return ..()
 
 /obj/item/clothing/shoes/marine/update_icon()
-	if(knife)
+	if(length(pockets.contents))
 		icon_state = "[initial(icon_state)]-knife"
 	else
 		icon_state = initial(icon_state)
@@ -110,12 +120,6 @@
 	desc = "A pair of boots issued to the Imperial Guard, just like anything else they use, they are mass produced."
 	//icon_state = ""
 	armor = list("melee" = 25, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 25)
-
-/obj/item/clothing/shoes/marine/imperial/Initialize()
-	. = ..()
-	knife = new /obj/item/weapon/combat_knife
-	update_icon()
-
 
 
 /obj/item/clothing/shoes/marine/som
