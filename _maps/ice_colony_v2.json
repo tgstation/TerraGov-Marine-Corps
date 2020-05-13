@@ -1,7 +1,8 @@
 {
     "map_name": "Ice Colony",
     "map_path": "map_files/Ice_Colony_v2",
-    "map_file": "Ice_Colony_v2.dmm",
+	"map_file": "Ice_Colony_v2.dmm",
+	"webmap_url": "https://bit.ly/tgmc-icecolony",
     "environment_traits": [
         {"COLD": true}
     ],

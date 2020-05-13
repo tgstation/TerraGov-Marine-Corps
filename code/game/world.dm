@@ -259,36 +259,81 @@ GLOBAL_VAR(restart_counter)
 
 
 /world/proc/update_status()
-	//Note: Hub content is limited to 254 characters, including HTML/CSS. Image width is limited to 450 pixels.
-	var/s = ""
-	var/shipname = length(SSmapping?.configs) && SSmapping.configs[SHIP_MAP] ? SSmapping.configs[SHIP_MAP].map_name : null
+	var/server_name = CONFIG_GET(string/server_name)
+	if(!server_name || Master?.current_runlevel == RUNLEVEL_INIT)
+		// If you didn't see a server name, or the master controller
+		// is stilling initing, we don't update the hub.
+		return
 
-	if(CONFIG_GET(string/server_name))
-		if(CONFIG_GET(string/discordurl))
-			s += "<a href=\"[CONFIG_GET(string/discordurl)]\"><b>[CONFIG_GET(string/server_name)] &#8212; [shipname]</a></b>"
-		else
-			s += "<b>[CONFIG_GET(string/server_name)] &#8212; [shipname]</b>"
-		var/map_name = length(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : null
-		if(Master?.current_runlevel && GLOB.master_mode)
-			switch(map_name)
-				if("Ice Colony")
-					s += "<br>Map: <a href='[CONFIG_GET(string/icecolonyurl)]'><b>[map_name]</a></b>"
-				if("LV624")
-					s += "<br>Map: <a href='[CONFIG_GET(string/lv624url)]'><b>[map_name]</a></b>"
-				if("Big Red")
-					s += "<br>Map: <a href='[CONFIG_GET(string/bigredurl)]'><b>[map_name]</a></b>"
-				if("Prison Station")
-					s += "<br>Map: <a href='[CONFIG_GET(string/prisonstationurl)]'><b>[map_name]</a></b>"
-				if("Whiskey Outpost")
-					s += "<br>Map: <a href='[CONFIG_GET(string/whiskeyoutposturl)]'><b>[map_name]</a></b>"
-				else
-					s += "<br>Map: <b>[map_name ? map_name : "Loading..."]</b>"
-			s += "<br>Mode: <b>[SSticker.mode ? SSticker.mode.name : "Lobby"]</b>"
-			s += "<br>Round time: <b>[duration2text()]</b>"
-		else
-			s += "<br>Map: <b>[map_name ? map_name : "Loading..."]</b>"
+	var/shipname = length(SSmapping?.configs) && SSmapping.configs[SHIP_MAP] ? SSmapping.configs[SHIP_MAP].map_name : "Lost in space..."
+	var/default_ship_url = length(SSmapping?.configs) && SSmapping.configs[SHIP_MAP] ? SSmapping.configs[SHIP_MAP].webmap_url : null
+	var/ship_url
+	var/map_name = length(SSmapping.configs) && SSmapping.configs[GROUND_MAP] ? SSmapping.configs[GROUND_MAP].map_name : "Loading..."
+	var/default_ground_url = length(SSmapping.configs) && SSmapping.configs[GROUND_MAP] ? SSmapping.configs[GROUND_MAP].webmap_url : null
+	var/ground_url
 
-		status = s
+	// Get ground map url
+	switch(map_name)
+		if(MAP_BIG_RED)
+			ground_url = CONFIG_GET(string/webmap_url_ground_bigred)
+		if(MAP_ICE_COLONY)
+			ground_url = CONFIG_GET(string/webmap_url_ground_icecolony)
+		if(MAP_ICY_CAVES)
+			ground_url = CONFIG_GET(string/webmap_url_ground_icecaves)
+		if(MAP_LV_624)
+			ground_url = CONFIG_GET(string/webmap_url_ground_lv624)
+		if(MAP_PRISON_STATION)
+			ground_url = CONFIG_GET(string/webmap_url_ground_prisonstation)
+		if(MAP_RESEARCH_OUTPOST)
+			ground_url = CONFIG_GET(string/webmap_url_ground_researchoutpost)
+		if(MAP_WHISKEY_OUTPOST)
+			ground_url = CONFIG_GET(string/webmap_url_ground_whiskeyoutpost)
+	if(!ground_url)
+		ground_url = default_ground_url
+
+	// Get the ship url
+	switch(shipname)
+		if(MAP_PILLAR_OF_SPRING)
+			ship_url = CONFIG_GET(string/webmap_url_ship_pillar)
+		if(MAP_SULACO)
+			ship_url = CONFIG_GET(string/webmap_url_ship_sulaco)
+		if(MAP_THESEUS)
+			ship_url = CONFIG_GET(string/webmap_url_ship_thesues)
+	if(!ship_url)
+		ship_url = default_ship_url
+
+
+	// Start generating the hub status
+	// Note: Hub content is limited to 254 characters, including HTML/CSS. Image width is limited to 450 pixels.
+	// Current outputt should look like
+	/*
+	Something — Lost in space...	|	TerraGov Marine Corps — Sulaco
+	Map: Loading...					|	Map: Icy Caves
+	Mode: Lobby						|	Mode: Crash
+	Round time: 0:0					|	Round time: 4:54
+	*/
+	var/new_status = ""
+	var/discord_url = CONFIG_GET(string/discordurl)
+	if(discord_url)
+		new_status += "<a href='[discord_url]'><b>[CONFIG_GET(string/server_name)]</a> &#8212; </b>"
+	else
+		new_status += "<b>[CONFIG_GET(string/server_name)] &#8212; </b>"
+
+	if(ship_url)
+		new_status += "<b><a href='[ship_url]'>[shipname]</a></b>"
+	else
+		new_status += "<b>[shipname]</b>"
+
+	if(ground_url)
+		new_status += "<br>Map: <a href='[ground_url]'><b>[map_name]</a></b>"
+	else
+		new_status += "<br>Map: <b>[map_name]</b>"
+
+	new_status += "<br>Mode: <b>[SSticker.mode ? SSticker.mode.name : "Lobby"]</b>"
+	new_status += "<br>Round time: <b>[duration2text()]</b>"
+
+	// Finally set the new status
+	status = new_status
 
 
 /world/proc/incrementMaxZ()

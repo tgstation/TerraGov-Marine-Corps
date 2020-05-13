@@ -2,6 +2,7 @@
     "map_name": "Icy Caves",
     "map_path": "map_files/icy_caves",
     "map_file": "icy_caves.dmm",
+	"webmap_url": "https://bit.ly/tgmc-icycaves",
     "shuttles": {
     },
     "armor": "ice",

@@ -11,7 +11,7 @@
 		return
 
 	DIRECT_OUTPUT(src, link(CONFIG_GET(string/wikiurl)))
-		
+
 
 /client/verb/forum()
 	set name = "forum"
@@ -37,7 +37,7 @@
 
 	if(alert("This will open the rules in your browser. Are you sure?", "Rules", "Yes", "No") != "Yes")
 		return
-	
+
 	DIRECT_OUTPUT(src, link(CONFIG_GET(string/rulesurl)))
 
 
@@ -65,37 +65,27 @@
 
 	if(alert("This will open our bug tracker page in your browser. Are you sure?", "Github", "Yes", "No") != "Yes")
 		return
-	
+
 	DIRECT_OUTPUT(src, link(CONFIG_GET(string/githuburl)))
-		
+
 
 /client/verb/webmap()
 	set name = "webmap"
 	set hidden = TRUE
 
-	var/ship_link = CONFIG_GET(string/shipurl)
-	var/ground_link
-	
+	var/map_url
+
 	var/choice = alert("Do you want to view the ground or the ship?",,"Ship","Ground","Cancel")
 	switch(choice)
 		if("Ship")
-			if(!ship_link)
+			map_url = get_ship_map_url()
+			if(!map_url)
 				to_chat(src, "<span class='warning'>This ship map has no webmap setup.</span>")
 				return
-			DIRECT_OUTPUT(src, link(ship_link))
 		if("Ground")
-			switch(SSmapping.configs[GROUND_MAP].map_name)
-				if("Ice Colony")
-					ground_link = CONFIG_GET(string/icecolonyurl)
-				if("LV624")
-					ground_link = CONFIG_GET(string/lv624url)
-				if("Big Red")
-					ground_link = CONFIG_GET(string/bigredurl)
-				if("Prison Station")
-					ground_link = CONFIG_GET(string/prisonstationurl)
-				if("Whiskey Outpost")
-					ground_link = CONFIG_GET(string/whiskeyoutposturl)
-			if(!ground_link)
+			map_url = get_ground_map_url()
+			if(!map_url)
 				to_chat(src, "<span class='warning'>This ground map has no webmap setup.</span>")
 				return
-			DIRECT_OUTPUT(src, link(ground_link))
+
+	DIRECT_OUTPUT(src, link(map_url))

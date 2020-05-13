@@ -16,6 +16,8 @@
 	var/map_name = "LV624"
 	var/map_path = "map_files/LV624"
 	var/map_file = "LV624.dmm"
+	/// Links to the webmap
+	var/webmap_url = null
 
 	var/traits = null
 	var/space_empty_levels = 1
@@ -88,6 +90,8 @@
 	map_name = json["map_name"]
 	CHECK_EXISTS("map_path")
 	map_path = json["map_path"]
+	CHECK_EXISTS("webmap_url")
+	webmap_url = json["webmap_url"]
 
 	map_file = json["map_file"]
 	// "map_file": "BoxStation.dmm"
@@ -153,7 +157,7 @@
 	else if(!isnull(json["environment_traits"]))
 		log_world("map_config environment_traits is not a list!")
 		return
-	
+
 	var/list/gamemode_names = list()
 	for(var/t in subtypesof(/datum/game_mode))
 		var/datum/game_mode/G = t

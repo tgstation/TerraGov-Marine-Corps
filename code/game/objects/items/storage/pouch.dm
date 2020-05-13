@@ -484,7 +484,6 @@
 		/obj/item/flashlight,
 		/obj/item/whistle,
 		/obj/item/binoculars,
-		/obj/item/map/current_map,
 		/obj/item/squad_beacon)
 
 /obj/item/storage/pouch/field_pouch/full/Initialize()
@@ -492,7 +491,6 @@
 	new /obj/item/motiondetector (src)
 	new /obj/item/whistle (src)
 	new /obj/item/radio (src)
-	new /obj/item/map/current_map (src)
 	new /obj/item/binoculars/tactical (src)
 
 
