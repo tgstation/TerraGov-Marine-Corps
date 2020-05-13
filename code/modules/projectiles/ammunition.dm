@@ -100,7 +100,7 @@ They're all essentially identical when it comes to getting the job done.
 
 	if(!istype(source, /obj/item/ammo_magazine/handful)) //if it isn't a handful, give a delay.
 		to_chat(user, "<span class='notice'>You start refilling [src] with [source].</span>")
-		if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
+		if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 			return
 
 	to_chat(user, "<span class='notice'>You refill [src] with [source].</span>")
