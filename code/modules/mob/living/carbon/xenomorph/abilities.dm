@@ -834,7 +834,7 @@
 	GLOB.round_statistics.panther_neurotoxin_stings++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "panther_neurotoxin_stings")
 
-	X.recurring_injection(A, /datum/reagent/toxin/xeno_neurotoxin, XENO_NEURO_CHANNEL_TIME, XENO_PANTHER_NEURO_AMOUNT_RECCURING)
+	X.recurring_injection(A, /datum/reagent/toxin/xeno_neurotoxin, XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECCURING_PANTHER)
 
 
 // ***************************************
