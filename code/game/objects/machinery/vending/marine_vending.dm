@@ -29,7 +29,10 @@
 					/obj/item/ammo_magazine/rifle/standard_dmr = 25,
 					/obj/item/weapon/gun/energy/lasgun/lasrifle = 10,
 					/obj/item/cell/lasgun/lasrifle = 20,
+					/obj/item/cell/lasgun/lasrifle/highcap = 2,
 					/obj/item/weapon/gun/shotgun/pump/t35 = 10,
+					/obj/item/weapon/gun/shotgun/double = 2,
+					/obj/item/weapon/gun/shotgun/pump/ksg = 2,
 					/obj/item/ammo_magazine/shotgun = 10,
 					/obj/item/ammo_magazine/shotgun/buckshot = 10,
 					/obj/item/ammo_magazine/shotgun/flechette = 10,
@@ -40,6 +43,22 @@
 					/obj/item/weapon/throwing_knife = 5,
 					/obj/item/storage/box/m94 = 5,
 					/obj/item/attachable/flashlight = 10,
+					/obj/item/weapon/gun/pistol/vp70 = 2,
+					/obj/item/ammo_magazine/pistol/vp70 = 10,
+					/obj/item/weapon/gun/smg/ppsh = 2,
+					/obj/item/ammo_magazine/smg/ppsh/ = 10,
+					/obj/item/ammo_magazine/smg/ppsh/extended = 2,
+					/obj/item/weapon/gun/shotgun/pump/bolt = 2,
+					/obj/item/ammo_magazine/rifle/bolt = 10,
+					/obj/item/weapon/gun/flamer = 2,
+					/obj/item/ammo_magazine/flamer_tank = 4,
+					/obj/item/weapon/combat_knife = 20,
+					/obj/item/weapon/throwing_knife = 5,
+					/obj/item/storage/box/m94 = 5,
+					/obj/item/attachable/flashlight = 10,
+					/obj/item/attachable/bayonet = 10,
+					/obj/item/explosive/grenade/frag = 3,
+					/obj/item/explosive/grenade/incendiary = 3
 					)
 	prices = list()
 
