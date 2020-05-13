@@ -1,13 +1,13 @@
 language: generic
+os: linux
 dist: xenial
-sudo: false
 
 branches:
   except:
   - ___TGS3TempBranch
   - ___TGSTempBranch
 
-matrix:
+jobs:
   include:
     - name: "Run Linters"
       addons:
@@ -92,4 +92,4 @@ matrix:
         skip_cleanup: true
         keep_history: true
         local_dir: dmdoc
-        github_token: $DMDOC_GITHUB_TOKEN
+        token: $DMDOC_GITHUB_TOKEN

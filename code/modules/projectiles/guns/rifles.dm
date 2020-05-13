@@ -67,6 +67,7 @@
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/attached_gun/grenade,
 						/obj/item/attachable/attached_gun/flamer,
@@ -118,6 +119,7 @@
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/scope,
 						/obj/item/attachable/scope/mini,
@@ -162,6 +164,7 @@
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
@@ -211,6 +214,7 @@
 						/obj/item/attachable/quickfire,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
@@ -278,6 +282,7 @@
 	current_mag = /obj/item/ammo_magazine/rifle/m41a
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/attached_gun/grenade,
 						/obj/item/attachable/attached_gun/flamer,
@@ -378,6 +383,7 @@
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/angledgrip,
@@ -437,6 +443,7 @@
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/scope,
 						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/compensator,
@@ -571,6 +578,7 @@
 	current_mag = /obj/item/ammo_magazine/rifle/sx16_buckshot
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/angledgrip,
@@ -606,6 +614,7 @@
 	current_mag = /obj/item/ammo_magazine/rifle/tx15_slug
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/angledgrip,

@@ -83,7 +83,7 @@
 		if(2)
 			Stun(rand(2 SECONDS, 10 SECONDS))
 			take_limb_damage(10)
-	flash_eyes(1, TRUE, type = /obj/screen/fullscreen/flash/noise)
+	flash_act(1, TRUE, type = /obj/screen/fullscreen/flash/noise)
 
 	to_chat(src, "<span class='danger'>*BZZZT*</span>")
 	to_chat(src, "<span class='warning'>Warning: Electromagnetic pulse detected.</span>")
@@ -161,7 +161,7 @@
 
 
 /mob/living/silicon/ex_act(severity)
-	flash_eyes()
+	flash_act()
 
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
@@ -196,7 +196,7 @@
 			adjustBruteLoss(10)
 
 	to_chat(src, "<span class='danger'>*BZZZT*</span>")
-	flash_eyes()
+	flash_act()
 
 
 /mob/living/silicon/update_transform()
