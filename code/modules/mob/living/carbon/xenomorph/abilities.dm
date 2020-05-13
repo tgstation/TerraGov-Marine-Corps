@@ -831,8 +831,8 @@
 
 	add_cooldown()
 
-	GLOB.round_statistics.sentinel_neurotoxin_stings++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "sentinel_neurotoxin_stings")
+	GLOB.round_statistics.panther_neurotoxin_stings++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "panther_neurotoxin_stings")
 
 	X.recurring_injection(A, /datum/reagent/toxin/xeno_neurotoxin, XENO_NEURO_CHANNEL_TIME, XENO_PANTHER_NEURO_AMOUNT_RECCURING)
 
