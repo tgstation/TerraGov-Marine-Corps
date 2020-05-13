@@ -56,7 +56,7 @@ SUBSYSTEM_DEF(shuttle)
 		var/datum/supply_packs/P = new pack()
 		if(!P.contains)
 			continue
-		supply_packs[P.name] = P
+		supply_packs[pack] = P
 		LAZYADD(supply_packs_ui[P.group], list(list("path" = pack, "name" = P.name, "contains" = P.contains_name, "cost" = P.cost, "hidden" = P.hidden, "container_name" = initial(P.containertype.name))))
 
 	initial_load()

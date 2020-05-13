@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from '../backend';
-import { Button, Flex, Divider, Collapsible, AnimatedNumber } from '../components';
+import { Button, Flex, Divider, Collapsible, AnimatedNumber, Box } from '../components';
 import { Window } from '../layouts';
 import { Fragment } from 'inferno';
 import { map } from 'common/collections';
@@ -31,6 +31,8 @@ export const Cargo = (props, context) => {
 
   const selectedPackCat = selectedCategory ? supplypacks[selectedMenu] : null;
 
+  //logger.log(shopping_list);
+
   return (
     <Window resizable>
       <Flex height="650px">
@@ -40,7 +42,7 @@ export const Cargo = (props, context) => {
         <Flex.Item position="relative" grow={1}>
           <Window.Content scrollable>
             {selectedMenu==="pendingorder" && (
-              <Category selectedPackCat={shopping_list} />
+              <ShoppingCart />
             )}
             {selectedMenu==="requests" && (
               requests.map(request => (
@@ -99,7 +101,12 @@ const Menu = (props, context) => {
     categories,
     shopping_list,
     shopping_list_cost,
+    shopping_list_items,
+    elevator,
+    elevator_dir,
   } = data;
+
+  const elev_status = elevator==="Raised" || elevator==="Lowered";
 
   return (
     <Fragment>
@@ -108,11 +115,26 @@ const Menu = (props, context) => {
       <Flex>
         <FlexItem grow={1}>
           <Button
+            onClick={() => act('send')}
+            disabled={!elev_status}
+            icon={"angle-double-"+elevator_dir}>
+            {elevator_dir==="up"?"Raise":"Lower"}
+          </Button>
+        </FlexItem>
+        <FlexItem>
+          Elevator: {elevator}
+        </FlexItem>
+      </Flex>
+      <Divider />
+      <Flex>
+        <FlexItem grow={1}>
+          <Button
             onClick={() => setSelectedMenu("pendingorder")}
+            disabled={!shopping_list_items}
             selected={selectedMenu==="pendingorder"}>Pending Order
           </Button>
         </FlexItem>
-        <FlexItem><AnimatedNumber value={shopping_list.length} /> items
+        <FlexItem><AnimatedNumber value={shopping_list_items} /> items
         </FlexItem>
         <FlexItem width="5px" />
         <FlexItem>Cost: <AnimatedNumber value={shopping_list_cost} /></FlexItem>
@@ -121,6 +143,7 @@ const Menu = (props, context) => {
         <FlexItem grow={1}>
           <Button
             onClick={() => setSelectedMenu("requests")}
+            disabled={!requests.length}
             selected={selectedMenu==="requests"}>Requests
           </Button>
         </FlexItem>
@@ -141,20 +164,60 @@ const Menu = (props, context) => {
   );
 };
 
+const ShoppingCart = (props, context) => {
+  const { act, data } = useBackend(context);
+
+  const { shopping_list } = data;
+
+  const shopping_list_array = Object.values(shopping_list)
+
+  //logger.log(shopping_list_array);
+
+  return ( <Category selectedPackCat={shopping_list_array} /> );
+};
+
 const Category = (props, context) => {
   const { act, data } = useBackend(context);
+
+  const {
+    shopping_list,
+    shopping_list_cost,
+    currentpoints,
+  } = data;
+
+  const spare_points = currentpoints - shopping_list_cost;
 
   const {
     selectedPackCat,
   } = props;
 
-  return selectedPackCat.map(entry => (
+  return selectedPackCat.map(entry => {
+    const shop_list = shopping_list[entry.path] || 0;
+    const count = shop_list ? shop_list.count : 0;
+    return (
     <Flex key={entry.id}>
-      <FlexItem>
+      <FlexItem shrink={0}>
         <Button
-          onClick={() =>
-            act('addtocart', { id: entry.path })}
-          content="Add to Cart" />
+          icon="fast-backward"
+          disabled={!count}
+          onClick={() => act('cart', { id: entry.path, mode: "removeall" })} />
+        <Button
+          icon="backward"
+          disabled={!count}
+          onClick={() => act('cart', { id: entry.path, mode: "removeone" })} />
+        <Box width="15px" inline textAlign="center">
+        { !!count && (
+        <AnimatedNumber value={count} />
+        )}
+        </Box>
+        <Button
+          icon="forward"
+          disabled={entry.cost > spare_points}
+          onClick={() => act('cart', { id: entry.path, mode: "addone" })} />
+        <Button
+          icon="fast-forward"
+          disabled={entry.cost > spare_points}
+          onClick={() => act('cart', { id: entry.path, mode: "addall" })} />
       </FlexItem>
       <FlexItem basis="80px" shrink={0} textAlign="right">
         {entry.cost} points
@@ -178,7 +241,7 @@ const Category = (props, context) => {
         </Collapsible>
       </FlexItem>
     </Flex>
-  ));
+  )});
 
 };
 

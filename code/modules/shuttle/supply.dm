@@ -286,28 +286,86 @@ GLOBAL_LIST_EMPTY(exports_types)
 		var/datum/supply_order/SO = i
 		.["requests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = SO.pack.cost, "name" = SO.pack.name, "contains" = SO.pack.contains_name))
 	.["shopping_list_cost"] = 0
+	.["shopping_list_items"] = 0
 	.["shopping_list"] = list()
 	for(var/i in SSshuttle.shopping_cart)
-		var/datum/supply_packs/pack = i
-		var/datum/supply_packs/SP = SSshuttle.supply_packs[initial(pack.name)]
-		.["shopping_list_cost"] += SP.cost
-		.["shopping_list"] += list(list("name" = SP.name, "cost" = SP.cost, "contains" = SP.contains_name, "path" = SP.type, "count" = SSshuttle.shopping_cart[SP]))
+		var/datum/supply_packs/SP = SSshuttle.supply_packs[i]
+		.["shopping_list_items"] += SSshuttle.shopping_cart[i]
+		.["shopping_list_cost"] += SP.cost * SSshuttle.shopping_cart[SP.type]
+		.["shopping_list"][SP.type] = list("name" = SP.name, "cost" = SP.cost, "contains" = SP.contains_name, "path" = SP.type, "count" = SSshuttle.shopping_cart[SP.type])
+
+	if(SSshuttle.supply)
+		if(SSshuttle.supply.mode == SHUTTLE_CALL)
+			if(is_mainship_level(SSshuttle.supply.destination.z))
+				.["elevator"] = "Raising"
+				.["elevator_dir"] = "up"
+			else
+				.["elevator"] = "Lowering"
+				.["elevator_dir"] = "down"
+		else if(SSshuttle.supply.mode == SHUTTLE_IDLE)
+			if(is_mainship_level(SSshuttle.supply.z))
+				.["elevator"] = "Raised"
+				.["elevator_dir"] = "down"
+			else
+				.["elevator"] = "Lowered"
+				.["elevator_dir"] = "up"
+		else
+			if(is_mainship_level(SSshuttle.supply.z))
+				.["elevator"] = "Lowering"
+				.["elevator_dir"] = "down"
+			else
+				.["elevator"] = "Raising"
+				.["elevator_dir"] = "up"
+	else
+		.["elevator"] = "MISSING!"
+
 
 /obj/machinery/computer/supplycomp/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	if(..())
 		return
 	switch(action)
-		if("addtocart")
-			var/datum/supply_packs/path = text2path(params["id"])
-			if(!ispath(path))
-				return
-			var/datum/supply_packs/P = SSshuttle.supply_packs[initial(path.name)]
+		if("cart")
+			var/datum/supply_packs/P = SSshuttle.supply_packs[text2path(params["id"])]
 			if(!P)
 				return
-			if(SSshuttle.shopping_cart[P.type])
-				SSshuttle.shopping_cart[P.type]++
+			to_chat(world, json_encode(params))
+			switch(params["mode"])
+				if("removeall")
+					SSshuttle.shopping_cart -= P.type
+				if("removeone")
+					if(SSshuttle.shopping_cart[P.type] > 1)
+						SSshuttle.shopping_cart[P.type]--
+					else
+						SSshuttle.shopping_cart -= P.type
+				if("addone")
+					if(SSshuttle.shopping_cart[P.type])
+						SSshuttle.shopping_cart[P.type]++
+					else
+						SSshuttle.shopping_cart[P.type] = 1
+				if("addall")
+					var/cart_cost = 0
+					for(var/i in SSshuttle.shopping_cart)
+						var/datum/supply_packs/SP = SSshuttle.supply_packs[i]
+						cart_cost += SP.cost * SSshuttle.shopping_cart[SP.type]
+					var/excess_points = SSpoints.supply_points - cart_cost
+					var/number_to_buy = round(excess_points / P.cost)
+					if(SSshuttle.shopping_cart[P.type])
+						SSshuttle.shopping_cart[P.type] += number_to_buy
+					else
+						SSshuttle.shopping_cart[P.type] = number_to_buy
+		if("send")
+			if(SSshuttle.supply.mode == SHUTTLE_IDLE && is_mainship_level(SSshuttle.supply.z))
+				if (!SSshuttle.supply.check_blacklist())
+					to_chat(usr, "For safety reasons, the Automated Storage and Retrieval System cannot store live, non-xeno organisms, classified nuclear weaponry or homing beacons.")
+					playsound(SSshuttle.supply.return_center_turf(), 'sound/machines/buzz-two.ogg', 50, 0)
+				else
+					playsound(SSshuttle.supply.return_center_turf(), 'sound/machines/elevator_move.ogg', 50, 0)
+					SSshuttle.moveShuttle("supply", "supply_away", TRUE)
 			else
-				SSshuttle.shopping_cart[P.type] = 1
+				var/obj/docking_port/D = SSshuttle.getDock("supply_home")
+				playsound(D.return_center_turf(), 'sound/machines/elevator_move.ogg', 50, 0)
+				SSshuttle.moveShuttle("supply", "supply_home", TRUE)
+
 	return TRUE
 
 /obj/machinery/computer/ordercomp
