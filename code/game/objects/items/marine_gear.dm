@@ -99,7 +99,7 @@
 		to_chat(M, "<span class='danger'>The shockwave blows [src] open!</span>")
 		open()
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			visible_message("<span class='danger'>\The shockwave blows [src] apart!</span>")
 			qdel(src) //blown apart
 

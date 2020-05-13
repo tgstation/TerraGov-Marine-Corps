@@ -10,6 +10,10 @@
 	icon = 'icons/obj/doors/Doorcom.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_com
 
+/obj/machinery/door/airlock/command/thunderdome
+	name = "\improper Thunderdome Administration"
+	req_access = list(ACCESS_CIVILIAN_ENGINEERING)
+
 /obj/machinery/door/airlock/security
 	name = "\improper Security Airlock"
 	icon = 'icons/obj/doors/Doorsec.dmi'
@@ -34,6 +38,9 @@
 	name = "\improper External Airlock"
 	icon = 'icons/obj/doors/Doorext.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_ext
+
+/obj/machinery/door/airlock/external/brig
+	req_access = list(ACCESS_MARINE_BRIG)
 
 /obj/machinery/door/airlock/glass
 	name = "\improper Glass Airlock"
@@ -64,6 +71,9 @@
 	opacity = TRUE
 	assembly_type = /obj/structure/door_assembly/door_assembly_hatch
 
+/obj/machinery/door/airlock/hatch/engineering
+	req_access = list(ACCESS_CIVILIAN_ENGINEERING)
+
 /obj/machinery/door/airlock/maintenance_hatch
 	name = "\improper Maintenance Hatch"
 	icon = 'icons/obj/doors/Doorhatchmaint2.dmi'
@@ -90,6 +100,10 @@
 	opacity = FALSE
 	assembly_type = /obj/structure/door_assembly/door_assembly_sec
 	glass = TRUE
+
+/obj/machinery/door/airlock/glass_security/locked
+	icon_state = "door_locked"
+	locked = TRUE
 
 /obj/machinery/door/airlock/glass_medical
 	name = "\improper Medical Airlock"
@@ -224,6 +238,16 @@
 	icon = 'icons/obj/doors/mainship/secdoor.dmi'
 	req_access = list(ACCESS_MARINE_BRIG)
 
+/obj/machinery/door/airlock/mainship/security/free_access
+	req_access = null
+
+/obj/machinery/door/airlock/mainship/security/locked
+	icon_state = "door_locked"
+	locked = TRUE
+
+/obj/machinery/door/airlock/mainship/security/locked/free_access
+	req_access = null
+
 /obj/machinery/door/airlock/mainship/security/checkpoint
 	name = "\improper Security Checkpoint"	
 
@@ -235,6 +259,9 @@
 	icon = 'icons/obj/doors/mainship/secdoor_glass.dmi'
 	opacity = FALSE
 	glass = TRUE
+
+/obj/machinery/door/airlock/mainship/security/glass/free_access
+	req_access = null
 
 /obj/machinery/door/airlock/mainship/security/glass/office
 	name = "\improper Security Office"	
@@ -249,6 +276,26 @@
 	name = "\improper Command Airlock"
 	icon = 'icons/obj/doors/mainship/comdoor.dmi'
 	req_access = list(ACCESS_MARINE_BRIDGE)
+
+/obj/machinery/door/airlock/mainship/command/free_access
+	req_access = null
+
+/obj/machinery/door/airlock/mainship/command/locked
+	icon_state = "door_locked"
+	locked = TRUE
+
+/obj/machinery/door/airlock/mainship/command/locked/free_access
+	req_access = null
+
+/obj/machinery/door/airlock/mainship/command/open
+	icon_state = "door_open"
+	density = FALSE
+	opacity = FALSE
+
+/obj/machinery/door/airlock/mainship/command/open/free_access
+	req_access = null
+
+/obj/machinery/door/airlock/mainship/command/canterbury //For wall-smoothing
 
 /obj/machinery/door/airlock/mainship/command/cic
 	name = "\improper Combat Information Center"	
@@ -273,18 +320,36 @@
 	name = "\improper FCDR's Quarters"
 
 /obj/machinery/door/airlock/mainship/command/officer
-	name = "\improper Officer's Quarters"	
+	name = "\improper Officer's Quarters"
 
 /obj/machinery/door/airlock/mainship/secure
 	name = "\improper Secure Airlock"
 	icon = 'icons/obj/doors/mainship/securedoor.dmi'
 	req_access = list(ACCESS_MARINE_BRIDGE)
 
+/obj/machinery/door/airlock/mainship/secure/free_access
+	req_access = null
+
+/obj/machinery/door/airlock/mainship/secure/locked
+	icon_state = "door_locked"
+	locked = TRUE
+
+/obj/machinery/door/airlock/mainship/secure/locked/free_access
+	req_access = null
+
+/obj/machinery/door/airlock/mainship/secure/open
+	icon_state = "door_open"
+	density = FALSE
+	opacity = FALSE
+
+/obj/machinery/door/airlock/mainship/secure/open/free_access
+	req_access = null
+
 /obj/machinery/door/airlock/mainship/secure/tcomms
-	name = "\improper Telecommunications"	
+	name = "\improper Telecommunications"
 
 /obj/machinery/door/airlock/mainship/secure/evac
-	name = "\improper Evacuation Airlock"	
+	name = "\improper Evacuation Airlock"
 
 /obj/machinery/door/airlock/mainship/ai
 	name = "\improper AI Core"
@@ -309,6 +374,8 @@
 	icon = 'icons/obj/doors/mainship/maintdoor.dmi'
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ENGINEERING)
 
+/obj/machinery/door/airlock/mainship/maint/free_access
+
 /obj/machinery/door/airlock/mainship/maint/core
 	name = "\improper Core Hatch"	
 
@@ -322,6 +389,9 @@
 	opacity = FALSE
 	glass = TRUE
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ENGINEERING)
+
+/obj/machinery/door/airlock/mainship/engineering/free_access
+	req_one_access = null
 
 /obj/machinery/door/airlock/mainship/engineering/storage
 	name = "\improper Engineering Storage"
@@ -343,10 +413,16 @@
 	name = "\improper Chief Ship Engineer's Office"
 	req_access = list(ACCESS_MARINE_CE)
 
+/obj/machinery/door/airlock/mainship/engineering/server_room
+	name = "\improper Server Room"
+	req_one_access = null
+
 /obj/machinery/door/airlock/mainship/medical
 	name = "\improper Medical Airlock"
 	icon = 'icons/obj/doors/mainship/medidoor.dmi'
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_BRIDGE)
+
+/obj/machinery/door/airlock/mainship/medical/free_access
 
 /obj/machinery/door/airlock/mainship/medical/morgue
 	name = "\improper Morgue"
@@ -367,6 +443,9 @@
 /obj/machinery/door/airlock/mainship/medical/or/or4
 	name = "\improper Operating Theatre 4"	
 
+/obj/machinery/door/airlock/mainship/medical/or/free_access
+	req_one_access = null
+
 /obj/machinery/door/airlock/mainship/medical/glass
 	name = "\improper Medical Airlock"
 	icon = 'icons/obj/doors/mainship/medidoor_glass.dmi'
@@ -374,22 +453,49 @@
 	glass = TRUE
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_BRIDGE)
 
+/obj/machinery/door/airlock/mainship/medical/glass/free_access
+	req_one_access = null
+
 /obj/machinery/door/airlock/mainship/medical/glass/CMO
 	name = "\improper CMO's Office"
 	req_access = list(ACCESS_MARINE_CMO)
 
 /obj/machinery/door/airlock/mainship/medical/glass/chemistry
 	name = "\improper Chemistry Laboratory"
-	req_access = list(ACCESS_MARINE_CHEMISTRY)	
+	req_access = list(ACCESS_MARINE_CHEMISTRY)
 
-/obj/machinery/door/airlock/mainship/medical/glass/animalcontrol
-	name = "\improper Animal Control Closet"	
+/obj/machinery/door/airlock/mainship/medical/glass/research
 	req_access = list(ACCESS_MARINE_RESEARCH)
 
 /obj/machinery/door/airlock/mainship/research
 	name = "\improper Research Airlock"
 	icon = 'icons/obj/doors/mainship/medidoor.dmi'
 	req_access = list(ACCESS_MARINE_RESEARCH)
+
+/obj/machinery/door/airlock/mainship/research/free_access
+	req_access = null
+
+/obj/machinery/door/airlock/mainship/research/open
+	icon_state = "door_open"
+	density = FALSE
+	opacity = FALSE
+
+/obj/machinery/door/airlock/mainship/research/open/free_access
+	req_one_access = null
+
+/obj/machinery/door/airlock/mainship/research/locked
+	icon_state = "door_locked"
+	locked = TRUE
+
+/obj/machinery/door/airlock/mainship/research/locked/free_access
+	req_one_access = null
+
+/obj/machinery/door/airlock/mainship/research/chemistry
+	name = "\improper Chemistry Laboratory"
+	req_access = list(ACCESS_MARINE_CHEMISTRY)
+
+/obj/machinery/door/airlock/mainship/research/or
+	name = "\improper Experimental Operating Theatre"
 
 /obj/machinery/door/airlock/mainship/research/pen
 	name = "\improper Research Pens"
@@ -406,6 +512,7 @@
 /obj/machinery/door/airlock/mainship/research/glass/cell
 	name = "\improper Containment Cell"
 	id = "Containment Cell"
+	icon_state = "door_locked"
 	locked = TRUE
 
 /obj/machinery/door/airlock/mainship/research/glass/cell/cell1
@@ -415,6 +522,9 @@
 /obj/machinery/door/airlock/mainship/research/glass/cell/cell2
 	name = "\improper Containment Cell 2"
 	id = "Containment Cell 2"
+
+/obj/machinery/door/airlock/mainship/research/glass/free_access
+	req_access = null
 
 /obj/machinery/door/airlock/mainship/generic
 	name = "\improper Airlock"
@@ -449,6 +559,8 @@
 	icon = 'icons/obj/doors/mainship/prepdoor.dmi'
 	opacity = FALSE
 	glass = TRUE
+
+/obj/machinery/door/airlock/mainship/marine/canterbury //For wallsmoothing
 
 /obj/machinery/door/airlock/mainship/marine/general/sl
 	name = "\improper Squad Leader Preparations"
@@ -491,6 +603,10 @@
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
 	opacity = FALSE
 	glass = TRUE
+
+/obj/machinery/door/airlock/mainship/marine/requisitions/lift
+	name = "\improper ASRS Lift"
+	req_one_access = null
 
 /obj/machinery/door/airlock/mainship/marine/alpha
 	name = "\improper Alpha Squad Preparations"
@@ -552,7 +668,7 @@
 
 /obj/machinery/door/airlock/mainship/marine/bravo/medic
 	name = "\improper Bravo Squad Medic Preparations"
-	req_access_txt = list(ACCESS_MARINE_MEDPREP, ACCESS_MARINE_BRAVO)
+	req_access = list(ACCESS_MARINE_MEDPREP, ACCESS_MARINE_BRAVO)
 	req_one_access = null
 
 /obj/machinery/door/airlock/mainship/marine/bravo/smart
@@ -680,13 +796,23 @@
 	icon = 'icons/obj/doors/mainship/dropship2_pilot.dmi'
 
 //PRISON AIRLOCKS
-/obj/machinery/door/airlock/prison/
+/obj/machinery/door/airlock/prison
 	name = "\improper Cell Door"
 	icon = 'icons/obj/doors/prison/celldoor.dmi'
 	glass = FALSE
 
+/obj/machinery/door/airlock/prison/open
+	icon_state = "door_open"
+	density = FALSE
+	opacity = FALSE
+
 /obj/machinery/door/airlock/prison/horizontal
 	dir = SOUTH
+
+/obj/machinery/door/airlock/prison/horizontal/open
+	icon_state = "door_open"
+	density = FALSE
+	opacity = FALSE
 
 
 //Colony Mapped Doors
@@ -708,6 +834,7 @@
 /obj/machinery/door/airlock/colony/engineering/nexusstorage/open
 	icon_state = "door_open"
 	density = FALSE
+	opacity = FALSE
 
 
 /obj/machinery/door/airlock/colony/medical
@@ -736,4 +863,5 @@
 
 /obj/machinery/door/airlock/colony/research/dome
 	name = "\improper Research Dome"
+	icon_state = "door_locked"
 	locked = TRUE

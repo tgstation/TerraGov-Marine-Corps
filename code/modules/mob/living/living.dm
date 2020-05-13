@@ -80,6 +80,8 @@
 		GLOB.alive_living_list += src
 	START_PROCESSING(SSmobs, src)
 
+	set_armor_datum()
+
 /mob/living/Destroy()
 	for(var/i in embedded_objects)
 		var/obj/item/embedded = i
@@ -95,23 +97,6 @@
 	STOP_PROCESSING(SSmobs, src)
 	job = null
 	return ..()
-
-
-///Called on /mob/living/Initialize(), for the mob to register to relevant signals.
-/mob/living/proc/register_init_signals()
-	RegisterSignal(src, SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), .proc/on_knockedout_trait_gain)
-	RegisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_KNOCKEDOUT), .proc/on_knockedout_trait_loss)
-
-
-///Called when TRAIT_KNOCKEDOUT is added to the mob.
-/mob/living/proc/on_knockedout_trait_gain(datum/source)
-	if(stat < UNCONSCIOUS)
-		set_stat(UNCONSCIOUS)
-
-///Called when TRAIT_KNOCKEDOUT is removed from the mob.
-/mob/living/proc/on_knockedout_trait_loss(datum/source)
-	if(stat < DEAD)
-		update_stat()
 
 
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
@@ -166,6 +151,22 @@
 		if(O.type == A)
 			return TRUE
 	return FALSE
+
+
+/mob/living/proc/set_armor_datum()
+	if(islist(soft_armor))
+		soft_armor = getArmor(arglist(soft_armor))
+	else if (!soft_armor)
+		soft_armor = getArmor()
+	else if (!istype(soft_armor, /datum/armor))
+		stack_trace("Invalid type [soft_armor.type] found in .soft_armor during [type] Initialize()")
+
+	if(islist(hard_armor))
+		hard_armor = getArmor(arglist(hard_armor))
+	else if (!hard_armor)
+		hard_armor = getArmor()
+	else if (!istype(hard_armor, /datum/armor))
+		stack_trace("Invalid type [hard_armor.type] found in .hard_armor during [type] Initialize()")
 
 
 /mob/living/proc/get_limbzone_target()
@@ -285,7 +286,6 @@
 			//resist_grab uses long movement cooldown durations to prevent message spam
 			//so we must undo it here so the victim can move right away
 			M.client.move_delay = world.time
-		M.update_canmove()
 
 		if(isliving(pulling))
 			var/mob/living/L = pulling
@@ -417,11 +417,7 @@
 		stop_pulling() //being thrown breaks pulls.
 	if(pulledby)
 		pulledby.stop_pulling()
-	set_frozen(TRUE) //can't move while being thrown
-	update_canmove()
-	. = ..()
-	set_frozen(FALSE)
-	update_canmove()
+	return ..()
 
 
 /mob/living/proc/offer_mob()
@@ -432,10 +428,10 @@
 /mob/living/proc/get_permeability_protection()
 	return LIVING_PERM_COEFF
 
-/mob/proc/flash_eyes(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
+/mob/proc/flash_act(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
 	return
 
-/mob/living/carbon/flash_eyes(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
+/mob/living/carbon/flash_act(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
 	if( bypass_checks || (get_eye_protection() < intensity && !(disabilities & BLIND)) )
 		overlay_fullscreen_timer(40, 20, "flash", type)
 		return TRUE
@@ -585,42 +581,12 @@ below 100 is not dizzy
 	return TRUE
 
 
-/mob/living/update_canmove()
-
-	var/laid_down = (stat != CONSCIOUS || IsParalyzed() || HAS_TRAIT(src, TRAIT_LEGLESS) || resting || HAS_TRAIT(src, TRAIT_FAKEDEATH) || (pulledby && pulledby.grab_state >= GRAB_NECK) || (buckled && buckled.buckle_lying != -1))
-
-	if(laid_down)
-		if(buckled && buckled.buckle_lying != -1)
-			set_lying_angle(buckled.buckle_lying) //Might not actually be laying down, like with chairs, but the rest of the logic applies.
-		else if(!lying_angle)
-			set_lying_angle(pick(90, 270))
-	else if(lying_angle)
-		set_lying_angle(0)
-
-	set_canmove(!(HAS_TRAIT(src, TRAIT_IMMOBILE) || laid_down))
-
-	if(lying_angle)
-		density = FALSE
-		drop_all_held_items()
-	else
-		density = TRUE
-
-	if(lying_angle)
-		if(layer == initial(layer)) //to avoid things like hiding larvas.
-			layer = LYING_MOB_LAYER //so mob lying always appear behind standing mobs
-	else
-		if(layer == LYING_MOB_LAYER)
-			layer = initial(layer)
-
-	return canmove
-
-
 /mob/living/proc/set_canmove(newcanmove)
 	if(canmove == newcanmove)
 		return
+	. = canmove
 	canmove = newcanmove
 	SEND_SIGNAL(src, COMSIG_LIVING_SET_CANMOVE, canmove)
-
 
 
 /mob/living/proc/update_leader_tracking(mob/living/L)
@@ -786,6 +752,16 @@ below 100 is not dizzy
 	update_transform()
 	lying_prev = lying_angle
 
+	if(lying_angle)
+		density = FALSE
+		drop_all_held_items()
+		if(layer == initial(layer)) //to avoid things like hiding larvas.
+			layer = LYING_MOB_LAYER //so mob lying always appear behind standing mobs
+	else
+		density = TRUE
+		if(layer == LYING_MOB_LAYER)
+			layer = initial(layer)
+
 
 /mob/living/set_stat(new_stat)
 	. = ..()
@@ -793,8 +769,10 @@ below 100 is not dizzy
 		return
 	if(stat == CONSCIOUS) //From unconscious to conscious.
 		REMOVE_TRAIT(src, TRAIT_IMMOBILE, STAT_TRAIT)
+		REMOVE_TRAIT(src, TRAIT_FLOORED, STAT_TRAIT)
 	else if(. == CONSCIOUS) //From conscious to unconscious.
 		ADD_TRAIT(src, TRAIT_IMMOBILE, STAT_TRAIT)
+		ADD_TRAIT(src, TRAIT_FLOORED, STAT_TRAIT)
 
 
 /mob/living/setGrabState(newstate)
@@ -804,5 +782,7 @@ below 100 is not dizzy
 	if(grab_state >= GRAB_NECK)
 		if(. < GRAB_NECK) //Neckgrabbed.
 			ADD_TRAIT(pulling, TRAIT_IMMOBILE, NECKGRAB_TRAIT)
+			ADD_TRAIT(pulling, TRAIT_FLOORED, NECKGRAB_TRAIT)
 	else if(. >= GRAB_NECK) //Released from neckgrab.
 		REMOVE_TRAIT(pulling, TRAIT_IMMOBILE, NECKGRAB_TRAIT)
+		REMOVE_TRAIT(pulling, TRAIT_FLOORED, NECKGRAB_TRAIT)

@@ -1,7 +1,30 @@
 /obj/item/clothing
 	name = "clothing"
 	var/eye_protection = 0 //used for headgear, masks, and glasses, to see how much they protect eyes from bright lights.
-	var/accuracy_mod = 0 
+	var/accuracy_mod = 0
+
+
+/obj/item/clothing/equipped(mob/user, slot)
+	. = ..()
+	if(!(flags_equip_slot & slotdefine2slotbit(slot)))
+		return
+	if(!ishuman(user))
+		return
+	if(accuracy_mod)
+		var/mob/living/carbon/human/human_user = user
+		human_user.adjust_mob_accuracy(accuracy_mod)
+
+
+/obj/item/clothing/unequipped(mob/unequipper, slot)
+	if(!(flags_equip_slot & slotdefine2slotbit(slot)))
+		return ..()
+	if(!ishuman(unequipper))
+		return ..()
+	if(accuracy_mod)
+		var/mob/living/carbon/human/human_unequipper = unequipper
+		human_unequipper.adjust_mob_accuracy(-accuracy_mod)
+	return ..()
+
 
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
@@ -40,7 +63,7 @@
 	flags_equip_slot = ITEM_SLOT_OCLOTHING
 	siemens_coefficient = 0.9
 	w_class = WEIGHT_CLASS_NORMAL
-	var/list/supporting_limbs
+	var/supporting_limbs = NONE
 	var/blood_overlay_type = "suit"
 	var/fire_resist = T0C + 100
 	var/shield_state = "shield-blue"

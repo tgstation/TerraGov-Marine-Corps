@@ -421,31 +421,29 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 0
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	accurate_range_min = 6
-	damage = 50
-	scatter = -15
-	penetration = 30
-	sundering = 3
+	damage = 40
+	penetration = 20
+	sundering = 10
 
 /datum/ammo/bullet/rifle/m4ra/incendiary
 	name = "A19 high velocity incendiary bullet"
 	hud_state = "hivelo_fire"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SUNDERING
-	damage = 40
+	damage = 25
 	accuracy = 10
 	penetration = 20
-	sundering = 2
+	sundering = 2.5
 
 /datum/ammo/bullet/rifle/m4ra/impact
 	name = "A19 high velocity impact bullet"
 	hud_state = "hivelo_impact"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
-	damage = 30
-	accuracy = -10
-	penetration = 20
-	sundering = 3
+	damage = 25
+	penetration = 45
+	sundering = 5
 
 /datum/ammo/bullet/rifle/m4ra/impact/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, max_range = 40, weaken = 1, stagger = 1, knockback = 1)
+	staggerstun(M, P, max_range = 40, stagger = 2, slowdown = 3.5, knockback = 1)
 
 /datum/ammo/bullet/rifle/m4ra/smart
 	name = "A19 high velocity smart bullet"
@@ -453,7 +451,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	iff_signal = ACCESS_IFF_MARINE
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SKIPS_HUMANS|AMMO_SUNDERING
 	damage = 30
-	penetration = 30
+	penetration = 20
 	sundering = 3
 
 /datum/ammo/bullet/rifle/ak47
@@ -564,8 +562,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 15
 	damage = 50
 	damage_falloff = 0.5
-	penetration = 25
-	sundering = 1.5
+	penetration = 15
+	sundering = 3
 
 /datum/ammo/bullet/shotgun/flechette_spread
 	name = "additional flechette"
@@ -574,10 +572,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 8
 	accuracy_var_high = 8
 	max_range = 15
-	damage = 50
+	damage = 40
 	damage_falloff = 1
 	penetration = 25
-	sundering = 1.5
+	sundering = 2.5
 
 /datum/ammo/bullet/shotgun/buckshot
 	name = "shotgun buckshot shell"
@@ -839,6 +837,18 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 20
 	sundering = 1
 
+/datum/ammo/bullet/smartmachinegun
+	name = "smartmachinegun bullet"
+	icon_state = "redbullet" //Red bullets to indicate friendly fire restriction
+	hud_state = "smartgun"
+	hud_state_empty = "smartgun_empty"
+	iff_signal = ACCESS_IFF_MARINE
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SKIPS_HUMANS|AMMO_SUNDERING
+	accurate_range = 15
+	damage = 20
+	penetration = 15
+	sundering = 1.5
+
 /datum/ammo/bullet/smartgun/lethal
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	icon_state 	= "bullet"
@@ -940,7 +950,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 100
 
 /datum/ammo/rocket/drop_nade(turf/T)
-	explosion(T, -1, 3, 5, 5)
+	explosion(T, 0, 4, 6, 5)
 
 /datum/ammo/rocket/on_hit_mob(mob/M, obj/projectile/P)
 	drop_nade(get_turf(M))
@@ -963,7 +973,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 325
 
 /datum/ammo/rocket/ap/drop_nade(turf/T)
-	explosion(T, -1, -1, -1, 1)
+	explosion(T, flash_range = 1)
 
 /datum/ammo/rocket/ltb
 	name = "cannon round"
@@ -976,7 +986,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 300
 
 /datum/ammo/rocket/ltb/drop_nade(turf/T)
-	explosion(T, -1, 3, 5, 6)
+	explosion(T, 0, 4, 6, 7)
 
 /datum/ammo/rocket/wp
 	name = "white phosphorous rocket"
@@ -1008,7 +1018,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	. = ..()
 	if(!.)
 		return
-	explosion(T,  -1, 2, 4, 5)
+	explosion(T, 0, 3, 5, 5, throw_range = 0)
 
 
 /*

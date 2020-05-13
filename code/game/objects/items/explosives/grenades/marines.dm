@@ -9,15 +9,13 @@
 	underslug_launchable = TRUE
 
 /obj/item/explosive/grenade/frag/prime()
-	spawn(0)
-		explosion(loc, -1, -1, 3)
-		qdel(src)
-	return
+	explosion(loc, light_impact_range = 4)
+	qdel(src)
 
 /obj/item/explosive/grenade/frag/flamer_fire_act()
 	var/turf/T = loc
 	qdel(src)
-	explosion(T, -1, -1, 3)
+	explosion(T, light_impact_range = 4)
 
 
 
@@ -52,10 +50,8 @@
 	underslug_launchable = FALSE
 
 /obj/item/explosive/grenade/frag/PMC/prime()
-	spawn(0)
-		explosion(loc, -1, -1, 4)
-		qdel(src)
-	return
+	explosion(loc, light_impact_range = 5)
+	qdel(src)
 
 
 /obj/item/explosive/grenade/frag/m15
@@ -67,10 +63,8 @@
 	underslug_launchable = FALSE
 
 /obj/item/explosive/grenade/frag/m15/prime()
-	spawn(0)
-		explosion(loc, -1, -1, 4)
-		qdel(src)
-	return
+	explosion(loc, light_impact_range = 5)
+	qdel(src)
 
 
 /obj/item/explosive/grenade/frag/stick
@@ -87,10 +81,8 @@
 	underslug_launchable = FALSE
 
 /obj/item/explosive/grenade/frag/stick/prime()
-	spawn(0)
-		explosion(src.loc,-1,-1,3)
-		del(src)
-	return
+	explosion(loc, light_impact_range = 4)
+	del(src)
 
 
 /obj/item/explosive/grenade/frag/upp
@@ -104,10 +96,9 @@
 	underslug_launchable = FALSE
 
 /obj/item/explosive/grenade/frag/upp/prime()
-	spawn(0)
-		explosion(src.loc,-1,-1,3)
-		del(src)
-	return
+	explosion(loc, light_impact_range = 4)
+	del(src)
+
 
 /obj/item/explosive/grenade/frag/sectoid
 	desc = "An odd, squishy, organ-like grenade. It will explode 3 seconds after squeezing it."
@@ -117,8 +108,9 @@
 	underslug_launchable = FALSE
 
 /obj/item/explosive/grenade/frag/sectoid/prime()
-	explosion(loc, -1, -1, 5)
+	explosion(loc, light_impact_range = 6)
 	qdel(src)
+
 
 /obj/item/explosive/grenade/incendiary
 	name = "\improper M40 HIDP incendiary grenade"
@@ -130,24 +122,23 @@
 	underslug_launchable = TRUE
 
 /obj/item/explosive/grenade/incendiary/prime()
-	spawn(0)
-		flame_radius(2, get_turf(src))
-		playsound(src.loc, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
-		qdel(src)
-	return
+	flame_radius(2, get_turf(src))
+	playsound(loc, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, TRUE, 4)
+	qdel(src)
 
 
-/proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, burn_damage = 25, fire_stacks = 15, int_var = 0.5, dur_var = 0.5, colour = "red") //~Art updated fire.
-	if(!T || !isturf(T))
-		return
+/proc/flame_radius(radius = 1, turf/epicenter, burn_intensity = 25, burn_duration = 25, burn_damage = 25, fire_stacks = 15, int_var = 0.5, dur_var = 0.5, colour = "red") //~Art updated fire.
+	if(!isturf(epicenter))
+		CRASH("flame_radius used without a valid turf parameter")
 	radius = CLAMP(radius, 1, 50) //Sanitize inputs
 	int_var = CLAMP(int_var, 0.1,0.5)
 	dur_var = CLAMP(int_var, 0.1,0.5)
 	fire_stacks = rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) ) + rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) )
 	burn_damage = rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) ) + rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) )
 
-	for(var/turf/IT in filled_turfs(T, radius, "circle"))
-		IT.ignite(rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)) + rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)), rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)) + rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)), colour, burn_damage, fire_stacks)
+	for(var/t in filled_turfs(epicenter, radius, "circle"))
+		var/turf/turf_to_flame = t
+		turf_to_flame.ignite(rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)) + rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)), rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)) + rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)), colour, burn_damage, fire_stacks)
 
 
 /obj/item/explosive/grenade/incendiary/molotov
@@ -163,12 +154,10 @@
 	det_time = rand(10,40)//Adds some risk to using this thing.
 
 /obj/item/explosive/grenade/incendiary/molotov/prime()
-	spawn(0)
-		playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 35, 1, 4)
-		flame_radius(2, get_turf(src))
-		playsound(src.loc, 'sound/weapons/guns/fire/flamethrower2.ogg', 30, 1, 4)
-		qdel(src)
-	return
+	playsound(loc, 'sound/effects/hit_on_shattered_glass.ogg', 35, TRUE, 4)
+	flame_radius(2, get_turf(src))
+	playsound(loc, 'sound/weapons/guns/fire/flamethrower2.ogg', 30, TRUE, 4)
+	qdel(src)
 
 
 /obj/item/explosive/grenade/smokebomb
@@ -254,20 +243,17 @@
 	underslug_launchable = TRUE
 
 /obj/item/explosive/grenade/impact/prime()
-	spawn(0)
-		explosion(loc, -1, -1, 1, 2)
-		qdel(src)
-	return
+	explosion(loc, light_impact_range = 3)
+	qdel(src)
 
 /obj/item/explosive/grenade/impact/flamer_fire_act()
-	var/turf/T = loc
+	explosion(loc, light_impact_range = 3)
 	qdel(src)
-	explosion(T, -1, -1, 1, 2)
 
 /obj/item/explosive/grenade/impact/throw_impact(atom/hit_atom, speed)
 	. = ..()
 	if(launched && active && !istype(hit_atom, /turf/open)) //Only contact det if active, we actually hit something, and we're fired from a grenade launcher.
-		explosion(loc, -1, -1, 1, 2)
+		explosion(loc, light_impact_range = 1, flash_range = 2)
 		qdel(src)
 
 

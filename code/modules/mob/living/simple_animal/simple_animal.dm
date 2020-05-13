@@ -240,16 +240,17 @@
 
 
 /mob/living/simple_animal/ex_act(severity)
-	flash_eyes()
+	flash_act()
 
 	switch(severity)
-		if(1)
-			adjustBruteLoss(500)
+		if(EXPLODE_DEVASTATE)
 			gib()
-		if(2)
+		if(EXPLODE_HEAVY)
 			adjustBruteLoss(60)
-		if(3)
+			UPDATEHEALTH(src)
+		if(EXPLODE_LIGHT)
 			adjustBruteLoss(30)
+			UPDATEHEALTH(src)
 
 
 /mob/living/simple_animal/get_idcard(hand_first)

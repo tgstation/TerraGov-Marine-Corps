@@ -198,7 +198,7 @@
 						/obj/item/storage/box/matches = "helmet_matches",
 						/obj/item/storage/fancy/cigarettes = "helmet_cig_kpack",
 						/obj/item/storage/fancy/cigarettes/kpack = "helmet_cig_kpack",
-						/obj/item/storage/fancy/cigarettes/lucky_strikes = "helmet_cig_ls",
+						/obj/item/storage/fancy/cigarettes/luckystars = "helmet_cig_ls",
 						/obj/item/storage/fancy/cigarettes/dromedaryco = "helmet_cig_kpack",
 						/obj/item/storage/fancy/cigarettes/lady_finger = "helmet_cig_lf",
 						/obj/item/toy/deck = "helmet_card_card",
@@ -536,7 +536,7 @@
 	icon_state = "spec"
 	armor = list("melee" = 35, "bullet" = 35, "laser" = 35, "energy" = 15, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 15, "acid" = 15)
 	flags_inventory = BLOCKSHARPOBJ
-	flags_inv_hide = HIDEEARS|HIDETOPHAIR
+	flags_inv_hide = HIDEEARS
 
 /obj/item/clothing/head/helmet/durag
 	name = "durag"

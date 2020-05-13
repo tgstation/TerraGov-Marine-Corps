@@ -51,7 +51,7 @@
 		sleep(5)
 
 		C.visible_message("<span class='danger'>[C] convulses in pain!</span>", "<span class='danger'>Excruciating pain shoots through [part ? "your [part.display_name]" : "you"]!</span>")
-		C.flash_eyes(1, TRUE)
+		C.flash_act(1, TRUE)
 		C.AdjustStun(20 SECONDS)
 		C.Paralyze(20 SECONDS)
 		C.apply_damage(100, HALLOSS, part)
