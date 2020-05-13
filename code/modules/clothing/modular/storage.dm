@@ -12,6 +12,24 @@
 	var/storage_type = /obj/item/storage/internal/modular
 
 
+/obj/item/armor_module/storage/can_attach(mob/living/user, obj/item/clothing/suit/modular/parent, silent = FALSE)
+	. = ..()
+	if(!.)
+		return
+	if(parent.installed_storage)
+		if(!silent)
+			to_chat(user,"<span class='warning'>There is already an installed storage module.</span>")
+		return FALSE
+
+/obj/item/armor_module/storage/can_detach(mob/living/user, obj/item/clothing/suit/modular/parent, silent = FALSE)
+	. = ..()
+	if(!.)
+		return
+	if(parent.storage && length(parent.storage.contents))
+		if(!silent)
+			to_chat(user, "You can't remove this while there are still items inside")
+		return FALSE
+
 /obj/item/storage/internal/modular
 	max_storage_space = 2
 	storage_slots = 2

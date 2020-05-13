@@ -12,22 +12,17 @@
 	/// Is the module passive (always active) or a toggle
 	var/module_type = ARMOR_MODULE_PASSIVE
 
+/** Called before a module is attached */
+/obj/item/armor_module/proc/can_attach(mob/living/user, obj/item/clothing/suit/modular/parent, silent = FALSE)
+	. = TRUE
+	if(!istype(user) || !istype(parent))
+		return FALSE
 
-/obj/item/armor_module/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
-	. = ..()
-
-	if(!proximity_flag)
-		return
-	if(QDELETED(user) || user.stat != CONSCIOUS)
-		return
-	if(!istype(target, /obj/item/clothing/suit/modular))
-		return
-	var/obj/item/clothing/suit/modular/parent = target
-	if(!parent.can_attach(user, src))
-		return
-
-	do_attach(user, target)
-
+/** Called before a module is removed */
+/obj/item/armor_module/proc/can_detach(mob/living/user, obj/item/clothing/suit/modular/parent, silent = FALSE)
+	. = TRUE
+	if(!istype(parent) || !istype(user))
+		return FALSE
 
 /** Called when the module is added to the armor */
 /obj/item/armor_module/proc/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
@@ -43,12 +38,3 @@
 	parent.update_overlays()
 	SEND_SIGNAL(parent, COMSIG_ARMOR_MODULE_DETACHED, user, src)
 
-
-/obj/item/armor_module/attachable/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
-	. = ..()
-	LAZYADD(parent.installed_modules, src)
-
-
-/obj/item/armor_module/attachable/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
-	LAZYREMOVE(parent.installed_modules, src)
-	return ..()

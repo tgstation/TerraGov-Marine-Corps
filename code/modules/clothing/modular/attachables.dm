@@ -3,6 +3,28 @@
 
 	These are utilty attachments that equip into module slots on modular armor
 */
+/obj/item/armor_module/attachable/can_attach(mob/living/user, obj/item/clothing/suit/modular/parent, silent = FALSE)
+	. = ..()
+	if(!.)
+		return
+	if(LAZYLEN(parent.installed_modules) >= parent.max_modules)
+		if(!silent)
+			to_chat(user,"<span class='warning'>There are too many pieces installed already.</span>")
+		return FALSE
+	if(LAZYFIND(parent.installed_modules, src))
+		if(!silent)
+			to_chat(user,"<span class='warning'>That module is already installed.</span>")
+		return FALSE
+
+/obj/item/armor_module/attachable/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
+	. = ..()
+	LAZYADD(parent.installed_modules, src)
+
+
+/obj/item/armor_module/attachable/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
+	LAZYREMOVE(parent.installed_modules, src)
+	return ..()
+
 
 /** Shoulder lamp stength module */
 /obj/item/armor_module/attachable/better_shoulder_lamp

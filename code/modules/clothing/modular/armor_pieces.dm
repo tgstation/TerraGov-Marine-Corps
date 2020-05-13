@@ -33,6 +33,15 @@
 	icon_state = "medium_chest_icon"
 	item_state = "medium_chest"
 
+/obj/item/armor_module/armor/chest/can_attach(mob/living/user, obj/item/clothing/suit/modular/parent, silent = FALSE)
+	. = ..()
+	if(!.)
+		return
+	if(parent.slot_chest)
+		if(!silent)
+			to_chat(user, "<span class='notice'>There is already an armor piece installed in that slot.</span>")
+		return FALSE
+
 /obj/item/armor_module/armor/chest/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
 	parent.slot_chest = src
@@ -75,6 +84,15 @@
 	icon_state = "medium_legs_icon"
 	item_state = "medium_legs"
 
+/obj/item/armor_module/armor/legs/can_attach(mob/living/user, obj/item/clothing/suit/modular/parent, silent = FALSE)
+	. = ..()
+	if(!.)
+		return
+	if(parent.slot_legs)
+		if(!silent)
+			to_chat(user, "<span class='notice'>There is already an armor piece installed in that slot.</span>")
+		return FALSE
+
 /obj/item/armor_module/armor/legs/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
 	parent.slot_legs = src
@@ -113,6 +131,15 @@
 /obj/item/armor_module/armor/arms
 	icon_state = "medium_arms_icon"
 	item_state = "medium_arms"
+
+/obj/item/armor_module/armor/args/can_attach(mob/living/user, obj/item/clothing/suit/modular/parent, silent = FALSE)
+	. = ..()
+	if(!.)
+		return
+	if(parent.slot_arms)
+		if(!silent)
+			to_chat(user, "<span class='notice'>There is already an armor piece installed in that slot.</span>")
+		return FALSE
 
 /obj/item/armor_module/armor/arms/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()

@@ -125,9 +125,21 @@
 	. = ..()
 	if(.)
 		return
-	if(!storage)
+
+	if(QDELETED(user) || user.stat != CONSCIOUS)
+		return TRUE
+
+	if(istype(I, /obj/item/armor_module))
+		var/obj/item/armor_module/module = I
+		if(!module.can_attach(user, src))
+			return FALSE
+		if(!can_attach(user, module))
+			return FALSE
+		module.do_attach(user, src)
 		return
 
+	if(!storage)
+		return
 	return storage.attackby(I, user, params)
 
 
@@ -140,50 +152,16 @@
 	if(!istype(module))
 		return FALSE
 
-	if(ismob(loc))
+	if(ismob(loc) && (user.r_hand != src && user.l_hand != src))
 		if(!silent)
 			to_chat(user, "<span class='warning'>You need to remove the armor first.</span>")
 		return FALSE
-
-	if(istype(module, /obj/item/armor_module/attachable))
-		if(LAZYLEN(installed_modules) >= max_modules)
-			if(!silent)
-				to_chat(user,"<span class='warning'>There are too many pieces installed already.</span>")
-			return FALSE
-		if(LAZYFIND(installed_modules, module))
-			if(!silent)
-				to_chat(user,"<span class='warning'>That module is already installed.</span>")
-			return FALSE
-
-
-	if(istype(module, /obj/item/armor_module/storage) && installed_storage)
-		if(!silent)
-			to_chat(user,"<span class='warning'>There is already an installed storage module.</span>")
-		return FALSE
-
-	if(istype(module, /obj/item/armor_module/armor/chest) && slot_chest)
-		if(!silent)
-			to_chat(user, "<span class='notice'>There is already an armor piece installed in that slot.</span>")
-		return FALSE
-	if(istype(module, /obj/item/armor_module/armor/arms) && slot_arms)
-		if(!silent)
-			to_chat(user, "<span class='notice'>There is already an armor piece installed in that slot.</span>")
-		return FALSE
-	if(istype(module, /obj/item/armor_module/armor/legs) && slot_legs)
-		if(!silent)
-			to_chat(user, "<span class='notice'>There is already an armor piece installed in that slot.</span>")
-		return FALSE
-
+	
 	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))
 		return FALSE
 
 /obj/item/clothing/suit/modular/proc/can_detach(mob/living/user, obj/item/armor_module/module, silent = FALSE)
 	. = TRUE
-
-	if(istype(module, /obj/item/armor_module/storage) && length(storage.contents))
-		if(!silent)
-			to_chat(user, "You can't remove this while there are items inside")
-		return FALSE
 
 	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))
 		return FALSE
@@ -383,14 +361,16 @@
 
 /obj/item/clothing/head/modular/get_mechanics_info()
 	. = ..()
-
+	. = ..()
+	. += "<br><br />This is a piece of modular armor, It can equip different attachments.<br />"
+	. += "<br>It currently has [installed_module ? installed_module : "nothing"] installed."
 
 /obj/item/clothing/head/modular/proc/can_attach(mob/living/user, obj/item/helmet_module/module, silent = FALSE)
 	. = TRUE
 	if(!istype(module))
 		return FALSE
 
-	if(ismob(loc))
+	if(ismob(loc) && (user.r_hand != src && user.l_hand != src))
 		if(!silent)
 			to_chat(user, "<span class='warning'>You need to remove the armor first.</span>")
 		return FALSE
