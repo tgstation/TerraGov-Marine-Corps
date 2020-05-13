@@ -185,7 +185,7 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/specgrenadier
-	name = "Grenadier Specialist crate (M92 x1, HEDP Grenade Box x1)"
+	name = "Grenadier Specialist crate"
 	contains = list(
 					/obj/item/weapon/gun/launcher/m92,
 					/obj/item/storage/box/nade_box
@@ -196,7 +196,7 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/specscout
-	name = "Scout Specialist crate (M4RA x1, M4RA Magazines x2)"
+	name = "Scout Specialist crate"
 	contains = list(
 					/obj/item/weapon/gun/rifle/m4ra,
 					/obj/item/ammo_magazine/rifle/m4ra,
@@ -208,7 +208,7 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/specscout2
-	name = "Scout Specialist crate (MBX900 x1, Sabot Box x1)"
+	name = "Scout Specialist crate"
 	contains = list(
 					/obj/item/weapon/gun/shotgun/pump/lever/mbx900,
 					/obj/item/ammo_magazine/shotgun/mbx900
@@ -219,7 +219,7 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/specdemo
-	name = "Demolitionist Specialist crate (M5 RPG x1, HE Rockets x2)"
+	name = "Demolitionist Specialist crate"
 	contains = list(
 					/obj/item/weapon/gun/launcher/rocket,
 					/obj/item/ammo_magazine/rocket,
@@ -231,7 +231,7 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/specpyro
-	name = "Pyro Specialist crate (M240T x1, Fuel Backpack x1)"
+	name = "Pyro Specialist crate"
 	contains = list(
 					/obj/item/weapon/gun/flamer/M240T,
 					/obj/item/storage/backpack/marine/engineerpack/flamethrower
@@ -242,7 +242,7 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/specsniper
-	name = "Sniper Specialist crate (M42A x1, M42A Magazines x2)"
+	name = "Sniper Specialist crate"
 	contains = list(
 					/obj/item/weapon/gun/rifle/sniper/M42A,
 					/obj/item/ammo_magazine/sniper,
@@ -254,7 +254,7 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/specminigun
-	name = "MIC-A7 Vindicator Minigun crate (MIC-A7 x1, MIC-A7 Ammo Drum x1)"
+	name = "MIC-A7 Vindicator Minigun crate"
 	contains = list(
 					/obj/item/weapon/gun/minigun,
 					/obj/item/ammo_magazine/minigun
@@ -265,7 +265,7 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/flamethrower
-	name = "M240 Flamethrower crate (M240 x3, M240 Tanks x3)"
+	name = "M240 Flamethrower crate"
 	contains = list(
 					/obj/item/weapon/gun/flamer,
 					/obj/item/weapon/gun/flamer,
@@ -284,7 +284,7 @@ WEAPONS
 					/obj/item/storage/belt/gun/mateba/full,
 					/obj/item/storage/belt/gun/mateba/full
 					)
-	name = "Mateba Autorevolver crate (Mateba x2, Mateba holster rig x2, Mateba speed loader x12)"
+	name = "Mateba Autorevolver crate"
 	cost = 30
 	containertype = /obj/structure/closet/crate
 	containername = "\improper Mateba crate"
@@ -301,7 +301,7 @@ WEAPONS
 					/obj/item/ammo_magazine/revolver/standard_revolver,
 					/obj/item/ammo_magazine/revolver/standard_revolver
 					)
-	name = "surplus sidearms crate (TP-14 x2, TP-44 x2, ammo x2 each)"
+	name = "surplus sidearms crate"
 	cost = 20
 	containertype = /obj/structure/closet/crate
 	containername = "\improper sidearms crate"
@@ -326,7 +326,7 @@ WEAPONS
 					/obj/item/ammo_magazine/rifle/tx15_flechette,
 					/obj/item/ammo_magazine/rifle/tx15_flechette,
 					)
-	name = "surplus shotguns crate (T-35 x2, T-35 ammo x2 each, TX-15 x2, TX Flechette and slugs x3 each)"
+	name = "surplus shotguns crate"
 	cost = 20
 	containertype = /obj/structure/closet/crate
 	containername = "\improper shotguns crate"
@@ -339,7 +339,7 @@ WEAPONS
 					/obj/item/ammo_magazine/smg/standard_smg,
 					/obj/item/ammo_magazine/smg/standard_smg,
 					)
-	name = "surplus SMG crate (T-19 x2, 2x Standard)"
+	name = "surplus SMG crate"
 	cost = 20
 	containertype = /obj/structure/closet/crate
 	containername = "\improper SMGs crate"
@@ -352,7 +352,7 @@ WEAPONS
 					/obj/item/ammo_magazine/rifle/standard_carbine,
 					/obj/item/ammo_magazine/rifle/standard_carbine,
 					)
-	name = "surplus rifles crate (T-18 x2, T-18 ammo x2)"
+	name = "surplus rifles crate"
 	cost = 20
 	containertype = /obj/structure/closet/crate
 	containername = "\improper rifles crate"
@@ -365,7 +365,7 @@ WEAPONS
 					/obj/item/cell/lasgun/lasrifle,
 					/obj/item/cell/lasgun/lasrifle
 					)
-	name = "surplus lasrifle crate (TX-73 lasrifle x2, TX-73 battery packs x2)"
+	name = "surplus lasrifle crate"
 	cost = 20
 	containertype = /obj/structure/closet/crate
 	containername = "\improper lasrifle crate"
@@ -384,7 +384,7 @@ WEAPONS
 					/obj/item/ammo_magazine/standard_lmg,
 					/obj/item/ammo_magazine/standard_lmg
 					)
-	name = "T-42 LMG squad crate (LMG x5, LMG ammo drums x5)"
+	name = "T-42 LMG squad crate"
 	cost = 50
 	containertype = /obj/structure/closet/crate
 	containername = "\improper T-42 LMG squad crate"
@@ -397,14 +397,14 @@ WEAPONS
 					/obj/item/ammo_magazine/shotgun/buckshot,
 					/obj/item/ammo_magazine/shotgun/flechette
 					)
-	name = "MK221 tactical shotgun (MK221 x1, one box of each shell type)"
+	name = "MK221 tactical shotgun"
 	cost = 10
 	containertype = /obj/structure/closet/crate
 	containername = "\improper MK221 tactical shotgun crate"
 	group = "Weapons"
 
 /datum/supply_packs/explosives
-	name = "surplus explosives crate (claymore mine x4, M40 HIDP x2, M40 HEDP x2, M15 HE x2)"
+	name = "surplus explosives crate"
 	contains = list(
 					/obj/item/storage/box/explosive_mines,
 					/obj/item/explosive/grenade/frag,
@@ -495,7 +495,7 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/detpack
-	name = "detpack explosives crate (Detpack x6, Signaler x3)"
+	name = "detpack explosives crate"
 	contains = list(
 					/obj/item/detpack,
 					/obj/item/detpack,
@@ -1323,7 +1323,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_mbx900
-	name = "MBX 900 ammo crate (x2 sabot, x2 buckshot, x1 tracking)"
+	name = "MBX 900 ammo crate"
 	contains = list(
 					/obj/item/ammo_magazine/shotgun/mbx900,
 					/obj/item/ammo_magazine/shotgun/mbx900,
@@ -1434,7 +1434,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/pyro
-	name = "M240-T fuel crate (extended x2, type-B x1, type-X x1)"
+	name = "M240-T fuel crate"
 	contains = list(
 					/obj/item/ammo_magazine/flamer_tank/large,
 					/obj/item/ammo_magazine/flamer_tank/large,
@@ -1561,7 +1561,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_lasguncharger
-	name = "ColMarTech Lasrifle Field Charger (TX-73 x10, TX-73 Highcap x2)"
+	name = "ColMarTech Lasrifle Field Charger"
 	contains = list(
 					/obj/machinery/vending/lasgun
 					)
@@ -1571,7 +1571,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_lasgun
-	name = "TX-73 lasrifle battery crate (TX-73 x15)"
+	name = "TX-73 lasrifle battery crate"
 	contains = list(
 					/obj/item/cell/lasgun/lasrifle,
 					/obj/item/cell/lasgun/lasrifle,
@@ -1595,7 +1595,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_lasgun_highcap
-	name = "TX-73 lasrifle highcap battery crate (TX-73 highcap x7)"
+	name = "TX-73 lasrifle highcap battery crate"
 	contains = list(
 					/obj/item/cell/lasgun/lasrifle/highcap,
 					/obj/item/cell/lasgun/lasrifle/highcap,
@@ -1686,7 +1686,7 @@ ARMOR
 	group = "Armor"
 
 /datum/supply_packs/armor_basic
-	name = "M3 pattern armor crate (x5 helmet, x5 armor)"
+	name = "M3 pattern armor crate"
 	contains = list(
 					/obj/item/clothing/head/helmet/marine/standard,
 					/obj/item/clothing/head/helmet/marine/standard,
@@ -1705,7 +1705,7 @@ ARMOR
 	group = "Armor"
 
 /datum/supply_packs/armor_leader
-	name = "M3 pattern squad leader crate (x1 helmet, x1 armor)"
+	name = "M3 pattern squad leader crate"
 	contains = list(
 					/obj/item/clothing/head/helmet/marine/leader,
 					/obj/item/clothing/suit/storage/marine/leader
@@ -1804,7 +1804,7 @@ CLOTHING
 	group = "Clothing"
 
 /datum/supply_packs/pouches_general
-	name = "general pouches crate (2x normal, 1x medium, 1x large)"
+	name = "general pouches crate"
 	contains = list(
 					/obj/item/storage/pouch/general,
 					/obj/item/storage/pouch/general,
@@ -1817,7 +1817,7 @@ CLOTHING
 	group = "Clothing"
 
 /datum/supply_packs/pouches_weapons
-	name = "weapons pouches crate (1x bayonet, sidearm, explosive)"
+	name = "weapons pouches crate"
 	contains = list(
 					/obj/item/storage/pouch/bayonet,
 					/obj/item/storage/pouch/pistol,
@@ -1829,7 +1829,7 @@ CLOTHING
 	group = "Clothing"
 
 /datum/supply_packs/pouches_ammo
-	name = "ammo pouches crate (1x normal, large, pistol, large pistol)"
+	name = "ammo pouches crate"
 	contains = list(
 					/obj/item/storage/pouch/magazine,
 					/obj/item/storage/pouch/magazine/large,
@@ -1842,7 +1842,7 @@ CLOTHING
 	group = "Clothing"
 
 /datum/supply_packs/pouches_medical
-	name = "medical pouches crate (1x firstaid, medical, syringe, medkit, autoinjector)"
+	name = "medical pouches crate"
 	contains = list(
 					/obj/item/storage/pouch/firstaid,
 					/obj/item/storage/pouch/medical,
@@ -1856,7 +1856,7 @@ CLOTHING
 	group = "Clothing"
 
 /datum/supply_packs/pouches_survival
-	name = "survival pouches crate (1x radio, flare, survival)"
+	name = "survival pouches crate"
 	contains = list(
 					/obj/item/storage/pouch/radio,
 					/obj/item/storage/pouch/flare,
@@ -1868,7 +1868,7 @@ CLOTHING
 	group = "Clothing"
 
 /datum/supply_packs/pouches_construction
-	name = "construction pouches crate (1x document, electronics, tools, construction)"
+	name = "construction pouches crate"
 	contains = list(
 					/obj/item/storage/pouch/document,
 					/obj/item/storage/pouch/electronics,
@@ -1975,7 +1975,7 @@ datum/supply_packs/advanced_medical
 	group = "Medical"
 
 /datum/supply_packs/surgery
-	name = "surgery crate (x1 surgical tray, 1x surgical vest)"
+	name = "surgery crate"
 	contains = list(
 					/obj/item/storage/surgical_tray,
 					/obj/item/clothing/tie/storage/white_vest
@@ -1987,7 +1987,7 @@ datum/supply_packs/advanced_medical
 	group = "Medical"
 
 /datum/supply_packs/anesthetic
-	name = "anesthetic crate (medical mask x1, anesthetic tank x1)"
+	name = "anesthetic crate"
 	contains = list(
 					/obj/item/clothing/mask/breath/medical,
 					/obj/item/tank/anesthetic
@@ -1999,7 +1999,7 @@ datum/supply_packs/advanced_medical
 	group = "Medical"
 
 /datum/supply_packs/hypospray
-	name = "advanced hypospray crate (x5 advanced hyposprays)"
+	name = "advanced hypospray crate"
 	contains = list(
 					/obj/item/reagent_containers/hypospray/advanced,
 					/obj/item/reagent_containers/hypospray/advanced,
@@ -2014,7 +2014,7 @@ datum/supply_packs/advanced_medical
 	group = "Medical"
 
 /datum/supply_packs/medvac
-	name = "medvac system crate (medvac stretcher and beacon)"
+	name = "medvac system crate"
 	contains = list(
 					/obj/item/roller/medevac,
 					/obj/item/medevac_beacon
@@ -2071,7 +2071,7 @@ ENGINEERING
 	group = "Engineering"
 
 /datum/supply_packs/electrical
-	name = "electrical maintenance crate (toolbox x2, insulated x2, cell x2, hi-cap cell x2)"
+	name = "electrical maintenance crate"
 	contains = list(
 					/obj/item/storage/toolbox/electrical,
 					/obj/item/storage/toolbox/electrical,
@@ -2088,7 +2088,7 @@ ENGINEERING
 	group = "Engineering"
 
 /datum/supply_packs/mechanical
-	name = "mechanical maintenance crate (utility belt x3, hazard vest x3, welding helmet x2, hard hat x1)"
+	name = "mechanical maintenance crate"
 	contains = list(
 					/obj/item/storage/belt/utility/full,
 					/obj/item/storage/belt/utility/full,

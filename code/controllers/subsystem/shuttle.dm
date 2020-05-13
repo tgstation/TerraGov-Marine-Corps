@@ -23,6 +23,9 @@ SUBSYSTEM_DEF(shuttle)
 	var/list/supply_packs_ui = list()
 
 	var/list/shoppinglist = list()
+	
+	var/list/shopping_cart = list()
+	
 	var/list/requestlist = list()
 	var/list/orderhistory = list()
 

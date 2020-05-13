@@ -250,6 +250,8 @@ GLOBAL_LIST_EMPTY(exports_types)
 	req_access = list(ACCESS_MARINE_CARGO)
 	circuit = null
 	interaction_flags = INTERACT_MACHINE_NANO
+	ui_x = 900
+	ui_y = 700
 	var/temp = null
 	var/reqtime = 0 //Cooldown for requisitions - Quarxink
 	var/hacked = 0
@@ -258,7 +260,6 @@ GLOBAL_LIST_EMPTY(exports_types)
 
 /obj/machinery/computer/supplycomp/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
 										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	. = ..()
 	if(!ui)
 		ui = new(user, src, ui_key, "Cargo", name, ui_x, ui_y, master_ui, state)
 		ui.open()
@@ -271,7 +272,41 @@ GLOBAL_LIST_EMPTY(exports_types)
 /obj/machinery/computer/supplycomp/ui_data(mob/user)
 	. = list()
 	.["currentpoints"] = round(SSpoints.supply_points)
-	
+	.["awaiting_delivery"] = list()
+	for(var/i in SSshuttle.shoppinglist)
+		var/datum/supply_order/SO = i
+		if(.["awaiting_delivery"][SO.pack.type])
+			.["awaiting_delivery"][SO.pack.type]["count"]++
+		else
+			.["awaiting_delivery"][SO.pack.type] = list("name" = SO.pack.name, "count" = 1)
+	.["requests"] = list()
+	for(var/i in SSshuttle.requestlist)
+		var/datum/supply_order/SO = i
+		.["requests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = SO.pack.cost, "name" = SO.pack.name, "contains" = SO.pack.contains_name))
+	.["shopping_list_cost"] = 0
+	.["shopping_list"] = list()
+	for(var/i in SSshuttle.shopping_cart)
+		var/datum/supply_packs/pack = i
+		var/datum/supply_packs/SP = SSshuttle.supply_packs[initial(pack.name)]
+		.["shopping_list_cost"] += SP.cost
+		.["shopping_list"] += list(list("name" = SP.name, "cost" = SP.cost, "contains" = SP.contains_name, "path" = SP.type, "count" = SSshuttle.shopping_cart[SP]))
+
+/obj/machinery/computer/supplycomp/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	if(..())
+		return
+	switch(action)
+		if("addtocart")
+			var/datum/supply_packs/path = text2path(params["id"])
+			if(!ispath(path))
+				return
+			var/datum/supply_packs/P = SSshuttle.supply_packs[initial(path.name)]
+			if(!P)
+				return
+			if(SSshuttle.shopping_cart[P.type])
+				SSshuttle.shopping_cart[P.type]++
+			else
+				SSshuttle.shopping_cart[P.type] = 1
+	return TRUE
 
 /obj/machinery/computer/ordercomp
 	name = "Supply ordering console"
