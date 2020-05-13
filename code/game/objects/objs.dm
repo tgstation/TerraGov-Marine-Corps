@@ -15,7 +15,6 @@
 
 	var/throwforce = 1
 
-	var/resistance_flags = NONE
 	var/obj_flags = NONE
 	var/hit_sound //Sound this object makes when hit, overrides specific item hit sound.
 	var/destroy_sound //Sound this object makes when destroyed.
@@ -26,9 +25,9 @@
 	var/list/req_access = null
 	var/list/req_one_access = null
 
-	//Don't directly use these two, please. No: magic numbers, Yes: defines.
-	var/req_one_access_txt = "0"
-	var/req_access_txt = "0"
+	///Optimization for dynamic explosion block values, for things whose explosion block is dependent on certain conditions.
+	var/real_explosion_block
+
 
 /obj/Initialize()
 	. = ..()
@@ -41,6 +40,21 @@
 
 	if(obj_integrity == null)
 		obj_integrity = max_integrity
+
+	if(LAZYLEN(req_access))
+		var/txt_access = req_access.Join("-")
+		if(!GLOB.all_req_access[txt_access])
+			GLOB.all_req_access[txt_access] = req_access
+		else
+			req_access = GLOB.all_req_access[txt_access]
+
+	if(LAZYLEN(req_one_access))
+		var/txt_access = req_one_access.Join("-")
+		if(!GLOB.all_req_one_access[txt_access])
+			GLOB.all_req_one_access[txt_access] = req_one_access
+		else
+			req_one_access = GLOB.all_req_one_access[txt_access]
+
 
 /obj/proc/setAnchored(anchorvalue)
 	SEND_SIGNAL(src, COMSIG_OBJ_SETANCHORED, anchorvalue)

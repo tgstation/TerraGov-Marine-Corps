@@ -114,6 +114,7 @@
 		name = "crumpled [name]"
 
 /obj/item/tape/Crossed(atom/movable/AM)
+	. = ..()
 	if(!lifted && ismob(AM))
 		var/mob/M = AM
 		if(!allowed(M))	//only select few learn art of not crumpling the tape

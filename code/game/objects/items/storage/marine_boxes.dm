@@ -1,8 +1,8 @@
 
 
-/obj/item/storage/box/m56_system
-	name = "\improper M56 smartgun system"
-	desc = "A large case containing the full M56 Smartgun System. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+/obj/item/storage/box/t26_system
+	name = "\improper T26 smart machinegun system"
+	desc = "A large case containing the full T-26 Machinegun System. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "smartgun_case"
 	w_class = WEIGHT_CLASS_HUGE
@@ -11,11 +11,11 @@
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
 
-/obj/item/storage/box/m56_system/Initialize(mapload, ...)
+/obj/item/storage/box/t26_system/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/clothing/glasses/night/m56_goggles(src)
-	new /obj/item/weapon/gun/smartgun(src)
-	new /obj/item/smartgun_powerpack(src)
+	new /obj/item/weapon/gun/rifle/standard_smartmachinegun(src)
+	new /obj/item/ammo_magazine/standard_smartmachinegun(src)
 	new /obj/item/clothing/suit/storage/marine/smartgunner(src)
 
 /obj/item/smartgun_powerpack

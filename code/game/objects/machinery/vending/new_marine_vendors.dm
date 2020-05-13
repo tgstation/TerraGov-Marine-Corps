@@ -73,9 +73,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
 	req_access = null
-	req_access_txt = "0"
 	req_one_access = null
-	req_one_access_txt = "0"
 	interaction_flags = INTERACT_MACHINE_NANO
 
 	idle_power_usage = 60
@@ -134,61 +132,43 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "marineselector", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, ui_key, "MarineSelector", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
-/obj/machinery/marine_selector/ui_data(mob/user)
-	var/list/display_list = list()
-
+/obj/machinery/marine_selector/ui_static_data(mob/user)
+	. = list()
+	.["displayed_records"] = list()
 	for(var/c in categories)
-		display_list[c] = list()
+		.["displayed_records"][c] = list()
 
-	var/m_points = 0
-	var/buy_flags = NONE
-	var/obj/item/card/id/I = user.get_idcard()
-	if(istype(I)) //wearing an ID
-		m_points = I.marine_points
-		buy_flags = I.marine_buy_flags
-
+	.["vendor_name"] = name
+	.["show_points"] = use_points
+	.["total_marine_points"] = MARINE_TOTAL_BUY_POINTS
 
 	for(var/i in listed_products)
 		var/list/myprod = listed_products[i]
 		var/category = myprod[1]
 		var/p_name = myprod[2]
 		var/p_cost = myprod[3]
-		if(p_cost > 0)
-			p_name += " ([p_cost] points)"
+		var/atom/productpath = i
 
-		var/prod_available = FALSE
-		var/list/avail_flags = GLOB.marine_selector_cats[category]
-		var/flags = NONE
-		if(LAZYLEN(avail_flags))
-			for(var/f in avail_flags)
-				flags |= f
-			if(buy_flags & flags)
-				prod_available = TRUE
-		else if(m_points >= p_cost)
-			prod_available = TRUE
+		LAZYADD(.["displayed_records"][category], list(list("prod_index" = i, "prod_name" = p_name, "prod_color" = myprod[4], "prod_cost" = p_cost, "prod_desc" = initial(productpath.desc))))
 
-		LAZYADD(display_list[category], list(list("prod_index" = i, "prod_name" = p_name, "prod_available" = prod_available, "prod_color" = myprod[4])))
+/obj/machinery/marine_selector/ui_data(mob/user)
+	. = list()
 
-	var/list/cats = list()
+	var/obj/item/card/id/I = user.get_idcard()
+	.["current_m_points"] = I?.marine_points || 0
+	var/buy_flags = I?.marine_buy_flags || NONE
+
+
+	.["cats"] = list()
 	for(var/i in GLOB.marine_selector_cats)
-		if(!display_list[i]) // vendor doesnt have this category
-			continue
-		cats[i] = 0
+		.["cats"][i] = list("remaining" = 0, "total" = 0)
 		for(var/flag in GLOB.marine_selector_cats[i])
+			.["cats"][i]["total"]++
 			if(buy_flags & flag)
-				cats[i]++
-
-	var/list/data = list(
-		"vendor_name" = name,
-		"show_points" = use_points,
-		"current_m_points" = m_points,
-		"displayed_records" = display_list,
-		"cats" = cats,
-	)
-	return data
+				.["cats"][i]["remaining"]++
 
 /obj/machinery/marine_selector/ui_act(action, params)
 	if(..())
@@ -260,7 +240,10 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 					to_chat(usr, "<span class='warning'>You can't buy things from this category anymore.</span>")
 					return
 
-			new idx(loc)
+			var/obj/item/vended_item = new idx(loc)
+
+			if(istype(vended_item)) // in case of spawning /obj
+				usr.put_in_any_hand_if_possible(vended_item, warning = FALSE)
 
 			if(icon_vend)
 				flick(icon_vend, src)
@@ -336,6 +319,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/storage/pouch/firstaid/full = list(CAT_POU, "Firstaid pouch", 0,"orange"),
 		/obj/item/storage/pouch/firstaid/injectors/full = list(CAT_POU, "Injector pouch", 0,"orange"),
 		/obj/item/storage/pouch/tools/full = list(CAT_POU, "Tool pouch (tools included)", 0,"black"),
+		/obj/item/storage/pouch/grenade/slightlyfull = list(CAT_POU, "Grenade pouch (Grenades included)", 0,"black"),
 		/obj/item/storage/pouch/construction/full = list(CAT_POU, "Construction pouch (materials included)", 0,"black"),
 		/obj/item/storage/pouch/magazine/pistol = list(CAT_POU, "Pistol magazine pouch", 0,"black"),
 		/obj/item/storage/pouch/pistol = list(CAT_POU, "Sidearm pouch", 0,"black"),
@@ -350,11 +334,6 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0,"black"),
 		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0,"orange"),
 		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil compensator", 0,"black"),
-		/obj/item/attachable/efflens = list(CAT_ATT, "M43 Efficient lens", 0,"black"),
-		/obj/item/attachable/focuslens = list(CAT_ATT, "M43 Focus lens", 0,"black"),
-		/obj/item/attachable/widelens = list(CAT_ATT, "M43 Wide lens", 0,"black"),
-		/obj/item/attachable/heatlens = list(CAT_ATT, "M43 Heat lens", 0,"black"),
-		/obj/item/attachable/pulselens = list(CAT_ATT, "M43 pulse lens", 0,"black"),
 		/obj/item/attachable/magnetic_harness = list(CAT_ATT, "Magnetic harness", 0,"orange"),
 		/obj/item/attachable/reddot = list(CAT_ATT, "Red dot sight", 0,"black"),
 		/obj/item/attachable/quickfire = list(CAT_ATT, "Quickfire assembly", 0,"black"),
@@ -415,6 +394,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/storage/pouch/construction = list(CAT_POU, "Construction pouch", 0, "orange"),
 		/obj/item/storage/pouch/explosive = list(CAT_POU, "Explosive pouch", 0, "black"),
 		/obj/item/storage/pouch/tools/full = list(CAT_POU, "Tools pouch", 0, "black"),
+		/obj/item/storage/pouch/grenade/slightlyfull = list(CAT_POU, "Grenade pouch (Grenades included)", 0,"black"),
 		/obj/item/storage/pouch/electronics/full = list(CAT_POU, "Electronics pouch", 0, "black"),
 		/obj/item/storage/pouch/magazine = list(CAT_POU, "Magazine pouch", 0, "black"),
 		/obj/item/storage/pouch/general/medium = list(CAT_POU, "Medium general pouch", 0, "black"),
@@ -528,6 +508,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/storage/belt/gun/revolver/standard_revolver = list(CAT_BEL, "Revolver belt", 0, "black"),
 		/obj/item/storage/belt/sparepouch = list(CAT_BEL, "G8 general utility pouch", 0, "black"),
 		/obj/item/storage/pouch/shotgun = list(CAT_POU, "Shotgun shell pouch", 0, "black"),
+		/obj/item/storage/pouch/grenade/slightlyfull = list(CAT_POU, "Grenade pouch (Grenades included)", 0,"black"),
 		/obj/item/storage/pouch/magazine = list(CAT_POU, "Magazine pouch", 0, "black"),
 		/obj/item/storage/pouch/general/medium = list(CAT_POU, "Medium general pouch", 0, "black"),
 		/obj/item/storage/pouch/flare/full = list(CAT_POU, "Flare pouch", 0, "orange"),
@@ -584,6 +565,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/storage/pouch/shotgun = list(CAT_POU, "Shotgun shell pouch", 0, "black"),
 		/obj/item/storage/pouch/magazine/large = list(CAT_POU, "Large magazine pouch", 0, "black"),
 		/obj/item/storage/pouch/general/medium = list(CAT_POU, "Medium general pouch", 0, "black"),
+		/obj/item/storage/pouch/grenade/slightlyfull = list(CAT_POU, "Grenade pouch (Grenades included)", 0,"black"),
 		/obj/item/storage/pouch/flare/full = list(CAT_POU, "Flare pouch", 0, "black"),
 		/obj/item/storage/pouch/firstaid/injectors/full = list(CAT_POU, "Injector pouch", 0,"orange"),
 		/obj/item/storage/pouch/firstaid/full = list(CAT_POU, "Firstaid pouch", 0, "black"),
@@ -645,6 +627,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/storage/pouch/firstaid/full = list(CAT_POU, "Firstaid pouch", 0, "black"),
 		/obj/item/storage/pouch/medkit = list(CAT_POU, "Medkit pouch", 0, "black"),
 		/obj/item/storage/pouch/tools/full = list(CAT_POU, "Tool pouch (tools included)", 0, "black"),
+		/obj/item/storage/pouch/grenade/slightlyfull = list(CAT_POU, "Grenade pouch (Grenades included)", 0,"black"),
 		/obj/item/storage/pouch/construction/full = list(CAT_POU, "Construction pouch (materials included)", 0, "black"),
 		/obj/item/storage/pouch/magazine/pistol/large = list(CAT_POU, "Large pistol magazine pouch", 0, "black"),
 		/obj/item/storage/pouch/pistol = list(CAT_POU, "Sidearm pouch", 0, "black"),
@@ -800,7 +783,6 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = list(CAT_MEDSUP, "Injector (Advanced)", 5, "orange"),
 		/obj/item/reagent_containers/hypospray/autoinjector/oxycodone = list(CAT_MEDSUP, "Injector (Oxycodone)", 1, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/hypervene = list(CAT_MEDSUP, "Injector (Hypervene)", 1, "black"),
-		/obj/item/reagent_containers/hypospray/autoinjector/hyperzine = list(CAT_MEDSUP, "Injector (Hyperzine)", 5, "orange"),
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_MEDSUP, "Injector (Synaptizine)", 5, "orange"),
 		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = list(CAT_MEDSUP, "Injector (Perdiaxon Plus)", 5, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/neuraline = list(CAT_MEDSUP, "Injector (Neuraline)", 15, "orange"),
@@ -873,9 +855,9 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	req_access = list(ACCESS_MARINE_SMARTPREP)
 
 	listed_products = list(
-		/obj/item/storage/box/m56_system = list(CAT_ESS, "Essential Smartgunner Set", 0, "white"),
+		/obj/item/storage/box/t26_system = list(CAT_ESS, "Essential Smartgunner Set", 0, "white"),
 
-		/obj/item/smartgun_powerpack = list(CAT_SPEAMM, "M56 powerpack", 45, "black"),
+		/obj/item/ammo_magazine/standard_smartmachinegun = list(CAT_SPEAMM, "T26 ammo drum", 45, "black"),
 
 		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
 		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
@@ -995,7 +977,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	spawned_gear_list = list(
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine,
-						/obj/item/weapon/combat_knife,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/storage/box/MRE,
 						)
 
@@ -1004,7 +986,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	spawned_gear_list = list(
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine,
-						/obj/item/weapon/combat_knife,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/storage/box/MRE
 						)
 
@@ -1012,7 +994,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	spawned_gear_list = list(
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine,
-						/obj/item/weapon/combat_knife,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/storage/box/MRE
 						)
 
@@ -1023,7 +1005,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/glasses/hud/health,
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine,
-						/obj/item/weapon/combat_knife,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/storage/box/MRE
 						)
 
@@ -1033,7 +1015,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/glasses/hud/health,
 						/obj/item/clothing/under/marine/corpsman,
 						/obj/item/clothing/shoes/marine,
-						/obj/item/weapon/combat_knife,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/storage/box/MRE
 						)
 
@@ -1043,7 +1025,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/glasses/welding,
 						/obj/item/clothing/under/marine/engineer,
 						/obj/item/clothing/shoes/marine,
-						/obj/item/weapon/combat_knife,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/storage/box/MRE,
 						/obj/item/clothing/gloves/marine/insulated
 						)

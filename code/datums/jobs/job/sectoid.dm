@@ -2,7 +2,7 @@
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/sectoid
-	faction = "Sectoids"
+	faction = FACTION_SECTOIDS
 
 
 //Sectoid Grunt

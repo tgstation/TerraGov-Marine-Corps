@@ -238,14 +238,39 @@
 /obj/machinery/door/window/northleft
 	dir = NORTH
 
+/obj/machinery/door/window/northleft/brig
+	req_access = list(ACCESS_MARINE_BRIG)
+
+/obj/machinery/door/window/northleft/req
+	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
+
 /obj/machinery/door/window/eastleft
 	dir = EAST
+
+/obj/machinery/door/window/eastleft/req
+	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
+
+/obj/machinery/door/window/eastleft/brig
+	req_access = list(ACCESS_MARINE_BRIG)
 
 /obj/machinery/door/window/westleft
 	dir = WEST
 
+/obj/machinery/door/window/westleft/bridge
+	req_access = list(ACCESS_MARINE_BRIDGE)
+
+/obj/machinery/door/window/westleft/engineering
+	req_access = list(ACCESS_MARINE_ENGINEERING)
+
+/obj/machinery/door/window/westleft/req
+	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
+
+
 /obj/machinery/door/window/southleft
 	dir = SOUTH
+
+/obj/machinery/door/window/southleft/brig
+	req_access = list(ACCESS_MARINE_BRIG)
 
 /obj/machinery/door/window/southleft/briefing
 	req_access = list(ACCESS_MARINE_BRIG)
@@ -265,6 +290,9 @@
 
 /obj/machinery/door/window/eastright/briefing
 	req_access = list(ACCESS_MARINE_BRIG)
+
+/obj/machinery/door/window/eastright/bridge
+	req_access = list(ACCESS_MARINE_BRIDGE)
 
 /obj/machinery/door/window/westright
 	dir = WEST
@@ -307,3 +335,6 @@
 	dir = SOUTH
 	icon_state = "rightsecure"
 	base_state = "rightsecure"
+
+/obj/machinery/door/window/mainship/bridge
+	req_access = list(ACCESS_MARINE_BRIDGE)

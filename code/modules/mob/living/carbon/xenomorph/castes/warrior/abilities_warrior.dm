@@ -82,6 +82,18 @@
 	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_DEAD_TARGET) && H.stat == DEAD)
 		return FALSE
 
+/datum/action/xeno_action/activable/lunge/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/activable/lunge/ai_should_use(target)
+	if(!iscarbon(target))
+		return ..()
+	if(get_dist(target, owner) > 2)
+		return ..()
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return ..()
+	return TRUE
+
 /datum/action/xeno_action/activable/lunge/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
 	to_chat(X, "<span class='notice'>We get ready to lunge again.</span>")
@@ -169,6 +181,18 @@
 
 	add_cooldown()
 
+/datum/action/xeno_action/activable/fling/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/activable/fling/ai_should_use(target)
+	if(!iscarbon(target))
+		return ..()
+	if(get_dist(target, owner) > 1)
+		return ..()
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return ..()
+	return TRUE
+
 // ***************************************
 // *********** Punch
 // ***************************************
@@ -202,6 +226,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/M = A
 	if(X.issamexenohive(M))
+		X.changeNext_move(CLICK_CD_MELEE) // Add a delaay in to avoid spam
 		return M.attack_alien(X) //harmless nibbling.
 
 	GLOB.round_statistics.warrior_punches++
@@ -237,7 +262,7 @@
 		"<span class='xenowarning'>We hit [src] in the [L.display_name] with a devastatingly powerful punch!</span>")
 
 	if(L.limb_status & LIMB_SPLINTED) //If they have it splinted, the splint won't hold.
-		L.limb_status &= ~LIMB_SPLINTED
+		L.remove_limb_flags(LIMB_SPLINTED)
 		to_chat(src, "<span class='danger'>The splint on your [L.display_name] comes apart!</span>")
 
 	L.take_damage_limb(damage, 0, FALSE, FALSE, run_armor_check(target_zone))
@@ -247,6 +272,18 @@
 
 	apply_damage(damage, STAMINA) //Armor penetrating halloss also applies.
 	UPDATEHEALTH(src)
+
+/datum/action/xeno_action/activable/punch/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/activable/punch/ai_should_use(target)
+	if(!iscarbon(target))
+		return ..()
+	if(get_dist(target, owner) > 1)
+		return ..()
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return ..()
+	return TRUE
 
 // ***************************************
 // *********** Rip limb

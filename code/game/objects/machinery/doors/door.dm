@@ -6,7 +6,9 @@
 	anchored = TRUE
 	opacity = TRUE
 	density = TRUE
+	move_resist = MOVE_FORCE_VERY_STRONG
 	layer = DOOR_OPEN_LAYER
+	explosion_block = 2
 	var/open_layer = DOOR_OPEN_LAYER
 	var/closed_layer = DOOR_CLOSED_LAYER
 	var/id
@@ -65,9 +67,9 @@
 
 	if(ismob(AM))
 		var/mob/M = AM
-		if(M.cooldowns[COOLDOWN_BUMP])
+		if(COOLDOWN_CHECK(M, COOLDOWN_BUMP))
 			return	//This is to prevent shock spam.
-		M.cooldowns[COOLDOWN_BUMP] = addtimer(VARSET_LIST_CALLBACK(M.cooldowns, COOLDOWN_BUMP, null), openspeed)
+		COOLDOWN_START(M, COOLDOWN_BUMP, openspeed)
 		if(!M.restrained() && M.mob_size > MOB_SIZE_SMALL)
 			bumpopen(M)
 		return
@@ -148,12 +150,12 @@
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		return
 	switch(severity)
-		if(1.0)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-		if(2.0)
+		if(EXPLODE_HEAVY)
 			if(prob(25))
 				qdel(src)
-		if(3.0)
+		if(EXPLODE_LIGHT)
 			if(prob(80))
 				var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 				s.set_up(2, 1, src)

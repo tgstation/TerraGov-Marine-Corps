@@ -50,7 +50,7 @@
 		return FALSE
 	if(ishuman(buckling_mob))
 		var/mob/living/carbon/human/H = buckling_mob
-		if(H.cooldowns[COOLDOWN_NEST])
+		if(COOLDOWN_CHECK(H, COOLDOWN_NEST))
 			to_chat(user, "<span class='warning'>[H] was recently unbuckled. Wait a bit.</span>")
 			return FALSE
 		if(!H.lying_angle)
@@ -88,7 +88,7 @@
 			"<span class='notice'>\The [user] pulls you free from \the [src].</span>",
 			"<span class='notice'>You hear squelching.</span>")
 		playsound(loc, "alien_resin_move", 50)
-		user.cooldowns[COOLDOWN_NEST] = addtimer(VARSET_LIST_CALLBACK(user.cooldowns, COOLDOWN_NEST, null), NEST_UNBUCKLED_COOLDOWN)
+		COOLDOWN_START(user, COOLDOWN_NEST, NEST_UNBUCKLED_COOLDOWN)
 		silent = TRUE
 		return ..()
 

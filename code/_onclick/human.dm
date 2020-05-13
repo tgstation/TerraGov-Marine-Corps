@@ -10,10 +10,9 @@
 	if (A != src) return ..()
 	var/mob/living/carbon/human/H = A
 
-	if(cooldowns[COOLDOWN_CHEW])
+	if(COOLDOWN_CHECK(src, COOLDOWN_CHEW))
 		to_chat(H, "<span class='warning'>You can't bite your hand again yet...</span>")
 		return
-
 
 	if (!H.handcuffed)
 		return
@@ -36,7 +35,7 @@
 	if(O.take_damage_limb(1, 0, TRUE, TRUE))
 		H.UpdateDamageIcon()
 
-	cooldowns[COOLDOWN_CHEW] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_CHEW, null), 7.5 SECONDS)
+	COOLDOWN_START(src, COOLDOWN_CHEW, 7.5 SECONDS)
 
 
 /mob/living/carbon/human/UnarmedAttack(atom/A, proximity)

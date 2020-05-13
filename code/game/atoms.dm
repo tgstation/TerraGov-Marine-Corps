@@ -13,6 +13,8 @@
 	var/flags_pass = NONE
 	var/throwpass = FALSE
 
+	var/resistance_flags = NONE
+
 	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
 
 	var/list/priority_overlays	//overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
@@ -26,12 +28,25 @@
 
 	var/list/image/hud_list //This atom's HUD (med/sec, etc) images. Associative list.
 
+	///How much does this atom block the explosion's shock wave.
+	var/explosion_block = 0
+
 	var/list/managed_overlays //overlays managed by update_overlays() to prevent removing overlays that weren't added by the same proc
 
 	var/datum/component/orbiter/orbiters
 	var/datum/proximity_monitor/proximity_monitor
 
 	var/datum/wires/wires = null
+
+	// popup chat messages
+
+	/// Last name used to calculate a color for the chatmessage overlays
+	var/chat_color_name
+	/// Last color calculated for the the chatmessage overlays
+	var/chat_color
+	/// A luminescence-shifted value of the last color calculated for chatmessage overlays
+	var/chat_color_darkened
+
 
 /*
 We actually care what this returns, since it can return different directives.
@@ -282,16 +297,17 @@ directive is properly returned.
 /atom/proc/relaymove()
 	return
 
-/atom/proc/ex_act(severity, target)
-	contents_explosion(severity, target)
-	SEND_SIGNAL(src, COMSIG_ATOM_EX_ACT, severity, target)
+/atom/proc/ex_act(severity, epicenter_dist, impact_range)
+	if(!(flags_atom & PREVENT_CONTENTS_EXPLOSION))
+		contents_explosion(severity, epicenter_dist, impact_range)
+	SEND_SIGNAL(src, COMSIG_ATOM_EX_ACT, severity, epicenter_dist, impact_range)
 
 /atom/proc/fire_act()
 	return
 
 /atom/proc/hitby(atom/movable/AM)
 	if(density)
-		AM.throwing = FALSE
+		AM.set_throwing(FALSE)
 	return
 
 
@@ -303,7 +319,7 @@ directive is properly returned.
 	return FALSE
 
 
-/atom/proc/contents_explosion(severity, target)
+/atom/proc/contents_explosion(severity)
 	return //For handling the effects of explosions on contents that would not normally be effected
 
 
@@ -400,7 +416,7 @@ Proc for attack log creation, because really why not
 	user.log_message(message, LOG_ATTACK, color = "#f46666")
 
 	if(target && user != target)
-		var/reverse_message = "has been [what_done] by [ssource][postfix]"
+		var/reverse_message = "has been [what_done] by [ssource][postfix] in [AREACOORD(user)]"
 		target.log_message(reverse_message, LOG_ATTACK, color = "#eabd7e", log_globally = FALSE)
 
 

@@ -12,7 +12,7 @@ They're all essentially identical when it comes to getting the job done.
 	var/bonus_overlay = null //Sprite pointer in ammo.dmi to an overlay to add to the gun, for extended mags, box mags, and so on
 	flags_atom = CONDUCT
 	flags_equip_slot = ITEM_SLOT_BELT
-	materials = list(/datum/material/metal = 1000)
+	materials = list(/datum/material/metal = 100)
 	throwforce = 2
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 2
@@ -139,10 +139,9 @@ They're all essentially identical when it comes to getting the job done.
 
 //~Art interjecting here for explosion when using flamer procs.
 /obj/item/ammo_magazine/flamer_fire_act()
-	switch(current_rounds)
-		if(0) return
-		if(1 to 100) explosion(loc,  -1, -1, 0, 2) //blow it up.
-		else explosion(loc,  -1, -1, 1, 2) //blow it up HARDER
+	if(!current_rounds)
+		return
+	explosion(loc, 0, 0, 1, 2, throw_range = FALSE) //blow it up.
 	qdel(src)
 
 //Magazines that actually cannot be removed from the firearm. Functionally the same as the regular thing, but they do have three extra vars.
@@ -370,24 +369,22 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 //explosion when using flamer procs.
 /obj/item/big_ammo_box/flamer_fire_act()
-	switch(bullet_amount)
-		if(0) return
-		if(1 to 100) explosion(loc,  0, 0, 1, 2) //blow it up.
-		else explosion(loc,  0, 0, 2, 3) //blow it up HARDER
+	if(!bullet_amount)
+		return
+	explosion(loc, 0, 0, 1, 2, throw_range = FALSE) //blow it up.
 	qdel(src)
-
 
 
 //Deployable ammo box-Unnused until they have proper sprites for the guns
 /obj/item/ammobox
-	name = "Carbine Ammo Box"
+	name = "T-18 Carbine Ammo Box"
 	desc = "A large, deployable ammo box."
 	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "ammobox"
-	var/magazine_amount = 10
-	var/max_magazine_amount = 10
-	var/max_magazine_rounds = 24
+	var/magazine_amount = 30
+	var/max_magazine_amount = 30
+	var/max_magazine_rounds = 32
 	var/ammo_type = /datum/ammo/bullet/rifle
 	var/magazine_type = /obj/item/ammo_magazine/rifle/standard_carbine
 	var/deployed = FALSE
@@ -425,7 +422,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	if(MG.default_ammo != ammo_type)
 		to_chat(user, "<span class='warning'>That's not the right kind of ammo.</span>")
 		return
-		
+
 	if(MG.type != magazine_type)
 		to_chat(user,"<span class='warning'>That's not the right kind of magazine.</span>")
 		return
@@ -488,8 +485,8 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "ammoboxslug"
 	w_class = WEIGHT_CLASS_HUGE
-	var/current_rounds = 100
-	var/max_rounds = 100
+	var/current_rounds = 200
+	var/max_rounds = 200
 	var/ammo_type = /datum/ammo/bullet/shotgun/slug
 	var/deployed = FALSE
 	var/caliber = "12g"
@@ -605,10 +602,34 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	magazine_type = /obj/item/ammo_magazine/rifle/extended
 
 /obj/item/ammobox/standard_smg
-	name = "T-19 Ammo Box"
+	name = "T-19 SMG Ammo Box"
 	icon_state = "ammoboxm39"
 	ammo_type = /datum/ammo/bullet/smg
 	magazine_type = /obj/item/ammo_magazine/smg/standard_smg
+
+/obj/item/ammobox/standard_pistol
+	name = "TP-14 Pistol Ammo Box"
+	icon_state = "ammoboxm4a3"
+	ammo_type = /datum/ammo/bullet/pistol
+	magazine_type = /obj/item/ammo_magazine/pistol/standard_pistol
+
+/obj/item/ammobox/standard_rifle
+	name = "T-12 AR Ammo Box"
+	icon_state = "ammoboxext"
+	ammo_type = /datum/ammo/bullet/rifle
+	magazine_type = /obj/item/ammo_magazine/rifle/standard_assaultrifle
+
+/obj/item/ammobox/standard_dmr
+	name = "T-64 DMR Ammo Box"
+	icon_state = "ammoboxap"
+	ammo_type = /datum/ammo/bullet/rifle/standard_dmr
+	magazine_type = /obj/item/ammo_magazine/rifle/standard_dmr
+
+/obj/item/ammobox/standard_lmg
+	name = "T-42 LMG Ammo Box"
+	icon_state = "big_ammo_box"
+	ammo_type = /datum/ammo/bullet/rifle
+	magazine_type = /obj/item/ammo_magazine/standard_lmg
 
 /obj/item/ammobox/m39ap
 	name = "M39 AP Ammo Box"

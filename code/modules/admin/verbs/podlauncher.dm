@@ -74,7 +74,7 @@
 	to_chat(world, "ui_interact called")
 
 	if(!ui)
-		ui = new(user, src, ui_key, "podlauncher", "podlauncher", 1000, 700, master_ui, state)
+		ui = new(user, src, ui_key, "PodLauncher", "podlauncher", 1000, 700, master_ui, state)
 		ui.open()
 
 /datum/podlauncher/ui_data(mob/user)

@@ -77,7 +77,12 @@
 	maxHealth = xeno_caste.max_health
 	health = maxHealth
 	setXenoCasteSpeed(xeno_caste.speed)
-	armor = getArmor(arglist(xeno_caste.armor))
+	soft_armor = getArmor(arglist(xeno_caste.soft_armor))
+	hard_armor = getArmor(arglist(xeno_caste.hard_armor))
+
+
+/mob/living/carbon/xenomorph/set_armor_datum()
+	return //Handled in set_datum()
 
 
 /mob/living/carbon/xenomorph/proc/generate_nicknumber()
@@ -257,10 +262,10 @@
 /mob/living/carbon/xenomorph/point_to_atom(atom/A, turf/T)
 	//xeno leader get a bit arrow and less cooldown
 	if(queen_chosen_lead || isxenoqueen(src))
-		cooldowns[COOLDOWN_POINT] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_POINT, null), 1 SECONDS)
+		COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)
 		new /obj/effect/overlay/temp/point/big(T)
 	else
-		cooldowns[COOLDOWN_POINT] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_POINT, null), 5 SECONDS)
+		COOLDOWN_START(src, COOLDOWN_POINT, 5 SECONDS)
 		new /obj/effect/overlay/temp/point(T)
 	visible_message("<b>[src]</b> points to [A]")
 	return 1

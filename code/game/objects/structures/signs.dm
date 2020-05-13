@@ -20,17 +20,13 @@
 
 /obj/structure/sign/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-			return
-		if(2.0)
+		if(EXPLODE_HEAVY)
 			qdel(src)
-			return
-		if(3.0)
+		if(EXPLODE_LIGHT)
 			qdel(src)
-			return
-		else
-	return
+
 
 /obj/structure/sign/attackby(obj/item/I, mob/user, params)	//deconstruction
 	. = ..()

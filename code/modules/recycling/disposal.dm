@@ -167,7 +167,6 @@
 		user.client.eye = user.client.mob
 		user.client.perspective = MOB_PERSPECTIVE
 	user.forceMove(loc)
-	user.update_canmove() //Force the delay to go in action immediately
 	if(isliving(user))
 		var/mob/living/L = user
 		L.Stun(40)
@@ -252,7 +251,6 @@
 		AM.pipe_eject(0)
 		if(isliving(AM))
 			var/mob/M = AM
-			M.update_canmove() //Force the delay to go in action immediately
 			if(!M.lying_angle)
 				M.visible_message("<span class='warning'>[M] is suddenly pushed out of [src]!",
 				"<span class='warning'>You get pushed out of [src] and get your bearings!")
@@ -264,14 +262,12 @@
 //Pipe affected by explosion
 /obj/machinery/disposal/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-			return
-		if(2)
+		if(EXPLODE_HEAVY)
 			if(prob(60))
 				qdel(src)
-			return
-		if(3)
+		if(EXPLODE_LIGHT)
 			if(prob(25))
 				qdel(src)
 
@@ -523,19 +519,19 @@
 
 
 //Called when player tries to move while in a pipe
-/obj/structure/disposalholder/relaymove(mob/user as mob)
+/obj/structure/disposalholder/relaymove(mob/user)
 
 	if(!isliving(user))
 		return
 
-	var/mob/living/U = user
+	var/mob/living/living_user = user
 
-	if(U.stat || U.cooldowns[COOLDOWN_DISPOSAL])
+	if(living_user.stat || COOLDOWN_CHECK(living_user, COOLDOWN_DISPOSAL))
 		return
 
-	U.cooldowns[COOLDOWN_DISPOSAL] = addtimer(VARSET_LIST_CALLBACK(U.cooldowns, COOLDOWN_DISPOSAL, null), 10 SECONDS)
+	COOLDOWN_START(living_user, COOLDOWN_DISPOSAL, 10 SECONDS)
 
-	playsound(src.loc, 'sound/effects/clang.ogg', 25, 0)
+	playsound(loc, 'sound/effects/clang.ogg', 25)
 
 
 //Disposal pipes
@@ -675,11 +671,11 @@
 //Pipe affected by explosion
 /obj/structure/disposalpipe/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-		if(2)
+		if(EXPLODE_HEAVY)
 			take_damage(rand(5, 15))
-		if(3)
+		if(EXPLODE_LIGHT)
 			take_damage(rand(0, 15))
 
 //Attack by item. Weldingtool: unfasten and convert to obj/disposalconstruct
