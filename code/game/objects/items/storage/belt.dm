@@ -343,7 +343,7 @@
 
 
 			to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
-			if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
+			if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 				return
 
 			for(var/x in 1 to (storage_slots - length(contents)))
