@@ -11,7 +11,7 @@
 	cooldown_timer = HUNTER_STEALTH_COOLDOWN
 	var/last_stealth = null
 	var/stealth = FALSE
-	var/can_sneak_attack = FALSE
+	var/sneak_attack_ready = FALSE
 	var/stealth_alpha_multiplier = 1
 
 /datum/action/xeno_action/stealth/give_action(mob/living/L)
@@ -26,17 +26,6 @@
 	// TODO: attack_alien() overrides are a mess and need a lot of work to make them require parentcalling
 	RegisterSignal(L, list(
 		COMSIG_XENOMORPH_GRAB,
-		COMSIG_XENOMORPH_ATTACK_BARRICADE,
-		COMSIG_XENOMORPH_ATTACK_CLOSET,
-		COMSIG_XENOMORPH_ATTACK_RAZORWIRE,
-		COMSIG_XENOMORPH_ATTACK_BED,
-		COMSIG_XENOMORPH_ATTACK_NEST,
-		COMSIG_XENOMORPH_ATTACK_TABLE,
-		COMSIG_XENOMORPH_ATTACK_RACK,
-		COMSIG_XENOMORPH_ATTACK_SENTRY,
-		COMSIG_XENOMORPH_ATTACK_M56_POST,
-		COMSIG_XENOMORPH_ATTACK_M56,
-		COMSIG_XENOMORPH_ATTACK_TANK,
 		COMSIG_XENOMORPH_THROW_HIT,
 		COMSIG_XENOMORPH_FIRE_BURNING,
 		COMSIG_LIVING_ADD_VENTCRAWL), .proc/cancel_stealth)
@@ -49,20 +38,6 @@
 	UnregisterSignal(L, list(
 		COMSIG_XENOMORPH_POUNCE, 
 		COMSIG_XENO_LIVING_THROW_HIT, 
-		COMSIG_XENOMORPH_ATTACK_LIVING, 
-		COMSIG_XENOMORPH_DISARM_HUMAN,
-		COMSIG_XENOMORPH_GRAB,
-		COMSIG_XENOMORPH_ATTACK_BARRICADE,
-		COMSIG_XENOMORPH_ATTACK_CLOSET,
-		COMSIG_XENOMORPH_ATTACK_RAZORWIRE,
-		COMSIG_XENOMORPH_ATTACK_BED,
-		COMSIG_XENOMORPH_ATTACK_NEST,
-		COMSIG_XENOMORPH_ATTACK_TABLE,
-		COMSIG_XENOMORPH_ATTACK_RACK,
-		COMSIG_XENOMORPH_ATTACK_SENTRY,
-		COMSIG_XENOMORPH_ATTACK_M56_POST,
-		COMSIG_XENOMORPH_ATTACK_M56,
-		COMSIG_XENOMORPH_ATTACK_TANK,
 		COMSIG_XENOMORPH_THROW_HIT,
 		COMSIG_XENOMORPH_FIRE_BURNING,
 		COMSIG_LIVING_ADD_VENTCRAWL,
@@ -111,66 +86,65 @@
 	to_chat(owner, "<span class='xenodanger'>We emerge from the shadows.</span>")
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED) //This should be handled on the ability datum or a component.
 	stealth = FALSE
-	can_sneak_attack = FALSE
-	owner.alpha = 255 //no transparency/translucency
+	stealth_alpha_multiplier = 1
 
 /datum/action/xeno_action/stealth/proc/sneak_attack_cooldown()
-	if(!stealth || can_sneak_attack)
-		return
-	can_sneak_attack = TRUE
+	sneak_attack_ready = TRUE
 	to_chat(owner, "<span class='xenodanger'>We're ready to use Sneak Attack while stealthed.</span>")
 	playsound(owner, "sound/effects/xeno_newlarva.ogg", 25, 0, 1)
+
+/datum/action/xeno_action/stealth/proc/can_sneak_attack()
+	if(stealth_alpha_multiplier < 0.2 && sneak_attack_ready)
+		return TRUE
+	else
+		return FALSE
 
 /datum/action/xeno_action/stealth/proc/handle_stealth()
 	if(!stealth)
 		return
-	//Initial stealth
-	if(last_stealth > world.time - HUNTER_STEALTH_INITIAL_DELAY) //We don't start out at max invisibility
-		owner.alpha = HUNTER_STEALTH_RUN_ALPHA * stealth_alpha_multiplier
-		return
+
+	var/mob/living/carbon/xenomorph/X = owner
+
 	//Stationary stealth
-	else if(owner.last_move_intent < world.time - HUNTER_STEALTH_STEALTH_DELAY) //If we're standing still for 4 seconds we become almost completely invisible
-		owner.alpha = HUNTER_STEALTH_STILL_ALPHA * stealth_alpha_multiplier
+	if(owner.last_move_intent < world.time - HUNTER_STEALTH_STEALTH_DELAY) //If we're standing still for [some] seconds we become completely invisible
+		stealth_alpha_multiplier = CLAMP(stealth_alpha_multiplier + HUNTER_STEALTH_STILL_ALPHA_ADD, 0, 1)
 	//Walking stealth
 	else if(owner.m_intent == MOVE_INTENT_WALK)
-		owner.alpha = HUNTER_STEALTH_WALK_ALPHA * stealth_alpha_multiplier
+		stealth_alpha_multiplier = CLAMP(stealth_alpha_multiplier + HUNTER_STEALTH_WALK_ALPHA_ADD, 0, 1)
+		X.use_plasma(HUNTER_STEALTH_WALK_PLASMADRAIN)
 	//Running stealth
 	else
-		owner.alpha = HUNTER_STEALTH_RUN_ALPHA * stealth_alpha_multiplier
+		stealth_alpha_multiplier = CLAMP(stealth_alpha_multiplier + HUNTER_STEALTH_RUN_ALPHA_ADD, 0, 1)
+		X.use_plasma(HUNTER_STEALTH_RUN_PLASMADRAIN)
 	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
-	var/mob/living/carbon/xenomorph/xenoowner = owner
-	if(!xenoowner.plasma_stored)
-		to_chat(xenoowner, "<span class='xenodanger'>We lack sufficient plasma to remain camouflaged.</span>")
+
+	if(!X.plasma_stored)
+		to_chat(X, "<span class='xenodanger'>We lack sufficient plasma to remain camouflaged.</span>")
 		cancel_stealth()
+
+	owner.alpha = 255 * stealth_alpha_multiplier
 
 /// Callback listening for a xeno using the pounce ability
 /datum/action/xeno_action/stealth/proc/sneak_attack_pounce()
-	// TODO: find out if this is needed
-	if(owner.m_intent == MOVE_INTENT_WALK) //Hunter that is currently using its stealth ability, need to unstealth him
-		owner.toggle_move_intent(MOVE_INTENT_RUN)
-		if(owner.hud_used?.move_intent)
-			owner.hud_used.move_intent.icon_state = "running"
-		owner.update_icons()
 
-	cancel_stealth()
-
-	if(!can_sneak_attack)
+	if(!can_sneak_attack())
 		return
+
 	to_chat(owner, "<span class='xenodanger'>Our pounce has left us off-balance; we'll need to wait [HUNTER_POUNCE_SNEAKATTACK_DELAY*0.1] seconds before we can Sneak Attack again.</span>")
-	can_sneak_attack = FALSE
+	sneak_attack_ready = FALSE
 	addtimer(CALLBACK(src, .proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY)
 
 /// Callback for when a mob gets hit as part of a pounce
 /datum/action/xeno_action/stealth/proc/mob_hit(datum/source, mob/living/M)
 	if(M.stat || isxeno(M))
 		return
-	if(can_sneak_attack)
+	if(can_sneak_attack())
 		M.adjust_stagger(3)
 		M.add_slowdown(1)
 		to_chat(owner, "<span class='xenodanger'>Pouncing from the shadows, we stagger our victim.</span>")
 
 /datum/action/xeno_action/stealth/proc/sneak_attack_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
-	if(!stealth || !can_sneak_attack)
+	if(!stealth || !can_sneak_attack())
 		return
 
 	var/staggerslow_stacks = 2
@@ -190,7 +164,7 @@
 	cancel_stealth()
 
 /datum/action/xeno_action/stealth/proc/sneak_attack_disarm(datum/source, mob/living/target, tackle_pain, list/pain_mod)
-	if(!stealth || !can_sneak_attack)
+	if(!stealth || !can_sneak_attack())
 		return
 
 	var/staggerslow_stacks = 2
@@ -209,22 +183,18 @@
 	target.adjust_stagger(staggerslow_stacks)
 	target.add_slowdown(staggerslow_stacks)
 	
-	cancel_stealth()
-
 /datum/action/xeno_action/stealth/proc/damage_taken(mob/living/carbon/xenomorph/X, damage_taken)
-	if(damage_taken > 15)
-		cancel_stealth()
+	if(!stealth)
+		return
+
+	stealth_alpha_multiplier = CLAMP(stealth_alpha_multiplier + (damage_taken / 100), 0, 1) //Taking 100 damage reduces your stealth by 100%.
 
 /datum/action/xeno_action/stealth/proc/plasma_regen(datum/source, list/plasma_mod)
+
 	handle_stealth()
 
-	if(stealth && owner.last_move_intent > world.time - 20) //Stealth halves the rate of plasma recovery on weeds, and eliminates it entirely while moving
-		plasma_mod += 0.0
-	else
-		plasma_mod += 0.5
-
 /datum/action/xeno_action/stealth/proc/sneak_attack_zone()
-	if(!stealth || !can_sneak_attack)
+	if(!stealth || !can_sneak_attack())
 		return
 	return COMSIG_ACCURATE_ZONE
 
