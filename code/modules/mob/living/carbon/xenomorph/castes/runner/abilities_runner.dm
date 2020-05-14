@@ -142,9 +142,6 @@
 	if(owner.layer == XENO_HIDING_LAYER) //Xeno is currently hiding, unhide him
 		owner.layer = MOB_LAYER
 
-/datum/action/xeno_action/activable/pounce/proc/sneak_attack()
-	return
-
 /datum/action/xeno_action/activable/pounce/get_cooldown()
 	var/mob/living/carbon/xenomorph/X = owner
 	return X.xeno_caste.pounce_delay
@@ -168,7 +165,7 @@
 	X.visible_message("<span class='xenowarning'>\The [X] pounces at [A]!</span>", \
 	"<span class='xenowarning'>We pounce at [A]!</span>")
 
-	sneak_attack()
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_POUNCE)
 
 	succeed_activate()
 	add_cooldown()

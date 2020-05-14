@@ -42,6 +42,18 @@
 /turf/closed/wall/mainship/outer/reinforced
 	name = "reinforced hull"
 
+/turf/closed/wall/mainship/outer/canterbury
+	tiles_with = list(
+		/obj/structure/window/framed/mainship/white/canterbury,
+		/obj/structure/window/framed/mainship/hull/canterbury,
+		/obj/structure/window/framed/mainship/canterbury,
+		/turf/closed/wall/mainship/white/canterbury,
+		/turf/closed/wall/mainship/outer/canterbury,
+		/obj/machinery/door/poddoor/shutters/transit,
+		/obj/machinery/door/airlock/mainship/marine/canterbury,
+		/obj/machinery/door/airlock/mainship/command/canterbury
+		)
+
 /turf/closed/wall/mainship/white
 	walltype = "wwall"
 	icon_state = "wwall0"
@@ -50,7 +62,7 @@
 	icon_state = "[walltype][junction]"
 	junctiontype = junction
 
-
+/turf/closed/wall/mainship/white/canterbury //For ship smoothing.
 
 /turf/closed/wall/mainship/research/can_be_dissolved()
 	return FALSE
