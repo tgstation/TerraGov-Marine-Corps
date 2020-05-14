@@ -616,11 +616,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(flags_to_set == limb_status)
 		return
 	. = limb_status
-	var/unchanging_flags = flags_to_set & limb_status
-	if(limb_status & unchanging_flags)
-		remove_limb_flags(limb_status & unchanging_flags)
-	if(flags_to_set & unchanging_flags)
-		add_limb_flags(flags_to_set & unchanging_flags)
+	var/flags_to_change = . & ~flags_to_set //Flags to remove
+	if(flags_to_change)
+		remove_limb_flags(flags_to_change)
+	flags_to_change = flags_to_set & ~(flags_to_set & .) //Flags to add
+	if(flags_to_change)
+		add_limb_flags(flags_to_change)
 
 
 /datum/limb/proc/remove_limb_flags(flags_to_remove)
