@@ -90,8 +90,7 @@
 	map_name = json["map_name"]
 	CHECK_EXISTS("map_path")
 	map_path = json["map_path"]
-	CHECK_EXISTS("webmap_url")
-	webmap_url = json["webmap_url"]
+	webmap_url = json["webmap_url"] /// We don't validate this because its optional
 
 	map_file = json["map_file"]
 	// "map_file": "BoxStation.dmm"
