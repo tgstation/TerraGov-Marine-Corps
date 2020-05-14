@@ -161,7 +161,7 @@
 
 /obj/item/storage/syringe_case/regular
 
-/obj/item/storage/syringe_case/regular/Initialize(mapload, ...)
+/obj/item/storage/syringe_case/regular/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/inaprovaline(src)
@@ -169,7 +169,7 @@
 
 /obj/item/storage/syringe_case/burn
 
-/obj/item/storage/syringe_case/burn/Initialize(mapload, ...)
+/obj/item/storage/syringe_case/burn/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
@@ -177,7 +177,7 @@
 
 /obj/item/storage/syringe_case/tox
 
-/obj/item/storage/syringe_case/tox/Initialize(mapload, ...)
+/obj/item/storage/syringe_case/tox/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/dylovene(src)
@@ -185,7 +185,7 @@
 
 /obj/item/storage/syringe_case/oxy
 
-/obj/item/storage/syringe_case/oxy/Initialize(mapload, ...)
+/obj/item/storage/syringe_case/oxy/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/inaprovaline(src)
@@ -193,7 +193,7 @@
 
 /obj/item/storage/syringe_case/meralyne
 
-/obj/item/storage/syringe_case/meralyne/Initialize(mapload, ...)
+/obj/item/storage/syringe_case/meralyne/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/meralyne(src)
@@ -201,7 +201,7 @@
 
 /obj/item/storage/syringe_case/dermaline
 
-/obj/item/storage/syringe_case/dermaline/Initialize(mapload, ...)
+/obj/item/storage/syringe_case/dermaline/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/dermaline(src)
@@ -209,7 +209,7 @@
 
 /obj/item/storage/syringe_case/meraderm
 
-/obj/item/storage/syringe_case/meraderm/Initialize(mapload, ...)
+/obj/item/storage/syringe_case/meraderm/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/meraderm(src)
@@ -217,12 +217,11 @@
 
 /obj/item/storage/syringe_case/ironsugar
 
-/obj/item/storage/syringe_case/ironsugar/Initialize(mapload, ...)
+/obj/item/storage/syringe_case/ironsugar/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/ironsugar(src)
 	new /obj/item/reagent_containers/glass/bottle/ironsugar(src)
-
 
 /obj/item/storage/syringe_case/combat
 
