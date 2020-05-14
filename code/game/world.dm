@@ -265,44 +265,6 @@ GLOBAL_VAR(restart_counter)
 		// is stilling initing, we don't update the hub.
 		return
 
-	var/shipname = length(SSmapping?.configs) && SSmapping.configs[SHIP_MAP] ? SSmapping.configs[SHIP_MAP].map_name : "Lost in space..."
-	var/default_ship_url = length(SSmapping?.configs) && SSmapping.configs[SHIP_MAP] ? SSmapping.configs[SHIP_MAP].webmap_url : null
-	var/ship_url
-	var/map_name = length(SSmapping.configs) && SSmapping.configs[GROUND_MAP] ? SSmapping.configs[GROUND_MAP].map_name : "Loading..."
-	var/default_ground_url = length(SSmapping.configs) && SSmapping.configs[GROUND_MAP] ? SSmapping.configs[GROUND_MAP].webmap_url : null
-	var/ground_url
-
-	// Get ground map url
-	switch(map_name)
-		if(MAP_BIG_RED)
-			ground_url = CONFIG_GET(string/webmap_url_ground_bigred)
-		if(MAP_ICE_COLONY)
-			ground_url = CONFIG_GET(string/webmap_url_ground_icecolony)
-		if(MAP_ICY_CAVES)
-			ground_url = CONFIG_GET(string/webmap_url_ground_icecaves)
-		if(MAP_LV_624)
-			ground_url = CONFIG_GET(string/webmap_url_ground_lv624)
-		if(MAP_PRISON_STATION)
-			ground_url = CONFIG_GET(string/webmap_url_ground_prisonstation)
-		if(MAP_RESEARCH_OUTPOST)
-			ground_url = CONFIG_GET(string/webmap_url_ground_researchoutpost)
-		if(MAP_WHISKEY_OUTPOST)
-			ground_url = CONFIG_GET(string/webmap_url_ground_whiskeyoutpost)
-	if(!ground_url)
-		ground_url = default_ground_url
-
-	// Get the ship url
-	switch(shipname)
-		if(MAP_PILLAR_OF_SPRING)
-			ship_url = CONFIG_GET(string/webmap_url_ship_pillar)
-		if(MAP_SULACO)
-			ship_url = CONFIG_GET(string/webmap_url_ship_sulaco)
-		if(MAP_THESEUS)
-			ship_url = CONFIG_GET(string/webmap_url_ship_thesues)
-	if(!ship_url)
-		ship_url = default_ship_url
-
-
 	// Start generating the hub status
 	// Note: Hub content is limited to 254 characters, including HTML/CSS. Image width is limited to 450 pixels.
 	// Current outputt should look like
@@ -312,27 +274,22 @@ GLOBAL_VAR(restart_counter)
 	Mode: Lobby						|	Mode: Crash
 	Round time: 0:0					|	Round time: 4:54
 	*/
-	var/new_status = ""
 	var/discord_url = CONFIG_GET(string/discordurl)
-	if(discord_url)
-		new_status += "<a href='[discord_url]'><b>[CONFIG_GET(string/server_name)]</a> &#8212; </b>"
-	else
-		new_status += "<b>[CONFIG_GET(string/server_name)] &#8212; </b>"
+	var/webmap_host = CONFIG_GET(string/webmap_host)
+	var/full_server_name = discord_url ? "<a href='[discord_url]'>[server_name]</a>" : "[server_name]"
+	var/shipname = length(SSmapping?.configs) && SSmapping.configs[SHIP_MAP] ? SSmapping.configs[SHIP_MAP].map_name : "Lost in space..."
+	var/ship_map_file = length(SSmapping?.configs) && SSmapping.configs[SHIP_MAP] ? SSmapping.configs[SHIP_MAP].map_file : ""
+	var/map_name = length(SSmapping.configs) && SSmapping.configs[GROUND_MAP] ? SSmapping.configs[GROUND_MAP].map_name : "Loading..."
+	var/ground_map_file = length(SSmapping.configs) && SSmapping.configs[GROUND_MAP] ? SSmapping.configs[GROUND_MAP].map_file : ""
 
-	if(ship_url)
-		new_status += "<b><a href='[ship_url]'>[shipname]</a></b>"
-	else
-		new_status += "<b>[shipname]</b>"
-
-	if(ground_url)
-		new_status += "<br>Map: <a href='[ground_url]'><b>[map_name]</a></b>"
-	else
-		new_status += "<br>Map: <b>[map_name]</b>"
-
+	var/new_status = ""
+	new_status += "<b>[full_server_name] &#8212; <a href='[webmap_host][ship_map_file]'>[shipname]</a></b>"
+	new_status += "<br>Map: <a href='[webmap_host][ground_map_file]'><b>[map_name]</a></b>"
 	new_status += "<br>Mode: <b>[SSticker.mode ? SSticker.mode.name : "Lobby"]</b>"
 	new_status += "<br>Round time: <b>[duration2text()]</b>"
 
 	// Finally set the new status
+	to_chat(world, new_status)
 	status = new_status
 
 

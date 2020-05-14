@@ -73,19 +73,17 @@
 	set name = "webmap"
 	set hidden = TRUE
 
+	var/webmap_host = CONFIG_GET(string/webmap_host)
+	if(!webmap_host)
+		to_chat(src, "<span class='warning'>Webmaps are not setup.</span>")
+		return
 	var/map_url
 
 	var/choice = alert("Do you want to view the ground or the ship?",,"Ship","Ground","Cancel")
 	switch(choice)
 		if("Ship")
-			map_url = get_ship_map_url()
-			if(!map_url)
-				to_chat(src, "<span class='warning'>This ship map has no webmap setup.</span>")
-				return
+			map_url = SSmapping.configs[SHIP_MAP].map_file
 		if("Ground")
-			map_url = get_ground_map_url()
-			if(!map_url)
-				to_chat(src, "<span class='warning'>This ground map has no webmap setup.</span>")
-				return
+			map_url = SSmapping.configs[GROUND_MAP].map_file
 
-	DIRECT_OUTPUT(src, link(map_url))
+	DIRECT_OUTPUT(src, link("[webmap_host][map_url]"))

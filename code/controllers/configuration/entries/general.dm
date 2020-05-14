@@ -29,19 +29,10 @@ Basics, the most important.
 
 /datum/config_entry/string/dburl
 
-/// Web map urls
 
-/datum/config_entry/string/webmap_url_ship_pillar /// Pillar of spring
-/datum/config_entry/string/webmap_url_ship_sulaco /// Sulaco
-/datum/config_entry/string/webmap_url_ship_thesues /// Thesues
-
-/datum/config_entry/string/webmap_url_ground_bigred /// Big red
-/datum/config_entry/string/webmap_url_ground_icecolony /// Ice Colony
-/datum/config_entry/string/webmap_url_ground_icecaves /// Icy CAves
-/datum/config_entry/string/webmap_url_ground_lv624 /// Lv624
-/datum/config_entry/string/webmap_url_ground_prisonstation /// Prison STation
-/datum/config_entry/string/webmap_url_ground_researchoutpost /// Research outpost
-/datum/config_entry/string/webmap_url_ground_whiskeyoutpost /// Whiskey outpost
+ /// Host of the webmap
+/datum/config_entry/string/webmap_host
+	config_entry_value = "https://affectedarc07.co.uk/tgmc.php?m="
 
 /datum/config_entry/string/python_path
 
