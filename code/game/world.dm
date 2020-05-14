@@ -289,7 +289,6 @@ GLOBAL_VAR(restart_counter)
 	new_status += "<br>Round time: <b>[duration2text()]</b>"
 
 	// Finally set the new status
-	to_chat(world, new_status)
 	status = new_status
 
 
