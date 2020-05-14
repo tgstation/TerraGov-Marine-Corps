@@ -46,7 +46,7 @@
 	//Not yet
 /turf/closed/gm/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			ChangeTurf(/turf/open/ground/grass)
 
 

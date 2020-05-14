@@ -295,6 +295,8 @@
 /obj/machinery/door/airlock/mainship/command/open/free_access
 	req_access = null
 
+/obj/machinery/door/airlock/mainship/command/canterbury //For wall-smoothing
+
 /obj/machinery/door/airlock/mainship/command/cic
 	name = "\improper Combat Information Center"	
 
@@ -557,6 +559,8 @@
 	icon = 'icons/obj/doors/mainship/prepdoor.dmi'
 	opacity = FALSE
 	glass = TRUE
+
+/obj/machinery/door/airlock/mainship/marine/canterbury //For wallsmoothing
 
 /obj/machinery/door/airlock/mainship/marine/general/sl
 	name = "\improper Squad Leader Preparations"

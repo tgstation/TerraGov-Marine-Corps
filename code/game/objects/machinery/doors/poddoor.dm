@@ -8,6 +8,7 @@
 	open_layer = PODDOOR_OPEN_LAYER
 	closed_layer = PODDOOR_CLOSED_LAYER
 	obj_flags = NONE
+	explosion_block = 6
 
 
 /obj/machinery/door/poddoor/Bumped(atom/AM)
