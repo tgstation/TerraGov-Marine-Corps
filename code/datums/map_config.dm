@@ -16,8 +16,6 @@
 	var/map_name = "LV624"
 	var/map_path = "map_files/LV624"
 	var/map_file = "LV624.dmm"
-	/// Links to the webmap
-	var/webmap_url = null
 
 	var/traits = null
 	var/space_empty_levels = 1
@@ -90,7 +88,6 @@
 	map_name = json["map_name"]
 	CHECK_EXISTS("map_path")
 	map_path = json["map_path"]
-	webmap_url = json["webmap_url"] /// We don't validate this because its optional
 
 	map_file = json["map_file"]
 	// "map_file": "BoxStation.dmm"
