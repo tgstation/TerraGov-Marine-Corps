@@ -106,23 +106,21 @@
 	var/mob/living/carbon/xenomorph/X = owner
 
 	//Stationary stealth
-	if(owner.last_move_intent < world.time - HUNTER_STEALTH_STEALTH_DELAY) //If we're standing still for [some] seconds we become completely invisible
-		stealth_alpha_multiplier = CLAMP(stealth_alpha_multiplier + HUNTER_STEALTH_STILL_ALPHA_ADD, 0, 1)
-	//Walking stealth
-	else if(owner.m_intent == MOVE_INTENT_WALK)
-		stealth_alpha_multiplier = CLAMP(stealth_alpha_multiplier + HUNTER_STEALTH_WALK_ALPHA_ADD, 0, 1)
-		X.use_plasma(HUNTER_STEALTH_WALK_PLASMADRAIN)
-	//Running stealth
-	else
-		stealth_alpha_multiplier = CLAMP(stealth_alpha_multiplier + HUNTER_STEALTH_RUN_ALPHA_ADD, 0, 1)
-		X.use_plasma(HUNTER_STEALTH_RUN_PLASMADRAIN)
-	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
+	if(owner.last_move_intent < world.time - HUNTER_STEALTH_STEALTH_DELAY) //If we're standing still for [some] seconds we begin to become completely invisible
+		adjust_opacity(HUNTER_STEALTH_OPACITY_ADD_STILL)
+		X.use_plasma(HUNTER_STEALTH_PLASMADRAIN_STILL)
+	else if(owner.m_intent == MOVE_INTENT_WALK)	//Walking stealth
+		adjust_opacity(HUNTER_STEALTH_OPACITY_ADD_WALK)
+		X.use_plasma(HUNTER_STEALTH_PLASMADRAIN_WALK)
+	else	//Running stealth
+		adjust_opacity(HUNTER_STEALTH_OPACITY_ADD_RUN)
+		X.use_plasma(HUNTER_STEALTH_PLASMADRAIN_RUN)
 
+	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
 	if(!X.plasma_stored)
 		to_chat(X, "<span class='xenodanger'>We lack sufficient plasma to remain camouflaged.</span>")
 		cancel_stealth()
 
-	owner.alpha = 255 * stealth_alpha_multiplier
 
 /// Callback listening for a xeno using the pounce ability
 /datum/action/xeno_action/stealth/proc/sneak_attack_pounce()
@@ -187,7 +185,7 @@
 	if(!stealth)
 		return
 
-	stealth_alpha_multiplier = CLAMP(stealth_alpha_multiplier + (damage_taken/100 * HUNTER_STEALTH_DAMAGE_MODIFIER), 0, 1) //Taking 100 damage reduces your stealth by 100%.
+	stealth_alpha_multiplier = CLAMP(stealth_alpha_multiplier + (damage_taken * HUNTER_STEALTH_OPACITY_ADD_DAMAGE), 0, 1) //Taking 100 damage reduces your stealth by 100%.
 	sneak_attack_ready = FALSE
 
 /datum/action/xeno_action/stealth/proc/plasma_regen(datum/source, list/plasma_mod)
@@ -198,6 +196,17 @@
 	if(!stealth || !can_sneak_attack())
 		return
 	return COMSIG_ACCURATE_ZONE
+
+/datum/action/xeno_action/stealth/proc/adjust_opacity(opacity_adjustment)
+	if(!stealth)
+		return
+	
+	stealth_alpha_multiplier = CLAMP(stealth_alpha_multiplier + opacity adjustment, HUNTER_STEALTH_OPACITY_MIN, 1)
+	
+	if(stealth_alpha_multiplier > HUNTER_STEALTH_OPACITY_MAX)
+		cancel_stealth()
+
+	owner.alpha = 255 * stealth_alpha_multiplier
 
 // ***************************************
 // *********** Pounce/sneak attack
