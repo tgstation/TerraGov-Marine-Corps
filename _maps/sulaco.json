@@ -2,6 +2,6 @@
     "map_name": "Sulaco",
     "map_path": "map_files/Sulaco",
     "map_file": "Sulaco.dmm",
-	"webmap_url": "https://bit.ly/tgmc-sulaco",
+    "webmap_url": "https://bit.ly/tgmc-sulaco",
     "traits": [{"Marine Main Ship": true}]
 }
