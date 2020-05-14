@@ -628,7 +628,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return //Nothing old to remove.
 	. = limb_status
 	limb_status &= ~flags_to_remove
-	var/changed_flags = ~(. & flags_to_remove) & flags_to_remove
+	var/changed_flags = . & flags_to_remove
 	if((changed_flags & LIMB_DESTROYED))
 		SEND_SIGNAL(src, COMSIG_LIMB_UNDESTROYED)
 
@@ -647,7 +647,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	. = ..()
 	if(isnull(.))
 		return
-	var/changed_flags = ~(. & flags_to_remove) & flags_to_remove
+	var/changed_flags = . & flags_to_remove
 	if((changed_flags & LIMB_DESTROYED) && owner.has_legs())
 		REMOVE_TRAIT(owner, TRAIT_LEGLESS, TRAIT_LEGLESS)
 
