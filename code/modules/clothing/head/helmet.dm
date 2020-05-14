@@ -44,7 +44,7 @@
 	name = "augment array"
 	desc = "A helmet with optical and cranial augments coupled to it."
 	icon_state = "v62"
-	soft_armor = "v62"
+	item_state = "v62"
 	soft_armor = list("melee" = 80, "bullet" = 60, "laser" = 50, "energy" = 25, "bomb" = 50, "bio" = 10, "rad" = 0, "fire" = 25, "acid" = 25)
 	siemens_coefficient = 0.5
 
