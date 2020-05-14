@@ -2,6 +2,5 @@
     "map_name": "Theseus",
     "map_path": "map_files/Theseus",
     "map_file": "TGS_Theseus.dmm",
-    "webmap_url": "https://bit.ly/tgmc-thesues",
     "traits": [{"Marine Main Ship": true}]
 }
