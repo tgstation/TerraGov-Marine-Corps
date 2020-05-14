@@ -480,6 +480,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_STEALTH_STILL_ALPHA_ADD			-0.1 //90% transparency
 #define HUNTER_STEALTH_WALK_ALPHA_ADD			-0.05 //85% transparency
 #define HUNTER_STEALTH_RUN_ALPHA_ADD			0.02 //50% transparency
+#define HUNTER_STEALTH_DAMAGE_MODIFIER			1 //each point of damage reduces your stealth by this much.
 #define HUNTER_STEALTH_STEALTH_DELAY			5 //0.5 seconds stillness before beginning to increase stealthiness
 #define HUNTER_POUNCE_SNEAKATTACK_DELAY 		30 //3 seconds before we can sneak attack
 #define HANDLE_STEALTH_CHECK					1

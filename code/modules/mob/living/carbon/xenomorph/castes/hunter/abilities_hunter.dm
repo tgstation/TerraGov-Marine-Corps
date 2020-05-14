@@ -187,7 +187,8 @@
 	if(!stealth)
 		return
 
-	stealth_alpha_multiplier = CLAMP(stealth_alpha_multiplier + (damage_taken / 100), 0, 1) //Taking 100 damage reduces your stealth by 100%.
+	stealth_alpha_multiplier = CLAMP(stealth_alpha_multiplier + (damage_taken/100 * HUNTER_STEALTH_DAMAGE_MODIFIER), 0, 1) //Taking 100 damage reduces your stealth by 100%.
+	sneak_attack_ready = FALSE
 
 /datum/action/xeno_action/stealth/proc/plasma_regen(datum/source, list/plasma_mod)
 
