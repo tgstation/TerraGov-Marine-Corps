@@ -223,15 +223,14 @@
 	new /obj/item/reagent_containers/glass/bottle/ironsugar(src)
 	new /obj/item/reagent_containers/glass/bottle/ironsugar(src)
 
+
 /obj/item/storage/syringe_case/combat
 
-/obj/item/storage/syringe_case/combat/Initialize(mapload, ...)
+/obj/item/storage/syringe_case/combat/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
-
-
 
 
 /*
