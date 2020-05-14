@@ -455,7 +455,7 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/t42stock)
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 20, "under_x" = 16, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.25 SECONDS
 	burst_amount = 1
 	accuracy_mult_unwielded = 0.5
 	accuracy_mult = 0.9
