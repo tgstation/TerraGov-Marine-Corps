@@ -24,7 +24,6 @@ GLOBAL_LIST_EMPTY(nuke_list)						//list of all /obj/machinery/nuclearbomb
 GLOBAL_LIST_EMPTY(active_nuke_list)
 GLOBAL_LIST_EMPTY(nuke_spawn_locs)
 GLOBAL_LIST_EMPTY(nuke_disk_list)					//list of all /obj/item/disk/nuclear
-GLOBAL_LIST_EMPTY(weapon_spawn_list)
 
 GLOBAL_LIST_EMPTY(chemical_reactions_list)				//list of all /datum/chemical_reaction datums. Used during chemical reactions
 GLOBAL_LIST_EMPTY(chemical_reagents_list)				//list of all /datum/reagent datums indexed by reagent id. Used by chemistry stuff

@@ -152,14 +152,9 @@
 	var/weapon_to_spawn = null
 
 /obj/effect/landmark/weapon_spawn/Initialize()
-	GLOB.weapon_spawn_list += src
 	choose_weapon()
 	. = ..()
 	return INITIALIZE_HINT_QDEL
-
-/obj/effect/landmark/weapon_spawn/Destroy()
-	GLOB.weapon_spawn_list -= src
-	return ..()
 
 /obj/effect/landmark/weapon_spawn/proc/spawn_associated_ammo(obj/item/weapon/gun/gun_to_spawn)
 	//fuck you grenade launchers you snowflake pieces of shit
