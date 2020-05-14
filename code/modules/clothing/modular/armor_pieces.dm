@@ -16,6 +16,28 @@
 	/// Addititve Slowdown of this armor piece
 	slowdown = 0
 
+
+/obj/item/armor_module/armor/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(.)
+		return
+
+	if(!istype(I, /obj/item/toy/crayon))
+		return FALSE
+
+	var/obj/item/toy/crayon/paint = I
+	if(!paint.uses)
+		to_chat(user, "<span class='warning'>\the [paint] is out of color!</span>")
+		return TRUE
+	
+	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		return TRUE
+	paint.uses--
+	color = paint.colour
+
+	return TRUE
+
+
 /obj/item/armor_module/armor/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
 	parent.armor = parent.armor.attachArmor(armor)

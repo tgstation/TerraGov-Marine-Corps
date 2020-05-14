@@ -56,7 +56,6 @@
 	/// How long it takes to attach or detach to this item
 	var/equip_delay = 3 SECONDS
 
-
 	/// Misc stats
 	light_strength = 5
 
@@ -244,17 +243,23 @@
 		cut_overlays()
 
 	if(slot_chest)
-		add_overlay(mutable_appearance(slot_chest.icon, slot_chest.icon_state))
+		var/image/chest = image(slot_chest.icon, slot_chest.icon_state)
+		chest.color = slot_chest.color 
+		add_overlay(chest)
 	if(slot_arms)
-		add_overlay(mutable_appearance(slot_arms.icon, slot_arms.icon_state))
+		var/image/arms = image(slot_arms.icon, slot_arms.icon_state)
+		arms.color = slot_arms.color 
+		add_overlay(arms)
 	if(slot_legs)
-		add_overlay(mutable_appearance(slot_legs.icon, slot_legs.icon_state))
+		var/image/legs = image(slot_legs.icon, slot_legs.icon_state)
+		legs.color = slot_legs.color 
+		add_overlay(legs)
 
 	// we intentionally do not add modules here
 	// as the icons are not made to be added in world, only on mobs.
 
 	if(installed_storage)
-		add_overlay(mutable_appearance(installed_storage.icon, installed_storage.icon_state))
+		add_overlay(image(installed_storage.icon, installed_storage.icon_state))
 
 	update_clothing_icon()
 
