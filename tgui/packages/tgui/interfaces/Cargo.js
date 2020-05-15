@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from '../backend';
-import { Button, Flex, Divider, Collapsible, AnimatedNumber, Box } from '../components';
+import { Button, Flex, Divider, Collapsible, AnimatedNumber, Box, NoticeBox } from '../components';
 import { Window } from '../layouts';
 import { Fragment } from 'inferno';
 import { map } from 'common/collections';
@@ -21,17 +21,10 @@ export const Cargo = (props, context) => {
   ] = useLocalState(context, 'selectedCategory', 0);
 
   const {
-    categories,
     supplypacks,
-    currentpoints,
-    awaiting_delivery,
-    shopping_list,
-    requests,
   } = data;
 
   const selectedPackCat = selectedCategory ? supplypacks[selectedMenu] : null;
-
-  //logger.log(shopping_list);
 
   return (
     <Window resizable>
@@ -45,33 +38,7 @@ export const Cargo = (props, context) => {
               <ShoppingCart />
             )}
             {selectedMenu==="requests" && (
-              requests.map(request => (
-                <Fragment key={request.id}>
-                  <Flex>
-                    <Flex.Item>
-                      Requested by: {request.orderer_rank} {request.orderer}
-                    </Flex.Item>
-                    <Flex.Item textAlign="right" grow={1}>
-                      Reason: {request.reason}
-                    </Flex.Item>
-                  </Flex>
-                  <Flex>
-                    <Flex.Item grow={1}>
-                      <Collapsible
-                        title={request.name}
-                        color="gray">
-                        <Table>
-                          <PackContents contains={request.contains} />
-                        </Table>
-                        <Divider />
-                      </Collapsible>
-                    </Flex.Item>
-                    <Flex.Item basis="80px" shrink={0} textAlign="right">
-                      {request.cost} points
-                    </Flex.Item>
-                  </Flex>
-                </Fragment>
-              ))
+              <Requests />
             )}
             {!!selectedPackCat
               && (<Category selectedPackCat={selectedPackCat} />)}
@@ -80,6 +47,58 @@ export const Cargo = (props, context) => {
       </Flex>
     </Window>
   );
+};
+
+const Requests = (props, context) => {
+  const { act, data } = useBackend(context);
+
+  const {
+    requests,
+  } = data;
+
+  return (
+    <Fragment>
+      <Button
+        onClick={() => act('approveall')}>
+        Approve All
+      </Button>
+      { requests.map(request => (
+        <Fragment key={request.id}>
+          <Divider />
+          <Flex>
+            <Flex.Item>
+              Requested by: {request.orderer_rank} {request.orderer}
+            </Flex.Item>
+            <Flex.Item textAlign="right" grow={1}>
+              Reason: {request.reason}
+            </Flex.Item>
+          </Flex>
+          <Flex>
+            <FlexItem shrink={0}>
+              <Button
+                onClick={() => act('approve', { id: request.id })}>
+                Approve
+              </Button>
+            </FlexItem>
+            <Flex.Item grow={1}>
+              <Collapsible
+                title={request.name}
+                color="gray">
+                <Table>
+                  <PackContents contains={request.contains} />
+                </Table>
+                <Divider />
+              </Collapsible>
+            </Flex.Item>
+            <Flex.Item basis="80px" shrink={0} textAlign="right">
+              {request.cost} points
+            </Flex.Item>
+          </Flex>
+        </Fragment>
+      )) }
+    </Fragment>
+  );
+
 };
 
 const Menu = (props, context) => {
@@ -99,7 +118,6 @@ const Menu = (props, context) => {
     requests,
     currentpoints,
     categories,
-    shopping_list,
     shopping_list_cost,
     shopping_list_items,
     elevator,
@@ -169,11 +187,9 @@ const ShoppingCart = (props, context) => {
 
   const { shopping_list } = data;
 
-  const shopping_list_array = Object.values(shopping_list)
+  const shopping_list_array = Object.values(shopping_list);
 
-  //logger.log(shopping_list_array);
-
-  return ( <Category selectedPackCat={shopping_list_array} /> );
+  return (<Category selectedPackCat={shopping_list_array} />);
 };
 
 const Category = (props, context) => {
@@ -195,53 +211,55 @@ const Category = (props, context) => {
     const shop_list = shopping_list[entry.path] || 0;
     const count = shop_list ? shop_list.count : 0;
     return (
-    <Flex key={entry.id}>
-      <FlexItem shrink={0}>
-        <Button
-          icon="fast-backward"
-          disabled={!count}
-          onClick={() => act('cart', { id: entry.path, mode: "removeall" })} />
-        <Button
-          icon="backward"
-          disabled={!count}
-          onClick={() => act('cart', { id: entry.path, mode: "removeone" })} />
-        <Box width="15px" inline textAlign="center">
-        { !!count && (
-        <AnimatedNumber value={count} />
-        )}
-        </Box>
-        <Button
-          icon="forward"
-          disabled={entry.cost > spare_points}
-          onClick={() => act('cart', { id: entry.path, mode: "addone" })} />
-        <Button
-          icon="fast-forward"
-          disabled={entry.cost > spare_points}
-          onClick={() => act('cart', { id: entry.path, mode: "addall" })} />
-      </FlexItem>
-      <FlexItem basis="80px" shrink={0} textAlign="right">
-        {entry.cost} points
-      </FlexItem>
-      <FlexItem grow={1}>
-        <Collapsible
-          title={entry.name}
-          color="gray">
-          <Table>
-            <TableRow>
-              <TableCell>
-                Container Type:
-              </TableCell>
-              <TableCell>
-                {entry.container_name}
-              </TableCell>
-            </TableRow>
-            <PackContents contains={entry.contains} />
-          </Table>
-          <Divider />
-        </Collapsible>
-      </FlexItem>
-    </Flex>
-  )});
+      <Flex key={entry.id}>
+        <FlexItem shrink={0}>
+          <Button
+            icon="fast-backward"
+            disabled={!count}
+            onClick={() => act('cart', { id: entry.path, mode: "removeall" })}
+          />
+          <Button
+            icon="backward"
+            disabled={!count}
+            onClick={() => act('cart', { id: entry.path, mode: "removeone" })}
+          />
+          <Box width="15px" inline textAlign="center">
+            { !!count && (
+              <AnimatedNumber value={count} />
+            )}
+          </Box>
+          <Button
+            icon="forward"
+            disabled={entry.cost > spare_points}
+            onClick={() => act('cart', { id: entry.path, mode: "addone" })} />
+          <Button
+            icon="fast-forward"
+            disabled={entry.cost > spare_points}
+            onClick={() => act('cart', { id: entry.path, mode: "addall" })} />
+        </FlexItem>
+        <FlexItem basis="80px" shrink={0} textAlign="right">
+          {entry.cost} points
+        </FlexItem>
+        <FlexItem grow={1}>
+          <Collapsible
+            title={entry.name}
+            color="gray">
+            <Table>
+              <TableRow>
+                <TableCell>
+                  Container Type:
+                </TableCell>
+                <TableCell>
+                  {entry.container_name}
+                </TableCell>
+              </TableRow>
+              <PackContents contains={entry.contains} />
+            </Table>
+            <Divider />
+          </Collapsible>
+        </FlexItem>
+      </Flex>
+    ); });
 
 };
 

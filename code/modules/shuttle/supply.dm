@@ -429,7 +429,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 			for(var/supply_type in SSshuttle.supply_packs )
 				var/datum/supply_packs/N = SSshuttle.supply_packs[supply_type]
 				if(N.hidden || N.contraband || N.group != last_viewed_group) continue								//Have to send the type instead of a reference to
-				temp += "<A href='?src=\ref[src];doorder=[N.name]'>[N.name]</A> Cost: [round(N.cost)]<BR>"		//the obj because it would get caught by the garbage
+				temp += "<A href='?src=\ref[src];doorder=[supply_type]'>[N.name]</A> Cost: [round(N.cost)]<BR>"		//the obj because it would get caught by the garbage
 
 	else if (href_list["doorder"])
 		if(world.time < reqtime)
@@ -437,7 +437,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 			return
 
 		//Find the correct supply_pack datum
-		var/datum/supply_packs/P = SSshuttle.supply_packs[href_list["doorder"]]
+		var/datum/supply_packs/P = SSshuttle.supply_packs[text2path(href_list["doorder"])]
 		if(!istype(P))	return
 
 		var/timeout = world.time + 600
