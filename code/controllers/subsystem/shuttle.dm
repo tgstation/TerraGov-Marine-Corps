@@ -21,12 +21,19 @@ SUBSYSTEM_DEF(shuttle)
 
 	var/list/supply_packs = list()
 	var/list/supply_packs_ui = list()
+	var/list/supply_packs_contents = list()
 
 	var/list/shoppinglist = list()
+	var/list/shopping_history = list()
 	
 	var/list/shopping_cart = list()
 	
+	var/list/export_history = list()
+	
 	var/list/requestlist = list()
+	var/list/deniedrequests = list()
+	var/list/approvedrequests = list()
+	
 	var/list/orderhistory = list()
 
 	var/list/crash_targets = list()
@@ -58,6 +65,7 @@ SUBSYSTEM_DEF(shuttle)
 			continue
 		supply_packs[pack] = P
 		LAZYADD(supply_packs_ui[P.group], list(list("path" = pack, "name" = P.name, "contains" = P.contains_name, "cost" = P.cost, "hidden" = P.hidden, "container_name" = initial(P.containertype.name))))
+		supply_packs_contents[pack] = P.contains_name
 
 	initial_load()
 

@@ -1,11 +1,10 @@
 import { useBackend, useLocalState } from '../backend';
-import { Button, Flex, Divider, Collapsible, AnimatedNumber, Box, NoticeBox } from '../components';
+import { Button, Flex, Divider, Collapsible, AnimatedNumber, Box, Section } from '../components';
 import { Window } from '../layouts';
 import { Fragment } from 'inferno';
 import { map } from 'common/collections';
 import { FlexItem } from '../components/Flex';
 import { Table, TableRow, TableCell } from '../components/Table';
-import { logger } from '../logging';
 
 export const Cargo = (props, context) => {
   const { act, data } = useBackend(context);
@@ -15,30 +14,45 @@ export const Cargo = (props, context) => {
     setSelectedMenu,
   ] = useLocalState(context, 'selectedMenu', null);
 
-  const [
-    selectedCategory,
-    setSelectedCategory,
-  ] = useLocalState(context, 'selectedCategory', 0);
-
   const {
     supplypacks,
+    approvedrequests,
+    deniedrequests,
+    shopping_history,
   } = data;
 
-  const selectedPackCat = selectedCategory ? supplypacks[selectedMenu] : null;
+  const selectedPackCat = supplypacks[selectedMenu]
+    ? supplypacks[selectedMenu]
+    : null;
 
   return (
     <Window resizable>
-      <Flex height="650px">
-        <Flex.Item width="250px">
+      <Flex height="650px" align="stretch">
+        <Flex.Item width="280px">
           <Menu />
         </Flex.Item>
-        <Flex.Item position="relative" grow={1}>
+        <Flex.Item position="relative" grow={1} height="100%">
           <Window.Content scrollable>
-            {selectedMenu==="pendingorder" && (
+            {selectedMenu==="Previous Purchases" && (
+              <RequestsHistory type={shopping_history} />
+            )}
+            {selectedMenu==="Export History" && (
+              <Exports />
+            )}
+            {selectedMenu==="Awaiting Delivery" && (
+              <AwaitingDelivery />
+            )}
+            {selectedMenu==="Pending Order" && (
               <ShoppingCart />
             )}
-            {selectedMenu==="requests" && (
+            {selectedMenu==="Requests" && (
               <Requests />
+            )}
+            {selectedMenu==="Approved Requests" && (
+              <RequestsHistory type={approvedrequests} />
+            )}
+            {selectedMenu==="Denied Requests" && (
+              <RequestsHistory type={deniedrequests} />
             )}
             {!!selectedPackCat
               && (<Category selectedPackCat={selectedPackCat} />)}
@@ -49,56 +63,48 @@ export const Cargo = (props, context) => {
   );
 };
 
-const Requests = (props, context) => {
+
+
+const Exports = (props, context) => {
   const { act, data } = useBackend(context);
 
   const {
-    requests,
+    export_history,
   } = data;
 
   return (
-    <Fragment>
-      <Button
-        onClick={() => act('approveall')}>
-        Approve All
-      </Button>
-      { requests.map(request => (
-        <Fragment key={request.id}>
-          <Divider />
-          <Flex>
-            <Flex.Item>
-              Requested by: {request.orderer_rank} {request.orderer}
-            </Flex.Item>
-            <Flex.Item textAlign="right" grow={1}>
-              Reason: {request.reason}
-            </Flex.Item>
-          </Flex>
-          <Flex>
-            <FlexItem shrink={0}>
-              <Button
-                onClick={() => act('approve', { id: request.id })}>
-                Approve
-              </Button>
-            </FlexItem>
-            <Flex.Item grow={1}>
-              <Collapsible
-                title={request.name}
-                color="gray">
-                <Table>
-                  <PackContents contains={request.contains} />
-                </Table>
-                <Divider />
-              </Collapsible>
-            </Flex.Item>
-            <Flex.Item basis="80px" shrink={0} textAlign="right">
-              {request.cost} points
-            </Flex.Item>
-          </Flex>
-        </Fragment>
-      )) }
-    </Fragment>
+    <Section title="Exports">
+      { export_history.map(entry => (
+        <Box key={entry.id}>
+          {entry}
+        </Box>
+      ))}
+    </Section>
   );
+};
 
+const MenuButton = (props, context) => {
+  const {
+    condition,
+    menuname,
+    icon,
+    width,
+  } = props;
+
+  const [
+    selectedMenu,
+    setSelectedMenu,
+  ] = useLocalState(context, 'selectedMenu', null);
+
+  return (
+    <Button
+      icon={icon}
+      selected={selectedMenu===menuname}
+      onClick={() => setSelectedMenu(menuname)}
+      disabled={condition}
+      width={width}
+      content={menuname} />
+  );
 };
 
 const Menu = (props, context) => {
@@ -109,11 +115,6 @@ const Menu = (props, context) => {
     setSelectedMenu,
   ] = useLocalState(context, 'selectedMenu', null);
 
-  const [
-    selectedCategory,
-    setSelectedCategory,
-  ] = useLocalState(context, 'selectedCategory', 0);
-
   const {
     requests,
     currentpoints,
@@ -122,14 +123,46 @@ const Menu = (props, context) => {
     shopping_list_items,
     elevator,
     elevator_dir,
+    deniedrequests,
+    approvedrequests,
+    awaiting_delivery_items,
+    export_history,
+    shopping_history,
   } = data;
+
+  const category_icon = {
+    'Operations': "parachute-box",
+    'Weapons': "fighter-jet",
+    'Hardpoint Modules': "truck",
+    'Attachments': "microchip",
+    'Ammo': "space-shuttle",
+    'Armor': "hard-hat",
+    'Clothing': "tshirt",
+    'Medical': "medkit",
+    'Engineering': "tools",
+    'Supplies': "hamburger",
+    'Imports': "boxes",
+  };
 
   const elev_status = elevator==="Raised" || elevator==="Lowered";
 
   return (
-    <Fragment>
+    <Section height="100%" p="5px">
       Points: <AnimatedNumber value={currentpoints} />
       <Divider />
+      <Flex>
+        <FlexItem grow={1}>
+          <MenuButton
+            icon="luggage-cart"
+            menuname="Awaiting Delivery"
+            condition={!awaiting_delivery_items} />
+        </FlexItem>
+        <FlexItem>
+          <AnimatedNumber value={awaiting_delivery_items} /> item{
+            awaiting_delivery_items !== 1 && "s"
+          }
+        </FlexItem>
+      </Flex>
       <Flex>
         <FlexItem grow={1}>
           <Button
@@ -146,50 +179,259 @@ const Menu = (props, context) => {
       <Divider />
       <Flex>
         <FlexItem grow={1}>
-          <Button
-            onClick={() => setSelectedMenu("pendingorder")}
-            disabled={!shopping_list_items}
-            selected={selectedMenu==="pendingorder"}>Pending Order
-          </Button>
+          <MenuButton
+            icon="shopping-cart"
+            menuname="Pending Order"
+            condition={!shopping_list_items} />
         </FlexItem>
-        <FlexItem><AnimatedNumber value={shopping_list_items} /> items
+        <FlexItem><AnimatedNumber value={shopping_list_items} /> item{
+          shopping_list_items !== 1 && "s"
+        }
         </FlexItem>
         <FlexItem width="5px" />
         <FlexItem>Cost: <AnimatedNumber value={shopping_list_cost} /></FlexItem>
       </Flex>
+      <MenuButton
+        icon="history"
+        menuname="Previous Purchases"
+        condition={!shopping_history.length} />
+      <MenuButton
+        icon="shipping-fast"
+        menuname="Export History"
+        condition={!export_history.length} />
+      <Divider />
       <Flex>
         <FlexItem grow={1}>
-          <Button
-            onClick={() => setSelectedMenu("requests")}
-            disabled={!requests.length}
-            selected={selectedMenu==="requests"}>Requests
-          </Button>
+          <MenuButton
+            icon="clipboard-list"
+            menuname="Requests"
+            condition={!requests.length} />
         </FlexItem>
         <FlexItem>{requests.length} pending</FlexItem>
       </Flex>
+      <MenuButton
+        icon="clipboard-check"
+        menuname="Approved Requests"
+        condition={!approvedrequests.length} />
+      <MenuButton
+        icon="trash"
+        menuname="Denied Requests"
+        condition={!deniedrequests.length} />
       <Divider />
       { categories.map(category => (
         <Fragment key={category.id}>
-          <Button key={category.id} selected={selectedMenu === category}
-            onClick={() => {
-              setSelectedMenu(category);
-              setSelectedCategory(1); }}>{category}
-          </Button>
+          <MenuButton
+            key={category.id}
+            icon={category_icon[category]}
+            menuname={category}
+            condition={0}
+            width="100%" />
           <br />
         </Fragment>
       )) }
-    </Fragment>
+    </Section>
   );
 };
+
+const AwaitingDelivery = (props, context) => {
+  const { act, data } = useBackend(context);
+
+  const {
+    awaiting_delivery,
+    supplypackscontents,
+  } = data;
+
+  return map((awaiting, path) => {
+    const {
+      name,
+      count,
+    } = awaiting;
+    const contains = supplypackscontents[path];
+
+    return (
+      <Flex>
+        <FlexItem width="50px" textAlign="center" fontSize="16pt">
+          {count} x
+        </FlexItem>
+        <FlexItem grow={1}>
+          <Collapsible
+            title={name}
+            color="gray">
+            <Table>
+              <PackContents contains={contains} />
+            </Table>
+            <Divider />
+          </Collapsible>
+        </FlexItem>
+      </Flex>
+    );
+  })(awaiting_delivery);
+};
+
+const RequestsHistory = (props, context) => {
+  const { act, data } = useBackend(context);
+
+  const {
+    type,
+  } = props;
+
+  const {
+    supplypackscontents,
+  } = data;
+
+  const [
+    selectedMenu,
+    setSelectedMenu,
+  ] = useLocalState(context, 'selectedMenu', null);
+
+  return (
+    <Section title={selectedMenu}>
+      {type.map(request => {
+        const {
+          id,
+          orderer_rank,
+          orderer,
+          reason,
+          name,
+          cost,
+          path,
+        } = request;
+        const contains = supplypackscontents[path];
+        const rank = orderer_rank || "";
+        return (
+          <Section
+            key={id}
+            level={2}
+            title={"Requested by: "+rank+" "+orderer}
+            buttons={cost+" points"}
+            pl="10px">
+            <Box>
+              Reason: {reason}
+            </Box>
+            <Flex>
+              <Flex.Item grow={1}>
+                <Collapsible
+                  title={name}
+                  color="gray">
+                  <Table>
+                    <PackContents contains={contains} />
+                  </Table>
+                </Collapsible>
+              </Flex.Item>
+            </Flex>
+          </Section>
+        );
+      })}
+    </Section>
+  );
+};
+
+const Requests = (props, context) => {
+  const { act, data } = useBackend(context);
+
+  const {
+    requests,
+    supplypackscontents,
+  } = data;
+
+  return (
+    <Section title="Requests"
+      buttons={
+        <Fragment>
+          <Button
+            icon="check-double"
+            onClick={() => act('approveall')}
+            content="Approve All" />
+          <Button
+            icon="times-circle"
+            onClick={() => act('denyall')}
+            content="Deny All" />
+        </Fragment>
+      }
+      minHeight="100%">
+      { requests.map(request => {
+        const {
+          id,
+          orderer_rank,
+          orderer,
+          reason,
+          name,
+          cost,
+          path,
+        } = request;
+        const rank = orderer_rank || "";
+        const contains = supplypackscontents[path];
+        return (
+          <Section key={id} level={2}
+            title={"Requested by: "+rank+" "+orderer}
+            buttons={
+              <Fragment>
+                <Button
+                  onClick={() => act('approve', { id: id })}
+                  icon="check"
+                  content="Approve" />
+                <Button
+                  onClick={() => act('deny', { id: id })}
+                  icon="times"
+                  content="Deny" />
+              </Fragment>
+            }>
+            <Box>
+              Reason: {reason}
+            </Box>
+            <Flex>
+              <Flex.Item grow={1}>
+                <Collapsible
+                  title={name}
+                  color="gray">
+                  <Table>
+                    <PackContents contains={contains} />
+                  </Table>
+                </Collapsible>
+              </Flex.Item>
+              <Flex.Item basis="80px" shrink={0} textAlign="right">
+                {cost} points
+              </Flex.Item>
+            </Flex>
+          </Section>
+        );
+      })}
+    </Section>
+  );
+};
+
 
 const ShoppingCart = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const { shopping_list } = data;
+  const {
+    shopping_list,
+    currentpoints,
+    shopping_list_cost,
+    shopping_list_items,
+  } = data;
 
   const shopping_list_array = Object.values(shopping_list);
 
-  return (<Category selectedPackCat={shopping_list_array} />);
+  return (
+    <Fragment>
+      <Box textAlign="center">
+        <Button
+          p="5px"
+          icon="dollar-sign"
+          content="Purchase Cart"
+          disabled={shopping_list_cost>currentpoints || !shopping_list_items}
+          onClick={() => act('buycart')} />
+        <Button
+          p="5px"
+          content="Clear Cart"
+          disabled={!shopping_list_items}
+          icon="snowplow"
+          onClick={() => act('clearcart')} />
+      </Box>
+      <Category selectedPackCat={shopping_list_array} />
+    </Fragment>
+  );
 };
 
 const Category = (props, context) => {
@@ -199,7 +441,13 @@ const Category = (props, context) => {
     shopping_list,
     shopping_list_cost,
     currentpoints,
+    supplypackscontents,
   } = data;
+
+  const [
+    selectedMenu,
+    setSelectedMenu,
+  ] = useLocalState(context, 'selectedMenu', null);
 
   const spare_points = currentpoints - shopping_list_cost;
 
@@ -207,60 +455,77 @@ const Category = (props, context) => {
     selectedPackCat,
   } = props;
 
-  return selectedPackCat.map(entry => {
-    const shop_list = shopping_list[entry.path] || 0;
-    const count = shop_list ? shop_list.count : 0;
-    return (
-      <Flex key={entry.id}>
-        <FlexItem shrink={0}>
-          <Button
-            icon="fast-backward"
-            disabled={!count}
-            onClick={() => act('cart', { id: entry.path, mode: "removeall" })}
-          />
-          <Button
-            icon="backward"
-            disabled={!count}
-            onClick={() => act('cart', { id: entry.path, mode: "removeone" })}
-          />
-          <Box width="15px" inline textAlign="center">
-            { !!count && (
-              <AnimatedNumber value={count} />
-            )}
-          </Box>
-          <Button
-            icon="forward"
-            disabled={entry.cost > spare_points}
-            onClick={() => act('cart', { id: entry.path, mode: "addone" })} />
-          <Button
-            icon="fast-forward"
-            disabled={entry.cost > spare_points}
-            onClick={() => act('cart', { id: entry.path, mode: "addall" })} />
-        </FlexItem>
-        <FlexItem basis="80px" shrink={0} textAlign="right">
-          {entry.cost} points
-        </FlexItem>
-        <FlexItem grow={1}>
-          <Collapsible
-            title={entry.name}
-            color="gray">
-            <Table>
-              <TableRow>
-                <TableCell>
-                  Container Type:
-                </TableCell>
-                <TableCell>
-                  {entry.container_name}
-                </TableCell>
-              </TableRow>
-              <PackContents contains={entry.contains} />
-            </Table>
-            <Divider />
-          </Collapsible>
-        </FlexItem>
-      </Flex>
-    ); });
-
+  return (
+    <Section title={selectedMenu}>
+      <Table>
+        { selectedPackCat.map(entry => {
+          const shop_list = shopping_list[entry.path] || 0;
+          const count = shop_list ? shop_list.count : 0;
+          return (
+            <TableRow key={entry.id}>
+              <TableCell>
+                <Button
+                  icon="fast-backward"
+                  disabled={!count}
+                  onClick={() => act('cart', {
+                    id: entry.path,
+                    mode: "removeall" })}
+                />
+                <Button
+                  icon="backward"
+                  disabled={!count}
+                  onClick={() => act('cart', {
+                    id: entry.path,
+                    mode: "removeone" })}
+                />
+                <Box width="15px" inline textAlign="center">
+                  { !!count && (
+                    <AnimatedNumber value={count} />
+                  )}
+                </Box>
+                <Button
+                  icon="forward"
+                  disabled={entry.cost > spare_points}
+                  onClick={() => act('cart', {
+                    id: entry.path,
+                    mode: "addone" })} />
+                <Button
+                  icon="fast-forward"
+                  disabled={entry.cost > spare_points}
+                  onClick={() => act('cart', {
+                    id: entry.path,
+                    mode: "addall" })} />
+              </TableCell>
+              <TableCell>
+                <Collapsible
+                  color="gray"
+                  title={
+                    <Fragment>
+                      <Box textAlign="right" inline>
+                        {entry.cost} points
+                      </Box>
+                      <Box width="15px" inline />
+                      <Box inline>
+                        {entry.name}
+                      </Box>
+                    </Fragment>
+                  }>
+                  <Table>
+                    <TableRow>
+                      <TableCell>
+                        Container Type: {entry.container_name}
+                      </TableCell>
+                    </TableRow>
+                    <PackContents contains={supplypackscontents[entry.path]} />
+                  </Table>
+                </Collapsible>
+              </TableCell>
+            </TableRow>
+          );
+        }) }
+      </Table>
+    </Section>
+  );
 };
 
 const PackContents = (props, context) => {
@@ -268,14 +533,26 @@ const PackContents = (props, context) => {
     contains,
   } = props;
 
-  return map(contententry => (
-    <TableRow>
-      <TableCell width="50%">
-        {contententry.name}
-      </TableCell>
-      <TableCell>
-        x {contententry.count}
-      </TableCell>
-    </TableRow>
-  ))(contains);
+  return (
+    <Fragment>
+      <TableRow>
+        <TableCell bold>
+          Item Type
+        </TableCell>
+        <TableCell bold>
+          Quantity
+        </TableCell>
+      </TableRow>
+      {map(contententry => (
+        <TableRow>
+          <TableCell width="70%">
+            {contententry.name}
+          </TableCell>
+          <TableCell>
+            x {contententry.count}
+          </TableCell>
+        </TableRow>
+      ))(contains)}
+    </Fragment>
+  );
 };
