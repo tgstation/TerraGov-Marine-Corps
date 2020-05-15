@@ -476,16 +476,16 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 //Hunter Defines
 #define HUNTER_STEALTH_COOLDOWN					50 //5 seconds
 #define HUNTER_STEALTH_STEALTH_DELAY			5 //0.5 seconds stillness before beginning to increase stealthiness
-#define HUNTER_STEALTH_PLASMADRAIN_STILL		0 //plasma drained per tick of being in the intent.
-#define HUNTER_STEALTH_PLASMADRAIN_WALK			1
-#define HUNTER_STEALTH_PLASMADRAIN_RUN			3
-#define HUNTER_STEALTH_OPACITY_ADD_STILL		-0.1 //per 0.01, 1 % of opaqueness reduction/addition per 1 tick.
+#define HUNTER_STEALTH_PLASMADRAIN_STILL		0 //plasma drained per lifetick of being in the intent.
+#define HUNTER_STEALTH_PLASMADRAIN_WALK			5
+#define HUNTER_STEALTH_PLASMADRAIN_RUN			5
+#define HUNTER_STEALTH_OPACITY_ADD_STILL		-0.15 //per 0.01, 1 % of opaqueness reduction/addition per 1 lifetick.
 #define HUNTER_STEALTH_OPACITY_ADD_WALK			-0.05
 #define HUNTER_STEALTH_OPACITY_ADD_RUN			0.05
 #define HUNTER_STEALTH_OPACITY_ADD_DAMAGE		0.01 //each point of damage increases your opacity by this many percentage points.
-#define HUNTER_STEALTH_OPACITY_MIN				0 //the most transparent the hunter can get.
+#define HUNTER_STEALTH_OPACITY_MIN				0.02 //the most transparent the hunter can get.
 #define HUNTER_STEALTH_OPACITY_MAX				0.9 //the most opaque the hunter can get, before getting kicked outta stealth.
-#define HUNTER_POUNCE_SNEAKATTACK_DELAY 		30 //3 seconds before we can sneak attack
+#define HUNTER_POUNCE_SNEAKATTACK_DELAY 		50 //5 seconds before we can sneak attack
 #define HUNTER_SNEAK_SLASH_ARMOR_PEN			0.8 //1 - this value = the actual penetration
 #define HUNTER_SNEAK_ATTACK_RUN_DELAY			2 SECONDS
 #define HUNTER_SNEAKATTACK_MAX_MULTIPLIER		2.0
