@@ -408,6 +408,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	var/pump_lock = FALSE //Modern shotguns normally lock after being pumped; this lock is undone by pumping or operating the slide release i.e. unloading a shell manually.
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/angledgrip,
@@ -597,6 +598,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	attachable_allowed = list(
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/scope/mini,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/scope,
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/bayonet)
@@ -741,6 +743,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	max_shells = 9
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/angledgrip,

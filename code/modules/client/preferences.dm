@@ -114,6 +114,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/see_chat_non_mob = TRUE
 	var/max_chat_length = CHAT_MESSAGE_MAX_LENGTH
 
+	var/auto_fit_viewport = TRUE
+
 
 /datum/preferences/New(client/C)
 	if(!istype(C))
@@ -329,6 +331,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<b>Focus chat:</b> <a href='?_src_=prefs;preference=focus_chat'>[(focus_chat) ? "Enabled" : "Disabled"]</a><br>"
 	dat += "<b>Tooltips:</b> <a href='?_src_=prefs;preference=tooltips'>[(tooltips) ? "Shown" : "Hidden"]</a><br>"
 	dat += "<b>FPS:</b> <a href='?_src_=prefs;preference=clientfps'>[clientfps]</a><br>"
+	dat += "<b>Fit Viewport:</b> <a href='?_src_=prefs;preference=auto_fit_viewport'>[auto_fit_viewport ? "Auto" : "Manual"]</a><br>"
 
 	dat += "<h2>Runechat Settings:</h2>"
 	dat += "<b>Show Runechat Chat Bubbles:</b> <a href='?_src_=prefs;preference=chat_on_map'>[chat_on_map ? "Enabled" : "Disabled"]</a><br>"
@@ -937,6 +940,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		if("windowflashing")
 			windowflashing = !windowflashing
+
+		if("auto_fit_viewport")
+			auto_fit_viewport = !auto_fit_viewport
+			if(auto_fit_viewport && parent)
+				parent.fit_viewport()
 
 		if("focus_chat")
 			focus_chat = !focus_chat

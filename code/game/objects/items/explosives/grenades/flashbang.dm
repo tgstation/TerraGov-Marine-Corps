@@ -51,7 +51,7 @@
 				ear_safety += 2
 
 //Flashing everyone
-	if(M.flash_eyes())
+	if(M.flash_act())
 		M.Stun(40)
 		M.Paralyze(20 SECONDS)
 
