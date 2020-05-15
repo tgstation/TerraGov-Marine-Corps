@@ -30,7 +30,9 @@
 		COMSIG_XENOMORPH_FIRE_BURNING,
 		COMSIG_LIVING_ADD_VENTCRAWL), .proc/cancel_stealth)
 		
-	RegisterSignal(L, list(SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), SIGNAL_ADDTRAIT(TRAIT_FLOORED)), .proc/cancel_stealth)
+	RegisterSignal(L, list(
+		SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), 
+		SIGNAL_ADDTRAIT(TRAIT_FLOORED)), .proc/cancel_stealth)
 
 	RegisterSignal(src, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/damage_taken)
 
@@ -74,13 +76,14 @@
 	succeed_activate()
 	to_chat(owner, "<span class='xenodanger'>We vanish into the shadows...</span>")
 	last_stealth = world.time
+	stealth_alpha_multiplier = HUNTER_STEALTH_OPACITY_MAX
 	stealth = TRUE
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/handle_stealth)
+	//RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/handle_stealth)
 	handle_stealth()
 	add_cooldown()
 	addtimer(CALLBACK(src, .proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY) //Short delay before we can sneak attack.
 
-/datum/action/xeno_action/stealth/proc/cancel_stealth() //This happens if we take damage, attack, pounce, toggle stealth off, and do other such exciting stealth breaking activities.
+/datum/action/xeno_action/stealth/proc/cancel_stealth()
 	if(!stealth)//sanity check/safeguard
 		return
 	to_chat(owner, "<span class='xenodanger'>We emerge from the shadows.</span>")
@@ -94,7 +97,7 @@
 	playsound(owner, "sound/effects/xeno_newlarva.ogg", 25, 0, 1)
 
 /datum/action/xeno_action/stealth/proc/can_sneak_attack()
-	if(stealth_alpha_multiplier < 0.2 && sneak_attack_ready)
+	if(stealth_alpha_multiplier < HUNTER_SNEAKATTACK_OPACITY_MAX && sneak_attack_ready)
 		return TRUE
 	else
 		return FALSE
@@ -159,8 +162,6 @@
 	target.adjust_stagger(staggerslow_stacks)
 	target.add_slowdown(staggerslow_stacks)
 	
-	cancel_stealth()
-
 /datum/action/xeno_action/stealth/proc/sneak_attack_disarm(datum/source, mob/living/target, tackle_pain, list/pain_mod)
 	if(!stealth || !can_sneak_attack())
 		return
@@ -185,10 +186,12 @@
 	if(!stealth)
 		return
 
-	stealth_alpha_multiplier = CLAMP(stealth_alpha_multiplier + (damage_taken * HUNTER_STEALTH_OPACITY_ADD_DAMAGE), 0, 1) //Taking 100 damage reduces your stealth by 100%.
+	adjust_opacity(damage_taken * HUNTER_STEALTH_OPACITY_ADD_DAMAGE) //Taking 100 damage reduces your stealth by 100%.
 	sneak_attack_ready = FALSE
 
 /datum/action/xeno_action/stealth/proc/plasma_regen(datum/source, list/plasma_mod)
+
+	list/plasma_mod += 0.0 //do not regenerate plasma while stealthed.
 
 	handle_stealth()
 
@@ -201,7 +204,7 @@
 	if(!stealth)
 		return
 	
-	stealth_alpha_multiplier = CLAMP(stealth_alpha_multiplier + opacity adjustment, HUNTER_STEALTH_OPACITY_MIN, 1)
+	stealth_alpha_multiplier = CLAMP(stealth_alpha_multiplier + opacity_adjustment, HUNTER_STEALTH_OPACITY_MIN, 1)
 	
 	if(stealth_alpha_multiplier > HUNTER_STEALTH_OPACITY_MAX)
 		cancel_stealth()
