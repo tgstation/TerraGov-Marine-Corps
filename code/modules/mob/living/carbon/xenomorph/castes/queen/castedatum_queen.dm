@@ -37,7 +37,7 @@
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_3, "bio" = 45, "rad" = 45, "fire" = 100, "acid" = 45)
 
 	// *** Ranged Attack *** //
-	spit_delay = 0.5 SECONDS
+	spit_delay = 1.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/sticky, /datum/ammo/xeno/acid/medium)
 
 	// *** Pheromones *** //
@@ -102,7 +102,7 @@
 	soft_armor = list("melee" = 55, "bullet" = 55, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_3, "bio" = 50, "rad" = 50, "fire" = 100, "acid" = 50)
 
 	// *** Ranged Attack *** //
-	spit_delay = 0.4 SECONDS
+	spit_delay = 1.2 SECONDS
 
 	// *** Pheromones *** //
 	aura_strength = 4
@@ -138,7 +138,7 @@
 	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_3, "bio" = 55, "rad" = 55, "fire" = 100, "acid" = 55)
 
 	// *** Ranged Attack *** //
-	spit_delay = 0.35 SECONDS
+	spit_delay = 1.2 SECONDS
 
 	// *** Pheromones *** //
 	aura_strength = 4.5
@@ -174,7 +174,7 @@
 	soft_armor = list("melee" = 65, "bullet" = 65, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_3, "bio" = 60, "rad" = 60, "fire" = 100, "acid" = 60)
 
 	// *** Ranged Attack *** //
-	spit_delay = 0.3 SECONDS
+	spit_delay = 1.1 SECONDS
 
 	// *** Pheromones *** //
 	aura_strength = 5
