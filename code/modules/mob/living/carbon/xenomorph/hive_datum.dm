@@ -766,7 +766,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "HiveEvolveScreen", name, 1100, 700, master_ui, state)
+		ui = new(user, src, ui_key, "HiveEvolveScreen", name, 1200, 700, master_ui, state)
 		ui.open()
 
 /// Static data provided once when the ui is opened
