@@ -567,14 +567,14 @@ GLOBAL_LIST_EMPTY(exports_types)
 	else if (href_list["vieworders"])
 		temp = "Current approved orders: <BR><BR>"
 		for(var/S in SSshuttle.shoppinglist)
-			var/datum/supply_order/SO = SSshuttle.shoppinglist[i]
+			var/datum/supply_order/SO = SSshuttle.shoppinglist[S]
 			temp += "[SO.pack.name] approved by [SO.orderer] [SO.reason ? "([SO.reason])":""]<BR>"
 		temp += "<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 
 	else if (href_list["viewrequests"])
 		temp = "Current requests: <BR><BR>"
 		for(var/S in SSshuttle.requestlist)
-			var/datum/supply_order/SO = SSshuttle.requestlist[i]
+			var/datum/supply_order/SO = SSshuttle.requestlist[S]
 			temp += "#[SO.id] - [SO.pack.name] requested by [SO.orderer]<BR>"
 		temp += "<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 
