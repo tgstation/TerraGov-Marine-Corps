@@ -14,7 +14,8 @@
 	var/last_dam = -1
 	var/supported = FALSE
 
-	var/datum/armor/armor
+	var/datum/armor/soft_armor
+	var/datum/armor/hard_armor
 
 	var/display_name
 	var/list/wounds = list()
@@ -55,6 +56,9 @@
 	var/vital //Lose a vital limb, die immediately.
 	var/germ_level = 0		// INTERNAL germs inside the organ, this is BAD if it's greater than INFECTION_LEVEL_ONE
 
+	///What % of the body does this limb cover. Make sure that the sum is always 100.
+	var/cover_index = 0
+
 
 /datum/limb/New(datum/limb/P, mob/mob_owner)
 	if(P)
@@ -64,7 +68,8 @@
 		parent.children.Add(src)
 	if(mob_owner)
 		owner = mob_owner
-	armor = getArmor()
+	soft_armor = getArmor()
+	hard_armor = getArmor()
 	return ..()
 
 /*
@@ -611,11 +616,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(flags_to_set == limb_status)
 		return
 	. = limb_status
-	var/unchanging_flags = flags_to_set & limb_status
-	if(limb_status & unchanging_flags)
-		remove_limb_flags(limb_status & unchanging_flags)
-	if(flags_to_set & unchanging_flags)
-		add_limb_flags(flags_to_set & unchanging_flags)
+	var/flags_to_change = . & ~flags_to_set //Flags to remove
+	if(flags_to_change)
+		remove_limb_flags(flags_to_change)
+	flags_to_change = flags_to_set & ~(flags_to_set & .) //Flags to add
+	if(flags_to_change)
+		add_limb_flags(flags_to_change)
 
 
 /datum/limb/proc/remove_limb_flags(flags_to_remove)
@@ -623,7 +629,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return //Nothing old to remove.
 	. = limb_status
 	limb_status &= ~flags_to_remove
-	var/changed_flags = ~(. & flags_to_remove) & flags_to_remove
+	var/changed_flags = . & flags_to_remove
 	if((changed_flags & LIMB_DESTROYED))
 		SEND_SIGNAL(src, COMSIG_LIMB_UNDESTROYED)
 
@@ -642,7 +648,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	. = ..()
 	if(isnull(.))
 		return
-	var/changed_flags = ~(. & flags_to_remove) & flags_to_remove
+	var/changed_flags = . & flags_to_remove
 	if((changed_flags & LIMB_DESTROYED) && owner.has_legs())
 		REMOVE_TRAIT(owner, TRAIT_LEGLESS, TRAIT_LEGLESS)
 
@@ -1066,6 +1072,16 @@ Note that amputating the affected organ does in fact remove the infection from t
 	cavity = 0
 
 
+/datum/limb/proc/add_limb_soft_armor(datum/armor/added_armor)
+	soft_armor = soft_armor.attachArmor(added_armor)
+	var/datum/armor/scaled_armor = added_armor.scaleAllRatings(cover_index * 0.01, 1)
+	owner.soft_armor = owner.soft_armor.attachArmor(scaled_armor)
+
+
+/datum/limb/proc/remove_limb_soft_armor(datum/armor/removed_armor)
+	soft_armor = soft_armor.detachArmor(removed_armor)
+	var/datum/armor/scaled_armor = removed_armor.scaleAllRatings(cover_index * 0.01, 1)
+	owner.soft_armor = owner.soft_armor.detachArmor(scaled_armor)
 
 
 /****************************************************
@@ -1079,7 +1095,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	max_damage = 200
 	min_broken_damage = 60
 	body_part = CHEST
-	vital = 1
+	vital = TRUE
+	cover_index = 27
 	encased = "ribcage"
 
 /datum/limb/groin
@@ -1089,7 +1106,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	max_damage = 200
 	min_broken_damage = 60
 	body_part = GROIN
-	vital = 1
+	vital = TRUE
+	cover_index = 9
 
 /datum/limb/l_arm
 	name = "l_arm"
@@ -1098,6 +1116,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	max_damage = 100
 	min_broken_damage = 50
 	body_part = ARM_LEFT
+	cover_index = 7
 
 	process()
 		..()
@@ -1110,6 +1129,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	max_damage = 100
 	min_broken_damage = 50
 	body_part = LEG_LEFT
+	cover_index = 14
 	icon_position = LEFT
 
 /datum/limb/r_arm
@@ -1119,6 +1139,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	max_damage = 100
 	min_broken_damage = 50
 	body_part = ARM_RIGHT
+	cover_index = 7
 
 	process()
 		..()
@@ -1131,6 +1152,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	max_damage = 100
 	min_broken_damage = 50
 	body_part = LEG_RIGHT
+	cover_index = 14
 	icon_position = RIGHT
 
 /datum/limb/foot/l_foot
@@ -1140,6 +1162,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	max_damage = 75
 	min_broken_damage = 37
 	body_part = FOOT_LEFT
+	cover_index = 4
 	icon_position = LEFT
 
 /datum/limb/foot/r_foot
@@ -1149,6 +1172,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	max_damage = 75
 	min_broken_damage = 37
 	body_part = FOOT_RIGHT
+	cover_index = 4
 	icon_position = RIGHT
 
 /datum/limb/hand/r_hand
@@ -1158,6 +1182,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	max_damage = 75
 	min_broken_damage = 37
 	body_part = HAND_RIGHT
+	cover_index = 2
 
 	process()
 		..()
@@ -1170,6 +1195,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	max_damage = 75
 	min_broken_damage = 37
 	body_part = HAND_LEFT
+	cover_index = 2
 
 	process()
 		..()
@@ -1179,10 +1205,11 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "head"
 	icon_name = "head"
 	display_name = "head"
-	max_damage = 100
+	max_damage = 150
 	min_broken_damage = 40
 	body_part = HEAD
-	vital = 1
+	vital = TRUE
+	cover_index = 10
 	encased = "skull"
 	var/disfigured = 0 //whether the head is disfigured.
 	var/face_surgery_stage = 0

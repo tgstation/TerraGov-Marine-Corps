@@ -31,22 +31,13 @@
 			break
 
 /obj/machinery/optable/ex_act(severity)
-
 	switch(severity)
-		if(1.0)
-			//SN src = null
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-			return
-		if(2.0)
+		if(EXPLODE_HEAVY)
 			if (prob(50))
-				//SN src = null
 				qdel(src)
-				return
-		if(3.0)
-			if (prob(25))
-				src.density = FALSE
-		else
-	return
+
 
 /obj/machinery/optable/attack_paw(mob/living/carbon/monkey/user)
 	if (!( locate(/obj/machinery/optable, user.loc) ))

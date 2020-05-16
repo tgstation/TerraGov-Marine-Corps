@@ -84,7 +84,7 @@
 			return
 
 		if(M == user)	//they're using it on themselves
-			M.flash_eyes()
+			M.flash_act()
 			M.visible_message("<span class='notice'>[M] directs [src] to [M.p_their()] eyes.</span>", \
 								"<span class='notice'>You wave the light in front of your eyes! Trippy!</span>")
 			return
@@ -97,7 +97,7 @@
 			if(C.stat == DEAD || C.disabilities & BLIND)	//mob is dead or fully blind
 				to_chat(user, "<span class='notice'>[C] pupils does not react to the light!</span>")
 			else	//they're okay!
-				C.flash_eyes()
+				C.flash_act()
 				to_chat(user, "<span class='notice'>[C]'s pupils narrow.</span>")
 	else
 		return ..()

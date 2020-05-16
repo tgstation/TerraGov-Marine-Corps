@@ -152,6 +152,7 @@
 	charge_cost = ENERGY_STANDARD_AMMO_COST
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/angledgrip,
@@ -426,6 +427,7 @@
 	charge_cost = 20
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/angledgrip,

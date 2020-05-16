@@ -206,6 +206,7 @@
 	icon_state = "officer"
 	name = "\improper M3 pattern officer armor"
 	desc = "A well-crafted suit of M3 Pattern Armor typically found in the hands of higher-ranking officers. Useful for letting your men know who is in charge when taking to the field"
+	armor = list("melee" = 55, "bullet" = 65, "laser" = 65, "energy" = 40, "bomb" = 50, "bio" = 40, "rad" = 15, "fire" = 40, "acid" = 45)
 
 /obj/item/clothing/suit/storage/marine/smartgunner
 	name = "M26 combat harness"

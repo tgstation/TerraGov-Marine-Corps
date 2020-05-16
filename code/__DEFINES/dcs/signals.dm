@@ -15,6 +15,9 @@
 #define COMSIG_GLOB_NUKE_EXPLODED "!nuke_exploded"
 #define COMSIG_GLOB_NUKE_DIFFUSED "!nuke_diffused"
 
+/// called after an explosion happened : (epicenter, devastation_range, heavy_impact_range, light_impact_range, took, orig_dev_range, orig_heavy_range, orig_light_range)
+#define COMSIG_GLOB_EXPLOSION "!explosion"
+
 #define COMSIG_GLOB_MOB_LOGIN "!mob_login"
 #define COMSIG_GLOB_MOB_LOGOUT "!mob_logout"
 #define COMSIG_GLOB_MOB_DEATH "!mob_death"
@@ -240,6 +243,8 @@
 #define COMSIG_LIVING_STATUS_CONFUSED "living_confused"			//from base of mob/living/Confused() (amount, update, ignore)
 	#define COMPONENT_NO_STUN (1<<0)			//For all of them
 
+#define COMSIG_LIVING_ADD_VENTCRAWL "living_add_ventcrawl"
+
 //mob/living/carbon signals
 #define COMSIG_CARBON_DEVOURED_BY_XENO "carbon_devoured_by_xeno"
 #define COMSIG_CARBON_SWAPPED_HANDS "carbon_swapped_hands"
@@ -266,6 +271,13 @@
 	#define COMSIG_WARRIOR_CANT_NECKGRAB 1
 #define COMSIG_WARRIOR_CTRL_CLICK_ATOM "warrior_ctrl_click_atom"
 	#define COMSIG_WARRIOR_USED_LUNGE 1
+
+#define COMSIG_XENOMORPH_PLASMA_REGEN "xenomorph_plasma_regen"
+
+#define COMSIG_XENOMORPH_ZONE_SELECT "xenomorph_zone_select"
+	#define COMSIG_ACCURATE_ZONE (1<<0)
+
+#define COMSIG_XENOMORPH_POUNCE "xenomorph_pounce"
 
 #define COMSIG_XENOMORPH_GIBBING "xenomorph_gibbing"
 #define COMSIG_XENOMORPH_POSTEVOLVING "xenomorph_evolving"
