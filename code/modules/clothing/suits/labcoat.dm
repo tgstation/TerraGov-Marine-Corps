@@ -19,7 +19,7 @@
 		/obj/item/storage/pill_bottle,
 		/obj/item/paper)
 	permeability_coefficient = 0.6
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 50, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 50, "rad" = 0, "fire" = 0, "acid" = 0)
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
 	verb/toggle()
@@ -171,7 +171,7 @@
 	name = "Virologist labcoat"
 	desc = "A suit that protects against minor chemical spills. Offers slightly more protection against biohazards than the standard model. Has a green stripe on the shoulder."
 	icon_state = "labcoat_vir_open"
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 60, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 60, "rad" = 0, "fire" = 0, "acid" = 0)
 
 /obj/item/clothing/suit/storage/labcoat/science
 	name = "Scientist labcoat"
@@ -201,7 +201,7 @@
 	icon_state = "snowsuit_alpha"
 	flags_armor_protection = CHEST|GROIN|ARMS
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS
-	armor = list("melee" = 15, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list("melee" = 15, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	blood_overlay_type = "armor"
 	siemens_coefficient = 0.7
@@ -212,9 +212,9 @@
 	name = "doctor's snow suit"
 	icon_state = "snowsuit_doctor"
 	permeability_coefficient = 0.6
-	armor = list("melee" = 25, "bullet" = 35, "laser" = 35, "energy" = 20, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20)
+	soft_armor = list("melee" = 25, "bullet" = 35, "laser" = 35, "energy" = 20, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20)
 
 /obj/item/clothing/suit/storage/snow_suit/engineer
 	name = "engineer's snow suit"
 	icon_state = "snowsuit_engineer"
-	armor = list("melee" = 25, "bullet" = 35, "laser" = 35, "energy" = 20, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20)
+	soft_armor = list("melee" = 25, "bullet" = 35, "laser" = 35, "energy" = 20, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 20)
