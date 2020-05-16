@@ -116,7 +116,7 @@
 	desc = "Standard issue TGMC goggles. Mostly used to decorate one's helmet."
 	icon_state = "mgoggles"
 	item_state = "mgoggles"
-	armor = list("melee" = 40, "bullet" = 40, "laser" = 0, "energy" = 15, "bomb" = 35, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 30)
+	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 0, "energy" = 15, "bomb" = 35, "bio" = 10, "rad" = 10, "fire" = 30, "acid" = 30)
 	flags_equip_slot = ITEM_SLOT_EYES|ITEM_SLOT_MASK
 
 /obj/item/clothing/glasses/mgoggles/prescription
@@ -175,6 +175,9 @@
 
 	if(!usr.incapacitated())
 		toggle_item_state(usr)
+
+/obj/item/clothing/glasses/welding/attack_self(mob/user)
+	toggle_item_state(user)
 
 /obj/item/clothing/glasses/welding/toggle_item_state(mob/user)
 	. = ..()
