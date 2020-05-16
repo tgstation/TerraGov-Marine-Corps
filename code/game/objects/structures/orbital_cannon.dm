@@ -17,7 +17,6 @@
 	var/chambered_tray = FALSE
 	var/loaded_tray = FALSE
 	var/ob_cannon_busy = FALSE
-	var/last_orbital_firing = 0 //stores the last time it was fired to check when we can fire again
 
 /obj/structure/orbital_cannon/Initialize()
 	. = ..()
@@ -148,13 +147,6 @@
 			to_chat(user, "<span class='warning'>No solid fuel in the tray, cancelling chambering operation.</span>")
 		return
 
-	if(last_orbital_firing) //fired at least once
-		var/cooldown_left = (last_orbital_firing + 5000) - world.time
-		if(cooldown_left > 0)
-			if(user)
-				to_chat(user, "<span class='warning'>[src]'s barrel is still too hot, let it cool down for [round(cooldown_left/10)] more seconds.</span>")
-			return
-
 	flick("OBC_chambering",src)
 
 	playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
@@ -181,8 +173,6 @@
 	flick("OBC_firing",src)
 
 	ob_cannon_busy = TRUE
-
-	last_orbital_firing = world.time
 
 	playsound(loc, 'sound/weapons/guns/fire/tank_smokelauncher.ogg', 70, 1)
 	playsound(loc, 'sound/weapons/guns/fire/pred_plasma_shot.ogg', 70, 1)

@@ -59,11 +59,11 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/quickclot
 	name = "quick-clot autoinjector"
-	desc = "An autoinjector loaded with 10 units of quick-clot, a chemical designed to pause all bleeding. Renew doses as needed."
+	desc = "An autoinjector loaded with 30 units of quick-clot, a chemical designed to pause all bleeding. Renew doses as needed."
 	amount_per_transfer_from_this = 10
-	volume = 10
+	volume = 30
 	icon_state = "autoinjector-7"
-	list_reagents = list(/datum/reagent/medicine/quickclot = 10)
+	list_reagents = list(/datum/reagent/medicine/quickclot = 30)
 
 /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus
 	name = "dexalin plus autoinjector"
@@ -90,7 +90,7 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/tramadol
 	name = "tramadol autoinjector"
-	desc = "An auto-injector loaded with 3 doses of tramadol, a weak but effective painkiller for normal wounds."
+	desc = "An auto-injector loaded with 3 doses of tramadol, an effective painkiller for normal wounds."
 	icon_state = "autoinjector-10"
 	amount_per_transfer_from_this = 5
 	list_reagents = list(/datum/reagent/medicine/tramadol = 15)
@@ -125,11 +125,11 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/hypervene
 	name = "hypervene autoinjector"
-	desc = "An auto-injector loaded with 3 units of hypervene, an emergency medicine that rapidly purges chems. Causes pain and vomiting."
+	desc = "An auto-injector loaded with 3 uses of hypervene, an emergency medicine that rapidly purges chems. Causes pain and vomiting."
 	amount_per_transfer_from_this = 3
-	volume = 3
+	volume = 9
 	icon_state = "autoinjector-8" //TEMP
-	list_reagents = list(/datum/reagent/medicine/hypervene = 3)
+	list_reagents = list(/datum/reagent/medicine/hypervene = 9)
 
 /obj/item/reagent_containers/hypospray/autoinjector/hyperzine/expired
 	name = "expired hyperzine autoinjector"
@@ -190,4 +190,3 @@
 	volume = 1
 	icon_state = "autoinjector-6"
 	list_reagents = list(/datum/reagent/medicine/roulettium = 1)
-

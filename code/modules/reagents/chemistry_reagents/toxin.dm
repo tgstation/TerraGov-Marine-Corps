@@ -443,7 +443,9 @@
 	description = "A debilitating nerve toxin. Impedes motor control in high doses. Causes progressive loss of mobility over time."
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
-	custom_metabolism = REAGENTS_METABOLISM * 2
+	custom_metabolism = REAGENTS_METABOLISM * 2 //otherwise it defaults to half of that
+	purge_list = list(/datum/reagent/medicine) 
+	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 1.2 //make this a little more forgiving in light of the lethality
 	scannable = TRUE
@@ -451,9 +453,16 @@
 
 
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
-	var/pain_damage = volume * REM
-	L.apply_damage(pain_damage, AGONY)
-	L.adjustStaminaLoss((current_cycle/2.0)*REM) //stamina damage prevents stamina regen. The host can be immediately tackled down, or followed until the toxin takes effect.
+	switch(current_cycle)
+		if(1 to 20)
+			L.adjustStaminaLoss(4*REM) //While stamina loss is going, stamina regen apparently doesn't happen, so I can keep this smaller.
+			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
+		if(21 to 45)
+			L.adjustStaminaLoss(12*REM)
+			L.reagent_pain_modifier -= PAIN_REDUCTION_HEAVY
+		if(46 to INFINITY)
+			L.adjustStaminaLoss(30*REM)
+			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY
 	L.adjust_drugginess(1.1)
 	L.stuttering = max(L.stuttering, 1)
 	return ..()
@@ -473,8 +482,8 @@
 	description = "A metabolic accelerant that dramatically increases the rate of larval growth in a host."
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
-	purge_list = list(/datum/reagent/toxin/xeno_neurotoxin) 
-	purge_rate = 10
+	purge_list = list(/datum/reagent/toxin/xeno_neurotoxin, /datum/reagent/medicine) 
+	purge_rate = 3
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	toxpwr = 0

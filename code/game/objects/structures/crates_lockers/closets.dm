@@ -19,7 +19,7 @@
 	var/locked = FALSE
 	var/wall_mounted = FALSE //never solid (You can always pass over it)
 	max_integrity = 200
-	armor = list("melee" = 20, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 60)
+	soft_armor = list("melee" = 20, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 60)
 	var/breakout_time = 2 MINUTES
 	var/lastbang = FALSE
 	var/closet_flags = NONE
