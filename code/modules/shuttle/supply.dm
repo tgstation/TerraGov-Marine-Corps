@@ -416,6 +416,11 @@ GLOBAL_LIST_EMPTY(exports_types)
 					var/datum/supply_order/O = new
 					O.id = SSshuttle.ordernum
 					O.pack = SP
+					O.orderer_ckey = ui.user.ckey
+					O.orderer = ui.user.real_name
+					if(ishuman(ui.user))
+						var/mob/living/carbon/human/H = ui.user
+						O.orderer_rank = H.get_assignment()
 					SSpoints.supply_points -= SP.cost
 					SSshuttle.shoppinglist["[O.id]"] = O
 			SSshuttle.shopping_cart.Cut()
@@ -521,7 +526,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 		if(!reason)	return
 
 		var/idname = "*None Provided*"
-		var/idrank = "*None Provided*"
+		var/idrank = ""
 		if(ishuman(usr))
 			var/mob/living/carbon/human/H = usr
 			idname = H.get_authentification_name()
@@ -548,10 +553,12 @@ GLOBAL_LIST_EMPTY(exports_types)
 		reqtime = (world.time + 5) % 1e5
 
 		//make our supply_order datum
-		var/datum/supply_order/O = new /datum/supply_order()
+		var/datum/supply_order/O = new
 		O.id = SSshuttle.ordernum
 		O.pack = P
 		O.orderer = idname
+		O.orderer_rank = idrank
+		O.orderer_ckey = usr.ckey
 		SSshuttle.requestlist["[O.id]"] = O
 
 		temp = "Thanks for your request. The cargo team will process it as soon as possible.<BR>"
@@ -560,14 +567,14 @@ GLOBAL_LIST_EMPTY(exports_types)
 	else if (href_list["vieworders"])
 		temp = "Current approved orders: <BR><BR>"
 		for(var/S in SSshuttle.shoppinglist)
-			var/datum/supply_order/SO = S
+			var/datum/supply_order/SO = SSshuttle.shoppinglist[i]
 			temp += "[SO.pack.name] approved by [SO.orderer] [SO.reason ? "([SO.reason])":""]<BR>"
 		temp += "<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 
 	else if (href_list["viewrequests"])
 		temp = "Current requests: <BR><BR>"
 		for(var/S in SSshuttle.requestlist)
-			var/datum/supply_order/SO = S
+			var/datum/supply_order/SO = SSshuttle.requestlist[i]
 			temp += "#[SO.id] - [SO.pack.name] requested by [SO.orderer]<BR>"
 		temp += "<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 
