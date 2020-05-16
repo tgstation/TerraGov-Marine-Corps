@@ -77,24 +77,6 @@
 
 	if(protection_aura)
 		tackle_pain = tackle_pain * (1 - (0.10 + 0.05 * protection_aura))  //Stamina damage decreased by 10% + 5% per rank of protection aura
-	if(X.stealth_router(HANDLE_STEALTH_CHECK))
-		if(X.stealth_router(HANDLE_SNEAK_ATTACK_CHECK))
-			#ifdef DEBUG_ATTACK_ALIEN
-			to_chat(world, "DEBUG_ALIEN_ATTACK SNEAK ATTACK: target: [src] last_move_intent: [X.last_move_intent] world.time minus run delay: [world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY]")
-			#endif
-			var/staggerslow_stacks = 2
-			if(m_intent == MOVE_INTENT_RUN && ( X.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
-				tackle_pain *= 1.75 //Half the multiplier if running.
-				X.visible_message("<span class='danger'>\The [X] strikes [src] with vicious precision!</span>", \
-				"<span class='danger'>We strike [src] with vicious precision!</span>")
-			else
-				tackle_pain *= 3.5 //Massive damage on the sneak attack... hope you have armour.
-				staggerslow_stacks *= 2
-				X.visible_message("<span class='danger'>\The [X] strikes [src] with deadly precision!</span>", \
-				"<span class='danger'>We strike [src] with deadly precision!</span>")
-			ParalyzeNoChain(1.5 SECONDS) //...And we knock
-			adjust_stagger(staggerslow_stacks)
-			add_slowdown(staggerslow_stacks)
 
 	var/list/pain_mod = list()
 
@@ -157,7 +139,7 @@
 	var/datum/limb/affecting
 	if(set_location)
 		affecting = get_limb(set_location)
-	else if(X.stealth_router(HANDLE_STEALTH_CHECK) && X.stealth_router(HANDLE_SNEAK_ATTACK_CHECK)) //We always get the limb we're aiming for if we're sneak attacking
+	else if(SEND_SIGNAL(X, COMSIG_XENOMORPH_ZONE_SELECT) & COMSIG_ACCURATE_ZONE)
 		affecting = get_limb(X.zone_selected)
 	else
 		affecting = get_limb(ran_zone(X.zone_selected, 70))
@@ -215,32 +197,18 @@
 	var/datum/limb/affecting = get_xeno_slash_zone(X, set_location, random_location, no_head)
 	var/armor_block = run_armor_check(affecting, "melee")
 
-	if(X.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
-		if(X.stealth_router(HANDLE_SNEAK_ATTACK_CHECK)) //Pouncing prevents us from making a sneak attack for 4 seconds
-			#ifdef DEBUG_ATTACK_ALIEN
-			to_chat(world, "DEBUG_ALIEN_ATTACK SNEAK ATTACK: target: [src] last_move_intent: [M.last_move_intent] world.time minus run delay: [world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY]")
-			#endif
-			var/staggerslow_stacks = 2
-			if(m_intent == MOVE_INTENT_RUN && ( X.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
-			//...And we knock them out
-				X.visible_message("<span class='danger'>\The [X] strikes [src] with vicious precision!</span>", \
-				"<span class='danger'>We strike [src] with vicious precision!</span>")
-			else
-				armor_block *= HUNTER_SNEAK_SLASH_ARMOR_PEN //20% armor penetration
-				staggerslow_stacks *= 2
-				X.visible_message("<span class='danger'>\The [X] strikes [src] with deadly precision!</span>", \
-				"<span class='danger'>We strike [src] with deadly precision!</span>")
-			adjust_stagger(staggerslow_stacks)
-			add_slowdown(staggerslow_stacks)
-
 	var/list/damage_mod = list()
+	var/list/armor_mod = list()
 
 	// if we don't get any non-stacking bonuses dont apply dam_bonus
-	if(!( SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_LIVING, src, damage, damage_mod) & COMSIG_XENOMORPH_BONUS_APPLIED ))
+	if(!( SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_LIVING, src, damage, damage_mod, armor_mod) & COMSIG_XENOMORPH_BONUS_APPLIED ))
 		damage_mod += dam_bonus
 
 	for(var/i in damage_mod)
 		damage += i
+
+	for(var/i in armor_mod)
+		armor_block *= i
 
 	apply_damage(damage, BRUTE, affecting, armor_block, TRUE, TRUE) //This should slicey dicey
 	UPDATEHEALTH(src)

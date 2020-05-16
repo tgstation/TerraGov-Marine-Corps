@@ -616,11 +616,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(flags_to_set == limb_status)
 		return
 	. = limb_status
-	var/unchanging_flags = flags_to_set & limb_status
-	if(limb_status & unchanging_flags)
-		remove_limb_flags(limb_status & unchanging_flags)
-	if(flags_to_set & unchanging_flags)
-		add_limb_flags(flags_to_set & unchanging_flags)
+	var/flags_to_change = . & ~flags_to_set //Flags to remove
+	if(flags_to_change)
+		remove_limb_flags(flags_to_change)
+	flags_to_change = flags_to_set & ~(flags_to_set & .) //Flags to add
+	if(flags_to_change)
+		add_limb_flags(flags_to_change)
 
 
 /datum/limb/proc/remove_limb_flags(flags_to_remove)
@@ -628,7 +629,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return //Nothing old to remove.
 	. = limb_status
 	limb_status &= ~flags_to_remove
-	var/changed_flags = ~(. & flags_to_remove) & flags_to_remove
+	var/changed_flags = . & flags_to_remove
 	if((changed_flags & LIMB_DESTROYED))
 		SEND_SIGNAL(src, COMSIG_LIMB_UNDESTROYED)
 
@@ -647,7 +648,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	. = ..()
 	if(isnull(.))
 		return
-	var/changed_flags = ~(. & flags_to_remove) & flags_to_remove
+	var/changed_flags = . & flags_to_remove
 	if((changed_flags & LIMB_DESTROYED) && owner.has_legs())
 		REMOVE_TRAIT(owner, TRAIT_LEGLESS, TRAIT_LEGLESS)
 
@@ -1204,7 +1205,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "head"
 	icon_name = "head"
 	display_name = "head"
-	max_damage = 100
+	max_damage = 150
 	min_broken_damage = 40
 	body_part = HEAD
 	vital = TRUE
