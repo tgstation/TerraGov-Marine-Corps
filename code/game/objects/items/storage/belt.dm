@@ -123,16 +123,16 @@
 	new /obj/item/defibrillator(src)
 	new /obj/item/bodybag/cryobag(src)
 	new /obj/item/roller(src)
-	new /obj/item/storage/pill_bottle/hypervene(src)
 	new /obj/item/storage/pill_bottle/bicaridine(src)
-	new /obj/item/storage/pill_bottle/dexalin(src)
-	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/kelotane(src)
-	new /obj/item/storage/pill_bottle/spaceacillin(src)
-	new /obj/item/storage/pill_bottle/inaprovaline(src)
 	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/dylovene(src)
+	new /obj/item/storage/pill_bottle/inaprovaline(src)
+	new /obj/item/storage/pill_bottle/dexalin(src)
 	new /obj/item/storage/pill_bottle/peridaxon(src)
 	new /obj/item/storage/pill_bottle/quickclot(src)
+	new /obj/item/storage/pill_bottle/spaceacillin(src)
+	new /obj/item/storage/pill_bottle/hypervene(src)
 	new /obj/item/healthanalyzer(src)
 
 
@@ -149,7 +149,7 @@
 		/obj/item/reagent_containers/pill,
 		/obj/item/reagent_containers/syringe,
 		/obj/item/storage/pill_bottle,
-		/obj/item/clothing/gloves/latex,
+		/obj/item/storage/syringe_case,
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical
 	)
@@ -161,20 +161,21 @@
 	new /obj/item/stack/medical/advanced/ointment(src)
 	new /obj/item/stack/medical/advanced/ointment(src)
 	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
 	new /obj/item/storage/pill_bottle/bicaridine(src)
-	new /obj/item/storage/pill_bottle/dexalin(src)
-	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/kelotane(src)
-	new /obj/item/storage/pill_bottle/spaceacillin(src)
-	new /obj/item/storage/pill_bottle/inaprovaline(src)
+	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/inaprovaline(src)
 	new /obj/item/storage/pill_bottle/peridaxon(src)
-	new /obj/item/storage/pill_bottle/quickclot(src)
-	new /obj/item/storage/pill_bottle/hypervene(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
+	new /obj/item/storage/syringe_case/combat(src)
+	new /obj/item/storage/syringe_case/combat(src)
+	new /obj/item/storage/syringe_case/combat(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/quickclot(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
 
 /obj/item/storage/belt/combatLifesaver/upp
