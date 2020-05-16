@@ -358,10 +358,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 				else
 					handle_supplydrop()
 		if("dropbomb")
-			if((GLOB.marine_main_ship?.orbital_cannon?.last_orbital_firing + 5000) > world.time)
-				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Orbital bombardment not yet available!</span>")
-			else
-				handle_bombard()
+			handle_bombard()
 		if("shootrailgun")
 			if((GLOB.marine_main_ship?.rail_gun?.last_firing + 600) > world.time)
 				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>The Rail Gun hasn't cooled down yet!</span>")
@@ -416,10 +413,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 				dat += "----------------------<br>"
 				dat += "<b>Orbital Bombardment Control</b><br>"
 				dat += "<b>Current Cannon Status:</b> "
-				var/cooldown_left = (GLOB.marine_main_ship?.orbital_cannon?.last_orbital_firing + 5000) - world.time
-				if(cooldown_left > 0)
-					dat += "Cannon on cooldown ([round(cooldown_left/10)] seconds)<br>"
-				else if(!GLOB.marine_main_ship?.orbital_cannon?.chambered_tray)
+				if(!GLOB.marine_main_ship?.orbital_cannon?.chambered_tray)
 					dat += "<font color='red'>No ammo chambered in the cannon.</font><br>"
 				else
 					dat += "<font color='green'>Ready!</font><br>"
