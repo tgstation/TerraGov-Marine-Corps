@@ -141,7 +141,6 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	else if(. >= 360)
 		. -= 360
 
-
 /proc/angle_to_dir(angle)
 	switch(angle)
 		if(338 to 360, 0 to 22)
@@ -989,8 +988,8 @@ GLOBAL_LIST_INIT(common_tools, typecacheof(list(
 	tX = splittext(tX[1], ":")
 	tX = tX[1]
 	var/list/actual_view = getviewsize(C ? C.view : WORLD_VIEW)
-	tX = CLAMP(origin.x + text2num(tX) - round(actual_view[1] / 2) - 1, 1, world.maxx)
-	tY = CLAMP(origin.y + text2num(tY) - round(actual_view[2] / 2) - 1, 1, world.maxy)
+	tX = CLAMP(origin.x + text2num(tX) - round(actual_view[1] * 0.5) + (round(C?.pixel_x / 32)) - 1, 1, world.maxx)
+	tY = CLAMP(origin.y + text2num(tY) - round(actual_view[2] * 0.5) + (round(C?.pixel_y / 32)) - 1, 1, world.maxy)
 	return locate(tX, tY, tZ)
 
 

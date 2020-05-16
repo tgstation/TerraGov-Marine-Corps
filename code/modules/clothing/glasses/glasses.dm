@@ -176,6 +176,9 @@
 	if(!usr.incapacitated())
 		toggle_item_state(usr)
 
+/obj/item/clothing/glasses/welding/attack_self(mob/user)
+	toggle_item_state(user)
+
 /obj/item/clothing/glasses/welding/toggle_item_state(mob/user)
 	. = ..()
 	active = !active
