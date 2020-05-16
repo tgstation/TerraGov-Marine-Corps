@@ -912,8 +912,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	switch(proj.ammo.damage_type)
 		if(BRUTE, BURN)
-			damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff)) //Bullet damage falloff.
-			damage -= round(damage * armor.getRating(proj.armor_type) * 0.01, 1) //Wall armor soak.
+			damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff) - hard_armor.getRating(proj.armor_type)) //Bullet damage falloff and hard armor.
+			damage -= round(damage * soft_armor.getRating(proj.armor_type) * 0.01, 1) //Wall armor soak.
 		else
 			return FALSE
 
