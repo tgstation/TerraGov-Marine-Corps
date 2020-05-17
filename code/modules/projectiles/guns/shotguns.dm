@@ -758,9 +758,10 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/stock/t35stock)
 
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 20, "under_x" = 21, "under_y" = 12, "stock_x" = 20, "stock_y" = 16)
-
+	starting_attachment_types = list(/obj/item/attachable/stock/t35stock)
 	flags_item_map_variant = NONE
 
+	wield_delay = 0.8 SECONDS
 	fire_delay = 20
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.85
