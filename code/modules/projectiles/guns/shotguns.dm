@@ -764,10 +764,10 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	wield_delay = 0.9 SECONDS
 	fire_delay = 20
-	accuracy_mult = 1.15
+	accuracy_mult = 1.25
 	accuracy_mult_unwielded = 0.85
-	scatter = 20
-	scatter_unwielded = 40
+	scatter = 5
+	scatter_unwielded = 35
 	recoil = 0 // The gun has the stock already.
 	recoil_unwielded = 4
 	pump_delay = 14
