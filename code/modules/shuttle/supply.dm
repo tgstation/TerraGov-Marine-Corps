@@ -492,7 +492,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 			SSpoints.buy_cart(ui.user)
 			. = TRUE
 		if("clearcart")
-			var/shopping_cart = get_shopping_cart(ui.user)
+			var/list/shopping_cart = get_shopping_cart(ui.user)
 			shopping_cart.Cut()
 			. = TRUE
 
