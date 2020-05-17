@@ -107,7 +107,8 @@ Contains most of the procs that are called when a mob is attacked by something
 		var/datum/limb/limb_to_check = i
 		if(!(limb_to_check.body_part & armor_item.flags_armor_protection))
 			continue
-		limb_to_check.add_limb_soft_armor(armor_item.armor)
+		limb_to_check.add_limb_soft_armor(armor_item.soft_armor)
+		limb_to_check.add_limb_hard_armor(armor_item.hard_armor)
 
 	update_fire_resistant(TRUE)
 
@@ -121,7 +122,8 @@ Contains most of the procs that are called when a mob is attacked by something
 		var/datum/limb/limb_to_check = i
 		if(!(limb_to_check.body_part & armor_item.flags_armor_protection))
 			continue
-		limb_to_check.remove_limb_soft_armor(armor_item.armor)
+		limb_to_check.remove_limb_soft_armor(armor_item.soft_armor)
+		limb_to_check.remove_limb_hard_armor(armor_item.hard_armor)
 
 	update_fire_resistant(FALSE)
 

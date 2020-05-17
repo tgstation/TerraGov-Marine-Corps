@@ -616,11 +616,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(flags_to_set == limb_status)
 		return
 	. = limb_status
-	var/unchanging_flags = flags_to_set & limb_status
-	if(limb_status & unchanging_flags)
-		remove_limb_flags(limb_status & unchanging_flags)
-	if(flags_to_set & unchanging_flags)
-		add_limb_flags(flags_to_set & unchanging_flags)
+	var/flags_to_change = . & ~flags_to_set //Flags to remove
+	if(flags_to_change)
+		remove_limb_flags(flags_to_change)
+	flags_to_change = flags_to_set & ~(flags_to_set & .) //Flags to add
+	if(flags_to_change)
+		add_limb_flags(flags_to_change)
 
 
 /datum/limb/proc/remove_limb_flags(flags_to_remove)
@@ -628,7 +629,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return //Nothing old to remove.
 	. = limb_status
 	limb_status &= ~flags_to_remove
-	var/changed_flags = ~(. & flags_to_remove) & flags_to_remove
+	var/changed_flags = . & flags_to_remove
 	if((changed_flags & LIMB_DESTROYED))
 		SEND_SIGNAL(src, COMSIG_LIMB_UNDESTROYED)
 
@@ -647,7 +648,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	. = ..()
 	if(isnull(.))
 		return
-	var/changed_flags = ~(. & flags_to_remove) & flags_to_remove
+	var/changed_flags = . & flags_to_remove
 	if((changed_flags & LIMB_DESTROYED) && owner.has_legs())
 		REMOVE_TRAIT(owner, TRAIT_LEGLESS, TRAIT_LEGLESS)
 
@@ -1081,6 +1082,18 @@ Note that amputating the affected organ does in fact remove the infection from t
 	soft_armor = soft_armor.detachArmor(removed_armor)
 	var/datum/armor/scaled_armor = removed_armor.scaleAllRatings(cover_index * 0.01, 1)
 	owner.soft_armor = owner.soft_armor.detachArmor(scaled_armor)
+
+
+/datum/limb/proc/add_limb_hard_armor(datum/armor/added_armor)
+	hard_armor = hard_armor.attachArmor(added_armor)
+	var/datum/armor/scaled_armor = added_armor.scaleAllRatings(cover_index * 0.01, 1)
+	owner.hard_armor = owner.hard_armor.attachArmor(scaled_armor)
+
+
+/datum/limb/proc/remove_limb_hard_armor(datum/armor/removed_armor)
+	hard_armor = hard_armor.detachArmor(removed_armor)
+	var/datum/armor/scaled_armor = removed_armor.scaleAllRatings(cover_index * 0.01, 1)
+	owner.hard_armor = owner.hard_armor.detachArmor(scaled_armor)
 
 
 /****************************************************

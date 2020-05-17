@@ -19,7 +19,7 @@
 		A.move_camera_by_click()
 
 
-/mob/living/silicon/ai/ClickOn(atom/A, params)
+/mob/living/silicon/ai/ClickOn(atom/A, location, params)
 	if(world.time <= next_click)
 		return
 
