@@ -113,7 +113,7 @@ WEAPONS
 	cost = 80
 
 /datum/supply_packs/weapons/specgrenadier
-	name = "Grenadier Specialist crate"
+	name = "Grenadier Specialist kit"
 	contains = list(
 		/obj/item/weapon/gun/launcher/m92,
 		/obj/item/storage/box/nade_box,
@@ -121,7 +121,7 @@ WEAPONS
 	cost = 100
 
 /datum/supply_packs/weapons/specscoutm4ra
-	name = "Scout Specialist crate (M4RA)"
+	name = "Scout Specialist kit (M4RA)"
 	contains = list(
 		/obj/item/weapon/gun/rifle/m4ra,
 		/obj/item/ammo_magazine/rifle/m4ra,
@@ -130,7 +130,7 @@ WEAPONS
 	cost = 100
 
 /datum/supply_packs/weapons/specscoutmbx
-	name = "Scout Specialist crate (MBR-900)"
+	name = "Scout Specialist kit (MBR-900)"
 	contains = list(
 		/obj/item/weapon/gun/shotgun/pump/lever/mbx900,
 		/obj/item/ammo_magazine/shotgun/mbx900,
@@ -138,7 +138,7 @@ WEAPONS
 	cost = 100
 
 /datum/supply_packs/weapons/specdemo
-	name = "Demolitionist Specialist crate"
+	name = "Demolitionist Specialist kit"
 	contains = list(
 		/obj/item/weapon/gun/launcher/rocket,
 		/obj/item/ammo_magazine/rocket,
@@ -147,7 +147,7 @@ WEAPONS
 	cost = 100
 
 /datum/supply_packs/weapons/specpyro
-	name = "Pyro Specialist crate"
+	name = "Pyro Specialist kit"
 	contains = list(
 		/obj/item/weapon/gun/flamer/M240T,
 		/obj/item/storage/backpack/marine/engineerpack/flamethrower,
@@ -155,15 +155,16 @@ WEAPONS
 	cost = 100
 
 /datum/supply_packs/weapons/specsniper
-	name = "Sniper Specialist crate"
-	contains = list(/obj/item/weapon/gun/rifle/sniper/M42A,
+	name = "Sniper Specialist kit"
+	contains = list(
+		/obj/item/weapon/gun/rifle/sniper/M42A,
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/ammo_magazine/sniper,
 	)
 	cost = 100
 
 /datum/supply_packs/weapons/specminigun
-	name = "MIC-A7 Vindicator Minigun crate"
+	name = "MIC-A7 Vindicator Minigun"
 	contains = list(
 		/obj/item/weapon/gun/minigun,
 		/obj/item/ammo_magazine/minigun,
@@ -171,42 +172,31 @@ WEAPONS
 	cost = 100
 
 /datum/supply_packs/weapons/flamethrower
-	name = "M240 Flamethrower crate"
+	name = "M240 Flamethrower"
 	contains = list(
 		/obj/item/weapon/gun/flamer,
-		/obj/item/weapon/gun/flamer,
-		/obj/item/weapon/gun/flamer,
-		/obj/item/ammo_magazine/flamer_tank,
-		/obj/item/ammo_magazine/flamer_tank,
 		/obj/item/ammo_magazine/flamer_tank,
 	)
-	cost = 40
+	cost = 13
 
 /datum/supply_packs/weapons/mateba
-	name = "Mateba Autorevolver crate"
-	contains = list(
-		/obj/item/storage/belt/gun/mateba/full,
-		/obj/item/storage/belt/gun/mateba/full,
-	)
-	notes = "Contains 12 speedloaders"
-	cost = 30
+	name = "Mateba Autorevolver kit"
+	contains = list(/obj/item/storage/belt/gun/mateba/full)
+	notes = "Contains 6 speedloaders"
+	cost = 15
 
 /datum/supply_packs/weapons/pistols
-	name = "surplus sidearms crate"
+	name = "surplus sidearms"
 	contains = list(
 		/obj/item/weapon/gun/pistol/standard_pistol,
-		/obj/item/weapon/gun/pistol/standard_pistol,
-		/obj/item/ammo_magazine/pistol/standard_pistol,
 		/obj/item/ammo_magazine/pistol/standard_pistol,
 		/obj/item/weapon/gun/revolver/standard_revolver,
-		/obj/item/weapon/gun/revolver/standard_revolver,
-		/obj/item/ammo_magazine/revolver/standard_revolver,
 		/obj/item/ammo_magazine/revolver/standard_revolver,
 	)
-	cost = 20
+	cost = 10
 
 /datum/supply_packs/weapons/shotguns
-	name = "surplus shotguns crate"
+	name = "surplus shotguns"
 	contains = list(
 		/obj/item/weapon/gun/shotgun/pump/t35,
 		/obj/item/weapon/gun/shotgun/pump/t35,
@@ -228,50 +218,36 @@ WEAPONS
 	cost = 20
 
 /datum/supply_packs/weapons/smgs
-	name = "surplus SMG crate"
+	name = "surplus SMG"
 	contains = list(
 		/obj/item/weapon/gun/smg/standard_smg,
-		/obj/item/weapon/gun/smg/standard_smg,
-		/obj/item/ammo_magazine/smg/standard_smg,
 		/obj/item/ammo_magazine/smg/standard_smg,
 	)
-	cost = 20
+	cost = 10
 
 /datum/supply_packs/weapons/rifles
-	name = "surplus rifles crate"
+	name = "surplus rifle"
 	contains = list(
 		/obj/item/weapon/gun/rifle/standard_carbine,
-		/obj/item/weapon/gun/rifle/standard_carbine,
-		/obj/item/ammo_magazine/rifle/standard_carbine,
 		/obj/item/ammo_magazine/rifle/standard_carbine,
 	)
-	cost = 20
+	cost = 10
 
 /datum/supply_packs/weapons/lasrifle
-	name = "surplus lasrifle crate"
+	name = "surplus lasrifle"
 	contains = list(
 		/obj/item/weapon/gun/energy/lasgun/lasrifle,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle,
-		/obj/item/cell/lasgun/lasrifle,
 		/obj/item/cell/lasgun/lasrifle,
 	)
-	cost = 20
+	cost = 10
 
 /datum/supply_packs/weapons/heavyrifle_squad
-	name = "T-42 LMG squad crate"
+	name = "T-42 LMG"
 	contains = list(
 		/obj/item/weapon/gun/rifle/standard_lmg,
-		/obj/item/weapon/gun/rifle/standard_lmg,
-		/obj/item/weapon/gun/rifle/standard_lmg,
-		/obj/item/weapon/gun/rifle/standard_lmg,
-		/obj/item/weapon/gun/rifle/standard_lmg,
-		/obj/item/ammo_magazine/standard_lmg,
-		/obj/item/ammo_magazine/standard_lmg,
-		/obj/item/ammo_magazine/standard_lmg,
-		/obj/item/ammo_magazine/standard_lmg,
 		/obj/item/ammo_magazine/standard_lmg,
 	)
-	cost = 50
+	cost = 10
 
 /datum/supply_packs/weapons/combatshotgun
 	name = "MK221 tactical shotgun"
@@ -284,7 +260,7 @@ WEAPONS
 	cost = 10
 
 /datum/supply_packs/weapons/explosives
-	name = "surplus explosives crate"
+	name = "surplus explosives"
 	contains = list(
 		/obj/item/storage/box/explosive_mines,
 		/obj/item/explosive/grenade/frag,
@@ -341,15 +317,9 @@ WEAPONS
 	contains = list(
 		/obj/item/detpack,
 		/obj/item/detpack,
-		/obj/item/detpack,
-		/obj/item/detpack,
-		/obj/item/detpack,
-		/obj/item/detpack,
-		/obj/item/assembly/signaler,
-		/obj/item/assembly/signaler,
 		/obj/item/assembly/signaler,
 	)
-	cost = 50
+	cost = 16
 
 /*******************************************************************************
 HARDPOINT MODULES (and their ammo)
@@ -459,12 +429,9 @@ HARDPOINT MODULES (and their ammo)
 	cost = 3
 
 /datum/supply_packs/hardpoints/tank_towlauncher_ammo
-	name = "TOW Launcher Magazines"
-	contains = list(
-		/obj/item/ammo_magazine/tank/towlauncher,
-		/obj/item/ammo_magazine/tank/towlauncher,
-	)
-	cost = 30
+	name = "TOW Launcher Magazine"
+	contains = list(/obj/item/ammo_magazine/tank/towlauncher)
+	cost = 7
 
 /datum/supply_packs/hardpoints/tank_cupola_ammo
 	name = "M56 Cupola Magazine"
@@ -555,27 +522,20 @@ ATTACHMENTS
 	contains = list(/obj/item/attachable/compensator)
 	cost = 3
 
-/datum/supply_packs/attachments/underbarrel_attachables
-	name = "underbarrel attachments"
-	contains = list(
-		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/angledgrip,
-		/obj/item/attachable/lasersight,
-		/obj/item/attachable/gyro,
-		/obj/item/attachable/bipod,
-		/obj/item/attachable/attached_gun/shotgun,
-		/obj/item/attachable/attached_gun/flamer,
-		/obj/item/attachable/burstfire_assembly,
-	)
-	cost = 40
+/datum/supply_packs/attachments/lasersight
+	name = "lasersight attachment"
+	contains = list(/obj/item/attachable/lasersight)
+	cost = 4
 
-/datum/supply_packs/attachments/underbarrel_foregrip
-	name = "foregrip attachments"
-	contains = list(
-		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/angledgrip,
-	)
-	cost = 7
+/datum/supply_packs/attachments/angledgrip
+	name = "angledgrip attachment"
+	contains = list(/obj/item/attachable/angledgrip)
+	cost = 4
+
+/datum/supply_packs/attachments/verticalgrip
+	name = "verticalgrip attachment"
+	contains = list(/obj/item/attachable/verticalgrip)
+	cost = 4
 
 /datum/supply_packs/attachments/underbarrel_gyro
 	name = "gyroscopic stabilizer attachment"
