@@ -768,6 +768,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	accuracy_mult_unwielded = 0.85
 	scatter = 20
 	scatter_unwielded = 40
-	recoil = 2
+	recoil = 0 // The gun has the stock already.
 	recoil_unwielded = 4
 	pump_delay = 14
