@@ -762,11 +762,11 @@ can cause issues with ammo types getting mixed up during the burst.
 	starting_attachment_types = list(/obj/item/attachable/stock/t35stock)
 	flags_item_map_variant = NONE
 
-	wield_delay = 0.9 SECONDS
+	wield_delay = 0.8 SECONDS
 	fire_delay = 20
-	accuracy_mult = 1.25
+	accuracy_mult = 1.20
 	accuracy_mult_unwielded = 0.85
-	scatter = -5
+	scatter = 0
 	scatter_unwielded = 35
 	recoil = 0 // The gun has the stock already.
 	recoil_unwielded = 4
