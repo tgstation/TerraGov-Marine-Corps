@@ -1018,7 +1018,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/stock/t19stock
 	name = "T-19 Submachine Gun stock"
-	desc = "A  stock distributed  to TGMC forces. Compatible with the T-19. Irremoveable in most circumstances."
+	desc = "A stock distributed to TGMC forces. Compatible with the T-19. Irremovable in most circumstances."
 	icon_state = "t19stock"
 	pixel_shift_x = 39
 	pixel_shift_y = 11
