@@ -450,17 +450,6 @@ ATTACHMENTS
 	group = "Attachments"
 	containertype = /obj/structure/closet/crate
 
-/datum/supply_packs/attachments/rails
-	name = "rail attachments"
-	contains = list(
-		/obj/item/attachable/reddot,
-		/obj/item/attachable/scope,
-		/obj/item/attachable/scope/mini,
-		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/quickfire,
-	)
-	cost = 20
-
 /datum/supply_packs/attachments/rail_reddot
 	name = "red-dot sight attachment"
 	contains = list(/obj/item/attachable/reddot)
@@ -484,17 +473,6 @@ ATTACHMENTS
 /datum/supply_packs/attachments/rail_quickfire
 	name = "quickfire adaptor attachment"
 	contains = list(/obj/item/attachable/quickfire)
-	cost = 15
-
-/datum/supply_packs/attachments/muzzle
-	name = "muzzle attachments"
-	contains = list(
-		/obj/item/attachable/suppressor,
-		/obj/item/attachable/bayonet,
-		/obj/item/attachable/extended_barrel,
-		/obj/item/attachable/heavy_barrel,
-		/obj/item/attachable/compensator
-	)
 	cost = 15
 
 /datum/supply_packs/attachments/muzzle_suppressor
