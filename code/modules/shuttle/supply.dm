@@ -320,19 +320,46 @@ GLOBAL_LIST_EMPTY(exports_types)
 		ui = new(user, src, ui_key, tgui_name, source_object.name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
-/datum/supply_ui/proc/special_static_data()
-	. = list()
-	.["elevator_size"] = SSshuttle.supply?.return_number_of_turfs()
-
 /datum/supply_ui/ui_static_data(mob/user)
 	. = list()
 	.["categories"] = GLOB.all_supply_groups
 	.["supplypacks"] = SSpoints.supply_packs_ui
 	.["supplypackscontents"] = SSpoints.supply_packs_contents
-	. += special_static_data()
+	.["elevator_size"] = SSshuttle.supply?.return_number_of_turfs()
 
-/datum/supply_ui/proc/special_data(mob/user)
+/datum/supply_ui/ui_data(mob/user)
 	. = list()
+	.["currentpoints"] = round(SSpoints.supply_points)
+	.["requests"] = list()
+	for(var/i in SSpoints.requestlist)
+		var/datum/supply_order/SO = SSpoints.requestlist[i]
+		var/list/packs = list()
+		var/cost = 0
+		for(var/P in SO.pack)
+			var/datum/supply_packs/SP = P
+			packs += SP.type
+			cost += SP.cost
+		.["requests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
+	.["deniedrequests"] = list()
+	for(var/i in length(SSpoints.deniedrequests) to 1 step -1)
+		var/datum/supply_order/SO = SSpoints.deniedrequests[SSpoints.deniedrequests[i]]
+		var/list/packs = list()
+		var/cost = 0
+		for(var/P in SO.pack)
+			var/datum/supply_packs/SP = P
+			packs += SP.type
+			cost += SP.cost
+		.["deniedrequests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
+	.["approvedrequests"] = list()
+	for(var/i in length(SSpoints.approvedrequests) to 1 step -1)
+		var/datum/supply_order/SO = SSpoints.approvedrequests[SSpoints.approvedrequests[i]]
+		var/list/packs = list()
+		var/cost = 0
+		for(var/P in SO.pack)
+			var/datum/supply_packs/SP = P
+			packs += SP.type
+			cost += SP.cost
+		.["approvedrequests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
 	.["export_history"] = SSpoints.export_history
 	.["awaiting_delivery"] = list()
 	.["awaiting_delivery_orders"] = 0
@@ -386,41 +413,6 @@ GLOBAL_LIST_EMPTY(exports_types)
 				.["elevator_dir"] = "up"
 	else
 		.["elevator"] = "MISSING!"
-
-/datum/supply_ui/ui_data(mob/user)
-	. = list()
-	.["currentpoints"] = round(SSpoints.supply_points)
-	.["requests"] = list()
-	for(var/i in SSpoints.requestlist)
-		var/datum/supply_order/SO = SSpoints.requestlist[i]
-		var/list/packs = list()
-		var/cost = 0
-		for(var/P in SO.pack)
-			var/datum/supply_packs/SP = P
-			packs += SP.type
-			cost += SP.cost
-		.["requests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
-	.["deniedrequests"] = list()
-	for(var/i in length(SSpoints.deniedrequests) to 1 step -1)
-		var/datum/supply_order/SO = SSpoints.deniedrequests[SSpoints.deniedrequests[i]]
-		var/list/packs = list()
-		var/cost = 0
-		for(var/P in SO.pack)
-			var/datum/supply_packs/SP = P
-			packs += SP.type
-			cost += SP.cost
-		.["deniedrequests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
-	.["approvedrequests"] = list()
-	for(var/i in length(SSpoints.approvedrequests) to 1 step -1)
-		var/datum/supply_order/SO = SSpoints.approvedrequests[SSpoints.approvedrequests[i]]
-		var/list/packs = list()
-		var/cost = 0
-		for(var/P in SO.pack)
-			var/datum/supply_packs/SP = P
-			packs += SP.type
-			cost += SP.cost
-		.["approvedrequests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
-	. += special_data(user)
 
 /datum/supply_ui/proc/get_shopping_cart(mob/user)
 	return SSpoints.shopping_cart
@@ -500,14 +492,53 @@ GLOBAL_LIST_EMPTY(exports_types)
 			SSpoints.buy_cart(ui.user)
 			. = TRUE
 		if("clearcart")
-			SSpoints.shopping_cart.Cut()
+			var/shopping_cart = get_shopping_cart(ui.user)
+			shopping_cart.Cut()
 			. = TRUE
 
 /datum/supply_ui/requests
 	tgui_name = "CargoRequest"
 
-/datum/supply_ui/requests/special_data(mob/user)
+// yes these are copy pasted from above because SPEEEEEEEEEEEEED
+/datum/supply_ui/requests/ui_static_data(mob/user)
 	. = list()
+	.["categories"] = GLOB.all_supply_groups
+	.["supplypacks"] = SSpoints.supply_packs_ui
+	.["supplypackscontents"] = SSpoints.supply_packs_contents
+
+/datum/supply_ui/requests/ui_data(mob/user)
+	. = list()
+	.["currentpoints"] = round(SSpoints.supply_points)
+	.["requests"] = list()
+	for(var/i in SSpoints.requestlist)
+		var/datum/supply_order/SO = SSpoints.requestlist[i]
+		var/list/packs = list()
+		var/cost = 0
+		for(var/P in SO.pack)
+			var/datum/supply_packs/SP = P
+			packs += SP.type
+			cost += SP.cost
+		.["requests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
+	.["deniedrequests"] = list()
+	for(var/i in length(SSpoints.deniedrequests) to 1 step -1)
+		var/datum/supply_order/SO = SSpoints.deniedrequests[SSpoints.deniedrequests[i]]
+		var/list/packs = list()
+		var/cost = 0
+		for(var/P in SO.pack)
+			var/datum/supply_packs/SP = P
+			packs += SP.type
+			cost += SP.cost
+		.["deniedrequests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
+	.["approvedrequests"] = list()
+	for(var/i in length(SSpoints.approvedrequests) to 1 step -1)
+		var/datum/supply_order/SO = SSpoints.approvedrequests[SSpoints.approvedrequests[i]]
+		var/list/packs = list()
+		var/cost = 0
+		for(var/P in SO.pack)
+			var/datum/supply_packs/SP = P
+			packs += SP.type
+			cost += SP.cost
+		.["approvedrequests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
 	if(!SSpoints.request_shopping_cart[user.ckey])
 		SSpoints.request_shopping_cart[user.ckey] = list()
 	.["shopping_list_cost"] = 0

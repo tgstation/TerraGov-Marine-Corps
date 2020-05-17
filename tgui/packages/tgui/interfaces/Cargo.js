@@ -570,7 +570,7 @@ export const CargoRequest = (props, context) => {
     <Window resizable>
       <Flex height="650px" align="stretch">
         <Flex.Item width="280px">
-          <Menu readOnly={1}  />
+          <Menu readOnly={1} />
         </Flex.Item>
         <Flex.Item position="relative" grow={1} height="100%">
           <Window.Content scrollable>
