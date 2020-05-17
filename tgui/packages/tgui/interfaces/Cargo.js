@@ -46,7 +46,7 @@ export const Cargo = (props, context) => {
     <Window resizable>
       <Flex height="650px" align="stretch">
         <Flex.Item width="280px">
-          <Menu/>
+          <Menu />
         </Flex.Item>
         <Flex.Item position="relative" grow={1} height="100%">
           <Window.Content scrollable>
@@ -271,13 +271,13 @@ const OrderList = (props, context) => {
         return (
           <Section key={id} level={2}
             title={"Order #"+id}
-            buttons={ !readOnly && (
+            buttons={!readOnly && (
               <Fragment>
                 { (!authed_by || selectedMenu==="Denied Requests") && (
                   <Button
                     onClick={() => act('approve', { id: id })}
                     icon="check"
-                    content="Approve" /> ) }
+                    content="Approve" />) }
                 { !authed_by && (
                   <Button
                     onClick={() => act('deny', { id: id })}
@@ -286,9 +286,15 @@ const OrderList = (props, context) => {
               </Fragment>
             )}>
             <LabeledList>
-              <LabeledListItem label="Requested by">{rank+" "+orderer}</LabeledListItem>
-              <LabeledListItem label="Reason" textAlign="right">{reason}</LabeledListItem>
-              <LabeledListItem label="Total Cost" textAlign="right">{cost} points</LabeledListItem>
+              <LabeledListItem label="Requested by">
+                {rank+" "+orderer}
+              </LabeledListItem>
+              <LabeledListItem label="Reason">
+                {reason}
+              </LabeledListItem>
+              <LabeledListItem label="Total Cost">
+                {cost} points
+              </LabeledListItem>
               <LabeledListItem label="Contents">
                 <Packs packs={packs} />
               </LabeledListItem>
@@ -307,13 +313,13 @@ const Packs = (props, context) => {
   } = props;
 
   return packs.map(pack => (
-    <Pack pack={pack} />
+    <Pack pack={pack} key={pack} />
   ));
 };
 
 const Pack = (props, context) => {
   const { act, data } = useBackend(context);
-  const { pack } = props
+  const { pack } = props;
   const {
     supplypackscontents,
   } = data;
@@ -379,7 +385,7 @@ const Requests = (props, context) => {
             onClick={() => act('denyall')}
             content="Deny All" />
         </Fragment>
-      }/>
+      } />
   );
 };
 
@@ -462,7 +468,8 @@ const Category = (props, context) => {
       <Fragment>
         <Icon name={category_icon[selectedMenu]} mr="5px" />
         {selectedMenu}
-      </Fragment>}>
+      </Fragment>
+    }>
       <Table>
         { selectedPackCat.map(entry => {
           const shop_list = shopping_list[entry] || 0;

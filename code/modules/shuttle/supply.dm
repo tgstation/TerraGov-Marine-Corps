@@ -157,8 +157,11 @@ GLOBAL_LIST_EMPTY(exports_types)
 
 		var/datum/supply_packs/firstpack = SO.pack[1]
 
-		var/obj/structure/A = new firstpack.containertype(pick_n_take(empty_turfs))
-		A.name = "Order #[SO.id] for [SO.orderer]"
+		var/obj/structure/crate_type = firstpack.containertype || firstpack.contains[1]
+
+		var/obj/structure/A = new crate_type(pick_n_take(empty_turfs))
+		if(firstpack.containertype)
+			A.name = "Order #[SO.id] for [SO.orderer]"
 
 		//supply manifest generation begin
 
@@ -186,7 +189,10 @@ GLOBAL_LIST_EMPTY(exports_types)
 				contains += SP.contains
 
 		for(var/typepath in contains)
-			if(!typepath)	continue
+			if(!typepath)
+				continue
+			if(!firstpack.containertype)
+				break
 			var/atom/B2 = new typepath(A)
 			slip.info += "<li>[B2.name]</li>" //add the item to the manifest
 
@@ -476,27 +482,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 				var/datum/supply_order/O = SSpoints.requestlist[i]
 				SSpoints.deny_request(O)
 		if("buycart")
-			var/cost = 0
-			for(var/i in SSpoints.shopping_cart)
-				var/datum/supply_packs/SP = SSpoints.supply_packs[i]
-				cost += SP.cost * SSpoints.shopping_cart[i]
-			if(cost > SSpoints.supply_points)
-				return
-			var/datum/supply_order/O = new
-			O.id = ++SSpoints.ordernum
-			O.orderer_ckey = ui.user.ckey
-			O.orderer = ui.user.real_name
-			O.pack = list()
-			if(ishuman(ui.user))
-				var/mob/living/carbon/human/H = ui.user
-				O.orderer_rank = H.get_assignment()
-			for(var/i in SSpoints.shopping_cart)
-				var/datum/supply_packs/SP = SSpoints.supply_packs[i]
-				for(var/num in 1 to SSpoints.shopping_cart[i])
-					O.pack += SP
-			SSpoints.supply_points -= cost
-			SSpoints.shoppinglist["[O.id]"] = O
-			SSpoints.shopping_cart.Cut()
+			SSpoints.buy_cart(ui.user)
 		if("clearcart")
 			SSpoints.shopping_cart.Cut()
 
@@ -602,7 +588,6 @@ GLOBAL_LIST_EMPTY(exports_types)
 		reqform.info += "SUPPLY CRATE TYPE: [P.name]<br>"
 		reqform.info += "ACCESS RESTRICTION: [get_access_desc(P.access)]<br>"
 		reqform.info += "CONTENTS:<br>"
-		reqform.info += P.manifest
 		reqform.info += "<hr>"
 		reqform.info += "STAMP BELOW TO APPROVE THIS REQUISITION:<br>"
 

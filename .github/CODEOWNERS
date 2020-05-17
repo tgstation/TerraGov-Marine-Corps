@@ -12,3 +12,8 @@
 
 # TheBimmer231
 /icons/ @TheBimmer231
+
+# spookydonut
+/code/datums/supplypacks.dm @spookydonut
+/code/modules/shuttle/ @spookydonut
+/code/controllers/subsystem/points.dm @spookydonut

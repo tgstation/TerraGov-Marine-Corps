@@ -47,8 +47,11 @@ SUBSYSTEM_DEF(points)
 /datum/controller/subsystem/points/Initialize(timeofday)
 	ordernum = rand(1, 9000)
 
-	for(var/pack in subtypesof(/datum/supply_packs) - /datum/supply_packs/gun - /datum/supply_packs/gun_holster)
-		var/datum/supply_packs/P = new pack()
+	for(var/pack in subtypesof(/datum/supply_packs))
+		var/datum/supply_packs/P = pack
+		if(!initial(P.cost))
+			continue
+		P = new pack()
 		if(!P.contains)
 			continue
 		supply_packs[pack] = P
@@ -96,3 +99,38 @@ SUBSYSTEM_DEF(points)
 	O.authorised_by = "denied"
 	if(GLOB.directory[O.orderer_ckey])
 		to_chat(GLOB.directory[O.orderer_ckey], "<span class='notice'>Your request [O.id] has been denied!</span>")
+
+/datum/controller/subsystem/points/proc/buy_cart(mob/user)
+	var/cost = 0
+	for(var/i in shopping_cart)
+		var/datum/supply_packs/SP = supply_packs[i]
+		cost += SP.cost * shopping_cart[i]
+	if(cost > supply_points)
+		return
+	var/datum/supply_order/O = new
+	O.id = ++ordernum
+	O.orderer_ckey = user.ckey
+	O.orderer = user.real_name
+	O.authorised_by = user.real_name
+	O.pack = list()
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		O.orderer_rank = H.get_assignment()
+	for(var/i in shopping_cart)
+		var/datum/supply_packs/SP = supply_packs[i]
+		for(var/num in 1 to shopping_cart[i])
+			if(SP.containertype != null)
+				O.pack += SP
+				continue
+			var/datum/supply_order/NO = new // make a separate order for it
+			NO.id = ++ordernum
+			NO.orderer_ckey = user.ckey
+			NO.orderer = user.real_name
+			NO.orderer_rank = O.orderer_rank
+			NO.authorised_by = user.real_name
+			NO.pack = list(SP)
+			shoppinglist["[NO.id]"] = NO
+	supply_points -= cost
+	if(length(O.pack)) // in case its an empty order
+		shoppinglist["[O.id]"] = O
+	shopping_cart.Cut()
