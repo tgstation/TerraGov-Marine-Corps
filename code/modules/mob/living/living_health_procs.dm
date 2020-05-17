@@ -73,7 +73,7 @@
 		updateStamina(feedback)
 
 /mob/living/proc/updateStamina(feedback = TRUE)
-	if(staminaloss < maxHealth * 1.5)
+	if(staminaloss < max(health * 1.5,0))
 		return
 	if(!IsParalyzed())
 		if(feedback)
