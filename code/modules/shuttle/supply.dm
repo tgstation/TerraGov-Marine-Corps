@@ -295,6 +295,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 	var/atom/source_object
 	var/ui_x = 900
 	var/ui_y = 700
+	var/tgui_name = "Cargo"
 
 /datum/supply_ui/New(atom/source_object)
 	. = ..()
@@ -307,10 +308,8 @@ GLOBAL_LIST_EMPTY(exports_types)
 	. = ..()
 	if(!.)
 		return FALSE
-
 	if(!user.CanReach(source_object))
 		return FALSE
-
 	return TRUE
 
 /datum/supply_ui/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
@@ -318,20 +317,23 @@ GLOBAL_LIST_EMPTY(exports_types)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "Cargo", source_object.name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, ui_key, tgui_name, source_object.name, ui_x, ui_y, master_ui, state)
 		ui.open()
+
+/datum/supply_ui/proc/special_static_data()
+	. = list()
+	.["elevator_size"] = SSshuttle.supply?.return_number_of_turfs()
 
 /datum/supply_ui/ui_static_data(mob/user)
 	. = list()
 	.["categories"] = GLOB.all_supply_groups
 	.["supplypacks"] = SSpoints.supply_packs_ui
 	.["supplypackscontents"] = SSpoints.supply_packs_contents
-	.["elevator_size"] = SSshuttle.supply?.return_number_of_turfs()
+	. += special_static_data()
 
-/datum/supply_ui/ui_data(mob/user)
+/datum/supply_ui/proc/special_data(mob/user)
 	. = list()
 	.["export_history"] = SSpoints.export_history
-	.["currentpoints"] = round(SSpoints.supply_points)
 	.["awaiting_delivery"] = list()
 	.["awaiting_delivery_orders"] = 0
 	for(var/i in SSpoints.shoppinglist)
@@ -352,6 +354,42 @@ GLOBAL_LIST_EMPTY(exports_types)
 			packs += SP.type
 			cost += SP.cost
 		.["shopping_history"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
+	.["shopping_list_cost"] = 0
+	.["shopping_list_items"] = 0
+	.["shopping_list"] = list()
+	for(var/i in SSpoints.shopping_cart)
+		var/datum/supply_packs/SP = SSpoints.supply_packs[i]
+		.["shopping_list_items"] += SSpoints.shopping_cart[i]
+		.["shopping_list_cost"] += SP.cost * SSpoints.shopping_cart[SP.type]
+		.["shopping_list"][SP.type] = list("count" = SSpoints.shopping_cart[SP.type])
+	if(SSshuttle.supply)
+		if(SSshuttle.supply.mode == SHUTTLE_CALL)
+			if(is_mainship_level(SSshuttle.supply.destination.z))
+				.["elevator"] = "Raising"
+				.["elevator_dir"] = "up"
+			else
+				.["elevator"] = "Lowering"
+				.["elevator_dir"] = "down"
+		else if(SSshuttle.supply.mode == SHUTTLE_IDLE)
+			if(is_mainship_level(SSshuttle.supply.z))
+				.["elevator"] = "Raised"
+				.["elevator_dir"] = "down"
+			else
+				.["elevator"] = "Lowered"
+				.["elevator_dir"] = "up"
+		else
+			if(is_mainship_level(SSshuttle.supply.z))
+				.["elevator"] = "Lowering"
+				.["elevator_dir"] = "down"
+			else
+				.["elevator"] = "Raising"
+				.["elevator_dir"] = "up"
+	else
+		.["elevator"] = "MISSING!"
+
+/datum/supply_ui/ui_data(mob/user)
+	. = list()
+	.["currentpoints"] = round(SSpoints.supply_points)
 	.["requests"] = list()
 	for(var/i in SSpoints.requestlist)
 		var/datum/supply_order/SO = SSpoints.requestlist[i]
@@ -382,40 +420,10 @@ GLOBAL_LIST_EMPTY(exports_types)
 			packs += SP.type
 			cost += SP.cost
 		.["approvedrequests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
-	.["shopping_list_cost"] = 0
-	.["shopping_list_items"] = 0
-	.["shopping_list"] = list()
-	for(var/i in SSpoints.shopping_cart)
-		var/datum/supply_packs/SP = SSpoints.supply_packs[i]
-		.["shopping_list_items"] += SSpoints.shopping_cart[i]
-		.["shopping_list_cost"] += SP.cost * SSpoints.shopping_cart[SP.type]
-		.["shopping_list"][SP.type] = list("count" = SSpoints.shopping_cart[SP.type])
+	. += special_data(user)
 
-	if(SSshuttle.supply)
-		if(SSshuttle.supply.mode == SHUTTLE_CALL)
-			if(is_mainship_level(SSshuttle.supply.destination.z))
-				.["elevator"] = "Raising"
-				.["elevator_dir"] = "up"
-			else
-				.["elevator"] = "Lowering"
-				.["elevator_dir"] = "down"
-		else if(SSshuttle.supply.mode == SHUTTLE_IDLE)
-			if(is_mainship_level(SSshuttle.supply.z))
-				.["elevator"] = "Raised"
-				.["elevator_dir"] = "down"
-			else
-				.["elevator"] = "Lowered"
-				.["elevator_dir"] = "up"
-		else
-			if(is_mainship_level(SSshuttle.supply.z))
-				.["elevator"] = "Lowering"
-				.["elevator_dir"] = "down"
-			else
-				.["elevator"] = "Raising"
-				.["elevator_dir"] = "up"
-	else
-		.["elevator"] = "MISSING!"
-
+/datum/supply_ui/proc/get_shopping_cart(mob/user)
+	return SSpoints.shopping_cart
 
 /datum/supply_ui/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	if(..())
@@ -425,30 +433,32 @@ GLOBAL_LIST_EMPTY(exports_types)
 			var/datum/supply_packs/P = SSpoints.supply_packs[text2path(params["id"])]
 			if(!P)
 				return
+			var/shopping_cart = get_shopping_cart(ui.user)
 			switch(params["mode"])
 				if("removeall")
-					SSpoints.shopping_cart -= P.type
+					shopping_cart -= P.type
 				if("removeone")
-					if(SSpoints.shopping_cart[P.type] > 1)
-						SSpoints.shopping_cart[P.type]--
+					if(shopping_cart[P.type] > 1)
+						shopping_cart[P.type]--
 					else
-						SSpoints.shopping_cart -= P.type
+						shopping_cart -= P.type
 				if("addone")
-					if(SSpoints.shopping_cart[P.type])
-						SSpoints.shopping_cart[P.type]++
+					if(shopping_cart[P.type])
+						shopping_cart[P.type]++
 					else
-						SSpoints.shopping_cart[P.type] = 1
+						shopping_cart[P.type] = 1
 				if("addall")
 					var/cart_cost = 0
-					for(var/i in SSpoints.shopping_cart)
+					for(var/i in shopping_cart)
 						var/datum/supply_packs/SP = SSpoints.supply_packs[i]
-						cart_cost += SP.cost * SSpoints.shopping_cart[SP.type]
+						cart_cost += SP.cost * shopping_cart[SP.type]
 					var/excess_points = SSpoints.supply_points - cart_cost
 					var/number_to_buy = round(excess_points / P.cost)
-					if(SSpoints.shopping_cart[P.type])
-						SSpoints.shopping_cart[P.type] += number_to_buy
+					if(shopping_cart[P.type])
+						shopping_cart[P.type] += number_to_buy
 					else
-						SSpoints.shopping_cart[P.type] = number_to_buy
+						shopping_cart[P.type] = number_to_buy
+			. = TRUE
 		if("send")
 			if(SSshuttle.supply.mode == SHUTTLE_IDLE && is_mainship_level(SSshuttle.supply.z))
 				if (!SSshuttle.supply.check_blacklist())
@@ -461,6 +471,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 				var/obj/docking_port/D = SSshuttle.getDock("supply_home")
 				playsound(D.return_center_turf(), 'sound/machines/elevator_move.ogg', 50, 0)
 				SSshuttle.moveShuttle("supply", "supply_home", TRUE)
+			. = TRUE
 		if("approve")
 			var/datum/supply_order/O = SSpoints.requestlist["[params["id"]]"]
 			if(!O)
@@ -468,38 +479,72 @@ GLOBAL_LIST_EMPTY(exports_types)
 			if(!O)
 				return
 			SSpoints.approve_request(O, ui.user)
+			. = TRUE
 		if("deny")
 			var/datum/supply_order/O = SSpoints.requestlist["[params["id"]]"]
 			if(!O)
 				return
 			SSpoints.deny_request(O)
+			. = TRUE
 		if("approveall")
 			for(var/i in SSpoints.requestlist)
 				var/datum/supply_order/O = SSpoints.requestlist[i]
 				SSpoints.approve_request(O)
+			. = TRUE
 		if("denyall")
 			for(var/i in SSpoints.requestlist)
 				var/datum/supply_order/O = SSpoints.requestlist[i]
 				SSpoints.deny_request(O)
+			. = TRUE
 		if("buycart")
 			SSpoints.buy_cart(ui.user)
+			. = TRUE
 		if("clearcart")
 			SSpoints.shopping_cart.Cut()
+			. = TRUE
 
+/datum/supply_ui/requests
+	tgui_name = "CargoRequest"
 
-	return TRUE
+/datum/supply_ui/requests/special_data(mob/user)
+	. = list()
+	if(!SSpoints.request_shopping_cart[user.ckey])
+		SSpoints.request_shopping_cart[user.ckey] = list()
+	.["shopping_list_cost"] = 0
+	.["shopping_list_items"] = 0
+	.["shopping_list"] = list()
+	for(var/i in SSpoints.request_shopping_cart[user.ckey])
+		var/datum/supply_packs/SP = SSpoints.supply_packs[i]
+		.["shopping_list_items"] += SSpoints.request_shopping_cart[user.ckey][i]
+		.["shopping_list_cost"] += SP.cost * SSpoints.request_shopping_cart[user.ckey][SP.type]
+		.["shopping_list"][SP.type] = list("count" = SSpoints.request_shopping_cart[user.ckey][SP.type])
 
+/datum/supply_ui/requests/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	if(..())
+		return
+	switch(action)
+		if("submitrequest")
+			. = TRUE
 
+/datum/supply_ui/requests/get_shopping_cart(mob/user)
+	return SSpoints.request_shopping_cart[user.ckey]
 
 /obj/machinery/computer/ordercomp
 	name = "Supply ordering console"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "request"
 	circuit = null
-	var/temp = null
-	var/reqtime = 0 //Cooldown for requisitions - Quarxink
-	var/last_viewed_group = "categories"
+	var/datum/supply_ui/requests/SU
 
+/obj/machinery/computer/ordercomp/interact(mob/user)
+	. = ..()
+	if(.)
+		return
+
+	if(!SU)
+		SU = new(src)
+	return SU.interact(user)
+/*
 /obj/machinery/computer/ordercomp/interact(mob/user)
 	. = ..()
 	if(.)
@@ -624,3 +669,4 @@ GLOBAL_LIST_EMPTY(exports_types)
 		temp = null
 
 	updateUsrDialog()
+*/

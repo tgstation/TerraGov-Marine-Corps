@@ -545,3 +545,55 @@ const PackContents = (props, context) => {
     </Fragment>
   );
 };
+
+
+export const CargoRequest = (props, context) => {
+  const { act, data } = useBackend(context);
+
+  const [
+    selectedMenu,
+    setSelectedMenu,
+  ] = useLocalState(context, 'selectedMenu', null);
+
+  const {
+    supplypacks,
+    approvedrequests,
+    deniedrequests,
+    awaiting_delivery,
+  } = data;
+
+  const selectedPackCat = supplypacks[selectedMenu]
+    ? supplypacks[selectedMenu]
+    : null;
+
+  return (
+    <Window resizable>
+      <Flex height="650px" align="stretch">
+        <Flex.Item width="280px">
+          <Menu readOnly={1}  />
+        </Flex.Item>
+        <Flex.Item position="relative" grow={1} height="100%">
+          <Window.Content scrollable>
+            {selectedMenu==="Awaiting Delivery" && (
+              <OrderList type={awaiting_delivery} readOnly={1} />
+            )}
+            {selectedMenu==="Pending Order" && (
+              <ShoppingCart />
+            )}
+            {selectedMenu==="Requests" && (
+              <Requests />
+            )}
+            {selectedMenu==="Approved Requests" && (
+              <OrderList type={approvedrequests} />
+            )}
+            {selectedMenu==="Denied Requests" && (
+              <OrderList type={deniedrequests} />
+            )}
+            {!!selectedPackCat
+              && (<Category selectedPackCat={selectedPackCat} />)}
+          </Window.Content>
+        </Flex.Item>
+      </Flex>
+    </Window>
+  );
+};

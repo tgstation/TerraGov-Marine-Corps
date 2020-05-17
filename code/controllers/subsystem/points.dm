@@ -30,6 +30,8 @@ SUBSYSTEM_DEF(points)
 	var/list/requestlist = list()
 	var/list/deniedrequests = list()
 	var/list/approvedrequests = list()
+	
+	var/list/request_shopping_cart = list()
 
 /datum/controller/subsystem/points/Recover()
 	ordernum = SSpoints.ordernum
@@ -43,6 +45,7 @@ SUBSYSTEM_DEF(points)
 	requestlist = SSpoints.requestlist
 	deniedrequests = SSpoints.deniedrequests
 	approvedrequests = SSpoints.approvedrequests
+	request_shopping_cart = SSpoints.request_shopping_cart
 
 /datum/controller/subsystem/points/Initialize(timeofday)
 	ordernum = rand(1, 9000)
