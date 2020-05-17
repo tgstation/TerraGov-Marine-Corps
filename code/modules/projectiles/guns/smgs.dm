@@ -42,7 +42,7 @@
 
 //-------------------------------------------------------
 
-/obj/item/weapon/gun/smg/standard_smg
+/obj/item/weapon/gun/smg/t19
 	name = "\improper T-19 submachinegun"
 	desc = "The T-19 submachine gun is the TerraGov Marine Corps standard issue SMG. Its known for it's compact size and ease of use inside the field. It's usually carried by specialized troops who do not have the space to carry a much larger gun like medics and engineers. It uses 10x20mm caseless rounds."
 	icon_state = "t19"
@@ -78,6 +78,42 @@
 	aim_slowdown = 0.15
 	burst_amount = 5
 
+//-------------------------------------------------------
+// War is hell. Not glorious.
+
+/obj/item/weapon/gun/smg/standard_smg
+	name = "\improper T-90 submachinegun"
+	desc = "The T-90 submachine gun is the TerraGov Marine Corps standard issue SMG. Its known for it's compact size and ease of use inside the field. It's usually carried by specialized troops who do not have the space to carry a much larger gun like medics and engineers. It uses 10x20mm caseless rounds."
+	icon_state = "t90"
+	item_state = "t19"
+	caliber = "10x20mm caseless" //codex
+	max_shells = 60 //codex
+	flags_equip_slot = ITEM_SLOT_BACK
+	current_mag = /obj/item/ammo_magazine/smg/standard_smg
+	type_of_casings = null
+	attachable_allowed = list(
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/stock/t19stock,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/lasersight,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/scope/mini,
+						/obj/item/attachable/magnetic_harness)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
+	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 17,"rail_x" = 9, "rail_y" = 20, "under_x" = 21, "under_y" = 12, "stock_x" = 24, "stock_y" = 10)
+
+	accuracy_mult = 0.95
+	accuracy_mult_unwielded = 0.9
+	scatter = 20
+	fire_delay = 0.15 SECONDS
+	scatter_unwielded = 30
+	aim_slowdown = 0.15
+	burst_amount = 5
 
 //-------------------------------------------------------
 //M39 SMG
