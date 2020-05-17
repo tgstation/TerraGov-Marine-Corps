@@ -1018,27 +1018,28 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/stock/t19stock
 	name = "T-19 Submachine Gun stock"
-	desc = "A rare stock distributed in small numbers to TGMC forces. Compatible with the T-19, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
-	slot = "stock"
-	wield_delay_mod = 0.3 SECONDS
-	melee_mod = 5
-	size_mod = 1
+	desc = "A  stock distributed  to TGMC forces. Compatible with the T-19. Irremoveable in most circumstances."
 	icon_state = "t19stock"
 	pixel_shift_x = 39
 	pixel_shift_y = 11
-	accuracy_mod = 0.1
-	recoil_mod = -2
-	scatter_mod = -10
+	flags_attach_features = NONE
+	accuracy_mod = 0
+	recoil_mod = 0
+	melee_mod = 0
+	scatter_mod = 0
+	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/t35stock
 	name = "\improper T-35 stock"
 	desc = "A non-standard heavy stock for the T-35 Shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too."
 	slot = "stock"
-	wield_delay_mod = 0.4 SECONDS
 	icon_state = "t35stock"
-	accuracy_mod = 0.15
-	recoil_mod = -3
-	scatter_mod = -20
+	flags_attach_features = NONE
+	accuracy_mod = 0
+	recoil_mod = 0
+	melee_mod = 0
+	scatter_mod = 0
+	movement_acc_penalty_mod = 0
 
 ////////////// Underbarrel Attachments ////////////////////////////////////
 
