@@ -738,6 +738,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "t35"
 	item_state = "t35"
+	force = 19.0
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump
 	fire_sound = 'sound/weapons/guns/fire/t35.ogg'
 	max_shells = 9
@@ -761,7 +762,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	starting_attachment_types = list(/obj/item/attachable/stock/t35stock)
 	flags_item_map_variant = NONE
 
-	wield_delay = 0.8 SECONDS
+	wield_delay = 0.9 SECONDS
 	fire_delay = 20
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.85
