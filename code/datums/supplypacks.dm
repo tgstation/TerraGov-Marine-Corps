@@ -18,7 +18,6 @@ GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Hardpoint Mod
 	var/contraband = 0
 	var/group = null
 	var/randomised_num_contained = 0 //Randomly picks X of items out of the contains list instead of using all.
-	var/list/contains_name = list()
 
 /datum/supply_packs/New()
 	if(randomised_num_contained)
@@ -27,10 +26,6 @@ GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Hardpoint Mod
 	for(var/i in contains)
 		var/atom/movable/path = i
 		if(!path)	continue
-		if(!contains_name[path])
-			contains_name[path] = list("name" = initial(path.name), "count" = 1)
-		else
-			contains_name[path]["count"]++
 		manifest += "<li>[initial(path.name)]</li>"
 	manifest += "</ul>"
 
@@ -46,7 +41,7 @@ OPERATIONS
 *******************************************************************************/
 
 /datum/supply_packs/beacons_supply
-	name = "supply beacons crate (x2)"
+	name = "supply beacons crate"
 	contains = list(
 			/obj/item/squad_beacon,
 			/obj/item/squad_beacon
@@ -57,7 +52,7 @@ OPERATIONS
 	group = "Operations"
 
 /datum/supply_packs/beacons_orbital
-	name = "orbital beacons crate (x2)"
+	name = "orbital beacons crate"
 	contains = list(
 					/obj/item/squad_beacon/bomb,
 					/obj/item/squad_beacon/bomb
@@ -68,7 +63,7 @@ OPERATIONS
 	group = "Operations"
 
 /datum/supply_packs/binoculars_regular
-	name = "binoculars crate (x1)"
+	name = "binoculars crate"
 	contains = list(
 					/obj/item/binoculars
 					)
@@ -78,7 +73,7 @@ OPERATIONS
 	group = "Operations"
 
 /datum/supply_packs/binoculars_tatical
-	name = "tactical binoculars crate (x1)"
+	name = "tactical binoculars crate"
 	contains = list(
 					/obj/item/binoculars/tactical
 					)
@@ -88,7 +83,7 @@ OPERATIONS
 	group = "Operations"
 
 /datum/supply_packs/flares
-	name = "flare packs crate (x28)"
+	name = "flare packs crate"
 	contains = list(
 					/obj/item/storage/box/m94,
 					/obj/item/storage/box/m94,
@@ -101,7 +96,7 @@ OPERATIONS
 	group = "Operations"
 
 /datum/supply_packs/tarps
-	name = "V1 thermal-dampening tarp crate (x5)"
+	name = "V1 thermal-dampening tarp crate"
 	contains = list(
 					/obj/item/bodybag/tarp,
 					/obj/item/bodybag/tarp,
@@ -155,7 +150,7 @@ WEAPONS
 *******************************************************************************/
 
 /datum/supply_packs/weapons_sentry
-	name = "UA 571-C Base Defense Sentry (x1)"
+	name = "UA 571-C Base Defense Sentry"
 	contains = list(
 					/obj/item/storage/box/sentry
 					)
@@ -165,7 +160,7 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/weapons_minisentry
-	name = "UA-580 Portable Sentry (x1)"
+	name = "UA-580 Portable Sentry"
 	contains = list(
 					/obj/item/storage/box/minisentry
 					)
@@ -175,7 +170,7 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/weapons_m56d_emplacement
-	name = "M56D Stationary Machinegun (x1)"
+	name = "M56D Stationary Machinegun"
 	contains = list(
 					/obj/item/storage/box/m56d_hmg
 					)
@@ -279,6 +274,10 @@ WEAPONS
 	containername = "\improper M240 Flamethrower crate"
 	group = "Weapons"
 
+/datum/supply_packs/gun
+	containertype = /obj/structure/closet/crate
+	group = "Weapons"
+
 /datum/supply_packs/gun/mateba
 	contains = list(
 					/obj/item/storage/belt/gun/mateba/full,
@@ -286,9 +285,7 @@ WEAPONS
 					)
 	name = "Mateba Autorevolver crate"
 	cost = 30
-	containertype = /obj/structure/closet/crate
 	containername = "\improper Mateba crate"
-	group = "Weapons"
 
 /datum/supply_packs/gun/pistols
 	contains = list(
@@ -303,9 +300,7 @@ WEAPONS
 					)
 	name = "surplus sidearms crate"
 	cost = 20
-	containertype = /obj/structure/closet/crate
 	containername = "\improper sidearms crate"
-	group = "Weapons"
 
 /datum/supply_packs/gun/shotguns
 	contains = list(
@@ -328,9 +323,7 @@ WEAPONS
 					)
 	name = "surplus shotguns crate"
 	cost = 20
-	containertype = /obj/structure/closet/crate
 	containername = "\improper shotguns crate"
-	group = "Weapons"
 
 /datum/supply_packs/gun/smgs
 	contains = list(
@@ -341,9 +334,7 @@ WEAPONS
 					)
 	name = "surplus SMG crate"
 	cost = 20
-	containertype = /obj/structure/closet/crate
 	containername = "\improper SMGs crate"
-	group = "Weapons"
 
 /datum/supply_packs/gun/rifles
 	contains = list(
@@ -354,9 +345,7 @@ WEAPONS
 					)
 	name = "surplus rifles crate"
 	cost = 20
-	containertype = /obj/structure/closet/crate
 	containername = "\improper rifles crate"
-	group = "Weapons"
 
 /datum/supply_packs/gun/lasrifle
 	contains = list(
@@ -367,9 +356,7 @@ WEAPONS
 					)
 	name = "surplus lasrifle crate"
 	cost = 20
-	containertype = /obj/structure/closet/crate
 	containername = "\improper lasrifle crate"
-	group = "Weapons"
 
 /datum/supply_packs/gun/heavyrifle_squad
 	contains = list(
@@ -386,9 +373,7 @@ WEAPONS
 					)
 	name = "T-42 LMG squad crate"
 	cost = 50
-	containertype = /obj/structure/closet/crate
 	containername = "\improper T-42 LMG squad crate"
-	group = "Weapons"
 
 /datum/supply_packs/gun/combatshotgun
 	contains = list(
@@ -399,9 +384,7 @@ WEAPONS
 					)
 	name = "MK221 tactical shotgun"
 	cost = 10
-	containertype = /obj/structure/closet/crate
 	containername = "\improper MK221 tactical shotgun crate"
-	group = "Weapons"
 
 /datum/supply_packs/explosives
 	name = "surplus explosives crate"
@@ -420,7 +403,7 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/explosives_mines
-	name = "claymore mines crate (x10)"
+	name = "claymore mines crate"
 	contains = list(
 					/obj/item/storage/box/explosive_mines,
 					/obj/item/storage/box/explosive_mines
@@ -431,7 +414,7 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/explosives_hedp
-	name = "M40 HEDP high explosive grenade box crate (x25)"
+	name = "M40 HEDP high explosive grenade box crate"
 	contains = list(
 					/obj/item/storage/box/nade_box
 					)
@@ -441,7 +424,7 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/explosives_hidp
-	name = "M40 HIDP incendiary explosive grenade box crate (x25)"
+	name = "M40 HIDP incendiary explosive grenade box crate"
 	contains = list(
 					/obj/item/storage/box/nade_box/HIDP
 					)
@@ -451,7 +434,7 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/explosives_m15
-	name = "M15 fragmentation grenade box crate (x15)"
+	name = "M15 fragmentation grenade box crate"
 	contains = list(
 					/obj/item/storage/box/nade_box/M15
 					)
@@ -461,7 +444,7 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/explosives_hsdp
-	name = "M40 HSDP white phosphorous grenade box crate (x15)"
+	name = "M40 HSDP white phosphorous grenade box crate"
 	contains = list(
 					/obj/item/storage/box/nade_box/phos
 					)
@@ -471,7 +454,7 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/plastique
-	name = "C4 plastic explosives crate (x5)"
+	name = "C4 plastic explosives crate"
 	contains = list(
 					/obj/item/explosive/plastique,
 					/obj/item/explosive/plastique,
@@ -485,7 +468,7 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/mortar
-	name = "M402 mortar crate (x1)"
+	name = "M402 mortar crate"
 	contains = list(
 					/obj/item/mortar_kit
 					)
@@ -517,7 +500,7 @@ HARDPOINT MODULES (and their ammo)
 *******************************************************************************/
 
 /datum/supply_packs/ltb_cannon
-	name = "LTB Cannon Assembly (x1)"
+	name = "LTB Cannon Assembly"
 	contains = list(/obj/item/hardpoint/primary/cannon)
 	cost = 60
 	containertype = /obj/structure/closet/crate/weapon
@@ -525,7 +508,7 @@ HARDPOINT MODULES (and their ammo)
 	group = "Hardpoint Modules"
 
 /datum/supply_packs/ltaaap_minigun
-	name = "LTAA-AP Minigun Assembly (x1)"
+	name = "LTAA-AP Minigun Assembly"
 	contains = list(/obj/item/hardpoint/primary/minigun)
 	cost = 60
 	containertype = /obj/structure/closet/crate/weapon
@@ -533,7 +516,7 @@ HARDPOINT MODULES (and their ammo)
 	group = "Hardpoint Modules"
 
 /datum/supply_packs/flamer_module
-	name = "Secondary Flamer Assembly (x1)"
+	name = "Secondary Flamer Assembly"
 	contains = list(/obj/item/hardpoint/secondary/flamer)
 	cost = 60
 	containertype = /obj/structure/closet/crate/weapon
@@ -541,7 +524,7 @@ HARDPOINT MODULES (and their ammo)
 	group = "Hardpoint Modules"
 
 /datum/supply_packs/towlauncher
-	name = "Secondary TOW Launcher Assembly (x1)"
+	name = "Secondary TOW Launcher Assembly"
 	contains = list(/obj/item/hardpoint/secondary/towlauncher)
 	cost = 60
 	containertype = /obj/structure/closet/crate/weapon
@@ -549,7 +532,7 @@ HARDPOINT MODULES (and their ammo)
 	group = "Hardpoint Modules"
 
 /datum/supply_packs/m56_cupola
-	name = "Secondary M56 Cupola Assembly (x1)"
+	name = "Secondary M56 Cupola Assembly"
 	contains = list(/obj/item/hardpoint/secondary/m56cupola)
 	cost = 60
 	containertype = /obj/structure/closet/crate/weapon
@@ -557,7 +540,7 @@ HARDPOINT MODULES (and their ammo)
 	group = "Hardpoint Modules"
 
 /datum/supply_packs/tank_glauncher
-	name = "Secondary Grenade Launcher Assembly (x1)"
+	name = "Secondary Grenade Launcher Assembly"
 	contains = list(/obj/item/hardpoint/secondary/grenade_launcher)
 	cost = 60
 	containertype = /obj/structure/closet/crate/weapon
@@ -565,7 +548,7 @@ HARDPOINT MODULES (and their ammo)
 	group = "Hardpoint Modules"
 
 /datum/supply_packs/tank_slauncher
-	name = "Smoke Launcher Assembly (x1)"
+	name = "Smoke Launcher Assembly"
 	contains = list(/obj/item/hardpoint/support/smoke_launcher)
 	cost = 60
 	containertype = /obj/structure/closet/crate/weapon
@@ -573,7 +556,7 @@ HARDPOINT MODULES (and their ammo)
 	group = "Hardpoint Modules"
 
 /datum/supply_packs/weapons_sensor
-	name = "Weapons Sensor Array (x1)"
+	name = "Weapons Sensor Array"
 	contains = list(/obj/item/hardpoint/support/weapons_sensor)
 	cost = 60
 	containertype = /obj/structure/closet/crate/weapon
@@ -581,7 +564,7 @@ HARDPOINT MODULES (and their ammo)
 	group = "Hardpoint Modules"
 
 /datum/supply_packs/artillery_module
-	name = "Artillery Module (x1)"
+	name = "Artillery Module"
 	contains = list(/obj/item/hardpoint/support/artillery_module)
 	cost = 60
 	containertype = /obj/structure/closet/crate/weapon
@@ -589,7 +572,7 @@ HARDPOINT MODULES (and their ammo)
 	group = "Hardpoint Modules"
 
 /datum/supply_packs/overdrive_enhancer
-	name = "Overdrive Enhancer (x1)"
+	name = "Overdrive Enhancer"
 	contains = list(/obj/item/hardpoint/support/overdrive_enhancer)
 	cost = 60
 	containertype = /obj/structure/closet/crate/weapon
@@ -597,7 +580,7 @@ HARDPOINT MODULES (and their ammo)
 	group = "Hardpoint Modules"
 
 /datum/supply_packs/ballistic_armor
-	name = "Ballistic Armor Plating (x1)"
+	name = "Ballistic Armor Plating"
 	contains = list(/obj/item/hardpoint/armor/ballistic)
 	cost = 60
 	containertype = /obj/structure/closet/crate/weapon
@@ -605,7 +588,7 @@ HARDPOINT MODULES (and their ammo)
 	group = "Hardpoint Modules"
 
 /datum/supply_packs/caustic_armor
-	name = "Caustic Armor Plating (x1)"
+	name = "Caustic Armor Plating"
 	contains = list(/obj/item/hardpoint/armor/caustic)
 	cost = 60
 	containertype = /obj/structure/closet/crate/weapon
@@ -613,7 +596,7 @@ HARDPOINT MODULES (and their ammo)
 	group = "Hardpoint Modules"
 
 /datum/supply_packs/concussive_armor
-	name = "Concussive Armor Plating (x1)"
+	name = "Concussive Armor Plating"
 	contains = list(/obj/item/hardpoint/armor/concussive)
 	cost = 60
 	containertype = /obj/structure/closet/crate/weapon
@@ -621,7 +604,7 @@ HARDPOINT MODULES (and their ammo)
 	group = "Hardpoint Modules"
 
 /datum/supply_packs/paladin_armor
-	name = "Paladin Armor Module (x1)"
+	name = "Paladin Armor Module"
 	contains = list(/obj/item/hardpoint/armor/paladin)
 	cost = 60
 	containertype = /obj/structure/closet/crate/weapon
@@ -629,7 +612,7 @@ HARDPOINT MODULES (and their ammo)
 	group = "Hardpoint Modules"
 
 /datum/supply_packs/snowplow_armor
-	name = "Snowplow Module (x1)"
+	name = "Snowplow Module"
 	contains = list(/obj/item/hardpoint/armor/snowplow)
 	cost = 40
 	containertype = /obj/structure/closet/crate/weapon
@@ -637,7 +620,7 @@ HARDPOINT MODULES (and their ammo)
 	group = "Hardpoint Modules"
 
 /datum/supply_packs/tank_treads
-	name = "Tank Treads (x1)"
+	name = "Tank Treads"
 	contains = list(/obj/item/hardpoint/treads/standard)
 	cost = 60
 	containertype = /obj/structure/closet/crate/weapon
@@ -645,7 +628,7 @@ HARDPOINT MODULES (and their ammo)
 	group = "Hardpoint Modules"
 
 /datum/supply_packs/ltb_cannon_ammo
-	name = "LTB Cannon Magazines (x10)"
+	name = "LTB Cannon Magazines"
 	contains = list(
 					/obj/item/ammo_magazine/tank/ltb_cannon,
 					/obj/item/ammo_magazine/tank/ltb_cannon,
@@ -664,7 +647,7 @@ HARDPOINT MODULES (and their ammo)
 	group = "Hardpoint Modules"
 
 /datum/supply_packs/ltaaap_minigun_ammo
-	name = "LTAA AP Minigun Magazines (x3)"
+	name = "LTAA AP Minigun Magazines"
 	contains = list(
 					/obj/item/ammo_magazine/tank/ltaaap_minigun,
 					/obj/item/ammo_magazine/tank/ltaaap_minigun,
@@ -676,7 +659,7 @@ HARDPOINT MODULES (and their ammo)
 	group = "Hardpoint Modules"
 
 /datum/supply_packs/tank_glauncher_ammo
-	name = "Grenade Launcher Magazines (x10)"
+	name = "Grenade Launcher Magazines"
 	contains = list(
 					/obj/item/ammo_magazine/tank/tank_glauncher,
 					/obj/item/ammo_magazine/tank/tank_glauncher,
@@ -695,7 +678,7 @@ HARDPOINT MODULES (and their ammo)
 	group = "Hardpoint Modules"
 
 /datum/supply_packs/tank_slauncher_ammo
-	name = "Smoke Launcher Magazines (x10)"
+	name = "Smoke Launcher Magazines"
 	contains = list(
 					/obj/item/ammo_magazine/tank/tank_slauncher,
 					/obj/item/ammo_magazine/tank/tank_slauncher,
@@ -714,7 +697,7 @@ HARDPOINT MODULES (and their ammo)
 	group = "Hardpoint Modules"
 
 /datum/supply_packs/tank_towlauncher_ammo
-	name = "TOW Launcher Magazines (x4)"
+	name = "TOW Launcher Magazines"
 	contains = list(
 					/obj/item/ammo_magazine/tank/towlauncher,
 					/obj/item/ammo_magazine/tank/towlauncher,
@@ -727,7 +710,7 @@ HARDPOINT MODULES (and their ammo)
 	group = "Hardpoint Modules"
 
 /datum/supply_packs/tank_cupola_ammo
-	name = "M56 Cupola Magazines (x2)"
+	name = "M56 Cupola Magazines"
 	contains = list(
 					/obj/item/ammo_magazine/tank/m56_cupola,
 					/obj/item/ammo_magazine/tank/m56_cupola
@@ -738,7 +721,7 @@ HARDPOINT MODULES (and their ammo)
 	group = "Hardpoint Modules"
 
 /datum/supply_packs/tank_flamer_ammo
-	name = "Flamer Magazines (x5)"
+	name = "Flamer Magazines"
 	contains = list(
 					/obj/item/ammo_magazine/tank/flamer,
 					/obj/item/ammo_magazine/tank/flamer,
@@ -758,7 +741,7 @@ ATTACHMENTS
 
 
 /datum/supply_packs/attachables
-	name = "rail attachments crate (x2 each)"
+	name = "rail attachments crate"
 	contains = list(
 					/obj/item/attachable/reddot,
 					/obj/item/attachable/reddot,
@@ -777,7 +760,7 @@ ATTACHMENTS
 	group = "Attachments"
 
 /datum/supply_packs/rail_reddot
-	name = "red-dot sight attachment crate (x8)"
+	name = "red-dot sight attachment crate"
 	contains = list(
 					/obj/item/attachable/reddot,
 					/obj/item/attachable/reddot,
@@ -794,7 +777,7 @@ ATTACHMENTS
 	group = "Attachments"
 
 /datum/supply_packs/rail_scope
-	name = "railscope attachment crate (x2)"
+	name = "railscope attachment crate"
 	contains = list(
 					/obj/item/attachable/scope,
 					/obj/item/attachable/scope,
@@ -805,7 +788,7 @@ ATTACHMENTS
 	group = "Attachments"
 
 /datum/supply_packs/rail_miniscope
-	name = "mini railscope attachment crate (x2)"
+	name = "mini railscope attachment crate"
 	contains = list(
 					/obj/item/attachable/scope/mini,
 					/obj/item/attachable/scope/mini,
@@ -816,7 +799,7 @@ ATTACHMENTS
 	group = "Attachments"
 
 /datum/supply_packs/rail_magneticharness
-	name = "magnetic harness attachment crate (x6)"
+	name = "magnetic harness attachment crate"
 	contains = list(
 					/obj/item/attachable/magnetic_harness,
 					/obj/item/attachable/magnetic_harness,
@@ -831,7 +814,7 @@ ATTACHMENTS
 	group = "Attachments"
 
 /datum/supply_packs/rail_quickfire
-	name = "quickfire adaptor attachment crate (x2)"
+	name = "quickfire adaptor attachment crate"
 	contains = list(
 					/obj/item/attachable/quickfire,
 					/obj/item/attachable/quickfire
@@ -842,7 +825,7 @@ ATTACHMENTS
 	group = "Attachments"
 
 /datum/supply_packs/m_attachables
-	name = "muzzle attachments crate (x2 each)"
+	name = "muzzle attachments crate"
 	contains = list(
 					/obj/item/attachable/suppressor,
 					/obj/item/attachable/suppressor,
@@ -861,7 +844,7 @@ ATTACHMENTS
 	group = "Attachments"
 
 /datum/supply_packs/muzzle_suppressor
-	name = "suppressor attachment crate (x8)"
+	name = "suppressor attachment crate"
 	contains = list(
 					/obj/item/attachable/suppressor,
 					/obj/item/attachable/suppressor,
@@ -878,7 +861,7 @@ ATTACHMENTS
 	group = "Attachments"
 
 /datum/supply_packs/muzzle_bayonet
-	name = "bayonet attachment crate (x8)"
+	name = "bayonet attachment crate"
 	contains = list(
 					/obj/item/attachable/bayonet,
 					/obj/item/attachable/bayonet,
@@ -895,7 +878,7 @@ ATTACHMENTS
 	group = "Attachments"
 
 /datum/supply_packs/muzzle_extended
-	name = "extended barrel attachment crate (x6)"
+	name = "extended barrel attachment crate"
 	contains = list(
 					/obj/item/attachable/extended_barrel,
 					/obj/item/attachable/extended_barrel,
@@ -910,7 +893,7 @@ ATTACHMENTS
 	group = "Attachments"
 
 /datum/supply_packs/muzzle_heavy
-	name = "barrel charger attachment crate (x3)"
+	name = "barrel charger attachment crate"
 	contains = list(
 					/obj/item/attachable/heavy_barrel,
 					/obj/item/attachable/heavy_barrel,
@@ -922,7 +905,7 @@ ATTACHMENTS
 	group = "Attachments"
 
 /datum/supply_packs/muzzle_compensator
-	name = "compensator attachment crate (x6)"
+	name = "compensator attachment crate"
 	contains = list(
 					/obj/item/attachable/compensator,
 					/obj/item/attachable/compensator,
@@ -937,7 +920,7 @@ ATTACHMENTS
 	group = "Attachments"
 
 /datum/supply_packs/underbarrel_attachables
-	name = "underbarrel attachments crate (x2 each)"
+	name = "underbarrel attachments crate"
 	contains = list(
 					/obj/item/attachable/verticalgrip,
 					/obj/item/attachable/verticalgrip,
@@ -962,7 +945,7 @@ ATTACHMENTS
 	group = "Attachments"
 
 /datum/supply_packs/underbarrel_foregrip
-	name = "foregrip attachment crate (x8)"
+	name = "foregrip attachment crate"
 	contains = list(
 					/obj/item/attachable/verticalgrip,
 					/obj/item/attachable/verticalgrip,
@@ -979,7 +962,7 @@ ATTACHMENTS
 	group = "Attachments"
 
 /datum/supply_packs/underbarrel_gyro
-	name = "gyroscopic stabilizer attachment crate (x2)"
+	name = "gyroscopic stabilizer attachment crate"
 	contains = list(
 					/obj/item/attachable/gyro,
 					/obj/item/attachable/gyro
@@ -990,7 +973,7 @@ ATTACHMENTS
 	group = "Attachments"
 
 /datum/supply_packs/underbarrel_bipod
-	name = "bipod attachment crate (x6)"
+	name = "bipod attachment crate"
 	contains = list(
 					/obj/item/attachable/bipod,
 					/obj/item/attachable/bipod,
@@ -1005,7 +988,7 @@ ATTACHMENTS
 	group = "Attachments"
 
 /datum/supply_packs/underbarrel_shotgun
-	name = "underbarrel shotgun attachment crate (x4)"
+	name = "underbarrel shotgun attachment crate"
 	contains = list(
 					/obj/item/attachable/attached_gun/shotgun,
 					/obj/item/attachable/attached_gun/shotgun,
@@ -1018,7 +1001,7 @@ ATTACHMENTS
 	group = "Attachments"
 
 /datum/supply_packs/underbarrel_flamer
-	name = "underbarrel flamer attachment crate (x4)"
+	name = "underbarrel flamer attachment crate"
 	contains = list(
 					/obj/item/attachable/attached_gun/flamer,
 					/obj/item/attachable/attached_gun/flamer,
@@ -1031,7 +1014,7 @@ ATTACHMENTS
 	group = "Attachments"
 
 /datum/supply_packs/underbarrel_burstfire_assembly
-	name = "burstfire assembly attachment crate (x2)"
+	name = "burstfire assembly attachment crate"
 	contains = list(
 					/obj/item/attachable/burstfire_assembly,
 					/obj/item/attachable/burstfire_assembly
@@ -1042,7 +1025,7 @@ ATTACHMENTS
 	group = "Attachments"
 
 /datum/supply_packs/stock_shotgun
-	name = "shotgun stock attachment crate (x4)"
+	name = "shotgun stock attachment crate"
 	contains = list(
 			/obj/item/attachable/stock/t35stock,
 			/obj/item/attachable/stock/t35stock,
@@ -1055,7 +1038,7 @@ ATTACHMENTS
 	group = "Attachments"
 
 /datum/supply_packs/stock_smg
-	name = "submachinegun stock attachment crate (x4)"
+	name = "submachinegun stock attachment crate"
 	contains = list(
 			/obj/item/attachable/stock/smg,
 			/obj/item/attachable/stock/smg,
@@ -1068,7 +1051,7 @@ ATTACHMENTS
 	group = "Attachments"
 
 /datum/supply_packs/stock_smg
-	name = "combat shotgun stock attachment crate (x3)"
+	name = "combat shotgun stock attachment crate"
 	contains = list(
 			/obj/item/attachable/stock/tactical,
 			/obj/item/attachable/stock/tactical,
@@ -1173,7 +1156,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_regular_tp44
-	name = "regular TP-44 magazines crate (x15)"
+	name = "regular TP-44 magazines crate"
 	contains = list(
 					/obj/item/ammo_magazine/revolver/standard_revolver,
 					/obj/item/ammo_magazine/revolver/standard_revolver,
@@ -1198,7 +1181,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_mateba
-	name = "Mateba magazines crate (x10)"
+	name = "Mateba magazines crate"
 	contains = list(
 					/obj/item/ammo_magazine/revolver/mateba,
 					/obj/item/ammo_magazine/revolver/mateba,
@@ -1217,7 +1200,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_incendiaryslugs
-	name = "Box of Incendiary Slugs (x2)"
+	name = "Box of Incendiary Slugs"
 	contains = list(
 					/obj/item/ammo_magazine/shotgun/incendiary,
 					/obj/item/ammo_magazine/shotgun/incendiary
@@ -1228,7 +1211,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_scout_regular
-	name = "M4RA scout magazines crate (x5)"
+	name = "M4RA scout magazines crate"
 	contains = list(
 					/obj/item/ammo_magazine/rifle/m4ra,
 					/obj/item/ammo_magazine/rifle/m4ra,
@@ -1242,7 +1225,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_scout_impact
-	name = "M4RA scout impact magazines crate (x3)"
+	name = "M4RA scout impact magazines crate"
 	contains = list(
 					/obj/item/ammo_magazine/rifle/m4ra/impact,
 					/obj/item/ammo_magazine/rifle/m4ra/impact,
@@ -1254,7 +1237,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_scout_incendiary
-	name = "M4RA scout incendiary magazines crate (x3)"
+	name = "M4RA scout incendiary magazines crate"
 	contains = list(
 					/obj/item/ammo_magazine/rifle/m4ra/incendiary,
 					/obj/item/ammo_magazine/rifle/m4ra/incendiary,
@@ -1266,7 +1249,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_scout_smart
-	name = "M4RA scout smart magazines crate (x3)"
+	name = "M4RA scout smart magazines crate"
 	contains = list(
 					/obj/item/ammo_magazine/rifle/m4ra/smart,
 					/obj/item/ammo_magazine/rifle/m4ra/smart,
@@ -1278,7 +1261,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_sniper_regular
-	name = "M42A sniper magazines crate (x6)"
+	name = "M42A sniper magazines crate"
 	contains = list(
 					/obj/item/ammo_magazine/sniper,
 					/obj/item/ammo_magazine/sniper,
@@ -1293,7 +1276,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_sniper_flak
-	name = "M42A sniper flak magazines crate (x6)"
+	name = "M42A sniper flak magazines crate"
 	contains = list(
 					/obj/item/ammo_magazine/sniper/flak,
 					/obj/item/ammo_magazine/sniper/flak,
@@ -1308,7 +1291,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_sniper_incendiary
-	name = "M42A sniper incendiary magazines crate (x6)"
+	name = "M42A sniper incendiary magazines crate"
 	contains = list(
 					/obj/item/ammo_magazine/sniper/incendiary,
 					/obj/item/ammo_magazine/sniper/incendiary,
@@ -1337,7 +1320,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_rpg_regular
-	name = "M5 RPG HE rockets crate (x6)"
+	name = "M5 RPG HE rockets crate"
 	contains = list(
 					/obj/item/ammo_magazine/rocket,
 					/obj/item/ammo_magazine/rocket,
@@ -1352,7 +1335,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_rpg_ap
-	name = "M5 RPG AP rockets crate (x6)"
+	name = "M5 RPG AP rockets crate"
 	contains = list(
 					/obj/item/ammo_magazine/rocket/ap,
 					/obj/item/ammo_magazine/rocket/ap,
@@ -1367,7 +1350,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_rpg_wp
-	name = "M5 RPG WP rockets crate (x6)"
+	name = "M5 RPG WP rockets crate"
 	contains = list(
 					/obj/item/ammo_magazine/rocket/wp,
 					/obj/item/ammo_magazine/rocket/wp,
@@ -1382,7 +1365,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_smartgun
-	name = "M56 smartgun powerpack crate (x5)"
+	name = "M56 smartgun powerpack crate"
 	contains = list(
 					/obj/item/smartgun_powerpack,
 					/obj/item/smartgun_powerpack,
@@ -1396,7 +1379,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_smartmachinegun
-	name = "T26 smartmachinegun ammo crate (x3)"
+	name = "T26 smartmachinegun ammo crate"
 	contains = list(
 					/obj/item/ammo_magazine/standard_smartmachinegun,
 					/obj/item/ammo_magazine/standard_smartmachinegun,
@@ -1408,7 +1391,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_sentry
-	name = "UA 571-C sentry ammunition (x2)"
+	name = "UA 571-C sentry ammunition"
 	contains = list(
 					/obj/item/ammo_magazine/sentry,
 					/obj/item/ammo_magazine/sentry
@@ -1419,7 +1402,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/napalm
-	name = "M240 fuel crate (x6)"
+	name = "M240 fuel crate"
 	contains = list(
 					/obj/item/ammo_magazine/flamer_tank,
 					/obj/item/ammo_magazine/flamer_tank,
@@ -1447,7 +1430,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/mortar_ammo_he
-	name = "M402 mortar ammo crate (x8 HE)"
+	name = "M402 mortar ammo crate"
 	cost = 20
 	contains = list(
 					/obj/item/mortal_shell/he,
@@ -1464,7 +1447,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/mortar_ammo_incend
-	name = "M402 mortar ammo crate (x8 Incend)"
+	name = "M402 mortar ammo crate"
 	cost = 20
 	contains = list(
 					/obj/item/mortal_shell/incendiary,
@@ -1481,7 +1464,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/mortar_ammo_flare
-	name = "M402 mortar ammo crate (x10 Flare)"
+	name = "M402 mortar ammo crate"
 	cost = 10
 	contains = list(
 					/obj/item/mortal_shell/flare,
@@ -1500,7 +1483,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/mortar_ammo_smoke
-	name = "M402 mortar ammo crate (x10 Smoke)"
+	name = "M402 mortar ammo crate"
 	cost = 10
 	contains = list(
 					/obj/item/mortal_shell/smoke,
@@ -1519,7 +1502,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/mortar_ammo_flash
-	name = "M402 mortar ammo crate (x10 Flash)"
+	name = "M402 mortar ammo crate"
 	cost = 10
 	contains = list(
 					/obj/item/mortal_shell/flash,
@@ -1538,7 +1521,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_minisentry
-	name = "UA-580 point defense sentry ammo crate (x3)"
+	name = "UA-580 point defense sentry ammo crate"
 	contains = list(
 					/obj/item/ammo_magazine/minisentry,
 					/obj/item/ammo_magazine/minisentry,
@@ -1550,7 +1533,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_m56d
-	name = "M56D mounted smartgun ammo crate (x2)"
+	name = "M56D mounted smartgun ammo crate"
 	contains = list(
 					/obj/item/ammo_magazine/m56d,
 					/obj/item/ammo_magazine/m56d
@@ -1611,7 +1594,7 @@ AMMO
 	group = "Ammo"
 
 /datum/supply_packs/ammo_minigun
-	name = "Vindicator Minigun Ammo Drums (x3)"
+	name = "Vindicator Minigun Ammo Drums"
 	contains = list(
 					/obj/item/ammo_magazine/minigun,
 					/obj/item/ammo_magazine/minigun,
@@ -1628,7 +1611,7 @@ ARMOR
 *******************************************************************************/
 
 /datum/supply_packs/armor_masks
-	name = "SWAT protective masks (x4)"
+	name = "SWAT protective masks"
 	contains = list(
 					/obj/item/clothing/mask/gas/swat,
 					/obj/item/clothing/mask/gas/swat,
@@ -1779,29 +1762,29 @@ CLOTHING
 					/obj/item/storage/large_holster/t19,
 					/obj/item/storage/large_holster/t19
 					)
-	name = "T-19 holster crate (x2)"
+	name = "T-19 holster crate"
 	cost = 10
 	containertype = /obj/structure/closet/crate
 	containername = "\improper holster crate"
 	group = "Clothing"
 
-/datum/supply_packs/gun_holster/revolver
-	name = "TP-44 holster crate (x2)"
+/datum/supply_packs/gun_holster
+	group = "Clothing"
 	cost = 10
+
+/datum/supply_packs/gun_holster/revolver
+	name = "TP-44 holster crate"
 	contains = list(
 					/obj/item/storage/belt/gun/revolver/standard_revolver,
 					/obj/item/storage/belt/gun/revolver/standard_revolver
 					)
-	group = "Clothing"
 
 /datum/supply_packs/gun_holster/pistol
-	name = "TP-14 holster crate (x2)"
-	cost = 10
+	name = "TP-14 holster crate"
 	contains = list(
 					/obj/item/storage/belt/gun/pistol/standard_pistol,
 					/obj/item/storage/belt/gun/pistol/standard_pistol
 					)
-	group = "Clothing"
 
 /datum/supply_packs/pouches_general
 	name = "general pouches crate"
@@ -1932,7 +1915,7 @@ datum/supply_packs/advanced_medical
 	group = "Medical"
 
 /datum/supply_packs/firstaid
-	name = "first aid kit crate (2x each)"
+	name = "first aid kit crate"
 	contains = list(/obj/item/storage/firstaid/regular,
 					/obj/item/storage/firstaid/regular,
 					/obj/item/storage/firstaid/fire,
@@ -1950,7 +1933,7 @@ datum/supply_packs/advanced_medical
 	group = "Medical"
 
 /datum/supply_packs/bodybag
-	name = "body bag crate (x28)"
+	name = "body bag crate"
 	contains = list(
 			/obj/item/storage/box/bodybags,
 			/obj/item/storage/box/bodybags,
@@ -1963,7 +1946,7 @@ datum/supply_packs/advanced_medical
 	group = "Medical"
 
 /datum/supply_packs/cryobag
-	name = "stasis bag crate (x3)"
+	name = "stasis bag crate"
 	contains = list(
 			/obj/item/bodybag/cryobag,
 			/obj/item/bodybag/cryobag,
@@ -2031,7 +2014,7 @@ ENGINEERING
 
 
 /datum/supply_packs/sandbags
-	name = "empty sandbags crate (x50)"
+	name = "empty sandbags crate"
 	contains = list(/obj/item/stack/sandbags_empty/full)
 	cost = 15
 	containertype = /obj/structure/closet/crate/supply
@@ -2039,7 +2022,7 @@ ENGINEERING
 	group = "Engineering"
 
 /datum/supply_packs/metal50
-	name = "50 metal sheets (x50)"
+	name = "50 metal sheets"
 	contains = list(/obj/item/stack/sheet/metal/large_stack)
 	cost = 20
 	containertype = /obj/structure/closet/crate/supply
@@ -2047,7 +2030,7 @@ ENGINEERING
 	group = "Engineering"
 
 /datum/supply_packs/plas50
-	name = "plasteel sheets (x30)"
+	name = "30 plasteel sheets"
 	contains = list(/obj/item/stack/sheet/plasteel/medium_stack)
 	cost = 40
 	containertype = /obj/structure/closet/crate/supply
@@ -2055,7 +2038,7 @@ ENGINEERING
 	group = "Engineering"
 
 /datum/supply_packs/glass50
-	name = "50 glass sheets (x50)"
+	name = "50 glass sheets"
 	contains = list(/obj/item/stack/sheet/glass/large_stack)
 	cost = 10
 	containertype = /obj/structure/closet/crate/supply
@@ -2063,7 +2046,7 @@ ENGINEERING
 	group = "Engineering"
 
 /datum/supply_packs/wood50
-	name = "wooden planks (x50)"
+	name = "50 wooden planks"
 	contains = list(/obj/item/stack/sheet/wood/large_stack)
 	cost = 10
 	containertype = /obj/structure/closet/crate/supply
@@ -2106,7 +2089,7 @@ ENGINEERING
 	group = "Engineering"
 
 /datum/supply_packs/fueltank
-	name = "fuel tank crate (x1)"
+	name = "fuel tank crate"
 	contains = list(/obj/structure/reagent_dispensers/fueltank)
 	cost = 15
 	containertype = /obj/structure/largecrate
@@ -2114,7 +2097,7 @@ ENGINEERING
 	group = "Engineering"
 
 /datum/supply_packs/inflatable
-	name = "inflatable barriers (x9 doors, x12 walls)"
+	name = "inflatable barriers"
 	contains = list(
 					/obj/item/storage/briefcase/inflatable,
 					/obj/item/storage/briefcase/inflatable,
@@ -2126,7 +2109,7 @@ ENGINEERING
 	group = "Engineering"
 
 /datum/supply_packs/lightbulbs
-	name = "replacement lights (x42 tube, x21 bulb)"
+	name = "replacement lights"
 	contains = list(
 					/obj/item/storage/box/lights/mixed,
 					/obj/item/storage/box/lights/mixed,
@@ -2143,7 +2126,7 @@ SUPPLIES
 
 
 /datum/supply_packs/mre
-	name = "TGMC MRE crate (x40)"
+	name = "TGMC MRE crate"
 	contains = list(
 					/obj/item/storage/box/MRE,
 					/obj/item/storage/box/MRE,
@@ -2162,7 +2145,7 @@ SUPPLIES
 	group = "Supplies"
 
 /datum/supply_packs/crayons
-	name = "PFC Jim Special Crayon Packs (x5)"
+	name = "PFC Jim Special Crayon Packs"
 	contains = list(
 					/obj/item/storage/fancy/crayons,
 					/obj/item/storage/fancy/crayons,
@@ -2176,7 +2159,7 @@ SUPPLIES
 	group = "Supplies"
 
 /datum/supply_packs/boxes
-	name = "empty boxes (x10)"
+	name = "empty boxes"
 	contains = list(
 					/obj/item/storage/box,
 					/obj/item/storage/box,

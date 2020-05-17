@@ -15,7 +15,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 	var/orderer_ckey
 	var/reason
 	var/authorised_by
-	var/datum/supply_packs/pack
+	var/list/datum/supply_packs/pack
 
 /obj/item/paper/manifest
 	name = "Supply Manifest"
@@ -139,7 +139,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 		sell()
 
 /obj/docking_port/mobile/supply/proc/buy()
-	if(!length(SSshuttle.shoppinglist))
+	if(!length(SSpoints.shoppinglist))
 		return
 
 	var/list/empty_turfs = list()
@@ -150,54 +150,52 @@ GLOBAL_LIST_EMPTY(exports_types)
 				continue
 			empty_turfs += T
 
-	for(var/i in SSshuttle.shoppinglist)
+	for(var/i in SSpoints.shoppinglist)
 		if(!empty_turfs.len)
 			break
-		var/datum/supply_order/SO = SSshuttle.shoppinglist[i]
+		var/datum/supply_order/SO = SSpoints.shoppinglist[i]
 
-		var/datum/supply_packs/SP = SO.pack
+		var/datum/supply_packs/firstpack = SO.pack[1]
 
-		var/atom/A = new SP.containertype(pick_n_take(empty_turfs))
-		A.name = "[SP.containername][SO.reason ? " ([SO.reason])" : ""]"
+		var/obj/structure/A = new firstpack.containertype(pick_n_take(empty_turfs))
+		A.name = "Order #[SO.id] for [SO.orderer]"
 
 		//supply manifest generation begin
 
 		var/obj/item/paper/manifest/slip = new /obj/item/paper/manifest(A)
 		slip.info = "<h3>Automatic Storage Retrieval Manifest</h3><hr><br>"
 		slip.info +="Order #[SO.id]<br>"
-		slip.info +="[SSshuttle.shoppinglist.len] PACKAGES IN THIS SHIPMENT<br>"
+		slip.info +="[length(SO.pack)] PACKAGES IN THIS SHIPMENT<br>"
 		slip.info +="CONTENTS:<br><ul>"
 		slip.update_icon()
 
+		var/list/contains = list()
 		//spawn the stuff, finish generating the manifest while you're at it
-		if(SP.access)
-			A:req_access = list()
-			A:req_access += text2num(SP.access)
+		for(var/P in SO.pack)
+			var/datum/supply_packs/SP = P
+			// yes i know
+			if(SP.access)
+				A.req_access = list()
+				A.req_access += text2num(SP.access)
 
-		var/list/contains
-		if(SP.randomised_num_contained)
-			contains = list()
-			if(SP.contains.len)
-				for(var/j=1,j<=SP.randomised_num_contained,j++)
-					contains += pick(SP.contains)
-		else
-			contains = SP.contains
+			if(SP.randomised_num_contained)
+				if(length(SP.contains))
+					for(var/j in 1 to SP.randomised_num_contained)
+						contains += pick(SP.contains)
+			else
+				contains += SP.contains
 
 		for(var/typepath in contains)
 			if(!typepath)	continue
 			var/atom/B2 = new typepath(A)
-			//if(SP.amount && B2:amount)
-			//	B2:amount = SP.amount
 			slip.info += "<li>[B2.name]</li>" //add the item to the manifest
 
 		//manifest finalisation
 		slip.info += "</ul><br>"
 		slip.info += "CHECK CONTENTS AND STAMP BELOW THE LINE TO CONFIRM RECEIPT OF GOODS<hr>"
-		if (SP.contraband)
-			slip.loc = null	//we are out of blanks for Form #44-D Ordering Illicit Drugs.
 
-		SSshuttle.shoppinglist -= "[SO.id]"
-		SSshuttle.shopping_history += SO
+		SSpoints.shoppinglist -= "[SO.id]"
+		SSpoints.shopping_history += SO
 
 /obj/docking_port/mobile/supply/proc/sell()
 	if(!GLOB.exports_types.len) // No exports list? Generate it!
@@ -222,12 +220,12 @@ GLOBAL_LIST_EMPTY(exports_types)
 					if(find_slip && istype(A,/obj/item/paper/manifest))
 						var/obj/item/paper/slip = A
 						if(slip.stamped && slip.stamped.len) //yes, the clown stamp will work. clown is the highest authority on the station, it makes sense
-							SSshuttle.export_history += "Crate with manifest ([POINTS_PER_CRATE+POINTS_PER_SLIP] points)"
+							SSpoints.export_history += "Crate with manifest ([POINTS_PER_CRATE+POINTS_PER_SLIP] points)"
 							SSpoints.supply_points += POINTS_PER_SLIP
 							find_slip = 0
 						continue
 				if(find_slip)
-					SSshuttle.export_history += "Crate ([POINTS_PER_CRATE] points)"
+					SSpoints.export_history += "Crate ([POINTS_PER_CRATE] points)"
 
 			//Sell Xeno Corpses
 			if (isxeno(AM))
@@ -237,17 +235,36 @@ GLOBAL_LIST_EMPTY(exports_types)
 					if(AM.type == E.export_obj)
 						cost = E.cost
 				SSpoints.supply_points += cost
-				SSshuttle.export_history += "Xenomorphs ([cost] points)"
+				SSpoints.export_history += "Xenomorphs ([cost] points)"
 			// Sell ore boxes
 			if(istype(AM, /obj/structure/ore_box/platinum))
-				SSshuttle.export_history += "Platinum ([POINTS_PER_PLATINUM] points)"
+				SSpoints.export_history += "Platinum ([POINTS_PER_PLATINUM] points)"
 				SSpoints.supply_points += POINTS_PER_PLATINUM
 
 			if(istype(AM, /obj/structure/ore_box/phoron))
-				SSshuttle.export_history += "Phoron ([POINTS_PER_PHORON] points)"
+				SSpoints.export_history += "Phoron ([POINTS_PER_PHORON] points)"
 				SSpoints.supply_points += POINTS_PER_PHORON
 
 			qdel(AM)
+
+/obj/item/supplytablet
+	name = "ASRS tablet"
+	desc = "A tablet for an Automated Storage and Retrieval System"
+	icon = 'icons/obj/items/req_tablet.dmi'
+	icon_state = "req_tablet_off"
+	req_access = list(ACCESS_MARINE_CARGO)
+	flags_equip_slot = ITEM_SLOT_POCKET
+	w_class = WEIGHT_CLASS_NORMAL
+	var/datum/supply_ui/SU
+
+/obj/item/supplytablet/interact(mob/user)
+	. = ..()
+	if(.)
+		return
+
+	if(!SU)
+		SU = new(src)
+	return SU.interact(user)
 
 /obj/machinery/computer/supplycomp
 	name = "ASRS console"
@@ -256,67 +273,117 @@ GLOBAL_LIST_EMPTY(exports_types)
 	icon_state = "supply"
 	req_access = list(ACCESS_MARINE_CARGO)
 	circuit = null
-	interaction_flags = INTERACT_MACHINE_NANO
-	ui_x = 900
-	ui_y = 700
-	var/temp = null
-	var/reqtime = 0 //Cooldown for requisitions - Quarxink
-	var/hacked = 0
-	var/can_order_contraband = 0
-	var/last_viewed_group = "categories"
+	var/datum/supply_ui/SU
 
-/obj/machinery/computer/supplycomp/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
+/obj/machinery/computer/supplycomp/interact(mob/user)
+	. = ..()
+	if(.)
+		return
+
+	if(!SU)
+		SU = new(src)
+	return SU.interact(user)
+
+/datum/supply_ui
+	interaction_flags = INTERACT_MACHINE_TGUI
+	var/atom/source_object
+	var/ui_x = 900
+	var/ui_y = 700
+
+/datum/supply_ui/New(atom/source_object)
+	. = ..()
+	src.source_object = source_object
+
+/datum/supply_ui/ui_host()
+	return source_object
+
+/datum/supply_ui/can_interact(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(!user.CanReach(source_object))
+		return FALSE
+
+	return TRUE
+
+/datum/supply_ui/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
 										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "Cargo", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, ui_key, "Cargo", source_object.name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
-/obj/machinery/computer/supplycomp/ui_static_data(mob/user)
+/datum/supply_ui/ui_static_data(mob/user)
 	. = list()
 	.["categories"] = GLOB.all_supply_groups
-	.["supplypacks"] = SSshuttle.supply_packs_ui
-	.["supplypackscontents"] = SSshuttle.supply_packs_contents
+	.["supplypacks"] = SSpoints.supply_packs_ui
+	.["supplypackscontents"] = SSpoints.supply_packs_contents
 	.["elevator_size"] = SSshuttle.supply?.return_number_of_turfs()
 
-/obj/machinery/computer/supplycomp/ui_data(mob/user)
+/datum/supply_ui/ui_data(mob/user)
 	. = list()
-	.["export_history"] = SSshuttle.export_history
+	.["export_history"] = SSpoints.export_history
 	.["currentpoints"] = round(SSpoints.supply_points)
 	.["awaiting_delivery"] = list()
-	.["awaiting_delivery_items"] = 0
-	for(var/i in SSshuttle.shoppinglist)
-		var/datum/supply_order/SO = SSshuttle.shoppinglist[i]
-		.["awaiting_delivery_items"]++
-		if(.["awaiting_delivery"][SO.pack.type])
-			.["awaiting_delivery"][SO.pack.type]["count"]++
-		else
-			.["awaiting_delivery"][SO.pack.type] = list("name" = SO.pack.name, "count" = 1)
+	.["awaiting_delivery_orders"] = 0
+	for(var/i in SSpoints.shoppinglist)
+		var/datum/supply_order/SO = SSpoints.shoppinglist[i]
+		.["awaiting_delivery_orders"]++
+		var/list/packs = list()
+		for(var/P in SO.pack)
+			var/datum/supply_packs/SP = P
+			packs += SP.type
+		.["awaiting_delivery"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "packs" = packs, "authed_by" = SO.authorised_by))
 	.["shopping_history"] = list()
-	for(var/i in SSshuttle.shopping_history)
+	for(var/i in SSpoints.shopping_history)
 		var/datum/supply_order/SO = i
-		.["shopping_history"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = SO.pack.cost, "name" = SO.pack.name, "path" = SO.pack.type))
+		var/list/packs = list()
+		var/cost = 0
+		for(var/P in SO.pack)
+			var/datum/supply_packs/SP = P
+			packs += SP.type
+			cost += SP.cost
+		.["shopping_history"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
 	.["requests"] = list()
-	for(var/i in SSshuttle.requestlist)
-		var/datum/supply_order/SO = SSshuttle.requestlist[i]
-		.["requests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = SO.pack.cost, "name" = SO.pack.name, "path" = SO.pack.type))
+	for(var/i in SSpoints.requestlist)
+		var/datum/supply_order/SO = SSpoints.requestlist[i]
+		var/list/packs = list()
+		var/cost = 0
+		for(var/P in SO.pack)
+			var/datum/supply_packs/SP = P
+			packs += SP.type
+			cost += SP.cost
+		.["requests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
 	.["deniedrequests"] = list()
-	for(var/i in length(SSshuttle.deniedrequests) to 1 step -1)
-		var/datum/supply_order/SO = SSshuttle.deniedrequests[SSshuttle.deniedrequests[i]]
-		.["deniedrequests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = SO.pack.cost, "name" = SO.pack.name, "path" = SO.pack.type))
+	for(var/i in length(SSpoints.deniedrequests) to 1 step -1)
+		var/datum/supply_order/SO = SSpoints.deniedrequests[SSpoints.deniedrequests[i]]
+		var/list/packs = list()
+		var/cost = 0
+		for(var/P in SO.pack)
+			var/datum/supply_packs/SP = P
+			packs += SP.type
+			cost += SP.cost
+		.["deniedrequests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
 	.["approvedrequests"] = list()
-	for(var/i in length(SSshuttle.approvedrequests) to 1 step -1)
-		var/datum/supply_order/SO = SSshuttle.approvedrequests[SSshuttle.approvedrequests[i]]
-		.["approvedrequests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = SO.pack.cost, "name" = SO.pack.name, "path" = SO.pack.type))
+	for(var/i in length(SSpoints.approvedrequests) to 1 step -1)
+		var/datum/supply_order/SO = SSpoints.approvedrequests[SSpoints.approvedrequests[i]]
+		var/list/packs = list()
+		var/cost = 0
+		for(var/P in SO.pack)
+			var/datum/supply_packs/SP = P
+			packs += SP.type
+			cost += SP.cost
+		.["approvedrequests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
 	.["shopping_list_cost"] = 0
 	.["shopping_list_items"] = 0
 	.["shopping_list"] = list()
-	for(var/i in SSshuttle.shopping_cart)
-		var/datum/supply_packs/SP = SSshuttle.supply_packs[i]
-		.["shopping_list_items"] += SSshuttle.shopping_cart[i]
-		.["shopping_list_cost"] += SP.cost * SSshuttle.shopping_cart[SP.type]
-		.["shopping_list"][SP.type] = list("name" = SP.name, "cost" = SP.cost, "path" = SP.type, "count" = SSshuttle.shopping_cart[SP.type])
+	for(var/i in SSpoints.shopping_cart)
+		var/datum/supply_packs/SP = SSpoints.supply_packs[i]
+		.["shopping_list_items"] += SSpoints.shopping_cart[i]
+		.["shopping_list_cost"] += SP.cost * SSpoints.shopping_cart[SP.type]
+		.["shopping_list"][SP.type] = list("count" = SSpoints.shopping_cart[SP.type])
 
 	if(SSshuttle.supply)
 		if(SSshuttle.supply.mode == SHUTTLE_CALL)
@@ -344,38 +411,38 @@ GLOBAL_LIST_EMPTY(exports_types)
 		.["elevator"] = "MISSING!"
 
 
-/obj/machinery/computer/supplycomp/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+/datum/supply_ui/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	if(..())
 		return
 	switch(action)
 		if("cart")
-			var/datum/supply_packs/P = SSshuttle.supply_packs[text2path(params["id"])]
+			var/datum/supply_packs/P = SSpoints.supply_packs[text2path(params["id"])]
 			if(!P)
 				return
 			switch(params["mode"])
 				if("removeall")
-					SSshuttle.shopping_cart -= P.type
+					SSpoints.shopping_cart -= P.type
 				if("removeone")
-					if(SSshuttle.shopping_cart[P.type] > 1)
-						SSshuttle.shopping_cart[P.type]--
+					if(SSpoints.shopping_cart[P.type] > 1)
+						SSpoints.shopping_cart[P.type]--
 					else
-						SSshuttle.shopping_cart -= P.type
+						SSpoints.shopping_cart -= P.type
 				if("addone")
-					if(SSshuttle.shopping_cart[P.type])
-						SSshuttle.shopping_cart[P.type]++
+					if(SSpoints.shopping_cart[P.type])
+						SSpoints.shopping_cart[P.type]++
 					else
-						SSshuttle.shopping_cart[P.type] = 1
+						SSpoints.shopping_cart[P.type] = 1
 				if("addall")
 					var/cart_cost = 0
-					for(var/i in SSshuttle.shopping_cart)
-						var/datum/supply_packs/SP = SSshuttle.supply_packs[i]
-						cart_cost += SP.cost * SSshuttle.shopping_cart[SP.type]
+					for(var/i in SSpoints.shopping_cart)
+						var/datum/supply_packs/SP = SSpoints.supply_packs[i]
+						cart_cost += SP.cost * SSpoints.shopping_cart[SP.type]
 					var/excess_points = SSpoints.supply_points - cart_cost
 					var/number_to_buy = round(excess_points / P.cost)
-					if(SSshuttle.shopping_cart[P.type])
-						SSshuttle.shopping_cart[P.type] += number_to_buy
+					if(SSpoints.shopping_cart[P.type])
+						SSpoints.shopping_cart[P.type] += number_to_buy
 					else
-						SSshuttle.shopping_cart[P.type] = number_to_buy
+						SSpoints.shopping_cart[P.type] = number_to_buy
 		if("send")
 			if(SSshuttle.supply.mode == SHUTTLE_IDLE && is_mainship_level(SSshuttle.supply.z))
 				if (!SSshuttle.supply.check_blacklist())
@@ -389,64 +456,54 @@ GLOBAL_LIST_EMPTY(exports_types)
 				playsound(D.return_center_turf(), 'sound/machines/elevator_move.ogg', 50, 0)
 				SSshuttle.moveShuttle("supply", "supply_home", TRUE)
 		if("approve")
-			var/datum/supply_order/O = SSshuttle.requestlist["[params["id"]]"]
+			var/datum/supply_order/O = SSpoints.requestlist["[params["id"]]"]
+			if(!O)
+				O = SSpoints.deniedrequests["[params["id"]]"]
 			if(!O)
 				return
-			SSshuttle.approve_request(O)
+			SSpoints.approve_request(O, ui.user)
 		if("deny")
-			var/datum/supply_order/O = SSshuttle.requestlist["[params["id"]]"]
+			var/datum/supply_order/O = SSpoints.requestlist["[params["id"]]"]
 			if(!O)
 				return
-			SSshuttle.deny_request(O)
+			SSpoints.deny_request(O)
 		if("approveall")
-			for(var/i in SSshuttle.requestlist)
-				var/datum/supply_order/O = SSshuttle.requestlist[i]
-				SSshuttle.approve_request(O)
+			for(var/i in SSpoints.requestlist)
+				var/datum/supply_order/O = SSpoints.requestlist[i]
+				SSpoints.approve_request(O)
 		if("denyall")
-			for(var/i in SSshuttle.requestlist)
-				var/datum/supply_order/O = SSshuttle.requestlist[i]
-				SSshuttle.deny_request(O)
+			for(var/i in SSpoints.requestlist)
+				var/datum/supply_order/O = SSpoints.requestlist[i]
+				SSpoints.deny_request(O)
 		if("buycart")
-			for(var/i in SSshuttle.shopping_cart)
-				var/datum/supply_packs/SP = SSshuttle.supply_packs[i]
-				for(var/num in 1 to SSshuttle.shopping_cart[i])
-					if(SP.cost > SSpoints.supply_points)
-						break
-					SSshuttle.ordernum++
-					var/datum/supply_order/O = new
-					O.id = SSshuttle.ordernum
-					O.pack = SP
-					O.orderer_ckey = ui.user.ckey
-					O.orderer = ui.user.real_name
-					if(ishuman(ui.user))
-						var/mob/living/carbon/human/H = ui.user
-						O.orderer_rank = H.get_assignment()
-					SSpoints.supply_points -= SP.cost
-					SSshuttle.shoppinglist["[O.id]"] = O
-			SSshuttle.shopping_cart.Cut()
+			var/cost = 0
+			for(var/i in SSpoints.shopping_cart)
+				var/datum/supply_packs/SP = SSpoints.supply_packs[i]
+				cost += SP.cost * SSpoints.shopping_cart[i]
+			if(cost > SSpoints.supply_points)
+				return
+			var/datum/supply_order/O = new
+			O.id = ++SSpoints.ordernum
+			O.orderer_ckey = ui.user.ckey
+			O.orderer = ui.user.real_name
+			O.pack = list()
+			if(ishuman(ui.user))
+				var/mob/living/carbon/human/H = ui.user
+				O.orderer_rank = H.get_assignment()
+			for(var/i in SSpoints.shopping_cart)
+				var/datum/supply_packs/SP = SSpoints.supply_packs[i]
+				for(var/num in 1 to SSpoints.shopping_cart[i])
+					O.pack += SP
+			SSpoints.supply_points -= cost
+			SSpoints.shoppinglist["[O.id]"] = O
+			SSpoints.shopping_cart.Cut()
 		if("clearcart")
-			SSshuttle.shopping_cart.Cut()
+			SSpoints.shopping_cart.Cut()
 
 
 	return TRUE
 
-/datum/controller/subsystem/shuttle/proc/approve_request(datum/supply_order/O)
-	if(O.pack.cost > SSpoints.supply_points)
-		return
-	if(length(shoppinglist) >= supply?.return_number_of_turfs())
-		return
-	requestlist -= "[O.id]"
-	approvedrequests["[O.id]"] = O
-	SSpoints.supply_points -= O.pack.cost
-	shoppinglist["[O.id]"] = O
-	if(GLOB.directory[O.orderer_ckey])
-		to_chat(GLOB.directory[O.orderer_ckey], "<span class='notice'>Your request for a [O.pack.name] has been approved!</span>")
 
-/datum/controller/subsystem/shuttle/proc/deny_request(datum/supply_order/O)
-	requestlist -= "[O.id]"
-	deniedrequests["[O.id]"] = O
-	if(GLOB.directory[O.orderer_ckey])
-		to_chat(GLOB.directory[O.orderer_ckey], "<span class='notice'>Your request for a [O.pack.name] has been denied!</span>")
 
 /obj/machinery/computer/ordercomp
 	name = "Supply ordering console"
@@ -506,8 +563,8 @@ GLOBAL_LIST_EMPTY(exports_types)
 			temp = "<b>Supply points: [round(SSpoints.supply_points)]</b><BR>"
 			temp += "<A href='?src=\ref[src];order=categories'>Back to all categories</A><HR><BR><BR>"
 			temp += "<b>Request from: [last_viewed_group]</b><BR><BR>"
-			for(var/supply_type in SSshuttle.supply_packs )
-				var/datum/supply_packs/N = SSshuttle.supply_packs[supply_type]
+			for(var/supply_type in SSpoints.supply_packs )
+				var/datum/supply_packs/N = SSpoints.supply_packs[supply_type]
 				if(N.hidden || N.contraband || N.group != last_viewed_group) continue								//Have to send the type instead of a reference to
 				temp += "<A href='?src=\ref[src];doorder=[supply_type]'>[N.name]</A> Cost: [round(N.cost)]<BR>"		//the obj because it would get caught by the garbage
 
@@ -517,7 +574,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 			return
 
 		//Find the correct supply_pack datum
-		var/datum/supply_packs/P = SSshuttle.supply_packs[text2path(href_list["doorder"])]
+		var/datum/supply_packs/P = SSpoints.supply_packs[text2path(href_list["doorder"])]
 		if(!istype(P))	return
 
 		var/timeout = world.time + 600
@@ -534,11 +591,11 @@ GLOBAL_LIST_EMPTY(exports_types)
 		else if(issilicon(usr))
 			idname = usr.real_name
 
-		SSshuttle.ordernum++
+		SSpoints.ordernum++
 		var/obj/item/paper/reqform = new /obj/item/paper(loc)
 		reqform.name = "Requisition Form - [P.name]"
 		reqform.info += "<h3>[SSmapping.configs[SHIP_MAP].map_name] Supply Requisition Form</h3><hr>"
-		reqform.info += "INDEX: #[SSshuttle.ordernum]<br>"
+		reqform.info += "INDEX: #[SSpoints.ordernum]<br>"
 		reqform.info += "REQUESTED BY: [idname]<br>"
 		reqform.info += "RANK: [idrank]<br>"
 		reqform.info += "REASON: [reason]<br>"
@@ -554,239 +611,31 @@ GLOBAL_LIST_EMPTY(exports_types)
 
 		//make our supply_order datum
 		var/datum/supply_order/O = new
-		O.id = SSshuttle.ordernum
-		O.pack = P
+		O.id = SSpoints.ordernum
+		O.pack = list(P)
 		O.orderer = idname
 		O.orderer_rank = idrank
 		O.orderer_ckey = usr.ckey
-		SSshuttle.requestlist["[O.id]"] = O
+		SSpoints.requestlist["[O.id]"] = O
 
 		temp = "Thanks for your request. The cargo team will process it as soon as possible.<BR>"
 		temp += "<BR><A href='?src=\ref[src];order=[last_viewed_group]'>Back</A> <A href='?src=\ref[src];mainmenu=1'>Main Menu</A>"
 
 	else if (href_list["vieworders"])
 		temp = "Current approved orders: <BR><BR>"
-		for(var/S in SSshuttle.shoppinglist)
-			var/datum/supply_order/SO = SSshuttle.shoppinglist[S]
-			temp += "[SO.pack.name] approved by [SO.orderer] [SO.reason ? "([SO.reason])":""]<BR>"
+		for(var/S in SSpoints.shoppinglist)
+			var/datum/supply_order/SO = SSpoints.shoppinglist[S]
+			temp += "[SO.pack[1].name] approved by [SO.orderer] [SO.reason ? "([SO.reason])":""]<BR>"
 		temp += "<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 
 	else if (href_list["viewrequests"])
 		temp = "Current requests: <BR><BR>"
-		for(var/S in SSshuttle.requestlist)
-			var/datum/supply_order/SO = SSshuttle.requestlist[S]
-			temp += "#[SO.id] - [SO.pack.name] requested by [SO.orderer]<BR>"
+		for(var/S in SSpoints.requestlist)
+			var/datum/supply_order/SO = SSpoints.requestlist[S]
+			temp += "#[SO.id] - [SO.pack[1].name] requested by [SO.orderer]<BR>"
 		temp += "<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 
 	else if (href_list["mainmenu"])
 		temp = null
 
 	updateUsrDialog()
-
-/*
-/obj/machinery/computer/supplycomp/interact(mob/user)
-	. = ..()
-	if(.)
-		return
-	var/dat
-	if (temp)
-		dat = temp
-	else
-		if (SSshuttle.supply)
-			dat += "\nPlatform position: "
-			if (SSshuttle.supply.mode == SHUTTLE_CALL)
-				dat += "Moving<BR>"
-			else
-				if (is_mainship_level(SSshuttle.supply.z))
-					dat += "Raised<BR>"
-
-					if (SSshuttle.supply.mode == SHUTTLE_IDLE)
-						dat += "<A href='?src=\ref[src];send=1'>Lower platform</A>"
-					else if (SSshuttle.supply.mode == SHUTTLE_IGNITING)
-						dat += "<A href='?src=\ref[src];cancel_send=1'>Cancel</A>"
-					else
-						dat += "*ASRS is busy*"
-					dat += "<BR>\n<BR>"
-				else
-					dat += "Lowered<BR>"
-					if (SSshuttle.supply.mode == SHUTTLE_IDLE)
-						dat += "<A href='?src=\ref[src];send=1'>Raise platform</A>"
-					else if (SSshuttle.supply.mode == SHUTTLE_IGNITING)
-						dat += "<A href='?src=\ref[src];cancel_send=1'>Cancel</A>"
-					else
-						dat += "*ASRS is busy*"
-					dat += "<BR>\n<BR>"
-
-
-		dat += {"<HR>\nSupply points: [round(SSpoints.supply_points)]<BR>\n<BR>
-		\n<A href='?src=\ref[src];order=categories'>Order items</A><BR>\n<BR>
-		\n<A href='?src=\ref[src];viewrequests=1'>View requests</A><BR>\n<BR>
-		\n<A href='?src=\ref[src];vieworders=1'>View orders</A><BR>\n<BR>"}
-
-
-	var/datum/browser/popup = new(user, "computer", "<div align='center'>Automated Storage and Retrieval System</div>", 575, 450)
-	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(user, "computer")
-
-
-/obj/machinery/computer/supplycomp/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
-
-	//Calling the shuttle
-	if(href_list["send"])
-		if(SSshuttle.supply.mode == SHUTTLE_IDLE && is_mainship_level(SSshuttle.supply.z))
-			if (!SSshuttle.supply.check_blacklist())
-				temp = "For safety reasons, the Automated Storage and Retrieval System cannot store live, non-xeno organisms, classified nuclear weaponry or homing beacons.<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
-				playsound(SSshuttle.supply.return_center_turf(), 'sound/machines/buzz-two.ogg', 50, 0)
-			else
-				playsound(SSshuttle.supply.return_center_turf(), 'sound/machines/elevator_move.ogg', 50, 0)
-				SSshuttle.moveShuttle("supply", "supply_away", TRUE)
-				temp = "Lowering platform. \[<span class='warning'><A href='?src=\ref[src];force_send=1'>Force</A></span>\]<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
-		else
-			var/obj/docking_port/D = SSshuttle.getDock("supply_home")
-			playsound(D.return_center_turf(), 'sound/machines/elevator_move.ogg', 50, 0)
-			SSshuttle.moveShuttle("supply", "supply_home", TRUE)
-			temp = "Raising platform.<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
-
-
-	else if (href_list["order"])
-		if(href_list["order"] == "categories")
-			last_viewed_group = "categories"
-			temp = "<b>Supply points: [round(SSpoints.supply_points)]</b><BR>"
-			temp += "<A href='?src=\ref[src];mainmenu=1'>Main Menu</A><HR><BR><BR>"
-			temp += "<b>Select a category</b><BR><BR>"
-			for(var/supply_group_name in GLOB.all_supply_groups )
-				temp += "<A href='?src=\ref[src];order=[supply_group_name]'>[supply_group_name]</A><BR>"
-		else
-			last_viewed_group = href_list["order"]
-			temp = "<b>Supply points: [round(SSpoints.supply_points)]</b><BR>"
-			temp += "<A href='?src=\ref[src];order=categories'>Back to all categories</A><HR><BR><BR>"
-			temp += "<b>Request from: [last_viewed_group]</b><BR><BR>"
-			for(var/supply_type in SSshuttle.supply_packs )
-				var/datum/supply_packs/N = SSshuttle.supply_packs[supply_type]
-				if((N.hidden && !hacked) || (N.contraband && !can_order_contraband) || N.group != last_viewed_group) continue								//Have to send the type instead of a reference to
-				temp += "<A href='?src=\ref[src];doorder=[N.name]'>[N.name]</A> Cost: [round(N.cost)]<BR>"		//the obj because it would get caught by the garbage
-
-	else if (href_list["doorder"])
-		if(world.time < reqtime)
-			visible_message("<b>[src]</b>'s monitor flashes, \"[world.time - reqtime] seconds remaining until another requisition form may be printed.\"")
-			return
-
-		//Find the correct supply_pack datum
-		var/datum/supply_packs/P = SSshuttle.supply_packs[href_list["doorder"]]
-		if(!istype(P))	return
-
-		var/timeout = world.time + 600
-		//var/reason = stripped_input(usr,"Reason:","Why do you require this item?","") as null|text), MAX_MESSAGE_LEN)
-		var/reason = "*None Provided*"
-		if(world.time > timeout)	return
-		if(!reason)	return
-
-		var/idname = "*None Provided*"
-		var/idrank = "*None Provided*"
-		if(ishuman(usr))
-			var/mob/living/carbon/human/H = usr
-			idname = H.get_authentification_name()
-			idrank = H.get_assignment()
-		else if(issilicon(usr))
-			idname = usr.real_name
-
-		SSshuttle.ordernum++
-		var/obj/item/paper/reqform = new /obj/item/paper(loc)
-		reqform.name = "Requisition Form - [P.name]"
-		reqform.info += "<h3>[SSmapping.configs[SHIP_MAP].map_name] Supply Requisition Form</h3><hr>"
-		reqform.info += "INDEX: #[SSshuttle.ordernum]<br>"
-		reqform.info += "REQUESTED BY: [idname]<br>"
-		reqform.info += "RANK: [idrank]<br>"
-		reqform.info += "REASON: [reason]<br>"
-		reqform.info += "SUPPLY CRATE TYPE: [P.name]<br>"
-		reqform.info += "ACCESS RESTRICTION: [get_access_desc(P.access)]<br>"
-		reqform.info += "CONTENTS:<br>"
-		reqform.info += P.manifest
-		reqform.info += "<hr>"
-		reqform.info += "STAMP BELOW TO APPROVE THIS REQUISITION:<br>"
-
-		reqform.update_icon()	//Fix for appearing blank when printed.
-		reqtime = (world.time + 5) % 1e5
-
-		//make our supply_order datum
-		var/datum/supply_order/O = new /datum/supply_order()
-		O.id = SSshuttle.ordernum
-		O.pack = P
-		O.orderer = idname
-		SSshuttle.requestlist += O
-
-		temp = "Order request placed.<BR>"
-		temp += "<BR><A href='?src=\ref[src];order=[last_viewed_group]'>Back</A>|<A href='?src=\ref[src];mainmenu=1'>Main Menu</A>|<A href='?src=\ref[src];confirmorder=[O.id]'>Authorize Order</A>"
-
-	else if(href_list["confirmorder"])
-		//Find the correct supply_order datum
-		var/ordernum = text2num(href_list["confirmorder"])
-		var/datum/supply_order/O
-		var/datum/supply_packs/P
-		temp = "Invalid Request"
-		temp += "<BR><A href='?src=\ref[src];order=[last_viewed_group]'>Back</A>|<A href='?src=\ref[src];mainmenu=1'>Main Menu</A>"
-
-		if(SSshuttle.shoppinglist.len > 20)
-			to_chat(usr, "<span class='warning'>Current retrieval load has reached maximum capacity.</span>")
-			return
-
-		for(var/i in SSshuttle.requestlist)
-			var/datum/supply_order/SO = i
-			if(SO.id == ordernum)
-				O = SO
-				P = O.pack
-				if(SSpoints.supply_points >= round(P.cost))
-					log_game("[key_name(usr)] approved the [P.name] supply pack.")
-					SSshuttle.requestlist -= SO
-					SSpoints.supply_points -= round(P.cost)
-					SSshuttle.shoppinglist += O
-					P.cost = P.cost * SUPPLY_COST_MULTIPLIER
-					temp = "Thank you for your order.<BR>"
-					temp += "<BR><A href='?src=\ref[src];viewrequests=1'>Back</A> <A href='?src=\ref[src];mainmenu=1'>Main Menu</A>"
-				else
-					temp = "Not enough supply points.<BR>"
-					temp += "<BR><A href='?src=\ref[src];viewrequests=1'>Back</A> <A href='?src=\ref[src];mainmenu=1'>Main Menu</A>"
-				break
-
-	else if (href_list["vieworders"])
-		temp = "Current approved orders: <BR><BR>"
-		for(var/S in SSshuttle.shoppinglist)
-			var/datum/supply_order/SO = S
-			temp += "#[SO.id] - [SO.pack.name] approved by [SO.orderer][SO.reason ? " ([SO.reason])":""]<BR>"// <A href='?src=\ref[src];cancelorder=[S]'>(Cancel)</A><BR>"
-		temp += "<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
-
-	else if (href_list["viewrequests"])
-		temp = "Current requests: <BR><BR>"
-		for(var/S in SSshuttle.requestlist)
-			var/datum/supply_order/SO = S
-			temp += "#[SO.id] - [SO.pack.name] requested by [SO.orderer] <A href='?src=\ref[src];confirmorder=[SO.id]'>Approve</A> <A href='?src=\ref[src];rreq=[SO.id]'>Remove</A><BR>"
-
-		temp += "<BR><A href='?src=\ref[src];clearreq=1'>Clear list</A>"
-		temp += "<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
-
-	else if (href_list["rreq"])
-		var/ordernum = text2num(href_list["rreq"])
-		temp = "Invalid Request.<BR>"
-		for(var/i in SSshuttle.requestlist)
-			var/datum/supply_order/SO = i
-			if(SO.id == ordernum)
-				SSshuttle.requestlist -= SO
-				temp = "Request removed.<BR>"
-				break
-		temp += "<BR><A href='?src=\ref[src];viewrequests=1'>Back</A> <A href='?src=\ref[src];mainmenu=1'>Main Menu</A>"
-
-	else if (href_list["clearreq"])
-		SSshuttle.requestlist.Cut()
-		temp = "List cleared.<BR>"
-		temp += "<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
-
-	else if (href_list["mainmenu"])
-		temp = null
-
-	updateUsrDialog()
-
-*/

@@ -17,23 +17,7 @@ SUBSYSTEM_DEF(shuttle)
 	var/obj/docking_port/mobile/crashmode/canterbury = null
 
 	var/obj/docking_port/mobile/supply/supply
-	var/ordernum = 1					//order number given to next order
 
-	var/list/supply_packs = list()
-	var/list/supply_packs_ui = list()
-	var/list/supply_packs_contents = list()
-
-	var/list/shoppinglist = list()
-	var/list/shopping_history = list()
-	
-	var/list/shopping_cart = list()
-	
-	var/list/export_history = list()
-	
-	var/list/requestlist = list()
-	var/list/deniedrequests = list()
-	var/list/approvedrequests = list()
-	
 	var/list/orderhistory = list()
 
 	var/list/crash_targets = list()
@@ -57,18 +41,7 @@ SUBSYSTEM_DEF(shuttle)
 	var/datum/turf_reservation/preview_reservation
 
 /datum/controller/subsystem/shuttle/Initialize(timeofday)
-	ordernum = rand(1, 9000)
-
-	for(var/pack in subtypesof(/datum/supply_packs))
-		var/datum/supply_packs/P = new pack()
-		if(!P.contains)
-			continue
-		supply_packs[pack] = P
-		LAZYADD(supply_packs_ui[P.group], list(list("path" = pack, "name" = P.name, "contains" = P.contains_name, "cost" = P.cost, "hidden" = P.hidden, "container_name" = initial(P.containertype.name))))
-		supply_packs_contents[pack] = P.contains_name
-
 	initial_load()
-
 	return ..()
 
 /datum/controller/subsystem/shuttle/proc/initial_load()
@@ -272,14 +245,8 @@ SUBSYSTEM_DEF(shuttle)
 	if (istype(SSshuttle.canterbury))
 		canterbury = SSshuttle.canterbury
 
-	if (istype(SSshuttle.shoppinglist))
-		shoppinglist = SSshuttle.shoppinglist
-	if (istype(SSshuttle.requestlist))
-		requestlist = SSshuttle.requestlist
 	if (istype(SSshuttle.orderhistory))
 		orderhistory = SSshuttle.orderhistory
-
-	ordernum = SSshuttle.ordernum
 
 	lockdown = SSshuttle.lockdown
 

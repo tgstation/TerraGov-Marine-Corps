@@ -1,10 +1,26 @@
 import { useBackend, useLocalState } from '../backend';
-import { Button, Flex, Divider, Collapsible, AnimatedNumber, Box, Section } from '../components';
+import { Button, Flex, Divider, Collapsible, AnimatedNumber, Box, Section, LabeledList, Icon } from '../components';
 import { Window } from '../layouts';
 import { Fragment } from 'inferno';
 import { map } from 'common/collections';
 import { FlexItem } from '../components/Flex';
 import { Table, TableRow, TableCell } from '../components/Table';
+import { LabeledListItem } from '../components/LabeledList';
+
+const category_icon = {
+  'Operations': "parachute-box",
+  'Weapons': "fighter-jet",
+  'Hardpoint Modules': "truck",
+  'Attachments': "microchip",
+  'Ammo': "space-shuttle",
+  'Armor': "hard-hat",
+  'Clothing': "tshirt",
+  'Medical': "medkit",
+  'Engineering': "tools",
+  'Supplies': "hamburger",
+  'Imports': "boxes",
+  'Pending Order': "shopping-cart",
+};
 
 export const Cargo = (props, context) => {
   const { act, data } = useBackend(context);
@@ -19,6 +35,7 @@ export const Cargo = (props, context) => {
     approvedrequests,
     deniedrequests,
     shopping_history,
+    awaiting_delivery,
   } = data;
 
   const selectedPackCat = supplypacks[selectedMenu]
@@ -29,18 +46,18 @@ export const Cargo = (props, context) => {
     <Window resizable>
       <Flex height="650px" align="stretch">
         <Flex.Item width="280px">
-          <Menu />
+          <Menu/>
         </Flex.Item>
         <Flex.Item position="relative" grow={1} height="100%">
           <Window.Content scrollable>
             {selectedMenu==="Previous Purchases" && (
-              <RequestsHistory type={shopping_history} />
+              <OrderList type={shopping_history} readOnly={1} />
             )}
             {selectedMenu==="Export History" && (
               <Exports />
             )}
             {selectedMenu==="Awaiting Delivery" && (
-              <AwaitingDelivery />
+              <OrderList type={awaiting_delivery} readOnly={1} />
             )}
             {selectedMenu==="Pending Order" && (
               <ShoppingCart />
@@ -49,10 +66,10 @@ export const Cargo = (props, context) => {
               <Requests />
             )}
             {selectedMenu==="Approved Requests" && (
-              <RequestsHistory type={approvedrequests} />
+              <OrderList type={approvedrequests} />
             )}
             {selectedMenu==="Denied Requests" && (
-              <RequestsHistory type={deniedrequests} />
+              <OrderList type={deniedrequests} />
             )}
             {!!selectedPackCat
               && (<Category selectedPackCat={selectedPackCat} />)}
@@ -109,11 +126,7 @@ const MenuButton = (props, context) => {
 
 const Menu = (props, context) => {
   const { act, data } = useBackend(context);
-
-  const [
-    selectedMenu,
-    setSelectedMenu,
-  ] = useLocalState(context, 'selectedMenu', null);
+  const { readOnly } = props;
 
   const {
     requests,
@@ -125,57 +138,47 @@ const Menu = (props, context) => {
     elevator_dir,
     deniedrequests,
     approvedrequests,
-    awaiting_delivery_items,
+    awaiting_delivery_orders,
     export_history,
     shopping_history,
   } = data;
-
-  const category_icon = {
-    'Operations': "parachute-box",
-    'Weapons': "fighter-jet",
-    'Hardpoint Modules': "truck",
-    'Attachments': "microchip",
-    'Ammo': "space-shuttle",
-    'Armor': "hard-hat",
-    'Clothing': "tshirt",
-    'Medical': "medkit",
-    'Engineering': "tools",
-    'Supplies': "hamburger",
-    'Imports': "boxes",
-  };
 
   const elev_status = elevator==="Raised" || elevator==="Lowered";
 
   return (
     <Section height="100%" p="5px">
       Points: <AnimatedNumber value={currentpoints} />
-      <Divider />
-      <Flex>
-        <FlexItem grow={1}>
-          <MenuButton
-            icon="luggage-cart"
-            menuname="Awaiting Delivery"
-            condition={!awaiting_delivery_items} />
-        </FlexItem>
-        <FlexItem>
-          <AnimatedNumber value={awaiting_delivery_items} /> item{
-            awaiting_delivery_items !== 1 && "s"
-          }
-        </FlexItem>
-      </Flex>
-      <Flex>
-        <FlexItem grow={1}>
-          <Button
-            onClick={() => act('send')}
-            disabled={!elev_status}
-            icon={"angle-double-"+elevator_dir}>
-            {elevator_dir==="up"?"Raise":"Lower"}
-          </Button>
-        </FlexItem>
-        <FlexItem>
-          Elevator: {elevator}
-        </FlexItem>
-      </Flex>
+      { !readOnly && (
+        <Fragment>
+          <Divider />
+          <Flex>
+            <FlexItem grow={1}>
+              <MenuButton
+                icon="luggage-cart"
+                menuname="Awaiting Delivery"
+                condition={!awaiting_delivery_orders} />
+            </FlexItem>
+            <FlexItem>
+              <AnimatedNumber value={awaiting_delivery_orders} /> order{
+                awaiting_delivery_orders !== 1 && "s"
+              }
+            </FlexItem>
+          </Flex>
+          <Flex>
+            <FlexItem grow={1}>
+              <Button
+                onClick={() => act('send')}
+                disabled={!elev_status}
+                icon={"angle-double-"+elevator_dir}>
+                {elevator_dir==="up"?"Raise":"Lower"}
+              </Button>
+            </FlexItem>
+            <FlexItem>
+              Elevator: {elevator}
+            </FlexItem>
+          </Flex>
+        </Fragment>
+      )}
       <Divider />
       <Flex>
         <FlexItem grow={1}>
@@ -191,14 +194,18 @@ const Menu = (props, context) => {
         <FlexItem width="5px" />
         <FlexItem>Cost: <AnimatedNumber value={shopping_list_cost} /></FlexItem>
       </Flex>
-      <MenuButton
-        icon="history"
-        menuname="Previous Purchases"
-        condition={!shopping_history.length} />
-      <MenuButton
-        icon="shipping-fast"
-        menuname="Export History"
-        condition={!export_history.length} />
+      { !readOnly && (
+        <Fragment>
+          <MenuButton
+            icon="history"
+            menuname="Previous Purchases"
+            condition={!shopping_history.length} />
+          <MenuButton
+            icon="shipping-fast"
+            menuname="Export History"
+            condition={!export_history.length} />
+        </Fragment>
+      )}
       <Divider />
       <Flex>
         <FlexItem grow={1}>
@@ -233,51 +240,14 @@ const Menu = (props, context) => {
   );
 };
 
-const AwaitingDelivery = (props, context) => {
-  const { act, data } = useBackend(context);
-
-  const {
-    awaiting_delivery,
-    supplypackscontents,
-  } = data;
-
-  return map((awaiting, path) => {
-    const {
-      name,
-      count,
-    } = awaiting;
-    const contains = supplypackscontents[path];
-
-    return (
-      <Flex>
-        <FlexItem width="50px" textAlign="center" fontSize="16pt">
-          {count} x
-        </FlexItem>
-        <FlexItem grow={1}>
-          <Collapsible
-            title={name}
-            color="gray">
-            <Table>
-              <PackContents contains={contains} />
-            </Table>
-            <Divider />
-          </Collapsible>
-        </FlexItem>
-      </Flex>
-    );
-  })(awaiting_delivery);
-};
-
-const RequestsHistory = (props, context) => {
+const OrderList = (props, context) => {
   const { act, data } = useBackend(context);
 
   const {
     type,
+    buttons,
+    readOnly,
   } = props;
-
-  const {
-    supplypackscontents,
-  } = data;
 
   const [
     selectedMenu,
@@ -285,44 +255,107 @@ const RequestsHistory = (props, context) => {
   ] = useLocalState(context, 'selectedMenu', null);
 
   return (
-    <Section title={selectedMenu}>
-      {type.map(request => {
+    <Section title={selectedMenu} buttons={buttons}>
+      { type.map(request => {
         const {
           id,
           orderer_rank,
           orderer,
+          authed_by,
           reason,
-          name,
           cost,
-          path,
+          packs,
         } = request;
-        const contains = supplypackscontents[path];
         const rank = orderer_rank || "";
+
         return (
-          <Section
-            key={id}
-            level={2}
-            title={"Requested by: "+rank+" "+orderer}
-            buttons={cost+" points"}
-            pl="10px">
-            <Box>
-              Reason: {reason}
-            </Box>
-            <Flex>
-              <Flex.Item grow={1}>
-                <Collapsible
-                  title={name}
-                  color="gray">
-                  <Table>
-                    <PackContents contains={contains} />
-                  </Table>
-                </Collapsible>
-              </Flex.Item>
-            </Flex>
+          <Section key={id} level={2}
+            title={"Order #"+id}
+            buttons={ !readOnly && (
+              <Fragment>
+                { (!authed_by || selectedMenu==="Denied Requests") && (
+                  <Button
+                    onClick={() => act('approve', { id: id })}
+                    icon="check"
+                    content="Approve" /> ) }
+                { !authed_by && (
+                  <Button
+                    onClick={() => act('deny', { id: id })}
+                    icon="times"
+                    content="Deny" />)}
+              </Fragment>
+            )}>
+            <LabeledList>
+              <LabeledListItem label="Requested by">{rank+" "+orderer}</LabeledListItem>
+              <LabeledListItem label="Reason" textAlign="right">{reason}</LabeledListItem>
+              <LabeledListItem label="Total Cost" textAlign="right">{cost} points</LabeledListItem>
+              <LabeledListItem label="Contents">
+                <Packs packs={packs} />
+              </LabeledListItem>
+            </LabeledList>
           </Section>
         );
       })}
     </Section>
+  );
+};
+
+const Packs = (props, context) => {
+  const { act, data } = useBackend(context);
+  const {
+    packs,
+  } = props;
+
+  return packs.map(pack => (
+    <Pack pack={pack} />
+  ));
+};
+
+const Pack = (props, context) => {
+  const { act, data } = useBackend(context);
+  const { pack } = props
+  const {
+    supplypackscontents,
+  } = data;
+  const {
+    name,
+    cost,
+    contains,
+  } = supplypackscontents[pack];
+  return (
+    !!contains && (contains.constructor === Object) ? (
+      <Collapsible
+        color="gray"
+        title={
+          <PackName cost={cost} name={name} pl={0} />
+        }>
+        <Table>
+          <PackContents contains={contains} />
+        </Table>
+      </Collapsible>
+    ) : (
+      <PackName cost={cost} name={name} pl="22px" />
+    )
+  );
+};
+
+const PackName = (props, context) => {
+  const {
+    cost,
+    name,
+    pl,
+  } = props;
+
+  return (
+    <Box inline pl={pl}>
+      <Box textAlign="right" inline width="65px">
+        {cost} points
+      </Box>
+      <Box width="15px" inline />
+      <Box inline>
+        {name}
+      </Box>
+    </Box>
   );
 };
 
@@ -331,11 +364,10 @@ const Requests = (props, context) => {
 
   const {
     requests,
-    supplypackscontents,
   } = data;
 
   return (
-    <Section title="Requests"
+    <OrderList type={requests}
       buttons={
         <Fragment>
           <Button
@@ -347,56 +379,7 @@ const Requests = (props, context) => {
             onClick={() => act('denyall')}
             content="Deny All" />
         </Fragment>
-      }
-      minHeight="100%">
-      { requests.map(request => {
-        const {
-          id,
-          orderer_rank,
-          orderer,
-          reason,
-          name,
-          cost,
-          path,
-        } = request;
-        const rank = orderer_rank || "";
-        const contains = supplypackscontents[path];
-        return (
-          <Section key={id} level={2}
-            title={"Requested by: "+rank+" "+orderer}
-            buttons={
-              <Fragment>
-                <Button
-                  onClick={() => act('approve', { id: id })}
-                  icon="check"
-                  content="Approve" />
-                <Button
-                  onClick={() => act('deny', { id: id })}
-                  icon="times"
-                  content="Deny" />
-              </Fragment>
-            }>
-            <Box>
-              Reason: {reason}
-            </Box>
-            <Flex>
-              <Flex.Item grow={1}>
-                <Collapsible
-                  title={name}
-                  color="gray">
-                  <Table>
-                    <PackContents contains={contains} />
-                  </Table>
-                </Collapsible>
-              </Flex.Item>
-              <Flex.Item basis="80px" shrink={0} textAlign="right">
-                {cost} points
-              </Flex.Item>
-            </Flex>
-          </Section>
-        );
-      })}
-    </Section>
+      }/>
   );
 };
 
@@ -411,7 +394,7 @@ const ShoppingCart = (props, context) => {
     shopping_list_items,
   } = data;
 
-  const shopping_list_array = Object.values(shopping_list);
+  const shopping_list_array = Object.keys(shopping_list);
 
   return (
     <Fragment>
@@ -431,6 +414,25 @@ const ShoppingCart = (props, context) => {
       </Box>
       <Category selectedPackCat={shopping_list_array} />
     </Fragment>
+  );
+};
+
+const CategoryButton = (props, context) => {
+  const { act, data } = useBackend(context);
+  const {
+    icon,
+    disabled,
+    id,
+    mode,
+  } = props;
+
+  return (
+    <Button
+      icon={icon}
+      disabled={disabled}
+      onClick={() => act('cart', {
+        id: id,
+        mode: mode })} />
   );
 };
 
@@ -456,69 +458,49 @@ const Category = (props, context) => {
   } = props;
 
   return (
-    <Section title={selectedMenu}>
+    <Section title={
+      <Fragment>
+        <Icon name={category_icon[selectedMenu]} mr="5px" />
+        {selectedMenu}
+      </Fragment>}>
       <Table>
         { selectedPackCat.map(entry => {
-          const shop_list = shopping_list[entry.path] || 0;
+          const shop_list = shopping_list[entry] || 0;
           const count = shop_list ? shop_list.count : 0;
+          const {
+            cost,
+          } = supplypackscontents[entry];
           return (
             <TableRow key={entry.id}>
-              <TableCell>
-                <Button
+              <TableCell width="130px">
+                <CategoryButton
                   icon="fast-backward"
                   disabled={!count}
-                  onClick={() => act('cart', {
-                    id: entry.path,
-                    mode: "removeall" })}
-                />
-                <Button
+                  id={entry}
+                  mode="removeall" />
+                <CategoryButton
                   icon="backward"
                   disabled={!count}
-                  onClick={() => act('cart', {
-                    id: entry.path,
-                    mode: "removeone" })}
-                />
-                <Box width="15px" inline textAlign="center">
+                  id={entry}
+                  mode="removeone" />
+                <Box width="25px" inline textAlign="center">
                   { !!count && (
                     <AnimatedNumber value={count} />
                   )}
                 </Box>
-                <Button
+                <CategoryButton
                   icon="forward"
-                  disabled={entry.cost > spare_points}
-                  onClick={() => act('cart', {
-                    id: entry.path,
-                    mode: "addone" })} />
-                <Button
+                  disabled={cost > spare_points}
+                  id={entry}
+                  mode="addone" />
+                <CategoryButton
                   icon="fast-forward"
-                  disabled={entry.cost > spare_points}
-                  onClick={() => act('cart', {
-                    id: entry.path,
-                    mode: "addall" })} />
+                  disabled={cost > spare_points}
+                  id={entry}
+                  mode="addall" />
               </TableCell>
               <TableCell>
-                <Collapsible
-                  color="gray"
-                  title={
-                    <Fragment>
-                      <Box textAlign="right" inline>
-                        {entry.cost} points
-                      </Box>
-                      <Box width="15px" inline />
-                      <Box inline>
-                        {entry.name}
-                      </Box>
-                    </Fragment>
-                  }>
-                  <Table>
-                    <TableRow>
-                      <TableCell>
-                        Container Type: {entry.container_name}
-                      </TableCell>
-                    </TableRow>
-                    <PackContents contains={supplypackscontents[entry.path]} />
-                  </Table>
-                </Collapsible>
+                <Pack pack={entry} />
               </TableCell>
             </TableRow>
           );
