@@ -252,8 +252,6 @@
 					/obj/item/attachable/bipod = round(scale * 8),
 					/obj/item/attachable/burstfire_assembly = round(scale * 4),
 
-					/obj/item/attachable/stock/t35stock = round(scale * 4),
-					/obj/item/attachable/stock/t19stock = round(scale * 4),
 					/obj/item/attachable/stock/tactical = round(scale * 3),
 
 					/obj/item/attachable/attached_gun/grenade = round(scale * 10),
@@ -321,7 +319,6 @@
 						/obj/item/storage/belt/grenade = round(scale * 5),
 						/obj/item/storage/belt/gun/pistol/standard_pistol = round(scale * 10),
 						/obj/item/storage/belt/gun/revolver/standard_revolver = round(scale * 5),
-						/obj/item/storage/large_holster/t19 = round(scale * 5),
 						/obj/item/clothing/tie/storage/webbing = round(scale * 5),
 						/obj/item/clothing/tie/storage/brown_vest = round(scale * 5),
 						/obj/item/clothing/tie/storage/white_vest/medic = round(scale * 5),
