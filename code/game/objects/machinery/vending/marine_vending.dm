@@ -86,7 +86,6 @@
 					/obj/item/storage/belt/grenade = 5,
 					/obj/item/storage/belt/gun/pistol/standard_pistol = 10,
 					/obj/item/storage/belt/gun/revolver/standard_revolver = 5,
-					/obj/item/storage/large_holster/t19 = 5,
 					/obj/item/clothing/tie/storage/webbing = 5,
 					/obj/item/clothing/tie/storage/brown_vest = 5,
 					/obj/item/clothing/tie/storage/white_vest/medic = 5,
@@ -636,9 +635,7 @@
 						/obj/item/attachable/lasersight = 10,
 						/obj/item/attachable/verticalgrip = 10,
 
-						/obj/item/attachable/stock/t19stock = 3,
 						/obj/item/attachable/stock/revolver = 3,
-						/obj/item/attachable/stock/t35stock = 3,
 						/obj/item/attachable/stock/tactical = 3,
 
 						/obj/item/attachable/attached_gun/flamer = 3,
@@ -698,7 +695,6 @@
 					/obj/item/storage/belt/sparepouch = 10,
 					/obj/item/storage/belt/gun/pistol/standard_pistol = 10,
 					/obj/item/storage/belt/gun/revolver/standard_revolver = 10,
-					/obj/item/storage/large_holster/t19 = 10,
 					/obj/item/storage/pouch/pistol = 10,
 					/obj/item/storage/pouch/magazine = 10,
 					/obj/item/storage/pouch/magazine/pistol = 10,
