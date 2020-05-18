@@ -49,7 +49,7 @@
 	icon_state = "t19"
 	item_state = "t19"
 	caliber = "10x20mm caseless" //codex
-	max_shells = 60 //codex
+	max_shells = 40 //codex
 	flags_equip_slot = ITEM_SLOT_BACK
 	current_mag = /obj/item/ammo_magazine/smg/standard_machinepistol
 	type_of_casings = null
@@ -72,10 +72,10 @@
 	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 17,"rail_x" = 9, "rail_y" = 20, "under_x" = 21, "under_y" = 12, "stock_x" = 24, "stock_y" = 10)
 
 	accuracy_mult = 0.95
-	accuracy_mult_unwielded = 0.9
-	scatter = 20
+	accuracy_mult_unwielded = 0.85
+	scatter = 15
 	fire_delay = 0.15 SECONDS
-	scatter_unwielded = 30
+	scatter_unwielded = 15 //Made to be used one handed.
 	aim_slowdown = 0.15
 	burst_amount = 5
 
@@ -90,6 +90,7 @@
 	caliber = "10x20mm caseless" //codex
 	max_shells = 60 //codex
 	flags_equip_slot = ITEM_SLOT_BACK
+	wield_delay = 0.5 SECONDS
 	current_mag = /obj/item/ammo_magazine/smg/standard_smg
 	type_of_casings = null
 	attachable_allowed = list(
@@ -104,16 +105,16 @@
 						/obj/item/attachable/magnetic_harness)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 22, "under_x" = 25, "under_y" = 22, "stock_x" = 24, "stock_y" = 10)
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 12, "under_x" = 30, "under_y" = 12, "stock_x" = 24, "stock_y" = 10)
 
-	accuracy_mult = 0.95
-	accuracy_mult_unwielded = 0.9
-	scatter = 20
+	accuracy_mult = 1.15
+	accuracy_mult_unwielded = 0.8
+	scatter = 0
 	fire_delay = 0.15 SECONDS
 	scatter_unwielded = 30
-	aim_slowdown = 0.15
-	burst_amount = 5
+	aim_slowdown = 0.25
+	burst_amount = 0 
 
 //-------------------------------------------------------
 //M39 SMG

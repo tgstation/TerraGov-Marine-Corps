@@ -30,12 +30,12 @@
 //-------------------------------------------------------
 //T-19 SMG ammo
 
-/obj/item/ammo_magazine/smg/standard_smg
+/obj/item/ammo_magazine/smg/standard_machinepistol
 	name = "\improper T-19 submachine gun magazine (10x20mm)"
 	desc = "A 10x20mm caseless Submachine Gun magazine."
 	caliber = "10x20mm caseless"
 	icon_state = "t19"
-	max_rounds = 60
+	max_rounds = 40
 	w_class = WEIGHT_CLASS_SMALL
 	gun_type = /obj/item/weapon/gun/smg/t19
 
