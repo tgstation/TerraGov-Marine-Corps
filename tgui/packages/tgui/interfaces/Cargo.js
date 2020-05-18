@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from '../backend';
-import { Button, Flex, Divider, Collapsible, AnimatedNumber, Box, Section, LabeledList, Icon } from '../components';
+import { Button, Flex, Divider, Collapsible, AnimatedNumber, Box, Section, LabeledList, Icon, Input } from '../components';
 import { Window } from '../layouts';
 import { Fragment } from 'inferno';
 import { map } from 'common/collections';
@@ -367,14 +367,15 @@ const PackName = (props, context) => {
 
 const Requests = (props, context) => {
   const { act, data } = useBackend(context);
-
+  const { readOnly } = props;
   const {
     requests,
   } = data;
 
   return (
     <OrderList type={requests}
-      buttons={
+      readOnly={readOnly}
+      buttons={!readOnly && (
         <Fragment>
           <Button
             icon="check-double"
@@ -385,7 +386,7 @@ const Requests = (props, context) => {
             onClick={() => act('denyall')}
             content="Deny All" />
         </Fragment>
-      } />
+      )} />
   );
 };
 
@@ -399,18 +400,28 @@ const ShoppingCart = (props, context) => {
     shopping_list_cost,
     shopping_list_items,
   } = data;
-
+  const { readOnly } = props;
   const shopping_list_array = Object.keys(shopping_list);
+  const [
+    reason,
+    setReason,
+  ] = useLocalState(context, 'reason', null);
 
   return (
-    <Fragment>
+    <Section>
       <Box textAlign="center">
         <Button
           p="5px"
           icon="dollar-sign"
-          content="Purchase Cart"
-          disabled={shopping_list_cost>currentpoints || !shopping_list_items}
-          onClick={() => act('buycart')} />
+          content={readOnly?"Submit Request":"Purchase Cart"}
+          disabled={
+            (readOnly && !reason)
+            || shopping_list_cost>currentpoints
+            || !shopping_list_items
+          }
+          onClick={() => act((readOnly ? 'submitrequest' : 'buycart'), {
+            reason: reason,
+          })} />
         <Button
           p="5px"
           content="Clear Cart"
@@ -418,8 +429,17 @@ const ShoppingCart = (props, context) => {
           icon="snowplow"
           onClick={() => act('clearcart')} />
       </Box>
-      <Category selectedPackCat={shopping_list_array} />
-    </Fragment>
+      { readOnly && (
+        <Fragment>
+          <Box width="10%" inline>Reason: </Box>
+          <Input
+            width="89%"
+            inline value={reason}
+            onInput={(e, value) => setReason(value)} />
+        </Fragment>
+      )}
+      <Category selectedPackCat={shopping_list_array} level={2} />
+    </Section>
   );
 };
 
@@ -461,10 +481,11 @@ const Category = (props, context) => {
 
   const {
     selectedPackCat,
+    level,
   } = props;
 
   return (
-    <Section title={
+    <Section level={level || 1} title={
       <Fragment>
         <Icon name={category_icon[selectedMenu]} mr="5px" />
         {selectedMenu}
@@ -578,16 +599,16 @@ export const CargoRequest = (props, context) => {
               <OrderList type={awaiting_delivery} readOnly={1} />
             )}
             {selectedMenu==="Pending Order" && (
-              <ShoppingCart />
+              <ShoppingCart readOnly={1} />
             )}
             {selectedMenu==="Requests" && (
-              <Requests />
+              <Requests readOnly={1} />
             )}
             {selectedMenu==="Approved Requests" && (
               <OrderList type={approvedrequests} />
             )}
             {selectedMenu==="Denied Requests" && (
-              <OrderList type={deniedrequests} />
+              <OrderList type={deniedrequests} readOnly={1} />
             )}
             {!!selectedPackCat
               && (<Category selectedPackCat={selectedPackCat} />)}

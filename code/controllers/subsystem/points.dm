@@ -104,6 +104,50 @@ SUBSYSTEM_DEF(points)
 	if(GLOB.directory[O.orderer_ckey])
 		to_chat(GLOB.directory[O.orderer_ckey], "<span class='notice'>Your request [O.id] has been denied!</span>")
 
+/datum/controller/subsystem/points/proc/copy_order(datum/supply_order/O)
+	var/datum/supply_order/NO = new
+	NO.id = ++ordernum
+	NO.orderer_ckey = O.orderer_ckey
+	NO.orderer = O.orderer
+	NO.orderer_rank = O.orderer_rank
+	return NO
+
+/datum/controller/subsystem/points/proc/process_cart(mob/user, list/cart)
+	. = list()
+	var/datum/supply_order/O = new
+	O.id = ++ordernum
+	O.orderer_ckey = user.ckey
+	O.orderer = user.real_name
+	O.pack = list()
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		O.orderer_rank = H.get_assignment()
+	var/list/access_packs = list()
+	for(var/i in cart)
+		var/datum/supply_packs/SP = supply_packs[i]
+		for(var/num in 1 to cart[i])
+			if(SP.containertype != null)
+				if(SP.access)
+					LAZYADD(access_packs["[SP.access]"], SP)
+				else
+					O.pack += SP
+				continue
+			var/datum/supply_order/NO = copy_order(O)
+			NO.pack = list(SP)
+			. += NO
+
+	for(var/access in access_packs)
+		var/datum/supply_order/AO = copy_order(O)
+		AO.pack = list()
+		. += AO
+		for(var/pack in access_packs[access])
+			AO.pack += pack
+
+	if(length(O.pack))
+		. += O
+	else
+		qdel(O)
+
 /datum/controller/subsystem/points/proc/buy_cart(mob/user)
 	var/cost = 0
 	for(var/i in shopping_cart)
@@ -111,30 +155,19 @@ SUBSYSTEM_DEF(points)
 		cost += SP.cost * shopping_cart[i]
 	if(cost > supply_points)
 		return
-	var/datum/supply_order/O = new
-	O.id = ++ordernum
-	O.orderer_ckey = user.ckey
-	O.orderer = user.real_name
-	O.authorised_by = user.real_name
-	O.pack = list()
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		O.orderer_rank = H.get_assignment()
-	for(var/i in shopping_cart)
-		var/datum/supply_packs/SP = supply_packs[i]
-		for(var/num in 1 to shopping_cart[i])
-			if(SP.containertype != null)
-				O.pack += SP
-				continue
-			var/datum/supply_order/NO = new // make a separate order for it
-			NO.id = ++ordernum
-			NO.orderer_ckey = user.ckey
-			NO.orderer = user.real_name
-			NO.orderer_rank = O.orderer_rank
-			NO.authorised_by = user.real_name
-			NO.pack = list(SP)
-			shoppinglist["[NO.id]"] = NO
+	var/list/datum/supply_order/orders = process_cart(user, shopping_cart)
+	for(var/i in 1 to length(orders))
+		orders[i].authorised_by = user.real_name
+		shoppinglist["[orders[i].id]"] = orders[i]
 	supply_points -= cost
-	if(length(O.pack)) // in case its an empty order
-		shoppinglist["[O.id]"] = O
 	shopping_cart.Cut()
+
+/datum/controller/subsystem/points/proc/submit_request(mob/user, reason)
+	var/list/ckey_shopping_cart = request_shopping_cart[user.ckey]
+	if(!length(ckey_shopping_cart))
+		return
+	var/list/datum/supply_order/orders = process_cart(user, ckey_shopping_cart)
+	for(var/i in 1 to length(orders))
+		orders[i].reason = reason
+		requestlist["[orders[i].id]"] = orders[i]
+	ckey_shopping_cart.Cut()

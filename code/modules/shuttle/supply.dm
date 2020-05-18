@@ -6,8 +6,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 GLOBAL_LIST_EMPTY(exports_types)
 
-#define SUPPLY_COST_MULTIPLIER 1.08
-
 /datum/supply_order
 	var/id
 	var/orderer
@@ -481,7 +479,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 		if("approveall")
 			for(var/i in SSpoints.requestlist)
 				var/datum/supply_order/O = SSpoints.requestlist[i]
-				SSpoints.approve_request(O)
+				SSpoints.approve_request(O, ui.user)
 			. = TRUE
 		if("denyall")
 			for(var/i in SSpoints.requestlist)
@@ -555,6 +553,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 		return TRUE
 	switch(action)
 		if("submitrequest")
+			SSpoints.submit_request(ui.user, params["reason"])
 			. = TRUE
 
 /datum/supply_ui/requests/get_shopping_cart(mob/user)
@@ -575,129 +574,3 @@ GLOBAL_LIST_EMPTY(exports_types)
 	if(!SU)
 		SU = new(src)
 	return SU.interact(user)
-/*
-/obj/machinery/computer/ordercomp/interact(mob/user)
-	. = ..()
-	if(.)
-		return
-	var/dat
-	if(temp)
-		dat = temp
-	else
-		if (SSshuttle.supply)
-			dat += "<BR><B>Automated Storage and Retrieval System</B><HR>Location: "
-			if(is_centcom_level(SSshuttle.supply.z))
-				dat += "Lowered"
-			else if(is_mainship_level(SSshuttle.supply.z))
-				dat += "Raised"
-			else if(is_mainship_level(SSshuttle.supply.destination?.z))
-				dat += "Raising platform"
-			else
-				dat += "Lowering platform"
-			dat += "<BR><HR>Supply points: [round(SSpoints.supply_points)]<BR>"
-		dat += {"<BR>\n<A href='?src=\ref[src];order=categories'>Request items</A><BR><BR>
-		<A href='?src=\ref[src];vieworders=1'>View approved orders</A><BR><BR>
-		<A href='?src=\ref[src];viewrequests=1'>View requests</A>"}
-
-	var/datum/browser/popup = new(user, "computer", "<div align='center'>Ordering Console</div>", 575, 450)
-	popup.set_content(dat)
-	popup.open(FALSE)
-	onclose(user, "computer")
-
-
-/obj/machinery/computer/ordercomp/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
-
-	if(href_list["order"])
-		if(href_list["order"] == "categories")
-			//all_supply_groups
-			//Request what?
-			last_viewed_group = "categories"
-			temp = "<b>Supply points: [round(SSpoints.supply_points)]</b><BR>"
-			temp += "<A href='?src=\ref[src];mainmenu=1'>Main Menu</A><HR><BR><BR>"
-			temp += "<b>Select a category</b><BR><BR>"
-			for(var/supply_group_name in GLOB.all_supply_groups )
-				temp += "<A href='?src=\ref[src];order=[supply_group_name]'>[supply_group_name]</A><BR>"
-		else
-			last_viewed_group = href_list["order"]
-			temp = "<b>Supply points: [round(SSpoints.supply_points)]</b><BR>"
-			temp += "<A href='?src=\ref[src];order=categories'>Back to all categories</A><HR><BR><BR>"
-			temp += "<b>Request from: [last_viewed_group]</b><BR><BR>"
-			for(var/supply_type in SSpoints.supply_packs )
-				var/datum/supply_packs/N = SSpoints.supply_packs[supply_type]
-				if(N.hidden || N.contraband || N.group != last_viewed_group) continue								//Have to send the type instead of a reference to
-				temp += "<A href='?src=\ref[src];doorder=[supply_type]'>[N.name]</A> Cost: [round(N.cost)]<BR>"		//the obj because it would get caught by the garbage
-
-	else if (href_list["doorder"])
-		if(world.time < reqtime)
-			visible_message("<b>[src]</b>'s monitor flashes, \"[world.time - reqtime] seconds remaining until another requisition form may be printed.\"")
-			return
-
-		//Find the correct supply_pack datum
-		var/datum/supply_packs/P = SSpoints.supply_packs[text2path(href_list["doorder"])]
-		if(!istype(P))	return
-
-		var/timeout = world.time + 600
-		var/reason = stripped_input(usr, "Reason:","Why do you require this item?")
-		if(world.time > timeout)	return
-		if(!reason)	return
-
-		var/idname = "*None Provided*"
-		var/idrank = ""
-		if(ishuman(usr))
-			var/mob/living/carbon/human/H = usr
-			idname = H.get_authentification_name()
-			idrank = H.get_assignment()
-		else if(issilicon(usr))
-			idname = usr.real_name
-
-		SSpoints.ordernum++
-		var/obj/item/paper/reqform = new /obj/item/paper(loc)
-		reqform.name = "Requisition Form - [P.name]"
-		reqform.info += "<h3>[SSmapping.configs[SHIP_MAP].map_name] Supply Requisition Form</h3><hr>"
-		reqform.info += "INDEX: #[SSpoints.ordernum]<br>"
-		reqform.info += "REQUESTED BY: [idname]<br>"
-		reqform.info += "RANK: [idrank]<br>"
-		reqform.info += "REASON: [reason]<br>"
-		reqform.info += "SUPPLY CRATE TYPE: [P.name]<br>"
-		reqform.info += "ACCESS RESTRICTION: [get_access_desc(P.access)]<br>"
-		reqform.info += "CONTENTS:<br>"
-		reqform.info += "<hr>"
-		reqform.info += "STAMP BELOW TO APPROVE THIS REQUISITION:<br>"
-
-		reqform.update_icon()	//Fix for appearing blank when printed.
-		reqtime = (world.time + 5) % 1e5
-
-		//make our supply_order datum
-		var/datum/supply_order/O = new
-		O.id = SSpoints.ordernum
-		O.pack = list(P)
-		O.orderer = idname
-		O.orderer_rank = idrank
-		O.orderer_ckey = usr.ckey
-		SSpoints.requestlist["[O.id]"] = O
-
-		temp = "Thanks for your request. The cargo team will process it as soon as possible.<BR>"
-		temp += "<BR><A href='?src=\ref[src];order=[last_viewed_group]'>Back</A> <A href='?src=\ref[src];mainmenu=1'>Main Menu</A>"
-
-	else if (href_list["vieworders"])
-		temp = "Current approved orders: <BR><BR>"
-		for(var/S in SSpoints.shoppinglist)
-			var/datum/supply_order/SO = SSpoints.shoppinglist[S]
-			temp += "[SO.pack[1].name] approved by [SO.orderer] [SO.reason ? "([SO.reason])":""]<BR>"
-		temp += "<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
-
-	else if (href_list["viewrequests"])
-		temp = "Current requests: <BR><BR>"
-		for(var/S in SSpoints.requestlist)
-			var/datum/supply_order/SO = SSpoints.requestlist[S]
-			temp += "#[SO.id] - [SO.pack[1].name] requested by [SO.orderer]<BR>"
-		temp += "<BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
-
-	else if (href_list["mainmenu"])
-		temp = null
-
-	updateUsrDialog()
-*/
