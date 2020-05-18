@@ -44,7 +44,7 @@
 // T-19 Machinepistol. It fits here more.
 
 /obj/item/weapon/gun/smg/standard_machinepistol
-	name = "\improper T-19 submachinegun"
+	name = "\improper T-19 Machinepistol"
 	desc = "The T-19 submachine gun is the TerraGov Marine Corps standard issue machine pistol. Its known for it's low recoil and scatter when used one handed. It's usually carried by specialized troops who do not have the space to carry a much larger gun like medics and engineers. It uses 10x20mm caseless rounds."
 	icon_state = "t19"
 	item_state = "t19"
@@ -106,7 +106,7 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 12, "under_x" = 30, "under_y" = 12, "stock_x" = 24, "stock_y" = 10)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 12, "under_x" = 17, "under_y" = 15, "stock_x" = 24, "stock_y" = 10)
 
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.8
