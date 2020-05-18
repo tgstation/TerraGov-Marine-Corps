@@ -37,6 +37,18 @@
 	icon_state = "t19"
 	max_rounds = 60
 	w_class = WEIGHT_CLASS_SMALL
+	gun_type = /obj/item/weapon/gun/smg/t19
+
+//-------------------------------------------------------
+//T-90 SMG ammo
+
+/obj/item/ammo_magazine/smg/standard_smg
+	name = "\improper T-19 submachine gun magazine (10x20mm)"
+	desc = "A 10x20mm caseless Submachine Gun magazine."
+	caliber = "10x20mm caseless"
+	icon_state = "t90"
+	max_rounds = 60
+	w_class = WEIGHT_CLASS_SMALL
 	gun_type = /obj/item/weapon/gun/smg/standard_smg
 
 //-------------------------------------------------------
