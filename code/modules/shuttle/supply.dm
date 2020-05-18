@@ -211,7 +211,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 		for(var/atom/movable/AM in shuttle_area)
 			if(AM.anchored)
 				continue
-
+			/*
 			// Must be in a crate!
 			if(istype(AM,/obj/structure/closet/crate))
 
@@ -230,7 +230,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 						continue
 				if(find_slip)
 					SSpoints.export_history += "Crate ([POINTS_PER_CRATE] points)"
-
+			*/
 			//Sell Xeno Corpses
 			if (isxeno(AM))
 				var/cost = 0
