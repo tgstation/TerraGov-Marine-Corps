@@ -229,9 +229,9 @@
 	icon_state = "t29"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/smartmachinegun
-	max_rounds = 300
+	max_rounds = 200
 	gun_type = /obj/item/weapon/gun/rifle/standard_smartmachinegun
-	reload_delay = 2 SECONDS
+	reload_delay = 2.5 SECONDS
 
 
 //-------------------------------------------------------

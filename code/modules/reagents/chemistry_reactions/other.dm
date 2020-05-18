@@ -9,15 +9,15 @@
 		empulse(location, round(created_volume / 24), round(created_volume / 14), 1)
 		holder.clear_reagents()
 
-/datum/chemical_reaction/water_two
-	name = "Water"
-	results = list(/datum/reagent/water = 2)
+/datum/chemical_reaction/serotrotium
+	name = "Serotrotium"
+	results = list(/datum/reagent/serotrotium = 1) //Weird emotes, chance of minor drowsiness.
 	required_reagents = list(/datum/reagent/medicine/paracetamol = 1, /datum/reagent/medicine/tramadol = 1)
 
 /datum/chemical_reaction/toxin_two //Space Atropine!
 	name = "Toxin"
 	results = list(/datum/reagent/toxin = 3)
-	required_reagents = list(/datum/reagent/medicine/synaptizine = 1, /datum/reagent/toxin/xeno_neurotoxin = 10)
+	required_reagents = list(/datum/reagent/medicine/synaptizine = 1, /datum/reagent/toxin/xeno_neurotoxin = 8)
 
 /datum/chemical_reaction/sdtoxin
 	name = "Toxin"
@@ -92,11 +92,11 @@
 	for(var/mob/living/carbon/M in viewers(WORLD_VIEW, location))
 		switch(get_dist(M, location))
 			if(0 to 3)
-				if(M.flash_eyes())
+				if(M.flash_act())
 					M.Paralyze(30 SECONDS)
 
 			if(4 to 5)
-				if(M.flash_eyes())
+				if(M.flash_act())
 					M.Stun(10 SECONDS)
 
 

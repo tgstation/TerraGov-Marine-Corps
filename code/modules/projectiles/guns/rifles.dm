@@ -67,6 +67,7 @@
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/attached_gun/grenade,
 						/obj/item/attachable/attached_gun/flamer,
@@ -118,6 +119,7 @@
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/scope,
 						/obj/item/attachable/scope/mini,
@@ -162,6 +164,7 @@
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
@@ -211,6 +214,7 @@
 						/obj/item/attachable/quickfire,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
@@ -278,6 +282,7 @@
 	current_mag = /obj/item/ammo_magazine/rifle/m41a
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/attached_gun/grenade,
 						/obj/item/attachable/attached_gun/flamer,
@@ -378,6 +383,7 @@
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/angledgrip,
@@ -437,6 +443,7 @@
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/scope,
 						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/compensator,
@@ -571,6 +578,7 @@
 	current_mag = /obj/item/ammo_magazine/rifle/sx16_buckshot
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/angledgrip,
@@ -603,9 +611,11 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
 	caliber = "16 gauge" //codex
 	max_shells = 12 //codex
+	force = 20
 	current_mag = /obj/item/ammo_magazine/rifle/tx15_slug
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/angledgrip,
@@ -626,7 +636,8 @@
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 12, "rail_y" = 17, "under_x" = 24, "under_y" = 11, "stock_x" = 26, "stock_y" = 13)
 	gun_skill_category = GUN_SKILL_SHOTGUNS
 
-	fire_delay = 1.1 SECONDS
+	fire_delay = 1 SECONDS
+	accuracy_mult = 1.15
 	burst_amount = 1
 
 //-------------------------------------------------------
@@ -642,7 +653,7 @@
 	force = 30
 	aim_slowdown = 0.95
 	wield_delay = 1.3 SECONDS
-	fire_sound =  'sound/weapons/guns/fire/rifle.ogg'
+	fire_sound = "gun_smartgun"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
