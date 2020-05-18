@@ -50,7 +50,7 @@
 	item_state = "t19"
 	caliber = "10x20mm caseless" //codex
 	max_shells = 40 //codex
-	flags_equip_slot = ITEM_SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	current_mag = /obj/item/ammo_magazine/smg/standard_machinepistol
 	type_of_casings = null
 	attachable_allowed = list(
