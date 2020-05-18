@@ -552,7 +552,7 @@ GLOBAL_LIST_EMPTY(exports_types)
 
 /datum/supply_ui/requests/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	if(..())
-		return
+		return TRUE
 	switch(action)
 		if("submitrequest")
 			. = TRUE
