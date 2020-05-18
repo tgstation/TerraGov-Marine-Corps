@@ -94,7 +94,6 @@
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/reddot,
-						/obj/item/attachable/stock/t19stock,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/flashlight,
@@ -105,7 +104,7 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 17,"rail_x" = 9, "rail_y" = 20, "under_x" = 21, "under_y" = 12, "stock_x" = 24, "stock_y" = 10)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 22, "under_x" = 25, "under_y" = 22, "stock_x" = 24, "stock_y" = 10)
 
 	accuracy_mult = 0.95
 	accuracy_mult_unwielded = 0.9
