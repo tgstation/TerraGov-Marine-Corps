@@ -73,7 +73,7 @@
 
 	accuracy_mult = 0.95
 	accuracy_mult_unwielded = 0.85
-	recoil_unwielded = 0 
+	recoil_unwielded = 0
 	scatter = 15
 	fire_delay = 0.15 SECONDS
 	scatter_unwielded = 15 //Made to be used one handed.
@@ -88,7 +88,7 @@
 	desc = "The T-90 submachine gun is the TerraGov Marine Corps standard issue SMG. Its known for it's compact size and ease of use inside the field. It's usually carried by troops who want a lightweight gun to rush with. It uses 10x20mm caseless rounds."
 	fire_sound = 'sound/weapons/guns/fire/t90.ogg'
 	icon_state = "t90"
-	item_state = "t19"
+	item_state = "t90"
 	caliber = "10x20mm caseless" //codex
 	max_shells = 60 //codex
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -117,7 +117,7 @@
 	fire_delay = 0.15 SECONDS
 	scatter_unwielded = 30
 	aim_slowdown = 0.25
-	burst_amount = 0 
+	burst_amount = 0
 
 //-------------------------------------------------------
 //M39 SMG
@@ -178,7 +178,7 @@
 	damage_mult = 1.2
 	aim_slowdown = 0.4
 	scatter = 10
-	
+
 
 //-------------------------------------------------------
 //M5, a classic SMG used in a lot of action movies.
