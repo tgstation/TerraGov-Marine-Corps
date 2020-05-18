@@ -28,7 +28,7 @@
 	bonus_overlay = "m39_ex"
 
 //-------------------------------------------------------
-//T-19 SMG ammo
+//T-19 Machinepistol ammo
 
 /obj/item/ammo_magazine/smg/standard_machinepistol
 	name = "\improper T-19 machinepistol gun magazine (10x20mm)"
