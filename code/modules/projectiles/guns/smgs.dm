@@ -73,6 +73,7 @@
 
 	accuracy_mult = 0.95
 	accuracy_mult_unwielded = 0.85
+	recoil_unwielded = 0 
 	scatter = 15
 	fire_delay = 0.15 SECONDS
 	scatter_unwielded = 15 //Made to be used one handed.
