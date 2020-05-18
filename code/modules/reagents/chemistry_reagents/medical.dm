@@ -117,6 +117,7 @@
 
 /datum/reagent/medicine/oxycodone/on_mob_life(mob/living/L, metabolism)
 	L.reagent_pain_modifier += PAIN_REDUCTION_FULL
+	L.adjustStaminaLoss(2*REM)
 	return ..()
 
 /datum/reagent/medicine/oxycodone/overdose_process(mob/living/L, metabolism)
@@ -171,9 +172,9 @@
 	if(L.bodytemperature > target_temp)
 		L.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, target_temp)
 	if(volume > 10)
-		L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT
+		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 	if(volume > 20)
-		L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT
+		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 		L.heal_limb_damage(0, 1 * REM)
 	return ..()
 
@@ -221,9 +222,9 @@
 
 /datum/reagent/medicine/dexalin/on_mob_life(mob/living/L,metabolism)
 	if(metabolism & IS_VOX)
-		L.adjustToxLoss(2*REM)
+		L.adjustToxLoss(6*REM)
 	else
-		L.adjustOxyLoss(-2*REM)
+		L.adjustOxyLoss(-6*REM)
 	holder.remove_reagent("lexorin", 2 * REM)
 	return ..()
 
@@ -265,14 +266,14 @@
 	taste_description = "grossness"
 
 /datum/reagent/medicine/tricordrazine/on_mob_life(mob/living/L, metabolism)
-	if(L.getOxyLoss())
-		L.adjustOxyLoss(-REM)
-	if(L.getBruteLoss() && prob(80))
-		L.heal_limb_damage(REM, 0)
-	if(L.getFireLoss() && prob(80))
-		L.heal_limb_damage(0, REM)
-	if(L.getToxLoss() && prob(40))
-		L.adjustToxLoss(-REM)
+	
+	L.adjustOxyLoss(-REM)
+	L.adjustToxLoss(-0.8*REM)
+	L.heal_limb_damage(1.6*REM, 1.6*REM)
+	if(volume > 10)
+		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
+	if(volume > 20)
+		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 	return ..()
 
 /datum/reagent/medicine/tricordrazine/overdose_process(mob/living/L, metabolism)
@@ -297,6 +298,8 @@
 	L.adjustDrowsyness(-2 * REM)
 	L.hallucination = max(0, L.hallucination -  5 * REM)
 	L.adjustToxLoss(-2 * REM)
+	if(volume > 10)
+		L.adjustStaminaLoss(REM)
 	return ..()
 
 /datum/reagent/medicine/dylovene/overdose_process(mob/living/L, metabolism)
@@ -588,9 +591,9 @@
 /datum/reagent/medicine/bicaridine/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(2*REM, 0)
 	if(volume > 10)
-		L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT
+		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 	if(volume > 20)
-		L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_LIGHT
+		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 		L.heal_limb_damage(1*REM, 0)
 	return ..()
 
