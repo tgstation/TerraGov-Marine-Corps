@@ -41,16 +41,17 @@
 		return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
 
 //-------------------------------------------------------
+// T-19 Machinepistol. It fits here more.
 
-/obj/item/weapon/gun/smg/t19
+/obj/item/weapon/gun/smg/standard_machinepistol
 	name = "\improper T-19 submachinegun"
-	desc = "The T-19 submachine gun is the TerraGov Marine Corps standard issue SMG. Its known for it's compact size and ease of use inside the field. It's usually carried by specialized troops who do not have the space to carry a much larger gun like medics and engineers. It uses 10x20mm caseless rounds."
+	desc = "The T-19 submachine gun is the TerraGov Marine Corps standard issue machine pistol. Its known for it's low recoil and scatter when used one handed. It's usually carried by specialized troops who do not have the space to carry a much larger gun like medics and engineers. It uses 10x20mm caseless rounds."
 	icon_state = "t19"
 	item_state = "t19"
 	caliber = "10x20mm caseless" //codex
 	max_shells = 60 //codex
 	flags_equip_slot = ITEM_SLOT_BACK
-	current_mag = /obj/item/ammo_magazine/smg/standard_smg
+	current_mag = /obj/item/ammo_magazine/smg/standard_machinepistol
 	type_of_casings = null
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
@@ -83,7 +84,7 @@
 
 /obj/item/weapon/gun/smg/standard_smg
 	name = "\improper T-90 submachinegun"
-	desc = "The T-90 submachine gun is the TerraGov Marine Corps standard issue SMG. Its known for it's compact size and ease of use inside the field. It's usually carried by specialized troops who do not have the space to carry a much larger gun like medics and engineers. It uses 10x20mm caseless rounds."
+	desc = "The T-90 submachine gun is the TerraGov Marine Corps standard issue SMG. Its known for it's compact size and ease of use inside the field. It's usually carried by troops who want a lightweight gun to rush with. It uses 10x20mm caseless rounds."
 	icon_state = "t90"
 	item_state = "t19"
 	caliber = "10x20mm caseless" //codex
