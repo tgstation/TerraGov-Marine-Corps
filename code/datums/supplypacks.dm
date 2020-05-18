@@ -873,11 +873,6 @@ CLOTHING
 	contains = list(/obj/item/clothing/tie/storage/brown_vest)
 	cost = 2
 
-/datum/supply_packs/clothing/holster
-	name = "holster"
-	contains = list(/obj/item/clothing/tie/storage/holster)
-	cost = 2
-
 /datum/supply_packs/clothing/revolver
 	name = "TP-44 holster"
 	contains = list(/obj/item/storage/belt/gun/revolver/standard_revolver)
