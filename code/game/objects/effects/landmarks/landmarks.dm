@@ -162,6 +162,12 @@
 		new /obj/item/storage/box/nade_box (get_turf(src))
 		return
 
+	if(istype(gun_to_spawn, /obj/item/weapon/gun/energy))
+		var/obj/item/weapon/gun/energy/energy_gun_to_spawn = gun_to_spawn
+		for(var/i in 1 to 3)
+			new energy_gun_to_spawn.cell_type (get_turf(src))
+		return
+
 	if(!gun_to_spawn.current_mag)
 		log_admin("Attempted to spawn ammo for a gun that has no current_mag. Someone make a bugreport for this weapon [initial(gun_to_spawn.name)] as related to the tiered weapon spawning.")
 		return
