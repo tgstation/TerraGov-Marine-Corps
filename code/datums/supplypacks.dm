@@ -864,24 +864,19 @@ CLOTHING
 	cost = 6
 
 /datum/supply_packs/clothing/webbing
-	name = "webbings and holsters"
-	contains = list(
-		/obj/item/clothing/tie/holster,
-		/obj/item/clothing/tie/storage/brown_vest,
-		/obj/item/clothing/tie/storage/webbing,
-		/obj/item/clothing/tie/storage/webbing,
-		/obj/item/clothing/tie/storage/webbing,
-		/obj/item/clothing/tie/storage/webbing,
-		/obj/item/storage/belt/gun/pistol/standard_pistol,
-		/obj/item/storage/belt/gun/revolver/standard_revolver,
-		/obj/item/storage/large_holster/t19,
-	)
-	cost = 40
+	name = "webbing"
+	contains = list(/obj/item/clothing/tie/storage/webbing)
+	cost = 2
 
-/datum/supply_packs/clothing/T19_holster
-	name = "T-19 holster"
-	contains = list(/obj/item/storage/large_holster/t19)
-	cost = 5
+/datum/supply_packs/clothing/brown_vest
+	name = "brown_vest"
+	contains = list(/obj/item/clothing/tie/storage/brown_vest)
+	cost = 2
+
+/datum/supply_packs/clothing/holster
+	name = "holster"
+	contains = list(/obj/item/clothing/tie/storage/holster)
+	cost = 2
 
 /datum/supply_packs/clothing/revolver
 	name = "TP-44 holster"
