@@ -610,7 +610,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 	. += proj.accuracy //We want a temporary variable so accuracy doesn't change every time the bullet misses.
 	#if DEBUG_HIT_CHANCE
-	to_chat(world, "<span class='debuginfo'>Base accuracy is <b>[P.accuracy]; scatter:[P.scatter]; distance:[P.distance_travelled]</b></span>")
+	to_chat(world, "<span class='debuginfo'>Base accuracy is <b>[.]; scatter:[proj.scatter]; distance:[proj.distance_travelled]</b></span>")
 	#endif
 
 	if(proj.distance_travelled <= proj.ammo.accurate_range) //If bullet stays within max accurate range + random variance.
@@ -620,10 +620,6 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			. -= (proj.ammo.accurate_range_min - proj.distance_travelled) * 5
 	else
 		. -= (proj.ammo.flags_ammo_behavior & AMMO_SNIPER) ? (proj.distance_travelled * 3) : (proj.distance_travelled * 5) //Snipers have a smaller falloff constant due to longer max range
-
-	#if DEBUG_HIT_CHANCE
-	to_chat(world, "<span class='debuginfo'>Final accuracy is <b>[.]</b></span>")
-	#endif
 
 	. = max(5, .) //default hit chance is at least 5%.
 	if(lying_angle && stat != CONSCIOUS)
@@ -647,6 +643,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				. += proj.distance_travelled * shooter_human.marksman_aura * 0.35
 
 	. -= GLOB.base_miss_chance[proj.def_zone] //Reduce accuracy based on spot.
+	
+	#if DEBUG_HIT_CHANCE
+	to_chat(world, "<span class='debuginfo'>Final accuracy is <b>[.]</b></span>")
+	#endif
 
 	if(. <= 0) //If by now the sum is zero or negative, we won't be hitting at all.
 		return FALSE
@@ -912,8 +912,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	switch(proj.ammo.damage_type)
 		if(BRUTE, BURN)
-			damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff)) //Bullet damage falloff.
-			damage -= round(damage * armor.getRating(proj.armor_type) * 0.01, 1) //Wall armor soak.
+			damage = max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff) - hard_armor.getRating(proj.armor_type)) //Bullet damage falloff and hard armor.
+			damage -= round(damage * soft_armor.getRating(proj.armor_type) * 0.01, 1) //Wall armor soak.
 		else
 			return FALSE
 
