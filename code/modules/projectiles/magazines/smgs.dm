@@ -37,7 +37,7 @@
 	icon_state = "t19"
 	max_rounds = 40
 	w_class = WEIGHT_CLASS_SMALL
-	gun_type = /obj/item/weapon/gun/smg/t19
+	gun_type = /obj/item/weapon/gun/smg/standard_machinepistol
 
 //-------------------------------------------------------
 //T-90 SMG ammo

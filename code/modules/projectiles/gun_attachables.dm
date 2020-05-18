@@ -1017,10 +1017,10 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/t19stock
-	name = "T-19 Submachine Gun stock"
-	desc = "A rare stock distributed in small numbers to TGMC forces. Compatible with the T-19, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
+	name = "T-19 Machinepistol  Gun stock"
+	desc = "A stock distributed in small numbers to TGMC forces. Compatible with the T-19, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
 	slot = "stock"
-	wield_delay_mod = 0.3 SECONDS
+	wield_delay_mod = 0.1 SECONDS
 	melee_mod = 5
 	size_mod = 1
 	icon_state = "t19stock"
