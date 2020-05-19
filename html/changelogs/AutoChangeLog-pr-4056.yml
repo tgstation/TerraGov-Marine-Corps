@@ -1,6 +1,0 @@
-author: "psykzz"
-delete-after: True
-changes: 
-  - rscadd: "Added more webmaps"
-  - rscdel: "SL maps are removed"
-  - code_imp: "webmap urls are now defined by the json files"
