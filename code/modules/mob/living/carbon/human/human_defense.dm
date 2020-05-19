@@ -81,14 +81,14 @@ Contains most of the procs that are called when a mob is attacked by something
 	var/fire_protection = FALSE
 
 	var/obj/item/worn_suit = wear_suit
-	if(istype(wear_suit) && worn_suit.armor.fire > 100) // outer suits provide total protection
+	if(istype(wear_suit) && worn_suit.hard_armor.getRating("fire") >= 100) // outer suits provide total protection
 		fire_protection = TRUE
 	else
 		var/list/required_for_full_coverage = list(head, w_uniform, gloves, shoes)
 		fire_protection = TRUE
 		for(var/part in required_for_full_coverage)
 			var/obj/item/worn_item = part
-			if(istype(worn_item) && worn_item.armor.fire <= 100)
+			if(istype(worn_item) && worn_suit.hard_armor.getRating("fire") < 100)
 				fire_protection = FALSE
 				break
 

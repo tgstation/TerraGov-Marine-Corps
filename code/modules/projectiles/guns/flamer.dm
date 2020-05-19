@@ -267,7 +267,7 @@
 				else
 					log_combat(user, H, "flamed", src)
 
-			if(HAS_TRAIT(H, TRAIT_FIRERESISTANT))
+			if(H.hard_armor.getRating("fire") >= 100)
 				continue
 
 		var/armor_block = M.run_armor_check(null, "fire")
@@ -515,7 +515,7 @@
 
 
 /mob/living/carbon/human/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
-	if(HAS_TRAIT(src, TRAIT_FIRERESISTANT))
+	if(hard_armor.getRating("fire") >= 100)
 		var/armor_block = run_armor_check(null, "fire")
 		if(apply_damage(round(burnlevel * 0.2) * fire_mod, BURN, null, armor_block))
 			UPDATEHEALTH(src)
@@ -583,9 +583,9 @@
 
 // override this proc to give different idling-on-fire effects
 /mob/living/flamer_fire_act(burnlevel, firelevel)
-	if(HAS_TRAIT(src, TRAIT_FIRERESISTANT))
+	if(hard_armor.getRating("fire") >= 100)
 		to_chat(src, "<span class='warning'>Your suit protects you from most of the flames.</span>")
-		adjustFireLoss(rand(0 ,burnlevel * 0.25)) //Does small burn damage to a person wearing one of the suits.
+		adjustFireLoss(rand(0, burnlevel * 0.25)) //Does small burn damage to a person wearing one of the suits.
 		return
 	adjust_fire_stacks(burnlevel) //If i stand in the fire i deserve all of this. Also Napalm stacks quickly.
 	if(prob(firelevel))

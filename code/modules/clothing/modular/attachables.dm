@@ -74,17 +74,17 @@
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Providing a near immunity to being bathed in flames, and amazing flame retardant qualities, this is every pyromaniacs first stop to survival. Will impact mobility somewhat."
 	icon_state = "mod_fire_icon"
 	item_state = "mod_fire"
-	armor = list("fire" = 100)
+	hard_armor = list("fire" = 100)
 	slowdown = 0.4
 
 /obj/item/armor_module/attachable/fire_proof/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
-	parent.armor = parent.armor.attachArmor(armor)
+	parent.hard_armor = parent.hard_armor.attachArmor(hard_armor)
 	parent.max_heat_protection_temperature += FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	parent.update_overlays()
 
 /obj/item/armor_module/attachable/fire_proof/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
-	parent.armor = parent.armor.detachArmor(armor)
+	parent.hard_armor = parent.hard_armor.detachArmor(hard_armor)
 	parent.max_heat_protection_temperature -= FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	return ..()
 
@@ -95,17 +95,17 @@
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. A substantial amount of additional armor plating designed to fit inside some of the vulnerable portions of the Jaeger Combat Exoskeletons conventional armor patterns. Will definitely impact mobility."
 	icon_state = "mod_armor_icon"
 	item_state = "mod_armor"
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	slowdown = 0.3
 
 /obj/item/armor_module/attachable/tyr_extra_armor/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
-	parent.armor = parent.armor.attachArmor(armor)
+	parent.soft_armor = parent.soft_armor.attachArmor(soft_armor)
 	parent.slowdown += slowdown
 	parent.update_overlays()
 
 /obj/item/armor_module/attachable/tyr_extra_armor/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
-	parent.armor = parent.armor.detachArmor(armor)
+	parent.soft_armor = parent.soft_armor.detachArmor(soft_armor)
 	parent.slowdown -= slowdown
 	return ..()
 
@@ -116,7 +116,7 @@
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. When activated, this system provides substantial resistance to environmental hazards, such as gases, acidic elements, and radiological exposure. Best paired with the Mimir Environmental Helmet System. Will impact mobility when active. Must be toggled to function.."
 	icon_state = "mod_biohazard_icon"
 	item_state = "mod_biohazard"
-	armor = list("bio" = 50, "rad" = 50, "acid" = 50)
+	soft_armor = list("bio" = 50, "rad" = 50, "acid" = 50)
 	slowdown = 0.25
 	module_type = ARMOR_MODULE_TOGGLE
 	var/siemens_coefficient_mod = -0.9
@@ -125,7 +125,7 @@
 
 /obj/item/armor_module/attachable/mimir_environment_protection/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
-	parent.armor = parent.armor.attachArmor(armor)
+	parent.soft_armor = parent.soft_armor.attachArmor(soft_armor)
 	parent.siemens_coefficient += siemens_coefficient_mod
 	parent.permeability_coefficient += permeability_coefficient_mod
 	parent.gas_transfer_coefficient += siemens_coefficient_mod
@@ -133,7 +133,7 @@
 	parent.update_overlays()
 
 /obj/item/armor_module/attachable/mimir_environment_protection/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
-	parent.armor = parent.armor.detachArmor(armor)
+	parent.soft_armor = parent.soft_armor.detachArmor(soft_armor)
 	parent.siemens_coefficient -= siemens_coefficient_mod
 	parent.permeability_coefficient -= permeability_coefficient_mod
 	parent.gas_transfer_coefficient -= siemens_coefficient_mod
