@@ -572,34 +572,34 @@
 	wrenchable = FALSE
 
 	products = list(
-						/obj/item/attachable/bayonet = 15,
-						/obj/item/attachable/compensator = 4,
-						/obj/item/attachable/extended_barrel = 8,
-						/obj/item/attachable/heavy_barrel = 2,
-						/obj/item/attachable/suppressor = 8,
+						/obj/item/attachable/bayonet = 50,
+						/obj/item/attachable/compensator = 50,
+						/obj/item/attachable/extended_barrel = 50,
+						/obj/item/attachable/heavy_barrel = 50,
+						/obj/item/attachable/suppressor = 50,
 
-						/obj/item/attachable/flashlight = 20,
-						/obj/item/attachable/magnetic_harness = 8,
-						/obj/item/attachable/quickfire = 2,
-						/obj/item/attachable/reddot = 10,
-						/obj/item/attachable/scope = 1,
-						/obj/item/attachable/scope/mini = 1,
+						/obj/item/attachable/flashlight = 50,
+						/obj/item/attachable/magnetic_harness = 50,
+						/obj/item/attachable/quickfire = 50,
+						/obj/item/attachable/reddot = 50,
+						/obj/item/attachable/scope = 50,
+						/obj/item/attachable/scope/mini = 50,
 
-						/obj/item/attachable/angledgrip = 10,
-						/obj/item/attachable/bipod = 4,
-						/obj/item/attachable/burstfire_assembly = 2,
-						/obj/item/attachable/gyro = 4,
-						/obj/item/attachable/lasersight = 10,
-						/obj/item/attachable/verticalgrip = 10,
+						/obj/item/attachable/angledgrip = 50,
+						/obj/item/attachable/bipod = 50,
+						/obj/item/attachable/burstfire_assembly = 50,
+						/obj/item/attachable/gyro = 50,
+						/obj/item/attachable/lasersight = 50,
+						/obj/item/attachable/verticalgrip = 50,
 
-						/obj/item/attachable/stock/t19stock = 3,
-						/obj/item/attachable/stock/revolver = 3,
-						/obj/item/attachable/stock/t35stock = 3,
-						/obj/item/attachable/stock/tactical = 3,
+						/obj/item/attachable/stock/t19stock = 50,
+						/obj/item/attachable/stock/revolver = 50,
+						/obj/item/attachable/stock/t35stock = 50,
+						/obj/item/attachable/stock/tactical = 50,
 
-						/obj/item/attachable/attached_gun/flamer = 3,
-						/obj/item/attachable/attached_gun/shotgun = 3,
-						/obj/item/attachable/attached_gun/grenade = 5
+						/obj/item/attachable/attached_gun/flamer = 50,
+						/obj/item/attachable/attached_gun/shotgun = 50,
+						/obj/item/attachable/attached_gun/grenade = 50
 					)
 
 /obj/machinery/vending/attachments/Initialize()
