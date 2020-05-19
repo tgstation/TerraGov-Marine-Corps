@@ -1,8 +1,12 @@
 /atom/movable
 	layer = OBJ_LAYER
+	glide_size = 8
+	appearance_flags = TILE_BOUND|PIXEL_SCALE
 	var/last_move = null
 	var/last_move_time = 0
 	var/anchored = FALSE
+	///How much the atom resists being thrown or moved.
+	var/move_resist = MOVE_RESIST_DEFAULT
 	var/drag_delay = 3 //delay (in deciseconds) added to mob's move_delay when pulling it.
 	var/throwing = FALSE
 	var/thrower = null
@@ -13,9 +17,7 @@
 	var/atom/movable/pulling
 	var/moving_diagonally = 0 //to know whether we're in the middle of a diagonal move,
 	var/atom/movable/moving_from_pull		//attempt to resume grab after moving instead of before.
-	glide_size = 8
 	var/glide_modifier_flags = NONE
-	appearance_flags = TILE_BOUND|PIXEL_SCALE
 
 	var/initial_language_holder = /datum/language_holder
 	var/datum/language_holder/language_holder
@@ -235,8 +237,11 @@
 
 
 //oldloc = old location on atom, inserted when forceMove is called and ONLY when forceMove is called!
-/atom/movable/Crossed(atom/movable/AM, oldloc)
-	SEND_SIGNAL(src, COMSIG_MOVABLE_CROSSED, AM)
+/atom/movable/Crossed(atom/movable/mover, oldloc)
+	SHOULD_CALL_PARENT(TRUE)
+	. = ..()
+	SEND_SIGNAL(src, COMSIG_MOVABLE_CROSSED_BY, mover, oldloc)
+	SEND_SIGNAL(mover, COMSIG_MOVABLE_CROSSED, src, oldloc)
 
 
 /atom/movable/Uncross(atom/movable/AM, atom/newloc)
@@ -333,7 +338,7 @@
 		O.hitby(src, speed)
 
 	else if(isturf(hit_atom))
-		throwing = FALSE
+		set_throwing(FALSE)
 		var/turf/T = hit_atom
 		if(T.density)
 			spawn(2)
@@ -373,7 +378,7 @@
 	if(spin)
 		animation_spin(5, 1)
 
-	throwing = TRUE
+	set_throwing(TRUE)
 	src.thrower = thrower
 	throw_source = get_turf(src)	//store the origin turf
 
@@ -458,7 +463,7 @@
 	if(isobj(src) && throwing)
 		throw_impact(get_turf(src), speed)
 	if(loc)
-		throwing = FALSE
+		set_throwing(FALSE)
 		thrower = null
 		throw_source = null
 
@@ -734,7 +739,6 @@
 	pulling.glide_modifier_flags &= ~GLIDE_MOD_PULLED
 	if(ismob(pulling))
 		var/mob/pulled_mob = pulling
-		pulled_mob.update_canmove() //Mob gets up if it was lyng down in a chokehold.
 		if(pulled_mob.buckled)
 			pulled_mob.buckled.reset_glide_size()
 		else
@@ -876,4 +880,14 @@
 
 
 /atom/movable/proc/setGrabState(newstate)
+	if(newstate == grab_state)
+		return
+	. = grab_state
 	grab_state = newstate
+
+
+/atom/movable/proc/set_throwing(new_throwing)
+	if(new_throwing == throwing)
+		return
+	. = throwing
+	throwing = new_throwing

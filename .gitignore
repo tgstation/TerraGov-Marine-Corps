@@ -25,6 +25,5 @@ tools/BalanceTool/raw.json
 /_maps/**/backup/
 /_maps/templates.dm
 
-code/_dependencies/components
-
-dreamchecker.exe
+# DM Doc ignores
+dmdoc/*

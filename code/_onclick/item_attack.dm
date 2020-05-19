@@ -105,14 +105,22 @@
 
 	switch(I.damtype)
 		if(BRUTE)
-			apply_damage(power, BRUTE, user.zone_selected, get_living_armor("melee", user.zone_selected))
+			apply_damage(power, BRUTE, user.zone_selected, get_soft_armor("melee", user.zone_selected))
 		if(BURN)
-			if(apply_damage(power, BURN, user.zone_selected, get_living_armor("fire", user.zone_selected)))
+			if(apply_damage(power, BURN, user.zone_selected, get_soft_armor("fire", user.zone_selected)))
 				attack_message_local = "[attack_message_local] It burns!"
 
 	visible_message("<span class='danger'>[attack_message]</span>",
 		"<span class='userdanger'>[attack_message_local]</span>", null, COMBAT_MESSAGE_RANGE)
+
 	UPDATEHEALTH(src)
+
+	log_combat(user, src, "attacked", I, "(INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)]) (RAW DMG: [power])")
+	if(power && !user.mind?.bypass_ff && !mind?.bypass_ff && user.faction == faction)
+		var/turf/T = get_turf(src)
+		log_ffattack("[key_name(user)] attacked [key_name(src)] with \the [I] in [AREACOORD(T)] (RAW DMG: [power]).")
+		msg_admin_ff("[ADMIN_TPMONTY(user)] attacked [ADMIN_TPMONTY(src)] with \the [I] in [ADMIN_VERBOSEJMP(T)] (RAW DMG: [power]).")
+
 	return TRUE
 
 
@@ -147,7 +155,7 @@
 	if(!force)
 		return FALSE
 
-	if(!prob(user.melee_accuracy))
+	if(M != user && !prob(user.melee_accuracy)) // Attacking yourself can't miss
 		user.do_attack_animation(M)
 		playsound(loc, 'sound/weapons/punchmiss.ogg', 25, TRUE)
 		if(user in viewers(COMBAT_MESSAGE_RANGE, M))
@@ -157,9 +165,11 @@
 			M.visible_message("<span class='avoidharm'>\The [src] misses [M]!</span>",
 				"<span class='avoidharm'>\The [src] narrowly misses you!</span>", null, COMBAT_MESSAGE_RANGE)
 		log_combat(user, M, "attacked", src, "(missed) (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(damtype)])")
+		if(force && !user.mind?.bypass_ff && !M.mind?.bypass_ff && user.faction == M.faction)
+			var/turf/T = get_turf(M)
+			log_ffattack("[key_name(user)] missed [key_name(M)] with \the [src] in [AREACOORD(T)].")
+			msg_admin_ff("[ADMIN_TPMONTY(user)] missed [ADMIN_TPMONTY(M)] with \the [src] in [ADMIN_VERBOSEJMP(T)].")
 		return FALSE
-
-	log_combat(user, M, "attacked", src, "(INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(damtype)])")
 
 	. = M.attacked_by(src, user)
 	if(. && hitsound)

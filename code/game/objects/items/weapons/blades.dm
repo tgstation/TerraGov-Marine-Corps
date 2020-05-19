@@ -84,7 +84,7 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "combat_knife"
 	item_state = "combat_knife"
-	desc = "The standard issue survival knife issued to TerraGov Marine Corps soldiers. You can slide this knife into your boots, and can be field-modified to attach to the end of a rifle."
+	desc = "A standard survival knife of decent quality. You can slide this knife into your boots, and can be field-modified to attach to the end of a rifle with cable coil."
 	flags_atom = CONDUCT
 	sharp = IS_SHARP_ITEM_ACCURATE
 	materials = list(/datum/material/metal = 200)

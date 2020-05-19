@@ -27,7 +27,7 @@
 	var/speed_per_step = 0.15
 	var/steps_for_charge = 7
 	var/max_steps_buildup = 14
-	var/crush_living_damage = 10
+	var/crush_living_damage = 20
 	var/next_special_attack = 0 //Little var to keep track on special attack timers.
 
 

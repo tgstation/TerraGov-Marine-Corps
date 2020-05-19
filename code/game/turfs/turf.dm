@@ -38,9 +38,14 @@
 	// This shouldn't be modified directly, use the helper procs.
 	var/list/baseturfs = /turf/baseturf_bottom
 	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
+
 	var/changing_turf = FALSE
 
-	var/datum/armor/armor
+	/// %-reduction-based armor.
+	var/datum/armor/soft_armor
+	/// Flat-damage-reduction-based armor.
+	var/datum/armor/hard_armor
+
 
 /turf/Initialize(mapload)
 	if(flags_atom & INITIALIZED)
@@ -69,12 +74,19 @@
 	if(opacity)
 		has_opaque_atom = TRUE
 
-	if(islist(armor))
-		armor = getArmor(arglist(armor))
-	else if (!armor)
-		armor = getArmor()
-	else if (!istype(armor, /datum/armor))
-		stack_trace("Invalid type [armor.type] found in .armor during /turf Initialize()")
+	if(islist(soft_armor))
+		soft_armor = getArmor(arglist(soft_armor))
+	else if (!soft_armor)
+		soft_armor = getArmor()
+	else if (!istype(soft_armor, /datum/armor))
+		stack_trace("Invalid type [soft_armor.type] found in .soft_armor during /turf Initialize()")
+
+	if(islist(hard_armor))
+		hard_armor = getArmor(arglist(hard_armor))
+	else if (!hard_armor)
+		hard_armor = getArmor()
+	else if (!istype(hard_armor, /datum/armor))
+		stack_trace("Invalid type [hard_armor.type] found in .hard_armor during /turf Initialize()")
 
 	return INITIALIZE_HINT_NORMAL
 
@@ -96,9 +108,6 @@
 	visibilityChanged()
 	DISABLE_BITFIELD(flags_atom, INITIALIZED)
 	..()
-
-/turf/ex_act(severity)
-	return 0
 
 
 /turf/Enter(atom/movable/mover, atom/oldloc)
@@ -257,7 +266,6 @@
 		W.baseturfs = new_baseturfs
 	else
 		W.baseturfs = old_baseturfs
-
 
 	if(!(flags & CHANGETURF_DEFER_CHANGE))
 		W.AfterChange(flags)
@@ -847,11 +855,30 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	return TRUE
 
 
-/turf/contents_explosion(severity, target)
-	for(var/i in contents)
-		var/atom/A = i
-		if(!QDELETED(A) && A.level >= severity)
-			A.ex_act(severity, target)
+/turf/contents_explosion(severity)
+	for(var/thing in contents)
+		var/atom/movable/thing_in_turf = thing
+		if(thing_in_turf.resistance_flags & INDESTRUCTIBLE)
+			continue
+		switch(severity)
+			if(EXPLODE_DEVASTATE)
+				SSexplosions.highMovAtom[thing_in_turf] += list(src)
+				if(thing_in_turf.flags_atom & PREVENT_CONTENTS_EXPLOSION)
+					continue
+				for(var/a in thing_in_turf.contents)
+					SSexplosions.highMovAtom[a] += list(src)
+			if(EXPLODE_HEAVY)
+				SSexplosions.medMovAtom[thing_in_turf] += list(src)
+				if(thing_in_turf.flags_atom & PREVENT_CONTENTS_EXPLOSION)
+					continue
+				for(var/a in thing_in_turf.contents)
+					SSexplosions.medMovAtom[a] += list(src)
+			if(EXPLODE_LIGHT)
+				SSexplosions.lowMovAtom[thing_in_turf] += list(src)
+				if(thing_in_turf.flags_atom & PREVENT_CONTENTS_EXPLOSION)
+					continue
+				for(var/a in thing_in_turf.contents)
+					SSexplosions.lowMovAtom[a] += list(src)
 
 
 /turf/vv_edit_var(var_name, new_value)

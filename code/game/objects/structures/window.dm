@@ -50,11 +50,11 @@
 
 /obj/structure/window/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			take_damage(rand(125, 250))
-		if(2)
+		if(EXPLODE_HEAVY)
 			take_damage(rand(75, 125))
-		if(3)
+		if(EXPLODE_LIGHT)
 			take_damage(rand(25, 75))
 
 //TODO: Make full windows a separate type of window.
@@ -263,6 +263,9 @@
 		take_damage(round(exposed_volume / 100), BURN, "fire")
 	return ..()
 
+/obj/structure/window/GetExplosionBlock(explosion_dir)
+	return (!explosion_dir || ISDIAGONALDIR(dir) || dir & explosion_dir || REVERSE_DIR(dir) & explosion_dir) ? real_explosion_block : 0
+
 /obj/structure/window/phoronbasic
 	name = "phoron window"
 	desc = "A phoron-glass alloy window. It looks insanely tough to break. It appears it's also insanely tough to burn through."
@@ -270,6 +273,8 @@
 	icon_state = "phoronwindow"
 	shardtype = /obj/item/shard/phoron
 	max_integrity = 120
+	explosion_block = EXPLOSION_BLOCK_PROC
+	real_explosion_block = 2
 
 /obj/structure/window/phoronbasic/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > T0C + 32000)
@@ -284,6 +289,8 @@
 	shardtype = /obj/item/shard/phoron
 	reinf = TRUE
 	max_integrity = 160
+	explosion_block = EXPLOSION_BLOCK_PROC
+	real_explosion_block = 4
 
 /obj/structure/window/phoronreinforced/fire_act(exposed_temperature, exposed_volume)
 	return
@@ -295,6 +302,8 @@
 	basestate = "rwindow"
 	max_integrity = 40
 	reinf = TRUE
+	explosion_block = EXPLOSION_BLOCK_PROC
+	real_explosion_block = 2
 
 /obj/structure/window/reinforced/toughened
 	name = "safety glass"
@@ -338,6 +347,7 @@
 	layer = TABLE_LAYER
 	static_frame = TRUE
 	flags_atom = NONE //This is not a border object; it takes up the entire tile.
+	explosion_block = 2
 	var/window_frame //For perspective windows,so the window frame doesn't magically dissapear
 	var/list/tiles_special = list(/obj/machinery/door/airlock,
 		/obj/structure/window/framed,
@@ -376,6 +386,8 @@
 	dir = 5
 	window_frame = /obj/structure/window_frame/mainship
 
+/obj/structure/window/framed/mainship/canterbury //So we can wallsmooth properly.
+
 /obj/structure/window/framed/mainship/toughened
 	name = "safety glass"
 	desc = "A very tough looking glass window with a special rod matrice, probably bullet proof."
@@ -390,6 +402,10 @@
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 	max_integrity = 1000000 //Failsafe, shouldn't matter
 
+/obj/structure/window/framed/mainship/hull/canterbury //So we can wallsmooth properly.
+	tiles_with = list(/turf/closed/wall/mainship/outer/canterbury)
+	tiles_special = list(/obj/structure/window/framed/mainship/hull/canterbury)
+
 /obj/structure/window/framed/mainship/requisitions
 	name = "kevlar-weave infused bulletproof window"
 	desc = "A borosilicate glass window infused with kevlar fibres and mounted within a special shock-absorbing frame, this is gonna be seriously hard to break through."
@@ -401,7 +417,7 @@
 	basestate = "white_rwindow"
 	window_frame = /obj/structure/window_frame/mainship/white
 
-
+/obj/structure/window/framed/mainship/white/canterbury //So we can wallsmooth properly.
 
 /obj/structure/window/framed/colony
 	name = "window"

@@ -67,10 +67,10 @@
 	var/turf/left = locate(C.x - leftright, C.y, C.z)
 	var/turf/right = locate(C.x + leftright, C.y, C.z)
 
-	explosion(front, 0, 4, 8, 0)
-	explosion(rear, 2, 5, 9, 0)
-	explosion(left, 2, 5, 9, 0)
-	explosion(right, 2, 5, 9, 0)
+	explosion(front, 2, 4, 7, 0)
+	explosion(rear, 3, 5, 8, 0)
+	explosion(left, 3, 5, 8, 0)
+	explosion(right, 3, 5, 8, 0)
 
 /obj/docking_port/stationary/marine_dropship/crash_target
 	name = "dropshipcrash"
@@ -476,11 +476,11 @@
 		WARNING("[src] could not find shuttle [shuttleId] from SSshuttle")
 		return
 
-	var/list/data = list()
-	data["on_flyby"] = shuttle.mode == SHUTTLE_CALL
-	data["shuttle_mode"] = shuttle.mode
-	data["hijack_state"] = shuttle.hijack_state
-	data["ship_status"] = shuttle.getStatusText()
+	. = list()
+	.["on_flyby"] = shuttle.mode == SHUTTLE_CALL
+	.["dest_select"] = !(shuttle.mode == SHUTTLE_CALL || shuttle.mode == SHUTTLE_IDLE)
+	.["hijack_state"] = shuttle.hijack_state == HIJACK_STATE_NORMAL
+	.["ship_status"] = shuttle.getStatusText()
 
 	var/locked = 0
 	var/reardoor = 0
@@ -489,25 +489,25 @@
 		if(A.locked && A.density)
 			reardoor++
 	if(!reardoor)
-		data["rear"] = 0
+		.["rear"] = 0
 	else if(reardoor==length(shuttle.rear_airlocks))
-		data["rear"] = 2
+		.["rear"] = 2
 		locked++
 	else
-		data["rear"] = 1
-	
+		.["rear"] = 1
+
 	var/leftdoor = 0
 	for(var/i in shuttle.left_airlocks)
 		var/obj/machinery/door/airlock/A = i
 		if(A.locked && A.density)
 			leftdoor++
 	if(!leftdoor)
-		data["left"] = 0
+		.["left"] = 0
 	else if(leftdoor==length(shuttle.left_airlocks))
-		data["left"] = 2
+		.["left"] = 2
 		locked++
 	else
-		data["left"] = 1
+		.["left"] = 1
 
 	var/rightdoor = 0
 	for(var/i in shuttle.right_airlocks)
@@ -515,19 +515,19 @@
 		if(A.locked && A.density)
 			rightdoor++
 	if(!rightdoor)
-		data["right"] = 0
+		.["right"] = 0
 	else if(rightdoor==length(shuttle.right_airlocks))
-		data["right"] = 2
+		.["right"] = 2
 		locked++
 	else
-		data["right"] = 1
+		.["right"] = 1
 
 	if(locked == 3)
-		data["lockdown"] = 2
+		.["lockdown"] = 2
 	else if(!locked)
-		data["lockdown"] = 0
+		.["lockdown"] = 0
 	else
-		data["lockdown"] = 1
+		.["lockdown"] = 1
 
 	var/list/options = valid_destinations()
 	var/list/valid_destionations = list()
@@ -537,8 +537,7 @@
 		if(!shuttle.check_dock(S, silent=TRUE))
 			continue
 		valid_destionations += list(list("name" = S.name, "id" = S.id))
-	data["destinations"] = valid_destionations
-	return data
+	.["destinations"] = valid_destionations
 
 /obj/machinery/computer/shuttle/marine_dropship/ui_act(action, params)
 	if(..())
@@ -584,9 +583,9 @@
 		if(!allowed(usr))
 			return
 		if(href_list["lockdown"])
-			
+
 		else if(href_list["release"])
-			
+
 		else if(href_list["lock"])
 			M.lockdown_airlocks(href_list["lock"])
 		else if(href_list["unlock"])
@@ -1031,8 +1030,14 @@
 	if(!length(GLOB.active_nuke_list) && alert(usr, "Are you sure you want to launch the shuttle? Without sufficiently dealing with the threat, you will be in direct violation of your orders!", "Are you sure?", "Yes", "Cancel") != "Yes")
 		return
 
+	log_admin("[key_name(usr)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
+	message_admins("[ADMIN_TPMONTY(usr)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
+
 	. = ..()
 	if(.)
-		var/datum/game_mode/infestation/crash/C = SSticker.mode
-		addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_INPROGRESS), 15 SECONDS)
-		addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_COMPLETED), 5 MINUTES)
+		return
+
+	var/datum/game_mode/infestation/crash/C = SSticker.mode
+	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_INPROGRESS), 15 SECONDS)
+	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_COMPLETED), 5 MINUTES)
+	return TRUE

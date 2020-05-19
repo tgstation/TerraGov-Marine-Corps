@@ -37,20 +37,18 @@
 
 /obj/machinery/prop/mainship/computer/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-			return
-		if(2.0)
+		if(EXPLODE_HEAVY)
 			if (prob(25))
 				qdel(src)
 				return
 			if (prob(50))
 				set_broken()
-		if(3.0)
+		if(EXPLODE_LIGHT)
 			if (prob(25))
 				set_broken()
-		else
-			return
+
 
 /obj/machinery/prop/mainship/computer/proc/set_broken()
 	machine_stat |= BROKEN

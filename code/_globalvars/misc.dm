@@ -17,3 +17,5 @@ GLOBAL_VAR_INIT(num_financial_terminals, 1)
 GLOBAL_VAR_INIT(next_account_number, 0)
 GLOBAL_LIST_EMPTY(all_money_accounts)
 GLOBAL_VAR_INIT(station_account, null)
+
+GLOBAL_VAR_INIT(internal_tick_usage, 0.2 * world.tick_lag)

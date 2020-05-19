@@ -219,10 +219,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "aL" = (
-/obj/machinery/door/airlock/mainship/maint{
-	no_panel = 1;
-	not_weldable = 1
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /obj/structure/cable/yellow{
 	d1 = 4;
 	d2 = 8;
@@ -289,8 +286,7 @@
 /area/mainship/hallways/hangar)
 "aU" = (
 /obj/machinery/door/firedoor/mainship{
-	dir = 1;
-	icon_state = "door_open"
+	dir = 1
 	},
 /turf/open/floor/stairs/rampbottom{
 	dir = 1
@@ -718,8 +714,7 @@
 /area/mainship/medical/chemistry)
 "bQ" = (
 /obj/machinery/door/firedoor/mainship{
-	dir = 1;
-	icon_state = "door_open"
+	dir = 1
 	},
 /obj/machinery/light{
 	dir = 8
@@ -873,8 +868,7 @@
 "cf" = (
 /obj/structure/window/framed/mainship/white,
 /obj/machinery/door/firedoor/mainship{
-	dir = 2;
-	icon_state = "door_open"
+	dir = 2
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -892,8 +886,7 @@
 /area/mainship/hallways/hangar)
 "ch" = (
 /obj/machinery/door/firedoor/mainship{
-	dir = 2;
-	icon_state = "door_open"
+	dir = 2
 	},
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -961,8 +954,7 @@
 	dir = 2
 	},
 /obj/machinery/door/firedoor/mainship{
-	dir = 2;
-	icon_state = "door_open"
+	dir = 2
 	},
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -1027,8 +1019,7 @@
 	throw_range = 15
 	},
 /obj/machinery/door/firedoor/mainship{
-	dir = 1;
-	icon_state = "door_open"
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 1
@@ -1380,8 +1371,7 @@
 /area/mainship/hallways/stern_hallway)
 "dr" = (
 /obj/machinery/door/firedoor/mainship{
-	dir = 1;
-	icon_state = "door_open"
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 1
@@ -1406,8 +1396,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -1473,8 +1462,7 @@
 "dO" = (
 /obj/machinery/door/airlock/mainship/medical/glass,
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -1485,8 +1473,7 @@
 	dir = 2
 	},
 /obj/machinery/door/firedoor/mainship{
-	dir = 2;
-	icon_state = "door_open"
+	dir = 2
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -1530,8 +1517,7 @@
 "dX" = (
 /obj/structure/window/framed/mainship/white,
 /obj/machinery/door/firedoor/mainship{
-	dir = 2;
-	icon_state = "door_open"
+	dir = 2
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -1703,8 +1689,7 @@
 	icon_state = "pdoor0"
 	},
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
@@ -1810,8 +1795,7 @@
 "eN" = (
 /obj/structure/window/framed/mainship,
 /obj/machinery/door/firedoor/mainship{
-	dir = 1;
-	icon_state = "door_open"
+	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
@@ -2016,8 +2000,7 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/mainship{
-	dir = 1;
-	icon_state = "door_open"
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 1
@@ -2219,10 +2202,7 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/aft_hallway)
 "gJ" = (
-/obj/machinery/door/airlock/mainship/maint{
-	no_panel = 1;
-	not_weldable = 1
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /obj/structure/cable/yellow{
 	d1 = 4;
 	d2 = 8;
@@ -2254,8 +2234,7 @@
 	dir = 2
 	},
 /obj/machinery/door/firedoor/mainship{
-	dir = 1;
-	icon_state = "door_open"
+	dir = 1
 	},
 /turf/open/floor/mainship,
 /area/mainship/living/port_emb)
@@ -2443,8 +2422,7 @@
 "hy" = (
 /obj/structure/window/framed/mainship/white,
 /obj/machinery/door/firedoor/mainship{
-	dir = 2;
-	icon_state = "door_open"
+	dir = 2
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -2473,9 +2451,6 @@
 	icon_state = "test_floor4"
 	},
 /area/mainship/hallways/starboard_hallway)
-"hC" = (
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/medical/lower_medical)
 "hD" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/lower_medical)
@@ -2484,8 +2459,7 @@
 	dir = 2
 	},
 /obj/machinery/door/firedoor/mainship{
-	dir = 2;
-	icon_state = "door_open"
+	dir = 2
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -2522,8 +2496,7 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/mainship{
-	dir = 2;
-	icon_state = "door_open"
+	dir = 2
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -2599,18 +2572,10 @@
 /obj/structure/curtain/medical,
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/lower_medical)
-"hO" = (
-/obj/machinery/crema_switch{
-	pixel_x = 24
-	},
-/obj/structure/curtain/medical,
-/turf/open/floor/mainship/mono,
-/area/mainship/medical/lower_medical)
 "hP" = (
 /obj/machinery/door/airlock/mainship/research/pen,
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -2626,8 +2591,7 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/mainship{
-	dir = 2;
-	icon_state = "door_open"
+	dir = 2
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
@@ -2636,8 +2600,7 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/mainship{
-	dir = 2;
-	icon_state = "door_open"
+	dir = 2
 	},
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -2690,10 +2653,6 @@
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
-/area/mainship/medical/lower_medical)
-"hW" = (
-/obj/structure/morgue/crematorium,
-/turf/open/floor/plating/plating_catwalk,
 /area/mainship/medical/lower_medical)
 "hX" = (
 /obj/structure/closet/secure_closet/CMO,
@@ -2927,10 +2886,12 @@
 	},
 /area/mainship/medical/medical_science)
 "iQ" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/med_data/laptop,
+/obj/machinery/optable,
 /obj/machinery/light,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship{
+	dir = 8;
+	icon_state = "sterile_green_side"
+	},
 /area/mainship/medical/lower_medical)
 "iR" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -3268,23 +3229,19 @@
 /area/mainship/medical/medical_science)
 "jQ" = (
 /obj/machinery/door/firedoor/mainship{
-	dir = 1;
-	icon_state = "door_open"
+	dir = 1
 	},
 /obj/machinery/door/airlock/mainship/marine/general/corps{
-	dir = 2;
-	icon_state = "door_closed"
+	dir = 2
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "jR" = (
 /obj/machinery/door/firedoor/mainship{
-	dir = 1;
-	icon_state = "door_open"
+	dir = 1
 	},
 /obj/machinery/door/airlock/mainship/marine/general/engi{
-	dir = 2;
-	icon_state = "door_closed"
+	dir = 2
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
@@ -3403,8 +3360,7 @@
 	dir = 2
 	},
 /obj/machinery/door/firedoor/multi_tile{
-	dir = 2;
-	icon_state = "door_open"
+	dir = 2
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -3443,8 +3399,7 @@
 "kr" = (
 /obj/machinery/door/airlock/mainship/research/pen,
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -3477,10 +3432,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/stern_hallway)
 "ku" = (
-/obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "7";
-	req_one_access_txt = "0"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -3518,10 +3470,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_garden)
 "kx" = (
-/obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "7";
-	req_one_access_txt = "0"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -3536,8 +3485,7 @@
 /area/mainship/living/port_garden)
 "kz" = (
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /turf/open/floor/mainship{
 	icon_state = "test_floor4"
@@ -3570,11 +3518,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/port_missiles)
 "kD" = (
-/obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "200";
-	req_one_access = null;
-	req_one_access_txt = null
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "kE" = (
@@ -3582,7 +3526,6 @@
 /obj/item/pizzabox/meat{
 	pixel_y = 8
 	},
-/obj/effect/landmark/map_item,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "kF" = (
@@ -4138,10 +4081,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "lZ" = (
-/obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "7";
-	req_one_access_txt = "0"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /obj/structure/cable/yellow{
 	d1 = 4;
 	d2 = 8;
@@ -4555,8 +4495,7 @@
 	icon_state = "left"
 	},
 /obj/machinery/door/firedoor/mainship{
-	dir = 1;
-	icon_state = "door_open"
+	dir = 1
 	},
 /obj/machinery/door/poddoor/shutters/mainship/req/ro{
 	dir = 2
@@ -4573,8 +4512,7 @@
 "nj" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay,
 /obj/machinery/door/firedoor/multi_tile{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -4864,8 +4802,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/multi_tile{
-	dir = 2;
-	icon_state = "door_open"
+	dir = 2
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -5410,7 +5347,9 @@
 	},
 /area/mainship/command/cic)
 "pC" = (
-/obj/machinery/door/airlock/mainship/medical/glass/animalcontrol,
+/obj/machinery/door/airlock/mainship/medical/glass/research{
+	name = "\improper Animal Control Closet"
+	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
 	},
@@ -5436,8 +5375,7 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/mainship{
-	dir = 1;
-	icon_state = "door_open"
+	dir = 1
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -5637,7 +5575,6 @@
 /area/mainship/living/cafeteria_starboard)
 "qe" = (
 /obj/structure/table/mainship,
-/obj/effect/landmark/map_item,
 /turf/open/floor/mainship,
 /area/mainship/living/cafeteria_starboard)
 "qf" = (
@@ -5677,10 +5614,7 @@
 /area/mainship/command/corporateliaison)
 "qi" = (
 /obj/structure/table/woodentable,
-/obj/machinery/computer/skills{
-	density = 0;
-	req_one_access = list(200)
-	},
+/obj/machinery/computer/skills,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "qj" = (
@@ -5964,7 +5898,6 @@
 "qX" = (
 /obj/structure/table/mainship,
 /obj/item/ashtray/glass,
-/obj/effect/landmark/map_item,
 /obj/item/clipboard{
 	pixel_x = 5
 	},
@@ -6052,11 +5985,7 @@
 /turf/open/floor/mainship,
 /area/mainship/living/cafeteria_starboard)
 "rj" = (
-/obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "1";
-	req_one_access = null;
-	req_one_access_txt = null
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "rk" = (
@@ -6210,8 +6139,7 @@
 "rH" = (
 /obj/structure/window/framed/mainship,
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/living/port_garden)
@@ -6289,8 +6217,7 @@
 "rS" = (
 /obj/structure/window/framed/mainship,
 /obj/machinery/door/firedoor/mainship{
-	dir = 1;
-	icon_state = "door_open"
+	dir = 1
 	},
 /turf/open/floor/mainship{
 	icon_plating = "tcomms";
@@ -6303,8 +6230,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -6618,15 +6544,13 @@
 	dir = 2
 	},
 /obj/machinery/door/firedoor/mainship{
-	dir = 1;
-	icon_state = "door_open"
+	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/bridgebunks)
 "sJ" = (
 /obj/machinery/door/airlock/mainship/maint{
-	dir = 2;
-	req_one_access_txt = "2;7;200"
+	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
@@ -6778,19 +6702,13 @@
 /area/mainship/hull/lower_hull)
 "te" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/eastleft{
-	req_one_access_txt = "2;21"
-	},
-/obj/machinery/door/window/eastleft{
-	dir = 8;
-	icon_state = "left"
-	},
+/obj/machinery/door/window/eastleft/req,
+/obj/machinery/door/window/westleft,
 /obj/structure/paper_bin{
 	pixel_y = 5
 	},
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /obj/item/tool/pen,
 /turf/open/floor/mainship/mono,
@@ -6814,10 +6732,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/command/airoom)
 "tk" = (
-/obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "7";
-	req_one_access_txt = "0"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating,
 /area/mainship/hull/lower_hull)
 "tl" = (
@@ -6991,18 +6906,8 @@
 /area/mainship/hull/lower_hull)
 "tF" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/eastleft{
-	dir = 2;
-	icon_state = "left";
-	req_access = null;
-	req_access_txt = "3"
-	},
-/obj/machinery/door/window/eastleft{
-	dir = 1;
-	icon_state = "left";
-	req_access = null;
-	req_access_txt = "3"
-	},
+/obj/machinery/door/window/northleft/brig,
+/obj/machinery/door/window/southleft/brig,
 /obj/structure/paper_bin{
 	pixel_x = -4;
 	pixel_y = 5
@@ -7010,8 +6915,7 @@
 /obj/item/folder/red,
 /obj/item/tool/pen,
 /obj/machinery/door/firedoor/mainship{
-	dir = 1;
-	icon_state = "door_open"
+	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_umbilical)
@@ -7399,8 +7303,7 @@
 "uz" = (
 /obj/structure/window/framed/mainship/toughened,
 /obj/machinery/door/firedoor/mainship{
-	dir = 1;
-	icon_state = "door_open"
+	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_umbilical)
@@ -7587,8 +7490,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /turf/open/floor/mainship{
 	icon_state = "redfull"
@@ -7624,9 +7526,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/port_missiles)
 "vh" = (
-/obj/structure/closet/secure_closet/personal/cabinet{
-	req_access = null
-	},
+/obj/structure/closet/secure_closet/personal/cabinet,
 /turf/open/floor/carpet{
 	dir = 10;
 	icon_state = "carpetside"
@@ -7751,8 +7651,7 @@
 /area/mainship/command/airoom)
 "vx" = (
 /obj/machinery/door/firedoor/mainship{
-	dir = 1;
-	icon_state = "door_open"
+	dir = 1
 	},
 /turf/open/floor/mainship{
 	icon_state = "test_floor4"
@@ -7847,8 +7746,7 @@
 	dir = 2
 	},
 /obj/machinery/door/firedoor/mainship{
-	dir = 1;
-	icon_state = "door_open"
+	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/upper_engineering)
@@ -8258,8 +8156,7 @@
 "wM" = (
 /obj/machinery/door/airlock/mainship/marine/requisitions,
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 8;
@@ -8740,28 +8637,16 @@
 "ya" = (
 /obj/structure/window/framed/mainship,
 /obj/machinery/door/firedoor/mainship{
-	dir = 1;
-	icon_state = "door_open"
+	dir = 1
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/engineering/upper_engineering)
 "yb" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/eastleft{
-	dir = 1;
-	icon_state = "left";
-	req_access = null;
-	req_access_txt = "3"
-	},
-/obj/machinery/door/window/eastleft{
-	dir = 2;
-	icon_state = "left";
-	req_access = null;
-	req_access_txt = "3"
-	},
+/obj/machinery/door/window/northleft/brig,
+/obj/machinery/door/window/southleft/brig,
 /obj/machinery/door/firedoor/mainship{
-	dir = 1;
-	icon_state = "door_open"
+	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engineering)
@@ -9111,8 +8996,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /turf/open/floor/mainship{
 	icon_state = "test_floor4"
@@ -9294,8 +9178,7 @@
 /area/mainship/hallways/hangar)
 "zr" = (
 /obj/machinery/door/airlock/mainship/engineering/storage{
-	dir = 8;
-	icon_state = "door_closed"
+	dir = 8
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -9304,8 +9187,7 @@
 	dir = 8
 	},
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/engineering/engineering_workshop)
@@ -9410,15 +9292,13 @@
 /area/mainship/engineering/lower_engine_monitoring)
 "zH" = (
 /obj/machinery/door/airlock/mainship/engineering/storage{
-	dir = 8;
-	icon_state = "door_closed"
+	dir = 8
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/engineering/engineering_workshop)
@@ -9617,12 +9497,10 @@
 /area/mainship/engineering/engineering_workshop)
 "Ah" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/cryo{
-	dir = 8;
-	icon_state = "door_closed"
+	dir = 8
 	},
 /obj/machinery/door/firedoor/multi_tile{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
@@ -9790,8 +9668,7 @@
 /area/mainship/living/port_emb)
 "AB" = (
 /obj/machinery/door/firedoor/mainship{
-	dir = 1;
-	icon_state = "door_open"
+	dir = 1
 	},
 /turf/open/floor/mainship{
 	icon_state = "test_floor4"
@@ -9871,8 +9748,7 @@
 /area/mainship/command/self_destruct)
 "AM" = (
 /obj/machinery/door/firedoor/mainship{
-	dir = 1;
-	icon_state = "door_open"
+	dir = 1
 	},
 /turf/open/floor/mainship{
 	icon_state = "test_floor4"
@@ -9899,8 +9775,7 @@
 /area/mainship/hallways/port_hallway)
 "AP" = (
 /obj/machinery/door/firedoor/mainship{
-	dir = 1;
-	icon_state = "door_open"
+	dir = 1
 	},
 /turf/open/floor/mainship{
 	icon_state = "test_floor4"
@@ -9948,10 +9823,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "AU" = (
-/obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "7";
-	req_one_access_txt = "0"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating/mainship,
 /area/mainship/engineering/lower_engine_monitoring)
 "AV" = (
@@ -9960,10 +9832,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "7";
-	req_one_access_txt = "0"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "AW" = (
@@ -9984,18 +9853,8 @@
 /area/mainship/shipboard/starboard_missiles)
 "AZ" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/eastleft{
-	dir = 1;
-	icon_state = "left";
-	req_access = null;
-	req_access_txt = "3"
-	},
-/obj/machinery/door/window/eastleft{
-	dir = 2;
-	icon_state = "left";
-	req_access = null;
-	req_access_txt = "3"
-	},
+/obj/machinery/door/window/northleft/brig,
+/obj/machinery/door/window/eastleft/brig,
 /obj/structure/paper_bin{
 	pixel_y = 5
 	},
@@ -10034,8 +9893,7 @@
 /area/shuttle/distress/arrive_s_hangar)
 "Be" = (
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /turf/open/floor/mainship{
 	icon_state = "test_floor4"
@@ -10043,8 +9901,7 @@
 /area/mainship/hallways/starboard_umbilical)
 "Bf" = (
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /turf/open/floor/mainship{
 	icon_state = "test_floor4"
@@ -10061,18 +9918,8 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
-"Bh" = (
-/obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "7";
-	req_one_access_txt = "0"
-	},
-/turf/open/floor/plating/mainship,
-/area/mainship/medical/lower_medical)
 "Bi" = (
-/obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "7";
-	req_one_access_txt = "0"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating/mainship,
 /area/mainship/hull/lower_hull)
 "Bj" = (
@@ -10392,8 +10239,7 @@
 "BM" = (
 /obj/machinery/door/airlock/mainship/generic/corporate/quarters,
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -10669,8 +10515,7 @@
 	dir = 8
 	},
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -10772,10 +10617,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "CN" = (
-/obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "7";
-	req_one_access_txt = "0"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /obj/structure/cable/yellow{
 	d1 = 4;
 	d2 = 8;
@@ -10814,10 +10656,7 @@
 	},
 /area/mainship/hull/lower_hull)
 "CR" = (
-/obj/machinery/door/airlock/mainship/maint{
-	no_panel = 1;
-	not_weldable = 1
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -10884,10 +10723,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "CX" = (
-/obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "7";
-	req_one_access_txt = "0"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /obj/structure/cable/yellow{
 	d1 = 4;
 	d2 = 8;
@@ -11004,8 +10840,7 @@
 /area/mainship/hallways/port_hallway)
 "Dh" = (
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /obj/machinery/door/poddoor/mainship/open/cic{
 	dir = 4;
@@ -11153,8 +10988,7 @@
 /area/mainship/command/cic)
 "Dw" = (
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /obj/machinery/door/poddoor/mainship/open/cic{
 	dir = 4;
@@ -11258,8 +11092,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -11349,10 +11182,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_umbilical)
 "DJ" = (
-/obj/machinery/door/airlock/mainship/maint{
-	no_panel = 1;
-	not_weldable = 1
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /obj/structure/disposalpipe/segment{
 	dir = 8;
 	icon_state = "pipe-s"
@@ -11483,10 +11313,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "DW" = (
-/obj/machinery/door/airlock/mainship/maint{
-	no_panel = 1;
-	not_weldable = 1
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating/mainship,
 /area/mainship/medical/lower_medical)
 "DZ" = (
@@ -11783,14 +11610,9 @@
 /turf/open/floor/wood,
 /area/mainship/medical/lower_medical)
 "EI" = (
-/obj/machinery/optable,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/mainship{
-	dir = 8;
-	icon_state = "sterile_green_side"
-	},
+/obj/structure/table/mainship,
+/obj/machinery/computer/med_data/laptop,
+/turf/open/floor/mainship/mono,
 /area/mainship/medical/lower_medical)
 "EJ" = (
 /obj/machinery/disposal,
@@ -11812,8 +11634,7 @@
 	dir = 1
 	},
 /obj/machinery/door/firedoor/mainship{
-	dir = 2;
-	icon_state = "door_open"
+	dir = 2
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 1;
@@ -12453,8 +12274,7 @@
 	dir = 1
 	},
 /obj/machinery/door_control/mainship/ammo{
-	pixel_x = 30;
-	throw_range = 15
+	pixel_x = 30
 	},
 /turf/open/floor/mainship{
 	icon_state = "test_floor4"
@@ -12478,8 +12298,7 @@
 /area/mainship/command/telecomms)
 "Gy" = (
 /obj/machinery/door/firedoor/mainship{
-	dir = 1;
-	icon_state = "door_open"
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
@@ -12600,8 +12419,7 @@
 /area/mainship/hallways/hangar)
 "GL" = (
 /obj/machinery/door/firedoor/mainship{
-	dir = 1;
-	icon_state = "door_open"
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 1
@@ -12705,8 +12523,7 @@
 "GU" = (
 /obj/structure/window/framed/mainship,
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /obj/machinery/door/poddoor/shutters/mainship/corporate{
 	dir = 4;
@@ -12730,8 +12547,7 @@
 "GW" = (
 /obj/structure/window/framed/mainship,
 /obj/machinery/door/firedoor/mainship{
-	dir = 1;
-	icon_state = "door_open"
+	dir = 1
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/hallways/hangar)
@@ -12834,8 +12650,7 @@
 	dir = 8
 	},
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -13140,8 +12955,7 @@
 "HF" = (
 /obj/machinery/door/airlock/mainship/maint/core,
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -13305,8 +13119,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 8;
@@ -13534,8 +13347,7 @@
 /area/mainship/hallways/starboard_umbilical)
 "Io" = (
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -13939,8 +13751,7 @@
 "Jj" = (
 /obj/machinery/door/airlock/mainship/command/FCDRoffice,
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 8;
@@ -14096,8 +13907,7 @@
 	dir = 2
 	},
 /obj/machinery/door/firedoor/mainship{
-	dir = 1;
-	icon_state = "door_open"
+	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 1;
@@ -14316,8 +14126,7 @@
 /area/mainship/squads/req)
 "JO" = (
 /obj/machinery/door/firedoor/mainship{
-	dir = 1;
-	icon_state = "door_open"
+	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
@@ -14470,10 +14279,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/mainship/maint{
-	no_panel = 1;
-	not_weldable = 1
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -14692,8 +14498,7 @@
 "Ku" = (
 /obj/machinery/door/airlock/mainship/generic/bathroom,
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 8;
@@ -14731,8 +14536,7 @@
 /area/mainship/hallways/stern_hallway)
 "Kw" = (
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -14849,8 +14653,7 @@
 "KC" = (
 /obj/machinery/door/airlock/mainship/command,
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 8;
@@ -14884,18 +14687,6 @@
 "KE" = (
 /turf/closed/wall/mainship,
 /area/mainship/living/briefing)
-"KF" = (
-/obj/machinery/door/airlock/mainship/maint{
-	dir = 2;
-	req_one_access_txt = "2;7;200"
-	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
 "KH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 1
@@ -14991,8 +14782,7 @@
 	dir = 8
 	},
 /obj/machinery/door/firedoor/multi_tile{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -15165,8 +14955,7 @@
 "Li" = (
 /obj/machinery/door/airlock/mainship/engineering/CSEoffice,
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -15384,18 +15173,6 @@
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
-"LC" = (
-/obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "7";
-	req_one_access_txt = "0"
-	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
@@ -15699,8 +15476,7 @@
 /area/mainship/engineering/engineering_workshop)
 "Mt" = (
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /turf/open/floor/mainship{
 	icon_state = "test_floor4"
@@ -15943,8 +15719,7 @@
 	dir = 8
 	},
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 8;
@@ -15969,10 +15744,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/mainship/maint{
-	no_panel = 1;
-	not_weldable = 1
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -16185,8 +15957,7 @@
 /area/mainship/hallways/aft_hallway)
 "Nu" = (
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /obj/machinery/light{
 	dir = 1
@@ -16268,8 +16039,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /obj/machinery/door/airlock/mainship/engineering/disposals{
 	dir = 4
@@ -16278,8 +16048,7 @@
 /area/mainship/hull/lower_hull)
 "NC" = (
 /obj/machinery/door/firedoor/mainship{
-	dir = 1;
-	icon_state = "door_open"
+	dir = 1
 	},
 /obj/machinery/door/airlock/mainship/engineering/workshop{
 	dir = 2
@@ -16288,8 +16057,7 @@
 /area/mainship/engineering/upper_engineering)
 "ND" = (
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -16395,8 +16163,7 @@
 /area/mainship/squads/general)
 "NN" = (
 /obj/machinery/door/firedoor/mainship{
-	dir = 1;
-	icon_state = "door_open"
+	dir = 1
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -16488,8 +16255,7 @@
 "Ot" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -16503,8 +16269,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/mainship/engineering/atmos{
-	dir = 8;
-	icon_state = "door_closed"
+	dir = 8
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos)
@@ -16662,7 +16427,6 @@
 /area/mainship/engineering/lower_engineering)
 "OU" = (
 /obj/structure/table/mainship,
-/obj/effect/landmark/map_item,
 /obj/structure/paper_bin{
 	pixel_x = -4;
 	pixel_y = 5
@@ -17080,8 +16844,7 @@
 	name = "\improper Rest and Relaxation Area"
 	},
 /obj/machinery/door/firedoor/multi_tile{
-	dir = 2;
-	icon_state = "door_open"
+	dir = 2
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -17434,8 +17197,7 @@
 /area/mainship/hallways/hangar)
 "Sp" = (
 /obj/machinery/door/airlock/mainship/command/FCDRquarters{
-	dir = 2;
-	icon_state = "door_closed"
+	dir = 2
 	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -17592,10 +17354,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "7";
-	req_one_access_txt = "0"
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "TH" = (
@@ -17657,11 +17416,7 @@
 /turf/open/floor/mainship,
 /area/mainship/living/cafeteria_starboard)
 "Uk" = (
-/obj/machinery/door/airlock/mainship/maint{
-	req_access_txt = "1";
-	req_one_access = null;
-	req_one_access_txt = null
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "Up" = (
@@ -17971,7 +17726,6 @@
 /area/mainship/living/cafeteria_starboard)
 "Wt" = (
 /obj/structure/table/mainship,
-/obj/effect/landmark/map_item,
 /obj/item/storage/briefcase,
 /obj/item/clipboard{
 	pixel_x = 5
@@ -18068,7 +17822,6 @@
 "Xd" = (
 /obj/structure/table/mainship,
 /obj/item/storage/donut_box,
-/obj/effect/landmark/map_item,
 /turf/open/floor/mainship,
 /area/mainship/living/cafeteria_starboard)
 "Xh" = (
@@ -18093,10 +17846,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "Xt" = (
-/obj/machinery/door/airlock/mainship/maint{
-	no_panel = 1;
-	not_weldable = 1
-	},
+/obj/machinery/door/airlock/mainship/maint,
 /obj/structure/disposalpipe/segment{
 	dir = 8;
 	icon_state = "pipe-s"
@@ -18108,6 +17858,16 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
+"Xv" = (
+/obj/structure/morgue{
+	dir = 2;
+	icon_state = "morgue1"
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/medical/lower_medical)
 "XD" = (
 /turf/closed/wall/mainship,
 /area/mainship/medical/medical_science)
@@ -18250,8 +18010,7 @@
 "YX" = (
 /obj/machinery/door/airlock/mainship/marine/requisitions,
 /obj/machinery/door/firedoor/mainship{
-	dir = 8;
-	icon_state = "door_open"
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -18265,7 +18024,6 @@
 /area/mainship/squads/req)
 "YY" = (
 /obj/structure/table/mainship,
-/obj/effect/landmark/map_item,
 /obj/item/pizzabox/margherita,
 /turf/open/floor/mainship,
 /area/mainship/living/cafeteria_starboard)
@@ -18273,6 +18031,13 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
+"Ze" = (
+/obj/structure/morgue/crematorium,
+/obj/machinery/crema_switch{
+	pixel_x = 24
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/medical/lower_medical)
 "Zf" = (
 /obj/structure/table/mainship,
 /obj/item/toy/deck,
@@ -39816,11 +39581,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+fI
+fI
+fI
+fI
+fI
 aa
 aa
 aa
@@ -40073,11 +39838,11 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
+fI
+fI
+fI
+fI
+fI
 aa
 aa
 aa
@@ -40844,7 +40609,7 @@ aa
 aa
 aa
 aa
-aa
+fI
 aa
 ad
 ad
@@ -41123,7 +40888,7 @@ tH
 ad
 ad
 ad
-LC
+aL
 Mb
 Mb
 Mb
@@ -41137,7 +40902,7 @@ Mb
 Mb
 Mb
 Mb
-LC
+aL
 OB
 tp
 tp
@@ -42645,7 +42410,7 @@ nH
 nN
 bd
 bd
-Bh
+DW
 bd
 bd
 bd
@@ -42902,7 +42667,7 @@ nH
 nN
 bd
 hj
-hC
+hD
 EI
 hN
 iQ
@@ -43158,11 +42923,11 @@ Of
 IM
 tK
 bd
-hj
-hC
-aY
-hO
-hW
+Xv
+hD
+hD
+hN
+hI
 bd
 ir
 iw
@@ -43415,9 +43180,9 @@ nz
 IN
 vg
 bd
-hl
+Ze
 hD
-hI
+hl
 bd
 bd
 bd
@@ -43980,7 +43745,7 @@ Mb
 uX
 JD
 ew
-KF
+JF
 ew
 ew
 ew
@@ -44247,7 +44012,7 @@ zC
 zC
 zC
 zC
-LC
+aL
 ad
 aa
 aa
@@ -48359,7 +48124,7 @@ Lf
 Ln
 Lt
 Ly
-LC
+aL
 ad
 aa
 aa
@@ -48805,8 +48570,8 @@ gd
 kM
 kM
 qG
-PB
-PB
+Zq
+Zq
 qG
 qG
 qG
@@ -52728,7 +52493,7 @@ Mb
 Mb
 Mb
 Mb
-LC
+aL
 ad
 aa
 aa
@@ -55772,7 +55537,7 @@ Ee
 ad
 ad
 ad
-LC
+aL
 Mb
 Mb
 Mb
@@ -55786,7 +55551,7 @@ Mb
 Mb
 Mb
 Mb
-LC
+aL
 Mb
 aO
 Mb

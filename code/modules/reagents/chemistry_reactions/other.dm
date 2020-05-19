@@ -1,35 +1,3 @@
-
-
-/datum/chemical_reaction/explosion_potassium
-	name = "Explosion"
-	required_reagents = list(/datum/reagent/water = 1, /datum/reagent/potassium = 1)
-	on_reaction(var/datum/reagents/holder, var/created_volume)
-		var/atom/location = holder.my_atom.loc
-		if(holder.my_atom && location) //It exists outside of null space.
-			var/datum/effect_system/reagents_explosion/e = new()
-			e.set_up(round (created_volume/10, 1), holder.my_atom, 0, 0)
-			e.holder_damage(holder.my_atom)
-			if(isliving(holder.my_atom))
-				e.amount *= 0.5
-				var/mob/living/L = holder.my_atom
-				if(L.stat!=DEAD)
-					e.amount *= 0.5
-			if(e.start()) //Gets rid of doubling down on explosives for gameplay purposes. Hacky, but enough for now.
-			//Should be removed when we actually balance out chemistry.
-				var/obj/item/explosive/grenade/g
-				var/obj/item/storage/s
-				for(g in location) qdel(g) //Grab anything on our turf/something.
-				if(istype(location, /obj/item/storage) || ismob(location)) //If we're in a bag or person.
-					for(s in location) //Find all other containers.
-						for(g in s) qdel(g) //Delete all the grenades.
-				if(istype(location.loc, /obj/item/storage) || ismob(location.loc)) //If the container is in another container.
-					for(g in location.loc) qdel(g) //Delete all the grenades inside.
-					for(s in location.loc) //Search for more containers.
-						if(s == location) continue //Don't search the container we're in.
-						for(g in s) qdel(g) //Delete all the grenades inside.
-		holder.clear_reagents()
-		return
-
 /datum/chemical_reaction/emp_pulse
 	name = "EMP Pulse"
 	required_reagents = list(/datum/reagent/uranium = 1, /datum/reagent/iron = 1) // Yes, laugh, it's the best recipe I could think of that makes a little bit of sense
@@ -41,15 +9,15 @@
 		empulse(location, round(created_volume / 24), round(created_volume / 14), 1)
 		holder.clear_reagents()
 
-/datum/chemical_reaction/water_two
-	name = "Water"
-	results = list(/datum/reagent/water = 2)
+/datum/chemical_reaction/serotrotium
+	name = "Serotrotium"
+	results = list(/datum/reagent/serotrotium = 1) //Weird emotes, chance of minor drowsiness.
 	required_reagents = list(/datum/reagent/medicine/paracetamol = 1, /datum/reagent/medicine/tramadol = 1)
 
 /datum/chemical_reaction/toxin_two //Space Atropine!
 	name = "Toxin"
 	results = list(/datum/reagent/toxin = 3)
-	required_reagents = list(/datum/reagent/medicine/synaptizine = 1, /datum/reagent/toxin/xeno_neurotoxin = 10)
+	required_reagents = list(/datum/reagent/medicine/synaptizine = 1, /datum/reagent/toxin/xeno_neurotoxin = 8)
 
 /datum/chemical_reaction/sdtoxin
 	name = "Toxin"
@@ -70,11 +38,6 @@
 	name = "Water"
 	results = list(/datum/reagent/water = 1)
 	required_reagents = list(/datum/reagent/oxygen = 1, /datum/reagent/hydrogen = 2)
-
-/datum/chemical_reaction/thermite
-	name = "Thermite"
-	results = list(/datum/reagent/thermite = 3)
-	required_reagents = list(/datum/reagent/aluminum = 10, /datum/reagent/iron = 10, /datum/reagent/oxygen = 10, /datum/reagent/toxin/phoron = 1)
 
 /datum/chemical_reaction/lexorin
 	name = "Lexorin"
@@ -116,24 +79,6 @@
 	results = list(/datum/reagent/glycerol = 1)
 	required_reagents = list(/datum/reagent/consumable/cornoil = 3, /datum/reagent/toxin/acid = 1)
 
-/datum/chemical_reaction/nitroglycerin
-	name = "Nitroglycerin"
-	results = list(/datum/reagent/nitroglycerin = 2)
-	required_reagents = list(/datum/reagent/glycerol = 1, /datum/reagent/toxin/acid/polyacid = 1, /datum/reagent/toxin/acid = 1)
-
-/datum/chemical_reaction/nitroglycerin/on_reaction(datum/reagents/holder, created_volume)
-	var/datum/effect_system/reagents_explosion/e = new()
-	e.set_up(round (created_volume/2, 1), holder.my_atom, 0, 0)
-	e.holder_damage(holder.my_atom)
-	if(isliving(holder.my_atom))
-		e.amount *= 0.5
-		var/mob/living/L = holder.my_atom
-		if(L.stat!=DEAD)
-			e.amount *= 0.5
-	e.start()
-
-	holder.clear_reagents()
-
 
 /datum/chemical_reaction/flash_powder
 	name = "Flash powder"
@@ -147,11 +92,11 @@
 	for(var/mob/living/carbon/M in viewers(WORLD_VIEW, location))
 		switch(get_dist(M, location))
 			if(0 to 3)
-				if(M.flash_eyes())
+				if(M.flash_act())
 					M.Paralyze(30 SECONDS)
 
 			if(4 to 5)
-				if(M.flash_eyes())
+				if(M.flash_act())
 					M.Stun(10 SECONDS)
 
 

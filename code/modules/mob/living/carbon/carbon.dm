@@ -58,11 +58,9 @@
 			"<span class='warning'> You hear a heavy electrical crack.</span>" \
 		)
 		if(isxeno(src) && mob_size == MOB_SIZE_BIG)
-			Stun(20)//Sadly, something has to stop them from bumping them 10 times in a second
-			Paralyze(20)
+			Paralyze(4 SECONDS)
 		else
-			Stun(20 SECONDS)//This should work for now, more is really silly and makes you lay there forever
-			Paralyze(20 SECONDS)
+			Paralyze(8 SECONDS)
 	else
 		src.visible_message(
 			"<span class='warning'> [src] was mildly shocked by the [source].</span>", \
@@ -117,10 +115,10 @@
 	if(stat == DEAD) //Corpses don't puke
 		return
 
-	if(cooldowns[COOLDOWN_PUKE])
+	if(COOLDOWN_CHECK(src, COOLDOWN_PUKE))
 		return
 
-	cooldowns[COOLDOWN_PUKE] = TRUE
+	COOLDOWN_START(src, COOLDOWN_PUKE, 40 SECONDS) //5 seconds before the actual action plus 35 before the next one.
 	to_chat(src, "<spawn class='warning'>You feel like you are about to throw up!")
 	addtimer(CALLBACK(src, .proc/do_vomit), 5 SECONDS)
 
@@ -128,7 +126,7 @@
 /mob/living/carbon/proc/do_vomit()
 	Stun(10 SECONDS)
 	visible_message("<spawn class='warning'>[src] throws up!","<spawn class='warning'>You throw up!", null, 5)
-	playsound(loc, 'sound/effects/splat.ogg', 25, 1, 7)
+	playsound(loc, 'sound/effects/splat.ogg', 25, TRUE, 7)
 
 	var/turf/location = loc
 	if (istype(location, /turf))
@@ -136,7 +134,6 @@
 
 	adjust_nutrition(-40)
 	adjustToxLoss(-3)
-	addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_PUKE, FALSE), 35 SECONDS) //wait 35 seconds before next volley
 
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/shaker)

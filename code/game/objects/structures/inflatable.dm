@@ -57,12 +57,12 @@
 
 /obj/structure/inflatable/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-		if(2)
+		if(EXPLODE_HEAVY)
 			deflate(1)
 
-		if(3)
+		if(EXPLODE_LIGHT)
 			if(prob(50))
 				deflate(1)
 
@@ -170,10 +170,11 @@
 	return !density
 
 /obj/structure/inflatable/door/proc/TryToSwitchState(atom/user)
-	if(isSwitchingStates) return
+	if(isSwitchingStates)
+		return
 	if(ismob(user))
 		var/mob/M = user
-		if(M.cooldowns[COOLDOWN_BUMP])
+		if(COOLDOWN_CHECK(M, COOLDOWN_BUMP))
 			return
 		if(M.client)
 			if(iscarbon(M))
@@ -182,7 +183,7 @@
 					SwitchState()
 			else
 				SwitchState()
-			M.cooldowns[COOLDOWN_BUMP] = addtimer(VARSET_LIST_CALLBACK(M.cooldowns, COOLDOWN_BUMP, null), 6 SECONDS)
+			COOLDOWN_START(M, COOLDOWN_BUMP, 6 SECONDS)
 
 /obj/structure/inflatable/door/proc/SwitchState()
 	if(state)

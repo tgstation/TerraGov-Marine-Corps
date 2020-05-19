@@ -165,6 +165,12 @@
 	id = "ammo2"
 	req_one_access = list(ACCESS_MARINE_BRIG, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LEADER, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP)
 
+/obj/machinery/door_control/mainship/engineering
+	req_access = list(ACCESS_MARINE_ENGINEERING)
+
+/obj/machinery/door_control/mainship/medbay
+	req_access = list(ACCESS_MARINE_MEDBAY)
+
 /obj/machinery/door_control/mainship/fuel
 	name = "Solid Fuel Storage"
 	id = "solid_fuel"	
@@ -176,7 +182,7 @@
 /obj/machinery/door_control/mainship/research
 	name = "Medical Research Wing"
 	id = "researchdoorext"
-	req_access = list(ACCESS_MARINE_CMO)
+	req_access = list(ACCESS_MARINE_RESEARCH)
 
 /obj/machinery/door_control/mainship/research/lockdown
 	name = "Research Lockdown"
@@ -189,7 +195,7 @@
 
 /obj/machinery/door_control/mainship/checkpoint
 	name = "Checkpoint Shutters"
-	req_one_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_LEADER, ACCESS_MARINE_LOGISTICS)
+	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIG, ACCESS_MARINE_LEADER, ACCESS_MARINE_BRIDGE)
 
 /obj/machinery/door_control/mainship/checkpoint/north
 	id = "northcheckpoint"
@@ -200,7 +206,7 @@
 /obj/machinery/door_control/mainship/cic
 	name = "CIC Lockdown"
 	id = "cic_lockdown"
-	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CAPTAIN)	
+	req_one_access = list(ACCESS_MARINE_BRIDGE)	
 
 /obj/machinery/door_control/mainship/cic/armory
 	name = "Armory Lockdown"	
@@ -223,7 +229,7 @@
 /obj/machinery/door_control/mainship/req	
 	name = "RO Line Shutters"
 	id = "ROlobby"
-	req_one_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_CAPTAIN)
+	req_one_access = list(ACCESS_MARINE_CARGO)
 
 /obj/machinery/door_control/mainship/req/ro1	
 	name = "RO Line 1 Shutters"

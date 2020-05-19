@@ -74,18 +74,28 @@
 //Traits
 #define TRAIT_STASIS "stasis"
 
-// common trait sources
+// common trait
+#define INNATE_TRAIT "innate"
 #define ROUNDSTART_TRAIT "roundstart" //cannot be removed without admin intervention
 #define SLEEPER_TRAIT "sleeper"
 #define STASIS_BAG_TRAIT "stasis_bag"
 #define CRYOPOD_TRAIT "cryopod"
 #define TRAIT_XENO "xeno"
+#define STAT_TRAIT "stat"
+#define NECKGRAB_TRAIT "neckgrab"
+#define RESTING_TRAIT "resting"
+#define BUCKLE_TRAIT "buckle"
+#define THROW_TRAIT "throw"
+#define FORTIFY_TRAIT "fortify" //Defender fortify ability.
 
 //mob traits
 #define TRAIT_KNOCKEDOUT		"knockedout" //Forces the user to stay unconscious.
 #define TRAIT_INCAPACITATED		"incapacitated"
+#define TRAIT_FLOORED			"floored" //User is forced to the ground on a prone position.
+#define TRAIT_IMMOBILE			"immobile" //User is unable to move by its own volition.
 #define TRAIT_STUNIMMUNE		"stun_immunity"
 #define TRAIT_BATONIMMUNE		"baton_immunity"
 #define TRAIT_SLEEPIMMUNE		"sleep_immunity"
 #define TRAIT_FLASHBANGIMMUNE	"flashbang_immunity"
 #define TRAIT_FAKEDEATH			"fakedeath" //Makes the owner appear as dead to most forms of medical examination
+#define TRAIT_LEGLESS			"legless" //Has lost all the appendages needed to stay standing up.

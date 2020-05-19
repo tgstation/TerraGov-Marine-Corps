@@ -512,7 +512,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CARRIER_HUGGER_THROW_DISTANCE 5
 
 //Defiler defines
-#define DEFILER_GAS_CHANNEL_TIME			2 SECONDS
+#define DEFILER_GAS_CHANNEL_TIME			0.5 SECONDS
 #define DEFILER_GAS_DELAY					1 SECONDS
 #define DEFILER_STING_CHANNEL_TIME			1.5 SECONDS
 #define DEFILER_CLAW_AMOUNT					6.5
@@ -594,25 +594,6 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 //Stamina
 #define STAMINA_STATE_IDLE 0
 #define STAMINA_STATE_ACTIVE 1
-
-//Cooldowns
-#define COOLDOWN_CHEW 		"chew"
-#define COOLDOWN_PUKE 		"puke"
-#define COOLDOWN_POINT 		"point"
-#define COOLDOWN_EMOTE		"emote"
-#define COOLDOWN_VENTCRAWL	"ventcrawl"
-#define COOLDOWN_BUCKLE		"buckle"
-#define COOLDOWN_RESIST		"resist"
-#define COOLDOWN_ORDER		"order"
-#define COOLDOWN_DISPOSAL	"disposal"
-#define COOLDOWN_ACID		"acid"
-#define COOLDOWN_GUT		"gut"
-#define COOLDOWN_ZOOM		"zoom"
-#define COOLDOWN_BUMP		"bump"
-#define COOLDOWN_ENTANGLE	"entangle"
-#define COOLDOWN_NEST		"nest"
-#define COOLDOWN_TASTE		"taste"
-#define COOLDOWN_VENTSOUND	"vendsound"
 
 #define UPDATEHEALTH(MOB) (addtimer(CALLBACK(MOB, /mob/living.proc/updatehealth), 1, TIMER_UNIQUE))
 

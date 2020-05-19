@@ -141,7 +141,6 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	else if(. >= 360)
 		. -= 360
 
-
 /proc/angle_to_dir(angle)
 	switch(angle)
 		if(338 to 360, 0 to 22)
@@ -294,6 +293,116 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		if(areas)
 			. |= T.loc
 
+//similar function to range(), but with no limitations on the distance; will search spiralling outwards from the center
+/proc/spiral_range(dist=0, center=usr, orange=0)
+	var/list/L = list()
+	var/turf/t_center = get_turf(center)
+	if(!t_center)
+		return list()
+
+	if(!orange)
+		L += t_center
+		L += t_center.contents
+
+	if(!dist)
+		return L
+
+
+	var/turf/T
+	var/y
+	var/x
+	var/c_dist = 1
+
+
+	while( c_dist <= dist )
+		y = t_center.y + c_dist
+		x = t_center.x - c_dist + 1
+		for(x in x to t_center.x+c_dist)
+			T = locate(x,y,t_center.z)
+			if(T)
+				L += T
+				L += T.contents
+
+		y = t_center.y + c_dist - 1
+		x = t_center.x + c_dist
+		for(y in t_center.y-c_dist to y)
+			T = locate(x,y,t_center.z)
+			if(T)
+				L += T
+				L += T.contents
+
+		y = t_center.y - c_dist
+		x = t_center.x + c_dist - 1
+		for(x in t_center.x-c_dist to x)
+			T = locate(x,y,t_center.z)
+			if(T)
+				L += T
+				L += T.contents
+
+		y = t_center.y - c_dist + 1
+		x = t_center.x - c_dist
+		for(y in y to t_center.y+c_dist)
+			T = locate(x,y,t_center.z)
+			if(T)
+				L += T
+				L += T.contents
+		c_dist++
+
+	return L
+
+//similar function to RANGE_TURFS(), but will search spiralling outwards from the center (like the above, but only turfs)
+/proc/spiral_range_turfs(dist=0, center=usr, orange=0, list/outlist = list(), tick_checked)
+	outlist.Cut()
+	if(!dist)
+		outlist += center
+		return outlist
+
+	var/turf/t_center = get_turf(center)
+	if(!t_center)
+		return outlist
+
+	var/list/L = outlist
+	var/turf/T
+	var/y
+	var/x
+	var/c_dist = 1
+
+	if(!orange)
+		L += t_center
+
+	while( c_dist <= dist )
+		y = t_center.y + c_dist
+		x = t_center.x - c_dist + 1
+		for(x in x to t_center.x+c_dist)
+			T = locate(x,y,t_center.z)
+			if(T)
+				L += T
+
+		y = t_center.y + c_dist - 1
+		x = t_center.x + c_dist
+		for(y in t_center.y-c_dist to y)
+			T = locate(x,y,t_center.z)
+			if(T)
+				L += T
+
+		y = t_center.y - c_dist
+		x = t_center.x + c_dist - 1
+		for(x in t_center.x-c_dist to x)
+			T = locate(x,y,t_center.z)
+			if(T)
+				L += T
+
+		y = t_center.y - c_dist + 1
+		x = t_center.x - c_dist
+		for(y in y to t_center.y+c_dist)
+			T = locate(x,y,t_center.z)
+			if(T)
+				L += T
+		c_dist++
+		if(tick_checked)
+			CHECK_TICK
+
+	return L
 
 // returns the turf located at the map edge in the specified direction relative to A
 // used for mass driver
@@ -326,11 +435,11 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	var/y = A.y
 	if(direction & NORTH)
 		y = min(world.maxy, y + range)
-	if(direction & SOUTH)
+	else if(direction & SOUTH)
 		y = max(1, y - range)
 	if(direction & EAST)
 		x = min(world.maxx, x + range)
-	if(direction & WEST)
+	else if(direction & WEST)
 		x = max(1, x - range)
 
 	return locate(x, y, A.z)
@@ -879,8 +988,8 @@ GLOBAL_LIST_INIT(common_tools, typecacheof(list(
 	tX = splittext(tX[1], ":")
 	tX = tX[1]
 	var/list/actual_view = getviewsize(C ? C.view : WORLD_VIEW)
-	tX = CLAMP(origin.x + text2num(tX) - round(actual_view[1] / 2) - 1, 1, world.maxx)
-	tY = CLAMP(origin.y + text2num(tY) - round(actual_view[2] / 2) - 1, 1, world.maxy)
+	tX = CLAMP(origin.x + text2num(tX) - round(actual_view[1] * 0.5) + (round(C?.pixel_x / 32)) - 1, 1, world.maxx)
+	tY = CLAMP(origin.y + text2num(tY) - round(actual_view[2] * 0.5) + (round(C?.pixel_y / 32)) - 1, 1, world.maxy)
 	return locate(tX, tY, tZ)
 
 

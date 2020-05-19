@@ -53,7 +53,7 @@
 
 
 /obj/structure/table/Crossed(atom/movable/O)
-	..()
+	. = ..()
 	if(istype(O,/mob/living/carbon/xenomorph/ravager))
 		var/mob/living/carbon/xenomorph/M = O
 		if(!M.stat) //No dead xenos jumpin on the bed~
@@ -607,7 +607,7 @@
 
 
 /obj/structure/rack/Crossed(atom/movable/O)
-	..()
+	. = ..()
 	if(istype(O,/mob/living/carbon/xenomorph/ravager))
 		var/mob/living/carbon/xenomorph/M = O
 		if(!M.stat) //No dead xenos jumpin on the bed~

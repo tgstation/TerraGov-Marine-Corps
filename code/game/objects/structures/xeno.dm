@@ -35,11 +35,11 @@
 
 /obj/effect/alien/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			take_damage(500)
-		if(2)
+		if(EXPLODE_HEAVY)
 			take_damage((rand(140, 300)))
-		if(3)
+		if(EXPLODE_LIGHT)
 			take_damage((rand(50, 100)))
 
 /obj/effect/alien/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -204,6 +204,7 @@
 
 
 /obj/effect/alien/resin/trap/Crossed(atom/A)
+	. = ..()
 	if(iscarbon(A))
 		HasProximity(A)
 
@@ -555,6 +556,7 @@
 
 
 /obj/effect/egg_trigger/Crossed(atom/A)
+	. = ..()
 	if(!linked_egg) //something went very wrong
 		qdel(src)
 	else if(get_dist(src, linked_egg) != 1 || !isturf(linked_egg.loc)) //something went wrong
@@ -626,11 +628,11 @@ TUNNEL
 
 /obj/structure/tunnel/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			take_damage(210)
-		if(2)
+		if(EXPLODE_HEAVY)
 			take_damage(140)
-		if(3)
+		if(EXPLODE_LIGHT)
 			take_damage(70)
 
 /obj/structure/tunnel/attackby(obj/item/I, mob/user, params)

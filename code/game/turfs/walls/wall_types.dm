@@ -37,10 +37,22 @@
 	desc = "A huge chunk of metal used to seperate space from the ship"
 	//icon_state = "testwall0_debug" //Uncomment to check hull in the map editor.
 	walltype = "testwall"
-	hull = 1 //Impossible to destroy or even damage. Used for outer walls that would breach into space, potentially some special walls
+	resistance_flags = RESIST_ALL //Impossible to destroy or even damage. Used for outer walls that would breach into space, potentially some special walls
 
 /turf/closed/wall/mainship/outer/reinforced
 	name = "reinforced hull"
+
+/turf/closed/wall/mainship/outer/canterbury
+	tiles_with = list(
+		/obj/structure/window/framed/mainship/white/canterbury,
+		/obj/structure/window/framed/mainship/hull/canterbury,
+		/obj/structure/window/framed/mainship/canterbury,
+		/turf/closed/wall/mainship/white/canterbury,
+		/turf/closed/wall/mainship/outer/canterbury,
+		/obj/machinery/door/poddoor/shutters/transit,
+		/obj/machinery/door/airlock/mainship/marine/canterbury,
+		/obj/machinery/door/airlock/mainship/command/canterbury
+		)
 
 /turf/closed/wall/mainship/white
 	walltype = "wwall"
@@ -50,7 +62,7 @@
 	icon_state = "[walltype][junction]"
 	junctiontype = junction
 
-
+/turf/closed/wall/mainship/white/canterbury //For ship smoothing.
 
 /turf/closed/wall/mainship/research/can_be_dissolved()
 	return FALSE
@@ -129,7 +141,7 @@
 //tyson
 /turf/closed/wall/tyson
 	name = "outer wall"
-	hull = TRUE
+	resistance_flags = RESIST_ALL
 
 /turf/closed/wall/tyson/airlock
 	name = "rusted airlock"
@@ -153,7 +165,7 @@
 	desc = "A huge chunk of metal used to separate rooms on spaceships from the cold void of space."
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "sulaco0"
-	hull = 0 //Can't be deconstructed
+	resistance_flags = RESIST_ALL
 
 	max_integrity = 3000
 	max_temperature = 28000 //K, walls will take damage if they're next to a fire hotter than this
@@ -162,26 +174,25 @@
 
 /turf/closed/wall/sulaco/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			ChangeTurf(/turf/open/floor/plating)
-		if(2)
+		if(EXPLODE_HEAVY)
 			if(prob(75))
 				take_damage(rand(100, 250))
 			else
 				dismantle_wall(1, 1)
-		if(3)
+		if(EXPLODE_LIGHT)
 			take_damage(rand(0, 250))
-	return
+
 
 /turf/closed/wall/sulaco/hull
 	name = "outer hull"
 	desc = "A reinforced outer hull, probably to prevent breaches"
-	hull = 1
-	max_temperature = 50000 // Nearly impossible to melt
 	walltype = "sulaco"
 
 
 /turf/closed/wall/sulaco/unmeltable
+	resistance_flags = RESIST_ALL
 
 /turf/closed/wall/sulaco/unmeltable/ex_act(severity) //Should make it indestructable
 	return
@@ -202,7 +213,7 @@
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "riveted"
 	opacity = TRUE
-	hull = 1
+	resistance_flags = RESIST_ALL
 
 /turf/closed/wall/indestructible/ex_act(severity)
 	return
@@ -262,8 +273,6 @@
 	icon_state = "gold0"
 	walltype = "gold"
 	mineral = "gold"
-	//var/electro = 1
-	//var/shocked = null
 
 /turf/closed/wall/mineral/silver
 	name = "silver wall"
@@ -280,9 +289,6 @@
 	icon_state = "diamond0"
 	walltype = "diamond"
 	mineral = "diamond"
-
-/turf/closed/wall/mineral/diamond/thermitemelt(mob/user)
-	return
 
 
 /turf/closed/wall/mineral/sandstone
@@ -372,6 +378,7 @@
 	icon = 'icons/turf/wood.dmi'
 	icon_state = "wood0"
 	walltype = "wood"
+	explosion_block = 1
 
 /turf/closed/wall/wood/handle_icon_junction(junction)
 	if (!walltype)
