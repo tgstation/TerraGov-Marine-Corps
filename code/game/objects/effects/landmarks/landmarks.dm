@@ -169,7 +169,7 @@
 		return
 
 	if(!gun_to_spawn.current_mag)
-		log_admin("Attempted to spawn ammo for a gun that has no current_mag. Someone make a bugreport for this weapon [initial(gun_to_spawn.name)] as related to the tiered weapon spawning.")
+		stack_trace("Attempted to spawn ammo for a gun that has no current_mag. Someone make a bugreport for this weapon [initial(gun_to_spawn.name)] as related to the tiered weapon spawning.")
 		return
 	var/obj/item/ammo_magazine/gun_mag = gun_to_spawn.current_mag.type
 
