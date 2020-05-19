@@ -1,13 +1,11 @@
 ///******MARINE VENDOR******///
 
 /obj/machinery/vending/marine
-	name = "ColMarTech Automated Weapons rack"
+	name = "\improper Automated Weapons Rack"
 	desc = "A automated weapon rack hooked up to a colossal storage of standard-issue weapons."
 	icon_state = "marinearmory"
 	icon_vend = "marinearmory-vend"
 	icon_deny = "marinearmory"
-	req_access = null
-	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_CARGO)
 	wrenchable = FALSE
 	tokensupport = TOKEN_MARINE
 
@@ -69,7 +67,7 @@
 	return
 
 /obj/machinery/vending/marine/cargo_guns
-	name = "\improper ColMarTech automated armaments vendor"
+	name = "\improper Automated Armaments Vendor"
 	desc = "A automated rack hooked up to a small supply of various firearms and explosives."
 	wrenchable = FALSE
 	products = list(
@@ -118,7 +116,7 @@
 
 
 /obj/machinery/vending/marine/cargo_ammo
-	name = "\improper ColMarTech automated munition vendor"
+	name = "\improper Automated Munition Vendor"
 	desc = "A automated rack hooked up to a small supply of ammo magazines."
 	icon_state = "marinerequisitions"
 	icon_vend = "marinerequisitions-vend"
@@ -163,13 +161,11 @@
 	GLOB.cargo_ammo_vendors.Remove(src)
 
 /obj/machinery/vending/lasgun
-	name = "ColMarTech lasrifle Field Charger"
+	name = "\improper Lasrifle Field Charger"
 	desc = "An automated power cell dispenser and charger. Used to recharge energy weapon power cells, including in the field. Has an internal battery that charges off the power grid when wrenched down."
 	icon_state = "lascharger"
 	icon_vend = "lascharger-vend"
 	icon_deny = "lascharger-denied"
-	req_access = null
-	req_one_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
 	wrenchable = TRUE
 	drag_delay = FALSE
 	anchored = FALSE
@@ -566,7 +562,6 @@
 	name = "\improper Armat Systems Attachments Vendor"
 	desc = "A subsidiary-owned vendor of weapon attachments. This can only be accessed by the Requisitions Officer and Cargo Techs."
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
-	req_access = list(ACCESS_MARINE_CARGO)
 	icon_state = "robotics"
 	icon_deny = "robotics-deny"
 	wrenchable = FALSE
@@ -613,13 +608,11 @@
 
 
 /obj/machinery/vending/uniform_supply
-	name = "\improper ColMarTech surplus equipment vendor"
-	desc = "A automated weapon rack hooked up to a colossal storage of uniforms and accessories"
+	name = "\improper Surplus Equipment Vendor"
+	desc = "A automated weapon rack hooked up to a colossal storage of uniforms and accessories."
 	icon_state = "marineuniform"
 	icon_vend = "marineuniform_vend"
 	icon_deny = "marineuniform"
-	req_access = null
-	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_CARGO)
 	var/squad_tag = ""
 
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
