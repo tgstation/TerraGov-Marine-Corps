@@ -38,7 +38,6 @@
 	name = "Ceremonial Sword"
 	},
 /obj/item/reagent_containers/pill/cyanide,
-/obj/item/map/whiskey_outpost_map,
 /turf/open/floor/wood,
 /area/whiskey_outpost)
 "ai" = (

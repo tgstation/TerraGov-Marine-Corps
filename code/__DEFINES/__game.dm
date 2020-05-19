@@ -3,11 +3,18 @@
 //Game defining directives.
 #define MAIN_AI_SYSTEM "ARES v3.2"
 
-#define MAP_ICE_COLONY "Ice Colony"
-#define MAP_LV_624 "LV624"
 #define MAP_BIG_RED "Big Red"
+#define MAP_ICE_COLONY "Ice Colony"
+#define MAP_ICY_CAVES "Icy Caves"
+#define MAP_LV_624 "LV624"
 #define MAP_PRISON_STATION "Prison Station"
+#define MAP_RESEARCH_OUTPOST "Research Outpost"
 #define MAP_WHISKEY_OUTPOST "Whiskey Outpost"
+
+#define MAP_PILLAR_OF_SPRING "Pillar of Spring"
+#define MAP_SULACO "Sulaco"
+#define MAP_THESEUS "Theseus"
+
 
 #define SEE_INVISIBLE_MINIMUM 5
 
