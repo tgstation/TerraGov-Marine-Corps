@@ -69,38 +69,6 @@ Contains most of the procs that are called when a mob is attacked by something
 
 	return siemens_coefficient
 
-/**
-	Helper proc to determine if a mob is fire resistant (wont catch on fire)
-
-	For fire protection, suits provide full body protection with > 100 fire protection
-	without a suit, you need >100 fire protection from head, chest, gloves and shoes seperately (otherwise the fire can get in)
-*/
-/mob/living/carbon/human/proc/update_fire_resistant(equipped)
-	if((equipped && HAS_TRAIT_FROM_ONLY(src, TRAIT_FIRERESISTANT, ARMOR_TRAIT)) || (!equipped && !HAS_TRAIT_FROM_ONLY(src, TRAIT_FIRERESISTANT, ARMOR_TRAIT)))
-		return // Checks if we actually need to add / remove this trait
-	var/fire_protection = FALSE
-
-	var/obj/item/worn_suit = wear_suit
-	if(istype(wear_suit) && worn_suit.hard_armor.getRating("fire") >= 100) // outer suits provide total protection
-		fire_protection = TRUE
-	else
-		var/list/required_for_full_coverage = list(head, w_uniform, gloves, shoes)
-		fire_protection = TRUE
-		for(var/part in required_for_full_coverage)
-			var/obj/item/worn_item = part
-			if(istype(worn_item) && worn_item.hard_armor.getRating("fire") < 100)
-				fire_protection = FALSE
-				break
-
-	// Some legacy shit for now / ideally we remove this
-	if(istype(wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(shoes, /obj/item/clothing/shoes/marine/pyro) && istype(head, /obj/item/clothing/head/helmet/marine/pyro))
-		fire_protection = TRUE
-
-	if(fire_protection)
-		ADD_TRAIT(src, TRAIT_FIRERESISTANT, ARMOR_TRAIT)
-	else
-		REMOVE_TRAIT(src, TRAIT_FIRERESISTANT, ARMOR_TRAIT)
-
 
 /mob/living/carbon/human/proc/add_limb_armor(obj/item/armor_item)
 	for(var/i in limbs)
@@ -109,8 +77,6 @@ Contains most of the procs that are called when a mob is attacked by something
 			continue
 		limb_to_check.add_limb_soft_armor(armor_item.soft_armor)
 		limb_to_check.add_limb_hard_armor(armor_item.hard_armor)
-
-	update_fire_resistant(TRUE)
 
 
 /mob/living/carbon/human/dummy/add_limb_armor(obj/item/armor_item)
@@ -125,7 +91,6 @@ Contains most of the procs that are called when a mob is attacked by something
 		limb_to_check.remove_limb_soft_armor(armor_item.soft_armor)
 		limb_to_check.remove_limb_hard_armor(armor_item.hard_armor)
 
-	update_fire_resistant(FALSE)
 
 /mob/living/carbon/human/dummy/remove_limb_armor(obj/item/armor_item)
 	return
