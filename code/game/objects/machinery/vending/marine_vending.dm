@@ -73,72 +73,31 @@
 	desc = "A automated rack hooked up to a small supply of various firearms and explosives."
 	wrenchable = FALSE
 	products = list(
-					/obj/item/storage/backpack/marine/standard = 15,
-					/obj/item/storage/backpack/marine/satchel = 15,
-					/obj/item/storage/large_holster/machete/full = 10,
-					/obj/item/storage/belt/marine = 15,
-					/obj/item/storage/belt/shotgun = 10,
-					/obj/item/storage/belt/sparepouch = 10,
-					/obj/item/storage/belt/knifepouch = 10,
-					/obj/item/belt_harness/marine = 10,
-					/obj/item/storage/belt/utility/full = 10,
-					/obj/item/storage/belt/sparepouch = 5,
-					/obj/item/storage/belt/grenade = 5,
-					/obj/item/storage/belt/gun/pistol/standard_pistol = 10,
-					/obj/item/storage/belt/gun/revolver/standard_revolver = 5,
-					/obj/item/storage/large_holster/t19 = 5,
-					/obj/item/clothing/tie/storage/webbing = 5,
-					/obj/item/clothing/tie/storage/brown_vest = 5,
-					/obj/item/clothing/tie/storage/white_vest/medic = 5,
-					/obj/item/clothing/tie/holster = 5,
-					/obj/item/storage/pouch/general/medium = 5,
-					/obj/item/storage/pouch/general/large = 2,
-					/obj/item/storage/pouch/construction = 5,
-					/obj/item/storage/pouch/tools = 5,
-					/obj/item/storage/pouch/explosive = 5,
-					/obj/item/storage/pouch/syringe = 5,
-					/obj/item/storage/pouch/medical = 5,
-					/obj/item/storage/pouch/medkit = 5,
-					/obj/item/storage/pouch/magazine = 5,
-					/obj/item/storage/pouch/magazine/large = 2,
-					/obj/item/storage/pouch/flare/full = 10,
-					/obj/item/storage/pouch/firstaid/full = 10,
-					/obj/item/storage/pouch/pistol = 5,
-					/obj/item/storage/pouch/magazine/pistol = 10,
-					/obj/item/storage/pouch/magazine/pistol/large = 5,
-					/obj/item/storage/pouch/shotgun = 10,
-					/obj/item/weapon/gun/pistol/standard_pistol = 20,
-					/obj/item/weapon/gun/pistol/m1911 = 5,
-					/obj/item/weapon/gun/revolver/standard_revolver = 15,
-					/obj/item/weapon/gun/smg/standard_smg = 15,
-					/obj/item/weapon/gun/rifle/standard_carbine = 20,
-					/obj/item/weapon/gun/rifle/standard_assaultrifle = 20,
+					/obj/item/weapon/gun/pistol/standard_pistol = 10,
+					/obj/item/weapon/gun/revolver/standard_revolver = 10,
+					/obj/item/weapon/gun/pistol/m1911 = 10,
+					/obj/item/weapon/gun/pistol/vp70 = 10,
+					/obj/item/weapon/gun/smg/ppsh = 5,
+					/obj/item/weapon/gun/smg/standard_smg = 10,
+					/obj/item/weapon/gun/rifle/standard_carbine = 10,
+					/obj/item/weapon/gun/rifle/standard_assaultrifle = 10,
 					/obj/item/weapon/gun/rifle/standard_lmg = 10,
 					/obj/item/weapon/gun/rifle/standard_dmr = 10,
 					/obj/item/weapon/gun/energy/lasgun/lasrifle = 10,
 					/obj/item/weapon/gun/shotgun/pump/t35 = 10,
 					/obj/item/weapon/gun/rifle/standard_autoshotgun = 10,
-					/obj/item/explosive/mine = 2,
-					/obj/item/explosive/grenade/frag/m15 = 2,
-					/obj/item/explosive/grenade/incendiary = 4,
-					/obj/item/explosive/grenade/smokebomb = 5,
-					/obj/item/explosive/grenade/cloakbomb = 4,
-					/obj/item/storage/box/nade_box = 1,
-					/obj/item/storage/box/m94 = 30,
-					/obj/item/flashlight/combat = 10,
-					/obj/item/clothing/mask/gas = 10
+					/obj/item/weapon/gun/shotgun/double = 5,
+					/obj/item/weapon/gun/shotgun/pump/ksg = 5,
+					/obj/item/weapon/gun/shotgun/pump/bolt = 5,
+					/obj/item/weapon/gun/flamer = 3,
+					/obj/item/explosive/mine = 5,
+					/obj/item/explosive/grenade/frag/m15 = 25,
+					/obj/item/explosive/grenade/incendiary = 25,
+					/obj/item/explosive/grenade/smokebomb = 25,
+					/obj/item/explosive/grenade/cloakbomb = 25,
+					/obj/item/storage/box/m94 = 30
 					)
 
-	contraband = list(
-					/obj/item/storage/box/nade_box/HIDP = 1,
-					/obj/item/storage/box/nade_box/M15 = 1,
-					/obj/item/weapon/gun/flamer = 2,
-					/obj/item/weapon/gun/pistol/vp70 = 2,
-					/obj/item/weapon/gun/smg/ppsh = 2,
-					/obj/item/weapon/gun/shotgun/double = 2,
-					/obj/item/weapon/gun/shotgun/pump/ksg = 2,
-					/obj/item/weapon/gun/shotgun/pump/bolt = 2,
-					)
 	premium = list()
 
 
@@ -166,30 +125,27 @@
 	icon_deny = "marinerequisitions"
 	wrenchable = FALSE
 	products = list(
-					/obj/item/ammo_magazine/pistol/standard_pistol = 25,
-					/obj/item/ammo_magazine/pistol/m1911 = 10,
-					/obj/item/ammo_magazine/revolver/standard_revolver = 20,
-					/obj/item/ammo_magazine/smg/standard_smg = 15,
-					/obj/item/ammo_magazine/rifle/standard_carbine = 15,
-					/obj/item/ammo_magazine/rifle/standard_assaultrifle = 15,
-					/obj/item/ammo_magazine/standard_lmg = 10,
-					/obj/item/ammo_magazine/rifle/standard_dmr = 25,
-					/obj/item/cell/lasgun/lasrifle = 15,
-					/obj/item/cell/lasgun/lasrifle/highcap = 5,
-					/obj/item/ammo_magazine/shotgun = 10,
-					/obj/item/ammo_magazine/shotgun/buckshot = 10,
-					/obj/item/ammo_magazine/shotgun/flechette = 15,
-					/obj/item/ammo_magazine/rifle/tx15_slug = 25,
-					/obj/item/ammo_magazine/rifle/tx15_flechette = 25,
-					/obj/item/ammo_magazine/standard_smartmachinegun = 2
-					)
-
-	contraband = list(
-					/obj/item/ammo_magazine/flamer_tank = 5,
-					/obj/item/ammo_magazine/pistol/vp70 = 10,
-					/obj/item/ammo_magazine/smg/ppsh/ = 15,
-					/obj/item/ammo_magazine/smg/ppsh/extended = 5,
-					/obj/item/ammo_magazine/rifle/bolt = 10,
+					/obj/item/ammo_magazine/pistol/standard_pistol = 50,
+					/obj/item/ammo_magazine/revolver/standard_revolver = 50,
+					/obj/item/ammo_magazine/pistol/m1911 = 50,
+					/obj/item/ammo_magazine/pistol/vp70 = 50,
+					/obj/item/ammo_magazine/smg/standard_smg = 50,
+					/obj/item/ammo_magazine/rifle/standard_carbine = 50,
+					/obj/item/ammo_magazine/rifle/standard_assaultrifle = 50,
+					/obj/item/ammo_magazine/standard_lmg = 50,
+					/obj/item/ammo_magazine/rifle/standard_dmr = 50,
+					/obj/item/cell/lasgun/lasrifle = 50,
+					/obj/item/cell/lasgun/lasrifle/highcap = 10,
+					/obj/item/ammo_magazine/shotgun = 50,
+					/obj/item/ammo_magazine/shotgun/buckshot = 50,
+					/obj/item/ammo_magazine/shotgun/flechette = 50,
+					/obj/item/ammo_magazine/rifle/tx15_slug = 50,
+					/obj/item/ammo_magazine/rifle/tx15_flechette = 50,
+					/obj/item/ammo_magazine/standard_smartmachinegun = 10,
+					/obj/item/ammo_magazine/flamer_tank = 10,
+					/obj/item/ammo_magazine/smg/ppsh/ = 30,
+					/obj/item/ammo_magazine/smg/ppsh/extended = 10,
+					/obj/item/ammo_magazine/rifle/bolt = 30,
 					)
 	premium = list()
 
@@ -657,8 +613,8 @@
 
 
 /obj/machinery/vending/uniform_supply
-	name = "\improper ColMarTech surplus uniform vendor"
-	desc = "A automated weapon rack hooked up to a colossal storage of uniforms"
+	name = "\improper ColMarTech surplus equipment vendor"
+	desc = "A automated weapon rack hooked up to a colossal storage of uniforms and accessories"
 	icon_state = "marineuniform"
 	icon_vend = "marineuniform_vend"
 	icon_deny = "marineuniform"
@@ -668,6 +624,7 @@
 
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
+					/obj/item/storage/large_holster/machete/full = 10,
 					/obj/item/clothing/shoes/marine = 20,
 					/obj/item/clothing/under/marine/standard = 20,
 					/obj/item/storage/backpack/marine/standard = 10,
@@ -690,9 +647,10 @@
 					/obj/item/clothing/mask/bandanna = 10,
 					/obj/item/clothing/mask/rebreather = 10,
 					/obj/item/clothing/mask/breath = 10,
-					/obj/item/tank/emergency_oxygen = 10,
+					/obj/item/clothing/mask/gas = 10,
 					/obj/item/storage/belt/marine = 10,
 					/obj/item/storage/belt/shotgun = 10,
+					/obj/item/storage/belt/grenade = 10,
 					/obj/item/storage/belt/knifepouch = 10,
 					/obj/item/belt_harness/marine = 10,
 					/obj/item/storage/belt/sparepouch = 10,
@@ -701,18 +659,33 @@
 					/obj/item/storage/large_holster/t19 = 10,
 					/obj/item/storage/pouch/pistol = 10,
 					/obj/item/storage/pouch/magazine = 10,
+					/obj/item/storage/pouch/magazine/large = 5,
 					/obj/item/storage/pouch/magazine/pistol = 10,
+					/obj/item/storage/pouch/magazine/pistol/large = 5,
 					/obj/item/storage/pouch/shotgun = 10,
-					/obj/item/storage/pouch/firstaid = 10,
-					/obj/item/storage/pouch/grenade = 10,
-					/obj/item/storage/pouch/medkit = 10,
 					/obj/item/storage/pouch/flare = 10,
+					/obj/item/storage/pouch/grenade = 10,
+					/obj/item/storage/pouch/explosive = 10,
+					/obj/item/storage/pouch/firstaid = 10,
+					/obj/item/storage/pouch/syringe = 5,
+					/obj/item/storage/pouch/medical = 5,
+					/obj/item/storage/pouch/medkit = 10,
+					/obj/item/storage/pouch/autoinjector = 10,
 					/obj/item/storage/pouch/construction = 10,
+					/obj/item/storage/pouch/electronics = 10,
 					/obj/item/storage/pouch/tools = 10,
-					/obj/item/clothing/tie/storage/brown_vest = 5,
-					/obj/item/clothing/tie/storage/white_vest/medic = 5,
-					/obj/item/clothing/tie/storage/webbing = 5,
-					/obj/item/clothing/tie/holster = 5
+					/obj/item/storage/pouch/field_pouch = 10,
+					/obj/item/storage/pouch/general/large = 10,
+					/obj/item/storage/pouch/document = 10,
+					/obj/item/clothing/tie/storage/brown_vest = 10,
+					/obj/item/clothing/tie/storage/white_vest/medic = 10,
+					/obj/item/clothing/tie/storage/webbing = 10,
+					/obj/item/clothing/tie/holster = 10,
+					/obj/item/flashlight/combat = 10,
+					/obj/item/clothing/under/whites = 50,
+					/obj/item/clothing/head/white_dress = 50,
+					/obj/item/clothing/shoes/white = 50,
+					/obj/item/clothing/gloves/white = 50
 					)
 
 	prices = list()
