@@ -151,7 +151,7 @@
 	icon_state = "t64"
 	item_state = "t64"
 	muzzleflash_iconstate = "muzzle_flash_medium"
-	fire_sound = "sound/weapons/guns/fire/T64.ogg"
+	fire_sound = "sound/weapons/guns/fire/DMR.ogg"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
