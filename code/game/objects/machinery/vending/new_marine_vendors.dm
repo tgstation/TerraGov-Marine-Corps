@@ -1062,7 +1062,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/whistle,
 						/obj/item/radio,
 						/obj/item/motiondetector,
-						/obj/item/map/current_map,
 						/obj/item/binoculars/tactical,
 						)
 

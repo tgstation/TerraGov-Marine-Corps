@@ -193,7 +193,6 @@
 /obj/item/pizzabox/meat{
 	pixel_y = 8
 	},
-/obj/effect/landmark/map_item,
 /obj/item/binoculars,
 /obj/item/facepaint/sniper,
 /obj/machinery/alarm,
