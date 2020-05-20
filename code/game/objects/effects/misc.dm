@@ -135,19 +135,18 @@
 	. = ..()
 	invisible = TRUE
 	opacity = FALSE
-	set_opacity(opacity)
 	update_icon()
 	addtimer(CALLBACK(src, .proc/icon_update_check), 30 SECONDS)
 
 /obj/effect/forcefield/fog/passable_fog/proc/icon_update_check()
 	invisible = FALSE
 	opacity = TRUE
-	set_opacity(opacity)
 	update_icon()
 
 /obj/effect/forcefield/fog/passable_fog/update_icon()
 	. = ..()
 	alpha = invisible ? 0 : initial(alpha)
+	set_opacity(opacity)
 
 //used to control opacity of multitiles doors
 /obj/effect/opacifier
