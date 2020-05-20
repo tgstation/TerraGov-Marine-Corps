@@ -1029,6 +1029,7 @@ Defined in conflicts.dm of the #defines folder.
 	accuracy_mod = 0.1
 	recoil_mod = -2
 	scatter_mod = -10
+	scatter_unwielded_mod = -10
 
 /obj/item/attachable/stock/t35stock
 	name = "\improper T-35 stock"
