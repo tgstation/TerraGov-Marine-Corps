@@ -147,10 +147,7 @@
 
 /obj/effect/forcefield/fog/passable_fog/update_icon()
 	. = ..()
-	if(invisible)
-		icon_state = NONE
-	else
-		icon_state = "smoke"
+	alpha = invisible ? 0 : initial(alpha)
 
 //used to control opacity of multitiles doors
 /obj/effect/opacifier
