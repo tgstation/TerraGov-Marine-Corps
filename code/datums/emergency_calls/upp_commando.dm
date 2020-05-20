@@ -1,15 +1,17 @@
 /datum/emergency_call/upp_commando
-	name = "UPP Commandos"
+	name = "USL Elites"
+	probability = 0
 	shuttle_id = "distress_upp"
+	spawn_type = /mob/living/carbon/human/species/moth
 
 
 /datum/emergency_call/upp_commando/print_backstory(mob/living/carbon/human/H)
-	to_chat(H, "<B>You grew up in relativly simple family in [pick(75;"Mars", 25;"a famished UPP colony")] with few belongings or luxuries.</B>")
-	to_chat(H, "<B>The family you grew up with were [pick(50;"getting by", 25;"impoverished", 25;"starving")] and you were one of [pick(10;"two", 20;"three", 20;"four", 30;"five", 20;"six")] children.</B>")
-	to_chat(H, "<B>You come from a long line of [pick(40;"crop-harvesters", 20;"soldiers", 20;"factory workers", 5;"scientists", 15;"engineers")], and quickly enlisted to improve your living conditions.</B>")
+	to_chat(H, "<B>You grew up on an asteroid with few belongings or luxuries.</B>")
+	to_chat(H, "<B>The family you grew up with were [pick(50;"getting by", 25;"impoverished", 25;"starving")] and you were one of [pick(10;"two", 20;"three", 30;"four", 20;"five", 20;"six")] children.</B>")
+	to_chat(H, "<B>You come from a long line of pirates and quickly joined the local band to improve your living conditions.</B>")
 	to_chat(H, "")
-	to_chat(H, "<B>Today, you and your teammates are sent by the United of Progressive Peoples to [SSmapping.configs[SHIP_MAP].map_name] after a long period of cryostasis. Commence the infiltration mission!</b>")
-	to_chat(H, "<B>Eliminate the TGMC force. Do not harm the civilians unless they attack you first.</B>")
+	to_chat(H, "<B>Today, you and your teammates are sent by the United Space Lepidoptera to [SSmapping.configs[SHIP_MAP].map_name] after a long period of lying still in a local asteroid belt. Commence the infiltration mission!</b>")
+	to_chat(H, "<B>Eliminate the TGMC force if necessary. Do not harm the civilians unless they attack you first.</B>")
 	to_chat(H, "<span class='notice'>Use say :3 <text> to speak in your native tongue.</span>")
 
 
@@ -21,7 +23,7 @@
 	var/mob/original = M.current
 	var/mob/living/carbon/human/H = .
 
-	H.name = GLOB.namepool[/datum/namepool/russian].random_name(H)
+	H.name = GLOB.namepool[/datum/namepool/moth].random_name(H)
 	H.real_name = H.name
 
 	M.transfer_to(H, TRUE)
@@ -36,16 +38,16 @@
 		leader = H
 		var/datum/job/J = SSjob.GetJobType(/datum/job/upp/commando/leader)
 		H.apply_assigned_role_to_spawn(J)
-		to_chat(H, "<span class='notice'>You are the leader of the elite UPP commando unit.</span>")
+		to_chat(H, "<span class='notice'>You are the leader of the Elite USL Pirate band.</span>")
 		return
 
 	if(medics < max_medics)
 		var/datum/job/J = SSjob.GetJobType(/datum/job/upp/commando/medic)
 		H.apply_assigned_role_to_spawn(J)
-		to_chat(H, "<span class='notice'>You are the medic of the elite UPP commando unit.</span>")
+		to_chat(H, "<span class='notice'>You are the medic of the Elite USL Pirate band.</span>")
 		medics++
 		return
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/upp/commando/leader)
 	H.apply_assigned_role_to_spawn(J)
-	to_chat(H, "<span class='notice'>You are a member of the elite UPP commando unit.</span>")
+	to_chat(H, "<span class='notice'>You are a member of the Elite USL Pirate band.</span>")
