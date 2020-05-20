@@ -126,27 +126,18 @@
 	icon_state = "smoke"
 	opacity = TRUE
 	density = FALSE
-	var/invisible = FALSE
 
 /obj/effect/forcefield/fog/passable_fog/CanPass(atom/movable/mover, turf/target)
 	return TRUE
 
 /obj/effect/forcefield/fog/passable_fog/Crossed(atom/movable/mover, oldloc)
 	. = ..()
-	invisible = TRUE
-	opacity = FALSE
-	update_icon()
-	addtimer(CALLBACK(src, .proc/icon_update_check), 30 SECONDS)
+	set_opacity(FALSE)
+	addtimer(CALLBACK(src, .proc/go_invisible), 30 SECONDS, TIMER_OVERRIDE|TIMER_UNIQUE)
 
-/obj/effect/forcefield/fog/passable_fog/proc/icon_update_check()
-	invisible = FALSE
-	opacity = TRUE
-	update_icon()
-
-/obj/effect/forcefield/fog/passable_fog/update_icon()
-	. = ..()
-	alpha = invisible ? 0 : initial(alpha)
-	set_opacity(opacity)
+/obj/effect/forcefield/fog/passable_fog/proc/go_invisible()
+	alpha = opacity ? initial(alpha) : 0
+	set_opacity(TRUE)
 
 //used to control opacity of multitiles doors
 /obj/effect/opacifier
