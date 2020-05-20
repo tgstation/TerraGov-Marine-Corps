@@ -460,20 +460,29 @@
 
 
 // ***************************************
-// *********** Queen heal
+// *********** Queen Psychic Cure
 // ***************************************
-/datum/action/xeno_action/activable/queen_heal
-	name = "Heal Xenomorph"
+/datum/action/xeno_action/activable/psychic_cure/queen
+	name = "Royal Cure"
 	action_icon_state = "heal_xeno"
-	mechanics_text = "Heals a target Xenomorph"
+	mechanics_text = "Heal and remove debuffs from a target."
+	cooldown_timer = 50 SECONDS
 	plasma_cost = 150
-	cooldown_timer = 16 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_QUEEN_HEAL
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CURE
 
 
-/datum/action/xeno_action/activable/queen_heal/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/xeno_action/activable/psychic_cure/queen/on_cooldown_finish()
+	to_chat(owner, "<span class='notice'>We gather enough mental strength to cure sisters again.</span>")
+	return ..()
+
+
+/datum/action/xeno_action/activable/psychic_cure/queen/can_use_ability(atom/target, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
+		return FALSE
+	if(QDELETED(target))
+		return FALSE
+	if(!check_distance(target, silent))
 		return FALSE
 	if(!isxeno(target))
 		return FALSE
@@ -482,30 +491,40 @@
 		if(!silent)
 			to_chat(owner, "<span class='warning'>It's too late. This sister won't be coming back.</span>")
 		return FALSE
-	if(!(patient.xeno_caste.caste_flags & CASTE_CAN_BE_QUEEN_HEALED))
-		if(!silent)
-			to_chat(owner, "<span class='xenowarning'>We can't heal that caste.</span>")
-			return FALSE
-	var/mob/living/carbon/xenomorph/healer = owner
-	if(healer.z != patient.z)
-		if(!silent)
-			to_chat(healer, "<span class='xenowarning'>They are too far away to do this.</span>")
-		return FALSE
-	if(patient.health >= patient.maxHealth)
-		if(!silent)
-			to_chat(healer, "<span class='warning'>[patient] is at full health.</span>")
-		return FALSE
 
 
-/datum/action/xeno_action/activable/queen_heal/use_ability(atom/target)
+/datum/action/xeno_action/activable/psychic_cure/use_ability(atom/target)
+	if(owner.action_busy)
+		return FALSE
+
+	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+		return FALSE
+
+	GLOB.round_statistics.psychic_cures++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "psychic_cures")
+	owner.visible_message("<span class='xenowarning'>A strange psychic aura is suddenly emitted from \the [owner]!</span>", \
+	"<span class='xenowarning'>We cure [target] with the power of our mind!</span>")
+	target.visible_message("<span class='xenowarning'>[target] suddenly shimmers in a chill light.</span>", \
+	"<span class='xenowarning'>We feel a sudden soothing chill.</span>")
+
+	playsound(target,'sound/effects/magic.ogg', 75, 1)
+	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/mob/living/carbon/xenomorph/patient = target
-	add_cooldown()
-	patient.adjustBruteLoss(-100)
-	patient.adjustFireLoss(-100)
-	patient.adjust_sunder(-10)
+	patient.heal_wounds(SHRIKE_CURE_HEAL_MULTIPLIER)
+	if(patient.health > 0) //If they are not in crit after the heal, let's remove evil debuffs.
+		patient.SetUnconscious(0)
+		patient.SetStun(0)
+		patient.SetParalyzed(0)
+		patient.set_stagger(0)
+		patient.set_slowdown(0)
+	patient.updatehealth()
+
+	owner.changeNext_move(CLICK_CD_RANGE)
+
+	log_combat(owner, patient, "psychically cured")
+
 	succeed_activate()
-	to_chat(owner, "<span class='xenonotice'>We channel our plasma to heal [target]'s wounds.</span>")
-	to_chat(patient, "<span class='xenonotice'>We feel our wounds heal. Bless the Queen!</span>")
+	add_cooldown()
 
 
 // ***************************************
