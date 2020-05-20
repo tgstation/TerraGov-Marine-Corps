@@ -27,7 +27,7 @@
 	plasma_gain = 2
 
 	// *** Health *** //
-	max_health = 160
+	max_health = 180
 
 	// *** Evolution *** //
 	evolution_threshold = 80
@@ -73,14 +73,14 @@
 	tackle_damage = 38
 
 	// *** Speed *** //
-	speed = -1
+	speed = -0.9
 
 	// *** Plasma *** //
 	plasma_max = 150
 	plasma_gain = 3
 
 	// *** Health *** //
-	max_health = 180
+	max_health = 200
 
 	// *** Evolution *** //
 	upgrade_threshold = 100
@@ -89,7 +89,7 @@
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 3, "rad" = 3, "fire" = 3, "acid" = 3)
 
 	// *** Ranged Attack *** //
-	pounce_delay = 35.0 SECONDS
+	pounce_delay = 30.0 SECONDS
 
 /datum/xeno_caste/panther/elder
 	upgrade_name = "Elder"
@@ -105,14 +105,14 @@
 	tackle_damage = 44
 
 	// *** Speed *** //
-	speed = -1.2
+	speed = -1
 
 	// *** Plasma *** //
 	plasma_max = 200
 	plasma_gain = 3
 
 	// *** Health *** //
-	max_health = 200
+	max_health = 220
 
 	// *** Evolution *** //
 	upgrade_threshold = 200
@@ -121,7 +121,7 @@
 	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
 
 	// *** Ranged Attack *** //
-	pounce_delay = 45.0 SECONDS
+	pounce_delay = 25.0 SECONDS
 
 /datum/xeno_caste/panther/ancient
 	upgrade_name = "Ancient"
@@ -138,20 +138,20 @@
 	tackle_damage = 50
 
 	// *** Speed *** //
-	speed = -1.4
+	speed = -1.2
 
 	// *** Plasma *** //
 	plasma_max = 200
 	plasma_gain = 3
 
 	// *** Health *** //
-	max_health = 220
+	max_health = 240
 
 	// *** Evolution *** //
 	upgrade_threshold = 200
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 24, "bullet" = 24, "laser" = 24, "energy" = 124, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 7, "acid" = 7)
+	soft_armor = list("melee" = 24, "bullet" = 24, "laser" = 24, "energy" = 24, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 7, "acid" = 7)
 
 	// *** Ranged Attack *** //
-	pounce_delay = 35.0 SECONDS
+	pounce_delay = 20.0 SECONDS
