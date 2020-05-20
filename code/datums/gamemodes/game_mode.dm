@@ -198,31 +198,7 @@
 
 
 /datum/game_mode/proc/spawn_map_items()
-	var/turf/T
-	switch(SSmapping.configs[GROUND_MAP].map_name) // doing the switch first makes this a tiny bit quicker which for round setup is more important than pretty code
-		if(MAP_LV_624)
-			while(GLOB.map_items.len)
-				T = GLOB.map_items[GLOB.map_items.len]
-				GLOB.map_items.len--
-				new /obj/item/map/lazarus_landing_map(T)
-
-		if(MAP_ICE_COLONY)
-			while(GLOB.map_items.len)
-				T = GLOB.map_items[GLOB.map_items.len]
-				GLOB.map_items.len--
-				new /obj/item/map/ice_colony_map(T)
-
-		if(MAP_BIG_RED)
-			while(GLOB.map_items.len)
-				T = GLOB.map_items[GLOB.map_items.len]
-				GLOB.map_items.len--
-				new /obj/item/map/big_red_map(T)
-
-		if(MAP_PRISON_STATION)
-			while(GLOB.map_items.len)
-				T = GLOB.map_items[GLOB.map_items.len]
-				GLOB.map_items.len--
-				new /obj/item/map/FOP_map(T)
+	return
 
 
 /datum/game_mode/proc/announce_bioscans(show_locations = TRUE, delta = 2, announce_humans = TRUE, announce_xenos = TRUE, send_fax = TRUE)

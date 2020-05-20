@@ -1295,7 +1295,6 @@
 	pixel_x = 3;
 	pixel_y = 5
 	},
-/obj/item/map/current_map,
 /turf/open/floor/carpet/edge2{
 	dir = 9
 	},

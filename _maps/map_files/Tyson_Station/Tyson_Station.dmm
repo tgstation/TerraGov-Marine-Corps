@@ -313,7 +313,6 @@
 /obj/structure/filingcabinet,
 /obj/item/blueprints,
 /obj/item/explosive/plastique,
-/obj/item/map,
 /turf/open/floor,
 /area/ai_monitored/storage/emergency)
 "abm" = (

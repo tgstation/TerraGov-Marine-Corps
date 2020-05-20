@@ -1,5 +1,3 @@
-GLOBAL_LIST_INIT(armour_to_descriptive_term, list("melee" = "melee attacks", "bullet" = "ballistics", "laser" = "lasers", "energy" = "energy", "bomb" = "explosions", "bio" = "biohazards", "rad" = "radiation", "fire" = "fire", "acid" = "acid") )
-
 /datum/codex_entry
 	var/display_name
 	var/list/associated_strings

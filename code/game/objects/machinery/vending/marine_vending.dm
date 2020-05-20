@@ -591,20 +591,6 @@
 						/obj/item/storage/box/zipcuffs = 2
 					)
 
-/obj/machinery/vending/marine_leader/select_gamemode_equipment(gamemode)
-	var/products2[]
-	switch(SSmapping.configs[GROUND_MAP].map_name)
-		if(MAP_ICE_COLONY)
-			products2 = list( /obj/item/map/ice_colony_map = 3)
-		if(MAP_BIG_RED)
-			products2 = list(/obj/item/map/big_red_map = 3)
-		if(MAP_WHISKEY_OUTPOST)
-			products2 = list(/obj/item/map/whiskey_outpost_map = 3)
-		if(MAP_LV_624)
-			products2 = list(/obj/item/map/lazarus_landing_map = 3)
-	build_inventory(products2)
-
-
 
 /obj/machinery/vending/attachments
 	name = "\improper Armat Systems Attachments Vendor"
