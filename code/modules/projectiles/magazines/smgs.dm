@@ -47,7 +47,7 @@
 	desc = "A 10x20mm caseless Submachine Gun magazine."
 	caliber = "10x20mm caseless"
 	icon_state = "t90"
-	max_rounds = 60
+	max_rounds = 50
 	w_class = WEIGHT_CLASS_SMALL
 	gun_type = /obj/item/weapon/gun/smg/standard_smg
 

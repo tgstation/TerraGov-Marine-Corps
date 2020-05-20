@@ -90,7 +90,7 @@
 	icon_state = "t90"
 	item_state = "t90"
 	caliber = "10x20mm caseless" //codex
-	max_shells = 60 //codex
+	max_shells = 50 //codex
 	flags_equip_slot = ITEM_SLOT_BACK
 	wield_delay = 0.5 SECONDS
 	force = 20
