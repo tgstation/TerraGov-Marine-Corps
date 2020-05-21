@@ -759,14 +759,14 @@ to_chat will check for valid clients itself already so no need to double check f
 	return hivenumber
 
 /// Controls the evolution UI
-/datum/hive_status/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.admin_state)
+/datum/hive_status/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.xeno_state)
 	// Xeno only screen
 	if(!isxeno(user))
 		return
 
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "HiveEvolveScreen", name, 1200, 700, master_ui, state)
+		ui = new(user, src, ui_key, "HiveEvolveScreen", "Xenomorph Evolution", 400, 750, master_ui, state)
 		ui.open()
 
 /// Static data provided once when the ui is opened
@@ -799,6 +799,11 @@ to_chat will check for valid clients itself already so no need to double check f
 /// Some data to update the UI with the current evolution status
 /datum/hive_status/ui_data(mob/living/carbon/xenomorph/xeno)
 	. = list()
+
+	.["can_evolve"] = !xeno.is_ventcrawling && \
+		!xeno.incapacitated(TRUE) && \
+		xeno.health >= xeno.maxHealth && \
+		xeno.plasma_stored >= xeno.xeno_caste.plasma_max
 
 	if(isxenolarva(xeno))
 		.["evolution"] = list(

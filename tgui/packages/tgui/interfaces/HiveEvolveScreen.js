@@ -1,11 +1,12 @@
 import { useBackend } from '../backend';
-import { Button, Flex, Section, ProgressBar } from '../components';
+import { Button, Flex, Section, ProgressBar, Collapsible } from '../components';
 import { Window } from '../layouts';
 
 
 const EvolveProgress = props => (
-  <Section title="Progress" height="100%">
-    Evolve: {props.current}/{props.max}
+  <Section
+    title={`Evolution progress - ${props.current}/${props.max}`}
+    height="100%">
     <ProgressBar
       ranges={{
         good: [0.75, Infinity],
@@ -21,17 +22,9 @@ const CasteView = props => {
     .values(props.abilites)
     .filter(ability => filteredAbilities.indexOf(ability.name) === -1);
   const lastItem = Object.keys(props.abilites).slice(-1)[0];
-  const evolveButton = (
-    <Button
-      disabled={!props.canEvolve}
-      onClick={() => props.act('evolve', props.caste_type)}>
-      Evolve
-    </Button>
-  );
 
   return (
-    <Section height={"100%"} title={props.name} buttons={!props.current
-      && evolveButton}>
+    <Section height={"100%"} title={props.name}>
       <strong>Abilities</strong>
       <span style={{ color: 'grey' }}>{' (hover for details)'}</span>
       <p>
@@ -58,41 +51,51 @@ const CasteView = props => {
 
 export const HiveEvolveScreen = (props, context) => {
   const { act, data } = useBackend(context);
-  const canEvolve = data.evolution.current >= data.evolution.max;
-  const evolvesInto = Object.values(data.evolves_to);
+
+  const {
+    name,
+    evolution,
+    abilities,
+    evolves_to,
+    can_evolve,
+  } = data;
+
+  const canEvolve = can_evolve && evolution.current >= evolution.max;
+  const evolvesInto = Object.values(evolves_to);
+
   return (
-    <Window theme={"xeno"} resizable>
+    <Window resizable>
       <Window.Content scrollable>
-        <Section title="Xenomorph Evolution">
-          <Flex>
-            <Flex.Item m={1} grow={2}>
-              <CasteView
-                act={act}
-                current
-                name={data.name}
-                abilites={data.abilities} />
-            </Flex.Item>
-            <Flex.Item m={1} grow={1} >
-              <EvolveProgress
-                current={data.evolution.current}
-                max={data.evolution.max}
-              />
-            </Flex.Item>
-          </Flex>
+        <Section title="Current Evolution">
+          <CasteView
+            act={act}
+            current
+            name={name}
+            abilites={abilities} />
+          <EvolveProgress
+            current={evolution.current}
+            max={evolution.max} />
         </Section>
         <Section title="Available Evolutions">
-          <Flex grow={1}>
-            {evolvesInto.map((evolve, idx) => (
-              <Flex.Item key={evolve.type_path} m={"3px"} grow={1} >
-                <CasteView
-                  act={() => act('evolve', { path: evolve.type_path })}
-                  name={evolve.name}
-                  abilites={evolve.abilities}
-                  lastSection={idx === (evolvesInto.length - 1)}
-                  canEvolve={canEvolve} />
-              </Flex.Item>
-            ))}
-          </Flex>
+          {evolvesInto.map((evolve, idx) => (
+            <Collapsible
+              key={evolve.type_path}
+              title={`${evolve.name} (click for details)`}
+              buttons={(
+                <Button
+                  disabled={!canEvolve}
+                  onClick={() => act('evolve', { path: evolve.type_path })}>
+                  Evolve
+                </Button>
+              )}>
+              <CasteView
+                name={evolve.name}
+                abilites={evolve.abilities}
+                lastSection={idx === (evolvesInto.length - 1)}
+                canEvolve={canEvolve}
+              />
+            </Collapsible>
+          ))}
         </Section>
       </Window.Content>
     </Window>

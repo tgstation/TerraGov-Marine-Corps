@@ -14,7 +14,7 @@
 	set desc = "Evolve into a higher form."
 	set category = "Alien"
 
-	hive.ui_interact(src, force_open=TRUE)
+	hive.ui_interact(src)
 
 
 /mob/living/carbon/xenomorph/verb/regress()
