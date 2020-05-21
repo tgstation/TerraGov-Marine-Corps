@@ -5443,6 +5443,9 @@
 	dir = 8
 	},
 /area/whiskey_outpost/outside/north)
+"ur" = (
+/turf/open/floor/asteroidfloor,
+/area/whiskey_outpost/outside/west)
 "uw" = (
 /obj/machinery/door/window/westright,
 /turf/open/floor/mainship{
@@ -5869,6 +5872,12 @@
 /turf/open/ground/grass/beach{
 	dir = 1
 	},
+/area/whiskey_outpost/outside/west)
+"Av" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/asteroidfloor,
 /area/whiskey_outpost/outside/west)
 "AJ" = (
 /obj/machinery/vending/marine,
@@ -6650,6 +6659,9 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost)
+"LT" = (
+/turf/closed/wall,
+/area/whiskey_outpost/outside/west)
 "Mj" = (
 /obj/structure/platform_decoration{
 	dir = 1;
@@ -6739,9 +6751,20 @@
 	icon_state = "yellow"
 	},
 /area/whiskey_outpost)
+"Nj" = (
+/turf/open/floor/asteroidfloor,
+/area/whiskey_outpost/outside/east)
 "Nl" = (
 /obj/machinery/light{
 	dir = 1
+	},
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
+/area/whiskey_outpost)
+"Nm" = (
+/obj/machinery/door/airlock/mainship/maint/free_access{
+	dir = 2
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -18096,10 +18119,10 @@ hy
 hw
 hw
 hw
-hB
-hB
-hB
-hB
+ur
+ur
+ur
+ur
 hB
 hB
 hB
@@ -18249,11 +18272,11 @@ hy
 hw
 hw
 hw
-hB
-hB
-hB
-hB
-hB
+ur
+LT
+ur
+ur
+ur
 hB
 hB
 hB
@@ -18405,11 +18428,11 @@ hw
 hB
 hB
 hB
-hB
-hB
-hB
-hB
-hB
+Av
+ur
+ur
+ur
+ur
 bd
 PG
 bk
@@ -18559,12 +18582,12 @@ hB
 hc
 hc
 hc
-hc
-hc
-hc
-hc
-bd
-Nl
+Nj
+Nj
+Nj
+Nj
+Nm
+bk
 bk
 bk
 bk
