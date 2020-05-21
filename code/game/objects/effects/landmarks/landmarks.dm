@@ -311,8 +311,7 @@
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn
 	name = "Tier 4 Weapon Spawn"
 	icon_state = "weapon4"
-	weapon_list = list(	/obj/item/weapon/gun/rifle/sniper,
-						/obj/item/weapon/gun/rifle/sniper/elite,
+	weapon_list = list(	/obj/item/weapon/gun/rifle/sniper/elite,
 						/obj/item/weapon/gun/rifle/sniper/elite/xmas,
 						/obj/item/weapon/gun/rifle/sniper/M42A,
 						/obj/item/weapon/gun/rifle/sniper/svd,
