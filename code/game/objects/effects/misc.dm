@@ -124,7 +124,6 @@
 	desc = "It looks dangerous to traverse."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "smoke"
-	opacity = TRUE
 	density = FALSE
 
 /obj/effect/forcefield/fog/passable_fog/CanPass(atom/movable/mover, turf/target)
@@ -136,7 +135,7 @@
 		return
 	set_opacity(FALSE)
 	alpha = 0
-	addtimer(CALLBACK(src, .proc/reset), 30 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, .proc/reset), 30 SECONDS)
 
 /obj/effect/forcefield/fog/passable_fog/proc/reset()
 	alpha = initial(alpha)
