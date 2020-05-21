@@ -119,6 +119,27 @@
 		return TRUE
 	return FALSE
 
+/obj/effect/forcefield/fog/passable_fog
+	name = "fog"
+	desc = "It looks dangerous to traverse."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "smoke"
+	density = FALSE
+
+/obj/effect/forcefield/fog/passable_fog/CanPass(atom/movable/mover, turf/target)
+	return TRUE
+
+/obj/effect/forcefield/fog/passable_fog/Crossed(atom/movable/mover, oldloc)
+	. = ..()
+	if(!opacity)
+		return
+	set_opacity(FALSE)
+	alpha = 0
+	addtimer(CALLBACK(src, .proc/reset), 30 SECONDS)
+
+/obj/effect/forcefield/fog/passable_fog/proc/reset()
+	alpha = initial(alpha)
+	set_opacity(TRUE)
 
 //used to control opacity of multitiles doors
 /obj/effect/opacifier

@@ -506,10 +506,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	keyslot2 = /obj/item/encryptionkey/mcom
 
 
-/obj/item/radio/headset/distress/wolves
-	name = "Steel Wolves headset"
+/obj/item/radio/headset/distress/usl
+	name = "Non standard headset"
 	frequency = FREQ_CIV_GENERAL
-	keyslot = /obj/item/encryptionkey/wolves
+	keyslot = /obj/item/encryptionkey/usl
 
 
 /obj/item/radio/headset/distress/commando
