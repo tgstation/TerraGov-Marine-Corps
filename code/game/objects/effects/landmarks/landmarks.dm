@@ -162,7 +162,7 @@
 		new /obj/item/storage/box/nade_box (get_turf(src))
 		return
 	
-	if(istype(gun_to_spawn, /obj/item/weapon/gun/flare)
+	if(istype(gun_to_spawn, /obj/item/weapon/gun/flare))
 		new /obj/item/storage/box/m94 (get_turf(src))
 		return
 
