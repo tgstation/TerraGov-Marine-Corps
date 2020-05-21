@@ -47,6 +47,9 @@
 	var/turf/T = get_turf(source)
 	var/obj/structure/cable/C = T.get_cable_node()
 	if(C)
+		var/datum/powernet/PN = C.powernet
+		if(PN.delayedload >= PN.newavail)
+			return FALSE // no power left
 		if(electrocute_mob(user, C, source))
 			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 			s.set_up(3, 1, source)
