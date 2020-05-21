@@ -135,7 +135,7 @@
 		return
 	set_opacity(FALSE)
 	alpha = 0
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	addtimer(CALLBACK(src, .proc/reset), 30 SECONDS)
 
 /obj/effect/forcefield/fog/passable_fog/proc/reset()
