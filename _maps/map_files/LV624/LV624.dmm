@@ -11206,8 +11206,8 @@
 /area/lv624/lazarus/sleep_male)
 "aQY" = (
 /obj/structure/bed/chair/wood/wings{
-	icon_state = "wooden_chair_wings";
-	dir = 4
+	dir = 4;
+	icon_state = "wooden_chair_wings"
 	},
 /turf/open/floor/tile/blue/taupebluecorner{
 	dir = 2
@@ -11444,8 +11444,8 @@
 /area/lv624/lazarus/sleep_male)
 "aRF" = (
 /obj/structure/bed/chair/wood/wings{
-	icon_state = "wooden_chair_wings";
-	dir = 1
+	dir = 1;
+	icon_state = "wooden_chair_wings"
 	},
 /turf/open/floor/tile/blue/taupebluecorner{
 	dir = 2
@@ -11606,8 +11606,8 @@
 /area/lv624/ground/jungle9)
 "aSh" = (
 /obj/structure/bed/chair/wood/wings{
-	icon_state = "wooden_chair_wings";
-	dir = 4
+	dir = 4;
+	icon_state = "wooden_chair_wings"
 	},
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/blue/taupebluecorner{
@@ -12851,8 +12851,8 @@
 /area/shuttle/drop1/lz1)
 "aWr" = (
 /turf/open/floor{
-	icon_state = "warningcorner";
-	dir = 1
+	dir = 1;
+	icon_state = "warningcorner"
 	},
 /area/shuttle/drop1/lz1)
 "aWs" = (
@@ -13208,8 +13208,8 @@
 /area/lv624/lazarus/console)
 "aXF" = (
 /turf/open/floor{
-	icon_state = "warningcorner";
-	dir = 4
+	dir = 4;
+	icon_state = "warningcorner"
 	},
 /area/shuttle/drop1/lz1)
 "aXG" = (
@@ -16726,8 +16726,8 @@
 /area/lv624/lazarus/hop)
 "bjj" = (
 /obj/structure/bed/chair/wood/wings{
-	icon_state = "wooden_chair_wings";
-	dir = 4
+	dir = 4;
+	icon_state = "wooden_chair_wings"
 	},
 /turf/open/floor/wood,
 /area/lv624/lazarus/hop)
@@ -17406,8 +17406,8 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/terminal{
-	icon_state = "term";
-	dir = 1
+	dir = 1;
+	icon_state = "term"
 	},
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/engineering)
@@ -17638,8 +17638,8 @@
 /obj/machinery/power/geothermal,
 /obj/structure/lattice,
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /turf/open/floor/plating/warning{
 	dir = 9
@@ -17926,8 +17926,8 @@
 /obj/machinery/power/geothermal,
 /obj/structure/lattice,
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /turf/open/floor/plating/warning{
 	dir = 8
@@ -18266,8 +18266,8 @@
 /obj/machinery/power/geothermal,
 /obj/structure/lattice,
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /turf/open/floor/plating/warning{
 	dir = 10
@@ -18487,8 +18487,8 @@
 /area/lv624/lazarus/secure_storage)
 "bot" = (
 /obj/structure/bed/chair/comfy{
-	icon_state = "comfychair";
-	dir = 4
+	dir = 4;
+	icon_state = "comfychair"
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
@@ -18499,8 +18499,8 @@
 /area/lv624/lazarus/secure_storage)
 "bov" = (
 /obj/structure/bed/chair/comfy{
-	icon_state = "comfychair";
-	dir = 8
+	dir = 8;
+	icon_state = "comfychair"
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
@@ -19038,8 +19038,8 @@
 /area/lv624/lazarus/atmos/outside)
 "bqj" = (
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/power/geothermal,
 /turf/open/floor/plating,
@@ -19664,6 +19664,10 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/wall,
 /area/shuttle/drop1/lz1)
+"col" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle1)
 "csn" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/mainship{
@@ -19821,10 +19825,6 @@
 	dir = 5
 	},
 /area/lv624/lazarus/research)
-"gnh" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle6)
 "gwG" = (
 /obj/structure/jungle/vines,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -19872,10 +19872,6 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/marking/bot,
 /area/shuttle/drop1/lz1)
-"iKI" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/quartstorage/outdoors)
 "iLV" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/cult,
@@ -20005,6 +20001,10 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/quartstorage/outdoors)
+"mch" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle6)
 "mic" = (
 /obj/effect/alien/weeds/node,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -20109,6 +20109,10 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/canteen)
+"ppZ" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/lazarus/quartstorage/outdoors)
 "prx" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/sign/botany,
@@ -20209,6 +20213,10 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
+"rQw" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle9)
 "six" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/dirt,
@@ -20297,6 +20305,19 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle3)
+"vfB" = (
+/obj/structure/flora/ausbushes/grassybush,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/grass,
+/area/lv624/lazarus/main_hall)
 "vkR" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/dirt,
@@ -20365,6 +20386,10 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/cult,
 /area/lv624/ground/caves/central3)
+"xdP" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/dirt,
+/area/shuttle/drop2/lz2)
 "xib" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
@@ -29340,7 +29365,7 @@ awk
 avd
 aFl
 avx
-axR
+mch
 axR
 auH
 aFR
@@ -29604,7 +29629,7 @@ axx
 aIZ
 aBP
 aKK
-gnh
+axR
 aEa
 auU
 aNR
@@ -32444,7 +32469,7 @@ aSM
 aEy
 aUc
 aTC
-aTC
+xdP
 aTC
 aEy
 aES
@@ -37582,7 +37607,7 @@ aMm
 aSe
 aLc
 aES
-aES
+rQw
 aES
 aFD
 aES
@@ -47871,7 +47896,7 @@ aXn
 aTH
 aYD
 aZA
-bal
+vfB
 bba
 aNz
 bbW
@@ -54002,7 +54027,7 @@ arW
 azK
 aAk
 aAk
-iKI
+aAk
 aAk
 aAk
 aAk
@@ -54259,7 +54284,7 @@ auO
 azJ
 aAk
 aAk
-aAk
+ppZ
 aAk
 aAk
 aCb
@@ -59713,7 +59738,7 @@ bmr
 bdi
 bdi
 biM
-boY
+col
 bpV
 bqC
 beV

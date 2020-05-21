@@ -2237,6 +2237,10 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/dark2,
 /area/outpost/cargo/office)
+"kv" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/yard/south_east)
 "kz" = (
 /obj/machinery/button/door/open_only/landing_zone,
 /obj/structure/window/reinforced{
@@ -4675,6 +4679,10 @@
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/lz1)
+"wo" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/outpost/yard/central)
 "wp" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable{
@@ -5205,6 +5213,10 @@
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/arrivals)
+"yN" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/outpost/yard/west)
 "yT" = (
 /obj/machinery/light/small,
 /turf/open/floor/tile/dark/brown2{
@@ -9023,6 +9035,10 @@
 /obj/item/radio,
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/hallway/northern)
+"QV" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/outpost/lz2)
 "QX" = (
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 5
@@ -23121,7 +23137,7 @@ hk
 oI
 SH
 cc
-cc
+yN
 SH
 SH
 SH
@@ -30862,7 +30878,7 @@ ww
 ww
 EA
 EA
-EA
+wo
 EA
 EA
 EA
@@ -36037,7 +36053,7 @@ HT
 fG
 NF
 NF
-NF
+kv
 NF
 NF
 mJ
@@ -41460,7 +41476,7 @@ BM
 KR
 KR
 Au
-io
+QV
 KR
 KR
 hY
