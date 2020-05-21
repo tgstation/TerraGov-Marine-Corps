@@ -2841,12 +2841,6 @@
 /obj/structure/closet/crate/bravo,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
-"agP" = (
-/obj/machinery/alarm{
-	dir = 4
-	},
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
 "agQ" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
@@ -2938,13 +2932,6 @@
 	icon_state = "yellowfull"
 	},
 /area/sulaco/engineering/ce)
-"ahg" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2
-	},
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
 "ahh" = (
 /obj/machinery/light{
 	dir = 1
@@ -6119,10 +6106,6 @@
 	icon_state = "white"
 	},
 /area/sulaco/cafeteria)
-"aoU" = (
-/obj/machinery/vending/marine/cargo_guns,
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
 "aoV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
@@ -24357,6 +24340,16 @@
 /obj/item/tool/crowbar,
 /turf/open/floor,
 /area/sulaco/cargo/office)
+"bFq" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/item/radio/intercom/general{
+	dir = 4;
+	icon_state = "intercom"
+	},
+/turf/open/floor/wood,
+/area/sulaco/cargo)
 "bGk" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/door/poddoor/shutters{
@@ -24384,6 +24377,17 @@
 /obj/item/tool/hand_labeler,
 /turf/open/floor,
 /area/sulaco/cargo/office)
+"bOW" = (
+/obj/item/radio/intercom/general{
+	dir = 8;
+	icon_state = "intercom"
+	},
+/obj/structure/table/mainship,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/lightreplacer,
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
 "cbi" = (
 /obj/structure/window/reinforced{
 	dir = 5
@@ -24413,6 +24417,12 @@
 	amount = 50
 	},
 /turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
+"cMp" = (
+/turf/open/floor{
+	dir = 2;
+	icon_state = "redcorner"
+	},
 /area/sulaco/cargo)
 "cPq" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -24457,22 +24467,25 @@
 /obj/structure/largecrate/supply/supplies/water,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
-"eCt" = (
-/obj/machinery/vending/nanomed{
-	dir = 8
+"eBI" = (
+/obj/machinery/door_control/mainship/req{
+	id = "qm_warehouse";
+	name = "RO Warehouse Shutters";
+	pixel_x = 0;
+	pixel_y = 25
 	},
-/turf/open/floor,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor{
+	dir = 2;
+	icon_state = "redcorner"
+	},
 /area/sulaco/cargo)
 "eOK" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/structure/rack,
 /turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
-"eWg" = (
-/obj/machinery/camera/autoname{
-	dir = 8
-	},
-/turf/open/floor,
 /area/sulaco/cargo)
 "fcB" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
@@ -24491,15 +24504,9 @@
 /obj/vehicle/powerloader,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/sulaco/cargo)
-"fyD" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on{
-	dir = 4
-	},
-/obj/item/radio/intercom/general{
-	dir = 4;
-	icon_state = "intercom"
-	},
-/turf/open/floor/mainship/mono,
+"fCQ" = (
+/obj/structure/flora/pottedplant,
+/turf/open/floor/wood,
 /area/sulaco/cargo)
 "fUg" = (
 /obj/machinery/vending/engivend{
@@ -24507,21 +24514,6 @@
 	},
 /turf/open/floor,
 /area/sulaco/cargo/office)
-"fZZ" = (
-/turf/open/floor{
-	icon_state = "bot"
-	},
-/area/sulaco/cargo)
-"gmy" = (
-/obj/item/radio/intercom/general{
-	dir = 8;
-	icon_state = "intercom"
-	},
-/obj/structure/table/mainship,
-/obj/item/storage/belt/utility/full,
-/obj/item/storage/belt/utility/full,
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
 "gDs" = (
 /obj/machinery/door/poddoor/shutters{
 	dir = 2;
@@ -24554,6 +24546,12 @@
 /obj/structure/closet/crate/weapon,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
+"hgH" = (
+/obj/structure/bed/chair/sofa/right{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/sulaco/cargo)
 "hjI" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -24567,19 +24565,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
-"hRy" = (
-/obj/machinery/door_control/mainship/req{
-	id = "qm_warehouse";
-	name = "RO Warehouse Shutters";
-	pixel_x = 0;
-	pixel_y = 25
-	},
-/obj/machinery/light{
+"hme" = (
+/obj/structure/bed/chair/sofa/left{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "bot"
-	},
+/turf/open/floor/wood,
 /area/sulaco/cargo)
 "hTP" = (
 /obj/structure/closet/secure_closet/req_officer,
@@ -24606,16 +24596,6 @@
 	icon_state = "dark"
 	},
 /area/sulaco/cargo/office)
-"iJh" = (
-/obj/item/radio/intercom/general{
-	dir = 8;
-	icon_state = "intercom"
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor,
-/area/sulaco/cargo)
 "jeE" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -24633,6 +24613,15 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
+"kfq" = (
+/obj/machinery/camera/autoname{
+	dir = 8
+	},
+/turf/open/floor{
+	dir = 1;
+	icon_state = "red"
+	},
 /area/sulaco/cargo)
 "knA" = (
 /obj/docking_port/stationary/marine_dropship/crash_target,
@@ -24766,6 +24755,18 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
+"ndD" = (
+/obj/item/radio/intercom/general{
+	dir = 8;
+	icon_state = "intercom"
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor{
+	icon_state = "red"
+	},
+/area/sulaco/cargo)
 "nzc" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor,
@@ -24788,6 +24789,12 @@
 	},
 /turf/open/floor,
 /area/sulaco/cargo/office)
+"opM" = (
+/turf/open/floor{
+	dir = 4;
+	icon_state = "redcorner"
+	},
+/area/sulaco/cargo)
 "oCF" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -24798,6 +24805,15 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
+"oJe" = (
+/obj/machinery/vending/nanomed{
+	dir = 8
+	},
+/turf/open/floor{
+	dir = 1;
+	icon_state = "red"
+	},
 /area/sulaco/cargo)
 "oRp" = (
 /obj/structure/disposalpipe/segment{
@@ -24836,6 +24852,10 @@
 /obj/machinery/door/airlock/mainship/marine/requisitions{
 	dir = 1
 	},
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
+"qjS" = (
+/obj/machinery/vending/marine/cargo_supply,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "qWG" = (
@@ -24896,6 +24916,12 @@
 	icon_state = "loadingarea"
 	},
 /area/sulaco/cargo)
+"saY" = (
+/turf/open/floor{
+	dir = 1;
+	icon_state = "red"
+	},
+/area/sulaco/cargo)
 "swx" = (
 /obj/machinery/light,
 /obj/machinery/camera/autoname{
@@ -24924,12 +24950,29 @@
 /obj/machinery/vending/lasgun,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
+"trD" = (
+/turf/open/floor{
+	dir = 4;
+	icon_state = "red"
+	},
+/area/sulaco/cargo)
+"tYT" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4;
+	layer = 2
+	},
+/turf/open/floor/wood,
+/area/sulaco/cargo)
 "uAS" = (
 /obj/structure/supply_drop/delta,
 /turf/open/floor{
 	dir = 2;
 	icon_state = "cult"
 	},
+/area/sulaco/cargo)
+"uDe" = (
+/obj/machinery/vending/snack,
+/turf/open/floor/wood,
 /area/sulaco/cargo)
 "uDw" = (
 /obj/structure/table,
@@ -25006,6 +25049,18 @@
 "wlm" = (
 /obj/machinery/vending/marine/cargo_guns,
 /turf/open/floor,
+/area/sulaco/cargo)
+"xao" = (
+/turf/open/floor{
+	icon_state = "red"
+	},
+/area/sulaco/cargo)
+"xfQ" = (
+/obj/machinery/alarm{
+	dir = 4
+	},
+/obj/machinery/vending/boozeomat,
+/turf/open/floor/wood,
 /area/sulaco/cargo)
 "xmK" = (
 /obj/machinery/vending/marine/cargo_ammo,
@@ -65760,9 +65815,9 @@ aaK
 toZ
 hbN
 fwl
-agP
-fyD
-aaK
+xfQ
+bFq
+hgH
 ajp
 ajZ
 alf
@@ -66017,9 +66072,9 @@ aaK
 bIu
 vxc
 aaK
-aaK
-ahg
-aaK
+uDe
+tYT
+hme
 ajp
 hTP
 alg
@@ -66275,8 +66330,8 @@ vYy
 dPX
 aaK
 aaK
-ahg
-aaK
+tYT
+fCQ
 ajp
 xyx
 akc
@@ -68592,12 +68647,12 @@ ahx
 jYs
 swx
 aap
-hRy
-fZZ
-fZZ
-fZZ
-fZZ
-fZZ
+eBI
+trD
+opM
+cMp
+trD
+opM
 yfU
 auA
 avV
@@ -68849,12 +68904,12 @@ ahx
 jYs
 aaK
 mrr
-vdt
+xao
 pAn
-vdt
-vdt
+saY
+xao
 pAn
-vdt
+saY
 mrr
 auC
 asl
@@ -69100,18 +69155,18 @@ aaK
 anW
 aaK
 aaK
-aoU
+qjS
 aaK
 ahx
 jYs
 aaK
 pJa
+xao
 vdt
+saY
+xao
 vdt
-vdt
-vdt
-vdt
-vdt
+saY
 yfU
 auv
 avV
@@ -69363,12 +69418,12 @@ ahx
 jYs
 knA
 mrr
-vdt
+xao
 wlm
-vdt
-vdt
+saY
+xao
 wlm
-vdt
+saY
 yfU
 auv
 avV
@@ -69620,12 +69675,12 @@ ahQ
 jYs
 xAN
 aap
+xao
 vdt
+saY
+xao
 vdt
-vdt
-vdt
-vdt
-vdt
+saY
 yfU
 auv
 avV
@@ -69867,7 +69922,7 @@ aaq
 aaK
 nJm
 xXb
-gmy
+bOW
 aaK
 aaK
 aed
@@ -69877,12 +69932,12 @@ uAS
 hjI
 aaK
 aap
-vdt
+xao
 xmK
-eCt
-iJh
+oJe
+ndD
 xmK
-eWg
+kfq
 yfU
 xnD
 avY
