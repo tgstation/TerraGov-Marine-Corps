@@ -161,6 +161,10 @@
 	if(istype(gun_to_spawn, /obj/item/weapon/gun/launcher/m92) || istype(gun_to_spawn, /obj/item/weapon/gun/launcher/m81))
 		new /obj/item/storage/box/nade_box (get_turf(src))
 		return
+	
+	if(istype(gun_to_spawn, /obj/item/weapon/gun/flare)
+		new /obj/item/storage/box/m94 (get_turf(src))
+		return
 
 	if(istype(gun_to_spawn, /obj/item/weapon/gun/energy))
 		var/obj/item/weapon/gun/energy/energy_gun_to_spawn = gun_to_spawn
