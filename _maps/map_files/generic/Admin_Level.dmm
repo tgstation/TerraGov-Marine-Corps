@@ -824,9 +824,7 @@
 "dW" = (
 /obj/structure/table,
 /obj/machinery/light,
-/obj/item/weapon/gun/smg/skorpion/upp,
-/obj/item/ammo_magazine/smg/skorpion,
-/obj/item/ammo_magazine/smg/skorpion,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "dX" = (
@@ -2684,10 +2682,6 @@
 /obj/structure/flora/ausbushes/grassybush,
 /turf/open/ground/grass,
 /area/deathmatch)
-"pF" = (
-/obj/item/weapon/katana,
-/turf/open/ground/river,
-/area/deathmatch)
 "pG" = (
 /obj/structure/bed/chair/dropship/passenger{
 	icon_state = "shuttle_chair";
@@ -2707,8 +2701,7 @@
 /area/deathmatch)
 "pJ" = (
 /obj/structure/table,
-/obj/item/ammo_magazine/revolver/upp,
-/obj/item/weapon/gun/revolver/upp,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor,
 /area/deathmatch)
 "pK" = (
@@ -2732,7 +2725,7 @@
 /turf/open/ground/grass,
 /area/deathmatch)
 "pP" = (
-/obj/item/weapon/gun/shotgun/pump,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "pQ" = (
@@ -3032,7 +3025,7 @@
 /area/deathmatch)
 "rc" = (
 /obj/structure/table,
-/obj/item/weapon/gun/shotgun/double,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor,
 /area/deathmatch)
 "rd" = (
@@ -3044,10 +3037,6 @@
 /obj/item/multitool,
 /turf/open/floor,
 /area/deathmatch)
-"rf" = (
-/obj/item/weapon/gun/rifle/ak47/carbine,
-/turf/open/shuttle/brig,
-/area/deathmatch)
 "rg" = (
 /obj/structure/rack,
 /obj/item/storage/box/MRE,
@@ -3056,45 +3045,25 @@
 /obj/item/storage/box/MRE,
 /turf/open/floor,
 /area/deathmatch)
-"rh" = (
-/obj/item/weapon/gun/pistol/b92fs,
-/turf/open/ground/river,
-/area/deathmatch)
 "ri" = (
 /obj/structure/rack,
-/obj/item/weapon/gun/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor,
 /area/deathmatch)
 "rj" = (
 /obj/structure/rack,
-/obj/item/weapon/gun/smg/p90,
-/obj/item/ammo_magazine/smg/p90,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor,
 /area/deathmatch)
 "rk" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/pistol/m1911,
-/obj/item/weapon/gun/pistol/m1911,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor,
-/area/deathmatch)
-"rl" = (
-/obj/structure/rack,
-/obj/item/weapon/gun/rifle/m16,
-/obj/item/ammo_magazine/rifle/m16,
-/obj/item/ammo_magazine/rifle/m16,
-/turf/open/floor,
-/area/deathmatch)
-"rm" = (
-/obj/item/weapon/gun/rifle/ak47,
-/turf/open/shuttle/brig,
 /area/deathmatch)
 "rn" = (
 /obj/structure/table,
 /obj/machinery/light,
-/obj/item/weapon/gun/flare,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor,
 /area/deathmatch)
 "ro" = (
@@ -3119,15 +3088,11 @@
 /turf/open/ground/grass,
 /area/deathmatch)
 "rt" = (
-/obj/item/weapon/gun/revolver/mateba/admiral,
-/turf/open/ground/river,
-/area/deathmatch)
-"ru" = (
-/obj/item/weapon/twohanded/glaive,
+/obj/effect/landmark/weapon_spawn/tier5_weapon_spawn,
 /turf/open/ground/river,
 /area/deathmatch)
 "rv" = (
-/obj/item/weapon/baseballbat/metal,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/ground/river,
 /area/deathmatch)
 "si" = (
@@ -3254,6 +3219,10 @@
 /obj/machinery/light,
 /turf/open/floor,
 /area/tdome)
+"GP" = (
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/turf/open/ground/river,
+/area/deathmatch)
 "Je" = (
 /obj/machinery/light{
 	dir = 4
@@ -14944,7 +14913,7 @@ qe
 rg
 qQ
 rj
-rl
+rj
 qe
 pX
 pS
@@ -15961,8 +15930,8 @@ pz
 pz
 pz
 pz
-rh
 pz
+GP
 pz
 pe
 pz
@@ -16058,7 +16027,7 @@ pz
 pe
 pz
 pz
-ru
+GP
 pz
 pz
 pz
@@ -16246,7 +16215,7 @@ pe
 pz
 pz
 pz
-pz
+GP
 pz
 pz
 pz
@@ -16348,7 +16317,7 @@ pz
 pz
 pz
 pz
-pF
+pz
 pz
 pz
 pz
@@ -17286,7 +17255,7 @@ pC
 pC
 pG
 pG
-rf
+pP
 pH
 qn
 pH
@@ -17699,7 +17668,7 @@ qd
 pG
 pj
 pH
-rm
+pP
 rr
 pt
 pt
