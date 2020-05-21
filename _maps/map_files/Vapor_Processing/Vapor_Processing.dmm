@@ -4443,8 +4443,8 @@
 /area/maintenance/substation)
 "nw" = (
 /obj/machinery/power/terminal{
-	icon_state = "term";
-	dir = 1
+	dir = 1;
+	icon_state = "term"
 	},
 /obj/structure/cable/yellow{
 	d2 = 2;
@@ -5127,8 +5127,8 @@
 /area/crew_quarters/sleep/bedrooms)
 "pt" = (
 /obj/structure/bed/chair/wood/wings{
-	icon_state = "wooden_chair_wings";
-	dir = 1
+	dir = 1;
+	icon_state = "wooden_chair_wings"
 	},
 /turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
@@ -5137,8 +5137,8 @@
 /area/crew_quarters/sleep_male)
 "pv" = (
 /obj/structure/bed/chair/wood/wings{
-	icon_state = "wooden_chair_wings";
-	dir = 1
+	dir = 1;
+	icon_state = "wooden_chair_wings"
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/sleep_male)
@@ -5452,8 +5452,8 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison/yellow{
-	icon_state = "yellow";
-	dir = 4
+	dir = 4;
+	icon_state = "yellow"
 	},
 /area/lv624/lazarus/engineering)
 "qw" = (
@@ -6241,8 +6241,8 @@
 /area/lv624/lazarus/comms)
 "st" = (
 /turf/open/floor/prison/yellow{
-	icon_state = "yellow";
-	dir = 8
+	dir = 8;
+	icon_state = "yellow"
 	},
 /area/lv624/lazarus/engineering)
 "su" = (
@@ -6975,8 +6975,8 @@
 /area/crew_quarters/sleep_male)
 "uE" = (
 /obj/structure/bed/chair/wood/wings{
-	icon_state = "wooden_chair_wings";
-	dir = 1
+	dir = 1;
+	icon_state = "wooden_chair_wings"
 	},
 /obj/machinery/door/window,
 /turf/open/floor/wood,
@@ -7023,6 +7023,10 @@
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/ground,
 /area/lv624/ground/caves/central1)
+"vW" = (
+/obj/machinery/miner/damaged,
+/turf/open/ground/grass/grass2,
+/area/lv624/ground/compound/sw)
 "wi" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -7030,14 +7034,18 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/prison/yellow{
-	icon_state = "yellow";
-	dir = 4
+	dir = 4;
+	icon_state = "yellow"
 	},
 /area/lv624/lazarus/engineering)
 "ww" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
 /area/vapor_processing/caves/se)
+"wR" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/grass,
+/area/vapor_processing/east_compound)
 "xc" = (
 /obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor/plating,
@@ -7101,6 +7109,10 @@
 	},
 /turf/closed/wall,
 /area/lv624/ground/compound/c)
+"Fm" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/ground,
+/area/lv624/ground/caves/central1)
 "FJ" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/grass,
@@ -7213,6 +7225,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
 /area/lv624/ground/caves/central1)
+"VY" = (
+/obj/machinery/miner/damaged,
+/turf/open/ground/grass/grass2,
+/area/lv624/ground/compound/n)
 "Xw" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
@@ -10201,7 +10217,7 @@ cs
 cs
 cs
 ah
-ah
+VY
 ah
 bm
 ah
@@ -10253,7 +10269,7 @@ lH
 ki
 ki
 ki
-ki
+vW
 kY
 ki
 ki
@@ -12652,7 +12668,7 @@ bB
 UJ
 bD
 bD
-bB
+Fm
 bB
 bB
 bD
@@ -14522,7 +14538,7 @@ eN
 eM
 eN
 eN
-eN
+wR
 li
 li
 li
