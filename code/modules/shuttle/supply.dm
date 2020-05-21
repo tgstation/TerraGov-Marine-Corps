@@ -211,26 +211,6 @@ GLOBAL_LIST_EMPTY(exports_types)
 		for(var/atom/movable/AM in shuttle_area)
 			if(AM.anchored)
 				continue
-			/*
-			// Must be in a crate!
-			if(istype(AM,/obj/structure/closet/crate))
-
-				SSpoints.supply_points += POINTS_PER_CRATE
-				var/find_slip = 1
-
-				for(var/atom in AM)
-					// Sell manifests
-					var/atom/A = atom
-					if(find_slip && istype(A,/obj/item/paper/manifest))
-						var/obj/item/paper/slip = A
-						if(slip.stamped && slip.stamped.len) //yes, the clown stamp will work. clown is the highest authority on the station, it makes sense
-							SSpoints.export_history += "Crate with manifest ([POINTS_PER_CRATE+POINTS_PER_SLIP] points)"
-							SSpoints.supply_points += POINTS_PER_SLIP
-							find_slip = 0
-						continue
-				if(find_slip)
-					SSpoints.export_history += "Crate ([POINTS_PER_CRATE] points)"
-			*/
 			//Sell Xeno Corpses
 			if (isxeno(AM))
 				var/cost = 0

@@ -692,7 +692,7 @@ AMMO
 	cost = 12
 
 /datum/supply_packs/ammo/smartmachinegun
-	name = "T26 smartmachinegun ammo"
+	name = "T-29 smartmachinegun ammo"
 	contains = list(/obj/item/ammo_magazine/standard_smartmachinegun)
 	cost = 10
 
