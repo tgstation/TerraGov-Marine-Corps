@@ -170,8 +170,13 @@
 	. = ..()
 	if(.)
 		return
+
 	if(!LAZYLEN(installed_modules))
 		to_chat(user, "<span class='notice'>There is nothing to remove</span>")
+		return TRUE
+
+	if(ismob(loc) && (user.r_hand != src && user.l_hand != src))
+		to_chat(user, "<span class='warning'>You need to remove the armor first.</span>")
 		return TRUE
 
 	var/obj/item/armor_module/attachable/attachment
@@ -194,6 +199,10 @@
 	. = ..()
 	if(.)
 		return
+
+	if(ismob(loc) && (user.r_hand != src && user.l_hand != src))
+		to_chat(user, "<span class='warning'>You need to remove the armor first.</span>")
+		return TRUE
 
 	var/list/obj/item/armor_module/armor/armor_slots = list()
 	if(slot_chest)
@@ -226,8 +235,13 @@
 	. = ..()
 	if(.)
 		return
+
 	if(!installed_storage)
 		to_chat(user, "<span class='notice'>There is nothing to remove</span>")
+		return TRUE
+
+	if(ismob(loc) && (user.r_hand != src && user.l_hand != src))
+		to_chat(user, "<span class='warning'>You need to remove the armor first.</span>")
 		return TRUE
 
 	if(!can_detach(user, installed_storage))
