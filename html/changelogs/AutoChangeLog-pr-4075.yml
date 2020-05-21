@@ -1,0 +1,4 @@
+author: "Hughgent"
+delete-after: True
+changes: 
+  - balance: "Xeno Disarm based stuns are now based on current health rather than max health, should be much easier to stun a marine."
