@@ -93,7 +93,6 @@
 		query_round_game_mode.Execute()
 		qdel(query_round_game_mode)
 
-
 /datum/game_mode/proc/new_player_topic(mob/new_player/NP, href, list/href_list)
 	return FALSE
 
