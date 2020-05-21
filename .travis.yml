@@ -89,7 +89,7 @@ jobs:
         - touch dmdoc/.nojekyll
       deploy:
         provider: pages
-        cleanup: false
+        skip_cleanup: true
         keep_history: true
         local_dir: dmdoc
         token: $DMDOC_GITHUB_TOKEN
