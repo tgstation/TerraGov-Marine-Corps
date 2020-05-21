@@ -66,6 +66,28 @@
 /obj/machinery/vending/marine/ex_act(severity)
 	return
 
+/obj/machinery/vending/marine/cargo_supply
+	name = "\improper Operational Supplies Vendor"
+	desc = "A large vendor for dispensing specialty and bulk supplies. Restricted to cargo personnel only."
+	icon_state = "synth"
+	icon_vend = "synth-vend"
+	icon_deny = "synth-deny"
+	wrenchable = FALSE
+	req_one_access = list(ACCESS_MARINE_CARGO)
+	products = list(
+					/obj/item/storage/box/ammo = 30,
+					/obj/item/storage/box/nade_box = 2,
+					/obj/item/storage/box/nade_box/HIDP = 2,
+					/obj/item/storage/box/nade_box/M15 = 2,
+					/obj/item/ammo_magazine/sniper = 3,
+					/obj/item/ammo_magazine/rifle/m4ra = 3,
+					/obj/item/ammo_magazine/rocket = 3,
+					/obj/item/ammo_magazine/minigun = 2,
+					/obj/item/ammo_magazine/shotgun/mbx900 = 2,
+					/obj/item/ammo_magazine/flamer_tank/large = 1,
+					/obj/item/bodybag/tarp = 2,
+					/obj/item/explosive/plastique = 2)
+
 /obj/machinery/vending/marine/cargo_guns
 	name = "\improper Automated Armaments Vendor"
 	desc = "A automated rack hooked up to a small supply of various firearms and explosives."
