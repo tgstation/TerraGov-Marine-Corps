@@ -1,0 +1,4 @@
+author: "Hughgent"
+delete-after: True
+changes: 
+  - rscadd: "Tiered weapon spawns are now available for mapping."
