@@ -15,7 +15,7 @@
 	tackle_damage = 25
 
 	// *** Speed *** //
-	speed = -0.7
+	speed = -0.8
 
 	// *** Plasma *** //
 	plasma_max = 750
@@ -106,7 +106,7 @@
 	tackle_damage = 35
 
 	// *** Speed *** //
-	speed = -0.9
+	speed = -1
 
 	// *** Plasma *** //
 	plasma_max = 900
@@ -137,7 +137,7 @@
 	tackle_damage = 40
 
 	// *** Speed *** //
-	speed = -1.0
+	speed = -1.1
 
 	// *** Plasma *** //
 	plasma_max = 1000
