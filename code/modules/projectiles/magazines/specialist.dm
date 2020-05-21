@@ -63,7 +63,7 @@
 /obj/item/ammo_magazine/rifle/m4ra/incendiary
 	name = "\improper A19 high velocity incendiary magazine (10x28mm)"
 	desc = "A magazine of A19 high velocity incendiary rounds for use in the T-45 battle rifle. The T-45 battle rifle is the only gun that can chamber these rounds."
-	caliber = "10x28mm"
+	caliber = "10x28mm caseless"
 	icon_state = "m4ra_incendiary"
 	default_ammo = /datum/ammo/bullet/rifle/m4ra/incendiary
 	max_rounds = 20

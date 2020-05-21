@@ -31,15 +31,22 @@
 
 
 ///returns the damage value of the attack after processing the obj's various armor protections
-/obj/proc/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir, armour_penetration = 0)
+/obj/proc/run_obj_armor(damage_amount, damage_type, damage_flag = "", attack_dir, armour_penetration = 0)
 	if(!damage_type)
 		return 0
-	var/armor_protection = 0
 	if(damage_flag)
-		armor_protection = armor.getRating(damage_flag)
-	if(armor_protection)		//Only apply weak-against-armor/hollowpoint effects if there actually IS armor.
-		armor_protection = CLAMP(armor_protection - armour_penetration, min(armor_protection, 0), 100)
-	return round(damage_amount * (100 - armor_protection) * 0.01, DAMAGE_PRECISION)
+		var/obj_hard_armor = hard_armor.getRating(damage_flag)
+		var/obj_soft_armor = soft_armor.getRating(damage_flag)
+		if(armour_penetration)
+			if(obj_hard_armor)
+				obj_hard_armor = max(0, obj_hard_armor - (obj_hard_armor * armour_penetration * 0.01)) //AP reduces a % of hard armor.
+			if(obj_soft_armor)
+				obj_soft_armor = max(0, obj_soft_armor - armour_penetration) //Flat removal.
+		if(obj_hard_armor)
+			damage_amount = max(0, damage_amount - obj_hard_armor)
+		if(obj_soft_armor)
+			damage_amount = max(0, damage_amount - (damage_amount * obj_soft_armor * 0.01))
+	return round(damage_amount, DAMAGE_PRECISION)
 
 
 ///the sound played when the obj is damaged.

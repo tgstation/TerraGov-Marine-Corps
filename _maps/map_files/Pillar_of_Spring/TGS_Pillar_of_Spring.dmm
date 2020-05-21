@@ -3526,7 +3526,6 @@
 /obj/item/pizzabox/meat{
 	pixel_y = 8
 	},
-/obj/effect/landmark/map_item,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "kF" = (
@@ -5576,7 +5575,6 @@
 /area/mainship/living/cafeteria_starboard)
 "qe" = (
 /obj/structure/table/mainship,
-/obj/effect/landmark/map_item,
 /turf/open/floor/mainship,
 /area/mainship/living/cafeteria_starboard)
 "qf" = (
@@ -5900,7 +5898,6 @@
 "qX" = (
 /obj/structure/table/mainship,
 /obj/item/ashtray/glass,
-/obj/effect/landmark/map_item,
 /obj/item/clipboard{
 	pixel_x = 5
 	},
@@ -16430,7 +16427,6 @@
 /area/mainship/engineering/lower_engineering)
 "OU" = (
 /obj/structure/table/mainship,
-/obj/effect/landmark/map_item,
 /obj/structure/paper_bin{
 	pixel_x = -4;
 	pixel_y = 5
@@ -17730,7 +17726,6 @@
 /area/mainship/living/cafeteria_starboard)
 "Wt" = (
 /obj/structure/table/mainship,
-/obj/effect/landmark/map_item,
 /obj/item/storage/briefcase,
 /obj/item/clipboard{
 	pixel_x = 5
@@ -17827,7 +17822,6 @@
 "Xd" = (
 /obj/structure/table/mainship,
 /obj/item/storage/donut_box,
-/obj/effect/landmark/map_item,
 /turf/open/floor/mainship,
 /area/mainship/living/cafeteria_starboard)
 "Xh" = (
@@ -18030,7 +18024,6 @@
 /area/mainship/squads/req)
 "YY" = (
 /obj/structure/table/mainship,
-/obj/effect/landmark/map_item,
 /obj/item/pizzabox/margherita,
 /turf/open/floor/mainship,
 /area/mainship/living/cafeteria_starboard)

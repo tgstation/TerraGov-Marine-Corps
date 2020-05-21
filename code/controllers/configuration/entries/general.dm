@@ -29,17 +29,10 @@ Basics, the most important.
 
 /datum/config_entry/string/dburl
 
-/datum/config_entry/string/shipurl
 
-/datum/config_entry/string/lv624url
-
-/datum/config_entry/string/icecolonyurl
-
-/datum/config_entry/string/bigredurl
-
-/datum/config_entry/string/prisonstationurl
-
-/datum/config_entry/string/whiskeyoutposturl
+ /// Host of the webmap
+/datum/config_entry/string/webmap_host
+	config_entry_value = "https://affectedarc07.co.uk/tgmc.php?m="
 
 /datum/config_entry/string/python_path
 
