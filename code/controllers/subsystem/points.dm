@@ -5,7 +5,7 @@
 #define POINTS_PER_SLIP 1
 #define POINTS_PER_PHORON 20
 #define POINTS_PER_CRATE 5
-#define POINTS_PER_PLATINUM 40
+#define POINTS_PER_PLATINUM 60
 
 SUBSYSTEM_DEF(points)
 	name = "Points"
