@@ -157,7 +157,7 @@
 	icon_state = "medium_arms_icon"
 	item_state = "medium_arms"
 
-/obj/item/armor_module/armor/args/can_attach(mob/living/user, obj/item/clothing/suit/modular/parent, silent = FALSE)
+/obj/item/armor_module/armor/arms/can_attach(mob/living/user, obj/item/clothing/suit/modular/parent, silent = FALSE)
 	. = ..()
 	if(!.)
 		return
