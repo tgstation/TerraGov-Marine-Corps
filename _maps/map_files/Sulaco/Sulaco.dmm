@@ -6377,14 +6377,6 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/north_solar_maint)
-"apK" = (
-/obj/structure/table/reinforced{
-	icon_state = "table"
-	},
-/turf/open/floor{
-	icon_state = "white"
-	},
-/area/sulaco/cafeteria)
 "apL" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -62984,7 +62976,7 @@ amp
 anw
 anu
 aoR
-apK
+aoR
 any
 arJ
 aoR
