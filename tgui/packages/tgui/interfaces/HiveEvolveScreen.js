@@ -61,6 +61,7 @@ export const HiveEvolveScreen = (props, context) => {
   } = data;
 
   const canEvolve = can_evolve && evolution.current >= evolution.max;
+  const instantEvolveTypes = ["Shrike", "Queen"];
   const evolvesInto = Object.values(evolves_to);
 
   return (
@@ -83,7 +84,8 @@ export const HiveEvolveScreen = (props, context) => {
               title={`${evolve.name} (click for details)`}
               buttons={(
                 <Button
-                  disabled={!canEvolve}
+                  disabled={!canEvolve
+                    && !instantEvolveTypes.includes(evolve.name)}
                   onClick={() => act('evolve', { path: evolve.type_path })}>
                   Evolve
                 </Button>
