@@ -689,6 +689,8 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /mob/living/carbon/human/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	if(proj.ammo.flags_ammo_behavior & AMMO_SKIPS_HUMANS && get_target_lock(proj.ammo.iff_signal))
 		return FALSE
+	if(proj.ammo.flags_ammo_behavior & AMMO_IGNORE_NESTED && isnestedhost(src))
+		return FALSE
 	if(mobility_aura)
 		. -= mobility_aura * 5
 	if(ishuman(proj.firer))

@@ -49,9 +49,10 @@
 #define AMMO_SKIPS_ALIENS 		(1<<8)
 #define AMMO_IS_SILENCED 		(1<<9) //Unused right now.
 #define AMMO_IGNORE_ARMOR		(1<<10)
-#define AMMO_IGNORE_RESIST		(1<<11) //Unused.
-#define AMMO_BALLISTIC			(1<<12)
-#define AMMO_SUNDERING			(1<<13)
+#define AMMO_IGNORE_NESTED		(1<<11)
+#define AMMO_IGNORE_RESIST		(1<<12) //Unused.
+#define AMMO_BALLISTIC			(1<<13)
+#define AMMO_SUNDERING			(1<<14)
 
 //Gun defines for gun related thing. More in the projectile folder.
 //flags_gun_features

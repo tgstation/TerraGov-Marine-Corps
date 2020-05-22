@@ -1255,12 +1255,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "sticky resin spit"
 	icon_state = "sticky"
 	ping = null
-	flags_ammo_behavior = AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE
+	flags_ammo_behavior = AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_NESTED
 	damage_type = STAMINA
 	armor_type = "bio"
 	spit_cost = 50
-	sound_hit 	 = "alien_resin_build2"
-	sound_bounce	= "alien_resin_build3"
+	sound_hit = "alien_resin_build2"
+	sound_bounce = "alien_resin_build3"
 	damage = 20 //minor; this is mostly just to provide confirmation of a hit
 	max_range = 40
 
