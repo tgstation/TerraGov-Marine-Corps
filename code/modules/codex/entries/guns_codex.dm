@@ -292,4 +292,4 @@
 	It's generally used inside it's belt holster or slung on your back as a secondary firearm for use in situations where you have a \
 	larger gun and would prefer a more CQC able weapon. It also has a rather large magazine capacity due to the small caliber size and caseless ammunition. <br><br>\
 	The MD-65 was adopted as a program to allow specialized units like medics and engineers to carry a smaller firearm to maximize \
-	weight and storage capacity. However it slowly spread in popularity to light infantry and scout units. It was named T-19 upon adoption."
+	weight and storage capacity. However it slowly spread in popularity to light infantry and scout units. It was named T-90 upon adoption."
