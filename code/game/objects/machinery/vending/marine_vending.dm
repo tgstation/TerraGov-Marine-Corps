@@ -546,7 +546,7 @@
 						/obj/item/clothing/suit/storage/marine/leader = 1,
 						/obj/item/clothing/head/helmet/marine/leader = 1,
 						/obj/item/clothing/tie/storage/webbing = 1,
-						/obj/item/squad_beacon = 3,
+						/obj/item/squad_beacon = 1,
 						/obj/item/squad_beacon/bomb = 1,
 						/obj/item/explosive/plastique = 1,
 						/obj/item/explosive/grenade/smokebomb = 3,
