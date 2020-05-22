@@ -327,8 +327,6 @@
 						/obj/item/weapon/gun/shotgun/double,
 						/obj/item/weapon/gun/shotgun/double/sawn,
 						/obj/item/weapon/gun/flamer/M240T,
-						/obj/item/weapon/gun/smartgun,
-						/obj/item/weapon/gun/smartgun/dirty,
 						/obj/item/weapon/energy/axe
 						)
 
