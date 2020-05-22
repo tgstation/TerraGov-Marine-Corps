@@ -24850,10 +24850,6 @@
 	},
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
-"dzB" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/mars/random/dirt,
-/area/bigredv2/outside/virology)
 "dzS" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor,
@@ -25352,10 +25348,6 @@
 	dir = 8
 	},
 /area/bigredv2/outside/chapel)
-"jol" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/marking/asteroidwarning,
-/area/bigredv2/outside/medical)
 "jHL" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/mineral/bigred,
@@ -25371,6 +25363,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves)
+"jSp" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/bigredv2/outside/virology)
 "jSv" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
@@ -25624,6 +25620,10 @@
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
+"mRU" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/medical)
 "mSx" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/wall/r_wall,
@@ -30400,7 +30400,7 @@ aFs
 kxe
 kxe
 aFs
-dzB
+jSp
 aMz
 aMz
 aMz
@@ -43200,7 +43200,7 @@ aEE
 aGB
 aHA
 apC
-jol
+mRU
 aKl
 aIn
 aIn

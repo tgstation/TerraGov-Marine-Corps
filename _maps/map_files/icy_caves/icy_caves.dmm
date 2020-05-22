@@ -5798,6 +5798,10 @@
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
+"Bp" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/outpost/LZ2)
 "Br" = (
 /obj/structure/cable/yellow{
 	d2 = 4;
@@ -5815,11 +5819,19 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/snow,
 /area/icy_caves/outpost/outside)
+"El" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/snow,
+/area/icy_caves/outpost/outside)
 "GZ" = (
 /obj/structure/bed,
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)
+"Hu" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/icy_caves/outpost/outside)
 "HM" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/plating/ground/ice,
@@ -5960,10 +5972,6 @@
 	dir = 4
 	},
 /area/icy_caves/outpost/outside)
-"TF" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/ice,
-/area/icy_caves/outpost/LZ2)
 "Ud" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark2,
@@ -5989,10 +5997,6 @@
 	dir = 4
 	},
 /area/icy_caves/caves/OOB)
-"VJ" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/snow/layer2,
-/area/icy_caves/outpost/outside)
 "VU" = (
 /turf/closed/ice_rock/singleEnd{
 	dir = 8
@@ -6007,10 +6011,6 @@
 /obj/machinery/computer/nuke_disk_generator/blue,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
-"XP" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/snow,
-/area/icy_caves/outpost/outside)
 "YA" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 4
@@ -10858,7 +10858,7 @@ gw
 ma
 nD
 ma
-VJ
+Hu
 gv
 gv
 gv
@@ -21131,7 +21131,7 @@ gi
 aU
 aU
 aU
-XP
+El
 aU
 aU
 aU
@@ -40121,7 +40121,7 @@ lm
 qB
 lk
 qX
-TF
+Bp
 bN
 bN
 bN

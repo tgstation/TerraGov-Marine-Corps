@@ -51091,6 +51091,13 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/toilet/canteen)
+"enz" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/prison{
+	dir = 10;
+	icon_state = "bright_clean2"
+	},
+/area/prison/holding/holding1)
 "exP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -51186,6 +51193,10 @@
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/ne)
+"gtV" = (
+/obj/machinery/miner/damaged,
+/turf/open/ground/grass,
+/area/prison/hallway/entrance)
 "gCN" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/machinery/landinglight/ds2,
@@ -51225,10 +51236,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/hallway/east)
-"hlg" = (
-/obj/machinery/miner/damaged,
-/turf/open/ground/grass,
-/area/prison/hallway/entrance)
 "hwj" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/prison{
@@ -51292,10 +51299,6 @@
 	},
 /turf/open/floor/plating,
 /area/prison/cellblock/maxsec/south)
-"ieL" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/beach/sand,
-/area/prison/residential/south)
 "ilF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -51556,19 +51559,6 @@
 	dir = 8
 	},
 /area/prison/cellblock/mediumsec/north)
-"nkx" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "bright_clean2"
-	},
-/area/prison/holding/holding1)
-"nIr" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor{
-	icon_state = "asteroid"
-	},
-/area/prison/residential/central)
 "nOc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -51789,6 +51779,10 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/canteen)
+"tbw" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/beach/sand,
+/area/prison/residential/south)
 "tlK" = (
 /obj/docking_port/stationary/crashmode,
 /turf/closed/wall/prison,
@@ -51979,6 +51973,12 @@
 	},
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
+"xTh" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor{
+	icon_state = "asteroid"
+	},
+/area/prison/residential/central)
 "xYk" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/prison,
@@ -59342,7 +59342,7 @@ bhY
 bge
 bhC
 bhC
-nIr
+xTh
 bhC
 aVQ
 bhY
@@ -61177,7 +61177,7 @@ bTN
 bVm
 bVm
 bVm
-ieL
+tbw
 bVm
 bXh
 bYs
@@ -97647,7 +97647,7 @@ bua
 bua
 bwQ
 bwQ
-nkx
+enz
 bua
 bAg
 bue
@@ -107922,7 +107922,7 @@ bcA
 blz
 bbC
 bmE
-hlg
+gtV
 bbC
 bwk
 bxd

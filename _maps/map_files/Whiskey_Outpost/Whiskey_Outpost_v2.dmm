@@ -3043,6 +3043,9 @@
 	icon_state = "68"
 	},
 /area/whiskey_outpost/outside/east)
+"kw" = (
+/turf/closed/wall,
+/area/whiskey_outpost/outside/west)
 "kx" = (
 /obj/structure/largecrate/supply/ammo/standard_smg,
 /obj/machinery/light,
@@ -5376,6 +5379,10 @@
 	icon_state = "sterile_green"
 	},
 /area/whiskey_outpost)
+"tt" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/north)
 "tN" = (
 /obj/machinery/light{
 	dir = 8
@@ -5442,9 +5449,6 @@
 	dir = 8
 	},
 /area/whiskey_outpost/outside/north)
-"ur" = (
-/turf/open/floor/asteroidfloor,
-/area/whiskey_outpost/outside/west)
 "uw" = (
 /obj/machinery/door/window/westright,
 /turf/open/floor/mainship{
@@ -5872,12 +5876,6 @@
 	dir = 1
 	},
 /area/whiskey_outpost/outside/west)
-"Av" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/asteroidfloor,
-/area/whiskey_outpost/outside/west)
 "AJ" = (
 /obj/machinery/vending/marine,
 /obj/structure/window/reinforced{
@@ -6054,6 +6052,9 @@
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
+"CO" = (
+/turf/open/floor/asteroidfloor,
+/area/whiskey_outpost/outside/west)
 "CT" = (
 /obj/structure/platform_decoration,
 /obj/structure/platform_decoration{
@@ -6182,6 +6183,12 @@
 	icon_state = "orange"
 	},
 /area/whiskey_outpost)
+"EE" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/asteroidfloor,
+/area/whiskey_outpost/outside/west)
 "EF" = (
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/tile/dark,
@@ -6493,10 +6500,6 @@
 	},
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost/outside/west)
-"JC" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/dirt,
-/area/whiskey_outpost/outside/east)
 "JD" = (
 /obj/machinery/vending/marine,
 /turf/open/floor/plating,
@@ -6658,9 +6661,14 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost)
-"LT" = (
-/turf/closed/wall,
-/area/whiskey_outpost/outside/west)
+"LV" = (
+/obj/machinery/door/airlock/mainship/maint/free_access{
+	dir = 2
+	},
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
+/area/whiskey_outpost)
 "Mj" = (
 /obj/structure/platform_decoration{
 	dir = 1;
@@ -6750,20 +6758,9 @@
 	icon_state = "yellow"
 	},
 /area/whiskey_outpost)
-"Nj" = (
-/turf/open/floor/asteroidfloor,
-/area/whiskey_outpost/outside/east)
 "Nl" = (
 /obj/machinery/light{
 	dir = 1
-	},
-/turf/open/floor/mainship{
-	icon_state = "dark_sterile"
-	},
-/area/whiskey_outpost)
-"Nm" = (
-/obj/machinery/door/airlock/mainship/maint/free_access{
-	dir = 2
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -6798,6 +6795,10 @@
 /obj/item/storage/box/sentry,
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost)
+"NW" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/ground/jungle,
+/area/whiskey_outpost/outside/west)
 "Oa" = (
 /obj/machinery/marine_selector/gear/engi,
 /turf/open/floor/mainship{
@@ -6953,10 +6954,6 @@
 	},
 /turf/open/floor/plating,
 /area/whiskey_outpost)
-"Qj" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/dirt,
-/area/whiskey_outpost/outside/north)
 "Qk" = (
 /obj/structure/largecrate/supply/supplies/flares,
 /obj/machinery/light,
@@ -7057,6 +7054,9 @@
 	dir = 9
 	},
 /area/whiskey_outpost)
+"SB" = (
+/turf/open/floor/asteroidfloor,
+/area/whiskey_outpost/outside/east)
 "SD" = (
 /obj/structure/largecrate/supply/weapons/standard_carbine,
 /turf/open/floor/plating/asteroidwarning{
@@ -7210,6 +7210,10 @@
 	dir = 6
 	},
 /area/whiskey_outpost)
+"VI" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/east)
 "VJ" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -7449,10 +7453,6 @@
 	icon_state = "emerald"
 	},
 /area/whiskey_outpost)
-"Zg" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/ground/jungle,
-/area/whiskey_outpost/outside/west)
 "Zk" = (
 /obj/structure/barricade/sandbags{
 	pixel_z = -7
@@ -13965,7 +13965,7 @@ bW
 bW
 bW
 bW
-Qj
+tt
 bW
 bW
 aS
@@ -17057,7 +17057,7 @@ hw
 hw
 hw
 hB
-Zg
+NW
 hw
 hw
 hw
@@ -18118,10 +18118,10 @@ hy
 hw
 hw
 hw
-ur
-ur
-ur
-ur
+CO
+CO
+CO
+CO
 hB
 hB
 hB
@@ -18271,11 +18271,11 @@ hy
 hw
 hw
 hw
-ur
-LT
-ur
-ur
-ur
+CO
+kw
+CO
+CO
+CO
 hB
 hB
 hB
@@ -18427,11 +18427,11 @@ hw
 hB
 hB
 hB
-Av
-ur
-ur
-ur
-ur
+EE
+CO
+CO
+CO
+CO
 bd
 PG
 bk
@@ -18581,11 +18581,11 @@ hB
 hc
 hc
 hc
-Nj
-Nj
-Nj
-Nj
-Nm
+SB
+SB
+SB
+SB
+LV
 bk
 bk
 bk
@@ -21481,7 +21481,7 @@ gU
 hP
 hg
 hg
-JC
+VI
 hg
 hg
 iJ

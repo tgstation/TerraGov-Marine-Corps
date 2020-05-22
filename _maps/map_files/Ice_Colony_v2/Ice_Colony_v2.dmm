@@ -2127,17 +2127,6 @@
 	},
 /turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/northwest)
-"agB" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating/ground/snow/layer1,
-/area/ice_colony/exterior/surface/clearing/north)
 "agC" = (
 /turf/closed/ice_rock/corners{
 	dir = 6
@@ -2349,17 +2338,6 @@
 	dir = 9
 	},
 /area/ice_colony/surface/substation/smes)
-"ahd" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating/ground/snow/layer2,
-/area/ice_colony/exterior/surface/clearing/north)
 "ahe" = (
 /obj/structure/table,
 /obj/structure/cable{
@@ -2419,17 +2397,6 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/engineering)
-"ahj" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/clearing/north)
 "ahk" = (
 /turf/closed/ice/corner{
 	dir = 4
@@ -5306,6 +5273,39 @@
 	icon_state = "1-8"
 	},
 /turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/clearing/north)
+"aoI" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/clearing/north)
+"aoJ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating/ground/snow/layer1,
+/area/ice_colony/exterior/surface/clearing/north)
+"aoK" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/clearing/north)
 "aoL" = (
 /turf/open/floor/tile/red/whitered{
@@ -39624,6 +39624,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice,
 /area/ice_colony/exterior/underground/caves)
+"eIB" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/clearing/north)
 "eJg" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -39738,10 +39742,6 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/north)
-"fTA" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/snow/layer2,
-/area/ice_colony/exterior/surface/valley/northwest)
 "fYM" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -40306,18 +40306,22 @@
 	},
 /turf/closed/wall/r_wall,
 /area/ice_colony/surface/tcomms)
+"pkk" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/ice_colony/exterior/surface/valley/northwest)
 "puR" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/ice_rock/southWall,
 /area/ice_colony/exterior/surface/cliff)
+"pNv" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/surface/valley/southeast)
 "pYj" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/hallway/south_east)
-"qcZ" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/surface/valley/southeast)
 "qfP" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
@@ -40358,10 +40362,6 @@
 	dir = 1
 	},
 /area/ice_colony/exterior/surface/cliff)
-"qLa" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/surface/landing_pad_external)
 "qLM" = (
 /obj/effect/turf_overlay/icerock,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -40499,6 +40499,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/straight,
 /area/ice_colony/underground/maintenance/east)
+"sKI" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/surface/landing_pad_external)
 "sMq" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 8
@@ -40617,10 +40621,6 @@
 	dir = 9
 	},
 /area/ice_colony/exterior/surface/cliff)
-"uHY" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/clearing/north)
 "uOC" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice,
@@ -50587,7 +50587,7 @@ aac
 aac
 aae
 aaC
-fTA
+pkk
 aaJ
 aaJ
 agS
@@ -56506,7 +56506,7 @@ aaI
 aaI
 aaI
 abL
-agB
+aoJ
 abL
 abL
 aax
@@ -56763,7 +56763,7 @@ aaI
 aaI
 aaI
 abL
-agB
+aoJ
 abL
 abL
 aax
@@ -57020,7 +57020,7 @@ aaI
 aaI
 aaI
 abL
-agB
+aoJ
 abL
 abL
 akF
@@ -57277,7 +57277,7 @@ aaI
 aaI
 aaI
 abL
-ahd
+aoK
 aij
 abL
 aax
@@ -57534,7 +57534,7 @@ aaI
 aaI
 aaI
 abL
-ahj
+aoI
 aij
 abL
 aij
@@ -57791,7 +57791,7 @@ aar
 aaI
 aaI
 abL
-ahj
+aoI
 abL
 abL
 akF
@@ -58048,7 +58048,7 @@ aae
 aaC
 aaI
 abL
-ahj
+aoI
 abL
 abL
 akF
@@ -58305,7 +58305,7 @@ aaf
 abN
 aaC
 abL
-ahd
+aoK
 abL
 abL
 aax
@@ -58562,7 +58562,7 @@ aac
 aae
 aik
 bdy
-ahd
+aoK
 aax
 abL
 akF
@@ -58819,7 +58819,7 @@ aag
 aff
 aaG
 aar
-ahd
+aoK
 aaA
 abL
 akF
@@ -58848,7 +58848,7 @@ akF
 akF
 akF
 anu
-ahj
+aoI
 akF
 akF
 akF
@@ -59076,7 +59076,7 @@ abn
 acj
 aag
 aff
-ahd
+aoK
 aax
 abL
 aax
@@ -59090,7 +59090,7 @@ akF
 akF
 akF
 akF
-uHY
+eIB
 akF
 akF
 akF
@@ -59100,12 +59100,12 @@ akF
 akF
 akF
 akF
-uHY
+eIB
 akF
 akF
 akF
 anu
-ahj
+aoI
 akF
 akF
 akF
@@ -59333,7 +59333,7 @@ aaI
 aaI
 aaI
 abL
-ahd
+aoK
 aax
 abL
 aax
@@ -59362,7 +59362,7 @@ akF
 akF
 akF
 anu
-ahj
+aoI
 akF
 akF
 akF
@@ -59590,7 +59590,7 @@ aaI
 aaI
 aaI
 abL
-ahd
+aoK
 aax
 abL
 abL
@@ -59619,7 +59619,7 @@ akF
 akF
 akF
 anu
-ahj
+aoI
 akF
 aij
 akF
@@ -59847,7 +59847,7 @@ aaI
 aaI
 aaI
 abL
-ahd
+aoK
 aax
 abL
 abL
@@ -59876,7 +59876,7 @@ akF
 akF
 akF
 anu
-ahj
+aoI
 akF
 akF
 akF
@@ -60104,7 +60104,7 @@ aaI
 aaI
 aaI
 abL
-ahd
+aoK
 aij
 abL
 abL
@@ -60133,7 +60133,7 @@ akF
 akF
 akF
 anu
-ahj
+aoI
 akF
 akF
 akF
@@ -60361,7 +60361,7 @@ aaI
 aaI
 aaI
 abL
-ahd
+aoK
 aij
 abL
 abL
@@ -60390,7 +60390,7 @@ aof
 aij
 aij
 anu
-ahj
+aoI
 aij
 aij
 aof
@@ -60618,7 +60618,7 @@ aaI
 aaI
 aaI
 aEY
-ahd
+aoK
 aij
 abL
 abL
@@ -60647,7 +60647,7 @@ aax
 aax
 aij
 anu
-ahj
+aoI
 aij
 aij
 aax
@@ -60875,7 +60875,7 @@ aaI
 aaI
 aaI
 abL
-ahd
+aoK
 aax
 abL
 abL
@@ -60904,7 +60904,7 @@ aax
 aax
 aij
 anu
-ahj
+aoI
 aij
 aax
 aax
@@ -61132,7 +61132,7 @@ aaI
 aaI
 aaI
 abL
-ahd
+aoK
 aax
 abL
 abL
@@ -61161,7 +61161,7 @@ aax
 aij
 aij
 anu
-ahj
+aoI
 aax
 aax
 aax
@@ -61389,7 +61389,7 @@ aaI
 aaI
 aaI
 abL
-ahd
+aoK
 aax
 abL
 abL
@@ -61418,7 +61418,7 @@ aax
 aij
 aij
 anu
-ahj
+aoI
 aax
 aax
 abL
@@ -61646,7 +61646,7 @@ aaI
 aaI
 aaI
 abL
-ahd
+aoK
 aax
 abL
 abL
@@ -61675,7 +61675,7 @@ aax
 akE
 aij
 anu
-ahj
+aoI
 aof
 aax
 aax
@@ -74768,7 +74768,7 @@ aax
 aax
 aax
 aij
-uHY
+eIB
 akF
 aij
 aij
@@ -76576,7 +76576,7 @@ aij
 aax
 aij
 aij
-ahj
+aoI
 atU
 auw
 aij
@@ -84015,7 +84015,7 @@ ama
 ama
 anN
 als
-ahj
+aoI
 aij
 aax
 aax
@@ -84272,7 +84272,7 @@ ama
 ama
 anP
 als
-agB
+aoJ
 aij
 aax
 aax
@@ -84529,7 +84529,7 @@ alW
 ama
 anQ
 als
-ahd
+aoK
 aij
 aax
 aax
@@ -84786,7 +84786,7 @@ amv
 ana
 anR
 als
-agB
+aoJ
 aij
 aax
 aax
@@ -85043,7 +85043,7 @@ amw
 akp
 als
 als
-ahd
+aoK
 aij
 aax
 aax
@@ -85300,7 +85300,7 @@ als
 als
 als
 aod
-ahd
+aoK
 aij
 aax
 aax
@@ -85557,7 +85557,7 @@ abL
 aax
 abL
 aax
-agB
+aoJ
 aij
 aij
 aax
@@ -85814,7 +85814,7 @@ aax
 aax
 aax
 aax
-ahd
+aoK
 aax
 aij
 aax
@@ -86071,7 +86071,7 @@ aiX
 aax
 aax
 aof
-agB
+aoJ
 aij
 aax
 aax
@@ -86328,7 +86328,7 @@ aiX
 abL
 aax
 aax
-agB
+aoJ
 aax
 aij
 aax
@@ -86585,7 +86585,7 @@ aiX
 abL
 aax
 aax
-agB
+aoJ
 aij
 aax
 aax
@@ -86842,7 +86842,7 @@ aiX
 aax
 aax
 aax
-agB
+aoJ
 aij
 aax
 aax
@@ -87099,7 +87099,7 @@ aiX
 aax
 aax
 aax
-agB
+aoJ
 aax
 aof
 aax
@@ -87356,7 +87356,7 @@ abL
 aax
 aax
 aij
-agB
+aoJ
 aax
 aax
 aax
@@ -87613,7 +87613,7 @@ abL
 abL
 aax
 aax
-ahd
+aoK
 aij
 aax
 aax
@@ -87870,7 +87870,7 @@ aiX
 abL
 aax
 aax
-agB
+aoJ
 aij
 aax
 aax
@@ -88127,7 +88127,7 @@ aiX
 aiX
 abL
 aax
-agB
+aoJ
 aax
 abL
 aax
@@ -88935,7 +88935,7 @@ agU
 aLI
 aBb
 awL
-qcZ
+pNv
 awL
 awO
 aGB
@@ -90785,7 +90785,7 @@ aaS
 aUq
 aUP
 aUP
-qLa
+sKI
 aUP
 aUP
 aZr

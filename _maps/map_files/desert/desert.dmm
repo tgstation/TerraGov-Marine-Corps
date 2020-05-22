@@ -4079,6 +4079,15 @@
 /obj/machinery/power/port_gen/pacman,
 /turf/open/floor/plating/ground,
 /area/desert/outside)
+"nR" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground,
+/area/desert/outside)
+"qn" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/grass,
+/area/desert/interior/main_building)
 "zQ" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 1;
@@ -4094,10 +4103,6 @@
 	},
 /turf/open/floor/plating,
 /area/desert/interior/security)
-"Da" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground,
-/area/desert/outside)
 "EQ" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground,
@@ -4111,12 +4116,7 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground,
 /area/desert/outside)
-"Pc" = (
-/obj/structure/flora/ausbushes/ppflowers,
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/grass,
-/area/desert/interior/main_building)
-"VB" = (
+"TZ" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground,
 /area/desert/outside/se)
@@ -26865,7 +26865,7 @@ dk
 gh
 dk
 gx
-Pc
+qn
 gh
 dk
 gx
@@ -31278,7 +31278,7 @@ dH
 bA
 bA
 bA
-Da
+nR
 bA
 bA
 bM
@@ -31971,7 +31971,7 @@ bA
 bA
 bA
 bA
-Da
+nR
 bA
 bA
 bA
@@ -32272,7 +32272,7 @@ hI
 hI
 hI
 hI
-VB
+TZ
 hI
 aX
 dP

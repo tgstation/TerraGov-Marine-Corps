@@ -306,6 +306,10 @@
 	},
 /turf/open/floor/greengrid,
 /area/ai_monitored/storage/emergency)
+"abk" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/greengrid,
+/area/ai_monitored/storage/emergency)
 "abl" = (
 /obj/structure/filingcabinet,
 /obj/item/blueprints,
@@ -15536,6 +15540,16 @@
 	icon_state = "red"
 	},
 /area/crew_quarters/bar)
+"aYy" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/grass,
+/area/hydroponics)
 "aYz" = (
 /obj/effect/landmark/corpsespawner/miner{
 	corpseback = null;
@@ -15768,16 +15782,6 @@
 	},
 /turf/open/floor/plating/warning{
 	dir = 9
-	},
-/area/maintenance/substation)
-"aZo" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating/warning{
-	dir = 1
 	},
 /area/maintenance/substation)
 "aZp" = (
@@ -19768,6 +19772,16 @@
 /obj/item/reagent_containers/food/snacks/no_raisin,
 /turf/open/floor/tile/bar,
 /area/medical/surgery)
+"biC" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating/warning{
+	dir = 1
+	},
+/area/maintenance/substation)
 "biD" = (
 /obj/machinery/power/smes,
 /obj/structure/cable{
@@ -21264,6 +21278,10 @@
 /obj/structure/window/framed/prison/reinforced/hull/tyson/reinforced,
 /turf/open/space,
 /area/space)
+"hxE" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor,
+/area/shuttle/drop2/lz2)
 "hCg" = (
 /obj/structure/window/framed/prison/reinforced/hull/tyson,
 /turf/open/space,
@@ -21369,20 +21387,12 @@
 "piD" = (
 /turf/closed/wall/tyson/airlock/maint,
 /area/maintenance/starboard)
-"pNK" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor,
-/area/shuttle/drop2/lz2)
 "pXg" = (
 /turf/closed/wall/tyson,
 /area/security/brig)
 "qgQ" = (
 /turf/closed/wall/tyson,
 /area/quartermaster/storage)
-"qKZ" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/dmg1,
-/area/space)
 "qNu" = (
 /turf/closed/wall/tyson,
 /area/construction/solarscontrol)
@@ -21442,26 +21452,16 @@
 "wFT" = (
 /turf/closed/wall/tyson,
 /area/hallway/primary/port)
-"wVA" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood,
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/grass,
-/area/hydroponics)
-"xIV" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/greengrid,
-/area/ai_monitored/storage/emergency)
 "xMk" = (
 /turf/closed/wall/tyson,
 /area/janitor)
 "ybQ" = (
 /turf/closed/wall/tyson,
 /area/hallway/secondary/entry)
+"yld" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/dmg1,
+/area/space)
 
 (1,1,1) = {"
 aqE
@@ -29245,7 +29245,7 @@ agj
 agj
 agj
 agj
-pNK
+hxE
 agj
 agj
 agj
@@ -42084,7 +42084,7 @@ abx
 aeP
 ast
 abi
-xIV
+abk
 azL
 aCt
 auC
@@ -48817,13 +48817,13 @@ adC
 adC
 aAD
 aZe
-aZo
+biC
 aZw
 baq
 aHP
 aZw
 aNC
-aZo
+biC
 aZw
 aNC
 aHP
@@ -64742,7 +64742,7 @@ aUL
 aYd
 aYm
 aYs
-wVA
+aYy
 aVZ
 aUN
 aUL
@@ -70664,7 +70664,7 @@ aGF
 aQP
 blM
 blN
-qKZ
+yld
 blN
 blM
 blL

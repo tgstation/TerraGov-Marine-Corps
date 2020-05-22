@@ -1555,6 +1555,10 @@
 /obj/effect/landmark/monkey_spawn,
 /turf/open/floor/grass,
 /area/vapor_processing/west_compound)
+"fc" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/ground,
+/area/lv624/ground/caves/central1)
 "fd" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -7023,10 +7027,6 @@
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/ground,
 /area/lv624/ground/caves/central1)
-"vW" = (
-/obj/machinery/miner/damaged,
-/turf/open/ground/grass/grass2,
-/area/lv624/ground/compound/sw)
 "wi" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -7042,14 +7042,14 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
 /area/vapor_processing/caves/se)
-"wR" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/grass,
-/area/vapor_processing/east_compound)
 "xc" = (
 /obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor/plating,
 /area/lv624/lazarus/hydroponics)
+"yc" = (
+/obj/machinery/miner/damaged,
+/turf/open/ground/grass/grass2,
+/area/lv624/ground/compound/sw)
 "zj" = (
 /turf/closed/wall/indestructible/mineral,
 /area/lv624/ground/compound/se)
@@ -7096,6 +7096,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/resin/membrane,
 /area/space)
+"DC" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/grass,
+/area/vapor_processing/east_compound)
 "En" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -7109,14 +7113,14 @@
 	},
 /turf/closed/wall,
 /area/lv624/ground/compound/c)
-"Fm" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/ground,
-/area/lv624/ground/caves/central1)
 "FJ" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/grass,
 /area/lv624/ground/compound/se)
+"FS" = (
+/obj/machinery/miner/damaged,
+/turf/open/ground/grass/grass2,
+/area/lv624/ground/compound/n)
 "Gn" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
@@ -7225,10 +7229,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
 /area/lv624/ground/caves/central1)
-"VY" = (
-/obj/machinery/miner/damaged,
-/turf/open/ground/grass/grass2,
-/area/lv624/ground/compound/n)
 "Xw" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
@@ -10217,7 +10217,7 @@ cs
 cs
 cs
 ah
-VY
+FS
 ah
 bm
 ah
@@ -10269,7 +10269,7 @@ lH
 ki
 ki
 ki
-vW
+yc
 kY
 ki
 ki
@@ -12668,7 +12668,7 @@ bB
 UJ
 bD
 bD
-Fm
+fc
 bB
 bB
 bD
@@ -14538,7 +14538,7 @@ eN
 eM
 eN
 eN
-wR
+DC
 li
 li
 li

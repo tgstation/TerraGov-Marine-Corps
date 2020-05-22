@@ -19664,10 +19664,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/wall,
 /area/shuttle/drop1/lz1)
-"col" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle1)
 "csn" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/mainship{
@@ -19872,6 +19868,10 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/marking/bot,
 /area/shuttle/drop1/lz1)
+"iJB" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle9)
 "iLV" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/cult,
@@ -19934,6 +19934,10 @@
 	},
 /turf/closed/wall,
 /area/shuttle/drop2/lz2)
+"jUb" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/lazarus/quartstorage/outdoors)
 "jUj" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
@@ -20001,10 +20005,6 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/quartstorage/outdoors)
-"mch" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle6)
 "mic" = (
 /obj/effect/alien/weeds/node,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -20081,6 +20081,10 @@
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west2)
+"oGk" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle1)
 "oUU" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/dirt,
@@ -20109,10 +20113,6 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/canteen)
-"ppZ" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/quartstorage/outdoors)
 "prx" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/sign/botany,
@@ -20153,6 +20153,10 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/wall,
 /area/lv624/lazarus/robotics)
+"qQs" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle6)
 "qSA" = (
 /obj/machinery/button/door/open_only/landing_zone,
 /obj/structure/window/reinforced,
@@ -20213,10 +20217,19 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
-"rQw" = (
+"sbv" = (
+/obj/structure/flora/ausbushes/grassybush,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /obj/machinery/miner/damaged/platinum,
-/turf/open/ground/grass,
-/area/lv624/ground/jungle9)
+/turf/open/floor/grass,
+/area/lv624/lazarus/main_hall)
 "six" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/dirt,
@@ -20305,19 +20318,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle3)
-"vfB" = (
-/obj/structure/flora/ausbushes/grassybush,
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/grass,
-/area/lv624/lazarus/main_hall)
 "vkR" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/dirt,
@@ -20370,6 +20370,10 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
+"wek" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/dirt,
+/area/shuttle/drop2/lz2)
 "wDI" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/engine/cult{
@@ -20386,10 +20390,6 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/cult,
 /area/lv624/ground/caves/central3)
-"xdP" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/dirt,
-/area/shuttle/drop2/lz2)
 "xib" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
@@ -29365,7 +29365,7 @@ awk
 avd
 aFl
 avx
-mch
+qQs
 axR
 auH
 aFR
@@ -32469,7 +32469,7 @@ aSM
 aEy
 aUc
 aTC
-xdP
+wek
 aTC
 aEy
 aES
@@ -37607,7 +37607,7 @@ aMm
 aSe
 aLc
 aES
-rQw
+iJB
 aES
 aFD
 aES
@@ -47896,7 +47896,7 @@ aXn
 aTH
 aYD
 aZA
-vfB
+sbv
 bba
 aNz
 bbW
@@ -54284,7 +54284,7 @@ auO
 azJ
 aAk
 aAk
-ppZ
+jUb
 aAk
 aAk
 aCb
@@ -59738,7 +59738,7 @@ bmr
 bdi
 bdi
 biM
-col
+oGk
 bpV
 bqC
 beV

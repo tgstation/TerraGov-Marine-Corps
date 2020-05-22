@@ -1908,6 +1908,10 @@
 	dir = 1
 	},
 /area/outpost/engineering)
+"iQ" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/outpost/lz2)
 "iR" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
@@ -2237,10 +2241,6 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/dark2,
 /area/outpost/cargo/office)
-"kv" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/outpost/yard/south_east)
 "kz" = (
 /obj/machinery/button/door/open_only/landing_zone,
 /obj/structure/window/reinforced{
@@ -3276,6 +3276,10 @@
 	dir = 2
 	},
 /area/outpost/lz2)
+"pp" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/yard/south_east)
 "pr" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -4679,10 +4683,6 @@
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/lz1)
-"wo" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/outpost/yard/central)
 "wp" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable{
@@ -5213,10 +5213,6 @@
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/arrivals)
-"yN" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/mars/random/dirt,
-/area/outpost/yard/west)
 "yT" = (
 /obj/machinery/light/small,
 /turf/open/floor/tile/dark/brown2{
@@ -6044,6 +6040,10 @@
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/freezer,
 /area/outpost/dormitories)
+"Dx" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/outpost/yard/west)
 "Dy" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 5
@@ -8714,6 +8714,10 @@
 	dir = 1
 	},
 /area/outpost/medbay)
+"Pw" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/outpost/yard/central)
 "Py" = (
 /obj/machinery/door/airlock/mainship/security/glass/free_access{
 	dir = 1;
@@ -9035,10 +9039,6 @@
 /obj/item/radio,
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/hallway/northern)
-"QV" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/mars/random/dirt,
-/area/outpost/lz2)
 "QX" = (
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 5
@@ -23137,7 +23137,7 @@ hk
 oI
 SH
 cc
-yN
+Dx
 SH
 SH
 SH
@@ -30878,7 +30878,7 @@ ww
 ww
 EA
 EA
-wo
+Pw
 EA
 EA
 EA
@@ -36053,7 +36053,7 @@ HT
 fG
 NF
 NF
-kv
+pp
 NF
 NF
 mJ
@@ -41476,7 +41476,7 @@ BM
 KR
 KR
 Au
-QV
+iQ
 KR
 KR
 hY
