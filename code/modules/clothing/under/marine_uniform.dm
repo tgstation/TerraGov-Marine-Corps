@@ -194,14 +194,14 @@
 
 
 /obj/item/clothing/under/marine/veteran/UPP
-	name = "\improper UPP fatigues"
-	desc = "A set of UPP fatigues, mass-produced for the armed-forces of the Union of Progressive Peoples. The dark drab pattern of the UPP 17th battalion 'Smoldering Sons' emblazons it."
+	name = "\improper USL fatigues"
+	desc = "A well used set of USL fatigues, mass-produced for the pirates of the Lepidoptera."
 	icon_state = "upp_uniform"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	has_sensor = 0
 
 /obj/item/clothing/under/marine/veteran/UPP/medic
-	name = "\improper UPP medic fatigues"
+	name = "\improper USL medic fatigues"
 	icon_state = "upp_uniform_medic"
 
 /obj/item/clothing/under/marine/veteran/freelancer
