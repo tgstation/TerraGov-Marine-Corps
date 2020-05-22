@@ -719,7 +719,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		var/turf/TC = locate(T.x + x_offset + rand(-2, 2), T.y + y_offset + rand(-2, 2), T.z)
 		C.forceMove(TC)
 		TC.ceiling_debris_check(2)
-	visible_message("[icon2html(src, viewers(src))] <span class='boldnotice'>Supply drop launched! Another launch will be available in five minutes.</span>")
+	visible_message("[icon2html(src, viewers(src))] <span class='boldnotice'>Supply drop launched! Another launch will be available in two minutes.</span>")
 	busy = FALSE
 
 /obj/structure/supply_drop
