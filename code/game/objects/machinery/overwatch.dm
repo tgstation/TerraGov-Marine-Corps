@@ -159,7 +159,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 					dat += "No squad selected!"
 				else
 					dat += "<B>Current Supply Drop Status:</B> "
-					var/cooldown_left = (current_squad.supply_cooldown + 1200) - world.time
+					var/cooldown_left = (current_squad.supply_cooldown + 2 MINUTES) - world.time
 					if(cooldown_left > 0)
 						dat += "Launch tubes resetting ([round(cooldown_left/10)] seconds)<br>"
 					else
