@@ -1030,7 +1030,6 @@
 /area/mainship/living/numbertwobunks)
 "acK" = (
 /obj/structure/table/mainship,
-/obj/effect/landmark/map_item,
 /obj/item/whistle,
 /obj/item/megaphone,
 /obj/item/ammo_magazine/acp,
@@ -1440,7 +1439,6 @@
 /area/mainship/living/commandbunks)
 "adQ" = (
 /obj/structure/table/mainship,
-/obj/effect/landmark/map_item,
 /obj/item/megaphone,
 /obj/item/whistle,
 /turf/open/floor/wood,
@@ -7180,7 +7178,6 @@
 /area/mainship/shipboard/chief_mp_office)
 "ard" = (
 /obj/structure/table/mainship,
-/obj/effect/landmark/map_item,
 /obj/item/megaphone,
 /obj/item/whistle,
 /turf/open/floor/mainship{
@@ -7721,7 +7718,6 @@
 /obj/item/folder/black,
 /obj/structure/paper_bin,
 /obj/item/tool/pen,
-/obj/effect/landmark/map_item,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/ce_room)
 "ass" = (
@@ -19981,7 +19977,6 @@
 /area/mainship/shipboard/ex_firing_range)
 "aSP" = (
 /obj/structure/table/mainship,
-/obj/effect/landmark/map_item,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/bridgebunks)
 "aSQ" = (
@@ -24974,7 +24969,6 @@
 /area/mainship/living/cafeteria_starboard)
 "bhK" = (
 /obj/structure/table/mainship,
-/obj/effect/landmark/map_item,
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -27711,7 +27705,6 @@
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/reagent_containers/spray/cleaner,
-/obj/effect/landmark/map_item,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
 "bpe" = (
@@ -31580,7 +31573,6 @@
 "bAE" = (
 /obj/structure/table/mainship,
 /obj/item/flashlight/lamp,
-/obj/effect/landmark/map_item,
 /obj/structure/window/reinforced/toughened{
 	dir = 1
 	},
@@ -32510,7 +32502,6 @@
 /area/mainship/medical/operating_room_three)
 "bDr" = (
 /obj/structure/table/mainship,
-/obj/effect/landmark/map_item,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
 "bDs" = (
@@ -38070,7 +38061,6 @@
 /obj/machinery/status_display{
 	pixel_y = 30
 	},
-/obj/effect/landmark/map_item,
 /turf/open/floor/mainship,
 /area/mainship/living/cafeteria_port)
 "bSY" = (
@@ -38080,7 +38070,6 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/landmark/map_item,
 /turf/open/floor/mainship,
 /area/mainship/living/cafeteria_port)
 "bSZ" = (
@@ -43300,7 +43289,6 @@
 /obj/item/tool/crowbar,
 /obj/item/megaphone,
 /obj/item/megaphone,
-/obj/effect/landmark/map_item,
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/bridgebunks)

@@ -298,6 +298,8 @@
 			continue
 		if(T.density)
 			break
+		if(locate(/obj/effect/forcefield/fog) in T)
+			break
 		if(loc != user)
 			break
 		if(!current_mag || !current_mag.current_rounds)

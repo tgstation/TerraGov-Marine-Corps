@@ -4995,9 +4995,6 @@
 /area/sulaco/cryosleep)
 "amg" = (
 /obj/structure/table,
-/obj/item/map/lazarus_landing_map,
-/obj/item/map/lazarus_landing_map,
-/obj/item/map/lazarus_landing_map,
 /turf/open/floor{
 	dir = 2;
 	icon_state = "warnwhite"
@@ -6384,7 +6381,6 @@
 /obj/structure/table/reinforced{
 	icon_state = "table"
 	},
-/obj/item/map/lazarus_landing_map,
 /turf/open/floor{
 	icon_state = "white"
 	},
@@ -8064,7 +8060,6 @@
 /area/sulaco/bridge)
 "att" = (
 /obj/structure/table,
-/obj/item/map/lazarus_landing_map,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
 	layer = 2
@@ -9065,7 +9060,6 @@
 /area/sulaco/bridge)
 "avb" = (
 /obj/structure/table,
-/obj/item/map/lazarus_landing_map,
 /turf/open/floor/tile/white,
 /area/sulaco/bridge)
 "avc" = (
@@ -12650,9 +12644,6 @@
 /obj/structure/table/reinforced{
 	icon_state = "table"
 	},
-/obj/item/map/lazarus_landing_map,
-/obj/item/map/lazarus_landing_map,
-/obj/item/map/lazarus_landing_map,
 /turf/open/floor,
 /area/sulaco/briefing)
 "aBC" = (
@@ -12967,7 +12958,6 @@
 	pixel_y = 6
 	},
 /obj/item/bodybag,
-/obj/item/map/lazarus_landing_map,
 /turf/open/floor,
 /area/sulaco/marine/delta)
 "aCm" = (
@@ -13009,7 +12999,6 @@
 	pixel_y = 6
 	},
 /obj/item/bodybag,
-/obj/item/map/lazarus_landing_map,
 /turf/open/floor,
 /area/sulaco/marine/charlie)
 "aCq" = (
@@ -13023,7 +13012,6 @@
 	pixel_y = 6
 	},
 /obj/item/bodybag,
-/obj/item/map/lazarus_landing_map,
 /turf/open/floor,
 /area/sulaco/marine/bravo)
 "aCs" = (
@@ -13386,7 +13374,6 @@
 	pixel_y = 6
 	},
 /obj/item/bodybag,
-/obj/item/map/lazarus_landing_map,
 /turf/open/floor,
 /area/sulaco/marine/alpha)
 "aDh" = (
@@ -23972,7 +23959,6 @@
 	pixel_x = 6
 	},
 /obj/item/folder/white,
-/obj/item/map/lazarus_landing_map,
 /turf/open/floor/wood,
 /area/sulaco/liaison)
 "bcs" = (
