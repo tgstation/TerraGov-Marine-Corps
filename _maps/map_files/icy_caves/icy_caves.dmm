@@ -1540,13 +1540,6 @@
 	dir = 1
 	},
 /area/icy_caves/caves/south)
-"fA" = (
-/obj/machinery/light{
-	icon_state = "tube1";
-	dir = 1
-	},
-/turf/open/floor/plating/ground/ice,
-/area/icy_caves/caves/south)
 "fB" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -1956,7 +1949,6 @@
 /area/icy_caves/outpost/garage)
 "hm" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 1
 	},
 /turf/open/floor/tile/dark2,
@@ -2029,7 +2021,6 @@
 /obj/effect/spawner/random/tool,
 /obj/item/storage/belt/utility/full,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 1
 	},
 /turf/open/floor/tile/dark2,
@@ -20820,7 +20811,7 @@ et
 eG
 dn
 eh
-fA
+ei
 dm
 dm
 dm
@@ -21848,7 +21839,7 @@ ex
 eG
 dn
 eh
-fA
+ei
 dm
 dm
 dm

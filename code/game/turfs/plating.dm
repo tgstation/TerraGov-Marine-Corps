@@ -96,6 +96,8 @@
 /turf/open/floor/plating/warning
 	icon_state = "warnplate"
 
+/turf/open/floor/plating/warning/grime
+	icon_state = "floorgrimecaution"
 
 /turf/open/floor/plating/platebot
 	icon_state = "platebot"
@@ -108,6 +110,8 @@
 /turf/open/floor/plating/asteroidwarning // used around lv's lz2
 	icon_state = "asteroidwarning"
 
+/turf/open/floor/plating/asteroidwarning/down
+	dir = SOUTH
 
 /turf/open/floor/plating/asteroidfloor
 	icon_state = "asteroidfloor"

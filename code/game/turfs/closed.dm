@@ -229,6 +229,10 @@
 	icon = 'icons/turf/shuttle.dmi'
 	plane = FLOOR_PLANE
 
+/turf/closed/shuttle/re_corner/notdense
+	icon_state = "re_corner"
+	density = FALSE
+
 /turf/closed/shuttle/diagonal
 	icon_state = "diagonalWall"
 
@@ -293,5 +297,7 @@
 	name = "\improper Rasputin"
 	icon = 'icons/turf/dropship3.dmi'
 	icon_state = "1"
-	opacity = FALSE
+	plane = GAME_PLANE
+
 /turf/closed/shuttle/dropship3/transparent
+	opacity = FALSE

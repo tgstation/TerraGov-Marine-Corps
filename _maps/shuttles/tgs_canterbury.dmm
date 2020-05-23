@@ -12,50 +12,44 @@
 "ad" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/security/marine_network,
-/turf/open/floor/mainship{
-	dir = 9;
-	icon_state = "blue"
+/turf/open/floor/mainship/blue{
+	dir = 9
 	},
 /area/shuttle/canterbury/cic)
 "ae" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/shuttle/shuttle_control/canterbury,
-/turf/open/floor/mainship{
-	dir = 1;
-	icon_state = "blue"
+/turf/open/floor/mainship/blue{
+	dir = 1
 	},
 /area/shuttle/canterbury/cic)
 "af" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/camera_advanced/overwatch,
-/turf/open/floor/mainship{
-	dir = 1;
-	icon_state = "blue"
+/turf/open/floor/mainship/blue{
+	dir = 1
 	},
 /area/shuttle/canterbury/cic)
 "ag" = (
 /obj/structure/table/mainship,
 /obj/machinery/faxmachine/cic,
-/turf/open/floor/mainship{
-	dir = 1;
-	icon_state = "blue"
+/turf/open/floor/mainship/blue{
+	dir = 1
 	},
 /area/shuttle/canterbury/cic)
 "ah" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/card,
-/turf/open/floor/mainship{
-	dir = 5;
-	icon_state = "blue"
+/turf/open/floor/mainship/blue{
+	dir = 5
 	},
 /area/shuttle/canterbury/cic)
 "ai" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
 	},
-/turf/open/floor/mainship{
-	dir = 8;
-	icon_state = "blue"
+/turf/open/floor/mainship/blue{
+	dir = 8
 	},
 /area/shuttle/canterbury/cic)
 "aj" = (
@@ -96,9 +90,8 @@
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor/mainship{
-	dir = 4;
-	icon_state = "blue"
+/turf/open/floor/mainship/blue{
+	dir = 4
 	},
 /area/shuttle/canterbury/cic)
 "an" = (
@@ -133,16 +126,13 @@
 	name = "General Listening Channel";
 	pixel_y = -28
 	},
-/turf/open/floor/mainship{
-	icon_state = "blue";
+/turf/open/floor/mainship/blue{
 	dir = 10
 	},
 /area/shuttle/canterbury/cic)
 "aq" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
-/turf/open/floor/mainship{
-	icon_state = "blue"
-	},
+/turf/open/floor/mainship/blue,
 /area/shuttle/canterbury/cic)
 "ar" = (
 /obj/structure/cable{
@@ -168,9 +158,7 @@
 /obj/item/clipboard,
 /obj/item/pinpointer/advpinpointer,
 /obj/machinery/vending/nanomed,
-/turf/open/floor/mainship{
-	icon_state = "blue"
-	},
+/turf/open/floor/mainship/blue,
 /area/shuttle/canterbury/cic)
 "at" = (
 /obj/machinery/computer/crew,
@@ -181,9 +169,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/mainship{
-	dir = 6;
-	icon_state = "blue"
+/turf/open/floor/mainship/blue{
+	dir = 6
 	},
 /area/shuttle/canterbury/cic)
 "au" = (
@@ -196,9 +183,7 @@
 /obj/item/binoculars,
 /obj/item/facepaint/sniper,
 /obj/machinery/alarm,
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
+/turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "av" = (
 /obj/structure/rack,
@@ -212,9 +197,7 @@
 	dir = 1
 	},
 /obj/item/stack/barbed_wire/full,
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
+/turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "aw" = (
 /obj/machinery/door/airlock/mainship/command/canterbury{
@@ -244,16 +227,12 @@
 /obj/item/storage/box/sentry,
 /obj/item/storage/box/sentry,
 /obj/item/storage/box/sentry,
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
+/turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "ay" = (
 /obj/structure/largecrate/supply/supplies/sandbags,
 /obj/machinery/alarm,
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
+/turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "az" = (
 /obj/machinery/door/poddoor/mainship{
@@ -286,9 +265,7 @@
 /area/shuttle/canterbury)
 "aC" = (
 /obj/machinery/body_scanconsole,
-/turf/open/floor/mainship{
-	icon_state = "sterile_green"
-	},
+/turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "aD" = (
 /turf/open/floor/mainship/mono,
@@ -389,15 +366,11 @@
 /area/shuttle/canterbury)
 "aN" = (
 /obj/machinery/vending/marine/cargo_guns,
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
+/turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "aO" = (
 /obj/machinery/vending/attachments,
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
+/turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "aP" = (
 /obj/machinery/power/fusion_engine/random,
@@ -452,9 +425,7 @@
 	dir = 4
 	},
 /obj/machinery/vending/marine/cargo_guns,
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
+/turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "aV" = (
 /obj/machinery/marine_selector/clothes/specialist,
@@ -489,14 +460,10 @@
 	dir = 4
 	},
 /obj/machinery/light/small{
-	icon_state = "bulb1";
 	dir = 8
 	},
 /obj/structure/cable/yellow,
-/turf/open/floor/mainship{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
+/turf/open/floor/mainship/tcomms,
 /area/shuttle/canterbury)
 "ba" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -541,16 +508,13 @@
 	dir = 4
 	},
 /obj/machinery/vending/marine/cargo_ammo,
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
+/turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "be" = (
 /obj/effect/landmark/start/job/crash/squadspecialist,
 /obj/structure/window/reinforced/toughened,
-/turf/open/floor/mainship{
-	dir = 1;
-	icon_state = "red"
+/turf/open/floor/mainship/red{
+	dir = 1
 	},
 /area/shuttle/canterbury)
 "bf" = (
@@ -576,9 +540,8 @@
 "bh" = (
 /obj/effect/landmark/start/job/crash/squadengineer,
 /obj/structure/window/reinforced/toughened,
-/turf/open/floor/mainship{
-	dir = 1;
-	icon_state = "red"
+/turf/open/floor/mainship/red{
+	dir = 1
 	},
 /area/shuttle/canterbury)
 "bi" = (
@@ -590,10 +553,7 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/open/floor/mainship{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
+/turf/open/floor/mainship/tcomms,
 /area/shuttle/canterbury)
 "bj" = (
 /obj/machinery/power/monitor{
@@ -617,9 +577,8 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/job/crash/squadspecialist,
-/turf/open/floor/mainship{
-	dir = 1;
-	icon_state = "red"
+/turf/open/floor/mainship/red{
+	dir = 1
 	},
 /area/shuttle/canterbury)
 "bl" = (
@@ -644,7 +603,6 @@
 /area/shuttle/canterbury/medical)
 "bp" = (
 /obj/machinery/light/small{
-	icon_state = "bulb1";
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -656,9 +614,8 @@
 	dir = 8
 	},
 /obj/effect/landmark/start/job/crash/squadengineer,
-/turf/open/floor/mainship{
-	dir = 1;
-	icon_state = "red"
+/turf/open/floor/mainship/red{
+	dir = 1
 	},
 /area/shuttle/canterbury)
 "br" = (
@@ -667,9 +624,7 @@
 	dir = 4
 	},
 /obj/machinery/marine_selector/clothes/leader,
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
+/turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "bs" = (
 /obj/effect/landmark/start/job/crash/squadsmartgunner,
@@ -677,9 +632,7 @@
 	icon_state = "rwindow";
 	dir = 1
 	},
-/turf/open/floor/mainship{
-	icon_state = "red"
-	},
+/turf/open/floor/mainship/red,
 /area/shuttle/canterbury)
 "bt" = (
 /obj/machinery/door/window/northright,
@@ -688,9 +641,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/job/crash/squadsmartgunner,
-/turf/open/floor/mainship{
-	icon_state = "red"
-	},
+/turf/open/floor/mainship/red,
 /area/shuttle/canterbury)
 "bu" = (
 /obj/machinery/door/window/northleft,
@@ -699,9 +650,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/start/job/crash/squadcorpsman,
-/turf/open/floor/mainship{
-	icon_state = "red"
-	},
+/turf/open/floor/mainship/red,
 /area/shuttle/canterbury)
 "bv" = (
 /obj/effect/landmark/start/job/crash/squadcorpsman,
@@ -709,9 +658,7 @@
 	icon_state = "rwindow";
 	dir = 1
 	},
-/turf/open/floor/mainship{
-	icon_state = "red"
-	},
+/turf/open/floor/mainship/red,
 /area/shuttle/canterbury)
 "bw" = (
 /obj/machinery/bodyscanner,
@@ -719,9 +666,7 @@
 	icon_state = "alarm0";
 	dir = 4
 	},
-/turf/open/floor/mainship{
-	icon_state = "sterile_green"
-	},
+/turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "bx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -736,9 +681,7 @@
 /obj/structure/bed/chair/dropship/passenger,
 /obj/machinery/vending/nanomed,
 /obj/effect/landmark/start/job/crash/medicalofficer,
-/turf/open/floor/mainship{
-	icon_state = "sterile_green"
-	},
+/turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "bz" = (
 /obj/structure/table/reinforced,
@@ -757,9 +700,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/mainship{
-	icon_state = "sterile_green"
-	},
+/turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "bA" = (
 /obj/item/lightreplacer,
@@ -771,9 +712,7 @@
 /obj/item/pinpointer/advpinpointer,
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/spray/cleaner,
-/turf/open/floor/mainship{
-	icon_state = "sterile_green"
-	},
+/turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "bB" = (
 /obj/structure/window/reinforced/toughened{
@@ -781,9 +720,7 @@
 	dir = 4
 	},
 /obj/machinery/marine_selector/gear/leader,
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
+/turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "bC" = (
 /obj/machinery/marine_selector/clothes/smartgun,
@@ -811,15 +748,11 @@
 /area/shuttle/canterbury)
 "bG" = (
 /obj/machinery/autodoc,
-/turf/open/floor/mainship{
-	icon_state = "sterile_green"
-	},
+/turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "bH" = (
 /obj/machinery/autodoc_console,
-/turf/open/floor/mainship{
-	icon_state = "sterile_green"
-	},
+/turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "bI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -828,13 +761,10 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
 	},
-/turf/open/floor/mainship{
-	icon_state = "sterile_green"
-	},
+/turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "bJ" = (
 /obj/machinery/light/small{
-	icon_state = "bulb1";
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -850,9 +780,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/mainship{
-	icon_state = "sterile_green"
-	},
+/turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "bM" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -902,15 +830,11 @@
 /obj/machinery/bioprinter{
 	stored_metal = 1000
 	},
-/turf/open/floor/mainship{
-	icon_state = "dark_sterile"
-	},
+/turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "bS" = (
 /obj/structure/bed/chair/dropship/passenger,
-/turf/open/floor/mainship{
-	icon_state = "dark_sterile"
-	},
+/turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "bT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -926,15 +850,11 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/turf/open/floor/mainship{
-	icon_state = "sterile_green"
-	},
+/turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "bU" = (
 /obj/machinery/vending/MarineMed/Blood,
-/turf/open/floor/mainship{
-	icon_state = "dark_sterile"
-	},
+/turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "bV" = (
 /obj/structure/bed/chair/dropship/passenger{
@@ -973,9 +893,7 @@
 	name = "General Listening Channel";
 	pixel_y = -28
 	},
-/turf/open/floor/mainship{
-	icon_state = "dark_sterile"
-	},
+/turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "ca" = (
 /obj/effect/landmark/start/job/crash/cmo,
@@ -983,15 +901,11 @@
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor/mainship{
-	icon_state = "dark_sterile"
-	},
+/turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "cb" = (
 /obj/machinery/vending/medical,
-/turf/open/floor/mainship{
-	icon_state = "dark_sterile"
-	},
+/turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "cc" = (
 /obj/machinery/computer/cryopod{
@@ -1004,9 +918,7 @@
 /obj/structure/table/reinforced,
 /obj/item/storage/surgical_tray,
 /obj/item/storage/firstaid/adv,
-/turf/open/floor/mainship{
-	icon_state = "dark_sterile"
-	},
+/turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "ce" = (
 /obj/structure/table/reinforced,
@@ -1014,25 +926,18 @@
 /obj/item/storage/belt/combatLifesaver,
 /obj/item/healthanalyzer,
 /obj/machinery/light,
-/turf/open/floor/mainship{
-	icon_state = "dark_sterile"
-	},
+/turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "cf" = (
 /obj/machinery/iv_drip,
 /obj/machinery/shower{
-	icon_state = "shower";
 	dir = 8
 	},
-/turf/open/floor/mainship{
-	icon_state = "dark_sterile"
-	},
+/turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "cg" = (
 /obj/machinery/vending/MarineMed,
-/turf/open/floor/mainship{
-	icon_state = "sterile_green"
-	},
+/turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "ch" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -1165,9 +1070,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/mainship{
-	icon_state = "dark_sterile"
-	},
+/turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "ct" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -1221,9 +1124,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
-/turf/open/floor/mainship{
-	dir = 4;
-	icon_state = "red"
+/turf/open/floor/mainship/red{
+	dir = 4
 	},
 /area/shuttle/canterbury)
 "cx" = (
@@ -1241,17 +1143,15 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
-/turf/open/floor/mainship{
-	dir = 4;
-	icon_state = "red"
+/turf/open/floor/mainship/red{
+	dir = 4
 	},
 /area/shuttle/canterbury)
 "cz" = (
 /obj/effect/landmark/start/job/crash/squadmarine,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/mainship{
-	dir = 4;
-	icon_state = "red"
+/turf/open/floor/mainship/red{
+	dir = 4
 	},
 /area/shuttle/canterbury)
 "cA" = (
@@ -1331,9 +1231,7 @@
 "cJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/mainship{
-	icon_state = "dark_sterile"
-	},
+/turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "cK" = (
 /obj/effect/landmark/start/latejoin/crash,
@@ -1349,9 +1247,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
 	},
-/turf/open/floor/mainship{
-	icon_state = "dark_sterile"
-	},
+/turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "cM" = (
 /obj/effect/landmark/start/latejoin/crash,
@@ -1455,7 +1351,6 @@
 /area/shuttle/canterbury)
 "cY" = (
 /obj/machinery/light/small{
-	icon_state = "bulb1";
 	dir = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -1464,9 +1359,7 @@
 	},
 /obj/structure/reagent_dispensers/fueltank,
 /obj/structure/barricade/plasteel,
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
+/turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "cZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -1481,7 +1374,6 @@
 /area/shuttle/canterbury)
 "da" = (
 /obj/machinery/light/small{
-	icon_state = "bulb1";
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
@@ -1493,9 +1385,7 @@
 	},
 /obj/structure/largecrate/supply/supplies/flares,
 /obj/structure/barricade/plasteel,
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
+/turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "db" = (
 /obj/machinery/vending/uniform_supply,

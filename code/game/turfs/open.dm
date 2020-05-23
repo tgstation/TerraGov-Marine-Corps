@@ -204,6 +204,17 @@
 	name = "floor"
 	icon_state = "rasputin1"
 
+/turf/open/shuttle/dropship/three
+	icon_state = "rasputin3"
+
+/turf/open/shuttle/dropship/five
+	icon_state = "rasputin5"
+
+/turf/open/shuttle/dropship/seven
+	icon_state = "rasputin7"
+
+/turf/open/shuttle/dropship/eight
+	icon_state = "rasputin8"
 
 //not really plating, just the look
 /turf/open/shuttle/plating

@@ -44,10 +44,7 @@
 /obj/machinery/power/apc/hyper{
 	dir = 4
 	},
-/turf/open/floor/mainship{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
+/turf/open/floor/mainship/tcomms,
 /area/shuttle/big_ert)
 "ag" = (
 /turf/closed/wall/mainship/white,
@@ -390,9 +387,7 @@
 	},
 /area/shuttle/big_ert)
 "bc" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-21"
-	},
+/obj/structure/flora/pottedplant/twentyone,
 /turf/open/floor/wood,
 /area/shuttle/big_ert)
 "bd" = (
@@ -508,18 +503,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
-"bq" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
-/turf/open/floor/mainship{
-	icon_state = "plating";
-	dir = 5
-	},
-/area/shuttle/big_ert)
 "br" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -540,10 +523,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/mainship{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
+/turf/open/floor/mainship/tcomms,
 /area/shuttle/big_ert)
 "bu" = (
 /obj/structure/bed/chair/office/light{
@@ -561,10 +541,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/turf/open/floor/mainship{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
+/turf/open/floor/mainship/tcomms,
 /area/shuttle/big_ert)
 "bw" = (
 /obj/structure/table/mainship,
@@ -658,10 +635,7 @@
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bH" = (
-/turf/open/floor/mainship{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
+/turf/open/floor/mainship/tcomms,
 /area/shuttle/big_ert)
 "bI" = (
 /obj/structure/bed/chair/office/light{
@@ -682,10 +656,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor/mainship{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
+/turf/open/floor/mainship/tcomms,
 /area/shuttle/big_ert)
 "bK" = (
 /obj/structure/table/mainship,
@@ -785,10 +756,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor/mainship{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
+/turf/open/floor/mainship/tcomms,
 /area/shuttle/big_ert)
 "bS" = (
 /obj/structure/bed/chair/office/light,
@@ -804,10 +772,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/turf/open/floor/mainship{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
+/turf/open/floor/mainship/tcomms,
 /area/shuttle/big_ert)
 "bU" = (
 /obj/structure/table/mainship,
@@ -1007,7 +972,6 @@
 	dir = 2
 	},
 /obj/machinery/shower{
-	icon_state = "shower";
 	dir = 4
 	},
 /obj/item/tool/soap,
@@ -1506,7 +1470,7 @@ av
 aH
 ag
 aY
-bq
+bm
 aY
 bm
 aY

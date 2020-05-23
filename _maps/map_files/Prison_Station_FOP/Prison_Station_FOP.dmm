@@ -32237,9 +32237,7 @@
 	},
 /area/prison/monorail/east)
 "bDk" = (
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin3"
-	},
+/turf/open/shuttle/dropship/three,
 /area/prison/monorail/east)
 "bDl" = (
 /obj/structure/bed/chair/comfy{
@@ -33703,9 +33701,7 @@
 	icon_state = "shutter0";
 	opacity = 0
 	},
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin3"
-	},
+/turf/open/shuttle/dropship/three,
 /area/prison/monorail/east)
 "bGj" = (
 /obj/machinery/door/airlock/mainship/generic,

@@ -227,6 +227,12 @@
 /obj/structure/flora/pottedplant/ten
 	icon_state = "plant-10"
 
+/obj/structure/flora/pottedplant/twentyone
+	icon_state = "plant-21"
+
+/obj/structure/flora/pottedplant/twentytwo
+	icon_state = "plant-22"
+
 //newbushes
 
 /obj/structure/flora/ausbushes

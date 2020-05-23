@@ -967,9 +967,8 @@
 	},
 /area/shuttle/drop1/lz1)
 "db" = (
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/desert/interior/main_building)
 "dc" = (
@@ -1320,9 +1319,7 @@
 /turf/closed/wall/r_wall,
 /area/desert/interior/shipping/east)
 "ei" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-21"
-	},
+/obj/structure/flora/pottedplant/twentyone,
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 4;
@@ -2508,9 +2505,8 @@
 	icon_state = "wooden";
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 1
 	},
 /area/desert/interior/main_building)
 "hv" = (
@@ -3296,7 +3292,6 @@
 /area/desert/interior/engineering)
 "jw" = (
 /obj/structure/barricade/metal{
-	icon_state = "metal_0";
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,

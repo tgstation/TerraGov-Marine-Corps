@@ -1907,7 +1907,6 @@
 "aes" = (
 /obj/structure/closet/emcloset,
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
 	dir = 1
 	},
 /turf/open/floor/mainship{
@@ -1917,7 +1916,6 @@
 "aet" = (
 /obj/structure/prop/mainship/mapping_computer,
 /obj/item/radio/intercom/general{
-	icon_state = "intercom";
 	dir = 1
 	},
 /turf/open/floor/mainship{

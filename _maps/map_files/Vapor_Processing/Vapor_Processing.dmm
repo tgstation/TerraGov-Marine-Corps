@@ -32,54 +32,42 @@
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 2
-	},
+/turf/open/floor/plating/asteroidwarning/down,
 /area/shuttle/drop2/lz2)
 "ak" = (
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
 /obj/machinery/landinglight/ds2/delayone,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 2
-	},
+/turf/open/floor/plating/asteroidwarning/down,
 /area/shuttle/drop2/lz2)
 "al" = (
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
 /obj/machinery/landinglight/ds2,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 2
-	},
+/turf/open/floor/plating/asteroidwarning/down,
 /area/shuttle/drop2/lz2)
 "am" = (
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
 /obj/machinery/landinglight/ds2/delaythree,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 2
-	},
+/turf/open/floor/plating/asteroidwarning/down,
 /area/shuttle/drop2/lz2)
 "an" = (
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
 /obj/machinery/landinglight/ds2/delaytwo,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 2
-	},
+/turf/open/floor/plating/asteroidwarning/down,
 /area/shuttle/drop2/lz2)
 "ao" = (
 /obj/machinery/landinglight/ds2,
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
-/turf/open/floor/plating/asteroidwarning{
-	dir = 2
-	},
+/turf/open/floor/plating/asteroidwarning/down,
 /area/shuttle/drop2/lz2)
 "ap" = (
 /obj/structure/barricade/wooden{
@@ -881,9 +869,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-22"
-	},
+/obj/structure/flora/pottedplant/twentytwo,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -1230,9 +1216,8 @@
 /turf/open/floor/tile/white,
 /area/medical/medbay2)
 "ee" = (
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/medical/medbay2)
 "ef" = (
@@ -1382,9 +1367,8 @@
 "eE" = (
 /obj/item/defibrillator,
 /obj/structure/table,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/medical/medbay2)
 "eF" = (
@@ -1393,9 +1377,8 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/medical/medbay2)
 "eG" = (
@@ -1406,9 +1389,8 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/medical/medbay2)
 "eH" = (
@@ -1475,16 +1457,14 @@
 /area/lv624/ground/compound/c)
 "eS" = (
 /obj/structure/ore_box,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/lv624/lazarus/quartstorage)
 "eT" = (
 /obj/structure/closet/secure_closet/miner,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/lv624/lazarus/quartstorage)
 "eU" = (
@@ -1519,9 +1499,8 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/medical/medbay2)
 "eY" = (
@@ -1573,9 +1552,8 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/lv624/lazarus/quartstorage)
 "ff" = (
@@ -1584,9 +1562,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/lv624/lazarus/quartstorage)
 "fg" = (
@@ -1625,9 +1602,8 @@
 /area/vapor_processing/east_compound)
 "fm" = (
 /obj/machinery/door/airlock/multi_tile/medical,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/medical/medbay2)
 "fn" = (
@@ -1651,9 +1627,8 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/lv624/lazarus/quartstorage)
 "fr" = (
@@ -1662,15 +1637,13 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/lv624/lazarus/quartstorage)
 "fs" = (
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/lv624/lazarus/quartstorage)
 "ft" = (
@@ -1679,9 +1652,8 @@
 /area/lv624/ground/compound/c)
 "fu" = (
 /obj/structure/dispenser,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo2)
 "fv" = (
@@ -1698,16 +1670,14 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo2)
 "fx" = (
 /obj/structure/closet/secure_closet/shiptech,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo2)
 "fy" = (
@@ -1727,9 +1697,8 @@
 /turf/closed/wall,
 /area/lv624/lazarus/medbay)
 "fD" = (
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "fE" = (
@@ -1796,9 +1765,8 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/lv624/lazarus/quartstorage)
 "fM" = (
@@ -1816,15 +1784,13 @@
 /area/lv624/lazarus/quartstorage)
 "fO" = (
 /obj/machinery/door/airlock/glass_mining,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo2)
 "fP" = (
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo2)
 "fQ" = (
@@ -1833,9 +1799,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo2)
 "fS" = (
@@ -1872,9 +1837,8 @@
 /area/lv624/lazarus/quart)
 "fW" = (
 /obj/machinery/door/airlock/glass_mining,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/lv624/lazarus/quart)
 "fX" = (
@@ -1945,16 +1909,14 @@
 /area/lv624/lazarus/medbay)
 "gk" = (
 /obj/structure/closet/secure_closet/medical2,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "gl" = (
 /obj/structure/closet/secure_closet/medical3,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "gm" = (
@@ -1962,16 +1924,14 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "gn" = (
 /obj/structure/closet/secure_closet/medical_doctor,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "go" = (
@@ -2222,16 +2182,14 @@
 /turf/open/floor/plating/ground/dirt,
 /area/space)
 "gS" = (
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/lv624/lazarus/quart)
 "gT" = (
 /obj/structure/ore_box,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo2)
 "gU" = (
@@ -2250,23 +2208,20 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo2)
 "gW" = (
 /obj/structure/reagent_dispensers/fueltank,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo2)
 "gX" = (
 /obj/structure/reagent_dispensers/watertank,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo2)
 "gY" = (
@@ -2284,9 +2239,8 @@
 "hb" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable/yellow,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "hc" = (
@@ -2390,18 +2344,16 @@
 "hu" = (
 /obj/machinery/computer/operating,
 /obj/structure/table,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "hv" = (
 /obj/item/reagent_containers/hypospray,
 /obj/structure/table,
 /obj/item/healthanalyzer,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "hw" = (
@@ -2422,23 +2374,20 @@
 /area/lv624/lazarus/medbay)
 "hA" = (
 /obj/structure/closet/secure_closet/chemical,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "hB" = (
 /obj/structure/closet/secure_closet/CMO,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "hC" = (
 /obj/structure/closet/secure_closet/medical1,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "hD" = (
@@ -2466,9 +2415,8 @@
 /area/lv624/lazarus/engineering)
 "hI" = (
 /obj/machinery/door/airlock/medical,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "hJ" = (
@@ -2484,9 +2432,8 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/medical/medbay2)
 "hM" = (
@@ -2545,9 +2492,8 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo3)
 "hW" = (
@@ -2569,9 +2515,8 @@
 /area/lv624/ground/caves/central1)
 "hZ" = (
 /obj/structure/largecrate,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo3)
 "ia" = (
@@ -2608,21 +2553,15 @@
 /area/lv624/lazarus/engineering)
 "if" = (
 /obj/structure/closet/secure_closet/marshal,
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
 "ig" = (
 /obj/structure/table/flipped,
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
 "ih" = (
 /obj/structure/closet/secure_closet/hos,
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
 "ii" = (
 /obj/machinery/recharge_station,
@@ -2640,15 +2579,13 @@
 /area/lv624/lazarus/quart)
 "il" = (
 /obj/machinery/door/airlock/glass_mining,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo3)
 "im" = (
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo3)
 "in" = (
@@ -2685,15 +2622,11 @@
 /turf/open/floor/grass,
 /area/vapor_processing/east_compound)
 "it" = (
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
 "iu" = (
 /obj/structure/closet/secure_closet/detective,
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
 "iv" = (
 /obj/effect/landmark/corpsespawner/doctor{
@@ -2753,9 +2686,8 @@
 /area/lv624/lazarus/canteen)
 "iD" = (
 /obj/structure/closet/firecloset,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo3)
 "iE" = (
@@ -2769,23 +2701,20 @@
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Ben Harris"
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/medical/medbay2)
 "iG" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/medical/medbay2)
 "iH" = (
 /obj/effect/landmark/corpsespawner/doctor,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/medical/medbay2)
 "iI" = (
@@ -2795,9 +2724,8 @@
 	icon_state = "4-8"
 	},
 /obj/effect/landmark/corpsespawner/engineer/rig,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/lv624/lazarus/quartstorage)
 "iJ" = (
@@ -2805,9 +2733,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo2)
 "iK" = (
@@ -2908,16 +2835,14 @@
 /area/lv624/lazarus/comms)
 "iY" = (
 /obj/structure/largecrate/supply/supplies/mre,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo3)
 "iZ" = (
 /obj/structure/largecrate/supply/supplies/plasteel,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo3)
 "ja" = (
@@ -3035,9 +2960,7 @@
 /area/lv624/lazarus/engineering)
 "jm" = (
 /obj/machinery/door/airlock/multi_tile/security,
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
 "jn" = (
 /obj/structure/closet/secure_closet/bar,
@@ -3089,9 +3012,8 @@
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo2)
 "jw" = (
@@ -3099,15 +3021,13 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/lv624/lazarus/quartstorage)
 "jx" = (
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "jy" = (
@@ -3115,9 +3035,8 @@
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/lv624/lazarus/quartstorage)
 "jz" = (
@@ -3125,23 +3044,20 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo3)
 "jA" = (
 /obj/structure/largecrate/supply/supplies/tables_racks,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo3)
 "jB" = (
 /obj/structure/closet/crate,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo3)
 "jC" = (
@@ -3157,24 +3073,18 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
 "jE" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/gun/shotgun/pump/cmb,
 /obj/item/ammo_magazine/shotgun/buckshot,
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
 "jF" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/forensic_scanning,
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
 "jG" = (
 /obj/machinery/power/apc/drained,
@@ -3182,9 +3092,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
 "jH" = (
 /obj/structure/cable/yellow{
@@ -3196,9 +3104,8 @@
 /area/lv624/lazarus/hydroponics)
 "jI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo2)
 "jJ" = (
@@ -3229,25 +3136,22 @@
 "jN" = (
 /obj/structure/table/flipped,
 /obj/machinery/computer/secure_data,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "jO" = (
 /obj/structure/table/flipped,
 /obj/machinery/computer/station_alert,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "jP" = (
 /obj/structure/table/flipped,
 /obj/machinery/computer/atmos_alert,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "jQ" = (
@@ -3256,62 +3160,50 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "jR" = (
 /obj/machinery/computer/general_air_control,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "jS" = (
 /obj/structure/closet/emcloset,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo3)
 "jT" = (
 /obj/structure/largecrate/supply/supplies/water,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo3)
 "jU" = (
 /obj/structure/table/reinforced,
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
 "jV" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
 "jW" = (
 /obj/structure/bed/chair/office/light{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
 "jX" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/under/CM_uniform,
 /obj/item/clothing/suit/armor/det_suit,
 /obj/item/binoculars,
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
 "jY" = (
 /obj/structure/table/reinforced,
@@ -3323,9 +3215,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
 "jZ" = (
 /obj/machinery/vending/coffee,
@@ -3355,9 +3245,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-22"
-	},
+/obj/structure/flora/pottedplant/twentytwo,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -3366,32 +3254,28 @@
 "ke" = (
 /obj/structure/table/flipped,
 /obj/machinery/computer/security,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "kf" = (
 /obj/structure/table/flipped,
 /obj/machinery/computer/prisoner,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "kg" = (
 /obj/structure/table/flipped,
 /obj/machinery/computer/guestpass,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "kh" = (
 /obj/machinery/computer/robotics,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "ki" = (
@@ -3399,21 +3283,15 @@
 /area/lv624/ground/compound/sw)
 "kj" = (
 /obj/machinery/vending/security,
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
 "kk" = (
 /obj/item/attachable/hydro_cannon,
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
 "kl" = (
 /obj/item/folder/red,
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
 "km" = (
 /obj/structure/table/flipped,
@@ -3548,9 +3426,7 @@
 /area/lv624/lazarus/quart)
 "kA" = (
 /obj/structure/closet/lawcloset,
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
 "kB" = (
 /obj/structure/closet/lawcloset,
@@ -3613,9 +3489,8 @@
 /area/lv624/lazarus/fitness)
 "kJ" = (
 /obj/machinery/door/airlock/glass_command,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "kK" = (
@@ -3688,9 +3563,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "kW" = (
@@ -3699,9 +3573,8 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "kX" = (
@@ -3721,23 +3594,20 @@
 /area/lv624/ground/compound/sw)
 "lb" = (
 /obj/machinery/computer/aifixer,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "lc" = (
 /obj/machinery/computer/mecha,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "ld" = (
 /obj/machinery/computer/rdconsole,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "le" = (
@@ -3775,9 +3645,8 @@
 "lo" = (
 /obj/structure/table/flipped,
 /obj/machinery/computer/communications,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "lp" = (
@@ -3797,9 +3666,8 @@
 /area/lv624/lazarus/quart)
 "lr" = (
 /obj/machinery/computer/rdservercontrol,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "ls" = (
@@ -3824,16 +3692,14 @@
 /obj/structure/ore_box,
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo2)
 "ly" = (
 /obj/effect/landmark/corpsespawner/clown,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "lA" = (
@@ -3924,9 +3790,8 @@
 /area/storage/tools)
 "lR" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "lS" = (
@@ -4088,9 +3953,7 @@
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/sw)
 "mv" = (
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
+/turf/open/floor/scorched/two,
 /area/storage/tools)
 "mw" = (
 /turf/open/floor,
@@ -4309,9 +4172,7 @@
 	id = "secure_blast";
 	name = "\improper Secure Armory Blast Door"
 	},
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
+/turf/open/floor/scorched/two,
 /area/storage/tools)
 "nh" = (
 /obj/structure/cable/yellow{
@@ -4397,17 +4258,14 @@
 /area/maintenance/substation)
 "nq" = (
 /obj/effect/landmark/corpsespawner/engineer,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/lv624/lazarus/quart)
 "nr" = (
 /obj/structure/table/flipped,
 /obj/item/rsf,
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
 "ns" = (
 /obj/structure/cable/yellow{
@@ -4443,7 +4301,6 @@
 /area/maintenance/substation)
 "nw" = (
 /obj/machinery/power/terminal{
-	icon_state = "term";
 	dir = 1
 	},
 /obj/structure/cable/yellow{
@@ -4529,9 +4386,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo3)
 "nG" = (
@@ -4601,9 +4457,7 @@
 /turf/open/floor,
 /area/maintenance/substation)
 "nO" = (
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
+/turf/open/floor/scorched/two,
 /area/lv624/lazarus/research)
 "nP" = (
 /obj/structure/cable/yellow{
@@ -4611,9 +4465,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
+/turf/open/floor/scorched/two,
 /area/lv624/lazarus/research)
 "nQ" = (
 /obj/structure/reagent_dispensers/fueltank,
@@ -4711,9 +4563,7 @@
 "og" = (
 /obj/structure/table/flipped,
 /obj/item/rsp,
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
 "oh" = (
 /obj/structure/closet/secure_closet/quartermaster,
@@ -4886,9 +4736,7 @@
 "oF" = (
 /obj/structure/table/flipped,
 /obj/item/radio,
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
 "oG" = (
 /obj/machinery/power/terminal,
@@ -5127,7 +4975,6 @@
 /area/crew_quarters/sleep/bedrooms)
 "pt" = (
 /obj/structure/bed/chair/wood/wings{
-	icon_state = "wooden_chair_wings";
 	dir = 1
 	},
 /turf/open/floor/wood/broken,
@@ -5137,7 +4984,6 @@
 /area/crew_quarters/sleep_male)
 "pv" = (
 /obj/structure/bed/chair/wood/wings{
-	icon_state = "wooden_chair_wings";
 	dir = 1
 	},
 /turf/open/floor/wood,
@@ -5263,9 +5109,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-22"
-	},
+/obj/structure/flora/pottedplant/twentytwo,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -5452,7 +5296,6 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison/yellow{
-	icon_state = "yellow";
 	dir = 4
 	},
 /area/lv624/lazarus/engineering)
@@ -5477,9 +5320,7 @@
 	},
 /obj/item/taperecorder,
 /obj/structure/table/reinforced,
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
 "qz" = (
 /obj/structure/closet/emcloset,
@@ -5508,9 +5349,8 @@
 /area/lv624/lazarus/canteen)
 "qC" = (
 /obj/structure/window/framed/colony,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/lv624/lazarus/medbay)
 "qD" = (
@@ -5656,9 +5496,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/lv624/lazarus/quart)
 "rc" = (
@@ -5705,9 +5544,7 @@
 	id = "secure_blast";
 	name = "\improper Secure Armory Blast Door"
 	},
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
+/turf/open/floor/scorched/two,
 /area/lv624/lazarus/research)
 "ri" = (
 /obj/structure/window/framed/colony,
@@ -5801,9 +5638,8 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo3)
 "rv" = (
@@ -5822,16 +5658,14 @@
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo3)
 "rw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo3)
 "rx" = (
@@ -5867,16 +5701,14 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo3)
 "rA" = (
 /obj/effect/landmark/corpsespawner/engineer,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo3)
 "rB" = (
@@ -5905,9 +5737,7 @@
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Mio Linno"
 	},
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
 "rF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -5920,26 +5750,23 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo3)
 "rH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo3)
 "rI" = (
 /obj/structure/largecrate/supply/supplies/flares,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo3)
 "rJ" = (
@@ -5947,9 +5774,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo3)
 "rK" = (
@@ -5957,9 +5783,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo3)
 "rL" = (
@@ -6087,9 +5912,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "sd" = (
@@ -6098,18 +5922,16 @@
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "se" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "sf" = (
@@ -6122,9 +5944,8 @@
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "sg" = (
@@ -6134,9 +5955,8 @@
 /area/lv624/lazarus/canteen)
 "sh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "si" = (
@@ -6148,9 +5968,8 @@
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Ted Jarka"
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
 	},
 /area/vapor_processing/cargo3)
 "sj" = (
@@ -6198,9 +6017,8 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "sp" = (
@@ -6218,9 +6036,8 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "ss" = (
@@ -6234,14 +6051,12 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "st" = (
 /turf/open/floor/prison/yellow{
-	icon_state = "yellow";
 	dir = 8
 	},
 /area/lv624/lazarus/engineering)
@@ -6263,18 +6078,16 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "sx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "sy" = (
@@ -6282,9 +6095,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "sz" = (
@@ -6298,18 +6110,16 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "sB" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "sC" = (
@@ -6317,9 +6127,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "sD" = (
@@ -6328,9 +6137,8 @@
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "sE" = (
@@ -6340,9 +6148,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "sF" = (
@@ -6353,9 +6160,8 @@
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/lv624/lazarus/comms)
 "sG" = (
@@ -6408,18 +6214,14 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
+/turf/open/floor/scorched/two,
 /area/storage/tools)
 "sO" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
+/turf/open/floor/scorched/two,
 /area/storage/tools)
 "sP" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -6441,9 +6243,7 @@
 /area/storage/tools)
 "sS" = (
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
+/turf/open/floor/scorched/two,
 /area/storage/tools)
 "sT" = (
 /obj/machinery/door/poddoor/mainship{
@@ -6607,24 +6407,18 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
+/turf/open/floor/scorched/two,
 /area/lv624/lazarus/research)
 "tt" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
+/turf/open/floor/scorched/two,
 /area/lv624/lazarus/research)
 "tu" = (
 /obj/effect/decal/cleanable/blood/oil,
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
+/turf/open/floor/scorched/two,
 /area/lv624/lazarus/research)
 "tv" = (
 /turf/open/floor/plating/dmg3,
@@ -6910,9 +6704,7 @@
 /area/lv624/lazarus/research)
 "ut" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
+/turf/open/floor/scorched/two,
 /area/lv624/lazarus/research)
 "uu" = (
 /obj/structure/window_frame/wood,
@@ -6975,7 +6767,6 @@
 /area/crew_quarters/sleep_male)
 "uE" = (
 /obj/structure/bed/chair/wood/wings{
-	icon_state = "wooden_chair_wings";
 	dir = 1
 	},
 /obj/machinery/door/window,
@@ -7030,7 +6821,6 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/prison/yellow{
-	icon_state = "yellow";
 	dir = 4
 	},
 /area/lv624/lazarus/engineering)
@@ -7062,9 +6852,7 @@
 /area/vapor_processing/east_compound)
 "AS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
+/turf/open/floor/scorched/two,
 /area/storage/tools)
 "AT" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -7137,9 +6925,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
+/turf/open/floor/scorched/two,
 /area/storage/tools)
 "Jt" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -7205,9 +6991,7 @@
 /area/lv624/lazarus/engineering)
 "Ud" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
+/turf/open/floor/scorched/two,
 /area/lv624/lazarus/research)
 "UJ" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,

@@ -37,15 +37,13 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
 	},
 /area/hallway/secondary/entry)
 "aal" = (
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
 	},
 /area/hallway/secondary/entry)
 "aam" = (
@@ -76,8 +74,7 @@
 /turf/open/floor/marking/warning,
 /area/hallway/secondary/entry)
 "aas" = (
-/turf/open/floor{
-	icon_state = "warningcorner";
+/turf/open/floor/marking/warning/corner{
 	dir = 1
 	},
 /area/hallway/secondary/entry)
@@ -126,14 +123,10 @@
 /turf/open/floor,
 /area/crew_quarters/heads/hos)
 "aaD" = (
-/turf/open/floor{
-	icon_state = "floorscorched1"
-	},
+/turf/open/floor/scorched,
 /area/gateway)
 "aaE" = (
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
+/turf/open/floor/scorched/two,
 /area/gateway)
 "aaF" = (
 /obj/structure/closet/emcloset,
@@ -198,23 +191,17 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "floorscorched1"
-	},
+/turf/open/floor/scorched,
 /area/gateway)
 "aaS" = (
 /obj/machinery/sparker,
-/turf/open/floor{
-	icon_state = "floorscorched1"
-	},
+/turf/open/floor/scorched,
 /area/gateway)
 "aaT" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "floorscorched1"
-	},
+/turf/open/floor/scorched,
 /area/gateway)
 "aaU" = (
 /obj/machinery/door/airlock/external,
@@ -438,9 +425,7 @@
 /area/construction/solarscontrol)
 "abG" = (
 /obj/structure/window/reinforced,
-/turf/open/floor{
-	icon_state = "floorscorched1"
-	},
+/turf/open/floor/scorched,
 /area/gateway)
 "abH" = (
 /turf/open/floor/plating,
@@ -941,9 +926,8 @@
 /obj/item/tool/surgery/FixOVein,
 /obj/item/autopsy_scanner,
 /obj/item/tool/surgery/surgicaldrill,
-/turf/open/floor/mainship{
-	dir = 1;
-	icon_state = "sterile_green_side"
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
 	},
 /area/security/main)
 "adu" = (
@@ -2936,9 +2920,7 @@
 /area/security/range)
 "akB" = (
 /obj/machinery/firealarm,
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
+/turf/open/floor/scorched/two,
 /area/gateway)
 "akC" = (
 /obj/machinery/firealarm,
@@ -3429,9 +3411,7 @@
 /turf/open/floor,
 /area/security/armoury)
 "amj" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-21"
-	},
+/obj/structure/flora/pottedplant/twentyone,
 /turf/open/floor,
 /area/security/lobby)
 "amk" = (
@@ -3679,9 +3659,7 @@
 /turf/open/floor,
 /area/security/brig)
 "amW" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-21"
-	},
+/obj/structure/flora/pottedplant/twentyone,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/security/lobby)
@@ -3977,9 +3955,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters/sleep/bedrooms)
 "anM" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-21"
-	},
+/obj/structure/flora/pottedplant/twentyone,
 /turf/open/floor/wood,
 /area/crew_quarters/sleep/bedrooms)
 "anN" = (
@@ -4209,7 +4185,6 @@
 /area/crew_quarters)
 "aoz" = (
 /obj/machinery/shower{
-	icon_state = "shower";
 	dir = 4
 	},
 /obj/structure/curtain/shower,
@@ -4217,9 +4192,8 @@
 /area/crew_quarters)
 "aoA" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
 	},
 /area/hallway/secondary/entry)
 "aoB" = (
@@ -4537,9 +4511,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters)
 "apC" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-21"
-	},
+/obj/structure/flora/pottedplant/twentyone,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/camera/autoname{
 	dir = 4
@@ -4675,8 +4647,7 @@
 /turf/open/floor/marking/warning,
 /area/space)
 "aqb" = (
-/turf/open/floor{
-	icon_state = "warningcorner";
+/turf/open/floor/marking/warning/corner{
 	dir = 1
 	},
 /area/space)
@@ -4905,8 +4876,7 @@
 /area/security/lobby)
 "aqU" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "warningcorner";
+/turf/open/floor/marking/warning/corner{
 	dir = 1
 	},
 /area/hallway/secondary/entry)
@@ -5090,9 +5060,7 @@
 "arA" = (
 /obj/machinery/sparker,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "floorscorched1"
-	},
+/turf/open/floor/scorched,
 /area/gateway)
 "arB" = (
 /obj/structure/window/reinforced,
@@ -5114,9 +5082,7 @@
 /area/crew_quarters/toilet)
 "arD" = (
 /obj/machinery/alarm,
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
+/turf/open/floor/scorched/two,
 /area/gateway)
 "arE" = (
 /turf/open/floor,
@@ -5433,9 +5399,7 @@
 	},
 /area/hallway/secondary/entry)
 "asD" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-21"
-	},
+/obj/structure/flora/pottedplant/twentyone,
 /turf/open/floor,
 /area/bigred/ground/central_hall)
 "asE" = (
@@ -5530,9 +5494,7 @@
 /area/security/warden)
 "asQ" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
+/turf/open/floor/scorched/two,
 /area/gateway)
 "asR" = (
 /obj/machinery/door/airlock/glass,
@@ -5872,9 +5834,7 @@
 "atI" = (
 /obj/structure/window/reinforced,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "floorscorched1"
-	},
+/turf/open/floor/scorched,
 /area/gateway)
 "atJ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -6380,9 +6340,8 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
 	},
 /area/hallway/secondary/entry)
 "avj" = (
@@ -6723,9 +6682,7 @@
 /turf/open/floor/wood,
 /area/crew_quarters)
 "awm" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-21"
-	},
+/obj/structure/flora/pottedplant/twentyone,
 /turf/open/floor/tile/dark/blue2/corner,
 /area/bridge)
 "awn" = (
@@ -7905,9 +7862,8 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
 	},
 /area/hallway/secondary/entry)
 "azT" = (
@@ -8219,9 +8175,7 @@
 "aAW" = (
 /obj/machinery/mineral/processing_unit,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/tyson_station/mine_depot)
 "aAX" = (
 /obj/effect/decal/cleanable/dirt,
@@ -8323,9 +8277,7 @@
 /area/bridge/meeting_room)
 "aBm" = (
 /obj/effect/plantsegment,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-21"
-	},
+/obj/structure/flora/pottedplant/twentyone,
 /turf/open/floor,
 /area/bridge/meeting_room)
 "aBn" = (
@@ -8456,9 +8408,7 @@
 "aBL" = (
 /obj/machinery/space_heater,
 /obj/item/stack/sheet/mineral/phoron,
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
+/turf/open/floor/scorched/two,
 /area/gateway)
 "aBM" = (
 /obj/structure/sign/safety/maintenance,
@@ -8478,9 +8428,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/monkey_spawn,
 /obj/item/stack/sheet/mineral/phoron,
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
+/turf/open/floor/scorched/two,
 /area/gateway)
 "aBP" = (
 /obj/effect/decal/cleanable/dirt,
@@ -8614,9 +8562,7 @@
 /obj/structure/window/reinforced,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/stack/sheet/mineral/mhydrogen,
-/turf/open/floor{
-	icon_state = "floorscorched1"
-	},
+/turf/open/floor/scorched,
 /area/gateway)
 "aCl" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -8641,9 +8587,7 @@
 /obj/structure/window/reinforced,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/stack/sheet/mineral/phoron,
-/turf/open/floor{
-	icon_state = "floorscorched1"
-	},
+/turf/open/floor/scorched,
 /area/gateway)
 "aCo" = (
 /obj/effect/plantsegment,
@@ -8960,7 +8904,6 @@
 /area/security/brig)
 "aDj" = (
 /obj/machinery/shower{
-	icon_state = "shower";
 	dir = 4
 	},
 /obj/structure/window/reinforced/tinted/frosted{
@@ -9139,22 +9082,19 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
 	},
 /area/hallway/primary/starboard)
 "aDP" = (
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
 	},
 /area/hallway/primary/starboard)
 "aDQ" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
 	},
 /area/hallway/primary/starboard)
 "aDR" = (
@@ -9165,8 +9105,7 @@
 /turf/open/floor/marking/warning,
 /area/hallway/primary/starboard)
 "aDT" = (
-/turf/open/floor{
-	icon_state = "warningcorner";
+/turf/open/floor/marking/warning/corner{
 	dir = 1
 	},
 /area/hallway/primary/starboard)
@@ -9184,9 +9123,7 @@
 /turf/open/floor/marking/warning,
 /area/hallway/primary/starboard)
 "aDX" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-21"
-	},
+/obj/structure/flora/pottedplant/twentyone,
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
@@ -10702,9 +10639,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-22"
-	},
+/obj/structure/flora/pottedplant/twentytwo,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -12179,15 +12114,12 @@
 /turf/open/floor,
 /area/mainship/hallways/port_hallway)
 "aNX" = (
-/turf/open/floor/mainship{
-	icon_state = "dark_sterile"
-	},
+/turf/open/floor/mainship/sterile/dark,
 /area/medical/medbay2)
 "aNY" = (
 /obj/machinery/vending/MarineMed/Blood,
-/turf/open/floor/mainship{
-	dir = 2;
-	icon_state = "sterile_green_corner"
+/turf/open/floor/mainship/sterile/corner{
+	dir = 2
 	},
 /area/medical/medbay2)
 "aNZ" = (
@@ -12403,9 +12335,8 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/mainship{
-	dir = 8;
-	icon_state = "sterile_green_side"
+/turf/open/floor/mainship/sterile/side{
+	dir = 8
 	},
 /area/medical/medbay2)
 "aOD" = (
@@ -12413,9 +12344,8 @@
 /obj/structure/sink{
 	dir = 4
 	},
-/turf/open/floor/mainship{
-	dir = 4;
-	icon_state = "sterile_green_side"
+/turf/open/floor/mainship/sterile/side{
+	dir = 4
 	},
 /area/medical/medbay2)
 "aOE" = (
@@ -12543,18 +12473,16 @@
 /area/mainship/hallways/port_hallway)
 "aPd" = (
 /obj/machinery/autodoc_console,
-/turf/open/floor/mainship{
-	dir = 2;
-	icon_state = "sterile_green_side"
+/turf/open/floor/mainship/sterile/side{
+	dir = 2
 	},
 /area/medical/medbay2)
 "aPe" = (
 /obj/machinery/optable,
 /obj/item/tank/anesthetic,
 /obj/item/clothing/mask/breath/medical,
-/turf/open/floor/mainship{
-	dir = 2;
-	icon_state = "sterile_green_side"
+/turf/open/floor/mainship/sterile/side{
+	dir = 2
 	},
 /area/medical/medbay2)
 "aPf" = (
@@ -12562,8 +12490,7 @@
 /obj/item/storage/surgical_tray,
 /obj/item/reagent_containers/spray/surgery,
 /obj/item/autopsy_scanner,
-/turf/open/floor/mainship{
-	icon_state = "sterile_green_corner";
+/turf/open/floor/mainship/sterile/corner{
 	dir = 4
 	},
 /area/medical/medbay2)
@@ -12789,9 +12716,7 @@
 /turf/open/floor/tile/bar,
 /area/medical/chemistry)
 "aPU" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-22"
-	},
+/obj/structure/flora/pottedplant/twentytwo,
 /turf/open/floor/tile/bar,
 /area/medical/surgery)
 "aPV" = (
@@ -12921,9 +12846,8 @@
 	},
 /obj/item/mass_spectrometer,
 /obj/effect/spawner/random/bomb_supply,
-/turf/open/floor/mainship{
-	dir = 2;
-	icon_state = "sterile_green_side"
+/turf/open/floor/mainship/sterile/side{
+	dir = 2
 	},
 /area/medical/chemistry)
 "aQp" = (
@@ -13153,7 +13077,6 @@
 /area/lv624/lazarus/atmos)
 "aRh" = (
 /obj/machinery/power/terminal{
-	icon_state = "term";
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -13578,9 +13501,7 @@
 /turf/open/floor,
 /area/security/warden)
 "aSE" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-21"
-	},
+/obj/structure/flora/pottedplant/twentyone,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor,
 /area/security/lobby)
@@ -14088,24 +14009,21 @@
 /area/maintenance/starboard)
 "aUo" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 8
 	},
 /area/crew_quarters/bar)
 "aUp" = (
-/turf/open/floor{
-	dir = 8;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 8
 	},
 /area/crew_quarters/bar)
 "aUq" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 8
 	},
 /area/crew_quarters/bar)
 "aUr" = (
@@ -14120,32 +14038,28 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellow"
+/turf/open/floor/tile/whiteyellow{
+	dir = 4
 	},
 /area/crew_quarters/kitchen)
 "aUu" = (
 /obj/machinery/alarm,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellow"
+/turf/open/floor/tile/whiteyellow{
+	dir = 4
 	},
 /area/crew_quarters/kitchen)
 "aUv" = (
 /obj/structure/table/reinforced,
 /obj/machinery/reagentgrinder,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellow"
+/turf/open/floor/tile/whiteyellow{
+	dir = 4
 	},
 /area/crew_quarters/kitchen)
 "aUw" = (
 /obj/structure/table/reinforced,
 /obj/machinery/processor,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellow"
+/turf/open/floor/tile/whiteyellow{
+	dir = 4
 	},
 /area/crew_quarters/kitchen)
 "aUx" = (
@@ -14159,18 +14073,16 @@
 "aUy" = (
 /obj/structure/table/reinforced,
 /obj/machinery/microwave,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellow"
+/turf/open/floor/tile/whiteyellow{
+	dir = 4
 	},
 /area/crew_quarters/kitchen)
 "aUz" = (
 /turf/closed/wall,
 /area/crew_quarters/kitchen)
 "aUA" = (
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellow"
+/turf/open/floor/tile/whiteyellow{
+	dir = 4
 	},
 /area/crew_quarters/kitchen)
 "aUB" = (
@@ -14204,9 +14116,8 @@
 /area/maintenance/starboard)
 "aUH" = (
 /obj/structure/table,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/hydroponics)
 "aUI" = (
@@ -14246,32 +14157,28 @@
 /turf/closed/wall,
 /area/hydroponics)
 "aUL" = (
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/hydroponics)
 "aUM" = (
 /obj/machinery/vending/hydroseeds,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/hydroponics)
 "aUN" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/hydroponics)
 "aUO" = (
 /obj/machinery/botany/editor,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/hydroponics)
 "aUP" = (
@@ -14284,9 +14191,8 @@
 /area/bigred/ground/central_hall)
 "aUQ" = (
 /obj/machinery/botany/extractor,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/hydroponics)
 "aUR" = (
@@ -14309,9 +14215,8 @@
 /area/bridge)
 "aUU" = (
 /obj/machinery/botany,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/hydroponics)
 "aUV" = (
@@ -14327,23 +14232,20 @@
 /area/lawoffice)
 "aUX" = (
 /obj/structure/table/reinforced,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellow"
+/turf/open/floor/tile/whiteyellow{
+	dir = 4
 	},
 /area/crew_quarters/kitchen)
 "aUY" = (
 /obj/machinery/gibber,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellow"
+/turf/open/floor/tile/whiteyellow{
+	dir = 4
 	},
 /area/crew_quarters/kitchen)
 "aUZ" = (
 /obj/structure/dispenser,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/hydroponics)
 "aVa" = (
@@ -14419,20 +14321,14 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "darkredcorners2"
-	},
+/turf/open/floor/tile/dark/red2/corner,
 /area/crew_quarters/bar)
 "aVj" = (
 /obj/structure/bed/chair/comfy,
-/turf/open/floor{
-	icon_state = "darkredcorners2"
-	},
+/turf/open/floor/tile/dark/red2/corner,
 /area/crew_quarters/bar)
 "aVk" = (
-/turf/open/floor{
-	icon_state = "darkredcorners2"
-	},
+/turf/open/floor/tile/dark/red2/corner,
 /area/crew_quarters/bar)
 "aVl" = (
 /obj/machinery/door/airlock/glass,
@@ -14441,9 +14337,8 @@
 /area/crew_quarters/bar)
 "aVm" = (
 /obj/structure/dispenser,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellow"
+/turf/open/floor/tile/whiteyellow{
+	dir = 4
 	},
 /area/crew_quarters/kitchen)
 "aVn" = (
@@ -14497,9 +14392,7 @@
 /obj/structure/bed/chair/comfy{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "darkredcorners2"
-	},
+/turf/open/floor/tile/dark/red2/corner,
 /area/crew_quarters/bar)
 "aVu" = (
 /obj/machinery/door/airlock/maintenance_hatch,
@@ -14509,9 +14402,7 @@
 /obj/structure/bed/chair/comfy{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "darkredcorners2"
-	},
+/turf/open/floor/tile/dark/red2/corner,
 /area/crew_quarters/bar)
 "aVw" = (
 /turf/open/floor/carpet,
@@ -14534,14 +14425,10 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/crew_quarters/bar)
 "aVA" = (
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/crew_quarters/bar)
 "aVB" = (
 /obj/structure/bed/fancy,
@@ -14599,9 +14486,7 @@
 /obj/structure/bed/chair/comfy{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "darkredcorners2"
-	},
+/turf/open/floor/tile/dark/red2/corner,
 /area/crew_quarters/bar)
 "aVJ" = (
 /obj/structure/table/reinforced,
@@ -14613,9 +14498,7 @@
 /obj/machinery/chem_dispenser/beer{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/crew_quarters/bar)
 "aVM" = (
 /obj/structure/table/woodentable,
@@ -14688,15 +14571,11 @@
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/glass/beaker/large,
 /obj/item/reagent_containers/glass/beaker/large,
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/crew_quarters/bar)
 "aVW" = (
 /obj/machinery/vending/boozeomat,
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/crew_quarters/bar)
 "aVX" = (
 /obj/effect/decal/cleanable/dirt,
@@ -14714,9 +14593,8 @@
 /area/bridge/meeting_room)
 "aVY" = (
 /obj/machinery/vending/hydronutrients,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/hydroponics)
 "aVZ" = (
@@ -14770,9 +14648,7 @@
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/glass/beaker,
 /obj/item/reagent_containers/glass/beaker,
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/crew_quarters/bar)
 "aWh" = (
 /obj/structure/table/reinforced,
@@ -14780,9 +14656,7 @@
 	dir = 8;
 	pixel_x = -10
 	},
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/crew_quarters/bar)
 "aWi" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
@@ -14790,9 +14664,7 @@
 /area/hallway/secondary/entry)
 "aWj" = (
 /obj/machinery/vending/cigarette,
-/turf/open/floor{
-	icon_state = "darkredcorners2"
-	},
+/turf/open/floor/tile/dark/red2/corner,
 /area/crew_quarters/bar)
 "aWk" = (
 /obj/structure/cable{
@@ -14800,17 +14672,14 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/open/floor{
-	icon_state = "warningcorner";
+/turf/open/floor/marking/warning/corner{
 	dir = 1
 	},
 /area/crew_quarters/locker)
 "aWl" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/drinks/shaker,
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/crew_quarters/bar)
 "aWm" = (
 /obj/structure/sink/kitchen{
@@ -14818,9 +14687,8 @@
 	pixel_y = 30
 	},
 /obj/machinery/seed_extractor,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/hydroponics)
 "aWn" = (
@@ -14828,9 +14696,8 @@
 	dir = 2;
 	pixel_y = 30
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/hydroponics)
 "aWo" = (
@@ -14988,9 +14855,8 @@
 "aWS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/monkey_spawn,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 8
 	},
 /area/crew_quarters/bar)
 "aWT" = (
@@ -15022,16 +14888,14 @@
 /area/bridge/meeting_room)
 "aWW" = (
 /obj/structure/closet/secure_closet/freezer/meat,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellow"
+/turf/open/floor/tile/whiteyellow{
+	dir = 4
 	},
 /area/crew_quarters/kitchen)
 "aWX" = (
 /obj/structure/closet/secure_closet/freezer/money,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellow"
+/turf/open/floor/tile/whiteyellow{
+	dir = 4
 	},
 /area/crew_quarters/kitchen)
 "aWY" = (
@@ -15145,9 +15009,8 @@
 /area/quartermaster/storage)
 "aXu" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellow"
+/turf/open/floor/tile/whiteyellow{
+	dir = 4
 	},
 /area/crew_quarters/kitchen)
 "aXv" = (
@@ -15343,24 +15206,21 @@
 "aXP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 8
 	},
 /area/crew_quarters/bar)
 "aXQ" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellow"
+/turf/open/floor/tile/whiteyellow{
+	dir = 4
 	},
 /area/crew_quarters/kitchen)
 "aXR" = (
 /obj/effect/landmark/start/job/survivor,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/hydroponics)
 "aXT" = (
@@ -15371,9 +15231,8 @@
 "aXU" = (
 /obj/structure/closet/secure_closet/freezer/kitchen,
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellow"
+/turf/open/floor/tile/whiteyellow{
+	dir = 4
 	},
 /area/crew_quarters/kitchen)
 "aXV" = (
@@ -15412,16 +15271,14 @@
 "aYa" = (
 /obj/machinery/botany,
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/hydroponics)
 "aYb" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/hydroponics)
 "aYd" = (
@@ -15464,15 +15321,11 @@
 "aYi" = (
 /obj/structure/bed/chair/comfy,
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	icon_state = "darkredcorners2"
-	},
+/turf/open/floor/tile/dark/red2/corner,
 /area/crew_quarters/bar)
 "aYj" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	icon_state = "darkredcorners2"
-	},
+/turf/open/floor/tile/dark/red2/corner,
 /area/crew_quarters/bar)
 "aYk" = (
 /obj/effect/landmark/corpsespawner/chef{
@@ -15497,18 +15350,14 @@
 "aYo" = (
 /obj/structure/table/woodentable,
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	icon_state = "darkredcorners2"
-	},
+/turf/open/floor/tile/dark/red2/corner,
 /area/crew_quarters/bar)
 "aYp" = (
 /obj/structure/bed/chair/comfy{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	icon_state = "darkredcorners2"
-	},
+/turf/open/floor/tile/dark/red2/corner,
 /area/crew_quarters/bar)
 "aYq" = (
 /obj/effect/plantsegment,
@@ -15535,9 +15384,7 @@
 /area/tyson_station/mine_depot)
 "aYx" = (
 /obj/effect/landmark/start/job/survivor,
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/crew_quarters/bar)
 "aYy" = (
 /obj/structure/window/reinforced{
@@ -15567,9 +15414,7 @@
 /area/crew_quarters/bar)
 "aYD" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/crew_quarters/bar)
 "aYE" = (
 /obj/structure/table/woodentable,
@@ -16282,7 +16127,6 @@
 /area/lv624/lazarus/engineering)
 "baq" = (
 /obj/machinery/power/terminal{
-	icon_state = "term";
 	dir = 1
 	},
 /obj/structure/cable{
@@ -16989,9 +16833,8 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellow"
+/turf/open/floor/tile/whiteyellow{
+	dir = 4
 	},
 /area/crew_quarters/kitchen)
 "bbQ" = (
@@ -17008,9 +16851,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellow"
+/turf/open/floor/tile/whiteyellow{
+	dir = 4
 	},
 /area/crew_quarters/kitchen)
 "bbT" = (
@@ -17019,9 +16861,8 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/hydroponics)
 "bbU" = (
@@ -17040,9 +16881,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellow"
+/turf/open/floor/tile/whiteyellow{
+	dir = 4
 	},
 /area/crew_quarters/kitchen)
 "bbW" = (
@@ -17051,9 +16891,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/hydroponics)
 "bbX" = (
@@ -17083,9 +16922,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	icon_state = "darkredcorners2"
-	},
+/turf/open/floor/tile/dark/red2/corner,
 /area/crew_quarters/bar)
 "bca" = (
 /obj/structure/flora/ausbushes/sunnybush,
@@ -17105,9 +16942,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	icon_state = "darkredcorners2"
-	},
+/turf/open/floor/tile/dark/red2/corner,
 /area/crew_quarters/bar)
 "bcc" = (
 /obj/machinery/power/apc/drained,
@@ -17115,9 +16950,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/crew_quarters/bar)
 "bcd" = (
 /obj/effect/decal/cleanable/blood,
@@ -17126,9 +16959,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellow"
+/turf/open/floor/tile/whiteyellow{
+	dir = 4
 	},
 /area/crew_quarters/kitchen)
 "bce" = (
@@ -17146,9 +16978,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/crew_quarters/bar)
 "bcg" = (
 /obj/structure/table/reinforced,
@@ -17157,9 +16987,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellow"
+/turf/open/floor/tile/whiteyellow{
+	dir = 4
 	},
 /area/crew_quarters/kitchen)
 "bch" = (
@@ -17212,9 +17041,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	icon_state = "darkredcorners2"
-	},
+/turf/open/floor/tile/dark/red2/corner,
 /area/crew_quarters/bar)
 "bco" = (
 /obj/structure/cable{
@@ -18173,8 +18000,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/open/floor/mainship{
-	icon_state = "sterile_green_corner";
+/turf/open/floor/mainship/sterile/corner{
 	dir = 1
 	},
 /area/medical/medbay2)
@@ -18188,9 +18014,7 @@
 	d1 = 4;
 	d2 = 8
 	},
-/turf/open/floor/mainship{
-	icon_state = "dark_sterile"
-	},
+/turf/open/floor/mainship/sterile/dark,
 /area/medical/medbay2)
 "bee" = (
 /obj/machinery/door/firedoor,
@@ -18241,9 +18065,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-22"
-	},
+/obj/structure/flora/pottedplant/twentytwo,
 /obj/machinery/power/apc/drained,
 /obj/structure/cable{
 	icon_state = "0-4";
@@ -18741,9 +18563,7 @@
 /area/bigred/ground/central_hall)
 "bfE" = (
 /obj/effect/plantsegment,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-21"
-	},
+/obj/structure/flora/pottedplant/twentyone,
 /obj/effect/landmark/corpsespawner/security,
 /turf/open/floor,
 /area/bridge/meeting_room)
@@ -19141,9 +18961,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellow"
+/turf/open/floor/tile/whiteyellow{
+	dir = 4
 	},
 /area/crew_quarters/kitchen)
 "bgx" = (
@@ -19215,9 +19034,8 @@
 "bgL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/stack/sheet/cardboard,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 8
 	},
 /area/crew_quarters/bar)
 "bgM" = (
@@ -19251,9 +19069,8 @@
 /area/security/vacantoffice)
 "bgR" = (
 /obj/item/stack/sheet/cardboard,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 8
 	},
 /area/crew_quarters/bar)
 "bgS" = (
@@ -19268,25 +19085,19 @@
 "bgV" = (
 /obj/structure/table/woodentable,
 /obj/item/stack/sheet/cloth,
-/turf/open/floor{
-	icon_state = "darkredcorners2"
-	},
+/turf/open/floor/tile/dark/red2/corner,
 /area/crew_quarters/bar)
 "bgW" = (
 /obj/structure/table/woodentable,
 /obj/item/stack/sheet/cardboard,
-/turf/open/floor{
-	icon_state = "darkredcorners2"
-	},
+/turf/open/floor/tile/dark/red2/corner,
 /area/crew_quarters/bar)
 "bgX" = (
 /obj/structure/bed/chair/comfy{
 	dir = 8
 	},
 /obj/item/stack/sheet/cardboard,
-/turf/open/floor{
-	icon_state = "darkredcorners2"
-	},
+/turf/open/floor/tile/dark/red2/corner,
 /area/crew_quarters/bar)
 "bgY" = (
 /obj/structure/table/woodentable,
@@ -19295,9 +19106,7 @@
 /obj/item/stack/sheet/mineral/uranium,
 /obj/item/stack/sheet/mineral/uranium,
 /obj/item/stack/sheet/mineral/uranium,
-/turf/open/floor{
-	icon_state = "darkredcorners2"
-	},
+/turf/open/floor/tile/dark/red2/corner,
 /area/crew_quarters/bar)
 "bgZ" = (
 /obj/effect/decal/cleanable/blood,
@@ -19319,9 +19128,7 @@
 /area/crew_quarters/bar)
 "bhd" = (
 /obj/item/stack/sheet/mineral/diamond,
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/crew_quarters/bar)
 "bhe" = (
 /obj/machinery/door/airlock/glass,
@@ -19415,9 +19222,8 @@
 "bhv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/camera/autoname,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "whiteyellowcorner"
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 8
 	},
 /area/crew_quarters/bar)
 "bhw" = (
@@ -19448,9 +19254,8 @@
 /area/hallway/primary/starboard)
 "bhA" = (
 /obj/machinery/chem_dispenser,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteyellow"
+/turf/open/floor/tile/whiteyellow{
+	dir = 4
 	},
 /area/crew_quarters/kitchen)
 "bhB" = (
@@ -19497,9 +19302,8 @@
 /area/bigred/ground/central_hall)
 "bhH" = (
 /obj/machinery/chem_dispenser,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/hydroponics)
 "bhI" = (
@@ -19568,9 +19372,8 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/hydroponics)
 "bhR" = (
@@ -19587,9 +19390,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/hydroponics)
 "bhU" = (
@@ -19703,9 +19505,7 @@
 	icon_state = "0-8"
 	},
 /obj/effect/landmark/corpsespawner/engineer,
-/turf/open/floor/mainship{
-	icon_state = "dark_sterile"
-	},
+/turf/open/floor/mainship/sterile/dark,
 /area/medical/medbay2)
 "bil" = (
 /obj/item/storage/backpack/industrial,
@@ -19719,9 +19519,8 @@
 "bio" = (
 /obj/machinery/autodoc,
 /obj/effect/landmark/corpsespawner/doctor,
-/turf/open/floor/mainship{
-	dir = 8;
-	icon_state = "sterile_green_corner"
+/turf/open/floor/mainship/sterile/corner{
+	dir = 8
 	},
 /area/medical/medbay2)
 "bip" = (
@@ -19846,7 +19645,6 @@
 	d2 = 8
 	},
 /obj/machinery/light/small{
-	icon_state = "bulb1";
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -19898,7 +19696,6 @@
 /area/security/vacantoffice)
 "biQ" = (
 /obj/machinery/light/small{
-	icon_state = "bulb1";
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -20059,9 +19856,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/hydroponics)
 "bjs" = (
@@ -20082,9 +19878,8 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/hydroponics)
 "bju" = (
@@ -20122,9 +19917,8 @@
 "bjy" = (
 /obj/machinery/botany,
 /obj/machinery/light,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/hydroponics)
 "bjz" = (
@@ -20161,9 +19955,8 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/hydroponics)
 "bjC" = (
@@ -20187,9 +19980,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/hydroponics)
 "bjE" = (
@@ -20216,9 +20008,7 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "darkredcorners2"
-	},
+/turf/open/floor/tile/dark/red2/corner,
 /area/crew_quarters/bar)
 "bjI" = (
 /obj/structure/cable{
@@ -20229,17 +20019,14 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_state = "red"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/crew_quarters/bar)
 "bjJ" = (
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/hydroponics)
 "bjK" = (
@@ -21128,9 +20915,8 @@
 /area/crew_quarters/bar)
 "blZ" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/hydroponics)
 "bma" = (

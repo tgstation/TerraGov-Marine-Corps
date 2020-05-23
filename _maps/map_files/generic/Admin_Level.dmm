@@ -193,9 +193,7 @@
 /turf/open/floor,
 /area/tdome)
 "aC" = (
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
+/turf/open/floor/mainship/cargo,
 /area/centcom/supplypod/loading/one)
 "aD" = (
 /obj/machinery/igniter,
@@ -212,9 +210,7 @@
 /turf/open/floor,
 /area/tdome)
 "aG" = (
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
+/turf/open/floor/mainship/cargo,
 /area/centcom/supplypod/loading/two)
 "aH" = (
 /turf/open/floor/mainship{
@@ -258,9 +254,7 @@
 	},
 /area/centcom)
 "aO" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-21"
-	},
+/obj/structure/flora/pottedplant/twentyone,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -322,10 +316,7 @@
 /area/centcom/control)
 "ba" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
-/turf/open/floor/mainship{
-	icon_state = "plating";
-	dir = 5
-	},
+/turf/open/floor/plating/mainship,
 /area/centcom/control)
 "bb" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
@@ -380,8 +371,7 @@
 	},
 /area/centcom/supplypod/loading/two)
 "bj" = (
-/turf/open/floor/mainship{
-	icon_state = "blue";
+/turf/open/floor/mainship/blue{
 	dir = 9
 	},
 /area/centcom)
@@ -431,8 +421,7 @@
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bs" = (
-/turf/open/floor/mainship{
-	icon_state = "blue";
+/turf/open/floor/mainship/blue{
 	dir = 10
 	},
 /area/centcom)
@@ -612,32 +601,27 @@
 /area/centcom)
 "bX" = (
 /obj/structure/closet/secure_closet/guncabinet/lmg,
-/turf/open/floor/mainship{
-	dir = 9;
-	icon_state = "red"
+/turf/open/floor/mainship/red{
+	dir = 9
 	},
 /area/centcom)
 "bY" = (
 /obj/structure/closet/secure_closet/guncabinet/m57a4,
-/turf/open/floor/mainship{
-	dir = 1;
-	icon_state = "red"
+/turf/open/floor/mainship/red{
+	dir = 1
 	},
 /area/centcom)
 "bZ" = (
 /obj/structure/table/mainship,
 /obj/item/storage/box/handcuffs,
 /obj/item/storage/box/flashbangs,
-/turf/open/floor/mainship{
-	dir = 1;
-	icon_state = "red"
+/turf/open/floor/mainship/red{
+	dir = 1
 	},
 /area/centcom)
 "ca" = (
 /obj/machinery/door/airlock/mainship/command,
-/turf/open/floor/mainship{
-	icon_state = "blue"
-	},
+/turf/open/floor/mainship/blue,
 /area/centcom)
 "cb" = (
 /obj/structure/table/mainship,
@@ -650,16 +634,14 @@
 /area/centcom)
 "cc" = (
 /obj/structure/closet/secure_closet/guncabinet/explosives,
-/turf/open/floor/mainship{
-	dir = 1;
-	icon_state = "red"
+/turf/open/floor/mainship/red{
+	dir = 1
 	},
 /area/centcom)
 "cd" = (
 /obj/structure/closet/secure_closet/guncabinet/spec_boxes,
-/turf/open/floor/mainship{
-	dir = 5;
-	icon_state = "red"
+/turf/open/floor/mainship/red{
+	dir = 5
 	},
 /area/centcom)
 "ce" = (
@@ -720,14 +702,10 @@
 /turf/open/floor/mainship,
 /area/centcom)
 "cm" = (
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
+/turf/open/floor/mainship/cargo,
 /area/centcom/supplypod/loading/three)
 "cn" = (
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
+/turf/open/floor/mainship/cargo,
 /area/centcom/supplypod/loading/four)
 "co" = (
 /obj/structure/sign/safety/computer{
@@ -750,9 +728,7 @@
 	},
 /area/centcom/supplypod/loading/four)
 "cr" = (
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
+/turf/open/floor/mainship/cargo,
 /area/centcom/supplypod/loading/ert)
 "ct" = (
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor/cargopads,
@@ -836,10 +812,7 @@
 /obj/structure/window/framed/mainship/hull{
 	name = "ultra-reinforced window"
 	},
-/turf/open/floor/mainship{
-	icon_state = "plating";
-	dir = 5
-	},
+/turf/open/floor/plating/mainship,
 /area/centcom)
 "ej" = (
 /turf/open/floor/plating{
@@ -883,10 +856,7 @@
 /area/centcom)
 "fe" = (
 /obj/structure/window/framed/mainship/toughened,
-/turf/open/floor/mainship{
-	icon_state = "plating";
-	dir = 5
-	},
+/turf/open/floor/plating/mainship,
 /area/centcom/control)
 "ff" = (
 /obj/machinery/door/airlock/mainship/engineering/server_room{
@@ -895,20 +865,14 @@
 /turf/open/floor/mainship,
 /area/centcom/control)
 "fh" = (
-/turf/open/floor/mainship{
-	icon_state = "plating";
-	dir = 5
-	},
+/turf/open/floor/plating/mainship,
 /area/centcom/control)
 "fi" = (
 /obj/machinery/light,
 /turf/open/floor/mainship,
 /area/centcom/supply)
 "fl" = (
-/turf/open/floor/mainship{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
+/turf/open/floor/mainship/tcomms,
 /area/centcom/control)
 "fx" = (
 /turf/closed/wall/mainship/outer{
@@ -931,9 +895,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/centcom/ferry)
 "fY" = (
-/turf/open/floor/mainship{
-	dir = 2;
-	icon_state = "orange"
+/turf/open/floor/mainship/orange{
+	dir = 2
 	},
 /area/centcom)
 "fZ" = (
@@ -978,26 +941,22 @@
 /turf/open/floor/mainship,
 /area/centcom/supply)
 "gl" = (
-/turf/open/floor/mainship{
-	icon_state = "blue";
+/turf/open/floor/mainship/blue{
 	dir = 5
 	},
 /area/centcom)
 "gn" = (
-/turf/open/floor/mainship{
-	icon_state = "blue";
+/turf/open/floor/mainship/blue{
 	dir = 1
 	},
 /area/centcom)
 "gv" = (
-/turf/open/floor/mainship{
-	icon_state = "blue";
+/turf/open/floor/mainship/blue{
 	dir = 4
 	},
 /area/centcom)
 "gw" = (
-/turf/open/floor/mainship{
-	icon_state = "blue";
+/turf/open/floor/mainship/blue{
 	dir = 8
 	},
 /area/centcom)
@@ -1038,9 +997,8 @@
 	},
 /area/centcom/supply)
 "ip" = (
-/turf/open/floor/mainship{
-	dir = 8;
-	icon_state = "red"
+/turf/open/floor/mainship/red{
+	dir = 8
 	},
 /area/centcom)
 "ir" = (
@@ -1057,9 +1015,7 @@
 /turf/closed/wall/mainship/white,
 /area/shuttle/distress/start_big)
 "iV" = (
-/turf/open/floor/mainship{
-	icon_state = "blue"
-	},
+/turf/open/floor/mainship/blue,
 /area/centcom)
 "iW" = (
 /obj/structure/window/framed/mainship/white,
@@ -1091,8 +1047,7 @@
 	},
 /area/centcom)
 "kj" = (
-/turf/open/floor/mainship{
-	icon_state = "blue";
+/turf/open/floor/mainship/blue{
 	dir = 6
 	},
 /area/centcom)
@@ -1434,9 +1389,7 @@
 	},
 /area/shuttle/distress/start_big)
 "lo" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-21"
-	},
+/obj/structure/flora/pottedplant/twentyone,
 /turf/open/floor/wood,
 /area/shuttle/distress/start_big)
 "lp" = (
@@ -1552,18 +1505,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/shuttle/distress/start_big)
-"lC" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
-/turf/open/floor/mainship{
-	icon_state = "plating";
-	dir = 5
-	},
-/area/shuttle/distress/start_big)
 "lD" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -1584,10 +1525,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/mainship{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
+/turf/open/floor/mainship/tcomms,
 /area/shuttle/distress/start_big)
 "lG" = (
 /obj/structure/bed/chair/office/light{
@@ -1605,10 +1543,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/turf/open/floor/mainship{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
+/turf/open/floor/mainship/tcomms,
 /area/shuttle/distress/start_big)
 "lI" = (
 /obj/structure/table/mainship,
@@ -1631,10 +1566,7 @@
 /obj/machinery/power/apc/hyper{
 	dir = 4
 	},
-/turf/open/floor/mainship{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
+/turf/open/floor/mainship/tcomms,
 /area/shuttle/distress/start_big)
 "lK" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -1721,10 +1653,7 @@
 /turf/open/floor/plating/mainship,
 /area/shuttle/distress/start_big)
 "lT" = (
-/turf/open/floor/mainship{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
+/turf/open/floor/mainship/tcomms,
 /area/shuttle/distress/start_big)
 "lU" = (
 /obj/structure/bed/chair/office/light{
@@ -1745,10 +1674,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor/mainship{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
+/turf/open/floor/mainship/tcomms,
 /area/shuttle/distress/start_big)
 "lW" = (
 /obj/structure/table/mainship,
@@ -1848,10 +1774,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/turf/open/floor/mainship{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
+/turf/open/floor/mainship/tcomms,
 /area/shuttle/distress/start_big)
 "me" = (
 /obj/structure/bed/chair/office/light,
@@ -1867,10 +1790,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/turf/open/floor/mainship{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
+/turf/open/floor/mainship/tcomms,
 /area/shuttle/distress/start_big)
 "mg" = (
 /obj/structure/table/mainship,
@@ -2070,7 +1990,6 @@
 	dir = 2
 	},
 /obj/machinery/shower{
-	icon_state = "shower";
 	dir = 4
 	},
 /obj/item/tool/soap,
@@ -2464,8 +2383,7 @@
 /turf/open/floor/plating/mainship,
 /area/centcom/ferry)
 "od" = (
-/turf/open/floor/mainship{
-	icon_state = "orange";
+/turf/open/floor/mainship/orange{
 	dir = 1
 	},
 /area/centcom)
@@ -3102,9 +3020,8 @@
 /turf/open/floor/wood,
 /area/centcom)
 "sO" = (
-/turf/open/floor/mainship{
-	dir = 4;
-	icon_state = "red"
+/turf/open/floor/mainship/red{
+	dir = 4
 	},
 /area/centcom)
 "tW" = (
@@ -3153,8 +3070,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/mainship{
-	icon_state = "blue";
+/turf/open/floor/mainship/blue{
 	dir = 1
 	},
 /area/centcom)
@@ -3202,10 +3118,7 @@
 /area/tdome/tdomeadmin)
 "DK" = (
 /obj/machinery/light,
-/turf/open/floor/mainship{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
+/turf/open/floor/mainship/tcomms,
 /area/centcom/control)
 "Eh" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -3239,8 +3152,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/mainship{
-	icon_state = "blue";
+/turf/open/floor/mainship/blue{
 	dir = 4
 	},
 /area/centcom)
@@ -3249,9 +3161,7 @@
 /turf/open/floor/mainship,
 /area/centcom/ferry)
 "MS" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-21"
-	},
+/obj/structure/flora/pottedplant/twentyone,
 /turf/open/floor/mainship,
 /area/centcom)
 "Om" = (
@@ -3318,9 +3228,7 @@
 /area/centcom)
 "XV" = (
 /obj/machinery/light,
-/turf/open/floor/mainship{
-	icon_state = "blue"
-	},
+/turf/open/floor/mainship/blue,
 /area/centcom)
 "XZ" = (
 /obj/machinery/light{
@@ -3335,9 +3243,7 @@
 /turf/open/floor/mainship,
 /area/centcom/supply)
 "ZT" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-21"
-	},
+/obj/structure/flora/pottedplant/twentyone,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -6033,7 +5939,7 @@ kH
 kT
 iU
 lk
-lC
+ly
 lk
 ly
 lk
