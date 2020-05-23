@@ -99,6 +99,8 @@
 					return FALSE
 
 				priority_announce(input, type = ANNOUNCEMENT_COMMAND)
+				message_admins("[ADMIN_TPMONTY(usr)] has just sent a command announcement")
+				log_game("[key_name(usr)] has just sent a command announcement.")
 				cooldown_message = world.time
 
 		if("award")
