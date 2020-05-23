@@ -2712,7 +2712,7 @@
 /turf/open/floor,
 /area/sulaco/engineering/atmos)
 "ahz" = (
-/obj/machinery/door/poddoor/shutters/open/medbay{
+/obj/machinery/door/poddoor/shutters/opened/medbay{
 	dir = 2
 	},
 /obj/structure/grille,
@@ -2723,7 +2723,7 @@
 /area/sulaco/medbay)
 "ahA" = (
 /obj/machinery/smartfridge/chemistry,
-/obj/machinery/door/poddoor/shutters/open/medbay{
+/obj/machinery/door/poddoor/shutters/opened/medbay{
 	dir = 2
 	},
 /turf/open/floor/tile/blue/whitebluefull,
@@ -2734,14 +2734,14 @@
 /area/sulaco/medbay)
 "ahC" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/door/poddoor/shutters/open/medbay{
+/obj/machinery/door/poddoor/shutters/opened/medbay{
 	dir = 2
 	},
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/sulaco/medbay)
 "ahD" = (
-/obj/machinery/door/poddoor/shutters/open/medbay{
+/obj/machinery/door/poddoor/shutters/opened/medbay{
 	dir = 2
 	},
 /turf/open/floor/tile/blue/whitebluefull,
@@ -2792,7 +2792,7 @@
 /area/sulaco/cryosleep)
 "ahK" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/poddoor/shutters/open/medbay{
+/obj/machinery/door/poddoor/shutters/opened/medbay{
 	dir = 2
 	},
 /obj/structure/grille,
@@ -2843,7 +2843,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/poddoor/shutters/open/medbay{
+/obj/machinery/door/poddoor/shutters/opened/medbay{
 	dir = 2
 	},
 /obj/structure/grille,
@@ -3496,7 +3496,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/shutters/open/medbay{
+/obj/machinery/door/poddoor/shutters/opened/medbay{
 	dir = 2
 	},
 /obj/structure/grille,
@@ -3520,7 +3520,7 @@
 	dir = 4;
 	layer = 2
 	},
-/obj/machinery/door/poddoor/shutters/open/medbay{
+/obj/machinery/door/poddoor/shutters/opened/medbay{
 	dir = 2
 	},
 /obj/structure/grille,
@@ -3805,7 +3805,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/shutters/open/medbay{
+/obj/machinery/door/poddoor/shutters/opened/medbay{
 	dir = 2
 	},
 /obj/structure/grille,
@@ -4206,7 +4206,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/shutters/open/medbay{
+/obj/machinery/door/poddoor/shutters/opened/medbay{
 	dir = 2
 	},
 /obj/machinery/door/airlock/mainship/research,
@@ -4787,7 +4787,7 @@
 /turf/open/floor,
 /area/sulaco/cargo/office)
 "amz" = (
-/obj/machinery/door/poddoor/shutters/open/medbay{
+/obj/machinery/door/poddoor/shutters/opened/medbay{
 	dir = 2
 	},
 /obj/structure/grille,
@@ -4797,7 +4797,7 @@
 /turf/open/floor/plating/platebotc,
 /area/sulaco/medbay/west)
 "amA" = (
-/obj/machinery/door/poddoor/shutters/open/medbay{
+/obj/machinery/door/poddoor/shutters/opened/medbay{
 	dir = 2
 	},
 /obj/machinery/door/airlock/mainship/generic{
@@ -4864,7 +4864,7 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/machinery/door/poddoor/shutters/open/medbay{
+/obj/machinery/door/poddoor/shutters/opened/medbay{
 	dir = 2
 	},
 /obj/machinery/door/airlock/mainship/generic{
@@ -4903,7 +4903,7 @@
 /turf/open/floor,
 /area/sulaco/engineering/atmos)
 "amL" = (
-/obj/machinery/door/poddoor/shutters/open/medbay{
+/obj/machinery/door/poddoor/shutters/opened/medbay{
 	dir = 2
 	},
 /obj/structure/cable/yellow{
@@ -4919,7 +4919,7 @@
 /area/sulaco/medbay)
 "amM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/poddoor/shutters/open/medbay{
+/obj/machinery/door/poddoor/shutters/opened/medbay{
 	dir = 2
 	},
 /obj/structure/cable/yellow{
@@ -4962,7 +4962,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/obj/machinery/door/poddoor/shutters/open/medbay{
+/obj/machinery/door/poddoor/shutters/opened/medbay{
 	dir = 2
 	},
 /obj/structure/grille,
@@ -15179,7 +15179,7 @@
 	icon_state = "0-4";
 	d2 = 4
 	},
-/obj/machinery/door/poddoor/shutters/open/wy{
+/obj/machinery/door/poddoor/shutters/opened/wy{
 	dir = 2
 	},
 /obj/machinery/door/firedoor,
@@ -15202,7 +15202,7 @@
 	icon_state = "0-8"
 	},
 /obj/structure/cable,
-/obj/machinery/door/poddoor/shutters/open/wy{
+/obj/machinery/door/poddoor/shutters/opened/wy{
 	dir = 2
 	},
 /obj/machinery/door/firedoor,
@@ -19681,7 +19681,7 @@
 /turf/open/floor/mainship/ai,
 /area/sulaco/maintenance/lower_maint2)
 "aXp" = (
-/obj/machinery/door/poddoor/shutters/open/wy{
+/obj/machinery/door/poddoor/shutters/opened/wy{
 	dir = 2
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,

@@ -79,17 +79,17 @@
 	return ..()
 
 
-/obj/machinery/door/poddoor/shutters/open
+/obj/machinery/door/poddoor/shutters/opened
 	icon_state = "shutter0"
 	density = FALSE
 	opacity = FALSE
 
-/obj/machinery/door/poddoor/shutters/open/medbay
+/obj/machinery/door/poddoor/shutters/opened/medbay
 	name = "Medbay Lockdown Shutters"
 	id = "Medbay"
 
-/obj/machinery/door/poddoor/shutters/open/wy
-	id = "wyoffice";
+/obj/machinery/door/poddoor/shutters/opened/wy
+	id = "wyoffice"
 
 /obj/machinery/door/poddoor/shutters/mainship
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
