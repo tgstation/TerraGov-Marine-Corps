@@ -63,12 +63,22 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_START, src)
 	notify_ghosts("[usr] enabled the [src], it has [timeleft] seconds on the timer.", source = src, action = NOTIFY_ORBIT, extra_large = TRUE)
 
+	// Set the nuke as the hive leader so its tracked
+	SSdirection.clear_leader(XENO_HIVE_NORMAL)
+	SSdirection.set_leader(XENO_HIVE_NORMAL, src)
+
 
 /obj/machinery/nuclearbomb/stop_processing()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_STOP, src)
 	countdown.stop()
 	GLOB.active_nuke_list -= src
 	timeleft = initial(timeleft)
+
+	// Reset the hive leader
+	SSdirection.clear_leader()
+	var/leader = GLOB.hive_datums[XENO_HIVE_NORMAL].living_xeno_ruler
+	SSdirection.set_leader(XENO_HIVE_NORMAL, leader)
+
 	return ..()
 
 
@@ -112,12 +122,8 @@
 
 
 /obj/machinery/nuclearbomb/attack_alien(mob/living/carbon/xenomorph/X)
-	if(!(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
-		to_chat(X, "<span class='warning'>We stare at \the [src] cluelessly.</span>")
-		return
-
 	if(!timer_enabled)
-		to_chat(X, "<span class='warning'>The [src] is soundly asleep. We better not disturb it.</span>")
+		to_chat(X, "<span class='warning'>\The [src] is soundly asleep. We better not disturb it.</span>")
 		return
 
 	X.visible_message("[X] begins to slash delicately at the nuke",
