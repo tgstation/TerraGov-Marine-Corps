@@ -230,7 +230,11 @@
 	plane = FLOOR_PLANE
 
 /turf/closed/shuttle/re_corner/notdense
-	icon_state = "re_corner"
+	icon_state = "re_cornergrass"
+	density = FALSE
+
+/turf/closed/shuttle/re_corner/jungle
+	icon_state = "re_cornerjungle"
 	density = FALSE
 
 /turf/closed/shuttle/diagonal
@@ -252,6 +256,9 @@
 
 /turf/closed/shuttle/wall3/diagonal
 	icon_state = "diagonalWall3"
+
+/turf/closed/shuttle/wall3/diagonal/white
+	icon_state = "diagonalWall3white"
 
 /turf/closed/shuttle/wall3/diagonal/plating
 	icon_state = "diagonalWall3plating"

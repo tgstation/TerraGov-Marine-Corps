@@ -3932,26 +3932,10 @@
 	},
 /turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
-"akS" = (
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 4;
-	pixel_x = 5;
-	pixel_y = -8
-	},
-/turf/open/floor/freezer,
-/area/ice_colony/surface/dorms/restroom_e)
 "akT" = (
 /obj/structure/curtain/open/shower,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
-"akU" = (
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 4;
-	pixel_x = 5;
-	pixel_y = -8
-	},
-/turf/open/floor/freezer,
-/area/ice_colony/surface/dorms/restroom_w)
 "akV" = (
 /obj/structure/curtain/open/shower,
 /turf/open/floor/freezer,
@@ -4251,11 +4235,6 @@
 "alT" = (
 /obj/effect/landmark/start/job/survivor,
 /obj/item/storage/toolbox/emergency,
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 4;
-	pixel_x = 5;
-	pixel_y = -8
-	},
 /turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
 "alU" = (
@@ -62382,11 +62361,11 @@ abL
 aax
 aax
 akC
-akU
+akW
 alk
 alT
 alk
-akU
+akW
 alk
 apm
 alk
@@ -65980,11 +65959,11 @@ abL
 aax
 aax
 akD
-akS
+akX
 alm
-akS
+akX
 alm
-akS
+akX
 anE
 aqt
 apH

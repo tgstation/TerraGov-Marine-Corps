@@ -16,7 +16,6 @@
 /turf/open/space,
 /area/space)
 "aac" = (
-/turf/open/space/basic,
 /turf/closed/shuttle/wall3/diagonal{
 	icon_state = "diagonalWall3";
 	dir = 8
@@ -54,7 +53,6 @@
 /turf/closed/wall/sulaco,
 /area/sulaco/disposal)
 "aaj" = (
-/turf/open/space/basic,
 /turf/closed/shuttle/wall3/diagonal{
 	icon_state = "diagonalWall3";
 	dir = 1
@@ -10510,7 +10508,6 @@
 /turf/open/floor/plating,
 /area/sulaco/engineering/storage)
 "ayZ" = (
-/turf/open/space/basic,
 /turf/closed/shuttle/wall3/diagonal{
 	icon_state = "diagonalWall3";
 	dir = 8
@@ -12310,9 +12307,7 @@
 	},
 /area/sulaco/bridge)
 "aDe" = (
-/turf/open/floor/tile/white,
-/turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
+/turf/closed/shuttle/wall3/diagonal/white{
 	dir = 4
 	},
 /area/sulaco/cryosleep)
@@ -13281,10 +13276,8 @@
 "aFP" = (
 /turf/open/floor/tile/blue/taupebluecorner{
 	dir = 4;
-	pixel_x = 5;
-	pixel_y = -8
+	
 	},
-/turf/open/floor/tile/white,
 /area/sulaco/research)
 "aFQ" = (
 /obj/machinery/light,
@@ -13573,11 +13566,8 @@
 "aGu" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/tile/blue/taupebluecorner{
-	dir = 4;
-	pixel_x = 5;
-	pixel_y = -8
+	dir = 4
 	},
-/turf/open/floor/tile/white,
 /area/sulaco/research)
 "aGv" = (
 /obj/machinery/light/small{
@@ -14832,11 +14822,8 @@
 	dir = 4
 	},
 /turf/open/floor/tile/blue/taupebluecorner{
-	dir = 4;
-	pixel_x = 5;
-	pixel_y = -8
+	dir = 4
 	},
-/turf/open/floor/freezer,
 /area/sulaco/cap_office)
 "aJy" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
@@ -16278,9 +16265,7 @@
 /turf/open/floor/tile/dark,
 /area/sulaco/hangar/two)
 "aNF" = (
-/turf/open/space,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
 	dir = 1
 	},
 /area/sulaco/hangar)
@@ -16882,9 +16867,7 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 10
 	},
-/turf/open/space,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
 	dir = 1
 	},
 /area/space)
@@ -16955,9 +16938,7 @@
 /turf/open/floor,
 /area/sulaco/marine/bravo)
 "aPI" = (
-/turf/open/space,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
 	dir = 8
 	},
 /area/sulaco/command/armory)
@@ -17015,9 +16996,7 @@
 	},
 /area/sulaco/hangar/one)
 "aPT" = (
-/turf/open/space/basic,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
 	dir = 1
 	},
 /area/sulaco/command/armory)
@@ -20411,16 +20390,12 @@
 /turf/open/floor,
 /area/sulaco/command/eva)
 "aYY" = (
-/turf/open/space,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
 	dir = 8
 	},
 /area/space)
 "aYZ" = (
-/turf/open/space,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
 	dir = 8
 	},
 /area/sulaco/maintenance/north_solar_maint)
@@ -20428,7 +20403,6 @@
 /turf/closed/wall/sulaco,
 /area/sulaco/liaison)
 "aZb" = (
-/turf/open/space/basic,
 /turf/closed/shuttle/wall3/diagonal,
 /area/space)
 "aZc" = (
@@ -20436,16 +20410,10 @@
 /turf/closed/wall/sulaco,
 /area/sulaco/liaison)
 "aZd" = (
-/turf/open/space,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
 	dir = 4
 	},
 /area/sulaco/engineering/atmos)
-"aZe" = (
-/turf/open/space,
-/turf/closed/shuttle/wall3/diagonal,
-/area/space)
 "aZf" = (
 /obj/structure/ladder{
 	height = 1;
@@ -20489,44 +20457,27 @@
 /turf/open/floor/tile/vault,
 /area/sulaco/hallway/lower_main_hall)
 "aZk" = (
-/turf/open/space,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
 	dir = 4
 	},
 /area/sulaco/engineering/engine)
 "aZl" = (
-/turf/open/floor,
-/turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
+/turf/closed/shuttle/wall3/diagonal/plating{
 	dir = 8
 	},
 /area/sulaco/maintenance/lower_maint)
 "aZm" = (
-/turf/open/space,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
-	dir = 4
-	},
-/area/space)
-"aZn" = (
-/turf/open/space/basic,
-/turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
 	dir = 4
 	},
 /area/space)
 "aZo" = (
-/turf/open/space,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
 	dir = 1
 	},
 /area/space)
 "aZp" = (
-/turf/open/floor,
-/turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
+/turf/closed/shuttle/wall3/diagonal/plating{
 	dir = 1
 	},
 /area/sulaco/maintenance/lower_maint)
@@ -20538,9 +20489,7 @@
 /turf/open/floor/tile/dark,
 /area/sulaco/maintenance/lower_maint)
 "aZr" = (
-/turf/open/space,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
 	dir = 4
 	},
 /area/sulaco/maintenance/lower_maint)
@@ -20558,9 +20507,7 @@
 /turf/open/floor/tile/dark,
 /area/sulaco/maintenance/lower_maint)
 "aZu" = (
-/turf/open/space,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
 	dir = 1
 	},
 /area/sulaco/maintenance/lower_maint)
@@ -20717,11 +20664,8 @@
 	dir = 4
 	},
 /turf/open/floor/tile/blue/taupebluecorner{
-	dir = 4;
-	pixel_x = 5;
-	pixel_y = -8
+	dir = 4
 	},
-/turf/open/floor/tile/white,
 /area/sulaco/research)
 "aZW" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
@@ -21125,13 +21069,10 @@
 /turf/closed/wall/sulaco/unmeltable,
 /area/sulaco/hallway/lower_main_hall)
 "bbb" = (
-/turf/open/space,
 /turf/closed/shuttle/wall3/diagonal,
 /area/sulaco/command/armory)
 "bbc" = (
-/turf/open/space,
 /turf/closed/shuttle/wall3/diagonal{
-	icon_state = "diagonalWall3";
 	dir = 4
 	},
 /area/sulaco/command/armory)
@@ -36032,7 +35973,7 @@ aaa
 aaa
 aaa
 aaa
-aZe
+aZb
 aaa
 aaa
 aaa
@@ -36543,12 +36484,12 @@ aaa
 aaa
 aYY
 aaa
-aZe
+aZb
 aaa
 aaa
 aaf
 aaa
-aZe
+aZb
 aaa
 aaa
 aaa
@@ -46174,7 +46115,7 @@ bcF
 baz
 bdy
 aPM
-aZe
+aZb
 aaa
 aaa
 aTU
@@ -46432,7 +46373,7 @@ baz
 baz
 aPM
 aYS
-aZe
+aZb
 aaa
 aTU
 aTY
@@ -63899,7 +63840,7 @@ aWl
 aXX
 aNf
 aZx
-aZn
+aZm
 aaa
 aUt
 aaa
@@ -65441,7 +65382,7 @@ aMY
 aXY
 aMY
 aZx
-aZe
+aZb
 aaa
 aUt
 aaa
@@ -65699,7 +65640,7 @@ aXZ
 aUX
 aZB
 baq
-aZe
+aZb
 aUt
 aaa
 aaa
@@ -69972,7 +69913,7 @@ aVB
 aOP
 aOP
 aOP
-aZn
+aZm
 aaa
 aaa
 aaa

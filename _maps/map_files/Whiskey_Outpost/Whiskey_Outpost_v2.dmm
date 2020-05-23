@@ -1141,7 +1141,6 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "dP" = (
-/turf/open/ground/grass,
 /turf/closed/shuttle/re_corner/notdense{
 	dir = 8
 	},
@@ -1150,7 +1149,6 @@
 /turf/closed/wall,
 /area/whiskey_outpost/outside/north)
 "dR" = (
-/turf/open/ground/grass,
 /turf/closed/shuttle/re_corner/notdense{
 	dir = 2
 	},
@@ -1207,13 +1205,11 @@
 	},
 /area/whiskey_outpost/outside/north)
 "ea" = (
-/turf/open/ground/grass,
 /turf/closed/shuttle/re_corner/notdense{
 	dir = 1
 	},
 /area/whiskey_outpost/outside/north)
 "eb" = (
-/turf/open/ground/grass,
 /turf/closed/shuttle/re_corner/notdense{
 	dir = 4
 	},
@@ -2727,8 +2723,7 @@
 	},
 /area/whiskey_outpost/outside/east)
 "jH" = (
-/turf/open/ground/jungle,
-/turf/closed/shuttle/re_corner/notdense{
+/turf/closed/shuttle/re_corner/jungle{
 	dir = 8
 	},
 /area/whiskey_outpost/outside/west)
@@ -2798,14 +2793,12 @@
 /turf/open/floor/tile/dark,
 /area/whiskey_outpost)
 "kl" = (
-/turf/open/ground/jungle,
-/turf/closed/shuttle/re_corner/notdense{
+/turf/closed/shuttle/re_corner/jungle{
 	dir = 1
 	},
 /area/whiskey_outpost)
 "km" = (
-/turf/open/ground/jungle,
-/turf/closed/shuttle/re_corner/notdense{
+/turf/closed/shuttle/re_corner/jungle{
 	dir = 4
 	},
 /area/whiskey_outpost)
@@ -2892,7 +2885,6 @@
 /turf/open/floor/plating/warning,
 /area/whiskey_outpost)
 "kL" = (
-/turf/open/space,
 /turf/open/floor/plating/dmg2,
 /area/whiskey_outpost/outside/east)
 "kM" = (
@@ -3675,7 +3667,6 @@
 	},
 /area/whiskey_outpost/outside/south)
 "oh" = (
-/turf/open/space,
 /turf/open/floor/plating/dmg2,
 /area/whiskey_outpost/outside/south)
 "oi" = (
