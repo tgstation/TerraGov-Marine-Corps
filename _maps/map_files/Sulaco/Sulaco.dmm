@@ -6902,7 +6902,6 @@
 /area/sulaco/engineering/engine)
 "apm" = (
 /obj/machinery/keycard_auth{
-	pixel_x = 30;
 	pixel_y = 30
 	},
 /turf/open/floor{
@@ -7096,14 +7095,6 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/north_solar_maint)
-"apK" = (
-/obj/structure/table/reinforced{
-	icon_state = "table"
-	},
-/turf/open/floor{
-	icon_state = "white"
-	},
-/area/sulaco/cafeteria)
 "apL" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -15800,10 +15791,6 @@
 	icon_state = "floor4"
 	},
 /area/sulaco/brig)
-"aGN" = (
-/obj/machinery/keycard_auth,
-/turf/closed/wall/sulaco/unmeltable,
-/area/space)
 "aGO" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/multi_tile/mainship/research,
@@ -25176,6 +25163,14 @@
 /obj/item/storage/fancy/cigarettes/dromedaryco,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
+"ldh" = (
+/obj/machinery/keycard_auth{
+	pixel_y = -30
+	},
+/turf/open/floor{
+	icon_state = "floor4"
+	},
+/area/sulaco/bridge)
 
 (1,1,1) = {"
 aaa
@@ -46332,8 +46327,8 @@ awz
 ase
 azE
 azB
-apb
-aGN
+ldh
+aas
 aaa
 aaa
 aas
@@ -63029,7 +63024,7 @@ amp
 anw
 anu
 aoR
-apK
+aoR
 any
 arJ
 aoR
