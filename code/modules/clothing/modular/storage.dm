@@ -10,8 +10,6 @@
 	icon = 'icons/mob/modular/modular_armor.dmi'
 	icon_state = "mod_is_bag"
 
-	/// Slowdown gained from equipping this storage module
-	var/slowdown = 0 
 	/// Internal storage type
 	var/storage_type = /obj/item/storage/internal/modular
 
