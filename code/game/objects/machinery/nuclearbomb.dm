@@ -18,7 +18,7 @@
 	var/deployable = TRUE
 	var/extended = FALSE
 	var/lighthack = FALSE
-	var/timeleft = 60
+	var/timeleft = 180 /// 3 minutes
 	var/timer_enabled = FALSE
 	var/safety = TRUE
 	var/exploded = FALSE
