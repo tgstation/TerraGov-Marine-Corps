@@ -906,7 +906,7 @@
 
 	//clean the message if it's not sent by a high-rank admin
 	if(!check_rights(R_SERVER|R_DEBUG, FALSE) || external)//no sending html to the poor bots
-		msg = trim(sanitize(msg), MAX_MESSAGE_LEN)
+		msg = sanitize(copytext_char(msg, 1, MAX_MESSAGE_LEN))
 		if(!msg)
 			return
 
