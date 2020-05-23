@@ -1,4 +1,0 @@
-author: "spookydonut"
-delete-after: True
-changes: 
-  - rscadd: "You now get warned about using client versions with known crash bugs"
