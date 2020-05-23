@@ -46,6 +46,9 @@
 
 
 /datum/component/bump_attack/proc/living_bump_action_checks(atom/target)
+	if(COOLDOWN_CHECK(src, COOLDOWN_BUMP_ATTACK))
+		return NONE
+	COOLDOWN_START(src, COOLDOWN_BUMP_ATTACK, CLICK_CD_MELEE)
 	var/mob/living/bumper = parent
 	if(!isliving(target) || bumper.throwing || bumper.incapacitated())
 		return NONE
