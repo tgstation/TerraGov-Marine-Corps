@@ -430,6 +430,13 @@
 
 
 /// Admeme vendor
+/datum/supply_packs/armor
+	name = "modular armor vendor"
+	contains = list(
+		/obj/machinery/vending/modular_armor,
+	)
+	cost = 50
+
 /obj/machinery/vending/modular_armor
 	name = "Modular Armor Vendor"
 	desc = "A jaegar pattern modular armor vendor."
