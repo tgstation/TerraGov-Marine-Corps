@@ -455,7 +455,6 @@
 #include "code\game\objects\items\legcuffs.dm"
 #include "code\game\objects\items\lightreplacer.dm"
 #include "code\game\objects\items\lightstick.dm"
-#include "code\game\objects\items\maps.dm"
 #include "code\game\objects\items\marine_gear.dm"
 #include "code\game\objects\items\megaphone.dm"
 #include "code\game\objects\items\misc.dm"
