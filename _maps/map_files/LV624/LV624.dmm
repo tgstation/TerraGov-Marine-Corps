@@ -11206,8 +11206,8 @@
 /area/lv624/lazarus/sleep_male)
 "aQY" = (
 /obj/structure/bed/chair/wood/wings{
-	dir = 4;
-	icon_state = "wooden_chair_wings"
+	icon_state = "wooden_chair_wings";
+	dir = 4
 	},
 /turf/open/floor/tile/blue/taupebluecorner{
 	dir = 2
@@ -11444,8 +11444,8 @@
 /area/lv624/lazarus/sleep_male)
 "aRF" = (
 /obj/structure/bed/chair/wood/wings{
-	dir = 1;
-	icon_state = "wooden_chair_wings"
+	icon_state = "wooden_chair_wings";
+	dir = 1
 	},
 /turf/open/floor/tile/blue/taupebluecorner{
 	dir = 2
@@ -11606,8 +11606,8 @@
 /area/lv624/ground/jungle9)
 "aSh" = (
 /obj/structure/bed/chair/wood/wings{
-	dir = 4;
-	icon_state = "wooden_chair_wings"
+	icon_state = "wooden_chair_wings";
+	dir = 4
 	},
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/blue/taupebluecorner{
@@ -12851,8 +12851,8 @@
 /area/shuttle/drop1/lz1)
 "aWr" = (
 /turf/open/floor{
-	dir = 1;
-	icon_state = "warningcorner"
+	icon_state = "warningcorner";
+	dir = 1
 	},
 /area/shuttle/drop1/lz1)
 "aWs" = (
@@ -13208,8 +13208,8 @@
 /area/lv624/lazarus/console)
 "aXF" = (
 /turf/open/floor{
-	dir = 4;
-	icon_state = "warningcorner"
+	icon_state = "warningcorner";
+	dir = 4
 	},
 /area/shuttle/drop1/lz1)
 "aXG" = (
@@ -16726,8 +16726,8 @@
 /area/lv624/lazarus/hop)
 "bjj" = (
 /obj/structure/bed/chair/wood/wings{
-	dir = 4;
-	icon_state = "wooden_chair_wings"
+	icon_state = "wooden_chair_wings";
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/lv624/lazarus/hop)
@@ -17406,8 +17406,8 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/terminal{
-	dir = 1;
-	icon_state = "term"
+	icon_state = "term";
+	dir = 1
 	},
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/engineering)
@@ -17638,8 +17638,8 @@
 /obj/machinery/power/geothermal,
 /obj/structure/lattice,
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /turf/open/floor/plating/warning{
 	dir = 9
@@ -17926,8 +17926,8 @@
 /obj/machinery/power/geothermal,
 /obj/structure/lattice,
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /turf/open/floor/plating/warning{
 	dir = 8
@@ -18266,8 +18266,8 @@
 /obj/machinery/power/geothermal,
 /obj/structure/lattice,
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /turf/open/floor/plating/warning{
 	dir = 10
@@ -18487,8 +18487,8 @@
 /area/lv624/lazarus/secure_storage)
 "bot" = (
 /obj/structure/bed/chair/comfy{
-	dir = 4;
-	icon_state = "comfychair"
+	icon_state = "comfychair";
+	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
@@ -18499,8 +18499,8 @@
 /area/lv624/lazarus/secure_storage)
 "bov" = (
 /obj/structure/bed/chair/comfy{
-	dir = 8;
-	icon_state = "comfychair"
+	icon_state = "comfychair";
+	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
@@ -19038,8 +19038,8 @@
 /area/lv624/lazarus/atmos/outside)
 "bqj" = (
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /obj/machinery/power/geothermal,
 /turf/open/floor/plating,

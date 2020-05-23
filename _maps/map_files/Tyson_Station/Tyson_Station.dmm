@@ -77,8 +77,8 @@
 /area/hallway/secondary/entry)
 "aas" = (
 /turf/open/floor{
-	dir = 1;
-	icon_state = "warningcorner"
+	icon_state = "warningcorner";
+	dir = 1
 	},
 /area/hallway/secondary/entry)
 "aat" = (
@@ -158,9 +158,9 @@
 /area/security/main)
 "aaJ" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/security_port)
@@ -248,9 +248,9 @@
 /area/security/checkpoint2)
 "abb" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/closed/wall/r_wall,
 /area/security/main)
@@ -371,9 +371,9 @@
 /area/security/checkpoint2)
 "abt" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/closed/wall,
 /area/crew_quarters/heads/hos)
@@ -405,17 +405,17 @@
 	dir = 8
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/crew_quarters/heads/hos)
 "abA" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/crew_quarters/heads/hos)
@@ -459,9 +459,9 @@
 	name = "Marshal Logan Bills"
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/crew_quarters/heads/hos)
@@ -950,22 +950,22 @@
 "adu" = (
 /obj/structure/bed/chair/comfy,
 /turf/open/floor/carpet{
-	dir = 1;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 1
 	},
 /area/hallway/secondary/entry)
 "adv" = (
 /turf/open/floor/carpet{
-	dir = 1;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 1
 	},
 /area/hallway/secondary/entry)
 "adw" = (
 /obj/structure/table/woodentable,
 /obj/item/flashlight/lamp/green,
 /turf/open/floor/carpet{
-	dir = 5;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 5
 	},
 /area/hallway/secondary/entry)
 "adx" = (
@@ -1000,9 +1000,9 @@
 	dir = 4
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/closed/wall,
 /area/security/main)
@@ -1019,8 +1019,8 @@
 	dir = 8
 	},
 /turf/open/floor/carpet{
-	dir = 4;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 4
 	},
 /area/hallway/secondary/entry)
 "adH" = (
@@ -1068,9 +1068,9 @@
 	dir = 4
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating,
 /area/security/main)
@@ -2234,9 +2234,9 @@
 /area/security/armoury)
 "ahT" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/closed/wall,
 /area/security/main)
@@ -2402,9 +2402,9 @@
 /obj/machinery/door/airlock/security,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/security/main)
@@ -2502,9 +2502,9 @@
 "aiZ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/closed/wall,
 /area/security/main)
@@ -2708,18 +2708,18 @@
 /area/security/main)
 "ajN" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/closed/wall,
 /area/security/vacantoffice)
 "ajO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/closed/wall,
 /area/security/vacantoffice)
@@ -2729,9 +2729,9 @@
 "ajQ" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating,
 /area/security/vacantoffice)
@@ -2984,9 +2984,9 @@
 /area/security/brig)
 "akL" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/security/main)
@@ -3050,8 +3050,8 @@
 /area/security/brig)
 "akU" = (
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -3129,9 +3129,9 @@
 "alj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/security/main)
@@ -3201,9 +3201,9 @@
 	icon_state = "0-8"
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/security/armoury)
@@ -3299,9 +3299,9 @@
 /area/security/brig)
 "alM" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/closed/wall,
 /area/security/brig)
@@ -3471,26 +3471,26 @@
 "amn" = (
 /obj/structure/janitorialcart,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating,
 /area/security/vacantoffice2)
 "amo" = (
 /obj/structure/closet/jcloset,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating,
 /area/security/vacantoffice2)
 "amp" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating,
 /area/security/vacantoffice2)
@@ -3500,9 +3500,9 @@
 /area/security/range)
 "amr" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/machinery/camera/autoname,
 /turf/open/floor,
@@ -3517,9 +3517,9 @@
 /area/quartermaster/qm)
 "amu" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/security/brig)
@@ -3662,13 +3662,13 @@
 	dir = 5
 	},
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/security/lobby)
@@ -3691,14 +3691,14 @@
 	dir = 4
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/security/lobby)
@@ -3747,18 +3747,18 @@
 	dir = 1
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/security_port)
 "and" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/security_port)
@@ -3772,9 +3772,9 @@
 	dir = 4
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/security_port)
@@ -3811,9 +3811,9 @@
 "anm" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/security/main)
@@ -3833,9 +3833,9 @@
 	dir = 4
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/security/main)
@@ -3887,9 +3887,9 @@
 	dir = 4
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/security_starboard)
@@ -4210,8 +4210,8 @@
 /area/crew_quarters)
 "aoz" = (
 /obj/machinery/shower{
-	dir = 4;
-	icon_state = "shower"
+	icon_state = "shower";
+	dir = 4
 	},
 /obj/structure/curtain/shower,
 /turf/open/floor,
@@ -4259,9 +4259,9 @@
 	dir = 4
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/security_starboard)
@@ -4324,9 +4324,9 @@
 	dir = 4
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/closed/wall/r_wall,
 /area/security/range)
@@ -4442,8 +4442,8 @@
 	dir = 4
 	},
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /turf/open/floor/plating,
 /area/construction/solarscontrol)
@@ -4677,8 +4677,8 @@
 /area/space)
 "aqb" = (
 /turf/open/floor{
-	dir = 1;
-	icon_state = "warningcorner"
+	icon_state = "warningcorner";
+	dir = 1
 	},
 /area/space)
 "aqc" = (
@@ -4793,8 +4793,8 @@
 /area/space)
 "aqw" = (
 /turf/open/floor{
-	dir = 4;
-	icon_state = "warningcorner"
+	icon_state = "warningcorner";
+	dir = 4
 	},
 /area/space)
 "aqx" = (
@@ -4907,8 +4907,8 @@
 "aqU" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor{
-	dir = 1;
-	icon_state = "warningcorner"
+	icon_state = "warningcorner";
+	dir = 1
 	},
 /area/hallway/secondary/entry)
 "aqW" = (
@@ -4947,9 +4947,9 @@
 /area/security/vacantoffice2)
 "ard" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
@@ -5031,8 +5031,8 @@
 /area/crew_quarters/sleep/sec)
 "arr" = (
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /obj/machinery/power/apc/drained,
 /turf/open/floor,
@@ -5066,9 +5066,9 @@
 	dir = 4
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/security/warden)
@@ -5171,9 +5171,9 @@
 "arK" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
@@ -5235,9 +5235,9 @@
 	dir = 4
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/security/lobby)
@@ -5297,9 +5297,9 @@
 	dir = 1
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/security/lobby)
@@ -5335,9 +5335,9 @@
 "asm" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/security/lobby)
@@ -5410,9 +5410,9 @@
 	dir = 4
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/security/lobby)
@@ -5552,8 +5552,8 @@
 /obj/structure/bed/chair/comfy,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/carpet{
-	dir = 1;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 1
 	},
 /area/hallway/secondary/entry)
 "asV" = (
@@ -5665,8 +5665,8 @@
 	dir = 4
 	},
 /turf/open/floor/carpet{
-	dir = 4;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 4
 	},
 /area/hallway/secondary/entry)
 "atj" = (
@@ -5712,8 +5712,8 @@
 /area/shuttle/drop2/lz2)
 "ato" = (
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -5909,8 +5909,8 @@
 /area/storage/primary)
 "atO" = (
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -6023,8 +6023,8 @@
 /area/hydroponics/garden)
 "aue" = (
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /turf/open/floor/plating,
 /area/maintenance/fore)
@@ -6038,8 +6038,8 @@
 /area/maintenance/fore)
 "aug" = (
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -6073,8 +6073,8 @@
 /area/construction/Storage)
 "aum" = (
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -6368,18 +6368,18 @@
 /area/crew_quarters)
 "avh" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/hallway/secondary/entry)
 "avi" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor{
 	dir = 1;
@@ -6654,8 +6654,8 @@
 /obj/item/flashlight/lamp/green,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet{
-	dir = 6;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 6
 	},
 /area/hallway/secondary/entry)
 "avZ" = (
@@ -6840,8 +6840,8 @@
 /area/crew_quarters/locker)
 "awH" = (
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -6850,8 +6850,8 @@
 /area/storage/emergency)
 "awI" = (
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -6999,8 +6999,8 @@
 /area/crew_quarters/locker/locker_toilet)
 "axh" = (
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -7095,8 +7095,8 @@
 /area/quartermaster/storage)
 "axw" = (
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -7155,8 +7155,8 @@
 /area/crew_quarters/locker)
 "axG" = (
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -7324,8 +7324,8 @@
 /area/bridge)
 "ayj" = (
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -7389,9 +7389,9 @@
 "ayt" = (
 /obj/machinery/door/window,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/sleep/sec)
@@ -7752,8 +7752,8 @@
 /area/hallway/secondary/entry)
 "azC" = (
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -7779,40 +7779,40 @@
 /area/hallway/secondary/entry)
 "azE" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/closed/wall,
 /area/security/checkpoint2)
 "azF" = (
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/security/checkpoint2)
 "azG" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/security/checkpoint2)
 "azH" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/tile/red/redtaupe{
 	dir = 4
@@ -7821,9 +7821,9 @@
 "azI" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/closed/wall,
 /area/hydroponics/garden)
@@ -7851,9 +7851,9 @@
 /area/janitor)
 "azL" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/greengrid,
 /area/ai_monitored/storage/emergency)
@@ -7897,9 +7897,9 @@
 "azS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -8077,8 +8077,8 @@
 /area/bridge)
 "aAx" = (
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -8468,9 +8468,9 @@
 /area/tyson_station/mine_depot)
 "aBN" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/machinery/light,
 /turf/open/floor/plating,
@@ -8754,8 +8754,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/carpet{
-	dir = 1;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 1
 	},
 /area/bridge/meeting_room)
 "aCE" = (
@@ -8791,8 +8791,8 @@
 /obj/structure/closet/secure_closet/hop,
 /obj/structure/closet/secure_closet,
 /turf/open/floor/carpet{
-	dir = 9;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 9
 	},
 /area/lv624/lazarus/hop)
 "aCM" = (
@@ -8811,9 +8811,9 @@
 /area/crew_quarters/sleep/bedrooms)
 "aCP" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/structure/cable{
 	d1 = 2;
@@ -8849,8 +8849,8 @@
 /obj/structure/closet/secure_closet/captain,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet{
-	dir = 5;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 5
 	},
 /area/lv624/lazarus/captain)
 "aCV" = (
@@ -8875,8 +8875,8 @@
 	dir = 4
 	},
 /turf/open/floor/carpet{
-	dir = 4;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 4
 	},
 /area/lv624/lazarus/hop)
 "aCY" = (
@@ -8900,8 +8900,8 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /turf/open/floor/carpet{
-	dir = 8;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 8
 	},
 /area/bridge/meeting_room)
 "aDb" = (
@@ -8915,8 +8915,8 @@
 	dir = 4
 	},
 /turf/open/floor/carpet{
-	dir = 4;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 4
 	},
 /area/bridge/meeting_room)
 "aDd" = (
@@ -8932,8 +8932,8 @@
 	dir = 9
 	},
 /turf/open/floor/carpet{
-	dir = 8;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 8
 	},
 /area/lv624/lazarus/captain)
 "aDf" = (
@@ -8961,12 +8961,12 @@
 /area/security/brig)
 "aDj" = (
 /obj/machinery/shower{
-	dir = 4;
-	icon_state = "shower"
+	icon_state = "shower";
+	dir = 4
 	},
 /obj/structure/window/reinforced/tinted/frosted{
-	dir = 1;
-	icon_state = "fwindow"
+	icon_state = "fwindow";
+	dir = 1
 	},
 /obj/machinery/door/window,
 /obj/effect/spawner/random/toolbox,
@@ -8986,8 +8986,8 @@
 "aDm" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet{
-	dir = 10;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 10
 	},
 /area/bridge/meeting_room)
 "aDn" = (
@@ -9023,8 +9023,8 @@
 /obj/structure/table/woodentable,
 /obj/effect/spawner/random/powercell,
 /turf/open/floor/carpet{
-	dir = 4;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 4
 	},
 /area/lv624/lazarus/captain)
 "aDt" = (
@@ -9075,8 +9075,8 @@
 /area/lv624/lazarus/captain)
 "aDC" = (
 /turf/open/floor/carpet{
-	dir = 6;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 6
 	},
 /area/lv624/lazarus/captain)
 "aDD" = (
@@ -9128,8 +9128,8 @@
 /area/security/brig)
 "aDM" = (
 /obj/structure/toilet{
-	dir = 8;
-	icon_state = "toilet00"
+	icon_state = "toilet00";
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/lv624/lazarus/captain)
@@ -9167,8 +9167,8 @@
 /area/hallway/primary/starboard)
 "aDT" = (
 /turf/open/floor{
-	dir = 1;
-	icon_state = "warningcorner"
+	icon_state = "warningcorner";
+	dir = 1
 	},
 /area/hallway/primary/starboard)
 "aDU" = (
@@ -9197,9 +9197,9 @@
 "aDY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor,
@@ -9448,29 +9448,29 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/nuke_spawn,
 /turf/open/floor/carpet{
-	dir = 9;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 9
 	},
 /area/lv624/lazarus/internal_affairs)
 "aEU" = (
 /obj/structure/bed/chair,
 /turf/open/floor/carpet{
-	dir = 1;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 1
 	},
 /area/lv624/lazarus/internal_affairs)
 "aEV" = (
 /obj/structure/bed/chair,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet{
-	dir = 1;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 1
 	},
 /area/lv624/lazarus/internal_affairs)
 "aEW" = (
 /turf/open/floor/carpet{
-	dir = 5;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 5
 	},
 /area/lv624/lazarus/internal_affairs)
 "aEX" = (
@@ -9507,8 +9507,8 @@
 	dir = 4
 	},
 /turf/open/floor/carpet{
-	dir = 8;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 8
 	},
 /area/lv624/lazarus/internal_affairs)
 "aFf" = (
@@ -9535,8 +9535,8 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet{
-	dir = 4;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 4
 	},
 /area/lv624/lazarus/internal_affairs)
 "aFj" = (
@@ -9606,8 +9606,8 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet{
-	dir = 8;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 8
 	},
 /area/lv624/lazarus/internal_affairs)
 "aFv" = (
@@ -9631,8 +9631,8 @@
 	dir = 8
 	},
 /turf/open/floor/carpet{
-	dir = 4;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 4
 	},
 /area/lv624/lazarus/internal_affairs)
 "aFz" = (
@@ -9661,8 +9661,8 @@
 /area/lv624/lazarus/internal_affairs)
 "aFE" = (
 /turf/open/floor/carpet{
-	dir = 10;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 10
 	},
 /area/lv624/lazarus/internal_affairs)
 "aFF" = (
@@ -9685,8 +9685,8 @@
 "aFH" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet{
-	dir = 6;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 6
 	},
 /area/lv624/lazarus/internal_affairs)
 "aFI" = (
@@ -9914,9 +9914,9 @@
 /area/hallway/secondary/entry)
 "aGy" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor,
@@ -10061,9 +10061,9 @@
 /area/bigred/ground/central_hall)
 "aGV" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /turf/open/floor,
@@ -10350,27 +10350,27 @@
 "aIh" = (
 /obj/machinery/door/firedoor,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/hallway/secondary/entry)
 "aIi" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/hallway/secondary/entry)
 "aIj" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/hallway/secondary/entry)
@@ -10436,9 +10436,9 @@
 /area/hallway/primary/aft)
 "aIz" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -10569,9 +10569,9 @@
 /area/hallway/primary/aft)
 "aJc" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/closed/wall,
 /area/hallway/primary/aft)
@@ -10828,9 +10828,9 @@
 "aJU" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/structure/cable{
 	d1 = 2;
@@ -11069,9 +11069,9 @@
 "aKI" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor,
@@ -11204,9 +11204,9 @@
 /area/medical/reception)
 "aLg" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -11217,8 +11217,8 @@
 /area/bigred/ground/central_hall)
 "aLh" = (
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /turf/open/floor/plating,
 /area/maintenance/medbay)
@@ -11242,9 +11242,9 @@
 "aLl" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/bigred/ground/central_hall)
@@ -11280,9 +11280,9 @@
 /area/medical/morgue)
 "aLr" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/structure/cable{
 	d1 = 2;
@@ -11352,8 +11352,8 @@
 /area/lv624/lazarus/engineering)
 "aLD" = (
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -11386,9 +11386,9 @@
 /area/lv624/lazarus/medbay)
 "aLI" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/bigred/ground/central_hall)
@@ -11434,9 +11434,9 @@
 "aLQ" = (
 /obj/machinery/firealarm,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/bigred/ground/central_hall)
@@ -11481,9 +11481,9 @@
 	icon_state = "1-4"
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /turf/open/floor,
@@ -11511,9 +11511,9 @@
 /area/medical/biostorage)
 "aMb" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor,
@@ -11523,9 +11523,9 @@
 /area/hallway/primary/port)
 "aMe" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor,
@@ -11534,9 +11534,9 @@
 /obj/machinery/door/firedoor,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/hallway/secondary/entry)
@@ -11545,9 +11545,9 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/mainship/hallways/port_hallway)
@@ -11555,9 +11555,9 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/mainship/hallways/port_hallway)
@@ -11566,18 +11566,18 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/mainship/hallways/port_hallway)
 "aMj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/mainship/hallways/port_hallway)
@@ -11600,9 +11600,9 @@
 /area/lv624/lazarus/medbay)
 "aMn" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/mainship/hallways/port_hallway)
@@ -11869,8 +11869,8 @@
 /area/hallway/primary/aft)
 "aNa" = (
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -11879,9 +11879,9 @@
 /area/lv624/lazarus/medbay)
 "aNb" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -11990,9 +11990,9 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/mainship/hallways/port_hallway)
@@ -12003,9 +12003,9 @@
 /area/bigred/ground/central_hall)
 "aNv" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/closed/wall/tyson,
 /area/lv624/lazarus/hop)
@@ -12071,9 +12071,9 @@
 "aNH" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/mainship/hallways/port_hallway)
@@ -12164,18 +12164,18 @@
 "aNV" = (
 /obj/machinery/door/firedoor,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/mainship/hallways/port_hallway)
 "aNW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/mainship/hallways/port_hallway)
@@ -12272,9 +12272,9 @@
 	icon_state = "1-4"
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/mainship/hallways/port_hallway)
@@ -12491,14 +12491,14 @@
 /area/medical/chemistry)
 "aOT" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/mainship/hallways/port_hallway)
@@ -12564,8 +12564,8 @@
 /obj/item/reagent_containers/spray/surgery,
 /obj/item/autopsy_scanner,
 /turf/open/floor/mainship{
-	dir = 4;
-	icon_state = "sterile_green_corner"
+	icon_state = "sterile_green_corner";
+	dir = 4
 	},
 /area/medical/medbay2)
 "aPg" = (
@@ -12887,9 +12887,9 @@
 "aQl" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -13040,9 +13040,9 @@
 /obj/machinery/door/airlock/glass,
 /obj/machinery/door/firedoor,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/bigred/ground/central_hall)
@@ -13154,16 +13154,16 @@
 /area/lv624/lazarus/atmos)
 "aRh" = (
 /obj/machinery/power/terminal{
-	dir = 1;
-	icon_state = "term"
+	icon_state = "term";
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "aRi" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating/dmg1,
 /area/maintenance/aft)
@@ -13380,9 +13380,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/structure/cable{
 	d1 = 2;
@@ -13390,8 +13390,8 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor/carpet{
-	dir = 1;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 1
 	},
 /area/bridge/meeting_room)
 "aRX" = (
@@ -13540,31 +13540,31 @@
 	icon_state = "1-4"
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/bigred/ground/central_hall)
 "aSA" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/bigred/ground/central_hall)
 "aSB" = (
 /obj/effect/landmark/monkey_spawn,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/bigred/ground/central_hall)
@@ -13975,8 +13975,8 @@
 	dir = 8
 	},
 /turf/open/floor/carpet{
-	dir = 8;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 8
 	},
 /area/lv624/lazarus/hop)
 "aTV" = (
@@ -14016,9 +14016,9 @@
 /obj/machinery/door/firedoor,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/bigred/ground/central_hall)
@@ -14151,9 +14151,9 @@
 /area/crew_quarters/kitchen)
 "aUx" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/closed/wall/tyson,
 /area/lv624/lazarus/captain)
@@ -14363,9 +14363,9 @@
 "aVc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/crew_quarters/locker)
@@ -14373,13 +14373,13 @@
 /obj/machinery/firealarm,
 /obj/machinery/disposal,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/carpet{
-	dir = 1;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 1
 	},
 /area/lv624/lazarus/captain)
 "aVe" = (
@@ -14395,8 +14395,8 @@
 	},
 /obj/machinery/computer/nuke_disk_generator/green,
 /turf/open/floor/carpet{
-	dir = 1;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 1
 	},
 /area/lv624/lazarus/captain)
 "aVg" = (
@@ -14525,9 +14525,9 @@
 /area/crew_quarters/bar)
 "aVy" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/crew_quarters/locker)
@@ -14553,16 +14553,16 @@
 	},
 /obj/effect/landmark/corpsespawner/commander,
 /turf/open/floor/carpet{
-	dir = 4;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 4
 	},
 /area/lv624/lazarus/captain)
 "aVC" = (
 /obj/machinery/disposal,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/marking/warning/corner,
 /area/crew_quarters/locker)
@@ -14624,16 +14624,16 @@
 /obj/effect/spawner/random/powercell,
 /obj/item/reagent_containers/food/snacks/mushroompizzaslice,
 /turf/open/floor/carpet{
-	dir = 8;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 8
 	},
 /area/lv624/lazarus/hop)
 "aVN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/marking/warning,
 /area/crew_quarters/locker)
@@ -14730,9 +14730,9 @@
 /area/hydroponics)
 "aWa" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/marking/warning,
 /area/crew_quarters/locker)
@@ -14797,13 +14797,13 @@
 /area/crew_quarters/bar)
 "aWk" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor{
-	dir = 1;
-	icon_state = "warningcorner"
+	icon_state = "warningcorner";
+	dir = 1
 	},
 /area/crew_quarters/locker)
 "aWl" = (
@@ -14908,9 +14908,9 @@
 "aWD" = (
 /obj/structure/closet,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/crew_quarters/locker)
@@ -14925,9 +14925,9 @@
 /area/quartermaster/sorting)
 "aWG" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/closed/wall,
 /area/crew_quarters/locker)
@@ -14941,9 +14941,9 @@
 /area/maintenance/starboard)
 "aWJ" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/port)
@@ -14998,8 +14998,8 @@
 /obj/structure/table/woodentable,
 /obj/effect/spawner/random/powercell,
 /turf/open/floor/carpet{
-	dir = 6;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 6
 	},
 /area/lv624/lazarus/hop)
 "aWU" = (
@@ -15017,8 +15017,8 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/carpet{
-	dir = 1;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 1
 	},
 /area/bridge/meeting_room)
 "aWW" = (
@@ -15063,9 +15063,9 @@
 /area/lv624/lazarus/engineering)
 "aXe" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/closed/wall,
 /area/quartermaster/storage)
@@ -15133,9 +15133,9 @@
 /area/bridge)
 "aXt" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/structure/cable{
 	d1 = 2;
@@ -15168,9 +15168,9 @@
 "aXw" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/bigred/ground/central_hall)
@@ -15184,9 +15184,9 @@
 /area/mainship/hallways/port_hallway)
 "aXy" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/marking/delivery,
 /area/lv624/lazarus/hop)
@@ -15198,9 +15198,9 @@
 /obj/machinery/door/window,
 /obj/machinery/door/firedoor,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/lv624/lazarus/hop)
@@ -15209,17 +15209,17 @@
 	dir = 8
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/wood,
 /area/lv624/lazarus/hop)
 "aXB" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/wood,
 /area/lv624/lazarus/hop)
@@ -15230,36 +15230,36 @@
 	icon_state = "0-8"
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/wood,
 /area/lv624/lazarus/hop)
 "aXD" = (
 /obj/structure/foamedmetal,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/wood,
 /area/lv624/lazarus/hop)
 "aXE" = (
 /obj/structure/foamedmetal,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/carpet,
 /area/bridge/meeting_room)
 "aXF" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/carpet,
 /area/bridge/meeting_room)
@@ -15267,9 +15267,9 @@
 /obj/machinery/firealarm,
 /obj/structure/closet/emcloset,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/carpet,
 /area/bridge/meeting_room)
@@ -15281,9 +15281,9 @@
 	icon_state = "0-8"
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/carpet,
 /area/bridge/meeting_room)
@@ -15291,9 +15291,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -15305,9 +15305,9 @@
 "aXJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/closed/wall,
 /area/bridge/meeting_room)
@@ -15321,9 +15321,9 @@
 	icon_state = "0-8"
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
@@ -15380,9 +15380,9 @@
 "aXV" = (
 /obj/structure/sign/safety/maintenance,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/closed/wall,
 /area/quartermaster/storage)
@@ -15708,8 +15708,8 @@
 "aZg" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -15721,18 +15721,18 @@
 "aZh" = (
 /obj/structure/foamedmetal,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/lv624/lazarus/comms)
 "aZi" = (
 /obj/machinery/computer/telecomms/server,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/tile/brown{
 	dir = 9
@@ -15741,9 +15741,9 @@
 "aZj" = (
 /obj/machinery/computer/telecomms/monitor,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/tile/brown{
 	dir = 9
@@ -15751,34 +15751,34 @@
 /area/lv624/lazarus/comms)
 "aZk" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/lv624/lazarus/comms)
 "aZl" = (
 /obj/structure/largecrate/random,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/lv624/lazarus/comms)
 "aZm" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/closed/wall,
 /area/lv624/lazarus/comms)
 "aZn" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating/warning{
 	dir = 9
@@ -15857,8 +15857,8 @@
 "aZw" = (
 /obj/machinery/power/smes,
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /turf/open/floor/plating,
 /area/maintenance/substation)
@@ -15875,17 +15875,17 @@
 "aZy" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/maintenance/port)
 "aZA" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/closed/wall,
 /area/security/vacantoffice2)
@@ -15896,52 +15896,52 @@
 	icon_state = "1-8"
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/lv624/lazarus/engineering)
 "aZC" = (
 /obj/effect/landmark/start/job/survivor,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/lv624/lazarus/engineering)
 "aZD" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/closed/wall,
 /area/lv624/lazarus/engineering)
 "aZE" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/lv624/lazarus/engineering)
 "aZG" = (
 /obj/structure/foamedmetal,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/lv624/lazarus/engineering)
 "aZH" = (
 /obj/structure/largecrate/random,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/security/vacantoffice2)
@@ -16036,39 +16036,39 @@
 "aZS" = (
 /obj/structure/window/framed/colony,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/lv624/lazarus/engineering)
 "aZT" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/engineering)
 "aZU" = (
 /obj/structure/closet/secure_closet/engineering_welding,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/lv624/lazarus/engineering)
 "aZV" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/structure/cable{
 	d1 = 2;
@@ -16080,41 +16080,41 @@
 "aZW" = (
 /obj/structure/rack,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/lv624/lazarus/engineering)
 "aZX" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/lv624/lazarus/engineering)
 "aZY" = (
 /obj/structure/foamedmetal,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/lv624/lazarus/engineering)
 "aZZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/machinery/atmospherics/components/binary/pump/on,
 /turf/open/floor,
@@ -16182,9 +16182,9 @@
 "baf" = (
 /obj/structure/largecrate/random,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/structure/cable{
 	d1 = 2;
@@ -16209,9 +16209,9 @@
 /obj/machinery/firealarm,
 /obj/structure/largecrate/random,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/security/vacantoffice2)
@@ -16246,9 +16246,9 @@
 /area/maintenance/substation)
 "bal" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/maintenance/substation)
@@ -16266,8 +16266,8 @@
 /area/lv624/lazarus/engineering)
 "baq" = (
 /obj/machinery/power/terminal{
-	dir = 1;
-	icon_state = "term"
+	icon_state = "term";
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -16313,9 +16313,9 @@
 /obj/structure/rack,
 /obj/effect/spawner/random/toolbox,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/security/vacantoffice2)
@@ -16323,9 +16323,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/bigred/ground/central_hall)
@@ -16380,8 +16380,8 @@
 	name = "Main Power Grid Monitoring"
 	},
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /turf/open/floor,
 /area/lv624/lazarus/engineering)
@@ -16392,8 +16392,8 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/reagent_containers/food/snacks/orangecakeslice,
 /turf/open/floor/carpet{
-	dir = 8;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 8
 	},
 /area/lv624/lazarus/captain)
 "baC" = (
@@ -16415,9 +16415,9 @@
 /area/lv624/lazarus/medbay)
 "baE" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/security/vacantoffice2)
@@ -16566,35 +16566,35 @@
 	dir = 4
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/bigred/ground/central_hall)
 "bbb" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/closed/wall,
 /area/lawoffice)
 "bbc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/closed/wall,
 /area/lawoffice)
 "bbd" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/structure/cable{
 	d1 = 2;
@@ -16629,18 +16629,18 @@
 "bbh" = (
 /obj/structure/largecrate/supply/supplies/flares,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/bigred/ground/cargo)
 "bbi" = (
 /obj/structure/closet/coffin,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/bigred/ground/cargo)
@@ -16654,8 +16654,8 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/carpet{
-	dir = 9;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 9
 	},
 /area/hallway/secondary/entry)
 "bbk" = (
@@ -16663,18 +16663,18 @@
 	dir = 5
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/bigred/ground/cargo)
 "bbl" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/bigred/ground/cargo)
@@ -16683,9 +16683,9 @@
 	dir = 4
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/bigred/ground/cargo)
@@ -16695,9 +16695,9 @@
 	dir = 4
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/bigred/ground/cargo)
@@ -16706,9 +16706,9 @@
 	dir = 4
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/closed/wall,
 /area/bigred/ground/cargo)
@@ -16717,9 +16717,9 @@
 	dir = 4
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/quartermaster/office)
@@ -16729,9 +16729,9 @@
 	},
 /obj/machinery/door/firedoor,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/structure/mineral_door/wood,
 /turf/open/floor,
@@ -16742,9 +16742,9 @@
 	dir = 4
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/quartermaster/sorting)
@@ -16753,18 +16753,18 @@
 	dir = 4
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/quartermaster/sorting)
 "bbt" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/quartermaster/sorting)
@@ -16774,9 +16774,9 @@
 	dir = 4
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/quartermaster/sorting)
@@ -16808,27 +16808,27 @@
 /area/bigred/ground/central_hall)
 "bby" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/quartermaster/office)
 "bbz" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/quartermaster/office)
 "bbA" = (
 /obj/structure/window/framed/colony,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating,
 /area/quartermaster/office)
@@ -16836,61 +16836,61 @@
 /obj/structure/computer3frame,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/quartermaster/office)
 "bbC" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /turf/open/floor,
 /area/quartermaster/qm)
 "bbD" = (
 /obj/structure/window/framed/colony,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating,
 /area/tyson_station/mine_depot)
 "bbE" = (
 /obj/machinery/alarm,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/tyson_station/mine_depot)
 "bbF" = (
 /obj/machinery/firealarm,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/tyson_station/mine_depot)
 "bbG" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/tyson_station/mine_depot)
 "bbH" = (
 /obj/structure/window/framed/colony,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/security/checkpoint/supply)
@@ -16900,9 +16900,9 @@
 /obj/machinery/firealarm,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/security/checkpoint/supply)
@@ -16913,9 +16913,9 @@
 /obj/machinery/alarm,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/security/checkpoint/supply)
@@ -16924,13 +16924,13 @@
 /obj/machinery/cell_charger,
 /obj/machinery/power/apc/drained,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /turf/open/floor,
 /area/security/checkpoint/supply)
@@ -16939,9 +16939,9 @@
 /obj/item/book/manual/security_space_law,
 /obj/item/restraints/handcuffs,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/security/checkpoint/supply)
@@ -16954,9 +16954,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/bigred/ground/central_hall)
@@ -17221,23 +17221,23 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/carpet{
-	dir = 8;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 8
 	},
 /area/hallway/secondary/entry)
 "bcq" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/quartermaster/storage)
 "bcr" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
@@ -17288,13 +17288,13 @@
 /obj/machinery/power/apc/drained,
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/carpet{
-	dir = 5;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 5
 	},
 /area/lv624/lazarus/hop)
 "bcy" = (
@@ -17327,14 +17327,14 @@
 "bcB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /turf/open/floor/carpet{
-	dir = 9;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 9
 	},
 /area/bridge/meeting_room)
 "bcC" = (
@@ -17355,14 +17355,14 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/carpet{
-	dir = 5;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 5
 	},
 /area/bridge/meeting_room)
 "bcE" = (
@@ -17382,21 +17382,21 @@
 /area/quartermaster/storage)
 "bcG" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /turf/open/floor/carpet{
-	dir = 9;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 9
 	},
 /area/lv624/lazarus/captain)
 "bcH" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/item/storage/backpack/satchel/norm,
 /turf/open/floor,
@@ -17404,9 +17404,9 @@
 "bcI" = (
 /obj/machinery/door/firedoor,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/structure/cable{
 	d1 = 2;
@@ -17438,8 +17438,8 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/carpet{
-	dir = 8;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 8
 	},
 /area/hallway/secondary/entry)
 "bcM" = (
@@ -17454,27 +17454,27 @@
 /area/mainship/hallways/port_hallway)
 "bcN" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/medbay)
 "bcO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/medbay)
 "bcP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -17490,17 +17490,17 @@
 	icon_state = "2-8"
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/medbay)
 "bcR" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -17511,9 +17511,9 @@
 /area/maintenance/medbay)
 "bcS" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/structure/cable{
 	d1 = 2;
@@ -17525,17 +17525,17 @@
 "bcT" = (
 /obj/machinery/door/airlock/maintenance,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating,
 /area/medical/biostorage)
 "bcU" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/tile/white,
 /area/medical/biostorage)
@@ -17585,9 +17585,9 @@
 /obj/machinery/door/airlock/engineering,
 /obj/machinery/door/firedoor,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/lv624/lazarus/engineering)
@@ -17598,9 +17598,9 @@
 	icon_state = "1-4"
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/lv624/lazarus/engineering)
@@ -17624,9 +17624,9 @@
 	icon_state = "1-2"
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/lv624/lazarus/engineering)
@@ -17638,9 +17638,9 @@
 	icon_state = "1-8"
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/lv624/lazarus/engineering)
@@ -17648,9 +17648,9 @@
 /obj/structure/closet/firecloset,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/lv624/lazarus/engineering)
@@ -17794,9 +17794,9 @@
 	dir = 8
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/lv624/lazarus/engineering)
@@ -17876,25 +17876,25 @@
 "bdD" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /turf/open/floor/tile/white,
 /area/medical/genetics_cloning)
 "bdE" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/closed/wall,
 /area/lv624/lazarus/medbay)
 "bdF" = (
 /obj/machinery/disposal,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -17915,9 +17915,9 @@
 /area/lv624/lazarus/medbay)
 "bdG" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/medbay)
@@ -17938,9 +17938,9 @@
 	icon_state = "1-4"
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
@@ -17949,9 +17949,9 @@
 	dir = 5
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
@@ -17960,9 +17960,9 @@
 	dir = 4
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
@@ -17972,9 +17972,9 @@
 	dir = 4
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
@@ -17990,18 +17990,18 @@
 	icon_state = "1-4"
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "bdO" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
@@ -18015,9 +18015,9 @@
 	icon_state = "1-4"
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
@@ -18027,9 +18027,9 @@
 	},
 /obj/effect/spawner/random/toolbox,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
@@ -18040,9 +18040,9 @@
 	dir = 4
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
@@ -18153,13 +18153,13 @@
 /obj/machinery/bodyscanner,
 /obj/machinery/firealarm,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/mainship{
-	dir = 1;
-	icon_state = "sterile_green_corner"
+	icon_state = "sterile_green_corner";
+	dir = 1
 	},
 /area/medical/medbay2)
 "bed" = (
@@ -18168,9 +18168,9 @@
 	pixel_y = 25
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/mainship{
 	icon_state = "dark_sterile"
@@ -18230,8 +18230,8 @@
 	},
 /obj/machinery/power/apc/drained,
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /turf/open/floor/tile/bar,
 /area/medical/chemistry)
@@ -18336,8 +18336,8 @@
 "bet" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible,
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /obj/machinery/power/apc/drained,
 /turf/open/floor,
@@ -18345,9 +18345,9 @@
 "beu" = (
 /obj/machinery/alarm,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/lv624/lazarus/atmos)
@@ -18370,8 +18370,8 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/carpet{
-	dir = 10;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 10
 	},
 /area/hallway/secondary/entry)
 "bey" = (
@@ -18617,18 +18617,18 @@
 /area/bigred/ground/central_hall)
 "bfk" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
 /area/maintenance/port)
 "bfl" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/closed/wall,
 /area/bigred/ground/central_hall)
@@ -18999,9 +18999,9 @@
 "bgf" = (
 /obj/structure/closet/crate,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -19017,9 +19017,9 @@
 	dir = 4
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/bigred/ground/central_hall)
@@ -19029,9 +19029,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/effect/landmark/corpsespawner/security,
 /turf/open/floor,
@@ -19065,9 +19065,9 @@
 "bgm" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor,
@@ -19075,16 +19075,16 @@
 "bgn" = (
 /obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/carpet{
-	dir = 4;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 4
 	},
 /area/lv624/lazarus/hop)
 "bgo" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/carpet{
-	dir = 6;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 6
 	},
 /area/bridge/meeting_room)
 "bgq" = (
@@ -19133,9 +19133,9 @@
 "bgx" = (
 /obj/machinery/door/firedoor,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/marking/loadingarea{
 	dir = 8
@@ -19336,9 +19336,9 @@
 /area/hallway/primary/starboard)
 "bhj" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor,
@@ -19515,9 +19515,9 @@
 /area/bridge/meeting_room)
 "bhM" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/machinery/door/firedoor,
 /turf/open/floor/plating/dmg3,
@@ -19724,9 +19724,9 @@
 /area/medical/surgery)
 "bit" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/effect/landmark/corpsespawner/engineer,
 /turf/open/floor/plating,
@@ -19741,9 +19741,9 @@
 	dir = 8
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor,
 /area/hallway/primary/aft)
@@ -19825,13 +19825,13 @@
 /area/lv624/lazarus/engineering)
 "biJ" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/machinery/light/small{
-	dir = 1;
-	icon_state = "bulb1"
+	icon_state = "bulb1";
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
@@ -19862,14 +19862,14 @@
 /area/security/vacantoffice)
 "biO" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/machinery/power/apc/drained,
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
@@ -19882,8 +19882,8 @@
 /area/security/vacantoffice)
 "biQ" = (
 /obj/machinery/light/small{
-	dir = 1;
-	icon_state = "bulb1"
+	icon_state = "bulb1";
+	dir = 1
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
@@ -19930,8 +19930,8 @@
 /area/hallway/primary/port)
 "biX" = (
 /obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "0-4";
+	d2 = 4
 	},
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -19957,9 +19957,9 @@
 /area/security/vacantoffice)
 "bjb" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating/dmg2,
 /area/hallway/primary/aft)
@@ -20247,8 +20247,8 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /obj/structure/closet/emcloset,
 /turf/open/floor/carpet{
-	dir = 1;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 1
 	},
 /area/lv624/lazarus/hop)
 "bjN" = (
@@ -20270,9 +20270,9 @@
 /area/bigred/ground/central_hall)
 "bjP" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -20280,15 +20280,15 @@
 "bjQ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/structure/closet/emcloset,
 /turf/open/floor/carpet{
-	dir = 1;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 1
 	},
 /area/lv624/lazarus/captain)
 "bjR" = (
@@ -20564,9 +20564,9 @@
 "bku" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -20581,8 +20581,8 @@
 /obj/effect/spawner/random/powercell,
 /obj/effect/spawner/random/toolbox,
 /turf/open/floor/carpet{
-	dir = 10;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 10
 	},
 /area/lv624/lazarus/hop)
 "bkw" = (
@@ -20591,8 +20591,8 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/random/toolbox,
 /turf/open/floor/carpet{
-	dir = 10;
-	icon_state = "carpetside"
+	icon_state = "carpetside";
+	dir = 10
 	},
 /area/lv624/lazarus/captain)
 "bkx" = (
@@ -20807,9 +20807,9 @@
 /area/hallway/primary/port)
 "blc" = (
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating/catwalk,
 /area/hallway/primary/port)
@@ -20825,9 +20825,9 @@
 	icon_state = "2-8"
 	},
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /turf/open/floor/plating/catwalk,
 /area/hallway/primary/port)
@@ -21131,9 +21131,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable{
+	icon_state = "4-8";
 	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 8
 	},
 /obj/structure/cable{
 	d1 = 2;

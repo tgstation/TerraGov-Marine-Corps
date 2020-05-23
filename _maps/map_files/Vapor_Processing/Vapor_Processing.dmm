@@ -4447,8 +4447,8 @@
 /area/maintenance/substation)
 "nw" = (
 /obj/machinery/power/terminal{
-	dir = 1;
-	icon_state = "term"
+	icon_state = "term";
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	d2 = 2;
@@ -5131,8 +5131,8 @@
 /area/crew_quarters/sleep/bedrooms)
 "pt" = (
 /obj/structure/bed/chair/wood/wings{
-	dir = 1;
-	icon_state = "wooden_chair_wings"
+	icon_state = "wooden_chair_wings";
+	dir = 1
 	},
 /turf/open/floor/wood/broken,
 /area/crew_quarters/sleep_male)
@@ -5141,8 +5141,8 @@
 /area/crew_quarters/sleep_male)
 "pv" = (
 /obj/structure/bed/chair/wood/wings{
-	dir = 1;
-	icon_state = "wooden_chair_wings"
+	icon_state = "wooden_chair_wings";
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/crew_quarters/sleep_male)
@@ -5456,8 +5456,8 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison/yellow{
-	dir = 4;
-	icon_state = "yellow"
+	icon_state = "yellow";
+	dir = 4
 	},
 /area/lv624/lazarus/engineering)
 "qw" = (
@@ -6245,8 +6245,8 @@
 /area/lv624/lazarus/comms)
 "st" = (
 /turf/open/floor/prison/yellow{
-	dir = 8;
-	icon_state = "yellow"
+	icon_state = "yellow";
+	dir = 8
 	},
 /area/lv624/lazarus/engineering)
 "su" = (
@@ -6979,8 +6979,8 @@
 /area/crew_quarters/sleep_male)
 "uE" = (
 /obj/structure/bed/chair/wood/wings{
-	dir = 1;
-	icon_state = "wooden_chair_wings"
+	icon_state = "wooden_chair_wings";
+	dir = 1
 	},
 /obj/machinery/door/window,
 /turf/open/floor/wood,
@@ -7034,8 +7034,8 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/prison/yellow{
-	dir = 4;
-	icon_state = "yellow"
+	icon_state = "yellow";
+	dir = 4
 	},
 /area/lv624/lazarus/engineering)
 "ww" = (
