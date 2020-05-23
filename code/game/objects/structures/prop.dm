@@ -203,6 +203,8 @@
 	density = FALSE
 	layer = ABOVE_TURF_LAYER
 
+/obj/structure/prop/mainship/hangar_stencil/two
+	icon_state = "dropship2"
 
 /obj/structure/prop/mainship/cannon_cables
 	name = "\improper Cannon cables"

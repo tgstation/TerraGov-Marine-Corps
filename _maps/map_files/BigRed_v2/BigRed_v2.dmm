@@ -298,7 +298,6 @@
 /area/bigredv2/outside/space_port)
 "abd" = (
 /obj/structure/reagent_dispensers/wallmounted/peppertank{
-	icon_state = "peppertank";
 	dir = 4
 	},
 /turf/open/floor,
@@ -306,7 +305,6 @@
 "abe" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/reagent_dispensers/wallmounted/peppertank{
-	icon_state = "peppertank";
 	dir = 4
 	},
 /turf/open/floor,
@@ -595,7 +593,6 @@
 /area/bigredv2/outside/space_port)
 "abV" = (
 /obj/structure/closet/walllocker/hydrant/full{
-	icon_state = "hydrant";
 	dir = 1
 	},
 /turf/open/floor/tile/dark/purple2{
@@ -878,7 +875,6 @@
 	d2 = 4
 	},
 /obj/machinery/power/apc/hyper{
-	icon_state = "apc0";
 	dir = 4
 	},
 /turf/open/floor/elevatorshaft,
@@ -1211,7 +1207,6 @@
 /area/bigredv2/outside/marshal_office)
 "adQ" = (
 /obj/structure/closet/walllocker/hydrant/full{
-	icon_state = "hydrant";
 	dir = 8
 	},
 /turf/open/floor/tile/purple/whitepurple{
@@ -7770,7 +7765,6 @@
 /area/bigredv2/caves/lambda_lab)
 "axp" = (
 /obj/structure/bed/chair/comfy/lime{
-	icon_state = "comfychair";
 	dir = 4
 	},
 /turf/open/floor/carpet,
@@ -10975,7 +10969,6 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced/toughened{
-	icon_state = "rwindow";
 	dir = 8
 	},
 /obj/structure/table/reinforced,
@@ -10989,7 +10982,6 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced/toughened{
-	icon_state = "rwindow";
 	dir = 4
 	},
 /obj/structure/table/reinforced,
@@ -11245,7 +11237,6 @@
 /area/bigredv2/caves/lambda_lab)
 "aHU" = (
 /obj/structure/window/reinforced/toughened{
-	icon_state = "rwindow";
 	dir = 8
 	},
 /obj/structure/window/reinforced/toughened{
@@ -11276,7 +11267,6 @@
 /area/bigredv2/caves/lambda_lab)
 "aHX" = (
 /obj/structure/window/reinforced/toughened{
-	icon_state = "rwindow";
 	dir = 4
 	},
 /obj/structure/window/reinforced/toughened{
@@ -12446,7 +12436,6 @@
 /area/bigredv2/caves/lambda_lab)
 "aKW" = (
 /obj/structure/window/reinforced/toughened{
-	icon_state = "rwindow";
 	dir = 8
 	},
 /obj/structure/window/reinforced/toughened,
@@ -12478,7 +12467,6 @@
 /area/bigredv2/caves/lambda_lab)
 "aKZ" = (
 /obj/structure/window/reinforced/toughened{
-	icon_state = "rwindow";
 	dir = 4
 	},
 /obj/structure/window/reinforced/toughened,
@@ -12776,7 +12764,6 @@
 	dir = 2
 	},
 /obj/structure/window/reinforced/toughened{
-	icon_state = "rwindow";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -12790,7 +12777,6 @@
 	dir = 2
 	},
 /obj/structure/window/reinforced/toughened{
-	icon_state = "rwindow";
 	dir = 4
 	},
 /obj/machinery/computer/pandemic,
@@ -17634,7 +17620,6 @@
 /area/bigredv2/outside/office_complex)
 "bdy" = (
 /obj/structure/bed/chair/comfy/lime{
-	icon_state = "comfychair";
 	dir = 4
 	},
 /turf/open/floor,
@@ -20338,7 +20323,6 @@
 /area/bigredv2/outside/engineering)
 "bnr" = (
 /obj/machinery/power/terminal{
-	icon_state = "term";
 	dir = 1
 	},
 /obj/structure/cable{

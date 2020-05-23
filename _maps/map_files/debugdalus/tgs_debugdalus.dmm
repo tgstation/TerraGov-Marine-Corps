@@ -549,8 +549,7 @@
 /area/mainship/engineering/lower_engine_monitoring)
 "abo" = (
 /obj/structure/bed/chair/office/light{
-	dir = 4;
-	icon_state = "officechair_white"
+	dir = 4
 	},
 /obj/effect/landmark/start/job/shiptech,
 /turf/open/floor/mainship{
@@ -811,7 +810,6 @@
 /area/mainship/squads/bravo)
 "abQ" = (
 /obj/machinery/power/terminal{
-	icon_state = "term";
 	dir = 1
 	},
 /obj/structure/cable/yellow{
@@ -4624,7 +4622,6 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/apc/mainship/hardened{
-	icon_state = "apc0";
 	dir = 8
 	},
 /turf/open/floor/mainship{
@@ -5064,9 +5061,7 @@
 /turf/open/floor/plating,
 /area/mainship/command/telecomms)
 "axn" = (
-/turf/open/shuttle/escapepod{
-	icon_state = "floor1"
-	},
+/turf/open/shuttle/escapepod/plain,
 /area/mainship/command/self_destruct)
 "aVs" = (
 /turf/closed/wall/mainship,
@@ -5187,9 +5182,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/squads/req)
 "lAe" = (
-/turf/open/shuttle/escapepod{
-	icon_state = "floor5"
-	},
+/turf/open/shuttle/escapepod/five,
 /area/mainship/command/self_destruct)
 "pNG" = (
 /turf/open/shuttle/escapepod{

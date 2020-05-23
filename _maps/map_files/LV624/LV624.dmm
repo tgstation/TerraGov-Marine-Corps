@@ -1513,9 +1513,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand5)
 "afw" = (
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
+/turf/open/floor/scorched/two,
 /area/lv624/ground/sand6)
 "afx" = (
 /obj/structure/cargo_container/gorg{
@@ -1761,9 +1759,7 @@
 	},
 /area/lv624/ground/sand5)
 "agr" = (
-/turf/open/floor{
-	icon_state = "floorscorched1"
-	},
+/turf/open/floor/scorched,
 /area/lv624/ground/sand6)
 "ags" = (
 /obj/structure/jungle/plantbot1/alien,
@@ -1811,9 +1807,7 @@
 /turf/open/floor,
 /area/lv624/ground/sand2)
 "agE" = (
-/turf/open/floor{
-	icon_state = "floorscorched2"
-	},
+/turf/open/floor/scorched/two,
 /area/lv624/ground/sand2)
 "agF" = (
 /obj/effect/decal/remains/human,
@@ -1927,9 +1921,7 @@
 /turf/open/floor,
 /area/lv624/ground/sand2)
 "ahb" = (
-/turf/open/floor{
-	icon_state = "floorscorched1"
-	},
+/turf/open/floor/scorched,
 /area/lv624/ground/sand2)
 "ahc" = (
 /obj/structure/catwalk,
@@ -11204,7 +11196,6 @@
 /area/lv624/lazarus/sleep_male)
 "aQY" = (
 /obj/structure/bed/chair/wood/wings{
-	icon_state = "wooden_chair_wings";
 	dir = 4
 	},
 /turf/open/floor/tile/blue/taupebluecorner{
@@ -11441,7 +11432,6 @@
 /area/lv624/lazarus/sleep_male)
 "aRF" = (
 /obj/structure/bed/chair/wood/wings{
-	icon_state = "wooden_chair_wings";
 	dir = 1
 	},
 /turf/open/floor/tile/blue/taupebluecorner{
@@ -11603,7 +11593,6 @@
 /area/lv624/ground/jungle9)
 "aSh" = (
 /obj/structure/bed/chair/wood/wings{
-	icon_state = "wooden_chair_wings";
 	dir = 4
 	},
 /obj/effect/landmark/start/job/survivor,
@@ -12847,8 +12836,7 @@
 	},
 /area/shuttle/drop1/lz1)
 "aWr" = (
-/turf/open/floor{
-	icon_state = "warningcorner";
+/turf/open/floor/marking/warning/corner{
 	dir = 1
 	},
 /area/shuttle/drop1/lz1)
@@ -13203,8 +13191,7 @@
 	},
 /area/lv624/lazarus/console)
 "aXF" = (
-/turf/open/floor{
-	icon_state = "warningcorner";
+/turf/open/floor/marking/warning/corner{
 	dir = 4
 	},
 /area/shuttle/drop1/lz1)
@@ -13420,9 +13407,8 @@
 /area/lv624/lazarus/internal_affairs)
 "aYt" = (
 /obj/effect/spawner/random/toolbox,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 8
 	},
 /area/lv624/lazarus/internal_affairs)
 "aYu" = (
@@ -13665,9 +13651,8 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 8
 	},
 /area/lv624/lazarus/internal_affairs)
 "aZi" = (
@@ -13874,9 +13859,8 @@
 	},
 /area/lv624/lazarus/internal_affairs)
 "aZS" = (
-/turf/open/floor{
-	dir = 8;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 8
 	},
 /area/lv624/lazarus/internal_affairs)
 "aZU" = (
@@ -14030,9 +14014,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 8
 	},
 /area/lv624/lazarus/main_hall)
 "bap" = (
@@ -14357,9 +14340,8 @@
 	dir = 8
 	},
 /obj/item/ammo_casing,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 8
 	},
 /area/lv624/lazarus/main_hall)
 "bbf" = (
@@ -14463,9 +14445,8 @@
 /area/lv624/lazarus/main_hall)
 "bbz" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 8
 	},
 /area/lv624/lazarus/main_hall)
 "bbA" = (
@@ -14601,9 +14582,8 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/security)
 "bbY" = (
-/turf/open/floor{
-	dir = 8;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 8
 	},
 /area/lv624/lazarus/main_hall)
 "bbZ" = (
@@ -15095,9 +15075,8 @@
 "bdA" = (
 /obj/item/flashlight,
 /obj/item/ammo_magazine/smg/mp5,
-/turf/open/floor{
-	dir = 8;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 8
 	},
 /area/lv624/lazarus/internal_affairs)
 "bdB" = (
@@ -15636,9 +15615,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 8
 	},
 /area/lv624/lazarus/internal_affairs)
 "bfl" = (
@@ -15825,9 +15803,8 @@
 /obj/item/spacecash/c200{
 	pixel_y = 4
 	},
-/turf/open/floor{
-	dir = 8;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 8
 	},
 /area/lv624/lazarus/internal_affairs)
 "bfW" = (
@@ -16701,7 +16678,6 @@
 /area/lv624/lazarus/hop)
 "bjj" = (
 /obj/structure/bed/chair/wood/wings{
-	icon_state = "wooden_chair_wings";
 	dir = 4
 	},
 /turf/open/floor/wood,
@@ -17380,7 +17356,6 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/terminal{
-	icon_state = "term";
 	dir = 1
 	},
 /turf/open/floor/plating/platebot,
@@ -18461,7 +18436,6 @@
 /area/lv624/lazarus/secure_storage)
 "bot" = (
 /obj/structure/bed/chair/comfy{
-	icon_state = "comfychair";
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
@@ -18473,7 +18447,6 @@
 /area/lv624/lazarus/secure_storage)
 "bov" = (
 /obj/structure/bed/chair/comfy{
-	icon_state = "comfychair";
 	dir = 8
 	},
 /turf/open/floor/tile/dark,

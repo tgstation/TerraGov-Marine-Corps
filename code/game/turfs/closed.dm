@@ -247,6 +247,9 @@
 /turf/closed/shuttle/wall3
 	icon_state = "wall3"
 
+/turf/closed/shuttle/swall3
+	icon_state = "swall3"
+
 /turf/closed/shuttle/wall3/diagonal
 	icon_state = "diagonalWall3"
 

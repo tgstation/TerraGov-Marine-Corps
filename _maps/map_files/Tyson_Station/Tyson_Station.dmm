@@ -1084,9 +1084,7 @@
 /area/security/main)
 "adT" = (
 /obj/machinery/vending/coffee,
-/turf/open/floor/prison{
-	icon_state = "kitchen"
-	},
+/turf/open/floor/prison/kitchen,
 /area/hallway/secondary/entry)
 "adU" = (
 /turf/closed/wall,
@@ -4762,8 +4760,7 @@
 	},
 /area/space)
 "aqw" = (
-/turf/open/floor{
-	icon_state = "warningcorner";
+/turf/open/floor/marking/warning/corner{
 	dir = 4
 	},
 /area/space)
@@ -5648,9 +5645,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison{
-	icon_state = "kitchen"
-	},
+/turf/open/floor/prison/kitchen,
 /area/hallway/secondary/entry)
 "atl" = (
 /obj/effect/decal/cleanable/dirt,
@@ -6294,9 +6289,7 @@
 "ava" = (
 /obj/machinery/vending/snack,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/prison{
-	icon_state = "kitchen"
-	},
+/turf/open/floor/prison/kitchen,
 /area/hallway/secondary/entry)
 "avb" = (
 /obj/machinery/door/firedoor,
@@ -6351,9 +6344,8 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/hallway/secondary/entry)
 "avk" = (
@@ -6362,9 +6354,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/hallway/secondary/entry)
 "avl" = (
@@ -6374,9 +6365,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/hallway/secondary/entry)
 "avm" = (
@@ -6386,9 +6376,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/hallway/secondary/entry)
 "avn" = (
@@ -6889,9 +6878,8 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/hallway/secondary/entry)
 "awV" = (
@@ -7574,9 +7562,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump,
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/hallway/secondary/entry)
 "azg" = (
@@ -7728,9 +7715,8 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/open/floor{
-	dir = 4;
-	icon_state = "whiteblue"
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
 	},
 /area/hallway/secondary/entry)
 "azE" = (
@@ -8907,7 +8893,6 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced/tinted/frosted{
-	icon_state = "fwindow";
 	dir = 1
 	},
 /obj/machinery/door/window,
@@ -9427,9 +9412,7 @@
 "aFb" = (
 /obj/machinery/vending/cigarette,
 /obj/machinery/camera/autoname,
-/turf/open/floor/prison{
-	icon_state = "kitchen"
-	},
+/turf/open/floor/prison/kitchen,
 /area/hallway/secondary/entry)
 "aFc" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,

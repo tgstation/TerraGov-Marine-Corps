@@ -29,9 +29,7 @@
 	},
 /area/shuttle/ert/pmc)
 "g" = (
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
 "h" = (
 /turf/closed/shuttle/ert{
@@ -48,9 +46,7 @@
 /obj/effect/landmark/distress_item,
 /obj/item/storage/toolbox/mechanical,
 /obj/item/multitool,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
 "k" = (
 /obj/machinery/light{
@@ -75,9 +71,7 @@
 /obj/structure/rack,
 /obj/effect/landmark/distress_item,
 /obj/item/storage/firstaid/adv,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
 "o" = (
 /turf/closed/shuttle/ert{
@@ -98,9 +92,7 @@
 "r" = (
 /obj/structure/bed/chair/dropship/passenger,
 /obj/effect/landmark/distress,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
 "s" = (
 /turf/closed/shuttle/ert{
@@ -112,18 +104,14 @@
 	dir = 4
 	},
 /obj/effect/landmark/distress,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
 "u" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},
 /obj/effect/landmark/distress,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
 "v" = (
 /turf/open/shuttle/dropship{
@@ -158,9 +146,7 @@
 /area/shuttle/ert/pmc)
 "C" = (
 /obj/machinery/computer/shuttle/ert,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
 "D" = (
 /turf/closed/shuttle/ert{
@@ -171,9 +157,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
 "F" = (
 /turf/closed/shuttle/ert{
@@ -184,18 +168,14 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
 "H" = (
 /obj/structure/rack,
 /obj/effect/landmark/distress_item,
 /obj/item/storage/firstaid/regular,
 /obj/item/storage/belt/combatLifesaver,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
 "I" = (
 /obj/machinery/door/airlock/mainship/generic{
@@ -204,9 +184,7 @@
 /obj/machinery/door/poddoor/shutters/transit/open{
 	dir = 2
 	},
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/ert/pmc)
 "J" = (
 /turf/closed/shuttle/ert{

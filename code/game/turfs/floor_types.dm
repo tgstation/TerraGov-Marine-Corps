@@ -15,11 +15,27 @@
 		return FALSE
 	return ..()
 
+/turf/open/floor/mainship/stripesquare
+	icon_state = "test_floor4"
+
+/turf/open/floor/mainship/plate
+	icon_state = "plate"
+
 /turf/open/floor/mainship/cargo
 	icon_state = "cargo"
 
+/turf/open/floor/mainship/cargo/arrow
+	icon_state = "cargo_arrow"
+	icon_regular_floor = "cargo_arrow"
+
 /turf/open/floor/mainship/blue
 	icon_state = "blue"
+
+/turf/open/floor/mainship/blue/full
+	icon_state = "bluefull"
+
+/turf/open/floor/mainship/blue/corner
+	icon_state = "bluecorner"
 
 /turf/open/floor/mainship/emerald
 	icon_state = "emerald"
@@ -27,8 +43,23 @@
 /turf/open/floor/mainship/orange
 	icon_state = "orange"
 
+/turf/open/floor/mainship/orange/corner
+	icon_state = "orangecorner"
+
+/turf/open/floor/mainship/orange/full
+	icon_state = "orangefull"
+
+/turf/open/floor/mainship/green
+	icon_state = "green"
+
+/turf/open/floor/mainship/green/corner
+	icon_state = "greencorner"
+
 /turf/open/floor/mainship/red
 	icon_state = "red"
+
+/turf/open/floor/mainship/red/full
+	icon_state = "redfull"
 
 /turf/open/floor/mainship/red/corner
 	icon_state = "redcorner"
@@ -38,6 +69,9 @@
 
 /turf/open/floor/mainship/sterile
 	icon_state = "sterile_green"
+
+/turf/open/floor/mainship/sterile/plain
+	icon_state = "sterile"
 
 /turf/open/floor/mainship/sterile/dark
 	icon_state = "dark_sterile"
@@ -262,6 +296,9 @@
 	icon_state = "gcircuit"
 
 
+/turf/open/floor/asteroid
+	icon_state = "asteroid"
+
 /turf/open/floor/grass
 	name = "Grass patch"
 	icon_state = "grass1"
@@ -303,6 +340,10 @@
 
 /turf/open/floor/tile/chapel
 	icon_state = "chapel"
+	icon_regular_floor = "chapel"
+
+/turf/open/floor/tile/cmo
+	icon_state = "cmo"
 
 /turf/open/floor/tile/bar
 	icon_state = "bar"
@@ -348,6 +389,10 @@
 
 /turf/open/floor/tile/red/whiteredfull
 	icon_state = "whiteredfull"
+
+// no directions
+/turf/open/floor/tile/red/redblue/full
+	icon_state = "redbluefull"
 
 /turf/open/floor/tile/red/redtaupe
 	icon_state = "red"
@@ -512,6 +557,12 @@
 	icon = 'icons/turf/prison.dmi'
 	icon_state = "floor"
 
+/turf/open/floor/prison/bright_clean
+	icon_state = "bright_clean"
+
+/turf/open/floor/prison/bright_clean/two
+	icon_state = "bright_clean2"
+
 /turf/open/floor/prison/rampbottom
 	icon_state = "rampbottom"
 
@@ -586,6 +637,9 @@
 
 /turf/open/floor/prison/darkbrown/corner
 	icon_state = "darkbrowncorners2"
+
+/turf/open/floor/prison/darkbrown/full
+	icon_state = "darkbrownfull2"
 
 /turf/open/floor/prison/green
 	icon_state = "green"

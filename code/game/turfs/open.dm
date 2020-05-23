@@ -199,6 +199,8 @@
 		return FALSE
 	return ..()
 
+/turf/open/shuttle/blackfloor
+	icon_state = "floor7"
 
 /turf/open/shuttle/dropship
 	name = "floor"
@@ -230,6 +232,23 @@
 	icon = 'icons/turf/escapepods.dmi'
 	icon_state = "floor3"
 
+/turf/open/shuttle/escapepod/plain
+	icon_state = "floor1"
+
+/turf/open/shuttle/escapepod/zero
+	icon_state = "floor0"
+
+/turf/open/shuttle/escapepod/two
+	icon_state = "floor2"
+
+/turf/open/shuttle/escapepod/four
+	icon_state = "floor4"
+
+/turf/open/shuttle/escapepod/five
+	icon_state = "floor5"
+
+/turf/open/shuttle/escapepod/six
+	icon_state = "floor6"
 
 // Elevator floors
 /turf/open/shuttle/elevator
