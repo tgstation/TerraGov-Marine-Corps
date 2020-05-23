@@ -26,7 +26,7 @@
 	return ..()
 
 
-/** Shoulder lamp stength module */
+/** Shoulder lamp strength module */
 /obj/item/armor_module/attachable/better_shoulder_lamp
 	name = "Baldur Light Amplification System"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Substantially increases the power output of the Jaeger Combat Exoskeletons mounted flashlight. Doesn’t really slow you down."
@@ -37,14 +37,13 @@
 /obj/item/armor_module/attachable/better_shoulder_lamp/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
 	parent.light_strength += power_boost
-	parent.update_overlays()
 
 /obj/item/armor_module/attachable/better_shoulder_lamp/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	parent.light_strength -= power_boost
 	return ..()
 
 
-/** Shoulder lamp stength module */
+/** Mini autodoc module */
 /obj/item/armor_module/attachable/valkyrie_autodoc
 	name = "Valkyrie Automedical Armor System"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Has a variety of chemicals it can inject, as well as automatically securing the bones and body of the wearer, to minimise the impact of broken bones or mangled limbs in the field. Will definitely impact mobility."
@@ -59,7 +58,6 @@
 	/// This will do nothing without the autodoc update
 	var/list/supported_limbs = list(CHEST, GROIN, ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT, LEG_LEFT, LEG_RIGHT, FOOT_LEFT, FOOT_RIGHT)
 	parent.AddComponent(/datum/component/suit_autodoc, 2.5 MINUTES, tricord, tricord, tricord, tricord, tramadol, 0.5, supported_limbs)
-	parent.update_overlays()
 
 
 /obj/item/armor_module/attachable/valkyrie_autodoc/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
@@ -81,7 +79,6 @@
 	. = ..()
 	parent.hard_armor = parent.hard_armor.attachArmor(hard_armor)
 	parent.max_heat_protection_temperature += FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-	parent.update_overlays()
 
 /obj/item/armor_module/attachable/fire_proof/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	parent.hard_armor = parent.hard_armor.detachArmor(hard_armor)
@@ -102,7 +99,6 @@
 	. = ..()
 	parent.soft_armor = parent.soft_armor.attachArmor(soft_armor)
 	parent.slowdown += slowdown
-	parent.update_overlays()
 
 /obj/item/armor_module/attachable/tyr_extra_armor/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	parent.soft_armor = parent.soft_armor.detachArmor(soft_armor)
@@ -130,7 +126,6 @@
 	parent.permeability_coefficient += permeability_coefficient_mod
 	parent.gas_transfer_coefficient += siemens_coefficient_mod
 	parent.slowdown += slowdown
-	parent.update_overlays()
 
 /obj/item/armor_module/attachable/mimir_environment_protection/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	parent.soft_armor = parent.soft_armor.detachArmor(soft_armor)

@@ -9,8 +9,11 @@
 /obj/item/armor_module/storage
 	icon = 'icons/mob/modular/modular_armor.dmi'
 	icon_state = "mod_is_bag"
-	var/storage_type = /obj/item/storage/internal/modular
 
+	/// Slowdown gained from equipping this storage module
+	var/slowdown = 0 
+	/// Internal storage type
+	var/storage_type = /obj/item/storage/internal/modular
 
 /obj/item/armor_module/storage/can_attach(mob/living/user, obj/item/clothing/suit/modular/parent, silent = FALSE)
 	. = ..()
@@ -29,6 +32,14 @@
 		if(!silent)
 			to_chat(user, "You can't remove this while there are still items inside")
 		return FALSE
+
+/obj/item/armor_module/storage/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
+	. = ..()
+	parent.slowdown += slowdown
+
+/obj/item/armor_module/storage/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
+	parent.slowdown -= slowdown
+	return ..()
 
 /obj/item/storage/internal/modular
 	max_storage_space = 2
@@ -63,9 +74,9 @@
 	storage_type =  /obj/item/storage/internal/modular/general
 
 /obj/item/storage/internal/modular/general
+	max_storage_space = 10
 	storage_slots = 3
 	max_w_class = WEIGHT_CLASS_NORMAL
-	max_storage_space = 10
 	can_hold = list(
 		/obj/item/weapon/combat_knife,
 		/obj/item/flashlight/flare,
@@ -90,9 +101,9 @@
 	storage_type =  /obj/item/storage/internal/modular/ammo_mag
 
 /obj/item/storage/internal/modular/ammo_mag
+	max_storage_space = 15
 	storage_slots = 4
 	max_w_class = WEIGHT_CLASS_NORMAL
-	max_storage_space = 15
 	can_hold = list(
 		/obj/item/weapon/combat_knife,
 		/obj/item/flashlight/flare,
@@ -118,19 +129,16 @@
 
 // TODO: This still needs some balance
 /obj/item/storage/internal/modular/engineering
-	max_storage_space = 42
-	storage_slots = 7
-	max_storage_space = 42
-	max_w_class = WEIGHT_CLASS_SMALL
+	max_storage_space = 15
+	storage_slots = 4
+	max_w_class = WEIGHT_CLASS_NORMAL
 	can_hold = list(
-		/obj/item/reagent_containers/glass/bottle,
-		/obj/item/reagent_containers/pill,
-		/obj/item/reagent_containers/syringe,
-		/obj/item/storage/pill_bottle,
-		/obj/item/clothing/gloves/latex,
-		/obj/item/reagent_containers/hypospray/autoinjector,
-		/obj/item/stack/cable_coil
-	)
+		/obj/item/stack/barbed_wire,
+		/obj/item/stack/sheet,
+		/obj/item/stack/rods,
+		/obj/item/stack/cable_coil,
+		/obj/item/tool/shovel/etool,
+		/obj/item/stack/sandbags_empty)
 
 
 /obj/item/armor_module/storage/medical
@@ -140,9 +148,8 @@
 	storage_type =  /obj/item/storage/internal/modular/medical
 
 /obj/item/storage/internal/modular/medical
-	max_storage_space = 42
-	storage_slots = 7
-	max_storage_space = 42
+	max_storage_space = 30
+	storage_slots = 5
 	max_w_class = WEIGHT_CLASS_SMALL
 	can_hold = list(
 		/obj/item/reagent_containers/glass/bottle,
@@ -160,18 +167,9 @@
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Impedes movement somewhat, but holds about as much as a satchel could."
 	icon_state = "mod_is_bag"
 	storage_type =  /obj/item/storage/internal/modular/integrated
+	slowdown = 0.3
 
 /obj/item/storage/internal/modular/integrated
 	max_storage_space = 42
 	storage_slots = 7
-	max_storage_space = 42
 	max_w_class = WEIGHT_CLASS_SMALL
-	can_hold = list(
-		/obj/item/reagent_containers/glass/bottle,
-		/obj/item/reagent_containers/pill,
-		/obj/item/reagent_containers/syringe,
-		/obj/item/storage/pill_bottle,
-		/obj/item/clothing/gloves/latex,
-		/obj/item/reagent_containers/hypospray/autoinjector,
-		/obj/item/stack/medical
-	)

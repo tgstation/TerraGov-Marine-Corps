@@ -70,7 +70,6 @@
 /obj/item/armor_module/armor/chest/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
 	parent.slot_chest = src
-	parent.update_overlays()
 
 /obj/item/armor_module/armor/chest/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	parent.slot_chest = null
@@ -121,7 +120,6 @@
 /obj/item/armor_module/armor/legs/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
 	parent.slot_legs = src
-	parent.update_overlays()
 
 /obj/item/armor_module/armor/legs/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	parent.slot_legs = null
@@ -169,7 +167,6 @@
 /obj/item/armor_module/armor/arms/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
 	parent.slot_arms = src
-	parent.update_overlays()
 
 /obj/item/armor_module/armor/arms/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	parent.slot_arms = null

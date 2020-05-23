@@ -35,6 +35,5 @@
 /obj/item/armor_module/proc/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	forceMove(get_turf(user))
 	user.put_in_any_hand_if_possible(src, warning = FALSE)
-	parent.update_overlays()
 	SEND_SIGNAL(parent, COMSIG_ARMOR_MODULE_DETACHED, user, src)
 

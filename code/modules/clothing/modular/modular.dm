@@ -135,6 +135,7 @@
 		if(!can_attach(user, module))
 			return FALSE
 		module.do_attach(user, src)
+		update_overlays()
 		return
 
 	if(!storage)
