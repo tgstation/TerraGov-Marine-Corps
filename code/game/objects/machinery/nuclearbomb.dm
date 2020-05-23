@@ -76,8 +76,8 @@
 
 	// Reset the hive leader
 	SSdirection.clear_leader()
-	var/leader = GLOB.hive_datums[XENO_HIVE_NORMAL].living_xeno_ruler
-	SSdirection.set_leader(XENO_HIVE_NORMAL, leader)
+	var/datum/hive_status/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	SSdirection.set_leader(XENO_HIVE_NORMAL, HS.living_xeno_ruler)
 
 	return ..()
 
