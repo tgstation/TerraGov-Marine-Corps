@@ -6,9 +6,11 @@
 	idle_power_usage = 0
 	active_power_usage = 0
 	var/datum/powernet/powernet = null
+	var/machinery_layer = MACHINERY_LAYER_1 //cable layer to which the machine is connected
 
 /obj/machinery/power/Destroy()
 	disconnect_from_network()
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/update_cable_icons_on_turf, get_turf(src)), 3)
 	. = ..()
 
 // common helper procs for all power machines
@@ -94,15 +96,20 @@
 /obj/machinery/proc/removeStaticPower(value, powerchannel)
 	addStaticPower(-value, powerchannel)
 
-// connect the machine to a powernet if a node cable is present on the turf
+// connect the machine to a powernet if a node cable or a terminal is present on the turf
 /obj/machinery/power/proc/connect_to_network()
 	var/turf/T = src.loc
 	if(!T || !istype(T))
 		return FALSE
 
-	var/obj/structure/cable/C = T.get_cable_node() //check if we have a node cable on the machine turf, the first found is picked
+	var/obj/structure/cable/C = T.get_cable_node(machinery_layer) //check if we have a node cable on the machine turf, the first found is picked
 	if(!C || !C.powernet)
-		return FALSE
+		var/obj/machinery/power/terminal/term = locate(/obj/machinery/power/terminal) in T
+		if(!term || !term.powernet)
+			return FALSE
+		else
+			term.powernet.add_machine(src)
+			return TRUE
 
 	C.powernet.add_machine(src)
 	return TRUE
@@ -125,6 +132,10 @@
 		if(T.intact_tile || !isfloorturf(T) || get_dist(src, user) > 1)
 			return
 		coil.place_turf(T, user)
+
+/proc/update_cable_icons_on_turf(var/turf/T)
+	for(var/obj/structure/cable/C in T.contents)
+		C.update_icon()
 
 ///////////////////////////////////////////
 // GLOBAL PROCS for powernets handling
