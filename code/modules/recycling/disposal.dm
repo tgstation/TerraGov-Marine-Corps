@@ -934,6 +934,9 @@
 /obj/structure/disposalpipe/junction/flipped
 	icon_state = "pipe-j2"
 
+/obj/structure/disposalpipe/junction/yjunc
+	icon_state = "pipe-y"
+
 //Next direction to move, if coming in from secondary dirs, then next is primary dir, if coming in from primary dir, then next is equal chance of other dirs
 /obj/structure/disposalpipe/junction/nextdir(fromdir)
 	var/flipdir = turn(fromdir, 180)
