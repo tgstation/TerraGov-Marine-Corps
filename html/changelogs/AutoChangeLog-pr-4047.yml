@@ -1,0 +1,4 @@
+author: "BobSlim"
+delete-after: True
+changes: 
+  - rscadd: "You can refill mags with other mags, now."
