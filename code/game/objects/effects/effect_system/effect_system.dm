@@ -5,6 +5,13 @@ it needs to create more trails.A beaker could have a steam_trail_follow system s
 would spawn and follow the beaker, even if it is carried or thrown.
 */
 
+/proc/do_sparks(n, c, source)
+	// n - number of sparks
+	// c - cardinals, bool, do the sparks only move in cardinal directions?
+	// source - source of the sparks.
+
+	new /datum/effect_system/spark_spread(source, null, n, c, TRUE, 10 SECONDS)
+
 /datum/effect_system
 	var/number = 3
 	var/cardinals = 0
