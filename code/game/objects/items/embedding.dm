@@ -195,7 +195,7 @@
 		return
 
 	if(self)
-		visible_message("<span class='warning'><b>[user] rips [selection] out of user.p_their() body.</b></span>","<span class='warning'><b>You rip [selection] out of your body.</b></span>", null, 5)
+		visible_message("<span class='warning'><b>[user] rips [selection] out of [user.p_their()] body.</b></span>","<span class='warning'><b>You rip [selection] out of your body.</b></span>", null, 5)
 	else
 		visible_message("<span class='warning'><b>[user] rips [selection] out of [src]'s body.</b></span>","<span class='warning'><b>[user] rips [selection] out of your body.</b></span>", null, 5)
 
