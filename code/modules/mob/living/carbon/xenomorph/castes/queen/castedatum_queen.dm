@@ -26,7 +26,7 @@
 	max_health = 375
 
 	// *** Evolution *** //
-	upgrade_threshold = 480
+	upgrade_threshold = 350
 
 	// *** Flags *** //
 	caste_flags = CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_FIRE_IMMUNE|CASTE_HIDE_IN_STATUS
@@ -57,6 +57,7 @@
 		/datum/action/xeno_action/activable/larval_growth_sting,
 		/datum/action/xeno_action/call_of_the_burrowed,
 		/datum/action/xeno_action/activable/screech,
+		/datum/action/xeno_action/activable/tail_sweep,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/shift_spits,
@@ -96,7 +97,7 @@
 	max_health = 400
 
 	// *** Evolution *** //
-	upgrade_threshold = 960
+	upgrade_threshold = 400
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 55, "bullet" = 55, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_3, "bio" = 50, "rad" = 50, "fire" = 100, "acid" = 50)
@@ -132,7 +133,7 @@
 	max_health = 425
 
 	// *** Evolution *** //
-	upgrade_threshold = 1920
+	upgrade_threshold = 450
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_3, "bio" = 55, "rad" = 55, "fire" = 100, "acid" = 55)
@@ -168,7 +169,7 @@
 	max_health = 450
 
 	// *** Evolution *** //
-	upgrade_threshold = 1920
+	upgrade_threshold = 500
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 65, "bullet" = 65, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_3, "bio" = 60, "rad" = 60, "fire" = 100, "acid" = 60)
