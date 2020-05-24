@@ -18,7 +18,7 @@ if grep -P 'step_[xy]' _maps/**/*.dmm;	then
     echo "step_x/step_y variables detected in maps, please remove them."
     st=1
 fi;
-if grep -P '("\w+" = \()\n(([^)]+\n)*)/obj/structure/cable,\n(([^)]+\n)*)/obj/structure/cable,\n(([^)]+\n)*/area/.+\))' _maps/**/*.dmm;	then
+if grep -P '"\w+" = \(\n([^)]+\n)*/obj/structure/cable,\n([^)]+\n)*/obj/structure/cable,\n([^)]+\n)*/area/.+\)' _maps/**/*.dmm;	then
     echo "found multiple cables on the same tile, please remove them."
     st=1
 fi;
