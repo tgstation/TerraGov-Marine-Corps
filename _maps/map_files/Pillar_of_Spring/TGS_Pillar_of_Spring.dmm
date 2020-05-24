@@ -36,7 +36,8 @@
 /area/mainship/hallways/hangar)
 "ai" = (
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 4
+	dir = 4;
+	
 	},
 /area/mainship/hallways/hangar)
 "aj" = (
@@ -45,7 +46,8 @@
 /area/mainship/hallways/hangar)
 "ak" = (
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 8
+	dir = 8;
+	
 	},
 /area/mainship/hallways/hangar)
 "al" = (
@@ -93,7 +95,8 @@
 "au" = (
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 4
+	dir = 4;
+	
 	},
 /area/mainship/hallways/hangar)
 "av" = (
@@ -333,7 +336,8 @@
 "bi" = (
 /obj/item/radio/intercom/general,
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 8
+	dir = 8;
+	
 	},
 /area/mainship/hallways/hangar)
 "bj" = (
@@ -501,7 +505,8 @@
 	pixel_y = -5
 	},
 /obj/machinery/alarm{
-	dir = 4
+	dir = 4;
+	
 	},
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
@@ -562,7 +567,8 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 4
+	dir = 4;
+	
 	},
 /area/mainship/hallways/hangar)
 "bI" = (
@@ -773,7 +779,8 @@
 /obj/item/reagent_containers/glass/beaker/large,
 /obj/item/reagent_containers/dropper,
 /obj/machinery/alarm{
-	dir = 1
+	dir = 1;
+	
 	},
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
@@ -1215,7 +1222,8 @@
 /area/mainship/engineering/engineering_workshop)
 "dm" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -1318,7 +1326,8 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 4
+	dir = 4;
+	
 	},
 /area/mainship/hallways/hangar)
 "dO" = (
@@ -1345,7 +1354,8 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 8
+	dir = 8;
+	
 	},
 /area/mainship/hallways/hangar)
 "dS" = (
@@ -1390,7 +1400,8 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 4
+	dir = 4;
+	
 	},
 /area/mainship/hallways/hangar)
 "ec" = (
@@ -1401,7 +1412,8 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 8
+	dir = 8;
+	
 	},
 /area/mainship/hallways/hangar)
 "ee" = (
@@ -1665,7 +1677,8 @@
 /area/mainship/command/self_destruct)
 "eY" = (
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 4
+	dir = 4;
+	
 	},
 /area/mainship/command/self_destruct)
 "eZ" = (
@@ -1828,7 +1841,8 @@
 /area/mainship/squads/req)
 "fY" = (
 /obj/structure/window/reinforced/tinted{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/machinery/door/window/westleft{
 	dir = 2
@@ -1896,7 +1910,8 @@
 /obj/structure/closet/secure_closet/pilot_officer,
 /obj/item/clothing/mask/rebreather/scarf,
 /obj/machinery/alarm{
-	dir = 1
+	dir = 1;
+	
 	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/living/pilotbunks)
@@ -1961,7 +1976,8 @@
 /area/mainship/hallways/hangar)
 "gA" = (
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 8
+	dir = 8;
+	
 	},
 /area/mainship/hallways/aft_hallway)
 "gC" = (
@@ -2009,7 +2025,8 @@
 /area/mainship/hallways/hangar)
 "gK" = (
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1
+	dir = 1;
+	
 	},
 /area/mainship/hull/lower_hull)
 "gL" = (
@@ -2133,9 +2150,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/lower_medical)
-"hk" = (
-/turf/open/floor/mainship/mono,
-/area/mainship/living/grunt_rnr)
 "hl" = (
 /obj/structure/closet/secure_closet/personal/morgue,
 /turf/open/floor/mainship/mono,
@@ -2552,7 +2566,8 @@
 /area/mainship/command/cic)
 "iC" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/machinery/atmospherics/components/unary/cryo_cell,
 /turf/open/floor/mainship/sterile/dark,
@@ -3107,6 +3122,24 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
+"kt" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/stern_hallway)
 "ku" = (
 /obj/machinery/door/airlock/mainship/maint,
 /obj/structure/disposalpipe/segment{
@@ -3183,7 +3216,8 @@
 "kC" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/alarm{
-	dir = 8
+	dir = 8;
+	
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/port_missiles)
@@ -3228,7 +3262,8 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1
+	dir = 1;
+	
 	},
 /area/mainship/hallways/hangar)
 "kI" = (
@@ -3239,7 +3274,8 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1
+	dir = 1;
+	
 	},
 /area/mainship/hallways/hangar)
 "kJ" = (
@@ -3250,7 +3286,8 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1
+	dir = 1;
+	
 	},
 /area/mainship/hallways/hangar)
 "kL" = (
@@ -3265,9 +3302,10 @@
 	icon_state = "sofaend_right"
 	},
 /turf/open/floor/mainship/green{
-	dir = 4
+	dir = 4;
+	
 	},
-/area/mainship/living/grunt_rnr)
+/area/mainship/squads/req)
 "kO" = (
 /obj/machinery/light{
 	dir = 8
@@ -3553,7 +3591,8 @@
 /area/mainship/shipboard/port_missiles)
 "lF" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -3661,7 +3700,8 @@
 /area/mainship/living/port_emb)
 "lT" = (
 /obj/structure/disposalpipe/segment{
-	dir = 1
+	dir = 1;
+	
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
@@ -3771,7 +3811,8 @@
 /area/mainship/hallways/hangar)
 "mk" = (
 /obj/structure/window/reinforced/tinted{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/machinery/door/window/westleft{
 	dir = 2
@@ -3928,7 +3969,8 @@
 "mD" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/alarm{
-	dir = 4
+	dir = 4;
+	
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/starboard_missiles)
@@ -4103,10 +4145,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
 "nj" = (
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay,
 /obj/machinery/door/firedoor/multi_tile{
 	dir = 8
 	},
-/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay/free_access,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "nk" = (
@@ -4193,7 +4235,8 @@
 /area/mainship/shipboard/starboard_missiles)
 "nH" = (
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1
+	dir = 1;
+	
 	},
 /area/mainship/shipboard/port_missiles)
 "nI" = (
@@ -4221,7 +4264,8 @@
 /area/mainship/squads/req)
 "nM" = (
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1
+	dir = 1;
+	
 	},
 /area/mainship/shipboard/starboard_missiles)
 "nN" = (
@@ -4358,6 +4402,9 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/shipboard/starboard_missiles)
 "nY" = (
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay{
+	dir = 2
+	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -4370,9 +4417,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor/multi_tile{
-	dir = 2
-	},
-/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay/free_access{
 	dir = 2
 	},
 /turf/open/floor/mainship/sterile/dark,
@@ -4433,7 +4477,8 @@
 "ok" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment{
-	dir = 1
+	dir = 1;
+	
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
@@ -4473,7 +4518,8 @@
 	id = "supply_elevator_railing"
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1
+	dir = 1;
+	
 	},
 /area/mainship/squads/req)
 "os" = (
@@ -4515,7 +4561,8 @@
 	id = "supply_elevator_railing"
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 8
+	dir = 8;
+	
 	},
 /area/mainship/squads/req)
 "oz" = (
@@ -4524,32 +4571,36 @@
 	id = "supply_elevator_railing"
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 4
+	dir = 4;
+	
 	},
 /area/mainship/squads/req)
 "oA" = (
 /obj/machinery/computer/arcade,
 /turf/open/floor/mainship/green{
-	dir = 9
+	dir = 9;
+	
 	},
-/area/mainship/living/grunt_rnr)
+/area/mainship/squads/req)
 "oB" = (
 /obj/structure/bed/chair/comfy{
 	dir = 4
 	},
 /turf/open/floor/mainship/green{
-	dir = 1
+	dir = 1;
+	
 	},
-/area/mainship/living/grunt_rnr)
+/area/mainship/squads/req)
 "oC" = (
 /obj/structure/table/mainship,
 /obj/item/toy/deck,
 /obj/item/storage/fancy/cigarettes,
 /obj/item/tool/lighter,
 /turf/open/floor/mainship/green{
-	dir = 1
+	dir = 1;
+	
 	},
-/area/mainship/living/grunt_rnr)
+/area/mainship/squads/req)
 "oD" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
@@ -4560,9 +4611,10 @@
 "oE" = (
 /obj/structure/bed/stool,
 /turf/open/floor/mainship/green{
-	dir = 8
+	dir = 8;
+	
 	},
-/area/mainship/living/grunt_rnr)
+/area/mainship/squads/req)
 "oF" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -4576,7 +4628,8 @@
 /area/mainship/squads/req)
 "oH" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -4689,7 +4742,7 @@
 /obj/item/storage/fancy/cigar,
 /obj/item/storage/box/matches,
 /turf/open/floor/mainship/mono,
-/area/mainship/living/grunt_rnr)
+/area/mainship/squads/req)
 "oZ" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -4806,9 +4859,10 @@
 	icon_state = "sofaend_right"
 	},
 /turf/open/floor/mainship/green{
-	dir = 10
+	dir = 10;
+	
 	},
-/area/mainship/living/grunt_rnr)
+/area/mainship/squads/req)
 "pu" = (
 /obj/structure/largecrate/supply/supplies/flares,
 /turf/open/floor/mainship/cargo,
@@ -5394,7 +5448,8 @@
 /area/mainship/living/briefing)
 "ra" = (
 /obj/structure/disposalpipe/segment{
-	dir = 1
+	dir = 1;
+	
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
@@ -5419,7 +5474,8 @@
 /area/mainship/shipboard/brig_cells)
 "rd" = (
 /obj/machinery/alarm{
-	dir = 4
+	dir = 4;
+	
 	},
 /obj/machinery/photocopier,
 /turf/open/floor/mainship/mono,
@@ -5602,7 +5658,8 @@
 /area/mainship/living/port_garden)
 "rI" = (
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 8
+	dir = 8;
+	
 	},
 /area/mainship/hallways/starboard_hallway)
 "rJ" = (
@@ -5728,7 +5785,8 @@
 /area/mainship/living/commandbunks)
 "rY" = (
 /obj/structure/disposalpipe/segment{
-	dir = 1
+	dir = 1;
+	
 	},
 /obj/machinery/power/apc/mainship{
 	dir = 8
@@ -5771,12 +5829,14 @@
 /area/mainship/hallways/starboard_hallway)
 "se" = (
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1
+	dir = 1;
+	
 	},
 /area/mainship/hallways/starboard_hallway)
 "sf" = (
 /obj/structure/bed/chair/wood/wings{
-	dir = 4
+	dir = 4;
+	
 	},
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
@@ -5793,7 +5853,8 @@
 /area/mainship/living/commandbunks)
 "sh" = (
 /obj/structure/bed/chair/wood/wings{
-	dir = 8
+	dir = 8;
+	
 	},
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
@@ -5872,7 +5933,8 @@
 /area/mainship/engineering/port_atmos)
 "sr" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -5908,7 +5970,8 @@
 /area/mainship/squads/general)
 "sv" = (
 /obj/structure/bed/chair/comfy/black{
-	dir = 1
+	dir = 1;
+	
 	},
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
@@ -5938,7 +6001,8 @@
 /area/mainship/living/commandbunks)
 "sB" = (
 /obj/machinery/alarm{
-	dir = 4
+	dir = 4;
+	
 	},
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
@@ -6044,7 +6108,8 @@
 /obj/machinery/firealarm,
 /obj/structure/filingcabinet,
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
@@ -6066,7 +6131,8 @@
 	},
 /obj/machinery/alarm,
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -6203,7 +6269,8 @@
 /area/mainship/hallways/starboard_hallway)
 "tt" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -6517,7 +6584,8 @@
 	dir = 1
 	},
 /turf/open/floor/plating/mainship/striped{
-	dir = 1
+	dir = 1;
+	
 	},
 /area/mainship/hull/lower_hull)
 "uf" = (
@@ -6526,7 +6594,8 @@
 	id = "garbage"
 	},
 /turf/open/floor/plating/mainship/striped{
-	dir = 1
+	dir = 1;
+	
 	},
 /area/mainship/hull/lower_hull)
 "ug" = (
@@ -6539,7 +6608,8 @@
 	id = "garbage"
 	},
 /turf/open/floor/plating/mainship/striped{
-	dir = 1
+	dir = 1;
+	
 	},
 /area/mainship/hull/lower_hull)
 "uh" = (
@@ -6549,13 +6619,15 @@
 	},
 /obj/structure/plasticflaps,
 /turf/open/floor/plating/mainship/striped{
-	dir = 1
+	dir = 1;
+	
 	},
 /area/mainship/hull/lower_hull)
 "ui" = (
 /obj/machinery/recycler,
 /turf/open/floor/plating/mainship/striped{
-	dir = 1
+	dir = 1;
+	
 	},
 /area/mainship/hull/lower_hull)
 "uj" = (
@@ -6588,7 +6660,8 @@
 	icon_state = "0-4"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks)
@@ -6613,7 +6686,8 @@
 /area/mainship/shipboard/weapon_room)
 "ur" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -6772,7 +6846,8 @@
 /area/mainship/shipboard/weapon_room)
 "uP" = (
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1
+	dir = 1;
+	
 	},
 /area/mainship/shipboard/weapon_room)
 "uQ" = (
@@ -6869,7 +6944,8 @@
 /area/mainship/hallways/starboard_umbilical)
 "ve" = (
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1
+	dir = 1;
+	
 	},
 /area/mainship/hallways/starboard_umbilical)
 "vf" = (
@@ -7482,7 +7558,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -7829,19 +7906,9 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/stern_hallway)
 "xF" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
 "xG" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
 "xH" = (
@@ -7865,7 +7932,8 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1
+	dir = 1;
+	
 	},
 /area/mainship/shipboard/port_missiles)
 "xL" = (
@@ -8031,11 +8099,6 @@
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
@@ -8282,7 +8345,8 @@
 /area/mainship/hallways/port_hallway)
 "yV" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -8302,7 +8366,8 @@
 /area/mainship/engineering/lower_engineering)
 "yW" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 1
@@ -8369,7 +8434,8 @@
 	dir = 8
 	},
 /obj/machinery/power/terminal{
-	dir = 4
+	dir = 4;
+	
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -8641,7 +8707,8 @@
 /area/mainship/engineering/engineering_workshop)
 "zU" = (
 /obj/structure/disposalpipe/segment{
-	dir = 1
+	dir = 1;
+	
 	},
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
@@ -8688,7 +8755,8 @@
 /area/mainship/engineering/engineering_workshop)
 "Aa" = (
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 4
+	dir = 4;
+	
 	},
 /area/mainship/engineering/engine_core)
 "Ab" = (
@@ -8810,7 +8878,8 @@
 /area/mainship/engineering/engine_core)
 "Ap" = (
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 8
+	dir = 8;
+	
 	},
 /area/mainship/engineering/engineering_workshop)
 "Aq" = (
@@ -9006,7 +9075,8 @@
 /area/mainship/living/briefing)
 "AO" = (
 /obj/machinery/alarm{
-	dir = 8
+	dir = 8;
+	
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
@@ -9246,7 +9316,8 @@
 /area/mainship/squads/general)
 "Bt" = (
 /obj/structure/disposalpipe/segment{
-	dir = 1
+	dir = 1;
+	
 	},
 /turf/open/floor/mainship,
 /area/mainship/living/cafeteria_starboard)
@@ -9326,7 +9397,8 @@
 /area/mainship/medical/lower_medical)
 "BB" = (
 /obj/structure/disposalpipe/segment{
-	dir = 1
+	dir = 1;
+	
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
@@ -9346,7 +9418,8 @@
 /area/mainship/medical/lower_medical)
 "BD" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
@@ -9519,7 +9592,8 @@
 	pixel_x = 5
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 1
@@ -9577,7 +9651,8 @@
 /area/mainship/engineering/lower_engineering)
 "Ch" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -9588,7 +9663,8 @@
 /area/mainship/engineering/lower_engineering)
 "Ci" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -9615,7 +9691,8 @@
 /area/mainship/engineering/lower_engineering)
 "Ck" = (
 /obj/structure/disposalpipe/segment{
-	dir = 1
+	dir = 1;
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -9641,7 +9718,8 @@
 /area/mainship/engineering/engineering_workshop)
 "Co" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /turf/open/floor/mainship,
 /area/mainship/living/cafeteria_starboard)
@@ -9677,7 +9755,8 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/alarm{
-	dir = 4
+	dir = 4;
+	
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/airoom)
@@ -9792,7 +9871,8 @@
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
@@ -9803,7 +9883,8 @@
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
@@ -9853,7 +9934,8 @@
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
@@ -9892,7 +9974,8 @@
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
@@ -10097,7 +10180,8 @@
 /area/mainship/hallways/port_hallway)
 "Ds" = (
 /obj/structure/disposalpipe/segment{
-	dir = 1
+	dir = 1;
+	
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/stern_hallway)
@@ -10321,13 +10405,15 @@
 "DJ" = (
 /obj/machinery/door/airlock/mainship/maint,
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos)
 "DK" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos)
@@ -10337,7 +10423,8 @@
 	},
 /obj/machinery/meter,
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/port_atmos)
@@ -10401,7 +10488,8 @@
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/machinery/light/small{
 	dir = 1
@@ -10413,9 +10501,10 @@
 /area/mainship/living/port_emb)
 "DT" = (
 /turf/open/floor/mainship/green{
-	dir = 10
+	dir = 10;
+	
 	},
-/area/mainship/living/grunt_rnr)
+/area/mainship/squads/req)
 "DU" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
@@ -10485,7 +10574,8 @@
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/machinery/light/small{
 	dir = 1
@@ -10657,7 +10747,8 @@
 /area/mainship/living/briefing)
 "EA" = (
 /obj/structure/disposalpipe/segment{
-	dir = 1
+	dir = 1;
+	
 	},
 /obj/machinery/light{
 	dir = 4
@@ -10708,7 +10799,8 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1
+	dir = 1;
+	
 	},
 /area/mainship/shipboard/starboard_missiles)
 "EH" = (
@@ -10748,7 +10840,8 @@
 	dir = 2
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 1
+	dir = 1;
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 1
@@ -10959,7 +11052,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 4
+	dir = 4;
+	
 	},
 /area/mainship/engineering/engine_core)
 "Fn" = (
@@ -10980,7 +11074,8 @@
 /area/mainship/squads/req)
 "Fw" = (
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1
+	dir = 1;
+	
 	},
 /area/mainship/squads/req)
 "Fx" = (
@@ -11223,7 +11318,8 @@
 	dir = 6
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 8
+	dir = 8;
+	
 	},
 /area/mainship/hallways/hangar)
 "Gg" = (
@@ -11626,14 +11722,16 @@
 /area/mainship/hallways/starboard_hallway)
 "GZ" = (
 /obj/structure/disposalpipe/segment{
-	dir = 1
+	dir = 1;
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "Ha" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -11691,7 +11789,8 @@
 /area/mainship/hallways/starboard_umbilical)
 "He" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/structure/cable{
 	d1 = 2;
@@ -11738,7 +11837,8 @@
 /area/mainship/hallways/port_hallway)
 "Hh" = (
 /obj/structure/disposalpipe/segment{
-	dir = 1
+	dir = 1;
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
@@ -11760,7 +11860,8 @@
 /area/mainship/hallways/port_hallway)
 "Hj" = (
 /obj/structure/disposalpipe/segment{
-	dir = 1
+	dir = 1;
+	
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8
@@ -12137,7 +12238,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -12180,7 +12282,8 @@
 /area/mainship/command/cic)
 "HW" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -12282,9 +12385,10 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/green{
-	dir = 4
+	dir = 4;
+	
 	},
-/area/mainship/living/grunt_rnr)
+/area/mainship/squads/req)
 "Ij" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/mainship/mono,
@@ -12711,7 +12815,8 @@
 /area/mainship/command/corporateliaison)
 "Jh" = (
 /obj/structure/disposalpipe/segment{
-	dir = 1
+	dir = 1;
+	
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -12748,7 +12853,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -12765,7 +12871,8 @@
 /area/mainship/living/numbertwobunks)
 "Jk" = (
 /obj/structure/bed/chair/comfy/black{
-	dir = 1
+	dir = 1;
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
@@ -12843,7 +12950,8 @@
 /obj/machinery/door/airlock/mainship/command/brief,
 /obj/machinery/door/firedoor/mainship,
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -12899,7 +13007,8 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 1
+	dir = 1;
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
@@ -12988,7 +13097,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/alarm{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/mono,
@@ -13039,7 +13149,8 @@
 /area/mainship/hallways/hangar)
 "JJ" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
@@ -13227,7 +13338,8 @@
 /area/mainship/engineering/ce_room)
 "JZ" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -13241,7 +13353,8 @@
 /area/mainship/living/bridgebunks)
 "Ka" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -13305,7 +13418,8 @@
 /area/mainship/hallways/aft_hallway)
 "Kh" = (
 /obj/structure/disposalpipe/segment{
-	dir = 1
+	dir = 1;
+	
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -13350,7 +13464,8 @@
 /area/mainship/medical/operating_room_two)
 "Ko" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -13366,9 +13481,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
 "Kp" = (
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -13380,11 +13494,6 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
@@ -13439,7 +13548,8 @@
 /area/mainship/hallways/port_hallway)
 "Kt" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -13460,7 +13570,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -13589,7 +13700,8 @@
 /area/mainship/engineering/upper_engineering)
 "KB" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/machinery/light{
 	dir = 1
@@ -13610,7 +13722,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -13624,7 +13737,8 @@
 /area/mainship/living/bridgebunks)
 "KD" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -13718,7 +13832,8 @@
 /area/mainship/living/cafeteria_starboard)
 "KS" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -13775,7 +13890,8 @@
 /area/mainship/shipboard/starboard_missiles)
 "KX" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -13913,7 +14029,8 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/alarm{
-	dir = 1
+	dir = 1;
+	
 	},
 /turf/open/floor/mainship,
 /area/mainship/engineering/ce_room)
@@ -13981,7 +14098,8 @@
 /area/mainship/engineering/engine_core)
 "Lr" = (
 /obj/machinery/power/terminal{
-	dir = 1
+	dir = 1;
+	
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
@@ -13997,7 +14115,8 @@
 /area/mainship/engineering/lower_engineering)
 "Ls" = (
 /obj/machinery/power/terminal{
-	dir = 1
+	dir = 1;
+	
 	},
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
@@ -14016,7 +14135,8 @@
 	dir = 4
 	},
 /obj/machinery/power/terminal{
-	dir = 1
+	dir = 1;
+	
 	},
 /obj/structure/cable/yellow{
 	d2 = 2;
@@ -14158,7 +14278,8 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 8
+	dir = 8;
+	
 	},
 /area/mainship/engineering/engine_core)
 "LM" = (
@@ -14173,7 +14294,8 @@
 	icon_state = "1-8"
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 8
+	dir = 8;
+	
 	},
 /area/mainship/engineering/engine_core)
 "LN" = (
@@ -14239,13 +14361,15 @@
 /area/mainship/medical/lower_medical)
 "Md" = (
 /obj/machinery/alarm{
-	dir = 8
+	dir = 8;
+	
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "Me" = (
 /obj/machinery/alarm{
-	dir = 1
+	dir = 1;
+	
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
@@ -14272,16 +14396,19 @@
 /area/mainship/command/corporateliaison)
 "Mi" = (
 /obj/machinery/alarm{
-	dir = 4
+	dir = 4;
+	
 	},
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "Mj" = (
 /obj/structure/disposalpipe/segment{
-	dir = 1
+	dir = 1;
+	
 	},
 /obj/machinery/alarm{
-	dir = 8
+	dir = 8;
+	
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
@@ -14304,7 +14431,8 @@
 /area/mainship/living/port_garden)
 "Mn" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -14319,7 +14447,8 @@
 /area/mainship/living/bridgebunks)
 "Mo" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -14387,7 +14516,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/alarm{
-	dir = 8
+	dir = 8;
+	
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
@@ -14398,7 +14528,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/alarm{
-	dir = 4
+	dir = 4;
+	
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/chief_mp_office)
@@ -14516,13 +14647,15 @@
 /area/mainship/hallways/port_umbilical)
 "MK" = (
 /obj/machinery/alarm{
-	dir = 4
+	dir = 4;
+	
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_umbilical)
 "MN" = (
 /obj/machinery/alarm{
-	dir = 8
+	dir = 8;
+	
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
@@ -14576,7 +14709,8 @@
 	pixel_y = -5
 	},
 /obj/machinery/alarm{
-	dir = 4
+	dir = 4;
+	
 	},
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
@@ -14593,7 +14727,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -14666,10 +14801,6 @@
 /area/mainship/hallways/stern_hallway)
 "MY" = (
 /obj/machinery/power/apc,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
 "MZ" = (
@@ -14940,9 +15071,10 @@
 	icon_state = "sofamiddle"
 	},
 /turf/open/floor/mainship/green{
-	dir = 2
+	dir = 2;
+	
 	},
-/area/mainship/living/grunt_rnr)
+/area/mainship/squads/req)
 "NG" = (
 /obj/structure/rack,
 /obj/item/reagent_containers/glass/bucket/janibucket,
@@ -15181,7 +15313,7 @@
 	icon_state = "0-8"
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/living/grunt_rnr)
+/area/mainship/squads/req)
 "OB" = (
 /turf/closed/wall/mainship/outer,
 /area/mainship/shipboard/weapon_room)
@@ -15272,7 +15404,8 @@
 /area/mainship/engineering/engineering_workshop)
 "OT" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -15572,7 +15705,7 @@
 "PB" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating/mainship,
-/area/mainship/living/grunt_rnr)
+/area/mainship/squads/req)
 "PC" = (
 /obj/machinery/telecomms/processor/preset_one,
 /turf/open/floor/mainship/tcomms,
@@ -15627,7 +15760,8 @@
 /area/mainship/command/telecomms)
 "PS" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -15668,30 +15802,13 @@
 /obj/item/clothing/ears/earmuffs,
 /turf/open/floor/mainship/orange/full,
 /area/mainship/engineering/ce_room)
-"Qg" = (
-/obj/structure/disposalpipe/segment/corner{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 9
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/port_hallway)
 "Qi" = (
 /obj/structure/bed/chair/comfy{
 	dir = 4;
 	icon_state = "comfychair"
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/living/grunt_rnr)
+/area/mainship/squads/req)
 "Qk" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
@@ -15706,7 +15823,7 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/living/grunt_rnr)
+/area/mainship/squads/req)
 "Qm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
@@ -15773,10 +15890,12 @@
 "QB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment{
-	dir = 1
+	dir = 1;
+	
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 4
+	dir = 4;
+	
 	},
 /area/mainship/squads/req)
 "QD" = (
@@ -15891,7 +16010,8 @@
 /area/mainship/living/cafeteria_starboard)
 "Rr" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -15933,7 +16053,8 @@
 /area/mainship/hallways/hangar)
 "RQ" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/structure/cable{
 	d1 = 4;
@@ -16053,7 +16174,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/alarm{
-	dir = 4
+	dir = 4;
+	
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
@@ -16086,7 +16208,8 @@
 /area/mainship/living/numbertwobunks)
 "ST" = (
 /obj/machinery/alarm{
-	dir = 8
+	dir = 8;
+	
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
@@ -16147,7 +16270,8 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -16164,7 +16288,8 @@
 /area/mainship/hull/lower_hull)
 "TC" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -16186,12 +16311,14 @@
 	icon_state = "comfychair"
 	},
 /obj/machinery/alarm{
-	dir = 8
+	dir = 8;
+	
 	},
 /turf/open/floor/mainship/green{
-	dir = 5
+	dir = 5;
+	
 	},
-/area/mainship/living/grunt_rnr)
+/area/mainship/squads/req)
 "TM" = (
 /obj/structure/flora/pottedplant/twentyone,
 /turf/open/floor/mainship/mono,
@@ -16208,9 +16335,6 @@
 /obj/item/tool/weldpack,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
-"TS" = (
-/turf/closed/wall/mainship,
-/area/mainship/living/grunt_rnr)
 "TT" = (
 /obj/machinery/computer/cryopod,
 /turf/open/floor/mainship,
@@ -16242,7 +16366,8 @@
 /area/mainship/shipboard/weapon_room)
 "Up" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -16353,7 +16478,8 @@
 /area/mainship/squads/req)
 "Va" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -16594,7 +16720,8 @@
 /area/mainship/living/cafeteria_starboard)
 "WS" = (
 /obj/structure/disposalpipe/segment{
-	dir = 1
+	dir = 1;
+	
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
@@ -16644,11 +16771,12 @@
 /obj/structure/table/mainship,
 /obj/item/ashtray/glass,
 /turf/open/floor/mainship/mono,
-/area/mainship/living/grunt_rnr)
+/area/mainship/squads/req)
 "Xt" = (
 /obj/machinery/door/airlock/mainship/maint,
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -16689,9 +16817,10 @@
 	icon_state = "comfychair"
 	},
 /turf/open/floor/mainship/green{
-	dir = 4
+	dir = 4;
+	
 	},
-/area/mainship/living/grunt_rnr)
+/area/mainship/squads/req)
 "Yc" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -16738,9 +16867,10 @@
 	icon_state = "sofacorner"
 	},
 /turf/open/floor/mainship/green{
-	dir = 6
+	dir = 6;
+	
 	},
-/area/mainship/living/grunt_rnr)
+/area/mainship/squads/req)
 "YF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -16752,7 +16882,8 @@
 	dir = 9
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 4
+	dir = 4;
+	
 	},
 /area/mainship/squads/req)
 "YH" = (
@@ -16793,19 +16924,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks)
-"YV" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/starboard_hallway)
 "YX" = (
 /obj/machinery/door/airlock/mainship/marine/requisitions,
 /obj/machinery/door/firedoor/mainship{
@@ -16841,7 +16959,7 @@
 /obj/structure/table/mainship,
 /obj/item/toy/deck,
 /turf/open/floor/mainship/mono,
-/area/mainship/living/grunt_rnr)
+/area/mainship/squads/req)
 "Zl" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -16853,7 +16971,8 @@
 /area/mainship/hull/lower_hull)
 "Zo" = (
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -16906,7 +17025,8 @@
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 8
+	dir = 8;
+	
 	},
 /turf/open/floor/wood,
 /area/mainship/living/numbertwobunks)
@@ -43048,7 +43168,7 @@ Cc
 QT
 VD
 FL
-Kv
+kt
 Mb
 Mb
 Mb
@@ -43305,7 +43425,7 @@ wm
 ZW
 VD
 uW
-Kv
+kt
 Mb
 Dd
 xE
@@ -44577,7 +44697,7 @@ xd
 xd
 xd
 xd
-Qg
+Kp
 gL
 xD
 tR
@@ -46091,13 +46211,13 @@ ic
 gd
 wu
 gd
-TS
+qG
 PB
 PB
 PB
-hk
+kM
 Qk
-TS
+qG
 gL
 xF
 gL
@@ -46352,9 +46472,9 @@ PB
 oA
 oE
 DT
-hk
+kM
 OA
-TS
+qG
 gL
 xF
 gL
@@ -46608,10 +46728,10 @@ gd
 PB
 oB
 Qi
-hk
+kM
 Zf
 pt
-TS
+qG
 gL
 xF
 gL
@@ -46865,10 +46985,10 @@ gd
 PB
 oC
 Xq
-hk
+kM
 oX
 NF
-TS
+qG
 FE
 xF
 gL
@@ -47125,7 +47245,7 @@ Ya
 Ig
 kN
 YE
-TS
+qG
 gL
 xF
 gL
@@ -48155,7 +48275,7 @@ pa
 pr
 qG
 MY
-YV
+xG
 jy
 yS
 lw
