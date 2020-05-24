@@ -148,7 +148,7 @@
 	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/M43
 	ammo_diff = null
-	cell_type = null
+	cell_type = /obj/item/cell/lasgun/M43
 	charge_cost = ENERGY_STANDARD_AMMO_COST
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
@@ -423,7 +423,7 @@
 	load_method = CELL //codex stuff
 	ammo = /datum/ammo/energy/lasgun/M43
 	ammo_diff = null
-	cell_type = null
+	cell_type = /obj/item/cell/lasgun/lasrifle
 	charge_cost = 20
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,

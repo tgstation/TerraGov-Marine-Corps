@@ -107,8 +107,8 @@
 	supplies = list(/obj/item/weapon/gun/shotgun/pump/t35 = 10)
 
 /obj/structure/largecrate/supply/weapons/standard_smg
-	name = "\improper T-19 sub machinegun weapons chest (x8)"
-	desc = "A weapons chest containing eight T-19 submachine guns."
+	name = "\improper T-90 sub machinegun weapons chest (x8)"
+	desc = "A weapons chest containing eight T-90 submachine guns."
 	supplies = list(/obj/item/weapon/gun/smg/standard_smg = 8)
 
 /obj/structure/largecrate/supply/weapons/pistols
@@ -158,8 +158,8 @@
 	supplies = list(/obj/item/ammo_magazine/shotgun = 8, /obj/item/ammo_magazine/shotgun/buckshot = 8, /obj/item/ammo_magazine/shotgun/flechette = 8)
 
 /obj/structure/largecrate/supply/ammo/standard_smg
-	name = "\improper T-19 magazine case (x16)"
-	desc = "An ammunition case containing sixteen T-19 magazines."
+	name = "\improper T-90 magazine case (x16)"
+	desc = "An ammunition case containing sixteen T-90 magazines."
 	supplies = list(/obj/item/ammo_magazine/smg/standard_smg = 16)
 
 /obj/structure/largecrate/supply/ammo/pistol
