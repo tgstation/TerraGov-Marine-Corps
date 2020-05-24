@@ -133,7 +133,7 @@
 			return
 		coil.place_turf(T, user)
 
-/proc/update_cable_icons_on_turf(var/turf/T)
+/proc/update_cable_icons_on_turf(turf/T)
 	for(var/obj/structure/cable/C in T.contents)
 		C.update_icon()
 

@@ -115,7 +115,7 @@ GLOBAL_LIST_INIT(wire_node_generating_types, typecacheof(list(/obj/structure/gri
 /obj/structure/cable/deconstruct(disassembled = TRUE)
 	if(!(flags_atom & NODECONSTRUCT))
 		new /obj/item/stack/cable_coil(drop_location(), 1)
-	qdel(src)
+	return ..()
 
 ///////////////////////////////////
 // General procedures
