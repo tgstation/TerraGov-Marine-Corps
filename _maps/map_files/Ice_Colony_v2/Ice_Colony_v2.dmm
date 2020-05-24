@@ -928,9 +928,7 @@
 /area/ice_colony/exterior/surface/landing_pad2)
 "adp" = (
 /obj/effect/landmark/nuke_spawn,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin3"
-	},
+/turf/open/shuttle/dropship/three,
 /area/ice_colony/underground/responsehangar)
 "adq" = (
 /obj/effect/turf_overlay/icerock,
@@ -2541,7 +2539,6 @@
 /area/ice_colony/surface/substation/smes)
 "ahy" = (
 /obj/machinery/power/terminal{
-	icon_state = "term";
 	dir = 4
 	},
 /obj/structure/cable/yellow{
@@ -2593,7 +2590,6 @@
 /area/ice_colony/surface/substation/smes)
 "ahD" = (
 /obj/machinery/power/terminal{
-	icon_state = "term";
 	dir = 1
 	},
 /obj/structure/cable/yellow{
@@ -3025,7 +3021,6 @@
 /area/ice_colony/surface/substation/smes)
 "aiK" = (
 /obj/machinery/power/terminal{
-	icon_state = "term";
 	dir = 1
 	},
 /obj/structure/cable/yellow{
@@ -3127,7 +3122,6 @@
 /area/ice_colony/surface/engineering)
 "aiW" = (
 /obj/machinery/power/terminal{
-	icon_state = "term";
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -3186,7 +3180,6 @@
 /area/ice_colony/surface/substation/smes)
 "ajd" = (
 /obj/machinery/power/terminal{
-	icon_state = "term";
 	dir = 4
 	},
 /obj/structure/cable/yellow,
@@ -3342,7 +3335,6 @@
 /area/ice_colony/surface/engineering)
 "ajw" = (
 /obj/machinery/power/terminal{
-	icon_state = "term";
 	dir = 8
 	},
 /obj/structure/cable/yellow{
@@ -3940,28 +3932,10 @@
 	},
 /turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
-"akS" = (
-/obj/machinery/shower{
-	dir = 4;
-	icon_state = "shower";
-	pixel_x = 5;
-	pixel_y = -8
-	},
-/turf/open/floor/freezer,
-/area/ice_colony/surface/dorms/restroom_e)
 "akT" = (
 /obj/structure/curtain/open/shower,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
-"akU" = (
-/obj/machinery/shower{
-	dir = 4;
-	icon_state = "shower";
-	pixel_x = 5;
-	pixel_y = -8
-	},
-/turf/open/floor/freezer,
-/area/ice_colony/surface/dorms/restroom_w)
 "akV" = (
 /obj/structure/curtain/open/shower,
 /turf/open/floor/freezer,
@@ -4259,12 +4233,6 @@
 	},
 /area/ice_colony/underground/hangar)
 "alT" = (
-/obj/machinery/shower{
-	dir = 4;
-	icon_state = "shower";
-	pixel_x = 5;
-	pixel_y = -8
-	},
 /obj/effect/landmark/start/job/survivor,
 /obj/item/storage/toolbox/emergency,
 /turf/open/floor/freezer,
@@ -5032,7 +5000,6 @@
 /area/ice_colony/surface/clinic/treatment)
 "aoc" = (
 /obj/machinery/power/terminal{
-	icon_state = "term";
 	dir = 4
 	},
 /obj/structure/cable/yellow{
@@ -8939,7 +8906,6 @@
 /area/ice_colony/surface/disposals)
 "axF" = (
 /obj/structure/disposaloutlet{
-	icon_state = "outlet";
 	dir = 4
 	},
 /obj/structure/disposalpipe/trunk{
@@ -13952,9 +13918,7 @@
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/garage/one)
 "aKW" = (
-/turf/open/floor{
-	icon_state = "darkredcorners2"
-	},
+/turf/open/floor/tile/dark/red2/corner,
 /area/ice_colony/underground/responsehangar)
 "aKX" = (
 /obj/structure/rack,
@@ -22012,15 +21976,11 @@
 	},
 /area/ice_colony/underground/requesition)
 "bgE" = (
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/ice_colony/underground/responsehangar)
 "bgF" = (
 /obj/machinery/computer3,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/ice_colony/underground/responsehangar)
 "bgG" = (
 /turf/open/floor/tile/dark/blue2{
@@ -22682,7 +22642,6 @@
 /area/ice_colony/underground/hangar)
 "biw" = (
 /obj/machinery/power/terminal{
-	icon_state = "term";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -22835,9 +22794,7 @@
 /obj/structure/rack,
 /obj/item/storage/toolbox/mechanical,
 /obj/item/multitool,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/ice_colony/underground/responsehangar)
 "biP" = (
 /turf/open/shuttle/dropship{
@@ -22890,7 +22847,6 @@
 /area/ice_colony/underground/hangar)
 "biW" = (
 /obj/machinery/power/terminal{
-	icon_state = "term";
 	dir = 8
 	},
 /obj/structure/cable{
@@ -23095,9 +23051,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/hangar)
 "bjx" = (
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin7"
-	},
+/turf/open/shuttle/dropship/seven,
 /area/ice_colony/underground/responsehangar)
 "bjy" = (
 /turf/open/floor/tile/dark/brown2{
@@ -23237,9 +23191,7 @@
 /area/ice_colony/underground/requesition/lobby)
 "bjT" = (
 /obj/structure/rack,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/ice_colony/underground/responsehangar)
 "bjU" = (
 /turf/closed/ice/corner{
@@ -23590,9 +23542,7 @@
 /area/ice_colony/underground/responsehangar)
 "blf" = (
 /obj/machinery/door/airlock/mainship/generic,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin3"
-	},
+/turf/open/shuttle/dropship/three,
 /area/ice_colony/underground/responsehangar)
 "blg" = (
 /obj/structure/cable/yellow{
@@ -23649,9 +23599,7 @@
 	},
 /area/ice_colony/underground/hallway/north_west)
 "bll" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-21"
-	},
+/obj/structure/flora/pottedplant/twentyone,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 5
 	},
@@ -23709,9 +23657,7 @@
 /area/ice_colony/exterior/surface/valley/southeast)
 "blx" = (
 /obj/structure/bed/chair/dropship/passenger,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/ice_colony/underground/responsehangar)
 "bly" = (
 /obj/structure/cable{
@@ -23942,9 +23888,7 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
 	},
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/ice_colony/underground/responsehangar)
 "bmd" = (
 /obj/structure/table/woodentable,
@@ -24178,9 +24122,7 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/ice_colony/underground/responsehangar)
 "bmM" = (
 /obj/structure/cable,
@@ -26974,9 +26916,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
 "buB" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NS-center"
-	},
+/obj/effect/decal/warning_stripes/nscenter,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -27095,9 +27035,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
 "buS" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NS-center"
-	},
+/obj/effect/decal/warning_stripes/nscenter,
 /obj/effect/decal/warning_stripes,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -27265,9 +27203,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
 "bvp" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NS-center"
-	},
+/obj/effect/decal/warning_stripes/nscenter,
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
 "bvq" = (
@@ -27500,16 +27436,12 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
 "bvR" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NS-center"
-	},
+/obj/effect/decal/warning_stripes/nscenter,
 /obj/effect/decal/warning_stripes,
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
 "bvS" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NS-center"
-	},
+/obj/effect/decal/warning_stripes/nscenter,
 /obj/effect/decal/warning_stripes,
 /obj/item/toy/beach_ball/basketball,
 /turf/open/floor/wood,
@@ -27939,9 +27871,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
 "bwW" = (
-/obj/effect/decal/warning_stripes{
-	icon_state = "NS-center"
-	},
+/obj/effect/decal/warning_stripes/nscenter,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
@@ -27950,7 +27880,6 @@
 /area/ice_colony/underground/crew/bball)
 "bwX" = (
 /obj/structure/closet/walllocker/hydrant/full{
-	icon_state = "hydrant";
 	dir = 4
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -30061,9 +29990,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor{
-	icon_state = "darkredcorners2"
-	},
+/turf/open/floor/tile/dark/red2/corner,
 /area/ice_colony/underground/security/hallway)
 "bCq" = (
 /obj/machinery/disposal,
@@ -31719,9 +31646,7 @@
 "bGA" = (
 /obj/structure/rack,
 /obj/item/storage/firstaid/regular,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/ice_colony/underground/responsehangar)
 "bGB" = (
 /turf/closed/wall/r_wall,
@@ -33025,9 +32950,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/storage)
 "bJJ" = (
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin8"
-	},
+/turf/open/shuttle/dropship/eight,
 /area/ice_colony/underground/responsehangar)
 "bJK" = (
 /obj/structure/mineral_door/resin,
@@ -33523,7 +33446,6 @@
 /area/ice_colony/underground/reception)
 "bKS" = (
 /obj/structure/closet/walllocker/hydrant/full{
-	icon_state = "hydrant";
 	dir = 4
 	},
 /turf/open/floor/tile/dark/purple2{
@@ -35466,9 +35388,7 @@
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/excavationbarracks)
 "bQA" = (
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin3"
-	},
+/turf/open/shuttle/dropship/three,
 /area/ice_colony/underground/responsehangar)
 "bQC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -35611,9 +35531,7 @@
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 2
 	},
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/ice_colony/underground/responsehangar)
 "bQT" = (
 /turf/closed/shuttle/ert{
@@ -36090,8 +36008,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
-/obj/structure/disposalpipe/junction{
-	icon_state = "pipe-j2";
+/obj/structure/disposalpipe/junction/flipped{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/snow/layer0,
@@ -36454,7 +36371,6 @@
 /area/ice_colony/underground/hallway/north_west)
 "bTf" = (
 /obj/machinery/power/terminal{
-	icon_state = "term";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -36479,7 +36395,6 @@
 /area/ice_colony/underground/engineering/substation)
 "bTh" = (
 /obj/machinery/power/terminal{
-	icon_state = "term";
 	dir = 4
 	},
 /obj/structure/cable,
@@ -37323,7 +37238,6 @@
 /area/ice_colony/surface/excavationbarracks)
 "bVL" = (
 /obj/machinery/shower{
-	icon_state = "shower";
 	dir = 4
 	},
 /obj/structure/window/reinforced,
@@ -37570,7 +37484,6 @@
 /area/ice_colony/surface/excavationbarracks)
 "bWo" = (
 /obj/structure/bed/chair/wood/wings{
-	icon_state = "wooden_chair_wings";
 	dir = 1
 	},
 /turf/open/floor/tile/dark/yellow2,
@@ -37686,7 +37599,6 @@
 /area/ice_colony/exterior/surface/valley/southeast)
 "bWG" = (
 /obj/machinery/shower{
-	icon_state = "shower";
 	dir = 4
 	},
 /obj/machinery/door/window/eastleft,
@@ -62449,11 +62361,11 @@ abL
 aax
 aax
 akC
-akU
+akW
 alk
 alT
 alk
-akU
+akW
 alk
 apm
 alk
@@ -66047,11 +65959,11 @@ abL
 aax
 aax
 akD
-akS
+akX
 alm
-akS
+akX
 alm
-akS
+akX
 anE
 aqt
 apH

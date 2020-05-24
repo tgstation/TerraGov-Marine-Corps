@@ -598,7 +598,6 @@
 	},
 /obj/structure/flora/pottedplant,
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 4
 	},
 /area/desert/interior/main_building)
@@ -725,7 +724,6 @@
 "cs" = (
 /obj/machinery/vending/snack,
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 1
 	},
 /area/desert/interior/main_building)
@@ -768,7 +766,6 @@
 /area/desert/interior/command/office)
 "cz" = (
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 1
 	},
 /area/desert/interior/main_building)
@@ -818,7 +815,6 @@
 /area/desert/interior/command/office)
 "cJ" = (
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 4
 	},
 /area/desert/interior/main_building)
@@ -951,7 +947,6 @@
 "cY" = (
 /obj/structure/flora/pottedplant,
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 6
 	},
 /area/desert/interior/main_building)
@@ -967,9 +962,8 @@
 	},
 /area/shuttle/drop1/lz1)
 "db" = (
-/turf/open/floor{
-	dir = 2;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 2
 	},
 /area/desert/interior/main_building)
 "dc" = (
@@ -1320,9 +1314,7 @@
 /turf/closed/wall/r_wall,
 /area/desert/interior/shipping/east)
 "ei" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-21"
-	},
+/obj/structure/flora/pottedplant/twentyone,
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 4;
@@ -1452,7 +1444,6 @@
 	dir = 4
 	},
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 5
 	},
 /area/desert/interior/main_building)
@@ -1559,7 +1550,6 @@
 "eN" = (
 /obj/structure/flora/pottedplant,
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 9
 	},
 /area/desert/interior/main_building)
@@ -1568,7 +1558,6 @@
 	dir = 1
 	},
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 1
 	},
 /area/desert/interior/main_building)
@@ -1588,7 +1577,6 @@
 	dir = 4
 	},
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 6
 	},
 /area/desert/interior/main_building)
@@ -1624,21 +1612,18 @@
 "eX" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 1
 	},
 /area/desert/interior/main_building)
 "eY" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 1
 	},
 /area/desert/interior/main_building)
 "eZ" = (
 /obj/structure/flora/pottedplant,
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 5
 	},
 /area/desert/interior/main_building)
@@ -1680,7 +1665,6 @@
 /area/shuttle/drop1/lz1)
 "ff" = (
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 8
 	},
 /area/desert/interior/main_building)
@@ -1718,7 +1702,6 @@
 "fk" = (
 /obj/structure/flora/pottedplant,
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 10
 	},
 /area/desert/interior/main_building)
@@ -1777,7 +1760,6 @@
 	icon_state = "4-8"
 	},
 /turf/open/floor/tile/whiteyellow/corner{
-	icon_state = "whiteyellowcorner";
 	dir = 8
 	},
 /area/desert/interior/main_building)
@@ -1798,7 +1780,6 @@
 /area/desert/interior/medbay)
 "fs" = (
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 4
 	},
 /area/desert/interior/toilet)
@@ -1817,7 +1798,6 @@
 "fu" = (
 /obj/structure/flora/pottedplant,
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 8
 	},
 /area/desert/interior/main_building)
@@ -1877,7 +1857,6 @@
 "fE" = (
 /obj/structure/table,
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 8
 	},
 /area/desert/interior/main_building)
@@ -1903,7 +1882,6 @@
 	},
 /obj/structure/table,
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 4
 	},
 /area/desert/interior/main_building)
@@ -1995,7 +1973,6 @@
 "fV" = (
 /obj/structure/bed/chair,
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 8
 	},
 /area/desert/interior/main_building)
@@ -2011,7 +1988,6 @@
 	},
 /obj/structure/bed/chair,
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 4
 	},
 /area/desert/interior/main_building)
@@ -2098,7 +2074,6 @@
 	icon_state = "1-2"
 	},
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 4
 	},
 /area/desert/interior/main_building)
@@ -2183,7 +2158,6 @@
 	dir = 8
 	},
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 8
 	},
 /area/desert/interior/main_building)
@@ -2320,7 +2294,6 @@
 	dir = 4
 	},
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 8
 	},
 /area/desert/interior/main_building)
@@ -2339,7 +2312,6 @@
 	},
 /obj/structure/bed/chair,
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 4
 	},
 /area/desert/interior/main_building)
@@ -2492,7 +2464,6 @@
 	dir = 1
 	},
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 8
 	},
 /area/desert/interior/main_building)
@@ -2508,9 +2479,8 @@
 	icon_state = "wooden";
 	dir = 1
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "whitegreen"
+/turf/open/floor/tile/green/whitegreen{
+	dir = 1
 	},
 /area/desert/interior/main_building)
 "hv" = (
@@ -2528,7 +2498,6 @@
 	dir = 1
 	},
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 4
 	},
 /area/desert/interior/main_building)
@@ -2537,14 +2506,12 @@
 	dir = 8
 	},
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 9
 	},
 /area/desert/interior/main_building)
 "hx" = (
 /obj/structure/flora/pottedplant,
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 1
 	},
 /area/desert/interior/main_building)
@@ -2554,42 +2521,36 @@
 	dir = 1
 	},
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 1
 	},
 /area/desert/interior/main_building)
 "hz" = (
 /obj/effect/spawner/random/tool,
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 1
 	},
 /area/desert/interior/main_building)
 "hA" = (
 /obj/machinery/vending/cigarette/colony,
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 1
 	},
 /area/desert/interior/main_building)
 "hB" = (
 /obj/structure/bed/chair/sofa/right,
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 1
 	},
 /area/desert/interior/main_building)
 "hC" = (
 /obj/structure/bed/chair/sofa,
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 1
 	},
 /area/desert/interior/main_building)
 "hD" = (
 /obj/structure/bed/chair/sofa/left,
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 1
 	},
 /area/desert/interior/main_building)
@@ -2599,13 +2560,11 @@
 	},
 /obj/structure/flora/pottedplant,
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 1
 	},
 /area/desert/interior/main_building)
 "hF" = (
 /turf/open/floor/tile/whiteyellow/corner{
-	icon_state = "whiteyellowcorner";
 	dir = 1
 	},
 /area/desert/interior/main_building)
@@ -2625,7 +2584,6 @@
 	icon_state = "2-4"
 	},
 /turf/open/floor/tile/whiteyellow/corner{
-	icon_state = "whiteyellowcorner";
 	dir = 4
 	},
 /area/desert/interior/main_building)
@@ -2646,7 +2604,6 @@
 	dir = 1
 	},
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 1
 	},
 /area/desert/interior/main_building)
@@ -2660,7 +2617,6 @@
 	},
 /obj/machinery/power/apc/drained,
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 1
 	},
 /area/desert/interior/main_building)
@@ -2670,7 +2626,6 @@
 	dir = 1
 	},
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 1
 	},
 /area/desert/interior/main_building)
@@ -2707,7 +2662,6 @@
 	dir = 8
 	},
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 10
 	},
 /area/desert/interior/main_building)
@@ -2730,7 +2684,6 @@
 /area/desert/interior/main_building)
 "hW" = (
 /turf/open/floor/tile/whiteyellow/corner{
-	icon_state = "whiteyellowcorner";
 	dir = 8
 	},
 /area/desert/interior/main_building)
@@ -2795,7 +2748,6 @@
 "ig" = (
 /obj/machinery/washing_machine,
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 9
 	},
 /area/desert/interior/toilet)
@@ -2810,7 +2762,6 @@
 	dir = 1
 	},
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 1
 	},
 /area/desert/interior/toilet)
@@ -2835,7 +2786,6 @@
 "im" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 8
 	},
 /area/desert/interior/main_building)
@@ -2912,7 +2862,6 @@
 	dir = 4
 	},
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 4
 	},
 /area/desert/interior/toilet)
@@ -3007,7 +2956,6 @@
 "iI" = (
 /obj/structure/flora/pottedplant,
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 4
 	},
 /area/desert/interior/main_building)
@@ -3089,7 +3037,6 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/terminal{
-	icon_state = "term";
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -3130,7 +3077,6 @@
 	dir = 4
 	},
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 8
 	},
 /area/desert/interior/toilet)
@@ -3185,7 +3131,6 @@
 	dir = 4
 	},
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 4
 	},
 /area/desert/interior/main_building)
@@ -3296,7 +3241,6 @@
 /area/desert/interior/engineering)
 "jw" = (
 /obj/structure/barricade/metal{
-	icon_state = "metal_0";
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -3317,7 +3261,6 @@
 /area/desert/interior/shipping/north)
 "jz" = (
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 8
 	},
 /area/desert/interior/toilet)
@@ -3337,7 +3280,6 @@
 "jD" = (
 /obj/effect/spawner/random/toolbox,
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 8
 	},
 /area/desert/interior/main_building)
@@ -3346,7 +3288,6 @@
 	dir = 4
 	},
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 4
 	},
 /area/desert/interior/main_building)
@@ -3384,7 +3325,6 @@
 	dir = 4
 	},
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 4
 	},
 /area/desert/interior/main_building)
@@ -3483,14 +3423,12 @@
 /area/desert/outside)
 "jY" = (
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 6
 	},
 /area/desert/interior/toilet)
 "jZ" = (
 /obj/structure/barricade/wooden,
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 10
 	},
 /area/desert/interior/main_building)
@@ -3533,7 +3471,6 @@
 "kg" = (
 /obj/structure/barricade/wooden,
 /turf/open/floor/tile/whiteyellow{
-	icon_state = "whiteyellow";
 	dir = 6
 	},
 /area/desert/interior/main_building)
