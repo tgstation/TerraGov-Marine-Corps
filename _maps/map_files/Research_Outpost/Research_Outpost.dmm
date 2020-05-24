@@ -6500,7 +6500,6 @@
 "KV" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump,
-/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/engineering)
 "KW" = (

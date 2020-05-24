@@ -14141,14 +14141,6 @@
 /obj/item/ammo_magazine/shotgun/buckshot,
 /turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
-"bcR" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/white,
-/area/lv624/lazarus/main_hall)
 "bcS" = (
 /obj/structure/table/reinforced,
 /obj/item/flashlight/lamp{
@@ -18216,6 +18208,11 @@
 /obj/docking_port/stationary/crashmode,
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle7)
+"ccp" = (
+/obj/structure/jungle/vines,
+/obj/structure/cable,
+/turf/closed/wall,
+/area/lv624/lazarus/atmos)
 "ciV" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 1
@@ -18244,6 +18241,12 @@
 	},
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
+"cHE" = (
+/obj/structure/cable,
+/turf/open/floor/plating/warning{
+	dir = 2
+	},
+/area/lv624/lazarus/engineering)
 "cSo" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -18411,10 +18414,6 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/shuttle/drop2/lz2)
-"gWw" = (
-/obj/structure/cable,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/atmos/outside)
 "hzX" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/cult,
@@ -18612,11 +18611,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/wall,
 /area/shuttle/drop2/lz2)
-"njg" = (
-/obj/structure/jungle/vines,
-/obj/structure/cable,
-/turf/closed/wall,
-/area/lv624/lazarus/atmos)
 "nny" = (
 /obj/structure/fence,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -18659,12 +18653,6 @@
 	},
 /turf/open/floor,
 /area/lv624/ground/compound/n)
-"oWK" = (
-/obj/structure/cable,
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
-/area/lv624/lazarus/engineering)
 "oWX" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/resin,
@@ -18775,10 +18763,6 @@
 /obj/docking_port/stationary/crashmode,
 /turf/closed/wall,
 /area/lv624/ground/river3)
-"rFN" = (
-/obj/structure/cable,
-/turf/closed/wall/r_wall,
-/area/lv624/lazarus/engineering)
 "rOf" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/platebotc,
@@ -18835,6 +18819,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
+"tYJ" = (
+/obj/structure/cable,
+/turf/closed/wall/r_wall,
+/area/lv624/lazarus/engineering)
 "ugM" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
@@ -18851,6 +18839,10 @@
 	},
 /turf/closed/wall,
 /area/lv624/lazarus/quartstorage)
+"uDT" = (
+/obj/structure/cable,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/lazarus/atmos/outside)
 "uNG" = (
 /obj/structure/jungle/plantbot1/alien,
 /obj/docking_port/stationary/crashmode,
@@ -40289,7 +40281,7 @@ bie
 bgL
 bcD
 bdE
-gWw
+uDT
 bdE
 bdE
 bdE
@@ -40544,9 +40536,9 @@ bhl
 bif
 bie
 bid
-rFN
-rFN
-rFN
+tYJ
+tYJ
+tYJ
 bjH
 bjH
 blo
@@ -40800,8 +40792,8 @@ anS
 bhm
 bac
 bie
-rFN
-rFN
+tYJ
+tYJ
 blg
 blO
 blO
@@ -41057,7 +41049,7 @@ anV
 bhm
 bac
 biV
-rFN
+tYJ
 bkw
 blh
 blP
@@ -41065,7 +41057,7 @@ bmH
 bmH
 bnP
 boE
-oWK
+cHE
 blj
 blj
 blj
@@ -41314,15 +41306,15 @@ aoa
 bhm
 bac
 biW
-rFN
+tYJ
 bkx
-oWK
+cHE
 blj
 blj
 blj
 blj
 boF
-oWK
+cHE
 bqj
 bqR
 bqj
@@ -41573,7 +41565,7 @@ bac
 biV
 bjI
 bky
-oWK
+cHE
 blR
 bmJ
 bmJ
@@ -41828,7 +41820,7 @@ anV
 bhm
 bac
 biW
-rFN
+tYJ
 bkz
 blj
 blS
@@ -42085,7 +42077,7 @@ aoa
 bhm
 bac
 bac
-rFN
+tYJ
 bkA
 blk
 bkA
@@ -42342,7 +42334,7 @@ bbP
 bhn
 bik
 bac
-rFN
+tYJ
 bkB
 bll
 blT
@@ -42597,9 +42589,9 @@ ber
 bbv
 bbv
 baU
-njg
-njg
-rFN
+ccp
+ccp
+tYJ
 bqo
 bll
 blU
@@ -42856,7 +42848,7 @@ aZv
 aZv
 bil
 aYw
-rFN
+tYJ
 bkD
 bln
 bll
@@ -43113,7 +43105,7 @@ azg
 bet
 aET
 biZ
-rFN
+tYJ
 bkD
 bln
 bll
@@ -43370,7 +43362,7 @@ aXg
 bhq
 aXg
 biZ
-rFN
+tYJ
 bkD
 bln
 bll
@@ -47983,7 +47975,7 @@ aWN
 aWN
 aiy
 aYF
-bcR
+aRd
 bbc
 aXt
 bbW

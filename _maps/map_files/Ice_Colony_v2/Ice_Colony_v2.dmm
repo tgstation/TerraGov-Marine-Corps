@@ -1225,7 +1225,6 @@
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/surface/engineering/tool)
 "aey" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
@@ -2883,7 +2882,6 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/substation/smes)
 "akk" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -3201,7 +3199,6 @@
 /area/ice_colony/surface/substation)
 "alw" = (
 /obj/structure/rack,
-/obj/structure/cable,
 /obj/item/circuitboard/airalarm,
 /obj/structure/cable,
 /turf/open/floor/tile/dark/yellow2{
@@ -4797,7 +4794,6 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/surface/clinic/treatment)
 "aqD" = (
-/obj/structure/cable,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/corpsespawner/scientist,
 /obj/structure/cable,
@@ -7029,7 +7025,6 @@
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/ice_colony/surface/hydroponics/lobby)
 "axk" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -11518,7 +11513,6 @@
 /area/ice_colony/exterior/surface/clearing/south)
 "aLl" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno/down,
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
@@ -14756,7 +14750,6 @@
 	},
 /area/ice_colony/exterior/surface/valley/southeast)
 "aVh" = (
-/obj/structure/cable,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -15345,7 +15338,6 @@
 	dir = 1;
 	name = "\improper Omicron Technical Storage"
 	},
-/obj/structure/cable,
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/surface/research/tech_storage)
 "aWQ" = (
@@ -18331,7 +18323,6 @@
 "bgo" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/southwest)
 "bgp" = (
@@ -20475,7 +20466,6 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/clearing/south)
 "bnN" = (
@@ -23881,7 +23871,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
-/obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/engineering)
 "byy" = (
@@ -23903,17 +23892,6 @@
 	dir = 1;
 	name = "\improper Underground Power Substation"
 	},
-/turf/open/floor/tile/dark2,
-/area/ice_colony/underground/engineering)
-"byA" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/engineering)
 "byB" = (
@@ -24918,15 +24896,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/ice_colony/underground/security/hallway)
-"bBH" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/green/hidden,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/underground/hallway/north_west)
 "bBI" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -25255,17 +25224,6 @@
 /obj/item/reagent_containers/food/snacks/cheeseburger,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/canteen)
-"bCE" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/underground/hallway/south_east)
 "bCF" = (
 /obj/structure/table,
 /obj/item/tool/kitchen/utensil/spoon,
@@ -25343,22 +25301,6 @@
 /obj/item/reagent_containers/food/snacks/hotchili,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/canteen)
-"bCT" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/green/hidden,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/underground/hallway/south_east)
-"bCU" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/underground/hallway/south_east)
 "bCV" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/tile/dark/red2{
@@ -26452,7 +26394,6 @@
 "bGj" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
-/obj/structure/cable,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 1
 	},
@@ -27660,7 +27601,6 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
-/obj/structure/cable,
 /turf/open/floor/tile/red/whitered{
 	dir = 1
 	},
@@ -27681,14 +27621,6 @@
 	dir = 1
 	},
 /area/ice_colony/underground/command/checkpoint)
-"bJU" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/underground/security)
 "bJV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -30063,15 +29995,6 @@
 "bRH" = (
 /turf/closed/ice_rock/southWall,
 /area/ice_colony/exterior/underground/caves)
-"bRI" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/manifold/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark2,
-/area/ice_colony/underground/hallway/south_east)
 "bRJ" = (
 /obj/machinery/landinglight/ds2/delaythree{
 	dir = 8
@@ -30452,7 +30375,6 @@
 "bTc" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/ice_colony/underground/engineering/substation)
 "bTd" = (
@@ -30563,7 +30485,6 @@
 /obj/structure/disposalpipe/junction/flipped{
 	dir = 1
 	},
-/obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
 "bTx" = (
@@ -31071,7 +30992,6 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hangar/checkpoint)
 "bVn" = (
@@ -33070,7 +32990,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/disposalpipe/segment,
-/obj/structure/cable,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/south_east)
@@ -33469,10 +33388,6 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/west)
-"iUJ" = (
-/obj/structure/cable,
-/turf/closed/wall/r_wall,
-/area/ice_colony/underground/engineering)
 "iUP" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/landmark/xeno_silo_spawn,
@@ -33493,10 +33408,6 @@
 	dir = 4
 	},
 /area/ice_colony/underground/maintenance/south)
-"jdQ" = (
-/obj/structure/cable,
-/turf/closed/wall/r_wall,
-/area/ice_colony/underground/maintenance/engineering)
 "jgT" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -33555,12 +33466,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/corners,
 /area/ice_colony/exterior/surface/cliff)
-"jGx" = (
-/obj/structure/cable,
-/turf/open/floor/tile/dark/yellow2{
-	dir = 1
-	},
-/area/ice_colony/surface/engineering/generator)
 "jOy" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/southWall,
@@ -33836,10 +33741,6 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/south)
-"omD" = (
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/ice_colony/underground/maintenance/engineering)
 "opE" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/ice,
@@ -33889,6 +33790,13 @@
 	dir = 5
 	},
 /area/ice_colony/exterior/surface/cliff)
+"qtQ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/ice_colony/exterior/surface/valley/south/excavation)
 "qwW" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/northWall,
@@ -33959,6 +33867,10 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice_rock/southWall,
 /area/ice_colony/exterior/surface/valley/west)
+"rwC" = (
+/obj/structure/cable,
+/turf/closed/wall/r_wall,
+/area/ice_colony/underground/engineering)
 "rxD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -34022,13 +33934,6 @@
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/cliff)
-"svE" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/plating/ground/snow/layer1,
-/area/ice_colony/exterior/surface/valley/south/excavation)
 "sBu" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice_rock/corners,
@@ -34081,15 +33986,6 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice_rock/corners,
 /area/ice_colony/exterior/surface/cliff)
-"ttZ" = (
-/obj/machinery/power/terminal{
-	dir = 1
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark/yellow2/corner{
-	dir = 4
-	},
-/area/ice_colony/surface/substation/smes)
 "twy" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -34118,6 +34014,10 @@
 	},
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/southeast)
+"tOo" = (
+/obj/structure/cable,
+/turf/closed/wall/r_wall,
+/area/ice_colony/underground/maintenance/engineering)
 "tQs" = (
 /obj/effect/turf_overlay/icerock{
 	dir = 8
@@ -34141,6 +34041,15 @@
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/cliff)
+"uds" = (
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark/yellow2/corner{
+	dir = 4
+	},
+/area/ice_colony/surface/substation/smes)
 "uvI" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice/corner{
@@ -34175,6 +34084,10 @@
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/cliff)
+"uXN" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ice_colony/underground/maintenance/engineering)
 "vdz" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 1
@@ -34208,6 +34121,12 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/maintenance/south)
+"wfK" = (
+/obj/structure/cable,
+/turf/open/floor/tile/dark/yellow2{
+	dir = 1
+	},
+/area/ice_colony/surface/engineering/generator)
 "wjI" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -47609,7 +47528,7 @@ bpK
 bqt
 boY
 boY
-bBH
+bzi
 bqq
 bqZ
 bsM
@@ -54034,7 +53953,7 @@ bkZ
 boH
 bpc
 bpu
-bCE
+bCC
 brT
 bst
 bsU
@@ -54805,7 +54724,7 @@ bnY
 bqu
 bqD
 bqD
-bCT
+bxW
 bqx
 bri
 brR
@@ -57896,13 +57815,13 @@ bta
 bqC
 bqC
 bBg
-bRI
+bta
 bqC
 bqC
 bqC
 bqC
 cnN
-bRI
+bta
 bqC
 bqC
 bta
@@ -57912,7 +57831,7 @@ bBg
 bBD
 bCj
 bCG
-bCU
+bqC
 bqC
 bqC
 bqC
@@ -58667,7 +58586,7 @@ boJ
 boJ
 boJ
 boJ
-omD
+uXN
 bwB
 bqP
 aZF
@@ -59181,7 +59100,7 @@ bsf
 bsf
 bsf
 bsf
-omD
+uXN
 bsf
 bqP
 aZF
@@ -60968,7 +60887,7 @@ btz
 bpm
 bYY
 box
-byA
+byi
 bTl
 bog
 bYY
@@ -61008,7 +60927,7 @@ bHC
 bMs
 bIi
 bJn
-bJU
+bXI
 bIv
 bKz
 bPt
@@ -61471,12 +61390,12 @@ bXg
 bSv
 bSv
 bbJ
-svE
+qtQ
 brx
-jdQ
-omD
-omD
-iUJ
+tOo
+uXN
+uXN
+rwC
 bTi
 bTl
 boy
@@ -72914,7 +72833,7 @@ adC
 adC
 afT
 adC
-jGx
+wfK
 aeR
 aig
 ada
@@ -78312,7 +78231,7 @@ aaC
 aaC
 ags
 aid
-ttZ
+uds
 ain
 ajd
 ahw

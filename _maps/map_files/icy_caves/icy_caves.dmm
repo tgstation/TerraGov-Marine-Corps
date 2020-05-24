@@ -2538,7 +2538,6 @@
 "jP" = (
 /obj/structure/cable,
 /obj/machinery/power/smes/buildable/empty/dist,
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/engineering)
 "jQ" = (

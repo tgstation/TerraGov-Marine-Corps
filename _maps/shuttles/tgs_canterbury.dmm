@@ -972,7 +972,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "cw" = (
@@ -1225,7 +1224,7 @@
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
-"Rz" = (
+"wX" = (
 /obj/structure/window/framed/mainship/canterbury,
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -1316,7 +1315,7 @@ aL
 an
 aR
 bb
-Rz
+wX
 bo
 by
 bI

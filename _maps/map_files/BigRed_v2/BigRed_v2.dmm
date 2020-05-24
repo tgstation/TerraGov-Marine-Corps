@@ -3382,7 +3382,6 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "amc" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
@@ -3447,7 +3446,6 @@
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "aml" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -4339,7 +4337,6 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/general_offices)
 "apj" = (
-/obj/structure/cable,
 /obj/machinery/door/airlock/mainship/maint/free_access{
 	name = "\improper Dormitories EVA Maintenance"
 	},
@@ -6923,7 +6920,6 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "ayb" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -7326,14 +7322,6 @@
 	},
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
-"azF" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 10
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/medical)
 "azG" = (
 /obj/structure/cable,
 /turf/open/floor/tile/white,
@@ -7443,7 +7431,6 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "azX" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -7617,7 +7604,6 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/dorms)
 "aAG" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
@@ -10171,7 +10157,6 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aJI" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
@@ -12904,7 +12889,6 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/e)
 "aUs" = (
-/obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -15610,7 +15594,6 @@
 /area/bigredv2/outside/office_complex)
 "bfo" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/tile/red/redtaupecorner{
@@ -17846,7 +17829,6 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bpG" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
@@ -18095,13 +18077,6 @@
 /obj/machinery/vending/snack{
 	icon_state = "snack-broken"
 	},
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
-"bqK" = (
-/obj/machinery/atmospherics/pipe/manifold/green/hidden{
-	dir = 8
-	},
-/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bqL" = (
@@ -21105,10 +21080,7 @@
 	},
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/sw)
-"crM" = (
-/obj/machinery/light{
-	dir = 4
-	},
+"coc" = (
 /obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -21208,11 +21180,6 @@
 	dir = 9
 	},
 /area/bigredv2/outside/w)
-"dLR" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
 "dPu" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/e)
@@ -21244,10 +21211,6 @@
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"ecN" = (
-/obj/structure/cable,
-/turf/closed/wall,
-/area/bigredv2/outside/engineering)
 "edO" = (
 /turf/open/floor/carpet,
 /area/bigredv2/outside/bar)
@@ -21523,6 +21486,12 @@
 	dir = 5
 	},
 /area/bigredv2/outside/c)
+"hnD" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/engineering)
 "hvV" = (
 /obj/docking_port/stationary/crashmode,
 /turf/closed/wall,
@@ -21657,6 +21626,11 @@
 /area/bigredv2/outside/se)
 "kel" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/turf/open/floor,
+/area/bigredv2/outside/engineering)
+"kgi" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "khf" = (
@@ -21812,6 +21786,11 @@
 /obj/item/trash/sosjerky,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
+"mlg" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
 "mpz" = (
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/bigredv2/outside/se)
@@ -21988,12 +21967,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"oVH" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
 "oWn" = (
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
@@ -22116,11 +22089,6 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/c)
-"qlY" = (
-/obj/machinery/atmospherics/components/unary/vent_pump,
-/obj/structure/cable,
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
 "qnu" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
@@ -22238,13 +22206,6 @@
 	dir = 8
 	},
 /area/bigredv2/outside/virology)
-"ruM" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
 "rvh" = (
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/lambda_lab)
@@ -22255,6 +22216,13 @@
 	dir = 1
 	},
 /area/bigredv2/outside/chapel)
+"rCd" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/engineering)
 "rMV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22386,6 +22354,11 @@
 	dir = 6
 	},
 /area/bigredv2/outside/ne)
+"tEs" = (
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/engineering)
 "tJA" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
@@ -22454,6 +22427,13 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/bigred,
 /area/bigredv2/outside/s)
+"uuS" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/engineering)
 "uwp" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -22604,11 +22584,6 @@
 	dir = 8
 	},
 /area/bigredv2/outside/w)
-"wWH" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/turf/open/floor,
-/area/bigredv2/outside/cargo)
 "wZg" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/sw)
@@ -22673,10 +22648,6 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"xCs" = (
-/obj/structure/cable,
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
 "xCx" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
@@ -22747,6 +22718,10 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/se)
+"yjc" = (
+/obj/structure/cable,
+/turf/closed/wall,
+/area/bigredv2/outside/engineering)
 "yjP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -32213,7 +32188,7 @@ bmd
 bmd
 asT
 bmi
-xCs
+coc
 qFg
 wZg
 wZg
@@ -32430,7 +32405,7 @@ bmd
 bmd
 asT
 bmi
-xCs
+coc
 qFg
 wZg
 wZg
@@ -32647,7 +32622,7 @@ bmd
 bme
 asT
 bmi
-xCs
+coc
 qFg
 wZg
 wZg
@@ -32864,7 +32839,7 @@ bmd
 bme
 asT
 bmi
-xCs
+coc
 qFg
 bpy
 wZg
@@ -33081,7 +33056,7 @@ bmd
 bme
 asT
 bmi
-xCs
+coc
 qFg
 bme
 bpy
@@ -33298,7 +33273,7 @@ bme
 bme
 asT
 bmi
-xCs
+coc
 blJ
 txn
 tnE
@@ -33317,8 +33292,8 @@ buk
 buP
 buO
 bvm
-xCs
-xCs
+coc
+coc
 bvK
 bmm
 bmm
@@ -33515,7 +33490,7 @@ bme
 bme
 asT
 bmi
-xCs
+coc
 bmi
 bmi
 asT
@@ -33732,7 +33707,7 @@ bme
 bme
 asT
 bmi
-xCs
+coc
 bmi
 bmi
 asT
@@ -33949,12 +33924,12 @@ bme
 bme
 asT
 bmi
-xCs
-xCs
-xCs
+coc
+coc
+coc
 bqf
-xCs
-xCs
+coc
+coc
 bmg
 bre
 bsK
@@ -34171,7 +34146,7 @@ bmi
 bmi
 asT
 bmi
-xCs
+coc
 bmg
 bre
 bmq
@@ -34388,7 +34363,7 @@ bmi
 bmi
 asT
 bmi
-xCs
+coc
 bmi
 bmi
 bsM
@@ -34822,7 +34797,7 @@ boj
 blJ
 bqg
 bmi
-xCs
+coc
 brI
 bmi
 blJ
@@ -35039,7 +35014,7 @@ bpe
 blJ
 bqg
 bmi
-xCs
+coc
 bmg
 bmi
 blJ
@@ -35256,7 +35231,7 @@ bmi
 blJ
 bmk
 brg
-xCs
+coc
 brJ
 bmi
 blJ
@@ -35455,20 +35430,20 @@ bfY
 baF
 blb
 nvv
-wWH
-wWH
-wWH
-wWH
-wWH
-wWH
+mlg
+mlg
+mlg
+mlg
+mlg
+mlg
 blj
 blL
-dLR
-dLR
-oVH
-oVH
-oVH
-oVH
+kgi
+kgi
+hnD
+hnD
+hnD
+hnD
 rMV
 bpz
 bom
@@ -35680,7 +35655,7 @@ blb
 blb
 blk
 blJ
-xCs
+coc
 bmk
 bmk
 bmk
@@ -35897,7 +35872,7 @@ aZO
 blb
 aZr
 blJ
-crM
+rCd
 bmQ
 bmQ
 bnR
@@ -35906,8 +35881,8 @@ bnW
 bpO
 bpA
 bop
-bqK
-oVH
+bpG
+hnD
 bop
 gBV
 feK
@@ -36114,7 +36089,7 @@ aZO
 blb
 aZs
 blJ
-ecN
+yjc
 bmk
 bmk
 bmk
@@ -36123,7 +36098,7 @@ bmk
 bmk
 bmk
 bmk
-ruM
+uuS
 bri
 bmi
 bsm
@@ -36340,7 +36315,7 @@ boJ
 bpi
 akY
 bmk
-ruM
+uuS
 bmi
 brL
 bmi
@@ -36556,8 +36531,8 @@ bol
 bmi
 bmi
 bom
-ecN
-ruM
+yjc
+uuS
 brj
 brM
 bsn
@@ -37202,7 +37177,7 @@ blJ
 gVL
 bmk
 bmk
-ecN
+yjc
 bmk
 boM
 bmk
@@ -37210,10 +37185,10 @@ bmk
 bmk
 bqM
 brk
-xCs
+coc
 bom
 bsO
-crM
+rCd
 bsO
 bmm
 btF
@@ -37416,16 +37391,16 @@ aXK
 aXK
 aXK
 blJ
-xCs
+coc
 bmi
 bmi
-xCs
+coc
 bmi
 bmg
 bmk
 bpE
 bpD
-ruM
+uuS
 bmi
 bmi
 qEg
@@ -37633,10 +37608,10 @@ bko
 aZO
 blb
 blJ
-xCs
-xCs
+coc
+coc
 bmi
-xCs
+coc
 bmi
 bmg
 bmY
@@ -37851,9 +37826,9 @@ bkB
 blp
 blJ
 bmi
-xCs
+coc
 bmi
-xCs
+coc
 bmi
 bmg
 bmY
@@ -38068,14 +38043,14 @@ aXK
 aXK
 blJ
 bmo
-xCs
+coc
 bmi
-qlY
-dLR
-dLR
+tEs
+kgi
+kgi
 bpk
 bpG
-dLR
+kgi
 yjP
 bmi
 bmi
@@ -38285,7 +38260,7 @@ aBR
 aBR
 hEq
 bmo
-xCs
+coc
 bmg
 bmg
 bmg
@@ -38502,7 +38477,7 @@ aIm
 aBR
 blJ
 bmi
-xCs
+coc
 bmg
 bnX
 bmg
@@ -38719,7 +38694,7 @@ aIp
 aBR
 blJ
 bmq
-xCs
+coc
 bnt
 bmg
 bmi
@@ -38730,7 +38705,7 @@ brN
 blJ
 brn
 bmr
-xCs
+coc
 bmi
 brN
 btr
@@ -38947,7 +38922,7 @@ kOq
 blJ
 bmi
 brP
-xCs
+coc
 bmg
 btf
 bmr
@@ -39160,11 +39135,11 @@ bmr
 boS
 bmY
 bpJ
-oVH
+hnD
 bqP
 bqO
 bqO
-dLR
+kgi
 feK
 bmi
 bts
@@ -39381,7 +39356,7 @@ bqk
 blJ
 bmg
 bmg
-xCs
+coc
 bmg
 btf
 btt
@@ -39587,18 +39562,18 @@ wzM
 aMc
 blJ
 bmt
-xCs
+coc
 bnv
 bmr
 bmq
 bmY
 bpl
-ruM
+uuS
 bmg
 blJ
 brp
 bst
-xCs
+coc
 bmi
 bmi
 btu
@@ -39804,13 +39779,13 @@ wzM
 aMc
 blJ
 bmu
-xCs
+coc
 bom
 bom
-xCs
+coc
 boT
 bpm
-ruM
+uuS
 bsM
 blJ
 blJ
@@ -40024,10 +39999,10 @@ bmv
 bmW
 bnx
 boa
-xCs
+coc
 bmY
 bmi
-ruM
+uuS
 bmg
 bmi
 bmi
@@ -40241,9 +40216,9 @@ bmw
 bmX
 bny
 oMq
-dLR
+kgi
 boU
-dLR
+kgi
 bpM
 bqm
 bqQ
@@ -40461,7 +40436,7 @@ bob
 bmi
 bmY
 bmi
-ruM
+uuS
 bqn
 boS
 brq
@@ -40678,7 +40653,7 @@ bmk
 bmk
 bmk
 bpe
-ruM
+uuS
 bnv
 bqR
 boQ
@@ -40832,7 +40807,7 @@ awW
 axC
 apC
 ayT
-azF
+awi
 aAy
 axw
 aBQ
@@ -40895,7 +40870,7 @@ bmO
 bmg
 boV
 bmi
-ruM
+uuS
 bqo
 bqo
 bqo
@@ -41108,14 +41083,14 @@ blS
 blS
 blS
 blS
-dLR
+kgi
 blS
 blS
-dLR
+kgi
 msI
-dLR
-dLR
-bqK
+kgi
+kgi
+bpG
 rMV
 bsw
 bsO
@@ -41768,11 +41743,11 @@ aBR
 blJ
 brv
 brT
-dLR
-dLR
-dLR
-dLR
-dLR
+kgi
+kgi
+kgi
+kgi
+kgi
 btG
 blJ
 bjA
@@ -42424,7 +42399,7 @@ bmk
 bmq
 bmq
 bmi
-ruM
+uuS
 bmk
 bjA
 bjH
@@ -43075,8 +43050,8 @@ bmi
 bmi
 bmi
 bmi
-ruM
-xCs
+uuS
+coc
 bvA
 btv
 btv

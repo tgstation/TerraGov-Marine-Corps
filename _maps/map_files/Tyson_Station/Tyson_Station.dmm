@@ -303,7 +303,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
-/obj/structure/cable,
 /turf/open/floor,
 /area/security/main)
 "abp" = (
@@ -1127,7 +1126,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
-/obj/structure/cable,
 /turf/open/floor,
 /area/security/brig)
 "aeJ" = (
@@ -4319,7 +4317,6 @@
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor,
 /area/hallway/primary/fore)
 "aqs" = (
@@ -6961,7 +6958,6 @@
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor,
 /area/security/checkpoint2)
 "azG" = (
@@ -14104,7 +14100,6 @@
 "bae" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "bag" = (
@@ -14113,7 +14108,6 @@
 	},
 /obj/structure/cable,
 /obj/machinery/power/monitor,
-/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/crew_quarters/heads/chief)
 "bah" = (
@@ -15252,7 +15246,6 @@
 "bel" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
-/obj/structure/cable,
 /turf/open/floor,
 /area/crew_quarters/heads/chief)
 "ben" = (
@@ -16469,7 +16462,6 @@
 "biO" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/maintenance/aft)
 "biP" = (

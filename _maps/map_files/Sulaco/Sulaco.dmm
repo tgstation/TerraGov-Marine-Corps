@@ -99,7 +99,6 @@
 "aax" = (
 /obj/structure/cable,
 /obj/item/radio/intercom/general,
-/obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/sulaco/medbay/surgery_two)
 "aay" = (
@@ -974,7 +973,6 @@
 	},
 /obj/structure/closet/crate,
 /obj/structure/sign/prop3,
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/sulaco/disposal)
 "ado" = (
@@ -1382,7 +1380,6 @@
 /obj/structure/bed/chair/office/light,
 /obj/structure/cable,
 /obj/effect/landmark/start/job/chiefshipengineer,
-/obj/structure/cable,
 /turf/open/floor/tile/yellow/full,
 /area/sulaco/engineering/ce)
 "aeI" = (
@@ -1852,7 +1849,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/sulaco/medbay/west)
 "agq" = (
@@ -1860,7 +1856,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
 	layer = 2
@@ -1872,7 +1867,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
 	layer = 2
@@ -1884,7 +1878,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
 	layer = 2
@@ -1902,7 +1895,6 @@
 	name = "medbay exit";
 	pixel_y = -32
 	},
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
 	layer = 2
@@ -1914,7 +1906,6 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 2
 	},
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
 	layer = 2
@@ -1924,7 +1915,6 @@
 "agv" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
-/obj/structure/cable,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/sulaco/medbay)
 "agw" = (
@@ -1933,7 +1923,6 @@
 	dir = 4;
 	layer = 2
 	},
-/obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/sulaco/medbay)
 "agx" = (
@@ -3304,7 +3293,6 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor,
 /area/sulaco/engineering/atmos)
 "akm" = (
@@ -3946,7 +3934,6 @@
 "alY" = (
 /obj/structure/cable,
 /obj/machinery/power/monitor,
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/north_solar_maint)
 "alZ" = (
@@ -5104,7 +5091,6 @@
 "apx" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
 /turf/open/floor/carpet,
 /area/sulaco/bridge/office)
 "apy" = (
@@ -6894,7 +6880,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/sulaco/cafeteria)
 "aup" = (
@@ -6905,7 +6890,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/sulaco/cafeteria)
 "auq" = (
@@ -7312,7 +7296,6 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/marking/loadingarea{
 	dir = 2
 	},
@@ -8029,7 +8012,6 @@
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
 	dir = 1
 	},
-/obj/structure/cable,
 /turf/open/floor,
 /area/sulaco/briefing)
 "axj" = (
@@ -8040,7 +8022,6 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
-/obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/sulaco/cafeteria)
 "axk" = (
@@ -8051,7 +8032,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/tile/red/redtaupe{
 	dir = 1
 	},
@@ -8080,7 +8060,6 @@
 /obj/machinery/door/airlock/mainship/engineering{
 	dir = 2
 	},
-/obj/structure/cable,
 /turf/open/floor/tile/yellow/patch{
 	dir = 4
 	},
@@ -8371,14 +8350,6 @@
 	},
 /area/sulaco/hallway/central_hall)
 "axY" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/closed/wall/sulaco,
-/area/sulaco/engineering)
-"axZ" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
@@ -8858,14 +8829,6 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/cap_office)
-"azw" = (
-/obj/machinery/door/poddoor/open/security,
-/obj/structure/cable,
-/obj/machinery/door/airlock/mainship/security/glass{
-	dir = 2
-	},
-/turf/open/floor/tile/lightred/full,
-/area/sulaco/brig)
 "azx" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -9892,7 +9855,6 @@
 /obj/machinery/door/airlock/mainship/security/glass{
 	dir = 2
 	},
-/obj/structure/cable,
 /turf/open/floor/tile/lightred/full,
 /area/sulaco/brig)
 "aCB" = (
@@ -11086,7 +11048,6 @@
 	dir = 4;
 	layer = 2
 	},
-/obj/structure/cable,
 /turf/open/floor,
 /area/sulaco/marine)
 "aGm" = (
@@ -11227,7 +11188,6 @@
 /obj/structure/reagent_dispensers/wallmounted/peppertank{
 	pixel_x = -30
 	},
-/obj/structure/cable,
 /turf/open/floor/tile/lightred/full,
 /area/sulaco/brig)
 "aGL" = (
@@ -12030,7 +11990,6 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/tile/red/redtaupe{
 	dir = 1
 	},
@@ -16188,7 +16147,6 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/tile/vault,
 /area/sulaco/hallway/lower_main_hall)
 "aWJ" = (
@@ -16199,14 +16157,6 @@
 	dir = 4
 	},
 /turf/open/floor/tile/vault,
-/area/sulaco/hallway/lower_main_hall)
-"aWK" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
 /area/sulaco/hallway/lower_main_hall)
 "aWL" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
@@ -16861,7 +16811,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/marine/charlie,
-/obj/structure/cable,
 /turf/open/floor,
 /area/sulaco/marine/charlie)
 "aYU" = (
@@ -16871,7 +16820,6 @@
 	},
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/marine/bravo,
-/obj/structure/cable,
 /turf/open/floor,
 /area/sulaco/marine/bravo)
 "aYV" = (
@@ -16879,7 +16827,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/marine/alpha,
-/obj/structure/cable,
 /turf/open/floor,
 /area/sulaco/marine/alpha)
 "aYX" = (
@@ -17349,7 +17296,6 @@
 "baE" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden,
-/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/sulaco/maintenance/lower_maint)
 "baG" = (
@@ -18035,10 +17981,6 @@
 /obj/item/storage/fancy/cigarettes/dromedaryco,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
-"boc" = (
-/obj/structure/cable,
-/turf/open/space/basic,
-/area/space)
 "ldh" = (
 /obj/machinery/keycard_auth{
 	pixel_y = -30
@@ -18047,19 +17989,19 @@
 	icon_state = "floor4"
 	},
 /area/sulaco/bridge)
-"piJ" = (
+"lIz" = (
 /obj/structure/cable,
 /turf/closed/wall/sulaco/unmeltable,
 /area/mainship/living/pilotbunks)
-"rEd" = (
+"riG" = (
 /obj/structure/cable,
 /turf/closed/wall/mainship/outer,
 /area/space)
-"rFJ" = (
+"spx" = (
 /obj/structure/cable,
-/turf/closed/wall/sulaco/unmeltable,
-/area/sulaco/marine/delta)
-"srg" = (
+/turf/open/space/basic,
+/area/space)
+"tDV" = (
 /obj/effect/step_trigger/teleporter/random{
 	affect_ghosts = 1;
 	name = "tele_ground1";
@@ -18073,6 +18015,10 @@
 /obj/structure/cable,
 /turf/open/space,
 /area/space)
+"wQD" = (
+/obj/structure/cable,
+/turf/closed/wall/sulaco/unmeltable,
+/area/sulaco/marine/delta)
 
 (1,1,1) = {"
 aaa
@@ -44627,7 +44573,7 @@ asQ
 azO
 aBf
 aoi
-azw
+aCA
 aEx
 aEx
 aAl
@@ -50388,7 +50334,7 @@ aRN
 aSB
 aTT
 aVS
-aWK
+aYz
 aZh
 aVY
 baR
@@ -51845,73 +51791,73 @@ aHU
 aIM
 aDj
 aPi
-rFJ
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-srg
-boc
-boc
-rEd
-boc
-boc
-srg
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
-boc
+wQD
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+tDV
+spx
+spx
+riG
+spx
+spx
+tDV
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
+spx
 aaa
 aaa
 aNF
@@ -52168,7 +52114,7 @@ aaa
 aaa
 aaa
 aaa
-boc
+spx
 aaa
 aaa
 aaa
@@ -52425,7 +52371,7 @@ aaa
 aaa
 aaa
 aaa
-boc
+spx
 aaa
 aaa
 aaa
@@ -52682,7 +52628,7 @@ aaa
 aaa
 aaa
 aaa
-boc
+spx
 aaa
 aaa
 aaa
@@ -52939,7 +52885,7 @@ aaa
 aaa
 aaa
 aaa
-boc
+spx
 aaa
 aaa
 aaa
@@ -53196,7 +53142,7 @@ aaa
 aaa
 aaa
 aaa
-boc
+spx
 aaa
 aaa
 aaa
@@ -53453,7 +53399,7 @@ aaa
 aaa
 aaa
 aaa
-boc
+spx
 aIZ
 aIZ
 aIZ
@@ -53710,7 +53656,7 @@ aaa
 aaa
 aaa
 aaa
-boc
+spx
 aIZ
 aJB
 aQe
@@ -53967,7 +53913,7 @@ aaa
 aaa
 aaa
 aaa
-boc
+spx
 aIZ
 aLB
 aQj
@@ -54224,8 +54170,8 @@ aaa
 aaa
 aaa
 aaa
-boc
-piJ
+spx
+lIz
 aPs
 aQq
 aQq
@@ -63383,7 +63329,7 @@ arM
 aqs
 asj
 awa
-axZ
+amN
 azn
 azS
 ajh

@@ -5593,14 +5593,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/resin/membrane,
 /area/space)
-"Eg" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/power/smes/buildable,
-/obj/structure/cable,
-/turf/open/floor/prison/yellow,
-/area/lv624/lazarus/engineering)
 "FJ" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/grass,
@@ -5678,6 +5670,14 @@
 	on = 1
 	},
 /obj/effect/landmark/nuke_spawn,
+/turf/open/floor/prison/yellow,
+/area/lv624/lazarus/engineering)
+"Uc" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/power/smes/buildable,
+/obj/structure/cable,
 /turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
 "Ud" = (
@@ -12684,7 +12684,7 @@ hQ
 gZ
 gZ
 iz
-Eg
+Uc
 jb
 qY
 fY

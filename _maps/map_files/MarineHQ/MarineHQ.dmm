@@ -899,7 +899,6 @@
 "dn" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
-/obj/structure/cable,
 /turf/open/floor/mainship/plate,
 /area/mainship/command/cic)
 "do" = (
@@ -1145,7 +1144,6 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/captain_mess)
 "dZ" = (
@@ -3875,11 +3873,6 @@
 	},
 /turf/open/floor/mainship/plate,
 /area/mainship/command/cic)
-"mL" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/mainship/plate,
-/area/mainship/command/cic)
 "mM" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -3927,7 +3920,6 @@
 /obj/structure/disposalpipe/junction/flipped{
 	dir = 4
 	},
-/obj/structure/cable,
 /obj/effect/landmark/start/job/synthetic,
 /turf/open/floor/mainship/plate,
 /area/mainship/command/cic)
@@ -5164,11 +5156,6 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/shipboard/firing_range)
-"zL" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/mainship,
-/area/mainship/command/cic)
 "zP" = (
 /obj/structure/window/reinforced/tinted/frosted{
 	dir = 8
@@ -7312,14 +7299,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/living/starboard_emb)
-"Ja" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/port_hallway)
 "Jc" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -8468,7 +8447,6 @@
 "Sc" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
-/obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "Su" = (
@@ -35343,7 +35321,7 @@ IA
 IV
 IY
 Ba
-Ja
+Fi
 AY
 Fk
 Fk
@@ -35861,10 +35839,10 @@ dm
 dm
 Wv
 mI
-mL
+dn
 mM
-zL
-mL
+Sc
+dn
 Tf
 dx
 XQ
@@ -36362,7 +36340,7 @@ dn
 Sc
 mO
 mO
-zL
+Sc
 mQ
 mR
 dl

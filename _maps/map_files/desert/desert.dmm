@@ -1414,7 +1414,6 @@
 	},
 /area/shuttle/drop1/lz1)
 "fj" = (
-/obj/structure/cable,
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
@@ -2533,7 +2532,6 @@
 /turf/open/floor/plating,
 /area/desert/interior/shipping/central)
 "iU" = (
-/obj/structure/cable,
 /obj/machinery/power/apc/drained{
 	dir = 8
 	},
@@ -2879,7 +2877,6 @@
 /turf/open/floor/tile/dark,
 /area/desert/interior/shipping/north)
 "kp" = (
-/obj/structure/cable,
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
@@ -3198,7 +3195,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/interior/shipping/south)
 "lF" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	icon_state = "pipe11-2";
 	dir = 8
