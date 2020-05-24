@@ -145,9 +145,7 @@
 /obj/machinery/door/poddoor/shutters/transit/open{
 	dir = 2
 	},
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin15"
-	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/ert)
 
 (1,1,1) = {"

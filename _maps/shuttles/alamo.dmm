@@ -191,9 +191,7 @@
 	},
 /area/shuttle/dropship/alamo)
 "aK" = (
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin5"
-	},
+/turf/open/shuttle/dropship/five,
 /area/shuttle/dropship/alamo)
 "aL" = (
 /turf/open/shuttle/dropship{
@@ -202,9 +200,7 @@
 /area/shuttle/dropship/alamo)
 "aM" = (
 /obj/item/radio/intercom/dropship,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin7"
-	},
+/turf/open/shuttle/dropship/seven,
 /area/shuttle/dropship/alamo)
 "aN" = (
 /obj/structure/bed/chair/dropship/passenger{
@@ -232,9 +228,7 @@
 	},
 /area/shuttle/dropship/alamo)
 "aS" = (
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin3"
-	},
+/turf/open/shuttle/dropship/three,
 /area/shuttle/dropship/alamo)
 "aT" = (
 /turf/closed/shuttle/dropship1{
@@ -345,14 +339,10 @@
 /area/shuttle/dropship/alamo)
 "bk" = (
 /obj/item/radio/intercom/dropship,
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin5"
-	},
+/turf/open/shuttle/dropship/five,
 /area/shuttle/dropship/alamo)
 "bl" = (
-/turf/open/shuttle/dropship{
-	icon_state = "rasputin8"
-	},
+/turf/open/shuttle/dropship/eight,
 /area/shuttle/dropship/alamo)
 "bm" = (
 /turf/closed/shuttle/dropship1{
