@@ -37,6 +37,8 @@
 	var/stat_msg1
 	var/stat_msg2
 
+/obj/machinery/computer/communications/bee
+	icon_state = "commb"
 
 /obj/machinery/computer/communications/Topic(href, href_list)
 	. = ..()
