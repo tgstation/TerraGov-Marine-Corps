@@ -16329,14 +16329,6 @@
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
-"biy" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/marking/asteroidwarning{
-	dir = 1
-	},
-/area/bigredv2/outside/c)
 "biz" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning{
@@ -16421,10 +16413,6 @@
 /area/bigredv2/outside/cargo)
 "biR" = (
 /obj/structure/barricade/wooden,
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/c)
-"biV" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "biW" = (
@@ -16938,6 +16926,7 @@
 "blj" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/barricade/wooden,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "blk" = (
@@ -17061,6 +17050,7 @@
 /area/bigredv2/outside/engineering)
 "blL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/engineering)
 "blR" = (
@@ -17378,12 +17368,6 @@
 /obj/machinery/computer/area_atmos/area,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
-"bnq" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
 "bnr" = (
 /obj/machinery/power/terminal{
 	dir = 1
@@ -17560,7 +17544,6 @@
 	dir = 1;
 	name = "\improper Engineering SMES"
 	},
-/obj/structure/cable,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "bom" = (
@@ -17642,10 +17625,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"boE" = (
-/obj/structure/cable,
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
 "boG" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
 /turf/open/floor,
@@ -17663,24 +17642,14 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"boL" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable,
-/obj/structure/sign/safety/electronics{
-	dir = 1
-	},
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
 "boM" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/mainship/secure/free_access{
 	name = "\improper Engineering Secure Storage"
 	},
-/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "boO" = (
-/obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/safety/high_radiation,
 /turf/open/floor,
@@ -17747,21 +17716,6 @@
 /area/bigredv2/outside/s)
 "bpe" = (
 /obj/effect/landmark/start/job/survivor,
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
-"bpf" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 5
-	},
-/obj/structure/cable,
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
-"bpg" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bpi" = (
@@ -17866,6 +17820,7 @@
 	dir = 1;
 	name = "\improper Engineering Lockers"
 	},
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bpA" = (
@@ -17903,7 +17858,6 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bpJ" = (
@@ -17920,6 +17874,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bpM" = (
@@ -18017,11 +17972,6 @@
 /area/bigredv2/outside/engineering)
 "bqg" = (
 /obj/machinery/recharge_station,
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
-"bqh" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bqi" = (
@@ -18162,7 +18112,6 @@
 	dir = 4;
 	name = "\improper Engineering Workshop"
 	},
-/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bqM" = (
@@ -18280,6 +18229,7 @@
 /area/bigredv2/outside/engineering)
 "brk" = (
 /obj/item/stack/sheet/glass,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "brl" = (
@@ -18637,13 +18587,6 @@
 /obj/item/stack/sheet/metal{
 	amount = 30
 	},
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
-"bte" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "btf" = (
@@ -21162,6 +21105,13 @@
 	},
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/sw)
+"crM" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/engineering)
 "cuW" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -21258,6 +21208,11 @@
 	dir = 9
 	},
 /area/bigredv2/outside/w)
+"dLR" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/engineering)
 "dPu" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/e)
@@ -21289,6 +21244,10 @@
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"ecN" = (
+/obj/structure/cable,
+/turf/closed/wall,
+/area/bigredv2/outside/engineering)
 "edO" = (
 /turf/open/floor/carpet,
 /area/bigredv2/outside/bar)
@@ -21751,6 +21710,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
+/obj/structure/cable,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "kOq" = (
@@ -22028,6 +21988,12 @@
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"oVH" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/engineering)
 "oWn" = (
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
@@ -22150,6 +22116,11 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/c)
+"qlY" = (
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/engineering)
 "qnu" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
@@ -22188,7 +22159,6 @@
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "qEg" = (
-/obj/structure/cable,
 /obj/structure/sign/safety/high_radiation,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
@@ -22268,6 +22238,13 @@
 	dir = 8
 	},
 /area/bigredv2/outside/virology)
+"ruM" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/engineering)
 "rvh" = (
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/lambda_lab)
@@ -22283,6 +22260,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "rNZ" = (
@@ -22626,6 +22604,11 @@
 	dir = 8
 	},
 /area/bigredv2/outside/w)
+"wWH" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/cargo)
 "wZg" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/sw)
@@ -22690,6 +22673,10 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"xCs" = (
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/engineering)
 "xCx" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
@@ -32226,7 +32213,7 @@ bmd
 bmd
 asT
 bmi
-boE
+xCs
 qFg
 wZg
 wZg
@@ -32443,7 +32430,7 @@ bmd
 bmd
 asT
 bmi
-boE
+xCs
 qFg
 wZg
 wZg
@@ -32660,7 +32647,7 @@ bmd
 bme
 asT
 bmi
-boE
+xCs
 qFg
 wZg
 wZg
@@ -32877,7 +32864,7 @@ bmd
 bme
 asT
 bmi
-boE
+xCs
 qFg
 bpy
 wZg
@@ -33094,7 +33081,7 @@ bmd
 bme
 asT
 bmi
-boE
+xCs
 qFg
 bme
 bpy
@@ -33311,7 +33298,7 @@ bme
 bme
 asT
 bmi
-boE
+xCs
 blJ
 txn
 tnE
@@ -33330,8 +33317,8 @@ buk
 buP
 buO
 bvm
-boE
-boE
+xCs
+xCs
 bvK
 bmm
 bmm
@@ -33528,7 +33515,7 @@ bme
 bme
 asT
 bmi
-boE
+xCs
 bmi
 bmi
 asT
@@ -33745,7 +33732,7 @@ bme
 bme
 asT
 bmi
-boE
+xCs
 bmi
 bmi
 asT
@@ -33962,12 +33949,12 @@ bme
 bme
 asT
 bmi
-boE
-boE
-boE
+xCs
+xCs
+xCs
 bqf
-boE
-boE
+xCs
+xCs
 bmg
 bre
 bsK
@@ -34184,7 +34171,7 @@ bmi
 bmi
 asT
 bmi
-boE
+xCs
 bmg
 bre
 bmq
@@ -34401,7 +34388,7 @@ bmi
 bmi
 asT
 bmi
-boE
+xCs
 bmi
 bmi
 bsM
@@ -34835,7 +34822,7 @@ boj
 blJ
 bqg
 bmi
-boE
+xCs
 brI
 bmi
 blJ
@@ -35052,7 +35039,7 @@ bpe
 blJ
 bqg
 bmi
-boE
+xCs
 bmg
 bmi
 blJ
@@ -35269,7 +35256,7 @@ bmi
 blJ
 bmk
 brg
-boE
+xCs
 brJ
 bmi
 blJ
@@ -35468,24 +35455,24 @@ bfY
 baF
 blb
 nvv
-bbe
-bbe
-bbe
-bbe
-bbe
-bbe
+wWH
+wWH
+wWH
+wWH
+wWH
+wWH
 blj
 blL
-bop
-bop
-gBV
-gBV
-gBV
-gBV
+dLR
+dLR
+oVH
+oVH
+oVH
+oVH
 rMV
 bpz
-bmg
-bmg
+bom
+bom
 bom
 bmg
 bmi
@@ -35693,7 +35680,7 @@ blb
 blb
 blk
 blJ
-bmi
+xCs
 bmk
 bmk
 bmk
@@ -35910,7 +35897,7 @@ aZO
 blb
 aZr
 blJ
-bnu
+crM
 bmQ
 bmQ
 bnR
@@ -35920,7 +35907,7 @@ bpO
 bpA
 bop
 bqK
-bnq
+oVH
 bop
 gBV
 feK
@@ -36127,6 +36114,7 @@ aZO
 blb
 aZs
 blJ
+ecN
 bmk
 bmk
 bmk
@@ -36135,8 +36123,7 @@ bmk
 bmk
 bmk
 bmk
-bmk
-bpg
+ruM
 bri
 bmi
 bsm
@@ -36353,7 +36340,7 @@ boJ
 bpi
 akY
 bmk
-bpg
+ruM
 bmi
 brL
 bmi
@@ -36566,11 +36553,11 @@ bmn
 bnr
 bmm
 bol
-boE
-boE
+bmi
+bmi
 bom
-bmk
-bpg
+ecN
+ruM
 brj
 brM
 bsn
@@ -36783,7 +36770,7 @@ bmn
 bnr
 bmm
 bmk
-boL
+boJ
 bmi
 bmi
 bmk
@@ -36998,13 +36985,13 @@ blJ
 bmm
 kEZ
 btZ
-kEZ
+bmm
 bmk
-boE
+bmi
 bpj
 bpC
 bmk
-bpg
+bor
 bmi
 bmg
 asY
@@ -37215,7 +37202,7 @@ blJ
 gVL
 bmk
 bmk
-bmk
+ecN
 bmk
 boM
 bmk
@@ -37223,10 +37210,10 @@ bmk
 bmk
 bqM
 brk
-bmi
+xCs
 bom
 bsO
-bte
+crM
 bsO
 bmm
 btF
@@ -37429,16 +37416,16 @@ aXK
 aXK
 aXK
 blJ
-boE
+xCs
 bmi
 bmi
+xCs
 bmi
-bmi
-bom
+bmg
 bmk
 bpE
 bpD
-bpg
+ruM
 bmi
 bmi
 qEg
@@ -37646,19 +37633,19 @@ bko
 aZO
 blb
 blJ
-boE
-boE
+xCs
+xCs
 bmi
+xCs
 bmi
-bmi
-bom
+bmg
 bmY
 bmi
 bmi
 bqM
 brl
 bmi
-boE
+bmi
 bsP
 bsP
 blJ
@@ -37864,18 +37851,18 @@ bkB
 blp
 blJ
 bmi
-boE
+xCs
 bmi
+xCs
 bmi
-bmi
-bom
+bmg
 bmY
 bmi
 bqi
 bqM
 brm
 brN
-boE
+bmi
 bmi
 bmi
 atk
@@ -38081,18 +38068,18 @@ aXK
 aXK
 blJ
 bmo
-boE
+xCs
 bmi
-bnW
-bop
-bqh
+qlY
+dLR
+dLR
 bpk
 bpG
-bqh
+dLR
 yjP
 bmi
 bmi
-boE
+bmi
 bmi
 bmi
 atk
@@ -38298,7 +38285,7 @@ aBR
 aBR
 hEq
 bmo
-boE
+xCs
 bmg
 bmg
 bmg
@@ -38309,7 +38296,7 @@ bmg
 bmg
 bri
 brO
-bom
+bmg
 bmi
 bmi
 atk
@@ -38505,7 +38492,7 @@ aBR
 aBR
 wzM
 aIn
-biy
+bhP
 aHF
 aMg
 aMg
@@ -38515,7 +38502,7 @@ aIm
 aBR
 blJ
 bmi
-boE
+xCs
 bmg
 bnX
 bmg
@@ -38722,7 +38709,7 @@ aBR
 aLd
 aIn
 aIn
-biy
+bhP
 aHD
 aIn
 aIn
@@ -38732,18 +38719,18 @@ aIp
 aBR
 blJ
 bmq
-boE
+xCs
 bnt
 bmg
 bmi
 bmr
 bmk
-bpg
+bor
 brN
 blJ
 brn
 bmr
-boE
+xCs
 bmi
 brN
 btr
@@ -38939,7 +38926,7 @@ aBR
 hlD
 aIn
 aIn
-biy
+bhP
 aHD
 aIn
 aJm
@@ -38960,7 +38947,7 @@ kOq
 blJ
 bmi
 brP
-boE
+xCs
 bmg
 btf
 bmr
@@ -39156,7 +39143,7 @@ aBR
 aBR
 wzM
 aIn
-biy
+bhP
 aHD
 aWJ
 aBR
@@ -39173,11 +39160,11 @@ bmr
 boS
 bmY
 bpJ
-bnq
+oVH
 bqP
 bqO
 bqO
-bqh
+dLR
 feK
 bmi
 bts
@@ -39373,7 +39360,7 @@ aBR
 aBR
 wzM
 aIn
-biy
+bhP
 aHD
 aIn
 aIm
@@ -39394,7 +39381,7 @@ bqk
 blJ
 bmg
 bmg
-boE
+xCs
 bmg
 btf
 btt
@@ -39402,7 +39389,7 @@ atk
 btz
 btz
 btz
-bmm
+kEZ
 mbT
 btZ
 kEZ
@@ -39591,7 +39578,7 @@ aFM
 aFM
 aFM
 kJK
-biV
+biB
 aUj
 bjC
 aIm
@@ -39600,18 +39587,18 @@ wzM
 aMc
 blJ
 bmt
-boE
+xCs
 bnv
 bmr
 bmq
 bmY
 bpl
-bor
+ruM
 bmg
 blJ
 brp
 bst
-boE
+xCs
 bmi
 bmi
 btu
@@ -39619,7 +39606,7 @@ atk
 btz
 btY
 btz
-bmm
+kEZ
 kEZ
 blJ
 kEZ
@@ -39817,13 +39804,13 @@ wzM
 aMc
 blJ
 bmu
-boE
+xCs
 bom
 bom
-boE
+xCs
 boT
 bpm
-bor
+ruM
 bsM
 blJ
 blJ
@@ -39836,7 +39823,7 @@ blJ
 btz
 btz
 btz
-bmm
+kEZ
 btz
 bvj
 btz
@@ -40037,15 +40024,15 @@ bmv
 bmW
 bnx
 boa
-boE
+xCs
 bmY
 bmi
-bor
+ruM
 bmg
 bmi
 bmi
 bpl
-boE
+bmi
 bmg
 bmi
 atk
@@ -40053,7 +40040,7 @@ btz
 btz
 btY
 btz
-bmm
+kEZ
 btz
 btY
 btz
@@ -40254,15 +40241,15 @@ bmw
 bmX
 bny
 oMq
-bqh
+dLR
 boU
-bqh
+dLR
 bpM
 bqm
 bqQ
 bqQ
 bmg
-boE
+bmi
 bmg
 bmi
 atk
@@ -40270,7 +40257,7 @@ btz
 btz
 btz
 btz
-bmm
+kEZ
 btz
 btz
 btz
@@ -40474,12 +40461,12 @@ bob
 bmi
 bmY
 bmi
-bpg
+ruM
 bqn
 boS
 brq
 bmg
-boE
+bmi
 bmi
 bmi
 atk
@@ -40487,7 +40474,7 @@ btz
 btz
 btY
 btz
-bmm
+kEZ
 btz
 btY
 btz
@@ -40691,12 +40678,12 @@ bmk
 bmk
 bmk
 bpe
-bpg
+ruM
 bnv
 bqR
 boQ
 bmi
-boE
+bmi
 bmi
 btg
 blJ
@@ -40704,7 +40691,7 @@ btz
 btz
 btz
 btz
-bmm
+kEZ
 btz
 btz
 btz
@@ -40908,7 +40895,7 @@ bmO
 bmg
 boV
 bmi
-bpg
+ruM
 bqo
 bqo
 bqo
@@ -40921,7 +40908,7 @@ kEZ
 kEZ
 kEZ
 kEZ
-bmm
+kEZ
 buX
 kEZ
 bty
@@ -41121,24 +41108,24 @@ blS
 blS
 blS
 blS
-bqh
+dLR
 blS
 blS
-bqh
+dLR
 msI
-bqh
-bqh
+dLR
+dLR
 bqK
-bpf
+rMV
 bsw
 bsO
 bth
 bsO
-bmm
-btF
-btF
-btF
-btF
+kEZ
+kEZ
+kEZ
+kEZ
+kEZ
 bty
 bty
 kEZ
@@ -41781,11 +41768,11 @@ aBR
 blJ
 brv
 brT
-bqh
-bqh
-bqh
-bqh
-bqh
+dLR
+dLR
+dLR
+dLR
+dLR
 btG
 blJ
 bjA
@@ -42437,7 +42424,7 @@ bmk
 bmq
 bmq
 bmi
-bpg
+ruM
 bmk
 bjA
 bjH
@@ -43088,8 +43075,8 @@ bmi
 bmi
 bmi
 bmi
-bpg
-boE
+ruM
+xCs
 bvA
 btv
 btv

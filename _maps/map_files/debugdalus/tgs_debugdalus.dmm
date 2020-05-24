@@ -264,12 +264,6 @@
 	pixel_z = -1
 	},
 /area/mainship/engineering/lower_engine_monitoring)
-"aaP" = (
-/obj/structure/cable,
-/turf/open/floor/mainship{
-	pixel_z = -1
-	},
-/area/mainship/engineering/lower_engine_monitoring)
 "aaQ" = (
 /turf/open/floor/mainship{
 	pixel_z = -1
@@ -379,6 +373,12 @@
 	pixel_z = -1
 	},
 /area/mainship/squads/alpha)
+"abf" = (
+/obj/structure/cable,
+/turf/open/floor/mainship{
+	pixel_z = -1
+	},
+/area/mainship/engineering/lower_engine_monitoring)
 "abh" = (
 /obj/effect/landmark/start/job/chiefshipengineer,
 /turf/open/floor/mainship{
@@ -16968,7 +16968,7 @@ aaa
 agB
 bpX
 bpX
-aaP
+abf
 bpX
 bpX
 bpX
@@ -17095,12 +17095,12 @@ aaa
 aaa
 bpX
 aaO
-aaP
+abf
 abn
-aaP
+abf
 abN
 abQ
-aaP
+abf
 aaQ
 aaQ
 bpX
@@ -17221,14 +17221,14 @@ aaa
 aaa
 aaa
 bpX
-aaP
-aaP
-aaP
-aaP
+aaQ
+abf
+abf
+abf
 abN
 abQ
-aaP
-aaP
+abf
+aaQ
 acB
 bpX
 aaG
@@ -17351,11 +17351,11 @@ bpX
 aaQ
 abh
 aaQ
-aaP
+abf
 abN
 abQ
-aaP
-aaP
+abf
+abf
 aaQ
 bpX
 aaG
@@ -17482,7 +17482,7 @@ abC
 bpX
 bpX
 aaQ
-aaP
+abf
 bpX
 bpX
 aaG
@@ -17608,8 +17608,8 @@ abp
 aaQ
 bpX
 abR
-aaP
-aaP
+abf
+abf
 acC
 bpX
 acN
@@ -17736,7 +17736,7 @@ abD
 bpX
 bpX
 acd
-aaP
+abf
 bpX
 bpX
 aaG
@@ -17857,12 +17857,12 @@ aaa
 aaa
 brQ
 aaS
-aaT
-aaT
-aaT
-aaT
-aaT
-aaT
+acn
+acn
+acn
+acn
+acn
+acn
 aaT
 acD
 brQ
@@ -17990,7 +17990,7 @@ aaT
 aaT
 aaT
 aaT
-acn
+aaT
 acE
 brQ
 aaG

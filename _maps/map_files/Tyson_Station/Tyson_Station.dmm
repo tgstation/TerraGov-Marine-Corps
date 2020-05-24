@@ -3580,6 +3580,7 @@
 /area/crew_quarters/sleep/bedrooms)
 "anJ" = (
 /obj/effect/landmark/corpsespawner,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/construction/solarscontrol)
 "anK" = (
@@ -3681,6 +3682,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/machinery/power/terminal,
 /turf/open/floor/plating,
 /area/construction/solarscontrol)
 "aoe" = (
@@ -5381,11 +5383,6 @@
 	},
 /turf/open/floor,
 /area/security/brig)
-"aub" = (
-/obj/machinery/power/smes,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/maintenance/fore)
 "auc" = (
 /obj/structure/cable,
 /turf/open/floor,
@@ -8913,6 +8910,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigred/ground/central_hall)
 "aGA" = (
@@ -8920,6 +8918,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigred/ground/central_hall)
 "aGB" = (
@@ -9440,6 +9439,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plating/warning{
 	dir = 8
 	},
@@ -9873,11 +9873,6 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/bigred/ground/central_hall)
-"aKF" = (
-/obj/machinery/power/smes,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/maintenance/medbay)
 "aKG" = (
 /obj/structure/table,
 /obj/item/flashlight/lamp,
@@ -10706,10 +10701,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/medbay)
-"aNC" = (
-/obj/structure/cable,
-/turf/open/floor/plating/warning,
-/area/maintenance/substation)
 "aND" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Medical Clinic Treatment"
@@ -11728,12 +11719,6 @@
 /obj/machinery/atmospherics/components/binary/volume_pump/layer1,
 /turf/open/floor,
 /area/lv624/lazarus/atmos)
-"aRh" = (
-/obj/machinery/power/terminal{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/maintenance/aft)
 "aRi" = (
 /obj/structure/cable,
 /turf/open/floor/plating/dmg1,
@@ -13887,6 +13872,7 @@
 	dir = 4
 	},
 /obj/effect/spawner/random/toolbox,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigred/ground/central_hall)
 "aYY" = (
@@ -13971,12 +13957,6 @@
 	dir = 9
 	},
 /area/maintenance/substation)
-"aZo" = (
-/obj/structure/cable,
-/turf/open/floor/plating/warning{
-	dir = 1
-	},
-/area/maintenance/substation)
 "aZp" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
@@ -14048,10 +14028,6 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/lv624/lazarus/engineering)
-"aZD" = (
-/obj/structure/cable,
-/turf/closed/wall,
-/area/lv624/lazarus/engineering)
 "aZE" = (
 /obj/structure/cable,
 /turf/open/floor,
@@ -14071,7 +14047,6 @@
 /turf/open/floor,
 /area/lv624/lazarus/atmos)
 "aZJ" = (
-/obj/structure/cable,
 /turf/open/floor/plating/warning{
 	dir = 6
 	},
@@ -14085,7 +14060,6 @@
 /turf/open/floor,
 /area/bigred/ground/central_hall)
 "aZP" = (
-/obj/structure/cable,
 /turf/open/floor/plating/warning{
 	dir = 5
 	},
@@ -14171,10 +14145,6 @@
 /turf/open/floor/grimy,
 /area/library)
 "baq" = (
-/obj/machinery/power/terminal{
-	dir = 1
-	},
-/obj/structure/cable,
 /turf/open/floor/plating/warning,
 /area/maintenance/substation)
 "bas" = (
@@ -14210,15 +14180,10 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/bigred/ground/central_hall)
-"baw" = (
-/obj/machinery/light{
-	dir = 8
-	},
+"baz" = (
 /obj/structure/cable,
-/turf/open/floor/plating/warning{
-	dir = 8
-	},
-/area/maintenance/substation)
+/turf/closed/wall,
+/area/lv624/lazarus/engineering)
 "baB" = (
 /obj/structure/table/woodentable,
 /obj/structure/safe/floor,
@@ -14264,6 +14229,11 @@
 /obj/effect/landmark/corpsespawner/engineer,
 /turf/open/floor,
 /area/lv624/lazarus/engineering)
+"baH" = (
+/turf/open/floor/plating/warning{
+	dir = 10
+	},
+/area/maintenance/substation)
 "baJ" = (
 /obj/machinery/camera/autoname,
 /turf/open/floor/tile/dark,
@@ -14899,6 +14869,10 @@
 /area/maintenance/engineering)
 "bcX" = (
 /obj/structure/cable,
+/obj/machinery/power/terminal{
+	icon_state = "term";
+	dir = 8
+	},
 /turf/open/floor/plating/warning{
 	dir = 4
 	},
@@ -16147,6 +16121,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigred/ground/central_hall)
 "bhx" = (
@@ -16485,11 +16460,6 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/aft)
-"biM" = (
-/obj/machinery/power/smes,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/maintenance/aft)
 "biN" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -16550,6 +16520,10 @@
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
+/turf/open/floor/plating,
+/area/hallway/primary/port)
+"biY" = (
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/hallway/primary/port)
 "biZ" = (
@@ -16927,6 +16901,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigred/ground/central_hall)
 "bkh" = (
@@ -16934,6 +16909,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigred/ground/central_hall)
 "bki" = (
@@ -16941,6 +16917,7 @@
 	dir = 4
 	},
 /obj/structure/foamedmetal,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigred/ground/central_hall)
 "bkj" = (
@@ -16949,6 +16926,7 @@
 	dir = 4
 	},
 /obj/structure/foamedmetal,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigred/ground/central_hall)
 "bkk" = (
@@ -16956,13 +16934,6 @@
 	dir = 4
 	},
 /obj/machinery/camera/autoname{
-	dir = 4
-	},
-/turf/open/floor,
-/area/bigred/ground/central_hall)
-"bkl" = (
-/obj/machinery/light,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -17226,10 +17197,6 @@
 /area/hallway/primary/port)
 "blk" = (
 /obj/item/reagent_containers/food/snacks/no_raisin,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/hallway/primary/port)
-"bll" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/hallway/primary/port)
@@ -32795,8 +32762,8 @@ blf
 blh
 blj
 blk
-bll
-bll
+aRP
+biY
 beD
 biR
 aRi
@@ -33729,7 +33696,7 @@ akw
 akG
 abv
 akG
-akG
+abH
 akG
 aqm
 arX
@@ -38359,7 +38326,7 @@ ara
 ara
 ara
 ara
-aub
+ara
 kTF
 abx
 abx
@@ -39463,8 +39430,8 @@ jvT
 aaa
 aaa
 jvT
-biM
-aRh
+bdJ
+aFP
 aRk
 aFA
 biQ
@@ -44589,7 +44556,7 @@ aeP
 bLS
 aGn
 aGn
-aAD
+aHU
 aZe
 aZm
 aGR
@@ -44846,20 +44813,20 @@ aeP
 bLS
 aGn
 adC
-aAD
+aHU
 aZe
 aZn
 aIW
 aZx
 aZn
-baw
+aIW
 aZx
 aZn
-baw
+aIW
 aZx
 baF
-baw
-aZx
+aIW
+baH
 aGS
 aHZ
 aGS
@@ -45103,20 +45070,20 @@ aeP
 bLS
 adC
 adC
-aAD
+aHU
 aZe
-aZo
+aHP
 aZw
 baq
 aHP
 aZw
-aNC
-aZo
-aZw
-aNC
+baq
 aHP
 aZw
-aNC
+baq
+aHP
+aZw
+baq
 aGS
 aHR
 aGS
@@ -45360,7 +45327,7 @@ aeP
 bLS
 bhl
 adC
-aAD
+aHU
 aZe
 aZp
 bcX
@@ -45617,19 +45584,19 @@ aeP
 bLS
 adC
 adC
-aAD
+aHU
 aZe
 aZQ
 bal
-aZQ
-aZQ
 bal
 bal
 bal
-aZQ
-aZQ
-aZQ
-aZQ
+bal
+bal
+bal
+bal
+bal
+bal
 aZQ
 aGS
 aHR
@@ -45874,7 +45841,7 @@ aeP
 bLS
 adC
 adC
-aAD
+aHU
 aZe
 aGS
 bcY
@@ -46131,7 +46098,7 @@ aeP
 bLS
 adC
 adC
-aAD
+aHU
 aZe
 aHS
 aZE
@@ -46388,7 +46355,7 @@ aeP
 bLS
 adC
 adC
-aAD
+aHU
 aZe
 aZq
 aZE
@@ -46645,7 +46612,7 @@ aeP
 bLS
 bhl
 adC
-aAD
+aHU
 aZe
 aZr
 bda
@@ -46902,7 +46869,7 @@ aeP
 bLS
 adC
 adC
-aAD
+aHU
 aZe
 aZs
 aZE
@@ -47159,7 +47126,7 @@ aeP
 bLS
 adC
 adC
-aAD
+aHU
 aZe
 aHW
 aZC
@@ -47416,10 +47383,10 @@ aeP
 bLS
 adC
 adC
-aAD
+aHU
 aZe
 aGS
-aZD
+aGS
 aGS
 aZT
 aZT
@@ -47930,7 +47897,7 @@ aeP
 bLS
 adC
 adC
-aAD
+aHU
 aZe
 aHY
 aZE
@@ -47939,7 +47906,7 @@ aZE
 bdt
 aZE
 aZE
-aZD
+baz
 biA
 aNw
 aOa
@@ -48187,7 +48154,7 @@ aeP
 bLS
 adC
 adC
-aAD
+aHU
 aZe
 aWp
 aZE
@@ -48444,7 +48411,7 @@ aeP
 bLS
 adC
 adC
-aAD
+aHU
 aZe
 aIa
 aZE
@@ -49215,7 +49182,7 @@ aeP
 bLS
 adC
 ave
-aAD
+aHU
 aZe
 aZt
 bdb
@@ -49472,7 +49439,7 @@ aeP
 bLS
 adC
 ave
-aAD
+aHU
 aZe
 aId
 bdc
@@ -49729,7 +49696,7 @@ bLS
 bLS
 bhl
 bhr
-bkl
+aGA
 aZe
 auR
 aJc
@@ -59241,7 +59208,7 @@ aDN
 aGF
 aQP
 bcN
-aKF
+bcN
 aII
 aKr
 aJF

@@ -32925,10 +32925,10 @@
 	dir = 4;
 	on = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/prison/engineering)
 "bWa" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
 	},
@@ -33326,7 +33326,6 @@
 /turf/open/floor/plating,
 /area/prison/engineering)
 "bXA" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/door/airlock/mainship/engineering/free_access{
@@ -33773,7 +33772,6 @@
 /turf/open/floor/prison/darkyellow/full,
 /area/prison/engineering)
 "bYU" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
@@ -34217,7 +34215,6 @@
 	},
 /area/prison/engineering)
 "caz" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
@@ -42933,6 +42930,10 @@
 	},
 /turf/closed/wall/r_wall/prison,
 /area/prison/security/checkpoint/hangar)
+"uOY" = (
+/obj/structure/cable,
+/turf/closed/wall/prison,
+/area/prison/engineering)
 "uQX" = (
 /obj/machinery/vending/cigarette/colony,
 /turf/open/floor/prison,
@@ -88228,7 +88229,7 @@ cuU
 bTh
 bUF
 bVZ
-bRC
+uOY
 bYT
 cay
 cbK
@@ -88996,8 +88997,8 @@ bIZ
 bOH
 bQi
 bRF
-cuT
-cuT
+bWc
+bWc
 cuT
 bXB
 bUF
@@ -89255,7 +89256,7 @@ bQi
 bRG
 bTk
 bUJ
-bWc
+cuT
 bRC
 bYX
 caA

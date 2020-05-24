@@ -424,7 +424,6 @@
 	dir = 4;
 	on = 1
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "bb" = (
@@ -1226,6 +1225,11 @@
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
+"Rz" = (
+/obj/structure/window/framed/mainship/canterbury,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/shuttle/canterbury)
 "RS" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/mono,
@@ -1312,7 +1316,7 @@ aL
 an
 aR
 bb
-aR
+Rz
 bo
 by
 bI

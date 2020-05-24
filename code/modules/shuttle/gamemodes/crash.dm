@@ -79,3 +79,8 @@
 /obj/docking_port/mobile/crashmode/register()
 	. = ..()
 	SSshuttle.canterbury = src
+
+/obj/docking_port/stationary/crashmode/hangar
+	name = "Hangar Pad One"
+	id = "canterbury"
+	roundstart_template = /datum/map_template/shuttle/tgs_canterbury

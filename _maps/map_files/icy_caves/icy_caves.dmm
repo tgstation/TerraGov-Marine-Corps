@@ -252,14 +252,12 @@
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "ba" = (
-/obj/machinery/power/terminal{
-	dir = 4
-	},
 /obj/structure/cable,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "bb" = (
 /obj/machinery/power/smes,
+/obj/structure/cable,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "bc" = (
@@ -271,17 +269,16 @@
 /obj/effect/landmark/corpsespawner/engineer,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
-"be" = (
-/obj/structure/cable,
-/obj/effect/alien/weeds/node,
-/turf/open/floor/plating/mainship,
-/area/icy_caves/caves/crashed_ship)
 "bf" = (
 /obj/structure/closet/crate/science,
 /obj/item/stack/sheet/mineral/phoron/medium_stack,
 /obj/machinery/light/built{
 	dir = 4
 	},
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "bg" = (
@@ -345,17 +342,9 @@
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
-"bq" = (
-/obj/structure/cable,
-/obj/machinery/light,
-/turf/open/floor/plating/mainship,
-/area/icy_caves/caves/crashed_ship)
-"br" = (
-/obj/structure/cable,
-/turf/open/floor/plating/mainship,
-/area/icy_caves/caves/crashed_ship)
 "bs" = (
 /obj/machinery/power/port_gen/pacman,
+/obj/structure/cable,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "bt" = (
@@ -25294,7 +25283,7 @@ hS
 it
 iJ
 hP
-iv
+hS
 jJ
 kX
 hi
@@ -34700,8 +34689,8 @@ am
 aC
 af
 aY
-be
-bq
+am
+bl
 ac
 ac
 nt
@@ -34958,7 +34947,7 @@ ac
 af
 ba
 af
-br
+af
 ac
 bw
 nu

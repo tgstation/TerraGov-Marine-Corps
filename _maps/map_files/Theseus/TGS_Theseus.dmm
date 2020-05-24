@@ -353,8 +353,7 @@
 "abk" = (
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/green{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/hallways/starboard_hallway)
 "abl" = (
@@ -464,8 +463,7 @@
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship,
 /turf/open/floor/mainship/green{
-	dir = 9;
-	
+	dir = 9
 	},
 /area/mainship/living/numbertwobunks)
 "abC" = (
@@ -474,8 +472,7 @@
 	},
 /obj/machinery/firealarm,
 /turf/open/floor/mainship/green{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/living/numbertwobunks)
 "abD" = (
@@ -707,8 +704,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/green{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/hallways/aft_hallway)
 "acp" = (
@@ -1283,8 +1279,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/green{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/hallways/aft_hallway)
 "aeb" = (
@@ -1292,8 +1287,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/green{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/hallways/aft_hallway)
 "aec" = (
@@ -1395,8 +1389,7 @@
 /obj/structure/bed/chair/office/dark,
 /obj/structure/cable,
 /turf/open/floor/mainship/green{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/living/numbertwobunks)
 "aep" = (
@@ -1595,11 +1588,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/cargo,
 /area/mainship/hull/upper_hull)
-"aeX" = (
-/obj/structure/cable,
-/obj/machinery/power/smes/preset,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hull/upper_hull)
 "aeY" = (
 /obj/structure/closet/toolcloset,
 /obj/effect/spawner/random/toolbox,
@@ -1764,8 +1752,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/green{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/hallways/aft_hallway)
 "afy" = (
@@ -1908,10 +1895,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/upper_hull)
 "afX" = (
-/obj/machinery/power/terminal{
-	dir = 1
-	},
-/obj/structure/cable,
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
@@ -2043,14 +2026,12 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/green{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/hallways/aft_hallway)
 "agp" = (
 /turf/open/floor/mainship/green{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/hallways/aft_hallway)
 "agq" = (
@@ -2378,8 +2359,7 @@
 	},
 /obj/machinery/firealarm,
 /turf/open/floor/mainship/green{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/shipboard/brig_cells)
 "aht" = (
@@ -2473,8 +2453,7 @@
 /area/mainship/hull/upper_hull)
 "ahG" = (
 /turf/open/floor/mainship/green{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/hallways/aft_hallway)
 "ahH" = (
@@ -3022,8 +3001,7 @@
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship,
 /turf/open/floor/mainship/green{
-	dir = 9;
-	
+	dir = 9
 	},
 /area/mainship/living/basketball)
 "aji" = (
@@ -3399,8 +3377,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/green{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/hallways/aft_hallway)
 "akq" = (
@@ -3429,8 +3406,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/green{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/hallways/aft_hallway)
 "aks" = (
@@ -4055,8 +4031,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/green{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/hallways/aft_hallway)
 "alQ" = (
@@ -4446,10 +4421,6 @@
 /obj/machinery/light,
 /turf/open/floor/carpet,
 /area/mainship/shipboard/brig)
-"amG" = (
-/obj/structure/cable,
-/turf/closed/wall/mainship,
-/area/mainship/hull/upper_hull)
 "amH" = (
 /turf/closed/wall/mainship,
 /area/mainship/command/cic)
@@ -4629,8 +4600,7 @@
 /obj/structure/flora/pottedplant/twentytwo,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/green{
-	dir = 5;
-	
+	dir = 5
 	},
 /area/mainship/squads/req)
 "anq" = (
@@ -5573,8 +5543,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/green{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/living/basketball)
 "aqj" = (
@@ -5983,8 +5952,7 @@
 "art" = (
 /obj/machinery/firealarm,
 /turf/open/floor/mainship/green{
-	dir = 9;
-	
+	dir = 9
 	},
 /area/mainship/squads/req)
 "aru" = (
@@ -6941,8 +6909,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/green{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/living/basketball)
 "auf" = (
@@ -7176,8 +7143,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/green{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/living/numbertwobunks)
 "auL" = (
@@ -7552,8 +7518,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/green{
-	dir = 6;
-	
+	dir = 6
 	},
 /area/mainship/living/basketball)
 "avJ" = (
@@ -7638,8 +7603,7 @@
 /obj/machinery/alarm,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/green{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/squads/req)
 "avV" = (
@@ -7648,8 +7612,7 @@
 /area/mainship/hallways/stern_hallway)
 "avW" = (
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/command/self_destruct)
 "avX" = (
@@ -7688,8 +7651,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/shipboard/brig_cells)
 "awf" = (
@@ -7718,8 +7680,7 @@
 /area/mainship/shipboard/brig)
 "awi" = (
 /turf/open/floor/mainship/green{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/living/numbertwobunks)
 "awj" = (
@@ -7823,8 +7784,7 @@
 /area/mainship/shipboard/chief_mp_office)
 "awv" = (
 /turf/open/floor/mainship/green{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/living/numbertwobunks)
 "aww" = (
@@ -8526,8 +8486,7 @@
 	pixel_x = 25
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/hull/upper_hull)
 "ayz" = (
@@ -8760,8 +8719,7 @@
 "azf" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/hallways/stern_hallway)
 "azg" = (
@@ -9091,8 +9049,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/green{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/hallways/aft_hallway)
 "azV" = (
@@ -9107,8 +9064,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/green{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/hallways/aft_hallway)
 "azW" = (
@@ -9230,8 +9186,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/hull/upper_hull)
 "aAm" = (
@@ -9544,8 +9499,7 @@
 "aBa" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/command/self_destruct)
 "aBc" = (
@@ -9960,8 +9914,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/hull/upper_hull)
 "aCe" = (
@@ -10205,8 +10158,7 @@
 /area/mainship/engineering/upper_engineering)
 "aCM" = (
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/hallways/stern_hallway)
 "aCN" = (
@@ -10363,8 +10315,7 @@
 /area/mainship/command/cic)
 "aDf" = (
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/command/cic)
 "aDg" = (
@@ -10822,8 +10773,7 @@
 "aEq" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/shipboard/brig)
 "aEr" = (
@@ -11341,7 +11291,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/brig)
 "aFA" = (
-/obj/structure/cable,
 /obj/structure/sign/electricshock{
 	dir = 1
 	},
@@ -11354,14 +11303,12 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/shipboard/brig_cells)
 "aFC" = (
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/shipboard/brig_cells)
 "aFD" = (
@@ -11935,8 +11882,7 @@
 /area/mainship/engineering/upper_engineering)
 "aHi" = (
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/command/self_destruct)
 "aHj" = (
@@ -12960,8 +12906,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/green{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/shipboard/brig_cells)
 "aJY" = (
@@ -13822,8 +13767,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/green{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/hallways/aft_hallway)
 "aMc" = (
@@ -13851,8 +13795,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/green{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/hallways/aft_hallway)
 "aMf" = (
@@ -14001,8 +13944,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/green{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/shipboard/brig_cells)
 "aMA" = (
@@ -14013,8 +13955,7 @@
 	dir = 10
 	},
 /turf/open/floor/mainship/green{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/shipboard/brig_cells)
 "aMB" = (
@@ -14270,8 +14211,7 @@
 /obj/structure/cable,
 /obj/machinery/light,
 /turf/open/floor/mainship/green{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/hallways/aft_hallway)
 "aNf" = (
@@ -14463,8 +14403,7 @@
 /area/mainship/command/cic)
 "aNC" = (
 /turf/open/floor/mainship/green{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/shipboard/brig_cells)
 "aND" = (
@@ -14598,8 +14537,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/green{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/hallways/aft_hallway)
 "aNT" = (
@@ -14903,8 +14841,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/green{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/hallways/port_hallway)
 "aOI" = (
@@ -15080,8 +15017,7 @@
 "aPd" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/green{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/hallways/aft_hallway)
 "aPe" = (
@@ -15290,7 +15226,6 @@
 	},
 /area/mainship/shipboard/brig_cells)
 "aPJ" = (
-/obj/machinery/power/terminal,
 /obj/structure/cable,
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
@@ -15661,8 +15596,7 @@
 /area/mainship/engineering/port_atmos)
 "aQJ" = (
 /turf/open/floor/mainship/green{
-	dir = 5;
-	
+	dir = 5
 	},
 /area/mainship/shipboard/brig_cells)
 "aQK" = (
@@ -16121,8 +16055,7 @@
 /area/mainship/living/bridgebunks)
 "aSg" = (
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/shipboard/ex_firing_range)
 "aSh" = (
@@ -16386,8 +16319,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/engineering/port_atmos)
 "aSX" = (
@@ -16525,8 +16457,7 @@
 	},
 /obj/item/radio/intercom/general,
 /turf/open/floor/mainship/green{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/shipboard/brig_cells)
 "aTo" = (
@@ -16688,8 +16619,7 @@
 	range = 3
 	},
 /turf/open/floor/mainship/green{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/shipboard/brig_cells)
 "aTJ" = (
@@ -16986,8 +16916,7 @@
 /area/mainship/hull/lower_hull)
 "aWl" = (
 /turf/open/floor/mainship/green{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/hallways/starboard_hallway)
 "aWn" = (
@@ -16998,8 +16927,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/green{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/hallways/starboard_hallway)
 "aWo" = (
@@ -17026,8 +16954,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/green{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/hallways/starboard_hallway)
 "aWt" = (
@@ -17231,8 +17158,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/squads/alpha)
 "aXc" = (
@@ -17240,8 +17166,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/squads/alpha)
 "aXd" = (
@@ -17344,8 +17269,7 @@
 	},
 /obj/machinery/firealarm,
 /turf/open/floor/mainship/green{
-	dir = 5;
-	
+	dir = 5
 	},
 /area/mainship/living/basketball)
 "aXz" = (
@@ -17575,8 +17499,7 @@
 "aYo" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/green{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/living/basketball)
 "aYp" = (
@@ -17587,8 +17510,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/green{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/living/basketball)
 "aYq" = (
@@ -17986,8 +17908,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/green{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/living/basketball)
 "aZF" = (
@@ -18318,8 +18239,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/green{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/hallways/starboard_hallway)
 "baJ" = (
@@ -18337,8 +18257,7 @@
 /area/mainship/living/basketball)
 "baL" = (
 /turf/open/floor/mainship/green{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/living/basketball)
 "baM" = (
@@ -18353,8 +18272,7 @@
 	},
 /obj/structure/bed/chair,
 /turf/open/floor/mainship/green{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/living/basketball)
 "baO" = (
@@ -18369,8 +18287,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/green{
-	dir = 5;
-	
+	dir = 5
 	},
 /area/mainship/living/basketball)
 "baQ" = (
@@ -18614,8 +18531,7 @@
 "bbT" = (
 /obj/structure/ship_ammo/heavygun,
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/hallways/hangar)
 "bbU" = (
@@ -18625,8 +18541,7 @@
 "bbV" = (
 /obj/structure/ship_ammo/heavygun,
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/hallways/hangar)
 "bbW" = (
@@ -18674,14 +18589,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/green{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/hallways/starboard_hallway)
 "bcg" = (
 /turf/open/floor/mainship/green{
-	dir = 10;
-	
+	dir = 10
 	},
 /area/mainship/living/basketball)
 "bch" = (
@@ -18700,8 +18613,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/green{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/living/basketball)
 "bcl" = (
@@ -18760,8 +18672,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/squads/bravo)
 "bcx" = (
@@ -18770,8 +18681,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/squads/bravo)
 "bcy" = (
@@ -18827,8 +18737,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/squads/bravo)
 "bcG" = (
@@ -18995,8 +18904,7 @@
 "bdf" = (
 /obj/structure/closet/masks,
 /turf/open/floor/mainship/green{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/living/basketball)
 "bdg" = (
@@ -19201,8 +19109,7 @@
 /area/mainship/hallways/hangar)
 "bdX" = (
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/hallways/hangar)
 "bdY" = (
@@ -19210,8 +19117,7 @@
 /area/mainship/hallways/hangar)
 "bdZ" = (
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/hallways/hangar)
 "bea" = (
@@ -19263,8 +19169,7 @@
 /obj/structure/table/mainship,
 /obj/item/tool/hand_labeler,
 /turf/open/floor/mainship/green{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/living/basketball)
 "bei" = (
@@ -19273,8 +19178,7 @@
 /obj/item/tool/pen,
 /obj/item/storage/fancy/crayons,
 /turf/open/floor/mainship/green{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/living/basketball)
 "bej" = (
@@ -19282,8 +19186,7 @@
 /obj/item/camera,
 /obj/item/camera_film,
 /turf/open/floor/mainship/green{
-	dir = 5;
-	
+	dir = 5
 	},
 /area/mainship/living/basketball)
 "bek" = (
@@ -19291,15 +19194,13 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/green{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/living/basketball)
 "bel" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/mainship/green{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/living/basketball)
 "bem" = (
@@ -19338,15 +19239,13 @@
 "bep" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/mainship/green{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/living/basketball)
 "beq" = (
 /obj/structure/closet/boxinggloves,
 /turf/open/floor/mainship/green{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/living/basketball)
 "ber" = (
@@ -19486,8 +19385,7 @@
 "beT" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/hallways/hangar)
 "beU" = (
@@ -19496,8 +19394,7 @@
 "beV" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/hallways/hangar)
 "beW" = (
@@ -19581,8 +19478,7 @@
 "bfh" = (
 /obj/machinery/computer/arcade,
 /turf/open/floor/mainship/green{
-	dir = 9;
-	
+	dir = 9
 	},
 /area/mainship/living/basketball)
 "bfi" = (
@@ -19600,15 +19496,13 @@
 /area/mainship/living/basketball)
 "bfk" = (
 /turf/open/floor/mainship/green{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/living/basketball)
 "bfl" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/green{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/living/basketball)
 "bfm" = (
@@ -19638,8 +19532,7 @@
 "bfq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/green{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/living/basketball)
 "bfr" = (
@@ -19930,8 +19823,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/green{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/living/basketball)
 "bgn" = (
@@ -19955,8 +19847,7 @@
 	dir = 6
 	},
 /turf/open/floor/mainship/green{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/living/basketball)
 "bgq" = (
@@ -19999,8 +19890,7 @@
 "bgu" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/mainship/green{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/living/basketball)
 "bgv" = (
@@ -20297,8 +20187,7 @@
 "bhr" = (
 /obj/machinery/computer/arcade,
 /turf/open/floor/mainship/green{
-	dir = 10;
-	
+	dir = 10
 	},
 /area/mainship/living/basketball)
 "bhs" = (
@@ -20313,8 +20202,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/green{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/living/basketball)
 "bhv" = (
@@ -20356,8 +20244,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/green{
-	dir = 6;
-	
+	dir = 6
 	},
 /area/mainship/living/basketball)
 "bhA" = (
@@ -21760,8 +21647,7 @@
 /area/mainship/hallways/starboard_hallway)
 "blW" = (
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/hallways/starboard_hallway)
 "blX" = (
@@ -22134,8 +22020,7 @@
 /area/mainship/squads/req)
 "bnD" = (
 /turf/open/floor/mainship/green{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/squads/req)
 "bnE" = (
@@ -22598,8 +22483,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/green{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/squads/req)
 "bpw" = (
@@ -22816,8 +22700,7 @@
 /area/mainship/shipboard/starboard_missiles)
 "bqe" = (
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/shipboard/starboard_missiles)
 "bqf" = (
@@ -22852,7 +22735,6 @@
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/tool/mop,
 /obj/item/tool/soap,
-/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/upper_hull)
 "bqs" = (
@@ -23085,8 +22967,7 @@
 /area/mainship/squads/req)
 "bre" = (
 /turf/open/floor/mainship/green{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/squads/req)
 "brf" = (
@@ -23098,8 +22979,7 @@
 /obj/structure/bed/chair/office/light,
 /obj/effect/landmark/start/job/requisitionsofficer,
 /turf/open/floor/mainship/green{
-	dir = 6;
-	
+	dir = 6
 	},
 /area/mainship/squads/req)
 "brh" = (
@@ -24300,8 +24180,7 @@
 /area/mainship/squads/req)
 "bwc" = (
 /turf/open/floor/mainship/green{
-	dir = 9;
-	
+	dir = 9
 	},
 /area/mainship/squads/req)
 "bwd" = (
@@ -24312,8 +24191,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/green{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/squads/req)
 "bwf" = (
@@ -24447,7 +24325,6 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/orange/corner,
 /area/mainship/engineering/lower_engine_monitoring)
 "bwI" = (
@@ -24761,8 +24638,7 @@
 /area/mainship/squads/req)
 "byc" = (
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/squads/req)
 "byd" = (
@@ -24791,8 +24667,7 @@
 	id = "supply_elevator_railing"
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/squads/req)
 "byi" = (
@@ -24862,12 +24737,6 @@
 "byu" = (
 /turf/open/floor/mainship/orange{
 	dir = 8
-	},
-/area/mainship/engineering/lower_engine_monitoring)
-"byv" = (
-/obj/structure/cable,
-/turf/open/floor/mainship/orange{
-	dir = 4
 	},
 /area/mainship/engineering/lower_engine_monitoring)
 "byw" = (
@@ -25076,8 +24945,7 @@
 	on = 1
 	},
 /turf/open/floor/mainship/green{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/squads/req)
 "bzo" = (
@@ -25171,13 +25039,6 @@
 /obj/machinery/door/airlock/mainship/engineering{
 	dir = 2
 	},
-/turf/open/floor/mainship/mono,
-/area/mainship/engineering/lower_engine_monitoring)
-"bzH" = (
-/obj/machinery/door/airlock/mainship/engineering{
-	dir = 2
-	},
-/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engine_monitoring)
 "bzI" = (
@@ -25541,8 +25402,7 @@
 	pixel_y = -25
 	},
 /turf/open/floor/mainship/green{
-	dir = 10;
-	
+	dir = 10
 	},
 /area/mainship/squads/req)
 "bAK" = (
@@ -25640,12 +25500,6 @@
 /obj/item/storage/toolbox/electrical,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
-"bBb" = (
-/obj/structure/cable,
-/turf/open/floor/mainship/orange{
-	dir = 8
-	},
-/area/mainship/engineering/lower_engine_monitoring)
 "bBe" = (
 /obj/item/radio/intercom/general,
 /turf/open/floor/mainship/orange{
@@ -25668,8 +25522,7 @@
 "bBh" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/engineering/engine_core)
 "bBi" = (
@@ -25682,8 +25535,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/engineering/engine_core)
 "bBk" = (
@@ -25865,8 +25717,7 @@
 	id = "supply_elevator_railing"
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/squads/req)
 "bCa" = (
@@ -25972,30 +25823,27 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engine_monitoring)
 "bCr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
 /area/mainship/engineering/lower_engine_monitoring)
 "bCs" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/lower_engine_monitoring)
 "bCt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/cable,
 /obj/machinery/holopad,
 /turf/open/floor/mainship,
 /area/mainship/engineering/lower_engine_monitoring)
@@ -26308,8 +26156,7 @@
 	pixel_y = 27
 	},
 /turf/open/floor/mainship/green{
-	dir = 9;
-	
+	dir = 9
 	},
 /area/mainship/squads/req)
 "bDE" = (
@@ -28007,8 +27854,7 @@
 "bKM" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/green{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/hallways/aft_hallway)
 "bKN" = (
@@ -29138,8 +28984,7 @@
 	},
 /obj/structure/barricade/metal,
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/hallways/port_hallway)
 "bOL" = (
@@ -29160,8 +29005,7 @@
 "bON" = (
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/hallways/port_hallway)
 "bOO" = (
@@ -30699,8 +30543,7 @@
 	dir = 5
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/hallways/repair_bay)
 "bTM" = (
@@ -31397,8 +31240,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/squads/charlie)
 "bVU" = (
@@ -31409,8 +31251,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/squads/charlie)
 "bVV" = (
@@ -31418,8 +31259,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/squads/charlie)
 "bVW" = (
@@ -33186,8 +33026,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/squads/delta)
 "cci" = (
@@ -33196,8 +33035,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/squads/delta)
 "ccl" = (
@@ -33242,8 +33080,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/squads/delta)
 "ccr" = (
@@ -33882,8 +33719,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/green{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/hallways/port_hallway)
 "cew" = (
@@ -33901,8 +33737,7 @@
 	id = "mainshiplink"
 	},
 /turf/open/floor/mainship/green{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/hallways/port_hallway)
 "cey" = (
@@ -33967,8 +33802,7 @@
 	},
 /obj/machinery/light,
 /turf/open/floor/mainship/green{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/hallways/port_hallway)
 "ceI" = (
@@ -34202,8 +34036,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/green{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/shipboard/brig_cells)
 "cfK" = (
@@ -34276,8 +34109,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/green{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/shipboard/brig_cells)
 "cfX" = (
@@ -34364,8 +34196,7 @@
 /area/mainship/shipboard/brig_cells)
 "cgp" = (
 /turf/open/floor/mainship/green{
-	dir = 10;
-	
+	dir = 10
 	},
 /area/mainship/shipboard/brig_cells)
 "cgq" = (
@@ -34387,8 +34218,7 @@
 /area/mainship/shipboard/brig_cells)
 "cgt" = (
 /turf/open/floor/mainship/green{
-	dir = 6;
-	
+	dir = 6
 	},
 /area/mainship/shipboard/brig_cells)
 "cgu" = (
@@ -34771,8 +34601,7 @@
 	on = 1
 	},
 /turf/open/floor/mainship/green{
-	dir = 10;
-	
+	dir = 10
 	},
 /area/mainship/shipboard/brig_cells)
 "chu" = (
@@ -34780,8 +34609,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/green{
-	dir = 6;
-	
+	dir = 6
 	},
 /area/mainship/shipboard/brig_cells)
 "chv" = (
@@ -35132,22 +34960,15 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/orange,
 /area/mainship/hull/upper_hull)
 "ciO" = (
-/obj/structure/cable,
 /turf/open/floor/mainship/orange,
 /area/mainship/hull/upper_hull)
 "ciQ" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/exoarmor)
-"ciR" = (
-/obj/machinery/power/smes/preset,
-/obj/structure/cable,
-/turf/open/floor/mainship/mono,
-/area/mainship/hull/upper_hull)
 "ciS" = (
 /obj/machinery/vending/tool,
 /obj/machinery/light/small,
@@ -35373,8 +35194,7 @@
 /area/mainship/hallways/hangar)
 "cjL" = (
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/shipboard/weapon_room)
 "cjM" = (
@@ -35435,8 +35255,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/hallways/hangar)
 "cjV" = (
@@ -35456,8 +35275,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/hallways/hangar)
 "cjY" = (
@@ -35465,8 +35283,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/hallways/hangar)
 "cka" = (
@@ -35474,8 +35291,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/hallways/hangar)
 "ckc" = (
@@ -35483,8 +35299,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/hallways/hangar)
 "ckd" = (
@@ -35492,8 +35307,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/hallways/hangar)
 "cke" = (
@@ -35501,8 +35315,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/hallways/hangar)
 "ckf" = (
@@ -35510,8 +35323,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/hallways/hangar)
 "cki" = (
@@ -35535,8 +35347,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/hallways/hangar)
 "ckq" = (
@@ -35544,8 +35355,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/hallways/hangar)
 "ckr" = (
@@ -35553,8 +35363,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/hallways/hangar)
 "cks" = (
@@ -35562,8 +35371,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/hallways/hangar)
 "ckw" = (
@@ -35622,8 +35430,7 @@
 "ckJ" = (
 /obj/item/radio/intercom/general,
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/command/cic)
 "ckK" = (
@@ -36053,6 +35860,10 @@
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
 /area/mainship/living/briefing)
+"eCk" = (
+/obj/structure/cable,
+/turf/closed/wall/mainship/outer,
+/area/mainship/hull/upper_hull)
 "eCx" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/decal/warning_stripes/thin{
@@ -36279,6 +36090,10 @@
 	dir = 4
 	},
 /area/mainship/shipboard/weapon_room)
+"gdX" = (
+/obj/structure/cable,
+/turf/closed/wall/mainship/outer,
+/area/mainship/shipboard/starboard_point_defense)
 "gec" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
@@ -36355,11 +36170,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
-"gHv" = (
-/obj/structure/window/framed/mainship,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/mainship/hull/upper_hull)
 "gOu" = (
 /obj/structure/prop/mainship/name_stencil{
 	icon_state = "TGMC2"
@@ -36422,8 +36232,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/green{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/hallways/aft_hallway)
 "hhR" = (
@@ -36457,8 +36266,7 @@
 /area/mainship/hallways/aft_hallway)
 "hlj" = (
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/command/self_destruct)
 "hmV" = (
@@ -36849,6 +36657,10 @@
 	dir = 8
 	},
 /area/mainship/shipboard/ex_firing_range)
+"jrN" = (
+/obj/structure/cable,
+/turf/open/floor/mainship_hull/dir,
+/area/space)
 "jwV" = (
 /obj/structure/cable,
 /obj/machinery/holopad,
@@ -36890,8 +36702,7 @@
 	id = "supply_elevator_railing"
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/squads/req)
 "jFL" = (
@@ -36956,6 +36767,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/briefing)
+"khM" = (
+/obj/structure/cable,
+/turf/open/floor/mainship_hull,
+/area/space)
 "kjP" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -37176,8 +36991,7 @@
 /area/mainship/command/cic)
 "lNO" = (
 /turf/open/floor/mainship/green{
-	dir = 6;
-	
+	dir = 6
 	},
 /area/mainship/living/numbertwobunks)
 "lPq" = (
@@ -37318,6 +37132,10 @@
 	icon_state = "silver"
 	},
 /area/mainship/command/cic)
+"mOi" = (
+/obj/structure/cable,
+/turf/open/space/basic,
+/area/space)
 "mOA" = (
 /turf/open/floor/prison/rampbottom,
 /area/mainship/command/corporateliaison)
@@ -37541,8 +37359,7 @@
 "oCl" = (
 /obj/machinery/door/poddoor/railing/opened,
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/shipboard/weapon_room)
 "oCQ" = (
@@ -37748,8 +37565,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 4;
-	
+	dir = 4
 	},
 /area/mainship/shipboard/weapon_room)
 "pJe" = (
@@ -37854,8 +37670,7 @@
 "qhO" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/cargo/arrow{
-	dir = 8;
-	
+	dir = 8
 	},
 /area/mainship/squads/req)
 "qhZ" = (
@@ -38410,6 +38225,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"uBq" = (
+/obj/structure/cable,
+/turf/closed/wall/mainship/outer,
+/area/space)
 "uCy" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -38512,8 +38331,7 @@
 /area/mainship/living/officer_rnr)
 "vkk" = (
 /turf/open/floor/mainship/green{
-	dir = 1;
-	
+	dir = 1
 	},
 /area/mainship/living/numbertwobunks)
 "vlu" = (
@@ -38918,6 +38736,20 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/starboard_point_defense)
+"xWb" = (
+/obj/effect/step_trigger/teleporter/random{
+	affect_ghosts = 1;
+	name = "tele_ground1";
+	teleport_x = 180;
+	teleport_x_offset = 200;
+	teleport_y = 50;
+	teleport_y_offset = 80;
+	teleport_z = 1;
+	teleport_z_offset = 1
+	},
+/obj/structure/cable,
+/turf/open/space,
+/area/space)
 "xXw" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -50883,7 +50715,7 @@ arm
 aPG
 cgO
 ciD
-gHv
+aiE
 bqr
 ciN
 wtu
@@ -51115,10 +50947,10 @@ aag
 aag
 aag
 aai
-aeX
+abs
 afX
-aaj
-amG
+abs
+aap
 aFA
 aRp
 amH
@@ -51400,7 +51232,7 @@ amN
 bqy
 qpM
 aPJ
-ciR
+aal
 aai
 aag
 aag
@@ -84298,79 +84130,79 @@ aap
 abs
 acg
 aal
-aai
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aag
-aMu
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aab
-aaa
-aaa
-aVi
-aaa
-aaa
-aab
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-aVq
+eCk
+khM
+khM
+khM
+khM
+khM
+khM
+khM
+khM
+khM
+khM
+khM
+khM
+khM
+khM
+khM
+khM
+khM
+khM
+khM
+khM
+khM
+jrN
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+xWb
+mOi
+mOi
+uBq
+mOi
+mOi
+xWb
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+mOi
+gdX
 aVv
 aQX
 aRT
@@ -93402,7 +93234,7 @@ buW
 bwG
 byu
 bzG
-bBb
+byu
 bCr
 bDV
 bFa
@@ -93657,9 +93489,9 @@ brO
 btt
 buX
 bwH
-byv
-bzH
-buV
+bGy
+bzG
+bDW
 bCs
 bDW
 bzG

@@ -2239,11 +2239,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating,
 /area/medical/medbay2)
-"iq" = (
-/obj/machinery/power/terminal,
-/obj/structure/cable,
-/turf/open/floor/prison/yellow,
-/area/lv624/lazarus/engineering)
 "ir" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/prison/yellow/full,
@@ -2271,10 +2266,6 @@
 	},
 /turf/open/floor/tile/white,
 /area/medical/medbay2)
-"iw" = (
-/obj/structure/cable,
-/turf/open/floor/prison/yellow,
-/area/lv624/lazarus/engineering)
 "ix" = (
 /obj/effect/landmark/corpsespawner/miner{
 	corpseback = /obj/item/storage/backpack;
@@ -2291,8 +2282,8 @@
 /turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
 "iz" = (
-/obj/machinery/power/smes/buildable,
 /obj/structure/cable,
+/obj/machinery/power/terminal,
 /turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
 "iB" = (
@@ -2425,6 +2416,10 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/turf/open/floor/prison/yellow,
+/area/lv624/lazarus/engineering)
+"jb" = (
+/obj/structure/cable,
 /turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
 "jd" = (
@@ -4501,22 +4496,6 @@
 	dir = 1
 	},
 /area/vapor_processing/cargo3)
-"rx" = (
-/obj/machinery/power/terminal,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 6
-	},
-/turf/open/floor/prison/yellow,
-/area/lv624/lazarus/engineering)
-"ry" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 8;
-	on = 1
-	},
-/turf/open/floor/prison/yellow,
-/area/lv624/lazarus/engineering)
 "rz" = (
 /obj/machinery/light{
 	dir = 8
@@ -4533,9 +4512,9 @@
 	},
 /area/vapor_processing/cargo3)
 "rB" = (
-/obj/machinery/power/smes/buildable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/power/terminal,
 /turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
 "rC" = (
@@ -4643,7 +4622,9 @@
 /area/lv624/lazarus/engineering)
 "rQ" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
-/turf/closed/wall,
+/obj/machinery/power/smes/buildable,
+/obj/structure/cable,
+/turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
 "rS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -4765,6 +4746,14 @@
 	dir = 8
 	},
 /turf/closed/wall,
+/area/lv624/lazarus/engineering)
+"sk" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
+	},
+/turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
 "sl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -5604,6 +5593,14 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/resin/membrane,
 /area/space)
+"Eg" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/power/smes/buildable,
+/obj/structure/cable,
+/turf/open/floor/prison/yellow,
+/area/lv624/lazarus/engineering)
 "FJ" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/grass,
@@ -12380,7 +12377,7 @@ ep
 fY
 ia
 gZ
-iw
+gZ
 rP
 ja
 fY
@@ -12481,10 +12478,10 @@ ho
 fY
 hF
 gZ
-rx
+rC
 rB
 rQ
-iw
+jb
 qX
 fY
 ho
@@ -12583,10 +12580,10 @@ gZ
 fZ
 gZ
 gZ
-ry
+pk
 iy
 rM
-iw
+jb
 gZ
 fZ
 gZ
@@ -12685,10 +12682,10 @@ hp
 fY
 hQ
 gZ
-iq
+gZ
 iz
-rM
-iw
+Eg
+jb
 qY
 fY
 hp
@@ -12788,7 +12785,7 @@ eN
 fY
 ib
 gZ
-iw
+gZ
 rP
 jd
 fY
@@ -13708,11 +13705,11 @@ gZ
 gZ
 gZ
 rW
-iw
-iw
-ry
-iw
-iw
+jb
+jb
+sk
+jb
+jb
 kL
 wi
 wi
@@ -13724,11 +13721,11 @@ qv
 wi
 wi
 kL
-iw
+jb
 ui
 je
 je
-iw
+jb
 je
 nm
 nn
