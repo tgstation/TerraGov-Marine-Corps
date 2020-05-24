@@ -133,9 +133,11 @@
 		owner.alpha = HUNTER_STEALTH_STILL_ALPHA * stealth_alpha_multiplier
 	//Walking stealth
 	else if(owner.m_intent == MOVE_INTENT_WALK)
+		use_plasma(HUNTER_STEALTH_WALK_PLASMADRAIN)
 		owner.alpha = HUNTER_STEALTH_WALK_ALPHA * stealth_alpha_multiplier
 	//Running stealth
 	else
+		use_plasma(HUNTER_STEALTH_RUN_PLASMADRAIN)
 		owner.alpha = HUNTER_STEALTH_RUN_ALPHA * stealth_alpha_multiplier
 	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
 	var/mob/living/carbon/xenomorph/xenoowner = owner
