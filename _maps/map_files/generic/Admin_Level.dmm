@@ -1424,10 +1424,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
-	},
+/obj/structure/cable,
 /obj/machinery/power/apc/hyper{
 	dir = 4
 	},
@@ -1440,10 +1437,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating/mainship,
 /area/shuttle/distress/start_big)
 "lL" = (

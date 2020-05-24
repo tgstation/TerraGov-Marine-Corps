@@ -55,24 +55,6 @@
 	},
 /turf/open/floor/wood,
 /area/whiskey_outpost)
-"ar" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/open/floor,
-/area/whiskey_outpost)
 "at" = (
 /obj/machinery/computer/camera_advanced/overwatch,
 /turf/open/floor/tile/dark,
@@ -118,10 +100,7 @@
 /obj/machinery/power/terminal{
 	dir = 8
 	},
-/obj/structure/cable/yellow{
-	d2 = 4;
-	icon_state = "0-4"
-	},
+/obj/structure/cable,
 /obj/machinery/light,
 /turf/open/floor/tile/yellow{
 	dir = 2
@@ -129,21 +108,10 @@
 /area/whiskey_outpost)
 "aC" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
-	},
+/obj/structure/cable,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 6
 	},
-/area/whiskey_outpost)
-"aD" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "aE" = (
 /obj/machinery/power/smes/buildable,
@@ -153,24 +121,6 @@
 	},
 /area/whiskey_outpost)
 "aG" = (
-/turf/open/floor,
-/area/whiskey_outpost)
-"aI" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
 /turf/open/floor,
 /area/whiskey_outpost)
 "aJ" = (
@@ -197,11 +147,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "aN" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
+/obj/structure/cable,
 /obj/structure/table,
 /obj/item/storage/toolbox/mechanical,
 /obj/item/tool/extinguisher/mini,
@@ -210,11 +156,7 @@
 	},
 /area/whiskey_outpost)
 "aO" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/yellow{
 	dir = 2
 	},
@@ -926,14 +868,6 @@
 	dir = 2
 	},
 /area/whiskey_outpost/outside/north)
-"df" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost)
 "dg" = (
 /obj/structure/bed/roller,
 /turf/open/floor/plating/asteroidfloor,
@@ -5227,11 +5161,7 @@
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost)
 "xm" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/yellow{
 	dir = 1
 	},
@@ -5745,11 +5675,7 @@
 /area/whiskey_outpost/outside/north)
 "EX" = (
 /obj/machinery/door/airlock/mainship/engineering,
-/obj/structure/cable{
-	icon_state = "4-8";
-	d1 = 4;
-	d2 = 8
-	},
+/obj/structure/cable,
 /turf/open/floor,
 /area/whiskey_outpost)
 "EY" = (
@@ -5841,11 +5767,7 @@
 /area/whiskey_outpost)
 "GV" = (
 /obj/machinery/power/geothermal,
-/obj/structure/cable/yellow{
-	icon_state = "0-8";
-	d1 = 2;
-	d2 = 4
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/yellow{
 	dir = 6
 	},
@@ -5861,14 +5783,6 @@
 /obj/item/stack/medical/bruise_pack,
 /turf/open/floor/plating,
 /area/whiskey_outpost)
-"Hm" = (
-/obj/structure/cable{
-	icon_state = "4-8";
-	d1 = 4;
-	d2 = 8
-	},
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost)
 "Hq" = (
 /obj/effect/ai_node,
 /turf/open/ground/jungle,
@@ -5883,10 +5797,7 @@
 /obj/machinery/power/terminal{
 	dir = 8
 	},
-/obj/structure/cable/yellow{
-	d2 = 4;
-	icon_state = "0-4"
-	},
+/obj/structure/cable,
 /turf/open/floor,
 /area/whiskey_outpost)
 "Hu" = (
@@ -6194,14 +6105,6 @@
 	dir = 4
 	},
 /area/whiskey_outpost)
-"Mu" = (
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/turf/open/floor,
-/area/whiskey_outpost)
 "My" = (
 /obj/structure/barricade/sandbags{
 	pixel_z = -7
@@ -6228,11 +6131,6 @@
 "Nd" = (
 /obj/machinery/power/smes/buildable,
 /obj/structure/cable,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /turf/open/floor/tile/yellow{
 	dir = 8
 	},
@@ -6424,11 +6322,7 @@
 /turf/open/floor/plating/asteroidplating,
 /area/whiskey_outpost)
 "QH" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "QJ" = (
@@ -6470,11 +6364,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/east)
 "RE" = (
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
+/obj/structure/cable,
 /turf/open/floor,
 /area/whiskey_outpost)
 "RO" = (
@@ -6564,11 +6454,7 @@
 /area/whiskey_outpost)
 "TJ" = (
 /obj/machinery/power/geothermal,
-/obj/structure/cable/yellow{
-	icon_state = "0-8";
-	d1 = 2;
-	d2 = 4
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/yellow{
 	dir = 4
 	},
@@ -6648,16 +6534,7 @@
 	},
 /area/whiskey_outpost)
 "VJ" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/yellow{
 	dir = 9
 	},
@@ -6677,10 +6554,7 @@
 /area/whiskey_outpost/outside/west)
 "Wb" = (
 /obj/machinery/power/apc/hyper,
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/yellow{
 	dir = 1
 	},
@@ -15944,9 +15818,9 @@ mv
 hI
 ac
 QH
-df
-df
-aD
+QH
+QH
+QH
 bR
 KJ
 Vq
@@ -16096,7 +15970,7 @@ mv
 mv
 hI
 ac
-Hm
+QH
 bR
 bR
 fm
@@ -16710,7 +16584,7 @@ hI
 ac
 Wb
 RE
-aI
+RE
 aN
 ac
 bh
@@ -16862,8 +16736,8 @@ mv
 hI
 ac
 UP
-Mu
-ar
+RE
+RE
 aO
 ac
 aW

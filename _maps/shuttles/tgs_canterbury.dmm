@@ -96,11 +96,7 @@
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/canterbury)
 "ao" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	icon_state = "pipe11-2";
@@ -133,11 +129,7 @@
 /turf/open/floor/mainship/blue,
 /area/shuttle/canterbury/cic)
 "ar" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship,
@@ -147,10 +139,7 @@
 /obj/machinery/power/apc/mainship{
 	dir = 1
 	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
+/obj/structure/cable,
 /obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/item/clipboard,
@@ -201,11 +190,7 @@
 	dir = 1;
 	name = "\improper Command Cockpit"
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/mono,
@@ -265,11 +250,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aE" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	icon_state = "manifold-2";
 	dir = 4
@@ -363,10 +344,7 @@
 /area/shuttle/canterbury)
 "aP" = (
 /obj/machinery/power/fusion_engine/random,
-/obj/structure/cable/yellow{
-	d2 = 2;
-	icon_state = "0-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aQ" = (
@@ -438,7 +416,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/structure/cable/yellow,
+/obj/structure/cable,
 /turf/open/floor/mainship/tcomms,
 /area/shuttle/canterbury)
 "ba" = (
@@ -446,11 +424,7 @@
 	dir = 4;
 	on = 1
 	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "bb" = (
@@ -458,19 +432,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "bc" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	icon_state = "pipe11-2";
@@ -497,11 +463,7 @@
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "bg" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -520,25 +482,14 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
-	},
+/obj/structure/cable,
 /turf/open/floor/mainship/tcomms,
 /area/shuttle/canterbury)
 "bj" = (
 /obj/machinery/power/monitor{
 	name = "Core Power Monitoring"
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/mainship,
 /area/shuttle/canterbury)
 "bk" = (
@@ -754,11 +705,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
 "bO" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating/plating_catwalk,
@@ -796,10 +743,7 @@
 /obj/machinery/power/apc/mainship{
 	dir = 1
 	},
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
-	},
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "bU" = (
@@ -981,21 +925,13 @@
 /turf/open/floor/plating,
 /area/shuttle/canterbury)
 "cq" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/visible/layer1,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
 "cr" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -1021,16 +957,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
 "cu" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	icon_state = "pipe11-2";
 	dir = 1
@@ -1042,19 +969,11 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
 "cv" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "cw" = (
@@ -1067,11 +986,7 @@
 	},
 /area/shuttle/canterbury)
 "cx" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -1113,11 +1028,7 @@
 /turf/open/floor/mainship,
 /area/shuttle/canterbury)
 "cD" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	icon_state = "pipe11-2";
 	dir = 1
