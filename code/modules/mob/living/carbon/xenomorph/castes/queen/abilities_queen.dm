@@ -178,7 +178,6 @@
 	mechanics_text = "Hit all adjacent units around you, knocking them away and down."
 	ability_name = "tail sweep"
 	plasma_cost = 35
-	use_state_flags = XACT_USE_CRESTED
 	cooldown_timer = 12 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_TAIL_SWEEP
@@ -231,12 +230,6 @@
 		playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
 
 	succeed_activate()
-	if(X.crest_defense)
-		X.use_plasma(plasma_cost)
-	add_cooldown()
-
-/datum/action/xeno_action/activable/tail_sweep/ai_should_start_consider()
-	return TRUE
 
 /datum/action/xeno_action/activable/tail_sweep/ai_should_use(target)
 	if(!iscarbon(target))
