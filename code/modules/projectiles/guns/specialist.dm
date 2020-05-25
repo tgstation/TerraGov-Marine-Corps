@@ -486,7 +486,7 @@
 	var/datum/effect_system/smoke_spread/smoke
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
-	fire_delay = 2.3 SECONDS
+	fire_delay = 1.8 SECONDS
 
 
 /obj/item/weapon/gun/launcher/m92/Initialize()

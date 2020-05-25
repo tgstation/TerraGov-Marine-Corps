@@ -286,7 +286,7 @@ GLOBAL_VAR(restart_counter)
 	new_status += "<b>[full_server_name] &#8212; <a href='[webmap_host][ship_map_file]'>[shipname]</a></b>"
 	new_status += "<br>Map: <a href='[webmap_host][ground_map_file]'><b>[map_name]</a></b>"
 	new_status += "<br>Mode: <b>[SSticker.mode ? SSticker.mode.name : "Lobby"]</b>"
-	new_status += "<br>Round time: <b>[duration2text()]</b>"
+	new_status += "<br>Round time: <b>[gameTimestamp("hh:mm")]</b>"
 
 	// Finally set the new status
 	status = new_status

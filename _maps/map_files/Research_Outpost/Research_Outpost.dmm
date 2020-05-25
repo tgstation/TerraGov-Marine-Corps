@@ -89,6 +89,10 @@
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/south_east)
+"ax" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/outpost/lz2)
 "ay" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -1435,8 +1439,7 @@
 /area/outpost/lz1)
 "gK" = (
 /obj/machinery/power/terminal{
-	dir = 1;
-	icon_state = "term"
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -1908,10 +1911,6 @@
 	dir = 1
 	},
 /area/outpost/engineering)
-"iQ" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/mars/random/dirt,
-/area/outpost/lz2)
 "iR" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
@@ -1951,6 +1950,10 @@
 	dir = 10
 	},
 /area/outpost/lz1)
+"ja" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/outpost/yard/west)
 "jc" = (
 /turf/open/floor/plating/ground/mars/cavetodirt,
 /area/outpost/caves/north_east)
@@ -3276,10 +3279,6 @@
 	dir = 2
 	},
 /area/outpost/lz2)
-"pp" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/outpost/yard/south_east)
 "pr" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -6040,10 +6039,6 @@
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/freezer,
 /area/outpost/dormitories)
-"Dx" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/mars/random/dirt,
-/area/outpost/yard/west)
 "Dy" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 5
@@ -6681,6 +6676,10 @@
 "Gn" = (
 /turf/open/floor/tile/dark,
 /area/outpost/science/xenobiology)
+"Gq" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/outpost/yard/central)
 "Gs" = (
 /obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor/tile/dark/purple2{
@@ -8573,6 +8572,10 @@
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/brig/wardens_office)
+"OL" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/yard/south_east)
 "ON" = (
 /obj/machinery/bodyscanner,
 /turf/open/floor/tile/dark,
@@ -8714,10 +8717,6 @@
 	dir = 1
 	},
 /area/outpost/medbay)
-"Pw" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/outpost/yard/central)
 "Py" = (
 /obj/machinery/door/airlock/mainship/security/glass/free_access{
 	dir = 1;
@@ -23137,7 +23136,7 @@ hk
 oI
 SH
 cc
-Dx
+ja
 SH
 SH
 SH
@@ -30878,7 +30877,7 @@ ww
 ww
 EA
 EA
-Pw
+Gq
 EA
 EA
 EA
@@ -36053,7 +36052,7 @@ HT
 fG
 NF
 NF
-pp
+OL
 NF
 NF
 mJ
@@ -41476,7 +41475,7 @@ BM
 KR
 KR
 Au
-iQ
+ax
 KR
 KR
 hY
