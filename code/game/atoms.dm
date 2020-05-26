@@ -105,6 +105,7 @@ directive is properly returned.
 	return
 
 /atom/proc/Bumped(atom/movable/AM)
+	SEND_SIGNAL(src, COMSIG_ATOM_BUMPED, AM)
 	return
 
 /atom/proc/CanPass(atom/movable/mover, turf/target)
