@@ -252,6 +252,7 @@
 				return TRUE
 			to_chat(user, "<span class='notice'>You finished cutting the metal plate!</span>")
 			new /obj/item/stack/sheet/metal(loc)
+			qdel(src)
 			return TRUE
 		if(GIRDER_BUILDING1_WELDED)
 			var/old_girder_state = girder_state
