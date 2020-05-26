@@ -125,7 +125,7 @@
 	if(!stealth)
 		return
 
-	var/mob/living/carbon/xenomorph/xeno = owner
+	var/mob/living/carbon/xenomorph/xenoowner = owner
 	//Initial stealth
 	if(last_stealth > world.time - HUNTER_STEALTH_INITIAL_DELAY) //We don't start out at max invisibility
 		owner.alpha = HUNTER_STEALTH_RUN_ALPHA * stealth_alpha_multiplier
@@ -135,14 +135,13 @@
 		owner.alpha = HUNTER_STEALTH_STILL_ALPHA * stealth_alpha_multiplier
 	//Walking stealth
 	else if(owner.m_intent == MOVE_INTENT_WALK)
-		xeno.use_plasma(HUNTER_STEALTH_WALK_PLASMADRAIN)
+		xenoowner.use_plasma(HUNTER_STEALTH_WALK_PLASMADRAIN)
 		owner.alpha = HUNTER_STEALTH_WALK_ALPHA * stealth_alpha_multiplier
 	//Running stealth
 	else
-		xeno.use_plasma(HUNTER_STEALTH_RUN_PLASMADRAIN)
+		xenoowner.use_plasma(HUNTER_STEALTH_RUN_PLASMADRAIN)
 		owner.alpha = HUNTER_STEALTH_RUN_ALPHA * stealth_alpha_multiplier
 	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
-	var/mob/living/carbon/xenomorph/xenoowner = owner
 	if(!xenoowner.plasma_stored)
 		to_chat(xenoowner, "<span class='xenodanger'>We lack sufficient plasma to remain camouflaged.</span>")
 		cancel_stealth()
