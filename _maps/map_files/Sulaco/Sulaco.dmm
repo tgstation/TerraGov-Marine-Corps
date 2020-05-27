@@ -17981,6 +17981,10 @@
 /obj/item/storage/fancy/cigarettes/dromedaryco,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
+"fJz" = (
+/obj/structure/cable,
+/turf/open/space/basic,
+/area/space)
 "ldh" = (
 /obj/machinery/keycard_auth{
 	pixel_y = -30
@@ -17989,19 +17993,7 @@
 	icon_state = "floor4"
 	},
 /area/sulaco/bridge)
-"lIz" = (
-/obj/structure/cable,
-/turf/closed/wall/sulaco/unmeltable,
-/area/mainship/living/pilotbunks)
-"riG" = (
-/obj/structure/cable,
-/turf/closed/wall/mainship/outer,
-/area/space)
-"spx" = (
-/obj/structure/cable,
-/turf/open/space/basic,
-/area/space)
-"tDV" = (
+"tzn" = (
 /obj/effect/step_trigger/teleporter/random{
 	affect_ghosts = 1;
 	name = "tele_ground1";
@@ -18015,7 +18007,15 @@
 /obj/structure/cable,
 /turf/open/space,
 /area/space)
-"wQD" = (
+"uYS" = (
+/obj/structure/cable,
+/turf/closed/wall/sulaco/unmeltable,
+/area/mainship/living/pilotbunks)
+"xxV" = (
+/obj/structure/cable,
+/turf/closed/wall/mainship/outer,
+/area/space)
+"xYx" = (
 /obj/structure/cable,
 /turf/closed/wall/sulaco/unmeltable,
 /area/sulaco/marine/delta)
@@ -51791,73 +51791,73 @@ aHU
 aIM
 aDj
 aPi
-wQD
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-tDV
-spx
-spx
-riG
-spx
-spx
-tDV
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
-spx
+xYx
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+tzn
+fJz
+fJz
+xxV
+fJz
+fJz
+tzn
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
+fJz
 aaa
 aaa
 aNF
@@ -52114,7 +52114,7 @@ aaa
 aaa
 aaa
 aaa
-spx
+fJz
 aaa
 aaa
 aaa
@@ -52371,7 +52371,7 @@ aaa
 aaa
 aaa
 aaa
-spx
+fJz
 aaa
 aaa
 aaa
@@ -52628,7 +52628,7 @@ aaa
 aaa
 aaa
 aaa
-spx
+fJz
 aaa
 aaa
 aaa
@@ -52885,7 +52885,7 @@ aaa
 aaa
 aaa
 aaa
-spx
+fJz
 aaa
 aaa
 aaa
@@ -53142,7 +53142,7 @@ aaa
 aaa
 aaa
 aaa
-spx
+fJz
 aaa
 aaa
 aaa
@@ -53399,7 +53399,7 @@ aaa
 aaa
 aaa
 aaa
-spx
+fJz
 aIZ
 aIZ
 aIZ
@@ -53656,7 +53656,7 @@ aaa
 aaa
 aaa
 aaa
-spx
+fJz
 aIZ
 aJB
 aQe
@@ -53913,7 +53913,7 @@ aaa
 aaa
 aaa
 aaa
-spx
+fJz
 aIZ
 aLB
 aQj
@@ -54170,8 +54170,8 @@ aaa
 aaa
 aaa
 aaa
-spx
-lIz
+fJz
+uYS
 aPs
 aQq
 aQq

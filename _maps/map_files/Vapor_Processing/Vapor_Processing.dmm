@@ -5642,6 +5642,14 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/indestructible/mineral,
 /area/lv624/ground/caves/east1)
+"Lv" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/power/smes/buildable,
+/obj/structure/cable,
+/turf/open/floor/prison/yellow,
+/area/lv624/lazarus/engineering)
 "Ml" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
@@ -5670,14 +5678,6 @@
 	on = 1
 	},
 /obj/effect/landmark/nuke_spawn,
-/turf/open/floor/prison/yellow,
-/area/lv624/lazarus/engineering)
-"Uc" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/power/smes/buildable,
-/obj/structure/cable,
 /turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
 "Ud" = (
@@ -12684,7 +12684,7 @@ hQ
 gZ
 gZ
 iz
-Uc
+Lv
 jb
 qY
 fY

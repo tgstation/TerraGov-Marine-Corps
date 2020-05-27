@@ -42311,7 +42311,7 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/hangar/main)
-"geq" = (
+"fRD" = (
 /obj/structure/cable,
 /turf/closed/wall/prison,
 /area/prison/engineering)
@@ -88143,7 +88143,7 @@ cuU
 bTh
 bUF
 bVZ
-geq
+fRD
 bYT
 cay
 cbK

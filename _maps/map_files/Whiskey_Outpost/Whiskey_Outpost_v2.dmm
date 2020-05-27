@@ -3,12 +3,6 @@
 /obj/structure/lattice,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
-"ab" = (
-/obj/structure/cable,
-/turf/open/floor/tile/yellow{
-	dir = 9
-	},
-/area/whiskey_outpost)
 "ac" = (
 /turf/closed/wall/r_wall,
 /area/whiskey_outpost)
@@ -4913,6 +4907,13 @@
 /obj/structure/mortar/fixed,
 /turf/open/floor/plating/asteroidplating,
 /area/whiskey_outpost)
+"tl" = (
+/obj/machinery/power/apc/hyper,
+/obj/structure/cable,
+/turf/open/floor/tile/yellow{
+	dir = 1
+	},
+/area/whiskey_outpost)
 "tr" = (
 /obj/structure/table,
 /obj/item/storage/belt/combatLifesaver,
@@ -5030,6 +5031,12 @@
 /obj/structure/barricade/metal,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 4
+	},
+/area/whiskey_outpost)
+"vr" = (
+/obj/structure/cable,
+/turf/open/floor/tile/yellow{
+	dir = 9
 	},
 /area/whiskey_outpost)
 "vv" = (
@@ -5230,11 +5237,6 @@
 /obj/structure/largecrate/supply/explosives/mines,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
-"yk" = (
-/turf/open/floor/tile/yellow{
-	dir = 5
-	},
-/area/whiskey_outpost)
 "yq" = (
 /obj/structure/barricade/plasteel,
 /turf/open/floor/plating/warning{
@@ -5302,10 +5304,9 @@
 /obj/structure/largecrate/supply/supplies/metal,
 /turf/open/floor/plating,
 /area/whiskey_outpost/outside/north)
-"zs" = (
-/obj/structure/cable,
+"zt" = (
 /turf/closed/wall/r_wall,
-/area/whiskey_outpost)
+/area/space)
 "zw" = (
 /obj/structure/window/reinforced,
 /obj/machinery/door/window/westright,
@@ -5535,6 +5536,10 @@
 	dir = 4
 	},
 /area/whiskey_outpost/outside/north)
+"CG" = (
+/obj/structure/cable,
+/turf/closed/wall/r_wall,
+/area/whiskey_outpost)
 "CH" = (
 /obj/structure/barricade/plasteel{
 	dir = 1
@@ -5722,6 +5727,12 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/south)
+"Fv" = (
+/obj/structure/cable,
+/turf/open/floor/tile/yellow{
+	dir = 1
+	},
+/area/whiskey_outpost)
 "Fz" = (
 /obj/structure/grille/broken,
 /turf/open/floor/plating,
@@ -5779,12 +5790,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/yellow{
 	dir = 6
-	},
-/area/whiskey_outpost)
-"Hc" = (
-/obj/structure/cable,
-/turf/open/floor/tile/yellow{
-	dir = 1
 	},
 /area/whiskey_outpost)
 "Hj" = (
@@ -6150,13 +6155,6 @@
 	dir = 8
 	},
 /area/whiskey_outpost)
-"Ng" = (
-/obj/machinery/power/apc/hyper,
-/obj/structure/cable,
-/turf/open/floor/tile/yellow{
-	dir = 1
-	},
-/area/whiskey_outpost)
 "Nl" = (
 /obj/machinery/light{
 	dir = 1
@@ -6503,9 +6501,6 @@
 	},
 /turf/open/floor/plating,
 /area/whiskey_outpost/outside/north)
-"Ue" = (
-/turf/closed/wall/r_wall,
-/area/space)
 "Uk" = (
 /obj/structure/largecrate/supply/weapons/shotgun,
 /turf/open/floor/plating/asteroidfloor,
@@ -6740,6 +6735,11 @@
 	},
 /obj/effect/landmark/start/job/squadcorpsman,
 /turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost)
+"YH" = (
+/turf/open/floor/tile/yellow{
+	dir = 5
+	},
 /area/whiskey_outpost)
 "YL" = (
 /turf/open/ground/jungle,
@@ -16139,12 +16139,12 @@ mv
 mv
 mv
 hI
-Ue
+zt
 ac
 EX
-zs
-zs
-zs
+CG
+CG
+CG
 ac
 ac
 ac
@@ -16292,8 +16292,8 @@ mv
 mv
 mv
 hI
-Ue
-ab
+zt
+vr
 VJ
 Nd
 Nd
@@ -16445,8 +16445,8 @@ mv
 mv
 mv
 hI
-Ue
-Hc
+zt
+Fv
 aG
 Hs
 Hs
@@ -16598,8 +16598,8 @@ mv
 mv
 mv
 hI
-Ue
-Ng
+zt
+tl
 aG
 RE
 RE
@@ -16751,7 +16751,7 @@ mv
 mv
 mv
 hI
-Ue
+zt
 UP
 aG
 RE
@@ -16904,8 +16904,8 @@ mv
 mv
 mv
 hI
-Ue
-yk
+zt
+YH
 Tx
 TJ
 TJ
@@ -17057,7 +17057,7 @@ mv
 mv
 mv
 hI
-Ue
+zt
 ac
 ac
 ac

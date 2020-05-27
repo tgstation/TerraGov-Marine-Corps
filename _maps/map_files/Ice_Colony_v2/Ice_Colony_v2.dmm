@@ -33029,6 +33029,10 @@
 	dir = 6
 	},
 /area/ice_colony/exterior/surface/cliff)
+"cKI" = (
+/obj/structure/cable,
+/turf/closed/wall/r_wall,
+/area/ice_colony/underground/engineering)
 "cKM" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/corners{
@@ -33163,6 +33167,10 @@
 	dir = 6
 	},
 /area/ice_colony/exterior/surface/cliff)
+"fzX" = (
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/ice_colony/underground/maintenance/engineering)
 "fEh" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/landmark/xeno_tunnel,
@@ -33224,6 +33232,10 @@
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/valley/north)
+"fZT" = (
+/obj/structure/cable,
+/turf/closed/wall/r_wall,
+/area/ice_colony/underground/maintenance/engineering)
 "gaB" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/ice,
@@ -33388,6 +33400,12 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/west)
+"iQV" = (
+/obj/structure/cable,
+/turf/open/floor/tile/dark/yellow2{
+	dir = 1
+	},
+/area/ice_colony/surface/engineering/generator)
 "iUP" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/landmark/xeno_silo_spawn,
@@ -33790,13 +33808,6 @@
 	dir = 5
 	},
 /area/ice_colony/exterior/surface/cliff)
-"qtQ" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/plating/ground/snow/layer1,
-/area/ice_colony/exterior/surface/valley/south/excavation)
 "qwW" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/northWall,
@@ -33867,10 +33878,6 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice_rock/southWall,
 /area/ice_colony/exterior/surface/valley/west)
-"rwC" = (
-/obj/structure/cable,
-/turf/closed/wall/r_wall,
-/area/ice_colony/underground/engineering)
 "rxD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -34014,10 +34021,6 @@
 	},
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/southeast)
-"tOo" = (
-/obj/structure/cable,
-/turf/closed/wall/r_wall,
-/area/ice_colony/underground/maintenance/engineering)
 "tQs" = (
 /obj/effect/turf_overlay/icerock{
 	dir = 8
@@ -34041,21 +34044,19 @@
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/cliff)
-"uds" = (
-/obj/machinery/power/terminal{
-	dir = 1
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark/yellow2/corner{
-	dir = 4
-	},
-/area/ice_colony/surface/substation/smes)
 "uvI" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice/corner{
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/cliff)
+"uwa" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/ice_colony/exterior/surface/valley/south/excavation)
 "uwB" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/ice,
@@ -34084,10 +34085,6 @@
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/cliff)
-"uXN" = (
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/ice_colony/underground/maintenance/engineering)
 "vdz" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 1
@@ -34102,6 +34099,15 @@
 	dir = 6
 	},
 /area/ice_colony/exterior/surface/cliff)
+"vhy" = (
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark/yellow2/corner{
+	dir = 4
+	},
+/area/ice_colony/surface/substation/smes)
 "vnY" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice/corner{
@@ -34121,12 +34127,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/maintenance/south)
-"wfK" = (
-/obj/structure/cable,
-/turf/open/floor/tile/dark/yellow2{
-	dir = 1
-	},
-/area/ice_colony/surface/engineering/generator)
 "wjI" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -58586,7 +58586,7 @@ boJ
 boJ
 boJ
 boJ
-uXN
+fzX
 bwB
 bqP
 aZF
@@ -59100,7 +59100,7 @@ bsf
 bsf
 bsf
 bsf
-uXN
+fzX
 bsf
 bqP
 aZF
@@ -61390,12 +61390,12 @@ bXg
 bSv
 bSv
 bbJ
-qtQ
+uwa
 brx
-tOo
-uXN
-uXN
-rwC
+fZT
+fzX
+fzX
+cKI
 bTi
 bTl
 boy
@@ -72833,7 +72833,7 @@ adC
 adC
 afT
 adC
-wfK
+iQV
 aeR
 aig
 ada
@@ -78231,7 +78231,7 @@ aaC
 aaC
 ags
 aid
-uds
+vhy
 ain
 ajd
 ahw

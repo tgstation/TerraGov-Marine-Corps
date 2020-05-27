@@ -21080,10 +21080,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/sw)
-"coc" = (
-/obj/structure/cable,
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
 "cuW" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -21130,6 +21126,11 @@
 	},
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
+"dcQ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/engineering)
 "djN" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
@@ -21225,6 +21226,10 @@
 	dir = 4
 	},
 /area/bigredv2/outside/sw)
+"ekm" = (
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/engineering)
 "ekR" = (
 /obj/item/stack/rods,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -21257,6 +21262,13 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
+"ePH" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/engineering)
 "eQO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
@@ -21486,12 +21498,6 @@
 	dir = 5
 	},
 /area/bigredv2/outside/c)
-"hnD" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
 "hvV" = (
 /obj/docking_port/stationary/crashmode,
 /turf/closed/wall,
@@ -21626,11 +21632,6 @@
 /area/bigredv2/outside/se)
 "kel" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
-"kgi" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "khf" = (
@@ -21786,11 +21787,6 @@
 /obj/item/trash/sosjerky,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
-"mlg" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/turf/open/floor,
-/area/bigredv2/outside/cargo)
 "mpz" = (
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/bigredv2/outside/se)
@@ -21856,6 +21852,12 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
+"nvC" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/engineering)
 "nzp" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -22216,13 +22218,6 @@
 	dir = 1
 	},
 /area/bigredv2/outside/chapel)
-"rCd" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
 "rMV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22250,6 +22245,13 @@
 	dir = 4
 	},
 /area/bigredv2/outside/sw)
+"sbU" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/engineering)
 "shZ" = (
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 4
@@ -22354,11 +22356,6 @@
 	dir = 6
 	},
 /area/bigredv2/outside/ne)
-"tEs" = (
-/obj/machinery/atmospherics/components/unary/vent_pump,
-/obj/structure/cable,
-/turf/open/floor,
-/area/bigredv2/outside/engineering)
 "tJA" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
@@ -22427,13 +22424,11 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/bigred,
 /area/bigredv2/outside/s)
-"uuS" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
+"umT" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /turf/open/floor,
-/area/bigredv2/outside/engineering)
+/area/bigredv2/outside/cargo)
 "uwp" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -22483,6 +22478,11 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
+"uUK" = (
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/engineering)
 "uWN" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -22559,6 +22559,10 @@
 	},
 /turf/closed/mineral/bigred,
 /area/bigredv2/outside/virology)
+"wro" = (
+/obj/structure/cable,
+/turf/closed/wall,
+/area/bigredv2/outside/engineering)
 "wxA" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno/down,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -22718,10 +22722,6 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/se)
-"yjc" = (
-/obj/structure/cable,
-/turf/closed/wall,
-/area/bigredv2/outside/engineering)
 "yjP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -32188,7 +32188,7 @@ bmd
 bmd
 asT
 bmi
-coc
+ekm
 qFg
 wZg
 wZg
@@ -32405,7 +32405,7 @@ bmd
 bmd
 asT
 bmi
-coc
+ekm
 qFg
 wZg
 wZg
@@ -32622,7 +32622,7 @@ bmd
 bme
 asT
 bmi
-coc
+ekm
 qFg
 wZg
 wZg
@@ -32839,7 +32839,7 @@ bmd
 bme
 asT
 bmi
-coc
+ekm
 qFg
 bpy
 wZg
@@ -33056,7 +33056,7 @@ bmd
 bme
 asT
 bmi
-coc
+ekm
 qFg
 bme
 bpy
@@ -33273,7 +33273,7 @@ bme
 bme
 asT
 bmi
-coc
+ekm
 blJ
 txn
 tnE
@@ -33292,8 +33292,8 @@ buk
 buP
 buO
 bvm
-coc
-coc
+ekm
+ekm
 bvK
 bmm
 bmm
@@ -33490,7 +33490,7 @@ bme
 bme
 asT
 bmi
-coc
+ekm
 bmi
 bmi
 asT
@@ -33707,7 +33707,7 @@ bme
 bme
 asT
 bmi
-coc
+ekm
 bmi
 bmi
 asT
@@ -33924,12 +33924,12 @@ bme
 bme
 asT
 bmi
-coc
-coc
-coc
+ekm
+ekm
+ekm
 bqf
-coc
-coc
+ekm
+ekm
 bmg
 bre
 bsK
@@ -34146,7 +34146,7 @@ bmi
 bmi
 asT
 bmi
-coc
+ekm
 bmg
 bre
 bmq
@@ -34363,7 +34363,7 @@ bmi
 bmi
 asT
 bmi
-coc
+ekm
 bmi
 bmi
 bsM
@@ -34797,7 +34797,7 @@ boj
 blJ
 bqg
 bmi
-coc
+ekm
 brI
 bmi
 blJ
@@ -35014,7 +35014,7 @@ bpe
 blJ
 bqg
 bmi
-coc
+ekm
 bmg
 bmi
 blJ
@@ -35231,7 +35231,7 @@ bmi
 blJ
 bmk
 brg
-coc
+ekm
 brJ
 bmi
 blJ
@@ -35430,20 +35430,20 @@ bfY
 baF
 blb
 nvv
-mlg
-mlg
-mlg
-mlg
-mlg
-mlg
+umT
+umT
+umT
+umT
+umT
+umT
 blj
 blL
-kgi
-kgi
-hnD
-hnD
-hnD
-hnD
+dcQ
+dcQ
+nvC
+nvC
+nvC
+nvC
 rMV
 bpz
 bom
@@ -35655,7 +35655,7 @@ blb
 blb
 blk
 blJ
-coc
+ekm
 bmk
 bmk
 bmk
@@ -35872,7 +35872,7 @@ aZO
 blb
 aZr
 blJ
-rCd
+sbU
 bmQ
 bmQ
 bnR
@@ -35882,7 +35882,7 @@ bpO
 bpA
 bop
 bpG
-hnD
+nvC
 bop
 gBV
 feK
@@ -36089,7 +36089,7 @@ aZO
 blb
 aZs
 blJ
-yjc
+wro
 bmk
 bmk
 bmk
@@ -36098,7 +36098,7 @@ bmk
 bmk
 bmk
 bmk
-uuS
+ePH
 bri
 bmi
 bsm
@@ -36315,7 +36315,7 @@ boJ
 bpi
 akY
 bmk
-uuS
+ePH
 bmi
 brL
 bmi
@@ -36531,8 +36531,8 @@ bol
 bmi
 bmi
 bom
-yjc
-uuS
+wro
+ePH
 brj
 brM
 bsn
@@ -37177,7 +37177,7 @@ blJ
 gVL
 bmk
 bmk
-yjc
+wro
 bmk
 boM
 bmk
@@ -37185,10 +37185,10 @@ bmk
 bmk
 bqM
 brk
-coc
+ekm
 bom
 bsO
-rCd
+sbU
 bsO
 bmm
 btF
@@ -37391,16 +37391,16 @@ aXK
 aXK
 aXK
 blJ
-coc
+ekm
 bmi
 bmi
-coc
+ekm
 bmi
 bmg
 bmk
 bpE
 bpD
-uuS
+ePH
 bmi
 bmi
 qEg
@@ -37608,10 +37608,10 @@ bko
 aZO
 blb
 blJ
-coc
-coc
+ekm
+ekm
 bmi
-coc
+ekm
 bmi
 bmg
 bmY
@@ -37826,9 +37826,9 @@ bkB
 blp
 blJ
 bmi
-coc
+ekm
 bmi
-coc
+ekm
 bmi
 bmg
 bmY
@@ -38043,14 +38043,14 @@ aXK
 aXK
 blJ
 bmo
-coc
+ekm
 bmi
-tEs
-kgi
-kgi
+uUK
+dcQ
+dcQ
 bpk
 bpG
-kgi
+dcQ
 yjP
 bmi
 bmi
@@ -38260,7 +38260,7 @@ aBR
 aBR
 hEq
 bmo
-coc
+ekm
 bmg
 bmg
 bmg
@@ -38477,7 +38477,7 @@ aIm
 aBR
 blJ
 bmi
-coc
+ekm
 bmg
 bnX
 bmg
@@ -38694,7 +38694,7 @@ aIp
 aBR
 blJ
 bmq
-coc
+ekm
 bnt
 bmg
 bmi
@@ -38705,7 +38705,7 @@ brN
 blJ
 brn
 bmr
-coc
+ekm
 bmi
 brN
 btr
@@ -38922,7 +38922,7 @@ kOq
 blJ
 bmi
 brP
-coc
+ekm
 bmg
 btf
 bmr
@@ -39135,11 +39135,11 @@ bmr
 boS
 bmY
 bpJ
-hnD
+nvC
 bqP
 bqO
 bqO
-kgi
+dcQ
 feK
 bmi
 bts
@@ -39356,7 +39356,7 @@ bqk
 blJ
 bmg
 bmg
-coc
+ekm
 bmg
 btf
 btt
@@ -39562,18 +39562,18 @@ wzM
 aMc
 blJ
 bmt
-coc
+ekm
 bnv
 bmr
 bmq
 bmY
 bpl
-uuS
+ePH
 bmg
 blJ
 brp
 bst
-coc
+ekm
 bmi
 bmi
 btu
@@ -39779,13 +39779,13 @@ wzM
 aMc
 blJ
 bmu
-coc
+ekm
 bom
 bom
-coc
+ekm
 boT
 bpm
-uuS
+ePH
 bsM
 blJ
 blJ
@@ -39999,10 +39999,10 @@ bmv
 bmW
 bnx
 boa
-coc
+ekm
 bmY
 bmi
-uuS
+ePH
 bmg
 bmi
 bmi
@@ -40216,9 +40216,9 @@ bmw
 bmX
 bny
 oMq
-kgi
+dcQ
 boU
-kgi
+dcQ
 bpM
 bqm
 bqQ
@@ -40436,7 +40436,7 @@ bob
 bmi
 bmY
 bmi
-uuS
+ePH
 bqn
 boS
 brq
@@ -40653,7 +40653,7 @@ bmk
 bmk
 bmk
 bpe
-uuS
+ePH
 bnv
 bqR
 boQ
@@ -40870,7 +40870,7 @@ bmO
 bmg
 boV
 bmi
-uuS
+ePH
 bqo
 bqo
 bqo
@@ -41083,13 +41083,13 @@ blS
 blS
 blS
 blS
-kgi
+dcQ
 blS
 blS
-kgi
+dcQ
 msI
-kgi
-kgi
+dcQ
+dcQ
 bpG
 rMV
 bsw
@@ -41743,11 +41743,11 @@ aBR
 blJ
 brv
 brT
-kgi
-kgi
-kgi
-kgi
-kgi
+dcQ
+dcQ
+dcQ
+dcQ
+dcQ
 btG
 blJ
 bjA
@@ -42399,7 +42399,7 @@ bmk
 bmq
 bmq
 bmi
-uuS
+ePH
 bmk
 bjA
 bjH
@@ -43050,8 +43050,8 @@ bmi
 bmi
 bmi
 bmi
-uuS
-coc
+ePH
+ekm
 bvA
 btv
 btv
