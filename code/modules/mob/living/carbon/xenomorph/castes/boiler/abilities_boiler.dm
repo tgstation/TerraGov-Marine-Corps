@@ -68,6 +68,10 @@
 /datum/action/xeno_action/create_boiler_bomb/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 
+	if(X.is_zoomed)
+		to_chat(X, "<span class='notice'>We can not prepare globules as we are now. We must stop concentrating into the distance!</span>")
+		return
+
 	var/current_ammo = X.corrosive_ammo + X.neuro_ammo
 	if(current_ammo >= X.xeno_caste.max_ammo)
 		to_chat(X, "<span class='notice'>We can carry no more globules.</span>")
