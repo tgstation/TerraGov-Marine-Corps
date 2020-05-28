@@ -190,6 +190,8 @@
 
 	// This is meant for the xenojammer
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SAY_RADIO, M)
+	if(SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SAY_RADIO, M) & COMSIG_GLOB_SAY_RADIO_BLOCK)
+		return
 
 	// Determine the identity information which will be attached to the signal.
 	var/atom/movable/virtualspeaker/speaker = new(null, M, src)
