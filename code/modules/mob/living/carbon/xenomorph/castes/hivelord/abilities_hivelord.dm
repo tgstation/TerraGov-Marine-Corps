@@ -276,7 +276,6 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 /datum/action/xeno_action/xenojammer/proc/build_jammer(turf/T)
 	var/mob/living/carbon/xenomorph/X = owner
-	var/mob/living/carbon/xenomorph/blocker = locate() in T
 
 	if(!do_after(X, 10 SECONDS, TRUE, T, BUSY_ICON_BUILD))
 		return fail_activate()
