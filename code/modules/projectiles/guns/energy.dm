@@ -168,6 +168,7 @@
 						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/focuslens,
 						/obj/item/attachable/widelens,
+						/obj/item/attachable/heatlens,
 						/obj/item/attachable/efflens,
 						/obj/item/attachable/pulselens)
 
@@ -452,7 +453,6 @@
 						/datum/lasrifle/base/standard,
 						/datum/lasrifle/base/auto,
 						/datum/lasrifle/base/overcharge,
-						/datum/lasrifle/base/heat,
 						/datum/lasrifle/base/spread)
 
 /datum/lasrifle/base
