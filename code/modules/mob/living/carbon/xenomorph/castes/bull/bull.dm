@@ -15,6 +15,10 @@
 	old_x = -16
 	old_y = -3
 
+	//Trap vars
+	trapchoices = list("acid")
+	gastier = 1
+
 
 /mob/living/carbon/xenomorph/bull/handle_special_state()
 	if(is_charging >= CHARGE_ON)

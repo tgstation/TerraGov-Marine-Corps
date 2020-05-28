@@ -19,6 +19,23 @@
 	desc = "A trap used to catch bears and other legged creatures."
 	var/armed = 0
 
+/obj/item/restraints/legcuffs/beartrap/armed
+	name = "bear trap"
+	throw_speed = 2
+	throw_range = 1
+	icon_state = "beartrap1"
+	desc = "A trap used to catch bears and other legged creatures."
+	armed = 1
+
+/obj/item/restraints/legcuffs/beartrap/xenoarmed
+	name = "bear trap"
+	throw_speed = 2
+	throw_range = 1
+	icon = 'icons/Xeno/Effects.dmi'
+	icon_state = "beartrap1"
+	desc = "A trap used to catch bears and other legged creatures."
+	armed = 1
+
 /obj/item/restraints/legcuffs/beartrap/suicide_act(mob/user)
 	user.visible_message("<span class='danger'>[user] is putting the [name] on [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide.</span>")
 	return (BRUTELOSS)

@@ -13,6 +13,10 @@
 	upgrade = XENO_UPGRADE_ZERO
 	pull_speed = -2
 
+	//Trap vars
+	trapchoices = list("acid")
+	gastier = 1
+
 
 // ***************************************
 // *********** Icon

@@ -116,6 +116,7 @@
 	var/mob/living/linked_carrier //The carrier that placed us.
 
 	var/gastrap = null
+	var/tgastier = null
 	var/mob/living/linked_acid //The xeno that filled the trap.
 
 /obj/effect/alien/resin/trap/Initialize(mapload, mob/living/builder)
@@ -176,11 +177,11 @@
 		if(!QDELETED(linked_carrier) && linked_carrier.stat == CONSCIOUS && linked_carrier.z == z)
 			var/area/A = get_area(src)
 			if(A)
-				to_chat(linked_carrier, "<span class='xenoannounce'>You sense one of your acid traps at [A.name] has been triggered!</span>")
+				to_chat(linked_carrier, "<span class='xenoannounce'>You sense one of your traps at [A.name] has been triggered!</span>")
 		if(!QDELETED(linked_acid) && linked_acid.stat == CONSCIOUS && linked_acid.z == z)
 			var/area/A = get_area(src)
 			if(A)
-				to_chat(linked_acid, "<span class='xenoannounce'>You sense one of your acid traps at [A.name] has been triggered!</span>")
+				to_chat(linked_acid, "<span class='xenoannounce'>You sense one of your traps at [A.name] has been triggered!</span>")
 		acid_activate()
 
 /obj/effect/alien/resin/trap/proc/drop_hugger()
@@ -192,40 +193,66 @@
 	hugger = null
 
 /obj/effect/alien/resin/trap/proc/acid_activate()
-	if(gastrap == "acid")
-		var/datum/effect_system/smoke_spread/xeno/acid/A = new(get_turf(src))
-		A.set_up(3,src)
-		A.start()
-	if(gastrap == "neuro")
-		var/datum/effect_system/smoke_spread/xeno/neuro/A = new(get_turf(src))
-		A.set_up(3,src)
-		A.start()
+	if(gastrap)
+		switch(gastrap)
+			if("acid")
+				var/datum/effect_system/smoke_spread/xeno/acid/A = new(get_turf(src))
+				A.set_up(tgastier,src)
+				A.start()
+			if("neuro")
+				var/datum/effect_system/smoke_spread/xeno/neuro/A = new(get_turf(src))
+				A.set_up(tgastier,src)
+				A.start()
+			if("wall")
+				var/turf = get_turf(src)
+				turf.PlaceOnTop(/turf/closed/wall/resin)
+			if("rwall")
+				var/turf = get_turf(src)
+				turf.PlaceOnTop(/turf/closed/wall/resin/thick)
+			if("snare")
+				var/chosenturf = get_turf(src)
+				new /obj/item/restraints/legcuffs/beartrap/xenoarmed(chosenturf)
+			if("sleepy")
+				var/datum/effect_system/smoke_spread/sleepy/A = new(get_turf(src))
+				A.set_up(tgastier,src)
+				A.start()
 	icon_state = "trap0"
-	visible_message("<span class='warning'>acid sprays out of [src]!</span>")
+	visible_message("<span class='warning'>the trap activates!</span>")
 	gastrap = null
+	tgastier = null
 
 /obj/effect/alien/resin/trap/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent != INTENT_HARM)
 		if(M.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS)
-			if(hugger)
+			if(!hugger)
+				to_chat(M, "<span class='warning'>[src] is empty.</span>")
+			else
 				icon_state = "trap0"
 				M.put_in_active_hand(hugger)
 				hugger.GoActive(TRUE)
 				hugger = null
 				to_chat(M, "<span class='xenonotice'>We remove the facehugger from [src].</span>")
-			else if(gastrap)
-				icon_state = "trap0"
-				gastrap = null
-				to_chat(M, "<span class='xenonotice'>We remove the acid from [src].</span>")
-			else
-				var/choice = input("Choose the gas type:","Gas Trap Selection") as null|anything in list("acid", "neuro")
-				if(!choice)
-					to_chat(M, "<span class='xenonotice'>You decide to not fill the trap.</span>")
-					return
-				gastrap = choice
-				icon_state = "trap2"
-				to_chat(M, "<span class='xenonotice'>You fill [src] with [gastrap] gas.</span>")
-				linked_acid = M
+		else if(gastrap)
+			gastrap = null
+			tgastier = null
+			to_chat(M, "<span class='xenonotice'>We remove the gas from [src].</span>")
+		else
+			var/choice = input("Choose the gas type:","Gas Trap Selection") as null|anything in M.trapchoices
+			if(!choice)
+				to_chat(M, "<span class='xenonotice'>We decide to not trap [src].</span>")
+				return
+			if(!do_after(M, 5 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
+				to_chat(M, "<span class='xenonotice'>We have to stand still to trap [src].</span>")
+				return
+			if(M.plasma_stored < 50)
+				to_chat(M, "<span class='xenonotice'>We do not have enough plasma.</span>")
+				return
+			M.use_plasma(50)
+			gastrap = choice
+			tgastier = M.gastier
+			linked_acid = M
+			icon_state = "trap2"
+			to_chat(M, "<span class='xenonotice'>You fill [src] with [gastrap].</span>")
 		return
 	..()
 

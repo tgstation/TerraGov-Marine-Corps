@@ -33,6 +33,10 @@
 
 	var/obj/effect/alien/hivemindcore/core
 
+	//Trap vars
+	trapchoices = list("acid","neuro")
+	gastier = 2
+
 /mob/living/carbon/xenomorph/hivemind/Initialize(mapload)
     . = ..()
     core = new(loc)

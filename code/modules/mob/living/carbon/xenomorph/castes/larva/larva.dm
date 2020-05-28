@@ -2,7 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/larva
 	speak_emote = list("hisses")
 	icon_state = "Bloody Larva"
-	
+
 	a_intent = INTENT_HELP //Forces help intent for all interactions.
 
 	amount_grown = 0
@@ -15,6 +15,11 @@
 	upgrade = XENO_UPGRADE_INVALID
 	gib_chance = 25
 	hud_type = /datum/hud/larva
+
+	//Trap vars
+	trapchoices = list("acid")
+	gastier = 1
+
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl
 		)

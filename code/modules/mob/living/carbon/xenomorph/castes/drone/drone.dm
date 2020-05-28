@@ -12,6 +12,11 @@
 	pixel_x = -12
 	old_x = -12
 	pull_speed = -2
+
+	//Trap vars
+	trapchoices = list("acid","wall")
+	gastier = 1
+
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl
 		)

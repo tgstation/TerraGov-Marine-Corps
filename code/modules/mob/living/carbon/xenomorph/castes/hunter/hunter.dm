@@ -9,6 +9,11 @@
 	plasma_stored = 50
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_ZERO
+
+	//Trap vars
+	trapchoices = list("acid","snare")
+	gastier = 1
+
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 		)

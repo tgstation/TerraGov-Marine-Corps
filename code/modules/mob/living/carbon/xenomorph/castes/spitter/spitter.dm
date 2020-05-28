@@ -11,6 +11,11 @@
 	old_x = -12
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_ZERO
+
+	//Trap vars
+	trapchoices = list("acid","neuro","sleepy")
+	gastier = 2
+
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 		)

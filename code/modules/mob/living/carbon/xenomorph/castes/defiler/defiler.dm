@@ -12,6 +12,11 @@
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_ZERO
 	var/emitting_gas = FALSE
+
+	//Trap vars
+	trapchoices = list("neuro","acid")
+	gastier = 4
+
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl
 		)

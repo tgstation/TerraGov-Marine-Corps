@@ -12,6 +12,10 @@
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_ZERO
 
+	//Trap vars
+	trapchoices = list("acid")
+	gastier = 1
+
 // ***************************************
 // *********** Icons
 // ***************************************

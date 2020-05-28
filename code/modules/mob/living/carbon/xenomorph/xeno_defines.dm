@@ -232,3 +232,7 @@
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
 
 	var/butchery_progress = 0
+
+	//Trap vars
+	var/trapchoices = list("acid","neuro","sleepy","wall","rwall","snare")
+	var/gastier = 5

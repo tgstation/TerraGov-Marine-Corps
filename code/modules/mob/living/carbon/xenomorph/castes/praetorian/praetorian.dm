@@ -14,3 +14,7 @@
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_ZERO
 
+	//Trap vars
+	trapchoices = list("acid","neuro","sleepy")
+	gastier = 3
+

@@ -15,6 +15,10 @@
 	upgrade = XENO_UPGRADE_ZERO
 	var/list/tunnels = list() //list of active tunnels
 
+	//Trap vars
+	trapchoices = list("acid","rwall")
+	gastier = 2
+
 // ***************************************
 // *********** Init
 // ***************************************

@@ -20,6 +20,10 @@
 	tier = XENO_TIER_FOUR //Queen doesn't count towards population limit.
 	upgrade = XENO_UPGRADE_ZERO
 
+	//Trap vars
+	trapchoices = list("acid","neuro")
+	gastier = 3
+
 	var/breathing_counter = 0
 	var/queen_ability_cooldown = 0
 	var/mob/living/carbon/xenomorph/observed_xeno //the Xenomorph the queen is currently overwatching

@@ -50,6 +50,10 @@
 	upgrade = XENO_UPGRADE_THREE
 	var/used_fire_breath = 0
 
+	//Trap vars
+	trapchoices = list("acid")
+	gastier = 2
+
 /mob/living/carbon/xenomorph/ravager/ravenger/Initialize()
 	. = ..()
 	verbs -= /mob/living/carbon/xenomorph/verb/hive_status
