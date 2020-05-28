@@ -706,6 +706,8 @@ JAMMER
 	icon = 'icons/Xeno/effects.dmi'
 	icon_state = "jammer"
 
+	hit_sound = "alien_resin_move"
+	destroy_sound = "alien_resin_move"
 	density = FALSE
 	opacity = FALSE
 	anchored = TRUE
@@ -717,6 +719,7 @@ JAMMER
 
 /obj/structure/xenojammer/Initialize()
 	. = ..()
+	set_light(7, 3, LIGHT_COLOR_RED)
 	RegisterSignal(SSdcs, COMSIG_GLOB_SAY_RADIO, .proc/on_radio_used)
 	GLOB.xenojammer += src
 
@@ -767,16 +770,16 @@ JAMMER
 /obj/structure/xenojammer/proc/on_radio_used(datum/source, mob/M)
 	. = NONE
 	var/mob/living/carbon/CM = M
+	/* Perhaps jamming in general, rather than just hosts.
 	if(!CHECK_BITFIELD(CM.status_flags, XENO_HOST))
-		message_admins("host is not infected")
 		return
+	*/
 	var/turf/position = get_turf(src)
 	var/turf/target = get_turf(CM)
 	if(position.z != target.z)
-		message_admins("host is not on the same z-level")
 		return
 	if(get_dist(position, target) >= 7)
-		message_admins("host is too far away")
 		return
 	if(CM in viewers(src))
+		to_chat(CM, "<span class='warning'>You hear a horrible screeching from your radio.</span>")
 		return COMSIG_GLOB_SAY_RADIO_BLOCK
