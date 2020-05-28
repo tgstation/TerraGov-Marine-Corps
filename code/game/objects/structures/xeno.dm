@@ -695,3 +695,70 @@ TUNNEL
 			to_chat(M, "<span class='warning'>\The [src] ended unexpectedly, so we return back up.</span>")
 	else
 		to_chat(M, "<span class='warning'>Our crawling was interrupted!</span>")
+
+/*
+JAMMER
+*/
+
+/obj/structure/xenojammer
+	name = "resin jammer"
+	desc = "A resin structure that jams nearby infected hosts."
+	icon = 'icons/Xeno/effects.dmi'
+	icon_state = "jammer"
+
+	density = FALSE
+	opacity = FALSE
+	anchored = TRUE
+	resistance_flags = UNACIDABLE
+	layer = RESIN_STRUCTURE_LAYER
+
+	max_integrity = 100
+	var/mob/living/carbon/xenomorph/creator = null
+
+/obj/structure/xenojammer/Initialize()
+	. = ..()
+	GLOB.xenojammer += src
+
+/obj/structure/xenojammer/Destroy()
+	GLOB.xenojammer -= src
+
+	if(!QDELETED(creator) && creator.stat == CONSCIOUS && creator.z == z)
+		var/area/A = get_area(src)
+		if(A)
+			to_chat(creator, "<span class='xenoannounce'>You sense your jammer at [A.name] has been destroyed!</span>")
+
+	return ..()
+
+/obj/structure/xenojammer/examine(mob/user)
+	..()
+	if(!isxeno(user) && !isobserver(user))
+		return
+	to_chat(user, "<span class='xenoannounce'>This is a jammer made by [creator].</span>")
+
+/obj/structure/xenojammer/deconstruct(disassembled = TRUE)
+	visible_message("<span class='danger'>[src] suddenly collapses!</span>")
+	return ..()
+
+/obj/structure/xenojammer/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			take_damage(210)
+		if(EXPLODE_HEAVY)
+			take_damage(140)
+		if(EXPLODE_LIGHT)
+			take_damage(70)
+
+/obj/structure/xenojammer/attackby(obj/item/I, mob/user, params)
+	if(!isxeno(user))
+		return ..()
+	attack_alien(user)
+
+/obj/structure/xenojammer/attack_alien(mob/living/carbon/xenomorph/M)
+	if(!istype(M) || M.stat || M.lying_angle)
+		return
+
+	if(M.a_intent == INTENT_HARM)
+		to_chat(M, "<span class='xenowarning'>We begin removing the jammer...</span>")
+		if(do_after(M, 5 SECONDS, FALSE, src, BUSY_ICON_BUILD))
+			deconstruct(FALSE)
+		return

@@ -212,3 +212,73 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT * 4
 	transfer_delay = 0.5 SECONDS
 	max_range = 7
+
+// ***************************************
+// *********** Xeno Jammers
+// ***************************************
+/datum/action/xeno_action/xenojammer
+	name = "Build Jammer"
+	action_icon_state = "build_jammer"
+	mechanics_text = "Create jammer, which blocks communication of infected hosts."
+	plasma_cost = 200
+	cooldown_timer = 120 SECONDS
+
+/datum/action/xeno_action/xenojammer/can_use_action(silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(owner.get_active_held_item())
+		if(!silent)
+			to_chat(owner, "<span class='warning'>We need an empty claw for this!</span>")
+		return FALSE
+
+/datum/action/xeno_action/xenojammer/action_activate()
+	build_jammer(get_turf(owner))
+
+/datum/action/xeno_action/xenojammer/proc/build_jammer(turf/T)
+	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/xenomorph/blocker = locate() in T
+	if(blocker && blocker != X && blocker.stat != DEAD)
+		to_chat(X, "<span class='warning'>Can't do that with [blocker] in the way!</span>")
+		return fail_activate()
+
+	if(!T.is_weedable())
+		to_chat(X, "<span class='warning'>We can't do that here.</span>")
+		return fail_activate()
+
+	var/obj/effect/alien/weeds/alien_weeds = locate() in T
+
+	for(var/obj/effect/forcefield/fog/F in range(1, X))
+		to_chat(X, "<span class='warning'>We can't build so close to the fog!</span>")
+		return fail_activate()
+
+	if(!alien_weeds)
+		to_chat(X, "<span class='warning'>We can only shape on weeds. We must find some resin before we start building!</span>")
+		return fail_activate()
+
+	if(GLOB.xenojammer.len > 0)
+		to_chat(X, "<span class='warning'>We can only have one jammer at a time!</span>")
+		return fail_activate()
+
+	if(!do_after(X, 10 SECONDS, TRUE, T, BUSY_ICON_BUILD))
+		return fail_activate()
+
+	blocker = locate() in T
+	if(blocker && blocker != X && blocker.stat != DEAD)
+		return fail_activate()
+
+	if(!can_use_action(T))
+		return fail_activate()
+
+	if(!T.is_weedable())
+		return fail_activate()
+
+	alien_weeds = locate() in T
+	if(!alien_weeds)
+		return fail_activate()
+
+	var/obj/structure/xenojammer/XJ = new /obj/structure/xenojammer(T)
+	XJ.creator = X
+
+	add_cooldown()
+	succeed_activate()

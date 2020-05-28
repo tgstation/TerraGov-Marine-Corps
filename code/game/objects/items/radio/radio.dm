@@ -188,6 +188,16 @@
 		freq = frequency
 		channel = null
 
+	// We need to check if the host is infected, and then if they are close to a jammer.
+	var/mob/living/carbon/CM = M
+	if(!isxeno(CM))
+		if(CHECK_BITFIELD(CM.status_flags, XENO_HOST))
+			var/turf/position = get_turf(src)
+			for(var/obj/structure/xenojammer in GLOB.xenojammer)
+				var/turf/jammer_turf = get_turf(xenojammer)
+				if(position.z == jammer_turf.z && (get_dist(position, jammer_turf) < 7))
+					return
+
 	// Determine the identity information which will be attached to the signal.
 	var/atom/movable/virtualspeaker/speaker = new(null, M, src)
 
