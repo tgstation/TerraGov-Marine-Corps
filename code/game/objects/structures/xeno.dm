@@ -234,11 +234,11 @@
 				hugger.GoActive(TRUE)
 				hugger = null
 				to_chat(M, "<span class='xenonotice'>We remove the facehugger from [src].</span>")
-		else if(gastrap)
+		if(gastrap)
 			gastrap = null
 			tgastier = null
 			to_chat(M, "<span class='xenonotice'>We remove the gas from [src].</span>")
-		else
+		if(!gastrap && !hugger)
 			var/choice = input("Choose the gas type:","Gas Trap Selection") as null|anything in M.trapchoices
 			if(!choice)
 				to_chat(M, "<span class='xenonotice'>We decide to not trap [src].</span>")

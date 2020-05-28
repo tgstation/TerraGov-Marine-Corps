@@ -55,7 +55,7 @@
 				if(ishuman(AM))
 					if(isturf(src.loc))
 						var/mob/living/carbon/H = AM
-						if(H.m_intent == MOVE_INTENT_RUN)
+						if(H.m_intent == MOVE_INTENT_WALK)
 							if(!H.legcuffed)
 								forceMove(H)
 								H.update_legcuffed(src)
