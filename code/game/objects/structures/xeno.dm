@@ -115,6 +115,9 @@
 	var/obj/item/clothing/mask/facehugger/hugger = null
 	var/mob/living/linked_carrier //The carrier that placed us.
 
+	var/gastrap = null
+	var/mob/living/linked_acid //The xeno that filled the trap.
+
 /obj/effect/alien/resin/trap/Initialize(mapload, mob/living/builder)
 	. = ..()
 	if(builder)
@@ -123,9 +126,11 @@
 /obj/effect/alien/resin/trap/examine(mob/user)
 	. = ..()
 	if(isxeno(user))
-		to_chat(user, "A hole for a little one to hide in ambush.")
+		to_chat(user, "A hole for traps.")
 		if(hugger)
 			to_chat(user, "There's a little one inside.")
+		if(gastrap)
+			to_chat(user, "There is acid inside this hole.")
 		else
 			to_chat(user, "It's empty.")
 
@@ -136,6 +141,8 @@
 		hugger.Die()
 		hugger = null
 		icon_state = "trap0"
+	if(gastrap)
+		acid_activate()
 	..()
 
 /obj/effect/alien/resin/trap/fire_act()
@@ -144,10 +151,12 @@
 		hugger.Die()
 		hugger = null
 		icon_state = "trap0"
+	if(gastrap)
+		acid_activate()
 	..()
 
 /obj/effect/alien/resin/trap/HasProximity(atom/movable/AM)
-	if(!iscarbon(AM) || !hugger)
+	if(!iscarbon(AM) || !hugger || !gastrap)
 		return
 	var/mob/living/carbon/C = AM
 	if(C.can_be_facehugged(hugger))
@@ -158,8 +167,21 @@
 		if(!QDELETED(linked_carrier) && linked_carrier.stat == CONSCIOUS && linked_carrier.z == z)
 			var/area/A = get_area(src)
 			if(A)
-				to_chat(linked_carrier, "<span class='xenoannounce'>You sense one of your traps at [A.name] has been triggered!</span>")
+				to_chat(linked_carrier, "<span class='xenoannounce'>You sense one of your hugger traps at [A.name] has been triggered!</span>")
 		drop_hugger()
+	if(!isxeno(C))
+		playsound(src, "alien_resin_break", 25)
+		C.visible_message("<span class='warning'>[C] trips on [src]!</span>",\
+						"<span class='danger'>You trip on [src]!</span>")
+		if(!QDELETED(linked_carrier) && linked_carrier.stat == CONSCIOUS && linked_carrier.z == z)
+			var/area/A = get_area(src)
+			if(A)
+				to_chat(linked_carrier, "<span class='xenoannounce'>You sense one of your acid traps at [A.name] has been triggered!</span>")
+		if(!QDELETED(linked_acid) && linked_acid.stat == CONSCIOUS && linked_acid.z == z)
+			var/area/A = get_area(src)
+			if(A)
+				to_chat(linked_acid, "<span class='xenoannounce'>You sense one of your acid traps at [A.name] has been triggered!</span>")
+		acid_activate()
 
 /obj/effect/alien/resin/trap/proc/drop_hugger()
 	hugger.forceMove(loc)
@@ -169,17 +191,40 @@
 	visible_message("<span class='warning'>[hugger] gets out of [src]!</span>")
 	hugger = null
 
+/obj/effect/alien/resin/trap/proc/acid_activate()
+	if(gastrap == "acid")
+		var/datum/effect_system/smoke_spread/xeno/acid/A = new(get_turf(src))
+		A.set_up(3,src)
+		A.start()
+	if(gastrap == "neuro")
+		var/datum/effect_system/smoke_spread/xeno/neuro/A = new(get_turf(src))
+		A.set_up(3,src)
+		A.start()
+	icon_state = "trap0"
+	visible_message("<span class='warning'>acid sprays out of [src]!</span>")
+	gastrap = null
+
 /obj/effect/alien/resin/trap/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent != INTENT_HARM)
 		if(M.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS)
-			if(!hugger)
-				to_chat(M, "<span class='warning'>[src] is empty.</span>")
-			else
+			if(hugger)
 				icon_state = "trap0"
 				M.put_in_active_hand(hugger)
 				hugger.GoActive(TRUE)
 				hugger = null
 				to_chat(M, "<span class='xenonotice'>We remove the facehugger from [src].</span>")
+			else if(gastrap)
+				icon_state = "trap0"
+				gastrap = null
+				to_chat(M, "<span class='xenonotice'>We remove the acid from [src].</span>")
+			else
+				var/choice = input("Choose the gas type:","Gas Trap Selection") as null|anything in list("acid", "neuro")
+				if(!choice)
+					to_chat(M, "<span class='xenonotice'>You decide to not fill the trap.</span>")
+					return
+				gastrap = choice
+				icon_state = "trap2"
+				to_chat(M, "<span class='xenonotice'>You fill [src] with [gastrap] gas.</span>")
 		return
 	..()
 
@@ -190,6 +235,10 @@
 		var/obj/item/clothing/mask/facehugger/FH = I
 		if(hugger)
 			to_chat(user, "<span class='warning'>There is already a facehugger in [src].</span>")
+			return
+
+		if(gastrap)
+			to_chat(user, "<span class='warning'>There is already a trap in [src].</span>")
 			return
 
 		if(FH.stat == DEAD)
@@ -211,6 +260,8 @@
 /obj/effect/alien/resin/trap/Destroy()
 	if(hugger && loc)
 		drop_hugger()
+	if(gastrap && loc)
+		acid_activate()
 	return ..()
 
 
