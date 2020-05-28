@@ -572,8 +572,7 @@
 
 	charge_datum.do_stop_momentum(FALSE)
 	return PRECRUSH_STOPPED
-/mob/living/carbon/xenomorph/proc/get_charge_type(datum/action/xeno_action/ready_charge/C)
-	return C.charge_type
+
 
 /mob/living/proc/emote_gored()
 	return
