@@ -156,10 +156,10 @@
 	..()
 
 /obj/effect/alien/resin/trap/HasProximity(atom/movable/AM)
-	if(!iscarbon(AM) || !hugger || !gastrap)
+	if(!iscarbon(AM))
 		return
 	var/mob/living/carbon/C = AM
-	if(C.can_be_facehugged(hugger))
+	if(C.can_be_facehugged(hugger) && hugger)
 		playsound(src, "alien_resin_break", 25)
 		C.visible_message("<span class='warning'>[C] trips on [src]!</span>",\
 						"<span class='danger'>You trip on [src]!</span>")
@@ -169,7 +169,7 @@
 			if(A)
 				to_chat(linked_carrier, "<span class='xenoannounce'>You sense one of your hugger traps at [A.name] has been triggered!</span>")
 		drop_hugger()
-	if(!isxeno(C))
+	if(!isxeno(C) && gastrap)
 		playsound(src, "alien_resin_break", 25)
 		C.visible_message("<span class='warning'>[C] trips on [src]!</span>",\
 						"<span class='danger'>You trip on [src]!</span>")
@@ -225,6 +225,7 @@
 				gastrap = choice
 				icon_state = "trap2"
 				to_chat(M, "<span class='xenonotice'>You fill [src] with [gastrap] gas.</span>")
+				linked_acid = M
 		return
 	..()
 
