@@ -168,7 +168,6 @@
 						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/focuslens,
 						/obj/item/attachable/widelens,
-						/obj/item/attachable/heatlens,
 						/obj/item/attachable/efflens,
 						/obj/item/attachable/pulselens)
 
@@ -518,7 +517,7 @@
 		return
 
 	mode_index = WRAP(mode_index + 1, 1, length(mode_list)+1)
-	
+
 	playsound(user, 'sound/weapons/emitter.ogg', 5, FALSE, 2)
 	charge_cost = initial(mode_list[mode_index].charge_cost)
 	ammo = GLOB.ammo_list[initial(mode_list[mode_index].ammo)]
@@ -529,7 +528,7 @@
 		SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, initial(mode_list[mode_index].fire_mode), user.client)
 	else
 		SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, GUN_FIREMODE_SEMIAUTO, user.client)
-	
+
 	base_gun_icon = initial(mode_list[mode_index].icon_state)
 	update_icon()
 

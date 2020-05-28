@@ -620,11 +620,6 @@ AMMO
 	contains = list(/obj/item/ammo_magazine/revolver/mateba)
 	cost = 3
 
-/datum/supply_packs/ammo/incendiaryslugs
-	name = "Box of Incendiary Slugs"
-	contains = list(/obj/item/ammo_magazine/shotgun/incendiary)
-	cost = 15
-
 /datum/supply_packs/ammo/scout_regular
 	name = "M4RA scout magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/m4ra)
@@ -719,12 +714,12 @@ AMMO
 /datum/supply_packs/ammo/mortar_ammo_he
 	name = "M402 mortar HE shell"
 	contains = list(/obj/item/mortal_shell/he)
-	cost = 3
+	cost = 10
 
 /datum/supply_packs/ammo/mortar_ammo_incend
 	name = "M402 mortar incendiary shell"
 	contains = list(/obj/item/mortal_shell/incendiary)
-	cost = 3
+	cost = 10
 
 /datum/supply_packs/ammo/mortar_ammo_flare
 	name = "M402 mortar flare shell"

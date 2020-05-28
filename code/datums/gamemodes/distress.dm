@@ -273,7 +273,6 @@
 
 		CA.products = list(
 						/obj/item/ammo_magazine/pistol/standard_pistol = round(scale * 20),
-						/obj/item/ammo_magazine/rifle/standard_dmr/incendiary = round(scale * 15),
 						/obj/item/ammo_magazine/pistol/m1911 = round(scale * 10),
 						/obj/item/ammo_magazine/revolver/standard_revolver = round(scale * 20),
 						/obj/item/ammobox/standard_smg = round(scale * 3),
