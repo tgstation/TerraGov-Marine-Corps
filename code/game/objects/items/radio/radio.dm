@@ -195,7 +195,7 @@
 			var/turf/position = get_turf(src)
 			for(var/obj/structure/xenojammer in GLOB.xenojammer)
 				var/turf/jammer_turf = get_turf(xenojammer)
-				if(position.z == jammer_turf.z && (get_dist(position, jammer_turf) < 7))
+				if(position.z == jammer_turf.z && (get_dist(position, jammer_turf) < 5))
 					return
 
 	// Determine the identity information which will be attached to the signal.
