@@ -780,6 +780,6 @@ JAMMER
 		return
 	if(get_dist(position, target) >= 7)
 		return
-	if(CM in viewers(src))
-		to_chat(CM, "<span class='warning'>You hear a horrible screeching from your radio.</span>")
-		return COMSIG_GLOB_SAY_RADIO_BLOCK
+	if(!(CM in viewers(src)))
+		return
+	return COMSIG_GLOB_SAY_RADIO_BLOCK

@@ -191,6 +191,7 @@
 	// This is meant for the xenojammer
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SAY_RADIO, M)
 	if(SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SAY_RADIO, M) & COMSIG_GLOB_SAY_RADIO_BLOCK)
+		to_chat(M, "<span class='warning'>You hear a horrible screeching from your radio.</span>")
 		return
 
 	// Determine the identity information which will be attached to the signal.
