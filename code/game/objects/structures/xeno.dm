@@ -203,12 +203,14 @@
 				var/datum/effect_system/smoke_spread/xeno/neuro/A = new(get_turf(src))
 				A.set_up(tgastier,src)
 				A.start()
+			/* Doesn't work at the moment
 			if("wall")
 				var/turf = get_turf(src)
-				turf.PlaceOnTop(/turf/closed/wall/resin)
+				turf.ChangeTurf(/turf/closed/wall/resin)
 			if("rwall")
 				var/turf = get_turf(src)
-				turf.PlaceOnTop(/turf/closed/wall/resin/thick)
+				turf.ChangeTurf(/turf/closed/wall/resin/thick)
+			*/
 			if("snare")
 				var/chosenturf = get_turf(src)
 				new /obj/item/restraints/legcuffs/beartrap/xenoarmed(chosenturf)
