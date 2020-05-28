@@ -326,6 +326,9 @@
 // /obj/item/radio signals
 #define COMSIG_RADIO_NEW_FREQUENCY "radio_new_frequency"		//called from base of /obj/item/radio/proc/set_frequency(): (list/args)
 
+#define COMSIG_GLOB_SAY_RADIO "!radio_say"
+	#define COMSIG_GLOB_SAY_RADIO_BLOCK (1<<0)
+
 //keybindings
 
 #define COMSIG_KB_ACTIVATED (1<<0)

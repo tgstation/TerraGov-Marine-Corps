@@ -717,6 +717,7 @@ JAMMER
 
 /obj/structure/xenojammer/Initialize()
 	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_SAY_RADIO, .proc/on_radio_used)
 	GLOB.xenojammer += src
 
 /obj/structure/xenojammer/Destroy()
@@ -762,3 +763,22 @@ JAMMER
 		if(do_after(M, 5 SECONDS, FALSE, src, BUSY_ICON_BUILD))
 			deconstruct(FALSE)
 		return
+
+/obj/structure/xenojammer/proc/on_radio_used(datum/source, mob/M)
+	. = NONE
+	var/mob/living/carbon/CM = M
+	if(isxeno(CM))
+		return
+	if(!CHECK_BITFIELD(CM.status_flags, XENO_HOST))
+		return
+		message_admins("host is not infected")
+	var/turf/position = get_turf(src)
+	var/turf/target = get_turf(CM)
+	if(position.z != target.z)
+		return
+		message_admins("host is not on the same z-level")
+	if(get_dist(position, target) >= 7)
+		return
+		message_admins("host is too far away")
+	if(mob in viewers(src))
+		return COMSIG_GLOB_SAY_RADIO_BLOCK
