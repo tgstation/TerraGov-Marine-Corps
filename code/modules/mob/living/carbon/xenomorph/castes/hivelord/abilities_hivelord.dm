@@ -231,9 +231,12 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We need an empty claw for this!</span>")
 		return FALSE
-	
+
+/datum/action/xeno_action/xenojammer/action_activate()
+	build_jammer(get_turf(owner))
+
+/datum/action/xeno_action/xenojammer/proc/build_jammer(turf/T)
 	var/mob/living/carbon/xenomorph/X = owner
-	var/turf/T = get_turf(X)
 	var/mob/living/carbon/xenomorph/blocker = locate() in T
 	if(blocker && blocker != X && blocker.stat != DEAD)
 		to_chat(X, "<span class='warning'>Can't do that with [blocker] in the way!</span>")
@@ -270,12 +273,6 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	alien_weeds = locate() in T
 	if(!alien_weeds)
 		return fail_activate()
-
-/datum/action/xeno_action/xenojammer/action_activate()
-	build_jammer(get_turf(owner))
-
-/datum/action/xeno_action/xenojammer/proc/build_jammer(turf/T)
-	var/mob/living/carbon/xenomorph/X = owner
 
 	if(!do_after(X, 10 SECONDS, TRUE, T, BUSY_ICON_BUILD))
 		return fail_activate()
