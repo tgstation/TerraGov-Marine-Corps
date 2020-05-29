@@ -711,7 +711,6 @@ TUNNEL
 	hit_sound = "alien_resin_move"
 	destroy_sound = "alien_resin_move"
 
-	max_integrity = 100
 	var/charges = 1
 	var/mob/living/carbon/xenomorph/creator = null
 
