@@ -714,12 +714,12 @@ AMMO
 /datum/supply_packs/ammo/mortar_ammo_he
 	name = "M402 mortar HE shell"
 	contains = list(/obj/item/mortal_shell/he)
-	cost = 10
+	cost = 6
 
 /datum/supply_packs/ammo/mortar_ammo_incend
 	name = "M402 mortar incendiary shell"
 	contains = list(/obj/item/mortal_shell/incendiary)
-	cost = 10
+	cost = 6
 
 /datum/supply_packs/ammo/mortar_ammo_flare
 	name = "M402 mortar flare shell"
