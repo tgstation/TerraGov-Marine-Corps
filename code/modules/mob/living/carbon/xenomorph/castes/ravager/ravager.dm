@@ -15,7 +15,7 @@
 	old_x = -16
 
 	//Trap vars
-	trapchoices = list("acid")
+	trapchoices = list("acid","brutedart","toxdart")
 	gastier = 2
 
 // ***************************************

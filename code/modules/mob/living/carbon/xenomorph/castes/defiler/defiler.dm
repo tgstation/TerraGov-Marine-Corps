@@ -14,7 +14,7 @@
 	var/emitting_gas = FALSE
 
 	//Trap vars
-	trapchoices = list("neuro","acid")
+	trapchoices = list("neuro","acid","toxdart","blind")
 	gastier = 4
 
 	inherent_verbs = list(

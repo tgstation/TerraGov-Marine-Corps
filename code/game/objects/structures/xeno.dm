@@ -117,6 +117,7 @@
 
 	var/gastrap = null
 	var/tgastier = null
+	var/tupgrade = null
 	var/mob/living/linked_acid //The xeno that filled the trap.
 
 /obj/effect/alien/resin/trap/Initialize(mapload, mob/living/builder)
@@ -160,16 +161,17 @@
 	if(!iscarbon(AM))
 		return
 	var/mob/living/carbon/C = AM
-	if(C.can_be_facehugged(hugger) && hugger)
-		playsound(src, "alien_resin_break", 25)
-		C.visible_message("<span class='warning'>[C] trips on [src]!</span>",\
-						"<span class='danger'>You trip on [src]!</span>")
-		C.Paralyze(40)
-		if(!QDELETED(linked_carrier) && linked_carrier.stat == CONSCIOUS && linked_carrier.z == z)
-			var/area/A = get_area(src)
-			if(A)
-				to_chat(linked_carrier, "<span class='xenoannounce'>You sense one of your hugger traps at [A.name] has been triggered!</span>")
-		drop_hugger()
+	if(hugger)
+		if(C.can_be_facehugged(hugger))
+			playsound(src, "alien_resin_break", 25)
+			C.visible_message("<span class='warning'>[C] trips on [src]!</span>",\
+							"<span class='danger'>You trip on [src]!</span>")
+			C.Paralyze(40)
+			if(!QDELETED(linked_carrier) && linked_carrier.stat == CONSCIOUS && linked_carrier.z == z)
+				var/area/A = get_area(src)
+				if(A)
+					to_chat(linked_carrier, "<span class='xenoannounce'>You sense one of your hugger traps at [A.name] has been triggered!</span>")
+			drop_hugger()
 	if(!isxeno(C) && gastrap)
 		C.visible_message("<span class='warning'>[C] trips on [src]!</span>",\
 						"<span class='danger'>You trip on [src]!</span>")
@@ -181,7 +183,7 @@
 			var/area/A = get_area(src)
 			if(A)
 				to_chat(linked_acid, "<span class='xenoannounce'>You sense one of your traps at [A.name] has been triggered!</span>")
-		acid_activate()
+		acid_activate(C)
 
 /obj/effect/alien/resin/trap/proc/drop_hugger()
 	hugger.forceMove(loc)
@@ -191,7 +193,7 @@
 	visible_message("<span class='warning'>[hugger] gets out of [src]!</span>")
 	hugger = null
 
-/obj/effect/alien/resin/trap/proc/acid_activate()
+/obj/effect/alien/resin/trap/proc/acid_activate(mob/living/carbon/C)
 	if(gastrap)
 		switch(gastrap)
 			if("acid")
@@ -215,10 +217,20 @@
 				var/datum/effect_system/smoke_spread/sleepy/A = new(get_turf(src))
 				A.set_up(tgastier,src)
 				A.start()
+			if("toxdart")
+				C.adjustToxLoss(10 * (tupgrade + 1))
+			if("brutedart")
+				C.adjustBruteLoss(10 * (tupgrade + 1))
+				to_chat(C, "<span class='warning'>you feel a prick in your feet!</span>")
+			if("blind")
+				C.blind_eyes(7)
+				to_chat(C, "<span class='warning'>you feel a prick in your feet!</span>")
 	icon_state = "trap0"
-	visible_message("<span class='warning'>the trap activates!</span>")
+	if(gastrap != "toxdart")
+		visible_message("<span class='warning'>the trap activates!</span>")
 	gastrap = null
 	tgastier = null
+	tupgrade = null
 
 /obj/effect/alien/resin/trap/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent != INTENT_HARM)
@@ -235,6 +247,7 @@
 		if(gastrap)
 			gastrap = null
 			tgastier = null
+			tupgrade = null
 			icon_state = "trap0"
 			to_chat(M, "<span class='xenonotice'>We remove the gas from [src].</span>")
 			return
@@ -252,6 +265,7 @@
 			M.use_plasma(50)
 			gastrap = choice
 			tgastier = M.gastier
+			tupgrade = M.upgrade_as_number()
 			linked_acid = M
 			icon_state = "trap2"
 			to_chat(M, "<span class='xenonotice'>You fill [src] with [gastrap].</span>")

@@ -234,5 +234,5 @@
 	var/butchery_progress = 0
 
 	//Trap vars
-	var/trapchoices = list("acid","neuro","sleepy","wall","rwall","snare")
+	var/trapchoices = list()
 	var/gastier = 5

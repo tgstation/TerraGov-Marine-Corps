@@ -51,7 +51,7 @@
 	var/used_fire_breath = 0
 
 	//Trap vars
-	trapchoices = list("acid")
+	trapchoices = list("acid","brutedart","toxdart")
 	gastier = 2
 
 /mob/living/carbon/xenomorph/ravager/ravenger/Initialize()

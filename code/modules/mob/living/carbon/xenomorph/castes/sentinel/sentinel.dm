@@ -14,7 +14,7 @@
 	pull_speed = -2
 
 	//Trap vars
-	trapchoices = list("acid","neuro","sleepy")
+	trapchoices = list("acid","neuro","sleepy","blind")
 	gastier = 1
 
 	inherent_verbs = list(
