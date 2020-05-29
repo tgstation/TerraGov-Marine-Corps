@@ -64,8 +64,7 @@
 
 
 /obj/structure/razorwire/proc/do_razorwire_tangle(mob/living/entangled)
-	to_chat(world, "Do razorwire_tangle called.")
-	entangled.set_canmove(FALSE)
+	ADD_TRAIT(entangled, TRAIT_IMMOBILE, type)
 	
 	ENABLE_BITFIELD(entangled.restrained_flags, RESTRAINED_RAZORWIRE)
 	LAZYADD(entangled_list, entangled) //Add the entangled person to the trapped list.
@@ -100,7 +99,7 @@
 	UnregisterSignal(entangled, list(COMSIG_PARENT_QDELETING, COMSIG_LIVING_DO_RESIST, COMSIG_MOVABLE_UNCROSS))
 	LAZYREMOVE(entangled_list, entangled)
 	DISABLE_BITFIELD(entangled.restrained_flags, RESTRAINED_RAZORWIRE)
-	entangled.set_canmove(TRUE)
+	REMOVE_TRAIT(entangled, TRAIT_IMMOBILE, type)
 
 
 /obj/structure/razorwire/proc/on_entangled_uncross(datum/source, atom/movable/uncrosser)
