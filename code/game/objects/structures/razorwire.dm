@@ -64,6 +64,7 @@
 
 
 /obj/structure/razorwire/proc/do_razorwire_tangle(mob/living/entangled)
+	to_chat(world, "Do razorwire_tangle called.")
 	ADD_TRAIT(entangled, TRAIT_IMMOBILE, type)
 	ENABLE_BITFIELD(entangled.restrained_flags, RESTRAINED_RAZORWIRE)
 	LAZYADD(entangled_list, entangled) //Add the entangled person to the trapped list.
