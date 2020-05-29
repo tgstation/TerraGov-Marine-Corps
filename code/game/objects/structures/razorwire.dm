@@ -60,12 +60,11 @@
 	COOLDOWN_START(entangled, COOLDOWN_ENTANGLE, duration)
 	entangled.visible_message("<span class='danger'>[entangled] gets entangled in the barbed wire!</span>",
 	"<span class='danger'>You got entangled in the barbed wire! Resist to untangle yourself after [duration * 0.1] seconds since you were entangled!</span>", null, null, 5)
-	do_razorwire_tangle()
+	do_razorwire_tangle(entangled)
 
 
 /obj/structure/razorwire/proc/do_razorwire_tangle(mob/living/entangled)
 	ADD_TRAIT(entangled, TRAIT_IMMOBILE, type)
-	
 	ENABLE_BITFIELD(entangled.restrained_flags, RESTRAINED_RAZORWIRE)
 	LAZYADD(entangled_list, entangled) //Add the entangled person to the trapped list.
 	RegisterSignal(entangled, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
