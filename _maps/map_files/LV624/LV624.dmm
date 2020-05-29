@@ -18384,11 +18384,7 @@
 /area/lv624/lazarus/research)
 "gaB" = (
 /obj/structure/flora/ausbushes/grassybush,
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
