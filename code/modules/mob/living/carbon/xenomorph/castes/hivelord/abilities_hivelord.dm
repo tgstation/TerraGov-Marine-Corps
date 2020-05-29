@@ -214,71 +214,54 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	max_range = 7
 
 // ***************************************
-// *********** Xeno Jammers
+// *********** Xeno Jammer
 // ***************************************
-/datum/action/xeno_action/xenojammer
-	name = "Build Jammer"
+/datum/action/xeno_action/xeno_jammer
+	name = "Place jammer"
 	action_icon_state = "build_jammer"
 	mechanics_text = "Create jammer, which blocks communication of infected hosts."
-	plasma_cost = 200
-	cooldown_timer = 120 SECONDS
+	plasma_cost = 600
+	cooldown_timer = 2 MINUTES
 
-/datum/action/xeno_action/xenojammer/can_use_action(silent = FALSE, override_flags)
+/datum/action/xeno_action/xeno_jammer/can_use_action(silent = FALSE, override_flags)
 	. = ..()
-	if(!.)
-		return FALSE
-	if(owner.get_active_held_item())
+	var/turf/T = get_turf(owner)
+	if(!T || !T.is_weedable() || T.density)
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We need an empty claw for this!</span>")
+			to_chat(owner, "<span class='warning'>We can't do that here.</span>")
 		return FALSE
 
-/datum/action/xeno_action/xenojammer/action_activate()
-	build_jammer(get_turf(owner))
+	if(!(locate(/obj/effect/alien/weeds) in T))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>We can only shape on weeds. We must find some resin before we start building!</span>")
+		return FALSE
 
-/datum/action/xeno_action/xenojammer/proc/build_jammer(turf/T)
-	var/mob/living/carbon/xenomorph/X = owner
-	var/mob/living/carbon/xenomorph/blocker = locate() in T
-	if(blocker && blocker != X && blocker.stat != DEAD)
-		to_chat(X, "<span class='warning'>Can't do that with [blocker] in the way!</span>")
-		return fail_activate()
+	if(!T.check_alien_construction(owner, silent))
+		return FALSE
 
-	if(!T.is_weedable())
-		to_chat(X, "<span class='warning'>We can't do that here.</span>")
-		return fail_activate()
-
-	var/obj/effect/alien/weeds/alien_weeds = locate() in T
-
+	if(locate(/obj/effect/alien/weeds/node) in T)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>There is a resin node in the way!</span>")
+		return FALSE
+	
 	for(var/obj/effect/forcefield/fog/F in range(1, X))
 		to_chat(X, "<span class='warning'>We can't build so close to the fog!</span>")
-		return fail_activate()
+		return FALSE
 
-	if(!alien_weeds)
-		to_chat(X, "<span class='warning'>We can only shape on weeds. We must find some resin before we start building!</span>")
-		return fail_activate()
+	if(GLOB.xenojammer.len >= 2)
+		to_chat(X, "<span class='warning'>We can only have two jammers at a time!</span>")
+		return FALSE
 
-	if(GLOB.xenojammer.len > 0)
-		to_chat(X, "<span class='warning'>We can only have one jammer at a time!</span>")
-		return fail_activate()
-	
-	blocker = locate() in T
-	if(blocker && blocker != X && blocker.stat != DEAD)
-		return fail_activate()
-
-	if(!can_use_action(T))
-		return fail_activate()
-
-	if(!T.is_weedable())
-		return fail_activate()
-
-	alien_weeds = locate() in T
-	if(!alien_weeds)
-		return fail_activate()
+/datum/action/xeno_action/xeno_jammer/action_activate()
+	var/turf/T = get_turf(owner)
 
 	if(!do_after(X, 10 SECONDS, TRUE, T, BUSY_ICON_BUILD))
 		return fail_activate()
-
-	var/obj/structure/xenojammer/XJ = new /obj/structure/xenojammer(T)
-	XJ.creator = X
-
+	
 	add_cooldown()
 	succeed_activate()
+
+	playsound(T, "alien_resin_build", 25)
+	var/obj/structure/xenojammer/XJ = new /obj/structure/xenojammer(T)
+	XJ.creator = X
+	to_chat(owner, "<span class='xenonotice'>We place a jammer down.</span>")

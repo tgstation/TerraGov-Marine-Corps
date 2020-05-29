@@ -711,15 +711,14 @@ JAMMER
 	density = FALSE
 	opacity = FALSE
 	anchored = TRUE
-	resistance_flags = UNACIDABLE
 	layer = RESIN_STRUCTURE_LAYER
 
-	max_integrity = 100
+	max_integrity = 10
 	var/mob/living/carbon/xenomorph/creator = null
 
 /obj/effect/alien/resin/xenojammer/Initialize()
 	. = ..()
-	set_light(7, 3, LIGHT_COLOR_RED)
+	set_light(7, 5, LIGHT_COLOR_RED)
 	RegisterSignal(SSdcs, COMSIG_GLOB_SAY_RADIO, .proc/on_radio_used)
 	GLOB.xenojammer += src
 
