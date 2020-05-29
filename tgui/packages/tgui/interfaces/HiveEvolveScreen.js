@@ -25,26 +25,17 @@ const CasteView = props => {
   const lastItem = Object.keys(props.abilites).slice(-1)[0];
 
   return (
-    <Section level={2} height={"100%"} title={props.name}>
-      <strong>Abilities</strong>
-      <span style={{ color: 'rgba(255, 255, 255, 0.5)' }}>
-        {' (hover for details)'}
-      </span>
-      <p>
-        {props.abilites ? (
-          <LabeledList>
-            {abilites.map(ability => (
-              <LabeledList.Item key={ability.name}>
-                <Button
-                  color="transparent"
-                  tooltip={ability.desc}
-                  tooltipPosition={"bottom-right"}
-                  content={ability.name} />
-              </LabeledList.Item>
-            ))}
-          </LabeledList>
-        ) : "This caste has no abilites"}
-      </p>
+    <Section title={`${props.name} - Abilities`}>
+      {props.abilites ? (
+        abilites.map(ability => (
+          <Button
+            key={ability.name}
+            color="transparent"
+            tooltip={ability.desc}
+            tooltipPosition={"bottom-right"}
+            content={ability.name} />
+        ))
+      ) : "This caste has no abilites"}
     </Section>
   );
 };
