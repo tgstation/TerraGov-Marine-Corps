@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Button, Flex, Section, ProgressBar, Collapsible } from '../components';
+import { Button, Flex, Section, ProgressBar, Collapsible, LabeledList } from '../components';
 import { Window } from '../layouts';
 
 
@@ -17,6 +17,7 @@ const EvolveProgress = props => (
 );
 
 const CasteView = props => {
+  // These are removed since every caste has them and its just clutter.
   const filteredAbilities = ["Rest", "Regurgitate"];
   const abilites = Object
     .values(props.abilites)
@@ -24,24 +25,22 @@ const CasteView = props => {
   const lastItem = Object.keys(props.abilites).slice(-1)[0];
 
   return (
-    <Section height={"100%"} title={props.name}>
+    <Section level={2} height={"100%"} title={props.name}>
       <strong>Abilities</strong>
-      <span style={{ color: 'grey' }}>{' (hover for details)'}</span>
+      <span style={{ color: 'rgba(255, 255, 255, 0.5)' }}>{' (hover for details)'}</span>
       <p>
         {props.abilites ? (
-          <ul>
+         <LabeledList>
             {abilites.map(ability => (
-              <li key={ability.name}>
+              <LabeledList.Item>
                 <Button
-                  color="transparent"
-                  tooltip={ability.desc}
-                  tooltipPosition={(props.lastSection
-                    ? "bottom-left"
-                    : "bottom-right")}
-                  content={ability.name} />
-              </li>
+                    color="transparent"
+                    tooltip={ability.desc}
+                    tooltipPosition={"bottom-right"}
+                    content={ability.name} />
+              </LabeledList.Item>
             ))}
-          </ul>
+       </LabeledList>
         ) : "This caste has no abilites"}
       </p>
     </Section>
@@ -61,6 +60,7 @@ export const HiveEvolveScreen = (props, context) => {
   } = data;
 
   const canEvolve = can_evolve && evolution.current >= evolution.max;
+  // Most checks are skipped for shrike and queeen so we except them below.
   const instantEvolveTypes = ["Shrike", "Queen"];
   const evolvesInto = Object.values(evolves_to);
 
@@ -93,7 +93,6 @@ export const HiveEvolveScreen = (props, context) => {
               <CasteView
                 name={evolve.name}
                 abilites={evolve.abilities}
-                lastSection={idx === (evolvesInto.length - 1)}
                 canEvolve={canEvolve}
               />
             </Collapsible>
