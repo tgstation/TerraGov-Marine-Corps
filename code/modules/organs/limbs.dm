@@ -982,23 +982,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if (limb_status & LIMB_MUTATED)
 		return new /icon(deform_icon, "[icon_name][gender ? "_[gender]" : ""]")
 
-	var/datum/ethnicity/E = GLOB.ethnicities_list[owner.ethnicity]
-	var/datum/body_type/B = GLOB.body_types_list[owner.body_type]
-
-	var/e_icon
-	var/b_icon
-
-	if (!E)
-		e_icon = "western"
-	else
-		e_icon = E.icon_name
-
-	if (!B)
-		b_icon = "mesomorphic"
-	else
-		b_icon = B.icon_name
-
-	return new /icon(race_icon, "[get_limb_icon_name(owner.species, b_icon, owner.gender, icon_name, e_icon)]")
+	return new /icon(race_icon, "[get_limb_icon_name(owner.species, owner.gender, icon_name)]")
 
 	//return new /icon(race_icon, "[icon_name][gender ? "_[gender]" : ""]")
 
