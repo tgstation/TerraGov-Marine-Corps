@@ -695,3 +695,113 @@ TUNNEL
 			to_chat(M, "<span class='warning'>\The [src] ended unexpectedly, so we return back up.</span>")
 	else
 		to_chat(M, "<span class='warning'>Our crawling was interrupted!</span>")
+
+//Resin Water Well
+/obj/effect/alien/resin/acidwell
+	name = "acid well"
+	desc = "An acid well. It stores acid to put out fires."
+	icon = 'icons/Xeno/acid_pool.dmi'
+	icon_state = "fullwell"
+	density = FALSE
+	opacity = FALSE
+	anchored = TRUE
+	max_integrity = 5
+	layer = RESIN_STRUCTURE_LAYER
+
+	hit_sound = "alien_resin_move"
+	destroy_sound = "alien_resin_move"
+
+	max_integrity = 100
+	var/charges = 1
+	var/mob/living/carbon/xenomorph/creator = null
+
+/obj/effect/alien/resin/acidwell/Initialize()
+	. = ..()
+	GLOB.acidwells += src
+	update_icon()
+
+/obj/effect/alien/resin/acidwell/Destroy()
+	if(!QDELETED(creator) && creator.stat == CONSCIOUS && creator.z == z)
+		var/area/A = get_area(src)
+		if(A)
+			to_chat(creator, "<span class='xenoannounce'>You sense your acid well at [A.name] has been destroyed!</span>")
+	GLOB.acidwells -= src
+	return ..()
+
+/obj/effect/alien/resin/acidwell/examine(mob/user)
+	..()
+	if(!isxeno(user) && !isobserver(user))
+		return
+	to_chat(user, "<span class='xenoannounce'>This is an acid well made by [creator].</span>")
+
+/obj/effect/alien/resin/acidwell/deconstruct(disassembled = TRUE)
+	visible_message("<span class='danger'>[src] suddenly collapses!</span>")
+	return ..()
+
+/obj/effect/alien/resin/acidwell/update_icon()
+	..()
+	if(!charges)
+		icon_state = "emptywell"
+		set_light(0)
+		return 
+	icon_state = "well[charges]"
+	set_light(charges * 2, charges, LIGHT_COLOR_GREEN)
+
+/obj/effect/alien/resin/acidwell/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			take_damage(210)
+		if(EXPLODE_HEAVY)
+			take_damage(140)
+		if(EXPLODE_LIGHT)
+			take_damage(70)
+
+/obj/effect/alien/resin/acidwell/attackby(obj/item/I, mob/user, params)
+	if(!isxeno(user))
+		return ..()
+	attack_alien(user)
+
+/obj/effect/alien/resin/acidwell/attack_alien(mob/living/carbon/xenomorph/M)
+	if(M.a_intent != INTENT_HARM)
+		if(charges >= 5)
+			to_chat(creator, "<span class='xenoannounce'>[src] is already full!</span>")
+			return
+		if(!do_after(M, 10 SECONDS, FALSE, src, BUSY_ICON_BUILD))
+			return
+		if(M.plasma_stored < 200)
+			return
+		M.plasma_stored -= 200
+		charges++
+		update_icon()
+		to_chat(M,"<span class='xenonotice'>You fill up by one [src].</span>")
+	else 
+		to_chat(M, "<span class='xenowarning'>We begin removing [src]...</span>")
+		if(do_after(M, 5 SECONDS, FALSE, src, BUSY_ICON_BUILD))
+			deconstruct(FALSE)
+		return
+
+/obj/effect/alien/resin/acidwell/Crossed(atom/A)
+	. = ..()
+	if(iscarbon(A))
+		HasProximity(A)
+
+/obj/effect/alien/resin/acidwell/HasProximity(atom/movable/AM)
+	if(!iscarbon(AM))
+		return
+	if(!(AM in GLOB.alive_living_list))
+		return
+	if(!charges)
+		return
+	var/mob/living/carbon/C = AM
+	if(isxeno(C))
+		if(!(C.on_fire))
+			return 
+		C.ExtinguishMob()
+		charges--
+		update_icon()
+		return
+	else 
+		C.adjustToxLoss(charges * 15)
+		charges = null
+		update_icon()
+		return
