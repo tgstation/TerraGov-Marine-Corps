@@ -223,7 +223,7 @@
 			UPDATEHEALTH(H)
 			H.Paralyze(20)
 		GLOB.round_statistics.defender_tail_sweep_hits++
-		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_tail_sweep_hits")
+		SSblackbox.record_feedback("tally", "round_statistics", 1, "tail_sweep_hits")
 		shake_camera(H, 2, 1)
 
 		to_chat(H, "<span class='xenowarning'>We are struck by \the [X]'s tail sweep!</span>")
