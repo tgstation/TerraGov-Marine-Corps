@@ -27,6 +27,9 @@
 	QDEL_NULL(soundloop)
 	return ..()
 
+/obj/machinery/power/port_gen/should_have_node()
+	return anchored
+
 ///obj/machinery/power/port_gen/should_have_node()
 //	return anchored
 

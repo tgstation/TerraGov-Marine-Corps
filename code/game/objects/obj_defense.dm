@@ -123,6 +123,9 @@
 
 
 /obj/attack_alien(mob/living/carbon/xenomorph/X)
+	// SHOULD_CALL_PARENT(TRUE) // TODO: fix this
+	if(SEND_SIGNAL(src, COMSIG_OBJ_ATTACK_ALIEN, X) & COMPONENT_NO_ATTACK_ALIEN)
+		return
 	if(!(resistance_flags & XENO_DAMAGEABLE))
 		to_chat(X, "<span class='warning'>We stare at \the [src] cluelessly.</span>")
 		return

@@ -43,7 +43,7 @@
 	if(statpanel("Status"))
 		if(GLOB.round_id)
 			stat("Round ID:", GLOB.round_id)
-		stat("Operation Time:", worldtime2text())
+		stat("Operation Time:", stationTimestamp("hh:mm"))
 		stat("Current Map:", length(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : "Loading...")
 		stat("Current Ship:", length(SSmapping.configs) ? SSmapping.configs[SHIP_MAP].map_name : "Loading...")
 

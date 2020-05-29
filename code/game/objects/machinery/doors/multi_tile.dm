@@ -108,6 +108,9 @@
 	name = "\improper Medical Bay"
 	req_access = list(ACCESS_MARINE_MEDBAY)
 
+/obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay/free_access
+	req_access = null
+
 /obj/machinery/door/airlock/multi_tile/mainship/research
 	name = "\improper Research Airlock"
 	icon = 'icons/obj/doors/mainship/2x1medidoor.dmi'
