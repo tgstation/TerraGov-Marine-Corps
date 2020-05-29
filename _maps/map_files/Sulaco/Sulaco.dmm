@@ -80,7 +80,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "aau" = (
@@ -204,7 +203,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/largecrate/guns/merc,
 /turf/open/floor/plating/plating_catwalk,
 /area/sulaco/cargo)
 "aaO" = (
@@ -301,11 +299,10 @@
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "abg" = (
+/obj/structure/closet/crate/internals,
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/table/mainship,
-/obj/machinery/cell_charger,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "abh" = (
@@ -402,6 +399,14 @@
 	dir = 4;
 	id = "supply_elevator_railing"
 	},
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
+"abx" = (
+/obj/structure/rack,
+/obj/item/ammo_magazine/rifle/ak47/extended,
+/obj/item/ammo_magazine/rifle/ak47/extended,
+/obj/item/ammo_magazine/rifle/ak47/extended,
+/obj/item/ammo_magazine/rifle/ak47/extended,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "aby" = (
@@ -1128,6 +1133,10 @@
 /obj/item/storage/box/rxglasses,
 /turf/open/floor/tile/white,
 /area/sulaco/medbay/storage2)
+"adQ" = (
+/obj/structure/largecrate/guns,
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
 "adR" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/o2{
@@ -1435,13 +1444,14 @@
 /turf/open/floor/freezer,
 /area/sulaco/showers)
 "aeT" = (
-/obj/structure/closet/crate/medical,
-/obj/item/storage/firstaid/adv,
-/obj/item/storage/firstaid/fire{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/firstaid/regular,
+/obj/structure/rack,
+/obj/item/ammo_magazine/smg/mp5,
+/obj/item/ammo_magazine/smg/mp5,
+/obj/item/ammo_magazine/smg/mp5,
+/obj/item/ammo_magazine/smg/mp5,
+/obj/item/ammo_magazine/smg/mp5,
+/obj/item/ammo_magazine/smg/mp5,
+/obj/item/ammo_magazine/smg/mp5,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "aeU" = (
@@ -1656,10 +1666,6 @@
 /obj/item/radio/intercom/general{
 	dir = 8
 	},
-/obj/structure/table/mainship,
-/obj/item/storage/belt/utility/full,
-/obj/item/storage/belt/utility/full,
-/obj/item/lightreplacer,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "afL" = (
@@ -1676,6 +1682,11 @@
 /obj/structure/grille,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/engineering/atmos)
+"afN" = (
+/obj/structure/rack,
+/obj/item/weapon/gun/rifle/ak47,
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
 "afO" = (
 /obj/structure/supply_drop/charlie,
 /turf/open/floor/cult{
@@ -2028,8 +2039,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/vehicle/powerloader,
-/turf/open/floor/mech_bay_recharge_floor,
+/turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "agM" = (
 /obj/machinery/door/poddoor/railing{
@@ -2050,8 +2060,7 @@
 /obj/machinery/alarm{
 	dir = 4
 	},
-/obj/machinery/vending/boozeomat,
-/turf/open/floor/wood,
+/turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "agQ" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -2063,8 +2072,8 @@
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "agR" = (
-/obj/machinery/vending/snack,
-/turf/open/floor/wood,
+/obj/vehicle/powerloader,
+/turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "agS" = (
 /obj/structure/table,
@@ -2075,6 +2084,9 @@
 /area/sulaco/cryosleep)
 "agT" = (
 /obj/structure/supply_drop/delta,
+/obj/structure/noticeboard{
+	pixel_x = 30
+	},
 /turf/open/floor/cult{
 	dir = 2
 	},
@@ -2123,18 +2135,14 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 4
 	},
-/obj/item/radio/intercom/general{
-	dir = 4;
-	icon_state = "intercom"
-	},
-/turf/open/floor/wood,
+/turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "ahg" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
 	layer = 2
 	},
-/turf/open/floor/wood,
+/turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "ahh" = (
 /obj/machinery/light{
@@ -2361,6 +2369,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
+"ahN" = (
+/obj/structure/rack,
+/obj/item/weapon/gun/smg/mp5,
+/obj/item/weapon/gun/smg/mp5,
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
 "ahO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/closed/wall/sulaco,
@@ -2388,14 +2402,12 @@
 /turf/closed/wall/sulaco,
 /area/sulaco/medbay)
 "ahS" = (
-/obj/structure/bed/chair/sofa/right{
-	dir = 1
-	},
-/turf/open/floor/wood,
+/obj/machinery/mech_bay_recharge_port,
+/turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "ahT" = (
-/obj/structure/flora/pottedplant,
-/turf/open/floor/wood,
+/obj/machinery/computer/mech_bay_power_console,
+/turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "ahU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -2414,7 +2426,6 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "ahX" = (
@@ -2581,7 +2592,6 @@
 /obj/machinery/door/airlock/mainship/marine/requisitions{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/sulaco/cargo/office)
 "aiw" = (
@@ -2593,6 +2603,13 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/sulaco/medbay)
+"aiy" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
 "aiz" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/structure/disposalpipe/segment{
@@ -2605,6 +2622,18 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/tile/white,
 /area/sulaco/medbay)
+"aiB" = (
+/obj/structure/table/reinforced{
+	layer = 2.1
+	},
+/obj/machinery/door/poddoor/shutters{
+	dir = 2;
+	id = "ROlobby1";
+	name = "RO Line 1"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/dark,
+/area/sulaco/cargo/office)
 "aiC" = (
 /obj/machinery/computer/crew,
 /turf/open/floor/tile/white,
@@ -2657,6 +2686,13 @@
 /obj/structure/janitorialcart,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/north_solar_maint)
+"aiI" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/landmark/start/job/requisitionsofficer,
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
 "aiJ" = (
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/tile/white,
@@ -2736,27 +2772,24 @@
 	},
 /area/sulaco/cryosleep)
 "aiS" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/structure/table/reinforced{
+	layer = 2.1
+	},
 /obj/machinery/door/poddoor/shutters{
 	dir = 2;
-	id = "qm_warehouse";
-	name = "Warehouse Shutters"
+	id = "ROlobby2";
+	name = "RO Line 2"
 	},
-/turf/open/floor/marking/loadingarea{
-	dir = 1
-	},
-/area/sulaco/cargo)
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/turf/open/floor/tile/dark,
+/area/sulaco/cargo/office)
 "aiT" = (
 /turf/closed/wall/sulaco,
 /area/sulaco/cargo/office)
 "aiU" = (
+/obj/item/tool/screwdriver,
 /obj/structure/disposalpipe/segment{
 	dir = 4
-	},
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
 	},
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
@@ -2764,11 +2797,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/cable/yellow{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/machinery/power/apc/mainship{
+/obj/item/radio/intercom/general{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -2804,18 +2833,41 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/tile/white,
 /area/sulaco/medbay)
-"ajb" = (
-/obj/structure/table/mainship,
-/obj/item/stack/sheet/glass/reinforced,
-/obj/item/stack/sheet/wood/large_stack,
-/obj/item/tool/hand_labeler,
-/obj/item/stack/sheet/cardboard{
-	amount = 50
+"aja" = (
+/obj/structure/bed/chair/office/dark,
+/obj/machinery/door_control/mainship/req{
+	id = "ROlobby1";
+	name = "RO Line 1 Shutters";
+	pixel_x = -30
 	},
+/obj/machinery/flasher_button{
+	id = "req";
+	name = "flash activation switch";
+	pixel_x = -30;
+	pixel_y = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
+"ajb" = (
+/obj/machinery/vending/attachments,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "ajc" = (
+/obj/structure/bed/chair/office/dark,
+/obj/machinery/door_control/mainship/req{
+	id = "ROlobby2";
+	name = "RO Line 2 Shutters";
+	pixel_x = 30;
+	pixel_y = -30
+	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/flasher_button{
+	id = "req";
+	name = "flash activation switch";
+	pixel_x = 30;
+	pixel_y = -20
+	},
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "ajd" = (
@@ -2889,17 +2941,8 @@
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
-/obj/machinery/computer/supplycomp,
-/obj/machinery/door_control/mainship/req{
-	id = "qm_warehouse";
-	name = "RO Warehouse Shutters";
-	pixel_y = -25
-	},
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
-"ajn" = (
-/obj/machinery/light,
 /obj/structure/cable,
+/obj/machinery/computer/supplycomp,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "ajo" = (
@@ -3031,14 +3074,10 @@
 /area/sulaco/medbay/west)
 "ajF" = (
 /obj/structure/cable,
-/obj/machinery/door/poddoor/shutters{
-	dir = 2;
-	id = "qm_warehouse";
-	name = "Warehouse Shutters"
-	},
-/turf/open/floor/marking/loadingarea{
+/obj/machinery/door/airlock/mainship/marine/requisitions{
 	dir = 1
 	},
+/turf/open/floor/tile/dark,
 /area/sulaco/cargo)
 "ajG" = (
 /obj/structure/bed/chair{
@@ -3175,14 +3214,18 @@
 /turf/open/floor,
 /area/sulaco/cargo/office)
 "aka" = (
-/obj/structure/closet/secure_closet/req_officer,
+/obj/structure/table,
+/obj/item/tool/screwdriver,
+/obj/item/multitool,
 /turf/open/floor,
 /area/sulaco/cargo/office)
 "akb" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
 	},
-/obj/structure/closet/secure_closet/shiptech,
+/obj/structure/table,
+/obj/item/clipboard,
+/obj/item/tool/hand_labeler,
 /turf/open/floor,
 /area/sulaco/cargo/office)
 "akc" = (
@@ -3198,9 +3241,6 @@
 	pixel_y = 7
 	},
 /obj/item/tool/pen/red,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 10
-	},
 /turf/open/floor,
 /area/sulaco/cargo/office)
 "ake" = (
@@ -3226,7 +3266,6 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/obj/effect/landmark/start/job/requisitionsofficer,
 /obj/structure/cable,
 /turf/open/floor,
 /area/sulaco/cargo/office)
@@ -3503,6 +3542,10 @@
 	dir = 4
 	},
 /area/sulaco/engineering/atmos)
+"akS" = (
+/obj/machinery/computer/supplycomp,
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
 "akT" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
@@ -3511,7 +3554,6 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/obj/structure/rack,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "akV" = (
@@ -3592,7 +3634,10 @@
 /area/sulaco/cargo/office)
 "ali" = (
 /obj/machinery/computer/supplycomp,
-/obj/machinery/atmospherics/pipe/manifold/green/hidden,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4;
+	layer = 2
+	},
 /turf/open/floor,
 /area/sulaco/cargo/office)
 "alj" = (
@@ -3603,15 +3648,29 @@
 	},
 /area/sulaco/cryosleep)
 "alk" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 10
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 4
 	},
-/turf/open/floor,
-/area/sulaco/cargo/office)
+/obj/machinery/line_nexter{
+	dir = 2
+	},
+/turf/open/floor/marking/bot,
+/area/sulaco/cargo)
+"all" = (
+/turf/open/floor/marking/loadingarea{
+	dir = 2
+	},
+/area/sulaco/cargo)
 "alm" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/turf/open/floor,
-/area/sulaco/cargo/office)
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/obj/machinery/line_nexter{
+	dir = 2
+	},
+/turf/open/floor/marking/bot,
+/area/sulaco/cargo)
 "aln" = (
 /obj/structure/cable,
 /turf/open/floor,
@@ -3619,7 +3678,7 @@
 "alo" = (
 /obj/structure/cable,
 /turf/open/floor,
-/area/sulaco/cargo/office)
+/area/sulaco/cargo)
 "alp" = (
 /obj/structure/bed/chair/wheelchair,
 /turf/open/floor/freezer,
@@ -3673,15 +3732,6 @@
 	layer = 3.3;
 	name = "RO Office"
 	},
-/obj/machinery/door/window/eastleft/req{
-	dir = 8
-	},
-/obj/machinery/door/window/eastright,
-/obj/structure/noticeboard{
-	layer = 3.25;
-	pixel_x = 0;
-	pixel_y = -25
-	},
 /turf/open/floor/marking/bot{
 	dir = 1
 	},
@@ -3697,9 +3747,12 @@
 	},
 /area/sulaco/engineering)
 "alx" = (
-/turf/open/floor{
-	icon_state = "red"
+/obj/machinery/door/poddoor/shutters{
+	dir = 2;
+	id = "qm_warehouse";
+	name = "Warehouse Shutters"
 	},
+/turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "aly" = (
 /obj/machinery/portable_atmospherics/canister/empty,
@@ -3908,15 +3961,8 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/obj/structure/barricade/metal{
-	dir = 4
-	},
-/obj/machinery/line_nexter{
-	dir = 1;
-	pixel_y = 19
-	},
 /turf/open/floor/marking/bot,
-/area/sulaco/cargo/office)
+/area/sulaco/cargo)
 "ame" = (
 /obj/structure/table,
 /obj/item/flashlight/flare,
@@ -3939,9 +3985,9 @@
 /area/sulaco/cryosleep)
 "amh" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/structure/cable
-/turf/open/floor,
-/area/sulaco/cargo/office)
+/obj/structure/cable,
+/turf/open/floor/marking/bot,
+/area/sulaco/cargo)
 "ami" = (
 /obj/structure/table,
 /obj/machinery/light,
@@ -3989,8 +4035,13 @@
 	},
 /area/sulaco/cryosleep)
 "amo" = (
-/obj/machinery/vending/attachments,
-/turf/open/floor,
+/obj/machinery/door_control/mainship/req{
+	id = "qm_warehouse";
+	name = "RO Warehouse Shutters";
+	pixel_x = -30
+	},
+/obj/machinery/vending/lasgun,
+/turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "amp" = (
 /obj/machinery/light,
@@ -4064,23 +4115,37 @@
 /turf/open/floor/tile/blue/whitebluefull,
 /area/sulaco/medbay)
 "amB" = (
-/turf/open/floor,
+/obj/item/tool/wrench,
+/turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "amC" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/obj/structure/barricade/metal{
+	dir = 8
+	},
 /turf/open/floor,
-/area/sulaco/cargo/office)
-"amE" = (
-/obj/structure/cable,
-/obj/structure/cable,
+/area/sulaco/cargo)
+"amD" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
+"amF" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
 /turf/open/floor,
-/area/sulaco/cargo/office)
+/area/sulaco/cargo)
 "amG" = (
 /obj/machinery/vending/marine/cargo_ammo,
-/turf/open/floor,
+/turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "amH" = (
 /obj/structure/cable,
@@ -4185,16 +4250,25 @@
 	dir = 4;
 	layer = 2
 	},
+/obj/machinery/status_display,
 /obj/machinery/door/poddoor/shutters{
-	closed_layer = 3.3;
 	dir = 2;
 	id = "ROoffice";
 	layer = 3.3;
 	name = "RO Office"
 	},
-/obj/structure/grille,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/cargo/office)
+"amV" = (
+/obj/machinery/light,
+/obj/machinery/door_control/mainship/req{
+	id = "qm_warehouse";
+	name = "RO Warehouse Shutters";
+	pixel_y = -30
+	},
+/obj/machinery/vending/uniform_supply,
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
 "amW" = (
 /obj/structure/sign/prop1,
 /turf/closed/wall/sulaco,
@@ -4209,7 +4283,6 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/structure/rack,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "amZ" = (
@@ -4336,13 +4409,11 @@
 	dir = 4
 	},
 /obj/machinery/door/poddoor/shutters{
-	closed_layer = 3.3;
 	dir = 2;
 	id = "ROoffice";
 	layer = 3.3;
 	name = "RO Office"
 	},
-/obj/structure/grille,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/cargo/office)
 "anA" = (
@@ -4356,14 +4427,12 @@
 "anC" = (
 /obj/structure/table,
 /obj/item/reagent_containers/spray/cleaner,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tech_supply,
 /obj/machinery/alarm{
 	dir = 4
 	},
-/obj/item/flashlight,
-/obj/item/flashlight,
-/obj/item/reagent_containers/spray/cleaner,
-/obj/item/tool/extinguisher,
-/obj/item/tool/extinguisher/mini,
 /turf/open/floor,
 /area/sulaco/cargo/office)
 "anD" = (
@@ -4374,7 +4443,6 @@
 	pixel_y = 4
 	},
 /obj/machinery/light,
-/obj/item/tool/hand_labeler,
 /turf/open/floor,
 /area/sulaco/cargo/office)
 "anE" = (
@@ -4397,6 +4465,9 @@
 /obj/item/stack/sheet/metal{
 	amount = 50
 	},
+/obj/item/stack/sheet/cardboard{
+	amount = 50
+	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
 	},
@@ -4406,8 +4477,7 @@
 /obj/structure/table,
 /obj/machinery/door_control/mainship/req{
 	id = "ROoffice";
-	name = "RO Office Shutters";
-	pixel_x = -7
+	name = "RO Office Shutters"
 	},
 /obj/item/tool/stamp{
 	pixel_x = -3;
@@ -4418,10 +4488,6 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/obj/machinery/line_nexter_control{
-	pixel_x = 7
-	},
-/obj/item/whistle,
 /turf/open/floor,
 /area/sulaco/cargo/office)
 "anH" = (
@@ -4449,13 +4515,26 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
+/obj/machinery/flasher{
+	id = "req";
+	last_flash = 100;
+	layer = 2.1;
+	name = "Mounted Flash RO";
+	range = 3
+	},
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/obj/structure/barricade/metal{
+	dir = 8
+	},
 /turf/open/floor,
 /area/sulaco/cargo/office)
 "anK" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
 	dir = 4
 	},
-/turf/open/floor,
+/turf/open/floor/marking/bot,
 /area/sulaco/cargo/office)
 "anM" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -4542,7 +4621,6 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/obj/structure/rack,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "anY" = (
@@ -4727,6 +4805,16 @@
 "aoB" = (
 /turf/open/floor,
 /area/sulaco/briefing)
+"aoC" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/barricade/metal{
+	dir = 4
+	},
+/obj/structure/barricade/metal{
+	dir = 8
+	},
+/turf/open/floor,
+/area/sulaco/cargo/office)
 "aoD" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor,
@@ -4780,16 +4868,13 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/obj/structure/barricade/metal{
-	dir = 4
-	},
 /turf/open/floor/marking/bot,
 /area/sulaco/cargo/office)
 "aoM" = (
-/turf/open/floor{
-	dir = 1;
-	icon_state = "red"
+/obj/machinery/light/small{
+	dir = 8
 	},
+/turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "aoN" = (
 /turf/open/floor/plating/mainship,
@@ -4833,18 +4918,26 @@
 /turf/open/floor/tile/white,
 /area/sulaco/cafeteria)
 "aoU" = (
-/obj/machinery/vending/nanomed{
-	dir = 8
-	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "red"
-	},
+/obj/machinery/vending/marine/cargo_guns,
+/turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "aoV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
 /area/sulaco/cargo/office)
+"aoW" = (
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/turf/open/floor/marking/bot,
+/area/sulaco/cargo/office)
+"aoX" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor,
+/area/sulaco/cargo)
 "aoY" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -4890,28 +4983,27 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 5
 	},
-/turf/open/floor,
+/turf/open/floor/marking/bot,
 /area/sulaco/cargo/office)
 "aph" = (
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/barricade/metal{
-	dir = 4
-	},
 /turf/open/floor/marking/bot,
+/area/sulaco/cargo/office)
+"api" = (
+/obj/item/tool/hand_labeler,
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
+"apj" = (
+/turf/open/floor/mainship/mono,
 /area/sulaco/cargo/office)
 "apk" = (
 /obj/item/radio/intercom/general{
 	dir = 8
 	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor{
-	icon_state = "red"
-	},
-/area/sulaco/cargo)
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo/office)
 "apl" = (
 /turf/closed/wall/sulaco,
 /area/sulaco/engineering/engine)
@@ -5012,6 +5104,13 @@
 /obj/structure/cable,
 /turf/open/floor/carpet,
 /area/sulaco/bridge/office)
+"apA" = (
+/obj/structure/window/reinforced{
+	dir = 5
+	},
+/obj/structure/grille,
+/turf/open/floor/plating/platebotc,
+/area/sulaco/hallway/central_hall3)
 "apB" = (
 /obj/structure/cable,
 /turf/open/floor/marking/loadingarea{
@@ -5139,16 +5238,38 @@
 /turf/open/floor/tile/white,
 /area/sulaco/cafeteria)
 "aqc" = (
-/obj/structure/barricade/metal{
-	dir = 4
-	},
 /turf/open/floor/marking/bot,
 /area/sulaco/cargo/office)
+"aqd" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/closet/crate/internals,
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
+"aqe" = (
+/obj/item/stack/sheet/wood{
+	amount = 50
+	},
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
+"aqf" = (
+/obj/item/stack/sheet/glass{
+	pixel_x = 3;
+	pixel_y = 3;
+	amount = 50
+	},
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
 "aqg" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/sulaco/engineering/engine)
 "aqh" = (
 /obj/structure/table,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tech_supply,
 /obj/item/radio/intercom/general{
 	dir = 8
 	},
@@ -5156,6 +5277,8 @@
 /area/sulaco/cargo/office)
 "aqi" = (
 /obj/structure/table,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tech_supply,
 /obj/item/tool/crowbar,
 /turf/open/floor,
 /area/sulaco/cargo/office)
@@ -5199,11 +5322,15 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/sulaco/cargo/office)
-"aqr" = (
-/obj/machinery/power/fusion_engine,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/sulaco/engineering/engine)
+"aqq" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor,
+/area/sulaco/cargo/office)
 "aqs" = (
 /obj/machinery/status_display,
 /turf/closed/wall/sulaco,
@@ -5609,8 +5736,18 @@
 /obj/machinery/computer/crew,
 /turf/open/floor/prison,
 /area/sulaco/bridge)
+"arB" = (
+/obj/structure/table,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tech_supply,
+/turf/open/floor,
+/area/sulaco/cargo/office)
 "arC" = (
 /obj/structure/table,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tech_supply,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -5932,13 +6069,19 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/poddoor/open/port,
 /turf/open/floor,
-/area/sulaco/cargo/office)
+/area/sulaco/hallway/central_hall3)
 "asx" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/door/poddoor/open/port,
 /obj/structure/cable,
 /turf/open/floor,
-/area/sulaco/cargo/office)
+/area/sulaco/hallway/central_hall3)
+"asy" = (
+/obj/item/stack/sheet/metal{
+	amount = 50
+	},
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
 "asz" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
@@ -5956,10 +6099,17 @@
 	dir = 4;
 	layer = 2
 	},
+/obj/item/radio/intercom/general,
 /turf/open/floor/marking/loadingarea{
 	dir = 4
 	},
 /area/sulaco/hallway/central_hall3)
+"asC" = (
+/obj/item/stack/sheet/plasteel{
+	amount = 10
+	},
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
 "asD" = (
 /obj/structure/ladder{
 	height = 2;
@@ -6450,9 +6600,7 @@
 /turf/open/floor/wood,
 /area/sulaco/bridge/quarters)
 "atK" = (
-/obj/machinery/vending/engivend{
-	req_access = null
-	},
+/obj/machinery/vending/engivend,
 /turf/open/floor,
 /area/sulaco/cargo/office)
 "atL" = (
@@ -6527,13 +6675,11 @@
 /turf/open/floor/tile/red/redtaupe,
 /area/sulaco/hallway/central_hall2)
 "atU" = (
+/obj/structure/closet/crate/medical,
 /obj/machinery/camera/autoname{
 	dir = 8
 	},
-/turf/open/floor{
-	dir = 1;
-	icon_state = "red"
-	},
+/turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "atV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -8357,6 +8503,10 @@
 	},
 /turf/closed/wall/sulaco,
 /area/sulaco/bridge/quarters)
+"ayu" = (
+/obj/item/tool/wirecutters,
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo/office)
 "ayv" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/maint{
@@ -17831,189 +17981,44 @@
 /obj/item/storage/fancy/cigarettes/dromedaryco,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
-"bnl" = (
-/obj/machinery/door_control/mainship/req{
-	id = "qm_warehouse";
-	name = "RO Warehouse Shutters";
-	pixel_x = 0;
-	pixel_y = 25
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 2
-	},
-/area/sulaco/cargo)
-"cET" = (
-/obj/structure/table/mainship,
-/obj/item/tool/pickaxe/plasmacutter,
-/obj/item/cell/high,
-/obj/item/cell/high,
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
-"cGW" = (
-/obj/structure/window/reinforced{
-	dir = 5
-	},
-/obj/structure/grille,
-/turf/open/floor/plating/platebotc,
-/area/sulaco/cargo)
-"eWO" = (
-/obj/machinery/door/airlock/mainship/marine/requisitions{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
-"gwc" = (
-/obj/machinery/vending/lasgun,
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
-"hei" = (
-/obj/structure/closet/crate/ammo,
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
-"huj" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/structure/rack,
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
-"jJZ" = (
-/obj/structure/largecrate/guns/russian,
-/turf/open/floor/plating/plating_catwalk,
-/area/sulaco/cargo)
+"fJz" = (
+/obj/structure/cable,
+/turf/open/space/basic,
+/area/space)
 "ldh" = (
 /obj/machinery/keycard_auth{
 	pixel_y = -30
 	},
-/turf/open/floor/tile/lightred/full,
+/turf/open/floor{
+	icon_state = "floor4"
+	},
 /area/sulaco/bridge)
-"mIc" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
+"tzn" = (
+/obj/effect/step_trigger/teleporter/random{
+	affect_ghosts = 1;
+	name = "tele_ground1";
+	teleport_x = 180;
+	teleport_x_offset = 200;
+	teleport_y = 50;
+	teleport_y_offset = 80;
+	teleport_z = 1;
+	teleport_z_offset = 1
 	},
 /obj/structure/cable,
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
-"nVN" = (
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 2
-	},
-/area/sulaco/cargo)
-"oGI" = (
-/obj/machinery/door/poddoor/shutters{
-	dir = 2;
-	id = "qm_warehouse";
-	name = "Warehouse Shutters"
-	},
-/turf/open/floor/marking/loadingarea{
-	dir = 1
-	},
-/area/sulaco/cargo)
-"qcP" = (
-/obj/structure/bed/chair/sofa/left{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/sulaco/cargo)
-"qBk" = (
-/obj/machinery/vending/nanomed,
-/turf/open/space/basic,
+/turf/open/space,
 /area/space)
-"qPT" = (
-/obj/structure/closet/crate/weapon,
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
-"rdF" = (
-/obj/machinery/vending/marine/cargo_guns,
-/turf/open/floor,
-/area/sulaco/cargo)
-"rJc" = (
-/obj/structure/closet/crate/construction,
-/obj/item/stack/sheet/metal{
-	amount = 50
-	},
-/obj/item/stack/sheet/plasteel{
-	amount = 30;
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
-"rQa" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/structure/rack,
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
-"ssD" = (
-/obj/structure/largecrate/supply/supplies/mre,
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
-"ugd" = (
-/obj/structure/largecrate/supply/supplies/water,
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
-"unx" = (
-/obj/machinery/vending/marine/cargo_supply,
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
-"uHO" = (
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 4
-	},
-/area/sulaco/cargo)
-"uXq" = (
-/obj/structure/largecrate/supply/supplies/flares,
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
-"vcX" = (
-/obj/structure/largecrate/guns,
-/turf/open/floor/plating/plating_catwalk,
-/area/sulaco/cargo)
-"vxp" = (
-/turf/open/floor/tile/red/redtaupe{
-	dir = 4
-	},
-/area/sulaco/cargo)
-"vDD" = (
-/obj/machinery/light,
-/obj/machinery/vending/uniform_supply,
-/turf/open/floor,
-/area/sulaco/cargo)
-"vLO" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
-	dir = 5
-	},
-/turf/open/floor/plating/platebotc,
-/area/sulaco/cargo)
-"wVb" = (
-/obj/structure/disposalpipe/segment/corner{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 5
-	},
-/turf/open/floor,
-/area/sulaco/cargo/office)
-"xQW" = (
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/item/radio/intercom/general{
-	dir = 1
-	},
-/turf/open/floor/tile/red/redtaupe{
-	dir = 1
-	},
-/area/sulaco/hallway/central_hall3)
+"uYS" = (
+/obj/structure/cable,
+/turf/closed/wall/sulaco/unmeltable,
+/area/mainship/living/pilotbunks)
+"xxV" = (
+/obj/structure/cable,
+/turf/closed/wall/mainship/outer,
+/area/space)
+"xYx" = (
+/obj/structure/cable,
+/turf/closed/wall/sulaco/unmeltable,
+/area/sulaco/marine/delta)
 
 (1,1,1) = {"
 aaa
@@ -58676,13 +58681,13 @@ aaa
 aaa
 aaa
 aaq
-aaO
-abd
-aeR
-aqn
 aaK
-gwc
-uXq
+abd
+afN
+abx
+abj
+abj
+abj
 agL
 agP
 ahf
@@ -58694,7 +58699,7 @@ aiN
 anC
 aiT
 aqi
-anq
+arB
 ajp
 auv
 avT
@@ -58935,15 +58940,15 @@ aaa
 aaq
 abn
 aaK
-hei
-arR
 aaK
-hei
-ssD
+aaK
+aaK
+aaK
+aaK
 aaK
 agR
 ahg
-qcP
+aaK
 ajp
 aka
 alg
@@ -59192,11 +59197,11 @@ aaa
 aaq
 aat
 aaK
-qPT
+abj
 aeT
-aaK
-rJc
-ugd
+ahN
+abj
+abj
 aaK
 aaK
 ahg
@@ -59456,10 +59461,10 @@ aaM
 aaM
 aaM
 aaM
-ahi
+ahg
 ahW
 aiv
-wVb
+akc
 alh
 aln
 anF
@@ -59713,7 +59718,7 @@ abw
 abw
 agQ
 aaM
-aaK
+ahg
 ahX
 ajp
 akd
@@ -59970,7 +59975,7 @@ abV
 abV
 agM
 aaM
-aaK
+ahg
 aie
 aiT
 aiT
@@ -59980,7 +59985,7 @@ anz
 anb
 aqm
 and
-asu
+asl
 auv
 avV
 axO
@@ -60218,7 +60223,7 @@ aaa
 aaa
 aaa
 aaq
-vcX
+aaM
 abf
 abV
 abV
@@ -60227,10 +60232,10 @@ abV
 abV
 agM
 aaM
-aaK
-ahX
-ajd
-aap
+ahi
+aiy
+aja
+aiB
 alk
 amd
 aoL
@@ -60475,7 +60480,7 @@ aaa
 aaa
 aaa
 aaq
-jJZ
+aaM
 abf
 abV
 abV
@@ -60487,12 +60492,12 @@ aaM
 ahj
 ahX
 ajb
-aap
-amx
+aiT
+all
 amC
 anJ
-aoV
-aoV
+aoC
+aoC
 aoV
 asw
 auy
@@ -60748,9 +60753,9 @@ aiS
 alm
 amh
 anK
-alm
+aoW
 apg
-amx
+arE
 asu
 auw
 avW
@@ -60999,9 +61004,9 @@ abV
 agM
 aaM
 ahx
-ahX
-aaK
-oGI
+aiI
+ajd
+aiT
 aln
 aln
 aln
@@ -61260,12 +61265,12 @@ aiU
 ajf
 ajF
 alo
-amx
-amx
-amx
-amx
-vDD
-ath
+amF
+amF
+aoX
+aqq
+anq
+apA
 auw
 avU
 axS
@@ -61513,19 +61518,19 @@ aaM
 aaM
 aaM
 ahx
-mIc
+ahX
 ajl
 aap
-bnl
-vxp
-uHO
-nVN
-vxp
-uHO
-vLO
+aap
+aap
+aap
+aap
+aap
+aap
+aap
 auA
 avV
-xQW
+axO
 azg
 aAu
 aAu
@@ -61761,10 +61766,10 @@ aaa
 aaa
 aaq
 aaK
-huj
-abj
-abj
-rQa
+ahI
+adQ
+aeR
+anW
 aaK
 aaK
 aaK
@@ -61773,14 +61778,13 @@ ahx
 ahX
 ajf
 aaK
-cGW
 alx
 amo
 aoM
-alx
-amo
-aoM
-cGW
+api
+aqd
+arR
+ath
 auC
 asl
 avZ
@@ -62016,29 +62020,28 @@ aaa
 aaa
 aaa
 aaa
-qBk
+aaa
 aaq
 ace
 ahI
-aaK
-aaK
+aeR
+aaO
 anW
 aaK
 aaK
-unx
+aaK
 aaK
 ahx
 ahX
 ajf
 aaK
-eWO
 alx
 amB
-aoM
-alx
-amB
-aoM
-vLO
+aaK
+ayu
+aaK
+aaK
+aap
 auv
 avV
 axO
@@ -62286,16 +62289,16 @@ aaK
 aaK
 aaK
 ahx
-mIc
+ahX
 ajk
-cGW
+aaK
 alx
-rdF
-aoM
-alx
-rdF
-aoM
-vLO
+aaK
+aaK
+apj
+aqe
+asy
+aap
 auv
 avV
 axO
@@ -62553,13 +62556,6 @@ apj
 aqf
 asC
 aap
-alx
-amB
-aoM
-alx
-amB
-aoM
-vLO
 auv
 avV
 axm
@@ -62797,9 +62793,9 @@ aaa
 aaa
 aaa
 aaq
-aaK
+aaO
 abg
-cET
+aeR
 afK
 aaK
 aaK
@@ -62808,15 +62804,15 @@ aeU
 afO
 agT
 aiV
-aaK
+ajs
+akS
 aap
-alx
 amG
 aoU
 apk
-amG
+aqn
 atU
-vLO
+aap
 asB
 avY
 auD
