@@ -304,7 +304,7 @@
 				return COMPONENT_MOVABLE_PREBUMP_STOPPED
 			else
 				return COMPONENT_MOVABLE_PREBUMP_PLOWED
-
+		charger.visible_message("<span class='danger'>called crush object", null, 5)
 		return precrush2signal(crushed_obj.post_crush_act(charger, src))
 
 	if(isturf(crushed))
@@ -468,6 +468,7 @@
 
 /obj/structure/razorwire/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
 	if(!anchored)
+		charger.visible_message("<span class='danger'>Uh oh it broke", null, 5)
 		return ..()
 	razorwire_tangle(charger, RAZORWIRE_ENTANGLE_DELAY * 0.5) //entangled for only half as long
 	charger.visible_message("<span class='danger'>The barbed wire slices into [charger]!</span>",
