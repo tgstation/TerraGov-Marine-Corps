@@ -125,7 +125,6 @@
 	icon_state = "mod_engineer_bag"
 	storage_type =  /obj/item/storage/internal/modular/general
 
-// TODO: This still needs some balance
 /obj/item/storage/internal/modular/engineering
 	max_storage_space = 15
 	storage_slots = 4
@@ -161,7 +160,7 @@
 
 
 /obj/item/armor_module/storage/integrated
-	name = "IS Pattern Storage rig"
+	name = "IS Pattern Storage Rig"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Impedes movement somewhat, but holds about as much as a satchel could."
 	icon_state = "mod_is_bag"
 	storage_type =  /obj/item/storage/internal/modular/integrated
