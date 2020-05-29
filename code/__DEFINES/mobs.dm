@@ -430,7 +430,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define SPRAY_STRUCTURE_UPGRADE_BONUS(Xenomorph) (( Xenomorph.upgrade_as_number() * 8 ))
 #define SPRAY_MOB_UPGRADE_BONUS(Xenomorph) (( Xenomorph.upgrade_as_number() * 4 ))
 
-#define PLASMA_TRANSFER_AMOUNT 50
+#define PLASMA_TRANSFER_AMOUNT 100
 #define PLASMA_SALVAGE_AMOUNT 400
 
 #define XENO_LARVAL_AMOUNT_RECURRING		10
