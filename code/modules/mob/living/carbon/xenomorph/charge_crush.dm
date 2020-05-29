@@ -482,7 +482,7 @@
 	charger.visible_message("<span class='danger'>The barbed wire slices into [charger]!</span>",
 	"<span class='danger'>The barbed wire slices into you!</span>", null, 5)
 	charger.Paralyze(05)
-	charger.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED, RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MAX_DAMAGE_MULT_MED), BRUTE, ran_zone(), 0, TRUE) //Armor is being ignored here.
+	charger.apply_damage(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED, BRUTE, ran_zone(), 0, TRUE) //Armor is being ignored here.
 	UPDATEHEALTH(charger)
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 	update_icon()
