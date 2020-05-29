@@ -128,7 +128,6 @@
 	. = ..()
 	if(!.)
 		return FALSE
-
 	if(!X.hive.slashing_allowed && !(X.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
 		to_chat(X, "<span class='warning'>Slashing is currently <b>forbidden</b> by the Queen. We refuse to slash [src].</span>")
 		return FALSE
