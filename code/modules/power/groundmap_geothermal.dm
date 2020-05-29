@@ -19,6 +19,9 @@
 	var/fail_check_ticks = 100 //Check for failure every this many ticks
 	var/cur_tick = 0 //Tick updater
 
+/obj/machinery/power/geothermal/should_have_node()
+	return TRUE
+
 //We don't want to cut/update the power overlays every single proc. Just when it actually changes. This should save on CPU cycles. Efficiency!
 /obj/machinery/power/geothermal/update_icon()
 	..()
