@@ -15,6 +15,6 @@
 	upgrade = XENO_UPGRADE_ZERO
 
 	//Trap vars
-	trapchoices = list("acid","neuro","sleepy")
+	trapchoices = list("acid","neuro")
 	gastier = 3
 

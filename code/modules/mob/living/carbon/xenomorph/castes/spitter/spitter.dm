@@ -13,7 +13,7 @@
 	upgrade = XENO_UPGRADE_ZERO
 
 	//Trap vars
-	trapchoices = list("acid","neuro","sleepy","blind")
+	trapchoices = list("acid","neuro","blind")
 	gastier = 2
 
 	inherent_verbs = list(
