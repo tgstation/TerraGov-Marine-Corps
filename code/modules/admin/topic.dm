@@ -727,6 +727,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		var/mob/sender
+		var/subject = "No subject"
 		if(href_list["faxreply"])
 			var/ref = locate(href_list["faxreply"])
 			if(!ref)
@@ -743,6 +744,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				message_staff("[key_name_admin(usr)] marked and started replying to a fax from [key_name_admin(F.sender)].")
 
 			sender = F.sender
+			subject = "re: [F.title]"
 
 		var/dep = input("Who do you want to message?", "Fax Message") as null|anything in list(CORPORATE_LIAISON, "Combat Information Center", COMMAND_MASTER_AT_ARMS, "Brig", "Research", "Warden")
 		if(!dep)
@@ -752,7 +754,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!department)
 			return
 
-		var/subject = input("Enter the subject line", "Fax Message", "") as text|null
+		var/custom_subject = input("Enter the subject line", "Fax Message", "") as text|null
+		if(!custom_subject)
+			subject = custom_subject
 		var/type = input("Do you want to use the pencode, template or type a raw message?", "Fax Message") as null|anything in list("Pencode", "Template", "Raw")
 		if(!type)
 			return

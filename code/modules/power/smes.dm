@@ -63,6 +63,9 @@
 		disconnect_terminal()
 	. = ..()
 
+/obj/machinery/power/smes/should_have_node()
+	return TRUE
+
 /obj/machinery/power/smes/update_icon()
 	overlays.Cut()
 	if(machine_stat & BROKEN)
