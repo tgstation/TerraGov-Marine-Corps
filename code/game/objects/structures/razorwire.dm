@@ -16,7 +16,7 @@
 	var/table_prefix = "" //used in update_icon()
 	max_integrity = RAZORWIRE_MAX_HEALTH
 	var/soak = 5
-	flags_atom = ON_BORDER
+
 /obj/structure/razorwire/deconstruct(disassembled = TRUE)
 	if(disassembled)
 		if(obj_integrity > max_integrity * 0.5)
