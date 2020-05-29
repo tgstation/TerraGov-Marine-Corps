@@ -65,19 +65,17 @@
 		icon_state = "wall2"
 
 
-
-
 //desertdam rock
 /turf/closed/desertdamrockwall
 	name = "rockwall"
 	icon = 'icons/turf/desertdam_map.dmi'
 	icon_state = "cavewall1"
 
-
-
-
-
-
+//lava rock
+/turf/closed/brock
+	name = "basalt rock"
+	icon = 'icons/turf/lava.dmi'
+	icon_state = "brock"
 
 
 //ICE WALLS-----------------------------------//
@@ -139,7 +137,7 @@
 
 	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
-		if(!ismineralturf(src) && !istype(src, /turf/closed/gm/dense) && !istype(src, /turf/closed/ice) && !istype(src, /turf/closed/desertdamrockwall))
+		if(!ismineralturf(src) && !istype(src, /turf/closed/gm/dense) && !istype(src, /turf/closed/ice) && !istype(src, /turf/closed/desertdamrockwall) && !istype(src, /turf/closed/brock))
 			to_chat(user, "<span class='warning'>[P] can't cut through this!</span>")
 			return
 		if(!P.start_cut(user, name, src))
@@ -154,6 +152,12 @@
 			ChangeTurf(/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor)
 		else if(istype(src, /turf/closed/gm/dense))
 			ChangeTurf(/turf/open/ground/jungle/clear)
+		else if(istype(src, /turf/closed/brock))
+			var/choice = rand(1,50)
+			if(choice == 50)
+				ChangeTurf(/turf/open/lavaland/basalt/glowing)
+			else
+				ChangeTurf(/turf/open/lavaland/basalt)
 		else
 			ChangeTurf(/turf/open/floor/plating/ground/ice)
 

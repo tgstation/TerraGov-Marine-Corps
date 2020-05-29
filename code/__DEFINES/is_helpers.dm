@@ -21,6 +21,8 @@
 
 #define isspaceturf(A) (istype(A, /turf/open/space))
 
+#define islava(A) (istype(A, /turf/open/lavaland/lava))
+
 #define isfloorturf(A) (istype(A, /turf/open/floor))
 
 #define isclosedturf(A) (istype(A, /turf/closed))

@@ -257,3 +257,83 @@
 
 /turf/open/shuttle/elevator/grating
 	icon_state = "floor_grating"
+
+// LAVA
+
+/turf/open/lavaland
+	icon = 'icons/turf/lava.dmi'
+	baseturfs = /turf/open/lava
+
+/turf/open/lavaland/lava
+	name = "lava"
+	icon_state = "full"
+
+	light_range = 2
+	light_power = 0.75
+	light_color = LIGHT_COLOR_LAVA
+
+/turf/open/lavaland/lava/corner
+	icon_state = "corner"
+
+/turf/open/lavaland/lava/side
+	icon_state = "side"
+
+/turf/open/lavaland/lava/lpiece
+	icon_state = "lpiece"
+
+/turf/open/lavaland/lava/New()
+	..()
+
+/turf/open/lavaland/lava/Entered(atom/movable/AM)
+	if(burn_stuff(AM))
+		START_PROCESSING(SSobj, src)
+
+/turf/open/lavaland/lava/Exited(atom/movable/Obj, atom/newloc)
+	. = ..()
+	if(isliving(Obj))
+		var/mob/living/L = Obj
+		if(!islava(newloc) && !L.on_fire)
+			L.update_fire()
+
+/turf/open/lavaland/lava/process()
+	if(!burn_stuff())
+		STOP_PROCESSING(SSobj, src)
+
+/turf/open/lavaland/lava/proc/burn_stuff(AM)
+	. = 0
+
+	var/thing_to_check = src
+	if (AM)
+		thing_to_check = list(AM)
+	for(var/thing in thing_to_check)
+		if(isobj(thing))
+			var/obj/O = thing
+			O.fire_act(10000, 1000)
+		
+		else if (isliving(thing))
+			. = 1
+			var/mob/living/L = thing
+			if(!L.on_fire)
+				L.update_fire()
+
+			L.adjustFireLoss(20)
+			if(L) //mobs turning into object corpses could get deleted here.
+				L.adjust_fire_stacks(20)
+				L.IgniteMob()
+
+/turf/open/lavaland/basalt
+	name = "basalt"
+	icon_state = "basalt"
+
+/turf/open/lavaland/basalt/glowing
+	icon_state = "basaltglow"
+	light_range = 2
+	light_power = 0.75
+	light_color = LIGHT_COLOR_LAVA
+
+/turf/open/lavaland/catwalk
+	name = "catwalk"
+	icon_state = "lavacatwalk"
+	light_range = 2
+	light_power = 0.75
+	light_color = LIGHT_COLOR_LAVA
