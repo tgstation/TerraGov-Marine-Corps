@@ -244,24 +244,24 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 			to_chat(owner, "<span class='warning'>There is a resin node in the way!</span>")
 		return FALSE
 	
-	for(var/obj/effect/forcefield/fog/F in range(1, X))
-		to_chat(X, "<span class='warning'>We can't build so close to the fog!</span>")
+	for(var/obj/effect/forcefield/fog/F in range(1, owner))
+		to_chat(owner, "<span class='warning'>We can't build so close to the fog!</span>")
 		return FALSE
 
 	if(GLOB.xenojammer.len >= 2)
-		to_chat(X, "<span class='warning'>We can only have two jammers at a time!</span>")
+		to_chat(owner, "<span class='warning'>We can only have two jammers at a time!</span>")
 		return FALSE
 
 /datum/action/xeno_action/xeno_jammer/action_activate()
 	var/turf/T = get_turf(owner)
 
-	if(!do_after(X, 10 SECONDS, TRUE, T, BUSY_ICON_BUILD))
+	if(!do_after(owner, 10 SECONDS, TRUE, T, BUSY_ICON_BUILD))
 		return fail_activate()
 	
 	add_cooldown()
 	succeed_activate()
 
 	playsound(T, "alien_resin_build", 25)
-	var/obj/structure/xenojammer/XJ = new /obj/structure/xenojammer(T)
-	XJ.creator = X
+	var/obj/effect/alien/resin/xenojammer/XJ = new /obj/effect/alien/resin/xenojammer(T)
+	XJ.creator = owner
 	to_chat(owner, "<span class='xenonotice'>We place a jammer down.</span>")

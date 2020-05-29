@@ -777,7 +777,7 @@ JAMMER
 	var/turf/target = get_turf(CM)
 	if(position.z != target.z)
 		return
-	if(get_dist(position, target) >= 7)
+	if(get_dist(position, target) >= 8)
 		return
 	if(!(CM in viewers(src)))
 		return
