@@ -39,11 +39,7 @@
 /turf/open/floor/tile/dark2,
 /area/desert/interior/engineering/atmospherics)
 "ak" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert/outside/nw)
 "al" = (
@@ -115,11 +111,7 @@
 /obj/machinery/door/airlock/mainship/engineering/atmos{
 	name = "\improper Atmospherics"
 	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/desert/interior/engineering/atmospherics)
 "az" = (
@@ -128,29 +120,17 @@
 	dir = 9
 	},
 /obj/structure/foamedmetal,
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/desert/interior/engineering/atmospherics)
 "aA" = (
 /obj/structure/foamedmetal,
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/desert/interior/engineering/atmospherics)
 "aB" = (
 /obj/effect/landmark/corpsespawner/engineer,
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/item/weapon/gun/pistol/holdout,
 /turf/open/floor/tile/dark2,
 /area/desert/interior/engineering/atmospherics)
@@ -158,11 +138,7 @@
 /turf/open/floor/plating/ground,
 /area/desert/hive)
 "aD" = (
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/desert/interior/engineering/atmospherics)
 "aE" = (
@@ -194,7 +170,7 @@
 /turf/closed/wall/desert,
 /area/desert/interior/toilet)
 "aJ" = (
-/obj/structure/cable/yellow,
+/obj/structure/cable,
 /obj/machinery/power/apc/drained{
 	dir = 1
 	},
@@ -232,11 +208,7 @@
 /area/desert/hive)
 "aQ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	icon_state = "pdoor1";
 	dir = 1
@@ -252,11 +224,7 @@
 /turf/open/floor/plating/ground,
 /area/desert/hive)
 "aT" = (
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating/dmg3,
 /area/desert/outside/nw)
 "aU" = (
@@ -282,11 +250,7 @@
 /turf/open/floor/plating,
 /area/desert/interior/science)
 "ba" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	icon_state = "pipe11-2";
 	dir = 8
@@ -301,11 +265,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/interior/shipping/north)
 "bc" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	icon_state = "pipe11-2";
 	dir = 8
@@ -314,37 +274,17 @@
 /turf/open/floor/plating,
 /area/desert/interior/shipping/north)
 "bd" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	icon_state = "pipe11-2";
 	dir = 8
 	},
 /turf/open/floor/plating,
 /area/desert/interior/shipping/north)
-"be" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/open/floor/plating,
-/area/desert/outside/nw)
 "bf" = (
 /obj/effect/landmark/corpsespawner/engineer,
 /obj/item/stack/sheet/metal/medium_stack,
 /turf/open/floor/plating,
-/area/desert/outside/nw)
-"bg" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/open/floor/plating/dmg3,
 /area/desert/outside/nw)
 "bh" = (
 /turf/closed/wall/desert,
@@ -390,11 +330,7 @@
 	name = "\improper Maintenance Airlock";
 	dir = 1
 	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
 /area/desert/interior/main_building)
@@ -402,11 +338,7 @@
 /turf/open/floor/tile/dark,
 /area/desert/interior/shipping/central)
 "bs" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating,
 /area/desert/interior/main_building)
@@ -419,11 +351,7 @@
 /turf/open/floor/plating/ground,
 /area/desert/outside/nw)
 "bv" = (
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	icon_state = "pipe11-2";
 	dir = 6
@@ -431,11 +359,7 @@
 /turf/open/floor/plating,
 /area/desert/interior/main_building)
 "bw" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	icon_state = "pipe11-2";
 	dir = 8
@@ -446,11 +370,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/outside/ne)
 "by" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	icon_state = "pipe11-2";
 	dir = 9
@@ -499,11 +419,7 @@
 /obj/machinery/door/airlock/colony/engineering{
 	name = "\improper Maintenance Airlock"
 	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	icon_state = "pipe11-2";
 	dir = 8
@@ -561,14 +477,6 @@
 "bU" = (
 /turf/open/floor/plating,
 /area/desert/interior/main_building)
-"bV" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating,
-/area/desert/outside/sw)
 "bW" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/tile/red/full,
@@ -591,11 +499,7 @@
 	icon_state = "pipe11-2";
 	dir = 1
 	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/structure/flora/pottedplant,
 /turf/open/floor/tile/whiteyellow{
 	dir = 4
@@ -606,11 +510,7 @@
 	icon_state = "pipe11-2";
 	dir = 6
 	},
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/outside)
 "cb" = (
@@ -625,16 +525,7 @@
 	icon_state = "pipe11-2";
 	dir = 9
 	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/interior/shipping/north)
 "cd" = (
@@ -704,20 +595,12 @@
 /turf/open/floor/tile/dark,
 /area/desert/interior/shipping/central)
 "cq" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/interior/shipping/north)
 "cr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/outside/nw)
@@ -773,21 +656,13 @@
 /turf/closed/wall/r_wall,
 /area/desert/outside/nw)
 "cB" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/outside/nw)
 "cC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/desert/interior/main_building)
 "cD" = (
@@ -819,10 +694,7 @@
 	},
 /area/desert/interior/main_building)
 "cK" = (
-/obj/structure/cable/yellow{
-	d2 = 4;
-	icon_state = "0-4"
-	},
+/obj/structure/cable,
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
@@ -841,11 +713,7 @@
 	},
 /area/shuttle/drop1/lz1)
 "cN" = (
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/wood,
 /area/desert/interior/command)
 "cO" = (
@@ -868,24 +736,11 @@
 	icon_state = "pipe11-2";
 	dir = 9
 	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/whiteyellow,
 /area/desert/interior/main_building)
 "cS" = (
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	icon_state = "pipe11-2";
 	dir = 6
@@ -897,11 +752,7 @@
 	icon_state = "pipe11-2";
 	dir = 8
 	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/whiteyellow,
 /area/desert/interior/main_building)
 "cU" = (
@@ -909,11 +760,7 @@
 /turf/open/floor/plating,
 /area/desert/interior/security)
 "cV" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	icon_state = "pipe11-2";
 	dir = 8
@@ -924,11 +771,7 @@
 /obj/machinery/door/airlock/colony/engineering{
 	name = "\improper Maintenance Airlock"
 	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert/interior/shipping/north)
 "cX" = (
@@ -984,16 +827,7 @@
 	icon_state = "manifold-2";
 	dir = 1
 	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/desert/interior/main_building)
 "dg" = (
@@ -1008,14 +842,6 @@
 "dh" = (
 /obj/structure/flora/pottedplant{
 	icon_state = "plant-12"
-	},
-/turf/open/floor/wood,
-/area/desert/interior/command)
-"di" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
 	},
 /turf/open/floor/wood,
 /area/desert/interior/command)
@@ -1069,11 +895,7 @@
 /turf/open/floor/plating,
 /area/desert/interior/security)
 "ds" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert/interior/shipping/north)
 "dt" = (
@@ -1081,11 +903,7 @@
 	name = "\improper Maintenance Airlock";
 	dir = 1
 	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert/interior/shipping/east)
 "du" = (
@@ -1099,11 +917,7 @@
 /turf/open/floor/tile/red/full,
 /area/desert/interior/command/office)
 "dw" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	icon_state = "pipe11-2";
 	dir = 8
@@ -1128,11 +942,7 @@
 /area/desert/outside/ne)
 "dB" = (
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden,
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/desert/interior/main_building)
 "dC" = (
@@ -1190,14 +1000,6 @@
 /obj/structure/powerloader_wreckage,
 /turf/open/floor/plating,
 /area/desert/interior/security)
-"dN" = (
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/open/floor/plating,
-/area/desert/interior/shipping/north)
 "dO" = (
 /obj/structure/window_frame/wood,
 /turf/open/floor/wood,
@@ -1207,10 +1009,7 @@
 /turf/open/floor/plating,
 /area/desert/interior/shipping/central)
 "dQ" = (
-/obj/structure/cable/yellow{
-	d2 = 2;
-	icon_state = "0-2"
-	},
+/obj/structure/cable,
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
@@ -1228,18 +1027,11 @@
 /obj/machinery/door/airlock/colony/engineering{
 	name = "\improper Maintenance Airlock"
 	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert/outside/sw)
 "dU" = (
-/obj/structure/cable/yellow{
-	d2 = 4;
-	icon_state = "0-4"
-	},
+/obj/structure/cable,
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
@@ -1303,10 +1095,7 @@
 /turf/open/floor/wood,
 /area/desert/interior/command)
 "eg" = (
-/obj/structure/cable/yellow{
-	d2 = 4;
-	icon_state = "0-4"
-	},
+/obj/structure/cable,
 /obj/machinery/power/apc/drained,
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/interior/shipping/east)
@@ -1315,11 +1104,7 @@
 /area/desert/interior/shipping/east)
 "ei" = (
 /obj/structure/flora/pottedplant/twentyone,
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/red/full,
 /area/desert/interior/command/office)
 "ej" = (
@@ -1327,11 +1112,7 @@
 	icon_state = "pipe11-2";
 	dir = 1
 	},
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/desert/interior/command/office)
 "ek" = (
@@ -1365,32 +1146,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/tile/white,
 /area/desert/interior/medbay)
-"er" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/turf/open/floor/wood,
-/area/desert/interior/command)
-"es" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/wood,
-/area/desert/interior/command)
 "et" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	icon_state = "pipe11-2";
 	dir = 1
 	},
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/wood,
 /area/desert/interior/command)
 "eu" = (
@@ -1418,18 +1179,11 @@
 	icon_state = "pipe11-2";
 	dir = 1
 	},
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert/interior/security)
 "ey" = (
-/obj/structure/cable/yellow{
-	d2 = 8;
-	icon_state = "0-8"
-	},
+/obj/structure/cable,
 /obj/machinery/power/apc/drained{
 	dir = 8
 	},
@@ -1447,14 +1201,6 @@
 	dir = 5
 	},
 /area/desert/interior/main_building)
-"eB" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/open/floor/plating/dmg2,
-/area/desert/outside/nw)
 "eC" = (
 /obj/machinery/light{
 	dir = 4
@@ -1477,11 +1223,7 @@
 	dir = 1;
 	name = "Corporate Dome"
 	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/desert/interior/command/office)
 "eF" = (
@@ -1492,11 +1234,7 @@
 /obj/machinery/door/airlock/mainship/command/free_access{
 	dir = 2
 	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/wood,
 /area/desert/interior/command)
 "eG" = (
@@ -1515,11 +1253,7 @@
 	icon_state = "pipe11-2";
 	dir = 1
 	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/door/airlock/colony/engineering{
 	name = "\improper Storage";
 	dir = 2
@@ -1598,11 +1332,7 @@
 /turf/open/floor/grass,
 /area/desert/interior/main_building)
 "eV" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /turf/open/floor/tile/white,
 /area/desert/interior/main_building)
@@ -1631,11 +1361,7 @@
 /turf/closed/wall/r_wall,
 /area/desert/interior/shipping/north)
 "fb" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/effect/spawner/random/toolbox,
 /turf/open/floor/plating,
 /area/desert/outside/nw)
@@ -1688,15 +1414,10 @@
 	},
 /area/shuttle/drop1/lz1)
 "fj" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
-/obj/structure/cable/yellow,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert/outside/nw)
 "fk" = (
@@ -1710,11 +1431,7 @@
 	icon_state = "pipe11-2";
 	dir = 5
 	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/whiteyellow,
 /area/desert/interior/main_building)
 "fm" = (
@@ -1722,30 +1439,12 @@
 	icon_state = "pipe11-2";
 	dir = 8
 	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/light,
 /turf/open/floor/tile/whiteyellow,
 /area/desert/interior/main_building)
 "fn" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden,
 /turf/open/floor/tile/white,
 /area/desert/interior/main_building)
@@ -1754,11 +1453,7 @@
 	icon_state = "pipe11-2";
 	dir = 8
 	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/whiteyellow/corner{
 	dir = 8
 	},
@@ -1788,11 +1483,7 @@
 /obj/machinery/door/airlock/mainship/medical/free_access{
 	dir = 1
 	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/desert/interior/medbay)
 "fu" = (
@@ -1809,19 +1500,11 @@
 /obj/machinery/door/airlock/mainship/research/free_access{
 	dir = 2
 	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/desert/interior/science)
 "fx" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/interior/shipping/central)
 "fy" = (
@@ -1842,11 +1525,7 @@
 /area/desert/interior/medbay)
 "fC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/desert/interior/medbay)
 "fD" = (
@@ -1875,11 +1554,7 @@
 	icon_state = "pipe11-2";
 	dir = 1
 	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/structure/table,
 /turf/open/floor/tile/whiteyellow{
 	dir = 4
@@ -1891,26 +1566,15 @@
 /area/desert/interior/science)
 "fJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/desert/interior/science)
 "fK" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/desert/interior/science)
 "fL" = (
-/obj/structure/cable/yellow{
-	d2 = 8;
-	icon_state = "0-8"
-	},
+/obj/structure/cable,
 /obj/machinery/power/apc/drained,
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/desert/interior/science)
@@ -1923,10 +1587,7 @@
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/desert/interior/science)
 "fO" = (
-/obj/structure/cable/yellow{
-	d2 = 4;
-	icon_state = "0-4"
-	},
+/obj/structure/cable,
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
@@ -1937,11 +1598,7 @@
 /turf/open/floor/plating,
 /area/desert/interior/command/office)
 "fQ" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/desert/interior/medbay)
 "fR" = (
@@ -1950,20 +1607,7 @@
 /area/desert/interior/main_building)
 "fS" = (
 /obj/effect/landmark/corpsespawner/doctor,
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/tile/white,
-/area/desert/interior/medbay)
-"fT" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/desert/interior/medbay)
 "fU" = (
@@ -1981,11 +1625,7 @@
 	icon_state = "pipe11-2";
 	dir = 1
 	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/structure/bed/chair,
 /turf/open/floor/tile/whiteyellow{
 	dir = 4
@@ -2068,11 +1708,7 @@
 	icon_state = "pipe11-2";
 	dir = 1
 	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/whiteyellow{
 	dir = 4
 	},
@@ -2096,11 +1732,7 @@
 /area/desert/interior/science)
 "gm" = (
 /obj/machinery/light,
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/door/airlock/colony/engineering{
 	name = "\improper Maintenance Airlock"
 	},
@@ -2126,11 +1758,7 @@
 /turf/open/floor/tile/purple/whitepurplefull,
 /area/desert/interior/science)
 "gr" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert/interior/shipping/east)
 "gs" = (
@@ -2278,11 +1906,7 @@
 	icon_state = "pipe11-2";
 	dir = 8
 	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/desert/interior/main_building)
 "gU" = (
@@ -2302,11 +1926,7 @@
 	icon_state = "pipe11-2";
 	dir = 1
 	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -2344,11 +1964,7 @@
 	name = "\improper Maintenance Airlock";
 	dir = 1
 	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert/outside/nw)
 "hd" = (
@@ -2366,11 +1982,7 @@
 	icon_state = "pipe11-2";
 	dir = 1
 	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/desert/interior/main_building)
 "hg" = (
@@ -2396,16 +2008,7 @@
 /area/desert/interior/science)
 "hk" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden,
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/desert/interior/main_building)
 "hl" = (
@@ -2413,16 +2016,7 @@
 	icon_state = "manifold-2";
 	dir = 1
 	},
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/whiteyellow/corner,
 /area/desert/interior/main_building)
 "hm" = (
@@ -2488,11 +2082,7 @@
 	icon_state = "pipe11-2";
 	dir = 1
 	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/structure/barricade/wooden{
 	icon_state = "wooden";
 	dir = 1
@@ -2573,16 +2163,7 @@
 	icon_state = "pipe11-2";
 	dir = 1
 	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/whiteyellow/corner{
 	dir = 4
 	},
@@ -2595,11 +2176,7 @@
 /turf/open/floor/plating/ground,
 /area/desert/outside/se)
 "hJ" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -2611,10 +2188,7 @@
 /turf/open/floor/plating/ground,
 /area/desert/outside/sw)
 "hL" = (
-/obj/structure/cable/yellow{
-	d2 = 8;
-	icon_state = "0-8"
-	},
+/obj/structure/cable,
 /obj/machinery/power/apc/drained,
 /turf/open/floor/tile/whiteyellow{
 	dir = 1
@@ -2633,11 +2207,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/interior/shipping/east)
 "hO" = (
@@ -2719,24 +2289,12 @@
 /obj/structure/window/framed/chigusa,
 /turf/open/floor/plating,
 /area/desert/interior/engineering)
-"id" = (
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/desert/interior/shipping/central)
 "ie" = (
 /obj/machinery/door/airlock/colony/engineering{
 	name = "\improper Maintenance Airlock";
 	dir = 1
 	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert/outside/sw)
 "if" = (
@@ -2772,10 +2330,7 @@
 /turf/open/floor/plating/dmg3,
 /area/desert/interior/toilet)
 "ik" = (
-/obj/structure/cable/yellow{
-	d2 = 2;
-	icon_state = "0-2"
-	},
+/obj/structure/cable,
 /obj/machinery/power/apc/drained,
 /turf/open/floor/plating/dmg3,
 /area/desert/interior/toilet)
@@ -2814,28 +2369,17 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating/platebot,
 /area/desert/interior/engineering)
 "ir" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating/platebot,
 /area/desert/interior/engineering)
 "is" = (
 /obj/machinery/power/smes/buildable/empty,
-/obj/structure/cable/yellow{
-	d2 = 8;
-	icon_state = "0-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert/interior/engineering)
 "it" = (
@@ -2847,11 +2391,7 @@
 	},
 /area/shuttle/drop1/lz1)
 "iu" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert/outside/sw)
 "iv" = (
@@ -2904,11 +2444,7 @@
 	icon_state = "pipe11-2";
 	dir = 8
 	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/desert/interior/toilet)
 "iF" = (
@@ -2917,11 +2453,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/mainship/generic/bathroom,
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/desert/interior/toilet)
 "iG" = (
@@ -2929,27 +2461,9 @@
 	icon_state = "pipe11-2";
 	dir = 8
 	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/structure/barricade/wooden{
 	dir = 8
-	},
-/turf/open/floor/tile/white,
-/area/desert/interior/main_building)
-"iH" = (
-/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden,
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
 	},
 /turf/open/floor/tile/white,
 /area/desert/interior/main_building)
@@ -2964,11 +2478,7 @@
 	icon_state = "pipe11-2";
 	dir = 8
 	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/structure/barricade/wooden{
 	dir = 4
 	},
@@ -2988,11 +2498,7 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/mainship/engineering/engine,
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert/interior/engineering)
 "iN" = (
@@ -3000,28 +2506,7 @@
 	icon_state = "pipe11-2";
 	dir = 8
 	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/turf/open/floor/plating,
-/area/desert/interior/engineering)
-"iO" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 8
-	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert/interior/engineering)
 "iP" = (
@@ -3032,10 +2517,7 @@
 /turf/open/floor/plating,
 /area/desert/interior/engineering)
 "iQ" = (
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
+/obj/structure/cable,
 /obj/machinery/power/terminal{
 	dir = 1
 	},
@@ -3049,24 +2531,11 @@
 /obj/machinery/light,
 /turf/open/floor/plating,
 /area/desert/interior/shipping/central)
-"iT" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/desert/interior/shipping/central)
 "iU" = (
-/obj/structure/cable/yellow,
 /obj/machinery/power/apc/drained{
 	dir = 8
 	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert/interior/shipping/north)
 "iV" = (
@@ -3083,20 +2552,8 @@
 "iX" = (
 /turf/open/floor/plating,
 /area/desert/interior/shipping/east)
-"iY" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/open/floor/plating,
-/area/desert/interior/shipping/north)
 "iZ" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/outside/sw)
 "ja" = (
@@ -3115,11 +2572,7 @@
 /turf/open/floor/tile/white,
 /area/desert/interior/main_building)
 "jd" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert/outside/se)
 "je" = (
@@ -3138,7 +2591,7 @@
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
-/obj/structure/cable/yellow,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert/interior/engineering)
 "jh" = (
@@ -3180,14 +2633,6 @@
 	},
 /turf/open/floor/grass,
 /area/desert/interior/main_building)
-"jp" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/desert/outside/sw)
 "jq" = (
 /obj/machinery/light{
 	dir = 8
@@ -3196,11 +2641,7 @@
 /area/desert/interior/shipping/north)
 "jr" = (
 /obj/effect/landmark/corpsespawner/engineer,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert/interior/engineering)
 "js" = (
@@ -3211,34 +2652,12 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/outside/sw)
 "jt" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert/interior/engineering)
 "ju" = (
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/desert/outside/nw)
-"jv" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/open/floor/plating,
-/area/desert/interior/engineering)
 "jw" = (
 /obj/structure/barricade/metal{
 	dir = 1
@@ -3246,11 +2665,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/interior/shipping/north)
 "jx" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/interior/shipping/east)
 "jy" = (
@@ -3296,21 +2711,9 @@
 	icon_state = "pipe11-2";
 	dir = 4
 	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/outside)
-"jG" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/open/floor/plating,
-/area/desert/interior/engineering)
 "jH" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/plating/ground,
@@ -3339,24 +2742,7 @@
 /turf/open/floor/tile/white,
 /area/desert/interior/main_building)
 "jM" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/turf/open/floor/plating/warning,
-/area/desert/interior/engineering)
-"jN" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating/warning,
 /area/desert/interior/engineering)
 "jO" = (
@@ -3365,26 +2751,9 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/interior/shipping/north)
-"jP" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/turf/open/floor/plating/warning,
-/area/desert/interior/engineering)
 "jQ" = (
 /obj/machinery/light,
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/interior/shipping/central)
 "jR" = (
@@ -3398,11 +2767,7 @@
 /area/desert/interior/main_building)
 "jT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/outside)
 "jU" = (
@@ -3445,11 +2810,7 @@
 	icon_state = "pipe11-2";
 	dir = 5
 	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/outside)
 "kd" = (
@@ -3486,11 +2847,7 @@
 /turf/open/floor/plating,
 /area/desert/interior/engineering)
 "kj" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
 /area/desert/outside/nw)
@@ -3520,15 +2877,10 @@
 /turf/open/floor/tile/dark,
 /area/desert/interior/shipping/north)
 "kp" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
-/obj/structure/cable/yellow,
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert/outside/sw)
 "kq" = (
@@ -3550,14 +2902,6 @@
 	dir = 1
 	},
 /area/desert/outside/se)
-"kt" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/turf/open/floor/plating,
-/area/desert/outside/sw)
 "ku" = (
 /obj/machinery/door/airlock/multi_tile/secure2_glass{
 	dir = 1
@@ -3568,22 +2912,14 @@
 /turf/open/floor/podhatch/floor,
 /area/desert/outside/se)
 "kw" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/outside/se)
 "kx" = (
 /obj/machinery/door/airlock/colony/engineering{
 	name = "\improper Maintenance Airlock"
 	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert/outside/se)
 "ky" = (
@@ -3620,11 +2956,7 @@
 	icon_state = "pipe11-2";
 	dir = 10
 	},
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/outside)
 "kG" = (
@@ -3653,33 +2985,13 @@
 /turf/open/floor/plating,
 /area/desert/interior/shipping/north)
 "kK" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable/yellow{
-	d2 = 8;
-	icon_state = "0-8"
-	},
+/obj/structure/cable,
 /obj/machinery/power/apc/drained,
 /turf/open/floor/plating,
 /area/desert/outside/se)
 "kL" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating/dmg2,
-/area/desert/outside/nw)
-"kM" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating/dmg3,
 /area/desert/outside/nw)
 "kN" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -3748,11 +3060,7 @@
 /turf/closed/wall/r_wall,
 /area/desert/interior/shipping/south)
 "lb" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/structure/barricade/metal,
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/interior/shipping/south)
@@ -3774,11 +3082,7 @@
 /area/desert/outside/se)
 "lf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/outside)
@@ -3797,11 +3101,7 @@
 /turf/open/floor/plating,
 /area/desert/interior/shipping/south)
 "lk" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/interior/shipping/south)
 "ll" = (
@@ -3824,11 +3124,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/interior/shipping/south)
 "lp" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -3862,78 +3158,26 @@
 /turf/open/floor/tile/dark,
 /area/desert/interior/shipping/south)
 "lv" = (
-/obj/structure/cable/yellow{
-	d2 = 2;
-	icon_state = "0-2"
-	},
+/obj/structure/cable,
 /obj/machinery/power/apc/drained{
 	dir = 8
 	},
 /turf/open/floor/plating,
 /area/desert/interior/shipping/south)
 "lw" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert/interior/shipping/south)
 "lx" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/open/floor/plating,
-/area/desert/interior/shipping/south)
-"ly" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/open/floor/plating,
 /area/desert/interior/shipping/south)
 "lz" = (
 /obj/machinery/door/airlock/colony/engineering{
 	name = "\improper Maintenance Airlock"
 	},
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating,
-/area/desert/interior/shipping/south)
-"lA" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/desert/interior/shipping/south)
-"lB" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/desert/interior/shipping/south)
-"lC" = (
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert/interior/shipping/south)
 "lD" = (
@@ -3951,19 +3195,11 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/interior/shipping/south)
 "lF" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	icon_state = "pipe11-2";
 	dir = 8
 	},
-/obj/structure/cable/yellow{
-	d2 = 8;
-	icon_state = "0-8"
-	},
+/obj/structure/cable,
 /obj/machinery/power/apc/drained,
 /turf/open/floor/plating,
 /area/desert/outside/ne)
@@ -21110,34 +20346,34 @@ bP
 kW
 cA
 aT
-be
-bg
-be
-be
-be
-be
-be
-be
-be
-be
-be
-be
-be
-bg
-eB
-bg
+ak
+aT
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+ak
+aT
+kL
+aT
 fb
-be
+ak
 fj
-be
-be
+ak
+ak
 kj
-be
-be
-be
-be
-be
-be
+ak
+ak
+ak
+ak
+ak
+ak
 hc
 iZ
 iZ
@@ -21159,7 +20395,7 @@ iu
 iu
 iu
 iu
-kt
+iu
 bS
 kX
 bA
@@ -21416,7 +20652,7 @@ bS
 bS
 bS
 bS
-bV
+iu
 bS
 kX
 bA
@@ -21673,7 +20909,7 @@ if
 if
 kr
 bS
-bV
+iu
 bS
 kX
 bA
@@ -21930,7 +21166,7 @@ hK
 hK
 jA
 bS
-bV
+iu
 bS
 kX
 bA
@@ -22187,7 +21423,7 @@ hK
 hK
 jA
 bS
-bV
+iu
 bS
 kX
 bA
@@ -22444,7 +21680,7 @@ hK
 hK
 jA
 bS
-bV
+iu
 bS
 kX
 bA
@@ -22701,7 +21937,7 @@ hK
 hK
 jA
 bS
-bV
+iu
 bS
 kX
 bA
@@ -22958,7 +22194,7 @@ hK
 hK
 jA
 bS
-bV
+iu
 bS
 kX
 bA
@@ -23215,7 +22451,7 @@ hK
 hK
 jA
 bS
-bV
+iu
 bS
 kX
 bA
@@ -23472,7 +22708,7 @@ hK
 hK
 jA
 bS
-bV
+iu
 bS
 kX
 bA
@@ -23729,7 +22965,7 @@ hK
 hK
 jA
 bS
-bV
+iu
 bS
 kX
 bA
@@ -23986,7 +23222,7 @@ hK
 hK
 jA
 bS
-bV
+iu
 bS
 kX
 bA
@@ -24243,7 +23479,7 @@ hK
 hK
 jA
 bS
-bV
+iu
 bS
 kX
 bA
@@ -24500,7 +23736,7 @@ hK
 hK
 jA
 bS
-bV
+iu
 bS
 kX
 bA
@@ -24757,7 +23993,7 @@ hK
 hK
 jA
 bS
-bV
+iu
 bS
 kX
 bA
@@ -25014,7 +24250,7 @@ hK
 hK
 jA
 bS
-bV
+iu
 bS
 kX
 bA
@@ -25221,7 +24457,7 @@ bK
 bA
 kX
 cA
-kM
+aT
 cA
 ju
 dz
@@ -25243,7 +24479,7 @@ eV
 fn
 ft
 fC
-fT
+fC
 eq
 eq
 eq
@@ -25271,7 +24507,7 @@ hK
 hK
 jA
 bS
-bV
+iu
 bS
 kX
 bA
@@ -25528,7 +24764,7 @@ hK
 hK
 jA
 bS
-bV
+iu
 bS
 kX
 bA
@@ -25735,7 +24971,7 @@ bA
 bA
 kX
 aM
-kM
+aT
 cA
 ju
 dz
@@ -26003,10 +25239,10 @@ by
 ac
 cd
 cN
-di
-di
-di
-er
+cN
+cN
+cN
+cN
 fU
 cz
 cF
@@ -26042,7 +25278,7 @@ hK
 hK
 hK
 hK
-jp
+iZ
 js
 kX
 bA
@@ -26263,7 +25499,7 @@ cP
 dj
 cP
 ec
-es
+cN
 fU
 cz
 cF
@@ -26299,7 +25535,7 @@ hK
 hK
 hK
 hK
-jp
+iZ
 js
 kX
 bA
@@ -26520,7 +25756,7 @@ cP
 dl
 dD
 ed
-es
+cN
 ac
 cz
 cF
@@ -26556,7 +25792,7 @@ hK
 hK
 hK
 hK
-jp
+iZ
 js
 kX
 bA
@@ -26813,7 +26049,7 @@ hK
 hK
 hK
 hK
-jp
+iZ
 js
 kX
 bA
@@ -27571,7 +26807,7 @@ hf
 hf
 hf
 hf
-iH
+dB
 jc
 jc
 jc
@@ -29113,10 +28349,10 @@ cF
 kz
 ic
 iq
-iO
+iN
 jm
 jn
-jN
+jM
 ki
 ib
 kv
@@ -29373,7 +28609,7 @@ ir
 iP
 jn
 jn
-jN
+jM
 kh
 ib
 kv
@@ -29630,7 +28866,7 @@ is
 iQ
 jr
 jn
-jN
+jM
 kh
 ib
 kv
@@ -29887,7 +29123,7 @@ is
 iQ
 jt
 jn
-jN
+jM
 ki
 ib
 kv
@@ -30142,9 +29378,9 @@ eS
 ib
 is
 iQ
-jv
-jG
-jP
+jt
+jt
+jM
 kh
 ib
 kv
@@ -31696,7 +30932,7 @@ li
 ln
 li
 la
-ly
+lw
 lD
 kX
 bA
@@ -31953,7 +31189,7 @@ ll
 ll
 EV
 la
-ly
+lw
 lD
 kX
 bA
@@ -32210,7 +31446,7 @@ ll
 ll
 li
 la
-ly
+lw
 lD
 kX
 bA
@@ -32467,7 +31703,7 @@ ll
 ll
 li
 la
-ly
+lw
 lD
 kX
 bA
@@ -32714,8 +31950,8 @@ bj
 bj
 cX
 bj
-id
-iT
+fx
+fx
 la
 li
 ll
@@ -32724,7 +31960,7 @@ ll
 ll
 li
 la
-ly
+lw
 lD
 kX
 bA
@@ -32981,7 +32217,7 @@ ll
 ll
 li
 la
-ly
+lw
 lD
 kX
 bA
@@ -33238,7 +32474,7 @@ ll
 lo
 li
 la
-ly
+lw
 lD
 kX
 bA
@@ -33743,7 +32979,7 @@ br
 br
 br
 br
-id
+fx
 lb
 lk
 lp
@@ -33752,7 +32988,7 @@ lk
 lp
 lk
 lk
-lA
+lk
 lE
 kX
 bA
@@ -34009,7 +33245,7 @@ ll
 ll
 ll
 ll
-lB
+lk
 lE
 kX
 bA
@@ -34266,7 +33502,7 @@ ll
 ll
 ll
 ll
-lB
+lk
 lE
 kX
 bA
@@ -34523,7 +33759,7 @@ ll
 ll
 ll
 ll
-lB
+lk
 lE
 kX
 bA
@@ -34780,7 +34016,7 @@ ll
 ll
 ll
 ll
-lB
+lk
 lE
 kX
 bA
@@ -35037,7 +34273,7 @@ ll
 ll
 ll
 ll
-lB
+lk
 lE
 kX
 bA
@@ -35294,7 +34530,7 @@ li
 lo
 li
 li
-lB
+lk
 lE
 kX
 bA
@@ -35808,7 +35044,7 @@ li
 ln
 li
 la
-ly
+lw
 lD
 bM
 bM
@@ -36065,7 +35301,7 @@ ll
 ll
 li
 la
-ly
+lw
 lD
 bM
 bM
@@ -36322,7 +35558,7 @@ ll
 ll
 li
 la
-ly
+lw
 lD
 bM
 bM
@@ -36579,7 +35815,7 @@ ll
 ll
 li
 la
-ly
+lw
 lD
 bM
 bM
@@ -36836,7 +36072,7 @@ ll
 ll
 li
 la
-ly
+lw
 lD
 bM
 bM
@@ -37093,7 +36329,7 @@ ll
 ll
 li
 la
-ly
+lw
 lD
 bM
 bM
@@ -37350,7 +36586,7 @@ ll
 ll
 li
 la
-ly
+lw
 lD
 bM
 bM
@@ -37607,7 +36843,7 @@ lq
 lq
 li
 la
-ly
+lw
 lD
 bM
 bM
@@ -37864,7 +37100,7 @@ lq
 lq
 lm
 la
-ly
+lw
 lD
 bM
 bM
@@ -38121,7 +37357,7 @@ lq
 lq
 lm
 la
-ly
+lw
 lD
 bM
 bM
@@ -38378,7 +37614,7 @@ lq
 lq
 lm
 la
-ly
+lw
 lD
 bM
 bM
@@ -38635,7 +37871,7 @@ lm
 lm
 lm
 la
-ly
+lw
 lD
 bM
 bM
@@ -38892,7 +38128,7 @@ la
 la
 la
 la
-ly
+lw
 lD
 bM
 bM
@@ -39099,15 +38335,15 @@ aC
 kZ
 fy
 aO
-dN
-iY
-iY
-iY
+ds
+ds
+ds
+ds
 iU
-iY
-iY
-iY
-iY
+ds
+ds
+ds
+ds
 gr
 gr
 gr
@@ -39149,7 +38385,7 @@ lv
 lw
 lw
 lw
-lC
+lw
 lD
 bM
 bM
