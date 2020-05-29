@@ -700,7 +700,7 @@ TUNNEL
 JAMMER
 */
 
-/obj/structure/xenojammer
+/obj/effect/alien/resin/xenojammer
 	name = "resin jammer"
 	desc = "A resin structure that jams nearby infected hosts."
 	icon = 'icons/Xeno/effects.dmi'
@@ -717,13 +717,13 @@ JAMMER
 	max_integrity = 100
 	var/mob/living/carbon/xenomorph/creator = null
 
-/obj/structure/xenojammer/Initialize()
+/obj/effect/alien/resin/xenojammer/Initialize()
 	. = ..()
 	set_light(7, 3, LIGHT_COLOR_RED)
 	RegisterSignal(SSdcs, COMSIG_GLOB_SAY_RADIO, .proc/on_radio_used)
 	GLOB.xenojammer += src
 
-/obj/structure/xenojammer/Destroy()
+/obj/effect/alien/resin/xenojammer/Destroy()
 	GLOB.xenojammer -= src
 
 	if(!QDELETED(creator) && creator.stat == CONSCIOUS && creator.z == z)
@@ -733,17 +733,17 @@ JAMMER
 
 	return ..()
 
-/obj/structure/xenojammer/examine(mob/user)
+/obj/effect/alien/resin/xenojammer/examine(mob/user)
 	..()
 	if(!isxeno(user) && !isobserver(user))
 		return
 	to_chat(user, "<span class='xenoannounce'>This is a jammer made by [creator].</span>")
 
-/obj/structure/xenojammer/deconstruct(disassembled = TRUE)
+/obj/effect/alien/resin/xenojammer/deconstruct(disassembled = TRUE)
 	visible_message("<span class='danger'>[src] suddenly collapses!</span>")
 	return ..()
 
-/obj/structure/xenojammer/ex_act(severity)
+/obj/effect/alien/resin/xenojammer/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			take_damage(210)
@@ -752,12 +752,12 @@ JAMMER
 		if(EXPLODE_LIGHT)
 			take_damage(70)
 
-/obj/structure/xenojammer/attackby(obj/item/I, mob/user, params)
+/obj/effect/alien/resin/alien/resin/xenojammer/attackby(obj/item/I, mob/user, params)
 	if(!isxeno(user))
 		return ..()
 	attack_alien(user)
 
-/obj/structure/xenojammer/attack_alien(mob/living/carbon/xenomorph/M)
+/obj/effect/alien/resin/xenojammer/attack_alien(mob/living/carbon/xenomorph/M)
 	if(!istype(M) || M.stat || M.lying_angle)
 		return
 
@@ -767,7 +767,7 @@ JAMMER
 			deconstruct(FALSE)
 		return
 
-/obj/structure/xenojammer/proc/on_radio_used(datum/source, mob/M)
+/obj/effect/alien/resin/xenojammer/proc/on_radio_used(datum/source, mob/M)
 	. = NONE
 	var/mob/living/carbon/CM = M
 	/* Perhaps jamming in general, rather than just hosts.
