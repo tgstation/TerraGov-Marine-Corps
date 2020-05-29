@@ -712,6 +712,7 @@ TUNNEL
 	destroy_sound = "alien_resin_move"
 
 	var/charges = 1
+	var/ccharging = FALSE
 	var/mob/living/carbon/xenomorph/creator = null
 
 /obj/effect/alien/resin/acidwell/Initialize()
@@ -765,12 +766,17 @@ TUNNEL
 		if(charges >= 5)
 			to_chat(creator, "<span class='xenoannounce'>[src] is already full!</span>")
 			return
+		if(ccharging)
+			to_chat(creator, "<span class='xenoannounce'>[src] is already being filled!</span>")
+			return
+		ccharging = TRUE
 		if(!do_after(M, 10 SECONDS, FALSE, src, BUSY_ICON_BUILD))
 			return
 		if(M.plasma_stored < 200)
 			return
 		M.plasma_stored -= 200
 		charges++
+		ccharging = FALSE
 		update_icon()
 		to_chat(M,"<span class='xenonotice'>You fill up by one [src].</span>")
 	else 
