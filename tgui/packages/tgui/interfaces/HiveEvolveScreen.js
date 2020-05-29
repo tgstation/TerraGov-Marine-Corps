@@ -29,10 +29,11 @@ const CasteView = props => {
       {props.abilites ? (
         abilites.map(ability => (
           <Button
+            fluid={1}
             key={ability.name}
             color="transparent"
             tooltip={ability.desc}
-            tooltipPosition={"bottom-right"}
+            tooltipPosition={"bottom"}
             content={ability.name} />
         ))
       ) : "This caste has no abilites"}
