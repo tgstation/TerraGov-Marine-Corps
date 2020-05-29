@@ -297,6 +297,7 @@
 		playsound(crushed_obj.loc, "punch", 25, 1)
 		var/crushed_behavior = crushed_obj.crushed_special_behavior()
 		crushed_obj.take_damage(precrush)
+		to_chat(world, "It takes [precrush] amount of damage.")
 		if(QDELETED(crushed_obj))
 			charger.visible_message("<span class='danger'>[charger] crushes [preserved_name]!</span>",
 			"<span class='xenodanger'>We crush [preserved_name]!</span>")
