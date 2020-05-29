@@ -229,8 +229,8 @@
 
 
 /obj/item/clothing/head/uppcap
-	name = "\improper armored UPP cap"
-	desc = "Standard UPP head gear for covert operations and low-ranking officers alike. Sells for high prices on the black market due to their rarity."
+	name = "\improper armored USL cap"
+	desc = "Standard USL head gear for covert operations and low-ranking pirates alike."
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	icon_state = "upp_cap"
 	sprite_sheet_id = 1
@@ -244,7 +244,7 @@
 	flags_inv_hide = HIDEEARS
 
 /obj/item/clothing/head/uppcap/beret
-	name = "\improper armored UPP beret"
+	name = "\improper armored USL beret"
 	icon_state = "upp_beret"
 
 /obj/item/clothing/head/frelancer

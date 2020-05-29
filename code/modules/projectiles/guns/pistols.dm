@@ -282,7 +282,7 @@
 	item_state = "pk9r"
 
 /obj/item/weapon/gun/pistol/c99/upp
-	desc = "An updated variant of an old eastern design, dating back to from the 20th century. Features an integrated silencer, and chambered in the razor small .22 rounds. This one is loaded with the more common .22 hollowpoint rounds and appears to be a UPP model."
+	desc = "An updated variant of an old eastern design, dating back to from the 20th century. Features an integrated silencer, and chambered in the razor small .22 rounds. This one is loaded with the more common .22 hollowpoint rounds and appears to be a USL model."
 	icon_state = "pk9u"
 	item_state = "pk9u"
 
