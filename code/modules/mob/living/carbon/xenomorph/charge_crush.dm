@@ -382,23 +382,23 @@
 		if(flags_atom & ON_BORDER)
 			if(dir == REVERSE_DIR(charger.dir))
 				. = (CHARGE_SPEED(charge_datum) * 80) //Damage to inflict.
-				to_chat(world, "It takes [.] amount of damage.")
+				to_chat(world, "It takes [.] amount of damage. First check 80")
 				charge_datum.speed_down(3)
 				return
 			else
 				. = (CHARGE_SPEED(charge_datum) * 160)
 				charge_datum.speed_down(1)
-				to_chat(world, "It takes [.] amount of damage.")
+				to_chat(world, "It takes [.] amount of damage. Second Check 160")
 				return
 		else
 			. = (CHARGE_SPEED(charge_datum) * 240)
 			charge_datum.speed_down(2)
-			to_chat(world, "It takes [.] amount of damage.")
+			to_chat(world, "It takes [.] amount of damage. Third Check 240")
 			return
 
 	for(var/m in buckled_mobs)
 		unbuckle_mob(m)
-	to_chat(world, "It takes [CHARGE_SPEED(charge_datum) * 20] amount of damage.")
+	to_chat(world, "It takes [CHARGE_SPEED(charge_datum) * 20] amount of damage. Fourth Check 20")
 	return (CHARGE_SPEED(charge_datum) * 20) //Damage to inflict.
 
 
