@@ -837,7 +837,7 @@ ARMOR
 
 // Modular armor + Attachments
 /datum/supply_packs/armor/modular/exosuit
-	name = "Jaegar exosuits"
+	name = "Jaeger exosuits"
 	contains = list(
 		/obj/item/clothing/suit/modular,
 		/obj/item/clothing/suit/modular,
@@ -853,7 +853,7 @@ ARMOR
 	cost = 10
 
 /datum/supply_packs/armor/modular/armor/heavy
-	name = "Jaegar heavy plates"
+	name = "Jaeger heavy plates"
 	contains = list(
 		/obj/item/clothing/head/modular/heavy,
 		/obj/item/clothing/head/modular/heavy,
@@ -879,7 +879,7 @@ ARMOR
 	cost = 15
 
 /datum/supply_packs/armor/modular/armor/medium
-	name = "Jaegar medium plates"
+	name = "Jaeger medium plates"
 	contains = list(
 		/obj/item/clothing/head/modular/medium,
 		/obj/item/clothing/head/modular/medium,
@@ -905,7 +905,7 @@ ARMOR
 	cost = 15
 
 /datum/supply_packs/armor/modular/armor/light
-	name = "Jaegar light plates"
+	name = "Jaeger light plates"
 	contains = list(
 		/obj/item/clothing/head/modular/light,
 		/obj/item/clothing/head/modular/light,
@@ -931,7 +931,7 @@ ARMOR
 	cost = 15
 
 /datum/supply_packs/armor/modular/storage
-	name = "Jaegar assorted storage modules"
+	name = "Jaeger assorted storage modules"
 	contains = list(
 		/obj/item/armor_module/storage/general,
 		/obj/item/armor_module/storage/general,
@@ -962,7 +962,7 @@ ARMOR
 	cost = 15
 
 /datum/supply_packs/armor/modular/attachments/mixed
-	name = "Jaegar experimental modules"
+	name = "Jaeger experimental modules"
 	contains = list(
 		/obj/item/armor_module/attachable/valkyrie_autodoc,
 		/obj/item/armor_module/attachable/fire_proof,
@@ -972,7 +972,7 @@ ARMOR
 	cost = 40
 
 /datum/supply_packs/armor/modular/attachments/lamp
-	name = "Jaegar baldur modules"
+	name = "Jaeger baldur modules"
 	contains = list(
 		/obj/item/armor_module/attachable/better_shoulder_lamp,
 		/obj/item/armor_module/attachable/better_shoulder_lamp,
@@ -983,28 +983,28 @@ ARMOR
 	cost = 7
 
 /datum/supply_packs/armor/modular/attachments/valkyrie_autodoc
-	name = "Jaegar valkyrie modules"
+	name = "Jaeger valkyrie modules"
 	contains = list(
 		/obj/item/armor_module/attachable/valkyrie_autodoc,
 	)
 	cost = 12
 
 /datum/supply_packs/armor/modular/attachments/fire_proof
-	name = "Jaegar surt modules"
+	name = "Jaeger surt modules"
 	contains = list(
 		/obj/item/armor_module/attachable/fire_proof,
 	)
 	cost = 12
 
 /datum/supply_packs/armor/modular/attachments/tyr_extra_armor
-	name = "Jaegar tyr modules"
+	name = "Jaeger tyr modules"
 	contains = list(
 		/obj/item/armor_module/attachable/tyr_extra_armor,
 	)
 	cost = 12
 
 /datum/supply_packs/armor/modular/attachments/mimir_environment_protection
-	name = "Jaegar mimir module"
+	name = "Jaeger mimir module"
 	contains = list(
 		/obj/item/armor_module/attachable/mimir_environment_protection
 	)
@@ -1012,7 +1012,7 @@ ARMOR
 
 
 /datum/supply_packs/armor/modular/preset/heavy
-	name = "Jaegar heavy set"
+	name = "Jaeger heavy set"
 	contains = list(
 		/obj/item/clothing/suit/modular,
 		/obj/item/clothing/head/modular/heavy,
@@ -1023,7 +1023,7 @@ ARMOR
 	cost = 10
 
 /datum/supply_packs/armor/modular/preset/medium
-	name = "Jaegar medium set"
+	name = "Jaeger medium set"
 	contains = list(
 		/obj/item/clothing/suit/modular,
 		/obj/item/clothing/head/modular/medium,
@@ -1034,7 +1034,7 @@ ARMOR
 	cost = 10
 	
 /datum/supply_packs/armor/modular/preset/light
-	name = "Jaegar light set"
+	name = "Jaeger light set"
 	contains = list(
 		/obj/item/clothing/suit/modular,
 		/obj/item/clothing/head/modular/light,

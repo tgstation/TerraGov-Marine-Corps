@@ -294,9 +294,9 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 	listed_products = list(
 		/obj/effect/essentials_set/basic = list(CAT_STD, "Standard Kit", 0, "white"),
-		/obj/effect/essentials_set/modular/light = list(CAT_AMR, "Light Jaegar Kit", 0, "black"),
-		/obj/effect/essentials_set/modular/medium = list(CAT_AMR, "Medium Jaegar Kit", 0, "black"),
-		/obj/effect/essentials_set/modular/heavy = list(CAT_AMR, "Heavy Jaegar Kit", 0, "black"),
+		/obj/effect/essentials_set/modular/light = list(CAT_AMR, "Light Jaeger Kit", 0, "black"),
+		/obj/effect/essentials_set/modular/medium = list(CAT_AMR, "Medium Jaeger Kit", 0, "black"),
+		/obj/effect/essentials_set/modular/heavy = list(CAT_AMR, "Heavy Jaeger Kit", 0, "black"),
 		/obj/item/clothing/head/helmet/marine/standard = list(CAT_HEL, "Regular Helmet", 0, "orange"),
 		/obj/item/clothing/head/helmet/marine/heavy = list(CAT_HEL, "Heavy Helmet", 0, "black"),
 		/obj/item/clothing/suit/storage/marine = list(CAT_AMR, "Regular Armor", 0, "orange"),
@@ -380,9 +380,9 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 	listed_products = list(
 		/obj/effect/essentials_set/basic_engineer = list(CAT_STD, "Standard Kit", 0, "white"),
-		/obj/effect/essentials_set/modular/light = list(CAT_AMR, "Light Jaegar Kit", 0, "black"),
-		/obj/effect/essentials_set/modular/medium = list(CAT_AMR, "Medium Jaegar Kit", 0, "black"),
-		/obj/effect/essentials_set/modular/heavy = list(CAT_AMR, "Heavy Jaegar Kit", 0, "black"),
+		/obj/effect/essentials_set/modular/light = list(CAT_AMR, "Light Jaeger Kit", 0, "black"),
+		/obj/effect/essentials_set/modular/medium = list(CAT_AMR, "Medium Jaeger Kit", 0, "black"),
+		/obj/effect/essentials_set/modular/heavy = list(CAT_AMR, "Heavy Jaeger Kit", 0, "black"),
 		/obj/item/clothing/suit/storage/marine = list(CAT_AMR, "Regular Armor", 0, "orange"),
 		/obj/item/clothing/suit/storage/marine/M3HB = list(CAT_AMR, "Heavy Armor", 0, "black"),
 		/obj/item/clothing/suit/storage/marine/M3LB = list(CAT_AMR, "Light Armor", 0, "black"),
@@ -440,9 +440,9 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 	listed_products = list(
 		/obj/effect/essentials_set/basic_medic = list(CAT_STD, "Standard Kit", 0, "white"),
-		/obj/effect/essentials_set/modular/light = list(CAT_AMR, "Light Jaegar Kit", 0, "black"),
-		/obj/effect/essentials_set/modular/medium = list(CAT_AMR, "Medium Jaegar Kit", 0, "black"),
-		/obj/effect/essentials_set/modular/heavy = list(CAT_AMR, "Heavy Jaegar Kit", 0, "black"),
+		/obj/effect/essentials_set/modular/light = list(CAT_AMR, "Light Jaeger Kit", 0, "black"),
+		/obj/effect/essentials_set/modular/medium = list(CAT_AMR, "Medium Jaeger Kit", 0, "black"),
+		/obj/effect/essentials_set/modular/heavy = list(CAT_AMR, "Heavy Jaeger Kit", 0, "black"),
 		/obj/item/clothing/suit/storage/marine = list(CAT_AMR, "Regular Armor", 0, "orange"),
 		/obj/item/clothing/suit/storage/marine/M3HB = list(CAT_AMR, "Heavy Armor", 0, "black"),
 		/obj/item/clothing/suit/storage/marine/M3LB = list(CAT_AMR, "Light Armor", 0, "black"),
@@ -503,9 +503,9 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 	listed_products = list(
 		/obj/effect/essentials_set/basic_smartgunner = list(CAT_STD, "Standard Kit", 0, "white"),
-		/obj/effect/essentials_set/modular/light = list(CAT_AMR, "Light Jaegar Kit", 0, "black"),
-		/obj/effect/essentials_set/modular/medium = list(CAT_AMR, "Medium Jaegar Kit", 0, "black"),
-		/obj/effect/essentials_set/modular/heavy = list(CAT_AMR, "Heavy Jaegar Kit", 0, "black"),
+		/obj/effect/essentials_set/modular/light = list(CAT_AMR, "Light Jaeger Kit", 0, "black"),
+		/obj/effect/essentials_set/modular/medium = list(CAT_AMR, "Medium Jaeger Kit", 0, "black"),
+		/obj/effect/essentials_set/modular/heavy = list(CAT_AMR, "Heavy Jaeger Kit", 0, "black"),
 		/obj/item/clothing/suit/storage/marine = list(CAT_AMR, "Regular Armor", 0, "orange"),
 		/obj/item/clothing/suit/storage/marine/M3HB = list(CAT_AMR, "Heavy Armor", 0, "black"),
 		/obj/item/clothing/suit/storage/marine/M3LB = list(CAT_AMR, "Light Armor", 0, "black"),
@@ -563,9 +563,9 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 	listed_products = list(
 		/obj/effect/essentials_set/basic_specialist = list(CAT_STD, "Standard Kit", 0, "white"),
-		/obj/effect/essentials_set/modular/light = list(CAT_AMR, "Light Jaegar Kit", 0, "black"),
-		/obj/effect/essentials_set/modular/medium = list(CAT_AMR, "Medium Jaegar Kit", 0, "black"),
-		/obj/effect/essentials_set/modular/heavy = list(CAT_AMR, "Heavy Jaegar Kit", 0, "black"),
+		/obj/effect/essentials_set/modular/light = list(CAT_AMR, "Light Jaeger Kit", 0, "black"),
+		/obj/effect/essentials_set/modular/medium = list(CAT_AMR, "Medium Jaeger Kit", 0, "black"),
+		/obj/effect/essentials_set/modular/heavy = list(CAT_AMR, "Heavy Jaeger Kit", 0, "black"),
 		/obj/item/storage/backpack/marine/satchel = list(CAT_BAK, "Satchel", 0, "black"),
 		/obj/item/storage/backpack/marine/standard = list(CAT_BAK, "Backpack", 0, "black"),
 		/obj/item/clothing/tie/storage/black_vest = list(CAT_WEB, "Tactical Black Vest", 0, "black"),
@@ -621,9 +621,9 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 	listed_products = list(
 		/obj/effect/essentials_set/basic_squadleader = list(CAT_STD, "Standard Kit", 0, "white"),
-		/obj/effect/essentials_set/modular/light = list(CAT_AMR, "Light Jaegar Kit", 0, "black"),
-		/obj/effect/essentials_set/modular/medium = list(CAT_AMR, "Medium Jaegar Kit", 0, "black"),
-		/obj/effect/essentials_set/modular/heavy = list(CAT_AMR, "Heavy Jaegar Kit", 0, "black"),
+		/obj/effect/essentials_set/modular/light = list(CAT_AMR, "Light Jaeger Kit", 0, "black"),
+		/obj/effect/essentials_set/modular/medium = list(CAT_AMR, "Medium Jaeger Kit", 0, "black"),
+		/obj/effect/essentials_set/modular/heavy = list(CAT_AMR, "Heavy Jaeger Kit", 0, "black"),
 		/obj/item/storage/backpack/marine/satchel = list(CAT_BAK, "Satchel", 0, "black"),
 		/obj/item/storage/backpack/marine/standard = list(CAT_BAK, "Backpack", 0, "black"),
 		/obj/item/storage/large_holster/machete/full = list(CAT_BAK, "Machete scabbard", 0, "black"),
@@ -1095,7 +1095,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						)
 
 /obj/effect/essentials_set/modular/light
-	desc = "A set of Light Jaegar armor, uding an exoskeleton, helmet, armor plates and a lamp attachment."
+	desc = "A set of Light Jaeger armor, uding an exoskeleton, helmet, armor plates and a lamp attachment."
 	spawned_gear_list = list(
 						/obj/item/clothing/suit/modular,
 						/obj/item/clothing/head/modular/light,
@@ -1106,7 +1106,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						)
 
 /obj/effect/essentials_set/modular/medium
-	desc = "A set of Medium Jaegar armor, uding an exoskeleton, helmet, armor plates and a lamp attachment."
+	desc = "A set of Medium Jaeger armor, uding an exoskeleton, helmet, armor plates and a lamp attachment."
 	spawned_gear_list = list(
 						/obj/item/clothing/suit/modular,
 						/obj/item/clothing/head/modular/medium,
@@ -1117,7 +1117,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						)
 
 /obj/effect/essentials_set/modular/heavy
-	desc = "A set of Heavy Jaegar armor, including an exoskeleton, helmet, armor plates and a lamp attachment."
+	desc = "A set of Heavy Jaeger armor, including an exoskeleton, helmet, armor plates and a lamp attachment."
 	spawned_gear_list = list(
 						/obj/item/clothing/suit/modular,
 						/obj/item/clothing/head/modular/heavy,
