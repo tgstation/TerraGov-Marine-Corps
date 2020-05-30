@@ -582,6 +582,11 @@
 /obj/machinery/atmospherics/components/unary/cryo_cell,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/sulaco/medbay/west)
+"ace" = (
+/obj/machinery/camera/autoname,
+/obj/machinery/vending/nanomed,
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
 "acf" = (
 /obj/machinery/vending/medical,
 /turf/open/floor/tile/blue/whitebluefull,
@@ -2793,6 +2798,18 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/tile/white,
 /area/sulaco/medbay)
+"ajb" = (
+/obj/structure/table/mainship,
+/obj/item/stack/sheet/glass/reinforced{
+	amount = 50
+	},
+/obj/item/stack/sheet/wood/large_stack,
+/obj/item/tool/hand_labeler,
+/obj/item/stack/sheet/cardboard{
+	amount = 50
+	},
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
 "ajc" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/mainship/mono,
@@ -17778,98 +17795,53 @@
 /obj/item/storage/fancy/cigarettes/dromedaryco,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
-"bjl" = (
-/obj/machinery/camera/autoname,
-/obj/machinery/vending/nanomed,
-/turf/open/floor/mainship/mono,
+"cjh" = (
+/obj/machinery/vending/marine/cargo_guns,
+/turf/open/floor,
 /area/sulaco/cargo)
-"cnr" = (
-/obj/structure/bed/chair/sofa/left{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/sulaco/cargo)
-"cqG" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/structure/rack,
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
-"dvf" = (
-/obj/structure/largecrate/guns,
+"dyW" = (
+/obj/structure/largecrate/guns/russian,
 /turf/open/floor/plating/plating_catwalk,
 /area/sulaco/cargo)
-"eDQ" = (
-/obj/machinery/door/poddoor/shutters{
-	dir = 2;
-	id = "qm_warehouse";
-	name = "Warehouse Shutters"
-	},
-/obj/structure/cable,
-/turf/open/floor/marking/loadingarea{
-	dir = 1
-	},
+"dFM" = (
+/obj/structure/closet/crate/ammo,
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
+"eaW" = (
+/obj/machinery/light,
+/obj/machinery/vending/uniform_supply,
+/turf/open/floor,
+/area/sulaco/cargo)
+"eAf" = (
+/obj/machinery/light,
+/turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "fJz" = (
 /obj/structure/cable,
 /turf/open/space/basic,
 /area/space)
-"geN" = (
+"gfL" = (
+/obj/machinery/vending/marine/cargo_supply,
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
+"hnW" = (
+/obj/structure/table/mainship,
+/obj/item/tool/pickaxe/plasmacutter,
+/obj/item/cell/high,
+/obj/item/cell/high,
+/obj/item/clothing/glasses/welding,
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
+"jdE" = (
+/turf/open/floor/tile/red/redtaupe{
+	dir = 4
+	},
+/area/sulaco/cargo)
+"jEM" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
 /obj/structure/rack,
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
-"gqC" = (
-/obj/machinery/vending/lasgun,
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
-"hkp" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced{
-	dir = 5
-	},
-/turf/open/floor/plating/platebotc,
-/area/sulaco/cargo)
-"hsf" = (
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 2
-	},
-/area/sulaco/cargo)
-"ioj" = (
-/obj/structure/largecrate/supply/supplies/water,
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
-"itr" = (
-/obj/machinery/light,
-/obj/machinery/vending/uniform_supply,
-/turf/open/floor,
-/area/sulaco/cargo)
-"jfh" = (
-/obj/machinery/door/airlock/mainship/marine/requisitions{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
-"jUb" = (
-/obj/structure/table/mainship,
-/obj/item/stack/sheet/glass/reinforced{
-	amount = 50
-	},
-/obj/item/stack/sheet/wood/large_stack,
-/obj/item/tool/hand_labeler,
-/obj/item/stack/sheet/cardboard{
-	amount = 50
-	},
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
-"kRj" = (
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 4
-	},
-/area/sulaco/cargo)
-"lam" = (
-/obj/structure/closet/crate/ammo,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "ldh" = (
@@ -17880,43 +17852,33 @@
 	icon_state = "floor4"
 	},
 /area/sulaco/bridge)
-"ltH" = (
-/obj/structure/table/mainship,
-/obj/item/tool/pickaxe/plasmacutter,
-/obj/item/cell/high,
-/obj/item/cell/high,
-/obj/item/clothing/glasses/welding,
+"lsj" = (
+/obj/structure/closet/crate/weapon,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
-"nPX" = (
-/obj/machinery/light,
+"lOI" = (
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 2
+	},
+/area/sulaco/cargo)
+"mbW" = (
+/obj/machinery/door/airlock/mainship/marine/requisitions{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
-"nZa" = (
-/obj/machinery/vending/marine/cargo_guns,
-/turf/open/floor,
-/area/sulaco/cargo)
-"oNg" = (
-/obj/structure/disposalpipe/segment/corner{
-	dir = 8
+"mZj" = (
+/obj/machinery/door/poddoor/shutters{
+	dir = 2;
+	id = "qm_warehouse";
+	name = "Warehouse Shutters"
 	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 5
+/obj/structure/cable,
+/turf/open/floor/marking/loadingarea{
+	dir = 1
 	},
-/turf/open/floor,
-/area/sulaco/cargo/office)
-"qes" = (
-/obj/structure/window/reinforced{
-	dir = 5
-	},
-/obj/structure/grille,
-/turf/open/floor/plating/platebotc,
 /area/sulaco/cargo)
-"qUR" = (
-/obj/structure/largecrate/supply/supplies/flares,
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
-"sgl" = (
+"nio" = (
 /obj/structure/closet/crate/construction,
 /obj/item/stack/sheet/metal{
 	amount = 50
@@ -17928,14 +17890,41 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
-"smI" = (
-/obj/machinery/vending/marine/cargo_supply,
+"ocn" = (
+/obj/structure/window/reinforced{
+	dir = 5
+	},
+/obj/structure/grille,
+/turf/open/floor/plating/platebotc,
+/area/sulaco/cargo)
+"ooe" = (
+/obj/structure/bed/chair/sofa/left{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/sulaco/cargo)
+"pxX" = (
+/obj/structure/largecrate/guns,
+/turf/open/floor/plating/plating_catwalk,
+/area/sulaco/cargo)
+"swp" = (
+/obj/structure/largecrate/supply/supplies/flares,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
-"sLi" = (
-/obj/structure/largecrate/supply/supplies/mre,
-/turf/open/floor/mainship/mono,
+"sNP" = (
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 4
+	},
 /area/sulaco/cargo)
+"sSU" = (
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/turf/open/floor,
+/area/sulaco/cargo/office)
 "tzn" = (
 /obj/effect/step_trigger/teleporter/random{
 	affect_ghosts = 1;
@@ -17950,7 +17939,31 @@
 /obj/structure/cable,
 /turf/open/space,
 /area/space)
-"tTW" = (
+"tAw" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 5
+	},
+/turf/open/floor/plating/platebotc,
+/area/sulaco/cargo)
+"tID" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/structure/rack,
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
+"uOE" = (
+/obj/structure/largecrate/supply/supplies/mre,
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
+"uYS" = (
+/obj/structure/cable,
+/turf/closed/wall/sulaco/unmeltable,
+/area/mainship/living/pilotbunks)
+"vbi" = (
+/obj/structure/largecrate/supply/supplies/water,
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
+"whS" = (
 /obj/machinery/door_control/mainship/req{
 	id = "qm_warehouse";
 	name = "RO Warehouse Shutters";
@@ -17964,23 +17977,6 @@
 	dir = 2
 	},
 /area/sulaco/cargo)
-"uYS" = (
-/obj/structure/cable,
-/turf/closed/wall/sulaco/unmeltable,
-/area/mainship/living/pilotbunks)
-"vjq" = (
-/turf/open/floor/tile/red/redtaupe{
-	dir = 4
-	},
-/area/sulaco/cargo)
-"wgx" = (
-/obj/structure/closet/crate/weapon,
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
-"wuG" = (
-/obj/structure/largecrate/guns/russian,
-/turf/open/floor/plating/plating_catwalk,
-/area/sulaco/cargo)
 "xxV" = (
 /obj/structure/cable,
 /turf/closed/wall/mainship/outer,
@@ -17989,6 +17985,10 @@
 /obj/structure/cable,
 /turf/closed/wall/sulaco/unmeltable,
 /area/sulaco/marine/delta)
+"xYS" = (
+/obj/machinery/vending/lasgun,
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
 
 (1,1,1) = {"
 aaa
@@ -58656,8 +58656,8 @@ abd
 aeR
 aqn
 aaK
-gqC
-qUR
+xYS
+swp
 agL
 agP
 ahf
@@ -58910,15 +58910,15 @@ aaa
 aaq
 abn
 aaK
-lam
+dFM
 arR
 aaK
-lam
-sLi
+dFM
+uOE
 aaK
 agR
 ahg
-cnr
+ooe
 ajp
 aka
 alg
@@ -59167,11 +59167,11 @@ aaa
 aaq
 aat
 aaK
-wgx
+lsj
 aeT
 aaK
-sgl
-ioj
+nio
+vbi
 aaK
 aaK
 ahg
@@ -59434,7 +59434,7 @@ aaM
 ahi
 ahW
 aiv
-oNg
+sSU
 alh
 aln
 anF
@@ -60193,7 +60193,7 @@ aaa
 aaa
 aaa
 aaq
-dvf
+pxX
 abf
 abV
 abV
@@ -60450,7 +60450,7 @@ aaa
 aaa
 aaa
 aaq
-wuG
+dyW
 abf
 abV
 abV
@@ -60461,7 +60461,7 @@ agM
 aaM
 ahj
 ahX
-jUb
+ajb
 aap
 amx
 amC
@@ -60976,7 +60976,7 @@ aaM
 ahx
 aiI
 ajf
-eDQ
+mZj
 aln
 aln
 aln
@@ -61239,7 +61239,7 @@ amx
 amx
 amx
 amx
-itr
+eaW
 ath
 auw
 avU
@@ -61491,13 +61491,13 @@ ahx
 aiI
 ajl
 aap
-tTW
-vjq
-kRj
-hsf
-vjq
-kRj
-hkp
+whS
+jdE
+sNP
+lOI
+jdE
+sNP
+tAw
 auA
 avV
 axO
@@ -61736,10 +61736,10 @@ aaa
 aaa
 aaq
 aaK
-cqG
+tID
 abj
 abj
-geN
+jEM
 aaK
 aaK
 aaK
@@ -61747,14 +61747,14 @@ aaK
 ahx
 aiI
 aaK
-qes
+ocn
 alx
 amo
 aoM
 alx
 amo
 aoM
-qes
+ocn
 auC
 asl
 avZ
@@ -61992,26 +61992,26 @@ aaa
 aaa
 aaa
 aaq
-bjl
+ace
 ahI
 aaK
 aaK
 anW
 aaK
 aaK
-smI
+gfL
 aaK
 ahx
 aiI
 aaK
-jfh
+mbW
 alx
 amB
 aoM
 alx
 amB
 aoM
-hkp
+tAw
 auv
 avV
 axO
@@ -62261,14 +62261,14 @@ aaK
 ahx
 aiI
 ajk
-qes
+ocn
 alx
-nZa
+cjh
 aoM
 alx
-nZa
+cjh
 aoM
-hkp
+tAw
 auv
 avV
 axO
@@ -62517,7 +62517,7 @@ agO
 ahc
 ahQ
 aiI
-nPX
+eAf
 aap
 alx
 amB
@@ -62525,7 +62525,7 @@ aoM
 alx
 amB
 aoM
-hkp
+tAw
 auv
 avV
 axm
@@ -62765,7 +62765,7 @@ aaa
 aaq
 aaK
 abg
-ltH
+hnW
 afK
 aaK
 aaK
@@ -62782,7 +62782,7 @@ aoU
 apk
 amG
 atU
-hkp
+tAw
 asB
 avY
 auD

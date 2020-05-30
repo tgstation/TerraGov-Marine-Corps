@@ -5066,10 +5066,6 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
-"uP" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/ice,
-/area/icy_caves/outpost/LZ2)
 "uT" = (
 /obj/structure/closet/secure_closet/medical3,
 /turf/open/floor/tile/dark2,
@@ -5082,6 +5078,10 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/outside)
+"vC" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/outpost/LZ2)
 "wM" = (
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
@@ -5097,14 +5097,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/snow,
-/area/icy_caves/outpost/outside)
-"DK" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/ice,
-/area/icy_caves/caves/west)
-"Gy" = (
-/obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/snow,
 /area/icy_caves/outpost/outside)
 "GZ" = (
@@ -5219,10 +5211,6 @@
 /obj/docking_port/stationary/crashmode,
 /turf/closed/ice/thin/intersection,
 /area/icy_caves/caves/south)
-"SZ" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/ice,
-/area/icy_caves/caves/east)
 "Tb" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 6
@@ -5246,6 +5234,10 @@
 	dir = 1
 	},
 /area/icy_caves/caves/south)
+"UE" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/west)
 "UM" = (
 /turf/closed/wall,
 /area/icy_caves/outpost/research)
@@ -5272,12 +5264,20 @@
 /obj/machinery/computer/nuke_disk_generator/blue,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
+"XJ" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/snow,
+/area/icy_caves/outpost/outside)
 "YA" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 4
 	},
 /area/icy_caves/outpost/outside)
-"YY" = (
+"Zk" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/east)
+"Zp" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
@@ -13450,7 +13450,7 @@ fs
 eb
 dc
 dF
-YY
+Zp
 dc
 de
 cZ
@@ -15230,7 +15230,7 @@ dc
 dc
 dc
 dc
-DK
+UE
 kR
 dc
 dc
@@ -20396,7 +20396,7 @@ gi
 aU
 aU
 aU
-Gy
+XJ
 aU
 aU
 aU
@@ -32235,7 +32235,7 @@ dt
 ds
 dx
 gQ
-SZ
+Zk
 ds
 ds
 ds
@@ -39386,7 +39386,7 @@ lm
 qB
 lk
 qX
-uP
+vC
 bN
 bN
 bN

@@ -585,12 +585,6 @@
 	dir = 1
 	},
 /area/outpost/medbay/chemistry)
-"dE" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/mars/dirttosand{
-	dir = 6
-	},
-/area/outpost/yard/west)
 "dF" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 4
@@ -3971,10 +3965,6 @@
 	dir = 4
 	},
 /area/outpost/yard/south_east)
-"wg" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/outpost/yard/south_east)
 "wj" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
@@ -4131,6 +4121,10 @@
 	dir = 10
 	},
 /area/outpost/engineering/engine)
+"wS" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/outpost/yard/central)
 "wU" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
@@ -4902,6 +4896,12 @@
 	dir = 6
 	},
 /area/outpost/yard/south_east)
+"BH" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 6
+	},
+/area/outpost/yard/west)
 "BJ" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/yard/south_east)
@@ -5558,6 +5558,10 @@
 	dir = 8
 	},
 /area/outpost/engineering)
+"Fw" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north_east)
 "Fy" = (
 /turf/closed/mineral/bigred,
 /area/outpost/caves/north)
@@ -5675,10 +5679,6 @@
 "Gn" = (
 /turf/open/floor/tile/dark,
 /area/outpost/science/xenobiology)
-"Gq" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/outpost/yard/central)
 "Gs" = (
 /obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor/tile/dark/purple2{
@@ -8744,6 +8744,10 @@
 	dir = 4
 	},
 /area/outpost/engineering)
+"Xf" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/yard/south_east)
 "Xg" = (
 /obj/structure/bed/chair/comfy,
 /turf/open/floor/tile/dark/brown2{
@@ -8818,10 +8822,6 @@
 	dir = 6
 	},
 /area/outpost/hallway/south_west)
-"Xy" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/outpost/caves/north_east)
 "Xz" = (
 /obj/effect/decal/cleanable/blood/writing{
 	dir = 9
@@ -22950,7 +22950,7 @@ cc
 cc
 cc
 cc
-dE
+BH
 SH
 SH
 SH
@@ -29135,7 +29135,7 @@ ww
 ww
 EA
 EA
-Gq
+wS
 EA
 EA
 EA
@@ -34310,7 +34310,7 @@ HT
 fG
 NF
 NF
-wg
+Xf
 NF
 NF
 mJ
@@ -42014,7 +42014,7 @@ Yx
 Yx
 Yx
 TP
-Xy
+Fw
 cg
 cg
 cg

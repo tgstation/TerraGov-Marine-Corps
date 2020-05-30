@@ -18208,6 +18208,12 @@
 /obj/docking_port/stationary/crashmode,
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle7)
+"cfW" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/miner/damaged,
+/turf/open/floor/grass,
+/area/lv624/lazarus/main_hall)
 "ciV" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 1
@@ -18447,10 +18453,6 @@
 	},
 /turf/closed/wall,
 /area/lv624/lazarus/main_hall)
-"jzq" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle6)
 "jzY" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/dirt,
@@ -18511,6 +18513,10 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral,
 /area/lv624/ground/sand7)
+"kEN" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle9)
 "kFx" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/resin,
@@ -18666,6 +18672,10 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/canteen)
+"pnx" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/lazarus/quartstorage/outdoors)
 "prx" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/sign/botany,
@@ -18719,10 +18729,6 @@
 	dir = 5
 	},
 /area/shuttle/drop1/lz1)
-"qWf" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/quartstorage/outdoors)
 "qYr" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/mainship{
@@ -18735,6 +18741,10 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/internal_affairs)
+"rhJ" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle6)
 "rpH" = (
 /obj/structure/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -18780,10 +18790,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/main_hall)
-"sTC" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/ground/grass,
-/area/lv624/ground/jungle9)
 "sUi" = (
 /obj/item/reagent_containers/food/snacks/worm,
 /turf/open/floor/plating/ground/dirt,
@@ -18896,12 +18902,6 @@
 	},
 /turf/closed/wall,
 /area/shuttle/drop1/lz1)
-"vBb" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/miner/damaged,
-/turf/open/floor/grass,
-/area/lv624/lazarus/main_hall)
 "vGH" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -27912,7 +27912,7 @@ awk
 avd
 aFl
 avx
-jzq
+rhJ
 axR
 auH
 aFR
@@ -36154,7 +36154,7 @@ aMm
 aSe
 aLc
 aES
-sTC
+kEN
 aES
 aFD
 aES
@@ -49517,7 +49517,7 @@ aRc
 aRH
 aSp
 aTc
-vBb
+cfW
 aUr
 aSp
 any
@@ -52831,7 +52831,7 @@ auO
 azJ
 aAk
 aAk
-qWf
+pnx
 aAk
 aAk
 aCb

@@ -21046,10 +21046,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
-"bOG" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/outside/sw)
 "bSC" = (
 /obj/machinery/light{
 	dir = 8
@@ -21432,10 +21428,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"gFc" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating,
-/area/bigredv2/outside/nw)
 "gOG" = (
 /obj/structure/cable,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -21766,10 +21758,6 @@
 	dir = 8
 	},
 /area/bigredv2/outside/chapel)
-"lGi" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/mars/random/dirt,
-/area/bigredv2/outside/virology)
 "lHZ" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -21866,6 +21854,10 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"nyf" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating,
+/area/bigredv2/outside/nw)
 "nzp" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -21976,6 +21968,10 @@
 "oWn" = (
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
+"oZq" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/bigredv2/outside/virology)
 "pbv" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -22298,6 +22294,10 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/space_port)
+"sPX" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/medical)
 "sUd" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22487,6 +22487,10 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"uWF" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/outside/sw)
 "uWN" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -22583,10 +22587,6 @@
 	dir = 1
 	},
 /area/bigredv2/outside/c)
-"wSU" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/marking/asteroidwarning,
-/area/bigredv2/outside/medical)
 "wVm" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -26507,7 +26507,7 @@ aFs
 kxe
 kxe
 aFs
-lGi
+oZq
 aMz
 aMz
 aMz
@@ -31915,7 +31915,7 @@ aeI
 avr
 avT
 avT
-gFc
+nyf
 axZ
 avT
 azo
@@ -35256,7 +35256,7 @@ buk
 buk
 buk
 buk
-bOG
+uWF
 buk
 buk
 buj
@@ -39307,7 +39307,7 @@ aEE
 aGB
 aHA
 apC
-wSU
+sPX
 aKl
 aIn
 aIn

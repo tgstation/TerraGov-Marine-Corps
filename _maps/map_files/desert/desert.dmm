@@ -2509,6 +2509,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert/interior/engineering)
+"iO" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground,
+/area/desert/outside/sw)
 "iP" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
@@ -3252,10 +3256,10 @@
 /obj/machinery/power/port_gen/pacman,
 /turf/open/floor/plating/ground,
 /area/desert/outside)
-"xQ" = (
-/obj/machinery/miner/damaged/platinum,
+"oC" = (
+/obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground,
-/area/desert/outside/sw)
+/area/desert/outside)
 "zQ" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 1;
@@ -3271,10 +3275,10 @@
 	},
 /turf/open/floor/plating,
 /area/desert/interior/security)
-"DX" = (
-/obj/machinery/miner/damaged,
+"CH" = (
+/obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground,
-/area/desert/outside)
+/area/desert/outside/nw)
 "EQ" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground,
@@ -3288,10 +3292,6 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground,
 /area/desert/outside)
-"QF" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground,
-/area/desert/outside/nw)
 
 (1,1,1) = {"
 au
@@ -21389,7 +21389,7 @@ ak
 cA
 ju
 dz
-QF
+CH
 dz
 dz
 dz
@@ -21687,7 +21687,7 @@ hK
 hK
 hK
 hK
-xQ
+iO
 hK
 hK
 jA
@@ -33268,7 +33268,7 @@ bA
 bA
 bA
 bA
-DX
+oC
 bA
 bA
 bA
@@ -34224,7 +34224,7 @@ bA
 bA
 bA
 bA
-DX
+oC
 bA
 bA
 bA

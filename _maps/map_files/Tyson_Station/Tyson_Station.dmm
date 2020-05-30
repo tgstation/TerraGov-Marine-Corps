@@ -277,6 +277,10 @@
 	},
 /turf/open/floor/greengrid,
 /area/ai_monitored/storage/emergency)
+"abk" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/greengrid,
+/area/ai_monitored/storage/emergency)
 "abl" = (
 /obj/structure/filingcabinet,
 /obj/item/blueprints,
@@ -13762,6 +13766,16 @@
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/red/redtaupe,
 /area/crew_quarters/bar)
+"aYy" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/miner/damaged,
+/turf/open/floor/grass,
+/area/hydroponics)
 "aYz" = (
 /obj/effect/landmark/corpsespawner/miner{
 	corpseback = null;
@@ -17462,6 +17476,11 @@
 /obj/structure/window/framed/prison/reinforced/hull/tyson,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
+"dvS" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor,
+/area/space)
 "dDk" = (
 /obj/structure/window/framed/prison/reinforced/hull/tyson/reinforced,
 /turf/open/floor,
@@ -17506,11 +17525,6 @@
 "fNA" = (
 /turf/closed/wall/tyson,
 /area/bridge/meeting_room)
-"fYx" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor,
-/area/space)
 "ggm" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating,
@@ -17556,10 +17570,6 @@
 /obj/structure/window/framed/prison/reinforced/hull/tyson,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
-"jfr" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/greengrid,
-/area/ai_monitored/storage/emergency)
 "jpW" = (
 /turf/closed/wall/tyson/r_wall,
 /area/hallway/secondary/entry)
@@ -17583,16 +17593,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall/tyson,
 /area/hallway/secondary/entry)
-"kln" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood,
-/obj/machinery/miner/damaged,
-/turf/open/floor/grass,
-/area/hydroponics)
 "kmL" = (
 /turf/closed/wall/tyson,
 /area/crew_quarters/sleep/bedrooms)
@@ -17612,6 +17612,10 @@
 "mdl" = (
 /turf/closed/wall/tyson,
 /area/mainship/hallways/port_hallway)
+"mDv" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating,
+/area/maintenance/starboard)
 "mPl" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor,
@@ -17703,10 +17707,6 @@
 "uVO" = (
 /turf/closed/wall/tyson,
 /area/storage/primary)
-"vrg" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating,
-/area/maintenance/starboard)
 "wqJ" = (
 /obj/structure/window/framed/prison/reinforced/hull/tyson,
 /turf/open/floor/plating,
@@ -38342,7 +38342,7 @@ abx
 aeP
 ast
 abi
-jfr
+abk
 azL
 aCt
 auC
@@ -51264,7 +51264,7 @@ aab
 blr
 aad
 blr
-fYx
+dvS
 aad
 aab
 qYh
@@ -55034,7 +55034,7 @@ aaa
 peS
 are
 aSU
-vrg
+mDv
 peS
 aaa
 peS
@@ -61000,7 +61000,7 @@ aUL
 aYd
 aYm
 aYs
-kln
+aYy
 aVZ
 aUN
 aUL

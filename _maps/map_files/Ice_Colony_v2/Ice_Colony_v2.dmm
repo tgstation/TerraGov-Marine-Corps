@@ -33376,10 +33376,6 @@
 	},
 /turf/closed/ice_rock/northWall,
 /area/ice_colony/exterior/surface/cliff)
-"iyx" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/clearing/north)
 "iyH" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -33393,6 +33389,10 @@
 	},
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/landing_pad_external)
+"izd" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/valley/south/excavation)
 "iHY" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -33537,6 +33537,10 @@
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/cliff)
+"kBL" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/surface/valley/southeast)
 "kCS" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating,
@@ -33553,6 +33557,10 @@
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/south/excavation)
+"kQz" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer3,
+/area/ice_colony/exterior/surface/valley/northwest)
 "lap" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -33781,10 +33789,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/ice_colony/surface/tcomms)
-"pui" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/surface/valley/southeast)
 "puR" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/ice_rock/southWall,
@@ -33869,10 +33873,6 @@
 	},
 /turf/closed/ice,
 /area/ice_colony/exterior/surface/cliff)
-"rkB" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/snow/layer3,
-/area/ice_colony/exterior/surface/valley/northwest)
 "rls" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 8
@@ -33943,6 +33943,10 @@
 /obj/effect/landmark/xeno_tunnel,
 /turf/closed/ice/thin/single,
 /area/ice_colony/exterior/surface/cliff)
+"stN" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/clearing/north)
 "svd" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 1
@@ -34101,10 +34105,6 @@
 	},
 /turf/closed/ice_rock/northWall,
 /area/ice_colony/exterior/surface/cliff)
-"vew" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/valley/south/excavation)
 "veR" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -46111,7 +46111,7 @@ azy
 aiH
 aiH
 aaI
-rkB
+kQz
 aaI
 aaI
 aaI
@@ -52563,7 +52563,7 @@ akF
 akF
 akF
 akF
-iyx
+stN
 akF
 akF
 akF
@@ -52573,7 +52573,7 @@ akF
 akF
 akF
 akF
-iyx
+stN
 akF
 akF
 akF
@@ -68241,7 +68241,7 @@ aax
 aax
 aax
 aij
-iyx
+stN
 akF
 aij
 aij
@@ -70401,7 +70401,7 @@ bbJ
 bbW
 bbK
 bbK
-vew
+izd
 bbK
 bbK
 bbK
@@ -82408,7 +82408,7 @@ agU
 aLI
 aBb
 awL
-pui
+kBL
 awL
 awO
 aGB
