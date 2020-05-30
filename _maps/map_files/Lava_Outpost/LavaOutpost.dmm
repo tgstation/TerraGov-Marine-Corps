@@ -145,6 +145,12 @@
 	},
 /turf/open/floor/plating/platebot,
 /area/lavaland/security/nuke)
+"bJ" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/lavaland/basalt,
+/area/lavaland/engie/one)
 "bL" = (
 /obj/effect/landmark/xeno_tunnel,
 /obj/effect/landmark/start/job/xenomorph,
@@ -160,6 +166,12 @@
 "bQ" = (
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/east)
+"bW" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/east)
 "cb" = (
 /turf/open/floor/marking,
 /area/shuttle/drop2/lz2)
@@ -167,6 +179,14 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/north)
+"cg" = (
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/lavaland/engie/two)
 "cp" = (
 /obj/item/lightstick/red/anchored,
 /turf/open/lavaland/basalt,
@@ -307,6 +327,12 @@
 "eu" = (
 /turf/open/floor/tile/white,
 /area/lavaland/medical)
+"ev" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/tile/white,
+/area/lavaland/security)
 "ex" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1
@@ -395,6 +421,12 @@
 /obj/machinery/light,
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/refine)
+"fJ" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/lavaland/basalt,
+/area/lavaland/engie/two)
 "fR" = (
 /obj/structure/closet/crate/explosives,
 /obj/item/storage/box/m94,
@@ -489,6 +521,14 @@
 /obj/structure/table,
 /turf/open/floor/tile/white,
 /area/lavaland/medical)
+"hd" = (
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	dir = 1;
+	name = "\improper Medical Power"
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/lavaland/medical)
 "hg" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -535,6 +575,10 @@
 	dir = 8
 	},
 /area/lavaland/security/storage)
+"hJ" = (
+/obj/machinery/light/small,
+/turf/open/lavaland/basalt,
+/area/lavaland/engie/one)
 "hU" = (
 /obj/structure/table,
 /obj/structure/cable,
@@ -552,6 +596,13 @@
 /obj/structure/largecrate/guns/merc,
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/refine)
+"im" = (
+/obj/item/lightstick/red/anchored,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/lavaland/basalt,
+/area/lavaland/engie/two)
 "in" = (
 /obj/machinery/landinglight/ds2/delaythree{
 	dir = 1
@@ -569,6 +620,12 @@
 	dir = 8
 	},
 /area/lavaland/medical)
+"iv" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/lavaland/basalt,
+/area/lavaland/engie/three)
 "iy" = (
 /obj/structure/rack,
 /obj/structure/window/reinforced{
@@ -606,6 +663,16 @@
 	dir = 2
 	},
 /area/shuttle/drop1/lz1)
+"iN" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/lavaland/basalt,
+/area/lavaland/engie/one)
 "iR" = (
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
@@ -798,6 +865,9 @@
 	},
 /turf/open/floor/tile/white,
 /area/lavaland/security/infocenter)
+"ld" = (
+/turf/closed/wall,
+/area/lavaland/cave/east)
 "le" = (
 /obj/structure/table,
 /turf/open/floor/tile/white,
@@ -845,6 +915,13 @@
 /obj/effect/landmark/monkey_spawn,
 /turf/open/floor/grass,
 /area/lavaland/civilian/garden)
+"mm" = (
+/obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/lavaland/medical)
 "mu" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
@@ -1044,6 +1121,10 @@
 "pU" = (
 /turf/closed/brock,
 /area/lavaland/cave/west)
+"pV" = (
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/east)
 "qa" = (
 /obj/structure/cable,
 /turf/open/floor/tile/bar,
@@ -1091,10 +1172,14 @@
 /area/lavaland/engie/three)
 "ra" = (
 /obj/machinery/power/apc/drained,
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lavaland/security/storage)
 "rb" = (
 /obj/effect/landmark/corpsespawner/prisoner,
+/obj/machinery/light/small{
+	dir = 1
+	},
 /turf/open/floor/tile/white,
 /area/lavaland/security)
 "rj" = (
@@ -1121,6 +1206,10 @@
 /obj/effect/landmark/nuke_spawn,
 /turf/open/floor/tile/dark,
 /area/lavaland/security/nuke)
+"rD" = (
+/obj/machinery/light/small,
+/turf/open/floor/tile/white,
+/area/lavaland/security)
 "rF" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood,
@@ -1173,6 +1262,12 @@
 "sk" = (
 /turf/closed/wall,
 /area/lavaland/cave/west)
+"sn" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/lavaland/basalt,
+/area/lavaland/engie/two)
 "sp" = (
 /obj/machinery/light{
 	dir = 1
@@ -1334,6 +1429,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/lavaland/medical)
 "uH" = (
@@ -1378,6 +1474,13 @@
 "uX" = (
 /turf/open/floor/wood,
 /area/lavaland/civilian)
+"uZ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/lavaland/medical)
 "vb" = (
 /obj/docking_port/stationary/marine_dropship/lz1,
 /turf/open/floor/plating,
@@ -1400,6 +1503,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/lavaland/medical)
 "vC" = (
@@ -1520,6 +1624,7 @@
 "xD" = (
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
+/obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/lavaland/medical)
 "xF" = (
@@ -1612,9 +1717,20 @@
 /obj/machinery/light/small,
 /turf/open/floor/freezer,
 /area/lavaland/civilian)
+"yX" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/drained,
+/turf/open/floor/plating,
+/area/lavaland/medical)
 "yZ" = (
 /turf/closed/wall/r_wall,
 /area/lavaland/security/nuke)
+"zm" = (
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/obj/machinery/light/small,
+/turf/open/floor/plating,
+/area/lavaland/engie/three)
 "zp" = (
 /obj/structure/computer3frame,
 /turf/open/floor/tile/white,
@@ -1776,6 +1892,12 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/lavaland/medical/chemistry)
+"CV" = (
+/obj/machinery/power/geothermal,
+/obj/structure/cable,
+/obj/machinery/light/small,
+/turf/open/floor/plating,
+/area/lavaland/engie/one)
 "CX" = (
 /turf/open/floor/plating,
 /area/lavaland/engie/one)
@@ -1800,12 +1922,11 @@
 /turf/open/lavaland/catwalk,
 /area/lavaland/cave/south)
 "Dt" = (
-/obj/machinery/power/apc/drained{
+/obj/machinery/light/small{
 	dir = 1
 	},
-/obj/structure/cable,
-/turf/open/floor/tile/white,
-/area/lavaland/medical)
+/turf/open/lavaland/basalt,
+/area/lavaland/engie/three)
 "Du" = (
 /obj/machinery/landinglight/ds2/delayone,
 /turf/open/floor/plating/asteroidwarning{
@@ -1864,6 +1985,12 @@
 "DW" = (
 /turf/open/lavaland/basalt/glowing,
 /area/lavaland/cave/west)
+"Ej" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/lavaland/basalt,
+/area/lavaland/engie/three)
 "El" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -1888,6 +2015,9 @@
 	},
 /turf/open/floor/tile/white,
 /area/lavaland/security/infocenter)
+"Ew" = (
+/turf/open/floor/plating,
+/area/lavaland/medical)
 "Ey" = (
 /obj/effect/landmark/corpsespawner/miner{
 	corpseback = /obj/item/storage/backpack/satchel/norm;
@@ -1951,6 +2081,13 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lavaland/security/nuke)
+"Fb" = (
+/obj/structure/cable,
+/obj/machinery/power/smes/buildable/empty{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/lavaland/medical)
 "Fh" = (
 /turf/open/lavaland/basalt/glowing,
 /area/lavaland/cave/north)
@@ -1990,9 +2127,9 @@
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/botany)
 "FF" = (
-/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
-/turf/open/lavaland/basalt,
-/area/lavaland/cave/east)
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/lavaland/medical)
 "FG" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/wood{
@@ -2290,6 +2427,10 @@
 /obj/structure/bookcase/manuals/medical,
 /turf/open/floor/tile/white,
 /area/lavaland/medical)
+"Ki" = (
+/obj/machinery/light/small,
+/turf/open/lavaland/basalt,
+/area/lavaland/engie/three)
 "Ko" = (
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -3250,6 +3391,9 @@
 /obj/effect/spawner/random/toolbox,
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian)
+"Wq" = (
+/turf/closed/wall,
+/area/lavaland/cave/south)
 "WD" = (
 /obj/structure/table,
 /obj/item/trash/snack_bowl{
@@ -3523,6 +3667,13 @@
 	},
 /turf/open/floor/plating/platebot,
 /area/lavaland/security/nuke)
+"ZD" = (
+/obj/structure/cable,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/lavaland/basalt,
+/area/lavaland/engie/three)
 "ZG" = (
 /turf/closed/wall,
 /area/lavaland/cave/central)
@@ -4737,7 +4888,7 @@ wL
 wL
 GS
 GS
-GS
+Uo
 GS
 GS
 GS
@@ -4807,7 +4958,7 @@ Yx
 pU
 pU
 Yx
-Yx
+nC
 Yx
 Yx
 pU
@@ -5074,7 +5225,7 @@ pU
 Yx
 Yx
 Yx
-Yx
+nC
 vW
 vW
 vW
@@ -5503,7 +5654,7 @@ wL
 dY
 dY
 dY
-dY
+aY
 dY
 dY
 dY
@@ -5773,7 +5924,7 @@ wL
 wL
 wL
 GS
-GS
+Uo
 GS
 GS
 mw
@@ -5837,7 +5988,7 @@ pU
 Rn
 pU
 pU
-Yx
+nC
 Yx
 Yx
 Yx
@@ -7823,7 +7974,7 @@ wL
 wL
 GS
 GS
-GS
+Uo
 GS
 GS
 wL
@@ -8325,7 +8476,7 @@ sX
 wL
 wL
 wL
-GS
+Uo
 GS
 GS
 wL
@@ -8883,8 +9034,8 @@ pU
 pU
 pU
 pU
-pU
-Yx
+sk
+Dt
 GG
 Yx
 Yx
@@ -9131,7 +9282,7 @@ GS
 mw
 GS
 GS
-wL
+ez
 wL
 wL
 wL
@@ -9388,7 +9539,7 @@ GS
 GS
 GS
 GS
-GS
+Ej
 wL
 wL
 wL
@@ -9713,14 +9864,14 @@ vW
 vW
 gJ
 jj
-PL
+ev
 DU
 pS
 PJ
 Mi
 pS
 yw
-PL
+rD
 jj
 Dr
 Dr
@@ -10431,8 +10582,8 @@ pU
 pU
 pU
 pU
-pU
-GG
+sk
+ZD
 Yx
 Yx
 Yx
@@ -10748,7 +10899,7 @@ PJ
 Mi
 pS
 ex
-PL
+rD
 jj
 Dr
 Dr
@@ -11194,7 +11345,7 @@ wL
 Yx
 Yx
 Yx
-pU
+sk
 pU
 pU
 pU
@@ -11451,7 +11602,7 @@ GS
 Yx
 Yx
 aW
-Yx
+Ej
 pU
 pU
 pU
@@ -11769,14 +11920,14 @@ gJ
 vW
 vW
 jj
-PL
+ev
 DU
 pS
 fl
 Mi
 pS
 ex
-PL
+rD
 jj
 Dr
 Dr
@@ -12797,14 +12948,14 @@ gJ
 gJ
 vW
 jj
-PL
+ev
 DU
 pS
 PJ
 Mi
 pS
 yw
-PL
+rD
 jj
 vW
 vW
@@ -13778,7 +13929,7 @@ Ya
 Ya
 Ya
 Ya
-Di
+ZG
 Di
 Di
 Di
@@ -14035,7 +14186,7 @@ Ya
 Ya
 Ya
 Ya
-Ya
+Ej
 Ya
 Di
 Di
@@ -14282,8 +14433,8 @@ Di
 Di
 Di
 Di
-Di
-Ya
+ZG
+Dt
 Ya
 Ya
 rI
@@ -14351,8 +14502,8 @@ vW
 vW
 vW
 vW
-vW
-gJ
+hJ
+Wq
 gJ
 gJ
 NA
@@ -14595,8 +14746,8 @@ gJ
 gJ
 gJ
 gJ
-gJ
-vW
+Wq
+bJ
 vW
 vW
 He
@@ -16400,8 +16551,8 @@ gJ
 gJ
 gJ
 gJ
-gJ
-He
+Wq
+iN
 vW
 gJ
 gJ
@@ -17116,7 +17267,7 @@ Ya
 Ya
 Ya
 Ya
-Ya
+iv
 Ya
 Di
 Ya
@@ -17373,7 +17524,7 @@ Ya
 Ya
 Di
 Di
-Di
+ZG
 Di
 Di
 Ya
@@ -17420,8 +17571,8 @@ US
 gJ
 gJ
 gJ
-gJ
-vW
+Wq
+bJ
 ta
 vW
 vW
@@ -17619,8 +17770,8 @@ GS
 Ya
 Ya
 rI
-Ya
-Di
+Ki
+ZG
 Di
 Di
 Di
@@ -18386,7 +18537,7 @@ GS
 TB
 GS
 GS
-Ap
+GS
 Ya
 Ya
 Ya
@@ -18979,7 +19130,7 @@ dq
 Yk
 lG
 yS
-rW
+CV
 lr
 gJ
 gJ
@@ -19399,8 +19550,8 @@ GS
 wL
 wL
 wL
-wL
-GS
+ez
+Dt
 GS
 GS
 Nj
@@ -19637,8 +19788,8 @@ wL
 wL
 wL
 wL
-wL
-GS
+ez
+Dt
 GS
 GS
 GS
@@ -19929,7 +20080,7 @@ El
 iW
 Cm
 XW
-gd
+zm
 nG
 Di
 Di
@@ -20684,12 +20835,12 @@ GS
 GS
 GS
 GS
-Ap
+GS
 GS
 Fh
 GS
 GS
-GS
+Ap
 GS
 GS
 GS
@@ -22227,8 +22378,8 @@ wL
 wL
 wL
 wL
-wL
-GS
+ez
+Dt
 GS
 GS
 GS
@@ -22749,8 +22900,8 @@ GS
 GS
 GS
 GS
-GS
-wL
+Ki
+ez
 wL
 wL
 wL
@@ -23495,8 +23646,8 @@ wL
 wL
 wL
 wL
-wL
-GS
+ez
+Dt
 GS
 GS
 wL
@@ -24069,8 +24220,8 @@ Di
 Di
 Di
 Di
-Di
-Ya
+ZG
+fJ
 Ya
 Ya
 Ya
@@ -26383,8 +26534,8 @@ ja
 ja
 ja
 ja
-ja
-bQ
+ld
+fJ
 bQ
 bQ
 bQ
@@ -27415,7 +27566,7 @@ bQ
 bQ
 ja
 rj
-gp
+cg
 Re
 FP
 Sy
@@ -27684,7 +27835,7 @@ EM
 bQ
 bQ
 bQ
-ja
+ld
 ja
 bQ
 EM
@@ -27941,7 +28092,7 @@ EM
 bQ
 aV
 bQ
-bQ
+bW
 bQ
 bQ
 EM
@@ -28217,7 +28368,7 @@ vW
 vW
 vW
 vW
-vW
+sn
 vW
 gJ
 gJ
@@ -28474,7 +28625,7 @@ vW
 vW
 UZ
 vW
-gJ
+Wq
 gJ
 gJ
 gJ
@@ -29983,7 +30134,7 @@ ja
 ja
 ja
 bQ
-bQ
+sn
 aV
 bQ
 bQ
@@ -30240,7 +30391,7 @@ ja
 ja
 ja
 ja
-ja
+ld
 bQ
 bQ
 bQ
@@ -31796,8 +31947,8 @@ ua
 VB
 eu
 HG
-tK
-Dt
+eu
+eu
 Pi
 Pi
 Pi
@@ -32546,8 +32697,8 @@ ja
 ja
 ja
 ja
-ja
-bQ
+ld
+fJ
 aV
 bQ
 ja
@@ -32812,8 +32963,8 @@ ja
 ja
 ja
 ja
-ja
-bQ
+ld
+fJ
 aV
 bQ
 VB
@@ -33091,8 +33242,8 @@ bQ
 vW
 gJ
 gJ
-gJ
-UZ
+Wq
+im
 vW
 gJ
 gJ
@@ -34108,7 +34259,7 @@ oC
 FM
 vE
 eu
-Bz
+uZ
 eu
 tS
 Kh
@@ -34365,14 +34516,14 @@ oC
 Zf
 vE
 eu
-Bz
+uZ
 eu
 eu
 Kh
 Pi
 ja
-ja
-bQ
+ld
+fJ
 vW
 gJ
 gJ
@@ -34873,13 +35024,13 @@ bQ
 bQ
 bQ
 ja
-ja
-bQ
-bQ
-bQ
 Pi
-eu
-eu
+yX
+FF
+FF
+hd
+tK
+tK
 eu
 eu
 eu
@@ -35130,10 +35281,10 @@ ja
 bQ
 bQ
 bQ
-bQ
-bQ
+Pi
+Ew
 FF
-bQ
+Ew
 Pi
 er
 iU
@@ -35142,14 +35293,14 @@ jF
 DF
 Pi
 bQ
-bQ
+ja
 ja
 vW
+sn
 vW
 vW
 vW
-vW
-vW
+nD
 vW
 vW
 vW
@@ -35386,27 +35537,27 @@ ja
 ja
 ja
 bQ
+pV
+Pi
+Fb
+mm
+Ew
+Pi
+Pi
+Pi
+Pi
+Pi
+Pi
+Pi
 bQ
-bQ
-bQ
-bQ
-bQ
-Pi
-Pi
-Pi
-Pi
-Pi
-Pi
-Pi
 OR
-bQ
 ja
 gJ
+Wq
 gJ
-gJ
 vW
 vW
-vW
+nD
 vW
 vW
 vW
@@ -35644,11 +35795,11 @@ ja
 ja
 ja
 ja
-ja
-ja
-ja
-ja
-ja
+Pi
+Pi
+Pi
+Pi
+Pi
 ja
 ja
 ja
