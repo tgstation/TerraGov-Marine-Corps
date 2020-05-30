@@ -706,6 +706,7 @@
 					/obj/item/clothing/tie/storage/white_vest/medic = 5,
 					/obj/item/clothing/tie/storage/webbing = 5,
 					/obj/item/clothing/tie/holster = 5,
+					/obj/item/clothing/suit/modular = 20,
 					/obj/item/armor_module/armor/chest/heavy = 20,
 					/obj/item/armor_module/armor/chest/medium = 20,
 					/obj/item/armor_module/armor/chest/light = 20,
