@@ -262,13 +262,14 @@
 
 /turf/open/lavaland
 	icon = 'icons/turf/lava.dmi'
+	layer = ATMOS_PIPE_LAYER
 	baseturfs = /turf/open/lavaland/lava
 
 /turf/open/lavaland/lava
 	name = "lava"
 	icon_state = "full"
 
-	light_range = 2
+	light_range = 4
 	light_power = 0.75
 	light_color = LIGHT_COLOR_LAVA
 
@@ -330,13 +331,13 @@
 
 /turf/open/lavaland/basalt/glowing
 	icon_state = "basaltglow"
-	light_range = 2
+	light_range = 4
 	light_power = 0.75
 	light_color = LIGHT_COLOR_LAVA
 
 /turf/open/lavaland/catwalk
 	name = "catwalk"
 	icon_state = "lavacatwalk"
-	light_range = 2
+	light_range = 4
 	light_power = 0.75
 	light_color = LIGHT_COLOR_LAVA
