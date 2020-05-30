@@ -313,19 +313,17 @@
 		if(isobj(thing))
 			var/obj/O = thing
 			O.fire_act(10000, 1000)
-		
+        
 		else if (isliving(thing))
-			if(thing in GLOB.alive_living_list)
+			var/mob/living/L = thing
+			if(L.stat == DEAD)
+				continue
+	
+			if(!L.on_fire || L.getFireLoss() <= 200)
+				L.adjustFireLoss(20)
+				L.adjust_fire_stacks(20)
+				L.IgniteMob()
 				. = 1
-				var/mob/living/L = thing
-				if(!L.on_fire)
-					L.update_fire()
-				if(L.getFireLoss() <= 200)
-					L.adjustFireLoss(20)
-					L.adjust_fire_stacks(20)
-					L.IgniteMob()
-				if(L.getFireLoss() >= 200)
-					L.ExtinguishMob()
 
 /turf/open/lavaland/lava/attackby(obj/item/C, mob/user, params)
 	..()
@@ -341,7 +339,7 @@
 		if(R.use(4))
 			to_chat(user, "<span class='notice'>You construct a heatproof catwalk.</span>")
 			playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
-			ChangeTurf(/turf/open/lavaland/catwalk)
+			ChangeTurf(/turf/open/lavaland/catwalk/built)
 		else
 			to_chat(user, "<span class='warning'>You need four rods to build a heatproof catwalk.</span>")
 		return
@@ -362,3 +360,19 @@
 	light_range = 4
 	light_power = 0.75
 	light_color = LIGHT_COLOR_LAVA
+
+/turf/open/lavaland/catwalk/built
+	var/deconstructing = FALSE
+
+/turf/open/lavaland/catwalk/built/attack_alien(mob/living/carbon/xenomorph/M)
+	if(M.a_intent != INTENT_HARM)
+		return
+	if(deconstructing)
+		return
+	deconstructing = TRUE
+	if(!do_after(M, 10 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+		deconstructing = FALSE
+		return
+	deconstructing = FALSE
+	playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
+	ChangeTurf(/turf/open/lavaland/lava)
