@@ -5663,6 +5663,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/lv624/ground/compound/se)
+"MK" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/grass,
+/area/lv624/ground/compound/c)
 "Oh" = (
 /obj/structure/cable,
 /turf/closed/wall,
@@ -5676,6 +5680,10 @@
 /obj/machinery/miner/damaged,
 /turf/open/ground/grass/grass2,
 /area/lv624/ground/compound/n)
+"Qf" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/grass,
+/area/vapor_processing/south_compound)
 "Qv" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/indestructible/mineral,
@@ -5688,10 +5696,6 @@
 /obj/effect/landmark/nuke_spawn,
 /turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
-"Ti" = (
-/obj/machinery/miner/damaged,
-/turf/open/ground/grass/grass2,
-/area/lv624/ground/compound/sw)
 "Ud" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/scorched/two,
@@ -8744,7 +8748,7 @@ lH
 ki
 ki
 ki
-Ti
+ki
 kY
 ki
 ki
@@ -9528,7 +9532,7 @@ ep
 et
 et
 ep
-ep
+MK
 GV
 fk
 fk
@@ -10784,7 +10788,7 @@ sO
 lH
 le
 lg
-le
+Qf
 le
 lg
 le
@@ -11143,7 +11147,7 @@ bB
 UJ
 bD
 bD
-AZ
+bB
 bB
 bB
 bD
@@ -12258,7 +12262,7 @@ bD
 bD
 bD
 bB
-bB
+AZ
 bB
 bB
 bB

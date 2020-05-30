@@ -24877,12 +24877,6 @@
 /obj/item/reagent_containers/food/snacks/no_raisin,
 /turf/open/floor/prison/bright_clean,
 /area/prison/store)
-"bxB" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/prison/bright_clean,
-/area/prison/store)
 "bxC" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/secure_data,
@@ -42240,6 +42234,10 @@
 /obj/machinery/vending/cola,
 /turf/open/floor/prison/darkyellow/full,
 /area/prison/hallway/engineering)
+"eeX" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/asteroid,
+/area/prison/residential/central)
 "elG" = (
 /obj/structure/toilet{
 	dir = 1
@@ -42315,13 +42313,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/hangar/main)
-"gex" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/prison{
-	dir = 10;
-	icon_state = "bright_clean2"
-	},
-/area/prison/holding/holding1)
 "fRD" = (
 /obj/structure/cable,
 /turf/closed/wall/prison,
@@ -42342,6 +42333,11 @@
 	},
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/ne)
+"gAJ" = (
+/turf/open/floor{
+	icon_state = "asteroid"
+	},
+/area/prison/residential/central)
 "gCN" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/machinery/landinglight/ds2,
@@ -42396,6 +42392,10 @@
 	},
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/prison/hangar/civilian)
+"hIb" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/prison,
+/area/prison/hangar_storage/research)
 "hOV" = (
 /obj/structure/window/framed/prison/reinforced/hull,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -42613,6 +42613,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/prison/cellblock/mediumsec/south)
+"mFC" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/wood,
+/area/prison/parole/protective_custody)
 "mNz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -42667,12 +42671,6 @@
 	dir = 4
 	},
 /area/prison/cellblock/mediumsec/south)
-"opZ" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor{
-	icon_state = "asteroid"
-	},
-/area/prison/residential/central)
 "oRz" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -42688,6 +42686,12 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/prison/bright_clean,
 /area/prison/hallway/central)
+"pqk" = (
+/turf/open/floor/prison{
+	dir = 10;
+	icon_state = "bright_clean2"
+	},
+/area/prison/holding/holding1)
 "pvO" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -42752,10 +42756,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/sw)
-"qyf" = (
-/obj/machinery/miner/damaged,
-/turf/open/ground/grass,
-/area/prison/hallway/entrance)
 "qBi" = (
 /obj/structure/cable,
 /obj/machinery/light{
@@ -42846,6 +42846,13 @@
 	},
 /turf/open/floor/plating,
 /area/prison/hangar_storage/research)
+"tuV" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/miner/damaged,
+/turf/open/floor/prison/bright_clean,
+/area/prison/store)
 "tyd" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall/prison_unmeltable,
@@ -50351,7 +50358,7 @@ bhY
 bge
 bhC
 bhC
-opZ
+gAJ
 bhC
 aVQ
 bhY
@@ -53948,7 +53955,7 @@ bhD
 bhD
 bhz
 bhC
-bhC
+eeX
 bkL
 bhC
 aVO
@@ -88656,7 +88663,7 @@ bua
 bua
 bwQ
 bwQ
-gex
+pqk
 bua
 bAg
 bue
@@ -89458,7 +89465,7 @@ cek
 cfu
 bRC
 bQi
-ciU
+mFC
 ciU
 ciU
 bYq
@@ -91996,7 +92003,7 @@ buk
 bzX
 bvY
 bwV
-bxB
+tuV
 byb
 byb
 bAm
@@ -94512,7 +94519,7 @@ aur
 auI
 auI
 auI
-auI
+hIb
 auI
 auI
 auI
@@ -98931,7 +98938,7 @@ bcA
 blz
 bbC
 bmE
-qyf
+bbH
 bbC
 bwk
 bxd

@@ -5099,6 +5099,10 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/snow,
 /area/icy_caves/outpost/outside)
+"DK" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/west)
 "Gy" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/snow,
@@ -5181,10 +5185,6 @@
 	},
 /turf/closed/ice_rock/singleEnd,
 /area/icy_caves/outpost/outside)
-"PU" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/ice,
-/area/icy_caves/caves/east)
 "Ql" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area)
@@ -5219,6 +5219,10 @@
 /obj/docking_port/stationary/crashmode,
 /turf/closed/ice/thin/intersection,
 /area/icy_caves/caves/south)
+"SZ" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/east)
 "Tb" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 6
@@ -5273,10 +5277,10 @@
 	dir = 4
 	},
 /area/icy_caves/outpost/outside)
-"YM" = (
+"YY" = (
 /obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/snow/layer2,
-/area/icy_caves/outpost/outside)
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/west)
 
 (1,1,1) = {"
 aa
@@ -10119,7 +10123,7 @@ gw
 ma
 nD
 ma
-YM
+gv
 gv
 gv
 gv
@@ -13446,7 +13450,7 @@ fs
 eb
 dc
 dF
-dc
+YY
 dc
 de
 cZ
@@ -15226,7 +15230,7 @@ dc
 dc
 dc
 dc
-dc
+DK
 kR
 dc
 dc
@@ -21105,7 +21109,7 @@ aJ
 aJ
 aJ
 aR
-MV
+aJ
 dm
 dP
 eh
@@ -25990,7 +25994,7 @@ bE
 ci
 ca
 ch
-aJ
+MV
 dm
 dm
 eG
@@ -32231,7 +32235,7 @@ dt
 ds
 dx
 gQ
-PU
+SZ
 ds
 ds
 ds

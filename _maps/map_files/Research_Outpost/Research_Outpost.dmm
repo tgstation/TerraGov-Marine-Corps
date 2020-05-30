@@ -77,10 +77,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/south_east)
-"ax" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/mars/random/dirt,
-/area/outpost/lz2)
 "ay" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -589,6 +585,12 @@
 	dir = 1
 	},
 /area/outpost/medbay/chemistry)
+"dE" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 6
+	},
+/area/outpost/yard/west)
 "dF" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 4
@@ -1647,10 +1649,6 @@
 	dir = 10
 	},
 /area/outpost/lz1)
-"ja" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/mars/random/dirt,
-/area/outpost/yard/west)
 "jc" = (
 /turf/open/floor/plating/ground/mars/cavetodirt,
 /area/outpost/caves/north_east)
@@ -3972,6 +3970,10 @@
 /turf/open/floor/plating/asteroidwarning{
 	dir = 4
 	},
+/area/outpost/yard/south_east)
+"wg" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/yard/south_east)
 "wj" = (
 /turf/open/floor/marking/asteroidwarning{
@@ -7219,10 +7221,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/brig/wardens_office)
-"OL" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/outpost/yard/south_east)
 "ON" = (
 /obj/machinery/bodyscanner,
 /turf/open/floor/tile/dark,
@@ -8820,6 +8818,10 @@
 	dir = 6
 	},
 /area/outpost/hallway/south_west)
+"Xy" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north_east)
 "Xz" = (
 /obj/effect/decal/cleanable/blood/writing{
 	dir = 9
@@ -21392,7 +21394,7 @@ hk
 oI
 SH
 cc
-ja
+cc
 SH
 SH
 SH
@@ -22948,7 +22950,7 @@ cc
 cc
 cc
 cc
-zQ
+dE
 SH
 SH
 SH
@@ -34308,7 +34310,7 @@ HT
 fG
 NF
 NF
-OL
+wg
 NF
 NF
 mJ
@@ -39731,7 +39733,7 @@ BM
 KR
 KR
 Au
-ax
+io
 KR
 KR
 hY
@@ -42012,7 +42014,7 @@ Yx
 Yx
 Yx
 TP
-Yx
+Xy
 cg
 cg
 cg

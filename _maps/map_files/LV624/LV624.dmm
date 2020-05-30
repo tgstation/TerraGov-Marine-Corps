@@ -18382,15 +18382,6 @@
 	dir = 5
 	},
 /area/lv624/lazarus/research)
-"gaB" = (
-/obj/structure/flora/ausbushes/grassybush,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/grass,
-/area/lv624/lazarus/main_hall)
 "gwG" = (
 /obj/structure/jungle/vines,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -18414,10 +18405,6 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/shuttle/drop2/lz2)
-"hdB" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle1)
 "hzX" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/cult,
@@ -18564,10 +18551,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
 /area/lv624/ground/caves/west2)
-"lUt" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/dirt,
-/area/shuttle/drop2/lz2)
 "lXt" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/dirt,
@@ -18913,6 +18896,12 @@
 	},
 /turf/closed/wall,
 /area/shuttle/drop1/lz1)
+"vBb" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/miner/damaged,
+/turf/open/floor/grass,
+/area/lv624/lazarus/main_hall)
 "vGH" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -31027,7 +31016,7 @@ aSM
 aEy
 aUc
 aTC
-lUt
+aTC
 aTC
 aEy
 aES
@@ -46454,7 +46443,7 @@ aXn
 aTH
 aYD
 aZA
-gaB
+bal
 bba
 aNz
 bbW
@@ -49528,7 +49517,7 @@ aRc
 aRH
 aSp
 aTc
-aSp
+vBb
 aUr
 aSp
 any
@@ -58296,7 +58285,7 @@ bmr
 bdi
 bdi
 biM
-hdB
+boY
 bpV
 bqC
 beV
