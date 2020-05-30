@@ -548,14 +548,6 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	req_access = list(ACCESS_MARINE_SPECPREP)
 	vendor_role = /datum/job/terragov/squad/specialist
 	gives_webbing = FALSE
-	
-/obj/machinery/marine_selector/clothes/spec/Initialize()
-    . = ..()
-    new /obj/effect/decal/cleanable/cobweb(loc)
-    for(var/d in GLOB.alldirs)
-        var/turf/T = get_step(src, d)
-        if(!T.density)
-            new /obj/effect/decal/cleanable/cobweb(T)
 
 
 	listed_products = list(
@@ -891,15 +883,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	vendor_role = /datum/job/terragov/squad/specialist
 	req_access = list(ACCESS_MARINE_SPECPREP)
 	
-/obj/machinery/marine_selector/gear/spec/Initialize()
-    . = ..()
-    new /obj/effect/decal/cleanable/cobweb(loc)
-    for(var/d in GLOB.alldirs)
-        var/turf/T = get_step(src, d)
-        if(!T.density)
-            new /obj/effect/decal/cleanable/cobweb(T)
-
-
 	listed_products = list(
 		/obj/item/storage/box/spec/scout = list(CAT_ESS, "Scout Set (Battle Rifle)", 0, "white"),
 		/obj/item/storage/box/spec/tracker = list(CAT_ESS, "Scout Set (Shotgun)", 0, "white"),
