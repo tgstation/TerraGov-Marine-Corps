@@ -17961,7 +17961,6 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "bmT" = (
-/mob/living/simple_animal/mouse,
 /turf/open/floor/freezer,
 /area/lv624/lazarus/kitchen)
 "bmU" = (
