@@ -93,6 +93,7 @@
 	var/time_per_sheet = 580
 	var/current_heat = 0
 	power_gen = 15000
+
 /obj/machinery/power/port_gen/pacman/Initialize()
 	. = ..()
 	if(anchored)
