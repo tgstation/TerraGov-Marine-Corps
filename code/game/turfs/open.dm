@@ -320,11 +320,12 @@
 				var/mob/living/L = thing
 				if(!L.on_fire)
 					L.update_fire()
-
-				L.adjustFireLoss(20)
-				if(L) //mobs turning into object corpses could get deleted here.
+				if(L.getFireLoss() <= 200)
+					L.adjustFireLoss(20)
 					L.adjust_fire_stacks(20)
 					L.IgniteMob()
+				if(L.getFireLoss() >= 200)
+					L.ExtinguishMob()
 
 /turf/open/lavaland/lava/attackby(obj/item/C, mob/user, params)
 	..()
