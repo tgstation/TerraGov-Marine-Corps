@@ -17,8 +17,6 @@
 	var/base_icon = "portgen0"
 	var/datum/looping_sound/generator/soundloop
 
-	interaction_flags = INTERACT_MACHINE_TGUI
-
 /obj/machinery/power/port_gen/Initialize()
 	. = ..()
 	soundloop = new(list(src), active)
@@ -93,6 +91,7 @@
 	var/time_per_sheet = 580
 	var/current_heat = 0
 	power_gen = 15000
+	interaction_flags = INTERACT_MACHINE_TGUI
 
 /obj/machinery/power/port_gen/pacman/Initialize()
 	. = ..()
