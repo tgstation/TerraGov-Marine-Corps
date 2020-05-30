@@ -582,10 +582,6 @@
 /obj/machinery/atmospherics/components/unary/cryo_cell,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/sulaco/medbay/west)
-"ace" = (
-/obj/machinery/camera/autoname,
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
 "acf" = (
 /obj/machinery/vending/medical,
 /turf/open/floor/tile/blue/whitebluefull,
@@ -2797,16 +2793,6 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/tile/white,
 /area/sulaco/medbay)
-"ajb" = (
-/obj/structure/table/mainship,
-/obj/item/stack/sheet/glass/reinforced,
-/obj/item/stack/sheet/wood/large_stack,
-/obj/item/tool/hand_labeler,
-/obj/item/stack/sheet/cardboard{
-	amount = 50
-	},
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
 "ajc" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/mainship/mono,
@@ -17792,6 +17778,11 @@
 /obj/item/storage/fancy/cigarettes/dromedaryco,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
+"bjl" = (
+/obj/machinery/camera/autoname,
+/obj/machinery/vending/nanomed,
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
 "cnr" = (
 /obj/structure/bed/chair/sofa/left{
 	dir = 1
@@ -17833,13 +17824,6 @@
 /obj/machinery/vending/lasgun,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
-"hiy" = (
-/obj/structure/table/mainship,
-/obj/item/tool/pickaxe/plasmacutter,
-/obj/item/cell/high,
-/obj/item/cell/high,
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
 "hkp" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
@@ -17867,6 +17851,18 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
+"jUb" = (
+/obj/structure/table/mainship,
+/obj/item/stack/sheet/glass/reinforced{
+	amount = 50
+	},
+/obj/item/stack/sheet/wood/large_stack,
+/obj/item/tool/hand_labeler,
+/obj/item/stack/sheet/cardboard{
+	amount = 50
+	},
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
 "kRj" = (
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
@@ -17884,6 +17880,14 @@
 	icon_state = "floor4"
 	},
 /area/sulaco/bridge)
+"ltH" = (
+/obj/structure/table/mainship,
+/obj/item/tool/pickaxe/plasmacutter,
+/obj/item/cell/high,
+/obj/item/cell/high,
+/obj/item/clothing/glasses/welding,
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
 "nPX" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
@@ -17977,10 +17981,6 @@
 /obj/structure/largecrate/guns/russian,
 /turf/open/floor/plating/plating_catwalk,
 /area/sulaco/cargo)
-"wWJ" = (
-/obj/machinery/vending/nanomed,
-/turf/open/space/basic,
-/area/space)
 "xxV" = (
 /obj/structure/cable,
 /turf/closed/wall/mainship/outer,
@@ -60461,7 +60461,7 @@ agM
 aaM
 ahj
 ahX
-ajb
+jUb
 aap
 amx
 amC
@@ -61990,9 +61990,9 @@ aaa
 aaa
 aaa
 aaa
-wWJ
+aaa
 aaq
-ace
+bjl
 ahI
 aaK
 aaK
@@ -62765,7 +62765,7 @@ aaa
 aaq
 aaK
 abg
-hiy
+ltH
 afK
 aaK
 aaK
