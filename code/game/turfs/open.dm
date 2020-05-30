@@ -262,7 +262,7 @@
 
 /turf/open/lavaland
 	icon = 'icons/turf/lava.dmi'
-	baseturfs = /turf/open/lava
+	baseturfs = /turf/open/lavaland/lava
 
 /turf/open/lavaland/lava
 	name = "lava"
@@ -271,6 +271,9 @@
 	light_range = 2
 	light_power = 0.75
 	light_color = LIGHT_COLOR_LAVA
+
+/turf/open/lavaland/lava/is_weedable()
+	return FALSE
 
 /turf/open/lavaland/lava/corner
 	icon_state = "corner"
