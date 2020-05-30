@@ -726,6 +726,9 @@ TUNNEL
 		if(A)
 			to_chat(creator, "<span class='xenoannounce'>You sense your acid well at [A.name] has been destroyed!</span>")
 	GLOB.acidwells -= src
+	var/datum/effect_system/smoke_spread/xeno/acid/A = new(get_turf(src))
+	A.set_up(clamp(charges,0,2),src)
+	A.start()
 	return ..()
 
 /obj/effect/alien/resin/acidwell/examine(mob/user)
@@ -740,12 +743,8 @@ TUNNEL
 
 /obj/effect/alien/resin/acidwell/update_icon()
 	..()
-	if(!charges)
-		icon_state = "emptywell"
-		set_light(0)
-		return 
 	icon_state = "well[charges]"
-	set_light(charges * 2, charges, LIGHT_COLOR_GREEN)
+	set_light(charges , charges / 2, LIGHT_COLOR_GREEN)
 
 /obj/effect/alien/resin/acidwell/ex_act(severity)
 	switch(severity)
@@ -771,6 +770,7 @@ TUNNEL
 			return
 		ccharging = TRUE
 		if(!do_after(M, 10 SECONDS, FALSE, src, BUSY_ICON_BUILD))
+			ccharging = FALSE
 			return
 		if(M.plasma_stored < 200)
 			return
@@ -806,7 +806,11 @@ TUNNEL
 		update_icon()
 		return
 	else 
+		if(C.stat == DEAD)
+			return
+		if(!charges)
+			return
 		C.adjustToxLoss(charges * 15)
-		charges = null
+		charges = 0
 		update_icon()
 		return

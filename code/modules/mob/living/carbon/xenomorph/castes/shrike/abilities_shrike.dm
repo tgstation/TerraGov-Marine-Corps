@@ -411,5 +411,6 @@
 	succeed_activate()
 
 	playsound(T, "alien_resin_build", 25)
-	new /obj/effect/alien/resin/acidwell(T, owner)
+	var/obj/effect/alien/resin/acidwell/AC = new /obj/effect/alien/resin/acidwell(T, owner)
+	AC.creator = owner
 	to_chat(owner, "<span class='xenonotice'>We place an acid well. It can still be charged more.</span>")
