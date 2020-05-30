@@ -97,6 +97,7 @@
 	. = ..()
 	if(anchored)
 		connect_to_network()
+	RefreshParts()
 
 /obj/machinery/power/port_gen/pacman/Initialize()
 	. = ..()
