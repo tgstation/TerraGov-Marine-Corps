@@ -15,25 +15,8 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 	else
 		base = icon('icons/mob/human_races/r_human.dmi')
 
-
 	icon = base
-	var/datum/ethnicity/E = GLOB.ethnicities_list[H.ethnicity]
-	var/datum/body_type/B = GLOB.body_types_list[H.body_type]
-
-	var/e_icon
-	var/b_icon
-
-	if (!E)
-		e_icon = "western"
-	else
-		e_icon = E.icon_name
-
-	if (!B)
-		b_icon = "mesomorphic"
-	else
-		b_icon = B.icon_name
-
-	icon_state = "[get_limb_icon_name(H.species, b_icon, H.gender, name, e_icon)]"
+	icon_state = "[get_limb_icon_name(H.species, H.gender, name)]"
 	setDir(SOUTH)
 	transform = turn(transform, rand(70,130))
 
