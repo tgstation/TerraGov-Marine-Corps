@@ -166,10 +166,10 @@
 	plasma_gain = 70
 
 	// *** Health *** //
-	max_health = 1000
+	max_health = 450
 
 	// *** Evolution *** //
-	upgrade_threshold = 500
+	upgrade_threshold = 1000
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 65, "bullet" = 65, "laser" = 65, "energy" = 65, "bomb" = XENO_BOMB_RESIST_3, "bio" = 60, "rad" = 60, "fire" = 100, "acid" = 60)
