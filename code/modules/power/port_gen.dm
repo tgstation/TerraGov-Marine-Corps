@@ -17,7 +17,7 @@
 	var/base_icon = "portgen0"
 	var/datum/looping_sound/generator/soundloop
 
-	//interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND | INTERACT_ATOM_UI_INTERACT | INTERACT_ATOM_REQUIRES_ANCHORED
+	interaction_flags_atom = INTERACT_ATOM_ATTACK_HAND | INTERACT_ATOM_UI_INTERACT | INTERACT_ATOM_REQUIRES_ANCHORED
 
 /obj/machinery/power/port_gen/Initialize()
 	. = ..()
