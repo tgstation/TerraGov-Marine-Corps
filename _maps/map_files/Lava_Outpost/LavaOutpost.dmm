@@ -348,6 +348,10 @@
 "ez" = (
 /turf/closed/wall,
 /area/lavaland/cave/north)
+"eF" = (
+/obj/machinery/light,
+/turf/open/floor/plating/asteroidfloor,
+/area/shuttle/drop1/lz1)
 "eH" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/cable,
@@ -872,6 +876,10 @@
 /obj/structure/table,
 /turf/open/floor/tile/white,
 /area/lavaland/medical)
+"lf" = (
+/obj/effect/spawner/random/toolbox,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/north)
 "lh" = (
 /obj/machinery/light{
 	dir = 1
@@ -1459,6 +1467,12 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian/cargo)
+"uP" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/shuttle/drop1/lz1)
 "uQ" = (
 /obj/structure/rack,
 /obj/item/attachable/attached_gun/grenade,
@@ -1833,6 +1847,12 @@
 /obj/structure/closet/secure_closet/engineering_welding,
 /turf/open/floor/plating,
 /area/lavaland/engie/two)
+"BN" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/shuttle/drop1/lz1)
 "BO" = (
 /obj/structure/rack,
 /obj/item/storage/belt/utility/full,
@@ -20817,7 +20837,7 @@ wL
 wL
 wL
 GS
-GS
+lf
 GS
 GS
 GS
@@ -22112,7 +22132,7 @@ wL
 wL
 wL
 GS
-GS
+Fh
 wL
 wL
 wL
@@ -23155,7 +23175,7 @@ wL
 wL
 wL
 GS
-GS
+Fh
 GS
 GS
 wL
@@ -23910,7 +23930,7 @@ GS
 GS
 GS
 GS
-GS
+Fh
 GS
 wL
 wL
@@ -25209,7 +25229,7 @@ wL
 GS
 GS
 GS
-GS
+Fh
 GS
 GS
 GS
@@ -27014,7 +27034,7 @@ wL
 wL
 GS
 GS
-GS
+Fh
 GS
 GS
 GS
@@ -27248,16 +27268,16 @@ wL
 wL
 wL
 wL
-wL
-wL
+ez
+ez
 GS
 GS
 GS
-wL
-wL
-wL
-wL
-wL
+ez
+ez
+ez
+ez
+ez
 GS
 GS
 GS
@@ -27505,14 +27525,14 @@ wL
 wL
 wL
 wL
-wL
+ez
 YL
 YL
 YL
 YL
 YL
 YL
-YL
+BN
 YL
 YL
 YL
@@ -27762,7 +27782,8 @@ wL
 wL
 wL
 wL
-wL
+ez
+uP
 YL
 YL
 YL
@@ -27773,8 +27794,7 @@ YL
 YL
 YL
 YL
-YL
-wL
+ez
 wL
 wL
 wL
@@ -28019,7 +28039,7 @@ wL
 wL
 wL
 wL
-wL
+ez
 YL
 YL
 YL
@@ -28031,7 +28051,7 @@ YL
 YL
 YL
 YL
-wL
+ez
 wL
 wL
 wL
@@ -28276,7 +28296,7 @@ wL
 wL
 wL
 wL
-wL
+ez
 YL
 YL
 YL
@@ -28287,8 +28307,8 @@ YL
 YL
 YL
 YL
-YL
-wL
+eF
+ez
 wL
 wL
 wL
@@ -28533,7 +28553,7 @@ wL
 wL
 wL
 wL
-wL
+ez
 YL
 YL
 YL
@@ -28545,7 +28565,7 @@ YL
 YL
 YL
 YL
-wL
+ez
 wL
 wL
 wL
@@ -28790,7 +28810,7 @@ wL
 wL
 wL
 wL
-wL
+ez
 YL
 YL
 YL
@@ -28802,7 +28822,7 @@ YL
 YL
 YL
 YL
-wL
+ez
 wL
 GS
 GS
@@ -29047,7 +29067,7 @@ wL
 wL
 wL
 wL
-wL
+ez
 YL
 YL
 YL
@@ -29304,7 +29324,7 @@ Qb
 Qb
 Xg
 wL
-wL
+ez
 YL
 YL
 YL
@@ -29561,8 +29581,8 @@ TO
 TO
 TO
 Xg
-wL
-YL
+ez
+uP
 YL
 YL
 YL
@@ -29829,8 +29849,8 @@ YL
 YL
 YL
 YL
-YL
-wL
+eF
+ez
 wL
 wL
 wL
@@ -34012,7 +34032,7 @@ Pi
 bQ
 vW
 vW
-vW
+mA
 gJ
 gJ
 gJ
