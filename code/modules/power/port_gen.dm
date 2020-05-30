@@ -97,6 +97,12 @@
 	. = ..()
 	if(anchored)
 		connect_to_network()
+	component_parts = list()
+	component_parts += new /obj/item/stock_parts/matter_bin(src)
+	component_parts += new /obj/item/stock_parts/micro_laser(src)
+	component_parts += new /obj/item/stack/cable_coil(src)
+	component_parts += new /obj/item/stack/cable_coil(src)
+	component_parts += new /obj/item/stock_parts/capacitor(src)
 	RefreshParts()
 
 /obj/machinery/power/port_gen/pacman/Initialize()
