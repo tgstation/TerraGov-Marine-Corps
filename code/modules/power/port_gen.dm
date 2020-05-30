@@ -90,9 +90,9 @@
 	var/sheet_name = ""
 	var/sheet_path = /obj/item/stack/sheet/mineral/phoron
 	var/sheet_left = 0 // How much is left of the sheet
-	var/time_per_sheet = 260
+	var/time_per_sheet = 580
 	var/current_heat = 0
-
+	power_gen = 15000
 /obj/machinery/power/port_gen/pacman/Initialize()
 	. = ..()
 	if(anchored)
