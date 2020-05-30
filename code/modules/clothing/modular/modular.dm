@@ -412,18 +412,24 @@
 /obj/item/clothing/head/modular/light
 	name = "Jaeger Pattern light Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
+	icon_state = "light_helmet_icon"
+	item_state = "light_helmet"
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	accuracy_mod = 10
 
 /obj/item/clothing/head/modular/medium
 	name = "Jaeger Pattern medium Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
+	icon_state = "medium_helmet_icon"
+	item_state = "medium_helmet"
 	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = 60, "bio" = 60, "rad" = 60, "fire" = 60, "acid" = 60)
 	accuracy_mod = 0
 
 /obj/item/clothing/head/modular/heavy
 	name = "Jaeger Pattern heavy Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
+	icon_state = "heavy_helmet_icon"
+	item_state = "heavy_helmet"
 	soft_armor = list("melee" = 75, "bullet" = 75, "laser" = 75, "energy" = 75, "bomb" = 75, "bio" = 75, "rad" = 75, "fire" = 75, "acid" = 75)
 	accuracy_mod = -10
 
