@@ -316,7 +316,6 @@
 		
 		else if (isliving(thing))
 			if(thing in GLOB.alive_living_list)
-				if(al)
 				. = 1
 				var/mob/living/L = thing
 				if(!L.on_fire)
