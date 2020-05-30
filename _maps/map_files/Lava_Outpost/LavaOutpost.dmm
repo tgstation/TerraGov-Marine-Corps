@@ -665,16 +665,9 @@
 	},
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
-"ji" = (
-/turf/open/floor/plating,
-/area/lavaland/cave/north)
 "jj" = (
-/obj/structure/cable,
-/obj/machinery/power/smes/buildable/empty{
-	dir = 1
-	},
 /turf/open/floor/plating,
-/area/lavaland/cave/north)
+/area/lavaland/civilian)
 "jk" = (
 /obj/machinery/door/airlock/mainship/security{
 	dir = 8
@@ -750,12 +743,13 @@
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian)
 "jZ" = (
+/obj/structure/rack,
 /turf/open/floor/plating,
 /area/lavaland/civilian)
 "kb" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/lavaland/cave/north)
+/area/lavaland/civilian)
 "kg" = (
 /obj/structure/rack,
 /obj/item/attachable/attached_gun/grenade,
@@ -765,12 +759,12 @@
 	},
 /area/lavaland/security/nuke)
 "km" = (
-/obj/structure/cable,
-/obj/machinery/power/terminal{
-	dir = 1
+/obj/machinery/power/apc/drained{
+	dir = 8
 	},
+/obj/structure/cable,
 /turf/open/floor/plating,
-/area/lavaland/cave/north)
+/area/lavaland/civilian)
 "kz" = (
 /mob/living/simple_animal/cow,
 /obj/machinery/light,
@@ -942,7 +936,7 @@
 "mQ" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1;
-	name = "\improper Civilian Housing SMES Storage"
+	name = "\improper Civilian Housing  Storage"
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -1177,11 +1171,6 @@
 	dir = 8
 	},
 /area/lavaland/security/storage)
-"qf" = (
-/obj/structure/cable,
-/obj/machinery/power/apc/drained,
-/turf/open/floor/tile/dark2,
-/area/lavaland/civilian)
 "qi" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark2,
@@ -3076,13 +3065,6 @@
 	},
 /turf/open/lavaland/basalt,
 /area/lavaland/engie/two)
-"Pp" = (
-/obj/structure/cable,
-/obj/machinery/power/terminal{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/lavaland/security/infocenter)
 "Pu" = (
 /obj/machinery/landinglight/ds2{
 	dir = 4
@@ -3521,13 +3503,6 @@
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/south)
-"Uo" = (
-/obj/structure/cable,
-/obj/machinery/power/smes/buildable/empty{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/lavaland/medical)
 "Uv" = (
 /turf/closed/wall,
 /area/storage/testroom)
@@ -3595,22 +3570,8 @@
 	},
 /turf/open/floor/plating,
 /area/lavaland/security/infocenter)
-"Vf" = (
-/obj/structure/cable,
-/obj/machinery/power/smes/buildable/empty{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/lavaland/security/infocenter)
 "Vh" = (
 /obj/structure/cable,
-/turf/open/floor/plating,
-/area/lavaland/medical)
-"Vq" = (
-/obj/structure/cable,
-/obj/machinery/power/terminal{
-	dir = 1
-	},
 /turf/open/floor/plating,
 /area/lavaland/medical)
 "VB" = (
@@ -22090,8 +22051,8 @@ AN
 EC
 Cn
 TY
-Vf
-Pp
+pD
+cB
 Ve
 ax
 Bj
@@ -28176,7 +28137,7 @@ gT
 gT
 gT
 gT
-qf
+le
 le
 rD
 sV
@@ -29970,8 +29931,8 @@ aZ
 aZ
 aZ
 aZ
-cd
-cd
+jL
+jL
 jL
 jL
 kY
@@ -30227,8 +30188,8 @@ aZ
 aZ
 aZ
 aZ
-cd
-ji
+jL
+jZ
 jZ
 jL
 jL
@@ -30484,8 +30445,8 @@ aZ
 aZ
 aZ
 aZ
-cd
-ji
+jL
+jj
 kb
 kb
 mQ
@@ -30741,10 +30702,10 @@ aZ
 aZ
 aZ
 aZ
-cd
+jL
 jj
 km
-lf
+jL
 lf
 lf
 lf
@@ -30998,10 +30959,10 @@ aZ
 cw
 aZ
 aZ
-cd
-cd
-cd
-lf
+jL
+jL
+jL
+jL
 na
 qQ
 qQ
@@ -50333,7 +50294,7 @@ EF
 EB
 SB
 Ue
-Vh
+Ue
 Vh
 YE
 ZX
@@ -50590,8 +50551,8 @@ EF
 EF
 SB
 Ue
-Vh
 Ue
+Vh
 SB
 RJ
 fA
@@ -50846,8 +50807,8 @@ EB
 EF
 Sk
 SB
-Uo
-Vq
+Ue
+Ue
 WX
 SB
 SB
@@ -51100,17 +51061,17 @@ EB
 EB
 EB
 EB
-EB
-EB
+EF
+EF
 SB
 SB
 SB
 SB
 SB
-EB
-EB
-EB
-EB
+EF
+EF
+EF
+EF
 EB
 EB
 EB
@@ -51357,15 +51318,15 @@ EB
 EB
 EB
 EB
-EB
-EB
-EB
-EB
-EB
-EB
-EB
-EB
-EB
+EF
+EF
+EF
+EF
+EF
+EF
+EF
+EF
+EF
 EB
 EB
 EB
@@ -51615,10 +51576,10 @@ EB
 EB
 EB
 EB
-EB
-EB
-EB
-EB
+EF
+EF
+EF
+EF
 EB
 EB
 EB
