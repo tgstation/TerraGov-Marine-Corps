@@ -326,6 +326,25 @@
 					L.adjust_fire_stacks(20)
 					L.IgniteMob()
 
+/turf/open/lavaland/lava/attackby(obj/item/C, mob/user, params)
+	..()
+	if(istype(C, /obj/item/stack/rods))
+		var/obj/item/stack/rods/R = C
+		var/turf/open/lavaland/catwalk/H = locate(/turf/open/lavaland/catwalk, src)
+		if(H)
+			to_chat(user, "<span class='warning'>There is already a catwalk here!</span>")
+			return
+		if(!do_after(user, 5 SECONDS, FALSE))
+			to_chat(user, "<span class='warning'>It takes time to construct a catwalk!</span>")
+			return
+		if(R.use(4))
+			to_chat(user, "<span class='notice'>You construct a heatproof catwalk.</span>")
+			playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
+			ChangeTurf(/turf/open/lavaland/catwalk)
+		else
+			to_chat(user, "<span class='warning'>You need four rods to build a heatproof catwalk.</span>")
+		return
+
 /turf/open/lavaland/basalt
 	name = "basalt"
 	icon_state = "basalt"
