@@ -315,15 +315,17 @@
 			O.fire_act(10000, 1000)
 		
 		else if (isliving(thing))
-			. = 1
-			var/mob/living/L = thing
-			if(!L.on_fire)
-				L.update_fire()
+			if(thing in GLOB.alive_living_list)
+				if(al)
+				. = 1
+				var/mob/living/L = thing
+				if(!L.on_fire)
+					L.update_fire()
 
-			L.adjustFireLoss(20)
-			if(L) //mobs turning into object corpses could get deleted here.
-				L.adjust_fire_stacks(20)
-				L.IgniteMob()
+				L.adjustFireLoss(20)
+				if(L) //mobs turning into object corpses could get deleted here.
+					L.adjust_fire_stacks(20)
+					L.IgniteMob()
 
 /turf/open/lavaland/basalt
 	name = "basalt"
