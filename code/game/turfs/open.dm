@@ -262,7 +262,7 @@
 
 /turf/open/lavaland
 	icon = 'icons/turf/lava.dmi'
-	layer = ATMOS_PIPE_LAYER
+	plane = FLOOR_PLANE
 	baseturfs = /turf/open/lavaland/lava
 
 /turf/open/lavaland/lava
