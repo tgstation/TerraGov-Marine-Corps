@@ -226,7 +226,7 @@
 	var/atom/new_resin
 
 	if(ispath(X.selected_resin, /turf)) // We should change turfs, not spawn them in directly
-		var/baseturfs = islist(T.baseturfs) ? T.baseturfs : list(T.baseturfs)
+		var/list/baseturfs = islist(T.baseturfs) ? T.baseturfs : list(T.baseturfs)
 		baseturfs |= T.type
 		T.ChangeTurf(X.selected_resin, baseturfs)
 		new_resin = T
