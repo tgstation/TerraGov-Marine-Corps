@@ -65,6 +65,7 @@
 	name = "flame-resistant combat boots"
 	desc = "Protects you from fire and even contains a pouch for your knife!"
 	icon_state = "marine_armored"
+	hard_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 0)
 
 
 /obj/item/clothing/shoes/marinechief

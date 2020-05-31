@@ -120,7 +120,7 @@
 		DISABLE_BITFIELD(obj_flags, IN_USE)
 
 
-/obj/proc/hide(h)
+/obj/proc/hide(h) // TODO: Fix all children
 	return
 
 
