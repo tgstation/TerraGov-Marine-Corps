@@ -86,4 +86,8 @@
 		if("Ground")
 			map_url = SSmapping.configs[GROUND_MAP].map_file
 
+	if(!map_url)
+		to_chat(src, "<span class='warning'>Mapping subsystem hasn't finished loading yet, try again later.</span>")
+		return
+
 	DIRECT_OUTPUT(src, link("[webmap_host][map_url]"))
