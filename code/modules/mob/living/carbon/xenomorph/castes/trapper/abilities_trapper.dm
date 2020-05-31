@@ -27,7 +27,7 @@
 		if(!silent)
 			to_chat(owner, "<span class='warning'>There is a resin node in the way!</span>")
 		return FALSE
-		
+
 /datum/action/xeno_action/sensor/action_activate()
 	var/turf/T = get_turf(owner)
 
@@ -66,7 +66,7 @@
 		if(!silent)
 			to_chat(owner, "<span class='warning'>There is a resin node in the way!</span>")
 		return FALSE
-		
+
 /datum/action/xeno_action/tripwire/action_activate()
 	var/turf/T = get_turf(owner)
 
@@ -75,3 +75,12 @@
 	playsound(T, "alien_resin_build", 25)
 	new /obj/effect/alien/resin/tripwire(T, owner)
 	to_chat(owner, "<span class='xenonotice'>We place a hugger trap on the weeds, it still needs a facehugger.</span>")
+
+// ***************************************
+// *********** Trapper Zoom
+// ***************************************
+/datum/action/xeno_action/toggle_trapper_zoom
+	name = "Toggle Trapper Zoom"
+	action_icon_state = "toggle_queen_zoom"
+	mechanics_text = "Zoom out for a larger view around wherever you are looking."
+	plasma_cost = 0

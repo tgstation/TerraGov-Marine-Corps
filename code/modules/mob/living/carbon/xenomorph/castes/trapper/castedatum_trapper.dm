@@ -54,6 +54,7 @@
 		/datum/action/xeno_action/tripwire,
 		/datum/action/xeno_action/build_tunnel,
 		/datum/action/xeno_action/place_trap,
+		/datum/action/xeno_action/toggle_trapper_zoom
 		)
 
 /datum/xeno_caste/trapper/young

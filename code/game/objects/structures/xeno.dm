@@ -780,10 +780,10 @@ TUNNEL
 
 /obj/effect/alien/resin/tripwire/Initialize()
 	. = ..()
-	
+
 /obj/effect/alien/resin/tripwire/Destroy()
 	. = ..()
-	
+
 /obj/effect/alien/resin/tripwire/Crossed(atom/A)
 	. = ..()
 	if(iscarbon(A) && !isxeno(A))
