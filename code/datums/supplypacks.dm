@@ -840,126 +840,49 @@ ARMOR
 	name = "Jaeger exosuits"
 	contains = list(
 		/obj/item/clothing/suit/modular,
-		/obj/item/clothing/suit/modular,
-		/obj/item/clothing/suit/modular,
-		/obj/item/clothing/suit/modular,
-		/obj/item/clothing/suit/modular,
-		/obj/item/clothing/suit/modular,
-		/obj/item/clothing/suit/modular,
-		/obj/item/clothing/suit/modular,
-		/obj/item/clothing/suit/modular,
-		/obj/item/clothing/suit/modular,
 	)
-	cost = 10
+	cost = 1
 
 /datum/supply_packs/armor/modular/armor/heavy
 	name = "Jaeger heavy plates"
 	contains = list(
 		/obj/item/clothing/head/modular/heavy,
-		/obj/item/clothing/head/modular/heavy,
-		/obj/item/clothing/head/modular/heavy,
-		/obj/item/clothing/head/modular/heavy,
-		/obj/item/clothing/head/modular/heavy,
-		/obj/item/armor_module/armor/chest/heavy,
-		/obj/item/armor_module/armor/chest/heavy,
-		/obj/item/armor_module/armor/chest/heavy,
-		/obj/item/armor_module/armor/chest/heavy,
 		/obj/item/armor_module/armor/chest/heavy,
 		/obj/item/armor_module/armor/arms/heavy,
-		/obj/item/armor_module/armor/arms/heavy,
-		/obj/item/armor_module/armor/arms/heavy,
-		/obj/item/armor_module/armor/arms/heavy,
-		/obj/item/armor_module/armor/arms/heavy,
-		/obj/item/armor_module/armor/legs/heavy,
-		/obj/item/armor_module/armor/legs/heavy,
-		/obj/item/armor_module/armor/legs/heavy,
-		/obj/item/armor_module/armor/legs/heavy,
 		/obj/item/armor_module/armor/legs/heavy,
 	)
-	cost = 15
+	cost = 3
 
 /datum/supply_packs/armor/modular/armor/medium
 	name = "Jaeger medium plates"
 	contains = list(
 		/obj/item/clothing/head/modular/medium,
-		/obj/item/clothing/head/modular/medium,
-		/obj/item/clothing/head/modular/medium,
-		/obj/item/clothing/head/modular/medium,
-		/obj/item/clothing/head/modular/medium,
-		/obj/item/armor_module/armor/chest/medium,
-		/obj/item/armor_module/armor/chest/medium,
-		/obj/item/armor_module/armor/chest/medium,
-		/obj/item/armor_module/armor/chest/medium,
 		/obj/item/armor_module/armor/chest/medium,
 		/obj/item/armor_module/armor/arms/medium,
-		/obj/item/armor_module/armor/arms/medium,
-		/obj/item/armor_module/armor/arms/medium,
-		/obj/item/armor_module/armor/arms/medium,
-		/obj/item/armor_module/armor/arms/medium,
-		/obj/item/armor_module/armor/legs/medium,
-		/obj/item/armor_module/armor/legs/medium,
-		/obj/item/armor_module/armor/legs/medium,
-		/obj/item/armor_module/armor/legs/medium,
 		/obj/item/armor_module/armor/legs/medium,
 	)
-	cost = 15
+	cost = 3
 
 /datum/supply_packs/armor/modular/armor/light
 	name = "Jaeger light plates"
 	contains = list(
 		/obj/item/clothing/head/modular/light,
-		/obj/item/clothing/head/modular/light,
-		/obj/item/clothing/head/modular/light,
-		/obj/item/clothing/head/modular/light,
-		/obj/item/clothing/head/modular/light,
-		/obj/item/armor_module/armor/chest/light,
-		/obj/item/armor_module/armor/chest/light,
-		/obj/item/armor_module/armor/chest/light,
-		/obj/item/armor_module/armor/chest/light,
 		/obj/item/armor_module/armor/chest/light,
 		/obj/item/armor_module/armor/arms/light,
-		/obj/item/armor_module/armor/arms/light,
-		/obj/item/armor_module/armor/arms/light,
-		/obj/item/armor_module/armor/arms/light,
-		/obj/item/armor_module/armor/arms/light,
-		/obj/item/armor_module/armor/legs/light,
-		/obj/item/armor_module/armor/legs/light,
-		/obj/item/armor_module/armor/legs/light,
-		/obj/item/armor_module/armor/legs/light,
 		/obj/item/armor_module/armor/legs/light,
 	)
-	cost = 15
+	cost = 3
 
 /datum/supply_packs/armor/modular/storage
 	name = "Jaeger assorted storage modules"
 	contains = list(
 		/obj/item/armor_module/storage/general,
-		/obj/item/armor_module/storage/general,
-		/obj/item/armor_module/storage/general,
-		/obj/item/armor_module/storage/general,
-		/obj/item/armor_module/storage/general,
-		/obj/item/armor_module/storage/ammo_mag,
-		/obj/item/armor_module/storage/ammo_mag,
-		/obj/item/armor_module/storage/ammo_mag,
-		/obj/item/armor_module/storage/ammo_mag,
 		/obj/item/armor_module/storage/ammo_mag,
 		/obj/item/armor_module/storage/medical,
-		/obj/item/armor_module/storage/medical,
-		/obj/item/armor_module/storage/medical,
-		/obj/item/armor_module/storage/medical,
-		/obj/item/armor_module/storage/medical,
 		/obj/item/armor_module/storage/integrated,
-		/obj/item/armor_module/storage/integrated,
-		/obj/item/armor_module/storage/integrated,
-		/obj/item/armor_module/storage/integrated,
-		/obj/item/armor_module/storage/integrated,
-		/obj/item/armor_module/storage/engineering,
-		/obj/item/armor_module/storage/engineering,
-		/obj/item/armor_module/storage/engineering,
-		/obj/item/armor_module/storage/engineering,
 		/obj/item/armor_module/storage/engineering,
 	)
-	cost = 15
+	cost = 3
 
 /datum/supply_packs/armor/modular/attachments/mixed
 	name = "Jaeger experimental modules"
@@ -1009,41 +932,6 @@ ARMOR
 		/obj/item/armor_module/attachable/mimir_environment_protection
 	)
 	cost = 12
-
-
-/datum/supply_packs/armor/modular/preset/heavy
-	name = "Jaeger heavy set"
-	contains = list(
-		/obj/item/clothing/suit/modular,
-		/obj/item/clothing/head/modular/heavy,
-		/obj/item/armor_module/armor/chest/heavy,
-		/obj/item/armor_module/armor/arms/heavy,
-		/obj/item/armor_module/armor/legs/heavy,
-	)
-	cost = 10
-
-/datum/supply_packs/armor/modular/preset/medium
-	name = "Jaeger medium set"
-	contains = list(
-		/obj/item/clothing/suit/modular,
-		/obj/item/clothing/head/modular/medium,
-		/obj/item/armor_module/armor/chest/medium,
-		/obj/item/armor_module/armor/arms/medium,
-		/obj/item/armor_module/armor/legs/medium,
-	)
-	cost = 10
-	
-/datum/supply_packs/armor/modular/preset/light
-	name = "Jaeger light set"
-	contains = list(
-		/obj/item/clothing/suit/modular,
-		/obj/item/clothing/head/modular/light,
-		/obj/item/armor_module/armor/chest/light,
-		/obj/item/armor_module/armor/arms/light,
-		/obj/item/armor_module/armor/legs/light,
-	)
-	cost = 10
-
 
 
 /*******************************************************************************
