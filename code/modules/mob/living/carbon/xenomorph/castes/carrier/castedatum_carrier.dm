@@ -6,7 +6,7 @@
 
 	caste_type_path = /mob/living/carbon/xenomorph/carrier
 
-	tier = XENO_TIER_TWO
+	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "carrier" //used to match appropriate wound overlays
 

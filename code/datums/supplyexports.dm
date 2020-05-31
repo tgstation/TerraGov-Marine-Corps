@@ -34,9 +34,12 @@
 	cost = 30
 	export_obj = /mob/living/carbon/xenomorph/sentinel
 
+/datum/supply_export/xemomorph/trapper
+	cost = 40
+	export_obj = /mob/living/carbon/xenomorph/trapper
 
 /datum/supply_export/xemomorph/carrier
-	cost = 40
+	cost = 50
 	export_obj = /mob/living/carbon/xenomorph/carrier
 
 /datum/supply_export/xemomorph/hivelord
