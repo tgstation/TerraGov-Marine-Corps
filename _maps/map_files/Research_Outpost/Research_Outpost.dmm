@@ -6767,10 +6767,6 @@
 	dir = 8
 	},
 /area/outpost/engineering/security)
-"MA" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/asteroidwarning,
-/area/outpost/caves/east)
 "MB" = (
 /obj/structure/cable,
 /obj/machinery/light/small,
@@ -8529,6 +8525,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_west)
+"VZ" = (
+/obj/docking_port/stationary/crashmode,
+/turf/closed/mineral/bigred,
+/area/outpost/caves/east)
 "Wb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
@@ -38933,11 +38933,11 @@ Xi
 Xi
 Xi
 Xi
-Xi
+VZ
 Xi
 RD
 Hb
-MA
+Gm
 Xi
 Xi
 Xi

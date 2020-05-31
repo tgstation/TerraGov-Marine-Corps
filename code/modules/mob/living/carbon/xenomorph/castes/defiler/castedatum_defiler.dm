@@ -43,6 +43,7 @@
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/activable/larval_growth_sting/defiler,
 		/datum/action/xeno_action/activable/neurotox_sting,
+		/datum/action/xeno_action/activable/inject_egg_neurogas,
 		/datum/action/xeno_action/activable/emit_neurogas,
 		/datum/action/xeno_action/toggle_pheromones
 		)
