@@ -209,18 +209,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<br>"
 	dat += "Always Pick Random Name: <a href='?_src_=prefs;preference=random_name'>[random_name ? "Yes" : "No"]</a>"
 	dat += "<br><br>"
-	dat += "<b>Synthetic Name:</b>"
-	dat += "<a href='?_src_=prefs;preference=synth_name'>[synthetic_name]</a>"
-	dat += "<br>"
-	dat += "<b>Synthetic Type:</b>"
-	dat += "<a href='?_src_=prefs;preference=synth_type'>[synthetic_type]</a>"
-	dat += "<br>"
-	dat += "<b>Xenomorph name:</b>"
-	dat += "<a href='?_src_=prefs;preference=xeno_name'>[xeno_name]</a>"
-	dat += "<br>"
-	dat += "<b>AI name:</b>"
-	dat += "<a href='?_src_=prefs;preference=ai_name'>[ai_name]</a>"
-	dat += "<br><br>"
 
 
 
@@ -230,9 +218,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<b>Gender:</b> <a href='?_src_=prefs;preference=gender'>[gender == MALE ? MALE : FEMALE]</a><br>"
 	dat += "<b>Ethnicity:</b> <a href='?_src_=prefs;preference=ethnicity'>[ethnicity]</a><br>"
 	dat += "<b>Species:</b> <a href='?_src_=prefs;preference=species'>[species]</a><br>"
-	dat += "<b>Body Type:</b> <a href='?_src_=prefs;preference=body_type'>[body_type]</a><br>"
-	dat += "<b>Good Eyesight:</b> <a href='?_src_=prefs;preference=eyesight'>[good_eyesight ? "Yes" : "No"]</a><br>"
-	dat += "<br>"
 	dat += "<b>Hair:</b> <a href='?_src_=prefs;preference=hairstyle'>[h_style]</a> | <a href='?_src_=prefs;preference=haircolor'>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_hair, 2)][num2hex(g_hair, 2)][num2hex(b_hair, 2)]'><table style='display:inline;' bgcolor='#[num2hex(r_hair, 2)][num2hex(g_hair, 2)][num2hex(b_hair)]'><tr><td>__</td></tr></table></font> "
 	dat += "<br>"
 	dat += "<b>Facial Hair:</b> <a href='?_src_=prefs;preference=facialstyle'>[f_style]</a> | <a href='?_src_=prefs;preference=facialcolor'>Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_facial, 2)][num2hex(g_facial, 2)][num2hex(b_facial, 2)]'><table  style='display:inline;' bgcolor='#[num2hex(r_facial, 2)][num2hex(g_facial, 2)][num2hex(b_facial)]'><tr><td>__</td></tr></table></font> "
@@ -246,38 +231,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	dat += "<a href='?_src_=prefs;preference=random'>Randomize</a>"
 
-
-
-	dat += "<h2>Occupation Choices:</h2>"
-
-	for(var/role in BE_SPECIAL_FLAGS)
-		var/n = BE_SPECIAL_FLAGS[role]
-		var/ban_check_name
-
-		switch(role)
-			if("Xenomorph")
-				ban_check_name = ROLE_XENOMORPH
-
-			if("Xeno Queen")
-				ban_check_name = ROLE_XENO_QUEEN
-
-		if(is_banned_from(user.ckey, ban_check_name))
-			dat += "<b>[role]:</b> <a href='?_src_=prefs;preference=bancheck;role=[role]'>BANNED</a><br>"
-		else
-			dat += "<b>[role]:</b> <a href='?_src_=prefs;preference=be_special;flag=[n]'>[CHECK_BITFIELD(be_special, n) ? "Yes" : "No"]</a><br>"
-
-	dat += "<br><b>Preferred Squad:</b> <a href ='?_src_=prefs;preference=squad'>[preferred_squad]</a><br>"
-
-
-
-
-	dat += "</div>"
-	dat += "<div class='column'>"
-
-
-
-
-	dat += "<h2>Marine Gear:</h2>"
+	dat += "<h2>Soldier Gear:</h2>"
 	if(gender == MALE)
 		dat += "<b>Underwear:</b> <a href ='?_src_=prefs;preference=underwear'>[GLOB.underwear_m[underwear]]</a><br>"
 	else
@@ -286,39 +240,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<b>Undershirt:</b> <a href='?_src_=prefs;preference=undershirt'>[GLOB.undershirt_t[undershirt]]</a><br>"
 
 	dat += "<b>Backpack Type:</b> <a href ='?_src_=prefs;preference=backpack'>[GLOB.backpacklist[backpack]]</a><br>"
-
-	dat += "<b>Custom Loadout:</b> "
-	var/total_cost = 0
-
-	if(!islist(gear))
-		gear = list()
-
-	if(length(gear))
-		dat += "<br>"
-		for(var/i in GLOB.gear_datums)
-			var/datum/gear/G = GLOB.gear_datums[i]
-			if(!G || !gear.Find(i))
-				continue
-			total_cost += G.cost
-			dat += "[i] ([G.cost] points) <a href ='?_src_=prefs;preference=loadoutremove;gear=[i]'>\[remove\]</a><br>"
-
-		dat += "<b>Used:</b> [total_cost] points."
-	else
-		dat += "None"
-
-	if(total_cost < MAX_GEAR_COST)
-		dat += " <a href ='?_src_=prefs;preference=loadoutadd'>\[add\]</a>"
-		if(length(gear))
-			dat += " <a href ='?_src_=prefs;preference=loadoutclear'>\[clear\]</a>"
-
-
-
-	dat += "<h2>Background Information:</h2>"
-
-	dat += "<b>Citizenship</b>: <a href ='?_src_=prefs;preference=citizenship'>[citizenship]</a><br/>"
-	dat += "<b>Religion</b>: <a href ='?_src_=prefs;preference=religion'>[religion]</a><br/>"
-	dat += "<b>Corporate Relation:</b> <a href ='?_src_=prefs;preference=corporation'>[nanotrasen_relation]</a><br>"
-	dat += "<br>"
 
 	dat += "<a href ='?_src_=prefs;preference=records'>Character Records</a><br>"
 
