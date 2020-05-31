@@ -273,7 +273,7 @@
 		if(href_list["time"])
 			var/time = text2num(href_list["time"])
 			timeleft += time
-			timeleft = CLAMP(timeleft, 60, 600)
+			timeleft = CLAMP(timeleft, initial(timeleft), 600)
 		if(href_list["timer"])
 			if(exploded)
 				return

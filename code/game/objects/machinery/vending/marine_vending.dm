@@ -661,6 +661,11 @@
 					/obj/item/storage/belt/sparepouch = 10,
 					/obj/item/storage/belt/gun/pistol/standard_pistol = 10,
 					/obj/item/storage/belt/gun/revolver/standard_revolver = 10,
+					/obj/item/armor_module/storage/general = 20,
+					/obj/item/armor_module/storage/ammo_mag = 20,
+					/obj/item/armor_module/storage/engineering = 20,
+					/obj/item/armor_module/storage/medical = 20,
+					/obj/item/armor_module/storage/integrated = 20,
 					/obj/item/storage/pouch/pistol = 10,
 					/obj/item/storage/pouch/magazine = 10,
 					/obj/item/storage/pouch/magazine/large = 5,
@@ -690,6 +695,16 @@
 					/obj/item/clothing/head/white_dress = 50,
 					/obj/item/clothing/shoes/white = 50,
 					/obj/item/clothing/gloves/white = 50
+					/obj/item/clothing/suit/modular = 20,
+					/obj/item/armor_module/armor/chest/heavy = 20,
+					/obj/item/armor_module/armor/chest/medium = 20,
+					/obj/item/armor_module/armor/chest/light = 20,
+					/obj/item/armor_module/armor/arms/heavy = 20,
+					/obj/item/armor_module/armor/arms/medium = 20,
+					/obj/item/armor_module/armor/arms/light = 20,
+					/obj/item/armor_module/armor/legs/heavy = 20,
+					/obj/item/armor_module/armor/legs/medium = 20,
+					/obj/item/armor_module/armor/legs/light = 20,
 					)
 
 	prices = list()

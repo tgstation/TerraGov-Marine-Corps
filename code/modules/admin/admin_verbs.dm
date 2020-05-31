@@ -1141,7 +1141,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/datum/browser/browser = new(usr, "jobmanagement", "Manage Free Slots", 600)
+	var/datum/browser/browser = new(usr, "jobmanagement", "Manage Free Slots", 700)
 	var/list/dat = list()
 	var/count = 0
 
@@ -1154,6 +1154,8 @@
 			dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];overridejobsstart=false'>Do Not Override Game Mode Settings</A> (game mode settings deal with job scaling and roundstart-only jobs cleanup, which will require manual editing if used while overriden)"
 		else
 			dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];overridejobsstart=true'>Override Game Mode Settings</A> (if not selected, changes will be erased at roundstart)"
+		dat += "<br /><hr />" // Add a clear new line
+	dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];clearalljobslots=1'>Remove all job slots</A><br />"
 	for(var/j in SSjob.joinable_occupations)
 		var/datum/job/job = j
 		count++
@@ -1169,11 +1171,12 @@
 			dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];freejobslot=[job.title]'>Free</A> | "
 			dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];addjobslot=[job.title]'>Add</A> | "
 			dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];removejobslot=[job.title]'>Remove</A> | "
+			dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];clearjobslots=[job.title]'>Remove all</A> | "
 			dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];unlimitjobslot=[job.title]'>Unlimit</A></td>"
 		else
 			dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];limitjobslot=[job.title]'>Limit</A></td>"
 
-	browser.height = min(100 + count * 20, 650)
+	browser.height = min(100 + count * 25, 700)
 	browser.set_content(dat.Join())
 	browser.open()
 
