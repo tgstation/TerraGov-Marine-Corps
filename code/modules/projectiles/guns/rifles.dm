@@ -44,7 +44,7 @@
     desc = "The T-18 carbine is one of the standard rifles used by the TerraGov Marine Corps. It's commonly used by people who prefer greater mobility in combat, like scouts and other light infantry. Lacks an automatic fire mode, but has a burst fire mode to improve damage output. Uses 10x24mm caseless ammunition."
     icon_state = "t18"
     item_state = "t18"
-    fire_sound = "sound/weapons/guns/fire/t18.ogg"
+    fire_sound = "sound/weapons/guns/fire/autorifle.ogg"
    	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
     unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
     reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
@@ -96,7 +96,7 @@
     desc = "The T-12 assault rifle used to be the TerraGov Marine Corps standard issue rifle before the T-18 carbine replaced it. It's however still used widely despite that. The gun itself is very good at being used in most situations however it suffers in engagements at close quarters and is relatively hard to shoulder than some others. It uses 10x24mm caseless ammunition."
     icon_state = "t12"
     item_state = "t12"
-    fire_sound = "sound/weapons/guns/fire/t18.ogg"
+    fire_sound = "sound/weapons/guns/fire/autorifle.ogg"
    	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
     unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
     reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
