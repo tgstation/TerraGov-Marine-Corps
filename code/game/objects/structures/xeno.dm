@@ -695,3 +695,76 @@ TUNNEL
 			to_chat(M, "<span class='warning'>\The [src] ended unexpectedly, so we return back up.</span>")
 	else
 		to_chat(M, "<span class='warning'>Our crawling was interrupted!</span>")
+
+//Xeno Sensor
+/obj/effect/alien/resin/sensor
+	name = "sensor"
+	desc = "A strange resin structure that seems to be looking around."
+	icon_state = "sensoreye"
+	density = FALSE
+	opacity = FALSE
+	anchored = TRUE
+	max_integrity = 5
+	layer = RESIN_STRUCTURE_LAYER
+
+	var/cooldown = FALSE
+	var/number = 0
+
+/obj/effect/alien/resin/sensor/Initialize()
+	. = ..()
+	START_PROCESSING(SSobj, src)
+
+/obj/effect/alien/resin/sensor/Destroy()
+	var/area/A = get_area(src)
+	for(var/X in GLOB.alive_xeno_list)
+		to_chat(X, "<span class='xenowarning'>A sensor has been destroyed at [A].</span>")
+	. = ..()
+
+/obj/effect/alien/resin/sensor/process()
+	for(var/mob/living/carbon/H in GLOB.alive_human_list)
+		if(cooldown)
+			return
+		if(H in viewers(src))
+			if(!isxeno(H) && H.stat != DEAD)
+				to_chat(H, "<span class='warning'>You feel something glance at you...</span>")
+				number++
+	var/area/A = get_area(src)
+	for(var/X in GLOB.alive_xeno_list)
+		if(number > 1)
+			var/textnumber = num2text(number)
+			to_chat(X, "<span class='xenowarning'>There are [textnumber] hosts at [A].</span>")
+		else
+			to_chat(X, "<span class='xenowarning'>There is a host at [A].</span>")
+	cooldown = TRUE
+	number = 0
+	addtimer(CALLBACK(src, .proc/cooldown_activate), 40 SECONDS)
+	STOP_PROCESSING(SSobj, src)
+
+/obj/effect/alien/resin/sensor/proc/cooldown_activate()
+	cooldown = FALSE
+	START_PROCESSING(SSobj, src)
+
+//Xeno Tripwire
+/obj/effect/alien/resin/tripwire
+	desc = "tripwire"
+	name = "A weird thin purple thread that seems to extend from the resin itself."
+	icon_state = "tripwire"
+	density = FALSE
+	opacity = FALSE
+	anchored = TRUE
+	max_integrity = 5
+	layer = RESIN_STRUCTURE_LAYER
+
+/obj/effect/alien/resin/tripwire/Initialize()
+	. = ..()
+	
+/obj/effect/alien/resin/tripwire/Destroy()
+	. = ..()
+	
+/obj/effect/alien/resin/tripwire/Crossed(atom/A)
+	. = ..()
+	if(iscarbon(A) && !isxeno(A))
+		var/area/R = get_area(src)
+		for(var/X in GLOB.alive_xeno_list)
+			to_chat(X, "<span class='xenowarning'>A tripwire has been triggered at [R].</span>")
+		qdel(src)
