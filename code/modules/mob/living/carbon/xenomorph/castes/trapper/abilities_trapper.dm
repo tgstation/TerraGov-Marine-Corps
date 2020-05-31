@@ -79,7 +79,7 @@
 // ***************************************
 // *********** Trapper Zoom
 // ***************************************
-/datum/action/xeno_action/toggle_trapper_zoom
+/datum/action/xeno_action/toggle_queen_zoom/trapper
 	name = "Toggle Trapper Zoom"
 	action_icon_state = "toggle_queen_zoom"
 	mechanics_text = "Zoom out for a larger view around wherever you are looking."

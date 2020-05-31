@@ -15,6 +15,8 @@
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 		)
+	var/list/tunnels = list() //list of active tunnels
+	var/mob/living/carbon/xenomorph/observed_xeno //the Xenomorph the trapper is currently overwatching (no overwatch, but required for zoom)
 
 /mob/living/carbon/xenomorph/panther/set_stat()
 	. = ..()
