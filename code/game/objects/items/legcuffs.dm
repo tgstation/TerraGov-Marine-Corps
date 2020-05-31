@@ -38,17 +38,18 @@
 				if(ishuman(AM))
 					if(isturf(src.loc))
 						var/mob/living/carbon/H = AM
-						if(!H.legcuffed)
-							forceMove(H)
-							H.update_legcuffed(src)
-						armed = 0
-						icon_state = "beartrap0"
-						playsound(loc, 'sound/effects/snap.ogg', 25, 1)
-						to_chat(H, "<span class='danger'>You step on \the [src]!</span>")
-						for(var/mob/O in viewers(H, null))
-							if(O == H)
-								continue
-							O.show_message("<span class='danger'>[H] steps on \the [src].</span>", 1)
+						if(H.m_intent == MOVE_INTENT_RUN)
+							if(!H.legcuffed)
+								forceMove(H)
+								H.update_legcuffed(src)
+							armed = 0
+							icon_state = "beartrap0"
+							playsound(loc, 'sound/effects/snap.ogg', 25, 1)
+							to_chat(H, "<span class='danger'>You step on \the [src]!</span>")
+							for(var/mob/O in viewers(H, null))
+								if(O == H)
+									continue
+								O.show_message("<span class='danger'>[H] steps on \the [src].</span>", 1)
 				if(isanimal(AM))
 					armed = FALSE
 					var/mob/living/simple_animal/SA = AM
