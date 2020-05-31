@@ -1,5 +1,5 @@
 // ***************************************
-// *********** NAME
+// *********** Xeno Sensor
 // ***************************************
 /datum/action/xeno_action/sensor
 	name = "Place sensor"
@@ -38,7 +38,7 @@
 	to_chat(owner, "<span class='xenonotice'>We place a hugger trap on the weeds, it still needs a facehugger.</span>")
 
 // ***************************************
-// *********** NAME
+// *********** Xeno Tripwire
 // ***************************************
 /datum/action/xeno_action/tripwire
 	name = "Place tripwire"
