@@ -383,6 +383,7 @@
 	max_integrity = 80
 	var/obj/item/clothing/mask/facehugger/hugger = null
 	var/hugger_type = /obj/item/clothing/mask/facehugger/stasis
+	var/trigger_size = 1
 	var/list/egg_triggers = list()
 	var/status = EGG_GROWING
 	var/hivenumber = XENO_HIVE_NORMAL
@@ -414,12 +415,9 @@
 
 /obj/effect/alien/egg/proc/deploy_egg_triggers()
 	QDEL_LIST(egg_triggers)
-	for(var/i in 1 to 8)
-		var/x_coords = list(-1,-1,-1,0,0,1,1,1)
-		var/y_coords = list(1,0,-1,1,-1,1,0,-1)
-		var/turf/target_turf = locate(x+x_coords[i],y+y_coords[i], z)
-		if(target_turf)
-			egg_triggers += new /obj/effect/egg_trigger(target_turf, src)
+	var/list/turf/target_locations = filled_turfs(src, trigger_size, "circle", FALSE)
+	for(var/turf/trigger_location in target_locations)
+		egg_triggers += new /obj/effect/egg_trigger(trigger_location, src)
 
 /obj/effect/alien/egg/ex_act(severity)
 	Burst(TRUE)//any explosion destroys the egg.
@@ -500,6 +498,9 @@
 /obj/effect/alien/egg/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
+	if(hugger_type == null)
+		return // This egg doesn't take huggers
+
 	if(istype(I, /obj/item/clothing/mask/facehugger))
 		var/obj/item/clothing/mask/facehugger/F = I
 		if(F.stat == DEAD)
@@ -567,7 +568,29 @@
 
 
 
+/obj/effect/alien/egg/gas
+	hugger_type = null
+	trigger_size = 2
 
+/obj/effect/alien/egg/gas/Burst(kill)
+	var/spread = EGG_GAS_DEFAULT_SPREAD
+	if(kill) // Kill is more violent
+		spread = EGG_GAS_KILL_SPREAD
+
+	QDEL_LIST(egg_triggers)
+	update_status(EGG_DESTROYED)
+	flick("Egg Exploding", src)
+	playsound(loc, "sound/effects/alien_egg_burst.ogg", 30)
+
+	var/datum/effect_system/smoke_spread/xeno/neuro/NS = new(src)
+	NS.set_up(spread, get_turf(src))
+	NS.start()
+
+/obj/effect/alien/egg/gas/HasProximity(atom/movable/AM)
+	if(issamexenohive(AM))
+		return FALSE
+	Burst(FALSE)
+	return TRUE
 /*
 TUNNEL
 */
