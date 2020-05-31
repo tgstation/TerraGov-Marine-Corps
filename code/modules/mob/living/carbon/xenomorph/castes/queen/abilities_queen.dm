@@ -230,6 +230,7 @@
 		playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
 
 	succeed_activate()
+	add_cooldown()
 
 /datum/action/xeno_action/activable/tail_sweep/ai_should_use(target)
 	if(!iscarbon(target))
