@@ -39,8 +39,8 @@
 
 /obj/item/armor_module/storage/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	parent.slowdown -= slowdown
-	time_to_equip = initial(time_to_equip) 
-	time_to_unequip = initial(time_to_unequip) 
+	time_to_equip = initial(time_to_equip)
+	time_to_unequip = initial(time_to_unequip)
 	return ..()
 
 /obj/item/storage/internal/modular
@@ -132,7 +132,7 @@
 /obj/item/storage/internal/modular/engineering
 	max_storage_space = 15
 	storage_slots = 4
-	max_w_class = WEIGHT_CLASS_NORMAL
+	max_w_class = WEIGHT_CLASS_BULKY
 	can_hold = list(
 		/obj/item/stack/barbed_wire,
 		/obj/item/stack/sheet,
