@@ -1,5 +1,9 @@
 /obj/item/clothing
 	name = "clothing"
+
+	/// Resets the armor on clothing since by default /objs get 100 bio armor
+	soft_armor = list()
+	
 	var/eye_protection = 0 //used for headgear, masks, and glasses, to see how much they protect eyes from bright lights.
 	var/accuracy_mod = 0
 
