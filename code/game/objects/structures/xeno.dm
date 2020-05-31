@@ -719,7 +719,10 @@ TUNNEL
 	else
 		to_chat(M, "<span class='warning'>Our crawling was interrupted!</span>")
 
-//Xeno Sensor
+/*
+Xeno Sensor
+*/
+
 /obj/effect/alien/resin/sensor
 	name = "sensor"
 	desc = "A strange resin structure that seems to be looking around."
@@ -761,7 +764,10 @@ TUNNEL
 	cooldown = FALSE
 	START_PROCESSING(SSobj, src)
 
-//Xeno Tripwire
+/*
+Xeno Tripwire
+*/
+
 /obj/effect/alien/resin/tripwire
 	desc = "tripwire"
 	name = "A weird thin purple thread that seems to extend from the resin itself."
@@ -779,3 +785,39 @@ TUNNEL
 		for(var/X in GLOB.alive_xeno_list)
 			to_chat(X, "<span class='xenowarning'>A tripwire has been triggered at [R].</span>")
 		qdel(src)
+
+/*
+TRAPPER TUNNEL
+*/
+
+/obj/structure/tunnel/trapper
+	name = "tunnel"
+	desc = "A tunnel entrance. Looks like it was dug by some kind of clawed beast."
+	icon = 'icons/Xeno/effects.dmi'
+	icon_state = "hole"
+
+	density = FALSE
+	opacity = FALSE
+	anchored = TRUE
+	resistance_flags = UNACIDABLE
+	layer = RESIN_STRUCTURE_LAYER
+
+	tunnel_desc = "" //description added by the hivelord.
+
+	max_integrity = 140
+	creator = null
+	other = null
+	id = null //For mapping
+
+/obj/structure/tunnel/trapper/examine(mob/user)
+	..()
+	if(!isxeno(user) && !isobserver(user))
+		return
+
+	if(!other)
+		to_chat(user, "<span class='warning'>It does not seem to lead anywhere.</span>")
+	else
+		var/area/A = get_area(other)
+		to_chat(user, "<span class='info'>It seems to lead to <b>[A.name]</b>.</span>")
+		if(tunnel_desc)
+			to_chat(user, "<span class='info'>The Trapper scent reads: \'[tunnel_desc]\'</span>")

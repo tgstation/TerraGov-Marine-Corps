@@ -52,7 +52,7 @@
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/sensor,
 		/datum/action/xeno_action/tripwire,
-		/datum/action/xeno_action/build_tunnel,
+		/datum/action/xeno_action/build_tunnel/trapper,
 		/datum/action/xeno_action/place_trap,
 		/datum/action/xeno_action/toggle_queen_zoom/trapper
 		)
