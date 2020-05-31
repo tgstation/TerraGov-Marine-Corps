@@ -1470,6 +1470,7 @@
 #include "code\modules\tgui\states\observer.dm"
 #include "code\modules\tgui\states\physical.dm"
 #include "code\modules\tgui\states\self.dm"
+#include "code\modules\tgui\states\xeno.dm"
 #include "code\modules\tgui\states\zlevel.dm"
 #include "code\modules\tooltip\tooltip.dm"
 #include "code\modules\unit_tests\_unit_tests.dm"
