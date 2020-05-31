@@ -171,6 +171,9 @@
 #define EGG_MIN_GROWTH_TIME 10 SECONDS //time it takes for the egg to mature once planted
 #define EGG_MAX_GROWTH_TIME 15 SECONDS
 
+#define EGG_GAS_DEFAULT_SPREAD 3
+#define EGG_GAS_KILL_SPREAD 4
+
 
 //We will round to this value in damage calculations.
 #define DAMAGE_PRECISION 0.1

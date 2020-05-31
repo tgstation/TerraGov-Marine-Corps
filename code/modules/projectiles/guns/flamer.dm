@@ -270,15 +270,10 @@
 				else
 					log_combat(user, H, "flamed", src)
 
-			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || (istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(H.head, /obj/item/clothing/head/helmet/marine/pyro)))
+			if(H.hard_armor.getRating("fire") >= 100)
 				continue
 
 		var/armor_block = M.run_armor_check(null, "fire")
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || (istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(H.head, /obj/item/clothing/head/helmet/marine/pyro)))
-				H.show_message(text("Your suit protects you from most of the flames."), 1)
-				armor_block = CLAMP(armor_block * 1.5, 0.75, 1) //Min 75% resist, max 100%
 		M.apply_damage(rand(burn,(burn*2))* fire_mod, BURN, null, armor_block) // Make it so its the amount of heat or twice it for the initial blast.
 		UPDATEHEALTH(M)
 		M.adjust_fire_stacks(rand(5,burn*2))
@@ -443,7 +438,7 @@
 		last_fired = world.time
 		last_use = world.time
 		return
-	if(user.skills.getRating("spec_weapons") < 0 && !do_after(user, 1 SECONDS, TRUE, src))
+	if(user.skills.getRating("firearms") < 0 && !do_after(user, 1 SECONDS, TRUE, src))
 		return
 	return ..()
 
@@ -522,8 +517,10 @@
 		UPDATEHEALTH(src)
 	to_chat(src, "<span class='danger'>You are burned!</span>")
 
+
+
 /mob/living/carbon/human/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
-	if(istype(wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(shoes, /obj/item/clothing/shoes/marine/pyro) && istype(head, /obj/item/clothing/head/helmet/marine/pyro))
+	if(hard_armor.getRating("fire") >= 100)
 		var/armor_block = run_armor_check(null, "fire")
 		if(apply_damage(round(burnlevel * 0.2) * fire_mod, BURN, null, armor_block))
 			UPDATEHEALTH(src)
@@ -591,18 +588,16 @@
 
 // override this proc to give different idling-on-fire effects
 /mob/living/flamer_fire_act(burnlevel, firelevel)
+	if(hard_armor.getRating("fire") >= 100)
+		to_chat(src, "<span class='warning'>Your suit protects you from most of the flames.</span>")
+		adjustFireLoss(rand(0, burnlevel * 0.25)) //Does small burn damage to a person wearing one of the suits.
+		return
 	adjust_fire_stacks(burnlevel) //If i stand in the fire i deserve all of this. Also Napalm stacks quickly.
 	if(prob(firelevel))
 		IgniteMob()
 	//I.adjustFireLoss(rand(10 ,burnlevel)) //Including the fire should be way stronger.
 	to_chat(src, "<span class='warning'>You are burned!</span>")
 
-/mob/living/carbon/human/flamer_fire_act(burnlevel, firelevel)
-	if(istype(wear_suit, /obj/item/clothing/suit/fire) || istype(wear_suit,/obj/item/clothing/suit/space/rig/atmos) || (istype(wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(head, /obj/item/clothing/head/helmet/marine/pyro)))
-		to_chat(src, "<span class='warning'>Your suit protects you from most of the flames.</span>")
-		adjustFireLoss(rand(0 ,burnlevel*0.25)) //Does small burn damage to a person wearing one of the suits.
-		return
-	return ..()
 
 /mob/living/carbon/xenomorph/flamer_fire_act(burnlevel, firelevel)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)

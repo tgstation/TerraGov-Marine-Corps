@@ -1657,6 +1657,40 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		message_admins("[ADMIN_TPMONTY(usr)] has removed a [slot] job slot.")
 
 
+	else if(href_list["clearjobslots"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/slot = href_list["clearjobslots"]
+
+		var/datum/job/job = SSjob.name_occupations[slot]
+		if(!(job.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE)))
+			to_chat(usr, "<span class='warning'>Job is not joinable.</span>")
+			return
+		job.set_job_positions(0)
+
+		usr.client.holder.job_slots()
+
+		log_admin("[key_name(src)] has cleared the [slot] job.")
+		message_admins("[ADMIN_TPMONTY(usr)] has cleared the [slot] job.")
+
+
+	else if(href_list["clearalljobslots"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		for(var/slot in SSjob.name_occupations)
+			var/datum/job/job = SSjob.name_occupations[slot]
+			if(!(job.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE)))
+				continue
+			job.set_job_positions(0)
+
+		usr.client.holder.job_slots()
+
+		log_admin("[key_name(src)] has cleared all job slots.")
+		message_admins("[ADMIN_TPMONTY(usr)] has cleared all job slots.")
+
+
 	else if(href_list["unlimitjobslot"])
 		if(!check_rights(R_ADMIN))
 			return
