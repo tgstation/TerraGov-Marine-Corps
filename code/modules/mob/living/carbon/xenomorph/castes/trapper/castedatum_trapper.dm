@@ -1,6 +1,6 @@
 /datum/xeno_caste/trapper
 	caste_name = "Trapper"
-	display_name = "trapper"
+	display_name = "Trapper"
 	upgrade_name = ""
 	caste_desc = "A sneaky terror capable of placing traps."
 	caste_type_path = /mob/living/carbon/xenomorph/trapper
