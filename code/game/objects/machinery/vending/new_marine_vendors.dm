@@ -561,6 +561,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	vendor_role = /datum/job/terragov/squad/specialist
 	gives_webbing = FALSE
 
+
 	listed_products = list(
 		/obj/effect/essentials_set/basic_specialist = list(CAT_STD, "Standard Kit", 0, "white"),
 		/obj/effect/essentials_set/modular/light = list(CAT_AMR, "Light Jaeger Kit", 0, "black"),
@@ -593,6 +594,13 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
 	)
 
+/obj/machinery/marine_selector/clothes/specialist/Initialize()
+    . = ..()
+    new /obj/effect/decal/cleanable/cobweb(loc)
+    for(var/d in GLOB.alldirs)
+        var/turf/T = get_step(src, d)
+        if(!T.density)
+            new /obj/effect/decal/cleanable/cobweb(T)
 
 
 /obj/machinery/marine_selector/clothes/specialist/alpha
@@ -899,7 +907,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	icon_state = "specialist"
 	vendor_role = /datum/job/terragov/squad/specialist
 	req_access = list(ACCESS_MARINE_SPECPREP)
-
+	
 	listed_products = list(
 		/obj/item/storage/box/spec/scout = list(CAT_ESS, "Scout Set (Battle Rifle)", 0, "white"),
 		/obj/item/storage/box/spec/tracker = list(CAT_ESS, "Scout Set (Shotgun)", 0, "white"),
@@ -925,6 +933,13 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/attachable/stock/t19stock = list(CAT_ATT, "T-19 Submachinegun stock", 0, "black"),
 	)
 
+/obj/machinery/marine_selector/gear/spec/Initialize()
+    . = ..()
+    new /obj/effect/decal/cleanable/cobweb(loc)
+    for(var/d in GLOB.alldirs)
+        var/turf/T = get_step(src, d)
+        if(!T.density)
+            new /obj/effect/decal/cleanable/cobweb(T)
 
 
 

@@ -438,7 +438,7 @@
 		last_fired = world.time
 		last_use = world.time
 		return
-	if(user.skills.getRating("spec_weapons") < 0 && !do_after(user, 1 SECONDS, TRUE, src))
+	if(user.skills.getRating("firearms") < 0 && !do_after(user, 1 SECONDS, TRUE, src))
 		return
 	return ..()
 
