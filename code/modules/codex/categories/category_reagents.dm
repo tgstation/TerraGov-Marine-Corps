@@ -20,6 +20,9 @@
 
 			var/list/reactant_values = list()
 			for(var/reactant_id in reaction.required_reagents)
+				if(!reactant_id)
+					stack_trace("null reactant found for [reaction.name] in their list/required_reagents")
+					continue
 				var/datum/reagent/reactant = GLOB.chemical_reagents_list[reactant_id]
 				reactant_values += "[reaction.required_reagents[reactant_id]]u [lowertext(reactant.name)]"
 

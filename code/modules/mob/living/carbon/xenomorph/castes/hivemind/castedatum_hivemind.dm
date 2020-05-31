@@ -1,6 +1,6 @@
 /datum/xeno_caste/hivemind
-	caste_name = "hivemind"
-	display_name = "hivemind"
+	caste_name = "Hivemind"
+	display_name = "Hivemind"
 	upgrade_name = ""
 	caste_desc = "The mind of the hive"
 	caste_type_path = /mob/living/carbon/xenomorph/hivemind
@@ -36,7 +36,7 @@
 	can_hold_eggs = CANNOT_HOLD_EGGS
 
 	// *** Defense *** //
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = XENO_BOMB_RESIST_0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = XENO_BOMB_RESIST_0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 	// *** Ranged Attack *** //
 	spit_delay = 0 SECONDS

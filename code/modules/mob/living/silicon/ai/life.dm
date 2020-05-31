@@ -18,7 +18,7 @@
 		if(health <= get_death_threshold())
 			death()
 		else if(stat == UNCONSCIOUS)
-			stat = CONSCIOUS
+			set_stat(CONSCIOUS)
 
 
 /mob/living/silicon/ai/updatehealth()

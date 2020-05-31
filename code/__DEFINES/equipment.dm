@@ -19,6 +19,8 @@
 #define OVERLAY_QUEUED			(1<<7)
 #define PREVENT_CLICK_UNDER		(1<<8)		//Prevent clicking things below it on the same turf
 #define CRITICAL_ATOM			(1<<9)		//Use when this shouldn't be obscured by large icons.
+///Does not cascade explosions to its contents.
+#define PREVENT_CONTENTS_EXPLOSION	(1<<10)
 
 //==========================================================================================
 
@@ -101,11 +103,6 @@
 #define ARMOR_LAMP_OVERLAY		(1<<1)
 #define ARMOR_LAMP_ON			(1<<2)
 #define ARMOR_IS_REINFORCED		(1<<3)
-//===========================================================================================
-
-//===========================================================================================
-//Marine gloves only, use for flags_glove_features.
-#define GLOVES_SQUAD_OVERLAY     (1<<0)
 //===========================================================================================
 
 //===========================================================================================

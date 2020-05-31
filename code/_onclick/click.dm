@@ -19,7 +19,7 @@
 /atom/Click(location, control, params)
 	if(flags_atom & INITIALIZED)
 		SEND_SIGNAL(src, COMSIG_CLICK, location, control, params, usr)
-		usr.ClickOn(src, params)
+		usr.ClickOn(src, location, params)
 
 
 /atom/DblClick(location, control, params)
@@ -45,7 +45,8 @@
 	* item/afterattack(atom, user, adjacent, params) - used both ranged and adjacent when not handled by attackby
 	* mob/RangedAttack(atom, params) - used only ranged, only used for tk and laser eyes but could be changed
 */
-/mob/proc/ClickOn(atom/A, params)
+/mob/proc/ClickOn(atom/A, location, params)
+
 	if(world.time <= next_click)
 		return
 	next_click = world.time + 1
@@ -60,6 +61,12 @@
 		return
 
 	var/list/modifiers = params2list(params)
+	if(isnull(location) && A.plane == CLICKCATCHER_PLANE) //Checks if the intended target is in deep darkness and adjusts A based on params.
+		A = params2turf(modifiers["screen-loc"], get_turf(client.eye), client)
+		modifiers["icon-x"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-x"])))
+		modifiers["icon-y"] = num2text(ABS_PIXEL_TO_REL(text2num(modifiers["icon-y"])))
+		params = list2params(modifiers)
+
 	if(modifiers["shift"] && modifiers["middle"])
 		ShiftMiddleClickOn(A)
 		return
@@ -69,7 +76,7 @@
 	if(modifiers["ctrl"] && modifiers["middle"])
 		CtrlMiddleClickOn(A)
 		return
-	if(modifiers["middle"] && MiddleClickOn(A))		
+	if(modifiers["middle"] && MiddleClickOn(A))
 		return
 	if(modifiers["shift"] && ShiftClickOn(A))
 		return

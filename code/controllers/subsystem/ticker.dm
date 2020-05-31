@@ -16,7 +16,7 @@ SUBSYSTEM_DEF(ticker)
 
 	var/datum/game_mode/mode = null
 
-	var/login_music							//Music played in pregame lobby
+	var/list/login_music = null						//Music played in pregame lobby
 
 	var/delay_end = FALSE					//If set true, the round will not restart on it's own
 	var/admin_delay_notice = ""				//A message to display to anyone who tries to restart the world after a delay
@@ -41,15 +41,12 @@ SUBSYSTEM_DEF(ticker)
 
 /datum/controller/subsystem/ticker/Initialize(timeofday)
 	load_mode()
-
-	login_music = pick(
-		'sound/music/SpaceHero.ogg',
-		'sound/music/ManOfWar.ogg',
-		'sound/music/PraiseTheLord.ogg',
-		'sound/music/BloodUponTheRisers.ogg',
-		'sound/music/DawsonChristian.ogg',
-		'sound/music/Bomber.ogg',
-	)
+	
+	var/all_music = CONFIG_GET(keyed_list/lobby_music)
+	var/key = SAFEPICK(all_music)
+	if(key)
+		var/music_options = splittext(all_music[key], " ")
+		login_music = list(music_options[1], music_options[2], music_options[3])
 
 	return ..()
 
@@ -203,7 +200,7 @@ SUBSYSTEM_DEF(ticker)
 		var/turf/epi = bomb.loc
 		qdel(bomb)
 		if(epi)
-			explosion(epi, 0, 256, 512, 0, TRUE, TRUE, 0, TRUE)
+			explosion(epi, 0, 256, 512, 0, silent = TRUE)
 
 /datum/controller/subsystem/ticker/proc/HasRoundStarted()
 	return current_state >= GAME_STATE_PLAYING

@@ -93,7 +93,6 @@
 		query_round_game_mode.Execute()
 		qdel(query_round_game_mode)
 
-
 /datum/game_mode/proc/new_player_topic(mob/new_player/NP, href, list/href_list)
 	return FALSE
 
@@ -198,31 +197,7 @@
 
 
 /datum/game_mode/proc/spawn_map_items()
-	var/turf/T
-	switch(SSmapping.configs[GROUND_MAP].map_name) // doing the switch first makes this a tiny bit quicker which for round setup is more important than pretty code
-		if(MAP_LV_624)
-			while(GLOB.map_items.len)
-				T = GLOB.map_items[GLOB.map_items.len]
-				GLOB.map_items.len--
-				new /obj/item/map/lazarus_landing_map(T)
-
-		if(MAP_ICE_COLONY)
-			while(GLOB.map_items.len)
-				T = GLOB.map_items[GLOB.map_items.len]
-				GLOB.map_items.len--
-				new /obj/item/map/ice_colony_map(T)
-
-		if(MAP_BIG_RED)
-			while(GLOB.map_items.len)
-				T = GLOB.map_items[GLOB.map_items.len]
-				GLOB.map_items.len--
-				new /obj/item/map/big_red_map(T)
-
-		if(MAP_PRISON_STATION)
-			while(GLOB.map_items.len)
-				T = GLOB.map_items[GLOB.map_items.len]
-				GLOB.map_items.len--
-				new /obj/item/map/FOP_map(T)
+	return
 
 
 /datum/game_mode/proc/announce_bioscans(show_locations = TRUE, delta = 2, announce_humans = TRUE, announce_xenos = TRUE, send_fax = TRUE)
@@ -360,7 +335,11 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 			stoplag()
 
 
+/datum/game_mode/proc/grant_eord_respawn(datum/dcs, mob/source)
+	source.verbs += /mob/proc/eord_respawn
+
 /datum/game_mode/proc/end_of_round_deathmatch()
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_LOGIN, .proc/grant_eord_respawn) // New mobs can now respawn into EORD
 	var/list/spawns = GLOB.deathmatch.Copy()
 
 	CONFIG_SET(flag/allow_synthetic_gun_use, TRUE)
@@ -508,6 +487,11 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 			continue
 		if((!(X.z in z_levels) && !X.is_ventcrawling) || isspaceturf(X.loc))
 			continue
+
+		// Never count hivemind
+		if(isxenohivemind(X))
+			continue
+
 		num_xenos++
 
 	return list(num_humans, num_xenos)
@@ -619,12 +603,13 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	return TRUE
 
 
-/datum/game_mode/proc/LateSpawn(mob/new_player/player, datum/job/job)
+/datum/game_mode/proc/LateSpawn(mob/new_player/player)
 	player.close_spawn_windows()
 	player.spawning = TRUE
 	player.create_character()
 	SSjob.spawn_character(player, TRUE)
 	player.mind.transfer_to(player.new_character)
+	var/datum/job/job = player.assigned_role
 	job.on_late_spawn(player.new_character)
 	qdel(player)
 

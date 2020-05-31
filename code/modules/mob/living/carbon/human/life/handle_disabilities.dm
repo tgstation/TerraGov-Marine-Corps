@@ -16,7 +16,7 @@
 				to_chat(src, "<span class='danger'>Your hand won't respond properly, you drop what you're holding.</span>")
 				drop_held_item()
 		if(10 to 12)
-			if(!lying && getBrainLoss())
+			if(!lying_angle && getBrainLoss())
 				to_chat(src, "<span class='danger'>Your legs won't respond properly, you fall down.</span>")
 				set_resting(TRUE)
 

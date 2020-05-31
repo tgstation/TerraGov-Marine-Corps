@@ -1,5 +1,5 @@
-/*
-* Job related
+/**
+* Job related clothing
 */
 
 //Botonist
@@ -10,7 +10,13 @@
 	item_state = "apron"
 	blood_overlay_type = "armor"
 	flags_armor_protection = 0
-	allowed = list (/obj/item/reagent_containers/spray/plantbgone,/obj/item/analyzer/plant_analyzer,/obj/item/seeds,/obj/item/reagent_containers/glass/fertilizer,/obj/item/tool/minihoe)
+	allowed = list (
+		/obj/item/reagent_containers/spray/plantbgone,
+		/obj/item/analyzer/plant_analyzer,
+		/obj/item/seeds,
+		/obj/item/reagent_containers/glass/fertilizer,
+		/obj/item/tool/minihoe
+	)
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
 
@@ -20,7 +26,7 @@
 	icon_state = "surgical"
 	item_state = "surgical"
 	flags_armor_protection = CHEST
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 10, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 10, "rad" = 0, "fire" = 0, "acid" = 0)
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
 
@@ -51,7 +57,6 @@
 	flags_armor_protection = CHEST|ARMS
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
-//Chaplain
 /obj/item/clothing/suit/nun
 	name = "nun robe"
 	desc = "Maximum piety in this star system."
@@ -70,10 +75,10 @@
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50
 	flags_armor_protection = CHEST|GROIN|ARMS
-	allowed = list (/obj/item/tool/kitchen/knife,/obj/item/tool/kitchen/knife/butcher)
+	allowed = list (/obj/item/tool/kitchen/knife,
+	/obj/item/tool/kitchen/knife/butcher)
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
-//Chef
 /obj/item/clothing/suit/chef/classic
 	name = "A classic chef's apron."
 	desc = "A basic, dull, white chef's apron."
@@ -112,8 +117,20 @@
 	item_state = "det_suit"
 	blood_overlay_type = "coat"
 	flags_armor_protection = CHEST|ARMS
-	allowed = list(/obj/item/tank/emergency_oxygen, /obj/item/flashlight,/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/baton,/obj/item/restraints/handcuffs,/obj/item/storage/fancy/cigarettes,/obj/item/tool/lighter,/obj/item/detective_scanner,/obj/item/taperecorder)
-	armor = list("melee" = 50, "bullet" = 10, "laser" = 25, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
+	allowed = list(
+		/obj/item/tank/emergency_oxygen,
+		/obj/item/flashlight,
+		/obj/item/weapon/gun,
+		/obj/item/ammo_magazine,
+		/obj/item/ammo_casing,
+		/obj/item/weapon/baton,
+		/obj/item/restraints/handcuffs,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/tool/lighter,
+		/obj/item/detective_scanner,
+		/obj/item/taperecorder
+	)
+	soft_armor = list("melee" = 50, "bullet" = 10, "laser" = 25, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
 /obj/item/clothing/suit/storage/det_suit/black
@@ -125,8 +142,18 @@
 	desc = "A forensics technician jacket."
 	item_state = "det_suit"
 	flags_armor_protection = CHEST|ARMS
-	allowed = list(/obj/item/tank/emergency_oxygen, /obj/item/flashlight,/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/baton,/obj/item/restraints/handcuffs,/obj/item/detective_scanner,/obj/item/taperecorder)
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 15, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
+	allowed = list(
+		/obj/item/tank/emergency_oxygen,
+		/obj/item/flashlight,
+		/obj/item/weapon/gun,
+		/obj/item/ammo_magazine,
+		/obj/item/ammo_casing,
+		/obj/item/weapon/baton,
+		/obj/item/restraints/handcuffs,
+		/obj/item/detective_scanner,
+		/obj/item/taperecorder
+	)
+	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 15, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 
 /obj/item/clothing/suit/storage/forensics/red
 	name = "red jacket"
@@ -145,9 +172,24 @@
 	icon_state = "hazard"
 	item_state = "hazard"
 	blood_overlay_type = "armor"
-	allowed = list (/obj/item/analyzer, /obj/item/flashlight, /obj/item/multitool, /obj/item/pipe_painter, /obj/item/radio, /obj/item/t_scanner, \
-	/obj/item/tool/crowbar, /obj/item/tool/screwdriver, /obj/item/tool/weldingtool, /obj/item/tool/wirecutters, /obj/item/tool/wrench, /obj/item/tank/emergency_oxygen, \
-	/obj/item/clothing/mask/gas, /obj/item/tool/taperoll/engineering)
+	allowed = list(
+		/obj/item/analyzer,
+		/obj/item/flashlight,
+		/obj/item/multitool,
+		/obj/item/pipe_painter,
+		/obj/item/radio,
+		/obj/item/t_scanner,
+
+		/obj/item/tool/crowbar,
+		/obj/item/tool/screwdriver,
+		/obj/item/tool/weldingtool,
+		/obj/item/tool/wirecutters,
+		/obj/item/tool/wrench,
+		/obj/item/tank/emergency_oxygen,
+
+		/obj/item/clothing/mask/gas,
+		/obj/item/tool/taperoll/engineering
+	)
 	flags_armor_protection = CHEST
 
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
@@ -178,25 +220,25 @@
 	blood_overlay_type = "coat"
 	flags_armor_protection = CHEST|ARMS
 
-	verb/toggle()
-		set name = "Toggle Coat Buttons"
-		set category = "Object"
-		set src in usr
+/obj/item/clothing/suit/storage/internalaffairs/verb/toggle()
+	set name = "Toggle Coat Buttons"
+	set category = "Object"
+	set src in usr
 
-		if(!usr.canmove || usr.stat || usr.restrained())
-			return 0
+	if(!usr.canmove || usr.stat || usr.restrained())
+		return FALSE
 
-		switch(icon_state)
-			if("ia_jacket_open")
-				src.icon_state = "ia_jacket"
-				to_chat(usr, "You button up the jacket.")
-			if("ia_jacket")
-				src.icon_state = "ia_jacket_open"
-				to_chat(usr, "You unbutton the jacket.")
-			else
-				to_chat(usr, "You attempt to button-up the velcro on your [src], before promptly realising how retarded you are.")
-				return
-		update_clothing_icon()	//so our overlays update
+	switch(icon_state)
+		if("ia_jacket_open")
+			src.icon_state = "ia_jacket"
+			to_chat(usr, "You button up the jacket.")
+		if("ia_jacket")
+			src.icon_state = "ia_jacket_open"
+			to_chat(usr, "You unbutton the jacket.")
+		else
+			to_chat(usr, "You attempt to button-up the velcro on your [src], before promptly realising that it won't work.")
+			return FALSE
+	update_clothing_icon()	//so our overlays update
 
 //Medical
 /obj/item/clothing/suit/storage/fr_jacket
@@ -205,26 +247,34 @@
 	icon_state = "fr_jacket_open"
 	item_state = "fr_jacket"
 	blood_overlay_type = "armor"
-	allowed = list(/obj/item/stack/medical, /obj/item/reagent_containers/dropper, /obj/item/reagent_containers/hypospray, /obj/item/reagent_containers/syringe, \
-	/obj/item/healthanalyzer, /obj/item/flashlight, /obj/item/radio, /obj/item/tank/emergency_oxygen)
+	allowed = list(
+		/obj/item/stack/medical,
+		/obj/item/reagent_containers/dropper,
+		/obj/item/reagent_containers/hypospray,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/healthanalyzer, 
+		/obj/item/flashlight, 
+		/obj/item/radio, 
+		/obj/item/tank/emergency_oxygen
+	)
 	flags_armor_protection = CHEST|ARMS
 
-	verb/toggle()
-		set name = "Toggle Jacket Buttons"
-		set category = "Object"
-		set src in usr
+/obj/item/clothing/suit/storage/fr_jacket/verb/toggle()
+	set name = "Toggle Jacket Buttons"
+	set category = "Object"
+	set src in usr
 
-		if(!usr.canmove || usr.stat || usr.restrained())
-			return 0
+	if(!usr.canmove || usr.stat || usr.restrained())
+		return FALSE
 
-		switch(icon_state)
-			if("fr_jacket_open")
-				src.icon_state = "fr_jacket"
-				to_chat(usr, "You button up the jacket.")
-			if("fr_jacket")
-				src.icon_state = "fr_jacket_open"
-				to_chat(usr, "You unbutton the jacket.")
-		update_clothing_icon()	//so our overlays update
+	switch(icon_state)
+		if("fr_jacket_open")
+			src.icon_state = "fr_jacket"
+			to_chat(usr, "You button up the jacket.")
+		if("fr_jacket")
+			src.icon_state = "fr_jacket_open"
+			to_chat(usr, "You unbutton the jacket.")
+	update_clothing_icon()	//so our overlays update
 
 //Mime
 /obj/item/clothing/suit/suspenders

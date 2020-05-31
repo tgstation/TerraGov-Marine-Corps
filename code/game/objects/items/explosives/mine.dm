@@ -1,8 +1,9 @@
+/**
+Mines
 
-
-///***MINES***///
-//Mines have an invisible "tripwire" atom that explodes when crossed
-//Stepping directly on the mine will also blow it up
+Mines have an invisible "tripwire" atom that explodes when crossed
+Stepping directly on the mine will also blow it up
+*/
 /obj/item/explosive/mine
 	name = "\improper M20 Claymore anti-personnel mine"
 	desc = "The M20 Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the TerraGov Marine Corps."
@@ -13,67 +14,72 @@
 	throwforce = 5
 	throw_range = 6
 	throw_speed = 3
-	resistance_flags = UNACIDABLE
 	flags_atom = CONDUCT
 
-	var/iff_signal = ACCESS_IFF_MARINE
-	var/triggered = FALSE
-	var/armed = FALSE //Will the mine explode or not
-	var/trigger_type = "explosive" //Calls that proc
-	var/obj/effect/mine_tripwire/tripwire
+	/// IFF signal - used to determine friendly units
+	var/iff_signal = ACCESS_IFF_MARINE 
+	/// If the mine has been triggered
+	var/triggered = FALSE 
+	/// State of the mine. Will the mine explode or not
+	var/armed = FALSE 
+	/// Tripwire holds reference to the tripwire obj that is used to trigger an explosion
+	var/obj/effect/mine_tripwire/tripwire 
 
+/obj/item/explosive/mine/Destroy()
+	QDEL_NULL(tripwire)
+	return ..()
+
+/// Update the icon, adding "_armed" if appropriate to the icon_state.
+/obj/item/explosive/mine/update_icon()
+	icon_state = "[initial(icon_state)][armed ? "_armed" : ""]"
+
+/// On explosion mines trigger their own explosion, assuming there were not deleted straight away (larger explosions or probability)
 /obj/item/explosive/mine/ex_act()
 	. = ..()
 	if(!QDELETED(src))
 		INVOKE_ASYNC(src, .proc/trigger_explosion)
 
+/// Any emp effects mines will trigger their explosion
 /obj/item/explosive/mine/emp_act()
 	. = ..()
 	INVOKE_ASYNC(src, .proc/trigger_explosion)
 
-/obj/item/explosive/mine/Destroy()
-	QDEL_NULL(tripwire)
+/// Flamer fire will cause mines to trigger their explosion 
+/obj/item/explosive/mine/flamer_fire_act()
 	. = ..()
+	INVOKE_ASYNC(src, .proc/trigger_explosion)
 
-/obj/item/explosive/mine/update_icon()
-	icon_state = "[initial(icon_state)][armed ? "_armed" : ""]"
-
-/obj/item/explosive/mine/pmc
-	name = "\improper M20P Claymore anti-personnel mine"
-	desc = "The M20P Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the TerraGov Marine Corps. It has been modified for use by the NT PMC forces."
-	icon_state = "m20p"
-	iff_signal = ACCESS_IFF_PMC
-
-//Arming
+/// attack_self is used to arm the mine
 /obj/item/explosive/mine/attack_self(mob/living/user)
-	if(locate(/obj/item/explosive/mine) in get_turf(src))
-		to_chat(user, "<span class='warning'>There already is a mine at this position!</span>")
-		return
-
 	if(!user.loc || user.loc.density)
 		to_chat(user, "<span class='warning'>You can't plant a mine here.</span>")
 		return
 
-	if(!armed)
-		user.visible_message("<span class='notice'>[user] starts deploying [src].</span>", \
-		"<span class='notice'>You start deploying [src].</span>")
-		if(!do_after(user, 40, TRUE, src, BUSY_ICON_HOSTILE))
-			user.visible_message("<span class='notice'>[user] stops deploying [src].</span>", \
-		"<span class='notice'>You stop deploying \the [src].</span>")
-			return
-		user.visible_message("<span class='notice'>[user] finishes deploying [src].</span>", \
-		"<span class='notice'>You finish deploying [src].</span>")
-		anchored = TRUE
-		armed = TRUE
-		playsound(src.loc, 'sound/weapons/mine_armed.ogg', 25, 1)
-		update_icon()
-		user.drop_held_item()
-		setDir(user.dir) //The direction it is planted in is the direction the user faces at that time
-		var/tripwire_loc = get_turf(get_step(loc, dir))
-		tripwire = new /obj/effect/mine_tripwire(tripwire_loc)
-		tripwire.linked_claymore = src
+	if(locate(/obj/item/explosive/mine) in get_turf(src))
+		to_chat(user, "<span class='warning'>There already is a mine at this position!</span>")
+		return
 
-//Disarming
+	if(armed)
+		return
+
+	user.visible_message("<span class='notice'>[user] starts deploying [src].</span>", \
+	"<span class='notice'>You start deploying [src].</span>")
+	if(!do_after(user, 40, TRUE, src, BUSY_ICON_HOSTILE))
+		user.visible_message("<span class='notice'>[user] stops deploying [src].</span>", \
+	"<span class='notice'>You stop deploying \the [src].</span>")
+		return
+	user.visible_message("<span class='notice'>[user] finishes deploying [src].</span>", \
+	"<span class='notice'>You finish deploying [src].</span>")
+	anchored = TRUE
+	armed = TRUE
+	playsound(src.loc, 'sound/weapons/mine_armed.ogg', 25, 1)
+	update_icon()
+	user.drop_held_item()
+	setDir(user.dir) //The direction it is planted in is the direction the user faces at that time
+	tripwire = new /obj/effect/mine_tripwire(get_step(loc, dir))
+	tripwire.linked_mine = src
+
+/// Supports diarming a mine
 /obj/item/explosive/mine/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
@@ -83,7 +89,7 @@
 	user.visible_message("<span class='notice'>[user] starts disarming [src].</span>", \
 	"<span class='notice'>You start disarming [src].</span>")
 
-	if(!do_after(user, 80, TRUE, src, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, 8 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
 		user.visible_message("<span class='warning'>[user] stops disarming [src].", \
 		"<span class='warning'>You stop disarming [src].")
 		return
@@ -98,19 +104,19 @@
 //Mine can also be triggered if you "cross right in front of it" (same tile)
 /obj/item/explosive/mine/Crossed(atom/A)
 	. = ..()
-	if(isliving(A))
-		var/mob/living/L = A
-		if(!L.lying)//so dragged corpses don't trigger mines.
-			Bumped(A)
+	if(!isliving(A))
+		return
+	var/mob/living/L = A
+	if(L.lying_angle) ///so dragged corpses don't trigger mines.
+		return
+	Bumped(A)
 
 /obj/item/explosive/mine/Bumped(mob/living/L)
 	. = ..()
 	if(!armed || triggered)
 		return
-
-	if(issilicon(L))
+	if((L.status_flags & INCORPOREAL))
 		return
-
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
 		if(H.get_target_lock(iff_signal))
@@ -123,16 +129,7 @@
 	playsound(loc, 'sound/weapons/mine_tripped.ogg', 25, 1)
 	INVOKE_ASYNC(src, .proc/trigger_explosion)
 
-//Note : May not be actual explosion depending on linked method
-/obj/item/explosive/mine/proc/trigger_explosion()
-	if(triggered)
-		return
-	triggered = TRUE
-	switch(trigger_type)
-		if("explosive")
-			explosion(tripwire ? tripwire.loc : loc, -1, -1, 2)
-			qdel(src)
-
+/// Alien attacks trigger the explosive to instantly detonate
 /obj/item/explosive/mine/attack_alien(mob/living/carbon/xenomorph/M)
 	if(triggered) //Mine is already set to go off
 		return
@@ -142,40 +139,46 @@
 	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>", \
 	"<span class='danger'>We slash [src]!</span>")
 	playsound(loc, 'sound/weapons/slice.ogg', 25, 1)
-
-	//We move the tripwire randomly in either of the four cardinal directions
-	if(tripwire)
-		var/direction = pick(GLOB.cardinals)
-		var/step_direction = get_step(src, direction)
-		tripwire.forceMove(step_direction)
 	INVOKE_ASYNC(src, .proc/trigger_explosion)
 
-/obj/item/explosive/mine/flamer_fire_act() //adding mine explosions
-	var/turf/T = loc
+/// Trigger an actual explosion and delete the mine.
+/obj/item/explosive/mine/proc/trigger_explosion()
+	if(triggered)
+		return
+	triggered = TRUE
+	explosion(tripwire ? tripwire.loc : loc, light_impact_range = 3)
+	QDEL_NULL(tripwire)
 	qdel(src)
-	explosion(T, -1, -1, 2)
 
-
+/// This is a mine_tripwire that is basically used to extend the mine and capture bump movement further infront of the mine
 /obj/effect/mine_tripwire
 	name = "claymore tripwire"
 	anchored = TRUE
-	mouse_opacity = 0
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	invisibility = INVISIBILITY_MAXIMUM
 	resistance_flags = UNACIDABLE
-	var/obj/item/explosive/mine/linked_claymore
+	var/obj/item/explosive/mine/linked_mine
 
 /obj/effect/mine_tripwire/Destroy()
-	linked_claymore = null
-	. = ..()
+	linked_mine = null
+	return ..()
 
+/// When crossed the tripwire triggers the linked mine
 /obj/effect/mine_tripwire/Crossed(atom/A)
 	. = ..()
-	if(!linked_claymore)
+	if(!linked_mine)
 		qdel(src)
 		return
 
-	if(linked_claymore.triggered) //Mine is already set to go off
+	if(linked_mine.triggered) //Mine is already set to go off
 		return
 
-	if(linked_claymore && isliving(A))
-		linked_claymore.Bumped(A)
+	if(linked_mine && isliving(A))
+		linked_mine.Bumped(A)
+
+/// PMC specific mine, with IFF for PMC units
+/obj/item/explosive/mine/pmc
+	name = "\improper M20P Claymore anti-personnel mine"
+	desc = "The M20P Claymore is a directional proximity triggered anti-personnel mine designed by Armat Systems for use by the TerraGov Marine Corps. It has been modified for use by the NT PMC forces."
+	icon_state = "m20p"
+	iff_signal = ACCESS_IFF_PMC

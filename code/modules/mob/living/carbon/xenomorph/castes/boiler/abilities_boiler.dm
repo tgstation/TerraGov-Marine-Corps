@@ -68,8 +68,8 @@
 /datum/action/xeno_action/create_boiler_bomb/action_activate()
 	var/mob/living/carbon/xenomorph/boiler/X = owner
 
-	if(X.selected_ability) //bombarding or something else.
-		to_chat(X, "<span class='notice'>We can not prepare globules as we are now. We must clear our mind of abilities!</span>")
+	if(X.is_zoomed)
+		to_chat(X, "<span class='notice'>We can not prepare globules as we are now. We must stop concentrating into the distance!</span>")
 		return
 
 	var/current_ammo = X.corrosive_ammo + X.neuro_ammo
@@ -84,7 +84,7 @@
 	else
 		X.neuro_ammo++
 		to_chat(X, "<span class='notice'>We prepare a neurotoxic gas globule.</span>")
-	X.set_light(current_ammo)
+	X.updateBoilerGlow() 
 	update_button_icon()
 
 /datum/action/xeno_action/create_boiler_bomb/update_button_icon()
@@ -232,7 +232,7 @@
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "boiler_neuro_smokes")
 		X.neuro_ammo--
 
-	X.set_light(X.corrosive_ammo + X.neuro_ammo)
+	X.updateBoilerGlow()
 	update_button_icon()
 	add_cooldown()
 	X.reset_bombard_pointer()

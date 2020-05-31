@@ -307,13 +307,6 @@
 		items = TIE.store_in_cryo(items)
 	return ..()
 
-/obj/item/clothing/shoes/marine/store_in_cryo(list/items, nullspace_it = TRUE)
-	if(knife)
-		items = knife.store_in_cryo(items)
-		knife = null
-		update_icon()
-	return ..()
-
 /obj/item/clothing/tie/storage/store_in_cryo(list/items, nullspace_it = TRUE)
 	for(var/O in hold)
 		var/obj/item/I = O
@@ -389,7 +382,7 @@
 	climb_in(M, user)
 
 /obj/machinery/cryopod/MouseDrop_T(mob/M, mob/user)
-	if(!isliving(M))
+	if(!isliving(M) || !ishuman(user))
 		return
 	move_inside_wrapper(M, user)
 

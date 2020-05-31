@@ -36,7 +36,7 @@
 
 	var/static/shuttingdown = null
 	var/static/timeouts = list()
-
+	var/waitforroundend = FALSE
 	if(!CONFIG_GET(flag/allow_shutdown))
 		to_chat(usr, "<span class='danger'>This has not been enabled by the server operator.</span>")
 		return
@@ -63,13 +63,19 @@
 		if(alert("The game ticker does not exist, normal checks will be bypassed.", "Continue Shutting Down Server?", "Cancel", "Continue Shutting Down Server", "Cancel.") != "Continue Shutting Down Server")
 			return
 	else
-		var/required_state_message = "The server must be in either pre-game or post-game and the start/end must be delayed to shutdown the server."
-		if(SSticker.current_state != GAME_STATE_PREGAME && SSticker.current_state != GAME_STATE_FINISHED)
-			to_chat(usr, "<span class='danger'>[required_state_message] The round is not in the lobby or endgame state.</span>")
-			return
-		if((SSticker.current_state == GAME_STATE_PREGAME && SSticker.time_left > 0) || (SSticker.current_state == GAME_STATE_FINISHED && !SSticker.delay_end))
+		var/required_state_message = "The server must be in either pre-game and the start must be delayed or already started with the end delayed to shutdown the server."
+		if((SSticker.current_state == GAME_STATE_PREGAME && SSticker.time_left > 0) || (SSticker.current_state != GAME_STATE_PREGAME && !SSticker.delay_end))
 			to_chat(usr, "<span class='danger'>[required_state_message] The round start/end is not delayed.</span>")
 			return
+		if (SSticker.current_state == GAME_STATE_PLAYING || SSticker.current_state == GAME_STATE_SETTING_UP)
+			#ifdef TGS_V3_API
+			if(alert("The round is currently in progress, continue with shutdown?", "Continue Shutting Down Server?", "Cancel", "Continue Shutting Down Server", "Cancel.") != "Continue Shutting Down Server")
+				return
+			waitforroundend = TRUE		
+			#else
+			to_chat(usr, "<span class='danger'>Restarting during the round requires the server toolkit. No server toolkit detected. Please end the round and try again.</span>")
+			return
+			#endif
 
 	to_chat(usr, "<span class='danger'>Alert: Delayed confirmation required. You will be asked to confirm again in 30 seconds.</span>")
 	message_admins("[ADMIN_TPMONTY(usr)] initiated the shutdown process. You may abort this by pressing the shutdown server button again.")
@@ -89,9 +95,8 @@
 		message_admins("[ADMIN_TPMONTY(usr)] decided against shutting down the server.")
 		shuttingdown = null
 		return
-
-	to_chat(world, "<span class='danger'>Server shutting down in 30 seconds!</span> <span class='notice'>Initiated by: [usr.key]</span>")
-	message_admins("[ADMIN_TPMONTY(usr)] is shutting down the server. You may abort this by pressing the shutdown server button again within 30 seconds.")
+	to_chat(world, "<span class='danger'>Server shutting down [waitforroundend ? "after this round" : "in 30 seconds!"]</span> <span class='notice'>Initiated by: [usr.key]</span>")
+	message_admins("[ADMIN_TPMONTY(usr)] is shutting down the server[waitforroundend ? " after this round" : ""]. You may abort this by pressing the shutdown server button again within 30 seconds.")
 
 	sleep(31 SECONDS) //to give the admins that final second to hit the confirm button on the cancel prompt.
 
@@ -102,8 +107,8 @@
 	if(shuttingdown != usr.ckey) //somebody cancelled but then somebody started again.
 		return
 
-	to_chat(world, "<span class='danger'>Server shutting down.</span> <span class='notice'>Initiated by: [shuttingdown]</span>")
-	log_admin("Server shutting down. Initiated by: [shuttingdown]")
+	to_chat(world, "<span class='danger'>Server shutting down[waitforroundend ? " after this round. " : ""].</span> <span class='notice'>Initiated by: [shuttingdown]</span>")
+	log_admin("Server shutting down[waitforroundend ? " after this round" : ""]. Initiated by: [shuttingdown]")
 
 #ifdef TGS_V3_API
 	if(GLOB.tgs)
@@ -113,6 +118,8 @@
 			var/instancename = TA.InstanceName()
 			if(instancename)
 				shell("[tgs3_path] --instance [instancename] dd stop --graceful") //this tells tgstation-server to ignore us shutting down
+				if (waitforroundend)
+					message_admins("tgstation-server has been ordered to shutdown the server after the current round. The server shutdown can no longer be cancelled.")
 			else
 				var/msg = "WARNING: Couldn't find tgstation-server3 instancename, server might restart after shutdown."
 				message_admins(msg)
@@ -126,7 +133,8 @@
 		message_admins(msg)
 		log_admin(msg)
 #endif
-
+	if (waitforroundend)
+		return
 	sleep(world.tick_lag) //so messages can get sent to players.
 	qdel(world) //there are a few ways to shutdown the server, but this is by far my favorite
 

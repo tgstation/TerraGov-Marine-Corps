@@ -105,11 +105,10 @@
 			var/mob/living/carbon/xenomorph/X = i
 			X.upgrade_stored = X.xeno_caste.upgrade_threshold
 
-
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH)
-	RegisterGlobalSignal(COMSIG_GLOB_NUKE_EXPLODED, .proc/on_nuclear_explosion)
-	RegisterGlobalSignal(COMSIG_GLOB_NUKE_DIFFUSED, .proc/on_nuclear_diffuse)
-	RegisterGlobalSignal(COMSIG_GLOB_NUKE_START, .proc/on_nuke_started)
+	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_EXPLODED, .proc/on_nuclear_explosion)
+	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_DIFFUSED, .proc/on_nuclear_diffuse)
+	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, .proc/on_nuke_started)
 	var/datum/hive_status/normal/HN = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	if(HN)
 		RegisterSignal(HN, COMSIG_XENOMORPH_POSTEVOLVING, .proc/on_xeno_evolve)
@@ -136,6 +135,7 @@
 
 /datum/game_mode/infestation/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
 	shuttle_landed = TRUE
+	shuttle.crashing = FALSE
 
 	// We delay this a little because the shuttle takes some time to land, and we want to the xenos to know the position of the marines.
 	bioscan_interval = world.time + 30 SECONDS
@@ -337,7 +337,7 @@
 /datum/game_mode/infestation/crash/proc/on_xeno_evolve(datum/source, mob/living/carbon/xenomorph/new_xeno)
 	switch(new_xeno.tier)
 		if(XENO_TIER_ONE)
-			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE)
+			new_xeno.upgrade_xeno(XENO_UPGRADE_THREE)
 		if(XENO_TIER_TWO)
 			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE)
 

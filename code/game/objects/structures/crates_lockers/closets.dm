@@ -19,7 +19,7 @@
 	var/locked = FALSE
 	var/wall_mounted = FALSE //never solid (You can always pass over it)
 	max_integrity = 200
-	armor = list("melee" = 20, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 60)
+	soft_armor = list("melee" = 20, "bullet" = 10, "laser" = 10, "energy" = 0, "bomb" = 10, "bio" = 0, "rad" = 0, "fire" = 70, "acid" = 60)
 	var/breakout_time = 2 MINUTES
 	var/lastbang = FALSE
 	var/closet_flags = NONE
@@ -152,22 +152,25 @@
 // this should probably use dump_contents()
 /obj/structure/closet/ex_act(severity)
 	switch(severity)
-		if(1)
-			for(var/atom/movable/A as mob|obj in src)//pulls everything out of the locker and hits it with an explosion
-				A.loc = loc
-				A.ex_act(severity++)
+		if(EXPLODE_DEVASTATE)
+			for(var/am in contents)//pulls everything out of the locker and hits it with an explosion
+				var/atom/movable/movable_content = am
+				movable_content.forceMove(loc)
+				movable_content.ex_act(severity)
 			qdel(src)
-		if(2)
+		if(EXPLODE_HEAVY)
 			if(prob(50))
-				for (var/atom/movable/A as mob|obj in src)
-					A.loc = loc
-					A.ex_act(severity++)
+				for(var/am in contents)
+					var/atom/movable/movable_content = am
+					movable_content.forceMove(loc)
+					movable_content.ex_act(severity)
 				qdel(src)
-		if(3)
+		if(EXPLODE_LIGHT)
 			if(prob(5))
-				for(var/atom/movable/A as mob|obj in src)
-					A.loc = loc
-					A.ex_act(severity++)
+				for(var/am in contents)
+					var/atom/movable/movable_content = am
+					movable_content.forceMove(loc)
+					movable_content.ex_act(severity)
 				qdel(src)
 
 /obj/structure/closet/attack_animal(mob/living/user)
@@ -342,9 +345,11 @@
 		return FALSE
 	if(user.action_busy) //Already resisting or doing something like it.
 		return FALSE
+	if(COOLDOWN_CHECK(user, COOLDOWN_RESIST))
+		return FALSE
 	//okay, so the closet is either welded or locked... resist!!!
 	user.changeNext_move(CLICK_CD_BREAKOUT)
-	user.cooldowns[COOLDOWN_RESIST] = addtimer(VARSET_LIST_CALLBACK(user.cooldowns, COOLDOWN_RESIST, null), CLICK_CD_BREAKOUT)
+	COOLDOWN_START(user, COOLDOWN_RESIST, CLICK_CD_BREAKOUT)
 	user.visible_message("<span class='warning'>[src] begins to shake violently!</span>", \
 		"<span class='notice'>You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)</span>", \
 		"<span class='italics'>You hear banging from [src].</span>")
@@ -409,10 +414,10 @@
 	return TRUE
 
 
-/obj/structure/closet/contents_explosion(severity, target)
+/obj/structure/closet/contents_explosion(severity)
 	for(var/i in contents)
-		var/atom/A = i
-		A.ex_act(severity, target)
+		var/atom/movable/closet_contents = i
+		closet_contents.ex_act(severity)
 
 
 /obj/structure/closet/proc/closet_special_handling(mob/living/mob_to_stuff)
@@ -470,7 +475,7 @@
 
 /mob/living/proc/on_closet_dump(datum/source, obj/structure/closet/origin)
 	SetStun(origin.closet_stun_delay)//Action delay when going out of a closet
-	if(!lying && IsStun())
+	if(!lying_angle && IsStun())
 		visible_message("<span class='warning'>[src] suddenly gets out of [origin]!</span>",
 		"<span class='warning'>You get out of [origin] and get your bearings!</span>")
 	origin.UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)

@@ -27,7 +27,7 @@
 /mob/living/incapacitated(ignore_restrained, restrained_flags)
 	. = ..()
 	if(!.)
-		return (IsStun() || IsKnockdown() || IsUnconscious())
+		return HAS_TRAIT(src, TRAIT_INCAPACITATED)
 
 
 /mob/living/restrained(ignore_checks)

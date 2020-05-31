@@ -73,13 +73,13 @@
 		updateStamina(feedback)
 
 /mob/living/proc/updateStamina(feedback = TRUE)
-	if(staminaloss < maxHealth * 1.5)
+	if(staminaloss < max(health * 1.5,0))
 		return
-	if(!IsKnockdown())
+	if(!IsParalyzed())
 		if(feedback)
 			visible_message("<span class='warning'>\The [src] slumps to the ground, too weak to continue fighting.</span>",
 				"<span class='warning'>You slump to the ground, you're too exhausted to keep going...</span>")
-	Knockdown(80)
+	Paralyze(80)
 
 
 /mob/living/carbon/human/updateStamina(feedback = TRUE)
@@ -276,7 +276,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 		timeofdeath = 0
 
 	// restore us to conciousness
-	stat = CONSCIOUS
+	set_stat(CONSCIOUS)
 	updatehealth()
 
 	// make the icons look correct
@@ -311,20 +311,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 
 
 /mob/living/carbon/human/revive()
-	for(var/datum/limb/O in limbs)
-		if(O.limb_status & LIMB_ROBOT)
-			O.limb_status = LIMB_ROBOT
-		else
-			O.limb_status = NONE
-		O.perma_injury = 0
-		O.germ_level = 0
-		O.wounds.Cut()
-		O.heal_limb_damage(1000, 1000, TRUE, TRUE)
-		O.reset_limb_surgeries()
-
-	var/datum/limb/head/h = get_limb("head")
-	h.disfigured = FALSE
-	name = get_visible_name()
+	restore_all_organs()
 
 	if(species && !(species.species_flags & NO_BLOOD))
 		restore_blood()

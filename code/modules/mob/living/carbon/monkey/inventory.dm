@@ -8,9 +8,11 @@
 
 	if(W == r_hand)
 		r_hand = null
+		W.unequipped(src, SLOT_R_HAND)
 		update_inv_r_hand()
 	else if(W == l_hand)
 		l_hand = null
+		W.unequipped(src, SLOT_L_HAND)
 		update_inv_l_hand()
 
 	W.screen_loc = null
@@ -29,7 +31,6 @@
 			update_handcuffed(W)
 		if(SLOT_LEGCUFFED)
 			update_legcuffed(W)
-			W.equipped(src, slot)
 		if(SLOT_L_HAND)
 			l_hand = W
 			W.equipped(src, slot)

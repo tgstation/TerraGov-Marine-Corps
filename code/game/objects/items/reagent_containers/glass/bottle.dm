@@ -224,4 +224,18 @@
 	icon_state = "bottle7"
 	list_reagents = list(/datum/reagent/toxin/xeno_neurotoxin = 30)
 
+/obj/item/reagent_containers/glass/bottle/xeno_growthtoxin
+	name = "\improper Growth toxin bottle"
+	desc = "A small bottle. Contains artificialy synthesized growth toxin - useful for researchers, or as a very risky medicine."
+	icon_state = "bottle7"
+	list_reagents = list(/datum/reagent/toxin/xeno_growthtoxin = 30)
+
+/obj/item/reagent_containers/glass/bottle/polyhexanide
+	name = "\improper Polyhexanide bottle"
+	desc = "A small bottle. Contains one and a half doses of polyhexanide, a sterilizer for internal surgical use."
+	icon_state = "bottle2"
+	list_reagents = list(/datum/reagent/medicine/polyhexanide = 30)
+
+
+
 

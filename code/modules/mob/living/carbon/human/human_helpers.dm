@@ -79,6 +79,9 @@
 
 			if ("head")
 				return "[limb_name]_[get_gender_name(gender)]"
+			
+			if ("synthetic head")
+				return "head_[get_gender_name(gender)]"
 
 			if ("groin")
 				return "[limb_name]_[get_gender_name(gender)]"

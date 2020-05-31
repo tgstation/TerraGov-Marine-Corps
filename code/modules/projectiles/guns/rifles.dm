@@ -44,7 +44,7 @@
     desc = "The T-18 carbine is one of the standard rifles used by the TerraGov Marine Corps. It's commonly used by people who prefer greater mobility in combat, like scouts and other light infantry. Lacks an automatic fire mode, but has a burst fire mode to improve damage output. Uses 10x24mm caseless ammunition."
     icon_state = "t18"
     item_state = "t18"
-    fire_sound = "sound/weapons/guns/fire/t18.ogg"
+    fire_sound = "sound/weapons/guns/fire/autorifle.ogg"
    	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
     unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
     reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
@@ -59,22 +59,29 @@
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/gyro,
 						/obj/item/attachable/flashlight,
-						/obj/item/attachable/t18barrel,
 						/obj/item/attachable/bipod,
 						/obj/item/attachable/stock/t18stock,
 						/obj/item/attachable/burstfire_assembly,
 						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
+						/obj/item/attachable/compensator,
 						/obj/item/attachable/attached_gun/grenade,
 						/obj/item/attachable/attached_gun/flamer,
+						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/attached_gun/shotgun)
 
     flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
     gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
-    starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/t18barrel)
-    attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 10, "rail_y" = 19, "under_x" = 24, "under_y" = 12, "stock_x" = 11, "stock_y" = 10)
+    starting_attachment_types = list(/obj/item/attachable/stock/t18stock)
+    attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 10, "rail_y" = 19, "under_x" = 18, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
 
-    fire_delay = 0.25 SECONDS
-    burst_delay = 0.10 SECONDS
+    fire_delay = 0.3 SECONDS
+    burst_delay = 0.125 SECONDS
     accuracy_mult = 1.10
     scatter = -5
     burst_amount = 4
@@ -89,7 +96,7 @@
     desc = "The T-12 assault rifle used to be the TerraGov Marine Corps standard issue rifle before the T-18 carbine replaced it. It's however still used widely despite that. The gun itself is very good at being used in most situations however it suffers in engagements at close quarters and is relatively hard to shoulder than some others. It uses 10x24mm caseless ammunition."
     icon_state = "t12"
     item_state = "t12"
-    fire_sound = "sound/weapons/guns/fire/t18.ogg"
+    fire_sound = "sound/weapons/guns/fire/autorifle.ogg"
    	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
     unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
     reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
@@ -104,19 +111,26 @@
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/gyro,
 						/obj/item/attachable/flashlight,
-						/obj/item/attachable/t12barrel,
 						/obj/item/attachable/bipod,
-						/obj/item/attachable/stock/t18stock,
+						/obj/item/attachable/stock/t12stock,
 						/obj/item/attachable/burstfire_assembly,
 						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/attached_gun/grenade,
 						/obj/item/attachable/attached_gun/flamer,
 						/obj/item/attachable/attached_gun/shotgun)
 
     flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
     gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST, GUN_FIREMODE_AUTOMATIC)
-    starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/t12barrel)
-    attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 5, "rail_y" = 24, "under_x" = 24, "under_y" = 12, "stock_x" = 11, "stock_y" = 10)
+    starting_attachment_types = list(/obj/item/attachable/stock/t12stock)
+    attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 23, "under_x" = 20, "under_y" = 11, "stock_x" = 0, "stock_y" = 13)
 
     fire_delay = 0.2 SECONDS
     burst_delay = 0.15 SECONDS
@@ -137,7 +151,7 @@
 	icon_state = "t64"
 	item_state = "t64"
 	muzzleflash_iconstate = "muzzle_flash_medium"
-	fire_sound = "sound/weapons/guns/fire/T64.ogg"
+	fire_sound = "sound/weapons/guns/fire/DMR.ogg"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
@@ -148,9 +162,9 @@
 	max_shells = 10 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/standard_dmr
 	attachable_allowed = list(
-						/obj/item/attachable/quickfire,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
@@ -169,7 +183,7 @@
 						/obj/item/attachable/scope,
 						/obj/item/attachable/scope/mini)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_CAN_POINTBLANK
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	starting_attachment_types = list(/obj/item/attachable/stock/dmr, /obj/item/attachable/scope/mini)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 13, "rail_y" = 18, "under_x" = 24, "under_y" = 13, "stock_x" = 14, "stock_y" = 10)
@@ -185,7 +199,7 @@
 
 /obj/item/weapon/gun/rifle/m41a1
 	name = "\improper M41A1 pulse rifle"
-	desc = "An outdated rifle for the TerraGov Marine Corps, carried by a few coporate mercenaries. However, the M41A1 is a very rare sight in TerraGov systems. Uses 10x24mm caseless ammunition."
+	desc = "An outdated rifle for the TerraGov Marine Corps, carried by a few coporate mercenaries,the M41A1 is a very rare sight in TerraGov systems. Uses 10x24mm caseless ammunition."
 	icon_state = "m41a1"
 	item_state = "m41a1"
 	muzzleflash_iconstate = "muzzle_flash_medium"
@@ -200,6 +214,7 @@
 						/obj/item/attachable/quickfire,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
@@ -225,7 +240,7 @@
 	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
-	fire_delay = 0.4 SECONDS
+	fire_delay = 0.25 SECONDS
 	burst_delay = 0.15 SECONDS
 	accuracy_mult = 1.15
 	scatter = -10
@@ -244,9 +259,9 @@
 	flags_item_map_variant = NONE
 
 	burst_delay = 0.2 SECONDS
-	accuracy_mult = 1.5
+	accuracy_mult = 1.15
 	damage_mult = 1.5
-	scatter = -10
+	scatter = 0
 
 
 //-------------------------------------------------------
@@ -267,6 +282,7 @@
 	current_mag = /obj/item/ammo_magazine/rifle/m41a
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/attached_gun/grenade,
 						/obj/item/attachable/attached_gun/flamer,
@@ -312,6 +328,7 @@
 	reload_sound = 'sound/weapons/guns/interact/ak47_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/ak47
+	aim_slowdown = 0.7
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
@@ -322,9 +339,12 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 17, "under_x" = 24, "under_y" = 13, "stock_x" = 17, "stock_y" = 12)
 	starting_attachment_types = list(/obj/item/attachable/stock/ak47)
 
-	accuracy_mult = 1.05
+	accuracy_mult = 1
 	burst_amount = 1
 	fire_delay = 0.25 SECONDS
+	scatter = 5
+	wield_delay = 0.7 SECONDS
+
 
 
 /obj/item/weapon/gun/rifle/ak47/carbine
@@ -335,9 +355,9 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 	starting_attachment_types = null
 
-	fire_delay = 0.23 SECONDS
+	fire_delay = 0.25 SECONDS
 	burst_amount = 3
-	accuracy_mult = 0.9
+	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.5
 
 
@@ -347,7 +367,7 @@
 
 /obj/item/weapon/gun/rifle/m16
 	name = "\improper FN M16A4 assault rifle"
-	desc = "A light, versatile assault rifle with a 30 round magazine, chambered to fire the 5.56x45mm NATO cartridge. The 4th generation in the M16 platform, this FN variant substitutes automatic for burst fire and retains relevance among mercenaries and militias thanks to its high customizability."
+	desc = "A light, versatile assault rifle with a 30 round magazine, chambered to fire the 5.56x45mm NATO cartridge. The 4th generation in the M16 platform, this FN variant has added automatic fire selection and retains relevance among mercenaries and militias thanks to its high customizability."
 	icon_state = "m16"
 	item_state = "m16"
 	muzzleflash_iconstate = "muzzle_flash_medium"
@@ -358,10 +378,12 @@
 	reload_sound = 'sound/weapons/guns/interact/m16_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m16_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/m16
+	aim_slowdown = 0.4
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/angledgrip,
@@ -381,13 +403,16 @@
 						/obj/item/attachable/scope/mini)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST, GUN_FIREMODE_AUTOMATIC)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 18, "under_x" = 22, "under_y" = 15, "stock_x" = 19, "stock_y" = 13)
 	starting_attachment_types = list(/obj/item/attachable/stock/m16, /obj/item/attachable/m16sight)
 
-	damage_mult = 0.8
 	fire_delay = 0.2 SECONDS
-	burst_delay = 0.14 SECONDS
+	burst_delay = 0.15 SECONDS
+	accuracy_mult = 1.3
+	wield_delay = 0.5 SECONDS
+	damage_mult = 1.2
+
 
 
 //-------------------------------------------------------
@@ -413,16 +438,23 @@
 						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/lasersight,
-						/obj/item/attachable/t42barrel,
 						/obj/item/attachable/bipod,
-						/obj/item/attachable/stock/dmr,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
+						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/mini,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/stock/t42stock,
 						/obj/item/attachable/magnetic_harness)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	starting_attachment_types = list(/obj/item/attachable/stock/dmr, /obj/item/attachable/t42barrel)
+	starting_attachment_types = list(/obj/item/attachable/stock/t42stock)
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 10, "rail_y" = 20, "under_x" = 24, "under_y" = 13, "stock_x" = 12, "stock_y" = 12)
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 20, "under_x" = 16, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
 	fire_delay = 0.2 SECONDS
 	burst_amount = 1
 	accuracy_mult_unwielded = 0.5
@@ -475,11 +507,11 @@
 
 
 //-------------------------------------------------------
-//UPP TYPE 71 RIFLE
+//USL TYPE 71 RIFLE
 
 /obj/item/weapon/gun/rifle/type71
 	name = "\improper Type 71 pulse rifle"
-	desc = "The primary service rifle of the UPP forces, the Type 71 is a reliable rifle chambered in 7.62x39mm, firing in two round bursts to conserve ammunition. A newer model for surpression roles to comply with overmatch doctrines is in progress and only issued to a limited number of divisions in the UPP army."
+	desc = "The primary rifle of the USL forces, the Type 71 is a reliable rifle chambered in 7.62x39mm, firing in two round bursts to conserve ammunition. A newer model for surpression roles to comply with overmatch doctrines is in progress and only issued to a limited number of pirates in the USL."
 	icon_state = "type71"
 	item_state = "type71"
 	muzzleflash_iconstate = "muzzle_flash_medium"
@@ -490,13 +522,14 @@
 	reload_sound = 'sound/weapons/guns/interact/type71_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/type71_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/type71
-	wield_delay = 0.4 SECONDS
+	aim_slowdown = 0.6
+	wield_delay = 0.7 SECONDS
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 
-	fire_delay = 0.35 SECONDS
+	fire_delay = 0.25 SECONDS
 	burst_amount = 2
-	accuracy_mult = 1.5
+	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.8
 
 
@@ -516,7 +549,7 @@
 
 /obj/item/weapon/gun/rifle/type71/carbine/commando
 	name = "\improper Type 73 'Commando' pulse carbine"
-	desc = "An much rarer variant of the standard Type 71, this version contains an integrated supressor, a scope, and lots of fine-tuning. Many parts have been replaced, filed down, and improved upon. As a result, this variant is rarely seen issued outside of commando units and officer cadres."
+	desc = "An much rarer variant of the standard Type 71, this version contains an integrated supressor, a scope, and lots of fine-tuning. Many parts have been replaced, filed down, and improved upon. As a result, this variant is rarely seen issued outside of commando units."
 	icon_state = "type73"
 	item_state = "type73"
 	wield_delay = 0 //Ends up being .5 seconds due to scope
@@ -527,6 +560,7 @@
 	burst_amount = 2
 	accuracy_mult = 2
 	accuracy_mult_unwielded = 0.8
+	damage_mult = 1.3
 
 
 //-------------------------------------------------------
@@ -544,6 +578,7 @@
 	current_mag = /obj/item/ammo_magazine/rifle/sx16_buckshot
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/angledgrip,
@@ -576,9 +611,11 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
 	caliber = "16 gauge" //codex
 	max_shells = 12 //codex
+	force = 20
 	current_mag = /obj/item/ammo_magazine/rifle/tx15_slug
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/angledgrip,
@@ -596,8 +633,91 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	starting_attachment_types = list(/obj/item/attachable/stock/tx15)
-	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 12, "rail_y" = 17, "under_x" = 26, "under_y" = 15, "stock_x" = 26, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 12, "rail_y" = 17, "under_x" = 24, "under_y" = 11, "stock_x" = 26, "stock_y" = 13)
 	gun_skill_category = GUN_SKILL_SHOTGUNS
 
-	fire_delay = 1.1 SECONDS
+	fire_delay = 1 SECONDS
+	accuracy_mult = 1.15
 	burst_amount = 1
+
+//-------------------------------------------------------
+//T-29 Smart Machine Gun (It's more of a rifle than the SG.)
+
+/obj/item/weapon/gun/rifle/standard_smartmachinegun
+	name = "\improper T-29 smart machine gun"
+	desc = "The T-29 LMG is the TGMC's current standard IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
+	icon_state = "t29"
+	item_state = "t29"
+	caliber = "10x26mm caseless" //codex
+	max_shells = 300 //codex
+	force = 30
+	aim_slowdown = 0.95
+	wield_delay = 1.3 SECONDS
+	fire_sound = "gun_smartgun"
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
+	current_mag = /obj/item/ammo_magazine/standard_smartmachinegun
+	attachable_allowed = list(
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/verticalgrip,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/lasersight,
+						/obj/item/attachable/t42barrel,
+						/obj/item/attachable/bipod,
+						/obj/item/attachable/stock/dmr,
+						/obj/item/attachable/magnetic_harness)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_WIELDED_FIRING_ONLY
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	starting_attachment_types = list(/obj/item/attachable/stock/t29stock, /obj/item/attachable/t29barrel)
+	gun_skill_category = GUN_SKILL_SMARTGUN //Uses SG skill for the penalties.
+	attachable_offset = list("muzzle_x" = 42, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 12, "stock_y" = 13)
+	fire_delay = 0.25 SECONDS
+	burst_amount = 0
+	accuracy_mult_unwielded = 0.5
+	accuracy_mult = 1.2
+	scatter = -20
+	scatter_unwielded = 80
+
+
+
+//-------------------------------------------------------
+//Sectoid Rifle
+
+/obj/item/weapon/gun/rifle/sectoid_rifle
+	name = "\improper alien rifle"
+	desc = "An unusual gun of alien origin. It is lacking a trigger or any obvious way to fire it."
+	icon_state = "alien_rifle"
+	item_state = "alien_rifle"
+	fire_sound = 'sound/weapons/guns/fire/alienplasma.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/vp70_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m4ra_reload.ogg'
+	max_shells = 20//codex stuff
+	ammo = /datum/ammo/energy/plasma
+	muzzleflash_iconstate = "muzzle_flash_pulse"
+	current_mag = /obj/item/ammo_magazine/rifle/sectoid_rifle
+	wield_delay = 0.4 SECONDS
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
+
+	fire_delay = 0.5 SECONDS
+	burst_amount = 3
+	accuracy_mult = 2
+	accuracy_mult_unwielded = 0.8
+
+//only sectoids can fire it
+/obj/item/weapon/gun/rifle/sectoid_rifle/able_to_fire(mob/user)
+	. = ..()
+	if(!.)
+		return
+	if(!ishuman(user))
+		return FALSE
+	var/mob/living/carbon/human/H = user
+	if(!(H.species.species_flags & USES_ALIEN_WEAPONS))
+		to_chat(user, "<span class='warning'>There's no trigger on this gun, you have no idea how to fire it!</span>")
+		return FALSE
+	return TRUE

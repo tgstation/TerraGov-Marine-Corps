@@ -351,7 +351,7 @@ SUBSYSTEM_DEF(vote)
 
 /datum/action/innate/vote/give_action(mob/M)
 	. = ..()
-	RegisterGlobalSignal(COMSIG_GLOB_REMOVE_VOTE_BUTTON, .proc/remove_vote_action)
+	RegisterSignal(SSdcs, COMSIG_GLOB_REMOVE_VOTE_BUTTON, .proc/remove_vote_action)
 
 /datum/action/innate/vote/proc/remove_vote_action(datum/source)
 	if(remove_from_client())

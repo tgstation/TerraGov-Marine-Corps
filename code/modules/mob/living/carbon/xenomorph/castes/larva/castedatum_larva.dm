@@ -21,17 +21,17 @@
 	plasma_gain = 1
 
 	// *** Health *** //
-	max_health = 35
+	max_health = 50
 	crit_health = -25
 
 	// *** Evolution *** //
-	evolves_to = list(/mob/living/carbon/xenomorph/drone, /mob/living/carbon/xenomorph/runner, /mob/living/carbon/xenomorph/sentinel, /mob/living/carbon/xenomorph/defender)
+	evolves_to = list(/mob/living/carbon/xenomorph/drone, /mob/living/carbon/xenomorph/runner, /mob/living/carbon/xenomorph/panther, /mob/living/carbon/xenomorph/sentinel, /mob/living/carbon/xenomorph/defender)
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_INNATE_HEALING|CASTE_DECAY_PROOF
 
 	// *** Defense *** //
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = XENO_BOMB_RESIST_0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = XENO_BOMB_RESIST_0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 	// *** Abilities *** //
 	actions = list(

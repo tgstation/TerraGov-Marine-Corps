@@ -26,7 +26,7 @@ GLOBAL_LIST_EMPTY(medal_awards)
 	var/posthumous = 1
 	var/medal_type = input("What type of medal do you want to award?", "Medal Type", null) in list("distinguished conduct medal", "bronze heart medal","medal of valor", "medal of exceptional heroism", "letter of commendation")
 	if(!medal_type) return
-	var/citation = copytext(sanitize(input("What should the medal citation read?","Medal Citation", null) as text|null), 1, MAX_MESSAGE_LEN)
+	var/citation = stripped_input(usr, "What should the medal citation read?", "Medal Citation")
 	if(!citation) return
 	for(var/mob/M in GLOB.alive_human_list)
 		if(M.real_name == chosen_recipient)

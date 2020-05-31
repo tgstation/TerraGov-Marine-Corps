@@ -14,7 +14,7 @@
 /turf/open/Entered(atom/A, atom/OL)
 	if(iscarbon(A))
 		var/mob/living/carbon/C = A
-		if(!C.lying && !(C.buckled && istype(C.buckled,/obj/structure/bed/chair)))
+		if(!C.lying_angle && !(C.buckled && istype(C.buckled,/obj/structure/bed/chair)))
 			if(ishuman(C))
 				var/mob/living/carbon/human/H = C
 
@@ -193,17 +193,30 @@
 
 
 /turf/open/shuttle/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
-	if(planned_building == /turf/closed/wall/resin)
+	if(ispath(planned_building, /turf/closed/wall/)) // Shuttles move and will leave holes in the floor during transit
 		if(!silent)
 			to_chat(builder, "<span class='warning'>This place seems unable to support a wall.</span>")
 		return FALSE
 	return ..()
 
+/turf/open/shuttle/blackfloor
+	icon_state = "floor7"
 
 /turf/open/shuttle/dropship
 	name = "floor"
 	icon_state = "rasputin1"
 
+/turf/open/shuttle/dropship/three
+	icon_state = "rasputin3"
+
+/turf/open/shuttle/dropship/five
+	icon_state = "rasputin5"
+
+/turf/open/shuttle/dropship/seven
+	icon_state = "rasputin7"
+
+/turf/open/shuttle/dropship/eight
+	icon_state = "rasputin8"
 
 //not really plating, just the look
 /turf/open/shuttle/plating
@@ -219,6 +232,23 @@
 	icon = 'icons/turf/escapepods.dmi'
 	icon_state = "floor3"
 
+/turf/open/shuttle/escapepod/plain
+	icon_state = "floor1"
+
+/turf/open/shuttle/escapepod/zero
+	icon_state = "floor0"
+
+/turf/open/shuttle/escapepod/two
+	icon_state = "floor2"
+
+/turf/open/shuttle/escapepod/four
+	icon_state = "floor4"
+
+/turf/open/shuttle/escapepod/five
+	icon_state = "floor5"
+
+/turf/open/shuttle/escapepod/six
+	icon_state = "floor6"
 
 // Elevator floors
 /turf/open/shuttle/elevator

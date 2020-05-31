@@ -14,10 +14,7 @@
 		to_chat(src, "Guests may not use OOC.")
 		return
 
-	if(!check_rights(R_ADMIN, FALSE))
-		msg = trim(copytext(sanitize(msg), 1, MAX_MESSAGE_LEN))
-	else
-		msg = noscript(msg)
+	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
 
 	if(!msg)
 		return
@@ -86,17 +83,24 @@
 				display_colour = prefs.ooccolor
 
 	for(var/client/C in GLOB.clients)
-		if(C.prefs.toggles_chat & CHAT_OOC)
-			var/display_name = key
-			if(holder?.fakekey)
-				if(check_other_rights(C, R_ADMIN, FALSE))
-					display_name = "[holder.fakekey]/([key])"
-				else
-					display_name = holder.fakekey
-			if(display_colour)
-				to_chat(C, "<font color='[display_colour]'><span class='ooc'><span class='prefix'>OOC: [display_name]</span>: <span class='message linkify'>[msg]</span></span></font>")
+		if(!(C.prefs.toggles_chat & CHAT_OOC))
+			continue
+
+		var/display_name = key
+		if(holder?.fakekey)
+			if(check_other_rights(C, R_ADMIN, FALSE))
+				display_name = "[holder.fakekey]/([key])"
 			else
-				to_chat(C, "<span class='[display_class]'><span class='prefix'>OOC: [display_name]</span>: <span class='message linkify'>[msg]</span></span>")
+				display_name = holder.fakekey
+
+		// Admins open straight to player panel
+		if(check_other_rights(C, R_ADMIN, FALSE))
+			display_name = "<a class='hidelink' href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[display_name]</a>"
+
+		if(display_colour)
+			to_chat(C, "<font color='[display_colour]'><span class='ooc'><span class='prefix'>OOC: [display_name]</span>: <span class='message linkify'>[msg]</span></span></font>")
+		else
+			to_chat(C, "<span class='[display_class]'><span class='prefix'>OOC: [display_name]</span>: <span class='message linkify'>[msg]</span></span>")
 
 
 /client/verb/looc_wrapper()
@@ -122,10 +126,7 @@
 		to_chat(src, "Guests may not use LOOC.")
 		return
 
-	if(!admin)
-		msg = trim(copytext(sanitize(msg), 1, MAX_MESSAGE_LEN))
-	else
-		msg = noscript(msg)
+	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
 
 	if(!msg)
 		return

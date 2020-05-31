@@ -280,7 +280,7 @@
 /datum/component/riding/human/force_dismount(mob/living/user, silent)
 	var/atom/movable/AM = parent
 	AM.unbuckle_mob(user)
-	user.Knockdown(2 SECONDS)
+	user.Paralyze(2 SECONDS)
 	if(!silent)
 		user.visible_message("<span class='warning'>[AM] pushes [user] off of [AM.p_them()]!</span>",
 			"<span class='warning'>[AM] pushes you off of [AM.p_them()]!</span>")

@@ -1,6 +1,7 @@
 //A storage item intended to be used by other items to provide storage functionality.
 //Types that use this should consider overriding emp_act() and hear_talk(), unless they shield their contents somehow.
 /obj/item/storage/internal
+	allow_drawing_method = FALSE /// Unable to set draw_mode ourselves
 	var/obj/item/master_item
 
 /obj/item/storage/internal/Initialize()
@@ -9,6 +10,13 @@
 	name = master_item.name
 	forceMove(master_item)
 	verbs -= /obj/item/verb/verb_pickup	//make sure this is never picked up.
+
+/obj/item/storage/internal/Destroy()
+	for(var/i in contents)
+		var/obj/item/content_item = i
+		qdel(content_item)
+	master_item = null
+	return ..()
 
 /obj/item/storage/internal/attack_hand(mob/living/user)
 	return TRUE
@@ -28,7 +36,7 @@
 /obj/item/storage/internal/proc/handle_mousedrop(mob/user as mob, obj/over_object as obj)
 	if(ishuman(user) || ismonkey(user)) //so monkeys can take off their backpacks -- Urist
 
-		if(user.lying) //Can't use your inventory when lying
+		if(user.lying_angle) //Can't use your inventory when lying
 			return
 
 		if(istype(user.loc, /obj/vehicle/multitile/root/cm_armored)) //Stops inventory actions in a mech/tank
@@ -82,39 +90,43 @@
 //It's strange, but no other way of doing it without the ability to call another proc's parent, really.
 /obj/item/storage/internal/proc/handle_attack_hand(mob/user as mob)
 
-	if(user.lying)
-		return 0
+	if(user.lying_angle)
+		return FALSE
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.l_store == master_item && !H.get_active_held_item())	//Prevents opening if it's in a pocket.
 			H.put_in_hands(master_item)
 			H.l_store = null
-			return 0
+			return FALSE
 		if(H.r_store == master_item && !H.get_active_held_item())
 			H.put_in_hands(master_item)
 			H.r_store = null
-			return 0
+			return FALSE
 
 	if(master_item.loc == user)
-		src.open(user)
-		return 0
+		if(draw_mode && ishuman(user) && contents.len)
+			var/obj/item/I = contents[contents.len]
+			I.attack_hand(user)
+		else
+			open(user)
+		return FALSE
 
 	for(var/mob/M in range(1, master_item.loc))
 		if(M.s_active == src)
-			src.close(M)
-	return 1
+			close(M)
+	return TRUE
 
 /obj/item/storage/internal/Adjacent(atom/neighbor)
 	return master_item.Adjacent(neighbor)
 
 
-/obj/item/storage/internal/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
+/obj/item/storage/internal/handle_item_insertion(obj/item/W, prevent_warning = FALSE)
 	. = ..()
 	master_item.on_pocket_insertion()
 
 
-/obj/item/storage/internal/remove_from_storage(obj/item/W as obj, atom/new_location)
+/obj/item/storage/internal/remove_from_storage(obj/item/W, atom/new_location)
 	. = ..()
 	master_item.on_pocket_removal()
 

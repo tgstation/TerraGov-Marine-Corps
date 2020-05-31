@@ -106,12 +106,12 @@
 /obj/machinery/bot/mulebot/ex_act(severity)
 	unload(0)
 	switch(severity)
-		if(2)
+		if(EXPLODE_HEAVY)
 			wires.cut_all()
-		if(3)
+		if(EXPLODE_LIGHT)
 			wires.cut_random()
-	..()
-	return
+	return ..()
+
 
 /obj/machinery/bot/mulebot/bullet_act()
 	if(prob(50) && !isnull(load))
@@ -639,9 +639,7 @@
 	var/mob/living/L = A
 	visible_message("<span class='warning'>[src] knocks over [L]!</span>")
 	L.stop_pulling()
-	L.Stun(16 SECONDS)
-	L.Knockdown(10 SECONDS)
-	L.lying = TRUE
+	L.Paralyze(10 SECONDS)
 
 
 // called from mob/living/carbon/human/Crossed()

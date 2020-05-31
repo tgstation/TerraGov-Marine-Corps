@@ -39,9 +39,9 @@
 	var/compression = signal.data["compression"]
 	if(compression > 0)
 		log.input_type = "Corrupt File"
-		log.parameters["name"] = gibberish(signal.data["name"], compression + 50)
-		log.parameters["job"] = gibberish(signal.data["job"], compression + 50)
-		log.parameters["message"] = gibberish(signal.data["message"], compression + 50)
+		log.parameters["name"] = Gibberish(signal.data["name"], compression + 50)
+		log.parameters["job"] = Gibberish(signal.data["job"], compression + 50)
+		log.parameters["message"] = Gibberish(signal.data["message"], compression + 50)
 
 	// Give the log a name and store it
 	var/identifier = num2text(rand(-1000, 1000) + world.time)
@@ -126,7 +126,7 @@
 
 /obj/machinery/telecomms/server/presets/common
 	id = "Common Server"
-	freq_listening = list(FREQ_PMC, FREQ_COLONIST, FREQ_UPP, FREQ_DEATHSQUAD, FREQ_IMPERIAL)
+	freq_listening = list(FREQ_PMC, FREQ_COLONIST, FREQ_USL, FREQ_DEATHSQUAD, FREQ_IMPERIAL, FREQ_SECTOID)
 	autolinkers = list("common", "ert")
 
 

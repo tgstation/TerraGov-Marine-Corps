@@ -46,6 +46,9 @@
 
 /mob/living/carbon/update_stat()
 	. = ..()
+	if(.)
+		return
+
 	if(status_flags & GODMODE)
 		return
 
@@ -53,19 +56,19 @@
 		return
 
 	if(health <= get_death_threshold())
+		if(gib_chance && prob(gib_chance + 0.5 * (get_death_threshold() - health)))
+			gib()
+			return TRUE
 		death()
 		return
 
-	if(IsUnconscious() || IsSleeping() || IsAdminSleeping() || getOxyLoss() > CARBON_KO_OXYLOSS || health < get_crit_threshold())
-		if(stat != UNCONSCIOUS)
-			blind_eyes(1)
-			disabilities |= DEAF
-		stat = UNCONSCIOUS
+	if(HAS_TRAIT(src, TRAIT_KNOCKEDOUT) || getOxyLoss() > CARBON_KO_OXYLOSS || health < get_crit_threshold())
+		if(stat == UNCONSCIOUS)
+			return
+		set_stat(UNCONSCIOUS)
 	else if(stat == UNCONSCIOUS)
-		stat = CONSCIOUS
-		adjust_blindness(-1)
-		disabilities &= ~DEAF
-	update_canmove()
+		set_stat(CONSCIOUS)
+
 
 /mob/living/carbon/handle_status_effects()
 	. = ..()

@@ -2,7 +2,9 @@
 /mob/camera
 	name = "camera mob"
 	density = FALSE
-	status_flags = GODMODE  // You can't damage it.
+	move_resist = INFINITY
+	resistance_flags = RESIST_ALL
+	status_flags = GODMODE | INCORPOREAL
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	see_in_dark = 7
 	invisibility = INVISIBILITY_ABSTRACT // No one can see us

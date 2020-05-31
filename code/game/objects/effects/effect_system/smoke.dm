@@ -226,7 +226,7 @@
 	alpha = 145
 	opacity = FALSE
 	color = "#DBCBB9"
-	smoke_traits = SMOKE_GASP|SMOKE_BLISTERING|SMOKE_OXYLOSS|SMOKE_PLASMALOSS
+	smoke_traits = SMOKE_GASP|SMOKE_BLISTERING|SMOKE_OXYLOSS|SMOKE_PLASMALOSS|SMOKE_FOUL
 
 //////////////////////////////////////
 // FLASHBANG SMOKE
@@ -252,7 +252,7 @@
 
 //Xeno acid smoke.
 /obj/effect/particle_effect/smoke/xeno/burn
-	lifetime = 9
+	lifetime = 6
 	color = "#86B028" //Mostly green?
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_ACID|SMOKE_GASP|SMOKE_COUGH
 

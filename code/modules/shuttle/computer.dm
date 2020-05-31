@@ -3,7 +3,7 @@
 	desc = "A shuttle control computer."
 	icon_state = "syndishuttle"
 	req_access = list( )
-	interaction_flags = INTERACT_MACHINE_NANO
+	interaction_flags = INTERACT_MACHINE_TGUI
 	var/shuttleId
 	var/possible_destinations = ""
 	var/admin_controlled
@@ -11,7 +11,7 @@
 
 /obj/machinery/computer/shuttle/ui_interact(mob/user)
 	. = ..()
-	var/list/options = params2list(possible_destinations)
+	var/list/options = valid_destinations()
 	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
 	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
 	if(M)

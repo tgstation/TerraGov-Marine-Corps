@@ -5,7 +5,10 @@
 
 	var/list/materials
 
-	var/datum/armor/armor
+	/// %-reduction-based armor.
+	var/datum/armor/soft_armor
+	/// Flat-damage-reduction-based armor.
+	var/datum/armor/hard_armor
 
 	var/obj_integrity	//defaults to max_integrity
 	var/max_integrity = 500
@@ -15,7 +18,6 @@
 
 	var/throwforce = 1
 
-	var/resistance_flags = NONE
 	var/obj_flags = NONE
 	var/hit_sound //Sound this object makes when hit, overrides specific item hit sound.
 	var/destroy_sound //Sound this object makes when destroyed.
@@ -26,21 +28,44 @@
 	var/list/req_access = null
 	var/list/req_one_access = null
 
-	//Don't directly use these two, please. No: magic numbers, Yes: defines.
-	var/req_one_access_txt = "0"
-	var/req_access_txt = "0"
+	///Optimization for dynamic explosion block values, for things whose explosion block is dependent on certain conditions.
+	var/real_explosion_block
+
 
 /obj/Initialize()
 	. = ..()
-	if (islist(armor))
-		armor = getArmor(arglist(armor))
-	else if (!armor)
-		armor = getArmor(bio = 100)
-	else if (!istype(armor, /datum/armor))
-		stack_trace("Invalid type [armor.type] found in .armor during /obj Initialize()")
+	if(islist(soft_armor))
+		soft_armor = getArmor(arglist(soft_armor))
+	else if (!soft_armor)
+		// Default bio armor 100 to avoid sentinels getting free damage on sent
+		soft_armor = getArmor(bio = 100)
+	else if (!istype(soft_armor, /datum/armor))
+		stack_trace("Invalid type [soft_armor.type] found in .soft_armor during /obj Initialize()")
+
+	if(islist(hard_armor))
+		hard_armor = getArmor(arglist(hard_armor))
+	else if (!hard_armor)
+		hard_armor = getArmor()
+	else if (!istype(hard_armor, /datum/armor))
+		stack_trace("Invalid type [hard_armor.type] found in .hard_armor during /obj Initialize()")
 
 	if(obj_integrity == null)
 		obj_integrity = max_integrity
+
+	if(LAZYLEN(req_access))
+		var/txt_access = req_access.Join("-")
+		if(!GLOB.all_req_access[txt_access])
+			GLOB.all_req_access[txt_access] = req_access
+		else
+			req_access = GLOB.all_req_access[txt_access]
+
+	if(LAZYLEN(req_one_access))
+		var/txt_access = req_one_access.Join("-")
+		if(!GLOB.all_req_one_access[txt_access])
+			GLOB.all_req_one_access[txt_access] = req_one_access
+		else
+			req_one_access = GLOB.all_req_one_access[txt_access]
+
 
 /obj/proc/setAnchored(anchorvalue)
 	SEND_SIGNAL(src, COMSIG_OBJ_SETANCHORED, anchorvalue)
@@ -95,7 +120,7 @@
 		DISABLE_BITFIELD(obj_flags, IN_USE)
 
 
-/obj/proc/hide(h)
+/obj/proc/hide(h) // TODO: Fix all children
 	return
 
 

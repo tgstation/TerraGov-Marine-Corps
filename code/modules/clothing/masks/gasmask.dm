@@ -15,12 +15,6 @@
 	siemens_coefficient = 0.9
 	var/gas_filter_strength = 1			//For gas mask filters
 	var/list/filtered_gases = list(/datum/reagent/toxin/phoron, "sleeping_agent", "carbon_dioxide")
-	var/should_tint = TRUE
-
-/obj/item/clothing/mask/gas/Initialize()
-	. = ..()
-	if(should_tint)
-		AddComponent(/datum/component/clothing_tint, TINT_5)
 
 /obj/item/clothing/mask/gas/PMC
 	name = "\improper M8 pattern armored balaclava"
@@ -28,10 +22,9 @@
 	item_state = "helmet"
 	icon_state = "pmc_mask"
 	anti_hug = 3
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 1, "rad" = 1, "fire" = 5, "acid" = 5)
+	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 1, "rad" = 1, "fire" = 5, "acid" = 5)
 	flags_inventory = COVERMOUTH|ALLOWINTERNALS|BLOCKGASEFFECT|ALLOWREBREATH
 	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
-	should_tint = FALSE
 
 /obj/item/clothing/mask/gas/PMC/damaged
 	name = "damaged M8 pattern armored balaclava"
@@ -51,7 +44,6 @@
 	desc = "A superior balaclava worn by the Steel Wolves."
 	icon_state = "wolf_mask"
 	anti_hug = 2
-	should_tint = FALSE
 
 //Plague Dr suit can be found in clothing/suits/bio.dm
 /obj/item/clothing/mask/gas/plaguedoctor
@@ -59,7 +51,7 @@
 	desc = "A modernised version of the classic design, this mask will not only filter out phoron but it can also be connected to an air supply."
 	icon_state = "plaguedoctor"
 	item_state = "gas_mask"
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 2, "energy" = 2, "bomb" = 0, "bio" = 75, "rad" = 0, "fire" = 2, "acid" = 2)
+	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 2, "energy" = 2, "bomb" = 0, "bio" = 75, "rad" = 0, "fire" = 2, "acid" = 2)
 	flags_armor_protection = HEAD|FACE
 
 /obj/item/clothing/mask/gas/swat
@@ -69,7 +61,6 @@
 	anti_hug = 1
 	siemens_coefficient = 0.7
 	flags_armor_protection = FACE|EYES
-	should_tint = FALSE
 
 /obj/item/clothing/mask/gas/syndicate
 	name = "syndicate mask"
@@ -98,7 +89,6 @@
 	desc = "A true prankster's facial attire. A clown is incomplete without his wig and mask."
 	icon_state = "clown"
 	item_state = "clown_hat"
-	should_tint = FALSE
 
 /obj/item/clothing/mask/gas/sexyclown
 	name = "sexy-clown wig and mask"

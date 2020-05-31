@@ -25,7 +25,8 @@
 	set name = "Eject ID Card"
 	set src in oview(1)
 
-	if(!usr || usr.stat || usr.lying)	return
+	if(!usr || usr.stat || usr.lying_angle)
+		return
 
 	if(scan)
 		to_chat(usr, "You remove \the [scan] from \the [src].")
@@ -355,7 +356,7 @@ What a mess.*/
 			if (!( istype(active2, /datum/data/record) ))
 				return
 			var/a2 = active2
-			var/t1 = copytext(trim(sanitize(input("Add Comment:", "Secure. records", null, null)  as message)),1,MAX_MESSAGE_LEN)
+			var/t1 = stripped_input(usr, "Add Comment:", "Secure. records")
 			if ((!( t1 ) || !( authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || active2 != a2))
 				return
 			var/counter = 1
@@ -403,13 +404,13 @@ What a mess.*/
 						active1.fields["name"] = t1
 				if("id")
 					if (istype(active2, /datum/data/record))
-						var/t1 = copytext(trim(sanitize(input("Please input id:", "Secure. records", active1.fields["id"], null)  as text)),1,MAX_MESSAGE_LEN)
+						var/t1 = stripped_input(usr, "Please input id:", "Secure. records", active1.fields["id"])
 						if (!t1 || active1 != a1)
 							return
 						active1.fields["id"] = t1
 				if("fingerprint")
 					if (istype(active1, /datum/data/record))
-						var/t1 = copytext(trim(sanitize(input("Please input fingerprint hash:", "Secure. records", active1.fields["fingerprint"], null)  as text)),1,MAX_MESSAGE_LEN)
+						var/t1 = stripped_input(usr, "Please input fingerprint hash:", "Secure. records", active1.fields["fingerprint"])
 						if (!t1 || active1 != a1)
 							return
 						active1.fields["fingerprint"] = t1
@@ -427,31 +428,31 @@ What a mess.*/
 						active1.fields["age"] = t1
 				if("mi_crim")
 					if (istype(active2, /datum/data/record))
-						var/t1 = copytext(trim(sanitize(input("Please input minor disabilities list:", "Secure. records", active2.fields["mi_crim"], null)  as text)),1,MAX_MESSAGE_LEN)
+						var/t1 = stripped_input(usr, "Please input minor disabilities list:", "Secure. records", active2.fields["mi_crim"])
 						if (!t1 || active2 != a2)
 							return
 						active2.fields["mi_crim"] = t1
 				if("mi_crim_d")
 					if (istype(active2, /datum/data/record))
-						var/t1 = copytext(trim(sanitize(input("Please summarize minor dis.:", "Secure. records", active2.fields["mi_crim_d"], null)  as message)),1,MAX_MESSAGE_LEN)
+						var/t1 = stripped_input(usr, "Please summarize minor dis.:", "Secure. records", active2.fields["mi_crim_d"])
 						if (!t1 || active2 != a2)
 							return
 						active2.fields["mi_crim_d"] = t1
 				if("ma_crim")
 					if (istype(active2, /datum/data/record))
-						var/t1 = copytext(trim(sanitize(input("Please input major diabilities list:", "Secure. records", active2.fields["ma_crim"], null)  as text)),1,MAX_MESSAGE_LEN)
+						var/t1 = stripped_input(usr, "Please input major diabilities list:", "Secure. records", active2.fields["ma_crim"])
 						if (!t1 || active2 != a2)
 							return
 						active2.fields["ma_crim"] = t1
 				if("ma_crim_d")
 					if (istype(active2, /datum/data/record))
-						var/t1 = copytext(trim(sanitize(input("Please summarize major dis.:", "Secure. records", active2.fields["ma_crim_d"], null)  as message)),1,MAX_MESSAGE_LEN)
+						var/t1 = stripped_input(usr, "Please summarize major dis.:", "Secure. records", active2.fields["ma_crim_d"])
 						if (!t1 || active2 != a2)
 							return
 						active2.fields["ma_crim_d"] = t1
 				if("notes")
 					if (istype(active2, /datum/data/record))
-						var/t1 = copytext(html_encode(trim(input("Please summarize notes:", "Secure. records", html_decode(active2.fields["notes"]), null)  as message)),1,MAX_MESSAGE_LEN)
+						var/t1 = stripped_input("Please summarize notes:", "Secure. records", html_decode(active2.fields["notes"]))
 						if (!t1 || active2 != a2)
 							return
 						active2.fields["notes"] = t1
@@ -477,7 +478,7 @@ What a mess.*/
 						alert(usr, "You do not have the required rank to do this!")
 				if("species")
 					if (istype(active1, /datum/data/record))
-						var/t1 = copytext(trim(sanitize(input("Please enter race:", "General records", active1.fields["species"], null)  as message)),1,MAX_MESSAGE_LEN)
+						var/t1 = stripped_input(usr, "Please enter species:", "General records", active1.fields["species"])
 						if (!t1 || active1 != a1)
 							return
 						active1.fields["species"] = t1

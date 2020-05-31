@@ -137,19 +137,21 @@
 	H.limbs += LL
 	var/datum/limb/r_leg/RL = new(G, H)
 	H.limbs += RL
-	H.limbs +=  new/datum/limb/l_hand(LA, H)
-	H.limbs +=  new/datum/limb/r_hand(RA, H)
-	H.limbs +=  new/datum/limb/l_foot(LL, H)
-	H.limbs +=  new/datum/limb/r_foot(RL, H)
+	H.limbs +=  new/datum/limb/hand/l_hand(LA, H)
+	H.limbs +=  new/datum/limb/hand/r_hand(RA, H)
+	H.limbs +=  new/datum/limb/foot/l_foot(LL, H)
+	H.limbs +=  new/datum/limb/foot/r_foot(RL, H)
 
 	for(var/organ in has_organ)
 		var/organ_type = has_organ[organ]
 		H.internal_organs_by_name[organ] = new organ_type(H)
 
 	if(species_flags & IS_SYNTHETIC)
-		for(var/datum/limb/E in H.limbs)
-			if(E.limb_status & LIMB_DESTROYED) continue
-			E.limb_status |= LIMB_ROBOT
+		for(var/datum/limb/l in H.limbs)
+			var/datum/limb/robotic_limb = l
+			if(robotic_limb.limb_status & LIMB_DESTROYED)
+				continue
+			robotic_limb.add_limb_flags(LIMB_ROBOT)
 		for(var/datum/internal_organ/I in H.internal_organs)
 			I.mechanize()
 
@@ -462,6 +464,29 @@
 	H.remove_overlay(MOTH_WINGS_LAYER)
 	H.remove_underlay(MOTH_WINGS_BEHIND_LAYER)
 
+/datum/species/sectoid
+	name = "Sectoid"
+	name_plural = "Sectoids"
+	icobase = 'icons/mob/human_races/r_sectoid.dmi'
+	deform = 'icons/mob/human_races/r_sectoid.dmi'
+	default_language_holder = /datum/language_holder/sectoid
+	eyes = "blank_eyes"
+	speech_verb_override = "transmits"
+	show_paygrade = TRUE
+	count_human = TRUE
+
+	species_flags = HAS_NO_HAIR|NO_BREATHE|NO_POISON|NO_PAIN|USES_ALIEN_WEAPONS|NO_DAMAGE_OVERLAY
+
+	paincries = list("neuter" = 'sound/voice/sectoid_death.ogg')
+	death_sound = 'sound/voice/sectoid_death.ogg'
+
+	blood_color = "#00FF00"
+	flesh_color = "#C0C0C0"
+
+	reagent_tag = IS_SECTOID
+
+	namepool = /datum/namepool/sectoid
+
 /datum/species/vox
 	name = "Vox"
 	name_plural = "Vox"
@@ -590,7 +615,7 @@
 	total_health = 150 //more health than regular humans
 
 	brute_mod = 0.75
-	burn_mod = 1.1
+	burn_mod = 0.90 //Synthetics should not be instantly melted by acid compared to humans - This is a test to hopefully fix very glaring issues involving synthetics taking 2.6 trillion damage when so much as touching acid
 
 	cold_level_1 = -1
 	cold_level_2 = -1
@@ -642,8 +667,8 @@
 	slowdown = 1.3 //Slower than later synths
 	total_health = 200 //But more durable
 	insulated = 1
-	brute_mod = 0.75
-	burn_mod = 1.1
+	brute_mod = 0.60 //but more durable
+	burn_mod = 0.90 //previous comment
 
 	cold_level_1 = -1
 	cold_level_2 = -1

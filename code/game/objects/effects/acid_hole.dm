@@ -43,7 +43,7 @@
 
 /obj/effect/acid_hole/specialclick(mob/living/carbon/user)
 	if(!isxeno(user))
-		return	
+		return
 	if(holed_wall)
 		if(user.mob_size == MOB_SIZE_BIG)
 			expand_hole(user)
@@ -51,17 +51,17 @@
 		use_wall_hole(user)
 
 /obj/effect/acid_hole/proc/expand_hole(mob/living/carbon/xenomorph/user)
-	if(user.action_busy || user.lying)
+	if(user.action_busy || user.lying_angle)
 		return
 
 	playsound(src, 'sound/effects/metal_creaking.ogg', 25, 1)
-	if(do_after(user,60, FALSE, holed_wall, BUSY_ICON_HOSTILE) && !QDELETED(src) && !user.lying)
+	if(do_after(user,60, FALSE, holed_wall, BUSY_ICON_HOSTILE) && !QDELETED(src) && !user.lying_angle)
 		holed_wall.take_damage(rand(2000,3500))
 		user.emote("roar")
 
 /obj/effect/acid_hole/proc/use_wall_hole(mob/user)
 
-	if(user.mob_size == MOB_SIZE_BIG || user.incapacitated() || user.lying || user.buckled || user.anchored)
+	if(user.mob_size == MOB_SIZE_BIG || user.incapacitated() || user.lying_angle || user.buckled || user.anchored)
 		return
 
 	var/mob_dir = get_dir(user, src)
@@ -89,12 +89,16 @@
 			to_chat(user, "<span class='warning'>The hole's exit is blocked by something!</span>")
 			return
 
+	if(locate(/obj/machinery/door/poddoor/timed_late/containment) in get_turf(src))
+		to_chat(user, "<span class='warning'>You can't reach the hole's entrance under the shutters.</span>")
+		return
+
 	if(user.action_busy)
 		return
 
 	to_chat(user, "<span class='notice'>You start crawling through the hole.</span>")
 
-	if(do_after(user, 15, FALSE, src, BUSY_ICON_HOSTILE) && !T.density && !user.lying && !user.buckled)
+	if(do_after(user, 15, FALSE, src, BUSY_ICON_HOSTILE) && !T.density && !user.lying_angle && !user.buckled)
 		for(var/obj/O in T)
 			if(!O.CanPass(user, user.loc))
 				return

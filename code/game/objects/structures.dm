@@ -17,14 +17,14 @@
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		return
 	switch(severity)
-		if(1.0)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
 			return
-		if(2.0)
+		if(EXPLODE_HEAVY)
 			if(prob(50))
 				qdel(src)
 				return
-		if(3.0)
+		if(EXPLODE_LIGHT)
 			return
 
 /obj/structure/Initialize()
@@ -153,10 +153,10 @@
 
 	for(var/mob/living/M in get_turf(src))
 
-		if(M.lying)
+		if(M.lying_angle)
 			return //No spamming this on people.
 
-		M.Knockdown(10 SECONDS)
+		M.Paralyze(10 SECONDS)
 		to_chat(M, "<span class='warning'>You topple as \the [src] moves under you!</span>")
 
 		if(prob(25))

@@ -161,7 +161,7 @@
 
 /obj/item/storage/syringe_case/regular
 
-/obj/item/storage/syringe_case/regular/Initialize(mapload, ...)
+/obj/item/storage/syringe_case/regular/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/inaprovaline(src)
@@ -169,7 +169,7 @@
 
 /obj/item/storage/syringe_case/burn
 
-/obj/item/storage/syringe_case/burn/Initialize(mapload, ...)
+/obj/item/storage/syringe_case/burn/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/kelotane(src)
@@ -177,7 +177,7 @@
 
 /obj/item/storage/syringe_case/tox
 
-/obj/item/storage/syringe_case/tox/Initialize(mapload, ...)
+/obj/item/storage/syringe_case/tox/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/dylovene(src)
@@ -185,7 +185,7 @@
 
 /obj/item/storage/syringe_case/oxy
 
-/obj/item/storage/syringe_case/oxy/Initialize(mapload, ...)
+/obj/item/storage/syringe_case/oxy/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/inaprovaline(src)
@@ -193,7 +193,7 @@
 
 /obj/item/storage/syringe_case/meralyne
 
-/obj/item/storage/syringe_case/meralyne/Initialize(mapload, ...)
+/obj/item/storage/syringe_case/meralyne/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/meralyne(src)
@@ -201,7 +201,7 @@
 
 /obj/item/storage/syringe_case/dermaline
 
-/obj/item/storage/syringe_case/dermaline/Initialize(mapload, ...)
+/obj/item/storage/syringe_case/dermaline/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/dermaline(src)
@@ -209,7 +209,7 @@
 
 /obj/item/storage/syringe_case/meraderm
 
-/obj/item/storage/syringe_case/meraderm/Initialize(mapload, ...)
+/obj/item/storage/syringe_case/meraderm/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/meraderm(src)
@@ -217,11 +217,20 @@
 
 /obj/item/storage/syringe_case/ironsugar
 
-/obj/item/storage/syringe_case/ironsugar/Initialize(mapload, ...)
+/obj/item/storage/syringe_case/ironsugar/PopulateContents()
 	. = ..()
 	new /obj/item/reagent_containers/syringe(src)
 	new /obj/item/reagent_containers/glass/bottle/ironsugar(src)
 	new /obj/item/reagent_containers/glass/bottle/ironsugar(src)
+
+/obj/item/storage/syringe_case/combat
+
+/obj/item/storage/syringe_case/combat/PopulateContents()
+	. = ..()
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
+
 
 /*
 * Pill Bottles
@@ -277,11 +286,13 @@
 
 /obj/item/storage/pill_bottle/kelotane
 	name = "kelotane pill bottle"
+	desc = "Contains pills that heal burns, but cause slight pain. Take two to heal faster, but have slightly more pain."
 	icon_state = "pill_canister2"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/kelotane
 
 /obj/item/storage/pill_bottle/dylovene
 	name = "dylovene pill bottle"
+	desc = "Contains pills that heal toxic damage and purge toxins and neurotoxins of all kinds."
 	icon_state = "pill_canister6"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/dylovene
 
@@ -292,8 +303,15 @@
 
 /obj/item/storage/pill_bottle/tramadol
 	name = "tramadol pill bottle"
+	desc = "Contains pills that numb pain. Take two for a stronger effect at the cost of a toxic effect."
 	icon_state = "pill_canister5"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/tramadol
+
+/obj/item/storage/pill_bottle/paracetamol
+	name = "paracetamol pill bottle"
+	desc = "Contains pills that mildly numb pain. Take two for a slightly stronger effect."
+	icon_state = "pill_canister5"
+	pill_type_to_fill = /obj/item/reagent_containers/pill/paracetamol
 
 /obj/item/storage/pill_bottle/spaceacillin
 	name = "spaceacillin pill bottle"
@@ -302,6 +320,7 @@
 
 /obj/item/storage/pill_bottle/bicaridine
 	name = "bicaridine pill bottle"
+	desc = "Contains pills that heal cuts and bruises, but cause slight pain. Take two to heal faster, but have slightly more pain."
 	icon_state = "pill_canister11"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/bicaridine
 
@@ -312,11 +331,13 @@
 
 /obj/item/storage/pill_bottle/alkysine
 	name = "alkysine pill bottle"
+	desc = "Contains pills that heal brain damage."
 	icon_state = "pill_canister7"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/alkysine
 
 /obj/item/storage/pill_bottle/imidazoline
 	name = "imidazoline pill bottle"
+	desc = "Contains pills that heal eye damage."
 	icon_state = "pill_canister9"
 	pill_type_to_fill = /obj/item/reagent_containers/pill/imidazoline
 
@@ -354,7 +375,7 @@
 
 /obj/item/storage/pill_bottle/zoom
 	name = "zoom pill bottle"
-	desc = "Containts highly illegal drugs. Trade brain for speed."
+	desc = "Containts highly illegal drugs. Trade heart for speed."
 	max_storage_space = 7
 	pill_type_to_fill = /obj/item/reagent_containers/pill/zoom
 

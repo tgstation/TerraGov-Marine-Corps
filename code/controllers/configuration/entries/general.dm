@@ -29,17 +29,10 @@ Basics, the most important.
 
 /datum/config_entry/string/dburl
 
-/datum/config_entry/string/shipurl
 
-/datum/config_entry/string/lv624url
-
-/datum/config_entry/string/icecolonyurl
-
-/datum/config_entry/string/bigredurl
-
-/datum/config_entry/string/prisonstationurl
-
-/datum/config_entry/string/whiskeyoutposturl
+ /// Host of the webmap
+/datum/config_entry/string/webmap_host
+	config_entry_value = "https://affectedarc07.co.uk/tgmc.php?m="
 
 /datum/config_entry/string/python_path
 
@@ -105,6 +98,8 @@ Administrative related.
 /datum/config_entry/flag/log_manifest
 
 /datum/config_entry/flag/allow_admin_ooccolor // Allows admins to customize their OOC color.
+
+/datum/config_entry/flag/usewhitelist
 
 /datum/config_entry/flag/use_age_restriction_for_jobs	//Do jobs use account age restrictions? --requires database
 
@@ -337,6 +332,9 @@ The default value assumes youtube-dl is in your system PATH
 	config_entry_value = "The server is currently serving a high number of users, joining the server has been disabled."
 
 
+/datum/config_entry/flag/byond_member_bypass_popcap
+
+
 /datum/config_entry/flag/panic_bunker
 
 
@@ -363,3 +361,11 @@ The default value assumes youtube-dl is in your system PATH
 
 /datum/config_entry/string/default_view_square
 	config_entry_value = "15x15"
+
+/*
+This maintains a list of ip addresses that are able to bypass topic filtering.
+*/
+/datum/config_entry/keyed_list/topic_filtering_whitelist
+	key_mode = KEY_MODE_TEXT
+	value_mode = VALUE_MODE_FLAG
+	protection = CONFIG_ENTRY_LOCKED

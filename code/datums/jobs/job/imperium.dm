@@ -1,6 +1,6 @@
 /datum/job/imperial
 	comm_title = "IMP"
-	faction = "Imperium of Mankind"
+	faction = FACTION_IMP
 	skills_type = /datum/skills/imperial
 	supervisors = "the sergeant"
 	access = ALL_ANTAGONIST_ACCESS
@@ -58,14 +58,14 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
 
-	var/obj/item/weapon/gun/energy/lasgun/M43/G = new /obj/item/weapon/gun/energy/lasgun/M43(H)
-	G.reload(H, new /obj/item/cell/lasgun/M43(G)) // starts out full
+	var/obj/item/weapon/gun/energy/lasgun/lasrifle/G = new /obj/item/weapon/gun/energy/lasgun/lasrifle(H)
+	G.reload(H, new /obj/item/cell/lasgun/lasrifle(G)) // starts out full
 	H.equip_to_slot_or_del(G, SLOT_S_STORE)
 
 /datum/job/imperial/guardsman/sergeant
@@ -99,14 +99,14 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43/highcap, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43/highcap, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43/highcap, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43/highcap, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43/highcap, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle/highcap, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle/highcap, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle/highcap, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle/highcap, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle/highcap, SLOT_IN_BELT)
 
-	var/obj/item/weapon/gun/energy/lasgun/M43/G = new /obj/item/weapon/gun/energy/lasgun/M43(H)
-	G.reload(H, new /obj/item/cell/lasgun/M43/highcap(G)) // starts out reloaded
+	var/obj/item/weapon/gun/energy/lasgun/lasrifle/G = new /obj/item/weapon/gun/energy/lasgun/lasrifle(H)
+	G.reload(H, new /obj/item/cell/lasgun/lasrifle/highcap(G)) // starts out reloaded
 	H.equip_to_slot_or_del(G, SLOT_S_STORE)
 
 /datum/job/imperial/guardsman/medicae
@@ -141,17 +141,17 @@
 
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/M43, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
 
 	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/zoom, SLOT_IN_BELT) // closest thing to combat performance drugs
 
-	var/obj/item/weapon/gun/energy/lasgun/M43/G = new /obj/item/weapon/gun/energy/lasgun/M43(H)
-	G.reload(H, new /obj/item/cell/lasgun/M43(G)) // starts out reloaded
+	var/obj/item/weapon/gun/energy/lasgun/lasrifle/G = new /obj/item/weapon/gun/energy/lasgun/lasrifle(H)
+	G.reload(H, new /obj/item/cell/lasgun/lasrifle(G)) // starts out reloaded
 	H.equip_to_slot_or_del(G, SLOT_S_STORE)
 
 /datum/job/imperial/commissar

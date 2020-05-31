@@ -44,6 +44,13 @@
 	src.key = key
 
 
+/datum/mind/Destroy(force, ...)
+	current = null
+	if(initial_account)
+		QDEL_NULL(initial_account)
+	return ..()
+
+
 /datum/mind/proc/transfer_to(mob/new_character, force_key_move = FALSE)
 	if(current)	// remove ourself from our old body's mind variable
 		current.mind = null
@@ -70,11 +77,10 @@
 
 
 /datum/mind/proc/store_memory(new_text)
-	var/combined = length(memory + new_text)
-	if(combined > MAX_PAPER_MESSAGE_LEN)
-		memory = copytext(memory, combined - MAX_PAPER_MESSAGE_LEN, combined)
-	else
-		memory += "[new_text]<br>"
+	var/newlength = length_char(memory) + length_char(new_text)
+	if (newlength > MAX_PAPER_MESSAGE_LEN)
+		memory = copytext_char(memory, -newlength - MAX_PAPER_MESSAGE_LEN)
+	memory += "[new_text]<BR>"
 
 
 /datum/mind/proc/wipe_memory()

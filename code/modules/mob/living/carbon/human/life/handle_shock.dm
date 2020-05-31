@@ -41,36 +41,36 @@
 			blur_eyes(2)
 			stuttering = max(stuttering, 5)
 		if(60 to 79)
-			if(!lying && prob(20))
+			if(!lying_angle && prob(20))
 				emote("me", 1, " is having trouble standing.")
 			blur_eyes(2)
 			stuttering = max(stuttering, 5)
 			if(prob(2))
-				if(!lying)
+				if(!lying_angle)
 					emote("me", 1, " is having trouble standing.")
 				to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>")
-				Knockdown(10 SECONDS)
+				Paralyze(10 SECONDS)
 		if(80 to 119)
 			blur_eyes(2)
 			stuttering = max(stuttering, 5)
 			if(prob(7))
-				if(!lying)
+				if(!lying_angle)
 					emote("me", 1, " is having trouble standing.")
 				to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>")
-				Knockdown(10 SECONDS)
+				Paralyze(10 SECONDS)
 		if(120 to 149)
 			blur_eyes(2)
 			stuttering = max(stuttering, 5)
 			if(prob(7))
-				if(!lying)
+				if(!lying_angle)
 					emote("me", 1, " is having trouble standing.")
 				to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>")
-				Knockdown(10 SECONDS)
+				Paralyze(10 SECONDS)
 			if(prob(2))
 				to_chat(src, "<span class='danger'>[pick("You black out", "You feel like you could die any moment now", "You're about to lose consciousness")]!</span>")
 				Unconscious(10 SECONDS)
 		if(150 to INFINITY)
-			if(shock_stage == 150 && !lying) emote("me", 1, "can no longer stand, collapsing!")
+			if(shock_stage == 150 && !lying_angle) emote("me", 1, "can no longer stand, collapsing!")
 			blur_eyes(2)
 			stuttering = max(stuttering, 5)
 			if(prob(7))
@@ -78,7 +78,7 @@
 			if(prob(2))
 				to_chat(src, "<span class='danger'>[pick("You black out", "You feel like you could die any moment now", "You're about to lose consciousness")]!</span>")
 				Unconscious(10 SECONDS)
-			Knockdown(10 SECONDS)
+			Paralyze(10 SECONDS)
 
 
 /mob/living/carbon/human/halloss_recovery()
@@ -87,7 +87,7 @@
 		return
 	var/rate = BASE_HALLOSS_RECOVERY_RATE
 
-	if(lying || last_move_intent < world.time - 20) //If we're standing still or knocked down we benefit from the downed halloss rate
+	if(lying_angle || last_move_intent < world.time - 20) //If we're standing still or knocked down we benefit from the downed halloss rate
 		if(resting || IsSleeping()) //we're deliberately resting, comfortably taking a breather
 			rate = REST_HALLOSS_RECOVERY_RATE
 		else

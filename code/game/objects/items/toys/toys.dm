@@ -164,7 +164,8 @@
 		playsound(src, 'sound/effects/snap.ogg', 25, 1)
 		qdel(src)
 
-/obj/item/toy/snappop/Crossed(H as mob|obj)
+/obj/item/toy/snappop/Crossed(atom/movable/H)
+	. = ..()
 	if((ishuman(H))) //i guess carp and shit shouldn't set them off
 		var/mob/living/carbon/M = H
 		if(M.m_intent == MOVE_INTENT_RUN)
@@ -511,7 +512,7 @@
 			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
 			return
 		L.forceMove(loc)
-		L.Knockdown(10 SECONDS)
+		L.Paralyze(10 SECONDS)
 		for(var/obj/machinery/scoreboard/X in GLOB.machines)
 			if(X.id == id)
 				X.score(side, 3)// 3 points for dunking a mob

@@ -36,3 +36,6 @@ endmap
 
 map desert
 endmap
+
+map research_outpost
+endmap

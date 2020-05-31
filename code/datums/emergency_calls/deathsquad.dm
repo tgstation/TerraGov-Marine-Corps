@@ -22,7 +22,7 @@
 	var/mob/original = M.current
 	var/mob/living/carbon/human/H = .
 
-	H.name = pick(SSstrings.get_list_from_file("greek_letters"))
+	H.name = pick(SSstrings.get_list_from_file("names/death_squad"))
 	H.real_name = H.name
 
 	M.transfer_to(H, TRUE)

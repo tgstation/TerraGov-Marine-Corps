@@ -11,6 +11,8 @@
 #define LAZYCLEARLIST(L) if(L) L.Cut()
 #define SANITIZE_LIST(L) ( islist(L) ? L : list() )
 #define reverseList(L) reverseRange(L.Copy())
+#define LAZYADDASSOC(L, K, V) if(!L) { L = list(); } L[K] += list(V);
+#define LAZYREMOVEASSOC(L, K, V) if(L) { if(L[K]) { L[K] -= V; if(!length(L[K])) L -= K; } if(!length(L)) L = null; }
 
 //Checks for specific types in specifically structured (Assoc "type" = TRUE) lists ('typecaches')
 #define is_type_in_typecache(A, L) (A && length(L) && L[(ispath(A) ? A : A:type)])
@@ -79,10 +81,7 @@
 
 
 //Return either pick(list) or null if list is not of type /list or is empty
-/proc/safepick(list/L)
-	if(!length(L))
-		return
-	return pick(L)
+#define SAFEPICK(L) (length(L) ? pick(L) : null)
 
 
 //Checks if the list is empty

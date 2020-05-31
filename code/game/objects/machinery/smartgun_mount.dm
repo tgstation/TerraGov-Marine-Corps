@@ -23,11 +23,11 @@
 // Now we need a box for this.
 /obj/item/storage/box/m56d_hmg
 	name = "\improper M56D crate"
-	desc = "A large metal case with Japanese writing on the top. However it also comes with English text to the side. This is a M56D smartgun, it clearly has various labeled warnings. The most major one is that this does not have IFF features due to specialized ammo."
+	desc = "A large metal case with Japanese writing on the top. However it also comes with English text to the side. This is a M56D smartgun, it clearly has various labeled warnings."
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "M56D_case" // I guess a placeholder? Not actually going to show up ingame for now.
 	w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 6
+	storage_slots = 7
 	bypass_w_limit = list(
 		/obj/item/m56d_gun,
 		/obj/item/ammo_magazine/m56d,
@@ -41,6 +41,8 @@
 	new /obj/item/tool/wrench(src) //wrench to hold it down into the ground
 	new /obj/item/tool/screwdriver(src) //screw the gun onto the post.
 	new /obj/item/ammo_magazine/m56d(src)
+	new /obj/item/m56d_post(src) //spare post for the gun
+
 
 // The actual gun itself.
 /obj/item/m56d_gun
@@ -217,7 +219,7 @@
 // The actual Machinegun itself, going to borrow some stuff from current sentry code to make sure it functions. Also because they're similiar.
 /obj/machinery/m56d_hmg
 	name = "\improper M56D mounted smartgun"
-	desc = "A deployable, mounted smartgun. While it is capable of taking the same rounds as the M56, it fires specialized tungsten rounds for increased armor penetration.\n<span class='notice'>Use (ctrl-click) to shoot in bursts.</span>\n<span class='notice'>!!DANGER: M56D DOES NOT HAVE IFF FEATURES!!</span>"
+	desc = "A deployable, mounted smartgun. While it is capable of taking the same rounds as the M56, it fires specialized tungsten rounds for increased armor penetration.\n<span class='notice'>Use (ctrl-click) to shoot in bursts."
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "M56D"
 	anchored = TRUE
@@ -400,22 +402,24 @@
 		U = locate(U.x + rand(-1,1),U.y + rand(-1,1),U.z)
 
 
-	if(load_into_chamber() == 1)
-		if(istype(in_chamber,/obj/projectile))
-			in_chamber.original_target = target
-			in_chamber.setDir(dir)
-			in_chamber.def_zone = pick("chest","chest","chest","head")
-			playsound(src.loc, 'sound/weapons/guns/fire/hmg.ogg', 75, 1)
-			if(!QDELETED(target))
-				var/angle = round(Get_Angle(src,target))
-				muzzle_flash(angle)
-			in_chamber.fire_at(U, user, src, ammo.max_range, ammo.shell_speed)
-			in_chamber = null
-			rounds--
-			if(!rounds)
-				visible_message("<span class='notice'> [icon2html(src, viewers(src))] \The M56D beeps steadily and its ammo light blinks red.</span>")
-				playsound(src.loc, 'sound/weapons/guns/misc/smg_empty_alarm.ogg', 25, 1)
-				update_icon() //final safeguard.
+	if(!load_into_chamber())
+		return
+
+	var/obj/projectile/proj_to_fire = in_chamber
+	in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.
+	proj_to_fire.original_target = target
+	proj_to_fire.setDir(dir)
+	proj_to_fire.def_zone = pick("chest","chest","chest","head")
+	playsound(loc, 'sound/weapons/guns/fire/hmg.ogg', 75, TRUE)
+	if(!QDELETED(target))
+		var/angle = round(Get_Angle(src,target))
+		muzzle_flash(angle)
+	proj_to_fire.fire_at(U, user, src, ammo.max_range, ammo.shell_speed)
+	rounds--
+	if(!rounds)
+		visible_message("<span class='notice'> [icon2html(src, viewers(src))] \The M56D beeps steadily and its ammo light blinks red.</span>")
+		playsound(loc, 'sound/weapons/guns/misc/smg_empty_alarm.ogg', 25, TRUE)
+		update_icon() //final safeguard.
 
 
 /obj/machinery/m56d_hmg/proc/muzzle_flash(angle) // Might as well keep this too.
@@ -507,7 +511,7 @@
 /obj/machinery/m56d_hmg/InterceptClickOn(mob/user, params, atom/object)
 	if(is_bursting)
 		return TRUE
-	if(user.lying || !Adjacent(user) || user.incapacitated())
+	if(user.lying_angle || !Adjacent(user) || user.incapacitated())
 		user.unset_interaction()
 		return FALSE
 	if(user.get_active_held_item())
@@ -573,7 +577,7 @@
 	user.verbs -= /mob/living/proc/toogle_mg_burst_fire
 
 /obj/machinery/m56d_hmg/check_eye(mob/user)
-	if(user.lying || !Adjacent(user) || user.incapacitated() || !user.client)
+	if(user.lying_angle || !Adjacent(user) || user.incapacitated() || !user.client)
 		user.unset_interaction()
 
 /mob/living/proc/toogle_mg_burst_fire(obj/machinery/m56d_hmg/MG in list(interactee))
@@ -587,7 +591,7 @@
 
 /obj/machinery/m56d_hmg/mg_turret //Our mapbound version with stupid amounts of ammo.
 	name = "\improper M56D Smartgun Nest"
-	desc = "A M56D smartgun mounted upon a small reinforced post with sandbags to provide a small machinegun nest for all your defense purpose needs.\n<span class='notice'>Use (ctrl-click) to shoot in bursts.</span>\n<span class='notice'>!!DANGER: M56D DOES NOT HAVE IFF FEATURES!!</span>"
+	desc = "A M56D smartgun mounted upon a small reinforced post with sandbags to provide a small machinegun nest for all your defense purpose needs.\n<span class='notice'>Use (ctrl-click) to shoot in bursts."
 	burst_fire = FALSE
 	burst_fire_toggled = FALSE
 	fire_delay = 2

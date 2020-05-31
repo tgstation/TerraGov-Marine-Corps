@@ -1,9 +1,8 @@
 //Updates the mob's health from limbs and mob damage variables
 /mob/living/carbon/human/updatehealth()
-
 	if(status_flags & GODMODE)
 		health = species.total_health
-		stat = CONSCIOUS
+		set_stat(CONSCIOUS)
 		return
 	var/total_burn	= 0
 	var/total_brute	= 0
@@ -375,7 +374,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 /*
 This function restores all limbs.
 */
-/mob/living/carbon/human/restore_all_organs()
+/mob/living/carbon/human/restore_all_organs(updating_health = FALSE)
 	for(var/datum/limb/E in limbs)
 		E.rejuvenate()
 
@@ -385,7 +384,9 @@ This function restores all limbs.
 		if(!internal_organs_by_name[organ_slot])
 			var/datum/internal_organ/IO = new internal_organ_type(src)
 			internal_organs_by_name[organ_slot] = IO
-
+	
+	if(updating_health)
+		updatehealth()
 
 
 /mob/living/carbon/human/proc/HealDamage(zone, brute, burn)

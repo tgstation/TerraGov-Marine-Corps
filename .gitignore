@@ -14,5 +14,16 @@ tmp/
 tools/Runtime Condenser/Input.txt
 tools/Runtime Condenser/Output.txt
 tools/MapDaemon/logs/*.txt
-.vscode/*
-dreamchecker*
+
+#Visual studio stuff
+*.vscode/*
+!/.vscode/extensions.json
+
+tools/BalanceTool/raw.json
+
+#extra map stuff
+/_maps/**/backup/
+/_maps/templates.dm
+
+# DM Doc ignores
+dmdoc/*

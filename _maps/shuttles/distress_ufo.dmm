@@ -1,0 +1,213 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/closed/shuttle/ert{
+	icon_state = "stan20"
+	},
+/area/shuttle/ert)
+"c" = (
+/turf/closed/shuttle/ert{
+	icon_state = "stan21"
+	},
+/area/shuttle/ert)
+"d" = (
+/obj/docking_port/mobile/ert,
+/turf/closed/shuttle/ert{
+	icon_state = "stan27"
+	},
+/area/shuttle/ert)
+"e" = (
+/turf/closed/shuttle/ert{
+	icon_state = "stan25"
+	},
+/area/shuttle/ert)
+"f" = (
+/turf/closed/shuttle/ert{
+	icon_state = "stan22"
+	},
+/area/shuttle/ert)
+"g" = (
+/obj/structure/bed/chair/dropship/passenger,
+/obj/effect/landmark/distress_item,
+/turf/open/floor/light,
+/area/shuttle/ert)
+"h" = (
+/obj/structure/bed/chair/dropship/passenger,
+/obj/effect/landmark/distress_item,
+/turf/open/floor/bluegrid,
+/area/shuttle/ert)
+"i" = (
+/turf/closed/shuttle/ert{
+	icon_state = "stan23"
+	},
+/area/shuttle/ert)
+"j" = (
+/turf/closed/shuttle/ert,
+/area/shuttle/ert)
+"k" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/effect/landmark/distress_item,
+/turf/open/floor/light,
+/area/shuttle/ert)
+"l" = (
+/obj/effect/landmark/distress_item,
+/turf/open/floor/bluegrid,
+/area/shuttle/ert)
+"m" = (
+/obj/effect/landmark/distress_item,
+/turf/open/shuttle/brig,
+/area/shuttle/ert)
+"n" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/effect/landmark/distress_item,
+/turf/open/floor/light,
+/area/shuttle/ert)
+"o" = (
+/turf/closed/shuttle/ert{
+	icon_state = "stan5"
+	},
+/area/shuttle/ert)
+"p" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/obj/effect/landmark/distress_item,
+/turf/open/floor/bluegrid,
+/area/shuttle/ert)
+"q" = (
+/obj/effect/landmark/distress,
+/turf/open/shuttle/brig,
+/area/shuttle/ert)
+"r" = (
+/obj/machinery/computer/shuttle/ert,
+/turf/open/shuttle/brig,
+/area/shuttle/ert)
+"s" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/obj/effect/landmark/distress_item,
+/turf/open/floor/bluegrid,
+/area/shuttle/ert)
+"t" = (
+/turf/open/shuttle/brig,
+/area/shuttle/ert)
+"u" = (
+/turf/closed/shuttle/ert{
+	icon_state = "stan1"
+	},
+/area/shuttle/ert)
+"v" = (
+/turf/closed/shuttle/ert{
+	icon_state = "stan8"
+	},
+/area/shuttle/ert)
+"w" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/turf/open/floor/light,
+/area/shuttle/ert)
+"x" = (
+/turf/open/floor/bluegrid,
+/area/shuttle/ert)
+"y" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/turf/open/floor/light,
+/area/shuttle/ert)
+"z" = (
+/turf/closed/shuttle/ert{
+	icon_state = "stan9"
+	},
+/area/shuttle/ert)
+"A" = (
+/turf/closed/shuttle/ert{
+	icon_state = "stan3"
+	},
+/area/shuttle/ert)
+"B" = (
+/turf/closed/shuttle/ert{
+	icon_state = "stan2"
+	},
+/area/shuttle/ert)
+"C" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 2
+	},
+/obj/machinery/door/poddoor/shutters/transit/open{
+	dir = 2
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/ert)
+
+(1,1,1) = {"
+a
+b
+j
+j
+j
+u
+a
+"}
+(2,1,1) = {"
+b
+f
+k
+p
+k
+v
+u
+"}
+(3,1,1) = {"
+c
+g
+l
+q
+l
+w
+B
+"}
+(4,1,1) = {"
+d
+h
+m
+r
+t
+x
+C
+"}
+(5,1,1) = {"
+c
+g
+l
+q
+l
+y
+B
+"}
+(6,1,1) = {"
+e
+i
+n
+s
+n
+z
+A
+"}
+(7,1,1) = {"
+a
+e
+o
+o
+o
+A
+a
+"}

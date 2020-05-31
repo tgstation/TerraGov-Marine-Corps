@@ -24,7 +24,7 @@
 		if(drowsyness >= 18)
 			Sleeping(10 SECONDS)
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_BLISTERING))
-		adjustFireLoss(2)
+		adjustFireLoss(12)
 		blur_eyes(2)
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID))
 		adjustOxyLoss(4 + S.strength * 2)

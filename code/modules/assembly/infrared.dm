@@ -18,12 +18,12 @@
 	. = ..()
 	beams = list()
 	START_PROCESSING(SSobj, src)
-	AddComponent(
-		/datum/component/simple_rotation,
-		ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_FLIP | ROTATION_VERBS,
-		null,
-		null,
-		CALLBACK(src,.proc/after_rotation)
+	AddComponent(\
+		/datum/component/simple_rotation,\
+		ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_FLIP | ROTATION_VERBS,\
+		null,\
+		null,\
+		CALLBACK(src,.proc/after_rotation)\
 		)
 
 
@@ -258,6 +258,7 @@
 
 
 /obj/effect/beam/i_beam/Crossed(atom/movable/AM)
+	. = ..()
 	if(istype(AM, /obj/effect/beam))
 		return
 	if(isitem(AM))

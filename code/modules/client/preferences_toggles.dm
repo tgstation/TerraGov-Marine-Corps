@@ -98,7 +98,8 @@
 		to_chat(src, "<span class='notice'>You will now hear music in the game lobby.</span>")
 		if(!isnewplayer(mob))
 			return
-		playtitlemusic()
+		play_title_music()
+
 	else
 		to_chat(src, "<span class='notice'>You will no longer hear music in the game lobby.</span>")
 		if(!isnewplayer(mob))

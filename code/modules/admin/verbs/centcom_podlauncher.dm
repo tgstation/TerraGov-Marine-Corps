@@ -55,7 +55,7 @@ force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.adm
 
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "centcom_podlauncher", "Config/Launch Supplypod", 700, 700, master_ui, state)
+		ui = new(user, src, ui_key, "CentcomPodLauncher", "Config/Launch Supplypod", 700, 700, master_ui, state)
 		ui.open()
 
 /datum/centcom_podlauncher/ui_data(mob/user) //Sends info about the pod to the UI.
@@ -128,7 +128,7 @@ force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.adm
 			var/list/turfs = list()
 			for(var/turf/T in A)
 				turfs.Add(T) //Fill a list with turfs in the area
-			var/turf/T = safepick(turfs) //Only teleport if the list isn't empty
+			var/turf/T = SAFEPICK(turfs) //Only teleport if the list isn't empty
 			if(!T) //If the list is empty, error and cancel
 				to_chat(M, "Nowhere to jump to!")
 				return

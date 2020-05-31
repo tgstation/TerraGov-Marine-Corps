@@ -159,7 +159,7 @@
 				temp = "<font color = #efef88>-% [src] has been [toggled ? "activated" : "deactivated"].</font>"
 				update_power()
 			if("id")
-				var/newid = copytext(reject_bad_text(input(usr, "Specify the new ID for this machine", src, id) as null|text),1,MAX_MESSAGE_LEN)
+				var/newid = reject_bad_text(stripped_input(usr, "Specify the new ID for this machine", src, id, MAX_MESSAGE_LEN))
 				if(newid)
 					id = newid
 					temp = "<font color = #efef88>-% New ID assigned: \"[id]\" %-</font>"

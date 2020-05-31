@@ -251,7 +251,7 @@
 			if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 				return TRUE
 			to_chat(user, "<span class='notice'>You finished cutting the metal plate!</span>")
-			new /obj/item/stack/sheet/metal(loc)
+			deconstruct()
 			return TRUE
 		if(GIRDER_BUILDING1_WELDED)
 			var/old_girder_state = girder_state
@@ -340,11 +340,11 @@
 
 /obj/structure/girder/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			deconstruct(FALSE)
-		if(2)
+		if(EXPLODE_HEAVY)
 			take_damage(200)
-		if(3)
+		if(EXPLODE_LIGHT)
 			take_damage(25)
 
 

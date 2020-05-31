@@ -945,7 +945,7 @@ ColorTone(rgb, tone)
 	WRITE_FILE(GLOB.iconCache[iconKey], icon)
 	var/iconData = GLOB.iconCache.ExportText(iconKey)
 	var/list/partial = splittext(iconData, "{")
-	return replacetext(copytext(partial[2], 3, -5), "\n", "")
+	return replacetext(copytext_char(partial[2], 3, -5), "\n", "")
 
 
 /proc/icon2html(thing, target, icon_state, dir, frame = 1, moving = FALSE)

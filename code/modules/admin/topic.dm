@@ -303,6 +303,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/warrior, location, null, delmob)
 			if("runner")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/runner, location, null, delmob)
+			if("panther")
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/panther, location, null, delmob)
 			if("drone")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/drone, location, null, delmob)
 			if("sentinel")
@@ -725,6 +727,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		var/mob/sender
+		var/subject = "No subject"
 		if(href_list["faxreply"])
 			var/ref = locate(href_list["faxreply"])
 			if(!ref)
@@ -741,6 +744,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				message_staff("[key_name_admin(usr)] marked and started replying to a fax from [key_name_admin(F.sender)].")
 
 			sender = F.sender
+			subject = "re: [F.title]"
 
 		var/dep = input("Who do you want to message?", "Fax Message") as null|anything in list(CORPORATE_LIAISON, "Combat Information Center", COMMAND_MASTER_AT_ARMS, "Brig", "Research", "Warden")
 		if(!dep)
@@ -750,7 +754,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!department)
 			return
 
-		var/subject = input("Enter the subject line", "Fax Message", "") as text|null
+		var/custom_subject = input("Enter the subject line", "Fax Message", "") as text|null
+		if(!custom_subject)
+			subject = custom_subject
 		var/type = input("Do you want to use the pencode, template or type a raw message?", "Fax Message") as null|anything in list("Pencode", "Template", "Raw")
 		if(!type)
 			return
@@ -928,7 +934,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				message_admins("[ADMIN_TPMONTY(usr)] force-launched the escape pods.")
 
 			if("init_dest")
-				if(!SSevacuation.enable_self_destruct())
+				if(!SSevacuation.enable_self_destruct(TRUE))
 					to_chat(usr, "<span class='warning'>You are unable to authorize the self-destruct right now!</span>")
 					return
 
@@ -2134,4 +2140,5 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			to_chat(usr, "<span class='warning'>That approval has already been answered with '[GLOB.admin_approvals[approval_id]]'</span>")
 			return
 		GLOB.admin_approvals[approval_id] = href_list["option"]
+		log_admin("[key_name(usr)] answered '[href_list["option"]]' to the admin approval ([approval_id]).")
 		message_admins("[key_name(usr)] answered '[href_list["option"]]' to the admin approval ([approval_id]).")

@@ -214,12 +214,6 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_FORTIFY
 
-/datum/keybinding/xeno/neuroclaws
-	name = "neuroclaws"
-	full_name = "Defiler: Toggle Neuroclaws"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_NEUROCLAWS
-
 /datum/keybinding/xeno/emit_neurogas
 	name = "emit_neurogas"
 	full_name = "Defiler: Emit Neurogas"
@@ -381,12 +375,6 @@
 	full_name = "Warrior: Punch"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_PUNCH
-
-/datum/keybinding/xeno/lay_hivemind
-	name = "lay_hivemind"
-	full_name = "Lay Hivemind"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_LAY_HIVEMIND
 
 /datum/keybinding/xeno/psychic_choke
 	name = "psychic_choke"

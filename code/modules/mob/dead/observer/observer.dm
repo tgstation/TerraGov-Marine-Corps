@@ -234,7 +234,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		ghost.mind?.current = ghost
 
 	if(!T)
-		T = safepick(GLOB.latejoin)
+		T = SAFEPICK(GLOB.latejoin)
 	if(!T)
 		stack_trace("no latejoin landmark detected")
 
@@ -294,13 +294,13 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			if(status_value <= 0)
 				stat("Respawn timer:", "<b>READY</b>")
 			else
-				stat("Respawn timer:", "[(status_value / 60) % 60]:[add_zero(num2text(status_value % 60), 2)]")
+				stat("Respawn timer:", "[(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]")
 			if(SSticker.mode?.flags_round_type & MODE_INFESTATION)
 				status_value = (timeofdeath + GLOB.xenorespawntime - world.time) * 0.1
 				if(status_value <= 0)
 					stat("Xeno respawn timer:", "<b>READY</b>")
 				else
-					stat("Xeno respawn timer:", "[(status_value / 60) % 60]:[add_zero(num2text(status_value % 60), 2)]")
+					stat("Xeno respawn timer:", "[(status_value / 60) % 60]:[add_leading(num2text(status_value % 60), 2, "0")]")
 				var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 				var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 				if(stored_larva)
@@ -653,7 +653,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		else //Circular
 			rot_seg = 36
 
-	orbit(target,orbitsize, FALSE, 20, rot_seg)
+	orbit(target, orbitsize, FALSE, 20, rot_seg)
 
 
 /mob/dead/observer/orbit()

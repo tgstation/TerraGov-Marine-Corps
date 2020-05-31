@@ -14,7 +14,7 @@
 	reload_sound = 'sound/weapons/guns/interact/flamethrower_reload.ogg'
 	aim_slowdown = 1.75
 	current_mag = /obj/item/ammo_magazine/flamer_tank
-	var/max_range = 6
+	var/max_range = 7
 	var/lit = 0 //Turn the flamer on/off
 	general_codex_key = "flame weapons"
 
@@ -24,7 +24,7 @@
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
-	fire_delay = 35
+	fire_delay = 20
 
 
 /obj/item/weapon/gun/flamer/unique_action(mob/user)
@@ -159,7 +159,8 @@
 		if("flame")
 			burnlevel = 24
 			burntime = 17
-			max_range = 6
+			max_range = 7
+			fire_delay = 20
 
 		// Area denial, light damage, large AOE, long burntime
 		if("green flame")
@@ -168,6 +169,7 @@
 			max_range = 4
 			playsound(user, fire_sound, 50, 1)
 			triangular_flame(target, user, burntime, burnlevel)
+			fire_delay = 35
 			return
 
 		if("blue flame") //Probably can end up as a spec fuel or DS flamer fuel. Also this was the original fueltype, the madman i am.
@@ -175,6 +177,7 @@
 			burntime = 40
 			max_range = 7
 			fire_color = "blue"
+			fire_delay = 35
 
 		else
 			return
@@ -260,12 +263,12 @@
 			var/mob/living/carbon/human/H = M //fixed :s
 
 			if(user)
-				var/area/A = get_area(user)
 				if(!user.mind?.bypass_ff && !H.mind?.bypass_ff && user.faction == H.faction)
-					log_combat(user, H, "shot", src)
-					msg_admin_ff("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with \a [name] in [ADMIN_VERBOSEJMP(A)].")
+					log_combat(user, H, "flamed", src)
+					log_ffattack("[key_name(user)] flamed [key_name(H)] with \a [name] in [AREACOORD(T)].")
+					msg_admin_ff("[ADMIN_TPMONTY(user)] flamed [ADMIN_TPMONTY(H)] with \a [name] in [ADMIN_VERBOSEJMP(T)].")
 				else
-					log_combat(user, H, "shot", src)
+					log_combat(user, H, "flamed", src)
 
 			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || (istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(H.head, /obj/item/clothing/head/helmet/marine/pyro)))
 				continue
@@ -297,6 +300,8 @@
 			prev_T = T
 			continue
 		if(T.density)
+			break
+		if(locate(/obj/effect/forcefield/fog) in T)
 			break
 		if(loc != user)
 			break
@@ -502,6 +507,7 @@
 	return ..()
 
 /obj/flamer_fire/Crossed(mob/living/M) //Only way to get it to reliable do it when you walk into it.
+	. = ..()
 	if(istype(M))
 		M.flamer_fire_crossed(burnlevel, firelevel)
 

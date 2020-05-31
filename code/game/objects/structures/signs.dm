@@ -20,17 +20,13 @@
 
 /obj/structure/sign/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-			return
-		if(2.0)
+		if(EXPLODE_HEAVY)
 			qdel(src)
-			return
-		if(3.0)
+		if(EXPLODE_LIGHT)
 			qdel(src)
-			return
-		else
-	return
+
 
 /obj/structure/sign/attackby(obj/item/I, mob/user, params)	//deconstruction
 	. = ..()
@@ -151,6 +147,9 @@
 	desc = "The Intergalactic symbol of Medical institutions. You'll probably get help here."
 	icon_state = "greencross"
 
+/obj/structure/sign/greencross/star
+	icon_state = "lifestar"
+
 /obj/structure/sign/goldenplaque
 	name = "The Most Robust Men Award for Robustness"
 	desc = "To be Robust is not an action or a way of life, but a mental state. Only those with the force of Will strong enough to act during a crisis, saving friend from foe, are truly Robust. Stay Robust my friends."
@@ -158,7 +157,7 @@
 
 /obj/structure/sign/kiddieplaque
 	name = "AI developers plaque"
-	desc = "Next to the extremely long list of names and job titles, there is a drawing of a little child. The child appears to be retarded. Beneath the image, someone has scratched the word \"PACKETS\""
+	desc = "Next to the extremely long list of names and job titles, there is a drawing of a little child. The child appears to be disabled. Beneath the image, someone has scratched the word \"PACKETS\""
 	icon_state = "kiddieplaque"
 
 /obj/structure/sign/atmosplaque

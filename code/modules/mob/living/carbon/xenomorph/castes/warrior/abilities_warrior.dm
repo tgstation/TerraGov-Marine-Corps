@@ -24,7 +24,7 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_agility_toggles")
 	if (X.agility)
 		to_chat(X, "<span class='xenowarning'>We lower ourselves to all fours and loosen our armored scales to ease our movement.</span>")
-		X.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1)
+		X.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -0.6)
 		X.armor_bonus -= WARRIOR_AGILITY_ARMOR
 	else
 		to_chat(X, "<span class='xenowarning'>We raise ourselves to stand on two feet, hard scales setting back into place.</span>")
@@ -82,6 +82,18 @@
 	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_DEAD_TARGET) && H.stat == DEAD)
 		return FALSE
 
+/datum/action/xeno_action/activable/lunge/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/activable/lunge/ai_should_use(target)
+	if(!iscarbon(target))
+		return ..()
+	if(get_dist(target, owner) > 2)
+		return ..()
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return ..()
+	return TRUE
+
 /datum/action/xeno_action/activable/lunge/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
 	to_chat(X, "<span class='notice'>We get ready to lunge again.</span>")
@@ -119,7 +131,7 @@
 	action_icon_state = "fling"
 	mechanics_text = "Knock a target flying up to 5 tiles."
 	ability_name = "Fling"
-	plasma_cost = 40
+	plasma_cost = 18
 	cooldown_timer = 20 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_FLING
 
@@ -169,6 +181,18 @@
 
 	add_cooldown()
 
+/datum/action/xeno_action/activable/fling/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/activable/fling/ai_should_use(target)
+	if(!iscarbon(target))
+		return ..()
+	if(get_dist(target, owner) > 1)
+		return ..()
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return ..()
+	return TRUE
+
 // ***************************************
 // *********** Punch
 // ***************************************
@@ -177,8 +201,8 @@
 	action_icon_state = "punch"
 	mechanics_text = "Strike a target up to 1 tile away with a chance to break bones."
 	ability_name = "punch"
-	plasma_cost = 30
-	cooldown_timer = 15 SECONDS
+	plasma_cost = 12
+	cooldown_timer = 10 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_PUNCH
 
 /datum/action/xeno_action/activable/punch/on_cooldown_finish()
@@ -202,6 +226,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/M = A
 	if(X.issamexenohive(M))
+		X.changeNext_move(CLICK_CD_MELEE) // Add a delaay in to avoid spam
 		return M.attack_alien(X) //harmless nibbling.
 
 	GLOB.round_statistics.warrior_punches++
@@ -237,7 +262,7 @@
 		"<span class='xenowarning'>We hit [src] in the [L.display_name] with a devastatingly powerful punch!</span>")
 
 	if(L.limb_status & LIMB_SPLINTED) //If they have it splinted, the splint won't hold.
-		L.limb_status &= ~LIMB_SPLINTED
+		L.remove_limb_flags(LIMB_SPLINTED)
 		to_chat(src, "<span class='danger'>The splint on your [L.display_name] comes apart!</span>")
 
 	L.take_damage_limb(damage, 0, FALSE, FALSE, run_armor_check(target_zone))
@@ -247,6 +272,18 @@
 
 	apply_damage(damage, STAMINA) //Armor penetrating halloss also applies.
 	UPDATEHEALTH(src)
+
+/datum/action/xeno_action/activable/punch/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/activable/punch/ai_should_use(target)
+	if(!iscarbon(target))
+		return ..()
+	if(get_dist(target, owner) > 1)
+		return ..()
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return ..()
+	return TRUE
 
 // ***************************************
 // *********** Rip limb

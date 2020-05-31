@@ -6,7 +6,7 @@
 	desc = "A computer console equipped with camera screen and controls for a planetside deployed construction drone. Materials or equipment vouchers can be added simply by inserting them into the computer."
 	icon = 'icons/Marine/remotefob.dmi'
 	icon_state = "fobpc"
-	req_access = list(ACCESS_MARINE_REMOTEBUILD)
+	req_one_access = list(ACCESS_MARINE_REMOTEBUILD, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING)
 	networks = FALSE
 	off_action = new/datum/action/innate/camera_off/remote_fob
 	jump_action = null
@@ -34,11 +34,11 @@
 	eject_metal = new()
 	eject_plasteel = new()
 
-	RegisterGlobalSignal(COMSIG_GLOB_DROPSHIP_TRANSIT, .proc/disable_drone_creation)
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_TRANSIT, .proc/disable_drone_creation)
 
 /obj/machinery/computer/camera_advanced/remote_fob/proc/disable_drone_creation()
 	drone_creation_allowed = FALSE
-	UnregisterGlobalSignal(COMSIG_GLOB_DROPSHIP_TRANSIT)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_TRANSIT)
 
 
 /obj/machinery/computer/camera_advanced/remote_fob/Destroy()

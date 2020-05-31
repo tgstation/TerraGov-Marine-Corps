@@ -4,7 +4,7 @@
 	minimal_access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
 	display_order = JOB_DISPLAY_ORDER_SURVIVOR
 	skills_type = /datum/skills/civilian/survivor
-	faction = "TerraGov"
+	faction = FACTION_TERRAGOV
 
 /datum/job/survivor/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
 	. = ..()
@@ -270,6 +270,6 @@
 	jobtype = /datum/job/survivor/rambo
 	w_uniform = /obj/item/clothing/under/color/grey
 	wear_suit = /obj/item/clothing/suit/armor/rugged
-	shoes = /obj/item/clothing/shoes/ruggetboot
+	shoes = /obj/item/clothing/shoes/ruggedboot
 	back = /obj/item/storage/backpack/satchel/rugged
 	gloves = /obj/item/clothing/gloves/ruggedgloves

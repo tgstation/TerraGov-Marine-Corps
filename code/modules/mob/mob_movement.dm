@@ -1,9 +1,11 @@
 /mob/CanPass(atom/movable/mover, turf/target)
+	if(status_flags & INCORPOREAL)
+		return TRUE
 	if(CHECK_BITFIELD(mover.flags_pass, PASSMOB))
 		return TRUE
 	if(ismob(mover) && CHECK_BITFIELD(mover.flags_pass, PASSMOB))
 		return TRUE
-	return (!mover.density || !density || lying)
+	return (!mover.density || !density || lying_angle)
 
 
 /client/verb/swap_hand()
@@ -372,6 +374,8 @@
 
 
 /mob/living/proc/update_move_intent_effects()
+	if(status_flags & INCORPOREAL)
+		return FALSE
 	switch(m_intent)
 		if(MOVE_INTENT_WALK)
 			add_movespeed_modifier(MOVESPEED_ID_MOB_WALK_RUN_CONFIG_SPEED, TRUE, 100, NONE, TRUE, 4 + CONFIG_GET(number/movedelay/walk_delay))

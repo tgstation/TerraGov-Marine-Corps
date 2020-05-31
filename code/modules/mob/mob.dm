@@ -11,6 +11,14 @@
 			D.reset_perspective(null)
 	ghostize()
 	clear_fullscreens()
+	if(mind)
+		stack_trace("Found a reference to an undeleted mind in mob/Destroy(). Mind name: [mind.name]. Mind mob: [mind.current]")
+		mind = null
+	if(hud_used)
+		QDEL_NULL(hud_used)
+	for(var/a in actions)
+		var/datum/action/action_to_remove = a
+		action_to_remove.remove_action(src)
 	return ..()
 
 /mob/Initialize()
@@ -35,7 +43,7 @@
 	if(statpanel("Status"))
 		if(GLOB.round_id)
 			stat("Round ID:", GLOB.round_id)
-		stat("Operation Time:", worldtime2text())
+		stat("Operation Time:", stationTimestamp("hh:mm"))
 		stat("Current Map:", length(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : "Loading...")
 		stat("Current Ship:", length(SSmapping.configs) ? SSmapping.configs[SHIP_MAP].map_name : "Loading...")
 
@@ -105,7 +113,7 @@
 	if(!client)
 		return
 
-	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+	msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 
 	to_chat(src, msg)
 
@@ -114,7 +122,7 @@
 	if(!client)
 		return
 
-	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+	msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 
 	if(type)
 		if(type == EMOTE_VISIBLE && eye_blind) //Vision related
@@ -297,14 +305,6 @@
 		B.remove_from_storage(W)
 		put_in_hands(W)
 		return TRUE
-	else if(istype(I, /obj/item/clothing/shoes/marine))
-		var/obj/item/clothing/shoes/marine/S = I
-		if(!S.knife)
-			return FALSE
-		put_in_hands(S.knife)
-		S.knife = null
-		S.update_icon()
-		return TRUE
 	else if(istype(I, /obj/item/clothing/under))
 		var/obj/item/clothing/under/U = I
 		if(!U.hastie)
@@ -339,7 +339,7 @@
 		put_in_hands(W)
 		return TRUE
 	else
-		UnEquip(I)
+		temporarilyRemoveItemFromInventory(I)
 		put_in_hands(I)
 		return TRUE
 
@@ -545,10 +545,6 @@
 		return FALSE
 	return TRUE
 
-//Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
-/mob/proc/update_canmove()
-	return
-
 
 /mob/proc/facedir(ndir)
 	if(!canface())
@@ -573,9 +569,9 @@
 	overlay_fullscreen("pain", /obj/screen/fullscreen/pain, 1)
 	clear_fullscreen("pain")
 
-
+///Called to update the stat var, returns a boolean to indicate if it has been handled.
 /mob/proc/update_stat()
-	return
+	return FALSE
 
 /mob/proc/can_inject()
 	return reagents
@@ -836,7 +832,24 @@
 /// Updates the grab state of the mob and updates movespeed
 /mob/setGrabState(newstate)
 	. = ..()
+	if(isnull(.))
+		return
 	if(grab_state == GRAB_PASSIVE)
 		remove_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE)
+	else if(. == GRAB_PASSIVE)
+		add_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE, TRUE, 100, NONE, TRUE, grab_state * 3)
+
+/mob/set_throwing(new_throwing)
+	. = ..()
+	if(isnull(.))
 		return
-	add_movespeed_modifier(MOVESPEED_ID_MOB_GRAB_STATE, TRUE, 100, NONE, TRUE, grab_state * 3)
+	if(throwing)
+		ADD_TRAIT(src, TRAIT_IMMOBILE, THROW_TRAIT)
+	else
+		REMOVE_TRAIT(src, TRAIT_IMMOBILE, THROW_TRAIT)
+
+/mob/proc/set_stat(new_stat)
+	if(new_stat == stat)
+		return
+	. = stat //old stat
+	stat = new_stat

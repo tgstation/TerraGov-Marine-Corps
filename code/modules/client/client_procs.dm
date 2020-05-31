@@ -1,6 +1,8 @@
 #define UPLOAD_LIMIT			1000000	//Restricts client uploads to the server to 1MB
 #define UPLOAD_LIMIT_ADMIN		10000000	//Restricts admin uploads to the server to 10MB
 
+#define MIN_RECOMMENDED_CLIENT 1524
+
 #define LIMITER_SIZE	5
 #define CURRENT_SECOND	1
 #define SECOND_COUNT	2
@@ -200,6 +202,10 @@
 		GLOB.player_details[ckey] = player_details
 
 	. = ..()	//calls mob.Login()
+	if(length(GLOB.stickybanadminexemptions))
+		GLOB.stickybanadminexemptions -= ckey
+		if (!length(GLOB.stickybanadminexemptions))
+			restore_stickybans()
 
 	if(SSinput.initialized)
 		set_macros()
@@ -218,6 +224,10 @@
 		log_access("Failed Login: [key] - Spoofed byond version")
 		qdel(src)
 		return
+
+	if(byond_build < MIN_RECOMMENDED_CLIENT)
+		to_chat(src, "<span class='userdanger'>Your version of byond has known client crash issues, it's recommended you update your version.</span>")
+		to_chat(src, "<span class='danger'>Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions.</span>")
 
 	if(num2text(byond_build) in GLOB.blacklisted_builds)
 		log_access("Failed login: [key] - blacklisted byond version")
@@ -294,7 +304,7 @@
 			winset(src, "[child]", "[entries[child]]")
 			if(!ispath(child, /datum/verbs/menu))
 				var/procpath/verbpath = child
-				if(copytext(verbpath.name, 1, 2) != "@")
+				if(verbpath.name[1] != "@")
 					new child(src)
 
 	for(var/thing in prefs.menuoptions)
@@ -331,6 +341,7 @@
 	GLOB.ahelp_tickets.ClientLogout(src)
 	GLOB.directory -= ckey
 	GLOB.clients -= src
+	seen_messages = null
 	QDEL_LIST_ASSOC_VAL(char_render_holders)
 	Master.UpdateTickRate()
 	return ..()
@@ -624,6 +635,8 @@
 	view = new_size
 	apply_clickcatcher()
 	mob.reload_fullscreens()
+	if(prefs.auto_fit_viewport)
+		addtimer(CALLBACK(src, .verb/fit_viewport, 1 SECONDS)) //Delayed to avoid wingets from Login calls.
 
 
 /client/proc/generate_clickcatcher()

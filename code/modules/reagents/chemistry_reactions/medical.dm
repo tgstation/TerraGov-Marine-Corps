@@ -36,11 +36,6 @@
 	results = list(/datum/reagent/medicine/meralyne = 2)
 	required_reagents = list(/datum/reagent/medicine/inaprovaline = 1, /datum/reagent/medicine/bicaridine = 1, /datum/reagent/iron = 1)
 
-/datum/chemical_reaction/hyperzine
-	name = "Hyperzine"
-	results = list(/datum/reagent/medicine/hyperzine = 3)
-	required_reagents = list(/datum/reagent/consumable/sugar = 1, /datum/reagent/phosphorus = 1, /datum/reagent/sulfur = 1)
-
 /datum/chemical_reaction/ryetalyn
 	name = "Ryetalyn"
 	results = list(/datum/reagent/medicine/ryetalyn = 2)
@@ -61,6 +56,11 @@
 	name = "Spaceacillin"
 	results = list(/datum/reagent/medicine/spaceacillin = 2)
 	required_reagents = list(/datum/reagent/cryptobiolin = 1, /datum/reagent/medicine/inaprovaline = 1)
+
+/datum/chemical_reaction/polyhexanide
+	name = "Polyhexanide"
+	results = list(/datum/reagent/medicine/polyhexanide = 3)
+	required_reagents = list(/datum/reagent/cryptobiolin = 1, /datum/reagent/medicine/spaceacillin = 1, /datum/reagent/medicine/sterilizine = 1)
 
 /datum/chemical_reaction/imidazoline
 	name = "imidazoline"
@@ -140,6 +140,11 @@
 	results = list(/datum/reagent/medicine/peridaxon = 2)
 	required_reagents = list(/datum/reagent/medicine/bicaridine = 2, /datum/reagent/medicine/clonexadone = 2)
 	required_catalysts = list(/datum/reagent/toxin/phoron = 5)
+
+/datum/chemical_reaction/peridaxon_plus
+	name = "Peridaxon Plus"
+	results = list(/datum/reagent/medicine/peridaxon_plus = 1)
+	required_reagents = list(/datum/reagent/medicine/peridaxon = 5, /datum/reagent/medicine/ryetalyn = 5, /datum/reagent/toxin/phoron = 5)
 
 /datum/chemical_reaction/quickclot
 	name = "Quick-Clot"

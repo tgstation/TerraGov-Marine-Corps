@@ -79,8 +79,56 @@
 	mechanics_text = "Leap at your target, tackling and disarming them."
 	ability_name = "pounce"
 	plasma_cost = 10
-	var/range = 6
 	keybind_signal = COMSIG_XENOABILITY_POUNCE
+	///How far can we pounce.
+	var/range = 6
+	///For how long will we stun the victim
+	var/victim_paralyze_time = 2 SECONDS
+	///For how long will we freeze upon hitting our target
+	var/freeze_on_hit_time = 0.5 SECONDS
+
+// TODO: merge defender/ravager pounces into this typepath since they are essentially the same thing
+/datum/action/xeno_action/activable/pounce/proc/pounce_complete()
+	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENO_NONE_THROW_HIT, COMSIG_XENO_LIVING_THROW_HIT))
+
+/datum/action/xeno_action/activable/pounce/proc/obj_hit(datum/source, obj/target, speed)
+	var/mob/living/carbon/xenomorph/X = owner
+	if(!istype(target, /obj/structure/table) && !istype(target, /obj/structure/rack))
+		target.hitby(X, speed) //This resets throwing.
+	pounce_complete()
+
+/datum/action/xeno_action/activable/pounce/proc/mob_hit(datum/source, mob/living/M)
+	if(M.stat || isxeno(M))
+		return
+	var/mob/living/carbon/xenomorph/X = owner
+	if(ishuman(M) && (M.dir in reverse_nearby_direction(X.dir)))
+		var/mob/living/carbon/human/H = M
+		if(!H.check_shields(COMBAT_TOUCH_ATTACK, 30, "melee"))
+			X.Paralyze(6 SECONDS)
+			X.set_throwing(FALSE) //Reset throwing manually.
+			return COMPONENT_KEEP_THROWING
+
+	X.visible_message("<span class='danger'>[X] pounces on [M]!</span>",
+					"<span class='xenodanger'>We pounce on [M]!</span>", null, 5)
+
+	if(victim_paralyze_time)
+		M.Paralyze(victim_paralyze_time)
+
+	step_to(X, M)
+	if(freeze_on_hit_time)
+		X.Immobilize(freeze_on_hit_time)
+	if(X.savage) //If Runner Savage is toggled on, attempt to use it.
+		if(!X.savage_used)
+			if(X.plasma_stored >= 10)
+				X.Savage(M)
+			else
+				to_chat(X, "<span class='xenodanger'>We attempt to savage our victim, but we need [10-X.plasma_stored] more plasma.</span>")
+		else
+			to_chat(X, "<span class='xenodanger'>We attempt to savage our victim, but we aren't yet ready.</span>")
+
+	playsound(X.loc, prob(95) ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, TRUE)
+
+	pounce_complete()
 
 /datum/action/xeno_action/activable/pounce/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -93,9 +141,6 @@
 /datum/action/xeno_action/activable/pounce/proc/prepare_to_pounce()
 	if(owner.layer == XENO_HIDING_LAYER) //Xeno is currently hiding, unhide him
 		owner.layer = MOB_LAYER
-
-/datum/action/xeno_action/activable/pounce/proc/sneak_attack()
-	return
 
 /datum/action/xeno_action/activable/pounce/get_cooldown()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -110,13 +155,17 @@
 
 /datum/action/xeno_action/activable/pounce/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
+	
+	RegisterSignal(X, COMSIG_XENO_OBJ_THROW_HIT, .proc/obj_hit)
+	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, .proc/mob_hit)
+	RegisterSignal(X, COMSIG_XENO_NONE_THROW_HIT, .proc/pounce_complete)
 
 	prepare_to_pounce()
 
 	X.visible_message("<span class='xenowarning'>\The [X] pounces at [A]!</span>", \
 	"<span class='xenowarning'>We pounce at [A]!</span>")
 
-	sneak_attack()
+	SEND_SIGNAL(X, COMSIG_XENOMORPH_POUNCE)
 
 	succeed_activate()
 	add_cooldown()
@@ -133,3 +182,16 @@
 		flags_pass = initial(flags_pass) //Reset the passtable.
 	else
 		flags_pass = NONE //Reset the passtable.
+
+	//AI stuff
+/datum/action/xeno_action/activable/pounce/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/activable/pounce/ai_should_use(target)
+	if(!iscarbon(target))
+		return ..()
+	if(get_dist(target, owner) > 6)
+		return ..()
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return ..()
+	return TRUE

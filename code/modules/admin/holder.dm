@@ -322,7 +322,7 @@ GLOBAL_PROTECT(admin_verbs_mentor)
 /world/proc/AVban()
 	return list(
 	/datum/admins/proc/ban_panel,
-	/datum/admins/proc/sticky_ban_panel,
+	/datum/admins/proc/stickybanpanel,
 	/datum/admins/proc/unban_panel,
 	/datum/admins/proc/note_panel
 	)
@@ -351,7 +351,8 @@ GLOBAL_PROTECT(admin_verbs_asay)
 	/datum/admins/proc/map_template_upload,
 	/datum/admins/proc/reestablish_db_connection,
 	/datum/admins/proc/view_runtimes,
-	/datum/admins/proc/spatial_agent
+	/datum/admins/proc/spatial_agent,
+	/datum/admins/proc/check_bomb_impacts
 	)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
 GLOBAL_PROTECT(admin_verbs_debug)
@@ -382,6 +383,7 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/force_distress,
 	/datum/admins/proc/object_sound,
 	/datum/admins/proc/drop_bomb,
+	/datum/admins/proc/drop_dynex_bomb,
 	/datum/admins/proc/change_security_level,
 	/datum/admins/proc/edit_appearance,
 	/datum/admins/proc/outfit_manager,

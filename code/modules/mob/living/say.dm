@@ -46,7 +46,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	var/static/list/unconscious_allowed_modes = list(MODE_ALIEN = TRUE)
 	var/talk_key = get_key(message)
 
-	var/static/list/one_character_prefix = list(MODE_HEADSET = TRUE, MODE_ROBOT = TRUE, MODE_WHISPER = TRUE)
+	var/static/list/one_character_prefix = list(MODE_HEADSET = TRUE, MODE_ROBOT = TRUE, MODE_WHISPER = TRUE, MODE_SING = TRUE)
 
 	var/ic_blocked = FALSE
 	if(client && !forced && CHAT_FILTER_CHECK(message))
@@ -54,7 +54,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		ic_blocked = TRUE
 
 	if(sanitize)
-		message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
+		message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
 
 	if(!message)
 		return
@@ -71,11 +71,10 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	var/in_critical = InCritical()
 
 	if(one_character_prefix[message_mode])
-		message = copytext(message, 2)
+		message = copytext_char(message, 2)
 	else if(message_mode || saymode)
-		message = copytext(message, 3)
-	if(findtext(message, " ", 1, 2))
-		message = copytext(message, 2)
+		message = copytext_char(message, 3)
+	message = trim_left(message)
 
 	if(stat == DEAD)
 		say_dead(original_message)
@@ -97,11 +96,10 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		// No, you cannot speak in xenocommon just because you know the key
 		if(can_speak_in_language(message_language))
 			language = message_language
-		message = copytext(message, 3)
+		message = copytext_char(message, 3)
 
 		// Trim the space if they said ",0 I LOVE LANGUAGES"
-		if(findtext(message, " ", 1, 2))
-			message = copytext(message, 2)
+		message = trim_left(message)
 
 	if(!language)
 		language = get_default_language()
@@ -132,6 +130,15 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		var/datum/language/L = GLOB.language_datum_instances[language]
 		spans |= L.spans
 
+	if(message_mode == MODE_SING)
+	#if DM_VERSION < 513
+		var/randomnote = "~"
+	#else
+		var/randomnote = pick("\u2669", "\u266A", "\u266B")
+	#endif
+		spans |= SPAN_SINGING
+		message = "[randomnote] [message] [randomnote]"
+
 	var/radio_return = radio(message, message_mode, spans, language)
 	if(radio_return & ITALICS)
 		spans |= SPAN_ITALICS
@@ -151,6 +158,11 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	. = ..()
 	if(!client)
 		return
+
+	// Create map text prior to modifying message for goonchat
+	if (client?.prefs.chat_on_map && stat != UNCONSCIOUS && !isdeaf(src) && (client.prefs.see_chat_non_mob || ismob(speaker)))
+		create_chat_message(speaker, message_language, raw_message, spans, message_mode)
+
 	var/deaf_message
 	var/deaf_type
 	if(speaker != src)
@@ -208,7 +220,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	//speech bubble
 	var/list/speech_bubble_recipients = list()
 	for(var/mob/M in listening)
-		if(M.client)
+		if(M.client && !M.client.prefs.chat_on_map)
 			speech_bubble_recipients.Add(M.client)
 	var/image/I = image('icons/mob/talk.dmi', src, "[bubble_type][say_test(message)]", FLY_LAYER)
 	I.appearance_flags = APPEARANCE_UI_TRANSFORM
@@ -218,6 +230,11 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 /mob/living/GetVoice()
 	return name
 
+/mob/living/IsVocal()
+	. = ..()
+
+	if(disabilities & MUTE)
+		return FALSE
 
 /mob/living/proc/can_speak_vocal(message) //Check AFTER handling of xeno channels
 	if(istype(wear_mask, /obj/item/clothing/mask/muzzle))
@@ -230,14 +247,13 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 
 
 /mob/living/proc/get_key(message)
-	var/key = copytext(message, 1, 2)
+	var/key = message[1]
 	if(key in GLOB.department_radio_prefixes)
-		return lowertext(copytext(message, 2, 3))
-
+		return lowertext(message[1 + length(key)])
 
 /mob/living/proc/get_message_language(message)
-	if(copytext(message, 1, 2) == ",")
-		var/key = copytext(message, 2, 3)
+	if(message[1] == ",")
+		var/key = message[1 + length(message[1])]
 		for(var/ld in GLOB.all_languages)
 			var/datum/language/LD = ld
 			if(initial(LD.key) == key)
@@ -288,6 +304,8 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		. = "[verb_whisper] in [p_their()] last breath"
 	else if(stuttering)
 		. = "stammers"
+	else if(message_mode == MODE_SING)
+		. = verb_sing
 	else
 		. = ..()
 

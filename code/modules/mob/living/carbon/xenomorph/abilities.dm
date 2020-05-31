@@ -77,6 +77,18 @@
 	add_cooldown()
 	return succeed_activate()
 
+//AI stuff
+/datum/action/xeno_action/plant_weeds/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/plant_weeds/ai_should_use(target)
+	if(!can_use_action(override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return ..()
+	if(locate(/obj/effect/alien/weeds/node) in owner.loc) //NODE SPAMMMM
+		//There's already a node on this loc don't plant anything
+		return ..()
+	return TRUE
+
 /datum/action/xeno_action/plant_weeds/slow
 	cooldown_timer = 12 SECONDS
 
@@ -87,7 +99,7 @@
 	mechanics_text = "Selects which structure you will build with the (secrete resin) ability."
 	keybind_signal = COMSIG_XENOABILITY_CHOOSE_RESIN
 	var/list/buildable_structures = list(
-		/turf/closed/wall/resin,
+		/turf/closed/wall/resin/regenerating,
 		/obj/structure/bed/nest,
 		/obj/effect/alien/resin/sticky,
 		/obj/structure/mineral_door/resin)
@@ -213,7 +225,7 @@
 
 	var/atom/new_resin
 
-	if(X.selected_resin == /turf/closed/wall/resin)
+	if(ispath(X.selected_resin, /turf)) // We should change turfs, not spawn them in directly
 		T.ChangeTurf(X.selected_resin)
 		new_resin = T
 	else
@@ -228,7 +240,7 @@
 	cooldown_timer = 5 SECONDS
 	base_wait = 2.5 SECONDS
 	scaling_wait = 0
-	
+
 
 /datum/action/xeno_action/toggle_pheromones
 	name = "Open/Collapse Pheromone Options"
@@ -236,6 +248,14 @@
 	mechanics_text = "Opens your pheromone options."
 	plasma_cost = 0
 	var/PheromonesOpen = FALSE //If the  pheromone choices buttons are already displayed or not
+
+/datum/action/xeno_action/toggle_pheromones/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/toggle_pheromones/ai_should_use(target)
+	if(PheromonesOpen)
+		return ..()
+	return TRUE
 
 /datum/action/xeno_action/toggle_pheromones/can_use_action()
 	return TRUE //No actual gameplay impact; should be able to collapse or open pheromone choices at any time
@@ -259,6 +279,17 @@
 	plasma_cost = 30 //Base plasma cost for begin to emit pheromones
 	var/aura_type = null //String for aura to emit
 	use_state_flags = XACT_USE_STAGGERED|XACT_USE_NOTTURF|XACT_USE_BUSY
+
+/datum/action/xeno_action/pheromones/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/pheromones/ai_should_use(target)
+	var/mob/living/carbon/xenomorph/X = owner
+	if(X.current_aura)
+		return ..()
+	if(prob(33)) //Since the pheromones go from recovery => warding => frenzy, this enables AI to somewhat randomly pick one of the three pheros to emit
+		return ..()
+	return TRUE
 
 /datum/action/xeno_action/pheromones/action_activate() //Must pass the basic plasma cost; reduces copy pasta
 	var/mob/living/carbon/xenomorph/X = owner
@@ -702,11 +733,21 @@
 
 	newspit.fire_at(A, X, null, X.ammo.max_range, X.ammo.shell_speed)
 
-	X.add_slowdown(2)
-
 	add_cooldown()
 
 	return succeed_activate()
+
+/datum/action/xeno_action/activable/xeno_spit/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/activable/xeno_spit/ai_should_use(target)
+	if(!iscarbon(target))
+		return ..()
+	if(get_dist(target, owner) > 6)
+		return ..()
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return ..()
+	return TRUE
 
 
 /datum/action/xeno_action/xenohide
@@ -802,7 +843,7 @@
 	if(!X.check_state())
 		return
 
-	var/msg = sanitize(input("Message:", "Psychic Whisper") as text|null)
+	var/msg = stripped_input("Message:", "Psychic Whisper")
 	if(!msg)
 		return
 
@@ -842,53 +883,6 @@
 
 	new /obj/item/xeno_egg(current_turf, xeno.hivenumber)
 	playsound(owner.loc, 'sound/effects/splat.ogg', 25)
-
-	succeed_activate()
-	add_cooldown()
-
-// ***************************************
-// *********** Spawn hivemind
-// ***************************************
-/datum/action/xeno_action/spawn_hivemind
-	name = "Create hivemind"
-	action_icon_state = "lay_hivemind"
-	plasma_cost = 400
-	cooldown_timer = 300 SECONDS
-	keybind_signal = COMSIG_XENOABILITY_LAY_HIVEMIND
-
-
-/datum/action/xeno_action/spawn_hivemind/action_activate()
-	var/mob/living/carbon/xenomorph/queen/xeno = owner
-	var/turf/current_turf = get_turf(owner)
-
-	var/obj/effect/alien/weeds/alien_weeds = locate() in current_turf
-	if(!alien_weeds)
-		to_chat(owner, "<span class='warning'>We can't place a hivemind here. Lay it on some resin.</span>")
-		return FALSE
-
-	if(length(xeno.hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]))
-		to_chat(owner, "<span class='warning'>We already have a hivemind active.</span>")
-		return FALSE
-
-	if(!do_after(owner, 3 SECONDS, FALSE, alien_weeds))
-		return FALSE
-
-	if(!current_turf.check_alien_construction(owner))
-		return FALSE
-
-	owner.visible_message("<span class='xenowarning'>\The [owner] has created a hivemind!</span>", \
-		"<span class='xenowarning'>We have created a hivemind!</span>")
-
-	var/obj/effect/alien/weeds/node/hivemindcore/core = new /obj/effect/alien/weeds/node/hivemindcore(current_turf)
-	if(!isxenohivemind(core.parent))
-		return FALSE
-	var/mob/living/carbon/xenomorph/hivemind/xeno_hivemind = core.parent
-	playsound(xeno_hivemind.loc, 'sound/effects/splat.ogg', 25)
-
-	xeno_hivemind.offer_mob()
-	var/datum/game_mode/gm = SSticker.mode
-	if(gm && (gm.flags_round_type & MODE_FOG_ACTIVATED))
-		gm.remove_fog()
 
 	succeed_activate()
 	add_cooldown()

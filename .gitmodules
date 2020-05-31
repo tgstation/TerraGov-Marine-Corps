@@ -1,5 +1,0 @@
-[submodule "components"]
-	path = code/_dependencies/components
-	url = https://github.com/ninjanomnom/components.git
-	branch = master
-	shallow = true

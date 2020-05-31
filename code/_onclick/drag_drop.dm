@@ -23,11 +23,13 @@
 	. = ..()
 	if(.)
 		return
-	if(buckle_flags & CAN_BUCKLE && isliving(user))
+	if(buckle_flags & CAN_BUCKLE && isliving(user) && !(user.status_flags & INCORPOREAL) )
 		return mouse_buckle_handling(dropping, user)
 
 /client/MouseDown(atom/object, turf/location, control, params)
 	if(!control)
+		return
+	if(QDELETED(object)) //Yep, you can click on qdeleted things before they have time to nullspace. Fun.
 		return
 	if(SEND_SIGNAL(mob, COMSIG_MOB_MOUSEDOWN, object, location, control, params) & COMSIG_MOB_CLICK_CANCELED)
 		return
@@ -48,6 +50,8 @@
 
 
 /client/MouseDrag(atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params) //The order seems to be wrong in the reference.
+	if(over_control != "mapwindow.map") //You can drag the mouse to the stat panel, in which case this variable will be "statwindow.stat"
+		return
 	var/list/L = params2list(params)
 	if(L["middle"])
 		if(src_object && src_location != over_location)

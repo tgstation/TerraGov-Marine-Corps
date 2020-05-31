@@ -41,7 +41,7 @@
 
 
 /mob/living/proc/handle_staminaloss()
-	if(world.time < last_staminaloss_dmg + 3 SECONDS || (m_intent == MOVE_INTENT_RUN && world.time < last_move_intent + 1 SECONDS))
+	if(world.time < last_staminaloss_dmg + 3 SECONDS)
 		return
 	if(staminaloss > 0)
 		adjustStaminaLoss(-maxHealth * 0.2, TRUE, FALSE)
@@ -61,20 +61,26 @@
 
 /mob/living/proc/updatehealth()
 	if(status_flags & GODMODE)
+		health = maxHealth
+		stat = CONSCIOUS
 		return
 	health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss()
 	update_stat()
 
 /mob/living/update_stat()
+	. = ..()
 	update_cloak()
 
 /mob/living/Initialize()
 	. = ..()
+	register_init_signals()
 	update_move_intent_effects()
 	GLOB.mob_living_list += src
 	if(stat != DEAD)
 		GLOB.alive_living_list += src
 	START_PROCESSING(SSmobs, src)
+
+	set_armor_datum()
 
 /mob/living/Destroy()
 	for(var/i in embedded_objects)
@@ -91,8 +97,6 @@
 	STOP_PROCESSING(SSmobs, src)
 	job = null
 	return ..()
-
-
 
 
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
@@ -149,6 +153,22 @@
 	return FALSE
 
 
+/mob/living/proc/set_armor_datum()
+	if(islist(soft_armor))
+		soft_armor = getArmor(arglist(soft_armor))
+	else if (!soft_armor)
+		soft_armor = getArmor()
+	else if (!istype(soft_armor, /datum/armor))
+		stack_trace("Invalid type [soft_armor.type] found in .soft_armor during [type] Initialize()")
+
+	if(islist(hard_armor))
+		hard_armor = getArmor(arglist(hard_armor))
+	else if (!hard_armor)
+		hard_armor = getArmor()
+	else if (!istype(hard_armor, /datum/armor))
+		stack_trace("Invalid type [hard_armor.type] found in .hard_armor during [type] Initialize()")
+
+
 /mob/living/proc/get_limbzone_target()
 	return ran_zone(zone_selected)
 
@@ -169,13 +189,11 @@
 				return buckled.Move(newloc, direct)
 			else
 				return FALSE
-	else if(lying)
+	else if(lying_angle)
 		if(direct & EAST)
-			lying = 90
+			set_lying_angle(90)
 		else if(direct & WEST)
-			lying = 270
-		update_transform()
-		lying_prev = lying
+			set_lying_angle(270)
 
 	. = ..()
 
@@ -226,9 +244,9 @@
 /mob/living/proc/do_resist_grab()
 	if(restrained(RESTRAINED_NECKGRAB))
 		return FALSE
-	if(cooldowns[COOLDOWN_RESIST])
+	if(COOLDOWN_CHECK(src, COOLDOWN_RESIST))
 		return FALSE
-	cooldowns[COOLDOWN_RESIST] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_RESIST, null), CLICK_CD_RESIST)
+	COOLDOWN_START(src, COOLDOWN_RESIST, CLICK_CD_RESIST)
 	if(pulledby.grab_state >= GRAB_AGGRESSIVE)
 		visible_message("<span class='danger'>[src] resists against [pulledby]'s grip!</span>")
 	return resist_grab()
@@ -237,9 +255,9 @@
 /mob/living/proc/do_move_resist_grab()
 	if(restrained(RESTRAINED_NECKGRAB))
 		return FALSE
-	if(cooldowns[COOLDOWN_RESIST])
+	if(COOLDOWN_CHECK(src, COOLDOWN_RESIST))
 		return FALSE
-	cooldowns[COOLDOWN_RESIST] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_RESIST, null), CLICK_CD_RESIST)
+	COOLDOWN_START(src, COOLDOWN_RESIST, CLICK_CD_RESIST)
 	if(pulledby.grab_state >= GRAB_AGGRESSIVE)
 		visible_message("<span class='danger'>[src] struggles to break free of [pulledby]'s grip!</span>", null, null, 5)
 	return resist_grab()
@@ -268,7 +286,6 @@
 			//resist_grab uses long movement cooldown durations to prevent message spam
 			//so we must undo it here so the victim can move right away
 			M.client.move_delay = world.time
-		M.update_canmove()
 
 		if(isliving(pulling))
 			var/mob/living/L = pulling
@@ -400,11 +417,7 @@
 		stop_pulling() //being thrown breaks pulls.
 	if(pulledby)
 		pulledby.stop_pulling()
-	set_frozen(TRUE) //can't move while being thrown
-	update_canmove()
-	. = ..()
-	set_frozen(FALSE)
-	update_canmove()
+	return ..()
 
 
 /mob/living/proc/offer_mob()
@@ -415,10 +428,10 @@
 /mob/living/proc/get_permeability_protection()
 	return LIVING_PERM_COEFF
 
-/mob/proc/flash_eyes(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
+/mob/proc/flash_act(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
 	return
 
-/mob/living/carbon/flash_eyes(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
+/mob/living/carbon/flash_act(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
 	if( bypass_checks || (get_eye_protection() < intensity && !(disabilities & BLIND)) )
 		overlay_fullscreen_timer(40, 20, "flash", type)
 		return TRUE
@@ -447,7 +460,7 @@
 
 /mob/living/proc/adjust_mob_accuracy(accuracy_mod)
 	ranged_accuracy_mod += accuracy_mod
-	
+
 
 /mob/living/proc/smokecloak_on()
 
@@ -568,46 +581,12 @@ below 100 is not dizzy
 	return TRUE
 
 
-/mob/living/update_canmove()
-
-	var/laid_down = (stat || IsKnockdown() || IsUnconscious() || !has_legs() || resting || (status_flags & FAKEDEATH) || (pulledby && pulledby.grab_state >= GRAB_NECK) || (buckled && buckled.buckle_lying != -1))
-
-	if(laid_down)
-		if(buckled && buckled.buckle_lying != -1)
-			lying = buckled.buckle_lying //Might not actually be laying down, like with chairs, but the rest of the logic applies.
-		else if(!lying)
-			lying = pick(90, 270)
-	else if(lying)
-		lying = 0
-
-	set_canmove(!(IsStun() || frozen || laid_down))
-
-	if(lying)
-		density = FALSE
-		drop_all_held_items()
-	else
-		density = TRUE
-
-	if(lying_prev != lying)
-		update_transform()
-		lying_prev = lying
-
-	if(lying)
-		if(layer == initial(layer)) //to avoid things like hiding larvas.
-			layer = LYING_MOB_LAYER //so mob lying always appear behind standing mobs
-	else
-		if(layer == LYING_MOB_LAYER)
-			layer = initial(layer)
-
-	return canmove
-
-
 /mob/living/proc/set_canmove(newcanmove)
 	if(canmove == newcanmove)
 		return
+	. = canmove
 	canmove = newcanmove
 	SEND_SIGNAL(src, COMSIG_LIVING_SET_CANMOVE, canmove)
-
 
 
 /mob/living/proc/update_leader_tracking(mob/living/L)
@@ -656,10 +635,10 @@ below 100 is not dizzy
 /mob/living/proc/point_to_atom(atom/A, turf/T)
 	//Squad Leaders and above have reduced cooldown and get a bigger arrow
 	if(skills.getRating("leadership") < SKILL_LEAD_TRAINED)
-		cooldowns[COOLDOWN_POINT] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_POINT, null), 5 SECONDS)
+		COOLDOWN_START(src, COOLDOWN_POINT, 5 SECONDS)
 		new /obj/effect/overlay/temp/point(T)
 	else
-		cooldowns[COOLDOWN_POINT] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_POINT, null), 1 SECONDS)
+		COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)
 		new /obj/effect/overlay/temp/point/big(T)
 	visible_message("<b>[src]</b> points to [A]")
 	return TRUE
@@ -702,22 +681,18 @@ below 100 is not dizzy
 		if(SOUTH)
 			animate(pulled_mob, pixel_x = 0, pixel_y = -offset, 0.3 SECONDS)
 		if(EAST)
-			if(pulled_mob.lying == 270) //update the dragged dude's direction if we've turned
-				pulled_mob.lying = 90
-				pulled_mob.update_transform() //force a transformation update, otherwise it'll take a few ticks for update_mobility() to do so
-				pulled_mob.lying_prev = pulled_mob.lying
+			if(pulled_mob.lying_angle == 270) //update the dragged dude's direction if we've turned
+				pulled_mob.set_lying_angle(90)
 			animate(pulled_mob, pixel_x = offset, pixel_y = 0, 0.3 SECONDS)
 		if(WEST)
-			if(pulled_mob.lying == 90)
-				pulled_mob.lying = 270
-				pulled_mob.update_transform()
-				pulled_mob.lying_prev = pulled_mob.lying
+			if(pulled_mob.lying_angle == 90)
+				pulled_mob.set_lying_angle(270)
 			animate(pulled_mob, pixel_x = -offset, pixel_y = 0, 0.3 SECONDS)
 
 /mob/living/proc/reset_pull_offsets(mob/living/pulled_mob, override)
 	if(!override && pulled_mob.buckled)
 		return
-	animate(pulled_mob, pixel_x = 0, pixel_y = 0, 0.1 SECONDS)
+	animate(pulled_mob, pixel_x = initial(pulled_mob.pixel_x), pixel_y = initial(pulled_mob.pixel_y), 0.1 SECONDS)
 
 
 //mob verbs are a lot faster than object verbs
@@ -746,12 +721,6 @@ below 100 is not dizzy
 				GLOB.dead_mob_list += src
 	. = ..()
 	switch(var_name)
-		if("knockdown")
-			SetKnockdown(var_value)
-		if("stun")
-			SetStun(var_value)
-		if("sleeping")
-			SetSleeping(var_value)
 		if("eye_blind")
 			set_blindness(var_value)
 		if("eye_blurry")
@@ -766,3 +735,54 @@ below 100 is not dizzy
 
 /mob/living/can_interact_with(datum/D)
 	return D.Adjacent(src)
+
+/**
+  * Changes the inclination angle of a mob, used by humans and others to differentiate between standing up and prone positions.
+  *
+  * In BYOND-angles 0 is NORTH, 90 is EAST, 180 is SOUTH and 270 is WEST.
+  * This usually means that 0 is standing up, 90 and 270 are horizontal positions to right and left respectively, and 180 is upside-down.
+  * Mobs that do now follow these conventions due to unusual sprites should require a special handling or redefinition of this proc, due to the density and layer changes.
+  * The return of this proc is the previous value of the modified lying_angle if a change was successful (might include zero), or null if no change was made.
+  */
+/mob/living/proc/set_lying_angle(new_lying)
+	if(new_lying == lying_angle)
+		return
+	. = lying_angle
+	lying_angle = new_lying
+	update_transform()
+	lying_prev = lying_angle
+
+	if(lying_angle)
+		density = FALSE
+		drop_all_held_items()
+		if(layer == initial(layer)) //to avoid things like hiding larvas.
+			layer = LYING_MOB_LAYER //so mob lying always appear behind standing mobs
+	else
+		density = TRUE
+		if(layer == LYING_MOB_LAYER)
+			layer = initial(layer)
+
+
+/mob/living/set_stat(new_stat)
+	. = ..()
+	if(isnull(.))
+		return
+	if(stat == CONSCIOUS) //From unconscious to conscious.
+		REMOVE_TRAIT(src, TRAIT_IMMOBILE, STAT_TRAIT)
+		REMOVE_TRAIT(src, TRAIT_FLOORED, STAT_TRAIT)
+	else if(. == CONSCIOUS) //From conscious to unconscious.
+		ADD_TRAIT(src, TRAIT_IMMOBILE, STAT_TRAIT)
+		ADD_TRAIT(src, TRAIT_FLOORED, STAT_TRAIT)
+
+
+/mob/living/setGrabState(newstate)
+	. = ..()
+	if(isnull(.))
+		return
+	if(grab_state >= GRAB_NECK)
+		if(. < GRAB_NECK) //Neckgrabbed.
+			ADD_TRAIT(pulling, TRAIT_IMMOBILE, NECKGRAB_TRAIT)
+			ADD_TRAIT(pulling, TRAIT_FLOORED, NECKGRAB_TRAIT)
+	else if(. >= GRAB_NECK) //Released from neckgrab.
+		REMOVE_TRAIT(pulling, TRAIT_IMMOBILE, NECKGRAB_TRAIT)
+		REMOVE_TRAIT(pulling, TRAIT_FLOORED, NECKGRAB_TRAIT)

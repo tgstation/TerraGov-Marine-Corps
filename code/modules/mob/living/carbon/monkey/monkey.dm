@@ -184,7 +184,7 @@
 			if(H.a_intent == INTENT_HARM)//Stungloves. Any contact will stun the alien.
 				if(G.cell.charge >= 2500)
 					G.cell.use(2500)
-					Knockdown(10 SECONDS)
+					Paralyze(10 SECONDS)
 					if (stuttering < 5)
 						stuttering = 5
 					Stun(10 SECONDS)
@@ -280,26 +280,24 @@
 	return ..()
 
 /mob/living/carbon/monkey/ex_act(severity)
-	flash_eyes()
+	flash_act()
 
 	switch(severity)
-		if(1.0)
-			if (stat != DEAD)
+		if(EXPLODE_DEVASTATE)
+			if(stat != DEAD)
 				adjustBruteLoss(200)
-				health = 100 - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
-		if(2.0)
-			if (stat != DEAD)
+				UPDATEHEALTH(src)
+		if(EXPLODE_HEAVY)
+			if(stat != DEAD)
 				adjustBruteLoss(60)
 				adjustFireLoss(60)
-				health = 100 - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
-		if(3.0)
-			if (stat != DEAD)
+				UPDATEHEALTH(src)
+		if(EXPLODE_LIGHT)
+			if(stat != DEAD)
 				adjustBruteLoss(30)
-				health = 100 - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
-			if (prob(50))
-				Unconscious(20 SECONDS)
-		else
-	return
+				UPDATEHEALTH(src)
+				if(prob(50))
+					Unconscious(20 SECONDS)
 
 
 /mob/living/carbon/monkey/get_idcard(hand_first)

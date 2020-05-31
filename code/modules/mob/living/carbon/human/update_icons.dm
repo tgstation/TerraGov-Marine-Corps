@@ -107,11 +107,16 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 //DAMAGE OVERLAYS
 //constructs damage icon for each organ from mask * damage field and saves it in our overlays_ lists
 /mob/living/carbon/human/UpdateDamageIcon()
+
+	if(species.species_flags & NO_DAMAGE_OVERLAY)
+		return
+
 	// first check whether something actually changed about damage appearance
 	var/damage_appearance = ""
 
 	for(var/datum/limb/O in limbs)
-		if(O.limb_status & LIMB_DESTROYED) damage_appearance += "d"
+		if(O.limb_status & LIMB_DESTROYED)
+			damage_appearance += "d"
 		else
 			damage_appearance += O.damage_state
 
@@ -123,19 +128,21 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 	previous_damage_appearance = damage_appearance
 
-	var/icon/standing = new /icon('icons/mob/dam_human.dmi', "00")
+	var/icon/standing = new('icons/mob/dam_human.dmi', "00")
 
-	var/image/standing_image = new /image("icon" = standing, "layer" =-DAMAGE_LAYER)
+	var/image/standing_image = image("icon" = standing, "layer" = -DAMAGE_LAYER)
 
 	// blend the individual damage states with our icons
-	for(var/datum/limb/O in limbs)
-		if(!(O.limb_status & LIMB_DESTROYED))
-			O.update_icon()
-			if(O.damage_state == "00") continue
+	for(var/o in limbs)
+		var/datum/limb/limb_to_update = o
+		limb_to_update.update_icon()
 
-			var/icon/DI = get_damage_icon_part(O.damage_state, O.icon_name)
+		if(limb_to_update.damage_state == "00")
+			continue
 
-			standing_image.overlays += DI
+		var/icon/DI = get_damage_icon_part(limb_to_update.damage_state, limb_to_update.icon_name)
+
+		standing_image.overlays += DI
 
 	overlays_standing[DAMAGE_LAYER]	= standing_image
 
@@ -446,27 +453,30 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		else
 			standing = image("icon" = 'icons/mob/hands.dmi', "icon_state" = "[t_state]", "layer" =-GLOVES_LAYER)
 
-		if(istype(gloves,/obj/item/clothing/gloves/marine))
-			var/obj/item/clothing/gloves/marine/squad = gloves
-			if(squad.flags_marine_gloves & GLOVES_SQUAD_OVERLAY)
-				if(assigned_squad)
-					var/datum/squad/S = assigned_squad
-					if(GLOB.glovemarkings[S.type])
-						standing.overlays += GLOB.glovemarkings[S.type]
-
 		if(gloves.blood_overlay)
 			var/image/bloodsies	= image("icon" = 'icons/effects/blood.dmi', "icon_state" = "bloodyhands")
 			bloodsies.color = gloves.blood_color
 			standing.overlays	+= bloodsies
 		overlays_standing[GLOVES_LAYER]	= standing
+		apply_overlay(GLOVES_LAYER)
+		return
+	if(!blood_color || !bloody_hands)
+		return
+	var/datum/limb/left_hand = get_limb("l_hand")
+	var/datum/limb/right_hand = get_limb("r_hand")
+	var/image/bloodsies
+	if(left_hand.limb_status & LIMB_DESTROYED)
+		if(right_hand.limb_status & LIMB_DESTROYED)
+			return //No hands.
+		bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "bloodyhand_right") //Only right hand.
+	else if(right_hand.limb_status & LIMB_DESTROYED)
+		bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "bloodyhand_left") //Only left hand.
 	else
-		if(blood_color)
-			var/image/bloodsies	= image("icon" = 'icons/effects/blood.dmi', "icon_state" = "bloodyhands")
-			bloodsies.color = blood_color
-			overlays_standing[GLOVES_LAYER]	= bloodsies
+		bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "bloodyhands") //Both hands.
 
+	bloodsies.color = blood_color
+	overlays_standing[GLOVES_LAYER]	= bloodsies
 	apply_overlay(GLOVES_LAYER)
-
 
 
 /mob/living/carbon/human/update_inv_glasses()

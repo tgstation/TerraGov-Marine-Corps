@@ -9,9 +9,6 @@
 	. = ..()
 	baseturfs = type
 
-/turf/open/ground/ex_act(severity) //Should make it indestructable
-	return
-
 /turf/open/ground/fire_act(exposed_temperature, exposed_volume)
 	return
 
@@ -310,6 +307,8 @@
 	icon_state = "grass_impenetrable"
 	icon_spawn_state = "grass1"
 
+/turf/open/ground/jungle/impenetrable/nobush
+	bushes_spawn = FALSE
 
 /turf/open/ground/jungle/impenetrable/Initialize()
 	. = ..()
@@ -347,7 +346,7 @@
 	if(prob(10 + (L.m_intent == MOVE_INTENT_RUN ? 40 : 0)))
 		to_chat(L, pick("<span class='notice'> You slip on something slimy.</span>", "<span class='notice'>You fall over into the murk.</span>"))
 		L.Stun(40)
-		L.Knockdown(20)
+		L.Paralyze(20)
 
 	//piranhas
 	if(prob(25))

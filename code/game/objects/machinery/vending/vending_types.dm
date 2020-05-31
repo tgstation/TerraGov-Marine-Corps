@@ -89,7 +89,8 @@
 					/obj/item/reagent_containers/food/snacks/enrg_bar = 12,
 					/obj/item/reagent_containers/food/snacks/wrapped/booniebars = 6,
 					/obj/item/reagent_containers/food/snacks/wrapped/chunk = 6,
-					/obj/item/reagent_containers/food/snacks/wrapped/barcardine = 6)
+					/obj/item/reagent_containers/food/snacks/wrapped/barcardine = 6,
+					/obj/item/reagent_containers/food/snacks/lollipop = 12)
 
 	prices = list()
 
@@ -126,12 +127,23 @@
 
 /obj/machinery/vending/cigarette
 	name = "cigarette machine" //OCD had to be uppercase to look nice with the new formating
-	desc = "If you want to get cancer, might as well do it in style!"
-	product_slogans = "L.S./M.F.T.! Lucky Strikes Means Fine Tobacco.;For a classic style that lights up every time, there's always Zippo!;The FDA would like to remind you that tobacco products cause cancer and increased fatigue.;Real men smoke Lucky Strikes!;Serving the US Armed Forces for over two-hundred years!;Life's short, smoke a Lucky!;L.S./M.F.T.!;Lucky Strike is first again!;You just can't beat a Lucky Strike!;The preferred cigarette of Carlos Hathcock!;First again with tobacco-men!"
-	product_ads = "Real men smoke Lucky Strikes!;Serving the US Armed Forces for over two-hundred years!;Life's short, smoke a Lucky!;L.S./M.F.T.!;Lucky Strike is first again!;You just can't beat a Lucky Strike!;The preferred cigarette of Carlos Hathcock!;First again with tobacco-men!"
+	desc = "A specialized vending machine designed to contribute to your slow and uncomfortable death."
+	product_slogans = "There's no better time to start smokin'.;\
+		Smoke now, and win the adoration of your peers.;\
+		They beat cancer centuries ago, so smoke away.;\
+		If you're not smoking, you must be joking."
+	product_ads = "Probably not bad for you!;\
+		Don't believe the scientists!;\
+		It's good for you!;\
+		Don't quit, buy more!;\
+		Smoke!;\
+		Nicotine heaven.;\
+		Best cigarettes since 2150.;\
+		Don't be so hard on yourself, kid. Smoke a Lucky Star!;\
+		Professionals. Better cigarettes for better people. Yes, better people."
 	vend_delay = 14
 	icon_state = "cigs"
-	products = list(/obj/item/storage/fancy/cigarettes/lucky_strikes = 50,
+	products = list(/obj/item/storage/fancy/cigarettes/luckystars = 50,
 					/obj/item/storage/box/matches = 15,
 					/obj/item/tool/lighter/random = 25,
 					/obj/item/tool/lighter/zippo = 10)
@@ -139,7 +151,7 @@
 	contraband = list(/obj/item/clothing/mask/cigarette/cigar/havana = 5)
 
 	premium = list(/obj/item/storage/fancy/cigar = 25)
-	prices = list(/obj/item/storage/fancy/cigarettes/lucky_strikes = 15,
+	prices = list(/obj/item/storage/fancy/cigarettes/luckystars = 15,
 					/obj/item/storage/box/matches = 1,
 					/obj/item/tool/lighter/random = 2,
 					/obj/item/tool/lighter/zippo = 20,
@@ -185,12 +197,15 @@
 					/obj/item/reagent_containers/glass/bottle/dexalin = 4,
 					/obj/item/reagent_containers/glass/bottle/tramadol = 4,
 					/obj/item/reagent_containers/glass/bottle/oxycodone = 4,
+					/obj/item/reagent_containers/glass/bottle/polyhexanide = 2,
+					/obj/item/reagent_containers/glass/bottle/neurotoxin = 1,
+					/obj/item/reagent_containers/glass/bottle/xeno_growthtoxin = 1,
 					/obj/item/storage/pill_bottle/peridaxon = 2,
 					/obj/item/stack/medical/advanced/bruise_pack = 5,
 					/obj/item/stack/medical/advanced/ointment = 5,
 					/obj/item/stack/medical/ointment = 10,
 					/obj/item/stack/medical/bruise_pack = 10,
-					/obj/item/stack/medical/splint = 5
+					/obj/item/stack/medical/splint = 5,
 					)
 
 	contraband = list(/obj/item/reagent_containers/glass/bottle/toxin = 1)
@@ -216,12 +231,14 @@
 	wrenchable = FALSE
 	products = list(/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = 1,
 					/obj/item/reagent_containers/hypospray/autoinjector/tramadol = 1,
+					/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 1,
 					/obj/item/stack/medical/bruise_pack = 2,
 					/obj/item/stack/medical/ointment = 2,
 					/obj/item/healthanalyzer = 1,
 					/obj/item/stack/medical/splint = 1)
-	contraband = list(/obj/item/reagent_containers/syringe/dylovene = 2,
-						/obj/item/reagent_containers/syringe/antiviral = 2)
+	contraband = list(/obj/item/reagent_containers/hypospray/autoinjector/combat = 0,
+						/obj/item/reagent_containers/hypospray/autoinjector/hyperzine/expired = 0,
+						/obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired = 0)
 
 
 /obj/machinery/vending/nanomed/Initialize(mapload, ...)
@@ -243,7 +260,7 @@
 	product_ads = "Crack capitalist skulls!;Beat some heads in!;Don't forget - harm is good!;Your weapons are right here.;Handcuffs!;Freeze, scumbag!;Don't tase me bro!;Tase them, bro.;Why not have a donut?"
 	icon_state = "sec"
 	icon_deny = "sec-deny"
-	req_access_txt = "3"
+	req_access = list(ACCESS_MARINE_BRIG)
 	products = list(/obj/item/restraints/handcuffs = 8,
 					/obj/item/restraints/handcuffs/zip = 10,
 					/obj/item/explosive/grenade/flashbang = 4,
@@ -316,8 +333,7 @@
 	desc = "Tools for tools."
 	icon_state = "tool"
 	icon_deny = "tool-deny"
-	//req_access_txt = "12" //Maintenance access
-	products = list(/obj/item/stack/cable_coil/random = 10,/obj/item/tool/crowbar = 5,/obj/item/tool/weldingtool = 3,/obj/item/tool/wirecutters = 5,
+	products = list(/obj/item/stack/cable_coil = 10,/obj/item/tool/crowbar = 5,/obj/item/tool/weldingtool = 3,/obj/item/tool/wirecutters = 5,
 					/obj/item/tool/wrench = 5,/obj/item/analyzer = 5,/obj/item/t_scanner = 5,/obj/item/tool/screwdriver = 5)
 	contraband = list(/obj/item/tool/weldingtool/hugetank = 2,/obj/item/clothing/gloves/fyellow = 2)
 	premium = list(/obj/item/clothing/gloves/yellow = 1)
@@ -327,7 +343,7 @@
 	desc = "Spare electronics vending. What? Did you expect some witty description?"
 	icon_state = "engivend"
 	icon_deny = "engivend-deny"
-	req_access_txt = "7" //Engineering Equipment access
+	req_access = list(ACCESS_MARINE_ENGINEERING)
 	products = list(/obj/item/clothing/glasses/meson = 2,/obj/item/multitool = 4,/obj/item/circuitboard/airlock = 10,/obj/item/circuitboard/apc = 10,/obj/item/circuitboard/airalarm = 10, /obj/item/circuitboard/general = 20, /obj/item/cell/high = 10)
 	contraband = list(/obj/item/cell/potato = 3)
 	premium = list(/obj/item/storage/belt/utility = 3)
@@ -338,7 +354,7 @@
 	desc = "A large storage machine containing various tools and devices for general repair."
 	icon_state = "engi"
 	icon_deny = "engi-deny"
-	req_access_txt = "7"
+	req_access = list(ACCESS_MARINE_ENGINEERING)
 	products = list(/obj/item/clothing/head/hardhat = 4,/obj/item/storage/belt/utility = 4,/obj/item/clothing/glasses/meson = 4,/obj/item/clothing/gloves/yellow = 4,
 					/obj/item/tool/screwdriver = 12,/obj/item/tool/crowbar = 12,/obj/item/tool/wirecutters = 12,/obj/item/multitool = 12,/obj/item/tool/wrench = 12,
 					/obj/item/t_scanner = 12, /obj/item/cell = 8, /obj/item/tool/weldingtool = 8,/obj/item/clothing/head/welding = 8,
@@ -351,7 +367,7 @@
 	desc = "All the tools you need to create your own robot army."
 	icon_state = "robotics"
 	icon_deny = "robotics-deny"
-	req_access_txt = "14"
+	req_access = list(ACCESS_MARINE_RESEARCH)
 	products = list(/obj/item/clothing/suit/storage/labcoat = 4,/obj/item/clothing/under/rank/roboticist = 4,/obj/item/stack/cable_coil = 4,/obj/item/flash = 4,
 					/obj/item/cell/high = 12, /obj/item/assembly/prox_sensor = 3,/obj/item/assembly/signaler = 3,/obj/item/healthanalyzer = 3,
 					/obj/item/tool/surgery/scalpel = 2,/obj/item/tool/surgery/circular_saw = 2,/obj/item/tank/anesthetic = 2,/obj/item/clothing/mask/breath/medical = 5,

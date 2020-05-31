@@ -43,7 +43,7 @@
 		dat = text("Confirm Identity: <A href='?src=\ref[];choice=Confirm Identity'>[]</A><HR>", src, (scan ? text("[]", scan.name) : "----------"))
 		if (authenticated)
 			switch(screen)
-				if(1.0)
+				if(1)
 					dat += {"
 <p style='text-align:center;'>"}
 					dat += text("<A href='?src=\ref[];choice=Search Records'>Search Records</A><BR>", src)
@@ -71,12 +71,8 @@
 							dat += text("<td>[]</td>", R.fields["rank"])
 							dat += text("<td>[]</td>", R.fields["fingerprint"])
 						dat += "</table><hr width='75%' />"
-					dat += text("<A href='?src=\ref[];choice=Record Maintenance'>Record Maintenance</A><br><br>", src)
-					dat += text("<A href='?src=\ref[];choice=Log Out'>{Log Out}</A>",src)
-				if(2.0)
-					dat += "<B>Records Maintenance</B><HR>"
-					dat += "<BR><A href='?src=\ref[src];choice=Delete All Records'>Delete All Records</A><BR><BR><A href='?src=\ref[src];choice=Return'>Back</A>"
-				if(3.0)
+					dat += text("<br><br><A href='?src=\ref[];choice=Log Out'>{Log Out}</A>",src)
+				if(2)
 					dat += "<CENTER><B>Employment Record</B></CENTER><BR>"
 					if ((istype(active1, /datum/data/record) && GLOB.datacore.general.Find(active1)))
 						if(istype(active1.fields["photo_front"], /obj/item/photo))
@@ -99,8 +95,8 @@
 						<img src=photo_side height=80 width=80 border=4></td></tr></table>")
 					else
 						dat += "<B>General Record Lost!</B><BR>"
-					dat += text("\n<A href='?src=\ref[];choice=Delete Record (ALL)'>Delete Record (ALL)</A><BR><BR>\n<A href='?src=\ref[];choice=Print Record'>Print Record</A><BR>\n<A href='?src=\ref[];choice=Return'>Back</A><BR>", src, src, src)
-				if(4.0)
+					dat += text("<BR><BR>\n<A href='?src=\ref[];choice=Print Record'>Print Record</A><BR>\n<A href='?src=\ref[];choice=Return'>Back</A><BR>", src, src)
+				if(3)
 					if(!Perp.len)
 						dat += text("ERROR.  String could not be located.<br><br><A href='?src=\ref[];choice=Return'>Back</A>", src)
 					else
@@ -226,11 +222,7 @@ What a mess.*/
 					if ((E.fields["name"] == R.fields["name"] && E.fields["id"] == R.fields["id"]))
 						Perp[i+1] = E
 			tempname = t1
-			screen = 4
-
-		if("Record Maintenance")
-			screen = 2
-			active1 = null
+			screen = 3
 
 		if ("Browse Record")
 			var/datum/data/record/R = locate(href_list["d_rec"])
@@ -239,7 +231,7 @@ What a mess.*/
 			else
 				for(var/datum/data/record/E in GLOB.datacore.security)
 				active1 = R
-				screen = 3
+				screen = 2
 
 		if ("Print Record")
 			if (!( printing ))
@@ -256,24 +248,7 @@ What a mess.*/
 				P.info += "</TT>"
 
 				printing = null
-//RECORD DELETE
-		if ("Delete All Records")
-			temp = ""
-			temp += "Are you sure you wish to delete all Employment records?<br>"
-			temp += "<a href='?src=\ref[src];choice=Purge All Records'>Yes</a><br>"
-			temp += "<a href='?src=\ref[src];choice=Clear Screen'>No</a>"
 
-		if ("Purge All Records")
-			for(var/datum/data/record/R in GLOB.datacore.security)
-				GLOB.datacore.security -= R
-				qdel(R)
-			temp = "All Employment records deleted."
-
-		if ("Delete Record (ALL)")
-			if (active1)
-				temp = "<h5>Are you sure you wish to delete the record (ALL)?</h5>"
-				temp += "<a href='?src=\ref[src];choice=Delete Record (ALL) Execute'>Yes</a><br>"
-				temp += "<a href='?src=\ref[src];choice=Clear Screen'>No</a>"
 //RECORD CREATE
 		if ("New Record (General)")
 			active1 = CreateGeneralRecord()
@@ -290,13 +265,13 @@ What a mess.*/
 						active1.fields["name"] = t1
 				if("id")
 					if (istype(active1, /datum/data/record))
-						var/t1 = copytext(trim(sanitize(input("Please input id:", "Secure. records", active1.fields["id"], null)  as text)),1,MAX_MESSAGE_LEN)
+						var/t1 = stripped_input(usr, "Please input id:", "Secure. records", active1.fields["id"])
 						if ((!( t1 ) || !( authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || active1 != a1))
 							return
 						active1.fields["id"] = t1
 				if("fingerprint")
 					if (istype(active1, /datum/data/record))
-						var/t1 = copytext(trim(sanitize(input("Please input fingerprint hash:", "Secure. records", active1.fields["fingerprint"], null)  as text)),1,MAX_MESSAGE_LEN)
+						var/t1 = stripped_input(usr, "Please input fingerprint hash:", "Secure. records", active1.fields["fingerprint"])
 						if ((!( t1 ) || !( authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || active1 != a1))
 							return
 						active1.fields["fingerprint"] = t1
@@ -325,7 +300,7 @@ What a mess.*/
 						alert(usr, "You do not have the required rank to do this!")
 				if("species")
 					if (istype(active1, /datum/data/record))
-						var/t1 = copytext(trim(sanitize(input("Please enter race:", "General records", active1.fields["species"], null)  as message)),1,MAX_MESSAGE_LEN)
+						var/t1 = stripped_input(usr, "Please enter race:", "General records", active1.fields["species"])
 						if ((!( t1 ) || !( authenticated ) || usr.stat || usr.restrained() || (!in_range(src, usr) && (!issilicon(usr))) || active1 != a1))
 							return
 						active1.fields["species"] = t1
@@ -337,16 +312,6 @@ What a mess.*/
 				if ("Change Rank")
 					if (active1)
 						active1.fields["rank"] = href_list["rank"]
-
-				if ("Delete Record (ALL) Execute")
-					if (active1)
-						for(var/datum/data/record/R in GLOB.datacore.medical)
-							if ((R.fields["name"] == active1.fields["name"] || R.fields["id"] == active1.fields["id"]))
-								GLOB.datacore.medical -= R
-								qdel(R)
-							else
-						qdel(active1)
-						active1 = null
 				else
 					temp = "This function does not appear to be working at the moment. Our apologies."
 

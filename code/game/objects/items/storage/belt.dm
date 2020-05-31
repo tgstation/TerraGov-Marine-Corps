@@ -123,16 +123,16 @@
 	new /obj/item/defibrillator(src)
 	new /obj/item/bodybag/cryobag(src)
 	new /obj/item/roller(src)
-	new /obj/item/storage/pill_bottle/hypervene(src)
 	new /obj/item/storage/pill_bottle/bicaridine(src)
-	new /obj/item/storage/pill_bottle/dexalin(src)
-	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/kelotane(src)
-	new /obj/item/storage/pill_bottle/spaceacillin(src)
-	new /obj/item/storage/pill_bottle/inaprovaline(src)
 	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/dylovene(src)
+	new /obj/item/storage/pill_bottle/inaprovaline(src)
+	new /obj/item/storage/pill_bottle/dexalin(src)
 	new /obj/item/storage/pill_bottle/peridaxon(src)
 	new /obj/item/storage/pill_bottle/quickclot(src)
+	new /obj/item/storage/pill_bottle/spaceacillin(src)
+	new /obj/item/storage/pill_bottle/hypervene(src)
 	new /obj/item/healthanalyzer(src)
 
 
@@ -149,7 +149,7 @@
 		/obj/item/reagent_containers/pill,
 		/obj/item/reagent_containers/syringe,
 		/obj/item/storage/pill_bottle,
-		/obj/item/clothing/gloves/latex,
+		/obj/item/storage/syringe_case,
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical
 	)
@@ -161,20 +161,21 @@
 	new /obj/item/stack/medical/advanced/ointment(src)
 	new /obj/item/stack/medical/advanced/ointment(src)
 	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
 	new /obj/item/storage/pill_bottle/bicaridine(src)
-	new /obj/item/storage/pill_bottle/dexalin(src)
-	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/kelotane(src)
-	new /obj/item/storage/pill_bottle/spaceacillin(src)
-	new /obj/item/storage/pill_bottle/inaprovaline(src)
+	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/inaprovaline(src)
 	new /obj/item/storage/pill_bottle/peridaxon(src)
-	new /obj/item/storage/pill_bottle/quickclot(src)
-	new /obj/item/storage/pill_bottle/hypervene(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
+	new /obj/item/storage/syringe_case/combat(src)
+	new /obj/item/storage/syringe_case/combat(src)
+	new /obj/item/storage/syringe_case/combat(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/quickclot(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
 
 /obj/item/storage/belt/combatLifesaver/upp
@@ -276,7 +277,7 @@
 
 /obj/item/storage/belt/marine/upp
 	name = "\improper Type 41 pattern load rig"
-	desc = "The Type 41 load rig is the standard-issue LBE of the UPP military. The primary function of this belt is to provide easy access to mags for the Type 71 during operations. Despite being designed for the Type 71 weapon system, the pouches are modular enough to fit other types of ammo and equipment."
+	desc = "The Type 41 load rig is the standard-issue LBE of the USL pirates. The primary function of this belt is to provide easy access to mags for the Type 71 during operations. Despite being designed for the Type 71 weapon system, the pouches are modular enough to fit other types of ammo and equipment."
 	icon_state = "upp_belt"
 	item_state = "upp_belt"
 
@@ -296,6 +297,24 @@
 	icon_state = "som_belt"
 	item_state = "som_belt"
 
+/obj/item/storage/belt/marine/sectoid
+	name = "\improper strange ammo belt"
+	desc = "A belt made of a strong but unusual fabric, with clips to hold your equipment."
+	icon_state = "swatbelt"
+	item_state = "swatbelt"
+	can_hold = list(
+		/obj/item/weapon/combat_knife,
+		/obj/item/explosive/grenade,
+		/obj/item/ammo_magazine/rifle,
+		/obj/item/cell/lasgun,
+		/obj/item/ammo_magazine/smg,
+		/obj/item/ammo_magazine/pistol,
+		/obj/item/ammo_magazine/revolver,
+		/obj/item/ammo_magazine/sniper,
+		/obj/item/ammo_magazine/handful,
+		/obj/item/explosive/grenade,
+		/obj/item/tool/crowbar
+		)
 
 /obj/item/storage/belt/shotgun
 	name = "\improper shotgun shell load rig"
@@ -310,32 +329,34 @@
 
 
 /obj/item/storage/belt/shotgun/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/ammo_magazine/shotgun))
-		var/obj/item/ammo_magazine/shotgun/M = I
-		if(!M.current_rounds)
-			to_chat(user, "<span class='warning'>[M] is empty.</span>")
-			return
+	
+	if(istype(I, /obj/item/ammo_magazine))
+		var/obj/item/ammo_magazine/M = I
+	
+		if(M.flags_magazine & AMMUNITION_REFILLABLE)
+			if(!M.current_rounds)
+				to_chat(user, "<span class='warning'>[M] is empty.</span>")
+				return
 
-		if(length(contents) >= storage_slots)
-			to_chat(user, "<span class='warning'>[src] is full.</span>")
-			return
+			if(length(contents) >= storage_slots)
+				to_chat(user, "<span class='warning'>[src] is full.</span>")
+				return
 
 
-		to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
-		if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
-			return
+			to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
+			if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+				return
 
-		for(var/x in 1 to (storage_slots - length(contents)))
-			var/cont = handle_item_insertion(M.create_handful(), 1, user)
-			if(!cont)
-				break
+			for(var/x in 1 to (storage_slots - length(contents)))
+				var/cont = handle_item_insertion(M.create_handful(), 1, user)
+				if(!cont)
+					break
 
-		playsound(user.loc, "rustle", 15, 1, 6)
-		to_chat(user, "<span class='notice'>You refill [src] with [M].</span>")
-		return TRUE
+			playsound(user.loc, "rustle", 15, TRUE, 6)
+			to_chat(user, "<span class='notice'>You refill [src] with [M].</span>")
+			return TRUE
 
-	else
-		return ..()
+	return ..()
 
 
 /obj/item/storage/belt/knifepouch
@@ -578,23 +599,19 @@
 		)
 
 /obj/item/storage/belt/gun/pistol/standard_pistol
-	name = "\improper T457 pattern TP-14 holster rig"
-	desc = "The T457 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the TP-14 Pistol."
+	name = "\improper T457 pattern pistol holster rig"
+	desc = "The T457 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips."
 	icon_state = "tp14_holster"
 	item_state = "tp14_holster"
-	can_hold = list(
-		/obj/item/weapon/gun/pistol/standard_pistol,
-		/obj/item/ammo_magazine/pistol/standard_pistol
-		)
 
 /obj/item/storage/belt/gun/revolver/standard_revolver
-	name = "\improper T457 pattern TP-44 holster rig"
-	desc = "The T457 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is for the TP-44 Revolver."
+	name = "\improper T457 pattern revolver holster rig"
+	desc = "The T457 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips."
 	icon_state = "tp44_holster"
 	item_state = "tp44_holster"
 	can_hold = list(
-		/obj/item/weapon/gun/revolver/standard_revolver,
-		/obj/item/ammo_magazine/revolver/standard_revolver
+		/obj/item/weapon/gun/revolver,
+		/obj/item/ammo_magazine/revolver
 		)
 
 /obj/item/storage/belt/gun/m44

@@ -37,7 +37,7 @@
 		return .
 
 	if(isxeno(loc))
-		message = gibberish(message, 100)
+		message = Gibberish(message, 100)
 
 	switch(message_mode)
 		if(MODE_HEADSET)

@@ -6,11 +6,11 @@
 
 /obj/structure/resin/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			take_damage(210)
-		if(2)
+		if(EXPLODE_HEAVY)
 			take_damage(140)
-		if(3)
+		if(EXPLODE_LIGHT)
 			take_damage(70)
 
 /obj/structure/resin/attack_hand(mob/living/user)
@@ -64,7 +64,9 @@
 /obj/structure/resin/silo/Destroy()
 	GLOB.xeno_resin_silos -= src
 	if(associated_hive)
+		UnregisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
 		associated_hive.xeno_message("<span class='xenoannounce'>A resin silo has been destroyed at [silo_area]!</span>", 2, TRUE)
+		associated_hive = null
 	return ..()
 
 
@@ -85,4 +87,5 @@
 
 
 /obj/structure/resin/silo/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos)
-	silos += src
+	if(associated_hive)
+		silos += src

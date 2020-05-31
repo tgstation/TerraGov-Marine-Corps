@@ -428,7 +428,7 @@
 // Scout Cloak
 /obj/item/storage/backpack/marine/satchel/scout_cloak
 	name = "\improper M68 Thermal Cloak"
-	desc = "The lightweight thermal dampeners and optical camouflage provided by this cloak are weaker than those found in standard TGMC ghillie suits. In exchange, the cloak can be worn over combat armor and offers the wearer high manueverability and adaptability to many environments."
+	desc = "The lightweight thermal dampeners and optical camouflage provided by this cloak are weaker than those found in standard TGMC ghillie suits. In exchange, the cloak can be worn over combat armor and offers the wearer high manueverability and adaptability to many environments. Serves as a satchel."
 	icon_state = "scout_cloak"
 	var/camo_active = 0
 	var/camo_active_timer = 0
@@ -649,7 +649,7 @@
 /obj/item/storage/backpack/marine/satchel/scout_cloak/sniper
 	name = "\improper M68-B Thermal Cloak"
 	icon_state = "smock"
-	desc = "The M68-B thermal cloak is a variant custom-purposed for snipers, allowing for faster, superior, stationary concealment at the expense of mobile concealment. It is designed to be paired with the lightweight M3 recon battle armor."
+	desc = "The M68-B thermal cloak is a variant custom-purposed for snipers, allowing for faster, superior, stationary concealment at the expense of mobile concealment. It is designed to be paired with the lightweight M3 recon battle armor. Serves as a satchel."
 	shimmer_alpha = SCOUT_CLOAK_RUN_ALPHA * 0.5 //Half the normal shimmer transparency.
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/sniper/process()
@@ -702,15 +702,28 @@
 
 	else if(istype(I, /obj/item/ammo_magazine/flamer_tank))
 		var/obj/item/ammo_magazine/flamer_tank/FT = I
-		if(FT.current_rounds || !reagents.total_volume)
+		if(FT.current_rounds == FT.max_rounds || !reagents.total_volume)
 			return ..()
 
-		var/fuel_available = reagents.total_volume < FT.max_rounds ? reagents.total_volume : FT.max_rounds
-		reagents.remove_reagent(/datum/reagent/fuel, fuel_available)
-		FT.current_rounds = fuel_available
+		//Reworked and much simpler equation; fuel capacity minus the current amount, with a check for insufficient fuel
+		var/fuel_transfer_amount = min(reagents.total_volume, (FT.max_rounds - FT.current_rounds))
+		reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+		FT.current_rounds += fuel_transfer_amount
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		FT.caliber = "Fuel"
 		to_chat(user, "<span class='notice'>You refill [FT] with [lowertext(FT.caliber)].</span>")
+		FT.update_icon()
+
+	else if(istype(I, /obj/item/attachable/attached_gun/flamer))
+		var/obj/item/attachable/attached_gun/flamer/FT = I
+		if(FT.current_rounds == FT.max_rounds || !reagents.total_volume)
+			return ..()
+
+		var/fuel_transfer_amount = min(reagents.total_volume, (FT.max_rounds - FT.current_rounds))
+		reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+		FT.current_rounds += fuel_transfer_amount
+		playsound(loc, 'sound/effects/refill.ogg', 25, TRUE, 3)
+		to_chat(user, "<span class='notice'>You refill [FT] with fuel.</span>")
 		FT.update_icon()
 
 	else
