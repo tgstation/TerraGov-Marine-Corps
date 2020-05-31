@@ -222,9 +222,7 @@
 						break
 		if(MODE_ORBITAL)
 			to_chat(user, "<span class='notice'>ACQUIRING TARGET. ORBITAL CANNON TRIANGULATING. DON'T MOVE.</span>")
-			if((GLOB.marine_main_ship?.orbital_cannon?.last_orbital_firing + 500 SECONDS) > world.time)
-				to_chat(user, "[icon2html(src, user)] <span class='warning'>Orbital bombardment not yet available!</span>")
-			else if(!targ_area)
+			if(!targ_area)
 				to_chat(user, "[icon2html(src, user)] <span class='warning'>No target detected!</span>")
 			else
 				var/obj/effect/overlay/temp/laser_target/OB = new (TU, laz_name, S)

@@ -68,6 +68,29 @@
 			flick("shutterc1", src)
 
 
+/obj/machinery/door/poddoor/shutters/timed_late
+	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
+	name = "Timed Emergency Shutters"
+	use_power = FALSE
+
+
+/obj/machinery/door/poddoor/shutters/timed_late/Initialize()
+	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND), .proc/open)
+	return ..()
+
+
+/obj/machinery/door/poddoor/shutters/opened
+	icon_state = "shutter0"
+	density = FALSE
+	opacity = FALSE
+
+/obj/machinery/door/poddoor/shutters/opened/medbay
+	name = "Medbay Lockdown Shutters"
+	id = "Medbay"
+
+/obj/machinery/door/poddoor/shutters/opened/wy
+	id = "wyoffice"
+
 /obj/machinery/door/poddoor/shutters/mainship
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	icon_state = "shutter1"
@@ -80,17 +103,6 @@
 
 /obj/machinery/door/poddoor/shutters/mainship/Initialize()
 	relativewall_neighbours()
-	return ..()
-
-
-/obj/machinery/door/poddoor/shutters/timed_late
-	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
-	name = "Timed Emergency Shutters"
-	use_power = FALSE
-
-
-/obj/machinery/door/poddoor/shutters/timed_late/Initialize()
-	RegisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND), .proc/open)
 	return ..()
 
 

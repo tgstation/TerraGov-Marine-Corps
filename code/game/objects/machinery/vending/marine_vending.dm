@@ -19,6 +19,8 @@
 					/obj/item/ammo_magazine/revolver/standard_revolver = 25,
 					/obj/item/weapon/gun/smg/standard_smg = 20,
 					/obj/item/ammo_magazine/smg/standard_smg = 30,
+					/obj/item/weapon/gun/smg/standard_machinepistol = 20,
+					/obj/item/ammo_magazine/smg/standard_machinepistol = 30,
 					/obj/item/weapon/gun/rifle/standard_carbine = 25,
 					/obj/item/ammo_magazine/rifle/standard_carbine = 25,
 					/obj/item/weapon/gun/rifle/standard_assaultrifle = 25,
@@ -36,11 +38,10 @@
 					/obj/item/weapon/gun/rifle/standard_autoshotgun = 10,
 					/obj/item/ammo_magazine/rifle/tx15_slug = 25,
 					/obj/item/ammo_magazine/rifle/tx15_flechette = 25,
-					/obj/item/weapon/combat_knife = 20,
+					/obj/item/attachable/bayonetknife = 20,
 					/obj/item/weapon/throwing_knife = 5,
 					/obj/item/storage/box/m94 = 5,
 					/obj/item/attachable/flashlight = 10,
-					/obj/item/attachable/bayonet = 10,
 					)
 	prices = list()
 
@@ -87,7 +88,6 @@
 					/obj/item/storage/belt/grenade = 5,
 					/obj/item/storage/belt/gun/pistol/standard_pistol = 10,
 					/obj/item/storage/belt/gun/revolver/standard_revolver = 5,
-					/obj/item/storage/large_holster/t19 = 5,
 					/obj/item/clothing/tie/storage/webbing = 5,
 					/obj/item/clothing/tie/storage/brown_vest = 5,
 					/obj/item/clothing/tie/storage/white_vest/medic = 5,
@@ -112,6 +112,7 @@
 					/obj/item/weapon/gun/pistol/m1911 = 5,
 					/obj/item/weapon/gun/revolver/standard_revolver = 15,
 					/obj/item/weapon/gun/smg/standard_smg = 15,
+					/obj/item/weapon/gun/smg/standard_machinepistol = 20,
 					/obj/item/weapon/gun/rifle/standard_carbine = 20,
 					/obj/item/weapon/gun/rifle/standard_assaultrifle = 20,
 					/obj/item/weapon/gun/rifle/standard_lmg = 10,
@@ -171,6 +172,7 @@
 					/obj/item/ammo_magazine/pistol/m1911 = 10,
 					/obj/item/ammo_magazine/revolver/standard_revolver = 20,
 					/obj/item/ammo_magazine/smg/standard_smg = 15,
+					/obj/item/ammo_magazine/smg/standard_machinepistol = 15,
 					/obj/item/ammo_magazine/rifle/standard_carbine = 15,
 					/obj/item/ammo_magazine/rifle/standard_assaultrifle = 15,
 					/obj/item/ammo_magazine/standard_lmg = 10,
@@ -592,20 +594,6 @@
 						/obj/item/storage/box/zipcuffs = 2
 					)
 
-/obj/machinery/vending/marine_leader/select_gamemode_equipment(gamemode)
-	var/products2[]
-	switch(SSmapping.configs[GROUND_MAP].map_name)
-		if(MAP_ICE_COLONY)
-			products2 = list( /obj/item/map/ice_colony_map = 3)
-		if(MAP_BIG_RED)
-			products2 = list(/obj/item/map/big_red_map = 3)
-		if(MAP_WHISKEY_OUTPOST)
-			products2 = list(/obj/item/map/whiskey_outpost_map = 3)
-		if(MAP_LV_624)
-			products2 = list(/obj/item/map/lazarus_landing_map = 3)
-	build_inventory(products2)
-
-
 
 /obj/machinery/vending/attachments
 	name = "\improper Armat Systems Attachments Vendor"
@@ -699,12 +687,12 @@
 					/obj/item/storage/belt/sparepouch = 10,
 					/obj/item/storage/belt/gun/pistol/standard_pistol = 10,
 					/obj/item/storage/belt/gun/revolver/standard_revolver = 10,
-					/obj/item/storage/large_holster/t19 = 10,
 					/obj/item/storage/pouch/pistol = 10,
 					/obj/item/storage/pouch/magazine = 10,
 					/obj/item/storage/pouch/magazine/pistol = 10,
 					/obj/item/storage/pouch/shotgun = 10,
 					/obj/item/storage/pouch/firstaid = 10,
+					/obj/item/storage/pouch/grenade = 10,
 					/obj/item/storage/pouch/medkit = 10,
 					/obj/item/storage/pouch/flare = 10,
 					/obj/item/storage/pouch/construction = 10,

@@ -20,7 +20,7 @@
 	name = "\improper SWAT shoes"
 	desc = "When you want to turn up the heat."
 	icon_state = "swat"
-	armor = list("melee" = 80, "bullet" = 60, "laser" = 50, "energy" = 25, "bomb" = 50, "bio" = 10, "rad" = 0, "fire" = 25, "acid" = 25)
+	soft_armor = list("melee" = 80, "bullet" = 60, "laser" = 50, "energy" = 25, "bomb" = 50, "bio" = 10, "rad" = 0, "fire" = 25, "acid" = 25)
 	flags_inventory = NOSLIPPING
 	siemens_coefficient = 0.6
 
@@ -28,7 +28,7 @@
 	name = "Rugged Boots"
 	desc = "A pair of boots used by workers in dangerous environments."
 	icon_state = "swat"
-	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 25, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
+	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 25, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
 	flags_inventory = NOSLIPPING
 	siemens_coefficient = 0.6
 
@@ -36,7 +36,7 @@
 	name = "combat boots"
 	desc = "When you REALLY want to turn up the heat"
 	icon_state = "swat"
-	armor = list("melee" = 80, "bullet" = 60, "laser" = 50, "energy" = 25, "bomb" = 50, "bio" = 10, "rad" = 0, "fire" = 25, "acid" = 25)
+	soft_armor = list("melee" = 80, "bullet" = 60, "laser" = 50, "energy" = 25, "bomb" = 50, "bio" = 10, "rad" = 0, "fire" = 25, "acid" = 25)
 	flags_inventory = NOSLIPPING
 	siemens_coefficient = 0.6
 
@@ -51,7 +51,7 @@
 	icon_state = "s-ninja"
 	permeability_coefficient = 0.01
 	flags_inventory = NOSLIPPING
-	armor = list("melee" = 60, "bullet" = 50, "laser" = 30, "energy" = 15, "bomb" = 30, "bio" = 30, "rad" = 30, "fire" = 15, "acid" = 15)
+	soft_armor = list("melee" = 60, "bullet" = 50, "laser" = 30, "energy" = 15, "bomb" = 30, "bio" = 30, "rad" = 30, "fire" = 15, "acid" = 15)
 	siemens_coefficient = 0.2
 
 	flags_cold_protection = FEET

@@ -33,6 +33,7 @@
 
 /obj/structure/razorwire/Initialize()
 	. = ..()
+	AddElement(/datum/element/egrill)
 	for(var/obj/structure/razorwire/T in loc)
 		if(T != src)
 			qdel(T)

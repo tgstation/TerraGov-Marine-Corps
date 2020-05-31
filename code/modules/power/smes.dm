@@ -12,7 +12,7 @@
 	density = TRUE
 	anchored = TRUE
 	use_power = NO_POWER_USE
-	interaction_flags = INTERACT_MACHINE_NANO
+	interaction_flags = INTERACT_MACHINE_TGUI
 	var/capacity = 5e5		//Maximum amount of power it can hold
 	var/charge = 1e5		//Current amount of power it holds
 
@@ -62,6 +62,9 @@
 	if(terminal)
 		disconnect_terminal()
 	. = ..()
+
+/obj/machinery/power/smes/should_have_node()
+	return TRUE
 
 /obj/machinery/power/smes/update_icon()
 	overlays.Cut()

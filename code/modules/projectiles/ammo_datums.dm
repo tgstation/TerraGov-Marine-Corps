@@ -681,9 +681,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/tx15_flechette/spread
 	bonus_projectiles_amount = 4
-	bonus_projectiles_scatter = 4
+	bonus_projectiles_scatter = 2
 	max_range = 15
-	damage = 20
+	damage = 17
 	damage_falloff = 0.25
 	penetration = 15
 	sundering = 1.5
@@ -692,7 +692,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "additional flechette"
 	icon_state = "flechette"
 	max_range = 15
-	damage = 20
+	damage = 17
 	damage_falloff = 0.25
 	penetration = 15
 
@@ -702,12 +702,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	shell_speed = 3
 	max_range = 15
-	damage = 50
+	damage = 60
 	penetration = 30
 	sundering = 3.5
 
 /datum/ammo/bullet/shotgun/tx15_slug/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, slowdown = 1, knockback = 1)
+	staggerstun(M, P, slowdown = 2, knockback = 1)
 
 /datum/ammo/bullet/shotgun/mbx900_buckshot
 	name = "light shotgun buckshot shell" // If .410 is the smallest shotgun shell, then...
@@ -846,8 +846,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SKIPS_HUMANS|AMMO_SUNDERING
 	accurate_range = 15
 	damage = 20
-	penetration = 20
-	sundering = 1.5
+	penetration = 15
+	sundering = 2
 
 /datum/ammo/bullet/smartgun/lethal
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
@@ -1255,12 +1255,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "sticky resin spit"
 	icon_state = "sticky"
 	ping = null
-	flags_ammo_behavior = AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE
+	flags_ammo_behavior = AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_XENO
 	damage_type = STAMINA
 	armor_type = "bio"
 	spit_cost = 50
-	sound_hit 	 = "alien_resin_build2"
-	sound_bounce	= "alien_resin_build3"
+	sound_hit = "alien_resin_build2"
+	sound_bounce = "alien_resin_build3"
 	damage = 20 //minor; this is mostly just to provide confirmation of a hit
 	max_range = 40
 

@@ -37,6 +37,8 @@
 	var/stat_msg1
 	var/stat_msg2
 
+/obj/machinery/computer/communications/bee
+	icon_state = "commb"
 
 /obj/machinery/computer/communications/Topic(href, href_list)
 	. = ..()
@@ -99,6 +101,8 @@
 					return FALSE
 
 				priority_announce(input, type = ANNOUNCEMENT_COMMAND)
+				message_admins("[ADMIN_TPMONTY(usr)] has just sent a command announcement")
+				log_game("[key_name(usr)] has just sent a command announcement.")
 				cooldown_message = world.time
 
 		if("award")

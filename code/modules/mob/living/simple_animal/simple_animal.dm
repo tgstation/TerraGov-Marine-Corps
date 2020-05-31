@@ -240,7 +240,7 @@
 
 
 /mob/living/simple_animal/ex_act(severity)
-	flash_eyes()
+	flash_act()
 
 	switch(severity)
 		if(EXPLODE_DEVASTATE)

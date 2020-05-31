@@ -160,7 +160,6 @@
 	var/armor_bonus = 0
 	var/armor_pheromone_bonus = 0
 	var/sunder = 0 // sunder affects armour values and does a % removal before dmg is applied. 50 sunder == 50% effective armour values
-
 	var/fire_resist_modifier = 0
 
 	var/obj/structure/tunnel/start_dig = null

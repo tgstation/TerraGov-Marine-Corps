@@ -41,7 +41,7 @@
 
 
 /mob/living/proc/handle_staminaloss()
-	if(world.time < last_staminaloss_dmg + 3 SECONDS || (m_intent == MOVE_INTENT_RUN && world.time < last_move_intent + 1 SECONDS))
+	if(world.time < last_staminaloss_dmg + 3 SECONDS)
 		return
 	if(staminaloss > 0)
 		adjustStaminaLoss(-maxHealth * 0.2, TRUE, FALSE)
@@ -428,10 +428,10 @@
 /mob/living/proc/get_permeability_protection()
 	return LIVING_PERM_COEFF
 
-/mob/proc/flash_eyes(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
+/mob/proc/flash_act(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
 	return
 
-/mob/living/carbon/flash_eyes(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
+/mob/living/carbon/flash_act(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
 	if( bypass_checks || (get_eye_protection() < intensity && !(disabilities & BLIND)) )
 		overlay_fullscreen_timer(40, 20, "flash", type)
 		return TRUE

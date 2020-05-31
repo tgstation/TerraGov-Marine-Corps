@@ -75,7 +75,8 @@ Contains most of the procs that are called when a mob is attacked by something
 		var/datum/limb/limb_to_check = i
 		if(!(limb_to_check.body_part & armor_item.flags_armor_protection))
 			continue
-		limb_to_check.add_limb_soft_armor(armor_item.armor)
+		limb_to_check.add_limb_soft_armor(armor_item.soft_armor)
+		limb_to_check.add_limb_hard_armor(armor_item.hard_armor)
 
 
 /mob/living/carbon/human/dummy/add_limb_armor(obj/item/armor_item)
@@ -87,7 +88,8 @@ Contains most of the procs that are called when a mob is attacked by something
 		var/datum/limb/limb_to_check = i
 		if(!(limb_to_check.body_part & armor_item.flags_armor_protection))
 			continue
-		limb_to_check.remove_limb_soft_armor(armor_item.armor)
+		limb_to_check.remove_limb_soft_armor(armor_item.soft_armor)
+		limb_to_check.remove_limb_hard_armor(armor_item.hard_armor)
 
 
 /mob/living/carbon/human/dummy/remove_limb_armor(obj/item/armor_item)
@@ -398,13 +400,13 @@ Contains most of the procs that are called when a mob is attacked by something
 /mob/living/carbon/human/screech_act(mob/living/carbon/xenomorph/queen/Q, screech_range = WORLD_VIEW, within_sight = TRUE)
 	var/dist_pct = get_dist(src, Q) / screech_range
 
-	// Intensity is reduced by a 30% if you can't see the queen. Hold orders will reduce by an extra 10% per rank.
-	var/reduce_within_sight = within_sight ? 1 : 0.7
+	// Intensity is reduced by a 80% if you can't see the queen. Hold orders will reduce by an extra 10% per rank.
+	var/reduce_within_sight = within_sight ? 1 : 0.2
 	var/reduce_prot_aura = protection_aura * 0.1
 
 	var/reduction = max(min(1, reduce_within_sight - reduce_prot_aura), 0.1) // Capped at 90% reduction
-	var/halloss_damage = LERP(40, 80, dist_pct) * reduction //Max 80 beside Queen, 40 at the edge
-	var/stun_duration = (LERP(0.4, 1, dist_pct) * reduction) * 20 //Max 1 beside Queen, 0.4 at the edge.
+	var/halloss_damage = LERP(60, 130, dist_pct) * reduction //Max 130 beside Queen, 60 at the edge
+	var/stun_duration = (LERP(0.4, 1.5, dist_pct) * reduction) * 20 //Max 1.5 beside Queen, 0.4 at the edge.
 
 	to_chat(src, "<span class='danger'>An ear-splitting guttural roar tears through your mind and makes your world convulse!</span>")
 	Stun(stun_duration)

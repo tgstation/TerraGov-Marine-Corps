@@ -76,6 +76,7 @@
 	scale_gear()
 	for(var/i in GLOB.xeno_resin_silo_turfs)
 		new /obj/structure/resin/silo(i)
+
 	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
 
 /datum/game_mode/infestation/distress/proc/map_announce()
@@ -321,7 +322,6 @@
 						/obj/item/storage/belt/grenade = round(scale * 5),
 						/obj/item/storage/belt/gun/pistol/standard_pistol = round(scale * 10),
 						/obj/item/storage/belt/gun/revolver/standard_revolver = round(scale * 5),
-						/obj/item/storage/large_holster/t19 = round(scale * 5),
 						/obj/item/clothing/tie/storage/webbing = round(scale * 5),
 						/obj/item/clothing/tie/storage/brown_vest = round(scale * 5),
 						/obj/item/clothing/tie/storage/white_vest/medic = round(scale * 5),
@@ -346,6 +346,7 @@
 						/obj/item/weapon/gun/pistol/m1911 = round(scale * 5),
 						/obj/item/weapon/gun/revolver/standard_revolver = round(scale * 10),
 						/obj/item/weapon/gun/smg/standard_smg = round(scale * 15),
+						/obj/item/weapon/gun/smg/standard_machinepistol = round(scale * 15),
 						/obj/item/weapon/gun/rifle/standard_carbine = round(scale * 20),
 						/obj/item/weapon/gun/rifle/standard_assaultrifle = round(scale * 20),
 						/obj/item/weapon/gun/rifle/standard_lmg = round(scale * 15),
@@ -388,6 +389,7 @@
 						/obj/item/weapon/gun/pistol/standard_pistol = round(scale * 30),
 						/obj/item/weapon/gun/revolver/standard_revolver = round(scale * 25),
 						/obj/item/weapon/gun/smg/standard_smg = round(scale * 30),
+						/obj/item/weapon/gun/smg/standard_machinepistol = round(scale * 30),
 						/obj/item/weapon/gun/rifle/standard_lmg = round(scale * 25),
 						/obj/item/weapon/gun/rifle/standard_carbine = round(scale * 30),
 						/obj/item/weapon/gun/rifle/standard_assaultrifle = round(scale * 30),
@@ -399,6 +401,7 @@
 						/obj/item/ammo_magazine/pistol/standard_pistol = round(scale * 30),
 						/obj/item/ammo_magazine/revolver/standard_revolver = round(scale * 20),
 						/obj/item/ammo_magazine/smg/standard_smg = round(scale * 30),
+						/obj/item/ammo_magazine/smg/standard_machinepistol = round(scale * 30),
 						/obj/item/ammo_magazine/rifle/standard_carbine = round(scale * 25),
 						/obj/item/ammo_magazine/rifle/standard_assaultrifle = round(scale * 25),
 						/obj/item/ammo_magazine/rifle/standard_dmr = round(scale * 25),
@@ -410,12 +413,11 @@
 						/obj/item/ammo_magazine/rifle/tx15_slug = round(scale * 10),
 						/obj/item/cell/lasgun/lasrifle = round(scale * 25),
 
-						/obj/item/weapon/combat_knife = round(scale * 30),
+						/obj/item/attachable/bayonetknife = round(scale * 30),
 						/obj/item/weapon/throwing_knife = round(scale * 10),
 						/obj/item/storage/box/m94 = round(scale * 10),
 
-						/obj/item/attachable/flashlight = round(scale * 25),
-						/obj/item/attachable/bayonet = round(scale * 25)
+						/obj/item/attachable/flashlight = round(scale * 25)
 						)
 
 		M.contraband =   list(/obj/item/ammo_magazine/revolver/marksman = round(scale * 2),

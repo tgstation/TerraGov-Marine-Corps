@@ -96,6 +96,7 @@
 #define COMSIG_ATOM_EXIT "atom_exit"							//from base of atom/Exit(): (/atom/movable/exiting, /atom/newloc)
 	#define COMPONENT_ATOM_BLOCK_EXIT 1
 #define COMSIG_ATOM_EXITED "atom_exited"						//from base of atom/Exited(): (atom/movable/exiting, atom/newloc)
+#define COMSIG_ATOM_BUMPED "atom_bumped"						///from base of atom/Bumped(): (/atom/movable)
 #define COMSIG_ATOM_DIR_CHANGE "atom_dir_change"				//from base of atom/setDir(): (old_dir, new_dir)
 #define COMSIG_ATOM_CANREACH "atom_can_reach"					//from internal loop in atom/movable/proc/CanReach(): (list/next)
 	#define COMPONENT_BLOCK_REACH 1
@@ -151,6 +152,10 @@
 // /obj signals
 #define COMSIG_OBJ_SETANCHORED "obj_setanchored"				//called in /obj/structure/setAnchored(): (value)
 #define COMSIG_OBJ_DECONSTRUCT "obj_deconstruct"				//from base of obj/deconstruct(): (disassembled)
+///from base of /turf/proc/levelupdate(). (intact) true to hide and false to unhide
+#define COMSIG_OBJ_HIDE	"obj_hide"
+#define COMSIG_OBJ_ATTACK_ALIEN "obj_attack_alien"				//from obj/attack_alien(): (/mob/living/carbon/xenomorph)
+	#define COMPONENT_NO_ATTACK_ALIEN (1<<0)
 
 // /obj/item signals
 #define COMSIG_ITEM_ATTACK "item_attack"						//from base of obj/item/attack(): (/mob/living/target, /mob/living/user)
@@ -243,6 +248,8 @@
 #define COMSIG_LIVING_STATUS_CONFUSED "living_confused"			//from base of mob/living/Confused() (amount, update, ignore)
 	#define COMPONENT_NO_STUN (1<<0)			//For all of them
 
+#define COMSIG_LIVING_ADD_VENTCRAWL "living_add_ventcrawl"
+
 //mob/living/carbon signals
 #define COMSIG_CARBON_DEVOURED_BY_XENO "carbon_devoured_by_xeno"
 #define COMSIG_CARBON_SWAPPED_HANDS "carbon_swapped_hands"
@@ -269,6 +276,13 @@
 	#define COMSIG_WARRIOR_CANT_NECKGRAB 1
 #define COMSIG_WARRIOR_CTRL_CLICK_ATOM "warrior_ctrl_click_atom"
 	#define COMSIG_WARRIOR_USED_LUNGE 1
+
+#define COMSIG_XENOMORPH_PLASMA_REGEN "xenomorph_plasma_regen"
+
+#define COMSIG_XENOMORPH_ZONE_SELECT "xenomorph_zone_select"
+	#define COMSIG_ACCURATE_ZONE (1<<0)
+
+#define COMSIG_XENOMORPH_POUNCE "xenomorph_pounce"
 
 #define COMSIG_XENOMORPH_GIBBING "xenomorph_gibbing"
 #define COMSIG_XENOMORPH_POSTEVOLVING "xenomorph_evolving"
