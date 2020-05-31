@@ -48,8 +48,6 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
-		/datum/action/xeno_action/activable/pounce/hunter,
-		/datum/action/xeno_action/stealth,
 		)
 
 /datum/xeno_caste/hunter/young
@@ -150,4 +148,3 @@
 
 	// *** Ranged Attack *** //
 	pounce_delay = 10.0 SECONDS
-
