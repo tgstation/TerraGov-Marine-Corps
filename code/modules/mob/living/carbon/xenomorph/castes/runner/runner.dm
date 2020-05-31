@@ -14,7 +14,7 @@
 	old_x = -16
 
 	//Trap vars
-	trapchoices = list("acid","snare","brutedart")
+	trapchoices = list("acid","brutedart")
 	gastier = 1
 
 	inherent_verbs = list(
