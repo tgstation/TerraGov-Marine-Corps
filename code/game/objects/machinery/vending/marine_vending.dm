@@ -694,7 +694,7 @@
 					/obj/item/clothing/under/whites = 50,
 					/obj/item/clothing/head/white_dress = 50,
 					/obj/item/clothing/shoes/white = 50,
-					/obj/item/clothing/gloves/white = 50
+					/obj/item/clothing/gloves/white = 50,
 					/obj/item/clothing/suit/modular = 20,
 					/obj/item/armor_module/armor/chest/heavy = 20,
 					/obj/item/armor_module/armor/chest/medium = 20,
@@ -704,7 +704,7 @@
 					/obj/item/armor_module/armor/arms/light = 20,
 					/obj/item/armor_module/armor/legs/heavy = 20,
 					/obj/item/armor_module/armor/legs/medium = 20,
-					/obj/item/armor_module/armor/legs/light = 20,
+					/obj/item/armor_module/armor/legs/light = 20
 					)
 
 	prices = list()
