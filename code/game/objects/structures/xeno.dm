@@ -737,20 +737,14 @@ TUNNEL
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
-/obj/effect/alien/resin/sensor/Destroy()
-	var/area/A = get_area(src)
-	for(var/X in GLOB.alive_xeno_list)
-		to_chat(X, "<span class='xenowarning'>A sensor has been destroyed at [A].</span>")
-	. = ..()
-
 /obj/effect/alien/resin/sensor/process()
-	for(var/mob/living/carbon/H in GLOB.alive_human_list)
+	for(var/mob/living/carbon/H in viewers(src))
 		if(cooldown)
 			return
-		if(H in viewers(src))
-			if(!isxeno(H) && H.stat != DEAD)
-				to_chat(H, "<span class='warning'>You feel something glance at you...</span>")
-				number++
+		if(!isxeno(H) && H.stat != DEAD)
+			to_chat(H, "<span class='warning'>You feel something glance at you...</span>")
+			number++
+
 	var/area/A = get_area(src)
 	for(var/X in GLOB.alive_xeno_list)
 		if(number > 1)
@@ -777,12 +771,6 @@ TUNNEL
 	anchored = TRUE
 	max_integrity = 5
 	layer = RESIN_STRUCTURE_LAYER
-
-/obj/effect/alien/resin/tripwire/Initialize()
-	. = ..()
-
-/obj/effect/alien/resin/tripwire/Destroy()
-	. = ..()
 
 /obj/effect/alien/resin/tripwire/Crossed(atom/A)
 	. = ..()
