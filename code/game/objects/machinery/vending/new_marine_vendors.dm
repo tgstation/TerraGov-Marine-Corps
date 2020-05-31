@@ -579,6 +579,13 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
 	)
 
+/obj/machinery/marine_selector/clothes/specialist/Initialize()
+    . = ..()
+    new /obj/effect/decal/cleanable/cobweb(loc)
+    for(var/d in GLOB.alldirs)
+        var/turf/T = get_step(src, d)
+        if(!T.density)
+            new /obj/effect/decal/cleanable/cobweb(T)
 
 
 /obj/machinery/marine_selector/clothes/specialist/alpha
@@ -908,6 +915,13 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/attachable/stock/t19stock = list(CAT_ATT, "T-19 Submachinegun stock", 0, "black"),
 	)
 
+/obj/machinery/marine_selector/gear/spec/Initialize()
+    . = ..()
+    new /obj/effect/decal/cleanable/cobweb(loc)
+    for(var/d in GLOB.alldirs)
+        var/turf/T = get_step(src, d)
+        if(!T.density)
+            new /obj/effect/decal/cleanable/cobweb(T)
 
 
 
