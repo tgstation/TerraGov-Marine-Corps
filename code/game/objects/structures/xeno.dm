@@ -761,10 +761,10 @@ TUNNEL
 /obj/effect/alien/resin/acidwell/attack_alien(mob/living/carbon/xenomorph/M)
 	if(M.a_intent != INTENT_HARM)
 		if(charges >= 5)
-			to_chat(creator, "<span class='xenoannounce'>[src] is already full!</span>")
+			to_chat(M, "<span class='xenoannounce'>[src] is already full!</span>")
 			return
 		if(ccharging)
-			to_chat(creator, "<span class='xenoannounce'>[src] is already being filled!</span>")
+			to_chat(M, "<span class='xenoannounce'>[src] is already being filled!</span>")
 			return
 		ccharging = TRUE
 		if(!do_after(M, 10 SECONDS, FALSE, src, BUSY_ICON_BUILD))
