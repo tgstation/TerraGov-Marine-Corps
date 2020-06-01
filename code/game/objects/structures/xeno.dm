@@ -771,6 +771,7 @@ TUNNEL
 			ccharging = FALSE
 			return
 		if(M.plasma_stored < 200)
+			ccharging = FALSE
 			return
 		M.plasma_stored -= 200
 		charges++
