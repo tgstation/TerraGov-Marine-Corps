@@ -60,6 +60,10 @@
 	name = "\improper Ore Processing Facility"
 	icon_state = "lava_eng4"
 
+/area/lavaland/engie/engine
+	name = "\improper Engineering Facility"
+	icon_state = "lava_eng5"
+
 //Security
 
 /area/lavaland/security
