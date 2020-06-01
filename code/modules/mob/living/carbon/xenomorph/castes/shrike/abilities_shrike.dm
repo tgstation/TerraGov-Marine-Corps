@@ -401,10 +401,6 @@
 			to_chat(owner, "<span class='warning'>There is a resin node in the way!</span>")
 		return FALSE
 
-	if(GLOB.acidwells.len >= 5)
-		return FALSE
-
-
 /datum/action/xeno_action/place_acidwell/action_activate()
 	var/turf/T = get_turf(owner)
 

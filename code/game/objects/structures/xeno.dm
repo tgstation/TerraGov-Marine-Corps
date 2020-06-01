@@ -717,7 +717,6 @@ TUNNEL
 
 /obj/effect/alien/resin/acidwell/Initialize()
 	. = ..()
-	GLOB.acidwells += src
 	update_icon()
 
 /obj/effect/alien/resin/acidwell/Destroy()
@@ -725,7 +724,6 @@ TUNNEL
 		var/area/A = get_area(src)
 		if(A)
 			to_chat(creator, "<span class='xenoannounce'>You sense your acid well at [A.name] has been destroyed!</span>")
-	GLOB.acidwells -= src
 	var/datum/effect_system/smoke_spread/xeno/acid/A = new(get_turf(src))
 	A.set_up(clamp(charges,0,2),src)
 	A.start()
