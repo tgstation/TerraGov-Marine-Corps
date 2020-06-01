@@ -238,11 +238,11 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_BUILD_TUNNEL
 
-/datum/keybinding/xeno/toggle_stealth
-	name = "toggle_stealth"
+/datum/keybinding/xeno/toggle_phase
+	name = "toggle_phase"
 	full_name = "Hunter: Toggle Stealth"
-	description = ""
-	keybind_signal = COMSIG_XENOABILITY_TOGGLE_STEALTH
+	description = "Walk through anything for a duration of 1 second. Causes sunder with each use."
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_PHASE
 
 /datum/keybinding/xeno/psychic_whisper
 	name = "psychic_whisper"

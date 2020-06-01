@@ -426,7 +426,7 @@
 #define COMSIG_XENOABILITY_RESIN_WALKER "xenoability_resin_walker"
 #define COMSIG_XENOABILITY_BUILD_TUNNEL "xenoability_build_tunnel"
 
-#define COMSIG_XENOABILITY_TOGGLE_STEALTH "xenoability_toggle_stealth"
+#define COMSIG_XENOABILITY_TOGGLE_PHASE "xenoability_toggle_phase"
 
 #define COMSIG_XENOABILITY_SCREECH "xenoability_screech"
 #define COMSIG_XENOABILITY_WATCH_XENO "xenoability_watch_xeno"
