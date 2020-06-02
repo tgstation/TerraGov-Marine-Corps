@@ -3242,6 +3242,14 @@
 /obj/structure/bed/chair/dropship/passenger,
 /turf/open/shuttle/dropship/floor,
 /area/whiskey_outpost/outside/east)
+"mE" = (
+/obj/item/lightstick/red/anchored,
+/obj/structure/sign/safety/medical_supplies{
+	dir = 1;
+	pixel_y = 32
+	},
+/turf/open/ground/jungle,
+/area/whiskey_outpost/outside/east)
 "mG" = (
 /obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/mainship/sterile/dark,
@@ -5012,6 +5020,10 @@
 /obj/structure/largecrate/supply/supplies/sandbags,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
+"uS" = (
+/obj/effect/landmark/start/job/squadmarine,
+/turf/open/ground/jungle,
+/area/whiskey_outpost)
 "uU" = (
 /obj/machinery/floodlight/outpost,
 /turf/open/floor/plating/asteroidplating,
@@ -5321,6 +5333,7 @@
 /area/whiskey_outpost/outside/east)
 "zM" = (
 /obj/structure/sign/greencross/star{
+	dir = 1;
 	pixel_y = 32
 	},
 /turf/open/floor/plating/asteroidfloor,
@@ -5588,6 +5601,13 @@
 	dir = 10
 	},
 /area/whiskey_outpost/outside/east)
+"DL" = (
+/obj/structure/sign/safety/medical_supplies{
+	dir = 1;
+	pixel_y = 32
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/whiskey_outpost/outside/west)
 "DO" = (
 /obj/machinery/marine_selector/clothes/specialist,
 /obj/structure/window/reinforced,
@@ -6763,6 +6783,7 @@
 /area/whiskey_outpost)
 "ZR" = (
 /obj/structure/sign/greencross/star{
+	dir = 1;
 	pixel_y = 32
 	},
 /turf/open/ground/jungle,
@@ -16808,8 +16829,8 @@ WA
 WA
 bd
 kl
-hX
-hX
+bR
+bR
 hw
 hw
 PW
@@ -16962,7 +16983,7 @@ bN
 bF
 bd
 TL
-hX
+bR
 vP
 bm
 Ci
@@ -17115,7 +17136,7 @@ bk
 Ct
 bd
 jj
-hX
+bR
 hX
 hX
 PW
@@ -17267,8 +17288,8 @@ bk
 bk
 bk
 WA
-hw
-my
+YL
+uS
 hw
 hX
 PW
@@ -17419,8 +17440,8 @@ bk
 bk
 cb
 bk
-bz
-hX
+bd
+DL
 vP
 hX
 hw
@@ -18337,8 +18358,8 @@ Nl
 bk
 Kn
 bd
-bz
-es
+bd
+mE
 gZ
 gZ
 gZ
@@ -18491,8 +18512,8 @@ bk
 bk
 Wq
 bd
-iB
-gZ
+YL
+bR
 gZ
 iB
 Pv
@@ -18645,7 +18666,7 @@ bk
 Kn
 bd
 TL
-gZ
+bR
 sV
 gZ
 Pv
@@ -18798,7 +18819,7 @@ bU
 bn
 bd
 jj
-iB
+YL
 gZ
 gZ
 Pv
@@ -18950,8 +18971,8 @@ WA
 WA
 bd
 km
-iB
-iB
+YL
+YL
 iB
 iB
 mW

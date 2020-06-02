@@ -1921,6 +1921,7 @@
 /obj/machinery/door_control{
 	id = "mbayexit";
 	name = "medbay exit";
+	normaldoorcontrol = 1;
 	pixel_y = -22
 	},
 /turf/open/floor/tile/white,
@@ -2283,7 +2284,6 @@
 	dir = 2
 	},
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay{
-	id = "mbayexit";
 	id_tag = "mbayexit"
 	},
 /turf/open/floor/tile/blue/whitebluefull,
