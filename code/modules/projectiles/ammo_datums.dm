@@ -501,12 +501,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	shell_speed = 3
 	max_range = 15
-	damage = 65
+	damage = 80
 	penetration = 40
 	sundering = 7
 
 /datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, weaken = 1, stagger = 2, slowdown = 2, knockback = 1)
+	staggerstun(M, P, weaken = 1, stagger = 2, knockback = 1)
 
 
 /datum/ammo/bullet/shotgun/beanbag
