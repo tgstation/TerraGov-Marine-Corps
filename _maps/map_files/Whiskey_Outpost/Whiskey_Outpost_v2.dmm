@@ -5099,10 +5099,6 @@
 /obj/machinery/vending/attachments,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
-"wt" = (
-/obj/machinery/marine_selector/clothes,
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost/outside/west)
 "ww" = (
 /obj/item/storage/box/m94,
 /turf/open/floor/plating/asteroidfloor,
@@ -6299,10 +6295,6 @@
 /obj/structure/barricade/plasteel,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/east)
-"PF" = (
-/obj/machinery/vending/marine,
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost/outside/west)
 "PG" = (
 /obj/item/roller,
 /turf/open/floor/mainship/sterile/dark,
@@ -6379,10 +6371,6 @@
 	dir = 4
 	},
 /area/whiskey_outpost)
-"Ry" = (
-/obj/machinery/vending/marine,
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost/outside/east)
 "RE" = (
 /obj/structure/cable,
 /turf/open/floor,
@@ -6505,10 +6493,6 @@
 /obj/structure/largecrate/supply/weapons/shotgun,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
-"Ur" = (
-/obj/machinery/marine_selector/clothes,
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost/outside/east)
 "Uv" = (
 /obj/machinery/light{
 	dir = 8
@@ -16977,7 +16961,7 @@ GC
 bN
 bF
 bd
-PF
+TL
 hX
 vP
 bm
@@ -17130,7 +17114,7 @@ bk
 bk
 Ct
 bd
-wt
+jj
 hX
 hX
 hX
@@ -18660,7 +18644,7 @@ bk
 bk
 Kn
 bd
-Ry
+TL
 gZ
 sV
 gZ
@@ -18813,7 +18797,7 @@ tr
 bU
 bn
 bd
-Ur
+jj
 iB
 gZ
 gZ
