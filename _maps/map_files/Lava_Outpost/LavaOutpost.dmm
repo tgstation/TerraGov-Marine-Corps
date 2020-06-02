@@ -417,9 +417,7 @@
 /turf/open/floor/plating,
 /area/lavaland/civilian/garden)
 "gq" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 4
-	},
+/obj/structure/bookcase/manuals/engineering,
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/engine)
 "gs" = (
@@ -465,9 +463,7 @@
 /area/lavaland/civilian/garden)
 "gS" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 10
-	},
+/obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/engine)
 "gT" = (
@@ -554,6 +550,9 @@
 "hB" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/grown/tomato,
+/obj/machinery/chem_dispenser/beer{
+	pixel_y = 22
+	},
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
 "hD" = (
@@ -1053,12 +1052,6 @@
 /obj/structure/largecrate/supply/supplies/mre,
 /turf/open/floor/plating/platebot,
 /area/lavaland/security/nuke)
-"nr" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 6
-	},
-/turf/open/floor/tile/dark2,
-/area/lavaland/engie/engine)
 "nz" = (
 /obj/machinery/floodlight/outpost,
 /turf/open/lavaland/basalt,
@@ -17840,9 +17833,9 @@ al
 al
 al
 al
-aZ
-aZ
-aZ
+cg
+cg
+cg
 al
 al
 al
@@ -19107,9 +19100,9 @@ al
 al
 al
 al
-aZ
-aZ
-aZ
+cg
+cg
+cg
 al
 al
 al
@@ -26021,13 +26014,13 @@ al
 al
 fw
 fE
-gq
-aY
-aY
-aY
-aY
-aY
-nr
+hw
+mI
+mI
+mI
+mI
+mI
+rv
 mI
 mI
 mI
@@ -26278,7 +26271,7 @@ al
 al
 fw
 fE
-gF
+aY
 aY
 ds
 fw
@@ -26535,7 +26528,7 @@ al
 al
 fw
 fE
-gF
+aY
 Wq
 fw
 fw
@@ -26792,7 +26785,7 @@ al
 al
 fw
 fw
-gF
+aY
 fw
 fw
 ks
@@ -27049,7 +27042,7 @@ al
 al
 fw
 aY
-gF
+aY
 aY
 ks
 ks
@@ -27306,7 +27299,7 @@ al
 al
 fw
 aY
-gF
+aY
 aY
 aY
 aY
@@ -29366,11 +29359,11 @@ bo
 bo
 bo
 fw
-aY
-aY
-aY
-aY
-aY
+gq
+gq
+gq
+gq
+gq
 fw
 Cb
 Cb
