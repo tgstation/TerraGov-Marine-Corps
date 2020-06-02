@@ -5021,8 +5021,10 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "uS" = (
-/obj/effect/landmark/start/job/squadmarine,
-/turf/open/ground/jungle,
+/obj/machinery/marine_selector/clothes{
+	lock_flags = 0
+	},
+/turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "uU" = (
 /obj/machinery/floodlight/outpost,
@@ -16829,8 +16831,8 @@ WA
 WA
 bd
 kl
-bR
-bR
+hX
+hX
 hw
 hw
 PW
@@ -16983,7 +16985,7 @@ bN
 bF
 bd
 TL
-bR
+hX
 vP
 bm
 Ci
@@ -17135,8 +17137,8 @@ bk
 bk
 Ct
 bd
-jj
-bR
+uS
+hX
 hX
 hX
 PW
@@ -17288,8 +17290,8 @@ bk
 bk
 bk
 WA
-YL
-uS
+hw
+my
 hw
 hX
 PW
@@ -18512,8 +18514,8 @@ bk
 bk
 Wq
 bd
-YL
-bR
+iB
+gZ
 gZ
 iB
 Pv
@@ -18666,7 +18668,7 @@ bk
 Kn
 bd
 TL
-bR
+gZ
 sV
 gZ
 Pv
@@ -18818,8 +18820,8 @@ tr
 bU
 bn
 bd
-jj
-YL
+uS
+gZ
 gZ
 gZ
 Pv
@@ -18971,8 +18973,8 @@ WA
 WA
 bd
 km
-YL
-YL
+iB
+iB
 iB
 iB
 mW
