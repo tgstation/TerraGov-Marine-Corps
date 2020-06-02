@@ -792,11 +792,11 @@ TUNNEL
 /obj/effect/alien/resin/acidwell/HasProximity(atom/movable/AM)
 	if(!iscarbon(AM))
 		return
-	if(!(AM in GLOB.alive_living_list))
+	var/mob/living/carbon/C = AM
+	if(C.stat == DEAD)
 		return
 	if(!charges)
 		return
-	var/mob/living/carbon/C = AM
 	if(isxeno(C))
 		if(!(C.on_fire))
 			return 
@@ -805,8 +805,6 @@ TUNNEL
 		update_icon()
 		return
 	else 
-		if(C.stat == DEAD)
-			return
 		if(!charges)
 			return
 		C.adjustToxLoss(charges * 15)
