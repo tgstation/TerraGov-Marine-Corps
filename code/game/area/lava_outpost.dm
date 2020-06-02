@@ -16,9 +16,25 @@
 	name = "\improper North Caves"
 	icon_state = "lava_cave_n"
 
+/area/lavaland/cave/northeast
+	name = "\improper North East Caves"
+	icon_state = "lava_cave_ne"
+
+/area/lavaland/cave/northwest
+	name = "\improper North West Caves"
+	icon_state = "lava_cave_nw"
+
 /area/lavaland/cave/south
 	name = "\improper South Caves"
 	icon_state = "lava_cave_s"
+
+/area/lavaland/cave/southeast
+	name = "\improper South East Caves"
+	icon_state = "lava_cave_se"
+
+/area/lavaland/cave/southwest
+	name = "\improper South West Caves"
+	icon_state = "lava_cave_sw"
 
 /area/lavaland/cave/east
 	name = "\improper East Caves"
