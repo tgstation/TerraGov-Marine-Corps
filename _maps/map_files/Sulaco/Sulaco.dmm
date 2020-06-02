@@ -1890,11 +1890,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/door_control{
-	id = "mbayexit";
-	name = "medbay exit";
-	pixel_y = -32
-	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
 	layer = 2
@@ -1922,6 +1917,11 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4;
 	layer = 2
+	},
+/obj/machinery/door_control{
+	id = "mbayexit";
+	name = "medbay exit";
+	pixel_y = -22
 	},
 /turf/open/floor/tile/white,
 /area/sulaco/medbay)
@@ -2283,19 +2283,14 @@
 	dir = 2
 	},
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay{
-	id = "mbayexit"
-	},
-/obj/effect/mapping_helpers/airlock/unres{
-	dir = 1
+	id = "mbayexit";
+	id_tag = "mbayexit"
 	},
 /turf/open/floor/tile/blue/whitebluefull,
 /area/sulaco/medbay)
 "ahD" = (
 /obj/machinery/door/poddoor/shutters/opened/medbay{
 	dir = 2
-	},
-/obj/effect/mapping_helpers/airlock/unres{
-	dir = 1
 	},
 /turf/open/floor/tile/blue/whitebluefull,
 /area/sulaco/medbay)
