@@ -96,6 +96,12 @@
 		return FALSE
 	return ..()
 
+/mob/living/carbon/human/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, sound/S)
+	if(istype(head, /obj/item/clothing/head/helmet))
+		vol = vol * 0.4 //helmets block most of the sound
+	. = ..()
+	
+
 /proc/open_sound_channel()
 	var/static/next_channel = 1	//loop through the available 1024 - (the ones we reserve) channels and pray that its not still being used
 	. = ++next_channel
