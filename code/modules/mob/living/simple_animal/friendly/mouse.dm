@@ -25,7 +25,7 @@
 
 /mob/living/simple_animal/mouse/Initialize()
 	. = ..()
-	AddComponent(/datum/component/squeak, 'sound/effects/mousesqueek.ogg', 100)
+	AddComponent(/datum/component/squeak, 'sound/effects/mousesqueek.ogg', 100, 30)
 	if(!body_color)
 		body_color = pick( list("brown","gray","white") )
 	icon_state = "mouse_[body_color]"
