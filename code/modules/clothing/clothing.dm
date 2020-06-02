@@ -14,7 +14,6 @@
 		var/mob/living/carbon/human/human_user = user
 		human_user.adjust_mob_accuracy(accuracy_mod)
 
-
 /obj/item/clothing/unequipped(mob/unequipper, slot)
 	if(!(flags_equip_slot & slotdefine2slotbit(slot)))
 		return ..()

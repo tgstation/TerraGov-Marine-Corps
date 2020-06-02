@@ -189,7 +189,8 @@
 
 // /obj/item/clothing signals
 #define COMSIG_SHOES_STEP_ACTION "shoes_step_action"			//from base of obj/item/clothing/shoes/proc/step_action(): ()
-
+#define COMSIG_CLOTHING_EQUIPPED "clothing_equipped"			//
+#define COMSIG_CLOTHING_UNEQUIPPED "clothing_unequipped"		//
 // /obj/item/grab signals
 #define COMSIG_GRAB_SELF_ATTACK "grab_self_attack"				//from base of obj/item/grab/attack() if attacked is the same as attacker: (mob/living/user)
 	#define COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK (1<<0)
