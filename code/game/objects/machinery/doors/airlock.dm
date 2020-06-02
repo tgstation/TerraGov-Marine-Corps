@@ -226,14 +226,15 @@
 	if(hasPower())
 		M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins to pry it open.</span>", \
 		"<span class='warning'>We dig into \the [src] and begin to pry it open.</span>", null, 5)
-		if(do_after(M, 4 SECONDS, FALSE, src, BUSY_ICON_HOSTILE) && !M.lying_angle)
-			if(locked)
-				to_chat(M, "<span class='warning'>\The [src] is bolted down tight.</span>")
-				return FALSE
-			if(welded)
-				to_chat(M, "<span class='warning'>\The [src] is welded shut.</span>")
-				return FALSE
-	
+		if(!do_after(M, 4 SECONDS, FALSE, src, BUSY_ICON_HOSTILE) && !M.lying_angle)
+			return FALSE
+	if(locked)
+		to_chat(M, "<span class='warning'>\The [src] is bolted down tight.</span>")
+		return FALSE
+	if(welded)
+		to_chat(M, "<span class='warning'>\The [src] is welded shut.</span>")
+		return FALSE
+
 	if(density) //Make sure it's still closed
 		open(1)
 		M.visible_message("<span class='danger'>\The [M] pries \the [src] open.</span>", \
