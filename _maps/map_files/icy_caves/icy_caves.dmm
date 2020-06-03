@@ -5078,6 +5078,10 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/outside)
+"vC" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/outpost/LZ2)
 "wM" = (
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
@@ -5173,10 +5177,6 @@
 	},
 /turf/closed/ice_rock/singleEnd,
 /area/icy_caves/outpost/outside)
-"PU" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/ice,
-/area/icy_caves/caves/east)
 "Ql" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area)
@@ -5234,6 +5234,10 @@
 	dir = 1
 	},
 /area/icy_caves/caves/south)
+"UE" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/west)
 "UM" = (
 /turf/closed/wall,
 /area/icy_caves/outpost/research)
@@ -5260,6 +5264,10 @@
 /obj/machinery/computer/nuke_disk_generator/blue,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
+"XJ" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/snow,
+/area/icy_caves/outpost/outside)
 "YA" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 4
@@ -15222,7 +15230,7 @@ dc
 dc
 dc
 dc
-dc
+UE
 kR
 dc
 dc
@@ -20388,7 +20396,7 @@ gi
 aU
 aU
 aU
-aU
+XJ
 aU
 aU
 aU
@@ -21101,7 +21109,7 @@ aJ
 aJ
 aJ
 aR
-MV
+aJ
 dm
 dP
 eh
@@ -25986,7 +25994,7 @@ bE
 ci
 ca
 ch
-aJ
+MV
 dm
 dm
 eG
@@ -31931,7 +31939,7 @@ ds
 ds
 ds
 fm
-PU
+ds
 fm
 ds
 ds
@@ -32227,7 +32235,7 @@ dt
 ds
 dx
 gQ
-ds
+Zk
 ds
 ds
 ds
@@ -34022,7 +34030,7 @@ hv
 ds
 fn
 ds
-Zk
+ds
 nz
 ds
 lm
@@ -39378,7 +39386,7 @@ lm
 qB
 lk
 qX
-qX
+vC
 bN
 bN
 bN

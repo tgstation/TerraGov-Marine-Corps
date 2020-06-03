@@ -60,7 +60,7 @@
 	COOLDOWN_START(entangled, COOLDOWN_ENTANGLE, duration)
 	entangled.visible_message("<span class='danger'>[entangled] gets entangled in the barbed wire!</span>",
 	"<span class='danger'>You got entangled in the barbed wire! Resist to untangle yourself after [duration * 0.1] seconds since you were entangled!</span>", null, null, 5)
-	do_razorwire_tangle()
+	do_razorwire_tangle(entangled)
 
 
 /obj/structure/razorwire/proc/do_razorwire_tangle(mob/living/entangled)
@@ -88,7 +88,7 @@
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, TRUE)
 	var/def_zone = ran_zone()
 	var/armor_block = entangled.run_armor_check(def_zone, "melee")
-	entangled.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, TRUE) //Apply damage as we tear free
+	entangled.apply_damage(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED, BRUTE, def_zone, armor_block, TRUE) //Apply damage as we tear free
 	UPDATEHEALTH(entangled)
 	return TRUE
 

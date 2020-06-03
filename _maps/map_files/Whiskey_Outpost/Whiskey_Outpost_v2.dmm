@@ -2698,6 +2698,10 @@
 	dir = 10
 	},
 /area/whiskey_outpost)
+"jV" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/east)
 "kb" = (
 /turf/closed/shuttle/dropship3/transparent{
 	icon_state = "65"
@@ -5108,10 +5112,6 @@
 /obj/machinery/vending/attachments,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
-"wt" = (
-/obj/machinery/marine_selector/clothes,
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost/outside/west)
 "ww" = (
 /obj/item/storage/box/m94,
 /turf/open/floor/plating/asteroidfloor,
@@ -5214,7 +5214,7 @@
 "xH" = (
 /obj/structure/cable,
 /turf/closed/wall/r_wall,
-/area/whiskey_outpost)
+/area/whiskey_outpost/outside/west)
 "xQ" = (
 /obj/machinery/marine_selector/clothes,
 /obj/structure/window/reinforced,
@@ -5354,6 +5354,10 @@
 	},
 /turf/open/floor/plating/warning,
 /area/whiskey_outpost)
+"Ac" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/ground/jungle,
+/area/whiskey_outpost/outside/west)
 "Af" = (
 /obj/structure/barricade/plasteel,
 /turf/open/floor/plating/asteroidfloor,
@@ -5479,6 +5483,14 @@
 	dir = 8
 	},
 /area/whiskey_outpost)
+"BL" = (
+/obj/machinery/door/airlock/mainship/maint/free_access{
+	dir = 2
+	},
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
+/area/whiskey_outpost)
 "BQ" = (
 /obj/effect/ai_node,
 /turf/open/ground/coast{
@@ -5552,6 +5564,9 @@
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
+"CK" = (
+/turf/open/floor/asteroidfloor,
+/area/whiskey_outpost/outside/east)
 "CT" = (
 /obj/structure/platform_decoration,
 /obj/structure/platform_decoration{
@@ -6257,6 +6272,9 @@
 /obj/item/storage/box/sentry,
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost)
+"NS" = (
+/turf/open/floor/asteroidfloor,
+/area/whiskey_outpost/outside/west)
 "Oa" = (
 /obj/machinery/marine_selector/gear/engi,
 /turf/open/floor/mainship/emerald{
@@ -6367,10 +6385,6 @@
 /obj/structure/barricade/plasteel,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/east)
-"PF" = (
-/obj/machinery/vending/marine,
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost/outside/west)
 "PG" = (
 /obj/item/roller,
 /turf/open/floor/mainship/sterile/dark,
@@ -6426,6 +6440,10 @@
 /obj/structure/barricade/sandbags{
 	dir = 4
 	},
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/north)
+"QT" = (
+/obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
 "QX" = (
@@ -6492,6 +6510,12 @@
 	dir = 9
 	},
 /area/whiskey_outpost)
+"Sy" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/asteroidfloor,
+/area/whiskey_outpost/outside/west)
 "SD" = (
 /obj/structure/largecrate/supply/weapons/standard_carbine,
 /turf/open/floor/plating/asteroidwarning{
@@ -6584,9 +6608,11 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "Ur" = (
-/obj/machinery/marine_selector/clothes,
+/obj/machinery/marine_selector/clothes{
+	lock_flags = 0
+	},
 /turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost/outside/east)
+/area/whiskey_outpost)
 "Uv" = (
 /obj/machinery/light{
 	dir = 8
@@ -13344,7 +13370,7 @@ bW
 bW
 bW
 bW
-bW
+QT
 bW
 bW
 aS
@@ -16436,7 +16462,7 @@ hw
 hw
 hw
 hB
-hw
+Ac
 hw
 hw
 hw
@@ -17054,7 +17080,7 @@ GC
 bN
 bF
 bd
-PF
+TL
 hX
 vP
 bm
@@ -17207,7 +17233,7 @@ bk
 bk
 Ct
 bd
-wt
+Ur
 hX
 hX
 hX
@@ -17960,12 +17986,12 @@ zi
 hc
 hc
 hc
-hc
-hc
-hc
-hc
-bd
-Nl
+CK
+CK
+CK
+CK
+BL
+bk
 bk
 bk
 bk
@@ -18737,7 +18763,7 @@ bk
 bk
 Kn
 bd
-Ry
+TL
 gZ
 sV
 gZ
@@ -20860,7 +20886,7 @@ gU
 hP
 hg
 hg
-hg
+jV
 hg
 hg
 iJ
