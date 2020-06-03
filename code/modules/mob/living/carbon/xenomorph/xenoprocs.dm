@@ -567,12 +567,11 @@
 		if(target.plasma_stored < amount)
 			amount = target.plasma_stored //Just take it all.
 
-		var/absorbed_amount = round(amount * PLASMA_SALVAGE_MULTIPLIER)
+		var/absorbed_amount = amount
 		target.use_plasma(amount)
 		gain_plasma(absorbed_amount)
 		to_chat(src, "<span class='xenowarning'>We salvage [absorbed_amount] units of plasma from [target]. We have [plasma_stored]/[xeno_caste.plasma_max] stored now.</span>")
-		if(prob(50))
-			playsound(src, "alien_drool", 25)
+		playsound(src, "alien_drool", 25)
 
 
 
@@ -659,5 +658,3 @@
 	if(.)
 		return
 	return (sunder * -0.01) + 1
-
-

@@ -5561,6 +5561,10 @@
 /obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor/plating,
 /area/lv624/lazarus/hydroponics)
+"xq" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/grass,
+/area/lv624/ground/compound/c)
 "zj" = (
 /turf/closed/wall/indestructible/mineral,
 /area/lv624/ground/compound/se)
@@ -5601,6 +5605,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
 /area/lv624/ground/caves/central2)
+"GM" = (
+/obj/machinery/miner/damaged,
+/turf/open/ground/grass/grass2,
+/area/lv624/ground/compound/n)
 "GV" = (
 /obj/structure/cable,
 /turf/open/floor/grass,
@@ -5668,6 +5676,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating,
 /area/vapor_processing/east_compound)
+"PI" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/grass,
+/area/vapor_processing/south_compound)
 "Qv" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/indestructible/mineral,
@@ -5688,10 +5700,18 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
 /area/lv624/ground/caves/central1)
+"Va" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/ground,
+/area/lv624/ground/caves/central1)
 "Xw" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
 /area/lv624/ground/caves/west1)
+"ZJ" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/grass,
+/area/vapor_processing/east_compound)
 
 (1,1,1) = {"
 aa
@@ -8676,7 +8696,7 @@ cs
 cs
 cs
 ah
-ah
+GM
 ah
 bm
 ah
@@ -9512,7 +9532,7 @@ ep
 et
 et
 ep
-ep
+xq
 GV
 fk
 fk
@@ -10768,7 +10788,7 @@ sO
 lH
 le
 lg
-le
+PI
 le
 lg
 le
@@ -12242,7 +12262,7 @@ bD
 bD
 bD
 bB
-bB
+Va
 bB
 bB
 bB
@@ -12997,7 +13017,7 @@ eN
 eM
 eN
 eN
-eN
+ZJ
 li
 li
 li

@@ -634,7 +634,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 /obj/item/ammobox/standard_lmg
 	name = "T-42 LMG Ammo Box"
-	icon_state = "big_ammo_box"
+	icon_state = "ammoboxm39ext"
 	ammo_type = /datum/ammo/bullet/rifle
 	magazine_type = /obj/item/ammo_magazine/standard_lmg
 

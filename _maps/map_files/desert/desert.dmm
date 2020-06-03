@@ -57,8 +57,8 @@
 /area/desert/interior/engineering/atmospherics)
 "ao" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/visible{
-	icon_state = "manifold-2";
-	dir = 8
+	dir = 8;
+	icon_state = "manifold-2"
 	},
 /obj/structure/foamedmetal,
 /turf/open/floor/tile/dark2,
@@ -87,15 +87,15 @@
 /area/space)
 "av" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/visible{
-	icon_state = "manifold-2";
-	dir = 1
+	dir = 1;
+	icon_state = "manifold-2"
 	},
 /turf/open/floor/tile/dark2,
 /area/desert/interior/engineering/atmospherics)
 "aw" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
-	icon_state = "vent_map-2";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map-2"
 	},
 /turf/open/floor/tile/dark2,
 /area/desert/interior/engineering/atmospherics)
@@ -105,8 +105,8 @@
 /area/desert/hive)
 "ay" = (
 /obj/machinery/atmospherics/pipe/simple/supply/visible{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /obj/machinery/door/airlock/mainship/engineering/atmos{
 	name = "\improper Atmospherics"
@@ -116,8 +116,8 @@
 /area/desert/interior/engineering/atmospherics)
 "az" = (
 /obj/machinery/atmospherics/pipe/simple/supply/visible{
-	icon_state = "pipe11-2";
-	dir = 9
+	dir = 9;
+	icon_state = "pipe11-2"
 	},
 /obj/structure/foamedmetal,
 /obj/structure/cable,
@@ -143,15 +143,15 @@
 /area/desert/interior/engineering/atmospherics)
 "aE" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/visible{
-	icon_state = "manifold-2";
-	dir = 8
+	dir = 8;
+	icon_state = "manifold-2"
 	},
 /turf/open/floor/tile/dark2,
 /area/desert/interior/engineering/atmospherics)
 "aF" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
-	icon_state = "vent_map-2";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map-2"
 	},
 /obj/machinery/light{
 	dir = 4
@@ -178,8 +178,8 @@
 /area/desert/interior/engineering/atmospherics)
 "aK" = (
 /obj/machinery/atmospherics/pipe/simple/supply/visible{
-	icon_state = "pipe11-2";
-	dir = 5
+	dir = 5;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/tile/dark2,
 /area/desert/interior/engineering/atmospherics)
@@ -197,8 +197,8 @@
 /area/desert/outside/nw)
 "aO" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	icon_state = "pdoor1";
-	dir = 1
+	dir = 1;
+	icon_state = "pdoor1"
 	},
 /turf/closed/wall/r_wall,
 /area/desert/interior/shipping/north)
@@ -210,8 +210,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
 /obj/structure/cable,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	icon_state = "pdoor1";
-	dir = 1
+	dir = 1;
+	icon_state = "pdoor1"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/interior/shipping/north)
@@ -252,23 +252,23 @@
 "ba" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plating,
 /area/desert/outside/ne)
 "bb" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	icon_state = "pdoor1";
-	dir = 1
+	dir = 1;
+	icon_state = "pdoor1"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/interior/shipping/north)
 "bc" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating,
@@ -276,8 +276,8 @@
 "bd" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plating,
 /area/desert/interior/shipping/north)
@@ -309,8 +309,8 @@
 /area/desert/outside/ne)
 "bn" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
-	icon_state = "grassdirt_edge";
-	dir = 4
+	dir = 4;
+	icon_state = "grassdirt_edge"
 	},
 /area/desert/outside/nw)
 "bo" = (
@@ -327,8 +327,8 @@
 /area/desert/outside/nw)
 "bq" = (
 /obj/machinery/door/airlock/colony/engineering{
-	name = "\improper Maintenance Airlock";
-	dir = 1
+	dir = 1;
+	name = "\improper Maintenance Airlock"
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden,
@@ -353,16 +353,16 @@
 "bv" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 6
+	dir = 6;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plating,
 /area/desert/interior/main_building)
 "bw" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plating,
 /area/desert/interior/main_building)
@@ -372,16 +372,16 @@
 "by" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 9
+	dir = 9;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plating,
 /area/desert/interior/main_building)
 "bz" = (
 /obj/structure/barricade/wooden,
 /turf/open/floor/plating/ground/dirtgrassborder{
-	icon_state = "grassdirt_edge";
-	dir = 4
+	dir = 4;
+	icon_state = "grassdirt_edge"
 	},
 /area/desert/outside/nw)
 "bA" = (
@@ -421,8 +421,8 @@
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plating,
 /area/desert/interior/shipping/north)
@@ -496,8 +496,8 @@
 /area/desert/interior/command/office)
 "bZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe11-2"
 	},
 /obj/structure/cable,
 /obj/structure/flora/pottedplant,
@@ -507,8 +507,8 @@
 /area/desert/interior/main_building)
 "ca" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 6
+	dir = 6;
+	icon_state = "pipe11-2"
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -522,8 +522,8 @@
 /area/desert/interior/command)
 "cc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 9
+	dir = 9;
+	icon_state = "pipe11-2"
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -589,8 +589,8 @@
 /area/desert/interior/command)
 "cp" = (
 /obj/machinery/door/airlock/colony/engineering{
-	name = "\improper Maintenance Airlock";
-	dir = 1
+	dir = 1;
+	name = "\improper Maintenance Airlock"
 	},
 /turf/open/floor/tile/dark,
 /area/desert/interior/shipping/central)
@@ -733,8 +733,8 @@
 /area/desert/interior/command)
 "cR" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 9
+	dir = 9;
+	icon_state = "pipe11-2"
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/whiteyellow,
@@ -742,15 +742,15 @@
 "cS" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 6
+	dir = 6;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plating,
 /area/desert/outside/nw)
 "cT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/whiteyellow,
@@ -762,8 +762,8 @@
 "cV" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plating/dmg3,
 /area/desert/outside/nw)
@@ -824,8 +824,8 @@
 /area/desert/interior/command/office)
 "df" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
-	icon_state = "manifold-2";
-	dir = 1
+	dir = 1;
+	icon_state = "manifold-2"
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/white,
@@ -847,8 +847,8 @@
 /area/desert/interior/command)
 "dj" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
-	icon_state = "vent_map-2";
-	dir = 4
+	dir = 4;
+	icon_state = "vent_map-2"
 	},
 /turf/open/floor/wood,
 /area/desert/interior/command)
@@ -858,16 +858,16 @@
 /area/desert/interior/main_building)
 "dl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 4
+	dir = 4;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/wood,
 /area/desert/interior/command)
 "dm" = (
 /obj/machinery/marine_turret/premade/dumb/hostile,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 10
+	dir = 10;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/wood,
 /area/desert/interior/command)
@@ -889,8 +889,8 @@
 /area/desert/interior/command)
 "dr" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plating,
 /area/desert/interior/security)
@@ -900,8 +900,8 @@
 /area/desert/interior/shipping/north)
 "dt" = (
 /obj/machinery/door/airlock/colony/engineering{
-	name = "\improper Maintenance Airlock";
-	dir = 1
+	dir = 1;
+	name = "\improper Maintenance Airlock"
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -919,8 +919,8 @@
 "dw" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/plating,
 /area/desert/outside/nw)
@@ -958,16 +958,16 @@
 /area/desert/interior/command)
 "dE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 10
+	dir = 10;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/tile/white,
 /area/desert/interior/main_building)
 "dF" = (
 /obj/structure/table/flipped,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/wood,
 /area/desert/interior/command)
@@ -1039,8 +1039,8 @@
 /area/desert/interior/shipping/central)
 "dV" = (
 /obj/structure/barricade/wooden{
-	icon_state = "wooden";
-	dir = 1
+	dir = 1;
+	icon_state = "wooden"
 	},
 /turf/open/floor/wood,
 /area/desert/hive)
@@ -1084,8 +1084,8 @@
 /area/desert/interior/command)
 "ee" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/wood,
 /area/desert/interior/command)
@@ -1109,8 +1109,8 @@
 /area/desert/interior/command/office)
 "ej" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe11-2"
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/white,
@@ -1148,8 +1148,8 @@
 /area/desert/interior/medbay)
 "et" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe11-2"
 	},
 /obj/structure/cable,
 /turf/open/floor/wood,
@@ -1176,8 +1176,8 @@
 /area/desert/interior/command)
 "ex" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe11-2"
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -1209,15 +1209,15 @@
 /area/desert/interior/main_building)
 "eD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/tile/white,
 /area/desert/interior/main_building)
 "eE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe11-2"
 	},
 /obj/machinery/door/airlock/mainship/generic/corporate{
 	dir = 1;
@@ -1228,8 +1228,8 @@
 /area/desert/interior/command/office)
 "eF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe11-2"
 	},
 /obj/machinery/door/airlock/mainship/command/free_access{
 	dir = 2
@@ -1243,20 +1243,20 @@
 /area/desert/interior/security)
 "eH" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
-	icon_state = "vent_map-2";
-	dir = 1
+	dir = 1;
+	icon_state = "vent_map-2"
 	},
 /turf/open/floor/tile/white,
 /area/desert/interior/main_building)
 "eI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe11-2"
 	},
 /obj/structure/cable,
 /obj/machinery/door/airlock/colony/engineering{
-	name = "\improper Storage";
-	dir = 2
+	dir = 2;
+	name = "\improper Storage"
 	},
 /turf/open/floor/plating,
 /area/desert/interior/security)
@@ -1428,16 +1428,16 @@
 /area/desert/interior/main_building)
 "fl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 5
+	dir = 5;
+	icon_state = "pipe11-2"
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/whiteyellow,
 /area/desert/interior/main_building)
 "fm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /obj/structure/cable,
 /obj/machinery/light,
@@ -1450,8 +1450,8 @@
 /area/desert/interior/main_building)
 "fo" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/whiteyellow/corner{
@@ -1551,8 +1551,8 @@
 /area/desert/interior/main_building)
 "fH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe11-2"
 	},
 /obj/structure/cable,
 /obj/structure/table,
@@ -1622,8 +1622,8 @@
 /area/desert/interior/main_building)
 "fW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe11-2"
 	},
 /obj/structure/cable,
 /obj/structure/bed/chair,
@@ -1661,8 +1661,8 @@
 /area/desert/interior/science)
 "gd" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
-	icon_state = "vent_map-2";
-	dir = 1
+	dir = 1;
+	icon_state = "vent_map-2"
 	},
 /turf/open/floor/tile/white,
 /area/desert/interior/medbay)
@@ -1705,8 +1705,8 @@
 /area/desert/interior/main_building)
 "gi" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe11-2"
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/whiteyellow{
@@ -1715,8 +1715,8 @@
 /area/desert/interior/main_building)
 "gj" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
-	icon_state = "vent_map-2";
-	dir = 1
+	dir = 1;
+	icon_state = "vent_map-2"
 	},
 /turf/open/floor/tile/white,
 /area/desert/interior/science)
@@ -1903,8 +1903,8 @@
 /area/desert/interior/medbay)
 "gT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/white,
@@ -1923,8 +1923,8 @@
 /area/desert/interior/main_building)
 "gW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe11-2"
 	},
 /obj/structure/cable,
 /obj/machinery/light{
@@ -1961,8 +1961,8 @@
 /area/desert/interior/shipping/east)
 "hc" = (
 /obj/machinery/door/airlock/colony/engineering{
-	name = "\improper Maintenance Airlock";
-	dir = 1
+	dir = 1;
+	name = "\improper Maintenance Airlock"
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -1979,8 +1979,8 @@
 /area/desert/interior/medbay)
 "hf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe11-2"
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/white,
@@ -2013,8 +2013,8 @@
 /area/desert/interior/main_building)
 "hl" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden{
-	icon_state = "manifold-2";
-	dir = 1
+	dir = 1;
+	icon_state = "manifold-2"
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/whiteyellow/corner,
@@ -2054,8 +2054,8 @@
 /area/desert/outside/sw)
 "hs" = (
 /obj/structure/barricade/wooden{
-	icon_state = "wooden";
-	dir = 1
+	dir = 1;
+	icon_state = "wooden"
 	},
 /turf/open/floor/tile/whiteyellow{
 	dir = 8
@@ -2063,15 +2063,15 @@
 /area/desert/interior/main_building)
 "ht" = (
 /obj/structure/barricade/wooden{
-	icon_state = "wooden";
-	dir = 1
+	dir = 1;
+	icon_state = "wooden"
 	},
 /turf/open/floor/tile/white,
 /area/desert/interior/main_building)
 "hu" = (
 /obj/structure/barricade/wooden{
-	icon_state = "wooden";
-	dir = 1
+	dir = 1;
+	icon_state = "wooden"
 	},
 /turf/open/floor/tile/green/whitegreen{
 	dir = 1
@@ -2079,13 +2079,13 @@
 /area/desert/interior/main_building)
 "hv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe11-2"
 	},
 /obj/structure/cable,
 /obj/structure/barricade/wooden{
-	icon_state = "wooden";
-	dir = 1
+	dir = 1;
+	icon_state = "wooden"
 	},
 /turf/open/floor/tile/whiteyellow{
 	dir = 4
@@ -2160,8 +2160,8 @@
 /area/desert/interior/main_building)
 "hG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe11-2"
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/whiteyellow/corner{
@@ -2218,8 +2218,8 @@
 /area/desert/interior/main_building)
 "hP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 6
+	dir = 6;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/tile/white,
 /area/desert/interior/main_building)
@@ -2291,16 +2291,16 @@
 /area/desert/interior/engineering)
 "ie" = (
 /obj/machinery/door/airlock/colony/engineering{
-	name = "\improper Maintenance Airlock";
-	dir = 1
+	dir = 1;
+	name = "\improper Maintenance Airlock"
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert/outside/sw)
 "if" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
-	icon_state = "grassdirt_edge";
-	dir = 4
+	dir = 4;
+	icon_state = "grassdirt_edge"
 	},
 /area/desert/outside/sw)
 "ig" = (
@@ -2407,8 +2407,8 @@
 /area/desert/interior/toilet)
 "ix" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
-	icon_state = "vent_map-2";
-	dir = 4
+	dir = 4;
+	icon_state = "vent_map-2"
 	},
 /turf/open/floor/tile/white,
 /area/desert/interior/toilet)
@@ -2431,8 +2431,8 @@
 /area/desert/interior/toilet)
 "iC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/tile/white,
 /area/desert/interior/toilet)
@@ -2441,16 +2441,16 @@
 /area/desert/interior/shipping/north)
 "iE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/desert/interior/toilet)
 "iF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /obj/machinery/door/airlock/mainship/generic/bathroom,
 /obj/structure/cable,
@@ -2458,8 +2458,8 @@
 /area/desert/interior/toilet)
 "iG" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /obj/structure/cable,
 /obj/structure/barricade/wooden{
@@ -2475,8 +2475,8 @@
 /area/desert/interior/main_building)
 "iJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /obj/structure/cable,
 /obj/structure/barricade/wooden{
@@ -2494,8 +2494,8 @@
 /area/desert/hive)
 "iM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /obj/machinery/door/airlock/mainship/engineering/engine,
 /obj/structure/cable,
@@ -2503,16 +2503,20 @@
 /area/desert/interior/engineering)
 "iN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/desert/interior/engineering)
+"iO" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground,
+/area/desert/outside/sw)
 "iP" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
-	icon_state = "vent_map-2";
-	dir = 8
+	dir = 8;
+	icon_state = "vent_map-2"
 	},
 /turf/open/floor/plating,
 /area/desert/interior/engineering)
@@ -2566,8 +2570,8 @@
 /area/desert/interior/toilet)
 "jc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe11-2"
 	},
 /turf/open/floor/tile/white,
 /area/desert/interior/main_building)
@@ -2596,8 +2600,8 @@
 /area/desert/interior/engineering)
 "jh" = (
 /obj/machinery/door/airlock/colony/engineering{
-	name = "\improper Maintenance Airlock";
-	dir = 1
+	dir = 1;
+	name = "\improper Maintenance Airlock"
 	},
 /turf/open/floor/plating,
 /area/desert/interior/shipping/east)
@@ -2646,8 +2650,8 @@
 /area/desert/interior/engineering)
 "js" = (
 /obj/machinery/door/poddoor/mainship/open{
-	icon_state = "pdoor0";
-	dir = 1
+	dir = 1;
+	icon_state = "pdoor0"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/outside/sw)
@@ -2681,8 +2685,8 @@
 /area/desert/interior/toilet)
 "jA" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
-	icon_state = "grassdirt_edge";
-	dir = 1
+	dir = 1;
+	icon_state = "grassdirt_edge"
 	},
 /area/desert/outside/sw)
 "jB" = (
@@ -2708,8 +2712,8 @@
 /area/desert/interior/main_building)
 "jF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 4
+	dir = 4;
+	icon_state = "pipe11-2"
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -2807,8 +2811,8 @@
 /area/desert/hive)
 "kc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 5
+	dir = 5;
+	icon_state = "pipe11-2"
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -2823,8 +2827,8 @@
 /area/desert/interior/main_building)
 "kf" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
-	icon_state = "vent_map-2";
-	dir = 1
+	dir = 1;
+	icon_state = "vent_map-2"
 	},
 /obj/structure/barricade/wooden,
 /turf/open/floor/tile/white,
@@ -2892,14 +2896,14 @@
 /area/desert/interior/shipping/north)
 "kr" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
-	icon_state = "grassdirt_corner";
-	dir = 8
+	dir = 8;
+	icon_state = "grassdirt_corner"
 	},
 /area/desert/outside/sw)
 "ks" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
-	icon_state = "grassdirt_edge";
-	dir = 1
+	dir = 1;
+	icon_state = "grassdirt_edge"
 	},
 /area/desert/outside/se)
 "ku" = (
@@ -2953,8 +2957,8 @@
 /area/desert/interior/main_building)
 "kF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 10
+	dir = 10;
+	icon_state = "pipe11-2"
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -2967,8 +2971,8 @@
 /area/desert/outside/nw)
 "kH" = (
 /obj/machinery/door/poddoor/mainship/open{
-	icon_state = "pdoor0";
-	dir = 1
+	dir = 1;
+	icon_state = "pdoor0"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/outside/se)
@@ -2995,8 +2999,8 @@
 /area/desert/outside/nw)
 "kN" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	icon_state = "pdoor1";
-	dir = 1
+	dir = 1;
+	icon_state = "pdoor1"
 	},
 /turf/closed/mineral,
 /area/desert/hive)
@@ -3009,8 +3013,8 @@
 /area/desert/outside/ne)
 "kQ" = (
 /obj/machinery/door/airlock/colony/engineering{
-	name = "\improper Maintenance Airlock";
-	dir = 1
+	dir = 1;
+	name = "\improper Maintenance Airlock"
 	},
 /turf/open/floor/plating,
 /area/desert/outside/ne)
@@ -3035,8 +3039,8 @@
 /area/desert/interior/shipping/south)
 "kV" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	icon_state = "pdoor1";
-	dir = 1
+	dir = 1;
+	icon_state = "pdoor1"
 	},
 /turf/closed/wall/r_wall/unmeltable,
 /area/desert/interior/shipping/south)
@@ -3182,22 +3186,22 @@
 /area/desert/interior/shipping/south)
 "lD" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	icon_state = "pdoor1";
-	dir = 1
+	dir = 1;
+	icon_state = "pdoor1"
 	},
 /turf/closed/wall/r_wall,
 /area/desert/interior/shipping/south)
 "lE" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	icon_state = "pdoor1";
-	dir = 1
+	dir = 1;
+	icon_state = "pdoor1"
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/interior/shipping/south)
 "lF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	icon_state = "pipe11-2";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe11-2"
 	},
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
@@ -3252,21 +3256,29 @@
 /obj/machinery/power/port_gen/pacman,
 /turf/open/floor/plating/ground,
 /area/desert/outside)
+"oC" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground,
+/area/desert/outside)
 "zQ" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	icon_state = "pdoor1";
-	dir = 1
+	dir = 1;
+	icon_state = "pdoor1"
 	},
 /obj/docking_port/stationary/crashmode,
 /turf/closed/wall/r_wall,
 /area/desert/interior/shipping/north)
 "Bv" = (
 /obj/machinery/door/airlock/colony/engineering{
-	name = "\improper Storage";
-	dir = 8
+	dir = 8;
+	name = "\improper Storage"
 	},
 /turf/open/floor/plating,
 /area/desert/interior/security)
+"CH" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground,
+/area/desert/outside/nw)
 "EQ" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground,
@@ -21377,7 +21389,7 @@ ak
 cA
 ju
 dz
-dz
+CH
 dz
 dz
 dz
@@ -21675,7 +21687,7 @@ hK
 hK
 hK
 hK
-hK
+iO
 hK
 hK
 jA
@@ -33256,7 +33268,7 @@ bA
 bA
 bA
 bA
-bA
+oC
 bA
 bA
 bA
@@ -34212,7 +34224,7 @@ bA
 bA
 bA
 bA
-bA
+oC
 bA
 bA
 bA

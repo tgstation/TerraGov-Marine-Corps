@@ -391,11 +391,20 @@
 			. = (CHARGE_SPEED(charge_datum) * 240)
 			charge_datum.speed_down(2)
 			return
-
+		
 	for(var/m in buckled_mobs)
 		unbuckle_mob(m)
 	return (CHARGE_SPEED(charge_datum) * 20) //Damage to inflict.
 
+/obj/structure/razorwire/pre_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
+	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE) || charger.is_charging < CHARGE_ON)
+		charge_datum.do_stop_momentum()
+		return PRECRUSH_STOPPED
+	if(anchored)
+		. = (CHARGE_SPEED(charge_datum) * 50) //Damage to inflict. 3 rams, 2 times taking damage.
+		charge_datum.speed_down(3)
+		return
+	return (CHARGE_SPEED(charge_datum) * 20) //Damage to inflict.
 
 /obj/structure/bed/pre_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
 	. = ..()
@@ -469,11 +478,11 @@
 /obj/structure/razorwire/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
 	if(!anchored)
 		return ..()
-	razorwire_tangle(charger, RAZORWIRE_ENTANGLE_DELAY * 0.5) //entangled for only half as long
+	razorwire_tangle(charger, RAZORWIRE_ENTANGLE_DELAY * 0.20) //entangled for only 20% as long or 1 second
 	charger.visible_message("<span class='danger'>The barbed wire slices into [charger]!</span>",
 	"<span class='danger'>The barbed wire slices into you!</span>", null, 5)
-	charger.Paralyze(20)
-	charger.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED, RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MAX_DAMAGE_MULT_MED), BRUTE, ran_zone(), 0, TRUE) //Armor is being ignored here.
+	charger.Paralyze(0.5 SECONDS)
+	charger.apply_damage(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED, BRUTE, ran_zone(), 0, TRUE) //Armor is being ignored here.
 	UPDATEHEALTH(charger)
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 	update_icon()
