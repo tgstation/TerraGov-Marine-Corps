@@ -210,6 +210,7 @@
 						/obj/item/weapon/gun/pistol/standard_pistol,
 						/obj/item/weapon/gun/pistol/m4a3,
 						/obj/item/weapon/gun/pistol/m1911,
+						/obj/item/weapon/gun/pistol/standard_heavypistol,
 						/obj/item/weapon/gun/pistol/b92fs,
 						/obj/item/weapon/gun/pistol/b92fs/M9,
 						/obj/item/weapon/gun/pistol/heavy,
