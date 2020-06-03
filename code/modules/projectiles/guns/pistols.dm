@@ -99,6 +99,37 @@
 	accuracy_mult = 1.15
 	damage_mult = 1.1
 
+//-------------------------------------------------------
+//M1911
+
+/obj/item/weapon/gun/pistol/standard_heavypistol
+	name = "\improper TP-23 service pistol"
+	desc = "A standard TP-23 chambered in .45 ACP. Has a smaller magazine capacity, but packs a better punch. Has an irremovable laser sight. Uses .45 magazines."
+	icon_state = "tp23"
+	item_state = "tp23"
+	caliber = ".45 ACP" //codex
+	max_shells = 11 //codex
+	fire_sound = 'sound/weapons/guns/fire/colt.ogg'
+	unload_sound = 'sound/weapons/guns/interact/colt_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/colt_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/colt_cocked.ogg'
+	current_mag = /obj/item/ammo_magazine/pistol/standard_heavypistol
+	attachable_allowed = list(
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/lasersight,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/heavy_barrel)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
+
+	fire_delay = 0.2 SECONDS
+	accuracy_mult = 1.20 //Has a forced laser sight.
+	accuracy_mult_unwielded = 0.95
+	recoil_unwielded = 1
 
 //-------------------------------------------------------
 //M1911
@@ -118,7 +149,7 @@
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
 	fire_delay = 0.2 SECONDS
-	accuracy_mult = 1.15
+	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.85
 	damage_mult = 1.15
 	recoil_unwielded = 2
@@ -393,7 +424,7 @@
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/burstfire_assembly,
 						/obj/item/attachable/stock/vp70)
-     
+
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 18, "stock_y" = 11)
 
@@ -405,7 +436,7 @@
 	recoil_unwielded = 2
 	aim_slowdown = 0.2
 	scatter = 5
-	
+
 
 //-------------------------------------------------------
 //VP78
