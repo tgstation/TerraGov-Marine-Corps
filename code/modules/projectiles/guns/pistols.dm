@@ -100,7 +100,7 @@
 	damage_mult = 1.1
 
 //-------------------------------------------------------
-//M1911
+// TP-23 service pistol
 
 /obj/item/weapon/gun/pistol/standard_heavypistol
 	name = "\improper TP-23 service pistol"
