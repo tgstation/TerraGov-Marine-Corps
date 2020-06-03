@@ -432,3 +432,61 @@
 	if(!isopened)
 		isopened = 1
 		icon_state = "mealpackopened"
+
+//Fillable Ammo Box
+/obj/item/storage/box/ammo
+	name = "\improper Ammo Box"
+	desc = "A large ammo box that can be filled with almost any magazine type. Compact and deployable for moving ammo to the front lines."
+	icon_state = "ammobox"
+	max_w_class = 4
+	storage_slots = 30
+	max_storage_space = 60	//SMG and pistol sized (tiny and small) mags can fit all 30 slots, normal (LMG and AR) fit 20
+	can_hold = list(/obj/item/ammo_magazine/pistol,
+					/obj/item/ammo_magazine/smg,
+					/obj/item/ammo_magazine/rifle,
+					/obj/item/ammo_magazine/magnum,
+					/obj/item/ammo_magazine/revolver,
+					/obj/item/ammo_magazine/acp,
+					/obj/item/ammo_magazine/standard_lmg,
+					/obj/item/ammo_magazine/standard_smartmachinegun,
+					/obj/item/ammo_magazine/m41ae2_hpr,
+					/obj/item/ammo_magazine/shotgun,
+					/obj/item/ammo_magazine/sniper)
+
+	var/deployed = FALSE
+
+/obj/item/storage/box/ammo/update_icon()
+	if(!deployed)
+		icon_state = "[initial(icon_state)]"
+	else if(!(length(contents)))
+		icon_state = "[initial(icon_state)]_empty"
+	else if(deployed)
+		icon_state = "[initial(icon_state)]_deployed"
+
+/obj/item/storage/box/ammo/attack_self(mob/user)
+	deployed = TRUE
+	update_icon()
+	user.dropItemToGround(src)
+
+/obj/item/storage/box/ammo/attack_hand(mob/living/user)
+	if(loc == user)
+		return ..()
+
+	if(!deployed)
+		user.put_in_hands(src)
+		return
+
+	else if(deployed)
+		open(user)
+
+/obj/item/storage/box/ammo/MouseDrop(atom/over_object)
+	if(!deployed)
+		return
+
+	if(!ishuman(over_object))
+		return
+
+	var/mob/living/carbon/human/H = over_object
+	if(H == usr && !H.incapacitated() && Adjacent(H) && H.put_in_hands(src))
+		deployed = FALSE
+		update_icon()

@@ -2697,6 +2697,10 @@
 	dir = 10
 	},
 /area/whiskey_outpost)
+"jV" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/east)
 "kb" = (
 /turf/closed/shuttle/dropship3/transparent{
 	icon_state = "65"
@@ -5198,6 +5202,9 @@
 	dir = 4
 	},
 /area/whiskey_outpost)
+"xH" = (
+/turf/closed/wall,
+/area/whiskey_outpost/outside/west)
 "xQ" = (
 /obj/machinery/marine_selector/clothes,
 /obj/structure/window/reinforced,
@@ -5340,6 +5347,10 @@
 	},
 /turf/open/floor/plating/warning,
 /area/whiskey_outpost)
+"Ac" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/ground/jungle,
+/area/whiskey_outpost/outside/west)
 "Af" = (
 /obj/structure/barricade/plasteel,
 /turf/open/floor/plating/asteroidfloor,
@@ -5465,6 +5476,14 @@
 	dir = 8
 	},
 /area/whiskey_outpost)
+"BL" = (
+/obj/machinery/door/airlock/mainship/maint/free_access{
+	dir = 2
+	},
+/turf/open/floor/mainship{
+	icon_state = "dark_sterile"
+	},
+/area/whiskey_outpost)
 "BQ" = (
 /obj/effect/ai_node,
 /turf/open/ground/coast{
@@ -5542,6 +5561,9 @@
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
+"CK" = (
+/turf/open/floor/asteroidfloor,
+/area/whiskey_outpost/outside/east)
 "CT" = (
 /obj/structure/platform_decoration,
 /obj/structure/platform_decoration{
@@ -6185,6 +6207,9 @@
 /obj/item/storage/box/sentry,
 /turf/open/floor/plating/platebot,
 /area/whiskey_outpost)
+"NS" = (
+/turf/open/floor/asteroidfloor,
+/area/whiskey_outpost/outside/west)
 "Oa" = (
 /obj/machinery/marine_selector/gear/engi,
 /turf/open/floor/mainship/emerald{
@@ -6352,6 +6377,10 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
+"QT" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/north)
 "QX" = (
 /obj/structure/largecrate/supply/weapons/sentries,
 /turf/open/floor/plating/asteroidwarning{
@@ -6402,6 +6431,12 @@
 	dir = 9
 	},
 /area/whiskey_outpost)
+"Sy" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/asteroidfloor,
+/area/whiskey_outpost/outside/west)
 "SD" = (
 /obj/structure/largecrate/supply/weapons/standard_carbine,
 /turf/open/floor/plating/asteroidwarning{
@@ -13257,7 +13292,7 @@ bW
 bW
 bW
 bW
-bW
+QT
 bW
 bW
 aS
@@ -16349,7 +16384,7 @@ hw
 hw
 hw
 hB
-hw
+Ac
 hw
 hw
 hw
@@ -17410,10 +17445,10 @@ hy
 hw
 hw
 hw
-hB
-hB
-hB
-hB
+NS
+NS
+NS
+NS
 hB
 hB
 hB
@@ -17563,11 +17598,11 @@ hy
 hw
 hw
 hw
-hB
-hB
-hB
-hB
-hB
+NS
+xH
+NS
+NS
+NS
 hB
 hB
 hB
@@ -17719,11 +17754,11 @@ hw
 hB
 hB
 hB
-hB
-hB
-hB
-hB
-hB
+Sy
+NS
+NS
+NS
+NS
 bd
 PG
 bk
@@ -17873,12 +17908,12 @@ hB
 hc
 hc
 hc
-hc
-hc
-hc
-hc
-bd
-Nl
+CK
+CK
+CK
+CK
+BL
+bk
 bk
 bk
 bk
@@ -20773,7 +20808,7 @@ gU
 hP
 hg
 hg
-hg
+jV
 hg
 hg
 iJ
