@@ -18208,6 +18208,12 @@
 /obj/docking_port/stationary/crashmode,
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle7)
+"cfW" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/miner/damaged,
+/turf/open/floor/grass,
+/area/lv624/lazarus/main_hall)
 "ciV" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 1
@@ -18382,10 +18388,6 @@
 	dir = 5
 	},
 /area/lv624/lazarus/research)
-"gnh" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle6)
 "gwG" = (
 /obj/structure/jungle/vines,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -18437,10 +18439,6 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/marking/bot,
 /area/shuttle/drop1/lz1)
-"iKI" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/quartstorage/outdoors)
 "iLV" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/cult,
@@ -18515,6 +18513,10 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral,
 /area/lv624/ground/sand7)
+"kEN" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle9)
 "kFx" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/resin,
@@ -18670,6 +18672,10 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/canteen)
+"pnx" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/lazarus/quartstorage/outdoors)
 "prx" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/sign/botany,
@@ -18735,6 +18741,10 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/internal_affairs)
+"rhJ" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle6)
 "rpH" = (
 /obj/structure/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -27902,7 +27912,7 @@ awk
 avd
 aFl
 avx
-axR
+rhJ
 axR
 auH
 aFR
@@ -28166,7 +28176,7 @@ axx
 aIZ
 aBP
 aKK
-gnh
+axR
 aEa
 auU
 aNR
@@ -36144,7 +36154,7 @@ aMm
 aSe
 aLc
 aES
-aES
+kEN
 aES
 aFD
 aES
@@ -49507,7 +49517,7 @@ aRc
 aRH
 aSp
 aTc
-aSp
+cfW
 aUr
 aSp
 any
@@ -52564,7 +52574,7 @@ arW
 azK
 aAk
 aAk
-iKI
+aAk
 aAk
 aAk
 aAk
@@ -52821,7 +52831,7 @@ auO
 azJ
 aAk
 aAk
-aAk
+pnx
 aAk
 aAk
 aCb
