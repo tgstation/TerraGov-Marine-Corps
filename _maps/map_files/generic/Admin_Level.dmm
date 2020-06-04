@@ -726,6 +726,10 @@
 /obj/effect/ai_node,
 /turf/open/floor,
 /area/deathmatch)
+"cK" = (
+/obj/machinery/vending/MarineMed/Blood,
+/turf/open/floor/mainship/sterile/dark,
+/area/centcom/practice/medical)
 "cS" = (
 /obj/structure/closet/walllocker/medical_wall/full{
 	icon_state = "medical_wall";
@@ -1765,6 +1769,13 @@
 	},
 /turf/open/floor/wood,
 /area/centcom)
+"sr" = (
+/obj/machinery/iv_drip,
+/obj/machinery/shower{
+	dir = 8
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/centcom/practice/medical)
 "sO" = (
 /turf/open/floor/mainship/red{
 	dir = 4
@@ -1777,6 +1788,12 @@
 	},
 /turf/open/floor,
 /area/tdome)
+"uT" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/mainship,
+/area/centcom/practice/medical)
 "vc" = (
 /obj/structure/reagent_dispensers/beerkeg,
 /obj/item/storage/box/drinkingglasses,
@@ -1803,6 +1820,16 @@
 	},
 /turf/open/floor/mainship,
 /area/centcom/control)
+"wB" = (
+/obj/machinery/optable,
+/obj/item/tank/anesthetic,
+/obj/item/clothing/mask/breath/medical,
+/obj/machinery/practice/medical/surgery{
+	dir = 8;
+	pixel_x = -22
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/centcom/practice/medical)
 "xw" = (
 /obj/machinery/light{
 	dir = 1
@@ -1833,6 +1860,16 @@
 	},
 /turf/open/floor/grass,
 /area/centcom)
+"zn" = (
+/obj/machinery/bioprinter{
+	stored_metal = 1000
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/centcom/practice/medical)
+"zN" = (
+/obj/machinery/vending/MarineMed,
+/turf/open/floor/mainship/sterile/dark,
+/area/centcom/practice/medical)
 "zQ" = (
 /turf/open/floor/mainship/red/corner{
 	dir = 4
@@ -1854,10 +1891,23 @@
 	},
 /turf/open/floor,
 /area/tdome)
+"CD" = (
+/obj/machinery/door/airlock/mainship/secure/free_access{
+	dir = 1;
+	name = "\improper Surgery Practice Room"
+	},
+/turf/open/floor/plating/mainship,
+/area/centcom/practice/medical)
 "Dh" = (
 /obj/machinery/light,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
+"Ds" = (
+/obj/structure/window/framed/mainship/hull{
+	name = "ultra-reinforced window"
+	},
+/turf/open/floor/plating/mainship,
+/area/centcom/practice/medical)
 "DK" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/tcomms,
@@ -1890,6 +1940,12 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/centcom/ferry)
+"Ka" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/surgical_tray,
+/obj/item/storage/firstaid/adv,
+/turf/open/floor/mainship/sterile/dark,
+/area/centcom/practice/medical)
 "LM" = (
 /obj/machinery/light{
 	dir = 4
@@ -1920,6 +1976,12 @@
 	dir = 1
 	},
 /area/centcom)
+"PX" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 1
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/centcom/practice/medical)
 "QN" = (
 /obj/docking_port/stationary/crashmode/loading,
 /turf/open/space,
@@ -1930,12 +1992,34 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/centcom/ferry)
+"Ru" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/belt/medical,
+/obj/item/storage/belt/combatLifesaver,
+/obj/item/healthanalyzer,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/centcom/practice/medical)
+"SF" = (
+/turf/open/floor/plating/mainship,
+/area/centcom/practice/medical)
+"Tq" = (
+/turf/closed/wall/mainship/outer{
+	name = "reinforced hull"
+	},
+/area/centcom/practice/medical)
 "TC" = (
 /obj/docking_port/stationary/supply,
 /turf/open/floor/plating{
 	icon_state = "test_floor5"
 	},
 /area/centcom/supply)
+"TR" = (
+/obj/structure/bed/chair/dropship/passenger,
+/turf/open/floor/mainship/sterile/dark,
+/area/centcom/practice/medical)
 "VE" = (
 /obj/effect/landmark/ai_multicam_room,
 /turf/open/ai_visible,
@@ -1958,6 +2042,14 @@
 	},
 /turf/open/floor/plating,
 /area/tdome)
+"Xr" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/belt/medical,
+/obj/item/storage/belt/combatLifesaver,
+/obj/item/healthanalyzer,
+/obj/machinery/light,
+/turf/open/floor/mainship/sterile/dark,
+/area/centcom/practice/medical)
 "Xu" = (
 /obj/machinery/light{
 	dir = 8
@@ -1974,12 +2066,23 @@
 	},
 /turf/open/floor/grass,
 /area/centcom)
+"Yg" = (
+/turf/open/floor/mainship/sterile/dark,
+/area/centcom/practice/medical)
+"Yv" = (
+/obj/machinery/light,
+/turf/open/floor/plating/mainship,
+/area/centcom/practice/medical)
 "YR" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/mainship,
 /area/centcom/supply)
+"Zs" = (
+/obj/machinery/vending/medical,
+/turf/open/floor/mainship/sterile/dark,
+/area/centcom/practice/medical)
 "ZT" = (
 /obj/structure/flora/pottedplant/twentyone,
 /obj/machinery/light{
@@ -4449,19 +4552,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Tq
+Tq
+Tq
+Tq
+Tq
+Tq
+Tq
+Tq
+Tq
+Tq
+Tq
+Tq
+Tq
 aa
 fx
 fC
@@ -4551,19 +4654,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Tq
+Ka
+wB
+zn
+Ds
+SF
+SF
+SF
+Ds
+zn
+wB
+Ka
+Tq
 aa
 fx
 fC
@@ -4653,19 +4756,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Tq
+Ru
+Yg
+PX
+Ds
+SF
+SF
+SF
+Ds
+TR
+Yg
+Xr
+Tq
 aa
 fx
 Om
@@ -4755,19 +4858,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Tq
+sr
+Yg
+Yg
+CD
+SF
+SF
+SF
+CD
+Yg
+Yg
+sr
+Tq
 aa
 fx
 fC
@@ -4857,19 +4960,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Tq
+zN
+Zs
+cK
+Ds
+SF
+SF
+SF
+Ds
+cK
+Zs
+zN
+Tq
 aa
 fx
 fD
@@ -4959,19 +5062,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Tq
+Tq
+Tq
+Tq
+Tq
+uT
+SF
+Yv
+Tq
+Tq
+Tq
+Tq
+Tq
 aa
 fx
 fF
@@ -5061,19 +5164,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Tq
+Ka
+wB
+zn
+Ds
+SF
+SF
+SF
+Ds
+zn
+wB
+Ka
+Tq
 aa
 fx
 fF
@@ -5163,19 +5266,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Tq
+Ru
+Yg
+PX
+Ds
+SF
+SF
+SF
+Ds
+TR
+Yg
+Xr
+Tq
 aa
 fx
 fF
@@ -5265,19 +5368,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Tq
+sr
+Yg
+Yg
+CD
+SF
+SF
+SF
+CD
+Yg
+Yg
+sr
+Tq
 aa
 fx
 fF
@@ -5367,19 +5470,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Tq
+zN
+Zs
+cK
+Ds
+SF
+SF
+SF
+Ds
+cK
+Zs
+zN
+Tq
 aa
 fx
 yQ
@@ -5469,19 +5572,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Tq
+Tq
+Tq
+Tq
+Tq
+uT
+SF
+Yv
+Tq
+Tq
+Tq
+Tq
+Tq
 aa
 fx
 fF
@@ -5571,19 +5674,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Tq
+Ka
+wB
+zn
+Ds
+SF
+SF
+SF
+Ds
+zn
+wB
+Ka
+Tq
 aa
 fx
 fF
@@ -5673,19 +5776,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Tq
+Ru
+Yg
+PX
+Ds
+SF
+SF
+SF
+Ds
+TR
+Yg
+Xr
+Tq
 aa
 fx
 fF
@@ -5775,19 +5878,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Tq
+sr
+Yg
+Yg
+CD
+SF
+SF
+SF
+CD
+Yg
+Yg
+sr
+Tq
 aa
 fx
 fF
@@ -5877,19 +5980,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Tq
+zN
+Zs
+cK
+Ds
+SF
+SF
+SF
+Ds
+cK
+Zs
+zN
+Tq
 aa
 fx
 fF
@@ -5979,19 +6082,19 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Tq
+Tq
+Tq
+Tq
+Tq
+Tq
+Tq
+Tq
+Tq
+Tq
+Tq
+Tq
+Tq
 aa
 fx
 fF
