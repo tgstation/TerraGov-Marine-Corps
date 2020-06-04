@@ -4121,6 +4121,10 @@
 	dir = 10
 	},
 /area/outpost/engineering/engine)
+"wS" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/outpost/yard/central)
 "wU" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
@@ -4892,6 +4896,12 @@
 	dir = 6
 	},
 /area/outpost/yard/south_east)
+"BH" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 6
+	},
+/area/outpost/yard/west)
 "BJ" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/yard/south_east)
@@ -5548,6 +5558,10 @@
 	dir = 8
 	},
 /area/outpost/engineering)
+"Fw" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north_east)
 "Fy" = (
 /turf/closed/mineral/bigred,
 /area/outpost/caves/north)
@@ -6767,10 +6781,6 @@
 	dir = 8
 	},
 /area/outpost/engineering/security)
-"MA" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/asteroidwarning,
-/area/outpost/caves/east)
 "MB" = (
 /obj/structure/cable,
 /obj/machinery/light/small,
@@ -8529,6 +8539,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_west)
+"VZ" = (
+/obj/docking_port/stationary/crashmode,
+/turf/closed/mineral/bigred,
+/area/outpost/caves/east)
 "Wb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
@@ -8730,6 +8744,10 @@
 	dir = 4
 	},
 /area/outpost/engineering)
+"Xf" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/yard/south_east)
 "Xg" = (
 /obj/structure/bed/chair/comfy,
 /turf/open/floor/tile/dark/brown2{
@@ -22932,7 +22950,7 @@ cc
 cc
 cc
 cc
-zQ
+BH
 SH
 SH
 SH
@@ -29117,7 +29135,7 @@ ww
 ww
 EA
 EA
-EA
+wS
 EA
 EA
 EA
@@ -34292,7 +34310,7 @@ HT
 fG
 NF
 NF
-NF
+Xf
 NF
 NF
 mJ
@@ -38933,11 +38951,11 @@ Xi
 Xi
 Xi
 Xi
-Xi
+VZ
 Xi
 RD
 Hb
-MA
+Gm
 Xi
 Xi
 Xi
@@ -41996,7 +42014,7 @@ Yx
 Yx
 Yx
 TP
-Yx
+Fw
 cg
 cg
 cg

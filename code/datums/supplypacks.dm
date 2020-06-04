@@ -835,6 +835,105 @@ ARMOR
 	cost = 20
 
 
+// Modular armor + Attachments
+/datum/supply_packs/armor/modular/exosuit
+	name = "Jaeger exosuits"
+	contains = list(
+		/obj/item/clothing/suit/modular,
+	)
+	cost = 1
+
+/datum/supply_packs/armor/modular/armor/heavy
+	name = "Jaeger heavy plates"
+	contains = list(
+		/obj/item/clothing/head/modular/heavy,
+		/obj/item/armor_module/armor/chest/heavy,
+		/obj/item/armor_module/armor/arms/heavy,
+		/obj/item/armor_module/armor/legs/heavy,
+	)
+	cost = 3
+
+/datum/supply_packs/armor/modular/armor/medium
+	name = "Jaeger medium plates"
+	contains = list(
+		/obj/item/clothing/head/modular/medium,
+		/obj/item/armor_module/armor/chest/medium,
+		/obj/item/armor_module/armor/arms/medium,
+		/obj/item/armor_module/armor/legs/medium,
+	)
+	cost = 3
+
+/datum/supply_packs/armor/modular/armor/light
+	name = "Jaeger light plates"
+	contains = list(
+		/obj/item/clothing/head/modular/light,
+		/obj/item/armor_module/armor/chest/light,
+		/obj/item/armor_module/armor/arms/light,
+		/obj/item/armor_module/armor/legs/light,
+	)
+	cost = 3
+
+/datum/supply_packs/armor/modular/storage
+	name = "Jaeger assorted storage modules"
+	contains = list(
+		/obj/item/armor_module/storage/general,
+		/obj/item/armor_module/storage/ammo_mag,
+		/obj/item/armor_module/storage/medical,
+		/obj/item/armor_module/storage/integrated,
+		/obj/item/armor_module/storage/engineering,
+	)
+	cost = 3
+
+/datum/supply_packs/armor/modular/attachments/mixed
+	name = "Jaeger experimental modules"
+	contains = list(
+		/obj/item/armor_module/attachable/valkyrie_autodoc,
+		/obj/item/armor_module/attachable/fire_proof,
+		/obj/item/armor_module/attachable/tyr_extra_armor,
+		/obj/item/armor_module/attachable/mimir_environment_protection
+	)
+	cost = 40
+
+/datum/supply_packs/armor/modular/attachments/lamp
+	name = "Jaeger baldur modules"
+	contains = list(
+		/obj/item/armor_module/attachable/better_shoulder_lamp,
+		/obj/item/armor_module/attachable/better_shoulder_lamp,
+		/obj/item/armor_module/attachable/better_shoulder_lamp,
+		/obj/item/armor_module/attachable/better_shoulder_lamp,
+		/obj/item/armor_module/attachable/better_shoulder_lamp,
+	)
+	cost = 7
+
+/datum/supply_packs/armor/modular/attachments/valkyrie_autodoc
+	name = "Jaeger valkyrie modules"
+	contains = list(
+		/obj/item/armor_module/attachable/valkyrie_autodoc,
+	)
+	cost = 12
+
+/datum/supply_packs/armor/modular/attachments/fire_proof
+	name = "Jaeger surt modules"
+	contains = list(
+		/obj/item/armor_module/attachable/fire_proof,
+	)
+	cost = 12
+
+/datum/supply_packs/armor/modular/attachments/tyr_extra_armor
+	name = "Jaeger tyr modules"
+	contains = list(
+		/obj/item/armor_module/attachable/tyr_extra_armor,
+	)
+	cost = 12
+
+/datum/supply_packs/armor/modular/attachments/mimir_environment_protection
+	name = "Jaeger mimir module"
+	contains = list(
+		/obj/item/armor_module/attachable/mimir_environment_protection
+	)
+	cost = 12
+
+
 /*******************************************************************************
 CLOTHING
 *******************************************************************************/

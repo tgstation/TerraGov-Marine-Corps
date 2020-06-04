@@ -24881,6 +24881,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/miner/damaged,
 /turf/open/floor/prison/bright_clean,
 /area/prison/store)
 "bxC" = (
@@ -42189,6 +42190,11 @@
 	dir = 6
 	},
 /area/prison/security/monitoring/medsec/south)
+"cEC" = (
+/turf/open/floor{
+	icon_state = "asteroid"
+	},
+/area/prison/residential/central)
 "cMq" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall/prison_unmeltable,
@@ -42214,6 +42220,12 @@
 	},
 /turf/open/floor/plating,
 /area/prison/hangar/main)
+"dtT" = (
+/turf/open/floor/prison{
+	dir = 10;
+	icon_state = "bright_clean2"
+	},
+/area/prison/holding/holding1)
 "dBh" = (
 /obj/structure/window/framed/prison/reinforced,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -42584,6 +42596,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/canteen)
+"mmo" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/wood,
+/area/prison/parole/protective_custody)
 "mof" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/prison,
@@ -42656,6 +42672,10 @@
 	dir = 4
 	},
 /area/prison/cellblock/mediumsec/south)
+"oHp" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/prison,
+/area/prison/hangar_storage/research)
 "oRz" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -42671,6 +42691,10 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/prison/bright_clean,
 /area/prison/hallway/central)
+"piB" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/beach/sand,
+/area/prison/residential/south)
 "pvO" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -42958,6 +42982,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/prison/security/checkpoint/hangar)
+"xGi" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/asteroid,
+/area/prison/residential/central)
 "xHS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -50330,7 +50358,7 @@ bhY
 bge
 bhC
 bhC
-bhC
+cEC
 bhC
 aVQ
 bhY
@@ -52165,7 +52193,7 @@ bTN
 bVm
 bVm
 bVm
-bVm
+piB
 bVm
 bXh
 bYs
@@ -53927,7 +53955,7 @@ bhD
 bhD
 bhz
 bhC
-bhC
+xGi
 bkL
 bhC
 aVO
@@ -88635,7 +88663,7 @@ bua
 bua
 bwQ
 bwQ
-bua
+dtT
 bua
 bAg
 bue
@@ -89437,7 +89465,7 @@ cek
 cfu
 bRC
 bQi
-ciU
+mmo
 ciU
 ciU
 bYq
@@ -94491,7 +94519,7 @@ aur
 auI
 auI
 auI
-auI
+oHp
 auI
 auI
 auI
