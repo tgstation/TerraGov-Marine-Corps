@@ -76,11 +76,11 @@
 						/obj/item/attachable/attached_gun/shotgun)
 
     flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
-    gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
+    gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST, GUN_FIREMODE_AUTOMATIC)
     starting_attachment_types = list(/obj/item/attachable/stock/t18stock)
     attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 10, "rail_y" = 19, "under_x" = 18, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
 
-    fire_delay = 0.3 SECONDS
+    fire_delay = 0.2 SECONDS
     burst_delay = 0.125 SECONDS
     accuracy_mult = 1.10
     scatter = -5
