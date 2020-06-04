@@ -67,6 +67,19 @@
 	current_rounds = 50
 	max_rounds = 50
 
+
+//-------------------------------------------------------
+//TP-23
+
+/obj/item/ammo_magazine/pistol/standard_heavypistol
+	name = "\improper TP-23 magazine (.45)"
+	default_ammo = /datum/ammo/bullet/pistol/heavy
+	caliber = ".45 ACP"
+	icon_state = ".45"
+	max_rounds = 11
+	gun_type = /obj/item/weapon/gun/pistol/standard_heavypistol
+
+
 //-------------------------------------------------------
 //Beretta 92FS, the gun McClane carries around in Die Hard. Very similar to the service pistol, all around.
 

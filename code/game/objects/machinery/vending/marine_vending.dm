@@ -27,6 +27,8 @@
 					/obj/item/ammo_magazine/standard_lmg = 30,
 					/obj/item/weapon/gun/rifle/standard_dmr = 10,
 					/obj/item/ammo_magazine/rifle/standard_dmr = 25,
+					/obj/item/weapon/gun/pistol/standard_heavypistol = 10,
+					/obj/item/ammo_magazine/pistol/standard_heavypistol = 25,
 					/obj/item/weapon/gun/energy/lasgun/lasrifle = 10,
 					/obj/item/cell/lasgun/lasrifle = 20,
 					/obj/item/weapon/gun/shotgun/pump/t35 = 10,
@@ -97,7 +99,7 @@
 	products = list(
 					/obj/item/weapon/gun/pistol/standard_pistol = 10,
 					/obj/item/weapon/gun/revolver/standard_revolver = 10,
-					/obj/item/weapon/gun/pistol/m1911 = 10,
+					/obj/item/weapon/gun/pistol/standard_heavypistol = 10,
 					/obj/item/weapon/gun/pistol/vp70 = 10,
 					/obj/item/weapon/gun/smg/ppsh = 5,
 					/obj/item/weapon/gun/smg/standard_smg = 10,
@@ -150,7 +152,7 @@
 	products = list(
 					/obj/item/ammo_magazine/pistol/standard_pistol = 50,
 					/obj/item/ammo_magazine/revolver/standard_revolver = 50,
-					/obj/item/ammo_magazine/pistol/m1911 = 50,
+					/obj/item/ammo_magazine/pistol/standard_heavypistol = 50,
 					/obj/item/ammo_magazine/pistol/vp70 = 50,
 					/obj/item/ammo_magazine/smg/standard_smg = 50,
 					/obj/item/ammo_magazine/smg/standard_machinepistol = 50,
