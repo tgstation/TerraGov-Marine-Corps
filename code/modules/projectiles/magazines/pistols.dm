@@ -170,7 +170,7 @@
 //TP-17.
 
 /obj/item/ammo_magazine/pistol/standard_pocketpistol
-	name = "tiny pistol magazine (.380)"
+	name = "TP-17 pocket pistol magazine (.380)"
 	desc = "A surprisingly small magazine used by the TP-17 pistol holding .380 AP bullets.."
 	default_ammo = /datum/ammo/bullet/pistol/tiny/ap
 	caliber = ".380 ACP"

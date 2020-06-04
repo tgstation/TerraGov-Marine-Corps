@@ -375,7 +375,7 @@
 
 /obj/item/weapon/gun/pistol/standard_pocketpistol
 	name = "TP-17 pocket pistol"
-	desc = "A tiny pistol meant for hiding in hard-to-reach areas. Best not ask where it came from."
+	desc = "A tiny pistol used by the TGMC as an emergency handgun meant to be stored about anywhere. Fits in boots. Uses .380 ACP."
 	icon_state = "tp17"
 	item_state = "tp17"
 	caliber = ".380 ACP" //codex
