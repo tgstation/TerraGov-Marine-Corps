@@ -49,7 +49,7 @@
     unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
     reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
     caliber = "10x26mm caseless" //codex
-    max_shells = 25 //codex
+    max_shells = 30 //codex
    	force = 20
     current_mag = /obj/item/ammo_magazine/rifle/standard_carbine
     attachable_allowed = list(
