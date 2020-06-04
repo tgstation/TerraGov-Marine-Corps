@@ -313,14 +313,14 @@
 		if(isobj(thing))
 			var/obj/O = thing
 			O.fire_act(10000, 1000)
-        
+
 		else if (isliving(thing))
 			var/mob/living/L = thing
 			if(L.stat == DEAD)
 				continue
-	
+
 			if(!L.on_fire || L.getFireLoss() <= 200)
-				L.take_overall_damage(null, 20, clamp(L.getarmor(null, "fire"), 0, 50))
+				L.take_overall_damage(null, 20, clamp(L.getarmor(null, "fire"), 0, 80))
 				L.adjust_fire_stacks(20)
 				L.IgniteMob()
 				. = 1
