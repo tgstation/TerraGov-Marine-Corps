@@ -109,7 +109,7 @@
 	item_state = "tp23"
 	caliber = ".45 ACP" //codex
 	max_shells = 11 //codex
-	fire_sound = 'sound/weapons/guns/fire/colt.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tp23.ogg'
 	unload_sound = 'sound/weapons/guns/interact/colt_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/colt_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/colt_cocked.ogg'
