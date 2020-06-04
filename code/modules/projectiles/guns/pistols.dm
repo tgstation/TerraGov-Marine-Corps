@@ -371,6 +371,39 @@
 	fire_delay = 0.15 SECONDS
 
 //-------------------------------------------------------
+//TP-17 Pocket pistol. Based on a PMM.
+
+/obj/item/weapon/gun/pistol/standard_pocketpistol
+	name = "TP-17 pocket pistol"
+	desc = "A tiny pistol meant for hiding in hard-to-reach areas. Best not ask where it came from."
+	icon_state = "tp17"
+	item_state = "tp17"
+	caliber = ".380 ACP" //codex
+	max_shells = 8 //codex
+	fire_sound = 'sound/weapons/guns/fire/pistol_holdout.ogg'
+	current_mag = /obj/item/ammo_magazine/pistol/holdout
+	w_class = WEIGHT_CLASS_TINY
+	force = 5
+	attachable_allowed = list(
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/lasersight,
+						/obj/item/attachable/gyro)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	attachable_offset = list("muzzle_x" = 25, "muzzle_y" = 20,"rail_x" = 12, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 22, "stock_y" = 17)
+
+	fire_delay = 0.125 SECONDS
+	recoil = -2
+	recoil_unwielded = -2
+	accuracy_mult = 1.1
+	accuracy_mult_unwielded = 1
+	scatter = -10
+	scatter_unwielded = -5
+
+
+//-------------------------------------------------------
 //.45 MARSHALS PISTOL //Inspired by the Browning Hipower
 
 /obj/item/weapon/gun/pistol/highpower
