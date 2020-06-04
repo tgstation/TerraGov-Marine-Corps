@@ -98,7 +98,7 @@ They're all essentially identical when it comes to getting the job done.
 		to_chat(user, "<span class='warning'>\The [source] is empty.</span>")
 		return
 //using handfuls; and filling internal mags has no delay.
-	if(!istype(source, /obj/item/ammo_magazine/handful) && !istype(src, /obj/item/ammo_magazine/internal) ) 
+	if(!istype(source, /obj/item/ammo_magazine/handful) && !istype(src, /obj/item/ammo_magazine/internal) )
 		to_chat(user, "<span class='notice'>You start refilling [src] with [source].</span>")
 		if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 			return
@@ -384,15 +384,15 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 //Deployable ammo box-Unnused until they have proper sprites for the guns
 /obj/item/ammobox
-	name = "T-18 Carbine Ammo Box"
+	name = "T-18 Battle Rifle Ammo Box"
 	desc = "A large, deployable ammo box."
 	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "ammobox"
 	var/magazine_amount = 30
 	var/max_magazine_amount = 30
-	var/max_magazine_rounds = 32
-	var/ammo_type = /datum/ammo/bullet/rifle
+	var/max_magazine_rounds = 30
+	var/ammo_type = /datum/ammo/bullet/rifle/t18
 	var/magazine_type = /obj/item/ammo_magazine/rifle/standard_carbine
 	var/deployed = FALSE
 

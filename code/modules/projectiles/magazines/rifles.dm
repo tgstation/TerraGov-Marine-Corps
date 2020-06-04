@@ -40,13 +40,13 @@
 //T18 Carbine
 
 /obj/item/ammo_magazine/rifle/standard_carbine
-	name = "\improper T-18 Carbine magazine (10x24mm)"
+	name = "\improper T-18 Carbine magazine (10x26mm)"
 	desc = "A 10mm Carbine magazine."
-	caliber = "10x24mm caseless"
+	caliber = "10x26mm caseless"
 	icon_state = "t18"
 	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/bullet/rifle
-	max_rounds = 32
+	default_ammo = /datum/ammo/bullet/rifle/t18
+	max_rounds = 30
 	gun_type = /obj/item/weapon/gun/rifle/standard_carbine
 
 //-------------------------------------------------------

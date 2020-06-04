@@ -40,16 +40,16 @@
 //T-18 Carbine
 
 /obj/item/weapon/gun/rifle/standard_carbine
-    name = "\improper T-18 carbine"
-    desc = "The T-18 carbine is one of the standard rifles used by the TerraGov Marine Corps. It's commonly used by people who prefer greater mobility in combat, like scouts and other light infantry. Lacks an automatic fire mode, but has a burst fire mode to improve damage output. Uses 10x24mm caseless ammunition."
+    name = "\improper T-18 battle rifle"
+    desc = "The T-18 battle rifle is one of the standard rifles used by the TerraGov Marine Corps. It's commonly used by people who prefer greater mobility in combat, like scouts and other light infantry. Lacks an automatic fire mode, but has a burst fire mode to improve damage output. Uses 10x24mm caseless ammunition."
     icon_state = "t18"
     item_state = "t18"
     fire_sound = "sound/weapons/guns/fire/autorifle.ogg"
    	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
     unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
     reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
-    caliber = "10x24mm caseless" //codex
-    max_shells = 32 //codex
+    caliber = "10x26mm caseless" //codex
+    max_shells = 25 //codex
    	force = 20
     current_mag = /obj/item/ammo_magazine/rifle/standard_carbine
     attachable_allowed = list(
@@ -76,17 +76,19 @@
 						/obj/item/attachable/attached_gun/shotgun)
 
     flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
-    gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
+    gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST, GUN_FIREMODE_AUTOMATIC)
     starting_attachment_types = list(/obj/item/attachable/stock/t18stock)
     attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 10, "rail_y" = 19, "under_x" = 18, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
 
+    scatter = -10
     fire_delay = 0.3 SECONDS
-    burst_delay = 0.125 SECONDS
-    accuracy_mult = 1.10
-    scatter = -5
-    burst_amount = 4
-    aim_slowdown = 0.30
+    aim_slowdown = 0.7
     damage_falloff_mult = 0.9
+    wield_delay = 0.7 SECONDS
+    burst_amount = 2 //Double tap trigger here
+    burst_delay = 1.5
+    burst_accuracy_mult = 0.7
+
 
 //-------------------------------------------------------
 //T-12 Assault Rifle
