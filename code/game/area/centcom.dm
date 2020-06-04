@@ -65,4 +65,4 @@
 	name = "\improper Practice Center"
 
 /area/centcom/practice/medical
-	name = "\improper Practice Medical Center"
+	name = "\improper Medical Practice Center"
