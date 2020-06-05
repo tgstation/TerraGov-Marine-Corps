@@ -746,7 +746,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			sender = F.sender
 			subject = "re: [F.title]"
 
-		var/dep = input("Who do you want to message?", "Fax Message") as null|anything in list(CORPORATE_LIAISON, "Combat Information Center", COMMAND_MASTER_AT_ARMS, "Brig", "Research", "Warden")
+		var/dep = input("Who do you want to message?", "Fax Message") as null|anything in list(CORPORATE_LIAISON, "Combat Information Center", "Brig", "Research", "Warden")
 		if(!dep)
 			return
 
