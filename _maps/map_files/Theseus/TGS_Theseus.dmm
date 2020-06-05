@@ -4551,7 +4551,7 @@
 	icon_state = "sterile_green_corner"
 	},
 /area/mainship/medical/medical_science)
-"ang" = (
+"anf" = (
 /obj/machinery/light{
 	dir = 1
 	},
@@ -5396,17 +5396,6 @@
 	},
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/medical_science)
-"apK" = (
-/obj/structure/table/mainship,
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/item/reagent_containers/dropper,
-/obj/item/reagent_containers/glass/bucket,
-/turf/open/floor/mainship{
-	icon_state = "sterile_green"
-	},
-/area/mainship/medical/medical_science)
 "apN" = (
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
@@ -6067,6 +6056,7 @@
 	},
 /area/mainship/medical/medical_science)
 "arL" = (
+/obj/machinery/portable_atmospherics/hydroponics,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -8409,6 +8399,9 @@
 	},
 /area/mainship/medical/operating_room_three)
 "ayp" = (
+/obj/machinery/light{
+	dir = 1
+	},
 /obj/structure/closet/l3closet/general,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
@@ -36213,15 +36206,6 @@
 /obj/item/tool/warning_cone,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
-"hnm" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/med_data{
-	dir = 2
-	},
-/turf/open/floor/mainship{
-	icon_state = "sterile_green"
-	},
-/area/mainship/medical/medical_science)
 "hoJ" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
 /turf/open/floor/mainship/cargo,
@@ -36526,14 +36510,6 @@
 "iUO" = (
 /turf/open/floor/mainship,
 /area/mainship/engineering/ce_room)
-"iVl" = (
-/obj/structure/table/mainship,
-/obj/item/healthanalyzer,
-/obj/item/storage/box/ids/dogtag,
-/turf/open/floor/mainship{
-	icon_state = "sterile_green"
-	},
-/area/mainship/medical/medical_science)
 "iZq" = (
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -37416,12 +37392,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/port_point_defense)
-"pny" = (
-/obj/machinery/alarm,
-/turf/open/floor/mainship{
-	icon_state = "dark_sterile"
-	},
-/area/mainship/medical/medical_science)
 "poE" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -37539,15 +37509,6 @@
 	icon_state = "silvercorner"
 	},
 /area/mainship/command/corporateliaison)
-"pNq" = (
-/obj/machinery/medical_help_button{
-	pixel_y = 32
-	},
-/turf/open/floor/mainship{
-	dir = 1;
-	icon_state = "sterile_green_side"
-	},
-/area/mainship/medical/medical_science)
 "pNG" = (
 /turf/open/shuttle/escapepod{
 	icon_state = "floor11"
@@ -37879,12 +37840,6 @@
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
 /area/mainship/living/bridgebunks)
-"scF" = (
-/obj/machinery/alarm,
-/turf/open/floor/mainship{
-	icon_state = "sterile_green"
-	},
-/area/mainship/medical/medical_science)
 "seI" = (
 /obj/structure/closet,
 /obj/item/clothing/glasses/mgoggles,
@@ -38216,12 +38171,6 @@
 /obj/structure/platform,
 /turf/open/floor/mainship,
 /area/mainship/living/briefing)
-"uFS" = (
-/obj/item/reagent_containers/glass/bucket,
-/turf/open/floor/mainship{
-	icon_state = "sterile_green"
-	},
-/area/mainship/medical/medical_science)
 "uFZ" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 8
@@ -68911,7 +68860,7 @@ ahD
 ajb
 akt
 alz
-pNq
+anc
 aow
 alz
 alz
@@ -69427,10 +69376,10 @@ akv
 alz
 ane
 aoy
-uFS
-apK
-hnm
-iVl
+mxt
+hcq
+hcq
+hcq
 alz
 alz
 aAe
@@ -69682,14 +69631,14 @@ ahJ
 ajc
 akt
 alz
-qfP
+anf
 aoz
 aoz
 aoz
 aoz
 aoz
-alz
-pny
+swd
+aoz
 aoz
 aBW
 aDx
@@ -69941,12 +69890,12 @@ akt
 alz
 ang
 aoz
-anh
-anh
-anh
+hcq
+arL
+hcq
 aoz
-vMC
-anc
+alz
+afn
 aoz
 xjQ
 aDy
@@ -70196,13 +70145,13 @@ dSL
 ajc
 akv
 alz
-scF
-aoz
 anh
+aoz
+xOC
 alz
-anh
+uQd
 aoz
-vMC
+alz
 ayp
 aoz
 aBY
@@ -70455,11 +70404,11 @@ akw
 alz
 qfP
 aoz
-anh
-anh
-anh
-aoz
-vMC
+hcq
+arM
+hcq
+aSx
+alz
 ayq
 aoz
 xjQ
@@ -70710,14 +70659,14 @@ ahE
 ajg
 akw
 alz
-ang
+fYf
 aoz
 aoz
 aoz
 aoz
-aSx
-alz
-ays
+aoz
+swd
+aoz
 aoz
 xjQ
 aDB
@@ -70967,12 +70916,12 @@ hMM
 wxo
 eoj
 alz
-anh
-anh
-anh
-anh
-arL
-anh
+tgd
+dCa
+bIj
+hcq
+hcq
+hcq
 alz
 aSs
 awE
