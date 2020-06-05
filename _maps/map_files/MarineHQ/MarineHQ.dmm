@@ -3930,6 +3930,15 @@
 "mV" = (
 /turf/closed/wall,
 /area/lv624/ground/caves)
+"mW" = (
+/obj/structure/window/framed/colony,
+/turf/open/floor/mainship/plate,
+/area/centcom/practice/medical)
+"mX" = (
+/obj/machinery/light,
+/obj/effect/decal/warning_stripes/thin,
+/turf/open/floor/mainship/plate,
+/area/centcom/practice/medical)
 "mY" = (
 /turf/closed/wall,
 /area/mainship/medical/medical_science)
@@ -3948,6 +3957,12 @@
 	dir = 4
 	},
 /area/mainship/hallways/hangar)
+"nF" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/mainship/plate,
+/area/centcom/practice/medical)
 "nY" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -3988,6 +4003,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
+"pp" = (
+/turf/open/floor/prison/rampbottom{
+	dir = 4
+	},
+/area/centcom/practice/medical)
 "pM" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner{
@@ -4206,6 +4226,9 @@
 /obj/structure/cable,
 /turf/closed/wall,
 /area/mainship/engineering/engineering_workshop)
+"rl" = (
+/turf/open/floor/plating/asteroidplating,
+/area/lv624/ground/caves)
 "rv" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -4495,12 +4518,21 @@
 /obj/effect/landmark/start/latejoin,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/chapel)
+"tf" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 1
+	},
+/turf/open/floor/mainship,
+/area/centcom/practice/medical)
 "ti" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/firing_range)
+"tk" = (
+/turf/closed/wall,
+/area/centcom/practice/medical)
 "tp" = (
 /obj/structure/table/mainship,
 /obj/item/weapon/gun/energy/lasgun/M43/practice,
@@ -5140,6 +5172,9 @@
 /obj/item/flashlight/lamp,
 /turf/open/floor/wood,
 /area/mainship/squads/req)
+"zw" = (
+/turf/open/floor/plating/asteroidfloor,
+/area/centcom/practice/medical)
 "zx" = (
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/food/drinks/cans/waterbottle,
@@ -5179,6 +5214,10 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/shipboard/firing_range)
+"Ah" = (
+/obj/machinery/light,
+/turf/open/floor/plating/asteroidfloor,
+/area/centcom/practice/medical)
 "Ak" = (
 /obj/structure/bed/chair,
 /turf/open/floor/mainship/red{
@@ -6682,6 +6721,16 @@
 "Gy" = (
 /turf/open/floor/wood,
 /area/mainship/living/chapel)
+"GF" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/belt/medical,
+/obj/item/storage/belt/combatLifesaver,
+/obj/item/healthanalyzer,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship,
+/area/centcom/practice/medical)
 "GG" = (
 /obj/structure/table/woodentable,
 /obj/item/violin,
@@ -6815,6 +6864,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/engineering/engineering_workshop)
+"Hj" = (
+/obj/machinery/door/airlock/mainship/generic,
+/turf/open/floor/mainship/plate,
+/area/centcom/practice/medical)
 "Hk" = (
 /obj/structure/table/mainship,
 /obj/item/binoculars,
@@ -7802,6 +7855,14 @@
 "Ll" = (
 /turf/open/floor/mainship/red,
 /area/mainship/shipboard/firing_range)
+"Lq" = (
+/turf/open/floor/mainship,
+/area/centcom/practice/medical)
+"Lv" = (
+/turf/open/floor/plating/asteroidwarning{
+	dir = 1
+	},
+/area/centcom/practice/medical)
 "Lx" = (
 /obj/structure/table/mainship,
 /obj/item/weapon/gun/energy/lasgun/M43/practice,
@@ -7846,11 +7907,25 @@
 	dir = 1
 	},
 /area/mainship/shipboard/firing_range)
+"LP" = (
+/obj/machinery/optable,
+/obj/item/tank/anesthetic,
+/obj/item/clothing/mask/breath/medical,
+/obj/machinery/practice/medical/surgery{
+	dir = 8;
+	pixel_x = -22
+	},
+/turf/open/floor/mainship,
+/area/centcom/practice/medical)
 "LQ" = (
 /obj/structure/cable,
 /obj/machinery/door/poddoor/shutters/mainship/cic/armory,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
+"LV" = (
+/obj/structure/bed/chair/dropship/passenger,
+/turf/open/floor/mainship,
+/area/centcom/practice/medical)
 "LZ" = (
 /obj/machinery/vending/marine/cargo_guns,
 /turf/open/floor/mainship/red/full,
@@ -8125,6 +8200,12 @@
 /obj/item/flashlight/lantern,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves)
+"Nd" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 2
+	},
+/turf/open/floor/mainship/plate,
+/area/centcom/practice/medical)
 "Nn" = (
 /obj/structure/bed/stool{
 	pixel_y = 8
@@ -8174,6 +8255,11 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/command/cic)
+"Of" = (
+/turf/open/floor/prison/rampbottom{
+	dir = 1
+	},
+/area/centcom/practice/medical)
 "Oh" = (
 /obj/structure/flora/ausbushes/palebush,
 /turf/open/floor/grass,
@@ -8293,6 +8379,11 @@
 	dir = 2
 	},
 /area/mainship/shipboard/firing_range)
+"PX" = (
+/turf/open/floor/plating/asteroidwarning{
+	dir = 8
+	},
+/area/centcom/practice/medical)
 "PY" = (
 /obj/structure/barricade/sandbags,
 /obj/structure/barricade/sandbags{
@@ -8300,6 +8391,15 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/shipboard/firing_range)
+"PZ" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/surgical_tray,
+/obj/item/storage/firstaid/adv,
+/turf/open/floor/mainship,
+/area/centcom/practice/medical)
+"Qh" = (
+/turf/open/floor/plating/plating_catwalk,
+/area/centcom/practice/medical)
 "Qi" = (
 /obj/structure/table/woodentable,
 /obj/item/tool/pen,
@@ -8359,6 +8459,12 @@
 	dir = 6
 	},
 /area/mainship/shipboard/firing_range)
+"QK" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/centcom/practice/medical)
 "QL" = (
 /turf/closed/wall,
 /area/mainship/command/cic)
@@ -8449,6 +8555,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
+"Sr" = (
+/obj/machinery/vending/medical,
+/turf/open/floor/mainship,
+/area/centcom/practice/medical)
 "Su" = (
 /obj/structure/barricade/sandbags{
 	dir = 4
@@ -8502,6 +8612,10 @@
 	dir = 10
 	},
 /area/mainship/shipboard/firing_range)
+"Tp" = (
+/obj/machinery/vending/MarineMed,
+/turf/open/floor/mainship,
+/area/centcom/practice/medical)
 "Tv" = (
 /obj/machinery/light{
 	dir = 8
@@ -8630,6 +8744,20 @@
 	dir = 9
 	},
 /area/mainship/shipboard/firing_range)
+"Vi" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/belt/medical,
+/obj/item/storage/belt/combatLifesaver,
+/obj/item/healthanalyzer,
+/obj/machinery/light,
+/turf/open/floor/mainship,
+/area/centcom/practice/medical)
+"Vt" = (
+/obj/machinery/bioprinter{
+	stored_metal = 1000
+	},
+/turf/open/floor/mainship,
+/area/centcom/practice/medical)
 "Vv" = (
 /obj/item/paper{
 	info = "This is where you build your dream FOB. Construction materials are at the east side! - Haines";
@@ -8637,6 +8765,10 @@
 	},
 /turf/open/floor/grass,
 /area/lv624/ground/compound/n)
+"Vz" = (
+/obj/effect/decal/warning_stripes/thin,
+/turf/open/floor/mainship/plate,
+/area/centcom/practice/medical)
 "VA" = (
 /obj/structure/target_stake,
 /obj/item/target/syndicate,
@@ -8686,6 +8818,13 @@
 	dir = 9
 	},
 /area/mainship/shipboard/firing_range)
+"VT" = (
+/obj/machinery/iv_drip,
+/obj/machinery/shower{
+	dir = 8
+	},
+/turf/open/floor/mainship,
+/area/centcom/practice/medical)
 "VW" = (
 /obj/structure/target_stake,
 /obj/item/target/syndicate,
@@ -8698,6 +8837,15 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/shipboard/firing_range)
+"Wa" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/mainship/plate,
+/area/centcom/practice/medical)
 "Wf" = (
 /obj/structure/flora/ausbushes/sunnybush,
 /turf/open/floor/grass,
@@ -8927,6 +9075,10 @@
 /obj/structure/cable,
 /turf/closed/wall,
 /area/mainship/living/captain_mess)
+"Ze" = (
+/obj/machinery/vending/MarineMed/Blood,
+/turf/open/floor/mainship,
+/area/centcom/practice/medical)
 "Zk" = (
 /obj/effect/landmark/start/job/squadsmartgunner,
 /turf/open/floor/wood,
@@ -26525,22 +26677,22 @@ rC
 rC
 PG
 Ur
-TX
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Em
+Em
+Em
+Em
+Em
+Em
+Em
+Em
+Em
+Em
+Em
+Em
+Em
+Em
+Em
+Em
 aa
 aa
 aa
@@ -26777,22 +26929,22 @@ tT
 tT
 wO
 Ur
+fe
+fe
+fe
+fe
+fe
+fe
+fe
+fe
+fe
+fe
+fe
+fe
+fe
+fe
+fe
 Em
-Em
-Em
-Em
-Em
-Em
-Em
-Em
-Em
-Em
-Em
-aa
-aa
-aa
-aa
-aa
 aa
 aa
 aa
@@ -27030,21 +27182,21 @@ Ur
 rg
 rg
 fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
+tk
+tk
+tk
+tk
+tk
+tk
+tk
+tk
+tk
+tk
+tk
+tk
+tk
 fe
 Em
-aa
-aa
-aa
-aa
-aa
 aa
 aa
 aa
@@ -27282,21 +27434,21 @@ Ur
 fe
 fe
 fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
+tk
+PZ
+LP
+Vt
+mW
+nF
+Qh
+Vz
+mW
+Vt
+LP
+PZ
+tk
 fe
 Em
-aa
-aa
-aa
-aa
-aa
 aa
 aa
 aa
@@ -27534,21 +27686,21 @@ Ur
 fe
 fe
 fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
+tk
+GF
+Lq
+tf
+mW
+nF
+Qh
+Vz
+mW
+LV
+Lq
+Vi
+tk
 fe
 Em
-aa
-aa
-aa
-aa
-aa
 aa
 aa
 aa
@@ -27786,21 +27938,21 @@ Ur
 fe
 fe
 fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
+tk
+VT
+Lq
+Lq
+Nd
+nF
+Qh
+Vz
+Nd
+Lq
+Lq
+VT
+tk
 fe
 Em
-aa
-aa
-aa
-aa
-aa
 aa
 aa
 aa
@@ -28038,21 +28190,21 @@ Ur
 fe
 fe
 fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
+tk
+Tp
+Sr
+Ze
+mW
+nF
+Qh
+Vz
+mW
+Ze
+Sr
+Tp
+tk
 fe
 Em
-aa
-aa
-aa
-aa
-aa
 aa
 aa
 aa
@@ -28290,21 +28442,21 @@ Ur
 fe
 fe
 fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
+tk
+tk
+tk
+tk
+tk
+Wa
+Qh
+mX
+tk
+tk
+tk
+tk
+tk
 fe
 Em
-aa
-aa
-aa
-aa
-aa
 aa
 aa
 aa
@@ -28542,21 +28694,21 @@ Ur
 fe
 fe
 fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
+tk
+PZ
+LP
+Vt
+mW
+nF
+Qh
+Vz
+mW
+Vt
+LP
+PZ
+tk
 fe
 Em
-aa
-aa
-aa
-aa
-aa
 aa
 aa
 aa
@@ -28794,21 +28946,21 @@ Ur
 fe
 fe
 fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
+tk
+GF
+Lq
+tf
+mW
+nF
+Qh
+Vz
+mW
+LV
+Lq
+Vi
+tk
 fe
 Em
-aa
-aa
-aa
-aa
-aa
 aa
 aa
 aa
@@ -29046,21 +29198,21 @@ Ur
 fe
 fe
 fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
+tk
+VT
+Lq
+Lq
+Nd
+nF
+Qh
+Vz
+Nd
+Lq
+Lq
+VT
+tk
 fe
 Em
-aa
-aa
-aa
-aa
-aa
 aa
 aa
 aa
@@ -29298,21 +29450,21 @@ fe
 fe
 fe
 fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
+tk
+Tp
+Sr
+Ze
+mW
+nF
+Qh
+Vz
+mW
+Ze
+Sr
+Tp
+tk
 fe
 Em
-aa
-aa
-aa
-aa
-aa
 aa
 aa
 aa
@@ -29550,21 +29702,21 @@ fe
 fe
 fe
 fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
+tk
+tk
+tk
+tk
+tk
+Wa
+Qh
+mX
+tk
+tk
+tk
+tk
+tk
 fe
 Em
-aa
-aa
-aa
-aa
-aa
 aa
 aa
 aa
@@ -29802,21 +29954,21 @@ fe
 fe
 fe
 fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
+tk
+PZ
+LP
+Vt
+mW
+nF
+Qh
+Vz
+mW
+Vt
+LP
+PZ
+tk
 fe
 Em
-aa
-aa
-aa
-aa
-aa
 aa
 aa
 aa
@@ -30054,21 +30206,21 @@ fe
 fe
 fe
 fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
+tk
+GF
+Lq
+tf
+mW
+nF
+Qh
+Vz
+mW
+LV
+Lq
+Vi
+tk
 fe
 Em
-aa
-aa
-aa
-aa
-aa
 aa
 aa
 aa
@@ -30306,21 +30458,21 @@ fe
 fe
 fe
 fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
+tk
+VT
+Lq
+Lq
+Nd
+nF
+Qh
+Vz
+Nd
+Lq
+Lq
+VT
+tk
 fe
 Em
-aa
-aa
-aa
-aa
-aa
 aa
 aa
 aa
@@ -30558,21 +30710,21 @@ fl
 fe
 fe
 fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
+tk
+Tp
+Sr
+Ze
+mW
+nF
+Qh
+Vz
+mW
+Ze
+Sr
+Tp
+tk
 fe
 Em
-aa
-aa
-aa
-aa
-aa
 aa
 aa
 aa
@@ -30810,21 +30962,21 @@ fl
 fl
 fe
 fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
+tk
+tk
+tk
+tk
+tk
+mW
+Hj
+mW
+tk
+tk
+tk
+tk
+tk
 fe
 Em
-aa
-aa
-aa
-aa
-aa
 aa
 aa
 aa
@@ -31067,16 +31219,16 @@ fe
 fe
 fe
 fe
+PX
+PX
+PX
+fe
+fe
 fe
 fe
 fe
 fe
 Em
-aa
-aa
-aa
-aa
-aa
 aa
 aa
 aa
@@ -31314,21 +31466,21 @@ fl
 fl
 fl
 fl
+fl
 fe
 fe
 fe
 fe
-fe
-fe
-fe
-fe
+pp
+pp
+pp
 fe
 Em
-aa
-aa
-aa
-aa
-aa
+Em
+Em
+Em
+Em
+Em
 aa
 aa
 aa
@@ -31566,14 +31718,14 @@ fl
 fl
 fl
 fl
-fe
-fe
-fe
-fe
-fe
-fe
-fe
-fe
+fl
+rl
+rl
+Lv
+Of
+zw
+zw
+Ah
 fe
 Em
 aa
@@ -31819,13 +31971,13 @@ fl
 fl
 fl
 fl
-El
-fe
-fe
-fe
-fe
-fe
-fe
+fl
+rl
+Lv
+Of
+zw
+zw
+zw
 fe
 Em
 aa
@@ -32071,13 +32223,13 @@ fe
 fe
 fl
 fl
-El
 fl
-fe
-fe
-fe
-fe
-fe
+rl
+Lv
+Of
+QK
+zw
+zw
 fe
 Em
 aa
@@ -32323,8 +32475,8 @@ fe
 fe
 fl
 fl
-El
-fe
+fl
+fl
 fe
 fe
 fe
@@ -32574,7 +32726,7 @@ fl
 fl
 fl
 fl
-fl
+El
 fl
 fe
 fe
