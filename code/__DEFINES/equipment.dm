@@ -220,7 +220,6 @@
 #define HAND_RIGHT		(1<<12)
 #define HANDS			(HAND_RIGHT|HAND_LEFT)
 #define FULL_BODY		(~0)
-
 //=================================================
 
 // bitflags for the percentual amount of protection a piece of clothing which covers the body part offers.
