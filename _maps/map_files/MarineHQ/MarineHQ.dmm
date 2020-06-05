@@ -3992,12 +3992,7 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/stern_hallway)
 "oU" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/bed/chair/comfy{
-	dir = 8
-	},
+/obj/machinery/chem_master,
 /turf/open/floor/mainship/plate,
 /area/centcom/practice/medical)
 "pb" = (
@@ -4233,6 +4228,12 @@
 "rl" = (
 /turf/open/floor/plating/asteroidplating,
 /area/lv624/ground/caves)
+"rr" = (
+/obj/item/reagent_containers/glass/beaker/bluespace,
+/obj/item/reagent_containers/glass/beaker/bluespace,
+/obj/structure/table/reinforced,
+/turf/open/floor/mainship/plate,
+/area/centcom/practice/medical)
 "rv" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -4740,7 +4741,7 @@
 /turf/open/floor/wood,
 /area/mainship/command/cic)
 "vE" = (
-/obj/machinery/vending/snack,
+/obj/machinery/body_scanconsole,
 /turf/open/floor/mainship/plate,
 /area/centcom/practice/medical)
 "vF" = (
@@ -4755,9 +4756,16 @@
 	},
 /area/mainship/shipboard/firing_range)
 "vH" = (
-/obj/structure/bed/chair/comfy{
-	dir = 8
+/obj/machinery/reagentgrinder,
+/obj/item/stack/sheet/mineral/phoron{
+	amount = 25;
+	pixel_x = 3;
+	pixel_y = 3
 	},
+/obj/item/tool/hand_labeler,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/dropper,
+/obj/structure/table/reinforced,
 /turf/open/floor/mainship/plate,
 /area/centcom/practice/medical)
 "vJ" = (
@@ -4769,7 +4777,10 @@
 	},
 /area/mainship/shipboard/firing_range)
 "vM" = (
-/obj/structure/table/mainship,
+/obj/machinery/vending/medical,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/mainship/plate,
 /area/centcom/practice/medical)
 "vP" = (
@@ -5593,7 +5604,7 @@
 /turf/closed/wall,
 /area/mainship/living/tankerbunks)
 "BP" = (
-/obj/machinery/vending/cola,
+/obj/machinery/bodyscanner,
 /turf/open/floor/mainship/plate,
 /area/centcom/practice/medical)
 "BQ" = (
@@ -6742,9 +6753,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/chapel)
 "GF" = (
-/obj/structure/bed/chair/comfy{
-	dir = 4
-	},
+/obj/machinery/chem_dispenser,
 /turf/open/floor/mainship/plate,
 /area/centcom/practice/medical)
 "GG" = (
@@ -7765,7 +7774,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/stern_hallway)
 "Ky" = (
-/obj/machinery/vending/coffee,
+/obj/structure/bed/stool{
+	pixel_y = 8
+	},
 /turf/open/floor/mainship/plate,
 /area/centcom/practice/medical)
 "Kz" = (
@@ -7958,6 +7969,11 @@
 /obj/machinery/door/poddoor/shutters/mainship/cic/armory,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
+"LT" = (
+/obj/machinery/vending/medical,
+/obj/machinery/light,
+/turf/open/floor/mainship/plate,
+/area/centcom/practice/medical)
 "LV" = (
 /obj/machinery/iv_drip,
 /obj/machinery/shower{
@@ -8351,7 +8367,19 @@
 	},
 /area/mainship/shipboard/firing_range)
 "Pc" = (
-/obj/machinery/vending/cigarette,
+/obj/structure/table/reinforced,
+/obj/machinery/recharger,
+/obj/item/defibrillator,
+/obj/item/storage/firstaid/adv,
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/firstaid/o2,
+/obj/item/storage/box/bodybags,
+/obj/item/roller,
+/obj/item/roller,
+/obj/machinery/firealarm{
+	dir = 8
+	},
 /turf/open/floor/mainship/plate,
 /area/centcom/practice/medical)
 "Pg" = (
@@ -8525,6 +8553,12 @@
 	dir = 6
 	},
 /area/mainship/shipboard/firing_range)
+"Ro" = (
+/obj/item/storage/box/beakers,
+/obj/item/storage/box/beakers,
+/obj/structure/table/reinforced,
+/turf/open/floor/mainship/plate,
+/area/centcom/practice/medical)
 "Rs" = (
 /obj/structure/cable,
 /obj/machinery/light{
@@ -8795,11 +8829,12 @@
 	},
 /area/mainship/shipboard/firing_range)
 "Vi" = (
+/obj/item/cell/high,
+/obj/machinery/cell_charger,
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/spray/cleaner,
 /obj/machinery/light{
 	dir = 1
-	},
-/obj/structure/bed/chair/comfy{
-	dir = 4
 	},
 /turf/open/floor/mainship/plate,
 /area/centcom/practice/medical)
@@ -9115,6 +9150,12 @@
 	dir = 8
 	},
 /area/mainship/shipboard/firing_range)
+"YT" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/plate,
+/area/centcom/practice/medical)
 "YU" = (
 /obj/machinery/door_control{
 	id = 1001
@@ -9149,6 +9190,14 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/squads/req)
+"Zy" = (
+/obj/item/cell/high,
+/obj/machinery/cell_charger,
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/machinery/light,
+/turf/open/floor/mainship/plate,
+/area/centcom/practice/medical)
 "ZD" = (
 /obj/machinery/light,
 /obj/effect/decal/warning_stripes/thin,
@@ -29257,17 +29306,17 @@ fe
 fe
 tk
 Vi
-GF
-GF
-Wa
+BP
+Pc
+BP
 Wa
 Qh
 Wa
 BP
+Pc
+BP
+Zy
 tk
-fe
-fe
-fe
 fe
 Em
 aa
@@ -29508,18 +29557,18 @@ fe
 fe
 fe
 tk
-vM
-vM
-vM
 Wa
+vE
+Wa
+vE
 Wa
 Qh
 Wa
+vE
+Wa
+vE
+Wa
 tk
-tk
-fe
-fe
-fe
 fe
 Em
 aa
@@ -29760,18 +29809,18 @@ fe
 fe
 fe
 tk
-vH
-vH
-vH
+Wa
+Wa
+Wa
 Wa
 Wa
 Qh
 Wa
-Ky
+Wa
+Wa
+Wa
+Wa
 tk
-fe
-fe
-fe
 fe
 Em
 aa
@@ -30012,18 +30061,18 @@ fe
 fe
 fe
 tk
-Wa
-Wa
-Wa
-Wa
-Wa
+mW
+Hj
+mW
+tk
+YT
 Qh
 Uf
 tk
+mW
+Hj
+mW
 tk
-fe
-fe
-fe
 fe
 Em
 aa
@@ -30265,17 +30314,17 @@ fe
 fe
 tk
 GF
-GF
-GF
 Wa
+Ro
+mW
 Wa
 Qh
 Wa
-Pc
+mW
+Ro
+Wa
+GF
 tk
-fe
-fe
-fe
 fe
 Em
 aa
@@ -30517,17 +30566,17 @@ fe
 fe
 tk
 vM
-vM
-vM
-Wa
+Ky
+rr
+mW
 Wa
 Qh
 Wa
+mW
+rr
+Ky
+LT
 tk
-mV
-fe
-fe
-fe
 fe
 Em
 aa
@@ -30769,17 +30818,17 @@ fe
 fe
 tk
 oU
-vH
-vH
 Wa
+vH
+mW
 Wa
 Qh
 Wa
-vE
-mV
-fe
-fe
-fe
+mW
+vH
+Wa
+oU
+tk
 fe
 Em
 aa
@@ -31028,10 +31077,10 @@ mW
 Hj
 mW
 tk
-mV
-fe
-fe
-fe
+tk
+tk
+tk
+tk
 fe
 Em
 aa
