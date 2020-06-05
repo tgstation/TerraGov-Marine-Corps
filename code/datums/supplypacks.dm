@@ -1064,26 +1064,20 @@ MEDICAL
 	cost = 50
 
 /datum/supply_packs/medical/dogtags
+	name = "dogtags crate"
 	contains = list(
 		/obj/item/storage/box/ids/dogtag,
 		/obj/item/storage/box/ids/dogtag,
 		/obj/item/storage/box/ids/dogtag,
 	)
-	name = "dogtags crate"
 	cost = 10
-	containertype = /obj/structure/closet/crate
-	containername = "\improper dogtags crate"
-	group = "Medical"
 
 /datum/supply_packs/medical/biomass
+	name = "biomass crate"
 	contains = list(
 		/obj/item/reagent_containers/glass/beaker/biomass,
 	)
-	name = "biomass crate"
 	cost = 15
-	containertype = /obj/structure/closet/crate/secure/nanotrasen
-	containername = "\improper biomass crate"
-	group = "Medical"
 
 
 /datum/supply_packs/medical/medical
