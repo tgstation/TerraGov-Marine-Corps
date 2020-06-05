@@ -3834,6 +3834,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/disposalpipe/segment,
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical)
 "alz" = (
@@ -4530,6 +4531,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/disposalpipe/segment,
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical)
 "anc" = (
@@ -4557,12 +4559,8 @@
 	},
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/medical_science)
-"ang" = (
-/obj/machinery/seed_extractor,
-/turf/open/floor/mainship/sterile,
-/area/mainship/medical/medical_science)
 "anh" = (
-/obj/machinery/botany/editor,
+/obj/machinery/cloning_console/vats,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/medical_science)
 "anl" = (
@@ -4960,6 +4958,7 @@
 /obj/structure/disposalpipe/junction{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical)
 "aou" = (
@@ -4969,6 +4968,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/side{
 	dir = 6
 	},
@@ -4984,6 +4984,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/medical_science)
 "aow" = (
@@ -4993,6 +4994,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/medical_science)
 "aox" = (
@@ -5002,6 +5004,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 2
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/side{
 	dir = 10
 	},
@@ -6056,14 +6059,12 @@
 	},
 /area/mainship/medical/medical_science)
 "arL" = (
-/obj/machinery/portable_atmospherics/hydroponics,
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/medical_science)
 "arM" = (
-/obj/machinery/portable_atmospherics/hydroponics,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -7383,6 +7384,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical)
 "avr" = (
@@ -8399,19 +8401,17 @@
 	},
 /area/mainship/medical/operating_room_three)
 "ayp" = (
-/obj/machinery/light{
-	dir = 1
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
 	},
-/obj/structure/closet/l3closet/general,
-/turf/open/floor/mainship/sterile/side{
-	dir = 1
-	},
+/obj/structure/cable,
+/turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "ayq" = (
-/obj/structure/closet/l3closet/virology,
-/turf/open/floor/mainship/sterile/side{
-	dir = 1
-	},
+/obj/structure/table/mainship,
+/obj/machinery/computer/crew,
+/turf/open/floor/mainship/sterile,
 /area/mainship/medical/medical_science)
 "ayr" = (
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -10442,6 +10442,9 @@
 	id = "containmentlockdown";
 	name = "Containment Lockdown";
 	pixel_x = 25
+	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
 	},
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
@@ -16129,10 +16132,10 @@
 /turf/open/floor/mainship/red,
 /area/mainship/shipboard/brig)
 "aSx" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 1
-	},
-/turf/open/floor/mainship/sterile/dark,
+/obj/structure/table/mainship,
+/obj/item/storage/box/ids/dogtag,
+/obj/item/reagent_containers/dropper,
+/turf/open/floor/mainship/sterile,
 /area/mainship/medical/medical_science)
 "aSy" = (
 /obj/machinery/camera/autoname/mainship{
@@ -27147,13 +27150,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bIj" = (
-/obj/item/reagent_containers/glass/bucket,
-/obj/item/reagent_containers/glass/bucket,
-/obj/structure/table/mainship,
-/obj/item/tool/minihoe,
-/obj/item/tool/hatchet,
-/obj/item/tool/shovel/spade,
-/turf/open/floor/mainship/sterile,
+/obj/machinery/shower{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/medical/medical_science)
 "bIn" = (
 /obj/machinery/disposal,
@@ -35483,6 +35483,12 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/mainship/living/captain_mess)
+"crB" = (
+/obj/machinery/alarm,
+/turf/open/floor/mainship/sterile/corner{
+	dir = 1
+	},
+/area/mainship/medical/medical_science)
 "cBn" = (
 /obj/structure/cable,
 /obj/machinery/light/small{
@@ -35573,6 +35579,12 @@
 	icon_state = "carpetside"
 	},
 /area/mainship/shipboard/chief_mp_office)
+"dhy" = (
+/obj/structure/closet/l3closet/general,
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
+/area/mainship/medical/medical_science)
 "dlC" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/structure/disposalpipe/segment,
@@ -35618,12 +35630,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/brig)
-"dCa" = (
-/obj/structure/sink{
-	dir = 4
-	},
-/turf/open/floor/mainship/sterile,
-/area/mainship/medical/medical_science)
 "dDe" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -35996,10 +36002,10 @@
 	},
 /area/mainship/hallways/aft_hallway)
 "fYf" = (
-/obj/machinery/vending/hydronutrients,
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/cloning_console/vats,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/medical_science)
 "gas" = (
@@ -36134,10 +36140,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
-"hcq" = (
-/obj/machinery/portable_atmospherics/hydroponics,
-/turf/open/floor/mainship/sterile,
-/area/mainship/medical/medical_science)
 "hem" = (
 /obj/structure/cable,
 /obj/machinery/status_display{
@@ -36977,9 +36979,7 @@
 /turf/open/floor/mainship/blue,
 /area/mainship/living/numbertwobunks)
 "mxt" = (
-/obj/structure/table/mainship,
-/obj/item/storage/box/botanydisk,
-/obj/item/tool/hand_labeler,
+/obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/medical_science)
 "myc" = (
@@ -37041,6 +37041,12 @@
 	dir = 4
 	},
 /area/mainship/hallways/hangar)
+"mKV" = (
+/obj/structure/closet/l3closet/virology,
+/turf/open/floor/mainship{
+	icon_state = "sterile_green_corner"
+	},
+/area/mainship/medical/medical_science)
 "mLL" = (
 /obj/machinery/light,
 /obj/structure/cable,
@@ -37593,7 +37599,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/hallways/repair_bay)
 "qfP" = (
-/obj/machinery/botany/extractor,
+/obj/machinery/cloning/vats,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/medical_science)
 "qhO" = (
@@ -37862,10 +37868,10 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
 "swd" = (
-/obj/machinery/door/airlock/mainship/research/chemistry{
-	dir = 2
-	},
-/turf/open/floor/mainship/sterile/dark,
+/obj/structure/table/mainship,
+/obj/item/healthanalyzer,
+/obj/item/reagent_containers/glass/beaker/biomass,
+/turf/open/floor/mainship/sterile,
 /area/mainship/medical/medical_science)
 "syF" = (
 /obj/effect/decal/warning_stripes/thin,
@@ -37956,10 +37962,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
-"tgd" = (
-/obj/machinery/vending/hydroseeds,
-/turf/open/floor/mainship/sterile,
-/area/mainship/medical/medical_science)
 "tjn" = (
 /obj/machinery/door/airlock/mainship/security{
 	name = "\improper Security Post"
@@ -38195,15 +38197,15 @@
 	},
 /area/mainship/shipboard/chief_mp_office)
 "uQd" = (
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/machinery/light{
+/obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
-/turf/open/floor/mainship/sterile,
+/turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "uQj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/upper_medical)
 "uSH" = (
@@ -38581,6 +38583,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
+"xjZ" = (
+/obj/structure/window/framed/mainship/white,
+/turf/open/space/basic,
+/area/mainship/medical/medical_science)
 "xkA" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/mainship/tcomms,
@@ -38642,7 +38648,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/engineering/upper_engineering)
 "xOC" = (
-/obj/machinery/biogenerator,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/medical_science)
 "xSm" = (
@@ -69375,11 +69380,11 @@ ajc
 akv
 alz
 ane
-aoy
+ayp
 mxt
-hcq
-hcq
-hcq
+ayq
+aSx
+swd
 alz
 alz
 aAe
@@ -69632,13 +69637,13 @@ ajc
 akt
 alz
 anf
+fDG
 aoz
 aoz
 aoz
 aoz
-aoz
-swd
-aoz
+alz
+crB
 aoz
 aBW
 aDx
@@ -69888,14 +69893,14 @@ ahD
 ajc
 akt
 alz
-ang
-aoz
-hcq
+qfP
+fDG
+xOC
 arL
-hcq
+xOC
 aoz
-alz
-afn
+xjZ
+anc
 aoz
 xjQ
 aDy
@@ -70146,13 +70151,13 @@ ajc
 akv
 alz
 anh
-aoz
+fDG
 xOC
 alz
-uQd
+anf
 aoz
-alz
-ayp
+xjZ
+and
 aoz
 aBY
 aFy
@@ -70404,12 +70409,12 @@ akw
 alz
 qfP
 aoz
-hcq
+xOC
 arM
-hcq
-aSx
-alz
-ayq
+xOC
+aoz
+xjZ
+anc
 aoz
 xjQ
 aDA
@@ -70664,9 +70669,9 @@ aoz
 aoz
 aoz
 aoz
-aoz
-swd
-aoz
+uQd
+alz
+dhy
 aoz
 xjQ
 aDB
@@ -70916,14 +70921,14 @@ hMM
 wxo
 eoj
 alz
-tgd
-dCa
+xOC
+xOC
 bIj
-hcq
-hcq
-hcq
+xOC
+bIj
+xOC
 alz
-aSs
+mKV
 awE
 xjQ
 aDC

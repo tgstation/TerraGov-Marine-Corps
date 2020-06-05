@@ -11,8 +11,6 @@ Cloning shit
 	anchored = TRUE
 	max_integrity = 200
 
-	resistance_flags = UNACIDABLE | INDESTRUCTIBLE // For now, we should work out how we want xenos to counter this
-
 /obj/machinery/cloning/Initialize(mapload, ...)
 	. = ..()
 	START_PROCESSING(SSmachines, src) // Registered for power usage
@@ -223,6 +221,7 @@ The vat then needs to be repaired and refilled with biomass.
 You remember nothing of your past life.
 
 You are weak, best rest up and get your strength before fighting.</span>"})
+	occupant.vomit()
 
 	occupant = null
 	update_icon()
