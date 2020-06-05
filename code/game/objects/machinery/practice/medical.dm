@@ -11,8 +11,7 @@
 		to_chat(user, "<span class='warning'>You are unable to damage the button.</span>")
 		return
 	if(humanspawned)
-		qdel(humanspawned)
-		humanspawned = null
+		QDEL_NULL(humanspawned)
 		visible_message("<span class='notice'>The dummy vanishes, ending the simulation.</span>")
 		return
 	else
