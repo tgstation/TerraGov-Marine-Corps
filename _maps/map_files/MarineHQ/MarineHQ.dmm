@@ -3530,7 +3530,6 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/shipboard/sensors)
 "lR" = (
-/obj/effect/landmark/start/job/masteratarms,
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/sensors)
 "lS" = (
@@ -3550,7 +3549,6 @@
 /obj/structure/reagent_dispensers/wallmounted/peppertank{
 	dir = 1
 	},
-/obj/effect/landmark/start/job/masteratarms,
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/sensors)
 "lV" = (
@@ -5621,7 +5619,6 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/obj/effect/landmark/start/job/commandmasteratarms,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/sensors)
 "Cp" = (
