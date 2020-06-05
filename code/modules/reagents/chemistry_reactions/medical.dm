@@ -141,6 +141,11 @@
 	required_reagents = list(/datum/reagent/medicine/bicaridine = 2, /datum/reagent/medicine/clonexadone = 2)
 	required_catalysts = list(/datum/reagent/toxin/phoron = 5)
 
+/datum/chemical_reaction/peridaxon_plus
+	name = "Peridaxon Plus"
+	results = list(/datum/reagent/medicine/peridaxon_plus = 1)
+	required_reagents = list(/datum/reagent/medicine/peridaxon = 5, /datum/reagent/medicine/ryetalyn = 5, /datum/reagent/toxin/phoron = 5)
+
 /datum/chemical_reaction/quickclot
 	name = "Quick-Clot"
 	results = list(/datum/reagent/medicine/quickclot = 1)

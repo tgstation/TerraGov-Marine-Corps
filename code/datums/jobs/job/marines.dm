@@ -137,8 +137,8 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	req_admin_notify = TRUE
 	paygrade = "E4"
 	comm_title = "Spec"
-	total_positions = 4
-	max_positions = 6
+	total_positions = 0
+	max_positions = 0
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SPECPREP)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SPECPREP, ACCESS_MARINE_DROPSHIP)
 	skills_type = /datum/skills/specialist
@@ -146,7 +146,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	outfit = /datum/outfit/job/marine/specialist
 	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
+	job_flags = JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_STRONG)
 	job_points_needed  = 10 //Redefined via config.
 

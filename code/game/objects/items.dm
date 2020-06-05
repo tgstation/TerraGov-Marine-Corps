@@ -486,13 +486,6 @@
 				if(!U || U.hastie)
 					return FALSE
 				return TRUE
-			if(SLOT_IN_BOOT)
-				if(!istype(src, /obj/item/weapon/combat_knife) && !istype(src, /obj/item/weapon/throwing_knife))
-					return FALSE
-				var/obj/item/clothing/shoes/marine/B = H.shoes
-				if(!B || !istype(B) || B.knife)
-					return FALSE
-				return TRUE
 			if(SLOT_IN_BACKPACK)
 				if (!H.back || !istype(H.back, /obj/item/storage/backpack))
 					return FALSE
@@ -637,7 +630,6 @@
 //The default action is attack_self().
 //Checks before we get to here are: mob is alive, mob is not restrained, paralyzed, asleep, resting, laying, item is on the mob.
 /obj/item/proc/ui_action_click(mob/user, datum/action/item_action/action)
-	toggle_item_state(user)
 	attack_self(user)
 
 /obj/item/proc/toggle_item_state(mob/user)

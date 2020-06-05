@@ -20,7 +20,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	if(get_dist(owner, A) != 1)
 		return ..()
 
-	return build_resin(get_turf(owner)) // TODO: (psykzz) 
+	return build_resin(get_turf(A)) // TODO: (psykzz)
 
 	// if(!is_type_in_typecache(A, GLOB.thickenable_resin))
 	// 	return build_resin(get_turf(A))

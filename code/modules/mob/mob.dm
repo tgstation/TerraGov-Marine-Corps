@@ -43,7 +43,7 @@
 	if(statpanel("Status"))
 		if(GLOB.round_id)
 			stat("Round ID:", GLOB.round_id)
-		stat("Operation Time:", worldtime2text())
+		stat("Operation Time:", stationTimestamp("hh:mm"))
 		stat("Current Map:", length(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : "Loading...")
 		stat("Current Ship:", length(SSmapping.configs) ? SSmapping.configs[SHIP_MAP].map_name : "Loading...")
 
@@ -304,14 +304,6 @@
 		var/obj/item/W = B.current_gun
 		B.remove_from_storage(W)
 		put_in_hands(W)
-		return TRUE
-	else if(istype(I, /obj/item/clothing/shoes/marine))
-		var/obj/item/clothing/shoes/marine/S = I
-		if(!S.knife)
-			return FALSE
-		put_in_hands(S.knife)
-		S.knife = null
-		S.update_icon()
 		return TRUE
 	else if(istype(I, /obj/item/clothing/under))
 		var/obj/item/clothing/under/U = I

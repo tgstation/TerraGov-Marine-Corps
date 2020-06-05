@@ -35,8 +35,8 @@
 
 
 /obj/item/clothing/glasses/night/m42_night_goggles/upp
-	name = "\improper Type 9 commando goggles"
-	desc = "A headset and night vision goggles system used by UPP forces. Allows highlighted imaging of surroundings. Click it to toggle."
+	name = "\improper Type 9 elite goggles"
+	desc = "A headset and night vision goggles system used by USL forces. Allows highlighted imaging of surroundings. Click it to toggle."
 	icon_state = "upp_goggles"
 	deactive_state = "upp_goggles_0"
 

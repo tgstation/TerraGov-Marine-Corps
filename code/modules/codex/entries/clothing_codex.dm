@@ -43,28 +43,12 @@ GLOBAL_LIST_INIT(string_equip_flags, list("suit slot" = ITEM_SLOT_OCLOTHING,
 
 	var/mechanics_signal = SEND_SIGNAL(src, COMSIG_CLOTHING_MECHANICS_INFO)
 
-	for(var/armor_type in GLOB.armour_to_descriptive_term)
-		switch(armor.getRating(armor_type))
-			if(0)
-				armor_strings += "It provides no protection against [GLOB.armour_to_descriptive_term[armor_type]]."
-			if(1 to 20)
-				armor_strings += "It barely protects against [GLOB.armour_to_descriptive_term[armor_type]]."
-			if(21 to 30)
-				armor_strings += "It provides a very small defense against [GLOB.armour_to_descriptive_term[armor_type]]."
-			if(31 to 40)
-				armor_strings += "It offers a small amount of protection against [GLOB.armour_to_descriptive_term[armor_type]]."
-			if(41 to 50)
-				armor_strings += "It offers a moderate defense against [GLOB.armour_to_descriptive_term[armor_type]]."
-			if(51 to 60)
-				armor_strings += "It provides a strong defense against [GLOB.armour_to_descriptive_term[armor_type]]."
-			if(61 to 70)
-				armor_strings += "It is very strong against [GLOB.armour_to_descriptive_term[armor_type]]."
-			if(71 to 80)
-				armor_strings += "This gives a very robust defense against [GLOB.armour_to_descriptive_term[armor_type]]."
-			if(81 to 99)
-				armor_strings += "Wearing this would make you nigh-invulerable against [GLOB.armour_to_descriptive_term[armor_type]]."
-			if(100 to INFINITY)
-				armor_strings += "You would have godly protection against [GLOB.armour_to_descriptive_term[armor_type]] if you wore this."
+	var/list/armor_in_list = soft_armor.getList()
+	for(var/armor_type in armor_in_list)
+		armor_strings += "Soft [armor_type] armor: [armor_in_list[armor_type]]"
+	armor_in_list = hard_armor.getList()
+	for(var/armor_type in armor_in_list)
+		armor_strings += "Hard [armor_type] armor: [armor_in_list[armor_type]]"
 
 	if(slowdown)
 		switch(slowdown)

@@ -115,3 +115,6 @@ GLOBAL_VAR_INIT(global_unique_id, 1)
 #define FOURSPACES "&nbsp;&nbsp;&nbsp;&nbsp;"
 
 #define RIDING_OFFSET_ALL "ALL"
+
+// The alpha we give to stuff under tiles, if they want it
+#define ALPHA_UNDERTILE 128

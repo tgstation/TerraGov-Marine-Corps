@@ -341,6 +341,28 @@ Defined in conflicts.dm of the #defines folder.
 			F.forceMove(loc)
 		qdel(src) //Delete da old bayonet
 
+/obj/item/attachable/bayonetknife
+	name = "M-22 bayonet"
+	desc = "A sharp knife that is the standard issue combat knife of the TerraGov Marine Corps can be attached to a variety of weapons at will or used as a standard knife."
+	icon_state = "bayonetknife"
+	item_state = "combat_knife"
+	attach_icon = "bayonetknife_a"
+	force = 25
+	throwforce = 20
+	throw_speed = 3
+	throw_range = 6
+	attack_speed = 7
+	attach_delay = 10 //Bayonets attach/detach quickly.
+	detach_delay = 10
+	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	melee_mod = 25
+	slot = "muzzle"
+	pixel_shift_x = 14 //Below the muzzle.
+	pixel_shift_y = 18
+	accuracy_mod = -0.05
+	accuracy_unwielded_mod = -0.1
+	size_mod = 1
+
 /obj/item/attachable/extended_barrel
 	name = "extended barrel"
 	desc = "A lengthened barrel allows for lessened scatter, greater accuracy and muzzle velocity due to increased stabilization and shockwave exposure."
@@ -995,10 +1017,10 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/t19stock
-	name = "T-19 Submachine Gun stock"
-	desc = "A rare stock distributed in small numbers to TGMC forces. Compatible with the T-19, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
+	name = "T-19 Machinepistol  Gun stock"
+	desc = "A stock distributed in small numbers to TGMC forces. Compatible with the T-19, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
 	slot = "stock"
-	wield_delay_mod = 0.3 SECONDS
+	wield_delay_mod = 0.1 SECONDS
 	melee_mod = 5
 	size_mod = 1
 	icon_state = "t19stock"
@@ -1007,6 +1029,7 @@ Defined in conflicts.dm of the #defines folder.
 	accuracy_mod = 0.1
 	recoil_mod = -2
 	scatter_mod = -10
+	scatter_unwielded_mod = -10
 
 /obj/item/attachable/stock/t35stock
 	name = "\improper T-35 stock"

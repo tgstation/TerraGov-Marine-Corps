@@ -75,12 +75,14 @@
 #define TRAIT_STASIS "stasis"
 
 // common trait
+#define TRAIT_GENERIC "generic"
 #define INNATE_TRAIT "innate"
 #define ROUNDSTART_TRAIT "roundstart" //cannot be removed without admin intervention
 #define SLEEPER_TRAIT "sleeper"
 #define STASIS_BAG_TRAIT "stasis_bag"
 #define CRYOPOD_TRAIT "cryopod"
 #define TRAIT_XENO "xeno"
+#define ARMOR_TRAIT "armor"
 #define STAT_TRAIT "stat"
 #define NECKGRAB_TRAIT "neckgrab"
 #define RESTING_TRAIT "resting"
@@ -94,8 +96,12 @@
 #define TRAIT_FLOORED			"floored" //User is forced to the ground on a prone position.
 #define TRAIT_IMMOBILE			"immobile" //User is unable to move by its own volition.
 #define TRAIT_STUNIMMUNE		"stun_immunity"
+#define TRAIT_FIRERESISTANT		"fire_resistant" // Won't catch on fire
 #define TRAIT_BATONIMMUNE		"baton_immunity"
 #define TRAIT_SLEEPIMMUNE		"sleep_immunity"
 #define TRAIT_FLASHBANGIMMUNE	"flashbang_immunity"
 #define TRAIT_FAKEDEATH			"fakedeath" //Makes the owner appear as dead to most forms of medical examination
 #define TRAIT_LEGLESS			"legless" //Has lost all the appendages needed to stay standing up.
+
+// item traits
+#define TRAIT_T_RAY_VISIBLE		"t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1
