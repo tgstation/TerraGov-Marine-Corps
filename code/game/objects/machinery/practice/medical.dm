@@ -15,7 +15,7 @@
 		visible_message("<span class='notice'>The dummy vanishes, ending the simulation.</span>")
 		return
 	else
-		var/choice = input("What surgery would you like to simulate?") as null|anything in list("larval host", "broken bones", "missing limbs")
+		var/choice = input("What surgery would you like to simulate?") as null|anything in list("larval host", "broken bones", "missing limbs", "damaged organs")
 		if(!choice)
 			to_chat(user, "<span class='notice'>You must select a surgery to start the simulation.</span>")
 			return
@@ -36,3 +36,11 @@
 			if("missing limbs")
 				humanspawned = new /mob/living/carbon/human(get_turf(src))
 				humanspawned.remove_random_limb()
+			if("damaged organs")
+				humanspawned = new /mob/living/carbon/human(get_turf(src))
+				var/list/organs_to_hurt = list()
+				for(var/datum/internal_organ/I in humanspawned.internal_organs)
+					organs_to_hurt += I
+				if(organs_to_hurt.len)
+					var/datum/internal_organ/O = pick(organs_to_hurt)
+					O.take_damage(40)
