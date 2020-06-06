@@ -643,7 +643,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				. += proj.distance_travelled * shooter_human.marksman_aura * 0.35
 
 	. -= GLOB.base_miss_chance[proj.def_zone] //Reduce accuracy based on spot.
-	
+
 	#if DEBUG_HIT_CHANCE
 	to_chat(world, "<span class='debuginfo'>Final accuracy is <b>[.]</b></span>")
 	#endif
@@ -720,12 +720,13 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 //----------------------------------------------------------
 
 /atom/proc/bullet_act(obj/projectile/proj)
-	SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, proj)
+	return !SEND_SIGNAL(src, COMSIG_ATOM_BULLET_ACT, proj)
 
 
 /mob/living/bullet_act(obj/projectile/proj)
 	. = ..()
-
+	if(!.)
+		return
 	if(stat == DEAD)
 		return
 
