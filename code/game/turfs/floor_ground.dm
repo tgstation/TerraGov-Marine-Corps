@@ -77,6 +77,10 @@
 	name = "cave"
 	icon_state = "mars_cave_rock"
 
+/turf/open/floor/plating/ground/mars/random/tile
+	name = "dirt"
+	icon_state = "mars_tile"
+
 /turf/open/floor/plating/ground/mars/random/dirt
 	name = "dirt"
 	icon_state = "mars_dirt"
