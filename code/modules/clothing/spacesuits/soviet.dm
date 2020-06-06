@@ -73,29 +73,23 @@
 	RegisterSignal(parent, COMSIG_ITEM_UNEQUIPPED, .proc/on_unequip)
 
 /datum/component/armor_protection_limb/proc/on_equip(obj/item/I, mob/equipper)
-	to_chat(world, "[parent] equipped by [equipper]")
 	RegisterSignal(equipper, COMSIG_ATOM_BULLET_ACT, .proc/on_projectile)
 
 /datum/component/armor_protection_limb/proc/on_unequip(obj/item/I, mob/unequipper, slot)
 	if(isitem(parent))
 		if(!(I.flags_equip_slot & slotdefine2slotbit(slot)))
 			return
-	to_chat(world, "[parent] unequipped by [unequipper]. Slot:[slot]")
 	UnregisterSignal(unequipper, COMSIG_ATOM_BULLET_ACT)
 
 /datum/component/armor_protection_limb/proc/on_projectile(obj/item/I, var/obj/projectile/proj)
-	to_chat(world, "shot by [proj]:[proj.def_zone]")
 	if(covered_limbs & GLOB.string_part_flags[proj.def_zone])
-		to_chat(world, "covered limb matches def zone")
 		return adjust_health(max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff)))
 	return FALSE
 
 #define VENTING (1<<1)
 
 /datum/component/armor_protection_limb/proc/adjust_health(var/amount)
-	to_chat(world, "health before change: [health]")
 	health = CLAMP(health - amount, 0, max_health)
-	to_chat(world, "health after change: [health]")
 	if(health <= 0)
 		if(CHECK_BITFIELD(venting, TRUE) && !CHECK_BITFIELD(venting, VENTING))
 			ENABLE_BITFIELD(venting, VENTING)
@@ -104,20 +98,14 @@
 	return TRUE
 
 /datum/component/armor_protection_limb/process()
-	to_chat(world, "venting: [covered_limbs]. [vent_amount]. Amount lost: [LEAKRATE_BASE/100*vent_amount]")
 	var/mob/living/carbon/L
 	if(!isitem(parent))
-		to_chat(world, "[parent] is not an item")
 		return
 	var/obj/item/I = parent
 	if(!iscarbon(I.loc))
-		to_chat(world, "[I.loc] is not a carbon")
 		return
 	L = I.loc
 	if(L.internal)
-		to_chat(world, "pressure pre-vent: [L.internal.pressure]")
 		L.internal.pressure = max(L.internal.pressure - (LEAKRATE_BASE/100*vent_amount), 0)
-		to_chat(world, "pressure post-vent: [L.internal.pressure]")
-
 
 #undef VENTING
