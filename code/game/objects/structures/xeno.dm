@@ -173,6 +173,8 @@
 					to_chat(linked_carrier, "<span class='xenoannounce'>You sense one of your hugger traps at [A.name] has been triggered!</span>")
 			drop_hugger()
 	if(!isxeno(C) && gastrap)
+		if(C.stat == DEAD)
+			return
 		C.visible_message("<span class='warning'>[C] trips on [src]!</span>",\
 						"<span class='danger'>You trip on [src]!</span>")
 		if(!QDELETED(linked_carrier) && linked_carrier.stat == CONSCIOUS && linked_carrier.z == z)
@@ -194,30 +196,29 @@
 	hugger = null
 
 /obj/effect/alien/resin/trap/proc/acid_activate(mob/living/carbon/C)
-	if(gastrap)
-		switch(gastrap)
-			if("acid")
-				var/datum/effect_system/smoke_spread/xeno/acid/A = new(get_turf(src))
-				A.set_up(tgastier,src)
-				A.start()
-			if("neuro")
-				var/datum/effect_system/smoke_spread/xeno/neuro/A = new(get_turf(src))
-				A.set_up(tgastier,src)
-				A.start()
-			if("wall")
-				var/turf/T = get_turf(loc)
-				T.ChangeTurf(/turf/closed/wall/resin/regenerating)
-			if("rwall")
-				var/turf/T = get_turf(loc)
-				T.ChangeTurf(/turf/closed/wall/resin/regenerating/thick)
-			if("toxdart")
-				C.adjustToxLoss(10 * (tupgrade + 1))
-			if("brutedart")
-				C.adjustBruteLoss(10 * (tupgrade + 1))
-				to_chat(C, "<span class='warning'>you feel a prick in your feet!</span>")
-			if("blind")
-				C.blind_eyes(7)
-				to_chat(C, "<span class='warning'>you feel a prick in your feet!</span>")
+	switch(gastrap)
+		if("acid")
+			var/datum/effect_system/smoke_spread/xeno/acid/A = new(get_turf(src))
+			A.set_up(tgastier,src)
+			A.start()
+		if("neuro")
+			var/datum/effect_system/smoke_spread/xeno/neuro/A = new(get_turf(src))
+			A.set_up(tgastier,src)
+			A.start()
+		if("wall")
+			var/turf/T = get_turf(loc)
+			T.ChangeTurf(/turf/closed/wall/resin/regenerating)
+		if("rwall")
+			var/turf/T = get_turf(loc)
+			T.ChangeTurf(/turf/closed/wall/resin/regenerating/thick)
+		if("toxdart")
+			C.adjustToxLoss(10 * (tupgrade + 1))
+		if("brutedart")
+			C.adjustBruteLoss(10 * (tupgrade + 1))
+			to_chat(C, "<span class='warning'>you feel a prick in your feet!</span>")
+		if("blind")
+			C.blind_eyes(7)
+			to_chat(C, "<span class='warning'>you feel a prick in your feet!</span>")
 	icon_state = "trap0"
 	if(gastrap != "toxdart")
 		visible_message("<span class='warning'>the trap activates!</span>")
@@ -889,7 +890,7 @@ TUNNEL
 		ccharging = FALSE
 		update_icon()
 		to_chat(M,"<span class='xenonotice'>You fill up by one [src].</span>")
-	else 
+	else
 		to_chat(M, "<span class='xenowarning'>We begin removing [src]...</span>")
 		if(do_after(M, 5 SECONDS, FALSE, src, BUSY_ICON_BUILD))
 			deconstruct(FALSE)
@@ -910,12 +911,12 @@ TUNNEL
 		return
 	if(isxeno(C))
 		if(!(C.on_fire))
-			return 
+			return
 		C.ExtinguishMob()
 		charges--
 		update_icon()
 		return
-	else 
+	else
 		if(!charges)
 			return
 		C.adjustToxLoss(charges * 15)
