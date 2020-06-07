@@ -234,5 +234,8 @@
 	var/butchery_progress = 0
 
 	//Trap vars
+	// The traps are: acid, neuro, wall, rwall, toxdart, brutedart, blind.
+	// When a xeno goes to a resin hole, the trapchoices is what will popup and give them the option to fill the resin hole.
 	var/trapchoices = list()
-	var/gastier = 5
+	// The gas tier is how large the gases (acid and neuro) will come out. Note that boilers are 5 and crushers are 2.
+	var/gastier = 1

@@ -246,6 +246,9 @@
 			to_chat(M, "<span class='xenonotice'>We remove the gas from [src].</span>")
 			return
 		if(!gastrap && !hugger)
+			if(get_dist(get_turf(M), get_turf(src)) >= 2)
+				to_chat(M, "<span class='xenonotice'>We need to be closer to [src].</span>")
+				return
 			var/choice = input("Choose the gas type:","Gas Trap Selection") as null|anything in M.trapchoices
 			if(!choice)
 				to_chat(M, "<span class='xenonotice'>We decide to not trap [src].</span>")
