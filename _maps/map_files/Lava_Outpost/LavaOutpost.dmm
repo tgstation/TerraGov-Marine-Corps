@@ -1878,7 +1878,7 @@
 	id = "secure_blast4";
 	name = "Vault Access";
 	pixel_x = 25;
-	resistance_flags = RESIST_ALL
+	resistance_flags = 3
 	},
 /turf/open/lavaland/lava,
 /area/lavaland/engie/engine)
@@ -3248,7 +3248,7 @@
 	id = "secure_blast5";
 	name = "Vault Access";
 	pixel_y = 25;
-	resistance_flags = RESIST_ALL
+	resistance_flags = 3
 	},
 /turf/open/lavaland/basalt,
 /area/lavaland/engie/engine)
