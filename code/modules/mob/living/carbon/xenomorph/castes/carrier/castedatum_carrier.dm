@@ -47,7 +47,7 @@
 
 	// *** Carrier Abilities *** //
 	huggers_max = 4
-	hugger_delay = 2.5 SECONDS
+	hugger_delay = 7 SECONDS
 	eggs_max = 3
 
 	actions = list(
@@ -99,7 +99,7 @@
 
 	// *** Carrier Abilities *** //
 	huggers_max = 5
-	hugger_delay = 2.5 SECONDS
+	hugger_delay = 6 SECONDS
 	eggs_max = 4
 
 /datum/xeno_caste/carrier/elder
@@ -135,7 +135,7 @@
 
 	// *** Carrier Abilities *** //
 	huggers_max = 6
-	hugger_delay = 2 SECONDS
+	hugger_delay = 5 SECONDS
 	eggs_max = 5
 
 /datum/xeno_caste/carrier/ancient
@@ -171,6 +171,6 @@
 
 	// *** Carrier Abilities *** //
 	huggers_max = 7
-	hugger_delay = 1.5 SECONDS
+	hugger_delay = 4 SECONDS
 	eggs_max = 6
 
