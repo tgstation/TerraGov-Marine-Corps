@@ -246,7 +246,7 @@
 			to_chat(M, "<span class='xenonotice'>We remove the gas from [src].</span>")
 			return
 		if(!gastrap && !hugger)
-			if(M.resting || M.incapacitated)
+			if(M.resting)
 				return
 			if(get_dist(get_turf(M), get_turf(src)) >= 2)
 				to_chat(M, "<span class='xenonotice'>We need to be closer to [src].</span>")
