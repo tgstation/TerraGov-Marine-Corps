@@ -1,0 +1,12 @@
+//NATSA Spacesuits
+/obj/item/clothing/head/helmet/space/soviet/natsa
+	name = "natsa space helmet"
+	desc = "Through this, blue and white flags just look like flags!"
+	icon_state = "natsa_space_helmet"
+	sprite_sheet_id = 1
+
+/obj/item/clothing/suit/space/soviet/natsa
+	name = "natsa space suit"
+	desc = "The red shall be NATOs!"
+	icon_state = "natsa_space_suit"
+	sprite_sheet_id = 1
