@@ -74,3 +74,7 @@
 
 /obj/item/tank/return_gas()
 	return gas_type
+
+/obj/item/tank/proc/remove_pressure(remove)
+	pressure = max(0, pressure - remove)
+	distribute_pressure = min(distribute_pressure, pressure)
