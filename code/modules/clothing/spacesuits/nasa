@@ -1,0 +1,5 @@
+/obj/item/clothing/suit/space/soviet/nasa
+	name = "NATSA space suit"
+	desc = "The red shall be ours today!"
+	icon_state = "soviet_space_suit"
+	sprite_sheet_id = 1
