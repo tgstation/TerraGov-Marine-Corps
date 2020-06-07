@@ -208,6 +208,7 @@
 	weapon_list = list(	/obj/item/weapon/gun/energy/lasgun/M43/practice,
 						/obj/item/weapon/gun/flare,
 						/obj/item/weapon/gun/pistol/standard_pistol,
+						/obj/item/weapon/gun/pistol/standard_pocketpistol,
 						/obj/item/weapon/gun/pistol/m4a3,
 						/obj/item/weapon/gun/pistol/m1911,
 						/obj/item/weapon/gun/pistol/standard_heavypistol,
