@@ -5,8 +5,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	item_state = "jetpack"
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
-
-
+	
 /obj/item/tank/jetpack/void
 	name = "Void Jetpack (Oxygen)"
 	desc = "It works well in a void."
@@ -27,3 +26,13 @@
 	distribute_pressure = 0
 	icon_state = "jetpack-black"
 	item_state =  "jetpack-black"
+
+/obj/item/tank/jetpack/oxygen/combat
+	name = "PLSS"
+	desc = "A bulky spacesuit backpack with high-powered maneuvering thrusters."
+	icon_state = "PLSS"
+	item_state =  "PLSS"
+
+/obj/item/tank/jetpack/oxygen/combat/Initialize()
+	. = ..()
+	AddComponent(/datum/component/jetpack_dash)

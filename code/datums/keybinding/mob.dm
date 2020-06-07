@@ -4,8 +4,6 @@
 
 
 /datum/keybinding/mob/face_north
-	hotkey_keys = list("CtrlW", "CtrlNorth")
-	classic_keys = list("CtrlNorth")
 	name = "face_north"
 	full_name = "Face North"
 	description = ""
@@ -21,8 +19,6 @@
 
 
 /datum/keybinding/mob/face_east
-	hotkey_keys = list("CtrlD", "CtrlEast")
-	classic_keys = list("CtrlEast")
 	name = "face_east"
 	full_name = "Face East"
 	description = ""
@@ -38,8 +34,6 @@
 
 
 /datum/keybinding/mob/face_south
-	hotkey_keys = list("CtrlS", "CtrlSouth")
-	classic_keys = list("CtrlSouth")
 	name = "face_south"
 	full_name = "Face South"
 	description = ""
@@ -54,8 +48,6 @@
 	return TRUE
 
 /datum/keybinding/mob/face_west
-	hotkey_keys = list("CtrlA", "CtrlWest")
-	classic_keys = list("CtrlWest")
 	name = "face_west"
 	full_name = "Face West"
 	description = ""
