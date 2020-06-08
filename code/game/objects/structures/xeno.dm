@@ -333,15 +333,13 @@
 
 /obj/structure/mineral_door/resin/Destroy()
 	relativewall_neighbours()
-	var/turf/U = loc
-	spawn(0)
-		var/turf/T
-		for(var/i in GLOB.cardinals)
-			T = get_step(U, i)
-			if(!istype(T))
-				continue
-			for(var/obj/structure/mineral_door/resin/R in T)
-				R.check_resin_support()
+	var/turf/T
+	for(var/i in GLOB.cardinals)
+		T = get_step(loc, i)
+		if(!istype(T))
+			continue
+		for(var/obj/structure/mineral_door/resin/R in T)
+			INVOKE_NEXT_TICK(R, .proc/check_resin_support)
 	return ..()
 
 
