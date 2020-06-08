@@ -1,4 +1,4 @@
-//NATSA Spacesuits
+//NATSF Spacesuits
 /obj/item/clothing/head/helmet/space/soviet/natsf
 	name = "NATSF space helmet"
 	desc = "Through this, blue and white flags just look like flags!"
