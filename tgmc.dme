@@ -975,6 +975,7 @@
 #include "code\modules\clothing\spacesuits\captain.dm"
 #include "code\modules\clothing\spacesuits\ert.dm"
 #include "code\modules\clothing\spacesuits\miscellaneous.dm"
+#include "code\modules\clothing\spacesuits\natsf.dm"
 #include "code\modules\clothing\spacesuits\rig.dm"
 #include "code\modules\clothing\spacesuits\soviet.dm"
 #include "code\modules\clothing\spacesuits\spacesuits.dm"
