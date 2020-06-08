@@ -10,3 +10,4 @@
 	desc = "The red shall be NATOs!"
 	icon_state = "natsa_space_suit"
 	sprite_sheet_id = 1
+	

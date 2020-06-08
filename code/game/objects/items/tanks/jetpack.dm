@@ -42,3 +42,4 @@
 	desc = "A bulky spacesuit backpack with high-powered maneuvering thrusters. Has NATSA markings"
 	icon_state = "NPLSS"
 	item_state =  "NPLSS"
+	
