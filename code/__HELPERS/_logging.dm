@@ -174,6 +174,9 @@
 	SEND_TEXT(world.log, text)
 
 
+/proc/log_debug(text)
+	WRITE_LOG(GLOB.world_debug_log, "DEBUG: [text]")
+
 /* Log to the logfile only. */
 /proc/log_runtime(text)
 	WRITE_LOG(GLOB.world_runtime_log, text)
