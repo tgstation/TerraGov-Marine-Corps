@@ -229,6 +229,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/bullet/pistol/tiny
 	name = "light pistol bullet"
 	hud_state = "pistol_light"
+	damage = 15
+	penetration = 5
+	accurate_range = 5
+	sundering = 0.5
+
+/datum/ammo/bullet/pistol/tiny/ap
+	name = "light pistol bullet"
+	hud_state = "pistol_lightap"
+	damage = 15
+	penetration = 15 //So it can actually hurt something.
+	accurate_range = 5
+	sundering = 0.5
+
 
 /datum/ammo/bullet/pistol/tranq
 	name = "tranq bullet"
