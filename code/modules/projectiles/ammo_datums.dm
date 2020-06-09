@@ -600,13 +600,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
-	damage = 35
+	damage = 40
 	damage_falloff = 4
 	penetration = 0
 
 
 /datum/ammo/bullet/shotgun/buckshot/on_hit_mob(mob/M,obj/projectile/P)
-	knockback(M,P)
+	staggerstun(M, P, weaken = 1, stagger = 1, knockback = 2, slowdown = 0.5, max_range = 3)
 
 /datum/ammo/bullet/shotgun/spread
 	name = "additional buckshot"
@@ -616,7 +616,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
-	damage = 30
+	damage = 40
 	damage_falloff = 4
 	penetration = 0
 
