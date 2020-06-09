@@ -56,6 +56,12 @@
 
 	var/distance_travelled = 0
 
+	/// How maany times this projectile has bounced off something
+	var/ricochet_count = 0
+
+	/// The maximum number of times this can bounce
+	var/ricochet_limit = 0
+
 	var/projectile_speed = 1 //Tiles travelled per full tick.
 	var/armor_type = null
 
@@ -83,12 +89,12 @@
 
 /obj/projectile/Crossed(atom/movable/AM) //A mob moving on a tile with a projectile is hit by it.
 	. = ..()
-	if(AM in permutated) //If we've already handled this atom, don't do it again.
+	if(permutated[AM]) //If we've already handled this atom, don't do it again.
 		return
 	if(AM.projectile_hit(src))
 		AM.do_projectile_hit(src)
 		return
-	permutated += AM //Don't want to hit them again.
+	permutated[AM] = TRUE //Don't want to hit them again.
 
 
 /obj/projectile/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -128,10 +134,10 @@
 		proj_max_range = range
 	if(shooter)
 		firer = shooter
-		permutated += firer //Don't hit the shooter
+		permutated[firer] = TRUE //Don't hit the shooter
 	if(source)
 		shot_from = source
-	permutated += src //Don't try to hit self.
+	permutated[src] = TRUE
 	if(!isturf(loc))
 		forceMove(get_turf(src))
 	starting_turf = loc
@@ -500,9 +506,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				return TRUE
 
 	for(var/i in turf_to_scan)
-		if(i in permutated) //If we've already handled this atom, don't do it again.
+		if(permutated[i]) //If we've already handled this atom, don't do it again.
 			continue
-		permutated += i //Don't want to hit them again, no matter what the outcome.
+		permutated[i] = TRUE //Don't want to hit them again, no matter what the outcome.
 
 		var/atom/movable/thing_to_hit = i
 
@@ -643,7 +649,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 				. += proj.distance_travelled * shooter_human.marksman_aura * 0.35
 
 	. -= GLOB.base_miss_chance[proj.def_zone] //Reduce accuracy based on spot.
-	
+
 	#if DEBUG_HIT_CHANCE
 	to_chat(world, "<span class='debuginfo'>Final accuracy is <b>[.]</b></span>")
 	#endif
@@ -888,7 +894,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 	var/list/livings_list = list() //Let's built a list of mobs on the bullet turf and grab one.
 	for(var/mob/living/L in src)
-		if(L in proj.permutated)
+		if(proj.permutated[L])
 			continue
 		livings_list += L
 

@@ -2091,12 +2091,6 @@
 	pixel_z = -1
 	},
 /area/mainship/shipboard/weapon_room)
-"agu" = (
-/obj/effect/landmark/start/job/masteratarms,
-/turf/open/floor/mainship{
-	pixel_z = -1
-	},
-/area/mainship/command/cic)
 "agv" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/shuttle/shuttle_control/dropship2,
@@ -2402,12 +2396,6 @@
 	pixel_z = -1
 	},
 /area/mainship/shipboard/weapon_room)
-"ahp" = (
-/obj/effect/landmark/start/job/commandmasteratarms,
-/turf/open/floor/mainship{
-	pixel_z = -1
-	},
-/area/mainship/command/cic)
 "ahq" = (
 /obj/machinery/computer/station_alert,
 /obj/structure/table/mainship,
@@ -8607,9 +8595,9 @@ amH
 afp
 afq
 afq
-agu
+afq
 agO
-ahp
+afq
 afq
 afq
 ahX

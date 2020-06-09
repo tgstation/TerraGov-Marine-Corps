@@ -3532,7 +3532,6 @@
 /area/mainship/shipboard/starboard_missiles)
 "mE" = (
 /obj/structure/bed/chair/office/dark,
-/obj/effect/landmark/start/job/commandmasteratarms,
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -5830,7 +5829,6 @@
 /area/mainship/hallways/starboard_umbilical)
 "ud" = (
 /obj/structure/bed/chair/office/dark,
-/obj/effect/landmark/start/job/masteratarms,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_umbilical)
 "ue" = (
