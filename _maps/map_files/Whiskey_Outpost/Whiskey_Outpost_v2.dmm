@@ -175,6 +175,9 @@
 	pixel_z = -7
 	},
 /obj/machinery/marine_turret/premade,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "aR" = (
@@ -858,8 +861,11 @@
 	},
 /area/whiskey_outpost)
 "dd" = (
-/obj/structure/sign/safety/medical,
-/turf/closed/wall/r_wall,
+/obj/machinery/body_scanconsole,
+/obj/structure/sign/safety/medical_supplies{
+	dir = 1
+	},
+/turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "de" = (
 /obj/structure/barricade/sandbags{
@@ -943,16 +949,9 @@
 	dir = 5
 	},
 /area/whiskey_outpost)
-"dt" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/bed/roller,
-/turf/open/floor/plating/asteroidfloor,
-/area/whiskey_outpost)
 "dv" = (
 /obj/structure/bed/roller,
-/obj/machinery/light{
+/obj/structure/sign/safety/medical{
 	dir = 1
 	},
 /turf/open/floor/plating/asteroidfloor,
@@ -6166,7 +6165,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/east)
 "Pc" = (
-/obj/machinery/door/window/westright,
+/obj/machinery/door/window/eastleft,
 /turf/open/floor/mainship/cargo,
 /area/whiskey_outpost)
 "Pg" = (
@@ -6518,6 +6517,9 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "Xz" = (
@@ -6622,6 +6624,17 @@
 /turf/open/floor/mainship/emerald{
 	dir = 8
 	},
+/area/whiskey_outpost)
+"Ze" = (
+/obj/machinery/vending/marine,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "Zj" = (
 /obj/machinery/miner/damaged/platinum,
@@ -16027,7 +16040,7 @@ ac
 ac
 ac
 ac
-dt
+dg
 bR
 bR
 aw
@@ -16638,8 +16651,8 @@ bk
 bk
 bk
 bU
-dd
-dt
+ac
+dv
 bR
 lE
 bR
@@ -16938,8 +16951,8 @@ ac
 ac
 bd
 bd
-bz
-gw
+bd
+dd
 bk
 bk
 bk
@@ -18015,7 +18028,7 @@ cv
 bA
 cE
 bk
-dd
+ac
 dv
 bR
 bR
@@ -18475,7 +18488,7 @@ cg
 cF
 cC
 ac
-Jb
+Ze
 bR
 aw
 bR
@@ -18628,7 +18641,7 @@ ac
 ac
 ac
 ac
-dv
+dg
 bR
 bR
 bR
