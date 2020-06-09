@@ -286,18 +286,19 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/attached_gun/flamer,
 						/obj/item/attachable/attached_gun/shotgun)
 
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
+	attachable_offset = list("muzzle_x" = 42, "muzzle_y" = 21,"rail_x" = 20, "rail_y" = 22, "under_x" = 26, "under_y" = 14, "stock_x" = 13, "stock_y" = 16)
 	starting_attachment_types = list(/obj/item/attachable/stock/t39stock)
 
 	fire_delay = 14 //one shot every 1.4 seconds.
 	accuracy_mult = 1.20
 	accuracy_mult_unwielded = 0.65
-	scatter = 20
-	scatter_unwielded = 40
+	scatter = 10
+	scatter_unwielded = 30
 	damage_mult = 0.7  //30% less damage. Faster firerate.
 	recoil = 0 //It has a stock on the sprite.
 	recoil_unwielded = 2
 	aim_slowdown = 0.6
+	wield_delay = 1 SECONDS
 
 //-------------------------------------------------------
 //DOUBLE SHOTTY
