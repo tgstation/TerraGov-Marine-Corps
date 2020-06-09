@@ -39,3 +39,6 @@ endmap
 
 map research_outpost
 endmap
+
+map marine_hq
+endmap
