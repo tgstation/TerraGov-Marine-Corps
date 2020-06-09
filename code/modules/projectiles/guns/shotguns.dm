@@ -264,6 +264,7 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/combat/standardmarine
 	name = "\improper T-39 combat shotgun"
 	desc = "The T-39 combat shotgun is a semi automatic shotgun used by breachers. Uses 12 gauge shells."
+	force = 20 //Has a stock already
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t39"
