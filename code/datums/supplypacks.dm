@@ -875,33 +875,18 @@ ARMOR
 
 /datum/supply_packs/armor/modular/helmet/heavy
 	name = "Jaeger heavy helmets"
-	contains = list(
-		/obj/item/clothing/head/modular/heavy,
-		/obj/item/clothing/head/modular/heavy,
-		/obj/item/clothing/head/modular/heavy,
-		/obj/item/clothing/head/modular/heavy,
-	)
-	cost = 3
+	contains = list(/obj/item/clothing/head/modular/heavy)
+	cost = 1
 
 /datum/supply_packs/armor/modular/helmet/medium
 	name = "Jaeger medium helmets"
-	contains = list(
-		/obj/item/clothing/head/modular/medium,
-		/obj/item/clothing/head/modular/medium,
-		/obj/item/clothing/head/modular/medium,
-		/obj/item/clothing/head/modular/medium,
-	)
-	cost = 3
+	contains = list(/obj/item/clothing/head/modular/medium)
+	cost = 1
 
 /datum/supply_packs/armor/modular/helmet/light
 	name = "Jaeger light helmets"
-	contains = list(
-		/obj/item/clothing/head/modular/light,
-		/obj/item/clothing/head/modular/light,
-		/obj/item/clothing/head/modular/light,
-		/obj/item/clothing/head/modular/light,
-	)
-	cost = 3
+	contains = list(/obj/item/clothing/head/modular/light)
+	cost = 1
 
 /datum/supply_packs/armor/modular/storage
 	name = "Jaeger assorted storage modules"
