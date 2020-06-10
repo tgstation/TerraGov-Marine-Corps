@@ -474,17 +474,10 @@
 
 //////////////////////////////////////////////////////////
 
-
-
-GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
-	/area/shuttle/drop1/lz1,
-	/area/shuttle/drop2/lz2,
-	/area/sulaco/hangar)))
-
 //Check if you can plant weeds on that turf.
 //Does NOT return a message, just a 0 or 1.
 /turf/proc/is_weedable()
-	return !density && !is_type_in_typecache((get_area(src)), GLOB.unweedable_areas)
+	return !density
 
 /turf/open/space/is_weedable()
 	return FALSE
