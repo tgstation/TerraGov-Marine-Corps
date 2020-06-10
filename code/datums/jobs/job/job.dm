@@ -5,7 +5,6 @@ GLOBAL_LIST_INIT(exp_jobsmap, list(
 	EXP_TYPE_MEDICAL = list("titles" = GLOB.jobs_medical),
 	EXP_TYPE_MARINES = list("titles" = GLOB.jobs_marines),
 	EXP_TYPE_REQUISITIONS = list("titles" = GLOB.jobs_requisitions),
-	EXP_TYPE_POLICE = list("titles" = GLOB.jobs_police)
 ))
 
 GLOBAL_LIST_INIT(exp_specialmap, list(

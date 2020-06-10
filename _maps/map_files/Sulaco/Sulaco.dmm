@@ -9923,7 +9923,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 8
 	},
-/obj/effect/landmark/start/job/masteratarms,
 /turf/open/floor/tile/lightred/full,
 /area/sulaco/brig)
 "aDv" = (
@@ -10380,10 +10379,6 @@
 	dir = 6
 	},
 /area/sulaco/marine/delta)
-"aEW" = (
-/obj/effect/landmark/start/job/masteratarms,
-/turf/open/floor/tile/lightred/full,
-/area/sulaco/brig)
 "aEX" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -11275,10 +11270,6 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/turf/open/floor/tile/lightred/full,
-/area/sulaco/brig)
-"aHF" = (
-/obj/effect/landmark/start/job/commandmasteratarms,
 /turf/open/floor/tile/lightred/full,
 /area/sulaco/brig)
 "aHG" = (
@@ -13590,14 +13581,6 @@
 	},
 /turf/open/floor,
 /area/sulaco/marine/alpha)
-"aOS" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2
-	},
-/obj/docking_port/stationary/marine_dropship/crash_target,
-/turf/open/floor/tile/lightred/full,
-/area/sulaco/brig)
 "aOT" = (
 /obj/structure/ob_ammo/ob_fuel,
 /obj/structure/ob_ammo/ob_fuel,
@@ -17910,6 +17893,10 @@
 /obj/structure/largecrate/guns,
 /turf/open/floor/plating/plating_catwalk,
 /area/sulaco/cargo)
+"smG" = (
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/closed/wall/sulaco,
+/area/sulaco/bridge/quarters)
 "swp" = (
 /obj/structure/largecrate/supply/supplies/flares,
 /turf/open/floor/mainship/mono,
@@ -42496,7 +42483,7 @@ aEx
 aGE
 aHB
 aIA
-aHF
+aEx
 aEx
 aEx
 aFJ
@@ -45313,7 +45300,7 @@ asQ
 atM
 ayt
 awS
-asQ
+smG
 azO
 aBf
 aoi
@@ -45323,7 +45310,7 @@ aFt
 aDt
 aHH
 aEx
-aOS
+aJH
 aEx
 aDG
 aEx
@@ -46093,9 +46080,9 @@ aEC
 aFN
 aGL
 aDu
-aEW
-aEW
-aEW
+aEx
+aEx
+aEx
 aDG
 aEx
 aFQ

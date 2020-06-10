@@ -42,3 +42,6 @@ endmap
 
 map lava_outpost
 endmap
+
+map marine_hq
+endmap

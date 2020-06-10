@@ -14,8 +14,6 @@
 		/datum/job/terragov/command/fieldcommander = 1,
 		/datum/job/terragov/command/staffofficer = 4,
 		/datum/job/terragov/command/pilot = 2,
-		/datum/job/terragov/police/chief = 1,
-		/datum/job/terragov/police/officer = 5,
 		/datum/job/terragov/engineering/chief = 1,
 		/datum/job/terragov/engineering/tech = 1,
 		/datum/job/terragov/requisitions/officer = 1,

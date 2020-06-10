@@ -118,7 +118,7 @@
 //357 REVOLVER //
 
 /obj/item/ammo_magazine/internal/revolver/small
-	default_ammo = /datum/ammo/bullet/revolver/small
+	default_ammo = /datum/ammo/bullet/revolver/ricochet/four
 	caliber = ".357"
 	gun_type = /obj/item/weapon/gun/revolver/small
 
