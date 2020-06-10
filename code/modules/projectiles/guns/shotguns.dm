@@ -287,7 +287,7 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/attached_gun/flamer,
 						/obj/item/attachable/attached_gun/shotgun)
 
-	attachable_offset = list("muzzle_x" = 42, "muzzle_y" = 21,"rail_x" = 20, "rail_y" = 22, "under_x" = 26, "under_y" = 14, "stock_x" = 13, "stock_y" = 16)
+	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 20,"rail_x" = 18, "rail_y" = 20, "under_x" = 23, "under_y" = 12, "stock_x" = 13, "stock_y" = 14)
 	starting_attachment_types = list(/obj/item/attachable/stock/t39stock)
 
 	fire_delay = 14 //one shot every 1.4 seconds.
