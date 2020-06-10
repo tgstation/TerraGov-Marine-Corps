@@ -504,10 +504,6 @@
 		return FALSE
 
 
-/turf/closed/wall/is_weedable()
-	return !is_type_in_typecache((get_area(src)), GLOB.unweedable_areas) //so we can spawn weeds on the walls
-
-
 /turf/proc/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
 	var/has_obstacle
 	for(var/obj/O in contents)
