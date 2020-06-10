@@ -315,6 +315,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/hunter, location, null, delmob)
 			if("carrier")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/carrier, location, null, delmob)
+			if("trapper")
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/trapper, location, null, delmob)
 			if("hivelord")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/hivelord, location, null, delmob)
 			if("praetorian")

@@ -799,7 +799,7 @@ TUNNEL
 		ccharging = FALSE
 		update_icon()
 		to_chat(M,"<span class='xenonotice'>You fill up by one [src].</span>")
-	else 
+	else
 		to_chat(M, "<span class='xenowarning'>We begin removing [src]...</span>")
 		if(do_after(M, 5 SECONDS, FALSE, src, BUSY_ICON_BUILD))
 			deconstruct(FALSE)
@@ -820,15 +820,116 @@ TUNNEL
 		return
 	if(isxeno(C))
 		if(!(C.on_fire))
-			return 
+			return
 		C.ExtinguishMob()
 		charges--
 		update_icon()
 		return
-	else 
+	else
 		if(!charges)
 			return
 		C.adjustToxLoss(charges * 15)
 		charges = 0
 		update_icon()
 		return
+
+/*
+Tripwire
+*/
+/obj/effect/alien/resin/tripwire
+	name = "tripwire"
+	desc = "A structure that trips marines."
+	icon_state = "tripwire"
+	density = FALSE
+	opacity = FALSE
+	anchored = TRUE
+	max_integrity = 5
+	layer = RESIN_STRUCTURE_LAYER
+
+
+/obj/effect/alien/resin/tripwire/HasProximity(atom/movable/AM)
+	var/mob/living/carbon/C = AM
+	if(!ishuman(C) || C.stat == DEAD)
+		return
+	var/mob/living/carbon/human/H = C
+	H.Knockdown(10)
+	qdel(src)
+
+/obj/effect/alien/resin/tripwire/Crossed(atom/A)
+	. = ..()
+	if(iscarbon(A))
+		HasProximity(A)
+
+/*
+Blurrer
+*/
+/obj/effect/alien/resin/blurrer
+	name = "blurrer"
+	desc = "A structure that blurs the vision of marines."
+	icon_state = "blurrer"
+	var/blur_state = "blurreron"
+	density = FALSE
+	opacity = FALSE
+	anchored = TRUE
+	max_integrity = 5
+	layer = RESIN_STRUCTURE_LAYER
+
+/obj/effect/alien/resin/blurrer/Initialize()
+	. = ..()
+	START_PROCESSING(SSobj, src)
+
+/obj/effect/alien/resin/blurrer/Destroy()
+	. = ..()
+	STOP_PROCESSING(SSobj, src)
+
+/obj/effect/alien/resin/blurrer/process()
+	for(var/mob/living/carbon/CM in viewers(src))
+		if(!isxeno(CM))
+			flick(blur_state, src)
+			flash_lighting_fx()
+			CM.blur_eyes(10)
+
+/*
+Sensor
+*/
+/obj/effect/alien/resin/sensor
+	name = "sensor"
+	desc = "A structure to detect for any hosts nearby."
+	icon_state = "sensor"
+	var/sense_state = "sensoron"
+	density = FALSE
+	opacity = FALSE
+	anchored = TRUE
+	max_integrity = 5
+	layer = RESIN_STRUCTURE_LAYER
+
+	var/hostcount = 0
+	var/cooldown = FALSE
+	var/mob/living/builder = null
+
+/obj/effect/alien/resin/sensor/Crossed(atom/movable/O)
+	. = ..()
+	var/mob/living/carbon/CM = O
+	if(!CM)
+		return
+	if(isxeno(CM))
+		return
+	if(cooldown)
+		return
+	flick(sense_state, src)
+	for(var/mob/living/carbon/human/H in viewers(src))
+		if(H.stat == DEAD)
+			continue
+		hostcount++
+	var/area/A = get_area(src)
+	if(builder.stat != DEAD)
+		to_chat(builder, "<span class='xenonotice'>You sense [hostcount] host(s) at [A].</span>")
+	hostcount = 0
+	cooldown = TRUE
+	addtimer(CALLBACK(src, .proc/cooldown), 30 SECONDS)
+
+/obj/effect/alien/resin/sensor/proc/cooldown()
+	cooldown = FALSE
+
+
+
