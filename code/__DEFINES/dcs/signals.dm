@@ -176,6 +176,7 @@
 
 #define COMSIG_CLOTHING_MECHANICS_INFO "clothing_mechanics_info"	//from base of /obj/item/clothing/get_mechanics_info()
 	#define COMPONENT_CLOTHING_MECHANICS_TINTED	(1<<0)
+#define COMSIG_TOGGLE_JETPACK_DASH "toggle_jetpack_dash"		//from the /obj/item/tank/jetpack/oxygen/combat/attack_self()
 
 // /obj/item/weapon/gun signals
 #define COMSIG_GUN_FIRE "gun_fire"

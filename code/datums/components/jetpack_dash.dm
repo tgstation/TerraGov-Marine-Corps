@@ -5,13 +5,20 @@
 	var/dash_distance 	= 2  	// turfs to move in one dash
 	var/dashing 		= 0   	// busy flag
 	var/dash_cooldown 	= 10  	// ds until can dash again
+	var/active			= FALSE	// is the backpack currently active?
 
 /datum/component/jetpack_dash/Initialize()
 	. = ..()
 	if(!istype(parent, expected_parent))
 		return COMPONENT_INCOMPATIBLE
+	RegisterSignal(parent, COMSIG_TOGGLE_JETPACK_DASH, .proc/toggle_backpack)
+
+/datum/component/jetpack_dash/proc/toggle_backpack()
+	active = !active
 
 /datum/component/jetpack_dash/proc/dash(mob/victim, direction)
+	if(!active)
+		return FALSE
 	if(!istype(victim))
 		return FALSE
 	if(dashing)
