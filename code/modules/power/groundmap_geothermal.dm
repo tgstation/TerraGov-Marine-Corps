@@ -101,6 +101,9 @@
 
 /obj/machinery/power/geothermal/attack_alien(mob/living/carbon/xenomorph/X)
 	. = ..()
+	// Can't damage a broken generator
+	if(buildstate)
+		return
 	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	play_attack_sound(1)
 	X.visible_message("<span class='danger'>\The [X] slashes at \the [src], tearing at it's components!</span>",
