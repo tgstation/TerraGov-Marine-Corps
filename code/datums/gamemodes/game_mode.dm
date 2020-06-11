@@ -202,15 +202,20 @@
 
 /datum/game_mode/proc/announce_bioscans(show_locations = TRUE, delta = 2, announce_humans = TRUE, announce_xenos = TRUE, send_fax = TRUE)
 	var/list/xenoLocationsP = list()
+	var/list/xenoLocationsA = list()
 	var/list/xenoLocationsS = list()
 	var/list/hostLocationsP = list()
+	var/list/hostLocationsA = list()
 	var/list/hostLocationsS = list()
 	var/numHostsPlanet	= 0
 	var/numHostsShip	= 0
+	var/numHostsAlamo   = 0
 	var/numXenosPlanet	= 0
 	var/numXenosShip	= 0
+	var/numXenosAlamo   = 0
 	var/numLarvaPlanet  = 0
-	var/numLarvaShip    = 0
+	var/numLarvaShip    = 0	
+	var/numLarvaAlamo   = 0
 
 	for(var/i in GLOB.alive_xeno_list)
 		var/mob/living/carbon/xenomorph/X = i
@@ -225,6 +230,11 @@
 				numLarvaShip++
 			numXenosShip++
 			xenoLocationsS += A
+		else if(is_reserved_level(A?.z))
+			if(isxenolarva(X))
+				numLarvaAlamo++
+			numXenosAlamo++
+			xenoLocationsA += A
 
 	for(var/i in GLOB.alive_human_list)
 		var/mob/living/carbon/human/H = i
@@ -235,41 +245,51 @@
 		else if(is_mainship_level(A?.z))
 			numHostsShip++
 			hostLocationsS += A
-
+		else if(is_reserved_level(A?.z))
+			numHostsAlamo++
+			hostLocationsA += A
 
 	//Adjust the randomness there so everyone gets the same thing
 	var/numHostsShipr = max(0, numHostsShip + rand(-delta, delta))
+	var/numHostsAlamor = max(0, numHostsAlamo + rand(-delta, delta))
 	var/numXenosPlanetr = max(0, numXenosPlanet + rand(-delta, delta))
+	var/numXenosAlamor = max(0, numXenosAlamo + rand(-delta, delta))
 	var/hostLocationP
 	var/hostLocationS
-
+	var/hostLocationA
 	if(length(hostLocationsP))
 		hostLocationP = pick(hostLocationsP)
 
 	if(length(hostLocationsS))
 		hostLocationS = pick(hostLocationsS)
 
+	if(length(hostLocationsA))
+		hostLocationA = pick(hostLocationsA)
+	
 	var/sound/S = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50)
 	if(announce_xenos)
 		for(var/i in GLOB.alive_xeno_list)
 			var/mob/M = i
 			SEND_SOUND(M, S)
 			to_chat(M, "<span class='xenoannounce'>The Queen Mother reaches into your mind from worlds away.</span>")
-			to_chat(M, "<span class='xenoannounce'>To my children and their Queen. I sense [numHostsShipr ? "approximately [numHostsShipr]":"no"] host[numHostsShipr > 1 ? "s":""] in the metal hive[show_locations && hostLocationS ? ", including one in [hostLocationS]":""] and [numHostsPlanet ? "[numHostsPlanet]":"none"] scattered elsewhere[show_locations && hostLocationP ? ", including one in [hostLocationP]":""].</span>")
+			to_chat(M, "<span class='xenoannounce'>To my children and their Queen. I sense [numHostsShipr ? "approximately [numHostsShipr]":"no"] host[numHostsShipr > 1 ? "s":""] in the metal hive[show_locations && hostLocationS ? ", including one in [hostLocationS]":""] , [numHostsPlanet ? "[numHostsPlanet]":"none"] scattered elsewhere[show_locations && hostLocationP ? ", including one in [hostLocationP]":""] and [numHostsAlamor ? "approximately [numHostsAlamor]":"no"] host[numHostsAlamor > 1 ? "s":""] on the metal bird in transit.</span>")
 
 	var/xenoLocationP
 	var/xenoLocationS
-
+	var/xenoLocationA
 	if(length(xenoLocationsP))
 		xenoLocationP = pick(xenoLocationsP)
 
 	if(length(xenoLocationsS))
 		xenoLocationS = pick(xenoLocationsS)
 
+	if(length(xenoLocationsA))
+		xenoLocationA = pick(xenoLocationsA)
+
 	var/name = "[MAIN_AI_SYSTEM] Bioscan Status"
 	var/input = {"Bioscan complete.
 
-Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signature[numXenosShip > 1 ? "s":""] present on the ship[show_locations && xenoLocationS ? " including one in [xenoLocationS]" : ""] and [numXenosPlanetr ? "approximately [numXenosPlanetr]":"no"] signature[numXenosPlanetr > 1 ? "s":""] located elsewhere[show_locations && xenoLocationP ? ", including one in [xenoLocationP]":""]."}
+Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signature[numXenosShip > 1 ? "s":""] present on the ship[show_locations && xenoLocationS ? " including one in [xenoLocationS]" : ""] , [numXenosPlanetr ? "approximately [numXenosPlanetr]":"no"] signature[numXenosPlanetr > 1 ? "s":""] located elsewhere[show_locations && xenoLocationP ? ", including one in [xenoLocationP]":""] and [numXenosAlamo ? "[numXenosAlamo]" : "no"] unknown lifeform signature[numXenosAlamo > 1 ? "s":""] on the Alamo in transit."}
 
 	if(announce_humans)
 		priority_announce(input, name, sound = 'sound/AI/bioscan.ogg')
@@ -278,7 +298,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 		var/fax_message = generate_templated_fax("Combat Information Center", "[MAIN_AI_SYSTEM] Bioscan Status", "", input, "", MAIN_AI_SYSTEM)
 		send_fax(null, null, "Combat Information Center", "[MAIN_AI_SYSTEM] Bioscan Status", fax_message, FALSE)
 
-	log_game("Bioscan. Humans: [numHostsPlanet] on the planet[hostLocationP ? " Location:[hostLocationP]":""] and [numHostsShip] on the ship.[hostLocationS ? " Location: [hostLocationS].":""] Xenos: [numXenosPlanetr] on the planet and [numXenosShip] on the ship[xenoLocationP ? " Location:[xenoLocationP]":""].")
+	log_game("Bioscan. Humans: [numHostsPlanet] on the planet[hostLocationP ? " Location:[hostLocationP]":""] and [numHostsShip] on the ship.[hostLocationS ? " Location: [hostLocationS].":""] Xenos: [numXenosPlanetr] on the planet and [numXenosShip] on the ship[xenoLocationP ? " Location:[xenoLocationP]":""] and [numXenosAlamo] on the Alamo in transit.")
 
 	for(var/i in GLOB.observer_list)
 		var/mob/M = i
@@ -286,10 +306,12 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 		to_chat(M, {"<span class='alert'>[numXenosPlanet] xeno\s on the planet, including [numLarvaPlanet] larva.
 [numXenosShip] xeno\s on the ship, including [numLarvaShip] larva.
 [numHostsPlanet] human\s on the planet.
-[numHostsShip] human\s on the ship.</span>"})
+[numHostsShip] human\s on the ship."
+[numHostsAlamo] human\s in transit on the Alamo.
+[numXenosAlamo] xeno\s in transit on the Alamo.</span>"})
 
-	message_admins("Bioscan - Humans: [numHostsPlanet] on the planet[hostLocationP ? ". Location:[hostLocationP]":""]. [numHostsShipr] on the ship.[hostLocationS ? " Location: [hostLocationS].":""]")
-	message_admins("Bioscan - Xenos: [numXenosPlanetr] on the planet[numXenosPlanetr > 0 && xenoLocationP ? ". Location:[xenoLocationP]":""]. [numXenosShip] on the ship.[xenoLocationS ? " Location: [xenoLocationS].":""]")
+	message_admins("Bioscan - Humans: [numHostsPlanet] on the planet[hostLocationP ? ". Location:[hostLocationP]":""]. [numHostsShipr] on the ship.[hostLocationS ? " Location: [hostLocationS].":""]. [numHostsAlamor] in transit on the Alamo.")
+	message_admins("Bioscan - Xenos: [numXenosPlanetr] on the planet[numXenosPlanetr > 0 && xenoLocationP ? ". Location:[xenoLocationP]":""]. [numXenosShip] on the ship.[xenoLocationS ? " Location: [xenoLocationS].":""] [numXenosAlamor] in transit on the Alamo.")
 
 
 /datum/game_mode/proc/setup_xeno_tunnels()
