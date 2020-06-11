@@ -262,9 +262,6 @@
 
 	if(length(hostLocationsS))
 		hostLocationS = pick(hostLocationsS)
-
-	if(length(hostLocationsA))
-		hostLocationA = pick(hostLocationsA)
 	
 	var/sound/S = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50)
 	if(announce_xenos)
@@ -276,15 +273,12 @@
 
 	var/xenoLocationP
 	var/xenoLocationS
-	
+
 	if(length(xenoLocationsP))
 		xenoLocationP = pick(xenoLocationsP)
 
 	if(length(xenoLocationsS))
 		xenoLocationS = pick(xenoLocationsS)
-
-	if(length(xenoLocationsA))
-		xenoLocationA = pick(xenoLocationsA)
 
 	var/name = "[MAIN_AI_SYSTEM] Bioscan Status"
 	var/input = {"Bioscan complete.
