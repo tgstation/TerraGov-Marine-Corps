@@ -32,9 +32,10 @@
 		return FALSE
 
 	var/obj/item/facepaint/paint = I
-	if(!paint.uses)
+	if(paint.uses < 1)
 		to_chat(user, "<span class='warning'>\the [paint] is out of color!</span>")
 		return TRUE
+	paint.uses--
 
 	var/new_color = input(user, "Pick a color", "Pick color", "") in list(
 		"black", "snow", "desert", "gray", "brown", "red", "blue", "yellow", "green", "aqua", "purple", "orange"
@@ -43,7 +44,6 @@
 	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return TRUE
 
-	paint.uses--
 	icon_state = "[initial(icon_state)]_[new_color]_icon"
 	item_state = "[initial(icon_state)]_[new_color]"
 
