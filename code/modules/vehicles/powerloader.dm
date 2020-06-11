@@ -289,7 +289,10 @@
 		update_icon()
 		user.visible_message("<span class='notice'>[user] grabs [loaded] with [src].</span>",
 		"<span class='notice'>You grab [loaded] with [src].</span>")
-
+	
+	else if(istype(target, /obj/structure/dropship_equipment))
+		return 
+	
 	else if(istype(target, /obj))
 		to_chat(user, "<span class='warning'>The powerloader is not capable of carrying this!</span>")
 		return
