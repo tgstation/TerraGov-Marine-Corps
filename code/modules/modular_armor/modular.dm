@@ -258,17 +258,11 @@
 		cut_overlays()
 
 	if(slot_chest)
-		var/image/chest = image(slot_chest.icon, slot_chest.icon_state)
-		chest.color = slot_chest.color
-		add_overlay(chest)
+		add_overlay(image(slot_chest.icon, slot_chest.icon_state))
 	if(slot_arms)
-		var/image/arms = image(slot_arms.icon, slot_arms.icon_state)
-		arms.color = slot_arms.color
-		add_overlay(arms)
+		add_overlay(image(slot_arms.icon, slot_arms.icon_state))
 	if(slot_legs)
-		var/image/legs = image(slot_legs.icon, slot_legs.icon_state)
-		legs.color = slot_legs.color
-		add_overlay(legs)
+		add_overlay(image(slot_legs.icon, slot_legs.icon_state))
 
 	// we intentionally do not add modules here
 	// as the icons are not made to be added in world, only on mobs.

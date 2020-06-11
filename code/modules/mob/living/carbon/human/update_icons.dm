@@ -697,15 +697,12 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 			// Handle attachments and modules
 			if(mod_armor.slot_chest)
 				var/image/chest = image(mod_armor.slot_chest.icon, ITEM_STATE_IF_SET(mod_armor.slot_chest))
-				chest.color = mod_armor.slot_chest.color
 				standing.overlays += chest
 			if(mod_armor.slot_arms)
 				var/image/arms = image(mod_armor.slot_arms.icon, ITEM_STATE_IF_SET(mod_armor.slot_arms))
-				arms.color = mod_armor.slot_arms.color
 				standing.overlays += arms
 			if(mod_armor.slot_legs)
 				var/image/legs = image(mod_armor.slot_legs.icon, ITEM_STATE_IF_SET(mod_armor.slot_legs))
-				legs.color = mod_armor.slot_legs.color
 				standing.overlays += legs
 			if(LAZYLEN(mod_armor.installed_modules))
 				for(var/mod in mod_armor.installed_modules)
