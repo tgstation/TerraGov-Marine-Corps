@@ -155,7 +155,7 @@
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
 	caliber = "10x27mm caseless" //codex
-	aim_slowdown = 0.05 SECONDS
+	aim_slowdown = 0.75
 	wield_delay = 0.7 SECONDS
 	force = 20
 	max_shells = 10 //codex
