@@ -99,7 +99,7 @@
 	icon_state = "heavy_chest_icon"
 	item_state = "heavy_chest"
 	soft_armor = list("melee" = 31, "bullet" = 31, "laser" = 31, "energy" = 31, "bomb" = 31, "bio" = 31, "rad" = 31, "fire" = 31, "acid" = 31)
-	slowdown = 0.4
+	slowdown = 0.6
 
 
 
