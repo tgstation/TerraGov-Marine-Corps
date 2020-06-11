@@ -57,6 +57,7 @@
 	user.visible_message("<span class='notice'>[user] carefully applies [src] on [H]'s face.</span>", \
 						"<span class='notice'>You apply [src].</span>")
 	H.lip_style = colour
+	H.alpha = max(0, H.alpha - 1) // decreases your alpha by 1
 	H.update_body()
 	uses--
 	if(!uses)
