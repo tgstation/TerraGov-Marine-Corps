@@ -398,8 +398,9 @@ Proc for attack log creation, because really why not
 */
 
 /proc/log_combat(atom/user, atom/target, what_done, atom/object, addition)
-	var/eitherIsAI = user.GetComponent(/datum/component/ai_controller) || target.GetComponent(/datum/component/ai_controller)
-	if (eitherIsAI)
+	var/signalOut = SEND_SIGNAL(user, COMSIG_COMBAT_LOG)
+	signalOut |= SEND_SIGNAL(target, COMSIG_COMBAT_LOG)
+	if (signalOut & DONT_LOG)
 		return
 
 	var/ssource = key_name(user)
