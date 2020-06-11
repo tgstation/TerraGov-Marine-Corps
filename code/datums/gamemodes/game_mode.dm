@@ -256,7 +256,7 @@
 	var/numXenosAlamor = max(0, numXenosAlamo + rand(-delta, delta))
 	var/hostLocationP
 	var/hostLocationS
-	var/hostLocationA
+
 	if(length(hostLocationsP))
 		hostLocationP = pick(hostLocationsP)
 
@@ -276,7 +276,7 @@
 
 	var/xenoLocationP
 	var/xenoLocationS
-	var/xenoLocationA
+	
 	if(length(xenoLocationsP))
 		xenoLocationP = pick(xenoLocationsP)
 
