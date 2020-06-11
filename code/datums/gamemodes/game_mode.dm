@@ -308,7 +308,7 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 [numHostsPlanet] human\s on the planet.
 [numHostsShip] human\s on the ship."
 [numHostsAlamo] human\s in transit on the Alamo.
-[numXenosAlamo] xeno\s in transit on the Alamo.</span>"})
+[numXenosAlamo] xeno\s in transit on the Alamo including [numLarvaAlamo] larva.</span>"})
 
 	message_admins("Bioscan - Humans: [numHostsPlanet] on the planet[hostLocationP ? ". Location:[hostLocationP]":""]. [numHostsShipr] on the ship.[hostLocationS ? " Location: [hostLocationS].":""]. [numHostsAlamor] in transit on the Alamo.")
 	message_admins("Bioscan - Xenos: [numXenosPlanetr] on the planet[numXenosPlanetr > 0 && xenoLocationP ? ". Location:[xenoLocationP]":""]. [numXenosShip] on the ship.[xenoLocationS ? " Location: [xenoLocationS].":""] [numXenosAlamor] in transit on the Alamo.")
