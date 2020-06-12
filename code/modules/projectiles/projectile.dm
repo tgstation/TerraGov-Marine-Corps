@@ -573,6 +573,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	. -= (proj.accuracy - (proj.accuracy * ( (proj.distance_travelled/proj.ammo.accurate_range)*(proj.distance_travelled/proj.ammo.accurate_range) ) ))
 	if(!anchored)
 		. *= 0.5 //Half the protection from unaffixed structures.
+	visible_message("<span> Coverage = [coverage].</span>")
 	return prob(.)
 
 
