@@ -63,7 +63,7 @@
 	gun_type = /obj/item/weapon/gun/rifle/standard_assaultrifle
 
 //-------------------------------------------------------
-//T64 DMR
+//T37 DMR
 
 /obj/item/ammo_magazine/rifle/standard_dmr
 	name = "\improper T-37 DMR magazine (10x27mm)"
@@ -79,17 +79,17 @@
 	name = "\improper T-64 DMR incendiary magazine (10x27mm)"
 	desc = "A 10mm incendiary DMR magazine."
 	caliber = "10x27mm incendiary caseless"
-	icon_state = "t64_incin"
+	icon_state = "t37_incin"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/standard_dmr/incendiary
 	max_rounds = 15
 	gun_type = /obj/item/weapon/gun/rifle/standard_dmr
 
 //-------------------------------------------------------
-//T37 BR
+//T64 BR
 
 /obj/item/ammo_magazine/rifle/standard_br
-	name = "\improper T-37 BR magazine (10x27mm)"
+	name = "\improper T-64 BR magazine (10x27mm)"
 	desc = "A 10mm BR magazine."
 	caliber = "10x27mm caseless"
 	icon_state = "t64"
@@ -99,7 +99,7 @@
 	gun_type = /obj/item/weapon/gun/rifle/standard_br
 
 /obj/item/ammo_magazine/rifle/standard_br/incendiary
-	name = "\improper T-37 BR incendiary magazine (10x27mm)"
+	name = "\improper T-64 BR incendiary magazine (10x27mm)"
 	desc = "A 10mm incendiary BR magazine."
 	caliber = "10x27mm incendiary caseless"
 	icon_state = "t64_incin"
