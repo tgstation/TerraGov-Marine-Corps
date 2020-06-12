@@ -199,7 +199,6 @@
 #define X_L_HAND_LAYER			5
 #define X_R_HAND_LAYER			4
 #define X_TARGETED_LAYER		3
-#define X_LEGCUFF_LAYER			2
 #define X_FIRE_LAYER			1
 #define X_TOTAL_LAYERS			9
 /////////////////////////////////

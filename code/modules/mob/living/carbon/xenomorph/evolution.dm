@@ -80,7 +80,7 @@
 		to_chat(src, "<span class='warning'>We can't evolve in our current state.</span>")
 		return
 
-	if(handcuffed || legcuffed)
+	if(handcuffed)
 		to_chat(src, "<span class='warning'>The restraints are too restricting to allow us to evolve.</span>")
 		return
 
@@ -135,7 +135,7 @@
 		to_chat(src, "<span class='warning'>We can't evolve in our current state.</span>")
 		return
 
-	if(handcuffed || legcuffed)
+	if(handcuffed)
 		to_chat(src, "<span class='warning'>The restraints are too restricting to allow us to evolve.</span>")
 		return
 
