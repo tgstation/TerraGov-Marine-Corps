@@ -473,12 +473,6 @@
 				if(!istype(src, /obj/item/restraints/handcuffs))
 					return FALSE
 				return TRUE
-			if(SLOT_LEGCUFFED)
-				if(H.legcuffed)
-					return FALSE
-				if(!istype(src, /obj/item/restraints/legcuffs))
-					return FALSE
-				return TRUE
 			if(SLOT_ACCESSORY)
 				if(!istype(src, /obj/item/clothing/tie))
 					return FALSE

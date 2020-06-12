@@ -78,12 +78,6 @@
 		overlays_standing[X_L_HAND_LAYER]	= image("icon" = spritesheet_used, "icon_state" = t_state, "layer" =-X_L_HAND_LAYER)
 		apply_overlay(X_L_HAND_LAYER)
 
-/mob/living/carbon/xenomorph/update_inv_legcuffed()
-	remove_overlay(X_LEGCUFF_LAYER)
-	if(legcuffed)
-		overlays_standing[X_LEGCUFF_LAYER]	= image("icon" = 'icons/Xeno/Effects.dmi', "icon_state" = "legcuff", "layer" =-X_LEGCUFF_LAYER)
-		apply_overlay(X_LEGCUFF_LAYER)
-
 /mob/living/carbon/xenomorph/proc/create_shriekwave()
 	overlays_standing[X_SUIT_LAYER] = image("icon"='icons/Xeno/2x2_Xenos.dmi', "icon_state" = "shriek_waves") //Ehh, suit layer's not being used.
 	apply_temp_overlay(X_SUIT_LAYER, 3 SECONDS)

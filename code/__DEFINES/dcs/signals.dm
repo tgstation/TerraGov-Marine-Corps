@@ -246,7 +246,6 @@
 #define COMSIG_LIVING_DO_RESIST			"living_do_resist"		//from the base of /mob/living/do_resist()
 #define COMSIG_LIVING_DO_MOVE_RESIST "living_do_move_resist"			//from the base of /client/Move()
 	#define COMSIG_LIVING_RESIST_SUCCESSFUL (1<<0)
-#define COMSIG_LIVING_LEGCUFFED "living_legcuffed"	//from the base of /mob/living/carbon/proc/update_legcuffed(): (obj/item/restraints/legcuffs/restraints)
 #define COMSIG_LIVING_SET_CANMOVE "living_set_canmove"			//from base of /mob/living/set_canmove(): (canmove)
 #define COMSIG_LIVING_MELEE_ALIEN_DISARMED "living_melee_alien_disarmed"	//from /mob/living/proc/attack_alien_disarm(): (mob/living/carbon/xenomorph/X)
 #define COMSIG_LIVING_SHIELDCALL "living_shieldcall"
