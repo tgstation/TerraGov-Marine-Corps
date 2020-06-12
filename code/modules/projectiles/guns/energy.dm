@@ -493,7 +493,7 @@
 /datum/lasrifle/base/heat
 	charge_cost = 80
 	ammo = /datum/ammo/energy/lasgun/M43/heat
-	fire_delay = 8
+	fire_delay = 15
 	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
 	message_to_user = "You set the Lasrifle's charge mode to wave heat."
 	icon_state = "tx73_heat"

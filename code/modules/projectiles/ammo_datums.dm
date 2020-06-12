@@ -1121,12 +1121,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_SUNDERING
 	shell_speed = 4
 	accurate_range = 15
-	damage = 25
+	damage = 20
 	penetration = 10
 	max_range = 30
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-	sundering = 1
+	sundering = 0.75
 
 /datum/ammo/energy/lasgun/M43
 	icon_state = "laser2"
