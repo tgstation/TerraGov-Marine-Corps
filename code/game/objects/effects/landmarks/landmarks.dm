@@ -301,6 +301,7 @@
 						/obj/item/weapon/gun/shotgun/pump/cmb,
 						/obj/item/weapon/gun/shotgun/pump/ksg,
 						/obj/item/weapon/gun/shotgun/pump/t35,
+						/obj/item/weapon/gun/shotgun/combat/standardmarine,
 						/obj/item/weapon/gun/flamer,
 						/obj/item/weapon/gun/pistol/auto9,
 						/obj/item/weapon/gun/smg/m39/elite,
