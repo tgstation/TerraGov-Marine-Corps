@@ -704,10 +704,10 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "pmcscope"
 	flags_attach_features = ATTACH_ACTIVATION
 
-/obj/item/attachable/scope/mini/br
-	name = "mini rail scope"
-	icon_state = "miniscope"
-	attach_icon = "miniscope_a"
+/obj/item/attachable/scope/mini/dmr
+	name = "T-37 mini rail scope"
+	icon_state = "t37"
+	attach_icon = "t37_a"
 
 
 //////////// Stock attachments ////////////////////////////
@@ -966,10 +966,10 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_y = 10
 	flags_attach_features = NONE
 
-/obj/item/attachable/stock/dmr
+/obj/item/attachable/stock/br
 	name = "T-64 Stock"
-	desc = "A standard DMR Stock."
-	icon_state = "dmrstock"
+	desc = "A standard BR Stock."
+	icon_state = "brstock"
 	wield_delay_mod = 0 SECONDS
 	pixel_shift_x = 32
 	pixel_shift_y = 13

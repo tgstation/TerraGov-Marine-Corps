@@ -142,13 +142,13 @@
 
 
 //-------------------------------------------------------
-//T-64 DMR
+//T-37 DMR
 
 /obj/item/weapon/gun/rifle/standard_dmr
-	name = "\improper T-64 designated marksman rifle"
-	desc = "The T-64 DMR is the TerraGov Marine Corps designated marksman rifle. It is rather well-known for it's very consistent target placement at longer than usual range, it however lacks a burst fire mode or an automatic mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 10x27 caliber."
-	icon_state = "t64"
-	item_state = "t64"
+	name = "\improper T-37 designated marksman rifle"
+	desc = "The T-37 DMR is the TerraGov Marine Corps designated marksman rifle. It is rather well-known for it's very consistent target placement at longer than usual range, it however lacks a burst fire mode or an automatic mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 10x27 caliber."
+	icon_state = "t37"
+	item_state = "t37"
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	fire_sound = "sound/weapons/guns/fire/DMR.ogg"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
@@ -172,7 +172,6 @@
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/bipod,
 						/obj/item/attachable/gyro,
-						/obj/item/attachable/stock/dmr,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/magnetic_harness,
@@ -180,11 +179,11 @@
 						/obj/item/attachable/attached_gun/flamer,
 						/obj/item/attachable/attached_gun/shotgun,
 						/obj/item/attachable/scope,
-						/obj/item/attachable/scope/mini)
+						/obj/item/attachable/scope/mini/dmr)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_CAN_POINTBLANK
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	starting_attachment_types = list(/obj/item/attachable/stock/dmr, /obj/item/attachable/scope/mini)
+	starting_attachment_types = list(/obj/item/attachable/scope/mini/dmr)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 13, "rail_y" = 18, "under_x" = 24, "under_y" = 13, "stock_x" = 14, "stock_y" = 10)
 
 	fire_delay = 0.8 SECONDS
@@ -194,16 +193,16 @@
 
 
 //-------------------------------------------------------
-//T-64 DMR
+//T-64 BR
 
 /obj/item/weapon/gun/rifle/standard_br
-	name = "\improper T-37 battle rifle"
-	desc = "The T-37 BR is the TerraGov Marine Corps battle rifle. It , it is known for its consistent ability to perform well at most ranges, and close range stopping power. It is mostly used by people who prefer a bigger round than the average. Lacks burst fire. Uses 10x27 caliber."
+	name = "\improper T-64 battle rifle"
+	desc = "The T-64 BR is the TerraGov Marine Corps battle rifle. It , it is known for its consistent ability to perform well at most ranges, and close range stopping power. It is mostly used by people who prefer a bigger round than the average. Lacks burst fire. Uses 10x27 caliber."
 	icon = 'icons/Marine/gun64.dmi'
-	icon_state = "t37"
-	item_state = "t37"
+	icon_state = "t64"
+	item_state = "t64"
 	muzzleflash_iconstate = "muzzle_flash_medium"
-	fire_sound = "sound/weapons/guns/fire/DMR.ogg"
+	fire_sound = "sound/weapons/guns/fire/BR.ogg"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
@@ -224,7 +223,7 @@
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/bipod,
 						/obj/item/attachable/gyro,
-						/obj/item/attachable/stock/dmr,
+						/obj/item/attachable/stock/br,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/magnetic_harness,
@@ -232,14 +231,14 @@
 						/obj/item/attachable/attached_gun/flamer,
 						/obj/item/attachable/attached_gun/shotgun,
 						/obj/item/attachable/scope,
-						/obj/item/attachable/scope/mini/br)
+						/obj/item/attachable/scope/mini)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_CAN_POINTBLANK
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	starting_attachment_types = list(/obj/item/attachable/scope/mini/br)
+	starting_attachment_types = list(/obj/item/attachable/stock/br,/obj/item/attachable/scope/mini)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 13, "rail_y" = 18, "under_x" = 24, "under_y" = 13, "stock_x" = 14, "stock_y" = 10)
 
-	fire_delay = 0.35 
+	fire_delay = 0.35 SECONDS
 	damage_mult = 0.5 //uses the marksman bullet, like the DMR.
 	accuracy_mult = 1.25
 	scatter = -10
@@ -716,7 +715,6 @@
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/t42barrel,
 						/obj/item/attachable/bipod,
-						/obj/item/attachable/stock/dmr,
 						/obj/item/attachable/magnetic_harness)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_WIELDED_FIRING_ONLY
