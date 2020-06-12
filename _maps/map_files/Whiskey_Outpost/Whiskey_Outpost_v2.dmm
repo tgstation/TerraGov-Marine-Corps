@@ -5831,7 +5831,8 @@
 	},
 /area/whiskey_outpost/outside/south)
 "Ji" = (
-/turf/closed/wall/wood,
+/obj/structure/support,
+/turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/east)
 "Jt" = (
 /obj/structure/barricade/plasteel,
