@@ -570,14 +570,9 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			return FALSE //No effect now, but we save the reference to check on exiting the tile.
 		. *= uncrossing ? 0.5 : 1.5 //Higher hitchance when shooting in the barricade's direction.
 	//Bypass chance calculation. Accuracy over 100 increases the chance of squeezing the bullet past the structure's uncovered areas.
-	visible_message("<span> before coverage = [.].</span>")
-	visible_message("<span> accuracy = [proj.accuracy].</span>")
-	visible_message("<span> distance traveled = [proj.distance_travelled].</span>")
-	visible_message("<span> accurate range = [proj.ammo.accurate_range].</span>")
 	. -= (proj.accuracy - (proj.accuracy * ( (proj.distance_travelled/proj.ammo.accurate_range)*(proj.distance_travelled/proj.ammo.accurate_range) ) ))
 	if(!anchored)
 		. *= 0.5 //Half the protection from unaffixed structures.
-	visible_message("<span> after coverage = [.].</span>")
 	return prob(.)
 
 
