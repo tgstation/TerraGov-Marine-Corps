@@ -86,6 +86,19 @@
 	gun_type = /obj/item/weapon/gun/rifle/standard_dmr
 
 //-------------------------------------------------------
+//T37 BR
+
+/obj/item/ammo_magazine/rifle/standard_br
+	name = "\improper T-37 BR magazine (10x27mm)"
+	desc = "A 10mm BR magazine."
+	caliber = "10x27mm caseless"
+	icon_state = "t37"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/rifle/standard_br
+	max_rounds = 20
+	gun_type = /obj/item/weapon/gun/rifle/standard_br
+
+//-------------------------------------------------------
 //M41A TRUE AND ORIGINAL
 
 /obj/item/ammo_magazine/rifle/m41a

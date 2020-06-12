@@ -704,6 +704,12 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "pmcscope"
 	flags_attach_features = ATTACH_ACTIVATION
 
+/obj/item/attachable/scope/mini/br
+	name = "mini rail scope"
+	icon_state = "miniscope"
+	attach_icon = "miniscope_a"
+
+
 //////////// Stock attachments ////////////////////////////
 
 

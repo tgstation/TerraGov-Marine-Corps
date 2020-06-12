@@ -156,7 +156,7 @@
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
 	caliber = "10x27mm caseless" //codex
 	aim_slowdown = 0.75
-	wield_delay = 0.7 SECONDS
+	wield_delay = 1 SECONDS
 	force = 20
 	max_shells = 10 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/standard_dmr
@@ -192,6 +192,58 @@
 	scatter = -15
 	burst_amount = 1
 
+
+//-------------------------------------------------------
+//T-64 DMR
+
+/obj/item/weapon/gun/rifle/standard_br
+	name = "\improper T-37 battle rifle"
+	desc = "The T-37 BR is the TerraGov Marine Corps battle rifle. It , it is known for its consistent ability to perform well at most ranges, and close range stopping power. It is mostly used by people who prefer a bigger round than the average. Lacks burst fire. Uses 10x27 caliber."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "t37"
+	item_state = "t37"
+	muzzleflash_iconstate = "muzzle_flash_medium"
+	fire_sound = "sound/weapons/guns/fire/DMR.ogg"
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
+	caliber = "10x27mm caseless" //codex
+	aim_slowdown = 0.55
+	wield_delay = 0.7 SECONDS
+	force = 20
+	max_shells = 10 //codex
+	current_mag = /obj/item/ammo_magazine/rifle/standard_br
+	attachable_allowed = list(
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/verticalgrip,
+						/obj/item/attachable/lasersight,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/bipod,
+						/obj/item/attachable/gyro,
+						/obj/item/attachable/stock/dmr,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/attached_gun/grenade,
+						/obj/item/attachable/attached_gun/flamer,
+						/obj/item/attachable/attached_gun/shotgun,
+						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/mini/br)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_CAN_POINTBLANK
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	starting_attachment_types = list(/obj/item/attachable/scope/mini/br)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 13, "rail_y" = 18, "under_x" = 24, "under_y" = 13, "stock_x" = 14, "stock_y" = 10)
+
+	fire_delay = 0.35 
+	damage_mult = 0.5 //uses the marksman bullet, like the DMR.
+	accuracy_mult = 1.25
+	scatter = -10
+	burst_amount = 1
 
 //-------------------------------------------------------
 //M41A PULSE RIFLE
