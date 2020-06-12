@@ -466,7 +466,7 @@
 /obj/structure/acid_spray_act(mob/living/carbon/xenomorph/X)
 	if(!is_type_in_typecache(src, GLOB.acid_spray_hit))
 		return TRUE // normal density flag
-	take_damage_type(45 + SPRAY_STRUCTURE_UPGRADE_BONUS(X), "acid", src)
+	take_damage(45 + SPRAY_STRUCTURE_UPGRADE_BONUS(X), "acid", "acid")
 	return TRUE // normal density flag
 
 /obj/structure/razorwire/acid_spray_act(mob/living/carbon/xenomorph/X)
