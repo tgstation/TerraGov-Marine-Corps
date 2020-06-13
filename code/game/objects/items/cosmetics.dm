@@ -6,7 +6,7 @@
 	icon_state = "camo"
 	var/colour = "green"
 	w_class = WEIGHT_CLASS_TINY
-	var/uses = 10
+	var/uses = 100
 
 /obj/item/facepaint/green
 	name = "green facepaint"
