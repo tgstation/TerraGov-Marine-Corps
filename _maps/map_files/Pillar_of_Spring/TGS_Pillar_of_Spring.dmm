@@ -389,14 +389,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"bs" = (
-/obj/structure/sink{
-	pixel_y = 16
-	},
-/turf/open/floor/mainship/sterile/side{
-	dir = 1
-	},
-/area/mainship/medical/operating_room_one)
 "bt" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/spray/cleaner,
@@ -1899,6 +1891,15 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"hc" = (
+/obj/structure/sink{
+	dir = 1;
+	pixel_y = -25
+	},
+/turf/open/floor/mainship/sterile/side{
+	dir = 2
+	},
+/area/mainship/medical/operating_room_two)
 "hj" = (
 /obj/structure/morgue{
 	dir = 2
@@ -3221,6 +3222,14 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/cargo,
 /area/mainship/shipboard/port_missiles)
+"lJ" = (
+/obj/structure/sink{
+	pixel_y = 25
+	},
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
+/area/mainship/medical/operating_room_one)
 "lK" = (
 /obj/structure/sink{
 	pixel_y = 16
@@ -7888,22 +7897,6 @@
 "Aw" = (
 /obj/structure/closet/firecloset,
 /obj/item/clothing/mask/gas,
-/turf/open/floor/mainship/cargo,
-/area/mainship/engineering/engineering_workshop)
-"Ax" = (
-/obj/structure/closet/crate,
-/obj/item/stack/sheet/mineral/phoron{
-	amount = 25
-	},
-/obj/item/stack/sheet/plasteel{
-	amount = 30;
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/stack/sheet/metal{
-	amount = 50
-	},
-/obj/item/storage/briefcase/inflatable,
 /turf/open/floor/mainship/cargo,
 /area/mainship/engineering/engineering_workshop)
 "Ay" = (
@@ -13313,13 +13306,6 @@
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/closed/wall/mainship,
 /area/mainship/living/commandbunks)
-"Sm" = (
-/obj/structure/window/framed/mainship/requisitions,
-/obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 4
-	},
-/turf/open/floor/plating/mainship,
-/area/mainship/squads/req)
 "Sn" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/machinery/landinglight/ds2/delayone,
@@ -13398,6 +13384,20 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
+"Th" = (
+/obj/structure/closet/crate,
+/obj/item/stack/sheet/plasteel{
+	amount = 30;
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/stack/sheet/metal{
+	amount = 50
+	},
+/obj/item/storage/briefcase/inflatable,
+/obj/item/stack/sheet/mineral/phoron/medium_stack,
+/turf/open/floor/mainship/cargo,
+/area/mainship/engineering/engineering_workshop)
 "Tj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment/corner{
@@ -13585,15 +13585,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
-"UG" = (
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = -20
-	},
-/turf/open/floor/mainship/sterile/side{
-	dir = 2
-	},
-/area/mainship/medical/operating_room_two)
 "UK" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 1
@@ -14063,6 +14054,13 @@
 /obj/item/toy/deck,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
+"Zg" = (
+/obj/structure/window/framed/mainship/requisitions,
+/obj/machinery/door/poddoor/shutters/mainship/req/ro{
+	dir = 4
+	},
+/turf/open/floor/plating/mainship,
+/area/mainship/squads/req)
 "Zl" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -40704,7 +40702,7 @@ Yf
 lO
 gd
 cC
-bs
+lJ
 bE
 bU
 ch
@@ -43026,7 +43024,7 @@ GF
 hR
 JM
 cM
-UG
+hc
 ic
 gL
 wj
@@ -44561,8 +44559,8 @@ kz
 Dz
 Dz
 qG
-Sm
-Sm
+Zg
+Zg
 qG
 qG
 qG
@@ -47131,10 +47129,10 @@ gd
 kM
 kM
 qG
-Sm
-Sm
-Sm
-Sm
+Zg
+Zg
+Zg
+Zg
 qG
 qG
 NY
@@ -47454,7 +47452,7 @@ OM
 zQ
 zX
 Ai
-Ax
+Th
 Mb
 aW
 ad
@@ -47711,7 +47709,7 @@ OM
 zR
 zX
 Ai
-Ax
+Th
 Mb
 aW
 ad
