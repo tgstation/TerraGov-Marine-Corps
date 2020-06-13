@@ -44,7 +44,6 @@
 	permeability_coefficient = 0.01
 
 
-
 //REBREATHER
 
 /obj/item/clothing/mask/rebreather
@@ -65,6 +64,15 @@
 	flags_inv_hide = HIDEALLHAIR|HIDEEARS
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
+
+//NATSF rebreather.
+/obj/item/clothing/mask/rebreather/natsf
+	name = "NATSF rebreather"
+	desc = "A rebreather used inside NATSF suits as the breathing device."
+	icon_state = "natorebreather"
+	item_state = "natorebreather"
+	flags_inventory = COVERMOUTH|ALLOWINTERNALS|ALLOWREBREATH
+
 
 /obj/item/clothing/mask/bandanna
 	name = "Tan bandanna"

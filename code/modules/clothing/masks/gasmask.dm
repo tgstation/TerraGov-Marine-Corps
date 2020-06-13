@@ -16,6 +16,15 @@
 	var/gas_filter_strength = 1			//For gas mask filters
 	var/list/filtered_gases = list(/datum/reagent/toxin/phoron, "sleeping_agent", "carbon_dioxide")
 
+//KOSMNAZ gasmask
+
+/obj/item/clothing/mask/gas/soviet
+	name = "KOSMNAZ gas mask"
+	desc = "An old gasmask design modified a long time ago to work as a spacesuit worthy breathing mask."
+	icon_state = "sovietgasmask"
+	item_state = "sovietgasmask"
+
+
 /obj/item/clothing/mask/gas/PMC
 	name = "\improper M8 pattern armored balaclava"
 	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter."
