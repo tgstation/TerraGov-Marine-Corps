@@ -389,14 +389,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"bs" = (
-/obj/structure/sink{
-	pixel_y = 16
-	},
-/turf/open/floor/mainship/sterile/side{
-	dir = 1
-	},
-/area/mainship/medical/operating_room_one)
 "bt" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/spray/cleaner,
@@ -1529,13 +1521,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"fp" = (
-/obj/structure/window/framed/mainship/requisitions,
-/obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 2
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "fq" = (
 /obj/structure/table/mainship,
 /obj/item/storage/firstaid/regular,
@@ -7890,22 +7875,6 @@
 /obj/item/clothing/mask/gas,
 /turf/open/floor/mainship/cargo,
 /area/mainship/engineering/engineering_workshop)
-"Ax" = (
-/obj/structure/closet/crate,
-/obj/item/stack/sheet/mineral/phoron{
-	amount = 25
-	},
-/obj/item/stack/sheet/plasteel{
-	amount = 30;
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/stack/sheet/metal{
-	amount = 50
-	},
-/obj/item/storage/briefcase/inflatable,
-/turf/open/floor/mainship/cargo,
-/area/mainship/engineering/engineering_workshop)
 "Ay" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/machinery/light/small,
@@ -11865,6 +11834,13 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
+"LT" = (
+/obj/structure/window/framed/mainship/requisitions,
+/obj/machinery/door/poddoor/shutters/mainship/req/ro{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "LU" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
@@ -13236,6 +13212,20 @@
 /obj/structure/closet/crate/medical,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
+"RM" = (
+/obj/structure/closet/crate,
+/obj/item/stack/sheet/plasteel{
+	amount = 30;
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/stack/sheet/metal{
+	amount = 50
+	},
+/obj/item/storage/briefcase/inflatable,
+/obj/item/stack/sheet/mineral/phoron/medium_stack,
+/turf/open/floor/mainship/cargo,
+/area/mainship/engineering/engineering_workshop)
 "RN" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -13287,6 +13277,13 @@
 /obj/machinery/telecomms/server/presets/bravo,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
+"RZ" = (
+/obj/structure/window/framed/mainship/requisitions,
+/obj/machinery/door/poddoor/shutters/mainship/req/ro{
+	dir = 4
+	},
+/turf/open/floor/plating/mainship,
+/area/mainship/squads/req)
 "Sc" = (
 /obj/machinery/light{
 	dir = 8
@@ -13313,13 +13310,6 @@
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/closed/wall/mainship,
 /area/mainship/living/commandbunks)
-"Sm" = (
-/obj/structure/window/framed/mainship/requisitions,
-/obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 4
-	},
-/turf/open/floor/plating/mainship,
-/area/mainship/squads/req)
 "Sn" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/machinery/landinglight/ds2/delayone,
@@ -13585,15 +13575,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
-"UG" = (
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = -20
-	},
-/turf/open/floor/mainship/sterile/side{
-	dir = 2
-	},
-/area/mainship/medical/operating_room_two)
 "UK" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 1
@@ -13759,6 +13740,14 @@
 /obj/item/tool/pen,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
+"VV" = (
+/obj/structure/sink{
+	pixel_y = 25
+	},
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
+/area/mainship/medical/operating_room_one)
 "VW" = (
 /obj/machinery/light{
 	dir = 4
@@ -14133,6 +14122,15 @@
 /obj/machinery/telecomms/server/presets/command,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
+"ZX" = (
+/obj/structure/sink{
+	dir = 1;
+	pixel_y = -25
+	},
+/turf/open/floor/mainship/sterile/side{
+	dir = 2
+	},
+/area/mainship/medical/operating_room_two)
 
 (1,1,1) = {"
 aa
@@ -40704,7 +40702,7 @@ Yf
 lO
 gd
 cC
-bs
+VV
 bE
 bU
 ch
@@ -43026,7 +43024,7 @@ GF
 hR
 JM
 cM
-UG
+ZX
 ic
 gL
 wj
@@ -44561,8 +44559,8 @@ kz
 Dz
 Dz
 qG
-Sm
-Sm
+RZ
+RZ
 qG
 qG
 qG
@@ -47131,22 +47129,22 @@ gd
 kM
 kM
 qG
-Sm
-Sm
-Sm
-Sm
+RZ
+RZ
+RZ
+RZ
 qG
 qG
 NY
 qG
-de
-de
+RZ
+RZ
 YX
-de
-de
-fp
-fp
-fp
+RZ
+RZ
+LT
+LT
+LT
 qG
 qG
 qG
@@ -47454,7 +47452,7 @@ OM
 zQ
 zX
 Ai
-Ax
+RM
 Mb
 aW
 ad
@@ -47711,7 +47709,7 @@ OM
 zR
 zX
 Ai
-Ax
+RM
 Mb
 aW
 ad
