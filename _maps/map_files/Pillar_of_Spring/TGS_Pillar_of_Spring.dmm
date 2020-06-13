@@ -3907,11 +3907,6 @@
 	dir = 8
 	},
 /area/mainship/medical/operating_room_two)
-"oe" = (
-/turf/open/floor/mainship/sterile/side{
-	dir = 2
-	},
-/area/mainship/medical/operating_room_two)
 "of" = (
 /obj/structure/table/mainship,
 /obj/item/folder/white,
@@ -11606,12 +11601,6 @@
 "KE" = (
 /turf/closed/wall/mainship,
 /area/mainship/living/briefing)
-"KH" = (
-/obj/structure/sign/ROsign{
-	dir = 1
-	},
-/turf/closed/wall/mainship,
-/area/mainship/squads/req)
 "KI" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -12623,13 +12612,6 @@
 /obj/machinery/vending/nanomed,
 /turf/closed/wall/mainship,
 /area/mainship/engineering/lower_engineering)
-"Or" = (
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = -13
-	},
-/turf/closed/wall/mainship/white,
-/area/mainship/medical/operating_room_two)
 "Os" = (
 /obj/effect/landmark/start/job/squadmarine,
 /obj/machinery/light{
@@ -13331,6 +13313,13 @@
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/closed/wall/mainship,
 /area/mainship/living/commandbunks)
+"Sm" = (
+/obj/structure/window/framed/mainship/requisitions,
+/obj/machinery/door/poddoor/shutters/mainship/req/ro{
+	dir = 4
+	},
+/turf/open/floor/plating/mainship,
+/area/mainship/squads/req)
 "Sn" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/machinery/landinglight/ds2/delayone,
@@ -13596,6 +13585,15 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
+"UG" = (
+/obj/structure/sink{
+	dir = 1;
+	pixel_y = -20
+	},
+/turf/open/floor/mainship/sterile/side{
+	dir = 2
+	},
+/area/mainship/medical/operating_room_two)
 "UK" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 1
@@ -43028,8 +43026,8 @@ GF
 hR
 JM
 cM
-oe
-Or
+UG
+ic
 gL
 wj
 gL
@@ -44563,8 +44561,8 @@ kz
 Dz
 Dz
 qG
-de
-de
+Sm
+Sm
 qG
 qG
 qG
@@ -45589,7 +45587,7 @@ az
 ee
 gd
 Vn
-KH
+qG
 JH
 QS
 Rm
@@ -47133,10 +47131,10 @@ gd
 kM
 kM
 qG
-de
-de
-de
-de
+Sm
+Sm
+Sm
+Sm
 qG
 qG
 NY
