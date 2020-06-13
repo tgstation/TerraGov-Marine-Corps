@@ -38,7 +38,12 @@
 	var/stat_msg2
 
 /obj/machinery/computer/communications/bee
-	icon_state = "commb"
+	machine_stat = BROKEN
+
+/obj/machinery/computer/communications/bee/Initialize()
+	. = ..()
+	update_icon()
+
 
 /obj/machinery/computer/communications/Topic(href, href_list)
 	. = ..()
@@ -179,7 +184,7 @@
 					log_admin_private("[key_name(usr)] may have attempted a href exploit on a [src]. [AREACOORD(usr)].")
 					message_admins("[ADMIN_TPMONTY(usr)] may be attempting a href exploit on a [src]. [ADMIN_VERBOSEJMP(usr)].")
 					return FALSE
-					
+
 				if(world.time < DISTRESS_TIME_LOCK)
 					to_chat(usr, "<span class='warning'>The distress beacon cannot be launched this early in the operation. Please wait another [round((DISTRESS_TIME_LOCK-world.time)/600)] minutes before trying again.</span>")
 					return FALSE
@@ -217,7 +222,7 @@
 
 				var/admin_response = admin_approval("<span color='prefix'>DISTRESS:</span> [ADMIN_TPMONTY(usr)] has called a Distress Beacon. Humans: [AllMarines], Xenos: [AllXenos].",
 					options = valid_calls, default_option = "random",
-					user_message = "<span class='boldnotice'>A distress beacon will launch in 60 seconds unless High Command responds otherwise.</span>", 
+					user_message = "<span class='boldnotice'>A distress beacon will launch in 60 seconds unless High Command responds otherwise.</span>",
 					user = usr, admin_sound = sound('sound/effects/sos-morse-code.ogg', channel = CHANNEL_ADMIN))
 				just_called = FALSE
 				cooldown_request = world.time
