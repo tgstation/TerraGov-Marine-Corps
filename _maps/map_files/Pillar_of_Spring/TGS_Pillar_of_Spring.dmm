@@ -1521,13 +1521,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"fp" = (
-/obj/structure/window/framed/mainship/requisitions,
-/obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 2
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "fq" = (
 /obj/structure/table/mainship,
 /obj/item/storage/firstaid/regular,
@@ -1891,15 +1884,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
-"hc" = (
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = -25
-	},
-/turf/open/floor/mainship/sterile/side{
-	dir = 2
-	},
-/area/mainship/medical/operating_room_two)
 "hj" = (
 /obj/structure/morgue{
 	dir = 2
@@ -3222,14 +3206,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/cargo,
 /area/mainship/shipboard/port_missiles)
-"lJ" = (
-/obj/structure/sink{
-	pixel_y = 25
-	},
-/turf/open/floor/mainship/sterile/side{
-	dir = 1
-	},
-/area/mainship/medical/operating_room_one)
 "lK" = (
 /obj/structure/sink{
 	pixel_y = 16
@@ -11858,6 +11834,13 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
+"LT" = (
+/obj/structure/window/framed/mainship/requisitions,
+/obj/machinery/door/poddoor/shutters/mainship/req/ro{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "LU" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
@@ -13229,6 +13212,20 @@
 /obj/structure/closet/crate/medical,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
+"RM" = (
+/obj/structure/closet/crate,
+/obj/item/stack/sheet/plasteel{
+	amount = 30;
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/item/stack/sheet/metal{
+	amount = 50
+	},
+/obj/item/storage/briefcase/inflatable,
+/obj/item/stack/sheet/mineral/phoron/medium_stack,
+/turf/open/floor/mainship/cargo,
+/area/mainship/engineering/engineering_workshop)
 "RN" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -13280,6 +13277,13 @@
 /obj/machinery/telecomms/server/presets/bravo,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
+"RZ" = (
+/obj/structure/window/framed/mainship/requisitions,
+/obj/machinery/door/poddoor/shutters/mainship/req/ro{
+	dir = 4
+	},
+/turf/open/floor/plating/mainship,
+/area/mainship/squads/req)
 "Sc" = (
 /obj/machinery/light{
 	dir = 8
@@ -13384,20 +13388,6 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
-"Th" = (
-/obj/structure/closet/crate,
-/obj/item/stack/sheet/plasteel{
-	amount = 30;
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/stack/sheet/metal{
-	amount = 50
-	},
-/obj/item/storage/briefcase/inflatable,
-/obj/item/stack/sheet/mineral/phoron/medium_stack,
-/turf/open/floor/mainship/cargo,
-/area/mainship/engineering/engineering_workshop)
 "Tj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment/corner{
@@ -13750,6 +13740,14 @@
 /obj/item/tool/pen,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
+"VV" = (
+/obj/structure/sink{
+	pixel_y = 25
+	},
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
+/area/mainship/medical/operating_room_one)
 "VW" = (
 /obj/machinery/light{
 	dir = 4
@@ -14054,13 +14052,6 @@
 /obj/item/toy/deck,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/grunt_rnr)
-"Zg" = (
-/obj/structure/window/framed/mainship/requisitions,
-/obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 4
-	},
-/turf/open/floor/plating/mainship,
-/area/mainship/squads/req)
 "Zl" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -14131,6 +14122,15 @@
 /obj/machinery/telecomms/server/presets/command,
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
+"ZX" = (
+/obj/structure/sink{
+	dir = 1;
+	pixel_y = -25
+	},
+/turf/open/floor/mainship/sterile/side{
+	dir = 2
+	},
+/area/mainship/medical/operating_room_two)
 
 (1,1,1) = {"
 aa
@@ -40702,7 +40702,7 @@ Yf
 lO
 gd
 cC
-lJ
+VV
 bE
 bU
 ch
@@ -43024,7 +43024,7 @@ GF
 hR
 JM
 cM
-hc
+ZX
 ic
 gL
 wj
@@ -44559,8 +44559,8 @@ kz
 Dz
 Dz
 qG
-Zg
-Zg
+RZ
+RZ
 qG
 qG
 qG
@@ -47129,22 +47129,22 @@ gd
 kM
 kM
 qG
-Zg
-Zg
-Zg
-Zg
+RZ
+RZ
+RZ
+RZ
 qG
 qG
 NY
 qG
-de
-de
+RZ
+RZ
 YX
-de
-de
-fp
-fp
-fp
+RZ
+RZ
+LT
+LT
+LT
 qG
 qG
 qG
@@ -47452,7 +47452,7 @@ OM
 zQ
 zX
 Ai
-Th
+RM
 Mb
 aW
 ad
@@ -47709,7 +47709,7 @@ OM
 zR
 zX
 Ai
-Th
+RM
 Mb
 aW
 ad
