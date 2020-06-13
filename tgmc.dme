@@ -770,6 +770,7 @@
 #include "code\game\objects\structures\safe.dm"
 #include "code\game\objects\structures\signs.dm"
 #include "code\game\objects\structures\supplypod.dm"
+#include "code\game\objects\structures\supports.dm"
 #include "code\game\objects\structures\tables_racks.dm"
 #include "code\game\objects\structures\tank_dispenser.dm"
 #include "code\game\objects\structures\target_stake.dm"
