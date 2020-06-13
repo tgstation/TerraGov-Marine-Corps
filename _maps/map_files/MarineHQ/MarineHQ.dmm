@@ -4193,6 +4193,15 @@
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/grass,
 /area/construction)
+"qz" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/centcom/practice/medical)
 "qA" = (
 /obj/structure/table/mainship,
 /obj/structure/window/reinforced/toughened{
@@ -4759,12 +4768,9 @@
 /turf/open/floor/wood,
 /area/mainship/command/cic)
 "vz" = (
-/obj/machinery/shower{
-	dir = 4;
-	pixel_y = -3
+/obj/structure/toilet{
+	dir = 4
 	},
-/obj/item/toy/bikehorn/rubberducky,
-/obj/structure/curtain/shower,
 /turf/open/floor/freezer,
 /area/centcom/practice/medical)
 "vF" = (
@@ -4793,24 +4799,15 @@
 /area/mainship/shipboard/firing_range)
 "vO" = (
 /obj/machinery/reagentgrinder,
-/obj/item/stack/sheet/mineral/phoron{
-	amount = 25;
-	pixel_x = 3;
-	pixel_y = 3
-	},
 /obj/item/tool/hand_labeler,
 /obj/item/reagent_containers/glass/beaker/large,
 /obj/item/reagent_containers/dropper,
 /obj/structure/table/reinforced,
 /obj/item/stack/sheet/mineral/phoron{
-	amount = 25;
-	pixel_x = 3;
-	pixel_y = 3
+	amount = 25
 	},
 /obj/item/stack/sheet/mineral/phoron{
-	amount = 25;
-	pixel_x = 3;
-	pixel_y = 3
+	amount = 25
 	},
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
@@ -5286,9 +5283,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/commandbunks)
 "zV" = (
-/obj/machinery/bioprinter{
-	stored_metal = 1000
-	},
+/obj/machinery/bioprinter,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 1
 	},
@@ -5314,6 +5309,15 @@
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
+/area/centcom/practice/medical)
+"Aj" = (
+/obj/machinery/light,
+/obj/structure/table/reinforced,
+/obj/item/stack/sheet/metal/large_stack,
+/obj/item/stack/sheet/metal/large_stack,
+/obj/item/stack/sheet/metal/large_stack,
+/obj/item/stack/sheet/metal/large_stack,
+/turf/open/floor/mainship/sterile/dark,
 /area/centcom/practice/medical)
 "Ak" = (
 /obj/structure/bed/chair,
@@ -7411,6 +7415,11 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/living/starboard_emb)
+"IN" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/machinery/light,
+/turf/open/floor/mainship/sterile/dark,
+/area/centcom/practice/medical)
 "IP" = (
 /obj/machinery/light{
 	dir = 1
@@ -7661,6 +7670,12 @@
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "JO" = (
+/obj/structure/sink{
+	pixel_y = 15
+	},
+/obj/structure/mirror{
+	pixel_y = 28
+	},
 /turf/open/floor/freezer,
 /area/centcom/practice/medical)
 "JQ" = (
@@ -8049,9 +8064,7 @@
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "LT" = (
-/obj/structure/bed/stool{
-	pixel_y = 8
-	},
+/obj/structure/bed/stool,
 /turf/open/floor/mainship/sterile/dark,
 /area/centcom/practice/medical)
 "LZ" = (
@@ -8329,14 +8342,11 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves)
 "Nj" = (
-/obj/structure/sink/bathroom{
-	dir = 8;
-	pixel_x = 16
+/obj/item/toy/bikehorn/rubberducky,
+/obj/machinery/shower{
+	dir = 8
 	},
-/obj/structure/mirror{
-	dir = 4;
-	pixel_x = 30
-	},
+/obj/structure/curtain/shower,
 /turf/open/floor/freezer,
 /area/centcom/practice/medical)
 "Nn" = (
@@ -8446,24 +8456,15 @@
 /area/lv624/ground/compound/n)
 "OF" = (
 /obj/machinery/reagentgrinder,
-/obj/item/stack/sheet/mineral/phoron{
-	amount = 25;
-	pixel_x = 3;
-	pixel_y = 3
-	},
 /obj/item/tool/hand_labeler,
 /obj/item/reagent_containers/glass/beaker/large,
 /obj/item/reagent_containers/dropper,
 /obj/structure/table/reinforced,
 /obj/item/stack/sheet/mineral/phoron{
-	amount = 25;
-	pixel_x = 3;
-	pixel_y = 3
+	amount = 25
 	},
 /obj/item/stack/sheet/mineral/phoron{
-	amount = 25;
-	pixel_x = 3;
-	pixel_y = 3
+	amount = 25
 	},
 /turf/open/floor/mainship/sterile/corner,
 /area/centcom/practice/medical)
@@ -8640,7 +8641,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/plating/asteroidfloor,
+/turf/open/floor/plating/asteroidwarning{
+	dir = 1
+	},
 /area/centcom/practice/medical)
 "QL" = (
 /turf/closed/wall,
@@ -8759,6 +8762,14 @@
 	dir = 1
 	},
 /area/centcom/practice/medical)
+"Ss" = (
+/obj/structure/table/reinforced,
+/obj/item/stack/sheet/metal/large_stack,
+/obj/item/stack/sheet/metal/large_stack,
+/obj/item/stack/sheet/metal/large_stack,
+/obj/item/stack/sheet/metal/large_stack,
+/turf/open/floor/mainship/sterile/dark,
+/area/centcom/practice/medical)
 "Su" = (
 /obj/structure/barricade/sandbags{
 	dir = 4
@@ -8789,9 +8800,7 @@
 	},
 /area/centcom/practice/medical)
 "SP" = (
-/obj/machinery/bioprinter{
-	stored_metal = 1000
-	},
+/obj/machinery/bioprinter,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
 	},
@@ -8829,7 +8838,9 @@
 	},
 /area/mainship/shipboard/firing_range)
 "Tr" = (
-/obj/machinery/light,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/plating/asteroidfloor,
 /area/centcom/practice/medical)
 "Tv" = (
@@ -9074,8 +9085,7 @@
 /obj/item/tank/anesthetic,
 /obj/item/clothing/mask/breath/medical,
 /obj/machinery/practice/medical/surgery{
-	dir = 8;
-	pixel_x = -22
+	dir = 8
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/centcom/practice/medical)
@@ -9148,9 +9158,6 @@
 	},
 /area/mainship/shipboard/firing_range)
 "WU" = (
-/obj/structure/toilet/alternate{
-	dir = 4
-	},
 /turf/open/floor/freezer,
 /area/centcom/practice/medical)
 "WV" = (
@@ -9353,8 +9360,7 @@
 /obj/item/tank/anesthetic,
 /obj/item/clothing/mask/breath/medical,
 /obj/machinery/practice/medical/surgery{
-	dir = 8;
-	pixel_x = -22
+	dir = 8
 	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
@@ -9393,6 +9399,12 @@
 	},
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/firing_range)
+"ZI" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/freezer,
+/area/centcom/practice/medical)
 "ZL" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/plate,
@@ -25211,7 +25223,7 @@ fe
 fe
 YT
 vz
-JO
+ZI
 WU
 nA
 Em
@@ -26974,9 +26986,9 @@ YT
 YT
 YT
 YT
-Qh
+qz
 ZD
-qG
+IN
 YT
 YT
 YT
@@ -30250,9 +30262,9 @@ Hj
 wv
 WO
 YT
+NJ
 ZD
-ZD
-ZD
+Eo
 YT
 WO
 wv
@@ -31268,8 +31280,8 @@ YT
 YT
 fe
 Em
-aa
-aa
+Em
+Em
 aa
 aa
 aa
@@ -31519,9 +31531,9 @@ fe
 fe
 fe
 fe
+fe
+fe
 Em
-aa
-aa
 aa
 aa
 aa
@@ -31766,14 +31778,14 @@ pp
 pp
 pp
 fe
+fe
+YT
+YT
+YT
+YT
+YT
+fe
 Em
-Em
-Em
-Em
-Em
-Em
-aa
-aa
 aa
 aa
 aa
@@ -32016,16 +32028,16 @@ Of
 zw
 zw
 zw
-Tr
+zw
+Of
+zw
+Hj
+ZD
+ZD
+Ss
+YT
+fe
 Em
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 aa
 aa
 aa
@@ -32269,15 +32281,15 @@ zw
 zw
 zw
 zw
+Of
+zw
+XF
+ZD
+ZD
+Aj
+YT
+fe
 Em
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 aa
 aa
 aa
@@ -32515,21 +32527,21 @@ fl
 fl
 fl
 rl
-Lv
-Of
 QK
+Of
 zw
 zw
+Tr
 zw
+Of
+zw
+Hj
+ZD
+ZD
+Ss
+YT
+fe
 Em
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 aa
 aa
 aa
@@ -32773,15 +32785,15 @@ fe
 fe
 fe
 fe
+fe
+fe
+YT
+YT
+YT
+YT
+YT
+fe
 Em
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 aa
 aa
 aa
@@ -33025,15 +33037,15 @@ fe
 fe
 fe
 fe
+fe
+fe
+fe
+fe
+fe
+fe
+fe
+fe
 Em
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
 aa
 aa
 aa
@@ -33278,14 +33290,14 @@ fe
 fe
 fe
 Em
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+Em
+Em
+Em
+Em
+Em
+Em
+Em
+Em
 aa
 aa
 aa
