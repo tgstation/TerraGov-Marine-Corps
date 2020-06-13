@@ -25,3 +25,10 @@
 	full_name = "Perform unique action"
 	description = ""
 	keybind_signal = COMSIG_KB_UNIQUEACTION
+
+/datum/keybinding/human/sing_military_cadence
+	hotkey_keys = list("P")
+	name = "sing_military_cadence"
+	full_name = "Sing military cadence"
+	description = "Sing a soldier's tune"
+	keybind_signal = COMSIG_KB_SING_MILITARY_CADENCE
