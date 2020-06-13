@@ -226,7 +226,7 @@
 			update_equipment()
 			return TRUE //removed or uninstalled equipment
 		to_chat(user, "<span class='notice'>You cannot touch [src] with the [PC] due to the acid on [src].</span>")
-
+		return TRUE
 /obj/structure/dropship_equipment/update_icon()
 	return
 
