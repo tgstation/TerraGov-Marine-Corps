@@ -513,6 +513,54 @@
 	scatter_unwielded = 80
 
 //-------------------------------------------------------
+//T-60 General Purpose Machine Gun
+
+/obj/item/weapon/gun/rifle/standard_gmpg
+	name = "\improper T-60 general purpose machine gun"
+	desc = "The T-60 GMPG is the TGMC's current standard GMPG. Though usually seen mounted on vehicles, it is sometimes used by infantry to hold chokepoints or suppress enemies. It uses 10x27mm boxes."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "t60"
+	item_state = "t60"
+	caliber = "10x27mm caseless" //codex
+	max_shells = 250 //codex
+	force = 35
+	aim_slowdown = 1.2
+	wield_delay = 1.5 SECONDS
+	fire_sound =  'sound/weapons/guns/fire/rifle.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
+	current_mag = /obj/item/ammo_magazine/standard_gmpg
+	attachable_allowed = list(
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/verticalgrip,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/lasersight,
+						/obj/item/attachable/bipod,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
+						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/mini,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/stock/t60stock,
+						/obj/item/attachable/magnetic_harness)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	starting_attachment_types = list(/obj/item/attachable/stock/t60stock)
+	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 20, "under_x" = 16, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
+	fire_delay = 0.15 SECONDS
+	burst_amount = 1
+	accuracy_mult_unwielded = 0.4
+	accuracy_mult = 1
+	scatter = 25
+	scatter_unwielded = 80
+
+//-------------------------------------------------------
 //M41AE2 Heavy Pulse Rifle
 
 /obj/item/weapon/gun/rifle/m41ae2_hpr
