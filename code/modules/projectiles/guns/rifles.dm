@@ -526,7 +526,7 @@
 	force = 35
 	aim_slowdown = 1.2
 	wield_delay = 1.5 SECONDS
-	fire_sound =  'sound/weapons/guns/fire/GMPG.ogg'
+	fire_sound =  'sound/weapons/guns/fire/GPMG.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
@@ -554,6 +554,7 @@
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 23, "under_x" = 25, "under_y" = 14, "stock_x" = 11, "stock_y" = 14)
 	fire_delay = 0.15 SECONDS
+	damage_falloff_mult = 0.25
 	burst_amount = 1
 	accuracy_mult_unwielded = 0.4
 	accuracy_mult = 1
