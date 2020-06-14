@@ -170,7 +170,7 @@
 					/obj/item/ammo_magazine/rifle/standard_carbine = 50,
 					/obj/item/ammo_magazine/rifle/standard_assaultrifle = 50,
 					/obj/item/ammo_magazine/standard_lmg = 50,
-					/obj/item/weapon/gun/rifle/standard_gmpg = 50,
+					/obj/item/ammo_magazine/standard_gmpg = 50,
 					/obj/item/ammo_magazine/rifle/standard_dmr = 50,
 					/obj/item/ammo_magazine/rifle/standard_br = 50,
 					/obj/item/cell/lasgun/lasrifle = 50,
