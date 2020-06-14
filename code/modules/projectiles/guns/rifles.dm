@@ -517,11 +517,11 @@
 
 /obj/item/weapon/gun/rifle/standard_gmpg
 	name = "\improper T-60 general purpose machine gun"
-	desc = "The T-60 GMPG is the TGMC's current standard GMPG. Though usually seen mounted on vehicles, it is sometimes used by infantry to hold chokepoints or suppress enemies. It uses 10x27mm boxes."
+	desc = "The T-60 GMPG is the TGMC's current standard GMPG. Though usually seen mounted on vehicles, it is sometimes used by infantry to hold chokepoints or suppress enemies. It uses 10x26mm boxes."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t60"
 	item_state = "t60"
-	caliber = "10x27mm caseless" //codex
+	caliber = "10x26mm caseless" //codex
 	max_shells = 250 //codex
 	force = 35
 	aim_slowdown = 1.2
@@ -548,11 +548,11 @@
 						/obj/item/attachable/stock/t60stock,
 						/obj/item/attachable/magnetic_harness)
 
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_WIELDED_FIRING_ONLY
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	starting_attachment_types = list(/obj/item/attachable/stock/t60stock)
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
-	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 20, "under_x" = 16, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 23, "under_x" = 25, "under_y" = 14, "stock_x" = 11, "stock_y" = 14)
 	fire_delay = 0.15 SECONDS
 	burst_amount = 1
 	accuracy_mult_unwielded = 0.4
