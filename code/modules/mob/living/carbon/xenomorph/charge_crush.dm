@@ -57,14 +57,9 @@
 
 /datum/action/xeno_action/ready_charge/proc/charge_on(verbose = TRUE)
 	var/mob/living/carbon/xenomorph/charger = owner
-	if(charger.legcuffed)
-		if(verbose)
-			to_chat(owner, "<span class='warning'>We can't charge with that thing on our leg!</span>")
-		return
 	charge_ability_on = TRUE
 	RegisterSignal(charger, COMSIG_MOVABLE_MOVED, .proc/update_charging)
 	RegisterSignal(charger, COMSIG_ATOM_DIR_CHANGE, .proc/on_dir_change)
-	RegisterSignal(charger, COMSIG_LIVING_LEGCUFFED, .proc/on_legcuffed)
 	if(verbose)
 		to_chat(charger, "<span class='xenonotice'>We will charge when moving, now.</span>")
 
@@ -73,7 +68,7 @@
 	var/mob/living/carbon/xenomorph/charger = owner
 	if(charger.is_charging != CHARGE_OFF)
 		do_stop_momentum()
-	UnregisterSignal(charger, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE, COMSIG_LIVING_LEGCUFFED))
+	UnregisterSignal(charger, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE))
 	if(verbose)
 		to_chat(charger, "<span class='xenonotice'>We will no longer charge when moving.</span>")
 	valid_steps_taken = 0
@@ -87,13 +82,6 @@
 	if(old_dir == new_dir)
 		return
 	do_stop_momentum()
-
-
-/datum/action/xeno_action/ready_charge/proc/on_legcuffed(datum/source)
-	if(!charge_ability_on)
-		return
-	to_chat(owner, "<span class='xenodanger'>We can't charge with that thing on our leg!</span>")
-	charge_off(FALSE)
 
 
 /datum/action/xeno_action/ready_charge/proc/update_charging(datum/source, atom/oldloc, direction, Forced)
@@ -391,7 +379,7 @@
 			. = (CHARGE_SPEED(charge_datum) * 240)
 			charge_datum.speed_down(2)
 			return
-		
+
 	for(var/m in buckled_mobs)
 		unbuckle_mob(m)
 	return (CHARGE_SPEED(charge_datum) * 20) //Damage to inflict.

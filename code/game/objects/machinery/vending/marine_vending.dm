@@ -27,11 +27,14 @@
 					/obj/item/ammo_magazine/standard_lmg = 30,
 					/obj/item/weapon/gun/rifle/standard_dmr = 10,
 					/obj/item/ammo_magazine/rifle/standard_dmr = 25,
+					/obj/item/weapon/gun/rifle/standard_br = 10,
+					/obj/item/ammo_magazine/rifle/standard_br = 25,
 					/obj/item/weapon/gun/pistol/standard_heavypistol = 10,
 					/obj/item/ammo_magazine/pistol/standard_heavypistol = 25,
 					/obj/item/weapon/gun/energy/lasgun/lasrifle = 10,
 					/obj/item/cell/lasgun/lasrifle = 20,
 					/obj/item/weapon/gun/shotgun/pump/t35 = 10,
+					/obj/item/weapon/gun/shotgun/combat/standardmarine = 10,
 					/obj/item/ammo_magazine/shotgun = 10,
 					/obj/item/ammo_magazine/shotgun/buckshot = 10,
 					/obj/item/ammo_magazine/shotgun/flechette = 10,
@@ -110,8 +113,10 @@
 					/obj/item/weapon/gun/rifle/standard_assaultrifle = 10,
 					/obj/item/weapon/gun/rifle/standard_lmg = 10,
 					/obj/item/weapon/gun/rifle/standard_dmr = 10,
+					/obj/item/weapon/gun/rifle/standard_br = 10,
 					/obj/item/weapon/gun/energy/lasgun/lasrifle = 10,
 					/obj/item/weapon/gun/shotgun/pump/t35 = 10,
+					/obj/item/weapon/gun/shotgun/combat/standardmarine = 10,
 					/obj/item/weapon/gun/rifle/standard_autoshotgun = 10,
 					/obj/item/weapon/gun/pistol/standard_pocketpistol = 20,
 					/obj/item/weapon/gun/shotgun/double = 5,
@@ -163,6 +168,7 @@
 					/obj/item/ammo_magazine/rifle/standard_assaultrifle = 50,
 					/obj/item/ammo_magazine/standard_lmg = 50,
 					/obj/item/ammo_magazine/rifle/standard_dmr = 50,
+					/obj/item/ammo_magazine/rifle/standard_br = 50,
 					/obj/item/cell/lasgun/lasrifle = 50,
 					/obj/item/ammo_magazine/shotgun = 50,
 					/obj/item/ammo_magazine/shotgun/buckshot = 50,
@@ -709,7 +715,10 @@
 					/obj/item/armor_module/armor/arms/light = 20,
 					/obj/item/armor_module/armor/legs/heavy = 20,
 					/obj/item/armor_module/armor/legs/medium = 20,
-					/obj/item/armor_module/armor/legs/light = 20
+					/obj/item/armor_module/armor/legs/light = 20,
+					/obj/item/clothing/head/modular/heavy = 20,
+					/obj/item/clothing/head/modular/medium = 20,
+					/obj/item/clothing/head/modular/light = 20
 					)
 
 	prices = list()

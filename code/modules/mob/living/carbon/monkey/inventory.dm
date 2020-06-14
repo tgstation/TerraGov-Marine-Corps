@@ -29,8 +29,6 @@
 			wear_mask_update(W, TRUE)
 		if(SLOT_HANDCUFFED)
 			update_handcuffed(W)
-		if(SLOT_LEGCUFFED)
-			update_legcuffed(W)
 		if(SLOT_L_HAND)
 			l_hand = W
 			W.equipped(src, slot)
@@ -65,6 +63,4 @@
 			return r_hand
 		if(SLOT_HANDCUFFED)
 			return handcuffed
-		if(SLOT_LEGCUFFED)
-			return legcuffed
 

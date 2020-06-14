@@ -161,7 +161,7 @@
 	if(istype(gun_to_spawn, /obj/item/weapon/gun/launcher/m92) || istype(gun_to_spawn, /obj/item/weapon/gun/launcher/m81))
 		new /obj/item/storage/box/nade_box (get_turf(src))
 		return
-	
+
 	if(istype(gun_to_spawn, /obj/item/weapon/gun/flare))
 		new /obj/item/storage/box/m94 (get_turf(src))
 		return
@@ -282,6 +282,7 @@
 	weapon_list = list(	/obj/item/weapon/gun/rifle/standard_carbine,
 						/obj/item/weapon/gun/rifle/standard_assaultrifle,
 						/obj/item/weapon/gun/rifle/standard_dmr,
+						/obj/item/weapon/gun/rifle/standard_br,
 						/obj/item/weapon/gun/rifle/m41a1,
 						/obj/item/weapon/gun/rifle/m41a1/elite,
 						/obj/item/weapon/gun/rifle/m41a,
@@ -301,6 +302,7 @@
 						/obj/item/weapon/gun/shotgun/pump/cmb,
 						/obj/item/weapon/gun/shotgun/pump/ksg,
 						/obj/item/weapon/gun/shotgun/pump/t35,
+						/obj/item/weapon/gun/shotgun/combat/standardmarine,
 						/obj/item/weapon/gun/flamer,
 						/obj/item/weapon/gun/pistol/auto9,
 						/obj/item/weapon/gun/smg/m39/elite,

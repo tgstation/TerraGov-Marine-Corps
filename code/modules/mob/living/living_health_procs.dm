@@ -303,10 +303,6 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 		dropItemToGround(handcuffed)
 	update_handcuffed(initial(handcuffed))
 
-	if(legcuffed && !initial(legcuffed))
-		dropItemToGround(legcuffed)
-	update_legcuffed(initial(legcuffed))
-
 	return ..()
 
 

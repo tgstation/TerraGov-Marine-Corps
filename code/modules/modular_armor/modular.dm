@@ -156,7 +156,7 @@
 		if(!silent)
 			to_chat(user, "<span class='warning'>You need to remove the armor first.</span>")
 		return FALSE
-	
+
 	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))
 		return FALSE
 
@@ -258,17 +258,11 @@
 		cut_overlays()
 
 	if(slot_chest)
-		var/image/chest = image(slot_chest.icon, slot_chest.icon_state)
-		chest.color = slot_chest.color 
-		add_overlay(chest)
+		add_overlay(image(slot_chest.icon, slot_chest.icon_state))
 	if(slot_arms)
-		var/image/arms = image(slot_arms.icon, slot_arms.icon_state)
-		arms.color = slot_arms.color 
-		add_overlay(arms)
+		add_overlay(image(slot_arms.icon, slot_arms.icon_state))
 	if(slot_legs)
-		var/image/legs = image(slot_legs.icon, slot_legs.icon_state)
-		legs.color = slot_legs.color 
-		add_overlay(legs)
+		add_overlay(image(slot_legs.icon, slot_legs.icon_state))
 
 	// we intentionally do not add modules here
 	// as the icons are not made to be added in world, only on mobs.
@@ -304,8 +298,7 @@
 	name = "Jaeger Pattern Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
 	icon = 'icons/mob/modular/modular_armor.dmi'
-	icon_state = "medium_helmet_icon"
-	item_state = "medium_helmet"
+	icon_state = "medium_helmet"
 	flags_armor_protection = HEAD
 	flags_armor_features = ARMOR_NO_DECAP
 	flags_inventory = BLOCKSHARPOBJ
@@ -323,6 +316,40 @@
 
 	/// How long it takes to attach or detach to this item
 	var/equip_delay = 3 SECONDS
+
+
+/obj/item/clothing/head/modular/Initialize()
+	. = ..()
+	// Removes the _icon from the end of the icon_state
+	icon_state = "[initial(icon_state)]_icon"
+	item_state = initial(icon_state)
+
+
+/obj/item/clothing/head/modular/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(.)
+		return
+
+	if(!istype(I, /obj/item/facepaint))
+		return FALSE
+
+	var/obj/item/facepaint/paint = I
+	if(paint.uses < 1)
+		to_chat(user, "<span class='warning'>\the [paint] is out of color!</span>")
+		return TRUE
+	paint.uses--
+
+	var/new_color = input(user, "Pick a color", "Pick color", "") in list(
+		"black", "snow", "desert", "gray", "brown", "red", "blue", "yellow", "green", "aqua", "purple", "orange"
+	)
+
+	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		return TRUE
+
+	icon_state = "[initial(icon_state)]_[new_color]_icon"
+	item_state = "[initial(icon_state)]_[new_color]"
+
+	return TRUE
 
 
 /obj/item/clothing/head/modular/Destroy()
@@ -412,23 +439,20 @@
 /obj/item/clothing/head/modular/light
 	name = "Jaeger Pattern light Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
-	icon_state = "light_helmet_icon"
-	item_state = "light_helmet"
+	icon_state = "light_helmet"
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	accuracy_mod = 10
 
 /obj/item/clothing/head/modular/medium
 	name = "Jaeger Pattern medium Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
-	icon_state = "medium_helmet_icon"
-	item_state = "medium_helmet"
+	icon_state = "medium_helmet"
 	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = 60, "bio" = 60, "rad" = 60, "fire" = 60, "acid" = 60)
 	accuracy_mod = 0
 
 /obj/item/clothing/head/modular/heavy
 	name = "Jaeger Pattern heavy Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
-	icon_state = "heavy_helmet_icon"
-	item_state = "heavy_helmet"
+	icon_state = "heavy_helmet"
 	soft_armor = list("melee" = 75, "bullet" = 75, "laser" = 75, "energy" = 75, "bomb" = 75, "bio" = 75, "rad" = 75, "fire" = 75, "acid" = 75)
 	accuracy_mod = -10
