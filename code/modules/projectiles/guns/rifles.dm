@@ -517,7 +517,7 @@
 
 /obj/item/weapon/gun/rifle/standard_gmpg
 	name = "\improper T-60 general purpose machine gun"
-	desc = "The T-60 GMPG is the TGMC's current standard GMPG. Though usually seen mounted on vehicles, it is sometimes used by infantry to hold chokepoints or suppress enemies. It uses 10x26mm boxes."
+	desc = "The T-60 general purpose machinegun is the TGMC's current standard GMPG. Though usually seen mounted on vehicles, it is sometimes used by infantry to hold chokepoints or suppress enemies. It uses 10x26mm boxes."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t60"
 	item_state = "t60"
