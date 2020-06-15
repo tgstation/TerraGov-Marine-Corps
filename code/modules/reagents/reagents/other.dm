@@ -1,5 +1,3 @@
-
-
 /datum/reagent/blood
 	name = "Blood"
 	reagent_state = LIQUID
