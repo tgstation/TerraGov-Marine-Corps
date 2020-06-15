@@ -178,6 +178,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 250
 	gun_type = /obj/item/weapon/gun/rifle/standard_gmpg
+	reload_delay = 3 SECONDS
 
 //-------------------------------------------------------
 //M41AE2 HEAVY PULSE RIFLE
