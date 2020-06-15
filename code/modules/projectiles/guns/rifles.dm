@@ -533,7 +533,6 @@
 	current_mag = /obj/item/ammo_magazine/standard_gmpg
 	attachable_allowed = list(
 						/obj/item/attachable/reddot,
-						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/bipod,
@@ -543,7 +542,7 @@
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/scope,
-						/obj/item/attachable/scope/mini
+						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/stock/t60stock,
 						/obj/item/attachable/magnetic_harness)
 
@@ -552,7 +551,7 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/t60stock)
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 23, "under_x" = 25, "under_y" = 14, "stock_x" = 11, "stock_y" = 14)
-	fire_delay = 0.15 SECONDS
+	fire_delay = 0.165 SECONDS
 	damage_falloff_mult = 0.25
 	burst_amount = 1
 	accuracy_mult_unwielded = 0.4
