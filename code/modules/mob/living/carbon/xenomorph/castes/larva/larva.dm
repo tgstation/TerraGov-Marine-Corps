@@ -91,7 +91,7 @@
 
 	if(stat == DEAD)
 		icon_state = "[bloody][base_icon_state] Dead"
-	else if(handcuffed || legcuffed)
+	else if(handcuffed)
 		icon_state = "[bloody][base_icon_state] Cuff"
 
 	else if(lying_angle)

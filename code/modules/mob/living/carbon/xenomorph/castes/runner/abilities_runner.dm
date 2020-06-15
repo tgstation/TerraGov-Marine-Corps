@@ -39,10 +39,6 @@
 		to_chat(src, "<span class='xenowarning'>We're too tired to savage right now.</span>")
 		return
 
-	if(legcuffed)
-		to_chat(src, "<span class='xenodanger'>We can't savage with that thing on our leg!</span>")
-		return
-
 	if(stagger)
 		to_chat(src, "<span class='xenodanger'>We're too disoriented from the shock to savage!</span>")
 		return
@@ -155,7 +151,7 @@
 
 /datum/action/xeno_action/activable/pounce/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
-	
+
 	RegisterSignal(X, COMSIG_XENO_OBJ_THROW_HIT, .proc/obj_hit)
 	RegisterSignal(X, COMSIG_XENO_LIVING_THROW_HIT, .proc/mob_hit)
 	RegisterSignal(X, COMSIG_XENO_NONE_THROW_HIT, .proc/pounce_complete)

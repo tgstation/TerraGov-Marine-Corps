@@ -180,7 +180,6 @@
 	<BR><B>Suit Storage:</B> <A href='?src=[REF(src)];item=[SLOT_S_STORE]'>[(s_store ? s_store : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(s_store, /obj/item/tank) && !internal) ? " <A href='?src=[REF(src)];internal=1'>Set Internal</A>" : "")]
 	<BR>
 	[handcuffed ? "<BR><A href='?src=[REF(src)];item=[SLOT_HANDCUFFED]'>Handcuffed</A>" : ""]
-	[legcuffed ? "<BR><A href='?src=[REF(src)];item=[SLOT_LEGCUFFED]'>Legcuffed</A>" : ""]
 	[suit?.hastie ? "<BR><A href='?src=[REF(src)];tie=1'>Remove Accessory</A>" : ""]
 	[internal ? "<BR><A href='?src=[REF(src)];internal=1'>Remove Internal</A>" : ""]
 	<BR><A href='?src=[REF(src)];splints=1'>Remove Splints</A>

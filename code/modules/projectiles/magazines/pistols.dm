@@ -166,6 +166,19 @@
 	w_class = WEIGHT_CLASS_TINY
 	gun_type = /obj/item/weapon/gun/pistol/holdout
 
+//-------------------------------------------------------
+//TP-17.
+
+/obj/item/ammo_magazine/pistol/standard_pocketpistol
+	name = "TP-17 pocket pistol magazine (.380)"
+	desc = "A surprisingly small magazine used by the TP-17 pistol holding .380 AP bullets.."
+	default_ammo = /datum/ammo/bullet/pistol/tiny/ap
+	caliber = ".380 ACP"
+	icon_state = "tp17"
+	max_rounds = 8
+	w_class = WEIGHT_CLASS_TINY
+	gun_type = /obj/item/weapon/gun/pistol/standard_pocketpistol
+
 
 //-------------------------------------------------------
 //.45 MARSHALS PISTOL //Inspired by the Browning Hipower

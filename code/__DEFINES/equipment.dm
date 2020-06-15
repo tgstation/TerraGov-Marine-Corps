@@ -38,7 +38,7 @@
 #define TWOHANDED				(1<<3)	// The item is twohanded.
 #define WIELDED					(1<<4)	// The item is wielded with both hands.
 #define	ITEM_ABSTRACT			(1<<5)	//The item is abstract (grab, powerloader_clamp, etc)
-#define BEING_REMOVED			(1<<6)	//Cuffs and legcuffs
+#define BEING_REMOVED			(1<<6)	//Cuffs
 
 //==========================================================================================
 
@@ -154,7 +154,6 @@
 #define SLOT_L_HAND			17
 #define SLOT_R_HAND			18
 #define SLOT_HANDCUFFED		19
-#define SLOT_LEGCUFFED		20
 #define SLOT_IN_BOOT		21
 #define SLOT_IN_BACKPACK	22
 #define SLOT_IN_SUIT		23

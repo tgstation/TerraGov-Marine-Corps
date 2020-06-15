@@ -270,17 +270,20 @@ SUBSYSTEM_DEF(mapping)
 			if(reserve.Reserve(width, height, i))
 				return reserve
 		//If we didn't return at this point, theres a good chance we ran out of room on the exisiting reserved z levels, so lets try a new one
+		log_debug("Ran out of space in existing transit levels, adding a new one")
 		num_of_res_levels += 1
 		var/newReserved = add_new_zlevel("Transit/Reserved [num_of_res_levels]", list(ZTRAIT_RESERVED = TRUE))
 		if(reserve.Reserve(width, height, newReserved))
 			return reserve
 	else
 		if(!level_trait(z, ZTRAIT_RESERVED))
+			log_debug("Cannot block reserve on a non-ZTRAIT_RESERVED level")
 			qdel(reserve)
 			return
 		else
 			if(reserve.Reserve(width, height, z))
 				return reserve
+	log_debug("unknown reservation failure")
 	QDEL_NULL(reserve)
 
 //This is not for wiping reserved levels, use wipe_reservations() for that.

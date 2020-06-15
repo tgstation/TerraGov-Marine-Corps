@@ -15,7 +15,7 @@
 	tackle_damage = 40
 
 	// *** Speed *** //
-	speed = 0.0
+	speed = -0.2
 
 	// *** Plasma *** //
 	plasma_max = 800
@@ -42,7 +42,7 @@
 	acid_spray_range = 4
 
 	// *** Pheromones *** //
-	aura_strength = 2.5 //Praetorian's aura starts strong. They are the Queen's right hand. Climbs by 1 to 4.5
+	aura_strength = 3 //Praetorian's aura starts strong. They are the Queen's right hand. Climbs by 1 to 4.5
 	aura_allowed = list("frenzy", "warding", "recovery")
 
 	// *** Abilities *** //
@@ -74,7 +74,7 @@
 	tackle_damage = 42
 
 	// *** Speed *** //
-	speed = -0.1
+	speed = -0.3
 
 	// *** Plasma *** //
 	plasma_max = 900
@@ -108,7 +108,7 @@
 	tackle_damage = 47
 
 	// *** Speed *** //
-	speed = -0.2
+	speed = -0.4
 
 	// *** Plasma *** //
 	plasma_max = 1000
@@ -143,7 +143,7 @@
 	tackle_damage = 50
 
 	// *** Speed *** //
-	speed = -0.3
+	speed = -0.5
 
 	// *** Plasma *** //
 	plasma_max = 1000

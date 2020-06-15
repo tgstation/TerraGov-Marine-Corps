@@ -20,7 +20,7 @@
 	tackle_damage = 33
 
 	// *** Speed *** //
-	speed = 0.5
+	speed = -0.8
 
 	// *** Plasma *** //
 	plasma_max = 100
@@ -51,6 +51,7 @@
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/xenohide,
 		/datum/action/xeno_action/activable/pounce/panther,
+		/datum/action/xeno_action/activable/neurotox_sting/panther,
 		)
 
 /datum/xeno_caste/panther/young

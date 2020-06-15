@@ -255,7 +255,7 @@
 		if(client && ckey) // pause for ssd/ghosted
 			if(!hive?.living_xeno_ruler || hive.living_xeno_ruler.loc.z == loc.z)
 				if(upgrade_stored >= xeno_caste.upgrade_threshold)
-					if(health == maxHealth && !incapacitated() && !handcuffed && !legcuffed)
+					if(health == maxHealth && !incapacitated() && !handcuffed)
 						upgrade_xeno(upgrade_next())
 				else
 					// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.

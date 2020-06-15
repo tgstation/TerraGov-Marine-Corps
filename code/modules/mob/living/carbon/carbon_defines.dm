@@ -8,7 +8,6 @@
 						// life should decrease this by 1 every tick
 
 	var/obj/item/restraints/handcuffs/handcuffed //Whether or not the mob is handcuffed
-	var/obj/item/restraints/legcuffs/legcuffed  //Same as handcuffs but for legs. Bear traps use this.
 
 	var/failed_last_breath = FALSE //This is used to determine if the mob failed a breath. If they did fail a brath, they will attempt to breathe each tick, otherwise just once per 4 ticks.
 

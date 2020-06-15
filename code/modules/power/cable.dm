@@ -432,7 +432,7 @@ GLOBAL_LIST(cable_radial_layer_list)
 		"Layer 2" = image(icon = 'icons/mob/radial.dmi', icon_state = "coil-yellow"),
 		"Layer 3" = image(icon = 'icons/mob/radial.dmi', icon_state = "coil-blue"),
 		"Multilayer cable hub" = image(icon = 'icons/obj/power.dmi', icon_state = "cable_bridge"),
-		"Multi Z layer cable hub" = image(icon = 'icons/obj/power.dmi', icon_state = "cablerelay-broken-cable")		
+		"Multi Z layer cable hub" = image(icon = 'icons/obj/power.dmi', icon_state = "cablerelay-broken-cable")
 		)
 	var/layer_result = show_radial_menu(user, src, GLOB.cable_radial_layer_list, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
@@ -482,7 +482,7 @@ GLOBAL_LIST(cable_radial_layer_list)
 	var/datum/limb/affecting = H.get_limb(check_zone(user.zone_selected))
 	if(affecting && affecting.limb_status == LIMB_ROBOT)
 		if(user == H)
-			user.visible_message("<span class='notice'>[user] starts to fix some of the wires in [H]'s [affecting.name].</span>", "<span class='notice'>You start fixing some of the wires in [H == user ? "your" : "[H]'s"] [affecting.name].</span>")
+			user.visible_message("<span class='notice'>[user] starts to fix some of the wires in [H]'s [affecting.display_name].</span>", "<span class='notice'>You start fixing some of the wires in [H == user ? "your" : "[H]'s"] [affecting.display_name].</span>")
 			if(!do_mob(user, H, 50))
 				return
 		if(affecting.heal_limb_damage(15, 15, FALSE, TRUE, TRUE))
@@ -605,7 +605,7 @@ GLOBAL_LIST(cable_radial_layer_list)
 /obj/structure/cable/multilayer/update_icon()
 
 	machinery_node?.alpha = machinery_layer & MACHINERY_LAYER_1 ? 255 : 0
-	
+
 	cable_node_1?.alpha = cable_layer & CABLE_LAYER_1 ? 255 : 0
 
 	cable_node_2?.alpha = cable_layer & CABLE_LAYER_2 ? 255 : 0
@@ -623,7 +623,7 @@ GLOBAL_LIST(cable_radial_layer_list)
 			C.deconstruct()						// remove adversary cable
 	if(!mapload)
 		auto_propagate_cut_cable(src)
-	
+
 	machinery_node = new /obj/effect/node()
 	vis_contents += machinery_node
 	cable_node_1 = new /obj/effect/node/layer1()
@@ -638,7 +638,7 @@ GLOBAL_LIST(cable_radial_layer_list)
 	QDEL_NULL(machinery_node)
 	QDEL_NULL(cable_node_1)
 	QDEL_NULL(cable_node_2)
-	QDEL_NULL(cable_node_3) 
+	QDEL_NULL(cable_node_3)
 	return ..()									// then go ahead and delete the cable
 
 /obj/structure/cable/multilayer/examine(mob/user)

@@ -373,7 +373,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	update_inv_r_hand()
 	update_inv_l_hand()
 	update_inv_handcuffed()
-	update_inv_legcuffed()
 	update_inv_pockets()
 	update_fire()
 	update_burst()
@@ -697,15 +696,12 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 			// Handle attachments and modules
 			if(mod_armor.slot_chest)
 				var/image/chest = image(mod_armor.slot_chest.icon, ITEM_STATE_IF_SET(mod_armor.slot_chest))
-				chest.color = mod_armor.slot_chest.color
 				standing.overlays += chest
 			if(mod_armor.slot_arms)
 				var/image/arms = image(mod_armor.slot_arms.icon, ITEM_STATE_IF_SET(mod_armor.slot_arms))
-				arms.color = mod_armor.slot_arms.color
 				standing.overlays += arms
 			if(mod_armor.slot_legs)
 				var/image/legs = image(mod_armor.slot_legs.icon, ITEM_STATE_IF_SET(mod_armor.slot_legs))
-				legs.color = mod_armor.slot_legs.color
 				standing.overlays += legs
 			if(LAZYLEN(mod_armor.installed_modules))
 				for(var/mod in mod_armor.installed_modules)
@@ -790,12 +786,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	if(handcuffed)
 		overlays_standing[HANDCUFF_LAYER]	= image("icon" = 'icons/mob/mob.dmi', "icon_state" = "handcuff1", "layer" =-HANDCUFF_LAYER)
 		apply_overlay(HANDCUFF_LAYER)
-
-/mob/living/carbon/human/update_inv_legcuffed()
-	remove_overlay(LEGCUFF_LAYER)
-	if(legcuffed)
-		overlays_standing[LEGCUFF_LAYER]	= image("icon" = 'icons/mob/mob.dmi', "icon_state" = "legcuff1", "layer" =-LEGCUFF_LAYER)
-		apply_overlay(LEGCUFF_LAYER)
 
 
 /mob/living/carbon/human/update_inv_r_hand()

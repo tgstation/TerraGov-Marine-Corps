@@ -39,3 +39,9 @@ endmap
 
 map research_outpost
 endmap
+
+map whiskey_outpost_v2
+endmap
+
+map marine_hq
+endmap
