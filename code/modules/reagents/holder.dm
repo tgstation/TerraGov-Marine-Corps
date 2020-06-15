@@ -78,7 +78,7 @@
 			current_list_element = 1
 
 		var/datum/reagent/R = cached_reagents[current_list_element]
-		 //double round to keep it at a somewhat even spread relative to amount without getting funky numbers.
+		//double round to keep it at a somewhat even spread relative to amount without getting funky numbers.
 		var/remove_amt = min(
 			amount - total_transfered,
 			round(amount / rand(2, initial_list_length), round(amount/10,0.01))
