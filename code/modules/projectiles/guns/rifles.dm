@@ -543,8 +543,7 @@
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/scope,
-						/obj/item/attachable/scope/mini,
-						/obj/item/attachable/compensator,
+						/obj/item/attachable/scope/mini
 						/obj/item/attachable/stock/t60stock,
 						/obj/item/attachable/magnetic_harness)
 
