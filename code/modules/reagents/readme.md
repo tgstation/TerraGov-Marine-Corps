@@ -1,8 +1,12 @@
-/*
+# Reagents
+
 NOTE: IF YOU UPDATE THE REAGENT-SYSTEM, ALSO UPDATE THIS README.
 
-Structure: ///////////////////          //////////////////////////
-		// Mob or object // -------> // Reagents var (datum) // 	    Is a reference to the datum that holds the reagents.
+## Structure:
+```
+		///////////////////          //////////////////////////
+		// Mob or object // -------> // Reagents var (datum)
+									 // Is a reference to the datum that holds the reagents.
 		///////////////////          //////////////////////////
 				|				    			 |
 	The object that holds everything.   			 V
@@ -12,14 +16,13 @@ Structure: ///////////////////          //////////////////////////
 										V          V          V
 
 											reagents (datums)	    	Reagents. I.e. Water , dylovene or mercury.
-
-
-Random important notes:
+```
+## Random important notes:
 
 	An objects on_reagent_change will be called every time the objects reagents change.
 	Useful if you want to update the objects icon etc.
 
-About the Holder:
+## About the Holder:
 
 	The holder (reagents datum) is the datum that holds a list of all reagents
 	currently in the object.It also has all the procs needed to manipulate reagents
@@ -119,7 +122,7 @@ About the Holder:
 				(i.e. for explosions)
 
 
-About Reagents:
+## About Reagents:
 
 	Reagents are all the things you can mix and fille in bottles etc. This can be anything from
 	rejuvs over water to ... iron. Each reagent also has a few procs - i'll explain those below.
@@ -181,7 +184,7 @@ About Reagents:
 
 
 
-About Recipes:
+## About Recipes:
 
 	Recipes are simple datums that contain a list of required reagents and a result.
 	They also have a proc that is called when the recipe is matched.
@@ -239,7 +242,7 @@ About Recipes:
 			Wheter this reagent can be searched up through the codex or not.
 
 
-About the Tools:
+## About the Tools:
 
 	By default, all atom have a reagents var - but its null. if you want to use an object for the chem.
 	system, that should be done by calling this convenience proc:
@@ -280,4 +283,4 @@ About the Tools:
 			if the atom happens to be a living mob and allowmobs is FALSE, it will return FALSE
 			otherwise it will check their can_inject() proc instead.
 			if TRUE, its reagents can be freely drawed by syringes, hyposprays etc.
-*/
+

@@ -210,8 +210,6 @@
 		victim.blind_eyes(10)
 		victim.Stun(10 SECONDS)
 		victim.Paralyze(10 SECONDS)
-		//victim.Unconscious(10)
-		//victim.drop_held_item()
 
 
 /datum/reagent/consumable/frostoil

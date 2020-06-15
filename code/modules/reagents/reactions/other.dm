@@ -2,12 +2,12 @@
 	name = "EMP Pulse"
 	required_reagents = list(/datum/reagent/uranium = 1, /datum/reagent/iron = 1) // Yes, laugh, it's the best recipe I could think of that makes a little bit of sense
 
-	on_reaction(var/datum/reagents/holder, var/created_volume)
-		var/location = get_turf(holder.my_atom)
-		// 100 created volume = 4 heavy range & 7 light range. A few tiles smaller than traitor EMP grandes.
-		// 200 created volume = 8 heavy range & 14 light range. 4 tiles larger than traitor EMP grenades.
-		empulse(location, round(created_volume / 24), round(created_volume / 14), 1)
-		holder.clear_reagents()
+/datum/chemical_reaction/emp_pulse/on_reaction(var/datum/reagents/holder, var/created_volume)
+	var/location = get_turf(holder.my_atom)
+	// 100 created volume = 4 heavy range & 7 light range. A few tiles smaller than traitor EMP grandes.
+	// 200 created volume = 8 heavy range & 14 light range. 4 tiles larger than traitor EMP grenades.
+	empulse(location, round(created_volume / 24), round(created_volume / 14), 1)
+	holder.clear_reagents()
 
 /datum/chemical_reaction/serotrotium
 	name = "Serotrotium"
@@ -79,10 +79,9 @@
 	results = list(/datum/reagent/glycerol = 1)
 	required_reagents = list(/datum/reagent/consumable/cornoil = 3, /datum/reagent/toxin/acid = 1)
 
-
 /datum/chemical_reaction/flash_powder
 	name = "Flash powder"
-	required_reagents = list(/datum/reagent/aluminum = 1, /datum/reagent/potassium = 1, /datum/reagent/sulfur = 1 )
+	required_reagents = list(/datum/reagent/aluminum = 1, /datum/reagent/potassium = 1, /datum/reagent/sulfur = 1)
 
 /datum/chemical_reaction/flash_powder/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
@@ -175,7 +174,6 @@
 /datum/chemical_reaction/phoronsolidification/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	new /obj/item/stack/sheet/mineral/phoron(location)
-	return
 
 /datum/chemical_reaction/plastication
 	name = "Plastic"
@@ -183,7 +181,6 @@
 
 /datum/chemical_reaction/plastication/on_reaction(datum/reagents/holder)
 	new /obj/item/stack/sheet/mineral/plastic(get_turf(holder.my_atom),10)
-	return
 
 /datum/chemical_reaction/virus_food
 	name = "Virus Food"
@@ -192,7 +189,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////
-
 // foam and foam precursor
 
 /datum/chemical_reaction/surfactant
@@ -208,13 +204,12 @@
 
 /datum/chemical_reaction/foam/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
-	for(var/mob/M in viewers(5, location))
+	for(var/mob/M in viewers(WORLD_VIEW_NUM, location))
 		to_chat(M, "<span class='warning'>The solution spews out foam!</span>")
 	var/datum/effect_system/foam_spread/s = new()
 	s.set_up(created_volume, location, holder, 0)
 	s.start()
 	holder.clear_reagents()
-	return
 
 
 /datum/chemical_reaction/metalfoam
@@ -225,7 +220,7 @@
 /datum/chemical_reaction/metalfoam/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 
-	for(var/mob/M in viewers(5, location))
+	for(var/mob/M in viewers(WORLD_VIEW_NUM, location))
 		to_chat(M, "<span class='warning'>The solution spews out a metalic foam!</span>")
 
 	var/datum/effect_system/foam_spread/s = new()
@@ -242,7 +237,7 @@
 /datum/chemical_reaction/ironfoam/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 
-	for(var/mob/M in viewers(5, location))
+	for(var/mob/M in viewers(WORLD_VIEW_NUM, location))
 		to_chat(M, "<span class='warning'>The solution spews out a metallic foam!</span>")
 
 	var/datum/effect_system/foam_spread/s = new()

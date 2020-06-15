@@ -222,7 +222,7 @@
 	toxpwr = 0
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
-	scannable = 1
+	scannable = TRUE
 	taste_description = "cough syrup"
 	trait_flags = BRADYCARDICS
 
@@ -349,7 +349,6 @@
 /datum/reagent/toxin/acid
 	name = "Sulphuric acid"
 	description = "A very corrosive mineral acid with the molecular formula H2SO4."
-	spray_warning = TRUE
 	color = "#DB5008" // rgb: 219, 80, 8
 	toxpwr = 1
 	var/meltprob = 10
@@ -444,7 +443,7 @@
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
 	custom_metabolism = REAGENTS_METABOLISM * 2 //otherwise it defaults to half of that
-	purge_list = list(/datum/reagent/medicine) 
+	purge_list = list(/datum/reagent/medicine)
 	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 1.2 //make this a little more forgiving in light of the lethality
@@ -482,7 +481,7 @@
 	description = "A metabolic accelerant that dramatically increases the rate of larval growth in a host."
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
-	purge_list = list(/datum/reagent/toxin/xeno_neurotoxin, /datum/reagent/medicine) 
+	purge_list = list(/datum/reagent/toxin/xeno_neurotoxin, /datum/reagent/medicine)
 	purge_rate = 3
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
@@ -495,7 +494,7 @@
 		L.heal_limb_damage(REM, REM)
 	if(L.getToxLoss())
 		L.adjustToxLoss(-REM)
-	if(L.bodytemperature > target_temp) 
+	if(L.bodytemperature > target_temp)
 		L.adjust_bodytemperature(-20 * TEMPERATURE_DAMAGE_COEFFICIENT, target_temp)
 	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
 	L.jitter(1) //So unga know to get treated
