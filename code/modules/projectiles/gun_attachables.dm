@@ -1335,7 +1335,7 @@ Defined in conflicts.dm of the #defines folder.
 			if(user)
 				if(!user.mind?.bypass_ff && !H.mind?.bypass_ff && user.faction == H.faction)
 					log_combat(user, H, "flamed", src)
-					user.ff_check(30) // avg between 20/40 dmg
+					user.ff_check(30, H) // avg between 20/40 dmg
 					log_ffattack("[key_name(usr)] flamed [key_name(H)] with [name] in [AREACOORD(T)].")
 					msg_admin_ff("[ADMIN_TPMONTY(usr)] flamed [ADMIN_TPMONTY(H)] with [name] in [ADMIN_VERBOSEJMP(T)].")
 				else

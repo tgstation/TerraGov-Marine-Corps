@@ -372,8 +372,8 @@ This maintains a list of ip addresses that are able to bypass topic filtering.
 
 /datum/config_entry/number/ff_damage_threshold
 	min_val = 0
-	default = 250
+	config_entry_value = 250
 
 /datum/config_entry/number/ff_damage_reset
 	min_val = 0
-	default = 30 SECONDS
+	config_entry_value = 30 SECONDS

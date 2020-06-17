@@ -1012,7 +1012,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	var/mob/living/carbon/human/firingMob = proj.firer
 	if(!firingMob.mind?.bypass_ff && !mind?.bypass_ff && firingMob.faction == faction)
 		var/turf/T = get_turf(firingMob)
-		ff_check(damage)
+		firingMob.ff_check(damage, src)
 		log_ffattack("[key_name(firingMob)] shot [key_name(src)] with [proj] in [AREACOORD(T)].")
 		msg_admin_ff("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with [proj] in [ADMIN_VERBOSEJMP(T)].")
 		GLOB.round_statistics.total_bullet_hits_on_marines++
