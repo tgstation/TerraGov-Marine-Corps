@@ -986,7 +986,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0, "black"),
 		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0, "orange"),
 		/obj/item/attachable/stock/t35stock = list(CAT_ATT, "T-35 stock", 0, "black"),
-		/obj/item/attachable/stock/t19stock = list(CAT_ATT, "T-19machine pistol stock", 0, "black"),
+		/obj/item/attachable/stock/t19stock = list(CAT_ATT, "T-19 machine pistol stock", 0, "black"),
 	)
 
 
