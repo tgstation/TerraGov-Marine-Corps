@@ -547,7 +547,8 @@
 		/obj/item/stack/medical/advanced,
 		/obj/item/clothing/mask/surgical,
 		/obj/item/clothing/gloves/latex,
-		/obj/item/stack/nanopaste)
+		/obj/item/stack/nanopaste,
+		/obj/item/storage/surgical_tray)
 
 /obj/item/clothing/tie/storage/white_vest/medic
 	name = "corpsman webbing"
@@ -568,7 +569,8 @@
 	/obj/item/reagent_containers/hypospray,
 	/obj/item/bodybag,
 	/obj/item/roller,
-	/obj/item/clothing/glasses/hud/health)
+	/obj/item/clothing/glasses/hud/health,
+	/obj/item/storage/surgical_tray)
 
 /obj/item/clothing/tie/storage/knifeharness
 	name = "decorated harness"
