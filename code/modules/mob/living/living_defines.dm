@@ -117,3 +117,8 @@
 	var/heart_multi = 1 //Multiplier.
 
 	var/list/embedded_objects
+
+	/// How much friendly fire damage has this mob done in the last 30 seconds.
+	var/ff_damage = 0
+	var/last_ff_damage = 0
+

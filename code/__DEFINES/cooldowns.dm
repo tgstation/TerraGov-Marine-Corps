@@ -18,6 +18,7 @@
 #define COOLDOWN_VENTSOUND	"vendsound"
 #define COOLDOWN_ARMOR_LIGHT	"armor_light"
 #define COOLDOWN_ARMOR_ACTION	"armor_action"
+#define COOLDOWN_FRIENDLY_FIRE	"friendly_fire"
 
 #define COOLDOWN_START(cd_source, cd_index, cd_time) LAZYSET(cd_source.cooldowns, cd_index, addtimer(CALLBACK(GLOBAL_PROC, /proc/end_cooldown, cd_source, cd_index), cd_time))
 

@@ -42,3 +42,26 @@
 	. = ..()
 	if(job)
 		. += job.title
+
+/mob/living/proc/ff_check(total_damage)
+	var/list/adm = get_admin_counts(R_ADMIN)
+	if(length(adm["present"]) > 0)
+		return // Let an admin deal with it.
+
+	var/ff_cooldown = CONFIG_GET(number/ff_damage_reset)
+	if(COOLDOWN_CHECK(src, COOLDOWN_FRIENDLY_FIRE))
+		ff_damage = 0
+	ff_damage += total_damage
+	COOLDOWN_START(src, COOLDOWN_FRIENDLY_FIRE, ff_cooldown)
+
+	// Do we need to take action
+	var/ff_limit = CONFIG_GET(number/ff_damage_threshold)
+	if(ff_damage > ff_limit)
+		message_admins("[key_name_admin(src)] would've been kicked for excessive friendly fire. [ff_damage] damage witin [ff_cooldown / 10] seconds")
+		// send2tgs("FF ALERT", "[key_name(src)] was kicked for excessive friendly fire. [ff_damage] damage witin [ff_cooldown / 10] seconds")
+		// create_message("note", ckey(client.key), "SYSTEM", "Autokicked due to excessive friendly fire. [ff_damage] damage witin [ff_cooldown / 10] seconds.", null, null, FALSE, FALSE, null, FALSE, "Minor")
+		// qdel(client) // Disconnect the client
+
+
+
+
