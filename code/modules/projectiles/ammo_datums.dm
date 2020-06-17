@@ -941,7 +941,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	iff_signal = 0
 
 /datum/ammo/bullet/turret/gauss
-	name = "gauss turret heavy slug"
+	name = "heavy gauss turret slug"
 	damage = 30
 	penetration = 30
 	accurate_range = 3

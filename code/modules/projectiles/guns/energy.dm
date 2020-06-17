@@ -413,7 +413,7 @@
 	return
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle
-	name = "\improper TX-73 Lasrifle MK2"
+	name = "\improper TX-73 lasrifle MK2"
 	desc = "A multifunctional laser based rifle with an integrated mode selector. Ideal for any situation. Uses power cells instead of ballistic magazines."
 	force = 20 //Large and hefty! Includes stock bonus.
 	icon = 'icons/Marine/gun64.dmi'
