@@ -127,37 +127,19 @@
 	},
 /area/shuttle/drop2/lz2)
 "bE" = (
-/obj/effect/landmark/corpsespawner/miner{
-	corpseback = /obj/item/storage/backpack/satchel/norm;
-	corpsehelmet = /obj/item/clothing/head/hardhat/white;
-	corpseradio = /obj/item/radio/headset/survivor;
-	corpseshoes = /obj/item/clothing/shoes/snow;
-	corpsesuit = /obj/item/clothing/suit/storage/snow_suit;
-	corpseuniform = /obj/item/clothing/under/rank/miner;
-	mobname = "Shaft Miner";
-	name = "Shaft Miner"
-	},
-/obj/effect/decal/cleanable/blood,
-/turf/open/lavaland/basalt,
-/area/lavaland/cave/east)
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/corpsespawner/engineer,
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "bH" = (
 /obj/item/lightstick/red/anchored,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/south)
 "bJ" = (
-/obj/effect/landmark/corpsespawner/miner{
-	corpseback = /obj/item/storage/backpack/satchel/norm;
-	corpsehelmet = /obj/item/clothing/head/hardhat/white;
-	corpseradio = /obj/item/radio/headset/survivor;
-	corpseshoes = /obj/item/clothing/shoes/snow;
-	corpsesuit = /obj/item/clothing/suit/storage/snow_suit;
-	corpseuniform = /obj/item/clothing/under/rank/miner;
-	mobname = "Shaft Miner";
-	name = "Shaft Miner"
-	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/blood,
-/turf/open/lavaland/basalt,
-/area/lavaland/cave/north)
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "bL" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/lavaland/basalt,
@@ -258,18 +240,9 @@
 	},
 /area/lavaland/security/storage)
 "dq" = (
-/obj/effect/landmark/corpsespawner/miner{
-	corpseback = /obj/item/storage/backpack/satchel/norm;
-	corpsehelmet = /obj/item/clothing/head/hardhat/white;
-	corpseradio = /obj/item/radio/headset/survivor;
-	corpseshoes = /obj/item/clothing/shoes/snow;
-	corpsesuit = /obj/item/clothing/suit/storage/snow_suit;
-	corpseuniform = /obj/item/clothing/under/rank/miner;
-	mobname = "Shaft Miner";
-	name = "Shaft Miner"
-	},
-/turf/open/lavaland/basalt,
-/area/lavaland/cave/southwest)
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "ds" = (
 /obj/machinery/vending/robotics,
 /turf/open/floor/tile/dark2,
@@ -340,6 +313,7 @@
 /area/shuttle/drop2/lz2)
 "eQ" = (
 /obj/structure/table,
+/obj/effect/spawner/random/toolbox,
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/engine)
 "fe" = (
@@ -540,6 +514,11 @@
 /obj/machinery/chem_dispenser/soda,
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
+"hq" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/wood,
+/area/lavaland/civilian)
 "hr" = (
 /obj/machinery/landinglight/ds2/delaytwo{
 	dir = 1
@@ -729,6 +708,12 @@
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
+"jG" = (
+/obj/structure/bed,
+/obj/effect/landmark/corpsespawner/scientist,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/wood,
+/area/lavaland/civilian)
 "jI" = (
 /obj/structure/table,
 /obj/machinery/microwave,
@@ -1110,6 +1095,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
+/obj/effect/landmark/corpsespawner/engineer,
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/engine)
 "nC" = (
@@ -1871,6 +1857,11 @@
 "wj" = (
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/southeast)
+"wm" = (
+/obj/structure/cable,
+/obj/effect/landmark/corpsespawner/scientist,
+/turf/open/floor/tile/white,
+/area/lavaland/medical/chemistry)
 "wD" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/corpsespawner/security,
@@ -2206,6 +2197,10 @@
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/shuttle/drop1/lz1)
+"Az" = (
+/obj/effect/landmark/corpsespawner/miner,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/west)
 "AB" = (
 /obj/structure/fence,
 /turf/open/lavaland/basalt,
@@ -2307,6 +2302,11 @@
 "Bl" = (
 /turf/open/lavaland/lava,
 /area/lavaland/cave/south)
+"Bo" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/corpsespawner/miner,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/north)
 "Bv" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -2323,18 +2323,12 @@
 /turf/open/lavaland/catwalk,
 /area/lavaland/cave/northeast)
 "BC" = (
-/obj/effect/landmark/corpsespawner/miner{
-	corpseback = /obj/item/storage/backpack/satchel/norm;
-	corpsehelmet = /obj/item/clothing/head/hardhat/white;
-	corpseradio = /obj/item/radio/headset/survivor;
-	corpseshoes = /obj/item/clothing/shoes/snow;
-	corpsesuit = /obj/item/clothing/suit/storage/snow_suit;
-	corpseuniform = /obj/item/clothing/under/rank/miner;
-	mobname = "Shaft Miner";
-	name = "Shaft Miner"
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
 	},
-/turf/open/lavaland/basalt,
-/area/lavaland/cave/south)
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "BD" = (
 /turf/open/lavaland/lava/side{
 	dir = 1
@@ -2727,6 +2721,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/refine)
+"FS" = (
+/obj/effect/landmark/corpsespawner/miner,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/east)
 "FT" = (
 /obj/item/tool/pickaxe/plasmacutter,
 /turf/open/lavaland/basalt,
@@ -3095,18 +3093,10 @@
 	},
 /area/lavaland/security/storage)
 "Kr" = (
-/obj/effect/landmark/corpsespawner/miner{
-	corpseback = /obj/item/storage/backpack/satchel/norm;
-	corpsehelmet = /obj/item/clothing/head/hardhat/white;
-	corpseradio = /obj/item/radio/headset/survivor;
-	corpseshoes = /obj/item/clothing/shoes/snow;
-	corpsesuit = /obj/item/clothing/suit/storage/snow_suit;
-	corpseuniform = /obj/item/clothing/under/rank/miner;
-	mobname = "Shaft Miner";
-	name = "Shaft Miner"
-	},
-/turf/open/lavaland/basalt,
-/area/lavaland/cave/east)
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "Kt" = (
 /obj/structure/sink,
 /turf/open/floor/tile/white,
@@ -3171,19 +3161,9 @@
 /turf/open/floor/plating,
 /area/lavaland/security/infocenter)
 "Lc" = (
-/obj/effect/landmark/corpsespawner/miner{
-	corpseback = /obj/item/storage/backpack/satchel/norm;
-	corpsehelmet = /obj/item/clothing/head/hardhat/white;
-	corpseradio = /obj/item/radio/headset/survivor;
-	corpseshoes = /obj/item/clothing/shoes/snow;
-	corpsesuit = /obj/item/clothing/suit/storage/snow_suit;
-	corpseuniform = /obj/item/clothing/under/rank/miner;
-	mobname = "Shaft Miner";
-	name = "Shaft Miner"
-	},
-/obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/corpsespawner/miner,
 /turf/open/lavaland/basalt,
-/area/lavaland/cave/west)
+/area/lavaland/cave/north)
 "Le" = (
 /obj/machinery/miner/damaged,
 /turf/open/lavaland/basalt,
@@ -3343,6 +3323,14 @@
 	dir = 8
 	},
 /area/lavaland/security/nuke)
+"MV" = (
+/obj/effect/landmark/corpsespawner/miner,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/central)
+"MW" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/marking,
+/area/lavaland/cave/central)
 "MX" = (
 /turf/open/lavaland/lava/lpiece{
 	dir = 8
@@ -3373,6 +3361,10 @@
 	},
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/east)
+"NQ" = (
+/obj/effect/landmark/corpsespawner/miner,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/southwest)
 "NR" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4
@@ -3395,6 +3387,10 @@
 /obj/item/storage/box/syringes,
 /turf/open/floor/tile/white,
 /area/lavaland/medical)
+"Oi" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/plating/asteroidfloor,
+/area/lavaland/cave/northeast)
 "Ok" = (
 /turf/open/lavaland/lava/side{
 	dir = 4
@@ -3929,6 +3925,12 @@
 "TY" = (
 /turf/closed/wall/r_wall,
 /area/lavaland/security/storage)
+"TZ" = (
+/obj/structure/bed,
+/obj/effect/landmark/corpsespawner/clown,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/wood,
+/area/lavaland/civilian)
 "Ua" = (
 /obj/structure/computer3frame,
 /turf/open/floor/tile/white,
@@ -4069,6 +4071,10 @@
 	},
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/east)
+"VQ" = (
+/obj/effect/landmark/corpsespawner/miner,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/south)
 "VR" = (
 /obj/machinery/chem_dispenser,
 /turf/open/floor/tile/white,
@@ -11733,7 +11739,7 @@ ZN
 ZN
 ZN
 ZN
-ZN
+Az
 ZN
 ZN
 ZN
@@ -20767,7 +20773,7 @@ HQ
 Vz
 Vz
 Vz
-Vz
+NQ
 Vz
 Vz
 Vz
@@ -21022,7 +21028,7 @@ HQ
 HQ
 HQ
 Vz
-dq
+Vz
 Vz
 Vz
 Vz
@@ -22285,7 +22291,7 @@ ZK
 ZK
 Yy
 Yy
-BC
+Yy
 Yy
 TY
 Kq
@@ -22476,7 +22482,7 @@ aZ
 bP
 aZ
 aZ
-bL
+Bo
 aZ
 aZ
 aZ
@@ -22734,7 +22740,7 @@ aZ
 bL
 bL
 aZ
-bJ
+bL
 aZ
 aZ
 cw
@@ -24610,7 +24616,7 @@ RD
 VV
 Ey
 Mn
-Yy
+ae
 Yy
 OR
 OR
@@ -25350,7 +25356,7 @@ qo
 qo
 qo
 qo
-qo
+MW
 qo
 qo
 qo
@@ -26097,7 +26103,7 @@ ZW
 Ix
 ZN
 ZN
-Lc
+Lj
 ZN
 ZN
 LA
@@ -26277,9 +26283,9 @@ al
 fw
 fE
 hw
-mI
-mI
-mI
+bE
+bJ
+bJ
 mI
 mI
 rv
@@ -26538,7 +26544,7 @@ aY
 ds
 fw
 aY
-aY
+dq
 gF
 aY
 aY
@@ -26588,7 +26594,7 @@ pV
 uF
 pS
 yK
-zN
+hq
 BM
 Cf
 jL
@@ -26846,7 +26852,7 @@ uG
 le
 jL
 zY
-zY
+TZ
 zY
 jL
 al
@@ -27588,7 +27594,7 @@ aZ
 aZ
 aZ
 aZ
-bJ
+bL
 aZ
 cw
 aZ
@@ -27826,7 +27832,7 @@ kx
 kx
 lk
 mI
-mI
+Kr
 mI
 mI
 mI
@@ -27846,7 +27852,7 @@ aZ
 aZ
 aZ
 bL
-aZ
+Lc
 aZ
 aZ
 aZ
@@ -28339,7 +28345,7 @@ ks
 ks
 aY
 gF
-aY
+dq
 ks
 ks
 ks
@@ -28595,7 +28601,7 @@ fw
 ks
 ks
 aY
-gF
+BC
 aY
 ks
 ks
@@ -29109,7 +29115,7 @@ WU
 fw
 aY
 aY
-gF
+BC
 aY
 aY
 fw
@@ -29672,7 +29678,7 @@ sV
 uQ
 pS
 yK
-zN
+hq
 BM
 Cf
 jL
@@ -29929,7 +29935,7 @@ sn
 uG
 le
 jL
-zY
+jG
 zY
 zY
 jL
@@ -31235,7 +31241,7 @@ Qb
 Qb
 Qb
 Qb
-Qb
+MV
 Qb
 Qb
 Qb
@@ -33508,7 +33514,7 @@ al
 al
 aZ
 aZ
-bJ
+bL
 aZ
 aZ
 al
@@ -35174,7 +35180,7 @@ ZK
 ZK
 Yy
 Yy
-Yy
+VQ
 Yy
 Yy
 ZK
@@ -36181,10 +36187,10 @@ Yy
 Yy
 Yy
 Yy
-BC
 Yy
 Yy
 Yy
+LG
 ZK
 ZK
 pF
@@ -37123,7 +37129,7 @@ aZ
 aZ
 aZ
 aZ
-aZ
+Lc
 bL
 bL
 aZ
@@ -37381,7 +37387,7 @@ aZ
 aZ
 aZ
 aZ
-bJ
+bL
 aZ
 aZ
 aZ
@@ -44084,7 +44090,7 @@ EF
 EF
 EF
 EF
-Kr
+EF
 EF
 EF
 QO
@@ -44821,7 +44827,7 @@ TW
 TW
 TW
 TW
-TW
+Oi
 TW
 TW
 TW
@@ -44889,7 +44895,7 @@ EF
 EF
 VH
 EF
-bE
+Si
 EF
 LY
 EF
@@ -48224,7 +48230,7 @@ EF
 Sj
 St
 SN
-SW
+wm
 VW
 Sc
 ZX
@@ -49760,7 +49766,7 @@ EF
 EF
 LY
 EF
-Kr
+EF
 EF
 EF
 EF
@@ -54904,7 +54910,7 @@ EF
 EF
 EF
 EF
-EF
+FS
 Pd
 EF
 EF
@@ -60021,7 +60027,7 @@ EF
 EF
 EF
 EF
-EF
+FS
 EF
 EF
 EF
