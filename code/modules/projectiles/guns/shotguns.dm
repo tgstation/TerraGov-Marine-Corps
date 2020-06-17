@@ -744,7 +744,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	load_method = SINGLE_CASING
 	max_shells = 10
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/lever/mbx900
-	gun_skill_category = GUN_SKILL_SPEC
+	gun_skill_category = GUN_SKILL_SHOTGUNS
 	type_of_casings = "cartridge"
 	pump_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
 

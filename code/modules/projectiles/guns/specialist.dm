@@ -923,7 +923,7 @@
 	load_method = SINGLE_CASING //codex
 	fire_sound = 'sound/weapons/guns/fire/shotgun_light.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/scout
-	gun_skill_category = GUN_SKILL_SPEC
+	gun_skill_category = GUN_SKILL_SHOTGUNS
 	aim_slowdown = 0.75
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,

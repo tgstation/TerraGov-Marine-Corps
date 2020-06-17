@@ -808,7 +808,7 @@ and you're good to go.
 				if(GUN_SKILL_HEAVY_WEAPONS)
 					if(fire_delay > 1 SECONDS) //long delay to fire
 						added_delay = max(fire_delay - 3 * user.skills.getRating(gun_skill_category), 6)
-				if(GUN_SKILL_SMARTGUN, GUN_SKILL_SPEC)
+				if(GUN_SKILL_SMARTGUN)
 					if(user.skills.getRating(gun_skill_category) < 0)
 						added_delay -= 2 * user.skills.getRating(gun_skill_category)
 
