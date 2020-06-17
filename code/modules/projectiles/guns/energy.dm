@@ -369,7 +369,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/pulse
 	name = "\improper M19C4 pulse energy rifle"
-	desc = "A heavy-duty, multifaceted energy weapon that uses pulse-based beam generation technology to emit powerful laser blasts. Because of its complexity and cost, it is rarely seen in use except by specialists and front-line combat personnel. This is a testing model issued only for Asset Protection."
+	desc = "A heavy-duty, multifaceted energy weapon that uses pulse-based beam generation technology to emit powerful laser blasts. Because of its complexity and cost, it is rarely seen in use except by specialists and front-line combat personnel. This is a testing model issued only for Asset Protection units and offshore elite Nanotrasen squads."
 	force = 23 //Slightly more heftier than the M43, but without the stock.
 	icon_state = "m19c4"
 	item_state = "m19c4"
@@ -398,7 +398,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/M43/practice
 	name = "\improper M43-P Sunfury Lasgun MK1"
-	desc = "An accurate, recoilless laser based battle rifle. Only accepts practice power cells and it doesn't have a charge selector. Uses power cells instead of ballistic magazines."
+	desc = "An accurate, recoilless laser based battle rifle, based on the outdated M43 design. Only accepts practice power cells and it doesn't have a charge selector. Uses power cells instead of ballistic magazines."
 	force = 8 //Well, it's not complicted compared to the original.
 	ammo = /datum/ammo/energy/lasgun/M43/practice
 	cell_type = /obj/item/cell/lasgun/M43/practice
