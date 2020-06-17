@@ -92,9 +92,21 @@ const Exports = (props, context) => {
   return (
     <Section title="Exports">
       { export_history.map(entry => (
-        <Box key={entry.id}>
-          {entry}
-        </Box>
+        <Section
+          key={entry.id}
+          level={2}
+          title={"#"+entry.id}
+          buttons={entry.points+" points"}>
+          <Table>
+            {entry.exports.map(exp => (
+              <TableRow key={exp.id}>
+                <TableCell>{exp.name}</TableCell>
+                <TableCell>x {exp.count}</TableCell>
+                <TableCell>{exp.points} points</TableCell>
+              </TableRow>
+            ))}
+          </Table>
+        </Section>
       ))}
     </Section>
   );
