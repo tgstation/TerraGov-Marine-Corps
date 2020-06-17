@@ -16,6 +16,7 @@
 	var/list/list/xenos_by_upgrade
 	var/list/dead_xenos // xenos that are still assigned to this hive but are dead.
 	var/list/ssd_xenos
+	var/list/list/xenos_by_zlevel
 
 // ***************************************
 // *********** Init
@@ -27,6 +28,7 @@
 	xenos_by_tier = list()
 	xenos_by_upgrade = list()
 	dead_xenos = list()
+	xenos_by_zlevel = list()
 
 	for(var/t in subtypesof(/mob/living/carbon/xenomorph))
 		var/mob/living/carbon/xenomorph/X = t
@@ -152,6 +154,8 @@
 /datum/hive_status/proc/add_to_lists(mob/living/carbon/xenomorph/X)
 	xenos_by_tier[X.tier] += X
 	xenos_by_upgrade[X.upgrade] += X
+	LAZYADD(xenos_by_zlevel[X.z], X)
+	RegisterSignal(X, COMSIG_MOVABLE_Z_CHANGED, .proc/xeno_z_changed)
 
 	if(!xenos_by_typepath[X.caste_base_type])
 		stack_trace("trying to add an invalid typepath into hivestatus list [X.caste_base_type]")
@@ -243,6 +247,9 @@
 		return FALSE
 
 	LAZYREMOVE(ssd_xenos, X)
+	LAZYREMOVE(xenos_by_zlevel[X.z], X)
+
+	UnregisterSignal(X, COMSIG_MOVABLE_Z_CHANGED)
 
 	remove_leader(X)
 
@@ -312,6 +319,10 @@
 
 /datum/hive_status/proc/on_xeno_login(mob/living/carbon/xenomorph/reconnecting_xeno)
 	LAZYREMOVE(ssd_xenos, reconnecting_xeno)
+
+/datum/hive_status/proc/xeno_z_changed(mob/living/carbon/xenomorph/X, old_z, new_z)
+	LAZYREMOVE(xenos_by_zlevel[old_z], X)
+	LAZYADD(xenos_by_zlevel[new_z], X)
 
 // ***************************************
 // *********** Xeno upgrades

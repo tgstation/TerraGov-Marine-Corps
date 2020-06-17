@@ -14,6 +14,8 @@
 
 	GLOB.human_mob_list += src
 	GLOB.alive_human_list += src
+	LAZYADD(GLOB.humans_by_zlevel[z], src)
+	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, .proc/human_z_changed)
 	GLOB.round_statistics.total_humans_created++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_humans_created")
 
@@ -37,6 +39,9 @@
 	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, .proc/do_unique_action)
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN)
 
+/mob/living/carbon/human/proc/human_z_changed(datum/source, old_z, new_z)
+	LAZYREMOVE(GLOB.humans_by_zlevel[old_z], src)
+	LAZYADD(GLOB.humans_by_zlevel[new_z], src)
 
 /mob/living/carbon/human/vv_get_dropdown()
 	. = ..()
@@ -66,6 +71,7 @@
 	remove_from_all_mob_huds()
 	GLOB.human_mob_list -= src
 	GLOB.alive_human_list -= src
+	LAZYREMOVE(GLOB.humans_by_zlevel[z], src)
 	GLOB.dead_human_list -= src
 	return ..()
 
