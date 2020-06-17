@@ -140,7 +140,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/M43
 	name = "\improper M43 Sunfury Lasgun MK1"
-	desc = "An accurate, recoilless laser based battle rifle with an integrated charge selector. Ideal for longer range engagements. Uses power cells instead of ballistic magazines.."
+	desc = "An accurate, recoilless laser based battle rifle with an integrated charge selector. Ideal for longer range engagements. It was the standard lasrifle for TGMC soldiers until it was replaced by the TX-73, due to its extremely modular lens system."
 	force = 20 //Large and hefty! Includes stock bonus.
 	icon_state = "m43"
 	item_state = "m43"
@@ -414,7 +414,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle
 	name = "\improper TX-73 Lasrifle MK2"
-	desc = "A multifunctional laser based rifle with an integrated mode selector. Ideal for any situation. Uses power cells instead of ballistic magazines.."
+	desc = "A multifunctional laser based rifle with an integrated mode selector. Ideal for any situation. Uses power cells instead of ballistic magazines."
 	force = 20 //Large and hefty! Includes stock bonus.
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "tx73"
@@ -518,7 +518,7 @@
 		return
 
 	mode_index = WRAP(mode_index + 1, 1, length(mode_list)+1)
-	
+
 	playsound(user, 'sound/weapons/emitter.ogg', 5, FALSE, 2)
 	charge_cost = initial(mode_list[mode_index].charge_cost)
 	ammo = GLOB.ammo_list[initial(mode_list[mode_index].ammo)]
@@ -529,7 +529,7 @@
 		SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, initial(mode_list[mode_index].fire_mode), user.client)
 	else
 		SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, GUN_FIREMODE_SEMIAUTO, user.client)
-	
+
 	base_gun_icon = initial(mode_list[mode_index].icon_state)
 	update_icon()
 

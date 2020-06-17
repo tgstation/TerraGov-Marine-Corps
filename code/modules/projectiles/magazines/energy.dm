@@ -1,8 +1,8 @@
 //Energy weapons
 
 /obj/item/cell/lasgun
-	name = "\improper Lasgun Battery"
-	desc = "A specialized high density battery used to power Lasguns."
+	name = "\improper lasgun Battery"
+	desc = "A specialized high density battery used to power lasguns."
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "m43"
 	maxcharge = 1000

@@ -93,7 +93,7 @@
 
 /obj/item/weapon/gun/rifle/standard_assaultrifle
     name = "\improper T-12 assault rifle"
-    desc = "The T-12 assault rifle used to be the TerraGov Marine Corps standard issue rifle before the T-18 carbine replaced it. It's however still used widely despite that. The gun itself is very good at being used in most situations however it suffers in engagements at close quarters and is relatively hard to shoulder than some others. It uses 10x24mm caseless ammunition."
+    desc = "The T-12 assault rifle used to be the TerraGov Marine Corps standard issue rifle before the T-18 carbine replaced it. It is, however, still used widely despite that. The gun itself is very good at being used in most situations however it suffers in engagements at close quarters and is relatively hard to shoulder than some others. It uses 10x24mm caseless ammunition."
     icon_state = "t12"
     item_state = "t12"
     fire_sound = "sound/weapons/guns/fire/autorifle.ogg"
@@ -146,7 +146,7 @@
 
 /obj/item/weapon/gun/rifle/standard_dmr
 	name = "\improper T-37 designated marksman rifle"
-	desc = "The T-37 DMR is the TerraGov Marine Corps designated marksman rifle. It is rather well-known for it's very consistent target placement at longer than usual range, it however lacks a burst fire mode or an automatic mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 10x27 caliber."
+	desc = "The T-37 DMR is the TerraGov Marine Corps designated marksman rifle. It is rather well-known for it's very consistent target placement at longer than usual range, it however lacks a burst fire mode or an automatic mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 10x27mm caseless caliber."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t37"
 	item_state = "t37"
@@ -198,7 +198,7 @@
 
 /obj/item/weapon/gun/rifle/standard_br
 	name = "\improper T-64 battle rifle"
-	desc = "The T-64 BR is the TerraGov Marine Corps battle rifle. It , it is known for its consistent ability to perform well at most ranges, and close range stopping power. It is mostly used by people who prefer a bigger round than the average. Lacks burst fire. Uses 10x27 caliber."
+	desc = "The T-64 is the TerraGov Marine Corps main battle rifle. It is known for its consistent ability to perform well at most ranges, and close range stopping power. It is mostly used by people who prefer a bigger round than the average. Lacks burst fire. Uses 10x27mm caseless caliber."
 	icon_state = "t64"
 	item_state = "t64"
 	muzzleflash_iconstate = "muzzle_flash_medium"
@@ -249,7 +249,7 @@
 
 /obj/item/weapon/gun/rifle/m41a1
 	name = "\improper M41A1 pulse rifle"
-	desc = "An outdated rifle for the TerraGov Marine Corps, carried by a few coporate mercenaries,the M41A1 is a very rare sight in TerraGov systems. Uses 10x24mm caseless ammunition."
+	desc = "An outdated rifle for the TerraGov Marine Corps, carried by a few coporate mercenary groups, the M41A1 is a very rare sight in TerraGov systems. Uses 10x24mm caseless ammunition."
 	icon_state = "m41a1"
 	item_state = "m41a1"
 	muzzleflash_iconstate = "muzzle_flash_medium"
@@ -319,7 +319,7 @@
 
 /obj/item/weapon/gun/rifle/m41a
 	name = "\improper M41A pulse rifle"
-	desc = "An older design of the pulse rifle used by the TerraGov Marine Corps. Uses 10x24mm caseless ammunition."
+	desc = "An older design of the pulse rifle used by the TerraGov Marine Corps. A very influential weapon of its time. Uses 10x24mm caseless ammunition."
 	icon_state = "m41a"
 	item_state = "m41a"
 	fire_sound = "gun_pulse"
@@ -470,7 +470,7 @@
 
 /obj/item/weapon/gun/rifle/standard_lmg
 	name = "\improper T-42 light machine gun"
-	desc = "The T-42 LMG is the TGMC's current standard non-IFF-capable LMG. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. It uses 10x24mm ammunition."
+	desc = "The T-42 is the TGMC's current standard non-IFF-capable LMG. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. It uses 10x24mm ammunition."
 	icon_state = "t42"
 	item_state = "t42"
 	caliber = "10x24mm caseless" //codex
@@ -561,7 +561,7 @@
 
 /obj/item/weapon/gun/rifle/type71
 	name = "\improper Type 71 pulse rifle"
-	desc = "The primary rifle of the USL forces, the Type 71 is a reliable rifle chambered in 7.62x39mm, firing in two round bursts to conserve ammunition. A newer model for surpression roles to comply with overmatch doctrines is in progress and only issued to a limited number of pirates in the USL."
+	desc = "The primary rifle of the USL forces, the Type 71 is a reliable rifle chambered in 7.62x39mm, firing in two round bursts to conserve ammunition. A newer model for surpression roles to comply with overmatch doctrines is in progress and only issued to a limited number of privates in the USL."
 	icon_state = "type71"
 	item_state = "type71"
 	muzzleflash_iconstate = "muzzle_flash_medium"
@@ -618,7 +618,7 @@
 
 /obj/item/weapon/gun/rifle/sx16
 	name = "\improper SX-16 automatic shotgun"
-	desc = "An automatic shotgun with an impressive rate of fire. It uses 16 gauge magazines of either buckshot, slug or flechette. The SX-16 only recently left field testing, and is one of the more recent additions to the TGMC's arsenal, replacing the ZX-76 because of reliability issues."
+	desc = "An automatic shotgun with an impressive rate of fire. It uses 16 gauge magazines of either buckshot, slug or flechette. The SX-16 only recently left field testing, and is one of the more recent additions to the TGMC's arsenal, replacing the ZX-76 because of reliability issues. It has been taken over by the TX-15 automatic shotgun in standard-issue TGMC inventory, though."
 	icon_state = "sx16"
 	item_state = "sx16"
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
@@ -654,7 +654,7 @@
 
 /obj/item/weapon/gun/rifle/standard_autoshotgun
 	name = "\improper TX-15 automatic shotgun"
-	desc = "The TX-15 Automatic Assault Shotgun, produced by Terran Armories. Another iteration of the ZX series of firearms, taking over the SX as the semi-automatic shotgun provided to the TGMC. Compared to the SX, this Shotgun is rifled, and loads primarily longer ranged munitions, being incompatible with buckshot shells. Takes 12 round magazines."
+	desc = "The TX-15 Automatic Assault Shotgun, produced by Terran Armories. Another iteration of the ZX series of firearms, taking over the SX as the semi-automatic shotgun provided to the TGMC. Compared to the SX, this Shotgun is rifled, and loads primarily longer ranged munitions, being incompatible with buckshot shells. Takes 12-round 16 gauge magazines."
 	icon_state = "tx15"
 	item_state = "tx15"
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
@@ -695,7 +695,7 @@
 
 /obj/item/weapon/gun/rifle/standard_smartmachinegun
 	name = "\improper T-29 smart machine gun"
-	desc = "The T-29 LMG is the TGMC's current standard IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
+	desc = "The T-29 is the TGMC's current standard IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
 	icon_state = "t29"
 	item_state = "t29"
 	caliber = "10x26mm caseless" //codex

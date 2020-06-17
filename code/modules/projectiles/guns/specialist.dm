@@ -13,7 +13,7 @@
 
 /obj/item/weapon/gun/rifle/sniper/M42A
 	name = "\improper T-26 scoped rifle"
-	desc = "“The T-26 is an IFF capable sniper rifle which is mostly used by long range marksmen. It excels in long-range combat situations and support sniping. It has a laser designator installed, and the scope itself has IFF integrated into it. Uses specialized 10x28 caseless rounds made to work with the guns odd IFF-scope system.”  \nIt has an integrated Target Marker and a Laser Targeting system.\n\"Peace Through Superior Firepower\"."
+	desc = "The T-26 is an IFF capable sniper rifle which is mostly used by long range marksmen. It excels in long-range combat situations and support sniping. It has a laser designator installed, and the scope itself has IFF integrated into it. Uses specialized 10x28 caseless rounds made to work with the guns odd IFF-scope system.  \nIt has an integrated Target Marker and a Laser Targeting system.\n\"Peace Through Superior Firepower\"."
 	icon_state = "m42a"
 	item_state = "m42a"
 	max_shells = 15 //codex
@@ -290,7 +290,7 @@
 
 /obj/item/weapon/gun/rifle/m4ra
 	name = "\improper T-45 battle rifle"
-	desc ="The T-45 is a light full-powered rifle, thus designating it as a Battle Rifle, it is mostly used by light infantry and scouts. It's designed to be useable at all ranges due to the compact size it is also very adaptable to different situations due to the ability to use specialized ammo. Takes specialized 'A19' 10x28mm rounds."
+	desc ="The T-45 is a light specialized battle rifle, mostly used by light infantry and scouts. It's designed to be useable at all ranges due to the compact size it is also very adaptable to different situations due to the ability to use specialized ammo. An experimental, requisitions-only design, takes specialized 'A19' 10x28mm rounds."
 	icon_state = "m4ra"
 	item_state = "m4ra"
 	max_shells = 20 //codex
@@ -718,7 +718,7 @@
 
 /obj/item/weapon/gun/launcher/m81/riot
 	name = "\improper M81 riot grenade launcher"
-	desc = "A lightweight, single-shot grenade launcher to launch tear gas grenades. Used by the TerraGov Marine Corps Military Police during riots."
+	desc = "A lightweight, single-shot grenade launcher to launch tear gas grenades. Used by Nanotrasen security during riots."
 	grenade_type_allowed = /obj/item/explosive/grenade/chem_grenade
 	riot_version = TRUE
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_POLICE|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
@@ -728,8 +728,8 @@
 //M5 RPG
 
 /obj/item/weapon/gun/launcher/rocket
-	name = "\improper T-152 Rocket Launcher"
-	desc = "The T-152 RPG is the primary anti-armor weapon of the TGMC. Used to take out light-tanks and enemy structures, the T-152 RPG is a dangerous weapon with a variety of combat uses. Uses a variety of 84mm rockets."
+	name = "\improper T-152 rocket launcher"
+	desc = "The T-152 is the primary anti-armor weapon of the TGMC. Used to take out light-tanks and enemy structures, the T-152 rocket launcher is a dangerous weapon with a variety of combat uses. Uses a variety of 84mm rockets."
 	icon_state = "m5"
 	item_state = "m5"
 	max_shells = 1 //codex
@@ -951,7 +951,7 @@
 //This gun is very powerful, but also has a kick.
 
 /obj/item/weapon/gun/minigun
-	name = "\improper MIC-A7 Vindicator Minigun"
+	name = "\improper MIC-A7 Vindicator minigun"
 	desc = "It's a damn minigun! The ultimate in man-portable firepower, spraying countless high velocity armor piercing rounds with a rotary action, this thing will no doubt pack a punch."
 	icon_state = "minigun"
 	item_state = "minigun"

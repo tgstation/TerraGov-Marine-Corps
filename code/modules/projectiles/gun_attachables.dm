@@ -967,8 +967,8 @@ Defined in conflicts.dm of the #defines folder.
 	flags_attach_features = NONE
 
 /obj/item/attachable/stock/br
-	name = "T-64 Stock"
-	desc = "A standard BR Stock."
+	name = "\improper T-64 stock"
+	desc = "A specialized stock for the T-64."
 	icon_state = "brstock"
 	wield_delay_mod = 0 SECONDS
 	pixel_shift_x = 32
@@ -981,8 +981,8 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/t18stock
-	name = "T-18 Stock"
-	desc = "A standard Carbine Stock."
+	name = "\improper T-18 stock"
+	desc = "A specialized stock for the T-18."
 	icon_state = "t18stock"
 	wield_delay_mod = 0 SECONDS
 	pixel_shift_x = 32
@@ -995,8 +995,8 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/t12stock
-	name = "T-12 Stock"
-	desc = "A standard Assault Rifle Stock."
+	name = "\improper T-12 stock"
+	desc = "A specialized stock for the T-12."
 	icon_state = "t12stock"
 	wield_delay_mod = 0 SECONDS
 	pixel_shift_x = 32
@@ -1009,8 +1009,8 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/t42stock
-	name = "T-42 Stock"
-	desc = "A standard Light Machine Gun Stock."
+	name = "\improper T-42 stock"
+	desc = "A specialized stock for the T-42."
 	icon_state = "t42stock"
 	wield_delay_mod = 0 SECONDS
 	pixel_shift_x = 32
@@ -1023,8 +1023,8 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/t19stock
-	name = "T-19 Machinepistol  Gun stock"
-	desc = "A stock distributed in small numbers to TGMC forces. Compatible with the T-19, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
+	name = "\improper T-19 machinepistol stock"
+	desc = "A submachinegun stock distributed in small numbers to TGMC forces. Compatible with the T-19, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
 	slot = "stock"
 	wield_delay_mod = 0.1 SECONDS
 	melee_mod = 5
@@ -1048,8 +1048,8 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = -20
 
 /obj/item/attachable/stock/t39stock
-	name = "T-39 Stock"
-	desc = "A irremoveable T-39 combat shotgun stock."
+	name = "\improper T-39 Stock"
+	desc = "A specialized stock for the T-35."
 	icon_state = "t39stock"
 	wield_delay_mod = 0 SECONDS
 	pixel_shift_x = 32
