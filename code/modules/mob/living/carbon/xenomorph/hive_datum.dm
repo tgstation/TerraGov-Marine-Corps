@@ -154,7 +154,7 @@
 /datum/hive_status/proc/add_to_lists(mob/living/carbon/xenomorph/X)
 	xenos_by_tier[X.tier] += X
 	xenos_by_upgrade[X.upgrade] += X
-	LAZYADD(xenos_by_zlevel[X.z], X)
+	LAZYADD(xenos_by_zlevel["[X.z]"], X)
 	RegisterSignal(X, COMSIG_MOVABLE_Z_CHANGED, .proc/xeno_z_changed)
 
 	if(!xenos_by_typepath[X.caste_base_type])
@@ -247,7 +247,7 @@
 		return FALSE
 
 	LAZYREMOVE(ssd_xenos, X)
-	LAZYREMOVE(xenos_by_zlevel[X.z], X)
+	LAZYREMOVE(xenos_by_zlevel["[X.z]"], X)
 
 	UnregisterSignal(X, COMSIG_MOVABLE_Z_CHANGED)
 
@@ -321,8 +321,8 @@
 	LAZYREMOVE(ssd_xenos, reconnecting_xeno)
 
 /datum/hive_status/proc/xeno_z_changed(mob/living/carbon/xenomorph/X, old_z, new_z)
-	LAZYREMOVE(xenos_by_zlevel[old_z], X)
-	LAZYADD(xenos_by_zlevel[new_z], X)
+	LAZYREMOVE(xenos_by_zlevel["[old_z]"], X)
+	LAZYADD(xenos_by_zlevel["[new_z]"], X)
 
 // ***************************************
 // *********** Xeno upgrades

@@ -218,12 +218,12 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		counts[trait] = list(FACTION_TERRAGOV = 0, FACTION_XENO = 0)
 		locations[trait] = list(FACTION_TERRAGOV = 0, FACTION_XENO = 0)
 		for(var/i in SSmapping.levels_by_trait(trait))
-			counts[trait][FACTION_XENO] += length(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel[i])
-			counts[trait][FACTION_TERRAGOV] += length(GLOB.humans_by_zlevel[i])
-			if(length(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel[i]))
-				locations[trait][FACTION_XENO] = get_area(pick(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel[i]))
-			if(length(GLOB.humans_by_zlevel[i]))
-				locations[trait][FACTION_TERRAGOV] = get_area(pick(GLOB.humans_by_zlevel[i]))
+			counts[trait][FACTION_XENO] += length(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[i]"])
+			counts[trait][FACTION_TERRAGOV] += length(GLOB.humans_by_zlevel["[i]"])
+			if(length(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[i]"]))
+				locations[trait][FACTION_XENO] = get_area(pick(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[i]"]))
+			if(length(GLOB.humans_by_zlevel["[i]"]))
+				locations[trait][FACTION_TERRAGOV] = get_area(pick(GLOB.humans_by_zlevel["[i]"]))
 
 	var/numHostsPlanet	= counts[ZTRAIT_GROUND][FACTION_TERRAGOV]
 	var/numHostsShip	= counts[ZTRAIT_MARINE_MAIN_SHIP][FACTION_TERRAGOV]
