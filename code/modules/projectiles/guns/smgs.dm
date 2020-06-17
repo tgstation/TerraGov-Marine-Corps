@@ -49,10 +49,11 @@
 	icon_state = "t19"
 	item_state = "t19"
 	caliber = "10x20mm caseless" //codex
-	max_shells = 40 //codex
+	max_shells = 25 //codex
 	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	current_mag = /obj/item/ammo_magazine/smg/standard_machinepistol
 	type_of_casings = null
+	w_class = WEIGHT_CLASS_NORMAL
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/reddot,
