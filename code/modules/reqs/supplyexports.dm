@@ -4,10 +4,17 @@
 	var/cost = null
 	var/export_obj = null
 
+/datum/supply_export/platinum
+	cost = 40
+	export_obj = /obj/structure/ore_box/platinum
+
+/datum/supply_export/phoron
+	cost = 20
+	export_obj = /obj/structure/ore_box/phoron
+
 /datum/supply_export/xemomorph
 	cost = 0
 	export_obj = /mob/living/carbon/xenomorph
-
 
 /datum/supply_export/xemomorph/larva
 	cost = 15

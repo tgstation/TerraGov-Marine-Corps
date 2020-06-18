@@ -266,7 +266,7 @@
 	taste_description = "grossness"
 
 /datum/reagent/medicine/tricordrazine/on_mob_life(mob/living/L, metabolism)
-	
+
 	L.adjustOxyLoss(-REM)
 	L.adjustToxLoss(-0.8*REM)
 	L.heal_limb_damage(1.6*REM, 1.6*REM)
@@ -613,7 +613,7 @@
 	scannable = TRUE
 	purge_list = list(/datum/reagent/medicine/oxycodone)
 	purge_rate = 0.2
-	
+
 /datum/reagent/medicine/meralyne/on_mob_life(mob/living/L, metabolism)
 	L.heal_limb_damage(4*REM, 0)
 	if(volume > 5)

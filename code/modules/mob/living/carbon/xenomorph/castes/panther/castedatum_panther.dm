@@ -2,7 +2,7 @@
 	caste_name = "Panther"
 	display_name = "Panther"
 	upgrade_name = ""
-	caste_desc = "A fast, four-legged terror, adapt at capturing prey."
+	caste_desc = "A fast, four-legged terror, adept at capturing prey."
 	caste_type_path = /mob/living/carbon/xenomorph/panther
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -61,7 +61,7 @@
 
 /datum/xeno_caste/panther/mature
 	upgrade_name = "Mature"
-	caste_desc = "A fast, four-legged terror, adapt at capturing prey. It looks a little more dangerous."
+	caste_desc = "A fast, four-legged terror, adept at capturing prey. It looks a little more dangerous."
 
 	upgrade = XENO_UPGRADE_ONE
 
@@ -93,7 +93,7 @@
 
 /datum/xeno_caste/panther/elder
 	upgrade_name = "Elder"
-	caste_desc = "A fast, four-legged terror, adapt at capturing prey. It looks pretty strong."
+	caste_desc = "A fast, four-legged terror, adept at capturing prey. It looks pretty strong."
 
 	upgrade = XENO_UPGRADE_TWO
 
@@ -125,7 +125,7 @@
 
 /datum/xeno_caste/panther/ancient
 	upgrade_name = "Ancient"
-	caste_desc = "The colony only falls silent when a predator is a on the prowl."
+	caste_desc = "The colony only falls silent when a predator is on the prowl."
 	ancient_message = "We are the apex predator, all will fall by fang or claw."
 	upgrade = XENO_UPGRADE_THREE
 	wound_type = "runner" //used to match appropriate wound overlays

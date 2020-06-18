@@ -65,6 +65,8 @@
 
 	GLOB.dead_human_list += src
 	GLOB.alive_human_list -= src
+	LAZYREMOVE(GLOB.humans_by_zlevel["[z]"], src)
+	UnregisterSignal(src, COMSIG_MOVABLE_Z_CHANGED)
 
 	return ..()
 

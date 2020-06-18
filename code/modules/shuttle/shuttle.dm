@@ -558,10 +558,6 @@
 
 	return ripple_turfs
 
-///obj/docking_port/mobile/proc/check_poddoors()
-//	for(var/obj/machinery/door/poddoor/shuttledock/pod in GLOB.airlocks)
-//		pod.check()
-
 /obj/docking_port/mobile/proc/dock_id(id)
 	var/port = SSshuttle.getDock(id)
 	if(port)

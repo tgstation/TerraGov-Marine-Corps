@@ -11,10 +11,11 @@
 */
 /obj/item/clothing/suit/modular
 	name = "Jaeger XM-02 combat exoskeleton"
-	desc = "Designed to mount a variety of modular armor components and support systems. It comes installed with light-plating and a shoulder lamp. Mount armor pieces to it by clicking on the frame with the components"
+	desc = "Designed to mount a variety of modular armor components and support systems. It comes installed with light-plating and a shoulder lamp. Mount armor pieces to it by clicking on the frame with the components. Use a crowbar to remove armor pieces, use a screwdriver to remove armor attachments."
 	icon = 'icons/mob/modular/modular_armor.dmi'
 	icon_state = "underarmor_icon"
 	item_state = "underarmor"
+	flags_atom = CONDUCT
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	/// What is allowed to be equipped in suit storage
 	allowed = list(

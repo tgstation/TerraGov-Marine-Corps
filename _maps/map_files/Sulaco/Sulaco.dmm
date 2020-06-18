@@ -8005,7 +8005,7 @@
 /area/sulaco/hallway/central_hall)
 "axC" = (
 /obj/structure/cable,
-/turf/closed/wall/sulaco,
+/turf/closed/wall/sulaco/hull,
 /area/sulaco/cap_office)
 "axE" = (
 /obj/structure/bed/chair{
@@ -9362,12 +9362,8 @@
 /turf/closed/wall/sulaco,
 /area/sulaco/brig)
 "aBG" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2
-	},
 /turf/closed/wall/sulaco/hull,
-/area/sulaco/brig)
+/area/space)
 "aBH" = (
 /obj/machinery/door/poddoor/open/isolation{
 	dir = 4
@@ -9379,7 +9375,7 @@
 /area/sulaco/brig)
 "aBI" = (
 /turf/closed/wall/sulaco/hull,
-/area/sulaco/brig)
+/area/sulaco/bridge)
 "aBJ" = (
 /obj/machinery/door/airlock/mainship/marine/alpha/medic{
 	dir = 4
@@ -17953,6 +17949,9 @@
 /obj/structure/largecrate/supply/supplies/water,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
+"vvh" = (
+/turf/closed/wall/sulaco/hull,
+/area/sulaco/bridge/office)
 "whS" = (
 /obj/machinery/door_control/mainship/req{
 	id = "qm_warehouse";
@@ -36555,7 +36554,7 @@ aas
 aaa
 aaa
 aas
-aaf
+aBG
 apn
 aqJ
 asc
@@ -36565,7 +36564,7 @@ awp
 awT
 ays
 aAN
-aaf
+aBG
 aas
 aaa
 aaa
@@ -36812,7 +36811,7 @@ aas
 aaa
 aaa
 aas
-anV
+aBI
 apo
 aqM
 asd
@@ -36822,7 +36821,7 @@ ayF
 awX
 ayC
 azA
-anV
+aBI
 aas
 aaa
 aaa
@@ -37069,7 +37068,7 @@ aas
 aaa
 aaa
 aas
-anV
+aBI
 app
 aqN
 ase
@@ -37326,7 +37325,7 @@ aas
 aaa
 aaa
 aas
-anV
+aBI
 aoF
 aqN
 ase
@@ -37583,7 +37582,7 @@ aas
 aaa
 aaa
 aas
-anV
+aBI
 apr
 aqN
 asf
@@ -37593,7 +37592,7 @@ ayS
 asf
 ayE
 azA
-anV
+aBI
 aas
 aaa
 aaa
@@ -37840,7 +37839,7 @@ aas
 aaa
 aaa
 aas
-anV
+aBI
 aoO
 apq
 asg
@@ -37850,7 +37849,7 @@ auF
 axc
 awn
 avv
-anV
+aBI
 aas
 aaa
 aaa
@@ -38107,7 +38106,7 @@ awv
 axf
 ayH
 aDd
-anV
+aBI
 aas
 aaa
 aaa
@@ -39639,14 +39638,14 @@ ahd
 alH
 alH
 alH
-akt
-akt
+vvh
+vvh
 aqR
-akt
+vvh
 auu
-anV
+aBI
 awM
-anV
+aBI
 azs
 axC
 axC
@@ -47114,12 +47113,12 @@ aHM
 azq
 bbd
 abN
-aBG
-aBI
-aBI
-aBI
-aBI
-aBI
+aAL
+aEw
+aEw
+aEw
+aEw
+aEw
 aOU
 aZb
 aaa

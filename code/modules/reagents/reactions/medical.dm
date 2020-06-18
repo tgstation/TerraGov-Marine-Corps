@@ -1,4 +1,3 @@
-
 /datum/chemical_reaction/tricordrazine
 	name = "Tricordrazine"
 	results = list(/datum/reagent/medicine/tricordrazine = 2)

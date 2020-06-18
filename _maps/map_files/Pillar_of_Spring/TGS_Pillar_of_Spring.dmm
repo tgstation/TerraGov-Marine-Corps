@@ -1510,6 +1510,10 @@
 	dir = 6
 	},
 /area/mainship/command/cic)
+"fk" = (
+/obj/structure/window/framed/mainship/hull,
+/turf/open/floor/plating,
+/area/mainship/engineering/port_atmos)
 "fl" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -3036,7 +3040,7 @@
 	},
 /area/mainship/command/cic)
 "lh" = (
-/obj/structure/window/framed/mainship/requisitions,
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "li" = (
@@ -7189,7 +7193,7 @@
 /area/mainship/engineering/port_atmos)
 "ym" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
-/obj/structure/window/framed/mainship/requisitions,
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/plating,
 /area/mainship/engineering/port_atmos)
 "yo" = (
@@ -37939,7 +37943,7 @@ OI
 lc
 xt
 xt
-xU
+fk
 yF
 aa
 aa

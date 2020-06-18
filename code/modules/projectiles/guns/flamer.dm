@@ -2,7 +2,7 @@
 
 /obj/item/weapon/gun/flamer
 	name = "\improper M240A1 incinerator unit"
-	desc = "M240A1 incinerator unit has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
+	desc = "The M240A1 has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
 	icon_state = "m240"
 	item_state = "m240"
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -367,7 +367,6 @@
 	current_mag = /obj/item/ammo_magazine/flamer_tank/large
 	icon_state = "m240t"
 	item_state = "m240t"
-	gun_skill_category = GUN_SKILL_SPEC
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	var/max_water = 200
 	var/last_use

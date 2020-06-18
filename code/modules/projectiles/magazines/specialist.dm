@@ -3,7 +3,7 @@
 //Keyword rifles. They are subtype of rifles, but still contained here as a specialist weapon.
 
 /obj/item/ammo_magazine/sniper
-	name = "\improper M42A marksman magazine (10x28mm Caseless)"
+	name = "\improper M42A marksman magazine (10x28mm)"
 	desc = "A magazine of sniper rifle ammo."
 	caliber = "10x28mm"
 	icon_state = "m42a"
@@ -105,7 +105,7 @@ obj/item/ammo_magazine/rifle/m4ra/smart
 
 /obj/item/ammo_magazine/rocket
 	name = "\improper 84mm high-explosive rocket"
-	desc = "A rocket tube for an M5 RPG rocket."
+	desc = "A rocket tube for the T-152 rocket launcher."
 	caliber = "rocket"
 	icon_state = "rocket"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -148,7 +148,7 @@ obj/item/ammo_magazine/rifle/m4ra/smart
 
 /obj/item/ammo_magazine/internal/launcher/rocket
 	name = "\improper 84mm internal tube"
-	desc = "The internal tube of a M5 RPG."
+	desc = "The internal tube of a T-152 rocket launcher."
 	caliber = "rocket"
 	default_ammo = /datum/ammo/rocket
 	max_rounds = 1
@@ -161,7 +161,7 @@ obj/item/ammo_magazine/rifle/m4ra/smart
 
 /obj/item/ammo_magazine/rocket/m57a4
 	name = "\improper 84mm thermobaric rocket array"
-	desc = "A thermobaric rocket tube for an M83AM quad launcher. Activate in hand to receive some metal when it's used up."
+	desc = "A thermobaric rocket tube for an M57-A4 quad launcher. Activate in hand to receive some metal when it's used up."
 	caliber = "rocket array"
 	icon_state = "quad_rocket"
 	max_rounds = 4
@@ -170,7 +170,7 @@ obj/item/ammo_magazine/rifle/m4ra/smart
 	reload_delay = 200
 
 /obj/item/ammo_magazine/internal/launcher/rocket/m57a4
-	desc = "The internal tube of an M83AM Thermobaric Launcher."
+	desc = "The internal tube of an M57-A4 thermobaric launcher."
 	caliber = "rocket array"
 	default_ammo = /datum/ammo/rocket/wp/quad
 	max_rounds = 4

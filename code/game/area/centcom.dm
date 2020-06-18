@@ -59,3 +59,10 @@
 
 /area/centcom/aitest //Part of the centcom zlevel, basically an arena for AI that ultilizes nodes
 	name = "Artificial Intelligence Test Zone"
+
+// Practice Areas
+/area/centcom/practice
+	name = "\improper Practice Center"
+
+/area/centcom/practice/medical
+	name = "\improper Medical Practice Center"

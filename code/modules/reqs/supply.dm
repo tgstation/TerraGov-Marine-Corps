@@ -4,7 +4,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		/obj/item/radio/beacon
 	)))
 
-GLOBAL_LIST_EMPTY(exports_types)
+GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 
 /datum/supply_order
 	var/id
@@ -17,11 +17,6 @@ GLOBAL_LIST_EMPTY(exports_types)
 
 /obj/item/paper/manifest
 	name = "Supply Manifest"
-
-/proc/setupExports()
-	for(var/typepath in subtypesof(/datum/supply_export))
-		var/datum/supply_export/E = new typepath()
-		GLOB.exports_types += E
 
 /obj/docking_port/stationary/supply
 	id = "supply_away"
@@ -59,9 +54,6 @@ GLOBAL_LIST_EMPTY(exports_types)
 	railings.Cut()
 	return ..()
 
-
-	//Export categories for this run, this is set by console sending the shuttle.
-//	var/export_categories = EXPORT_CARGO
 
 /obj/docking_port/mobile/supply/afterShuttleMove()
 	. = ..()
@@ -201,35 +193,41 @@ GLOBAL_LIST_EMPTY(exports_types)
 		SSpoints.shoppinglist -= "[SO.id]"
 		SSpoints.shopping_history += SO
 
-/obj/docking_port/mobile/supply/proc/sell()
-	if(!GLOB.exports_types.len) // No exports list? Generate it!
-		setupExports()
+/datum/export_report
+	var/id
+	var/points
+	var/list/exports
 
-	// TODO: fix this
+/obj/docking_port/mobile/supply/proc/sell()
+	var/list/exports = list()
+	var/points = 0
 	for(var/place in shuttle_areas)
 		var/area/shuttle/shuttle_area = place
 		for(var/atom/movable/AM in shuttle_area)
 			if(AM.anchored)
 				continue
-			//Sell Xeno Corpses
-			if (isxeno(AM))
-				var/cost = 0
-				for(var/datum/supply_export in GLOB.exports_types)
-					var/datum/supply_export/E = supply_export
-					if(AM.type == E.export_obj)
-						cost = E.cost
-				SSpoints.supply_points += cost
-				SSpoints.export_history += "Xenomorphs ([cost] points)"
-			// Sell ore boxes
-			if(istype(AM, /obj/structure/ore_box/platinum))
-				SSpoints.export_history += "Platinum ([POINTS_PER_PLATINUM] points)"
-				SSpoints.supply_points += POINTS_PER_PLATINUM
-
-			if(istype(AM, /obj/structure/ore_box/phoron))
-				SSpoints.export_history += "Phoron ([POINTS_PER_PHORON] points)"
-				SSpoints.supply_points += POINTS_PER_PHORON
-
+			var/atom/movable/atom_type = AM.type
+			if(isxeno(AM)) // deal with admin spawned upgrades
+				var/mob/living/carbon/xenomorph/X = AM
+				atom_type = X.xeno_caste.caste_type_path
+			if(GLOB.exports_types[atom_type])
+				var/datum/supply_export/E = GLOB.exports_types[atom_type]
+				if(!exports[atom_type])
+					exports[atom_type] = 0
+				exports[atom_type]++
+				points += E.cost
 			qdel(AM)
+	if(!points && !length(exports))
+		return
+	var/datum/export_report/ER = new
+	ER.id = ++SSpoints.ordernum
+	ER.points = points
+	ER.exports = list()
+	SSpoints.supply_points += points
+	for(var/i in exports)
+		var/atom/movable/A = i
+		ER.exports += list(list("name" = initial(A.name), "count" = exports[i], "points" = GLOB.exports_types[i].cost * exports[i]))
+	SSpoints.export_history += ER
 
 /obj/item/supplytablet
 	name = "ASRS tablet"
@@ -338,7 +336,10 @@ GLOBAL_LIST_EMPTY(exports_types)
 			packs += SP.type
 			cost += SP.cost
 		.["approvedrequests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
-	.["export_history"] = SSpoints.export_history
+	.["export_history"] = list()
+	for(var/i in SSpoints.export_history)
+		var/datum/export_report/ER = i
+		.["export_history"] += list(list("id" = ER.id, "points" = ER.points, "exports" = ER.exports))
 	.["awaiting_delivery"] = list()
 	.["awaiting_delivery_orders"] = 0
 	for(var/i in SSpoints.shoppinglist)

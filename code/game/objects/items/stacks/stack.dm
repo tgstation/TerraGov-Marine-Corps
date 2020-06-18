@@ -224,7 +224,7 @@
 				to_chat(usr, "<span class='warning'>You can't build \the [R.title] on top of another!</span>")
 				return FALSE
 	if(R.on_floor)
-		if(!isfloorturf(T))
+		if(!isfloorturf(T) && !isbasalt(T) && !islavacatwalk(T))
 			to_chat(usr, "<span class='warning'>\The [R.title] must be constructed on the floor!</span>")
 			return FALSE
 		for(var/obj/AM in T)
