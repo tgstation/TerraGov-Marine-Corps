@@ -48,13 +48,16 @@
 #define FF_DAMAGE_OUTGOING "damage_outgoing"
 #define FF_DAMAGE_INCOMING "damage_incoming"
 /mob/living/proc/ff_check(total_damage, mob/living/victim)
-	// var/list/adm = get_admin_counts(R_ADMIN)
-	// if(length(adm["present"]) > 0)
-	// 	return // Let an admin deal with it.
+	if(victim == src)
+		return
 
 	// We don't take action on victimless crimes
 	// if(victim.stat == DEAD || !victim.client)
 	// 	return
+
+	// var/list/adm = get_admin_counts(R_ADMIN)
+	// if(length(adm["present"]) > 0)
+	// 	return // Let an admin deal with it.
 
 	var/ff_cooldown = CONFIG_GET(number/ff_damage_reset)
 	if(!COOLDOWN_CHECK(src, COOLDOWN_FRIENDLY_FIRE_CAUSED))
@@ -80,6 +83,8 @@
 	// create_message("note", ckey(client.key), "SYSTEM", "Autokicked due to excessive friendly fire. [friendly_fire[FF_DAMAGE_OUTGOING]] damage witin [ff_cooldown / 10] seconds.", null, null, FALSE, FALSE, null, FALSE, "Minor")
 	// ghostize(FALSE) // make them a ghost
 	// qdel(client) // Disconnect the client
+	// Reset the damage done - not needed if they are removed.
+	friendly_fire[FF_DAMAGE_OUTGOING] = 0
 
 	// Heal everyone involved
 	for(var/i in friendly_fire[FF_VICTIM_LIST])
@@ -88,6 +93,7 @@
 		log_admin("[key_name(vic)] healed for [total_heal] due to excessive friendly fire from [key_name(src)]")
 		to_chat(vic, "<span class='boldannounce'>You've been healed due to the recent friendly fire</span>")
 		vic.heal_overall_damage(total_heal)
+
 
 #undef FF_VICTIM_LIST
 #undef FF_DAMAGE_OUTGOING
