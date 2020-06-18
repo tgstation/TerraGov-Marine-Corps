@@ -1,4 +1,0 @@
-author: "psykzz"
-delete-after: True
-changes: 
-  - rscadd: "Ghost follow now uses a TGUI screen"

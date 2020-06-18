@@ -1,6 +1,0 @@
-author: "XSlayer300"
-delete-after: True
-changes: 
-  - tweak: "Changed most of the capitalizations of various items (\"T-19 Machinepistol\" to \"T-19 machinepistol)"
-  - tweak: "Properly renamed many instances of the T-19 SMG to T-19 machine pistol"
-  - tweak: "Changed some descriptions to be a bit better."

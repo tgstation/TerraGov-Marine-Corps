@@ -1,4 +1,0 @@
-author: "jjpark-kb"
-delete-after: True
-changes: 
-  - bugfix: "fixed inner hull on Sulaco to not have RESIST_ALL"
