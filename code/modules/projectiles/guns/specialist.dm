@@ -279,7 +279,7 @@
 	starting_attachment_types = list(/obj/item/attachable/scope/slavic, /obj/item/attachable/slavicbarrel, /obj/item/attachable/stock/slavic)
 
 	fire_delay = 1.2 SECONDS
-	burst_amount = 2
+	burst_amount = 1
 	accuracy_mult = 0.85
 	scatter = 15
 	recoil = 2
