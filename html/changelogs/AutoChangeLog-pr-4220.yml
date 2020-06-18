@@ -1,5 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes: 
-  - rscadd: "Added the T-60 GPMG, and its sprite and its specific bullet."
-  - balance: "Adds the GPMG, basically a bigger LMG, though it deals slightly less damage but has slightly more AP, has high scatter and wield delay. But the magazine is very big and it fires faster."
