@@ -591,6 +591,36 @@
 /obj/item/weapon/gun/launcher/m92/get_ammo_count()
 	return length(grenades)
 
+//-------------------------------------------------------
+//T-70 Grenade Launcher.
+
+/obj/item/weapon/gun/launcher/m92/standardmarine
+	name = "\improper T-70 grenade launcher"
+	desc = "A heavy, 6-shot grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "t70"
+	item_state = "t70"
+	max_shells = 6 //codex
+	caliber = "40mm grenades" //codex
+	load_method = SINGLE_CASING //codex
+	w_class = WEIGHT_CLASS_BULKY
+	throw_speed = 2
+	throw_range = 10
+	force = 5.0
+	wield_delay = 1 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/m92_attachable.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
+	aim_slowdown = 1
+	general_codex_key = "explosive weapons"
+	attachable_allowed = list(
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/scope/mini)
+
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	gun_skill_category = GUN_SKILL_FIREARMS
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+
+	fire_delay = 2.2 SECONDS
 
 /obj/item/weapon/gun/launcher/m81
 	name = "\improper T-81 grenade launcher"
