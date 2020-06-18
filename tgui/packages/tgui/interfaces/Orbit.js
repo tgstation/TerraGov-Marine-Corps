@@ -102,7 +102,6 @@ export const Orbit = (props, context) => {
   return (
     <Window>
       <Window.Content scrollable>
-        {JSON.stringify(data)}
         <Section>
           <Input
             fluid
