@@ -60,7 +60,7 @@
 	gun_type = /obj/item/weapon/gun/pistol/m1911
 
 /obj/item/ammo_magazine/acp
-	name = "Box of .45 ACP"
+	name = "box of .45 ACP"
 	icon_state = "box45" //With thanks to Eris
 	default_ammo = /datum/ammo/bullet/pistol/heavy
 	caliber = ".45 ACP"
@@ -125,7 +125,7 @@
 //MAUSER MERC PISTOL //Inspired by the Makarov.
 
 /obj/item/ammo_magazine/pistol/c99t
-	name = "\improper PK-9 magazine (.22 tranq)"
+	name = "\improper PK-9 tranq magazine (.22)"
 	default_ammo = /datum/ammo/bullet/pistol/tranq
 	caliber = ".22 LR"
 	icon_state = "pk-9_tranq"
@@ -133,7 +133,7 @@
 	gun_type = /obj/item/weapon/gun/pistol/c99
 
 /obj/item/ammo_magazine/pistol/c99
-	name = "\improper PK-9 magazine (.22 hollowpoint)"
+	name = "\improper PK-9 hollowpoint magazine (.22)"
 	default_ammo = /datum/ammo/bullet/pistol/hollow
 	caliber = ".22 LR"
 	icon_state = "pk-9"
@@ -170,8 +170,8 @@
 //TP-17.
 
 /obj/item/ammo_magazine/pistol/standard_pocketpistol
-	name = "TP-17 pocket pistol magazine (.380)"
-	desc = "A surprisingly small magazine used by the TP-17 pistol holding .380 AP bullets.."
+	name = "\improper TP-17 pocket pistol AP magazine (.380)"
+	desc = "A surprisingly small magazine used by the TP-17 pistol holding .380 ACP bullets."
 	default_ammo = /datum/ammo/bullet/pistol/tiny/ap
 	caliber = ".380 ACP"
 	icon_state = "tp17"
