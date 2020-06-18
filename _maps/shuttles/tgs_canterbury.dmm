@@ -39,7 +39,7 @@
 /area/shuttle/canterbury/cic)
 "ah" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/card,
+/obj/machinery/computer/marine_card,
 /turf/open/floor/mainship/blue{
 	dir = 5
 	},
