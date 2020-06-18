@@ -604,6 +604,7 @@
 	caliber = "40mm grenades" //codex
 	load_method = SINGLE_CASING //codex
 	w_class = WEIGHT_CLASS_BULKY
+	flags_equip_slot = ITEM_SLOT_BACK
 	throw_speed = 2
 	throw_range = 10
 	force = 5.0
@@ -614,11 +615,13 @@
 	general_codex_key = "explosive weapons"
 	attachable_allowed = list(
 						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/flashlight,
 						/obj/item/attachable/scope/mini)
 
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	starting_attachment_types = list(/obj/item/attachable/stock/t70stock)
 	gun_skill_category = GUN_SKILL_FIREARMS
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 11, "stock_y" = 12)
 
 	fire_delay = 2.2 SECONDS
 
