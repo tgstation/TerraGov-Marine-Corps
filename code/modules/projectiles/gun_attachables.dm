@@ -1062,7 +1062,7 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/t60stock
-	name = "T-60 Stock"
+	name = "T-60 stock"
 	desc = "A irremoveable T-60 general purpose machinegun stock."
 	icon_state = "t60stock"
 	wield_delay_mod = 0 SECONDS

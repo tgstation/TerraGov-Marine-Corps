@@ -515,9 +515,9 @@
 //-------------------------------------------------------
 //T-60 General Purpose Machine Gun
 
-/obj/item/weapon/gun/rifle/standard_gmpg
+/obj/item/weapon/gun/rifle/standard_gpmg
 	name = "\improper T-60 general purpose machine gun"
-	desc = "The T-60 general purpose machinegun is the TGMC's current standard GMPG. Though usually seen mounted on vehicles, it is sometimes used by infantry to hold chokepoints or suppress enemies. It uses 10x26mm boxes."
+	desc = "The T-60 general purpose machinegun is the TGMC's current standard GPMG. Though usually seen mounted on vehicles, it is sometimes used by infantry to hold chokepoints or suppress enemies. It uses 10x26mm boxes."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t60"
 	item_state = "t60"
@@ -530,7 +530,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
-	current_mag = /obj/item/ammo_magazine/standard_gmpg
+	current_mag = /obj/item/ammo_magazine/standard_gpmg
 	attachable_allowed = list(
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/flashlight,

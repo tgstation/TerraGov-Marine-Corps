@@ -290,7 +290,7 @@
 						/obj/item/weapon/gun/rifle/ak47/carbine,
 						/obj/item/weapon/gun/rifle/m16,
 						/obj/item/weapon/gun/rifle/standard_lmg,
-						/obj/item/weapon/gun/rifle/standard_gmpg,
+						/obj/item/weapon/gun/rifle/standard_gpmg,
 						/obj/item/weapon/gun/rifle/m41ae2_hpr,
 						/obj/item/weapon/gun/rifle/type71/flamer,
 						/obj/item/weapon/gun/rifle/type71,

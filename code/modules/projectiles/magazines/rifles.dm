@@ -169,7 +169,7 @@
 //-------------------------------------------------------
 //T-60 General Purpose Machine Gun
 
-/obj/item/ammo_magazine/standard_gmpg
+/obj/item/ammo_magazine/standard_gpmg
 	name = "\improper T-60 GMPG box magazine (10x26mm)"
 	desc = "A drum magazine for the T-60 general purpose machinegun."
 	icon_state = "t60"
@@ -177,7 +177,7 @@
 	default_ammo = /datum/ammo/bullet/rifle/machinegun
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 250
-	gun_type = /obj/item/weapon/gun/rifle/standard_gmpg
+	gun_type = /obj/item/weapon/gun/rifle/standard_gpmg
 	reload_delay = 3 SECONDS
 
 //-------------------------------------------------------
