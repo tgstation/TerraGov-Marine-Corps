@@ -25,6 +25,8 @@
 /datum/surgery_step/internal/remove_embryo/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
 	if(affected.body_part != CHEST)
 		return 0
+	if(user.skills.getRating("surgery") < SKILL_SURGERY_PROFESSIONAL)
+		return 0
 	if(..())
 		var/obj/item/alien_embryo/A = locate() in target
 		if(A)
@@ -73,6 +75,8 @@
 	if(..())
 		if(affected.body_part == HEAD)//brain and eye damage is fixed by a separate surgery
 			return 0
+		if(user.skills.getRating("surgery") < SKILL_SURGERY_PROFESSIONAL)
+		return 0
 		for(var/datum/internal_organ/I in affected.internal_organs)
 			if(I.damage > 0 && I.robotic != ORGAN_ROBOT)
 				return 1
