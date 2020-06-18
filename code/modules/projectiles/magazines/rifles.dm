@@ -170,7 +170,7 @@
 //T-60 General Purpose Machine Gun
 
 /obj/item/ammo_magazine/standard_gpmg
-	name = "\improper T-60 GMPG box magazine (10x26mm)"
+	name = "\improper T-60 GPMG box magazine (10x26mm)"
 	desc = "A drum magazine for the T-60 general purpose machinegun."
 	icon_state = "t60"
 	caliber = "10x26mm caseless"
