@@ -114,7 +114,7 @@ export const Orbit = (props, context) => {
           title="Xenos"
           source={xenos}
           searchText={searchText}
-        />|
+        />
 
         <BasicSection
           title="Marines"
