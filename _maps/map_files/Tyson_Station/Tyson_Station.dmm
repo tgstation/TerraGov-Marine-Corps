@@ -278,6 +278,7 @@
 /turf/open/floor/greengrid,
 /area/ai_monitored/storage/emergency)
 "abk" = (
+/obj/machinery/miner/damaged,
 /turf/open/floor/greengrid,
 /area/ai_monitored/storage/emergency)
 "abl" = (
@@ -812,22 +813,22 @@
 "adu" = (
 /obj/structure/bed/chair/comfy,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 1
+	dir = 1;
+	icon_state = "carpetside"
 	},
 /area/hallway/secondary/entry)
 "adv" = (
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 1
+	dir = 1;
+	icon_state = "carpetside"
 	},
 /area/hallway/secondary/entry)
 "adw" = (
 /obj/structure/table/woodentable,
 /obj/item/flashlight/lamp/green,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 5
+	dir = 5;
+	icon_state = "carpetside"
 	},
 /area/hallway/secondary/entry)
 "adx" = (
@@ -869,8 +870,8 @@
 	dir = 8
 	},
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 4
+	dir = 4;
+	icon_state = "carpetside"
 	},
 /area/hallway/secondary/entry)
 "adH" = (
@@ -4976,8 +4977,8 @@
 /obj/structure/bed/chair/comfy,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 1
+	dir = 1;
+	icon_state = "carpetside"
 	},
 /area/hallway/secondary/entry)
 "asV" = (
@@ -5065,8 +5066,8 @@
 	dir = 4
 	},
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 4
+	dir = 4;
+	icon_state = "carpetside"
 	},
 /area/hallway/secondary/entry)
 "atj" = (
@@ -5928,8 +5929,8 @@
 /obj/item/flashlight/lamp/green,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 6
+	dir = 6;
+	icon_state = "carpetside"
 	},
 /area/hallway/secondary/entry)
 "awa" = (
@@ -7814,8 +7815,8 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 1
+	dir = 1;
+	icon_state = "carpetside"
 	},
 /area/bridge/meeting_room)
 "aCE" = (
@@ -7851,8 +7852,8 @@
 /obj/structure/closet/secure_closet/hop,
 /obj/structure/closet/secure_closet,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 9
+	dir = 9;
+	icon_state = "carpetside"
 	},
 /area/lv624/lazarus/hop)
 "aCM" = (
@@ -7896,8 +7897,8 @@
 /obj/structure/closet/secure_closet/captain,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 5
+	dir = 5;
+	icon_state = "carpetside"
 	},
 /area/lv624/lazarus/captain)
 "aCV" = (
@@ -7922,8 +7923,8 @@
 	dir = 4
 	},
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 4
+	dir = 4;
+	icon_state = "carpetside"
 	},
 /area/lv624/lazarus/hop)
 "aCY" = (
@@ -7947,8 +7948,8 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 8
+	dir = 8;
+	icon_state = "carpetside"
 	},
 /area/bridge/meeting_room)
 "aDb" = (
@@ -7962,8 +7963,8 @@
 	dir = 4
 	},
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 4
+	dir = 4;
+	icon_state = "carpetside"
 	},
 /area/bridge/meeting_room)
 "aDd" = (
@@ -7979,8 +7980,8 @@
 	dir = 9
 	},
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 8
+	dir = 8;
+	icon_state = "carpetside"
 	},
 /area/lv624/lazarus/captain)
 "aDf" = (
@@ -8031,8 +8032,8 @@
 "aDm" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 10
+	dir = 10;
+	icon_state = "carpetside"
 	},
 /area/bridge/meeting_room)
 "aDn" = (
@@ -8064,8 +8065,8 @@
 /obj/structure/table/woodentable,
 /obj/effect/spawner/random/powercell,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 4
+	dir = 4;
+	icon_state = "carpetside"
 	},
 /area/lv624/lazarus/captain)
 "aDt" = (
@@ -8116,8 +8117,8 @@
 /area/lv624/lazarus/captain)
 "aDC" = (
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 6
+	dir = 6;
+	icon_state = "carpetside"
 	},
 /area/lv624/lazarus/captain)
 "aDD" = (
@@ -8169,8 +8170,8 @@
 /area/security/brig)
 "aDM" = (
 /obj/structure/toilet{
-	icon_state = "toilet00";
-	dir = 8
+	dir = 8;
+	icon_state = "toilet00"
 	},
 /turf/open/floor/wood,
 /area/lv624/lazarus/captain)
@@ -8450,29 +8451,29 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/nuke_spawn,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 9
+	dir = 9;
+	icon_state = "carpetside"
 	},
 /area/lv624/lazarus/internal_affairs)
 "aEU" = (
 /obj/structure/bed/chair,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 1
+	dir = 1;
+	icon_state = "carpetside"
 	},
 /area/lv624/lazarus/internal_affairs)
 "aEV" = (
 /obj/structure/bed/chair,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 1
+	dir = 1;
+	icon_state = "carpetside"
 	},
 /area/lv624/lazarus/internal_affairs)
 "aEW" = (
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 5
+	dir = 5;
+	icon_state = "carpetside"
 	},
 /area/lv624/lazarus/internal_affairs)
 "aEX" = (
@@ -8507,8 +8508,8 @@
 	dir = 4
 	},
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 8
+	dir = 8;
+	icon_state = "carpetside"
 	},
 /area/lv624/lazarus/internal_affairs)
 "aFf" = (
@@ -8535,8 +8536,8 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 4
+	dir = 4;
+	icon_state = "carpetside"
 	},
 /area/lv624/lazarus/internal_affairs)
 "aFj" = (
@@ -8602,8 +8603,8 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 8
+	dir = 8;
+	icon_state = "carpetside"
 	},
 /area/lv624/lazarus/internal_affairs)
 "aFv" = (
@@ -8627,8 +8628,8 @@
 	dir = 8
 	},
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 4
+	dir = 4;
+	icon_state = "carpetside"
 	},
 /area/lv624/lazarus/internal_affairs)
 "aFz" = (
@@ -8657,8 +8658,8 @@
 /area/lv624/lazarus/internal_affairs)
 "aFE" = (
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 10
+	dir = 10;
+	icon_state = "carpetside"
 	},
 /area/lv624/lazarus/internal_affairs)
 "aFF" = (
@@ -8681,8 +8682,8 @@
 "aFH" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 6
+	dir = 6;
+	icon_state = "carpetside"
 	},
 /area/lv624/lazarus/internal_affairs)
 "aFI" = (
@@ -11933,8 +11934,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 1
+	dir = 1;
+	icon_state = "carpetside"
 	},
 /area/bridge/meeting_room)
 "aRX" = (
@@ -12485,8 +12486,8 @@
 	dir = 8
 	},
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 8
+	dir = 8;
+	icon_state = "carpetside"
 	},
 /area/lv624/lazarus/hop)
 "aTV" = (
@@ -12837,8 +12838,8 @@
 /obj/machinery/disposal,
 /obj/structure/cable,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 1
+	dir = 1;
+	icon_state = "carpetside"
 	},
 /area/lv624/lazarus/captain)
 "aVe" = (
@@ -12851,8 +12852,8 @@
 /obj/structure/cable,
 /obj/machinery/computer/nuke_disk_generator/green,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 1
+	dir = 1;
+	icon_state = "carpetside"
 	},
 /area/lv624/lazarus/captain)
 "aVg" = (
@@ -12986,8 +12987,8 @@
 	},
 /obj/effect/landmark/corpsespawner/commander,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 4
+	dir = 4;
+	icon_state = "carpetside"
 	},
 /area/lv624/lazarus/captain)
 "aVC" = (
@@ -13049,8 +13050,8 @@
 /obj/effect/spawner/random/powercell,
 /obj/item/reagent_containers/food/snacks/mushroompizzaslice,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 8
+	dir = 8;
+	icon_state = "carpetside"
 	},
 /area/lv624/lazarus/hop)
 "aVN" = (
@@ -13378,8 +13379,8 @@
 /obj/structure/table/woodentable,
 /obj/effect/spawner/random/powercell,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 6
+	dir = 6;
+	icon_state = "carpetside"
 	},
 /area/lv624/lazarus/hop)
 "aWU" = (
@@ -13393,8 +13394,8 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 1
+	dir = 1;
+	icon_state = "carpetside"
 	},
 /area/bridge/meeting_room)
 "aWW" = (
@@ -13772,6 +13773,7 @@
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
+/obj/machinery/miner/damaged,
 /turf/open/floor/grass,
 /area/hydroponics)
 "aYz" = (
@@ -14185,8 +14187,8 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/reagent_containers/food/snacks/orangecakeslice,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 8
+	dir = 8;
+	icon_state = "carpetside"
 	},
 /area/lv624/lazarus/captain)
 "baC" = (
@@ -14355,8 +14357,8 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 9
+	dir = 9;
+	icon_state = "carpetside"
 	},
 /area/hallway/secondary/entry)
 "bbk" = (
@@ -14686,8 +14688,8 @@
 /obj/structure/table/woodentable,
 /obj/structure/cable,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 8
+	dir = 8;
+	icon_state = "carpetside"
 	},
 /area/hallway/secondary/entry)
 "bcs" = (
@@ -14718,8 +14720,8 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 5
+	dir = 5;
+	icon_state = "carpetside"
 	},
 /area/lv624/lazarus/hop)
 "bcy" = (
@@ -14742,8 +14744,8 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 9
+	dir = 9;
+	icon_state = "carpetside"
 	},
 /area/bridge/meeting_room)
 "bcC" = (
@@ -14762,8 +14764,8 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 5
+	dir = 5;
+	icon_state = "carpetside"
 	},
 /area/bridge/meeting_room)
 "bcE" = (
@@ -14781,8 +14783,8 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 9
+	dir = 9;
+	icon_state = "carpetside"
 	},
 /area/lv624/lazarus/captain)
 "bcH" = (
@@ -14810,8 +14812,8 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 8
+	dir = 8;
+	icon_state = "carpetside"
 	},
 /area/hallway/secondary/entry)
 "bcM" = (
@@ -14864,8 +14866,8 @@
 "bcX" = (
 /obj/structure/cable,
 /obj/machinery/power/terminal{
-	icon_state = "term";
-	dir = 8
+	dir = 8;
+	icon_state = "term"
 	},
 /turf/open/floor/plating/warning{
 	dir = 4
@@ -15301,8 +15303,8 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 10
+	dir = 10;
+	icon_state = "carpetside"
 	},
 /area/hallway/secondary/entry)
 "bez" = (
@@ -15821,16 +15823,16 @@
 "bgn" = (
 /obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 4
+	dir = 4;
+	icon_state = "carpetside"
 	},
 /area/lv624/lazarus/hop)
 "bgo" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 6
+	dir = 6;
+	icon_state = "carpetside"
 	},
 /area/bridge/meeting_room)
 "bgq" = (
@@ -16768,8 +16770,8 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /obj/structure/closet/emcloset,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 1
+	dir = 1;
+	icon_state = "carpetside"
 	},
 /area/lv624/lazarus/hop)
 "bjN" = (
@@ -16796,8 +16798,8 @@
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/structure/closet/emcloset,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 1
+	dir = 1;
+	icon_state = "carpetside"
 	},
 /area/lv624/lazarus/captain)
 "bjR" = (
@@ -16999,8 +17001,8 @@
 /obj/effect/spawner/random/powercell,
 /obj/effect/spawner/random/toolbox,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 10
+	dir = 10;
+	icon_state = "carpetside"
 	},
 /area/lv624/lazarus/hop)
 "bkw" = (
@@ -17009,8 +17011,8 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/random/toolbox,
 /turf/open/floor/carpet{
-	icon_state = "carpetside";
-	dir = 10
+	dir = 10;
+	icon_state = "carpetside"
 	},
 /area/lv624/lazarus/captain)
 "bkx" = (
@@ -17474,6 +17476,11 @@
 /obj/structure/window/framed/prison/reinforced/hull/tyson,
 /turf/open/floor/plating,
 /area/hallway/secondary/entry)
+"dvS" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor,
+/area/space)
 "dDk" = (
 /obj/structure/window/framed/prison/reinforced/hull/tyson/reinforced,
 /turf/open/floor,
@@ -17605,6 +17612,10 @@
 "mdl" = (
 /turf/closed/wall/tyson,
 /area/mainship/hallways/port_hallway)
+"mDv" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating,
+/area/maintenance/starboard)
 "mPl" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor,
@@ -51253,7 +51264,7 @@ aab
 blr
 aad
 blr
-aaG
+dvS
 aad
 aab
 qYh
@@ -55023,7 +55034,7 @@ aaa
 peS
 are
 aSU
-aSU
+mDv
 peS
 aaa
 peS

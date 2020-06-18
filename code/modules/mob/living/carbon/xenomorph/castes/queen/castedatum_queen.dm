@@ -16,7 +16,7 @@
 	tackle_damage = 45
 
 	// *** Speed *** //
-	speed = 0.4
+	speed = 0
 
 	// *** Plasma *** //
 	plasma_max = 900
@@ -26,15 +26,15 @@
 	max_health = 375
 
 	// *** Evolution *** //
-	upgrade_threshold = 480
+	upgrade_threshold = 350
 
 	// *** Flags *** //
-	caste_flags = CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_FIRE_IMMUNE|CASTE_HIDE_IN_STATUS
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_HIDE_IN_STATUS
 
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_3, "bio" = 45, "rad" = 45, "fire" = 100, "acid" = 45)
+	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_3, "bio" = 45, "rad" = 45, "fire" = 100, "acid" = 45)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
@@ -53,10 +53,12 @@
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/activable/secrete_resin,
+		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/lay_egg,
 		/datum/action/xeno_action/activable/larval_growth_sting,
 		/datum/action/xeno_action/call_of_the_burrowed,
 		/datum/action/xeno_action/activable/screech,
+		/datum/action/xeno_action/activable/tail_sweep,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/shift_spits,
@@ -86,7 +88,7 @@
 	tackle_damage = 50
 
 	// *** Speed *** //
-	speed = 0.4
+	speed = -0.1
 
 	// *** Plasma *** //
 	plasma_max = 1000
@@ -96,10 +98,10 @@
 	max_health = 400
 
 	// *** Evolution *** //
-	upgrade_threshold = 960
+	upgrade_threshold = 500
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 55, "bullet" = 55, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_3, "bio" = 50, "rad" = 50, "fire" = 100, "acid" = 50)
+	soft_armor = list("melee" = 55, "bullet" = 55, "laser" = 55, "energy" = 55, "bomb" = XENO_BOMB_RESIST_3, "bio" = 50, "rad" = 50, "fire" = 100, "acid" = 50)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.2 SECONDS
@@ -122,7 +124,7 @@
 	tackle_damage = 55
 
 	// *** Speed *** //
-	speed = 0.3
+	speed = -0.2
 
 	// *** Plasma *** //
 	plasma_max = 1100
@@ -132,10 +134,10 @@
 	max_health = 425
 
 	// *** Evolution *** //
-	upgrade_threshold = 1920
+	upgrade_threshold = 1000
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_3, "bio" = 55, "rad" = 55, "fire" = 100, "acid" = 55)
+	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = XENO_BOMB_RESIST_3, "bio" = 55, "rad" = 55, "fire" = 100, "acid" = 55)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.2 SECONDS
@@ -158,7 +160,7 @@
 	tackle_damage = 60
 
 	// *** Speed *** //
-	speed = 0.1
+	speed = -0.3
 
 	// *** Plasma *** //
 	plasma_max = 1200
@@ -168,10 +170,10 @@
 	max_health = 450
 
 	// *** Evolution *** //
-	upgrade_threshold = 1920
+	upgrade_threshold = 1000
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 65, "bullet" = 65, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_3, "bio" = 60, "rad" = 60, "fire" = 100, "acid" = 60)
+	soft_armor = list("melee" = 65, "bullet" = 65, "laser" = 65, "energy" = 65, "bomb" = XENO_BOMB_RESIST_3, "bio" = 60, "rad" = 60, "fire" = 100, "acid" = 60)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.1 SECONDS

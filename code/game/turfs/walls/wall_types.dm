@@ -161,11 +161,10 @@
 
 //Sulaco walls.
 /turf/closed/wall/sulaco
-	name = "spaceship hull"
+	name = "hull"
 	desc = "A huge chunk of metal used to separate rooms on spaceships from the cold void of space."
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "sulaco0"
-	resistance_flags = RESIST_ALL
 
 	max_integrity = 3000
 	max_temperature = 28000 //K, walls will take damage if they're next to a fire hotter than this
@@ -189,7 +188,7 @@
 	name = "outer hull"
 	desc = "A reinforced outer hull, probably to prevent breaches"
 	walltype = "sulaco"
-
+	resistance_flags = RESIST_ALL
 
 /turf/closed/wall/sulaco/unmeltable
 	resistance_flags = RESIST_ALL

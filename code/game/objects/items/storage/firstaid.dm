@@ -146,7 +146,7 @@
 
 /obj/item/storage/syringe_case
 	name = "syringe case"
-	desc = "It's an medical case for storing syringes and bottles."
+	desc = "It's a medical case for storing syringes and bottles."
 	icon_state = "syringe_case"
 	throw_speed = 2
 	throw_range = 8
@@ -160,6 +160,8 @@
 		/obj/item/reagent_containers/hypospray/autoinjector)
 
 /obj/item/storage/syringe_case/regular
+	name = "basic syringe case"
+	desc = "It's a medical case for storing syringes and bottles. This one contains basic meds."
 
 /obj/item/storage/syringe_case/regular/PopulateContents()
 	. = ..()
@@ -168,6 +170,8 @@
 	new /obj/item/reagent_containers/glass/bottle/tricordrazine(src)
 
 /obj/item/storage/syringe_case/burn
+	name = "burn syringe case"
+	desc = "It's a medical case for storing syringes and bottles. This one contains meds designed to treat burns."
 
 /obj/item/storage/syringe_case/burn/PopulateContents()
 	. = ..()
@@ -176,6 +180,8 @@
 	new /obj/item/reagent_containers/glass/bottle/oxycodone(src)
 
 /obj/item/storage/syringe_case/tox
+	name = "toxins syringe case"
+	desc = "It's a medical case for storing syringes and bottles. This one contains meds designed to treat toxins."
 
 /obj/item/storage/syringe_case/tox/PopulateContents()
 	. = ..()
@@ -184,6 +190,8 @@
 	new /obj/item/reagent_containers/glass/bottle/hypervene(src)
 
 /obj/item/storage/syringe_case/oxy
+	name = "oxyloss syringe case"
+	desc = "It's a medical case for storing syringes and bottles. This one contains meds designed to treat oxygen deprivation."
 
 /obj/item/storage/syringe_case/oxy/PopulateContents()
 	. = ..()
@@ -192,6 +200,8 @@
 	new /obj/item/reagent_containers/glass/bottle/dexalin(src)
 
 /obj/item/storage/syringe_case/meralyne
+	name = "syringe case (meralyne)"
+	desc = "It's a medical case for storing syringes and bottles. This one contains Meralyne."
 
 /obj/item/storage/syringe_case/meralyne/PopulateContents()
 	. = ..()
@@ -200,6 +210,8 @@
 	new /obj/item/reagent_containers/glass/bottle/meralyne(src)
 
 /obj/item/storage/syringe_case/dermaline
+	name = "syringe case (dermaline)"
+	desc = "It's a medical case for storing syringes and bottles. This one contains Dermaline."
 
 /obj/item/storage/syringe_case/dermaline/PopulateContents()
 	. = ..()
@@ -208,6 +220,8 @@
 	new /obj/item/reagent_containers/glass/bottle/dermaline(src)
 
 /obj/item/storage/syringe_case/meraderm
+	name = "syringe case (meraderm)"
+	desc = "It's a medical case for storing syringes and bottles. This one contains Meraderm."
 
 /obj/item/storage/syringe_case/meraderm/PopulateContents()
 	. = ..()
@@ -216,6 +230,8 @@
 	new /obj/item/reagent_containers/glass/bottle/meraderm(src)
 
 /obj/item/storage/syringe_case/ironsugar
+	name = "syringe case (ironsugar)"
+	desc = "It's a medical case for storing syringes and bottles. This one contains Ironsugar."
 
 /obj/item/storage/syringe_case/ironsugar/PopulateContents()
 	. = ..()
@@ -224,6 +240,8 @@
 	new /obj/item/reagent_containers/glass/bottle/ironsugar(src)
 
 /obj/item/storage/syringe_case/combat
+	name = "syringe case (combat)"
+	desc = "It's a medical case for storing syringes and bottles. This one contains combat autoinjectors."
 
 /obj/item/storage/syringe_case/combat/PopulateContents()
 	. = ..()

@@ -54,8 +54,6 @@
 			return has_limb(HEAD)
 		if(SLOT_HANDCUFFED)
 			return has_limb(HAND_LEFT) && has_limb(HAND_RIGHT)
-		if(SLOT_LEGCUFFED)
-			return has_limb(LEG_LEFT) && has_limb(LEG_RIGHT)
 		if(SLOT_L_HAND)
 			return has_limb(HAND_LEFT)
 		if(SLOT_R_HAND)
@@ -282,9 +280,6 @@
 			wear_mask_update(W, TRUE)
 		if(SLOT_HANDCUFFED)
 			update_handcuffed(W)
-		if(SLOT_LEGCUFFED)
-			update_legcuffed(W)
-			W.equipped(src, slot)
 		if(SLOT_L_HAND)
 			l_hand = W
 			W.equipped(src, slot)
@@ -453,8 +448,6 @@
 			return s_store
 		if(SLOT_HANDCUFFED)
 			return handcuffed
-		if(SLOT_LEGCUFFED)
-			return legcuffed
 		if(SLOT_IN_BOOT)
 			return shoes
 		if(SLOT_IN_B_HOLSTER)

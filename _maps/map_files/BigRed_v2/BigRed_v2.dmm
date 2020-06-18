@@ -1710,8 +1710,8 @@
 "agf" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window{
-	icon_state = "left";
-	dir = 2
+	dir = 2;
+	icon_state = "left"
 	},
 /obj/structure/foamedmetal,
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -2058,8 +2058,8 @@
 /area/bigredv2/outside/marshal_office)
 "ahp" = (
 /obj/structure/reagent_dispensers/wallmounted/virusfood{
-	icon_state = "virusfoodtank";
-	dir = 4
+	dir = 4;
+	icon_state = "virusfoodtank"
 	},
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
@@ -3560,8 +3560,8 @@
 /area/bigredv2/outside/marshal_office)
 "amB" = (
 /obj/item/radio/intercom/general/colony{
-	icon_state = "intercom";
-	dir = 1
+	dir = 1;
+	icon_state = "intercom"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -7677,8 +7677,8 @@
 /area/bigredv2/caves/lambda_lab)
 "aAR" = (
 /obj/structure/barricade/metal{
-	icon_state = "barricade";
-	dir = 4
+	dir = 4;
+	icon_state = "barricade"
 	},
 /obj/machinery/vending/assist,
 /turf/open/floor/tile/purple/whitepurple{
@@ -8106,8 +8106,8 @@
 /area/bigredv2/caves/lambda_lab)
 "aCu" = (
 /obj/structure/barricade/metal{
-	icon_state = "barricade";
-	dir = 4
+	dir = 4;
+	icon_state = "barricade"
 	},
 /obj/structure/ore_box,
 /turf/open/floor/tile/purple/whitepurple{
@@ -8348,8 +8348,8 @@
 /area/bigredv2/caves/lambda_lab)
 "aDm" = (
 /obj/structure/barricade/metal{
-	icon_state = "barricade";
-	dir = 4
+	dir = 4;
+	icon_state = "barricade"
 	},
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 6
@@ -9381,8 +9381,8 @@
 /area/bigredv2/caves/lambda_lab)
 "aHb" = (
 /obj/structure/window/reinforced/toughened{
-	icon_state = "fwindow";
-	dir = 1
+	dir = 1;
+	icon_state = "fwindow"
 	},
 /obj/structure/window/reinforced/toughened{
 	dir = 8
@@ -9394,8 +9394,8 @@
 /area/bigredv2/caves/lambda_lab)
 "aHc" = (
 /obj/structure/window/reinforced/toughened{
-	icon_state = "fwindow";
-	dir = 1
+	dir = 1;
+	icon_state = "fwindow"
 	},
 /obj/structure/window/reinforced/toughened{
 	dir = 4
@@ -9636,8 +9636,8 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced/toughened{
-	icon_state = "fwindow";
-	dir = 1
+	dir = 1;
+	icon_state = "fwindow"
 	},
 /obj/structure/cable,
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -9662,8 +9662,8 @@
 	dir = 4
 	},
 /obj/structure/window/reinforced/toughened{
-	icon_state = "fwindow";
-	dir = 1
+	dir = 1;
+	icon_state = "fwindow"
 	},
 /obj/machinery/disease2/diseaseanalyser,
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -9973,8 +9973,8 @@
 /area/bigredv2/caves/lambda_lab)
 "aJa" = (
 /obj/structure/window/reinforced/toughened{
-	icon_state = "fwindow";
-	dir = 1
+	dir = 1;
+	icon_state = "fwindow"
 	},
 /obj/machinery/door/window{
 	dir = 8
@@ -9997,8 +9997,8 @@
 /area/bigredv2/caves/lambda_lab)
 "aJe" = (
 /obj/structure/window/reinforced/toughened{
-	icon_state = "fwindow";
-	dir = 1
+	dir = 1;
+	icon_state = "fwindow"
 	},
 /obj/machinery/door/window,
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -10847,8 +10847,8 @@
 /area/bigredv2/caves/lambda_lab)
 "aLQ" = (
 /obj/structure/window/reinforced/toughened{
-	icon_state = "fwindow";
-	dir = 2
+	dir = 2;
+	icon_state = "fwindow"
 	},
 /obj/structure/window/reinforced/toughened{
 	dir = 8
@@ -10860,8 +10860,8 @@
 /area/bigredv2/caves/lambda_lab)
 "aLR" = (
 /obj/structure/window/reinforced/toughened{
-	icon_state = "fwindow";
-	dir = 2
+	dir = 2;
+	icon_state = "fwindow"
 	},
 /obj/structure/window/reinforced/toughened{
 	dir = 4
@@ -13481,8 +13481,8 @@
 /area/bigredv2/outside/admin_building)
 "aWE" = (
 /turf/open/floor{
-	icon_state = "darkbluecorners2";
-	dir = 2
+	dir = 2;
+	icon_state = "darkbluecorners2"
 	},
 /area/bigredv2/outside/admin_building)
 "aWF" = (
@@ -21258,10 +21258,6 @@
 /obj/machinery/computer/nuke_disk_generator/blue,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"eIZ" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/outside/nw)
 "ePH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -21858,6 +21854,10 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"nyf" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating,
+/area/bigredv2/outside/nw)
 "nzp" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -21933,10 +21933,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
-"owM" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/outside/w)
 "oEN" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/tile/white,
@@ -21972,6 +21968,10 @@
 "oWn" = (
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
+"oZq" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/bigredv2/outside/virology)
 "pbv" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -22294,6 +22294,10 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/space_port)
+"sPX" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/medical)
 "sUd" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22483,6 +22487,10 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"uWF" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/outside/sw)
 "uWN" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -26499,7 +26507,7 @@ aFs
 kxe
 kxe
 aFs
-aFs
+oZq
 aMz
 aMz
 aMz
@@ -29348,7 +29356,7 @@ aFv
 aFv
 aFv
 aQF
-owM
+aQF
 sBV
 aSB
 aVG
@@ -30589,7 +30597,7 @@ aeI
 aeI
 aeI
 aeI
-eIZ
+aeI
 aeI
 aeI
 aeI
@@ -31907,7 +31915,7 @@ aeI
 avr
 avT
 avT
-avT
+nyf
 axZ
 avT
 azo
@@ -35248,7 +35256,7 @@ buk
 buk
 buk
 buk
-buk
+uWF
 buk
 buk
 buj
@@ -39299,7 +39307,7 @@ aEE
 aGB
 aHA
 apC
-aJk
+sPX
 aKl
 aIn
 aIn

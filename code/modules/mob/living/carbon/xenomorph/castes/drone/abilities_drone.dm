@@ -8,7 +8,7 @@
 	action_icon_state = "salvage_plasma"
 	ability_name = "salvage plasma"
 	var/plasma_salvage_amount = PLASMA_SALVAGE_AMOUNT
-	var/salvage_delay = 5 SECONDS
+	var/salvage_delay = 3 SECONDS
 	var/max_range = 1
 	keybind_signal = COMSIG_XENOABILITY_SALVAGE_PLASMA
 

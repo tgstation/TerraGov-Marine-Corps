@@ -1,0 +1,5 @@
+author: "MacBlaze1"
+delete-after: True
+changes: 
+  - bugfix: "fixed an exploit which allowed people to remove attachments off the attachment points of the alamo to remove acid from them and instantly put them back on."
+  - bugfix: "fixed a wrong error message that would come up whenever you tried to interact with dropship attachments and then stopped."

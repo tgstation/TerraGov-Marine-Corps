@@ -182,7 +182,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			armor_verb = " [p_their(TRUE)] armor has absorbed part of the impact!"
 		if(75 to 100)
 			armor_verb = " [p_their(TRUE)] armor has deflected most of the blow!"
-	
+
 	visible_message("<span class='danger'>[src] has been [attack_verb] in the [hit_area] with [I.name] by [user]![armor_verb]</span>", null, null, 5)
 
 	var/weapon_sharp = is_sharp(I)

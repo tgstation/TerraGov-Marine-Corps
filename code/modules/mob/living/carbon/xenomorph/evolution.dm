@@ -14,7 +14,7 @@
 	set desc = "Evolve into a higher form."
 	set category = "Alien"
 
-	do_evolve()
+	hive.ui_interact(src)
 
 
 /mob/living/carbon/xenomorph/verb/regress()
@@ -55,9 +55,9 @@
 		castetype = type
 		break
 
-	do_evolve(castetype, castepick)
+	do_evolve(castetype, castepick, TRUE)
 
-/mob/living/carbon/xenomorph/proc/do_evolve(forced_caste_type, forced_caste_name)
+/mob/living/carbon/xenomorph/proc/do_evolve(caste_type, forced_caste_name, forced = FALSE)
 	if(is_ventcrawling)
 		to_chat(src, "<span class='warning'>This place is too constraining to evolve.</span>")
 		return
@@ -80,7 +80,7 @@
 		to_chat(src, "<span class='warning'>We can't evolve in our current state.</span>")
 		return
 
-	if(handcuffed || legcuffed)
+	if(handcuffed)
 		to_chat(src, "<span class='warning'>The restraints are too restricting to allow us to evolve.</span>")
 		return
 
@@ -107,8 +107,8 @@
 
 	var/new_caste_type
 	var/castepick
-	if(forced_caste_type)
-		new_caste_type = forced_caste_type
+	if(caste_type)
+		new_caste_type = caste_type
 		castepick = forced_caste_name
 	else
 		var/list/castes_to_pick = list()
@@ -135,7 +135,7 @@
 		to_chat(src, "<span class='warning'>We can't evolve in our current state.</span>")
 		return
 
-	if(handcuffed || legcuffed)
+	if(handcuffed)
 		to_chat(src, "<span class='warning'>The restraints are too restricting to allow us to evolve.</span>")
 		return
 
@@ -203,12 +203,12 @@
 		if(isxenoresearcharea(get_area(src)))
 			to_chat(src, "<span class='warning'>Something in this place is interfering with our link to the Hivemind. We are unable to evolve to be its manifestation!</span>")
 			return
-			
+
 		var/turf/T = get_turf(src)
 
 		if(!T.check_alien_construction(src))
-			return			
-		
+			return
+
 
 	else
 		var/potential_queens = length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) + length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/drone])
@@ -218,7 +218,7 @@
 		tiertwos = length(hive.xenos_by_tier[XENO_TIER_TWO])
 		tierthrees = length(hive.xenos_by_tier[XENO_TIER_THREE])
 
-		if(forced_caste_type)
+		if(forced)
 			//Nothing, go on as normal.
 		else if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierzeros + tierones, tiertwos, tierthrees))
 			to_chat(src, "<span class='warning'>The hive cannot support another Tier 2, wait for either more aliens to be born or someone to die.</span>")
@@ -267,7 +267,7 @@
 		if(length(hive.xenos_by_typepath[/mob/living/carbon/xenomorph/hivemind]))
 			to_chat(src, "<span class='warning'>There cannot be two manifestations of the hivemind's will at once.</span>")
 			return
-	else if(!forced_caste_type) // these shouldnt be checked if trying to become a queen.
+	else if(!forced) // these shouldnt be checked if trying to become a queen.
 		if((tier == XENO_TIER_ONE && TO_XENO_TIER_2_FORMULA(tierzeros + tierones, tiertwos, tierthrees))
 			to_chat(src, "<span class='warning'>Another sister evolved meanwhile. The hive cannot support another Tier 2.</span>")
 			return

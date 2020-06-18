@@ -1,0 +1,5 @@
+author: "jjpark-kb"
+delete-after: True
+changes: 
+  - rscadd: "Added \"Lava Outpost\" as a map"
+  - rscadd: "Added 5 turfs: Rock, basalt, glowing basalt, lava, and lava catwalks."

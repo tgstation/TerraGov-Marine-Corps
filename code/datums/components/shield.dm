@@ -27,7 +27,7 @@
 		RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/shield_dropped)
 		if(ismob(parent_item.loc))
 			shield_init(parent_item.loc)
-	
+
 	setup_callbacks(shield_flags)
 
 	if(!isnull(shield_soft_armor))
@@ -83,8 +83,6 @@
 		var/mob/living/carbon/holder_carbon = holder_mob
 		if(parent == holder_carbon.handcuffed)
 			slot = SLOT_HANDCUFFED
-		else if(parent == holder_carbon.legcuffed)
-			slot = SLOT_LEGCUFFED
 		else if(parent == holder_carbon.back)
 			slot = SLOT_BACK
 		else if(ishuman(holder_mob))

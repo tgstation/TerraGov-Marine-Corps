@@ -1,0 +1,4 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - bugfix: "Fixes the tp-44 and tp-19 clipping out of their holsters."

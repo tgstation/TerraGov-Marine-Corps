@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes: 
+  - code_imp: "improved reagents and chems to be more like /tg/"

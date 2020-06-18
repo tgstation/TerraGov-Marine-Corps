@@ -381,3 +381,9 @@
 	full_name = "Psychic Choke (Unused)"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CHOKE
+
+/datum/keybinding/xeno/inject_egg_neurogas
+	name = "inject_egg_neurogas"
+	full_name = "Inject Egg (Neurogas)"
+	description = "Inject an egg with neurogas, killing the little one inside"
+	keybind_signal = COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS

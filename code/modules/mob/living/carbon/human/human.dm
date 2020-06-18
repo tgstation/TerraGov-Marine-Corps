@@ -14,6 +14,8 @@
 
 	GLOB.human_mob_list += src
 	GLOB.alive_human_list += src
+	LAZYADD(GLOB.humans_by_zlevel["[z]"], src)
+	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, .proc/human_z_changed)
 	GLOB.round_statistics.total_humans_created++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "total_humans_created")
 
@@ -37,6 +39,9 @@
 	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, .proc/do_unique_action)
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN)
 
+/mob/living/carbon/human/proc/human_z_changed(datum/source, old_z, new_z)
+	LAZYREMOVE(GLOB.humans_by_zlevel["[old_z]"], src)
+	LAZYADD(GLOB.humans_by_zlevel["[new_z]"], src)
 
 /mob/living/carbon/human/vv_get_dropdown()
 	. = ..()
@@ -66,6 +71,7 @@
 	remove_from_all_mob_huds()
 	GLOB.human_mob_list -= src
 	GLOB.alive_human_list -= src
+	LAZYREMOVE(GLOB.humans_by_zlevel["[z]"], src)
 	GLOB.dead_human_list -= src
 	return ..()
 
@@ -180,7 +186,6 @@
 	<BR><B>Suit Storage:</B> <A href='?src=[REF(src)];item=[SLOT_S_STORE]'>[(s_store ? s_store : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(s_store, /obj/item/tank) && !internal) ? " <A href='?src=[REF(src)];internal=1'>Set Internal</A>" : "")]
 	<BR>
 	[handcuffed ? "<BR><A href='?src=[REF(src)];item=[SLOT_HANDCUFFED]'>Handcuffed</A>" : ""]
-	[legcuffed ? "<BR><A href='?src=[REF(src)];item=[SLOT_LEGCUFFED]'>Legcuffed</A>" : ""]
 	[suit?.hastie ? "<BR><A href='?src=[REF(src)];tie=1'>Remove Accessory</A>" : ""]
 	[internal ? "<BR><A href='?src=[REF(src)];internal=1'>Remove Internal</A>" : ""]
 	<BR><A href='?src=[REF(src)];splints=1'>Remove Splints</A>
@@ -984,8 +989,8 @@
 	var/light_off = 0
 	var/goes_out = 0
 	if(armor)
-		if(istype(wear_suit, /obj/item/clothing/suit/storage))
-			var/obj/item/clothing/suit/storage/S = wear_suit
+		if(istype(wear_suit, /obj/item/clothing/suit))
+			var/obj/item/clothing/suit/S = wear_suit
 			S.turn_off_light(src)
 			light_off++
 	if(guns)

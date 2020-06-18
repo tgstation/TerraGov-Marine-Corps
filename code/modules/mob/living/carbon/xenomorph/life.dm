@@ -282,6 +282,6 @@
 		return
 	frenzy_aura = new_aura
 	if(frenzy_aura)
-		add_movespeed_modifier(MOVESPEED_ID_FRENZY_AURA, TRUE, 0, NONE, TRUE, -frenzy_aura * 0.1)
+		add_movespeed_modifier(MOVESPEED_ID_FRENZY_AURA, TRUE, 0, NONE, TRUE, -frenzy_aura * 0.06)
 		return
 	remove_movespeed_modifier(MOVESPEED_ID_FRENZY_AURA)

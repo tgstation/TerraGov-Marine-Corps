@@ -226,7 +226,9 @@
 	var/atom/new_resin
 
 	if(ispath(X.selected_resin, /turf)) // We should change turfs, not spawn them in directly
-		T.ChangeTurf(X.selected_resin)
+		var/list/baseturfs = islist(T.baseturfs) ? T.baseturfs : list(T.baseturfs)
+		baseturfs |= T.type
+		T.ChangeTurf(X.selected_resin, baseturfs)
 		new_resin = T
 	else
 		new_resin = new X.selected_resin(T)
@@ -813,6 +815,28 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "sentinel_neurotoxin_stings")
 
 	X.recurring_injection(A, /datum/reagent/toxin/xeno_neurotoxin, XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECURRING)
+
+
+//Panther Neurotox Sting
+/datum/action/xeno_action/activable/neurotox_sting/panther
+	name = "Panther Neurotoxin Sting"
+	mechanics_text = "A channeled melee attack that injects the target with neurotoxin over a few seconds, temporarily stunning them."
+	ability_name = "panther neurotoxin sting"
+	cooldown_timer = 50 SECONDS
+	plasma_cost = 60
+	keybind_signal = COMSIG_XENOABILITY_NEUROTOX_STING
+
+/datum/action/xeno_action/activable/neurotox_sting/panther/use_ability(atom/A)
+	var/mob/living/carbon/xenomorph/X = owner
+
+	succeed_activate()
+
+	add_cooldown()
+
+	GLOB.round_statistics.panther_neurotoxin_stings++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "panther_neurotoxin_stings")
+
+	X.recurring_injection(A, /datum/reagent/toxin/xeno_neurotoxin, XENO_NEURO_CHANNEL_TIME, XENO_NEURO_AMOUNT_RECCURING_PANTHER)
 
 
 // ***************************************

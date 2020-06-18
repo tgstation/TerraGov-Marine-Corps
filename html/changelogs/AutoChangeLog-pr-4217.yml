@@ -1,0 +1,4 @@
+author: "XElectricX"
+delete-after: True
+changes: 
+  - bugfix: "Removed spec skill requirements from a few guns that still had it."
