@@ -107,7 +107,7 @@ proc/spread_germs_to_organ(datum/limb/E, mob/living/carbon/human/user)
 	if(locate(/obj/structure/bed/roller, E.owner.loc))
 		E.germ_level += 75
 	else if(locate(/obj/structure/table/, E.owner.loc))
-		E.germ_level += 100
+		E.germ_level += 75
 
 
 proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
