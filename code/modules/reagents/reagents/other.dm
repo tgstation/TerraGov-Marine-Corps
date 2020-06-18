@@ -1,5 +1,3 @@
-
-
 /datum/reagent/blood
 	name = "Blood"
 	reagent_state = LIQUID
@@ -34,7 +32,7 @@
 	description = "A ubiquitous chemical substance that is composed of hydrogen and oxygen."
 	reagent_state = LIQUID
 	color = "#0064C8" // rgb: 0, 100, 200
-	overdose_threshold = REAGENTS_OVERDOSE*2
+	overdose_threshold = REAGENTS_OVERDOSE * 2
 	custom_metabolism = REAGENTS_METABOLISM * 5 //1.0/tick
 	purge_list = list(/datum/reagent/toxin, /datum/reagent/medicine, /datum/reagent/consumable)
 	purge_rate = 1
@@ -82,7 +80,6 @@
 	name = "Space Lube"
 	description = "Lubricant is a substance introduced between two moving surfaces to reduce the friction and wear between them. giggity."
 	reagent_state = LIQUID
-	spray_warning = TRUE
 	color = "#009CA8" // rgb: 0, 156, 168
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL

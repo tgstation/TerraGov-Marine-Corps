@@ -1,14 +1,23 @@
 #define CHEMICAL_QUANTISATION_LEVEL 0.0001 //stops floating point errors causing issues with checking reagent amounts
 
 /datum/reagents
+	/// The reagents being held
 	var/list/datum/reagent/reagent_list = new/list()
+	/// Current volume of all the reagents
 	var/total_volume = 0
+	/// Max volume of this holder
 	var/maximum_volume = 100
+	/// The atom this holder is attached to
 	var/atom/my_atom = null
+	/// Current temp of the holder volume
 	var/chem_temp = 150
+	/// unused
 	var/last_tick = 1
+	/// see [/datum/reagents/proc/metabolize] for usage
 	var/addiction_tick = 1
+	/// currently addicted reagents
 	var/list/datum/reagent/addiction_list = new/list()
+	/// various flags, see code\__DEFINES\reagents.dm
 	var/reagent_flags
 
 /datum/reagents/New(maximum = 100, new_flags)
@@ -28,21 +37,34 @@
 		my_atom.reagents = null
 	my_atom = null
 
-//Used in attack logs for reagents in pills and such. Currently unused...
-/datum/reagents/proc/log_list()
-	if(!length(reagent_list))
+/**
+  * Used in attack logs for reagents in pills and such
+  *
+  * Arguments:
+  * * external_list - list of reagent types = amounts
+  */
+/datum/reagents/proc/log_list(external_list)
+	if((external_list && !length(external_list)) || !length(reagent_list))
 		return "no reagents"
 
 	var/list/data = list()
-	for(var/r in reagent_list) //no reagents will be left behind
-		var/datum/reagent/R = r
-		data += "[R.name] ([round(R.volume, 0.1)]u)"
-		//Using	return english_list(data)
+	if(external_list)
+		for(var/r in external_list)
+			data += "[r] ([round(external_list[r], 0.1)]u)"
+	else
+		for(var/r in reagent_list) //no reagents will be left behind
+			var/datum/reagent/R = r
+			data += "[R.type] ([round(R.volume, 0.1)]u)"
+			//Using types because SOME chemicals (I'm looking at you, chlorhydrate-beer) have the same names as other chemicals.
+	return english_list(data)
 
-/datum/reagents/proc/remove_any(amount=1)
+
+/// Remove an amount of reagents without caring about what they are
+/datum/reagents/proc/remove_any(amount = 1)
 	var/list/cached_reagents = reagent_list
 	var/total_transfered = 0
 	var/current_list_element= 1
+	var/initial_list_length = cached_reagents.len //stored here because removing can cause some reagents to be deleted, ergo length change.
 
 	current_list_element = rand(1, cached_reagents.len)
 
@@ -56,15 +78,22 @@
 			current_list_element = 1
 
 		var/datum/reagent/R = cached_reagents[current_list_element]
-		remove_reagent(R.type, 1)
+		//double round to keep it at a somewhat even spread relative to amount without getting funky numbers.
+		var/remove_amt = min(
+			amount - total_transfered,
+			round(amount / rand(2, initial_list_length), round(amount/10,0.01))
+		)
+		//min ensures we don't go over amount.
+		remove_reagent(R.type, remove_amt)
 
 		current_list_element++
-		total_transfered++
+		total_transfered += remove_amt
 		update_total()
 
 	handle_reactions()
 	return total_transfered
 
+/// Removes all reagents from this holder
 /datum/reagents/proc/remove_all(amount = 1)
 	var/list/cached_reagents = reagent_list
 	if(total_volume > 0)
@@ -77,6 +106,7 @@
 		handle_reactions()
 		return amount
 
+/// Get the name of the reagent there is the most of in this holder
 /datum/reagents/proc/get_master_reagent_name()
 	var/list/cached_reagents = reagent_list
 	var/name
@@ -89,6 +119,7 @@
 
 	return name
 
+/// Get the id of the reagent there is the most of in this holder
 /datum/reagents/proc/get_master_reagent_id()
 	var/list/cached_reagents = reagent_list
 	var/max_type
@@ -101,6 +132,7 @@
 
 	return max_type
 
+/// Get a reference to the reagent there is the most of in this holder
 /datum/reagents/proc/get_master_reagent()
 	var/list/cached_reagents = reagent_list
 	var/datum/reagent/master
@@ -113,7 +145,22 @@
 
 	return master
 
-/datum/reagents/proc/trans_to(obj/target, amount=1, multiplier=1, preserve_data=1, no_react = 0)//if preserve_data=0, the reagents data will be lost. Usefull if you use data for some strange stuff and don't want it to be transferred.
+/**
+  * Transfer some stuff from this holder to a target object
+  *
+  * Arguments:
+  * * obj/target - Target to attempt transfer to
+  * * amount - amount of reagent volume to transfer
+  * * multiplier - multiplies amount of each reagent by this number
+  * * preserve_data - if preserve_data=0, the reagents data will be lost. Usefull if you use data for some strange stuff and don't want it to be transferred.
+  * * no_react - passed through to [/datum/reagents/proc/add_reagent]
+  * * mob/transfered_by - used for logging
+  * * remove_blacklisted - skips transferring of reagents with can_synth = FALSE
+  * * method - passed through to [/datum/reagents/proc/react_single] and [/datum/reagent/proc/on_transfer]
+  * * show_message - passed through to [/datum/reagents/proc/react_single]
+  * * round_robin - if round_robin=TRUE, so transfer 5 from 15 water, 15 sugar and 15 plasma becomes 10, 15, 15 instead of 13.3333, 13.3333 13.3333. Good if you hate floating point errors
+  */
+/datum/reagents/proc/trans_to(obj/target, amount = 1, multiplier=1, preserve_data=1, no_react = 0)//if preserve_data=0, the reagents data will be lost. Usefull if you use data for some strange stuff and don't want it to be transferred.
 	var/list/cached_reagents = reagent_list
 	if (!target || !total_volume)
 		return
@@ -145,6 +192,7 @@
 		src.handle_reactions()
 	return amount
 
+/// Copies the reagents to the target object
 /datum/reagents/proc/copy_to(obj/target, amount=1, multiplier=1, preserve_data=1)
 	var/list/cached_reagents = reagent_list
 	if(!target || !total_volume)
@@ -177,6 +225,7 @@
 	return amount
 
 
+/// Transfer a specific reagent id to the target object
 /datum/reagents/proc/trans_id_to(obj/target, reagent, amount=1, preserve_data=1)//Not sure why this proc didn't exist before. It does now! /N
 	var/list/cached_reagents = reagent_list
 	if (!target)
@@ -205,6 +254,14 @@
 	R.handle_reactions()
 	return amount
 
+/**
+  * Triggers metabolizing the reagents in this holder
+  *
+  * Arguments:
+  * * mob/living/carbon/C - The mob to metabolize in, if null it uses [/datum/reagents/var/my_atom]
+  * * can_overdose - Allows overdosing
+  * * liverless - Stops reagents that aren't set as [/datum/reagent/var/self_consuming] from metabolizing
+  */
 /datum/reagents/proc/metabolize(mob/living/L, can_overdose = FALSE , liverless = FALSE) //last two vars do nothing for the time being.
 	var/list/cached_reagents = reagent_list
 	var/list/cached_addictions = addiction_list
@@ -215,42 +272,41 @@
 	var/need_mob_update = 0
 	for(var/reagent in cached_reagents)
 		var/datum/reagent/R = reagent
-		if(QDELETED(R.holder))
+		if(!R || QDELETED(R.holder))
 			continue
 		if(liverless && !R.self_consuming) //need to be metabolized
 			continue
 		if(!L)
 			L = R.holder.my_atom
 			quirks = L.get_reagent_tags()
-		if(R)
-			if(L.reagent_check(R) != 1)
-				if(can_overdose)
-					if(R.overdose_threshold)
-						if(R.volume >= R.overdose_threshold && !R.overdosed)
-							R.overdosed = 1
-							need_mob_update += R.on_overdose_start(L, quirks)
-					if(R.overdose_crit_threshold)
-						if(R.volume >= R.overdose_crit_threshold && !R.overdosed_crit)
-							R.overdosed_crit = 1
-							need_mob_update += R.on_overdose_crit_start(L, quirks)
-					if(R.addiction_threshold)
-						if(R.volume >= R.addiction_threshold && !is_type_in_list(R, cached_addictions))
-							var/datum/reagent/new_reagent = new R.type()
-							cached_addictions.Add(new_reagent)
-					if(R.volume < R.overdose_threshold && R.overdosed && R.overdose_threshold)
-						R.overdosed = 0
-					if(R.volume <R.overdose_crit_threshold && R.overdosed_crit && R.overdose_crit_threshold)
-						R.overdosed_crit = 0
-					if(R.overdosed)
-						need_mob_update += R.overdose_process(L, quirks) //Small OD
-					if(R.overdosed_crit)
-						need_mob_update += R.overdose_crit_process(L, quirks) //Big OD
-					if(is_type_in_list(R,cached_addictions))
-						for(var/addiction in cached_addictions)
-							var/datum/reagent/A = addiction
-							if(istype(R, A))
-								A.addiction_stage = -15 //you're satisfied for a good while
-				need_mob_update +=R.on_mob_life(L, quirks)
+		if(L.reagent_check(R) != TRUE)
+			if(can_overdose)
+				if(R.overdose_threshold)
+					if(R.volume >= R.overdose_threshold && !R.overdosed)
+						R.overdosed = TRUE
+						need_mob_update += R.on_overdose_start(L, quirks)
+				if(R.overdose_crit_threshold)
+					if(R.volume >= R.overdose_crit_threshold && !R.overdosed_crit)
+						R.overdosed_crit = TRUE
+						need_mob_update += R.on_overdose_crit_start(L, quirks)
+				if(R.addiction_threshold)
+					if(R.volume >= R.addiction_threshold && !is_type_in_list(R, cached_addictions))
+						var/datum/reagent/new_reagent = new R.type()
+						cached_addictions.Add(new_reagent)
+				if(R.volume < R.overdose_threshold && R.overdosed && R.overdose_threshold)
+					R.overdosed = FALSE
+				if(R.volume < R.overdose_crit_threshold && R.overdosed_crit && R.overdose_crit_threshold)
+					R.overdosed_crit = FALSE
+				if(R.overdosed)
+					need_mob_update += R.overdose_process(L, quirks) //Small OD
+				if(R.overdosed_crit)
+					need_mob_update += R.overdose_crit_process(L, quirks) //Big OD
+				if(is_type_in_list(R, cached_addictions))
+					for(var/addiction in cached_addictions)
+						var/datum/reagent/A = addiction
+						if(istype(R, A))
+							A.addiction_stage = -15 //you're satisfied for a good while
+			need_mob_update += R.on_mob_life(L, quirks)
 
 	if(can_overdose)
 		if(addiction_tick == 6)
@@ -276,11 +332,11 @@
 		L.updatehealth()
 	update_total()
 
-/datum/reagents/proc/conditional_update_move(atom/A, Running = 0)
+/datum/reagents/proc/conditional_update_move(atom/A, running = FALSE)
 	var/list/cached_reagents = reagent_list
 	for(var/reagent in cached_reagents)
 		var/datum/reagent/R = reagent
-		R.on_move (A, Running)
+		R.on_move(A, running)
 	update_total()
 
 
@@ -288,7 +344,7 @@
 	var/list/cached_reagents = reagent_list
 	for(var/reagent in cached_reagents)
 		var/datum/reagent/R = reagent
-		R.on_update (A)
+		R.on_update(A)
 	update_total(A)
 
 
@@ -299,10 +355,10 @@
 	var/list/cached_reactions = GLOB.chemical_reactions_list
 	var/datum/cached_my_atom = my_atom
 
-	var/reaction_occured = 0
-	do
+	var/reaction_occured = TRUE
+	while(reaction_occured)
+		reaction_occured = FALSE
 		var/list/possible_reactions = list()
-		reaction_occured = 0
 		for(var/reagent in cached_reagents)
 			var/datum/reagent/R = reagent
 			for(var/reaction in cached_reactions[R.type]) // Was a big list but now it should be smaller since we filtered it with our reagent id
@@ -316,11 +372,11 @@
 				var/list/cached_required_catalysts = C.required_catalysts
 				var/total_required_catalysts = cached_required_catalysts.len
 				var/total_matching_catalysts= 0
-				var/matching_container = 0
-				var/matching_other = 0
+				var/matching_container = FALSE
+				var/matching_other = FALSE
 				var/required_temp = C.required_temp
 				var/is_cold_recipe = C.is_cold_recipe
-				var/meets_temp_requirement = 0
+				var/meets_temp_requirement = FALSE
 
 				for(var/B in cached_required_reagents)
 					if(!has_reagent(B, cached_required_reagents[B]))
@@ -332,24 +388,24 @@
 					total_matching_catalysts++
 				if(cached_my_atom)
 					if(!C.required_container)
-						matching_container = 1
+						matching_container = TRUE
 
 					else
 						if(cached_my_atom.type == C.required_container)
-							matching_container = 1
+							matching_container = TRUE
 					if (isliving(cached_my_atom) && !C.mob_react) //Makes it so some chemical reactions don't occur in mobs
 						return
 					if(!C.required_other)
-						matching_other = 1
+						matching_other = TRUE
 
 				else
 					if(!C.required_container)
-						matching_container = 1
+						matching_container = TRUE
 					if(!C.required_other)
-						matching_other = 1
+						matching_other = TRUE
 
 				if(required_temp == 0 || (is_cold_recipe && chem_temp <= required_temp) || (!is_cold_recipe && chem_temp >= required_temp))
-					meets_temp_requirement = 1
+					meets_temp_requirement = TRUE
 
 				if(total_matching_reagents == total_required_reagents && total_matching_catalysts == total_required_catalysts && matching_container && matching_other && meets_temp_requirement)
 					possible_reactions += C
@@ -377,22 +433,22 @@
 
 			for(var/P in selected_reaction.results)
 				multiplier = max(multiplier, 1) //This shouldn't happen...
+				SSblackbox.record_feedback("tally", "chemical_reaction", cached_results[P]*multiplier, P)
 				add_reagent(P, cached_results[P]*multiplier, null, chem_temp)
 
 			var/list/seen = viewers(4, get_turf(my_atom))
-			//var/iconhtml = icon2html(cached_my_atom, seen) TODO When we get better Icon Text helpers
+			var/iconhtml = icon2html(cached_my_atom, seen)
 			if(cached_my_atom)
 				if(!ismob(cached_my_atom)) //no bubbling mobs
 					if(selected_reaction.mix_sound)
 						playsound(get_turf(cached_my_atom), selected_reaction.mix_sound, 30, 1)
 
 					for(var/mob/M in seen)
-						to_chat(M, "<span class='notice'>[selected_reaction.mix_message]</span>") //TODO [iconhtml]
+						to_chat(M, "<span class='notice'>[iconhtml] [selected_reaction.mix_message]</span>")
 
 			selected_reaction.on_reaction(src, multiplier)
 			reaction_occured = 1
 
-	while(reaction_occured)
 	update_total()
 	return 0
 
