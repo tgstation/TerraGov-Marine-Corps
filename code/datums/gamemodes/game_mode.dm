@@ -459,30 +459,32 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	var/num_humans = 0
 	var/num_xenos = 0
 
-	for(var/i in GLOB.alive_human_list)
-		var/mob/living/carbon/human/H = i
-		if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
-			continue
-		if(H.status_flags & XENO_HOST)
-			continue
-		if(!(H.z in z_levels) || isspaceturf(H.loc))
-			continue
-		num_humans++
+	for(var/z in z_levels)
+		for(var/i in GLOB.humans_by_zlevel["[z]"])
+			var/mob/living/carbon/human/H = i
+			if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
+				continue
+			if(H.status_flags & XENO_HOST)
+				continue
+			if(isspaceturf(H.loc))
+				continue
+			num_humans++
 
-	for(var/i in GLOB.alive_xeno_list)
-		var/mob/living/carbon/xenomorph/X = i
-		if(count_flags & COUNT_IGNORE_XENO_SSD && !X.client)
-			continue
-		if(count_flags & COUNT_IGNORE_XENO_SPECIAL_AREA && is_xeno_in_forbidden_zone(X))
-			continue
-		if((!(X.z in z_levels) && !X.is_ventcrawling) || isspaceturf(X.loc))
-			continue
+	for(var/z in z_levels)
+		for(var/i in GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[z]"])
+			var/mob/living/carbon/xenomorph/X = i
+			if(count_flags & COUNT_IGNORE_XENO_SSD && !X.client)
+				continue
+			if(count_flags & COUNT_IGNORE_XENO_SPECIAL_AREA && is_xeno_in_forbidden_zone(X))
+				continue
+			if(isspaceturf(X.loc))
+				continue
 
-		// Never count hivemind
-		if(isxenohivemind(X))
-			continue
+			// Never count hivemind
+			if(isxenohivemind(X))
+				continue
 
-		num_xenos++
+			num_xenos++
 
 	return list(num_humans, num_xenos)
 
