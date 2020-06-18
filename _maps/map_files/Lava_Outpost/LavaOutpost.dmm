@@ -201,7 +201,7 @@
 "cx" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door_control{
+/obj/machinery/door_control/directional{
 	dir = 8;
 	id = "secure_blast1";
 	name = "Vault Access"
@@ -936,7 +936,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/directional{
 	dir = 8;
 	id = "secure_blast2";
 	name = "Vault Access"
@@ -1883,11 +1883,10 @@
 /turf/open/floor/tile/white,
 /area/lavaland/security)
 "wX" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/directional/unmeltable{
 	dir = 8;
 	id = "secure_blast4";
-	name = "Vault Access";
-	resistance_flags = 3
+	name = "Vault Access"
 	},
 /turf/open/lavaland/lava,
 /area/lavaland/engie/engine)
@@ -2029,7 +2028,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/lavaland/engie/engine)
 "yq" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/directional{
 	dir = 8;
 	id = "cargobay";
 	name = "Cargo Bay"
@@ -2051,7 +2050,7 @@
 /turf/open/floor/tile/dark,
 /area/lavaland/security/nuke)
 "yw" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/directional{
 	dir = 4;
 	id = "cargobay";
 	name = "Cargo Bay"
@@ -2264,9 +2263,9 @@
 "AX" = (
 /obj/structure/table,
 /obj/item/tank/anesthetic,
-/obj/machinery/door_control{
+/obj/machinery/door_control/directional{
 	id = "OR2";
-	name = "OR2 Shutters"
+	name = "OR Shutters"
 	},
 /turf/open/floor/tile/white,
 /area/lavaland/medical)
@@ -3224,7 +3223,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/directional{
 	dir = 8;
 	id = "secure_blast3";
 	name = "Vault Access"
@@ -3291,10 +3290,9 @@
 /turf/open/lavaland/basalt,
 /area/lavaland/engie/two)
 "MI" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/directional/unmeltable{
 	id = "secure_blast5";
-	name = "Vault Access";
-	resistance_flags = 3
+	name = "Vault Access"
 	},
 /turf/open/lavaland/basalt,
 /area/lavaland/engie/engine)
