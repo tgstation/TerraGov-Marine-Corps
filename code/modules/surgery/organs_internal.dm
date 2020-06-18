@@ -76,7 +76,7 @@
 		if(affected.body_part == HEAD)//brain and eye damage is fixed by a separate surgery
 			return 0
 		if(user.skills.getRating("surgery") < SKILL_SURGERY_PROFESSIONAL)
-		return 0
+			return 0
 		for(var/datum/internal_organ/I in affected.internal_organs)
 			if(I.damage > 0 && I.robotic != ORGAN_ROBOT)
 				return 1
