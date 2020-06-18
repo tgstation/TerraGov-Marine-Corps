@@ -104,7 +104,9 @@ proc/spread_germs_to_organ(datum/limb/E, mob/living/carbon/human/user)
 	else
 		E.germ_level += user.germ_level * 0.33
 
-	if(locate(/obj/structure/table/, E.owner.loc))
+	if(locate(/obj/structure/bed/roller, E.owner.loc))
+		E.germ_level += 75
+	else if(locate(/obj/structure/table/, E.owner.loc))
 		E.germ_level += 100
 
 
@@ -142,7 +144,9 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 
 				//Success multiplers!
 				var/multipler = 1 //1 = 100%
-				if(locate(/obj/structure/table/, M.loc))
+				if(locate(/obj/structure/bed/roller, M.loc))
+					multipler -= 0.10
+				else if(locate(/obj/structure/table/, M.loc))
 					multipler -= 0.20
 				if(M.stat == CONSCIOUS)//If not on anesthetics or not unconsious
 					multipler -= 0.5
