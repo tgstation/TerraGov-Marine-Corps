@@ -96,8 +96,8 @@ proc/spread_germs_to_organ(datum/limb/E, mob/living/carbon/human/user)
 		E.germ_level += user.germ_level * 0.33
 
 	//Suits
-	if(user.wear_suit)
-		if(istype(user.wear_suit, /obj/item/clothing/suit/surgical))
+	if(user.wear_suit || user.w_uniform)
+		if(istype(user.wear_suit, /obj/item/clothing/suit/surgical) || istype(user.w_uniform, /obj/item/clothing/under/marine/corpsman))
 			E.germ_level += user.germ_level * 0.1
 		else
 			E.germ_level += user.germ_level * 0.2
