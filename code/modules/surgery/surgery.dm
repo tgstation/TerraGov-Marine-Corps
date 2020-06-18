@@ -147,7 +147,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 				if(locate(/obj/structure/bed/roller, M.loc))
 					multipler -= 0.10
 				else if(locate(/obj/structure/table/, M.loc))
-					multipler -= 0.20
+					multipler -= 0.10
 				if(M.stat == CONSCIOUS)//If not on anesthetics or not unconsious
 					multipler -= 0.5
 					switch(M.reagent_pain_modifier)
