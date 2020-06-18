@@ -1061,6 +1061,20 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = 0
 	movement_acc_penalty_mod = 0
 
+/obj/item/attachable/stock/t60stock
+	name = "T-60 stock"
+	desc = "A irremovable T-60 general purpose machinegun stock."
+	icon_state = "t60stock"
+	wield_delay_mod = 0 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+	accuracy_mod = 0
+	recoil_mod = 0
+	melee_mod = 0
+	scatter_mod = 0
+	movement_acc_penalty_mod = 0
+
 
 ////////////// Underbarrel Attachments ////////////////////////////////////
 
