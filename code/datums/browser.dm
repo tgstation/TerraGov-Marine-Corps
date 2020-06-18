@@ -111,9 +111,9 @@
 	if(width && height)
 		window_size = "size=[width]x[height];"
 	if(length(stylesheets))
-		send_asset_list(user, stylesheets, verify=FALSE)
+		send_asset_list(user, stylesheets)
 	if(length(scripts))
-		send_asset_list(user, scripts, verify=FALSE)
+		send_asset_list(user, scripts)
 	user << browse(get_content(), "window=[window_id];[window_size][window_options]")
 	if(use_onclose)
 		setup_onclose()
