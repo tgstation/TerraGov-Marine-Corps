@@ -469,6 +469,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/mask/gas = list(CAT_MAS, "Gas mask", 0, "black"),
 		/obj/item/clothing/mask/rebreather/scarf = list(CAT_MAS, "Heat absorbent coif", 0, "black"),
 		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
+		/obj/item/clothing/gloves/latex = list(CAT_MAS, "Latex Surgical Gloves", 5, "black")
 	)
 
 
