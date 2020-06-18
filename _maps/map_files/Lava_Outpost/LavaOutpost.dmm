@@ -201,7 +201,7 @@
 "cx" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door_control{
+/obj/machinery/door_control/directional{
 	dir = 8;
 	id = "secure_blast1";
 	name = "Vault Access"
@@ -294,6 +294,13 @@
 	dir = 4
 	},
 /area/lavaland)
+"ev" = (
+/obj/structure/closet/secure_closet/engineering_welding,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "ew" = (
 /obj/machinery/light{
 	dir = 8
@@ -348,6 +355,12 @@
 	},
 /turf/open/floor/tile/white,
 /area/lavaland/medical)
+"fB" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "fE" = (
 /obj/structure/closet/secure_closet/engineering_welding,
 /turf/open/floor/tile/dark2,
@@ -651,6 +664,12 @@
 	},
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
+"iS" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "iU" = (
 /obj/structure/cable,
 /turf/open/floor/tile/bar,
@@ -936,7 +955,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/directional{
 	dir = 8;
 	id = "secure_blast2";
 	name = "Vault Access"
@@ -1238,6 +1257,12 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian/cargo)
+"oZ" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/lavaland/basalt,
+/area/lavaland/engie/engine)
 "pa" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/technology_scanner,
@@ -1361,6 +1386,12 @@
 	dir = 4
 	},
 /area/lavaland)
+"qz" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "qB" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark2,
@@ -1560,6 +1591,13 @@
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/shuttle/drop1/lz1)
+"sN" = (
+/obj/structure/closet/secure_closet/engineering_welding,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "sQ" = (
 /obj/machinery/floodlight/outpost,
 /turf/open/lavaland/basalt,
@@ -1635,6 +1673,11 @@
 /obj/docking_port/stationary/crashmode,
 /turf/closed/brock,
 /area/lavaland/cave/southeast)
+"tY" = (
+/obj/structure/closet/secure_closet/engineering_electrical,
+/obj/machinery/light,
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "ua" = (
 /obj/effect/decal/cleanable/blood,
 /obj/structure/cable,
@@ -1882,12 +1925,15 @@
 	},
 /turf/open/floor/tile/white,
 /area/lavaland/security)
+"wT" = (
+/obj/machinery/light,
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "wX" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/directional/unmeltable{
 	dir = 8;
 	id = "secure_blast4";
-	name = "Vault Access";
-	resistance_flags = 3
+	name = "Vault Access"
 	},
 /turf/open/lavaland/lava,
 /area/lavaland/engie/engine)
@@ -2029,7 +2075,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/lavaland/engie/engine)
 "yq" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/directional{
 	dir = 8;
 	id = "cargobay";
 	name = "Cargo Bay"
@@ -2051,7 +2097,7 @@
 /turf/open/floor/tile/dark,
 /area/lavaland/security/nuke)
 "yw" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/directional{
 	dir = 4;
 	id = "cargobay";
 	name = "Cargo Bay"
@@ -2205,6 +2251,13 @@
 /obj/structure/fence,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/northwest)
+"AC" = (
+/obj/structure/closet/secure_closet/engineering_personal,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "AD" = (
 /obj/structure/cable,
 /obj/machinery/light{
@@ -2264,9 +2317,9 @@
 "AX" = (
 /obj/structure/table,
 /obj/item/tank/anesthetic,
-/obj/machinery/door_control{
+/obj/machinery/door_control/directional{
 	id = "OR2";
-	name = "OR2 Shutters"
+	name = "OR Shutters"
 	},
 /turf/open/floor/tile/white,
 /area/lavaland/medical)
@@ -3121,6 +3174,13 @@
 /obj/structure/closet/secure_closet/engineering_personal,
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/engine)
+"KF" = (
+/obj/structure/closet/secure_closet/atmos_personal,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "KJ" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood,
@@ -3224,7 +3284,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/door_control{
+/obj/machinery/door_control/directional{
 	dir = 8;
 	id = "secure_blast3";
 	name = "Vault Access"
@@ -3291,10 +3351,9 @@
 /turf/open/lavaland/basalt,
 /area/lavaland/engie/two)
 "MI" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/directional/unmeltable{
 	id = "secure_blast5";
-	name = "Vault Access";
-	resistance_flags = 3
+	name = "Vault Access"
 	},
 /turf/open/lavaland/basalt,
 /area/lavaland/engie/engine)
@@ -3442,6 +3501,11 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lavaland/security/nuke)
+"OP" = (
+/obj/structure/closet/secure_closet/engineering_personal,
+/obj/machinery/light,
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "OR" = (
 /turf/open/lavaland/catwalk,
 /area/lavaland/cave/south)
@@ -3549,6 +3613,17 @@
 	},
 /turf/open/floor/plating,
 /area/lavaland/engie/two)
+"Qn" = (
+/obj/structure/closet/secure_closet/atmos_personal,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
+"Qs" = (
+/obj/machinery/light/small,
+/turf/open/lavaland/basalt,
+/area/lavaland/engie/engine)
 "Qt" = (
 /obj/machinery/light{
 	dir = 1
@@ -4019,6 +4094,13 @@
 "Vf" = (
 /turf/open/lavaland/lava,
 /area/lavaland/cave/east)
+"Vg" = (
+/obj/structure/closet/secure_closet/engineering_electrical,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "Vh" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -4152,6 +4234,12 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/lavaland/medical)
+"Xb" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/lavaland/lava,
+/area/lavaland/engie/engine)
 "Xg" = (
 /turf/open/lavaland/lava/side,
 /area/lavaland/cave/east)
@@ -18158,8 +18246,8 @@ RY
 RY
 RY
 yH
-ZW
-ZW
+oZ
+ZN
 ZW
 ZN
 ZN
@@ -26026,7 +26114,7 @@ al
 fw
 fw
 fE
-fE
+sN
 fE
 fw
 gq
@@ -26036,7 +26124,7 @@ aY
 gq
 fw
 KA
-KA
+AC
 KA
 fw
 fw
@@ -26538,21 +26626,21 @@ al
 al
 al
 fw
-fE
+ev
 aY
 aY
 ds
 fw
-aY
+qz
 dq
 gF
 aY
-aY
+wT
 fw
 WU
 aY
 aY
-KA
+OP
 fw
 al
 al
@@ -26564,8 +26652,8 @@ al
 al
 al
 al
-al
-aZ
+cd
+oZ
 aZ
 aZ
 aZ
@@ -27311,7 +27399,7 @@ al
 fw
 aY
 aY
-aY
+fB
 ks
 ks
 ks
@@ -27321,15 +27409,15 @@ aY
 ks
 ks
 ks
-aY
+fB
 aY
 aY
 nO
+fB
 aY
 aY
 aY
-aY
-aY
+fB
 nO
 aZ
 aZ
@@ -27857,8 +27945,8 @@ aZ
 aZ
 aZ
 aZ
-aZ
-al
+Qs
+cd
 al
 al
 al
@@ -28339,7 +28427,7 @@ al
 fw
 aY
 aY
-aY
+iS
 ks
 ks
 ks
@@ -28349,15 +28437,15 @@ dq
 ks
 ks
 ks
-aY
+iS
 gF
 aY
 nO
+iS
 aY
 aY
 aY
-aY
-aY
+iS
 nO
 aZ
 aZ
@@ -29108,21 +29196,21 @@ al
 al
 al
 fw
-bo
+KF
 aY
 aY
 WU
 fw
-aY
+qz
 aY
 BC
 aY
-aY
+wT
 fw
 eQ
 aY
 gF
-Cb
+tY
 fw
 al
 al
@@ -29624,7 +29712,7 @@ al
 fw
 fw
 bo
-bo
+Qn
 bo
 fw
 gq
@@ -29634,7 +29722,7 @@ aY
 gq
 fw
 Cb
-Cb
+Vg
 Cb
 fw
 fw
@@ -30689,8 +30777,8 @@ al
 al
 al
 al
-al
-aZ
+cd
+oZ
 aZ
 aZ
 aZ
@@ -31708,8 +31796,8 @@ al
 al
 al
 al
-al
-aZ
+cd
+oZ
 aZ
 aZ
 aZ
@@ -50250,7 +50338,7 @@ wX
 EK
 EK
 EK
-TO
+Xb
 TO
 TO
 TO
