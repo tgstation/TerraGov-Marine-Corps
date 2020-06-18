@@ -1,0 +1,4 @@
+author: "Mouseofthecake"
+delete-after: True
+changes: 
+  - spellcheck: "fixed typos in panther caste_descs."
