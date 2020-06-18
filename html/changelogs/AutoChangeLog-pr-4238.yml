@@ -1,0 +1,5 @@
+author: "jjpark-kb"
+delete-after: True
+changes: 
+  - bugfix: "fixed barricades being unable to be built on basalt and lava catwalks"
+  - bugfix: "fixed buttons that are on the floor"
