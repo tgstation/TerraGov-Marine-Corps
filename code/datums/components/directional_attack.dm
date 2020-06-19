@@ -75,8 +75,6 @@
 
 /datum/component/directional_attack/proc/living_do_directional_action(atom/target)
 	var/mob/living/attacker = parent
-	if(attacker.next_move > world.time)
-		return COMPONENT_DIRECTIONAL_RESOLVED //We don't want to push people while on attack cooldown.
 	attacker.UnarmedAttack(target, TRUE)
 	COOLDOWN_START(src, COOLDOWN_DIRECTIONAL_ATTACK, CLICK_CD_MELEE)
-	return COMPONENT_DIRECTIONAL_RESOLVED
+	
