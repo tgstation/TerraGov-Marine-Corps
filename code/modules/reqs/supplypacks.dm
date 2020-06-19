@@ -56,6 +56,11 @@ OPERATIONS
 	contains = list(/obj/item/binoculars/tactical)
 	cost = 20
 
+/datum/supply_packs/operations/motion_detector
+	name = "MK2 Motion Detector"
+	contains = list(/obj/item/motiondetector/scout)
+	cost = 20
+
 /datum/supply_packs/operations/flares
 	name = "Flare Pack"
 	contains = list(/obj/item/storage/box/m94)
@@ -642,6 +647,16 @@ ARMOR
 	group = "Armor"
 	containertype = /obj/structure/closet/crate
 
+/datum/supply_packs/armor/nvg
+	name = "Night Vision Goggles"
+	contains = list(/obj/item/clothing/glasses/night/m42_night_goggles)
+	cost = 20
+
+/datum/supply_packs/armor/thermal
+	name = "Thermal Goggles"
+	contains = list(/obj/item/clothing/glasses/thermal/m64_thermal_goggles)
+	cost = 20
+
 /datum/supply_packs/armor/masks
 	name = "SWAT protective mask"
 	contains = list(/obj/item/clothing/mask/gas/swat)
@@ -660,6 +675,7 @@ ARMOR
 	contains = list(
 		/obj/item/clothing/suit/storage/marine/specialist,
 		/obj/item/clothing/head/helmet/marine/specialist,
+		/obj/item/clothing/gloves/marine/specialist
 	)
 	cost = 100
 
@@ -679,6 +695,21 @@ ARMOR
 		/obj/item/clothing/shoes/marine/pyro,
 	)
 	cost = 50
+
+/datum/supply_packs/armor/cloak
+	name = "Scout Cloak"
+	contains = list(/obj/item/storage/backpack/marine/satchel/scout_cloak)
+	cost = 40
+
+/datum/supply_packs/armor/cloak
+	name = "Sniper Cloak"
+	contains = list(/obj/item/storage/backpack/marine/satchel/scout_cloak/sniper)
+	cost = 40
+
+/datum/supply_packs/armor/grenade_belt
+	name = "High Capacity Grenade Belt"
+	contains = list(/obj/item/storage/belt/grenade/b17)
+	cost = 20
 
 /datum/supply_packs/armor/basic
 	name = "M3 pattern armor"
