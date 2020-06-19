@@ -905,6 +905,7 @@ ARMOR
 		/obj/item/armor_module/attachable/valkyrie_autodoc,
 		/obj/item/armor_module/attachable/fire_proof,
 		/obj/item/armor_module/attachable/tyr_extra_armor,
+		/obj/item/armor_module/attachable/magni_explosive_armor,
 		/obj/item/armor_module/attachable/mimir_environment_protection
 	)
 	cost = 40
@@ -948,6 +949,12 @@ ARMOR
 	)
 	cost = 12
 
+/datum/supply_packs/armor/modular/attachments/magni_explosive_armor
+	name = "Jaeger magni modules"
+	contains = list(
+		/obj/item/armor_module/attachable/magni_explosive_armor,
+	)
+	cost = 12
 
 /*******************************************************************************
 CLOTHING
