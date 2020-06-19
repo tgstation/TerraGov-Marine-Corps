@@ -338,7 +338,6 @@ SUBSYSTEM_DEF(shuttle)
 		preview_shuttle.jumpToNullSpace()
 		preview_shuttle = null
 		preview_template = null
-		QDEL_NULL(preview_reservation)
 
 	if(!preview_shuttle)
 		if(load_template(loading_template))
@@ -356,9 +355,6 @@ SUBSYSTEM_DEF(shuttle)
 		timer = existing_shuttle.timer
 		mode = existing_shuttle.mode
 		D = existing_shuttle.get_docked()
-
-	if(!D)
-		D = generate_transit_dock(preview_shuttle)
 
 	if(!D)
 		CRASH("No dock found for preview shuttle ([preview_template.name]), aborting.")
@@ -393,19 +389,17 @@ SUBSYSTEM_DEF(shuttle)
 	preview_shuttle = null
 	preview_template = null
 	existing_shuttle = null
-	selected = null
-	QDEL_NULL(preview_reservation)
 
 /datum/controller/subsystem/shuttle/proc/load_template(datum/map_template/shuttle/S)
 	. = FALSE
 	// load shuttle template, centred at shuttle import landmark,
-	preview_reservation = SSmapping.RequestBlockReservation(S.width, S.height, SSmapping.transit.z_value, /datum/turf_reservation/transit)
-	if(!preview_reservation)
-		CRASH("failed to reserve an area for shuttle template loading")
-	var/turf/BL = TURF_FROM_COORDS_LIST(preview_reservation.bottom_left_coords)
-	S.load(BL, centered = FALSE, register = FALSE)
+	var/turf/landmark_turf = get_turf(locate(/obj/effect/landmark/shuttle_import) in GLOB.landmarks_list)
+	if(!landmark_turf)
+		to_chat(world, "no shuttle import landmark")
+		CRASH("no shuttle import landmark")
+	S.load(landmark_turf, centered = TRUE, register = FALSE)
 
-	var/affected = S.get_affected_turfs(BL, centered=FALSE)
+	var/affected = S.get_affected_turfs(landmark_turf, centered=TRUE)
 
 	var/found = 0
 	// Search the turfs for docking ports
