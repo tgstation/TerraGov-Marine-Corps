@@ -74,10 +74,9 @@
 
 /datum/component/directional_attack/proc/living_do_directional_action(atom/target)
 	var/mob/living/attacker = parent
-	var/turflist = getline(attacker, target)
-	for(var/X in turflist)
-		var/turf/T = X
-		for(var/atom/A in T)	
-			attacker.UnarmedAttack(A, TRUE)
-			COOLDOWN_START(src, COOLDOWN_DIRECTIONAL_ATTACK, CLICK_CD_MELEE)
-			break
+	var/clickDir = get_dir(src, target)
+	var/presumedPos = get_step(src, clickDir)
+	for(var/atom/A in presumedPos)	
+		attacker.UnarmedAttack(A, TRUE)
+		COOLDOWN_START(src, COOLDOWN_DIRECTIONAL_ATTACK, CLICK_CD_MELEE)
+		break
