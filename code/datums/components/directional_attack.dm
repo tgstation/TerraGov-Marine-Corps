@@ -34,8 +34,6 @@
 	var/mob/living/attacker = parent
 	if(!isliving(target) || attacker.throwing || attacker.incapacitated())
 		return NONE
-	if(get_dir(src, target) && target.dir)
-		return NONE //Not facing the correct way
 
 /datum/component/directional_attack/proc/carbon_directional_action_checks(atom/target)
 	var/mob/living/carbon/attacker = parent
@@ -76,6 +74,10 @@
 
 /datum/component/directional_attack/proc/living_do_directional_action(atom/target)
 	var/mob/living/attacker = parent
-	attacker.UnarmedAttack(target, TRUE)
-	COOLDOWN_START(src, COOLDOWN_DIRECTIONAL_ATTACK, CLICK_CD_MELEE)
-	
+	var/turflist = getline(attacker, target)
+	for(var/X in turflist)
+		var/turf/T = X
+		for(var/atom/A in T)	
+			attacker.UnarmedAttack(A, TRUE)
+			COOLDOWN_START(src, COOLDOWN_DIRECTIONAL_ATTACK, CLICK_CD_MELEE)
+			break
