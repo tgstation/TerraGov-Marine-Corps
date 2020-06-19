@@ -7,8 +7,6 @@
 	var/bone_step
 
 /datum/surgery_step/bone/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected, checks_only)
-	if(user.skills.getRating("surgery") < SKILL_SURGERY_PROFESSIONAL)
-		return 0
 	return affected.surgery_open_stage >= 2 && !(affected.limb_status & LIMB_DESTROYED) && affected.bone_repair_stage == bone_step && !(affected.limb_status & LIMB_REPAIRED)
 
 
