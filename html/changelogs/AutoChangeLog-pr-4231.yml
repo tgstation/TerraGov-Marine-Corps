@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes: 
+  - admin: "auto ghost and kick excessive FF offenses when no admins present"
