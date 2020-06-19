@@ -1,7 +1,7 @@
 //Toggle directional attacks
 /datum/action/directional_attack_toggle
-    name = "Toggle Directional Attacks"
-    var/static/atom/movable/vis_obj/action/bump_attack_active/active_icon = new
+	name = "Toggle Directional Attacks"
+	var/static/atom/movable/vis_obj/action/bump_attack_active/active_icon = new
 	var/static/atom/movable/vis_obj/action/bump_attack_inactive/inactive_icon = new
 
 
