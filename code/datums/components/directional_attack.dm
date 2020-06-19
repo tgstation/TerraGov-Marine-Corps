@@ -7,26 +7,26 @@
     . = ..()
     if(!isliving(parent))
         return COMPONENT_INCOMPATIBLE
-    toggle_action = new()
+	toggle_action = new()
     var/toggle_path
     if(ishuman(parent))
         directional_action_path = .proc/human_directional_action
     if(isxeno(parent))
         directional_action_path = .proc/xeno_directional_action
     toggle_path = .proc/living_activation_toggle
-    toggle_action.give_action(parent)
-    toggle_action.update_button_icon(active)
-    RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, toggle_path)
+	toggle_action.give_action(parent)
+	toggle_action.update_button_icon(active)
+	RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, toggle_path)
 
 /datum/component/directional_attack/Destroy(force, silent)
-    QDEL_NULL(toggle_action)
+	QDEL_NULL(toggle_action)
     return ..()
 
 /datum/component/directional_attack/proc/living_activation_toggle(datum/source)
     var/mob/living/attacker = parent
     active = !active
     to_chat(attacker, "<span class='notice'>You will now [active ? "attack" : "not attack"] enemies upon clicking in their directional.</span>")
-    toggle_action.update_button_icon(active)
+	toggle_action.update_button_icon(active)
 
 /datum/component/directional_attack/proc/living_directional_action_checks(atom/target)
 	if(COOLDOWN_CHECK(src, COOLDOWN_DIRECTIONAL_ATTACK))
