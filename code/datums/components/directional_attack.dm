@@ -75,8 +75,10 @@
 /datum/component/directional_attack/proc/living_do_directional_action(atom/target)
 	var/mob/living/attacker = parent
 	var/clickDir = get_dir(src, target)
-	var/presumedPos = get_step(src, clickDir)
-	for(var/atom/A in presumedPos)	
-		attacker.UnarmedAttack(A, TRUE)
-		COOLDOWN_START(src, COOLDOWN_DIRECTIONAL_ATTACK, CLICK_CD_MELEE)
-		break
+	var/turf/presumedPos = get_step(src, clickDir)
+	var/mob/living/L = locate() in presumedPos
+	if(QDELETED(L))
+		return
+	attacker.UnarmedAttack(L, TRUE)
+	COOLDOWN_START(src, COOLDOWN_DIRECTIONAL_ATTACK, CLICK_CD_MELEE)
+			
