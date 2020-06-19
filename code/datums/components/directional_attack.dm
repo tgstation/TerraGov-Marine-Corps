@@ -33,8 +33,8 @@
 	var/mob/living/attacker = parent
 	if(!isliving(target) || attacker.throwing || attacker.incapacitated())
 		return NONE
-    if(get_dir(src, target) && target.dir)
-        return NONE //Not facing the correct way
+	if(get_dir(src, target) && target.dir)
+		return NONE //Not facing the correct way
 
 /datum/component/directional_attack/proc/carbon_directional_action_checks(atom/target)
 	var/mob/living/carbon/attacker = parent
@@ -75,7 +75,7 @@
 
 /datum/component/directional_attack/proc/living_do_directional_action(atom/target)
     var/mob/living/attacker = parent
-    if(attacker.next_move > world.time)
+	if(attacker.next_move > world.time)
 		return COMPONENT_DIRECTIONAL_RESOLVED //We don't want to push people while on attack cooldown.
     attacker.UnarmedAttack(target, TRUE)
     COOLDOWN_START(src, COOLDOWN_DIRECTIONAL_ATTACK, CLICK_CD_MELEE)
