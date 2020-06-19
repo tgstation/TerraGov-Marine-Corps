@@ -4,19 +4,19 @@
 	var/datum/action/directional_attack_toggle/toggle_action
 
 /datum/component/directional_attack/Initialize()
-    . = ..()
-    if(!isliving(parent))
-        return COMPONENT_INCOMPATIBLE
-    toggle_action = new()
-    var/toggle_path
-    if(ishuman(parent))
-        directional_action_path = .proc/human_directional_action
-    else if(isxeno(parent))
-        directional_action_path = .proc/xeno_directional_action
-    toggle_path = .proc/living_activation_toggle
-    toggle_action.give_action(parent)
-    toggle_action.update_button_icon(active)
-    RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, toggle_path)
+	. = ..()
+	if(!isliving(parent))
+		return COMPONENT_INCOMPATIBLE
+	toggle_action = new()
+	var/toggle_path
+	if(ishuman(parent))
+		directional_action_path = .proc/human_directional_action
+	else if(isxeno(parent))
+		directional_action_path = .proc/xeno_directional_action
+	toggle_path = .proc/living_activation_toggle
+	toggle_action.give_action(parent)
+	toggle_action.update_button_icon(active)
+	RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, toggle_path)
 	if(active)
 		RegisterSignal(parent, COMSIG_CLICK, directional_action_path)
 /datum/component/directional_attack/Destroy(force, silent)
