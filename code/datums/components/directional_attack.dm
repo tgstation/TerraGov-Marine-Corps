@@ -79,8 +79,8 @@
 
 /datum/component/directional_attack/proc/living_do_directional_action(atom/target)
 	var/mob/living/attacker = parent
-	var/clickDir = get_dir(src, target)
-	var/turf/presumedPos = get_step(src, clickDir)
+	var/clickDir = get_dir(parent, target)
+	var/turf/presumedPos = get_step(parent, clickDir)
 	var/mob/living/L = locate() in presumedPos
 	if(QDELETED(L))
 		return
