@@ -650,12 +650,12 @@ ARMOR
 /datum/supply_packs/armor/nvg
 	name = "Night Vision Goggles"
 	contains = list(/obj/item/clothing/glasses/night/m42_night_goggles)
-	cost = 20
+	cost = 40
 
 /datum/supply_packs/armor/thermal
 	name = "Thermal Goggles"
 	contains = list(/obj/item/clothing/glasses/thermal/m64_thermal_goggles)
-	cost = 20
+	cost = 40
 
 /datum/supply_packs/armor/masks
 	name = "SWAT protective mask"
