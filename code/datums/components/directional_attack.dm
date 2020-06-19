@@ -33,57 +33,64 @@
 		UnregisterSignal(attacker, COMSIG_CLICK, directional_action_path)
 	toggle_action.update_button_icon(active)
 
-/datum/component/directional_attack/proc/living_directional_action_checks(atom/target)
+/datum/component/directional_attack/proc/living_directional_action_checks(mob/living/L)
 	if(COOLDOWN_CHECK(src, COOLDOWN_DIRECTIONAL_ATTACK))
 		return NONE
 	var/mob/living/attacker = parent
-	if(!isliving(target) || attacker.throwing || attacker.incapacitated())
+	if(attacker.throwing || attacker.incapacitated())
 		return NONE
 
-/datum/component/directional_attack/proc/carbon_directional_action_checks(atom/target)
+/datum/component/directional_attack/proc/carbon_directional_action_checks(mob/living/L)
 	var/mob/living/carbon/attacker = parent
-	. = living_directional_action_checks(target)
+	. = living_directional_action_checks(L)
+	to_chat(parent, "living directional returned [.]")
 	if(!isnull(.))
+		to_chat(parent, "living directional returned not null, good")	
+		return
+	if(QDELETED(L))
 		return
 	switch(attacker.a_intent)
 		if(INTENT_HELP, INTENT_GRAB)
 			return NONE
 	if(attacker.get_active_held_item())
 		return NONE //We have something in our hand.
-    
-/datum/component/directional_attack/proc/living_directional_action(datum/source, atom/target)
-	. = living_directional_action_checks(target)
-	if(!isnull(.))
-		return
-	return living_do_directional_action(target)
-
-/datum/component/directional_attack/proc/human_directional_action(datum/source, atom/target)
-	var/mob/living/carbon/human/attacker = parent
-	. = carbon_directional_action_checks(target)
-	if(!isnull(.))
-		return
-	var/mob/living/living_target = target
-	if(attacker.faction == living_target.faction)
-		return //FF
-	return living_do_directional_action(target)
-
-/datum/component/directional_attack/proc/xeno_directional_action(datum/source, atom/target)
+/datum/component/directional_attack/proc/figure_out_living_target(atom/target)
 	var/mob/living/carbon/xenomorph/attacker = parent
-	. = carbon_directional_action_checks(target)
-	if(!isnull(.))
-		return
-	if(attacker.issamexenohive(target))
-		return //No more nibbling.
-	return living_do_directional_action(target)
-
-
-/datum/component/directional_attack/proc/living_do_directional_action(atom/target)
-	var/mob/living/attacker = parent
 	var/clickDir = get_dir(parent, target)
 	var/turf/presumedPos = get_step(parent, clickDir)
 	var/mob/living/L = locate() in presumedPos
-	if(QDELETED(L))
+	return L
+/datum/component/directional_attack/proc/living_directional_action(datum/source, atom/target)
+	var/mob/living/L = figure_out_living_target(L)
+	. = living_directional_action_checks(L)
+	if(!isnull(.))
 		return
+	return living_do_directional_action(L)
+
+/datum/component/directional_attack/proc/human_directional_action(datum/source, atom/target)
+	var/mob/living/L = figure_out_living_target(target)
+	. = carbon_directional_action_checks(target)
+	if(!isnull(.))
+		return
+	if(attacker.faction == L.faction)
+		return //FF
+	return living_do_directional_action(L)
+
+/datum/component/directional_attack/proc/xeno_directional_action(datum/source, atom/target)
+	var/mob/living/L = figure_out_living_target(target)
+	. = carbon_directional_action_checks(L)
+	to_chat(parent, "Carbon directional return [.]")
+	if(!isnull(.))
+		to_chat(parent, "Carbon directional returned not null")	
+		return
+	if(attacker.issamexenohive(L))
+		return //No more nibbling.
+	to_chat(parent, "success")	
+	return living_do_directional_action(L)
+
+
+/datum/component/directional_attack/proc/living_do_directional_action(mob/living/L)
+	var/mob/living/attacker = parent
 	attacker.UnarmedAttack(L, TRUE)
 	COOLDOWN_START(src, COOLDOWN_DIRECTIONAL_ATTACK, CLICK_CD_MELEE)
 			
