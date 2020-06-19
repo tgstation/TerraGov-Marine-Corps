@@ -43,9 +43,7 @@
 /datum/component/directional_attack/proc/carbon_directional_action_checks(mob/living/L)
 	var/mob/living/carbon/attacker = parent
 	. = living_directional_action_checks(L)
-	to_chat(parent, "living directional returned [.]")
 	if(!isnull(.))
-		to_chat(parent, "living directional returned not null, good")	
 		return
 	if(QDELETED(L))
 		return
@@ -55,19 +53,19 @@
 	if(attacker.get_active_held_item())
 		return NONE //We have something in our hand.
 /datum/component/directional_attack/proc/figure_out_living_target(atom/target)
-	var/mob/living/carbon/xenomorph/attacker = parent
 	var/clickDir = get_dir(parent, target)
 	var/turf/presumedPos = get_step(parent, clickDir)
 	var/mob/living/L = locate() in presumedPos
 	return L
 /datum/component/directional_attack/proc/living_directional_action(datum/source, atom/target)
-	var/mob/living/L = figure_out_living_target(L)
+	var/mob/living/L = figure_out_living_target(target)
 	. = living_directional_action_checks(L)
 	if(!isnull(.))
 		return
 	return living_do_directional_action(L)
 
 /datum/component/directional_attack/proc/human_directional_action(datum/source, atom/target)
+	var/mob/living/carbon/xenomorph/attacker = parent
 	var/mob/living/L = figure_out_living_target(target)
 	. = carbon_directional_action_checks(target)
 	if(!isnull(.))
@@ -77,15 +75,13 @@
 	return living_do_directional_action(L)
 
 /datum/component/directional_attack/proc/xeno_directional_action(datum/source, atom/target)
+	var/mob/living/carbon/xenomorph/attacker = parent
 	var/mob/living/L = figure_out_living_target(target)
 	. = carbon_directional_action_checks(L)
-	to_chat(parent, "Carbon directional return [.]")
 	if(!isnull(.))
-		to_chat(parent, "Carbon directional returned not null")	
 		return
 	if(attacker.issamexenohive(L))
 		return //No more nibbling.
-	to_chat(parent, "success")	
 	return living_do_directional_action(L)
 
 
