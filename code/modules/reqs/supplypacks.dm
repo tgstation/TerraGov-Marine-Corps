@@ -1164,7 +1164,10 @@ Imports
 
 /datum/supply_packs/imports/m41a1
 	name = "M41A1 Pulse Rifle"
-	contains = list(/obj/item/weapon/gun/rifle/m41a1)
+	contains = list(
+		/obj/item/weapon/gun/rifle/m41a1,
+		/obj/item/attachable/stock/rifle
+	)
 	cost = 5
 
 /datum/supply_packs/imports/m41a1/ammo
