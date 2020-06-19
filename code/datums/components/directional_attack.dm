@@ -2,6 +2,7 @@
     var/active = TRUE
     var/directional_action_path
     var/datum/action/directional_attack_toggle/toggle_action
+
 /datum/component/directional_attack/Initialize()
     . = ..()
     if(!isliving(parent))
