@@ -72,12 +72,6 @@
 	return .
 
 
-/proc/get_mob_by_key(key)
-	for(var/mob/M in GLOB.mob_list)
-		if(M.ckey == lowertext(key))
-			return M
-
-
 // Same as above but for alien candidates.
 /proc/get_alien_candidate()
 	var/mob/dead/observer/picked

@@ -41,16 +41,17 @@
 		return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
 
 //-------------------------------------------------------
+// T-19 Machinepistol. It fits here more.
 
-/obj/item/weapon/gun/smg/standard_smg
-	name = "\improper T-19 submachinegun"
-	desc = "The T-19 submachine gun is the TerraGov Marine Corps standard issue SMG. Its known for it's compact size and ease of use inside the field. It's usually carried by specialized troops who do not have the space to carry a much larger gun like medics and engineers. It uses 10x20mm caseless rounds."
+/obj/item/weapon/gun/smg/standard_machinepistol
+	name = "\improper T-19 machinepistol"
+	desc = "The T-19 is the TerraGov Marine Corps standard-issue machine pistol. It's known for it's low recoil and scatter when used one handed. It's usually carried by specialized troops who do not have the space to carry a much larger gun like medics and engineers. It uses 10x20mm caseless rounds."
 	icon_state = "t19"
 	item_state = "t19"
 	caliber = "10x20mm caseless" //codex
-	max_shells = 60 //codex
-	flags_equip_slot = ITEM_SLOT_BACK
-	current_mag = /obj/item/ammo_magazine/smg/standard_smg
+	max_shells = 40 //codex
+	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
+	current_mag = /obj/item/ammo_magazine/smg/standard_machinepistol
 	type_of_casings = null
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
@@ -71,20 +72,59 @@
 	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 17,"rail_x" = 9, "rail_y" = 20, "under_x" = 21, "under_y" = 12, "stock_x" = 24, "stock_y" = 10)
 
 	accuracy_mult = 0.95
-	accuracy_mult_unwielded = 0.9
-	scatter = 20
+	accuracy_mult_unwielded = 0.85
+	recoil_unwielded = 0
+	scatter = 15
 	fire_delay = 0.15 SECONDS
-	scatter_unwielded = 30
+	scatter_unwielded = 15 //Made to be used one handed.
 	aim_slowdown = 0.15
 	burst_amount = 5
 
+//-------------------------------------------------------
+// War is hell. Not glorious.
+
+/obj/item/weapon/gun/smg/standard_smg
+	name = "\improper T-90 submachinegun"
+	desc = "The T-90 is the TerraGov Marine Corps standard issue SMG. Its known for it's compact size and ease of use inside the field. It's usually carried by troops who want a lightweight firearm to rush with. It uses 10x20mm caseless rounds."
+	fire_sound = 'sound/weapons/guns/fire/t90.ogg'
+	icon_state = "t90"
+	item_state = "t90"
+	caliber = "10x20mm caseless" //codex
+	max_shells = 50 //codex
+	flags_equip_slot = ITEM_SLOT_BACK
+	wield_delay = 0.5 SECONDS
+	force = 20
+	current_mag = /obj/item/ammo_magazine/smg/standard_smg
+	type_of_casings = null
+	attachable_allowed = list(
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/lasersight,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/scope/mini,
+						/obj/item/attachable/magnetic_harness)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 24, "stock_y" = 10)
+
+	accuracy_mult = 1.15
+	accuracy_mult_unwielded = 0.8
+	scatter = 0
+	fire_delay = 0.165 SECONDS
+	scatter_unwielded = 30
+	aim_slowdown = 0.25
+	burst_amount = 0
 
 //-------------------------------------------------------
 //M39 SMG
 
 /obj/item/weapon/gun/smg/m39
 	name = "\improper M39 submachinegun"
-	desc = "Armat Battlefield Systems M39 submachinegun. A light firearm capable of effective one-handed use that is ideal for close to medium range engagements. Uses 10x20mm rounds in a high capacity magazine."
+	desc = "The Armat Battlefield Systems M39 submachinegun, an outdated design within the TGMC inventory. A light firearm capable of effective one-handed use that is ideal for close to medium range engagements. Uses 10x20mm rounds in a high capacity magazine."
 	icon_state = "m39"
 	item_state = "m39"
 	caliber = "10x20mm caseless" //codex
@@ -123,7 +163,7 @@
 
 /obj/item/weapon/gun/smg/m39/elite
 	name = "\improper M39B2 submachinegun"
-	desc = "Armat Battlefield Systems M39 submachinegun, B2 variant. This reliable weapon fires armor piercing 10x20mm rounds and is used by elite troops."
+	desc = "The Armat Battlefield Systems M39 submachinegun, B2 variant. This reliable weapon fires armor piercing 10x20mm rounds and is used by elite troops."
 	icon_state = "m39b2"
 	item_state = "m39b2"
 	current_mag = /obj/item/ammo_magazine/smg/m39/ap
@@ -138,7 +178,7 @@
 	damage_mult = 1.2
 	aim_slowdown = 0.4
 	scatter = 10
-	
+
 
 //-------------------------------------------------------
 //M5, a classic SMG used in a lot of action movies.
@@ -309,7 +349,7 @@
 
 /obj/item/weapon/gun/smg/p90
 	name = "\improper FN FP9000 submachinegun"
-	desc = "An archaic design, but one that's stood the test of time. Fires fast armor piercing rounds."
+	desc = "An archaic design, but one that's stood the test of time. Fires fast 5.7mm armor piercing rounds."
 	icon_state = "FP9000"
 	item_state = "FP9000"
 	caliber = "5.7x28mm" //codex

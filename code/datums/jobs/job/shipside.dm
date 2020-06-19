@@ -220,99 +220,6 @@ You could use MTs help to repair and replace hardpoints."})
 	back = /obj/item/storage/backpack/marine/satchel
 
 
-/datum/job/terragov/police
-	job_category = JOB_CAT_POLICE
-	selection_color = "#ffdddd"
-	supervisors = "the acting captain"
-	exp_type_department = EXP_TYPE_POLICE
-
-
-//Military Police
-/datum/job/terragov/police/officer
-	title = MASTER_AT_ARMS
-	paygrade = "PO"
-	comm_title = "MA"
-	total_positions = 5
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_CARGO, ACCESS_MARINE_MEDBAY)
-	skills_type = /datum/skills/MP
-	display_order = JOB_DISPLAY_ORDER_MILITARY_POLICE
-	outfit = /datum/outfit/job/police/officer
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
-	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
-
-
-/datum/job/terragov/police/officer/radio_help_message(mob/M)
-	. = ..()
-	to_chat(M, {"You are held by a higher standard and are required to not abuse your position to severely hinder the progress of the round.
-Failure to do so may result in a job ban.
-Your primary job is to uphold the <a href='https://tgstation13.org/wiki/TGMC:Military_Law'>Military Law</a>, and peace and stability aboard the ship. Marines can get rowdy after a few weeks of cryosleep!
-In addition, you are tasked with the security of high-ranking personnel, including the command staff. Keep them safe!"})
-
-
-
-/datum/outfit/job/police/officer
-	name = MASTER_AT_ARMS
-	jobtype = /datum/job/terragov/police/officer
-
-	id = /obj/item/card/id
-	belt = /obj/item/storage/belt/security/MP/full
-	ears = /obj/item/radio/headset/mainship/mmpo
-	w_uniform = /obj/item/clothing/under/marine/mp
-	wear_suit = /obj/item/clothing/suit/storage/marine/MP
-	shoes = /obj/item/clothing/shoes/marine
-	glasses = /obj/item/clothing/glasses/sunglasses/sechud
-	gloves = /obj/item/clothing/gloves/black
-	head = /obj/item/clothing/head/tgmcberet/red
-	r_store = /obj/item/storage/pouch/general/medium
-	back = /obj/item/storage/backpack/satchel/sec
-
-
-//Command Master at Arms
-/datum/job/terragov/police/chief
-	title = COMMAND_MASTER_AT_ARMS
-	paygrade = "O2"
-	comm_title = "CMA"
-	selection_color = "#ffaaaa"
-	total_positions = 1
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_WO)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_WO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RO)
-	skills_type = /datum/skills/CMP
-	display_order = JOB_DISPLAY_ORDER_CHIEF_MP
-	outfit = /datum/outfit/job/police/chief
-	exp_requirements = XP_REQ_INTERMEDIATE
-	exp_type = EXP_TYPE_REGULAR_ALL
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
-	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG, /datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
-
-
-/datum/job/terragov/police/chief/radio_help_message(mob/M)
-	. = ..()
-	to_chat(M, {"You are held by a higher standard and are required to not abuse your position to severely hinder the progress of the round.
-Failure to do so may result in a job ban.
-You lead the Military Police, ensure your officers uphold the <a href='https://tgstation13.org/wiki/TGMC:Military_Law'>Military Law</a>, and maintain peace and stability aboard the ship. Marines can get rowdy after a few weeks of cryosleep!
-In addition, you are tasked with the security of high-ranking personnel, including the command staff. Keep them safe!"})
-
-
-
-/datum/outfit/job/police/chief
-	name = COMMAND_MASTER_AT_ARMS
-	jobtype = /datum/job/terragov/police/chief
-
-	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/security/MP/full
-	ears = /obj/item/radio/headset/mainship/cmpcom
-	w_uniform = /obj/item/clothing/under/marine/officer/warrant
-	wear_suit = /obj/item/clothing/suit/storage/marine/MP
-	shoes = /obj/item/clothing/shoes/marine
-	glasses = /obj/item/clothing/glasses/sunglasses/sechud
-	gloves = /obj/item/clothing/gloves/black
-	head = /obj/item/clothing/head/tgmcberet/wo
-	r_store = /obj/item/storage/pouch/general/large
-	back = /obj/item/storage/backpack/security
-
-
-
 /datum/job/terragov/engineering
 	job_category = JOB_CAT_ENGINEERING
 	selection_color = "#fff5cc"
@@ -449,6 +356,7 @@ A happy ship is a well-functioning ship."})
 	shoes = /obj/item/clothing/shoes/marine
 	gloves = /obj/item/clothing/gloves/yellow
 	head = /obj/item/clothing/head/tgmccap/req
+	l_store = /obj/item/supplytablet
 	r_store = /obj/item/storage/pouch/general/large
 	back = /obj/item/storage/backpack/marine/satchel
 

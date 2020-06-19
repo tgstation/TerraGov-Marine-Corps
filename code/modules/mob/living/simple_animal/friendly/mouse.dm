@@ -25,7 +25,7 @@
 
 /mob/living/simple_animal/mouse/Initialize()
 	. = ..()
-	AddComponent(/datum/component/squeak, 'sound/effects/mousesqueek.ogg', 100)
+	AddComponent(/datum/component/squeak, 'sound/effects/mousesqueek.ogg', 100, 30)
 	if(!body_color)
 		body_color = pick( list("brown","gray","white") )
 	icon_state = "mouse_[body_color]"
@@ -34,6 +34,7 @@
 
 
 /mob/living/simple_animal/mouse/Crossed(atom/movable/AM)
+	. = ..()
 	if(ishuman(AM) && stat == CONSCIOUS)
 		var/mob/living/carbon/human/H = AM
 		to_chat(H, "<span class='notice'>[icon2html(src, H)] Squeak!</span>")

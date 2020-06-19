@@ -354,12 +354,11 @@
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "sentry", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, ui_key, "Sentry", "Sentry Gun", ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /obj/machinery/marine_turret/ui_data(mob/user)
-	var/list/data = list(
-		"self_ref" = "\ref[src]",
+	. = list(
 		"name" = copytext(src.name, 2),
 		"is_on" = CHECK_BITFIELD(turret_flags, TURRET_ON),
 		"rounds" = rounds,
@@ -378,7 +377,6 @@
 		"burst_size" = burst_size,
 		"mini" = istype(src, /obj/machinery/marine_turret/mini)
 	)
-	return data
 
 /obj/machinery/marine_turret/ui_act(action, params)
 	if(..())
@@ -739,7 +737,7 @@
 
 /obj/machinery/marine_turret/deconstruct(disassembled = TRUE)
 	if(!disassembled)
-		explosion(loc, -1, -1, 2, 0)
+		explosion(loc, light_impact_range = 3)
 	return ..()
 
 
@@ -796,11 +794,11 @@
 
 /obj/machinery/marine_turret/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			take_damage(rand(90, 150))
-		if(2)
+		if(EXPLODE_HEAVY)
 			take_damage(rand(50, 150))
-		if(3)
+		if(EXPLODE_LIGHT)
 			take_damage(rand(30, 100))
 
 

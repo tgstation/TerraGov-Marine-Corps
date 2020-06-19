@@ -91,9 +91,9 @@
 	channels = list(RADIO_CHANNEL_PMC = TRUE)
 
 
-/obj/item/encryptionkey/wolves
-	name = "\improper UPP encryption key"
-	channels = list(RADIO_CHANNEL_UPP = TRUE)
+/obj/item/encryptionkey/usl
+	name = "\improper USL encryption key"
+	channels = list(RADIO_CHANNEL_USL = TRUE)
 
 
 /obj/item/encryptionkey/commando
@@ -109,3 +109,8 @@
 /obj/item/encryptionkey/som
 	name = "\improper Sons of Mars encryption key"
 	channels = list(RADIO_CHANNEL_SOM = TRUE)
+
+
+/obj/item/encryptionkey/sectoid
+	name = "\improper alien encryption key"
+	channels = list(RADIO_CHANNEL_SECTOID = TRUE)

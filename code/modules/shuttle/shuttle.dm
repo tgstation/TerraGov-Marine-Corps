@@ -66,6 +66,11 @@
 		_y + (-dwidth+width-1)*sin + (-dheight+height-1)*cos
 		)
 
+/// Return number of turfs
+/obj/docking_port/proc/return_number_of_turfs()
+	var/list/L = return_coords()
+	return (L[3]-L[1]) * (L[4]-L[2])
+
 //returns turfs within our projected rectangle in no particular order
 /obj/docking_port/proc/return_turfs()
 	var/list/L = return_coords()
@@ -390,6 +395,8 @@
 
 /obj/docking_port/mobile/proc/transit_failure()
 	message_admins("Shuttle [src] repeatedly failed to create transit zone.")
+	log_debug("Setting [src]/[src.id] idle")
+	set_idle()
 
 //call the shuttle to destination S
 /obj/docking_port/mobile/proc/request(obj/docking_port/stationary/S)
@@ -550,10 +557,6 @@
 		ripple_turfs += T1
 
 	return ripple_turfs
-
-///obj/docking_port/mobile/proc/check_poddoors()
-//	for(var/obj/machinery/door/poddoor/shuttledock/pod in GLOB.airlocks)
-//		pod.check()
 
 /obj/docking_port/mobile/proc/dock_id(id)
 	var/port = SSshuttle.getDock(id)

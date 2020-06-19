@@ -38,6 +38,13 @@
 
 	to_chat(C, "<span class='boldannounce'>You have been [muteunmute] from [mute_string].</span>")
 
+	// If someone gets muted from ahelps while they have an active ticket lets add an interaction for the admins so they know it happened.
+	// If you open a ticket with someone who is spamming they will likely get muted from ahelps straight away.
+	if(mute_type == MUTE_ADMINHELP && force)
+		var/datum/admin_help/ticket = C?.current_ticket
+		if(ticket)
+			ticket.AddInteraction("SPAM FILTER: [key_name(C)] has been [muteunmute] from [mute_string].")
+
 	if(!force)
 		log_admin_private("[key_name(usr)] has [muteunmute] [key_name(C)] from [mute_string].")
 		message_admins("[ADMIN_TPMONTY(usr)] has [muteunmute] [ADMIN_TPMONTY(C.mob)] from [mute_string].")

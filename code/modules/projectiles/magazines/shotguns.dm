@@ -8,7 +8,7 @@ you're looking back on the different shotgun projectiles available. In short of 
 one type of shotgun ammo, but I think it helps in referencing it. ~N
 */
 /obj/item/ammo_magazine/shotgun
-	name = "box of shotgun slugs"
+	name = "box of 12 gauge shotgun slugs"
 	desc = "A box filled with heavy shotgun shells. A timeless classic. 12 Gauge."
 	icon_state = "slugs"
 	default_ammo = /datum/ammo/bullet/shotgun/slug
@@ -18,31 +18,31 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	w_class = WEIGHT_CLASS_BULKY // Can't throw it in your pocket, friend.
 
 /obj/item/ammo_magazine/shotgun/incendiary
-	name = "box of incendiary slugs"
+	name = "box of 12 gauge incendiary slugs"
 	desc = "A box filled with self-detonating incendiary shotgun rounds. 12 Gauge."
 	icon_state = "incendiary"
 	default_ammo = /datum/ammo/bullet/shotgun/incendiary
 
 /obj/item/ammo_magazine/shotgun/buckshot
-	name = "box of buckshot shells"
+	name = "box of 12 gauge buckshot shells"
 	desc = "A box filled with buckshot spread shotgun shells. 12 Gauge."
 	icon_state = "buckshot"
 	default_ammo = /datum/ammo/bullet/shotgun/buckshot
 
 /obj/item/ammo_magazine/shotgun/flechette
-	name = "box of flechette shells"
+	name = "box of 12 gauge flechette shells"
 	desc = "A box filled with flechette shotgun shells. 12 Gauge."
 	icon_state = "flechette"
 	default_ammo = /datum/ammo/bullet/shotgun/flechette
 
 /obj/item/ammo_magazine/shotgun/beanbag
-	name = "box of beanbag slugs"
+	name = "box of 12 gauge beanbag slugs"
 	desc = "A box filled with beanbag shotgun shells used for non-lethal crowd control. 12 Gauge."
 	icon_state = "beanbag"
 	default_ammo = /datum/ammo/bullet/shotgun/beanbag
 
 /obj/item/ammo_magazine/rifle/bolt
-	name = "box of rifle bullets"
+	name = "box of 7.62x54mmR rifle rounds"
 	desc = "A box filled with rifle bullets."
 	icon_state = "7.62" //Thank you Alterist
 	default_ammo = /datum/ammo/bullet/sniper/svd
@@ -52,8 +52,8 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	w_class = WEIGHT_CLASS_SMALL // CAN throw it in your pocket, friend.
 
 /obj/item/ammo_magazine/shotgun/mbx900
-	name = ".410 sabot ammo box"
-	desc = "A box filled with .410 Sabot rounds."
+	name = "box of .410 sabot shells"
+	desc = "A box filled with .410 sabot rounds."
 	icon_state = "mbx900_sabot"
 	default_ammo = /datum/ammo/bullet/shotgun/mbx900_sabot
 	caliber = ".410"
@@ -62,13 +62,13 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	w_class = WEIGHT_CLASS_NORMAL
 
 /obj/item/ammo_magazine/shotgun/mbx900/buckshot
-	name = ".410 buckshot ammo box"
+	name = "box of .410 buckshot shells"
 	desc = "A box filled with .410 buckshot rounds."
 	icon_state = "mbx900_buckshot"
 	default_ammo = /datum/ammo/bullet/shotgun/mbx900_buckshot
 
 /obj/item/ammo_magazine/shotgun/mbx900/tracking
-	name = ".410 tracker ammo box"
+	name = "box of .410 tracker shells"
 	desc = "A box filled with .410 tracker rounds."
 	icon_state = "mbx900_tracker"
 	default_ammo = /datum/ammo/bullet/shotgun/mbx900_tracker

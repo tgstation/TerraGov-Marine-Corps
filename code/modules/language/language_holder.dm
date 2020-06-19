@@ -140,6 +140,9 @@
 /datum/language_holder/machine
 	languages = list(/datum/language/common, /datum/language/machine)
 
+/datum/language_holder/sectoid
+	languages = list(/datum/language/sectoid)
+
 
 /mob/living/verb/language_menu()
 	set category = "IC"

@@ -275,15 +275,14 @@
 /datum/component/automatic_fire/proc/process_shot()
 	if(autofire_stat != AUTOFIRE_STAT_FIRING)
 		return
-	if(get_turf(target) != target_loc) //Target moved since we last aimed.
+	if(QDELETED(target) || get_turf(target) != target_loc) //Target moved or got destroyed since we last aimed.
 		target = target_loc //So we keep firing on the emptied tile until we move our mouse and find a new target.
-	switch(get_dist(shooter, target))
-		if(-1 to 0)
-			target = get_step(shooter, shooter.dir) //Shoot in the direction faced if the mouse is on the same tile as we are.
-			target_loc = target
-		if(8 to INFINITY) //Can technically only go as far as 127 right now.
-			stop_autofiring() //Elvis has left the building.
-			return FALSE
+	if(get_dist(shooter, target) <= 0)
+		target = get_step(shooter, shooter.dir) //Shoot in the direction faced if the mouse is on the same tile as we are.
+		target_loc = target
+	else if(!in_view_range(shooter, target))
+		stop_autofiring() //Elvis has left the building.
+		return FALSE
 	shooter.face_atom(target)
 	if(SEND_SIGNAL(parent, COMSIG_AUTOFIRE_SHOT, target, shooter, mouse_parameters, ++shots_fired) & COMPONENT_AUTOFIRE_SHOT_SUCCESS)
 		return TRUE

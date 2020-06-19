@@ -20,17 +20,13 @@
 
 /obj/structure/sign/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-			return
-		if(2.0)
+		if(EXPLODE_HEAVY)
 			qdel(src)
-			return
-		if(3.0)
+		if(EXPLODE_LIGHT)
 			qdel(src)
-			return
-		else
-	return
+
 
 /obj/structure/sign/attackby(obj/item/I, mob/user, params)	//deconstruction
 	. = ..()
@@ -150,6 +146,9 @@
 	name = "medbay"
 	desc = "The Intergalactic symbol of Medical institutions. You'll probably get help here."
 	icon_state = "greencross"
+
+/obj/structure/sign/greencross/star
+	icon_state = "lifestar"
 
 /obj/structure/sign/goldenplaque
 	name = "The Most Robust Men Award for Robustness"

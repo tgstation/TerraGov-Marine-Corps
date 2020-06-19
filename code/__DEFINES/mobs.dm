@@ -311,6 +311,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define IS_SYNTHETIC 			(1<<14)
 #define NO_STAMINA 				(1<<15)
 #define DETACHABLE_HEAD			(1<<16)
+#define USES_ALIEN_WEAPONS		(1<<17)
+#define NO_DAMAGE_OVERLAY		(1<<18)
 //=================================================
 
 //Some on_mob_life() procs check for alien races.
@@ -322,6 +324,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define IS_UNATHI (1<<5)
 #define IS_HORROR (1<<6)
 #define IS_MOTH (1<<7)
+#define IS_SECTOID (1<<8)
 //=================================================
 
 //AFK status
@@ -394,7 +397,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HEAD_LAYER				10
 #define COLLAR_LAYER			9
 #define HANDCUFF_LAYER			8
-#define LEGCUFF_LAYER			7
 #define L_HAND_LAYER			6
 #define R_HAND_LAYER			5
 #define BURST_LAYER				4 //Chestburst overlay
@@ -427,15 +429,15 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define SPRAY_STRUCTURE_UPGRADE_BONUS(Xenomorph) (( Xenomorph.upgrade_as_number() * 8 ))
 #define SPRAY_MOB_UPGRADE_BONUS(Xenomorph) (( Xenomorph.upgrade_as_number() * 4 ))
 
-#define PLASMA_TRANSFER_AMOUNT 50
-#define PLASMA_SALVAGE_AMOUNT 40
-#define PLASMA_SALVAGE_MULTIPLIER 0.5 // I'd not reccomend setting this higher than one.
+#define PLASMA_TRANSFER_AMOUNT 100
+#define PLASMA_SALVAGE_AMOUNT 400
 
 #define XENO_LARVAL_AMOUNT_RECURRING		10
 #define XENO_LARVAL_CHANNEL_TIME			1.5 SECONDS
 
 #define XENO_NEURO_AMOUNT_RECURRING			10
 #define XENO_NEURO_CHANNEL_TIME				1.5 SECONDS
+#define XENO_NEURO_AMOUNT_RECCURING_PANTHER 3
 
 #define CANNOT_HOLD_EGGS 0
 #define CAN_HOLD_TWO_HANDS 1
@@ -509,7 +511,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CARRIER_HUGGER_THROW_DISTANCE 5
 
 //Defiler defines
-#define DEFILER_GAS_CHANNEL_TIME			2 SECONDS
+#define DEFILER_GAS_CHANNEL_TIME			0.5 SECONDS
 #define DEFILER_GAS_DELAY					1 SECONDS
 #define DEFILER_STING_CHANNEL_TIME			1.5 SECONDS
 #define DEFILER_CLAW_AMOUNT					6.5
@@ -591,25 +593,6 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 //Stamina
 #define STAMINA_STATE_IDLE 0
 #define STAMINA_STATE_ACTIVE 1
-
-//Cooldowns
-#define COOLDOWN_CHEW 		"chew"
-#define COOLDOWN_PUKE 		"puke"
-#define COOLDOWN_POINT 		"point"
-#define COOLDOWN_EMOTE		"emote"
-#define COOLDOWN_VENTCRAWL	"ventcrawl"
-#define COOLDOWN_BUCKLE		"buckle"
-#define COOLDOWN_RESIST		"resist"
-#define COOLDOWN_ORDER		"order"
-#define COOLDOWN_DISPOSAL	"disposal"
-#define COOLDOWN_ACID		"acid"
-#define COOLDOWN_GUT		"gut"
-#define COOLDOWN_ZOOM		"zoom"
-#define COOLDOWN_BUMP		"bump"
-#define COOLDOWN_ENTANGLE	"entangle"
-#define COOLDOWN_NEST		"nest"
-#define COOLDOWN_TASTE		"taste"
-#define COOLDOWN_VENTSOUND	"vendsound"
 
 #define UPDATEHEALTH(MOB) (addtimer(CALLBACK(MOB, /mob/living.proc/updatehealth), 1, TIMER_UNIQUE))
 

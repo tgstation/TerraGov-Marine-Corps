@@ -59,6 +59,9 @@ There are several things that need to be remembered:
 
 */
 
+#define ITEM_STATE_IF_SET(I) I.item_state ? I.item_state : I.icon_state
+
+
 /mob/living/carbon/human
 	var/list/overlays_standing[TOTAL_LAYERS]
 	var/list/underlays_standing[TOTAL_UNDERLAYS]
@@ -107,11 +110,16 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 //DAMAGE OVERLAYS
 //constructs damage icon for each organ from mask * damage field and saves it in our overlays_ lists
 /mob/living/carbon/human/UpdateDamageIcon()
+
+	if(species.species_flags & NO_DAMAGE_OVERLAY)
+		return
+
 	// first check whether something actually changed about damage appearance
 	var/damage_appearance = ""
 
 	for(var/datum/limb/O in limbs)
-		if(O.limb_status & LIMB_DESTROYED) damage_appearance += "d"
+		if(O.limb_status & LIMB_DESTROYED)
+			damage_appearance += "d"
 		else
 			damage_appearance += O.damage_state
 
@@ -123,19 +131,21 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 	previous_damage_appearance = damage_appearance
 
-	var/icon/standing = new /icon('icons/mob/dam_human.dmi', "00")
+	var/icon/standing = new('icons/mob/dam_human.dmi', "00")
 
-	var/image/standing_image = new /image("icon" = standing, "layer" =-DAMAGE_LAYER)
+	var/image/standing_image = image("icon" = standing, "layer" = -DAMAGE_LAYER)
 
 	// blend the individual damage states with our icons
-	for(var/datum/limb/O in limbs)
-		if(!(O.limb_status & LIMB_DESTROYED))
-			O.update_icon()
-			if(O.damage_state == "00") continue
+	for(var/o in limbs)
+		var/datum/limb/limb_to_update = o
+		limb_to_update.update_icon()
 
-			var/icon/DI = get_damage_icon_part(O.damage_state, O.icon_name)
+		if(limb_to_update.damage_state == "00")
+			continue
 
-			standing_image.overlays += DI
+		var/icon/DI = get_damage_icon_part(limb_to_update.damage_state, limb_to_update.icon_name)
+
+		standing_image.overlays += DI
 
 	overlays_standing[DAMAGE_LAYER]	= standing_image
 
@@ -363,7 +373,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	update_inv_r_hand()
 	update_inv_l_hand()
 	update_inv_handcuffed()
-	update_inv_legcuffed()
 	update_inv_pockets()
 	update_fire()
 	update_burst()
@@ -451,14 +460,25 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 			bloodsies.color = gloves.blood_color
 			standing.overlays	+= bloodsies
 		overlays_standing[GLOVES_LAYER]	= standing
+		apply_overlay(GLOVES_LAYER)
+		return
+	if(!blood_color || !bloody_hands)
+		return
+	var/datum/limb/left_hand = get_limb("l_hand")
+	var/datum/limb/right_hand = get_limb("r_hand")
+	var/image/bloodsies
+	if(left_hand.limb_status & LIMB_DESTROYED)
+		if(right_hand.limb_status & LIMB_DESTROYED)
+			return //No hands.
+		bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "bloodyhand_right") //Only right hand.
+	else if(right_hand.limb_status & LIMB_DESTROYED)
+		bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "bloodyhand_left") //Only left hand.
 	else
-		if(blood_color)
-			var/image/bloodsies	= image("icon" = 'icons/effects/blood.dmi', "icon_state" = "bloodyhands")
-			bloodsies.color = blood_color
-			overlays_standing[GLOVES_LAYER]	= bloodsies
+		bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "bloodyhands") //Both hands.
 
+	bloodsies.color = blood_color
+	overlays_standing[GLOVES_LAYER]	= bloodsies
 	apply_overlay(GLOVES_LAYER)
-
 
 
 /mob/living/carbon/human/update_inv_glasses()
@@ -587,10 +607,15 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 					I = image('icons/mob/helmet_garb.dmi',src,I.icon_state)
 					standing.overlays += I
 
+		if(istype(head, /obj/item/clothing/head/modular))
+			var/obj/item/clothing/head/modular/helmet = head
+			var/t_icon = helmet.item_state ? helmet.item_state : helmet.icon_state
+			standing = image("icon" = helmet.icon, "icon_state" = t_icon)
+
 		if(head.blood_overlay)
 			var/image/bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "helmetblood")
 			bloodsies.color = head.blood_color
-			standing.overlays	+= bloodsies
+			standing.overlays += bloodsies
 
 		overlays_standing[HEAD_LAYER] = standing
 
@@ -664,13 +689,35 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 						I = image('icons/mob/suit_1.dmi',src,I.icon_state)
 						standing.overlays += I
 
+		if(istype(wear_suit, /obj/item/clothing/suit/modular))
+			var/obj/item/clothing/suit/modular/mod_armor = wear_suit
+			standing = image(mod_armor.icon, "icon_state" = ITEM_STATE_IF_SET(mod_armor), "layer" =-SUIT_LAYER)
+
+			// Handle attachments and modules
+			if(mod_armor.slot_chest)
+				var/image/chest = image(mod_armor.slot_chest.icon, ITEM_STATE_IF_SET(mod_armor.slot_chest))
+				standing.overlays += chest
+			if(mod_armor.slot_arms)
+				var/image/arms = image(mod_armor.slot_arms.icon, ITEM_STATE_IF_SET(mod_armor.slot_arms))
+				standing.overlays += arms
+			if(mod_armor.slot_legs)
+				var/image/legs = image(mod_armor.slot_legs.icon, ITEM_STATE_IF_SET(mod_armor.slot_legs))
+				standing.overlays += legs
+			if(LAZYLEN(mod_armor.installed_modules))
+				for(var/mod in mod_armor.installed_modules)
+					var/obj/item/armor_module/module = mod
+					standing.overlays += image(module.icon, ITEM_STATE_IF_SET(module))
+			if(mod_armor.installed_storage)
+				standing.overlays += image(mod_armor.installed_storage.icon, ITEM_STATE_IF_SET(mod_armor.installed_storage))
+
+
 		if(wear_suit.blood_overlay)
 			var/obj/item/clothing/suit/S = wear_suit
 			var/image/bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "[S.blood_overlay_type]blood")
 			bloodsies.color = wear_suit.blood_color
-			standing.overlays	+= bloodsies
+			standing.overlays += bloodsies
 
-		overlays_standing[SUIT_LAYER]	= standing
+		overlays_standing[SUIT_LAYER] = standing
 
 	update_tail_showing()
 
@@ -739,12 +786,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	if(handcuffed)
 		overlays_standing[HANDCUFF_LAYER]	= image("icon" = 'icons/mob/mob.dmi', "icon_state" = "handcuff1", "layer" =-HANDCUFF_LAYER)
 		apply_overlay(HANDCUFF_LAYER)
-
-/mob/living/carbon/human/update_inv_legcuffed()
-	remove_overlay(LEGCUFF_LAYER)
-	if(legcuffed)
-		overlays_standing[LEGCUFF_LAYER]	= image("icon" = 'icons/mob/mob.dmi', "icon_state" = "legcuff1", "layer" =-LEGCUFF_LAYER)
-		apply_overlay(LEGCUFF_LAYER)
 
 
 /mob/living/carbon/human/update_inv_r_hand()

@@ -12,7 +12,7 @@
 	max_integrity = 200
 	layer = RESIN_STRUCTURE_LAYER
 	tiles_with = list(/turf/closed/wall/resin, /turf/closed/wall/resin/membrane, /obj/structure/mineral_door/resin)
-	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 
 /turf/closed/wall/resin/Initialize()
@@ -76,11 +76,11 @@
 
 /turf/closed/wall/resin/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			take_damage(500)
-		if(2)
+		if(EXPLODE_HEAVY)
 			take_damage(rand(140, 300))
-		if(3)
+		if(EXPLODE_LIGHT)
 			take_damage(rand(50, 100))
 
 

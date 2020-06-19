@@ -33,7 +33,7 @@ Defined in conflicts.dm of the #defines folder.
 	var/pixel_shift_y = 16 //Uses the bottom left corner of the item.
 
 	flags_atom = CONDUCT
-	materials = list(/datum/material/metal = 1000)
+	materials = list(/datum/material/metal = 100)
 	w_class = WEIGHT_CLASS_SMALL
 	force = 1.0
 	var/slot = null //"muzzle", "rail", "under", "stock"
@@ -341,6 +341,28 @@ Defined in conflicts.dm of the #defines folder.
 			F.forceMove(loc)
 		qdel(src) //Delete da old bayonet
 
+/obj/item/attachable/bayonetknife
+	name = "M-22 bayonet"
+	desc = "A sharp knife that is the standard issue combat knife of the TerraGov Marine Corps can be attached to a variety of weapons at will or used as a standard knife."
+	icon_state = "bayonetknife"
+	item_state = "combat_knife"
+	attach_icon = "bayonetknife_a"
+	force = 25
+	throwforce = 20
+	throw_speed = 3
+	throw_range = 6
+	attack_speed = 7
+	attach_delay = 10 //Bayonets attach/detach quickly.
+	detach_delay = 10
+	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	melee_mod = 25
+	slot = "muzzle"
+	pixel_shift_x = 14 //Below the muzzle.
+	pixel_shift_y = 18
+	accuracy_mod = -0.05
+	accuracy_unwielded_mod = -0.1
+	size_mod = 1
+
 /obj/item/attachable/extended_barrel
 	name = "extended barrel"
 	desc = "A lengthened barrel allows for lessened scatter, greater accuracy and muzzle velocity due to increased stabilization and shockwave exposure."
@@ -501,6 +523,13 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "t12barrel"
 	flags_attach_features = NONE
 
+/obj/item/attachable/t29barrel
+	name = "T-29 barrel"
+	icon_state = "t29barrel"
+	desc = "A heavy barrel. CANNOT BE REMOVED."
+	slot = "muzzle"
+	flags_attach_features = NONE
+
 ///////////// Rail attachments ////////////////////////
 
 /obj/item/attachable/reddot
@@ -653,10 +682,10 @@ Defined in conflicts.dm of the #defines folder.
 	scope_zoom_mod = TRUE
 
 /obj/item/attachable/scope/mini/m4ra
-	name = "M4RA rail scope"
+	name = "T-45 rail scope"
 	aim_speed_mod = 0
 	attach_icon = "none"
-	desc = "A rail mounted zoom sight scope specialized for the M4RA Battle Rifle . Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	desc = "A rail mounted zoom sight scope specialized for the T-45 Battle Rifle . Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	flags_attach_features = ATTACH_ACTIVATION
 
 /obj/item/attachable/scope/m42a
@@ -674,6 +703,12 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "pmcscope"
 	attach_icon = "pmcscope"
 	flags_attach_features = ATTACH_ACTIVATION
+
+/obj/item/attachable/scope/mini/dmr
+	name = "T-37 mini rail scope"
+	icon_state = "t37"
+	attach_icon = "t37_a"
+
 
 //////////// Stock attachments ////////////////////////////
 
@@ -781,7 +816,7 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = 0.1
 
 /obj/item/attachable/stock/rifle/marksman
-	name = "\improper M4RA marksman stock"
+	name = "\improper T-45 marksman stock"
 	icon_state = "m4markstock"
 	attach_icon = "m4markstock"
 	flags_attach_features = NONE
@@ -818,6 +853,20 @@ Defined in conflicts.dm of the #defines folder.
 	name = "TX-15 Stock"
 	desc = "The standard stock for the TX-15. Cannot be removed."
 	icon_state = "tx15stock"
+	wield_delay_mod = 0 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+	accuracy_mod = 0
+	recoil_mod = 0
+	melee_mod = 0
+	scatter_mod = 0
+	movement_acc_penalty_mod = 0
+
+/obj/item/attachable/stock/t29stock
+	name = "T-29 stock"
+	desc = "A standard machinegun stock."
+	icon_state = "t29stock"
 	wield_delay_mod = 0 SECONDS
 	pixel_shift_x = 32
 	pixel_shift_y = 13
@@ -917,10 +966,10 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_y = 10
 	flags_attach_features = NONE
 
-/obj/item/attachable/stock/dmr
-	name = "T-64 Stock"
-	desc = "A standard DMR Stock."
-	icon_state = "dmrstock"
+/obj/item/attachable/stock/br
+	name = "\improper T-64 stock"
+	desc = "A specialized stock for the T-64."
+	icon_state = "brstock"
 	wield_delay_mod = 0 SECONDS
 	pixel_shift_x = 32
 	pixel_shift_y = 13
@@ -932,8 +981,8 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/t18stock
-	name = "T-18 Stock"
-	desc = "A standard Carbine Stock."
+	name = "\improper T-18 stock"
+	desc = "A specialized stock for the T-18."
 	icon_state = "t18stock"
 	wield_delay_mod = 0 SECONDS
 	pixel_shift_x = 32
@@ -946,8 +995,8 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/t12stock
-	name = "T-12 Stock"
-	desc = "A standard Assault Rifle Stock."
+	name = "\improper T-12 stock"
+	desc = "A specialized stock for the T-12."
 	icon_state = "t12stock"
 	wield_delay_mod = 0 SECONDS
 	pixel_shift_x = 32
@@ -960,8 +1009,8 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/t42stock
-	name = "T-42 Stock"
-	desc = "A standard Light Machine Gun Stock."
+	name = "\improper T-42 stock"
+	desc = "A specialized stock for the T-42."
 	icon_state = "t42stock"
 	wield_delay_mod = 0 SECONDS
 	pixel_shift_x = 32
@@ -974,10 +1023,10 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/t19stock
-	name = "T-19 Submachine Gun stock"
-	desc = "A rare stock distributed in small numbers to TGMC forces. Compatible with the T-19, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
+	name = "\improper T-19 machinepistol stock"
+	desc = "A submachinegun stock distributed in small numbers to TGMC forces. Compatible with the T-19, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
 	slot = "stock"
-	wield_delay_mod = 0.3 SECONDS
+	wield_delay_mod = 0.1 SECONDS
 	melee_mod = 5
 	size_mod = 1
 	icon_state = "t19stock"
@@ -986,6 +1035,7 @@ Defined in conflicts.dm of the #defines folder.
 	accuracy_mod = 0.1
 	recoil_mod = -2
 	scatter_mod = -10
+	scatter_unwielded_mod = -10
 
 /obj/item/attachable/stock/t35stock
 	name = "\improper T-35 stock"
@@ -996,6 +1046,35 @@ Defined in conflicts.dm of the #defines folder.
 	accuracy_mod = 0.15
 	recoil_mod = -3
 	scatter_mod = -20
+
+/obj/item/attachable/stock/t39stock
+	name = "\improper T-39 Stock"
+	desc = "A specialized stock for the T-35."
+	icon_state = "t39stock"
+	wield_delay_mod = 0 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+	accuracy_mod = 0
+	recoil_mod = 0
+	melee_mod = 0
+	scatter_mod = 0
+	movement_acc_penalty_mod = 0
+
+/obj/item/attachable/stock/t60stock
+	name = "T-60 stock"
+	desc = "A irremovable T-60 general purpose machinegun stock."
+	icon_state = "t60stock"
+	wield_delay_mod = 0 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+	accuracy_mod = 0
+	recoil_mod = 0
+	melee_mod = 0
+	scatter_mod = 0
+	movement_acc_penalty_mod = 0
+
 
 ////////////// Underbarrel Attachments ////////////////////////////////////
 
@@ -1269,13 +1348,14 @@ Defined in conflicts.dm of the #defines folder.
 
 			if(user)
 				if(!user.mind?.bypass_ff && !H.mind?.bypass_ff && user.faction == H.faction)
-					log_combat(user, H, "shot", src)
-					log_ffattack("[key_name(usr)] shot [key_name(H)] with [name] in [AREACOORD(T)].")
-					msg_admin_ff("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with [name] in [ADMIN_VERBOSEJMP(T)].")
+					log_combat(user, H, "flamed", src)
+					user.ff_check(30, H) // avg between 20/40 dmg
+					log_ffattack("[key_name(usr)] flamed [key_name(H)] with [name] in [AREACOORD(T)].")
+					msg_admin_ff("[ADMIN_TPMONTY(usr)] flamed [ADMIN_TPMONTY(H)] with [name] in [ADMIN_VERBOSEJMP(T)].")
 				else
-					log_combat(user, H, "shot", src)
+					log_combat(user, H, "flamed", src)
 
-			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || istype(H.wear_suit,/obj/item/clothing/suit/space/rig/atmos))
+			if(H.hard_armor.getRating("fire") >= 100)
 				continue
 
 		M.adjust_fire_stacks(rand(3,5))
@@ -1402,6 +1482,7 @@ Defined in conflicts.dm of the #defines folder.
 	if(bipod_deployed)
 		bipod_deployed = FALSE
 		to_chat(user, "<span class='notice'>You retract [src].</span>")
+		master_gun.aim_slowdown -= 1
 		master_gun.wield_delay -= 0.4 SECONDS
 		master_gun.accuracy_mult -= deployment_accuracy_mod
 		master_gun.recoil -= deployment_recoil_mod

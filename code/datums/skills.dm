@@ -330,7 +330,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	leadership = SKILL_LEAD_MASTER
 	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_AMATEUR
-	police = SKILL_POLICE_FLASH
+	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_TRAINED
 
 /datum/skills/FO
@@ -354,22 +354,12 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	leadership = SKILL_LEAD_EXPERT
 	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_AMATEUR
+	police = SKILL_POLICE_FLASH
 
 /datum/skills/pilot
 	name = PILOT_OFFICER
 	pilot = SKILL_PILOT_TRAINED
 	powerloader = SKILL_POWERLOADER_PRO
-	leadership = SKILL_LEAD_TRAINED
-
-/datum/skills/MP
-	name = "Military Police"
-	cqc = SKILL_CQC_MP
-	police = SKILL_POLICE_MP
-
-/datum/skills/CMP
-	name = COMMAND_MASTER_AT_ARMS
-	cqc = SKILL_CQC_MP
-	police = SKILL_POLICE_MP
 	leadership = SKILL_LEAD_TRAINED
 
 /datum/skills/CE
@@ -649,3 +639,20 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 	medical = SKILL_MEDICAL_EXPERT
 	surgery = SKILL_SURGERY_EXPERT
+  
+
+/datum/skills/sectoid
+	name = "Sectoid"
+
+	cqc = SKILL_CQC_TRAINED
+	engineer = SKILL_ENGINEER_ENGI
+	construction = SKILL_CONSTRUCTION_PLASTEEL
+	firearms = SKILL_FIREARMS_TRAINED
+	medical = SKILL_MEDICAL_COMPETENT
+	surgery = SKILL_SURGERY_EXPERT//how else will they probe marines?
+	melee_weapons = SKILL_MELEE_TRAINED
+	pistols = SKILL_PISTOLS_TRAINED
+	smgs = SKILL_SMGS_TRAINED
+	rifles = SKILL_RIFLES_TRAINED
+	shotguns = SKILL_SHOTGUNS_TRAINED
+	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED

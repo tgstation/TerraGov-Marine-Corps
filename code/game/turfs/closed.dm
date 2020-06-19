@@ -46,7 +46,7 @@
 	//Not yet
 /turf/closed/gm/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			ChangeTurf(/turf/open/ground/grass)
 
 
@@ -65,20 +65,34 @@
 		icon_state = "wall2"
 
 
-
-
 //desertdam rock
 /turf/closed/desertdamrockwall
 	name = "rockwall"
 	icon = 'icons/turf/desertdam_map.dmi'
 	icon_state = "cavewall1"
 
+//lava rock
+/turf/closed/brock
+	name = "basalt rock"
+	icon = 'icons/turf/lava.dmi'
+	icon_state = "brock"
 
-
-
-
-
-
+/turf/closed/brock/Initialize(mapload)
+	. = ..()
+	for(var/direction in GLOB.cardinals)
+		var/turf/turf_to_check = get_step(src, direction)
+		if(istype(turf_to_check, /turf/open))
+			var/image/rock_side = image(icon, "[icon_state]_side", dir = turn(direction, 180))
+			switch(direction)
+				if(NORTH)
+					rock_side.pixel_y += world.icon_size
+				if(SOUTH)
+					rock_side.pixel_y -= world.icon_size
+				if(EAST)
+					rock_side.pixel_x += world.icon_size
+				if(WEST)
+					rock_side.pixel_x -= world.icon_size
+			overlays += rock_side
 
 //ICE WALLS-----------------------------------//
 //Ice Wall
@@ -139,7 +153,7 @@
 
 	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
-		if(!ismineralturf(src) && !istype(src, /turf/closed/gm/dense) && !istype(src, /turf/closed/ice) && !istype(src, /turf/closed/desertdamrockwall))
+		if(!ismineralturf(src) && !istype(src, /turf/closed/gm/dense) && !istype(src, /turf/closed/ice) && !istype(src, /turf/closed/desertdamrockwall) && !istype(src, /turf/closed/brock))
 			to_chat(user, "<span class='warning'>[P] can't cut through this!</span>")
 			return
 		if(!P.start_cut(user, name, src))
@@ -154,6 +168,12 @@
 			ChangeTurf(/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor)
 		else if(istype(src, /turf/closed/gm/dense))
 			ChangeTurf(/turf/open/ground/jungle/clear)
+		else if(istype(src, /turf/closed/brock))
+			var/choice = rand(1,50)
+			if(choice == 50)
+				ChangeTurf(/turf/open/lavaland/basalt/glowing)
+			else
+				ChangeTurf(/turf/open/lavaland/basalt)
 		else
 			ChangeTurf(/turf/open/floor/plating/ground/ice)
 
@@ -229,6 +249,14 @@
 	icon = 'icons/turf/shuttle.dmi'
 	plane = FLOOR_PLANE
 
+/turf/closed/shuttle/re_corner/notdense
+	icon_state = "re_cornergrass"
+	density = FALSE
+
+/turf/closed/shuttle/re_corner/jungle
+	icon_state = "re_cornerjungle"
+	density = FALSE
+
 /turf/closed/shuttle/diagonal
 	icon_state = "diagonalWall"
 
@@ -243,8 +271,14 @@
 /turf/closed/shuttle/wall3
 	icon_state = "wall3"
 
+/turf/closed/shuttle/swall3
+	icon_state = "swall3"
+
 /turf/closed/shuttle/wall3/diagonal
 	icon_state = "diagonalWall3"
+
+/turf/closed/shuttle/wall3/diagonal/white
+	icon_state = "diagonalWall3white"
 
 /turf/closed/shuttle/wall3/diagonal/plating
 	icon_state = "diagonalWall3plating"
@@ -293,5 +327,7 @@
 	name = "\improper Rasputin"
 	icon = 'icons/turf/dropship3.dmi'
 	icon_state = "1"
-	opacity = FALSE
+	plane = GAME_PLANE
+
 /turf/closed/shuttle/dropship3/transparent
+	opacity = FALSE

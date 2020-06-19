@@ -63,7 +63,7 @@
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "portablevendor", name, 600, 700, master_ui, state)
+		ui = new(user, src, ui_key, "PortableVendor", name, 600, 700, master_ui, state)
 		ui.open()
 
 /obj/item/portable_vendor/ui_data(mob/user)
@@ -182,16 +182,16 @@
 
 /obj/item/portable_vendor/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
 			return
-		if(2.0)
+		if(EXPLODE_HEAVY)
 			if(prob(50))
 				qdel(src)
 				return
 			else
 				malfunction()
-		else
+		if(EXPLODE_LIGHT)
 			if(prob(80))
 				malfunction()
 
@@ -200,7 +200,7 @@
 	name = "\improper Nanotrasen Automated Storage Briefcase"
 	desc = "A suitcase-sized automated storage and retrieval system. Designed to efficiently store and selectively dispense small items. This one has the Nanotrasen logo stamped on its side."
 
-	req_access_txt = "200"
+	req_access = list(ACCESS_NT_CORPORATE)
 	req_role = /datum/job/terragov/civilian/liaison
 	listed_products = list(
 							list("INCENTIVES", 0, null, null, null),

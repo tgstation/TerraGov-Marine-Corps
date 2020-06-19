@@ -189,7 +189,7 @@
 
 /obj/item/reagent_containers/pill/imidazoline
 	pill_desc = "An imidazoline pill. Heals eye damage."
-	list_reagents = list(/datum/reagent/medicine/alkysine = 10)
+	list_reagents = list(/datum/reagent/medicine/imidazoline = 10)
 	pill_id = 17
 
 /obj/item/reagent_containers/pill/alkysine

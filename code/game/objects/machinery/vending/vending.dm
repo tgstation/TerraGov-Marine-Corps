@@ -4,7 +4,7 @@
 
 /datum/data/vending_product
 	var/product_name = "generic"
-	var/product_path = null
+	var/atom/product_path = null
 	var/amount = 0
 	var/price = 0
 	var/display_color = "white"
@@ -22,7 +22,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 100
-	interaction_flags = INTERACT_MACHINE_NANO
+	interaction_flags = INTERACT_MACHINE_TGUI
 
 	var/active = TRUE //No sales pitches if off!
 	var/vend_ready = TRUE //Are we ready to vend?? Is it time??
@@ -66,7 +66,7 @@
 
 	var/knockdown_threshold = 100
 
-	ui_x = 450
+	ui_x = 500
 	ui_y = 600
 
 
@@ -99,12 +99,12 @@
 
 /obj/machinery/vending/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-		if(2)
+		if(EXPLODE_HEAVY)
 			if(prob(50))
 				qdel(src)
-		if(3)
+		if(EXPLODE_LIGHT)
 			if(prob(25))
 				INVOKE_ASYNC(src, .proc/malfunction)
 
@@ -119,7 +119,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	/obj/item/weapon/gun/rifle/standard_assaultrifle,
 	/obj/item/weapon/gun/rifle/standard_lmg,
 	/obj/item/weapon/gun/rifle/standard_dmr,
-	/obj/item/weapon/gun/energy/lasgun/M43,
+	/obj/item/weapon/gun/energy/lasgun/lasrifle,
 	/obj/item/weapon/gun/shotgun/pump/t35,
 	/obj/item/weapon/gun/rifle/standard_autoshotgun,
 	/obj/item/ammobox,
@@ -391,45 +391,45 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "vending", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, ui_key, "Vending", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
-/obj/machinery/vending/ui_data(mob/user)
-	var/list/display_list = list()
-	var/list/hidden_list = list()
-	var/list/coin_list = list()
-	var/list/display_records = list()
-	display_records += product_records
-	if(extended_inventory)
-		display_records += hidden_records
-	if(coin)
-		display_records += coin_records
-	for (var/datum/data/vending_product/R in display_records)
+/obj/machinery/vending/ui_static_data(mob/user)
+	. = list()
+	.["vendor_name"] = name
+	.["displayed_records"] = list()
+	.["hidden_records"] = list()
+	.["coin_records"] = list()
+	for(var/datum/data/vending_product/R in product_records)
 		var/prodname = adminscrub(R.product_name)
-		if(R.amount) prodname += ": [R.amount]"
-		else prodname += ": SOLD OUT"
-		if(R.price) prodname += " (Price: [R.price])"
-		switch(R.category)
-			if(CAT_NORMAL)
-				display_list += list(list("product_name" = prodname, "product_color" = R.display_color, "amount" = R.amount, "prod_index" = GetProductIndex(R), "prod_cat" = R.category))
-			if(CAT_HIDDEN)
-				hidden_list += list(list("product_name" = prodname, "product_color" = R.display_color, "amount" = R.amount, "prod_index" = GetProductIndex(R), "prod_cat" = R.category))
-			if(CAT_COIN)
-				coin_list += list(list("product_name" = prodname, "product_color" = R.display_color, "amount" = R.amount, "prod_index" = GetProductIndex(R), "prod_cat" = R.category))
-		
+		.["displayed_records"] += list(list("product_name" = prodname, "product_color" = R.display_color, "prod_index" = GetProductIndex(R), "prod_cat" = R.category, "prod_price" = R.price, "prod_desc" = initial(R.product_path.desc)))
+	for(var/datum/data/vending_product/R in hidden_records)
+		var/prodname = adminscrub(R.product_name)
+		.["hidden_records"] += list(list("product_name" = prodname, "product_color" = R.display_color, "prod_index" = GetProductIndex(R), "prod_cat" = R.category, "prod_price" = R.price, "prod_desc" = initial(R.product_path.desc)))
+	for(var/datum/data/vending_product/R in coin_records)
+		var/prodname = adminscrub(R.product_name)
+		.["coin_records"] += list(list("product_name" = prodname, "product_color" = R.display_color, "prod_index" = GetProductIndex(R), "prod_cat" = R.category, "prod_price" = R.price, "prod_desc" = initial(R.product_path.desc)))
 
-	var/list/data = list(
-		"vendor_name" = name,
-		"currently_vending_name" = currently_vending ? sanitize(currently_vending.product_name) : null,
-		"currently_vending_index" = currently_vending_index,
-		"premium_length" = premium.len,
-		"coin" = coin ? coin.name : null,
-		"displayed_records" = display_list,
-		"hidden_records" = hidden_list,
-		"coin_records" = coin_list,
-		"isshared" = isshared
-	)
-	return data
+	.["premium_length"] = premium.len
+
+/obj/machinery/vending/ui_data(mob/user)
+	. = list()
+	.["displayed_stock"] = list()
+	.["hidden_stock"] = list()
+	.["coin_stock"] = list()
+
+	for(var/datum/data/vending_product/R in product_records)
+		.["displayed_stock"]["[GetProductIndex(R)]"] = R.amount
+	for(var/datum/data/vending_product/R in hidden_records)
+		.["hidden_stock"]["[GetProductIndex(R)]"] = R.amount
+	for(var/datum/data/vending_product/R in coin_records)
+		.["coin_stock"]["[GetProductIndex(R)]"] = R.amount
+
+	.["currently_vending_name"] = currently_vending ? sanitize(currently_vending.product_name) : null
+	.["currently_vending_index"] = currently_vending_index
+	.["extended"] = extended_inventory
+	.["coin"] = coin ? coin.name : null
+	.["isshared"] = isshared
 
 /obj/machinery/vending/ui_act(action, params)
 	if(..())
@@ -468,6 +468,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 
 		if("cancel_buying")
 			currently_vending = null
+			currently_vending_index = null
 			. = TRUE
 
 		if("swipe")
@@ -485,7 +486,10 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 		flick(src.icon_deny,src)
 		return
 
-	if (R in coin_records)
+	if(R.category == CAT_HIDDEN && !extended_inventory)
+		return
+
+	if(R.category == CAT_COIN)
 		if(!coin)
 			to_chat(user, "<span class='notice'>You need to insert a coin to get this item.</span>")
 			return
@@ -508,7 +512,9 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 			src.speak(src.vend_reply)
 			src.last_reply = world.time
 
-	release_item(R, vend_delay)
+	var/obj/item/new_item = release_item(R, vend_delay)
+	if(istype(new_item))
+		user.put_in_any_hand_if_possible(new_item, warning = FALSE)
 	vend_ready = 1
 	updateUsrDialog()
 
@@ -528,7 +534,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 			sleep(delay_vending)
 		else
 			return
-	SSblackbox.record_feedback("tally", "vendored", 1, R.name)
+	SSblackbox.record_feedback("tally", "vendored", 1, R.product_name)
 	if(ispath(R.product_path,/obj/item/weapon/gun))
 		return new R.product_path(get_turf(src), 1)
 	else

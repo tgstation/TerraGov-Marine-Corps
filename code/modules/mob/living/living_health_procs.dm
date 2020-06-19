@@ -73,7 +73,7 @@
 		updateStamina(feedback)
 
 /mob/living/proc/updateStamina(feedback = TRUE)
-	if(staminaloss < maxHealth * 1.5)
+	if(staminaloss < max(health * 1.5,0))
 		return
 	if(!IsParalyzed())
 		if(feedback)
@@ -225,6 +225,8 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	. = ..()
 	GLOB.alive_human_list += src
 	GLOB.dead_human_list -= src
+	LAZYADD(GLOB.humans_by_zlevel["[z]"], src)
+	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, .proc/human_z_changed)
 
 /mob/living/carbon/xenomorph/on_revive()
 	. = ..()
@@ -303,28 +305,11 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 		dropItemToGround(handcuffed)
 	update_handcuffed(initial(handcuffed))
 
-	if(legcuffed && !initial(legcuffed))
-		dropItemToGround(legcuffed)
-	update_legcuffed(initial(legcuffed))
-
 	return ..()
 
 
 /mob/living/carbon/human/revive()
-	for(var/datum/limb/O in limbs)
-		if(O.limb_status & LIMB_ROBOT)
-			O.limb_status = LIMB_ROBOT
-		else
-			O.limb_status = NONE
-		O.perma_injury = 0
-		O.germ_level = 0
-		O.wounds.Cut()
-		O.heal_limb_damage(1000, 1000, TRUE, TRUE)
-		O.reset_limb_surgeries()
-
-	var/datum/limb/head/h = get_limb("head")
-	h.disfigured = FALSE
-	name = get_visible_name()
+	restore_all_organs()
 
 	if(species && !(species.species_flags & NO_BLOOD))
 		restore_blood()

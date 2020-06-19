@@ -173,9 +173,9 @@
 	icon_state = "ntpacket"
 	item_state = "ntpacket"
 
-/obj/item/storage/fancy/cigarettes/lucky_strikes
-	name = "\improper Lucky Strikes packet"
-	desc = "Lucky Strikes Means Fine Tobacco! 9/10 doctors agree on Lucky Strikes...as the leading cause of marine lung cancer."
+/obj/item/storage/fancy/cigarettes/luckystars
+	name = "\improper Lucky Stars packet"
+	desc = "A mellow blend made from synthetic, pod-grown tobacco. The commercial jingle is guaranteed to get stuck in your head."
 	icon_state = "lspacket"
 	item_state = "lspacket"
 

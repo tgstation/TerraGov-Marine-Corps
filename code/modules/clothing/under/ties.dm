@@ -518,6 +518,7 @@
 	cant_hold = list(
 		/obj/item/stack/razorwire,
 		/obj/item/stack/sheet,
+		/obj/item/ammo_magazine/smg/standard_smg,
 		/obj/item/stack/sandbags,
 		/obj/item/stack/snow)
 

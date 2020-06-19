@@ -4,7 +4,6 @@
 /obj/item/weapon/gun/revolver
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
-	materials = list(/datum/material/metal = 2000)
 	fire_sound = 'sound/weapons/guns/fire/44mag.ogg'
 	reload_sound = 'sound/weapons/guns/interact/revolver_cocked.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/revolver_spun.ogg'
@@ -300,7 +299,7 @@
 
 /obj/item/weapon/gun/revolver/standard_revolver
 	name = "\improper TP-44 combat revolver"
-	desc = "The TP-44, Produced by Terran Armories. A sturdy and hard hitting firearm that loads .44 Magnum rounds. Holds 7 rounds in the cylinder. Due to the nature of the weapon, it’s rate of fire doesn’t quite match the output of other guns, but does hit much harder."
+	desc = "The TP-44, Produced by Terran Armories. A sturdy and hard hitting firearm that loads .44 Magnum rounds. Holds 7 rounds in the cylinder. Due to the nature of the weapon, its rate of fire doesn’t quite match the output of other guns, but does hit much harder."
 	icon_state = "tp44"
 	item_state = "tp44"
 	caliber = ".44 Magnum" //codex
@@ -330,7 +329,7 @@
 
 /obj/item/weapon/gun/revolver/m44
 	name = "\improper M44 combat revolver"
-	desc = "A bulky revolver, occasionally carried by assault troops and officers in the Marine Corps, as well civilian law enforcement. Uses .44 Magnum rounds."
+	desc = "A bulky revolver, occasionally carried by civilian law enforcement. Uses .44 Magnum rounds."
 	icon_state = "m44"
 	item_state = "m44"
 	caliber = ".44 Magnum" //codex
@@ -451,7 +450,7 @@
 
 /obj/item/weapon/gun/revolver/cmb
 	name = "\improper CMB autorevolver"
-	desc = "An automatic revolver chambered in .357 magnum. Commonly issued to Colonial Marshals. It has a burst mode. Currently in trial with other revolvers across Terra and other colonies."
+	desc = "An automatic revolver chambered in .357 magnum. Commonly issued to Nanotrasen security. It has a burst mode. Currently in trial with other revolvers across Terra and other colonies."
 	icon_state = "cmb"
 	item_state = "cmb"
 	caliber = ".357 Magnum" //codex

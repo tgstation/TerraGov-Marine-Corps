@@ -5,12 +5,12 @@
 
 /obj/structure/flora/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-		if(2)
+		if(EXPLODE_HEAVY)
 			if(prob(70))
 				qdel(src)
-		if(3)
+		if(EXPLODE_LIGHT)
 			if(prob(50))
 				qdel(src)
 
@@ -42,11 +42,11 @@
 
 /obj/structure/flora/tree/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			take_damage(500)
-		if(2)
+		if(EXPLODE_HEAVY)
 			take_damage(rand(140, 300))
-		if(3)
+		if(EXPLODE_LIGHT)
 			take_damage(rand(50, 100))
 	START_PROCESSING(SSobj, src)
 
@@ -226,6 +226,12 @@
 
 /obj/structure/flora/pottedplant/ten
 	icon_state = "plant-10"
+
+/obj/structure/flora/pottedplant/twentyone
+	icon_state = "plant-21"
+
+/obj/structure/flora/pottedplant/twentytwo
+	icon_state = "plant-22"
 
 //newbushes
 

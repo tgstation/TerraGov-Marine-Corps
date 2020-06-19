@@ -18,10 +18,7 @@
 /area/tdome)
 "af" = (
 /obj/machinery/vending/cigarette,
-/turf/open/floor{
-	icon_state = "redbluefull";
-	dir = 8
-	},
+/turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
 "ag" = (
 /obj/structure/table,
@@ -30,10 +27,7 @@
 /obj/item/reagent_containers/food/drinks/cans/beer,
 /obj/item/tool/lighter/zippo,
 /obj/item/storage/fancy/cigarettes,
-/turf/open/floor{
-	icon_state = "redbluefull";
-	dir = 8
-	},
+/turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
 "ah" = (
 /obj/item/reagent_containers/food/drinks/cans/cola,
@@ -41,38 +35,23 @@
 /obj/item/reagent_containers/food/drinks/cans/cola,
 /obj/structure/table,
 /obj/item/ashtray/glass,
-/turf/open/floor{
-	icon_state = "redbluefull";
-	dir = 8
-	},
+/turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
 "ai" = (
 /obj/structure/reagent_dispensers/beerkeg,
-/turf/open/floor{
-	icon_state = "redbluefull";
-	dir = 8
-	},
+/turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
 "aj" = (
 /obj/structure/reagent_dispensers/beerkeg,
 /obj/item/storage/box/drinkingglasses,
-/turf/open/floor{
-	icon_state = "redbluefull";
-	dir = 8
-	},
+/turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
 "ak" = (
-/turf/open/floor{
-	icon_state = "redbluefull";
-	dir = 8
-	},
+/turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
 "al" = (
 /obj/machinery/vending/coffee,
-/turf/open/floor{
-	icon_state = "redbluefull";
-	dir = 8
-	},
+/turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
 "am" = (
 /obj/structure/closet/secure_closet/freezer/meat,
@@ -85,25 +64,16 @@
 "ao" = (
 /obj/structure/bed/chair,
 /obj/effect/landmark/thunderdome/observe,
-/turf/open/floor{
-	icon_state = "redbluefull";
-	dir = 8
-	},
+/turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
 "ap" = (
 /obj/structure/disposalpipe/trunk,
 /obj/structure/disposaloutlet,
-/turf/open/floor{
-	icon_state = "redbluefull";
-	dir = 8
-	},
+/turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
 "aq" = (
 /obj/machinery/vending/snack,
-/turf/open/floor{
-	icon_state = "redbluefull";
-	dir = 8
-	},
+/turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
 "ar" = (
 /obj/item/storage/box/donkpockets{
@@ -136,33 +106,21 @@
 /area/tdome)
 "au" = (
 /obj/machinery/computer/security/telescreen,
-/turf/open/floor{
-	icon_state = "redbluefull";
-	dir = 8
-	},
+/turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
 "av" = (
 /obj/item/camera,
-/turf/open/floor{
-	icon_state = "redbluefull";
-	dir = 8
-	},
+/turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
 "aw" = (
 /obj/structure/disposalpipe/segment,
-/turf/open/floor{
-	icon_state = "redbluefull";
-	dir = 8
-	},
+/turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
 "ax" = (
 /obj/structure/bed/chair,
 /obj/structure/disposalpipe/segment,
 /obj/effect/landmark/thunderdome/observe,
-/turf/open/floor{
-	icon_state = "redbluefull";
-	dir = 8
-	},
+/turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
 "ay" = (
 /obj/docking_port/stationary/ert/loading,
@@ -193,9 +151,7 @@
 /turf/open/floor,
 /area/tdome)
 "aC" = (
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
+/turf/open/floor/mainship/cargo,
 /area/centcom/supplypod/loading/one)
 "aD" = (
 /obj/machinery/igniter,
@@ -212,14 +168,10 @@
 /turf/open/floor,
 /area/tdome)
 "aG" = (
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
+/turf/open/floor/mainship/cargo,
 /area/centcom/supplypod/loading/two)
 "aH" = (
-/turf/open/floor/mainship{
-	icon_state = "test_floor4"
-	},
+/turf/open/floor/mainship/stripesquare,
 /area/centcom/supplypod/loading/one)
 "aI" = (
 /obj/effect/landmark/thunderdome/two,
@@ -249,19 +201,14 @@
 "aN" = (
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor{
 	dir = 2;
-	name = "\improper Centcomm Security";
-	req_access = list(200)
+	name = "\improper Centcomm Security"
 	},
-/turf/open/floor/mainship{
-	dir = 8;
-	icon_regular_floor = "cargo_arrow";
-	icon_state = "cargo_arrow"
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 8
 	},
 /area/centcom)
 "aO" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-21"
-	},
+/obj/structure/flora/pottedplant/twentyone,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -323,10 +270,7 @@
 /area/centcom/control)
 "ba" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
-/turf/open/floor/mainship{
-	icon_state = "plating";
-	dir = 5
-	},
+/turf/open/floor/plating/mainship,
 /area/centcom/control)
 "bb" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
@@ -376,22 +320,15 @@
 /turf/open/floor/mainship,
 /area/centcom)
 "bi" = (
-/turf/open/floor/mainship{
-	icon_state = "test_floor4"
-	},
+/turf/open/floor/mainship/stripesquare,
 /area/centcom/supplypod/loading/two)
 "bj" = (
-/turf/open/floor/mainship{
-	icon_state = "blue";
+/turf/open/floor/mainship/blue{
 	dir = 9
 	},
 /area/centcom)
 "bk" = (
-/obj/machinery/door/airlock/command{
-	name = "Thunderdome Administration";
-	req_access = null;
-	req_access_txt = "102"
-	},
+/obj/machinery/door/airlock/command/thunderdome,
 /turf/open/floor,
 /area/tdome)
 "bl" = (
@@ -436,8 +373,7 @@
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
 "bs" = (
-/turf/open/floor/mainship{
-	icon_state = "blue";
+/turf/open/floor/mainship/blue{
 	dir = 10
 	},
 /area/centcom)
@@ -447,7 +383,6 @@
 /area/tdome/tdomeadmin)
 "bu" = (
 /obj/structure/closet/walllocker/hydrant/full{
-	icon_state = "hydrant";
 	dir = 1
 	},
 /turf/open/shuttle/brig,
@@ -617,32 +552,27 @@
 /area/centcom)
 "bX" = (
 /obj/structure/closet/secure_closet/guncabinet/lmg,
-/turf/open/floor/mainship{
-	dir = 9;
-	icon_state = "red"
+/turf/open/floor/mainship/red{
+	dir = 9
 	},
 /area/centcom)
 "bY" = (
 /obj/structure/closet/secure_closet/guncabinet/m57a4,
-/turf/open/floor/mainship{
-	dir = 1;
-	icon_state = "red"
+/turf/open/floor/mainship/red{
+	dir = 1
 	},
 /area/centcom)
 "bZ" = (
 /obj/structure/table/mainship,
 /obj/item/storage/box/handcuffs,
 /obj/item/storage/box/flashbangs,
-/turf/open/floor/mainship{
-	dir = 1;
-	icon_state = "red"
+/turf/open/floor/mainship/red{
+	dir = 1
 	},
 /area/centcom)
 "ca" = (
 /obj/machinery/door/airlock/mainship/command,
-/turf/open/floor/mainship{
-	icon_state = "blue"
-	},
+/turf/open/floor/mainship/blue,
 /area/centcom)
 "cb" = (
 /obj/structure/table/mainship,
@@ -655,23 +585,19 @@
 /area/centcom)
 "cc" = (
 /obj/structure/closet/secure_closet/guncabinet/explosives,
-/turf/open/floor/mainship{
-	dir = 1;
-	icon_state = "red"
+/turf/open/floor/mainship/red{
+	dir = 1
 	},
 /area/centcom)
 "cd" = (
 /obj/structure/closet/secure_closet/guncabinet/spec_boxes,
-/turf/open/floor/mainship{
-	dir = 5;
-	icon_state = "red"
+/turf/open/floor/mainship/red{
+	dir = 5
 	},
 /area/centcom)
 "ce" = (
-/turf/open/floor/mainship{
-	dir = 8;
-	icon_regular_floor = "cargo_arrow";
-	icon_state = "cargo_arrow"
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 8
 	},
 /area/centcom)
 "cf" = (
@@ -685,33 +611,25 @@
 	},
 /area/centcom/supplypod/flyMeToTheMoon)
 "ch" = (
-/turf/open/floor/mainship{
-	dir = 4;
-	icon_regular_floor = "cargo_arrow";
-	icon_state = "cargo_arrow"
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 4
 	},
 /area/centcom)
 "ci" = (
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor{
 	dir = 2;
-	name = "\improper Centcomm Security";
-	req_access = list(200)
+	name = "\improper Centcomm Security"
 	},
-/turf/open/floor/mainship{
-	dir = 4;
-	icon_regular_floor = "cargo_arrow";
-	icon_state = "cargo_arrow"
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 4
 	},
 /area/centcom)
 "cj" = (
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor{
-	dir = 2;
-	req_access = null
+	dir = 2
 	},
-/turf/open/floor/mainship{
-	dir = 4;
-	icon_regular_floor = "cargo_arrow";
-	icon_state = "cargo_arrow"
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 4
 	},
 /area/centcom)
 "ck" = (
@@ -721,20 +639,15 @@
 /area/centcom)
 "cl" = (
 /obj/structure/bed/chair/comfy{
-	icon_state = "comfychair";
 	dir = 1
 	},
 /turf/open/floor/mainship,
 /area/centcom)
 "cm" = (
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
+/turf/open/floor/mainship/cargo,
 /area/centcom/supplypod/loading/three)
 "cn" = (
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
+/turf/open/floor/mainship/cargo,
 /area/centcom/supplypod/loading/four)
 "co" = (
 /obj/structure/sign/safety/computer{
@@ -747,38 +660,20 @@
 /turf/open/floor/mainship,
 /area/centcom)
 "cp" = (
-/turf/open/floor/mainship{
-	icon_state = "test_floor4"
-	},
+/turf/open/floor/mainship/stripesquare,
 /area/centcom/supplypod/loading/three)
 "cq" = (
-/turf/open/floor/mainship{
-	icon_state = "test_floor4"
-	},
+/turf/open/floor/mainship/stripesquare,
 /area/centcom/supplypod/loading/four)
 "cr" = (
-/turf/open/floor/mainship{
-	icon_state = "cargo"
-	},
+/turf/open/floor/mainship/cargo,
 /area/centcom/supplypod/loading/ert)
-"cs" = (
-/obj/machinery/door/airlock/multi_tile/mainship/comdoor{
-	name = "\improper Cargo Pads";
-	req_access_txt = 200
-	},
-/turf/open/floor/mainship,
-/area/centcom)
 "ct" = (
-/obj/machinery/door/airlock/multi_tile/mainship/comdoor{
-	name = "\improper Cargo Pads";
-	req_access_txt = null
-	},
+/obj/machinery/door/airlock/multi_tile/mainship/comdoor/cargopads,
 /turf/open/floor/mainship,
 /area/centcom)
 "cu" = (
-/obj/machinery/door/airlock/multi_tile/mainship/secdoor{
-	req_access = null
-	},
+/obj/machinery/door/airlock/multi_tile/mainship/secdoor,
 /turf/open/floor/mainship,
 /area/centcom)
 "cv" = (
@@ -843,9 +738,7 @@
 "dW" = (
 /obj/structure/table,
 /obj/machinery/light,
-/obj/item/weapon/gun/smg/skorpion/upp,
-/obj/item/ammo_magazine/smg/skorpion,
-/obj/item/ammo_magazine/smg/skorpion,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "dX" = (
@@ -857,10 +750,7 @@
 /obj/structure/window/framed/mainship/hull{
 	name = "ultra-reinforced window"
 	},
-/turf/open/floor/mainship{
-	icon_state = "plating";
-	dir = 5
-	},
+/turf/open/floor/plating/mainship,
 /area/centcom)
 "ej" = (
 /turf/open/floor/plating{
@@ -877,7 +767,6 @@
 /area/centcom/control)
 "eX" = (
 /obj/structure/bed/chair/comfy{
-	icon_state = "comfychair";
 	dir = 4
 	},
 /turf/open/floor/mainship,
@@ -888,7 +777,6 @@
 /area/centcom)
 "eZ" = (
 /obj/structure/bed/chair/comfy{
-	icon_state = "comfychair";
 	dir = 8
 	},
 /turf/open/floor/mainship,
@@ -904,34 +792,23 @@
 /area/centcom)
 "fe" = (
 /obj/structure/window/framed/mainship/toughened,
-/turf/open/floor/mainship{
-	icon_state = "plating";
-	dir = 5
-	},
+/turf/open/floor/plating/mainship,
 /area/centcom/control)
 "ff" = (
-/obj/machinery/door/airlock/mainship/engineering{
-	dir = 1;
-	name = "\improper Server Room";
-	req_one_access_txt = null
+/obj/machinery/door/airlock/mainship/engineering/server_room{
+	dir = 1
 	},
 /turf/open/floor/mainship,
 /area/centcom/control)
 "fh" = (
-/turf/open/floor/mainship{
-	icon_state = "plating";
-	dir = 5
-	},
+/turf/open/floor/plating/mainship,
 /area/centcom/control)
 "fi" = (
 /obj/machinery/light,
 /turf/open/floor/mainship,
 /area/centcom/supply)
 "fl" = (
-/turf/open/floor/mainship{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
+/turf/open/floor/mainship/tcomms,
 /area/centcom/control)
 "fx" = (
 /turf/closed/wall/mainship/outer{
@@ -954,9 +831,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/centcom/ferry)
 "fY" = (
-/turf/open/floor/mainship{
-	dir = 2;
-	icon_state = "orange"
+/turf/open/floor/mainship/orange{
+	dir = 2
 	},
 /area/centcom)
 "fZ" = (
@@ -968,8 +844,7 @@
 /turf/open/floor/mainship,
 /area/centcom)
 "gc" = (
-/turf/open/floor/mainship{
-	icon_state = "orangecorner";
+/turf/open/floor/mainship/orange/corner{
 	dir = 8
 	},
 /area/centcom)
@@ -989,10 +864,8 @@
 	},
 /area/centcom/supply)
 "gg" = (
-/obj/machinery/door/airlock/mainship/marine/requisitions{
-	dir = 1;
-	name = "\improper ASRS Lift";
-	req_one_access_txt = null
+/obj/machinery/door/airlock/mainship/marine/requisitions/lift{
+	dir = 1
 	},
 /turf/open/floor/mainship,
 /area/centcom/supply)
@@ -1003,26 +876,22 @@
 /turf/open/floor/mainship,
 /area/centcom/supply)
 "gl" = (
-/turf/open/floor/mainship{
-	icon_state = "blue";
+/turf/open/floor/mainship/blue{
 	dir = 5
 	},
 /area/centcom)
 "gn" = (
-/turf/open/floor/mainship{
-	icon_state = "blue";
+/turf/open/floor/mainship/blue{
 	dir = 1
 	},
 /area/centcom)
 "gv" = (
-/turf/open/floor/mainship{
-	icon_state = "blue";
+/turf/open/floor/mainship/blue{
 	dir = 4
 	},
 /area/centcom)
 "gw" = (
-/turf/open/floor/mainship{
-	icon_state = "blue";
+/turf/open/floor/mainship/blue{
 	dir = 8
 	},
 /area/centcom)
@@ -1049,81 +918,52 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "redbluefull";
-	dir = 8
-	},
+/turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
 "hp" = (
 /turf/closed/wall/indestructible,
 /area/start)
 "in" = (
-/turf/open/floor/mainship{
-	icon_state = "test_floor4"
-	},
+/turf/open/floor/mainship/stripesquare,
 /area/centcom/supply)
 "ip" = (
-/turf/open/floor/mainship{
-	dir = 8;
-	icon_state = "red"
+/turf/open/floor/mainship/red{
+	dir = 8
 	},
 /area/centcom)
 "ir" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/centcom/supply)
 "iv" = (
-/turf/open/floor/mainship{
-	dir = 1;
-	icon_regular_floor = "cargo_arrow";
-	icon_state = "cargo_arrow"
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 1
 	},
 /area/centcom/supply)
-"iU" = (
-/turf/closed/wall/mainship/white,
-/area/shuttle/distress/start_big)
 "iV" = (
-/turf/open/floor/mainship{
-	icon_state = "blue"
-	},
+/turf/open/floor/mainship/blue,
 /area/centcom)
-"iW" = (
-/obj/structure/window/framed/mainship/white,
-/turf/open/floor/plating,
-/area/shuttle/distress/start_big)
-"je" = (
-/obj/structure/closet/crate,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
 "ji" = (
 /obj/effect/landmark/newplayer_start,
 /turf/open/floor,
 /area/start)
 "jv" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
+/obj/docking_port/stationary/ert_big/centcomm,
 /turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
+/area/centcom/ferry)
 "jA" = (
 /obj/machinery/light,
 /turf/open/floor/plating/mainship,
 /area/centcom/ferry)
 "kd" = (
-/turf/open/floor/mainship{
-	icon_state = "bluecorner"
-	},
+/turf/open/floor/mainship/blue/corner,
 /area/centcom)
 "kj" = (
-/turf/open/floor/mainship{
-	icon_state = "blue";
+/turf/open/floor/mainship/blue{
 	dir = 6
 	},
 /area/centcom)
 "kp" = (
 /obj/structure/bed/chair/wood/normal{
-	icon_state = "wooden_chair";
 	dir = 4
 	},
 /turf/open/floor/carpet{
@@ -1131,1138 +971,9 @@
 	dir = 1
 	},
 /area/centcom)
-"kt" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
 "kx" = (
 /turf/closed/wall/indestructible/splashscreen,
 /area/start)
-"ky" = (
-/obj/structure/closet/secure_closet/personal,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"kz" = (
-/obj/structure/table/mainship,
-/obj/item/flashlight/lamp,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"kA" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/rack,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"kB" = (
-/obj/structure/largecrate/random/case/small,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"kC" = (
-/obj/machinery/bioprinter{
-	stored_metal = 1000
-	},
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"kD" = (
-/obj/structure/sink,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"kE" = (
-/obj/structure/closet/secure_closet/medical2,
-/obj/item/storage/box/gloves{
-	pixel_x = -5;
-	pixel_y = -5
-	},
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"kF" = (
-/obj/item/storage/surgical_tray,
-/obj/structure/table/mainship,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"kG" = (
-/obj/machinery/microwave,
-/obj/structure/table/mainship,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"kH" = (
-/turf/open/floor/mainship,
-/area/shuttle/distress/start_big)
-"kI" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/bed,
-/obj/item/bedsheet/brown,
-/turf/open/floor/mainship,
-/area/shuttle/distress/start_big)
-"kJ" = (
-/obj/structure/largecrate/random/barrel/blue,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"kK" = (
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"kL" = (
-/obj/machinery/door/airlock/mainship/medical{
-	name = "Operating Theatre";
-	req_one_access_txt = "0"
-	},
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"kM" = (
-/obj/machinery/optable,
-/obj/item/tank/anesthetic,
-/obj/item/clothing/mask/breath/medical,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"kN" = (
-/obj/structure/table/mainship,
-/obj/item/storage/box/donkpockets,
-/obj/item/storage/box/donkpockets,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"kO" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"kP" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"kQ" = (
-/obj/structure/bed,
-/obj/item/bedsheet/brown,
-/turf/open/floor/mainship,
-/area/shuttle/distress/start_big)
-"kR" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 2
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"kS" = (
-/obj/machinery/vending/medical,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"kT" = (
-/obj/machinery/iv_drip,
-/obj/structure/mirror{
-	pixel_y = -28
-	},
-/obj/item/reagent_containers/blood/OMinus,
-/obj/item/reagent_containers/blood/OMinus,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"kU" = (
-/obj/structure/table/mainship,
-/obj/item/storage/pouch/medkit,
-/obj/item/storage/pouch/medkit,
-/obj/item/storage/pouch/medical,
-/obj/item/storage/pouch/medical,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/storage/belt/combatLifesaver,
-/obj/item/reagent_containers/spray/surgery,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"kV" = (
-/obj/structure/table/mainship,
-/obj/item/folder/black{
-	pixel_x = 3;
-	pixel_y = 5
-	},
-/obj/item/map/current_map,
-/turf/open/floor/carpet/edge2{
-	dir = 9
-	},
-/area/shuttle/distress/start_big)
-"kW" = (
-/obj/structure/bed/chair/office/light,
-/turf/open/floor/carpet/edge2{
-	dir = 5
-	},
-/area/shuttle/distress/start_big)
-"kX" = (
-/turf/open/floor/wood,
-/area/shuttle/distress/start_big)
-"kY" = (
-/obj/structure/table/mainship,
-/obj/structure/paper_bin,
-/obj/item/tool/pen,
-/turf/open/floor/wood,
-/area/shuttle/distress/start_big)
-"kZ" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 2;
-	name = "Crew Bunks"
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"la" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 4
-	},
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"lb" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 8
-	},
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"lc" = (
-/obj/machinery/door/airlock/mainship/medical{
-	dir = 2;
-	name = "Operating Theatre";
-	req_one_access_txt = "0"
-	},
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"ld" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/communications,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/carpet/edge2{
-	dir = 10
-	},
-/area/shuttle/distress/start_big)
-"le" = (
-/obj/structure/table/mainship,
-/obj/item/flashlight/lamp/green,
-/turf/open/floor/carpet/edge2{
-	dir = 6
-	},
-/area/shuttle/distress/start_big)
-"lf" = (
-/obj/structure/bed,
-/obj/item/bedsheet/rd,
-/turf/open/floor/wood,
-/area/shuttle/distress/start_big)
-"lg" = (
-/obj/structure/rack,
-/obj/item/storage/belt/utility/full,
-/obj/item/storage/backpack/marine/satchel/tech,
-/obj/item/storage/toolbox/electrical,
-/obj/item/clothing/tie/storage/webbing,
-/obj/item/cell/infinite,
-/obj/item/cell/infinite,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"lh" = (
-/obj/machinery/vending/engivend,
-/obj/item/radio/intercom/general,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"li" = (
-/obj/structure/rack,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"lj" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"lk" = (
-/obj/structure/bed/chair/dropship/passenger,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"ll" = (
-/obj/structure/bed/chair/dropship/passenger,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"lm" = (
-/obj/structure/rack,
-/obj/item/storage/toolbox/mechanical,
-/obj/item/radio,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"ln" = (
-/obj/structure/rack,
-/obj/item/storage/firstaid/regular,
-/obj/item/storage/belt/combatLifesaver,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"lo" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-21"
-	},
-/turf/open/floor/wood,
-/area/shuttle/distress/start_big)
-"lp" = (
-/obj/structure/bed/chair/office/light{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/shuttle/distress/start_big)
-"lq" = (
-/obj/structure/closet/secure_closet/personal/cabinet,
-/turf/open/floor/wood,
-/area/shuttle/distress/start_big)
-"lr" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/table/mainship,
-/obj/machinery/computer/security,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"ls" = (
-/obj/structure/table/mainship,
-/obj/item/clipboard,
-/obj/item/folder/red,
-/obj/item/restraints/handcuffs,
-/obj/item/restraints/handcuffs,
-/obj/item/restraints/handcuffs,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"lt" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/secure_data,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"lu" = (
-/obj/machinery/autolathe,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"lv" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"lw" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"lx" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 6
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 5
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 9
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"ly" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"lz" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 10
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 9
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"lA" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 6
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 5
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"lB" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 6
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 10
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 5
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 9
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"lC" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
-/turf/open/floor/mainship{
-	icon_state = "plating";
-	dir = 5
-	},
-/area/shuttle/distress/start_big)
-"lD" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 10
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"lE" = (
-/obj/machinery/door/airlock/mainship/command{
-	dir = 1;
-	name = "Captain's Quarters"
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"lF" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/mainship{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
-/area/shuttle/distress/start_big)
-"lG" = (
-/obj/structure/bed/chair/office/light{
-	dir = 1
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"lH" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/mainship{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
-/area/shuttle/distress/start_big)
-"lI" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/card,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"lJ" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
-/obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
-	},
-/obj/machinery/power/apc/hyper{
-	dir = 4
-	},
-/turf/open/floor/mainship{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
-/area/shuttle/distress/start_big)
-"lK" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 10
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 9
-	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"lL" = (
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"lM" = (
-/obj/machinery/door/airlock/mainship/engineering{
-	name = "Aft Storage"
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"lN" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"lO" = (
-/obj/machinery/door/airlock/mainship/command{
-	dir = 4;
-	name = "Bridge"
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"lP" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/machinery/light/small,
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"lQ" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"lR" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 6
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 10
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 9
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 5
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"lS" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"lT" = (
-/turf/open/floor/mainship{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
-/area/shuttle/distress/start_big)
-"lU" = (
-/obj/structure/bed/chair/office/light{
-	dir = 4
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 6
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 5
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"lV" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
-/turf/open/floor/mainship{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
-/area/shuttle/distress/start_big)
-"lW" = (
-/obj/structure/table/mainship,
-/obj/item/stack/sheet/metal{
-	amount = 50;
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/stack/sheet/metal{
-	amount = 50;
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/stack/sheet/wood{
-	amount = 50
-	},
-/obj/item/stack/sheet/wood{
-	amount = 50
-	},
-/obj/item/stack/sheet/plasteel{
-	amount = 30
-	},
-/obj/item/stack/sheet/plasteel{
-	amount = 30
-	},
-/obj/item/stack/sheet/glass{
-	amount = 50
-	},
-/obj/item/stack/sheet/glass{
-	amount = 50
-	},
-/obj/item/stack/cable_coil,
-/obj/item/stack/cable_coil,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"lX" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"lY" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"lZ" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 6
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 10
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 5
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"ma" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 6
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 9
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 10
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 5
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"mb" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 9
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"mc" = (
-/obj/machinery/door/airlock/mainship/command{
-	dir = 1;
-	name = "Captain's Storage"
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"md" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
-/turf/open/floor/mainship{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
-/area/shuttle/distress/start_big)
-"me" = (
-/obj/structure/bed/chair/office/light,
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"mf" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/mainship{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
-/area/shuttle/distress/start_big)
-"mg" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/communications,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"mh" = (
-/obj/structure/rack,
-/obj/item/storage/belt/utility/full,
-/obj/item/storage/backpack/marine/engineerpack,
-/obj/item/storage/toolbox/mechanical,
-/obj/item/clothing/tie/storage/webbing,
-/obj/item/clothing/glasses/welding,
-/obj/item/clothing/glasses/welding,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"mi" = (
-/obj/structure/reagent_dispensers/fueltank,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"mj" = (
-/obj/structure/rack,
-/obj/item/storage/firstaid/adv,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"mk" = (
-/obj/structure/bed/chair/dropship/passenger,
-/obj/machinery/light,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"ml" = (
-/obj/structure/table/mainship,
-/obj/item/clothing/suit/armor/bulletproof,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"mm" = (
-/obj/structure/closet/secure_closet/personal,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/beanbag{
-	pixel_x = -3;
-	pixel_y = -5
-	},
-/obj/item/weapon/gun/shotgun/combat,
-/obj/item/weapon/gun/shotgun/combat,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"mo" = (
-/obj/structure/rack,
-/obj/item/ammo_magazine/smg/standard_smg,
-/obj/item/ammo_magazine/smg/standard_smg,
-/obj/item/ammo_magazine/smg/standard_smg,
-/obj/item/weapon/gun/smg/m39/elite,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"mp" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/table/mainship,
-/obj/machinery/computer/med_data/laptop,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"mq" = (
-/obj/machinery/computer/crew,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"mr" = (
-/obj/structure/table/mainship,
-/obj/structure/paper_bin,
-/obj/item/tool/pen,
-/obj/item/tool/pen,
-/obj/item/tool/pen,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"ms" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 2;
-	name = "Secure Storage"
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"mt" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 2;
-	name = "Crew Lockers"
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"mu" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/table/mainship,
-/obj/item/ammo_magazine/pistol/vp70{
-	pixel_x = 5
-	},
-/obj/item/ammo_magazine/pistol/vp70{
-	pixel_x = 5
-	},
-/obj/item/weapon/gun/pistol/vp70{
-	pixel_y = 4
-	},
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"mv" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"mw" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 10
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 9
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"mx" = (
-/obj/structure/closet/secure_closet/securecom{
-	desc = "You could probably get thrown out an airlock just by looking at this...";
-	name = "captain's secure box"
-	},
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"my" = (
-/obj/machinery/cryopod/right,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"mz" = (
-/obj/structure/rack,
-/obj/item/storage/toolbox/emergency{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/toolbox/emergency{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/box/m94,
-/obj/item/storage/box/m94,
-/obj/item/storage/box/zipcuffs,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"mA" = (
-/obj/structure/closet,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"mB" = (
-/obj/machinery/door/window/westright{
-	dir = 2
-	},
-/obj/machinery/shower{
-	icon_state = "shower";
-	dir = 4
-	},
-/obj/item/tool/soap,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"mC" = (
-/obj/structure/rack,
-/obj/item/ammo_magazine/smg/standard_smg,
-/obj/item/ammo_magazine/smg/standard_smg,
-/obj/item/weapon/gun/smg/m39/elite,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"mD" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"mE" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"mF" = (
-/obj/structure/reagent_dispensers/watertank,
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/mask/gas,
-/obj/item/tool/extinguisher,
-/obj/item/tool/extinguisher,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"mG" = (
-/obj/structure/largecrate/random/barrel/white,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"mH" = (
-/obj/structure/closet,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"mI" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 6
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 5
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"mJ" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 4;
-	name = "Restroom"
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"mK" = (
-/obj/structure/mirror{
-	pixel_x = 28
-	},
-/obj/structure/sink{
-	dir = 4
-	},
-/turf/open/floor/freezer,
-/area/shuttle/distress/start_big)
-"mL" = (
-/obj/structure/table/mainship,
-/obj/structure/paper_bin{
-	pixel_x = -5;
-	pixel_y = 5
-	},
-/obj/item/storage/box/nt_mre,
-/obj/item/storage/box/nt_mre,
-/obj/item/storage/box/nt_mre,
-/obj/item/tool/pen,
-/obj/item/tool/pen,
-/obj/item/tool/pen,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"mM" = (
-/obj/structure/table/mainship,
-/obj/item/clipboard,
-/obj/item/clipboard,
-/obj/item/folder,
-/obj/item/folder,
-/obj/item/tool/crowbar,
-/obj/item/tool/crowbar,
-/obj/item/tool/hand_labeler,
-/obj/item/tool/hand_labeler,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"mN" = (
-/obj/structure/table/mainship,
-/obj/structure/largecrate/random/case/small{
-	pixel_y = 5
-	},
-/obj/item/storage/backpack/lightpack,
-/obj/item/storage/backpack/lightpack,
-/obj/item/storage/backpack/lightpack,
-/obj/item/storage/box/bodybags{
-	pixel_x = 5;
-	pixel_y = 5
-	},
-/obj/item/radio,
-/obj/item/radio,
-/obj/item/radio,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"mO" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/largecrate/random/case/double,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"mP" = (
-/obj/structure/table/mainship,
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
-"mQ" = (
-/obj/structure/toilet{
-	icon_state = "toilet00";
-	dir = 1
-	},
-/turf/open/floor/freezer,
-/area/shuttle/distress/start_big)
 "mR" = (
 /turf/open/floor/carpet{
 	icon_state = "carpetside";
@@ -2271,7 +982,6 @@
 /area/centcom)
 "mS" = (
 /obj/structure/bed/chair/wood/normal{
-	icon_state = "wooden_chair";
 	dir = 8
 	},
 /turf/open/floor/carpet{
@@ -2300,7 +1010,6 @@
 /area/centcom)
 "na" = (
 /obj/structure/bed/chair/wood/normal{
-	icon_state = "wooden_chair";
 	dir = 4
 	},
 /turf/open/floor/carpet,
@@ -2313,7 +1022,6 @@
 /area/centcom)
 "nc" = (
 /obj/structure/bed/chair/wood/normal{
-	icon_state = "wooden_chair";
 	dir = 8
 	},
 /turf/open/floor/carpet,
@@ -2331,54 +1039,23 @@
 	dir = 4
 	},
 /area/centcom)
-"nh" = (
-/turf/closed/wall/mainship/white{
-	tiles_with = list(/turf/closed/wall/mainship/white,/obj/structure/window/framed/mainship/white)
-	},
-/area/shuttle/distress/start_big)
-"ni" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 2
-	},
-/obj/machinery/door/poddoor/shutters/transit/open{
-	id = "top_ERTLARGE"
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
-"nj" = (
-/obj/structure/largecrate/random/barrel/red,
-/obj/machinery/door_control{
-	id = "top_ERTLARGE";
-	name = "shutter controller";
-	pixel_x = 32
-	},
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
 "nk" = (
-/turf/open/floor/mainship{
-	icon_state = "bluecorner";
+/turf/open/floor/mainship/blue/corner{
 	dir = 4
 	},
 /area/centcom)
 "np" = (
-/turf/open/floor/mainship{
-	dir = 8;
-	icon_regular_floor = "cargo_arrow";
-	icon_state = "cargo_arrow"
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 8
 	},
 /area/centcom/supply)
 "nq" = (
-/turf/open/floor/mainship{
-	dir = 4;
-	icon_regular_floor = "cargo_arrow";
-	icon_state = "cargo_arrow"
+/turf/open/floor/mainship/cargo/arrow{
+	dir = 4
 	},
 /area/centcom/supply)
 "nr" = (
-/turf/open/floor/mainship{
-	icon_state = "bluecorner";
+/turf/open/floor/mainship/blue/corner{
 	dir = 8
 	},
 /area/centcom)
@@ -2416,10 +1093,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/centcom/supply)
 "nK" = (
-/turf/open/floor/mainship{
-	icon_regular_floor = "cargo_arrow";
-	icon_state = "cargo_arrow"
-	},
+/turf/open/floor/mainship/cargo/arrow,
 /area/centcom/supply)
 "nL" = (
 /obj/structure/window/framed/mainship/toughened,
@@ -2435,7 +1109,6 @@
 /area/centcom)
 "nP" = (
 /obj/structure/bed/chair/wood/normal{
-	icon_state = "wooden_chair";
 	dir = 4
 	},
 /turf/open/floor/carpet{
@@ -2450,7 +1123,6 @@
 /area/centcom)
 "nR" = (
 /obj/structure/bed/chair/wood/normal{
-	icon_state = "wooden_chair";
 	dir = 8
 	},
 /turf/open/floor/carpet{
@@ -2479,9 +1151,7 @@
 /turf/open/floor/grass,
 /area/centcom)
 "nX" = (
-/obj/structure/bookcase{
-	icon_state = "book-5"
-	},
+/obj/structure/bookcase,
 /turf/open/floor/wood,
 /area/centcom)
 "nY" = (
@@ -2495,8 +1165,7 @@
 /turf/open/floor/plating/mainship,
 /area/centcom/ferry)
 "od" = (
-/turf/open/floor/mainship{
-	icon_state = "orange";
+/turf/open/floor/mainship/orange{
 	dir = 1
 	},
 /area/centcom)
@@ -2509,8 +1178,7 @@
 /turf/open/floor/mainship,
 /area/centcom)
 "of" = (
-/turf/open/floor/mainship{
-	icon_state = "orangecorner";
+/turf/open/floor/mainship/orange/corner{
 	dir = 1
 	},
 /area/centcom)
@@ -2525,41 +1193,18 @@
 /obj/structure/flora/ausbushes/stalkybush,
 /turf/open/floor/grass,
 /area/centcom)
-"oU" = (
-/obj/structure/closet/crate,
-/obj/machinery/door_control{
-	id = "bot_ERTLARGE";
-	name = "shutter controller";
-	pixel_x = 32
-	},
-/turf/open/floor/mainship{
-	icon_state = "plate"
-	},
-/area/shuttle/distress/start_big)
 "oW" = (
-/turf/open/floor/mainship{
-	icon_state = "bluecorner";
+/turf/open/floor/mainship/blue/corner{
 	dir = 1
 	},
 /area/centcom)
-"oX" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 2
-	},
-/obj/machinery/door/poddoor/shutters/transit/open{
-	id = "bot_ERTLARGE"
-	},
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/start_big)
 "oY" = (
 /obj/machinery/door/poddoor/shutters/mainship/open/indestructible{
 	dir = 4;
 	id = "CC_BigshuttleHallway";
 	name = "\improper Hangar Shutters"
 	},
-/turf/open/floor/mainship{
-	icon_state = "orangecorner"
-	},
+/turf/open/floor/mainship/orange/corner,
 /area/centcom)
 "oZ" = (
 /obj/machinery/door/poddoor/shutters/mainship/open/indestructible{
@@ -2567,8 +1212,7 @@
 	id = "CC_BigshuttleHallway";
 	name = "\improper Hangar Shutters"
 	},
-/turf/open/floor/mainship{
-	icon_state = "orangecorner";
+/turf/open/floor/mainship/orange/corner{
 	dir = 4
 	},
 /area/centcom)
@@ -2606,7 +1250,6 @@
 /area/deathmatch)
 "pg" = (
 /obj/structure/bed/chair/dropship/passenger{
-	icon_state = "shuttle_chair";
 	dir = 8
 	},
 /obj/machinery/light{
@@ -2621,7 +1264,6 @@
 /area/deathmatch)
 "pi" = (
 /obj/structure/bed/chair/dropship/passenger{
-	icon_state = "shuttle_chair";
 	dir = 8
 	},
 /obj/effect/landmark/deathmatch,
@@ -2629,7 +1271,6 @@
 /area/deathmatch)
 "pj" = (
 /obj/structure/bed/chair/dropship/passenger{
-	icon_state = "shuttle_chair";
 	dir = 4
 	},
 /obj/effect/landmark/deathmatch,
@@ -2713,13 +1354,8 @@
 /obj/structure/flora/ausbushes/grassybush,
 /turf/open/ground/grass,
 /area/deathmatch)
-"pF" = (
-/obj/item/weapon/katana,
-/turf/open/ground/river,
-/area/deathmatch)
 "pG" = (
 /obj/structure/bed/chair/dropship/passenger{
-	icon_state = "shuttle_chair";
 	dir = 4
 	},
 /turf/open/shuttle/brig,
@@ -2729,15 +1365,13 @@
 /area/deathmatch)
 "pI" = (
 /obj/structure/bed/chair/dropship/passenger{
-	icon_state = "shuttle_chair";
 	dir = 8
 	},
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "pJ" = (
 /obj/structure/table,
-/obj/item/ammo_magazine/revolver/upp,
-/obj/item/weapon/gun/revolver/upp,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor,
 /area/deathmatch)
 "pK" = (
@@ -2761,7 +1395,7 @@
 /turf/open/ground/grass,
 /area/deathmatch)
 "pP" = (
-/obj/item/weapon/gun/shotgun/pump,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "pQ" = (
@@ -2813,7 +1447,6 @@
 /area/deathmatch)
 "qc" = (
 /obj/structure/bed/chair/dropship/passenger{
-	icon_state = "shuttle_chair";
 	dir = 8
 	},
 /obj/machinery/light{
@@ -2823,7 +1456,6 @@
 /area/deathmatch)
 "qd" = (
 /obj/structure/bed/chair/dropship/passenger{
-	icon_state = "shuttle_chair";
 	dir = 4
 	},
 /obj/machinery/light{
@@ -2861,9 +1493,7 @@
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "ql" = (
-/turf/open/floor{
-	icon_state = "platingdmg3"
-	},
+/turf/open/floor/plating/dmg3,
 /area/deathmatch)
 "qm" = (
 /obj/machinery/door/airlock/mainship/generic{
@@ -2872,9 +1502,7 @@
 /turf/open/shuttle/brig,
 /area/deathmatch)
 "qn" = (
-/turf/open/floor{
-	icon_state = "platingdmg1"
-	},
+/turf/open/floor/plating/dmg1,
 /area/deathmatch)
 "qo" = (
 /obj/structure/lattice,
@@ -3061,7 +1689,7 @@
 /area/deathmatch)
 "rc" = (
 /obj/structure/table,
-/obj/item/weapon/gun/shotgun/double,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor,
 /area/deathmatch)
 "rd" = (
@@ -3073,10 +1701,6 @@
 /obj/item/multitool,
 /turf/open/floor,
 /area/deathmatch)
-"rf" = (
-/obj/item/weapon/gun/rifle/ak47/carbine,
-/turf/open/shuttle/brig,
-/area/deathmatch)
 "rg" = (
 /obj/structure/rack,
 /obj/item/storage/box/MRE,
@@ -3085,45 +1709,25 @@
 /obj/item/storage/box/MRE,
 /turf/open/floor,
 /area/deathmatch)
-"rh" = (
-/obj/item/weapon/gun/pistol/b92fs,
-/turf/open/ground/river,
-/area/deathmatch)
 "ri" = (
 /obj/structure/rack,
-/obj/item/weapon/gun/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
-/obj/item/ammo_magazine/smg/mp5,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor,
 /area/deathmatch)
 "rj" = (
 /obj/structure/rack,
-/obj/item/weapon/gun/smg/p90,
-/obj/item/ammo_magazine/smg/p90,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor,
 /area/deathmatch)
 "rk" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/pistol/m1911,
-/obj/item/weapon/gun/pistol/m1911,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor,
-/area/deathmatch)
-"rl" = (
-/obj/structure/rack,
-/obj/item/weapon/gun/rifle/m16,
-/obj/item/ammo_magazine/rifle/m16,
-/obj/item/ammo_magazine/rifle/m16,
-/turf/open/floor,
-/area/deathmatch)
-"rm" = (
-/obj/item/weapon/gun/rifle/ak47,
-/turf/open/shuttle/brig,
 /area/deathmatch)
 "rn" = (
 /obj/structure/table,
 /obj/machinery/light,
-/obj/item/weapon/gun/flare,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor,
 /area/deathmatch)
 "ro" = (
@@ -3148,15 +1752,11 @@
 /turf/open/ground/grass,
 /area/deathmatch)
 "rt" = (
-/obj/item/weapon/gun/revolver/mateba/admiral,
-/turf/open/ground/river,
-/area/deathmatch)
-"ru" = (
-/obj/item/weapon/twohanded/glaive,
+/obj/effect/landmark/weapon_spawn/tier5_weapon_spawn,
 /turf/open/ground/river,
 /area/deathmatch)
 "rv" = (
-/obj/item/weapon/baseballbat/metal,
+/obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/ground/river,
 /area/deathmatch)
 "si" = (
@@ -3166,9 +1766,8 @@
 /turf/open/floor/wood,
 /area/centcom)
 "sO" = (
-/turf/open/floor/mainship{
-	dir = 4;
-	icon_state = "red"
+/turf/open/floor/mainship/red{
+	dir = 4
 	},
 /area/centcom)
 "tW" = (
@@ -3184,10 +1783,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "redbluefull";
-	dir = 8
-	},
+/turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
 "wi" = (
 /obj/machinery/light{
@@ -3217,8 +1813,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/mainship{
-	icon_state = "blue";
+/turf/open/floor/mainship/blue{
 	dir = 1
 	},
 /area/centcom)
@@ -3239,9 +1834,8 @@
 /turf/open/floor/grass,
 /area/centcom)
 "zQ" = (
-/turf/open/floor/mainship{
-	dir = 4;
-	icon_state = "redcorner"
+/turf/open/floor/mainship/red/corner{
+	dir = 4
 	},
 /area/centcom)
 "AS" = (
@@ -3266,10 +1860,7 @@
 /area/tdome/tdomeadmin)
 "DK" = (
 /obj/machinery/light,
-/turf/open/floor/mainship{
-	icon_plating = "tcomms";
-	icon_state = "tcomms"
-	},
+/turf/open/floor/mainship/tcomms,
 /area/centcom/control)
 "Eh" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -3283,6 +1874,10 @@
 /obj/machinery/light,
 /turf/open/floor,
 /area/tdome)
+"GP" = (
+/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/turf/open/ground/river,
+/area/deathmatch)
 "Je" = (
 /obj/machinery/light{
 	dir = 4
@@ -3299,8 +1894,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/mainship{
-	icon_state = "blue";
+/turf/open/floor/mainship/blue{
 	dir = 4
 	},
 /area/centcom)
@@ -3309,9 +1903,7 @@
 /turf/open/floor/mainship,
 /area/centcom/ferry)
 "MS" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-21"
-	},
+/obj/structure/flora/pottedplant/twentyone,
 /turf/open/floor/mainship,
 /area/centcom)
 "Om" = (
@@ -3324,9 +1916,8 @@
 /turf/open/ai_visible,
 /area/ai_multicam_room)
 "Pw" = (
-/turf/open/floor/mainship{
-	dir = 1;
-	icon_state = "redcorner"
+/turf/open/floor/mainship/red/corner{
+	dir = 1
 	},
 /area/centcom)
 "QN" = (
@@ -3353,10 +1944,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor{
-	icon_state = "redbluefull";
-	dir = 8
-	},
+/turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
 "Wt" = (
 /obj/machinery/light{
@@ -3378,9 +1966,7 @@
 /area/centcom)
 "XV" = (
 /obj/machinery/light,
-/turf/open/floor/mainship{
-	icon_state = "blue"
-	},
+/turf/open/floor/mainship/blue,
 /area/centcom)
 "XZ" = (
 /obj/machinery/light{
@@ -3395,9 +1981,7 @@
 /turf/open/floor/mainship,
 /area/centcom/supply)
 "ZT" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-21"
-	},
+/obj/structure/flora/pottedplant/twentyone,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -4460,11 +3044,11 @@ fC
 fC
 fC
 fC
-iU
-iW
-iU
-iW
-iU
+fC
+fC
+fC
+fC
+fC
 fC
 fC
 fC
@@ -4561,13 +3145,13 @@ fC
 fC
 fC
 fC
-iU
-iU
-lu
-lJ
-lW
-iU
-iU
+fC
+fC
+fC
+fC
+fC
+fC
+fC
 fC
 fC
 fC
@@ -4663,13 +3247,13 @@ fC
 fC
 fC
 fC
-iW
-lg
-lv
-lK
-lX
-mh
-iW
+fC
+fC
+fC
+fC
+fC
+fC
+fC
 fC
 fC
 fC
@@ -4762,19 +3346,19 @@ fC
 fC
 fC
 fC
-iU
-iW
-iU
-iU
-lh
-lw
-lL
-lY
-mi
-iU
-iU
-iW
-iU
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
 fC
 fC
 fC
@@ -4863,21 +3447,21 @@ fx
 fC
 fC
 fC
-iU
-iU
-kG
-kN
-iU
-iU
-iU
-lM
-iU
-iU
-iU
-my
-my
-iU
-iU
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
 fC
 fC
 fC
@@ -4965,21 +3549,21 @@ fx
 fC
 fC
 fC
-iW
-ky
-kH
-kO
-iU
-li
-lw
-lL
-lY
-mj
-iU
-jv
-mD
-mL
-iW
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
 fC
 fC
 fC
@@ -5067,21 +3651,21 @@ fx
 fC
 fC
 fC
-iW
-ky
-kH
-kP
-kZ
-lj
-lx
-kt
-lZ
-lj
-ms
-kt
-mE
-mM
-iW
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
 fC
 fC
 fC
@@ -5169,21 +3753,21 @@ fx
 fC
 fC
 fC
-iU
-kz
-kI
-kQ
-iU
-lk
-ly
-lk
-ly
-lk
-iU
-mz
-mF
-mN
-iU
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
 fC
 fC
 fC
@@ -5270,23 +3854,23 @@ aa
 fx
 fC
 fC
-nh
-iU
-iU
-iU
-iU
-iU
-ll
-ly
-lk
-ly
-mk
-iU
-iU
-iU
-iU
-iU
-nh
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
 fC
 fC
 fx
@@ -5372,23 +3956,23 @@ aa
 fx
 Om
 fC
-iW
-je
-kA
-kJ
-iW
-la
-lm
-ly
-lk
-ly
-li
-la
-iW
-mG
-mO
-li
-iW
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
 fC
 jA
 fx
@@ -5474,23 +4058,23 @@ aa
 fx
 fC
 fC
-ni
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
 jv
-jv
-jv
-kR
-jv
-jv
-lz
-jv
-lz
-jv
-jv
-kR
-jv
-jv
-jv
-oX
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
 fC
 fC
 fx
@@ -5576,23 +4160,23 @@ aa
 fx
 fC
 fC
-ni
-kt
-kt
-kt
-kR
-kt
-kt
-lA
-kt
-lA
-kt
-kt
-kR
-kt
-kt
-kt
-oX
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
 fC
 fC
 fx
@@ -5678,23 +4262,23 @@ aa
 fx
 fC
 fC
-iW
-nj
-kB
-kK
-iW
-lb
-li
-ly
-lk
-ly
-li
-lb
-iW
-li
-mP
-oU
-iW
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
 fC
 fC
 fx
@@ -5780,23 +4364,23 @@ aa
 fx
 fC
 fC
-nh
-iU
-iU
-kL
-iU
-iU
-ll
-ly
-lk
-ly
-mk
-iU
-iU
-iU
-iU
-iU
-nh
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
 fC
 fC
 fx
@@ -5883,21 +4467,21 @@ fx
 fC
 fC
 fC
-iU
-kC
-kK
-kS
-iU
-lk
-ly
-lk
-ly
-lk
-iU
-mA
-mH
-mA
-iU
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
 fC
 fC
 fC
@@ -5985,21 +4569,21 @@ fx
 fC
 fC
 fC
-iU
-kD
-kH
-kK
-lc
-lj
-lB
-lN
-ma
-lj
-mt
-lN
-mI
-lN
-iW
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
 fC
 fC
 fC
@@ -6087,21 +4671,21 @@ fx
 Om
 fC
 fC
-iU
-kE
-kH
-kT
-iU
-lk
-lC
-lk
-ly
-lk
-iU
-iU
-mJ
-iU
-iU
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
 fC
 fC
 jA
@@ -6189,21 +4773,21 @@ fx
 fC
 fC
 fC
-iU
-kF
-kM
-kU
-iU
-ln
-lD
-jv
-mb
-ln
-iU
-mB
-mK
-mQ
-iU
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
 fC
 fC
 fC
@@ -6291,21 +4875,21 @@ fx
 fD
 fD
 fD
-iU
-iU
-iU
-iU
-iU
-iU
-iU
-lO
-iU
-iU
-iU
-iU
-iU
-iU
-iU
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
 fD
 fD
 fD
@@ -6395,17 +4979,17 @@ fF
 fF
 gd
 fC
-iU
-kV
-ld
-lo
-iU
-lP
-iU
-ml
-mu
-ml
-iU
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
 fC
 ob
 fF
@@ -6497,17 +5081,17 @@ fW
 fF
 gd
 fC
-iW
-kW
-le
-lp
-iU
-lQ
-iW
-mm
-mv
-mm
-iU
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
 fC
 ob
 fF
@@ -6599,17 +5183,17 @@ fW
 fF
 gd
 fC
-iW
-kX
-kX
-kX
-lE
-lR
-mc
-lj
-mw
-lj
-iU
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
 fC
 ob
 fF
@@ -6701,17 +5285,17 @@ fW
 fF
 gd
 fC
-iU
-kY
-lf
-lq
-iU
-lS
-iW
-mo
-mx
-mC
-iU
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
 fC
 ob
 fF
@@ -6803,17 +5387,17 @@ fW
 fF
 gd
 fC
-iU
-iW
-iU
-iU
-iU
-lO
-iU
-iU
-iU
-iU
-iU
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
+fC
 fC
 ob
 fF
@@ -6907,13 +5491,13 @@ gd
 fC
 fC
 fC
-iU
-lr
-lF
-lL
-md
-mp
-iU
+fC
+fC
+fC
+fC
+fC
+fC
+fC
 fC
 fC
 fC
@@ -7009,13 +5593,13 @@ gd
 fC
 fC
 fC
-iW
-ls
-lG
-lT
-me
-mq
-iW
+fC
+fC
+fC
+fC
+fC
+fC
+fC
 fC
 fC
 fC
@@ -7111,13 +5695,13 @@ gd
 fC
 fC
 fC
-iU
-lt
-lH
-lU
-mf
-mr
-iU
+fC
+fC
+fC
+fC
+fC
+fC
+fC
 fC
 fC
 fC
@@ -7213,13 +5797,13 @@ gd
 fC
 fC
 fC
-iU
-iU
-lI
-lV
-mg
-iU
-iU
+fC
+fC
+fC
+fC
+fC
+fC
+fC
 fC
 fC
 fC
@@ -7316,11 +5900,11 @@ fC
 fC
 fC
 fC
-iU
-iW
-iW
-iW
-iU
+fC
+fC
+fC
+fC
+fC
 fC
 fC
 fC
@@ -11795,7 +10379,7 @@ eo
 eo
 eo
 Xu
-cs
+ct
 eo
 eo
 yW
@@ -14973,7 +13557,7 @@ qe
 rg
 qQ
 rj
-rl
+rj
 qe
 pX
 pS
@@ -15990,8 +14574,8 @@ pz
 pz
 pz
 pz
-rh
 pz
+GP
 pz
 pe
 pz
@@ -16087,7 +14671,7 @@ pz
 pe
 pz
 pz
-ru
+GP
 pz
 pz
 pz
@@ -16275,7 +14859,7 @@ pe
 pz
 pz
 pz
-pz
+GP
 pz
 pz
 pz
@@ -16377,7 +14961,7 @@ pz
 pz
 pz
 pz
-pF
+pz
 pz
 pz
 pz
@@ -17315,7 +15899,7 @@ pC
 pC
 pG
 pG
-rf
+pP
 pH
 qn
 pH
@@ -17728,7 +16312,7 @@ qd
 pG
 pj
 pH
-rm
+pP
 rr
 pt
 pt

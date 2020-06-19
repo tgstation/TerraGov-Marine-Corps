@@ -71,7 +71,7 @@
 
 //a very literal box of ammunition.
 /obj/item/ammo_magazine/magnum
-	name = "Box of .44 magnum"
+	name = "box of .44 magnum"
 	icon_state = "box45" //Maybe change this
 	default_ammo = /datum/ammo/bullet/revolver
 	caliber = ".44"
@@ -118,7 +118,7 @@
 //357 REVOLVER //
 
 /obj/item/ammo_magazine/internal/revolver/small
-	default_ammo = /datum/ammo/bullet/revolver/small
+	default_ammo = /datum/ammo/bullet/revolver/ricochet/four
 	caliber = ".357"
 	gun_type = /obj/item/weapon/gun/revolver/small
 

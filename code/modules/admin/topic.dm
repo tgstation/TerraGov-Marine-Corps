@@ -461,6 +461,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		to_chat(H, "<span class='boldnotice'>Please stand by for a message from TGMC:<br/>[input]</span>")
+		var/sound/S = sound('sound/effects/sos-morse-code.ogg', channel = CHANNEL_ADMIN)
+		SEND_SOUND(H, S)
 
 		log_admin("[key_name(usr)] replied to [ADMIN_TPMONTY(H)]'s TGMC message with: [input].")
 		message_admins("[ADMIN_TPMONTY(usr)] replied to [ADMIN_TPMONTY(H)]'s' TGMC message with: [input]")
@@ -727,6 +729,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		var/mob/sender
+		var/subject = "No subject"
 		if(href_list["faxreply"])
 			var/ref = locate(href_list["faxreply"])
 			if(!ref)
@@ -743,8 +746,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				message_staff("[key_name_admin(usr)] marked and started replying to a fax from [key_name_admin(F.sender)].")
 
 			sender = F.sender
+			subject = "re: [F.title]"
 
-		var/dep = input("Who do you want to message?", "Fax Message") as null|anything in list(CORPORATE_LIAISON, "Combat Information Center", COMMAND_MASTER_AT_ARMS, "Brig", "Research", "Warden")
+		var/dep = input("Who do you want to message?", "Fax Message") as null|anything in list(CORPORATE_LIAISON, "Combat Information Center", "Brig", "Research", "Warden")
 		if(!dep)
 			return
 
@@ -752,7 +756,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!department)
 			return
 
-		var/subject = input("Enter the subject line", "Fax Message", "") as text|null
+		var/custom_subject = input("Enter the subject line", "Fax Message", subject) as text|null
+		if(custom_subject != "")
+			subject = custom_subject
 		var/type = input("Do you want to use the pencode, template or type a raw message?", "Fax Message") as null|anything in list("Pencode", "Template", "Raw")
 		if(!type)
 			return
@@ -1651,6 +1657,40 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 		log_admin("[key_name(src)] has removed a [slot] job slot.")
 		message_admins("[ADMIN_TPMONTY(usr)] has removed a [slot] job slot.")
+
+
+	else if(href_list["clearjobslots"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/slot = href_list["clearjobslots"]
+
+		var/datum/job/job = SSjob.name_occupations[slot]
+		if(!(job.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE)))
+			to_chat(usr, "<span class='warning'>Job is not joinable.</span>")
+			return
+		job.set_job_positions(0)
+
+		usr.client.holder.job_slots()
+
+		log_admin("[key_name(src)] has cleared the [slot] job.")
+		message_admins("[ADMIN_TPMONTY(usr)] has cleared the [slot] job.")
+
+
+	else if(href_list["clearalljobslots"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		for(var/slot in SSjob.name_occupations)
+			var/datum/job/job = SSjob.name_occupations[slot]
+			if(!(job.job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE)))
+				continue
+			job.set_job_positions(0)
+
+		usr.client.holder.job_slots()
+
+		log_admin("[key_name(src)] has cleared all job slots.")
+		message_admins("[ADMIN_TPMONTY(usr)] has cleared all job slots.")
 
 
 	else if(href_list["unlimitjobslot"])

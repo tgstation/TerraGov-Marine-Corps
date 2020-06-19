@@ -61,7 +61,7 @@
 	var/flashfail = 0
 
 	if(iscarbon(M))
-		flashfail = !M.flash_eyes()
+		flashfail = !M.flash_act()
 		if(!flashfail)
 			M.Paralyze(20 SECONDS)
 
@@ -124,7 +124,7 @@
 				for(var/obj/item/cloaking_device/S in M)
 					S.active = 0
 					S.icon_state = "shield0"
-		M.flash_eyes()
+		M.flash_act()
 
 	return
 
@@ -140,7 +140,7 @@
 			times_used++
 			if(iscarbon(loc))
 				var/mob/living/carbon/M = loc
-				if(M.flash_eyes())
+				if(M.flash_act())
 					M.Paralyze(20 SECONDS)
 					M.visible_message("<span class='disarm'>[M] is blinded by the flash!</span>")
 	..()

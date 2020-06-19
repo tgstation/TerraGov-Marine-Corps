@@ -31,22 +31,13 @@
 			break
 
 /obj/machinery/optable/ex_act(severity)
-
 	switch(severity)
-		if(1.0)
-			//SN src = null
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-			return
-		if(2.0)
+		if(EXPLODE_HEAVY)
 			if (prob(50))
-				//SN src = null
 				qdel(src)
-				return
-		if(3.0)
-			if (prob(25))
-				src.density = FALSE
-		else
-	return
+
 
 /obj/machinery/optable/attack_paw(mob/living/carbon/monkey/user)
 	if (!( locate(/obj/machinery/optable, user.loc) ))
@@ -98,10 +89,8 @@
 	if(buckling_human.wear_mask && !buckling_human.dropItemToGround(buckling_human.wear_mask))
 		to_chat(user, "<span class='danger'>You can't remove their mask!</span>")
 		return FALSE
-	var/obj/item/clothing/mask/breath/medical/anesthetic_mask = new()
-	if(!buckling_human.equip_if_possible(anesthetic_mask, SLOT_WEAR_MASK))
+	if(!buckling_human.equip_to_slot_or_del(new /obj/item/clothing/mask/breath/medical(buckling_human), SLOT_WEAR_MASK))
 		to_chat(user, "<span class='danger'>You can't fit the gas mask over their face!</span>")
-		qdel(anesthetic_mask)
 		return FALSE
 	buckling_human.internal = anes_tank
 	buckling_human.visible_message("<span class='notice'>[user] fits the mask over [buckling_human]'s face and turns on the anesthetic.</span>'")

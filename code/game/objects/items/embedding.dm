@@ -1,8 +1,10 @@
 /obj/item/proc/embed_into(mob/living/target, target_zone, silent)
+	if(!target.embed_item(src, target_zone, silent))
+		return FALSE
 	embedded_into = target
-	embedded_into.embed_item(src, target_zone, silent)
 	RegisterSignal(embedded_into, COMSIG_MOVABLE_MOVED, .proc/embedded_on_carrier_move)
 	RegisterSignal(src, list(COMSIG_ITEM_DROPPED, COMSIG_MOVABLE_MOVED), .proc/embedded_on_move)
+	return TRUE
 
 
 /obj/item/proc/embedded_on_move(datum/source)
@@ -25,7 +27,7 @@
 
 
 /mob/living/proc/unembed_item(obj/item/embedding)
-	embedded_objects -= embedding
+	LAZYREMOVE(embedded_objects, embedding)
 	var/yankable_embedded = FALSE
 	for(var/i in embedded_objects)
 		var/obj/item/embedded_obj = i
@@ -38,9 +40,9 @@
 
 
 /mob/living/carbon/human/unembed_item(obj/item/embedding)
-	var/datum/limb/affected_limb = embedded_objects[embedding]
+	var/datum/limb/affected_limb = LAZYACCESS(embedded_objects, embedding)
 	affected_limb.unembed(embedding)
-	embedded_objects -= embedding
+	LAZYREMOVE(embedded_objects, embedding)
 	var/yankable_embedded = FALSE
 	for(var/i in embedded_objects)
 		var/obj/item/embedded_obj = i
@@ -53,33 +55,34 @@
 
 
 /datum/limb/proc/unembed(obj/item/embedding)
+	embedding.UnregisterSignal(src, COMSIG_LIMB_DESTROYED)
 	implants -= embedding
 
 
 /mob/living/proc/embed_item(obj/item/embedding, target_zone, silent)
-	return
-
-
-/mob/living/embed_item(obj/item/embedding, target_zone, silent)
-	embedded_objects += embedding
-	embedded_objects[embedding] = loc
+	LAZYSET(embedded_objects, embedding, src)
+	return TRUE
 
 
 /mob/living/carbon/human/embed_item(obj/item/embedding, target_zone, silent)
 	var/datum/limb/affected_limb = (istype(target_zone, /datum/limb) ? target_zone : get_limb(check_zone(target_zone)))
-	affected_limb.limb_embed(embedding, silent)
-	embedded_objects += embedding
-	embedded_objects[embedding] = affected_limb
+	if(!affected_limb.limb_embed(embedding, silent))
+		return FALSE
+	LAZYSET(embedded_objects, embedding, affected_limb)
+	return TRUE
 
 
 /datum/limb/proc/limb_embed(obj/item/embedding, silent)
 	if(QDELETED(embedding)) //For test purposes to preserve the check. If this doesn't happen it's free to remove.
+		stack_trace("limb_embed called for QDELETED [embedding]")
 		embedding?.unembed_ourself()
-		CRASH("limb_embed called for QDELETED [embedding]")
+		return FALSE
 	if(embedding.flags_item & (NODROP|DELONDROP))
 		stack_trace("limb_embed called for NODROP|DELONDROP [embedding]")
 		embedding.unembed_ourself()
-		return
+		return FALSE
+	if(limb_status & LIMB_DESTROYED)
+		return FALSE
 	if(!silent)
 		owner.visible_message("<span class='danger'>\The [embedding] sticks in the wound!</span>")
 	implants += embedding
@@ -87,6 +90,8 @@
 		owner.verbs += /mob/living/proc/yank_out_object
 	embedding.add_mob_blood(owner)
 	embedding.forceMove(owner)
+	embedding.RegisterSignal(src, COMSIG_LIMB_DESTROYED, /obj/item/.proc/embedded_on_limb_destruction)
+	return TRUE
 
 
 /obj/item/proc/embedded_on_carrier_move(datum/source, atom/oldloc, direction, Forced)
@@ -101,6 +106,10 @@
 		limb_loc.process_embedded(src)
 	else
 		CRASH("[src] called embedded_on_carrier_move for [carrier] with mismatching embedded_object: [.]")
+
+
+/obj/item/proc/embedded_on_limb_destruction(/datum/limb/source)
+	unembed_ourself()
 
 
 /datum/limb/proc/process_embedded(obj/item/embedded)
@@ -122,7 +131,7 @@
 	UPDATEHEALTH(owner)
 
 	if(!(limb_status & LIMB_ROBOT) && !(owner.species.species_flags & NO_BLOOD)) //There is no blood in protheses.
-		limb_status |= LIMB_BLEEDING
+		add_limb_flags(LIMB_BLEEDING)
 
 	if(prob(embedded.embedding.embedded_fall_chance))
 		take_damage_limb(embedded.embedding.embed_limb_damage * embedded.embedding.embedded_fall_dmg_multiplier)
@@ -186,7 +195,7 @@
 		return
 
 	if(self)
-		visible_message("<span class='warning'><b>[user] rips [selection] out of user.p_their() body.</b></span>","<span class='warning'><b>You rip [selection] out of your body.</b></span>", null, 5)
+		visible_message("<span class='warning'><b>[user] rips [selection] out of [user.p_their()] body.</b></span>","<span class='warning'><b>You rip [selection] out of your body.</b></span>", null, 5)
 	else
 		visible_message("<span class='warning'><b>[user] rips [selection] out of [src]'s body.</b></span>","<span class='warning'><b>[user] rips [selection] out of your body.</b></span>", null, 5)
 

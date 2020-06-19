@@ -8,7 +8,7 @@
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented marine uniform. You suspect it's not as robust-proof as advertised."
 	siemens_coefficient = 0.9
 	icon_state = "marine_jumpsuit"
-	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 5, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
+	soft_armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 5, "bomb" = 5, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
 	rollable_sleeves = TRUE
 	has_sensor = 2
 
@@ -120,19 +120,19 @@
 /obj/item/clothing/under/marine/officer/ce
 	name = "chief ship engineer uniform"
 	desc = "An engine-friendly, kevlar-weaved, hazmat-tested, EMF-augmented ship engineer uniform. You suspect it's not as robust-proof as advertised."
-	armor = list("melee" = 5, "bullet" = 5, "laser" = 25, "energy" = 5, "bomb" = 5, "bio" = 5, "rad" = 25, "fire" = 5, "acid" = 5)
+	soft_armor = list("melee" = 5, "bullet" = 5, "laser" = 25, "energy" = 5, "bomb" = 5, "bio" = 5, "rad" = 25, "fire" = 5, "acid" = 5)
 	icon_state = "EC_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/engi
 	name = "engineer uniform"
 	desc = "An engine-friendly, kevlar-weaved, hazmat-tested, EMF-augmented chief ship engineer uniform. You suspect it's not as robust-proof as advertised."
-	armor = list("melee" = 5, "bullet" = 5, "laser" = 15, "energy" = 5, "bomb" = 5, "bio" = 5, "rad" = 10, "fire" = 5, "acid" = 5)
+	soft_armor = list("melee" = 5, "bullet" = 5, "laser" = 15, "energy" = 5, "bomb" = 5, "bio" = 5, "rad" = 10, "fire" = 5, "acid" = 5)
 	icon_state = "E_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/researcher
 	name = "researcher clothes"
 	desc = "A simple set of kevlar-weaved, hazmat-tested, EMF-augmented clothing worn by marine researchers. You suspect it's not as robust-proof as advertised."
-	armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 5, "fire" = 10, "acid" = 10)
+	soft_armor = list("melee" = 5, "bullet" = 5, "laser" = 5, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 5, "fire" = 10, "acid" = 10)
 	icon_state = "research_jumpsuit"
 
 /obj/item/clothing/under/whites
@@ -153,7 +153,7 @@
 	rollable_sleeves = FALSE // don't disrespect the EMPEROR!
 	icon_state = "guardjumpsuit"
 	item_state = "guardjumpsuit"
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 
 /obj/item/clothing/under/marine/veteran
 	rollable_sleeves = FALSE
@@ -164,14 +164,14 @@
 	rollable_sleeves = FALSE // don't disrespect the EMPEROR!
 	icon_state = "commissar_uniform"
 	item_state = "commissar_uniform"
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 
 /obj/item/clothing/under/marine/veteran/PMC
 	name = "\improper PMC fatigues"
 	desc = "A white set of fatigues, designed for private security operators. The symbol of the Nanotrasen corporation is emblazed on the suit."
 	icon_state = "pmc_jumpsuit"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
+	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
 
 /obj/item/clothing/under/marine/veteran/PMC/leader
 	name = "\improper PMC command fatigues"
@@ -182,7 +182,7 @@
 	name = "\improper PMC commando uniform"
 	desc = "An armored uniform worn by Nanotrasen elite commandos. It is well protected while remaining light and comfortable."
 	icon_state = "commando_jumpsuit"
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 20, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 20)
+	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 20, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 20)
 	has_sensor = 0
 
 /obj/item/clothing/under/marine/veteran/wolves
@@ -194,14 +194,14 @@
 
 
 /obj/item/clothing/under/marine/veteran/UPP
-	name = "\improper UPP fatigues"
-	desc = "A set of UPP fatigues, mass-produced for the armed-forces of the Union of Progressive Peoples. The dark drab pattern of the UPP 17th battalion 'Smoldering Sons' emblazons it."
+	name = "\improper USL fatigues"
+	desc = "A well used set of USL fatigues, mass-produced for the pirates of the Lepidoptera."
 	icon_state = "upp_uniform"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	has_sensor = 0
 
 /obj/item/clothing/under/marine/veteran/UPP/medic
-	name = "\improper UPP medic fatigues"
+	name = "\improper USL medic fatigues"
 	icon_state = "upp_uniform_medic"
 
 /obj/item/clothing/under/marine/veteran/freelancer
@@ -231,7 +231,7 @@
 	desc = "A beige suit with a red armband. Sturdy and thick, simply imposing. A mysterious crest emblazons it."
 	icon_state = "mercenary_heavy_uniform"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 1, "rad" = 1, "fire" = 5, "acid" = 5)
+	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 5, "energy" = 5, "bomb" = 10, "bio" = 1, "rad" = 1, "fire" = 5, "acid" = 5)
 
 /obj/item/clothing/under/marine/veteran/mercenary/miner
 	name = "mercenary miner fatigues"
@@ -264,7 +264,7 @@
 	name = "colonial marshal uniform"
 	desc = "A blue shirt and tan trousers - the official uniform for a Colonial Marshal."
 	icon_state = "marshal"
-	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 5, "bomb" = 5, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
+	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 5, "bomb" = 5, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
 	has_sensor = 0
 
 
@@ -349,3 +349,10 @@
 	desc = "A heavily modified mining uniform based off the ones used by mining colonies. Seems to have more care and wear on it."
 	icon_state = "som_uniform_leader"
 	item_state = "som_uniform_leader"
+
+/obj/item/clothing/under/sectoid
+	name = "psionic field"
+	desc = "A field of invisible energy, it protects the wearer but prevents any clothing from being worn."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "shield-blue"
+	flags_item = NODROP|DELONDROP

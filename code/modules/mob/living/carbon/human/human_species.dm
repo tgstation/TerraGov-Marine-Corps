@@ -2,9 +2,6 @@
 // might be worth adapting the bugs into a feature and using these
 // subtypes as a basis for non-common-speaking alien foreigners. ~ Z
 
-/mob/living/carbon/human/dummy
-	real_name = "Test Dummy"
-	status_flags = GODMODE|CANPUSH
 
 /mob/living/carbon/human/species/skrell
 	race = "Skrell"
@@ -60,3 +57,6 @@
 /datum/species/moth/handle_post_spawn(mob/living/carbon/human/H)
 	. = ..()
 	H.moth_wings = pick(GLOB.moth_wings_list - "Burnt Off")
+
+/mob/living/carbon/human/species/sectoid
+	race = "Sectoid"

@@ -4,7 +4,7 @@
 	density = FALSE
 	anchored = TRUE
 	resistance_flags = RESIST_ALL
-	interaction_flags = INTERACT_MACHINE_NANO
+	interaction_flags = INTERACT_MACHINE_TGUI
 	var/active_state = SELF_DESTRUCT_MACHINE_INACTIVE
 	ui_x = 470
 	ui_y = 290
@@ -46,7 +46,7 @@
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "selfdestruct", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, ui_key, "SelfDestruct", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
 /obj/machinery/self_destruct/console/ui_data(mob/user)
