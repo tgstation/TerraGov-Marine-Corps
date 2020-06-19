@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes: 
+  - balance: "sunder recovery is faster while resting"
