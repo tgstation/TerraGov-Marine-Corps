@@ -16,8 +16,6 @@
     toggle_action.give_action(parent)
     toggle_action.update_button_icon(active)
     RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, toggle_path)
-    if(active)
-		RegisterSignal(parent, COMSIG_MOVABLE_DIRECTIONAL, bump_action_path)
 
 /datum/component/directional_attack/Destroy(force, silent)
     QDEL_NULL(toggle_action)
@@ -27,10 +25,6 @@
     var/mob/living/attacker = parent
     active = !active
     to_chat(attacker, "<span class='notice'>You will now [active ? "attack" : "not attack"] enemies upon clicking in their directional.</span>")
-    if(active)
-        RegisterSignal(attacker, COMSIG_MOVABLE_DIRECTIONAL)
-    else
-        UnregisterSignal(attacker, COMSIG_MOVABLE_DIRECTIONAL)
     toggle_action.update_button_icon(active)
 
 /datum/component/directional_attack/proc/living_directional_action_checks(atom/target)
