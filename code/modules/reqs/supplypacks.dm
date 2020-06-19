@@ -1095,16 +1095,9 @@ SUPPLIES
 	contains = list(/obj/item/storage/fancy/crayons)
 	cost = 4
 
-/datum/supply_packs/supplies/boxes
-	name = "empty box"
-	contains = list(/obj/item/storage/box)
-	cost = 1
-
 /datum/supply_packs/supplies/janitor
-	name = "assorted janitorial supplies"
+	name = "Cleaning Equipment"
 	contains = list(
-		/obj/item/reagent_containers/glass/bucket,
-		/obj/item/reagent_containers/glass/bucket,
 		/obj/item/reagent_containers/glass/bucket,
 		/obj/item/tool/mop,
 		/obj/item/tool/wet_sign,
@@ -1117,9 +1110,9 @@ SUPPLIES
 		/obj/item/explosive/grenade/chem_grenade/cleaner,
 		/obj/item/explosive/grenade/chem_grenade/cleaner,
 		/obj/structure/mopbucket,
-		/obj/item/paper/janitor,
+		/obj/item/paper/janitor
 	)
-	cost = 10
+	cost = 1
 
 /*******************************************************************************
 Imports
