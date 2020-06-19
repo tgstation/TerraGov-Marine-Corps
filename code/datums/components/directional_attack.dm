@@ -24,10 +24,10 @@
     return ..()
 
 /datum/component/directional_attack/proc/living_activation_toggle(datum/source)
-    var/mob/living/attacker = parent
-    active = !active
-    to_chat(attacker, "<span class='notice'>You will now [active ? "attack" : "not attack"] enemies upon clicking in their direction.</span>")
-    if(active)
+	var/mob/living/attacker = parent
+	active = !active
+	to_chat(attacker, "<span class='notice'>You will now [active ? "attack" : "not attack"] enemies upon clicking in their direction.</span>")
+	if(active)
 		RegisterSignal(attacker, COMSIG_CLICK, directional_action_path)
 	else
 		UnregisterSignal(attacker, COMSIG_CLICK, directional_action_path)
