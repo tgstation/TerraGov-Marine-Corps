@@ -108,6 +108,24 @@
 	parent.slowdown -= slowdown
 	return ..()
 
+/** Extra armor module */
+/obj/item/armor_module/attachable/magni_explosive_armor
+	name = "Magni Explosive Armor"
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. A substantial amount of additional blastproof armor plating designed to make the exoskeleton into a practical bomb suit. Will definitely impact mobility."
+	icon_state = "mod_bomb_icon"
+	item_state = "mod_bomb"
+	soft_armor = list("bomb" = 100)
+	slowdown = 0.2
+
+/obj/item/armor_module/attachable/magni_explosive_armor/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
+	. = ..()
+	parent.soft_armor = parent.soft_armor.attachArmor(soft_armor)
+	parent.slowdown += slowdown
+
+/obj/item/armor_module/attachable/magni_explosive_armor/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
+	parent.soft_armor = parent.soft_armor.detachArmor(soft_armor)
+	parent.slowdown -= slowdown
+	return ..()
 
 /** Environment protecttion module */
 /obj/item/armor_module/attachable/mimir_environment_protection
