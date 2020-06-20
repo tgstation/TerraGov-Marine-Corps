@@ -1308,12 +1308,12 @@ Imports
 /datum/supply_packs/imports/dragunov
 	name = "SVD Dragunov Sniper"
 	contains = list(/obj/item/weapon/gun/rifle/sniper/svd)
-	cost = 5
+	cost = 15
 
 /datum/supply_packs/imports/dragunov/ammo
 	name = "SVD Dragunov Sniper Ammo"
 	contains = list(/obj/item/ammo_magazine/sniper/svd)
-	cost = 1
+	cost = 3
 
 /datum/supply_packs/imports/ak47
 	name = "AK-47 Assault Rifle"
