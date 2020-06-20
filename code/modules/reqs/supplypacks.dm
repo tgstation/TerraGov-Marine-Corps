@@ -1326,8 +1326,11 @@ Imports
 	cost = 5
 
 /datum/supply_packs/imports/mosin/ammo
-	name = "Mosin Nagant Sniper Ammo"
-	contains = list(/obj/item/ammo_magazine/rifle/bolt)
+	name = "Mosin Nagant Sniper Ammo (x2)"
+	contains = list(
+		/obj/item/ammo_magazine/rifle/bolt,
+		/obj/item/ammo_magazine/rifle/bolt
+	)
 	cost = 1
 
 /datum/supply_packs/imports/dragunov
