@@ -6,8 +6,8 @@
 
 
 /datum/action/directional_attack_toggle/New()
-    . = ..()
-    button.overlays.Cut()
+	. = ..()
+	button.overlays.Cut()
 
 /datum/action/directional_attack_toggle/update_button_icon(active)
 	if(isnull(active))
