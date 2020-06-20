@@ -23,7 +23,7 @@
 	if(ishuman(parent))
 		human_directional_action(location, control, params, user)
 	else if(isxeno(parent))
- 		xeno_directional_action(location, control, params, user)
+		xeno_directional_action(location, control, params, user)
 	else
 		living_directional_action(location, control, params, user)
 
