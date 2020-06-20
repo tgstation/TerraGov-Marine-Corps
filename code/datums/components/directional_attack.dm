@@ -58,30 +58,27 @@
 	var/turf/presumedPos = get_step(parent, clickDir)
 	var/mob/living/L = locate() in presumedPos
 	return L
-/datum/component/directional_attack/proc/living_directional_action(datum/source, target)
-	var/atom/targ = target
-	var/mob/living/L = figure_out_living_target(targ)
+/datum/component/directional_attack/proc/living_directional_action(datum/source, atom/target)
+	var/mob/living/L = figure_out_living_target(target)
 	. = living_directional_action_checks(L)
 	if(!isnull(.))
 		return
 	return living_do_directional_action(L)
 
-/datum/component/directional_attack/proc/human_directional_action(datum/source, target)
-	var/atom/targ = target
+/datum/component/directional_attack/proc/human_directional_action(datum/source, atom/target)
 	var/mob/living/carbon/xenomorph/attacker = parent
-	var/mob/living/L = figure_out_living_target(targ)
-	. = carbon_directional_action_checks(targ)
+	var/mob/living/L = figure_out_living_target(target)
+	. = carbon_directional_action_checks(target)
 	if(!isnull(.))
 		return
 	if(attacker.faction == L.faction)
 		return //FF
 	return living_do_directional_action(L)
 
-/datum/component/directional_attack/proc/xeno_directional_action(datum/source, target)
+/datum/component/directional_attack/proc/xeno_directional_action(datum/source, atom/target)
 	to_chat(parent, "Target Location: [target]")
-	var/atom/targ = target
 	var/mob/living/carbon/xenomorph/attacker = parent
-	var/mob/living/L = figure_out_living_target(targ)
+	var/mob/living/L = figure_out_living_target(target)
 	. = carbon_directional_action_checks(L)
 	if(!isnull(.))
 		return
