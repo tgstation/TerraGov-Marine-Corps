@@ -21,6 +21,12 @@
 
 #define isspaceturf(A) (istype(A, /turf/open/space))
 
+#define islava(A) (istype(A, /turf/open/lavaland/lava))
+
+#define isbasalt(A) (istype(A, /turf/open/lavaland/basalt))
+
+#define islavacatwalk(A) (istype(A, /turf/open/lavaland/catwalk))
+
 #define isfloorturf(A) (istype(A, /turf/open/floor))
 
 #define isclosedturf(A) (istype(A, /turf/closed))
@@ -60,7 +66,6 @@
 
 //Job/role helpers
 #define ismarinefaction(H) (H.faction == "TerraGov")
-#define ispolicejob(J) (istype(J, /datum/job/terragov/police))
 #define ismedicaljob(J) (istype(J, /datum/job/terragov/medical))
 #define isengineeringjob(J) (istype(J, /datum/job/terragov/engineering))
 #define ismarinejob(J) (istype(J, /datum/job/terragov/squad))

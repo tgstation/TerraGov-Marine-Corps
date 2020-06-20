@@ -376,7 +376,7 @@
 
 /obj/item/tool/weldpack
 	name = "Welding kit"
-	desc = "A heavy-duty, portable welding fluid carrier."
+	desc = "A heavy-duty, portable fuel carrier. Welder and flamer compatible."
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "welderpack"
@@ -392,23 +392,52 @@
 
 /obj/item/tool/weldpack/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(reagents.total_volume == 0)
+		to_chat(user, "<span class='warning'>Out of fuel!</span>")
+		return
 
-	if(iswelder(I))
+	else if(iswelder(I))
 		var/obj/item/tool/weldingtool/T = I
-		if(T.welding & prob(50))
+		if(T.welding)
 			to_chat(user, "<span class='warning'>That was stupid of you.</span>")
 			log_explosion("[key_name(user)] triggered a weldpack explosion at [AREACOORD(user.loc)].")
 			explosion(src, light_impact_range = 3)
 			qdel(src)
-		else
-			if(T.welding)
-				to_chat(user, "<span class='warning'>That was close!</span>")
-			reagents.trans_to(T, T.max_fuel)
-			to_chat(user, "<span class='notice'>Welder refilled!</span>")
-			playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+		if(T.get_fuel() == T.max_fuel || !reagents.total_volume)
+			return ..()
+
+		reagents.trans_to(I, T.max_fuel)
+		to_chat(user, "<span class='notice'>Welder refilled!</span>")
+		playsound(loc, 'sound/effects/refill.ogg', 25, TRUE, 3)
+
+	else if(istype(I, /obj/item/ammo_magazine/flamer_tank))
+		var/obj/item/ammo_magazine/flamer_tank/FT = I
+		if(!reagents.total_volume)
+			return ..()
+
+		//Reworked and much simpler equation; fuel capacity minus the current amount, with a check for insufficient fuel
+		var/fuel_transfer_amount = min(reagents.total_volume, (FT.max_rounds - FT.current_rounds))
+		reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+		FT.current_rounds += fuel_transfer_amount
+		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+		FT.caliber = "Fuel"
+		to_chat(user, "<span class='notice'>You refill [FT] with [lowertext(FT.caliber)].</span>")
+		FT.update_icon()
+
+	else if(istype(I, /obj/item/attachable/attached_gun/flamer))
+		var/obj/item/attachable/attached_gun/flamer/FT = I
+		if(!reagents.total_volume)
+			return ..()
+
+		var/fuel_transfer_amount = min(reagents.total_volume, (FT.max_rounds - FT.current_rounds))
+		reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+		FT.current_rounds += fuel_transfer_amount
+		playsound(loc, 'sound/effects/refill.ogg', 25, TRUE, 3)
+		to_chat(user, "<span class='notice'>You refill [FT] with fuel.</span>")
+		FT.update_icon()
 
 	else
-		to_chat(user, "<span class='notice'>The tank scoffs at your insolence.  It only provides services to welders.</span>")
+		to_chat(user, "<span class='notice'>The tank scoffs at your insolence.  It only provides services to welders and flamethrowers.</span>")
 
 
 /obj/item/tool/weldpack/afterattack(obj/O as obj, mob/user as mob, proximity)

@@ -9,7 +9,8 @@
     "build": "eslint packages && cd packages/tgui && npx webpack --mode=production",
     "watch": "cd packages/tgui-dev-server && node --experimental-modules index.js",
     "analyze": "cd packages/tgui && npx webpack --mode=production --env.analyze=1",
-    "lint": "eslint packages"
+    "lint": "eslint packages",
+    "fix": "eslint packages --fix"
   },
   "dependencies": {
     "babel-eslint": "^10.0.3",

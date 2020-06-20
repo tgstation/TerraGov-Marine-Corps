@@ -16,6 +16,7 @@
 	var/list/list/xenos_by_upgrade
 	var/list/dead_xenos // xenos that are still assigned to this hive but are dead.
 	var/list/ssd_xenos
+	var/list/list/xenos_by_zlevel
 
 // ***************************************
 // *********** Init
@@ -27,6 +28,7 @@
 	xenos_by_tier = list()
 	xenos_by_upgrade = list()
 	dead_xenos = list()
+	xenos_by_zlevel = list()
 
 	for(var/t in subtypesof(/mob/living/carbon/xenomorph))
 		var/mob/living/carbon/xenomorph/X = t
@@ -152,6 +154,8 @@
 /datum/hive_status/proc/add_to_lists(mob/living/carbon/xenomorph/X)
 	xenos_by_tier[X.tier] += X
 	xenos_by_upgrade[X.upgrade] += X
+	LAZYADD(xenos_by_zlevel["[X.z]"], X)
+	RegisterSignal(X, COMSIG_MOVABLE_Z_CHANGED, .proc/xeno_z_changed)
 
 	if(!xenos_by_typepath[X.caste_base_type])
 		stack_trace("trying to add an invalid typepath into hivestatus list [X.caste_base_type]")
@@ -243,6 +247,9 @@
 		return FALSE
 
 	LAZYREMOVE(ssd_xenos, X)
+	LAZYREMOVE(xenos_by_zlevel["[X.z]"], X)
+
+	UnregisterSignal(X, COMSIG_MOVABLE_Z_CHANGED)
 
 	remove_leader(X)
 
@@ -312,6 +319,10 @@
 
 /datum/hive_status/proc/on_xeno_login(mob/living/carbon/xenomorph/reconnecting_xeno)
 	LAZYREMOVE(ssd_xenos, reconnecting_xeno)
+
+/datum/hive_status/proc/xeno_z_changed(mob/living/carbon/xenomorph/X, old_z, new_z)
+	LAZYREMOVE(xenos_by_zlevel["[old_z]"], X)
+	LAZYADD(xenos_by_zlevel["[new_z]"], X)
 
 // ***************************************
 // *********** Xeno upgrades
@@ -757,3 +768,74 @@ to_chat will check for valid clients itself already so no need to double check f
 
 /mob/living/carbon/xenomorph/get_xeno_hivenumber()
 	return hivenumber
+
+/// Controls the evolution UI
+/datum/hive_status/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.xeno_state)
+	// Xeno only screen
+	if(!isxeno(user))
+		return
+
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "HiveEvolveScreen", "Xenomorph Evolution", 400, 750, master_ui, state)
+		ui.open()
+
+/// Static data provided once when the ui is opened
+/datum/hive_status/ui_static_data(mob/living/carbon/xenomorph/xeno)
+	. = list()
+	.["name"] = xeno.xeno_caste.display_name
+	.["abilities"] = list()
+	for(var/ability in xeno.xeno_caste.actions)
+		var/datum/action/xeno_action/xeno_ability = ability
+		.["abilities"]["[ability]"] = list(
+			"name" = initial(xeno_ability.name),
+			"desc" = initial(xeno_ability.mechanics_text),
+			"cost" = initial(xeno_ability.plasma_cost),
+			"cooldown" = (initial(xeno_ability.cooldown_timer) / 10)
+		)
+	.["evolves_to"] = list()
+	for(var/evolves_into in xeno.xeno_caste.evolves_to)
+		var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[evolves_into][XENO_UPGRADE_BASETYPE]
+		var/list/caste_data = list("type_path" = caste.caste_type_path, "name" = caste.display_name, "abilities" = list())
+		for(var/ability in caste.actions)
+			var/datum/action/xeno_action/xeno_ability = ability
+			caste_data["abilities"]["[ability]"] = list(
+				"name" = initial(xeno_ability.name),
+				"desc" = initial(xeno_ability.mechanics_text),
+				"cost" = initial(xeno_ability.plasma_cost),
+				"cooldown" = (initial(xeno_ability.cooldown_timer) / 10)
+			)
+		.["evolves_to"]["[caste.caste_type_path]"] = caste_data
+
+/// Some data to update the UI with the current evolution status
+/datum/hive_status/ui_data(mob/living/carbon/xenomorph/xeno)
+	. = list()
+
+	.["can_evolve"] = !xeno.is_ventcrawling && \
+		!xeno.incapacitated(TRUE) && \
+		xeno.health >= xeno.maxHealth && \
+		xeno.plasma_stored >= xeno.xeno_caste.plasma_max
+
+	if(isxenolarva(xeno))
+		.["evolution"] = list(
+			"current" = xeno.amount_grown,
+			"max" = xeno.max_grown
+		)
+		return
+	.["evolution"] = list(
+		"current" = xeno.evolution_stored,
+		"max" = xeno.xeno_caste.evolution_threshold
+	)
+
+/// Handles actuually evolving
+/datum/hive_status/ui_act(action, params)
+	if(..())
+		return
+
+	var/mob/living/carbon/xenomorph/xeno = usr
+	switch(action)
+		if("evolve")
+			SStgui.close_user_uis(usr, src, "main")
+			var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[text2path(params["path"])][XENO_UPGRADE_BASETYPE]
+			xeno.do_evolve(caste.caste_type_path, caste.display_name) // All the checks for can or can't are handled inside do_evolve
+			return

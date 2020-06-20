@@ -849,7 +849,6 @@
 		equip_slots |= SLOT_IN_S_HOLSTER
 		equip_slots |= SLOT_IN_SUIT
 	if(SLOT_SHOES in equip_slots)
-		equip_slots |= SLOT_LEGCUFFED
 		equip_slots |= SLOT_IN_BOOT
 	if(SLOT_W_UNIFORM in equip_slots)
 		equip_slots |= SLOT_IN_STORAGE

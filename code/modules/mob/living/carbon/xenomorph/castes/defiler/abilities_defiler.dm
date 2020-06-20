@@ -118,3 +118,49 @@
 		T.visible_message("<span class='danger'>Noxious smoke billows from the hulking xenomorph!</span>")
 		count = max(0,count - 1)
 		sleep(DEFILER_GAS_DELAY)
+
+
+// ***************************************
+// *********** Inject Egg Neurogas
+// ***************************************
+/datum/action/xeno_action/activable/inject_egg_neurogas
+	name = "Inject Neurogas"
+	action_icon_state = "inject_egg"
+	mechanics_text = "Inject an egg with neurogas, killing the egg, but filling it full with neurogas ready to explode."
+	ability_name = "inject neurogas"
+	plasma_cost = 100
+	cooldown_timer = 5 SECONDS
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	keybind_signal = COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS
+
+/datum/action/xeno_action/activable/inject_egg_neurogas/on_cooldown_finish()
+	playsound(owner.loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
+	to_chat(owner, "<span class='xenodanger'>We feel our dorsal vents bristle with neurotoxic gas. We can use Emit Neurogas again.</span>")
+	return ..()
+
+/datum/action/xeno_action/activable/inject_egg_neurogas/use_ability(atom/A)
+	var/mob/living/carbon/xenomorph/Defiler/X = owner
+
+	if(!istype(A, /obj/effect/alien/egg))
+		return fail_activate()
+
+	var/obj/effect/alien/egg/alien_egg = A
+	if(alien_egg.status != EGG_GROWN)
+		to_chat(X, "<span class='warning'>That egg isn't strong enough to hold our gases.</span>")
+		return fail_activate()
+
+	X.visible_message("<span class='danger'>[X] starts injecting the egg with neurogas, killing the little one inside!</span>", \
+		"<span class='xenodanger'>We extend our stinger into the egg, filling it with gas, killing the little one inside!</span>")
+	if(!do_after(X, 2 SECONDS, TRUE, alien_egg, BUSY_ICON_HOSTILE))
+		X.visible_message("<span class='danger'>The stinger retracts from [X], leaving the egg and little one alive.</span>", \
+			"<span class='xenodanger'>Our stinger retracts, leaving the egg and little one alive.</span>")
+		return fail_activate()
+
+	succeed_activate()
+	add_cooldown()
+	
+	new /obj/effect/alien/egg/gas(A.loc)
+	qdel(alien_egg)
+
+	GLOB.round_statistics.defiler_inject_egg_neurogas++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "defiler_inject_egg_neurogas")

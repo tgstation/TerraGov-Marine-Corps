@@ -105,6 +105,7 @@ directive is properly returned.
 	return
 
 /atom/proc/Bumped(atom/movable/AM)
+	SEND_SIGNAL(src, COMSIG_ATOM_BUMPED, AM)
 	return
 
 /atom/proc/CanPass(atom/movable/mover, turf/target)
@@ -397,6 +398,9 @@ Proc for attack log creation, because really why not
 */
 
 /proc/log_combat(atom/user, atom/target, what_done, atom/object, addition)
+	if (SEND_SIGNAL(user, COMSIG_COMBAT_LOG) | SEND_SIGNAL(target, COMSIG_COMBAT_LOG) & DONT_LOG)
+		return
+
 	var/ssource = key_name(user)
 	var/starget = key_name(target)
 

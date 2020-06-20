@@ -29,7 +29,10 @@
 		update_evolving()
 		handle_aura_emiter()
 
-	adjust_sunder(xeno_caste.sunder_recover * -1) 
+	var/sunder_recov = xeno_caste.sunder_recover * -1
+	if(resting)
+		sunder_recov += 0.5
+	adjust_sunder(sunder_recov)
 	handle_aura_receiver()
 	handle_living_health_updates()
 	handle_living_plasma_updates()
@@ -115,7 +118,7 @@
 	var/list/plasma_mod = list()
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_PLASMA_REGEN, plasma_mod)
-	
+
 	var/plasma_gain_multiplier = 1
 	for(var/i in plasma_mod)
 		plasma_gain_multiplier *= i
@@ -282,6 +285,6 @@
 		return
 	frenzy_aura = new_aura
 	if(frenzy_aura)
-		add_movespeed_modifier(MOVESPEED_ID_FRENZY_AURA, TRUE, 0, NONE, TRUE, -frenzy_aura * 0.1)
+		add_movespeed_modifier(MOVESPEED_ID_FRENZY_AURA, TRUE, 0, NONE, TRUE, -frenzy_aura * 0.06)
 		return
 	remove_movespeed_modifier(MOVESPEED_ID_FRENZY_AURA)

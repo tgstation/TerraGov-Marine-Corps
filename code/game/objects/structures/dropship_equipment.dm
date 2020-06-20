@@ -203,7 +203,7 @@
 			ammo_equipped = null
 			update_icon()
 			return TRUE //emptied or removed dropship ammo
-		else
+		else if(!current_acid)
 			playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
 			var/duration_time = ship_base ? 70 : 10 //uninstalling equipment takes more time
 			if(!do_after(user, duration_time, FALSE, src, BUSY_ICON_BUILD))
@@ -225,8 +225,8 @@
 						linked_console.selected_equipment = null
 			update_equipment()
 			return TRUE //removed or uninstalled equipment
-
-
+		to_chat(user, "<span class='notice'>You cannot touch [src] with the [PC] due to the acid on [src].</span>")
+		return TRUE
 /obj/structure/dropship_equipment/update_icon()
 	return
 

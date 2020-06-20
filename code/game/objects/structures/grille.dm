@@ -11,10 +11,14 @@
 	resistance_flags = XENO_DAMAGEABLE
 	soft_armor = list("melee" = 50, "bullet" = 70, "laser" = 70, "energy" = 100, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 0)
 	max_integrity = 10
-	var/destroyed = FALSE
+
+/obj/structure/grille/Initialize()
+	. = ..()
+	AddElement(/datum/element/egrill)
 
 /obj/structure/grille/broken
 	icon_state = "brokengrille"
+	obj_integrity = 0
 	density = FALSE
 
 /obj/structure/grille/fence
@@ -50,10 +54,6 @@
 /obj/structure/grille/ex_act(severity)
 	qdel(src)
 
-/obj/structure/grille/Bumped(atom/user)
-	if(ismob(user)) shock(user, 70)
-
-
 /obj/structure/grille/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
@@ -64,9 +64,6 @@
 						"<span class='warning'>You kick [src].</span>", \
 						"You hear twisting metal.")
 
-	shock(user, 70)
-
-
 /obj/structure/grille/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGRILLE))
 		return TRUE
@@ -76,27 +73,21 @@
 		else
 			return !density
 
-
 /obj/structure/grille/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(iswirecutter(I))
-		if(shock(user, 100))
-			return
-
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		new /obj/item/stack/rods(loc, 2)
 		qdel(src)
 
 	else if(isscrewdriver(I) && isopenturf(loc))
-		if(shock(user, 90))
-			return
-
 		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 		anchored = !anchored
 		user.visible_message("<span class='notice'>[user] [anchored ? "fastens" : "unfastens"] the grille.</span>", \
 							"<span class='notice'>You have [anchored ? "fastened the grille to" : "unfastened the grill from"] the floor.</span>")
-
 
 	else if(istype(I, /obj/item/stack/sheet/glass))
 		var/obj/item/stack/sheet/glass/ST = I
@@ -145,31 +136,8 @@
 		to_chat(user, "<span class='notice'>You place the [WD] on [src].</span>")
 		WD.update_icon()
 
-
-// shock user with probability prb (if all connections & power are working)
-// returns 1 if shocked, 0 otherwise
-/obj/structure/grille/proc/shock(mob/user as mob, prb)
-
-	if(!anchored || destroyed)		// anchored/destroyed grilles are never connected
-		return FALSE
-	if(!prob(prb))
-		return FALSE
-	if(!in_range(src, user))//To prevent TK and mech users from getting shocked
-		return FALSE
-	var/turf/T = get_turf(src)
-	var/obj/structure/cable/C = T.get_cable_node()
-	if(C)
-		if(electrocute_mob(user, C, src))
-			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-			s.set_up(3, 1, src)
-			s.start()
-			return TRUE
-		else
-			return FALSE
-	return FALSE
-
 /obj/structure/grille/fire_act(exposed_temperature, exposed_volume)
-	if(!destroyed && exposed_temperature > T0C + 1500)
+	if(obj_integrity > integrity_failure && exposed_temperature > T0C + 1500)
 		take_damage(1, BURN, "fire")
 	return ..()
 

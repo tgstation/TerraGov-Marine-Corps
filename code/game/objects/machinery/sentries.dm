@@ -234,8 +234,9 @@
 	var/max_burst = 6
 	var/min_burst = 2
 	var/atom/target = null
-	obj_integrity = 200
-	max_integrity = 200
+	obj_integrity = 300
+	max_integrity = 300
+	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 50)
 	machine_stat = 0 //Used just like mob.stat
 	var/datum/effect_system/spark_spread/spark_system //The spark system, used for generating... sparks?
 	var/obj/item/cell/cell = null
@@ -250,7 +251,7 @@
 	var/last_alert = 0
 	var/last_damage_alert = 0
 	var/list/obj/alert_list = list()
-	var/knockdown_threshold = 100
+	var/knockdown_threshold = 150
 	var/work_time = 40 //Defines how long it takes to do most maintenance actions
 	var/magazine_type = /obj/item/ammo_magazine/sentry
 	var/obj/item/radio/radio
@@ -1182,11 +1183,11 @@
 	burst_size = 3
 	min_burst = 2
 	max_burst = 5
-	obj_integrity = 155
-	max_integrity = 155
+	obj_integrity = 200
+	max_integrity = 200
 	rounds = 500
 	rounds_max = 500
-	knockdown_threshold = 70 //lighter, not as well secured.
+	knockdown_threshold = 100 //lighter, not as well secured.
 	work_time = 10 //significantly faster than the big sentry
 	ammo = /datum/ammo/bullet/turret/mini //Similar to M39 AP rounds.
 	magazine_type = /obj/item/ammo_magazine/minisentry

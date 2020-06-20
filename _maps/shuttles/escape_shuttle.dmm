@@ -11,14 +11,12 @@
 /turf/open/space/basic,
 /area/shuttle/escape_pod)
 "d" = (
-/obj/machinery/cryopod,
+/obj/machinery/cryopod/evacuation,
 /turf/open/floor/plating/mainship,
 /area/shuttle/escape_pod)
 "e" = (
 /obj/structure/bed/chair/dropship/passenger,
-/turf/open/shuttle/escapepod{
-	icon_state = "floor4"
-	},
+/turf/open/shuttle/escapepod/four,
 /area/shuttle/escape_pod)
 "f" = (
 /obj/structure/bed/chair/dropship/passenger,
@@ -28,10 +26,8 @@
 	},
 /area/shuttle/escape_pod)
 "g" = (
-/obj/machinery/cryopod,
-/turf/open/shuttle/escapepod{
-	icon_state = "floor0"
-	},
+/obj/machinery/cryopod/evacuation,
+/turf/open/shuttle/escapepod/zero,
 /area/shuttle/escape_pod)
 "h" = (
 /obj/machinery/computer/shuttle/escape_pod/escape_shuttle,
@@ -42,21 +38,16 @@
 /turf/open/floor/plating/mainship,
 /area/shuttle/escape_pod)
 "j" = (
-/turf/open/shuttle/escapepod{
-	icon_state = "floor5"
-	},
+/turf/open/shuttle/escapepod/five,
 /area/shuttle/escape_pod)
 "k" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/escape_pod)
 "l" = (
 /obj/structure/bed/chair/dropship/passenger{
-	icon_state = "shuttle_chair";
 	dir = 8
 	},
-/turf/open/shuttle/escapepod{
-	icon_state = "floor1"
-	},
+/turf/open/shuttle/escapepod/plain,
 /area/shuttle/escape_pod)
 "m" = (
 /obj/structure/bed/chair/dropship/pilot{
@@ -66,12 +57,10 @@
 /area/shuttle/escape_pod)
 "n" = (
 /obj/structure/bed/chair/dropship/passenger,
-/turf/open/shuttle/escapepod{
-	icon_state = "floor6"
-	},
+/turf/open/shuttle/escapepod/six,
 /area/shuttle/escape_pod)
 "o" = (
-/obj/machinery/cryopod,
+/obj/machinery/cryopod/evacuation,
 /turf/open/shuttle/escapepod{
 	icon_state = "floor10"
 	},

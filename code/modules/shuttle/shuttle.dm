@@ -395,6 +395,8 @@
 
 /obj/docking_port/mobile/proc/transit_failure()
 	message_admins("Shuttle [src] repeatedly failed to create transit zone.")
+	log_debug("Setting [src]/[src.id] idle")
+	set_idle()
 
 //call the shuttle to destination S
 /obj/docking_port/mobile/proc/request(obj/docking_port/stationary/S)
@@ -555,10 +557,6 @@
 		ripple_turfs += T1
 
 	return ripple_turfs
-
-///obj/docking_port/mobile/proc/check_poddoors()
-//	for(var/obj/machinery/door/poddoor/shuttledock/pod in GLOB.airlocks)
-//		pod.check()
 
 /obj/docking_port/mobile/proc/dock_id(id)
 	var/port = SSshuttle.getDock(id)

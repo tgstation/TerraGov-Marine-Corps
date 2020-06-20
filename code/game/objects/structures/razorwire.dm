@@ -33,6 +33,7 @@
 
 /obj/structure/razorwire/Initialize()
 	. = ..()
+	AddElement(/datum/element/egrill)
 	for(var/obj/structure/razorwire/T in loc)
 		if(T != src)
 			qdel(T)
@@ -59,7 +60,7 @@
 	COOLDOWN_START(entangled, COOLDOWN_ENTANGLE, duration)
 	entangled.visible_message("<span class='danger'>[entangled] gets entangled in the barbed wire!</span>",
 	"<span class='danger'>You got entangled in the barbed wire! Resist to untangle yourself after [duration * 0.1] seconds since you were entangled!</span>", null, null, 5)
-	do_razorwire_tangle()
+	do_razorwire_tangle(entangled)
 
 
 /obj/structure/razorwire/proc/do_razorwire_tangle(mob/living/entangled)
@@ -69,6 +70,7 @@
 	RegisterSignal(entangled, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
 	RegisterSignal(entangled, COMSIG_PARENT_QDELETING, .proc/do_razorwire_untangle)
 	RegisterSignal(entangled, COMSIG_MOVABLE_UNCROSS, .proc/on_entangled_uncross)
+	RegisterSignal(entangled, COMSIG_MOVABLE_MOVED, .proc/razorwire_untangle)
 
 
 /obj/structure/razorwire/resisted_against(datum/source)
@@ -79,7 +81,6 @@
 		return FALSE
 	return razorwire_untangle(entangled)
 
-
 /obj/structure/razorwire/proc/razorwire_untangle(mob/living/entangled)
 	entangled.next_move_slowdown += RAZORWIRE_SLOWDOWN //big slowdown
 	do_razorwire_untangle(entangled)
@@ -87,14 +88,14 @@
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, TRUE)
 	var/def_zone = ran_zone()
 	var/armor_block = entangled.run_armor_check(def_zone, "melee")
-	entangled.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, TRUE) //Apply damage as we tear free
+	entangled.apply_damage(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED, BRUTE, def_zone, armor_block, TRUE) //Apply damage as we tear free
 	UPDATEHEALTH(entangled)
 	return TRUE
 
 
 ///This proc is used for signals, so if you plan on adding a second argument, or making it return a value, then change those RegisterSignal's referncing it first.
 /obj/structure/razorwire/proc/do_razorwire_untangle(mob/living/entangled)
-	UnregisterSignal(entangled, list(COMSIG_PARENT_QDELETING, COMSIG_LIVING_DO_RESIST, COMSIG_MOVABLE_UNCROSS))
+	UnregisterSignal(entangled, list(COMSIG_PARENT_QDELETING, COMSIG_LIVING_DO_RESIST, COMSIG_MOVABLE_UNCROSS, COMSIG_MOVABLE_MOVED))
 	LAZYREMOVE(entangled_list, entangled)
 	DISABLE_BITFIELD(entangled.restrained_flags, RESTRAINED_RAZORWIRE)
 	REMOVE_TRAIT(entangled, TRAIT_IMMOBILE, type)

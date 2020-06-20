@@ -74,7 +74,7 @@
 
 		var/obj/item/stack/cable_coil/CC = new(user.loc)
 		CC.amount = 1
-		CC.updateicon()
+		CC.update_icon()
 		overlays = list()
 		string_attached = FALSE
 		to_chat(user, "<span class='notice'>You detach the string from the coin.</span>")

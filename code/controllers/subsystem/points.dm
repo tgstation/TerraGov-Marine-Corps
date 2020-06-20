@@ -2,11 +2,6 @@
 #define DROPSHIP_POINT_RATE 18
 #define SUPPLY_POINT_RATE 4
 
-#define POINTS_PER_SLIP 1
-#define POINTS_PER_PHORON 20
-#define POINTS_PER_CRATE 5
-#define POINTS_PER_PLATINUM 40
-
 SUBSYSTEM_DEF(points)
 	name = "Points"
 
@@ -68,6 +63,10 @@ SUBSYSTEM_DEF(points)
 			else
 				containsname[path]["count"]++
 		supply_packs_contents[pack] = list("name" = P.name, "container_name" = initial(P.containertype.name), "cost" = P.cost, "hidden" = P.hidden, "contains" = containsname)
+
+	for(var/typepath in subtypesof(/datum/supply_export))
+		var/datum/supply_export/E = new typepath()
+		GLOB.exports_types[E.export_obj] = E
 
 	return ..()
 

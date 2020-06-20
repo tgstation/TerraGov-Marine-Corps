@@ -2,7 +2,7 @@
 
 /obj/item/weapon/gun/flamer
 	name = "\improper M240A1 incinerator unit"
-	desc = "M240A1 incinerator unit has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
+	desc = "The M240A1 has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
 	icon_state = "m240"
 	item_state = "m240"
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -14,7 +14,7 @@
 	reload_sound = 'sound/weapons/guns/interact/flamethrower_reload.ogg'
 	aim_slowdown = 1.75
 	current_mag = /obj/item/ammo_magazine/flamer_tank
-	var/max_range = 6
+	var/max_range = 7
 	var/lit = 0 //Turn the flamer on/off
 	general_codex_key = "flame weapons"
 
@@ -24,7 +24,7 @@
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
-	fire_delay = 35
+	fire_delay = 20
 
 
 /obj/item/weapon/gun/flamer/unique_action(mob/user)
@@ -159,7 +159,8 @@
 		if("flame")
 			burnlevel = 24
 			burntime = 17
-			max_range = 6
+			max_range = 7
+			fire_delay = 20
 
 		// Area denial, light damage, large AOE, long burntime
 		if("green flame")
@@ -168,6 +169,7 @@
 			max_range = 4
 			playsound(user, fire_sound, 50, 1)
 			triangular_flame(target, user, burntime, burnlevel)
+			fire_delay = 35
 			return
 
 		if("blue flame") //Probably can end up as a spec fuel or DS flamer fuel. Also this was the original fueltype, the madman i am.
@@ -175,6 +177,7 @@
 			burntime = 40
 			max_range = 7
 			fire_color = "blue"
+			fire_delay = 35
 
 		else
 			return
@@ -262,20 +265,16 @@
 			if(user)
 				if(!user.mind?.bypass_ff && !H.mind?.bypass_ff && user.faction == H.faction)
 					log_combat(user, H, "flamed", src)
+					user.ff_check(30, H) // avg between 20/40 dmg
 					log_ffattack("[key_name(user)] flamed [key_name(H)] with \a [name] in [AREACOORD(T)].")
 					msg_admin_ff("[ADMIN_TPMONTY(user)] flamed [ADMIN_TPMONTY(H)] with \a [name] in [ADMIN_VERBOSEJMP(T)].")
 				else
 					log_combat(user, H, "flamed", src)
 
-			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || (istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(H.head, /obj/item/clothing/head/helmet/marine/pyro)))
+			if(H.hard_armor.getRating("fire") >= 100)
 				continue
 
 		var/armor_block = M.run_armor_check(null, "fire")
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || (istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(H.head, /obj/item/clothing/head/helmet/marine/pyro)))
-				H.show_message(text("Your suit protects you from most of the flames."), 1)
-				armor_block = CLAMP(armor_block * 1.5, 0.75, 1) //Min 75% resist, max 100%
 		M.apply_damage(rand(burn,(burn*2))* fire_mod, BURN, null, armor_block) // Make it so its the amount of heat or twice it for the initial blast.
 		UPDATEHEALTH(M)
 		M.adjust_fire_stacks(rand(5,burn*2))
@@ -369,7 +368,6 @@
 	current_mag = /obj/item/ammo_magazine/flamer_tank/large
 	icon_state = "m240t"
 	item_state = "m240t"
-	gun_skill_category = GUN_SKILL_SPEC
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	var/max_water = 200
 	var/last_use
@@ -440,7 +438,7 @@
 		last_fired = world.time
 		last_use = world.time
 		return
-	if(user.skills.getRating("spec_weapons") < 0 && !do_after(user, 1 SECONDS, TRUE, src))
+	if(user.skills.getRating("firearms") < 0 && !do_after(user, 1 SECONDS, TRUE, src))
 		return
 	return ..()
 
@@ -519,8 +517,10 @@
 		UPDATEHEALTH(src)
 	to_chat(src, "<span class='danger'>You are burned!</span>")
 
+
+
 /mob/living/carbon/human/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
-	if(istype(wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(shoes, /obj/item/clothing/shoes/marine/pyro) && istype(head, /obj/item/clothing/head/helmet/marine/pyro))
+	if(hard_armor.getRating("fire") >= 100)
 		var/armor_block = run_armor_check(null, "fire")
 		if(apply_damage(round(burnlevel * 0.2) * fire_mod, BURN, null, armor_block))
 			UPDATEHEALTH(src)
@@ -588,18 +588,16 @@
 
 // override this proc to give different idling-on-fire effects
 /mob/living/flamer_fire_act(burnlevel, firelevel)
+	if(hard_armor.getRating("fire") >= 100)
+		to_chat(src, "<span class='warning'>Your suit protects you from most of the flames.</span>")
+		adjustFireLoss(rand(0, burnlevel * 0.25)) //Does small burn damage to a person wearing one of the suits.
+		return
 	adjust_fire_stacks(burnlevel) //If i stand in the fire i deserve all of this. Also Napalm stacks quickly.
 	if(prob(firelevel))
 		IgniteMob()
 	//I.adjustFireLoss(rand(10 ,burnlevel)) //Including the fire should be way stronger.
 	to_chat(src, "<span class='warning'>You are burned!</span>")
 
-/mob/living/carbon/human/flamer_fire_act(burnlevel, firelevel)
-	if(istype(wear_suit, /obj/item/clothing/suit/fire) || istype(wear_suit,/obj/item/clothing/suit/space/rig/atmos) || (istype(wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(head, /obj/item/clothing/head/helmet/marine/pyro)))
-		to_chat(src, "<span class='warning'>Your suit protects you from most of the flames.</span>")
-		adjustFireLoss(rand(0 ,burnlevel*0.25)) //Does small burn damage to a person wearing one of the suits.
-		return
-	return ..()
 
 /mob/living/carbon/xenomorph/flamer_fire_act(burnlevel, firelevel)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)

@@ -49,7 +49,7 @@
 
 /obj/item/weapon/gun/pistol/standard_pistol
 	name = "\improper TP-14 pistol"
-	desc = "The TP-14, produced by Terran Armories. A reliable sidearm that loads 9x19mm Parabellum Auto munitions. Capable of mounting a limited amount of attachments, and firing at a respectable rate of fire, often as fast as you can pull the trigger. Takes 14 round magazines."
+	desc = "The TP-14, produced by Terran Armories. A reliable sidearm that loads 9x19mm Parabellum Auto munitions. Capable of mounting a limited amount of attachments, and firing at a respectable rate of fire, often as fast as you can pull the trigger. Takes 14-round 9mm magazines."
 	icon_state = "tp14"
 	item_state = "tp14"
 	caliber = "9x19mm Parabellum" //codex
@@ -71,7 +71,7 @@
 
 /obj/item/weapon/gun/pistol/m4a3
 	name = "\improper M4A3 service pistol"
-	desc = "An M4A3 Colt Service Pistol, the standard issue sidearm of the TerraGov Marine Corps."
+	desc = "An M4A3 Colt Service Pistol, it was standard issue sidearm of the TerraGov Marine Corps, until the sidearm role was replaced by Terran Armories's TP-14 pistol."
 	icon_state = "m4a3"
 	item_state = "m4a3"
 	caliber = "9x19mm Parabellum" //codex
@@ -89,7 +89,7 @@
 
 /obj/item/weapon/gun/pistol/m4a3/custom
 	name = "\improper M4A3 custom pistol"
-	desc = "An M4A3 Service Pistol, the standard issue sidearm of the TerraGov Marine Corps. This one has an ivory-colored grip and has a slide carefully polished yearly by a team of orphan children. Looks like it belongs to a low-ranking officer."
+	desc = "An M4A3 Colt Service Pistol. This one has an ivory-colored grip and has a slide carefully polished yearly by a team of orphan children. Looks like it belongs to a low-ranking officer."
 	icon_state = "m4a3c"
 	item_state = "m4a3c"
 
@@ -99,13 +99,43 @@
 	accuracy_mult = 1.15
 	damage_mult = 1.1
 
+//-------------------------------------------------------
+// TP-23 service pistol
+
+/obj/item/weapon/gun/pistol/standard_heavypistol
+	name = "\improper TP-23 service pistol"
+	desc = "A standard TP-23 chambered in .45 ACP. Has a smaller magazine capacity, but packs a better punch. Has an irremovable laser sight. Uses .45 magazines."
+	icon_state = "tp23"
+	item_state = "tp23"
+	caliber = ".45 ACP" //codex
+	max_shells = 11 //codex
+	fire_sound = 'sound/weapons/guns/fire/tp23.ogg'
+	unload_sound = 'sound/weapons/guns/interact/colt_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/colt_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/colt_cocked.ogg'
+	current_mag = /obj/item/ammo_magazine/pistol/standard_heavypistol
+	attachable_allowed = list(
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/heavy_barrel)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
+
+	fire_delay = 0.2 SECONDS
+	accuracy_mult = 1.20 //Has a forced laser sight.
+	accuracy_mult_unwielded = 0.95
+	recoil_unwielded = 1
 
 //-------------------------------------------------------
 //M1911
 
 /obj/item/weapon/gun/pistol/m1911
 	name = "\improper M1911 service pistol"
-	desc = "A standard M1911 chambered in .45 ACP. Has a smaller magazine capacity, but packs a better punch."
+	desc = "A M1911 chambered in .45 ACP. An archaic weapon, yet its popular and extremely reliable mechanism provided a template for many semi-automatic pistols to come."
 	icon_state = "m1911"
 	item_state = "m1911"
 	caliber = ".45 ACP" //codex
@@ -118,7 +148,7 @@
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
 	fire_delay = 0.2 SECONDS
-	accuracy_mult = 1.15
+	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.85
 	damage_mult = 1.15
 	recoil_unwielded = 2
@@ -184,7 +214,7 @@
 
 /obj/item/weapon/gun/pistol/b92fs/M9
 	name = "\improper M9 Custom pistol"
-	desc = "A 20th century military firearm customized for special forces use, fires tranq darts to take down enemies nonlethally."
+	desc = "A 20th century military firearm customized for special forces use, fires tranq darts to take down enemies nonlethally. It does not seem to accept any other attachments."
 	icon_state = "m9"
 	item_state = "m9"
 	caliber = "9x19mm tranquilizer" //codex
@@ -206,7 +236,7 @@
 //DEAGLE //Deagle Brand Deagle
 
 /obj/item/weapon/gun/pistol/heavy
-	name = "\improper Desert Eagle"
+	name = "\improper Desert Eagle pistol"
 	desc = "A magnum chambered in .50AE that comes with a serious kick. This one is engraved, <i>\"Peace through superior firepower\"</i>."
 	icon_state = "deagle"
 	item_state = "deagle"
@@ -341,6 +371,37 @@
 	fire_delay = 0.15 SECONDS
 
 //-------------------------------------------------------
+//TP-17 Pocket pistol. Based on a PMM.
+
+/obj/item/weapon/gun/pistol/standard_pocketpistol
+	name = "\improper TP-17 pocket pistol"
+	desc = "A tiny pistol used by the TGMC as an emergency handgun meant to be stored about anywhere. Fits in boots. Uses .380 ACP stored in an eight round magazine."
+	icon_state = "tp17"
+	item_state = "tp17"
+	caliber = ".380 ACP" //codex
+	max_shells = 8 //codex
+	fire_sound = 'sound/weapons/guns/fire/pistol_holdout.ogg'
+	current_mag = /obj/item/ammo_magazine/pistol/standard_pocketpistol
+	w_class = WEIGHT_CLASS_TINY
+	force = 5
+	attachable_allowed = list(
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/heavy_barrel)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 21, "rail_y" = 13, "under_x" = 17, "under_y" = 15, "stock_x" = 22, "stock_y" = 17)
+
+	fire_delay = 0.125 SECONDS
+	recoil = -2
+	recoil_unwielded = -2
+	accuracy_mult = 1.1
+	accuracy_mult_unwielded = 1
+	scatter = -10
+	scatter_unwielded = -5
+
+
+//-------------------------------------------------------
 //.45 MARSHALS PISTOL //Inspired by the Browning Hipower
 
 /obj/item/weapon/gun/pistol/highpower
@@ -371,7 +432,7 @@
 
 /obj/item/weapon/gun/pistol/vp70
 	name = "\improper 88 Mod 4 combat pistol"
-	desc = "A powerful sidearm issued mainly to Nanotrasen private contractors, but issued to the TGMC in small numbers, based on the original VP70 more than a century ago. Fires 9mm armor piercing rounds and is capable of 3-round burst or automatic fire."
+	desc = "A powerful sidearm issued mainly to Nanotrasen private contractors, but issued to TGMC in very small numbers, based on the original VP70 more than a century ago. Fires 9mm armor piercing rounds and is capable of 3-round burst or automatic fire."
 	icon_state = "88m4"
 	item_state = "88m4"
 	caliber = "9x19mm Parabellum" //codex
@@ -393,7 +454,7 @@
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/burstfire_assembly,
 						/obj/item/attachable/stock/vp70)
-     
+
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 18, "stock_y" = 11)
 
@@ -405,13 +466,13 @@
 	recoil_unwielded = 2
 	aim_slowdown = 0.2
 	scatter = 5
-	
+
 
 //-------------------------------------------------------
 //VP78
 
 /obj/item/weapon/gun/pistol/vp78
-	name = "\improper VP78 pistol"
+	name = "\improper VP78 combat pistol"
 	desc = "A massive, formidable automatic handgun chambered in 9mm squash-head rounds. Commonly seen in the hands of wealthy Nanotrasen members."
 	icon_state = "vp78"
 	item_state = "vp78"
@@ -484,7 +545,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 
 /obj/item/weapon/gun/pistol/knife
 	name = "\improper M6 'Eclipse Raider' ballistic knife"
-	desc = "The back issue survival knife issued to TerraGov Marine Corps soldiers. There are a surprisingly large amount of attachment points on this... knife."
+	desc = "The back issue survival knife issued to a fewTerraGov Marine Corps soldiers. There are a surprisingly large amount of attachment points on this... knife."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "elite_knife"
 	reload_sound = 'sound/weapons/flipblade.ogg'

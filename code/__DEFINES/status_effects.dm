@@ -13,7 +13,9 @@
 // BUFFS //
 ///////////
 
-// none for now
+#define STATUS_EFFECT_GUN_SKILL_ACCURACY_BUFF /datum/status_effect/stacking/gun_skill/accuracy/buff // Increases the accuracy of the mob
+
+#define STATUS_EFFECT_GUN_SKILL_SCATTER_BUFF /datum/status_effect/stacking/gun_skill/scatter/buff // Increases the scatter of the mob
 
 /////////////
 // DEBUFFS //
@@ -34,6 +36,10 @@
 #define STATUS_EFFECT_ADMINSLEEP /datum/status_effect/incapacitating/adminsleep //the affected is admin slept
 
 #define STATUS_EFFECT_CONFUSED /datum/status_effect/confused // random direction chosen when trying to move
+
+#define STATUS_EFFECT_GUN_SKILL_ACCURACY_DEBUFF /datum/status_effect/stacking/gun_skill/accuracy/debuff // Decreases the accuracy of the mob
+
+#define STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF /datum/status_effect/stacking/gun_skill/scatter/debuff // Decreases the scatter of the mob
 
 /////////////
 // NEUTRAL //

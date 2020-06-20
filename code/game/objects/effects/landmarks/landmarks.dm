@@ -162,6 +162,10 @@
 		new /obj/item/storage/box/nade_box (get_turf(src))
 		return
 
+	if(istype(gun_to_spawn, /obj/item/weapon/gun/flare))
+		new /obj/item/storage/box/m94 (get_turf(src))
+		return
+
 	if(istype(gun_to_spawn, /obj/item/weapon/gun/energy))
 		var/obj/item/weapon/gun/energy/energy_gun_to_spawn = gun_to_spawn
 		for(var/i in 1 to 3)
@@ -204,8 +208,10 @@
 	weapon_list = list(	/obj/item/weapon/gun/energy/lasgun/M43/practice,
 						/obj/item/weapon/gun/flare,
 						/obj/item/weapon/gun/pistol/standard_pistol,
+						/obj/item/weapon/gun/pistol/standard_pocketpistol,
 						/obj/item/weapon/gun/pistol/m4a3,
 						/obj/item/weapon/gun/pistol/m1911,
+						/obj/item/weapon/gun/pistol/standard_heavypistol,
 						/obj/item/weapon/gun/pistol/b92fs,
 						/obj/item/weapon/gun/pistol/b92fs/M9,
 						/obj/item/weapon/gun/pistol/heavy,
@@ -276,6 +282,7 @@
 	weapon_list = list(	/obj/item/weapon/gun/rifle/standard_carbine,
 						/obj/item/weapon/gun/rifle/standard_assaultrifle,
 						/obj/item/weapon/gun/rifle/standard_dmr,
+						/obj/item/weapon/gun/rifle/standard_br,
 						/obj/item/weapon/gun/rifle/m41a1,
 						/obj/item/weapon/gun/rifle/m41a1/elite,
 						/obj/item/weapon/gun/rifle/m41a,
@@ -283,6 +290,7 @@
 						/obj/item/weapon/gun/rifle/ak47/carbine,
 						/obj/item/weapon/gun/rifle/m16,
 						/obj/item/weapon/gun/rifle/standard_lmg,
+						/obj/item/weapon/gun/rifle/standard_gpmg,
 						/obj/item/weapon/gun/rifle/m41ae2_hpr,
 						/obj/item/weapon/gun/rifle/type71/flamer,
 						/obj/item/weapon/gun/rifle/type71,
@@ -295,6 +303,7 @@
 						/obj/item/weapon/gun/shotgun/pump/cmb,
 						/obj/item/weapon/gun/shotgun/pump/ksg,
 						/obj/item/weapon/gun/shotgun/pump/t35,
+						/obj/item/weapon/gun/shotgun/combat/standardmarine,
 						/obj/item/weapon/gun/flamer,
 						/obj/item/weapon/gun/pistol/auto9,
 						/obj/item/weapon/gun/smg/m39/elite,
@@ -307,8 +316,7 @@
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn
 	name = "Tier 4 Weapon Spawn"
 	icon_state = "weapon4"
-	weapon_list = list(	/obj/item/weapon/gun/rifle/sniper,
-						/obj/item/weapon/gun/rifle/sniper/elite,
+	weapon_list = list(	/obj/item/weapon/gun/rifle/sniper/elite,
 						/obj/item/weapon/gun/rifle/sniper/elite/xmas,
 						/obj/item/weapon/gun/rifle/sniper/M42A,
 						/obj/item/weapon/gun/rifle/sniper/svd,
@@ -324,8 +332,6 @@
 						/obj/item/weapon/gun/shotgun/double,
 						/obj/item/weapon/gun/shotgun/double/sawn,
 						/obj/item/weapon/gun/flamer/M240T,
-						/obj/item/weapon/gun/smartgun,
-						/obj/item/weapon/gun/smartgun/dirty,
 						/obj/item/weapon/energy/axe
 						)
 

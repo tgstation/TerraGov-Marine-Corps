@@ -37,16 +37,17 @@
 	if(islist(soft_armor))
 		soft_armor = getArmor(arglist(soft_armor))
 	else if (!soft_armor)
-		soft_armor = getArmor()
+		// Default bio armor 100 to avoid sentinels getting free damage on sent
+		soft_armor = getArmor(bio = 100)
 	else if (!istype(soft_armor, /datum/armor))
-		stack_trace("Invalid type [soft_armor.type] found in .soft_armor during /turf Initialize()")
+		stack_trace("Invalid type [soft_armor.type] found in .soft_armor during /obj Initialize()")
 
 	if(islist(hard_armor))
 		hard_armor = getArmor(arglist(hard_armor))
 	else if (!hard_armor)
 		hard_armor = getArmor()
 	else if (!istype(hard_armor, /datum/armor))
-		stack_trace("Invalid type [hard_armor.type] found in .hard_armor during /turf Initialize()")
+		stack_trace("Invalid type [hard_armor.type] found in .hard_armor during /obj Initialize()")
 
 	if(obj_integrity == null)
 		obj_integrity = max_integrity
@@ -119,7 +120,7 @@
 		DISABLE_BITFIELD(obj_flags, IN_USE)
 
 
-/obj/proc/hide(h)
+/obj/proc/hide(h) // TODO: Fix all children
 	return
 
 

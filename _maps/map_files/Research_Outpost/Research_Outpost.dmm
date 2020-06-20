@@ -41,11 +41,7 @@
 /turf/open/floor/tile/dark/blue2,
 /area/outpost/medbay/storage)
 "aq" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/brown2{
 	dir = 10
 	},
@@ -65,11 +61,7 @@
 	},
 /area/outpost/hallway/central)
 "au" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
@@ -82,11 +74,7 @@
 /turf/open/floor/wood,
 /area/outpost/dormitories)
 "aw" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/south_east)
 "ay" = (
@@ -117,11 +105,7 @@
 	},
 /area/outpost/hallway/south_east)
 "aD" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
+/obj/structure/cable,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -141,19 +125,11 @@
 	},
 /area/outpost/hallway/east)
 "aG" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/dormitories)
 "aH" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -192,11 +168,7 @@
 	},
 /area/outpost/hallway/south_west)
 "aQ" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/blue2,
 /area/outpost/medbay/storage)
 "aR" = (
@@ -223,11 +195,7 @@
 	},
 /area/outpost/lz1)
 "ba" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
@@ -236,11 +204,7 @@
 	},
 /area/outpost/engineering)
 "bc" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
@@ -270,17 +234,6 @@
 /obj/effect/alien/weeds/node,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/outpost/caves/north_east)
-"bm" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/outpost/medbay)
 "bn" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 6
@@ -316,24 +269,12 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/yard/west)
 "bz" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1
 	},
 /turf/open/floor/tile/dark/brown2/corner,
 /area/outpost/dormitories)
-"bA" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating,
-/area/outpost/engineering/engine)
 "bC" = (
 /obj/structure/table,
 /turf/open/floor/tile/dark/purple2,
@@ -350,11 +291,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/science/security)
 "bM" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
@@ -372,19 +309,6 @@
 "bP" = (
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/yard/central)
-"bQ" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 4
-	},
-/area/outpost/medbay)
 "bR" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 10
@@ -398,11 +322,7 @@
 /turf/closed/wall/resin,
 /area/outpost/caves/north_east)
 "bU" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
@@ -426,11 +346,7 @@
 /turf/closed/wall/r_wall,
 /area/outpost/medbay/storage)
 "ca" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -439,11 +355,7 @@
 	},
 /area/outpost/hallway/south_cent)
 "cb" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -527,11 +439,7 @@
 	},
 /area/outpost/science/xenobiology)
 "cD" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
@@ -556,11 +464,7 @@
 	},
 /area/outpost/arrivals)
 "cN" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/red2,
 /area/outpost/brig)
 "cO" = (
@@ -573,22 +477,14 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/engineering/security)
 "cR" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 2
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/outpost/engineering/engine)
@@ -605,11 +501,7 @@
 /turf/open/floor/tile/dark/blue2,
 /area/outpost/medbay/storage)
 "cW" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -619,11 +511,7 @@
 	},
 /area/outpost/hallway/northern)
 "cX" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
@@ -654,11 +542,7 @@
 /turf/closed/mineral/bigred,
 /area/outpost/yard/central)
 "dl" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
@@ -667,11 +551,7 @@
 	dir = 1;
 	name = "\improper Marshal Office Armory"
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/outpost/brig/wardens_office)
@@ -760,11 +640,7 @@
 /turf/closed/mineral/bigred,
 /area/outpost/caves/west)
 "dS" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/red2{
 	dir = 6
@@ -806,27 +682,14 @@
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
 	dir = 8
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/science/security)
 "eh" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
@@ -888,11 +751,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/east)
 "ey" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
@@ -904,11 +763,7 @@
 /obj/machinery/door/airlock/mainship/security/glass/free_access{
 	dir = 1
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/outpost/cargo/security)
@@ -930,11 +785,7 @@
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/outpost/cargo/office)
@@ -963,11 +814,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/dormitories)
 "eO" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/brig/gear_room)
 "eQ" = (
@@ -976,11 +823,7 @@
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "eR" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/south_east)
@@ -1028,11 +871,7 @@
 	},
 /area/outpost/caves/south_east)
 "fg" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/spawner/random/powercell,
 /turf/open/floor/plating,
@@ -1042,11 +881,7 @@
 /turf/open/floor/plating/ground/mars/cavetodirt,
 /area/outpost/caves/north_east)
 "fi" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/light/small,
 /turf/open/floor/tile/dark/brown2{
 	dir = 10
@@ -1056,19 +891,11 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/brig)
 "fn" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
@@ -1085,11 +912,7 @@
 /obj/structure/bed/chair/office/light{
 	dir = 1
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay/chemistry)
 "fs" = (
@@ -1163,11 +986,7 @@
 	},
 /area/outpost/yard/north)
 "fJ" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/brig/armoury)
 "fK" = (
@@ -1197,11 +1016,7 @@
 	},
 /area/outpost/engineering)
 "fQ" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -1224,34 +1039,17 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_east)
-"fV" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/open/floor/tile/dark/brown2{
-	dir = 4
-	},
-/area/outpost/hallway/south_west)
 "fW" = (
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
-/obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/red2{
 	dir = 9
 	},
 /area/outpost/arrivals/security)
 "fX" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1
 	},
@@ -1269,22 +1067,10 @@
 /obj/machinery/door/airlock/mainship/medical/free_access{
 	dir = 2
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay/surgery)
-"ga" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/turf/open/floor/plating,
-/area/outpost/engineering/engine)
 "gb" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/bigred,
@@ -1311,11 +1097,7 @@
 	},
 /area/outpost/arrivals)
 "gj" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -1325,11 +1107,7 @@
 /area/outpost/hallway/south_west)
 "gk" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/engineering/security)
 "gm" = (
@@ -1343,20 +1121,12 @@
 /turf/open/floor/tile/dark/purple2,
 /area/outpost/science/hydponics)
 "gp" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/light,
 /turf/open/floor/tile/dark/red2,
 /area/outpost/brig)
 "gq" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/red2{
 	dir = 6
@@ -1364,11 +1134,7 @@
 /area/outpost/brig/armoury)
 "gr" = (
 /obj/machinery/door/airlock/mainship/medical/free_access,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -1382,27 +1148,14 @@
 /turf/open/floor/wood,
 /area/outpost/dormitories)
 "gu" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
 /turf/open/floor/tile/dark/blue2,
 /area/outpost/medbay)
 "gv" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
@@ -1435,13 +1188,9 @@
 /area/outpost/lz1)
 "gK" = (
 /obj/machinery/power/terminal{
-	dir = 1;
-	icon_state = "term"
+	dir = 1
 	},
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "gL" = (
@@ -1493,11 +1242,7 @@
 	},
 /area/outpost/engineering)
 "ha" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -1549,10 +1294,7 @@
 /obj/machinery/power/apc/drained{
 	dir = 8
 	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
@@ -1577,11 +1319,7 @@
 	},
 /area/outpost/arrivals)
 "hw" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/science/hydponics)
 "hx" = (
@@ -1608,11 +1346,7 @@
 	},
 /area/outpost/lz1)
 "hH" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -1696,22 +1430,14 @@
 /obj/machinery/door/airlock/mainship/security/glass/free_access{
 	dir = 2
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/medbay/security)
 "ic" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -1728,10 +1454,7 @@
 /area/outpost/caves/north_east)
 "ig" = (
 /obj/machinery/power/apc/drained,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -1746,11 +1469,7 @@
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "ii" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/light/small,
 /obj/item/trash/candy,
 /turf/open/floor/tile/dark/brown2,
@@ -1779,10 +1498,7 @@
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
-/obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
@@ -1835,11 +1551,7 @@
 	dir = 1;
 	name = "\improper Marshal Office Armory"
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/outpost/brig/armoury)
@@ -1876,22 +1588,14 @@
 	},
 /area/outpost/hallway/east)
 "iM" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
 /area/outpost/brig)
 "iN" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/brown2/corner,
 /area/outpost/hallway/south_west)
@@ -1899,11 +1603,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
@@ -1921,11 +1621,7 @@
 	},
 /area/outpost/cargo)
 "iV" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 8
@@ -1963,11 +1659,7 @@
 /turf/open/floor/tile/dark/red2,
 /area/outpost/brig/gear_room)
 "jh" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -2008,16 +1700,7 @@
 	},
 /area/outpost/caves/east)
 "jt" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/south_east)
@@ -2027,11 +1710,7 @@
 	},
 /area/outpost/engineering)
 "jw" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
@@ -2043,27 +1722,14 @@
 	},
 /area/outpost/cargo)
 "jz" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 8
 	},
 /area/outpost/dormitories)
 "jA" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
@@ -2086,11 +1752,7 @@
 	},
 /area/outpost/yard/south)
 "jG" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
@@ -2143,11 +1805,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/dormitories)
 "kb" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -2260,11 +1918,7 @@
 /turf/open/floor/wood,
 /area/outpost/dormitories)
 "kF" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/red2,
 /area/outpost/brig)
@@ -2276,11 +1930,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/science/research)
 "kI" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
@@ -2293,11 +1943,7 @@
 	},
 /area/outpost/hallway/south_cent)
 "kL" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/dark/purple2,
 /area/outpost/science)
@@ -2369,11 +2015,7 @@
 /area/outpost/cargo/office)
 "kV" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 1
 	},
@@ -2392,11 +2034,7 @@
 	},
 /area/outpost/medbay)
 "lb" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
@@ -2431,11 +2069,7 @@
 	},
 /area/outpost/engineering)
 "lj" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay/storage)
 "lk" = (
@@ -2446,11 +2080,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/science/xenobiology)
 "ll" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/science/xenobiology)
 "lm" = (
@@ -2478,11 +2108,7 @@
 	},
 /area/outpost/medbay/storage)
 "lt" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4
 	},
@@ -2491,11 +2117,7 @@
 	},
 /area/outpost/engineering/hallway)
 "lu" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -2508,11 +2130,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
@@ -2521,11 +2139,7 @@
 	},
 /area/outpost/science/rd_office)
 "lw" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
@@ -2559,11 +2173,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/research{
 	dir = 8
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/outpost/science)
@@ -2571,11 +2181,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -2639,11 +2245,7 @@
 /turf/open/floor/plating,
 /area/outpost/lz1)
 "mh" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/purple2{
 	dir = 8
@@ -2679,11 +2281,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_west)
 "mp" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/cargo)
@@ -2692,11 +2290,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/lz2)
 "mw" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
@@ -2746,11 +2340,7 @@
 /turf/closed/wall/r_wall,
 /area/outpost/hallway/south_east)
 "mK" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
@@ -2765,11 +2355,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/yard/south)
 "mP" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -2793,11 +2379,7 @@
 /turf/open/floor/plating/dmg3,
 /area/outpost/science/xenobiology)
 "mY" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
@@ -2806,11 +2388,7 @@
 	},
 /area/outpost/engineering/engine)
 "mZ" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/hallway/south_cent)
 "na" = (
@@ -2861,25 +2439,13 @@
 	},
 /area/outpost/arrivals)
 "nn" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/light,
 /turf/open/floor/tile/dark/purple2,
 /area/outpost/science/xenobiology)
 "no" = (
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/yard/east)
-"nq" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/tile/dark/purple2,
-/area/outpost/science/xenobiology)
 "nv" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
@@ -2913,11 +2479,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/cargo/security)
 "nH" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -3034,11 +2596,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/brig)
 "on" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
@@ -3074,11 +2632,7 @@
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/cargo)
 "oB" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
@@ -3222,11 +2776,7 @@
 /area/outpost/cargo)
 "pg" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -3290,11 +2840,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/yard/north_east)
 "pw" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/outpost/cargo)
 "px" = (
@@ -3305,11 +2851,7 @@
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/outpost/yard/east)
 "pC" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/blue2/corner{
 	dir = 1
 	},
@@ -3323,20 +2865,13 @@
 /obj/machinery/power/apc/drained{
 	dir = 8
 	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
 /area/outpost/cargo/office)
 "pH" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
@@ -3355,11 +2890,7 @@
 /area/outpost/engineering/engine)
 "pP" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 1
 	},
@@ -3371,11 +2902,7 @@
 	},
 /area/outpost/yard/north)
 "pS" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -3389,11 +2916,7 @@
 	},
 /area/outpost/yard/west)
 "pU" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -3438,11 +2961,7 @@
 /area/outpost/hallway/south_west)
 "qh" = (
 /obj/machinery/autodoc,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
 "qi" = (
@@ -3451,11 +2970,7 @@
 	},
 /area/outpost/hallway/central)
 "qj" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -3479,16 +2994,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/science)
 "qs" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/central)
 "qv" = (
@@ -3501,11 +3007,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/science/research)
 "qx" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -3517,11 +3019,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
 "qz" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
@@ -3554,11 +3052,7 @@
 	},
 /area/outpost/hallway/northern)
 "qF" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
@@ -3638,10 +3132,7 @@
 /area/outpost/hallway/south_east)
 "rc" = (
 /obj/machinery/power/apc/drained,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
@@ -3667,11 +3158,7 @@
 /turf/open/floor/plating/ground/mars/cavetodirt,
 /area/outpost/caves/north_west)
 "rl" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
@@ -3694,22 +3181,14 @@
 /turf/open/floor/tile/dark2,
 /area/outpost/science/xenobiology)
 "rr" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/engineering)
 "rt" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
@@ -3730,22 +3209,14 @@
 /turf/open/floor/plating/dmg3,
 /area/outpost/medbay/storage)
 "rx" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
 /area/outpost/arrivals/security)
 "ry" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -3815,11 +3286,7 @@
 /turf/closed/wall/r_wall,
 /area/outpost/science/rd_office)
 "rN" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/brown2{
 	dir = 6
 	},
@@ -3854,11 +3321,7 @@
 	},
 /area/outpost/hallway/west)
 "rZ" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -3876,31 +3339,11 @@
 	dir = 9
 	},
 /area/outpost/science/xenobiology)
-"sc" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/brown2,
-/area/outpost/hallway/northern)
 "se" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/outpost/caves/north_east)
 "sg" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/outpost/science)
@@ -3914,11 +3357,7 @@
 /turf/open/floor/tile/dark2,
 /area/outpost/cargo)
 "sk" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "sm" = (
@@ -3968,11 +3407,7 @@
 	},
 /area/outpost/medbay)
 "sx" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
@@ -4016,11 +3451,7 @@
 	},
 /area/outpost/caves/south_east)
 "sO" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/brown2{
 	dir = 6
 	},
@@ -4034,10 +3465,7 @@
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
-/obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/red2{
 	dir = 10
 	},
@@ -4074,24 +3502,13 @@
 	dir = 4
 	},
 /area/outpost/hallway/northern)
-"tc" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/tile/dark,
-/area/outpost/brig/gear_room)
 "td" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
 "te" = (
 /obj/machinery/power/apc/drained,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "tf" = (
@@ -4121,11 +3538,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/medbay/chemistry)
 "to" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -4143,16 +3556,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/medbay/chemistry)
 "tu" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
@@ -4166,16 +3570,7 @@
 	},
 /area/outpost/hallway/northern)
 "ty" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
@@ -4191,24 +3586,6 @@
 	dir = 1
 	},
 /area/outpost/brig)
-"tA" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/turf/open/floor/plating,
-/area/outpost/engineering/engine)
 "tD" = (
 /obj/structure/largecrate/random/barrel,
 /turf/open/floor/tile/dark/brown2{
@@ -4219,11 +3596,7 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/lv624/lazarus/console)
 "tJ" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
@@ -4233,22 +3606,14 @@
 /turf/open/floor/tile/dark,
 /area/outpost/dormitories)
 "tM" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},
 /area/outpost/hallway/west)
 "tO" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
@@ -4266,22 +3631,14 @@
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 8
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/engineering)
 "tT" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
@@ -4334,11 +3691,7 @@
 	},
 /area/outpost/lz1)
 "ut" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
+/obj/structure/cable,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -4363,14 +3716,6 @@
 	dir = 1
 	},
 /area/outpost/caves/north_west)
-"ux" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/open/floor/tile/dark2,
-/area/outpost/cargo)
 "uB" = (
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
@@ -4421,11 +3766,7 @@
 	},
 /area/outpost/hallway/south_west)
 "uY" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/purple2,
 /area/outpost/science/xenobiology)
 "va" = (
@@ -4492,11 +3833,7 @@
 	},
 /area/outpost/dormitories)
 "vs" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/outpost/arrivals)
@@ -4507,22 +3844,14 @@
 /turf/open/floor/tile/dark,
 /area/outpost/brig/armoury)
 "vx" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 1
 	},
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/hallway/south_east)
 "vz" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/dark/purple2{
 	dir = 8
@@ -4548,10 +3877,7 @@
 /area/outpost/cargo)
 "vE" = (
 /obj/machinery/power/apc/drained,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/red2{
 	dir = 5
 	},
@@ -4574,10 +3900,7 @@
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
-/obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
@@ -4586,11 +3909,7 @@
 	},
 /area/outpost/arrivals)
 "vK" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -4646,14 +3965,6 @@
 	dir = 4
 	},
 /area/outpost/yard/south_east)
-"wi" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/turf/open/floor/tile/dark/red2,
-/area/outpost/brig)
 "wj" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
@@ -4663,11 +3974,7 @@
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 2
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/outpost/engineering)
@@ -4677,10 +3984,7 @@
 /area/outpost/lz1)
 "wp" = (
 /obj/machinery/power/apc/drained,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/purple2{
 	dir = 1
 	},
@@ -4689,10 +3993,7 @@
 /obj/machinery/power/apc/drained{
 	dir = 8
 	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
@@ -4701,11 +4002,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/brig/gear_room)
 "ws" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/blue2/corner{
 	dir = 8
 	},
@@ -4768,22 +4065,14 @@
 	},
 /area/outpost/medbay/security)
 "wG" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/medbay/chemistry)
 "wH" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/light/small,
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1
@@ -4802,21 +4091,13 @@
 	},
 /area/outpost/caves/south)
 "wN" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/brown2{
 	dir = 10
 	},
 /area/outpost/dormitories)
 "wO" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -4840,6 +4121,10 @@
 	dir = 10
 	},
 /area/outpost/engineering/engine)
+"wS" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/outpost/yard/central)
 "wU" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
@@ -4868,29 +4153,12 @@
 /obj/machinery/door/airlock/multi_tile/mainship/research{
 	dir = 1
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/science/research)
-"xb" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/tile/dark/brown2,
-/area/outpost/dormitories)
 "xc" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
@@ -4922,11 +4190,7 @@
 	},
 /area/outpost/medbay)
 "xk" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
@@ -4961,11 +4225,7 @@
 /area/outpost/lz1)
 "xy" = (
 /obj/structure/filingcabinet/security,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/engineering/security)
 "xz" = (
@@ -4994,14 +4254,6 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_east)
-"xK" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/tile/dark,
-/area/outpost/hallway/central)
 "xM" = (
 /obj/machinery/landinglight/ds2{
 	dir = 4
@@ -5018,10 +4270,7 @@
 /area/outpost/arrivals)
 "xO" = (
 /obj/machinery/power/apc/drained,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
@@ -5034,11 +4283,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
@@ -5051,11 +4296,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/arrivals)
 "xW" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -5088,11 +4329,7 @@
 /turf/closed/wall/r_wall,
 /area/outpost/brig)
 "yf" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
@@ -5108,11 +4345,7 @@
 /turf/open/floor/tile/dark/purple2,
 /area/outpost/science/research)
 "yk" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/structure/cable,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -5128,11 +4361,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/science/rd_office)
 "yn" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/science)
 "yo" = (
@@ -5143,10 +4372,7 @@
 /area/outpost/science/hydponics)
 "yp" = (
 /obj/machinery/power/apc/drained,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -5156,20 +4382,13 @@
 /area/outpost/hallway/south_cent)
 "yq" = (
 /obj/machinery/power/apc/drained,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
 /area/outpost/hallway/northern)
 "yw" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
@@ -5273,11 +4492,7 @@
 	},
 /area/outpost/hallway/central)
 "zk" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -5302,11 +4517,7 @@
 	},
 /area/outpost/science)
 "zo" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/cargo/office)
@@ -5318,11 +4529,7 @@
 /turf/open/floor/tile/dark2,
 /area/outpost/cargo)
 "zx" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -5352,11 +4559,7 @@
 	},
 /area/outpost/cargo)
 "zD" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
@@ -5367,11 +4570,7 @@
 	},
 /area/outpost/lz2)
 "zH" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/red2{
 	dir = 5
@@ -5433,11 +4632,7 @@
 	},
 /area/outpost/cargo)
 "Ab" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
@@ -5467,19 +4662,6 @@
 	dir = 9
 	},
 /area/outpost/hallway/west)
-"Ai" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/tile/dark/red2,
-/area/outpost/brig)
 "Al" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark/brown2{
@@ -5536,11 +4718,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/medbay/chemistry)
 "AE" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 4
 	},
@@ -5563,11 +4741,7 @@
 	},
 /area/outpost/cargo)
 "AO" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/brown2{
 	dir = 5
 	},
@@ -5579,20 +4753,12 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/east)
 "AR" = (
 /obj/structure/bed/chair,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/science/research)
 "AS" = (
@@ -5609,19 +4775,6 @@
 /obj/effect/landmark/corpsespawner/engineer,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_east)
-"AW" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/open/floor/plating,
-/area/outpost/engineering/engine)
 "AY" = (
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt,
@@ -5636,11 +4789,7 @@
 /turf/open/floor/tile/dark/red2,
 /area/outpost/brig/armoury)
 "Ba" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 1
@@ -5667,11 +4816,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/dormitories)
 "Bk" = (
@@ -5681,11 +4826,7 @@
 	},
 /area/outpost/caves/south_east)
 "Bl" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -5755,14 +4896,12 @@
 	dir = 6
 	},
 /area/outpost/yard/south_east)
-"BF" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
+"BH" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 6
 	},
-/turf/open/floor/tile/dark,
-/area/outpost/hallway/west)
+/area/outpost/yard/west)
 "BJ" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/yard/south_east)
@@ -5795,11 +4934,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/south_cent)
 "BT" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/red2{
 	dir = 6
 	},
@@ -5835,11 +4970,7 @@
 	},
 /area/outpost/lz1)
 "Cl" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
@@ -5936,11 +5067,7 @@
 /turf/open/floor/plating/asteroidwarning,
 /area/outpost/yard/central)
 "Da" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
@@ -5971,16 +5098,7 @@
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "Di" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
@@ -6043,10 +5161,7 @@
 /area/outpost/science/hydponics)
 "DA" = (
 /obj/machinery/power/apc/drained,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
@@ -6066,11 +5181,7 @@
 /area/outpost/engineering/engine)
 "DD" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/east)
@@ -6120,11 +5231,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -6158,11 +5265,7 @@
 /turf/closed/wall/r_wall,
 /area/outpost/engineering/engine)
 "DY" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/effect/landmark/start/job/survivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -6194,14 +5297,6 @@
 	dir = 9
 	},
 /area/outpost/yard/central)
-"Ej" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/open/floor/plating,
-/area/outpost/engineering/engine)
 "Em" = (
 /obj/structure/table,
 /obj/item/radio,
@@ -6210,44 +5305,28 @@
 	},
 /area/outpost/arrivals/security)
 "En" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
 /turf/open/floor/tile/dark/brown2/corner,
 /area/outpost/hallway/west)
 "Ep" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/brown2/corner,
 /area/outpost/hallway/south_cent)
 "Eq" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
+/obj/structure/cable,
 /obj/machinery/light/small{
 	dir = 8
 	},
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "Es" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 1
 	},
@@ -6256,11 +5335,7 @@
 	},
 /area/outpost/hallway/south_cent)
 "Eu" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/light,
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/dormitories)
@@ -6271,10 +5346,7 @@
 /area/outpost/caves/north_west)
 "Ex" = (
 /obj/machinery/power/apc/drained,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/brown2{
 	dir = 5
 	},
@@ -6305,11 +5377,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -6338,11 +5406,7 @@
 	},
 /area/outpost/cargo/office)
 "EO" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/purple2{
 	dir = 9
@@ -6361,11 +5425,7 @@
 /area/outpost/caves/north_west)
 "ET" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/outpost/dormitories)
@@ -6383,11 +5443,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_east)
 "EW" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -6411,11 +5467,7 @@
 	},
 /area/outpost/yard/central)
 "Fd" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
@@ -6424,11 +5476,7 @@
 	},
 /area/outpost/hallway/central)
 "Fe" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -6445,22 +5493,14 @@
 /turf/open/floor/tile/dark,
 /area/outpost/medbay/storage)
 "Fj" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/south_east)
 "Fk" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/brown2{
 	dir = 10
 	},
@@ -6496,10 +5536,7 @@
 /obj/machinery/power/apc/drained{
 	dir = 8
 	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
@@ -6513,11 +5550,7 @@
 	},
 /area/outpost/dormitories)
 "Fv" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
@@ -6525,6 +5558,10 @@
 	dir = 8
 	},
 /area/outpost/engineering)
+"Fw" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north_east)
 "Fy" = (
 /turf/closed/mineral/bigred,
 /area/outpost/caves/north)
@@ -6537,22 +5574,14 @@
 	},
 /area/outpost/brig)
 "FA" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/west)
 "FB" = (
 /obj/machinery/door/airlock/multi_tile/mainship/research{
 	dir = 1
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -6617,17 +5646,6 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_east)
-"Ga" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/dark/brown2{
-	dir = 8
-	},
-/area/outpost/hallway/west)
 "Gf" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -6637,11 +5655,7 @@
 	},
 /area/outpost/dormitories)
 "Gg" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8
 	},
@@ -6653,11 +5667,7 @@
 	},
 /area/outpost/caves/west)
 "Gk" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
@@ -6680,11 +5690,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_east)
 "Gv" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -6696,21 +5702,7 @@
 	},
 /area/outpost/medbay)
 "Gx" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
@@ -6720,11 +5712,7 @@
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/hallway/east)
 "Gz" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/item/trash/cheesie,
 /turf/open/floor/tile/dark,
@@ -6739,11 +5727,7 @@
 /turf/open/floor/tile/dark/red2,
 /area/outpost/brig/gear_room)
 "GH" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/purple2{
 	dir = 5
@@ -6823,11 +5807,7 @@
 	},
 /area/outpost/brig)
 "He" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -6847,19 +5827,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/mineral/bigred,
 /area/outpost/caves/south)
-"Hk" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/turf/open/floor/tile/dark,
-/area/outpost/hallway/west)
 "Hm" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south_east)
@@ -6881,11 +5848,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/medbay/chemistry)
 "Hz" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -6894,20 +5857,12 @@
 	},
 /area/outpost/hallway/south_cent)
 "HB" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/purple2,
 /area/outpost/science)
 "HC" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -6929,20 +5884,12 @@
 	},
 /area/outpost/brig/armoury)
 "HI" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/outpost/arrivals/security)
 "HJ" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -6979,11 +5926,7 @@
 	},
 /area/outpost/caves/north)
 "HW" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
@@ -6997,11 +5940,7 @@
 	},
 /area/outpost/yard/north_east)
 "HY" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/light/small,
 /turf/open/floor/tile/dark/brown2{
 	dir = 6
@@ -7012,24 +5951,12 @@
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/hallway/east)
 "Ie" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/brown2/corner,
 /area/outpost/hallway/northern)
-"If" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/open/floor/plating,
-/area/outpost/engineering/engine)
 "Ii" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -7040,11 +5967,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/arrivals/security)
 "Ik" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
@@ -7087,21 +6010,13 @@
 	},
 /area/outpost/hallway/central)
 "Iv" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/blue2/corner{
 	dir = 4
 	},
 /area/outpost/medbay)
 "Iw" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
@@ -7140,11 +6055,7 @@
 	},
 /area/outpost/hallway/central)
 "IK" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/dark/yellow2,
 /area/outpost/engineering/hallway)
@@ -7171,11 +6082,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/engineering/security)
 "IW" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /obj/effect/spawner/random/tool,
 /turf/open/floor/tile/dark/yellow2,
@@ -7192,11 +6099,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/caves/north)
 "Ja" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
@@ -7228,20 +6131,13 @@
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
-/obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/blue2{
 	dir = 9
 	},
 /area/outpost/medbay/surgery)
 "Jj" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
 "Jk" = (
@@ -7258,30 +6154,8 @@
 	dir = 10
 	},
 /area/outpost/science/xenobiology)
-"Jo" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/open/floor/plating,
-/area/outpost/engineering/engine)
 "Jq" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/tile/dark,
@@ -7309,11 +6183,7 @@
 /turf/open/floor/tile/dark/brown2/corner,
 /area/outpost/hallway/south_east)
 "Jx" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/item/trash/mre,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
@@ -7357,22 +6227,14 @@
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 2
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
 "JL" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
@@ -7403,16 +6265,7 @@
 	},
 /area/outpost/lz2)
 "JR" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/east)
@@ -7438,11 +6291,7 @@
 /area/outpost/cargo/office)
 "JZ" = (
 /obj/structure/table,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/effect/spawner/random/powercell,
 /obj/effect/spawner/random/powercell,
 /obj/effect/spawner/random/powercell,
@@ -7490,11 +6339,7 @@
 	},
 /area/outpost/yard/north)
 "Ki" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8
 	},
@@ -7526,21 +6371,7 @@
 	},
 /area/outpost/arrivals)
 "Kn" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
@@ -7583,11 +6414,7 @@
 	},
 /area/outpost/engineering/hallway)
 "KB" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
@@ -7637,20 +6464,12 @@
 	},
 /area/outpost/hallway/central)
 "KI" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
+/obj/structure/cable,
 /obj/effect/spawner/random/toolbox,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "KJ" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
 /area/outpost/science)
@@ -7672,31 +6491,11 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/dark,
 /area/outpost/engineering)
-"KN" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/outpost/medbay)
 "KP" = (
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
 	dir = 8
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
@@ -7713,22 +6512,8 @@
 	},
 /area/outpost/science/hydponics)
 "KV" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /turf/open/floor/tile/dark,
 /area/outpost/engineering)
 "KW" = (
@@ -7744,16 +6529,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/yard/west)
 "La" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
@@ -7771,11 +6547,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/cargo/security)
 "Lh" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
@@ -7820,11 +6592,7 @@
 	},
 /area/outpost/hallway/central)
 "LI" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -7873,11 +6641,7 @@
 /turf/closed/mineral/bigred,
 /area/outpost/caves/south_east)
 "LV" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/light,
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1
@@ -7885,11 +6649,7 @@
 /turf/open/floor/tile/dark/red2,
 /area/outpost/brig)
 "LX" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
@@ -7932,11 +6692,7 @@
 	},
 /area/outpost/cargo)
 "Mh" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
@@ -7983,11 +6739,7 @@
 	},
 /area/outpost/medbay)
 "Mo" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
@@ -8024,24 +6776,13 @@
 "Mz" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /obj/machinery/power/apc/drained,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
 /area/outpost/engineering/security)
-"MA" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/asteroidwarning,
-/area/outpost/caves/east)
 "MB" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/light/small,
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/hallway/south_cent)
@@ -8100,28 +6841,8 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/hallway/central)
-"MO" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
-/turf/open/floor/tile/dark/purple2{
-	dir = 4
-	},
-/area/outpost/science)
 "MP" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
@@ -8153,11 +6874,7 @@
 	},
 /area/outpost/hallway/south_west)
 "MW" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/item/trash/sosjerky,
 /turf/open/floor/tile/dark/brown2{
@@ -8165,11 +6882,7 @@
 	},
 /area/outpost/dormitories)
 "MZ" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
@@ -8225,11 +6938,7 @@
 	},
 /area/outpost/yard/west)
 "Nn" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1
 	},
@@ -8245,11 +6954,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/brig/gear_room)
 "Nr" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -8265,11 +6970,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/arrivals)
 "Nt" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -8324,22 +7025,14 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/yard/south_east)
 "NH" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/east)
 "NK" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
@@ -8370,11 +7063,7 @@
 /turf/open/floor/tile/dark/blue2,
 /area/outpost/medbay)
 "Oa" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -8388,11 +7077,7 @@
 	},
 /area/outpost/arrivals)
 "Oe" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/purple2{
 	dir = 6
@@ -8454,16 +7139,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/south_east)
 "Ot" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
@@ -8479,11 +7155,7 @@
 /turf/open/floor/tile/dark/red2,
 /area/outpost/engineering/security)
 "Oy" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
@@ -8503,22 +7175,14 @@
 	},
 /area/outpost/lz2)
 "OC" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
 /area/outpost/brig/gear_room)
 "OD" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
@@ -8531,11 +7195,7 @@
 /turf/closed/mineral/bigred,
 /area/outpost/lz2)
 "OG" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 8
 	},
@@ -8551,11 +7211,7 @@
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "OK" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
@@ -8569,10 +7225,7 @@
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
-/obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
@@ -8621,10 +7274,7 @@
 /area/outpost/caves/north)
 "Pe" = (
 /obj/machinery/power/apc/drained,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/purple2{
 	dir = 1
 	},
@@ -8669,11 +7319,7 @@
 	},
 /area/outpost/brig/armoury)
 "Po" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/red2{
 	dir = 10
 	},
@@ -8693,11 +7339,7 @@
 	},
 /area/outpost/hallway/south_west)
 "Pv" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
@@ -8707,11 +7349,7 @@
 	dir = 1;
 	name = "\improper Marshal Office"
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/outpost/brig/gear_room)
@@ -8722,22 +7360,14 @@
 /area/outpost/lz1)
 "PG" = (
 /obj/structure/table,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/effect/spawner/random/toolbox,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
 /area/outpost/engineering)
 "PH" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -8754,32 +7384,21 @@
 	},
 /area/outpost/hallway/east)
 "PL" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/science/research)
 "PN" = (
 /obj/machinery/power/apc/drained{
 	dir = 8
 	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/blue2{
 	dir = 4
 	},
 /area/outpost/medbay/chemistry)
 "PQ" = (
 /obj/machinery/optable,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/item/tank/anesthetic,
 /obj/item/clothing/mask/breath/medical,
 /obj/effect/decal/cleanable/blood,
@@ -8810,11 +7429,7 @@
 	},
 /area/outpost/arrivals)
 "Qe" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -8832,11 +7447,7 @@
 /turf/open/floor/plating/asteroidwarning,
 /area/outpost/yard/north)
 "Qi" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -8880,31 +7491,13 @@
 	dir = 10
 	},
 /area/outpost/yard/west)
-"Qr" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/dark/red2,
-/area/outpost/brig)
 "Qu" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 5
 	},
 /area/outpost/hallway/south_west)
 "Qv" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
@@ -8931,10 +7524,7 @@
 /area/outpost/dormitories)
 "QD" = (
 /obj/machinery/power/apc/drained,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -8948,11 +7538,7 @@
 	},
 /area/outpost/yard/west)
 "QG" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -8974,11 +7560,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/south_west)
 "QK" = (
@@ -9011,11 +7593,7 @@
 /turf/open/floor/tile/dark/red2,
 /area/outpost/cargo/security)
 "QR" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -9052,11 +7630,7 @@
 /turf/open/floor/tile/dark/blue2,
 /area/outpost/medbay/surgery)
 "Rf" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -9070,11 +7644,7 @@
 	},
 /area/outpost/cargo/security)
 "Rh" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8
 	},
@@ -9108,11 +7678,7 @@
 	},
 /area/outpost/arrivals)
 "Ro" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
@@ -9121,11 +7687,7 @@
 	},
 /area/outpost/hallway/west)
 "Rq" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
+/obj/structure/cable,
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark/brown2{
 	dir = 6
@@ -9172,11 +7734,7 @@
 	},
 /area/outpost/medbay/storage)
 "Rv" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -9185,11 +7743,7 @@
 	},
 /area/outpost/science)
 "Rw" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8
 	},
@@ -9198,11 +7752,7 @@
 	},
 /area/outpost/science/xenobiology)
 "Rx" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
@@ -9218,36 +7768,19 @@
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/outpost/caves/east)
 "RE" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/brown2{
 	dir = 10
 	},
 /area/outpost/hallway/east)
 "RG" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/hallway/east)
 "RH" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/red2,
 /area/outpost/brig/gear_room)
@@ -9270,11 +7803,7 @@
 	},
 /area/outpost/hallway/northern)
 "RP" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -9333,11 +7862,7 @@
 	},
 /area/outpost/arrivals/security)
 "Sf" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
@@ -9352,11 +7877,7 @@
 	},
 /area/outpost/hallway/south_cent)
 "Si" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
@@ -9374,11 +7895,7 @@
 	},
 /area/outpost/lz2)
 "Sp" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 1
 	},
@@ -9387,11 +7904,7 @@
 	},
 /area/outpost/hallway/south_east)
 "Sq" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -9410,11 +7923,7 @@
 /area/outpost/medbay)
 "Ss" = (
 /obj/structure/bed/chair/office/dark,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/brig/wardens_office)
 "Sv" = (
@@ -9426,11 +7935,7 @@
 /area/outpost/engineering)
 "Sx" = (
 /obj/structure/bed/chair,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay/security)
 "Sy" = (
@@ -9456,22 +7961,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
-"SJ" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 1
-	},
-/turf/open/floor/tile/dark,
-/area/outpost/hallway/south_east)
 "SK" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark,
@@ -9487,19 +7976,11 @@
 /area/outpost/arrivals/security)
 "SO" = (
 /obj/structure/table,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/red2,
 /area/outpost/medbay/security)
 "SS" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
@@ -9551,11 +8032,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/central)
 "Tg" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -9564,21 +8041,7 @@
 	},
 /area/outpost/cargo)
 "Th" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/cargo)
@@ -9593,11 +8056,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_east)
 "Tp" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4
 	},
@@ -9624,11 +8083,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 1
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/engineering/security)
 "Ty" = (
@@ -9752,11 +8207,7 @@
 	},
 /area/outpost/yard/east)
 "Uh" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
@@ -9792,11 +8243,7 @@
 	},
 /area/outpost/engineering)
 "Uo" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
@@ -9850,10 +8297,7 @@
 "UE" = (
 /obj/structure/table,
 /obj/machinery/power/apc/drained,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 9
 	},
@@ -9874,22 +8318,14 @@
 	},
 /area/outpost/caves/north)
 "UP" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 1
 	},
 /area/outpost/hallway/south_cent)
 "UR" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 4
 	},
@@ -9909,11 +8345,7 @@
 /turf/open/floor/tile/dark/blue2,
 /area/outpost/medbay)
 "UW" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
@@ -9929,11 +8361,7 @@
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "Va" = (
@@ -9948,11 +8376,7 @@
 /turf/closed/wall/r_wall,
 /area/outpost/engineering/hallway)
 "Vf" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
@@ -10025,11 +8449,7 @@
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/hallway/east)
 "VC" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
@@ -10084,11 +8504,7 @@
 /turf/closed/wall/r_wall,
 /area/outpost/science/xenobiology)
 "VQ" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
@@ -10109,10 +8525,7 @@
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
-/obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
@@ -10126,6 +8539,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_west)
+"VZ" = (
+/obj/docking_port/stationary/crashmode,
+/turf/closed/mineral/bigred,
+/area/outpost/caves/east)
 "Wb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
@@ -10143,25 +8560,13 @@
 /obj/machinery/power/apc/drained{
 	dir = 8
 	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
 /area/outpost/science/research)
 "Wf" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
@@ -10184,11 +8589,7 @@
 	},
 /area/outpost/yard/south)
 "Wl" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/arrivals)
@@ -10261,11 +8662,7 @@
 /turf/open/floor/plating,
 /area/outpost/lz1)
 "WK" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
@@ -10279,11 +8676,7 @@
 	},
 /area/outpost/science/security)
 "WO" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/dark/purple2{
 	dir = 8
@@ -10294,11 +8687,7 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/outpost/lz1)
 "WR" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8
 	},
@@ -10315,11 +8704,7 @@
 	},
 /area/outpost/engineering)
 "WT" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -10336,11 +8721,7 @@
 	},
 /area/outpost/science/research)
 "Xa" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
@@ -10363,6 +8744,10 @@
 	dir = 4
 	},
 /area/outpost/engineering)
+"Xf" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/yard/south_east)
 "Xg" = (
 /obj/structure/bed/chair/comfy,
 /turf/open/floor/tile/dark/brown2{
@@ -10370,11 +8755,7 @@
 	},
 /area/outpost/hallway/south_cent)
 "Xh" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
@@ -10405,11 +8786,7 @@
 	},
 /area/outpost/yard/west)
 "Xn" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1
 	},
@@ -10439,11 +8816,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/arrivals)
 "Xx" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/dark/brown2{
 	dir = 6
@@ -10492,11 +8865,7 @@
 /turf/open/floor/tile/dark/blue2,
 /area/outpost/medbay/storage)
 "XL" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 1
 	},
@@ -10547,16 +8916,7 @@
 /turf/closed/mineral/bigred,
 /area/outpost/caves/south_east)
 "Yc" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
@@ -10571,11 +8931,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -10599,11 +8955,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_east)
 "Yn" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/hallway/south_west)
 "Yo" = (
@@ -10611,10 +8963,7 @@
 /area/outpost/caves/north_east)
 "Yq" = (
 /obj/machinery/power/apc/drained,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
@@ -10644,10 +8993,7 @@
 /area/outpost/caves/north_east)
 "Yy" = (
 /obj/machinery/power/apc/drained,
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
@@ -10700,11 +9046,7 @@
 	},
 /area/outpost/hallway/south_cent)
 "YJ" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/light/small{
 	dir = 8
 	},
@@ -10743,11 +9085,7 @@
 /turf/open/floor/tile/dark/red2,
 /area/outpost/brig)
 "YT" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/red2,
 /area/outpost/brig)
@@ -10764,11 +9102,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/arrivals)
 "YY" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/hallway/east)
 "Zc" = (
@@ -10807,11 +9141,7 @@
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
 	dir = 8
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -10834,25 +9164,13 @@
 /obj/machinery/power/apc/drained{
 	dir = 8
 	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/purple2{
 	dir = 6
 	},
 /area/outpost/science/xenobiology)
 "Zr" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
@@ -10874,11 +9192,7 @@
 /turf/open/floor/tile/dark/brown2/corner,
 /area/outpost/hallway/south_cent)
 "Zv" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -10890,11 +9204,7 @@
 /obj/machinery/atmospherics/pipe/simple/general/visible{
 	dir = 5
 	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
 "Zz" = (
@@ -10933,11 +9243,7 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/outpost/lz2)
 "ZI" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -10946,11 +9252,7 @@
 	},
 /area/outpost/science)
 "ZJ" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},
@@ -10958,25 +9260,8 @@
 "ZK" = (
 /turf/open/floor/freezer,
 /area/outpost/dormitories)
-"ZL" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/turf/open/floor/tile/dark/brown2,
-/area/outpost/hallway/south_cent)
 "ZM" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
@@ -11005,11 +9290,7 @@
 /obj/machinery/door/airlock/mainship/medical/free_access{
 	dir = 1
 	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay/storage)
 "ZT" = (
@@ -11036,11 +9317,7 @@
 /area/outpost/hallway/south_west)
 "ZW" = (
 /obj/structure/table,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/cell_charger,
 /obj/machinery/light/small{
 	dir = 8
@@ -11053,11 +9330,7 @@
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "ZZ" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
+/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/brown2{
 	dir = 9
@@ -24677,7 +22950,7 @@ cc
 cc
 cc
 cc
-zQ
+BH
 SH
 SH
 SH
@@ -24922,7 +23195,7 @@ Ux
 gL
 iV
 tM
-Ga
+tM
 fK
 oI
 SH
@@ -25696,7 +23969,7 @@ Nz
 sz
 eX
 ig
-Hk
+FA
 aA
 oI
 Jb
@@ -25941,7 +24214,7 @@ bq
 Vo
 Ee
 Sr
-KN
+Rf
 ws
 pC
 Vf
@@ -26715,7 +24988,7 @@ tr
 YU
 MH
 qy
-bm
+Rf
 TR
 kl
 cO
@@ -26728,7 +25001,7 @@ eX
 Ah
 lb
 Ro
-BF
+FA
 hk
 oI
 SH
@@ -26973,7 +25246,7 @@ DU
 tr
 HK
 qy
-bm
+Rf
 NY
 oe
 oe
@@ -27270,7 +25543,7 @@ Jc
 Jc
 Jc
 pw
-ux
+pw
 PH
 Jc
 pf
@@ -27489,7 +25762,7 @@ oY
 tr
 HK
 qy
-bm
+Rf
 nx
 oe
 ks
@@ -27747,7 +26020,7 @@ XC
 tr
 rm
 Ze
-bQ
+to
 fM
 oe
 ks
@@ -29044,7 +27317,7 @@ oJ
 oJ
 ww
 Yv
-xK
+qs
 gM
 ww
 ww
@@ -29560,7 +27833,7 @@ tv
 rf
 PU
 TO
-xK
+qs
 gM
 ww
 ks
@@ -29818,7 +28091,7 @@ oJ
 oJ
 ww
 Yv
-xK
+qs
 gM
 ww
 ww
@@ -30329,7 +28602,7 @@ oJ
 oJ
 oJ
 yq
-sc
+mP
 oJ
 Wm
 ww
@@ -30354,8 +28627,8 @@ cx
 cx
 Wb
 zD
-fV
-fV
+zD
+zD
 Ki
 pe
 wa
@@ -30862,7 +29135,7 @@ ww
 ww
 EA
 EA
-EA
+wS
 EA
 EA
 EA
@@ -31918,7 +30191,7 @@ RV
 RV
 Ip
 yp
-ZL
+mZ
 px
 Cy
 Cy
@@ -34481,7 +32754,7 @@ kE
 VJ
 fG
 Yq
-xb
+aG
 fG
 VJ
 kE
@@ -35009,7 +33282,7 @@ Fj
 Fj
 pP
 Sp
-SJ
+Fj
 Fj
 jt
 Fj
@@ -35489,7 +33762,7 @@ Oe
 sg
 GH
 Uo
-MO
+Gx
 RQ
 GT
 pK
@@ -35988,7 +34261,7 @@ ro
 eG
 Gn
 Gn
-nq
+uY
 Je
 Af
 Af
@@ -36037,7 +34310,7 @@ HT
 fG
 NF
 NF
-NF
+Xf
 NF
 NF
 mJ
@@ -37616,14 +35889,14 @@ Cy
 Cy
 DX
 te
-tA
+sk
 xG
 gK
-Jo
+sk
 UZ
-If
-If
-ga
+sk
+sk
+sk
 CU
 DC
 CU
@@ -37874,14 +36147,14 @@ Db
 DX
 DX
 ZY
-AW
+sk
 xG
 gK
 KI
 MU
 ZY
 ZY
-bA
+sk
 ZY
 DX
 ZY
@@ -38132,14 +36405,14 @@ TB
 wR
 DX
 RA
-bA
+sk
 ZY
 FJ
 ZY
 MU
 ZY
 CU
-bA
+sk
 ZY
 rH
 ZY
@@ -38397,8 +36670,8 @@ ZY
 MU
 ZY
 CU
-Ej
-If
+sk
+sk
 cw
 ZY
 ZY
@@ -39628,7 +37901,7 @@ Yc
 dS
 dm
 au
-Qr
+kF
 re
 BN
 KX
@@ -39886,7 +38159,7 @@ hd
 yY
 ee
 QD
-Ai
+cN
 XP
 EK
 ck
@@ -40402,7 +38675,7 @@ MZ
 RH
 Py
 iM
-wi
+cN
 XP
 YC
 Bx
@@ -40651,7 +38924,7 @@ Yx
 cg
 Rs
 Sk
-tc
+eO
 cf
 CB
 Nq
@@ -40678,11 +38951,11 @@ Xi
 Xi
 Xi
 Xi
-Xi
+VZ
 Xi
 RD
 Hb
-MA
+Gm
 Xi
 Xi
 Xi
@@ -40909,7 +39182,7 @@ Yx
 cg
 Rs
 Op
-tc
+eO
 oZ
 GC
 Rs
@@ -41167,7 +39440,7 @@ Yx
 cg
 Rs
 TQ
-tc
+eO
 wr
 fv
 Rs
@@ -41425,7 +39698,7 @@ jc
 se
 Nq
 TQ
-tc
+eO
 wr
 fv
 Rs
@@ -43741,7 +42014,7 @@ Yx
 Yx
 Yx
 TP
-Yx
+Fw
 cg
 cg
 cg

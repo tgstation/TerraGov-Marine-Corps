@@ -362,17 +362,6 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	powerloader = SKILL_POWERLOADER_PRO
 	leadership = SKILL_LEAD_TRAINED
 
-/datum/skills/MP
-	name = "Military Police"
-	cqc = SKILL_CQC_MP
-	police = SKILL_POLICE_MP
-
-/datum/skills/CMP
-	name = COMMAND_MASTER_AT_ARMS
-	cqc = SKILL_CQC_MP
-	police = SKILL_POLICE_MP
-	leadership = SKILL_LEAD_TRAINED
-
 /datum/skills/CE
 	name = CHIEF_SHIP_ENGINEER
 	engineer = SKILL_ENGINEER_MASTER

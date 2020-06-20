@@ -40,8 +40,8 @@
 //T18 Carbine
 
 /obj/item/ammo_magazine/rifle/standard_carbine
-	name = "\improper T-18 Carbine magazine (10x24mm)"
-	desc = "A 10mm Carbine magazine."
+	name = "\improper T-18 magazine (10x24mm)"
+	desc = "A 10mm carbine magazine."
 	caliber = "10x24mm caseless"
 	icon_state = "t18"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -53,8 +53,8 @@
 //T12 Assault Rifle
 
 /obj/item/ammo_magazine/rifle/standard_assaultrifle
-	name = "\improper T-12 Assault Rifle magazine (10x24mm)"
-	desc = "A 10mm Assault Rifle magazine."
+	name = "\improper T-12 magazine (10x24mm)"
+	desc = "A 10mm assault rifle magazine."
 	caliber = "10x24mm caseless"
 	icon_state = "t12"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -63,27 +63,50 @@
 	gun_type = /obj/item/weapon/gun/rifle/standard_assaultrifle
 
 //-------------------------------------------------------
-//T64 DMR
+//T37 DMR
 
 /obj/item/ammo_magazine/rifle/standard_dmr
-	name = "\improper T-64 DMR magazine (10x27mm)"
+	name = "\improper T-37 magazine (10x27mm)"
 	desc = "A 10mm DMR magazine."
 	caliber = "10x27mm caseless"
-	icon_state = "t64"
+	icon_state = "t37"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/standard_dmr
 	max_rounds = 20
 	gun_type = /obj/item/weapon/gun/rifle/standard_dmr
 
 /obj/item/ammo_magazine/rifle/standard_dmr/incendiary
-	name = "\improper T-64 DMR incendiary magazine (10x27mm)"
-	desc = "A 10mm incendiary DMR magazine."
+	name = "\improper T-64 incendiary magazine (10x27mm)"
+	desc = "A 10mm incendiary DMR magazine, carries less rounds however."
 	caliber = "10x27mm incendiary caseless"
-	icon_state = "t64_incin"
+	icon_state = "t37_incin"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/standard_dmr/incendiary
 	max_rounds = 15
 	gun_type = /obj/item/weapon/gun/rifle/standard_dmr
+
+//-------------------------------------------------------
+//T64 BR
+
+/obj/item/ammo_magazine/rifle/standard_br
+	name = "\improper T-64 magazine (10x27mm)"
+	desc = "A 10mm battle rifle magazine."
+	caliber = "10x27mm caseless"
+	icon_state = "t64"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/rifle/standard_dmr
+	max_rounds = 25
+	gun_type = /obj/item/weapon/gun/rifle/standard_br
+
+/obj/item/ammo_magazine/rifle/standard_br/incendiary
+	name = "\improper T-64 BR incendiary magazine (10x27mm)"
+	desc = "A 10mm incendiary battle rifle magazine, carries less rounds however."
+	caliber = "10x27mm incendiary caseless"
+	icon_state = "t64_incin"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/rifle/standard_dmr/incendiary
+	max_rounds = 20
+	gun_type = /obj/item/weapon/gun/rifle/standard_br
 
 //-------------------------------------------------------
 //M41A TRUE AND ORIGINAL
@@ -134,8 +157,8 @@
 //T-42 Light Machine Gun
 
 /obj/item/ammo_magazine/standard_lmg
-	name = "\improper T-42 LMG drum magazine (10x24mm)"
-	desc = "A drum magazine for the T-42 Light Machine Gun."
+	name = "\improper T-42 drum magazine (10x24mm)"
+	desc = "A drum magazine for the T-42 light machine gun."
 	icon_state = "t42"
 	caliber = "10x24mm caseless"
 	default_ammo = /datum/ammo/bullet/rifle
@@ -144,11 +167,25 @@
 	gun_type = /obj/item/weapon/gun/rifle/standard_lmg
 
 //-------------------------------------------------------
+//T-60 General Purpose Machine Gun
+
+/obj/item/ammo_magazine/standard_gpmg
+	name = "\improper T-60 GPMG box magazine (10x26mm)"
+	desc = "A drum magazine for the T-60 general purpose machinegun."
+	icon_state = "t60"
+	caliber = "10x26mm caseless"
+	default_ammo = /datum/ammo/bullet/rifle/machinegun
+	w_class = WEIGHT_CLASS_NORMAL
+	max_rounds = 250
+	gun_type = /obj/item/weapon/gun/rifle/standard_gpmg
+	reload_delay = 3 SECONDS
+
+//-------------------------------------------------------
 //M41AE2 HEAVY PULSE RIFLE
 
 /obj/item/ammo_magazine/m41ae2_hpr
-    name = "\improper M41AE2 ammo box (10x24mm)"
-    desc = "A semi-rectangular box of rounds for the M41AE2 Heavy Pulse Rifle."
+    name = "\improper M41AE2 box magazine (10x24mm)"
+    desc = "A semi-rectangular box of rounds for the M41AE2 heavy pulse rifle."
     icon_state = "m41ae2"
     caliber = "10x24mm caseless"
     default_ammo = /datum/ammo/bullet/rifle
@@ -238,7 +275,7 @@
 //Sectoid Rifle
 
 /obj/item/ammo_magazine/rifle/sectoid_rifle
-	name = "\improper Alien Rifle plasma magazine"
+	name = "alien rifle plasma magazine"
 	desc = "A magazine filled with powerful plasma rounds. The ammo inside doesn't look like anything you've seen before."
 	caliber = "alien alloy"
 	icon_state = "alien_rifle"
