@@ -12,8 +12,11 @@ Format:
 	disabled (disables the map)
 endmap
 
-map lv624
+map murray
 	default
+endmap
+	
+map lv624
 endmap
 
 map bigred_v2
