@@ -62,7 +62,7 @@
 
 /obj/machinery/autodoc/power_change()
 	. = ..()
-	if(!is_operational() || !occupant)
+	if(is_operational() || !occupant)
 		return
 	visible_message("[src] engages the safety override, ejecting the occupant.")
 	surgery = FALSE
@@ -719,34 +719,34 @@
 				go_out(AUTODOC_NOTICE_IDIOT_EJECT)
 		go_out()
 
-/obj/machinery/autodoc/proc/move_inside_wrapper(mob/living/M, mob/user)
-	if(M.incapacitated() || !ishuman(M))
+/obj/machinery/autodoc/proc/move_inside_wrapper(mob/living/dropped, mob/dragger)
+	if(dragger.incapacitated() || !ishuman(dragger))
 		return
 
 	if(occupant)
-		to_chat(M, "<span class='notice'>[src] is already occupied!</span>")
+		to_chat(dragger, "<span class='notice'>[src] is already occupied!</span>")
 		return
 
 	if(machine_stat & (NOPOWER|BROKEN))
-		to_chat(M, "<span class='notice'>[src] is non-functional!</span>")
+		to_chat(dragger, "<span class='notice'>[src] is non-functional!</span>")
 		return
 
-	if(M.skills.getRating("surgery") < SKILL_SURGERY_TRAINED && !event)
-		M.visible_message("<span class='notice'>[M] fumbles around figuring out how to get into \the [src].</span>",
+	if(dragger.skills.getRating("surgery") < SKILL_SURGERY_TRAINED && !event)
+		dropped.visible_message("<span class='notice'>[dropped] fumbles around figuring out how to get into \the [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to get into \the [src].</span>")
-		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * M.skills.getRating("surgery") ))// 8 secs non-trained, 5 amateur
-		if(!do_after(M, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * dragger.skills.getRating("surgery") ))// 8 secs non-trained, 5 amateur
+		if(!do_after(dropped, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 
-	M.visible_message("<span class='notice'>[M] starts climbing into \the [src].</span>",
+	dropped.visible_message("<span class='notice'>[dropped] starts climbing into \the [src].</span>",
 	"<span class='notice'>You start climbing into \the [src].</span>")
-	if(do_after(M, 10, FALSE, src, BUSY_ICON_GENERIC))
+	if(do_after(dropped, 1 SECONDS, FALSE, src, BUSY_ICON_GENERIC))
 		if(occupant)
-			to_chat(M, "<span class='notice'>[src] is already occupied!</span>")
+			to_chat(dragger, "<span class='notice'>[src] is already occupied!</span>")
 			return
-		M.stop_pulling()
-		M.forceMove(src)
-		occupant = M
+		dropped.stop_pulling()
+		dropped.forceMove(src)
+		occupant = dropped
 		icon_state = "autodoc_closed"
 		var/implants = list(/obj/item/implant/neurostim)
 		var/mob/living/carbon/human/H = occupant
