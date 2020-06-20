@@ -1213,12 +1213,12 @@ Imports
 /datum/supply_packs/imports/type71	//Moff gun
 	name = "Type 71 Pulse Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/type71)
-	cost = 5
+	cost = 15
 
 /datum/supply_packs/imports/type71/ammo
 	name = "Type 71 Pulse Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/type71)
-	cost = 1
+	cost = 3
 
 /datum/supply_packs/imports/mp5
 	name = "MP5 SMG"
