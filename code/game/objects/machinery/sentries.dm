@@ -408,7 +408,7 @@
 			if(!cell || cell.charge <= 0 || !anchored || CHECK_BITFIELD(turret_flags, TURRET_IMMOBILE) || !CHECK_BITFIELD(turret_flags, TURRET_ON) || machine_stat)
 				return
 
-			burst_size = CLAMP(burst_size + 1, min_burst, max_burst)
+			burst_size = clamp(burst_size + 1, min_burst, max_burst)
 			user.visible_message("<span class='notice'>[user] increments the [src]'s burst count.</span>",
 			"<span class='notice'>You increment [src]'s burst fire count.</span>")
 			. = TRUE
@@ -417,7 +417,7 @@
 			if(!cell || cell.charge <= 0 || !anchored || CHECK_BITFIELD(turret_flags, TURRET_IMMOBILE) || !CHECK_BITFIELD(turret_flags, TURRET_ON) || machine_stat)
 				return
 
-			burst_size = CLAMP(burst_size - 1, min_burst, max_burst)
+			burst_size = clamp(burst_size - 1, min_burst, max_burst)
 			user.visible_message("<span class='notice'>[user] decrements the [src]'s burst count.</span>",
 			"<span class='notice'>You decrement [src]'s burst fire count.</span>")
 			. = TRUE
@@ -920,7 +920,7 @@
 	if (CHECK_BITFIELD(turret_flags, TURRET_BURSTFIRE))
 		//Apply scatter
 		var/scatter_chance = proj_to_fire.ammo.scatter
-		var/burst_value = CLAMP(burst_size - 1, 1, 5)
+		var/burst_value = clamp(burst_size - 1, 1, 5)
 		scatter_chance += (burst_value * burst_value * 2)
 		proj_to_fire.accuracy = round(proj_to_fire.accuracy - (burst_value * burst_value * 1.2), 0.01) //Accuracy penalty scales with burst count.
 
@@ -943,7 +943,7 @@
 
 	//Shoot at the thing
 	playsound(loc, 'sound/weapons/guns/fire/rifle.ogg', 75, TRUE)
-	
+
 	proj_to_fire.fire_at(target, src, null, ammo.max_range, ammo.shell_speed)
 	if(target)
 		var/angle = round(Get_Angle(src, target))

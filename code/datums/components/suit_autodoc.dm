@@ -242,7 +242,7 @@
 
 	for(var/chem in chems)
 		var/datum/reagent/R = chem
-		var/amount_to_administer = CLAMP(\
+		var/amount_to_administer = clamp(\
 									initial(R.overdose_threshold) - H.reagents.get_reagent_amount(R),\
 									0,\
 									initial(R.overdose_threshold) * overdose_threshold_mod)
@@ -414,11 +414,11 @@
 	else if(href_list["automed_damage"])
 		damage_threshold += text2num(href_list["automed_damage"])
 		damage_threshold = round(damage_threshold)
-		damage_threshold = CLAMP(damage_threshold,SUIT_AUTODOC_DAM_MIN,SUIT_AUTODOC_DAM_MAX)
+		damage_threshold = clamp(damage_threshold,SUIT_AUTODOC_DAM_MIN,SUIT_AUTODOC_DAM_MAX)
 	else if(href_list["automed_pain"])
 		pain_threshold += text2num(href_list["automed_pain"])
 		pain_threshold = round(pain_threshold)
-		pain_threshold = CLAMP(pain_threshold,SUIT_AUTODOC_DAM_MIN,SUIT_AUTODOC_DAM_MAX)
+		pain_threshold = clamp(pain_threshold,SUIT_AUTODOC_DAM_MIN,SUIT_AUTODOC_DAM_MAX)
 
 	interact(wearer)
 

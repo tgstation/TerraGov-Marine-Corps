@@ -543,7 +543,7 @@
 
 /datum/reagents/proc/adjust_thermal_energy(J, min_temp = 2.7, max_temp = 1000)
 	var/S = specific_heat()
-	chem_temp = CLAMP(chem_temp * (J / (S * total_volume)), 2.7, 1000)
+	chem_temp = clamp(chem_temp * (J / (S * total_volume)), 2.7, 1000)
 
 /datum/reagents/proc/add_reagent(reagent, amount, list/data=null, reagtemp = 300, no_react = 0, safety = 0, no_overdose = FALSE)
 	if(!isnum(amount) || !amount || amount <= 0)
@@ -560,7 +560,7 @@
 		amount = (maximum_volume - cached_total) //Doesnt fit in. Make it disappear. Shouldnt happen. Will happen.
 		if(no_overdose)
 			var/overdose = D.overdose_threshold
-			amount = CLAMP(amount,0,overdose - get_reagent_amount(reagent) )
+			amount = clamp(amount,0,overdose - get_reagent_amount(reagent) )
 		if(amount<=0)
 			return FALSE
 	var/new_total = cached_total + amount
@@ -631,7 +631,7 @@
 		if(R.type == reagent)
 			//clamp the removal amount to be between current reagent amount
 			//and zero, to prevent removing more than the holder has stored
-			amount = CLAMP(amount, 0, R.volume) //P.S. Change it with the define when the other PR is merged.
+			amount = clamp(amount, 0, R.volume) //P.S. Change it with the define when the other PR is merged.
 			R.volume -= amount
 			update_total()
 			if(!safety)//So it does not handle reactions when it need not to

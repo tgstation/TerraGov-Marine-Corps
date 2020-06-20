@@ -5,7 +5,7 @@
 	if(species.species_flags & IS_SYNTHETIC) //Robots don't suffer from mutations or radloss.
 		return
 
-	radiation = CLAMP(radiation, 0, 100)
+	radiation = clamp(radiation, 0, 100)
 
 	if(!radiation)
 		return

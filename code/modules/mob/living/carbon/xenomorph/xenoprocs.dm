@@ -645,13 +645,13 @@
 	. = ..()
 	if(.)
 		return
-	sunder = CLAMP(sunder + adjustment, 0, xeno_caste.sunder_max)
+	sunder = clamp(sunder + adjustment, 0, xeno_caste.sunder_max)
 
 /mob/living/carbon/xenomorph/set_sunder(new_sunder)
 	. = ..()
 	if(.)
 		return
-	sunder = CLAMP(new_sunder, 0, xeno_caste.sunder_max)
+	sunder = clamp(new_sunder, 0, xeno_caste.sunder_max)
 
 /mob/living/carbon/xenomorph/get_sunder()
 	. = ..()

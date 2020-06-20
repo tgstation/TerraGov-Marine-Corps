@@ -522,7 +522,7 @@ below 100 is not dizzy
 */
 
 /mob/living/carbon/dizzy(amount)
-	dizziness = CLAMP(dizziness + amount, 0, 1000)
+	dizziness = clamp(dizziness + amount, 0, 1000)
 
 	if(dizziness > 100 && !is_dizzy)
 		INVOKE_ASYNC(src, .proc/dizzy_process)
