@@ -671,7 +671,6 @@
 #include "code\game\objects\machinery\computer\buildandrepair.dm"
 #include "code\game\objects\machinery\computer\camera_advanced.dm"
 #include "code\game\objects\machinery\computer\camera_console.dm"
-#include "code\game\objects\machinery\computer\card.dm"
 #include "code\game\objects\machinery\computer\communications.dm"
 #include "code\game\objects\machinery\computer\computer.dm"
 #include "code\game\objects\machinery\computer\crew.dm"

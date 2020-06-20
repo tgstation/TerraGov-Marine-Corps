@@ -476,7 +476,7 @@
 /area/shuttle/big_ert)
 "bw" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/card,
+/obj/machinery/computer/marine_card,
 /turf/open/floor/mainship/plate,
 /area/shuttle/big_ert)
 "by" = (
