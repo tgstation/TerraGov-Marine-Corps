@@ -95,7 +95,6 @@
 		T = location
 	else
 		return
-	to_chat(parent, "Target Location: [location]")
 	var/mob/living/carbon/xenomorph/attacker = parent
 	var/mob/living/L = figure_out_living_target(T)
 	. = carbon_directional_action_checks(L)
