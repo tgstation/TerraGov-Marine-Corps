@@ -533,12 +533,12 @@ AMMO
 	contains = list(/obj/item/ammo_magazine/shotgun/mbx900)
 	cost = 5
 
-/datum/supply_packs/ammo/mbx900
+/datum/supply_packs/ammo/mbx900/buckshot
 	name = "MBX-900 Buckshot Shells"
 	contains = list(/obj/item/ammo_magazine/shotgun/mbx900/buckshot)
 	cost = 5
 
-/datum/supply_packs/ammo/mbx900
+/datum/supply_packs/ammo/mbx900/tracker
 	name = "MBX-900 Tracker Shells"
 	contains = list(/obj/item/ammo_magazine/shotgun/mbx900/tracking)
 	cost = 5
@@ -583,9 +583,9 @@ AMMO
 	contains = list(/obj/item/ammo_magazine/flamer_tank/large/B)
 	cost = 10
 
-/datum/supply_packs/ammo/pyro/green
+/datum/supply_packs/ammo/pyro/blue
 	name = "M240-T High Burn Tank"
-	contains = list(/obj/item/ammo_magazine/flamer_tank/large/B)
+	contains = list(/obj/item/ammo_magazine/flamer_tank/large/X)
 	cost = 15
 
 /datum/supply_packs/ammo/mortar_ammo_he
