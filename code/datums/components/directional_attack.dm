@@ -56,7 +56,7 @@
 	if(attacker.get_active_held_item())
 		return NONE //We have something in our hand.
 
-/datum/component/directional_attack/proc/figure_out_living_target(datum/source, atom/target)
+/datum/component/directional_attack/proc/figure_out_living_target(atom/target)
 	var/clickDir = get_dir(parent, target)
 	var/turf/presumedPos = get_step(parent, clickDir)
 	var/mob/living/L = locate() in presumedPos
