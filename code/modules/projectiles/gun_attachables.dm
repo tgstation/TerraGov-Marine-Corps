@@ -1076,7 +1076,7 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/t70stock
-	name = "T-70 stock"
+	name = "\improper T-70 stock"
 	desc = "A irremovable T-70 grenade launcher stock."
 	icon_state = "t70stock"
 	wield_delay_mod = 0 SECONDS
