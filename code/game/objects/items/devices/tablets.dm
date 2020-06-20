@@ -169,7 +169,7 @@
 
 /obj/item/hud_tablet/leadership
 	name = "captain's hud tablet"
-	network = list("marinesl", "marine" "marinemainship")
+	network = list("marinesl", "marine", "marinemainship")
 	req_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_LEADER, ACCESS_MARINE_CAPTAIN)
 
 /obj/item/hud_tablet/fieldcommand
