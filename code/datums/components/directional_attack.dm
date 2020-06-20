@@ -108,3 +108,4 @@
 	var/mob/living/attacker = parent
 	attacker.UnarmedAttack(L, TRUE)
 	COOLDOWN_START(src, COOLDOWN_DIRECTIONAL_ATTACK, CLICK_CD_MELEE)
+
