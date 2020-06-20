@@ -14,8 +14,6 @@
 
 	if(target_zone != "eyes")
 		return 0
-	if(user.skills.getRating("surgery") < SKILL_SURGERY_PROFESSIONAL)
-		return 0
 	var/datum/internal_organ/eyes/E = target.internal_organs_by_name["eyes"]
 	if(!E)
 		return 0

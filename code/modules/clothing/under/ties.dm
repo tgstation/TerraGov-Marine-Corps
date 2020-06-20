@@ -541,14 +541,13 @@
 	hold = /obj/item/storage/internal/tie/white_vest
 
 /obj/item/storage/internal/tie/white_vest
-	storage_slots = 8
+	storage_slots = 9
 	can_hold = list(
 		/obj/item/tool/surgery,
 		/obj/item/stack/medical/advanced,
 		/obj/item/clothing/mask/surgical,
 		/obj/item/clothing/gloves/latex,
-		/obj/item/stack/nanopaste,
-		/obj/item/storage/surgical_tray)
+		/obj/item/stack/nanopaste)
 
 /obj/item/clothing/tie/storage/white_vest/medic
 	name = "corpsman webbing"
@@ -569,8 +568,7 @@
 	/obj/item/reagent_containers/hypospray,
 	/obj/item/bodybag,
 	/obj/item/roller,
-	/obj/item/clothing/glasses/hud/health,
-	/obj/item/storage/surgical_tray)
+	/obj/item/clothing/glasses/hud/health)
 
 /obj/item/clothing/tie/storage/knifeharness
 	name = "decorated harness"

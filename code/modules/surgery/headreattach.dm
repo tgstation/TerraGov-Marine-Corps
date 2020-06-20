@@ -13,8 +13,6 @@
 		return 0
 	if(affected.body_part != HEAD)
 		return 0
-	if(user.skills.getRating("surgery") < SKILL_SURGERY_PROFESSIONAL)
-		return 0
 	if(affected.limb_replacement_stage == reattach_step)
 		return 1
 

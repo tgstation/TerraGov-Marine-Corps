@@ -10,8 +10,6 @@
 	var/datum/internal_organ/brain/sponge = target.internal_organs_by_name["brain"]
 	if(!sponge || sponge.damage <= dmg_min || affected.surgery_open_stage != 3 || target_zone != "head")
 		return 0
-	if(user.skills.getRating("surgery") < SKILL_SURGERY_PROFESSIONAL)
-		return 0
 	if(dmg_max && sponge.damage > dmg_max) return 0
 	return 1
 
