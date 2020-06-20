@@ -625,6 +625,10 @@
 
 	fire_delay = 2.2 SECONDS
 
+/obj/item/weapon/gun/launcher/m92/standardmarine/Initialize()
+	. = ..()
+	grenades.Cut(1,0)
+
 /obj/item/weapon/gun/launcher/m81
 	name = "\improper T-81 grenade launcher"
 	desc = "A lightweight, single-shot grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
