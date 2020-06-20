@@ -1,17 +1,18 @@
-/obj/machinery/computer/camera
-	name = "security camera console"
-	desc = "Used to access the various cameras on the station."
-	icon_state = "cameras"
-	circuit = /obj/item/circuitboard/computer/security
-	light_color = LIGHT_COLOR_RED
-	ui_x = 870
-	ui_y = 708
+/obj/item/hud_tablet
+	name = "hud tablet"
+	desc = "A tablet with a live feed to a number of headset cameras"
+	icon = 'icons/obj/items/req_tablet.dmi'
+	icon_state = "req_tablet_off"
+	req_access = list(ACCESS_NT_CORPORATE)
+	flags_equip_slot = ITEM_SLOT_POCKET
+	w_class = WEIGHT_CLASS_NORMAL
 
+	var/ui_x = 870
+	var/ui_y = 708
 	interaction_flags = INTERACT_MACHINE_TGUI
 
-	var/list/network = list("marinemainship", "dropship1", "dropship2")
 	var/obj/machinery/camera/active_camera
-	var/list/concurrent_users = list()
+	var/list/network = list("marine")
 
 	// Stuff needed to render the map
 	var/map_name
@@ -21,16 +22,16 @@
 	var/list/cam_plane_masters
 	var/obj/screen/background/cam_background
 
-/obj/machinery/computer/camera/Initialize()
+/obj/item/hud_tablet/Initialize()
 	. = ..()
-	// Map name has to start and end with an A-Z character,
-	// and definitely NOT with a square bracket or even a number.
-	// I wasted 6 hours on this. :agony:
-	map_name = "camera_console_[REF(src)]_map"
 	// Convert networks to lowercase
 	for(var/i in network)
 		network -= i
 		network += lowertext(i)
+	// Map name has to start and end with an A-Z character,
+	// and definitely NOT with a square bracket or even a number.
+	// I wasted 6 hours on this. :agony:
+	map_name = "hud_tablet_[REF(src)]_map"
 	// Initialize map objects
 	cam_screen = new
 	cam_screen.name = "screen"
@@ -48,18 +49,32 @@
 	cam_background.assigned_map = map_name
 	cam_background.del_on_map_removal = FALSE
 
-/obj/machinery/computer/camera/Destroy()
-	qdel(cam_screen)
-	QDEL_LIST(cam_plane_masters)
-	qdel(cam_background)
-	return ..()
+/obj/item/hud_tablet/proc/get_available_cameras()
+	var/list/L = list()
+	for(var/i in GLOB.cameranet.cameras)
+		var/obj/machinery/camera/C = i
+		L.Add(C)
+	var/list/valid_cams = list()
+	for(var/obj/machinery/camera/C in L)
+		if(!C.network)
+			stack_trace("Camera in a cameranet has no camera network")
+			continue
+		if(!(islist(C.network)))
+			stack_trace("Camera in a cameranet has a non-list camera network")
+			continue
+		if(C.c_tag == "Unknown")
+			continue // dropped headsets havee an unknown tag
+		var/list/tempnetwork = C.network & network
+		if(length(tempnetwork))
+			valid_cams["[C.c_tag]"] = C
+	return valid_cams
 
-/obj/machinery/computer/camera/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
-	for(var/i in network)
-		network -= i
-		network += "[idnum][i]"
+/obj/item/hud_tablet/proc/show_camera_static()
+	cam_screen.vis_contents.Cut()
+	cam_background.icon_state = "scanline2"
+	cam_background.fill_rect(1, 1, default_map_size, default_map_size)
 
-/obj/machinery/computer/camera/ui_interact(\
+/obj/item/hud_tablet/ui_interact(\
 		mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
 		datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	// Update UI
@@ -68,16 +83,6 @@
 	if(!active_camera?.can_use())
 		show_camera_static()
 	if(!ui)
-		var/user_ref = REF(user)
-		var/is_living = isliving(user)
-		// Ghosts shouldn't count towards concurrent users, which produces
-		// an audible terminal_on click.
-		if(is_living)
-			concurrent_users += user_ref
-		// Turn on the console
-		if(length(concurrent_users) == 1 && is_living)
-			playsound(src, 'sound/machines/terminal_on.ogg', 25, FALSE)
-			use_power(active_power_usage)
 		// Register map objects
 		user.client.register_map_obj(cam_screen)
 		for(var/plane in cam_plane_masters)
@@ -87,7 +92,7 @@
 		ui = new(user, src, ui_key, "CameraConsole", name, ui_x, ui_y, master_ui, state)
 		ui.open()
 
-/obj/machinery/computer/camera/ui_data()
+/obj/item/hud_tablet/ui_data()
 	var/list/data = list()
 	data["network"] = network
 	data["activeCamera"] = null
@@ -98,7 +103,7 @@
 		)
 	return data
 
-/obj/machinery/computer/camera/ui_static_data()
+/obj/item/hud_tablet/ui_static_data()
 	var/list/data = list()
 	data["mapRef"] = map_name
 	var/list/cameras = get_available_cameras()
@@ -110,7 +115,7 @@
 		))
 	return data
 
-/obj/machinery/computer/camera/ui_act(action, params)
+/obj/item/hud_tablet/ui_act(action, params)
 	. = ..()
 	if(.)
 		return
@@ -128,7 +133,7 @@
 			return TRUE
 
 		var/list/visible_turfs = list()
-		for(var/turf/T in view(C.view_range, C))
+		for(var/turf/T in view(min(3, C.view_range), get_turf(C)))
 			visible_turfs += T
 
 		var/list/bbox = get_bbox_of_atoms(visible_turfs)
@@ -141,39 +146,39 @@
 
 		return TRUE
 
-/obj/machinery/computer/camera/ui_close(mob/user)
-	var/user_ref = REF(user)
-	var/is_living = isliving(user)
-	// Living creature or not, we remove you anyway.
-	concurrent_users -= user_ref
-	// Unregister map objects
-	user.client.clear_map(map_name)
-	// Turn off the console
-	if(length(concurrent_users) == 0 && is_living)
-		active_camera = null
-		playsound(src, 'sound/machines/terminal_off.ogg', 25, FALSE)
-		use_power(0)
 
-/obj/machinery/computer/camera/proc/show_camera_static()
-	cam_screen.vis_contents.Cut()
-	cam_background.icon_state = "scanline2"
-	cam_background.fill_rect(1, 1, default_map_size, default_map_size)
+/obj/item/hud_tablet/alpha
+	name = "alpha hud tablet"
+	network = list("alpha")
+	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_ALPHA)
 
-// Returns the list of cameras accessible from this computer
-/obj/machinery/computer/camera/proc/get_available_cameras()
-	var/list/L = list()
-	for(var/i in GLOB.cameranet.cameras)
-		var/obj/machinery/camera/C = i
-		L.Add(C)
-	var/list/valid_cams = list()
-	for(var/obj/machinery/camera/C in L)
-		if(!C.network)
-			stack_trace("Camera in a cameranet has no camera network")
-			continue
-		if(!(islist(C.network)))
-			stack_trace("Camera in a cameranet has a non-list camera network")
-			continue
-		var/list/tempnetwork = C.network & network
-		if(length(tempnetwork))
-			valid_cams["[C.c_tag]"] = C
-	return valid_cams
+/obj/item/hud_tablet/bravo
+	name = "bravo hud tablet"
+	network = list("bravo")
+	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_BRAVO)
+
+/obj/item/hud_tablet/charlie
+	name = "charlie hud tablet"
+	network = list("charlie")
+	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_CHARLIE)
+
+/obj/item/hud_tablet/delta
+	name = "delta hud tablet"
+	network = list("delta")
+	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DELTA)
+
+/obj/item/hud_tablet/leadership
+	name = "captain's hud tablet"
+	network = list("marinesl", "marine" "marinemainship")
+	req_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_LEADER, ACCESS_MARINE_CAPTAIN)
+
+/obj/item/hud_tablet/fieldcommand
+	name = "field commander's hud tablet"
+	network = list("marinesl", "marine")
+	req_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_LEADER)
+
+/obj/item/hud_tablet/pilot
+	name = "pilot officers's hud tablet"
+	network = list("dropship1", "dropship2")
+	req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_DROPSHIP)
+
