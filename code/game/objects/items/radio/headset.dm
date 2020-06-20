@@ -427,7 +427,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "headset_marine_bravo"
 	frequency = FREQ_BRAVO
 
-/obj/item/radio/headset/mainship/marine/alpha/LateInitialize(mapload)
+/obj/item/radio/headset/mainship/marine/bravo/LateInitialize(mapload)
 	. = ..()
 	camera.network += list("bravo")
 
@@ -454,7 +454,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "headset_marine_charlie"
 	frequency = FREQ_CHARLIE
 
-/obj/item/radio/headset/mainship/marine/alpha/LateInitialize(mapload)
+/obj/item/radio/headset/mainship/marine/charlie/LateInitialize(mapload)
 	. = ..()
 	camera.network += list("charlie")
 
@@ -482,7 +482,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "headset_marine_delta"
 	frequency = FREQ_DELTA
 
-/obj/item/radio/headset/mainship/marine/alpha/LateInitialize(mapload)
+/obj/item/radio/headset/mainship/marine/delta/LateInitialize(mapload)
 	. = ..()
 	camera.network += list("delta")
 

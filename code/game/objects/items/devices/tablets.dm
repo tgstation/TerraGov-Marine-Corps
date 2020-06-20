@@ -11,7 +11,13 @@
 	var/ui_y = 708
 	interaction_flags = INTERACT_MACHINE_TGUI
 
+
+	/// How far can these tablets see around the cameras
+	var/max_view_dist = 2
+
 	var/obj/machinery/camera/active_camera
+	/// Used to keep a cache of the last location visible on the camera
+	var/turf/last_turf
 	var/list/network = list("marine")
 
 	// Stuff needed to render the map
@@ -93,15 +99,31 @@
 		ui.open()
 
 /obj/item/hud_tablet/ui_data()
-	var/list/data = list()
-	data["network"] = network
-	data["activeCamera"] = null
+	. = list()
+	.["network"] = network
+	.["activeCamera"] = null
 	if(active_camera)
-		data["activeCamera"] = list(
+		.["activeCamera"] = list(
 			name = active_camera.c_tag,
 			status = active_camera.status,
 		)
-	return data
+
+		var/turf/current_turf = get_turf(active_camera)
+		if(last_turf == current_turf)
+			return
+		last_turf = current_turf
+
+		var/list/visible_turfs = list()
+		for(var/turf/T in view(min(max_view_dist, active_camera.view_range), current_turf))
+			visible_turfs += T
+
+		var/list/bbox = get_bbox_of_atoms(visible_turfs)
+		var/size_x = bbox[3] - bbox[1] + 1
+		var/size_y = bbox[4] - bbox[2] + 1
+
+		cam_screen.vis_contents = visible_turfs
+		cam_background.icon_state = "clear"
+		cam_background.fill_rect(1, 1, size_x, size_y)
 
 /obj/item/hud_tablet/ui_static_data()
 	var/list/data = list()
@@ -131,18 +153,6 @@
 		if(!active_camera?.can_use())
 			show_camera_static()
 			return TRUE
-
-		var/list/visible_turfs = list()
-		for(var/turf/T in view(min(3, C.view_range), get_turf(C)))
-			visible_turfs += T
-
-		var/list/bbox = get_bbox_of_atoms(visible_turfs)
-		var/size_x = bbox[3] - bbox[1] + 1
-		var/size_y = bbox[4] - bbox[2] + 1
-
-		cam_screen.vis_contents = visible_turfs
-		cam_background.icon_state = "clear"
-		cam_background.fill_rect(1, 1, size_x, size_y)
 
 		return TRUE
 
