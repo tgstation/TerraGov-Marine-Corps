@@ -839,6 +839,26 @@ CLOTHING
 	group = "Clothing"
 	containertype = /obj/structure/closet/crate
 
+/datum/supply_packs/clothing/combat_pack
+	name = "Combat Backpack"
+	contains = list(/obj/item/storage/backpack/lightpack)
+	cost = 40
+
+/datum/supply_packs/clothing/pyro_pack
+	name = "Pyrotechnician Fuel Pack"
+	contains = list(/obj/item/storage/backpack/marine/engineerpack/flamethrower)
+	cost = 15
+
+/datum/supply_packs/clothing/welding_pack
+	name = "Engineering Welding Pack"
+	contains = list(/obj/item/storage/backpack/marine/engineerpack)
+	cost = 5
+
+/datum/supply_packs/clothing/technician_pack
+	name = "Engineering Technician Pack"
+	contains = list(/obj/item/storage/backpack/marine/tech)
+	cost = 5
+
 /datum/supply_packs/clothing/officer_outfits
 	name = "officer outfits"
 	contains = list(
@@ -1095,6 +1115,11 @@ ENGINEERING
 	contains = list(/obj/structure/reagent_dispensers/fueltank)
 	cost = 7
 	containertype = null
+
+/datum/supply_packs/engineering/welding_kit
+	name = "Portable Fuel Tank"
+	contains = list(/obj/item/tool/weldpack)
+	cost = 5
 
 /datum/supply_packs/engineering/inflatable
 	name = "inflatable barriers"
