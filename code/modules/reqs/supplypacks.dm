@@ -842,7 +842,7 @@ CLOTHING
 /datum/supply_packs/clothing/combat_pack
 	name = "Combat Backpack"
 	contains = list(/obj/item/storage/backpack/lightpack)
-	cost = 40
+	cost = 20
 
 /datum/supply_packs/clothing/pyro_pack
 	name = "Pyrotechnician Fuel Pack"
