@@ -23,7 +23,7 @@
 	if(ishuman(parent))
 		human_directional_action(location, control, params, user)
 	else if(isxeno(parent))
-		xeno_directional_action(location, control, params, user)
+ 		xeno_directional_action(location, control, params, user)
 	else
 		living_directional_action(location, control, params, user)
 
@@ -62,7 +62,7 @@
 	var/mob/living/L = locate() in presumedPos
 	return L
 
-/datum/component/directional_attack/proc/living_directional_action(datum/source, location, control, params, mob/user)
+/datum/component/directional_attack/proc/living_directional_action(location, control, params, mob/user)
 	var/atom/T
 	if(isatom(location))
 		T = location
@@ -74,7 +74,7 @@
 		return
 	return living_do_directional_action(L)
 
-/datum/component/directional_attack/proc/human_directional_action(datum/source, location, control, params, mob/user)
+/datum/component/directional_attack/proc/human_directional_action(location, control, params, mob/user)
 	var/atom/T
 	if(isatom(location))
 		T = location
@@ -89,7 +89,7 @@
 		return //FF
 	return living_do_directional_action(L)
 
-/datum/component/directional_attack/proc/xeno_directional_action(datum/source, location, control, params, mob/user)
+/datum/component/directional_attack/proc/xeno_directional_action(location, control, params, mob/user)
 	var/atom/T
 	if(isatom(location))
 		T = location
