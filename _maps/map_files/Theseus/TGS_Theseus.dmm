@@ -32977,19 +32977,6 @@
 	icon_state = "silver"
 	},
 /area/mainship/command/cic)
-"cfG" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/decal/warning_stripes/thin,
-/obj/machinery/door/poddoor/shutters{
-	dir = 2;
-	id = "ROoffice";
-	layer = 3.3;
-	name = "RO Office"
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/squads/req)
 "cfH" = (
 /obj/machinery/door/airlock/mainship/medical/glass{
 	name = "\improper Experimental Weaponry Storage"
@@ -35760,6 +35747,18 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/living/briefing)
+"iEM" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin,
+/obj/machinery/door/poddoor/shutters{
+	dir = 2;
+	id = "qm_warehouse";
+	name = "Warehouse Shutters"
+	},
+/turf/open/floor/plating/mainship,
+/area/mainship/squads/req)
 "iFq" = (
 /obj/structure/platform{
 	dir = 4
@@ -78388,7 +78387,7 @@ biu
 bjV
 biu
 fzv
-cfG
+iEM
 rgR
 buH
 buH
@@ -78645,7 +78644,7 @@ biu
 bjV
 biu
 fzv
-cfG
+iEM
 rgR
 buH
 buH
@@ -80963,7 +80962,7 @@ kLR
 bGh
 gau
 bnF
-bnC
+bpn
 byf
 bzq
 bzq
@@ -80971,7 +80970,7 @@ jER
 bzq
 bzq
 bGj
-bnC
+kWq
 bnF
 bJN
 jVG
@@ -81220,7 +81219,7 @@ pAv
 bGh
 cjm
 bnF
-bpn
+bnC
 byg
 bzr
 bzr
@@ -81228,7 +81227,7 @@ bzr
 bzr
 bzr
 bGk
-kWq
+bnC
 bnF
 bJN
 jVG
