@@ -5218,7 +5218,7 @@
 /area/mainship/living/commandbunks)
 "sj" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/card,
+/obj/machinery/computer/marine_card,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
@@ -5777,7 +5777,7 @@
 /area/mainship/command/cic)
 "tT" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/card,
+/obj/machinery/computer/marine_card,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "tU" = (
@@ -14103,7 +14103,7 @@
 /area/mainship/command/self_destruct)
 "ZM" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/card,
+/obj/machinery/computer/marine_card,
 /obj/machinery/light{
 	dir = 1
 	},
