@@ -80,6 +80,12 @@
 	cam_background.icon_state = "scanline2"
 	cam_background.fill_rect(1, 1, default_map_size, default_map_size)
 
+/obj/item/hud_tablet/interact(mob/user)
+	if(!allowed(user))
+		to_chat(user, "<span class='warning'>Access denied, unauthorized user.</span>")
+		return TRUE
+	return ..()
+
 /obj/item/hud_tablet/ui_interact(\
 		mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
 		datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
