@@ -69,6 +69,8 @@
 	else 
 		return 
 	var/mob/living/L = figure_out_living_target(T)
+	if (isnull(L))
+		return	
 	. = living_directional_action_checks(L)
 	if(!isnull(.))
 		return
@@ -82,6 +84,8 @@
 		return
 	var/mob/living/carbon/human/attacker = parent
 	var/mob/living/L = figure_out_living_target(T)
+	if (isnull(L))
+		return	
 	. = carbon_directional_action_checks(L)
 	if(!isnull(.))
 		return
@@ -97,6 +101,8 @@
 		return
 	var/mob/living/carbon/xenomorph/attacker = parent
 	var/mob/living/L = figure_out_living_target(T)
+	if (isnull(L))
+		return	
 	. = carbon_directional_action_checks(L)
 	if(!isnull(.))
 		return
