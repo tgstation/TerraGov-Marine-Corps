@@ -413,6 +413,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/mask/gas = list(CAT_MAS, "Gas mask", 0, "black"),
 		/obj/item/clothing/mask/rebreather/scarf = list(CAT_MAS, "Heat absorbent coif", 0, "black"),
 		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
+		/obj/effect/essentials_set/flamer = list(CAT_STD, "Flamethrower Equipment Set", 0, "orange"),
 	)
 
 /obj/machinery/marine_selector/clothes/engi/alpha
@@ -854,7 +855,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/circuitboard/general = list(CAT_ENGSUP, "General circuit board", 1, "black"),
 		/obj/item/assembly/signaler = list(CAT_ENGSUP, "Signaler (for detpacks)", 1, "black"),
 		/obj/item/stack/voucher/sentry = list(CAT_ENGSUP, "UA-580 point defense sentry voucher", 26, "black"),
-
+		/obj/item/ammo_magazine/flamer_tank = list(CAT_ENGSUP, "Flamethrower Fuel Tank", 4, "orange"),
 		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
 		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
 		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil compensator", 0, "black"),
@@ -1083,6 +1084,11 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/circuitboard/general,
 						)
 
+/obj/effect/essentials_set/flamer
+	spawned_gear_list = list(
+						/obj/item/weapon/gun/flamer,
+						/obj/item/ammo_magazine/flamer_tank = 2,
+						)
 
 /obj/effect/essentials_set/leader
 	spawned_gear_list = list(
