@@ -360,7 +360,7 @@
 			continue
 		if(isliving(A))
 			var/mob/living/L = A
-			if(L.lying_angle)
+			if(!L.density || L.throwpass)
 				continue
 			throw_impact(A, speed)
 		if(isobj(A) && A.density && !(A.flags_atom & ON_BORDER) && (!A.throwpass || iscarbon(src)))
