@@ -8,7 +8,7 @@
 /datum/emergency_call/xenomorphs_corrupted/print_backstory(mob/living/carbon/xenomorph/X)
 	to_chat(X, "<B>You are Xenomorph from a corrupted hive.</b>")
 	to_chat(X, "<B>You've been cruising in space for years until a new Queen reached out to you and took over the control of your shuttle.</b>")
-	to_chat(X, "<B>Help the new Queen take over this sector. For the corrupted Hive!</b>")
+	to_chat(X, "<B>Expand your hive and destroy any who dare to oppose your influence especially other hives. For the corrupted Hive!</b>")
 
 
 /datum/emergency_call/xenomorphs_corrupted/spawn_items()
