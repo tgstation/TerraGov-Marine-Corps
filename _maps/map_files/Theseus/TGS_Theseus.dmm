@@ -35253,6 +35253,13 @@
 /obj/item/frame/table,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
+"gvw" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/structure/plasticflaps/sturdy,
+/turf/open/floor/plating/mainship,
+/area/mainship/squads/req)
 "gxk" = (
 /turf/open/floor/carpet{
 	icon_state = "carpetside"
@@ -36280,6 +36287,10 @@
 	dir = 6
 	},
 /area/mainship/living/numbertwobunks)
+"lOK" = (
+/obj/structure/plasticflaps/sturdy,
+/turf/open/floor/plating/mainship,
+/area/mainship/squads/req)
 "lPq" = (
 /obj/structure/sink{
 	dir = 8
@@ -36292,6 +36303,11 @@
 	},
 /obj/structure/closet/crate/internals,
 /turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
+"lQU" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/structure/plasticflaps/sturdy,
+/turf/open/floor/plating/mainship,
 /area/mainship/squads/req)
 "lTq" = (
 /obj/structure/window/framed/mainship/white,
@@ -36608,11 +36624,6 @@
 	},
 /turf/open/floor/stairs/rampbottom,
 /area/mainship/living/briefing)
-"nLs" = (
-/obj/structure/plasticflaps,
-/obj/effect/decal/warning_stripes/thin,
-/turf/open/floor/plating/mainship,
-/area/mainship/squads/req)
 "nMj" = (
 /obj/structure/rack,
 /obj/structure/ob_ammo/ob_fuel,
@@ -37460,10 +37471,6 @@
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/closed/wall/mainship,
 /area/mainship/squads/bravo)
-"ryL" = (
-/obj/structure/plasticflaps,
-/turf/open/floor/plating/mainship,
-/area/mainship/squads/req)
 "ryN" = (
 /obj/structure/rack,
 /turf/open/floor/mainship/mono,
@@ -38570,13 +38577,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/command/cic)
-"ycl" = (
-/obj/structure/plasticflaps,
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/plating/mainship,
-/area/mainship/squads/req)
 "yfR" = (
 /obj/machinery/photocopier,
 /turf/open/floor/mainship,
@@ -77609,9 +77609,9 @@ bjV
 biu
 blX
 bnF
-ycl
-ryL
-nLs
+gvw
+lOK
+lQU
 bnF
 rTD
 bre
