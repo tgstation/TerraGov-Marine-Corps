@@ -32977,6 +32977,19 @@
 	icon_state = "silver"
 	},
 /area/mainship/command/cic)
+"cfG" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/effect/decal/warning_stripes/thin,
+/obj/machinery/door/poddoor/shutters{
+	dir = 2;
+	id = "ROoffice";
+	layer = 3.3;
+	name = "RO Office"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/squads/req)
 "cfH" = (
 /obj/machinery/door/airlock/mainship/medical/glass{
 	name = "\improper Experimental Weaponry Storage"
@@ -35163,6 +35176,10 @@
 	},
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/medical_science)
+"fYH" = (
+/obj/machinery/computer/supplycomp,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "gas" = (
 /turf/open/floor/stairs/rampbottom{
 	dir = 1
@@ -38343,14 +38360,6 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/captain_mess)
-"wWw" = (
-/obj/machinery/door/poddoor/shutters{
-	dir = 2;
-	id = "qm_warehouse";
-	name = "Warehouse Shutters"
-	},
-/turf/open/floor/mainship/cargo,
-/area/mainship/squads/req)
 "wZv" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -78379,7 +78388,7 @@ biu
 bjV
 biu
 fzv
-wWw
+cfG
 rgR
 buH
 buH
@@ -78387,10 +78396,10 @@ bnF
 bnF
 bnF
 bnF
-bnF
-bnF
-bnF
-bnF
+hwy
+hwy
+hwy
+hwy
 bnF
 okJ
 bnF
@@ -78636,7 +78645,7 @@ biu
 bjV
 biu
 fzv
-wWw
+cfG
 rgR
 buH
 buH
@@ -79415,9 +79424,9 @@ gas
 huT
 qyq
 buH
-buH
 hpd
 buH
+fYH
 buH
 buH
 ibJ
