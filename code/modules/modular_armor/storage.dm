@@ -171,6 +171,7 @@
 	slowdown = 0.3
 
 /obj/item/storage/internal/modular/integrated
-	max_storage_space = 42
-	storage_slots = 7
-	max_w_class = WEIGHT_CLASS_SMALL
+	bypass_w_limit = list()
+	storage_slots = null
+	max_storage_space = 15
+	max_w_class = WEIGHT_CLASS_NORMAL

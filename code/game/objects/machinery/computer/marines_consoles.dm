@@ -329,6 +329,11 @@
 
 	updateUsrDialog()
 
+/obj/machinery/computer/marine_card/centcom
+	name = "CentCom Identification Computer"
+	circuit = "/obj/item/circuitboard/computer/card/centcom"
+	req_access = list(ACCESS_NT_CORPORATE)
+
 
 //This console changes a marine's squad. It's very simple.
 //It also does not: change or increment the squad count (used in the login randomizer), nor does it check for jobs.
@@ -419,7 +424,7 @@
 
 				//First, remove any existing squad access and clear the card.
 				for(var/datum/squad/Q in SSjob.squads)
-					if(findtext(modify.assignment,Q.name)) //Found one!
+					if(findtext(modify.assignment, Q.name)) //Found one!
 						modify.access -= Q.access //Remove any access found.
 						to_chat(usr, "Old squad access removed.")
 

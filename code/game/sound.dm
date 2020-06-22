@@ -116,7 +116,7 @@
 
 		var/list/output = world.shelleo("[ytdl] --format \"bestaudio\[ext=mp3]/best\[ext=mp4]\[height<=360]/bestaudio\[ext=m4a]/bestaudio\[ext=aac]\" --dump-single-json --no-playlist -- \"[shell_url_scrub(SSticker.login_music[1])]\"")
 		var/stdout = output[SHELLEO_STDOUT]
-		
+
 		var/list/data = list()
 		data = json_decode(stdout)
 		var/web_sound_url = ""
@@ -125,7 +125,7 @@
 		var/list/music_extra_data = list()
 		music_extra_data["start"] = text2num(SSticker.login_music[2])
 		music_extra_data["end"] = text2num(SSticker.login_music[3])
-		
+
 		chatOutput.sendMusic(web_sound_url,music_extra_data)
 
 /client/proc/play_title_music_legacy(vol = 85)
@@ -169,6 +169,10 @@
 				S = pick('sound/weapons/genhit1.ogg', 'sound/weapons/genhit2.ogg', 'sound/weapons/genhit3.ogg')
 			if("pageturn")
 				S = pick('sound/effects/pageturn1.ogg', 'sound/effects/pageturn2.ogg','sound/effects/pageturn3.ogg')
+			if("terminal_type")
+				S = pick('sound/machines/terminal_button01.ogg', 'sound/machines/terminal_button02.ogg', 'sound/machines/terminal_button03.ogg', \
+					'sound/machines/terminal_button04.ogg', 'sound/machines/terminal_button05.ogg', 'sound/machines/terminal_button06.ogg', \
+					'sound/machines/terminal_button07.ogg', 'sound/machines/terminal_button08.ogg')
 			// Weapons/bullets
 			if("ballistic_hit")
 				S = pick('sound/bullets/bullet_impact1.ogg','sound/bullets/bullet_impact2.ogg','sound/bullets/bullet_impact3.ogg')

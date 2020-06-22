@@ -313,7 +313,7 @@
 	},
 /area/security/checkpoint2)
 "abq" = (
-/obj/machinery/computer/card,
+/obj/machinery/computer/marine_card,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -7201,7 +7201,7 @@
 /turf/open/floor/tile/darkish,
 /area/bridge)
 "aAA" = (
-/obj/machinery/computer/card,
+/obj/machinery/computer/marine_card,
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/darkish,
 /area/bridge)
@@ -8423,7 +8423,7 @@
 /turf/open/floor/marking/bot,
 /area/lv624/lazarus/hop)
 "aEO" = (
-/obj/machinery/computer/card,
+/obj/machinery/computer/marine_card,
 /obj/structure/table/reinforced,
 /turf/open/floor/wood,
 /area/lv624/lazarus/hop)
