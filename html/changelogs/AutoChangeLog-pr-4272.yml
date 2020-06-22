@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes: 
+  - rscadd: "Added new camera consoles based on ByondUI"
