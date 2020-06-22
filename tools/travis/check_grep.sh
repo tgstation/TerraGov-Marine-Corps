@@ -53,20 +53,28 @@ if grep -nP '^\t+ [^ *]' code/**/*.dm; then
     echo "mixed <tab><space> indentation detected"
     st=1
 fi;
-if grep -nP '^(\t)[\w_]+ = list\(\n\1\t{2,}' code/**/*.dm; then
+if pcregrep -nM '^(\t)[\w_]+ = list\(\n\1\t{2,}' code/**/*.dm; then
     echo "long list overidented, should be two tabs"
     st=1
 fi;
-if grep -nP '^(\t)[\w_]+ = list\(\n\1\S' code/**/*.dm; then
+if pcregrep -nM '^(\t)[\w_]+ = list\(\n\1\S' code/**/*.dm; then
     echo "long list underindented, should be two tabs"
     st=1
 fi;
-if grep -nP '^(\t)[\w_]+ = list\([^\s)]+,\n' code/**/*.dm; then
+if pcregrep -nM '^(\t)[\w_]+ = list\([^\s)]+( ?= ?[\w\d]+)?,\n' code/**/*.dm; then
     echo "first item in a long list should be on the next line"
     st=1
 fi;
-if grep -nP '^(\t)[\w_]+ = list\(\n(\1\t\S+,\n)*\1\t[^\s,)]+\n' code/**/*.dm; then
+if pcregrep -nM '^(\t)[\w_]+ = list\(\n(\1\t\S+,\n)*\1\t[^\s,)]+\n' code/**/*.dm; then
     echo "last item in a long list should still have a comma"
+    st=1
+fi;
+if pcregrep -nM '^(\t)[\w_]+ = list\(\n(\1\t[^\s)]+( ?= ?[\w\d]+)?,\n)*\1\t[^\s)]+( ?= ?[\w\d]+)?\)' code/**/*.dm; then
+    echo ") in a long list should be on a new line"
+    st=1
+fi;
+if pcregrep -nM '^(\t)[\w_]+ = list\(\n(\1\t[^\s)]+( ?= ?[\w\d]+)?,\n)+\1\t\)' code/**/*.dm; then
+    echo ") in a long list should match identation of the opening list line"
     st=1
 fi;
 nl='
