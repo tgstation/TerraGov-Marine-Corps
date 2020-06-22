@@ -40,19 +40,19 @@
 //T-18 Carbine
 
 /obj/item/weapon/gun/rifle/standard_carbine
-    name = "\improper T-18 carbine"
-    desc = "The T-18 carbine is one of the standard rifles used by the TerraGov Marine Corps. It's commonly used by people who prefer greater mobility in combat, like scouts and other light infantry. Uses 10x24mm caseless ammunition."
-    icon_state = "t18"
-    item_state = "t18"
-    fire_sound = "sound/weapons/guns/fire/autorifle.ogg"
-   	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
-    unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
-    reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
-    caliber = "10x24mm caseless" //codex
-    max_shells = 32 //codex
-   	force = 20
-    current_mag = /obj/item/ammo_magazine/rifle/standard_carbine
-    attachable_allowed = list(
+	name = "\improper T-18 carbine"
+	desc = "The T-18 carbine is one of the standard rifles used by the TerraGov Marine Corps. It's commonly used by people who prefer greater mobility in combat, like scouts and other light infantry. Uses 10x24mm caseless ammunition."
+	icon_state = "t18"
+	item_state = "t18"
+	fire_sound = "sound/weapons/guns/fire/autorifle.ogg"
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
+	caliber = "10x24mm caseless" //codex
+	max_shells = 32 //codex
+	force = 20
+	current_mag = /obj/item/ammo_magazine/rifle/standard_carbine
+	attachable_allowed = list(
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/angledgrip,
@@ -76,18 +76,18 @@
 						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/attached_gun/shotgun)
 
-    flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
-    gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-    starting_attachment_types = list(/obj/item/attachable/stock/t18stock)
-    attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 10, "rail_y" = 19, "under_x" = 18, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
+	starting_attachment_types = list(/obj/item/attachable/stock/t18stock)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 10, "rail_y" = 19, "under_x" = 18, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
 
-    fire_delay = 0.2 SECONDS
-    burst_delay = 0.1 SECONDS
-    accuracy_mult = 1.10
-    scatter = -5
-    burst_amount = 4
-    aim_slowdown = 0.30
-    damage_falloff_mult = 0.9
+	fire_delay = 0.2 SECONDS
+	burst_delay = 0.1 SECONDS
+	accuracy_mult = 1.10
+	scatter = -5
+	burst_amount = 4
+	aim_slowdown = 0.30
+	damage_falloff_mult = 0.9
 
 /obj/item/weapon/gun/rifle/standard_carbine/pointman
 	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/lasersight, /obj/item/attachable/flashlight, /obj/item/attachable/t18barrel)
@@ -99,19 +99,19 @@
 //T-12 Assault Rifle
 
 /obj/item/weapon/gun/rifle/standard_assaultrifle
-    name = "\improper T-12 assault rifle"
-    desc = "The T-12 assault rifle used to be the TerraGov Marine Corps standard issue rifle before the T-18 carbine replaced it. It is, however, still used widely despite that. The gun itself is very good at being used in most situations however it suffers in engagements at close quarters and is relatively hard to shoulder than some others. It uses 10x24mm caseless ammunition."
-    icon_state = "t12"
-    item_state = "t12"
-    fire_sound = "sound/weapons/guns/fire/autorifle.ogg"
-   	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
-    unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
-    reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
-    caliber = "10x24mm caseless" //codex
-    max_shells = 50 //codex
-    force = 20
-    current_mag = /obj/item/ammo_magazine/rifle/standard_assaultrifle
-    attachable_allowed = list(
+	name = "\improper T-12 assault rifle"
+	desc = "The T-12 assault rifle used to be the TerraGov Marine Corps standard issue rifle before the T-18 carbine replaced it. It is, however, still used widely despite that. The gun itself is very good at being used in most situations however it suffers in engagements at close quarters and is relatively hard to shoulder than some others. It uses 10x24mm caseless ammunition."
+	icon_state = "t12"
+	item_state = "t12"
+	fire_sound = "sound/weapons/guns/fire/autorifle.ogg"
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/t18_reload.ogg'
+	caliber = "10x24mm caseless" //codex
+	max_shells = 50 //codex
+	force = 20
+	current_mag = /obj/item/ammo_magazine/rifle/standard_assaultrifle
+	attachable_allowed = list(
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/lasersight,
@@ -135,19 +135,19 @@
 						/obj/item/attachable/angledgrip,
 						/obj/item/attachable/attached_gun/shotgun)
 
-    flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
-    gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-    starting_attachment_types = list(/obj/item/attachable/stock/t12stock)
-    attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 23, "under_x" = 20, "under_y" = 11, "stock_x" = 0, "stock_y" = 13)
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
+	starting_attachment_types = list(/obj/item/attachable/stock/t12stock)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 23, "under_x" = 20, "under_y" = 11, "stock_x" = 0, "stock_y" = 13)
 
-    fire_delay = 0.2 SECONDS
-    burst_delay = 0.15 SECONDS
-    accuracy_mult = 1.15
-    scatter = -10
-    wield_delay = 0.7 SECONDS
-    burst_amount = 3
-    aim_slowdown = 0.4
-    damage_falloff_mult = 0.5
+	fire_delay = 0.2 SECONDS
+	burst_delay = 0.15 SECONDS
+	accuracy_mult = 1.15
+	scatter = -10
+	wield_delay = 0.7 SECONDS
+	burst_amount = 3
+	aim_slowdown = 0.4
+	damage_falloff_mult = 0.5
 
 /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
     starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/reddot, /obj/item/attachable/t12barrel, /obj/item/attachable/attached_gun/grenade)
@@ -628,7 +628,7 @@
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
-                        /obj/item/attachable/angledgrip,
+						/obj/item/attachable/angledgrip,
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/bipod,
 						/obj/item/attachable/stock/rifle,

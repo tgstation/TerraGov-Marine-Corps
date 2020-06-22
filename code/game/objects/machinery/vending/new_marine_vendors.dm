@@ -634,12 +634,12 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	)
 
 /obj/machinery/marine_selector/clothes/specialist/Initialize()
-    . = ..()
-    new /obj/effect/decal/cleanable/cobweb(loc)
-    for(var/d in GLOB.alldirs)
-        var/turf/T = get_step(src, d)
-        if(!T.density)
-            new /obj/effect/decal/cleanable/cobweb(T)
+	. = ..()
+	new /obj/effect/decal/cleanable/cobweb(loc)
+	for(var/d in GLOB.alldirs)
+		var/turf/T = get_step(src, d)
+		if(!T.density)
+			new /obj/effect/decal/cleanable/cobweb(T)
 
 
 /obj/machinery/marine_selector/clothes/specialist/alpha
@@ -1076,12 +1076,12 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	)
 
 /obj/machinery/marine_selector/gear/spec/Initialize()
-    . = ..()
-    new /obj/effect/decal/cleanable/cobweb(loc)
-    for(var/d in GLOB.alldirs)
-        var/turf/T = get_step(src, d)
-        if(!T.density)
-            new /obj/effect/decal/cleanable/cobweb(T)
+	. = ..()
+	new /obj/effect/decal/cleanable/cobweb(loc)
+	for(var/d in GLOB.alldirs)
+		var/turf/T = get_step(src, d)
+		if(!T.density)
+			new /obj/effect/decal/cleanable/cobweb(T)
 
 
 

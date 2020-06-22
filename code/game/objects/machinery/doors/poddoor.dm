@@ -153,10 +153,10 @@
 		/obj/machinery/door/airlock)
 
 /obj/machinery/door/poddoor/mainship/open
-    density = FALSE
-    opacity = FALSE
-    layer = PODDOOR_OPEN_LAYER
-    icon_state = "pdoor0"
+	density = FALSE
+	opacity = FALSE
+	layer = PODDOOR_OPEN_LAYER
+	icon_state = "pdoor0"
 
 
 /obj/machinery/door/poddoor/mainship/ai
@@ -175,7 +175,7 @@
 
 /obj/machinery/door/poddoor/mainship/ammo
 	name = "\improper Ammunition Storage"
-	id = "ammo2"	
+	id = "ammo2"
 
 /obj/machinery/door/poddoor/mainship/open/cic
 	name = "\improper Combat Information Center Blast Door"
@@ -183,7 +183,7 @@
 
 /obj/machinery/door/poddooor/mainship/hangar
 	name = "\improper Hangar Lockdown"
-	id = "hangar_lockdown"	
+	id = "hangar_lockdown"
 
 /obj/machinery/door/poddoor/mainship/Initialize()
 	relativewall_neighbours()
