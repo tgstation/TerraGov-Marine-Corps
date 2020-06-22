@@ -53,6 +53,14 @@ if grep -nP '^\t+ [^ *]' code/**/*.dm; then
     echo "mixed <tab><space> indentation detected"
     st=1
 fi;
+if grep -nP '^\t[\w_]+ = list\(\n\t{3,}' code/**/*.dm; then
+    echo "long list overidented, should be two tabs"
+    st=1
+fi;
+if grep -nP '^\t[\w_]+ = list\(\n\t\S' code/**/*.dm; then
+    echo "long list underindented, should be two tabs"
+    st=1
+fi;
 nl='
 '
 nl=$'\n'
