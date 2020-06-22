@@ -595,7 +595,7 @@
 	adjust_fire_stacks(burnlevel) //If i stand in the fire i deserve all of this. Also Napalm stacks quickly.
 	if(prob(firelevel))
 		IgniteMob()
-	//I.adjustFireLoss(rand(10 ,burnlevel)) //Including the fire should be way stronger.
+	adjustFireLoss(rand(10 , burnlevel)) //Including the fire should be way stronger.
 	to_chat(src, "<span class='warning'>You are burned!</span>")
 
 
