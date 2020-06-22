@@ -135,7 +135,7 @@
 	action_icon_state = "place_trap"
 	mechanics_text = "Place a hole on weeds that can be filled with a hugger. Activates when a marine steps on it."
 	plasma_cost = 100
-	cooldown_timer = 5 SECONDS
+	cooldown_timer = 10 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_PLACE_TRAP
 
 /datum/action/xeno_action/place_trap/can_use_action(silent = FALSE, override_flags)
@@ -159,7 +159,7 @@
 			to_chat(owner, "<span class='warning'>There is a resin node in the way!</span>")
 		return FALSE
 
-	if(locate(/obj/effect/alien/resin/trap) in range(src, 1))
+	if(locate(/obj/effect/alien/resin/trap) in range(1, T))
 		if(!silent)
 			to_chat(owner, "<span class='warning'>There is a trap already nearby!</span>")
 		return FALSE
@@ -169,6 +169,7 @@
 	var/turf/T = get_turf(owner)
 
 	succeed_activate()
+	add_cooldown()
 
 	playsound(T, "alien_resin_build", 25)
 	GLOB.round_statistics.carrier_traps++
