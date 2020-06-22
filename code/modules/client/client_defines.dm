@@ -80,13 +80,8 @@
 	///custom movement keys for this client
 	var/list/movement_keys = list()
 
-	/**
-	 * Assoc list with all the active maps - when a screen obj is added to
-	 * a map, it's put in here as well.
-	 *
-	 * Format: list(<mapname> = list(/obj/screen))
-	 */
-	var/list/screen_maps = list()
+	//assoc list with all the active maps - when a screen obj is added to a map, it's put in here as well. "mapname" = list(screen objs in map)
+	var/list/screen_maps
 
 	/// Messages currently seen by this client
 	var/list/seen_messages

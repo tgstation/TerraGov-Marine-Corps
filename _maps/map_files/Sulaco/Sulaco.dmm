@@ -3659,6 +3659,7 @@
 /obj/machinery/door/window/eastright,
 /obj/structure/noticeboard{
 	layer = 3.25;
+	pixel_x = 0;
 	pixel_y = -25
 	},
 /obj/structure/cable,
@@ -17955,6 +17956,7 @@
 /obj/machinery/door_control/mainship/req{
 	id = "qm_warehouse";
 	name = "RO Warehouse Shutters";
+	pixel_x = 0;
 	pixel_y = 25
 	},
 /obj/machinery/light{

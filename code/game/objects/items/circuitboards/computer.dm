@@ -46,13 +46,13 @@
 	name = "Circuit board (Communications)"
 	build_path = /obj/machinery/computer/communications
 
-/obj/item/circuitboard/computer/marine_card
+/obj/item/circuitboard/computer/card
 	name = "Circuit board (ID Computer)"
-	build_path = /obj/machinery/computer/marine_card
+	build_path = /obj/machinery/computer/card
 
-/obj/item/circuitboard/computer/marine_card/centcom
+/obj/item/circuitboard/computer/card/centcom
 	name = "Circuit board (CentCom ID Computer)"
-	build_path = /obj/machinery/computer/marine_card/centcom
+	build_path = /obj/machinery/computer/card/centcom
 
 /obj/item/circuitboard/computer/teleporter
 	name = "Circuit board (Teleporter)"

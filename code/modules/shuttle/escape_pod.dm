@@ -131,6 +131,7 @@
 
 	var/datum/browser/popup = new(user, "computer", "escape pod", 300, 200)
 	popup.set_content("<center>[dat]</center>")
+	popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
 /obj/machinery/computer/shuttle/escape_pod/Topic(href, href_list)

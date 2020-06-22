@@ -3,119 +3,119 @@
 //Base Area
 
 /area/lavaland
-	name = "Lava"
+	name = "\improper Lava"
 	icon_state = "lava"
 
 //Caves
 
 /area/lavaland/cave/central
-	name = "Central Caves"
+	name = "\improper Central Caves"
 	icon_state = "lava_cave_c"
 
 /area/lavaland/cave/north
-	name = "North Caves"
+	name = "\improper North Caves"
 	icon_state = "lava_cave_n"
 
 /area/lavaland/cave/northeast
-	name = "North East Caves"
+	name = "\improper North East Caves"
 	icon_state = "lava_cave_ne"
 
 /area/lavaland/cave/northwest
-	name = "North West Caves"
+	name = "\improper North West Caves"
 	icon_state = "lava_cave_nw"
 
 /area/lavaland/cave/south
-	name = "South Caves"
+	name = "\improper South Caves"
 	icon_state = "lava_cave_s"
 
 /area/lavaland/cave/southeast
-	name = "South East Caves"
+	name = "\improper South East Caves"
 	icon_state = "lava_cave_se"
 
 /area/lavaland/cave/southwest
-	name = "South West Caves"
+	name = "\improper South West Caves"
 	icon_state = "lava_cave_sw"
 
 /area/lavaland/cave/east
-	name = "East Caves"
+	name = "\improper East Caves"
 	icon_state = "lava_cave_e"
 
 /area/lavaland/cave/west
-	name = "West Caves"
+	name = "\improper West Caves"
 	icon_state = "lava_cave_w"
 
 //Medical
 
 /area/lavaland/medical
-	name = "Medical Clinic"
+	name = "\improper Medical Clinic"
 	icon_state = "lava_med"
 
 /area/lavaland/medical/chemistry
-	name = "Medical Clinic Chemistry"
+	name = "\improper Medical Clinic Chemistry"
 	icon_state = "lava_chem"
 
 /area/lavaland/medical/cmo
-	name = "Chief Medical Office"
+	name = "\improper Chief Medical Office"
 	icon_state = "lava_cmo"
 
 //"Engineer"
 
 /area/lavaland/engie/one
-	name = "Generator One"
+	name = "\improper Generator One"
 	icon_state = "lava_eng1"
 
 /area/lavaland/engie/two
-	name = "Generator Two"
+	name = "\improper Generator Two"
 	icon_state = "lava_eng2"
 
 /area/lavaland/engie/three
-	name = "Generator Three"
+	name = "\improper Generator Three"
 	icon_state = "lava_eng3"
 
 /area/lavaland/engie/refine
-	name = "Ore Processing Facility"
+	name = "\improper Ore Processing Facility"
 	icon_state = "lava_eng4"
 
 /area/lavaland/engie/engine
-	name = "Engineering Facility"
+	name = "\improper Engineering Facility"
 	icon_state = "lava_eng5"
 
 //Security
 
 /area/lavaland/security
-	name = "Prison Facility"
+	name = "\improper Prison Facility"
 	icon_state = "lava_sec_prison"
 
 /area/lavaland/security/storage
-	name = "Prison Facility Storage"
+	name = "\improper Prison Facility Storage"
 	icon_state = "lava_sec_secure"
 
 /area/lavaland/security/infocenter
-	name = "Prison Facility Information Center"
+	name = "\improper Prison Facility Information Center"
 	icon_state = "lava_sec"
 
 /area/lavaland/security/nuke
-	name = "Emergency Nuclear Fission Facility"
+	name = "\improper Emergency Nuclear Fission Facility"
 	icon_state = "lava_sec_nuke"
 
 //Civilian
 
 /area/lavaland/civilian
-	name = "Civilian Housing"
+	name = "\improper Civilian Housing"
 	icon_state = "lava_civ"
 
 /area/lavaland/civilian/cook
-	name = "Civilian Kitchen"
+	name = "\improper Civilian Kitchen"
 	icon_state = "lava_civ_cook"
 
 /area/lavaland/civilian/botany
-	name = "Civilian Botany"
+	name = "\improper Civilian Botany"
 	icon_state = "lava_civ_bot"
 
 /area/lavaland/civilian/garden
-	name = "Civilian Garden"
+	name = "\improper Civilian Garden"
 	icon_state = "lava_civ_garden"
 
 /area/lavaland/civilian/cargo
-	name = "Civilian Cargo"
+	name = "\improper Civilian Cargo"
 	icon_state = "lava_civ_cargo"

@@ -16,8 +16,7 @@
 		return
 
 	if (action == "orbit")
-		var/is_admin = check_other_rights(owner.client, R_ADMIN, FALSE)
-		var/list/pois = getpois(skip_mindless = !is_admin)
+		var/list/pois = getpois(skip_mindless = TRUE)
 		var/atom/movable/poi = pois[params["name"]]
 		if (poi != null)
 			owner.ManualFollow(poi)
@@ -35,8 +34,7 @@
 	var/list/misc = list()
 	var/list/npcs = list()
 
-	var/is_admin = check_other_rights(user.client, R_ADMIN, FALSE)
-	var/list/pois = getpois(skip_mindless = !is_admin)
+	var/list/pois = getpois(skip_mindless = TRUE)
 	for (var/name in pois)
 		var/list/serialized = list()
 		serialized["name"] = name

@@ -1,20 +1,20 @@
 /area/centcom
-	name = "Centcom"
+	name = "\improper Centcom"
 	icon_state = "centcom"
 	requires_power = FALSE
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 
 
 /area/centcom/control
-	name = "Centcom Control"
+	name = "\improper Centcom Control"
 
 
 /area/centcom/supply
-	name = "Centcom Supply"
+	name = "\improper Centcom Supply"
 
 
 /area/centcom/ferry
-	name = "Centcom Transport Shuttle"
+	name = "\improper Centcom Transport Shuttle"
 
 
 /area/centcom/supplypod/flyMeToTheMoon
@@ -62,7 +62,7 @@
 
 // Practice Areas
 /area/centcom/practice
-	name = "Practice Center"
+	name = "\improper Practice Center"
 
 /area/centcom/practice/medical
-	name = "Medical Practice Center"
+	name = "\improper Medical Practice Center"

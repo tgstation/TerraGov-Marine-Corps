@@ -12170,9 +12170,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/hangar/checkpoint)
 "aNs" = (
-/obj/machinery/power/apc{
-	dir = 4
-	},
+/obj/machinery/power/apc,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/hangar/checkpoint)
@@ -71119,8 +71117,8 @@ aaU
 aKh
 aOd
 aKt
+aKt
 aNs
-aPr
 aKh
 aOQ
 aMJ

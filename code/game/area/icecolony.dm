@@ -10,7 +10,7 @@
 
 //Base Instance
 /area/ice_colony
-	name = "Ice Colony"
+	name = "\improper Ice Colony"
 	icon_state = "ice_colony"
 	icon_state = "cliff_blocked"
 
@@ -21,7 +21,7 @@
 */
 
 /area/ice_colony/exterior
-	name = "Ice Colony"
+	name = "\improper Ice Colony"
 	icon_state = "cliff_blocked"
 	requires_power = 1
 	always_unpowered = 1
@@ -43,33 +43,33 @@
 //Buildings : Native Color. Command stays Blue, Clinic is Red
 
 /area/ice_colony/exterior/surface
-	name = "Ice Colony - Exterior Surface"
+	name = "\improper Ice Colony - Exterior Surface"
 
 
 //Equivalent of space. None of this area should be accessible. If these are valleys, make separate areas
 /area/ice_colony/exterior/surface/cliff
-	name = "Ice Cliffs"
+	name = "\improper Ice Cliffs"
 	icon_state = "cliff_blocked"
 
 //Landing Pad for the Rasp. THIS IS NOT THE SHUTTLE AREA
 /area/ice_colony/exterior/surface/landing_pad
-	name = "Aerodrome Landing Pad"
+	name = "\improper Aerodrome Landing Pad"
 	icon_state = "landing_pad"
 
 //Landing Pad for the Vindi. THIS IS NOT THE SHUTTLE AREA
 /area/ice_colony/exterior/surface/landing_pad2
-	name = "Emergency Landing Pad"
+	name = "\improper Emergency Landing Pad"
 	icon_state = "landing_pad"
 
 
 //Everything around the physical landing pad
 /area/ice_colony/exterior/surface/landing_pad_external
-	name = "Aerodrome Landing Valley"
+	name = "\improper Aerodrome Landing Valley"
 	icon_state = "landing_pad_ext"
 
 //Aerodrome Container Yard
 /area/ice_colony/exterior/surface/container_yard
-	name = "Aerodrome Container Yard"
+	name = "\improper Aerodrome Container Yard"
 	icon_state = "container_yard"
 
 //
@@ -79,40 +79,40 @@
 //
 
 /area/ice_colony/exterior/surface/valley
-	name = "Ice Cliffs Valley"
+	name = "\improper Ice Cliffs Valley"
 	icon_state = "valley"
 
 /area/ice_colony/exterior/surface/valley/north
-	name = "Northern Valleys"
+	name = "\improper Northern Valleys"
 	icon_state = "valley_north"
 
 /area/ice_colony/exterior/surface/valley/northeast
-	name = "North Eastern Valleys"
+	name = "\improper North Eastern Valleys"
 	icon_state = "valley_north_east"
 
 /area/ice_colony/exterior/surface/valley/northwest
-	name = "North Western Valleys"
+	name = "\improper North Western Valleys"
 	icon_state = "valley_north_west"
 
 /area/ice_colony/exterior/surface/valley/west
-	name = "Western Valleys"
+	name = "\improper Western Valleys"
 	icon_state = "valley_west"
 
 /area/ice_colony/exterior/surface/valley/south
-	name = "Southern Valleys"
+	name = "\improper Southern Valleys"
 	icon_state = "valley_south"
 
 /area/ice_colony/exterior/surface/valley/south/excavation
-	name = "Southern Valleys - Excavation Site"
+	name = "\improper Southern Valleys - Excavation Site"
 	icon_state = "valley_south_excv"
 	ceiling = CEILING_UNDERGROUND
 
 /area/ice_colony/exterior/surface/valley/southeast
-	name = "Eastern Valleys"
+	name = "\improper Eastern Valleys"
 	icon_state = "valley_east"
 
 /area/ice_colony/exterior/surface/valley/southwest
-	name = "South Western Valleys"
+	name = "\improper South Western Valleys"
 	icon_state = "valley_south_west"
 
 //
@@ -121,19 +121,19 @@
 //
 
 /area/ice_colony/exterior/surface/clearing
-	name = "Ice Colony Clearing"
+	name = "\improper Ice Colony Clearing"
 	icon_state = "clear"
 
 /area/ice_colony/exterior/surface/clearing/pass
-	name = "Colony Central Valley"
+	name = "\improper Colony Central Valley"
 	icon_state = "clear_pass"
 
 /area/ice_colony/exterior/surface/clearing/south
-	name = "Colony Southern Clearing"
+	name = "\improper Colony Southern Clearing"
 	icon_state = "clear_south"
 
 /area/ice_colony/exterior/surface/clearing/north
-	name = "Colony Northern Clearing"
+	name = "\improper Colony Northern Clearing"
 	icon_state = "clear_north"
 
 /*
@@ -141,7 +141,7 @@
 */
 
 /area/ice_colony/exterior/underground
-	name = "Ice Colony - Exterior Underground"
+	name = "\improper Ice Colony - Exterior Underground"
 	icon_state = "cave"
 	ceiling = CEILING_DEEP_UNDERGROUND
 
@@ -154,7 +154,7 @@
 //
 
 /area/ice_colony/exterior/underground/caves
-	name = "Underground Caves"
+	name = "\improper Underground Caves"
 	icon_state = "cave"
 
 /area/ice_colony/exterior/underground/caves/open
@@ -172,7 +172,7 @@
 */
 
 /area/ice_colony/surface
-	name = "Ice Colony - Built Surface"
+	name = "\improper Ice Colony - Built Surface"
 	icon_state = "clear"
 	ceiling = CEILING_METAL
 
@@ -182,14 +182,14 @@
 
 
 /area/ice_colony/surface/bar
-	name = "Anti-Freeze"
+	name = "\improper Anti-Freeze"
 	icon_state = "bar"
 
 /area/ice_colony/surface/bar/bar
-	name = "Anti-Freeze Bar"
+	name = "\improper Anti-Freeze Bar"
 
 /area/ice_colony/surface/bar/canteen
-	name = "Anti-Freeze Canteen"
+	name = "\improper Anti-Freeze Canteen"
 	icon_state = "kitchen"
 
 /*
@@ -197,18 +197,18 @@
 */
 
 /area/ice_colony/surface/clinic
-	name = "Aurora Medical Clinic"
+	name = "\improper Aurora Medical Clinic"
 	icon_state = "medbay"
 
 /area/ice_colony/surface/clinic/lobby
-	name = "Aurora Medical Clinic Lobby"
+	name = "\improper Aurora Medical Clinic Lobby"
 
 /area/ice_colony/surface/clinic/treatment
-	name = "Aurora Medical Clinic Treatment"
+	name = "\improper Aurora Medical Clinic Treatment"
 	icon_state = "medbay2"
 
 /area/ice_colony/surface/clinic/storage
-	name = "Aurora Medical Clinic Storage"
+	name = "\improper Aurora Medical Clinic Storage"
 	icon_state = "medbay3"
 
 /*
@@ -216,31 +216,31 @@
 */
 
 /area/ice_colony/surface/command
-	name = "Colony Administration"
+	name = "\improper Colony Administration"
 	icon_state = "bridge"
 
 /area/ice_colony/surface/command/checkpoint
-	name = "Colony Administration Security Checkpoint"
+	name = "\improper Colony Administration Security Checkpoint"
 	icon_state = "security"
 
 /area/ice_colony/surface/command/control
-	name = "Colony Control Center"
+	name = "\improper Colony Control Center"
 	icon_state = "maintcentral"
 
 /area/ice_colony/surface/command/control/office
-	name = "Colony Control Central Office"
+	name = "\improper Colony Control Central Office"
 	icon_state = "bridge"
 
 /area/ice_colony/surface/command/control/pv1
-	name = "Colony Control Private Office"
+	name = "\improper Colony Control Private Office"
 	icon_state = "yellow"
 
 /area/ice_colony/surface/command/control/pv2
-	name = "Colony Control Private Office"
+	name = "\improper Colony Control Private Office"
 	icon_state = "green"
 
 /area/ice_colony/surface/command/crisis
-	name = "Colony Crisis Room"
+	name = "\improper Colony Crisis Room"
 	icon_state = "head_quarters"
 
 /*
@@ -248,7 +248,7 @@
 */
 
 /area/ice_colony/surface/disposals
-	name = "Surface Disposals"
+	name = "\improper Surface Disposals"
 	icon_state = "disposal"
 
 /*
@@ -256,23 +256,23 @@
 */
 
 /area/ice_colony/surface/dorms
-	name = "Dormitories"
+	name = "\improper Dormitories"
 	icon_state = "Sleep"
 
 /area/ice_colony/surface/dorms/canteen
-	name = "Dormitories Canteen"
+	name = "\improper Dormitories Canteen"
 	icon_state = "kitchen"
 
 /area/ice_colony/surface/dorms/lavatory
-	name = "Dormitories Lavatory"
+	name = "\improper Dormitories Lavatory"
 	icon_state = "janitor"
 
 /area/ice_colony/surface/dorms/restroom_w
-	name = "Dormitories West Restroom"
+	name = "\improper Dormitories West Restroom"
 	icon_state = "toilet"
 
 /area/ice_colony/surface/dorms/restroom_e
-	name = "Dormitories East Restroom"
+	name = "\improper Dormitories East Restroom"
 	icon_state = "toilet"
 
 /*
@@ -280,19 +280,19 @@
 */
 
 /area/ice_colony/surface/engineering
-	name = "Engineering"
+	name = "\improper Engineering"
 	icon_state = "engine_hallway"
 
 /area/ice_colony/surface/engineering/generator
-	name = "Engineering Generator Room"
+	name = "\improper Engineering Generator Room"
 	icon_state = "engine"
 
 /area/ice_colony/surface/engineering/electric
-	name = "Engineering Electric Storage"
+	name = "\improper Engineering Electric Storage"
 	icon_state = "engine_storage"
 
 /area/ice_colony/surface/engineering/tool
-	name = "Engineering Tool Storage"
+	name = "\improper Engineering Tool Storage"
 	icon_state = "storage"
 
 /*
@@ -300,15 +300,15 @@
 */
 
 /area/ice_colony/surface/excavation
-	name = "Excavation Outpost"
+	name = "\improper Excavation Outpost"
 	icon_state = "mining_outpost"
 
 /area/ice_colony/surface/excavationbarracks
-	name = "Excavation Barracks"
+	name = "\improper Excavation Barracks"
 	icon_state = "mining_outpost"
 
 /area/ice_colony/surface/excavation/storage
-	name = "Excavation Outpost External Storage"
+	name = "\improper Excavation Outpost External Storage"
 	icon_state = "mining_storage"
 
 /*
@@ -316,19 +316,19 @@
 */
 
 /area/ice_colony/surface/garage
-	name = "Garage"
+	name = "\improper Garage"
 	icon_state = "garage"
 
 /area/ice_colony/surface/garage/one
-	name = "Garage Western Unit"
+	name = "\improper Garage Western Unit"
 	icon_state = "garage_one"
 
 /area/ice_colony/surface/garage/two
-	name = "Garage Eastern Unit"
+	name = "\improper Garage Eastern Unit"
 	icon_state = "garage_two"
 
 /area/ice_colony/surface/garage/repair
-	name = "Garage Repair Station"
+	name = "\improper Garage Repair Station"
 	icon_state = "engine"
 
 /*
@@ -336,22 +336,22 @@
 */
 
 /area/ice_colony/surface/hangar
-	name = "Aerodrome Hangar"
+	name = "\improper Aerodrome Hangar"
 	icon_state = "hangar"
 
 /area/ice_colony/surface/hangar/hallway
-	name = "Aerodrome Hangar Hallway"
+	name = "\improper Aerodrome Hangar Hallway"
 
 /area/ice_colony/surface/hangar/alpha
-	name = "Aerodrome Hangar 'Alpha'"
+	name = "\improper Aerodrome Hangar 'Alpha'"
 	icon_state = "hangar_alpha"
 
 /area/ice_colony/surface/hangar/beta
-	name = "Aerodrome Hangar 'Beta'"
+	name = "\improper Aerodrome Hangar 'Beta'"
 	icon_state = "hangar_beta"
 
 /area/ice_colony/surface/hangar/checkpoint
-	name = "Aerodrome Hangar Security Checkpoint"
+	name = "\improper Aerodrome Hangar Security Checkpoint"
 	icon_state = "security"
 
 /*
@@ -359,20 +359,20 @@
 */
 
 /area/ice_colony/surface/hydroponics
-	name = "Ice Colony Hydroponics"
+	name = "\improper Ice Colony Hydroponics"
 	icon_state = "hydro"
 	ceiling = CEILING_GLASS
 
 /area/ice_colony/surface/hydroponics/lobby
-	name = "Hydroponics Relaxation Module"
+	name = "\improper Hydroponics Relaxation Module"
 	icon_state = "garden"
 
 /area/ice_colony/surface/hydroponics/north
-	name = "Hydroponics North Wing"
+	name = "\improper Hydroponics North Wing"
 	icon_state = "hydro_north"
 
 /area/ice_colony/surface/hydroponics/south
-	name = "Hydroponics South Wing"
+	name = "\improper Hydroponics South Wing"
 	icon_state = "hydro_south"
 
 /*
@@ -380,7 +380,7 @@
 */
 
 /area/ice_colony/surface/mining
-	name = "Mining Outpost"
+	name = "\improper Mining Outpost"
 	icon_state = "mining_production"
 
 /*
@@ -388,11 +388,11 @@
 */
 
 /area/ice_colony/surface/substation
-	name = "Surface Power Substation"
+	name = "\improper Surface Power Substation"
 	icon_state = "dk_yellow"
 
 /area/ice_colony/surface/substation/smes
-	name = "Surface Power Substation SMES"
+	name = "\improper Surface Power Substation SMES"
 	icon_state = "substation"
 
 /*
@@ -400,7 +400,7 @@
 */
 
 /area/ice_colony/surface/requesitions
-	name = "Surface Requesition Warehouse"
+	name = "\improper Surface Requesition Warehouse"
 	icon_state = "quartstorage"
 
 /*
@@ -409,19 +409,19 @@
 
 /area/ice_colony/surface/research
 
-	name = "Omicron Dome"
+	name = "\improper Omicron Dome"
 	icon_state = "toxlab"
 
 /area/ice_colony/surface/research/tech_storage
-	name = "Omicron Dome Technical Storage"
+	name = "\improper Omicron Dome Technical Storage"
 	icon_state = "primarystorage"
 
 /area/ice_colony/surface/research/field_gear
-	name = "Omicron Dome Field Gear Storage"
+	name = "\improper Omicron Dome Field Gear Storage"
 	icon_state = "eva"
 
 /area/ice_colony/surface/research/temporary
-	name = "Omicron Dome Temporary Storage"
+	name = "\improper Omicron Dome Temporary Storage"
 	icon_state = "storage"
 
 /*
@@ -429,19 +429,19 @@
 */
 
 /area/ice_colony/surface/storage_unit
-	name = "Storage Unit"
+	name = "\improper Storage Unit"
 	icon_state = "storage"
 
 /area/ice_colony/surface/storage_unit/research
-	name = "Storage Unit Research"
+	name = "\improper Storage Unit Research"
 	icon_state = "storage"
 
 /area/ice_colony/surface/storage_unit/telecomms
-	name = "Storage Unit T-Comms"
+	name = "\improper Storage Unit T-Comms"
 	icon_state = "storage"
 
 /area/ice_colony/surface/storage_unit/power
-	name = "Storage Unit Power"
+	name = "\improper Storage Unit Power"
 	icon_state = "storage"
 
 /*
@@ -449,7 +449,7 @@
 */
 
 /area/ice_colony/surface/tcomms
-	name = "Colony Telecommunications"
+	name = "\improper Colony Telecommunications"
 	icon_state = "tcomsatcham"
 
 /*
@@ -459,7 +459,7 @@
 */
 
 /area/ice_colony/underground
-	name = "Ice Colony - Built Underground"
+	name = "\improper Ice Colony - Built Underground"
 	icon_state = "explored"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
@@ -468,44 +468,44 @@
 */
 
 /area/ice_colony/underground/crew
-	name = "Underground Crew Area"
+	name = "\improper Underground Crew Area"
 	icon_state = "crew_quarters"
 
 /area/ice_colony/underground/crew/dorm_l
-	name = "West Dormitory"
+	name = "\improper West Dormitory"
 	icon_state = "Sleep"
 
 /area/ice_colony/underground/crew/dorm_r
-	name = "East Dormitory"
+	name = "\improper East Dormitory"
 	icon_state = "Sleep"
 
 /area/ice_colony/underground/crew/canteen
-	name = "Underground Canteen"
+	name = "\improper Underground Canteen"
 	icon_state = "kitchen"
 
 /area/ice_colony/underground/crew/disposals
-	name = "Underground Disposals"
+	name = "\improper Underground Disposals"
 	icon_state = "disposal"
 
 /area/ice_colony/underground/crew/lavatory
-	name = "Underground Lavatory"
+	name = "\improper Underground Lavatory"
 	icon_state = "janitor"
 
 /area/ice_colony/underground/crew/leisure
-	name = "Underground Leisure Area"
+	name = "\improper Underground Leisure Area"
 
 /area/ice_colony/underground/crew/bball
-	name = "Underground Sports Center"
+	name = "\improper Underground Sports Center"
 
 /area/ice_colony/underground/crew/chapel
-	name = "Underground Chapel"
+	name = "\improper Underground Chapel"
 
 /area/ice_colony/underground/crew/library
-	name = "Underground Library"
+	name = "\improper Underground Library"
 	icon_state = "library"
 
 /area/ice_colony/underground/crew/morgue
-	name = "Underground Morgue"
+	name = "\improper Underground Morgue"
 	icon_state = "morgue"
 
 /*
@@ -513,23 +513,23 @@
 */
 
 /area/ice_colony/underground/command
-	name = "Underground Colonial Administration"
+	name = "\improper Underground Colonial Administration"
 	icon_state = "bridge"
 
 /area/ice_colony/underground/command/checkpoint
-	name = "Underground Colonial Administration Lobby"
+	name = "\improper Underground Colonial Administration Lobby"
 	icon_state = "security"
 
 /area/ice_colony/underground/command/center
-	name = "Underground Colonial Administration Command Center"
+	name = "\improper Underground Colonial Administration Command Center"
 	icon_state = "head_quarters"
 
 /area/ice_colony/underground/command/pv1
-	name = "Underground Colonial Administration Private Office"
+	name = "\improper Underground Colonial Administration Private Office"
 	icon_state = "yellow"
 
 /area/ice_colony/underground/command/pv2
-	name = "Underground Colonial Administration Private Office"
+	name = "\improper Underground Colonial Administration Private Office"
 	icon_state = "green"
 
 /*
@@ -537,16 +537,16 @@
 */
 
 /area/ice_colony/underground/engineering
-	name = "Underground Engineering"
+	name = "\improper Underground Engineering"
 	icon_state = "engine_hallway"
 
 /area/ice_colony/underground/engineering/locker
-	name = "Underground Engineering Locker Room"
+	name = "\improper Underground Engineering Locker Room"
 	icon_state = "storage"
 
 
 /area/ice_colony/underground/engineering/substation
-	name = "Underground Power Substation"
+	name = "\improper Underground Power Substation"
 	icon_state = "substation"
 
 /*
@@ -554,14 +554,14 @@
 */
 
 /area/ice_colony/underground/hallway
-	name = "Underground Hallway"
+	name = "\improper Underground Hallway"
 	icon_state = "hallC1"
 
 /area/ice_colony/underground/hallway/north_west
-	name = "Underground Hallway NW"
+	name = "\improper Underground Hallway NW"
 
 /area/ice_colony/underground/hallway/south_east
-	name = "Underground Hallway SE"
+	name = "\improper Underground Hallway SE"
 	icon_state = "hallF"
 
 /*
@@ -569,38 +569,38 @@
 */
 
 /area/ice_colony/underground/maintenance
-	name = "Underground Maintenance"
+	name = "\improper Underground Maintenance"
 	icon_state = "maintcentral"
 
 /area/ice_colony/underground/maintenance/central
-	name = "Underground Central Maintenance"
+	name = "\improper Underground Central Maintenance"
 
 /area/ice_colony/underground/maintenance/central/construction
-	name = "Underground Central Maintenance Project"
+	name = "\improper Underground Central Maintenance Project"
 	icon_state = "construction"
 
 /area/ice_colony/underground/maintenance/security
-	name = "Underground Security Maintenance"
+	name = "\improper Underground Security Maintenance"
 	icon_state = "maint_security_port"
 
 /area/ice_colony/underground/maintenance/engineering
-	name = "Underground Engineering Maintenance"
+	name = "\improper Underground Engineering Maintenance"
 	icon_state = "maint_engineering"
 
 /area/ice_colony/underground/maintenance/research
-	name = "Underground Research Maintenance"
+	name = "\improper Underground Research Maintenance"
 	icon_state = "maint_research_port"
 
 /area/ice_colony/underground/maintenance/east
-	name = "Underground Eastern Maintenance"
+	name = "\improper Underground Eastern Maintenance"
 	icon_state = "fmaint"
 
 /area/ice_colony/underground/maintenance/south
-	name = "Underground Southern Maintenance"
+	name = "\improper Underground Southern Maintenance"
 	icon_state = "asmaint"
 
 /area/ice_colony/underground/maintenance/north
-	name = "Underground Northern Maintenance"
+	name = "\improper Underground Northern Maintenance"
 	icon_state = "asmaint"
 
 /*
@@ -608,26 +608,26 @@
 */
 
 /area/ice_colony/underground/medical
-	name = "Underground Medical Laboratory"
+	name = "\improper Underground Medical Laboratory"
 	icon_state = "medbay"
 
 /area/ice_colony/underground/medical/lobby
-	name = "Underground Medical Laboratory Lobby"
+	name = "\improper Underground Medical Laboratory Lobby"
 
 /area/ice_colony/underground/medical/hallway
-	name = "Underground Medical Laboratory Hallway"
+	name = "\improper Underground Medical Laboratory Hallway"
 	icon_state = "medbay2"
 
 /area/ice_colony/underground/medical/storage
-	name = "Underground Medical Laboratory Storage"
+	name = "\improper Underground Medical Laboratory Storage"
 	icon_state = "storage"
 
 /area/ice_colony/underground/medical/treatment
-	name = "Underground Medical Laboratory Treatment"
+	name = "\improper Underground Medical Laboratory Treatment"
 	icon_state = "medbay3"
 
 /area/ice_colony/underground/medical/or
-	name = "Underground Medical Laboratory Operating Room"
+	name = "\improper Underground Medical Laboratory Operating Room"
 	icon_state = "surgery"
 
 /*
@@ -635,23 +635,23 @@
 */
 
 /area/ice_colony/underground/reception
-	name = "Underground Reception"
+	name = "\improper Underground Reception"
 	icon_state = "showroom"
 
 /area/ice_colony/underground/reception/checkpoint_north
-	name = "Underground Reception Northern Security Checkpoint"
+	name = "\improper Underground Reception Northern Security Checkpoint"
 	icon_state = "security"
 
 /area/ice_colony/underground/reception/checkpoint_south
-	name = "Underground Reception Southern Security Checkpoint"
+	name = "\improper Underground Reception Southern Security Checkpoint"
 	icon_state = "security"
 
 /area/ice_colony/underground/reception/toilet_men
-	name = "Underground Reception Men's Restroom"
+	name = "\improper Underground Reception Men's Restroom"
 	icon_state = "toilet"
 
 /area/ice_colony/underground/reception/toilet_women
-	name = "Underground Reception Women's Restroom"
+	name = "\improper Underground Reception Women's Restroom"
 	icon_state = "toilet"
 
 /*
@@ -659,19 +659,19 @@
 */
 
 /area/ice_colony/underground/requesition
-	name = "Underground Requesitions"
+	name = "\improper Underground Requesitions"
 	icon_state = "quart"
 
 /area/ice_colony/underground/requesition/lobby
-	name = "Underground Requesitions Lobby"
+	name = "\improper Underground Requesitions Lobby"
 	icon_state = "quartoffice"
 
 /area/ice_colony/underground/requesition/storage
-	name = "Underground Requesitions Storage"
+	name = "\improper Underground Requesitions Storage"
 	icon_state = "quartstorage"
 
 /area/ice_colony/underground/requesition/sec_storage
-	name = "Underground Requesitions Secure Storage"
+	name = "\improper Underground Requesitions Secure Storage"
 	icon_state = "storage"
 
 /*
@@ -679,19 +679,19 @@
 */
 
 /area/ice_colony/underground/research
-	name = "Theta-V Research Laboratory"
+	name = "\improper Theta-V Research Laboratory"
 	icon_state = "anolab"
 
 /area/ice_colony/underground/research/work
-	name = "Theta-V Research Laboratory Work Station"
+	name = "\improper Theta-V Research Laboratory Work Station"
 	icon_state = "toxmix"
 
 /area/ice_colony/underground/research/storage
-	name = "Theta-V Research Laboratory Storage"
+	name = "\improper Theta-V Research Laboratory Storage"
 	icon_state = "storage"
 
 /area/ice_colony/underground/research/sample
-	name = "Theta-V Research Laboratory Sample Isolation"
+	name = "\improper Theta-V Research Laboratory Sample Isolation"
 	icon_state = "anosample"
 
 /*
@@ -699,35 +699,35 @@
 */
 
 /area/ice_colony/underground/security
-	name = "Underground Security Center"
+	name = "\improper Underground Security Center"
 	icon_state = "security"
 
 /area/ice_colony/underground/security/marshal
-	name = "Marshal's Office"
+	name = "\improper Marshal's Office"
 	icon_state = "sec_hos"
 
 /area/ice_colony/underground/security/detective
-	name = "Detective's Office"
+	name = "\improper Detective's Office"
 	icon_state = "detective"
 
 /area/ice_colony/underground/security/interrogation
-	name = "Interrogation Office"
+	name = "\improper Interrogation Office"
 	icon_state = "interrogation"
 
 /area/ice_colony/underground/security/backroom
-	name = "Underground Security Center Custodial Closet"
+	name = "\improper Underground Security Center Custodial Closet"
 	icon_state = "sec_backroom"
 
 /area/ice_colony/underground/security/hallway
-	name = "Underground Security Center Hallway"
+	name = "\improper Underground Security Center Hallway"
 	icon_state = "checkpoint1"
 
 /area/ice_colony/underground/security/armory
-	name = "Underground Security Center Armory"
+	name = "\improper Underground Security Center Armory"
 	icon_state = "armory"
 
 /area/ice_colony/underground/security/brig
-	name = "Underground Security Center Brig"
+	name = "\improper Underground Security Center Brig"
 	icon_state = "brig"
 
 /*
@@ -735,24 +735,24 @@
 */
 
 /area/ice_colony/underground/hangar
-	name = "Underground Hangar"
+	name = "\improper Underground Hangar"
 	icon_state = "hangar"
 	ceiling = CEILING_NONE
 
 /area/ice_colony/underground/responsehangar
-	name = "Colony Response Team Hangar"
+	name = "\improper Colony Response Team Hangar"
 
 /area/ice_colony/underground/westroadtunnel
-	name = "West Road Tunnel"
+	name = "\improper West Road Tunnel"
 
 /*
 * Underground - Storage
 */
 
 /area/ice_colony/underground/storage
-	name = "Underground Technical Storage"
+	name = "\improper Underground Technical Storage"
 	icon_state = "storage"
 
 /area/ice_colony/underground/storage/highsec
-	name = "Underground High Security Technical Storage"
+	name = "\improper Underground High Security Technical Storage"
 	icon_state = "armory"

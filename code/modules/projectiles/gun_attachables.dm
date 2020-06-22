@@ -1075,20 +1075,6 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = 0
 	movement_acc_penalty_mod = 0
 
-/obj/item/attachable/stock/t70stock
-	name = "\improper T-70 stock"
-	desc = "A irremovable T-70 grenade launcher stock."
-	icon_state = "t70stock"
-	wield_delay_mod = 0 SECONDS
-	pixel_shift_x = 32
-	pixel_shift_y = 13
-	flags_attach_features = NONE
-	accuracy_mod = 0
-	recoil_mod = 0
-	melee_mod = 0
-	scatter_mod = 0
-	movement_acc_penalty_mod = 0
-
 
 ////////////// Underbarrel Attachments ////////////////////////////////////
 
@@ -1362,14 +1348,13 @@ Defined in conflicts.dm of the #defines folder.
 
 			if(user)
 				if(!user.mind?.bypass_ff && !H.mind?.bypass_ff && user.faction == H.faction)
-					log_combat(user, H, "flamed", src)
-					user.ff_check(30, H) // avg between 20/40 dmg
-					log_ffattack("[key_name(usr)] flamed [key_name(H)] with [name] in [AREACOORD(T)].")
-					msg_admin_ff("[ADMIN_TPMONTY(usr)] flamed [ADMIN_TPMONTY(H)] with [name] in [ADMIN_VERBOSEJMP(T)].")
+					log_combat(user, H, "shot", src)
+					log_ffattack("[key_name(usr)] shot [key_name(H)] with [name] in [AREACOORD(T)].")
+					msg_admin_ff("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with [name] in [ADMIN_VERBOSEJMP(T)].")
 				else
-					log_combat(user, H, "flamed", src)
+					log_combat(user, H, "shot", src)
 
-			if(H.hard_armor.getRating("fire") >= 100)
+			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || istype(H.wear_suit,/obj/item/clothing/suit/space/rig/atmos))
 				continue
 
 		M.adjust_fire_stacks(rand(3,5))

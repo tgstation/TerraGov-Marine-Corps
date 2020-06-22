@@ -301,9 +301,6 @@
 	var/area/A = get_area(src)
 	c_tag = "[A.name] #[++id_by_area[A]]"
 
-/obj/machinery/camera/autoname/mainship
-	name = "military-grade camera"
-	network = list("marinemainship")
 
 //cameras installed inside the dropships, accessible via both cockpit monitor and ship camera computers
 /obj/machinery/camera/autoname/mainship/dropship_one
@@ -312,6 +309,12 @@
 
 /obj/machinery/camera/autoname/mainship/dropship_two
 	network = list("marinemainship", "dropship2")
+
+
+/obj/machinery/camera/autoname/mainship
+	name = "military-grade camera"
+	network = list("marinemainship")
+
 
 /obj/machinery/camera/headset
 	name = "headset camera"
@@ -322,7 +325,7 @@
 /obj/machinery/camera/laser_cam
 	name = "laser camera"
 	icon_state = ""
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	mouse_opacity = 0
 	network = list("laser targets")
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
@@ -335,7 +338,7 @@
 /obj/machinery/camera/beacon_cam
 	name = "beacon camera"
 	icon_state = ""
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	mouse_opacity = 0
 	network = list("supply beacons")
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 
