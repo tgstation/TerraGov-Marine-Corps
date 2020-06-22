@@ -16345,6 +16345,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "biG" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/w)
 "biH" = (
@@ -17099,8 +17100,9 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bmc" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/wall/r_wall,
-/area/bigredv2/outside/sw)
+/area/bigredv2/outside/virology)
 "bmd" = (
 /turf/closed/mineral/bigred,
 /area/bigredv2/outside/sw)
@@ -22428,6 +22430,10 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/bigred,
 /area/bigredv2/outside/s)
+"umD" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/turf/closed/mineral/bigred,
+/area/bigredv2/outside/virology)
 "umT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -26466,7 +26472,7 @@ acQ
 acQ
 acQ
 acQ
-acA
+fSQ
 ujn
 mSx
 mSx
@@ -26474,7 +26480,7 @@ mSx
 mSx
 mSx
 mSx
-acA
+fSQ
 aac
 aac
 aac
@@ -26964,7 +26970,7 @@ iug
 iug
 iug
 iug
-iug
+umD
 wof
 wof
 wof
@@ -27864,7 +27870,7 @@ cmR
 cmR
 cmR
 cmR
-bmc
+gva
 aac
 aac
 aac
@@ -28298,10 +28304,10 @@ brG
 brG
 brG
 aWk
-bmc
+gva
 cmR
 cmR
-bmc
+gva
 aac
 hzx
 aac
@@ -29996,13 +30002,13 @@ aMz
 aMz
 aMz
 aMz
-aMz
+bmc
 hRh
 hRh
 hRh
 hRh
 hRh
-aMz
+bmc
 riz
 riz
 aKj
@@ -31214,7 +31220,7 @@ pKv
 sGO
 sGO
 sGO
-aae
+tSl
 aah
 aah
 aaU
@@ -31962,7 +31968,7 @@ beQ
 aSB
 aSB
 aSB
-aXK
+eqy
 eqy
 eqy
 gOG
@@ -31980,7 +31986,7 @@ gva
 tnE
 kel
 boD
-blJ
+tnE
 wZg
 wZg
 bqG
@@ -33251,7 +33257,7 @@ aMB
 aMB
 aYH
 aXH
-aXK
+eqy
 uJV
 bbd
 eqy
@@ -33264,7 +33270,7 @@ eqy
 uJV
 uJV
 uJV
-aXK
+eqy
 aXK
 aXK
 bil
@@ -33282,7 +33288,7 @@ bme
 asT
 bmi
 ekm
-blJ
+tnE
 txn
 tnE
 tnE
@@ -33818,7 +33824,7 @@ aad
 aad
 aad
 hzx
-aae
+tSl
 sGO
 sGO
 sGO
@@ -33827,7 +33833,7 @@ sGO
 sGO
 sGO
 sGO
-aae
+tSl
 ggp
 acj
 aah
@@ -34061,7 +34067,7 @@ sGO
 sGO
 sGO
 sGO
-aae
+tSl
 ahX
 aeI
 aiA
