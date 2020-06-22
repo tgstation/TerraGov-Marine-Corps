@@ -399,6 +399,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "headset_marine_alpha"
 	frequency = FREQ_ALPHA //default frequency is alpha squad channel, not FREQ_COMMON
 
+/obj/item/radio/headset/mainship/marine/alpha/LateInitialize(mapload)
+	. = ..()
+	camera.network += list("alpha")
+
 
 /obj/item/radio/headset/mainship/marine/alpha/lead
 	name = "marine alpha leader radio headset"
@@ -423,6 +427,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "headset_marine_bravo"
 	frequency = FREQ_BRAVO
 
+/obj/item/radio/headset/mainship/marine/bravo/LateInitialize(mapload)
+	. = ..()
+	camera.network += list("bravo")
+
 
 /obj/item/radio/headset/mainship/marine/bravo/lead
 	name = "marine bravo leader radio headset"
@@ -441,11 +449,14 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	keyslot2 = /obj/item/encryptionkey/med
 
 
-
 /obj/item/radio/headset/mainship/marine/charlie
 	name = "marine charlie radio headset"
 	icon_state = "headset_marine_charlie"
 	frequency = FREQ_CHARLIE
+
+/obj/item/radio/headset/mainship/marine/charlie/LateInitialize(mapload)
+	. = ..()
+	camera.network += list("charlie")
 
 
 /obj/item/radio/headset/mainship/marine/charlie/lead
@@ -470,6 +481,10 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "marine delta radio headset"
 	icon_state = "headset_marine_delta"
 	frequency = FREQ_DELTA
+
+/obj/item/radio/headset/mainship/marine/delta/LateInitialize(mapload)
+	. = ..()
+	camera.network += list("delta")
 
 
 /obj/item/radio/headset/mainship/marine/delta/lead
