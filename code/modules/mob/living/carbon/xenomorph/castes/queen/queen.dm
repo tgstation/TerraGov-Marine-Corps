@@ -22,7 +22,7 @@
 
 	//Trap vars
 	trapchoices = list("acid","neuro")
-	gastier = 3
+	gastier = 2
 
 	var/breathing_counter = 0
 	var/queen_ability_cooldown = 0

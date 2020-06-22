@@ -16,5 +16,5 @@
 
 	//Trap vars
 	trapchoices = list("acid","neuro")
-	gastier = 3
+	gastier = 2
 

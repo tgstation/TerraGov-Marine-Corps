@@ -16,7 +16,7 @@
 
 	//Trap vars
 	trapchoices = list("acid","brutedart","toxdart")
-	gastier = 2
+	gastier = 1
 
 // ***************************************
 // *********** Mob overrides

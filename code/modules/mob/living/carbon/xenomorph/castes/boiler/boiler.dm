@@ -22,7 +22,7 @@
 
 	//Trap vars
 	trapchoices = list("neuro","acid")
-	gastier = 4
+	gastier = 3
 
 ///updates the boiler's glow, based on its base glow/color, and its ammo reserves. More green ammo = more green glow; more yellow = more yellow.
 /mob/living/carbon/xenomorph/boiler/proc/updateBoilerGlow()

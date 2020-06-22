@@ -35,7 +35,7 @@
 
 	//Trap vars
 	trapchoices = list("acid","neuro")
-	gastier = 2
+	gastier = 1
 
 /mob/living/carbon/xenomorph/hivemind/Initialize(mapload)
     . = ..()

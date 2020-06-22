@@ -20,7 +20,7 @@
 
 	//Trap vars
 	trapchoices = list("acid","neuro")
-	gastier = 2
+	gastier = 1
 
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,

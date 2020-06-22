@@ -19,7 +19,7 @@
 
 	//Trap vars
 	trapchoices = list("acid")
-	gastier = 2
+	gastier = 1
 
 /mob/living/carbon/xenomorph/crusher/ex_act(severity)
 

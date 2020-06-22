@@ -17,7 +17,7 @@
 
 	//Trap vars
 	trapchoices = list("acid","rwall")
-	gastier = 2
+	gastier = 1
 
 // ***************************************
 // *********** Init
