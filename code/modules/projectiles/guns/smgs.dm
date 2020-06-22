@@ -49,10 +49,11 @@
 	icon_state = "t19"
 	item_state = "t19"
 	caliber = "10x20mm caseless" //codex
-	max_shells = 40 //codex
+	max_shells = 30 //codex
 	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	current_mag = /obj/item/ammo_magazine/smg/standard_machinepistol
 	type_of_casings = null
+	w_class = WEIGHT_CLASS_NORMAL
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/reddot,
@@ -71,14 +72,15 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 17,"rail_x" = 9, "rail_y" = 20, "under_x" = 21, "under_y" = 12, "stock_x" = 24, "stock_y" = 10)
 
-	accuracy_mult = 0.95
+	accuracy_mult = 1.5
 	accuracy_mult_unwielded = 0.85
 	recoil_unwielded = 0
 	scatter = 15
 	fire_delay = 0.15 SECONDS
-	scatter_unwielded = 15 //Made to be used one handed.
+	scatter_unwielded = 0 //Made to be used one handed.
 	aim_slowdown = 0.15
 	burst_amount = 5
+	movement_acc_penalty_mult = 0
 
 //-------------------------------------------------------
 // War is hell. Not glorious.

@@ -254,6 +254,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	log_combat(user, src, "attacked", I, "(INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)]) [hit_report.Join(" ")]")
 	if(damage && !user.mind?.bypass_ff && !mind?.bypass_ff && user.faction == faction)
 		var/turf/T = get_turf(src)
+		user.ff_check(damage, src)
 		log_ffattack("[key_name(user)] attacked [key_name(src)] with \the [I] in [AREACOORD(T)] [hit_report.Join(" ")].")
 		msg_admin_ff("[ADMIN_TPMONTY(user)] attacked [ADMIN_TPMONTY(src)] with \the [I] in [ADMIN_VERBOSEJMP(T)] [hit_report.Join(" ")].")
 
@@ -264,7 +265,7 @@ Contains most of the procs that are called when a mob is attacked by something
 /mob/living/carbon/human/hitby(atom/movable/AM, speed = 5)
 	if(!isitem(AM))
 		return
-	
+
 	var/obj/item/thrown_item = AM
 
 	var/mob/living/living_thrower
@@ -358,6 +359,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		log_combat(living_thrower, src, "thrown at", thrown_item, "[hit_report.Join(" ")]")
 		if(throw_damage && !living_thrower.mind?.bypass_ff && !mind?.bypass_ff && living_thrower.faction == faction)
 			var/turf/T = get_turf(src)
+			living_thrower.ff_check(throw_damage, src)
 			log_ffattack("[key_name(living_thrower)] hit [key_name(src)] with \the [thrown_item] (thrown) in [AREACOORD(T)] [hit_report.Join(" ")].")
 			msg_admin_ff("[ADMIN_TPMONTY(living_thrower)] hit [ADMIN_TPMONTY(src)] with \the [thrown_item] (thrown) in [ADMIN_VERBOSEJMP(T)] [hit_report.Join(" ")].")
 

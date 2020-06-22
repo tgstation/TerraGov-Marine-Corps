@@ -117,12 +117,12 @@
 	sound = 'sound/effects/alien_tail_swipe1.ogg'
 
 
-/datum/emote/living/carbon/xenomorph/roar/two
+/datum/emote/living/carbon/xenomorph/tail/two
 	key = "tail2"
 	sound = 'sound/effects/alien_tail_swipe2.ogg'
 
 
-/datum/emote/living/carbon/xenomorph/roar/three
+/datum/emote/living/carbon/xenomorph/tail/three
 	key = "tail3"
 	sound = 'sound/effects/alien_tail_swipe3.ogg'
 

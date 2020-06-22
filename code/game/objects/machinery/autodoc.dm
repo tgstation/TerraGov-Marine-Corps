@@ -62,7 +62,7 @@
 
 /obj/machinery/autodoc/power_change()
 	. = ..()
-	if(!is_operational() || !occupant)
+	if(is_operational() || !occupant)
 		return
 	visible_message("[src] engages the safety override, ejecting the occupant.")
 	surgery = FALSE
@@ -681,72 +681,73 @@
 	do_eject()
 
 /obj/machinery/autodoc/proc/do_eject()
-	if(occupant)
-		if(forceeject)
-			if(!surgery)
-				visible_message("\The [src] is destroyed, ejecting [occupant] and showering them in debris.")
-				occupant.take_limb_damage(rand(10,20),rand(10,20))
-				go_out(AUTODOC_NOTICE_FORCE_EJECT)
-				return
+	if(!occupant)
+		return
+	if(forceeject)
+		if(!surgery)
+			visible_message("\The [src] is destroyed, ejecting [occupant] and showering them in debris.")
+			occupant.take_limb_damage(rand(10,20),rand(10,20))
+		else
 			visible_message("\The [src] malfunctions as it is destroyed mid-surgery, ejecting [occupant] with surgical wounds and showering them in debris.")
 			occupant.take_limb_damage(rand(30,50),rand(30,50))
-			go_out(AUTODOC_NOTICE_FORCE_EJECT)
-			return
-		if(isxeno(usr) && !surgery) // let xenos eject people hiding inside; a xeno ejecting someone during surgery does so like someone untrained
-			go_out(AUTODOC_NOTICE_XENO_FUCKERY)
-			return
-		if(!ishuman(usr))
-			return
-		if(usr == occupant)
-			if(surgery)
-				to_chat(usr, "<span class='warning'>There's no way you're getting out while this thing is operating on you!</span>")
-				return
-			else
-				visible_message("[usr] engages the internal release mechanism, and climbs out of \the [src].")
-		if(usr.skills.getRating("surgery") < SKILL_SURGERY_TRAINED && !event)
-			usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to use [src].</span>",
-			"<span class='notice'>You fumble around figuring out how to use [src].</span>")
-			var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * usr.skills.getRating("surgery") ))// 8 secs non-trained, 5 amateur
-			if(!do_after(usr, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || !occupant)
-				return
+		go_out(AUTODOC_NOTICE_FORCE_EJECT)
+		return
+	if(isxeno(usr) && !surgery) // let xenos eject people hiding inside; a xeno ejecting someone during surgery does so like someone untrained
+		go_out(AUTODOC_NOTICE_XENO_FUCKERY)
+		return
+	if(!ishuman(usr))
+		return
+	if(usr == occupant)
 		if(surgery)
-			surgery = 0
-			if(usr.skills.getRating("surgery") < SKILL_SURGERY_TRAINED) //Untrained people will fail to terminate the surgery properly.
-				visible_message("\The [src] malfunctions as [usr] aborts the surgery in progress.")
-				occupant.take_limb_damage(rand(30,50),rand(30,50))
-				log_game("[key_name(usr)] ejected [key_name(occupant)] from the autodoc during surgery causing damage.")
-				message_admins("[ADMIN_TPMONTY(usr)] ejected [ADMIN_TPMONTY(occupant)] from the autodoc during surgery causing damage.")
-				go_out(AUTODOC_NOTICE_IDIOT_EJECT)
-		go_out()
+			to_chat(usr, "<span class='warning'>There's no way you're getting out while this thing is operating on you!</span>")
+			return
+		else
+			visible_message("[usr] engages the internal release mechanism, and climbs out of \the [src].")
+	if(usr.skills.getRating("surgery") < SKILL_SURGERY_TRAINED && !event)
+		usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to use [src].</span>",
+		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
+		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * usr.skills.getRating("surgery") ))// 8 secs non-trained, 5 amateur
+		if(!do_after(usr, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED) || !occupant)
+			return
+	if(surgery)
+		surgery = 0
+		if(usr.skills.getRating("surgery") < SKILL_SURGERY_TRAINED) //Untrained people will fail to terminate the surgery properly.
+			visible_message("\The [src] malfunctions as [usr] aborts the surgery in progress.")
+			occupant.take_limb_damage(rand(30,50),rand(30,50))
+			log_game("[key_name(usr)] ejected [key_name(occupant)] from the autodoc during surgery causing damage.")
+			message_admins("[ADMIN_TPMONTY(usr)] ejected [ADMIN_TPMONTY(occupant)] from the autodoc during surgery causing damage.")
+			go_out(AUTODOC_NOTICE_IDIOT_EJECT)
+			return
+	go_out()
 
-/obj/machinery/autodoc/proc/move_inside_wrapper(mob/living/M, mob/user)
-	if(M.incapacitated() || !ishuman(M))
+/obj/machinery/autodoc/proc/move_inside_wrapper(mob/living/dropped, mob/dragger)
+	if(dragger.incapacitated() || !ishuman(dragger))
 		return
 
 	if(occupant)
-		to_chat(M, "<span class='notice'>[src] is already occupied!</span>")
+		to_chat(dragger, "<span class='notice'>[src] is already occupied!</span>")
 		return
 
 	if(machine_stat & (NOPOWER|BROKEN))
-		to_chat(M, "<span class='notice'>[src] is non-functional!</span>")
+		to_chat(dragger, "<span class='notice'>[src] is non-functional!</span>")
 		return
 
-	if(M.skills.getRating("surgery") < SKILL_SURGERY_TRAINED && !event)
-		M.visible_message("<span class='notice'>[M] fumbles around figuring out how to get into \the [src].</span>",
+	if(dragger.skills.getRating("surgery") < SKILL_SURGERY_TRAINED && !event)
+		dropped.visible_message("<span class='notice'>[dropped] fumbles around figuring out how to get into \the [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to get into \the [src].</span>")
-		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * M.skills.getRating("surgery") ))// 8 secs non-trained, 5 amateur
-		if(!do_after(M, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+		var/fumbling_time = max(0 , SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * dragger.skills.getRating("surgery") ))// 8 secs non-trained, 5 amateur
+		if(!do_after(dropped, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 
-	M.visible_message("<span class='notice'>[M] starts climbing into \the [src].</span>",
+	dropped.visible_message("<span class='notice'>[dropped] starts climbing into \the [src].</span>",
 	"<span class='notice'>You start climbing into \the [src].</span>")
-	if(do_after(M, 10, FALSE, src, BUSY_ICON_GENERIC))
+	if(do_after(dropped, 1 SECONDS, FALSE, src, BUSY_ICON_GENERIC))
 		if(occupant)
-			to_chat(M, "<span class='notice'>[src] is already occupied!</span>")
+			to_chat(dragger, "<span class='notice'>[src] is already occupied!</span>")
 			return
-		M.stop_pulling()
-		M.forceMove(src)
-		occupant = M
+		dropped.stop_pulling()
+		dropped.forceMove(src)
+		occupant = dropped
 		icon_state = "autodoc_closed"
 		var/implants = list(/obj/item/implant/neurostim)
 		var/mob/living/carbon/human/H = occupant
