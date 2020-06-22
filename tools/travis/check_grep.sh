@@ -65,6 +65,10 @@ if grep -nP '^(\t)[\w_]+ = list\([^\s)]+,\n' code/**/*.dm; then
     echo "first item in a long list should be on the next line"
     st=1
 fi;
+if grep -nP '^(\t)[\w_]+ = list\(\n(\1\t\S+,\n)*\1\t[^\s,)]+\n' code/**/*.dm; then
+    echo "last item in a long list should still have a comma"
+    st=1
+fi;
 nl='
 '
 nl=$'\n'
