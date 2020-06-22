@@ -45,17 +45,21 @@
 	name = "combat autoinjector"
 	desc = "An autoinjector loaded with a dose of healing and painkilling chemicals. Intended for use in active combat."
 	icon_state = "autoinjector-4"
-	list_reagents = list(/datum/reagent/medicine/bicaridine = 5,
-						/datum/reagent/medicine/kelotane = 5,
-						/datum/reagent/medicine/tramadol = 5)
+	list_reagents = list(
+		/datum/reagent/medicine/bicaridine = 5,
+		/datum/reagent/medicine/kelotane = 5,
+		/datum/reagent/medicine/tramadol = 5,
+	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced
 	name = "Advanced combat autoinjector"
 	desc = "An autoinjector loaded with a dose of advanced healing and painkilling chemicals. Intended for use in active combat."
 	icon_state = "autoinjector-7"
-	list_reagents = list(/datum/reagent/medicine/meralyne = 5,
-						/datum/reagent/medicine/dermaline = 5,
-						/datum/reagent/medicine/oxycodone = 5)
+	list_reagents = list(
+		/datum/reagent/medicine/meralyne = 5,
+		/datum/reagent/medicine/dermaline = 5,
+		/datum/reagent/medicine/oxycodone = 5,
+	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/quickclot
 	name = "quick-clot autoinjector"
@@ -144,10 +148,12 @@
 	desc = "An auto-injector freshly loaded with a safe-to-use hyperzine mix."
 	amount_per_transfer_from_this = 25
 	volume = 25
-	icon_state = "autoinjector-8" 
-	list_reagents = list(/datum/reagent/medicine/hyperzine = 5,
-						/datum/reagent/medicine/dexalin = 10,
-						/datum/reagent/medicine/inaprovaline = 10)
+	icon_state = "autoinjector-8"
+	list_reagents = list(
+		/datum/reagent/medicine/hyperzine = 5,
+		/datum/reagent/medicine/dexalin = 10,
+		/datum/reagent/medicine/inaprovaline = 10,
+	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/hyperzine/expired
 	name = "expired hyperzine autoinjector"
@@ -163,8 +169,10 @@
 	amount_per_transfer_from_this = 3
 	volume = 9
 	icon_state = "autoinjector-1"
-	list_reagents = list(/datum/reagent/medicine/synaptizine = 3,
-						/datum/reagent/medicine/arithrazine = 6)
+	list_reagents = list(
+		/datum/reagent/medicine/synaptizine = 3,
+		/datum/reagent/medicine/arithrazine = 6,
+	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired
 	name = "Expired synaptizine autoinjector"
@@ -172,8 +180,10 @@
 	amount_per_transfer_from_this = 2
 	volume = 6
 	icon_state = "autoinjector-1"
-	list_reagents = list(/datum/reagent/medicine/synaptizine = 3,
-						/datum/reagent/medicine/arithrazine = 3)
+	list_reagents = list(
+		/datum/reagent/medicine/synaptizine = 3,
+		/datum/reagent/medicine/arithrazine = 3,
+	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/neuraline
 	name = "Neuraline autoinjector"
@@ -188,7 +198,7 @@
 	desc = "An auto-injector loaded with 3 doses of Peridaxon Plus, a chemical that heals organs while causing a buildup of toxins. Use with antitoxin. !DO NOT USE IN ACTIVE COMBAT!"
 	amount_per_transfer_from_this = 3
 	volume = 9
-	icon_state = "autoinjector-8" 
+	icon_state = "autoinjector-8"
 	list_reagents = list(/datum/reagent/medicine/peridaxon_plus = 3,
 						/datum/reagent/medicine/arithrazine = 6)
 

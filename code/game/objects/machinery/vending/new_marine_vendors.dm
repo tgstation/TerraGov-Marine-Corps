@@ -1287,15 +1287,15 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 
 /obj/effect/essentials_set/leader
 	spawned_gear_list = list(
-						/obj/item/explosive/plastique,
-						/obj/item/squad_beacon,
-						/obj/item/squad_beacon,
-						/obj/item/squad_beacon/bomb,
-						/obj/item/whistle,
-						/obj/item/radio,
-						/obj/item/motiondetector,
-						/obj/item/binoculars/tactical,
-						)
+		/obj/item/explosive/plastique,
+		/obj/item/squad_beacon,
+		/obj/item/squad_beacon,
+		/obj/item/squad_beacon/bomb,
+		/obj/item/whistle,
+		/obj/item/radio,
+		/obj/item/motiondetector,
+		/obj/item/binoculars/tactical,
+	)
 
 /obj/effect/essentials_set/commander
 	spawned_gear_list = list(
@@ -1311,16 +1311,16 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 
 /obj/effect/essentials_set/synth
 	spawned_gear_list = list(
-						/obj/item/stack/sheet/plasteel/medium_stack,
-						/obj/item/stack/sheet/metal/large_stack,
-						/obj/item/lightreplacer,
-						/obj/item/healthanalyzer,
-						/obj/item/defibrillator,
-						/obj/item/medevac_beacon,
-						/obj/item/roller/medevac,
-						/obj/item/bodybag/cryobag,
-						/obj/item/reagent_containers/hypospray/advanced/oxycodone
-						)
+		/obj/item/stack/sheet/plasteel/medium_stack,
+		/obj/item/stack/sheet/metal/large_stack,
+		/obj/item/lightreplacer,
+		/obj/item/healthanalyzer,
+		/obj/item/defibrillator,
+		/obj/item/medevac_beacon,
+		/obj/item/roller/medevac,
+		/obj/item/bodybag/cryobag,
+		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
+	)
 
 /obj/effect/essentials_set/modular/infantry
 	desc = "A set of medium Infantry pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."

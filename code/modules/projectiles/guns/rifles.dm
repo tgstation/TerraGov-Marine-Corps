@@ -423,8 +423,9 @@
 	aim_slowdown = 0.7
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
-						/obj/item/attachable/bayonet,
-						/obj/item/attachable/flashlight)
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/flashlight,
+	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
@@ -473,26 +474,27 @@
 	aim_slowdown = 0.4
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
-						/obj/item/attachable/suppressor,
-						/obj/item/attachable/bayonet,
-						/obj/item/attachable/bayonetknife,
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/verticalgrip,
-						/obj/item/attachable/angledgrip,
-						/obj/item/attachable/gyro,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/lasersight,
-						/obj/item/attachable/bipod,
-						/obj/item/attachable/extended_barrel,
-						/obj/item/attachable/compensator,
-						/obj/item/attachable/burstfire_assembly,
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/attached_gun/grenade,
-						/obj/item/attachable/attached_gun/flamer,
-						/obj/item/attachable/attached_gun/shotgun,
-						/obj/item/attachable/m16sight,
-						/obj/item/attachable/scope,
-						/obj/item/attachable/scope/mini)
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/burstfire_assembly,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/attached_gun/grenade,
+		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/attachable/attached_gun/shotgun,
+		/obj/item/attachable/m16sight,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/mini,
+	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
@@ -625,16 +627,17 @@
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
 	current_mag = /obj/item/ammo_magazine/m412l1_hpr
 	attachable_allowed = list(
-						/obj/item/attachable/extended_barrel,
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/verticalgrip,
-						/obj/item/attachable/angledgrip,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/bipod,
-						/obj/item/attachable/stock/rifle,
-						/obj/item/attachable/compensator,
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/scope)
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/stock/rifle,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope,
+	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
@@ -723,18 +726,19 @@
 	max_shells = 15 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/sx16_buckshot
 	attachable_allowed = list(
-						/obj/item/attachable/bayonet,
-						/obj/item/attachable/bayonetknife,
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/verticalgrip,
-						/obj/item/attachable/angledgrip,
-						/obj/item/attachable/gyro,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/attached_gun/flamer,
-						/obj/item/attachable/attached_gun/shotgun,
-						/obj/item/attachable/stock/sx16,
-						/obj/item/attachable/sx16barrel)
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/attachable/attached_gun/shotgun,
+		/obj/item/attachable/stock/sx16,
+		/obj/item/attachable/sx16barrel,
+	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
@@ -760,21 +764,21 @@
 	force = 20
 	current_mag = /obj/item/ammo_magazine/rifle/tx15_slug
 	attachable_allowed = list(
-						/obj/item/attachable/bayonet,
-						/obj/item/attachable/bayonetknife,
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/verticalgrip,
-						/obj/item/attachable/angledgrip,
-						/obj/item/attachable/gyro,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/attached_gun/flamer,
-						/obj/item/attachable/attached_gun/shotgun,
-						/obj/item/attachable/stock/tx15,
-						/obj/item/attachable/compensator,
-						/obj/item/attachable/extended_barrel,
-						/obj/item/attachable/heavy_barrel
-						)
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/attachable/attached_gun/shotgun,
+		/obj/item/attachable/stock/tx15,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
@@ -805,13 +809,14 @@
 	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
 	current_mag = /obj/item/ammo_magazine/standard_smartmachinegun
 	attachable_allowed = list(
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/verticalgrip,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/lasersight,
-						/obj/item/attachable/t42barrel,
-						/obj/item/attachable/bipod,
-						/obj/item/attachable/magnetic_harness)
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/t42barrel,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/magnetic_harness,
+	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_WIELDED_FIRING_ONLY
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)

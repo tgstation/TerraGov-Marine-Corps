@@ -44,7 +44,7 @@
 		/datum/action/xeno_action/activable/stomp,
 		/datum/action/xeno_action/ready_charge,
 		/datum/action/xeno_action/activable/cresttoss,
-		)
+	)
 
 /datum/xeno_caste/crusher/young
 	upgrade_name = "Young"

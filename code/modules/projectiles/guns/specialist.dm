@@ -33,9 +33,9 @@
 	var/image/LT = null
 	var/obj/item/binoculars/tactical/integrated_laze = null
 	attachable_allowed = list(
-						/obj/item/attachable/bipod,
-						/obj/item/attachable/lasersight,
-						)
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/lasersight,
+	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
@@ -267,13 +267,14 @@
 	current_mag = /obj/item/ammo_magazine/sniper/svd
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/verticalgrip,
-						/obj/item/attachable/gyro,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/bipod,
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/scope/slavic)
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/slavic,
+	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 20, "stock_y" = 14)
@@ -305,16 +306,16 @@
 	force = 16
 	aim_slowdown = 0.35
 	attachable_allowed = list(
-						/obj/item/attachable/suppressor,
-						/obj/item/attachable/extended_barrel,
-						/obj/item/attachable/compensator,
-						/obj/item/attachable/verticalgrip,
-						/obj/item/attachable/angledgrip,
-						/obj/item/attachable/bipod,
-						/obj/item/attachable/lasersight,
-						/obj/item/attachable/attached_gun/flamer,
-						/obj/item/attachable/attached_gun/grenade
-						)
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/attachable/attached_gun/grenade,
+	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
@@ -353,12 +354,13 @@
 	var/restriction_toggled = TRUE //Begin with the safety on.
 	gun_skill_category = GUN_SKILL_SMARTGUN
 	attachable_allowed = list(
-						/obj/item/attachable/extended_barrel,
-						/obj/item/attachable/heavy_barrel,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/bipod,
-						/obj/item/attachable/compensator,
-						/obj/item/attachable/lasersight)
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/lasersight,
+	)
 
 	flags_gun_features = GUN_INTERNAL_MAG|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
@@ -479,8 +481,9 @@
 	aim_slowdown = 1
 	general_codex_key = "explosive weapons"
 	attachable_allowed = list(
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/scope/mini)
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/mini,
+	)
 
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_FIREARMS
@@ -788,8 +791,9 @@
 	aim_slowdown = 1.75
 	general_codex_key = "explosive weapons"
 	attachable_allowed = list(
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/scope/mini)
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/mini,
+	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_FIREARMS
@@ -1039,19 +1043,20 @@
 	gun_skill_category = GUN_SKILL_SHOTGUNS
 	aim_slowdown = 0.75
 	attachable_allowed = list(
-						/obj/item/attachable/bayonet,
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/verticalgrip,
-						/obj/item/attachable/angledgrip,
-						/obj/item/attachable/gyro,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/extended_barrel,
-						/obj/item/attachable/compensator,
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/lasersight,
-						/obj/item/attachable/attached_gun/flamer,
-						/obj/item/attachable/attached_gun/shotgun,
-						/obj/item/attachable/attached_gun/grenade)
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/attachable/attached_gun/shotgun,
+		/obj/item/attachable/attached_gun/grenade,
+	)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 8, "rail_y" = 18, "under_x" = 24, "under_y" = 12, "stock_x" = 13, "stock_y" = 15)
 	starting_attachment_types = list(/obj/item/attachable/stock/scout)
 

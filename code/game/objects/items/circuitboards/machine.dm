@@ -16,27 +16,30 @@ to destroy them and players will be able to make replacements.
 	build_path = "/obj/machinery/r_n_d/destructive_analyzer"
 	frame_desc = "Requires 1 Scanning Module, 1 Micro Manipulator, and 1 Micro-Laser."
 	req_components = list(
-							"/obj/item/stock_parts/scanning_module" = 1,
-							"/obj/item/stock_parts/manipulator" = 1,
-							"/obj/item/stock_parts/micro_laser" = 1)
+		"/obj/item/stock_parts/scanning_module" = 1,
+		"/obj/item/stock_parts/manipulator" = 1,
+		"/obj/item/stock_parts/micro_laser" = 1,
+	)
 
 /obj/item/circuitboard/machine/autolathe
 	name = "Circuit board (Autolathe)"
 	build_path = "/obj/machinery/autolathe"
 	frame_desc = "Requires 3 Matter Bins, 1 Micro Manipulator, and 1 Console Screen."
 	req_components = list(
-							"/obj/item/stock_parts/matter_bin" = 3,
-							"/obj/item/stock_parts/manipulator" = 1,
-							"/obj/item/stock_parts/console_screen" = 1)
+		"/obj/item/stock_parts/matter_bin" = 3,
+		"/obj/item/stock_parts/manipulator" = 1,
+		"/obj/item/stock_parts/console_screen" = 1,
+	)
 
 /obj/item/circuitboard/machine/protolathe
 	name = "Circuit board (Protolathe)"
 	build_path = "/obj/machinery/r_n_d/protolathe"
 	frame_desc = "Requires 2 Matter Bins, 2 Micro Manipulators, and 2 Beakers."
 	req_components = list(
-							"/obj/item/stock_parts/matter_bin" = 2,
-							"/obj/item/stock_parts/manipulator" = 2,
-							"/obj/item/reagent_containers/glass/beaker" = 2)
+		"/obj/item/stock_parts/matter_bin" = 2,
+		"/obj/item/stock_parts/manipulator" = 2,
+		"/obj/item/reagent_containers/glass/beaker" = 2,
+	)
 
 
 /obj/item/circuitboard/machine/circuit_imprinter
@@ -44,19 +47,21 @@ to destroy them and players will be able to make replacements.
 	build_path = "/obj/machinery/r_n_d/circuit_imprinter"
 	frame_desc = "Requires 1 Matter Bin, 1 Micro Manipulator, and 2 Beakers."
 	req_components = list(
-							"/obj/item/stock_parts/matter_bin" = 1,
-							"/obj/item/stock_parts/manipulator" = 1,
-							"/obj/item/reagent_containers/glass/beaker" = 2)
+		"/obj/item/stock_parts/matter_bin" = 1,
+		"/obj/item/stock_parts/manipulator" = 1,
+		"/obj/item/reagent_containers/glass/beaker" = 2,
+	)
 
 /obj/item/circuitboard/machine/pacman
 	name = "Circuit Board (PACMAN-type Generator)"
 	build_path = "/obj/machinery/power/port_gen/pacman"
 	frame_desc = "Requires 1 Matter Bin, 1 Micro-Laser, 2 Pieces of Cable, and 1 Capacitor."
 	req_components = list(
-							"/obj/item/stock_parts/matter_bin" = 1,
-							"/obj/item/stock_parts/micro_laser" = 1,
-							"/obj/item/stack/cable_coil" = 2,
-							"/obj/item/stock_parts/capacitor" = 1)
+		"/obj/item/stock_parts/matter_bin" = 1,
+		"/obj/item/stock_parts/micro_laser" = 1,
+		"/obj/item/stack/cable_coil" = 2,
+		"/obj/item/stock_parts/capacitor" = 1,
+	)
 
 /obj/item/circuitboard/machine/pacman/super
 	name = "Circuit Board (SUPERPACMAN-type Generator)"
@@ -73,39 +78,42 @@ obj/item/circuitboard/machine/rdserver
 	build_path = "/obj/machinery/r_n_d/server"
 	frame_desc = "Requires 2 pieces of cable, and 1 Scanning Module."
 	req_components = list(
-							"/obj/item/stack/cable_coil" = 2,
-							"/obj/item/stock_parts/scanning_module" = 1)
+		"/obj/item/stack/cable_coil" = 2,
+		"/obj/item/stock_parts/scanning_module" = 1,
+	)
 
 /obj/item/circuitboard/machine/mechfab
 	name = "Circuit board (Exosuit Fabricator)"
 	build_path = "/obj/machinery/mecha_part_fabricator"
 	frame_desc = "Requires 2 Matter Bins, 1 Micro Manipulator, 1 Micro-Laser and 1 Console Screen."
 	req_components = list(
-							"/obj/item/stock_parts/matter_bin" = 2,
-							"/obj/item/stock_parts/manipulator" = 1,
-							"/obj/item/stock_parts/micro_laser" = 1,
-							"/obj/item/stock_parts/console_screen" = 1)
+		"/obj/item/stock_parts/matter_bin" = 2,
+		"/obj/item/stock_parts/manipulator" = 1,
+		"/obj/item/stock_parts/micro_laser" = 1,
+		"/obj/item/stock_parts/console_screen" = 1,
+	)
 
 /obj/item/circuitboard/machine/clonepod
 	name = "Circuit board (Clone Pod)"
 	build_path = "/obj/machinery/clonepod"
 	frame_desc = "Requires 2 Manipulator, 2 Scanning Module, 2 pieces of cable and 1 Console Screen."
 	req_components = list(
-							"/obj/item/stack/cable_coil" = 2,
-							"/obj/item/stock_parts/scanning_module" = 2,
-							"/obj/item/stock_parts/manipulator" = 2,
-							"/obj/item/stock_parts/console_screen" = 1)
+		"/obj/item/stack/cable_coil" = 2,
+		"/obj/item/stock_parts/scanning_module" = 2,
+		"/obj/item/stock_parts/manipulator" = 2,
+		"/obj/item/stock_parts/console_screen" = 1,
+	)
 
 /obj/item/circuitboard/machine/clonescanner
 	name = "Circuit board (Cloning Scanner)"
 	build_path = "/obj/machinery/dna_scannernew"
 	frame_desc = "Requires 1 Scanning module, 1 Micro Manipulator, 1 Micro-Laser, 2 pieces of cable and 1 Console Screen."
 	req_components = list(
-							"/obj/item/stock_parts/scanning_module" = 1,
-							"/obj/item/stock_parts/manipulator" = 1,
-							"/obj/item/stock_parts/micro_laser" = 1,
-							"/obj/item/stock_parts/console_screen" = 1,
-							"/obj/item/stack/cable_coil" = 2,)
+		"/obj/item/stock_parts/scanning_module" = 1,
+		"/obj/item/stock_parts/manipulator" = 1,
+		"/obj/item/stock_parts/micro_laser" = 1,
+		"/obj/item/stock_parts/console_screen" = 1,
+		"/obj/item/stack/cable_coil" = 2,)
 
 /obj/item/circuitboard/machine/unary_atmos
 
@@ -130,19 +138,21 @@ obj/item/circuitboard/machine/rdserver
 	build_path = "/obj/machinery/atmospherics/unary/heater"
 	frame_desc = "Requires 5 Pieces of Cable, 1 Matter Bin, and 2 Capacitors."
 	req_components = list(
-							"/obj/item/stack/cable_coil" = 5,
-							"/obj/item/stock_parts/matter_bin" = 1,
-							"/obj/item/stock_parts/capacitor" = 2)
+		"/obj/item/stack/cable_coil" = 5,
+		"/obj/item/stock_parts/matter_bin" = 1,
+		"/obj/item/stock_parts/capacitor" = 2,
+	)
 
 /obj/item/circuitboard/machine/unary_atmos/cooler
 	name = "Circuit Board (Gas Cooling System)"
 	build_path = "/obj/machinery/atmospherics/unary/freezer"
 	frame_desc = "Requires 2 Pieces of Cable, 1 Matter Bin, 1 Micro Manipulator, and 2 Capacitors."
 	req_components = list(
-							"/obj/item/stack/cable_coil" = 2,
-							"/obj/item/stock_parts/matter_bin" = 1,
-							"/obj/item/stock_parts/capacitor" = 2,
-							"/obj/item/stock_parts/manipulator" = 1)
+		"/obj/item/stack/cable_coil" = 2,
+		"/obj/item/stock_parts/matter_bin" = 1,
+		"/obj/item/stock_parts/capacitor" = 2,
+		"/obj/item/stock_parts/manipulator" = 1,
+	)
 
 // Telecomms circuit boards:
 
@@ -151,69 +161,76 @@ obj/item/circuitboard/machine/rdserver
 	build_path = "/obj/machinery/telecomms/receiver"
 	frame_desc = "Requires 1 Subspace Ansible, 1 Hyperwave Filter, 2 Micro Manipulators, and 1 Micro-Laser."
 	req_components = list(
-							"/obj/item/stock_parts/subspace/ansible" = 1,
-							"/obj/item/stock_parts/subspace/filter" = 1,
-							"/obj/item/stock_parts/manipulator" = 2,
-							"/obj/item/stock_parts/micro_laser" = 1)
+		"/obj/item/stock_parts/subspace/ansible" = 1,
+		"/obj/item/stock_parts/subspace/filter" = 1,
+		"/obj/item/stock_parts/manipulator" = 2,
+		"/obj/item/stock_parts/micro_laser" = 1,
+	)
 
 /obj/item/circuitboard/machine/telecomms/hub
 	name = "Circuit Board (Hub Mainframe)"
 	build_path = "/obj/machinery/telecomms/hub"
 	frame_desc = "Requires 2 Micro Manipulators, 2 Cable Coil and 2 Hyperwave Filter."
 	req_components = list(
-							"/obj/item/stock_parts/manipulator" = 2,
-							"/obj/item/stack/cable_coil" = 2,
-							"/obj/item/stock_parts/subspace/filter" = 2)
+		"/obj/item/stock_parts/manipulator" = 2,
+		"/obj/item/stack/cable_coil" = 2,
+		"/obj/item/stock_parts/subspace/filter" = 2,
+	)
 
 /obj/item/circuitboard/machine/telecomms/relay
 	name = "Circuit Board (Relay Mainframe)"
 	build_path = "/obj/machinery/telecomms/relay"
 	frame_desc = "Requires 2 Micro Manipulators, 2 Cable Coil and 2 Hyperwave Filters."
 	req_components = list(
-							"/obj/item/stock_parts/manipulator" = 2,
-							"/obj/item/stack/cable_coil" = 2,
-							"/obj/item/stock_parts/subspace/filter" = 2)
+		"/obj/item/stock_parts/manipulator" = 2,
+		"/obj/item/stack/cable_coil" = 2,
+		"/obj/item/stock_parts/subspace/filter" = 2,
+	)
 
 /obj/item/circuitboard/machine/telecomms/bus
 	name = "Circuit Board (Bus Mainframe)"
 	build_path = "/obj/machinery/telecomms/bus"
 	frame_desc = "Requires 2 Micro Manipulators, 1 Cable Coil and 1 Hyperwave Filter."
 	req_components = list(
-							"/obj/item/stock_parts/manipulator" = 2,
-							"/obj/item/stack/cable_coil" = 1,
-							"/obj/item/stock_parts/subspace/filter" = 1)
+		"/obj/item/stock_parts/manipulator" = 2,
+		"/obj/item/stack/cable_coil" = 1,
+		"/obj/item/stock_parts/subspace/filter" = 1,
+	)
 
 /obj/item/circuitboard/machine/telecomms/processor
 	name = "Circuit Board (Processor Unit)"
 	build_path = "/obj/machinery/telecomms/processor"
 	frame_desc = "Requires 3 Micro Manipulators, 1 Hyperwave Filter, 2 Treatment Disks, 1 Wavelength Analyzer, 2 Cable Coils and 1 Subspace Amplifier."
 	req_components = list(
-							"/obj/item/stock_parts/manipulator" = 3,
-							"/obj/item/stock_parts/subspace/filter" = 1,
-							"/obj/item/stock_parts/subspace/treatment" = 2,
-							"/obj/item/stock_parts/subspace/analyzer" = 1,
-							"/obj/item/stack/cable_coil" = 2,
-							"/obj/item/stock_parts/subspace/amplifier" = 1)
+		"/obj/item/stock_parts/manipulator" = 3,
+		"/obj/item/stock_parts/subspace/filter" = 1,
+		"/obj/item/stock_parts/subspace/treatment" = 2,
+		"/obj/item/stock_parts/subspace/analyzer" = 1,
+		"/obj/item/stack/cable_coil" = 2,
+		"/obj/item/stock_parts/subspace/amplifier" = 1,
+	)
 
 /obj/item/circuitboard/machine/telecomms/server
 	name = "Circuit Board (Telecommunication Server)"
 	build_path = "/obj/machinery/telecomms/server"
 	frame_desc = "Requires 2 Micro Manipulators, 1 Cable Coil and 1 Hyperwave Filter."
 	req_components = list(
-							"/obj/item/stock_parts/manipulator" = 2,
-							"/obj/item/stack/cable_coil" = 1,
-							"/obj/item/stock_parts/subspace/filter" = 1)
+		"/obj/item/stock_parts/manipulator" = 2,
+		"/obj/item/stack/cable_coil" = 1,
+		"/obj/item/stock_parts/subspace/filter" = 1,
+	)
 
 /obj/item/circuitboard/machine/telecomms/broadcaster
 	name = "Circuit Board (Subspace Broadcaster)"
 	build_path = "/obj/machinery/telecomms/broadcaster"
 	frame_desc = "Requires 2 Micro Manipulators, 1 Cable Coil, 1 Hyperwave Filter, 1 Ansible Crystal and 2 High-Powered Micro-Lasers. "
 	req_components = list(
-							"/obj/item/stock_parts/manipulator" = 2,
-							"/obj/item/stack/cable_coil" = 1,
-							"/obj/item/stock_parts/subspace/filter" = 1,
-							"/obj/item/stock_parts/subspace/crystal" = 1,
-							"/obj/item/stock_parts/micro_laser/high" = 2)
+		"/obj/item/stock_parts/manipulator" = 2,
+		"/obj/item/stack/cable_coil" = 1,
+		"/obj/item/stock_parts/subspace/filter" = 1,
+		"/obj/item/stock_parts/subspace/crystal" = 1,
+		"/obj/item/stock_parts/micro_laser/high" = 2,
+	)
 
 
 

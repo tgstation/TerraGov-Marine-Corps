@@ -277,7 +277,8 @@
 	icon_state = "lightmixed"
 	can_hold = list(
 		/obj/item/light_bulb/tube/large,
-		/obj/item/light_bulb/bulb)
+		/obj/item/light_bulb/bulb,
+	)
 
 /obj/item/storage/box/lights/mixed/Initialize(mapload, ...)
 	. = ..()

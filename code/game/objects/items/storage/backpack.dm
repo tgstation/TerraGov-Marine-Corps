@@ -370,7 +370,8 @@
 		/obj/item/ammo_magazine/minisentry,
 		/obj/item/marine_turret/mini,
 		/obj/item/stack/razorwire,
-		/obj/item/stack/sandbags)
+		/obj/item/stack/sandbags,
+	)
 
 /obj/item/storage/backpack/marine/satchel
 	name = "\improper TGMC satchel"

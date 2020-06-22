@@ -58,10 +58,11 @@
 	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
 	soft_armor = list("melee" = 35, "bullet" = 45, "laser" = 45, "energy" = 20, "bomb" = 25, "bio" = 0, "rad" = 0, "fire" = 20, "acid" = 25)
 	slowdown = 0.25
-	allowed = list(/obj/item/weapon/gun/,
+	allowed = list(
+		/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/flashlight,
-		/obj/item/ammo_magazine/,
+		/obj/item/ammo_magazine,
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/tool/lighter,
 		/obj/item/weapon/baton,
@@ -73,7 +74,8 @@
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/large_holster/machete,
 		/obj/item/storage/belt/gun/m4a3,
-		/obj/item/storage/belt/gun/m44)
+		/obj/item/storage/belt/gun/m44,
+	)
 
 /obj/item/clothing/suit/armor/vest/dutch
 	name = "armored jacket"

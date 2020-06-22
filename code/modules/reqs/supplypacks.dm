@@ -765,7 +765,7 @@ ARMOR
 /datum/supply_packs/armor/modular/attachments/mimir_environment_protection
 	name = "Jaeger mimir module"
 	contains = list(
-		/obj/item/armor_module/attachable/mimir_environment_protection
+		/obj/item/armor_module/attachable/mimir_environment_protection,
 	)
 	cost = 12
 

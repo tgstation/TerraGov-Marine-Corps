@@ -33,8 +33,8 @@
 	item_state = "champion"
 	storage_slots = 1
 	can_hold = list(
-		/obj/item/clothing/mask/luchador
-		)
+		/obj/item/clothing/mask/luchador,
+	)
 
 
 
@@ -61,7 +61,8 @@
 		/obj/item/stack/cable_coil,
 		/obj/item/t_scanner,
 		/obj/item/analyzer,
-		/obj/item/tool/taperoll/engineering)
+		/obj/item/tool/taperoll/engineering,
+	)
 
 
 /obj/item/storage/belt/utility/full/Initialize()
@@ -263,8 +264,8 @@
 		/obj/item/flashlight,
 		/obj/item/radio/headset,
 		/obj/item/weapon,
-		/obj/item/tool/taperoll/police
-		)
+		/obj/item/tool/taperoll/police,
+	)
 
 
 
@@ -318,8 +319,8 @@
 		/obj/item/ammo_magazine/handful,
 		/obj/item/explosive/grenade,
 		/obj/item/explosive/mine,
-		/obj/item/reagent_containers/food/snacks
-		)
+		/obj/item/reagent_containers/food/snacks,
+	)
 
 /obj/item/storage/belt/marine/t18/Initialize()
 	. = ..()
@@ -400,8 +401,8 @@
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/ammo_magazine/handful,
 		/obj/item/explosive/grenade,
-		/obj/item/tool/crowbar
-		)
+		/obj/item/tool/crowbar,
+	)
 
 /obj/item/storage/belt/shotgun
 	name = "\improper shotgun shell load rig"
@@ -549,8 +550,8 @@
 	var/drawSound = 'sound/weapons/guns/misc/pistol_draw.ogg'
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
-		/obj/item/ammo_magazine/pistol
-		)
+		/obj/item/ammo_magazine/pistol,
+	)
 
 /obj/item/storage/belt/gun/Destroy()
 	if(gun_underlay)
@@ -618,8 +619,8 @@
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry the M4A3 comfortably secure. It also contains side pouches that can store 9mm or .45 magazines."
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
-		/obj/item/ammo_magazine/pistol
-		)
+		/obj/item/ammo_magazine/pistol,
+	)
 
 /obj/item/storage/belt/gun/m4a3/full/Initialize()
 	. = ..()
@@ -682,8 +683,8 @@
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry the M4A3 comfortably secure. It also contains side pouches that can store 9mm or .45 magazines."
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
-		/obj/item/ammo_magazine/pistol
-		)
+		/obj/item/ammo_magazine/pistol,
+	)
 
 /obj/item/storage/belt/gun/pistol/standard_pistol
 	name = "\improper T457 pattern pistol holster rig"
@@ -698,8 +699,8 @@
 	item_state = "tp44_holster"
 	can_hold = list(
 		/obj/item/weapon/gun/revolver,
-		/obj/item/ammo_magazine/revolver
-		)
+		/obj/item/ammo_magazine/revolver,
+	)
 
 /obj/item/storage/belt/gun/m44
 	name = "\improper M276 pattern M44 holster rig"
@@ -708,8 +709,8 @@
 	item_state = "m44_holster"
 	can_hold = list(
 		/obj/item/weapon/gun/revolver,
-		/obj/item/ammo_magazine/revolver
-		)
+		/obj/item/ammo_magazine/revolver,
+	)
 
 /obj/item/storage/belt/gun/m44/full/Initialize()
 	. = ..()
@@ -729,8 +730,8 @@
 	item_state = "mateba_holster"
 	can_hold = list(
 		/obj/item/weapon/gun/revolver/mateba,
-		/obj/item/ammo_magazine/revolver/mateba
-		)
+		/obj/item/ammo_magazine/revolver/mateba,
+	)
 
 /obj/item/storage/belt/gun/mateba/full/Initialize()
 	. = ..()
@@ -779,8 +780,8 @@
 	can_hold = list(
 		/obj/item/weapon/gun/pistol/c99,
 		/obj/item/ammo_magazine/pistol/c99,
-		/obj/item/ammo_magazine/pistol/c99t
-		)
+		/obj/item/ammo_magazine/pistol/c99t,
+	)
 
 /obj/item/storage/belt/gun/korovin/standard/Initialize()
 	. = ..()

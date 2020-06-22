@@ -224,9 +224,9 @@
 
 	product_ads = "Lasrifle running low? Recharge here!;Need a charge?;Power up!;Electrifying!;Empower yourself!"
 	products = list(
-					/obj/item/cell/lasgun/lasrifle = 10,
-					/obj/item/cell/lasgun/lasrifle/highcap = 2,
-					)
+		/obj/item/cell/lasgun/lasrifle = 10,
+		/obj/item/cell/lasgun/lasrifle/highcap = 2,
+	)
 
 	contraband =   list()
 
@@ -320,20 +320,23 @@
 	desc = "Standard Issue Food and Drinks Vendor, containing standard military food and drinks."
 	icon_state = "sustenance"
 	wrenchable = FALSE
-	products = list(/obj/item/reagent_containers/food/snacks/protein_pack = 50,
-					/obj/item/reagent_containers/food/snacks/mre_pack/meal1 = 15,
-					/obj/item/reagent_containers/food/snacks/mre_pack/meal2 = 15,
-					/obj/item/reagent_containers/food/snacks/mre_pack/meal3 = 15,
-					/obj/item/reagent_containers/food/snacks/mre_pack/meal4 = 15,
-					/obj/item/reagent_containers/food/snacks/mre_pack/meal6 = 15,
-					/obj/item/storage/box/MRE = 10,
-					/obj/item/reagent_containers/food/drinks/flask = 5)
+	products = list(
+		/obj/item/reagent_containers/food/snacks/protein_pack = 50,
+		/obj/item/reagent_containers/food/snacks/mre_pack/meal1 = 15,
+		/obj/item/reagent_containers/food/snacks/mre_pack/meal2 = 15,
+		/obj/item/reagent_containers/food/snacks/mre_pack/meal3 = 15,
+		/obj/item/reagent_containers/food/snacks/mre_pack/meal4 = 15,
+		/obj/item/reagent_containers/food/snacks/mre_pack/meal6 = 15,
+		/obj/item/storage/box/MRE = 10,
+		/obj/item/reagent_containers/food/drinks/flask = 5,
+	)
 //Christmas inventory
 /*
 					/obj/item/reagent_containers/food/snacks/mre_pack/xmas1 = 25,
 					/obj/item/reagent_containers/food/snacks/mre_pack/xmas2 = 25,
 					/obj/item/reagent_containers/food/snacks/mre_pack/xmas3 = 25)*/
-	contraband = list(/obj/item/reagent_containers/food/drinks/flask/marine = 10,
+	contraband = list(
+		/obj/item/reagent_containers/food/drinks/flask/marine = 10,
 					/obj/item/reagent_containers/food/snacks/mre_pack/meal5 = 15)
 	vend_delay = 15
 	//product_slogans = "Standard Issue Marine food!;It's good for you, and not the worst thing in the world.;Just fucking eat it.;"
@@ -348,41 +351,45 @@
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;All natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP) //Medics, doctors and researchers can access
 	wrenchable = FALSE
-	products = list(/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 6,
-					/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = 6,
-					/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 6,
-					/obj/item/reagent_containers/hypospray/autoinjector/dylovene = 6,
-					/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 6,
-					/obj/item/reagent_containers/hypospray/autoinjector/kelotane = 6,
-					/obj/item/reagent_containers/hypospray/autoinjector/oxycodone = 4,
-					/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = 8,
-					/obj/item/reagent_containers/hypospray/autoinjector/combat = 2,
-					/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 4,
-					/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
-					/obj/item/storage/pill_bottle/bicaridine = 3,
-					/obj/item/storage/pill_bottle/dexalin = 3,
-					/obj/item/storage/pill_bottle/dylovene = 3,
-					/obj/item/storage/pill_bottle/kelotane = 3,
-					/obj/item/storage/pill_bottle/spaceacillin = 3,
-					/obj/item/storage/pill_bottle/inaprovaline = 3,
-					/obj/item/storage/pill_bottle/alkysine = 3,
-					/obj/item/storage/pill_bottle/tricordrazine = 3,
-					/obj/item/storage/pill_bottle/imidazoline = 3,
-					/obj/item/storage/pill_bottle/tramadol = 3,
-					/obj/item/storage/pill_bottle/russianRed = 5,
-					/obj/item/storage/pill_bottle/peridaxon = 2,
-					/obj/item/storage/pill_bottle/quickclot = 2,
-					/obj/item/storage/pill_bottle/hypervene = 2,
-					/obj/item/stack/medical/advanced/bruise_pack = 8,
-					/obj/item/stack/medical/bruise_pack = 8,
-					/obj/item/stack/medical/advanced/ointment = 8,
-					/obj/item/stack/medical/ointment = 8,
-					/obj/item/stack/medical/splint = 4,
-					/obj/item/healthanalyzer = 3,
-					/obj/item/bodybag/cryobag = 2)
+	products = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 6,
+		/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = 6,
+		/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 6,
+		/obj/item/reagent_containers/hypospray/autoinjector/dylovene = 6,
+		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 6,
+		/obj/item/reagent_containers/hypospray/autoinjector/kelotane = 6,
+		/obj/item/reagent_containers/hypospray/autoinjector/oxycodone = 4,
+		/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = 8,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat = 2,
+		/obj/item/reagent_containers/hypospray/autoinjector/hypervene = 4,
+		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = 0,
+		/obj/item/storage/pill_bottle/bicaridine = 3,
+		/obj/item/storage/pill_bottle/dexalin = 3,
+		/obj/item/storage/pill_bottle/dylovene = 3,
+		/obj/item/storage/pill_bottle/kelotane = 3,
+		/obj/item/storage/pill_bottle/spaceacillin = 3,
+		/obj/item/storage/pill_bottle/inaprovaline = 3,
+		/obj/item/storage/pill_bottle/alkysine = 3,
+		/obj/item/storage/pill_bottle/tricordrazine = 3,
+		/obj/item/storage/pill_bottle/imidazoline = 3,
+		/obj/item/storage/pill_bottle/tramadol = 3,
+		/obj/item/storage/pill_bottle/russianRed = 5,
+		/obj/item/storage/pill_bottle/peridaxon = 2,
+		/obj/item/storage/pill_bottle/quickclot = 2,
+		/obj/item/storage/pill_bottle/hypervene = 2,
+		/obj/item/stack/medical/advanced/bruise_pack = 8,
+		/obj/item/stack/medical/bruise_pack = 8,
+		/obj/item/stack/medical/advanced/ointment = 8,
+		/obj/item/stack/medical/ointment = 8,
+		/obj/item/stack/medical/splint = 4,
+		/obj/item/healthanalyzer = 3,
+		/obj/item/bodybag/cryobag = 2,
+	)
 
-	contraband = list(/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin =3,
-					/obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired =3)
+	contraband = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 3,
+		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired = 3,
+	)
 
 
 
@@ -393,13 +400,15 @@
 	icon_deny = "bloodvendor-deny"
 	product_ads = "The best blood on the market!"
 	req_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
-	products = list(/obj/item/reagent_containers/blood/APlus = 5,
-					/obj/item/reagent_containers/blood/AMinus = 5,
-					/obj/item/reagent_containers/blood/BPlus = 5,
-					/obj/item/reagent_containers/blood/BMinus = 5,
-					/obj/item/reagent_containers/blood/OPlus = 5,
-					/obj/item/reagent_containers/blood/OMinus = 5,
-					/obj/item/reagent_containers/blood/empty = 10)
+	products = list(
+		/obj/item/reagent_containers/blood/APlus = 5,
+		/obj/item/reagent_containers/blood/AMinus = 5,
+		/obj/item/reagent_containers/blood/BPlus = 5,
+		/obj/item/reagent_containers/blood/BMinus = 5,
+		/obj/item/reagent_containers/blood/OPlus = 5,
+		/obj/item/reagent_containers/blood/OMinus = 5,
+		/obj/item/reagent_containers/blood/empty = 10,
+	)
 	contraband = list()
 
 /obj/machinery/vending/MarineMed/Blood/build_inventory(productlist[])
@@ -458,24 +467,24 @@
 	tokensupport = TOKEN_SPEC
 
 	products = list(
-						/obj/item/coin/marine/specialist = 1,
-						/obj/item/clothing/tie/storage/webbing = 1,
-						/obj/item/explosive/plastique = 2,
-						/obj/item/explosive/grenade/frag = 2,
-						/obj/item/explosive/grenade/incendiary = 2,
-						/obj/item/storage/pouch/magazine/large = 1,
-						/obj/item/storage/pouch/general/medium = 1,
-						/obj/item/clothing/mask/gas = 1
-					)
+		/obj/item/coin/marine/specialist = 1,
+		/obj/item/clothing/tie/storage/webbing = 1,
+		/obj/item/explosive/plastique = 2,
+		/obj/item/explosive/grenade/frag = 2,
+		/obj/item/explosive/grenade/incendiary = 2,
+		/obj/item/storage/pouch/magazine/large = 1,
+		/obj/item/storage/pouch/general/medium = 1,
+		/obj/item/clothing/mask/gas = 1,
+	)
 	contraband = list()
 	premium = list(
-					/obj/item/storage/box/spec/demolitionist = 1,
-					/obj/item/storage/box/spec/heavy_grenadier = 1,
-					/obj/item/storage/box/m42c_system = 1,
-					/obj/item/storage/box/m42c_system_Jungle = 1,
-					/obj/item/storage/box/spec/pyro = 1,
-					/obj/item/storage/box/spec/tracker = 1
-					)
+		/obj/item/storage/box/spec/demolitionist = 1,
+		/obj/item/storage/box/spec/heavy_grenadier = 1,
+		/obj/item/storage/box/m42c_system = 1,
+		/obj/item/storage/box/m42c_system_Jungle = 1,
+		/obj/item/storage/box/spec/pyro = 1,
+		/obj/item/storage/box/spec/tracker = 1,
+	)
 	prices = list()
 
 
@@ -489,20 +498,17 @@
 	wrenchable = FALSE
 	tokensupport = TOKEN_SPEC
 
-	products = list(
-						/obj/item/coin/marine/specialist = 1,
-					)
+	products = list(/obj/item/coin/marine/specialist = 1)
 	contraband = list()
 	premium = list()
 	shared = list(
-					/obj/item/storage/box/spec/demolitionist = 1,
-					/obj/item/storage/box/spec/heavy_grenadier = 1,
-					/obj/item/storage/box/spec/sniper = 1,
-					/obj/item/storage/box/spec/scout = 1,
-					/obj/item/storage/box/spec/pyro = 1,
-					/obj/item/storage/box/spec/tracker = 1
-
-			)
+		/obj/item/storage/box/spec/demolitionist = 1,
+		/obj/item/storage/box/spec/heavy_grenadier = 1,
+		/obj/item/storage/box/spec/sniper = 1,
+		/obj/item/storage/box/spec/scout = 1,
+		/obj/item/storage/box/spec/pyro = 1,
+		/obj/item/storage/box/spec/tracker = 1,
+	)
 	prices = list()
 
 
@@ -738,11 +744,11 @@
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_CARGO)
 	product_ads = "Hey! You! Stop looking like a turtle and start looking like a TRUE soldier!;Dress whites, fresh off the ironing board!;Why kill in armor when you can kill in style?;These uniforms are so sharp you'd cut yourself just looking at them!"
 	products = list(
-					/obj/item/clothing/under/whites = 50,
-					/obj/item/clothing/head/white_dress = 50,
-					/obj/item/clothing/shoes/white = 50,
-					/obj/item/clothing/gloves/white = 50,
-					)
+		/obj/item/clothing/under/whites = 50,
+		/obj/item/clothing/head/white_dress = 50,
+		/obj/item/clothing/shoes/white = 50,
+		/obj/item/clothing/gloves/white = 50,
+	)
 
 /obj/machinery/vending/uniform_supply/Initialize()
 	. = ..()

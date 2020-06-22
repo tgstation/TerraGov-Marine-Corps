@@ -150,7 +150,8 @@
 	tiles_with = list(
 		/turf/closed/wall,
 		/obj/structure/window/framed/mainship,
-		/obj/machinery/door/airlock)
+		/obj/machinery/door/airlock,
+	)
 
 /obj/machinery/door/poddoor/mainship/open
 	density = FALSE

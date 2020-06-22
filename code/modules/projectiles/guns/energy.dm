@@ -169,26 +169,27 @@
 	cell_type = /obj/item/cell/lasgun/M43
 	charge_cost = ENERGY_STANDARD_AMMO_COST
 	attachable_allowed = list(
-						/obj/item/attachable/bayonet,
-						/obj/item/attachable/bayonetknife,
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/verticalgrip,
-						/obj/item/attachable/angledgrip,
-						/obj/item/attachable/lasersight,
-						/obj/item/attachable/gyro,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/bipod,
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/attached_gun/grenade,
-						/obj/item/attachable/scope,
-						/obj/item/attachable/attached_gun/flamer,
-						/obj/item/attachable/attached_gun/shotgun,
-						/obj/item/attachable/scope/mini,
-						/obj/item/attachable/focuslens,
-						/obj/item/attachable/widelens,
-						/obj/item/attachable/heatlens,
-						/obj/item/attachable/efflens,
-						/obj/item/attachable/pulselens)
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/attached_gun/grenade,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/attachable/attached_gun/shotgun,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/focuslens,
+		/obj/item/attachable/widelens,
+		/obj/item/attachable/heatlens,
+		/obj/item/attachable/efflens,
+		/obj/item/attachable/pulselens,
+	)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
 	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade, /obj/item/attachable/stock/lasgun)

@@ -49,11 +49,11 @@
 	max_w_class = WEIGHT_CLASS_TINY
 	bypass_w_limit = list(
 		/obj/item/clothing/glasses,
-		/obj/item/reagent_containers/food/drinks/flask
+		/obj/item/reagent_containers/food/drinks/flask,
 	)
 
 	cant_hold = list(
-		/obj/item/stack
+		/obj/item/stack,
 	)
 
 /obj/item/armor_module/storage/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
@@ -94,8 +94,8 @@
 		/obj/item/ammo_magazine/handful,
 		/obj/item/explosive/grenade,
 		/obj/item/explosive/mine,
-		/obj/item/reagent_containers/food/snacks
-		)
+		/obj/item/reagent_containers/food/snacks,
+	)
 
 /obj/item/armor_module/storage/ammo_mag
 	name = "Magazine Storage module"
@@ -122,8 +122,8 @@
 		/obj/item/ammo_magazine/handful,
 		/obj/item/explosive/grenade,
 		/obj/item/explosive/mine,
-		/obj/item/reagent_containers/food/snacks
-		)
+		/obj/item/reagent_containers/food/snacks,
+	)
 
 /obj/item/armor_module/storage/engineering
 	name = "Engineering Storage module"
@@ -180,7 +180,7 @@
 		/obj/item/storage/pill_bottle,
 		/obj/item/clothing/gloves/latex,
 		/obj/item/reagent_containers/hypospray/autoinjector,
-		/obj/item/stack/medical
+		/obj/item/stack/medical,
 	)
 
 /obj/item/armor_module/storage/integrated
