@@ -35,7 +35,7 @@
 	desc = "A 10x20mm caseless machine pistol magazine."
 	caliber = "10x20mm caseless"
 	icon_state = "t19"
-	max_rounds = 40
+	max_rounds = 30
 	w_class = WEIGHT_CLASS_SMALL
 	gun_type = /obj/item/weapon/gun/smg/standard_machinepistol
 
