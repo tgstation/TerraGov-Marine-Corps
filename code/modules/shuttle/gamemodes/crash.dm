@@ -51,14 +51,6 @@
 	explosion(rear_right, 4, 6, 10, 0)
 	explosion(rear_left, 3, 4, 7, 0)
 
-
-/obj/docking_port/stationary/crashmode/loading
-	id = "canterbury_loadingdock"
-	name = "Low Orbit"
-
-/obj/docking_port/stationary/crashmode/loading/on_crash()
-	return // No explosions please and thank you.
-
 // -- Shuttles
 /obj/docking_port/mobile/crashmode
 	name = "TGS Canterbury"
