@@ -1366,12 +1366,12 @@ Imports
 /datum/supply_packs/imports/m16	//Vietnam time
 	name = "FN M16A Assault Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/m16)
-	cost = 5
+	cost = 15
 
 /datum/supply_packs/imports/m16/ammo
 	name = "FN M16A Assault Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/m16)
-	cost = 1
+	cost = 3
 
 /datum/supply_packs/imports/rev357
 	name = "Smith and Wesson 357 Revolver"
