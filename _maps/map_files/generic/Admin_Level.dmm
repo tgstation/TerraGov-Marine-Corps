@@ -123,7 +123,6 @@
 /turf/open/floor/tile/red/redblue/full,
 /area/tdome/tdomeobserve)
 "ay" = (
-/obj/docking_port/stationary/ert/loading,
 /turf/open/space,
 /area/space)
 "az" = (
@@ -408,10 +407,6 @@
 /obj/structure/bed/chair,
 /turf/open/floor/tile/red/yellowfull,
 /area/tdome/tdomeadmin)
-"bz" = (
-/obj/effect/landmark/shuttle_import,
-/turf/open/space,
-/area/space)
 "bA" = (
 /obj/structure/table/mainship,
 /turf/open/floor/mainship,
@@ -7776,7 +7771,7 @@ aa
 aa
 aa
 aa
-bz
+ay
 aa
 aa
 aa

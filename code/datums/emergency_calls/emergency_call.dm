@@ -206,33 +206,29 @@
 		CRASH("ert called with invalid shuttle_id")
 	var/datum/map_template/shuttle/S = SSmapping.shuttle_templates[shuttle_id]
 
-	var/obj/docking_port/stationary/L = SSshuttle.getDock("distress_loading")
-	if(!L)
-		message_admins("Distress beacon: [name] couldn't find a distress beacon loading dock")
-		CRASH("no distress loading port defined")
-
-	if(L.get_docked())
-		message_admins("Distress beacon: [name] tried to load while something was hogging the distress beacon loading dock")
-		CRASH("trying to load an ert when one is currently being loaded")
-
-	shuttle = SSshuttle.action_load(S, L)
+	shuttle = SSshuttle.action_load(S)
 
 	if(!istype(shuttle))
 		message_admins("Distress beacon: [name] couldn't load a shuttle template")
 		CRASH("ert shuttle failed to load")
 
+	var/obj/docking_port/stationary/L = SSshuttle.generate_transit_dock(shuttle)
+
+	shuttle.initiate_docking(L)
+
 	spawn_items()
 
-	if(length(picked_candidates) && mob_min > 0)
-		max_medics = max(round(length(picked_candidates) * 0.25), 1)
-		for(var/i in picked_candidates)
-			var/datum/mind/candidate_mind = i
-			members += candidate_mind
-			create_member(candidate_mind)
-	else
-		message_admins("ERROR: No picked candidates, aborting.")
-		shuttle.intoTheSunset() // delete
-		return
+	if(mob_min > 0)
+		if(length(picked_candidates))
+			max_medics = max(round(length(picked_candidates) * 0.25), 1)
+			for(var/i in picked_candidates)
+				var/datum/mind/candidate_mind = i
+				members += candidate_mind
+				create_member(candidate_mind)
+		else
+			message_admins("ERROR: No picked candidates, aborting.")
+			shuttle.intoTheSunset() // delete
+			return
 
 	if(auto_shuttle_launch)
 		if(!shuttle.auto_launch())
