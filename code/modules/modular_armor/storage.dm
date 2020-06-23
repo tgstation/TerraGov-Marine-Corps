@@ -52,6 +52,9 @@
 		/obj/item/reagent_containers/food/drinks/flask
 	)
 
+	cant_hold = list(
+		/obj/item/stack
+	)
 
 /obj/item/armor_module/storage/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
@@ -92,10 +95,6 @@
 		/obj/item/reagent_containers/food/snacks
 		)
 
-	cant_hold = list(
-		/obj/item/stack
-	)
-
 /obj/item/armor_module/storage/ammo_mag
 	name = "Magazine Storage module"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Holds some magazines. Don’t expect to fit specialist munitions or LMG drums in, but you can get some good mileage."
@@ -122,10 +121,6 @@
 		/obj/item/reagent_containers/food/snacks
 		)
 
-	cant_hold = list(
-		/obj/item/stack
-	)
-
 /obj/item/armor_module/storage/engineering
 	name = "Engineering Storage module"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold about as much as a tool belt, and sometimes small spools of things like barbed wire, or an entrenching tool."
@@ -150,7 +145,9 @@
 		/obj/item/stack/cable_coil,
 		/obj/item/tool/shovel/etool,
 		/obj/item/stack/sandbags_empty)
-
+	cant_hold = list(
+		
+	)
 
 /obj/item/armor_module/storage/medical
 	name = "Medical Storage module"
@@ -172,10 +169,6 @@
 		/obj/item/stack/medical
 	)
 
-	cant_hold = list(
-		/obj/item/stack
-	)
-
 /obj/item/armor_module/storage/integrated
 	name = "IS Pattern Storage module"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Impedes movement somewhat, but holds about as much as a satchel could."
@@ -189,6 +182,3 @@
 	max_storage_space = 15
 	max_w_class = WEIGHT_CLASS_NORMAL
 
-	cant_hold = list(
-		/obj/item/stack
-	)
