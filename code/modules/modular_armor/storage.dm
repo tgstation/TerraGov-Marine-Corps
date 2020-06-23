@@ -51,9 +51,6 @@
 		/obj/item/clothing/glasses,
 		/obj/item/reagent_containers/food/drinks/flask
 	)
-	cant_hold = list(
-		/obj/item/stack
-	)
 
 
 /obj/item/armor_module/storage/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
@@ -95,6 +92,9 @@
 		/obj/item/reagent_containers/food/snacks
 		)
 
+	cant_hold = list(
+		/obj/item/stack
+	)
 
 /obj/item/armor_module/storage/ammo_mag
 	name = "Magazine Storage module"
@@ -122,17 +122,27 @@
 		/obj/item/reagent_containers/food/snacks
 		)
 
+	cant_hold = list(
+		/obj/item/stack
+	)
 
 /obj/item/armor_module/storage/engineering
 	name = "Engineering Storage module"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold about as much as a tool belt, and sometimes small spools of things like barbed wire, or an entrenching tool."
 	icon_state = "mod_engineer_bag"
-	storage_type =  /obj/item/storage/internal/modular/general
+	storage_type =  /obj/item/storage/internal/modular/engineering
 
 /obj/item/storage/internal/modular/engineering
 	max_storage_space = 15
 	storage_slots = 4
 	max_w_class = WEIGHT_CLASS_BULKY
+	bypass_w_limit = list(
+		/obj/item/stack/barbed_wire,
+		/obj/item/stack/sheet,
+		/obj/item/stack/rods,
+		/obj/item/stack/cable_coil,
+		/obj/item/tool/shovel/etool,
+		/obj/item/stack/sandbags_empty)
 	can_hold = list(
 		/obj/item/stack/barbed_wire,
 		/obj/item/stack/sheet,
@@ -162,6 +172,9 @@
 		/obj/item/stack/medical
 	)
 
+	cant_hold = list(
+		/obj/item/stack
+	)
 
 /obj/item/armor_module/storage/integrated
 	name = "IS Pattern Storage module"
@@ -175,3 +188,7 @@
 	storage_slots = null
 	max_storage_space = 15
 	max_w_class = WEIGHT_CLASS_NORMAL
+
+	cant_hold = list(
+		/obj/item/stack
+	)
