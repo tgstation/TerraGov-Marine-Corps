@@ -287,7 +287,7 @@
 
 /datum/action/xeno_action/pheromones/ai_should_use(target)
 	var/mob/living/carbon/xenomorph/X = owner
-	if(X.current_aura)
+	if(X.GetComponent(/datum/component/aura)?.active)
 		return ..()
 	if(prob(33)) //Since the pheromones go from recovery => warding => frenzy, this enables AI to somewhat randomly pick one of the three pheros to emit
 		return ..()
@@ -298,18 +298,24 @@
 	if(!aura_type)
 		return FALSE
 
-	if(X.current_aura == aura_type)
+	var/datum/component/aura/emitter = X.GetComponent(/datum/component/aura)
+	if(!emitter)
+		emitter = AddComponent(/datum/component/aura, aura_type, WORLD_VIEW_NUM, 2.5 SECONDS, X.xeno_caste.aura_strength)
+
+	var/datum/status_effect/aura/temp_aura = aura_type
+	if(emitter.active && emitter.current_aura == aura_type)
 		X.visible_message("<span class='xenowarning'>\The [X] stops emitting strange pheromones.</span>", \
-		"<span class='xenowarning'>We stop emitting [X.current_aura] pheromones.</span>", null, 5)
-		X.current_aura = null
+		"<span class='xenowarning'>We stop emitting [temp_aura.display_name] pheromones.</span>", null, 5)
+		emitter.toggle_active(FALSE)
 		if(isxenoqueen(X))
 			X.hive?.update_leader_pheromones()
 		X.hud_set_pheromone()
 		return fail_activate() // dont use plasma
 
-	X.current_aura = aura_type
+	emitter.set_aura(aura_type)
+	emitter.toggle_active(TRUE)
 	X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
-	"<span class='xenowarning'>We begin to emit '[X.current_aura]' pheromones.</span>", null, 5)
+	"<span class='xenowarning'>We begin to emit '[temp_aura.display_name]' pheromones.</span>", null, 5)
 	playsound(X.loc, "alien_drool", 25)
 
 	if(isxenoqueen(X))
@@ -317,25 +323,25 @@
 	X.hud_set_pheromone() //Visual feedback that the xeno has immediately started emitting pheromones
 	return succeed_activate()
 
-/datum/action/xeno_action/pheromones/emit_recovery //Type casted for easy removal/adding
+/datum/action/xeno_action/pheromones/emit_recovery
 	name = "Emit Recovery Pheromones"
 	action_icon_state = "emit_recovery"
 	mechanics_text = "Increases healing for yourself and nearby teammates."
-	aura_type = "recovery"
+	aura_type = /datum/status_effect/aura/recovery
 	keybind_signal = COMSIG_XENOABILITY_EMIT_RECOVERY
 
 /datum/action/xeno_action/pheromones/emit_warding
 	name = "Emit Warding Pheromones"
 	action_icon_state = "emit_warding"
 	mechanics_text = "Increases armor for yourself and nearby teammates."
-	aura_type = "warding"
+	aura_type = /datum/status_effect/aura/warding
 	keybind_signal = COMSIG_XENOABILITY_EMIT_WARDING
 
 /datum/action/xeno_action/pheromones/emit_frenzy
 	name = "Emit Frenzy Pheromones"
 	action_icon_state = "emit_frenzy"
 	mechanics_text = "Increases damage for yourself and nearby teammates."
-	aura_type = "frenzy"
+	aura_type = /datum/status_effect/aura/frenzy
 	keybind_signal = COMSIG_XENOABILITY_EMIT_FRENZY
 
 

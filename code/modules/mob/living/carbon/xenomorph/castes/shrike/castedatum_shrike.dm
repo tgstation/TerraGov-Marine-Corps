@@ -43,7 +43,6 @@
 
 	// *** Pheromones *** //
 	aura_strength = 2 //The Shrike's aura is decent.
-	aura_allowed = list("frenzy", "warding", "recovery")
 
 	// *** Abilities *** //
 	actions = list(

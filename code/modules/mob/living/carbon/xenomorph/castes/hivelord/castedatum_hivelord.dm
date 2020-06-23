@@ -45,7 +45,6 @@
 
 	// *** Pheromones *** //
 	aura_strength = 2 //Hivelord's aura is not extremely strong, but better than Drones.
-	aura_allowed = list("frenzy", "warding", "recovery")
 
 	// *** Abilities *** //
 	actions = list(

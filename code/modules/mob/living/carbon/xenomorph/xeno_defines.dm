@@ -80,7 +80,6 @@
 
 	// *** Pheromones *** //
 	var/aura_strength = 0 //The strength of our aura. Zero means we can't emit one
-	var/aura_allowed = list("frenzy", "warding", "recovery") //"Evolving" removed for the time being
 
 	// *** Warrior Abilities *** //
 	var/agility_speed_increase = 0 // this opens up possibilities for balancing
@@ -169,11 +168,6 @@
 	var/evo_points = 0 //Current # of evolution points. Max is 1000.
 	var/list/upgrades_bought = list()
 
-	var/current_aura = null //"frenzy", "warding", "recovery"
-	var/frenzy_aura = 0 //Strength of aura we are affected by. NOT THE ONE WE ARE EMITTING
-	var/warding_aura = 0
-	var/recovery_aura = 0
-
 	var/is_zoomed = 0
 	var/zoom_turf = null
 	var/attack_delay = 0 //Bonus or pen to time in between attacks. + makes slashes slower.
@@ -193,13 +187,8 @@
 	//It should add them properly on New() and should reset/readd them on evolves
 	var/list/inherent_verbs = list()
 
-	//Lord forgive me for this horror, but Life code is awful
-	//These are tally vars, yep. Because resetting the aura value directly leads to fuckups
-	var/frenzy_new = 0
-	var/warding_new = 0
-	var/recovery_new = 0
-
-	var/xeno_mobhud = FALSE //whether the xeno mobhud is activated or not.
+	///whether the xeno mobhud is activated or not.
+	var/xeno_mobhud = FALSE
 
 	var/queen_chosen_lead //whether the xeno has been selected by the queen as a leader.
 
@@ -216,10 +205,6 @@
 	// Defender vars
 	var/fortify = 0
 	var/crest_defense = 0
-
-	//Leader vars
-	var/leader_aura_strength = 0 //Pheromone strength inherited from Queen
-	var/leader_current_aura = "" //Pheromone type inherited from Queen
 
 	//Runner vars
 	var/savage = FALSE

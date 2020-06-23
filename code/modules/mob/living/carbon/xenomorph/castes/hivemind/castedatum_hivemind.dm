@@ -44,7 +44,6 @@
 
 	// *** Pheromones *** //
 	aura_strength = 2.5 //hivemind's aura is not extremely strong, but better than Drones.
-	aura_allowed = list("frenzy", "warding", "recovery")
 
 	// *** Abilities *** //
 	actions = list(
@@ -79,7 +78,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Plasma *** //
-	plasma_max = 250 
+	plasma_max = 250
 	plasma_gain = 60 // This is 4 weed every 10 secs.
 
 	// *** Health *** //
@@ -101,7 +100,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Plasma *** //
-	plasma_max = 300 
+	plasma_max = 300
 	plasma_gain = 75 // This is 5 weed every 10 secs.
 
 	// *** Health *** //

@@ -41,6 +41,15 @@
 
 #define STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF /datum/status_effect/stacking/gun_skill/scatter/debuff // Decreases the scatter of the mob
 
+
+/////////////
+// AURAS //
+/////////////
+
+#define STATUS_EFFECT_AURA_FRENZY /datum/status_effect/aura/frenzy /// Increases movement speed
+#define STATUS_EFFECT_AURA_WARDING /datum/status_effect/aura/warding /// Increases armor
+#define STATUS_EFFECT_AURA_RECOVERY /datum/status_effect/aura/recovery /// Increase health recovery
+
 /////////////
 // NEUTRAL //
 /////////////

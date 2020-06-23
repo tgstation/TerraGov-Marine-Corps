@@ -142,9 +142,12 @@
 			stat("Slashing of hosts status:","FORBIDDEN")
 
 	//Very weak <= 1.0, weak <= 2.0, no modifier 2-3, strong <= 3.5, very strong <= 4.5
+	var/datum/status_effect/aura/frenzy/frenzy_aura = has_status_effect(STATUS_EFFECT_AURA_RECOVERY)
+	var/datum/status_effect/aura/warding/warding_aura = has_status_effect(STATUS_EFFECT_AURA_RECOVERY)
+	var/datum/status_effect/aura/recovery/recovery_aura = has_status_effect(STATUS_EFFECT_AURA_RECOVERY)
 	var/msg_holder = ""
 	if(frenzy_aura)
-		switch(frenzy_aura)
+		switch(frenzy_aura.strength)
 			if(-INFINITY to 1.0)
 				msg_holder = "Very weak"
 			if(1.1 to 2.0)
@@ -157,7 +160,7 @@
 				msg_holder = "Very strong"
 		stat("Frenzy pheromone strength:", msg_holder)
 	if(warding_aura)
-		switch(warding_aura)
+		switch(warding_aura.strength)
 			if(-INFINITY to 1.0)
 				msg_holder = "Very weak"
 			if(1.1 to 2.0)
@@ -170,7 +173,7 @@
 				msg_holder = "Very strong"
 		stat("Warding pheromone strength:", msg_holder)
 	if(recovery_aura)
-		switch(recovery_aura)
+		switch(recovery_aura.strength)
 			if(-INFINITY to 1.0)
 				msg_holder = "Very weak"
 			if(1.1 to 2.0)
@@ -430,13 +433,12 @@
 
 //When the Queen's pheromones are updated, or we add/remove a leader, update leader pheromones
 /mob/living/carbon/xenomorph/proc/handle_xeno_leader_pheromones(mob/living/carbon/xenomorph/queen/Q)
-	if(QDELETED(Q) || !queen_chosen_lead || !Q.current_aura || Q.loc.z != loc.z) //We are no longer a leader, or the Queen attached to us has dropped from her ovi, disabled her pheromones or even died
-		leader_aura_strength = 0
-		leader_current_aura = ""
+	var/datum/component/aura/queen_aura = Q.GetComponent(/datum/component/aura)
+	if(QDELETED(Q) || !queen_chosen_lead || !queen_aura.active || Q.loc.z != loc.z) //We are no longer a leader, or the Queen attached to us has dropped from her ovi, disabled her pheromones or even died
+		GetComponent(/datum/component/aura)?.RemoveComponent()
 		to_chat(src, "<span class='xenowarning'>Our pheromones wane. The Queen is no longer granting us her pheromones.</span>")
 	else
-		leader_aura_strength = Q.xeno_caste.aura_strength
-		leader_current_aura = Q.current_aura
+		AddComponent(/datum/component/aura, queen_aura.range, queen_aura.duration, queen_aura.strength)
 		to_chat(src, "<span class='xenowarning'>Our pheromones have changed. The Queen has new plans for the Hive.</span>")
 
 

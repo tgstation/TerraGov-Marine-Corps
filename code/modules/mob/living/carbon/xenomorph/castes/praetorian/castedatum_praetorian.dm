@@ -43,7 +43,6 @@
 
 	// *** Pheromones *** //
 	aura_strength = 3 //Praetorian's aura starts strong. They are the Queen's right hand. Climbs by 1 to 4.5
-	aura_allowed = list("frenzy", "warding", "recovery")
 
 	// *** Abilities *** //
 	actions = list(

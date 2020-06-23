@@ -360,32 +360,30 @@
 		return
 	holder.overlays.Cut()
 	holder.icon_state = "hudblank"
-	if(stat != DEAD)
-		var/tempname = ""
-		if(frenzy_aura)
-			tempname += "frenzy"
-		if(warding_aura)
-			tempname += "warding"
-		if(recovery_aura)
-			tempname += "recovery"
-		if(tempname)
-			holder.icon_state = "hud[tempname]"
+	if(stat == DEAD)
+		return
 
-		switch(current_aura)
-			if("frenzy")
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurafrenzy")
-			if("recovery")
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurarecovery")
-			if("warding")
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurawarding")
+	var/tempname = ""
+	if(has_status_effect(STATUS_EFFECT_AURA_FRENZY))
+		tempname += "frenzy"
+	if(has_status_effect(STATUS_EFFECT_AURA_WARDING))
+		tempname += "warding"
+	if(has_status_effect(STATUS_EFFECT_AURA_RECOVERY))
+		tempname += "recovery"
+	if(tempname)
+		holder.icon_state = "hud[tempname]"
 
-		switch(leader_current_aura)
-			if("frenzy")
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurafrenzy")
-			if("recovery")
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurarecovery")
-			if("warding")
-				holder.overlays += image('icons/mob/hud.dmi', src, "hudaurawarding")
+	var/datum/component/aura/aura_emitter = GetComponent(/datum/component/aura)
+	if(!aura_emitter || !aura_emitter.active)
+		return
+
+	switch(aura_emitter.current_aura)
+		if(/datum/status_effect/aura/frenzy)
+			holder.overlays += image('icons/mob/hud.dmi', src, "hudaurafrenzy")
+		if(/datum/status_effect/aura/recovery)
+			holder.overlays += image('icons/mob/hud.dmi', src, "hudaurarecovery")
+		if(/datum/status_effect/aura/warding)
+			holder.overlays += image('icons/mob/hud.dmi', src, "hudaurawarding")
 
 	hud_list[PHEROMONE_HUD] = holder
 
