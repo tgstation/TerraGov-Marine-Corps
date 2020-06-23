@@ -153,6 +153,11 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/minigun)
 	cost = 100
 
+/datum/supply_packs/weapons/smartgun
+	name = "T-29 Smart Machinegun"
+	contains = list(/obj/item/weapon/gun/rifle/standard_smartmachinegun)
+	cost = 30
+
 /datum/supply_packs/weapons/explosives_mines
 	name = "claymore mines"
 	notes = "Contains 5 mines"
