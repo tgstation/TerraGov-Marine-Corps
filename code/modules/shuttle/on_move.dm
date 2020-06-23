@@ -36,7 +36,7 @@ All ShuttleMove procs go here
 				M.gib()
 		else if(istype(i,/obj/structure/closet/bodybag/tarp))
 			var/obj/structure/closet/bodybag/tarp/t = i
-			M.visible_message("<span class='warning'>[shuttle] smushes [M]!</span>")
+			t.visible_message("<span class='warning'>[shuttle] smushes [t]!</span>")
 			t.bodybag_occupant.gib()
 
 		else //non-living mobs shouldn't be affected by shuttles, which is why this is an else
