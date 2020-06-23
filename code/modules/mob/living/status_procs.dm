@@ -487,7 +487,7 @@
 	return
 
 /mob/living/proc/jitter(amount)
-	jitteriness = CLAMP(jitteriness + amount,0, 1000)
+	jitteriness = clamp(jitteriness + amount,0, 1000)
 
 /mob/living/proc/dizzy(amount)
 	return // For the time being, only carbons get dizzy.
@@ -591,7 +591,7 @@
 	if(bodytemperature < min_temp || bodytemperature > max_temp)
 		return
 	. = bodytemperature
-	bodytemperature = CLAMP(bodytemperature + amount, min_temp, max_temp)
+	bodytemperature = clamp(bodytemperature + amount, min_temp, max_temp)
 
 
 /mob/living/carbon/human/adjust_bodytemperature(amount, min_temp = 0, max_temp = INFINITY)

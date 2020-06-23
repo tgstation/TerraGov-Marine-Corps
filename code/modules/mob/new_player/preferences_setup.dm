@@ -63,9 +63,9 @@
 			green = 0
 			blue = 0
 
-	red = CLAMP(red + rand(-25, 25), 0, 255)
-	green = CLAMP(green + rand(-25, 25), 0, 255)
-	blue = CLAMP(blue + rand(-25, 25), 0, 255)
+	red = clamp(red + rand(-25, 25), 0, 255)
+	green = clamp(green + rand(-25, 25), 0, 255)
+	blue = clamp(blue + rand(-25, 25), 0, 255)
 
 	switch(target)
 		if("hair")
@@ -108,9 +108,9 @@
 			green = 0
 			blue = 0
 
-	red = CLAMP(red + rand(-25, 25), 0, 255)
-	green = CLAMP(green + rand(-25, 25), 0, 255)
-	blue = CLAMP(blue + rand(-25, 25), 0, 255)
+	red = clamp(red + rand(-25, 25), 0, 255)
+	green = clamp(green + rand(-25, 25), 0, 255)
+	blue = clamp(blue + rand(-25, 25), 0, 255)
 
 	r_eyes = red
 	g_eyes = green

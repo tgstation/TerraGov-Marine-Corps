@@ -693,11 +693,11 @@ TUNNEL
 		return
 
 	var/distance = get_dist( get_turf(src), get_turf(other) )
-	var/tunnel_time = CLAMP(distance, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_SMALL_MAX_TRAVEL_TIME)
+	var/tunnel_time = clamp(distance, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_SMALL_MAX_TRAVEL_TIME)
 	var/area/A = get_area(other)
 
 	if(M.mob_size == MOB_SIZE_BIG) //Big xenos take longer
-		tunnel_time = CLAMP(distance * 1.5, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_LARGE_MAX_TRAVEL_TIME)
+		tunnel_time = clamp(distance * 1.5, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_LARGE_MAX_TRAVEL_TIME)
 		M.visible_message("<span class='xenonotice'>[M] begins heaving their huge bulk down into \the [src].</span>", \
 		"<span class='xenonotice'>We begin heaving our monstrous bulk into \the [src] to <b>[A.name] (X: [A.x], Y: [A.y])</b>.</span>")
 	else
@@ -799,7 +799,7 @@ TUNNEL
 		ccharging = FALSE
 		update_icon()
 		to_chat(M,"<span class='xenonotice'>You fill up by one [src].</span>")
-	else 
+	else
 		to_chat(M, "<span class='xenowarning'>We begin removing [src]...</span>")
 		if(do_after(M, 5 SECONDS, FALSE, src, BUSY_ICON_BUILD))
 			deconstruct(FALSE)
@@ -820,12 +820,12 @@ TUNNEL
 		return
 	if(isxeno(C))
 		if(!(C.on_fire))
-			return 
+			return
 		C.ExtinguishMob()
 		charges--
 		update_icon()
 		return
-	else 
+	else
 		if(!charges)
 			return
 		C.adjustToxLoss(charges * 15)

@@ -311,12 +311,12 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 				visible_message("<span class='boldnotice'>Secondary objective of squad '[current_squad]' set.</span>")
 		if("supply_x")
 			var/input = input(usr,"What X-coordinate offset between -5 and 5 would you like? (Positive means east)","X Offset",0) as num
-			input = CLAMP(round(input), -5, 5)
+			input = clamp(round(input), -5, 5)
 			to_chat(usr, "[icon2html(src, usr)] <span class='notice'>X-offset is now [input].</span>")
 			x_offset_s = input
 		if("supply_y")
 			var/input = input(usr,"What Y-coordinate offset between -5 and 5 would you like? (Positive means north)","Y Offset",0) as num
-			input = CLAMP(round(input), -5, 5)
+			input = clamp(round(input), -5, 5)
 			to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Y-offset is now [input].</span>")
 			y_offset_s = input
 		if("refresh")
@@ -677,8 +677,8 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 
 	var/x_offset = x_offset_s
 	var/y_offset = y_offset_s
-	x_offset = CLAMP(round(x_offset), -5, 5)
-	y_offset = CLAMP(round(y_offset), -5, 5)
+	x_offset = clamp(round(x_offset), -5, 5)
+	y_offset = clamp(round(y_offset), -5, 5)
 
 	visible_message("<span class='boldnotice'>The supply drop is now loading into the launch tube! Stand by!</span>")
 	current_squad.drop_pad.visible_message("<span class='warning'>\The [current_squad.drop_pad] whirrs as it beings to load the supply drop into a launch tube. Stand clear!</span>")

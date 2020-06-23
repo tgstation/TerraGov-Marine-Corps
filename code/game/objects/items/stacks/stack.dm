@@ -39,9 +39,9 @@
 	var/new_w_class
 	switch(percent) //Currently 3 steps as defined by STACK_WEIGHT_STEPS
 		if(0 to 33)
-			new_w_class = CLAMP(full_w_class-2, WEIGHT_CLASS_TINY, full_w_class)
+			new_w_class = clamp(full_w_class-2, WEIGHT_CLASS_TINY, full_w_class)
 		if(34 to 66)
-			new_w_class = CLAMP(full_w_class-1, WEIGHT_CLASS_TINY, full_w_class)
+			new_w_class = clamp(full_w_class-1, WEIGHT_CLASS_TINY, full_w_class)
 		if(67 to 100)
 			new_w_class = full_w_class
 		else

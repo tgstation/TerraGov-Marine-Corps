@@ -662,7 +662,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(!isnum(new_age))
 				return
 			new_age = round(new_age)
-			age = CLAMP(new_age, AGE_MIN, AGE_MAX)
+			age = clamp(new_age, AGE_MIN, AGE_MAX)
 
 		if("gender")
 			if(gender == MALE)
@@ -809,7 +809,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(!ui_style_alpha_new)
 				return
 			ui_style_alpha_new = round(ui_style_alpha_new)
-			ui_style_alpha = CLAMP(ui_style_alpha_new, 55, 230)
+			ui_style_alpha = clamp(ui_style_alpha_new, 55, 230)
 
 		if("hairstyle")
 			var/list/valid_hairstyles = list()
@@ -957,7 +957,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/desiredfps = input(user, "Choose your desired fps. (0 = synced with server tick rate (currently:[world.fps]))", "Character Preference", clientfps)  as null|num
 			if(isnull(desiredfps))
 				return
-			desiredfps = CLAMP(desiredfps, 0, 240)
+			desiredfps = clamp(desiredfps, 0, 240)
 			clientfps = desiredfps
 			parent.fps = desiredfps
 

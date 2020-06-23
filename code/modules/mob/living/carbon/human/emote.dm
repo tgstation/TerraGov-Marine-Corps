@@ -255,7 +255,7 @@
 	params = text2num(params)
 	if(params == 1 || !isnum(params))
 		return "raises one finger."
-	params = num2text(CLAMP(params, 2, 10))
+	params = num2text(clamp(params, 2, 10))
 	return ..()
 
 

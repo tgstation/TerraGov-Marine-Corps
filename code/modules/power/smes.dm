@@ -89,7 +89,7 @@
 
 
 /obj/machinery/power/smes/proc/chargedisplay()
-	return CLAMP(round(5.5*charge/capacity),0,5)
+	return clamp(round(5.5*charge/capacity),0,5)
 
 
 /obj/machinery/power/smes/process()
@@ -312,7 +312,7 @@
 				target = text2num(target)
 				. = TRUE
 			if(.)
-				input_level = CLAMP(target, 0, input_level_max)
+				input_level = clamp(target, 0, input_level_max)
 		if("output")
 			var/target = params["target"]
 			var/adjust = text2num(params["adjust"])
@@ -333,7 +333,7 @@
 				target = text2num(target)
 				. = TRUE
 			if(.)
-				output_level = CLAMP(target, 0, output_level_max)
+				output_level = clamp(target, 0, output_level_max)
 
 /obj/machinery/power/smes/Topic(href, href_list)
 	. = ..()
@@ -356,7 +356,7 @@
 				input_level = input_level_max
 			if("set")
 				input_level = input(usr, "Enter new input level (0-[input_level_max])", "SMES Input Power Control", input_level) as num
-		input_level = CLAMP(input_level,0,input_level_max)
+		input_level = clamp(input_level,0,input_level_max)
 
 	else if( href_list["output"] )
 		switch( href_list["output"] )
@@ -366,7 +366,7 @@
 				output_level = output_level_max
 			if("set")
 				output_level = input(usr, "Enter new output level (0-[output_level_max])", "SMES Output Power Control", output_level) as num
-		output_level = CLAMP(output_level,0,output_level_max)
+		output_level = clamp(output_level,0,output_level_max)
 
 
 /obj/machinery/power/smes/proc/ion_act()

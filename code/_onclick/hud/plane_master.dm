@@ -50,7 +50,7 @@
 		return
 	var/mob/living/L = mymob
 	if(L.eye_blurry)
-		filters += GAUSSIAN_BLUR(CLAMP(L.eye_blurry * 0.1, 0.6, 3))
+		filters += GAUSSIAN_BLUR(clamp(L.eye_blurry * 0.1, 0.6, 3))
 
 /obj/screen/plane_master/game_world
 	name = "game world plane master"
@@ -65,7 +65,7 @@
 		return
 	var/mob/living/L = mymob
 	if(L.eye_blurry)
-		filters += GAUSSIAN_BLUR(CLAMP(L.eye_blurry * 0.1, 0.6, 3))
+		filters += GAUSSIAN_BLUR(clamp(L.eye_blurry * 0.1, 0.6, 3))
 
 /obj/screen/plane_master/lighting
 	name = "lighting plane master"
