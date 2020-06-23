@@ -145,9 +145,7 @@
 		/obj/item/stack/cable_coil,
 		/obj/item/tool/shovel/etool,
 		/obj/item/stack/sandbags_empty)
-	cant_hold = list(
-		
-	)
+	cant_hold = list()
 
 /obj/item/armor_module/storage/medical
 	name = "Medical Storage module"
@@ -181,4 +179,3 @@
 	storage_slots = null
 	max_storage_space = 15
 	max_w_class = WEIGHT_CLASS_NORMAL
-
