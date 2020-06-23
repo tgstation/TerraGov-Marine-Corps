@@ -481,6 +481,7 @@
 	origin.UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)
 	UnregisterSignal(src, COMSIG_MOVABLE_CLOSET_DUMPED)
 
+
 #undef CLOSET_INSERT_END
 #undef CLOSET_INSERT_FAIL
 #undef CLOSET_INSERT_SUCCESS
