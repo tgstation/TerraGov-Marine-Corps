@@ -96,8 +96,8 @@ proc/spread_germs_to_organ(datum/limb/E, mob/living/carbon/human/user)
 		E.germ_level += user.germ_level * 0.33
 
 	//Suits
-	if(user.wear_suit || user.w_uniform)
-		if(istype(user.wear_suit, /obj/item/clothing/suit/surgical) || istype(user.w_uniform, /obj/item/clothing/under/marine/corpsman))
+	if(user.wear_suit)
+		if(istype(user.wear_suit, /obj/item/clothing/suit/surgical))
 			E.germ_level += user.germ_level * 0.1
 		else
 			E.germ_level += user.germ_level * 0.2
@@ -107,7 +107,7 @@ proc/spread_germs_to_organ(datum/limb/E, mob/living/carbon/human/user)
 	if(locate(/obj/structure/bed/roller, E.owner.loc))
 		E.germ_level += 75
 	else if(locate(/obj/structure/table/, E.owner.loc))
-		E.germ_level += 75
+		E.germ_level += 100
 
 
 proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
@@ -120,7 +120,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 	if(user.skills.getRating("surgery") < SKILL_SURGERY_PROFESSIONAL)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to operate [M].</span>",
 		"<span class='notice'>You fumble around figuring out how to operate [M].</span>")
-		var/fumbling_time = SKILL_TASK_FORMIDABLE - ( 6 SECONDS * user.skills.getRating("surgery") ) // 20 secs non-trained, 14 amateur, 8 trained, 2 prof
+		var/fumbling_time = max(1,SKILL_TASK_FORMIDABLE - ( 8 SECONDS * user.skills.getRating("surgery") )) // 20 secs non-trained, 14 amateur, 8 trained, 2 prof
 		if(!do_after(user, fumbling_time, TRUE, M, BUSY_ICON_UNSKILLED))
 			return
 	var/datum/limb/affected = user.client.prefs.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(M, user) : M.get_limb(user.zone_selected)
@@ -147,7 +147,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 				if(locate(/obj/structure/bed/roller, M.loc))
 					multipler -= 0.10
 				else if(locate(/obj/structure/table/, M.loc))
-					multipler -= 0.10
+					multipler -= 0.20
 				if(M.stat == CONSCIOUS)//If not on anesthetics or not unconsious
 					multipler -= 0.5
 					switch(M.reagent_pain_modifier)
