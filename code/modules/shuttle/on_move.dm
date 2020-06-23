@@ -34,6 +34,10 @@ All ShuttleMove procs go here
 				M.visible_message("<span class='warning'>[shuttle] slams into [M]!</span>")
 //				SSblackbox.record_feedback("tally", "shuttle_gib", 1, M.type)
 				M.gib()
+		else if(istype(i,/obj/structure/closet/bodybag/tarp))
+			var/obj/structure/closet/bodybag/tarp/t = i
+			M.visible_message("<span class='warning'>[shuttle] smushes [M]!</span>")
+			t.bodybag_occupant.gib()
 
 		else //non-living mobs shouldn't be affected by shuttles, which is why this is an else
 //			if(istype(thing, /obj/singularity) && !istype(thing, /obj/singularity/narsie)) //it's a singularity but not a god, ignore it.
