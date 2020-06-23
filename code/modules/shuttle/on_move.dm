@@ -41,7 +41,11 @@ All ShuttleMove procs go here
 				var/obj/structure/closet/bodybag/b = thing
 				b.bodybag_occupant.gib()
 				qdel(src)
-			idiot.gib_closet()
+				return
+			for(var/mob/living/mob_to_stuff in idiot.contents)
+				if(!idiot.opened)
+					mob_to_stuff.gib()
+			idiot.deconstruct()
 		else //non-living mobs shouldn't be affected by shuttles, which is why this is an else
 //			if(istype(thing, /obj/singularity) && !istype(thing, /obj/singularity/narsie)) //it's a singularity but not a god, ignore it.
 //				continue

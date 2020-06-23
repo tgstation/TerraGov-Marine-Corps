@@ -481,12 +481,6 @@
 	origin.UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)
 	UnregisterSignal(src, COMSIG_MOVABLE_CLOSET_DUMPED)
 
-/obj/structure/closet/proc/gib_closet()
-	for(var/mob/living/mob_to_stuff in loc)
-		if(!opened)
-			mob_to_stuff.gib()
-			
-	qdel(src)
 #undef CLOSET_INSERT_END
 #undef CLOSET_INSERT_FAIL
 #undef CLOSET_INSERT_SUCCESS
