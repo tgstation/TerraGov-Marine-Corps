@@ -1,6 +1,5 @@
 /datum/component/directional_attack
 	var/active = TRUE
-	var/directional_action_path
 	var/datum/action/directional_attack_toggle/toggle_action
 
 /datum/component/directional_attack/Initialize()
@@ -15,6 +14,7 @@
 	RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, toggle_path)
 	if(active)
 		RegisterSignal(parent, COMSIG_CLICK, .proc/select_directional_action)
+
 /datum/component/directional_attack/Destroy(force, silent)
     QDEL_NULL(toggle_action)
     return ..()
@@ -112,9 +112,28 @@
 		return //No more nibbling.
 	return living_do_directional_action(L)
 
-
 /datum/component/directional_attack/proc/living_do_directional_action(mob/living/L)
 	var/mob/living/attacker = parent
 	attacker.UnarmedAttack(L, TRUE)
 	COOLDOWN_START(src, COOLDOWN_DIRECTIONAL_ATTACK, CLICK_CD_MELEE)
 
+//Toggle directional attacks
+/datum/action/directional_attack_toggle
+	name = "Toggle Directional Attacks"
+	var/static/atom/movable/vis_obj/action/bump_attack_active/active_icon = new
+	var/static/atom/movable/vis_obj/action/bump_attack_inactive/inactive_icon = new
+
+
+/datum/action/directional_attack_toggle/New()
+	. = ..()
+	button.overlays.Cut()
+
+/datum/action/directional_attack_toggle/update_button_icon(active)
+	if(isnull(active))
+		return
+	if(active)
+		button.vis_contents -= inactive_icon
+		button.vis_contents += active_icon
+	else
+		button.vis_contents -= active_icon
+		button.vis_contents += inactive_icon

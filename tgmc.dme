@@ -255,7 +255,6 @@
 #include "code\datums\world_topic.dm"
 #include "code\datums\actions\action.dm"
 #include "code\datums\actions\bump_attack_toggle.dm"
-#include "code\datums\actions\directional_attack_toggle.dm"
 #include "code\datums\actions\innate.dm"
 #include "code\datums\actions\item_action.dm"
 #include "code\datums\actions\observer_action.dm"
