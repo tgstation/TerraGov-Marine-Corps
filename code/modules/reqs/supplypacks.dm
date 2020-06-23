@@ -1011,6 +1011,16 @@ MEDICAL
 	contains = list(/obj/item/storage/firstaid/adv)
 	cost = 5
 
+/datum/supply_packs/medical/fire_kit
+	name = "Advanced Fire Medkit"
+	contains = list(/obj/item/storage/firstaid/fire_adv)
+	cost = 25
+
+/datum/supply_packs/medical/brute_kit
+	name = "Advanced Brute Medkit"
+	contains = list(/obj/item/storage/firstaid/brute_adv)
+	cost = 25
+
 /datum/supply_packs/medical/ultrazine
 	name = "Ultrazine Injector"
 	contains = list(/obj/item/reagent_containers/hypospray/autoinjector/ultrazine)

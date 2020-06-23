@@ -49,7 +49,6 @@
 	desc = "It's an emergency medical kit for when the toxins lab <i>-spontaneously-</i> burns down."
 	icon_state = "ointment"
 	item_state = "firstaid-ointment"
-	possible_icons_full = list("ointment","firefirstaid")
 
 /obj/item/storage/firstaid/fire/fill_firstaid_kit()
 	new /obj/item/healthanalyzer(src)
@@ -60,6 +59,35 @@
 	new /obj/item/stack/medical/advanced/ointment(src)
 	new /obj/item/storage/syringe_case/burn(src)
 
+/obj/item/storage/firstaid/fire_adv
+	name = "advanced burn kit"
+	desc = "Medical kit stocked with advanced chems and bandaging for severe burns."
+	icon_state = "firefirstaid"
+	item_state = "firstaid-advanced" //Fits the closest
+
+/obj/item/storage/firstaid/fire_adv/fill_firstaid_kit()
+	new /obj/item/healthanalyzer(src)
+	new /obj/item/storage/pill_bottle/meralyne(src)
+	new /obj/item/storage/pill_bottle/kelotane(src)
+	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
+
+/obj/item/storage/firstaid/brute_adv
+	name = "advanced burn kit"
+	desc = "Medical kit stocked with advanced chems and bandaging for severe burns."
+	icon_state = "bezerk"
+	item_state = "firstaid-advanced" //Fits the closest
+
+/obj/item/storage/firstaid/brute_adv/fill_firstaid_kit()
+	new /obj/item/healthanalyzer(src)
+	new /obj/item/storage/pill_bottle/dermaline(src)
+	new /obj/item/storage/pill_bottle/bicaridine(src)
+	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
 
 /obj/item/storage/firstaid/regular
 	icon_state = "firstaid"
@@ -396,6 +424,18 @@
 	desc = "Containts highly illegal drugs. Trade heart for speed."
 	max_storage_space = 7
 	pill_type_to_fill = /obj/item/reagent_containers/pill/zoom
+
+/obj/item/storage/pill_bottle/meralyne
+	name = "meralyne pill bottle"
+	desc = "The best medication available for your skin after being hit by pesky acid spit."
+	icon_state = "pill_canister2"
+	pill_type_to_fill = /obj/item/reagent_containers/pill/meralyne
+
+/obj/item/storage/pill_bottle/dermaline
+	name = "dermaline pill bottle"
+	desc = "Pills for fixing the worst cuts and bruises you could ever experience."
+	icon_state = "pill_canister11"
+	pill_type_to_fill = /obj/item/reagent_containers/pill/dermaline
 
 //Pill bottles with identification locks.
 
