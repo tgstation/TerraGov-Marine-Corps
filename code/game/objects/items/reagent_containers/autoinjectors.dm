@@ -144,7 +144,7 @@
 	desc = "An auto-injector freshly loaded with a safe-to-use hyperzine mix."
 	amount_per_transfer_from_this = 25
 	volume = 25
-	icon_state = "autoinjector-8" 
+	icon_state = "autoinjector-8"
 	list_reagents = list(/datum/reagent/medicine/hyperzine = 5,
 						/datum/reagent/medicine/dexalin = 10,
 						/datum/reagent/medicine/inaprovaline = 10)
@@ -180,7 +180,7 @@
 	desc = "An auto-injector loaded with 3 doses of Peridaxon Plus, a chemical that heals organs while causing severe toxic damage. !DO NOT USE MORE THAN ONCE AT A TIME!"
 	amount_per_transfer_from_this = 1
 	volume = 3
-	icon_state = "autoinjector-8" 
+	icon_state = "autoinjector-8"
 	list_reagents = list(/datum/reagent/medicine/peridaxon_plus = 3)
 
 /obj/item/reagent_containers/hypospray/autoinjector/roulettium
@@ -190,3 +190,11 @@
 	volume = 1
 	icon_state = "autoinjector-6"
 	list_reagents = list(/datum/reagent/medicine/roulettium = 1)
+
+/obj/item/reagent_containers/hypospray/autoinjector/ultrazine
+	name = "hyperzine autoinjector"
+	desc = "An auto-injector filled with potent ultrazine. Recommended dosage is 5 units per injection to last 6 uses."
+	amount_per_transfer_from_this = 5
+	volume = 30
+	icon_state = "autoinjector-8"
+	list_reagents = list(/datum/reagent/medicine/ultrazine = 30)

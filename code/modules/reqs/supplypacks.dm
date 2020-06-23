@@ -1011,6 +1011,11 @@ MEDICAL
 	contains = list(/obj/item/storage/firstaid/adv)
 	cost = 5
 
+/datum/supply_packs/medical/ultrazine
+	name = "Ultrazine Injector"
+	contains = list(/obj/item/reagent_containers/hypospray/autoinjector/ultrazine)
+	cost = 30
+
 /datum/supply_packs/medical/bodybag
 	name = "Body Bags"
 	notes = "Contains 7 bodybags"
