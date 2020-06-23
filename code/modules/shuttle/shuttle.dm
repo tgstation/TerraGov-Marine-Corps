@@ -289,6 +289,8 @@
 
 	var/crashing = FALSE
 
+	var/shuttle_flags = NONE
+
 /obj/docking_port/mobile/proc/register()
 	SSshuttle.mobile += src
 
@@ -314,7 +316,7 @@
 	var/list/all_turfs = return_ordered_turfs(x, y, z, dir)
 	for(var/i in 1 to all_turfs.len)
 		var/turf/curT = all_turfs[i]
-		var/area/cur_area = curT.loc
+		var/area/cur_area = get_area(curT)
 		if(istype(cur_area, area_type))
 			shuttle_areas[cur_area] = TRUE
 
@@ -564,13 +566,6 @@
 		. = initiate_docking(port)
 	else
 		. = null
-
-/obj/effect/landmark/shuttle_import
-	name = "Shuttle Import"
-
-// Never move the shuttle import landmark, otherwise things get WEIRD
-/obj/effect/landmark/shuttle_import/onShuttleMove()
-	return FALSE
 
 //used by shuttle subsystem to check timers
 /obj/docking_port/mobile/proc/check()

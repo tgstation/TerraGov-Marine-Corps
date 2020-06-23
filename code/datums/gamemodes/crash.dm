@@ -54,8 +54,12 @@
 		CRASH("Shuttle [shuttle_id] wasn't found and can't be loaded")
 
 	var/datum/map_template/shuttle/ST = SSmapping.shuttle_templates[shuttle_id]
-	var/obj/docking_port/stationary/L = SSshuttle.getDock("canterbury_loadingdock")
-	shuttle = SSshuttle.action_load(ST, L)
+
+	shuttle = SSshuttle.action_load(ST)
+
+	var/obj/docking_port/stationary/L = SSshuttle.generate_transit_dock(shuttle)
+
+	shuttle.initiate_docking(L)
 
 	// Redefine the relevant spawnpoints after spawning the ship.
 	for(var/job_type in shuttle.spawns_by_job)
