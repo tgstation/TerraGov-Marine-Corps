@@ -222,12 +222,12 @@
 	list_reagents = list(/datum/reagent/medicine/ultrazine = 5)
 	pill_id = 21
 
-/obj/item/reagent_containers/pill/meralyne
-	pill_desc = "A kelotane pill. Used to treat severe burns."
-	list_reagents = list(/datum/reagent/medicine/meralyne = 15)
+/obj/item/reagent_containers/pill/dermaline
+	pill_desc = "A dermaline pill. Used to treat severe burns."
+	list_reagents = list(/datum/reagent/medicine/dermaline = 15)
 	pill_id = 3
 
-/obj/item/reagent_containers/pill/dermaline
-	pill_desc = "A dermaline pill. Used to treat severe bodily trauma."
-	list_reagents = list(/datum/reagent/medicine/dermaline = 15)
+/obj/item/reagent_containers/pill/meralyne
+	pill_desc = "A meralyne pill. Used to treat severe bodily trauma."
+	list_reagents = list(/datum/reagent/medicine/meralyne = 15)
 	pill_id = 21

@@ -67,7 +67,7 @@
 
 /obj/item/storage/firstaid/fire_adv/fill_firstaid_kit()
 	new /obj/item/healthanalyzer(src)
-	new /obj/item/storage/pill_bottle/meralyne(src)
+	new /obj/item/storage/pill_bottle/dermaline(src)
 	new /obj/item/storage/pill_bottle/kelotane(src)
 	new /obj/item/storage/pill_bottle/tramadol(src)
 	new /obj/item/stack/medical/advanced/ointment(src)
@@ -82,7 +82,7 @@
 
 /obj/item/storage/firstaid/brute_adv/fill_firstaid_kit()
 	new /obj/item/healthanalyzer(src)
-	new /obj/item/storage/pill_bottle/dermaline(src)
+	new /obj/item/storage/pill_bottle/meralyne(src)
 	new /obj/item/storage/pill_bottle/bicaridine(src)
 	new /obj/item/storage/pill_bottle/tramadol(src)
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
@@ -425,17 +425,17 @@
 	max_storage_space = 7
 	pill_type_to_fill = /obj/item/reagent_containers/pill/zoom
 
-/obj/item/storage/pill_bottle/meralyne
-	name = "meralyne pill bottle"
-	desc = "The best medication available for your skin after being hit by pesky acid spit."
-	icon_state = "pill_canister2"
-	pill_type_to_fill = /obj/item/reagent_containers/pill/meralyne
-
 /obj/item/storage/pill_bottle/dermaline
 	name = "dermaline pill bottle"
+	desc = "The best medication available for your skin after being hit by pesky acid spit."
+	icon_state = "pill_canister2"
+	pill_type_to_fill = /obj/item/reagent_containers/pill/dermaline
+
+/obj/item/storage/pill_bottle/meralyne
+	name = "meralyne pill bottle"
 	desc = "Pills for fixing the worst cuts and bruises you could ever experience."
 	icon_state = "pill_canister11"
-	pill_type_to_fill = /obj/item/reagent_containers/pill/dermaline
+	pill_type_to_fill = /obj/item/reagent_containers/pill/meralyne
 
 //Pill bottles with identification locks.
 
