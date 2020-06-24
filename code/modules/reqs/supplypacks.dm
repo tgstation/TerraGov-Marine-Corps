@@ -1133,6 +1133,17 @@ ENGINEERING
 	contains = list(/obj/item/stack/sheet/wood/large_stack)
 	cost = 10
 
+/datum/supply_packs/engineering/pacman
+	name = "P.A.C.M.A.N. Portable Generator"
+	contains = list(/obj/machinery/power/port_gen/pacman)
+	cost = 10
+	containertype = null
+
+/datum/supply_packs/engineering/phoron
+	name = "Phoron Sheets"
+	contains = list(/obj/item/stack/sheet/mineral/phoron/medium_stack)
+	cost = 10
+
 /datum/supply_packs/engineering/electrical
 	name = "electrical maintenance supplies"
 	contains = list(
