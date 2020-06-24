@@ -1192,6 +1192,11 @@ ENGINEERING
 	contains = list(/obj/item/storage/box/lights/mixed)
 	cost = 1
 
+/datum/supply_packs/engineering/foam_grenade
+	name = "Foam Grenade"
+	contains = list(/obj/item/explosive/grenade/chem_grenade/metalfoam)
+	cost = 3
+
 /*******************************************************************************
 SUPPLIES
 *******************************************************************************/
