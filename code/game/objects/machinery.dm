@@ -98,13 +98,13 @@
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
 		return FALSE
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-		if(2)
+		if(EXPLODE_HEAVY)
 			if(!prob(50))
 				return
 			qdel(src)
-		if(3)
+		if(EXPLODE_LIGHT)
 			if(!prob(25))
 				return
 			qdel(src)
@@ -134,7 +134,7 @@
 	switch(use_power)
 		if(IDLE_POWER_USE)
 			if(machine_current_charge < machine_max_charge && anchored) //here we handle recharging the internal battery of machines
-				var/power_usage = CLAMP(machine_max_charge - machine_current_charge, 0, 500)
+				var/power_usage = clamp(machine_max_charge - machine_current_charge, 0, 500)
 				machine_current_charge += power_usage //recharge internal cell at max rate of 500
 				use_power(power_usage, power_channel)
 				update_icon()

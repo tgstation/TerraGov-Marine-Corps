@@ -484,8 +484,8 @@ ColorTone(rgb, tone)
 		hue++
 		if(hue >= 1536)
 			hue = 0
-	sat = CLAMP(sat, 0, 255)
-	val = CLAMP(val, 0, 255)
+	sat = clamp(sat, 0, 255)
+	val = clamp(val, 0, 255)
 	. = "#"
 	. += TO_HEX_DIGIT(hue >> 8)
 	. += TO_HEX_DIGIT(hue >> 4)
@@ -495,7 +495,7 @@ ColorTone(rgb, tone)
 	. += TO_HEX_DIGIT(val >> 4)
 	. += TO_HEX_DIGIT(val)
 	if(!isnull(alpha))
-		alpha = CLAMP(alpha, 0, 255)
+		alpha = clamp(alpha, 0, 255)
 		. += TO_HEX_DIGIT(alpha >> 4)
 		. += TO_HEX_DIGIT(alpha)
 
@@ -902,9 +902,9 @@ ColorTone(rgb, tone)
 		return color
 
 	var/list/RGB = ReadRGB(color)
-	RGB[1] = CLAMP(RGB[1] + value, 0, 255)
-	RGB[2] = CLAMP(RGB[2] + value, 0, 255)
-	RGB[3] = CLAMP(RGB[3] + value, 0, 255)
+	RGB[1] = clamp(RGB[1] + value, 0, 255)
+	RGB[2] = clamp(RGB[2] + value, 0, 255)
+	RGB[3] = clamp(RGB[3] + value, 0, 255)
 	return rgb(RGB[1], RGB[2], RGB[3])
 
 

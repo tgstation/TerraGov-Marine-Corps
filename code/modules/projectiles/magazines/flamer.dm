@@ -4,7 +4,7 @@
 
 /obj/item/ammo_magazine/flamer_tank
 	name = "incinerator tank"
-	desc = "A fuel tank of usually ultra thick napthal, a sticky combustable liquid chemical, for use in the M240 incinerator unit. Handle with care."
+	desc = "A fuel tank of usually ultra thick napthal, a sticky combustable liquid chemical, for use in the M240A1 incinerator unit. Handle with care."
 	icon_state = "flametank"
 	default_ammo = /datum/ammo/flamethrower //doesn't actually need bullets. But we'll get null ammo error messages if we don't
 	max_rounds = 60 //Per turf.
@@ -16,18 +16,17 @@
 
 
 /obj/item/ammo_magazine/flamer_tank/afterattack(obj/target, mob/user , flag) //refuel at fueltanks when we run out of ammo.
+
 	if(istype(target, /obj/structure/reagent_dispensers/fueltank) && get_dist(user,target) <= 1)
 		var/obj/structure/reagent_dispensers/fueltank/FT = target
-		if(current_rounds)
-			to_chat(user, "<span class='warning'>You can't mix fuel mixtures!</span>")
-			return
-		var/fuel_available = FT.reagents.get_reagent_amount(/datum/reagent/fuel) < max_rounds ? FT.reagents.get_reagent_amount(/datum/reagent/fuel) : max_rounds
-		if(!fuel_available)
-			to_chat(user, "<span class='warning'>[FT] is empty!</span>")
-			return
+		if(FT.reagents.total_volume == 0)
+			to_chat(user, "<span class='warning'>Out of fuel!</span>")
+			return..()
 
-		FT.reagents.remove_reagent(/datum/reagent/fuel, fuel_available)
-		current_rounds = fuel_available
+		//Reworked and much simpler equation; fuel capacity minus the current amount, with a check for insufficient fuel
+		var/fuel_transfer_amount = min(FT.reagents.total_volume, (max_rounds - current_rounds))
+		FT.reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+		current_rounds += fuel_transfer_amount
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		caliber = "Fuel"
 		to_chat(user, "<span class='notice'>You refill [src] with [lowertext(caliber)].</span>")

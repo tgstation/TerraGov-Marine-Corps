@@ -5,12 +5,12 @@
 
 /obj/structure/flora/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-		if(2)
+		if(EXPLODE_HEAVY)
 			if(prob(70))
 				qdel(src)
-		if(3)
+		if(EXPLODE_LIGHT)
 			if(prob(50))
 				qdel(src)
 
@@ -42,11 +42,11 @@
 
 /obj/structure/flora/tree/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			take_damage(500)
-		if(2)
+		if(EXPLODE_HEAVY)
 			take_damage(rand(140, 300))
-		if(3)
+		if(EXPLODE_LIGHT)
 			take_damage(rand(50, 100))
 	START_PROCESSING(SSobj, src)
 
@@ -69,7 +69,7 @@
 
 	user.visible_message("<span class='notice'>[user] begins to cut down [src] with [I].</span>","<span class='notice'>You begin to cut down [src] with [I].</span>", "You hear the sound of sawing.")
 	var/cut_force = min(1, I.force)
-	var/cutting_time = CLAMP(10, 20, 100 / cut_force) SECONDS
+	var/cutting_time = clamp(10, 20, 100 / cut_force) SECONDS
 	if(!do_after(user, cutting_time , TRUE, src, BUSY_ICON_BUILD))
 		return
 
@@ -226,6 +226,12 @@
 
 /obj/structure/flora/pottedplant/ten
 	icon_state = "plant-10"
+
+/obj/structure/flora/pottedplant/twentyone
+	icon_state = "plant-21"
+
+/obj/structure/flora/pottedplant/twentytwo
+	icon_state = "plant-22"
 
 //newbushes
 

@@ -109,6 +109,13 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	// Hud tooltip
 	var/tooltips = TRUE
 
+	/// Chat on map
+	var/chat_on_map = TRUE
+	var/see_chat_non_mob = TRUE
+	var/max_chat_length = CHAT_MESSAGE_MAX_LENGTH
+
+	var/auto_fit_viewport = TRUE
+
 
 /datum/preferences/New(client/C)
 	if(!istype(C))
@@ -324,8 +331,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<b>Focus chat:</b> <a href='?_src_=prefs;preference=focus_chat'>[(focus_chat) ? "Enabled" : "Disabled"]</a><br>"
 	dat += "<b>Tooltips:</b> <a href='?_src_=prefs;preference=tooltips'>[(tooltips) ? "Shown" : "Hidden"]</a><br>"
 	dat += "<b>FPS:</b> <a href='?_src_=prefs;preference=clientfps'>[clientfps]</a><br>"
+	dat += "<b>Fit Viewport:</b> <a href='?_src_=prefs;preference=auto_fit_viewport'>[auto_fit_viewport ? "Auto" : "Manual"]</a><br>"
 
-
+	dat += "<h2>Runechat Settings:</h2>"
+	dat += "<b>Show Runechat Chat Bubbles:</b> <a href='?_src_=prefs;preference=chat_on_map'>[chat_on_map ? "Enabled" : "Disabled"]</a><br>"
+	dat += "<b>Runechat message char limit:</b> <a href='?_src_=prefs;preference=max_chat_length;task=input'>[max_chat_length]</a><br>"
+	dat += "<b>See Runechat for non-mobs:</b> <a href='?_src_=prefs;preference=see_chat_non_mob'>[see_chat_non_mob ? "Enabled" : "Disabled"]</a><br>"
 
 	dat += "<h2>UI Customization:</h2>"
 	dat += "<b>Style:</b> <a href='?_src_=prefs;preference=ui'>[ui_style]</a><br>"
@@ -651,7 +662,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(!isnum(new_age))
 				return
 			new_age = round(new_age)
-			age = CLAMP(new_age, AGE_MIN, AGE_MAX)
+			age = clamp(new_age, AGE_MIN, AGE_MAX)
 
 		if("gender")
 			if(gender == MALE)
@@ -798,7 +809,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			if(!ui_style_alpha_new)
 				return
 			ui_style_alpha_new = round(ui_style_alpha_new)
-			ui_style_alpha = CLAMP(ui_style_alpha_new, 55, 230)
+			ui_style_alpha = clamp(ui_style_alpha_new, 55, 230)
 
 		if("hairstyle")
 			var/list/valid_hairstyles = list()
@@ -930,6 +941,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		if("windowflashing")
 			windowflashing = !windowflashing
 
+		if("auto_fit_viewport")
+			auto_fit_viewport = !auto_fit_viewport
+			if(auto_fit_viewport && parent)
+				parent.fit_viewport()
+
 		if("focus_chat")
 			focus_chat = !focus_chat
 			if(focus_chat)
@@ -941,9 +957,20 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/desiredfps = input(user, "Choose your desired fps. (0 = synced with server tick rate (currently:[world.fps]))", "Character Preference", clientfps)  as null|num
 			if(isnull(desiredfps))
 				return
-			desiredfps = CLAMP(desiredfps, 0, 240)
+			desiredfps = clamp(desiredfps, 0, 240)
 			clientfps = desiredfps
 			parent.fps = desiredfps
+
+		if("chat_on_map")
+			chat_on_map = !chat_on_map
+
+		if ("max_chat_length")
+			var/desiredlength = input(user, "Choose the max character length of shown Runechat messages. Valid range is 1 to [CHAT_MESSAGE_MAX_LENGTH] (default: [initial(max_chat_length)]))", "Character Preference", max_chat_length)  as null|num
+			if (!isnull(desiredlength))
+				max_chat_length = clamp(desiredlength, 1, CHAT_MESSAGE_MAX_LENGTH)
+
+		if("see_chat_non_mob")
+			see_chat_non_mob = !see_chat_non_mob
 
 		if("tooltips")
 			tooltips = !tooltips

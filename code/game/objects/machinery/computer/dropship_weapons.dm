@@ -7,7 +7,7 @@
 	icon_state = "consoleright"
 	circuit = null
 	resistance_flags = RESIST_ALL
-	interaction_flags = INTERACT_MACHINE_NANO
+	interaction_flags = INTERACT_MACHINE_TGUI
 	var/shuttle_tag  // Used to know which shuttle we're linked to.
 	var/obj/structure/dropship_equipment/selected_equipment //the currently selected equipment installed on the shuttle this console controls.
 	var/list/shuttle_equipments = list() //list of the equipments on the shuttle this console controls
@@ -33,6 +33,7 @@
 		var/obj/effect/overlay/temp/laser_target/LT = X
 		var/area/laser_area = get_area(LT)
 		.["targets_data"] += list(list("target_name" = "[LT.name] ([laser_area.name])", "target_tag" = LT.target_id))
+	shuttle_equipments = shuttle.equipments
 	var/element_nbr = 1
 	for(var/X in shuttle.equipments)
 		var/obj/structure/dropship_equipment/E = X

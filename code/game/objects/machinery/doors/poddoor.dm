@@ -3,11 +3,12 @@
 	desc = "That looks like it doesn't open easily."
 	icon = 'icons/obj/doors/rapid_pdoor.dmi'
 	icon_state = "pdoor1"
-	armor = list("melee" = 50, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 70)
+	soft_armor = list("melee" = 50, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 70)
 	layer = PODDOOR_OPEN_LAYER
 	open_layer = PODDOOR_OPEN_LAYER
 	closed_layer = PODDOOR_CLOSED_LAYER
 	obj_flags = NONE
+	explosion_block = 6
 
 
 /obj/machinery/door/poddoor/Bumped(atom/AM)
@@ -34,6 +35,44 @@
 			flick("pdoorc1", src)
 	playsound(loc, 'sound/machines/blastdoor.ogg', 25)
 	return
+
+/obj/machinery/door/poddoor/open
+	density = FALSE
+	opacity = FALSE
+	icon_state = "pdoor0"
+
+/obj/machinery/door/poddoor/open/bridge
+	name = "Bridge Blast Doors"
+	id = "bridge blast"
+
+/obj/machinery/door/poddoor/open/sb
+	name = "Blast Doors"
+	id = "sb blast"
+
+/obj/machinery/door/poddoor/open/port
+	name = "Blast Doors"
+	id = "port blast"
+
+/obj/machinery/door/poddoor/open/engine
+	name = "Engine Room Blast Door"
+	id = "EngineBlast"
+
+/obj/machinery/door/poddoor/open/security
+	name = "Security Blast Door"
+	id = "Secure Gate"
+
+/obj/machinery/door/poddoor/open/isolation
+	name = "Isolation Cell Lockdown"
+	id = "IsoLock"
+
+/obj/machinery/door/poddoor/open/east
+	name = "Blast Door"
+	id = "eastblast"
+
+/obj/machinery/door/poddoor/telecomms
+	name = "Telecomms Emergency Window"
+	id = "tcomwind"
+	opacity = FALSE
 
 /obj/machinery/door/poddoor/two_tile_hor
 	icon = 'icons/obj/doors/1x2blast_hor.dmi'

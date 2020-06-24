@@ -84,7 +84,7 @@
 		if(CHECK_BITFIELD(O.resistance_flags, ON_FIRE))
 			IgniteMob()
 
-		O.throwing = 0		//it hit, so stop moving
+		O.set_throwing(FALSE) //it hit, so stop moving
 
 		if(ismob(O.thrower))
 			var/mob/M = O.thrower
@@ -185,7 +185,7 @@
 	return
 
 /mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
-	fire_stacks = CLAMP(fire_stacks + add_fire_stacks, -20, 20)
+	fire_stacks = clamp(fire_stacks + add_fire_stacks, -20, 20)
 	if(on_fire && fire_stacks <= 0)
 		ExtinguishMob()
 

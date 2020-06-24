@@ -7,17 +7,15 @@
 	if(status_flags & GODMODE)
 		return
 
-	flash_eyes()
-
-	if(severity < 3)
+	if(severity < EXPLODE_LIGHT) //Actually means higher.
 		for(var/i in stomach_contents)
 			var/mob/living/carbon/prey = i
 			prey.ex_act(severity + 1)
-	var/bomb_armor = armor.getRating("bomb")
+	var/bomb_armor = soft_armor.getRating("bomb")
 	var/b_loss = 0
 	var/f_loss = 0
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			switch(bomb_armor)
 				if(XENO_BOMB_RESIST_4 to INFINITY)
 					add_slowdown(2)
@@ -29,18 +27,16 @@
 				if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
 					b_loss = rand(75, 85)
 					f_loss = rand(75, 85)
-					Paralyze(12 SECONDS)
 					adjust_stagger(4)
 					add_slowdown(4)
 				if(XENO_BOMB_RESIST_1 to XENO_BOMB_RESIST_2)
 					b_loss = rand(80, 90)
 					f_loss = rand(80, 90)
-					Paralyze(16 SECONDS)
 					adjust_stagger(5)
 					add_slowdown(5)
 				else //Lower than XENO_BOMB_RESIST_1
 					return gib()
-		if(2)
+		if(EXPLODE_HEAVY)
 			switch(bomb_armor)
 				if(XENO_BOMB_RESIST_4 to INFINITY)
 					add_slowdown(1)
@@ -52,22 +48,19 @@
 				if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
 					b_loss = rand(55, 55)
 					f_loss = rand(55, 55)
-					Paralyze(80)
 					adjust_stagger(1)
 					add_slowdown(3)
 				if(XENO_BOMB_RESIST_1 to XENO_BOMB_RESIST_2)
 					b_loss = rand(60, 70)
 					f_loss = rand(60, 70)
-					Paralyze(12 SECONDS)
 					adjust_stagger(4)
 					add_slowdown(4)
 				else //Lower than XENO_BOMB_RESIST_1
 					b_loss = rand(65, 75)
 					f_loss = rand(65, 75)
-					Paralyze(16 SECONDS)
 					adjust_stagger(5)
 					add_slowdown(5)
-		if(3)
+		if(EXPLODE_LIGHT)
 			switch(bomb_armor)
 				if(XENO_BOMB_RESIST_4 to INFINITY)
 					return //Immune
@@ -77,18 +70,15 @@
 				if(XENO_BOMB_RESIST_2 to XENO_BOMB_RESIST_3)
 					b_loss = rand(35, 45)
 					f_loss = rand(35, 45)
-					ParalyzeNoChain(40)
 					add_slowdown(1)
 				if(XENO_BOMB_RESIST_1 to XENO_BOMB_RESIST_2)
 					b_loss = rand(40, 50)
 					f_loss = rand(40, 50)
-					ParalyzeNoChain(60)
 					adjust_stagger(2)
 					add_slowdown(2)
 				else //Lower than XENO_BOMB_RESIST_1
 					b_loss = rand(45, 55)
 					f_loss = rand(45, 55)
-					ParalyzeNoChain(80)
 					adjust_stagger(4)
 					add_slowdown(4)
 
@@ -144,7 +134,7 @@
 	for(var/i in amount_mod)
 		amount -= i
 
-	bruteloss = CLAMP(bruteloss + amount, 0, maxHealth - xeno_caste.crit_health)
+	bruteloss = clamp(bruteloss + amount, 0, maxHealth - xeno_caste.crit_health)
 
 	if(updating_health)
 		updatehealth()
@@ -156,7 +146,7 @@
 	for(var/i in amount_mod)
 		amount -= i
 
-	fireloss = CLAMP(fireloss + amount, 0, maxHealth - xeno_caste.crit_health)
+	fireloss = clamp(fireloss + amount, 0, maxHealth - xeno_caste.crit_health)
 
 	if(updating_health)
 		updatehealth()
@@ -182,7 +172,7 @@
 		else
 			if(decal.random_icon_states && length(decal.random_icon_states) > 0) //If there's already one, just randomize it so it changes.
 				decal.icon_state = pick(decal.random_icon_states)
-		
+
 		if(!(xeno_caste.caste_flags & CASTE_ACID_BLOOD))
 			return
 		var/splash_chance = 40 //Base chance of getting splashed. Decreases with # of victims.
@@ -192,12 +182,12 @@
 			distance = get_dist(src,victim)
 
 			splash_chance = 80 - (i * 5)
-			if(victim.loc == loc) 
+			if(victim.loc == loc)
 				splash_chance += 30 //Same tile? BURN
 			splash_chance += distance * -15
 			i++
 			victim.visible_message("<span class='danger'>\The [victim] is scalded with hissing green blood!</span>", \
 			"<span class='danger'>You are splattered with sizzling blood! IT BURNS!</span>")
-			if(victim.stat != CONSCIOUS && !(victim.species.species_flags & NO_PAIN) && prob(60)) 
+			if(victim.stat != CONSCIOUS && !(victim.species.species_flags & NO_PAIN) && prob(60))
 				victim.emote("scream") //Topkek
 			victim.take_limb_damage(0, rand(10, 25)) //Sizzledam! This automagically burns a random existing body part.

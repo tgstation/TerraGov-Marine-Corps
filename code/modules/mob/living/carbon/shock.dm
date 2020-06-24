@@ -4,7 +4,7 @@
 /mob/living/carbon/adjustHalLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
-	halloss = CLAMP(halloss + amount, 0, maxHealth * 2)
+	halloss = clamp(halloss + amount, 0, maxHealth * 2)
 
 /mob/living/carbon/proc/setHalLoss(amount)
 	if(status_flags & GODMODE)
@@ -17,7 +17,7 @@
 /mob/living/carbon/proc/adjustTraumatic_Shock(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
-	traumatic_shock = CLAMP(traumatic_shock+amount,0,maxHealth*2)
+	traumatic_shock = clamp(traumatic_shock+amount,0,maxHealth*2)
 
 /mob/living/carbon/proc/setTraumatic_Shock(amount)
 	if(status_flags & GODMODE)
@@ -31,7 +31,7 @@
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	. = shock_stage
-	shock_stage = CLAMP(shock_stage + amount, 0, maxHealth * 2)
+	shock_stage = clamp(shock_stage + amount, 0, maxHealth * 2)
 	adjust_pain_speed_mod(.)
 
 /mob/living/carbon/proc/setShock_Stage(amount)

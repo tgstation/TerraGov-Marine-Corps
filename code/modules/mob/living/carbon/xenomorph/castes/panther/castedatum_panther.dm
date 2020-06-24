@@ -2,7 +2,7 @@
 	caste_name = "Panther"
 	display_name = "Panther"
 	upgrade_name = ""
-	caste_desc = "A fast, four-legged terror, adapt at capturing prey."
+	caste_desc = "A fast, four-legged terror, adept at capturing prey."
 	caste_type_path = /mob/living/carbon/xenomorph/panther
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -20,14 +20,14 @@
 	tackle_damage = 33
 
 	// *** Speed *** //
-	speed = 0.5
+	speed = -0.8
 
 	// *** Plasma *** //
 	plasma_max = 100
 	plasma_gain = 2
 
 	// *** Health *** //
-	max_health = 140
+	max_health = 160
 
 	// *** Evolution *** //
 	evolution_threshold = 80
@@ -39,7 +39,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 5, "bomb" = XENO_BOMB_RESIST_0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 5, "bomb" = XENO_BOMB_RESIST_0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 	// *** Ranged Attack *** //
 	charge_type = CHARGE_TYPE_PANTHER
@@ -51,6 +51,7 @@
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/xenohide,
 		/datum/action/xeno_action/activable/pounce/panther,
+		/datum/action/xeno_action/activable/neurotox_sting/panther,
 		)
 
 /datum/xeno_caste/panther/young
@@ -60,7 +61,7 @@
 
 /datum/xeno_caste/panther/mature
 	upgrade_name = "Mature"
-	caste_desc = "A fast, four-legged terror, adapt at capturing prey. It looks a little more dangerous."
+	caste_desc = "A fast, four-legged terror, adept at capturing prey. It looks a little more dangerous."
 
 	upgrade = XENO_UPGRADE_ONE
 
@@ -79,20 +80,20 @@
 	plasma_gain = 3
 
 	// *** Health *** //
-	max_health = 160
+	max_health = 180
 
 	// *** Evolution *** //
 	upgrade_threshold = 100
 
 	// *** Defense *** //
-	armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 3, "rad" = 3, "fire" = 3, "acid" = 3)
+	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 3, "rad" = 3, "fire" = 3, "acid" = 3)
 
 	// *** Ranged Attack *** //
 	pounce_delay = 35.0 SECONDS
 
 /datum/xeno_caste/panther/elder
 	upgrade_name = "Elder"
-	caste_desc = "A fast, four-legged terror, adapt at capturing prey. It looks pretty strong."
+	caste_desc = "A fast, four-legged terror, adept at capturing prey. It looks pretty strong."
 
 	upgrade = XENO_UPGRADE_TWO
 
@@ -111,20 +112,20 @@
 	plasma_gain = 3
 
 	// *** Health *** //
-	max_health = 180
+	max_health = 200
 
 	// *** Evolution *** //
 	upgrade_threshold = 200
 
 	// *** Defense *** //
-	armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
+	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 5, "acid" = 5)
 
 	// *** Ranged Attack *** //
 	pounce_delay = 45.0 SECONDS
 
 /datum/xeno_caste/panther/ancient
 	upgrade_name = "Ancient"
-	caste_desc = "The colony only falls silent when a predator is a on the prowl."
+	caste_desc = "The colony only falls silent when a predator is on the prowl."
 	ancient_message = "We are the apex predator, all will fall by fang or claw."
 	upgrade = XENO_UPGRADE_THREE
 	wound_type = "runner" //used to match appropriate wound overlays
@@ -144,13 +145,13 @@
 	plasma_gain = 3
 
 	// *** Health *** //
-	max_health = 200
+	max_health = 220
 
 	// *** Evolution *** //
 	upgrade_threshold = 200
 
 	// *** Defense *** //
-	armor = list("melee" = 24, "bullet" = 24, "laser" = 24, "energy" = 124, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 7, "acid" = 7)
+	soft_armor = list("melee" = 24, "bullet" = 24, "laser" = 24, "energy" = 124, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 7, "acid" = 7)
 
 	// *** Ranged Attack *** //
 	pounce_delay = 35.0 SECONDS

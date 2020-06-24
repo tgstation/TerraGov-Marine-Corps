@@ -7,9 +7,6 @@
 	width = 7
 	height = 13
 
-/obj/docking_port/stationary/ert/loading
-	id = "distress_loading"
-
 /obj/docking_port/stationary/ert/target
 	id = "distress_target"
 
@@ -26,6 +23,8 @@
 	ignitionTime = 10 SECONDS
 	prearrivalTime = 10 SECONDS
 	callTime = 1 MINUTES
+
+	shuttle_flags = GAMEMODE_IMMUNE
 
 /obj/docking_port/mobile/ert/proc/get_destinations()
 	var/list/docks = list()
@@ -111,7 +110,7 @@
 		CRASH("ert shuttle computer used with non-ert shuttle")
 	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
 	if(M?.mode == SHUTTLE_IDLE)
-		if(is_centcom_level(M.z))
+		if(is_reserved_level(M.z))
 			for(var/obj/docking_port/stationary/S in M.get_destinations())
 				dat += "<A href='?src=[REF(src)];move=[S.id]'>Send to [S.name]</A><br>"
 		else

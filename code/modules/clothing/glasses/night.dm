@@ -42,8 +42,8 @@
 
 
 /obj/item/clothing/glasses/night/m56_goggles
-	name = "\improper M56 head mounted sight"
-	desc = "A headset and goggles system for the M56 Smartgun. Has a low-res short range imager, allowing for view of terrain."
+	name = "\improper M26 head mounted sight"
+	desc = "A headset and goggles system for use with the T-26 smart machinegun. Has a low-res short range imager, allowing for view of terrain."
 	icon = 'icons/obj/clothing/glasses.dmi'
 	icon_state = "m56_goggles"
 	deactive_state = "m56_goggles_0"
@@ -51,15 +51,6 @@
 	toggleable = 1
 	actions_types = list(/datum/action/item_action/toggle)
 	vision_flags = SEE_TURFS
-
-/obj/item/clothing/glasses/night/m56_goggles/mob_can_equip(mob/user, slot)
-	if(slot == SLOT_GLASSES)
-		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
-			if(!istype(H.back, /obj/item/smartgun_powerpack))
-				to_chat(user, "You must be wearing an M56 Powerpack on your back to wear these.")
-				return 0
-	return ..()
 
 /obj/item/clothing/glasses/night/sectoid
 	name = "alien lens"

@@ -171,6 +171,9 @@
 #define EGG_MIN_GROWTH_TIME 10 SECONDS //time it takes for the egg to mature once planted
 #define EGG_MAX_GROWTH_TIME 15 SECONDS
 
+#define EGG_GAS_DEFAULT_SPREAD 3
+#define EGG_GAS_KILL_SPREAD 4
+
 
 //We will round to this value in damage calculations.
 #define DAMAGE_PRECISION 0.1
@@ -196,7 +199,6 @@
 #define X_L_HAND_LAYER			5
 #define X_R_HAND_LAYER			4
 #define X_TARGETED_LAYER		3
-#define X_LEGCUFF_LAYER			2
 #define X_FIRE_LAYER			1
 #define X_TOTAL_LAYERS			9
 /////////////////////////////////

@@ -255,7 +255,7 @@
 		if(client && ckey) // pause for ssd/ghosted
 			if(!hive?.living_xeno_ruler || hive.living_xeno_ruler.loc.z == loc.z)
 				if(upgrade_stored >= xeno_caste.upgrade_threshold)
-					if(health == maxHealth && !incapacitated() && !handcuffed && !legcuffed)
+					if(health == maxHealth && !incapacitated() && !handcuffed)
 						upgrade_xeno(upgrade_next())
 				else
 					// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.
@@ -309,26 +309,12 @@
 	if(isliving(hit_atom)) //Hit a mob! This overwrites normal throw code.
 		if(SEND_SIGNAL(src, COMSIG_XENO_LIVING_THROW_HIT, hit_atom) & COMPONENT_KEEP_THROWING)
 			return FALSE
-		throwing = FALSE //Resert throwing since something was hit.
-		reset_movement()
+		set_throwing(FALSE) //Resert throwing since something was hit.
 		return TRUE
 	SEND_SIGNAL(src, COMSIG_XENO_NONE_THROW_HIT)
-	throwing = FALSE //Resert throwing since something was hit.
-	reset_movement()
+	set_throwing(FALSE) //Resert throwing since something was hit.
 	return ..() //Do the parent otherwise, for turfs.
 
-/mob/living/carbon/xenomorph/proc/reset_movement()
-	set_frozen(FALSE)
-	update_canmove()
-
-/mob/living/carbon/xenomorph/proc/stop_movement()
-	set_frozen(TRUE)
-	update_canmove()
-
-/mob/living/carbon/xenomorph/set_frozen(freeze = TRUE)
-	if(fortify && !freeze)
-		return FALSE
-	return ..()
 
 //Bleuugh
 
@@ -467,9 +453,6 @@
 	ammo = GLOB.ammo_list[xeno_caste.spit_types[1]] //No matching projectile time; default to first spit type
 	return
 
-/mob/living/carbon/xenomorph/proc/stealth_router(code = 0)
-	return FALSE
-
 /mob/living/carbon/xenomorph/proc/handle_decay()
 	if(prob(7+(3*tier)+(3*upgrade_as_number()))) // higher level xenos decay faster, higher plasma storage.
 		use_plasma(min(rand(1,2), plasma_stored))
@@ -499,11 +482,14 @@
 	if(isnestedhost(src))
 		return
 
+	if(COOLDOWN_CHECK(src, COOLDOWN_ACID))
+		return
+	COOLDOWN_START(src, COOLDOWN_ACID, 2 SECONDS)
+
 	if(isxenopraetorian(X))
 		GLOB.round_statistics.praetorian_spray_direct_hits++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "praetorian_spray_direct_hits")
 
-	cooldowns[COOLDOWN_ACID] = addtimer(VARSET_LIST_CALLBACK(cooldowns, COOLDOWN_ACID, null), 2 SECONDS)
 	var/armor_block = run_armor_check("chest", "acid")
 	var/damage = rand(30,40) + SPRAY_MOB_UPGRADE_BONUS(X)
 	apply_acid_spray_damage(damage, armor_block)
@@ -581,12 +567,11 @@
 		if(target.plasma_stored < amount)
 			amount = target.plasma_stored //Just take it all.
 
-		var/absorbed_amount = round(amount * PLASMA_SALVAGE_MULTIPLIER)
+		var/absorbed_amount = amount
 		target.use_plasma(amount)
 		gain_plasma(absorbed_amount)
 		to_chat(src, "<span class='xenowarning'>We salvage [absorbed_amount] units of plasma from [target]. We have [plasma_stored]/[xeno_caste.plasma_max] stored now.</span>")
-		if(prob(50))
-			playsound(src, "alien_drool", 25)
+		playsound(src, "alien_drool", 25)
 
 
 
@@ -618,8 +603,8 @@
 			to_chat(src, "<span class='warning'>We sense the infected host is saturated with [body_tox.name] and cease our attempt to inoculate it further to preserve the little one inside.</span>")
 			return FALSE
 		do_attack_animation(C)
-		playsound(C, 'sound/effects/spray3.ogg', 15, 1)
-		playsound(C, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
+		playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
+		playsound(C, "alien_drool", 15, TRUE)
 		C.reagents.add_reagent(toxin, transfer_amount)
 		if(!body_tox) //Let's check this each time because depending on the metabolization rate it can disappear between stings.
 			body_tox = C.reagents.get_reagent(toxin)
@@ -660,18 +645,16 @@
 	. = ..()
 	if(.)
 		return
-	sunder = CLAMP(sunder + adjustment, 0, xeno_caste.sunder_max)
+	sunder = clamp(sunder + adjustment, 0, xeno_caste.sunder_max)
 
 /mob/living/carbon/xenomorph/set_sunder(new_sunder)
 	. = ..()
 	if(.)
 		return
-	sunder = CLAMP(new_sunder, 0, xeno_caste.sunder_max)
+	sunder = clamp(new_sunder, 0, xeno_caste.sunder_max)
 
 /mob/living/carbon/xenomorph/get_sunder()
 	. = ..()
 	if(.)
 		return
 	return (sunder * -0.01) + 1
-
-

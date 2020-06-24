@@ -39,3 +39,8 @@
 #define SHIELD_TOGGLE (1<<0) //Can be toggled on and off.
 #define SHIELD_PURE_BLOCKING (1<<1) //Only runs a percentage chance to block, and doesn't interact in other ways.
 #define SHIELD_PARENT_INTEGRITY (1<<2) //Transfers damage to parent's integrity.
+
+#define EXPLODE_NONE 0
+#define EXPLODE_DEVASTATE 1
+#define EXPLODE_HEAVY 2
+#define EXPLODE_LIGHT 3

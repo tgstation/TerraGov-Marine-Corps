@@ -22,7 +22,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 100
-	interaction_flags = INTERACT_MACHINE_NANO
+	interaction_flags = INTERACT_MACHINE_TGUI
 
 	var/active = TRUE //No sales pitches if off!
 	var/vend_ready = TRUE //Are we ready to vend?? Is it time??
@@ -99,12 +99,12 @@
 
 /obj/machinery/vending/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-		if(2)
+		if(EXPLODE_HEAVY)
 			if(prob(50))
 				qdel(src)
-		if(3)
+		if(EXPLODE_LIGHT)
 			if(prob(25))
 				INVOKE_ASYNC(src, .proc/malfunction)
 
@@ -534,7 +534,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 			sleep(delay_vending)
 		else
 			return
-	SSblackbox.record_feedback("tally", "vendored", 1, R.name)
+	SSblackbox.record_feedback("tally", "vendored", 1, R.product_name)
 	if(ispath(R.product_path,/obj/item/weapon/gun))
 		return new R.product_path(get_turf(src), 1)
 	else
