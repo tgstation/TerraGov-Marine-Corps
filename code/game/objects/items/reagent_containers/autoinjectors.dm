@@ -190,11 +190,3 @@
 	volume = 1
 	icon_state = "autoinjector-6"
 	list_reagents = list(/datum/reagent/medicine/roulettium = 1)
-
-/obj/item/reagent_containers/hypospray/autoinjector/ultrazine
-	name = "hyperzine autoinjector"
-	desc = "An auto-injector filled with potent ultrazine. Recommended dosage is 5 units per injection to last 6 uses."
-	amount_per_transfer_from_this = 5
-	volume = 30
-	icon_state = "autoinjector-8"
-	list_reagents = list(/datum/reagent/medicine/ultrazine = 30)
