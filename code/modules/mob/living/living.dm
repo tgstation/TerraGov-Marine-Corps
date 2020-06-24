@@ -78,7 +78,7 @@
 	GLOB.mob_living_list += src
 	if(stat != DEAD)
 		GLOB.alive_living_list += src
-	START_PROCESSING(SSmobs, src)
+	SSmobs.start_processing(src)
 
 	set_armor_datum()
 
@@ -94,7 +94,7 @@
 	GLOB.alive_living_list -= src
 	GLOB.mob_living_list -= src
 	GLOB.offered_mob_list -= src
-	STOP_PROCESSING(SSmobs, src)
+	SSmobs.stop_processing(src)
 	job = null
 	return ..()
 
