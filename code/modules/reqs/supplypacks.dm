@@ -158,6 +158,11 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/rifle/standard_smartmachinegun)
 	cost = 30
 
+/datum/supply_packs/weapons/flamethrower
+	name = "M240 Flamethrower"
+	contains = list(/obj/item/weapon/gun/flamer)
+	cost = 5
+
 /datum/supply_packs/weapons/explosives_mines
 	name = "claymore mines"
 	notes = "Contains 5 mines"
@@ -643,6 +648,11 @@ AMMO
 	name = "Vindicator Minigun Ammo Drum"
 	contains = list(/obj/item/ammo_magazine/minigun)
 	cost = 5
+
+/datum/supply_packs/ammo/flamer_tank
+	name = "M240 Flamethrower Tank"
+	contains = list(/obj/item/ammo_magazine/flamer_tank)
+	cost = 3
 
 
 /*******************************************************************************
