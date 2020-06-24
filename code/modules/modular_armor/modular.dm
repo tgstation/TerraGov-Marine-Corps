@@ -202,6 +202,9 @@
 	if(.)
 		return
 
+	if(user.action_busy)
+		return FALSE
+	
 	if(ismob(loc) && (user.r_hand != src && user.l_hand != src))
 		to_chat(user, "<span class='warning'>You need to remove the armor first.</span>")
 		return TRUE
