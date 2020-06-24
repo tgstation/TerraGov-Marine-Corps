@@ -24,7 +24,6 @@
 	storage_slots = 4
 	max_storage_space = 16
 	bypass_w_limit = list(
-					/obj/item/turret_top,
 					/obj/item/turret_tripod,
 					/obj/item/cell,
 					/obj/item/ammo_magazine/sentry,
@@ -32,12 +31,11 @@
 
 /obj/item/storage/box/sentry/Initialize()
 	. = ..()
-	new /obj/item/turret_top(src)
 	new /obj/item/turret_tripod(src)
 	new /obj/item/cell/high(src)
 	new /obj/item/ammo_magazine/sentry(src)
 
-
+/*
 /obj/item/turret_top
 	name = "\improper UA 571-C turret"
 	desc = "The turret part of an automated sentry turret."
@@ -45,11 +43,11 @@
 	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/Marine/sentry.dmi'
 	icon_state = "sentry_head"
-
+*/
 
 /obj/item/turret_tripod
-	name = "\improper UA 571-C turret tripod"
-	desc = "The tripod part of an automated sentry turret. You should deploy it first."
+	name = "\improper folded UA 571-C turret"
+	desc = "A folded automated sentry turret."
 	resistance_flags = UNACIDABLE
 	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/Marine/sentry.dmi'
@@ -70,7 +68,7 @@
 			"<span class='notice'>You start unfolding \the [src].</span>")
 
 	if(do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
-		var/obj/machinery/turret_tripod_deployed/S = new /obj/machinery/turret_tripod_deployed/(target)
+		var/obj/machinery/marine_turret/S = new /obj/machinery/marine_turret(target)
 		S.setDir(user.dir)
 		user.visible_message("<span class='notice'>[user] unfolds \the [S].</span>",
 			"<span class='notice'>You unfold \the [S].</span>")
@@ -78,7 +76,7 @@
 		S.update_icon()
 		qdel(src)
 
-
+/*
 /obj/machinery/turret_tripod_deployed
 	name = "\improper UA 571-C turret tripod"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine."
@@ -124,6 +122,7 @@
 	var/obj/item/turret_tripod/T = new(loc)
 	user.put_in_hands(T)
 	qdel(src)
+
 
 /obj/machinery/turret_tripod_deployed/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -214,6 +213,7 @@
 		icon_state = "sentry_tripod"
 		new /obj/item/turret_top(loc)
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
+*/
 
 /obj/machinery/marine_turret
 	name = "\improper UA 571-C sentry gun"
