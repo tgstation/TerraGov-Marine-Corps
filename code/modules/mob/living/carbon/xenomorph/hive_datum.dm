@@ -698,64 +698,64 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/corrupted/can_xeno_message()
 	return TRUE // can always talk in hivemind
 
-/mob/living/carbon/xenomorph/queen/Corrupted
+/mob/living/carbon/xenomorph/queen/corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
-/mob/living/carbon/xenomorph/boiler/Corrupted
+/mob/living/carbon/xenomorph/boiler/corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
-/mob/living/carbon/xenomorph/bull/Corrupted
+/mob/living/carbon/xenomorph/bull/corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
-/mob/living/carbon/xenomorph/carrier/Corrupted
+/mob/living/carbon/xenomorph/carrier/corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
-/mob/living/carbon/xenomorph/crusher/Corrupted
+/mob/living/carbon/xenomorph/crusher/corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
-/mob/living/carbon/xenomorph/defender/Corrupted
+/mob/living/carbon/xenomorph/defender/corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
-/mob/living/carbon/xenomorph/Defiler/Corrupted
+/mob/living/carbon/xenomorph/defiler/corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
-/mob/living/carbon/xenomorph/drone/Corrupted
+/mob/living/carbon/xenomorph/drone/corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
-/mob/living/carbon/xenomorph/hivelord/Corrupted
+/mob/living/carbon/xenomorph/hivelord/corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
-/mob/living/carbon/xenomorph/hivemind/Corrupted
+/mob/living/carbon/xenomorph/hivemind/corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
-/mob/living/carbon/xenomorph/hunter/Corrupted
+/mob/living/carbon/xenomorph/hunter/corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
-/mob/living/carbon/xenomorph/larva/Corrupted
+/mob/living/carbon/xenomorph/larva/corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
-/mob/living/carbon/xenomorph/panther/Corrupted
+/mob/living/carbon/xenomorph/panther/corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
-/mob/living/carbon/xenomorph/praetorian/Corrupted
+/mob/living/carbon/xenomorph/praetorian/corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
-/mob/living/carbon/xenomorph/ravager/Corrupted
+/mob/living/carbon/xenomorph/ravager/corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
-/mob/living/carbon/xenomorph/runner/Corrupted
+/mob/living/carbon/xenomorph/runner/corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
-/mob/living/carbon/xenomorph/sentinel/Corrupted
+/mob/living/carbon/xenomorph/sentinel/corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
-/mob/living/carbon/xenomorph/shrike/Corrupted
+/mob/living/carbon/xenomorph/shrike/corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
-/mob/living/carbon/xenomorph/spitter/Corrupted
+/mob/living/carbon/xenomorph/spitter/corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
-/mob/living/carbon/xenomorph/warrior/Corrupted
+/mob/living/carbon/xenomorph/warrior/corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
 // ***************************************
@@ -767,64 +767,64 @@ to_chat will check for valid clients itself already so no need to double check f
 	prefix = "Alpha "
 	color = "#cccc00"
 
-/mob/living/carbon/xenomorph/queen/Alpha
+/mob/living/carbon/xenomorph/queen/alpha
 	hivenumber = XENO_HIVE_ALPHA
 
-/mob/living/carbon/xenomorph/boiler/Alpha
+/mob/living/carbon/xenomorph/boiler/alpha
 	hivenumber = XENO_HIVE_ALPHA
 
-/mob/living/carbon/xenomorph/bull/Alpha
+/mob/living/carbon/xenomorph/bull/alpha
 	hivenumber = XENO_HIVE_ALPHA
 
-/mob/living/carbon/xenomorph/carrier/Alpha
+/mob/living/carbon/xenomorph/carrier/alpha
 	hivenumber = XENO_HIVE_ALPHA
 
-/mob/living/carbon/xenomorph/crusher/Alpha
+/mob/living/carbon/xenomorph/crusher/alpha
 	hivenumber = XENO_HIVE_ALPHA
 
-/mob/living/carbon/xenomorph/defender/Alpha
+/mob/living/carbon/xenomorph/defender/alpha
 	hivenumber = XENO_HIVE_ALPHA
 
-/mob/living/carbon/xenomorph/Defiler/Alpha
+/mob/living/carbon/xenomorph/defiler/alpha
 	hivenumber = XENO_HIVE_ALPHA
 
-/mob/living/carbon/xenomorph/drone/Alpha
+/mob/living/carbon/xenomorph/drone/alpha
 	hivenumber = XENO_HIVE_ALPHA
 
-/mob/living/carbon/xenomorph/hivelord/Alpha
+/mob/living/carbon/xenomorph/hivelord/alpha
 	hivenumber = XENO_HIVE_ALPHA
 
-/mob/living/carbon/xenomorph/hivemind/Alpha
+/mob/living/carbon/xenomorph/hivemind/alpha
 	hivenumber = XENO_HIVE_ALPHA
 
-/mob/living/carbon/xenomorph/hunter/Alpha
+/mob/living/carbon/xenomorph/hunter/alpha
 	hivenumber = XENO_HIVE_ALPHA
 
-/mob/living/carbon/xenomorph/larva/Alpha
+/mob/living/carbon/xenomorph/larva/alpha
 	hivenumber = XENO_HIVE_ALPHA
 
-/mob/living/carbon/xenomorph/panther/Alpha
+/mob/living/carbon/xenomorph/panther/alpha
 	hivenumber = XENO_HIVE_ALPHA
 
-/mob/living/carbon/xenomorph/praetorian/Alpha
+/mob/living/carbon/xenomorph/praetorian/alpha
 	hivenumber = XENO_HIVE_ALPHA
 
-/mob/living/carbon/xenomorph/ravager/Alpha
+/mob/living/carbon/xenomorph/ravager/alpha
 	hivenumber = XENO_HIVE_ALPHA
 
-/mob/living/carbon/xenomorph/runner/Alpha
+/mob/living/carbon/xenomorph/runner/alpha
 	hivenumber = XENO_HIVE_ALPHA
 
-/mob/living/carbon/xenomorph/sentinel/Alpha
+/mob/living/carbon/xenomorph/sentinel/alpha
 	hivenumber = XENO_HIVE_ALPHA
 
-/mob/living/carbon/xenomorph/shrike/Alpha
+/mob/living/carbon/xenomorph/shrike/alpha
 	hivenumber = XENO_HIVE_ALPHA
 
-/mob/living/carbon/xenomorph/spitter/Alpha
+/mob/living/carbon/xenomorph/spitter/alpha
 	hivenumber = XENO_HIVE_ALPHA
 
-/mob/living/carbon/xenomorph/warrior/Alpha
+/mob/living/carbon/xenomorph/warrior/alpha
 	hivenumber = XENO_HIVE_ALPHA
 
 /datum/hive_status/beta
@@ -833,64 +833,64 @@ to_chat will check for valid clients itself already so no need to double check f
 	prefix = "Beta "
 	color = "#9999ff"
 
-/mob/living/carbon/xenomorph/queen/Beta
+/mob/living/carbon/xenomorph/queen/beta
 	hivenumber = XENO_HIVE_BETA
 
-/mob/living/carbon/xenomorph/boiler/Beta
+/mob/living/carbon/xenomorph/boiler/beta
 	hivenumber = XENO_HIVE_BETA
 
-/mob/living/carbon/xenomorph/bull/Beta
+/mob/living/carbon/xenomorph/bull/beta
 	hivenumber = XENO_HIVE_BETA
 
-/mob/living/carbon/xenomorph/carrier/Beta
+/mob/living/carbon/xenomorph/carrier/beta
 	hivenumber = XENO_HIVE_BETA
 
-/mob/living/carbon/xenomorph/crusher/Beta
+/mob/living/carbon/xenomorph/crusher/beta
 	hivenumber = XENO_HIVE_BETA
 
-/mob/living/carbon/xenomorph/defender/Beta
+/mob/living/carbon/xenomorph/defender/beta
 	hivenumber = XENO_HIVE_BETA
 
-/mob/living/carbon/xenomorph/Defiler/Beta
+/mob/living/carbon/xenomorph/defiler/beta
 	hivenumber = XENO_HIVE_BETA
 
-/mob/living/carbon/xenomorph/drone/Beta
+/mob/living/carbon/xenomorph/drone/beta
 	hivenumber = XENO_HIVE_BETA
 
-/mob/living/carbon/xenomorph/hivelord/Beta
+/mob/living/carbon/xenomorph/hivelord/beta
 	hivenumber = XENO_HIVE_BETA
 
-/mob/living/carbon/xenomorph/hivemind/Beta
+/mob/living/carbon/xenomorph/hivemind/beta
 	hivenumber = XENO_HIVE_BETA
 
-/mob/living/carbon/xenomorph/hunter/Beta
+/mob/living/carbon/xenomorph/hunter/beta
 	hivenumber = XENO_HIVE_BETA
 
-/mob/living/carbon/xenomorph/larva/Beta
+/mob/living/carbon/xenomorph/larva/beta
 	hivenumber = XENO_HIVE_BETA
 
-/mob/living/carbon/xenomorph/panther/Beta
+/mob/living/carbon/xenomorph/panther/beta
 	hivenumber = XENO_HIVE_BETA
 
-/mob/living/carbon/xenomorph/praetorian/Beta
+/mob/living/carbon/xenomorph/praetorian/beta
 	hivenumber = XENO_HIVE_BETA
 
-/mob/living/carbon/xenomorph/ravager/Beta
+/mob/living/carbon/xenomorph/ravager/beta
 	hivenumber = XENO_HIVE_BETA
 
-/mob/living/carbon/xenomorph/runner/Beta
+/mob/living/carbon/xenomorph/runner/beta
 	hivenumber = XENO_HIVE_BETA
 
-/mob/living/carbon/xenomorph/sentinel/Beta
+/mob/living/carbon/xenomorph/sentinel/beta
 	hivenumber = XENO_HIVE_BETA
 
-/mob/living/carbon/xenomorph/shrike/Beta
+/mob/living/carbon/xenomorph/shrike/beta
 	hivenumber = XENO_HIVE_BETA
 
-/mob/living/carbon/xenomorph/spitter/Beta
+/mob/living/carbon/xenomorph/spitter/beta
 	hivenumber = XENO_HIVE_BETA
 
-/mob/living/carbon/xenomorph/warrior/Beta
+/mob/living/carbon/xenomorph/warrior/beta
 	hivenumber = XENO_HIVE_BETA
 
 /datum/hive_status/zeta
@@ -899,64 +899,64 @@ to_chat will check for valid clients itself already so no need to double check f
 	prefix = "Zeta "
 	color = "#606060"
 
-/mob/living/carbon/xenomorph/queen/Zeta
+/mob/living/carbon/xenomorph/queen/zeta
 	hivenumber = XENO_HIVE_ZETA
 
-/mob/living/carbon/xenomorph/boiler/Zeta
+/mob/living/carbon/xenomorph/boiler/zeta
 	hivenumber = XENO_HIVE_ZETA
 
-/mob/living/carbon/xenomorph/bull/Zeta
+/mob/living/carbon/xenomorph/bull/zeta
 	hivenumber = XENO_HIVE_ZETA
 
-/mob/living/carbon/xenomorph/carrier/Zeta
+/mob/living/carbon/xenomorph/carrier/zeta
 	hivenumber = XENO_HIVE_ZETA
 
-/mob/living/carbon/xenomorph/crusher/Zeta
+/mob/living/carbon/xenomorph/crusher/zeta
 	hivenumber = XENO_HIVE_ZETA
 
-/mob/living/carbon/xenomorph/defender/Zeta
+/mob/living/carbon/xenomorph/defender/zeta
 	hivenumber = XENO_HIVE_ZETA
 
-/mob/living/carbon/xenomorph/Defiler/Zeta
+/mob/living/carbon/xenomorph/defiler/zeta
 	hivenumber = XENO_HIVE_ZETA
 
-/mob/living/carbon/xenomorph/drone/Zeta
+/mob/living/carbon/xenomorph/drone/zeta
 	hivenumber = XENO_HIVE_ZETA
 
-/mob/living/carbon/xenomorph/hivelord/Zeta
+/mob/living/carbon/xenomorph/hivelord/zeta
 	hivenumber = XENO_HIVE_ZETA
 
-/mob/living/carbon/xenomorph/hivemind/Zeta
+/mob/living/carbon/xenomorph/hivemind/zeta
 	hivenumber = XENO_HIVE_ZETA
 
-/mob/living/carbon/xenomorph/hunter/Zeta
+/mob/living/carbon/xenomorph/hunter/zeta
 	hivenumber = XENO_HIVE_ZETA
 
-/mob/living/carbon/xenomorph/larva/Zeta
+/mob/living/carbon/xenomorph/larva/zeta
 	hivenumber = XENO_HIVE_ZETA
 
-/mob/living/carbon/xenomorph/panther/Zeta
+/mob/living/carbon/xenomorph/panther/zeta
 	hivenumber = XENO_HIVE_ZETA
 
-/mob/living/carbon/xenomorph/praetorian/Zeta
+/mob/living/carbon/xenomorph/praetorian/zeta
 	hivenumber = XENO_HIVE_ZETA
 
-/mob/living/carbon/xenomorph/ravager/Zeta
+/mob/living/carbon/xenomorph/ravager/zeta
 	hivenumber = XENO_HIVE_ZETA
 
-/mob/living/carbon/xenomorph/runner/Zeta
+/mob/living/carbon/xenomorph/runner/zeta
 	hivenumber = XENO_HIVE_ZETA
 
-/mob/living/carbon/xenomorph/sentinel/Zeta
+/mob/living/carbon/xenomorph/sentinel/zeta
 	hivenumber = XENO_HIVE_ZETA
 
-/mob/living/carbon/xenomorph/shrike/Zeta
+/mob/living/carbon/xenomorph/shrike/zeta
 	hivenumber = XENO_HIVE_ZETA
 
-/mob/living/carbon/xenomorph/spitter/Zeta
+/mob/living/carbon/xenomorph/spitter/zeta
 	hivenumber = XENO_HIVE_ZETA
 
-/mob/living/carbon/xenomorph/warrior/Zeta
+/mob/living/carbon/xenomorph/warrior/zeta
 	hivenumber = XENO_HIVE_ZETA
 
 /datum/hive_status/admeme

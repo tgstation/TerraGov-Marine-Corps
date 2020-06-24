@@ -6,9 +6,9 @@
 
 
 /datum/emergency_call/xenomorphs_alpha/print_backstory(mob/living/carbon/xenomorph/X)
-	to_chat(X, "<B>You are Xenomorph from the Alpha hive.</b>")
-	to_chat(X, "<B>You've been cruising in space for years until a new Queen reached out to you and took over the control of your shuttle.</b>")
-	to_chat(X, "<B>Expand your hive and destroy any who dare to oppose your influence especially other hives. For the Alpha Hive!</b>")
+	to_chat(X, "<B>We are a Xenomorph from the Alpha hive.</b>")
+	to_chat(X, "<B>We've been cruising in space for years until a new Queen reached out to us and took over the control of our shuttle.</b>") // Admin-only ERT, so queens only.
+	to_chat(X, "<B>Expand our hive and destroy any who dare to oppose our influence especially other hives. For the Alpha Hive!</b>")
 
 
 /datum/emergency_call/xenomorphs_alpha/spawn_items()
