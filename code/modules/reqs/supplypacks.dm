@@ -658,22 +658,25 @@ AMMO
 	name = "High Explosive Warhead"
 	contains = list(/obj/structure/ob_ammo/warhead/explosive)
 	cost = 20
+	containertype = null
 
 /datum/supply_packs/ammo/ob_incendiary
 	name = "Incendiary Warhead"
 	contains = list(/obj/structure/ob_ammo/warhead/incendiary)
 	cost = 20
+	containertype = null
 
 /datum/supply_packs/ammo/ob_cluster
 	name = "Cluster Warhead"
 	contains = list(/obj/structure/ob_ammo/warhead/cluster)
 	cost = 20
+	containertype = null
 
 /datum/supply_packs/ammo/ob_fuel
 	name = "Orbital Cannon Fuel"
 	contains = list(/obj/structure/ob_ammo/ob_fuel)
 	cost = 10
-
+	containertype = null
 
 /*******************************************************************************
 ARMOR
