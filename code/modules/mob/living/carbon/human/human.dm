@@ -38,6 +38,7 @@
 	RegisterSignal(src, COMSIG_KB_HOLSTER, .proc/do_holster)
 	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, .proc/do_unique_action)
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN)
+	AddElement(/datum/element/gesture)
 
 /mob/living/carbon/human/proc/human_z_changed(datum/source, old_z, new_z)
 	LAZYREMOVE(GLOB.humans_by_zlevel["[old_z]"], src)
