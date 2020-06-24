@@ -635,7 +635,7 @@ below 100 is not dizzy
 /mob/living/proc/point_to_atom(atom/A, turf/T)
 	//Squad Leaders and above have reduced cooldown and get a bigger arrow
 	if(skills.getRating("leadership") < SKILL_LEAD_TRAINED)
-		COOLDOWN_START(src, COOLDOWN_POINT, 5 SECONDS)
+		COOLDOWN_START(src, COOLDOWN_POINT, 2.5 SECONDS)
 		new /obj/effect/overlay/temp/point(T)
 	else
 		COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)
