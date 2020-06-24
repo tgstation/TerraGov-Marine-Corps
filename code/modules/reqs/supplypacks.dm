@@ -1166,6 +1166,12 @@ ENGINEERING
 	cost = 7
 	containertype = null
 
+/datum/supply_packs/engineering/watertank
+	name = "Water Tank"
+	contains = list(/obj/structure/reagent_dispensers)
+	cost = 7
+	containertype = null
+
 /datum/supply_packs/engineering/welding_kit
 	name = "Portable Fuel Tank"
 	contains = list(/obj/item/tool/weldpack)
