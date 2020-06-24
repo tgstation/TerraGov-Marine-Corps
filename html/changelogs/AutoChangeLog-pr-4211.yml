@@ -1,0 +1,6 @@
+author: "MacBlaze1"
+delete-after: True
+changes: 
+  - balance: "gave barricades 128 coverage which at minimum equates to around a 20% chance to spit beyond the barricade."
+  - balance: "gave metal barricades 40 acid armor, it takes 10 acid spits to take them down with barbed wire (all other barricades have 40 acid armor too, but I didnt calculate them)"
+  - balance: "made acid sprays stop at barricades and not go through them."
