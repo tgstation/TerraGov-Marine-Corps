@@ -1,0 +1,5 @@
+author: "MacBlaze1"
+delete-after: True
+changes: 
+  - tweak: "makes people actually take a sizable amount of damage for idling in fire"
+  - balance: "changes the burn damage of blue flame to be 50% better than the normal flame"
