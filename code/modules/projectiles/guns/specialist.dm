@@ -1003,29 +1003,28 @@
 	type_of_casings = "cartridge"
 	w_class = WEIGHT_CLASS_HUGE
 	force = 20
-	wield_delay = 15
+	wield_delay = 1.2
 	gun_skill_category = GUN_SKILL_FIREARMS
-	aim_slowdown = 1.4
+	aim_slowdown = 0.8
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_allowed = list(
 						/obj/item/attachable/flashlight)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
 
-	fire_delay = 2
+	fire_delay = 0.175
 	burst_amount = 7
+	scatter = 10
 	recoil = 2
 	recoil_unwielded = 4
 	damage_falloff_mult = 0.5
 
 
+
 obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = FALSE, dual_wield)
-	if(gun_firemode == GUN_FIREMODE_BURSTFIRE)
-		if(user.action_busy)
-			return
-		playsound(get_turf(src), 'sound/weapons/guns/fire/tank_minigun_start.ogg', 30)
-		if(!do_after(user, 0.4 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
-			return
+	playsound(get_turf(src), 'sound/weapons/guns/fire/tank_minigun_start.ogg', 30)
+	if(!do_after(user, 0.4 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
+		return
 	return ..()
 
 
