@@ -31,23 +31,21 @@
 	bypass_w_limit = list(
 		/obj/item/m56d_gun,
 		/obj/item/ammo_magazine/m56d,
-		/obj/item/m56d_post)
+		)
 
 /obj/item/storage/box/m56d_hmg/Initialize()
 	. = ..()
 	new /obj/item/m56d_gun(src) //gun itself
-	new /obj/item/ammo_magazine/m56d(src) //ammo for the gun
-	new /obj/item/m56d_post(src) //post for the gun
+	new /obj/item/ammo_magazine/m56d(src) //ammo for the gun 
 	new /obj/item/tool/wrench(src) //wrench to hold it down into the ground
 	new /obj/item/tool/screwdriver(src) //screw the gun onto the post.
 	new /obj/item/ammo_magazine/m56d(src)
-	new /obj/item/m56d_post(src) //spare post for the gun
 
 
 // The actual gun itself.
 /obj/item/m56d_gun
 	name = "\improper M56D Mounted Smartgun"
-	desc = "The top half of a M56D Machinegun post. However it ain't much use without the tripod."
+	desc = "The M56D Machinegun. IFF capable."
 	resistance_flags = UNACIDABLE
 	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/turf/whiskeyoutpost.dmi'
@@ -90,7 +88,17 @@
 		rounds = 700
 		qdel(I)
 		update_icon()
-
+/obj/item/m56d_gun/attack_self(mob/user) //click the gun to unfold it.
+	if(!ishuman(usr)) return
+	if(!do_after(user, 15, TRUE, src, BUSY_ICON_BUILD))
+		return
+	to_chat(user, "<span class='notice'>You deploy [src].</span>")
+	var/step = get_step(user, user.dir)
+	var/obj/machinery/m56d_hmg/P = new(step)
+	P.setDir(user.dir)
+	P.update_icon()
+	qdel(src)
+/**
 /obj/item/m56d_post //Adding this because I was fucken stupid and put a obj/machinery in a box. Realized I couldn't take it out
 	name = "\improper M56D folded mount"
 	desc = "The folded, foldable tripod mount for the M56D.  (Place on ground and drag to you to unfold)."
@@ -106,10 +114,11 @@
 	P.setDir(user.dir)
 	P.update_icon()
 	qdel(src)
-
+*/
 
 
 //The mount for the weapon.
+/*
 /obj/machinery/m56d_post
 	name = "\improper M56D mount"
 	desc = "A foldable tripod mount for the M56D, provides stability to the M56D."
@@ -215,7 +224,7 @@
 		G.rounds = gun_rounds //Inherent the amount of ammo we had.
 		G.update_icon()
 		qdel(src)
-
+*/
 // The actual Machinegun itself, going to borrow some stuff from current sentry code to make sure it functions. Also because they're similiar.
 /obj/machinery/m56d_hmg
 	name = "\improper M56D mounted smartgun"
@@ -301,7 +310,6 @@
 		user.visible_message("<span class='notice'> [user] disassembles [src]! </span>","<span class='notice'> You disassemble [src]!</span>")
 		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 		var/obj/item/m56d_gun/HMG = new(loc) //Here we generate our disassembled mg.
-		new /obj/item/m56d_post(loc)
 		HMG.rounds = rounds //Inherent the amount of ammo we had.
 		qdel(src) //Now we clean up the constructed gun.
 

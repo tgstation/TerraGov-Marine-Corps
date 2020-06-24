@@ -365,7 +365,6 @@
 	bypass_w_limit = list(
 		/obj/item/m56d_gun,
 		/obj/item/ammo_magazine/m56d,
-		/obj/item/m56d_post,
 		/obj/item/turret_top,
 		/obj/item/ammo_magazine/sentry,
 		/obj/item/ammo_magazine/minisentry,
