@@ -173,7 +173,7 @@
 			return
 
 		if("blue flame") //Probably can end up as a spec fuel or DS flamer fuel. Also this was the original fueltype, the madman i am.
-			burnlevel = 45
+			burnlevel = 36
 			burntime = 40
 			max_range = 7
 			fire_color = "blue"
