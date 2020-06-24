@@ -81,6 +81,7 @@
 	START_PROCESSING(SSmobs, src)
 
 	set_armor_datum()
+	AddElement(/datum/element/gesture)
 
 /mob/living/Destroy()
 	for(var/i in embedded_objects)
