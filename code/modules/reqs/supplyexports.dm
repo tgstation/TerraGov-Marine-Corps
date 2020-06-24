@@ -5,7 +5,7 @@
 	var/export_obj = null
 
 /datum/supply_export/platinum
-	cost = 40
+	cost = 60
 	export_obj = /obj/structure/ore_box/platinum
 
 /datum/supply_export/phoron
