@@ -13,13 +13,12 @@
 #define MARINE_CAN_BUY_ESSENTIALS	(1 << 12)
 #define MARINE_CAN_BUY_ATTACHMENT	(1 << 13)
 #define MARINE_CAN_BUY_ATTACHMENT2	(1 << 14)
-#define MARINE_CAN_BUY_WEAPONS		(1 << 15)
 
-#define MARINE_CAN_BUY_WEBBING		(1 << 16)
-
+#define MARINE_CAN_BUY_WEBBING		(1 << 15)
 
 
-#define MARINE_CAN_BUY_ALL			((1 << 17) - 1)
+
+#define MARINE_CAN_BUY_ALL			((1 << 16) - 1)
 
 #define MARINE_TOTAL_BUY_POINTS		45
 
@@ -36,7 +35,6 @@
 #define CAT_BEL "BELT"
 #define CAT_MAS "MASKS"
 #define CAT_ATT "GUN ATTACHMENTS"
-#define CAT_WEP "WEAPONS"
 
 #define CAT_MEDSUP "MEDICAL SUPPLIES"
 #define CAT_ENGSUP "ENGINEERING SUPPLIES"
@@ -61,7 +59,6 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		CAT_MAS = list(MARINE_CAN_BUY_MASK),
 		CAT_ATT = list(MARINE_CAN_BUY_ATTACHMENT,MARINE_CAN_BUY_ATTACHMENT2),
 		CAT_ESS = list(MARINE_CAN_BUY_ESSENTIALS),
-		CAT_WEP = list(MARINE_CAN_BUY_WEAPONS),
 		CAT_MEDSUP = null,
 		CAT_ENGSUP = null,
 		CAT_LEDSUP = null,
@@ -840,7 +837,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 	listed_products = list(
 		/obj/effect/essentials_set/engi = list(CAT_ESS, "Essential Engineer Set", 0, "white"),
-		/obj/effect/essentials_set/flamer = list(CAT_WEP, "Flamethrower Equipment Set", 0, "white"),
+
 		/obj/item/stack/sheet/metal/small_stack = list(CAT_ENGSUP, "Metal x10", 5, "orange"),
 		/obj/item/stack/sheet/plasteel/small_stack = list(CAT_ENGSUP, "Plasteel x10", 7, "orange"),
 		/obj/item/stack/sandbags_empty/half = list(CAT_ENGSUP, "Sandbags x25", 10, "orange"),
@@ -857,7 +854,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/circuitboard/general = list(CAT_ENGSUP, "General circuit board", 1, "black"),
 		/obj/item/assembly/signaler = list(CAT_ENGSUP, "Signaler (for detpacks)", 1, "black"),
 		/obj/item/stack/voucher/sentry = list(CAT_ENGSUP, "UA-580 point defense sentry voucher", 26, "black"),
-		/obj/item/ammo_magazine/flamer_tank = list(CAT_SPEAMM, "Flamethrower Fuel Tank", 4, "orange"),
+
 		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
 		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
 		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil compensator", 0, "black"),
