@@ -9,9 +9,6 @@
 	. = ..()
 	baseturfs = type
 
-/turf/open/ground/ex_act(severity) //Should make it indestructable
-	return
-
 /turf/open/ground/fire_act(exposed_temperature, exposed_volume)
 	return
 
@@ -310,6 +307,8 @@
 	icon_state = "grass_impenetrable"
 	icon_spawn_state = "grass1"
 
+/turf/open/ground/jungle/impenetrable/nobush
+	bushes_spawn = FALSE
 
 /turf/open/ground/jungle/impenetrable/Initialize()
 	. = ..()

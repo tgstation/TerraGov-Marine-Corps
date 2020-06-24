@@ -55,7 +55,7 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 		"abstract" = 1.0) //abstract for when you just want to hurt it
 
 	//Decisecond cooldowns for the slots
-	var/list/cooldowns = list(
+	var/list/internal_cooldowns = list(
 		"primary" = 300,
 		"secondary" = 200,
 		"support" = 150)
@@ -539,10 +539,10 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 /obj/vehicle/multitile/root/cm_armored/ex_act(severity)
 
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			take_damage(rand(250, 350)) //Devastation level explosives are anti-tank and do real damage.
 
-		if(2)
+		if(EXPLODE_HEAVY)
 			take_damage(rand(30, 40)) //Heavy explosions do some damage, but are largely deferred by the armour/bulk.
 
 //Honestly copies some code from the Xeno files, just handling some special cases
@@ -863,5 +863,5 @@ GLOBAL_LIST_INIT(armorvic_dmg_distributions, list(
 
 
 
-/obj/vehicle/multitile/root/cm_armored/contents_explosion(severity, target)
+/obj/vehicle/multitile/root/cm_armored/contents_explosion(severity)
 	return

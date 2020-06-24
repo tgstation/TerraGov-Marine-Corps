@@ -1,20 +1,20 @@
 /area/centcom
-	name = "\improper Centcom"
+	name = "Centcom"
 	icon_state = "centcom"
 	requires_power = FALSE
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 
 
 /area/centcom/control
-	name = "\improper Centcom Control"
+	name = "Centcom Control"
 
 
 /area/centcom/supply
-	name = "\improper Centcom Supply"
+	name = "Centcom Supply"
 
 
 /area/centcom/ferry
-	name = "\improper Centcom Transport Shuttle"
+	name = "Centcom Transport Shuttle"
 
 
 /area/centcom/supplypod/flyMeToTheMoon
@@ -59,3 +59,10 @@
 
 /area/centcom/aitest //Part of the centcom zlevel, basically an arena for AI that ultilizes nodes
 	name = "Artificial Intelligence Test Zone"
+
+// Practice Areas
+/area/centcom/practice
+	name = "Practice Center"
+
+/area/centcom/practice/medical
+	name = "Medical Practice Center"

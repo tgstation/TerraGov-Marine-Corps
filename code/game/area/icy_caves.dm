@@ -1,47 +1,47 @@
 // ICY CAVES AREAS
 
 /area/icy_caves/caves/OOB //You shouldnt be able to get here, if you are here its an issue and @isy
-	name ="\improper Out Of Bounds"
+	name ="Out Of Bounds"
 	icon_state = "away4"
 	ceiling = CEILING_DEEP_UNDERGROUND
 
 /area/icy_caves/caves/northern
-	name ="\improper Northern Caves"
+	name ="Northern Caves"
 	icon_state = "cave"
 	ceiling = CEILING_DEEP_UNDERGROUND
 
 /area/icy_caves/caves/crashed_ship
-	name ="\improper Crashed Ship"
+	name ="Crashed Ship"
 	icon_state = "red"
 	ceiling = CEILING_DEEP_UNDERGROUND
 
 /area/icy_caves/caves/south
-	name ="\improper Southern Caves"
+	name ="Southern Caves"
 	icon_state = "cave"
 	ceiling = CEILING_UNDERGROUND
 
 /area/icy_caves/caves/east
-	name ="\improper Eastern Caves"
+	name ="Eastern Caves"
 	icon_state = "cave"
 	ceiling = CEILING_UNDERGROUND
 
 /area/icy_caves/caves/west
-	name ="\improper Western Caves"
+	name ="Western Caves"
 	icon_state = "cave"
 	ceiling = CEILING_UNDERGROUND
 
 /area/icy_caves/outpost/dorms
-	name ="\improper Dormitories"
+	name ="Dormitories"
 	icon_state = "Sleep"
 	ceiling = CEILING_METAL
 
 /area/icy_caves/outpost/engineering
-	name ="\improper Engineering"
+	name ="Engineering"
 	icon_state = "engine_smes"
 	ceiling = CEILING_METAL
 
 /area/icy_caves/outpost/garage
-	name ="\improper Garage"
+	name ="Garage"
 	icon_state = "garage"
 	ceiling = CEILING_METAL
 

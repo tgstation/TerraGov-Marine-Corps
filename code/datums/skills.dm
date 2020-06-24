@@ -330,7 +330,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	leadership = SKILL_LEAD_MASTER
 	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_AMATEUR
-	police = SKILL_POLICE_FLASH
+	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_TRAINED
 
 /datum/skills/FO
@@ -354,22 +354,12 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	leadership = SKILL_LEAD_EXPERT
 	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_AMATEUR
+	police = SKILL_POLICE_FLASH
 
 /datum/skills/pilot
 	name = PILOT_OFFICER
 	pilot = SKILL_PILOT_TRAINED
 	powerloader = SKILL_POWERLOADER_PRO
-	leadership = SKILL_LEAD_TRAINED
-
-/datum/skills/MP
-	name = "Military Police"
-	cqc = SKILL_CQC_MP
-	police = SKILL_POLICE_MP
-
-/datum/skills/CMP
-	name = COMMAND_MASTER_AT_ARMS
-	cqc = SKILL_CQC_MP
-	police = SKILL_POLICE_MP
 	leadership = SKILL_LEAD_TRAINED
 
 /datum/skills/CE

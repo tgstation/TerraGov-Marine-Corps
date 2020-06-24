@@ -16,10 +16,6 @@
 	cryotypes = list(CRYO_MED)
 	category = CRYO_MED
 
-/obj/machinery/computer/cryopod/brig
-	cryotypes = list(CRYO_SEC)
-	category = CRYO_SEC
-
 /obj/machinery/computer/cryopod/eng
 	cryotypes = list(CRYO_ENGI)
 	category = CRYO_ENGI
@@ -206,9 +202,7 @@
 	//Handle job slot/tater cleanup.
 	if(job in SSjob.active_joinable_occupations)
 		job.free_job_positions(1)
-		if(ispolicejob(job))
-			dept_console = CRYO_SEC
-		else if(ismedicaljob(job))
+		if(ismedicaljob(job))
 			dept_console = CRYO_MED
 		else if(isengineeringjob(job))
 			dept_console = CRYO_ENGI
@@ -305,13 +299,6 @@
 		var/obj/item/TIE = hastie
 		remove_accessory()
 		items = TIE.store_in_cryo(items)
-	return ..()
-
-/obj/item/clothing/shoes/marine/store_in_cryo(list/items, nullspace_it = TRUE)
-	if(knife)
-		items = knife.store_in_cryo(items)
-		knife = null
-		update_icon()
 	return ..()
 
 /obj/item/clothing/tie/storage/store_in_cryo(list/items, nullspace_it = TRUE)

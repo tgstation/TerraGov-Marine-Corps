@@ -130,11 +130,11 @@
 			return FALSE
 
 		if(sound || get_sound(user))
-			if(user.cooldowns[COOLDOWN_EMOTE])
+			if(COOLDOWN_CHECK(user, COOLDOWN_EMOTE))
 				to_chat(user, "<span class='notice'>You just did an audible emote. Wait a while.</span>")
 				return FALSE
 			else
-				user.cooldowns[COOLDOWN_EMOTE] = addtimer(VARSET_LIST_CALLBACK(user.cooldowns, COOLDOWN_EMOTE, null), 8 SECONDS)
+				COOLDOWN_START(user, COOLDOWN_EMOTE, 8 SECONDS)
 
 		if(user.client)
 			if(user.client.prefs.muted & MUTE_IC)

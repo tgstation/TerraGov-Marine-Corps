@@ -85,6 +85,7 @@
 
 
 /obj/effect/particle_effect/foam/Crossed(atom/movable/AM)
+	. = ..()
 	if(metal)
 		return
 	if (iscarbon(AM))

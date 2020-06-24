@@ -29,28 +29,12 @@
 		if(MOB_SIZE_XENO)
 			xeno_strings += "Can smash walls: No"
 	xeno_strings += "Max health: [xeno_caste.max_health]"
-	for(var/armor_type in GLOB.armour_to_descriptive_term)
-		switch(armor.getRating(armor_type))
-			if(0)
-				xeno_strings += "Has no protection against [GLOB.armour_to_descriptive_term[armor_type]]."
-			if(1 to 20)
-				xeno_strings += "Barely has protection against [GLOB.armour_to_descriptive_term[armor_type]]."
-			if(21 to 30)
-				xeno_strings += "Has a very small defense against [GLOB.armour_to_descriptive_term[armor_type]]."
-			if(31 to 40)
-				xeno_strings += "Has a small amount of protection against [GLOB.armour_to_descriptive_term[armor_type]]."
-			if(41 to 50)
-				xeno_strings += "Has a moderate defense against [GLOB.armour_to_descriptive_term[armor_type]]."
-			if(51 to 60)
-				xeno_strings += "Has a strong defense against [GLOB.armour_to_descriptive_term[armor_type]]."
-			if(61 to 70)
-				xeno_strings += "Is very strong against [GLOB.armour_to_descriptive_term[armor_type]]."
-			if(71 to 80)
-				xeno_strings += "Has a very robust defense against [GLOB.armour_to_descriptive_term[armor_type]]."
-			if(81 to 99)
-				xeno_strings += "Is nigh-invulerable against [GLOB.armour_to_descriptive_term[armor_type]]."
-			if(100 to INFINITY)
-				xeno_strings += "Has godly protection against [GLOB.armour_to_descriptive_term[armor_type]]."
+	var/list/armor_in_list = soft_armor.getList()
+	for(var/armor_type in armor_in_list)
+		xeno_strings += "Soft [armor_type] armor: [armor_in_list[armor_type]]"
+	armor_in_list = hard_armor.getList()
+	for(var/armor_type in armor_in_list)
+		xeno_strings += "Hard [armor_type] armor: [armor_in_list[armor_type]]"
 	xeno_strings += "Max plasma: [xeno_caste.plasma_max]"
 	xeno_strings += "Plasma gain: [xeno_caste.plasma_gain]"
 	xeno_strings += "Hive: [hive?.name]"

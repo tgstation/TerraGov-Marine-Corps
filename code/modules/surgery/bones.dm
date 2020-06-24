@@ -66,10 +66,8 @@
 	else
 		user.visible_message("<span class='notice'>[user] sets the bone in [target]'s [affected.display_name] in place with \the [tool].</span>", \
 		"<span class='notice'>You set the bone in [target]'s [affected.display_name] in place with \the [tool].</span>")
-	affected.limb_status &= ~LIMB_BROKEN
-	affected.limb_status &= ~LIMB_SPLINTED
-	affected.limb_status &= ~LIMB_STABILIZED
-	affected.limb_status |= LIMB_REPAIRED
+	affected.remove_limb_flags(LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED)
+	affected.add_limb_flags(LIMB_REPAIRED)
 	affected.bone_repair_stage = 0
 	affected.perma_injury = 0
 

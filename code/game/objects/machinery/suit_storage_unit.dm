@@ -68,12 +68,12 @@
 
 /obj/machinery/suit_storage_unit/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			if(prob(50))
 				dump_everything() //So suits dont survive all the time
 			qdel(src)
 
-		if(2)
+		if(EXPLODE_HEAVY)
 			if(prob(50))
 				dump_everything()
 				qdel(src)

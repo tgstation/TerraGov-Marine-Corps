@@ -32,12 +32,17 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 	ai_behavior.current_node = node_to_spawn_at
 	ai_behavior.late_initialize() //We gotta give the ai behavior things like what node to spawn at before it wants to start an action
 	RegisterSignal(parent, list(COMSIG_PARENT_PREQDELETED, COMSIG_MOB_DEATH), .proc/clean_up)
+	RegisterSignal(parent, COMSIG_COMBAT_LOG, .proc/handle_combat_log)
 
 //Removes registered signals and action states, useful for scenarios like when the parent is destroyed or a client is taking over
+/datum/component/ai_controller/proc/handle_combat_log()
+	return DONT_LOG
+
 /datum/component/ai_controller/proc/clean_up()
 	STOP_PROCESSING(SSprocessing, ai_behavior)
 	ai_behavior.unregister_action_signals(ai_behavior.cur_action)
 	parent.RemoveElement(/datum/element/pathfinder)
+	UnregisterSignal(parent, COMSIG_COMBAT_LOG)
 
 /datum/component/ai_controller/Destroy()
 	clean_up()

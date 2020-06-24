@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Button, NoticeBox, Section, Box } from '../components';
+import { Button, NoticeBox, Section, Box, ProgressBar } from '../components';
 import { Window } from '../layouts';
 
 export const PortableVendor = (props, context) => {
@@ -8,7 +8,16 @@ export const PortableVendor = (props, context) => {
     <Window>
       <Window.Content scrollable>
         {(data.show_points > 0) && (
-          <NoticeBox>Points: {data.current_points}/{data.max_points}</NoticeBox>
+          <ProgressBar
+            ranges={{
+              good: [0.5, Infinity],
+              average: [0, 0.5],
+              bad: [-Infinity, 0],
+            }}
+            value={data.current_points
+              / data.max_points}>
+            {data.current_points+"/"+data.max_points}
+          </ProgressBar>
         )}
         {data.displayed_records.map(display_record => (
           <Section key={display_record.id}>

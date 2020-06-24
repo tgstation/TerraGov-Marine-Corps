@@ -69,6 +69,7 @@
 #define INIT_ORDER_LIGHTING			-20
 #define INIT_ORDER_SHUTTLE			-21
 #define INIT_ORDER_PATH				-50
+#define INIT_ORDER_EXPLOSIONS		-69
 #define INIT_ORDER_CHAT				-100 //Should be last to ensure chat remains smooth during init.
 
 // Subsystem fire priority, from lowest to highest priority
@@ -85,15 +86,14 @@
 #define FIRE_PRIORITY_NPC			20
 #define FIRE_PRIORITY_PROCESS		25
 #define FIRE_PRIORITY_OBJ			40
-#define FIRE_PRIORITY_NANO          40
 #define FIRE_PRIORITY_DEFAULT		50
 #define FIRE_PRIORITY_POINTS		90
 #define FIRE_PRIORITY_MOBS			100
 #define FIRE_PRIORITY_TGUI			110
-#define FIRE_PRIORITY_NANOUI		111
 #define FIRE_PRIORITY_TICKER		200
 #define FIRE_PRIORITY_CHAT			400
 #define FIRE_PRIORITY_OVERLAYS		500
+#define FIRE_PRIORITY_EXPLOSIONS	666
 #define FIRE_PRIORITY_INPUT			1000 // This must always always be the max highest priority. Player input must never be lost.
 
 // SS runlevels
@@ -127,3 +127,9 @@
 		}\
 		A.flags_atom &= ~OVERLAY_QUEUED;\
 	}
+
+
+/// Explosion Subsystem subtasks
+#define SSEXPLOSIONS_MOVABLES 1
+#define SSEXPLOSIONS_TURFS 2
+#define SSEXPLOSIONS_THROWS 3

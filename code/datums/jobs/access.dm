@@ -15,42 +15,18 @@
 
 
 /obj/proc/check_access(obj/item/card/id/ID)
-	//These generations have been moved out of /obj/New() because they were slowing down the creation of objects that never even used the access system.
-	var/i
-	if(!req_access)
-		req_access = list()
-		if(req_access_txt)
-			var/list/req_access_str = text2list(req_access_txt, ";")
-			var/n
-			for(i in req_access_str)
-				n = text2num(i)
-				if(!n)
-					continue
-				req_access += n
-
-	if(!req_one_access)
-		req_one_access = list()
-		if(req_one_access_txt)
-			var/list/req_one_access_str = text2list(req_one_access_txt, ";")
-			var/n
-			for(i in req_one_access_str)
-				n = text2num(i)
-				if(!n)
-					continue
-				req_one_access += n
-
-	if(!length(req_access) && !length(req_one_access))
+	if(!LAZYLEN(req_access) && !LAZYLEN(req_one_access))
 		return TRUE
 
 	if(!istype(ID))
 		return FALSE
 
-	for(i in req_access)
+	for(var/i in req_access)
 		if(!(i in ID.access))
 			return FALSE
 
-	if(length(req_one_access))
-		for(i in req_one_access)
+	if(LAZYLEN(req_one_access))
+		for(var/i in req_one_access)
 			if(!(i in ID.access))
 				continue
 			return TRUE
@@ -294,33 +270,33 @@
 		if("MO4")
 			. = size ? "MAJ " : "Major"
 		if("UPP1")
-			. = size ? "UPVT " : "UPP Private"
+			. = size ? "UGNR " : "USL Gunner"
 		if("UPP2")
-			. = size ? "UPFC " : "UPP Private First Class"
+			. = size ? "USUR " : "USL Surgeon"
 		if("UPP3")
-			. = size ? "UCPL " : "UPP Corporal"
+			. = size ? "UPOM " : "USL Powder Monkey"
 		if("UPP4")
-			. = size ? "ULCPL " : "UPP Lance Corporal"
+			. = size ? "UCPT " : "USL Captain"
 		if("UPP5")
-			. = size ? "USGT " : "UPP Sergeant"
+			. = size ? "UQM " : "USL Quartermaster"
 		if("UPP6")
-			. = size ? "USSGT " : "UPP Staff Sergeant"
+			. = size ? "USSGT " : "USL Staff Sergeant"
 		if("UPP7")
-			. = size ? "UENS " : "UPP Ensign"
+			. = size ? "UENS " : "USL Ensign"
 		if("UPP8")
-			. = size ? "ULT " : "UPP Lieutenant"
+			. = size ? "ULT " : "USL Lieutenant"
 		if("UPP9")
-			. = size ? "ULCDR " : "UPP Lieutenant Commander"
+			. = size ? "ULCDR " : "USL Lieutenant Commander"
 		if("UPP10")
-			. = size ? "UCDR " : "UPP Commander"
+			. = size ? "UCDR " : "USL Commander"
 		if("UPP11")
-			. = size ? "UADM " : "UPP Admiral"
+			. = size ? "UADM " : "USL Admiral"
 		if("UPPC1")
-			. = size ? "UPPC " : "UPP Commando Standard"
+			. = size ? "UEPM " : "USL Elite Powder Monkey"
 		if("UPPC2")
-			. = size ? "UPPC " : "UPP Commando Medic"
+			. = size ? "UESUR " : "USL Elite Surgeon"
 		if("UPPC3")
-			. = size ? "UPPC " : "UPP Commando Leader"
+			. = size ? "UECPT " : "USL Elite Captain"
 		if("FRE1")
 			. = size ? "FRE " : "Freelancer Standard"
 		if("FRE2")

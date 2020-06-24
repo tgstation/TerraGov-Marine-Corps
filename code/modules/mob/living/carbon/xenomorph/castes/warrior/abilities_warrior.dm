@@ -226,6 +226,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/M = A
 	if(X.issamexenohive(M))
+		X.changeNext_move(CLICK_CD_MELEE) // Add a delaay in to avoid spam
 		return M.attack_alien(X) //harmless nibbling.
 
 	GLOB.round_statistics.warrior_punches++
@@ -261,7 +262,7 @@
 		"<span class='xenowarning'>We hit [src] in the [L.display_name] with a devastatingly powerful punch!</span>")
 
 	if(L.limb_status & LIMB_SPLINTED) //If they have it splinted, the splint won't hold.
-		L.limb_status &= ~LIMB_SPLINTED
+		L.remove_limb_flags(LIMB_SPLINTED)
 		to_chat(src, "<span class='danger'>The splint on your [L.display_name] comes apart!</span>")
 
 	L.take_damage_limb(damage, 0, FALSE, FALSE, run_armor_check(target_zone))

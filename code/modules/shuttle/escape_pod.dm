@@ -60,7 +60,7 @@
 /obj/docking_port/mobile/escape_pod/proc/explode()
 	var/turf/T = return_center_turf()
 	var/average_dimension = (width+height)*0.25
-	explosion(T, -1, -1, average_dimension, average_dimension)
+	explosion(T, 0, 0, average_dimension, average_dimension)
 	launch_status = NOLAUNCH
 	open_all_doors()
 	SSshuttle.escape_pods -= src // no longer a valid pod
@@ -131,7 +131,6 @@
 
 	var/datum/browser/popup = new(user, "computer", "escape pod", 300, 200)
 	popup.set_content("<center>[dat]</center>")
-	popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
 /obj/machinery/computer/shuttle/escape_pod/Topic(href, href_list)
@@ -173,7 +172,7 @@
 		linked_to_shuttle = TRUE
 
 /obj/machinery/cryopod/evacuation/ex_act(severity)
-	return FALSE
+	return
 
 /obj/machinery/cryopod/evacuation/attackby(obj/item/grab/G, mob/user)
 	if(istype(G))

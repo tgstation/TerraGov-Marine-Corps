@@ -87,7 +87,6 @@ obj/structure/bed/Destroy()
 	buckled_bodybag.glide_modifier_flags &= ~GLIDE_MOD_BUCKLED
 	buckled_bodybag.reset_glide_size()
 	buckled_bodybag = null
-	buckled = null
 	density = FALSE
 	update_icon()
 
@@ -150,14 +149,14 @@ obj/structure/bed/Destroy()
 
 /obj/structure/bed/ex_act(severity)
 	switch(severity)
-		if(1)
+		if(EXPLODE_DEVASTATE)
 			qdel(src)
-		if(2)
+		if(EXPLODE_HEAVY)
 			if(prob(50))
 				if(buildstacktype)
 					new buildstacktype (loc, buildstackamount)
 				qdel(src)
-		if(3)
+		if(EXPLODE_LIGHT)
 			if(prob(5))
 				if(buildstacktype)
 					new buildstacktype (loc, buildstackamount)

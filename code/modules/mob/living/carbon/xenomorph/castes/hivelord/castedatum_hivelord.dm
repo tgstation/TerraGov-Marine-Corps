@@ -25,7 +25,7 @@
 
 	// *** Evolution *** //
 	evolution_threshold = 180
-	upgrade_threshold = 100
+	upgrade_threshold = 120
 
 	deevolves_to = /mob/living/carbon/xenomorph/drone
 
@@ -37,7 +37,7 @@
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 
 	// *** Defense *** //
-	armor = list("melee" = 10, "bullet" = 5, "laser" = 5, "energy" = 10, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
@@ -52,6 +52,7 @@
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/choose_resin/hivelord,
 		/datum/action/xeno_action/activable/secrete_resin/hivelord, // TODO: (psykzz) Disabled until this is fixed.
 		/datum/action/xeno_action/activable/transfer_plasma/improved,
@@ -89,10 +90,10 @@
 	max_health = 275
 
 	// *** Evolution *** //
-	upgrade_threshold = 200
+	upgrade_threshold = 240
 
 	// *** Defense *** //
-	armor = list("melee" = 15, "bullet" = 7, "laser" = 7, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
+	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
@@ -123,10 +124,10 @@
 	max_health = 290
 
 	// *** Evolution *** //
-	upgrade_threshold = 400
+	upgrade_threshold = 480
 
 	// *** Defense *** //
-	armor = list("melee" = 18, "bullet" = 9, "laser" = 9, "energy" = 18, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 18, "acid" = 18)
+	soft_armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 18, "acid" = 18)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
@@ -158,10 +159,10 @@
 	max_health = 300
 
 	// *** Evolution *** //
-	upgrade_threshold = 400
+	upgrade_threshold = 480
 
 	// *** Defense *** //
-	armor = list("melee" = 20, "bullet" = 10, "laser" = 10, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
+	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS

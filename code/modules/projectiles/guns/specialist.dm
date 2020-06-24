@@ -6,14 +6,14 @@
 //Note that this means that snipers will have a slowdown of 3, due to the scope
 /obj/item/weapon/gun/rifle/sniper
 	aim_slowdown = 1
-	gun_skill_category = GUN_SKILL_SPEC
+	gun_skill_category = GUN_SKILL_RIFLES
 	wield_delay = 1 SECONDS
 
 //Pow! Headshot
 
 /obj/item/weapon/gun/rifle/sniper/M42A
 	name = "\improper T-26 scoped rifle"
-	desc = "“The T-26 is an IFF capable sniper rifle which is mostly used by long range marksmen. It excels in long-range combat situations and support sniping. It has a laser designator installed, and the scope itself has IFF integrated into it. Uses specialized 10x28 caseless rounds made to work with the guns odd IFF-scope system.”  \nIt has an integrated Target Marker and a Laser Targeting system.\n\"Peace Through Superior Firepower\"."
+	desc = "The T-26 is an IFF capable sniper rifle which is mostly used by long range marksmen. It excels in long-range combat situations and support sniping. It has a laser designator installed, and the scope itself has IFF integrated into it. Uses specialized 10x28 caseless rounds made to work with the guns odd IFF-scope system.  \nIt has an integrated Target Marker and a Laser Targeting system.\n\"Peace Through Superior Firepower\"."
 	icon_state = "m42a"
 	item_state = "m42a"
 	max_shells = 15 //codex
@@ -279,7 +279,7 @@
 	starting_attachment_types = list(/obj/item/attachable/scope/slavic, /obj/item/attachable/slavicbarrel, /obj/item/attachable/stock/slavic)
 
 	fire_delay = 1.2 SECONDS
-	burst_amount = 2
+	burst_amount = 1
 	accuracy_mult = 0.85
 	scatter = 15
 	recoil = 2
@@ -290,7 +290,7 @@
 
 /obj/item/weapon/gun/rifle/m4ra
 	name = "\improper T-45 battle rifle"
-	desc ="The T-45 is a light full-powered rifle, thus designating it as a Battle Rifle, it is mostly used by light infantry and scouts. It's designed to be useable at all ranges due to the compact size it is also very adaptable to different situations due to the ability to use specialized ammo. Takes specialized 'A19' 10x28mm rounds."
+	desc ="The T-45 is a light specialized battle rifle, mostly used by light infantry and scouts. It's designed to be useable at all ranges due to the compact size it is also very adaptable to different situations due to the ability to use specialized ammo. An experimental, requisitions-only design, takes specialized 'A19' 10x28mm rounds."
 	icon_state = "m4ra"
 	item_state = "m4ra"
 	max_shells = 20 //codex
@@ -302,7 +302,7 @@
 	cocked_sound = 'sound/weapons/guns/interact/m4ra_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/m4ra
 	force = 16
-	aim_slowdown = 0.5
+	aim_slowdown = 0.35
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/extended_barrel,
@@ -317,14 +317,14 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	gun_skill_category = GUN_SKILL_SPEC
+	gun_skill_category = GUN_SKILL_FIREARMS
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 	starting_attachment_types = list(/obj/item/attachable/scope/mini/m4ra, /obj/item/attachable/stock/rifle/marksman)
 
-	fire_delay = 0.4 SECONDS
+	fire_delay = 0.45 SECONDS
 	burst_amount = 1
-	accuracy_mult = 1.05
-	scatter = 15
+	accuracy_mult = 1.75
+	scatter = -15
 	recoil = 2
 
 //-------------------------------------------------------
@@ -482,11 +482,11 @@
 						/obj/item/attachable/scope/mini)
 
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
-	gun_skill_category = GUN_SKILL_SPEC
+	gun_skill_category = GUN_SKILL_FIREARMS
 	var/datum/effect_system/smoke_spread/smoke
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
-	fire_delay = 2.3 SECONDS
+	fire_delay = 1.8 SECONDS
 
 
 /obj/item/weapon/gun/launcher/m92/Initialize()
@@ -526,7 +526,7 @@
 		return
 	if(gun_on_cooldown(user))
 		return
-	if(user.skills.getRating("spec_weapons") < 0 && !do_after(user, 0.8 SECONDS, TRUE, src))
+	if(user.skills.getRating("firearms") < 0 && !do_after(user, 0.8 SECONDS, TRUE, src))
 		return
 	if(get_dist(target,user) <= 2)
 		to_chat(user, "<span class='warning'>The grenade launcher beeps a warning noise. You are too close!</span>")
@@ -591,6 +591,43 @@
 /obj/item/weapon/gun/launcher/m92/get_ammo_count()
 	return length(grenades)
 
+//-------------------------------------------------------
+//T-70 Grenade Launcher.
+
+/obj/item/weapon/gun/launcher/m92/standardmarine
+	name = "\improper T-70 grenade launcher"
+	desc = "The T-70 is the standard grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "t70"
+	item_state = "t70"
+	max_shells = 6 //codex
+	caliber = "40mm grenades" //codex
+	load_method = SINGLE_CASING //codex
+	w_class = WEIGHT_CLASS_BULKY
+	flags_equip_slot = ITEM_SLOT_BACK
+	throw_speed = 2
+	throw_range = 10
+	force = 5.0
+	wield_delay = 1 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/m92_attachable.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
+	aim_slowdown = 1
+	general_codex_key = "explosive weapons"
+	attachable_allowed = list(
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/scope/mini)
+
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	starting_attachment_types = list(/obj/item/attachable/stock/t70stock)
+	gun_skill_category = GUN_SKILL_FIREARMS
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 11, "stock_y" = 12)
+
+	fire_delay = 2.2 SECONDS
+
+/obj/item/weapon/gun/launcher/m92/standardmarine/Initialize()
+	. = ..()
+	grenades.Cut(1,0)
 
 /obj/item/weapon/gun/launcher/m81
 	name = "\improper T-81 grenade launcher"
@@ -609,7 +646,7 @@
 	fire_sound = 'sound/weapons/armbomb.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
 	aim_slowdown = 1
-	gun_skill_category = GUN_SKILL_SPEC
+	gun_skill_category = GUN_SKILL_FIREARMS
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	attachable_allowed = list()
 	var/grenade
@@ -718,7 +755,7 @@
 
 /obj/item/weapon/gun/launcher/m81/riot
 	name = "\improper M81 riot grenade launcher"
-	desc = "A lightweight, single-shot grenade launcher to launch tear gas grenades. Used by the TerraGov Marine Corps Military Police during riots."
+	desc = "A lightweight, single-shot grenade launcher to launch tear gas grenades. Used by Nanotrasen security during riots."
 	grenade_type_allowed = /obj/item/explosive/grenade/chem_grenade
 	riot_version = TRUE
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_POLICE|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
@@ -728,8 +765,8 @@
 //M5 RPG
 
 /obj/item/weapon/gun/launcher/rocket
-	name = "\improper T-152 Rocket Launcher"
-	desc = "The T-152 RPG is the primary anti-armor weapon of the TGMC. Used to take out light-tanks and enemy structures, the T-152 RPG is a dangerous weapon with a variety of combat uses. Uses a variety of 84mm rockets."
+	name = "\improper T-152 rocket launcher"
+	desc = "The T-152 is the primary anti-armor weapon of the TGMC. Used to take out light-tanks and enemy structures, the T-152 rocket launcher is a dangerous weapon with a variety of combat uses. Uses a variety of 84mm rockets."
 	icon_state = "m5"
 	item_state = "m5"
 	max_shells = 1 //codex
@@ -749,7 +786,7 @@
 						/obj/item/attachable/scope/mini)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
-	gun_skill_category = GUN_SKILL_SPEC
+	gun_skill_category = GUN_SKILL_FIREARMS
 	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
 	unload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
@@ -780,7 +817,7 @@
 	if(has_attachment(/obj/item/attachable/scope/mini))
 		delay += 0.2 SECONDS
 
-	if(user.skills.getRating("spec_weapons") < 0)
+	if(user.skills.getRating("firearms") < 0)
 		delay += 0.6 SECONDS
 
 	if(!do_after(user, delay, TRUE, src, BUSY_ICON_DANGER)) //slight wind up
@@ -923,7 +960,7 @@
 	load_method = SINGLE_CASING //codex
 	fire_sound = 'sound/weapons/guns/fire/shotgun_light.ogg'
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/scout
-	gun_skill_category = GUN_SKILL_SPEC
+	gun_skill_category = GUN_SKILL_SHOTGUNS
 	aim_slowdown = 0.75
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
@@ -951,7 +988,7 @@
 //This gun is very powerful, but also has a kick.
 
 /obj/item/weapon/gun/minigun
-	name = "\improper MIC-A7 Vindicator Minigun"
+	name = "\improper MIC-A7 Vindicator minigun"
 	desc = "It's a damn minigun! The ultimate in man-portable firepower, spraying countless high velocity armor piercing rounds with a rotary action, this thing will no doubt pack a punch."
 	icon_state = "minigun"
 	item_state = "minigun"
@@ -967,7 +1004,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	force = 20
 	wield_delay = 15
-	gun_skill_category = GUN_SKILL_SPEC
+	gun_skill_category = GUN_SKILL_FIREARMS
 	aim_slowdown = 1.4
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
