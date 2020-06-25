@@ -41,19 +41,20 @@
 /datum/element/gesture/proc/start_gesture(mob/living/source, atom/object, location, control, params)
 	object = get_click_object(source, object, location, control, params)
 	if(!object)
-		return COMSIG_MOB_CLICK_CANCELED
+		return
 
 	starting_turf = get_turf(object)
 	starting_mob_turf = get_turf(source) // We use a ref and not the mob, since they can move while doin g this action
+	return COMSIG_MOB_CLICK_CANCELED
 
 /datum/element/gesture/proc/end_gesture(mob/living/source, atom/object, location, control, params)
 	object = get_click_object(source, object, location, control, params)
 	if(!object)
-		return COMSIG_MOB_CLICK_CANCELED
+		return
 
 	var/turf/finish_turf = get_turf(object)
 	if(starting_turf == finish_turf)
-		return COMSIG_MOB_CLICK_CANCELED
+		return
 
 	var/gesture_dir = get_dir(starting_turf, finish_turf)
 	var/start_dir_from_mob = get_dir(starting_mob_turf, starting_turf)
@@ -72,12 +73,13 @@
 	// Simple gesture away from mob
 	if(start_dir_from_mob == end_dir_from_mob && end_dir_from_mob == gesture_dir)
 		source.say("[dir2text(gesture_dir)][loudness]")
-		return
+		return COMSIG_MOB_CLICK_CANCELED
 	// Gestured across mob
 	else if(start_dir_from_mob == REVERSE_DIR(gesture_dir) && end_dir_from_mob == gesture_dir)
 		source.say("Push [dir2text(gesture_dir)][loudness]")
-		return
+		return COMSIG_MOB_CLICK_CANCELED
 	// Gesture torwards mob
 	else if(start_dir_from_mob == end_dir_from_mob)
 		source.say("Pull back [dir2text(gesture_dir)][loudness]")
+		return COMSIG_MOB_CLICK_CANCELED
 
