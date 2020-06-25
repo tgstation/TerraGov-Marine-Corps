@@ -86,7 +86,7 @@
 	icon_vend = "synth-vend"
 	icon_deny = "synth-deny"
 	wrenchable = FALSE
-	req_one_access = list(ACCESS_MARINE_CARGO)
+	req_one_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_LOGISTICS)
 	products = list(
 					/obj/item/storage/box/ammo = 30,
 					/obj/item/storage/box/nade_box = 2,
