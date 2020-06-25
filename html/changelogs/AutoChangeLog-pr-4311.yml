@@ -1,0 +1,4 @@
+author: "MacBlaze1"
+delete-after: True
+changes: 
+  - bugfix: "fixed the ability to gain super speed via exploiting detaching 1 armor piece from modular armor"
