@@ -397,23 +397,6 @@
 	max_storage_space = 7
 	pill_type_to_fill = /obj/item/reagent_containers/pill/zoom
 
-
-//Pill packets
-
-/obj/item/storage/pill_bottle/packet
-	name = "Pill packet"
-	desc = "Containts pills. Once you take them out they don't go back in."
-	icon_state = "pill_packet"
-	cant_hold = list(/obj/item/reagent_containers/pill) //Nada. Once you take the pills out. They don't come back in.
-	storage_slots = 4
-	max_w_class = 0
-	max_storage_space = 4
-
-/obj/item/storage/pill_bottle/packet/tricordrazine
-	name = "Pill packet"
-	desc = "This packet containts tricordazine pills. Heals all types of damage minorly. Once you take them out they don't go back in. No more than 2 pills."
-	pill_type_to_fill = /obj/item/reagent_containers/pill/tricordrazine
-
 //Pill bottles with identification locks.
 
 /obj/item/storage/pill_bottle/restricted
