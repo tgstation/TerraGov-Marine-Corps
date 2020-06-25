@@ -45,6 +45,8 @@
 	var/mob/living/M = O
 	if(CHECK_BITFIELD(M.restrained_flags, RESTRAINED_RAZORWIRE))
 		return
+	if(!M.density)
+		return
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 	var/armor_block = null
 	var/def_zone = ran_zone()
