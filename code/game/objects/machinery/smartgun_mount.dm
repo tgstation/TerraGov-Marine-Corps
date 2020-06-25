@@ -293,7 +293,7 @@
 
 	if(istype(I, /obj/item/ammo_magazine/m56d)) // RELOADING DOCTOR FREEMAN.
 		var/obj/item/ammo_magazine/m56d/M = I
-		if(user.skills.getRating("heavy_weapons") < SKILL_HEAVY_WEAPONS_TRAINED)
+		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 			if(rounds)
 				to_chat(user, "<span class='warning'>You only know how to swap the ammo drum when it's empty.</span>")
 				return
@@ -321,7 +321,7 @@
 	var/mob/living/carbon/human/user = usr //this is us
 	if(over_object == user && in_range(src, user))
 		if(locked)
-			to_chat(user, "This one is anchored in place and cannot be rotated.")
+			to_chat(user, "This one is anchored in place and cannot be disassembled.")
 			return
 		to_chat(user, "You begin disassembling the M56D mounted smartgun")
 		if(!do_after(user, 15, TRUE, src, BUSY_ICON_BUILD))
@@ -517,8 +517,9 @@
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 			user.visible_message("[user] rotates the [src].","You rotate the [src].")
 			setDir(angle)
-			if(!user.Move(get_step(src, REVERSE_DIR(dir))))
-				on_unset_interaction(user)
+			user.Move(get_step(src, REVERSE_DIR(dir)))
+			on_set_interaction(user)
+			operator.interactee = src
 		else 
 			to_chat(user, "[src] cannot be rotated so violently.")
 	if(burst_fire_toggled)
