@@ -393,11 +393,10 @@
 		if(WEST)
 			pixel_x = -12
 		if(NORTH)
-			pixel_y = -25
+			pixel_y = -10
 		if(EAST)
 			pixel_x = 12
-		if(SOUTH)
-			pixel_y = 25
+
 /obj/structure/sink/attack_hand(mob/living/user)
 	. = ..()
 	if(.)

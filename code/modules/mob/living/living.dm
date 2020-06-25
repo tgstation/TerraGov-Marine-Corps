@@ -633,19 +633,13 @@ below 100 is not dizzy
 
 
 /mob/living/proc/point_to_atom(atom/A, turf/T)
-	var/turf/tile = get_turf(A)
-	if (!tile)
-		return FALSE
-	var/turf/our_tile = get_turf(src)
 	//Squad Leaders and above have reduced cooldown and get a bigger arrow
 	if(skills.getRating("leadership") < SKILL_LEAD_TRAINED)
-		COOLDOWN_START(src, COOLDOWN_POINT, 5 SECONDS)
-		var/obj/visual = new /obj/effect/overlay/temp/point(our_tile, invisibility)
-		animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y, time = 1.7, easing = EASE_OUT)
+		COOLDOWN_START(src, COOLDOWN_POINT, 2.5 SECONDS)
+		new /obj/effect/overlay/temp/point(T)
 	else
 		COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)
-		var/obj/visual = new /obj/effect/overlay/temp/point/big(our_tile, invisibility)
-		animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y, time = 1.7, easing = EASE_OUT)
+		new /obj/effect/overlay/temp/point/big(T)
 	visible_message("<b>[src]</b> points to [A]")
 	return TRUE
 
