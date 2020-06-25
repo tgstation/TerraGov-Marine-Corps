@@ -96,6 +96,7 @@
 	var/step = get_step(user, user.dir)
 	var/obj/machinery/m56d_hmg/P = new(step)
 	P.setDir(user.dir)
+	P.rounds = rounds
 	P.update_icon()
 	qdel(src)
 /**
@@ -311,6 +312,7 @@
 		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 		var/obj/item/m56d_gun/HMG = new(loc) //Here we generate our disassembled mg.
 		HMG.rounds = rounds //Inherent the amount of ammo we had.
+		HMG.update_icon()
 		qdel(src) //Now we clean up the constructed gun.
 
 	else if(istype(I, /obj/item/ammo_magazine/m56d)) // RELOADING DOCTOR FREEMAN.
