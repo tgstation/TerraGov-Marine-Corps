@@ -290,32 +290,8 @@
 	if(!ishuman(user))
 		return
 
-	else if(iswrench(I)) // Let us rotate this stuff.
-		if(locked)
-			to_chat(user, "This one is anchored in place and cannot be rotated.")
-			return
 
-		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-		user.visible_message("[user] rotates the [src].","You rotate the [src].")
-		setDir(turn(dir, -90))
-
-	else if(isscrewdriver(I)) // Lets take it apart.
-		if(locked)
-			to_chat(user, "This one cannot be disassembled.")
-			return
-
-		to_chat(user, "You begin disassembling the M56D mounted smartgun")
-		if(!do_after(user, 15, TRUE, src, BUSY_ICON_BUILD))
-			return
-
-		user.visible_message("<span class='notice'> [user] disassembles [src]! </span>","<span class='notice'> You disassemble [src]!</span>")
-		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-		var/obj/item/m56d_gun/HMG = new(loc) //Here we generate our disassembled mg.
-		HMG.rounds = rounds //Inherent the amount of ammo we had.
-		HMG.update_icon()
-		qdel(src) //Now we clean up the constructed gun.
-
-	else if(istype(I, /obj/item/ammo_magazine/m56d)) // RELOADING DOCTOR FREEMAN.
+	if(istype(I, /obj/item/ammo_magazine/m56d)) // RELOADING DOCTOR FREEMAN.
 		var/obj/item/ammo_magazine/m56d/M = I
 		if(user.skills.getRating("heavy_weapons") < SKILL_HEAVY_WEAPONS_TRAINED)
 			if(rounds)
@@ -337,6 +313,24 @@
 		update_icon()
 		user.temporarilyRemoveItemFromInventory(I)
 		qdel(I)
+
+/obj/machinery/m56d_hmg/MouseDrop(over_object, src_location, over_location) //Drag the tripod onto you to fold it.
+	if(!ishuman(usr))
+		return
+
+	var/mob/living/carbon/human/user = usr //this is us
+	if(over_object == user && in_range(src, user))
+		if(locked)
+			to_chat(user, "This one is anchored in place and cannot be rotated.")
+			return
+		to_chat(user, "You begin disassembling the M56D mounted smartgun")
+		if(!do_after(user, 15, TRUE, src, BUSY_ICON_BUILD))
+			return
+		user.visible_message("<span class='notice'> [user] disassembles [src]! </span>","<span class='notice'> You disassemble [src]!</span>")
+		var/obj/item/m56d_gun/HMG = new(loc)
+		HMG.rounds = rounds
+		HMG.update_icon()
+		qdel(src)
 
 
 /obj/machinery/m56d_hmg/attack_alien(mob/living/carbon/xenomorph/M) // Those Ayy lmaos.
@@ -478,46 +472,6 @@
 
 	return ..()
 
-
-/obj/machinery/m56d_hmg/MouseDrop(over_object, src_location, over_location) //Drag the MG to us to man it.
-	if(!ishuman(usr))
-		return
-	var/mob/living/carbon/human/user = usr //this is us
-	if(user.incapacitated())
-		return
-	if((over_object == user && (in_range(src, user) || locate(src) in user))) //Make sure its on ourselves
-		if(user.interactee == src)
-			user.unset_interaction()
-			visible_message("[icon2html(src, viewers(src))] <span class='notice'>[user] decided to let someone else have a go </span>")
-			to_chat(usr, "<span class='notice'>You decided to let someone else have a go on the MG </span>")
-			return
-		if(!Adjacent(user))
-			to_chat(usr, "<span class='warning'>Something is between you and [src].</span>")
-			return
-		if(get_step(src,reverse_direction(dir)) != user.loc)
-			to_chat(user, "<span class='warning'>You should be behind [src] to man it!</span>")
-			return
-		if(operator) //If there is already a operator then they're manning it.
-			if(operator.interactee == null)
-				operator = null //this shouldn't happen, but just in case
-			else
-				to_chat(user, "Someone's already controlling it.")
-				return
-		else
-			if(user.interactee) //Make sure we're not manning two guns at once, tentacle arms.
-				to_chat(user, "You're already manning something!")
-				return
-			if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
-				to_chat(user, "<span class='warning'>Your programming restricts operating heavy weaponry.</span>")
-				return
-			if(user.get_active_held_item() != null)
-				to_chat(user, "<span class='warning'>You need a free hand to man the [src].</span>")
-			else
-				visible_message("[icon2html(src, viewers(src))] <span class='notice'>[user] mans the M56D!</span>")
-				to_chat(user, "<span class='notice'>You man the gun!</span>")
-				user.set_interaction(src)
-
-
 /obj/machinery/m56d_hmg/InterceptClickOn(mob/user, params, atom/object)
 	if(is_bursting)
 		return TRUE
@@ -550,8 +504,23 @@
 			playsound(src, 'sound/weapons/guns/fire/empty.ogg', 25, 1, 5)
 		else
 			process_shot(user)
+		user.setDir(dir)
 		return TRUE
-
+	else if (!(dir & angle) && target.loc != loc && target.loc != operator.loc) // Let us rotate this stuff.
+		if(locked)
+			to_chat(user, "This one is anchored in place and cannot be rotated.")
+			return
+		var/list/leftright = LeftAndRightOfDir(dir)
+		var/left = leftright[1] - 1
+		var/right = leftright[2] + 1
+		if(left == (angle-1) || right == (angle+1))			
+			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+			user.visible_message("[user] rotates the [src].","You rotate the [src].")
+			setDir(angle)
+			if(!user.Move(get_step(src, REVERSE_DIR(dir))))
+				on_unset_interaction(user)
+		else 
+			to_chat(user, "[src] cannot be rotated so violently.")
 	if(burst_fire_toggled)
 		burst_fire = !burst_fire
 	return FALSE
