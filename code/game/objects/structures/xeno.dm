@@ -735,6 +735,7 @@ TUNNEL
 	var/charges = 1
 	var/ccharging = FALSE
 	var/mob/living/carbon/xenomorph/creator = null
+	var/turf/gasturf = null
 
 /obj/effect/alien/resin/acidwell/Initialize()
 	. = ..()
@@ -745,10 +746,13 @@ TUNNEL
 		var/area/A = get_area(src)
 		if(A)
 			to_chat(creator, "<span class='xenoannounce'>You sense your acid well at [A.name] has been destroyed!</span>")
-	var/datum/effect_system/smoke_spread/xeno/acid/A = new(get_turf(src))
-	A.set_up(clamp(charges,0,2),src)
-	A.start()
+	addtimer(CALLBACK(src,.proc/gasdestroy), 1 SECONDS)
 	return ..()
+
+/obj/effect/alien/resin/acidwell/proc/gasdestroy()
+	var/datum/effect_system/smoke_spread/xeno/acid/A = new(gasturf)
+	A.set_up(clamp(charges,0,2),gasturf)
+	A.start()
 
 /obj/effect/alien/resin/acidwell/examine(mob/user)
 	..()
@@ -829,6 +833,7 @@ TUNNEL
 		if(!charges)
 			return
 		C.adjustToxLoss(charges * 15)
+		C.apply_damage(20*charges,BURN,blocked=clamp(C.getarmor("acid"),0,50))
 		charges = 0
 		update_icon()
 		return

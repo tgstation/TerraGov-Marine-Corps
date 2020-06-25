@@ -378,7 +378,7 @@
 	action_icon_state = "place_trap"
 	mechanics_text = "Place an acid well that can put out fires."
 	plasma_cost = 500
-	cooldown_timer = 2 MINUTES
+	cooldown_timer = 30 SECONDS
 
 /datum/action/xeno_action/place_acidwell/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -401,12 +401,19 @@
 			to_chat(owner, "<span class='warning'>There is a resin node in the way!</span>")
 		return FALSE
 
+	if(locate(/obj/effect/alien/resin/acidwell) in range(1,T))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>There is an acid well nearby!</span>")
+		return FALSE
+
 /datum/action/xeno_action/place_acidwell/action_activate()
 	var/turf/T = get_turf(owner)
 
 	succeed_activate()
+	add_cooldown()
 
 	playsound(T, "alien_resin_build", 25)
 	var/obj/effect/alien/resin/acidwell/AC = new /obj/effect/alien/resin/acidwell(T, owner)
 	AC.creator = owner
+	AC.gasturf = T
 	to_chat(owner, "<span class='xenonotice'>We place an acid well. It can still be charged more.</span>")
