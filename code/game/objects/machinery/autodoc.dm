@@ -59,6 +59,15 @@
 	var/stored_metal = 1000 // starts with 500 metal loaded
 	var/stored_metal_max = 2000
 
+/obj/machinery/autodoc/Initialize()
+	. = ..()
+	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
+
+/obj/machinery/autodoc/proc/shuttle_crush()
+	if(occupant)
+		var/mob/living/carbon/human/H = occupant
+		go_out()
+		H.gib()
 
 /obj/machinery/autodoc/power_change()
 	. = ..()
