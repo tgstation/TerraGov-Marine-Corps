@@ -223,7 +223,7 @@
 	. = ..()
 	if(. && isliving(user))
 		var/mob/living/L = user
-		L.Paralyze(200)
+		L.Paralyze(20 SECONDS)
 
 
 /datum/emote/living/carbon/human/sneeze
