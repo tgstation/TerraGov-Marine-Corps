@@ -1003,7 +1003,7 @@
 	type_of_casings = "cartridge"
 	w_class = WEIGHT_CLASS_HUGE
 	force = 20
-	wield_delay = 1.2
+	wield_delay = 12
 	gun_skill_category = GUN_SKILL_FIREARMS
 	aim_slowdown = 0.8
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
