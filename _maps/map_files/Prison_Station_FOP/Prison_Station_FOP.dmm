@@ -42195,10 +42195,6 @@
 	icon_state = "asteroid"
 	},
 /area/prison/residential/central)
-"cEO" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/closed/wall/r_wall/prison_unmeltable,
-/area/prison/residential/central)
 "cMq" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall/prison_unmeltable,
@@ -42506,9 +42502,6 @@
 /area/prison/hangar/civilian)
 "jJk" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 8
-	},
 /turf/closed/wall/r_wall/prison,
 /area/prison/security/checkpoint/hangar)
 "jNw" = (
@@ -42987,9 +42980,6 @@
 /area/prison/cellblock/mediumsec/south)
 "xdx" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/prison/security/checkpoint/hangar)
 "xGi" = (
@@ -48041,7 +48031,7 @@ aab
 aab
 aab
 aab
-bFG
+amu
 aTk
 hEZ
 aok
@@ -48068,7 +48058,7 @@ aok
 cto
 aok
 aok
-hHw
+amu
 aab
 aab
 aab
@@ -48298,7 +48288,7 @@ aRS
 aRS
 aRS
 aRS
-bFG
+amu
 apA
 gCN
 aok
@@ -48325,7 +48315,7 @@ aok
 ctq
 aok
 aok
-hHw
+amu
 bwu
 bwu
 bwu
@@ -49583,7 +49573,7 @@ aTW
 aRS
 aWn
 aWn
-cEO
+aZP
 dpL
 dpL
 dpL
@@ -49610,7 +49600,7 @@ dpL
 dpL
 dpL
 dpL
-cEO
+aZP
 aWn
 aWn
 bwu
@@ -101010,7 +101000,7 @@ aXt
 dqy
 dqy
 dqy
-iVk
+aXt
 bAG
 bAH
 bCZ
@@ -101495,13 +101485,13 @@ aOW
 aTP
 aNH
 aab
-iVk
+aXt
 aYL
 aYL
 aYL
 iVk
 iVk
-iVk
+aXt
 aVm
 bnQ
 bnQ
@@ -101524,7 +101514,7 @@ bnQ
 bnQ
 bnQ
 bmw
-upV
+bzi
 upV
 byu
 bDb

@@ -253,8 +253,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 			if(bitf == MARINE_CAN_BUY_UNIFORM && ishumanbasic(usr))
 				var/mob/living/carbon/human/H = usr
 				new /obj/item/radio/headset/mainship/marine(loc, H.assigned_squad, vendor_role)
-				if(!H.job == SQUAD_ENGINEER)
-					new /obj/item/clothing/gloves/marine(loc, H.assigned_squad, vendor_role)
+				new /obj/item/clothing/gloves/marine(loc, H.assigned_squad, vendor_role)
 				if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
 					new /obj/item/clothing/mask/rebreather/scarf(loc)
 
@@ -1082,6 +1081,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/lightreplacer,
 						/obj/item/circuitboard/general,
 						)
+
 
 /obj/effect/essentials_set/leader
 	spawned_gear_list = list(
