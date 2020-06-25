@@ -1,0 +1,5 @@
+author: "XSlayer300"
+delete-after: True
+changes: 
+  - rscadd: "Added Corrupted, Beta, Alpha and Zeta (but not Admeme) Hive ERTs for admin-only events."
+  - rscadd: "Added Corrupted, Beta, Alpha and Zeta (but not Admeme) Hive versions of all the xenomorphs (except queen) so far."
