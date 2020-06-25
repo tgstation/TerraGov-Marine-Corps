@@ -165,7 +165,7 @@
 
 	message_admins("Distress beacon: [name] got [length(candidates)] candidates, [length(valid_candidates)] of them were valid.")
 
-	if(length(valid_candidates) < mob_min)
+	if(mob_min && length(valid_candidates) < mob_min)
 		message_admins("Aborting distress beacon [name], not enough candidates. Found: [length(valid_candidates)]. Minimum required: [mob_min].")
 		SSticker.mode.waiting_for_candidates = FALSE
 		members.Cut() //Empty the members list.
@@ -206,15 +206,11 @@
 		CRASH("ert called with invalid shuttle_id")
 	var/datum/map_template/shuttle/S = SSmapping.shuttle_templates[shuttle_id]
 
-	shuttle = SSshuttle.action_load(S)
-
-	if(!istype(shuttle))
-		message_admins("Distress beacon: [name] couldn't load a shuttle template")
-		CRASH("ert shuttle failed to load")
-
-	var/obj/docking_port/stationary/L = SSshuttle.generate_transit_dock(shuttle)
-
-	shuttle.initiate_docking(L)
+	shuttle = SSshuttle.load_template_to_transit(S)
+	if(!shuttle)
+		message_admins("Distress beacon: shuttle loading failed")
+		reset()
+		return
 
 	spawn_items()
 

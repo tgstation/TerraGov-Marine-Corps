@@ -55,11 +55,11 @@
 
 	var/datum/map_template/shuttle/ST = SSmapping.shuttle_templates[shuttle_id]
 
-	shuttle = SSshuttle.action_load(ST)
+	shuttle = SSshuttle.load_template_to_transit(ST)
 
-	var/obj/docking_port/stationary/L = SSshuttle.generate_transit_dock(shuttle)
-
-	shuttle.initiate_docking(L)
+	if(!shuttle)
+		message_admins("Crash mode: shuttle loading failed, forcing pre_setup failure")
+		return FALSE
 
 	// Redefine the relevant spawnpoints after spawning the ship.
 	for(var/job_type in shuttle.spawns_by_job)

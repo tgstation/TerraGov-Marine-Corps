@@ -238,6 +238,7 @@
 		SSshuttle.transit -= src
 		if(owner)
 			if(owner.assigned_transit == src)
+				log_world("A transit dock was qdeled while it was assigned to [owner].")
 				owner.assigned_transit = null
 			owner = null
 		if(!QDELETED(reserved_area))
