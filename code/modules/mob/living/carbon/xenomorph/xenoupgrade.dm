@@ -76,16 +76,16 @@
 	upgrade = XENO_UPGRADE_TWO
 
 // ERT Versions:
-/mob/living/carbon/xenomorph/drone/elder/corrupted
+/mob/living/carbon/xenomorph/drone/elder/Corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
-/mob/living/carbon/xenomorph/drone/elder/alpha
+/mob/living/carbon/xenomorph/drone/elder/Alpha
 	hivenumber = XENO_HIVE_ALPHA
 
-/mob/living/carbon/xenomorph/drone/elder/beta
+/mob/living/carbon/xenomorph/drone/elder/Beta
 	hivenumber = XENO_HIVE_BETA
 
-/mob/living/carbon/xenomorph/drone/elder/zeta
+/mob/living/carbon/xenomorph/drone/elder/Zeta
 	hivenumber = XENO_HIVE_ZETA
 
 /mob/living/carbon/xenomorph/drone/ancient
@@ -149,16 +149,16 @@
 	upgrade = XENO_UPGRADE_ONE
 
 // ERT Versions:
-/mob/living/carbon/xenomorph/spitter/mature/corrupted
+/mob/living/carbon/xenomorph/spitter/mature/Corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
-/mob/living/carbon/xenomorph/spitter/mature/alpha
+/mob/living/carbon/xenomorph/spitter/mature/Alpha
 	hivenumber = XENO_HIVE_ALPHA
 
-/mob/living/carbon/xenomorph/spitter/mature/beta
+/mob/living/carbon/xenomorph/spitter/mature/Beta
 	hivenumber = XENO_HIVE_BETA
 
-/mob/living/carbon/xenomorph/spitter/mature/zeta
+/mob/living/carbon/xenomorph/spitter/mature/Zeta
 	hivenumber = XENO_HIVE_ZETA
 
 /mob/living/carbon/xenomorph/spitter/elder
@@ -171,16 +171,16 @@
 	upgrade = XENO_UPGRADE_ONE
 
 // ERT Versions:
-/mob/living/carbon/xenomorph/hunter/mature/corrupted
+/mob/living/carbon/xenomorph/hunter/mature/Corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
-/mob/living/carbon/xenomorph/hunter/mature/alpha
+/mob/living/carbon/xenomorph/hunter/mature/Alpha
 	hivenumber = XENO_HIVE_ALPHA
 
-/mob/living/carbon/xenomorph/hunter/mature/beta
+/mob/living/carbon/xenomorph/hunter/mature/Beta
 	hivenumber = XENO_HIVE_BETA
 
-/mob/living/carbon/xenomorph/hunter/mature/zeta
+/mob/living/carbon/xenomorph/hunter/mature/Zeta
 	hivenumber = XENO_HIVE_ZETA
 
 /mob/living/carbon/xenomorph/hunter/elder
