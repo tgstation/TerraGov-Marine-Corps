@@ -1,4 +1,0 @@
-author: "XElectricX"
-delete-after: True
-changes: 
-  - bugfix: "Mini sentry started out with less health due to the folded state's max integrity not being raised. It now matches the deployed health."
