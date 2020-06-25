@@ -40,7 +40,7 @@
 /datum/component/directional_attack/proc/living_directional_action_checks(mob/living/L)
 	if(COOLDOWN_CHECK(src, COOLDOWN_DIRECTIONAL_ATTACK))
 		return NONE
-	if(L.throwing || L.incapacitated())
+	if(L.throwing)
 		return NONE
 
 /datum/component/directional_attack/proc/carbon_directional_action_checks(mob/living/L)
