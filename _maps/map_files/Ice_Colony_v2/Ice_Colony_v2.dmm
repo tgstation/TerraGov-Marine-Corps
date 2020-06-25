@@ -2909,7 +2909,8 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/surface/valley/northwest)
 "akn" = (
-/turf/closed/ice,
+/obj/effect/turf_underlay/icefloor,
+/turf/closed/ice/thin/corner,
 /area/ice_colony/exterior/surface/valley/northwest)
 "ako" = (
 /obj/structure/rack,
@@ -14332,10 +14333,8 @@
 	},
 /area/ice_colony/surface/storage_unit/research)
 "aTO" = (
-/obj/effect/turf_underlay/icefloor,
-/turf/closed/ice/thin/corner{
-	dir = 1
-	},
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/closed/ice_rock/northWall,
 /area/ice_colony/exterior/surface/cliff)
 "aTP" = (
 /obj/structure/reagent_dispensers/beerkeg,
@@ -14386,7 +14385,12 @@
 	},
 /area/ice_colony/surface/hangar/beta)
 "aTY" = (
-/turf/open/floor/plating/ground/ice,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/closed/ice_rock/corners{
+	dir = 9
+	},
 /area/ice_colony/exterior/surface/cliff)
 "aTZ" = (
 /turf/closed/shuttle{
@@ -17992,9 +17996,6 @@
 	dir = 6
 	},
 /area/ice_colony/exterior/surface/landing_pad)
-"bfl" = (
-/turf/closed/ice_rock/corners,
-/area/ice_colony/exterior/surface/valley/west)
 "bfm" = (
 /obj/structure/closet/crate,
 /turf/open/floor/tile/vault{
@@ -18252,17 +18253,10 @@
 	dir = 5
 	},
 /area/ice_colony/underground/requesition/lobby)
-"bfZ" = (
-/obj/effect/turf_overlay/icerock,
-/turf/closed/ice_rock/corners,
-/area/ice_colony/exterior/surface/valley/west)
 "bga" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/valley/southwest)
-"bgb" = (
-/turf/closed/ice_rock/southWall,
-/area/ice_colony/exterior/surface/valley/west)
 "bgc" = (
 /obj/structure/cable,
 /turf/open/floor/plating/icefloor/warnplate{
@@ -33260,10 +33254,6 @@
 	},
 /turf/closed/ice_rock/corners,
 /area/ice_colony/exterior/surface/cliff)
-"gxG" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/ice_rock/corners,
-/area/ice_colony/exterior/surface/valley/west)
 "gEI" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -33294,12 +33284,6 @@
 	dir = 6
 	},
 /area/ice_colony/exterior/underground/caves)
-"hgM" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
-/turf/closed/ice_rock/corners,
-/area/ice_colony/exterior/surface/valley/west)
 "hmq" = (
 /obj/effect/decal/cleanable/cobweb{
 	dir = 1
@@ -39454,8 +39438,8 @@ ajj
 ayq
 php
 alJ
-aik
-bca
+amA
+asf
 alJ
 alJ
 alJ
@@ -39712,8 +39696,8 @@ aBi
 php
 aac
 aac
-aTO
-bca
+aJt
+asf
 alJ
 alJ
 alJ
@@ -39961,15 +39945,15 @@ abk
 xTU
 aaJ
 atf
-afO
-afO
+abH
+abH
 aaP
 abM
 abn
 ijr
 aac
 aac
-bfl
+aac
 aJt
 asf
 alJ
@@ -40218,16 +40202,16 @@ aeF
 asC
 aaJ
 alO
-bca
-afO
+akn
+abH
 afx
 aaQ
 aaU
 gEI
-bfl
-bfZ
-bdn
-beE
+aac
+aad
+aag
+aaU
 and
 alJ
 alJ
@@ -40480,9 +40464,9 @@ aaC
 aaR
 aaZ
 alR
-hgM
-bfl
-beE
+gEI
+aac
+aaU
 and
 aok
 ane
@@ -40736,9 +40720,9 @@ aaI
 abZ
 aac
 aac
-bfl
-hgM
-beE
+aac
+gEI
+aaU
 aok
 ane
 alJ
@@ -40993,9 +40977,9 @@ ahk
 aae
 qPe
 qPe
-gxG
-beE
-beE
+qPe
+aTY
+aaU
 alJ
 alJ
 alJ
@@ -41248,10 +41232,10 @@ aaJ
 atx
 aKD
 hLk
-bfl
-bfl
-beE
-beE
+aac
+aac
+aaU
+aaU
 and
 alJ
 alJ
@@ -41505,9 +41489,9 @@ aaJ
 atx
 agC
 veR
-bfl
-beE
-beE
+aac
+aaU
+aaU
 and
 ane
 alJ
@@ -41762,8 +41746,8 @@ aaJ
 atx
 bco
 veR
-bfl
-bgb
+aac
+aae
 amA
 ane
 alJ
@@ -42020,10 +42004,10 @@ aaJ
 aaI
 ijr
 aac
-bgb
+aae
 alJ
 alJ
-aTY
+alJ
 alJ
 alJ
 alJ
@@ -42277,7 +42261,7 @@ aaJ
 aaI
 ijr
 aac
-beE
+aaU
 amB
 aaP
 aaZ
@@ -43027,7 +43011,7 @@ aby
 abB
 abB
 aby
-acY
+wHH
 wHH
 wHH
 wHH
@@ -43046,7 +43030,7 @@ yem
 yem
 yem
 fRw
-acm
+aTO
 aae
 alJ
 alJ
@@ -43541,7 +43525,7 @@ aah
 aah
 aah
 aah
-aai
+dfk
 aco
 aag
 abN
@@ -43562,7 +43546,7 @@ aaI
 aaJ
 acj
 aaU
-awG
+aaC
 alJ
 alI
 alI
@@ -43816,7 +43800,7 @@ agd
 aaJ
 aaI
 aaI
-ahk
+aaP
 aaZ
 aiH
 alJ
@@ -44072,8 +44056,8 @@ aaJ
 aaJ
 aaI
 aaI
-afp
-ahI
+aaS
+aaZ
 aiH
 aiH
 aif
@@ -44328,9 +44312,9 @@ agd
 aaJ
 aaJ
 aaI
-ahk
-ahI
-aAk
+aaP
+aaZ
+aaQ
 aiH
 aif
 aif
@@ -44584,10 +44568,10 @@ agd
 agd
 aaJ
 aaI
-akn
+aaC
 aaB
 aar
-ahI
+aaZ
 aaI
 ahH
 ahE
