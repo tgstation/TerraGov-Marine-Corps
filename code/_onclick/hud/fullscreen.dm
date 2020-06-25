@@ -170,11 +170,4 @@
 	blend_mode = BLEND_ADD
 	show_when_dead = TRUE
 
-//Helmet effects for spacesuits
-
-/obj/screen/fullscreen/helmet
-	icon_state = "helmet"
-	plane = FULLSCREEN_PLANE
-	show_when_dead = TRUE
-
 #undef SHOULD_SHOW_TO

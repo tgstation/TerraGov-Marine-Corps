@@ -55,7 +55,6 @@
 	var/max_health //Its max health, to heal up to
 	var/venting = 0
 	var/vent_amount
-	var/has_overlay = 0
 
 /datum/component/armor_protection_limb/Initialize(var/_covered_limb, var/_starting_health, var/_max_health, var/_vent_amount)
 	.=..()
@@ -67,8 +66,6 @@
 	if(_vent_amount)
 		ENABLE_BITFIELD(venting, TRUE)
 		vent_amount = _vent_amount
-	if(CHECK_BITFIELD(covered_limbs, HEAD) && (CHECK_BITFIELD(venting, TRUE)))
-		has_overlay = 1
 
 /datum/component/armor_protection_limb/RegisterWithParent()
 	.=..()
@@ -77,15 +74,11 @@
 
 /datum/component/armor_protection_limb/proc/on_equip(obj/item/I, mob/equipper)
 	RegisterSignal(equipper, COMSIG_ATOM_BULLET_ACT, .proc/on_projectile)
-	if(has_overlay)
-		update_overlay()
 
 /datum/component/armor_protection_limb/proc/on_unequip(obj/item/I, mob/unequipper, slot)
 	if(isitem(parent))
 		if(!(I.flags_equip_slot & slotdefine2slotbit(slot)))
 			return
-		if(has_overlay)
-			usr.clear_fullscreen("helmet")
 	UnregisterSignal(unequipper, COMSIG_ATOM_BULLET_ACT)
 
 /datum/component/armor_protection_limb/proc/on_projectile(obj/item/I, var/obj/projectile/proj)
@@ -93,26 +86,10 @@
 		return adjust_health(max(0, proj.damage - round(proj.distance_travelled * proj.damage_falloff)))
 	return FALSE
 
-/datum/component/armor_protection_limb/proc/update_overlay(mob/user)
-	switch(health)
-		if(91 to INFINITY)
-			return
-		if(61 to 90)
-			usr.overlay_fullscreen("helmet", /obj/screen/fullscreen/helmet, 1)
-		if(31 to 60)
-			usr.overlay_fullscreen("helmet", /obj/screen/fullscreen/helmet, 2)
-		if(6 to 30)
-			usr.overlay_fullscreen("helmet", /obj/screen/fullscreen/helmet, 3)
-		if(-INFINITY to 5)
-			usr.overlay_fullscreen("helmet", /obj/screen/fullscreen/helmet, 4)
-
-
 #define VENTING (1<<1)
 
 /datum/component/armor_protection_limb/proc/adjust_health(var/amount)
 	health = CLAMP(health - amount, 0, max_health)
-	if(has_overlay)
-		update_overlay()
 	if(health <= 0)
 		if(CHECK_BITFIELD(venting, TRUE) && !CHECK_BITFIELD(venting, VENTING))
 			ENABLE_BITFIELD(venting, VENTING)
