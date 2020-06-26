@@ -13,7 +13,7 @@
 	toggle_action.update_button_icon(active)
 	RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, toggle_path)
 	if(active)
-		RegisterSignal(parent, COMSIG_CLICK, .proc/select_directional_action)
+		RegisterSignal(parent, COMSIG_DIRECT_ATTACK, .proc/select_directional_action)
 
 /datum/component/directional_attack/Destroy(force, silent)
     QDEL_NULL(toggle_action)
@@ -32,9 +32,9 @@
 	active = !active
 	to_chat(attacker, "<span class='notice'>You will now [active ? "attack" : "not attack"] enemies in melee range upon clicking in their direction.</span>")
 	if(active)
-		RegisterSignal(attacker, COMSIG_CLICK, .proc/select_directional_action)
+		RegisterSignal(attacker, COMSIG_DIRECT_ATTACK, .proc/select_directional_action)
 	else
-		UnregisterSignal(attacker, COMSIG_CLICK, .proc/select_directional_action)
+		UnregisterSignal(attacker, COMSIG_DIRECT_ATTACK, .proc/select_directional_action)
 	toggle_action.update_button_icon(active)
 
 /datum/component/directional_attack/proc/living_directional_action_checks(mob/living/L)
