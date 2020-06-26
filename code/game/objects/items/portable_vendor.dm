@@ -217,7 +217,7 @@
 	name = "\improper TerraGov Storage Backpack"
 	desc = "A backpack-sized automated storage and retrieval system. Designed to efficiently store and selectively dispense large kits during immediate operations. Can only vend one kit per person."
 	icon_state = "marinepack"
-	req_access_txt = "9"
+	req_access = list(ACCESS_MARINE_PREP)
 	points = 1
 	max_points = 1
 

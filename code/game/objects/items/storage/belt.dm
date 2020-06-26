@@ -293,7 +293,7 @@
 	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
 	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
 
-/obj/item/storage/belt/marine/t19/Initialize()
+/obj/item/storage/belt/marine/t90/Initialize()
 	. = ..()
 	new /obj/item/ammo_magazine/smg/standard_smg(src)
 	new /obj/item/ammo_magazine/smg/standard_smg(src)

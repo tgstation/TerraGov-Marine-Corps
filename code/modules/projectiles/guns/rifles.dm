@@ -204,7 +204,7 @@
 	burst_amount = 1
 
 /obj/item/weapon/gun/rifle/standard_dmr/marksman
-	starting_attachment_types = list(/obj/item/attachable/stock/dmr, /obj/item/attachable/scope, /obj/item/attachable/angledgrip, /obj/item/attachable/extended_barrel)
+	starting_attachment_types = list(/obj/item/attachable/scope, /obj/item/attachable/angledgrip, /obj/item/attachable/extended_barrel)
 
 
 
@@ -573,7 +573,7 @@
 	scatter_unwielded = 80
 
 /obj/item/weapon/gun/rifle/standard_lmg/autorifleman
-	starting_attachment_types = list(/obj/item/attachable/stock/dmr, /obj/item/attachable/verticalgrip, /obj/item/attachable/t42barrel, /obj/item/attachable/reddot)
+	starting_attachment_types = list(/obj/item/attachable/verticalgrip, /obj/item/attachable/t42barrel, /obj/item/attachable/reddot)
 
 //-------------------------------------------------------
 //M41AE2 Heavy Pulse Rifle
