@@ -758,7 +758,7 @@
 	desc = "A large case containing the T-90 submachinegun and equipment relating to it. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	storage_slots = 15
 
-/obj/item/storage/box/squadmarine/engineert19/Initialize(mapload, ...)
+/obj/item/storage/box/squadmarine/engineert90/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/weapon/gun/smg/standard_smg/nonstandard(src)
 	new /obj/item/clothing/head/helmet/marine/heavy(src)
@@ -802,7 +802,7 @@
 	desc = "A large case containing the T-90 submachinegun and equipment relating to it. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	storage_slots = 8
 
-/obj/item/storage/box/squadmarine/corpsmant19/Initialize(mapload, ...)
+/obj/item/storage/box/squadmarine/corpsmant90/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/weapon/gun/smg/standard_smg/nonstandard(src)
 	new /obj/item/clothing/tie/storage/brown_vest(src)
@@ -832,15 +832,14 @@
 
 /obj/item/storage/box/squadmarine/smartgunnert19/Initialize(mapload, ...)
 	. = ..()
-	new /obj/item/storage/large_holster/t19(src)
 	new /obj/item/weapon/gun/smg/standard_machinepistol(src)
 	new /obj/item/storage/pouch/magazine/smgfull(src)
 	new /obj/item/clothing/tie/storage/brown_vest(src)
-	new /obj/item/ammo_magazine/smg/standard_smg(src)
-	new /obj/item/ammo_magazine/smg/standard_smg(src)
-	new /obj/item/ammo_magazine/smg/standard_smg(src)
-	new /obj/item/ammo_magazine/smg/standard_smg(src)
-	new /obj/item/ammo_magazine/smg/standard_smg(src)
+	new /obj/item/ammo_magazine/smg/standard_machinepistol(src)
+	new /obj/item/ammo_magazine/smg/standard_machinepistol(src)
+	new /obj/item/ammo_magazine/smg/standard_machinepistol(src)
+	new /obj/item/ammo_magazine/smg/standard_machinepistol(src)
+	new /obj/item/ammo_magazine/smg/standard_machinepistol(src)
 	new /obj/item/clothing/mask/rebreather/scarf(src)
 	new /obj/item/smartgun_powerpack(src)
 

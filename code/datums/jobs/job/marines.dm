@@ -221,15 +221,26 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	gloves =/obj/item/clothing/gloves/marine
 	head = /obj/item/clothing/head/helmet/marine
 	l_store = /obj/item/storage/pouch/firstaid/full
-	suit_store = /obj/item/weapon/gun/smartgun
+	suit_store = /obj/item/weapon/gun/rifle/standard_smartmachinegun
+	glasses = /obj/item/clothing/glasses/night/m56_goggles
 	r_hand = /obj/item/portable_vendor/marine/squadmarine/smartgunner
-	back = /obj/item/smartgun_powerpack
 
 /datum/outfit/job/marine/smartgunner/equipped/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_SUIT)
+
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar , SLOT_IN_HEAD)
+
+	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/standard_heavypistol, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
 
 //Squad Specialist
 /datum/job/terragov/squad/specialist

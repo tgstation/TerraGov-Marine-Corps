@@ -223,7 +223,7 @@
 
 /obj/item/portable_vendor/marine/squadmarine
 	name = "\improper TerraGov Squad Marine Storage Backpack"
-	req_role = SQUAD_MARINE
+	req_role = /datum/job/terragov/squad/standard
 	listed_products = list(
 							list("MARINE KITS", 0, null, null, null),
 							list("Rifleman Kit (T-12 assault rifle, medium armor)", 1, /obj/item/storage/box/squadmarine/rifleman, "white", "Rifleman kit containing a T-12 assault rifle and magazines, two HE grenades, a flare pouch and medium armor. \n\
@@ -240,36 +240,36 @@ A breacher kit with the least firepower, has a high capacity SMG and a machete f
 
 /obj/item/portable_vendor/marine/squadmarine/engineer
 	name = "\improper TerraGov Squad Engineer Storage Backpack"
-	req_role = SQUAD_ENGINEER
+	req_role = /datum/job/terragov/squad/engineer
 	listed_products = list(
 							list("MARINE WEAPONS", 0, null, null, null),
 							list("T-12 Assault Rifle", 1, /obj/item/storage/box/squadmarine/engineert12, "white", "A kit containing a T-12 assault rifle. Comes with a magnetic harness and a angled grip."),
 							list("T-18 Carbine", 1, /obj/item/storage/box/squadmarine/engineert18, "white", "A kit containing a T-18 carbine. Comes with a magnetic harness and a angled grip."),
-							list("T-19 Submachinegun", 1, /obj/item/storage/box/squadmarine/engineert19, "white", "A kit containing a T-19 SMG. Comes with a magnetic harness, its respective stock and a vertical grip. Contains a heavy helmet."),
+							list("T-90 Submachinegun", 1, /obj/item/storage/box/squadmarine/engineert90, "white", "A kit containing a T-90 SMG. Comes with a red dot sight. Contains a heavy helmet."),
 							list("T-35 Shotgun", 1, /obj/item/storage/box/squadmarine/engineert35, "white", "A kit containing a T-35 shotgun. Comes with a magnetic harness, its respective stock and an angled grip. Contains a heavy helmet.")
 							)
 
 /obj/item/portable_vendor/marine/squadmarine/corpsman
 	name = "\improper TerraGov Squad Corpsman Storage Backpack"
-	req_role = SQUAD_CORPSMAN
+	req_role = /datum/job/terragov/squad/corpsman
 	listed_products = list(
 							list("MARINE WEAPONS", 0, null, null, null),
-							list("T-19 Submachinegun", 1, /obj/item/storage/box/squadmarine/corpsmant19, "white", "A kit containing a T-19 SMG. Comes with a magnetic harness, its respective stock and a vertical grip."),
+							list("T-90 Submachinegun", 1, /obj/item/storage/box/squadmarine/corpsmant90, "white", "A kit containing a T-90 SMG. Comes with a red dot sight."),
 							list("T-35 Shotgun", 1, /obj/item/storage/box/squadmarine/corpsmant35, "white", "A kit containing a T-35 shotgun. Comes with a magnetic harness, its respective stock and an angled grip.")
 							)
 
 /obj/item/portable_vendor/marine/squadmarine/smartgunner
 	name = "\improper TerraGov Squad Smartgunner Storage Backpack"
-	req_role = SQUAD_SMARTGUNNER
+	req_role = /datum/job/terragov/squad/smartgunner
 	listed_products = list(
 							list("MARINE WEAPONS", 0, null, null, null),
-							list("T-19 Submachinegun", 1, /obj/item/storage/box/squadmarine/smartgunnert19, "white", "A kit containing a T-19 SMG. Comes with a red dot sight and a gyroscopic stabilizer."),
+							list("T-19 Machine Pistol", 1, /obj/item/storage/box/squadmarine/smartgunnert19, "white", "A kit containing a T-19 machine pistol. Comes with a red dot sight and a gyroscopic stabilizer."),
 							list("M4A3 Pistol", 1, /obj/item/storage/box/squadmarine/smartgunnerm4a3, "white", "A kit containing a M4A3 pistol. Comes with a laser sight and a quick fire adaper.")
 							)
 
 /obj/item/portable_vendor/marine/squadmarine/specialist
 	name = "\improper TerraGov Squad Specialist Storage Backpack"
-	req_role = SQUAD_SPECIALIST
+	req_role = /datum/job/terragov/squad/specialist
 	listed_products = list(
 							list("SPECIALIST KITS", 0, null, null, null),
 							list("Demolitionist (RPG, T-19 SMG)", 1, /obj/item/storage/box/squadmarine/demolitionist, "white", "A kit specializing in explosives."),
