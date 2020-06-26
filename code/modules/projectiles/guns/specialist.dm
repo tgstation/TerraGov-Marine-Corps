@@ -1012,7 +1012,7 @@
 						/obj/item/attachable/flashlight)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
 
-	fire_delay = 0.175
+	fire_delay = 0.175 SECONDS
 	burst_amount = 7
 	scatter = 10
 	recoil = 2
