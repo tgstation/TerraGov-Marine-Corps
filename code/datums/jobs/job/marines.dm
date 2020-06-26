@@ -102,7 +102,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	w_uniform = /obj/item/clothing/under/marine/engineer
 	wear_suit = /obj/item/clothing/suit/storage/marine
 	shoes = /obj/item/clothing/shoes/marine
-	gloves =/obj/item/clothing/gloves/marine
+	gloves =/obj/item/clothing/gloves/marine/insulated
 	l_store = /obj/item/storage/pouch/firstaid/full
 	r_store = /obj/item/storage/pouch/construction/equippedengineer
 	r_hand = /obj/item/portable_vendor/marine/squadmarine/engineer
