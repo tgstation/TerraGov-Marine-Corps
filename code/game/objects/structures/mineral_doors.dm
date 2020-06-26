@@ -68,7 +68,7 @@
 	isSwitchingStates = 1
 	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
 	flick("[mineralType]opening",src)
-	sleep(10)
+	sleep(7)
 	density = FALSE
 	opacity = FALSE
 	state = D_OPEN
