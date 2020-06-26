@@ -37,8 +37,6 @@
 	. = ..()
 	new /obj/item/m56d_gun(src) //gun itself
 	new /obj/item/ammo_magazine/m56d(src) //ammo for the gun 
-	new /obj/item/tool/wrench(src) //wrench to hold it down into the ground
-	new /obj/item/tool/screwdriver(src) //screw the gun onto the post.
 	new /obj/item/ammo_magazine/m56d(src)
 
 
