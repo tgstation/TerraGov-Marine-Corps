@@ -86,7 +86,6 @@ obj/structure/bed/Destroy()
 	buckled_bodybag.roller_buckled = null
 	buckled_bodybag.glide_modifier_flags &= ~GLIDE_MOD_BUCKLED
 	buckled_bodybag.reset_glide_size()
-	buckled_bodybag = null
 	density = FALSE
 	update_icon()
 
@@ -457,6 +456,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	if(buckled_bodybag)
 		unbuckle_bodybag()
 		buckled_bodybag.forceMove(get_turf(linked_beacon))
+		buckled_bodybag = null
 	else
 		unbuckle_mob(M)
 		M.forceMove(get_turf(linked_beacon))
