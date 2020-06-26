@@ -411,14 +411,21 @@
 
 	var/obj/projectile/proj_to_fire = in_chamber
 	in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.
-	proj_to_fire.original_target = target
+	var/mob/living/L = locate() in U
+	var/atom/A 
+	if(L !=null)
+		proj_to_fire.original_target = L
+		A = L
+	else 
+		proj_to_fire.original_target = target
+		A = target
 	proj_to_fire.setDir(dir)
 	proj_to_fire.def_zone = pick("chest","chest","chest","head")
 	playsound(loc, 'sound/weapons/guns/fire/hmg.ogg', 75, TRUE)
 	if(!QDELETED(target))
 		var/angle = round(Get_Angle(src,target))
 		muzzle_flash(angle)
-	proj_to_fire.fire_at(U, user, src, ammo.max_range, ammo.shell_speed)
+	proj_to_fire.fire_at(A, user, src, ammo.max_range, ammo.shell_speed)
 	rounds--
 	if(!rounds)
 		visible_message("<span class='notice'> [icon2html(src, viewers(src))] \The M56D beeps steadily and its ammo light blinks red.</span>")
@@ -473,9 +480,11 @@
 	return ..()
 
 /obj/machinery/m56d_hmg/InterceptClickOn(mob/user, params, atom/object)
+	var/list/modifiers = params2list(params)
+	if(modifiers["shift"] && user.ShiftClickOn(object))
+		return FALSE
 	if(is_bursting)
 		return TRUE
-
 	if(user.lying_angle || !Adjacent(user) || user.incapacitated() || get_step(src, REVERSE_DIR(dir)) != user.loc)
 		user.unset_interaction()
 		return FALSE
