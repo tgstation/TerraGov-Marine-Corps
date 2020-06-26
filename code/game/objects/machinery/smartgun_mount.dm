@@ -477,7 +477,8 @@
 /obj/machinery/m56d_hmg/InterceptClickOn(mob/user, params, atom/object)
 	if(is_bursting)
 		return TRUE
-	if(user.lying_angle || !Adjacent(user) || user.incapacitated())
+
+	if(user.lying_angle || !Adjacent(user) || user.incapacitated() || get_step(src, REVERSE_DIR(dir)) != user.loc)
 		user.unset_interaction()
 		return FALSE
 	if(user.get_active_held_item())
@@ -512,15 +513,20 @@
 		if(locked)
 			to_chat(user, "This one is anchored in place and cannot be rotated.")
 			return
+		
 		var/list/leftright = LeftAndRightOfDir(dir)
 		var/left = leftright[1] - 1
 		var/right = leftright[2] + 1
 		if(left == (angle-1) || right == (angle+1))			
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 			user.visible_message("[user] rotates the [src].","You rotate the [src].")
-			setDir(angle)
-			user.Move(get_step(src, REVERSE_DIR(dir)))
-			user.set_interaction(src)
+			var/turf/w = get_step(src, REVERSE_DIR(angle)) 
+			if(user.Move(w))
+				setDir(angle)
+				user.set_interaction(src)	
+			else 
+				to_chat(user, "You cannot rotate [src] that way.")
+				return 
 		else 
 			to_chat(user, "<span class='warning'> [src] cannot be rotated so violently.</span>")
 	if(burst_fire_toggled)
