@@ -304,14 +304,22 @@
 			if(!do_after(user, 25, TRUE, src, BUSY_ICON_FRIENDLY))
 				return
 
+		if(rounds == rounds_max)
+			to_chat(user, "<span class='warning'>You cannot reload the Smartgun, it has a full drum of ammo!</span>")
+			return 
+		if(user.action_busy)
+			return
+		if(!do_after(user, 25, TRUE, src, BUSY_ICON_FRIENDLY))
+			return
 		user.visible_message("<span class='notice'> [user] loads [src]! </span>","<span class='notice'> You load [src]!</span>")
 		playsound(loc, 'sound/weapons/guns/interact/minigun_cocked.ogg', 25, 1)
-		if(rounds)
-			var/obj/item/ammo_magazine/m56d/D = new(user.loc)
-			D.current_rounds = rounds
+		user.temporarilyRemoveItemFromInventory(I)
+		var/obj/item/ammo_magazine/m56d/D = new()
+		if(rounds)	
+			user.put_in_active_hand(D)
+			D.current_rounds = rounds - (rounds_max - M.current_rounds)  
 		rounds = min(rounds + M.current_rounds, rounds_max)
 		update_icon()
-		user.temporarilyRemoveItemFromInventory(I)
 		qdel(I)
 
 /obj/machinery/m56d_hmg/MouseDrop(over_object, src_location, over_location) //Drag the tripod onto you to fold it.
@@ -518,8 +526,7 @@
 			user.visible_message("[user] rotates the [src].","You rotate the [src].")
 			setDir(angle)
 			user.Move(get_step(src, REVERSE_DIR(dir)))
-			on_set_interaction(user)
-			operator.interactee = src
+			user.set_interaction(src)
 		else 
 			to_chat(user, "[src] cannot be rotated so violently.")
 	if(burst_fire_toggled)
