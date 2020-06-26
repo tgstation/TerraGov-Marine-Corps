@@ -298,12 +298,6 @@
 				to_chat(user, "<span class='warning'>You only know how to swap the ammo drum when it's empty.</span>")
 				return
 
-			if(user.action_busy)
-				return
-
-			if(!do_after(user, 25, TRUE, src, BUSY_ICON_FRIENDLY))
-				return
-
 		if(rounds == rounds_max)
 			to_chat(user, "<span class='warning'>You cannot reload the Smartgun, it has a full drum of ammo!</span>")
 			return 
@@ -528,7 +522,7 @@
 			user.Move(get_step(src, REVERSE_DIR(dir)))
 			user.set_interaction(src)
 		else 
-			to_chat(user, "[src] cannot be rotated so violently.")
+			to_chat(user, "<span class='warning'> [src] cannot be rotated so violently.</span>")
 	if(burst_fire_toggled)
 		burst_fire = !burst_fire
 	return FALSE
