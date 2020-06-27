@@ -139,10 +139,10 @@
 		if(W)
 			W.melee_attack_chain(src, A, params)
 		else
-				GetComponent(/datum/component/directional_attack)
-				var/datum/component/directional_attack/check = src?.GetComponent()
-				if(check && check.active)
-					return
+			GetComponent(/datum/component/directional_attack)
+			var/datum/component/directional_attack/check = src?.GetComponent()
+			if(check && check.active)
+				return
 			UnarmedAttack(A, 1)
 	else
 		if(W)
