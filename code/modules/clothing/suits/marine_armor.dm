@@ -104,11 +104,11 @@
 	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
 	light_strength = 8 //because it's LIGHT armor, get it?
 
-/obj/item/clothing/suit/storage/marine/harness
+/obj/item/clothing/suit/storage/marine/harness //buffed so marines don't literally instantly keel over and die
 	name = "\improper M3 pattern marine harness"
-	desc = "A standard Marine M3 Pattern Harness. No encumbrance and almost no protection."
+	desc = "Your standard harness! Seems tougher than it looks."
 	icon_state = "10"
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 50)
 	slowdown = 0
 	flags_atom = NONE
 

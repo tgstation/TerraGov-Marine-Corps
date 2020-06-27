@@ -1,8 +1,8 @@
 ///******MARINE VENDOR******///
 
 /obj/machinery/vending/marine
-	name = "\improper Automated Weapons Rack"
-	desc = "A automated weapon rack hooked up to a colossal storage of standard-issue weapons."
+	name = "\improper Rifle rack"
+	desc = "A standard-issue rifle and pistol rack."
 	icon_state = "marinearmory"
 	icon_vend = "marinearmory-vend"
 	icon_deny = "marinearmory"

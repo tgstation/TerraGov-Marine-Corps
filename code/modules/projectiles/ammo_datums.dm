@@ -863,11 +863,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	airburst(victim, proj)
 
 /datum/ammo/bullet/sniper/svd
-	name = "crude sniper bullet"
+	name = "high caliber rifle bullet"
 	hud_state = "sniper_crude"
 	iff_signal = null
-	damage = 75
-	penetration = 35
+	damage = 80
+	penetration = 30
+	sundering = 7.5
 
 /datum/ammo/bullet/sniper/elite
 	name = "supersonic sniper bullet"

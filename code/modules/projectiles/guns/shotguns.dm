@@ -707,16 +707,16 @@ can cause issues with ammo types getting mixed up during the burst.
 	starting_attachment_types = list(/obj/item/attachable/mosinbarrel,
 									/obj/item/attachable/stock/mosin)
 
-	fire_delay = 1 SECONDS
-	accuracy_mult = 1.4
+	fire_delay = 1.2 SECONDS
+	accuracy_mult = 1.35
 	accuracy_mult_unwielded = 0.7
-	scatter = -10
+	scatter = -30
 	scatter_unwielded = 40
 	recoil = 0
 	recoil_unwielded = 4
-	pump_delay = 12
+	pump_delay = 7
 	aim_slowdown = 1
-	wield_delay = 1 SECONDS
+	wield_delay = 0.7 SECONDS
 
 //***********************************************************
 // Yee Haw it's a cowboy lever action gun!
