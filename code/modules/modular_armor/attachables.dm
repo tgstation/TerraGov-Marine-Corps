@@ -140,7 +140,7 @@
 
 /obj/item/helmet_module/attachable/mimir_environment_protection
 	name = "Mimir Environmental Helmet System"
-	desc = "Designed for mounting on a Jaeger Helmet. When activated, this system provides substantial resistance to environmental hazards, such as gases, acidic elements, and radiological exposure. Best paired with the Mimir Environmental Resistance System. Will impact mobility when active. Must be toggled to function.."
+	desc = "Designed for mounting on a Jaeger Helmet. When attached, this system provides substantial resistance to environmental hazards, such as gases, acidic elements, and radiological exposure. Best paired with the Mimir Environmental Resistance System. Will impact mobility when attached."
 	icon_state = "mod_biohazard_icon"
 	item_state = "mod_biohazard"
 	soft_armor = list("bio" = 20, "rad" = 50, "acid" = 20)
