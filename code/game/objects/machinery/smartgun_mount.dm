@@ -330,7 +330,8 @@
 		if(!do_after(user, 15, TRUE, src, BUSY_ICON_BUILD))
 			return
 		user.visible_message("<span class='notice'> [user] disassembles [src]! </span>","<span class='notice'> You disassemble [src]!</span>")
-		var/obj/item/m56d_gun/HMG = new(loc)
+		var/obj/item/m56d_gun/HMG = new()
+		user.put_in_active_hand(HMG)
 		HMG.rounds = rounds
 		HMG.update_icon()
 		qdel(src)
