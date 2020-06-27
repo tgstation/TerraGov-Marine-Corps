@@ -1,5 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes: 
-  - rscadd: "Added pill packets. Unrefillable pill bottles. Added paracetamol and tricird ones respectively."
-  - balance: "Tricord autoinjector inside the first aid kit pouch replaced with Tricord pill packets."
