@@ -88,10 +88,14 @@
 		update_icon()
 /obj/item/m56d_gun/attack_self(mob/user) //click the gun to unfold it.
 	if(!ishuman(usr)) return
+
+	var/step = get_step(user, user.dir)
+	if(check_blocked_turf(step))
+		to_chat(user, "<span class='warning'>There is insufficient room to deploy [src]!</span>")
+		return
 	if(!do_after(user, 15, TRUE, src, BUSY_ICON_BUILD))
 		return
 	to_chat(user, "<span class='notice'>You deploy [src].</span>")
-	var/step = get_step(user, user.dir)
 	var/obj/machinery/m56d_hmg/P = new(step)
 	P.setDir(user.dir)
 	P.rounds = rounds
@@ -323,10 +327,7 @@
 		if(locked)
 			to_chat(user, "This one is anchored in place and cannot be disassembled.")
 			return
-		if(get_step(src, REVERSE_DIR(dir)) != user.loc)
-			to_chat(user, "<span class='warning'>You should be behind [src] to disassemble it!</span>")
-			return
-		to_chat(user, "You begin disassembling the M56D mounted smartgun")
+		to_chat(user, "You begin disassembling the M56D mounted smartgun.")
 		if(!do_after(user, 15, TRUE, src, BUSY_ICON_BUILD))
 			return
 		user.visible_message("<span class='notice'> [user] disassembles [src]! </span>","<span class='notice'> You disassemble [src]!</span>")
