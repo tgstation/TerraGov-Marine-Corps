@@ -269,9 +269,6 @@
 	return ..()
 
 /obj/machinery/m56d_hmg/deconstruct(disassembled = TRUE)
-	var/obj/item/m56d_gun/HMG = new(loc)
-	HMG.obj_integrity = obj_integrity
-	HMG.rounds = rounds //Inherent the amount of ammo we had.
 	return ..()
 
 /obj/machinery/m56d_hmg/examine(mob/user) //Let us see how much ammo we got in this thing.
