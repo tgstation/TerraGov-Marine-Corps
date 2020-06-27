@@ -13,28 +13,28 @@
 	toggle_action.update_button_icon(active)
 	RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, toggle_path)
 	if(active)
-		RegisterSignal(parent, COMSIG_DIRECT_ATTACK, .proc/select_directional_action)
+		RegisterSignal(parent, COMSIG_MOB_CLICKON, .proc/select_directional_action)
 
 /datum/component/directional_attack/Destroy(force, silent)
     QDEL_NULL(toggle_action)
     return ..()
 
-/datum/component/directional_attack/proc/select_directional_action(datum/source, location, control, params, mob/user)
+/datum/component/directional_attack/proc/select_directional_action(datum/source, atom/A, params)
 	if(ishuman(parent))
-		human_directional_action(location, control, params, user)
+		human_directional_action(A, params)
 	else if(isxeno(parent))
-		xeno_directional_action(location, control, params, user)
+		xeno_directional_action(A, params)
 	else
-		living_directional_action(location, control, params, user)
+		living_directional_action(A, params)
 
 /datum/component/directional_attack/proc/living_activation_toggle(datum/source)
 	var/mob/living/attacker = parent
 	active = !active
 	to_chat(attacker, "<span class='notice'>You will now [active ? "attack" : "not attack"] enemies in melee range upon clicking in their direction.</span>")
 	if(active)
-		RegisterSignal(attacker, COMSIG_DIRECT_ATTACK, .proc/select_directional_action)
+		RegisterSignal(attacker, COMSIG_MOB_CLICKON, .proc/select_directional_action)
 	else
-		UnregisterSignal(attacker, COMSIG_DIRECT_ATTACK, .proc/select_directional_action)
+		UnregisterSignal(attacker, COMSIG_MOB_CLICKON, .proc/select_directional_action)
 	toggle_action.update_button_icon(active)
 
 /datum/component/directional_attack/proc/living_directional_action_checks(mob/living/L)
@@ -64,10 +64,10 @@
 		return target
 	return L
 
-/datum/component/directional_attack/proc/living_directional_action(location, control, params, atom/A, mob/user)
+/datum/component/directional_attack/proc/living_directional_action(atom/A, params)
 	var/atom/T
-	if(isatom(location))
-		T = location
+	if(isturf(A))
+		T = A
 	else 
 		return 
 	var/atom/hold = figure_out_living_target(T)
@@ -83,10 +83,10 @@
 	
 	return living_do_directional_action(hold)
 
-/datum/component/directional_attack/proc/human_directional_action(location, control, params, atom/A, mob/user)
+/datum/component/directional_attack/proc/human_directional_action(atom/A, params)
 	var/atom/T
-	if(isatom(location))
-		T = location
+	if(isturf(A))
+		T = A
 	else
 		return
 	var/mob/living/carbon/human/attacker = parent
@@ -105,10 +105,10 @@
 
 	return living_do_directional_action(hold)
 
-/datum/component/directional_attack/proc/xeno_directional_action(location, control, params, atom/A, mob/user)
+/datum/component/directional_attack/proc/xeno_directional_action(atom/A, params)
 	var/atom/T
-	if(isatom(location))
-		T = location
+	if(isturf(A))
+		T = A
 	else
 		return
 	var/mob/living/carbon/xenomorph/attacker = parent

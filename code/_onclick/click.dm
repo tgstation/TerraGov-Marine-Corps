@@ -19,7 +19,6 @@
 /atom/Click(location, control, params)
 	if(flags_atom & INITIALIZED)
 		SEND_SIGNAL(src, COMSIG_CLICK, location, control, params, usr)
-		SEND_SIGNAL(usr, COMSIG_DIRECT_ATTACK, location, control, params, src, usr)
 		usr.ClickOn(src, location, params)
 
 
