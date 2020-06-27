@@ -261,6 +261,7 @@
 	max_shells = 40 //codex
 	current_mag = /obj/item/ammo_magazine/rifle
 	attachable_allowed = list(
+						/obj/item/attachable/quickfire,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/bayonetknife,
@@ -345,6 +346,7 @@
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/scope/mini,
+						/obj/item/attachable/quickfire,
 						/obj/item/attachable/gyro,
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/scope)
