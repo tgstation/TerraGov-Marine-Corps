@@ -679,6 +679,45 @@ can cause issues with ammo types getting mixed up during the burst.
 		pump_lock = FALSE //we're operating the slide release to unload, thus unlocking the pump
 	return ..()
 
+//------------------------------------------------------
+//A hacky bolt action rifle. in here for the "pump" or bolt working action.
+
+/obj/item/weapon/gun/shotgun/pump/bolt/infantry
+	name = "\improper Mosin Nagant infantry rifle"
+	desc = "A mosin nagant rifle, even just looking at it you can feel the cosmoline already. Commonly known by its slang, \"Moist Nugget\", by downbrained colonists and outlaws. This version cannot have a scope."
+	icon_state = "mosin"
+	item_state = "mosin" //thank you Alterist
+	fire_sound = 'sound/weapons/guns/fire/mosin.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
+	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
+	caliber = "7.62x54mm Rimmed" //codex
+	load_method = SINGLE_CASING //codex
+	max_shells = 5 //codex
+	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump/bolt
+	gun_skill_category = GUN_SKILL_RIFLES
+	type_of_casings = "cartridge"
+	pump_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
+	attachable_allowed = list(
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/bayonetknife,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/bayonet)
+	flags_item_map_variant = NONE
+	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 14)
+	starting_attachment_types = list(/obj/item/attachable/mosinbarrel,
+									/obj/item/attachable/stock/mosin)
+
+	fire_delay = 1 SECONDS
+	accuracy_mult = 1.4
+	accuracy_mult_unwielded = 0.7
+	scatter = -10
+	scatter_unwielded = 40
+	recoil = 0
+	recoil_unwielded = 4
+	pump_delay = 12
+	aim_slowdown = 1
+	wield_delay = 1 SECONDS
+
 //***********************************************************
 // Yee Haw it's a cowboy lever action gun!
 
