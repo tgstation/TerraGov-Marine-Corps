@@ -46,8 +46,10 @@
 	},
 /area/space)
 "aak" = (
-/turf/open/space/basic,
-/area/sulaco/disposal)
+/turf/closed/shuttle/wall3/diagonal{
+	dir = 4
+	},
+/area/sulaco/command/eva)
 "aal" = (
 /turf/closed/wall/sulaco,
 /area/sulaco/cryosleep)
@@ -988,12 +990,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/sulaco/disposal)
-"adr" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 6
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/sulaco/cargo)
 "ads" = (
 /turf/closed/wall/sulaco,
 /area/sulaco/showers)
@@ -2319,10 +2315,6 @@
 /obj/item/storage/firstaid/toxin,
 /turf/open/floor/tile/white,
 /area/sulaco/medbay/storage2)
-"ahI" = (
-/obj/effect/decal/warning_stripes/thin,
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
 "ahJ" = (
 /obj/structure/table,
 /obj/item/tool/crowbar,
@@ -3492,13 +3484,6 @@
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/north_solar_maint)
-"akU" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 10
-	},
-/obj/structure/rack,
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
 "akV" = (
 /obj/machinery/portable_atmospherics/pump,
 /turf/open/floor/plating,
@@ -3877,12 +3862,6 @@
 /obj/machinery/portable_atmospherics/pump,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/north_solar_maint)
-"amc" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/sulaco/cargo)
 "amd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -4175,13 +4154,6 @@
 /obj/structure/sign/prop3,
 /turf/open/floor/tile/white,
 /area/sulaco/medbay/surgery_two)
-"amY" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/obj/structure/rack,
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
 "amZ" = (
 /obj/structure/cable,
 /obj/structure/closet/secure_closet/medical2,
@@ -4231,12 +4203,6 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/hallway/central_hall2)
-"ani" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 5
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/sulaco/cargo)
 "anj" = (
 /obj/structure/sign/prop3,
 /turf/open/floor/plating,
@@ -4502,19 +4468,6 @@
 "anV" = (
 /turf/closed/wall/sulaco,
 /area/sulaco/bridge)
-"anW" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
-"anX" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 9
-	},
-/obj/structure/rack,
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
 "anY" = (
 /obj/machinery/alarm,
 /turf/open/floor/tile/lightred/full,
@@ -9527,9 +9480,6 @@
 /obj/item/ammo_magazine/rifle/standard_assaultrifle,
 /turf/open/floor/mainship,
 /area/mainship/command/self_destruct)
-"aCi" = (
-/turf/open/floor,
-/area/space)
 "aCj" = (
 /obj/machinery/door/poddoor/open/bridge{
 	dir = 4
@@ -11516,7 +11466,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/space)
+/area/sulaco/hallway/central_hall3)
 "aIw" = (
 /obj/structure/toilet{
 	dir = 4
@@ -11620,9 +11570,6 @@
 /obj/structure/cable,
 /turf/closed/wall/sulaco,
 /area/sulaco/marine/charlie)
-"aIO" = (
-/turf/open/floor/plating/mainship,
-/area/space)
 "aIP" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2
@@ -17818,13 +17765,6 @@
 	dir = 4
 	},
 /area/sulaco/cargo)
-"jEM" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/structure/rack,
-/turf/open/floor/mainship/mono,
-/area/sulaco/cargo)
 "ldh" = (
 /obj/machinery/keycard_auth{
 	pixel_y = -30
@@ -17930,11 +17870,6 @@
 	dir = 5
 	},
 /turf/open/floor/plating/platebotc,
-/area/sulaco/cargo)
-"tID" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/structure/rack,
-/turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
 "uOE" = (
 /obj/structure/largecrate/supply/supplies/mre,
@@ -50445,7 +50380,7 @@ anv
 aEQ
 aOH
 aOJ
-aas
+aOJ
 aOJ
 aOJ
 aOJ
@@ -58945,8 +58880,8 @@ avV
 avV
 avV
 avV
-aCi
-aas
+avV
+aEO
 aaa
 aaa
 aaa
@@ -59203,7 +59138,7 @@ aIp
 avV
 avV
 aIv
-aas
+aEO
 aaa
 aaa
 aaa
@@ -59460,7 +59395,7 @@ aIp
 avV
 avV
 aIv
-aas
+aEO
 aaa
 aaa
 aaa
@@ -59717,7 +59652,7 @@ aIp
 avV
 avV
 aIv
-aas
+aEO
 aaa
 aaa
 aaa
@@ -59974,7 +59909,7 @@ aIp
 avV
 avV
 aIv
-aas
+aEO
 aaa
 aaa
 aaa
@@ -60231,7 +60166,7 @@ aIp
 avV
 avV
 aIv
-aas
+aEO
 aaa
 aaa
 aaa
@@ -60487,8 +60422,8 @@ avV
 avV
 avV
 avV
-aCi
-aas
+avV
+aEO
 aaa
 aaa
 aaa
@@ -60744,8 +60679,8 @@ avV
 avV
 avV
 avV
-aCi
-aas
+avV
+aEO
 aaa
 aaa
 aaa
@@ -61001,8 +60936,8 @@ aHP
 aIc
 aHP
 aHP
-aIO
-aas
+aHP
+aEO
 aaa
 aaa
 aaa
@@ -61258,8 +61193,8 @@ aHP
 aHP
 aHP
 aHP
-aIO
-aas
+aHP
+aEO
 aaa
 aaa
 aaa
@@ -61466,10 +61401,10 @@ aaa
 aaa
 aaq
 aaM
-adr
-amc
-amc
-ani
+aaM
+aaM
+aaM
+aaM
 aaM
 aaM
 aaM
@@ -61515,8 +61450,8 @@ aHP
 aHP
 aHP
 aHP
-aIO
-aas
+aHP
+aEO
 aaa
 aaa
 aaa
@@ -61723,10 +61658,10 @@ aaa
 aaa
 aaq
 aaK
-tID
 abj
 abj
-jEM
+abj
+abj
 aaK
 aaK
 aaK
@@ -61772,8 +61707,8 @@ aHP
 aHP
 aHP
 aHP
-aIO
-aas
+aHP
+aEO
 aaa
 aaa
 aaa
@@ -61980,10 +61915,10 @@ aaa
 aaa
 aaq
 ace
-ahI
 aaK
 aaK
-anW
+aaK
+aaK
 aaK
 aaK
 gfL
@@ -62029,8 +61964,8 @@ aHP
 aHP
 aHP
 aHP
-aIO
-aas
+aHP
+aEO
 aaa
 aaa
 aaa
@@ -62237,10 +62172,10 @@ aaa
 aaa
 aaq
 aaK
-akU
-amY
-amY
-anX
+abj
+abj
+abj
+abj
 aaK
 aaK
 aaK
@@ -62286,8 +62221,8 @@ aHP
 aHP
 aHP
 aHP
-aIO
-aas
+aHP
+aEO
 aaa
 aaa
 aaa
@@ -62543,8 +62478,8 @@ aHP
 aHP
 aHP
 aHP
-aIO
-aas
+aHP
+aEO
 aaa
 aaa
 aaa
@@ -62800,8 +62735,8 @@ aHP
 aHP
 aHP
 aHP
-aIO
-aas
+aHP
+aEO
 aaa
 aaa
 aaa
@@ -63057,8 +62992,8 @@ aHP
 aHP
 aHP
 aHP
-aIO
-aas
+aHP
+aEO
 aaa
 aaa
 aaa
@@ -63314,8 +63249,8 @@ aEO
 aEO
 aEO
 aEO
-aas
-aas
+aEO
+aEO
 aaa
 aaa
 aaa
@@ -64033,7 +63968,7 @@ aaa
 aaa
 aaa
 aaa
-aak
+aaa
 aar
 aaR
 aai
@@ -64547,7 +64482,7 @@ aaa
 aaa
 aaa
 aaa
-aak
+aaa
 aar
 aaQ
 aaS
@@ -66132,7 +66067,7 @@ aVB
 aOP
 aOP
 aOP
-aZm
+aak
 aaa
 aaa
 aaa

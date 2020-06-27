@@ -186,6 +186,13 @@
 	. = ..()
 	radio = new(src)
 	update_icon()
+	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
+
+/obj/machinery/cryopod/proc/shuttle_crush()
+	if(occupant)
+		var/mob/living/L = occupant
+		go_out()
+		L.gib()
 
 /obj/machinery/cryopod/Destroy()
 	QDEL_NULL(radio)

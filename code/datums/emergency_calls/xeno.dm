@@ -6,9 +6,9 @@
 
 
 /datum/emergency_call/xenomorphs/print_backstory(mob/living/carbon/xenomorph/X)
-	to_chat(X, "<B>You are Xenomorph from a distant hive.</b>")
-	to_chat(X, "<B>You've been cruising in space for years until a new Queen reached out to you and took over the control of your shuttle.</b>")
-	to_chat(X, "<B>Help the new Queen take over this sector. For the new Hive!</b>")
+	to_chat(X, "<B>We are a Xenomorph from a distant hive.</b>")
+	to_chat(X, "<B>We've been cruising in space for years until a new leader reached out to us and took over the control of our shuttle.</b>") // It may be a shrike or a queen.
+	to_chat(X, "<B>Help our leader take over this sector. For the new Hive!</b>")
 
 
 /datum/emergency_call/xenomorphs/spawn_items()

@@ -173,6 +173,9 @@
 	if(.)
 		return
 
+	if(user.action_busy)
+		return FALSE
+
 	if(!LAZYLEN(installed_modules))
 		to_chat(user, "<span class='notice'>There is nothing to remove</span>")
 		return TRUE
@@ -202,6 +205,9 @@
 	if(.)
 		return
 
+	if(user.action_busy)
+		return FALSE
+	
 	if(ismob(loc) && (user.r_hand != src && user.l_hand != src))
 		to_chat(user, "<span class='warning'>You need to remove the armor first.</span>")
 		return TRUE
@@ -237,6 +243,9 @@
 	. = ..()
 	if(.)
 		return
+
+	if(user.action_busy)
+		return FALSE	
 
 	if(!installed_storage)
 		to_chat(user, "<span class='notice'>There is nothing to remove</span>")
@@ -389,6 +398,10 @@
 	. = ..()
 	if(.)
 		return
+
+	if(user.action_busy)
+		return FALSE
+
 	if(!installed_module)
 		to_chat(user, "<span class='notice'>There is nothing to remove</span>")
 		return TRUE
