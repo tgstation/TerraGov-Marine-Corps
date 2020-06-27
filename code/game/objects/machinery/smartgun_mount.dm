@@ -487,6 +487,9 @@
 	var/list/modifiers = params2list(params)
 	if(modifiers["shift"] && user.ShiftClickOn(object))
 		return FALSE
+	if(modifiers["shift"] && modifiers["middle"])
+		user.ShiftMiddleClickOn(object)
+		return FALSE
 	if(is_bursting)
 		return TRUE
 	if(user.lying_angle || !Adjacent(user) || user.incapacitated() || get_step(src, REVERSE_DIR(dir)) != user.loc)
