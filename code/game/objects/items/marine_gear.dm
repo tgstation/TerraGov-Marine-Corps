@@ -112,6 +112,7 @@
 		M.bullet_act(proj) //tarp isn't bullet proof; concealment, not cover; pass it on to the occupant.
 
 /obj/structure/closet/bodybag/tarp/Crossed(mob/living/L)
+	. = ..()
 	if(!istype(L) || L.stat != CONSCIOUS)
 		return
 	// Walking on the tarp reveals it
