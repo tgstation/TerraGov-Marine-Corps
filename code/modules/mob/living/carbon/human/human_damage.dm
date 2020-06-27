@@ -22,7 +22,7 @@
 	med_hud_set_status()
 
 	var/health_deficiency = max((maxHealth - health), staminaloss)
-	
+
 	if(health_deficiency >= 40)
 		add_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN, TRUE, 0, NONE, TRUE, health_deficiency / 25)
 	else
@@ -38,7 +38,7 @@
 		var/datum/internal_organ/brain/sponge = internal_organs_by_name["brain"]
 		if(sponge)
 			sponge.take_damage(amount, silent)
-			sponge.damage = CLAMP(sponge.damage, 0, maxHealth*2)
+			sponge.damage = clamp(sponge.damage, 0, maxHealth*2)
 			brainloss = sponge.damage
 		else
 			brainloss = 200
@@ -53,7 +53,7 @@
 	if(species?.has_organ["brain"])
 		var/datum/internal_organ/brain/sponge = internal_organs_by_name["brain"]
 		if(sponge)
-			sponge.damage = CLAMP(amount, 0, maxHealth*2)
+			sponge.damage = clamp(amount, 0, maxHealth*2)
 			brainloss = sponge.damage
 		else
 			brainloss = 200
@@ -384,7 +384,7 @@ This function restores all limbs.
 		if(!internal_organs_by_name[organ_slot])
 			var/datum/internal_organ/IO = new internal_organ_type(src)
 			internal_organs_by_name[organ_slot] = IO
-	
+
 	if(updating_health)
 		updatehealth()
 

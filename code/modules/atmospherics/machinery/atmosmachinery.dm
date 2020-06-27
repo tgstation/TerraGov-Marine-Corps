@@ -258,7 +258,7 @@
 	user.forceMove(T)
 	user.visible_message("<span class='warning'>[user] climbs out of [src].</span>", \
 	"<span class='notice'>You climb out of [src].</span>")
-	if(!isxenohunter(user) )
+	if(!isxenohunter(user))
 		playsound(src, get_sfx("alien_ventpass"), 35, TRUE)
 
 
@@ -273,6 +273,12 @@
 			if(is_type_in_typecache(target_move, GLOB.ventcrawl_machinery))
 				climb_out(user, target_move.loc)
 			else
+
+				// Check for impassable types
+				var/obj/effect/forcefield/fog/impassable = locate() in get_turf(target_move)
+				if(impassable)
+					return
+
 				var/list/pipenetdiff = returnPipenets() ^ target_move.returnPipenets()
 				if(length(pipenetdiff))
 					user.update_pipe_vision(target_move)
@@ -293,6 +299,9 @@
 
 /obj/machinery/atmospherics/proc/returnPipenets()
 	return list()
+
+/obj/machinery/atmospherics/update_remote_sight(mob/user)
+	user.sight |= (SEE_TURFS|BLIND)
 
 //Used for certain children of obj/machinery/atmospherics to not show pipe vision when mob is inside it.
 /obj/machinery/atmospherics/proc/can_see_pipes()

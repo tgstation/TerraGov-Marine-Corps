@@ -173,7 +173,7 @@
 			return
 
 		if("blue flame") //Probably can end up as a spec fuel or DS flamer fuel. Also this was the original fueltype, the madman i am.
-			burnlevel = 45
+			burnlevel = 36
 			burntime = 40
 			max_range = 7
 			fire_color = "blue"
@@ -258,7 +258,7 @@
 			var/mob/living/carbon/xenomorph/X = M
 			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
-			fire_mod = CLAMP(X.xeno_caste.fire_resist + X.fire_resist_modifier, 0, 1)
+			fire_mod = clamp(X.xeno_caste.fire_resist + X.fire_resist_modifier, 0, 1)
 		else if(ishuman(M))
 			var/mob/living/carbon/human/H = M //fixed :s
 
@@ -595,7 +595,7 @@
 	adjust_fire_stacks(burnlevel) //If i stand in the fire i deserve all of this. Also Napalm stacks quickly.
 	if(prob(firelevel))
 		IgniteMob()
-	//I.adjustFireLoss(rand(10 ,burnlevel)) //Including the fire should be way stronger.
+	adjustFireLoss(rand(10 , burnlevel)) //Including the fire should be way stronger.
 	to_chat(src, "<span class='warning'>You are burned!</span>")
 
 

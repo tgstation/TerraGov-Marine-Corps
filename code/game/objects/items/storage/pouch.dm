@@ -183,7 +183,8 @@
 	max_w_class = 3
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
-		/obj/item/weapon/gun/revolver)
+		/obj/item/weapon/gun/revolver,
+		/obj/item/weapon/gun/smg/standard_machinepistol)
 	draw_mode = 1
 
 
@@ -222,7 +223,8 @@
 
 	can_hold = list(
 		/obj/item/ammo_magazine/pistol,
-		/obj/item/ammo_magazine/revolver)
+		/obj/item/ammo_magazine/revolver,
+		/obj/item/ammo_magazine/smg/standard_machinepistol)
 
 /obj/item/storage/pouch/magazine/pistol/large
 	name = "large pistol magazine pouch"
@@ -567,7 +569,7 @@
 /obj/item/storage/pouch/shotgun/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/M = I
-	
+
 		if(M.flags_magazine & AMMUNITION_REFILLABLE)
 			if(!M.current_rounds)
 				to_chat(user, "<span class='warning'>[M] is empty.</span>")

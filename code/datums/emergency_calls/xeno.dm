@@ -26,25 +26,25 @@
 	var/turf/spawn_loc = .
 
 	if(!leader)
-		. = new /mob/living/carbon/xenomorph/ravager(spawn_loc, TRUE) //TRUE for the can_spawn_in_centcomm, so they don't get sent to a different hive.
+		. = new /mob/living/carbon/xenomorph/ravager(spawn_loc)
 		leader = .
 		M.transfer_to(., TRUE)
 		print_backstory(.)
 		return
 
 	if(prob(35))
-		. = new /mob/living/carbon/xenomorph/drone/elder(spawn_loc, TRUE)
+		. = new /mob/living/carbon/xenomorph/drone/elder(spawn_loc)
 		M.transfer_to(., TRUE)
 		print_backstory(.)
 		return
 
 	if(prob(35))
-		. = new /mob/living/carbon/xenomorph/spitter/mature(spawn_loc, TRUE)
+		. = new /mob/living/carbon/xenomorph/spitter/mature(spawn_loc)
 		M.transfer_to(., TRUE)
 		print_backstory(.)
 		return
 
-	. = new /mob/living/carbon/xenomorph/hunter/mature(spawn_loc, TRUE)
+	. = new /mob/living/carbon/xenomorph/hunter/mature(spawn_loc)
 	M.transfer_to(., TRUE)
 	print_backstory(.)
 

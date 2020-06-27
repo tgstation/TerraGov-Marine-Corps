@@ -998,7 +998,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		var/list/offset = splittext(href_list["offset"],",")
-		var/number = CLAMP(text2num(href_list["object_count"]), 1, 100)
+		var/number = clamp(text2num(href_list["object_count"]), 1, 100)
 		var/X = length(offset) > 0 ? text2num(offset[1]) : 0
 		var/Y = length(offset) > 1 ? text2num(offset[2]) : 0
 		var/Z = length(offset) > 2 ? text2num(offset[3]) : 0

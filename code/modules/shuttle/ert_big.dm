@@ -19,3 +19,5 @@
 	dheight = 10
 	width = 17
 	height = 29
+
+	shuttle_flags = GAMEMODE_IMMUNE

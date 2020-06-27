@@ -336,6 +336,9 @@
 /turf/open/floor/plating/icefloor,
 /area/lv624/lazarus/console)
 "bo" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/LZ2)
 "bp" = (
@@ -5099,6 +5102,12 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/snow,
 /area/icy_caves/outpost/outside)
+"Gk" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
+/turf/closed/wall/r_wall,
+/area/icy_caves/caves/east)
 "GZ" = (
 /obj/structure/bed,
 /obj/effect/landmark/start/job/survivor,
@@ -5167,6 +5176,12 @@
 "NU" = (
 /turf/closed/ice_rock/fourway,
 /area/icy_caves/outpost/outside)
+"OK" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/closed/ice_rock/corners{
+	dir = 10
+	},
+/area/icy_caves/caves/OOB)
 "PB" = (
 /obj/machinery/door/airlock/colony/research,
 /turf/open/floor/tile/dark2,
@@ -15043,7 +15058,7 @@ gI
 gI
 gI
 gI
-nv
+OK
 mj
 mj
 Ql
@@ -34248,7 +34263,7 @@ km
 ho
 hn
 hB
-el
+Gk
 sb
 sb
 sb
