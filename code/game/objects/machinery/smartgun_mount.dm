@@ -524,11 +524,11 @@
 		var/list/leftright = LeftAndRightOfDir(dir)
 		var/left = leftright[1] - 1
 		var/right = leftright[2] + 1
-		if(left == (angle-1) || right == (angle+1))			
-			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-			user.visible_message("[user] rotates the [src].","You rotate the [src].")
+		if(left == (angle-1) || right == (angle+1))
 			var/turf/w = get_step(src, REVERSE_DIR(angle)) 
 			if(user.Move(w))
+				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+				user.visible_message("[user] rotates the [src].","You rotate the [src].")
 				setDir(angle)
 				user.set_interaction(src)	
 			else 
