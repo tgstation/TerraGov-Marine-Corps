@@ -32,3 +32,21 @@
 
 	active = !active
 	to_chat(user, "<span class='notice'>You toggle \the [src]. [active ? "enabling" : "disabling"] it.</span>")
+
+/obj/item/helmet_module/binoculars
+	name = "Binocular Helmet Module"
+	icon_state = "mod_welding"
+	module_type = ARMOR_MODULE_TOGGLE
+	active = FALSE
+
+/obj/item/helmet_module/binoculars/toggle_module(mob/living/user, obj/item/clothing/head/modular/parent)
+	if(!active && !zoom)
+		RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/toggle_module)
+		zoom(user, 11, 12)
+	else
+		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+		if(zoom)
+			zoom(user)
+
+	active = !active
+	to_chat(user, "<span class='notice'>You toggle \the [src]. [active ? "enabling" : "disabling"] it.</span>")
