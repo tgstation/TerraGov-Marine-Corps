@@ -49,7 +49,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	shoes = /obj/item/clothing/shoes/marinechief/captain
 	gloves = /obj/item/clothing/gloves/marine/techofficer/captain
 	head = /obj/item/clothing/head/tgmcberet/tan
-	r_store = /obj/item/storage/pouch/general/large
+	r_store = /obj/item/storage/pouch/general/large/command
 	l_store = /obj/item/hud_tablet/leadership
 	back = /obj/item/storage/backpack/marine/satchel
 
