@@ -144,7 +144,6 @@
 	icon_state = "mod_biohazard_icon"
 	item_state = "mod_biohazard"
 	soft_armor = list("bio" = 20, "rad" = 50, "acid" = 20)
-	slowdown = 0.2
 	module_type = ARMOR_MODULE_TOGGLE
 	var/siemens_coefficient_mod = -0.9
 	var/permeability_coefficient_mod = -1
@@ -156,12 +155,10 @@
 	parent.siemens_coefficient += siemens_coefficient_mod
 	parent.permeability_coefficient += permeability_coefficient_mod
 	parent.gas_transfer_coefficient += siemens_coefficient_mod
-	parent.slowdown += slowdown
 
 /obj/item/helmet_module/attachable/mimir_environment_protection/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	parent.soft_armor = parent.soft_armor.detachArmor(soft_armor)
 	parent.siemens_coefficient -= siemens_coefficient_mod
 	parent.permeability_coefficient -= permeability_coefficient_mod
 	parent.gas_transfer_coefficient -= siemens_coefficient_mod
-	parent.slowdown -= slowdown
 	return ..()
