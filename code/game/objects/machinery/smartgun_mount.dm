@@ -44,7 +44,7 @@
 /obj/item/m56d_gun
 	name = "\improper M56D Mounted Smartgun"
 	desc = "The M56D Machinegun. IFF capable. No extra work required, just deploy it."
-	resistance_flags = UNACIDABLE
+	max_integrity = 200
 	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "M56D_gun_e"
@@ -97,6 +97,7 @@
 		return
 	to_chat(user, "<span class='notice'>You deploy [src].</span>")
 	var/obj/machinery/m56d_hmg/P = new(step)
+	P.obj_integrity = obj_integrity
 	P.setDir(user.dir)
 	P.rounds = rounds
 	P.update_icon()
@@ -235,7 +236,7 @@
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "M56D"
 	anchored = TRUE
-	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
+	resistance_flags = XENO_DAMAGEABLE
 	density = TRUE
 	layer = ABOVE_MOB_LAYER //no hiding the hmg beind corpse
 	use_power = 0
@@ -269,6 +270,7 @@
 
 /obj/machinery/m56d_hmg/deconstruct(disassembled = TRUE)
 	var/obj/item/m56d_gun/HMG = new(loc)
+	HMG.obj_integrity = obj_integrity
 	HMG.rounds = rounds //Inherent the amount of ammo we had.
 	return ..()
 
@@ -292,6 +294,10 @@
 	if(!ishuman(user))
 		return
 
+	for(var/obj/effect/xenomorph/acid/A in loc)
+		if(A.acid_t == src)
+			to_chat(user, "You can't get near that, it's melting!")
+			return
 
 	if(istype(I, /obj/item/ammo_magazine/m56d)) // RELOADING DOCTOR FREEMAN.
 		var/obj/item/ammo_magazine/m56d/M = I
@@ -318,6 +324,50 @@
 		update_icon()
 		qdel(I)
 
+/obj/machinery/m56d_hmg/welder_act(mob/living/user, obj/item/I)
+	if(user.action_busy)
+		return FALSE
+
+	var/obj/item/tool/weldingtool/WT = I
+
+	if(!WT.isOn())
+		return FALSE
+
+	for(var/obj/effect/xenomorph/acid/A in loc)
+		if(A.acid_t == src)
+			to_chat(user, "You can't get near that, it's melting!")
+			return TRUE
+
+	if(obj_integrity == max_integrity)
+		to_chat(user, "<span class='warning'>[src] doesn't need repairs.</span>")
+		return TRUE
+
+	if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
+		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to repair [src].</span>",
+		"<span class='notice'>You fumble around figuring out how to repair [src].</span>")
+		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_METAL - user.skills.getRating("engineer") )
+		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_BUILD))
+			return TRUE
+
+	user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
+	"<span class='notice'>You begin repairing the damage to [src].</span>")
+	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
+
+	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
+		return TRUE
+
+	if(!WT.remove_fuel(2, user))
+		to_chat(user, "<span class='warning'>Not enough fuel to finish the task.</span>")
+		return TRUE
+
+	user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
+	"<span class='notice'>You repair [src].</span>")
+	repair_damage(120)
+	update_icon()
+	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
+	return TRUE
+
+
 /obj/machinery/m56d_hmg/MouseDrop(over_object, src_location, over_location) //Drag the tripod onto you to fold it.
 	if(!ishuman(usr))
 		return
@@ -332,6 +382,7 @@
 			return
 		user.visible_message("<span class='notice'> [user] disassembles [src]! </span>","<span class='notice'> You disassemble [src]!</span>")
 		var/obj/item/m56d_gun/HMG = new()
+		HMG.obj_integrity = obj_integrity
 		user.put_in_active_hand(HMG)
 		HMG.rounds = rounds
 		HMG.update_icon()
