@@ -43,7 +43,7 @@
 // The actual gun itself.
 /obj/item/m56d_gun
 	name = "\improper M56D Mounted Smartgun"
-	desc = "The M56D Machinegun. IFF capable."
+	desc = "The M56D Machinegun. IFF capable. No extra work required, just deploy it."
 	resistance_flags = UNACIDABLE
 	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/turf/whiskeyoutpost.dmi'
@@ -230,8 +230,8 @@
 */
 // The actual Machinegun itself, going to borrow some stuff from current sentry code to make sure it functions. Also because they're similiar.
 /obj/machinery/m56d_hmg
-	name = "\improper M56D mounted smartgun"
-	desc = "A deployable, mounted smartgun. While it is capable of taking the same rounds as the M56, it fires specialized tungsten rounds for increased armor penetration.\n<span class='notice'>Use (ctrl-click) to shoot in bursts."
+	name = "\improper M56D Mounted Smartgun"
+	desc = "A deployed and mounted Smartgun. While it is capable of taking the same rounds as the M56, it fires specialized tungsten rounds for increased armor penetration.\n<span class='notice'>Use (ctrl-click) to shoot in bursts."
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "M56D"
 	anchored = TRUE
