@@ -86,6 +86,7 @@ obj/structure/bed/Destroy()
 	buckled_bodybag.roller_buckled = null
 	buckled_bodybag.glide_modifier_flags &= ~GLIDE_MOD_BUCKLED
 	buckled_bodybag.reset_glide_size()
+	buckled_bodybag = null
 	density = FALSE
 	update_icon()
 
