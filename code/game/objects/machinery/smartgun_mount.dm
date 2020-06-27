@@ -93,7 +93,7 @@
 	if(check_blocked_turf(step))
 		to_chat(user, "<span class='warning'>There is insufficient room to deploy [src]!</span>")
 		return
-	if(!do_after(user, 15, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
 		return
 	to_chat(user, "<span class='notice'>You deploy [src].</span>")
 	var/obj/machinery/m56d_hmg/P = new(step)
@@ -328,7 +328,7 @@
 			to_chat(user, "This one is anchored in place and cannot be disassembled.")
 			return
 		to_chat(user, "You begin disassembling the M56D mounted smartgun.")
-		if(!do_after(user, 15, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
 			return
 		user.visible_message("<span class='notice'> [user] disassembles [src]! </span>","<span class='notice'> You disassemble [src]!</span>")
 		var/obj/item/m56d_gun/HMG = new()
