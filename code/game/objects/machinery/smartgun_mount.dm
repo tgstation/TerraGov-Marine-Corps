@@ -102,6 +102,49 @@
 	P.rounds = rounds
 	P.update_icon()
 	qdel(src)
+
+/obj/item/m56d_gun/welder_act(mob/living/user, obj/item/I)
+	if(user.action_busy)
+		return FALSE
+
+	var/obj/item/tool/weldingtool/WT = I
+
+	if(!WT.isOn())
+		return FALSE
+
+	for(var/obj/effect/xenomorph/acid/A in loc)
+		if(A.acid_t == src)
+			to_chat(user, "You can't get near that, it's melting!")
+			return TRUE
+
+	if(obj_integrity == max_integrity)
+		to_chat(user, "<span class='warning'>[src] doesn't need repairs.</span>")
+		return TRUE
+
+	if(user.skills.getRating("engineer") < SKILL_ENGINEER_METAL)
+		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to repair [src].</span>",
+		"<span class='notice'>You fumble around figuring out how to repair [src].</span>")
+		var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_METAL - user.skills.getRating("engineer") )
+		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_BUILD))
+			return TRUE
+
+	user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
+	"<span class='notice'>You begin repairing the damage to [src].</span>")
+	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
+
+	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
+		return TRUE
+
+	if(!WT.remove_fuel(2, user))
+		to_chat(user, "<span class='warning'>Not enough fuel to finish the task.</span>")
+		return TRUE
+
+	user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
+	"<span class='notice'>You repair [src].</span>")
+	repair_damage(120)
+	update_icon()
+	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
+	return TRUE
 /**
 /obj/item/m56d_post //Adding this because I was fucken stupid and put a obj/machinery in a box. Realized I couldn't take it out
 	name = "\improper M56D folded mount"
