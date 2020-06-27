@@ -323,6 +323,9 @@
 		if(locked)
 			to_chat(user, "This one is anchored in place and cannot be disassembled.")
 			return
+		if(get_step(src, REVERSE_DIR(dir)) != user.loc)
+			to_chat(user, "<span class='warning'>You should be behind [src] to disassemble it!</span>")
+			return
 		to_chat(user, "You begin disassembling the M56D mounted smartgun")
 		if(!do_after(user, 15, TRUE, src, BUSY_ICON_BUILD))
 			return
