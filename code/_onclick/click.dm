@@ -19,7 +19,7 @@
 /atom/Click(location, control, params)
 	if(flags_atom & INITIALIZED)
 		SEND_SIGNAL(src, COMSIG_CLICK, location, control, params, usr)
-		SEND_SIGNAL(usr, COMSIG_DIRECT_ATTACK, location, control, params, usr)
+		SEND_SIGNAL(usr, COMSIG_DIRECT_ATTACK, location, control, params, src, usr)
 		usr.ClickOn(src, location, params)
 
 
@@ -95,6 +95,7 @@
 	if(next_move > world.time)
 		return
 
+
 	if(!modifiers["catcher"] && A.IsObscured())
 		return
 
@@ -138,6 +139,10 @@
 		if(W)
 			W.melee_attack_chain(src, A, params)
 		else
+				GetComponent(/datum/component/directional_attack)
+				var/datum/component/directional_attack/check = src?.GetComponent()
+				if(check && check.active)
+					return
 			UnarmedAttack(A, 1)
 	else
 		if(W)

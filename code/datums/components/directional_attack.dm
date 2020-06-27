@@ -61,60 +61,75 @@
 	var/turf/presumedPos = get_step(parent, clickDir)
 	var/mob/living/L = locate() in presumedPos
 	if(presumedPos == target && L == null)
-		return null
+		return target
 	return L
 
-/datum/component/directional_attack/proc/living_directional_action(location, control, params, mob/user)
+/datum/component/directional_attack/proc/living_directional_action(location, control, params, atom/A, mob/user)
 	var/atom/T
 	if(isatom(location))
 		T = location
 	else 
 		return 
-	var/mob/living/L = figure_out_living_target(T)
-	if (isnull(L))
-		return	
-	. = living_directional_action_checks(L)
-	if(!isnull(.))
+	var/atom/hold = figure_out_living_target(T)
+	if (isnull(hold))
 		return
-	return living_do_directional_action(L)
+	if(isturf(hold))
+		hold = A
+	if(isliving(hold))
+		var/mob/living/L = hold
+		. = living_directional_action_checks(L)
+		if(!isnull(.))
+			return
+	
+	return living_do_directional_action(hold)
 
-/datum/component/directional_attack/proc/human_directional_action(location, control, params, mob/user)
+/datum/component/directional_attack/proc/human_directional_action(location, control, params, atom/A, mob/user)
 	var/atom/T
 	if(isatom(location))
 		T = location
 	else
 		return
 	var/mob/living/carbon/human/attacker = parent
-	var/mob/living/L = figure_out_living_target(T)
-	if (isnull(L))
-		return	
-	. = carbon_directional_action_checks(L)
-	if(!isnull(.))
+	var/atom/hold = figure_out_living_target(T)
+	if (isnull(hold))
 		return
-	if(attacker.faction == L.faction)
-		return //FF
-	return living_do_directional_action(L)
+	if(isturf(hold))
+		hold = A
+	if(isliving(hold))
+		var/mob/living/L = hold
+		. = carbon_directional_action_checks(L)
+		if(!isnull(.))
+			return
+		if(attacker.faction == L.faction)
+			return //FF
 
-/datum/component/directional_attack/proc/xeno_directional_action(location, control, params, mob/user)
+	return living_do_directional_action(hold)
+
+/datum/component/directional_attack/proc/xeno_directional_action(location, control, params, atom/A, mob/user)
 	var/atom/T
 	if(isatom(location))
 		T = location
 	else
 		return
 	var/mob/living/carbon/xenomorph/attacker = parent
-	var/mob/living/L = figure_out_living_target(T)
-	if (isnull(L))
+	var/atom/hold = figure_out_living_target(T)
+	if (isnull(hold))
 		return	
-	. = carbon_directional_action_checks(L)
-	if(!isnull(.))
-		return
-	if(attacker.issamexenohive(L))
-		return //No more nibbling.
-	return living_do_directional_action(L)
+	if(isturf(hold))
+		hold = A
+	if(isliving(hold))
+		var/mob/living/L = hold
+		. = carbon_directional_action_checks(L)
+		if(!isnull(.))
+			return
+		if(attacker.issamexenohive(L))
+			return //No more nibbling.
+	
+	return living_do_directional_action(hold)
 
-/datum/component/directional_attack/proc/living_do_directional_action(mob/living/L)
+/datum/component/directional_attack/proc/living_do_directional_action(atom/target)
 	var/mob/living/attacker = parent
-	attacker.UnarmedAttack(L, TRUE)
+	attacker.UnarmedAttack(target, TRUE)
 	COOLDOWN_START(src, COOLDOWN_DIRECTIONAL_ATTACK, CLICK_CD_MELEE)
 
 //Toggle directional attacks
