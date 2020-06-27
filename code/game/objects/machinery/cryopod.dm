@@ -451,7 +451,7 @@
 	user.despawn(src)
 
 
-/obj/machinery/cryopod/proc/go_out()
+/obj/machinery/cryopod/proc/go_out(mob/source, gibbing)
 	if(QDELETED(occupant))
 		return
 

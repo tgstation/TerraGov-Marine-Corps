@@ -116,9 +116,6 @@
 // ***************************************
 // *********** Death
 // ***************************************
-/mob/living/carbon/xenomorph/queen/gib()
-	death(1) //we need the body to show the queen's name at round end.
-
 /mob/living/carbon/xenomorph/queen/death_cry()
 	playsound(loc, 'sound/voice/alien_queen_died.ogg', 75, 0)
 

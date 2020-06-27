@@ -773,12 +773,18 @@ below 100 is not dizzy
 	. = ..()
 	if(isnull(.))
 		return
-	if(stat == CONSCIOUS) //From unconscious to conscious.
-		REMOVE_TRAIT(src, TRAIT_IMMOBILE, STAT_TRAIT)
-		REMOVE_TRAIT(src, TRAIT_FLOORED, STAT_TRAIT)
-	else if(. == CONSCIOUS) //From conscious to unconscious.
-		ADD_TRAIT(src, TRAIT_IMMOBILE, STAT_TRAIT)
-		ADD_TRAIT(src, TRAIT_FLOORED, STAT_TRAIT)
+	switch(.)
+		if(CONSCIOUS) //From conscious to unconscious.
+			ADD_TRAIT(src, TRAIT_IMMOBILE, STAT_TRAIT)
+			ADD_TRAIT(src, TRAIT_FLOORED, STAT_TRAIT)
+		if(DEAD)
+			on_revive()
+	switch(stat)
+		if(CONSCIOUS) //From unconscious to conscious.
+			REMOVE_TRAIT(src, TRAIT_IMMOBILE, STAT_TRAIT)
+			REMOVE_TRAIT(src, TRAIT_FLOORED, STAT_TRAIT)
+		if(DEAD)
+			on_death()
 
 
 /mob/living/setGrabState(newstate)
