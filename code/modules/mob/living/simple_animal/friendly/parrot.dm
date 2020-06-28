@@ -78,7 +78,7 @@
 
 /mob/living/simple_animal/parrot/death(gibbing, deathmessage, silent)
 	if(stat == DEAD)
-		return
+		return ..()
 	if(held_item)
 		held_item.forceMove(drop_location())
 		held_item = null

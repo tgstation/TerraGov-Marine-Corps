@@ -5,7 +5,7 @@
 
 /mob/living/carbon/xenomorph/death(gibbing, deathmessage = "lets out a waning guttural screech, green blood bubbling from its maw.", silent)
 	if(stat == DEAD)
-		return
+		return ..()
 	return ..() //Just a different standard deathmessage
 
 

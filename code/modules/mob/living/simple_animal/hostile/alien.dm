@@ -43,7 +43,7 @@
 
 /mob/living/simple_animal/hostile/alien/death(gibbing, deathmessage = "lets out a waning guttural screech, green blood bubbling from its maw.", silent)
 	if(stat == DEAD)
-		return
+		return ..()
 	if(!gibbing && !silent)
 		playsound(src, 'sound/voice/alien_death.ogg', 50, TRUE)
 	return ..()

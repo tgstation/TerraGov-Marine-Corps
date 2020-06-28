@@ -39,7 +39,7 @@
 
 /mob/living/silicon/decoy/death(gibbing, deathmessage = "sparks up and falls silent...", silent)
 	if(stat == DEAD)
-		return
+		return ..()
 	return ..()
 
 

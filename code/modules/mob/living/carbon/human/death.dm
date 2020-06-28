@@ -45,7 +45,7 @@
 
 /mob/living/carbon/human/death(gibbing, deathmessage, silent)
 	if(stat == DEAD)
-		return
+		return ..()
 	if(!silent && species.death_sound)
 		playsound(loc, species.death_sound, 50, TRUE)
 	return ..()

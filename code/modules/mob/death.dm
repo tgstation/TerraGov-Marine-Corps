@@ -35,6 +35,8 @@
 
 /mob/proc/death(gibbing, deathmessage = "seizes up and falls limp...", silent)
 	if(stat == DEAD)
+		if(gibbing)
+			qdel(src)
 		return
 
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_DEATH, src)
