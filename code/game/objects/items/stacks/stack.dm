@@ -39,9 +39,9 @@
 	var/new_w_class
 	switch(percent) //Currently 3 steps as defined by STACK_WEIGHT_STEPS
 		if(0 to 33)
-			new_w_class = CLAMP(full_w_class-2, WEIGHT_CLASS_TINY, full_w_class)
+			new_w_class = clamp(full_w_class-2, WEIGHT_CLASS_TINY, full_w_class)
 		if(34 to 66)
-			new_w_class = CLAMP(full_w_class-1, WEIGHT_CLASS_TINY, full_w_class)
+			new_w_class = clamp(full_w_class-1, WEIGHT_CLASS_TINY, full_w_class)
 		if(67 to 100)
 			new_w_class = full_w_class
 		else
@@ -162,6 +162,8 @@
 		var/building_time = R.time
 		if(R.skill_req && usr.skills.getRating("construction") < R.skill_req)
 			building_time += R.time * ( R.skill_req - usr.skills.getRating("construction") ) * 0.5 // +50% time each skill point lacking.
+		if(R.skill_req && usr.skills.getRating("construction") > R.skill_req)
+			building_time -= R.time * ( usr.skills.getRating("construction") - R.skill_req ) * 0.1 // -10% time each extra skill point
 		if(building_time)
 			if(building_time > R.time)
 				usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to build \a [R.title].</span>",
@@ -224,7 +226,7 @@
 				to_chat(usr, "<span class='warning'>You can't build \the [R.title] on top of another!</span>")
 				return FALSE
 	if(R.on_floor)
-		if(!isfloorturf(T))
+		if(!isfloorturf(T) && !isbasalt(T) && !islavacatwalk(T))
 			to_chat(usr, "<span class='warning'>\The [R.title] must be constructed on the floor!</span>")
 			return FALSE
 		for(var/obj/AM in T)

@@ -57,6 +57,8 @@
 
 		var/blocked = FALSE
 		for(var/obj/O in T)
+			if(is_type_in_typecache(O, GLOB.acid_spray_hit) && O.acid_spray_act(owner))
+				return // returned true if normal density applies
 			if(O.density && !O.throwpass && !(O.flags_atom & ON_BORDER))
 				blocked = TRUE
 				break

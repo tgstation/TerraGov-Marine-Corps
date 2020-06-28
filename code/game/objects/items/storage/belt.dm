@@ -277,7 +277,7 @@
 
 /obj/item/storage/belt/marine/upp
 	name = "\improper Type 41 pattern load rig"
-	desc = "The Type 41 load rig is the standard-issue LBE of the UPP military. The primary function of this belt is to provide easy access to mags for the Type 71 during operations. Despite being designed for the Type 71 weapon system, the pouches are modular enough to fit other types of ammo and equipment."
+	desc = "The Type 41 load rig is the standard-issue LBE of the USL pirates. The primary function of this belt is to provide easy access to mags for the Type 71 during operations. Despite being designed for the Type 71 weapon system, the pouches are modular enough to fit other types of ammo and equipment."
 	icon_state = "upp_belt"
 	item_state = "upp_belt"
 
@@ -329,32 +329,34 @@
 
 
 /obj/item/storage/belt/shotgun/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/ammo_magazine/shotgun))
-		var/obj/item/ammo_magazine/shotgun/M = I
-		if(!M.current_rounds)
-			to_chat(user, "<span class='warning'>[M] is empty.</span>")
-			return
+	
+	if(istype(I, /obj/item/ammo_magazine))
+		var/obj/item/ammo_magazine/M = I
+	
+		if(M.flags_magazine & AMMUNITION_REFILLABLE)
+			if(!M.current_rounds)
+				to_chat(user, "<span class='warning'>[M] is empty.</span>")
+				return
 
-		if(length(contents) >= storage_slots)
-			to_chat(user, "<span class='warning'>[src] is full.</span>")
-			return
+			if(length(contents) >= storage_slots)
+				to_chat(user, "<span class='warning'>[src] is full.</span>")
+				return
 
 
-		to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
-		if(!do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
-			return
+			to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
+			if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+				return
 
-		for(var/x in 1 to (storage_slots - length(contents)))
-			var/cont = handle_item_insertion(M.create_handful(), 1, user)
-			if(!cont)
-				break
+			for(var/x in 1 to (storage_slots - length(contents)))
+				var/cont = handle_item_insertion(M.create_handful(), 1, user)
+				if(!cont)
+					break
 
-		playsound(user.loc, "rustle", 15, 1, 6)
-		to_chat(user, "<span class='notice'>You refill [src] with [M].</span>")
-		return TRUE
+			playsound(user.loc, "rustle", 15, TRUE, 6)
+			to_chat(user, "<span class='notice'>You refill [src] with [M].</span>")
+			return TRUE
 
-	else
-		return ..()
+	return ..()
 
 
 /obj/item/storage/belt/knifepouch

@@ -23,6 +23,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	initial_language_holder = /datum/language_holder/universal
 	var/atom/movable/following = null
+	var/datum/orbit_menu/orbit_menu
 	var/mob/observetarget = null	//The target mob that the ghost is observing. Used as a reference in logout()
 
 
@@ -108,6 +109,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	QDEL_NULL(ghostimage_simple)
 
 	updateallghostimages()
+
+	QDEL_NULL(orbit_menu)
 
 	return ..()
 
@@ -576,34 +579,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	set category = "Ghost"
 	set name = "Follow"
 
-	var/list/mobs = list()
-	var/list/names = list()
-	var/list/namecounts = list()
-
-	for(var/x in sortNames(GLOB.mob_list - GLOB.dead_mob_list - GLOB.alive_xeno_list))
-		var/mob/M = x
-		if(isobserver(M) || isnewplayer(M) || ishumanbasic(M) || !M.name)
-			continue
-		var/name = M.name
-		if(name in names)
-			namecounts[name]++
-			name = "[name] ([namecounts[name]])"
-		else
-			names.Add(name)
-			namecounts[name] = 1
-
-		mobs[name] = M
-
-	if(!length(mobs))
-		to_chat(usr, "<span class='warning'>There are no mobs at the moment.</span>")
-		return
-
-	var/selected = input("Please select a Mob:", "Follow Mob") as null|anything in mobs
-	if(!selected)
-		return
-
-	var/mob/target = mobs[selected]
-	ManualFollow(target)
+	if(!orbit_menu)
+		orbit_menu = new(src)
+	orbit_menu.ui_interact(src)
 
 
 /mob/dead/observer/verb/offered_mobs()

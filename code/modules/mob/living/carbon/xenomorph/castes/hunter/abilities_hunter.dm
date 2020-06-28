@@ -40,16 +40,16 @@
 		COMSIG_XENOMORPH_THROW_HIT,
 		COMSIG_XENOMORPH_FIRE_BURNING,
 		COMSIG_LIVING_ADD_VENTCRAWL), .proc/cancel_stealth)
-		
+
 	RegisterSignal(L, list(SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), SIGNAL_ADDTRAIT(TRAIT_FLOORED)), .proc/cancel_stealth)
 
 	RegisterSignal(src, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/damage_taken)
 
 /datum/action/xeno_action/stealth/remove_action(mob/living/L)
 	UnregisterSignal(L, list(
-		COMSIG_XENOMORPH_POUNCE, 
-		COMSIG_XENO_LIVING_THROW_HIT, 
-		COMSIG_XENOMORPH_ATTACK_LIVING, 
+		COMSIG_XENOMORPH_POUNCE,
+		COMSIG_XENO_LIVING_THROW_HIT,
+		COMSIG_XENOMORPH_ATTACK_LIVING,
 		COMSIG_XENOMORPH_DISARM_HUMAN,
 		COMSIG_XENOMORPH_GRAB,
 		COMSIG_XENOMORPH_ATTACK_BARRICADE,
@@ -77,9 +77,6 @@
 	if(!.)
 		return FALSE
 	var/mob/living/carbon/xenomorph/stealthy_beno = owner
-	if(stealthy_beno.legcuffed)
-		to_chat(stealthy_beno, "<span class='warning'>We can't enter Stealth with that thing on our leg!</span>")
-		return FALSE
 	if(stealthy_beno.on_fire)
 		to_chat(stealthy_beno, "<span class='warning'>We're too busy being on fire to enter Stealth!</span>")
 		return FALSE
@@ -124,6 +121,8 @@
 /datum/action/xeno_action/stealth/proc/handle_stealth()
 	if(!stealth)
 		return
+
+	var/mob/living/carbon/xenomorph/xenoowner = owner
 	//Initial stealth
 	if(last_stealth > world.time - HUNTER_STEALTH_INITIAL_DELAY) //We don't start out at max invisibility
 		owner.alpha = HUNTER_STEALTH_RUN_ALPHA * stealth_alpha_multiplier
@@ -133,12 +132,13 @@
 		owner.alpha = HUNTER_STEALTH_STILL_ALPHA * stealth_alpha_multiplier
 	//Walking stealth
 	else if(owner.m_intent == MOVE_INTENT_WALK)
+		xenoowner.use_plasma(HUNTER_STEALTH_WALK_PLASMADRAIN)
 		owner.alpha = HUNTER_STEALTH_WALK_ALPHA * stealth_alpha_multiplier
 	//Running stealth
 	else
+		xenoowner.use_plasma(HUNTER_STEALTH_RUN_PLASMADRAIN)
 		owner.alpha = HUNTER_STEALTH_RUN_ALPHA * stealth_alpha_multiplier
 	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
-	var/mob/living/carbon/xenomorph/xenoowner = owner
 	if(!xenoowner.plasma_stored)
 		to_chat(xenoowner, "<span class='xenodanger'>We lack sufficient plasma to remain camouflaged.</span>")
 		cancel_stealth()
@@ -186,7 +186,7 @@
 	"<span class='danger'>We strike [target] with [flavour] precision!</span>")
 	target.adjust_stagger(staggerslow_stacks)
 	target.add_slowdown(staggerslow_stacks)
-	
+
 	cancel_stealth()
 
 /datum/action/xeno_action/stealth/proc/sneak_attack_disarm(datum/source, mob/living/target, tackle_pain, list/pain_mod)
@@ -208,7 +208,7 @@
 	target.ParalyzeNoChain(1.5 SECONDS)
 	target.adjust_stagger(staggerslow_stacks)
 	target.add_slowdown(staggerslow_stacks)
-	
+
 	cancel_stealth()
 
 /datum/action/xeno_action/stealth/proc/damage_taken(mob/living/carbon/xenomorph/X, damage_taken)

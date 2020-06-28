@@ -159,7 +159,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 					dat += "No squad selected!"
 				else
 					dat += "<B>Current Supply Drop Status:</B> "
-					var/cooldown_left = (current_squad.supply_cooldown + 5000) - world.time
+					var/cooldown_left = (current_squad.supply_cooldown + 2 MINUTES) - world.time
 					if(cooldown_left > 0)
 						dat += "Launch tubes resetting ([round(cooldown_left/10)] seconds)<br>"
 					else
@@ -311,12 +311,12 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 				visible_message("<span class='boldnotice'>Secondary objective of squad '[current_squad]' set.</span>")
 		if("supply_x")
 			var/input = input(usr,"What X-coordinate offset between -5 and 5 would you like? (Positive means east)","X Offset",0) as num
-			input = CLAMP(round(input), -5, 5)
+			input = clamp(round(input), -5, 5)
 			to_chat(usr, "[icon2html(src, usr)] <span class='notice'>X-offset is now [input].</span>")
 			x_offset_s = input
 		if("supply_y")
 			var/input = input(usr,"What Y-coordinate offset between -5 and 5 would you like? (Positive means north)","Y Offset",0) as num
-			input = CLAMP(round(input), -5, 5)
+			input = clamp(round(input), -5, 5)
 			to_chat(usr, "[icon2html(src, usr)] <span class='notice'>Y-offset is now [input].</span>")
 			y_offset_s = input
 		if("refresh")
@@ -353,7 +353,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 			transfer_squad()
 		if("dropsupply")
 			if(current_squad)
-				if((current_squad.supply_cooldown + 5 MINUTES) > world.time)
+				if((current_squad.supply_cooldown + 2 MINUTES) > world.time)
 					to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Supply drop not yet available!</span>")
 				else
 					handle_supplydrop()
@@ -677,8 +677,8 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 
 	var/x_offset = x_offset_s
 	var/y_offset = y_offset_s
-	x_offset = CLAMP(round(x_offset), -5, 5)
-	y_offset = CLAMP(round(y_offset), -5, 5)
+	x_offset = clamp(round(x_offset), -5, 5)
+	y_offset = clamp(round(y_offset), -5, 5)
 
 	visible_message("<span class='boldnotice'>The supply drop is now loading into the launch tube! Stand by!</span>")
 	current_squad.drop_pad.visible_message("<span class='warning'>\The [current_squad.drop_pad] whirrs as it beings to load the supply drop into a launch tube. Stand clear!</span>")
@@ -711,7 +711,6 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	S.supply_cooldown = world.time
 
 	var/turf/T = get_turf(S.sbeacon)
-	QDEL_NULL(S.sbeacon) //Wipe the beacon. It's only good for one use.
 	T.visible_message("<span class='boldnotice'>A supply drop falls from the sky!</span>")
 	playsound(T,'sound/effects/bamf.ogg', 50, 1)  //Ehhhhhhhhh.
 	playsound(S.drop_pad.loc,'sound/effects/bamf.ogg', 50, 1)  //Ehh
@@ -720,7 +719,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		var/turf/TC = locate(T.x + x_offset + rand(-2, 2), T.y + y_offset + rand(-2, 2), T.z)
 		C.forceMove(TC)
 		TC.ceiling_debris_check(2)
-	visible_message("[icon2html(src, viewers(src))] <span class='boldnotice'>Supply drop launched! Another launch will be available in five minutes.</span>")
+	visible_message("[icon2html(src, viewers(src))] <span class='boldnotice'>Supply drop launched! Another launch will be available in two minutes.</span>")
 	busy = FALSE
 
 /obj/structure/supply_drop
@@ -829,6 +828,28 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
 		user.visible_message("[user] activates [src]",
 		"You activate [src]")
+
+/obj/item/squad_beacon/attack_hand(mob/user)
+	..()
+	if(activated)
+		//squad = null
+		//squad.sbeacon = null
+		if(squad)
+			if(squad.sbeacon == src)
+				squad.sbeacon = null
+			if(src in squad.squad_orbital_beacons)
+				squad.squad_orbital_beacons -= src
+			squad = null
+		activated = FALSE
+		anchored = FALSE
+		w_class = initial(w_class)
+		layer = initial(layer)
+		name = initial(name)
+		icon_state = initial(icon_state)
+		playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
+		usr.visible_message("[usr] deactivates [src]",
+		"You deactivate [src]")
+		usr.put_in_active_hand(src)
 
 /obj/item/squad_beacon/bomb
 	name = "orbital beacon"

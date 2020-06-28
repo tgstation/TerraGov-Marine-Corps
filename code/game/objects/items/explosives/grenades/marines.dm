@@ -130,9 +130,9 @@
 /proc/flame_radius(radius = 1, turf/epicenter, burn_intensity = 25, burn_duration = 25, burn_damage = 25, fire_stacks = 15, int_var = 0.5, dur_var = 0.5, colour = "red") //~Art updated fire.
 	if(!isturf(epicenter))
 		CRASH("flame_radius used without a valid turf parameter")
-	radius = CLAMP(radius, 1, 50) //Sanitize inputs
-	int_var = CLAMP(int_var, 0.1,0.5)
-	dur_var = CLAMP(int_var, 0.1,0.5)
+	radius = clamp(radius, 1, 50) //Sanitize inputs
+	int_var = clamp(int_var, 0.1,0.5)
+	dur_var = clamp(int_var, 0.1,0.5)
 	fire_stacks = rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) ) + rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) )
 	burn_damage = rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) ) + rand(burn_damage*(0.5-int_var),burn_damage*(0.5+int_var) )
 
@@ -225,7 +225,7 @@
 	flame_radius(4, get_turf(src))
 	flame_radius(1, get_turf(src), burn_intensity = 45, burn_duration = 75, burn_damage = 15, fire_stacks = 75)	//The closer to the middle you are the more it hurts
 	qdel(src)
-	
+
 /obj/item/explosive/grenade/phosphorus/upp
 	name = "\improper Type 8 WP grenade"
 	desc = "A deadly gas grenade found within the ranks of the UPP. Designed to spill white phosporus on the target. It explodes 2 seconds after the pin has been pulled."

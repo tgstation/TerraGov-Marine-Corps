@@ -13,8 +13,13 @@
 #define COOLDOWN_BUMP		"bump"
 #define COOLDOWN_ENTANGLE	"entangle"
 #define COOLDOWN_NEST		"nest"
+#define COOLDOWN_BUMP_ATTACK "bump_attack"
 #define COOLDOWN_TASTE		"taste"
 #define COOLDOWN_VENTSOUND	"vendsound"
+#define COOLDOWN_ARMOR_LIGHT	"armor_light"
+#define COOLDOWN_ARMOR_ACTION	"armor_action"
+#define COOLDOWN_FRIENDLY_FIRE_CAUSED	"friendly_fire_caused"
+#define COOLDOWN_FRIENDLY_FIRE_TAKEN	"friendly_fire_taken"
 
 #define COOLDOWN_START(cd_source, cd_index, cd_time) LAZYSET(cd_source.cooldowns, cd_index, addtimer(CALLBACK(GLOBAL_PROC, /proc/end_cooldown, cd_source, cd_index), cd_time))
 

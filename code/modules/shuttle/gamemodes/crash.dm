@@ -40,8 +40,13 @@
 	var/turf/rear_left = locate(C.x + round(leftright/2), C.y + round(updown/2), C.z)
 
 
+	// just wipe the turfs
+	for(var/turf/T in range(3, rear)+range(3, left)+range(3, right)+range(3, front)+range(4, front_right)+range(4, front_left)+range(4, rear_right)+range(4, rear_left))
+		T.empty(/turf/open/floor/plating)
+
 	// Big explosions
-	explosion(front, 3, 4, 7, 0)
+
+/*	explosion(front, 3, 4, 7, 0)
 	explosion(rear, 3, 4, 7, 0)
 	explosion(left, 3, 4, 7, 0)
 	explosion(right, 3, 4, 7, 0)
@@ -50,15 +55,7 @@
 	explosion(front_left, 4, 6, 10, 0)
 	explosion(rear_right, 4, 6, 10, 0)
 	explosion(rear_left, 3, 4, 7, 0)
-
-
-/obj/docking_port/stationary/crashmode/loading
-	id = "canterbury_loadingdock"
-	name = "Low Orbit"
-
-/obj/docking_port/stationary/crashmode/loading/on_crash()
-	return // No explosions please and thank you.
-
+*/
 // -- Shuttles
 /obj/docking_port/mobile/crashmode
 	name = "TGS Canterbury"
@@ -79,3 +76,8 @@
 /obj/docking_port/mobile/crashmode/register()
 	. = ..()
 	SSshuttle.canterbury = src
+
+/obj/docking_port/stationary/crashmode/hangar
+	name = "Hangar Pad One"
+	id = "canterbury"
+	roundstart_template = /datum/map_template/shuttle/tgs_canterbury

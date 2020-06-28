@@ -15,7 +15,7 @@
 	tackle_damage = 40
 
 	// *** Speed *** //
-	speed = 0.0
+	speed = -0.2
 
 	// *** Plasma *** //
 	plasma_max = 800
@@ -36,19 +36,20 @@
 	soft_armor = list("melee" = 30, "bullet" = 35, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 28, "rad" = 28, "fire" = 10, "acid" = 28)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.5 SECONDS
+	spit_delay = 1.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/heavy, /datum/ammo/xeno/acid/heavy)
 
 	acid_spray_range = 4
 
 	// *** Pheromones *** //
-	aura_strength = 2.5 //Praetorian's aura starts strong. They are the Queen's right hand. Climbs by 1 to 4.5
+	aura_strength = 3 //Praetorian's aura starts strong. They are the Queen's right hand. Climbs by 1 to 4.5
 	aura_allowed = list("frenzy", "warding", "recovery")
 
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,
@@ -73,7 +74,7 @@
 	tackle_damage = 42
 
 	// *** Speed *** //
-	speed = -0.1
+	speed = -0.3
 
 	// *** Plasma *** //
 	plasma_max = 900
@@ -89,7 +90,7 @@
 	soft_armor = list("melee" = 35, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 33, "rad" = 33, "fire" = 13, "acid" = 33)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.5 SECONDS
+	spit_delay = 1.2 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade1, /datum/ammo/xeno/acid/heavy)
 
 	// *** Pheromones *** //
@@ -107,7 +108,7 @@
 	tackle_damage = 47
 
 	// *** Speed *** //
-	speed = -0.2
+	speed = -0.4
 
 	// *** Plasma *** //
 	plasma_max = 1000
@@ -123,7 +124,7 @@
 	soft_armor = list("melee" = 40, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 15, "acid" = 35)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.5 SECONDS
+	spit_delay = 1.1 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade2, /datum/ammo/xeno/acid/heavy)
 
 	// *** Pheromones *** //
@@ -142,7 +143,7 @@
 	tackle_damage = 50
 
 	// *** Speed *** //
-	speed = -0.3
+	speed = -0.5
 
 	// *** Plasma *** //
 	plasma_max = 1000
@@ -155,7 +156,7 @@
 	soft_armor = list("melee" = 45, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_0, "bio" = 38, "rad" = 38, "fire" = 18, "acid" = 38)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.5 SECONDS
+	spit_delay = 1 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade3, /datum/ammo/xeno/acid/heavy)
 
 	// *** Pheromones *** //

@@ -1,6 +1,16 @@
 /obj/item/clothing
 	name = "clothing"
-	var/eye_protection = 0 //used for headgear, masks, and glasses, to see how much they protect eyes from bright lights.
+
+	/// Resets the armor on clothing since by default /objs get 100 bio armor
+	soft_armor = list()
+
+	/// Bitflags used to determine the state of the armor (light on, overlay used, or reinfornced), currently support flags are in [equipment.dm:100]
+	var/flags_armor_features = NONE
+
+	/// used for headgear, masks, and glasses, to see how much they protect eyes from bright lights.
+	var/eye_protection = 0
+
+	/// Used by headgear mostly to affect accuracy
 	var/accuracy_mod = 0
 
 
@@ -67,6 +77,43 @@
 	var/blood_overlay_type = "suit"
 	var/fire_resist = T0C + 100
 	var/shield_state = "shield-blue"
+
+
+	/// Strength of the armor light used by [proc/set_light()]
+	var/light_strength = 5
+
+/obj/item/clothing/suit/dropped(mob/user)
+	turn_off_light(user)
+	return ..()
+
+
+/**
+	Turn off the armor light
+
+	This proc forces the light to off, useful when the armor is dropped or if a xeno slashes the armor to disable it.
+*/
+/obj/item/clothing/suit/proc/turn_off_light(mob/wearer)
+	if(flags_armor_features & ARMOR_LAMP_ON)
+		toggle_armor_light(wearer) //turn the light off
+		return TRUE
+	return FALSE
+
+
+/**
+	Toggles the armor light
+
+	This proc will toggle the light enabled or disabled on the armor, playing a sound and updating the action button for the user.
+*/
+/obj/item/clothing/suit/proc/toggle_armor_light(mob/user)
+	COOLDOWN_START(src, COOLDOWN_ARMOR_LIGHT, 2.5 SECONDS)
+	if(flags_armor_features & ARMOR_LAMP_ON)
+		set_light(0)
+	else
+		set_light(light_strength)
+	flags_armor_features ^= ARMOR_LAMP_ON
+	playsound(src, 'sound/items/flashlight.ogg', 15, TRUE)
+	update_icon(user)
+	update_action_button_icons()
 
 
 /obj/item/clothing/suit/update_clothing_icon()

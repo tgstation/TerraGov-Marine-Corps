@@ -153,7 +153,7 @@
 	else if(!isnull(json["environment_traits"]))
 		log_world("map_config environment_traits is not a list!")
 		return
-	
+
 	var/list/gamemode_names = list()
 	for(var/t in subtypesof(/datum/game_mode))
 		var/datum/game_mode/G = t

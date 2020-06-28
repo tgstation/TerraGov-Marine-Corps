@@ -63,11 +63,6 @@
 	user?.update_inv_wear_suit()
 
 
-/obj/item/clothing/suit/storage/marine/dropped(mob/user)
-	if(loc != user)
-		turn_off_light(user)
-	return ..()
-
 /obj/item/clothing/suit/storage/marine/Destroy()
 	if(pockets)
 		QDEL_NULL(pockets)
@@ -77,7 +72,7 @@
 	if(!isturf(user.loc))
 		to_chat(user, "<span class='warning'>You cannot turn the light on while in [user.loc].</span>")
 		return
-	if(flashlight_cooldown > world.time)
+	if(COOLDOWN_CHECK(src, COOLDOWN_ARMOR_LIGHT))
 		return
 	if(!ishuman(user))
 		return
@@ -107,7 +102,7 @@
 	icon_state = "2"
 	soft_armor = list("melee" = 45, "bullet" = 55, "laser" = 55, "energy" = 20, "bomb" = 45, "bio" = 30, "rad" = 10, "fire" = 25, "acid" = 35)
 	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
-	brightness_on = 8 //because it's LIGHT armor, get it?
+	light_strength = 8 //because it's LIGHT armor, get it?
 
 /obj/item/clothing/suit/storage/marine/harness
 	name = "\improper M3 pattern marine harness"
@@ -158,7 +153,7 @@
 	icon_state = "7"
 	soft_armor = list("melee" = 55, "bullet" = 55, "laser" = 55, "energy" = 40, "bomb" = 40, "bio" = 40, "rad" = 15, "fire" = 40, "acid" = 45)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-	brightness_on = 8
+	light_strength = 8
 	pockets = /obj/item/storage/internal/suit/leader
 
 /obj/item/storage/internal/suit/leader
@@ -292,6 +287,7 @@
 	name = "\improper M35 armor"
 	desc = "A custom set of M35 armor designed for use by TGMC Pyrotechnicians. Contains thick kevlar shielding, partial environmental shielding and thermal dissipators."
 	icon_state = "pyro_armor"
+	hard_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 100, "acid" = 0)
 	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = 30, "bio" = 30, "rad" = 50, "fire" = 90, "acid" = 45)
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
@@ -395,18 +391,18 @@
 /obj/item/clothing/suit/storage/marine/imperial
 	name = "\improper Imperial Guard flak armour"
 	desc = "A cheap, mass produced armour worn by the Imperial Guard, which are also cheap and mass produced. You can make out what appears to be <i>Cadia stands</i> carved into the armour."
-	icon_state = "guardarmor"
-	item_state = "guardarmor"
+	icon_state = "m_guardarmor"
+	item_state = "m_guardarmor"
 	soft_armor = list("melee" = 75, "bullet" = 65, "laser" = 60, "energy" = 60, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 60, "acid" = 60)
 
 /obj/item/clothing/suit/storage/marine/imperial/sergeant
 	// SL armour, better than flak, covers more
 	name = "\improper Imperial Guard sergeant armour"
 	desc = "A body armour that offers much better protection than the flak armour."
-	icon_state = "guardSLarmor"
-	item_state = "guardSLarmor"
+	icon_state = "m_guardSLarmor"
+	item_state = "m_guardSLarmor"
 	soft_armor = list("melee" = 85, "bullet" = 85, "laser" = 85, "energy" = 85, "bomb" = 85, "bio" = 25, "rad" = 25, "fire" = 85, "acid" = 85)
-	brightness_on = 6 // better light
+	light_strength = 6 // better light
 	pockets = /obj/item/storage/internal/suit/imperial
 
 /obj/item/storage/internal/suit/imperial
@@ -416,14 +412,14 @@
 /obj/item/clothing/suit/storage/marine/imperial/medicae
 	name = "\improper Imperial Guard medicae armour"
 	desc = "An armour worn by the medicae of the Imperial Guard."
-	icon_state = "guardmedicarmor"
-	item_state = "guardmedicarmor"
+	icon_state = "m_guardmedicarmor"
+	item_state = "m_guardmedicarmor"
 
 /obj/item/clothing/suit/storage/marine/imperial/sergeant/veteran
 	name = "\improper Imperial Guard carapace armour"
 	desc = "A heavy full body armour that protects the wearer a lot more than the flak armour, also slows down considerably."
-	icon_state = "guardvetarmor"
-	item_state = "guardvetarmor"
+	icon_state = "m_guardvetarmor"
+	item_state = "m_guardvetarmor"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	soft_armor = list("melee" = 90, "bullet" = 90, "laser" = 90, "energy" = 90, "bomb" = 90, "bio" = 30, "rad" = 30, "fire" = 90, "acid" = 90)
 
@@ -433,7 +429,7 @@
 	desc = "A power armour that was once broken, is functional once again. However this version isn't as powerful as the real power armour."
 	//icon_state
 	soft_armor = list("melee" = 75, "bullet" = 60, "laser" = 55, "energy" = 40, "bomb" = 45, "bio" = 15, "rad" = 15, "fire" = 40, "acid" = 40)
-	brightness_on = 6
+	light_strength = 6
 	pockets = /obj/item/storage/internal/suit/imperial
 
 /obj/item/clothing/suit/storage/marine/imperial/power/astartes
@@ -451,7 +447,7 @@
 	item_state = "commissar_coat"
 	soft_armor = list("melee" = 75, "bullet" = 60, "laser" = 55, "energy" = 40, "bomb" = 45, "bio" = 15, "rad" = 15, "fire" = 40, "acid" = 40)
 
-//===========================//U.P.P\\================================
+//===========================//U.S.L\\================================
 
 /obj/item/clothing/suit/storage/faction
 	icon = 'icons/obj/clothing/cm_suits.dmi'
@@ -503,7 +499,7 @@
 		to_chat(user, "<span class='warning'>You cannot turn the light on while in [user.loc].</span>")
 		return
 
-	if(flashlight_cooldown > world.time)
+	if(COOLDOWN_CHECK(src, COOLDOWN_ARMOR_LIGHT))
 		return
 
 	if(!ishuman(user)) return
@@ -522,7 +518,7 @@
 
 /obj/item/clothing/suit/storage/faction/UPP
 	name = "\improper UM5 personal armor"
-	desc = "Standard body armor of the UPP military, the UM5 (Union Medium MK5) is a medium body armor, roughly on par with the venerable M3 pattern body armor in service with the TGMC."
+	desc = "Standard body armor of the USL pirates, the UM5 (United Medium MK5) is a medium body armor, roughly on par with the venerable M3 pattern body armor in service with the TGMC."
 	icon_state = "upp_armor"
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
@@ -536,14 +532,14 @@
 
 /obj/item/clothing/suit/storage/faction/UPP/heavy
 	name = "\improper UH7 heavy plated armor"
-	desc = "An extremely heavy duty set of body armor in service with the UPP military, the UH7 (Union Heavy MK5) is known for being a rugged set of armor, capable of taking immesnse punishment."
+	desc = "An extremely heavy duty set of body armor in service with the USL pirates, the UH7 (United Heavy MK5) is known for being a rugged set of armor, capable of taking immesnse punishment."
 	icon_state = "upp_armor_heavy"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	soft_armor = list("melee" = 65, "bullet" = 65, "laser" = 65, "energy" = 60, "bomb" = 60, "bio" = 10, "rad" = 10, "fire" = 60, "acid" = 60)
 
 /obj/item/clothing/suit/storage/marine/smartgunner/UPP
 	name = "\improper UH7 heavy plated armor"
-	desc = "An extremely heavy duty set of body armor in service with the UPP military, the UH7 (Union Heavy MK5) is known for being a rugged set of armor, capable of taking immesnse punishment."
+	desc = "An extremely heavy duty set of body armor in service with the USL pirates, the UH7 (United Heavy MK5) is known for being a rugged set of armor, capable of taking immesnse punishment."
 	icon_state = "upp_armor_heavy"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	soft_armor = list("melee" = 65, "bullet" = 65, "laser" = 65, "energy" = 60, "bomb" = 60, "bio" = 10, "rad" = 10, "fire" = 60, "acid" = 60)

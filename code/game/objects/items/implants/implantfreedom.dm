@@ -23,11 +23,6 @@
 			var/obj/item/W = source.handcuffed
 			source.update_handcuffed(null)
 			source.dropItemToGround(W)
-		if(source.legcuffed)
-			var/obj/item/W = source.legcuffed
-			source.legcuffed = null
-			source.update_inv_legcuffed()
-			source.dropItemToGround(W)
 
 
 /obj/item/implant/freedom/implanted(mob/living/carbon/source)

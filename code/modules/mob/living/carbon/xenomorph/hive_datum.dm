@@ -16,6 +16,7 @@
 	var/list/list/xenos_by_upgrade
 	var/list/dead_xenos // xenos that are still assigned to this hive but are dead.
 	var/list/ssd_xenos
+	var/list/list/xenos_by_zlevel
 
 // ***************************************
 // *********** Init
@@ -27,6 +28,7 @@
 	xenos_by_tier = list()
 	xenos_by_upgrade = list()
 	dead_xenos = list()
+	xenos_by_zlevel = list()
 
 	for(var/t in subtypesof(/mob/living/carbon/xenomorph))
 		var/mob/living/carbon/xenomorph/X = t
@@ -152,6 +154,8 @@
 /datum/hive_status/proc/add_to_lists(mob/living/carbon/xenomorph/X)
 	xenos_by_tier[X.tier] += X
 	xenos_by_upgrade[X.upgrade] += X
+	LAZYADD(xenos_by_zlevel["[X.z]"], X)
+	RegisterSignal(X, COMSIG_MOVABLE_Z_CHANGED, .proc/xeno_z_changed)
 
 	if(!xenos_by_typepath[X.caste_base_type])
 		stack_trace("trying to add an invalid typepath into hivestatus list [X.caste_base_type]")
@@ -243,6 +247,9 @@
 		return FALSE
 
 	LAZYREMOVE(ssd_xenos, X)
+	LAZYREMOVE(xenos_by_zlevel["[X.z]"], X)
+
+	UnregisterSignal(X, COMSIG_MOVABLE_Z_CHANGED)
 
 	remove_leader(X)
 
@@ -312,6 +319,10 @@
 
 /datum/hive_status/proc/on_xeno_login(mob/living/carbon/xenomorph/reconnecting_xeno)
 	LAZYREMOVE(ssd_xenos, reconnecting_xeno)
+
+/datum/hive_status/proc/xeno_z_changed(mob/living/carbon/xenomorph/X, old_z, new_z)
+	LAZYREMOVE(xenos_by_zlevel["[old_z]"], X)
+	LAZYADD(xenos_by_zlevel["[new_z]"], X)
 
 // ***************************************
 // *********** Xeno upgrades
@@ -690,6 +701,63 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/queen/Corrupted
 	hivenumber = XENO_HIVE_CORRUPTED
 
+/mob/living/carbon/xenomorph/boiler/Corrupted
+	hivenumber = XENO_HIVE_CORRUPTED
+
+/mob/living/carbon/xenomorph/bull/Corrupted
+	hivenumber = XENO_HIVE_CORRUPTED
+
+/mob/living/carbon/xenomorph/carrier/Corrupted
+	hivenumber = XENO_HIVE_CORRUPTED
+
+/mob/living/carbon/xenomorph/crusher/Corrupted
+	hivenumber = XENO_HIVE_CORRUPTED
+
+/mob/living/carbon/xenomorph/defender/Corrupted
+	hivenumber = XENO_HIVE_CORRUPTED
+
+/mob/living/carbon/xenomorph/Defiler/Corrupted
+	hivenumber = XENO_HIVE_CORRUPTED
+
+/mob/living/carbon/xenomorph/drone/Corrupted
+	hivenumber = XENO_HIVE_CORRUPTED
+
+/mob/living/carbon/xenomorph/hivelord/Corrupted
+	hivenumber = XENO_HIVE_CORRUPTED
+
+/mob/living/carbon/xenomorph/hivemind/Corrupted
+	hivenumber = XENO_HIVE_CORRUPTED
+
+/mob/living/carbon/xenomorph/hunter/Corrupted
+	hivenumber = XENO_HIVE_CORRUPTED
+
+/mob/living/carbon/xenomorph/larva/Corrupted
+	hivenumber = XENO_HIVE_CORRUPTED
+
+/mob/living/carbon/xenomorph/panther/Corrupted
+	hivenumber = XENO_HIVE_CORRUPTED
+
+/mob/living/carbon/xenomorph/praetorian/Corrupted
+	hivenumber = XENO_HIVE_CORRUPTED
+
+/mob/living/carbon/xenomorph/ravager/Corrupted
+	hivenumber = XENO_HIVE_CORRUPTED
+
+/mob/living/carbon/xenomorph/runner/Corrupted
+	hivenumber = XENO_HIVE_CORRUPTED
+
+/mob/living/carbon/xenomorph/sentinel/Corrupted
+	hivenumber = XENO_HIVE_CORRUPTED
+
+/mob/living/carbon/xenomorph/shrike/Corrupted
+	hivenumber = XENO_HIVE_CORRUPTED
+
+/mob/living/carbon/xenomorph/spitter/Corrupted
+	hivenumber = XENO_HIVE_CORRUPTED
+
+/mob/living/carbon/xenomorph/warrior/Corrupted
+	hivenumber = XENO_HIVE_CORRUPTED
+
 // ***************************************
 // *********** Misc Xenos
 // ***************************************
@@ -702,6 +770,63 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/queen/Alpha
 	hivenumber = XENO_HIVE_ALPHA
 
+/mob/living/carbon/xenomorph/boiler/Alpha
+	hivenumber = XENO_HIVE_ALPHA
+
+/mob/living/carbon/xenomorph/bull/Alpha
+	hivenumber = XENO_HIVE_ALPHA
+
+/mob/living/carbon/xenomorph/carrier/Alpha
+	hivenumber = XENO_HIVE_ALPHA
+
+/mob/living/carbon/xenomorph/crusher/Alpha
+	hivenumber = XENO_HIVE_ALPHA
+
+/mob/living/carbon/xenomorph/defender/Alpha
+	hivenumber = XENO_HIVE_ALPHA
+
+/mob/living/carbon/xenomorph/Defiler/Alpha
+	hivenumber = XENO_HIVE_ALPHA
+
+/mob/living/carbon/xenomorph/drone/Alpha
+	hivenumber = XENO_HIVE_ALPHA
+
+/mob/living/carbon/xenomorph/hivelord/Alpha
+	hivenumber = XENO_HIVE_ALPHA
+
+/mob/living/carbon/xenomorph/hivemind/Alpha
+	hivenumber = XENO_HIVE_ALPHA
+
+/mob/living/carbon/xenomorph/hunter/Alpha
+	hivenumber = XENO_HIVE_ALPHA
+
+/mob/living/carbon/xenomorph/larva/Alpha
+	hivenumber = XENO_HIVE_ALPHA
+
+/mob/living/carbon/xenomorph/panther/Alpha
+	hivenumber = XENO_HIVE_ALPHA
+
+/mob/living/carbon/xenomorph/praetorian/Alpha
+	hivenumber = XENO_HIVE_ALPHA
+
+/mob/living/carbon/xenomorph/ravager/Alpha
+	hivenumber = XENO_HIVE_ALPHA
+
+/mob/living/carbon/xenomorph/runner/Alpha
+	hivenumber = XENO_HIVE_ALPHA
+
+/mob/living/carbon/xenomorph/sentinel/Alpha
+	hivenumber = XENO_HIVE_ALPHA
+
+/mob/living/carbon/xenomorph/shrike/Alpha
+	hivenumber = XENO_HIVE_ALPHA
+
+/mob/living/carbon/xenomorph/spitter/Alpha
+	hivenumber = XENO_HIVE_ALPHA
+
+/mob/living/carbon/xenomorph/warrior/Alpha
+	hivenumber = XENO_HIVE_ALPHA
+
 /datum/hive_status/beta
 	name = "Beta"
 	hivenumber = XENO_HIVE_BETA
@@ -711,6 +836,63 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/queen/Beta
 	hivenumber = XENO_HIVE_BETA
 
+/mob/living/carbon/xenomorph/boiler/Beta
+	hivenumber = XENO_HIVE_BETA
+
+/mob/living/carbon/xenomorph/bull/Beta
+	hivenumber = XENO_HIVE_BETA
+
+/mob/living/carbon/xenomorph/carrier/Beta
+	hivenumber = XENO_HIVE_BETA
+
+/mob/living/carbon/xenomorph/crusher/Beta
+	hivenumber = XENO_HIVE_BETA
+
+/mob/living/carbon/xenomorph/defender/Beta
+	hivenumber = XENO_HIVE_BETA
+
+/mob/living/carbon/xenomorph/Defiler/Beta
+	hivenumber = XENO_HIVE_BETA
+
+/mob/living/carbon/xenomorph/drone/Beta
+	hivenumber = XENO_HIVE_BETA
+
+/mob/living/carbon/xenomorph/hivelord/Beta
+	hivenumber = XENO_HIVE_BETA
+
+/mob/living/carbon/xenomorph/hivemind/Beta
+	hivenumber = XENO_HIVE_BETA
+
+/mob/living/carbon/xenomorph/hunter/Beta
+	hivenumber = XENO_HIVE_BETA
+
+/mob/living/carbon/xenomorph/larva/Beta
+	hivenumber = XENO_HIVE_BETA
+
+/mob/living/carbon/xenomorph/panther/Beta
+	hivenumber = XENO_HIVE_BETA
+
+/mob/living/carbon/xenomorph/praetorian/Beta
+	hivenumber = XENO_HIVE_BETA
+
+/mob/living/carbon/xenomorph/ravager/Beta
+	hivenumber = XENO_HIVE_BETA
+
+/mob/living/carbon/xenomorph/runner/Beta
+	hivenumber = XENO_HIVE_BETA
+
+/mob/living/carbon/xenomorph/sentinel/Beta
+	hivenumber = XENO_HIVE_BETA
+
+/mob/living/carbon/xenomorph/shrike/Beta
+	hivenumber = XENO_HIVE_BETA
+
+/mob/living/carbon/xenomorph/spitter/Beta
+	hivenumber = XENO_HIVE_BETA
+
+/mob/living/carbon/xenomorph/warrior/Beta
+	hivenumber = XENO_HIVE_BETA
+
 /datum/hive_status/zeta
 	name = "Zeta"
 	hivenumber = XENO_HIVE_ZETA
@@ -718,6 +900,63 @@ to_chat will check for valid clients itself already so no need to double check f
 	color = "#606060"
 
 /mob/living/carbon/xenomorph/queen/Zeta
+	hivenumber = XENO_HIVE_ZETA
+
+/mob/living/carbon/xenomorph/boiler/Zeta
+	hivenumber = XENO_HIVE_ZETA
+
+/mob/living/carbon/xenomorph/bull/Zeta
+	hivenumber = XENO_HIVE_ZETA
+
+/mob/living/carbon/xenomorph/carrier/Zeta
+	hivenumber = XENO_HIVE_ZETA
+
+/mob/living/carbon/xenomorph/crusher/Zeta
+	hivenumber = XENO_HIVE_ZETA
+
+/mob/living/carbon/xenomorph/defender/Zeta
+	hivenumber = XENO_HIVE_ZETA
+
+/mob/living/carbon/xenomorph/Defiler/Zeta
+	hivenumber = XENO_HIVE_ZETA
+
+/mob/living/carbon/xenomorph/drone/Zeta
+	hivenumber = XENO_HIVE_ZETA
+
+/mob/living/carbon/xenomorph/hivelord/Zeta
+	hivenumber = XENO_HIVE_ZETA
+
+/mob/living/carbon/xenomorph/hivemind/Zeta
+	hivenumber = XENO_HIVE_ZETA
+
+/mob/living/carbon/xenomorph/hunter/Zeta
+	hivenumber = XENO_HIVE_ZETA
+
+/mob/living/carbon/xenomorph/larva/Zeta
+	hivenumber = XENO_HIVE_ZETA
+
+/mob/living/carbon/xenomorph/panther/Zeta
+	hivenumber = XENO_HIVE_ZETA
+
+/mob/living/carbon/xenomorph/praetorian/Zeta
+	hivenumber = XENO_HIVE_ZETA
+
+/mob/living/carbon/xenomorph/ravager/Zeta
+	hivenumber = XENO_HIVE_ZETA
+
+/mob/living/carbon/xenomorph/runner/Zeta
+	hivenumber = XENO_HIVE_ZETA
+
+/mob/living/carbon/xenomorph/sentinel/Zeta
+	hivenumber = XENO_HIVE_ZETA
+
+/mob/living/carbon/xenomorph/shrike/Zeta
+	hivenumber = XENO_HIVE_ZETA
+
+/mob/living/carbon/xenomorph/spitter/Zeta
+	hivenumber = XENO_HIVE_ZETA
+
+/mob/living/carbon/xenomorph/warrior/Zeta
 	hivenumber = XENO_HIVE_ZETA
 
 /datum/hive_status/admeme
@@ -757,3 +996,74 @@ to_chat will check for valid clients itself already so no need to double check f
 
 /mob/living/carbon/xenomorph/get_xeno_hivenumber()
 	return hivenumber
+
+/// Controls the evolution UI
+/datum/hive_status/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.xeno_state)
+	// Xeno only screen
+	if(!isxeno(user))
+		return
+
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "HiveEvolveScreen", "Xenomorph Evolution", 400, 750, master_ui, state)
+		ui.open()
+
+/// Static data provided once when the ui is opened
+/datum/hive_status/ui_static_data(mob/living/carbon/xenomorph/xeno)
+	. = list()
+	.["name"] = xeno.xeno_caste.display_name
+	.["abilities"] = list()
+	for(var/ability in xeno.xeno_caste.actions)
+		var/datum/action/xeno_action/xeno_ability = ability
+		.["abilities"]["[ability]"] = list(
+			"name" = initial(xeno_ability.name),
+			"desc" = initial(xeno_ability.mechanics_text),
+			"cost" = initial(xeno_ability.plasma_cost),
+			"cooldown" = (initial(xeno_ability.cooldown_timer) / 10)
+		)
+	.["evolves_to"] = list()
+	for(var/evolves_into in xeno.xeno_caste.evolves_to)
+		var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[evolves_into][XENO_UPGRADE_BASETYPE]
+		var/list/caste_data = list("type_path" = caste.caste_type_path, "name" = caste.display_name, "abilities" = list())
+		for(var/ability in caste.actions)
+			var/datum/action/xeno_action/xeno_ability = ability
+			caste_data["abilities"]["[ability]"] = list(
+				"name" = initial(xeno_ability.name),
+				"desc" = initial(xeno_ability.mechanics_text),
+				"cost" = initial(xeno_ability.plasma_cost),
+				"cooldown" = (initial(xeno_ability.cooldown_timer) / 10)
+			)
+		.["evolves_to"]["[caste.caste_type_path]"] = caste_data
+
+/// Some data to update the UI with the current evolution status
+/datum/hive_status/ui_data(mob/living/carbon/xenomorph/xeno)
+	. = list()
+
+	.["can_evolve"] = !xeno.is_ventcrawling && \
+		!xeno.incapacitated(TRUE) && \
+		xeno.health >= xeno.maxHealth && \
+		xeno.plasma_stored >= xeno.xeno_caste.plasma_max
+
+	if(isxenolarva(xeno))
+		.["evolution"] = list(
+			"current" = xeno.amount_grown,
+			"max" = xeno.max_grown
+		)
+		return
+	.["evolution"] = list(
+		"current" = xeno.evolution_stored,
+		"max" = xeno.xeno_caste.evolution_threshold
+	)
+
+/// Handles actuually evolving
+/datum/hive_status/ui_act(action, params)
+	if(..())
+		return
+
+	var/mob/living/carbon/xenomorph/xeno = usr
+	switch(action)
+		if("evolve")
+			SStgui.close_user_uis(usr, src, "main")
+			var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[text2path(params["path"])][XENO_UPGRADE_BASETYPE]
+			xeno.do_evolve(caste.caste_type_path, caste.display_name) // All the checks for can or can't are handled inside do_evolve
+			return

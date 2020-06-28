@@ -84,7 +84,7 @@
 
 /mob/living/simple_animal/updatehealth()
 	. = ..()
-	health = CLAMP(health, 0, maxHealth)
+	health = clamp(health, 0, maxHealth)
 
 
 /mob/living/simple_animal/update_stat()
@@ -380,7 +380,7 @@
 /mob/living/simple_animal/proc/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	if(!forced && (status_flags & GODMODE))
 		return FALSE
-	bruteloss = round(CLAMP(bruteloss + amount, 0, maxHealth), 0.1)
+	bruteloss = round(clamp(bruteloss + amount, 0, maxHealth), 0.1)
 	if(updating_health)
 		updatehealth()
 	return amount

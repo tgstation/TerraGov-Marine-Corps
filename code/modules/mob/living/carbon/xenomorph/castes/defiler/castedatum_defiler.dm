@@ -17,7 +17,7 @@
 	tackle_damage = 30
 
 	// *** Speed *** //
-	speed = -1
+	speed = -0.7
 
 	// *** Plasma *** //
 	plasma_max = 400
@@ -43,6 +43,7 @@
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/activable/larval_growth_sting/defiler,
 		/datum/action/xeno_action/activable/neurotox_sting,
+		/datum/action/xeno_action/activable/inject_egg_neurogas,
 		/datum/action/xeno_action/activable/emit_neurogas,
 		/datum/action/xeno_action/toggle_pheromones
 		)
@@ -107,7 +108,7 @@
 	plasma_gain = 19
 
 	// *** Health *** //
-	max_health = 325
+	max_health = 300
 
 	// *** Evolution *** //
 	upgrade_threshold = 1000
@@ -138,7 +139,7 @@
 	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 325
 
 	// *** Evolution *** //
 	upgrade_threshold = 1000

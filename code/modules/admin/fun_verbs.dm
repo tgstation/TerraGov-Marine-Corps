@@ -38,8 +38,8 @@
 	if(isnull(light))
 		return
 
-	heavy = CLAMP(heavy, 0, 10000)
-	light = CLAMP(light, 0, 10000)
+	heavy = clamp(heavy, 0, 10000)
+	light = clamp(light, 0, 10000)
 
 	empulse(usr, heavy, light)
 
@@ -597,11 +597,11 @@
 			if(input_devastation_range < 1 && input_heavy_impact_range < 1 && input_light_impact_range < 1 && input_flash_range < 1 && input_flame_range < 1 && input_throw_range < 1)
 				return
 			var/world_max = max(world.maxy, world.maxy)
-			input_devastation_range = CLAMP(input_devastation_range, 0, world_max)
-			input_heavy_impact_range = CLAMP(input_heavy_impact_range, 0, world_max)
-			input_light_impact_range = CLAMP(input_light_impact_range, 0, world_max)
-			input_flash_range = CLAMP(input_flash_range, 0, world_max)
-			input_flame_range = CLAMP(input_flame_range, 0, world_max)
+			input_devastation_range = clamp(input_devastation_range, 0, world_max)
+			input_heavy_impact_range = clamp(input_heavy_impact_range, 0, world_max)
+			input_light_impact_range = clamp(input_light_impact_range, 0, world_max)
+			input_flash_range = clamp(input_flash_range, 0, world_max)
+			input_flame_range = clamp(input_flame_range, 0, world_max)
 			switch(tgalert(usr, "Deploy payload?", "DIR: [input_devastation_range] | HIR: [input_heavy_impact_range] | LIR: [input_light_impact_range] | FshR: [input_flash_range] | FlmR: [input_flame_range] | ThR: [input_throw_range]", "Launch!", "Cancel"))
 				if("Launch!")
 					explosion(usr.loc, input_devastation_range, input_heavy_impact_range, input_light_impact_range, input_flash_range, input_flame_range, input_throw_range)

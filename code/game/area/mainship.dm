@@ -8,376 +8,376 @@
 	ceiling = CEILING_METAL
 
 /area/mainship/command/cic
-	name = "\improper Combat Information Center"
+	name = "Combat Information Center"
 	icon_state = "cic"
 	fake_zlevel = 1 // upperdeck
 
 /area/mainship/command/airoom
-	name = "\improper AI Core"
+	name = "AI Core"
 	icon_state = "airoom"
 	fake_zlevel = 1 // upperdeck
 
 /area/mainship/command/telecomms
-	name = "\improper Telecommunications"
+	name = "Telecommunications"
 	icon_state = "tcomms"
 	fake_zlevel = 1 // upperdeck
 
 /area/mainship/command/self_destruct
-	name = "\improper Self-Destruct Core Room"
+	name = "Self-Destruct Core Room"
 	icon_state = "selfdestruct"
 	fake_zlevel = 1 // upperdeck
 
 /area/mainship/command/corporateliaison
-	name = "\improper Corporate Liaison Office"
+	name = "Corporate Liaison Office"
 	icon_state = "corporatespace"
 	fake_zlevel = 1 // upperdeck
 
 /area/mainship/engineering/upper_engineering
-	name = "\improper Upper Engineering"
+	name = "Upper Engineering"
 	icon_state = "upperengineering"
 	fake_zlevel = 1 // upperdeck
 
 /area/mainship/engineering/ce_room
-	name = "\improper Chief Ship Engineer Office"
+	name = "Chief Ship Engineer Office"
 	icon_state = "ceroom"
 	fake_zlevel = 1 // upperdeck
 
 /area/mainship/engineering/lower_engine_monitoring
-	name = "\improper Engine Reactor Monitoring"
+	name = "Engine Reactor Monitoring"
 	icon_state = "lowermonitoring"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/engineering/lower_engineering
-	name = "\improper Engineering Lower"
+	name = "Engineering Lower"
 	icon_state = "lowerengineering"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/engineering/engineering_workshop
-	name = "\improper Engineering Workshop"
+	name = "Engineering Workshop"
 	icon_state = "workshop"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/engineering/engine_core
-	name = "\improper Engine Reactor Core Room"
+	name = "Engine Reactor Core Room"
 	icon_state = "coreroom"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/engineering/starboard_atmos
-	name = "\improper Atmospherics Starboard"
+	name = "Atmospherics Starboard"
 	icon_state = "starboardatmos"
 	fake_zlevel = 1 // upperdeck
 
 /area/mainship/engineering/port_atmos
-	name = "\improper Atmospherics Port"
+	name = "Atmospherics Port"
 	icon_state = "portatmos"
 	fake_zlevel = 1 // upperdeck
 
 /area/mainship/shipboard/navigation
-	name = "\improper Astronavigational Deck"
+	name = "Astronavigational Deck"
 	icon_state = "astronavigation"
 	fake_zlevel = 1 // upperdeck
 
 /area/mainship/shipboard/starboard_missiles
-	name = "\improper Missile Tubes Starboard"
+	name = "Missile Tubes Starboard"
 	icon_state = "starboardmissile"
 	fake_zlevel = 1 // upperdeck
 
 /area/mainship/shipboard/port_missiles
-	name = "\improper Missile Tubes Port"
+	name = "Missile Tubes Port"
 	icon_state = "portmissile"
 	fake_zlevel = 1 // upperdeck
 
 /area/mainship/shipboard/weapon_room
-	name = "\improper Weapon Control Room"
+	name = "Weapon Control Room"
 	icon_state = "weaponroom"
 	fake_zlevel = 1 // upperdeck
 
 /area/mainship/shipboard/starboard_point_defense
-	name = "\improper Point Defense Starboard"
+	name = "Point Defense Starboard"
 	icon_state = "starboardpd"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/shipboard/port_point_defense
-	name = "\improper Point Defense Port"
+	name = "Point Defense Port"
 	icon_state = "portpd"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/shipboard/brig
-	name = "\improper Brig"
+	name = "Brig"
 	icon_state = "brig"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/shipboard/brig_cells
-	name = "\improper Brig Cells"
+	name = "Brig Cells"
 	icon_state = "brigcells"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/shipboard/chief_mp_office
-	name = "\improper Brig Command Master at Arms Office"
+	name = "Brig Command Master at Arms Office"
 	icon_state = "chiefmpoffice"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/shipboard/ex_firing_range
-	name = "\improper Experimental Firing Range"
+	name = "Experimental Firing Range"
 	icon_state = "firingrange"
 	fake_zlevel = 1 // upperdeck
 
 /area/mainship/shipboard/firing_range
-	name = "\improper Firing Range"
+	name = "Firing Range"
 	icon_state = "firingrange"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/shipboard/sensors
-	name = "\improper Sensor Room"
+	name = "Sensor Room"
 	icon_state = "sensor"
 
 /area/mainship/hallways/hangar
-	name = "\improper Hangar"
+	name = "Hangar"
 	icon_state = "hangar"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/living/tankerbunks
-	name = "\improper Vehicle Crew Bunks"
+	name = "Vehicle Crew Bunks"
 	icon_state = "livingspace"
 	fake_zlevel = 2
 
 /area/mainship/hallways/exoarmor
-	name = "\improper Vehicle Armor Storage"
+	name = "Vehicle Armor Storage"
 	icon_state = "exoarmor"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/hallways/repair_bay
-	name = "\improper Vehicle Repair Bay"
+	name = "Vehicle Repair Bay"
 	icon_state = "dropshiprepair"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/hallways/mission_planner
-	name = "\improper Dropship Central Computer Room"
+	name = "Dropship Central Computer Room"
 	icon_state = "missionplanner"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/hallways/starboard_umbilical
-	name = "\improper Umbilical Starboard"
+	name = "Umbilical Starboard"
 	icon_state = "starboardumbilical"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/hallways/port_umbilical
-	name = "\improper Umbilical Port"
+	name = "Umbilical Port"
 	icon_state = "portumbilical"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/hallways/aft_hallway
-	name = "\improper Hallway Aft"
+	name = "Hallway Aft"
 	icon_state = "aft"
 	fake_zlevel = 1 // upperdeck
 
 /area/mainship/hallways/stern_hallway
-	name = "\improper Hallway Stern"
+	name = "Hallway Stern"
 	icon_state = "stern"
 	fake_zlevel = 1 // upperdeck
 
 /area/mainship/hallways/port_hallway
-	name = "\improper Hallway Port"
+	name = "Hallway Port"
 	icon_state = "port"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/hallways/starboard_hallway
-	name = "\improper Hallway Starboard"
+	name = "Hallway Starboard"
 	icon_state = "starboard"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/hull/lower_hull
-	name = "\improper Hull Lower"
+	name = "Hull Lower"
 	icon_state = "lowerhull"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/hull/upper_hull
-	name = "\improper Hull Upper"
+	name = "Hull Upper"
 	icon_state = "upperhull"
 	fake_zlevel = 1 // upperdeck
 
 /area/mainship/living/cryo_cells
-	name = "\improper Cryo Cells"
+	name = "Cryo Cells"
 	icon_state = "cryo"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/living/briefing
-	name = "\improper Briefing Area"
+	name = "Briefing Area"
 	icon_state = "briefing"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/living/port_emb
-	name = "\improper Extended Mission Bunks"
+	name = "Extended Mission Bunks"
 	icon_state = "portemb"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/living/starboard_emb
-	name = "\improper Extended Mission Bunks"
+	name = "Extended Mission Bunks"
 	icon_state = "starboardemb"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/living/port_garden
-	name = "\improper Garden"
+	name = "Garden"
 	icon_state = "portemb"
 	fake_zlevel = 1 // upperdeck
 
 /area/mainship/living/starboard_garden
-	name = "\improper Garden"
+	name = "Garden"
 	icon_state = "starboardemb"
 	fake_zlevel = 1 // upperdeck
 
 /area/mainship/living/basketball
-	name = "\improper Basketball Court"
+	name = "Basketball Court"
 	icon_state = "basketball"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/living/grunt_rnr
-	name = "\improper Lounge"
+	name = "Lounge"
 	icon_state = "gruntrnr"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/living/officer_rnr
-	name = "\improper Officer's Lounge"
+	name = "Officer's Lounge"
 	icon_state = "officerrnr"
 	fake_zlevel = 1 // upperdeck
 
 /area/mainship/living/officer_study
-	name = "\improper Officer's Study"
+	name = "Officer's Study"
 	icon_state = "officerstudy"
 	fake_zlevel = 1 // upperdeck
 
 /area/mainship/living/cafeteria_port
-	name = "\improper Cafeteria Port"
+	name = "Cafeteria Port"
 	icon_state = "food"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/living/cafeteria_starboard
-	name = "\improper Cafeteria Starboard"
+	name = "Cafeteria Starboard"
 	icon_state = "food"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/living/cafeteria_officer
-	name = "\improper Officer Cafeteria"
+	name = "Officer Cafeteria"
 	icon_state = "food"
 	fake_zlevel = 1 // upperdeck
 
 /area/mainship/living/offices
-	name = "\improper Pool Area"
+	name = "Pool Area"
 	icon_state = "briefing"
 	fake_zlevel = 1 // upperdeck
 
 /area/mainship/living/captain_mess
-	name = "\improper Captain's Mess"
+	name = "Captain's Mess"
 	icon_state = "briefing"
 	fake_zlevel = 1 // upperdeck
 
 /area/mainship/living/pilotbunks
-	name = "\improper Pilot's Bunks"
+	name = "Pilot's Bunks"
 	icon_state = "livingspace"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/living/bridgebunks
-	name = "\improper Staff Officer Bunks"
+	name = "Staff Officer Bunks"
 	icon_state = "livingspace"
 	fake_zlevel = 1 // upperdeck
 
 /area/mainship/living/commandbunks
-	name = "\improper Captain's Bunk"
+	name = "Captain's Bunk"
 	icon_state = "livingspace"
 	fake_zlevel = 1 // upperdeck
 
 /area/mainship/living/numbertwobunks
-	name = "\improper Executive Officer's Bunk"
+	name = "Executive Officer's Bunk"
 	icon_state = "livingspace"
 	fake_zlevel = 1 // upperdeck
 
 /area/mainship/living/chapel
-	name = "\improper Chapel"
+	name = "Chapel"
 	icon_state = "officerrnr"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/medical/lower_medical
-	name = "\improper Medical Lower"
+	name = "Medical Lower"
 	icon_state = "medical"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/medical/upper_medical
-	name = "\improper Medical Upper"
+	name = "Medical Upper"
 	icon_state = "medical"
 	fake_zlevel = 1 // upperdeck
 
 /area/mainship/medical/operating_room_one
-	name = "\improper Medical Operating Room 1"
+	name = "Medical Operating Room 1"
 	icon_state = "operating"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/medical/operating_room_two
-	name = "\improper Medical Operating Room 2"
+	name = "Medical Operating Room 2"
 	icon_state = "operating"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/medical/operating_room_three
-	name = "\improper Medical Operating Room 3"
+	name = "Medical Operating Room 3"
 	icon_state = "operating"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/medical/operating_room_four
-	name = "\improper Medical Operating Room 4"
+	name = "Medical Operating Room 4"
 	icon_state = "operating"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/medical/medical_science
-	name = "\improper Medical Research laboratories"
+	name = "Medical Research laboratories"
 	icon_state = "science"
 	fake_zlevel = 1 // upperdeck
 
 /area/mainship/medical/chemistry
-	name = "\improper Medical Chemical laboratory"
+	name = "Medical Chemical laboratory"
 	icon_state = "chemistry"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/medical/cryo_tubes
-	name = "\improper Medical Cryogenics Tubes"
+	name = "Medical Cryogenics Tubes"
 	icon_state = "medical"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/medical/surgery_hallway
-	name = "\improper Medical Surgical Hallway"
+	name = "Medical Surgical Hallway"
 	icon_state = "medical"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/squads/alpha
-	name = "\improper Squad Alpha Preparation"
+	name = "Squad Alpha Preparation"
 	icon_state = "alpha"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/squads/bravo
-	name = "\improper Squad Bravo Preparation"
+	name = "Squad Bravo Preparation"
 	icon_state = "bravo"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/squads/charlie
-	name = "\improper Squad Charlie Preparation"
+	name = "Squad Charlie Preparation"
 	icon_state = "charlie"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/squads/delta
-	name = "\improper Squad Delta Preparation"
+	name = "Squad Delta Preparation"
 	icon_state = "delta"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/squads/general
-	name = "\improper Common Squads Preparation"
+	name = "Common Squads Preparation"
 	icon_state = "req"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/squads/req
-	name = "\improper Requisitions"
+	name = "Requisitions"
 	icon_state = "req"
 	fake_zlevel = 2 // lowerdeck
 
 /area/mainship/powered //for objects not intended to lose power
-	name = "\improper Powered"
+	name = "Powered"
 	icon_state = "selfdestruct"
 	requires_power = FALSE
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED

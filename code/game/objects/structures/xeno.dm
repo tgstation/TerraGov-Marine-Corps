@@ -333,15 +333,13 @@
 
 /obj/structure/mineral_door/resin/Destroy()
 	relativewall_neighbours()
-	var/turf/U = loc
-	spawn(0)
-		var/turf/T
-		for(var/i in GLOB.cardinals)
-			T = get_step(U, i)
-			if(!istype(T))
-				continue
-			for(var/obj/structure/mineral_door/resin/R in T)
-				R.check_resin_support()
+	var/turf/T
+	for(var/i in GLOB.cardinals)
+		T = get_step(loc, i)
+		if(!istype(T))
+			continue
+		for(var/obj/structure/mineral_door/resin/R in T)
+			INVOKE_NEXT_TICK(R, .proc/check_resin_support)
 	return ..()
 
 
@@ -383,6 +381,7 @@
 	max_integrity = 80
 	var/obj/item/clothing/mask/facehugger/hugger = null
 	var/hugger_type = /obj/item/clothing/mask/facehugger/stasis
+	var/trigger_size = 1
 	var/list/egg_triggers = list()
 	var/status = EGG_GROWING
 	var/hivenumber = XENO_HIVE_NORMAL
@@ -414,12 +413,9 @@
 
 /obj/effect/alien/egg/proc/deploy_egg_triggers()
 	QDEL_LIST(egg_triggers)
-	for(var/i in 1 to 8)
-		var/x_coords = list(-1,-1,-1,0,0,1,1,1)
-		var/y_coords = list(1,0,-1,1,-1,1,0,-1)
-		var/turf/target_turf = locate(x+x_coords[i],y+y_coords[i], z)
-		if(target_turf)
-			egg_triggers += new /obj/effect/egg_trigger(target_turf, src)
+	var/list/turf/target_locations = filled_turfs(src, trigger_size, "circle", FALSE)
+	for(var/turf/trigger_location in target_locations)
+		egg_triggers += new /obj/effect/egg_trigger(trigger_location, src)
 
 /obj/effect/alien/egg/ex_act(severity)
 	Burst(TRUE)//any explosion destroys the egg.
@@ -500,6 +496,9 @@
 /obj/effect/alien/egg/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
+	if(hugger_type == null)
+		return // This egg doesn't take huggers
+
 	if(istype(I, /obj/item/clothing/mask/facehugger))
 		var/obj/item/clothing/mask/facehugger/F = I
 		if(F.stat == DEAD)
@@ -567,7 +566,29 @@
 
 
 
+/obj/effect/alien/egg/gas
+	hugger_type = null
+	trigger_size = 2
 
+/obj/effect/alien/egg/gas/Burst(kill)
+	var/spread = EGG_GAS_DEFAULT_SPREAD
+	if(kill) // Kill is more violent
+		spread = EGG_GAS_KILL_SPREAD
+
+	QDEL_LIST(egg_triggers)
+	update_status(EGG_DESTROYED)
+	flick("Egg Exploding", src)
+	playsound(loc, "sound/effects/alien_egg_burst.ogg", 30)
+
+	var/datum/effect_system/smoke_spread/xeno/neuro/NS = new(src)
+	NS.set_up(spread, get_turf(src))
+	NS.start()
+
+/obj/effect/alien/egg/gas/HasProximity(atom/movable/AM)
+	if(issamexenohive(AM))
+		return FALSE
+	Burst(FALSE)
+	return TRUE
 /*
 TUNNEL
 */
@@ -672,11 +693,11 @@ TUNNEL
 		return
 
 	var/distance = get_dist( get_turf(src), get_turf(other) )
-	var/tunnel_time = CLAMP(distance, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_SMALL_MAX_TRAVEL_TIME)
+	var/tunnel_time = clamp(distance, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_SMALL_MAX_TRAVEL_TIME)
 	var/area/A = get_area(other)
 
 	if(M.mob_size == MOB_SIZE_BIG) //Big xenos take longer
-		tunnel_time = CLAMP(distance * 1.5, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_LARGE_MAX_TRAVEL_TIME)
+		tunnel_time = clamp(distance * 1.5, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_LARGE_MAX_TRAVEL_TIME)
 		M.visible_message("<span class='xenonotice'>[M] begins heaving their huge bulk down into \the [src].</span>", \
 		"<span class='xenonotice'>We begin heaving our monstrous bulk into \the [src] to <b>[A.name] (X: [A.x], Y: [A.y])</b>.</span>")
 	else
@@ -695,3 +716,119 @@ TUNNEL
 			to_chat(M, "<span class='warning'>\The [src] ended unexpectedly, so we return back up.</span>")
 	else
 		to_chat(M, "<span class='warning'>Our crawling was interrupted!</span>")
+
+//Resin Water Well
+/obj/effect/alien/resin/acidwell
+	name = "acid well"
+	desc = "An acid well. It stores acid to put out fires."
+	icon = 'icons/Xeno/acid_pool.dmi'
+	icon_state = "fullwell"
+	density = FALSE
+	opacity = FALSE
+	anchored = TRUE
+	max_integrity = 5
+	layer = RESIN_STRUCTURE_LAYER
+
+	hit_sound = "alien_resin_move"
+	destroy_sound = "alien_resin_move"
+
+	var/charges = 1
+	var/ccharging = FALSE
+	var/mob/living/carbon/xenomorph/creator = null
+
+/obj/effect/alien/resin/acidwell/Initialize()
+	. = ..()
+	update_icon()
+
+/obj/effect/alien/resin/acidwell/Destroy()
+	if(!QDELETED(creator) && creator.stat == CONSCIOUS && creator.z == z)
+		var/area/A = get_area(src)
+		if(A)
+			to_chat(creator, "<span class='xenoannounce'>You sense your acid well at [A.name] has been destroyed!</span>")
+	var/datum/effect_system/smoke_spread/xeno/acid/A = new(get_turf(src))
+	A.set_up(clamp(charges,0,2),src)
+	A.start()
+	return ..()
+
+/obj/effect/alien/resin/acidwell/examine(mob/user)
+	..()
+	if(!isxeno(user) && !isobserver(user))
+		return
+	to_chat(user, "<span class='xenoannounce'>This is an acid well made by [creator].</span>")
+
+/obj/effect/alien/resin/acidwell/deconstruct(disassembled = TRUE)
+	visible_message("<span class='danger'>[src] suddenly collapses!</span>")
+	return ..()
+
+/obj/effect/alien/resin/acidwell/update_icon()
+	..()
+	icon_state = "well[charges]"
+	set_light(charges , charges / 2, LIGHT_COLOR_GREEN)
+
+/obj/effect/alien/resin/acidwell/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			take_damage(210)
+		if(EXPLODE_HEAVY)
+			take_damage(140)
+		if(EXPLODE_LIGHT)
+			take_damage(70)
+
+/obj/effect/alien/resin/acidwell/attackby(obj/item/I, mob/user, params)
+	if(!isxeno(user))
+		return ..()
+	attack_alien(user)
+
+/obj/effect/alien/resin/acidwell/attack_alien(mob/living/carbon/xenomorph/M)
+	if(M.a_intent != INTENT_HARM)
+		if(charges >= 5)
+			to_chat(M, "<span class='xenoannounce'>[src] is already full!</span>")
+			return
+		if(ccharging)
+			to_chat(M, "<span class='xenoannounce'>[src] is already being filled!</span>")
+			return
+		ccharging = TRUE
+		if(!do_after(M, 10 SECONDS, FALSE, src, BUSY_ICON_BUILD))
+			ccharging = FALSE
+			return
+		if(M.plasma_stored < 200)
+			ccharging = FALSE
+			return
+		M.plasma_stored -= 200
+		charges++
+		ccharging = FALSE
+		update_icon()
+		to_chat(M,"<span class='xenonotice'>You fill up by one [src].</span>")
+	else
+		to_chat(M, "<span class='xenowarning'>We begin removing [src]...</span>")
+		if(do_after(M, 5 SECONDS, FALSE, src, BUSY_ICON_BUILD))
+			deconstruct(FALSE)
+		return
+
+/obj/effect/alien/resin/acidwell/Crossed(atom/A)
+	. = ..()
+	if(iscarbon(A))
+		HasProximity(A)
+
+/obj/effect/alien/resin/acidwell/HasProximity(atom/movable/AM)
+	if(!iscarbon(AM))
+		return
+	var/mob/living/carbon/C = AM
+	if(C.stat == DEAD)
+		return
+	if(!charges)
+		return
+	if(isxeno(C))
+		if(!(C.on_fire))
+			return
+		C.ExtinguishMob()
+		charges--
+		update_icon()
+		return
+	else
+		if(!charges)
+			return
+		C.adjustToxLoss(charges * 15)
+		charges = 0
+		update_icon()
+		return

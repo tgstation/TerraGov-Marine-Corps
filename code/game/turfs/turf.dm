@@ -214,8 +214,8 @@
 
 /turf/proc/levelupdate()
 	for(var/obj/O in src)
-		if(O.level == 1)
-			O.hide(intact_tile)
+		if(O.flags_atom & INITIALIZED)
+			SEND_SIGNAL(O, COMSIG_OBJ_HIDE, intact_tile)
 
 
 // Creates a new turf
@@ -379,22 +379,26 @@
 /turf/proc/can_lay_cable()
 	return can_have_cabling() & !intact_tile
 
-//Enable cable laying on turf click instead of pixel hunting the cable
-/turf/attackby(obj/item/I, mob/living/user, params)
-	. = ..()
-	if(.)
+/turf/attackby(obj/item/C, mob/user, params)
+	if(..())
 		return TRUE
-
-	user.changeNext_move(I.attack_speed)
-
-	if(can_lay_cable() && istype(I, /obj/item/stack/cable_coil))
-		var/obj/item/stack/cable_coil/coil = I
-		for(var/obj/structure/cable/C in src)
-			if(C.d1 == CABLE_NODE || C.d2 == CABLE_NODE)
-				C.attackby(I, user, params)
+	if(can_lay_cable() && istype(C, /obj/item/stack/cable_coil))
+		var/obj/item/stack/cable_coil/coil = C
+		coil.place_turf(src, user)
+		return TRUE
+	else if(can_have_cabling() && istype(C, /obj/item/stack/pipe_cleaner_coil))
+		var/obj/item/stack/pipe_cleaner_coil/coil = C
+		for(var/obj/structure/pipe_cleaner/LC in src)
+			if(!LC.d1 || !LC.d2)
+				LC.attackby(C, user)
 				return
 		coil.place_turf(src, user)
 		return TRUE
+
+	//else if(istype(C, /obj/item/rcl))
+	//	handleRCL(C, user)
+
+	return FALSE
 
 //for xeno corrosive acid, 0 for unmeltable, 1 for regular, 2 for strong walls that require strong acid and more time.
 /turf/proc/can_be_dissolved()
@@ -470,17 +474,10 @@
 
 //////////////////////////////////////////////////////////
 
-
-
-GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
-	/area/shuttle/drop1/lz1,
-	/area/shuttle/drop2/lz2,
-	/area/sulaco/hangar)))
-
 //Check if you can plant weeds on that turf.
 //Does NOT return a message, just a 0 or 1.
 /turf/proc/is_weedable()
-	return !density && !is_type_in_typecache((get_area(src)), GLOB.unweedable_areas)
+	return !density
 
 /turf/open/space/is_weedable()
 	return FALSE
@@ -505,10 +502,6 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 	. = ..()
 	if(covered)
 		return FALSE
-
-
-/turf/closed/wall/is_weedable()
-	return !is_type_in_typecache((get_area(src)), GLOB.unweedable_areas) //so we can spawn weeds on the walls
 
 
 /turf/proc/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
@@ -694,9 +687,9 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	if(depth)
 		var/list/target_baseturfs
 		if(length(copytarget.baseturfs))
-			// with default inputs this would be Copy(CLAMP(2, -INFINITY, baseturfs.len))
+			// with default inputs this would be Copy(clamp(2, -INFINITY, baseturfs.len))
 			// Don't forget a lower index is lower in the baseturfs stack, the bottom is baseturfs[1]
-			target_baseturfs = copytarget.baseturfs.Copy(CLAMP(1 + ignore_bottom, 1 + copytarget.baseturfs.len - depth, copytarget.baseturfs.len))
+			target_baseturfs = copytarget.baseturfs.Copy(clamp(1 + ignore_bottom, 1 + copytarget.baseturfs.len - depth, copytarget.baseturfs.len))
 		else if(!ignore_bottom)
 			target_baseturfs = list(copytarget.baseturfs)
 		if(target_baseturfs)

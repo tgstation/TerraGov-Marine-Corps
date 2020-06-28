@@ -162,7 +162,7 @@
 
 	else if(href_list["code"])
 		code += text2num(href_list["code"])
-		code = CLAMP(round(code), 1, 100)
+		code = clamp(round(code), 1, 100)
 
 	else if(href_list["det_mode"])
 		det_mode = !det_mode
@@ -174,7 +174,7 @@
 
 	else if(href_list["timer"])
 		timer += text2num(href_list["timer"])
-		timer = CLAMP(round(timer), DETPACK_TIMER_MIN, DETPACK_TIMER_MAX)
+		timer = clamp(round(timer), DETPACK_TIMER_MIN, DETPACK_TIMER_MAX)
 
 	updateUsrDialog()
 

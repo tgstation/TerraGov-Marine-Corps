@@ -46,6 +46,8 @@
 
 
 /datum/component/bump_attack/proc/living_bump_action_checks(atom/target)
+	if(COOLDOWN_CHECK(src, COOLDOWN_BUMP_ATTACK))
+		return NONE
 	var/mob/living/bumper = parent
 	if(!isliving(target) || bumper.throwing || bumper.incapacitated())
 		return NONE
@@ -96,4 +98,5 @@
 	if(bumper.next_move > world.time)
 		return COMPONENT_BUMP_RESOLVED //We don't want to push people while on attack cooldown.
 	bumper.UnarmedAttack(target, TRUE)
+	COOLDOWN_START(src, COOLDOWN_BUMP_ATTACK, CLICK_CD_MELEE)
 	return COMPONENT_BUMP_RESOLVED

@@ -9,47 +9,47 @@
 
 //Jungle
 /area/lv624/ground/jungle1
-	name ="\improper Southeast Jungle"
+	name ="Southeast Jungle"
 	icon_state = "southeast"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
 
 /area/lv624/ground/jungle2
-	name ="\improper Southern Jungle"
+	name ="Southern Jungle"
 	icon_state = "south"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
 
 /area/lv624/ground/jungle3
-	name ="\improper Southwest Jungle"
+	name ="Southwest Jungle"
 	icon_state = "southwest"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
 
 /area/lv624/ground/jungle4
-	name ="\improper Western Jungle"
+	name ="Western Jungle"
 	icon_state = "west"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
 
 /area/lv624/ground/jungle5
-	name ="\improper Eastern Jungle"
+	name ="Eastern Jungle"
 	icon_state = "east"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
 
 /area/lv624/ground/jungle6
-	name ="\improper Northwest Jungle"
+	name ="Northwest Jungle"
 	icon_state = "northwest"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
 
 /area/lv624/ground/jungle7
-	name ="\improper Northern Jungle"
+	name ="Northern Jungle"
 	icon_state = "north"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
 
 /area/lv624/ground/jungle8
-	name ="\improper Northeast Jungle"
+	name ="Northeast Jungle"
 	icon_state = "northeast"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
 
 /area/lv624/ground/jungle9
-	name ="\improper Central Jungle"
+	name ="Central Jungle"
 	icon_state = "central"
 	ambience = list('sound/ambience/jungle_amb1.ogg')
 
@@ -141,38 +141,38 @@
 //	ambience = list('sound/ambience/jungle_amb1.ogg')
 
 /area/lv624/ground/caves //Does not actually exist
-	name ="\improper Caves"
+	name ="Caves"
 	icon_state = "cave"
 	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen12.ogg','sound/ambience/ambisin4.ogg')
 	ceiling = CEILING_DEEP_UNDERGROUND
 
 //Caves
 /area/lv624/ground/caves/west1
-	name ="\improper Western Caves"
+	name ="Western Caves"
 	icon_state = "away1"
 
 /area/lv624/ground/caves/east1
-	name ="\improper Eastern Caves"
+	name ="Eastern Caves"
 	icon_state = "away"
 
 /area/lv624/ground/caves/central1
-	name ="\improper Central Caves"
+	name ="Central Caves"
 	icon_state = "away4" //meh
 
 /area/lv624/ground/caves/west2
-	name ="\improper North Western Caves"
+	name ="North Western Caves"
 	icon_state = "cave"
 
 /area/lv624/ground/caves/east2
-	name ="\improper North Eastern Caves"
+	name ="North Eastern Caves"
 	icon_state = "cave"
 
 /area/lv624/ground/caves/central2
-	name ="\improper North Central Caves"
+	name ="North Central Caves"
 	icon_state = "away3" //meh
 
 /area/lv624/ground/caves/central3
-	name ="\improper South Central Caves"
+	name ="South Central Caves"
 	icon_state = "away2" //meh
 
 //Lazarus landing

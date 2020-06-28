@@ -1,5 +1,6 @@
-proc/empulse(turf/epicenter, heavy_range, light_range, log=0)
-	if(!epicenter) return
+/proc/empulse(turf/epicenter, heavy_range, light_range, log=0)
+	if(!epicenter)
+		return FALSE
 
 	if(!istype(epicenter, /turf))
 		epicenter = get_turf(epicenter.loc)
@@ -7,7 +8,6 @@ proc/empulse(turf/epicenter, heavy_range, light_range, log=0)
 	if(log)
 		log_game("EMP with size ([heavy_range], [light_range]) in area [AREACOORD(epicenter.loc)].")
 		message_admins("EMP with size ([heavy_range], [light_range]) in area [ADMIN_VERBOSEJMP(epicenter.loc)].")
-
 
 	if(heavy_range > 1)
 		new /obj/effect/overlay/temp/emp_pulse (epicenter)
@@ -31,4 +31,4 @@ proc/empulse(turf/epicenter, heavy_range, light_range, log=0)
 				T.emp_act(2)
 		else if(distance <= light_range)
 			T.emp_act(2)
-	return 1
+	return TRUE

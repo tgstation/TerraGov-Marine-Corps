@@ -258,6 +258,8 @@
 
 /atom/movable/proc/Moved(atom/oldloc, direction, Forced = FALSE)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, oldloc, direction, Forced)
+	if(pulledby)
+		SEND_SIGNAL(src, COMSIG_MOVABLE_PULL_MOVED, oldloc, direction, Forced)
 	for(var/thing in light_sources) // Cycle through the light sources on this atom and tell them to update.
 		var/datum/light_source/L = thing
 		L.source_atom.update_light()
@@ -360,7 +362,7 @@
 			continue
 		if(isliving(A))
 			var/mob/living/L = A
-			if(L.lying_angle)
+			if(!L.density || L.throwpass)
 				continue
 			throw_impact(A, speed)
 		if(isobj(A) && A.density && !(A.flags_atom & ON_BORDER) && (!A.throwpass || iscarbon(src)))
@@ -723,7 +725,7 @@
 			M.set_glide_size(glide_size)
 		log_combat(src, M, "grabbed", addition = "passive grab")
 		if(!suppress_message)
-			visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>")		
+			visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>")
 	else
 		pulling.set_glide_size(glide_size)
 	return TRUE

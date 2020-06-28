@@ -41,7 +41,7 @@
 
 
 /mob/living/proc/handle_staminaloss()
-	if(world.time < last_staminaloss_dmg + 3 SECONDS || (m_intent == MOVE_INTENT_RUN && world.time < last_move_intent + 1 SECONDS))
+	if(world.time < last_staminaloss_dmg + 3 SECONDS)
 		return
 	if(staminaloss > 0)
 		adjustStaminaLoss(-maxHealth * 0.2, TRUE, FALSE)
@@ -522,7 +522,7 @@ below 100 is not dizzy
 */
 
 /mob/living/carbon/dizzy(amount)
-	dizziness = CLAMP(dizziness + amount, 0, 1000)
+	dizziness = clamp(dizziness + amount, 0, 1000)
 
 	if(dizziness > 100 && !is_dizzy)
 		INVOKE_ASYNC(src, .proc/dizzy_process)
@@ -633,13 +633,19 @@ below 100 is not dizzy
 
 
 /mob/living/proc/point_to_atom(atom/A, turf/T)
+	var/turf/tile = get_turf(A)
+	if (!tile)
+		return FALSE
+	var/turf/our_tile = get_turf(src)
 	//Squad Leaders and above have reduced cooldown and get a bigger arrow
 	if(skills.getRating("leadership") < SKILL_LEAD_TRAINED)
 		COOLDOWN_START(src, COOLDOWN_POINT, 5 SECONDS)
-		new /obj/effect/overlay/temp/point(T)
+		var/obj/visual = new /obj/effect/overlay/temp/point(our_tile, invisibility)
+		animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y, time = 1.7, easing = EASE_OUT)
 	else
 		COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)
-		new /obj/effect/overlay/temp/point/big(T)
+		var/obj/visual = new /obj/effect/overlay/temp/point/big(our_tile, invisibility)
+		animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y, time = 1.7, easing = EASE_OUT)
 	visible_message("<b>[src]</b> points to [A]")
 	return TRUE
 
