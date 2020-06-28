@@ -47,5 +47,7 @@ GLOBAL_LIST_EMPTY_TYPED(namepool, /datum/namepool)
 		. = pick(SSstrings.get_list_from_file(firstname_male_pool))
 	else
 		. = pick(SSstrings.get_list_from_file(firstname_female_pool))
+	if(prob(25))
+		. = "[ascii2text(rand(65, 90))]" //65 to 87 is (uppercase) A to Z
 
 	. += "-[rand(1,999)]"
