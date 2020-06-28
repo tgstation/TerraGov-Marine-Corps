@@ -161,7 +161,8 @@
 	max_integrity = 200
 	var/rounds = 0 //Have it be empty upon spawn.
 	var/rounds_max = 700
-	var/fire_delay = 4 //Gotta have rounds down quick.
+	var/fire_delay = 2 //Gotta have rounds down quick. // Ren's changes
+	var/burst_delay = 1 // Ren's changes
 	var/last_fired = 0
 	var/burst_fire = FALSE
 	var/burst_fire_toggled = FALSE
@@ -342,7 +343,7 @@
 				fire_shot(user)
 				sleep(2)
 			last_fired = TRUE
-			addtimer(VARSET_CALLBACK(src, last_fired, FALSE), fire_delay)
+			addtimer(VARSET_CALLBACK(src, last_fired, FALSE), burst_delay)
 		else burst_fire = 0
 		is_bursting = 0
 
