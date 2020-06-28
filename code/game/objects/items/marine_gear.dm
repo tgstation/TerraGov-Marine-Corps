@@ -86,38 +86,27 @@
 	if(exposed_temperature > 300 && !opened && M)
 		to_chat(M, "<span class='danger'>The intense heat forces you out of [src]!</span>")
 		open()
-		M.fire_act(exposed_temperature, exposed_volume)
 
 /obj/structure/closet/bodybag/tarp/flamer_fire_act()
 	var/mob/M = locate() in src //need to be occupied
 	if(!opened && M)
 		to_chat(M, "<span class='danger'>The intense heat forces you out of [src]!</span>")
 		open()
-		M.flamer_fire_act()
 
 /obj/structure/closet/bodybag/tarp/ex_act(severity)
 	var/mob/M = locate() in src //need to be occupied
 	if(!opened && M)
 		to_chat(M, "<span class='danger'>The shockwave blows [src] open!</span>")
 		open()
-		M.ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			visible_message("<span class='danger'>\The shockwave blows [src] apart!</span>")
 			qdel(src) //blown apart
 
-/obj/structure/closet/bodybag/tarp/bullet_act(obj/projectile/proj)
+/obj/structure/closet/bodybag/tarp/bullet_act(obj/projectile/Proj)
 	var/mob/M = locate() in src //need to be occupied
 	if(!opened && M)
-		M.bullet_act(proj) //tarp isn't bullet proof; concealment, not cover; pass it on to the occupant.
-
-/obj/structure/closet/bodybag/tarp/Crossed(mob/living/L)
-	. = ..()
-	if(!istype(L) || L.stat != CONSCIOUS)
-		return
-	// Walking on the tarp reveals it
-	open()
-	L.visible_message("<span class='notice'>You stepped on \the [src], revealing it!</span>", "<span class='notice'>[L] stepped on \the [src], revealing it!</span>")
+		M.bullet_act(Proj) //tarp isn't bullet proof; concealment, not cover; pass it on to the occupant.
 
 
 /obj/structure/closet/bodybag/tarp/snow

@@ -46,10 +46,8 @@
 	},
 /area/space)
 "aak" = (
-/turf/closed/shuttle/wall3/diagonal{
-	dir = 4
-	},
-/area/sulaco/command/eva)
+/turf/open/space/basic,
+/area/sulaco/disposal)
 "aal" = (
 /turf/closed/wall/sulaco,
 /area/sulaco/cryosleep)
@@ -9480,6 +9478,9 @@
 /obj/item/ammo_magazine/rifle/standard_assaultrifle,
 /turf/open/floor/mainship,
 /area/mainship/command/self_destruct)
+"aCi" = (
+/turf/open/floor,
+/area/space)
 "aCj" = (
 /obj/machinery/door/poddoor/open/bridge{
 	dir = 4
@@ -11466,7 +11467,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/sulaco/hallway/central_hall3)
+/area/space)
 "aIw" = (
 /obj/structure/toilet{
 	dir = 4
@@ -11570,6 +11571,9 @@
 /obj/structure/cable,
 /turf/closed/wall/sulaco,
 /area/sulaco/marine/charlie)
+"aIO" = (
+/turf/open/floor/plating/mainship,
+/area/space)
 "aIP" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2
@@ -50380,7 +50384,7 @@ anv
 aEQ
 aOH
 aOJ
-aOJ
+aas
 aOJ
 aOJ
 aOJ
@@ -58880,8 +58884,8 @@ avV
 avV
 avV
 avV
-avV
-aEO
+aCi
+aas
 aaa
 aaa
 aaa
@@ -59138,7 +59142,7 @@ aIp
 avV
 avV
 aIv
-aEO
+aas
 aaa
 aaa
 aaa
@@ -59395,7 +59399,7 @@ aIp
 avV
 avV
 aIv
-aEO
+aas
 aaa
 aaa
 aaa
@@ -59652,7 +59656,7 @@ aIp
 avV
 avV
 aIv
-aEO
+aas
 aaa
 aaa
 aaa
@@ -59909,7 +59913,7 @@ aIp
 avV
 avV
 aIv
-aEO
+aas
 aaa
 aaa
 aaa
@@ -60166,7 +60170,7 @@ aIp
 avV
 avV
 aIv
-aEO
+aas
 aaa
 aaa
 aaa
@@ -60422,8 +60426,8 @@ avV
 avV
 avV
 avV
-avV
-aEO
+aCi
+aas
 aaa
 aaa
 aaa
@@ -60679,8 +60683,8 @@ avV
 avV
 avV
 avV
-avV
-aEO
+aCi
+aas
 aaa
 aaa
 aaa
@@ -60936,8 +60940,8 @@ aHP
 aIc
 aHP
 aHP
-aHP
-aEO
+aIO
+aas
 aaa
 aaa
 aaa
@@ -61193,8 +61197,8 @@ aHP
 aHP
 aHP
 aHP
-aHP
-aEO
+aIO
+aas
 aaa
 aaa
 aaa
@@ -61450,8 +61454,8 @@ aHP
 aHP
 aHP
 aHP
-aHP
-aEO
+aIO
+aas
 aaa
 aaa
 aaa
@@ -61707,8 +61711,8 @@ aHP
 aHP
 aHP
 aHP
-aHP
-aEO
+aIO
+aas
 aaa
 aaa
 aaa
@@ -61964,8 +61968,8 @@ aHP
 aHP
 aHP
 aHP
-aHP
-aEO
+aIO
+aas
 aaa
 aaa
 aaa
@@ -62221,8 +62225,8 @@ aHP
 aHP
 aHP
 aHP
-aHP
-aEO
+aIO
+aas
 aaa
 aaa
 aaa
@@ -62478,8 +62482,8 @@ aHP
 aHP
 aHP
 aHP
-aHP
-aEO
+aIO
+aas
 aaa
 aaa
 aaa
@@ -62735,8 +62739,8 @@ aHP
 aHP
 aHP
 aHP
-aHP
-aEO
+aIO
+aas
 aaa
 aaa
 aaa
@@ -62992,8 +62996,8 @@ aHP
 aHP
 aHP
 aHP
-aHP
-aEO
+aIO
+aas
 aaa
 aaa
 aaa
@@ -63249,8 +63253,8 @@ aEO
 aEO
 aEO
 aEO
-aEO
-aEO
+aas
+aas
 aaa
 aaa
 aaa
@@ -63968,7 +63972,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aak
 aar
 aaR
 aai
@@ -64482,7 +64486,7 @@ aaa
 aaa
 aaa
 aaa
-aaa
+aak
 aar
 aaQ
 aaS
@@ -66067,7 +66071,7 @@ aVB
 aOP
 aOP
 aOP
-aak
+aZm
 aaa
 aaa
 aaa
