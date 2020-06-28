@@ -193,7 +193,7 @@ FIRE ALARM
 	else if(href_list["tp"])
 		var/tp = text2num(href_list["tp"])
 		time += tp
-		time = clamp(time, 0, 120)
+		time = CLAMP(time, 0, 120)
 
 	updateUsrDialog()
 
