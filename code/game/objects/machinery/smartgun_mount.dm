@@ -484,7 +484,7 @@
 			text = "ON"
 		else 
 			text = "OFF"
-		to_chat(user, "You toggle burstfire to: [text]")
+		to_chat(user, "You toggle [src]'s burstfire to: [text]")
 	var/angle = get_dir(src,target)
 	//we can only fire in a 90 degree cone
 	if((dir & angle) && target.loc != loc && target.loc != operator.loc)
