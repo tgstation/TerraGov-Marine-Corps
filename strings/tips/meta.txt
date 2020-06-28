@@ -2,7 +2,6 @@ Dying is part of the game.
 While holding nothing on your active hand, click a person on fire with help intent to put the fire out. This applies both xenos and humans.
 You can select locations on the doll by using the number pad.
 While you have your throw mode active, you can automatically catch things that are thrown at you, if you are able to hold the item as a species.
-Remember: Fore is North, Aft is South, Starboard is East, and Port is West.
 Sometimes you won't be able to avoid dying no matter how good you are at the game. Try not to stress too much about it.
 When a round ends nearly everything about it is lost forever, leave your salt behind with it.
 Some people are unable to read text on a game where half of it is based on text.
