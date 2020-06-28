@@ -30684,6 +30684,7 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/storage)
 "bUj" = (
+/obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/central)
 "bUk" = (
@@ -32998,6 +32999,10 @@
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/ice_colony/underground/hallway/south_east)
+"cnu" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/underground/hallway/north_west)
 "cnN" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -33063,6 +33068,14 @@
 	dir = 4
 	},
 /area/ice_colony/underground/hallway/north_west)
+"dlO" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/valley/southwest)
+"dqx" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer3,
+/area/ice_colony/exterior/surface/clearing/north)
 "dtg" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice_rock/eastWall,
@@ -33274,6 +33287,10 @@
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/cliff)
+"gOB" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/ice_colony/exterior/surface/valley/south/excavation)
 "gXG" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice/straight,
@@ -33294,6 +33311,10 @@
 /obj/structure/sign/greencross,
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/ice_colony/underground/hallway/north_west)
+"hqp" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/ice_colony/exterior/surface/valley/southeast)
 "htK" = (
 /obj/structure/fence,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
@@ -33338,6 +33359,10 @@
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/landing_pad)
+"idr" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer3,
+/area/ice_colony/exterior/surface/clearing/south)
 "ijr" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -33379,6 +33404,10 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
+"iBw" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/ice_colony/exterior/surface/clearing/south)
 "iHY" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -33476,6 +33505,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/southWall,
 /area/ice_colony/exterior/surface/cliff)
+"jPw" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/ice_colony/exterior/surface/clearing/north)
 "jQk" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -33499,6 +33532,14 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/northwest)
+"kgN" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/clearing/south)
+"kqC" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/valley/south)
 "ktc" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 8
@@ -33523,10 +33564,6 @@
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/cliff)
-"kBL" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/surface/valley/southeast)
 "kCS" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating,
@@ -33645,6 +33682,10 @@
 	},
 /turf/closed/ice_rock/eastWall,
 /area/ice_colony/exterior/surface/cliff)
+"mFk" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/underground/maintenance/east)
 "mKW" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -33703,6 +33744,10 @@
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/cliff)
+"nyt" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/clearing/north)
 "nyy" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -33738,6 +33783,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/straight,
 /area/ice_colony/exterior/underground/caves)
+"nRj" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/clearing/pass)
 "nXf" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark/brown2/corner{
@@ -33769,16 +33818,28 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
+"pac" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating,
+/area/ice_colony/exterior/underground/caves/open)
 "php" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
 /turf/closed/wall/r_wall,
 /area/ice_colony/surface/tcomms)
+"pnD" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating,
+/area/ice_colony/underground/maintenance/north)
 "puR" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/ice_rock/southWall,
 /area/ice_colony/exterior/surface/cliff)
+"pKn" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves)
 "pYj" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
@@ -33804,6 +33865,10 @@
 	dir = 5
 	},
 /area/ice_colony/exterior/surface/cliff)
+"qun" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/underground/requesition)
 "qwW" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/northWall,
@@ -33849,6 +33914,10 @@
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/cliff)
+"ram" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/underground/maintenance/south)
 "rcI" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/plating/icefloor,
@@ -33929,10 +33998,6 @@
 /obj/effect/landmark/xeno_tunnel,
 /turf/closed/ice/thin/single,
 /area/ice_colony/exterior/surface/cliff)
-"stN" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/clearing/north)
 "svd" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 1
@@ -34085,6 +34150,14 @@
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/cliff)
+"uZu" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/ice_colony/exterior/surface/clearing/pass)
+"uZJ" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/exterior/underground/caves/open)
 "vdz" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 1
@@ -34123,6 +34196,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
+"vGy" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer3,
+/area/ice_colony/exterior/surface/valley/north)
 "weW" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
@@ -34183,10 +34260,18 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/eastWall,
 /area/ice_colony/exterior/underground/caves)
+"xDq" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/ice,
+/area/ice_colony/underground/maintenance/engineering)
 "xQi" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
+"xRR" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/ice_colony/exterior/surface/valley/west)
 "xTU" = (
 /obj/structure/cable,
 /obj/item/lightstick/anchored,
@@ -38238,7 +38323,7 @@ aaB
 bmU
 bmU
 bmU
-bmU
+uZJ
 bmU
 bmU
 bmU
@@ -40077,7 +40162,7 @@ bmU
 bmU
 bmU
 bmU
-bmU
+uZJ
 bmU
 bmU
 bmU
@@ -40623,7 +40708,7 @@ boB
 bmU
 bbq
 ccX
-bbq
+pac
 bbq
 bmU
 bmU
@@ -41333,7 +41418,7 @@ bdL
 bpH
 bdL
 bdL
-bdL
+qun
 bdL
 bgZ
 bdL
@@ -45450,7 +45535,7 @@ bev
 bhj
 bgH
 bgH
-bgH
+pnD
 bgH
 bgH
 bSn
@@ -46097,7 +46182,7 @@ azy
 aiH
 aiH
 aaI
-kQz
+aaI
 aaI
 aaI
 aaI
@@ -47708,7 +47793,7 @@ alI
 alI
 alI
 alI
-alI
+xRR
 alI
 alI
 alI
@@ -48942,7 +49027,7 @@ abz
 aaI
 agd
 aaI
-aaI
+kQz
 aaI
 abL
 abL
@@ -49839,7 +49924,7 @@ bkt
 bkt
 boi
 bkr
-bkr
+cnu
 bkr
 brp
 bkr
@@ -52549,7 +52634,6 @@ akF
 akF
 akF
 akF
-stN
 akF
 akF
 akF
@@ -52559,7 +52643,8 @@ akF
 akF
 akF
 akF
-stN
+akF
+akF
 akF
 akF
 akF
@@ -52574,7 +52659,7 @@ aij
 aij
 akF
 akF
-akF
+nyt
 aIN
 aJx
 aJx
@@ -52613,7 +52698,7 @@ bel
 bel
 bgo
 bgR
-aMG
+dlO
 aMG
 aMG
 aMG
@@ -52641,7 +52726,7 @@ aae
 bah
 aYw
 aYT
-baj
+kqC
 bVW
 baj
 aYT
@@ -53739,7 +53824,7 @@ bqx
 boJ
 jac
 bQu
-bQu
+ram
 bQu
 bQu
 bQu
@@ -55992,7 +56077,7 @@ bhv
 bci
 bbJ
 bSE
-bSE
+gOB
 blv
 bhj
 bgH
@@ -56132,7 +56217,7 @@ abu
 aaE
 aaE
 aaE
-abL
+dqx
 aax
 aax
 akC
@@ -59564,7 +59649,7 @@ aKG
 aKG
 aKC
 aXE
-aKE
+iBw
 aKE
 aKE
 aKG
@@ -60125,7 +60210,7 @@ bZv
 bqP
 byc
 byc
-byc
+xDq
 byc
 buX
 bJu
@@ -61077,7 +61162,7 @@ aHQ
 aCX
 aBG
 aBG
-aBH
+uZu
 aBJ
 aBJ
 aBH
@@ -63338,7 +63423,7 @@ abf
 abL
 abL
 abL
-abL
+dqx
 abL
 abL
 abL
@@ -65263,7 +65348,7 @@ bqH
 bqP
 aZF
 bwK
-bwK
+pKn
 bwK
 bwK
 aZF
@@ -65417,7 +65502,7 @@ akF
 aij
 aij
 aax
-aax
+jPw
 aax
 aax
 aya
@@ -65803,7 +65888,7 @@ bxc
 bnG
 bFH
 bFH
-bFH
+mFk
 bFH
 bFH
 bFH
@@ -65974,7 +66059,7 @@ aKE
 aKG
 aKG
 aKG
-aKG
+idr
 aKE
 aKE
 aKE
@@ -66398,7 +66483,7 @@ aaR
 abn
 abd
 aaE
-aaE
+vGy
 aaE
 aaE
 aaE
@@ -67792,7 +67877,7 @@ aKu
 aYz
 aKu
 bbm
-aKu
+kgN
 aYz
 aKu
 aPq
@@ -68227,7 +68312,7 @@ aax
 aax
 aax
 aij
-stN
+akF
 akF
 aij
 aij
@@ -68356,7 +68441,7 @@ bmU
 bmU
 bmU
 bmU
-bmU
+uZJ
 bmU
 bmU
 bmU
@@ -70322,7 +70407,7 @@ azE
 aBJ
 aBH
 aBH
-aBJ
+nRj
 aBJ
 bkz
 aBG
@@ -70387,7 +70472,7 @@ bbJ
 bbW
 bbK
 bbK
-izd
+bbK
 bbK
 bbK
 bbK
@@ -70643,7 +70728,7 @@ bbK
 bbJ
 bbY
 bbK
-bbK
+izd
 bbK
 bbK
 bbK
@@ -74897,7 +74982,7 @@ aax
 ajJ
 abL
 abL
-abL
+dqx
 aax
 aax
 ajJ
@@ -78296,7 +78381,7 @@ awx
 awx
 awx
 bqg
-awx
+hqp
 awx
 aui
 aui
@@ -78784,7 +78869,7 @@ awx
 awx
 axC
 aui
-awx
+hqp
 ayJ
 azp
 awx
@@ -82394,7 +82479,7 @@ agU
 aLI
 aBb
 awL
-kBL
+awL
 awL
 awO
 aGB

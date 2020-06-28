@@ -21056,6 +21056,10 @@
 	dir = 1
 	},
 /area/bigredv2/outside/nw)
+"bTs" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/ne)
 "bZF" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -21068,6 +21072,10 @@
 /obj/docking_port/stationary/crashmode,
 /turf/closed/wall,
 /area/bigredv2/outside/office_complex)
+"cfS" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves)
 "chz" = (
 /obj/effect/decal/cleanable/blood/gibs/body,
 /turf/open/floor/wood,
@@ -21217,6 +21225,10 @@
 "edO" = (
 /turf/open/floor/carpet,
 /area/bigredv2/outside/bar)
+"ees" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves)
 "efK" = (
 /obj/structure/sign/safety/medical_supplies,
 /turf/closed/wall/r_wall,
@@ -21307,6 +21319,10 @@
 	dir = 4
 	},
 /area/bigredv2/outside/sw)
+"fkm" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/outside/se)
 "fmD" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -21591,6 +21607,10 @@
 	dir = 8
 	},
 /area/bigredv2/outside/chapel)
+"jCI" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/se)
 "jHL" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/mineral/bigred,
@@ -21667,6 +21687,10 @@
 	dir = 4
 	},
 /area/bigredv2/outside/virology)
+"kCz" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/bigredv2/outside/s)
 "kEl" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/marking/bot,
@@ -21781,6 +21805,10 @@
 	},
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
+"lVR" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/dirttosand,
+/area/bigredv2/outside/c)
 "mbT" = (
 /obj/item/trash/sosjerky,
 /turf/open/floor/plating,
@@ -21935,6 +21963,10 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
+"oCl" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/e)
 "oEN" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/tile/white,
@@ -21970,10 +22002,6 @@
 "oWn" = (
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
-"oZq" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/mars/random/dirt,
-/area/bigredv2/outside/virology)
 "pbv" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -22007,6 +22035,10 @@
 	},
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/space_port)
+"poJ" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/s)
 "ptp" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/bigred,
@@ -22089,10 +22121,6 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
-"qlr" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/bigredv2/outside/c)
 "qnu" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/darkgreen/darkgreen2/corner{
@@ -22171,6 +22199,12 @@
 	dir = 4
 	},
 /area/bigredv2/outside/w)
+"qPG" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 8
+	},
+/area/bigredv2/outside/virology)
 "qQd" = (
 /obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/tile/dark/purple2/corner{
@@ -22213,6 +22247,10 @@
 "rvh" = (
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/lambda_lab)
+"rww" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/n)
 "rxn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -22296,10 +22334,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/space_port)
-"sPX" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/marking/asteroidwarning,
-/area/bigredv2/outside/medical)
 "sUd" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22313,10 +22347,18 @@
 	},
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/sw)
+"sWC" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/s)
 "sZi" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
+"sZl" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/c)
 "tco" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/s)
@@ -22516,6 +22558,12 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/c)
+"vvM" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 8
+	},
+/area/bigredv2/outside/w)
 "vAP" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/asteroidfloor,
@@ -26513,7 +26561,7 @@ aFs
 kxe
 kxe
 aFs
-oZq
+aFs
 aMz
 aMz
 aMz
@@ -26945,7 +26993,7 @@ aFs
 aFs
 aFs
 riz
-riz
+qPG
 aFs
 aLT
 aMz
@@ -30861,7 +30909,7 @@ gON
 vDI
 aQF
 dLO
-vUH
+vvM
 aSB
 aVG
 aWl
@@ -34830,7 +34878,7 @@ buk
 buk
 buk
 buk
-buk
+uWF
 buk
 buj
 hzx
@@ -35262,7 +35310,7 @@ buk
 buk
 buk
 buk
-uWF
+buk
 buk
 buk
 buj
@@ -35843,7 +35891,7 @@ aFx
 apC
 aHD
 aBR
-aBR
+sZl
 aMc
 aMB
 aNp
@@ -38910,7 +38958,7 @@ aFM
 aHC
 aBR
 aBR
-aBR
+sZl
 aBR
 hlD
 aIn
@@ -39313,7 +39361,7 @@ aEE
 aGB
 aHA
 apC
-sPX
+aJk
 aKl
 aIn
 aIn
@@ -41144,7 +41192,7 @@ aad
 aad
 aad
 aad
-aad
+cfS
 aad
 ahw
 aad
@@ -42132,7 +42180,7 @@ aBR
 aBR
 aBR
 aBR
-aBR
+sZl
 aBR
 aBR
 aBR
@@ -42547,7 +42595,7 @@ acp
 aqI
 aqL
 asa
-acP
+rww
 acP
 acP
 acP
@@ -42633,7 +42681,7 @@ bmi
 btJ
 bmk
 bun
-bjy
+kCz
 bjy
 bjy
 bkd
@@ -43562,7 +43610,7 @@ aad
 aad
 aad
 aad
-abq
+ees
 aad
 aad
 aad
@@ -44555,7 +44603,7 @@ aKl
 aKl
 aIm
 aBR
-qlr
+aBR
 hlD
 aIn
 aIn
@@ -46335,7 +46383,7 @@ bjy
 blq
 bjw
 bjw
-bjw
+poJ
 bjw
 bjw
 bwF
@@ -46729,7 +46777,7 @@ aBR
 aBR
 aBR
 aBR
-aBR
+sZl
 aBR
 aBR
 bkt
@@ -46923,7 +46971,7 @@ aBR
 aBR
 aMc
 aHD
-aWJ
+lVR
 aBR
 aBR
 aBR
@@ -47962,7 +48010,7 @@ acP
 acP
 acP
 acP
-acP
+rww
 acP
 acP
 anI
@@ -49138,7 +49186,7 @@ bpb
 boA
 bjw
 btm
-bjA
+sWC
 blv
 btP
 bue
@@ -51992,7 +52040,7 @@ aad
 aad
 aad
 abq
-aad
+cfS
 ahw
 aad
 aad
@@ -52465,7 +52513,7 @@ aac
 aac
 aad
 aad
-aad
+cfS
 aad
 aad
 aac
@@ -53431,7 +53479,7 @@ aqV
 aTk
 aUk
 dGd
-aKP
+oCl
 aKP
 aKP
 aKP
@@ -54322,7 +54370,7 @@ bes
 bes
 bes
 bes
-bes
+jCI
 bes
 bes
 bes
@@ -55356,7 +55404,7 @@ arD
 arD
 arD
 arD
-arD
+bTs
 arD
 arD
 arD
@@ -56741,7 +56789,7 @@ aad
 aad
 aad
 bux
-bux
+fkm
 bux
 buM
 aac
@@ -56843,7 +56891,7 @@ aac
 aac
 aad
 aad
-aad
+cfS
 aad
 aad
 aad
@@ -57072,7 +57120,7 @@ aac
 aad
 ahw
 aad
-aad
+cfS
 abq
 aad
 aac
@@ -58832,7 +58880,7 @@ axn
 adZ
 hkk
 aad
-aad
+cfS
 abq
 aad
 aad
@@ -60047,7 +60095,7 @@ aad
 aad
 aad
 aad
-aad
+cfS
 aad
 aad
 aad
@@ -60681,7 +60729,7 @@ aad
 aad
 aad
 aad
-aad
+cfS
 aad
 aad
 aad
@@ -60868,7 +60916,7 @@ aad
 aad
 aad
 abq
-aad
+cfS
 aad
 aad
 abq
@@ -61019,7 +61067,7 @@ aac
 aac
 abq
 aad
-aad
+cfS
 aad
 aad
 abM
@@ -61284,7 +61332,7 @@ aad
 aad
 aad
 aad
-aad
+cfS
 aad
 aad
 aad
@@ -62348,7 +62396,7 @@ aad
 aad
 aad
 ahw
-aad
+cfS
 aad
 aad
 aac
@@ -63788,7 +63836,7 @@ aac
 aac
 aac
 aad
-aad
+cfS
 aad
 aad
 aad
@@ -64688,7 +64736,7 @@ avo
 atP
 hkk
 aad
-aad
+cfS
 vTV
 adZ
 aAT
@@ -65223,7 +65271,7 @@ aad
 aad
 aad
 aad
-aad
+cfS
 aad
 aad
 aad
@@ -66840,7 +66888,7 @@ aad
 aad
 tnm
 aad
-aad
+cfS
 aad
 aad
 aad
@@ -66928,7 +66976,7 @@ aad
 aad
 aad
 aad
-aad
+cfS
 aad
 aad
 aad
@@ -68631,7 +68679,7 @@ aad
 aad
 aad
 aad
-aad
+cfS
 aad
 aad
 aad
@@ -69687,7 +69735,7 @@ aac
 aad
 aad
 aad
-aad
+cfS
 aad
 aad
 aad
