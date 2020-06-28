@@ -70,7 +70,7 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/plant_weeds/slow,
-		/datum/action/xeno_action/activable/psychic_cure,
+		/datum/action/xeno_action/activable/psychic_cure/hivemind,
 		)
 
 
@@ -79,7 +79,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Plasma *** //
-	plasma_max = 250 
+	plasma_max = 250
 	plasma_gain = 60 // This is 4 weed every 10 secs.
 
 	// *** Health *** //
@@ -91,7 +91,7 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/plant_weeds/slow,
-		/datum/action/xeno_action/activable/psychic_cure,
+		/datum/action/xeno_action/activable/psychic_cure/hivemind,
 		/datum/action/xeno_action/toggle_pheromones,
 		)
 
@@ -101,7 +101,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Plasma *** //
-	plasma_max = 300 
+	plasma_max = 300
 	plasma_gain = 75 // This is 5 weed every 10 secs.
 
 	// *** Health *** //
@@ -113,7 +113,7 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/plant_weeds/slow,
-		/datum/action/xeno_action/activable/psychic_cure,
+		/datum/action/xeno_action/activable/psychic_cure/hivemind,
 		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/activable/secrete_resin/slow,

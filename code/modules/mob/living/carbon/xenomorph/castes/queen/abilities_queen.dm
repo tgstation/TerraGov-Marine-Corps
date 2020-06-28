@@ -534,51 +534,15 @@
 // ***************************************
 // *********** Queen heal
 // ***************************************
-/datum/action/xeno_action/activable/queen_heal
-	name = "Heal Xenomorph"
+/datum/action/xeno_action/activable/psychic_cure/queen
+	name = "Psychic Cure"
 	action_icon_state = "heal_xeno"
-	mechanics_text = "Heals a target Xenomorph"
-	plasma_cost = 150
-	cooldown_timer = 16 SECONDS
+	mechanics_text = "Heal and remove debuffs from a target."
+	cooldown_timer = 1 MINUTES
+	plasma_cost = 200
 	keybind_signal = COMSIG_XENOABILITY_QUEEN_HEAL
-
-
-/datum/action/xeno_action/activable/queen_heal/can_use_ability(atom/target, silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
-		return FALSE
-	if(!isxeno(target))
-		return FALSE
-	var/mob/living/carbon/xenomorph/patient = target
-	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
-		if(!silent)
-			to_chat(owner, "<span class='warning'>It's too late. This sister won't be coming back.</span>")
-		return FALSE
-	if(!(patient.xeno_caste.caste_flags & CASTE_CAN_BE_QUEEN_HEALED))
-		if(!silent)
-			to_chat(owner, "<span class='xenowarning'>We can't heal that caste.</span>")
-			return FALSE
-	var/mob/living/carbon/xenomorph/healer = owner
-	if(healer.z != patient.z)
-		if(!silent)
-			to_chat(healer, "<span class='xenowarning'>They are too far away to do this.</span>")
-		return FALSE
-	if(patient.health >= patient.maxHealth)
-		if(!silent)
-			to_chat(healer, "<span class='warning'>[patient] is at full health.</span>")
-		return FALSE
-
-
-/datum/action/xeno_action/activable/queen_heal/use_ability(atom/target)
-	var/mob/living/carbon/xenomorph/patient = target
-	add_cooldown()
-	patient.adjustBruteLoss(-100)
-	patient.adjustFireLoss(-100)
-	patient.adjust_sunder(-10)
-	succeed_activate()
-	to_chat(owner, "<span class='xenonotice'>We channel our plasma to heal [target]'s wounds.</span>")
-	to_chat(patient, "<span class='xenonotice'>We feel our wounds heal. Bless the Queen!</span>")
-
+	long_distance_heal = TRUE
+	heal_time = 2 SECONDS
 
 // ***************************************
 // *********** Queen plasma

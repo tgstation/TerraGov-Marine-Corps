@@ -48,7 +48,7 @@
 	if(owner.action_busy)
 		return FALSE
 
-	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+	if(!do_mob(owner, target, heal_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		return FALSE
 
 	owner.visible_message("<span class='xenowarning'>\the [owner] vomits acid over [target]!</span>", \
