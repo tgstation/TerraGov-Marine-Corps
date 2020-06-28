@@ -152,7 +152,7 @@
 // The actual Machinegun itself, going to borrow some stuff from current sentry code to make sure it functions. Also because they're similiar.
 /obj/machinery/standard_hmg
 	name = "\improper TL-102 Mounted Heavy Smartgun"
-	desc = "A deployed and mounted Heavy Smartgun. While it is capable of taking the same rounds as a smartgun, it fires specialized tungsten rounds for increased armor penetration.\n<span class='notice'>Use (ctrl-click) to shoot in bursts."
+	desc = "A deployed and mounted Heavy Smartgun. While it is capable of taking the same rounds as a smartgun, it fires specialized tungsten rounds for increased armor penetration.\n<span class='notice'>Use (ctrl-click) to toggle burstfire."
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "turret"
 	anchored = TRUE
@@ -476,8 +476,8 @@
 	if(get_dist(target, loc) > 15)
 		return TRUE
 
-	var/list/pa = params2list(params)
-	if(pa.Find("ctrl"))
+	
+	if(modifiers.Find("ctrl"))
 		burst_fire = !burst_fire
 		var/text = ""
 		if(burst_fire)
