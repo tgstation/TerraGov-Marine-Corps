@@ -1049,7 +1049,7 @@
 
 /mob/living/carbon/human/proc/randomize_appearance()
 	gender = pick(MALE, FEMALE)
-	name = species.random_name(gender)
+	name = GLOB.namepool[/datum/namepool].get_random_name(gender)
 	real_name = name
 
 	switch(pick(15;"black", 15;"grey", 15;"brown", 15;"lightbrown", 10;"white", 15;"blonde", 15;"red"))
