@@ -8,7 +8,7 @@
 /mob/living/proc/adjustBruteLoss(amount, updating_health = FALSE)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
-	bruteloss = CLAMP(bruteloss + amount, 0, maxHealth * 2)
+	bruteloss = clamp(bruteloss + amount, 0, maxHealth * 2)
 	if(updating_health)
 		updatehealth()
 
@@ -19,7 +19,7 @@
 /mob/living/proc/adjustFireLoss(amount, updating_health = FALSE)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
-	fireloss = CLAMP(fireloss + amount, 0, maxHealth * 2)
+	fireloss = clamp(fireloss + amount, 0, maxHealth * 2)
 
 	if(updating_health)
 		updatehealth()
@@ -31,7 +31,7 @@
 /mob/living/proc/adjustOxyLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
-	oxyloss = CLAMP(oxyloss + amount, 0, maxHealth * 2)
+	oxyloss = clamp(oxyloss + amount, 0, maxHealth * 2)
 
 /mob/living/proc/setOxyLoss(amount)
 	if(status_flags & GODMODE)
@@ -45,7 +45,7 @@
 /mob/living/proc/adjustToxLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
-	toxloss = CLAMP(toxloss + amount, 0, maxHealth * 2)
+	toxloss = clamp(toxloss + amount, 0, maxHealth * 2)
 
 /mob/living/proc/setToxLoss(amount)
 	if(status_flags & GODMODE)
@@ -59,7 +59,7 @@
 /mob/living/proc/adjustStaminaLoss(amount, update = TRUE, feedback = TRUE)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
-	staminaloss = CLAMP(staminaloss + amount, -max_stamina_buffer, maxHealth * 2)
+	staminaloss = clamp(staminaloss + amount, -max_stamina_buffer, maxHealth * 2)
 	if(amount > 0)
 		last_staminaloss_dmg = world.time
 	if(update)
@@ -103,7 +103,7 @@
 /mob/living/proc/adjustCloneLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
-	cloneloss = CLAMP(cloneloss+amount,0,maxHealth*2)
+	cloneloss = clamp(cloneloss+amount,0,maxHealth*2)
 
 /mob/living/proc/setCloneLoss(amount)
 	if(status_flags & GODMODE)
@@ -116,7 +116,7 @@
 /mob/living/proc/adjustBrainLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
-	brainloss = CLAMP(brainloss+amount,0,maxHealth*2)
+	brainloss = clamp(brainloss+amount,0,maxHealth*2)
 
 /mob/living/proc/setBrainLoss(amount)
 	if(status_flags & GODMODE)
@@ -225,6 +225,8 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	. = ..()
 	GLOB.alive_human_list += src
 	GLOB.dead_human_list -= src
+	LAZYADD(GLOB.humans_by_zlevel["[z]"], src)
+	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, .proc/human_z_changed)
 
 /mob/living/carbon/xenomorph/on_revive()
 	. = ..()
@@ -302,10 +304,6 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	if(handcuffed && !initial(handcuffed))
 		dropItemToGround(handcuffed)
 	update_handcuffed(initial(handcuffed))
-
-	if(legcuffed && !initial(legcuffed))
-		dropItemToGround(legcuffed)
-	update_legcuffed(initial(legcuffed))
 
 	return ..()
 

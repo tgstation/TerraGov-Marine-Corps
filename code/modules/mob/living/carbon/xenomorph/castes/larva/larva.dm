@@ -2,7 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/larva
 	speak_emote = list("hisses")
 	icon_state = "Bloody Larva"
-	
+
 	a_intent = INTENT_HELP //Forces help intent for all interactions.
 
 	amount_grown = 0
@@ -86,7 +86,7 @@
 
 	if(stat == DEAD)
 		icon_state = "[bloody][base_icon_state] Dead"
-	else if(handcuffed || legcuffed)
+	else if(handcuffed)
 		icon_state = "[bloody][base_icon_state] Cuff"
 
 	else if(lying_angle)

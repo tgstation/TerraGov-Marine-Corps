@@ -188,24 +188,28 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("gethumans")
 				log_admin("[key_name(usr)] mass-teleported all humans.")
 				message_admins("[ADMIN_TPMONTY(usr)] mass-teleported all humans.")
+				to_chat(GLOB.alive_human_list, "<span class='highdanger'>[key_name_admin(usr, FALSE)] mass-teleported all humans.</span>")
 				for(var/i in GLOB.alive_human_list)
 					var/mob/M = i
 					M.forceMove(T)
 			if("getxenos")
 				log_admin("[key_name(usr)] mass-teleported all Xenos.")
 				message_admins("[ADMIN_TPMONTY(usr)] mass-teleported all Xenos.")
+				to_chat(GLOB.alive_xeno_list, "<span class='highdanger'>[key_name_admin(usr, FALSE)] mass-teleported all xenos.</span>")
 				for(var/i in GLOB.alive_xeno_list)
 					var/mob/M = i
 					M.forceMove(T)
 			if("getall")
 				log_admin("[key_name(usr)] mass-teleported everyone.")
 				message_admins("[ADMIN_TPMONTY(usr)] mass-teleported everyone.")
+				to_chat(GLOB.mob_living_list, "<span class='highdanger'>[key_name_admin(usr, FALSE)] mass-teleported everyone.</span>")
 				for(var/i in GLOB.mob_living_list)
 					var/mob/M = i
 					M.forceMove(T)
 			if("rejuvall")
 				log_admin("[key_name(usr)] mass-rejuvenated cliented mobs.")
 				message_admins("[ADMIN_TPMONTY(usr)] mass-rejuvenated cliented mobs.")
+				to_chat(GLOB.mob_living_list, "<span class='highdanger'>[key_name_admin(usr, FALSE)] mass-rejuvenated everyone.</span>")
 				for(var/i in GLOB.mob_living_list)
 					var/mob/living/L = i
 					if(!L.client)
@@ -461,6 +465,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		to_chat(H, "<span class='boldnotice'>Please stand by for a message from TGMC:<br/>[input]</span>")
+		var/sound/S = sound('sound/effects/sos-morse-code.ogg', channel = CHANNEL_ADMIN)
+		SEND_SOUND(H, S)
 
 		log_admin("[key_name(usr)] replied to [ADMIN_TPMONTY(H)]'s TGMC message with: [input].")
 		message_admins("[ADMIN_TPMONTY(usr)] replied to [ADMIN_TPMONTY(H)]'s' TGMC message with: [input]")
@@ -746,7 +752,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			sender = F.sender
 			subject = "re: [F.title]"
 
-		var/dep = input("Who do you want to message?", "Fax Message") as null|anything in list(CORPORATE_LIAISON, "Combat Information Center", COMMAND_MASTER_AT_ARMS, "Brig", "Research", "Warden")
+		var/dep = input("Who do you want to message?", "Fax Message") as null|anything in list(CORPORATE_LIAISON, "Combat Information Center", "Brig", "Research", "Warden")
 		if(!dep)
 			return
 
@@ -754,8 +760,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!department)
 			return
 
-		var/custom_subject = input("Enter the subject line", "Fax Message", "") as text|null
-		if(!custom_subject)
+		var/custom_subject = input("Enter the subject line", "Fax Message", subject) as text|null
+		if(custom_subject != "")
 			subject = custom_subject
 		var/type = input("Do you want to use the pencode, template or type a raw message?", "Fax Message") as null|anything in list("Pencode", "Template", "Raw")
 		if(!type)
@@ -996,7 +1002,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			return
 
 		var/list/offset = splittext(href_list["offset"],",")
-		var/number = CLAMP(text2num(href_list["object_count"]), 1, 100)
+		var/number = clamp(text2num(href_list["object_count"]), 1, 100)
 		var/X = length(offset) > 0 ? text2num(offset[1]) : 0
 		var/Y = length(offset) > 1 ? text2num(offset[2]) : 0
 		var/Z = length(offset) > 2 ? text2num(offset[3]) : 0

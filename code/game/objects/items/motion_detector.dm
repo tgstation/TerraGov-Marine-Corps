@@ -211,8 +211,8 @@
 	var/list/actualview = getviewsize(user.client.view)
 	var/viewX = actualview[1]
 	var/viewY = actualview[2]
-	var/screen_pos_x = CLAMP(target.x - center_view.x + round(viewX * 0.5) + 1, 1, viewX)
-	var/screen_pos_y = CLAMP(target.y - center_view.y + round(viewY * 0.5) + 1, 1, viewY)
+	var/screen_pos_x = clamp(target.x - center_view.x + round(viewX * 0.5) + 1, 1, viewX)
+	var/screen_pos_y = clamp(target.y - center_view.y + round(viewY * 0.5) + 1, 1, viewY)
 	DB.screen_loc = "[screen_pos_x],[screen_pos_y]"
 	DB.center = center_view
 	DB.target_turf = get_turf(target)

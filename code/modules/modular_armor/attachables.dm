@@ -115,8 +115,8 @@
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. When activated, this system provides substantial resistance to environmental hazards, such as gases, acidic elements, and radiological exposure. Best paired with the Mimir Environmental Helmet System. Will impact mobility when active. Must be toggled to function.."
 	icon_state = "mod_biohazard_icon"
 	item_state = "mod_biohazard"
-	soft_armor = list("bio" = 50, "rad" = 50, "acid" = 50)
-	slowdown = 0.25
+	soft_armor = list("bio" = 20, "rad" = 50, "acid" = 20)
+	slowdown = 0.2
 	module_type = ARMOR_MODULE_TOGGLE
 	var/siemens_coefficient_mod = -0.9
 	var/permeability_coefficient_mod = -1

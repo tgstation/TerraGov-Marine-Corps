@@ -42,6 +42,22 @@
 	C.toggle_throw_mode()
 	return TRUE
 
+/datum/keybinding/carbon/toggle_rest
+	hotkey_keys = list("K")
+	name = "toggle_rest"
+	full_name = "Toggle resting"
+	description = "Toggle whether you are resting or not."
+	keybind_signal = COMSIG_KB_CARBON_TOGGLEREST_DOWN
+
+/datum/keybinding/carbon/toggle_rest/down(client/user)
+	if(!iscarbon(user.mob))
+		return FALSE
+	. = ..()
+	if(.)
+		return
+	var/mob/living/carbon/C = user.mob
+	C.lay_down()
+	return TRUE
 
 /datum/keybinding/carbon/select_help_intent
 	hotkey_keys = list("1")

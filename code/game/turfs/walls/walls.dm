@@ -16,7 +16,7 @@
 		/obj/structure/girder,
 		/obj/machinery/door)
 
-	soft_armor = list("melee" = 0, "bullet" = 80, "laser" = 80, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 	var/walltype = "metal"
 	var/junctiontype //when walls smooth with one another, the type of junction each wall is.

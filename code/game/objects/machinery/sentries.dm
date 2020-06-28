@@ -234,8 +234,9 @@
 	var/max_burst = 6
 	var/min_burst = 2
 	var/atom/target = null
-	obj_integrity = 200
-	max_integrity = 200
+	obj_integrity = 300
+	max_integrity = 300
+	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 50)
 	machine_stat = 0 //Used just like mob.stat
 	var/datum/effect_system/spark_spread/spark_system //The spark system, used for generating... sparks?
 	var/obj/item/cell/cell = null
@@ -250,7 +251,7 @@
 	var/last_alert = 0
 	var/last_damage_alert = 0
 	var/list/obj/alert_list = list()
-	var/knockdown_threshold = 100
+	var/knockdown_threshold = 150
 	var/work_time = 40 //Defines how long it takes to do most maintenance actions
 	var/magazine_type = /obj/item/ammo_magazine/sentry
 	var/obj/item/radio/radio
@@ -408,7 +409,7 @@
 			if(!cell || cell.charge <= 0 || !anchored || CHECK_BITFIELD(turret_flags, TURRET_IMMOBILE) || !CHECK_BITFIELD(turret_flags, TURRET_ON) || machine_stat)
 				return
 
-			burst_size = CLAMP(burst_size + 1, min_burst, max_burst)
+			burst_size = clamp(burst_size + 1, min_burst, max_burst)
 			user.visible_message("<span class='notice'>[user] increments the [src]'s burst count.</span>",
 			"<span class='notice'>You increment [src]'s burst fire count.</span>")
 			. = TRUE
@@ -417,7 +418,7 @@
 			if(!cell || cell.charge <= 0 || !anchored || CHECK_BITFIELD(turret_flags, TURRET_IMMOBILE) || !CHECK_BITFIELD(turret_flags, TURRET_ON) || machine_stat)
 				return
 
-			burst_size = CLAMP(burst_size - 1, min_burst, max_burst)
+			burst_size = clamp(burst_size - 1, min_burst, max_burst)
 			user.visible_message("<span class='notice'>[user] decrements the [src]'s burst count.</span>",
 			"<span class='notice'>You decrement [src]'s burst fire count.</span>")
 			. = TRUE
@@ -920,7 +921,7 @@
 	if (CHECK_BITFIELD(turret_flags, TURRET_BURSTFIRE))
 		//Apply scatter
 		var/scatter_chance = proj_to_fire.ammo.scatter
-		var/burst_value = CLAMP(burst_size - 1, 1, 5)
+		var/burst_value = clamp(burst_size - 1, 1, 5)
 		scatter_chance += (burst_value * burst_value * 2)
 		proj_to_fire.accuracy = round(proj_to_fire.accuracy - (burst_value * burst_value * 1.2), 0.01) //Accuracy penalty scales with burst count.
 
@@ -943,7 +944,7 @@
 
 	//Shoot at the thing
 	playsound(loc, 'sound/weapons/guns/fire/rifle.ogg', 75, TRUE)
-	
+
 	proj_to_fire.fire_at(target, src, null, ammo.max_range, ammo.shell_speed)
 	if(target)
 		var/angle = round(Get_Angle(src, target))
@@ -1182,11 +1183,11 @@
 	burst_size = 3
 	min_burst = 2
 	max_burst = 5
-	obj_integrity = 155
-	max_integrity = 155
+	obj_integrity = 200
+	max_integrity = 200
 	rounds = 500
 	rounds_max = 500
-	knockdown_threshold = 70 //lighter, not as well secured.
+	knockdown_threshold = 100 //lighter, not as well secured.
 	work_time = 10 //significantly faster than the big sentry
 	ammo = /datum/ammo/bullet/turret/mini //Similar to M39 AP rounds.
 	magazine_type = /obj/item/ammo_magazine/minisentry
@@ -1264,7 +1265,7 @@
 	icon_state = "minisentry_packed"
 	item_state = "minisentry_packed"
 	w_class = WEIGHT_CLASS_BULKY
-	max_integrity = 155 //We keep track of this when folding up the sentry.
+	max_integrity = 200 //We keep track of this when folding up the sentry.
 	flags_equip_slot = ITEM_SLOT_BACK
 
 /obj/item/marine_turret/mini/attack_self(mob/user) //click the sentry to deploy it.

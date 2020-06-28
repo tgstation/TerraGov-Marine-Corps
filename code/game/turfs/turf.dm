@@ -474,17 +474,10 @@
 
 //////////////////////////////////////////////////////////
 
-
-
-GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
-	/area/shuttle/drop1/lz1,
-	/area/shuttle/drop2/lz2,
-	/area/sulaco/hangar)))
-
 //Check if you can plant weeds on that turf.
 //Does NOT return a message, just a 0 or 1.
 /turf/proc/is_weedable()
-	return !density && !is_type_in_typecache((get_area(src)), GLOB.unweedable_areas)
+	return !density
 
 /turf/open/space/is_weedable()
 	return FALSE
@@ -509,10 +502,6 @@ GLOBAL_LIST_INIT(unweedable_areas, typecacheof(list(
 	. = ..()
 	if(covered)
 		return FALSE
-
-
-/turf/closed/wall/is_weedable()
-	return !is_type_in_typecache((get_area(src)), GLOB.unweedable_areas) //so we can spawn weeds on the walls
 
 
 /turf/proc/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
@@ -698,9 +687,9 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	if(depth)
 		var/list/target_baseturfs
 		if(length(copytarget.baseturfs))
-			// with default inputs this would be Copy(CLAMP(2, -INFINITY, baseturfs.len))
+			// with default inputs this would be Copy(clamp(2, -INFINITY, baseturfs.len))
 			// Don't forget a lower index is lower in the baseturfs stack, the bottom is baseturfs[1]
-			target_baseturfs = copytarget.baseturfs.Copy(CLAMP(1 + ignore_bottom, 1 + copytarget.baseturfs.len - depth, copytarget.baseturfs.len))
+			target_baseturfs = copytarget.baseturfs.Copy(clamp(1 + ignore_bottom, 1 + copytarget.baseturfs.len - depth, copytarget.baseturfs.len))
 		else if(!ignore_bottom)
 			target_baseturfs = list(copytarget.baseturfs)
 		if(target_baseturfs)

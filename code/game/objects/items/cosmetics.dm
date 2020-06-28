@@ -6,7 +6,7 @@
 	icon_state = "camo"
 	var/colour = "green"
 	w_class = WEIGHT_CLASS_TINY
-	var/uses = 10
+	var/uses = 100
 
 /obj/item/facepaint/green
 	name = "green facepaint"
@@ -57,6 +57,7 @@
 	user.visible_message("<span class='notice'>[user] carefully applies [src] on [H]'s face.</span>", \
 						"<span class='notice'>You apply [src].</span>")
 	H.lip_style = colour
+	H.alpha = max(0, initial(H.alpha) - 1) // decreases your alpha by 1
 	H.update_body()
 	uses--
 	if(!uses)

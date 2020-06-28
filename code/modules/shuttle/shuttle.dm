@@ -289,6 +289,8 @@
 
 	var/crashing = FALSE
 
+	var/shuttle_flags = NONE
+
 /obj/docking_port/mobile/proc/register()
 	SSshuttle.mobile += src
 
@@ -314,7 +316,7 @@
 	var/list/all_turfs = return_ordered_turfs(x, y, z, dir)
 	for(var/i in 1 to all_turfs.len)
 		var/turf/curT = all_turfs[i]
-		var/area/cur_area = curT.loc
+		var/area/cur_area = get_area(curT)
 		if(istype(cur_area, area_type))
 			shuttle_areas[cur_area] = TRUE
 
@@ -395,6 +397,8 @@
 
 /obj/docking_port/mobile/proc/transit_failure()
 	message_admins("Shuttle [src] repeatedly failed to create transit zone.")
+	log_debug("Setting [src]/[src.id] idle")
+	set_idle()
 
 //call the shuttle to destination S
 /obj/docking_port/mobile/proc/request(obj/docking_port/stationary/S)
@@ -556,23 +560,12 @@
 
 	return ripple_turfs
 
-///obj/docking_port/mobile/proc/check_poddoors()
-//	for(var/obj/machinery/door/poddoor/shuttledock/pod in GLOB.airlocks)
-//		pod.check()
-
 /obj/docking_port/mobile/proc/dock_id(id)
 	var/port = SSshuttle.getDock(id)
 	if(port)
 		. = initiate_docking(port)
 	else
 		. = null
-
-/obj/effect/landmark/shuttle_import
-	name = "Shuttle Import"
-
-// Never move the shuttle import landmark, otherwise things get WEIRD
-/obj/effect/landmark/shuttle_import/onShuttleMove()
-	return FALSE
 
 //used by shuttle subsystem to check timers
 /obj/docking_port/mobile/proc/check()
@@ -818,13 +811,13 @@
 		var/change_per_engine = (1 - ENGINE_COEFF_MIN) / ENGINE_DEFAULT_MAXSPEED_ENGINES // 5 by default
 		if(initial_engines > 0)
 			change_per_engine = (1 - ENGINE_COEFF_MIN) / initial_engines // or however many it had
-		return CLAMP(1 - delta * change_per_engine,ENGINE_COEFF_MIN,ENGINE_COEFF_MAX)
+		return clamp(1 - delta * change_per_engine,ENGINE_COEFF_MIN,ENGINE_COEFF_MAX)
 	if(new_value < initial_engines)
 		var/delta = initial_engines - new_value
 		var/change_per_engine = 1 //doesn't really matter should not be happening for 0 engine shuttles
 		if(initial_engines > 0)
 			change_per_engine = (ENGINE_COEFF_MAX -  1) / initial_engines //just linear drop to max delay
-		return CLAMP(1 + delta * change_per_engine,ENGINE_COEFF_MIN,ENGINE_COEFF_MAX)
+		return clamp(1 + delta * change_per_engine,ENGINE_COEFF_MIN,ENGINE_COEFF_MAX)
 
 
 /obj/docking_port/mobile/proc/in_flight()

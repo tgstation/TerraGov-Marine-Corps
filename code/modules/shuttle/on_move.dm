@@ -23,6 +23,7 @@ All ShuttleMove procs go here
 //	var/shuttle_dir = shuttle.dir
 	for(var/i in contents)
 		var/atom/movable/thing = i
+		SEND_SIGNAL(thing, COMSIG_MOVABLE_SHUTTLE_CRUSH, shuttle)
 		if(ismob(thing))
 			if(isliving(thing))
 				var/mob/living/M = thing
@@ -68,7 +69,9 @@ All ShuttleMove procs go here
 // Called on the new turf after everything has been moved
 /turf/proc/afterShuttleMove(turf/oldT, rotation)
 	//Dealing with the turf we left behind
-//	oldT.TransferComponents(src)
+	oldT.TransferComponents(src)
+	SSexplosions.wipe_turf(src)
+
 	var/shuttle_boundary = baseturfs.Find(/turf/baseturf_skipover/shuttle)
 	if(shuttle_boundary)
 		oldT.ScrapeAway(baseturfs.len - shuttle_boundary + 1)
@@ -112,8 +115,8 @@ All ShuttleMove procs go here
 	if (newT.z != oldT.z)
 		onTransitZ(oldT.z, newT.z)
 
-//	if(light)
-//		update_light()
+	if(light)
+		update_light()
 	if(rotation)
 		shuttleRotate(rotation)
 
@@ -149,7 +152,7 @@ All ShuttleMove procs go here
 
 	contents -= oldT
 	underlying_old_area.contents += oldT
-//	oldT.change_area(src, underlying_old_area) //lighting
+	oldT.change_area(src, underlying_old_area) //lighting
 	//The old turf has now been given back to the area that turf originaly belonged to
 
 	var/area/old_dest_area = newT.loc
@@ -157,7 +160,7 @@ All ShuttleMove procs go here
 
 	old_dest_area.contents -= newT
 	contents += newT
-//	newT.change_area(old_dest_area, src) //lighting
+	newT.change_area(old_dest_area, src) //lighting
 	return TRUE
 
 // Called on areas after everything has been moved

@@ -199,55 +199,48 @@
 /datum/game_mode/proc/spawn_map_items()
 	return
 
+GLOBAL_LIST_INIT(bioscan_locations, list(
+	ZTRAIT_MARINE_MAIN_SHIP,
+	ZTRAIT_GROUND,
+	ZTRAIT_RESERVED,
+))
+
+// make sure you don't turn 0 into a false positive
+#define BIOSCAN_DELTA(count, delta) count ? max(0, count + rand(-delta, delta)) : 0
+
+#define BIOSCAN_LOCATION(show_locations, location) (show_locations && location ? ", including one in [hostLocationP]":"")
 
 /datum/game_mode/proc/announce_bioscans(show_locations = TRUE, delta = 2, announce_humans = TRUE, announce_xenos = TRUE, send_fax = TRUE)
-	var/list/xenoLocationsP = list()
-	var/list/xenoLocationsS = list()
-	var/list/hostLocationsP = list()
-	var/list/hostLocationsS = list()
-	var/numHostsPlanet	= 0
-	var/numHostsShip	= 0
-	var/numXenosPlanet	= 0
-	var/numXenosShip	= 0
-	var/numLarvaPlanet  = 0
-	var/numLarvaShip    = 0
+	var/list/list/counts = list()
+	var/list/list/area/locations = list()
 
-	for(var/i in GLOB.alive_xeno_list)
-		var/mob/living/carbon/xenomorph/X = i
-		var/area/A = get_area(X)
-		if(is_ground_level(A?.z))
-			if(isxenolarva(X))
-				numLarvaPlanet++
-			numXenosPlanet++
-			xenoLocationsP += A
-		else if(is_mainship_level(A?.z))
-			if(isxenolarva(X))
-				numLarvaShip++
-			numXenosShip++
-			xenoLocationsS += A
+	for(var/trait in GLOB.bioscan_locations)
+		counts[trait] = list(FACTION_TERRAGOV = 0, FACTION_XENO = 0)
+		locations[trait] = list(FACTION_TERRAGOV = 0, FACTION_XENO = 0)
+		for(var/i in SSmapping.levels_by_trait(trait))
+			counts[trait][FACTION_XENO] += length(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[i]"])
+			counts[trait][FACTION_TERRAGOV] += length(GLOB.humans_by_zlevel["[i]"])
+			if(length(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[i]"]))
+				locations[trait][FACTION_XENO] = get_area(pick(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[i]"]))
+			if(length(GLOB.humans_by_zlevel["[i]"]))
+				locations[trait][FACTION_TERRAGOV] = get_area(pick(GLOB.humans_by_zlevel["[i]"]))
 
-	for(var/i in GLOB.alive_human_list)
-		var/mob/living/carbon/human/H = i
-		var/area/A = get_area(H)
-		if(is_ground_level(A?.z))
-			numHostsPlanet++
-			hostLocationsP += A
-		else if(is_mainship_level(A?.z))
-			numHostsShip++
-			hostLocationsS += A
-
+	var/numHostsPlanet	= counts[ZTRAIT_GROUND][FACTION_TERRAGOV]
+	var/numHostsShip	= counts[ZTRAIT_MARINE_MAIN_SHIP][FACTION_TERRAGOV]
+	var/numHostsTransit	= counts[ZTRAIT_RESERVED][FACTION_TERRAGOV]
+	var/numXenosPlanet	= counts[ZTRAIT_GROUND][FACTION_XENO]
+	var/numXenosShip	= counts[ZTRAIT_MARINE_MAIN_SHIP][FACTION_XENO]
+	var/numXenosTransit	= counts[ZTRAIT_RESERVED][FACTION_XENO]
+	var/hostLocationP	= locations[ZTRAIT_GROUND][FACTION_TERRAGOV]
+	var/hostLocationS	= locations[ZTRAIT_MARINE_MAIN_SHIP][FACTION_TERRAGOV]
+	var/xenoLocationP	= locations[ZTRAIT_GROUND][FACTION_XENO]
+	var/xenoLocationS	= locations[ZTRAIT_MARINE_MAIN_SHIP][FACTION_XENO]
 
 	//Adjust the randomness there so everyone gets the same thing
-	var/numHostsShipr = max(0, numHostsShip + rand(-delta, delta))
-	var/numXenosPlanetr = max(0, numXenosPlanet + rand(-delta, delta))
-	var/hostLocationP
-	var/hostLocationS
-
-	if(length(hostLocationsP))
-		hostLocationP = pick(hostLocationsP)
-
-	if(length(hostLocationsS))
-		hostLocationS = pick(hostLocationsS)
+	var/numHostsShipr = BIOSCAN_DELTA(numHostsShip, delta)
+	var/numXenosPlanetr = BIOSCAN_DELTA(numXenosPlanet, delta)
+	var/numHostsTransitr = BIOSCAN_DELTA(numHostsTransit, delta)
+	var/numXenosTransitr = BIOSCAN_DELTA(numXenosTransit, delta)
 
 	var/sound/S = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50)
 	if(announce_xenos)
@@ -255,21 +248,12 @@
 			var/mob/M = i
 			SEND_SOUND(M, S)
 			to_chat(M, "<span class='xenoannounce'>The Queen Mother reaches into your mind from worlds away.</span>")
-			to_chat(M, "<span class='xenoannounce'>To my children and their Queen. I sense [numHostsShipr ? "approximately [numHostsShipr]":"no"] host[numHostsShipr > 1 ? "s":""] in the metal hive[show_locations && hostLocationS ? ", including one in [hostLocationS]":""] and [numHostsPlanet ? "[numHostsPlanet]":"none"] scattered elsewhere[show_locations && hostLocationP ? ", including one in [hostLocationP]":""].</span>")
-
-	var/xenoLocationP
-	var/xenoLocationS
-
-	if(length(xenoLocationsP))
-		xenoLocationP = pick(xenoLocationsP)
-
-	if(length(xenoLocationsS))
-		xenoLocationS = pick(xenoLocationsS)
+			to_chat(M, "<span class='xenoannounce'>To my children and their Queen. I sense [numHostsShipr ? "approximately [numHostsShipr]":"no"] host[numHostsShipr > 1 ? "s":""] in the metal hive[BIOSCAN_LOCATION(show_locations, hostLocationS)], [numHostsPlanet || "none"] scattered elsewhere[BIOSCAN_LOCATION(show_locations, hostLocationP)] and [numHostsTransitr ? "approximately [numHostsTransitr]":"no"] host[numHostsTransitr > 1 ? "s":""] on the metal bird in transit.</span>")
 
 	var/name = "[MAIN_AI_SYSTEM] Bioscan Status"
 	var/input = {"Bioscan complete.
 
-Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signature[numXenosShip > 1 ? "s":""] present on the ship[show_locations && xenoLocationS ? " including one in [xenoLocationS]" : ""] and [numXenosPlanetr ? "approximately [numXenosPlanetr]":"no"] signature[numXenosPlanetr > 1 ? "s":""] located elsewhere[show_locations && xenoLocationP ? ", including one in [xenoLocationP]":""]."}
+Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip > 1 ? "s":""] present on the ship[BIOSCAN_LOCATION(show_locations, xenoLocationS)], [numXenosPlanetr ? "approximately [numXenosPlanetr]":"no"] signature[numXenosPlanetr > 1 ? "s":""] located elsewhere[BIOSCAN_LOCATION(show_locations, xenoLocationP)] and [numXenosTransit || "no"] unknown lifeform signature[numXenosTransit > 1 ? "s":""] in transit."}
 
 	if(announce_humans)
 		priority_announce(input, name, sound = 'sound/AI/bioscan.ogg')
@@ -278,19 +262,23 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 		var/fax_message = generate_templated_fax("Combat Information Center", "[MAIN_AI_SYSTEM] Bioscan Status", "", input, "", MAIN_AI_SYSTEM)
 		send_fax(null, null, "Combat Information Center", "[MAIN_AI_SYSTEM] Bioscan Status", fax_message, FALSE)
 
-	log_game("Bioscan. Humans: [numHostsPlanet] on the planet[hostLocationP ? " Location:[hostLocationP]":""] and [numHostsShip] on the ship.[hostLocationS ? " Location: [hostLocationS].":""] Xenos: [numXenosPlanetr] on the planet and [numXenosShip] on the ship[xenoLocationP ? " Location:[xenoLocationP]":""].")
+	log_game("Bioscan. Humans: [numHostsPlanet] on the planet[hostLocationP ? " Location:[hostLocationP]":""] and [numHostsShip] on the ship.[hostLocationS ? " Location: [hostLocationS].":""] Xenos: [numXenosPlanetr] on the planet and [numXenosShip] on the ship[xenoLocationP ? " Location:[xenoLocationP]":""] and [numXenosTransit] in transit.")
 
 	for(var/i in GLOB.observer_list)
 		var/mob/M = i
 		to_chat(M, "<h2 class='alert'>Detailed Information</h2>")
-		to_chat(M, {"<span class='alert'>[numXenosPlanet] xeno\s on the planet, including [numLarvaPlanet] larva.
-[numXenosShip] xeno\s on the ship, including [numLarvaShip] larva.
+		to_chat(M, {"<span class='alert'>[numXenosPlanet] xeno\s on the planet.
+[numXenosShip] xeno\s on the ship.
 [numHostsPlanet] human\s on the planet.
-[numHostsShip] human\s on the ship.</span>"})
+[numHostsShip] human\s on the ship."
+[numHostsTransit] human\s in transit.
+[numXenosTransit] xeno\s in transit.</span>"})
 
-	message_admins("Bioscan - Humans: [numHostsPlanet] on the planet[hostLocationP ? ". Location:[hostLocationP]":""]. [numHostsShipr] on the ship.[hostLocationS ? " Location: [hostLocationS].":""]")
-	message_admins("Bioscan - Xenos: [numXenosPlanetr] on the planet[numXenosPlanetr > 0 && xenoLocationP ? ". Location:[xenoLocationP]":""]. [numXenosShip] on the ship.[xenoLocationS ? " Location: [xenoLocationS].":""]")
+	message_admins("Bioscan - Humans: [numHostsPlanet] on the planet[hostLocationP ? ". Location:[hostLocationP]":""]. [numHostsShipr] on the ship.[hostLocationS ? " Location: [hostLocationS].":""]. [numHostsTransitr] in transit.")
+	message_admins("Bioscan - Xenos: [numXenosPlanetr] on the planet[numXenosPlanetr > 0 && xenoLocationP ? ". Location:[xenoLocationP]":""]. [numXenosShip] on the ship.[xenoLocationS ? " Location: [xenoLocationS].":""] [numXenosTransitr] in transit.")
 
+#undef BIOSCAN_DELTA
+#undef BIOSCAN_LOCATION
 
 /datum/game_mode/proc/setup_xeno_tunnels()
 	var/i = 0
@@ -455,6 +443,8 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 		dat += "[GLOB.round_statistics.sentinel_neurotoxin_stings] number of times Sentinels stung."
 	if(GLOB.round_statistics.drone_salvage_plasma)
 		dat += "[GLOB.round_statistics.drone_salvage_plasma] number of times Drones salvaged corpses."
+	if(GLOB.round_statistics.panther_neurotoxin_stings)
+		dat += "[GLOB.round_statistics.panther_neurotoxin_stings] number of times Panthers stung."
 	if(GLOB.round_statistics.defiler_defiler_stings)
 		dat += "[GLOB.round_statistics.defiler_defiler_stings] number of times Defilers stung."
 	if(GLOB.round_statistics.defiler_neurogas_uses)
@@ -469,30 +459,34 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	var/num_humans = 0
 	var/num_xenos = 0
 
-	for(var/i in GLOB.alive_human_list)
-		var/mob/living/carbon/human/H = i
-		if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
-			continue
-		if(H.status_flags & XENO_HOST)
-			continue
-		if(!(H.z in z_levels) || isspaceturf(H.loc))
-			continue
-		num_humans++
+	for(var/z in z_levels)
+		for(var/i in GLOB.humans_by_zlevel["[z]"])
+			var/mob/living/carbon/human/H = i
+			if(!istype(H)) // Small fix?
+				continue
+			if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
+				continue
+			if(H.status_flags & XENO_HOST)
+				continue
+			if(isspaceturf(H.loc))
+				continue
+			num_humans++
 
-	for(var/i in GLOB.alive_xeno_list)
-		var/mob/living/carbon/xenomorph/X = i
-		if(count_flags & COUNT_IGNORE_XENO_SSD && !X.client)
-			continue
-		if(count_flags & COUNT_IGNORE_XENO_SPECIAL_AREA && is_xeno_in_forbidden_zone(X))
-			continue
-		if((!(X.z in z_levels) && !X.is_ventcrawling) || isspaceturf(X.loc))
-			continue
+	for(var/z in z_levels)
+		for(var/i in GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[z]"])
+			var/mob/living/carbon/xenomorph/X = i
+			if(count_flags & COUNT_IGNORE_XENO_SSD && !X.client)
+				continue
+			if(count_flags & COUNT_IGNORE_XENO_SPECIAL_AREA && is_xeno_in_forbidden_zone(X))
+				continue
+			if(isspaceturf(X.loc))
+				continue
 
-		// Never count hivemind
-		if(isxenohivemind(X))
-			continue
+			// Never count hivemind
+			if(isxenohivemind(X))
+				continue
 
-		num_xenos++
+			num_xenos++
 
 	return list(num_humans, num_xenos)
 
@@ -624,6 +618,9 @@ Sensors indicate [numXenosShip ? "[numXenosShip]" : "no"] unknown lifeform signa
 	return FALSE
 
 /datum/game_mode/proc/transfer_xeno(mob/xeno_candidate, mob/living/carbon/xenomorph/X)
+	if(QDELETED(X))
+		stack_trace("[xeno_candidate] was put into a qdeleted mob [X]")
+		return
 	message_admins("[key_name(xeno_candidate)] has joined as [ADMIN_TPMONTY(X)].")
 	xeno_candidate.mind.transfer_to(X, TRUE)
 	if(X.is_ventcrawling)  //If we are in a vent, fetch a fresh vent map

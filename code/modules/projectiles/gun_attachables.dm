@@ -704,6 +704,12 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "pmcscope"
 	flags_attach_features = ATTACH_ACTIVATION
 
+/obj/item/attachable/scope/mini/dmr
+	name = "T-37 mini rail scope"
+	icon_state = "t37"
+	attach_icon = "t37_a"
+
+
 //////////// Stock attachments ////////////////////////////
 
 
@@ -960,10 +966,10 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_y = 10
 	flags_attach_features = NONE
 
-/obj/item/attachable/stock/dmr
-	name = "T-64 Stock"
-	desc = "A standard DMR Stock."
-	icon_state = "dmrstock"
+/obj/item/attachable/stock/br
+	name = "\improper T-64 stock"
+	desc = "A specialized stock for the T-64."
+	icon_state = "brstock"
 	wield_delay_mod = 0 SECONDS
 	pixel_shift_x = 32
 	pixel_shift_y = 13
@@ -975,8 +981,8 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/t18stock
-	name = "T-18 Stock"
-	desc = "A standard Carbine Stock."
+	name = "\improper T-18 stock"
+	desc = "A specialized stock for the T-18."
 	icon_state = "t18stock"
 	wield_delay_mod = 0 SECONDS
 	pixel_shift_x = 32
@@ -989,8 +995,8 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/t12stock
-	name = "T-12 Stock"
-	desc = "A standard Assault Rifle Stock."
+	name = "\improper T-12 stock"
+	desc = "A specialized stock for the T-12."
 	icon_state = "t12stock"
 	wield_delay_mod = 0 SECONDS
 	pixel_shift_x = 32
@@ -1003,8 +1009,8 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/t42stock
-	name = "T-42 Stock"
-	desc = "A standard Light Machine Gun Stock."
+	name = "\improper T-42 stock"
+	desc = "A specialized stock for the T-42."
 	icon_state = "t42stock"
 	wield_delay_mod = 0 SECONDS
 	pixel_shift_x = 32
@@ -1017,8 +1023,8 @@ Defined in conflicts.dm of the #defines folder.
 	movement_acc_penalty_mod = 0
 
 /obj/item/attachable/stock/t19stock
-	name = "T-19 Machinepistol  Gun stock"
-	desc = "A stock distributed in small numbers to TGMC forces. Compatible with the T-19, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
+	name = "\improper T-19 machinepistol stock"
+	desc = "A submachinegun stock distributed in small numbers to TGMC forces. Compatible with the T-19, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
 	slot = "stock"
 	wield_delay_mod = 0.1 SECONDS
 	melee_mod = 5
@@ -1040,6 +1046,49 @@ Defined in conflicts.dm of the #defines folder.
 	accuracy_mod = 0.15
 	recoil_mod = -3
 	scatter_mod = -20
+
+/obj/item/attachable/stock/t39stock
+	name = "\improper T-39 Stock"
+	desc = "A specialized stock for the T-35."
+	icon_state = "t39stock"
+	wield_delay_mod = 0 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+	accuracy_mod = 0
+	recoil_mod = 0
+	melee_mod = 0
+	scatter_mod = 0
+	movement_acc_penalty_mod = 0
+
+/obj/item/attachable/stock/t60stock
+	name = "T-60 stock"
+	desc = "A irremovable T-60 general purpose machinegun stock."
+	icon_state = "t60stock"
+	wield_delay_mod = 0 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+	accuracy_mod = 0
+	recoil_mod = 0
+	melee_mod = 0
+	scatter_mod = 0
+	movement_acc_penalty_mod = 0
+
+/obj/item/attachable/stock/t70stock
+	name = "\improper T-70 stock"
+	desc = "A irremovable T-70 grenade launcher stock."
+	icon_state = "t70stock"
+	wield_delay_mod = 0 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+	accuracy_mod = 0
+	recoil_mod = 0
+	melee_mod = 0
+	scatter_mod = 0
+	movement_acc_penalty_mod = 0
+
 
 ////////////// Underbarrel Attachments ////////////////////////////////////
 
@@ -1307,19 +1356,20 @@ Defined in conflicts.dm of the #defines folder.
 			var/mob/living/carbon/xenomorph/X = M
 			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
-			fire_mod = CLAMP(X.xeno_caste.fire_resist + X.fire_resist_modifier, 0, 1)
+			fire_mod = clamp(X.xeno_caste.fire_resist + X.fire_resist_modifier, 0, 1)
 		else if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 
 			if(user)
 				if(!user.mind?.bypass_ff && !H.mind?.bypass_ff && user.faction == H.faction)
-					log_combat(user, H, "shot", src)
-					log_ffattack("[key_name(usr)] shot [key_name(H)] with [name] in [AREACOORD(T)].")
-					msg_admin_ff("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(H)] with [name] in [ADMIN_VERBOSEJMP(T)].")
+					log_combat(user, H, "flamed", src)
+					user.ff_check(30, H) // avg between 20/40 dmg
+					log_ffattack("[key_name(usr)] flamed [key_name(H)] with [name] in [AREACOORD(T)].")
+					msg_admin_ff("[ADMIN_TPMONTY(usr)] flamed [ADMIN_TPMONTY(H)] with [name] in [ADMIN_VERBOSEJMP(T)].")
 				else
-					log_combat(user, H, "shot", src)
+					log_combat(user, H, "flamed", src)
 
-			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || istype(H.wear_suit,/obj/item/clothing/suit/space/rig/atmos))
+			if(H.hard_armor.getRating("fire") >= 100)
 				continue
 
 		M.adjust_fire_stacks(rand(3,5))

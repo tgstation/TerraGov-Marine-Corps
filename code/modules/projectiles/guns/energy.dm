@@ -140,7 +140,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/M43
 	name = "\improper M43 Sunfury Lasgun MK1"
-	desc = "An accurate, recoilless laser based battle rifle with an integrated charge selector. Ideal for longer range engagements. Uses power cells instead of ballistic magazines.."
+	desc = "An accurate, recoilless laser based battle rifle with an integrated charge selector. Ideal for longer range engagements. It was the standard lasrifle for TGMC soldiers until it was replaced by the TX-73, due to its extremely modular lens system."
 	force = 20 //Large and hefty! Includes stock bonus.
 	icon_state = "m43"
 	item_state = "m43"
@@ -369,7 +369,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/pulse
 	name = "\improper M19C4 pulse energy rifle"
-	desc = "A heavy-duty, multifaceted energy weapon that uses pulse-based beam generation technology to emit powerful laser blasts. Because of its complexity and cost, it is rarely seen in use except by specialists and front-line combat personnel. This is a testing model issued only for Asset Protection."
+	desc = "A heavy-duty, multifaceted energy weapon that uses pulse-based beam generation technology to emit powerful laser blasts. Because of its complexity and cost, it is rarely seen in use except by specialists and front-line combat personnel. This is a testing model issued only for Asset Protection units and offshore elite Nanotrasen squads."
 	force = 23 //Slightly more heftier than the M43, but without the stock.
 	icon_state = "m19c4"
 	item_state = "m19c4"
@@ -398,7 +398,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/M43/practice
 	name = "\improper M43-P Sunfury Lasgun MK1"
-	desc = "An accurate, recoilless laser based battle rifle. Only accepts practice power cells and it doesn't have a charge selector. Uses power cells instead of ballistic magazines."
+	desc = "An accurate, recoilless laser based battle rifle, based on the outdated M43 design. Only accepts practice power cells and it doesn't have a charge selector. Uses power cells instead of ballistic magazines."
 	force = 8 //Well, it's not complicted compared to the original.
 	ammo = /datum/ammo/energy/lasgun/M43/practice
 	cell_type = /obj/item/cell/lasgun/M43/practice
@@ -413,10 +413,10 @@
 	return
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle
-	name = "\improper TX-73 Lasrifle MK2"
-	desc = "A multifunctional laser based rifle with an integrated mode selector. Ideal for any situation. Uses power cells instead of ballistic magazines.."
+	name = "\improper TX-73 lasrifle MK2"
+	desc = "A multifunctional laser based rifle with an integrated mode selector. Ideal for any situation. Uses power cells instead of ballistic magazines."
 	force = 20 //Large and hefty! Includes stock bonus.
-	icon = 'icons/Marine/lasrifle.dmi'
+	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "tx73"
 	item_state = "tx73"
 	max_shots = 50 //codex stuff
@@ -493,7 +493,7 @@
 /datum/lasrifle/base/heat
 	charge_cost = 80
 	ammo = /datum/ammo/energy/lasgun/M43/heat
-	fire_delay = 8
+	fire_delay = 15
 	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
 	message_to_user = "You set the Lasrifle's charge mode to wave heat."
 	icon_state = "tx73_heat"
@@ -518,7 +518,7 @@
 		return
 
 	mode_index = WRAP(mode_index + 1, 1, length(mode_list)+1)
-	
+
 	playsound(user, 'sound/weapons/emitter.ogg', 5, FALSE, 2)
 	charge_cost = initial(mode_list[mode_index].charge_cost)
 	ammo = GLOB.ammo_list[initial(mode_list[mode_index].ammo)]
@@ -529,7 +529,7 @@
 		SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, initial(mode_list[mode_index].fire_mode), user.client)
 	else
 		SEND_SIGNAL(src, COMSIG_GUN_FIREMODE_TOGGLE, GUN_FIREMODE_SEMIAUTO, user.client)
-	
+
 	base_gun_icon = initial(mode_list[mode_index].icon_state)
 	update_icon()
 

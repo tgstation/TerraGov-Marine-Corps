@@ -390,9 +390,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bs" = (
-/obj/structure/sink{
-	pixel_y = 16
-	},
+/obj/structure/sink,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -1510,6 +1508,10 @@
 	dir = 6
 	},
 /area/mainship/command/cic)
+"fk" = (
+/obj/structure/window/framed/mainship/hull,
+/turf/open/floor/plating,
+/area/mainship/engineering/port_atmos)
 "fl" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -1532,7 +1534,7 @@
 "fp" = (
 /obj/structure/window/framed/mainship/requisitions,
 /obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 2
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
@@ -1747,6 +1749,13 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"gA" = (
+/obj/structure/window/framed/mainship/requisitions,
+/obj/machinery/door/poddoor/shutters/mainship/req/ro{
+	dir = 4
+	},
+/turf/open/floor/plating/mainship,
+/area/mainship/squads/req)
 "gC" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -3037,7 +3046,7 @@
 	},
 /area/mainship/command/cic)
 "lh" = (
-/obj/structure/window/framed/mainship/requisitions,
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "li" = (
@@ -3533,7 +3542,6 @@
 /area/mainship/shipboard/starboard_missiles)
 "mE" = (
 /obj/structure/bed/chair/office/dark,
-/obj/effect/landmark/start/job/commandmasteratarms,
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -3910,6 +3918,9 @@
 	},
 /area/mainship/medical/operating_room_two)
 "oe" = (
+/obj/structure/sink{
+	dir = 1
+	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 2
 	},
@@ -5216,7 +5227,7 @@
 /area/mainship/living/commandbunks)
 "sj" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/card,
+/obj/machinery/computer/marine_card,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
@@ -5775,7 +5786,7 @@
 /area/mainship/command/cic)
 "tT" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/card,
+/obj/machinery/computer/marine_card,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "tU" = (
@@ -5831,7 +5842,6 @@
 /area/mainship/hallways/starboard_umbilical)
 "ud" = (
 /obj/structure/bed/chair/office/dark,
-/obj/effect/landmark/start/job/masteratarms,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_umbilical)
 "ue" = (
@@ -7192,7 +7202,7 @@
 /area/mainship/engineering/port_atmos)
 "ym" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible,
-/obj/structure/window/framed/mainship/requisitions,
+/obj/structure/window/framed/mainship/hull,
 /turf/open/floor/plating,
 /area/mainship/engineering/port_atmos)
 "yo" = (
@@ -7900,9 +7910,6 @@
 /area/mainship/engineering/engineering_workshop)
 "Ax" = (
 /obj/structure/closet/crate,
-/obj/item/stack/sheet/mineral/phoron{
-	amount = 25
-	},
 /obj/item/stack/sheet/plasteel{
 	amount = 30;
 	pixel_x = 4;
@@ -7912,6 +7919,7 @@
 	amount = 50
 	},
 /obj/item/storage/briefcase/inflatable,
+/obj/item/stack/sheet/mineral/phoron/medium_stack,
 /turf/open/floor/mainship/cargo,
 /area/mainship/engineering/engineering_workshop)
 "Ay" = (
@@ -11607,12 +11615,6 @@
 "KE" = (
 /turf/closed/wall/mainship,
 /area/mainship/living/briefing)
-"KH" = (
-/obj/structure/sign/ROsign{
-	dir = 1
-	},
-/turf/closed/wall/mainship,
-/area/mainship/squads/req)
 "KI" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -12624,13 +12626,6 @@
 /obj/machinery/vending/nanomed,
 /turf/closed/wall/mainship,
 /area/mainship/engineering/lower_engineering)
-"Or" = (
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = -13
-	},
-/turf/closed/wall/mainship/white,
-/area/mainship/medical/operating_room_two)
 "Os" = (
 /obj/effect/landmark/start/job/squadmarine,
 /obj/machinery/light{
@@ -14100,7 +14095,7 @@
 /area/mainship/command/self_destruct)
 "ZM" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/card,
+/obj/machinery/computer/marine_card,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -37940,7 +37935,7 @@ OI
 lc
 xt
 xt
-xU
+fk
 yF
 aa
 aa
@@ -43030,7 +43025,7 @@ hR
 JM
 cM
 oe
-Or
+ic
 gL
 wj
 gL
@@ -44564,8 +44559,8 @@ kz
 Dz
 Dz
 qG
-de
-de
+gA
+gA
 qG
 qG
 qG
@@ -45590,7 +45585,7 @@ az
 ee
 gd
 Vn
-KH
+qG
 JH
 QS
 Rm
@@ -47134,19 +47129,19 @@ gd
 kM
 kM
 qG
-de
-de
-de
-de
+gA
+gA
+gA
+gA
 qG
 qG
 NY
 qG
-de
-de
+gA
+gA
 YX
-de
-de
+gA
+gA
 fp
 fp
 fp

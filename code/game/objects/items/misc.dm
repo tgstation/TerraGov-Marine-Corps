@@ -11,6 +11,23 @@
 	attack_verb = list("called", "rang")
 	hitsound = 'sound/weapons/ring.ogg'
 
+
+/obj/item/clock
+	name = "digital clock"
+	desc = "A battery powered clock, able to keep time within about 5 seconds... it was never that accurate."
+	icon = 'icons/obj/items/items.dmi'
+	icon_state = "digital_clock"
+	force = 3.0
+	throwforce = 2.0
+	throw_speed = 1
+	throw_range = 4
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/clock/examine(mob/user, distance, infix, suffix)
+	. = ..()
+	to_chat(user, "The [src] reads: [GLOB.current_date_string] - [stationTimestamp()]")
+
+
 /obj/item/bananapeel
 	name = "banana peel"
 	desc = "A peel from a banana."

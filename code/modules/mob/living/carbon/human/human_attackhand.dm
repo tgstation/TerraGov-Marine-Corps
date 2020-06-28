@@ -107,6 +107,7 @@
 			log_combat(H, src, "[pick(attack.attack_verb)]ed", "[hit_report.Join(" ")]")
 			if(!H.mind?.bypass_ff && !mind?.bypass_ff && H.faction == faction)
 				var/turf/T = get_turf(src)
+				H.ff_check(damage, src)
 				log_ffattack("[key_name(H)] punched [key_name(src)] in [AREACOORD(T)] [hit_report.Join(" ")].")
 				msg_admin_ff("[ADMIN_TPMONTY(H)] punched [ADMIN_TPMONTY(src)] in [ADMIN_VERBOSEJMP(T)] [hit_report.Join(" ")].")
 

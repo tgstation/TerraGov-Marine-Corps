@@ -23,7 +23,7 @@
 	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 260
+	max_health = 240
 
 	// *** Evolution *** //
 	upgrade_threshold = 250
@@ -65,14 +65,14 @@
 	tackle_damage = 40
 
 	// *** Speed *** //
-	speed = -0.6
+	speed = -0.8
 
 	// *** Plasma *** //
 	plasma_max = 500 //Enables using either both abilities at once or one after another
 	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 280
+	max_health = 260
 
 	// *** Evolution *** //
 	upgrade_threshold = 500
@@ -100,7 +100,7 @@
 	plasma_gain = 35
 
 	// *** Health *** //
-	max_health = 310
+	max_health = 280
 
 	// *** Evolution *** //
 	upgrade_threshold = 1000
@@ -121,14 +121,14 @@
 	tackle_damage = 50
 
 	// *** Speed *** //
-	speed = -1.1
+	speed = -1
 
 	// *** Plasma *** //
 	plasma_max = 600
 	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 330
+	max_health = 300
 
 	// *** Evolution *** //
 	upgrade_threshold = 1000

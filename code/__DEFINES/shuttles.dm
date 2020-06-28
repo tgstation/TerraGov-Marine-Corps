@@ -31,6 +31,9 @@
 #define EARLY_LAUNCHED 2
 #define ENDGAME_TRANSIT 3
 
+/// shuttle is immune to gamemode timer restrictions
+#define GAMEMODE_IMMUNE (1<<0)
+
 // Ripples, effects that signal a shuttle's arrival
 #define SHUTTLE_RIPPLE_TIME 100
 

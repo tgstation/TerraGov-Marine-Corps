@@ -157,7 +157,7 @@
 			if(length(seed.chems) && ishuman(victim))
 				to_chat(victim, "<span class='danger'>You feel something seeping into your skin!</span>")
 				for(var/rid in seed.chems)
-					var/injecting = CLAMP(seed.potency * 0.2, 1, 5)
+					var/injecting = clamp(seed.potency * 0.2, 1, 5)
 					victim.reagents.add_reagent(rid, injecting)
 
 

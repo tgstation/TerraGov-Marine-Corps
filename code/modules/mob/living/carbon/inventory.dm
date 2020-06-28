@@ -12,23 +12,6 @@
 		restraints.unequipped(src, SLOT_HANDCUFFED)
 	update_inv_handcuffed()
 
-/mob/living/carbon/proc/update_legcuffed(obj/item/restraints/legcuffs/restraints)
-	if(restraints)
-		if(m_intent != MOVE_INTENT_WALK)
-			toggle_move_intent(MOVE_INTENT_WALK)
-			if(hud_used?.move_intent)
-				hud_used.move_intent.icon_state = "walking"
-		legcuffed = restraints
-		restraints.equipped(src, SLOT_LEGCUFFED)
-		legcuffed.RegisterSignal(src, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
-		SEND_SIGNAL(src, COMSIG_LIVING_LEGCUFFED, restraints)
-	else if (legcuffed)
-		legcuffed.UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)
-		legcuffed = null
-		restraints.unequipped(src, SLOT_LEGCUFFED)
-	update_inv_legcuffed()
-
-
 /mob/living/carbon/doUnEquip(obj/item/I)
 	. = ..()
 	if(.)
@@ -45,9 +28,6 @@
 		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if(I == handcuffed)
 		update_handcuffed(null)
-		. = ITEM_UNEQUIP_UNEQUIPPED
-	else if(I == legcuffed)
-		update_legcuffed(null)
 		. = ITEM_UNEQUIP_UNEQUIPPED
 
 

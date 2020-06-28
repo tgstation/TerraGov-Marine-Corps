@@ -41,7 +41,7 @@
 
 /obj/item/weapon/gun/rifle/standard_carbine
     name = "\improper T-18 carbine"
-    desc = "The T-18 carbine is one of the standard rifles used by the TerraGov Marine Corps. It's commonly used by people who prefer greater mobility in combat, like scouts and other light infantry. Lacks an automatic fire mode, but has a burst fire mode to improve damage output. Uses 10x24mm caseless ammunition."
+    desc = "The T-18 carbine is one of the standard rifles used by the TerraGov Marine Corps. It's commonly used by people who prefer greater mobility in combat, like scouts and other light infantry. Uses 10x24mm caseless ammunition."
     icon_state = "t18"
     item_state = "t18"
     fire_sound = "sound/weapons/guns/fire/autorifle.ogg"
@@ -76,12 +76,12 @@
 						/obj/item/attachable/attached_gun/shotgun)
 
     flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
-    gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
+    gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST, GUN_FIREMODE_AUTOMATIC)
     starting_attachment_types = list(/obj/item/attachable/stock/t18stock)
     attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 10, "rail_y" = 19, "under_x" = 18, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
 
-    fire_delay = 0.3 SECONDS
-    burst_delay = 0.125 SECONDS
+    fire_delay = 0.2 SECONDS
+    burst_delay = 0.1 SECONDS
     accuracy_mult = 1.10
     scatter = -5
     burst_amount = 4
@@ -93,7 +93,7 @@
 
 /obj/item/weapon/gun/rifle/standard_assaultrifle
     name = "\improper T-12 assault rifle"
-    desc = "The T-12 assault rifle used to be the TerraGov Marine Corps standard issue rifle before the T-18 carbine replaced it. It's however still used widely despite that. The gun itself is very good at being used in most situations however it suffers in engagements at close quarters and is relatively hard to shoulder than some others. It uses 10x24mm caseless ammunition."
+    desc = "The T-12 assault rifle used to be the TerraGov Marine Corps standard issue rifle before the T-18 carbine replaced it. It is, however, still used widely despite that. The gun itself is very good at being used in most situations however it suffers in engagements at close quarters and is relatively hard to shoulder than some others. It uses 10x24mm caseless ammunition."
     icon_state = "t12"
     item_state = "t12"
     fire_sound = "sound/weapons/guns/fire/autorifle.ogg"
@@ -107,7 +107,6 @@
     attachable_allowed = list(
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
-						/obj/item/attachable/angledgrip,
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/gyro,
 						/obj/item/attachable/flashlight,
@@ -138,26 +137,27 @@
     scatter = -10
     wield_delay = 0.7 SECONDS
     burst_amount = 3
-    aim_slowdown = 0.4
+    aim_slowdown = 0.5
     damage_falloff_mult = 0.5
 
 
 //-------------------------------------------------------
-//T-64 DMR
+//T-37 DMR
 
 /obj/item/weapon/gun/rifle/standard_dmr
-	name = "\improper T-64 designated marksman rifle"
-	desc = "The T-64 DMR is the TerraGov Marine Corps designated marksman rifle. It is rather well-known for it's very consistent target placement at longer than usual range, it however lacks a burst fire mode or an automatic mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 10x27 caliber."
-	icon_state = "t64"
-	item_state = "t64"
+	name = "\improper T-37 designated marksman rifle"
+	desc = "The T-37 DMR is the TerraGov Marine Corps designated marksman rifle. It is rather well-known for it's very consistent target placement at longer than usual range, it however lacks a burst fire mode or an automatic mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 10x27mm caseless caliber."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "t37"
+	item_state = "t37"
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	fire_sound = "sound/weapons/guns/fire/DMR.ogg"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
 	caliber = "10x27mm caseless" //codex
-	aim_slowdown = 0.05 SECONDS
-	wield_delay = 0.7 SECONDS
+	aim_slowdown = 0.75
+	wield_delay = 1 SECONDS
 	force = 20
 	max_shells = 10 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/standard_dmr
@@ -173,7 +173,57 @@
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/bipod,
 						/obj/item/attachable/gyro,
-						/obj/item/attachable/stock/dmr,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/attached_gun/grenade,
+						/obj/item/attachable/attached_gun/flamer,
+						/obj/item/attachable/attached_gun/shotgun,
+						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/mini/dmr)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_CAN_POINTBLANK
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	starting_attachment_types = list(/obj/item/attachable/scope/mini/dmr)
+	attachable_offset = list("muzzle_x" = 48, "muzzle_y" = 21,"rail_x" = 21, "rail_y" = 24, "under_x" = 31, "under_y" = 15, "stock_x" = 14, "stock_y" = 10)
+
+	fire_delay = 0.8 SECONDS
+	accuracy_mult = 1.25
+	scatter = -15
+	burst_amount = 1
+
+
+//-------------------------------------------------------
+//T-64 BR
+
+/obj/item/weapon/gun/rifle/standard_br
+	name = "\improper T-64 battle rifle"
+	desc = "The T-64 is the TerraGov Marine Corps main battle rifle. It is known for its consistent ability to perform well at most ranges, and close range stopping power. It is mostly used by people who prefer a bigger round than the average. Lacks burst fire. Uses 10x27mm caseless caliber."
+	icon_state = "t64"
+	item_state = "t64"
+	muzzleflash_iconstate = "muzzle_flash_medium"
+	fire_sound = "sound/weapons/guns/fire/BR.ogg"
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
+	caliber = "10x27mm caseless" //codex
+	aim_slowdown = 0.55
+	wield_delay = 0.7 SECONDS
+	force = 20
+	max_shells = 10 //codex
+	current_mag = /obj/item/ammo_magazine/rifle/standard_br
+	attachable_allowed = list(
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/verticalgrip,
+						/obj/item/attachable/lasersight,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/bipod,
+						/obj/item/attachable/gyro,
+						/obj/item/attachable/stock/br,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/magnetic_harness,
@@ -185,21 +235,21 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_CAN_POINTBLANK
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	starting_attachment_types = list(/obj/item/attachable/stock/dmr, /obj/item/attachable/scope/mini)
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 13, "rail_y" = 18, "under_x" = 24, "under_y" = 13, "stock_x" = 14, "stock_y" = 10)
+	starting_attachment_types = list(/obj/item/attachable/stock/br,/obj/item/attachable/scope/mini)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 17, "rail_y" = 18, "under_x" = 25, "under_y" = 12, "stock_x" = 14, "stock_y" = 10)
 
-	fire_delay = 0.8 SECONDS
+	fire_delay = 0.35 SECONDS
+	damage_mult = 0.5 //uses the marksman bullet, like the DMR.
 	accuracy_mult = 1.25
-	scatter = -15
+	scatter = -10
 	burst_amount = 1
-
 
 //-------------------------------------------------------
 //M41A PULSE RIFLE
 
 /obj/item/weapon/gun/rifle/m41a1
 	name = "\improper M41A1 pulse rifle"
-	desc = "An outdated rifle for the TerraGov Marine Corps, carried by a few coporate mercenaries,the M41A1 is a very rare sight in TerraGov systems. Uses 10x24mm caseless ammunition."
+	desc = "An outdated rifle for the TerraGov Marine Corps, carried by a few coporate mercenary groups, the M41A1 is a very rare sight in TerraGov systems. Uses 10x24mm caseless ammunition."
 	icon_state = "m41a1"
 	item_state = "m41a1"
 	muzzleflash_iconstate = "muzzle_flash_medium"
@@ -211,7 +261,6 @@
 	max_shells = 40 //codex
 	current_mag = /obj/item/ammo_magazine/rifle
 	attachable_allowed = list(
-						/obj/item/attachable/quickfire,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/bayonetknife,
@@ -269,7 +318,7 @@
 
 /obj/item/weapon/gun/rifle/m41a
 	name = "\improper M41A pulse rifle"
-	desc = "An older design of the pulse rifle used by the TerraGov Marine Corps. Uses 10x24mm caseless ammunition."
+	desc = "An older design of the pulse rifle used by the TerraGov Marine Corps. A very influential weapon of its time. Uses 10x24mm caseless ammunition."
 	icon_state = "m41a"
 	item_state = "m41a"
 	fire_sound = "gun_pulse"
@@ -296,7 +345,6 @@
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/scope/mini,
-						/obj/item/attachable/quickfire,
 						/obj/item/attachable/gyro,
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/scope)
@@ -420,14 +468,14 @@
 
 /obj/item/weapon/gun/rifle/standard_lmg
 	name = "\improper T-42 light machine gun"
-	desc = "The T-42 LMG is the TGMC's current standard non-IFF-capable LMG. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. It uses 10x24mm ammunition."
+	desc = "The T-42 is the TGMC's current standard non-IFF-capable LMG. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. It uses 10x24mm ammunition."
 	icon_state = "t42"
 	item_state = "t42"
 	caliber = "10x24mm caseless" //codex
 	max_shells = 120 //codex
 	force = 30
-	aim_slowdown = 0.6
-	wield_delay = 1.4 SECONDS
+	aim_slowdown = 0.8
+	wield_delay = 1 SECONDS
 	fire_sound =  'sound/weapons/guns/fire/rifle.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
@@ -455,11 +503,58 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/t42stock)
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 20, "under_x" = 16, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.18 SECONDS
 	burst_amount = 1
 	accuracy_mult_unwielded = 0.5
-	accuracy_mult = 0.9
-	scatter = 20
+	accuracy_mult = 1
+	scatter = 10
+	scatter_unwielded = 80
+
+//-------------------------------------------------------
+//T-60 General Purpose Machine Gun
+
+/obj/item/weapon/gun/rifle/standard_gpmg
+	name = "\improper T-60 general purpose machine gun"
+	desc = "The T-60 general purpose machinegun is the TGMC's current standard GPMG. Though usually seen mounted on vehicles, it is sometimes used by infantry to hold chokepoints or suppress enemies. It uses 10x26mm boxes."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "t60"
+	item_state = "t60"
+	caliber = "10x26mm caseless" //codex
+	max_shells = 250 //codex
+	force = 35
+	aim_slowdown = 1.2
+	wield_delay = 1.5 SECONDS
+	fire_sound =  'sound/weapons/guns/fire/GPMG.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/T42_reload.ogg'
+	current_mag = /obj/item/ammo_magazine/standard_gpmg
+	attachable_allowed = list(
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/lasersight,
+						/obj/item/attachable/bipod,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
+						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/mini,
+						/obj/item/attachable/stock/t60stock,
+						/obj/item/attachable/magnetic_harness)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_WIELDED_FIRING_ONLY
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	starting_attachment_types = list(/obj/item/attachable/stock/t60stock)
+	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
+	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 23, "under_x" = 25, "under_y" = 14, "stock_x" = 11, "stock_y" = 14)
+	fire_delay = 0.165 SECONDS
+	damage_falloff_mult = 0.25
+	burst_amount = 1
+	accuracy_mult_unwielded = 0.4
+	accuracy_mult = 1
+	scatter = 25
 	scatter_unwielded = 80
 
 //-------------------------------------------------------
@@ -511,7 +606,7 @@
 
 /obj/item/weapon/gun/rifle/type71
 	name = "\improper Type 71 pulse rifle"
-	desc = "The primary rifle of the USL forces, the Type 71 is a reliable rifle chambered in 7.62x39mm, firing in two round bursts to conserve ammunition. A newer model for surpression roles to comply with overmatch doctrines is in progress and only issued to a limited number of pirates in the USL."
+	desc = "The primary rifle of the USL forces, the Type 71 is a reliable rifle chambered in 7.62x39mm, firing in two round bursts to conserve ammunition. A newer model for surpression roles to comply with overmatch doctrines is in progress and only issued to a limited number of privates in the USL."
 	icon_state = "type71"
 	item_state = "type71"
 	muzzleflash_iconstate = "muzzle_flash_medium"
@@ -568,7 +663,7 @@
 
 /obj/item/weapon/gun/rifle/sx16
 	name = "\improper SX-16 automatic shotgun"
-	desc = "An automatic shotgun with an impressive rate of fire. It uses 16 gauge magazines of either buckshot, slug or flechette. The SX-16 only recently left field testing, and is one of the more recent additions to the TGMC's arsenal, replacing the ZX-76 because of reliability issues."
+	desc = "An automatic shotgun with an impressive rate of fire. It uses 16 gauge magazines of either buckshot, slug or flechette. The SX-16 only recently left field testing, and is one of the more recent additions to the TGMC's arsenal, replacing the ZX-76 because of reliability issues. It has been taken over by the TX-15 automatic shotgun in standard-issue TGMC inventory, though."
 	icon_state = "sx16"
 	item_state = "sx16"
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
@@ -604,7 +699,7 @@
 
 /obj/item/weapon/gun/rifle/standard_autoshotgun
 	name = "\improper TX-15 automatic shotgun"
-	desc = "The TX-15 Automatic Assault Shotgun, produced by Terran Armories. Another iteration of the ZX series of firearms, taking over the SX as the semi-automatic shotgun provided to the TGMC. Compared to the SX, this Shotgun is rifled, and loads primarily longer ranged munitions, being incompatible with buckshot shells. Takes 12 round magazines."
+	desc = "The TX-15 Automatic Assault Shotgun, produced by Terran Armories. Another iteration of the ZX series of firearms, taking over the SX as the semi-automatic shotgun provided to the TGMC. Compared to the SX, this Shotgun is rifled, and loads primarily longer ranged munitions, being incompatible with buckshot shells. Takes 12-round 16 gauge magazines."
 	icon_state = "tx15"
 	item_state = "tx15"
 	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
@@ -645,7 +740,7 @@
 
 /obj/item/weapon/gun/rifle/standard_smartmachinegun
 	name = "\improper T-29 smart machine gun"
-	desc = "The T-29 LMG is the TGMC's current standard IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
+	desc = "The T-29 is the TGMC's current standard IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
 	icon_state = "t29"
 	item_state = "t29"
 	caliber = "10x26mm caseless" //codex
@@ -665,7 +760,6 @@
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/t42barrel,
 						/obj/item/attachable/bipod,
-						/obj/item/attachable/stock/dmr,
 						/obj/item/attachable/magnetic_harness)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_WIELDED_FIRING_ONLY

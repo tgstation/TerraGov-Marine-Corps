@@ -1,5 +1,5 @@
 #define FACEHUGGER_LIFECYCLE 12 SECONDS
-#define FACEHUGGER_KNOCKOUT 10
+#define FACEHUGGER_KNOCKOUT 6 SECONDS
 
 #define MIN_IMPREGNATION_TIME 10 SECONDS //Time it takes to impregnate someone
 #define MAX_IMPREGNATION_TIME 15 SECONDS
@@ -431,7 +431,9 @@
 	if(!sterile && !issynth(user) && !isIPC(user))
 		if(user.disable_lights(sparks = TRUE, silent = TRUE)) //Knock out the lights so the victim can't be cam tracked/spotted as easily
 			user.visible_message("<span class='danger'>[user]'s lights flicker and short out in a struggle!</span>", "<span class='danger'>Your equipment's lights flicker and short out in a struggle!</span>")
-		user.Unconscious(FACEHUGGER_KNOCKOUT * 20) //THIS MIGHT NEED TWEAKS // still might!
+		var/stamina_dmg = user.maxHealth * 2 + user.max_stamina_buffer
+		user.apply_damage(stamina_dmg, STAMINA) // complete winds the target
+		user.Unconscious(6 SECONDS) //THIS MIGHT NEED TWEAKS // still might! // tweaked it
 	flags_item |= NODROP
 	attached = TRUE
 	GoIdle(FALSE, TRUE)

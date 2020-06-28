@@ -29,7 +29,10 @@
 		update_evolving()
 		handle_aura_emiter()
 
-	adjust_sunder(xeno_caste.sunder_recover * -1) 
+	var/sunder_recov = xeno_caste.sunder_recover * -1
+	if(resting)
+		sunder_recov += 0.5
+	adjust_sunder(sunder_recov)
 	handle_aura_receiver()
 	handle_living_health_updates()
 	handle_living_plasma_updates()
@@ -58,7 +61,7 @@
 		return
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE) && on_fire) //Sanity check; have to be on fire to actually take the damage.
 		SEND_SIGNAL(src, COMSIG_XENOMORPH_FIRE_BURNING)
-		adjustFireLoss((fire_stacks + 3) * CLAMP(xeno_caste.fire_resist + fire_resist_modifier, 0, 1) ) // modifier is negative
+		adjustFireLoss((fire_stacks + 3) * clamp(xeno_caste.fire_resist + fire_resist_modifier, 0, 1) ) // modifier is negative
 
 /mob/living/carbon/xenomorph/proc/handle_living_health_updates()
 	if(health < 0)
@@ -115,7 +118,7 @@
 	var/list/plasma_mod = list()
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_PLASMA_REGEN, plasma_mod)
-	
+
 	var/plasma_gain_multiplier = 1
 	for(var/i in plasma_mod)
 		plasma_gain_multiplier *= i
@@ -241,7 +244,7 @@
 	var/env_temperature = loc.return_temperature()
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE))
 		if(env_temperature > (T0C + 66))
-			adjustFireLoss((env_temperature - (T0C + 66) ) * 0.2 * CLAMP(xeno_caste.fire_resist + fire_resist_modifier, 0, 1) ) //Might be too high, check in testing.
+			adjustFireLoss((env_temperature - (T0C + 66) ) * 0.2 * clamp(xeno_caste.fire_resist + fire_resist_modifier, 0, 1) ) //Might be too high, check in testing.
 			updatehealth() //unused while atmos is off
 			if(hud_used && hud_used.fire_icon)
 				hud_used.fire_icon.icon_state = "fire2"
@@ -282,6 +285,6 @@
 		return
 	frenzy_aura = new_aura
 	if(frenzy_aura)
-		add_movespeed_modifier(MOVESPEED_ID_FRENZY_AURA, TRUE, 0, NONE, TRUE, -frenzy_aura * 0.1)
+		add_movespeed_modifier(MOVESPEED_ID_FRENZY_AURA, TRUE, 0, NONE, TRUE, -frenzy_aura * 0.06)
 		return
 	remove_movespeed_modifier(MOVESPEED_ID_FRENZY_AURA)

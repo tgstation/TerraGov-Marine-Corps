@@ -169,6 +169,13 @@
 	beaker = new /obj/item/reagent_containers/glass/beaker/large()
 	if(orient == "RIGHT")
 		icon_state = "sleeper_0-r"
+	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
+
+/obj/machinery/sleeper/proc/shuttle_crush()
+	if(occupant)
+		var/mob/living/carbon/human/H = occupant
+		go_out()
+		H.gib()
 
 /obj/machinery/sleeper/Destroy()
 	//clean up; end stasis; remove from processing
