@@ -282,3 +282,14 @@
 	default_ammo = /datum/ammo/energy/plasma
 	max_rounds = 20
 	gun_type = /obj/item/weapon/gun/rifle/sectoid_rifle
+
+//-------------------------------------------------------
+//Marine mag sniper
+/obj/item/ammo_magazine/rifle/sniper
+	name = "xyz sniper magazine"
+	desc = "A magazine filled with powerful plasma rounds. The ammo inside doesn't look like anything you've seen before."
+	caliber = "alien alloy"
+	icon_state = "alien_rifle"
+	default_ammo = /datum/ammo/bullet/sniper/pfc
+	max_rounds = 10
+	gun_type = /obj/item/weapon/gun/rifle/chambered

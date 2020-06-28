@@ -817,3 +817,76 @@
 		to_chat(user, "<span class='warning'>There's no trigger on this gun, you have no idea how to fire it!</span>")
 		return FALSE
 	return TRUE
+
+
+
+/obj/item/weapon/gun/rifle/chambered
+	name = "\improper MJP rifle"
+	desc = "A mosin nagant rifle, even just looking at it you can feel the cosmoline already. Commonly known by its slang, \"Moist Nugget\", by downbrained colonists and outlaws."
+	icon_state = "mosin"
+	item_state = "mosin" //thank you Alterist
+	fire_sound = 'sound/weapons/guns/fire/mosin.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
+	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
+	caliber = "dumb nerd caliber" //codex
+	max_shells = 10 //codex
+	current_mag = /obj/item/ammo_magazine/rifle/sniper
+	type_of_casings = "cartridge"
+	attachable_allowed = list(
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/scope/mini,
+						/obj/item/attachable/bayonetknife,
+						/obj/item/attachable/scope,//aaaaaaaaa
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
+						/obj/item/attachable/compensator)
+
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 14)
+	starting_attachment_types = list(/obj/item/attachable/scope,//aaaaaa
+									/obj/item/attachable/mosinbarrel,
+									/obj/item/attachable/stock/mosin)
+
+	fire_delay = 1.2 SECONDS
+	accuracy_mult = 1.35
+	accuracy_mult_unwielded = 0.7
+	scatter = -30
+	scatter_unwielded = 40
+	recoil = 0
+	recoil_unwielded = 4
+	aim_slowdown = 1
+	wield_delay = 0.7 SECONDS
+
+	var/rack_delay = 7
+	var/rack_sound
+	var/racked_bolt = TRUE
+	var/cooldown_time
+
+/obj/item/weapon/gun/rifle/chambered/able_to_fire(mob/user)
+	. = ..()
+	if(!racked_bolt)
+		to_chat(user, "<span class='notice'>[src] does not have a round chambered!</span>")
+		return FALSE
+	return TRUE
+
+/obj/item/weapon/gun/rifle/chambered/unique_action(mob/user)
+	if(racked_bolt)
+		to_chat(user, "<span class='notice'>[src] already has a round chambered!</span>")
+		return
+	if(!(cooldown_time < world.time))
+		return
+	return rack_bolt(user)
+
+/obj/item/weapon/gun/rifle/chambered/proc/rack_bolt(mob/user)
+	to_chat(user, "<span class='notice'>You cycle the bolt of the [src], loading a new round!</span>")
+	cooldown_time = world.time + rack_delay
+	racked_bolt = TRUE
+	playsound(loc, rack_sound, 25, 1, 4)
+
+/obj/item/weapon/gun/rifle/chambered/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
+	. = ..()
+	racked_bolt = FALSE

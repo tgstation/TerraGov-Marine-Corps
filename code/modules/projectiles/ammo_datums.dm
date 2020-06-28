@@ -878,6 +878,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 150
 	sundering = 75
 
+/datum/ammo/bullet/sniper/pfc
+	name = "xyz bullet"
+	hud_state = "minigun"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	iff_signal = null
+	damage = 80
+	penetration = 30
+	sundering = 7.5
+
 /*
 //================================================
 					Special Ammo
