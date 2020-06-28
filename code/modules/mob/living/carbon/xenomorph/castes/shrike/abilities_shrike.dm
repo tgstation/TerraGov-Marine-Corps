@@ -295,7 +295,7 @@
 	cooldown_timer = 1 MINUTES
 	plasma_cost = 200
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CURE
-	var/long_distance_heal = FALSE
+	var/ignore_distance_check = FALSE
 	var/heal_time = 1 SECONDS
 
 
@@ -310,9 +310,8 @@
 		return FALSE
 	if(QDELETED(target))
 		return FALSE
-	if(!long_distance_heal)
-		if(!check_distance(target, silent))
-			return FALSE
+	if(!ignore_distance_check && !check_distance(target, silent))
+		return FALSE
 	if(!isxeno(target))
 		return FALSE
 	var/mob/living/carbon/xenomorph/patient = target
