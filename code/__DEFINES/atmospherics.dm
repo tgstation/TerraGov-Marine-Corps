@@ -30,6 +30,7 @@
 
 #define R_IDEAL_GAS_EQUATION	8.31 //kPa*L/(K*mol)
 #define ONE_ATMOSPHERE		101.325	//kPa
+#define MOON_SURFACE		1 // close enough
 #define IDEAL_GAS_ENTROPY_CONSTANT 	1164	//(mol^3 * s^3) / (kg^3 * L). Equal to (4*pi/(avrogadro's number * planck's constant)^2)^(3/2) / (avrogadro's number * 1000 Liters per m^3).
 
 
@@ -59,6 +60,7 @@
 #define GAS_TYPE_N2O		"anesthetic"
 #define GAS_TYPE_PHORON		"phoron"
 #define GAS_TYPE_CO2		"carbon dioxyde"
+#define GAS_TYPE_PSEUDO_VACUUM	"pseudo-vacuum" // no oxidants
 
 #define RADIATION_SPEED_COEFFICIENT 0.1
 

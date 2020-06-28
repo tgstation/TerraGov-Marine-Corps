@@ -56,6 +56,16 @@
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_EMIT_NEUROGAS
 
+/datum/action/xeno_action/activable/emit_neurogas/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	var/area/A = get_area(owner)
+	if(A.return_pressure() < (ONE_ATMOSPHERE/2))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>The gas won't work in such low pressure!</span>")
+		return FALSE
+
 /datum/action/xeno_action/activable/emit_neurogas/on_cooldown_finish()
 	playsound(owner.loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
 	to_chat(owner, "<span class='xenodanger'>We feel our dorsal vents bristle with neurotoxic gas. We can use Emit Neurogas again.</span>")
@@ -158,7 +168,7 @@
 
 	succeed_activate()
 	add_cooldown()
-	
+
 	new /obj/effect/alien/egg/gas(A.loc)
 	qdel(alien_egg)
 

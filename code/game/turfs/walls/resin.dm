@@ -1,8 +1,8 @@
 /**
  * Resin walls
- * 
+ *
  * Used mostly be xenomorphs
- */ 
+ */
 /turf/closed/wall/resin
 	name = "resin wall"
 	desc = "Weird slime solidified into a wall."
@@ -13,17 +13,28 @@
 	layer = RESIN_STRUCTURE_LAYER
 	tiles_with = list(/turf/closed/wall/resin, /turf/closed/wall/resin/membrane, /obj/structure/mineral_door/resin)
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
-
+	var/decaying
 
 /turf/closed/wall/resin/Initialize()
 	. = ..()
+	var/area/A = get_area(src)
+	RegisterSignal(A, COMSIG_AIRLOCK_FINISH_CYCLE_TO_OUT, .proc/vacuum_decay)
+	RegisterSignal(A, COMSIG_AIRLOCK_FINISH_CYCLE_TO_IN, .proc/stop_decay)
 	return INITIALIZE_HINT_LATELOAD
-
 
 /turf/closed/wall/resin/LateInitialize(mapload)
 	if(!locate(/obj/effect/alien/weeds) in loc)
 		new /obj/effect/alien/weeds(loc)
 
+/turf/closed/wall/resin/proc/vacuum_decay()
+	if(decaying)
+		return
+	decaying = addtimer(CALLBACK(src, .proc/take_damage, 50, BURN, "vacuum"), 1 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_LOOP)
+
+/turf/closed/wall/resin/proc/stop_decay()
+	if(decaying)
+		deltimer(decaying)
+		decaying = null
 
 /turf/closed/wall/resin/ChangeTurf(path, new_baseturf, flags)
 	. = ..()
@@ -156,7 +167,7 @@
 	max_integrity = 100
 
 	/// Total health possible for a wall after regenerating at max health
-	var/max_upgradable_health = 600 
+	var/max_upgradable_health = 600
 	/// How much the walls integrity heals per tick (2 seconds)
 	var/heal_per_tick = 10
 	/// How much the walls max_integrity increases per tick (2 seconds)

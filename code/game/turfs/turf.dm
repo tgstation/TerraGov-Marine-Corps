@@ -477,6 +477,9 @@
 //Check if you can plant weeds on that turf.
 //Does NOT return a message, just a 0 or 1.
 /turf/proc/is_weedable()
+	var/area/A = get_area(src)
+	if(A?.return_pressure() < (ONE_ATMOSPHERE/2))
+		return FALSE
 	return !density
 
 /turf/open/space/is_weedable()
@@ -507,6 +510,10 @@
 /turf/proc/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
 	var/has_obstacle
 	for(var/obj/O in contents)
+		if(istype(O, /obj/machinery/door/airlock/moon))
+			if(!silent)
+				to_chat(builder, "<span class='warning'>You can't block the airlock you'd be trapped!</span>")
+			return FALSE
 		if(istype(O, /obj/item/clothing/mask/facehugger))
 			if(!silent)
 				to_chat(builder, "<span class='warning'>There is a little one here already. Best move it.</span>")

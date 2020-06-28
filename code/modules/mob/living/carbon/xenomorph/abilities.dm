@@ -663,6 +663,12 @@
 	if(!A)
 		return FALSE
 
+	var/area/A = get_area(owner)
+	if(A.return_pressure() < (ONE_ATMOSPHERE/2))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>The acid won't work in such low pressure!</span>")
+		return FALSE
+
 	var/turf/T = get_turf(owner)
 	var/turf/T2 = get_turf(A)
 	if(T == T2)
@@ -704,6 +710,11 @@
 	if(X.ammo?.spit_cost > X.plasma_stored)
 		if(!silent)
 			to_chat(X, "<span class='warning'>We need [X.ammo?.spit_cost - X.plasma_stored] more plasma!</span>")
+		return FALSE
+	var/area/A = get_area(owner)
+	if(A.return_pressure() < (ONE_ATMOSPHERE/2))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>The spit won't work in such low pressure!</span>")
 		return FALSE
 
 /datum/action/xeno_action/activable/xeno_spit/get_cooldown()

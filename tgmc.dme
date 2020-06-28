@@ -12,6 +12,7 @@
 // BEGIN_INCLUDE
 #include "_maps\_basemap.dm"
 #include "_maps\map_files\generic\Admin_Level.dmm"
+#include "_maps\map_files\moon_base\moon_base.dmm"
 #include "code\_compile_options.dm"
 #include "code\world.dm"
 #include "code\__DEFINES\__game.dm"
@@ -371,6 +372,7 @@
 #include "code\game\area\lava_outpost.dm"
 #include "code\game\area\lv624.dm"
 #include "code\game\area\mainship.dm"
+#include "code\game\area\moon_base.dm"
 #include "code\game\area\port_hamburg.dm"
 #include "code\game\area\prison.dm"
 #include "code\game\area\research_outpost.dm"

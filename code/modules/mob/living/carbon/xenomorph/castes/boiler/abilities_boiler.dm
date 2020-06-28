@@ -84,7 +84,7 @@
 	else
 		X.neuro_ammo++
 		to_chat(X, "<span class='notice'>We prepare a neurotoxic gas globule.</span>")
-	X.updateBoilerGlow() 
+	X.updateBoilerGlow()
 	update_button_icon()
 
 /datum/action/xeno_action/create_boiler_bomb/update_button_icon()
@@ -180,6 +180,11 @@
 	if(get_dist(T, S) <= 5) //Magic number
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We are too close! We must be at least 7 meters from the target due to the trajectory arc.</span>")
+		return FALSE
+	var/area/A = get_area(owner)
+	if(A.return_pressure() < (ONE_ATMOSPHERE/2))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>The spit won't work in such low pressure!</span>")
 		return FALSE
 
 /datum/action/xeno_action/activable/bombard/use_ability(atom/A)

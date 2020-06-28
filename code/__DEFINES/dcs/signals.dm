@@ -67,6 +67,11 @@
 #define COMSIG_ENTER_AREA "enter_area" 						//from base of area/Entered(): (/area)
 #define COMSIG_EXIT_AREA "exit_area" 							//from base of area/Exited(): (/area)
 
+#define COMSIG_AIRLOCK_CYCLE_TO_IN "airlock_cycle_to_in"
+#define COMSIG_AIRLOCK_CYCLE_TO_OUT "airlock_cycle_to_out"
+#define COMSIG_AIRLOCK_FINISH_CYCLE_TO_IN "airlock_finish_cycle_to_in"
+#define COMSIG_AIRLOCK_FINISH_CYCLE_TO_OUT "airlock_finish_cycle_to_out"
+#define COMSIG_AIRLOCK_REQUEST_CYCLE "airlock_request_cycle"
 
 #define COMSIG_CLICK "atom_click"								//from base of atom/Click(): (location, control, params, mob/user)
 #define COMSIG_CLICK_SHIFT "shift_click"						//from base of atom/ShiftClick(): (/mob)

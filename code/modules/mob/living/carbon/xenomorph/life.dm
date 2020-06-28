@@ -137,6 +137,9 @@
 	//Rollercoaster of fucking stupid because Xeno life ticks aren't synchronised properly and values reset just after being applied
 	//At least it's more efficient since only Xenos with an aura do this, instead of all Xenos
 	//Basically, we use a special tally var so we don't reset the actual aura value before making sure they're not affected
+	var/area/A = get_area(src)
+	if(A.return_pressure() < (ONE_ATMOSPHERE/2))
+		return // can't emit in low atmospheric pressure
 
 	if(!current_aura && !leader_current_aura) //Gotta be emitting some pheromones to actually do something
 		return

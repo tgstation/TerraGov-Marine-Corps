@@ -137,6 +137,10 @@
 	var/node_range = NODERANGE
 	var/node_turfs = list() // list of all potential turfs that we can expand to
 
+/obj/effect/alien/weeds/node/proc/vacuum_burst()
+	visible_message("<span class='warning'>The purple sac bursts in the low pressure.</span>",,"<span class='warning'>You hear something pop.</span>")
+	qdel(src)
+
 /obj/effect/alien/weeds/node/Destroy()
 	. = ..()
 	SSweeds_decay.decay_weeds(node_turfs)
@@ -159,6 +163,8 @@
 	node_turfs = filled_turfs(src, node_range, "square")
 	SSweeds.add_node(src)
 
+	var/area/A = get_area(src)
+	RegisterSignal(A, COMSIG_AIRLOCK_FINISH_CYCLE_TO_OUT, .proc/vacuum_burst)
 
 // =================
 // stronger weed node
