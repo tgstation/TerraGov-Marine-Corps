@@ -392,7 +392,7 @@
 		A = target
 	proj_to_fire.setDir(dir)
 	proj_to_fire.def_zone = pick("chest","chest","chest","head")
-	playsound(loc, 'sound/weapons/guns/fire/hmg.ogg', 75, TRUE)
+	playsound(loc, 'sound/weapons/guns/fire/hmg2.ogg', 75, TRUE)
 	if(!QDELETED(target))
 		var/angle = round(Get_Angle(src,target))
 		muzzle_flash(angle)
