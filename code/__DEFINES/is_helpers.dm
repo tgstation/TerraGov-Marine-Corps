@@ -11,7 +11,7 @@
 
 #define isopenturf(A) (istype(A, /turf/open))
 
-#define isopengroundturf(A) (istype(A, /turf/open/ground/jungle) || istype(A,/turf/open/ground/grass))
+#define isopengroundturf(A) (istype(A, /turf/open/ground/jungle) || istype(A, /turf/open/ground/grass))
 
 #define isspaceturf(A) (istype(A, /turf/open/space))
 
