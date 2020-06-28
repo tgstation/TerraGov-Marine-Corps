@@ -9,18 +9,13 @@
 	. = ..()
 	RegisterSignal(target, COMSIG_MOB_MOUSEDOWN, .proc/start_gesture)
 	RegisterSignal(target, COMSIG_MOB_MOUSEUP, .proc/end_gesture)
-	RegisterSignal(target, COMSIG_MOB_DEATH, .proc/death)
 
 /datum/element/gesture/Detach(datum/source, force)
 	UnregisterSignal(source, list(
 		COMSIG_MOB_MOUSEDOWN,
 		COMSIG_MOB_MOUSEUP,
-		COMSIG_MOB_DEATH,
 	))
 	return ..()
-/datum/element/gesture/proc/death(mob/living/source, gibbed)
-	Detach(source, TRUE)
-	qdel(src)
 
 /// Handle weird clicks outside the map or on screen objects
 /datum/element/gesture/proc/get_click_object(mob/living/source, atom/object, location, control, params)
@@ -39,6 +34,8 @@
 	return object
 
 /datum/element/gesture/proc/start_gesture(mob/living/source, atom/object, location, control, params)
+	if(source.stat != CONSCIOUS)
+		return
 	object = get_click_object(source, object, location, control, params)
 	if(!object)
 		return
@@ -48,6 +45,8 @@
 	return COMSIG_MOB_CLICK_CANCELED
 
 /datum/element/gesture/proc/end_gesture(mob/living/source, atom/object, location, control, params)
+	if(source.stat != CONSCIOUS)
+		return
 	object = get_click_object(source, object, location, control, params)
 	if(!object)
 		return
