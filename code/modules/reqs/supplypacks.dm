@@ -1122,13 +1122,12 @@ MEDICAL
 
 /datum/supply_packs/medical/firstaid
 	name = "first aid kits"
-	contains = list(
-		/obj/item/storage/firstaid/regular,
-		/obj/item/storage/firstaid/fire,
-		/obj/item/storage/firstaid/toxin,
-		/obj/item/storage/firstaid/o2,
-		/obj/item/storage/firstaid/adv,
-	)
+	contains = list(/obj/item/storage/firstaid/regular,
+					/obj/item/storage/firstaid/fire,
+					/obj/item/storage/firstaid/toxin,
+					/obj/item/storage/firstaid/o2,
+					/obj/item/storage/firstaid/adv,
+					)
 	cost = 10
 
 /datum/supply_packs/medical/bodybag

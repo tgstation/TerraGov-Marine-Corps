@@ -162,32 +162,3 @@
 	name = "Biomass"
 	results = list(/datum/reagent/medicine/biomass/xeno = 10)
 	required_reagents = list(/datum/reagent/blood/xeno_blood = 10, /datum/reagent/medicine/biomass = 1)
-
-/datum/chemical_reaction/clone
-	hidden_from_codex = TRUE
-	name = "Clone base - SHOULD NOT APPEAR"
-
-/datum/chemical_reaction/clone/New()
-	name = "[initial(name)] XYZ" // 3 random characters
-	required_reagents = list(/datum/reagent/medicine/bicaridine = rand(4, 32), /datum/reagent/medicine/kelotane = rand(4, 32)) // 3 random reagants // total to 40 min of 4 max of 32
-
-/datum/chemical_reaction/clone/blood_a
-	results = list(/datum/reagent/medicine/clone/blood_a = 40)
-
-/datum/chemical_reaction/clone/blood_b
-	results = list(/datum/reagent/medicine/clone/blood_b = 40)
-
-/datum/chemical_reaction/clone/blood_ab
-	results = list(/datum/reagent/medicine/clone/blood_ab = 40)
-
-/datum/chemical_reaction/clone/blood_o
-	results = list(/datum/reagent/medicine/clone/blood_o = 40)
-
-// /datum/chemical_reaction/clone/clone5
-// 	name "Clone"
-// results = list(/datum/reagent/medicine/clone/blood_a = 1)
-// 	blood_type = "A"
-
-// /datum/chemical_reaction/clone/clone6
-// results = list(/datum/reagent/medicine/clone/blood_a = 1)
-// 	name "Clone"
