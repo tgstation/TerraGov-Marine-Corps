@@ -28,7 +28,7 @@
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
-		var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
+		var/fumbling_time = 4 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
 	if(busy)
@@ -51,7 +51,7 @@
 			to_chat(user, "<span class='warning'>You cannot aim at this coordinate, it is outside of the area of operations.</span>")
 			return
 		var/turf/T = locate(temp_targ_x + dial_x, temp_targ_y + dial_y, z)
-		if(get_dist(loc, T) < 10)
+		if(get_dist(loc, T) < 7)
 			to_chat(user, "<span class='warning'>You cannot aim at this coordinate, it is too close to your mortar.</span>")
 			return
 		if(busy)
@@ -115,7 +115,7 @@
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to fire [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to fire [src].</span>")
-			var/fumbling_time = 3 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
+			var/fumbling_time = 2 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
 			if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 				return
 
@@ -268,7 +268,7 @@
 
 /obj/item/mortal_shell/he/detonate(turf/T)
 
-	explosion(T, 0, 3, 6, 7)
+	explosion(T, 1, 4, 7, 8)
 
 /obj/item/mortal_shell/incendiary
 	name = "\improper 80mm incendiary mortar shell"

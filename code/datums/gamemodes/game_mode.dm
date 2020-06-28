@@ -618,6 +618,9 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	return FALSE
 
 /datum/game_mode/proc/transfer_xeno(mob/xeno_candidate, mob/living/carbon/xenomorph/X)
+	if(QDELETED(X))
+		stack_trace("[xeno_candidate] was put into a qdeleted mob [X]")
+		return
 	message_admins("[key_name(xeno_candidate)] has joined as [ADMIN_TPMONTY(X)].")
 	xeno_candidate.mind.transfer_to(X, TRUE)
 	if(X.is_ventcrawling)  //If we are in a vent, fetch a fresh vent map
