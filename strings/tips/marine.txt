@@ -31,6 +31,7 @@ To throw a grenade, Activate (Default: Z) the grenade while in the active hand. 
 Quickly store items to the container (bags, satchels, belts, pouches) by pressing the Quick Equip (Default: E) key while holding an item and you are looking at a container.
 Press Quick Equip (Default: E) while you are not holding an item to the active hand to draw the weapon from whatever preferred slot (Default: Suit Storage, can be customized at the Preferences tab) you selected, otherwise you will pull out any item from a container.
 When captured by the xenomorphs, infected and you think you are not going to make it out alive, use a pocket pistol on yourself to prevent the chestburster from popping out. A dead marine is better than a popped marine.
+Stasis bags do not pause xenomorph infection entirely, they only slow progress by a lot.
 In the Crash gamemode, cooperate as a marine! Work as a squad to capture the disks and to detonate the nuclear bomb.
 In the Crash gamemode, remember that your objective is to secure all three disks, put the disk into the nuclear device and head home while the bomb is active. Xenos will keep on respawning until all of the marines are dead.
 While securing a FOB or securing the disk site, do not wander around outside! You will risk death by xenos who are comfy in sieging down the place.
@@ -40,6 +41,7 @@ As a human, hold and press Alt key (by default) to sprint, you will drain stamin
 As a human, wear a helmet. It prevents decapitation.
 As a human, you can dual-wield two weapons to fire both at them at the same time. This will increase spread and decrease accuracy however.
 As a human, if you are trained enough to do so, you can tactical reload by drag-clicking the magazine to the weapon in your active hand.
+As a human, when you are already infected, facehuggers will ignore you. But you still need medical attention regardless.
 Not being ready at the start of the round means xenos get more burrowed larva, and that you don't get to play as quickly.
 As a combat marine, you can vend seperate Jaeger Pattern armor pieces and modules for your XM-02 Combat Exoskeleton inside a Surplus Equipment Vendor. It is a modular piece of equipment after all.
 As a combat marine, you can practice using your weapons on the Firing Range, which is only available at the Sulaco or at the Thesus.
@@ -77,3 +79,4 @@ As the PO, pay attention to the radio! Who knows if someone needs immediate surg
 As the Captain, you have a unique Mateba revolver that takes a chunk of a target's healthpool down. However, you are important for completing the mission, so do not participate in active combat using the Mateba!
 As the Captain or the Field Commander, you have a unique T-90A smartgun inside the emergency gun cabinet. You can use this as your primary weapon should you decide to fight.
 Even if a patient dies a second after being successfully revived by a defibrillator, this resets the time it takes for them to become permanently brain dead.
+Don't forget that xenomorphs spawn infinitely during the Crash gamemode. Don't waste too much time hunting xenomorphs down!
