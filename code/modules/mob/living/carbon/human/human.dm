@@ -1113,31 +1113,31 @@
 			if("some")
 				f_style = random_facial_hair_style(gender)
 
-		switch(pick(15;"black", 15;"green", 15;"brown", 15;"blue", 15;"lightblue", 5;"red"))
-			if("black")
-				r_eyes = 10
-				g_eyes = 10
-				b_eyes = 10
-			if("green")
-				r_eyes = 200
-				g_eyes = 0
-				b_eyes = 0
-			if("brown")
-				r_eyes = 100
-				g_eyes = 50
-				b_eyes = 0
-			if("blue")
-				r_eyes = 0
-				g_eyes = 0
-				b_eyes = 200
-			if("lightblue")
-				r_eyes = 0
-				g_eyes = 150
-				b_eyes = 255
-			if("red")
-				r_eyes = 220
-				g_eyes = 0
-				b_eyes = 0
+	switch(pick(15;"black", 15;"green", 15;"brown", 15;"blue", 15;"lightblue", 5;"red"))
+		if("black")
+			r_eyes = 10
+			g_eyes = 10
+			b_eyes = 10
+		if("green")
+			r_eyes = 200
+			g_eyes = 0
+			b_eyes = 0
+		if("brown")
+			r_eyes = 100
+			g_eyes = 50
+			b_eyes = 0
+		if("blue")
+			r_eyes = 0
+			g_eyes = 0
+			b_eyes = 200
+		if("lightblue")
+			r_eyes = 0
+			g_eyes = 150
+			b_eyes = 255
+		if("red")
+			r_eyes = 220
+			g_eyes = 0
+			b_eyes = 0
 
 	ethnicity = random_ethnicity()
 	body_type = random_body_type()
