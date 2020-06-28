@@ -11,7 +11,7 @@
 /obj/item/ammo_magazine/standard_hmg
 	name = "TL-102 drum magazine (10x30mm Caseless)"
 	desc = "A box of 700, 10x30mm caseless tungsten rounds for the TL-102 mounted heavy smartgun. Just click the TL-102 with this to reload it."
-	w_class = WEIGHT_CLASS_BULKY
+	w_class = WEIGHT_CLASS_NORMAL
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "mag"
 	flags_magazine = NONE //can't be refilled or emptied by hand
@@ -47,10 +47,11 @@
 	desc = "The TL-102 Heavy Machinegun. IFF capable. No extra work required, just deploy it."
 	max_integrity = 200
 	w_class = WEIGHT_CLASS_HUGE
+	flags_equip_slot = ITEM_SLOT_BACK
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "turret_icon_e"
 	var/rounds = 0 // How many rounds are in the weapon. This is useful if we break down our guns.
-
+	var/burst_fire = FALSE
 
 /obj/item/standard_hmg/Initialize()
 	. = ..()
@@ -101,6 +102,7 @@
 	P.obj_integrity = obj_integrity
 	P.setDir(user.dir)
 	P.rounds = rounds
+	P.burst_fire = burst_fire
 	P.update_icon()
 	qdel(src)
 
@@ -165,7 +167,6 @@
 	var/burst_delay = 1 // Ren's changes
 	var/last_fired = 0
 	var/burst_fire = FALSE
-	var/burst_fire_toggled = FALSE
 	var/safety = FALSE
 	var/atom/target = null // required for shooting at things.
 	var/datum/ammo/bullet/machinegun/ammo = /datum/ammo/bullet/machinegun
@@ -301,6 +302,7 @@
 		HMG.obj_integrity = obj_integrity
 		user.put_in_active_hand(HMG)
 		HMG.rounds = rounds
+		HMG.burst_fire = burst_fire
 		HMG.update_icon()
 		qdel(src)
 
@@ -349,9 +351,7 @@
 
 	if(!burst_fire && target && !last_fired)
 		fire_shot(user)
-	if(burst_fire_toggled)
-		burst_fire = !burst_fire
-		burst_fire_toggled = FALSE
+		
 	target = null
 
 /obj/machinery/standard_hmg/proc/fire_shot(mob/user) //Bang Bang
@@ -479,8 +479,12 @@
 	var/list/pa = params2list(params)
 	if(pa.Find("ctrl"))
 		burst_fire = !burst_fire
-		burst_fire_toggled = TRUE
-
+		var/text = ""
+		if(burst_fire)
+			text = "ON"
+		else 
+			text = "OFF"
+		to_chat(user, "You toggle burstfire to: [text]")
 	var/angle = get_dir(src,target)
 	//we can only fire in a 90 degree cone
 	if((dir & angle) && target.loc != loc && target.loc != operator.loc)
@@ -511,8 +515,6 @@
 				return 
 		else 
 			to_chat(user, "<span class='warning'> [src] cannot be rotated so violently.</span>")
-	if(burst_fire_toggled)
-		burst_fire = !burst_fire
 	return FALSE
 
 
@@ -562,7 +564,6 @@
 	name = "\improper TL-102 Heavy Smartgun Nest"
 	desc = "A TL-102 Heavy Smartgun mounted upon a small reinforced post with sandbags to provide a small machinegun nest for all your defense purpose needs.\n<span class='notice'>Use (ctrl-click) to shoot in bursts."
 	burst_fire = FALSE
-	burst_fire_toggled = FALSE
 	fire_delay = 2
 	rounds = 1500
 	rounds_max = 1500
