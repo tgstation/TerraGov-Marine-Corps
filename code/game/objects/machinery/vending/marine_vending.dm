@@ -525,7 +525,7 @@
 
 	premium = list(
 					/obj/item/storage/box/sentry = 1,
-					/obj/item/storage/box/m56d_hmg = 1
+					/obj/item/storage/box/standard_hmg = 1
 					)
 	shared = list(
 				/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
