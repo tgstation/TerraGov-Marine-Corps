@@ -30,7 +30,9 @@
 	var/mode = 0 //Able to be switched between modes, 0 for cas laser, 1 for finding coordinates, 2 for directing railgun, 3 for orbital bombardment.
 	var/changable = TRUE //If set to FALSE, you can't toggle the mode between CAS and coordinate finding
 	var/ob_fired = FALSE // If the user has fired the OB
-	var/turf/current_turf // The target turf
+	var/turf/current_turf // The target turf, used for OBs
+	///Last stored turf targetted by rangefinders
+	var/turf/targetturf
 
 /obj/item/binoculars/tactical/Initialize()
 	. = ..()
@@ -196,7 +198,7 @@
 					QDEL_NULL(laser)
 					break
 		if(MODE_RANGE_FINDER)
-			var/turf/targetturf = TU
+			targetturf = TU
 			to_chat(user, "<span class='notice'>COORDINATES: LONGITUDE [targetturf.x]. LATITUDE [targetturf.y].</span>")
 			playsound(src, 'sound/effects/binoctarget.ogg', 35)
 		if(MODE_RAILGUN)
