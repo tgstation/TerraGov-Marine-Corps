@@ -73,14 +73,14 @@
 			offset_y = rand(-offset_y_max, offset_y_max)
 		else busy = 0
 	if(choice == "Dial")
-		var/temp_dial_x = input("Set longitude adjustement from -10 to 10.") as num
+		var/temp_dial_x = input("Set longitude adjustement from -10 to 10. Current longitude: [targ_x]") as num
 		if(temp_dial_x + targ_x > world.maxx || temp_dial_x + targ_x < 0)
 			to_chat(user, "<span class='warning'>You cannot dial to this coordinate, it is outside of the area of operations.</span>")
 			return
 		if(temp_dial_x < -10 || temp_dial_x > 10)
 			to_chat(user, "<span class='warning'>You cannot dial to this coordinate, it is too far away. You need to set [src] up instead.</span>")
 			return
-		var/temp_dial_y = input("Set latitude adjustement from -10 to 10.") as num
+		var/temp_dial_y = input("Set latitude adjustement from -10 to 10. Current latitude: [targ_y]") as num
 		if(temp_dial_y + targ_y > world.maxy || temp_dial_y + targ_y < 0)
 			to_chat(user, "<span class='warning'>You cannot dial to this coordinate, it is outside of the area of operations.</span>")
 			return
@@ -207,7 +207,27 @@
 		playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 		new /obj/item/mortar_kit(loc)
 		qdel(src)
+	else if(istype(I,/obj/item/binoculars/tactical))
 
+		if(busy)
+			to_chat(user, "<span class='warning'>Someone else is currently using [src].</span>")
+			return
+		var/obj/item/binoculars/tactical/binoc = I
+		
+		if(binoc.target_turf.x == null || binoc.target_turf.y ==null)
+			to_chat(user, "<span class='warning'>Error: Incomplete or no target information detected. Please select a target using [I].</span>")
+			return
+		var/turf/T = locate(binoc.target_turf.x, binoc.target_turf.y, z)
+		if(get_dist(loc, T) < 7)
+			to_chat(user, "<span class='warning'>You cannot aim at this coordinate, it is too close to your mortar.</span>")
+			return
+		if((binoc.target_turf.x > world.maxx || binoc.target_turf.x < 0) || ((binoc.target_turf.y > world.maxx || binoc.target_turf.y < 0))
+			to_chat(user, "<span class='warning'>You cannot aim at this coordinate, it is outside of the area of operations.</span>")
+			return
+		targ_x = binoc.target_turf.x
+		targ_y = binoc.target_turf.y
+		to_chat(user, "<span class='notice'>You use the RFID chip in [I] to automatically send the target information to [src].</span>")
+		to_chat(user, "<span class='notice'>[I]'s RFID chip inputs the coordinates: Longitude [targ_x], Latitude [targ_y] into [src].</span>")
 
 /obj/structure/mortar/fixed
 	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Uses manual targetting dials. Insert round to fire. This one is bolted and welded into the ground."
