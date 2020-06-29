@@ -673,11 +673,11 @@
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new_gun.on_enter_storage(src)
 
-/obj/item/storage/belt/gun/mateba/admiral/Initialize()
+/obj/item/storage/belt/gun/mateba/notmarine/Initialize()
 	. = ..()
 	icon_state = "a_mateba_holster"
 	item_state = "a_mateba_holster"
-	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba/admiral(src)
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba/(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)

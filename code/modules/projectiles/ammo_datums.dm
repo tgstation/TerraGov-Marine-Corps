@@ -360,12 +360,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "high-impact revolver bullet"
 	hud_state = "revolver_impact"
 	accuracy_var_high = 10
-	damage = 45
-	penetration = 15
-	sundering = 5
+	damage = 50
+	penetration = 20
+	sundering = 3
 
 /datum/ammo/bullet/revolver/highimpact/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, weaken = 1, stagger = 2, slowdown = 2, knockback = 1)
+	staggerstun(M, P, weaken = 1, stagger = 1, slowdown = 1, knockback = 1)
 
 
 /datum/ammo/bullet/revolver/ricochet
