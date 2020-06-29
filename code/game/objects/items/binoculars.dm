@@ -26,7 +26,6 @@
 	var/laser_cooldown = 0
 	var/cooldown_duration = 200 //20 seconds
 	var/obj/effect/overlay/temp/laser_target/laser
-	var/obj/effect/overlay/temp/laser_coordinate/coord
 	var/target_acquisition_delay = 100 //10 seconds
 	var/mode = 0 //Able to be switched between modes, 0 for cas laser, 1 for finding coordinates, 2 for directing railgun, 3 for orbital bombardment.
 	var/changable = TRUE //If set to FALSE, you can't toggle the mode between CAS and coordinate finding
@@ -52,8 +51,6 @@
 /obj/item/binoculars/tactical/Destroy()
 	if(laser)
 		QDEL_NULL(laser)
-	if(coord)
-		QDEL_NULL(coord)
 	. = ..()
 
 
@@ -104,8 +101,6 @@
 		return
 	if(laser)
 		QDEL_NULL(laser)
-	if(coord)
-		QDEL_NULL(coord)
 
 
 /obj/item/binoculars/tactical/update_icon()
@@ -201,8 +196,8 @@
 					QDEL_NULL(laser)
 					break
 		if(MODE_RANGE_FINDER)
-			coord = TU
-			to_chat(user, "<span class='notice'>COORDINATES: LONGITUDE [coord.x]. LATITUDE [coord.y].</span>")
+			var/turf/targetturf = TU
+			to_chat(user, "<span class='notice'>COORDINATES: LONGITUDE [targetturf.x]. LATITUDE [targetturf.y].</span>")
 			playsound(src, 'sound/effects/binoctarget.ogg', 35)
 		if(MODE_RAILGUN)
 			to_chat(user, "<span class='notice'>ACQUIRING TARGET. RAILGUN TRIANGULATING. DON'T MOVE.</span>")
