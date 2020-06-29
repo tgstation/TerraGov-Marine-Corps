@@ -118,6 +118,7 @@
 		/obj/item/stack/medical/ointment,
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical/bruise_pack,
+		/obj/item/storage/pill_bottle/packet/tricordrazine,
 		/obj/item/stack/medical/splint)
 
 /obj/item/storage/pouch/firstaid/full
@@ -160,6 +161,7 @@
 		/obj/item/stack/medical/ointment,
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical/bruise_pack,
+		/obj/item/storage/pill_bottle/packet/tricordrazine,
 		/obj/item/stack/medical/splint)
 
 
@@ -336,6 +338,7 @@
 		/obj/item/storage/pill_bottle,
 		/obj/item/stack/medical,
 		/obj/item/flashlight/pen,
+		/obj/item/storage/pill_bottle/packet,
 		/obj/item/reagent_containers/hypospray)
 
 /obj/item/storage/pouch/medical/full/Initialize()
