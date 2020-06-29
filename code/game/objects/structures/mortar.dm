@@ -221,7 +221,7 @@
 		if(get_dist(loc, T) < 7)
 			to_chat(user, "<span class='warning'>You cannot aim at this coordinate, it is too close to your mortar.</span>")
 			return
-		if((binoc.target_turf.x > world.maxx || binoc.target_turf.x < 0) || ((binoc.target_turf.y > world.maxx || binoc.target_turf.y < 0))
+		if((binoc.target_turf.x > world.maxx || binoc.target_turf.x < 0) || (binoc.target_turf.y > world.maxx || binoc.target_turf.y < 0))
 			to_chat(user, "<span class='warning'>You cannot aim at this coordinate, it is outside of the area of operations.</span>")
 			return
 		targ_x = binoc.target_turf.x
