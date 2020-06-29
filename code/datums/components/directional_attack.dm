@@ -38,11 +38,12 @@
 	toggle_action.update_button_icon(active)
 
 /datum/component/directional_attack/proc/living_directional_action_checks(mob/living/L)
+	var/mob/living/carbon/attacker = parent
 	if(COOLDOWN_CHECK(src, COOLDOWN_DIRECTIONAL_ATTACK))
 		return NONE
 	if(L.throwing)
 		return NONE
-	if(src.get_active_held_item())
+	if(attacker.get_active_held_item())
 		return NONE //We have something in our hand.
 
 /datum/component/directional_attack/proc/carbon_directional_action_checks(mob/living/L)

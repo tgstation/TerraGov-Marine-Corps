@@ -94,7 +94,6 @@
 	if(next_move > world.time)
 		return
 
-
 	if(!modifiers["catcher"] && A.IsObscured())
 		return
 
