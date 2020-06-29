@@ -42,7 +42,7 @@
 		return NONE
 	if(L.throwing)
 		return NONE
-	if(attacker.get_active_held_item())
+	if(src.get_active_held_item())
 		return NONE //We have something in our hand.
 
 /datum/component/directional_attack/proc/carbon_directional_action_checks(mob/living/L)
