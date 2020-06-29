@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - bugfix: "Headset cams will now be assigned to squad cameranets correctly"
+  - rscadd: "Gave HuD tablets to SLs, POs, FCs, and the captain"
