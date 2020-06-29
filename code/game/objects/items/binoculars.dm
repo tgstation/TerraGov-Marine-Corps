@@ -105,7 +105,7 @@
 	if(laser)
 		QDEL_NULL(laser)
 	if(coord)
-		QDEL_NULL(coord)
+		coord = null
 
 
 /obj/item/binoculars/tactical/update_icon()
