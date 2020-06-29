@@ -24,14 +24,22 @@
 	name = "tactical binoculars"
 	desc = "A pair of binoculars, with a laser targeting function. Ctrl+Click to target something."
 	var/laser_cooldown = 0
-	var/cooldown_duration = 200 //20 seconds
+	/// 20 seconds
+	var/cooldown_duration = 200 
+	/// the effect of the red dot for the laser
 	var/obj/effect/overlay/temp/laser_target/laser
-	var/target_acquisition_delay = 100 //10 seconds
-	var/mode = 0 //Able to be switched between modes, 0 for cas laser, 1 for finding coordinates, 2 for directing railgun, 3 for orbital bombardment.
-	var/changable = TRUE //If set to FALSE, you can't toggle the mode between CAS and coordinate finding
-	var/ob_fired = FALSE // If the user has fired the OB
-	var/turf/current_turf // The target turf, used for OBs
-	var/turf/target_turf // The target turf, used for mortars
+	/// 10 seconds
+	var/target_acquisition_delay = 100 
+	/// Able to be switched between modes, 0 for cas laser, 1 for finding coordinates, 2 for directing railgun, 3 for orbital bombardment.
+	var/mode = 0 
+	/// If set to FALSE, you can't toggle the mode between CAS and coordinate finding
+	var/changable = TRUE 
+	/// If the user has fired the OB
+	var/ob_fired = FALSE 
+	/// The target turf, used for OBs
+	var/turf/current_turf 
+	/// The target turf, used for mortars
+	var/turf/target_turf 
 /obj/item/binoculars/tactical/Initialize()
 	. = ..()
 	update_icon()
