@@ -60,8 +60,8 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	var/area/A = get_area(owner)
-	if(A.return_pressure() < (ONE_ATMOSPHERE/2))
+	var/area/AA = get_area(owner)
+	if(AA.return_pressure() < (ONE_ATMOSPHERE/2))
 		if(!silent)
 			to_chat(owner, "<span class='warning'>The gas won't work in such low pressure!</span>")
 		return FALSE

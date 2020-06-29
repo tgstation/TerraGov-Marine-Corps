@@ -663,8 +663,8 @@
 	if(!A)
 		return FALSE
 
-	var/area/A = get_area(owner)
-	if(A.return_pressure() < (ONE_ATMOSPHERE/2))
+	var/area/AA = get_area(owner)
+	if(AA.return_pressure() < (ONE_ATMOSPHERE/2))
 		if(!silent)
 			to_chat(owner, "<span class='warning'>The acid won't work in such low pressure!</span>")
 		return FALSE
@@ -711,8 +711,8 @@
 		if(!silent)
 			to_chat(X, "<span class='warning'>We need [X.ammo?.spit_cost - X.plasma_stored] more plasma!</span>")
 		return FALSE
-	var/area/A = get_area(owner)
-	if(A.return_pressure() < (ONE_ATMOSPHERE/2))
+	var/area/AA = get_area(owner)
+	if(AA.return_pressure() < (ONE_ATMOSPHERE/2))
 		if(!silent)
 			to_chat(owner, "<span class='warning'>The spit won't work in such low pressure!</span>")
 		return FALSE

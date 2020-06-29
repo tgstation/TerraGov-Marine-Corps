@@ -181,8 +181,8 @@
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We are too close! We must be at least 7 meters from the target due to the trajectory arc.</span>")
 		return FALSE
-	var/area/A = get_area(owner)
-	if(A.return_pressure() < (ONE_ATMOSPHERE/2))
+	var/area/AA = get_area(owner)
+	if(AA.return_pressure() < (ONE_ATMOSPHERE/2))
 		if(!silent)
 			to_chat(owner, "<span class='warning'>The spit won't work in such low pressure!</span>")
 		return FALSE
