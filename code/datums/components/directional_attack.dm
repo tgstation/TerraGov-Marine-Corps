@@ -42,6 +42,8 @@
 		return NONE
 	if(L.throwing)
 		return NONE
+	if(attacker.get_active_held_item())
+		return NONE //We have something in our hand.
 
 /datum/component/directional_attack/proc/carbon_directional_action_checks(mob/living/L)
 	var/mob/living/carbon/attacker = parent
@@ -53,9 +55,7 @@
 	switch(attacker.a_intent)
 		if(INTENT_HELP, INTENT_GRAB)
 			return NONE
-	if(attacker.get_active_held_item())
-		return NONE //We have something in our hand.
-
+	
 /datum/component/directional_attack/proc/figure_out_living_target(atom/target)
 	var/clickDir = get_dir(parent, target)
 	var/turf/presumedPos = get_step(parent, clickDir)
