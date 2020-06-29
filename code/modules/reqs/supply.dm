@@ -234,15 +234,14 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 	desc = "A tablet for an Automated Storage and Retrieval System"
 	icon = 'icons/obj/items/req_tablet.dmi'
 	icon_state = "req_tablet_off"
-	req_access = list(ACCESS_MARINE_RO)	//RO only, except in low pop conditions where other staff get the RO access added
+	req_access = list(ACCESS_MARINE_CARGO)
 	flags_equip_slot = ITEM_SLOT_POCKET
 	w_class = WEIGHT_CLASS_NORMAL
 	var/datum/supply_ui/SU
 
 /obj/item/supplytablet/interact(mob/user)
 	. = ..()
-	if(!allowed(user))
-		to_chat(user, "<span class='warning'>Access Denied!</span>")
+	if(.)
 		return
 
 	if(!SU)
@@ -254,14 +253,13 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 	desc = "A console for an Automated Storage and Retrieval System"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "supply"
-	req_one_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_LEADER) //Anyone SL and above can use the console if there is no RO
+	req_one_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_LEADER)
 	circuit = null
 	var/datum/supply_ui/SU
 
 /obj/machinery/computer/supplycomp/interact(mob/user)
 	. = ..()
-	if(!allowed(user))
-		to_chat(user, "<span class='warning'>Access Denied!</span>")
+	if(.)
 		return
 
 	if(!SU)
