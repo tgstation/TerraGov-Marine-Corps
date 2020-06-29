@@ -163,6 +163,12 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/flamer)
 	cost = 5
 
+/datum/supply_packs/weapons/mateba
+	name = "Mateba Autorevolver Belt"
+	contains = list(/obj/item/storage/belt/gun/mateba/full)
+	notes = "Contains 6 speedloaders"
+	cost = 20
+
 /datum/supply_packs/weapons/explosives_mines
 	name = "claymore mines"
 	notes = "Contains 5 mines"
