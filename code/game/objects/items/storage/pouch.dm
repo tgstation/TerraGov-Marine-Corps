@@ -52,9 +52,10 @@
 	icon_state = "large_drop"
 	draw_mode = 0
 
-/obj/item/storage/pouch/general/large/command
-	fill_type = /obj/item/binoculars/tactical
-	fill_number = 1
+/obj/item/storage/pouch/general/large/command/Initialize()
+	. = ..()
+	new /obj/item/binoculars/tactical(src)
+	new /obj/item/megaphone(src)
 
 
 /obj/item/storage/pouch/general/som
