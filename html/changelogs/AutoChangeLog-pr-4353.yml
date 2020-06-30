@@ -1,0 +1,6 @@
+author: "XSlayer300"
+delete-after: True
+changes: 
+  - rscadd: "Added new gameplay tips."
+  - rscdel: "Replaced/Removed defunct tips."
+  - tweak: "Tweaked some more tips to get better insight."
