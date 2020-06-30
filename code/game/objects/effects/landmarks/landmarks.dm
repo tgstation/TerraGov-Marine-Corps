@@ -257,7 +257,7 @@
 		/obj/item/weapon/gun/pistol/m1911/custom,
 		/obj/item/weapon/gun/pistol/m4a3/custom,
 		/obj/item/weapon/gun/revolver/mateba,
-		/obj/item/weapon/gun/revolver/mateba/admiral,
+		/obj/item/weapon/gun/revolver/mateba/notmarine,
 		/obj/item/weapon/gun/revolver/mateba/captain,
 		/obj/item/weapon/gun/smg/standard_smg,
 		/obj/item/weapon/gun/smg/m39,
