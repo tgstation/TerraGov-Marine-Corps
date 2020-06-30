@@ -1,4 +1,0 @@
-author: "spookydonut"
-delete-after: True
-changes: 
-  - config: "per-map player limits re-added for end of round map voting"

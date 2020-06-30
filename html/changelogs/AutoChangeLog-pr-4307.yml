@@ -1,4 +1,0 @@
-author: "psykzz"
-delete-after: True
-changes: 
-  - admin: "excessive FF will now kick and ghost players, when there are no admins online"
