@@ -28,8 +28,8 @@
 
 /** Shoulder lamp strength module */
 /obj/item/armor_module/attachable/better_shoulder_lamp
-	name = "Baldur Light Amplification System"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Substantially increases the power output of the Jaeger Combat Exoskeletons mounted flashlight. Doesn’t really slow you down."
+	name = "\improper Baldur Light Amplification System"
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Substantially increases the power output of the Jaeger Combat Exoskeleton's mounted flashlight. Doesn’t really slow you down."
 	icon_state = "mod_lamp_icon"
 	item_state = "mod_lamp"
 	var/power_boost = 4 /// The boost to armor shoulder light
@@ -45,8 +45,8 @@
 
 /** Mini autodoc module */
 /obj/item/armor_module/attachable/valkyrie_autodoc
-	name = "Valkyrie Automedical Armor System"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Has a variety of chemicals it can inject, as well as automatically securing the bones and body of the wearer, to minimise the impact of broken bones or mangled limbs in the field. Will definitely impact mobility."
+	name = "\improper Valkyrie Automedical Armor System"
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Has a variety of chemicals it can inject, as well as automatically securing the bones and body of the wearer, to minimize the impact of broken bones or mangled limbs in the field. Will definitely impact mobility."
 	icon_state = "mod_autodoc_icon"
 	item_state = "mod_autodoc"
 	slowdown = 0.25
@@ -71,8 +71,8 @@
 
 /** Fire poof module */
 /obj/item/armor_module/attachable/fire_proof
-	name = "Surt Pyrotechnical Insulation System"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Providing a near immunity to being bathed in flames, and amazing flame retardant qualities, this is every pyromaniacs first stop to survival. Will impact mobility somewhat."
+	name = "\improper Surt Pyrotechnical Insulation System"
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Providing a near immunity to being bathed in flames, and amazing flame retardant qualities, this is every pyromaniacs' first stop to survival. Will impact mobility somewhat."
 	icon_state = "mod_fire_icon"
 	item_state = "mod_fire"
 	hard_armor = list("fire" = 200)
@@ -91,8 +91,8 @@
 
 /** Extra armor module */
 /obj/item/armor_module/attachable/tyr_extra_armor
-	name = "Tyr Armor Reinforcement"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. A substantial amount of additional armor plating designed to fit inside some of the vulnerable portions of the Jaeger Combat Exoskeletons conventional armor patterns. Will definitely impact mobility."
+	name = "\improper Tyr Armor Reinforcement"
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. A substantial amount of additional armor plating designed to fit inside some of the vulnerable portions of the Jaeger Combat Exoskeleton conventional armor patterns. Will definitely impact mobility."
 	icon_state = "mod_armor_icon"
 	item_state = "mod_armor"
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
@@ -111,8 +111,8 @@
 
 /** Environment protecttion module */
 /obj/item/armor_module/attachable/mimir_environment_protection
-	name = "Mimir Environmental Resistance System"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. When activated, this system provides substantial resistance to environmental hazards, such as gases, acidic elements, and radiological exposure. Best paired with the Mimir Environmental Helmet System. Will impact mobility when active. Must be toggled to function.."
+	name = "\improper Mimir Environmental Resistance System"
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. When activated, this system provides substantial resistance to environmental hazards, such as gases, acidic elements, and radiological exposure. Best paired with the Mimir Environmental Helmet System. Will impact mobility." // Add the toggable thing to the description when you are done, okay? ~XS300
 	icon_state = "mod_biohazard_icon"
 	item_state = "mod_biohazard"
 	soft_armor = list("bio" = 20, "rad" = 50, "acid" = 20)
@@ -136,4 +136,29 @@
 	parent.permeability_coefficient -= permeability_coefficient_mod
 	parent.gas_transfer_coefficient -= siemens_coefficient_mod
 	parent.slowdown -= slowdown
+	return ..()
+
+/obj/item/helmet_module/attachable/mimir_environment_protection
+	name = "Mimir Environmental Helmet System"
+	desc = "Designed for mounting on a Jaeger Helmet. When attached, this system provides substantial resistance to environmental hazards, such as gases, acidic elements, and radiological exposure. Best paired with the Mimir Environmental Resistance System. Will impact mobility when attached."
+	icon_state = "mimir_head_obj"
+	item_state = "mimir_head"
+	soft_armor = list("bio" = 20, "rad" = 50, "acid" = 20)
+	module_type = ARMOR_MODULE_TOGGLE
+	var/siemens_coefficient_mod = -0.9
+	var/permeability_coefficient_mod = -1
+	var/gas_transfer_coefficient_mod = -1
+
+/obj/item/helmet_module/attachable/mimir_environment_protection/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
+	. = ..()
+	parent.soft_armor = parent.soft_armor.attachArmor(soft_armor)
+	parent.siemens_coefficient += siemens_coefficient_mod
+	parent.permeability_coefficient += permeability_coefficient_mod
+	parent.gas_transfer_coefficient += siemens_coefficient_mod
+
+/obj/item/helmet_module/attachable/mimir_environment_protection/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
+	parent.soft_armor = parent.soft_armor.detachArmor(soft_armor)
+	parent.siemens_coefficient -= siemens_coefficient_mod
+	parent.permeability_coefficient -= permeability_coefficient_mod
+	parent.gas_transfer_coefficient -= siemens_coefficient_mod
 	return ..()

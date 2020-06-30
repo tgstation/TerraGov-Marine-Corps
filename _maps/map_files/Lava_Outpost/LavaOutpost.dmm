@@ -276,7 +276,7 @@
 /turf/open/floor/tile/white,
 /area/lavaland/security)
 "dY" = (
-/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/north)
 "em" = (
@@ -2071,7 +2071,7 @@
 /area/lavaland/security/storage)
 "yp" = (
 /obj/structure/rack,
-/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/asteroidfloor,
 /area/lavaland/engie/engine)
 "yq" = (
@@ -3588,11 +3588,6 @@
 	},
 /turf/open/floor/plating/platebot,
 /area/lavaland/security/nuke)
-"PU" = (
-/obj/structure/rack,
-/obj/effect/landmark/weapon_spawn/tier5_weapon_spawn,
-/turf/open/floor/plating/asteroidfloor,
-/area/lavaland/engie/engine)
 "Qb" = (
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/central)
@@ -17727,7 +17722,7 @@ yH
 hO
 RY
 RY
-PU
+yp
 RY
 RY
 RY
@@ -51621,7 +51616,7 @@ yH
 hO
 RY
 RY
-PU
+yp
 RY
 RY
 tz
