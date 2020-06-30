@@ -399,7 +399,7 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/set_tip,
 	/datum/admins/proc/ghost_interact,
 	/client/proc/toggle_buildmode,
-	/client/proc/forceEvent
+	/client/proc/force_event
 	)
 GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 GLOBAL_PROTECT(admin_verbs_fun)

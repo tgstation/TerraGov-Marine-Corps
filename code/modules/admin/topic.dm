@@ -211,10 +211,10 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					if(!L.client)
 						continue
 					L.revive()
-	else if(href_list["forceevent"])
+	else if(href_list["force_event"])
 		if(!check_rights(R_FUN))
 			return
-		var/datum/round_event_control/E = locate(href_list["forceevent"]) in SSevents.control
+		var/datum/round_event_control/E = locate(href_list["force_event"]) in SSevents.control
 		if(E)
 			E.admin_setup(usr)
 			var/datum/round_event/event = E.runEvent()

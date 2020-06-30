@@ -28,7 +28,7 @@ SUBSYSTEM_DEF(events)
 
 /datum/controller/subsystem/events/fire(resumed = 0)
 	if(!resumed)
-		checkEvent() //only check these if we aren't resuming a paused fire
+		check_event() //only check these if we aren't resuming a paused fire
 		src.currentrun = running.Copy()
 
 	//cache for sanic speed (lists are references anyways)
@@ -45,9 +45,9 @@ SUBSYSTEM_DEF(events)
 			return
 
 ///checks if we should select a random event yet, and reschedules if necessary
-/datum/controller/subsystem/events/proc/checkEvent()
+/datum/controller/subsystem/events/proc/check_event()
 	if(scheduled <= world.time)
-		spawnEvent()
+		spawn_event()
 		reschedule()
 
 ///decides which world.time we should select another random event at.
@@ -55,7 +55,7 @@ SUBSYSTEM_DEF(events)
 	scheduled = world.time + rand(frequency_lower, max(frequency_lower,frequency_upper))
 
 ///selects a random event based on whether it can occur and it's 'weight'(probability)
-/datum/controller/subsystem/events/proc/spawnEvent()
+/datum/controller/subsystem/events/proc/spawn_event()
 	set waitfor = FALSE	//for the admin prompt
 
 	var/gamemode = SSticker.mode.config_tag
@@ -64,10 +64,10 @@ SUBSYSTEM_DEF(events)
 
 	var/sum_of_weights = 0
 	for(var/datum/round_event_control/E in control)
-		if(!E.canSpawnEvent(players_amt, gamemode))
+		if(!E.canspawn_event(players_amt, gamemode))
 			continue
 		if(E.weight < 0)						//for round-start events etc.
-			var/res = TriggerEvent(E)
+			var/res = trigger_event(E)
 			if(res == EVENT_INTERRUPTED)
 				continue	//like it never happened
 			if(res == EVENT_CANT_RUN)
@@ -77,15 +77,15 @@ SUBSYSTEM_DEF(events)
 	sum_of_weights = rand(0,sum_of_weights)	//reusing this variable. It now represents the 'weight' we want to select
 
 	for(var/datum/round_event_control/E in control)
-		if(!E.canSpawnEvent(players_amt, gamemode))
+		if(!E.canspawn_event(players_amt, gamemode))
 			continue
 		sum_of_weights -= E.weight
 
 		if(sum_of_weights <= 0)				//we've hit our goal
-			if(TriggerEvent(E))
+			if(trigger_event(E))
 				return
 
-/datum/controller/subsystem/events/proc/TriggerEvent(datum/round_event_control/E)
+/datum/controller/subsystem/events/proc/trigger_event(datum/round_event_control/E)
 	. = E.preRunEvent()
 	if(. == EVENT_CANT_RUN)//we couldn't run this event for some reason, set its max_occurrences to 0
 		E.max_occurrences = 0
@@ -94,25 +94,25 @@ SUBSYSTEM_DEF(events)
 
 //allows a client to trigger an event
 //aka Badmin Central
-/client/proc/forceEvent()
+/client/proc/force_event()
 	set name = "Trigger Event"
 	set category = "Fun"
 
 	if(!holder ||!check_rights(R_FUN))
 		return
 
-	holder.forceEvent()
+	holder.force_event()
 
-/datum/admins/proc/forceEvent()
+/datum/admins/proc/force_event()
 	var/dat 	= ""
 	var/normal 	= ""
 
 	for(var/datum/round_event_control/E in SSevents.control)
-		dat = "<BR><A href='?src=[REF(src)];[HrefToken()];forceevent=[REF(E)]'>[E]</A>"
+		dat = "<BR><A href='?src=[REF(src)];[HrefToken()];force_event=[REF(E)]'>[E]</A>"
 		normal 	+= dat
 
 	dat = normal
 
-	var/datum/browser/popup = new(usr, "forceevent", "Force Random Event", 300, 750)
+	var/datum/browser/popup = new(usr, "force_event", "Force Random Event", 300, 750)
 	popup.set_content(dat)
 	popup.open()
