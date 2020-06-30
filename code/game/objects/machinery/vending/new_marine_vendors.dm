@@ -1112,7 +1112,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						)
 
 /obj/effect/essentials_set/modular/light
-	desc = "A set of Light Jaeger armor, uding an exoskeleton, helmet, armor plates and a lamp attachment."
+	desc = "A set of Light Jaeger armor, including an exoskeleton, helmet, armor plates and a lamp attachment."
 	spawned_gear_list = list(
 						/obj/item/clothing/suit/modular,
 						/obj/item/clothing/head/modular/light,
@@ -1123,7 +1123,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						)
 
 /obj/effect/essentials_set/modular/medium
-	desc = "A set of Medium Jaeger armor, uding an exoskeleton, helmet, armor plates and a lamp attachment."
+	desc = "A set of Medium Jaeger armor, including an exoskeleton, helmet, armor plates and a lamp attachment."
 	spawned_gear_list = list(
 						/obj/item/clothing/suit/modular,
 						/obj/item/clothing/head/modular/medium,
