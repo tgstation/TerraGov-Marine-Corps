@@ -625,14 +625,10 @@
 	return FALSE
 
 /mob/living/carbon/human/can_sting()
+	if(species?.species_flags & IS_SYNTHETIC)
+		return FALSE
 	if(stat != DEAD)
 		return TRUE
-	return FALSE
-
-/mob/living/carbon/human/species/machine/can_sting()
-	return FALSE
-
-/mob/living/carbon/human/species/synthetic/can_sting()
 	return FALSE
 
 /mob/living/carbon/xenomorph/proc/setup_verbs()
