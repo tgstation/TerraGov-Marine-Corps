@@ -152,6 +152,17 @@
 /obj/item/clothing/mask/facehugger/flamer_fire_act()
 	Die()
 
+/obj/item/clothing/mask/facehugger/dropped(mob/user)
+    . = ..()
+    GoIdle()
+
+/obj/item/clothing/mask/facehugger/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID) || CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_NEURO))
+		Die()
+
 /obj/item/clothing/mask/facehugger/proc/monitor_surrounding()
 	if(!throwing && check_lifecycle()) //Make sure we're conscious and not idle, dead or in action.
 		leap_at_nearest_target()
