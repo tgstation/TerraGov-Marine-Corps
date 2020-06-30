@@ -16,6 +16,6 @@
 
 /obj/item/storage/pill_bottle/packet/paracetamol
 	name = "Paracematol pill packet"
-	desc = "This packet containts paracetamol pills, also known as tylenol.A long lasting but minor painkiller. Once you take them out they don't go back in. No more than 4 pills in a long period."
+	desc = "This packet containts paracetamol pills, also known as tylenol. A long lasting but minor painkiller. Once you take them out they don't go back in. No more than 4 pills in a long period."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/paracetamol
 

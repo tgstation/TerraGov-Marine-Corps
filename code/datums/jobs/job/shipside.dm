@@ -49,8 +49,8 @@ Godspeed, captain! And remember, you are not above the law."})
 	shoes = /obj/item/clothing/shoes/marinechief/captain
 	gloves = /obj/item/clothing/gloves/marine/techofficer/captain
 	head = /obj/item/clothing/head/tgmcberet/tan
-	r_store = /obj/item/storage/pouch/general/large
-	l_store = /obj/item/binoculars/tactical
+	r_store = /obj/item/storage/pouch/general/large/command
+	l_store = /obj/item/hud_tablet/leadership
 	back = /obj/item/storage/backpack/marine/satchel
 
 
@@ -97,7 +97,7 @@ Make the TGMC proud!"})
 	gloves = /obj/item/clothing/gloves/marine/officer
 	head = /obj/item/clothing/head/tgmcberet/fc
 	r_store = /obj/item/storage/pouch/general/large/command
-	l_store = /obj/item/megaphone
+	l_store = /obj/item/hud_tablet/fieldcommand
 	back = /obj/item/smartgun_powerpack/fancy
 	suit_store = /obj/item/weapon/gun/smartgun
 
@@ -176,6 +176,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	glasses = /obj/item/clothing/glasses/sunglasses/aviator
 	head = /obj/item/clothing/head/helmet/marine/pilot
 	r_store = /obj/item/storage/pouch/general/large
+	l_store = /obj/item/hud_tablet/pilot
 	back = /obj/item/storage/backpack/marine/satchel
 
 
