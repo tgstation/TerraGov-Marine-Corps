@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - bugfix: "fixed helmet modules not toggling"
+  - spellcheck: "fixed a few typos in the modular package description"
