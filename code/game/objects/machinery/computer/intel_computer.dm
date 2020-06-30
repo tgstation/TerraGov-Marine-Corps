@@ -12,15 +12,24 @@
 	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
 	interaction_flags = INTERACT_MACHINE_TGUI
 
+	///Whether this computer is activated by the event yet
 	var/active = FALSE
+	///How much supply points you get for completing the terminal
 	var/supply_reward = 60
+	///How much dropship points you get for completing the terminal
 	var/dropship_reward = 60
 
+	///How much progress we get every tick, up to 100
 	var/progress_interval = 1
+	///Tracks how much of the terminal is completed
 	var/progress = 0
+	///have we logged into the terminal yet?
 	var/logged_in = FALSE
+	///On first login we want it to play a cool animation
 	var/first_login = TRUE
+	///Is it currently active?
 	var/printing = FALSE
+	///When we reach max progress and get the points
 	var/printing_complete = FALSE
 
 

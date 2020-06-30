@@ -3,13 +3,18 @@ SUBSYSTEM_DEF(events)
 	init_order = INIT_ORDER_EVENTS
 	runlevels = RUNLEVEL_GAME
 
-	var/list/control = list()	//list of all datum/round_event_control. Used for selecting events based on weight and occurrences.
-	var/list/running = list()	//list of all existing /datum/round_event
+	///list of all datum/round_event_control. Used for selecting events based on weight and occurrences.
+	var/list/control = list()
+	///list of all existing /datum/round_event
+	var/list/running = list()
 	var/list/currentrun = list()
 
-	var/scheduled = 0			//The next world.time that a naturally occuring random event can be selected.
-	var/frequency_lower = 1800	//3 minutes lower bound.
-	var/frequency_upper = 6000	//10 minutes upper bound. Basically an event will happen every 3 to 10 minutes.
+	///The next world.time that a naturally occuring random event can be selected.
+	var/scheduled = 0
+	///3 minutes lower bound.
+	var/frequency_lower = 1800
+	///10 minutes upper bound. Basically an event will happen every 3 to 10 minutes.
+	var/frequency_upper = 6000
 
 /datum/controller/subsystem/events/Initialize(time, zlevel)
 	for(var/type in typesof(/datum/round_event_control))
@@ -39,17 +44,17 @@ SUBSYSTEM_DEF(events)
 		if (MC_TICK_CHECK)
 			return
 
-//checks if we should select a random event yet, and reschedules if necessary
+///checks if we should select a random event yet, and reschedules if necessary
 /datum/controller/subsystem/events/proc/checkEvent()
 	if(scheduled <= world.time)
 		spawnEvent()
 		reschedule()
 
-//decides which world.time we should select another random event at.
+///decides which world.time we should select another random event at.
 /datum/controller/subsystem/events/proc/reschedule()
 	scheduled = world.time + rand(frequency_lower, max(frequency_lower,frequency_upper))
 
-//selects a random event based on whether it can occur and it's 'weight'(probability)
+///selects a random event based on whether it can occur and it's 'weight'(probability)
 /datum/controller/subsystem/events/proc/spawnEvent()
 	set waitfor = FALSE	//for the admin prompt
 
