@@ -1,0 +1,4 @@
+author: "XSlayer300"
+delete-after: True
+changes: 
+  - tweak: "Standardizes firing modes for some rifles. You will always go for Semi > Burst > Auto > Autoburst."
