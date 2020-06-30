@@ -604,6 +604,11 @@ AMMO
 	contains = list(/obj/item/ammo_magazine/flamer_tank/large/X)
 	cost = 15
 
+/datum/supply_packs/ammo/mateba_speedloader
+	name = "Mateba Speedloader"
+	contains = list(/obj/item/ammo_magazine/revolver/mateba)
+	cost = 2
+
 /datum/supply_packs/ammo/mortar_ammo_he
 	name = "M402 mortar HE shell"
 	contains = list(/obj/item/mortal_shell/he)
