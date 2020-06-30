@@ -442,7 +442,7 @@
 
 /obj/item/weapon/gun/revolver/mateba/captain
 	name = "\improper TL-24 autorevolver special"
-	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. This one appears to have had more love and care put into it, Uses .454 rounds."
+	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. This one appears to have had more love and care put into it. Uses .454 rounds."
 	icon_state = "mateba"
 	item_state = "mateba"
 
