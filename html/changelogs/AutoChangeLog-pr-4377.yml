@@ -1,0 +1,4 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - balance: "defiler can no longer cancel his cast to make a small cloud. It now results in nothing."
