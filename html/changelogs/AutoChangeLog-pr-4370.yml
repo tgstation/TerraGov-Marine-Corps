@@ -1,0 +1,7 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - rscadd: "Added new mateba sprite."
+  - rscdel: "Removed old mateba sprites that are unused."
+  - tweak: "tweaked the admiral mateba into a non-marine mateba. It was only used by DS."
+  - balance: "Mateba has a few new attachment options, no longer has recoil when 2-handed. Now deals 50/20 instead of 47.5/15. Reduced stagger/slowdown."
