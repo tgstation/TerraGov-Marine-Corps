@@ -24,14 +24,14 @@
 	name = "tactical binoculars"
 	desc = "A pair of binoculars, with a laser targeting function. Ctrl+Click to target something."
 	var/laser_cooldown = 0
-	/// 20 seconds
+	/// the cooldown duration of laser targeting
 	var/cooldown_duration = 20 SECONDS
 	/// the effect of the red dot for the laser
 	var/obj/effect/overlay/temp/laser_target/laser
-	/// 10 seconds
+	/// delay before your lazing action finishes and you successfully target something
 	var/target_acquisition_delay = 10 SECONDS
 	/// Able to be switched between modes, 0 for cas laser, 1 for finding coordinates, 2 for directing railgun, 3 for orbital bombardment.
-	var/mode = 0 
+	var/mode = MODE_CAS
 	/// If set to FALSE, you can't toggle the mode between CAS and coordinate finding
 	var/changable = TRUE 
 	/// If the user has fired the OB
