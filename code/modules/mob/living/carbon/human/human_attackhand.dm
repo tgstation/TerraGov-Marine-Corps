@@ -35,7 +35,7 @@
 				to_chat(H, "<span class='boldnotice'>Remove his mask!</span>")
 				return FALSE
 
-			if(!check_tod(src) || undefibbable)
+			if(stat == DEAD && !check_tod(src))
 				to_chat(H, "<span class='boldnotice'>Can't help this one. Body has gone cold.</span>")
 				return FALSE
 
