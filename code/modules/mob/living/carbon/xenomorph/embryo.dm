@@ -3,6 +3,8 @@
 	desc = "All slimy and yucky."
 	icon = 'icons/Xeno/1x1_Xenos.dmi'
 	icon_state = "Larva Dead"
+	reagents = /datum/reagent/consumable/larvajelly //good ol cookin
+	var/amount = 5
 	var/mob/living/affected_mob
 	var/stage = 0 //The stage of the bursts, with worsening effects.
 	var/counter = 0 //How developed the embryo is, if it ages up highly enough it has a chance to burst.

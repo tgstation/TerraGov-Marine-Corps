@@ -988,8 +988,8 @@
 //This gun is very powerful, but also has a kick.
 
 /obj/item/weapon/gun/minigun
-	name = "\improper MIC-A7 Vindicator minigun"
-	desc = "It's a damn minigun! The ultimate in man-portable firepower, spraying countless high velocity armor piercing rounds with a rotary action, this thing will no doubt pack a punch."
+	name = "\improper T-100 Minigun"
+	desc = "A six barreled rotary machine gun, The ultimate in man-portable firepower, capable of laying down high velocity armor piercing rounds this thing will no doubt pack a punch."
 	icon_state = "minigun"
 	item_state = "minigun"
 	max_shells = 500 //codex
@@ -1003,29 +1003,28 @@
 	type_of_casings = "cartridge"
 	w_class = WEIGHT_CLASS_HUGE
 	force = 20
-	wield_delay = 15
+	wield_delay = 12
 	gun_skill_category = GUN_SKILL_FIREARMS
-	aim_slowdown = 1.4
+	aim_slowdown = 0.8
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_allowed = list(
 						/obj/item/attachable/flashlight)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
 
-	fire_delay = 2
+	fire_delay = 0.175 SECONDS
 	burst_amount = 7
+	scatter = 10
 	recoil = 2
 	recoil_unwielded = 4
 	damage_falloff_mult = 0.5
 
 
+//This is a minigun not a chaingun.
 obj/item/weapon/gun/minigun/Fire(atom/target, mob/living/user, params, reflex = FALSE, dual_wield)
-	if(gun_firemode == GUN_FIREMODE_BURSTFIRE)
-		if(user.action_busy)
-			return
-		playsound(get_turf(src), 'sound/weapons/guns/fire/tank_minigun_start.ogg', 30)
-		if(!do_after(user, 0.4 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
-			return
+	playsound(get_turf(src), 'sound/weapons/guns/fire/tank_minigun_start.ogg', 30)
+	if(!do_after(user, 0.15 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
+		return
 	return ..()
 
 

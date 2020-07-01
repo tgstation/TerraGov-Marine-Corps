@@ -108,8 +108,8 @@ WEAPONS
 	cost = 70
 
 /datum/supply_packs/weapons/m56d_emplacement
-	name = "M56D Stationary Machinegun"
-	contains = list(/obj/item/storage/box/m56d_hmg)
+	name = "TL-102 Mounted Heavy Smartgun"
+	contains = list(/obj/item/storage/box/standard_hmg)
 	cost = 80
 
 /datum/supply_packs/weapons/specgrenadier
@@ -747,8 +747,8 @@ AMMO
 	cost = 10
 
 /datum/supply_packs/ammo/m56d
-	name = "M56D mounted smartgun ammo"
-	contains = list(/obj/item/ammo_magazine/m56d)
+	name = "TL-102 mounted heavy smartgun ammo"
+	contains = list(/obj/item/ammo_magazine/standard_hmg)
 	cost = 15
 
 /datum/supply_packs/ammo/lasguncharger
