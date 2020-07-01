@@ -24,7 +24,8 @@
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/large_holster/machete,
 		/obj/item/weapon/claymore,
-		/obj/item/storage/belt/gun)
+		/obj/item/storage/belt/gun,
+		/obj/item/storage/belt/knifepouch)
 	var/locate_cooldown = 0 //Cooldown for SL locator
 	var/list/armor_overlays
 	actions_types = list(/datum/action/item_action/toggle)

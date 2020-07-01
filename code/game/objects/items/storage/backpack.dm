@@ -363,9 +363,8 @@
 	desc = "The standard-issue backpack worn by TGMC technicians. Specially equipped to hold sentry gun and M56D emplacement parts."
 	icon_state = "marinepackt"
 	bypass_w_limit = list(
-		/obj/item/m56d_gun,
-		/obj/item/ammo_magazine/m56d,
-		/obj/item/m56d_post,
+		/obj/item/standard_hmg,
+		/obj/item/ammo_magazine/standard_hmg,
 		/obj/item/turret_top,
 		/obj/item/ammo_magazine/sentry,
 		/obj/item/ammo_magazine/minisentry,

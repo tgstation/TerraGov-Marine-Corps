@@ -967,11 +967,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	iff_signal = ACCESS_IFF_MARINE
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SKIPS_HUMANS|AMMO_SUNDERING
 	accurate_range = 15
-	damage = 75
-	penetration = 75 //Bumped the penetration to serve a different role from sentries, MGs are a bit more offensive
+	damage = 40 //Reduced damage due to vastly increased mobility
+	penetration = 40 //Reduced penetration due to vastly increased mobility
 	accuracy = 15
 	barricade_clear_distance = 2
-	sundering = 20
+	sundering = 5
 
 /datum/ammo/bullet/minigun
 	name = "minigun bullet"
