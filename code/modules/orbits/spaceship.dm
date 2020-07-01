@@ -18,7 +18,6 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 	density = TRUE
 	anchored = TRUE
 	idle_power_usage = 10
-	var/cooldown = FALSE
 	var/changing_orbit = FALSE
 	var/authenticated = 0
 	var/shorted = FALSE
@@ -57,10 +56,15 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 
 /obj/machinery/computer/navigation/proc/get_power_amount()
 	//check current powernet for total available power
-	var/power_amount = 0
 	if(!powered())
-		return power_amount
-	
+		return 0
+
+	var/power_amount = 0
+
+	var/area/here_we_are = get_area(src)
+	var/obj/machinery/power/apc/myAPC = here_we_are.get_apc()
+	power_amount = myAPC?.terminal?.powernet?.avail
+
 	return power_amount
 
 /obj/machinery/computer/navigation/interact(mob/user)
@@ -75,9 +79,9 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 		dat += "<center><h4>[SSmapping.configs[SHIP_MAP].map_name]</h4></center>"//get the current ship map name
 
 		dat += "<br><center><h3>[GLOB.orbital_mechanics.current_orbit]</h3></center>" //display the current orbit level
-		dat += "<br><center>Power Level: [get_power_amount()]|Engines prepared: [!cooldown]</center>" //display ship nav stats, power level, cooldown.
+		dat += "<br><center>Power Level: [get_power_amount()]|Engines prepared: [COOLDOWN_CHECK(src,COOLDOWN_ORBIT_CHANGE) ? "Ready" : "Recalculating"]</center>" //display ship nav stats, power level, cooldown.
 
-		if(get_power_amount() >= 5000000) //some arbitrary number
+		if(get_power_amount() >= 250000) //some arbitrary number
 			dat += "<center><b><a href='byond://?src=\ref[src];UP=1'>Increase orbital level</a>|" //move farther away, current_orbit++
 			dat += "<a href='byond://?src=[REF(src)];DOWN=1'>Decrease orbital level</a>|" //move closer in, current_orbit--
 		else
@@ -85,7 +89,7 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 			dat += "<br>"
 
 		if(GLOB.orbital_mechanics.current_orbit == ESCAPE_VELOCITY)
-			dat += "<center><h4><a href='byond://?src=[REF(src)];escape=1'>RETREAT</a>" //big ol red escape button. ends round after X minutes
+			dat += "<center><h4><a href='byond://?src=[REF(src)];escape=1'>RETREAT</a>" //big ol red escape button. ends round after X MINUTES
 
 		dat += "</b></center>"
 
@@ -125,19 +129,23 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 		authenticated = 0
 
 	if (href_list["UP"])
+		message_admins("[ADMIN_TPMONTY(usr)] Has sent the ship Upward in orbit")
 		do_orbit_checks("UP")
-		cooldown = TRUE
-		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 1 MINUTES)
+		COOLDOWN_START(src, COOLDOWN_ORBIT_CHANGE, 1 MINUTES)
 
 	else if (href_list["DOWN"])
+		message_admins("[ADMIN_TPMONTY(usr)] Has sent the ship Downward in orbit")
 		do_orbit_checks("DOWN")
-		cooldown = TRUE
-		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 1 MINUTES)
+		COOLDOWN_START(src, COOLDOWN_ORBIT_CHANGE, 1 MINUTES)
 
 	else if (href_list["escape"])
+		//are you REALLY sure you want to escape?
+		var/choice = alert(usr, "This will end the round. Are you certain you wish to leave any groundside marines behind?", "Escape Velocity", "Cancel", "Yes", "Cancel")
+		if(choice != "Yes")
+			return
+		message_admins("[ADMIN_TPMONTY(usr)] Is going to finish the round via the spaceship orbits mechanic")
 		do_orbit_checks("escape")
-		cooldown = TRUE
-		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), 1 MINUTES)
+		COOLDOWN_START(src, COOLDOWN_ORBIT_CHANGE, 1 MINUTES)
 		//end the round, xeno minor.
 
 	updateUsrDialog()
@@ -145,21 +153,22 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 
 /obj/machinery/computer/navigation/proc/do_orbit_checks(direction)
 	var/current_orbit = GLOB.orbital_mechanics.current_orbit
-	if(cooldown)
+
+	if(!can_change_orbit(current_orbit, direction))
 		return
 
-	if(can_change_orbit(current_orbit, direction))
-		if(direction == "escape")
-			var/message = "The [SSmapping.configs[SHIP_MAP].map_name] is preparing to leave orbit.<br><br>Secure all belongings and prepare for engine ignition."
-			priority_announce(message, title = "Retreat")
-			addtimer(CALLBACK(src, .proc/do_change_orbit, current_orbit, direction), 10 SECONDS)
-
-		var/message = "Prepare for orbital change in 10 seconds.<br><br>Moving [direction] the gravity well.<br><br>Secure all belongings and prepare for engine ignition."
-		priority_announce(message, title = "Orbit Change")
+	if(direction == "escape")
+		var/message = "The [SSmapping.configs[SHIP_MAP].map_name] is preparing to leave orbit.\nSecure all belongings and prepare for engine ignition."
+		priority_announce(message, title = "Retreat")
 		addtimer(CALLBACK(src, .proc/do_change_orbit, current_orbit, direction), 10 SECONDS)
+		return
+
+	var/message = "Prepare for orbital change in 10 seconds.\nMoving [direction] the gravity well.\nSecure all belongings and prepare for engine ignition."
+	priority_announce(message, title = "Orbit Change")
+	addtimer(CALLBACK(src, .proc/do_change_orbit, current_orbit, direction), 10 SECONDS)
 
 /obj/machinery/computer/navigation/proc/can_change_orbit(current_orbit, direction)
-	if(cooldown)
+	if(COOLDOWN_CHECK(src, COOLDOWN_ORBIT_CHANGE))
 		to_chat(usr, "The ship is currently recalculating based on previous selection.")
 		return FALSE
 	if(changing_orbit)
@@ -170,8 +179,6 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 		return FALSE
 	if(direction == "DOWN" && current_orbit == SKIM_ATMOSPHERE)
 		to_chat(usr, "WARNING, AUTOMATIC SAFETY ENGAGED. OVERRIDING USER INPUT.")
-		return FALSE
-	if(get_power_amount() <= 500000)
 		return FALSE
 	return TRUE
 
