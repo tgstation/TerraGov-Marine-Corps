@@ -108,7 +108,7 @@
 	user.visible_message("<span class='warning'>\ [user] attempts to plant [src] on [M]'s face!</span>", \
 	"<span class='warning'>We attempt to plant [src] on [M]'s face!</span>")
 	if(M.client && !M.stat) //Delay for conscious cliented mobs, who should be resisting.
-		if(!do_after(user, 3 SECONDS, TRUE, M, BUSY_ICON_DANGER))
+		if(!do_after(user, 1 SECONDS, TRUE, M, BUSY_ICON_DANGER))
 			return
 	if(!Attach(M))
 		GoIdle()
@@ -161,7 +161,7 @@
 	if(!.)
 		return
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID) || CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_NEURO))
-		Die()
+		GoIdle()
 
 /obj/item/clothing/mask/facehugger/proc/monitor_surrounding()
 	if(!throwing && check_lifecycle()) //Make sure we're conscious and not idle, dead or in action.
