@@ -1267,6 +1267,16 @@
 		desc = "A wish come true!"
 		reagents.add_reagent(/datum/reagent/consumable/nutriment, 8)
 
+/obj/item/reagent_containers/food/snacks/larvasoup
+	name = "Larva Soup"
+	desc = "Liquified larva."
+	icon_state = "larvasoup"
+	trash = /obj/item/trash/snack_bowl
+	filling_color = "#66801e"
+	list_reagents = list(/datum/reagent/consumable/larvajelly = 10)
+	bitesize = 5
+	tastes = list("burning" = 1)
+
 /obj/item/reagent_containers/food/snacks/hotchili
 	name = "Hot Chili"
 	desc = "A five alarm Texan Chili!"
