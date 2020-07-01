@@ -382,6 +382,8 @@
 	desc = "A sturdy and easily assembled barricade made of metal plates, often used for quick fortifications. Use a blowtorch to repair."
 	icon_state = "metal_0"
 	max_integrity = 200
+	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 40)
+	coverage = 128
 	crusher_resistant = TRUE
 	barricade_resistance = 10
 	stack_type = /obj/item/stack/sheet/metal
@@ -626,6 +628,8 @@
 	desc = "A very sturdy barricade made out of plasteel panels, the pinnacle of strongpoints. Use a blowtorch to repair. Can be flipped down to create a path."
 	icon_state = "plasteel_closed_0"
 	max_integrity = 600
+	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 40)
+	coverage = 128
 	crusher_resistant = TRUE
 	barricade_resistance = 20
 	stack_type = /obj/item/stack/sheet/plasteel
@@ -877,6 +881,8 @@
 	icon_state = "sandbag_0"
 	barricade_resistance = 15
 	max_integrity = 400
+	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 80, "acid" = 40)
+	coverage = 128
 	stack_type = /obj/item/stack/sandbags
 	hit_sound = "sound/weapons/genhit.ogg"
 	barricade_type = "sandbag"

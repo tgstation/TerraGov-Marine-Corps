@@ -390,9 +390,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bs" = (
-/obj/structure/sink{
-	pixel_y = 16
-	},
+/obj/structure/sink,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -1536,7 +1534,7 @@
 "fp" = (
 /obj/structure/window/framed/mainship/requisitions,
 /obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 2
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
@@ -1751,6 +1749,13 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"gA" = (
+/obj/structure/window/framed/mainship/requisitions,
+/obj/machinery/door/poddoor/shutters/mainship/req/ro{
+	dir = 4
+	},
+/turf/open/floor/plating/mainship,
+/area/mainship/squads/req)
 "gC" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -3912,6 +3917,9 @@
 	},
 /area/mainship/medical/operating_room_two)
 "oe" = (
+/obj/structure/sink{
+	dir = 1
+	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 2
 	},
@@ -7901,9 +7909,6 @@
 /area/mainship/engineering/engineering_workshop)
 "Ax" = (
 /obj/structure/closet/crate,
-/obj/item/stack/sheet/mineral/phoron{
-	amount = 25
-	},
 /obj/item/stack/sheet/plasteel{
 	amount = 30;
 	pixel_x = 4;
@@ -7913,6 +7918,7 @@
 	amount = 50
 	},
 /obj/item/storage/briefcase/inflatable,
+/obj/item/stack/sheet/mineral/phoron/medium_stack,
 /turf/open/floor/mainship/cargo,
 /area/mainship/engineering/engineering_workshop)
 "Ay" = (
@@ -11610,12 +11616,6 @@
 "KE" = (
 /turf/closed/wall/mainship,
 /area/mainship/living/briefing)
-"KH" = (
-/obj/structure/sign/ROsign{
-	dir = 1
-	},
-/turf/closed/wall/mainship,
-/area/mainship/squads/req)
 "KI" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -12627,13 +12627,6 @@
 /obj/machinery/vending/nanomed,
 /turf/closed/wall/mainship,
 /area/mainship/engineering/lower_engineering)
-"Or" = (
-/obj/structure/sink{
-	dir = 1;
-	pixel_y = -13
-	},
-/turf/closed/wall/mainship/white,
-/area/mainship/medical/operating_room_two)
 "Os" = (
 /obj/effect/landmark/start/job/squadmarine,
 /obj/machinery/light{
@@ -43033,7 +43026,7 @@ hR
 JM
 cM
 oe
-Or
+ic
 gL
 wj
 gL
@@ -44567,8 +44560,8 @@ kz
 Dz
 Dz
 qG
-de
-de
+gA
+gA
 qG
 qG
 qG
@@ -45593,7 +45586,7 @@ az
 ee
 gd
 Vn
-KH
+qG
 JH
 QS
 Rm
@@ -47137,19 +47130,19 @@ gd
 kM
 kM
 qG
-de
-de
-de
-de
+gA
+gA
+gA
+gA
 qG
 qG
 NY
 qG
-de
-de
+gA
+gA
 YX
-de
-de
+gA
+gA
 fp
 fp
 fp

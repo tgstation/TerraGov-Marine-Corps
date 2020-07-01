@@ -11165,6 +11165,9 @@
 /area/shuttle/drop1/lz1)
 "aRT" = (
 /obj/structure/jungle/vines,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
 /turf/closed/wall,
 /area/shuttle/drop1/lz1)
 "aRU" = (
@@ -11950,8 +11953,11 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "aUB" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
 /turf/closed/wall,
-/area/shuttle/drop1/lz1)
+/area/lv624/lazarus/robotics)
 "aUC" = (
 /turf/open/ground/coast/corner{
 	dir = 8
@@ -18388,6 +18394,13 @@
 	dir = 5
 	},
 /area/lv624/lazarus/research)
+"gnK" = (
+/obj/structure/jungle/vines,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
+/turf/closed/wall/r_wall,
+/area/lv624/lazarus/internal_affairs)
 "gwG" = (
 /obj/structure/jungle/vines,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -18644,6 +18657,12 @@
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west2)
+"oIu" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/closed/wall,
+/area/lv624/lazarus/quartstorage)
 "oUU" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/dirt,
@@ -18745,6 +18764,12 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
+"rjY" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/closed/wall/r_wall,
+/area/lv624/lazarus/main_hall)
 "rpH" = (
 /obj/structure/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -18841,6 +18866,12 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/ground/jungle3)
+"uoY" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/closed/wall/r_wall,
+/area/lv624/lazarus/canteen)
 "usu" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 1
@@ -18925,6 +18956,18 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
+"vUg" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
+/turf/closed/wall/r_wall,
+/area/lv624/lazarus/internal_affairs)
+"wzb" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/closed/wall,
+/area/lv624/lazarus/main_hall)
 "wDI" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/engine/cult{
@@ -26379,7 +26422,7 @@ avd
 avd
 avd
 avd
-aPP
+ybc
 dBG
 dBG
 wNe
@@ -26403,7 +26446,7 @@ dBG
 wNe
 dBG
 dBG
-aPP
+ybc
 bch
 bfM
 bfa
@@ -30750,11 +30793,11 @@ aHI
 aMc
 aNb
 aNX
-aHI
+aUB
 pNb
 pNb
 pNb
-aHI
+aUB
 aES
 aTB
 aUc
@@ -30772,7 +30815,7 @@ rpH
 csn
 bcr
 csn
-aYu
+gnK
 bch
 bch
 bch
@@ -31021,11 +31064,11 @@ aTC
 aEy
 aES
 aFD
-aXP
+vUg
 csn
 csn
 csn
-aXP
+vUg
 bbF
 bcs
 aZR
@@ -31782,7 +31825,7 @@ aHI
 aHI
 aJX
 aHI
-aHI
+aUB
 usu
 aNO
 aUd
@@ -32811,7 +32854,7 @@ aHI
 aJX
 aHI
 aHI
-aHI
+aUB
 nny
 aUf
 aTC
@@ -33070,13 +33113,13 @@ aRy
 aHJ
 aES
 aES
-aPP
+ybc
 nny
 aUf
 nfB
 aXd
 nny
-aXP
+vUg
 aXP
 aZd
 aZQ
@@ -54145,10 +54188,10 @@ aSx
 afW
 aDL
 aDL
-aDL
+oIu
 aVL
 aVL
-aDL
+oIu
 aNz
 aYf
 aNz
@@ -54160,13 +54203,13 @@ aNz
 bdf
 bcc
 beP
-bec
+uoY
 eNq
 mGd
 azT
 azT
 bjt
-aUB
+vzU
 bdh
 bdh
 bdk
@@ -54406,7 +54449,7 @@ eLi
 aSz
 aWq
 bsH
-aXC
+wzb
 aYg
 aYR
 aYR
@@ -54414,7 +54457,7 @@ aYR
 aYR
 aYR
 aYg
-aLL
+rjY
 eNq
 beQ
 mGd
@@ -55173,7 +55216,7 @@ aKA
 aTm
 aLj
 uwN
-aDL
+oIu
 qSA
 aTt
 aTt
@@ -56196,11 +56239,11 @@ aDL
 aEk
 aEk
 aEk
-aDL
+oIu
 cSo
 cSo
 cSo
-aDL
+oIu
 aVk
 aVP
 aWt
@@ -60334,7 +60377,7 @@ cnd
 aSD
 aSD
 aSD
-aUB
+vzU
 bdg
 bdi
 bhQ

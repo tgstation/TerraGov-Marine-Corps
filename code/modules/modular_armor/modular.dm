@@ -173,6 +173,9 @@
 	if(.)
 		return
 
+	if(user.action_busy)
+		return FALSE
+
 	if(!LAZYLEN(installed_modules))
 		to_chat(user, "<span class='notice'>There is nothing to remove</span>")
 		return TRUE
@@ -201,6 +204,9 @@
 	. = ..()
 	if(.)
 		return
+
+	if(user.action_busy)
+		return FALSE
 
 	if(ismob(loc) && (user.r_hand != src && user.l_hand != src))
 		to_chat(user, "<span class='warning'>You need to remove the armor first.</span>")
@@ -237,6 +243,9 @@
 	. = ..()
 	if(.)
 		return
+
+	if(user.action_busy)
+		return FALSE
 
 	if(!installed_storage)
 		to_chat(user, "<span class='notice'>There is nothing to remove</span>")
@@ -373,9 +382,9 @@
 	if(.)
 		return
 	if(!isturf(user.loc))
-		to_chat(user, "<span class='warning'>You cannot turn the light on while in [user.loc].</span>")
+		to_chat(user, "<span class='warning'>You cannot turn the module on while in [user.loc].</span>")
 		return
-	if(cooldowns[COOLDOWN_ARMOR_ACTION] || !ishuman(user))
+	if(COOLDOWN_CHECK(user, COOLDOWN_ARMOR_ACTION) || !ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
 	if(H.head != src)
@@ -389,6 +398,10 @@
 	. = ..()
 	if(.)
 		return
+
+	if(user.action_busy)
+		return FALSE
+
 	if(!installed_module)
 		to_chat(user, "<span class='notice'>There is nothing to remove</span>")
 		return TRUE

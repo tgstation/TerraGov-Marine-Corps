@@ -253,7 +253,10 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 			if(bitf == MARINE_CAN_BUY_UNIFORM && ishumanbasic(usr))
 				var/mob/living/carbon/human/H = usr
 				new /obj/item/radio/headset/mainship/marine(loc, H.assigned_squad, vendor_role)
-				new /obj/item/clothing/gloves/marine(loc, H.assigned_squad, vendor_role)
+				if(!istype(H.job, /datum/job/terragov/squad/engineer))
+					new /obj/item/clothing/gloves/marine(loc, H.assigned_squad, vendor_role)
+				if(istype(H.job, /datum/job/terragov/squad/leader))
+					new /obj/item/hud_tablet(loc, vendor_role, H.assigned_squad)
 				if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
 					new /obj/item/clothing/mask/rebreather/scarf(loc)
 
@@ -1082,7 +1085,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/circuitboard/general,
 						)
 
-
 /obj/effect/essentials_set/leader
 	spawned_gear_list = list(
 						/obj/item/explosive/plastique,
@@ -1110,7 +1112,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						)
 
 /obj/effect/essentials_set/modular/light
-	desc = "A set of Light Jaeger armor, uding an exoskeleton, helmet, armor plates and a lamp attachment."
+	desc = "A set of Light Jaeger armor, including an exoskeleton, helmet, armor plates and a lamp attachment."
 	spawned_gear_list = list(
 						/obj/item/clothing/suit/modular,
 						/obj/item/clothing/head/modular/light,
@@ -1121,7 +1123,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						)
 
 /obj/effect/essentials_set/modular/medium
-	desc = "A set of Medium Jaeger armor, uding an exoskeleton, helmet, armor plates and a lamp attachment."
+	desc = "A set of Medium Jaeger armor, including an exoskeleton, helmet, armor plates and a lamp attachment."
 	spawned_gear_list = list(
 						/obj/item/clothing/suit/modular,
 						/obj/item/clothing/head/modular/medium,
