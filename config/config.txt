@@ -4,13 +4,13 @@
 $include dbconfig.txt
 
 ## Server name: This appears at the top of the screen in-game.
-SERVER_NAME Something
+SERVER_NAME Cold War
 
 ## Hosted by name for unix platforms.
-HOSTEDBY yournamehere
+HOSTEDBY TheBimmer231
 
 ## The title of the main window.
-TITLE Change Me
+TITLE Cold War
 
 ## Optional URL for faster resource downloading.
 #RESOURCE_URL url
