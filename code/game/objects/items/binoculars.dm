@@ -29,7 +29,7 @@
 	/// the effect of the red dot for the laser
 	var/obj/effect/overlay/temp/laser_target/laser
 	/// 10 seconds
-	var/target_acquisition_delay = 100 
+	var/target_acquisition_delay = 10 SECONDS
 	/// Able to be switched between modes, 0 for cas laser, 1 for finding coordinates, 2 for directing railgun, 3 for orbital bombardment.
 	var/mode = 0 
 	/// If set to FALSE, you can't toggle the mode between CAS and coordinate finding
