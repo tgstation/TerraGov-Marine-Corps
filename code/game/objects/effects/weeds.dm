@@ -116,6 +116,12 @@
 	if(F && F.junction)
 		icon_state = "weedwall[F.junction]"
 
+/obj/effect/alien/weeds/weedwall/window/MouseDrop_T(atom/dropping, mob/user)
+	var/obj/structure/window/framed/F = locate() in loc
+	if(!F)
+		return ..()
+	return F.MouseDrop_T(dropping, user)
+
 /obj/effect/alien/weeds/weedwall/frame
 	layer = ABOVE_TABLE_LAYER
 
@@ -123,6 +129,12 @@
 	var/obj/structure/window_frame/WF = locate() in loc
 	if(WF && WF.junction)
 		icon_state = "weedframe[WF.junction]"
+
+/obj/effect/alien/weeds/weedwall/frame/MouseDrop_T(atom/dropping, mob/user)
+	var/obj/structure/window_frame/WF = locate() in loc
+	if(!WF)
+		return ..()
+	return WF.MouseDrop_T(dropping, user)
 
 
 // =================
