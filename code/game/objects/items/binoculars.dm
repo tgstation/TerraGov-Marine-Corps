@@ -25,7 +25,7 @@
 	desc = "A pair of binoculars, with a laser targeting function. Ctrl+Click to target something."
 	var/laser_cooldown = 0
 	/// 20 seconds
-	var/cooldown_duration = 200 
+	var/cooldown_duration = 20 SECONDS
 	/// the effect of the red dot for the laser
 	var/obj/effect/overlay/temp/laser_target/laser
 	/// 10 seconds
