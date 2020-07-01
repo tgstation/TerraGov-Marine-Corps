@@ -227,6 +227,7 @@
 		targ_x = binoc.target_turf.x
 		targ_y = binoc.target_turf.y
 		to_chat(user, "<span class='notice'>You use the RFID chip in [I] to automatically send the target information to [src].</span>")
+		user.visible_message("<span class='notice'>[user] uses [I] to input target information to [src].</span>")
 		desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Uses manual targetting dials. Insert round to fire. Currently aimed at: Longitude [targ_x], Latitude [targ_y]."
 /obj/structure/mortar/fixed
 	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Uses manual targetting dials. Insert round to fire. This one is bolted and welded into the ground."
