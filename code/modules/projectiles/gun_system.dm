@@ -40,6 +40,7 @@
 	//Basic stats.
 	var/accuracy_mult 			= 1				//Multiplier. Increased and decreased through attachments. Multiplies the projectile's accuracy by this number.
 	var/damage_mult 			= 1				//Same as above, for damage.
+	var/bonus_damage_mult		= 1				//Same as above, for bonus projectile damage.
 	var/damage_falloff_mult 	= 1				//Same as above, for damage bleed (falloff)
 	var/recoil 					= 0				//Screen shake when the weapon is fired.
 	var/recoil_unwielded 		= 0
@@ -684,6 +685,7 @@ and you're good to go.
 			for(var/i = 1 to projectile_to_fire.ammo.bonus_projectiles_amount)
 				BP = new /obj/projectile(M.loc)
 				BP.generate_bullet(GLOB.ammo_list[projectile_to_fire.ammo.bonus_projectiles_type])
+				BP.damage *= bonus_damage_mult	
 				BP.setDir(get_dir(user, M))
 				BP.distance_travelled = get_dist(user, M)
 				BP.ammo.on_hit_mob(M, BP)

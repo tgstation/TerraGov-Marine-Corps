@@ -143,6 +143,7 @@ Defined in conflicts.dm of the #defines folder.
 	master_gun.accuracy_mult				+= accuracy_mod
 	master_gun.accuracy_mult_unwielded		+= accuracy_unwielded_mod
 	master_gun.damage_mult					+= damage_mod
+	master_gun.bonus_damage_mult			+= damage_mod
 	master_gun.damage_falloff_mult			+= damage_falloff_mod
 	master_gun.w_class						+= size_mod
 	master_gun.scatter						+= scatter_mod
@@ -204,6 +205,7 @@ Defined in conflicts.dm of the #defines folder.
 	master_gun.accuracy_mult				-= accuracy_mod
 	master_gun.accuracy_mult_unwielded		-= accuracy_unwielded_mod
 	master_gun.damage_mult					-= damage_mod
+	master_gun.bonus_damage_mult			-= damage_mod
 	master_gun.damage_falloff_mult			-= damage_falloff_mod
 	master_gun.w_class						-= size_mod
 	master_gun.scatter						-= scatter_mod
