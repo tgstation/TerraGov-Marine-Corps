@@ -1,4 +1,0 @@
-author: "psykzz"
-delete-after: True
-changes: 
-  - rscadd: "Dragging your sprite onto the weed sprite will redirect to window / frame underneath"
