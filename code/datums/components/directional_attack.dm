@@ -20,10 +20,10 @@
     return ..()
 
 /datum/component/directional_attack/proc/select_directional_action(datum/source, atom/A, params)
-	if(ishuman(parent))
-		human_directional_action(A, params)
-	else if(isxeno(parent))
+	if(isxeno(parent))
 		xeno_directional_action(A, params)
+	else if(ishuman(parent))
+		human_directional_action(A, params)
 	else
 		living_directional_action(A, params)
 
