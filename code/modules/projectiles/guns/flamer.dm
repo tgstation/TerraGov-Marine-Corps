@@ -417,7 +417,7 @@
 
 /obj/item/weapon/gun/flamer/marinestandard/examine(mob/user)
 	. = ..()
-	to_chat(user, "<span class='notice'>Its hydro cannon contains [marinestandard_WATER_AMOUNT]/[max_water] units of water!</span>")
+	to_chat(user, "<span class='notice'>Its hydro cannon contains [MARINESTANDARD_WATER_AMOUNT]/[max_water] units of water!</span>")
 
 
 /obj/item/weapon/gun/flamer/marinestandard/Initialize()

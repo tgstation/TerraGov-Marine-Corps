@@ -1580,8 +1580,8 @@ Defined in conflicts.dm of the #defines folder.
 
 
 /obj/item/attachable/hydro_cannon
-	name = "M240T Hydro Cannon"
-	desc = "An integrated component of the M240T incinerator unit, the hydro cannon fires high pressure sprays of water; mainly to extinguish any wayward allies or unintended collateral damage."
+	name = "TL-84 Hydro Cannon"
+	desc = "An integrated component of the TL-84 flamethrower, the hydro cannon fires high pressure sprays of water; mainly to extinguish any wayward allies or unintended collateral damage."
 	icon_state = "hydrocannon"
 	attach_icon = ""
 	slot = "under"
