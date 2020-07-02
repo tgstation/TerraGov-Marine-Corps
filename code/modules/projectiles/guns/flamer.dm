@@ -369,6 +369,7 @@
 	icon_state = "t84"
 	item_state = "t84"
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	starting_attachment_types = list(/obj/item/attachable/stock/t84stock)
 	var/max_water = 200
 	var/last_use
 

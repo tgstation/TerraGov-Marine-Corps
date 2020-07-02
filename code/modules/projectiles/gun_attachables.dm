@@ -1089,6 +1089,20 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = 0
 	movement_acc_penalty_mod = 0
 
+/obj/item/attachable/stock/t84stock
+	name = "\improper TL-84 stock"
+	desc = "A irremovable TL-84 flamer stock."
+	icon_state = "t70stock"
+	wield_delay_mod = 0 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+	accuracy_mod = 0
+	recoil_mod = 0
+	melee_mod = 0
+	scatter_mod = 0
+	movement_acc_penalty_mod = 0
+
 
 ////////////// Underbarrel Attachments ////////////////////////////////////
 
