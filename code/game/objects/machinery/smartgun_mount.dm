@@ -296,7 +296,7 @@
 			to_chat(user, "This one is anchored in place and cannot be disassembled.")
 			return
 		to_chat(user, "You begin disassembling [src].")
-		if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 			return
 		user.visible_message("<span class='notice'> [user] disassembles [src]! </span>","<span class='notice'> You disassemble [src]!</span>")
 		var/obj/item/standard_hmg/HMG
