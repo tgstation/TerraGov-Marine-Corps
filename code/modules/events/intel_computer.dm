@@ -3,6 +3,13 @@
 	typepath = /datum/round_event/intel_computer
 	weight = 25
 
+	gamemode_blacklist = list("Crash")
+
+/datum/round_event_control/intel_computer/can_spawn_event(players_amt, gamemode)
+	if(length(GLOB.intel_computers) <= 0)
+		return FALSE
+	return ..()
+
 /datum/round_event/intel_computer/start()
 	for(var/obj/machinery/computer/intel_computer/I in shuffle(GLOB.intel_computers))
 		if(I.active)

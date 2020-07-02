@@ -215,24 +215,24 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!check_rights(R_FUN))
 			return
 		var/datum/round_event_control/E = locate(href_list["force_event"]) in SSevents.control
-		if(!E)
+		if(E)
 			return
-			E.admin_setup(usr)
-			var/datum/round_event/event = E.runEvent()
-			if(event.announceWhen>0)
-				event.processing = FALSE
-				var/prompt = alert(usr, "Would you like to alert the crew?", "Alert", "Yes", "No", "Cancel")
-				switch(prompt)
-					if("Yes")
-						event.announceChance = 100
-					if("Cancel")
-						event.kill()
-						return
-					if("No")
-						event.announceChance = 0
-				event.processing = TRUE
-			message_admins("[key_name_admin(usr)] has triggered an event. ([E.name])")
-			log_admin("[key_name(usr)] has triggered an event. ([E.name])")
+		E.admin_setup(usr)
+		var/datum/round_event/event = E.run_event()
+		if(event.announce_when>0)
+			event.processing = FALSE
+			var/prompt = alert(usr, "Would you like to alert the crew?", "Alert", "Yes", "No", "Cancel")
+			switch(prompt)
+				if("Yes")
+					event.announce_chance = 100
+				if("Cancel")
+					event.kill()
+					return
+				if("No")
+					event.announce_chance = 0
+			event.processing = TRUE
+		message_admins("[key_name_admin(usr)] has triggered an event. ([E.name])")
+		log_admin("[key_name(usr)] has triggered an event. ([E.name])")
 		return
 
 

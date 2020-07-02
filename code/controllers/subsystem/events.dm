@@ -11,9 +11,9 @@ SUBSYSTEM_DEF(events)
 
 	///The next world.time that a naturally occuring random event can be selected.
 	var/scheduled = 0
-	///3 minutes lower bound.
+	///Lower bound for how frequently events will occur
 	var/frequency_lower = 3 MINUTES
-	///10 minutes upper bound. Basically an event will happen every 3 to 10 minutes.
+	///the latest an event can happen after a previous event
 	var/frequency_upper = 10 MINUTES
 
 /datum/controller/subsystem/events/Initialize(time, zlevel)
@@ -64,7 +64,7 @@ SUBSYSTEM_DEF(events)
 
 	var/sum_of_weights = 0
 	for(var/datum/round_event_control/E in control)
-		if(!E.canspawn_event(players_amt, gamemode))
+		if(!E.can_spawn_event(players_amt, gamemode))
 			continue
 		if(E.weight < 0)						//for round-start events etc.
 			var/res = trigger_event(E)
@@ -77,7 +77,7 @@ SUBSYSTEM_DEF(events)
 	sum_of_weights = rand(0,sum_of_weights)	//reusing this variable. It now represents the 'weight' we want to select
 
 	for(var/datum/round_event_control/E in control)
-		if(!E.canspawn_event(players_amt, gamemode))
+		if(!E.can_spawn_event(players_amt, gamemode))
 			continue
 		sum_of_weights -= E.weight
 
@@ -86,11 +86,11 @@ SUBSYSTEM_DEF(events)
 				return
 
 /datum/controller/subsystem/events/proc/trigger_event(datum/round_event_control/E)
-	. = E.preRunEvent()
+	. = E.pre_run_event()
 	if(. == EVENT_CANT_RUN)//we couldn't run this event for some reason, set its max_occurrences to 0
 		E.max_occurrences = 0
 	else if(. == EVENT_READY)
-		E.runEvent(random = TRUE)
+		E.run_event(random = TRUE)
 
 //allows a client to trigger an event
 //aka Badmin Central

@@ -1,30 +1,39 @@
-//this datum is used by the events controller to dictate how it selects events
+///this datum is used by the events controller to dictate how it selects events
 /datum/round_event_control
-	var/name						//The human-readable name of the event
-	var/typepath					//The typepath of the event datum /datum/round_event
+	///The human-readable name of the event
+	var/name
+	///The typepath of the event datum /datum/round_event
+	var/typepath
+	/**
+	  *The weight this event has in the random-selection process.
+	  *Higher weights are more likely to be picked.
+	  *10 is the default weight. 20 is twice more likely; 5 is half as likely as this default.
+	  *0 here does NOT disable the event, it just makes it extremely unlikely
+	  */
+	var/weight = 10
 
-	var/weight = 10					//The weight this event has in the random-selection process.
-									//Higher weights are more likely to be picked.
-									//10 is the default weight. 20 is twice more likely; 5 is half as likely as this default.
-									//0 here does NOT disable the event, it just makes it extremely unlikely
+	///The earliest world.time that an event can start (round-duration in deciseconds) default: 20 mins
+	var/earliest_start = 20 MINUTES
+	///The minimum amount of alive, non-AFK human players on server required to start the event.
+	var/min_players = 0
 
-	var/earliest_start = 20 MINUTES	//The earliest world.time that an event can start (round-duration in deciseconds) default: 20 mins
-	var/min_players = 0				//The minimum amount of alive, non-AFK human players on server required to start the event.
+	///How many times this event has occured
+	var/occurrences = 0
+	//The maximum number of times this event can occur (naturally), it can still be forced.By setting this to 0 you can effectively disable an event.
+	var/max_occurrences = 20
 
-	var/occurrences = 0				//How many times this event has occured
-	var/max_occurrences = 20		//The maximum number of times this event can occur (naturally), it can still be forced.
-									//By setting this to 0 you can effectively disable an event.
+	//should we let the ghosts and admins know this event is firing? Disable on events that fire a lot
+	var/alert_observers = TRUE
 
-	var/alert_observers = TRUE		//should we let the ghosts and admins know this event is firing
-									//should be disabled on events that fire a lot
+	//Event won't happen in these gamemodes
+	var/list/gamemode_blacklist = list()
+	//Event will happen ONLY in these gamemodes if not empty
+	var/list/gamemode_whitelist = list()
 
-	var/list/gamemode_blacklist = list() // Event won't happen in these gamemodes
-	var/list/gamemode_whitelist = list() // Event will happen ONLY in these gamemodes if not empty
+	///admin cancellation
+	var/triggering
 
-	var/triggering	//admin cancellation
-
-// Checks if the event can be spawned. Used by event controller and "false alarm" event.
-// Admin-created events override this.
+/// Checks if the event can be spawned. Used by event controller. Admin-created events override this.
 /datum/round_event_control/proc/can_spawn_event(players_amt, gamemode)
 	if(occurrences >= max_occurrences)
 		return FALSE
@@ -43,32 +52,26 @@
 		return EVENT_CANT_RUN
 
 	triggering = TRUE
-	if (alert_observers)
-		message_admins("Random Event triggering in 10 seconds: [name] (<a href='?src=[REF(src)];cancel=1'>CANCEL</a>)")
-		sleep(100)
-		var/gamemode = SSticker.mode.config_tag
-		var/players_amt = get_active_player_count(alive_check = TRUE, afk_check = TRUE, human_check = TRUE)
-		if(!canspawn_event(players_amt, gamemode))
-			message_admins("Second pre-condition check for [name] failed, skipping...")
-			return EVENT_INTERRUPTED
-
-	if(!triggering)
-		return EVENT_CANCELLED	//admin cancelled
-	triggering = FALSE
-	return EVENT_READY
-
-/datum/round_event_control/Topic(href, href_list)
-	..()
-	if(href_list["cancel"])
+	if(alert_observers)
+		if(!admin_approval("Event:[name]"))
+			triggering = FALSE
+			message_admins("[key_name_admin(usr)] cancelled event [name].")
+			log_admin_private("[key_name(usr)] cancelled event [name].")
+			SSblackbox.record_feedback("tally", "event_admin_cancelled", 1, typepath)
+			return EVENT_CANCELLED
 		if(!triggering)
 			to_chat(usr, "<span class='admin'>You are too late to cancel that event</span>")
 			return
-		triggering = FALSE
-		message_admins("[key_name_admin(usr)] cancelled event [name].")
-		log_admin_private("[key_name(usr)] cancelled event [name].")
-		SSblackbox.record_feedback("tally", "event_admin_cancelled", 1, typepath)
+		var/gamemode = SSticker.mode.config_tag
+		var/players_amt = get_active_player_count(alive_check = TRUE, afk_check = TRUE, human_check = TRUE)
+		if(!can_spawn_event(players_amt, gamemode))
+			message_admins("Second pre-condition check for [name] failed, skipping...")
+			return EVENT_INTERRUPTED
 
-/datum/round_event_control/proc/runEvent(random = FALSE)
+	triggering = FALSE
+	return EVENT_READY
+
+/datum/round_event_control/proc/run_event(random = FALSE)
 	var/datum/round_event/E = new typepath()
 	E.current_players = get_active_player_count(alive_check = 1, afk_check = 1, human_check = 1)
 	E.control = src
@@ -89,8 +92,8 @@
 	var/datum/round_event_control/control
 
 	var/startWhen		= 0	//When in the lifetime to call start().
-	var/announceWhen	= 0	//When in the lifetime to call announce(). If you don't want it to announce use announceChance, below.
-	var/announceChance	= 100 // Probability of announcing, used in prob(), 0 to 100, default 100. Used in ion storms currently.
+	var/announce_when	= 0	//When in the lifetime to call announce(). If you don't want it to announce use announce_chance, below.
+	var/announce_chance	= 100 // Probability of announcing, used in prob(), 0 to 100, default 100. Used in ion storms currently.
 	var/endWhen			= 0	//When in the lifetime the event should end.
 
 	var/activeFor		= 0	//How long the event has existed. You don't need to change this.
@@ -98,7 +101,7 @@
 
 //Called first before processing.
 //Allows you to setup your event, such as randomly
-//setting the startWhen and or announceWhen variables.
+//setting the startWhen and or announce_when variables.
 //Only called once.
 //EDIT: if there's anything you want to override within the new() call, it will not be overridden by the time this proc is called.
 //It will only have been overridden by the time we get to announce() start() tick() or end() (anything but setup basically).
@@ -121,7 +124,7 @@
 			notify_ghosts("[control.name] has an object of interest: [atom_of_interest]!", source=atom_of_interest, action=NOTIFY_ORBIT, header="Something's Interesting!")
 	return
 
-//Called when the tick is equal to the announceWhen variable.
+//Called when the tick is equal to the announce_when variable.
 //Allows you to announce before starting or vice versa.
 //Only called once.
 /datum/round_event/proc/announce(fake)
@@ -157,7 +160,7 @@
 		start()
 		processing = TRUE
 
-	if(activeFor == announceWhen && prob(announceChance))
+	if(activeFor == announce_when && prob(announce_chance))
 		processing = FALSE
 		announce(FALSE)
 		processing = TRUE
@@ -173,7 +176,7 @@
 		processing = TRUE
 
 	// Everything is done, let's clean up.
-	if(activeFor >= endWhen && activeFor >= announceWhen && activeFor >= startWhen)
+	if(activeFor >= endWhen && activeFor >= announce_when && activeFor >= startWhen)
 		processing = FALSE
 		kill()
 
