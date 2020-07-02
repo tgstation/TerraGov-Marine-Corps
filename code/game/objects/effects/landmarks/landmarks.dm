@@ -352,5 +352,5 @@
 	icon_state = "weapon6"
 	weapon_list = list(	/obj/item/weapon/gun/pistol/chimp,
 						/obj/item/weapon/banhammer,
-						/obj/item/weapon/chainsword
+						/obj/item/weapon/chainsword,
 						)
