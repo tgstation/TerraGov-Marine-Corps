@@ -366,8 +366,8 @@
 	name = "\improper TL-84 flamethrower"
 	desc = "The TL-84 flamethrower is the current standard issue flamethrower of the TGMC, and is used for area control and urban combat. Uses large flamethrower cans to fuel itself."
 	current_mag = /obj/item/ammo_magazine/flamer_tank/large
-	icon_state = "t84"
-	item_state = "t84"
+	icon_state = "tl84"
+	item_state = "tl84"
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	starting_attachment_types = list(/obj/item/attachable/stock/t84stock)
 	var/max_water = 200
