@@ -45,7 +45,7 @@
 /obj/item/standard_hmg
 	name = "\improper TL-102 Mounted Heavy Smartgun"
 	desc = "The TL-102 Heavy Machinegun. IFF capable. No extra work required, just deploy it."
-	max_integrity = 200
+	max_integrity = 300
 	w_class = WEIGHT_CLASS_HUGE
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon = 'icons/Marine/marine-hmg.dmi'
@@ -95,7 +95,7 @@
 	if(check_blocked_turf(step))
 		to_chat(user, "<span class='warning'>There is insufficient room to deploy [src]!</span>")
 		return
-	if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
 		return
 	to_chat(user, "<span class='notice'>You deploy [src].</span>")
 	var/obj/machinery/standard_hmg/P = new(step)
@@ -160,7 +160,8 @@
 	density = TRUE
 	layer = ABOVE_MOB_LAYER //no hiding the hmg beind corpse
 	use_power = 0
-	max_integrity = 200
+	max_integrity = 300
+	soft_armor = "melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 	var/rounds = 0 //Have it be empty upon spawn.
 	var/rounds_max = 700
 	var/fire_delay = 2 //Gotta have rounds down quick. // Ren's changes
@@ -295,12 +296,14 @@
 			to_chat(user, "This one is anchored in place and cannot be disassembled.")
 			return
 		to_chat(user, "You begin disassembling [src].")
-		if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
 			return
 		user.visible_message("<span class='notice'> [user] disassembles [src]! </span>","<span class='notice'> You disassemble [src]!</span>")
-		var/obj/item/standard_hmg/HMG = new()
+		if(user.get_active_held_item())
+			var/obj/item/standard_hmg/HMG = new(loc)
+		else
+			user.put_in_active_hand(HMG)
 		HMG.obj_integrity = obj_integrity
-		user.put_in_active_hand(HMG)
 		HMG.rounds = rounds
 		HMG.burst_fire = burst_fire
 		HMG.update_icon()
