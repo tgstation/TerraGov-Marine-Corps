@@ -362,17 +362,17 @@
 		return current_mag.current_rounds
 
 
-/obj/item/weapon/gun/flamer/M240T
-	name = "\improper M240-T incinerator unit"
-	desc = "An improved version of the M240A1 incinerator unit, the M240-T model is capable of dispersing a larger variety of fuel types. Contains an underbarrel fire extinguisher!"
+/obj/item/weapon/gun/flamer/marinestandard
+	name = "\improper TL-84 flamethrower"
+	desc = "The TL-84 flamethrower is the current standard issue flamethrower of the TGMC, and is used for area control and urban combat. Uses large flamethrower cans to fuel itself."
 	current_mag = /obj/item/ammo_magazine/flamer_tank/large
-	icon_state = "m240t"
-	item_state = "m240t"
+	icon_state = "t84"
+	item_state = "t84"
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	var/max_water = 200
 	var/last_use
 
-/obj/item/weapon/gun/flamer/M240T/reload(mob/user, obj/item/ammo_magazine/magazine)
+/obj/item/weapon/gun/flamer/marinestandard/reload(mob/user, obj/item/ammo_magazine/magazine)
 	if(!magazine || !istype(magazine))
 		to_chat(user, "<span class='warning'>That's not a magazine!</span>")
 		return
@@ -409,18 +409,18 @@
 	return TRUE
 
 
-/obj/item/weapon/gun/flamer/M240T/able_to_fire(mob/user)
+/obj/item/weapon/gun/flamer/marinestandard/able_to_fire(mob/user)
 	. = ..()
 	if(.)
 		if(!current_mag || !current_mag.current_rounds)
 			return
 
-/obj/item/weapon/gun/flamer/M240T/examine(mob/user)
+/obj/item/weapon/gun/flamer/marinestandard/examine(mob/user)
 	. = ..()
-	to_chat(user, "<span class='notice'>Its hydro cannon contains [M240T_WATER_AMOUNT]/[max_water] units of water!</span>")
+	to_chat(user, "<span class='notice'>Its hydro cannon contains [marinestandard_WATER_AMOUNT]/[max_water] units of water!</span>")
 
 
-/obj/item/weapon/gun/flamer/M240T/Initialize()
+/obj/item/weapon/gun/flamer/marinestandard/Initialize()
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(max_water)
 	reagents = R
@@ -432,7 +432,7 @@
 	G.Attach(src)
 	G.icon_state = initial(G.icon_state)
 
-/obj/item/weapon/gun/flamer/M240T/Fire(atom/target, mob/living/user, params, reflex)
+/obj/item/weapon/gun/flamer/marinestandard/Fire(atom/target, mob/living/user, params, reflex)
 	if(active_attachable && istype(active_attachable, /obj/item/attachable/hydro_cannon) && (world.time > last_use + 10))
 		extinguish(target,user) //Fire it.
 		last_fired = world.time
@@ -442,7 +442,7 @@
 		return
 	return ..()
 
-/obj/item/weapon/gun/flamer/M240T/afterattack(atom/target, mob/user)
+/obj/item/weapon/gun/flamer/marinestandard/afterattack(atom/target, mob/user)
 	. = ..()
 	if(istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(user,target) <= 1)
 		var/obj/o = target
