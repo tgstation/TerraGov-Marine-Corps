@@ -3,8 +3,9 @@
 	var/dash_cost 		= 5  	// gas pressure used for one dash
 	var/dash_speed      = 1 	// speed with which victim is thrown at during dash
 	var/dash_distance 	= 2  	// turfs to move in one dash
-	var/dashing 		= 0   	// busy flag
-	var/dash_cooldown 	= 10  	// ds until can dash again
+	var/dash_count		= 0		// current number of available dashes
+	var/dash_count_max	= 3		// maximum amount of dashes
+	var/dash_cooldown 	= 50  	// ds until can dash again
 	var/active			= FALSE	// is the backpack currently active?
 
 /datum/component/jetpack_dash/Initialize()
@@ -21,16 +22,16 @@
 		return FALSE
 	if(!istype(victim))
 		return FALSE
-	if(dashing)
-		to_chat(victim, "<spawn class='warning'>\The [parent] is not ready to dash again!</span>")
+	if(dash_count >= dash_count_max)
+		to_chat(victim, "<spawn class='warning'>\The [parent] does not have enough prepared gas for this maneuver!</span>")
 		return FALSE
 
 	if(!use_gas(dash_cost))
-		to_chat(victim, "<spawn class='warning'>\The [parent] does not have enough gas for this maneuver!</span>")
+		to_chat(victim, "<spawn class='warning'>\The [parent] GAS EMPTY - REFILL - REFILL - REFILL!</span>")
 		return FALSE
 	
 	. = TRUE
-	dashing = TRUE
+	dash_count += 1
 
 	var/old_dir = victim.dir
 	playsound(victim, 'sound/effects/extinguish.ogg', 20, 1, 7)
@@ -41,10 +42,10 @@
 	if(dash_cooldown)
 		addtimer(CALLBACK(src, /datum/component/jetpack_dash.proc/stop_dashing), dash_cooldown)
 	else
-		dashing = FALSE
+		dash_count = initial(dash_count)
 
 /datum/component/jetpack_dash/proc/stop_dashing()
-	dashing = FALSE
+	dash_count = initial(dash_count)
 
 //override this if you put it on something that isn't a tank
 /datum/component/jetpack_dash/proc/use_gas(cost)
