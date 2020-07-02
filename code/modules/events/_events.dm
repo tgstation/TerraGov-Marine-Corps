@@ -71,7 +71,7 @@
 	triggering = FALSE
 	return EVENT_READY
 
-/datum/round_event_control/proc/run_event(random = FALSE)
+/datum/round_event_control/proc/run_event(not_forced = FALSE)
 	var/datum/round_event/E = new typepath()
 	E.current_players = get_active_player_count(alive_check = 1, afk_check = 1, human_check = 1)
 	E.control = src
@@ -79,7 +79,7 @@
 	occurrences++
 
 	testing("[time2text(world.time, "hh:mm:ss")] [E.type]")
-	if(random)
+	if(not_forced)
 		log_game("Random Event triggering: [name] ([typepath])")
 	return E
 
