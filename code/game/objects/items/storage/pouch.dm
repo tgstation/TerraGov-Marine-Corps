@@ -52,9 +52,10 @@
 	icon_state = "large_drop"
 	draw_mode = 0
 
-/obj/item/storage/pouch/general/large/command
-	fill_type = /obj/item/binoculars/tactical
-	fill_number = 1
+/obj/item/storage/pouch/general/large/command/Initialize()
+	. = ..()
+	new /obj/item/binoculars/tactical(src)
+	new /obj/item/megaphone(src)
 
 
 /obj/item/storage/pouch/general/som
@@ -118,6 +119,7 @@
 		/obj/item/stack/medical/ointment,
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical/bruise_pack,
+		/obj/item/storage/pill_bottle/packet/tricordrazine,
 		/obj/item/stack/medical/splint)
 
 /obj/item/storage/pouch/firstaid/full
@@ -127,7 +129,7 @@
 	. = ..()
 	new /obj/item/stack/medical/ointment (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol (src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine (src)
+	new /obj/item/storage/pill_bottle/packet/tricordrazine (src)
 	new /obj/item/stack/medical/bruise_pack (src)
 	new /obj/item/stack/medical/splint (src)
 
@@ -160,6 +162,7 @@
 		/obj/item/stack/medical/ointment,
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical/bruise_pack,
+		/obj/item/storage/pill_bottle/packet/tricordrazine,
 		/obj/item/stack/medical/splint)
 
 
@@ -336,6 +339,7 @@
 		/obj/item/storage/pill_bottle,
 		/obj/item/stack/medical,
 		/obj/item/flashlight/pen,
+		/obj/item/storage/pill_bottle/packet,
 		/obj/item/reagent_containers/hypospray)
 
 /obj/item/storage/pouch/medical/full/Initialize()

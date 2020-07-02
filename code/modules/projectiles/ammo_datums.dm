@@ -360,12 +360,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "high-impact revolver bullet"
 	hud_state = "revolver_impact"
 	accuracy_var_high = 10
-	damage = 45
-	penetration = 15
-	sundering = 5
+	damage = 50
+	penetration = 20
+	sundering = 3
 
 /datum/ammo/bullet/revolver/highimpact/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, weaken = 1, stagger = 2, slowdown = 2, knockback = 1)
+	staggerstun(M, P, weaken = 1, stagger = 1, slowdown = 1, knockback = 1)
 
 
 /datum/ammo/bullet/revolver/ricochet
@@ -967,11 +967,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	iff_signal = ACCESS_IFF_MARINE
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SKIPS_HUMANS|AMMO_SUNDERING
 	accurate_range = 15
-	damage = 75
-	penetration = 75 //Bumped the penetration to serve a different role from sentries, MGs are a bit more offensive
+	damage = 40 //Reduced damage due to vastly increased mobility
+	penetration = 40 //Reduced penetration due to vastly increased mobility
 	accuracy = 15
 	barricade_clear_distance = 2
-	sundering = 20
+	sundering = 5
 
 /datum/ammo/bullet/minigun
 	name = "minigun bullet"
@@ -980,10 +980,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 3
 	accuracy_var_high = 3
 	accurate_range = 5
-	damage = 30
+	damage = 25
 	penetration = 15
 	shrapnel_chance = 25
-	sundering = 1.5
+	sundering = 2.5
 
 /*
 //================================================

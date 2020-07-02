@@ -38,6 +38,7 @@
 	close_sound = 'sound/effects/vegetation_walk_2.ogg'
 	foldedbag_path = /obj/item/bodybag/tarp
 	closet_stun_delay = 0
+	var/list/tarp_triggers = list()
 
 
 /obj/structure/closet/bodybag/tarp/close()
@@ -56,6 +57,7 @@
 		animate(src) //Cancel the fade out if still ongoing.
 	if(bodybag_occupant)
 		UnregisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED))
+	QDEL_LIST(tarp_triggers)
 	return ..()
 
 
@@ -71,7 +73,7 @@
 	. = ..()
 	if(bodybag_occupant)
 		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED), .proc/on_bodybag_occupant_death)
-
+		deploy_triggers()
 
 /obj/structure/closet/bodybag/tarp/proc/on_bodybag_occupant_death(datum/source, gibbed)
 	open()
@@ -86,28 +88,69 @@
 	if(exposed_temperature > 300 && !opened && M)
 		to_chat(M, "<span class='danger'>The intense heat forces you out of [src]!</span>")
 		open()
+		M.fire_act(exposed_temperature, exposed_volume)
 
 /obj/structure/closet/bodybag/tarp/flamer_fire_act()
 	var/mob/M = locate() in src //need to be occupied
 	if(!opened && M)
 		to_chat(M, "<span class='danger'>The intense heat forces you out of [src]!</span>")
 		open()
+		M.flamer_fire_act()
 
 /obj/structure/closet/bodybag/tarp/ex_act(severity)
 	var/mob/M = locate() in src //need to be occupied
 	if(!opened && M)
 		to_chat(M, "<span class='danger'>The shockwave blows [src] open!</span>")
 		open()
+		M.ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			visible_message("<span class='danger'>\The shockwave blows [src] apart!</span>")
 			qdel(src) //blown apart
 
-/obj/structure/closet/bodybag/tarp/bullet_act(obj/projectile/Proj)
+/obj/structure/closet/bodybag/tarp/bullet_act(obj/projectile/proj)
 	var/mob/M = locate() in src //need to be occupied
 	if(!opened && M)
-		M.bullet_act(Proj) //tarp isn't bullet proof; concealment, not cover; pass it on to the occupant.
+		M.bullet_act(proj) //tarp isn't bullet proof; concealment, not cover; pass it on to the occupant.
 
+/obj/structure/closet/bodybag/tarp/Crossed(mob/living/L)
+	. = ..()
+	if(!istype(L) || L.stat != CONSCIOUS)
+		return
+	// Walking on the tarp reveals it
+	open()
+	L.visible_message("<span class='notice'>You stepped on \the [src], revealing it!</span>", "<span class='notice'>[L] stepped on \the [src], revealing it!</span>")
+
+/obj/structure/closet/bodybag/tarp/proc/trigger_open()
+	if(locate(/mob/living/carbon/xenomorph) in viewers(2,get_turf(src)))
+		open()
+
+/obj/structure/closet/bodybag/tarp/proc/deploy_triggers()
+	QDEL_LIST(tarp_triggers)
+	var/list/turf/target_locations = filled_turfs(src, 2, "circle", FALSE)
+	for(var/turf/trigger_location in target_locations)
+		var/obj/effect/tarp_trigger/TT = new /obj/effect/tarp_trigger(trigger_location, src)
+		TT.linked_tarp = src
+		tarp_triggers += TT
+
+/obj/effect/tarp_trigger
+	name = "tarp trigger"
+	icon = 'icons/effects/effects.dmi'
+	anchored = TRUE
+	mouse_opacity = 0
+	invisibility = INVISIBILITY_MAXIMUM
+	var/obj/structure/closet/bodybag/tarp/linked_tarp
+
+/obj/effect/tarp_trigger/Initialize(mapload, obj/structure/closet/bodybag/tarp/source_tarp)
+	. = ..()
+	linked_tarp = source_tarp
+
+/obj/effect/tarp_trigger/Crossed(atom/A)
+	. = ..()
+	if(!linked_tarp) //something went very wrong
+		qdel(src)
+	else if(isxeno(A))
+		addtimer(CALLBACK(linked_tarp, /obj/structure/closet/bodybag/tarp.proc/trigger_open), 5 SECONDS)
 
 /obj/structure/closet/bodybag/tarp/snow
 	icon_state = "snowtarp_closed"

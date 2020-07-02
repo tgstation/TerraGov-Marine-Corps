@@ -58,7 +58,7 @@
 			continue
 		to_chat(owner, "<span class='warning'>No space here for a barricade.</span>")
 		return
-	if(!do_after(fobdrone, 3 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
+	if(!do_after(fobdrone, 1.5 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
 		return
 	console.metal_remaining -= 4
 	cade = new /obj/structure/barricade/metal(buildplace)
@@ -99,7 +99,7 @@
 			continue
 		to_chat(owner, "<span class='warning'>No space here for a barricade.</span>")
 		return
-	if(!do_after(fobdrone, 3 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
+	if(!do_after(fobdrone, 1.5 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
 		return
 	console.plasteel_remaining -= 5
 	cade = new /obj/structure/barricade/plasteel(buildplace)
@@ -151,7 +151,7 @@
 			else
 				to_chat(owner, "<span class='warning'>No space here for a sentry.</span>")
 				return
-	if(!do_after(fobdrone, 6 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
+	if(!do_after(fobdrone, 3 SECONDS, FALSE, buildplace, BUSY_ICON_BUILD))
 		return
 	console.sentry_remaining -= 1
 	turret = new /obj/machinery/marine_turret(buildplace)

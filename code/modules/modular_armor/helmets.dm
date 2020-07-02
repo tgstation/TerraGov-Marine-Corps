@@ -1,7 +1,7 @@
 
 /** Helmet attachments */
 /obj/item/helmet_module/welding
-	name = "welding thing"
+	name = "Welding Helmet Module"
 	icon_state = "mod_welding"
 	module_type = ARMOR_MODULE_TOGGLE
 
