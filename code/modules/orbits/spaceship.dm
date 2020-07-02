@@ -15,6 +15,7 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 
 /obj/machinery/computer/navigation
 	name = "\improper Helms computer"
+	icon_state = "syndishuttle"
 	density = TRUE
 	anchored = TRUE
 	idle_power_usage = 10
@@ -79,7 +80,7 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 		dat += "<center><h4>[SSmapping.configs[SHIP_MAP].map_name]</h4></center>"//get the current ship map name
 
 		dat += "<br><center><h3>[GLOB.orbital_mechanics.current_orbit]</h3></center>" //display the current orbit level
-		dat += "<br><center>Power Level: [get_power_amount()]|Engines prepared: [COOLDOWN_CHECK(src,COOLDOWN_ORBIT_CHANGE) ? "Ready" : "Recalculating"]</center>" //display ship nav stats, power level, cooldown.
+		dat += "<br><center>Power Level: [get_power_amount()]|Engines prepared: [can_change_orbit(silent = TRUE) ? "Ready" : "Recalculating"]</center>" //display ship nav stats, power level, cooldown.
 
 		if(get_power_amount() >= 250000) //some arbitrary number
 			dat += "<center><b><a href='byond://?src=\ref[src];UP=1'>Increase orbital level</a>|" //move farther away, current_orbit++
@@ -167,18 +168,22 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 	priority_announce(message, title = "Orbit Change")
 	addtimer(CALLBACK(src, .proc/do_change_orbit, current_orbit, direction), 10 SECONDS)
 
-/obj/machinery/computer/navigation/proc/can_change_orbit(current_orbit, direction)
+/obj/machinery/computer/navigation/proc/can_change_orbit(current_orbit, direction, silent = FALSE)
 	if(COOLDOWN_CHECK(src, COOLDOWN_ORBIT_CHANGE))
-		to_chat(usr, "The ship is currently recalculating based on previous selection.")
+		if(!silent)
+			to_chat(usr, "The ship is currently recalculating based on previous selection.")
 		return FALSE
 	if(changing_orbit)
-		to_chat(usr, "The ship is currently changing orbit.")
+		if(!silent)
+			to_chat(usr, "The ship is currently changing orbit.")
 		return FALSE
 	if(direction == "UP" && current_orbit == ESCAPE_VELOCITY)
-		to_chat(usr, "The ship is already at escape velocity! It is already prepped for the escape jump!")
+		if(!silent)
+			to_chat(usr, "The ship is already at escape velocity! It is already prepped for the escape jump!")
 		return FALSE
 	if(direction == "DOWN" && current_orbit == SKIM_ATMOSPHERE)
-		to_chat(usr, "WARNING, AUTOMATIC SAFETY ENGAGED. OVERRIDING USER INPUT.")
+		if(!silent)
+			to_chat(usr, "WARNING, AUTOMATIC SAFETY ENGAGED. OVERRIDING USER INPUT.")
 		return FALSE
 	return TRUE
 
