@@ -95,7 +95,7 @@
 	if(check_blocked_turf(step))
 		to_chat(user, "<span class='warning'>There is insufficient room to deploy [src]!</span>")
 		return
-	if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		return
 	to_chat(user, "<span class='notice'>You deploy [src].</span>")
 	var/obj/machinery/standard_hmg/P = new(step)
