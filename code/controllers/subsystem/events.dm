@@ -12,9 +12,9 @@ SUBSYSTEM_DEF(events)
 	///The next world.time that a naturally occuring random event can be selected.
 	var/scheduled = 0
 	///3 minutes lower bound.
-	var/frequency_lower = 1800
+	var/frequency_lower = 3 MINUTES
 	///10 minutes upper bound. Basically an event will happen every 3 to 10 minutes.
-	var/frequency_upper = 6000
+	var/frequency_upper = 10 MINUTES
 
 /datum/controller/subsystem/events/Initialize(time, zlevel)
 	for(var/type in typesof(/datum/round_event_control))

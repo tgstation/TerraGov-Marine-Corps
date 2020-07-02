@@ -215,7 +215,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		if(!check_rights(R_FUN))
 			return
 		var/datum/round_event_control/E = locate(href_list["force_event"]) in SSevents.control
-		if(E)
+		if(!E)
+			return
 			E.admin_setup(usr)
 			var/datum/round_event/event = E.runEvent()
 			if(event.announceWhen>0)

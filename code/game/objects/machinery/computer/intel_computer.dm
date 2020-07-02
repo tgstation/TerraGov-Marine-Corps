@@ -58,7 +58,7 @@
 
 /obj/machinery/computer/intel_computer/interact(mob/user)
 	if(!active)
-		to_chat(user, "<span class = 'notice'> This terminal has nothing of use on it.")
+		to_chat(user, "<span class='notice'> This terminal has nothing of use on it.</span>")
 		return
 	return ..()
 
