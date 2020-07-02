@@ -369,6 +369,7 @@
 	icon_state = "tl84"
 	item_state = "tl84"
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	attachable_offset = list("rail_x" = 10, "rail_y" = 23, "stock_x" = 16, "stock_y" = 13)
 	starting_attachment_types = list(/obj/item/attachable/stock/t84stock)
 	var/max_water = 200
 	var/last_use

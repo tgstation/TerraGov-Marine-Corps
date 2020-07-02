@@ -1092,7 +1092,7 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/stock/t84stock
 	name = "\improper TL-84 stock"
 	desc = "A irremovable TL-84 flamer stock."
-	icon_state = "t70stock"
+	icon_state = "tl84stock"
 	wield_delay_mod = 0 SECONDS
 	pixel_shift_x = 32
 	pixel_shift_y = 13
