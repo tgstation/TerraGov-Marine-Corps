@@ -2,7 +2,7 @@
 /** Helmet attachments */
 /obj/item/helmet_module/welding
 	name = "Welding Helmet Module"
-	icon_state = "mod_welding"
+	icon_state = "welding_head_obj"
 	module_type = ARMOR_MODULE_TOGGLE
 
 	active = FALSE
@@ -35,7 +35,8 @@
 
 /obj/item/helmet_module/binoculars
 	name = "Binocular Helmet Module"
-	icon_state = "mod_welding"
+	icon_state = "binocular_head_obj"
+	item_state = "binocular_head"
 	module_type = ARMOR_MODULE_TOGGLE
 	active = FALSE
 
