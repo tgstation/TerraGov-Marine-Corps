@@ -185,7 +185,14 @@ SUBSYSTEM_DEF(vote)
 					var/datum/map_config/VM = config.maplist[GROUND_MAP][i]
 					if(!VM.voteweight)
 						continue
+					if(VM.config_max_users || VM.config_min_users)
+						var/players = length(GLOB.clients)
+						if(players > VM.config_max_users)
+							continue
+						if(players < VM.config_min_users)
+							continue
 					maps += i
+
 				choices.Add(maps)
 				if(length(choices) < 2)
 					return FALSE
@@ -195,6 +202,12 @@ SUBSYSTEM_DEF(vote)
 					var/datum/map_config/VM = config.maplist[SHIP_MAP][i]
 					if(!VM.voteweight)
 						continue
+					if(VM.config_max_users || VM.config_min_users)
+						var/players = length(GLOB.clients)
+						if(players > VM.config_max_users)
+							continue
+						if(players < VM.config_min_users)
+							continue
 					maps += i
 				choices.Add(maps)
 				if(length(choices) < 2)

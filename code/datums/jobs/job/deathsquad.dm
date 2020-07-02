@@ -17,7 +17,7 @@
 	jobtype = /datum/job/deathsquad/standard
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/mateba/admiral
+	belt = /obj/item/storage/belt/gun/mateba/notmarine
 	ears = /obj/item/radio/headset/distress/commando
 	w_uniform = /obj/item/clothing/under/marine/veteran/PMC/commando
 	shoes = /obj/item/clothing/shoes/veteran/PMC/commando
@@ -59,7 +59,7 @@
 	jobtype = /datum/job/deathsquad/standard/energy
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/mateba/admiral
+	belt = /obj/item/storage/belt/gun/mateba/notmarine
 	ears = /obj/item/radio/headset/distress/commando
 	w_uniform = /obj/item/clothing/under/marine/veteran/PMC/commando
 	shoes = /obj/item/clothing/shoes/veteran/PMC/commando
@@ -108,7 +108,7 @@
 	jobtype = /datum/job/deathsquad/leader
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/mateba/admiral
+	belt = /obj/item/storage/belt/gun/mateba/notmarine
 	ears = /obj/item/radio/headset/distress/commando
 	w_uniform = /obj/item/clothing/under/marine/veteran/PMC/commando
 	shoes = /obj/item/clothing/shoes/veteran/PMC/commando
