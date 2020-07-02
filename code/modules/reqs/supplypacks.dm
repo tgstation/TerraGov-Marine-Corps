@@ -701,19 +701,19 @@ AMMO
 	cost = 15
 
 /datum/supply_packs/ammo/napalm
-	name = "TL-84 normal fuel crate"
+	name = "TL-84 normal fuel tank"
 	contains = list(/obj/item/ammo_magazine/flamer_tank)
-	cost = 5
+	cost = 3
 
 /datum/supply_packs/ammo/blue
-	name = "TL-84 blue fuel tanks"
+	name = "TL-84 blue fuel tank"
 	contains = list(
 		/obj/item/ammo_magazine/flamer_tank/large/X,
 	)
 	cost = 100
 
 /datum/supply_packs/ammo/green
-	name = "TL-84 green fuel"
+	name = "TL-84 green fuel tank"
 	contains = list(
 		/obj/item/ammo_magazine/flamer_tank/large/B,
 	)
