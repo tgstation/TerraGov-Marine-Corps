@@ -460,7 +460,6 @@
 	name = "M-22 welding kit"
 	desc = "A heavy-duty, portable fuel carrier. Mainly used in flamethrowers. Welder and flamer compatible."
 	flags_equip_slot = ITEM_SLOT_BACK
-	icon = 'icons/obj/items/items.dmi'
 	icon_state = "marine_flamerpack"
 	w_class = WEIGHT_CLASS_BULKY
 	max_fuel = 700 //Because the marine backpack can carry 260, and still allows you to take items, there should be a reason to still use this one.
