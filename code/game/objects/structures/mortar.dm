@@ -20,7 +20,13 @@
 	var/busy = 0
 	var/firing = 0 //Used for deconstruction and aiming sanity
 	var/fixed = 0 //If set to 1, can't unanchor and move the mortar, used for map spawns and WO
+	var/ui_x = 565
+	var/ui_y = 620
+	interaction_flags = INTERACT_MACHINE_TGUI 
 
+/obj/structure/mortar/attack_hand(mob/living/user)
+	interact(user)
+/*
 /obj/structure/mortar/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
@@ -105,7 +111,7 @@
 			dial_x = temp_dial_x
 			dial_y = temp_dial_y
 		else busy = 0
-
+*/
 /obj/structure/mortar/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
@@ -207,28 +213,69 @@
 		playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 		new /obj/item/mortar_kit(loc)
 		qdel(src)
-	else if(istype(I,/obj/item/binoculars/tactical))
 
-		if(busy)
-			to_chat(user, "<span class='warning'>Someone else is currently using [src].</span>")
+/obj/structure/mortar/interact(mob/user)
+
+	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
+		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
+		var/fumbling_time = 4 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
+		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return
-		var/obj/item/binoculars/tactical/binoc = I
-		
-		if(binoc.target_turf.x == null || binoc.target_turf.y ==null)
-			to_chat(user, "<span class='warning'>Error: Incomplete or no target information detected. Please select a target using [I].</span>")
-			return
-		var/turf/T = locate(binoc.target_turf.x, binoc.target_turf.y, z)
-		if(get_dist(loc, T) < 7)
-			to_chat(user, "<span class='warning'>You cannot aim at this coordinate, it is too close to your mortar.</span>")
-			return
-		if((binoc.target_turf.x > world.maxx || binoc.target_turf.x < 0) || (binoc.target_turf.y > world.maxx || binoc.target_turf.y < 0))
-			to_chat(user, "<span class='warning'>You cannot aim at this coordinate, it is outside of the area of operations.</span>")
-			return
-		targ_x = binoc.target_turf.x
-		targ_y = binoc.target_turf.y
-		to_chat(user, "<span class='notice'>You use the RFID chip in [I] to automatically send the target information to [src].</span>")
-		user.visible_message("<span class='notice'>[user] uses [I] to input target information to [src].</span>")
-		desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Uses manual targetting dials. Insert round to fire. Currently aimed at: Longitude [targ_x], Latitude [targ_y]."
+	if(busy)
+		to_chat(user, "<span class='warning'>Someone else is currently using [src].</span>")
+		return
+	if(firing)
+		to_chat(user, "<span class='warning'>[src]'s barrel is still steaming hot. Wait a few seconds and stop firing it.</span>")
+		return
+	return ..()
+/obj/structure/mortar/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
+												datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "MortarController", name, ui_x, ui_y, master_ui, state)
+		ui.open()
+/obj/structure/mortar/ui_data(mob/user)
+	var/data = list()
+	data["xCoord"] = targ_x
+	data["yCoord"] = targ_y
+	. = data
+
+/obj/structure/mortar/ui_act(action, list/params)
+	var/mob/living/carbon/human/user = usr
+	if(..())
+		return
+	switch(action)
+		if("xCoord")
+			var/input = text2num(params["xCoord"])
+			if(input)
+				targ_x = input
+		if("yCoord")
+			var/input = text2num(params["yCoord"])
+			if(input)
+				targ_y = input
+		if("send")
+			var/turf/T = locate(targ_x, targ_y, z)
+			if(get_dist(loc, T) < 7)
+				to_chat(user, "<span class='warning'>You cannot aim at this coordinate, it is too close to your mortar.</span>")
+				return
+			if(busy)
+				to_chat(user, "<span class='warning'>Someone else is currently using this mortar.</span>")
+				return
+			user.visible_message("<span class='notice'>[user] starts adjusting [src]'s firing angle and distance.</span>",
+			"<span class='notice'>You start adjusting [src]'s firing angle and distance to match the new coordinates.</span>")
+			busy = 1
+			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+			if(do_after(user, 30, TRUE, src, BUSY_ICON_GENERIC))
+				user.visible_message("<span class='notice'>[user] finishes adjusting [src]'s firing angle and distance.</span>",
+				"<span class='notice'>You finish adjusting [src]'s firing angle and distance to match the new coordinates.</span>")
+				busy = 0
+				var/offset_x_max = round(abs((targ_x + dial_x) - x)/offset_per_turfs) //Offset of mortar shot, grows by 1 every 10 tiles travelled
+				var/offset_y_max = round(abs((targ_y + dial_y) - y)/offset_per_turfs)
+				offset_x = rand(-offset_x_max, offset_x_max)
+				offset_y = rand(-offset_y_max, offset_y_max)
+			else
+				busy = 0
 /obj/structure/mortar/fixed
 	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Uses manual targetting dials. Insert round to fire. This one is bolted and welded into the ground."
 	fixed = 1
