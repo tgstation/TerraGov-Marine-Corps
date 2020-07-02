@@ -4627,9 +4627,7 @@
 /turf/open/floor/mainship/sterile,
 /area/mainship/shipboard/brig)
 "qp" = (
-/obj/structure/sink{
-	pixel_y = 16
-	},
+/obj/structure/sink,
 /obj/structure/mirror{
 	dir = 1
 	},
@@ -6100,24 +6098,9 @@
 "uM" = (
 /turf/closed/wall/mainship,
 /area/mainship/command/corporateliaison)
-"uO" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/machinery/light/small,
-/obj/structure/cable,
-/turf/open/floor/mainship/mono,
-/area/shuttle/distress/arrive_2)
 "uP" = (
 /turf/open/floor/mainship/cargo,
 /area/mainship/shipboard/weapon_room)
-"uQ" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/structure/cable,
-/turf/open/floor/mainship/mono,
-/area/shuttle/distress/arrive_2)
 "uR" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -12803,9 +12786,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
-"Pa" = (
-/turf/open/floor/plating/mainship,
-/area/shuttle/distress/arrive_2)
 "Pb" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -34823,18 +34803,18 @@ Tn
 LA
 LU
 Fb
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-uO
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Pn
 ad
 tl
 tl
@@ -35080,18 +35060,18 @@ Tn
 gt
 LV
 Fb
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-uQ
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Po
 ad
 gR
 gR
@@ -35336,19 +35316,19 @@ aa
 Tn
 dD
 Fb
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-uQ
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Po
 Mb
 tm
 tm
@@ -35593,19 +35573,19 @@ aa
 Tn
 dD
 tI
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-uQ
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Po
 Mb
 tm
 tm
@@ -35850,19 +35830,19 @@ aa
 Tn
 dD
 Fb
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-uQ
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Po
 Mb
 tm
 tm
@@ -36108,18 +36088,18 @@ Tn
 GM
 LX
 Fb
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-uQ
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Po
 Mb
 tm
 tm
@@ -36365,18 +36345,18 @@ Tn
 LA
 dD
 Fb
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-Pa
-uO
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Fb
+Pn
 Mb
 vf
 tn
