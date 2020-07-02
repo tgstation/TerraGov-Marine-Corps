@@ -161,7 +161,7 @@
 	layer = ABOVE_MOB_LAYER //no hiding the hmg beind corpse
 	use_power = 0
 	max_integrity = 300
-	soft_armor = "melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 	var/rounds = 0 //Have it be empty upon spawn.
 	var/rounds_max = 700
 	var/fire_delay = 2 //Gotta have rounds down quick. // Ren's changes
@@ -299,9 +299,11 @@
 		if(!do_after(user, 50, TRUE, src, BUSY_ICON_BUILD))
 			return
 		user.visible_message("<span class='notice'> [user] disassembles [src]! </span>","<span class='notice'> You disassemble [src]!</span>")
+		var/obj/item/standard_hmg/HMG
 		if(user.get_active_held_item())
-			var/obj/item/standard_hmg/HMG = new(loc)
+			HMG = new(loc)
 		else
+			HMG = new()
 			user.put_in_active_hand(HMG)
 		HMG.obj_integrity = obj_integrity
 		HMG.rounds = rounds
