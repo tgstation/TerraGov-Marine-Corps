@@ -1,0 +1,6 @@
+author: "MacBlaze1"
+delete-after: True
+changes: 
+  - rscadd: "added a surgical vest to the medical clothes vendor and made it only hold the necessary surgical stuff"
+  - balance: "reduced fumbling time for medics from 8 to 4 seconds"
+  - balance: "reduces IB bleeding by 50% from Wound damage / 40 to wound damage / 60"
