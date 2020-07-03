@@ -106,20 +106,45 @@
 
 /mob/living/carbon/xenomorph/proc/update_wounds()
 	remove_overlay(X_WOUND_LAYER)
-	if(health < maxHealth * 0.5) //Injuries appear at less than 50% health
+	if(health < maxHealth * 0.75) //Injuries appear at less than 75% health
 		var/image/I
+		var/wound_severity = get_wound_severity()
+		to_chat(world, "[wound_severity] is wound w/ caste [xeno_caste.wound_type]")
 		if(lying_angle)
 			if((resting || IsSleeping()) && (!IsParalyzed() && !IsUnconscious() && health > 0))
-				I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="[xeno_caste.wound_type]_wounded_resting", "layer"=-X_WOUND_LAYER)
+				I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="[xeno_caste.wound_type]_wounded_resting_[wound_severity]", "layer"=-X_WOUND_LAYER)
 			else
-				I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="[xeno_caste.wound_type]_wounded_sleeping", "layer"=-X_WOUND_LAYER)
+				I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="[xeno_caste.wound_type]_wounded_stunned_[wound_severity]", "layer"=-X_WOUND_LAYER)
 		else if(!handle_special_state())
-			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="[xeno_caste.wound_type]_wounded", "layer"=-X_WOUND_LAYER)
+			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="[xeno_caste.wound_type]_wounded_[wound_severity]", "layer"=-X_WOUND_LAYER)
 		else
 			I = handle_special_wound_states()
 		I = apply_alpha_channel(I)
 		overlays_standing[X_WOUND_LAYER] = I
 		apply_overlay(X_WOUND_LAYER)
+
+/mob/living/carbon/xenomorph/proc/get_wound_severity()
+	var/health_percent = health/maxHealth * 100
+	to_chat(world, "health% is [health_percent]")
+	switch(health_percent)
+		if(50 to 75)
+			return 1
+		if(25 to 50)
+			return 2
+		if(0 to 25)
+			return 3
+		if(-100 to -0)
+			. = checkcrit()
+
+/mob/living/carbon/xenomorph/proc/checkcrit()
+	var/healthi = health/health_threshold_dead * 100
+	switch(healthi)
+		if(0 to 33)
+			return 1
+		if(33 to 66)
+			return 2
+		else
+			return 3
 
 /mob/living/carbon/xenomorph/update_transform()
 	..()
