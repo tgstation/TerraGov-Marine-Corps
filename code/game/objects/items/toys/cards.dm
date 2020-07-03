@@ -9,6 +9,7 @@
 	icon_state = "deck"
 	w_class = WEIGHT_CLASS_TINY
 
+	var/card_type = "normal"
 	var/list/cards = list()
 
 /obj/item/toy/deck/Initialize()
@@ -67,7 +68,7 @@
 	else if(user.r_hand && istype(user.r_hand,/obj/item/toy/handcard))
 		H = user.r_hand
 	else
-		H = new(get_turf(src))
+		H = new(get_turf(src), card_type)
 		user.put_in_hands(H)
 
 	if(!H || !user) return
@@ -111,7 +112,7 @@
 			break
 
 /obj/item/toy/deck/proc/deal_at(mob/user, mob/target)
-	var/obj/item/toy/handcard/H = new(get_step(user, user.dir))
+	var/obj/item/toy/handcard/H = new(get_step(user, user.dir), card_type)
 
 	H.cards += cards[1]
 	cards -= cards[1]
@@ -147,17 +148,22 @@
 	deal_at(usr, over)
 
 
-
 /obj/item/toy/handcard
 	name = "hand of cards"
 	desc = "Some playing cards."
-	icon = 'icons/obj/items/playing_cards.dmi'
 	icon_state = "empty"
 	w_class = WEIGHT_CLASS_TINY
 
 	var/concealed = 0
 	var/list/cards = list()
 
+/obj/item/toy/handcard/Initialize(mapload, card_type)
+	. = ..()
+	switch(card_type)
+		if("normal")
+			icon = 'icons/obj/items/playing_cards.dmi'
+		if("kotahi")
+			icon = 'icons/obj/items/kotahi_cards.dmi'
 
 /obj/item/toy/handcard/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -293,6 +299,7 @@
 	desc = "A flashy deck of Nanotransen KOTAHI playing cards. Usually sold alongside crayon packages."
 	icon = 'icons/obj/items/kotahi_cards.dmi'
 	icon_state = "deck"
+	card_type = "kotahi"
 
 /obj/item/toy/deck/kotahi/populate_deck()
 	var/datum/playingcard/P
@@ -333,3 +340,9 @@
 		P.name= "Draw 4"
 		P.card_icon = "Draw 4"
 		cards += P
+
+/obj/item/toy/deck/update_icon()
+	switch(cards.len)
+		if(72 to 108) icon_state = "deck"
+		if(37 to 72) icon_state = "deck_half"
+		if(0 to 36) icon_state = "deck_empty"

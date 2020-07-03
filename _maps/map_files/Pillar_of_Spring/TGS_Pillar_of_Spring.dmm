@@ -13184,6 +13184,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"Rg" = (
+/obj/structure/table/mainship,
+/obj/item/toy/deck/kotahi,
+/turf/open/floor/mainship,
+/area/mainship/living/cafeteria_starboard)
 "Ri" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -50496,7 +50501,7 @@ jl
 jU
 qC
 pR
-qe
+Rg
 qs
 pR
 Wl
