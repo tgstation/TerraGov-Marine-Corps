@@ -13,6 +13,9 @@
 
 /obj/item/toy/deck/Initialize()
 	. = ..()
+	populate_deck()
+
+/obj/item/toy/deck/proc/populate_deck()
 	var/datum/playingcard/P
 	for(var/suit in list("spades","clubs","diamonds","hearts"))
 
@@ -283,3 +286,50 @@
 
 /obj/item/toy/handcard/pickup(mob/user as mob)
 	src.update_icon()
+
+
+/obj/item/toy/deck/kotahi
+	name = "KOTAHI deck"
+	desc = "A flashy deck of Nanotransen KOTAHI playing cards. Usually sold alongside crayon packages."
+	icon = 'icons/obj/items/kotahi_cards.dmi'
+	icon_state = "deck"
+
+/obj/item/toy/deck/kotahi/populate_deck()
+	var/datum/playingcard/P
+	var/datum/playingcard/I
+
+	for(var/colour in list("Red","Yellow","Green","Blue"))
+		P = new()
+		P.name = "[colour] 0" //kotahi decks have only one colour of each 0, weird huh?
+		P.card_icon = "[colour] 0"
+		cards += P
+		for(var/k in 0 to 1) //two of each colour of number
+			I = new()
+			I.name += "[colour] skip"
+			I.card_icon = "[colour] skip"
+			cards += I
+		for(var/k in 0 to 1)
+			I = new()
+			I.name = "[colour] reverse"
+			I.card_icon = "[colour] reverse"
+			cards += I
+		for(var/k in 0 to 1)
+			I = new()
+			I.name += "[colour] draw 2"
+			I.card_icon = "[colour] draw 2"
+			cards += I
+		for(var/i in 1 to 9)
+			I = new()
+			I.name = "[colour] [i]"
+			I.card_icon = "[colour] [i]"
+			cards += I
+
+	for(var/k in 0 to 3) //4 wilds and draw 4s
+		P = new()
+		P.name = "Wildcard"
+		P.card_icon = "Wildcard"
+		cards += P
+	for(var/k in 0 to 3)
+		P.name= "Draw 4"
+		P.card_icon = "Draw 4"
+		cards += P
