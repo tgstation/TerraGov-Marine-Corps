@@ -1,6 +1,0 @@
-author: "MacBlaze1"
-delete-after: True
-changes: 
-  - balance: "gave the HMG 100 more health, and 50 bullet and 100 bio armor"
-  - bugfix: "fixed a bug in which picking up the HMG with an item in your active hand would cause it to disappear"
-  - balance: "HMG deploy and HMG pickup time increased by 2 seconds to 5 seconds"
