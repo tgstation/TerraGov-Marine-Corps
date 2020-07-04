@@ -157,3 +157,14 @@
 	gender = PLURAL
 	random_icon_states = null
 	amount = 0
+
+/obj/effect/decal/cleanable/blood/tracks/dustprints
+	name = "dusty footprints"
+	desc = "Whoops..."
+	coming_state = "mars1"
+	going_state  = "mars2"
+	amount = 0
+
+/obj/effect/decal/cleanable/blood/tracks/dustprints/Initialize()
+	. = ..()
+	QDEL_IN(src, 10 SECONDS)

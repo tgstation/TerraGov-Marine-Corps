@@ -69,6 +69,10 @@
 /turf/open/floor/plating/ground/mars
 	icon = 'icons/turf/bigred.dmi'
 
+/turf/open/floor/plating/ground/mars/random/Initialize()
+	. = ..()
+	dir = pick(GLOB.alldirs)
+
 /turf/open/floor/plating/ground/mars/random/cave
 	name = "cave"
 	icon_state = "mars_cave"
@@ -81,20 +85,36 @@
 	name = "dirt"
 	icon_state = "mars_tile"
 
-/turf/open/floor/plating/ground/mars/random/dirt
-	name = "dirt"
+/turf/open/floor/plating/ground/mars/random/dust
+	name = "dusty dirt"
 	icon_state = "mars_dirt"
+	var/dirt_color = "#b1503d"
 
-/turf/open/floor/plating/ground/mars/random/sand
-	name = "sand"
+
+
+turf/open/floor/plating/ground/mars/random/dust/Entered(atom/A, atom/OL)
+	. = ..()
+	if(iscarbon(A))
+		var/mob/living/carbon/C = A
+		if(!C.lying_angle && !(C.buckled && istype(C.buckled,/obj/structure/bed/chair)))
+			if(ishuman(C))
+				var/mob/living/carbon/human/H = C
+				src.AddTracks(/obj/effect/decal/cleanable/blood/tracks/dustprints,null,H.dir,0,dirt_color) // Coming
+				var/turf/from = get_step(H,reverse_direction(H.dir))
+				if(istype(from) && from)
+					from.AddTracks(/obj/effect/decal/cleanable/blood/tracks/dustprints,null,0,H.dir,dirt_color) // Going
+
+
+/turf/open/floor/plating/ground/mars/random/dust/sand
+	name = "dusty sand"
 	icon_state = "mars_sand"
 	shoefootstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
 	mediumxenofootstep = FOOTSTEP_SAND
 
-/turf/open/floor/plating/ground/mars/random/Initialize()
-	. = ..()
-	dir = pick(GLOB.alldirs)
+/turf/open/floor/plating/ground/mars/random/dust/dirt
+	name = "dusty dirt"
+	icon_state = "mars_dirt"
 
 /turf/open/floor/plating/ground/mars/dirttosand
 	name = "sand"
