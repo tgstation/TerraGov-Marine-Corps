@@ -746,10 +746,10 @@ TUNNEL
 		var/area/A = get_area(src)
 		if(A)
 			to_chat(creator, "<span class='xenoannounce'>You sense your acid well at [A.name] has been destroyed!</span>")
-	addtimer(CALLBACK(src,.proc/gasdestroy), 1 SECONDS)
+	addtimer(CALLBACK(src,.proc/release_smoke), 1 SECONDS)
 	return ..()
 
-/obj/effect/alien/resin/acidwell/proc/gasdestroy()
+/obj/effect/alien/resin/acidwell/proc/release_smoke()
 	var/datum/effect_system/smoke_spread/xeno/acid/A = new(gasturf)
 	A.set_up(clamp(charges,0,2),gasturf)
 	A.start()
@@ -833,7 +833,8 @@ TUNNEL
 		if(!charges)
 			return
 		C.adjustToxLoss(charges * 15)
-		C.apply_damage(20*charges,BURN,blocked=clamp(C.getarmor("acid"),0,50))
+		var/armor_blocked = clamp(C.getarmor("acid"), 0, 50)
+		C.apply_damage(20 * charges, BURN, blocked = armor_blocked)
 		charges = 0
 		update_icon()
 		return
