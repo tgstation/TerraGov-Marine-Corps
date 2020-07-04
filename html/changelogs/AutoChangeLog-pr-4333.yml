@@ -1,0 +1,4 @@
+author: "TheLordME"
+delete-after: True
+changes: 
+  - balance: "Decreases resin door opening delay from 10 to 7 frames."
