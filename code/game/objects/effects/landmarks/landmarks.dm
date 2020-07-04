@@ -350,7 +350,7 @@
 /obj/effect/landmark/weapon_spawn/tier6_weapon_spawn
 	name = "Tier meme Weapon Spawn"
 	icon_state = "weapon6"
-	weapon_list = list(
-		/obj/item/weapon/gun/pistol/chimp,
-		/obj/item/weapon/banhammer,
-	)
+	weapon_list = list(	/obj/item/weapon/gun/pistol/chimp,
+						/obj/item/weapon/banhammer,
+						/obj/item/weapon/chainsword,
+						)
