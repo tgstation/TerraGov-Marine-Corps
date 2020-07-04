@@ -26,4 +26,4 @@
 /mob/living/carbon/xenomorph/bull/handle_special_wound_states()
 	. = ..()
 	if(is_charging >= CHARGE_ON)
-		return image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="bull_wounded_charging", "layer"=-X_WOUND_LAYER)
+		return "bull_wounded_charging"
