@@ -77,10 +77,9 @@
 	if(!WT.isOn())
 		return FALSE
 
-	for(var/obj/effect/xenomorph/acid/A in loc)
-		if(A.acid_t == src)
-			to_chat(user, "You can't get near that, it's melting!")
-			return TRUE
+	if(current_acid)
+		to_chat(user, "<span class='warning'>You can't get near that, it's melting!<span>")
+		return TRUE
 
 	if(obj_integrity <= max_integrity * 0.2)
 		to_chat(user, "<span class='warning'>[src] has sustained too much structural damage and needs more metal plates to be repaired.</span>")
