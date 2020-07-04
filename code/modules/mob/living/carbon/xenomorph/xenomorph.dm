@@ -204,6 +204,7 @@
 
 	remove_from_hive()
 
+	vis_contents -= wound_overlay
 	QDEL_NULL(wound_overlay)
 
 	. = ..()
