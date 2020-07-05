@@ -120,3 +120,6 @@
 	var/specset //Simple way to track which set has the player taken
 
 	var/static/list/can_ride_typecache = typecacheof(list(/mob/living/carbon/human, /mob/living/simple_animal/parrot))
+
+	///Amount of deciseconds gained from the braindeath timer, usually by CPR.
+	var/revive_grace_time = 0

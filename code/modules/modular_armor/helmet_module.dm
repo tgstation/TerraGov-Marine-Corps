@@ -6,7 +6,7 @@
 /obj/item/helmet_module
 	name = "helmet module"
 	desc = "A dis-figured helmet module, in its prime this would've been a key item in your modular armor set... now its just trash."
-	icon = 'icons/mob/modular/modular_armor.dmi'
+	icon = 'icons/mob/modular/modular_helmet_attachment.dmi'
 	icon_state = "medium_helmet_icon"
 	item_state = "medium_helmet"
 

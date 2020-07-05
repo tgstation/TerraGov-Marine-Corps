@@ -359,7 +359,7 @@
 	equip_category = DROPSHIP_CREW_WEAPON
 	icon_state = "mg_system"
 	point_cost = 300
-	var/obj/machinery/m56d_hmg/mg_turret/deployed_mg
+	var/obj/machinery/standard_hmg/mg_turret/deployed_mg
 
 /obj/structure/dropship_equipment/mg_holder/Initialize()
 	. = ..()

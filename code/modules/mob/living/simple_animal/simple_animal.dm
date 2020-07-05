@@ -130,22 +130,24 @@
 	return
 
 
-/mob/living/simple_animal/death(gibbed)
-	. = ..()
-	if(!gibbed)
-		if(deathmessage || !del_on_death)
-			emote("deathgasp")
-	if(del_on_death)
-		. = ..()
-		//Prevent infinite loops if the mob Destroy() is overridden in such
-		//a manner as to cause a call to death() again
-		del_on_death = FALSE
-		qdel(src)
-	else
-		health = 0
-		icon_state = icon_dead
-		density = FALSE
+/mob/living/simple_animal/death(gibbing, deathmessage, silent)
+	if(stat == DEAD)
 		return ..()
+	if(!silent && !gibbing && !del_on_death && !deathmessage && src.deathmessage)
+		emote("deathgasp")
+		silent = TRUE //No need to for the parent to deathmessage again.
+	return ..()
+
+
+/mob/living/simple_animal/on_death()
+	health = 0
+	icon_state = icon_dead
+	density = FALSE
+
+	. = ..()
+
+	if(del_on_death && !QDELETED(src))
+		qdel(src)
 
 
 /mob/living/simple_animal/gib_animation()

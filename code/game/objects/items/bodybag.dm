@@ -267,7 +267,7 @@
 		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED), .proc/on_bodybag_occupant_death)
 
 
-/obj/structure/closet/bodybag/cryobag/proc/on_bodybag_occupant_death(datum/source, gibbed)
+/obj/structure/closet/bodybag/cryobag/proc/on_bodybag_occupant_death(mob/source, gibbing)
 	if(!QDELETED(bodybag_occupant))
 		visible_message("<span class='notice'>\The [src] rejects the corpse.</span>")
 	open()
