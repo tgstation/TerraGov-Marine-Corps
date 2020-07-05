@@ -862,7 +862,7 @@
 	recoil = 0
 	recoil_unwielded = 4
 	aim_slowdown = 1
-	wield_delay = 0.7 SECONDS
+	wield_delay = 1 SECONDS
 
 	var/rack_delay = 7
 	var/rack_sound = "tl-127_bolt.ogg"
