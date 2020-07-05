@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - bugfix: "Moving things bobbing/teleporting, especially at higher FPSes, will no longer do so"
