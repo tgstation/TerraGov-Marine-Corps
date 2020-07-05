@@ -159,6 +159,7 @@
 	.["Mark Object"] = "?_src_=vars;[HrefToken()];mark_object=[REF(src)]"
 	.["Delete"] = "?_src_=vars;[HrefToken()];delete=[REF(src)]"
 	.["Show VV To Player"] = "?_src_=vars;[HrefToken(TRUE)];expose=[REF(src)]"
+	.["View References"] = "?_src_=vars;[HrefToken(TRUE)];viewreferences=[REF(src)]"
 
 
 /client/proc/debug_variables(datum/D in world)
@@ -686,6 +687,9 @@
 		log_admin("Admin [key_name(usr)] showed [key_name(C)] a VV window of: [thing].")
 		message_admins("[ADMIN_TPMONTY(usr)] showed [key_name_admin(C)] a <a href='?_src_=vars;[HrefToken(TRUE)];datumrefresh=[REF(thing)]'>VV window</a>.")
 
+	if(href_list[VV_HK_VIEW_REFERENCES])
+		var/target = locate(href_list[VV_HK_VIEW_REFERENCES])
+		usr.client.view_refs(target)
 
 	if(href_list["rename"])
 		if(!check_rights(R_DEBUG))

@@ -870,6 +870,7 @@
 #include "code\modules\admin\verbs\legacy.dm"
 #include "code\modules\admin\verbs\map_template.dm"
 #include "code\modules\admin\verbs\pray.dm"
+#include "code\modules\admin\verbs\reference_tracking.dm"
 #include "code\modules\admin\verbs\shuttlepanel.dm"
 #include "code\modules\admin\verbs\varedit.dm"
 #include "code\modules\admin\verbs\whitelist.dm"
