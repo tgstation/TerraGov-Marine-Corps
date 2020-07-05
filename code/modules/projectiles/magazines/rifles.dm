@@ -284,12 +284,12 @@
 	gun_type = /obj/item/weapon/gun/rifle/sectoid_rifle
 
 //-------------------------------------------------------
-//Marine mag sniper
+//Marine magazine sniper, or the TL-127.
 /obj/item/ammo_magazine/rifle/sniper
-	name = "xyz sniper magazine"
-	desc = "A magazine filled with powerful plasma rounds. The ammo inside doesn't look like anything you've seen before."
-	caliber = "alien alloy"
-	icon_state = "alien_rifle"
+	name = "TL-127 bolt action sniper magazine"
+	desc = "A box magazine filled with 8.6x70mm rifle rounds for the TL-127."
+	caliber = "8.6×70mm"
+	icon_state = "tl127"
 	default_ammo = /datum/ammo/bullet/sniper/pfc
 	max_rounds = 10
 	gun_type = /obj/item/weapon/gun/rifle/chambered

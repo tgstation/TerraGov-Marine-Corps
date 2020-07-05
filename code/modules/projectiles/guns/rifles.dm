@@ -819,17 +819,19 @@
 	return TRUE
 
 
+//-------------------------------------------------------
+//TL-127 bolt action sniper rifle
 
 /obj/item/weapon/gun/rifle/chambered
 	name = "\improper TL-127 sniper rifle"
-	desc = "The TL-127 is the standard issue bolt action sniper rifle used by the TGMC. Known for its long range accuracy and use by marksmen. Uses 10x28mm caseless box magazines."
+	desc = "The TL-127 is the standard issue bolt action sniper rifle used by the TGMC. Known for its long range accuracy and use by marksmen despite its age. Uses 8.6×70mm box magazines."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "tl127"
 	item_state = "tl127" //thank you Alterist
-	fire_sound = 'sound/weapons/guns/fire/mosin.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tl127.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
-	caliber = "10x28 caseless" //codex
+	caliber = "8.6×70mm" //codex
 	max_shells = 10 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/sniper
 	type_of_casings = "cartridge"
@@ -862,7 +864,7 @@
 	wield_delay = 0.7 SECONDS
 
 	var/rack_delay = 7
-	var/rack_sound
+	var/rack_sound = bolt.ogg
 	var/racked_bolt = TRUE
 	var/cooldown_time
 
@@ -882,7 +884,7 @@
 	return rack_bolt(user)
 
 /obj/item/weapon/gun/rifle/chambered/proc/rack_bolt(mob/user)
-	to_chat(user, "<span class='notice'>You cycle the bolt of the [src], loading a new round!</span>")
+	to_chat(user, "<span class='notice'>You cycle the bolt of the [src], loading in a new round!</span>")
 	cooldown_time = world.time + rack_delay
 	racked_bolt = TRUE
 	playsound(loc, rack_sound, 25, 1, 4)
