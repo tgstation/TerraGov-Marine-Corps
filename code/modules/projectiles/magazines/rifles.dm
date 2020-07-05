@@ -285,8 +285,8 @@
 
 //-------------------------------------------------------
 //Marine magazine sniper, or the TL-127.
-/obj/item/ammo_magazine/rifle/chamberedsniper
-	name = "TL-127 bolt action sniper magazine"
+/obj/item/ammo_magazine/rifle/chamberedrifle
+	name = "TL-127 bolt action rifle magazine"
 	desc = "A box magazine filled with 8.6x70mm rifle rounds for the TL-127."
 	caliber = "8.6×70mm"
 	icon_state = "tl127"

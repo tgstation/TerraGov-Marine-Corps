@@ -832,7 +832,7 @@
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
 	caliber = "8.6×70mm" //codex
 	max_shells = 10 //codex
-	current_mag = /obj/item/ammo_magazine/rifle/chamberedsniper
+	current_mag = /obj/item/ammo_magazine/rifle/chamberedrifle
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
 						/obj/item/attachable/bayonetknife,
