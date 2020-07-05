@@ -822,7 +822,7 @@
 
 /obj/item/weapon/gun/rifle/chambered
 	name = "\improper TL-127 bolt action rifle"
-	desc = "The TL-127 is the standard issue bolt action rifle used by the TGMC. Known for its long range accuracy and use by marksmen despite its age, has an irremoveable scope. Uses 8.6×70mm box magazines."
+	desc = "The TL-127 is the standard issue bolt action rifle used by the TGMC. Known for its long range accuracy and use by marksmen despite its age and lack of IFF. It has an irremoveable scope. Uses 8.6×70mm box magazines."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "tl127"
 	item_state = "tl127" //thank you Alterist
