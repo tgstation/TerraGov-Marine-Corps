@@ -56,8 +56,6 @@
 	if(!job) //It might be setup on spawn.
 		setup_job()
 
-	RegisterSignal(src, COMSIG_ATOM_DIR_CHANGE, .proc/update_wound_dir)
-
 	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, .proc/devour_grabbed) //Devour ability.
 
 	AddComponent(/datum/component/bump_attack)

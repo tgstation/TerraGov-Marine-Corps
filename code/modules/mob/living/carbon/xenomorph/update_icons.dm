@@ -137,7 +137,20 @@
 ///Used to display the xeno wounds without rapidly switching overlays
 /atom/movable/vis_obj/xeno_wounds
 	icon = 'icons/Xeno/wound_overlays.dmi'
-	dir = SOUTH
+	var/mob/living/carbon/xenomorph/wound_owner
 
-/mob/living/carbon/xenomorph/proc/update_wound_dir(datum/source, old_dir, new_dir)
-	wound_overlay.dir = new_dir
+/atom/movable/vis_obj/xeno_wounds/Initialize(mapload, mob/living/carbon/xenomorph/owner)
+	. = ..()
+	if(owner)
+		wound_owner = owner
+		RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, .proc/on_dir_change)
+
+/atom/movable/vis_obj/xeno_wounds/Destroy()
+	if(wound_owner)
+		UnregisterSignal(wound_owner, COMSIG_ATOM_DIR_CHANGE)
+		wound_owner = null
+	return ..()
+
+/atom/movable/vis_obj/xeno_wounds/proc/on_dir_change(mob/living/carbon/xenomorph/source, olddir, newdir)
+	if(newdir != dir)
+		dir = newdir
