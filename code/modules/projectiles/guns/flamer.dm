@@ -510,8 +510,7 @@
 // override this proc to give different walking-over-fire effects
 /mob/living/proc/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
 	adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
-	if (prob(firelevel + 2*fire_stacks)) //the more soaked in fire you are, the likelier to be ignited
-		IgniteMob()
+	IgniteMob()
 	var/armor_block = run_armor_check(null, "fire")
 	if(apply_damage(round(burnlevel*0.5)* fire_mod, BURN, null, armor_block))
 		UPDATEHEALTH(src)
@@ -593,8 +592,7 @@
 		adjustFireLoss(rand(0, burnlevel * 0.25)) //Does small burn damage to a person wearing one of the suits.
 		return
 	adjust_fire_stacks(burnlevel) //If i stand in the fire i deserve all of this. Also Napalm stacks quickly.
-	if(prob(firelevel))
-		IgniteMob()
+	IgniteMob()
 	adjustFireLoss(rand(10 , burnlevel)) //Including the fire should be way stronger.
 	to_chat(src, "<span class='warning'>You are burned!</span>")
 
