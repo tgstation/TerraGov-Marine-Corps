@@ -822,7 +822,7 @@
 
 /obj/item/weapon/gun/rifle/chambered
 	name = "\improper TL-127 sniper rifle"
-	desc = "The TL-127 is the standard issue bolt action sniper rifle used by the TGMC. Known for its long range accuracy and use by marksmen despite its age. Uses 8.6×70mm box magazines."
+	desc = "The TL-127 is the standard issue bolt action sniper rifle used by the TGMC. Known for its long range accuracy and use by marksmen despite its age, has an irremoveable scope. Uses 8.6×70mm box magazines."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "tl127"
 	item_state = "tl127" //thank you Alterist
@@ -832,14 +832,11 @@
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
 	caliber = "8.6×70mm" //codex
 	max_shells = 10 //codex
-	current_mag = /obj/item/ammo_magazine/rifle/sniper
+	current_mag = /obj/item/ammo_magazine/rifle/chamberedsniper
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/bayonetknife,
-						/obj/item/attachable/scope,//aaaaaaaaa
-						/obj/item/attachable/flashlight,
+						/obj/item/attachable/scope/unremovable/tl127,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/suppressor,
