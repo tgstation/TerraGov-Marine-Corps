@@ -994,6 +994,20 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = 0
 	movement_acc_penalty_mod = 0
 
+/obj/item/attachable/stock/tl127stock
+	name = "\improper TL-127 stock"
+	desc = "A irremovable TL-127 sniper rifle stock."
+	icon_state = "tl127stock"
+	wield_delay_mod = 0 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+	accuracy_mod = 0
+	recoil_mod = 0
+	melee_mod = 0
+	scatter_mod = 0
+	movement_acc_penalty_mod = 0
+
 /obj/item/attachable/stock/t12stock
 	name = "\improper T-12 stock"
 	desc = "A specialized stock for the T-12."
