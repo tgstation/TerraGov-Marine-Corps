@@ -830,7 +830,8 @@
 	item_state = "tl127" //thank you Alterist
 	fire_sound = 'sound/weapons/guns/fire/tl127.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
-	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
 	caliber = "8.6×70mm" //codex
 	max_shells = 10 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/sniper
@@ -864,7 +865,7 @@
 	wield_delay = 0.7 SECONDS
 
 	var/rack_delay = 7
-	var/rack_sound = bolt.ogg
+	var/rack_sound = tl-127_bolt.ogg
 	var/racked_bolt = TRUE
 	var/cooldown_time
 
