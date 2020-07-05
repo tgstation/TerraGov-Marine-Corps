@@ -821,14 +821,15 @@
 
 
 /obj/item/weapon/gun/rifle/chambered
-	name = "\improper MJP rifle"
-	desc = "A mosin nagant rifle, even just looking at it you can feel the cosmoline already. Commonly known by its slang, \"Moist Nugget\", by downbrained colonists and outlaws."
-	icon_state = "mosin"
-	item_state = "mosin" //thank you Alterist
+	name = "\improper TL-127 sniper rifle"
+	desc = "The TL-127 is the standard issue bolt action sniper rifle used by the TGMC. Known for its long range accuracy and use by marksmen. Uses 10x28mm caseless box magazines."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "tl127"
+	item_state = "tl127" //thank you Alterist
 	fire_sound = 'sound/weapons/guns/fire/mosin.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
-	caliber = "dumb nerd caliber" //codex
+	caliber = "10x28 caseless" //codex
 	max_shells = 10 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/sniper
 	type_of_casings = "cartridge"
@@ -848,8 +849,7 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 14)
 	starting_attachment_types = list(/obj/item/attachable/scope,//aaaaaa
-									/obj/item/attachable/mosinbarrel,
-									/obj/item/attachable/stock/mosin)
+									/obj/item/attachable/stock/tl127)
 
 	fire_delay = 1.2 SECONDS
 	accuracy_mult = 1.35
