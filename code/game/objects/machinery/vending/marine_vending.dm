@@ -35,6 +35,8 @@
 					/obj/item/ammo_magazine/pistol/standard_heavypistol = 25,
 					/obj/item/weapon/gun/energy/lasgun/lasrifle = 10,
 					/obj/item/cell/lasgun/lasrifle = 20,
+					/obj/item/weapon/gun/rifle/chambered = 20,
+					/obj/item/ammo_magazine/rifle/chamberedrifle = 20,
 					/obj/item/weapon/gun/shotgun/pump/t35 = 10,
 					/obj/item/weapon/gun/shotgun/combat/standardmarine = 10,
 					/obj/item/ammo_magazine/shotgun = 10,
@@ -47,6 +49,8 @@
 					/obj/item/explosive/grenade/frag = 30,
 					/obj/item/weapon/gun/pistol/standard_pocketpistol = 25,
 					/obj/item/ammo_magazine/pistol/standard_pocketpistol = 50,
+					/obj/item/weapon/gun/flamer/marinestandard = 5,
+					/obj/item/ammo_magazine/flamer_tank/large = 10,
 					/obj/item/attachable/bayonetknife = 20,
 					/obj/item/weapon/throwing_knife = 5,
 					/obj/item/storage/box/m94 = 5,
@@ -97,7 +101,6 @@
 					/obj/item/ammo_magazine/rocket = 3,
 					/obj/item/ammo_magazine/minigun = 2,
 					/obj/item/ammo_magazine/shotgun/mbx900 = 2,
-					/obj/item/ammo_magazine/flamer_tank/large = 1,
 					/obj/item/bodybag/tarp = 2,
 					/obj/item/explosive/plastique = 2)
 
@@ -120,6 +123,7 @@
 					/obj/item/weapon/gun/rifle/standard_dmr = 10,
 					/obj/item/weapon/gun/rifle/standard_br = 10,
 					/obj/item/weapon/gun/energy/lasgun/lasrifle = 10,
+					/obj/item/weapon/gun/rifle/chambered = 10,
 					/obj/item/weapon/gun/shotgun/pump/t35 = 10,
 					/obj/item/weapon/gun/shotgun/combat/standardmarine = 10,
 					/obj/item/weapon/gun/rifle/standard_autoshotgun = 10,
@@ -128,7 +132,7 @@
 					/obj/item/weapon/gun/shotgun/double = 5,
 					/obj/item/weapon/gun/shotgun/pump/ksg = 5,
 					/obj/item/weapon/gun/shotgun/pump/bolt = 5,
-					/obj/item/weapon/gun/flamer = 3,
+					/obj/item/weapon/gun/flamer/marinestandard = 5,
 					/obj/item/explosive/mine = 5,
 					/obj/item/explosive/grenade/frag/m15 = 25,
 					/obj/item/explosive/grenade/incendiary = 25,
@@ -177,12 +181,14 @@
 					/obj/item/ammo_magazine/rifle/standard_dmr = 50,
 					/obj/item/ammo_magazine/rifle/standard_br = 50,
 					/obj/item/cell/lasgun/lasrifle = 50,
+					/obj/item/ammo_magazine/rifle/chamberedrifle = 50,
 					/obj/item/ammo_magazine/shotgun = 50,
 					/obj/item/ammo_magazine/shotgun/buckshot = 50,
 					/obj/item/ammo_magazine/shotgun/flechette = 50,
 					/obj/item/ammo_magazine/rifle/tx15_slug = 50,
 					/obj/item/ammo_magazine/rifle/tx15_flechette = 50,
 					/obj/item/ammo_magazine/pistol/standard_pocketpistol = 50,
+					/obj/item/ammo_magazine/flamer_tank/large = 15,
 					/obj/item/ammo_magazine/standard_smartmachinegun = 2,
 					/obj/item/ammo_magazine/flamer_tank = 10,
 					/obj/item/ammo_magazine/smg/ppsh/ = 30,
@@ -525,7 +531,7 @@
 
 	premium = list(
 					/obj/item/storage/box/sentry = 1,
-					/obj/item/storage/box/m56d_hmg = 1
+					/obj/item/storage/box/standard_hmg = 1
 					)
 	shared = list(
 				/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
@@ -652,6 +658,7 @@
 					/obj/item/clothing/under/marine/standard = 20,
 					/obj/item/storage/backpack/marine/standard = 10,
 					/obj/item/storage/backpack/marine/satchel = 10,
+					/obj/item/tool/weldpack/marinestandard = 10,
 					/obj/item/clothing/gloves/marine = 20,
 					/obj/item/clothing/suit/storage/marine = 10,
 					/obj/item/clothing/suit/storage/marine/M3HB = 10,
@@ -725,7 +732,8 @@
 					/obj/item/armor_module/armor/legs/light = 20,
 					/obj/item/clothing/head/modular/heavy = 20,
 					/obj/item/clothing/head/modular/medium = 20,
-					/obj/item/clothing/head/modular/light = 20
+					/obj/item/clothing/head/modular/light = 20,
+					/obj/item/facepaint/ = 20
 					)
 
 	prices = list()

@@ -30,31 +30,45 @@
 			if(health >= get_crit_threshold())
 				help_shake_act(H)
 				return 1
-//			if(H.health < -75)	return 0
+
+			if((head && (head.flags_inventory & COVERMOUTH)) || (wear_mask && (wear_mask.flags_inventory & COVERMOUTH)))
+				to_chat(H, "<span class='boldnotice'>Remove his mask!</span>")
+				return FALSE
+
+			if(stat == DEAD && !check_tod(src))
+				to_chat(H, "<span class='boldnotice'>Can't help this one. Body has gone cold.</span>")
+				return FALSE
 
 			if((H.head && (H.head.flags_inventory & COVERMOUTH)) || (H.wear_mask && (H.wear_mask.flags_inventory & COVERMOUTH)))
 				to_chat(H, "<span class='boldnotice'>Remove your mask!</span>")
-				return 0
-			if((head && (head.flags_inventory & COVERMOUTH)) || (wear_mask && (wear_mask.flags_inventory & COVERMOUTH)))
-				to_chat(H, "<span class='boldnotice'>Remove his mask!</span>")
-				return 0
+				return FALSE
 
 			//CPR
 			if(H.action_busy)
-				return 1
+				return TRUE
+
 			H.visible_message("<span class='danger'>[H] is trying perform CPR on [src]!</span>", null, null, 4)
 
-			if(do_mob(H, src, HUMAN_STRIP_DELAY, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
-				if(health > get_death_threshold() && health < get_crit_threshold())
-					var/suff = min(getOxyLoss(), 5) //Pre-merge level, less healing, more prevention of dieing.
-					adjustOxyLoss(-suff)
-					updatehealth()
-					visible_message("<span class='warning'> [H] performs CPR on [src]!</span>", null, null, 3)
-					to_chat(src, "<span class='boldnotice'>You feel a breath of fresh air enter your lungs. It feels good.</span>")
-					to_chat(H, "<span class='warning'>Repeat at least every 7 seconds.</span>")
+			if(!do_mob(H, src, HUMAN_STRIP_DELAY, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL) || undefibbable)
+				return TRUE
 
+			if(health > get_death_threshold() && health < get_crit_threshold())
+				var/suff = min(getOxyLoss(), 5) //Pre-merge level, less healing, more prevention of dieing.
+				adjustOxyLoss(-suff)
+				updatehealth()
+				visible_message("<span class='warning'> [H] performs CPR on [src]!</span>",
+					"<span class='boldnotice'>You feel a breath of fresh air enter your lungs. It feels good.</span>",
+					vision_distance = 3)
+				to_chat(H, "<span class='warning'>Repeat at least every 7 seconds.</span>")
+			else if(stat == DEAD && check_tod(src) && !COOLDOWN_CHECK(src, COOLDOWN_CPR))
+				COOLDOWN_START(src, COOLDOWN_CPR, 7 SECONDS)
+				revive_grace_time += 5 SECONDS
+				visible_message("<span class='warning'> [H] performs CPR on [src]!</span>", vision_distance = 3)
+				to_chat(H, "<span class='warning'>The patient gains a little more time. Repeat every 7 seconds.</span>")
+			else
+				to_chat(H, "<span class='warning'>You fail to aid [src].</span>")
 
-			return 1
+			return TRUE
 
 		if(INTENT_GRAB)
 			if(H == src || anchored)

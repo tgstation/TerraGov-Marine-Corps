@@ -100,7 +100,7 @@
 // ***************************************
 // *********** Death
 // ***************************************
-/mob/living/carbon/xenomorph/larva/death(gibbed, deathmessage)
+/mob/living/carbon/xenomorph/larva/on_death()
 	log_game("[key_name(src)] died as a Larva at [AREACOORD(src)].")
 	message_admins("[ADMIN_TPMONTY(src)] died as a Larva.")
 	return ..()

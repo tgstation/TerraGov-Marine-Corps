@@ -253,8 +253,10 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 			if(bitf == MARINE_CAN_BUY_UNIFORM && ishumanbasic(usr))
 				var/mob/living/carbon/human/H = usr
 				new /obj/item/radio/headset/mainship/marine(loc, H.assigned_squad, vendor_role)
-				if(H.job != SQUAD_ENGINEER)
+				if(!istype(H.job, /datum/job/terragov/squad/engineer))
 					new /obj/item/clothing/gloves/marine(loc, H.assigned_squad, vendor_role)
+				if(istype(H.job, /datum/job/terragov/squad/leader))
+					new /obj/item/hud_tablet(loc, vendor_role, H.assigned_squad)
 				if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
 					new /obj/item/clothing/mask/rebreather/scarf(loc)
 
@@ -455,6 +457,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/tie/storage/white_vest/medic = list(CAT_WEB, "Corpsman white vest", 0, "black"),
 		/obj/item/clothing/tie/storage/webbing = list(CAT_WEB, "Tactical webbing", 0, "black"),
 		/obj/item/clothing/tie/holster = list(CAT_WEB, "Shoulder handgun holster", 0, "black"),
+		/obj/item/clothing/tie/storage/white_vest = list(CAT_WEB, "Corpsman surgical vest", 0, "black"),
 		/obj/item/storage/belt/combatLifesaver = list(CAT_BEL, "Lifesaver belt", 0, "orange"),
 		/obj/item/storage/belt/medical = list(CAT_BEL, "Medical belt", 0, "black"),
 		/obj/item/storage/pouch/medical = list(CAT_POU, "Medical pouch", 0, "orange"),
@@ -843,6 +846,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/stack/sandbags_empty/half = list(CAT_ENGSUP, "Sandbags x25", 10, "orange"),
 		/obj/item/tool/pickaxe/plasmacutter = list(CAT_ENGSUP, "Plasma cutter", 20, "black"),
 		/obj/item/storage/box/minisentry = list(CAT_ENGSUP, "UA-580 point defense sentry kit", 26, "black"),
+		/obj/item/storage/box/standard_hmg	= list(CAT_ENGSUP, "TL-102 Mounted Heavy Smartgun Crate", 35, "black"),
 		/obj/item/explosive/plastique = list(CAT_ENGSUP, "Plastique explosive", 3, "black"),
 		/obj/item/detpack = list(CAT_ENGSUP, "Detonation pack", 5, "black"),
 		/obj/item/tool/shovel/etool = list(CAT_ENGSUP, "Entrenching tool", 1, "black"),
@@ -1110,7 +1114,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						)
 
 /obj/effect/essentials_set/modular/light
-	desc = "A set of Light Jaeger armor, uding an exoskeleton, helmet, armor plates and a lamp attachment."
+	desc = "A set of Light Jaeger armor, including an exoskeleton, helmet, armor plates and a lamp attachment."
 	spawned_gear_list = list(
 						/obj/item/clothing/suit/modular,
 						/obj/item/clothing/head/modular/light,
@@ -1121,7 +1125,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						)
 
 /obj/effect/essentials_set/modular/medium
-	desc = "A set of Medium Jaeger armor, uding an exoskeleton, helmet, armor plates and a lamp attachment."
+	desc = "A set of Medium Jaeger armor, including an exoskeleton, helmet, armor plates and a lamp attachment."
 	spawned_gear_list = list(
 						/obj/item/clothing/suit/modular,
 						/obj/item/clothing/head/modular/medium,

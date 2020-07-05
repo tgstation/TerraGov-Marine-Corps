@@ -31,7 +31,7 @@
 
 	var/sunder_recov = xeno_caste.sunder_recover * -1
 	if(resting)
-		sunder_recov += 0.5
+		sunder_recov -= 0.5
 	adjust_sunder(sunder_recov)
 	handle_aura_receiver()
 	handle_living_health_updates()

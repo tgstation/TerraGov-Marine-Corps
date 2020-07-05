@@ -178,6 +178,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		enable_squadhud()
 	if(camera)
 		camera.c_tag = user.name
+		if(user.assigned_squad)
+			camera.network |= lowertext(user.assigned_squad.name)
 	return ..()
 
 
@@ -191,6 +193,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			squadhud = null
 	if(camera)
 		camera.c_tag = "Unknown"
+		if(user.assigned_squad)
+			camera.network -= lowertext(user.assigned_squad.name)
 	return ..()
 
 

@@ -76,7 +76,7 @@
 						/obj/item/attachable/attached_gun/shotgun)
 
     flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
-    gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST, GUN_FIREMODE_AUTOMATIC)
+    gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
     starting_attachment_types = list(/obj/item/attachable/stock/t18stock)
     attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 16,"rail_x" = 10, "rail_y" = 19, "under_x" = 18, "under_y" = 13, "stock_x" = 0, "stock_y" = 13)
 
@@ -127,7 +127,7 @@
 						/obj/item/attachable/attached_gun/shotgun)
 
     flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
-    gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST, GUN_FIREMODE_AUTOMATIC)
+    gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
     starting_attachment_types = list(/obj/item/attachable/stock/t12stock)
     attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 23, "under_x" = 20, "under_y" = 11, "stock_x" = 0, "stock_y" = 13)
 
@@ -261,7 +261,6 @@
 	max_shells = 40 //codex
 	current_mag = /obj/item/ammo_magazine/rifle
 	attachable_allowed = list(
-						/obj/item/attachable/quickfire,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/bayonetknife,
@@ -346,7 +345,6 @@
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/scope/mini,
-						/obj/item/attachable/quickfire,
 						/obj/item/attachable/gyro,
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/scope)
@@ -402,7 +400,7 @@
 	desc = "A crude, cheaply produced battle carbine copy capable of automatic fire, a shortened version of the Kalashnikov rifle. Commonly found in the hands of criminals or mercenaries."
 	icon_state = "mar30"
 	item_state = "mar30"
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	starting_attachment_types = null
 
 	fire_delay = 0.25 SECONDS
@@ -453,7 +451,7 @@
 						/obj/item/attachable/scope/mini)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST, GUN_FIREMODE_AUTOMATIC)
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 18, "under_x" = 22, "under_y" = 15, "stock_x" = 19, "stock_y" = 13)
 	starting_attachment_types = list(/obj/item/attachable/stock/m16, /obj/item/attachable/m16sight)
 
@@ -819,26 +817,26 @@
 	return TRUE
 
 
+//-------------------------------------------------------
+//TL-127 bolt action sniper rifle
 
 /obj/item/weapon/gun/rifle/chambered
-	name = "\improper TL-127 sniper rifle"
-	desc = "The TL-127 is the standard issue bolt action sniper rifle used by the TGMC. Known for its long range accuracy and use by marksmen. Uses 10x28mm caseless box magazines."
+	name = "\improper TL-127 bolt action rifle"
+	desc = "The TL-127 is the standard issue bolt action rifle used by the TGMC. Known for its long range accuracy and use by marksmen despite its age and lack of IFF. It has an irremoveable scope. Uses 8.6×70mm box magazines."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "tl127"
 	item_state = "tl127" //thank you Alterist
-	fire_sound = 'sound/weapons/guns/fire/mosin.ogg'
+	fire_sound = 'sound/weapons/guns/fire/tl127.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
-	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
-	caliber = "10x28 caseless" //codex
+	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
+	caliber = "8.6×70mm" //codex
 	max_shells = 10 //codex
-	current_mag = /obj/item/ammo_magazine/rifle/sniper
+	current_mag = /obj/item/ammo_magazine/rifle/chamberedrifle
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/bayonetknife,
-						/obj/item/attachable/scope,//aaaaaaaaa
-						/obj/item/attachable/flashlight,
+						/obj/item/attachable/scope/unremovable/tl127,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/suppressor,
@@ -846,10 +844,11 @@
 						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/compensator)
 
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_CAN_POINTBLANK
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
-	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 14)
-	starting_attachment_types = list(/obj/item/attachable/scope,//aaaaaa
-									/obj/item/attachable/stock/tl127)
+	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 19,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 9, "stock_y" = 12)
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl127,
+									/obj/item/attachable/stock/tl127stock)
 
 	fire_delay = 1.2 SECONDS
 	accuracy_mult = 1.35
@@ -859,10 +858,10 @@
 	recoil = 0
 	recoil_unwielded = 4
 	aim_slowdown = 1
-	wield_delay = 0.7 SECONDS
+	wield_delay = 1 SECONDS
 
 	var/rack_delay = 7
-	var/rack_sound
+	var/rack_sound = "tl-127_bolt.ogg"
 	var/racked_bolt = TRUE
 	var/cooldown_time
 
@@ -882,7 +881,7 @@
 	return rack_bolt(user)
 
 /obj/item/weapon/gun/rifle/chambered/proc/rack_bolt(mob/user)
-	to_chat(user, "<span class='notice'>You cycle the bolt of the [src], loading a new round!</span>")
+	to_chat(user, "<span class='notice'>You cycle the bolt of the [src], loading in a new round!</span>")
 	cooldown_time = world.time + rack_delay
 	racked_bolt = TRUE
 	playsound(loc, rack_sound, 25, 1, 4)

@@ -108,8 +108,8 @@ WEAPONS
 	cost = 70
 
 /datum/supply_packs/weapons/m56d_emplacement
-	name = "M56D Stationary Machinegun"
-	contains = list(/obj/item/storage/box/m56d_hmg)
+	name = "TL-102 Mounted Heavy Smartgun"
+	contains = list(/obj/item/storage/box/standard_hmg)
 	cost = 80
 
 /datum/supply_packs/weapons/specgrenadier
@@ -143,14 +143,6 @@ WEAPONS
 		/obj/item/weapon/gun/launcher/rocket,
 		/obj/item/ammo_magazine/rocket,
 		/obj/item/ammo_magazine/rocket,
-	)
-	cost = 100
-
-/datum/supply_packs/weapons/specpyro
-	name = "Pyro Specialist kit"
-	contains = list(
-		/obj/item/weapon/gun/flamer/M240T,
-		/obj/item/storage/backpack/marine/engineerpack/flamethrower,
 	)
 	cost = 100
 
@@ -256,6 +248,13 @@ WEAPONS
 		/obj/item/ammo_magazine/shotgun/,
 		/obj/item/ammo_magazine/shotgun/buckshot,
 		/obj/item/ammo_magazine/shotgun/flechette,
+	)
+	cost = 10
+
+/datum/supply_packs/weapons/flamethrower
+	name = "Surplus flamethrower"
+	contains = list(
+		/obj/item/weapon/gun/flamer/marinestandard,
 	)
 	cost = 10
 
@@ -702,19 +701,9 @@ AMMO
 	cost = 15
 
 /datum/supply_packs/ammo/napalm
-	name = "M240 fuel crate"
+	name = "TL-84 normal fuel tank"
 	contains = list(/obj/item/ammo_magazine/flamer_tank)
-	cost = 5
-
-/datum/supply_packs/ammo/pyro
-	name = "M240-T fuels"
-	contains = list(
-		/obj/item/ammo_magazine/flamer_tank/large,
-		/obj/item/ammo_magazine/flamer_tank/large,
-		/obj/item/ammo_magazine/flamer_tank/large/B,
-		/obj/item/ammo_magazine/flamer_tank/large/X,
-	)
-	cost = 60
+	cost = 3
 
 /datum/supply_packs/ammo/mortar_ammo_he
 	name = "M402 mortar HE shell"
@@ -747,8 +736,8 @@ AMMO
 	cost = 10
 
 /datum/supply_packs/ammo/m56d
-	name = "M56D mounted smartgun ammo"
-	contains = list(/obj/item/ammo_magazine/m56d)
+	name = "TL-102 mounted heavy smartgun ammo"
+	contains = list(/obj/item/ammo_magazine/standard_hmg)
 	cost = 15
 
 /datum/supply_packs/ammo/lasguncharger

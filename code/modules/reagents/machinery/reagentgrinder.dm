@@ -24,6 +24,7 @@
 		/obj/item/stack/sheet/mineral/gold = list(/datum/reagent/gold = 20),
 		/obj/item/grown/nettle/death = list(/datum/reagent/toxin/acid/polyacid = 0),
 		/obj/item/grown/nettle = list(/datum/reagent/toxin/acid = 0),
+		/obj/item/alien_embryo = list(/datum/reagent/consumable/larvajelly = 5),
 
 		//Blender Stuff
 		/obj/item/reagent_containers/food/snacks/grown/soybeans = list(/datum/reagent/consumable/drink/milk/soymilk = 0),
@@ -360,6 +361,22 @@
 			if(beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
 				break
 		remove_object(O)
+
+	//special xeno grinding
+	for (var/obj/item/alien_embryo/O in holdingitems)
+		var/allowed = get_allowed_by_id(O)
+		if(beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
+			break
+		for(var/i = 1; i <= round(O.amount, 1); i++)
+			for (var/r_id in allowed)
+				var/space = beaker.reagents.maximum_volume - beaker.reagents.total_volume
+				var/amount = allowed[r_id]
+				beaker.reagents.add_reagent(r_id,min(amount, space))
+				if(space < amount)
+					break
+			if(i == round(O.amount, 1))
+				remove_object(O)
+				break
 
 	//Everything else - Transfers reagents from it into beaker
 	for(var/obj/item/reagent_containers/O in holdingitems)
