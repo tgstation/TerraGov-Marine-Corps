@@ -131,7 +131,7 @@
 					/obj/item/weapon/gun/pistol/standard_pocketpistol = 20,
 					/obj/item/weapon/gun/shotgun/double = 5,
 					/obj/item/weapon/gun/shotgun/pump/ksg = 5,
-					/obj/item/weapon/gun/shotgun/pump/bolt = 5,
+					/obj/item/weapon/gun/shotgun/pump/bolt = 2,
 					/obj/item/weapon/gun/flamer/marinestandard = 5,
 					/obj/item/explosive/mine = 5,
 					/obj/item/explosive/grenade/frag/m15 = 25,
@@ -193,7 +193,7 @@
 					/obj/item/ammo_magazine/flamer_tank = 10,
 					/obj/item/ammo_magazine/smg/ppsh/ = 30,
 					/obj/item/ammo_magazine/smg/ppsh/extended = 10,
-					/obj/item/ammo_magazine/rifle/bolt = 30,
+					/obj/item/ammo_magazine/rifle/bolt = 7,
 					)
 	premium = list()
 
