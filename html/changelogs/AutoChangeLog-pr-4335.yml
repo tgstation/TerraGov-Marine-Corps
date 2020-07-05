@@ -1,0 +1,4 @@
+author: "Rohesie"
+delete-after: True
+changes: 
+  - rscadd: "Marines can CPR defibable bodies every 7 seconds, buying them some time."
