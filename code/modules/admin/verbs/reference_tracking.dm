@@ -1,8 +1,9 @@
 #define VV_HK_TARGET "target"
 /world/proc/enable_reference_tracking()
-	var/extools = world.GetConfig("env", "EXTOOLS_DLL") || (world.system_type == MS_WINDOWS ? "./byond-extools.dll" : "./libbyond-extools.so")
-	if (fexists(extools))
-		call(extools, "ref_tracking_initialize")()
+	// var/extools = /*world.GetConfig("env", "EXTOOLS_DLL") ||*/ "byond-extools.dll"
+	if(!fexists("./byond-extools.dll"))
+		stack_trace("fucking pice of shit")
+	call("./byond-extools.dll", "ref_tracking_initialize")()
 
 /proc/get_back_references(datum/D)
 	CRASH("/proc/get_back_references not hooked by extools, reference tracking will not function!")
