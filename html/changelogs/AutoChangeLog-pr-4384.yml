@@ -1,7 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes: 
-  - rscadd: "Added the TL-84 and M-22 marine welderkit backpack."
-  - rscdel: "Removed any trace of the M240-T I could find and replaced it with the TL-84. Removed green/blue flame cans from req."
-  - balance: "Added the TL-84 to marine vendors, a PFC available flamethrower. It has a fire extinguisher on it. And added the M-22 marine welderbackpack thing to there aswell, no storage. But it refills welders and flamers. The TL-84 can use Blue/Green flame cans so the M240-T is now obsolete so it has been removed, the blue/green flame canisters however have been removed. And are admin only.
-."
