@@ -821,8 +821,8 @@
 //TL-127 bolt action sniper rifle
 
 /obj/item/weapon/gun/rifle/chambered
-	name = "\improper TL-127 sniper rifle"
-	desc = "The TL-127 is the standard issue bolt action sniper rifle used by the TGMC. Known for its long range accuracy and use by marksmen despite its age, has an irremoveable scope. Uses 8.6×70mm box magazines."
+	name = "\improper TL-127 bolt action rifle"
+	desc = "The TL-127 is the standard issue bolt action rifle used by the TGMC. Known for its long range accuracy and use by marksmen despite its age, has an irremoveable scope. Uses 8.6×70mm box magazines."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "tl127"
 	item_state = "tl127" //thank you Alterist
@@ -844,6 +844,7 @@
 						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/compensator)
 
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_CAN_POINTBLANK
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 14)
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl127,
