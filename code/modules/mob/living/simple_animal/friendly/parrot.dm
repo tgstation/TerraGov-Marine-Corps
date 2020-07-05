@@ -76,7 +76,9 @@
 	parrot_sleep_dur = parrot_sleep_max //In case someone decides to change the max without changing the duration var
 
 
-/mob/living/simple_animal/parrot/death(gibbed)
+/mob/living/simple_animal/parrot/death(gibbing, deathmessage, silent)
+	if(stat == DEAD)
+		return ..()
 	if(held_item)
 		held_item.forceMove(drop_location())
 		held_item = null
@@ -564,7 +566,7 @@
 	return ..()
 
 
-/mob/living/simple_animal/parrot/Poly/death(gibbed)
+/mob/living/simple_animal/parrot/Poly/on_death()
 	if(!memory_saved)
 		Write_Memory(TRUE)
 	if(prob(0.666))
