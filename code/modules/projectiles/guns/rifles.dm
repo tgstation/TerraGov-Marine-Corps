@@ -851,8 +851,8 @@
 
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 14)
-	starting_attachment_types = list(/obj/item/attachable/scope,//aaaaaa
-									/obj/item/attachable/stock/tl127)
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl127,
+									/obj/item/attachable/stock/tl127stock)
 
 	fire_delay = 1.2 SECONDS
 	accuracy_mult = 1.35
@@ -865,7 +865,7 @@
 	wield_delay = 0.7 SECONDS
 
 	var/rack_delay = 7
-	var/rack_sound = tl-127_bolt.ogg
+	var/rack_sound = "tl-127_bolt.ogg"
 	var/racked_bolt = TRUE
 	var/cooldown_time
 
