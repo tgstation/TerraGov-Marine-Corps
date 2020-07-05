@@ -106,6 +106,7 @@
 
 /mob/living/carbon/xenomorph/proc/update_wounds()
 	var/health_thresholds
+	wound_overlay.layer = src.layer + 0.3
 	if(health > health_threshold_crit)
 		health_thresholds = CEILING((health * 4) / (maxHealth), 1) //From 1 to 4, in 25% chunks
 		if(health_thresholds > 3)
@@ -136,4 +137,7 @@
 ///Used to display the xeno wounds without rapidly switching overlays
 /atom/movable/vis_obj/xeno_wounds
 	icon = 'icons/Xeno/wound_overlays.dmi'
-	layer = ABOVE_MOB_LAYER
+	dir = SOUTH
+
+/mob/living/carbon/xenomorph/proc/update_wound_dir(datum/source, old_dir, new_dir)
+	wound_overlay.dir = new_dir
