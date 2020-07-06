@@ -15,16 +15,15 @@
 
 /obj/item/alien_embryo/Initialize()
 	. = ..()
-	if(isliving(loc))
-		affected_mob = loc
-		affected_mob.status_flags |= XENO_HOST
-		log_combat(affected_mob, null, "been infected with an embryo")
-		START_PROCESSING(SSobj, src)
-		if(iscarbon(affected_mob))
-			var/mob/living/carbon/C = affected_mob
-			C.med_hud_set_status()
-	else
-		qdel(src)
+	if(!isliving(loc))
+		return
+	affected_mob = loc
+	affected_mob.status_flags |= XENO_HOST
+	log_combat(affected_mob, null, "been infected with an embryo")
+	START_PROCESSING(SSobj, src)
+	if(iscarbon(affected_mob))
+		var/mob/living/carbon/C = affected_mob
+		C.med_hud_set_status()
 
 
 /obj/item/alien_embryo/Destroy()
