@@ -16,6 +16,7 @@ SUBSYSTEM_DEF(mapping)
 	var/list/datum/turf_reservations		//list of turf reservations
 	var/list/used_turfs = list()				//list of turf = datum/turf_reservation
 
+	var/list/reservation_ready = list()
 	var/clearing_reserved_turfs = FALSE
 
 	// Z-manager stuff
@@ -54,9 +55,10 @@ SUBSYSTEM_DEF(mapping)
 	loadWorld()
 	repopulate_sorted_areas()
 	preloadTemplates()
+	// Add the transit level
 	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))
-	// Set up Z-level transitions.
-	initialize_reserved_level()
+	repopulate_sorted_areas()
+	initialize_reserved_level(transit.z_value)
 	return ..()
 
 /datum/controller/subsystem/mapping/proc/wipe_reservations(wipe_safety_delay = 100)
@@ -272,9 +274,12 @@ SUBSYSTEM_DEF(mapping)
 		//If we didn't return at this point, theres a good chance we ran out of room on the exisiting reserved z levels, so lets try a new one
 		log_debug("Ran out of space in existing transit levels, adding a new one")
 		num_of_res_levels += 1
-		var/newReserved = add_new_zlevel("Transit/Reserved [num_of_res_levels]", list(ZTRAIT_RESERVED = TRUE))
-		if(reserve.Reserve(width, height, newReserved))
-			return reserve
+		var/datum/space_level/newReserved = add_new_zlevel("Transit/Reserved [num_of_res_levels]", list(ZTRAIT_RESERVED = TRUE))
+		initialize_reserved_level(newReserved.z_value)
+		for(var/i in levels_by_trait(ZTRAIT_RESERVED))
+			if(reserve.Reserve(width, height, i))
+				return reserve
+		CRASH("Despite adding a fresh reserved zlevel still failed to get a reservation")
 	else
 		if(!level_trait(z, ZTRAIT_RESERVED))
 			log_debug("Cannot block reserve on a non-ZTRAIT_RESERVED level")
@@ -287,19 +292,22 @@ SUBSYSTEM_DEF(mapping)
 	QDEL_NULL(reserve)
 
 //This is not for wiping reserved levels, use wipe_reservations() for that.
-/datum/controller/subsystem/mapping/proc/initialize_reserved_level()
+/datum/controller/subsystem/mapping/proc/initialize_reserved_level(z)
 	UNTIL(!clearing_reserved_turfs)				//regardless, lets add a check just in case.
 	clearing_reserved_turfs = TRUE			//This operation will likely clear any existing reservations, so lets make sure nothing tries to make one while we're doing it.
-	for(var/i in levels_by_trait(ZTRAIT_RESERVED))
-		var/turf/A = get_turf(locate(SHUTTLE_TRANSIT_BORDER,SHUTTLE_TRANSIT_BORDER,i))
-		var/turf/B = get_turf(locate(world.maxx - SHUTTLE_TRANSIT_BORDER,world.maxy - SHUTTLE_TRANSIT_BORDER,i))
-		var/block = block(A, B)
-		for(var/t in block)
-			// No need to empty() these, because it's world init and they're
-			// already /turf/open/space/basic.
-			var/turf/T = t
-			T.flags_atom |= UNUSED_RESERVATION_TURF_1
-		unused_turfs["[i]"] = block
+	if(!level_trait(z,ZTRAIT_RESERVED))
+		clearing_reserved_turfs = FALSE
+		CRASH("Invalid z level prepared for reservations.")
+	var/turf/A = get_turf(locate(SHUTTLE_TRANSIT_BORDER,SHUTTLE_TRANSIT_BORDER,z))
+	var/turf/B = get_turf(locate(world.maxx - SHUTTLE_TRANSIT_BORDER,world.maxy - SHUTTLE_TRANSIT_BORDER,z))
+	var/block = block(A, B)
+	for(var/t in block)
+		// No need to empty() these, because it's world init and they're
+		// already /turf/open/space/basic.
+		var/turf/T = t
+		T.flags_atom |= UNUSED_RESERVATION_TURF_1
+	unused_turfs["[z]"] = block
+	reservation_ready["[z]"] = TRUE
 	clearing_reserved_turfs = FALSE
 
 /datum/controller/subsystem/mapping/proc/reserve_turfs(list/turfs)
