@@ -1,6 +1,6 @@
 // points per minute
 #define DROPSHIP_POINT_RATE 18
-#define SUPPLY_POINT_RATE 4
+#define SUPPLY_POINT_RATE 2
 
 SUBSYSTEM_DEF(points)
 	name = "Points"
@@ -75,8 +75,6 @@ SUBSYSTEM_DEF(points)
 
 	supply_points += SUPPLY_POINT_RATE / (1 MINUTES / wait)
 
-/datum/controller/subsystem/points/proc/scale_supply_points(scale)
-	supply_points = round(supply_points * scale)
 
 /datum/controller/subsystem/points/proc/approve_request(datum/supply_order/O, mob/user)
 	var/cost = 0
