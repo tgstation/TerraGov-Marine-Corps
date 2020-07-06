@@ -22,13 +22,22 @@
 	user.visible_message("<span class='danger'>[user] is putting the live paddles on [user.p_their()] chest! It looks like [user.p_theyre()] trying to commit suicide.</span>")
 	return (FIRELOSS)
 
+
 /obj/item/defibrillator/Initialize()
 	. = ..()
 	sparks = new
 	sparks.set_up(5, 0, src)
 	sparks.attach(src)
-	dcell = new/obj/item/cell(src)
+	set_dcell(new /obj/item/cell())
 	update_icon()
+
+
+/obj/item/defibrillator/Destroy()
+	QDEL_NULL(sparks)
+	if(dcell)
+		UnregisterSignal(dcell, COMSIG_PARENT_QDELETING)
+		QDEL_NULL(dcell)
+	return ..()
 
 
 /obj/item/defibrillator/update_icon()
@@ -67,6 +76,21 @@
 	"<span class='notice'>You turn [src] [ready? "on and take the paddles out" : "off and put the paddles back in"].</span>")
 	playsound(get_turf(src), "sparks", 25, TRUE, 4)
 	update_icon()
+
+
+///Wrapper to guarantee powercells are properly nulled and avoid hard deletes.
+/obj/item/defibrillator/proc/set_dcell(obj/item/cell/new_cell)
+	if(dcell)
+		UnregisterSignal(dcell, COMSIG_PARENT_QDELETING)
+	dcell = new_cell
+	if(dcell)
+		RegisterSignal(dcell, COMSIG_PARENT_QDELETING, .proc/on_cell_deletion)
+
+
+///Called by the deletion of the referenced powercell.
+/obj/item/defibrillator/proc/on_cell_deletion(obj/item/cell/source, force)
+	stack_trace("Powercell deleted while powering the defib, this isn't supposed to happen normally.")
+	set_dcell(null)
 
 
 /mob/living/proc/get_ghost()

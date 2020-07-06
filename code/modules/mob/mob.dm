@@ -19,6 +19,7 @@
 	for(var/a in actions)
 		var/datum/action/action_to_remove = a
 		action_to_remove.remove_action(src)
+	set_focus(null)
 	return ..()
 
 /mob/Initialize()
@@ -449,7 +450,7 @@
 		if(buckle.anchored)
 			return
 		return start_pulling(buckle)
-	
+
 	AM.set_glide_size(glide_size)
 
 	pulling = AM
@@ -477,7 +478,7 @@
 
 		if(pulled_mob.mob_size > MOB_SIZE_HUMAN || !(pulled_mob.status_flags & CANPUSH))
 			grab_item.icon_state = "!reinforce"
-		
+
 		set_pull_offsets(pulled_mob)
 
 	update_pull_movespeed()

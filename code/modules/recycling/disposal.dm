@@ -13,6 +13,8 @@
 	icon_state = "disposal"
 	anchored = TRUE
 	density = TRUE
+	active_power_usage = 3500 //The pneumatic pump power. 3 HP ~ 2200W
+	idle_power_usage = 100
 	var/mode = 1 //Item mode 0=off 1=charging 2=charged
 	var/flush = 0 //True if flush handle is pulled
 	var/obj/structure/disposalpipe/trunk/trunk = null //The attached pipe trunk
@@ -20,8 +22,6 @@
 	var/flush_every_ticks = 30 //Every 30 ticks it will look whether it is ready to flush
 	var/flush_count = 0 //This var adds 1 once per tick. When it reaches flush_every_ticks it resets and tries to flush.
 	var/last_sound = 0
-	active_power_usage = 3500 //The pneumatic pump power. 3 HP ~ 2200W
-	idle_power_usage = 100
 	var/disposal_pressure = 0
 
 //Create a new disposal, find the attached trunk (if present) and init gas resvr.
@@ -36,6 +36,18 @@
 
 	update()
 	start_processing()
+
+
+/obj/machinery/disposal/Destroy()
+	if(length(contents))
+		eject()
+	if(trunk)
+		if(trunk.linked == src)
+			trunk.linked = null
+			trunk.update()
+		trunk = null
+	return ..()
+
 
 //Attack by item places it in to disposal
 /obj/machinery/disposal/attackby(obj/item/I, mob/user, params)
@@ -125,14 +137,14 @@
 	// Check the target, are they valid, small enough, and not tied down
 	if(!istype(target) || target.anchored || target.buckled || target.mob_size >= MOB_SIZE_BIG)
 		return
-	if(target != user && (isanimal(user) || user.restrained())) 
+	if(target != user && (isanimal(user) || user.restrained()))
 		return //Animals cannot put mobs other than themselves into disposal
 
 	if(target == user)
 		visible_message("<span class='notice'>[user] starts climbing into the disposal.</span>")
 	else
 		visible_message("<span class ='warning'>[user] starts stuffing [target] into the disposal.</span>")
-		
+
 	if(!do_after(user, 4 SECONDS, FALSE, target, BUSY_ICON_HOSTILE))
 		return
 
@@ -270,11 +282,6 @@
 		if(EXPLODE_LIGHT)
 			if(prob(25))
 				qdel(src)
-
-/obj/machinery/disposal/Destroy()
-	if(contents.len)
-		eject()
-	. = ..()
 
 //Update the icon & overlays to reflect mode & status
 /obj/machinery/disposal/proc/update()
