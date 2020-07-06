@@ -684,6 +684,7 @@ and you're good to go.
 			for(var/i = 1 to projectile_to_fire.ammo.bonus_projectiles_amount)
 				BP = new /obj/projectile(M.loc)
 				BP.generate_bullet(GLOB.ammo_list[projectile_to_fire.ammo.bonus_projectiles_type])
+				BP.damage *= damage_mult	
 				BP.setDir(get_dir(user, M))
 				BP.distance_travelled = get_dist(user, M)
 				BP.ammo.on_hit_mob(M, BP)

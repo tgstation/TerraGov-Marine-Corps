@@ -141,7 +141,7 @@
 
 		log_combat(user, src.occupant, "gibbed") //One shall not simply gib a mob unnoticed!
 
-		src.occupant.death(1)
+		occupant.death(silent = TRUE)
 		src.occupant.ghostize()
 
 	else if( istype(src.occupant, /mob/living/carbon/) || istype(src.occupant, /mob/living/simple_animal/ ) )
@@ -175,7 +175,7 @@
 		if(occupant.client) // Gibbed a cow with a client in it? log that shit
 			log_combat(occupant, user, "gibbed")
 
-		occupant.death(1)
+		occupant.death(silent = TRUE)
 		occupant.ghostize()
 
 	qdel(occupant)

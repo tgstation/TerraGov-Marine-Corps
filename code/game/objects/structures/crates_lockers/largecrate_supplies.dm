@@ -54,9 +54,9 @@
 /obj/effect/landmark/supplyspawner/turrets
 	name = "defensive gun emplacement supplies"
 	supply = list(/obj/structure/largecrate/supply/weapons/sentries = 2,
-				/obj/structure/largecrate/supply/weapons/m56d = 2,
+				/obj/structure/largecrate/supply/weapons/standard_hmg = 2,
 				/obj/structure/largecrate/supply/ammo/sentry = 1,
-				/obj/structure/largecrate/supply/ammo/m56d = 1
+				/obj/structure/largecrate/supply/ammo/standard_hmg = 1
 				)
 
 /obj/effect/landmark/supplyspawner/food
@@ -131,10 +131,10 @@
 	desc = "A supply crate containing two boxed UA 571-C sentries."
 	supplies = list(/obj/item/storage/box/sentry = 2)
 
-/obj/structure/largecrate/supply/weapons/m56d
-	name = "\improper M56D mounted smartgun chest (x2)"
-	desc = "A supply crate containing two boxed M56D mounted smartguns."
-	supplies = list(/obj/item/storage/box/m56d_hmg = 2)
+/obj/structure/largecrate/supply/weapons/standard_hmg
+	name = "\improper TL-102 mounted heavy smartgun chest (x2)"
+	desc = "A supply crate containing two boxed TL-102 mounted heavy smartguns."
+	supplies = list(/obj/item/storage/box/standard_hmg = 2)
 
 
 
@@ -172,10 +172,10 @@
 	desc = "An ammunition case containing six UA 571-C sentry ammunition drums."
 	supplies = list(/obj/item/ammo_magazine/sentry = 6)
 
-/obj/structure/largecrate/supply/ammo/m56d
+/obj/structure/largecrate/supply/ammo/standard_hmg
 	name = "\improper M56D ammunition drum case (x6)"
 	desc = "An ammunition case containing six M56D ammunition drums."
-	supplies = list(/obj/item/ammo_magazine/m56d = 6)
+	supplies = list(/obj/item/ammo_magazine/standard_hmg = 6)
 
 
 

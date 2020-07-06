@@ -339,9 +339,9 @@
 	LoseAggro()
 
 
-/mob/living/simple_animal/hostile/death(gibbed)
+/mob/living/simple_animal/hostile/on_death()
 	LoseTarget()
-	return ..(gibbed)
+	return ..()
 
 
 /mob/living/simple_animal/hostile/proc/summon_backup(distance, exact_faction_match)

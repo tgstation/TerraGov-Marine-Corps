@@ -216,9 +216,7 @@
 						C.emote("scream")
 
 			log_combat(user, M, "creamated", src)
-			M.death(1)
-			M.ghostize()
-			qdel(M)
+			M.death(TRUE)
 
 		for(var/obj/O in contents)
 			if(istype(O, /obj/structure/morgue_tray)) continue
