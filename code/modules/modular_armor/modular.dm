@@ -442,6 +442,9 @@
 			to_chat(user,"<span class='warning'>There is already an installed module.</span>")
 		return FALSE
 
+	if(user.action_busy)
+		return FALSE
+
 	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))
 		return FALSE
 
