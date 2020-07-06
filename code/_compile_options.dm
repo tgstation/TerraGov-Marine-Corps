@@ -1,4 +1,4 @@
-//#define TESTING				//By using the testing("message") proc you can create debug-feedback for people with this
+#define TESTING				//By using the testing("message") proc you can create debug-feedback for people with this
 								//uncommented, but not visible in the release version)
 
 //#define DATUMVAR_DEBUGGING_MODE	//Enables the ability to cache datum vars and retrieve later for debugging which vars changed.
@@ -19,6 +19,9 @@
 
 //#define VISUALIZE_ACTIVE_TURFS	//Highlights atmos active turfs in green
 #endif
+
+#define REFERENCE_TRACKING		//Enables extools-powered reference tracking system, letting you see what is
+									//referencing objects that refuse to hard delete
 
 //#define UNIT_TESTS			//Enables unit tests via TEST_RUN_PARAMETER
 
