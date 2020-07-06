@@ -27,20 +27,20 @@
 		return
 	var/list/frontrefs = get_forward_references(D)
 	var/list/dat = list()
-	dat += "<h1>References of \ref[D] - [D]</h1><br><a href='?_src_=vars;[HrefToken()];[VV_HK_VIEW_REFERENCES]=TRUE;[VV_HK_TARGET]=[REF(D)]'>\[Refresh\]</a><hr>"
+	dat += "<h1>References of \ref[D] - [D]</h1><br><a href='?_src_=vars;[HrefToken(TRUE)];[VV_HK_VIEW_REFERENCES]=TRUE;[VV_HK_TARGET]=[REF(D)]'>\[Refresh\]</a><hr>"
 	dat += "<h3>Back references - these things hold references to this object.</h3>"
 	dat += "<table>"
 	dat += "<tr><th>Ref</th><th>Type</th><th>Variable Name</th><th>Follow</th>"
 	for(var/ref in backrefs)
 		var/datum/R = ref
-		dat += "<tr><td><a href='?_src_=vars;[HrefToken()];Vars=[REF(R)]'>[REF(R)]</td><td>[R.type]</td><td>[backrefs[R]]</td><td><a href='?_src_=vars;[HrefToken()];[VV_HK_VIEW_REFERENCES]=TRUE;[VV_HK_TARGET]=[REF(R)]'>\[Follow\]</a></td></tr>"
+		dat += "<tr><td><a href='?_src_=vars;[HrefToken(TRUE)];vars=[REF(R)]'>[REF(R)]</td><td>[R.type]</td><td>[backrefs[R]]</td><td><a href='?_src_=vars;[HrefToken(TRUE)];[VV_HK_VIEW_REFERENCES]=TRUE;[VV_HK_TARGET]=[REF(R)]'>\[Follow\]</a></td></tr>"
 	dat += "</table><hr>"
 	dat += "<h3>Forward references - this object is referencing those things.</h3>"
 	dat += "<table>"
 	dat += "<tr><th>Variable name</th><th>Ref</th><th>Type</th><th>Follow</th>"
 	for(var/ref in frontrefs)
 		var/datum/R = frontrefs[ref]
-		dat += "<tr><td>[ref]</td><td><a href='?_src_=vars;[HrefToken()];Vars=[REF(R)]'>[REF(R)]</a></td><td>[R.type]</td><td><a href='?_src_=vars;[HrefToken()];[VV_HK_VIEW_REFERENCES]=TRUE;[VV_HK_TARGET]=[REF(R)]'>\[Follow\]</a></td></tr>"
+		dat += "<tr><td>[ref]</td><td><a href='?_src_=vars;[HrefToken(TRUE)];vars=[REF(R)]'>[REF(R)]</a></td><td>[R.type]</td><td><a href='?_src_=vars;[HrefToken(TRUE)];[VV_HK_VIEW_REFERENCES]=TRUE;[VV_HK_TARGET]=[REF(R)]'>\[Follow\]</a></td></tr>"
 	dat += "</table><hr>"
 	dat = dat.Join()
 

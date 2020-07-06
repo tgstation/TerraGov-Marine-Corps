@@ -158,7 +158,7 @@ SUBSYSTEM_DEF(garbage)
 				#endif
 				var/type = D.type
 				var/datum/qdel_item/I = items[type]
-				testing("GC: -- \ref[src] | [type] was unable to be GC'd --")
+				testing("GC: -- \ref[D] | [type] was unable to be GC'd --")
 				I.failures++
 			if (GC_QUEUE_HARDDELETE)
 				HardDelete(D)
@@ -330,6 +330,21 @@ SUBSYSTEM_DEF(garbage)
 	referenced.find_references(FALSE)
 
 /datum/proc/find_references(skip_alert)
+	#ifdef REFERENCE_TRACKING
+	testing("Beginning search for references to a [type].")
+	var/list/backrefs = get_back_references(src)
+	for(var/ref in backrefs)
+		var/datum/R = ref
+		if(!istype(R))
+			log_world("## TESTING: Datum reference found, but gone now.")
+			continue
+		log_world("## TESTING: Found [type] \ref[src] in [R.type][R.gc_destroyed ? " (destroyed)" : ""]")
+		for(var/c in GLOB.admins)
+			var/client/admin = c
+			to_chat(admin, "## TESTING: Found [type] \ref[src] in [R.type][R.gc_destroyed ? " (destroyed)" : ""] [ADMIN_VV(R)]")
+	testing("Completed search for references to a [type].")
+	return
+	#endif
 	running_find_references = type
 	if(usr && usr.client)
 		if(usr.client.running_find_references)
