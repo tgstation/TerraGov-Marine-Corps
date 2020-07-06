@@ -896,7 +896,7 @@ ARMOR
 		/obj/item/armor_module/attachable/tyr_extra_armor,
 		/obj/item/armor_module/attachable/mimir_environment_protection
 	)
-	cost = 180
+	cost = 170
 
 /datum/supply_packs/armor/modular/attachments/lamp
 	name = "Jaeger baldur modules"
@@ -914,7 +914,7 @@ ARMOR
 	contains = list(
 		/obj/item/armor_module/attachable/valkyrie_autodoc,
 	)
-	cost = 45
+	cost = 35
 
 /datum/supply_packs/armor/modular/attachments/fire_proof
 	name = "Jaeger surt modules"
