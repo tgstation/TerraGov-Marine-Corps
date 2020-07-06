@@ -1,3 +1,7 @@
+#ifdef REFERENCE_TRACKING
+
+GLOBAL_LIST_EMPTY(deletion_failures)
+
 /world/proc/enable_reference_tracking()
 	var/extools = world.GetConfig("env", "EXTOOLS_DLL") || (world.system_type == MS_WINDOWS ? "./byond-extools.dll" : "./libbyond-extools.so")
 	if (fexists(extools))
@@ -49,10 +53,6 @@
 	popup.open(FALSE)
 
 
-#ifdef REFERENCE_TRACKING
-#ifdef GC_FAILURE_HARD_LOOKUP
-GLOBAL_LIST_EMPTY(deletion_failures)
-
 /datum/admins/proc/view_del_failures()
 	set category = "Debug"
 	set name = "View Deletion Failures"
@@ -73,5 +73,5 @@ GLOBAL_LIST_EMPTY(deletion_failures)
 	var/datum/browser/popup = new(usr, "del_failures", "<div align='center'>Deletion Failures</div>")
 	popup.set_content(dat)
 	popup.open(FALSE)
-#endif
+
 #endif

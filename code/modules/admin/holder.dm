@@ -352,11 +352,9 @@ GLOBAL_PROTECT(admin_verbs_asay)
 	/datum/admins/proc/reestablish_db_connection,
 	/datum/admins/proc/view_runtimes,
 	/datum/admins/proc/spatial_agent,
-	/datum/admins/proc/view_refs,
 #ifdef REFERENCE_TRACKING
-#ifdef GC_FAILURE_HARD_LOOKUP
+	/datum/admins/proc/view_refs,
 	/datum/admins/proc/view_del_failures,
-#endif
 #endif
 	/datum/admins/proc/check_bomb_impacts
 	)

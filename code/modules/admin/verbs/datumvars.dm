@@ -159,7 +159,9 @@
 	VV_DROPDOWN_OPTION(VV_HK_MARK, "Mark Object")
 	VV_DROPDOWN_OPTION(VV_HK_DELETE, "Delete")
 	VV_DROPDOWN_OPTION(VV_HK_EXPOSE, "Show VV To Player")
+	#ifdef REFERENCE_TRACKING
 	VV_DROPDOWN_OPTION(VV_HK_VIEW_REFERENCES, "View References")
+	#endif
 
 
 /client/proc/debug_variables(datum/D in world)
@@ -650,7 +652,7 @@
 		if(isturf(D))  // show the turf that took its place
 			debug_variables(D)
 
-
+#ifdef REFERENCE_TRACKING
 	else if(href_list[VV_HK_VIEW_REFERENCES])
 		if(!check_rights(R_DEBUG))
 			return
@@ -658,7 +660,8 @@
 		if(!istype(D))
 			to_chat(usr, "<span class='warning'>Unable to locate item.</span>")
 		usr.client.holder.view_refs(D)
-
+		return
+#endif
 
 	else if(href_list["regenerateicons"])
 		if(!check_rights(R_DEBUG))

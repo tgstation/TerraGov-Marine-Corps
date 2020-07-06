@@ -32,4 +32,6 @@
 #define VV_HK_EXPOSE "expose"
 #define VV_HK_CALLPROC "proc_call"
 #define VV_HK_MARK "mark"
+#ifdef REFERENCE_TRACKING
 #define VV_HK_VIEW_REFERENCES "viewreferences"
+#endif
