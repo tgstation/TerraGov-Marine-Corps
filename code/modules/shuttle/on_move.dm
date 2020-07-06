@@ -24,6 +24,8 @@ All ShuttleMove procs go here
 	for(var/i in contents)
 		var/atom/movable/thing = i
 		SEND_SIGNAL(thing, COMSIG_MOVABLE_SHUTTLE_CRUSH, shuttle)
+		if(istype(thing, /obj/docking_port/stationary/transit))
+			continue
 		if(ismob(thing))
 			if(isliving(thing))
 				var/mob/living/M = thing
