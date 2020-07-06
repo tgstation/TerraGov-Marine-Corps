@@ -47,3 +47,31 @@
 	var/datum/browser/popup = new(usr, "ref_view", "<div align='center'>References of \ref[D]</div>")
 	popup.set_content(dat)
 	popup.open(FALSE)
+
+
+#ifdef REFERENCE_TRACKING
+#ifdef GC_FAILURE_HARD_LOOKUP
+GLOBAL_LIST_EMPTY(deletion_failures)
+
+/datum/admins/proc/view_del_failures()
+	set category = "Debug"
+	set name = "View Deletion Failures"
+
+	if(!check_rights(R_DEBUG))
+		return
+
+	var/list/dat = list("<table>")
+	for(var/t in GLOB.deletion_failures)
+		if(isnull(t))
+			dat += "<tr><td>GC'd Reference | <a href='byond://?src=[REF(src)];[HrefToken(TRUE)];delfail_clearnulls=TRUE'>Clear Nulls</a></td></tr>"
+			continue
+		var/datum/thing = t
+		dat += "<tr><td>\ref[thing] | [thing.type][thing.gc_destroyed ? " (destroyed)" : ""] [ADMIN_VV(thing)]</td></tr>"
+	dat += "</table><hr>"
+	dat = dat.Join()
+
+	var/datum/browser/popup = new(usr, "del_failures", "<div align='center'>Deletion Failures</div>")
+	popup.set_content(dat)
+	popup.open(FALSE)
+#endif
+#endif

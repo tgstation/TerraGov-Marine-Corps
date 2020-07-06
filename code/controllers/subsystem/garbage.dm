@@ -158,7 +158,18 @@ SUBSYSTEM_DEF(garbage)
 				#endif
 				var/type = D.type
 				var/datum/qdel_item/I = items[type]
-				testing("GC: -- \ref[D] | [type] was unable to be GC'd --")
+				log_world("## TESTING: GC: -- \ref[D] | [type] was unable to be GC'd --")
+				for(var/c in GLOB.admins)
+					var/client/admin = c
+					if(!check_other_rights(admin, R_ADMIN, FALSE))
+						continue
+					to_chat(admin, "## TESTING: GC: -- [ADMIN_VV(D)] | [type] was unable to be GC'd --")
+				#ifdef REFERENCE_TRACKING
+				#ifdef GC_FAILURE_HARD_LOOKUP
+				GLOB.deletion_failures += D //It should no longer be bothered by the GC, manual deletion only.
+				continue
+				#endif
+				#endif
 				I.failures++
 			if (GC_QUEUE_HARDDELETE)
 				HardDelete(D)
@@ -339,9 +350,7 @@ SUBSYSTEM_DEF(garbage)
 			log_world("## TESTING: Datum reference found, but gone now.")
 			continue
 		log_world("## TESTING: Found [type] \ref[src] in [R.type][R.gc_destroyed ? " (destroyed)" : ""]")
-		for(var/c in GLOB.admins)
-			var/client/admin = c
-			to_chat(admin, "## TESTING: Found [type] \ref[src] in [R.type][R.gc_destroyed ? " (destroyed)" : ""] [ADMIN_VV(R)]")
+		message_admins("Found [type] \ref[src] in [R.type][R.gc_destroyed ? " (destroyed)" : ""] [ADMIN_VV(R)]")
 	testing("Completed search for references to a [type].")
 	return
 	#endif
