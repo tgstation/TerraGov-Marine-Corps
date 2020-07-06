@@ -220,7 +220,6 @@
 		if(ismarinefaction(H))
 			marine_pop_size++
 
-	var/scale = max(marine_pop_size / MARINE_GEAR_SCALING, 1) //This gives a decimal value representing a scaling multiplier. Cannot go below 1
 
 
 
