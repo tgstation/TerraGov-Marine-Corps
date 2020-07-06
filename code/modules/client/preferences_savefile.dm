@@ -118,14 +118,14 @@
 	READ_FILE(S["tooltips"], tooltips)
 	READ_FILE(S["key_bindings"], key_bindings)
 
-	READ_FILE(S["mute_self_combat_messages"], mute_self_combat_messages)
-	READ_FILE(S["mute_others_combat_messages"], mute_others_combat_messages)
+//	READ_FILE(S["mute_self_combat_messages"], mute_self_combat_messages)
+//	READ_FILE(S["mute_others_combat_messages"], mute_others_combat_messages)
 
 	// Runechat options
 	READ_FILE(S["chat_on_map"], chat_on_map)
 	READ_FILE(S["max_chat_length"], max_chat_length)
 	READ_FILE(S["see_chat_non_mob"], see_chat_non_mob)
-	READ_FILE(S["see_rc_emotes"], see_rc_emotes)
+//	READ_FILE(S["see_rc_emotes"], see_rc_emotes)
 
 
 	//try to fix any outdated data if necessary
@@ -246,14 +246,14 @@
 	WRITE_FILE(S["clientfps"], clientfps)
 	WRITE_FILE(S["tooltips"], tooltips)
 
-	WRITE_FILE(S["mute_self_combat_messages"], mute_self_combat_messages)
-	WRITE_FILE(S["mute_others_combat_messages"], mute_others_combat_messages)
+//	WRITE_FILE(S["mute_self_combat_messages"], mute_self_combat_messages)
+//	WRITE_FILE(S["mute_others_combat_messages"], mute_others_combat_messages)
 
 	// Runechat options
 	WRITE_FILE(S["chat_on_map"], chat_on_map)
 	WRITE_FILE(S["max_chat_length"], max_chat_length)
 	WRITE_FILE(S["see_chat_non_mob"], see_chat_non_mob)
-	WRITE_FILE(S["see_rc_emotes"], see_rc_emotes)
+//	WRITE_FILE(S["see_rc_emotes"], see_rc_emotes)
 
 	return TRUE
 
