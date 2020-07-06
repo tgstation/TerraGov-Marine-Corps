@@ -324,6 +324,9 @@
 	This will enable or disable the suit
 */
 /datum/component/suit_autodoc/proc/action_toggle(datum/source)
+	if(COOLDOWN_CHECK(src, COOLDOWN_TOGGLE)))
+		return
+	COOLDOWN_START(src, COOLDOWN_TOOGLE, 2 SECONDS)
 	if(enabled)
 		disable()
 	else
