@@ -29,6 +29,7 @@
 	var/lifecycle = FACEHUGGER_LIFECYCLE //How long the hugger will survive outside of the egg, or carrier.
 	var/leaping = FALSE //Is actually attacking someone?
 	var/hivenumber = XENO_HIVE_NORMAL
+	var/reactivate_timer = null
 
 /obj/item/clothing/mask/facehugger/Initialize()
 	. = ..()
@@ -251,7 +252,8 @@
 			return
 		else
 			step(src, turn(dir, 180)) //We want the hugger to bounce off if it hits a mob.
-			addtimer(CALLBACK(src, .proc/fast_activate), 1.5 SECONDS)
+			deltimer(reactivate_timer)
+			reactivate_timer = addtimer(CALLBACK(src, .proc/fast_activate), 1.5 SECONDS, TIMER_STOPPABLE)
 
 	else
 		for(var/mob/living/carbon/M in loc)
@@ -259,7 +261,8 @@
 				if(!Attach(M))
 					GoIdle()
 				return
-		addtimer(CALLBACK(src, .proc/fast_activate), rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME))
+		deltimer(reactivate_timer) // Fix an issue with starting the timer early and throwing again to get a shorter activate timer
+		reactivate_timer = addtimer(CALLBACK(src, .proc/fast_activate), rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME), TIMER_STOPPABLE)
 	. = ..()
 	leaping = FALSE
 	GoIdle(FALSE, TRUE)
