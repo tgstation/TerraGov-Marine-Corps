@@ -9179,10 +9179,6 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced,
 /obj/machinery/door/window/northright,
 /obj/structure/cable,
 /turf/open/floor{
@@ -9515,10 +9511,6 @@
 /area/sulaco/marine/alpha)
 "aCn" = (
 /obj/machinery/telecomms/server,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced,
 /obj/machinery/door/window/northleft,
 /turf/open/floor{
 	dir = 2;
@@ -9527,10 +9519,6 @@
 /area/sulaco/bridge)
 "aCo" = (
 /obj/machinery/telecomms/relay/preset/station,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced,
 /obj/machinery/door/window/northright,
 /turf/open/floor{
 	dir = 2;
