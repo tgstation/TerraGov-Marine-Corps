@@ -21,6 +21,8 @@
 	var/junction = 0 //Because everything is terrible, I'm making this a window-level var
 	var/damageable = TRUE
 	var/deconstructable = TRUE
+	///When the window faces NORTH, the layer becomes this. When it faces another cardinal direction it goes back to its initial value.
+	var/north_facing_layer = BELOW_TABLE_LAYER
 
 
 /obj/structure/window/Initialize(mapload, start_dir, constructed)
@@ -33,6 +35,8 @@
 
 	if(start_dir)
 		setDir(start_dir)
+	else if(dir == NORTH)
+		layer = north_facing_layer
 
 	return INITIALIZE_HINT_LATELOAD
 
@@ -46,6 +50,15 @@
 	density = FALSE
 	update_nearby_icons()
 	return ..()
+
+
+/obj/structure/window/setDir(newdir)
+	. = ..()
+	switch(dir)
+		if(NORTH)
+			layer = north_facing_layer
+		if(SOUTH, WEST, EAST)
+			layer = initial(layer)
 
 
 /obj/structure/window/ex_act(severity)

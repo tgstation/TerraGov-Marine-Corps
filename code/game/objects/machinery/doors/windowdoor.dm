@@ -13,12 +13,18 @@
 	flags_atom = ON_BORDER
 	opacity = FALSE
 	var/obj/item/circuitboard/airlock/electronics = null
+	///When the windoor faces NORTH, the layer becomes this. When it faces another cardinal direction it goes back to its initial value.
+	var/north_facing_layer = BELOW_TABLE_LAYER
 
 
 /obj/machinery/door/window/Initialize(mapload, set_dir)
 	. = ..()
+
 	if(set_dir)
 		setDir(set_dir)
+	else if(dir == NORTH)
+		layer = north_facing_layer
+
 	if(length(req_access))
 		icon_state = "[icon_state]"
 		base_state = icon_state
@@ -27,7 +33,16 @@
 /obj/machinery/door/window/Destroy()
 	density = FALSE
 	playsound(src, "shatter", 50, 1)
+	return ..()
+
+
+/obj/machinery/door/window/setDir(newdir)
 	. = ..()
+	switch(dir)
+		if(NORTH)
+			layer = north_facing_layer
+		if(SOUTH, WEST, EAST)
+			layer = initial(layer)
 
 
 /obj/machinery/door/window/update_icon()

@@ -2924,7 +2924,6 @@
 /area/mainship/squads/req)
 "kT" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/northleft,
 /obj/machinery/door/window/southleft,
 /obj/machinery/door/poddoor/shutters/mainship/req/ro{
 	dir = 2

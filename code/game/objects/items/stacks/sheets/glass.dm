@@ -21,7 +21,7 @@
 	var/created_window = /obj/structure/window
 	var/reinforced_type = /obj/item/stack/sheet/glass/reinforced
 	var/is_reinforced = 0
-	var/list/construction_options = list("One Direction", "Full Window")
+	var/list/construction_options = list("One Direction")
 
 
 /obj/item/stack/sheet/glass/attack_self(mob/user)
@@ -61,7 +61,15 @@
 			return
 	var/title = "Sheet-[name]"
 	title += " ([src.amount] sheet\s left)"
-	switch(input(title, "What would you like to construct?") as null|anything in construction_options)
+	var/to_be_constructed
+	switch(length(construction_options))
+		if(0)
+			return
+		if(1)
+			to_be_constructed = construction_options[1]
+		else
+			to_be_constructed = input(title, "What would you like to construct?") as null|anything in construction_options
+	switch(to_be_constructed)
 		if("One Direction")
 			if(!src)	return 1
 			if(src.loc != user)	return 1
@@ -141,7 +149,7 @@
 
 	created_window = /obj/structure/window/reinforced
 	is_reinforced = 1
-	construction_options = list("One Direction", "Full Window", "Windoor")
+	construction_options = list("One Direction", "Windoor")
 
 
 /*
