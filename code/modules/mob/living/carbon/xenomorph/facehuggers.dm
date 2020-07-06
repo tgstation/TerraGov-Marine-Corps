@@ -108,7 +108,7 @@
 	user.visible_message("<span class='warning'>\ [user] attempts to plant [src] on [M]'s face!</span>", \
 	"<span class='warning'>We attempt to plant [src] on [M]'s face!</span>")
 	if(M.client && !M.stat) //Delay for conscious cliented mobs, who should be resisting.
-		if(!do_after(user, 10, TRUE, M, BUSY_ICON_DANGER))
+		if(!do_after(user, 1 SECONDS, TRUE, M, BUSY_ICON_DANGER))
 			return
 	if(!Attach(M))
 		GoIdle()
@@ -434,7 +434,7 @@
 		var/stamina_dmg = user.maxHealth * 2 + user.max_stamina_buffer
 		user.apply_damage(stamina_dmg, STAMINA) // complete winds the target
 		user.Unconscious(6 SECONDS) //THIS MIGHT NEED TWEAKS // still might! // tweaked it
-	flags_item |= NODROP
+	addtimer(VARSET_CALLBACK(src, flags_item, flags_item|NODROP), MIN_IMPREGNATION_TIME) // becomes stuck after min-impreg time
 	attached = TRUE
 	GoIdle(FALSE, TRUE)
 	addtimer(CALLBACK(src, .proc/Impregnate, user), rand(MIN_IMPREGNATION_TIME, MAX_IMPREGNATION_TIME))
