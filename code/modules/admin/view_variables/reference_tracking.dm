@@ -16,11 +16,11 @@ GLOBAL_LIST_EMPTY(deletion_failures)
 /proc/clear_references(datum/D)
 	return
 
-/datum/admins/proc/view_refs(atom/D) //it actually supports datums as well but byond no likey
+/datum/admins/proc/view_refs(atom/D in world) //it actually supports datums as well but byond no likey
 	set category = "Debug"
 	set name = "View References"
 
-	if(!check_rights(R_DEBUG))
+	if(!check_rights(R_DEBUG) || !D)
 		return
 
 	var/list/backrefs = get_back_references(D)
@@ -29,6 +29,7 @@ GLOBAL_LIST_EMPTY(deletion_failures)
 		popup.set_content("Reference tracking not enabled")
 		popup.open(FALSE)
 		return
+
 	var/list/frontrefs = get_forward_references(D)
 	var/list/dat = list()
 	dat += "<h1>References of \ref[D] - [D]</h1><br><a href='?_src_=vars;[HrefToken(TRUE)];[VV_HK_VIEW_REFERENCES]=TRUE;[VV_HK_TARGET]=[REF(D)]'>\[Refresh\]</a><hr>"
