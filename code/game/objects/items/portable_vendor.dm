@@ -272,11 +272,11 @@ A breacher kit with the least firepower, has a high capacity SMG and a machete f
 	req_role = /datum/job/terragov/squad/specialist
 	listed_products = list(
 							list("SPECIALIST KITS", 0, null, null, null),
-							list("Demolitionist (RPG, T-19 SMG)", 1, /obj/item/storage/box/squadmarine/demolitionist, "white", "A kit specializing in explosives."),
+							list("Demolitionist (RPG, T-19 MP)", 1, /obj/item/storage/box/squadmarine/demolitionist, "white", "A kit specializing in explosives."),
 							list("Sniper (M42A Scoped Rifle, 88 Mod 4 Pistol)", 1, /obj/item/storage/box/squadmarine/sniper, "white", "A kit specializing in long-ranged dispatch."),
 							list("Scout (M4RA Battle Rifle, 88 Mod 4 Pistol)", 1, /obj/item/storage/box/squadmarine/scout, "white", "A kit specializing in area scouting."),
 							list("Tracker (MBX900 Lever-Action Shotgun, M1911 Pistol)", 1, /obj/item/storage/box/squadmarine/tracker, "white", "A kit specializing in chasing enemy targets."),
-							list("Pyrotechician (M240T Incinerator, T-19 SMG)", 1, /obj/item/storage/box/squadmarine/pyro, "white", "A kit specializing in firey area denial."),
+							list("Pyrotechician (TL-84 Flamethrower, T-19 MP)", 1, /obj/item/storage/box/squadmarine/pyro, "white", "A kit specializing in firey area denial."),
 							list("Heavy Grenadier (M92 Grenade Launcher)", 1, /obj/item/storage/box/squadmarine/heavy_grenadier, "white", "A kit specializing in explosive area denial."),
 							list("Heavy Minigunner (MIC-A7 Minigun, M4A3 Pistol)", 1, /obj/item/storage/box/squadmarine/heavy_gunner, "white", "A kit specializing in direct assault and tanking.")
 							)

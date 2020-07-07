@@ -1006,7 +1006,7 @@
 	new /obj/item/reagent_containers/food/snacks/enrg_bar(src)
 	new /obj/item/clothing/shoes/marine/pyro(src)
 	new /obj/item/storage/backpack/marine/engineerpack/flamethrower(src)
-	new /obj/item/weapon/gun/flamer/M240T(src)
+	new /obj/item/weapon/gun/flamer/marinestandard(src)
 	new /obj/item/attachable/magnetic_harness(src)
 	new /obj/item/storage/large_holster/t19(src)
 	new /obj/item/weapon/gun/smg/standard_smg/nonstandard(src)
