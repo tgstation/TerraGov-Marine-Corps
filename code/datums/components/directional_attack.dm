@@ -7,11 +7,9 @@
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
 	toggle_action = new()
-	var/toggle_path
-	toggle_path = .proc/living_activation_toggle
 	toggle_action.give_action(parent)
 	toggle_action.update_button_icon(active)
-	RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, toggle_path)
+	RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, .proc/select_directional_action)
 	if(active)
 		RegisterSignal(parent, COMSIG_MOB_CLICKON, .proc/select_directional_action)
 
@@ -50,9 +48,9 @@
 	var/mob/living/carbon/attacker = parent
 	. = living_directional_action_checks(L)
 	if(!isnull(.))
-		return
+		return NONE
 	if(QDELETED(L))
-		return
+		return NONE
 	switch(attacker.a_intent)
 		if(INTENT_HELP, INTENT_GRAB)
 			return NONE
@@ -68,48 +66,48 @@
 /datum/component/directional_attack/proc/living_directional_action(atom/A, params)
 	var/atom/T
 	if(isturf(A))
-		T = A
-	else 
-		return 
+		return
+	T = A
 	var/atom/hold = figure_out_living_target(T)
 	if (isnull(hold))
 		return
 	if(isturf(hold))
 		hold = A
-	if(isliving(hold))
-		var/mob/living/L = hold
-		. = living_directional_action_checks(L)
-		if(!isnull(.))
-			return
+	if(!isliving(hold))
+		return
+	var/mob/living/L = hold
+	. = living_directional_action_checks(L)
+	if(!isnull(.))
+		return
 	
 	return living_do_directional_action(hold)
 
 /datum/component/directional_attack/proc/human_directional_action(atom/A, params)
 	var/atom/T
 	if(isturf(A))
-		T = A
-	else
 		return
+	T = A
 	var/mob/living/carbon/human/attacker = parent
 	var/atom/hold = figure_out_living_target(T)
 	if (isnull(hold))
 		return
 	if(isturf(hold))
 		hold = A
-	if(isliving(hold))
-		var/mob/living/L = hold
-		. = carbon_directional_action_checks(L)
-		if(!isnull(.))
-			return
-		if(attacker.faction == L.faction)
-			return //FF
+	if(!isliving(hold))
+		return
+	var/mob/living/L = hold
+	. = carbon_directional_action_checks(L)
+	if(!isnull(.))
+		return
+	if(attacker.faction == L.faction)
+		return //FF
 
 	return living_do_directional_action(hold)
 
 /datum/component/directional_attack/proc/xeno_directional_action(atom/A, params)
 	var/atom/T
 	if(isturf(A))
-		T = A
+		T = A	
 	else
 		return
 	var/mob/living/carbon/xenomorph/attacker = parent
@@ -119,6 +117,7 @@
 	if(isturf(hold))
 		hold = A
 	if(isliving(hold))
+		return
 		var/mob/living/L = hold
 		. = carbon_directional_action_checks(L)
 		if(!isnull(.))
