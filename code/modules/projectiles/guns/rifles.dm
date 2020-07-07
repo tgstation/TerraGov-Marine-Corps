@@ -825,7 +825,7 @@
 	desc = "The TL-127 is the standard issue bolt action rifle used by the TGMC. Known for its long range accuracy and use by marksmen despite its age and lack of IFF. It has an irremoveable scope. Uses 8.6×70mm box magazines."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "tl127"
-	item_state = "tl127" //thank you Alterist
+	item_state = "tl127"
 	fire_sound = 'sound/weapons/guns/fire/tl127.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
