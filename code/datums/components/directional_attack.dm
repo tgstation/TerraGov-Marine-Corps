@@ -107,7 +107,7 @@
 /datum/component/directional_attack/proc/xeno_directional_action(atom/A, params)
 	var/atom/T
 	if(isturf(A))
-		T = A	
+		T = A
 	else
 		return
 	var/mob/living/carbon/xenomorph/attacker = parent
@@ -117,7 +117,6 @@
 	if(isturf(hold))
 		hold = A
 	if(isliving(hold))
-		return
 		var/mob/living/L = hold
 		. = carbon_directional_action_checks(L)
 		if(!isnull(.))
