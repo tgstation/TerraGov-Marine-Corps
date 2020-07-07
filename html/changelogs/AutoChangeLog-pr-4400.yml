@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes: 
+  - balance: "unlocks more xenos slots based on the marine to xeno difference"
