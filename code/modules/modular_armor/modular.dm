@@ -27,11 +27,12 @@
 		/obj/item/storage/belt/knifepouch
 	)
 	flags_equip_slot = ITEM_SLOT_OCLOTHING
+	slowdown = 0.1
 	w_class = WEIGHT_CLASS_BULKY
 	time_to_equip = 2 SECONDS
 	time_to_unequip = 1 SECONDS
 
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	soft_armor = list("melee" = 15, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 	siemens_coefficient = 0.9
 	permeability_coefficient = 1
 	gas_transfer_coefficient = 1
