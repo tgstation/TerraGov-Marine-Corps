@@ -1,5 +1,5 @@
 #define MAX_TRANSIT_REQUEST_RETRIES 10
-#define SHUTTLE_SPAWN_BUFFER 100 /// Give a shuttle 10 seconds to spawn before it can be cleaned up.
+#define SHUTTLE_SPAWN_BUFFER SSshuttle.wait * 10 /// Give a shuttle 10 "fires" (~10 seconds) to spawn before it can be cleaned up.
 
 SUBSYSTEM_DEF(shuttle)
 	name = "Shuttle"
