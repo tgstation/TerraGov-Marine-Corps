@@ -507,9 +507,9 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 	listed_products = list(
 		/obj/effect/essentials_set/basic_smartgunner = list(CAT_STD, "Standard kit", 0, "white"),
-		/obj/effect/essentials_set/modular/light = list(CAT_AMR, "Light Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/medium = list(CAT_AMR, "Medium Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/heavy = list(CAT_AMR, "Heavy Jaeger kit", 0, "black"),
+		/obj/effect/essentials_set/modular/infantry = list(CAT_AMR, "Infantry Jaeger kit", 0, "black"),
+		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Skirmisher Jaeger kit", 0, "black"),
+		/obj/effect/essentials_set/modular/assault = list(CAT_AMR, "Assault Jaeger kit", 0, "black"),
 		/obj/item/clothing/suit/storage/marine = list(CAT_AMR, "Regular armor", 0, "orange"),
 		/obj/item/clothing/suit/storage/marine/M3HB = list(CAT_AMR, "Heavy armor", 0, "black"),
 		/obj/item/clothing/suit/storage/marine/M3LB = list(CAT_AMR, "Light armor", 0, "black"),
@@ -1035,7 +1035,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 
 /obj/effect/essentials_set/basic_squadleader
 	spawned_gear_list = list(
-						/obj/item/clothing/suit/storage/marine/leader,
+						/obj/item/clothing/suit/storage/marine/pasvest,
 						/obj/item/clothing/head/helmet/marine/leader,
 						/obj/item/clothing/glasses/hud/health,
 						/obj/item/clothing/under/marine,
@@ -1113,36 +1113,36 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/reagent_containers/hypospray/advanced/oxycodone
 						)
 
-/obj/effect/essentials_set/modular/light
-	desc = "A set of Light Jaeger armor, including an exoskeleton, helmet, armor plates and a lamp attachment."
+/obj/effect/essentials_set/modular/infantry
+	desc = "A set of Infantry pattern Jaeger armor, including an exoskeleton, helmet, armor plates and a lamp attachment."
 	spawned_gear_list = list(
 						/obj/item/clothing/suit/modular,
-						/obj/item/clothing/head/modular/light,
-						/obj/item/armor_module/armor/chest/light,
-						/obj/item/armor_module/armor/arms/light,
-						/obj/item/armor_module/armor/legs/light,
+						/obj/item/clothing/head/modular/marine,
+						/obj/item/armor_module/armor/chest/marine,
+						/obj/item/armor_module/armor/arms/marine,
+						/obj/item/armor_module/armor/legs/marine,
 						/obj/item/armor_module/attachable/better_shoulder_lamp,
 						)
 
-/obj/effect/essentials_set/modular/medium
-	desc = "A set of Medium Jaeger armor, including an exoskeleton, helmet, armor plates and a lamp attachment."
+/obj/effect/essentials_set/modular/skirmisher
+	desc = "A set of Skirmisher pattern Jaeger armor, including an exoskeleton, helmet, armor plates and a lamp attachment."
 	spawned_gear_list = list(
 						/obj/item/clothing/suit/modular,
-						/obj/item/clothing/head/modular/medium,
-						/obj/item/armor_module/armor/chest/medium,
-						/obj/item/armor_module/armor/arms/medium,
-						/obj/item/armor_module/armor/legs/medium,
+						/obj/item/clothing/head/modular/marine/skirmisher,
+						/obj/item/armor_module/armor/chest/marine/skirmisher,
+						/obj/item/armor_module/armor/arms/marine/skirmisher,
+						/obj/item/armor_module/armor/legs/marine/skirmisher,
 						/obj/item/armor_module/attachable/better_shoulder_lamp,
 						)
 
-/obj/effect/essentials_set/modular/heavy
-	desc = "A set of Heavy Jaeger armor, including an exoskeleton, helmet, armor plates and a lamp attachment."
+/obj/effect/essentials_set/modular/assault
+	desc = "A set of Assault pattern Jaeger armor, including an exoskeleton, helmet, armor plates and a lamp attachment."
 	spawned_gear_list = list(
 						/obj/item/clothing/suit/modular,
-						/obj/item/clothing/head/modular/heavy,
-						/obj/item/armor_module/armor/chest/heavy,
-						/obj/item/armor_module/armor/arms/heavy,
-						/obj/item/armor_module/armor/legs/heavy,
+						/obj/item/clothing/head/modular/marine/assault,
+						/obj/item/armor_module/armor/chest/marine/assault,
+						/obj/item/armor_module/armor/arms/marine/assault,
+						/obj/item/armor_module/armor/legs/marine/assault,
 						/obj/item/armor_module/attachable/better_shoulder_lamp,
 						)
 
