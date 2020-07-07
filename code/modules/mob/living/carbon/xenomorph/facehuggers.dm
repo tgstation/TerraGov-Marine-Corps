@@ -4,8 +4,9 @@
 #define MIN_IMPREGNATION_TIME 10 SECONDS //Time it takes to impregnate someone
 #define MAX_IMPREGNATION_TIME 15 SECONDS
 
-#define MIN_ACTIVE_TIME 4 SECONDS //Time between being dropped and going idle
-#define MAX_ACTIVE_TIME 6 SECONDS
+#define ACTIVATE_TIME 4 SECONDS //Time between being dropped and going idle
+
+#define JUMP_COOLDOWN 2 SECONDS
 
 /obj/item/clothing/mask/facehugger
 	name = "alien"
@@ -30,10 +31,12 @@
 	var/leaping = FALSE //Is actually attacking someone?
 	var/hivenumber = XENO_HIVE_NORMAL
 
+	var/lifetimer
+	var/jumptimer
+
 /obj/item/clothing/mask/facehugger/Initialize()
 	. = ..()
-	if(stat == CONSCIOUS)
-		START_PROCESSING(SSobj, src)
+	lifetimer = addtimer(CALLBACK(src, .proc/check_lifecycle), FACEHUGGER_LIFECYCLE, TIMER_STOPPABLE)
 
 /obj/item/clothing/mask/facehugger/ex_act(severity)
 	Die()
@@ -42,18 +45,14 @@
 	if(stat != new_stat)
 		stat = new_stat
 		update_icon()
-		if(stat == CONSCIOUS)
-			START_PROCESSING(SSobj, src)
-		else
-			hugger_tick = 0
-			STOP_PROCESSING(SSobj, src)
+		switch(new_stat)
+			if(DEAD)
+				lifetimer = null
+			if(UNCONSCIOUS)
+				lifetimer = null
+			if(CONSCIOUS)
+				lifetimer = addtimer(CALLBACK(src, .proc/monitor_surrounding), JUMP_COOLDOWN, TIMER_STOPPABLE)
 
-/obj/item/clothing/mask/facehugger/process()
-	if(throwing)
-		return
-	if(hugger_tick % 2 == 0)
-		monitor_surrounding()
-	hugger_tick++
 
 /obj/item/clothing/mask/facehugger/update_icon()
 	if(stat == DEAD)
@@ -66,12 +65,6 @@
 	else
 		icon_state = "[initial(icon_state)]"
 
-//Can be picked up by aliens
-/obj/item/clothing/mask/facehugger/attack_paw(mob/living/carbon/monkey/user)
-	if(isxeno(user))
-		attack_alien(user)
-	else
-		attack_hand(user)
 
 //Deal with picking up facehuggers. "attack_alien" is the universal 'xenos click something while unarmed' proc.
 /obj/item/clothing/mask/facehugger/attack_alien(mob/living/carbon/xenomorph/user)
@@ -108,7 +101,7 @@
 	user.visible_message("<span class='warning'>\ [user] attempts to plant [src] on [M]'s face!</span>", \
 	"<span class='warning'>We attempt to plant [src] on [M]'s face!</span>")
 	if(M.client && !M.stat) //Delay for conscious cliented mobs, who should be resisting.
-		if(!do_after(user, 10, TRUE, M, BUSY_ICON_DANGER))
+		if(!do_after(user, 1 SECONDS, TRUE, M, BUSY_ICON_DANGER))
 			return
 	if(!Attach(M))
 		GoIdle()
@@ -163,7 +156,7 @@
 		stasis = TRUE
 		lifecycle = initial(lifecycle)
 	else if(!attached && !(stasis || no_activate))
-		addtimer(CALLBACK(src, .proc/GoActive), rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME))
+		addtimer(CALLBACK(src, .proc/GoActive), ACTIVATE_TIME)
 
 /obj/item/clothing/mask/facehugger/proc/GoActive(unhybernate = FALSE)
 	if(unhybernate)
@@ -176,30 +169,27 @@
 /obj/item/clothing/mask/facehugger/proc/check_lifecycle()
 	if(sterile)
 		return TRUE
-	if(lifecycle - 4 SECONDS <= 0)
-		if(isturf(loc))
-			var/obj/effect/alien/egg/E = locate() in loc
-			if(E?.status == EGG_BURST)
-				visible_message("<span class='xenowarning'>[src] crawls back into [E]!</span>")
-				forceMove(E)
-				E.hugger = src
-				E.update_status(EGG_GROWN)
-				E.deploy_egg_triggers()
-				GoIdle(TRUE)
-				return FALSE
-			var/obj/effect/alien/resin/trap/T = locate() in loc
-			if(T && !T.hugger)
-				visible_message("<span class='xenowarning'>[src] crawls into [T]!</span>")
-				forceMove(T)
-				T.hugger = src
-				T.icon_state = "trap1"
-				GoIdle(TRUE)
-				return FALSE
+	if(isturf(loc))
+		var/obj/effect/alien/egg/E = locate() in loc
+		if(E?.status == EGG_BURST)
+			visible_message("<span class='xenowarning'>[src] crawls back into [E]!</span>")
+			forceMove(E)
+			E.hugger = src
+			E.update_status(EGG_GROWN)
+			E.deploy_egg_triggers()
+			GoIdle(TRUE)
+			return FALSE
+		var/obj/effect/alien/resin/trap/T = locate() in loc
+		if(T && !T.hugger)
+			visible_message("<span class='xenowarning'>[src] crawls into [T]!</span>")
+			forceMove(T)
+			T.hugger = src
+			T.icon_state = "trap1"
+			GoIdle(TRUE)
+			return FALSE
 		Die()
 		return FALSE
 
-	if(hugger_tick)
-		lifecycle -= 4 SECONDS
 	return TRUE
 
 /obj/item/clothing/mask/facehugger/Crossed(atom/target)
@@ -251,7 +241,8 @@
 			return
 		else
 			step(src, turn(dir, 180)) //We want the hugger to bounce off if it hits a mob.
-			addtimer(CALLBACK(src, .proc/fast_activate), 1.5 SECONDS)
+			deltimer(jumptimer)
+			jumptimer = addtimer(CALLBACK(src, .proc/fast_activate), 1.5 SECONDS)
 
 	else
 		for(var/mob/living/carbon/M in loc)
@@ -259,7 +250,8 @@
 				if(!Attach(M))
 					GoIdle()
 				return
-		addtimer(CALLBACK(src, .proc/fast_activate), rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME))
+		deltimer(jumptimer)
+		jumptimer = addtimer(CALLBACK(src, .proc/fast_activate), ACTIVATE_TIME)
 	. = ..()
 	leaping = FALSE
 	GoIdle(FALSE, TRUE)
@@ -452,7 +444,7 @@
 	else
 		reset_attach_status(as_planned)
 		playsound(loc, 'sound/voice/alien_facehugger_dies.ogg', 25, 1)
-		addtimer(CALLBACK(src, .proc/GoActive), rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME))
+		addtimer(CALLBACK(src, .proc/GoActive), ACTIVATE_TIME)
 		update_icon()
 
 	if(as_planned)
@@ -513,5 +505,5 @@
 #undef FACEHUGGER_KNOCKOUT
 #undef MIN_IMPREGNATION_TIME
 #undef MAX_IMPREGNATION_TIME
-#undef MIN_ACTIVE_TIME
+#undef ACTIVATE_TIME
 #undef MAX_ACTIVE_TIME
