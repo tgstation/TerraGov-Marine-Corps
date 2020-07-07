@@ -1101,6 +1101,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	desc = "A set of Infantry pattern Jaeger armor, including an exoskeleton, helmet, armor plates and a lamp attachment."
 	spawned_gear_list = list(
 						/obj/item/clothing/suit/modular,
+						/obj/item/clothing/under/marine/jaeger,
 						/obj/item/clothing/head/modular/marine,
 						/obj/item/armor_module/armor/chest/marine,
 						/obj/item/armor_module/armor/arms/marine,
@@ -1112,6 +1113,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	desc = "A set of Skirmisher pattern Jaeger armor, including an exoskeleton, helmet, armor plates and a lamp attachment."
 	spawned_gear_list = list(
 						/obj/item/clothing/suit/modular,
+						/obj/item/clothing/under/marine/jaeger,
 						/obj/item/clothing/head/modular/marine/skirmisher,
 						/obj/item/armor_module/armor/chest/marine/skirmisher,
 						/obj/item/armor_module/armor/arms/marine/skirmisher,
@@ -1123,6 +1125,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	desc = "A set of Assault pattern Jaeger armor, including an exoskeleton, helmet, armor plates and a lamp attachment."
 	spawned_gear_list = list(
 						/obj/item/clothing/suit/modular,
+						/obj/item/clothing/under/marine/jaeger,
 						/obj/item/clothing/head/modular/marine/assault,
 						/obj/item/armor_module/armor/chest/marine/assault,
 						/obj/item/armor_module/armor/arms/marine/assault,
