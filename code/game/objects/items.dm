@@ -27,6 +27,7 @@
 	//Since any item can now be a piece of clothing, this has to be put here so all items share it.
 	var/flags_inventory = NONE //This flag is used for various clothing/equipment item stuff
 	var/flags_inv_hide = NONE //This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
+	var/not_for_gender = NONE //Denotes which gender this item is not tailored for, if applicable.
 	flags_pass = PASSTABLE
 
 	var/obj/item/master = null
@@ -344,6 +345,10 @@
 	if(ishuman(M))
 		//START HUMAN
 		var/mob/living/carbon/human/H = M
+		if(H.get_gender() = not_for_gender)
+			if(warning)
+				to_chat(H, "<span class='warning'>This isn't properly made for someone of your gender.</span>")
+			return FALSE
 		var/list/mob_equip = list()
 		if(H.species.hud?.equip_slots)
 			mob_equip = H.species.hud.equip_slots
