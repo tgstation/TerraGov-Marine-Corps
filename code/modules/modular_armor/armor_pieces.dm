@@ -136,8 +136,8 @@
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides protection when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Skirmisher armor piece."
 	icon_state = "skirmisher_legs"
 
-/obj/item/armor_module/armor/legs/marine/skirmisher
-	name = "\improper Jaeger Pattern Skirmisher leg plates"
+/obj/item/armor_module/armor/legs/marine/assault
+	name = "\improper Jaeger Pattern Assault leg plates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides protection when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Assault armor piece."
 	icon_state = "assault_legs"
 
@@ -176,7 +176,7 @@
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	slowdown = 0.1
 
-/obj/item/armor_module/armor/arms/marine/skirmisher
+/obj/item/armor_module/armor/arms/marine/assault
 	name = "\improper Jaeger Pattern Assault arm plates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides protection when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Assault armor piece."
 	icon_state = "assault_arms"

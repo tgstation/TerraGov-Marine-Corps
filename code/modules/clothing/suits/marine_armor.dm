@@ -249,7 +249,7 @@
 	light_strength = 8
 	pockets = /obj/item/storage/internal/suit/pas11
 
-/obj/item/storage/internal/modular/suit/pas11
+/obj/item/storage/internal/suit/pas11
 	max_storage_space = 15
 	storage_slots = 4
 	max_w_class = WEIGHT_CLASS_NORMAL
