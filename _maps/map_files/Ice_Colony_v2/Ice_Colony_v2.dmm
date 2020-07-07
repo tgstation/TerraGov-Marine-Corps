@@ -33165,6 +33165,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/engineering)
+"fAp" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/clearing/south)
 "fEh" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/landmark/xeno_tunnel,
@@ -33375,10 +33379,6 @@
 	},
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/landing_pad_external)
-"izd" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/valley/south/excavation)
 "iHY" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -33523,10 +33523,6 @@
 	dir = 8
 	},
 /area/ice_colony/exterior/surface/cliff)
-"kBL" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/surface/valley/southeast)
 "kCS" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating,
@@ -33543,10 +33539,6 @@
 	dir = 4
 	},
 /area/ice_colony/exterior/surface/valley/south/excavation)
-"kQz" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/snow/layer3,
-/area/ice_colony/exterior/surface/valley/northwest)
 "lap" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -33645,6 +33637,10 @@
 	},
 /turf/closed/ice_rock/eastWall,
 /area/ice_colony/exterior/surface/cliff)
+"mAr" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/valley/southwest)
 "mKW" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -33717,6 +33713,12 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice_rock/corners,
 /area/ice_colony/exterior/surface/cliff)
+"nCA" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/ice_colony/underground/hangar)
 "nGE" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice_rock/corners{
@@ -33929,10 +33931,6 @@
 /obj/effect/landmark/xeno_tunnel,
 /turf/closed/ice/thin/single,
 /area/ice_colony/exterior/surface/cliff)
-"stN" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/clearing/north)
 "svd" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 1
@@ -34187,6 +34185,10 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves/open)
+"xTf" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/clearing/north)
 "xTU" = (
 /obj/structure/cable,
 /obj/item/lightstick/anchored,
@@ -46097,7 +46099,7 @@ azy
 aiH
 aiH
 aaI
-kQz
+aaI
 aaI
 aaI
 aaI
@@ -47757,7 +47759,7 @@ aty
 bfa
 bdN
 bdX
-ale
+nCA
 ale
 alP
 alP
@@ -52549,7 +52551,6 @@ akF
 akF
 akF
 akF
-stN
 akF
 akF
 akF
@@ -52559,7 +52560,8 @@ akF
 akF
 akF
 akF
-stN
+akF
+akF
 akF
 akF
 akF
@@ -53129,7 +53131,7 @@ aOr
 aRh
 aMG
 aMG
-aMG
+mAr
 aMG
 aMG
 aMG
@@ -53347,7 +53349,7 @@ alr
 akF
 akF
 avU
-akF
+xTf
 aij
 aax
 abL
@@ -66501,7 +66503,7 @@ aKC
 aKC
 aXI
 aKC
-aKu
+fAp
 aKC
 aKu
 aKu
@@ -68227,7 +68229,7 @@ aax
 aax
 aax
 aij
-stN
+akF
 akF
 aij
 aij
@@ -70387,7 +70389,7 @@ bbJ
 bbW
 bbK
 bbK
-izd
+bbK
 bbK
 bbK
 bbK
@@ -82394,7 +82396,7 @@ agU
 aLI
 aBb
 awL
-kBL
+awL
 awL
 awO
 aGB

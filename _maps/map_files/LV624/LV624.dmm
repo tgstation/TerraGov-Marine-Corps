@@ -18215,9 +18215,6 @@
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle7)
 "cfW" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/miner/damaged,
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
 "ciV" = (
@@ -18448,6 +18445,10 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
+"izg" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/lazarus/quartstorage/outdoors)
 "iEQ" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/marking/bot,
@@ -18503,6 +18504,11 @@
 	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
+"jGK" = (
+/obj/structure/jungle/vines/heavy,
+/obj/machinery/miner/damaged,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle9)
 "jOz" = (
 /obj/structure/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -18526,10 +18532,6 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral,
 /area/lv624/ground/sand7)
-"kEN" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/ground/grass,
-/area/lv624/ground/jungle9)
 "kFx" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/resin,
@@ -18691,10 +18693,6 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/canteen)
-"pnx" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/quartstorage/outdoors)
 "prx" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/sign/botany,
@@ -18760,10 +18758,6 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/internal_affairs)
-"rhJ" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle6)
 "rjY" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -18962,6 +18956,13 @@
 	},
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/internal_affairs)
+"vWf" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/miner/damaged,
+/turf/open/floor,
+/area/lv624/ground/sand8)
 "wzb" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -27955,7 +27956,7 @@ awk
 avd
 aFl
 avx
-rhJ
+axR
 axR
 auH
 aFR
@@ -36197,7 +36198,7 @@ aMm
 aSe
 aLc
 aES
-kEN
+aES
 aES
 aFD
 aES
@@ -40562,7 +40563,7 @@ aHT
 aFB
 aET
 aET
-aGk
+jGK
 aET
 aHT
 aFD
@@ -42562,7 +42563,7 @@ air
 alg
 ajG
 ajG
-alo
+vWf
 amU
 anx
 akH
@@ -46105,7 +46106,7 @@ abf
 abf
 abf
 abf
-abf
+six
 abf
 abf
 abf
@@ -47404,7 +47405,7 @@ abe
 abe
 abe
 mWY
-six
+abf
 acS
 acS
 acS
@@ -52617,7 +52618,7 @@ arW
 azK
 aAk
 aAk
-aAk
+izg
 aAk
 aAk
 aAk
@@ -52874,7 +52875,7 @@ auO
 azJ
 aAk
 aAk
-pnx
+aAk
 aAk
 aAk
 aCb

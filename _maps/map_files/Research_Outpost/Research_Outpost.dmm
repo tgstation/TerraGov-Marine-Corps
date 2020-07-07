@@ -1229,6 +1229,12 @@
 	dir = 1
 	},
 /area/outpost/lz2)
+"gV" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 9
+	},
+/area/outpost/yard/north)
 "gW" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/marking/asteroidwarning{
@@ -3072,6 +3078,10 @@
 	dir = 4
 	},
 /area/outpost/science/xenobiology)
+"qI" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random,
+/area/outpost/yard/south)
 "qK" = (
 /obj/structure/closet/bombclosetsecurity,
 /turf/open/floor/tile/dark/red2{
@@ -4121,10 +4131,6 @@
 	dir = 10
 	},
 /area/outpost/engineering/engine)
-"wS" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/outpost/yard/central)
 "wU" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
@@ -4896,12 +4902,6 @@
 	dir = 6
 	},
 /area/outpost/yard/south_east)
-"BH" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/mars/dirttosand{
-	dir = 6
-	},
-/area/outpost/yard/west)
 "BJ" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/yard/south_east)
@@ -8653,6 +8653,10 @@
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_east)
+"WE" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/tile/dark,
+/area/outpost/medbay)
 "WH" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark,
@@ -8744,10 +8748,6 @@
 	dir = 4
 	},
 /area/outpost/engineering)
-"Xf" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/outpost/yard/south_east)
 "Xg" = (
 /obj/structure/bed/chair/comfy,
 /turf/open/floor/tile/dark/brown2{
@@ -22950,7 +22950,7 @@ cc
 cc
 cc
 cc
-BH
+zQ
 SH
 SH
 SH
@@ -24733,7 +24733,7 @@ Jj
 eh
 Ux
 Wh
-qy
+WE
 qy
 fM
 ly
@@ -29135,7 +29135,7 @@ ww
 ww
 EA
 EA
-wS
+EA
 EA
 EA
 EA
@@ -31705,7 +31705,7 @@ LJ
 pQ
 Qh
 LJ
-Ra
+gV
 ED
 Oh
 ey
@@ -32246,7 +32246,7 @@ xi
 fG
 sa
 sa
-sa
+qI
 ep
 wa
 wa
@@ -34310,7 +34310,7 @@ HT
 fG
 NF
 NF
-Xf
+NF
 NF
 NF
 mJ
@@ -36847,7 +36847,7 @@ cg
 cg
 Yx
 Yx
-Yx
+Fw
 Yx
 Yx
 Yx
@@ -42014,7 +42014,7 @@ Yx
 Yx
 Yx
 TP
-Fw
+Yx
 cg
 cg
 cg

@@ -441,10 +441,6 @@
 /obj/structure/ore_box,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/south)
-"gy" = (
-/obj/machinery/miner/damaged,
-/turf/open/lavaland/basalt,
-/area/lavaland/cave/west)
 "gA" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -878,10 +874,6 @@
 /obj/structure/kitchenspike,
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
-"kR" = (
-/obj/machinery/miner/damaged,
-/turf/open/lavaland/basalt,
-/area/lavaland/cave/east)
 "kW" = (
 /obj/structure/rack,
 /obj/structure/window/reinforced{
@@ -981,6 +973,10 @@
 	dir = 4
 	},
 /area/shuttle/drop2/lz2)
+"mb" = (
+/obj/machinery/miner/damaged,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/north)
 "me" = (
 /obj/machinery/landinglight/ds2/delaythree{
 	dir = 4
@@ -1730,6 +1726,10 @@
 	},
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/botany)
+"uw" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/tile/white,
+/area/lavaland/medical)
 "uz" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	name = "\improper Hydroponics"
@@ -3224,10 +3224,6 @@
 /obj/effect/landmark/corpsespawner/miner,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/north)
-"Le" = (
-/obj/machinery/miner/damaged,
-/turf/open/lavaland/basalt,
-/area/lavaland/cave/south)
 "Lj" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/lavaland/basalt,
@@ -12852,7 +12848,7 @@ ZN
 ZN
 ZN
 ZN
-gy
+ZN
 ZN
 ZN
 ZN
@@ -22563,7 +22559,7 @@ aZ
 aZ
 aZ
 bP
-aZ
+mb
 aZ
 Bo
 aZ
@@ -31123,7 +31119,7 @@ Yy
 Yy
 mR
 Yy
-Yy
+TB
 Rq
 Yy
 Yy
@@ -35490,7 +35486,7 @@ ZK
 ZK
 Yy
 Yy
-Le
+Yy
 Yy
 Yy
 Yy
@@ -37210,7 +37206,7 @@ aZ
 aZ
 aZ
 aZ
-aZ
+mb
 aZ
 Lc
 bL
@@ -37573,7 +37569,7 @@ Yy
 Yy
 Yy
 Yy
-TB
+Yy
 Yy
 Yy
 Yy
@@ -48061,7 +48057,7 @@ VX
 Yg
 ZU
 iK
-Zk
+uw
 Zk
 bb
 Gl
@@ -54220,7 +54216,7 @@ EF
 EF
 EF
 EF
-kR
+EF
 EF
 EF
 EF

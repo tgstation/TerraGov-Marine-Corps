@@ -5081,10 +5081,6 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/outside)
-"vC" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/ice,
-/area/icy_caves/outpost/LZ2)
 "wM" = (
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
@@ -5155,12 +5151,12 @@
 /obj/docking_port/stationary/crashmode,
 /turf/closed/ice_rock/single,
 /area/icy_caves/caves/west)
-"MQ" = (
-/turf/closed/wall/r_wall,
-/area/icy_caves/caves/northern)
-"MV" = (
+"Mv" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/south)
+"MQ" = (
+/turf/closed/wall/r_wall,
 /area/icy_caves/caves/northern)
 "Nf" = (
 /obj/docking_port/stationary/crashmode,
@@ -5210,6 +5206,11 @@
 	dir = 4
 	},
 /area/icy_caves/outpost/outside)
+"Rx" = (
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/miner/damaged,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/garage)
 "Ry" = (
 /turf/closed/wall/r_wall,
 /area/icy_caves/caves/OOB)
@@ -5249,10 +5250,6 @@
 	dir = 1
 	},
 /area/icy_caves/caves/south)
-"UE" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/ice,
-/area/icy_caves/caves/west)
 "UM" = (
 /turf/closed/wall,
 /area/icy_caves/outpost/research)
@@ -5279,10 +5276,6 @@
 /obj/machinery/computer/nuke_disk_generator/blue,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
-"XJ" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/snow,
-/area/icy_caves/outpost/outside)
 "YA" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 4
@@ -13465,7 +13458,7 @@ fs
 eb
 dc
 dF
-Zp
+dc
 dc
 de
 cZ
@@ -15244,8 +15237,8 @@ dc
 dc
 dc
 dc
+Zp
 dc
-UE
 kR
 dc
 dc
@@ -20411,7 +20404,7 @@ gi
 aU
 aU
 aU
-XJ
+aU
 aU
 aU
 aU
@@ -21451,7 +21444,7 @@ hg
 ik
 jc
 jF
-hW
+Rx
 hg
 hg
 hW
@@ -23701,7 +23694,7 @@ ej
 dm
 eG
 dm
-dm
+Mv
 dm
 dm
 dM
@@ -26009,7 +26002,7 @@ bE
 ci
 ca
 ch
-MV
+aJ
 dm
 dm
 eG
@@ -30143,7 +30136,7 @@ ho
 gk
 ds
 ds
-ds
+Zk
 ds
 ds
 gd
@@ -32250,7 +32243,7 @@ dt
 ds
 dx
 gQ
-Zk
+ds
 ds
 ds
 ds
@@ -39401,7 +39394,7 @@ lm
 qB
 lk
 qX
-vC
+qX
 bN
 bN
 bN

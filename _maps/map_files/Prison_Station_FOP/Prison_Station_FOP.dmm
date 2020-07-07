@@ -24881,7 +24881,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/miner/damaged,
 /turf/open/floor/prison/bright_clean,
 /area/prison/store)
 "bxC" = (
@@ -42327,6 +42326,10 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/hangar/main)
+"fCv" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/prison,
+/area/prison/research/secret/containment)
 "fRD" = (
 /obj/structure/cable,
 /turf/closed/wall/prison,
@@ -42395,6 +42398,10 @@
 /obj/machinery/landinglight/ds2/delayone,
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
+"hGg" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/prison,
+/area/prison/security/monitoring/highsec)
 "hHw" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -42603,10 +42610,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/canteen)
-"mmo" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/wood,
-/area/prison/parole/protective_custody)
 "mof" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/prison,
@@ -42655,6 +42658,10 @@
 	dir = 8
 	},
 /area/prison/cellblock/mediumsec/north)
+"nsS" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/wood,
+/area/prison/library)
 "nOc" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -42679,10 +42686,6 @@
 	dir = 4
 	},
 /area/prison/cellblock/mediumsec/south)
-"oHp" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/prison,
-/area/prison/hangar_storage/research)
 "oRz" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -42698,10 +42701,6 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/prison/bright_clean,
 /area/prison/hallway/central)
-"piB" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/beach/sand,
-/area/prison/residential/south)
 "pvO" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -42883,6 +42882,10 @@
 /obj/machinery/vending/cigarette/colony,
 /turf/open/floor/prison,
 /area/prison/execution)
+"uRr" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/prison/bright_clean,
+/area/prison/canteen)
 "uUB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -42992,10 +42995,6 @@
 	},
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/prison/security/checkpoint/hangar)
-"xGi" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/asteroid,
-/area/prison/residential/central)
 "xHS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -52203,7 +52202,7 @@ bTN
 bVm
 bVm
 bVm
-piB
+bVm
 bVm
 bXh
 bYs
@@ -53965,7 +53964,7 @@ bhD
 bhD
 bhz
 bhC
-xGi
+bhC
 bkL
 bhC
 aVO
@@ -59877,7 +59876,7 @@ bjS
 bhB
 aYY
 aYY
-aYY
+hGg
 aYY
 bhB
 bqL
@@ -81908,7 +81907,7 @@ adz
 ahD
 ahW
 agL
-agL
+fCv
 aiD
 agL
 agL
@@ -84841,7 +84840,7 @@ bRv
 bRv
 bVS
 bRv
-bRv
+nsS
 bRv
 cbq
 bRv
@@ -89475,7 +89474,7 @@ cek
 cfu
 bRC
 bQi
-mmo
+ciU
 ciU
 ciU
 bYq
@@ -89943,7 +89942,7 @@ bef
 bik
 bef
 bef
-aXf
+uRr
 aVT
 aXd
 aYu
@@ -94529,7 +94528,7 @@ aur
 auI
 auI
 auI
-oHp
+auI
 auI
 auI
 auI
