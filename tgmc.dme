@@ -493,6 +493,7 @@
 #include "code\game\objects\items\circuitboards\computer.dm"
 #include "code\game\objects\items\circuitboards\machine.dm"
 #include "code\game\objects\items\devices\spyglasses.dm"
+#include "code\game\objects\items\devices\tablets.dm"
 #include "code\game\objects\items\explosives\explosive.dm"
 #include "code\game\objects\items\explosives\mine.dm"
 #include "code\game\objects\items\explosives\plastique.dm"
