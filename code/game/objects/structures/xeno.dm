@@ -832,7 +832,7 @@ TUNNEL
 	else
 		if(!charges)
 			return
-		var/armor_blocked = clamp(C.getarmor("acid"), 0, 50)
+		var/armor_blocked = clamp(C.getarmor(null, "acid"), 0, 50)
 		C.apply_damage(20 * charges, BURN, blocked = armor_blocked)
 		charges = 0
 		update_icon()
