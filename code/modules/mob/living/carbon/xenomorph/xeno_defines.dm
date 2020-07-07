@@ -211,7 +211,6 @@
 
 	// Warrior vars
 	var/agility = 0		// 0 - upright, 1 - all fours
-	var/ripping_limb = 0
 
 	// Defender vars
 	var/fortify = 0
