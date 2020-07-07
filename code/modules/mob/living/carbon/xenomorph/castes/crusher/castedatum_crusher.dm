@@ -10,7 +10,7 @@
 	wound_type = "crusher" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 42
+	melee_damage = 21
 	attack_delay = 8
 
 	// *** Tackle *** //
@@ -83,7 +83,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 48
+	melee_damage = 24
 
 	// *** Tackle *** //
 	tackle_damage = 50

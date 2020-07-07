@@ -9,7 +9,7 @@
 	wound_type = "ravager" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 52
+	melee_damage = 26
 	attack_delay = 7
 
 	// *** Tackle *** //
@@ -84,7 +84,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 64
+	melee_damage = 32
 
 	// *** Tackle *** //
 	tackle_damage = 45

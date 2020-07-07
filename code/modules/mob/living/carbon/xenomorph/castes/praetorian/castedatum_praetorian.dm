@@ -9,7 +9,7 @@
 	wound_type = "praetorian" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 40
+	melee_damage = 20
 
 	// *** Tackle *** //
 	tackle_damage = 40
@@ -99,7 +99,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 46
+	melee_damage = 23
 
 	// *** Tackle *** //
 	tackle_damage = 47

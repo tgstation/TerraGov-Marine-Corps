@@ -11,7 +11,7 @@
 	wound_type = "boiler" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 34
+	melee_damage = 17
 
 	// *** Tackle *** //
 	tackle_damage = 25
@@ -105,7 +105,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 40
+	melee_damage = 20
 
 	// *** Tackle *** //
 	tackle_damage = 30

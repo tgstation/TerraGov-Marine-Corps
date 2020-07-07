@@ -11,7 +11,7 @@
 	wound_type = "hunter" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 46
+	melee_damage = 23
 	attack_delay = 7
 
 	// *** Tackle *** //
@@ -90,7 +90,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 52
+	melee_damage = 26
 
 	// *** Tackle *** //
 	tackle_damage = 40

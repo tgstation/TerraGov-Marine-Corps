@@ -11,7 +11,7 @@
 	wound_type = "shrike" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 32
+	melee_damage = 20
 
 	// *** Tackle *** //
 	tackle_damage = 30
@@ -104,7 +104,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 46
+	melee_damage = 23
 
 	// *** Tackle *** //
 	tackle_damage = 40
