@@ -403,9 +403,13 @@
 	. = ..()
 	if(.)
 		return
-	if(dropping != user && ismob(dropping) && !isxeno(user) && !isxeno(dropping))
-		var/mob/dragged = dropping
-		dragged.show_inv(user)
+	if(!ismob(dropping) || isxeno(user) || isxeno(dropping))
+		return
+	// If not dragged onto myself or dragging my own sprite onto myself
+	if(user != src || dropping == user)
+		return
+	var/mob/dragged = dropping
+	dragged.show_inv(user)
 
 /mob/living/carbon/xenomorph/MouseDrop_T(atom/dropping, atom/user)
 	return
@@ -449,7 +453,7 @@
 		if(buckle.anchored)
 			return
 		return start_pulling(buckle)
-	
+
 	AM.set_glide_size(glide_size)
 
 	pulling = AM
@@ -477,7 +481,7 @@
 
 		if(pulled_mob.mob_size > MOB_SIZE_HUMAN || !(pulled_mob.status_flags & CANPUSH))
 			grab_item.icon_state = "!reinforce"
-		
+
 		set_pull_offsets(pulled_mob)
 
 	update_pull_movespeed()
