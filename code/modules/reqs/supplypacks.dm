@@ -798,31 +798,13 @@ ARMOR
 	)
 	cost = 100
 
-/datum/supply_packs/armor/pyro
-	name = "Pyro Armor Set"
-	contains = list(
-		/obj/item/clothing/suit/storage/marine/M35,
-		/obj/item/clothing/head/helmet/marine/pyro,
-		/obj/item/clothing/shoes/marine/pyro,
-	)
-	cost = 100
-
 /datum/supply_packs/armor/basic
-	name = "M3 pattern armor"
+	name = "PAS-11 pattern armor"
 	contains = list(
 		/obj/item/clothing/head/helmet/marine/standard,
-		/obj/item/clothing/suit/storage/marine,
+		/obj/item/clothing/suit/storage/marine/pasvest,
 	)
 	cost = 4
-
-/datum/supply_packs/armor/leader
-	name = "M3 pattern squad leader armor"
-	contains = list(
-		/obj/item/clothing/head/helmet/marine/leader,
-		/obj/item/clothing/suit/storage/marine/leader,
-	)
-	cost = 20
-
 
 // Modular armor + Attachments
 /datum/supply_packs/armor/modular/exosuit
@@ -832,49 +814,49 @@ ARMOR
 	)
 	cost = 1
 
-/datum/supply_packs/armor/modular/armor/heavy
-	name = "Jaeger heavy plates"
+/datum/supply_packs/armor/modular/armor/infantry
+	name = "Jaeger Infantry plates"
 	contains = list(
-		/obj/item/clothing/head/modular/heavy,
-		/obj/item/armor_module/armor/chest/heavy,
-		/obj/item/armor_module/armor/arms/heavy,
-		/obj/item/armor_module/armor/legs/heavy,
+		/obj/item/clothing/head/modular/marine,
+		/obj/item/armor_module/armor/chest/marine,
+		/obj/item/armor_module/armor/arms/marine,
+		/obj/item/armor_module/armor/legs/marine,
 	)
 	cost = 3
 
-/datum/supply_packs/armor/modular/armor/medium
-	name = "Jaeger medium plates"
+/datum/supply_packs/armor/modular/armor/skirmisher
+	name = "Jaeger Skirmisher plates"
 	contains = list(
-		/obj/item/clothing/head/modular/medium,
-		/obj/item/armor_module/armor/chest/medium,
-		/obj/item/armor_module/armor/arms/medium,
-		/obj/item/armor_module/armor/legs/medium,
+		/obj/item/clothing/head/modular/marine/skirmisher,
+		/obj/item/armor_module/armor/chest/marine/skirmisher,
+		/obj/item/armor_module/armor/arms/marine/skirmisher,
+		/obj/item/armor_module/armor/legs/marine/skirmisher,
 	)
 	cost = 3
 
-/datum/supply_packs/armor/modular/armor/light
-	name = "Jaeger light plates"
+/datum/supply_packs/armor/modular/armor/assault
+	name = "Jaeger Assault plates"
 	contains = list(
-		/obj/item/clothing/head/modular/light,
-		/obj/item/armor_module/armor/chest/light,
-		/obj/item/armor_module/armor/arms/light,
-		/obj/item/armor_module/armor/legs/light,
+		/obj/item/clothing/head/modular/marine/assault,
+		/obj/item/armor_module/armor/chest/marine/assault,
+		/obj/item/armor_module/armor/arms/marine/assault,
+		/obj/item/armor_module/armor/legs/marine/assault,
 	)
 	cost = 3
 
-/datum/supply_packs/armor/modular/helmet/heavy
+/datum/supply_packs/armor/modular/helmet/infantry
 	name = "Jaeger heavy helmets"
-	contains = list(/obj/item/clothing/head/modular/heavy)
+	contains = list(/obj/item/clothing/head/modular/marine)
 	cost = 1
 
-/datum/supply_packs/armor/modular/helmet/medium
+/datum/supply_packs/armor/modular/helmet/skirmisher
 	name = "Jaeger medium helmets"
-	contains = list(/obj/item/clothing/head/modular/medium)
+	contains = list(/obj/item/clothing/head/modular/marine/skirmisher)
 	cost = 1
 
-/datum/supply_packs/armor/modular/helmet/light
+/datum/supply_packs/armor/modular/helmet/assault
 	name = "Jaeger light helmets"
-	contains = list(/obj/item/clothing/head/modular/light)
+	contains = list(/obj/item/clothing/head/modular/marine/assault)
 	cost = 1
 
 /datum/supply_packs/armor/modular/storage
