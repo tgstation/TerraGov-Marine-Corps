@@ -11,7 +11,7 @@
 	wound_type = "shrike" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 32
 
 	// *** Tackle *** //
 	tackle_damage = 30
@@ -75,9 +75,6 @@
 
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Melee Attacks *** //
-	melee_damage = 25
-
 	// *** Tackle *** //
 	tackle_damage = 35
 
@@ -107,7 +104,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 30
+	melee_damage = 46
 
 	// *** Tackle *** //
 	tackle_damage = 40
@@ -136,9 +133,6 @@
 	caste_desc = "A barely contained repository of the hive's psychic power."
 	ancient_message = "We are psychic repository of the hive, and we are ready to unleash our fury."
 	upgrade = XENO_UPGRADE_THREE
-
-	// *** Melee Attacks *** //
-	melee_damage = 30
 
 	// *** Tackle *** //
 	tackle_damage = 45

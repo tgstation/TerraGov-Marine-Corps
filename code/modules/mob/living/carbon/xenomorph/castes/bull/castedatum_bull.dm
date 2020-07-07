@@ -9,7 +9,7 @@
 	wound_type = "bull" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 25
+	melee_damage = 19
 
 	// *** Tackle *** //
 	tackle_damage = 30
@@ -57,9 +57,6 @@
 
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Melee Attacks *** //
-	melee_damage = 29
-
 	// *** Tackle *** //
 	tackle_damage = 35
 
@@ -86,7 +83,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 33
+	melee_damage = 21
 
 	// *** Tackle *** //
 	tackle_damage = 40
@@ -112,9 +109,6 @@
 	caste_desc = "The only red it will be seeing is your blood."
 	ancient_message = "We are strong, nothing can stand in our way lest we topple them."
 	upgrade = XENO_UPGRADE_THREE
-
-	// *** Melee Attacks *** //
-	melee_damage = 37
 
 	// *** Tackle *** //
 	tackle_damage = 45

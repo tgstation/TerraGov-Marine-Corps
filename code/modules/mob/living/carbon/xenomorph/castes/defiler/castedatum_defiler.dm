@@ -11,7 +11,7 @@
 	wound_type = "defiler" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 30
+	melee_damage = 46
 
 	// *** Tackle *** //
 	tackle_damage = 30
@@ -63,9 +63,6 @@
 
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Melee Attacks *** //
-	melee_damage = 33
-
 	// *** Tackle *** //
 	tackle_damage = 35
 
@@ -95,7 +92,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 34
+	melee_damage = 52
 
 	// *** Tackle *** //
 	tackle_damage = 40
@@ -124,9 +121,6 @@
 	caste_desc = "Being within mere eyeshot of this hulking, dripping monstrosity fills you with a deep, unshakeable sense of unease."
 	ancient_message = "We are the ultimate alien impregnator. We will infect the marines, see them burst open before us, and hear the gleeful screes of our larvae."
 	upgrade = XENO_UPGRADE_THREE
-
-	// *** Melee Attacks *** //
-	melee_damage = 36
 
 	// *** Tackle *** //
 	tackle_damage = 45

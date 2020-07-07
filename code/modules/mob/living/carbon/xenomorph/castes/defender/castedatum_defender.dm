@@ -11,7 +11,7 @@
 	wound_type = "defender" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 22
+	melee_damage = 40
 
 	// *** Tackle *** //
 	tackle_damage = 25
@@ -64,9 +64,6 @@
 	caste_desc = "An alien with an armored crest. It looks pretty durable."
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Melee Attacks *** //
-	melee_damage = 27
-
 	// *** Tackle *** //
 	tackle_damage = 30
 
@@ -96,7 +93,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 32
+	melee_damage = 46
 
 	// *** Tackle *** //
 	tackle_damage = 35
@@ -126,9 +123,6 @@
 	caste_desc = "An alien with a heavily armored head crest. It looks like it could stop bullets!"
 	upgrade = XENO_UPGRADE_THREE
 	ancient_message = "We are a incredibly resilient, we can control the battle through sheer force."
-
-	// *** Melee Attacks *** //
-	melee_damage = 37
 
 	// *** Tackle *** //
 	tackle_damage = 35

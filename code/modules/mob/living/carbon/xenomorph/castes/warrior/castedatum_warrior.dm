@@ -9,7 +9,7 @@
 	wound_type = "warrior" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 30
+	melee_damage = 40
 
 	// *** Tackle *** //
 	tackle_damage = 34
@@ -60,9 +60,6 @@
 
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Melee Attacks *** //
-	melee_damage = 35
-
 	// *** Tackle *** //
 	tackle_damage = 38
 
@@ -91,7 +88,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 40
+	melee_damage = 46
 
 	// *** Tackle *** //
 	tackle_damage = 40
@@ -120,9 +117,6 @@
 	caste_desc = "An hulking beast capable of effortlessly breaking and tearing through its enemies."
 	ancient_message = "None can stand before us. We will annihilate all weaklings who try."
 	upgrade = XENO_UPGRADE_THREE
-
-	// *** Melee Attacks *** //
-	melee_damage = 45
 
 	// *** Tackle *** //
 	tackle_damage = 42

@@ -12,7 +12,7 @@
 	gib_flick = "gibbed-a-runner"
 
 	// *** Melee Attacks *** //
-	melee_damage = 22
+	melee_damage = 34
 	attack_delay = 6
 
 	savage_cooldown = 30 SECONDS
@@ -66,9 +66,6 @@
 
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Melee Attacks *** //
-	melee_damage = 27
-
 	savage_cooldown = 30 SECONDS
 
 	// *** Tackle *** //
@@ -100,7 +97,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 32
+	melee_damage = 42
 
 	savage_cooldown = 30 SECONDS
 
@@ -132,9 +129,6 @@
 	ancient_message = "We are the fastest assassin of all time. Our speed is unmatched."
 	upgrade = XENO_UPGRADE_THREE
 	wound_type = "runner" //used to match appropriate wound overlays
-
-	// *** Melee Attacks *** //
-	melee_damage = 37
 
 	savage_cooldown = 30 SECONDS
 

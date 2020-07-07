@@ -8,7 +8,7 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
-	melee_damage = 25
+	melee_damage = 34
 
 	// *** Tackle *** //
 	tackle_damage = 30
@@ -62,9 +62,6 @@
 
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Melee Attacks *** //
-	melee_damage = 27
-
 	// *** Tackle *** //
 	tackle_damage = 35
 
@@ -96,7 +93,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 30
+	melee_damage = 40
 
 	// *** Tackle *** //
 	tackle_damage = 40
@@ -127,9 +124,6 @@
 	caste_desc = "A ranged destruction machine."
 	ancient_message = "We are a master of ranged stuns and damage. Let's go fourth and generate salt."
 	upgrade = XENO_UPGRADE_THREE
-
-	// *** Melee Attacks *** //
-	melee_damage = 33
 
 	// *** Tackle *** //
 	tackle_damage = 40

@@ -10,8 +10,8 @@
 	wound_type = "crusher" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 30
-	attack_delay = 8.5
+	melee_damage = 42
+	attack_delay = 8
 
 	// *** Tackle *** //
 	tackle_damage = 40
@@ -57,9 +57,6 @@
 
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Melee Attacks *** //
-	melee_damage = 35
-
 	// *** Tackle *** //
 	tackle_damage = 45
 
@@ -86,7 +83,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 37
+	melee_damage = 48
 
 	// *** Tackle *** //
 	tackle_damage = 50
@@ -112,9 +109,6 @@
 	caste_desc = "It always has the right of way."
 	ancient_message = "We are the physical manifestation of a Tank. Almost nothing can harm us."
 	upgrade = XENO_UPGRADE_THREE
-
-	// *** Melee Attacks *** //
-	melee_damage = 42
 
 	// *** Tackle *** //
 	tackle_damage = 55
