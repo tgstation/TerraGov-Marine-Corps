@@ -849,7 +849,7 @@
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 19,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 9, "stock_y" = 12)
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/tl127,
 									/obj/item/attachable/stock/tl127stock)
-
+burst_amount = 0
 	fire_delay = 1.2 SECONDS
 	accuracy_mult = 1.35
 	accuracy_mult_unwielded = 0.7
@@ -867,10 +867,11 @@
 
 /obj/item/weapon/gun/rifle/chambered/able_to_fire(mob/user)
 	. = ..()
+	if(!.)
+		return
 	if(!racked_bolt)
 		to_chat(user, "<span class='notice'>[src] does not have a round chambered!</span>")
 		return FALSE
-	return TRUE
 
 /obj/item/weapon/gun/rifle/chambered/unique_action(mob/user)
 	if(racked_bolt)
@@ -886,6 +887,6 @@
 	racked_bolt = TRUE
 	playsound(loc, rack_sound, 25, 1, 4)
 
-/obj/item/weapon/gun/rifle/chambered/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
+/obj/item/weapon/gun/rifle/chambered/reload_into_chamber(mob/user)
 	. = ..()
 	racked_bolt = FALSE
