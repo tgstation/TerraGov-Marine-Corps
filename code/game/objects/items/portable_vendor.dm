@@ -46,6 +46,7 @@
 	if(isliving(user))
 		var/obj/item/card/id/I = user.get_idcard()
 		if(!istype(I))
+			to_chat(usr, "<span class='warning'>Access denied. Authorized roles only.</span>")
 			return FALSE
 
 		if(I.registered_name != user.real_name)
@@ -54,6 +55,7 @@
 		if(req_role)
 			var/mob/living/living_user = user
 			if(!istype(living_user.job, req_role))
+				to_chat(usr, "<span class='warning'>Access denied. Authorized roles only.</span>")
 				return FALSE
 
 	return TRUE
@@ -223,6 +225,7 @@
 
 /obj/item/portable_vendor/marine/squadmarine
 	name = "\improper TerraGov Squad Marine Storage Backpack"
+	desc = "A backpack-sized automated storage and retrieval system. Designed to efficiently store and selectively dispense large kits during immediate operations. Can only vend one kit per person. Has a tag saying that this backpack is only for Squad Marines."
 	req_role = /datum/job/terragov/squad/standard
 	listed_products = list(
 							list("MARINE KITS", 0, null, null, null),
@@ -234,12 +237,13 @@ A kit meant for rushing into the frontlines, using the carbine for swift target 
 A heavy kit containing a light machinegun, usful in surpressing fire against enemy combatants. Remove the pistol and magazines inside the satchel to compliment LMG magazines and full holster."),
 							list("Designated Marksman Kit (T-64 DMR, M43 lasgun, IS armor)", 1, /obj/item/storage/box/squadmarine/marksman, "white", "Marksman kit containing a T-64 DMR, its attachments and magazines, a M43 lasgun as a backup, a flare pouch and integrated storage armor. \n\
 A marksman kit containing two rifles for area denial and overwatch. It also contains a lasgun for fierce engagements."),
-							list("Breacher Kit (T-19 submachinegun, light armor, heavy helmet)", 1, /obj/item/storage/box/squadmarine/breacher, "white", "Breacher kit containing a T-19 SMG, its attachment and magazines, a machete as a backup, an explosive pouch, heavy helmet and light armor. \n\
+							list("Breacher Kit (T-90 submachinegun, light armor, heavy helmet)", 1, /obj/item/storage/box/squadmarine/breacher, "white", "Breacher kit containing a T-90 SMG, its attachment and magazines, a machete as a backup, an explosive pouch, heavy helmet and light armor. \n\
 A breacher kit with the least firepower, has a high capacity SMG and a machete for self-defense. But can get through walls no problem.")
 							)
 
 /obj/item/portable_vendor/marine/squadmarine/engineer
 	name = "\improper TerraGov Squad Engineer Storage Backpack"
+	desc = "A backpack-sized automated storage and retrieval system. Designed to efficiently store and selectively dispense large kits during immediate operations. Can only vend one kit per person. Has a tag saying that this backpack is only for Squad Engineers."
 	req_role = /datum/job/terragov/squad/engineer
 	listed_products = list(
 							list("MARINE WEAPONS", 0, null, null, null),
@@ -251,6 +255,7 @@ A breacher kit with the least firepower, has a high capacity SMG and a machete f
 
 /obj/item/portable_vendor/marine/squadmarine/corpsman
 	name = "\improper TerraGov Squad Corpsman Storage Backpack"
+	desc = "A backpack-sized automated storage and retrieval system. Designed to efficiently store and selectively dispense large kits during immediate operations. Can only vend one kit per person. Has a tag saying that this backpack is only for Squad Corpsmen."
 	req_role = /datum/job/terragov/squad/corpsman
 	listed_products = list(
 							list("MARINE WEAPONS", 0, null, null, null),
@@ -260,6 +265,7 @@ A breacher kit with the least firepower, has a high capacity SMG and a machete f
 
 /obj/item/portable_vendor/marine/squadmarine/smartgunner
 	name = "\improper TerraGov Squad Smartgunner Storage Backpack"
+	desc = "A backpack-sized automated storage and retrieval system. Designed to efficiently store and selectively dispense large kits during immediate operations. Can only vend one kit per person. Has a tag saying that this backpack is only for Squad Smartgunners."
 	req_role = /datum/job/terragov/squad/smartgunner
 	listed_products = list(
 							list("MARINE WEAPONS", 0, null, null, null),
@@ -269,6 +275,7 @@ A breacher kit with the least firepower, has a high capacity SMG and a machete f
 
 /obj/item/portable_vendor/marine/squadmarine/specialist
 	name = "\improper TerraGov Squad Specialist Storage Backpack"
+	desc = "A backpack-sized automated storage and retrieval system. Designed to efficiently store and selectively dispense large kits during immediate operations. Can only vend one kit per person. Has a faded tag saying that this backpack is only for Squad Specialists, you wonder if you are either lucky or just disappointed."
 	req_role = /datum/job/terragov/squad/specialist
 	listed_products = list(
 							list("SPECIALIST KITS", 0, null, null, null),
