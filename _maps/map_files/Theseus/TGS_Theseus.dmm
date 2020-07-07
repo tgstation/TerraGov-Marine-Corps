@@ -30271,6 +30271,7 @@
 /obj/machinery/status_display{
 	pixel_y = 30
 	},
+/obj/item/toy/deck/kotahi,
 /turf/open/floor/mainship,
 /area/mainship/living/cafeteria_port)
 "bSY" = (
@@ -38584,6 +38585,11 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/bridgebunks)
+"xnY" = (
+/obj/structure/table/mainship,
+/obj/item/toy/deck/kotahi,
+/turf/open/floor/mainship,
+/area/mainship/living/cafeteria_starboard)
 "xrC" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -86443,7 +86449,7 @@ aUo
 aYS
 aWV
 bbp
-bbn
+xnY
 bdB
 bbv
 bbv
