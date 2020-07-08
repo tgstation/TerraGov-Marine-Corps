@@ -1,4 +1,0 @@
-author: "Rohesie"
-delete-after: True
-changes: 
-  - rscadd: "Preferences added to mute potentially spammy combat logs in the chat feed (useful to reduce combat lag), and to see runechat emotes."
