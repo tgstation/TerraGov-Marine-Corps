@@ -397,6 +397,7 @@
 
 /obj/item/explosive/grenade/flare/cas/process()
 	. = ..()
+	var/turf/TU = get_turf(src)
 	if(is_ground_level(TU.z))
 		if(!target && active)
 			target = new(src, name, user_squad)

@@ -318,6 +318,11 @@
 	if(!length(contents))
 		icon_state += "_e"
 
+/obj/item/storage/box/m94/cas
+	name = "\improper M50 CFDP signal pack"
+	desc = "A packet of five M40 CFPD signal Flares. Used to mark locations for fire support. Can be launched from an underslung grenade launcher."
+	spawn_type = /obj/item/explosive/grenade/flare/cas
+
 
 /obj/item/storage/box/nade_box
 	name = "\improper M40 HEDP grenade box"

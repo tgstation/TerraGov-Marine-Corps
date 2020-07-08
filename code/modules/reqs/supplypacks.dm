@@ -41,6 +41,11 @@ OPERATIONS
 	contains = list(/obj/item/squad_beacon/bomb)
 	cost = 30
 
+/datum/supply_packs/operations/cas_flares
+	name = "CAS flare pack"
+	contains = list(/obj/item/storage/box/m94/cas)
+	cost = 10
+
 /datum/supply_packs/operations/binoculars_regular
 	name = "binoculars"
 	contains = list(/obj/item/binoculars)
