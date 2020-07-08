@@ -390,7 +390,7 @@
 	if(overwatch_active)
 		stop_overwatch()
 
-/datum/action/xeno_action/watch_xeno/proc/on_owner_death(datum/source, gibbed)
+/datum/action/xeno_action/watch_xeno/proc/on_owner_death(mob/source, gibbing)
 	if(overwatch_active)
 		stop_overwatch()
 

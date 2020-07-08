@@ -79,7 +79,7 @@
 
 /obj/attacked_by(obj/item/I, mob/living/user, def_zone)
 	user.visible_message("<span class='warning'>[user] hits [src] with [I]!</span>",
-		"<span class='warning'>You hit [src] with [I]!</span>")
+		"<span class='warning'>You hit [src] with [I]!</span>", visible_message_flags = COMBAT_MESSAGE)
 	log_combat(user, src, "attacked", I)
 	var/power = I.force + round(I.force * 0.3 * user.skills.getRating("melee_weapons")) //30% bonus per melee level
 	take_damage(power, I.damtype, "melee")

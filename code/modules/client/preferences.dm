@@ -109,10 +109,17 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	// Hud tooltip
 	var/tooltips = TRUE
 
+	///Whether to mute goonchat combat messages when we are the source, such as when we are shot.
+	var/mute_self_combat_messages = FALSE
+	///Whether to mute goonchat combat messages from others, such as when they are shot.
+	var/mute_others_combat_messages = FALSE
+
 	/// Chat on map
 	var/chat_on_map = TRUE
-	var/see_chat_non_mob = TRUE
+	var/see_chat_non_mob = FALSE
 	var/max_chat_length = CHAT_MESSAGE_MAX_LENGTH
+	///Whether emotes will be displayed on runechat. Requires chat_on_map to have effect.
+	var/see_rc_emotes = TRUE
 
 	var/auto_fit_viewport = TRUE
 
@@ -333,10 +340,15 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	dat += "<b>FPS:</b> <a href='?_src_=prefs;preference=clientfps'>[clientfps]</a><br>"
 	dat += "<b>Fit Viewport:</b> <a href='?_src_=prefs;preference=auto_fit_viewport'>[auto_fit_viewport ? "Auto" : "Manual"]</a><br>"
 
+	dat += "<h2>Chat Message Settings:</h2>"
+	dat += "<b>Mute self combat messages:</b> <a href='?_src_=prefs;preference=mute_self_combat_messages'>[mute_self_combat_messages ? "Enabled" : "Disabled"]</a><br>"
+	dat += "<b>Mute others combat messages:</b> <a href='?_src_=prefs;preference=mute_others_combat_messages'>[mute_others_combat_messages ? "Enabled" : "Disabled"]</a><br>"
+
 	dat += "<h2>Runechat Settings:</h2>"
 	dat += "<b>Show Runechat Chat Bubbles:</b> <a href='?_src_=prefs;preference=chat_on_map'>[chat_on_map ? "Enabled" : "Disabled"]</a><br>"
 	dat += "<b>Runechat message char limit:</b> <a href='?_src_=prefs;preference=max_chat_length;task=input'>[max_chat_length]</a><br>"
 	dat += "<b>See Runechat for non-mobs:</b> <a href='?_src_=prefs;preference=see_chat_non_mob'>[see_chat_non_mob ? "Enabled" : "Disabled"]</a><br>"
+	dat += "<b>See Runechat emotes:</b> <a href='?_src_=prefs;preference=see_rc_emotes'>[see_rc_emotes ? "Enabled" : "Disabled"]</a><br>"
 
 	dat += "<h2>UI Customization:</h2>"
 	dat += "<b>Style:</b> <a href='?_src_=prefs;preference=ui'>[ui_style]</a><br>"
@@ -961,6 +973,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			clientfps = desiredfps
 			parent.fps = desiredfps
 
+		if("mute_self_combat_messages")
+			mute_self_combat_messages = !mute_self_combat_messages
+
+		if("mute_others_combat_messages")
+			mute_others_combat_messages = !mute_others_combat_messages
+
 		if("chat_on_map")
 			chat_on_map = !chat_on_map
 
@@ -971,6 +989,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 		if("see_chat_non_mob")
 			see_chat_non_mob = !see_chat_non_mob
+
+		if("see_rc_emotes")
+			see_rc_emotes = !see_rc_emotes
 
 		if("tooltips")
 			tooltips = !tooltips

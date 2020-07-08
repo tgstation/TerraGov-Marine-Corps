@@ -9,10 +9,14 @@
 	icon_state = "deck"
 	w_class = WEIGHT_CLASS_TINY
 
+	var/card_type = "normal"
 	var/list/cards = list()
 
 /obj/item/toy/deck/Initialize()
 	. = ..()
+	populate_deck()
+
+/obj/item/toy/deck/proc/populate_deck()
 	var/datum/playingcard/P
 	for(var/suit in list("spades","clubs","diamonds","hearts"))
 
@@ -64,7 +68,7 @@
 	else if(user.r_hand && istype(user.r_hand,/obj/item/toy/handcard))
 		H = user.r_hand
 	else
-		H = new(get_turf(src))
+		H = new(get_turf(src), card_type)
 		user.put_in_hands(H)
 
 	if(!H || !user) return
@@ -108,7 +112,7 @@
 			break
 
 /obj/item/toy/deck/proc/deal_at(mob/user, mob/target)
-	var/obj/item/toy/handcard/H = new(get_step(user, user.dir))
+	var/obj/item/toy/handcard/H = new(get_step(user, user.dir), card_type)
 
 	H.cards += cards[1]
 	cards -= cards[1]
@@ -144,17 +148,22 @@
 	deal_at(usr, over)
 
 
-
 /obj/item/toy/handcard
 	name = "hand of cards"
 	desc = "Some playing cards."
-	icon = 'icons/obj/items/playing_cards.dmi'
 	icon_state = "empty"
 	w_class = WEIGHT_CLASS_TINY
 
 	var/concealed = 0
 	var/list/cards = list()
 
+/obj/item/toy/handcard/Initialize(mapload, card_type)
+	. = ..()
+	switch(card_type)
+		if("normal")
+			icon = 'icons/obj/items/playing_cards.dmi'
+		if("kotahi")
+			icon = 'icons/obj/items/kotahi_cards.dmi'
 
 /obj/item/toy/handcard/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -283,3 +292,57 @@
 
 /obj/item/toy/handcard/pickup(mob/user as mob)
 	src.update_icon()
+
+
+/obj/item/toy/deck/kotahi
+	name = "KOTAHI deck"
+	desc = "A flashy deck of Nanotrasen KOTAHI playing cards. Usually sold alongside crayon packages."
+	icon = 'icons/obj/items/kotahi_cards.dmi'
+	icon_state = "deck"
+	card_type = "kotahi"
+
+/obj/item/toy/deck/kotahi/populate_deck()
+	var/datum/playingcard/P
+	var/datum/playingcard/I
+
+	for(var/colour in list("Red","Yellow","Green","Blue"))
+		P = new()
+		P.name = "[colour] 0" //kotahi decks have only one colour of each 0, weird huh?
+		P.card_icon = "[colour] 0"
+		cards += P
+		for(var/k in 0 to 1) //two of each colour of number
+			I = new()
+			I.name += "[colour] skip"
+			I.card_icon = "[colour] skip"
+			cards += I
+		for(var/k in 0 to 1)
+			I = new()
+			I.name = "[colour] reverse"
+			I.card_icon = "[colour] reverse"
+			cards += I
+		for(var/k in 0 to 1)
+			I = new()
+			I.name += "[colour] draw 2"
+			I.card_icon = "[colour] draw 2"
+			cards += I
+		for(var/i in 1 to 9)
+			I = new()
+			I.name = "[colour] [i]"
+			I.card_icon = "[colour] [i]"
+			cards += I
+
+	for(var/k in 0 to 3) //4 wilds and draw 4s
+		P = new()
+		P.name = "Wildcard"
+		P.card_icon = "Wildcard"
+		cards += P
+	for(var/k in 0 to 3)
+		P.name= "Draw 4"
+		P.card_icon = "Draw 4"
+		cards += P
+
+/obj/item/toy/deck/update_icon()
+	switch(cards.len)
+		if(72 to 108) icon_state = "deck"
+		if(37 to 72) icon_state = "deck_half"
+		if(0 to 36) icon_state = "deck_empty"

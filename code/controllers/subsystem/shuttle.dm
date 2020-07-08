@@ -40,6 +40,9 @@ SUBSYSTEM_DEF(shuttle)
 
 	var/datum/turf_reservation/preview_reservation
 
+	/// safety to stop shuttles loading over each other
+	var/loading_shuttle = FALSE
+
 /datum/controller/subsystem/shuttle/Initialize(timeofday)
 	initial_load()
 	return ..()
@@ -332,6 +335,41 @@ SUBSYSTEM_DEF(shuttle)
 
 	QDEL_LIST(remove_images)
 
+
+/datum/controller/subsystem/shuttle/proc/load_template_to_transit(datum/map_template/shuttle/template)
+	UNTIL(!loading_shuttle)
+	loading_shuttle = TRUE
+
+	var/obj/docking_port/mobile/shuttle = action_load(template)
+
+	if(!istype(shuttle))
+		message_admins("Shuttle loading: [name] couldn't load a shuttle template")
+		loading_shuttle = FALSE
+		CRASH("Shuttle loading: ert shuttle failed to load")
+
+	if(!shuttle.assigned_transit)
+		generate_transit_dock(shuttle)
+
+	if(!shuttle.assigned_transit)
+		message_admins("Shuttle loading: shuttle failed to get an assigned transit dock.")
+		shuttle.intoTheSunset()
+		loading_shuttle = FALSE
+		CRASH("Shuttle loading: ert shuttle failed to get an assigned transit dock")
+
+	shuttle.initiate_docking(shuttle.assigned_transit)
+
+	loading_shuttle = FALSE
+
+	if(!shuttle.assigned_transit)
+		message_admins("Shuttle loading: shuttle no longer has an assigned transit, trying to get it a new one")
+		generate_transit_dock(shuttle)
+		if(!shuttle.assigned_transit)
+			message_admins("Shuttle loading: shuttle possibly failed because it no longer has an assigned transit, deleting it.")
+			shuttle.intoTheSunset()
+			CRASH("Shuttle loading: shuttle possibly failed because it no longer has an assigned transit, deleting it.")
+
+	return shuttle
+
 /datum/controller/subsystem/shuttle/proc/action_load(datum/map_template/shuttle/loading_template, obj/docking_port/stationary/destination_port)
 	// Check for an existing preview
 	if(preview_shuttle && (loading_template != preview_template))
@@ -361,6 +399,7 @@ SUBSYSTEM_DEF(shuttle)
 		D = generate_transit_dock(preview_shuttle)
 
 	if(!D)
+		preview_shuttle.jumpToNullSpace()
 		CRASH("No dock found for preview shuttle ([preview_template.name]), aborting.")
 
 	var/result = preview_shuttle.canDock(D)

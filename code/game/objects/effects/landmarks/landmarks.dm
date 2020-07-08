@@ -331,7 +331,7 @@
 		/obj/item/weapon/gun/shotgun/combat,
 		/obj/item/weapon/gun/shotgun/double,
 		/obj/item/weapon/gun/shotgun/double/sawn,
-		/obj/item/weapon/gun/flamer/M240T,
+		/obj/item/weapon/gun/flamer/marinestandard,
 		/obj/item/weapon/energy/axe,
 	)
 
@@ -350,7 +350,7 @@
 /obj/effect/landmark/weapon_spawn/tier6_weapon_spawn
 	name = "Tier meme Weapon Spawn"
 	icon_state = "weapon6"
-	weapon_list = list(
-		/obj/item/weapon/gun/pistol/chimp,
-		/obj/item/weapon/banhammer,
-	)
+	weapon_list = list(	/obj/item/weapon/gun/pistol/chimp,
+						/obj/item/weapon/banhammer,
+						/obj/item/weapon/chainsword,
+						)
