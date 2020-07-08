@@ -79,9 +79,9 @@
 	
 	playsound(loc, 'sound/effects/glass_step.ogg', 25, TRUE)
 	if(prob(20))
-	    to_chat(M, "<span class='danger'>[isxeno(M) ? "We" : "You"] step on \the [src], shattering it!</span>")
+		to_chat(M, "<span class='danger'>[isxeno(M) ? "We" : "You"] step on \the [src], shattering it!</span>")
 		qdel(src)
-		return 
+		return ..()
 	
 	if(!M.buckled)
 		to_chat(M, "<span class='danger'>[isxeno(M) ? "We" : "You"] step on \the [src]!</span>")
