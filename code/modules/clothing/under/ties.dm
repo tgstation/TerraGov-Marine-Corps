@@ -541,13 +541,15 @@
 	hold = /obj/item/storage/internal/tie/white_vest
 
 /obj/item/storage/internal/tie/white_vest
-	storage_slots = 8
+	storage_slots = 12
+	max_storage_space = 24
+	max_w_class = WEIGHT_CLASS_BULKY
+
 	can_hold = list(
 		/obj/item/tool/surgery,
-		/obj/item/stack/medical/advanced,
-		/obj/item/clothing/mask/surgical,
-		/obj/item/clothing/gloves/latex,
-		/obj/item/stack/nanopaste)
+		/obj/item/stack/medical/advanced/bruise_pack,
+		/obj/item/stack/nanopaste
+		)
 
 /obj/item/clothing/tie/storage/white_vest/medic
 	name = "corpsman webbing"

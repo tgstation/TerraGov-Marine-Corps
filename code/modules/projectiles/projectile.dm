@@ -930,7 +930,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		current_bulletholes++
 
 	if(prob(30))
-		proj.visible_message("<span class='warning'>[src] is damaged by [proj]!</span>")
+		visible_message("<span class='warning'>[src] is damaged by [proj]!</span>", visible_message_flags = COMBAT_MESSAGE)
 	take_damage(damage)
 	return TRUE
 
@@ -979,7 +979,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /mob/living/carbon/human/bullet_message(obj/projectile/proj, feedback_flags, damage)
 	. = ..()
-	var/list/onlooker_feedback = list("[src] is hit by the [proj] in the [parse_zone(proj.def_zone)]!")
+	var/list/onlooker_feedback = list("[src] is hit by \the [proj] in the [parse_zone(proj.def_zone)]!")
 
 	var/list/victim_feedback = list()
 	if(proj.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
@@ -1002,7 +1002,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		onlooker_feedback += "[p_they(TRUE)] burst into flames!"
 
 	visible_message("<span class='danger'>[onlooker_feedback.Join(" ")]</span>",
-	"<span class='highdanger'>[victim_feedback.Join(" ")]</span>", null, 4)
+	"<span class='highdanger'>[victim_feedback.Join(" ")]</span>", null, 4, visible_message_flags = COMBAT_MESSAGE)
 
 	if(feedback_flags & BULLET_FEEDBACK_SCREAM && stat == CONSCIOUS && !(species.species_flags & NO_PAIN))
 		emote("scream")
@@ -1021,7 +1021,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /mob/living/carbon/xenomorph/bullet_message(obj/projectile/proj, feedback_flags, damage)
 	. = ..()
-	var/list/onlooker_feedback = list("[src] is hit by the [proj] in the [parse_zone(proj.def_zone)]!")
+	var/list/onlooker_feedback = list("[src] is hit by \the [proj] in the [parse_zone(proj.def_zone)]!")
 
 	var/list/victim_feedback
 	if(proj.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
@@ -1046,7 +1046,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		emote(prob(70) ? "hiss" : "roar")
 
 	visible_message("<span class='danger'>[onlooker_feedback.Join(" ")]</span>",
-	"<span class='xenodanger'>[victim_feedback.Join(" ")]", null, 4)
+	"<span class='xenodanger'>[victim_feedback.Join(" ")]", null, 4, visible_message_flags = COMBAT_MESSAGE)
 
 // Sundering procs
 /mob/living/proc/adjust_sunder(adjustment)

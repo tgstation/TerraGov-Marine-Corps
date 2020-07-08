@@ -23,7 +23,8 @@
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/large_holster/machete,
 		/obj/item/weapon/claymore,
-		/obj/item/storage/belt/gun
+		/obj/item/storage/belt/gun,
+		/obj/item/storage/belt/knifepouch
 	)
 	flags_equip_slot = ITEM_SLOT_OCLOTHING
 	w_class = WEIGHT_CLASS_BULKY
@@ -439,6 +440,9 @@
 	if(installed_module)
 		if(!silent)
 			to_chat(user,"<span class='warning'>There is already an installed module.</span>")
+		return FALSE
+
+	if(user.action_busy)
 		return FALSE
 
 	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))

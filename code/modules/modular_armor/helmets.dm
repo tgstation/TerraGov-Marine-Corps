@@ -32,3 +32,29 @@
 
 	active = !active
 	to_chat(user, "<span class='notice'>You toggle \the [src]. [active ? "enabling" : "disabling"] it.</span>")
+
+
+/obj/item/helmet_module/attachable/mimir_environment_protection
+	name = "Mimir Environmental Helmet System"
+	desc = "Designed for mounting on a Jaeger Helmet. When attached, this system provides substantial resistance to environmental hazards, such as gases, acidic elements, and radiological exposure. Best paired with the Mimir Environmental Resistance System. Will impact mobility when attached."
+	icon_state = "mimir_head_obj"
+	item_state = "mimir_head"
+	soft_armor = list("bio" = 20, "rad" = 50, "acid" = 20)
+	module_type = ARMOR_MODULE_TOGGLE
+	var/siemens_coefficient_mod = -0.9
+	var/permeability_coefficient_mod = -1
+	var/gas_transfer_coefficient_mod = -1
+
+/obj/item/helmet_module/attachable/mimir_environment_protection/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
+	. = ..()
+	parent.soft_armor = parent.soft_armor.attachArmor(soft_armor)
+	parent.siemens_coefficient += siemens_coefficient_mod
+	parent.permeability_coefficient += permeability_coefficient_mod
+	parent.gas_transfer_coefficient += siemens_coefficient_mod
+
+/obj/item/helmet_module/attachable/mimir_environment_protection/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
+	parent.soft_armor = parent.soft_armor.detachArmor(soft_armor)
+	parent.siemens_coefficient -= siemens_coefficient_mod
+	parent.permeability_coefficient -= permeability_coefficient_mod
+	parent.gas_transfer_coefficient -= siemens_coefficient_mod
+	return ..()
