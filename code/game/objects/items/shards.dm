@@ -77,11 +77,11 @@
 	if(M.status_flags & INCORPOREAL)
 		return ..()
 	
+	playsound(loc, 'sound/effects/glass_step.ogg', 25, TRUE)
 	if(prob(20))
-		playsound(src.loc, 'sound/weapons/genhit.ogg', 25, TRUE)
+	    to_chat(M, "<span class='danger'>[isxeno(M) ? "We" : "You"] step on \the [src], shattering it!</span>")
 		qdel(src)
-	else
-		playsound(src.loc, 'sound/effects/glass_step.ogg', 25, TRUE) // not sure how to handle metal shards with sounds
+		return 
 	
 	if(!M.buckled)
 		to_chat(M, "<span class='danger'>[isxeno(M) ? "We" : "You"] step on \the [src]!</span>")
