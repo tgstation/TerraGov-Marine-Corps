@@ -299,7 +299,7 @@
 	force = initial(force)
 	damtype = initial(damtype)
 	update_brightness()
-	icon_state = "[initial(icon_state)]-empty" // override icon state set by update_brightness
+	icon_state = "[initial(icon_state)]_empty" // override icon state set by update_brightness
 	STOP_PROCESSING(SSobj, src)
 
 /obj/item/explosive/grenade/flare/proc/turn_on()
@@ -376,7 +376,7 @@
 /obj/item/explosive/grenade/flare/cas
 	name = "\improper M50 CFDP signal flare"
 	desc = "A TGMC signal flare utilizing the standard DP canister chassis. Capable of being loaded in the M92 Launcher, or thrown by hand. when activated, provides a target for CAS pilots."
-	icon_state = "flare_grenade"
+	icon_state = "cas_flare_grenade"
 	hud_state = "grenade_frag"
 	lower_fuel_limit = 25
 	upper_fuel_limit = 30
