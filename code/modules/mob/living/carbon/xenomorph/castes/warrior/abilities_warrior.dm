@@ -259,7 +259,7 @@
 		return
 
 	X.visible_message("<span class='xenowarning'>\The [X] hits [src] in the [L.display_name] with a devastatingly powerful punch!</span>", \
-		"<span class='xenowarning'>We hit [src] in the [L.display_name] with a devastatingly powerful punch!</span>")
+		"<span class='xenowarning'>We hit [src] in the [L.display_name] with a devastatingly powerful punch!</span>", visible_message_flags = COMBAT_MESSAGE)
 
 	if(L.limb_status & LIMB_SPLINTED) //If they have it splinted, the splint won't hold.
 		L.remove_limb_flags(LIMB_SPLINTED)

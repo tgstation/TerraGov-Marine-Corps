@@ -171,7 +171,8 @@ Contains most of the procs that are called when a mob is attacked by something
 	var/armor_verb
 	switch(armor)
 		if(100 to INFINITY)
-			visible_message("<span class='danger'>[src] has been [attack_verb] in the [hit_area] with [I.name] by [user], but the attack is deflected by [p_their()] armor!</span>", null, null, COMBAT_MESSAGE_RANGE)
+			visible_message("<span class='danger'>[src] has been [attack_verb] in the [hit_area] with [I.name] by [user], but the attack is deflected by [p_their()] armor!</span>",\
+			null, null, COMBAT_MESSAGE_RANGE, visible_message_flags = COMBAT_MESSAGE)
 			user.do_attack_animation(src, used_item = I)
 			log_combat(user, src, "attacked", I, "(FAILED: armor blocked) (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)])")
 			return TRUE
@@ -183,7 +184,8 @@ Contains most of the procs that are called when a mob is attacked by something
 		if(75 to 100)
 			armor_verb = " [p_their(TRUE)] armor has deflected most of the blow!"
 
-	visible_message("<span class='danger'>[src] has been [attack_verb] in the [hit_area] with [I.name] by [user]![armor_verb]</span>", null, null, 5)
+	visible_message("<span class='danger'>[src] has been [attack_verb] in the [hit_area] with [I.name] by [user]![armor_verb]</span>",\
+	null, null, 5, visible_message_flags = COMBAT_MESSAGE)
 
 	var/weapon_sharp = is_sharp(I)
 	var/weapon_edge = has_edge(I)
