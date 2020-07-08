@@ -17886,6 +17886,13 @@
 "vvh" = (
 /turf/closed/wall/sulaco/hull,
 /area/sulaco/bridge/office)
+"vJm" = (
+/obj/structure/rack,
+/obj/structure/ob_ammo/warhead/plasmaloss,
+/obj/structure/ob_ammo/warhead/plasmaloss,
+/obj/structure/ob_ammo/warhead/plasmaloss,
+/turf/open/floor/mainship/red,
+/area/mainship/shipboard/weapon_room)
 "whS" = (
 /obj/machinery/door_control/mainship/req{
 	id = "qm_warehouse";
@@ -40363,7 +40370,7 @@ aIx
 aIP
 aEm
 aHz
-aPc
+vJm
 aIz
 aIz
 aIz
