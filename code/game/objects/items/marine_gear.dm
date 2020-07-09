@@ -75,7 +75,7 @@
 		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED), .proc/on_bodybag_occupant_death)
 		deploy_triggers()
 
-/obj/structure/closet/bodybag/tarp/proc/on_bodybag_occupant_death(datum/source, gibbed)
+/obj/structure/closet/bodybag/tarp/proc/on_bodybag_occupant_death(mob/source, gibbing)
 	open()
 
 

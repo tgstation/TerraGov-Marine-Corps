@@ -17752,6 +17752,11 @@
 /obj/machinery/vending/marine/cargo_supply,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
+"gKQ" = (
+/obj/structure/table,
+/obj/item/toy/deck/kotahi,
+/turf/open/floor/tile/white,
+/area/sulaco/cafeteria)
 "hnW" = (
 /obj/structure/table/mainship,
 /obj/item/tool/pickaxe/plasmacutter,
@@ -57056,7 +57061,7 @@ aoT
 aup
 any
 axz
-aoR
+gKQ
 ayk
 aDP
 aEo
