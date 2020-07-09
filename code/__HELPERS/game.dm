@@ -188,7 +188,7 @@
 
 	return heard
 
-/proc/get_active_player_count(alive_check = 0, afk_check = 0, human_check = 0)
+/proc/get_active_player_count(alive_check = FALSE, afk_check = FALSE, faction_check = FALSE, faction = FACTION_NEUTRAL)
 	// Get active players who are playing in the round
 	var/active_players = 0
 	for(var/i = 1; i <= GLOB.player_list.len; i++)
@@ -199,8 +199,12 @@
 			continue
 		else if(afk_check && M.client.is_afk())
 			continue
-		else if(human_check && !ishuman(M))
-			continue
+		else if(faction_check)
+			if(!isliving(M))
+				continue
+			var/mob/living/living = M
+			if(faction != living.faction)
+				continue
 		else if(isnewplayer(M)) // exclude people in the lobby
 			continue
 		else if(isobserver(M)) // Ghosts are fine if they were playing once (didn't start as observers)
