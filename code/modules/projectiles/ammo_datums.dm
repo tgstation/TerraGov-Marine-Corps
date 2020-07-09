@@ -871,13 +871,21 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 75
 	penetration = 35
 
+/datum/ammo/bullet/sniper/railgun
+	name = "HVP"
+	hud_state = "HVP"
+	iff_signal = null
+	damage = 120
+	penetration = 100
+	sundering = 50
+
 /datum/ammo/bullet/sniper/elite
 	name = "supersonic sniper bullet"
 	hud_state = "sniper_supersonic"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SKIPS_HUMANS
 	iff_signal = ACCESS_IFF_MARINE|ACCESS_IFF_PMC
 	accuracy = 40
-	damage = 150
+	damage = 120
 	sundering = 75
 
 /*

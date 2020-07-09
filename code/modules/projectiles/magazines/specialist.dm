@@ -47,6 +47,16 @@
 	max_rounds = 10
 	gun_type = /obj/item/weapon/gun/rifle/sniper/svd
 
+//Railgun
+
+/obj/item/ammo_magazine/sniper/railgun
+	name = "\improper HVP Magazine"
+	desc = "A large magazine containing a projectile made for a specific purpose"
+	caliber = "High Velocity Projectile"
+	icon_state = "railgun"
+	default_ammo = /datum/ammo/bullet/sniper/railgun
+	max_rounds = 1
+	gun_type = /obj/item/weapon/gun/rifle/sniper/railgun
 
 
 //M4RA magazines

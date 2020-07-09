@@ -284,6 +284,38 @@
 	scatter = 15
 	recoil = 2
 
+//The Railgun
+
+/obj/item/weapon/gun/rifle/sniper/railgun
+	name = "\improper T-4 Projectile Railgun"
+	desc = "A highly sophisticated weapon cable of launching projectiles at very high velocity. Fires HVP."
+	icon_state = "svd"
+	item_state = "svd"
+	max_shells = 1 //codex
+	caliber = "High Velocity Projectile" //codex
+	fire_sound = 'sound/weapons/guns/fire/railgun.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/svd_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/svd_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/svd_cocked.ogg'
+	current_mag = /obj/item/ammo_magazine/sniper/railgun
+	type_of_casings = "null"
+	attachable_allowed = list(
+						/obj/item/attachable/bipod,
+						/obj/item/attachable/scope,
+						/obj/item/attachable/magnetic_harness)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 20, "stock_y" = 14)
+	starting_attachment_types = list(/obj/item/attachable/scope)
+
+
+	fire_delay = 2 SECONDS
+	burst_amount = 1
+	accuracy_mult = 1.25
+	scatter = 15
+	recoil = 2
+
 
 
 //M4RA marksman rifle
