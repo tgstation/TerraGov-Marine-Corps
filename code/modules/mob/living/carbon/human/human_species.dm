@@ -60,3 +60,6 @@
 
 /mob/living/carbon/human/species/sectoid
 	race = "Sectoid"
+
+/mob/living/carbon/human/species/vatborn
+	race = "Vatborn"
