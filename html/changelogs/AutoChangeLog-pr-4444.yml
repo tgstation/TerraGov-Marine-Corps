@@ -1,4 +1,0 @@
-author: "rhomm-dev"
-delete-after: True
-changes: 
-  - rscadd: "shards have a chance to be destroyed when stepped on"
