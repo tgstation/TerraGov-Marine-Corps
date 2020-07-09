@@ -52,7 +52,7 @@
 #define FOOD_METABOLISM 0.4
 
 // Factor of how fast mob nutrition decreases
-#define HUNGER_FACTOR 0.05
+#define HUNGER_FACTOR 0 //revert to 0.05 if the hunger system is desired
 
 //Specific Heat, unused stuff right now..
 #define SPECIFIC_HEAT_DEFAULT		200
