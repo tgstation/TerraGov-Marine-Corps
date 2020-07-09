@@ -59,7 +59,7 @@ SUBSYSTEM_DEF(events)
 	set waitfor = FALSE	//for the admin prompt
 
 	var/gamemode = SSticker.mode.config_tag
-	var/players_amt = get_active_player_count(alive_check = 1, afk_check = 1, human_check = 1)
+	var/players_amt = get_active_player_count(alive_check = TRUE, afk_check = TRUE)
 	// Only alive, non-AFK human players count towards this.
 
 	var/sum_of_weights = 0
