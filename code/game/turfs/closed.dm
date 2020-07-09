@@ -178,12 +178,6 @@
 			ChangeTurf(/turf/open/floor/plating/ground/ice)
 
 
-//Ice Secret Wall
-/turf/closed/ice/secret
-	icon_state = "ice_wall_0"
-	desc = "There is something inside..."
-
-
 //ROCK WALLS------------------------------//
 
 //Icy Rock
