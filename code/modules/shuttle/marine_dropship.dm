@@ -1026,7 +1026,7 @@
 	shuttleId = "tgs_canterbury"
 	possible_destinations = "canterbury_loadingdock"
 
-/obj/machinery/computer/shuttle/shuttle_control/ui_interact(mob/user)
+/obj/machinery/computer/shuttle/shuttle_control/canterbury/ui_interact(mob/user)
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access Denied!</span>")
 		return
