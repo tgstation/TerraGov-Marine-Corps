@@ -61,7 +61,7 @@
 
 	if(intentional)
 		user.log_message(msg, LOG_EMOTE)
-	msg = "[prefix]<b>[user]</b> [msg]"
+	var/dchatmsg = "[prefix]<b>[user]</b> [msg]"
 
 	var/tmp_sound = get_sound(user)
 	if(tmp_sound && (!(flags_emote & EMOTE_FORCED_AUDIO) || !intentional))
@@ -74,12 +74,12 @@
 		var/T = get_turf(user)
 		if(!(M.client.prefs.toggles_chat & CHAT_GHOSTSIGHT) || (M in viewers(T, null)))
 			continue
-		M.show_message("[FOLLOW_LINK(M, user)] [msg]")
+		M.show_message("[FOLLOW_LINK(M, user)] [dchatmsg]")
 
 	if(emote_type == EMOTE_AUDIBLE)
-		user.audible_message(msg)
+		user.audible_message(msg, audible_message_flags = EMOTE_MESSAGE, emote_prefix = prefix)
 	else
-		user.visible_message(msg)
+		user.visible_message(msg, visible_message_flags = EMOTE_MESSAGE, emote_prefix = prefix)
 
 
 /datum/emote/proc/get_sound(mob/living/user)
