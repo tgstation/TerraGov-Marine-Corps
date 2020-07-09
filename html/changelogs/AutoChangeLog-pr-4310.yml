@@ -1,4 +1,0 @@
-author: "MacBlaze1"
-delete-after: True
-changes: 
-  - bugfix: "fixed marines being unable to build on grass and wet grass (most useful on Whiskey Outpost, but also elsewhere)"
