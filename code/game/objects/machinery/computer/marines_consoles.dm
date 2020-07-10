@@ -3,7 +3,7 @@
 	desc = "You can use this to change ID's."
 	icon_state = "id"
 	req_access = list(ACCESS_MARINE_LOGISTICS)
-	circuit = "/obj/item/circuitboard/computer/card"
+	circuit = /obj/item/circuitboard/computer/card
 	resistance_flags = INDESTRUCTIBLE
 	var/obj/item/card/id/scan = null
 	var/obj/item/card/id/modify = null
@@ -331,7 +331,7 @@
 
 /obj/machinery/computer/marine_card/centcom
 	name = "CentCom Identification Computer"
-	circuit = "/obj/item/circuitboard/computer/card/centcom"
+	circuit = /obj/item/circuitboard/computer/card/centcom
 	req_access = list(ACCESS_NT_CORPORATE)
 
 

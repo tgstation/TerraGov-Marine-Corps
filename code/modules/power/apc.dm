@@ -76,7 +76,7 @@
 	var/global/list/status_overlays_environ
 	var/obj/item/circuitboard/apc/electronics = null
 
-	ui_x = 450 
+	ui_x = 450
 	ui_y = 460
 
 /obj/machinery/power/apc/connect_to_network()
@@ -145,7 +145,7 @@
 
 		//Is starting with a power cell installed, create it and set its charge level
 		if(cell_type)
-			cell = new cell_type(src)
+			set_cell(new cell_type(src))
 			cell.charge = start_charge * cell.maxcharge / 100.0 //Convert percentage to actual value
 			cell.update_icon()
 
@@ -167,6 +167,21 @@
 		//Break few ACPs on the colony
 		if(!start_charge && is_ground_level(z) && prob(10))
 			addtimer(CALLBACK(src, .proc/set_broken), 5)
+
+
+///Wrapper to guarantee powercells are properly nulled and avoid hard deletes.
+/obj/machinery/power/apc/proc/set_cell(obj/item/cell/new_cell)
+	if(cell)
+		UnregisterSignal(cell, COMSIG_PARENT_QDELETING)
+	cell = new_cell
+	if(cell)
+		RegisterSignal(cell, COMSIG_PARENT_QDELETING, .proc/on_cell_deletion)
+
+
+///Called by the deletion of the referenced powercell.
+/obj/machinery/power/apc/proc/on_cell_deletion(obj/item/cell/source, force)
+	set_cell(null)
+
 
 /obj/machinery/power/apc/proc/make_terminal()
 	//Create a terminal object at the same position as original turf loc
@@ -338,7 +353,7 @@
 		if(!user.transferItemToLoc(I, src))
 			return
 
-		cell = I
+		set_cell(I)
 		user.visible_message("<span class='notice'>[user] inserts [I] into [src]!",
 		"<span class='notice'>You insert [I] into [src]!")
 		chargecount = 0
@@ -567,7 +582,7 @@
 			var/turf/T = get_turf(user)
 			cell.forceMove(T)
 			cell.update_icon()
-			cell = null
+			set_cell(null)
 			charging = APC_NOT_CHARGING
 			update_icon()
 			return
@@ -649,7 +664,7 @@
 		user.visible_message("[user] removes \the [cell] from [src]!", "<span class='notice'>You remove \the [cell].</span>")
 		user.put_in_hands(cell)
 		cell.update_icon()
-		cell = null
+		set_cell(null)
 		charging = APC_NOT_CHARGING
 		update_icon()
 		return

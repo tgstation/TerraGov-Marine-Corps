@@ -728,7 +728,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	icon = 'icons/effects/warning_stripes.dmi'
 	anchored = TRUE
 	density = FALSE
-	resistance_flags = UNACIDABLE
+	resistance_flags = RESIST_ALL
 	layer = ABOVE_TURF_LAYER
 	var/squad_name = "Alpha"
 	var/sending_package = 0

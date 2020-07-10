@@ -59,9 +59,20 @@
 	var/stored_metal = 1000 // starts with 500 metal loaded
 	var/stored_metal_max = 2000
 
+
 /obj/machinery/autodoc/Initialize()
 	. = ..()
 	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
+
+
+/obj/machinery/autodoc/Destroy()
+	forceeject = TRUE
+	do_eject()
+	if(connected)
+		connected.connected = null
+		connected = null
+	return ..()
+
 
 /obj/machinery/autodoc/proc/shuttle_crush()
 	if(occupant)
@@ -927,13 +938,18 @@
 /obj/machinery/autodoc_console/Initialize()
 	. = ..()
 	connected = locate(/obj/machinery/autodoc, get_step(src, WEST))
-	connected.connected = src
+	if(connected)
+		connected.connected = src
 	radio = new(src)
 	blood_pack = new(src)
 
 
 /obj/machinery/autodoc_console/Destroy()
 	QDEL_NULL(radio)
+	QDEL_NULL(blood_pack)
+	if(connected)
+		connected.connected = null
+		connected = null
 	return ..()
 
 
