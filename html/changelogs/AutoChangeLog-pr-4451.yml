@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - tweak: "Removed RNG from: IVs signalling transfusion status, Suit preventing defib, scythe clearing out plants, Hivemind announcing its under attack, Autodoc beginning and stopping procedures"
