@@ -51,15 +51,11 @@
 
 	// Spawn the ship
 	if(!SSmapping.shuttle_templates[shuttle_id])
+		message_admins("Gamemode: couldn't find a valid shuttle template for [shuttle_id]")
 		CRASH("Shuttle [shuttle_id] wasn't found and can't be loaded")
 
 	var/datum/map_template/shuttle/ST = SSmapping.shuttle_templates[shuttle_id]
-
-	shuttle = SSshuttle.action_load(ST)
-
-	var/obj/docking_port/stationary/L = SSshuttle.generate_transit_dock(shuttle)
-
-	shuttle.initiate_docking(L)
+	shuttle = SSshuttle.load_template_to_transit(ST)
 
 	// Redefine the relevant spawnpoints after spawning the ship.
 	for(var/job_type in shuttle.spawns_by_job)
@@ -317,7 +313,7 @@
 			continue
 		shake_camera(M, 110, 4)
 
-	var/datum/cinematic/nuke_selfdestruct/C = /datum/cinematic/crash_nuke
+	var/datum/cinematic/crash_nuke/C = /datum/cinematic/crash_nuke
 	var/nuketime = initial(C.runtime) + initial(C.cleanup_time)
 	addtimer(VARSET_CALLBACK(src, planet_nuked, CRASH_NUKE_COMPLETED), nuketime)
 	addtimer(CALLBACK(src, .proc/do_nuke_z_level, z_level), nuketime * 0.5)
