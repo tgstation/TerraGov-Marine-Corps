@@ -19,6 +19,9 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	unfoldedbag_path = /obj/structure/closet/bodybag/tarp
 
+/obj/item/bodybag/tarp/unique_action(mob/user)
+	deploy_bodybag(user, get_turf(user))
+	unfoldedbag_instance.close()
 
 /obj/item/bodybag/tarp/snow
 	icon = 'icons/obj/bodybag.dmi'
@@ -46,7 +49,7 @@
 	if(!opened && bodybag_occupant)
 		anchored = TRUE
 		playsound(loc,'sound/effects/cloak_scout_on.ogg', 15, 1) //stealth mode engaged!
-		animate(src, alpha = 13, time = 4 SECONDS) //Fade out gradually.
+		animate(src, alpha = 13, time = 3 SECONDS) //Fade out gradually.
 
 
 /obj/structure/closet/bodybag/tarp/open()
