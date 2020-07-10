@@ -253,7 +253,7 @@
 		else
 			step(src, turn(dir, 180)) //We want the hugger to bounce off if it hits a mob.
 			deltimer(reactivate_timer)
-			reactivate_timer = addtimer(CALLBACK(src, .proc/fast_activate), 1.5 SECONDS, TIMER_STOPPABLE)
+			reactivate_timer = addtimer(CALLBACK(src, .proc/fast_activate), 1.5 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
 
 	else
 		for(var/mob/living/carbon/M in loc)
@@ -262,7 +262,7 @@
 					GoIdle()
 				return
 		deltimer(reactivate_timer) // Fix an issue with starting the timer early and throwing again to get a shorter activate timer
-		reactivate_timer = addtimer(CALLBACK(src, .proc/fast_activate), rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME), TIMER_STOPPABLE)
+		reactivate_timer = addtimer(CALLBACK(src, .proc/fast_activate), rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME), TIMER_STOPPABLE|TIMER_UNIQUE)
 	. = ..()
 	leaping = FALSE
 	GoIdle(FALSE, TRUE)
