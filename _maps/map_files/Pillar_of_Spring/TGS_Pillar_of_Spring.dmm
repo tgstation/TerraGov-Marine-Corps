@@ -1500,7 +1500,7 @@
 "fp" = (
 /obj/structure/window/framed/mainship/requisitions,
 /obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 2
+	dir = 8
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
@@ -2128,6 +2128,13 @@
 /obj/item/healthanalyzer,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
+"hV" = (
+/obj/structure/window/framed/mainship/requisitions,
+/obj/machinery/door/poddoor/shutters/mainship/req/ro{
+	dir = 8
+	},
+/turf/open/floor/plating/mainship,
+/area/mainship/squads/req)
 "hX" = (
 /obj/structure/closet/secure_closet/CMO,
 /turf/open/floor/wood,
@@ -13182,6 +13189,11 @@
 "RK" = (
 /obj/structure/closet/crate/medical,
 /turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
+"RM" = (
+/obj/structure/window/framed/mainship/requisitions,
+/obj/machinery/door/poddoor/shutters/mainship/req/ro,
+/turf/open/floor/plating/mainship,
 /area/mainship/squads/req)
 "RN" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -44529,8 +44541,8 @@ kz
 Dz
 Dz
 qG
-de
-de
+RM
+RM
 qG
 qG
 qG
@@ -47099,19 +47111,19 @@ gd
 kM
 kM
 qG
-de
-de
-de
-de
+hV
+hV
+hV
+hV
 qG
 qG
 NY
 qG
-de
-de
+hV
+hV
 YX
-de
-de
+hV
+hV
 fp
 fp
 fp
