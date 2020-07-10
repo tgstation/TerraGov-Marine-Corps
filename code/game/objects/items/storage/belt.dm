@@ -116,6 +116,7 @@
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/bodybag,
 		/obj/item/defibrillator,
+		/obj/item/storage/pill_bottle/packet,
 		/obj/item/roller)
 
 /obj/item/storage/belt/medical/Initialize()
@@ -151,6 +152,7 @@
 		/obj/item/storage/pill_bottle,
 		/obj/item/storage/syringe_case,
 		/obj/item/reagent_containers/hypospray/autoinjector,
+		/obj/item/storage/pill_bottle/packet,
 		/obj/item/stack/medical
 	)
 
@@ -329,10 +331,10 @@
 
 
 /obj/item/storage/belt/shotgun/attackby(obj/item/I, mob/user, params)
-	
+
 	if(istype(I, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/M = I
-	
+
 		if(M.flags_magazine & AMMUNITION_REFILLABLE)
 			if(!M.current_rounds)
 				to_chat(user, "<span class='warning'>[M] is empty.</span>")
@@ -671,11 +673,11 @@
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new_gun.on_enter_storage(src)
 
-/obj/item/storage/belt/gun/mateba/admiral/Initialize()
+/obj/item/storage/belt/gun/mateba/notmarine/Initialize()
 	. = ..()
 	icon_state = "a_mateba_holster"
 	item_state = "a_mateba_holster"
-	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba/admiral(src)
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba/(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)

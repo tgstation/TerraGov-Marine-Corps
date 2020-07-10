@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes: 
+  - code_imp: "added support for unique actions on any object (triggered by pressing space)"

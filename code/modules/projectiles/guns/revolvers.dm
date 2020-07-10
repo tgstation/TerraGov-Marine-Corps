@@ -406,11 +406,11 @@
 	return revolver_trick(user)
 
 //-------------------------------------------------------
-//BURST REVOLVER //Mateba is pretty well known. The cylinder folds up instead of to the side.
+//Mateba is pretty well known. The cylinder folds up instead of to the side. This has a non-marine version and a marine version.
 
 /obj/item/weapon/gun/revolver/mateba
-	name = "\improper Mateba autorevolver"
-	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. It uses heavy .454 rounds."
+	name = "\improper TL-24 autorevolver"
+	desc = "The TL-24 is the rather rare autorevolver used by the TGMC issued in rather small numbers to backline personnel and officers it uses recoil to spin the cylinder. Uses heavy .454 rounds."
 	icon_state = "mateba"
 	item_state = "mateba"
 	muzzleflash_iconstate = "muzzle_flash"
@@ -422,28 +422,29 @@
 	attachable_allowed = list(
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/flashlight,
+						/obj/item/attachable/lasersight,
+						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/compensator)
-	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
+	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 18,"rail_x" = 16, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
 
 	fire_delay = 0.2 SECONDS
+	recoil = 0
+	accuracy_mult = 1.1
+	scatter = 10
 	accuracy_mult_unwielded = 0.6
 	scatter_unwielded = 20
-	damage_mult = 1.05
 
+/obj/item/weapon/gun/revolver/mateba/notmarine
+	name = "\improper Mateba autorevolver"
+	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. Uses .454 rounds."
 
-
-/obj/item/weapon/gun/revolver/mateba/admiral
-	name = "\improper Mateba autorevolver custom"
-	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. This version is snubnosed, engraved with gold, tinted black, and highly customized for a high-ranking admiral. It uses heavy .454 rounds."
-	icon_state = "a_mateba"
-	item_state = "a_mateba"
 
 /obj/item/weapon/gun/revolver/mateba/captain
-	name = "\improper Mateba autorevolver special"
-	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. It uses heavy .454 rounds. This version is a limited edition produced for the TGMC, and issued in extremely small amounts."
-	icon_state = "c_mateba"
-	item_state = "c_mateba"
+	name = "\improper TL-24 autorevolver special"
+	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. This one appears to have had more love and care put into it. Uses .454 rounds."
+	icon_state = "mateba"
+	item_state = "mateba"
 
 //-------------------------------------------------------
 //MARSHALS REVOLVER

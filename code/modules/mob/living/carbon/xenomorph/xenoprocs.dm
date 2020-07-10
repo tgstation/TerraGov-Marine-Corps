@@ -261,7 +261,7 @@
 					// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.
 					var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 					var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-					var/upgrade_points = 1 + (FLOOR(stored_larva / 3, 1))
+					var/upgrade_points = 1 + (FLOOR(stored_larva / 6, 1))
 					upgrade_stored = min(upgrade_stored + upgrade_points, xeno_caste.upgrade_threshold)
 
 /mob/living/carbon/xenomorph/proc/update_evolving()
@@ -479,6 +479,7 @@
 	return TRUE
 
 /mob/living/carbon/acid_spray_act(mob/living/carbon/xenomorph/X)
+	ExtinguishMob()
 	if(isnestedhost(src))
 		return
 
@@ -506,8 +507,10 @@
 	Paralyze(20)
 
 /mob/living/carbon/xenomorph/acid_spray_act(mob/living/carbon/xenomorph/X)
-	return
+	ExtinguishMob()
 
+/obj/flamer_fire/acid_spray_act(mob/living/carbon/xenomorph/X)
+	Destroy()
 
 // Vent Crawl
 /mob/living/carbon/xenomorph/proc/vent_crawl()
@@ -625,14 +628,10 @@
 	return FALSE
 
 /mob/living/carbon/human/can_sting()
+	if(species?.species_flags & IS_SYNTHETIC)
+		return FALSE
 	if(stat != DEAD)
 		return TRUE
-	return FALSE
-
-/mob/living/carbon/human/species/machine/can_sting()
-	return FALSE
-
-/mob/living/carbon/human/species/synthetic/can_sting()
 	return FALSE
 
 /mob/living/carbon/xenomorph/proc/setup_verbs()

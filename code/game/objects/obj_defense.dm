@@ -82,7 +82,7 @@
 
 /obj/hitby(atom/movable/AM)
 	. = ..()
-	visible_message("<span class='warning'>[src] was hit by [AM].</span>")
+	visible_message("<span class='warning'>[src] was hit by [AM].</span>", visible_message_flags = COMBAT_MESSAGE)
 	var/tforce = 0
 	if(ismob(AM))
 		tforce = 40
@@ -97,7 +97,7 @@
 		return
 	. = ..()
 	playsound(loc, P.hitsound, 50, 1)
-	visible_message("<span class='warning'>\the [src] is damaged by \the [P]!</span>")
+	visible_message("<span class='warning'>\the [src] is damaged by \the [P]!</span>", visible_message_flags = COMBAT_MESSAGE)
 	bullet_ping(P)
 	take_damage(P.damage, P.ammo.damage_type, P.ammo.armor_type, 0, turn(P.dir, 180), P.ammo.penetration)
 

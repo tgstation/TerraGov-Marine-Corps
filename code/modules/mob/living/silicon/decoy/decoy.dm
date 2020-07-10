@@ -25,7 +25,7 @@
 		SSmobs.stop_processing(src)
 		return FALSE
 	if(health <= get_death_threshold() && stat != DEAD)
-		death(FALSE, "<b>\The [name]</b> sparks up and falls silent...")
+		death()
 
 /mob/living/silicon/decoy/updatehealth()
 	if(status_flags & GODMODE)
@@ -36,13 +36,24 @@
 
 	update_stat()
 
-/mob/living/silicon/decoy/death(gibbed, deathmessage)
-	set waitfor = 0
-	. = ..()
+
+/mob/living/silicon/decoy/death(gibbing, deathmessage = "sparks up and falls silent...", silent)
+	if(stat == DEAD)
+		return ..()
+	return ..()
+
+
+/mob/living/silicon/decoy/on_death()
 	density = TRUE
 	icon_state = "hydra-off"
-	sleep(20)
-	explosion(loc, 0, 1, 9, 12)
+	addtimer(CALLBACK(src, .proc/post_mortem_explosion), 2 SECONDS)
+	return ..()
+
+
+/mob/living/silicon/decoy/proc/post_mortem_explosion()
+	if(isnull(loc))
+		return
+	explosion(get_turf(src), 0, 1, 9, 12)
 
 
 /mob/living/silicon/decoy/say(message, new_sound, datum/language/language) //General communication across the ship.

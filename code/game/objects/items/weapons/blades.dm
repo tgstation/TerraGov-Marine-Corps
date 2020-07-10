@@ -161,3 +161,34 @@
 /obj/item/weapon/unathiknife/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
 	return ..()
+
+/obj/item/weapon/chainsword
+	name = "chainsword"
+	desc = "chainsword thing"
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "chainswordoff"
+	attack_verb = list("gored", "slashed", "cut")
+	force = 10
+	throwforce = 5
+	var/on = FALSE
+
+/obj/item/weapon/chainsword/attack_self(mob/user)
+	. = ..()
+	if(!on)
+		on = !on
+		icon_state = "chainswordon"
+		force = 40
+		throwforce = 30
+	else
+		on = !on
+		icon_state = initial(icon_state)
+		force = initial(force)
+		throwforce = initial(icon_state)
+
+/obj/item/weapon/chainsword/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+	playsound(loc, 'sound/weapons/chainsawhit.ogg', 100, 1)
+	return ..()
+
+/obj/item/weapon/chainsword/suicide_act(mob/user)
+	user.visible_message("<span class='danger'>[user] is falling on the [src.name]! It looks like [user.p_theyre()] trying to commit suicide.</span>")
+	return(BRUTELOSS)

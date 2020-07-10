@@ -38,6 +38,10 @@
 	var/bioscan_interval = INFINITY
 
 
+/client/verb/spawn_shuttle()
+	var/datum/map_template/shuttle/ST = SSmapping.shuttle_templates["tgs_canterbury"]
+	SSshuttle.load_template_to_transit(ST)
+
 /datum/game_mode/infestation/crash/scale_roles()
 	. = ..()
 	if(!.)
@@ -51,15 +55,11 @@
 
 	// Spawn the ship
 	if(!SSmapping.shuttle_templates[shuttle_id])
+		message_admins("Gamemode: couldn't find a valid shuttle template for [shuttle_id]")
 		CRASH("Shuttle [shuttle_id] wasn't found and can't be loaded")
 
 	var/datum/map_template/shuttle/ST = SSmapping.shuttle_templates[shuttle_id]
-
-	shuttle = SSshuttle.action_load(ST)
-
-	var/obj/docking_port/stationary/L = SSshuttle.generate_transit_dock(shuttle)
-
-	shuttle.initiate_docking(L)
+	shuttle = SSshuttle.load_template_to_transit(ST)
 
 	// Redefine the relevant spawnpoints after spawning the ship.
 	for(var/job_type in shuttle.spawns_by_job)
@@ -317,7 +317,7 @@
 			continue
 		shake_camera(M, 110, 4)
 
-	var/datum/cinematic/nuke_selfdestruct/C = /datum/cinematic/crash_nuke
+	var/datum/cinematic/crash_nuke/C = /datum/cinematic/crash_nuke
 	var/nuketime = initial(C.runtime) + initial(C.cleanup_time)
 	addtimer(VARSET_CALLBACK(src, planet_nuked, CRASH_NUKE_COMPLETED), nuketime)
 	addtimer(CALLBACK(src, .proc/do_nuke_z_level, z_level), nuketime * 0.5)
@@ -340,7 +340,7 @@
 /datum/game_mode/infestation/crash/proc/on_xeno_evolve(datum/source, mob/living/carbon/xenomorph/new_xeno)
 	switch(new_xeno.tier)
 		if(XENO_TIER_ONE)
-			new_xeno.upgrade_xeno(XENO_UPGRADE_THREE)
+			new_xeno.upgrade_xeno(XENO_UPGRADE_TWO)
 		if(XENO_TIER_TWO)
 			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE)
 

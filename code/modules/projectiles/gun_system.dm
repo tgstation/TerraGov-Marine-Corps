@@ -684,6 +684,7 @@ and you're good to go.
 			for(var/i = 1 to projectile_to_fire.ammo.bonus_projectiles_amount)
 				BP = new /obj/projectile(M.loc)
 				BP.generate_bullet(GLOB.ammo_list[projectile_to_fire.ammo.bonus_projectiles_type])
+				BP.damage *= damage_mult
 				BP.setDir(get_dir(user, M))
 				BP.distance_travelled = get_dist(user, M)
 				BP.ammo.on_hit_mob(M, BP)
@@ -816,7 +817,7 @@ and you're good to go.
 		extra_delay = 0 //Since we are ready to fire again, zero it up.
 		return FALSE
 
-	if(world.time % 3)
+	if(world.time % 3 && user.client && !user.client.prefs.mute_self_combat_messages)
 		to_chat(user, "<span class='warning'>[src] is not ready to fire again!</span>")
 	return TRUE
 

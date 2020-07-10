@@ -285,6 +285,12 @@
 	//If you wanted to add a species-level ability:
 	/*abilities = list(/client/proc/test_ability)*/
 
+/datum/species/human/vatborn
+	name = "Vatborn"
+	name_plural = "Vatborns"
+
+	namepool = /datum/namepool/vatborn
+
 //Slightly tougher humans.
 /datum/species/human/hero
 	name = "Human Hero"

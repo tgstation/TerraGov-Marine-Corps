@@ -16,7 +16,6 @@
 
 /obj/machinery/self_destruct/Destroy()
 	GLOB.machines -= src
-	operator = null
 	return ..()
 
 

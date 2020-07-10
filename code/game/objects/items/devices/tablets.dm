@@ -13,7 +13,7 @@
 
 
 	/// How far can these tablets see around the cameras
-	var/max_view_dist = 2
+	var/max_view_dist = 3
 
 	var/obj/machinery/camera/active_camera
 	/// Used to keep a cache of the last location visible on the camera
@@ -28,8 +28,44 @@
 	var/list/cam_plane_masters
 	var/obj/screen/background/cam_background
 
-/obj/item/hud_tablet/Initialize()
+/obj/item/hud_tablet/Initialize(mapload, rank, datum/squad/squad)
 	. = ..()
+	if(rank)
+		var/dat = "marine"
+		switch(rank)
+			if(/datum/job/terragov/squad/leader)
+				if(squad)
+					switch(squad.name)
+						if("Alpha")
+							dat += " alpha"
+							network = list("alpha")
+							req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_ALPHA)
+						if("Bravo")
+							dat += " bravo"
+							network = list("bravo")
+							req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_BRAVO)
+						if("Charlie")
+							dat += " charlie"
+							network = list("charlie")
+							req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_CHARLIE)
+						if("Delta")
+							dat += " delta"
+							network = list("delta")
+							req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DELTA)
+				dat += " squad leader's"
+			if(/datum/job/terragov/command/captain)
+				dat += " captain's"
+				network = list("marinesl", "marine", "marinemainship")
+				req_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_LEADER, ACCESS_MARINE_CAPTAIN)
+			if(/datum/job/terragov/command/fieldcommander)
+				dat += " field commander's"
+				network = list("marinesl", "marine")
+				req_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_LEADER)
+			if(/datum/job/terragov/command/pilot)
+				dat += " pilot's"
+				network = list("dropship1", "dropship2")
+				req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_DROPSHIP)
+		name = dat + " hud tablet"
 	// Convert networks to lowercase
 	for(var/i in network)
 		network -= i
@@ -187,14 +223,17 @@
 	name = "captain's hud tablet"
 	network = list("marinesl", "marine", "marinemainship")
 	req_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_LEADER, ACCESS_MARINE_CAPTAIN)
+	max_view_dist = WORLD_VIEW_NUM
 
 /obj/item/hud_tablet/fieldcommand
 	name = "field commander's hud tablet"
 	network = list("marinesl", "marine")
 	req_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_LEADER)
+	max_view_dist = WORLD_VIEW_NUM
 
 /obj/item/hud_tablet/pilot
 	name = "pilot officers's hud tablet"
 	network = list("dropship1", "dropship2")
 	req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_DROPSHIP)
+	max_view_dist = WORLD_VIEW_NUM
 

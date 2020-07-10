@@ -100,7 +100,7 @@
 
 /obj/item/tool/pickaxe/plasmacutter/Initialize()
 	. = ..()
-	cell = new /obj/item/cell/high(src)
+	cell = new /obj/item/cell/high()
 
 
 /obj/item/tool/pickaxe/plasmacutter/examine(mob/user)
