@@ -123,7 +123,7 @@
 	icon_state = "riot"
 	item_state = "swat"
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
-	slowdown = 1,2
+	slowdown = 1.2
 	soft_armor = list("melee" = 65, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEJUMPSUIT
