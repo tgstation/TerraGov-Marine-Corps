@@ -2090,7 +2090,7 @@
 	},
 /area/outpost/hallway/east)
 "ln" = (
-/obj/structure/table,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
@@ -7975,8 +7975,7 @@
 /turf/open/floor/tile/dark/red2,
 /area/outpost/arrivals/security)
 "SO" = (
-/obj/structure/table,
-/obj/structure/cable,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark/red2,
 /area/outpost/medbay/security)
 "SS" = (
@@ -8670,7 +8669,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/engineering)
 "WM" = (
-/obj/structure/table,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark/red2{
 	dir = 10
 	},
@@ -9056,7 +9055,7 @@
 	},
 /area/outpost/dormitories)
 "YL" = (
-/obj/structure/table,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark/red2{
 	dir = 10
 	},
@@ -9207,6 +9206,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
+"Zy" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/wood,
+/area/outpost/dormitories)
 "Zz" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -36103,7 +36106,7 @@ QL
 mH
 sK
 fG
-HT
+Zy
 HT
 HT
 fG

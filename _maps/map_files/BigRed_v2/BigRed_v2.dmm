@@ -1108,7 +1108,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "adV" = (
-/obj/structure/filingcabinet/security,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "adW" = (
@@ -21285,6 +21285,10 @@
 	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
+"eWE" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/podhatch/floor,
+/area/bigredv2/outside/admin_building)
 "feK" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -22007,6 +22011,10 @@
 	},
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/space_port)
+"pmR" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/elevatorshaft,
+/area/bigredv2/caves/lambda_lab)
 "ptp" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/bigred,
@@ -39324,7 +39332,7 @@ aPK
 aQV
 aRT
 aKn
-aVR
+eWE
 aNF
 aVQ
 aKn
@@ -59689,7 +59697,7 @@ afy
 adZ
 ara
 arG
-arF
+pmR
 atf
 adZ
 auk
