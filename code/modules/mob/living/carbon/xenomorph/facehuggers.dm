@@ -147,8 +147,8 @@
 		stasis = FALSE
 	if(stat == UNCONSCIOUS && !stasis)
 		stat = CONSCIOUS
-		lifetimer = addtimer(CALLBACK(src, .proc/check_lifecycle), FACEHUGGER_DEATH, TIMER_STOPPABLE)
-		jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), JUMP_COOLDOWN, TIMER_STOPPABLE)
+		lifetimer = addtimer(CALLBACK(src, .proc/check_lifecycle), FACEHUGGER_DEATH, TIMER_STOPPABLE|TIMER_UNIQUE)
+		jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), JUMP_COOLDOWN, TIMER_STOPPABLE|TIMER_UNIQUE)
 		update_icon()
 		return TRUE
 	return FALSE
@@ -204,7 +204,7 @@
 			throw_at(M, 4, 1)
 			break
 		--i
-	jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), JUMP_COOLDOWN, TIMER_STOPPABLE)
+	jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), JUMP_COOLDOWN, TIMER_STOPPABLE|TIMER_UNIQUE)
 
 /obj/item/clothing/mask/facehugger/proc/fast_activate(unhybernate = FALSE)
 	if(go_active(unhybernate) && !throwing)
@@ -225,7 +225,7 @@
 	. = ..()
 	update_icon()
 	if(jumptimer)
-		jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), JUMP_COOLDOWN, TIMER_STOPPABLE)
+		jumptimer = addtimer(CALLBACK(src, .proc/leap_at_nearest_target), JUMP_COOLDOWN, TIMER_STOPPABLE|TIMER_UNIQUE)
 
 /obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom, speed)
 	if(stat != CONSCIOUS)
@@ -239,7 +239,7 @@
 		else
 			step(src, turn(dir, 180)) //We want the hugger to bounce off if it hits a mob.
 			deltimer(jumptimer)
-			jumptimer = addtimer(CALLBACK(src, .proc/fast_activate), 1.5 SECONDS, TIMER_STOPPABLE)
+			jumptimer = addtimer(CALLBACK(src, .proc/fast_activate), 1.5 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
 
 	else
 		for(var/mob/living/carbon/M in loc)
@@ -248,7 +248,7 @@
 					go_idle()
 				return
 		deltimer(jumptimer)
-		jumptimer = addtimer(CALLBACK(src, .proc/fast_activate), ACTIVATE_TIME, TIMER_STOPPABLE)
+		jumptimer = addtimer(CALLBACK(src, .proc/fast_activate), ACTIVATE_TIME, TIMER_STOPPABLE|TIMER_UNIQUE)
 	. = ..()
 	leaping = FALSE
 	go_idle(FALSE, TRUE)
