@@ -53,7 +53,7 @@
 	var/tmp/list/desc_list = list()
 	var/tmp/list/damage_list = list()
 
-/datum/wound/New(var/damage)
+/datum/wound/New(damage)
 
 	created = world.time
 
@@ -96,7 +96,7 @@
 		return salved
 
 ///Checks whether other other can be merged into src.
-/datum/wound/proc/can_merge(var/datum/wound/other)
+/datum/wound/proc/can_merge(datum/wound/other)
 	if(other.type != type)
 		return FALSE
 	if(other.current_stage != current_stage)
@@ -115,7 +115,7 @@
 		return FALSE
 	return TRUE
 
-/datum/wound/proc/merge_wound(var/datum/wound/other)
+/datum/wound/proc/merge_wound(datum/wound/other)
 	damage += other.damage
 	amount += other.amount
 	bleed_timer += other.bleed_timer
@@ -327,7 +327,7 @@ datum/wound/cut/massive
 	stages = list("ripped stump" = 65, "bloody stump" = 50, "clotted stump" = 25, "scarred stump" = 0)
 	max_bleeding_stage = 3
 
-/datum/wound/lost_limb/can_merge(var/datum/wound/other)
+/datum/wound/lost_limb/can_merge(datum/wound/other)
 	return FALSE //cant stick two missing legs together
 
 /datum/wound/lost_limb/small
