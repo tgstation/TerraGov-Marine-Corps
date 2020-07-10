@@ -12,12 +12,12 @@
 	gib_flick = "gibbed-a-runner"
 
 	// *** Melee Attacks *** //
-	melee_damage = 10
+	melee_damage = 12
 	attack_delay = 6
 
 
 	// *** Tackle *** //
-	tackle_damage = 33
+	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = -0.8
@@ -65,13 +65,6 @@
 
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Melee Attacks *** //
-	melee_damage = 14
-
-
-	// *** Tackle *** //
-	tackle_damage = 38
-
 	// *** Speed *** //
 	speed = -1
 
@@ -98,11 +91,11 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 17
+	melee_damage = 16
 
 
 	// *** Tackle *** //
-	tackle_damage = 44
+	tackle_damage = 35
 
 	// *** Speed *** //
 	speed = -1.2
@@ -129,13 +122,6 @@
 	ancient_message = "We are the apex predator, all will fall by fang or claw."
 	upgrade = XENO_UPGRADE_THREE
 	wound_type = "runner" //used to match appropriate wound overlays
-
-	// *** Melee Attacks *** //
-	melee_damage = 20
-
-
-	// *** Tackle *** //
-	tackle_damage = 50
 
 	// *** Speed *** //
 	speed = -1.4
