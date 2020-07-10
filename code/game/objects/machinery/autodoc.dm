@@ -335,8 +335,7 @@
 			if(ORGAN_SURGERY)
 				switch(S.surgery_procedure)
 					if(ADSURGERY_GERMS) // Just dose them with the maximum amount of antibiotics and hope for the best
-						if(prob(30))
-							say("Beginning organ disinfection.")
+						say("Beginning organ disinfection.")
 						var/datum/reagent/R = GLOB.chemical_reagents_list[/datum/reagent/medicine/spaceacillin]
 						var/amount = R.overdose_threshold - occupant.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
 						var/inject_per_second = 3
@@ -353,8 +352,7 @@
 								sleep(10*surgery_mod)
 
 					if(ADSURGERY_DAMAGE)
-						if(prob(30))
-							say("Beginning organ restoration.")
+						say("Beginning organ restoration.")
 						if(S.unneeded)
 							sleep(UNNEEDED_DELAY)
 							say("Procedure has been deemed unnecessary.")
@@ -384,8 +382,7 @@
 						close_incision(occupant, S.limb_ref)
 
 					if(ADSURGERY_EYES)
-						if(prob(30))
-							say("Beginning corrective eye surgery.")
+						say("Beginning corrective eye surgery.")
 						if(S.unneeded)
 							sleep(UNNEEDED_DELAY)
 							say("Procedure has been deemed unnecessary.")
@@ -426,8 +423,7 @@
 			if(LIMB_SURGERY)
 				switch(S.surgery_procedure)
 					if(ADSURGERY_INTERNAL)
-						if(prob(30))
-							say("Beginning internal bleeding procedure.")
+						say("Beginning internal bleeding procedure.")
 						if(S.unneeded)
 							sleep(UNNEEDED_DELAY)
 							say("Procedure has been deemed unnecessary.")
@@ -445,8 +441,7 @@
 						close_incision(occupant, S.limb_ref)
 
 					if(ADSURGERY_BROKEN)
-						if(prob(30))
-							say("Beginning broken bone procedure.")
+						say("Beginning broken bone procedure.")
 						if(S.unneeded)
 							sleep(UNNEEDED_DELAY)
 							say("Procedure has been deemed unnecessary.")
@@ -468,8 +463,7 @@
 						close_incision(occupant, S.limb_ref)
 
 					if(ADSURGERY_MISSING)
-						if(prob(30))
-							say("Beginning limb replacement.")
+						say("Beginning limb replacement.")
 						if(S.unneeded)
 							sleep(UNNEEDED_DELAY)
 							say("Procedure has been deemed unnecessary.")
@@ -513,8 +507,7 @@
 						occupant.UpdateDamageIcon()
 
 					if(ADSURGERY_NECRO)
-						if(prob(30))
-							say("Beginning necrotic tissue removal.")
+						say("Beginning necrotic tissue removal.")
 						if(S.unneeded)
 							sleep(UNNEEDED_DELAY)
 							say("Procedure has been deemed unnecessary.")
@@ -567,8 +560,7 @@
 						close_incision(occupant, S.limb_ref)
 
 					if(ADSURGERY_GERM)
-						if(prob(30))
-							say("Beginning limb disinfection.")
+						say("Beginning limb disinfection.")
 
 						var/datum/reagent/R = GLOB.chemical_reagents_list[/datum/reagent/medicine/spaceacillin]
 						var/amount = (R.overdose_threshold * 0.5) - occupant.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
@@ -586,8 +578,7 @@
 								sleep(10)
 
 					if(ADSURGERY_FACIAL) // dumb but covers for incomplete facial surgery
-						if(prob(30))
-							say("Beginning Facial Reconstruction Surgery.")
+						say("Beginning Facial Reconstruction Surgery.")
 						if(S.unneeded)
 							sleep(UNNEEDED_DELAY)
 							say("Procedure has been deemed unnecessary.")
@@ -620,13 +611,11 @@
 								F.face_surgery_stage = 0
 
 					if(ADSURGERY_OPEN)
-						if(prob(30))
-							say("Closing surgical incision.")
+						say("Closing surgical incision.")
 						close_encased(occupant, S.limb_ref)
 						close_incision(occupant, S.limb_ref)
 
-		if(prob(30))
-			say("Procedure complete.")
+		say("Procedure complete.")
 		surgery_todo_list -= S
 		continue
 
