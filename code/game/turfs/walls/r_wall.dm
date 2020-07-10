@@ -6,7 +6,6 @@
 	density = TRUE
 
 	max_integrity = 3000
-	max_temperature = 6000
 
 	walltype = "rwall"
 	explosion_block = 4
@@ -17,11 +16,6 @@
 	else
 		return 2
 
-
-//Just different looking wall
-/turf/closed/wall/r_wall/research
-	icon_state = "research"
-	walltype = "research"
 
 /turf/closed/wall/r_wall/dense
 	icon_state = "iron0"

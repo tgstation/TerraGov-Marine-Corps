@@ -40,6 +40,8 @@
 
 //===========================================================================
 /atom/movable/Destroy()
+	var/old_loc = loc
+
 	QDEL_NULL(proximity_monitor)
 	QDEL_NULL(language_holder)
 
@@ -58,6 +60,10 @@
 		qdel(AM)
 
 	moveToNullspace()
+
+	if(smoothing_behavior && isturf(old_loc))
+		smooth_neighbors(old_loc)
+
 	invisibility = INVISIBILITY_ABSTRACT
 
 	pulledby?.stop_pulling()

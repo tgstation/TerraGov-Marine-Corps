@@ -47,6 +47,11 @@
 	/// A luminescence-shifted value of the last color calculated for chatmessage overlays
 	var/chat_color_darkened
 
+	///Whether this atom smooths with things around it, and what type of smoothing if any.
+	var/smoothing_behavior = NO_SMOOTHING
+	///Bitflags to mark the members of specific smoothing groups, in where they all smooth with each other.
+	var/smoothing_groups = NONE
+
 
 /*
 We actually care what this returns, since it can return different directives.
@@ -515,9 +520,14 @@ Proc for attack log creation, because really why not
 		update_light()
 	if(loc)
 		SEND_SIGNAL(loc, COMSIG_ATOM_INITIALIZED_ON, src) //required since spawning something doesn't call Move hence it doesn't call Entered.
-		if(isturf(loc) && opacity)
-			var/turf/T = loc
-			T.has_opaque_atom = TRUE // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
+		if(isturf(loc))
+			if(opacity)
+				var/turf/loc_turf = loc
+				loc_turf.has_opaque_atom = TRUE // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
+
+			if(smoothing_behavior)
+				smooth_self()
+				smooth_neighbors()
 
 	return INITIALIZE_HINT_NORMAL
 

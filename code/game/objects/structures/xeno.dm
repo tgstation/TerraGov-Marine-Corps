@@ -223,15 +223,14 @@
 	hardness = 1.5
 	layer = RESIN_STRUCTURE_LAYER
 	max_integrity = 80
+	smoothing_behavior = CARDINAL_SMOOTHING
+	smoothing_groups = SMOOTH_XENO_STRUCTURES
 	var/close_delay = 100
 
-	tiles_with = list(/turf/closed, /obj/structure/mineral_door/resin)
 
 /obj/structure/mineral_door/resin/Initialize()
 	. = ..()
 
-	relativewall()
-	relativewall_neighbours()
 	if(!locate(/obj/effect/alien/weeds) in loc)
 		new /obj/effect/alien/weeds(loc)
 
@@ -332,7 +331,6 @@
 	..()
 
 /obj/structure/mineral_door/resin/Destroy()
-	relativewall_neighbours()
 	var/turf/T
 	for(var/i in GLOB.cardinals)
 		T = get_step(loc, i)

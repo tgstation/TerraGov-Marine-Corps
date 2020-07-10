@@ -2,6 +2,7 @@
 /obj/machinery/door/airlock/multi_tile
 	width = 2
 
+
 /obj/machinery/door/airlock/multi_tile/close() //Nasty as hell O(n^2) code but unfortunately necessary
 	for(var/turf/T in locs)
 		for(var/obj/vehicle/multitile/M in T)
@@ -78,10 +79,7 @@
 	name = "\improper Airlock"
 	icon = 'icons/obj/doors/mainship/comdoor.dmi' //Tiles with is here FOR SAFETY PURPOSES
 	openspeed = 4 //shorter open animation.
-	tiles_with = list(
-		/turf/closed/wall,
-		/obj/structure/window/framed/mainship,
-		/obj/machinery/door/airlock)
+
 
 /obj/machinery/door/airlock/multi_tile/mainship/generic
 	name = "\improper Airlock"
@@ -93,10 +91,10 @@
 	name = "\improper Canteen"
 
 /obj/machinery/door/airlock/multi_tile/mainship/generic/cryo
-	name = "\improper Cryogenics Bay"	
+	name = "\improper Cryogenics Bay"
 
 /obj/machinery/door/airlock/multi_tile/mainship/generic/garden
-	name = "\improper Garden"	
+	name = "\improper Garden"
 
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor
 	name = "\improper Medical Airlock"

@@ -229,6 +229,7 @@
 
 /turf/open/floor/vault
 	icon_state = "rockvault"
+	smoothing_behavior = NO_SMOOTHING
 
 /turf/open/floor/vault/Initialize(mapload, state)
 	. = ..()

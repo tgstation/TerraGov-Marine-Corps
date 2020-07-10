@@ -1,47 +1,40 @@
-
-
 //turfs with density = TRUE
 /turf/closed
 	density = TRUE
 	opacity = TRUE
-
-
-
+	///Base state, for icon_state updates.
+	var/walltype
+	///The neighbours
+	var/junctiontype = NONE
 
 
 /turf/closed/mineral
 	name = "rock"
-	icon = 'icons/turf/walls.dmi'
-	icon_state = "rock"
+	icon = 'icons/turf/walls/cave.dmi'
+	icon_state = "cave_wall-0-0-0-0"
+	walltype = "cave_wall"
+	color = "#735555"
+	smoothing_behavior = DIAGONAL_SMOOTHING
+	smoothing_groups = SMOOTH_MINERAL_STRUCTURES
 
-/turf/closed/mineral/Initialize(mapload)
-	. = ..()
-	for(var/direction in GLOB.cardinals)
-		var/turf/turf_to_check = get_step(src, direction)
-		if(istype(turf_to_check, /turf/open))
-			var/image/rock_side = image(icon, "[icon_state]_side", dir = turn(direction, 180))
-			switch(direction)
-				if(NORTH)
-					rock_side.pixel_y += world.icon_size
-				if(SOUTH)
-					rock_side.pixel_y -= world.icon_size
-				if(EAST)
-					rock_side.pixel_x += world.icon_size
-				if(WEST)
-					rock_side.pixel_x -= world.icon_size
-			overlays += rock_side
 
 /turf/closed/mineral/bigred
 	name = "rock"
-	icon_state = "redrock"
+	icon = 'icons/turf/walls/mars.dmi'
+	icon_state = "mars-0-0-0-0"
+	walltype = "mars"
 
 
 //Ground map dense jungle
 /turf/closed/gm
 	name = "dense jungle"
-	icon = 'icons/turf/ground_map.dmi'
-	icon_state = "wall2"
+	icon = 'icons/turf/walls/jungle.dmi'
+	icon_state = "jungle-0-0-0-0"
 	desc = "Some thick jungle."
+	smoothing_behavior = DIAGONAL_SMOOTHING
+	smoothing_groups = SMOOTH_FLORA
+	walltype = "jungle"
+
 
 	//Not yet
 /turf/closed/gm/ex_act(severity)
@@ -52,17 +45,6 @@
 
 /turf/closed/gm/dense
 	name = "dense jungle wall"
-	icon = 'icons/turf/ground_map.dmi'
-	icon_state = "wall2"
-
-/turf/closed/gm/dense/Initialize()
-	. = ..()
-	if(rand(0,15) == 0)
-		icon_state = "wall1"
-	else if (rand(0,20) == 0)
-		icon_state = "wall3"
-	else
-		icon_state = "wall2"
 
 
 //desertdam rock
@@ -242,6 +224,7 @@
 	icon_state = "wall1"
 	icon = 'icons/turf/shuttle.dmi'
 	plane = FLOOR_PLANE
+	smoothing_behavior = NO_SMOOTHING
 
 /turf/closed/shuttle/re_corner/notdense
 	icon_state = "re_cornergrass"

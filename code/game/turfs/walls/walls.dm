@@ -8,19 +8,11 @@
 	baseturfs = /turf/open/floor/plating
 	opacity = TRUE
 	explosion_block = 2
-
-	tiles_with = list(
-		/turf/closed/wall,
-		/obj/structure/window/framed,
-		/obj/structure/window_frame,
-		/obj/structure/girder,
-		/obj/machinery/door)
+	smoothing_behavior = CARDINAL_SMOOTHING
+	smoothing_groups = SMOOTH_GENERAL_STRUCTURES|SMOOTH_XENO_STRUCTURES
+	walltype = "metal"
 
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
-
-	var/walltype = "metal"
-	var/junctiontype //when walls smooth with one another, the type of junction each wall is.
-
 
 	var/wall_integrity
 	var/max_integrity = 1000 //Wall will break down to girders if damage reaches this point
@@ -33,8 +25,6 @@
 	var/bullethole_state = 0
 	var/image/bullethole_overlay
 
-	var/max_temperature = 1800 //K, walls will take damage if they're next to a fire hotter than this
-
 	var/d_state = 0 //Normal walls are now as difficult to remove as reinforced walls
 
 	var/obj/effect/acid_hole/acided_hole //the acid hole inside the wall
@@ -45,10 +35,6 @@
 
 	if(isnull(wall_integrity))
 		wall_integrity = max_integrity
-
-	//smooth wall stuff
-	relativewall()
-	relativewall_neighbours()
 
 	for(var/obj/item/explosive/mine/M in src)
 		if(M)
@@ -69,8 +55,8 @@
 			T = get_step(src, i)
 
 			//update junction type of nearby walls
-			if(iswallturf(T))
-				T.relativewall()
+			if(T.smoothing_behavior)
+				T.smooth_self()
 
 			//nearby glowshrooms updated
 			for(var/obj/effect/glowshroom/shroom in T)

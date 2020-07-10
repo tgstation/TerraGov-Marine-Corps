@@ -1,8 +1,8 @@
 /**
  * Resin walls
- * 
+ *
  * Used mostly be xenomorphs
- */ 
+ */
 /turf/closed/wall/resin
 	name = "resin wall"
 	desc = "Weird slime solidified into a wall."
@@ -11,7 +11,8 @@
 	walltype = "resin"
 	max_integrity = 200
 	layer = RESIN_STRUCTURE_LAYER
-	tiles_with = list(/turf/closed/wall/resin, /turf/closed/wall/resin/membrane, /obj/structure/mineral_door/resin)
+	smoothing_behavior = CARDINAL_SMOOTHING
+	smoothing_groups = SMOOTH_XENO_STRUCTURES
 	soft_armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
 
@@ -59,6 +60,8 @@
 	max_integrity = 120
 	opacity = FALSE
 	alpha = 180
+	smoothing_behavior = CARDINAL_SMOOTHING
+	smoothing_groups = SMOOTH_XENO_STRUCTURES
 
 
 /turf/closed/wall/resin/membrane/thicken()
@@ -156,7 +159,7 @@
 	max_integrity = 100
 
 	/// Total health possible for a wall after regenerating at max health
-	var/max_upgradable_health = 600 
+	var/max_upgradable_health = 600
 	/// How much the walls integrity heals per tick (2 seconds)
 	var/heal_per_tick = 10
 	/// How much the walls max_integrity increases per tick (2 seconds)

@@ -95,15 +95,6 @@
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	icon_state = "shutter1"
 	openspeed = 4 //shorter open animation.
-	tiles_with = list(
-		/turf/closed/wall,
-		/obj/structure/window/framed/mainship,
-		/obj/machinery/door/airlock)
-
-
-/obj/machinery/door/poddoor/shutters/mainship/Initialize()
-	relativewall_neighbours()
-	return ..()
 
 
 //transit shutters used by marine dropships
@@ -112,6 +103,7 @@
 	desc = "Safety shutters to prevent dangerous depressurization during flight"
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	smoothing_groups = SMOOTH_GENERAL_STRUCTURES|SMOOTH_CANTERBURY
 
 
 /obj/machinery/door/poddoor/shutters/mainship/open
@@ -164,7 +156,7 @@
 /obj/machinery/door/poddoor/shutters/mainship/hangar
 	name = "\improper Hangar Shutters"
 	id = "hangar_shutters"
-	
+
 /obj/machinery/door/poddoor/shutters/mainship/hangar/fuel
 	name = "\improper Solid Fuel Storage"
 	id = "solid_fuel"
@@ -179,32 +171,32 @@
 
 /obj/machinery/door/poddoor/shutters/mainship/req/ro1
 	name = "\improper RO Line 1"
-	id = "ROlobby1"		
+	id = "ROlobby1"
 
 /obj/machinery/door/poddoor/shutters/mainship/req/ro2
 	name = "\improper RO Line 2"
-	id = "ROlobby2"	
+	id = "ROlobby2"
 
 /obj/machinery/door/poddoor/shutters/mainship/containment
 	name = "\improper Containment Cell"
-	id = "containmentcell"	
+	id = "containmentcell"
 	icon_state = "shutter1"
 
 /obj/machinery/door/poddoor/shutters/mainship/containment/cell1
 	name = "\improper Containment Cell 1"
-	id = "containmentcell_1"	
+	id = "containmentcell_1"
 
 /obj/machinery/door/poddoor/shutters/mainship/containment/cell2
 	name = "\improper Containment Cell 2"
-	id = "containmentcell_2"			
+	id = "containmentcell_2"
 
 /obj/machinery/door/poddoor/shutters/mainship/brigarmory
 	name = "\improper Brig Armory Shutters"
 	id = "brig_armory"
-	icon_state = "shutter1"	
+	icon_state = "shutter1"
 
 /obj/machinery/door/poddoor/shutters/mainship/cic
-	name = "\improper CIC Shutters"	
+	name = "\improper CIC Shutters"
 
 /obj/machinery/door/poddoor/shutters/mainship/cic/armory
 	name = "\improper Armory Shutters"

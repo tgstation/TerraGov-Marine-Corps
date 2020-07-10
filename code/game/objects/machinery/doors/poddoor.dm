@@ -147,10 +147,7 @@
 /obj/machinery/door/poddoor/mainship
 	icon = 'icons/obj/doors/mainship/blastdoors_shutters.dmi'
 	openspeed = 4 //shorter open animation.
-	tiles_with = list(
-		/turf/closed/wall,
-		/obj/structure/window/framed/mainship,
-		/obj/machinery/door/airlock)
+
 
 /obj/machinery/door/poddoor/mainship/open
     density = FALSE
@@ -175,7 +172,7 @@
 
 /obj/machinery/door/poddoor/mainship/ammo
 	name = "\improper Ammunition Storage"
-	id = "ammo2"	
+	id = "ammo2"
 
 /obj/machinery/door/poddoor/mainship/open/cic
 	name = "\improper Combat Information Center Blast Door"
@@ -183,12 +180,7 @@
 
 /obj/machinery/door/poddooor/mainship/hangar
 	name = "\improper Hangar Lockdown"
-	id = "hangar_lockdown"	
-
-/obj/machinery/door/poddoor/mainship/Initialize()
-	relativewall_neighbours()
-	return ..()
-
+	id = "hangar_lockdown"
 
 /obj/machinery/door/poddoor/mainship/umbilical
 	name = "Umbilical Airlock"

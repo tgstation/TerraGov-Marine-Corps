@@ -5615,6 +5615,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
 /turf/open/floor/mainship/red/corner,
 /area/mainship/hallways/stern_hallway)
 "aqB" = (
@@ -36229,6 +36230,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
@@ -36298,6 +36300,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
@@ -36827,7 +36830,6 @@
 /area/mainship/hallways/stern_hallway)
 "lsi" = (
 /obj/structure/cable,
-/obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/stern_hallway)
 "ltO" = (
@@ -36841,6 +36843,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
 /turf/open/floor/mainship/red,
 /area/mainship/hallways/stern_hallway)
 "lvC" = (
@@ -37723,7 +37726,8 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/surgery_hallway)
 "qVi" = (
-/turf/closed/wall/mainship/nosmooth,
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
+/turf/closed/wall/mainship,
 /area/mainship/hull/upper_hull)
 "qWg" = (
 /obj/structure/disposalpipe/segment/corner{
@@ -37785,7 +37789,6 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "rGG" = (
-/obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/stern_hallway)
 "rIo" = (
@@ -38627,7 +38630,8 @@
 /turf/open/floor/mainship,
 /area/mainship/living/briefing)
 "xGM" = (
-/turf/closed/wall/mainship/nosmooth,
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
+/turf/closed/wall/mainship,
 /area/mainship/engineering/upper_engineering)
 "xHM" = (
 /turf/open/floor/mainship{
