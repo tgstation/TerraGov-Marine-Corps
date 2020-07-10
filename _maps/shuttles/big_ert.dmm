@@ -2,11 +2,6 @@
 "aa" = (
 /turf/template_noop,
 /area/template_noop)
-"ab" = (
-/turf/closed/wall/mainship/white{
-	tiles_with = list(/turf/closed/wall/mainship/white,/obj/structure/window/framed/mainship/white)
-	},
-/area/shuttle/big_ert)
 "ac" = (
 /obj/structure/window/framed/mainship/white,
 /turf/open/floor/plating,
@@ -1181,7 +1176,7 @@ ag
 aa
 "}
 (9,1,1) = {"
-ab
+ag
 ag
 ag
 ag
@@ -1197,7 +1192,7 @@ ag
 ag
 ag
 ag
-ab
+ag
 "}
 (10,1,1) = {"
 ac
@@ -1276,7 +1271,7 @@ cG
 ac
 "}
 (14,1,1) = {"
-ab
+ag
 ag
 ag
 az
@@ -1292,7 +1287,7 @@ ag
 ag
 ag
 ag
-ab
+ag
 "}
 (15,1,1) = {"
 aa
