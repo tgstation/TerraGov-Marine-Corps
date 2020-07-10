@@ -38,10 +38,6 @@
 	var/bioscan_interval = INFINITY
 
 
-/client/verb/spawn_shuttle()
-	var/datum/map_template/shuttle/ST = SSmapping.shuttle_templates["tgs_canterbury"]
-	SSshuttle.load_template_to_transit(ST)
-
 /datum/game_mode/infestation/crash/scale_roles()
 	. = ..()
 	if(!.)
