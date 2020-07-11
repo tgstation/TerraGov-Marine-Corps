@@ -8011,7 +8011,7 @@
 /obj/machinery/shower{
 	dir = 4
 	},
-/obj/structure/window/reinforced/tinted/frosted{
+/obj/structure/window/reinforced/tinted{
 	dir = 1
 	},
 /obj/machinery/door/window,

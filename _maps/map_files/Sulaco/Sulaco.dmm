@@ -1176,7 +1176,7 @@
 	pixel_y = 15
 	},
 /obj/machinery/door/window/southright,
-/obj/structure/window/reinforced/tinted/frosted{
+/obj/structure/window/reinforced/tinted{
 	dir = 4
 	},
 /turf/open/floor/freezer,
@@ -1196,7 +1196,7 @@
 	dir = 8
 	},
 /obj/machinery/door/window/westleft,
-/obj/structure/window/reinforced/tinted/frosted,
+/obj/structure/window/reinforced/tinted,
 /turf/open/floor/freezer,
 /area/sulaco/showers)
 "aed" = (

@@ -163,7 +163,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/squads/alpha)
 "aH" = (
-/obj/structure/window/reinforced/tinted/frosted{
+/obj/structure/window/reinforced/tinted{
 	dir = 8
 	},
 /obj/machinery/door/window{
@@ -204,7 +204,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/living/numbertwobunks)
 "aO" = (
-/obj/structure/window/reinforced/tinted/frosted{
+/obj/structure/window/reinforced/tinted{
 	dir = 8
 	},
 /obj/machinery/door/window{
@@ -502,7 +502,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "bS" = (
-/obj/structure/window/reinforced/tinted/frosted{
+/obj/structure/window/reinforced/tinted{
 	dir = 8
 	},
 /obj/machinery/door/window{
@@ -5268,7 +5268,7 @@
 /turf/open/floor/mainship,
 /area/mainship/shipboard/firing_range)
 "zP" = (
-/obj/structure/window/reinforced/tinted/frosted{
+/obj/structure/window/reinforced/tinted{
 	dir = 8
 	},
 /obj/machinery/door/window{
@@ -6034,7 +6034,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/living/tankerbunks)
 "Do" = (
-/obj/structure/window/reinforced/tinted/frosted{
+/obj/structure/window/reinforced/tinted{
 	dir = 8
 	},
 /obj/machinery/door/window{
@@ -6059,7 +6059,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/squads/charlie)
 "Dr" = (
-/obj/structure/window/reinforced/tinted/frosted{
+/obj/structure/window/reinforced/tinted{
 	dir = 8
 	},
 /obj/machinery/door/window{
@@ -6084,7 +6084,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/living/pilotbunks)
 "Du" = (
-/obj/structure/window/reinforced/tinted/frosted{
+/obj/structure/window/reinforced/tinted{
 	dir = 8
 	},
 /obj/machinery/door/window{
@@ -6109,7 +6109,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/squads/delta)
 "Dx" = (
-/obj/structure/window/reinforced/tinted/frosted{
+/obj/structure/window/reinforced/tinted{
 	dir = 8
 	},
 /obj/machinery/door/window{
@@ -8069,7 +8069,7 @@
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/weapon_room)
 "Ma" = (
-/obj/structure/window/reinforced/tinted/frosted{
+/obj/structure/window/reinforced/tinted{
 	dir = 8
 	},
 /obj/machinery/door/window{

@@ -333,12 +333,6 @@
 	basestate = "twindow"
 	opacity = TRUE
 
-/obj/structure/window/reinforced/tinted/frosted
-	name = "frosted window"
-	desc = "A glass window with a rod matrice. It looks rather strong and frosted over. Looks like it might take a few less hits then a normal reinforced window."
-	icon_state = "fwindow"
-	basestate = "fwindow"
-	max_integrity = 30
 
 /obj/structure/window/shuttle
 	name = "shuttle window"
@@ -352,6 +346,7 @@
 
 /obj/structure/window/shuttle/update_icon() //icon_state has to be set manually
 	return
+
 
 //Framed windows
 

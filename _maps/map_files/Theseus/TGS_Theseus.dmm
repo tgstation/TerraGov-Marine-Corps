@@ -1193,7 +1193,7 @@
 /obj/machinery/shower{
 	dir = 4
 	},
-/obj/structure/window/reinforced/tinted/frosted{
+/obj/structure/window/reinforced/tinted{
 	dir = 1
 	},
 /obj/machinery/door/window/eastright/briefing,
@@ -3256,7 +3256,7 @@
 /obj/machinery/shower{
 	dir = 4
 	},
-/obj/structure/window/reinforced/tinted/frosted{
+/obj/structure/window/reinforced/tinted{
 	dir = 1
 	},
 /obj/machinery/door/window,
@@ -15441,7 +15441,7 @@
 	dir = 8
 	},
 /obj/machinery/door/window/westleft,
-/obj/structure/window/reinforced/tinted/frosted,
+/obj/structure/window/reinforced/tinted,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks)
 "aQr" = (
@@ -21591,7 +21591,7 @@
 /obj/machinery/shower{
 	dir = 8
 	},
-/obj/structure/window/reinforced/tinted/frosted,
+/obj/structure/window/reinforced/tinted,
 /obj/item/tool/soap,
 /obj/machinery/door/window{
 	dir = 8
@@ -30479,7 +30479,7 @@
 /obj/machinery/shower{
 	dir = 4
 	},
-/obj/structure/window/reinforced/tinted/frosted{
+/obj/structure/window/reinforced/tinted{
 	dir = 1
 	},
 /obj/machinery/door/window,
@@ -30764,7 +30764,7 @@
 /obj/machinery/shower{
 	dir = 4
 	},
-/obj/structure/window/reinforced/tinted/frosted{
+/obj/structure/window/reinforced/tinted{
 	dir = 1
 	},
 /obj/machinery/door/window,
@@ -31908,7 +31908,7 @@
 /obj/machinery/shower{
 	dir = 4
 	},
-/obj/structure/window/reinforced/tinted/frosted{
+/obj/structure/window/reinforced/tinted{
 	dir = 1
 	},
 /obj/machinery/door/window,
@@ -34478,7 +34478,7 @@
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/captain_mess)
 "chn" = (
-/obj/structure/window/reinforced/tinted/frosted,
+/obj/structure/window/reinforced/tinted,
 /obj/structure/sink{
 	dir = 4
 	},
@@ -34722,7 +34722,7 @@
 /obj/machinery/shower{
 	dir = 4
 	},
-/obj/structure/window/reinforced/tinted/frosted,
+/obj/structure/window/reinforced/tinted,
 /obj/machinery/door/window,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/starboard_emb)
@@ -34745,7 +34745,7 @@
 /obj/machinery/shower{
 	dir = 4
 	},
-/obj/structure/window/reinforced/tinted/frosted{
+/obj/structure/window/reinforced/tinted{
 	dir = 1
 	},
 /obj/machinery/door/window,
