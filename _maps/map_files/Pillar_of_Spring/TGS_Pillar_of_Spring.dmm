@@ -3198,6 +3198,9 @@
 /obj/machinery/door_timer/cell_2{
 	dir = 1
 	},
+/obj/machinery/door/firedoor/mainship{
+	dir = 8
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/brig_cells)
 "lI" = (
@@ -4889,6 +4892,9 @@
 	dir = 8
 	},
 /obj/machinery/door_timer/cell_1,
+/obj/machinery/door/firedoor/mainship{
+	dir = 8
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/brig_cells)
 "rr" = (
