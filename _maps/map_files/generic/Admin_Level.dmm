@@ -663,10 +663,6 @@
 "cy" = (
 /turf/open/space/basic,
 /area/centcom)
-"cz" = (
-/obj/effect/ai_node,
-/turf/open/ground/river,
-/area/deathmatch)
 "cA" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/centcom)
@@ -1162,17 +1158,9 @@
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/freezer,
 /area/deathmatch)
-"eD" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/asteroidfloor,
-/area/deathmatch)
 "eE" = (
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/plating,
-/area/deathmatch)
-"eF" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "eG" = (
 /obj/machinery/light,
@@ -1288,19 +1276,11 @@
 	},
 /turf/open/ground/river,
 /area/deathmatch)
-"fd" = (
-/obj/effect/ai_node,
-/turf/open/ground/coast,
-/area/deathmatch)
 "fe" = (
 /obj/structure/platform{
 	dir = 4
 	},
 /turf/open/ground/river,
-/area/deathmatch)
-"ff" = (
-/obj/effect/ai_node,
-/turf/open/shuttle/dropship/floor,
 /area/deathmatch)
 "fg" = (
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
@@ -1523,19 +1503,11 @@
 /obj/item/reagent_containers/food/snacks/grown/mtear,
 /turf/open/floor/mainship/mono,
 /area/deathmatch)
-"fT" = (
-/obj/effect/ai_node,
-/turf/open/floor/mainship/mono,
-/area/deathmatch)
 "fU" = (
 /obj/structure/platform{
 	dir = 8
 	},
 /turf/open/ground/coast/corner,
-/area/deathmatch)
-"fV" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirtgrassborder,
 /area/deathmatch)
 "fW" = (
 /obj/structure/platform_decoration{
@@ -1637,10 +1609,6 @@
 	dir = 4
 	},
 /area/deathmatch)
-"gl" = (
-/obj/machinery/light,
-/turf/open/floor/mainship/mono,
-/area/deathmatch)
 "gm" = (
 /obj/structure/platform{
 	dir = 1
@@ -1669,10 +1637,6 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/freezer,
-/area/deathmatch)
-"gq" = (
-/obj/effect/ai_node,
 /turf/open/floor/freezer,
 /area/deathmatch)
 "gr" = (
@@ -4688,7 +4652,7 @@ ea
 eB
 eC
 eB
-gq
+ea
 ea
 cO
 eI
@@ -4701,7 +4665,7 @@ gz
 px
 px
 aN
-fd
+qi
 pz
 pz
 pz
@@ -4715,7 +4679,7 @@ dD
 dw
 dy
 dw
-eD
+aY
 eH
 dw
 dJ
@@ -4861,7 +4825,7 @@ eX
 eX
 eX
 eX
-gl
+eX
 pS
 gm
 px
@@ -5377,7 +5341,7 @@ pz
 pz
 pz
 pz
-cz
+pz
 pz
 pz
 pz
@@ -5391,7 +5355,7 @@ qq
 fC
 eX
 eX
-fT
+eX
 fY
 pz
 pz
@@ -5416,7 +5380,7 @@ pz
 pz
 pz
 pz
-cz
+pz
 pz
 pz
 pz
@@ -6092,7 +6056,7 @@ pz
 qq
 bS
 dx
-eF
+px
 qu
 df
 gi
@@ -6105,7 +6069,7 @@ cs
 bs
 bs
 cj
-ff
+bs
 dm
 dq
 pt
@@ -6119,7 +6083,7 @@ pt
 pt
 pt
 pt
-fV
+dC
 px
 gb
 px
