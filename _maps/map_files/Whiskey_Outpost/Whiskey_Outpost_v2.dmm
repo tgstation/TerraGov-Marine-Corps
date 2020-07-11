@@ -529,7 +529,7 @@
 /turf/open/floor/mainship/sterile,
 /area/whiskey_outpost)
 "cc" = (
-/obj/machinery/m56d_hmg/mg_turret,
+/obj/machinery/standard_hmg/mg_turret,
 /obj/structure/barricade/sandbags{
 	pixel_z = -7
 	},
@@ -1045,7 +1045,7 @@
 	},
 /area/whiskey_outpost)
 "dN" = (
-/obj/machinery/m56d_hmg/mg_turret{
+/obj/machinery/standard_hmg/mg_turret{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -1827,7 +1827,7 @@
 	},
 /area/whiskey_outpost)
 "gm" = (
-/obj/machinery/m56d_hmg/mg_turret{
+/obj/machinery/standard_hmg/mg_turret{
 	dir = 2
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -2796,7 +2796,7 @@
 	},
 /area/whiskey_outpost)
 "kU" = (
-/obj/machinery/m56d_hmg/mg_turret{
+/obj/machinery/standard_hmg/mg_turret{
 	dir = 2
 	},
 /turf/open/floor/plating/warning{
@@ -3497,7 +3497,7 @@
 /area/whiskey_outpost/outside/south)
 "nY" = (
 /obj/effect/ai_node,
-/obj/machinery/m56d_hmg/mg_turret{
+/obj/machinery/standard_hmg/mg_turret{
 	dir = 2
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -3864,7 +3864,7 @@
 /area/whiskey_outpost/outside/north)
 "pd" = (
 /obj/structure/platform_decoration,
-/obj/machinery/m56d_hmg/mg_turret{
+/obj/machinery/standard_hmg/mg_turret{
 	dir = 2
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -4074,7 +4074,7 @@
 /turf/open/floor/plating/asteroidwarning,
 /area/whiskey_outpost)
 "pO" = (
-/obj/machinery/m56d_hmg/mg_turret{
+/obj/machinery/standard_hmg/mg_turret{
 	dir = 2
 	},
 /turf/open/floor/plating/asteroidwarning,
@@ -4460,7 +4460,7 @@
 	},
 /area/whiskey_outpost)
 "qS" = (
-/obj/machinery/m56d_hmg/mg_turret{
+/obj/machinery/standard_hmg/mg_turret{
 	dir = 8
 	},
 /turf/open/floor/plating/warning{
@@ -4480,7 +4480,7 @@
 	},
 /area/whiskey_outpost)
 "qU" = (
-/obj/machinery/m56d_hmg/mg_turret{
+/obj/machinery/standard_hmg/mg_turret{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -4794,7 +4794,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "sU" = (
-/obj/machinery/m56d_hmg/mg_turret{
+/obj/machinery/standard_hmg/mg_turret{
 	dir = 2
 	},
 /turf/open/floor/plating/warning{
@@ -5168,7 +5168,7 @@
 /turf/open/floor/plating,
 /area/whiskey_outpost)
 "yW" = (
-/obj/machinery/m56d_hmg/mg_turret{
+/obj/machinery/standard_hmg/mg_turret{
 	dir = 2
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -5233,7 +5233,7 @@
 	},
 /area/whiskey_outpost)
 "zZ" = (
-/obj/machinery/m56d_hmg/mg_turret{
+/obj/machinery/standard_hmg/mg_turret{
 	dir = 2
 	},
 /turf/open/floor/plating/warning,
@@ -5723,7 +5723,7 @@
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "Hr" = (
-/obj/machinery/m56d_hmg/mg_turret{
+/obj/machinery/standard_hmg/mg_turret{
 	dir = 2
 	},
 /turf/open/floor/tile/damaged/panel,
@@ -6440,7 +6440,7 @@
 /turf/open/ground/jungle,
 /area/whiskey_outpost/outside/south)
 "VN" = (
-/obj/machinery/m56d_hmg/mg_turret{
+/obj/machinery/standard_hmg/mg_turret{
 	dir = 2
 	},
 /turf/open/floor/plating/warning{
@@ -6578,7 +6578,7 @@
 	},
 /area/whiskey_outpost)
 "XZ" = (
-/obj/machinery/m56d_hmg/mg_turret{
+/obj/machinery/standard_hmg/mg_turret{
 	dir = 2
 	},
 /turf/open/floor/plating/ground/dirt,
