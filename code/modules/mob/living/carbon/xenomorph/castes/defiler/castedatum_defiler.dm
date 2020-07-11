@@ -122,6 +122,9 @@
 	ancient_message = "We are the ultimate alien impregnator. We will infect the marines, see them burst open before us, and hear the gleeful screes of our larvae."
 	upgrade = XENO_UPGRADE_THREE
 
+	// *** Melee Attacks *** //
+	melee_damage = 26
+
 	// *** Tackle *** //
 	tackle_damage = 45
 

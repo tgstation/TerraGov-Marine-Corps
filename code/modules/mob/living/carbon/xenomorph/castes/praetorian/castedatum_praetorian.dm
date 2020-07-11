@@ -133,6 +133,9 @@
 	upgrade = XENO_UPGRADE_THREE
 	ancient_message = "We are the strongest range fighter around. Our spit is devestating and we can fire nearly a constant stream."
 
+	// *** Melee Attacks *** //
+	melee_damage = 23
+
 	// *** Tackle *** //
 	tackle_damage = 50
 

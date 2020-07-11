@@ -111,6 +111,9 @@
 	ancient_message = "We are death incarnate. All will tremble before us."
 	upgrade = XENO_UPGRADE_THREE
 
+	// *** Melee Attacks *** //
+	melee_damage = 32
+
 	// *** Tackle *** //
 	tackle_damage = 50
 

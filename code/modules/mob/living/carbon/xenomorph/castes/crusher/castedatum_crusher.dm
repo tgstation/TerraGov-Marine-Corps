@@ -110,6 +110,9 @@
 	ancient_message = "We are the physical manifestation of a Tank. Almost nothing can harm us."
 	upgrade = XENO_UPGRADE_THREE
 
+	// *** Melee Attacks *** //
+	melee_damage = 24
+
 	// *** Tackle *** //
 	tackle_damage = 55
 

@@ -150,6 +150,9 @@
 	ancient_message = "We are the Alpha and the Omega. The beginning and the end."
 	upgrade = XENO_UPGRADE_THREE
 
+	// *** Melee Attacks *** //
+	melee_damage = 23
+
 	// *** Tackle *** //
 	tackle_damage = 60
 

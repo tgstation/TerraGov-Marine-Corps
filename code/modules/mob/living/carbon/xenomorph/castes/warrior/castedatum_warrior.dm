@@ -118,6 +118,9 @@
 	ancient_message = "None can stand before us. We will annihilate all weaklings who try."
 	upgrade = XENO_UPGRADE_THREE
 
+	// *** Melee Attacks *** //
+	melee_damage = 23
+
 	// *** Tackle *** //
 	tackle_damage = 42
 

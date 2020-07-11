@@ -141,6 +141,9 @@
 	upgrade = XENO_UPGRADE_THREE
 	ancient_message = "We are the master of ranged artillery. Let's bring death from above."
 
+	// *** Melee Attacks *** //
+	melee_damage = 20
+
 	// *** Tackle *** //
 	tackle_damage = 30
 

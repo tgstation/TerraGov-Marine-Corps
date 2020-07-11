@@ -123,6 +123,13 @@
 	upgrade = XENO_UPGRADE_THREE
 	wound_type = "runner" //used to match appropriate wound overlays
 
+	// *** Melee Attacks *** //
+	melee_damage = 16
+
+
+	// *** Tackle *** //
+	tackle_damage = 35
+
 	// *** Speed *** //
 	speed = -1.4
 

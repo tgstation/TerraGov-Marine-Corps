@@ -141,6 +141,9 @@
 	upgrade = XENO_UPGRADE_THREE
 	ancient_message = "We are the master of huggers. We shall throw them like baseballs at the marines!"
 
+	// *** Melee Attacks *** //
+	melee_damage = 20
+
 	// *** Tackle *** //
 	tackle_damage = 45
 

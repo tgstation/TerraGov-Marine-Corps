@@ -140,6 +140,9 @@
 	ancient_message = "You are the builder of walls. Ensure that the marines are the ones who pay for them."
 	upgrade = XENO_UPGRADE_THREE
 
+	// *** Melee Attacks *** //
+	melee_damage = 20
+
 	// *** Tackle *** //
 	tackle_damage = 45
 

@@ -110,6 +110,9 @@
 	ancient_message = "We are strong, nothing can stand in our way lest we topple them."
 	upgrade = XENO_UPGRADE_THREE
 
+	// *** Melee Attacks *** //
+	melee_damage = 21
+
 	// *** Tackle *** //
 	tackle_damage = 45
 

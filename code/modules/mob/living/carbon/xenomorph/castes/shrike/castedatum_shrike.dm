@@ -134,6 +134,9 @@
 	ancient_message = "We are psychic repository of the hive, and we are ready to unleash our fury."
 	upgrade = XENO_UPGRADE_THREE
 
+	// *** Melee Attacks *** //
+	melee_damage = 23
+
 	// *** Tackle *** //
 	tackle_damage = 45
 

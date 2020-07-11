@@ -132,6 +132,9 @@
 
 	savage_cooldown = 30 SECONDS
 
+	// *** Melee Attacks *** //
+	melee_damage = 21
+
 	// *** Tackle *** //
 	tackle_damage = 35
 

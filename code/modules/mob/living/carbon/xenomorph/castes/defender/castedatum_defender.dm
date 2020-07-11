@@ -124,6 +124,9 @@
 	upgrade = XENO_UPGRADE_THREE
 	ancient_message = "We are a incredibly resilient, we can control the battle through sheer force."
 
+	// *** Melee Attacks *** //
+	melee_damage = 21
+
 	// *** Tackle *** //
 	tackle_damage = 35
 
