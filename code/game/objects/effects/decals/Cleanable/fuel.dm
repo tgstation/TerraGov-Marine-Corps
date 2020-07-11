@@ -30,7 +30,7 @@
 
 /obj/effect/decal/cleanable/liquid_fuel/proc/fuel_spread()
 	//Allows liquid fuels to sometimes flow into other tiles.
-	if(amount < 5)) //At least one unit per transfer
+	if(amount < 5) //At least one unit per transfer
 		return
 	var/slice_per_transfer = round((1 / 5), 0.01)
 	var/successful_spread = 0
