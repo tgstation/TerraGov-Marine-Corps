@@ -17,6 +17,16 @@
 	if(oldN)
 		oldN.build_network()
 
+
+/obj/machinery/atmospherics/pipe/Initialize()
+	. = ..()
+	for(var/obj/machinery/atmospherics/pipe/neighbor in loc)
+		if(neighbor == src)
+			continue
+		if(neighbor.dir & (dir | REVERSE_DIR(dir)))
+			stack_trace("Same type and dir neighbor in ([x], [y], [z]): [type] vs [neighbor.type]")
+
+
 /obj/machinery/atmospherics/pipe/destroy_network()
 	QDEL_NULL(parent)
 

@@ -10,6 +10,10 @@
 
 /obj/machinery/atmospherics/components/New()
 	. = ..()
+	for(var/obj/machinery/atmospherics/components/neighbor in loc)
+		if(neighbor == src)
+			continue
+		stack_trace("Same type neighbor in ([x], [y], [z]): [type] vs [neighbor.type]")
 	parents = new(device_type)
 
 // Iconnery

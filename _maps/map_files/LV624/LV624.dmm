@@ -15585,7 +15585,6 @@
 /area/lv624/lazarus/hop)
 "biv" = (
 /obj/structure/flora/bush,
-/obj/machinery/atmospherics/pipe/manifold4w/cyan/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/grass,

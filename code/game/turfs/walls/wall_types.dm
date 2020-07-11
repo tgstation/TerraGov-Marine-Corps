@@ -237,7 +237,7 @@
 
 /turf/closed/wall/indestructible/fakeglass
 	name = "window"
-	icon_state = "fakewindows"
+	icon_state = "fakewindows2"
 	opacity = FALSE
 
 /turf/closed/wall/indestructible/splashscreen
