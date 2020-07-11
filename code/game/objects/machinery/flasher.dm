@@ -17,6 +17,25 @@
 	var/strength = 20 SECONDS //How knocked down targets are when flashed.
 	var/base_state = "mflash"
 
+
+/obj/machinery/flasher/Initialize()
+	. = ..()
+	setDir(dir) //Make sure we update the pixel shift.
+
+
+/obj/machinery/flasher/setDir(newdir)
+	. = ..()
+	switch(dir)
+		if(NORTH)
+			pixel_y = -13
+		if(SOUTH)
+			pixel_y = 30
+		if(EAST)
+			pixel_x = -21
+		if(WEST)
+			pixel_x = 21
+
+
 /obj/machinery/flasher/cell1
 	name = "Cell 1 Flash"
 

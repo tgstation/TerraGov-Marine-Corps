@@ -279,6 +279,13 @@
 /obj/structure/window/GetExplosionBlock(explosion_dir)
 	return (!explosion_dir || ISDIAGONALDIR(dir) || dir & explosion_dir || REVERSE_DIR(dir) & explosion_dir) ? real_explosion_block : 0
 
+
+/obj/structure/window/short
+	icon_state = "rwindow_short"
+	basestate = "window_short"
+	north_facing_layer = WINDOW_LAYER
+
+
 /obj/structure/window/phoronbasic
 	name = "phoron window"
 	desc = "A phoron-glass alloy window. It looks insanely tough to break. It appears it's also insanely tough to burn through."
@@ -318,6 +325,13 @@
 	explosion_block = EXPLOSION_BLOCK_PROC
 	real_explosion_block = 2
 
+
+/obj/structure/window/reinforced/short
+	icon_state = "rwindow_short"
+	basestate = "rwindow_short"
+	north_facing_layer = WINDOW_LAYER
+
+
 /obj/structure/window/reinforced/toughened
 	name = "safety glass"
 	desc = "A very tough looking glass window with a special rod matrice, probably bullet proof."
@@ -332,6 +346,12 @@
 	icon_state = "twindow"
 	basestate = "twindow"
 	opacity = TRUE
+
+
+/obj/structure/window/reinforced/tinted/short
+	icon_state = "twindow_short"
+	basestate = "twindow_short"
+	north_facing_layer = WINDOW_LAYER
 
 
 /obj/structure/window/shuttle
