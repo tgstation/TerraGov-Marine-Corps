@@ -691,6 +691,14 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	proj.ammo.on_hit_mob(src, proj)
 	bullet_act(proj)
 
+/mob/living/carbon/human/do_projectile_hit(obj/projectile/proj)
+	. = ..()
+	new /obj/effect/temp_visual/dir_setting/bloodsplatter(loc, proj.dir)
+
+/mob/living/carbon/xenomorph/do_projectile_hit(obj/projectile/proj)
+	. = ..()
+	new /obj/effect/temp_visual/dir_setting/bloodsplatter/xenosplatter(loc, proj.dir)
+
 
 /mob/living/carbon/human/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	if(proj.ammo.flags_ammo_behavior & AMMO_SKIPS_HUMANS && get_target_lock(proj.ammo.iff_signal))
