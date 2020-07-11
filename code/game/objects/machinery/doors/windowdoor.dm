@@ -213,7 +213,6 @@
 
 /obj/machinery/door/window/brigdoor
 	name = "Secure Door"
-	icon = 'icons/obj/doors/windoor.dmi'
 	icon_state = "leftsecure"
 	base_state = "leftsecure"
 	req_access = list(ACCESS_MARINE_BRIG)
