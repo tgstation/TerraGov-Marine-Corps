@@ -1596,13 +1596,11 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/hydro_cannon
 	name = "TL-84 Hydro Cannon"
 	desc = "An integrated component of the TL-84 flamethrower, the hydro cannon fires high pressure sprays of water; mainly to extinguish any wayward allies or unintended collateral damage."
-	icon_state = "hydrocannon"
+	icon_state = ""
 	attach_icon = ""
 	slot = "under"
 	flags_attach_features = ATTACH_ACTIVATION|ATTACH_UTILITY
 	attachment_action_type = /datum/action/item_action/toggle
-	var/max_water = 200
-	var/last_use
 
 /obj/item/attachable/hydro_cannon/activate_attachment(mob/living/user, turn_off)
 	if(master_gun.active_attachable == src)

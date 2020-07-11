@@ -1,3 +1,5 @@
+#define FLAMER_WATER 200
+
 //FLAMETHROWER
 
 /obj/item/weapon/gun/flamer
@@ -14,7 +16,6 @@
 	reload_sound = 'sound/weapons/guns/interact/flamethrower_reload.ogg'
 	aim_slowdown = 1.75
 	current_mag = /obj/item/ammo_magazine/flamer_tank
-	var/max_range = 7
 	var/lit = 0 //Turn the flamer on/off
 	general_codex_key = "flame weapons"
 
@@ -162,10 +163,9 @@
 	var/burntime = loaded_ammo.burntime
 	var/fire_color = loaded_ammo.fire_color
 	fire_delay = loaded_ammo.fire_delay
-	max_range = loaded_ammo.max_range
 	if(istype(loaded_ammo, /datum/ammo/flamethrower/green))
 		playsound(user, fire_sound, 50, 1)
-		triangular_flame(target, user, burntime, burnlevel)
+		triangular_flame(target, user, burntime, burnlevel, loaded_ammo.max_range)
 		return
 
 	var/list/turf/turfs = getline(user,target)
@@ -185,7 +185,7 @@
 			break
 		if(!current_mag?.current_rounds)
 			break
-		if(distance > max_range)
+		if(distance > loaded_ammo.max_range)
 			break
 
 		var/blocked = FALSE
@@ -268,7 +268,7 @@
 
 		to_chat(M, "[isxeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!")
 
-/obj/item/weapon/gun/flamer/proc/triangular_flame(atom/target, mob/living/user, burntime, burnlevel)
+/obj/item/weapon/gun/flamer/proc/triangular_flame(atom/target, mob/living/user, burntime, burnlevel, max_range = 4)
 	set waitfor = 0
 
 	var/unleash_dir = user.dir //don't want the player to turn around mid-unleash to bend the fire.
@@ -356,9 +356,17 @@
 	item_state = "tl84"
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	attachable_offset = list("rail_x" = 10, "rail_y" = 23, "stock_x" = 16, "stock_y" = 13)
-	starting_attachment_types = list(/obj/item/attachable/stock/t84stock)
-	var/max_water = 200
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/t84stock,
+		/obj/item/attachable/hydro_cannon,
+	)
 	var/last_use
+
+/obj/item/weapon/gun/flamer/marinestandard/Initialize()
+	. = ..()
+	reagents = new /datum/reagents(FLAMER_WATER)
+	reagents.my_atom = src
+	reagents.add_reagent(/datum/reagent/water, reagents.maximum_volume)
 
 /obj/item/weapon/gun/flamer/marinestandard/reload(mob/user, obj/item/ammo_magazine/magazine)
 	if(!magazine || !istype(magazine))
@@ -405,20 +413,9 @@
 
 /obj/item/weapon/gun/flamer/marinestandard/examine(mob/user)
 	. = ..()
-	to_chat(user, "<span class='notice'>Its hydro cannon contains [MARINESTANDARD_WATER_AMOUNT]/[max_water] units of water!</span>")
+	to_chat(user, "<span class='notice'>Its hydro cannon contains [reagents.get_reagent_amount(/datum/reagent/water)]/[reagents.maximum_volume] units of water!</span>")
 
 
-/obj/item/weapon/gun/flamer/marinestandard/Initialize()
-	. = ..()
-	var/datum/reagents/R = new/datum/reagents(max_water)
-	reagents = R
-	R.my_atom = src
-	R.add_reagent(/datum/reagent/water, max_water)
-
-	var/obj/item/attachable/hydro_cannon/G = new(src)
-	G.icon_state = ""
-	G.Attach(src)
-	G.icon_state = initial(G.icon_state)
 
 /obj/item/weapon/gun/flamer/marinestandard/Fire(atom/target, mob/living/user, params, reflex)
 	if(active_attachable && istype(active_attachable, /obj/item/attachable/hydro_cannon) && (world.time > last_use + 10))
@@ -434,7 +431,7 @@
 	. = ..()
 	if(istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(user,target) <= 1)
 		var/obj/o = target
-		o.reagents.trans_to(src, max_water)
+		o.reagents.trans_to(src, reagents.maximum_volume)
 		to_chat(user, "<span class='notice'>\The [src]'s hydro cannon is refilled with water.</span>")
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
@@ -604,3 +601,5 @@
 	to_chat(src, "<span class='xenodanger'>The heat of the fire roars in our veins! KILL! CHARGE! DESTROY!</span>")
 	if(prob(70))
 		emote("roar")
+
+#undef FLAMER_WATER
