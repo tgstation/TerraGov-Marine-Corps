@@ -7,8 +7,8 @@
 	desc = "A fuel tank of usually ultra thick napthal, a sticky combustable liquid chemical, for use in the M240A1 incinerator unit. Handle with care."
 	icon_state = "flametank"
 	default_ammo = /datum/ammo/flamethrower //doesn't actually need bullets. But we'll get null ammo error messages if we don't
-	max_rounds = 60 //Per turf.
-	current_rounds = 60
+	max_rounds = 30 //Per turf.
+	current_rounds = 30
 	w_class = WEIGHT_CLASS_NORMAL //making sure you can't sneak this onto your belt.
 	gun_type = /obj/item/weapon/gun/flamer
 	caliber = "UT-Napthal Fuel" //Ultra Thick Napthal Fuel, from the lore book.
@@ -42,8 +42,8 @@
 	name = "large flamerthrower tank"
 	desc = "A large fuel tank of ultra thick napthal, a sticky combustable liquid chemical, for use in the TL-84 flamethrower."
 	icon_state = "flametank_large"
-	max_rounds = 100
-	current_rounds = 100
+	max_rounds = 70
+	current_rounds = 70
 	gun_type = /obj/item/weapon/gun/flamer/marinestandard
 
 /obj/item/ammo_magazine/flamer_tank/large/B

@@ -157,25 +157,25 @@
 	var/fire_color = "red"
 	switch(ammo.name)
 		if("flame")
-			burnlevel = 24
-			burntime = 17
-			max_range = 7
+			burnlevel = 19
+			burntime = 12
+			max_range = 4
 			fire_delay = 20
 
 		// Area denial, light damage, large AOE, long burntime
 		if("green flame")
-			burnlevel = 10
-			burntime = 50
-			max_range = 4
+			burnlevel = 5
+			burntime = 45
+			max_range = 3
 			playsound(user, fire_sound, 50, 1)
 			triangular_flame(target, user, burntime, burnlevel)
 			fire_delay = 35
 			return
 
 		if("blue flame") //Probably can end up as a spec fuel or DS flamer fuel. Also this was the original fueltype, the madman i am.
-			burnlevel = 36
-			burntime = 40
-			max_range = 7
+			burnlevel = 31
+			burntime = 35
+			max_range = 4
 			fire_color = "blue"
 			fire_delay = 35
 
