@@ -227,9 +227,12 @@
 	var/area/shuttle/transit/assigned_area
 	var/obj/docking_port/mobile/owner
 
+	var/spawn_time
+
 /obj/docking_port/stationary/transit/Initialize()
 	. = ..()
 	SSshuttle.transit += src
+	spawn_time = world.time
 
 /obj/docking_port/stationary/transit/Destroy(force=FALSE)
 	if(force)

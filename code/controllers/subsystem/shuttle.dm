@@ -1,4 +1,5 @@
 #define MAX_TRANSIT_REQUEST_RETRIES 10
+#define SHUTTLE_SPAWN_BUFFER SSshuttle.wait * 10 /// Give a shuttle 10 "fires" (~10 seconds) to spawn before it can be cleaned up.
 
 SUBSYSTEM_DEF(shuttle)
 	name = "Shuttle"
@@ -68,7 +69,7 @@ SUBSYSTEM_DEF(shuttle)
 		// immediately being used. This will mean that the zone creation
 		// code will be running a lot.
 		var/obj/docking_port/mobile/owner = T.owner
-		if(owner)
+		if(owner && (world.time > T.spawn_time + SHUTTLE_SPAWN_BUFFER))
 			var/idle = owner.mode == SHUTTLE_IDLE
 			var/not_centcom_evac = owner.launch_status == NOLAUNCH
 			var/not_in_use = (!T.get_docked())
@@ -618,3 +619,6 @@ SUBSYSTEM_DEF(shuttle)
 					message_admins("[key_name_admin(usr)] loaded [mdp] with the shuttle manipulator.")
 					log_admin("[key_name(usr)] loaded [mdp] with the shuttle manipulator.</span>")
 					SSblackbox.record_feedback("text", "shuttle_manipulator", 1, "[mdp.name]")
+
+
+#undef SHUTTLE_SPAWN_BUFFER

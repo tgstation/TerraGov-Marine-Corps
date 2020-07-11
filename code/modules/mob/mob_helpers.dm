@@ -500,3 +500,16 @@ mob/proc/get_standard_bodytemperature()
   */
 /mob/proc/get_policy_keywords()
 	. = list("[type]")
+
+
+/// Try to perform a unique action on the current active held item.
+/mob/living/carbon/human/proc/do_unique_action()
+	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
+	if(incapacitated() || lying_angle)
+		return
+
+	var/obj/item/active_item = get_active_held_item()
+	if(!istype(active_item))
+		return
+
+	active_item.unique_action(src)
