@@ -152,35 +152,21 @@
 	set waitfor = 0
 
 	last_fired = world.time
-	var/burnlevel
-	var/burntime
-	var/fire_color = "red"
-	switch(ammo.name)
-		if("flame")
-			burnlevel = 24
-			burntime = 17
-			max_range = 7
-			fire_delay = 20
 
-		// Area denial, light damage, large AOE, long burntime
-		if("green flame")
-			burnlevel = 10
-			burntime = 50
-			max_range = 4
-			playsound(user, fire_sound, 50, 1)
-			triangular_flame(target, user, burntime, burnlevel)
-			fire_delay = 35
-			return
+	if(!istype(ammo, /datum/ammo/flamethrower))
+		CRASH("flamerthrower loaded with non-flamerthrower ammo")
 
-		if("blue flame") //Probably can end up as a spec fuel or DS flamer fuel. Also this was the original fueltype, the madman i am.
-			burnlevel = 36
-			burntime = 40
-			max_range = 7
-			fire_color = "blue"
-			fire_delay = 35
+	var/datum/ammo/flamethrower/loaded_ammo = ammo
 
-		else
-			return
+	var/burnlevel = loaded_ammo.burnlevel
+	var/burntime = loaded_ammo.burntime
+	var/fire_color = loaded_ammo.fire_color
+	fire_delay = loaded_ammo.fire_delay
+	max_range = loaded_ammo.max_range
+	if(istype(loaded_ammo, /datum/ammo/flamethrower/green))
+		playsound(user, fire_sound, 50, 1)
+		triangular_flame(target, user, burntime, burnlevel)
+		return
 
 	var/list/turf/turfs = getline(user,target)
 	playsound(user, fire_sound, 50, 1)
