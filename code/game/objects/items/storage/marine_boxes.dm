@@ -841,7 +841,6 @@
 	new /obj/item/ammo_magazine/smg/standard_machinepistol(src)
 	new /obj/item/ammo_magazine/smg/standard_machinepistol(src)
 	new /obj/item/clothing/mask/rebreather/scarf(src)
-	new /obj/item/smartgun_powerpack(src)
 
 /obj/item/storage/box/squadmarine/smartgunnerm4a3
 	name = "\improper M4A3 equipment crate"
@@ -859,7 +858,6 @@
 	new /obj/item/ammo_magazine/pistol(src)
 	new /obj/item/ammo_magazine/pistol(src)
 	new /obj/item/clothing/mask/rebreather/scarf(src)
-	new /obj/item/smartgun_powerpack(src)
 
 // Equipped Squad marine roles' version of specialist kits
 

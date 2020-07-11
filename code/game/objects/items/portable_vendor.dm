@@ -270,8 +270,8 @@ A breacher kit with the least firepower, has a high capacity SMG and a machete f
 	req_role = /datum/job/terragov/squad/smartgunner
 	listed_products = list(
 							list("MARINE WEAPONS", 0, null, null, null),
-							list("T-19 Machine Pistol", 1, /obj/item/storage/box/squadmarine/smartgunnert19, "white", "A kit containing a T-19 machine pistol. Comes with a red dot sight and a gyroscopic stabilizer."),
-							list("M4A3 Pistol", 1, /obj/item/storage/box/squadmarine/smartgunnerm4a3, "white", "A kit containing a M4A3 pistol. Comes with a laser sight and a quick fire adaper.")
+							list("T-19 Machine Pistol", 1, /obj/item/storage/box/squadmarine/smartgunnert19, "white", "A kit containing a T-19 machine pistol and ammo."),
+							list("M4A3 Pistol", 1, /obj/item/storage/box/squadmarine/smartgunnerm4a3, "white", "A kit containing a M4A3 pistol and ammo.")
 							)
 
 /obj/item/portable_vendor/marine/squadmarine/specialist

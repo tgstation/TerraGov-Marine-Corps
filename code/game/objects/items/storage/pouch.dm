@@ -217,7 +217,7 @@
 		/obj/item/cell/lasgun)
 
 /obj/item/storage/pouch/magazine/smgfull
-	fill_type = /obj/item/ammo_magazine/smg/standard_smg
+	fill_type = /obj/item/ammo_magazine/smg/standard_machinepistol
 	fill_number = 2
 
 /obj/item/storage/pouch/magazine/large
