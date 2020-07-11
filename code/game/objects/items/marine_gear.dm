@@ -19,6 +19,9 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	unfoldedbag_path = /obj/structure/closet/bodybag/tarp
 
+/obj/item/bodybag/tarp/unique_action(mob/user)
+	deploy_bodybag(user, get_turf(user))
+	unfoldedbag_instance.close()
 
 /obj/item/bodybag/tarp/snow
 	icon = 'icons/obj/bodybag.dmi'
@@ -46,7 +49,7 @@
 	if(!opened && bodybag_occupant)
 		anchored = TRUE
 		playsound(loc,'sound/effects/cloak_scout_on.ogg', 15, 1) //stealth mode engaged!
-		animate(src, alpha = 13, time = 4 SECONDS) //Fade out gradually.
+		animate(src, alpha = 13, time = 3 SECONDS) //Fade out gradually.
 
 
 /obj/structure/closet/bodybag/tarp/open()
@@ -115,11 +118,11 @@
 
 /obj/structure/closet/bodybag/tarp/Crossed(mob/living/L)
 	. = ..()
-	if(!istype(L) || L.stat != CONSCIOUS)
+	if(!istype(L) || L.stat != CONSCIOUS || opened)
 		return
 	// Walking on the tarp reveals it
 	open()
-	L.visible_message("<span class='notice'>You stepped on \the [src], revealing it!</span>", "<span class='notice'>[L] stepped on \the [src], revealing it!</span>")
+	L.visible_message("<span class='notice'>[L] stepped on \the [src], revealing it!</span>", "<span class='notice'>You stepped on \the [src], revealing it!</span>")
 
 /obj/structure/closet/bodybag/tarp/proc/trigger_open()
 	if(locate(/mob/living/carbon/xenomorph) in viewers(2,get_turf(src)))

@@ -153,6 +153,10 @@
 		to_chat(user, "<span class='warning'>[src]'s laser battery is recharging.</span>")
 		return
 
+	if(user.client.eye != src)
+		to_chat(user, "<span class='warning'>You can't focus properly through \the [src] while looking through something else.</span>")
+		return
+
 	if(!user.mind)
 		return
 	var/datum/squad/S = user.assigned_squad
