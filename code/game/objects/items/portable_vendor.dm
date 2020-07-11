@@ -125,6 +125,7 @@
 				points -= cost
 
 			playsound(src, "sound/machines/fax.ogg", 5)
+			to_chat(usr, "<span class='notice'>The automated system clunks as it starts to vend something.</span>")
 			fabricating = TRUE
 			update_overlays()
 			addtimer(CALLBACK(src, .proc/do_vend, L[3], usr), 3 SECONDS)
