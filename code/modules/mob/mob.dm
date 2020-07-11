@@ -19,6 +19,7 @@
 	for(var/a in actions)
 		var/datum/action/action_to_remove = a
 		action_to_remove.remove_action(src)
+	set_focus(null)
 	return ..()
 
 /mob/Initialize()

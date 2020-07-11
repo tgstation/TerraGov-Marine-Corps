@@ -4,7 +4,7 @@
 //NOTE: Don't add living things to crates, that's bad, it will break the shuttle.
 //NOTE: Do NOT set the price of any crates below 7 points. Doing so allows infinite points.
 
-GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Hardpoint Modules", "Attachments", "Ammo", "Armor", "Clothing", "Medical", "Engineering", "Supplies", "Imports"))
+GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Attachments", "Ammo", "Armor", "Clothing", "Medical", "Engineering", "Supplies", "Imports"))
 
 /datum/supply_packs
 	var/name
@@ -319,128 +319,6 @@ WEAPONS
 		/obj/item/assembly/signaler,
 	)
 	cost = 16
-
-/*******************************************************************************
-HARDPOINT MODULES (and their ammo)
-*******************************************************************************/
-/datum/supply_packs/hardpoints
-	group = "Hardpoint Modules"
-	containertype = /obj/structure/closet/crate/weapon
-
-/datum/supply_packs/hardpoints/ltb_cannon
-	name = "LTB Cannon Assembly"
-	contains = list(/obj/item/hardpoint/primary/cannon)
-	cost = 60
-
-/datum/supply_packs/hardpoints/ltaaap_minigun
-	name = "LTAA-AP Minigun Assembly"
-	contains = list(/obj/item/hardpoint/primary/minigun)
-	cost = 60
-
-/datum/supply_packs/hardpoints/flamer_module
-	name = "Secondary Flamer Assembly"
-	contains = list(/obj/item/hardpoint/secondary/flamer)
-	cost = 60
-
-/datum/supply_packs/hardpoints/towlauncher
-	name = "Secondary TOW Launcher Assembly"
-	contains = list(/obj/item/hardpoint/secondary/towlauncher)
-	cost = 60
-
-/datum/supply_packs/hardpoints/m56_cupola
-	name = "Secondary M56 Cupola Assembly"
-	contains = list(/obj/item/hardpoint/secondary/m56cupola)
-	cost = 60
-
-/datum/supply_packs/hardpoints/tank_glauncher
-	name = "Secondary Grenade Launcher Assembly"
-	contains = list(/obj/item/hardpoint/secondary/grenade_launcher)
-	cost = 60
-
-/datum/supply_packs/hardpoints/tank_slauncher
-	name = "Smoke Launcher Assembly"
-	contains = list(/obj/item/hardpoint/support/smoke_launcher)
-	cost = 60
-
-/datum/supply_packs/hardpoints/weapons_sensor
-	name = "Weapons Sensor Array"
-	contains = list(/obj/item/hardpoint/support/weapons_sensor)
-	cost = 60
-
-/datum/supply_packs/hardpoints/artillery_module
-	name = "Artillery Module"
-	contains = list(/obj/item/hardpoint/support/artillery_module)
-	cost = 60
-
-/datum/supply_packs/hardpoints/overdrive_enhancer
-	name = "Overdrive Enhancer"
-	contains = list(/obj/item/hardpoint/support/overdrive_enhancer)
-	cost = 60
-
-/datum/supply_packs/hardpoints/ballistic_armor
-	name = "Ballistic Armor Plating"
-	contains = list(/obj/item/hardpoint/armor/ballistic)
-	cost = 60
-
-/datum/supply_packs/hardpoints/caustic_armor
-	name = "Caustic Armor Plating"
-	contains = list(/obj/item/hardpoint/armor/caustic)
-	cost = 60
-
-/datum/supply_packs/hardpoints/concussive_armor
-	name = "Concussive Armor Plating"
-	contains = list(/obj/item/hardpoint/armor/concussive)
-	cost = 60
-
-/datum/supply_packs/hardpoints/paladin_armor
-	name = "Paladin Armor Module"
-	contains = list(/obj/item/hardpoint/armor/paladin)
-	cost = 60
-
-/datum/supply_packs/hardpoints/snowplow_armor
-	name = "Snowplow Module"
-	contains = list(/obj/item/hardpoint/armor/snowplow)
-	cost = 40
-
-/datum/supply_packs/hardpoints/tank_treads
-	name = "Tank Treads"
-	contains = list(/obj/item/hardpoint/treads/standard)
-	cost = 60
-
-/datum/supply_packs/hardpoints/ltb_cannon_ammo
-	name = "LTB Cannon Magazine"
-	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon)
-	cost = 3
-
-/datum/supply_packs/hardpoints/ltaaap_minigun_ammo
-	name = "LTAA AP Minigun Magazine"
-	contains = list(/obj/item/ammo_magazine/tank/ltaaap_minigun)
-	cost = 10
-
-/datum/supply_packs/hardpoints/tank_glauncher_ammo
-	name = "Grenade Launcher Magazine"
-	contains = list(/obj/item/ammo_magazine/tank/tank_glauncher)
-	cost = 3
-
-/datum/supply_packs/hardpoints/tank_slauncher_ammo
-	name = "Smoke Launcher Magazine"
-	contains = list(/obj/item/ammo_magazine/tank/tank_slauncher)
-	cost = 3
-
-/datum/supply_packs/hardpoints/tank_towlauncher_ammo
-	name = "TOW Launcher Magazine"
-	contains = list(/obj/item/ammo_magazine/tank/towlauncher)
-	cost = 7
-
-/datum/supply_packs/hardpoints/tank_cupola_ammo
-	name = "M56 Cupola Magazine"
-	contains = list(/obj/item/ammo_magazine/tank/m56_cupola)
-	cost = 15
-
-/datum/supply_packs/hardpoints/tank_flamer_ammo
-	name = "Flamer Magazine"
-	contains = list(/obj/item/ammo_magazine/tank/flamer)
-	cost = 6
 
 /*******************************************************************************
 ATTACHMENTS

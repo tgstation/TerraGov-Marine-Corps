@@ -362,21 +362,17 @@
 				break
 		remove_object(O)
 
-	//special xeno grinding
+	//special xeno embryo grinding
 	for (var/obj/item/alien_embryo/O in holdingitems)
-		var/allowed = get_allowed_by_id(O)
 		if(beaker.reagents.total_volume >= beaker.reagents.maximum_volume)
 			break
-		for(var/i = 1; i <= round(O.amount, 1); i++)
-			for (var/r_id in allowed)
-				var/space = beaker.reagents.maximum_volume - beaker.reagents.total_volume
-				var/amount = allowed[r_id]
-				beaker.reagents.add_reagent(r_id,min(amount, space))
-				if(space < amount)
-					break
-			if(i == round(O.amount, 1))
-				remove_object(O)
-				break
+		var/space = beaker.reagents.maximum_volume - beaker.reagents.total_volume
+		var/amount = O.grinder_amount
+		beaker.reagents.add_reagent(O.grinder_datum,min(amount, space))
+		if(space < amount)
+			break
+		remove_object(O)
+		break
 
 	//Everything else - Transfers reagents from it into beaker
 	for(var/obj/item/reagent_containers/O in holdingitems)
