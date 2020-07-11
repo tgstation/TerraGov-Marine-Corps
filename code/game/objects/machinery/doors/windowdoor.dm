@@ -5,34 +5,56 @@
 	icon_state = "left"
 	layer = ABOVE_WINDOW_LAYER
 	resistance_flags = XENO_DAMAGEABLE
-	var/base_state = "left"
 	max_integrity = 150 //If you change this, consiter changing ../door/window/brigdoor/ health at the bottom of this .dm file
 	soft_armor = list("melee" = 20, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 70, "acid" = 100)
 	visible = FALSE
 	use_power = FALSE
 	flags_atom = ON_BORDER
 	opacity = FALSE
-	var/obj/item/circuitboard/airlock/electronics = null
+	///Determines sprite and animation variant, according to from which direction it opens.
+	var/facing_direction = OPENS_TO_LEFT
+	///Icon base state to apply variants.
+	var/state_variant = ""
 	///When the windoor faces NORTH, the layer becomes this. When it faces another cardinal direction it goes back to its initial value.
 	var/north_facing_layer = BELOW_TABLE_LAYER
+	///In how long the door tries to close after opening.
+	var/closing_time = 5 SECONDS
+	///Type of assembly this can be deconstructed into.
+	var/assembly_type = /obj/structure/windoor_assembly
+	///Circuit to build new of this kind of machine.
+	var/obj/item/circuitboard/airlock/electronics = null
 
 
-/obj/machinery/door/window/Initialize(mapload, set_dir)
+/obj/machinery/door/window/Initialize(mapload, set_dir, obj/item/circuitboard/airlock/electronics, facing_direction, state_variant)
 	. = ..()
 
+	if(electronics)
+		if(electronics.one_access)
+			req_access = null
+			req_one_access = electronics.conf_access
+		else
+			req_access = electronics.conf_access
+		src.electronics = electronics
+		electronics.forceMove(src)
+
+	if(facing_direction)
+		src.facing_direction = facing_direction
+
+	if(state_variant)
+		src.state_variant = state_variant
+
 	if(set_dir)
-		setDir(set_dir)
+		setDir(set_dir) //Icon will be updated here.
+
 	else if(dir == NORTH)
 		layer = north_facing_layer
-
-	if(length(req_access))
-		icon_state = "[icon_state]"
-		base_state = icon_state
 
 
 /obj/machinery/door/window/Destroy()
 	density = FALSE
-	playsound(src, "shatter", 50, 1)
+	playsound(src, "shatter", 50, TRUE)
+	if(electronics)
+		QDEL_NULL(electronics)
 	return ..()
 
 
@@ -48,16 +70,13 @@
 /obj/machinery/door/window/update_icon()
 	if(operating)
 		return
-	icon_state = density ? base_state : "[base_state]open"
+	icon_state = density ? "[facing_direction][state_variant]" : "[facing_direction][state_variant]open"
 
 
 /obj/machinery/door/window/proc/open_and_close()
 	open()
-	if(check_access(null))
-		sleep(5 SECONDS)
-	else //secure doors close faster
-		sleep(2 SECONDS)
-	close()
+	if(closing_time)
+		addtimer(CALLBACK(src, .proc/close), closing_time)
 
 
 /obj/machinery/door/window/Bumped(atom/movable/bumper)
@@ -81,13 +100,10 @@
 	if(operating || !density)
 		return
 	add_fingerprint(user, "bumpopen")
-	if(!requiresID())
-		user = null
-
-	if(allowed(user))
-		open_and_close()
-	else
+	if(requiresID() && !allowed(user))
 		do_animate("deny")
+		return
+	open_and_close()
 
 
 /obj/machinery/door/window/CanPass(atom/movable/mover, turf/target)
@@ -115,7 +131,7 @@
 				return FALSE
 	if(!operating)
 		operating = TRUE
-	icon_state = "[base_state]open"
+	icon_state = "[facing_direction][state_variant]open"
 	do_animate("opening")
 	playsound(src, 'sound/machines/windowdoor.ogg', 25, 1)
 	sleep(1 SECONDS)
@@ -135,7 +151,7 @@
 			if(!hasPower())
 				return FALSE
 	operating = TRUE
-	icon_state = base_state
+	icon_state = "[facing_direction][state_variant]"
 	do_animate("closing")
 	playsound(src, 'sound/machines/windowdoor.ogg', 25, 1)
 
@@ -166,20 +182,7 @@
 
 		to_chat(user, "<span class='notice'>You removed the windoor electronics!</span>")
 
-		var/obj/structure/windoor_assembly/WA = new(loc)
-
-		if(istype(src, /obj/machinery/door/window/brigdoor))
-			WA.secure = "secure_"
-			WA.name = "Secure Wired Windoor Assembly"
-		else
-			WA.name = "Wired Windoor Assembly"
-
-		if(base_state == "right" || base_state == "rightsecure")
-			WA.facing = "r"
-
-		WA.setDir(dir)
-		WA.state = "02"
-		WA.update_icon()
+		new assembly_type(loc, dir, facing_direction, WINDOOR_ASSEMBLY_WIRED)
 
 		var/obj/item/circuitboard/airlock/E
 		if(!electronics)
@@ -204,19 +207,26 @@
 /obj/machinery/door/window/do_animate(animation)
 	switch(animation)
 		if("opening")
-			flick("[base_state]opening", src)
+			flick("[facing_direction][state_variant]opening", src)
 		if("closing")
-			flick("[base_state]closing", src)
+			flick("[facing_direction][state_variant]closing", src)
 		if("deny")
-			flick("[base_state]deny", src)
+			flick("[facing_direction][state_variant]deny", src)
+
+
+/obj/machinery/door/window/right
+	icon_state = "right"
+	facing_direction = OPENS_TO_RIGHT
 
 
 /obj/machinery/door/window/brigdoor
 	name = "Secure Door"
 	icon_state = "leftsecure"
-	base_state = "leftsecure"
+	state_variant = "secure"
 	req_access = list(ACCESS_MARINE_BRIG)
 	max_integrity = 300 //Stronger doors for prison (regular window door health is 200)
+	assembly_type = /obj/structure/windoor_assembly/secure
+	closing_time = 2 SECONDS
 
 
 // Main ship brig doors
@@ -292,7 +302,7 @@
 /obj/machinery/door/window/northright
 	dir = NORTH
 	icon_state = "right"
-	base_state = "right"
+	facing_direction = OPENS_TO_RIGHT
 
 /obj/machinery/door/window/northright/briefing
 	req_access = list(ACCESS_MARINE_BRIG)
@@ -300,7 +310,7 @@
 /obj/machinery/door/window/eastright
 	dir = EAST
 	icon_state = "right"
-	base_state = "right"
+	facing_direction = OPENS_TO_RIGHT
 
 /obj/machinery/door/window/eastright/briefing
 	req_access = list(ACCESS_MARINE_BRIG)
@@ -311,12 +321,12 @@
 /obj/machinery/door/window/westright
 	dir = WEST
 	icon_state = "right"
-	base_state = "right"
+	facing_direction = OPENS_TO_RIGHT
 
 /obj/machinery/door/window/southright
 	dir = SOUTH
 	icon_state = "right"
-	base_state = "right"
+	facing_direction = OPENS_TO_RIGHT
 
 /obj/machinery/door/window/brigdoor/northleft
 	dir = NORTH
@@ -333,22 +343,48 @@
 /obj/machinery/door/window/brigdoor/northright
 	dir = NORTH
 	icon_state = "rightsecure"
-	base_state = "rightsecure"
+	facing_direction = OPENS_TO_RIGHT
 
 /obj/machinery/door/window/brigdoor/eastright
 	dir = EAST
 	icon_state = "rightsecure"
-	base_state = "rightsecure"
+	facing_direction = OPENS_TO_RIGHT
 
 /obj/machinery/door/window/brigdoor/westright
 	dir = WEST
 	icon_state = "rightsecure"
-	base_state = "rightsecure"
+	facing_direction = OPENS_TO_RIGHT
 
 /obj/machinery/door/window/brigdoor/southright
 	dir = SOUTH
 	icon_state = "rightsecure"
-	base_state = "rightsecure"
+	facing_direction = OPENS_TO_RIGHT
+
 
 /obj/machinery/door/window/mainship/bridge
 	req_access = list(ACCESS_MARINE_BRIDGE)
+
+
+/obj/machinery/door/window/short
+	icon_state = "leftshort"
+	state_variant = "short"
+	north_facing_layer = ABOVE_WINDOW_LAYER
+	assembly_type = /obj/structure/windoor_assembly/short
+
+/obj/machinery/door/window/short/right
+	icon_state = "rightshort"
+	state_variant = "short"
+	facing_direction = OPENS_TO_RIGHT
+
+/obj/machinery/door/window/short/secure
+	name = "Secure Door"
+	icon_state = "leftshortsecure"
+	state_variant = "shortsecure"
+	max_integrity = 300
+	assembly_type = /obj/structure/windoor_assembly/short/secure
+	closing_time = 2 SECONDS
+
+/obj/machinery/door/window/short/secure/right
+	icon_state = "rightshortsecure"
+	state_variant = "shortsecure"
+	facing_direction = OPENS_TO_RIGHT

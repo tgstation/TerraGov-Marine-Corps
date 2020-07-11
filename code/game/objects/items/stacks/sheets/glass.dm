@@ -114,7 +114,7 @@
 
 			if(!src || src.loc != user) return 1
 
-			if(isturf(user.loc) && locate(/obj/structure/windoor_assembly/, user.loc))
+			if(isturf(user.loc) && locate(/obj/structure/windoor_assembly, user.loc))
 				to_chat(user, "<span class='warning'>There is already a windoor assembly in that location.</span>")
 				return 1
 
@@ -126,7 +126,7 @@
 				to_chat(user, "<span class='warning'>You need more glass to do that.</span>")
 				return 1
 
-			new /obj/structure/windoor_assembly(user.loc, user.dir, 1)
+			new /obj/structure/windoor_assembly(user.loc, user.dir)
 			src.use(5)
 
 	return 0

@@ -33,3 +33,11 @@
 #define STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE 2
 
 #define MAXCOIL 30
+
+//Windows and things that slide from one direction to another.
+#define OPENS_TO_LEFT "left"
+#define OPENS_TO_RIGHT "right"
+
+//Windoor construction states.
+#define WINDOOR_ASSEMBLY_UNWIRED 1
+#define WINDOOR_ASSEMBLY_WIRED 2

@@ -8,28 +8,35 @@
 * Step 7: Screwdriver the door to complete
 */
 
-
-obj/structure/windoor_assembly
+/obj/structure/windoor_assembly
 	icon = 'icons/obj/doors/windoor.dmi'
-
 	name = "Windoor Assembly"
-	icon_state = "l_windoor_assembly01"
+	icon_state = "left_assembly_1"
 	anchored = FALSE
 	density = FALSE
 	dir = NORTH
 
+	///What type of windoor does this asembly build.
+	var/windoor_type = /obj/machinery/door/window
+
+	///Determines sprite and animation variant, according to from which direction it opens.
+	var/facing_direction = OPENS_TO_LEFT
+	///Icon base state to apply variants.
+	var/state_variant = ""
+	///Construction state of the windoor.
+	var/construction_state = WINDOOR_ASSEMBLY_UNWIRED
+
+	///Circuit to build new of this kind of machine.
 	var/obj/item/circuitboard/airlock/electronics = null
 
-	//Vars to help with the icon's name
-	var/facing = "l"	//Does the windoor open to the left or right?
-	var/secure = ""		//Whether or not this creates a secure windoor
-	var/state = "01"	//How far the door assembly has progressed in terms of sprites
 
-obj/structure/windoor_assembly/New(Loc, start_dir=NORTH, constructed=0)
-	..()
-	if(constructed)
-		state = "01"
-		anchored = FALSE
+/obj/structure/windoor_assembly/Initialize(mapload, start_dir = NORTH, facing_direction, construction_state)
+	. = ..()
+	if(facing_direction != src.facing_direction)
+		set_facing_direction(facing_direction)
+	if(construction_state != src.construction_state)
+		set_construction_state(construction_state)
+	//Icon will be updated once setDir() gets called
 	switch(start_dir)
 		if(NORTH, SOUTH, EAST, WEST)
 			setDir(start_dir)
@@ -39,14 +46,19 @@ obj/structure/windoor_assembly/New(Loc, start_dir=NORTH, constructed=0)
 
 obj/structure/windoor_assembly/Destroy()
 	density = FALSE
-	. = ..()
+	if(electronics)
+		QDEL_NULL(electronics)
+	return ..()
+
 
 /obj/structure/windoor_assembly/setDir(newdir)
 	. = ..()
 	update_icon()
 
+
 /obj/structure/windoor_assembly/update_icon()
-	icon_state = "[facing]_[secure]windoor_assembly[state]"
+	icon_state = "[facing_direction][state_variant]_assembly_[construction_state]"
+
 
 /obj/structure/windoor_assembly/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && CHECK_BITFIELD(mover.flags_pass, PASSGLASS))
@@ -68,8 +80,8 @@ obj/structure/windoor_assembly/Destroy()
 /obj/structure/windoor_assembly/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	switch(state)
-		if("01")
+	switch(construction_state)
+		if(WINDOOR_ASSEMBLY_UNWIRED)
 			if(iswelder(I) && !anchored)
 				var/obj/item/tool/weldingtool/WT = I
 				if(!WT.remove_fuel(0, user))
@@ -85,10 +97,7 @@ obj/structure/windoor_assembly/Destroy()
 				if(!src || !WT.isOn())
 					return
 				to_chat(user, "<span class='notice'>You dissasembled the windoor assembly!</span>")
-				new /obj/item/stack/sheet/glass/reinforced(get_turf(src), 5)
-				if(secure)
-					new /obj/item/stack/rods(get_turf(src), 4)
-				qdel(src)
+				deconstruct(TRUE)
 
 			//Wrenching an unsecure assembly anchors it in place. Step 4 complete
 			else if(iswrench(I) && !anchored)
@@ -100,10 +109,6 @@ obj/structure/windoor_assembly/Destroy()
 
 				to_chat(user, "<span class='notice'>You've secured the windoor assembly!</span>")
 				anchored = TRUE
-				if(secure)
-					name = "Secure Anchored Windoor Assembly"
-				else
-					name = "Anchored Windoor Assembly"
 
 			//Unwrenching an unsecure assembly un-anchors it. Step 4 undone
 			else if(iswrench(I) && anchored)
@@ -115,32 +120,6 @@ obj/structure/windoor_assembly/Destroy()
 
 				to_chat(user, "<span class='notice'>You've unsecured the windoor assembly!</span>")
 				anchored = FALSE
-
-				if(secure)
-					name = "Secure Windoor Assembly"
-				else
-					name = "Windoor Assembly"
-
-			//Adding plasteel makes the assembly a secure windoor assembly. Step 2 (optional) complete.
-			else if(istype(I, /obj/item/stack/rods) && !secure)
-				var/obj/item/stack/rods/R = I
-				if(R.get_amount() < 4)
-					to_chat(user, "<span class='warning'>You need more rods to do this.</span>")
-					return
-
-				to_chat(user, "<span class='notice'>You start to reinforce the windoor with rods.</span>")
-				if(!do_after(user,40, TRUE, src, BUSY_ICON_BUILD) || secure)
-					return
-
-				if(!R.use(4))
-					return
-
-				to_chat(user, "<span class='notice'>You reinforce the windoor.</span>")
-				secure = "secure_"
-				if(anchored)
-					name = "Secure Anchored Windoor Assembly"
-				else
-					name = "Secure Windoor Assembly"
 
 			//Adding cable to the assembly. Step 5 complete.
 			else if(iscablecoil(I) && anchored)
@@ -154,12 +133,9 @@ obj/structure/windoor_assembly/Destroy()
 					return
 
 				to_chat(user, "<span class='notice'>You wire the windoor!</span>")
-				state = "02"
-				if(secure)
-					name = "Secure Wired Windoor Assembly"
-				else
-					name = "Wired Windoor Assembly"
-		if("02")
+				set_construction_state(WINDOOR_ASSEMBLY_WIRED)
+
+		if(WINDOOR_ASSEMBLY_WIRED)
 			//Removing wire from the assembly. Step 5 undone.
 			if(iswirecutter(I) && !electronics)
 				playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
@@ -170,11 +146,7 @@ obj/structure/windoor_assembly/Destroy()
 
 				to_chat(user, "<span class='notice'>You cut the windoor wires.!</span>")
 				new /obj/item/stack/cable_coil(get_turf(user), 1)
-				state = "01"
-				if(secure)
-					name = "Secure Anchored Windoor Assembly"
-				else
-					name = "Anchored Windoor Assembly"
+				set_construction_state(WINDOOR_ASSEMBLY_UNWIRED)
 
 			//Adding airlock electronics for access. Step 6 complete.
 			else if(istype(I, /obj/item/circuitboard/airlock) && I.icon_state != "door_electronics_smoked")
@@ -187,7 +159,6 @@ obj/structure/windoor_assembly/Destroy()
 				user.drop_held_item()
 				I.forceMove(src)
 				to_chat(user, "<span class='notice'>You've installed the airlock electronics!</span>")
-				name = "Near finished Windoor Assembly"
 				electronics = I
 
 			//Screwdriver to remove airlock electronics. Step 6 undone.
@@ -202,10 +173,6 @@ obj/structure/windoor_assembly/Destroy()
 					return
 
 				to_chat(user, "<span class='notice'>You've removed the airlock electronics!</span>")
-				if(secure)
-					name = "Secure Wired Windoor Assembly"
-				else
-					name = "Wired Windoor Assembly"
 				var/obj/item/circuitboard/airlock/ae = electronics
 				if(electronics.is_general_board)
 					ae.set_general()
@@ -227,48 +194,46 @@ obj/structure/windoor_assembly/Destroy()
 				density = TRUE //Shouldn't matter but just incase
 				to_chat(user, "<span class='notice'>You finish the windoor!</span>")
 
-				if(secure)
-					var/obj/machinery/door/window/brigdoor/BR = new(loc)
-					if(facing == "l")
-						BR.icon_state = "leftsecureopen"
-						BR.base_state = "leftsecure"
-					else
-						BR.icon_state = "rightsecureopen"
-						BR.base_state = "rightsecure"
-					BR.setDir(dir)
-					BR.density = FALSE
-
-					if(electronics.one_access)
-						BR.req_access = null
-						BR.req_one_access = electronics.conf_access
-					else
-						BR.req_access = electronics.conf_access
-					BR.electronics = electronics
-					electronics.forceMove(BR)
-				else
-					var/obj/machinery/door/window/WR = new(loc)
-					if(facing == "l")
-						WR.icon_state = "leftopen"
-						WR.base_state = "left"
-					else
-						WR.icon_state = "rightopen"
-						WR.base_state = "right"
-					WR.setDir(dir)
-					WR.density = FALSE
-
-					if(electronics.one_access)
-						WR.req_access = null
-						WR.req_one_access = electronics.conf_access
-					else
-						WR.req_access = electronics.conf_access
-					WR.electronics = electronics
-					electronics.forceMove(WR)
-
+				new windoor_type(loc, dir, electronics, facing_direction, state_variant)
 
 				qdel(src)
 
 	//Update to reflect changes(if applicable)
 	update_icon()
+
+
+/obj/structure/windoor_assembly/examine(mob/user)
+	. = ..()
+	if(anchored)
+		to_chat(user, "<span class='notice'>It seems firmly held in place!.</span>")
+
+
+/obj/structure/windoor_assembly/deconstruct(disassembled = TRUE)
+	new /obj/item/stack/sheet/glass/reinforced(get_turf(src), 5)
+	return ..()
+
+
+///Reaction to the event of the facing direction state changing.
+/obj/structure/windoor_assembly/proc/set_facing_direction(new_facing_state, updating_icon = FALSE)
+	if(facing_direction == new_facing_state)
+		return
+	. = facing_direction
+	facing_direction = new_facing_state
+	if(updating_icon)
+		update_icon()
+
+
+///Reaction to the event of the construction state changing.
+/obj/structure/windoor_assembly/proc/set_construction_state(new_state, updating_icon = FALSE)
+	if(construction_state == new_state)
+		return
+	. = construction_state
+	construction_state = new_state
+	if(new_state == WINDOOR_ASSEMBLY_WIRED)
+		anchored = TRUE
+		name = "Wired [initial(name)]"
+	if(updating_icon)
+		update_icon()
 
 
 //Rotates the windoor assembly clockwise
@@ -277,11 +242,11 @@ obj/structure/windoor_assembly/Destroy()
 	set category = "Object"
 	set src in oview(1)
 
-	if (src.anchored)
-		to_chat(usr, "It is fastened to the floor; therefore, you can't rotate it!")
-		return 0
-	setDir(turn(src.dir, 270))
-	return
+	if(anchored)
+		to_chat(usr, "<span class='warning'>It is fastened to the floor; therefore, you can't rotate it!</span>")
+		return
+	setDir(turn(dir, 270))
+
 
 //Flips the windoor assembly, determines whather the door opens to the left or the right
 /obj/structure/windoor_assembly/verb/flip()
@@ -289,12 +254,43 @@ obj/structure/windoor_assembly/Destroy()
 	set category = "Object"
 	set src in oview(1)
 
-	if(src.facing == "l")
-		to_chat(usr, "The windoor will now slide to the right.")
-		src.facing = "r"
+	if(facing_direction == OPENS_TO_LEFT)
+		to_chat(usr, "<span class='warning'>The windoor will now open to the right.</span>")
+		set_facing_direction(OPENS_TO_RIGHT, TRUE)
 	else
-		src.facing = "l"
-		to_chat(usr, "The windoor will now slide to the left.")
+		set_facing_direction(OPENS_TO_LEFT, TRUE)
+		to_chat(usr, "<span class='warning'>The windoor will now open to the left.</span>")
 
-	update_icon()
-	return
+
+/obj/structure/windoor_assembly/secure
+	name = "Secure Windoor Assembly"
+	icon_state = "leftsecure_assembly_1"
+	state_variant = "secure"
+	windoor_type = /obj/machinery/door/window/brigdoor
+
+/obj/structure/windoor_assembly/secure/deconstruct(disassembled = TRUE)
+	new /obj/item/stack/rods(get_turf(src), 4)
+	return ..()
+
+/obj/structure/windoor_assembly/secure/right
+	facing_direction = OPENS_TO_RIGHT
+
+
+/obj/structure/windoor_assembly/short
+	icon_state = "leftshort_assembly_1"
+	state_variant = "short"
+	windoor_type = /obj/machinery/door/window/short
+
+/obj/structure/windoor_assembly/short/right
+	facing_direction = OPENS_TO_RIGHT
+
+/obj/structure/windoor_assembly/short/secure
+	name = "Secure Windoor Assembly"
+	icon_state = "leftshortsecure_assembly_1"
+	state_variant = "shortsecure"
+	windoor_type = /obj/machinery/door/window/short/secure
+
+/obj/structure/windoor_assembly/short/secure/right
+	facing_direction = OPENS_TO_RIGHT
+
+
