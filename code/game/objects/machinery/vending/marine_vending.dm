@@ -98,8 +98,7 @@
 					/obj/item/ammo_magazine/minigun = 2,
 					/obj/item/ammo_magazine/shotgun/mbx900 = 2,
 					/obj/item/bodybag/tarp = 2,
-					/obj/item/explosive/plastique = 2,
-					/obj/item/reagent_containers/jerrycan = 5)
+					/obj/item/explosive/plastique = 2)
 
 /obj/machinery/vending/marine/cargo_guns
 	name = "\improper Automated Armaments Vendor"
