@@ -663,6 +663,11 @@
 "cy" = (
 /turf/open/space/basic,
 /area/centcom)
+"cz" = (
+/obj/structure/table,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/turf/open/floor/wood,
+/area/deathmatch)
 "cA" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/centcom)
@@ -1548,12 +1553,6 @@
 "gc" = (
 /obj/structure/rack,
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
-/turf/open/floor/wood,
-/area/deathmatch)
-"gd" = (
-/obj/structure/table,
-/obj/structure/table,
-/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/wood,
 /area/deathmatch)
 "ge" = (
@@ -4838,7 +4837,7 @@ dw
 aY
 fw
 ee
-gd
+cz
 dT
 dM
 dw
