@@ -1,4 +1,0 @@
-author: "psykzz"
-delete-after: True
-changes: 
-  - server: "added hard restarts after x rounds"
