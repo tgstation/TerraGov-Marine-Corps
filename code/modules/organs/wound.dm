@@ -46,14 +46,11 @@
 	// the maximum amount of damage that this wound can have and still autoheal
 	var/autoheal_cutoff = 15
 
-
-
-
 	// helper lists
 	var/tmp/list/desc_list = list()
 	var/tmp/list/damage_list = list()
 
-/datum/wound/New(damage)
+/datum/wound/New(initial_damage)
 
 	created = world.time
 
@@ -63,14 +60,14 @@
 		desc_list += V
 		damage_list += stages[V]
 
-	src.damage = damage
+	damage = initial_damage
 
 	max_bleeding_stage = desc_list.len - max_bleeding_stage
 
 	// initialize with the appropriate stage
 	current_stage = stages.len
 
-	while(current_stage > 1 && damage_list[current_stage-1] <= damage / amount)
+	while(current_stage > 1 && damage_list[current_stage-1] <= initial_damage / amount)
 		current_stage--
 
 	min_damage = damage_list[current_stage]
@@ -137,14 +134,14 @@
 	if(damage_type == BRUISE && !bleeding()) //bruises only infectable if bleeding
 		return NONE
 
-	var/dam_coef = round(damage/10)
+	var/dam_coef = round(damage / 10)
 	switch(damage_type)
 		if(BRUISE)
-			return prob(dam_coef*5)
+			return prob(dam_coef * 5)
 		if(BURN)
-			return prob(dam_coef*10)
+			return prob(dam_coef * 10)
 		if(CUT)
-			return prob(dam_coef*20)
+			return prob(dam_coef * 20)
 
 	return 0
 
@@ -153,12 +150,12 @@
   *than what needed to be healed, return how much heal was left
   *set @heals_internal to also heal internal organ damage
   */
-/datum/wound/proc/heal_wound_damage(amount, heals_internal = FALSE)
+/datum/wound/proc/heal_wound_damage(heal_amount, heals_internal = FALSE)
 	if(internal && !heals_internal)
 		// heal nothing
-		return amount
+		return heal_amount
 
-	var/healed_damage = min(damage, amount)
+	var/healed_damage = min(damage, heal_amount)
 	amount -= healed_damage
 	damage -= healed_damage
 
@@ -171,11 +168,12 @@
 	return amount
 
 ///Reopens the wound again
-/datum/wound/proc/open_wound(damage)
-	damage += damage
+/datum/wound/proc/open_wound(initial_damage)
+	damage += initial_damage
 	bleed_timer += damage
 
-	while(current_stage > 1 && damage_list[current_stage-1] <= damage / amount)
+	var/damage_per_wound = initial_damage / amount
+	while(current_stage > 1 && damage_list[current_stage - 1] <= damage_per_wound)
 		current_stage--
 
 	desc = desc_list[current_stage]
@@ -183,18 +181,18 @@
 
 	// returns whether this wound can absorb the given amount of damage.
 	// this will prevent large amounts of damage being trapped in less severe wound types
-/datum/wound/proc/can_worsen(damage_type, damage)
-	if (damage_type != damage_type)
-		return FALSE	//incompatible damage types
+/datum/wound/proc/can_worsen(incoming_dmg_type, incoming_dmg)
+	if (damage_type != incoming_dmg_type)
+		return FALSE //incompatible damage types
 
 	if (amount > 1)
 		return FALSE
 
-		//with 1.5*, a shallow cut will be able to carry at most 30 damage,
-		//37.5 for a deep cut
-		//52.5 for a flesh wound, etc.
-	var/max_wound_damage = 1.5*src.damage_list[1]
-	if (src.damage + damage > max_wound_damage)
+	//with 1.5*, a shallow cut will be able to carry at most 30 damage,
+	//37.5 for a deep cut
+	//52.5 for a flesh wound, etc.
+	var/max_wound_damage = 1.5 * src.damage_list[1]
+	if (damage + incoming_dmg > max_wound_damage)
 		return FALSE
 
 	return TRUE
