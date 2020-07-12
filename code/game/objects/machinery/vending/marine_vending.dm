@@ -727,7 +727,7 @@
 					/obj/item/clothing/head/modular/heavy = 20,
 					/obj/item/clothing/head/modular/medium = 20,
 					/obj/item/clothing/head/modular/light = 20,
-					/obj/item/facepaint/ = 20
+					/obj/item/facepaint/green = 20
 					)
 
 	prices = list()
