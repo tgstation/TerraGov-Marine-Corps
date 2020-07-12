@@ -7,13 +7,21 @@
 	name = "Moon surface"
 	gas_type = GAS_TYPE_PSEUDO_VACUUM
 	pressure = MOON_SURFACE
-
 	icon_state = "moonsurface"
+
+/area/moon_base/inside
+	gas_type = GAS_TYPE_AIR
+	pressure = ONE_ATMOSPHERE
+
+/area/moon_base/inside/atc
+	name = "Air Traffic Control"
+	icon_state = "atc"
 
 /area/moon_base/airlock
 	gas_type = GAS_TYPE_AIR
 	pressure = ONE_ATMOSPHERE
 	var/state = INSIDE_OPEN
+	icon_state = "airlockone"
 
 /area/moon_base/airlock/Initialize(mapload, ...)
 	. = ..()
@@ -48,6 +56,12 @@
 /area/moon_base/airlock/one
 	name = "Airlock One"
 	icon_state = "airlockone"
+
+/area/moon_base/airlock/atcnorth
+	name = "ATC North Airlock"
+
+/area/moon_base/airlock/atcsouth
+	name = "ATC South Airlock"
 
 /obj/machinery/door/airlock/moon
 	var/side = "inside"
