@@ -13336,11 +13336,6 @@
 /obj/structure/toilet,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks)
-"SQ" = (
-/turf/closed/wall/mainship{
-	tiles_with = list(/turf/closed/wall,/obj/structure/window/framed,/obj/structure/window_frame,/obj/structure/girder)
-	},
-/area/mainship/hull/lower_hull)
 "ST" = (
 /obj/machinery/alarm{
 	dir = 8
@@ -53574,7 +53569,7 @@ UQ
 Po
 Mb
 JU
-SQ
+Mb
 uI
 gT
 gT
