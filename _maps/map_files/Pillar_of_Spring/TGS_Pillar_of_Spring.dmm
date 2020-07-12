@@ -1663,16 +1663,6 @@
 	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/living/pilotbunks)
-"gk" = (
-/obj/structure/rack,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/suit/armor/bulletproof,
-/turf/open/floor/mainship/red/full,
-/area/mainship/shipboard/brig)
 "gl" = (
 /obj/machinery/computer/shuttle/shuttle_control/dropship2,
 /obj/structure/table/mainship,
@@ -3116,12 +3106,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "lw" = (
-/obj/machinery/computer/security/marinemainship{
-	dir = 8;
-	pixel_x = -17
-	},
 /obj/structure/cable,
-/mob/living/simple_animal/corgi/Ian,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/chief_mp_office)
 "lx" = (
@@ -3176,12 +3161,6 @@
 "lG" = (
 /turf/closed/wall/mainship,
 /area/mainship/command/telecomms)
-"lH" = (
-/obj/machinery/door/window/brigdoor/mainship/cell_2{
-	dir = 8
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/shipboard/brig_cells)
 "lI" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
@@ -3365,10 +3344,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/brig)
-"mm" = (
-/obj/structure/closet/secure_closet/guncabinet/mp_armory,
-/turf/open/floor/mainship/red/full,
-/area/mainship/shipboard/brig)
 "mn" = (
 /obj/structure/table/mainship,
 /obj/item/folder/black_random{
@@ -3500,7 +3475,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/starboard_missiles)
 "mE" = (
-/obj/structure/bed/chair/office/dark,
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -4321,9 +4295,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/brig)
 "pG" = (
-/obj/machinery/door/airlock/mainship/security/glass/CMA{
-	dir = 1
-	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 1
 	},
@@ -4334,14 +4305,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/brig)
-"pI" = (
-/obj/structure/table/mainship,
-/obj/machinery/faxmachine/cmp,
-/obj/machinery/door_control/mainship/brigarmory{
-	pixel_y = -40
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/shipboard/chief_mp_office)
 "pJ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /obj/structure/cable,
@@ -4353,20 +4316,7 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/port_emb)
-"pL" = (
-/obj/structure/table/mainship,
-/obj/item/weapon/gun/smg/standard_smg,
-/obj/item/ammo_magazine/smg/standard_smg,
-/obj/item/ammo_magazine/smg/standard_smg,
-/obj/item/weapon/gun/smg/standard_smg,
-/obj/item/ammo_magazine/smg/standard_smg,
-/obj/item/ammo_magazine/smg/standard_smg,
-/obj/item/weapon/combat_knife,
-/obj/item/weapon/combat_knife,
-/turf/open/floor/mainship/red/full,
-/area/mainship/shipboard/brig)
 "pM" = (
-/obj/structure/closet/secure_closet/brig/cell/cell2,
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
@@ -4375,12 +4325,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/brig_cells)
-"pN" = (
-/obj/structure/table/mainship,
-/obj/item/storage/fancy/cigar,
-/obj/item/tool/lighter/zippo,
-/turf/open/floor/mainship/mono,
-/area/mainship/shipboard/chief_mp_office)
 "pO" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk,
@@ -4453,31 +4397,6 @@
 "pZ" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/port_emb)
-"qa" = (
-/obj/structure/table/mainship,
-/obj/item/weapon/gun/pistol/m4a3,
-/obj/item/weapon/gun/pistol/m4a3,
-/obj/item/ammo_magazine/pistol,
-/obj/item/ammo_magazine/pistol,
-/obj/item/ammo_magazine/pistol,
-/obj/item/ammo_magazine/pistol,
-/obj/item/weapon/combat_knife,
-/obj/item/weapon/combat_knife,
-/turf/open/floor/mainship/red/full,
-/area/mainship/shipboard/brig)
-"qb" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/shipboard/chief_mp_office)
-"qc" = (
-/obj/structure/closet/secure_closet/warrant_officer,
-/obj/item/reagent_containers/food/snacks/sandwich,
-/obj/item/reagent_containers/food/snacks/meatsteak,
-/obj/item/weapon/telebaton,
-/turf/open/floor/mainship/cargo,
-/area/mainship/shipboard/chief_mp_office)
 "qd" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -4488,20 +4407,6 @@
 /obj/structure/table/mainship,
 /turf/open/floor/mainship,
 /area/mainship/living/cafeteria_starboard)
-"qf" = (
-/obj/structure/table/mainship,
-/obj/item/storage/toolbox/mechanical,
-/obj/item/storage/toolbox/electrical{
-	pixel_x = -5;
-	pixel_y = 4
-	},
-/obj/item/stack/sheet/metal/medium_stack{
-	pixel_x = 5;
-	pixel_y = 10
-	},
-/obj/item/radio,
-/turf/open/floor/mainship/orange/full,
-/area/mainship/shipboard/brig)
 "qg" = (
 /obj/machinery/vending/marine,
 /obj/structure/window/reinforced{
@@ -4566,19 +4471,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/port_emb)
 "qo" = (
-/obj/structure/table/mainship,
-/obj/item/storage/belt/medical,
-/obj/item/storage/firstaid/adv,
-/obj/item/storage/firstaid/o2{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/firstaid,
-/obj/item/storage/firstaid/fire{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/turf/open/floor/mainship/sterile,
+/turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/brig)
 "qp" = (
 /obj/structure/sink,
@@ -4632,18 +4525,9 @@
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "qz" = (
-/obj/structure/table/mainship,
-/obj/structure/paper_bin{
-	pixel_y = 5
-	},
-/obj/item/folder/red,
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/tool/pen,
-/obj/item/tool/taperoll/police,
-/obj/item/evidencebag,
-/obj/item/evidencebag,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/brig)
 "qA" = (
@@ -4654,9 +4538,8 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/brig)
 "qB" = (
-/obj/machinery/vending/security,
-/turf/open/floor/mainship/mono,
-/area/mainship/shipboard/brig)
+/turf/open/space/basic,
+/area/mainship/command/cic)
 "qC" = (
 /turf/closed/wall/mainship,
 /area/mainship/squads/general)
@@ -4719,7 +4602,7 @@
 "qN" = (
 /obj/structure/closet/emcloset,
 /obj/item/clothing/mask/gas,
-/turf/open/floor/mainship/cargo,
+/turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/brig)
 "qO" = (
 /obj/structure/bed/chair/office/dark{
@@ -4728,16 +4611,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/brig)
 "qP" = (
-/obj/structure/table/mainship,
-/obj/structure/paper_bin{
-	pixel_y = 5
-	},
-/obj/item/folder/red,
-/obj/item/book/manual/marine_law,
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/item/tool/pen,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/chief_mp_office)
 "qQ" = (
@@ -4753,19 +4626,6 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/living/cafeteria_starboard)
-"qT" = (
-/obj/structure/toilet{
-	dir = 4
-	},
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/shipboard/brig_cells)
-"qU" = (
-/obj/machinery/flasher/cell2,
-/turf/open/floor/mainship/mono,
-/area/mainship/shipboard/brig_cells)
 "qV" = (
 /obj/machinery/door_timer/cell_2,
 /turf/closed/wall/mainship,
@@ -4808,25 +4668,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
-"rb" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/shower{
-	dir = 4;
-	pixel_y = -3
-	},
-/obj/machinery/door/window/westleft{
-	dir = 1
-	},
-/obj/structure/window/reinforced,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/shipboard/brig_cells)
-"rc" = (
-/obj/structure/bed,
-/obj/structure/window/reinforced,
-/turf/open/floor/mainship/mono,
-/area/mainship/shipboard/brig_cells)
 "rd" = (
 /obj/machinery/alarm{
 	dir = 4
@@ -4880,20 +4721,6 @@
 	},
 /turf/open/floor/grass,
 /area/mainship/living/port_garden)
-"rp" = (
-/obj/machinery/flasher/cell1,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/shipboard/brig_cells)
-"rq" = (
-/obj/machinery/door/window/brigdoor/mainship/cell_1{
-	dir = 8
-	},
-/obj/machinery/door_timer/cell_1,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/shipboard/brig_cells)
 "rr" = (
 /obj/item/stack/sheet/glass/reinforced{
 	amount = 30
@@ -4905,10 +4732,6 @@
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/storage/bag/trash,
 /turf/open/floor/mainship/cargo,
-/area/mainship/shipboard/brig)
-"rs" = (
-/obj/machinery/computer/cryopod,
-/turf/open/floor/mainship/mono,
 /area/mainship/shipboard/brig)
 "rt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -4964,37 +4787,17 @@
 /turf/open/floor/grass,
 /area/mainship/living/port_garden)
 "rC" = (
-/obj/structure/window/reinforced{
-	dir = 4
+/obj/machinery/light/small{
+	dir = 8
 	},
-/obj/machinery/shower{
-	dir = 4;
-	pixel_y = -3
-	},
-/obj/machinery/door/window/westleft{
-	dir = 1
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/shipboard/brig_cells)
-"rD" = (
-/obj/structure/bed,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/brig_cells)
 "rF" = (
-/obj/structure/closet/secure_closet/brig/cell/cell1,
 /obj/machinery/firealarm{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/brig_cells)
-"rG" = (
-/obj/structure/closet/secure_closet/military_police,
-/obj/item/reagent_containers/spray/pepper,
-/obj/item/tool/taperoll/police,
-/obj/item/taperecorder,
-/obj/item/roller,
-/turf/open/floor/mainship/cargo,
-/area/mainship/shipboard/brig)
 "rH" = (
 /obj/structure/window/framed/mainship,
 /obj/machinery/door/firedoor/mainship{
@@ -5086,18 +4889,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/telecomms)
-"rU" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/security/marinemainship{
-	dir = 4;
-	pixel_x = 17
-	},
-/obj/item/folder/red,
-/obj/item/tool/pen,
-/obj/item/storage/box/flashbangs,
-/obj/machinery/recharger,
-/turf/open/floor/mainship/mono,
-/area/mainship/shipboard/brig)
 "rV" = (
 /obj/structure/noticeboard,
 /turf/closed/wall/mainship,
@@ -5488,19 +5279,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
-"te" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/window/eastleft/req,
-/obj/machinery/door/window/westleft,
-/obj/structure/paper_bin{
-	pixel_y = 5
-	},
-/obj/machinery/door/firedoor/mainship{
-	dir = 8
-	},
-/obj/item/tool/pen,
-/turf/open/floor/mainship/mono,
-/area/mainship/shipboard/brig)
 "tg" = (
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/mono,
@@ -5613,6 +5391,7 @@
 	dir = 1
 	},
 /obj/machinery/door/window/eastleft,
+/mob/living/simple_animal/corgi/Ian,
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "tz" = (
@@ -6333,9 +6112,7 @@
 /turf/open/floor/mainship/red/full,
 /area/mainship/command/cic)
 "vI" = (
-/obj/structure/rack,
-/obj/item/ammo_magazine/standard_lmg,
-/obj/item/weapon/gun/rifle/standard_lmg,
+/obj/machinery/vending/security,
 /turf/open/floor/mainship/red/full,
 /area/mainship/command/cic)
 "vJ" = (
@@ -6545,6 +6322,11 @@
 /obj/item/tool/extinguisher/mini,
 /obj/item/radio,
 /obj/item/radio,
+/obj/item/attachable/extended_barrel,
+/obj/item/attachable/extended_barrel,
+/obj/item/attachable/scope,
+/obj/item/ammo_magazine/standard_lmg,
+/obj/item/weapon/gun/rifle/standard_lmg,
 /turf/open/floor/mainship/orange/full,
 /area/mainship/command/cic)
 "wu" = (
@@ -7899,16 +7681,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/engineering/upper_engineering)
-"AH" = (
-/obj/machinery/door/poddoor/shutters/mainship/brigarmory{
-	dir = 2
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/shipboard/brig)
-"AI" = (
-/obj/machinery/door/poddoor/shutters/mainship/brigarmory,
-/turf/open/floor/mainship/mono,
-/area/mainship/shipboard/brig)
 "AJ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -8002,19 +7774,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/starboard_missiles)
-"AZ" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/window/northleft/brig,
-/obj/machinery/door/window/eastleft/brig,
-/obj/structure/paper_bin{
-	pixel_y = 5
-	},
-/obj/machinery/door/firedoor/mainship{
-	dir = 2
-	},
-/obj/item/tool/pen,
-/turf/open/floor/mainship/mono,
-/area/mainship/shipboard/brig)
 "Ba" = (
 /obj/structure/window/framed/mainship,
 /obj/machinery/door/firedoor/mainship{
@@ -8480,9 +8239,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "Cu" = (
-/obj/machinery/door/airlock/mainship/security/glass/cells{
-	dir = 8
-	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 8
 	},
@@ -9379,15 +9135,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/stern_hallway)
 "Fd" = (
-/obj/structure/toilet{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/light/small{
-	dir = 8
-	},
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/brig_cells)
 "Fe" = (
@@ -10406,9 +10153,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "HR" = (
-/obj/machinery/door/airlock/mainship/security/glass/office{
-	dir = 4
-	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 8
 	},
@@ -10696,11 +10440,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
-"IG" = (
-/obj/structure/table/mainship,
-/obj/machinery/computer/secure_data,
-/turf/open/floor/mainship/mono,
-/area/mainship/shipboard/brig)
 "II" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -12351,14 +12090,15 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "Ny" = (
-/obj/structure/table/mainship,
-/obj/item/attachable/extended_barrel,
-/obj/item/attachable/extended_barrel,
-/obj/item/attachable/scope,
+/obj/structure/closet/secure_closet/military_police,
+/obj/item/reagent_containers/spray/pepper,
+/obj/item/tool/taperoll/police,
+/obj/item/taperecorder,
+/obj/item/roller,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
-/turf/open/floor/mainship/red/full,
+/turf/open/floor/mainship/cargo,
 /area/mainship/command/cic)
 "Nz" = (
 /obj/structure/window/framed/mainship/white,
@@ -43792,8 +43532,8 @@ pK
 qn
 DS
 qL
-qT
-rb
+rC
+Fd
 Fd
 rC
 qL
@@ -44049,10 +43789,10 @@ aI
 aI
 aI
 qL
-qU
-rc
-rp
-rD
+Fd
+Fd
+Fd
+Fd
 NU
 Db
 Dk
@@ -44300,15 +44040,15 @@ gL
 xF
 gL
 aI
-gk
-pL
-qa
 qo
-qf
+qo
+qo
+qo
+qo
 qV
 qL
-lH
-rq
+Fd
+Fd
 qL
 qL
 WO
@@ -44556,7 +44296,7 @@ NS
 gL
 xF
 gL
-AH
+pF
 ml
 ml
 ml
@@ -44814,11 +44554,11 @@ gL
 xF
 gL
 aI
-mm
-mm
-mm
-aI
-AI
+qo
+qo
+qo
+pF
+pF
 qL
 qL
 Cu
@@ -44838,7 +44578,7 @@ HY
 Fz
 AF
 tW
-tW
+qB
 vt
 vI
 xD
@@ -45071,16 +44811,16 @@ za
 xG
 jy
 yS
-yS
-yS
-yS
-yS
+qP
+qP
+qP
+qP
 My
 qN
 ly
 pH
 rr
-rG
+pF
 aI
 ez
 Dw
@@ -45586,14 +45326,14 @@ xG
 jy
 yS
 mE
-pN
-qb
+qP
+qP
 yS
-qB
+pF
 qO
 pF
 Ht
-rs
+pF
 Mz
 aI
 jy
@@ -45842,17 +45582,17 @@ jy
 xG
 FF
 yS
-pI
 qP
-qc
+qP
+qP
 yS
-IG
+pF
 qz
 qY
 HP
-rU
-qO
-AZ
+pF
+pF
+pF
 se
 FU
 jy
@@ -46108,7 +45848,7 @@ NT
 aI
 HR
 aI
-te
+pF
 rV
 Fy
 FU
