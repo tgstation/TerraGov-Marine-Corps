@@ -151,14 +151,17 @@
   *set @heals_internal to also heal internal organ damage
   */
 /datum/wound/proc/heal_wound_damage(heal_amount, heals_internal = FALSE)
+	// If the wound is internal, and we don't heal internal wounds just pass through.
 	if(internal && !heals_internal)
 		// heal nothing
 		return heal_amount
 
+	// either, the entire wound, or the heal_amount
 	var/healed_damage = min(damage, heal_amount)
-	heal_amount -= healed_damage
-	damage -= healed_damage
+	heal_amount -= healed_damage // If the heal was large, we may have only removed the small exisitng damage
+	damage -= healed_damage // Heal the wound
 
+	// Update the stages
 	while(wound_damage() < damage_list[current_stage] && current_stage < desc_list.len)
 		current_stage++
 	desc = desc_list[current_stage]
