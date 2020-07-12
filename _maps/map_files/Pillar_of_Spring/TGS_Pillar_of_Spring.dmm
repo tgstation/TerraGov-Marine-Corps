@@ -1500,7 +1500,7 @@
 "fp" = (
 /obj/structure/window/framed/mainship/requisitions,
 /obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 8
+	dir = 2
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
@@ -2128,13 +2128,6 @@
 /obj/item/healthanalyzer,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
-"hV" = (
-/obj/structure/window/framed/mainship/requisitions,
-/obj/machinery/door/poddoor/shutters/mainship/req/ro{
-	dir = 8
-	},
-/turf/open/floor/plating/mainship,
-/area/mainship/squads/req)
 "hX" = (
 /obj/structure/closet/secure_closet/CMO,
 /turf/open/floor/wood,
@@ -13190,11 +13183,6 @@
 /obj/structure/closet/crate/medical,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
-"RM" = (
-/obj/structure/window/framed/mainship/requisitions,
-/obj/machinery/door/poddoor/shutters/mainship/req/ro,
-/turf/open/floor/plating/mainship,
-/area/mainship/squads/req)
 "RN" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -13348,6 +13336,11 @@
 /obj/structure/toilet,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks)
+"SQ" = (
+/turf/closed/wall/mainship{
+	tiles_with = list(/turf/closed/wall,/obj/structure/window/framed,/obj/structure/window_frame,/obj/structure/girder)
+	},
+/area/mainship/hull/lower_hull)
 "ST" = (
 /obj/machinery/alarm{
 	dir = 8
@@ -44541,8 +44534,8 @@ kz
 Dz
 Dz
 qG
-RM
-RM
+de
+de
 qG
 qG
 qG
@@ -47111,19 +47104,19 @@ gd
 kM
 kM
 qG
-hV
-hV
-hV
-hV
+de
+de
+de
+de
 qG
 qG
 NY
 qG
-hV
-hV
+de
+de
 YX
-hV
-hV
+de
+de
 fp
 fp
 fp
@@ -53581,7 +53574,7 @@ UQ
 Po
 Mb
 JU
-Mb
+SQ
 uI
 gT
 gT
