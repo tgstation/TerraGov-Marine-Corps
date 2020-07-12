@@ -1,0 +1,4 @@
+author: "rhomm-dev"
+delete-after: True
+changes: 
+  - bugfix: "invisible facepaint on vendors changed to green facepaint"
