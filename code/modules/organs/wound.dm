@@ -156,7 +156,7 @@
 		return heal_amount
 
 	var/healed_damage = min(damage, heal_amount)
-	amount -= healed_damage
+	heal_amount -= healed_damage
 	damage -= healed_damage
 
 	while(wound_damage() < damage_list[current_stage] && current_stage < desc_list.len)
@@ -165,7 +165,7 @@
 	min_damage = damage_list[current_stage]
 
 	// return amount of healing still leftover, can be used for other wounds
-	return amount
+	return heal_amount
 
 ///Reopens the wound again
 /datum/wound/proc/open_wound(initial_damage)
