@@ -763,7 +763,9 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
-/obj/item/weapon/gun/rifle/m41a1,
+/obj/item/weapon/gun/rifle/m41a1{
+	desc = "An outdated rifle for the TerraGov Marine Corps, carried by a few coporate mercenary groups, the M41A1 is a very rare sight in TerraGov systems. Uses 10x24mm caseless ammunition. Inscribed is Moth";
+	},
 /turf/closed/wall/mainship,
 /area/mainship/shipboard/firing_range)
 "ck" = (
