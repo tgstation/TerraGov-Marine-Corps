@@ -129,8 +129,15 @@
 	if(initial(sterile))
 		to_chat(user, "<span class='warning'>It looks like the proboscis has been removed.</span>")
 
+/obj/item/clothing/mask/facehugger/dropped(mob/user)
+	. = ..()
+	// Whena  xeno removes the hugger from storage we don't want to start the active timer until they drop or throw it
+	if(isxenocarrier(user))
+		go_active(TRUE)
 
 /obj/item/clothing/mask/facehugger/proc/go_idle(hybernate = FALSE, no_activate = FALSE)
+	deltimer(lifetimer)
+	deltimer(jumptimer)
 	lifetimer = null
 	jumptimer = null
 	if(stat == CONSCIOUS)
@@ -455,6 +462,8 @@
 		return
 	stat = DEAD
 
+	deltimer(lifetimer)
+	deltimer(jumptimer)
 	lifetimer = null
 	jumptimer = null
 
