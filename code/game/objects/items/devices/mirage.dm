@@ -15,9 +15,9 @@
 
 /obj/item/explosive/grenade/mirage/prime()
 	if(current_user)
-		var/mob/living/simple_animal/hostile/illusion/M = new(loc)
+		var/mob/living/simple_animal/hostile/illusion/M = new(get_turf(src))
 		M.copy_appearance(current_user, illusion_lifespan)
-		var/mob/living/simple_animal/hostile/illusion/I = new(loc)
+		var/mob/living/simple_animal/hostile/illusion/I = new(get_turf(src))
 		I.copy_appearance(current_user, illusion_lifespan)
 	QDEL_NULL(src)
 
@@ -32,12 +32,14 @@
 	deathmessage = "vanishes into thin air!"
 	friendly = "attacks"
 	status_flags = GODMODE
+	wall_smash = FALSE
 	density = FALSE//Its a fake you goof
 	var/mob/living/parent
 	var/life_span = INFINITY
 
 /mob/living/simple_animal/hostile/illusion/Life()
 	. = ..()
+	appearance = parent.appearance
 	if(world.time > life_span)
 		death()
 
