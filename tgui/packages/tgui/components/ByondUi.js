@@ -73,6 +73,7 @@ const getBoundingBox = element => {
 export class ByondUi extends Component {
   constructor(props) {
     super(props);
+    this.onRender = props.onRender;
     this.containerRef = createRef();
     this.byondUiElement = createByondUiElement(props.params?.id);
     this.handleResize = debounce(() => {
@@ -99,7 +100,10 @@ export class ByondUi extends Component {
       return;
     }
     window.addEventListener('resize', this.handleResize);
-    return this.componentDidUpdate();
+    this.componentDidUpdate();
+    if (this.onRender && typeof this.onRender === 'function') {
+      this.onRender();
+    }
   }
 
   componentDidUpdate() {

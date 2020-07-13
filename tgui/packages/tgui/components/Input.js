@@ -28,8 +28,12 @@ export class Input extends Component {
     };
     this.handleFocus = e => {
       const { editing } = this.state;
+      const { onFocus } = this.props;
       if (!editing) {
         this.setEditing(true);
+        if (onFocus) {
+          onFocus(e);
+        }
       }
     };
     this.handleBlur = e => {

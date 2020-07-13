@@ -123,12 +123,30 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	var/auto_fit_viewport = TRUE
 
+	/// New TGUI Preference preview
+	var/map_name = "player_pref_map"
+	var/obj/screen/map_view/screen_main
+	var/obj/screen/background/screen_bg
+
 
 /datum/preferences/New(client/C)
 	if(!istype(C))
 		return
 
 	parent = C
+
+	// Initialize map objects
+	screen_main = new
+	screen_main.name = "screen"
+	screen_main.assigned_map = map_name
+	screen_main.del_on_map_removal = FALSE
+	screen_main.screen_loc = "[map_name]:1,1"
+
+	screen_bg = new
+	screen_bg.assigned_map = map_name
+	screen_bg.del_on_map_removal = FALSE
+	screen_bg.icon_state = "clear"
+	screen_bg.fill_rect(1, 1, 4, 1)
 
 	if(!IsGuestKey(C.key))
 		load_path(C.ckey)
@@ -151,6 +169,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		return
 
 	update_preview_icon()
+	ui_interact(user)
+	return
 
 	var/dat
 
@@ -365,6 +385,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	popup.set_content(dat)
 	popup.open(FALSE)
 	onclose(user, "preferences_window", src)
+
+
 
 
 /datum/preferences/proc/SetChoices(mob/user, limit = 17, list/splitJobs, widthPerColumn = 305, height = 620)
@@ -1104,17 +1126,10 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 /datum/preferences/proc/UpdateJobPreference(mob/user, role, desiredLvl)
 	if(!length(SSjob?.joinable_occupations))
 		return
-
 	var/datum/job/job = SSjob.GetJob(role)
-
 	if(!job)
-		user << browse(null, "window=mob_occupation")
-		ShowChoices(user)
 		return
-
 	SetJobPreferenceLevel(job, desiredLvl)
-	SetChoices(user)
-
 	return TRUE
 
 
