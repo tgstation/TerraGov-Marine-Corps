@@ -870,12 +870,12 @@
 	if(!.)
 		return
 	if(!racked_bolt)
-		to_chat(user, "<span class='notice'>[src] does not have a round chambered!</span>")
+		to_chat(user, "<span class='warning'>[src] does not have a round chambered!</span>")
 		return FALSE
 
 /obj/item/weapon/gun/rifle/chambered/unique_action(mob/user)
 	if(racked_bolt)
-		to_chat(user, "<span class='notice'>[src] already has a round chambered!</span>")
+		to_chat(user, "<span class='warning'>[src] already has a round chambered!</span>")
 		return
 	if(COOLDOWN_CHECK(src, COOLDOWN_RACK_BOLT))
 		return
