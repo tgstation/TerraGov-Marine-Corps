@@ -830,15 +830,13 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
-	caliber = "8.6×70mm" //codex
+	caliber = "8.6x70mm" //codex
 	max_shells = 10 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/chamberedrifle
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
-						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/scope/unremovable/tl127,
 						/obj/item/attachable/extended_barrel,
-						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/bayonetknife,
@@ -863,7 +861,7 @@
 	wield_delay = 1 SECONDS
 
 	var/rack_delay = 7
-	var/rack_sound = "tl-127_bolt.ogg"
+	var/rack_sound = 'sound/weapons/guns/interact/tl-127_bolt.ogg'
 	var/racked_bolt = TRUE
 	var/cooldown_time
 
