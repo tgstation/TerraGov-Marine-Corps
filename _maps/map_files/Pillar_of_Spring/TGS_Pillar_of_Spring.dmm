@@ -764,7 +764,7 @@
 	dir = 4
 	},
 /obj/item/weapon/gun/rifle/m41a1{
-	desc = "An outdated rifle for the TerraGov Marine Corps, carried by a few coporate mercenary groups, the M41A1 is a very rare sight in TerraGov systems. Uses 10x24mm caseless ammunition. Inscribed is Moth";
+	desc = "An outdated rifle for the TerraGov Marine Corps, carried by a few coporate mercenary groups, the M41A1 is a very rare sight in TerraGov systems. Uses 10x24mm caseless ammunition. Inscribed is Moth"
 	},
 /turf/closed/wall/mainship,
 /area/mainship/shipboard/firing_range)
@@ -4549,9 +4549,6 @@
 	dir = 8
 	},
 /area/mainship/shipboard/firing_range)
-"qB" = (
-/turf/open/space/basic,
-/area/mainship/command/cic)
 "qC" = (
 /turf/closed/wall/mainship,
 /area/mainship/squads/general)
@@ -6014,6 +6011,9 @@
 "vt" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 5
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
@@ -44669,7 +44669,7 @@ HY
 Fz
 AF
 tW
-qB
+tW
 vt
 vI
 xD
