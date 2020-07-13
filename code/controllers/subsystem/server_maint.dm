@@ -54,7 +54,7 @@ SUBSYSTEM_DEF(server_maint)
 				cleanup_ticker++
 			if(25)
 				var/found = FALSE
-				for(var/level in GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[level]"])
+				for(var/level in GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel)
 					if(listclearnulls(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[level]"]))
 						found = TRUE
 				if(found)
