@@ -8,11 +8,18 @@
 	dir = NORTHEAST //Spawns with a diagonal direction, for spread optimization.
 	var/amount = 1 //Basically moles.
 	var/spread_fail_chance = 75 //percent
+	///Used for the fire_lvl of the resulting fire
+	var/fire_lvl
+	///Used for the burn_lvl of the resulting fire
+	var/burn_lvl
+	var/f_color = "red"
 
 
 /obj/effect/decal/cleanable/liquid_fuel/Initialize(mapload, amt = 1, logs = TRUE, newDir)
 	. = ..()
 	amount = amt
+	burn_lvl = rand(0, 25)
+	fire_lvl = rand(5,30)
 	if(newDir)
 		setDir(newDir)
 	return INITIALIZE_HINT_LATELOAD
@@ -73,7 +80,7 @@
 	ignite_fuel()
 
 /obj/effect/decal/cleanable/liquid_fuel/proc/ignite_fuel()
-	new /obj/flamer_fire(loc, max(1, rand(0, 25) + rand(0, 25)), max(1, rand(0, 25) + rand(0, 25)))	//same as explosions
+	new /obj/flamer_fire(loc, fire_lvl, burn_lvl, f_color)
 	var/turf/S = get_turf(src)
 	for(var/D in CARDINAL_DIRS)
 		var/turf/T = get_step(S, D)
