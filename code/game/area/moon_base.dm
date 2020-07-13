@@ -17,6 +17,10 @@
 	name = "Air Traffic Control"
 	icon_state = "atc"
 
+/area/moon_base/inside/nexus
+	name = "Nexus"
+	icon_state = "nexus"
+
 /area/moon_base/airlock
 	gas_type = GAS_TYPE_AIR
 	pressure = ONE_ATMOSPHERE
@@ -62,6 +66,15 @@
 
 /area/moon_base/airlock/atcsouth
 	name = "ATC South Airlock"
+
+/area/moon_base/airlock/nexuswest
+	name = "Nexus West Airlock"
+
+/area/moon_base/airlock/nexussouth
+	name = "Nexus South Airlock"
+
+/area/moon_base/airlock/nexusnorth
+	name = "Nexus North Airlock"
 
 /obj/machinery/door/airlock/moon
 	var/side = "inside"
