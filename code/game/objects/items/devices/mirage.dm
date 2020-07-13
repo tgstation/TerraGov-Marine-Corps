@@ -8,16 +8,16 @@
 	///How long the illusory fakes last
 	var/illusion_lifespan = 15 SECONDS
 
-/obj/item/explosive/grenade/mirage/activate(mob/user as mob)
+/obj/item/explosive/grenade/mirage/activate(mob/user)
 	. = ..()
 	current_user = user
 	icon_state = "delivery_active"
 
 /obj/item/explosive/grenade/mirage/prime()
 	if(current_user)
-		var/mob/living/simple_animal/hostile/illusion/M = new(src.loc)
+		var/mob/living/simple_animal/hostile/illusion/M = new(loc)
 		M.copy_appearance(current_user, illusion_lifespan)
-		var/mob/living/simple_animal/hostile/illusion/I = new(src.loc)
+		var/mob/living/simple_animal/hostile/illusion/I = new(loc)
 		I.copy_appearance(current_user, illusion_lifespan)
 	QDEL_NULL(src)
 
@@ -37,15 +37,14 @@
 	var/life_span = INFINITY
 
 /mob/living/simple_animal/hostile/illusion/Life()
-	..()
+	. = ..()
 	if(world.time > life_span)
 		death()
 
 /mob/living/simple_animal/hostile/illusion/examine(mob/user)
 	if(parent)
 		return parent.examine(user)
-	else
-		return ..()
+	return ..()
 
 /mob/living/simple_animal/hostile/illusion/proc/copy_appearance(mob/living/parent_mob, lifespan)
 	parent = parent_mob
