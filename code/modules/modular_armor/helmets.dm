@@ -68,11 +68,10 @@
 
 /obj/item/helmet_module/binoculars/toggle_module(mob/living/user, obj/item/clothing/head/modular/parent)
 	if(!active && !zoom)
-		RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/toggle_module)
-		RegisterSignal(user, COMSIG_CLIENT_MOUSEDOWN, .proc/toggle_module)//No shooting while zoomed
+		RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CLIENT_MOUSEDOWN), .proc/toggle_module) //No shooting while zoomed
 		zoom(user, 11, 12)
 	else
-		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+		UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CLIENT_MOUSEDOWN))
 		if(zoom)
 			zoom(user)
 
