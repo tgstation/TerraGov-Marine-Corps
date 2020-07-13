@@ -27,7 +27,7 @@
 		GLOB.marine_main_ship.ob_type_fuel_requirements = list()
 		var/list/L = list(3,4,5,6)
 		var/amt
-		for(var/i=1 to 4)
+		for(var/i in 1 to 4)
 			amt = pick_n_take(L)
 			GLOB.marine_main_ship?.ob_type_fuel_requirements += amt
 
