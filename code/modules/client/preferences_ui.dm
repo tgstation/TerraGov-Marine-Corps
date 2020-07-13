@@ -12,6 +12,7 @@
 /datum/preferences/ui_close(mob/user)
 	. = ..()
 	user.client.clear_map(map_name)
+	user.client.clear_character_previews()
 
 /datum/preferences/ui_data(mob/user)
 	. = list(

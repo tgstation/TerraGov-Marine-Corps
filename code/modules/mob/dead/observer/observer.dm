@@ -194,7 +194,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	else if(href_list["preference"])
 		if(!client?.prefs)
 			return
-		client.prefs.process_link(src, href_list)
+		stack_trace("This code path is no longer valid, migrate this to new TGUI prefs")
+		return
 
 
 /mob/dead/CanPass(atom/movable/mover, turf/target)
