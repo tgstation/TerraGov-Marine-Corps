@@ -618,7 +618,6 @@
 						/obj/item/attachable/verticalgrip = 25,
 
 						/obj/item/attachable/stock/t19stock = 25,
-						/obj/item/attachable/stock/revolver = 25,
 						/obj/item/attachable/stock/t35stock = 25,
 						/obj/item/attachable/stock/tactical = 25,
 
