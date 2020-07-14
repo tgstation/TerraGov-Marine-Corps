@@ -61,5 +61,5 @@
 	parent = null
 
 /mob/living/simple_animal/hostile/illusion/Destroy()
-	. = ..()
 	parent = null
+	return ..()
