@@ -118,7 +118,11 @@
 		var/stdout = output[SHELLEO_STDOUT]
 
 		var/list/data = list()
-		data = json_decode(stdout)
+		data = safe_json_decode(stdout)
+		if(!data)
+			stack_trace("Lobby music - [SSticker.login_music[1]] failed to parse correctly")
+			play_title_music_legacy()
+			return
 		var/web_sound_url = ""
 		web_sound_url = data["url"]
 

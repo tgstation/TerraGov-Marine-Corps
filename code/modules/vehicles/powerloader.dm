@@ -16,7 +16,7 @@
 
 /obj/vehicle/powerloader/Initialize()
 	. = ..()
-	cell = new /obj/item/cell/apc(src)
+	set_cell(new /obj/item/cell/apc(src))
 	for(var/i in 1 to 2)
 		var/obj/item/powerloader_clamp/PC = new(src)
 		PC.linked_powerloader = src
@@ -31,7 +31,7 @@
 			usr.put_in_hands(cell)
 			playsound(src,'sound/machines/click.ogg', 25, 1)
 			to_chat(usr, "You take out the [cell] out of the [src].")
-			cell = null
+			set_cell(null)
 		else
 			to_chat(usr, "There is no cell in the [src].")
 

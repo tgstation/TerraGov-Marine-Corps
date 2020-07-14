@@ -37,7 +37,7 @@
 /obj/item/storage/box/standard_hmg/Initialize()
 	. = ..()
 	new /obj/item/standard_hmg(src) //gun itself
-	new /obj/item/ammo_magazine/standard_hmg(src) //ammo for the gun 
+	new /obj/item/ammo_magazine/standard_hmg(src) //ammo for the gun
 	new /obj/item/ammo_magazine/standard_hmg(src)
 
 
@@ -226,7 +226,7 @@
 
 		if(rounds == rounds_max)
 			to_chat(user, "<span class='warning'>You cannot reload the Smartgun, it has a full drum of ammo!</span>")
-			return 
+			return
 		if(user.action_busy)
 			return
 		if(!do_after(user, 25, TRUE, src, BUSY_ICON_FRIENDLY))
@@ -235,9 +235,9 @@
 		playsound(loc, 'sound/weapons/guns/interact/minigun_cocked.ogg', 25, 1)
 		user.temporarilyRemoveItemFromInventory(I)
 		var/obj/item/ammo_magazine/standard_hmg/D = new()
-		if(rounds)	
+		if(rounds)
 			user.put_in_active_hand(D)
-			D.current_rounds = rounds - (rounds_max - M.current_rounds)  
+			D.current_rounds = rounds - (rounds_max - M.current_rounds)
 		rounds = min(rounds + M.current_rounds, rounds_max)
 		update_icon()
 		qdel(I)
@@ -356,7 +356,7 @@
 
 	if(!burst_fire && target && !last_fired)
 		fire_shot(user)
-		
+
 	target = null
 
 /obj/machinery/standard_hmg/proc/fire_shot(mob/user) //Bang Bang
@@ -389,16 +389,16 @@
 	var/obj/projectile/proj_to_fire = in_chamber
 	in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.
 	var/mob/living/L = locate() in U
-	var/atom/A 
+	var/atom/A
 	if(L !=null)
 		proj_to_fire.original_target = L
 		A = L
-	else 
+	else
 		proj_to_fire.original_target = target
 		A = target
 	proj_to_fire.setDir(dir)
 	proj_to_fire.def_zone = pick("chest","chest","chest","head")
-	playsound(loc, 'sound/weapons/guns/fire/hmg2.ogg', 75, TRUE)
+	playsound(loc, 'sound/weapons/guns/fire/hmg2.ogg', 65, TRUE)
 	if(!QDELETED(target))
 		var/angle = round(Get_Angle(src,target))
 		muzzle_flash(angle)
@@ -481,13 +481,13 @@
 	if(get_dist(target, loc) > 15)
 		return TRUE
 
-	
+
 	if(modifiers.Find("ctrl"))
 		burst_fire = !burst_fire
 		var/text = ""
 		if(burst_fire)
 			text = "ON"
-		else 
+		else
 			text = "OFF"
 		to_chat(user, "You toggle [src]'s burstfire to: [text]")
 	var/angle = get_dir(src,target)
@@ -504,21 +504,21 @@
 		if(locked)
 			to_chat(user, "This one is anchored in place and cannot be rotated.")
 			return
-		
+
 		var/list/leftright = LeftAndRightOfDir(dir)
 		var/left = leftright[1] - 1
 		var/right = leftright[2] + 1
 		if(left == (angle-1) || right == (angle+1))
-			var/turf/w = get_step(src, REVERSE_DIR(angle)) 
+			var/turf/w = get_step(src, REVERSE_DIR(angle))
 			if(user.Move(w))
 				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 				user.visible_message("[user] rotates the [src].","You rotate the [src].")
 				setDir(angle)
-				user.set_interaction(src)	
-			else 
+				user.set_interaction(src)
+			else
 				to_chat(user, "You cannot rotate [src] that way.")
-				return 
-		else 
+				return
+		else
 			to_chat(user, "<span class='warning'> [src] cannot be rotated so violently.</span>")
 	return FALSE
 

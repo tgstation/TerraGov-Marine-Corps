@@ -9,7 +9,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 250
 	active_power_usage = 500
-//	circuit = "/obj/item/circuitboard/computer/crew"
+//	circuit = /obj/item/circuitboard/computer/crew
 	interaction_flags = INTERACT_MACHINE_TGUI
 	var/list/tracked = list()
 	var/list/crewmembers_planetside = list()
