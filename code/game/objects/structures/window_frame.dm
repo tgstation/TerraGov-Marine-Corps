@@ -17,7 +17,6 @@
 	var/junction = 0
 	var/reinforced = FALSE
 
-	smoothing_groups = SMOOTH_GENERAL_STRUCTURES
 
 
 /obj/structure/window_frame/CanPass(atom/movable/mover, turf/target)
