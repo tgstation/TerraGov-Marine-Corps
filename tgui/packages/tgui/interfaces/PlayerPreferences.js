@@ -265,7 +265,7 @@ const CharacterCustomization = (props, context) => {
       </Section>
       <Section title="Background information">
         <Section
-          title="character description"
+          title="Character Description"
           buttons={
             <Box>
               <Button
@@ -292,7 +292,7 @@ const CharacterCustomization = (props, context) => {
         <Grid>
           <Grid.Column>
             <Section
-              title="medical records"
+              title="Medical Records"
               buttons={
                 <Box>
                   <Button
@@ -318,7 +318,7 @@ const CharacterCustomization = (props, context) => {
           </Grid.Column>
           <Grid.Column>
             <Section
-              title="employment records"
+              title="Employment Records"
               buttons={
                 <Box>
                   <Button
@@ -346,7 +346,7 @@ const CharacterCustomization = (props, context) => {
         <Grid>
           <Grid.Column>
             <Section
-              title="security records"
+              title="Security Records"
               buttons={
                 <Box>
                   <Button
@@ -372,7 +372,7 @@ const CharacterCustomization = (props, context) => {
           </Grid.Column>
           <Grid.Column>
             <Section
-              title="exploit records"
+              title="Exploit Records"
               buttons={
                 <Box>
                   <Button
