@@ -465,10 +465,10 @@ const ToggleFieldPreference = (props, context) => {
   const {
     label,
     value,
-    leftValue = 'True',
-    leftLabel = null,
-    rightValue = 'Right',
-    rightLabel = null,
+    leftValue = 1,
+    leftLabel = 'True',
+    rightValue = 0,
+    rightLabel = 'False',
     action,
   } = props;
   const itemLabel = label || value;
@@ -497,7 +497,14 @@ const ToggleFieldPreference = (props, context) => {
 const JobPreferences = (props, context) => {
   const { act, data, config } = useBackend(context);
   const xenoJobs = ['Xeno Queen', 'Xenomorph'];
-  const commandRoles = ['Captain', 'Field Commander', 'Synthetic', 'AI'];
+  const commandRoles = [
+    'Captain',
+    'Field Commander',
+    'Staff Officer',
+    'Pilot Officer',
+    'Synthetic',
+    'AI',
+  ];
   const supportRoles = [
     'Chief Ship Engineer',
     'Ship Technician',
