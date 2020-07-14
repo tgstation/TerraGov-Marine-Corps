@@ -33,7 +33,7 @@
 			if(prob(chance))
 				F.forceMove(loc)
 				step_away(F,src,1)
-				addtimer(CALLBACK(F, /obj/item/clothing/mask/facehugger.proc/GoActive, TRUE), 2 SECONDS)
+				addtimer(CALLBACK(F, /obj/item/clothing/mask/facehugger.proc/go_active, TRUE), 2 SECONDS)
 			else
 				qdel(F)
 			chance -= 30

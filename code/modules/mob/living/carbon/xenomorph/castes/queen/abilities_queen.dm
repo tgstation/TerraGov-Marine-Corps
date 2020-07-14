@@ -129,12 +129,12 @@
 	if(istype(X.r_hand, /obj/item/clothing/mask/facehugger))
 		var/obj/item/clothing/mask/facehugger/FH = X.r_hand
 		if(FH.stat != DEAD)
-			FH.Die()
+			FH.kill_hugger()
 
 	if(istype(X.l_hand, /obj/item/clothing/mask/facehugger))
 		var/obj/item/clothing/mask/facehugger/FH = X.l_hand
 		if(FH.stat != DEAD)
-			FH.Die()
+			FH.kill_hugger()
 
 	succeed_activate()
 	add_cooldown()

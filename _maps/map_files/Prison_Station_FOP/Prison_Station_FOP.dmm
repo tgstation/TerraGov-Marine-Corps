@@ -27288,18 +27288,6 @@
 /area/prison/console)
 "bEP" = (
 /obj/structure/table/reinforced,
-/obj/machinery/button/door/open_only/landing_zone{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/checkpoint/hangar)
 "bEQ" = (
@@ -39947,7 +39935,6 @@
 /obj/machinery/disposal/deliveryChute{
 	dir = 1
 	},
-/obj/structure/disposalpipe/trunk,
 /turf/open/floor/plating,
 /area/prison/disposal)
 "cse" = (
@@ -42377,6 +42364,21 @@
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating,
 /area/prison/cellblock/mediumsec/south)
+"gSk" = (
+/obj/machinery/button/door/open_only/landing_zone{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/prison,
+/area/prison/hangar/main)
 "gWy" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/prison,
@@ -103065,7 +103067,7 @@ aYM
 bwq
 bnQ
 byi
-bnQ
+gSk
 bzi
 bAN
 bBQ
