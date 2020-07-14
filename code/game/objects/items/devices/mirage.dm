@@ -19,7 +19,7 @@
 		M.copy_appearance(current_user, illusion_lifespan)
 		var/mob/living/simple_animal/hostile/illusion/I = new(get_turf(src))
 		I.copy_appearance(current_user, illusion_lifespan)
-	QDEL_NULL(src)
+	qdel(src)
 
 /mob/living/simple_animal/hostile/illusion
 	name = "illusion"
