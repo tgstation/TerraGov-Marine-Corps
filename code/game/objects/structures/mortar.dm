@@ -16,7 +16,7 @@
 	var/offset_per_turfs = 10 //Number of turfs to offset from target by 1
 	var/dial_x = 0 //Dial adjustment from target
 	var/dial_y = 0
-	var/travel_time = 45 //Constant, assuming perfect parabolic trajectory. ONLY THE DELAY BEFORE INCOMING WARNING WHICH ADDS 45 TICKS
+	var/travel_time = 5 //Constant, assuming perfect parabolic trajectory. ONLY THE DELAY BEFORE INCOMING WARNING WHICH ADDS 45 TICKS
 	var/busy = 0
 	var/firing = 0 //Used for deconstruction and aiming sanity
 	var/fixed = 0 //If set to 1, can't unanchor and move the mortar, used for map spawns and WO
