@@ -39,7 +39,8 @@
 
 /mob/living/simple_animal/hostile/illusion/Life()
 	. = ..()
-	appearance = parent.appearance
+	if(parent)
+		appearance = parent.appearance
 	if(world.time > life_span)
 		death()
 
@@ -54,3 +55,11 @@
 	life_span = world.time+lifespan
 	faction = parent_mob.faction
 	setDir(parent.dir)
+	RegisterSignal(parent, COMSIG_PARENT_QDELETING, .proc/on_parent_del)
+
+/mob/living/simple_animal/hostile/illusion/proc/on_parent_del()
+	parent = null
+
+/mob/living/simple_animal/hostile/illusion/Destroy()
+	. = ..()
+	parent = null
