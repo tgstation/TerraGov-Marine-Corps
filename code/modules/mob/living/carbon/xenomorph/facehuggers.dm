@@ -56,6 +56,8 @@
 
 /obj/item/clothing/mask/facehugger/Destroy()
 	. = ..()
+	deltimer(jumptimer)
+	deltimer(lifetimer)
 	lifetimer = null
 	jumptimer = null
 
@@ -87,6 +89,7 @@
 	if(isxeno(user))
 		var/mob/living/carbon/xenomorph/X = user
 		if(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS)
+			deltimer(jumptimer)
 			jumptimer = null
 			return ..() // These can pick up huggers.
 		else
@@ -132,6 +135,8 @@
 
 
 /obj/item/clothing/mask/facehugger/proc/go_idle(hybernate = FALSE, no_activate = FALSE)
+	deltimer(jumptimer)
+	deltimer(lifetimer)
 	lifetimer = null
 	jumptimer = null
 	if(stat == CONSCIOUS)
@@ -456,6 +461,8 @@
 		return
 	stat = DEAD
 
+	deltimer(jumptimer)
+	deltimer(lifetimer)
 	lifetimer = null
 	jumptimer = null
 
