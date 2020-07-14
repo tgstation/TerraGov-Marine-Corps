@@ -87,6 +87,7 @@
 	if(isxeno(user))
 		var/mob/living/carbon/xenomorph/X = user
 		if(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS)
+			jumptimer = null
 			return ..() // These can pick up huggers.
 		else
 			return FALSE // The rest can't.
