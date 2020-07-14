@@ -363,9 +363,8 @@
 	desc = "The standard-issue backpack worn by TGMC technicians. Specially equipped to hold sentry gun and M56D emplacement parts."
 	icon_state = "marinepackt"
 	bypass_w_limit = list(
-		/obj/item/m56d_gun,
-		/obj/item/ammo_magazine/m56d,
-		/obj/item/m56d_post,
+		/obj/item/standard_hmg,
+		/obj/item/ammo_magazine/standard_hmg,
 		/obj/item/turret_top,
 		/obj/item/ammo_magazine/sentry,
 		/obj/item/ammo_magazine/minisentry,
@@ -651,6 +650,10 @@
 	icon_state = "smock"
 	desc = "The M68-B thermal cloak is a variant custom-purposed for snipers, allowing for faster, superior, stationary concealment at the expense of mobile concealment. It is designed to be paired with the lightweight M3 recon battle armor. Serves as a satchel."
 	shimmer_alpha = SCOUT_CLOAK_RUN_ALPHA * 0.5 //Half the normal shimmer transparency.
+
+/obj/item/storage/backpack/marine/satchel/scout_cloak/sniper/equippedsniper/Initialize()
+	. = ..()
+	new /obj/item/detpack(src)
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/sniper/process()
 	if(!wearer)

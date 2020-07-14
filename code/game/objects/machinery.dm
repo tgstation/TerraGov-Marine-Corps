@@ -34,6 +34,9 @@
 /obj/machinery/Destroy()
 	GLOB.machines -= src
 	STOP_PROCESSING(SSmachines, src)
+	if(istype(circuit)) //There are some uninitialized legacy path circuits.
+		QDEL_NULL(circuit)
+	operator = null
 	return ..()
 
 

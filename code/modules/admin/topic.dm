@@ -2182,3 +2182,10 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		GLOB.admin_approvals[approval_id] = href_list["option"]
 		log_admin("[key_name(usr)] answered '[href_list["option"]]' to the admin approval ([approval_id]).")
 		message_admins("[key_name(usr)] answered '[href_list["option"]]' to the admin approval ([approval_id]).")
+
+	#ifdef REFERENCE_TRACKING
+	else if(href_list["delfail_clearnulls"])
+		listclearnulls(GLOB.deletion_failures)
+		view_del_failures()
+		return
+	#endif

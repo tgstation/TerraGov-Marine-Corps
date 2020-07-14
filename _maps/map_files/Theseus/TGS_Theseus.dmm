@@ -24718,10 +24718,9 @@
 /area/mainship/engineering/lower_engine_monitoring)
 "byD" = (
 /obj/structure/rack,
-/obj/structure/ob_ammo/ob_fuel,
-/obj/structure/ob_ammo/ob_fuel,
-/obj/structure/ob_ammo/ob_fuel,
-/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/warhead/plasmaloss,
+/obj/structure/ob_ammo/warhead/plasmaloss,
+/obj/structure/ob_ammo/warhead/plasmaloss,
 /turf/open/floor/mainship/red{
 	dir = 9
 	},
@@ -26252,6 +26251,7 @@
 /area/mainship/engineering/engine_core)
 "bEf" = (
 /obj/structure/rack,
+/obj/structure/ob_ammo/ob_fuel,
 /obj/structure/ob_ammo/ob_fuel,
 /obj/structure/ob_ammo/ob_fuel,
 /obj/structure/ob_ammo/ob_fuel,
@@ -30271,6 +30271,7 @@
 /obj/machinery/status_display{
 	pixel_y = 30
 	},
+/obj/item/toy/deck/kotahi,
 /turf/open/floor/mainship,
 /area/mainship/living/cafeteria_port)
 "bSY" = (
@@ -37132,6 +37133,7 @@
 /obj/structure/ob_ammo/ob_fuel,
 /obj/structure/ob_ammo/ob_fuel,
 /obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "nNW" = (
@@ -38584,6 +38586,11 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/bridgebunks)
+"xnY" = (
+/obj/structure/table/mainship,
+/obj/item/toy/deck/kotahi,
+/turf/open/floor/mainship,
+/area/mainship/living/cafeteria_starboard)
 "xrC" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -86443,7 +86450,7 @@ aUo
 aYS
 aWV
 bbp
-bbn
+xnY
 bdB
 bbv
 bbv

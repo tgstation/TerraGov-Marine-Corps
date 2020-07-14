@@ -360,6 +360,10 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 		if("dropbomb")
 			handle_bombard()
 		if("shootrailgun")
+			var/mob/living/user = usr
+			if(user.interactee)
+				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Your busy doing something else, and press the wrong button!</span>")
+				return
 			if((GLOB.marine_main_ship?.rail_gun?.last_firing + 600) > world.time)
 				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>The Rail Gun hasn't cooled down yet!</span>")
 			else if(!selected_target)
@@ -728,7 +732,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 	icon = 'icons/effects/warning_stripes.dmi'
 	anchored = TRUE
 	density = FALSE
-	resistance_flags = UNACIDABLE
+	resistance_flags = RESIST_ALL
 	layer = ABOVE_TURF_LAYER
 	var/squad_name = "Alpha"
 	var/sending_package = 0

@@ -1,7 +1,10 @@
-/mob/living/brain/death(gibbed)
-	if(!gibbed && istype(container, /obj/item/mmi)) //If not gibbed but in a container.
+/mob/living/brain/death(gibbing, deathmessage = "beeps shrilly as the MMI flatlines!", silent)
+	if(stat == DEAD)
+		return ..()
+	if(!gibbing && istype(container, /obj/item/mmi)) //If not gibbing but in a container.
 		container.icon_state = "mmi_dead"
-	return ..(gibbed,"beeps shrilly as the MMI flatlines!")
+	return ..()
+
 
 /mob/living/brain/gib()
 	if(istype(container, /obj/item/mmi))

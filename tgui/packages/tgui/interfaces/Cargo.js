@@ -10,7 +10,6 @@ import { LabeledListItem } from '../components/LabeledList';
 const category_icon = {
   'Operations': "parachute-box",
   'Weapons': "fighter-jet",
-  'Hardpoint Modules': "truck",
   'Attachments': "microchip",
   'Ammo': "space-shuttle",
   'Armor': "hard-hat",

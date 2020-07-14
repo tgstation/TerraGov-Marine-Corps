@@ -33,6 +33,9 @@
 	if(is_centcom_level(z) && hivenumber == XENO_HIVE_NORMAL)
 		hivenumber = XENO_HIVE_ADMEME //so admins can safely spawn xenos in Thunderdome for tests.
 
+	wound_overlay = new(null, src)
+	vis_contents += wound_overlay
+
 	set_initial_hivenumber()
 
 	generate_nicknumber()
@@ -200,6 +203,9 @@
 	GLOB.dead_xeno_list -= src
 
 	remove_from_hive()
+
+	vis_contents -= wound_overlay
+	QDEL_NULL(wound_overlay)
 
 	. = ..()
 

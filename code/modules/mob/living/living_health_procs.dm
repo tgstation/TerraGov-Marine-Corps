@@ -218,11 +218,13 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 
 /mob/living/proc/on_revive()
 	SEND_SIGNAL(src, COMSIG_MOB_REVIVE)
+	timeofdeath = 0
 	GLOB.alive_living_list += src
 	GLOB.dead_mob_list -= src
 
 /mob/living/carbon/human/on_revive()
 	. = ..()
+	revive_grace_time = initial(revive_grace_time)
 	GLOB.alive_human_list += src
 	GLOB.dead_human_list -= src
 	LAZYADD(GLOB.humans_by_zlevel["[z]"], src)
@@ -271,11 +273,6 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	if(L)
 		qdel(L)
 	DISABLE_BITFIELD(status_flags, XENO_HOST)
-
-	// remove the character from the list of the dead
-	if(stat == DEAD)
-		on_revive()
-		timeofdeath = 0
 
 	// restore us to conciousness
 	set_stat(CONSCIOUS)

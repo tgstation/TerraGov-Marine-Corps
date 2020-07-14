@@ -78,9 +78,10 @@
 	GLOB.mob_living_list += src
 	if(stat != DEAD)
 		GLOB.alive_living_list += src
-	START_PROCESSING(SSmobs, src)
+	SSmobs.start_processing(src)
 
 	set_armor_datum()
+	AddElement(/datum/element/gesture)
 
 /mob/living/Destroy()
 	for(var/i in embedded_objects)
@@ -94,7 +95,7 @@
 	GLOB.alive_living_list -= src
 	GLOB.mob_living_list -= src
 	GLOB.offered_mob_list -= src
-	STOP_PROCESSING(SSmobs, src)
+	SSmobs.stop_processing(src)
 	job = null
 	return ..()
 
@@ -639,7 +640,7 @@ below 100 is not dizzy
 	var/turf/our_tile = get_turf(src)
 	//Squad Leaders and above have reduced cooldown and get a bigger arrow
 	if(skills.getRating("leadership") < SKILL_LEAD_TRAINED)
-		COOLDOWN_START(src, COOLDOWN_POINT, 5 SECONDS)
+		COOLDOWN_START(src, COOLDOWN_POINT, 2.5 SECONDS)
 		var/obj/visual = new /obj/effect/overlay/temp/point(our_tile, invisibility)
 		animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y, time = 1.7, easing = EASE_OUT)
 	else
@@ -773,12 +774,18 @@ below 100 is not dizzy
 	. = ..()
 	if(isnull(.))
 		return
-	if(stat == CONSCIOUS) //From unconscious to conscious.
-		REMOVE_TRAIT(src, TRAIT_IMMOBILE, STAT_TRAIT)
-		REMOVE_TRAIT(src, TRAIT_FLOORED, STAT_TRAIT)
-	else if(. == CONSCIOUS) //From conscious to unconscious.
-		ADD_TRAIT(src, TRAIT_IMMOBILE, STAT_TRAIT)
-		ADD_TRAIT(src, TRAIT_FLOORED, STAT_TRAIT)
+	switch(.)
+		if(CONSCIOUS) //From conscious to unconscious.
+			ADD_TRAIT(src, TRAIT_IMMOBILE, STAT_TRAIT)
+			ADD_TRAIT(src, TRAIT_FLOORED, STAT_TRAIT)
+		if(DEAD)
+			on_revive()
+	switch(stat)
+		if(CONSCIOUS) //From unconscious to conscious.
+			REMOVE_TRAIT(src, TRAIT_IMMOBILE, STAT_TRAIT)
+			REMOVE_TRAIT(src, TRAIT_FLOORED, STAT_TRAIT)
+		if(DEAD)
+			on_death()
 
 
 /mob/living/setGrabState(newstate)

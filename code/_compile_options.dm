@@ -11,11 +11,8 @@
 #ifdef TESTING
 #define DATUMVAR_DEBUGGING_MODE
 
-//#define GC_FAILURE_HARD_LOOKUP	//makes paths that fail to GC call find_references before del'ing.
-									//implies FIND_REF_NO_CHECK_TICK
-
-//#define FIND_REF_NO_CHECK_TICK	//Sets world.loop_checks to false and prevents find references from sleeping
-
+//#define REFERENCE_TRACKING		//Enables extools-powered reference tracking system, letting you see what is
+									//referencing objects that refuse to hard delete
 
 //#define VISUALIZE_ACTIVE_TURFS	//Highlights atmos active turfs in green
 #endif
@@ -32,11 +29,11 @@
 #endif
 
 //Update this whenever you need to take advantage of more recent byond features
-#define MIN_COMPILER_VERSION 512
+#define MIN_COMPILER_VERSION 513
 #if DM_VERSION < MIN_COMPILER_VERSION
 //Don't forget to update this part
 #error Your version of BYOND is too out-of-date to compile this project. Go to https://secure.byond.com/download and update.
-#error You need version 512 or higher
+#error You need version 513 or higher
 #endif
 
 //Compatability -- These procs were added in 513.1493, not 513.1490
@@ -62,10 +59,6 @@
 //Additional code for the above flags.
 #ifdef TESTING
 #warn compiling in TESTING mode. testing() debug messages will be visible.
-#endif
-
-#ifdef GC_FAILURE_HARD_LOOKUP
-#define FIND_REF_NO_CHECK_TICK
 #endif
 
 #ifdef TRAVISBUILDING
