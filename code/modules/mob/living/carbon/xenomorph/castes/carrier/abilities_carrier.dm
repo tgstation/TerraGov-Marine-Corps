@@ -59,7 +59,7 @@
 
 /mob/living/carbon/xenomorph/carrier/proc/store_hugger(obj/item/clothing/mask/facehugger/F, message = TRUE, forced = FALSE)
 	if(huggers.len < xeno_caste.huggers_max)
-		if(F.stat == DEAD || !forced)
+		if(F.stat == DEAD && !forced)
 			to_chat(src, "<span class='notice'>This young one has already expired, we cannot shelter it.</span>")
 			return
 		transferItemToLoc(F, src)
