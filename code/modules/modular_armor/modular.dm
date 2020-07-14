@@ -11,10 +11,11 @@
 */
 /obj/item/clothing/suit/modular
 	name = "Jaeger XM-02 combat exoskeleton"
-	desc = "Designed to mount a variety of modular armor components and support systems. It comes installed with light-plating and a shoulder lamp. Mount armor pieces to it by clicking on the frame with the components"
+	desc = "Designed to mount a variety of modular armor components and support systems. It comes installed with light-plating and a shoulder lamp. Mount armor pieces to it by clicking on the frame with the components. Use a crowbar to remove armor pieces, use a screwdriver to remove armor attachments."
 	icon = 'icons/mob/modular/modular_armor.dmi'
 	icon_state = "underarmor_icon"
 	item_state = "underarmor"
+	flags_atom = CONDUCT
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	/// What is allowed to be equipped in suit storage
 	allowed = list(
@@ -22,7 +23,8 @@
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/large_holster/machete,
 		/obj/item/weapon/claymore,
-		/obj/item/storage/belt/gun
+		/obj/item/storage/belt/gun,
+		/obj/item/storage/belt/knifepouch
 	)
 	flags_equip_slot = ITEM_SLOT_OCLOTHING
 	w_class = WEIGHT_CLASS_BULKY
@@ -172,6 +174,9 @@
 	if(.)
 		return
 
+	if(user.action_busy)
+		return FALSE
+
 	if(!LAZYLEN(installed_modules))
 		to_chat(user, "<span class='notice'>There is nothing to remove</span>")
 		return TRUE
@@ -200,6 +205,9 @@
 	. = ..()
 	if(.)
 		return
+
+	if(user.action_busy)
+		return FALSE
 
 	if(ismob(loc) && (user.r_hand != src && user.l_hand != src))
 		to_chat(user, "<span class='warning'>You need to remove the armor first.</span>")
@@ -236,6 +244,9 @@
 	. = ..()
 	if(.)
 		return
+
+	if(user.action_busy)
+		return FALSE
 
 	if(!installed_storage)
 		to_chat(user, "<span class='notice'>There is nothing to remove</span>")
@@ -372,9 +383,9 @@
 	if(.)
 		return
 	if(!isturf(user.loc))
-		to_chat(user, "<span class='warning'>You cannot turn the light on while in [user.loc].</span>")
+		to_chat(user, "<span class='warning'>You cannot turn the module on while in [user.loc].</span>")
 		return
-	if(cooldowns[COOLDOWN_ARMOR_ACTION] || !ishuman(user))
+	if(COOLDOWN_CHECK(user, COOLDOWN_ARMOR_ACTION) || !ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
 	if(H.head != src)
@@ -388,6 +399,10 @@
 	. = ..()
 	if(.)
 		return
+
+	if(user.action_busy)
+		return FALSE
+
 	if(!installed_module)
 		to_chat(user, "<span class='notice'>There is nothing to remove</span>")
 		return TRUE
@@ -425,6 +440,9 @@
 	if(installed_module)
 		if(!silent)
 			to_chat(user,"<span class='warning'>There is already an installed module.</span>")
+		return FALSE
+
+	if(user.action_busy)
 		return FALSE
 
 	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))

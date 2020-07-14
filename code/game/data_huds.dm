@@ -244,10 +244,11 @@
 					status_hud.icon_state = "huddead"
 					return TRUE
 			var/stage = 1
-			if((world.time - timeofdeath) > (CONFIG_GET(number/revive_grace_period) * 0.4) && (world.time - timeofdeath) < (CONFIG_GET(number/revive_grace_period) * 0.8))
-				stage = 2
-			else if((world.time - timeofdeath) > (CONFIG_GET(number/revive_grace_period) * 0.8))
+			var/death_decay_time = world.time - timeofdeath - revive_grace_time
+			if(death_decay_time > (CONFIG_GET(number/revive_grace_period) * 0.8))
 				stage = 3
+			else if(death_decay_time > (CONFIG_GET(number/revive_grace_period) * 0.4))
+				stage = 2
 			status_hud.icon_state = "huddeaddefib[stage]"
 			return TRUE
 		if(UNCONSCIOUS)

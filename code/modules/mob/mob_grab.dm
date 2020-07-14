@@ -40,9 +40,6 @@
 		return
 
 	if(!ishuman(user)) //only humans can reinforce a grab.
-		if (isxeno(user))
-			var/mob/living/carbon/xenomorph/X = user
-			X.pull_power(grabbed_thing)
 		return
 	var/mob/living/victim = grabbed_thing
 	if(victim.mob_size > MOB_SIZE_HUMAN || !(victim.status_flags & CANPUSH))

@@ -2,7 +2,7 @@
 
 /obj/item/weapon/gun/flamer
 	name = "\improper M240A1 incinerator unit"
-	desc = "M240A1 incinerator unit has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
+	desc = "The M240A1 has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
 	icon_state = "m240"
 	item_state = "m240"
 	flags_equip_slot = ITEM_SLOT_BACK
@@ -173,7 +173,7 @@
 			return
 
 		if("blue flame") //Probably can end up as a spec fuel or DS flamer fuel. Also this was the original fueltype, the madman i am.
-			burnlevel = 45
+			burnlevel = 36
 			burntime = 40
 			max_range = 7
 			fire_color = "blue"
@@ -258,13 +258,14 @@
 			var/mob/living/carbon/xenomorph/X = M
 			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
-			fire_mod = CLAMP(X.xeno_caste.fire_resist + X.fire_resist_modifier, 0, 1)
+			fire_mod = clamp(X.xeno_caste.fire_resist + X.fire_resist_modifier, 0, 1)
 		else if(ishuman(M))
 			var/mob/living/carbon/human/H = M //fixed :s
 
 			if(user)
 				if(!user.mind?.bypass_ff && !H.mind?.bypass_ff && user.faction == H.faction)
 					log_combat(user, H, "flamed", src)
+					user.ff_check(30, H) // avg between 20/40 dmg
 					log_ffattack("[key_name(user)] flamed [key_name(H)] with \a [name] in [AREACOORD(T)].")
 					msg_admin_ff("[ADMIN_TPMONTY(user)] flamed [ADMIN_TPMONTY(H)] with \a [name] in [ADMIN_VERBOSEJMP(T)].")
 				else
@@ -361,18 +362,19 @@
 		return current_mag.current_rounds
 
 
-/obj/item/weapon/gun/flamer/M240T
-	name = "\improper M240-T incinerator unit"
-	desc = "An improved version of the M240A1 incinerator unit, the M240-T model is capable of dispersing a larger variety of fuel types. Contains an underbarrel fire extinguisher!"
+/obj/item/weapon/gun/flamer/marinestandard
+	name = "\improper TL-84 flamethrower"
+	desc = "The TL-84 flamethrower is the current standard issue flamethrower of the TGMC, and is used for area control and urban combat. Uses large flamethrower cans to fuel itself."
 	current_mag = /obj/item/ammo_magazine/flamer_tank/large
-	icon_state = "m240t"
-	item_state = "m240t"
-	gun_skill_category = GUN_SKILL_SPEC
+	icon_state = "tl84"
+	item_state = "tl84"
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	attachable_offset = list("rail_x" = 10, "rail_y" = 23, "stock_x" = 16, "stock_y" = 13)
+	starting_attachment_types = list(/obj/item/attachable/stock/t84stock)
 	var/max_water = 200
 	var/last_use
 
-/obj/item/weapon/gun/flamer/M240T/reload(mob/user, obj/item/ammo_magazine/magazine)
+/obj/item/weapon/gun/flamer/marinestandard/reload(mob/user, obj/item/ammo_magazine/magazine)
 	if(!magazine || !istype(magazine))
 		to_chat(user, "<span class='warning'>That's not a magazine!</span>")
 		return
@@ -409,18 +411,18 @@
 	return TRUE
 
 
-/obj/item/weapon/gun/flamer/M240T/able_to_fire(mob/user)
+/obj/item/weapon/gun/flamer/marinestandard/able_to_fire(mob/user)
 	. = ..()
 	if(.)
 		if(!current_mag || !current_mag.current_rounds)
 			return
 
-/obj/item/weapon/gun/flamer/M240T/examine(mob/user)
+/obj/item/weapon/gun/flamer/marinestandard/examine(mob/user)
 	. = ..()
-	to_chat(user, "<span class='notice'>Its hydro cannon contains [M240T_WATER_AMOUNT]/[max_water] units of water!</span>")
+	to_chat(user, "<span class='notice'>Its hydro cannon contains [MARINESTANDARD_WATER_AMOUNT]/[max_water] units of water!</span>")
 
 
-/obj/item/weapon/gun/flamer/M240T/Initialize()
+/obj/item/weapon/gun/flamer/marinestandard/Initialize()
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(max_water)
 	reagents = R
@@ -432,7 +434,7 @@
 	G.Attach(src)
 	G.icon_state = initial(G.icon_state)
 
-/obj/item/weapon/gun/flamer/M240T/Fire(atom/target, mob/living/user, params, reflex)
+/obj/item/weapon/gun/flamer/marinestandard/Fire(atom/target, mob/living/user, params, reflex)
 	if(active_attachable && istype(active_attachable, /obj/item/attachable/hydro_cannon) && (world.time > last_use + 10))
 		extinguish(target,user) //Fire it.
 		last_fired = world.time
@@ -442,7 +444,7 @@
 		return
 	return ..()
 
-/obj/item/weapon/gun/flamer/M240T/afterattack(atom/target, mob/user)
+/obj/item/weapon/gun/flamer/marinestandard/afterattack(atom/target, mob/user)
 	. = ..()
 	if(istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(user,target) <= 1)
 		var/obj/o = target
@@ -510,8 +512,7 @@
 // override this proc to give different walking-over-fire effects
 /mob/living/proc/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
 	adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
-	if (prob(firelevel + 2*fire_stacks)) //the more soaked in fire you are, the likelier to be ignited
-		IgniteMob()
+	IgniteMob()
 	var/armor_block = run_armor_check(null, "fire")
 	if(apply_damage(round(burnlevel*0.5)* fire_mod, BURN, null, armor_block))
 		UPDATEHEALTH(src)
@@ -593,9 +594,8 @@
 		adjustFireLoss(rand(0, burnlevel * 0.25)) //Does small burn damage to a person wearing one of the suits.
 		return
 	adjust_fire_stacks(burnlevel) //If i stand in the fire i deserve all of this. Also Napalm stacks quickly.
-	if(prob(firelevel))
-		IgniteMob()
-	//I.adjustFireLoss(rand(10 ,burnlevel)) //Including the fire should be way stronger.
+	IgniteMob()
+	adjustFireLoss(rand(10 , burnlevel)) //Including the fire should be way stronger.
 	to_chat(src, "<span class='warning'>You are burned!</span>")
 
 

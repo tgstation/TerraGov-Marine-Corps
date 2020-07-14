@@ -133,7 +133,7 @@
 /obj/effect/alien/resin/trap/flamer_fire_act()
 	if(hugger)
 		hugger.forceMove(loc)
-		hugger.Die()
+		hugger.kill_hugger()
 		hugger = null
 		icon_state = "trap0"
 	..()
@@ -141,7 +141,7 @@
 /obj/effect/alien/resin/trap/fire_act()
 	if(hugger)
 		hugger.forceMove(loc)
-		hugger.Die()
+		hugger.kill_hugger()
 		hugger = null
 		icon_state = "trap0"
 	..()
@@ -177,7 +177,7 @@
 			else
 				icon_state = "trap0"
 				M.put_in_active_hand(hugger)
-				hugger.GoActive(TRUE)
+				hugger.go_active(TRUE)
 				hugger = null
 				to_chat(M, "<span class='xenonotice'>We remove the facehugger from [src].</span>")
 		return
@@ -197,7 +197,7 @@
 			return
 
 		user.transferItemToLoc(FH, src)
-		FH.GoIdle(TRUE)
+		FH.go_idle(TRUE)
 		hugger = FH
 		icon_state = "trap1"
 		to_chat(user, "<span class='xenonotice'>You place a facehugger in [src].</span>")
@@ -290,7 +290,7 @@
 	isSwitchingStates = TRUE
 	playsound(loc, "alien_resin_move", 25)
 	flick("[mineralType]opening",src)
-	sleep(10)
+	sleep(0.7 SECONDS)
 	density = FALSE
 	opacity = FALSE
 	state = 1
@@ -392,7 +392,7 @@
 		hugger = new hugger_type(src)
 		hugger.hivenumber = hivenumber
 		if(!hugger.stasis)
-			hugger.GoIdle(TRUE)
+			hugger.go_idle(TRUE)
 	addtimer(CALLBACK(src, .proc/Grow), rand(EGG_MIN_GROWTH_TIME, EGG_MAX_GROWTH_TIME))
 
 /obj/effect/alien/egg/Destroy()
@@ -465,7 +465,7 @@
 	if(status != EGG_DESTROYED && hugger)
 		status = EGG_BURST
 		hugger.forceMove(loc)
-		hugger.fast_activate(TRUE)
+		hugger.go_active(TRUE)
 		hugger = null
 
 /obj/effect/alien/egg/proc/update_status(new_stat)
@@ -515,7 +515,7 @@
 
 		visible_message("<span class='xenowarning'>[user] slides [F] back into [src].</span>","<span class='xenonotice'>You place the child back in to [src].</span>")
 		user.transferItemToLoc(F, src)
-		F.GoIdle(TRUE)
+		F.go_idle(TRUE)
 		hugger = F
 		update_status(EGG_GROWN)
 		deploy_egg_triggers()
@@ -693,11 +693,11 @@ TUNNEL
 		return
 
 	var/distance = get_dist( get_turf(src), get_turf(other) )
-	var/tunnel_time = CLAMP(distance, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_SMALL_MAX_TRAVEL_TIME)
+	var/tunnel_time = clamp(distance, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_SMALL_MAX_TRAVEL_TIME)
 	var/area/A = get_area(other)
 
 	if(M.mob_size == MOB_SIZE_BIG) //Big xenos take longer
-		tunnel_time = CLAMP(distance * 1.5, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_LARGE_MAX_TRAVEL_TIME)
+		tunnel_time = clamp(distance * 1.5, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_LARGE_MAX_TRAVEL_TIME)
 		M.visible_message("<span class='xenonotice'>[M] begins heaving their huge bulk down into \the [src].</span>", \
 		"<span class='xenonotice'>We begin heaving our monstrous bulk into \the [src] to <b>[A.name] (X: [A.x], Y: [A.y])</b>.</span>")
 	else
@@ -799,7 +799,7 @@ TUNNEL
 		ccharging = FALSE
 		update_icon()
 		to_chat(M,"<span class='xenonotice'>You fill up by one [src].</span>")
-	else 
+	else
 		to_chat(M, "<span class='xenowarning'>We begin removing [src]...</span>")
 		if(do_after(M, 5 SECONDS, FALSE, src, BUSY_ICON_BUILD))
 			deconstruct(FALSE)
@@ -820,12 +820,12 @@ TUNNEL
 		return
 	if(isxeno(C))
 		if(!(C.on_fire))
-			return 
+			return
 		C.ExtinguishMob()
 		charges--
 		update_icon()
 		return
-	else 
+	else
 		if(!charges)
 			return
 		C.adjustToxLoss(charges * 15)

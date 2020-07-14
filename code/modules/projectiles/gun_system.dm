@@ -684,6 +684,7 @@ and you're good to go.
 			for(var/i = 1 to projectile_to_fire.ammo.bonus_projectiles_amount)
 				BP = new /obj/projectile(M.loc)
 				BP.generate_bullet(GLOB.ammo_list[projectile_to_fire.ammo.bonus_projectiles_type])
+				BP.damage *= damage_mult
 				BP.setDir(get_dir(user, M))
 				BP.distance_travelled = get_dist(user, M)
 				BP.ammo.on_hit_mob(M, BP)
@@ -808,7 +809,7 @@ and you're good to go.
 				if(GUN_SKILL_HEAVY_WEAPONS)
 					if(fire_delay > 1 SECONDS) //long delay to fire
 						added_delay = max(fire_delay - 3 * user.skills.getRating(gun_skill_category), 6)
-				if(GUN_SKILL_SMARTGUN, GUN_SKILL_SPEC)
+				if(GUN_SKILL_SMARTGUN)
 					if(user.skills.getRating(gun_skill_category) < 0)
 						added_delay -= 2 * user.skills.getRating(gun_skill_category)
 
@@ -816,7 +817,7 @@ and you're good to go.
 		extra_delay = 0 //Since we are ready to fire again, zero it up.
 		return FALSE
 
-	if(world.time % 3)
+	if(world.time % 3 && user.client && !user.client.prefs.mute_self_combat_messages)
 		to_chat(user, "<span class='warning'>[src] is not ready to fire again!</span>")
 	return TRUE
 
@@ -876,7 +877,7 @@ and you're good to go.
 			gun_scatter += 10*rand(3,5)
 
 	if(user)
-	// Apply any skill-based bonuses to accuracy
+		// Apply any skill-based bonuses to accuracy
 		var/skill_accuracy = 0
 		if(!user.skills.getRating("firearms")) //no training in any firearms
 			skill_accuracy = -1
@@ -894,6 +895,20 @@ and you're good to go.
 				projectile_to_fire.def_zone = user.zone_selected
 				if(carbon_user.stagger)
 					gun_scatter += 30
+
+			// Status effect changes
+			if(living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_ACCURACY_BUFF))
+				var/datum/status_effect/stacking/gun_skill/buff = living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_ACCURACY_BUFF)
+				gun_accuracy_mod += buff.stacks
+			if(living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_ACCURACY_DEBUFF))
+				var/datum/status_effect/stacking/gun_skill/debuff = living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_ACCURACY_DEBUFF)
+				gun_accuracy_mod -= debuff.stacks
+			if(living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_BUFF))
+				var/datum/status_effect/stacking/gun_skill/buff = living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_BUFF)
+				gun_scatter -= buff.stacks
+			if(living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF))
+				var/datum/status_effect/stacking/gun_skill/debuff = living_user.has_status_effect(STATUS_EFFECT_GUN_SKILL_SCATTER_DEBUFF)
+				gun_scatter += debuff.stacks
 
 	projectile_to_fire.accuracy = round((projectile_to_fire.accuracy * gun_accuracy_mult) + gun_accuracy_mod) // Apply gun accuracy multiplier to projectile accuracy
 	projectile_to_fire.scatter += gun_scatter					//Add gun scatter value to projectile's scatter value

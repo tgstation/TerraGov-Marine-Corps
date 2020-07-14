@@ -11,7 +11,7 @@
 /turf/open/space/basic,
 /area/shuttle/escape_pod)
 "d" = (
-/obj/machinery/cryopod,
+/obj/machinery/cryopod/evacuation,
 /turf/open/floor/plating/mainship,
 /area/shuttle/escape_pod)
 "e" = (
@@ -26,7 +26,7 @@
 	},
 /area/shuttle/escape_pod)
 "g" = (
-/obj/machinery/cryopod,
+/obj/machinery/cryopod/evacuation,
 /turf/open/shuttle/escapepod/zero,
 /area/shuttle/escape_pod)
 "h" = (
@@ -60,7 +60,7 @@
 /turf/open/shuttle/escapepod/six,
 /area/shuttle/escape_pod)
 "o" = (
-/obj/machinery/cryopod,
+/obj/machinery/cryopod/evacuation,
 /turf/open/shuttle/escapepod{
 	icon_state = "floor10"
 	},

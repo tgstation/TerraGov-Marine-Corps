@@ -23,9 +23,12 @@ All ShuttleMove procs go here
 //	var/shuttle_dir = shuttle.dir
 	for(var/i in contents)
 		var/atom/movable/thing = i
+		SEND_SIGNAL(thing, COMSIG_MOVABLE_SHUTTLE_CRUSH, shuttle)
 		if(ismob(thing))
 			if(isliving(thing))
 				var/mob/living/M = thing
+				if(M.status_flags & INCORPOREAL)
+					continue // Ghost things don't splat
 				if(M.buckled)
 					M.buckled.unbuckle_mob(M, TRUE)
 				if(M.pulledby)

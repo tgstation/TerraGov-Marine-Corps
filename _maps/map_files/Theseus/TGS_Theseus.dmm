@@ -1068,7 +1068,7 @@
 /area/mainship/shipboard/brig)
 "adt" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/card,
+/obj/machinery/computer/marine_card,
 /turf/open/floor/carpet,
 /area/mainship/living/commandbunks)
 "adu" = (
@@ -1603,7 +1603,7 @@
 /area/mainship/hull/upper_hull)
 "aeZ" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/card,
+/obj/machinery/computer/marine_card,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks)
 "afa" = (
@@ -7216,7 +7216,7 @@
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "auW" = (
-/obj/machinery/computer/card,
+/obj/machinery/computer/marine_card,
 /obj/structure/table/mainship,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
@@ -24584,10 +24584,9 @@
 /area/mainship/engineering/lower_engine_monitoring)
 "byD" = (
 /obj/structure/rack,
-/obj/structure/ob_ammo/ob_fuel,
-/obj/structure/ob_ammo/ob_fuel,
-/obj/structure/ob_ammo/ob_fuel,
-/obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/warhead/plasmaloss,
+/obj/structure/ob_ammo/warhead/plasmaloss,
+/obj/structure/ob_ammo/warhead/plasmaloss,
 /turf/open/floor/mainship/red{
 	dir = 9
 	},
@@ -25997,6 +25996,7 @@
 /obj/structure/ob_ammo/ob_fuel,
 /obj/structure/ob_ammo/ob_fuel,
 /obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
 /turf/open/floor/mainship/red{
 	dir = 10
 	},
@@ -26381,7 +26381,7 @@
 	},
 /area/mainship/hull/lower_hull)
 "bGd" = (
-/obj/machinery/computer/card,
+/obj/machinery/computer/marine_card,
 /obj/structure/table/mainship,
 /turf/open/floor/mainship{
 	dir = 1;
@@ -29812,6 +29812,7 @@
 /obj/machinery/status_display{
 	pixel_y = 30
 	},
+/obj/item/toy/deck/kotahi,
 /turf/open/floor/mainship,
 /area/mainship/living/cafeteria_port)
 "bSY" = (
@@ -36840,6 +36841,7 @@
 /obj/structure/ob_ammo/ob_fuel,
 /obj/structure/ob_ammo/ob_fuel,
 /obj/structure/ob_ammo/ob_fuel,
+/obj/structure/ob_ammo/ob_fuel,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "nNW" = (
@@ -38478,6 +38480,11 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/bridgebunks)
+"xnY" = (
+/obj/structure/table/mainship,
+/obj/item/toy/deck/kotahi,
+/turf/open/floor/mainship,
+/area/mainship/living/cafeteria_starboard)
 "xrC" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -86342,7 +86349,7 @@ aUo
 aYS
 aWV
 bbp
-bbn
+xnY
 bdB
 bbv
 bbv

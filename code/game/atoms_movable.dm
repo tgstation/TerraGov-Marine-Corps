@@ -79,7 +79,8 @@
 
 	if(!direct)
 		direct = get_dir(src, newloc)
-	setDir(direct)
+	if(!(flags_atom & DIRLOCK))
+		setDir(direct)
 
 	if(!loc.Exit(src, newloc))
 		return
@@ -180,7 +181,7 @@
 						moving_diagonally = SECOND_DIAG_STEP
 						. = step(src, SOUTH)
 			if(moving_diagonally == SECOND_DIAG_STEP)
-				if(!.)
+				if(!. && !(flags_atom & DIRLOCK))
 					setDir(first_step_dir)
 			moving_diagonally = 0
 			return
@@ -209,7 +210,8 @@
 
 	last_move = direct
 	last_move_time = world.time
-	setDir(direct)
+	if(!(flags_atom & DIRLOCK))
+		setDir(direct)
 	if(. && LAZYLEN(buckled_mobs) && !handle_buckled_mob_movement(loc, direct)) //movement failed due to buckled mob(s)
 		return FALSE
 
@@ -258,6 +260,8 @@
 
 /atom/movable/proc/Moved(atom/oldloc, direction, Forced = FALSE)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, oldloc, direction, Forced)
+	if(pulledby)
+		SEND_SIGNAL(src, COMSIG_MOVABLE_PULL_MOVED, oldloc, direction, Forced)
 	for(var/thing in light_sources) // Cycle through the light sources on this atom and tell them to update.
 		var/datum/light_source/L = thing
 		L.source_atom.update_light()
@@ -360,7 +364,7 @@
 			continue
 		if(isliving(A))
 			var/mob/living/L = A
-			if(L.lying_angle)
+			if(!L.density || L.throwpass)
 				continue
 			throw_impact(A, speed)
 		if(isobj(A) && A.density && !(A.flags_atom & ON_BORDER) && (!A.throwpass || iscarbon(src)))

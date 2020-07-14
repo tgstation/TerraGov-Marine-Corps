@@ -171,7 +171,8 @@ Contains most of the procs that are called when a mob is attacked by something
 	var/armor_verb
 	switch(armor)
 		if(100 to INFINITY)
-			visible_message("<span class='danger'>[src] has been [attack_verb] in the [hit_area] with [I.name] by [user], but the attack is deflected by [p_their()] armor!</span>", null, null, COMBAT_MESSAGE_RANGE)
+			visible_message("<span class='danger'>[src] has been [attack_verb] in the [hit_area] with [I.name] by [user], but the attack is deflected by [p_their()] armor!</span>",\
+			null, null, COMBAT_MESSAGE_RANGE, visible_message_flags = COMBAT_MESSAGE)
 			user.do_attack_animation(src, used_item = I)
 			log_combat(user, src, "attacked", I, "(FAILED: armor blocked) (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)])")
 			return TRUE
@@ -183,7 +184,8 @@ Contains most of the procs that are called when a mob is attacked by something
 		if(75 to 100)
 			armor_verb = " [p_their(TRUE)] armor has deflected most of the blow!"
 
-	visible_message("<span class='danger'>[src] has been [attack_verb] in the [hit_area] with [I.name] by [user]![armor_verb]</span>", null, null, 5)
+	visible_message("<span class='danger'>[src] has been [attack_verb] in the [hit_area] with [I.name] by [user]![armor_verb]</span>",\
+	null, null, 5, visible_message_flags = COMBAT_MESSAGE)
 
 	var/weapon_sharp = is_sharp(I)
 	var/weapon_edge = has_edge(I)
@@ -254,6 +256,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	log_combat(user, src, "attacked", I, "(INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)]) [hit_report.Join(" ")]")
 	if(damage && !user.mind?.bypass_ff && !mind?.bypass_ff && user.faction == faction)
 		var/turf/T = get_turf(src)
+		user.ff_check(damage, src)
 		log_ffattack("[key_name(user)] attacked [key_name(src)] with \the [I] in [AREACOORD(T)] [hit_report.Join(" ")].")
 		msg_admin_ff("[ADMIN_TPMONTY(user)] attacked [ADMIN_TPMONTY(src)] with \the [I] in [ADMIN_VERBOSEJMP(T)] [hit_report.Join(" ")].")
 
@@ -264,7 +267,7 @@ Contains most of the procs that are called when a mob is attacked by something
 /mob/living/carbon/human/hitby(atom/movable/AM, speed = 5)
 	if(!isitem(AM))
 		return
-	
+
 	var/obj/item/thrown_item = AM
 
 	var/mob/living/living_thrower
@@ -358,6 +361,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		log_combat(living_thrower, src, "thrown at", thrown_item, "[hit_report.Join(" ")]")
 		if(throw_damage && !living_thrower.mind?.bypass_ff && !mind?.bypass_ff && living_thrower.faction == faction)
 			var/turf/T = get_turf(src)
+			living_thrower.ff_check(throw_damage, src)
 			log_ffattack("[key_name(living_thrower)] hit [key_name(src)] with \the [thrown_item] (thrown) in [AREACOORD(T)] [hit_report.Join(" ")].")
 			msg_admin_ff("[ADMIN_TPMONTY(living_thrower)] hit [ADMIN_TPMONTY(src)] with \the [thrown_item] (thrown) in [ADMIN_VERBOSEJMP(T)] [hit_report.Join(" ")].")
 
