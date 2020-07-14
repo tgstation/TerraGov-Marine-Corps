@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - bugfix: "fixed a hugger exploit"
+  - bugfix: "hugger timers will delete themselves"
