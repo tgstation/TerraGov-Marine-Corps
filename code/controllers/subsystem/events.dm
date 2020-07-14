@@ -17,6 +17,8 @@ SUBSYSTEM_DEF(events)
 	var/frequency_upper = 10 MINUTES
 
 /datum/controller/subsystem/events/Initialize(time, zlevel)
+	if(CONFIG_GET(flag/events_disallowed))
+		can_fire = 0
 	for(var/type in typesof(/datum/round_event_control))
 		var/datum/round_event_control/E = new type()
 		if(!E.typepath)
@@ -116,3 +118,14 @@ SUBSYSTEM_DEF(events)
 	var/datum/browser/popup = new(usr, "force_event", "Force Random Event", 300, 750)
 	popup.set_content(dat)
 	popup.open()
+
+/client/proc/toggle_events()
+	set name = "Toggle Events Subsystem"
+	set category = "Fun"
+
+	if(!holder ||!check_rights(R_FUN))
+		return
+
+	SSevents.can_fire = !SSevents.can_fire
+	message_admins("[usr.client] has toggled the events subsystem [SSevents.can_fire == 1 ? "on" : "off"]")
+	log_admin("[usr.client] has toggled the events subsystem [SSevents.can_fire == 1 ? "on" : "off"]")
