@@ -123,8 +123,8 @@
 	icon_state = "riot"
 	item_state = "swat"
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
-	slowdown = SLOWDOWN_ARMOR_HEAVY
-	soft_armor = list("melee" = 80, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
+	slowdown = 1.2
+	soft_armor = list("melee" = 65, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEJUMPSUIT
 	siemens_coefficient = 0.5
@@ -137,8 +137,6 @@
 	desc = "A heavily modified suit of M2 MP Armor used to supress riots from buckethead marines. Slows you down a lot."
 	icon_state = "riot"
 	item_state = "swat"
-	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
-	soft_armor = list("melee" = 70, "bullet" = 70, "laser" = 35, "energy" = 20, "bomb" = 35, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 20)
 
 /obj/item/clothing/suit/armor/swat
 	name = "swat suit"
@@ -150,7 +148,7 @@
 	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS
 	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/baton,/obj/item/restraints/handcuffs,/obj/item/tank/emergency_oxygen)
 	slowdown = 1
-	soft_armor = list("melee" = 80, "bullet" = 60, "laser" = 50, "energy" = 25, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 25, "acid" = 25)
+	soft_armor = list("melee" = 50, "bullet" = 60, "laser" = 50, "energy" = 25, "bomb" = 50, "bio" = 100, "rad" = 100, "fire" = 25, "acid" = 25)
 	flags_inventory = BLOCKSHARPOBJ|NOPRESSUREDMAGE
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	flags_cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
