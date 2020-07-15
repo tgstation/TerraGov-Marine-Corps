@@ -12,6 +12,9 @@ GLOBAL_VAR(restart_counter)
 	if(fexists(extools))
 		call(extools, "maptick_initialize")()
 	enable_debugger()
+#ifdef REFERENCE_TRACKING
+	enable_reference_tracking()
+#endif
 
 	log_world("World loaded at [time_stamp()]!")
 
