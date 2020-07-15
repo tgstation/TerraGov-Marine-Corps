@@ -118,3 +118,7 @@ LOBBY_MUSIC 10 https://youtu.be/ud6LiVJkwyA 1 180
 LOBBY_MUSIC 11 https://youtu.be/uB2CFA2RyLE 1 180
 #Space camp song!
 LOBBY_MUSIC 12 https://youtu.be/guXqg_Bnl74 1 180
+#A New Age
+LOBBY_MUSIC 13 https://youtu.be/JUNROUfqJr0 1 180
+#I know the darkness from inside
+LOBBY_MUSIC 14 https://youtu.be/Zo60Lx5KXEI 1 180

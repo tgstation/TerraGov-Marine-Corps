@@ -25,9 +25,9 @@
 
 	if(!GLOB.marine_main_ship.ob_type_fuel_requirements)
 		GLOB.marine_main_ship.ob_type_fuel_requirements = list()
-		var/list/L = list(4,5,6)
+		var/list/L = list(3,4,5,6)
 		var/amt
-		for(var/i=1 to 3)
+		for(var/i in 1 to 4)
 			amt = pick_n_take(L)
 			GLOB.marine_main_ship?.ob_type_fuel_requirements += amt
 
@@ -186,6 +186,8 @@
 			inaccurate_fuel = abs(GLOB.marine_main_ship?.ob_type_fuel_requirements[2] - tray.fuel_amt)
 		if("cluster")
 			inaccurate_fuel = abs(GLOB.marine_main_ship?.ob_type_fuel_requirements[3] - tray.fuel_amt)
+		if("plasma")
+			inaccurate_fuel = abs(GLOB.marine_main_ship?.ob_type_fuel_requirements[4] - tray.fuel_amt)
 
 	var/turf/target = locate(T.x + inaccurate_fuel * pick(-1,1),T.y + inaccurate_fuel * pick(-1,1),T.z)
 	for(var/i in hearers(WARHEAD_FALLING_SOUND_RANGE,target))
@@ -396,10 +398,21 @@
 		explosion(U, 1, 4, 6, 6, throw_range = 0, adminlog = FALSE) //rocket barrage
 		sleep(1)
 
+/obj/structure/ob_ammo/warhead/plasmaloss
+	name = "\improper Plasma draining orbital warhead"
+	warhead_kind = "plasma"
+	icon_state = "ob_warhead_4"
+	var/datum/effect_system/smoke_spread/plasmaloss/smoke
+
+/obj/structure/ob_ammo/warhead/plasmaloss/warhead_impact(turf/target, inaccuracy_amt = 0)
+	smoke = new(src)
+	smoke.set_up(25, target, 3 SECONDS)//Vape nation
+	smoke.start()
+
 /obj/structure/ob_ammo/ob_fuel
 	name = "solid fuel"
 	icon_state = "ob_fuel"
-	is_solid_fuel = 1
+	is_solid_fuel = TRUE
 
 /obj/structure/ob_ammo/ob_fuel/Initialize()
 	. = ..()
@@ -447,6 +460,7 @@
 			dat += "- HE Orbital Warhead: <b>[GLOB.marine_main_ship.ob_type_fuel_requirements[1]] Solid Fuel blocks.</b><BR>"
 			dat += "- Incendiary Orbital Warhead: <b>[GLOB.marine_main_ship.ob_type_fuel_requirements[2]] Solid Fuel blocks.</b><BR>"
 			dat += "- Cluster Orbital Warhead: <b>[GLOB.marine_main_ship?.ob_type_fuel_requirements[3]] Solid Fuel blocks.</b><BR>"
+			dat += "- Plasma drain Orbital Warhead: <b>[GLOB.marine_main_ship?.ob_type_fuel_requirements[4]] Solid Fuel blocks.</b><BR>"
 
 			dat += "<BR><BR><A href='?src=\ref[src];back=1'><font size=3>Back</font></A><BR>"
 		else

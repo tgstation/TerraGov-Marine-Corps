@@ -209,6 +209,31 @@
 	sleep(3)
 	if(loc && user) playsound(user, thud_sound, 25, 1)
 
+/obj/item/weapon/gun/revolver/verb/revolvertrick()
+	set category = "Weapons"
+	set name = "Do a revolver trick"
+	set desc = "Show off to all your friends!"
+
+
+	var/obj/item/weapon/gun/revolver/G = get_active_firearm(usr)
+
+	if(!G)
+		return
+
+	if(!istype(G))
+		return
+
+	src = G
+
+	if(usr.action_busy)
+		return
+
+	if(zoom)
+		to_chat(usr, "<span class='warning'>You cannot conceviably do that while looking down \the [src]'s scope!</span>")
+		return
+
+	revolver_trick(usr)
+
 /obj/item/weapon/gun/revolver/proc/revolver_throw_catch(mob/living/carbon/human/user)
 	set waitfor = 0
 	user.visible_message("[user] deftly flicks [src] and tosses it into the air!","<span class='notice'> You flick and toss [src] into the air!</span>")
@@ -220,7 +245,7 @@
 
 	invisibility = 100
 	for(var/mob/M in viewers(user))
-		to_chat(M, trick)
+		SEND_IMAGE(M, trick)
 	sleep(5)
 	trick.loc = null
 	if(loc && user)
@@ -249,7 +274,7 @@
 
 	var/obj/item/weapon/gun/revolver/double = user.get_inactive_held_item()
 	if(prob(chance))
-		switch(rand(1,8))
+		switch(rand(1,7))
 			if(1)
 				revolver_basic_spin(user, -1)
 			if(2)
@@ -259,15 +284,12 @@
 			if(4)
 				revolver_basic_spin(user, 1)
 			if(5)
-				//???????????
-			if(6)
 				var/arguments[] = istype(double) ? list(user, 1, double) : list(user, -1)
 				revolver_basic_spin(arglist(arguments))
-
-			if(7)
+			if(6)
 				var/arguments[] = istype(double) ? list(user, -1, double) : list(user, 1)
 				revolver_basic_spin(arglist(arguments))
-			if(8)
+			if(7)
 				if(istype(double))
 					spawn(0)
 						double.revolver_throw_catch(user)

@@ -98,6 +98,9 @@
 
 
 /obj/machinery/alarm/Destroy()
+	if(radio_connection)
+		SSradio.remove_object(src, frequency)
+		radio_connection = null
 	QDEL_NULL(wires)
 	return ..()
 

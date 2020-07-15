@@ -90,6 +90,9 @@ also doesn't really matter. You can only reload them with handfuls.
 
 /obj/item/ammo_magazine/internal/shotgun/pump
 
+/obj/item/ammo_magazine/internal/shotgun/pump/buckshot
+	default_ammo = /datum/ammo/bullet/shotgun/buckshot
+
 /obj/item/ammo_magazine/internal/shotgun/pump/CMB
 	max_rounds = 8
 

@@ -306,7 +306,6 @@
 /obj/machinery/marine_turret/Destroy() //Clear these for safety's sake.
 	QDEL_NULL(radio)
 	operator?.unset_interaction()
-	operator = null
 	QDEL_NULL(camera)
 	QDEL_NULL(cell)
 	target = null

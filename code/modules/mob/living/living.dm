@@ -78,7 +78,7 @@
 	GLOB.mob_living_list += src
 	if(stat != DEAD)
 		GLOB.alive_living_list += src
-	START_PROCESSING(SSmobs, src)
+	SSmobs.start_processing(src)
 
 	set_armor_datum()
 	AddElement(/datum/element/gesture)
@@ -95,7 +95,7 @@
 	GLOB.alive_living_list -= src
 	GLOB.mob_living_list -= src
 	GLOB.offered_mob_list -= src
-	STOP_PROCESSING(SSmobs, src)
+	SSmobs.stop_processing(src)
 	job = null
 	return ..()
 
@@ -774,12 +774,18 @@ below 100 is not dizzy
 	. = ..()
 	if(isnull(.))
 		return
-	if(stat == CONSCIOUS) //From unconscious to conscious.
-		REMOVE_TRAIT(src, TRAIT_IMMOBILE, STAT_TRAIT)
-		REMOVE_TRAIT(src, TRAIT_FLOORED, STAT_TRAIT)
-	else if(. == CONSCIOUS) //From conscious to unconscious.
-		ADD_TRAIT(src, TRAIT_IMMOBILE, STAT_TRAIT)
-		ADD_TRAIT(src, TRAIT_FLOORED, STAT_TRAIT)
+	switch(.)
+		if(CONSCIOUS) //From conscious to unconscious.
+			ADD_TRAIT(src, TRAIT_IMMOBILE, STAT_TRAIT)
+			ADD_TRAIT(src, TRAIT_FLOORED, STAT_TRAIT)
+		if(DEAD)
+			on_revive()
+	switch(stat)
+		if(CONSCIOUS) //From unconscious to conscious.
+			REMOVE_TRAIT(src, TRAIT_IMMOBILE, STAT_TRAIT)
+			REMOVE_TRAIT(src, TRAIT_FLOORED, STAT_TRAIT)
+		if(DEAD)
+			on_death()
 
 
 /mob/living/setGrabState(newstate)

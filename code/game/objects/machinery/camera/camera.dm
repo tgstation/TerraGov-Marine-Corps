@@ -316,6 +316,7 @@
 /obj/machinery/camera/headset
 	name = "headset camera"
 	network = list("marine")
+	resistance_flags = RESIST_ALL //If the containing headset is not destroyed, neither should this be.
 
 
 //used by the laser camera dropship equipment

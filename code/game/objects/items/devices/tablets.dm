@@ -13,7 +13,7 @@
 
 
 	/// How far can these tablets see around the cameras
-	var/max_view_dist = 2
+	var/max_view_dist = 3
 
 	var/obj/machinery/camera/active_camera
 	/// Used to keep a cache of the last location visible on the camera
@@ -223,14 +223,17 @@
 	name = "captain's hud tablet"
 	network = list("marinesl", "marine", "marinemainship")
 	req_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_LEADER, ACCESS_MARINE_CAPTAIN)
+	max_view_dist = WORLD_VIEW_NUM
 
 /obj/item/hud_tablet/fieldcommand
 	name = "field commander's hud tablet"
 	network = list("marinesl", "marine")
 	req_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_LEADER)
+	max_view_dist = WORLD_VIEW_NUM
 
 /obj/item/hud_tablet/pilot
 	name = "pilot officers's hud tablet"
 	network = list("dropship1", "dropship2")
 	req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_DROPSHIP)
+	max_view_dist = WORLD_VIEW_NUM
 
