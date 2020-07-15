@@ -1,0 +1,5 @@
+author: "Sibg"
+delete-after: True
+changes: 
+  - rscadd: "The Firing Range & Extra Pacman"
+  - rscdel: "Old Military Police Stuffs"
