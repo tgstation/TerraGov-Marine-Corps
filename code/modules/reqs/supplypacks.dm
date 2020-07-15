@@ -251,6 +251,13 @@ WEAPONS
 	)
 	cost = 10
 
+/datum/supply_packs/weapons/marine_shield
+	name = "TL-172 Defensive Shield"
+	contains = list(
+		/obj/item/weapon/shield/riot/marine
+	)
+	cost = 20
+
 /datum/supply_packs/weapons/flamethrower
 	name = "Surplus flamethrower"
 	contains = list(
