@@ -1,7 +1,0 @@
-author: "XSlayer300"
-delete-after: True
-changes: 
-  - rscadd: "Added Pre-Equipped Squad roles for admins."
-  - admin: "Pre-Equipped Squad roles are indicated by \"(Equipped)\" after their name."
-  - rscadd: "Added new variants for belts, pouches and weapons for use of Pre-Equipped Squad roles."
-  - bugfix: "Squashed a few unseen bugs of code."
