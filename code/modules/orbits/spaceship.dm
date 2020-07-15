@@ -15,7 +15,7 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 
 /obj/machinery/computer/navigation
 	name = "\improper Helms computer"
-	icon_state = "syndishuttle"
+	icon_state = "shuttlecomputer"
 	density = TRUE
 	anchored = TRUE
 	idle_power_usage = 10
@@ -205,11 +205,11 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 	var/message = "Arriving at new orbital level.<br><br>Prepare for engine ignition and stabilization."
 	addtimer(CALLBACK(src, .proc/priority_announce, message, "Orbit Change"), 290 SECONDS)
 	addtimer(CALLBACK(src, .proc/orbit_gets_changed, current_orbit, direction), 5 MINUTES)
-	
+
 /obj/machinery/computer/navigation/proc/orbit_gets_changed(current_orbit, direction)
 	if(direction == "UP")
 		current_orbit++
-	
+
 	if(direction == "DOWN")
 		current_orbit--
 
