@@ -11,7 +11,7 @@
 	wound_type = "hunter" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 30
+	melee_damage = 23
 	attack_delay = 7
 
 	// *** Tackle *** //
@@ -62,10 +62,6 @@
 	caste_desc = "A fast, powerful front line combatant. It looks a little more dangerous."
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Melee Attacks *** //
-	melee_damage = 33
-	attack_delay = 6.75
-
 	// *** Tackle *** //
 	tackle_damage = 35
 
@@ -94,8 +90,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 37
-	attack_delay = 6.6
+	melee_damage = 26
 
 	// *** Tackle *** //
 	tackle_damage = 40
@@ -126,8 +121,7 @@
 	ancient_message = "We are the epitome of the hunter. Few can stand against us in open combat."
 
 	// *** Melee Attacks *** //
-	melee_damage = 40
-	attack_delay = 6.5
+	melee_damage = 26
 
 	// *** Tackle *** //
 	tackle_damage = 45

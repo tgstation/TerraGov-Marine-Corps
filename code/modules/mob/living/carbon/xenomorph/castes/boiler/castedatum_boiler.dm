@@ -11,7 +11,7 @@
 	wound_type = "boiler" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 24
+	melee_damage = 17
 
 	// *** Tackle *** //
 	tackle_damage = 25
@@ -71,9 +71,6 @@
 	caste_desc = "Some sort of abomination. It looks a little more dangerous."
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Melee Attacks *** //
-	melee_damage = 28
-
 	// *** Tackle *** //
 	tackle_damage = 25
 
@@ -108,7 +105,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 32
+	melee_damage = 20
 
 	// *** Tackle *** //
 	tackle_damage = 30
@@ -145,7 +142,7 @@
 	ancient_message = "We are the master of ranged artillery. Let's bring death from above."
 
 	// *** Melee Attacks *** //
-	melee_damage = 36
+	melee_damage = 20
 
 	// *** Tackle *** //
 	tackle_damage = 30
