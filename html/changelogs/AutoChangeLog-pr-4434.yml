@@ -1,0 +1,6 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - rscadd: "The PAS-11 vest, new modular armor sprites. Jaeger undersuit."
+  - rscdel: "Removed old marine armor from the vendors, deleted the old modular armor sprites at the behest of kuro."
+  - balance: "ALL armor is now homogenized, jaeger armor is now 15, has .1 slowdown. The armor totals on EVERYTHING total up to 45+5. Removed old marine armor. Added the PAS-11 vest, which is basically equivalent to a jaeger armor with baldur and magazine pouches."
