@@ -125,6 +125,9 @@
 	ancient_message = "We are a master of ranged stuns and damage. Let's go fourth and generate salt."
 	upgrade = XENO_UPGRADE_THREE
 
+	// *** Melee Attacks *** //
+	melee_damage = 20
+
 	// *** Tackle *** //
 	tackle_damage = 40
 
