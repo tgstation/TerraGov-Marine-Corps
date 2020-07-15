@@ -234,6 +234,10 @@
 /obj/effect/alien/weeds/node,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/outpost/caves/north_east)
+"bm" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/south)
 "bn" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 6
@@ -1369,6 +1373,10 @@
 "hK" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south)
+"hL" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north)
 "hM" = (
 /obj/structure/table,
 /obj/item/trash/burger,
@@ -1479,6 +1487,10 @@
 	dir = 4
 	},
 /area/outpost/yard/central)
+"ik" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/outpost/caves/north)
 "im" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/purple2,
@@ -2177,6 +2189,12 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/outpost/science)
+"lK" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 4
+	},
+/area/outpost/yard/east)
 "lN" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
@@ -3153,6 +3171,10 @@
 	dir = 6
 	},
 /area/outpost/hallway/northern)
+"rg" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/outpost/yard/central)
 "rj" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/cavetodirt,
@@ -3517,6 +3539,10 @@
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/science)
+"tg" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north_east)
 "ti" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1
@@ -4121,10 +4147,6 @@
 	dir = 10
 	},
 /area/outpost/engineering/engine)
-"wS" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/outpost/yard/central)
 "wU" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
@@ -4896,12 +4918,6 @@
 	dir = 6
 	},
 /area/outpost/yard/south_east)
-"BH" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/mars/dirttosand{
-	dir = 6
-	},
-/area/outpost/yard/west)
 "BJ" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/yard/south_east)
@@ -5733,6 +5749,10 @@
 	dir = 5
 	},
 /area/outpost/science)
+"GI" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north_west)
 "GL" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 9
@@ -5823,6 +5843,10 @@
 "Hh" = (
 /turf/open/floor/plating/ground/mars/random,
 /area/outpost/caves/north_west)
+"Hi" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/outpost/yard/south)
 "Hj" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/mineral/bigred,
@@ -6189,6 +6213,10 @@
 	dir = 8
 	},
 /area/outpost/engineering)
+"Jy" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/outpost/caves/south_east)
 "Jz" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark2,
@@ -6525,6 +6553,10 @@
 /obj/machinery/light,
 /turf/open/floor/tile/dark/red2,
 /area/outpost/brig)
+"KY" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north_west)
 "KZ" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/yard/west)
@@ -7383,6 +7415,12 @@
 	dir = 8
 	},
 /area/outpost/hallway/east)
+"PK" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/mars/cavetodirt{
+	dir = 1
+	},
+/area/outpost/caves/north)
 "PL" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
@@ -8937,6 +8975,10 @@
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/central)
+"Yg" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/outpost/yard/west)
 "Yh" = (
 /obj/effect/alien/weeds/node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -18802,7 +18844,7 @@ wY
 WU
 WU
 Cp
-Cp
+GI
 Cp
 dw
 VD
@@ -20341,7 +20383,7 @@ hX
 Ny
 hA
 hA
-Cp
+KY
 Cp
 WU
 WU
@@ -22950,7 +22992,7 @@ cc
 cc
 cc
 cc
-BH
+zQ
 SH
 SH
 SH
@@ -24754,7 +24796,7 @@ Jb
 Jb
 FH
 sY
-Jb
+Yg
 Jb
 Jb
 Jb
@@ -25490,7 +25532,7 @@ Fy
 Fy
 Fy
 OR
-Uq
+PK
 pi
 pi
 pi
@@ -28079,7 +28121,7 @@ OR
 OR
 OR
 vj
-IY
+ik
 IY
 Fy
 oJ
@@ -29135,7 +29177,7 @@ ww
 ww
 EA
 EA
-wS
+EA
 EA
 EA
 EA
@@ -29166,7 +29208,7 @@ Zc
 gS
 wM
 hK
-hK
+bm
 Zc
 Zc
 Zc
@@ -29906,7 +29948,7 @@ jG
 Gy
 Oh
 EA
-EA
+rg
 oM
 CY
 EA
@@ -29921,7 +29963,7 @@ Ke
 mN
 mN
 mN
-mN
+Hi
 mN
 wj
 qN
@@ -31426,7 +31468,7 @@ Fy
 Fy
 Fy
 Fy
-pi
+hL
 pi
 pi
 pi
@@ -34310,7 +34352,7 @@ HT
 fG
 NF
 NF
-Xf
+NF
 NF
 NF
 mJ
@@ -34550,7 +34592,7 @@ ZT
 wH
 ye
 va
-va
+lK
 YR
 QL
 QL
@@ -34569,7 +34611,7 @@ fG
 NF
 NF
 NF
-NF
+Xf
 NF
 NF
 NF
@@ -34840,7 +34882,7 @@ LU
 LU
 LU
 UT
-UT
+Jy
 UT
 UT
 Vd
@@ -36847,7 +36889,7 @@ cg
 cg
 Yx
 Yx
-Yx
+tg
 Yx
 Yx
 Yx
@@ -39681,7 +39723,7 @@ qO
 WB
 WB
 WB
-EV
+Fw
 WB
 Tm
 Yo
@@ -42014,7 +42056,7 @@ Yx
 Yx
 Yx
 TP
-Fw
+Yx
 cg
 cg
 cg
