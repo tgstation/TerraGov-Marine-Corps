@@ -17,6 +17,20 @@ export class Dropdown extends Component {
     };
   }
 
+  static getDerivedStateFromProps(nextProps, currentState) {
+    if (currentState.selected === nextProps.selected) {
+      return null;
+    }
+    return {
+      selected: nextProps.selected,
+      open: currentState.open,
+    };
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return nextProps.selected !== this.state.selected;
+  }
+
   componentWillUnmount() {
     window.removeEventListener('click', this.handleClick);
   }

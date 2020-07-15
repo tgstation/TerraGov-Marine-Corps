@@ -22,11 +22,6 @@ const DEBUG_ENABLED = false;
 export const PlayerPreferences = (props, context) => {
   const { act, data, config } = useBackend(context);
   const [tabIndex, setTabIndex] = useLocalState(context, 'selectedTabIndex', 1);
-  const [saveIndex, setSaveIndex] = useLocalState(
-    context,
-    'selectedSaveIndex',
-    data.slot
-  );
 
   let affectsSave = false;
   let CurrentTab = CharacterCustomization;
@@ -53,9 +48,9 @@ export const PlayerPreferences = (props, context) => {
 
   // I dont like this shit, but it doesn't matter in the end
   // i'd rather massage the data in js than byond.
-  const slotNames = Object
-    .values(data.save_slot_names)
-    .map(name => name.split(" ")[0]);
+  const slotNames = Object.values(data.save_slot_names).map(
+    name => name.split(' ')[0]
+  );
 
   const saveSlots = new Array(10).fill(1).map((_, idx) => (
     <Button
@@ -121,7 +116,7 @@ const CharacterCustomization = (props, context) => {
       const hex = comp.toString(16);
       return hex.length === 1 ? `0${hex}` : hex;
     };
-    return "#" + convert(red) + convert(green) + convert(blue);
+    return '#' + convert(red) + convert(green) + convert(blue);
   };
 
   return (
@@ -164,10 +159,7 @@ const CharacterCustomization = (props, context) => {
       <Section
         title="Body"
         buttons={
-          <Button
-            color="bad"
-            icon="power-off"
-            onClick={() => act('random')}>
+          <Button color="bad" icon="power-off" onClick={() => act('random')}>
             Randomize appearance
           </Button>
         }>
@@ -183,6 +175,20 @@ const CharacterCustomization = (props, context) => {
                 rightValue="female"
                 rightLabel={'Female'}
                 action={'toggle_gender'}
+              />
+              <TextFieldPreference
+                label={'Hair Color'}
+                value={rgbToHex(data.r_hair, data.g_hair, data.b_hair)}
+                noAction
+                extra={
+                  <>
+                    <ColorBox
+                      color={rgbToHex(data.r_hair, data.g_hair, data.b_hair)}
+                      mr={1}
+                    />
+                    <Button icon="edit" onClick={() => act('haircolor')} />
+                  </>
+                }
               />
               <SelectFieldPreference
                 label={'Hair style'}
@@ -208,9 +214,7 @@ const CharacterCustomization = (props, context) => {
                 label={'Eye sight'}
                 value={'good_eyesight'}
                 leftLabel={'Good'}
-                leftValue={1}
                 rightLabel={'Bad'}
-                rightValue={0}
                 action={'toggle_eyesight'}
               />
               <SelectFieldPreference
@@ -218,6 +222,24 @@ const CharacterCustomization = (props, context) => {
                 value={'f_style'}
                 action={'facialstyle'}
                 options={'facialhair'}
+              />
+              <TextFieldPreference
+                label={'Facial Hair Color'}
+                value={rgbToHex(data.r_facial, data.g_facial, data.b_facial)}
+                noAction
+                extra={
+                  <>
+                    <ColorBox
+                      color={rgbToHex(
+                        data.r_facial,
+                        data.g_facial,
+                        data.b_facial
+                      )}
+                      mr={1}
+                    />
+                    <Button icon="edit" onClick={() => act('facialcolor')} />
+                  </>
+                }
               />
               <SelectFieldPreference
                 label={'Body type'}
@@ -406,7 +428,7 @@ const ProfilePicture = (props, context) => {
   const { act, data, config } = useBackend(context);
   return (
     <ByondUi
-      style={{ width: "400px", height: '100px' }}
+      style={{ width: '400px', height: '100px' }}
       params={{
         id: 'player_pref_map',
         parent: config.window,
@@ -496,6 +518,12 @@ const ToggleFieldPreference = (props, context) => {
 
 const JobPreferences = (props, context) => {
   const { act, data, config } = useBackend(context);
+  const [shownDescription, setShownDescription] = useLocalState(
+    context,
+    'shown-desc',
+    null
+  );
+
   const xenoJobs = ['Xeno Queen', 'Xenomorph'];
   const commandRoles = [
     'Captain',
@@ -525,7 +553,11 @@ const JobPreferences = (props, context) => {
     <Section title={name}>
       <LabeledList>
         {jobs.map(job => (
-          <JobPreference key={job} job={job} />
+          <JobPreference
+            key={job}
+            job={job}
+            setShownDescription={setShownDescription}
+          />
         ))}
       </LabeledList>
     </Section>
@@ -539,6 +571,16 @@ const JobPreferences = (props, context) => {
           Reset everything!
         </Button>
       }>
+      {shownDescription && (
+        <Modal width="300px" height="200px">
+          <Box>{shownDescription}</Box>
+          <Box align="right">
+            <Button align="right" onClick={() => setShownDescription(false)}>
+              X
+            </Button>
+          </Box>
+        </Modal>
+      )}
       <Grid>
         <Grid.Column>
           <JobList name="Command Jobs" jobs={commandRoles} />
@@ -605,9 +647,25 @@ const JobPreferences = (props, context) => {
 
 const JobPreference = (props, context) => {
   const { act, data, config } = useBackend(context);
-  const { job } = props;
+  const { job, setShownDescription } = props;
   const jobData = data.jobs[job];
   const preference = data.job_preferences[job];
+
+  if (jobData.banned) {
+    return (
+      <LabeledList.Item label={job}>
+        <Box align="right">
+          <Button.Checkbox
+            inline
+            icon="ban"
+            color="bad"
+            content={'Banned from Role'}
+            onClick={() => act('bancheck', { role: job })}
+          />
+        </Box>
+      </LabeledList.Item>
+    );
+  }
 
   return (
     <LabeledList.Item label={job}>
@@ -636,7 +694,12 @@ const JobPreference = (props, context) => {
           checked={!preference}
           onClick={() => act('jobselect', { job, level: 0 })}
         />
-        <Button content="?" />
+        {jobData.description && (
+          <Button
+            content="?"
+            onClick={() => setShownDescription(jobData.description)}
+          />
+        )}
       </Box>
     </LabeledList.Item>
   );
@@ -654,27 +717,21 @@ const GameSettings = (props, context) => {
                 label="Window flashing"
                 value="windowflashing"
                 action="windowflashing"
-                leftValue={1}
                 leftLabel={'Enabled'}
-                rightValue={0}
                 rightLabel={'Disabled'}
               />
               <ToggleFieldPreference
                 label="Focus Chat"
                 value="focus_chat"
                 action="focus_chat"
-                leftValue={1}
                 leftLabel={'Enabled'}
-                rightValue={0}
                 rightLabel={'Disabled'}
               />
               <ToggleFieldPreference
                 label="Tooltips"
                 value="tooltips"
                 action="tooltips"
-                leftValue={1}
                 leftLabel={'Enabled'}
-                rightValue={0}
                 rightLabel={'Disabled'}
               />
               <TextFieldPreference label={'FPS'} value={'clientfps'} />
@@ -682,9 +739,7 @@ const GameSettings = (props, context) => {
                 label="Auto Fit viewport"
                 value="auto_fit_viewport"
                 action="auto_fit_viewport"
-                leftValue={1}
                 leftLabel={'Enabled'}
-                rightValue={0}
                 rightLabel={'Disabled'}
               />
             </LabeledList>
@@ -799,7 +854,8 @@ const KeybindSetting = (props, context) => {
   const filterSearch = kb =>
     !filter // If we don't have a filter, don't filter
       ? true // Show everything
-      : kb?.display_name
+      : kb
+        ?.display_name
         ?.toLowerCase()
         .includes(filter.toLowerCase()); // simple contains search
 
@@ -905,15 +961,14 @@ const KeybindingPreference = (props, context) => {
   const current = data.key_bindings[keybind.name];
   return (
     <LabeledList.Item label={keybind.display_name}>
-      {current
-        && current.map(key => (
-          <Button
-            key={key}
-            inline
-            onClick={() => setCapture({ name: keybind.name, key })}>
-            {key}
-          </Button>
-        ))}
+      {current && (current.map(key => (
+        <Button
+          key={key}
+          inline
+          onClick={() => setCapture({ name: keybind.name, key })}>
+          {key}
+        </Button>
+      )))}
       <Button inline onClick={() => setCapture({ name: keybind.name })}>
         [+]
       </Button>
