@@ -251,13 +251,6 @@ WEAPONS
 	)
 	cost = 10
 
-/datum/supply_packs/weapons/marine_shield
-	name = "TL-172 Defensive Shield"
-	contains = list(
-		/obj/item/weapon/shield/riot/marine
-	)
-	cost = 20
-
 /datum/supply_packs/weapons/flamethrower
 	name = "Surplus flamethrower"
 	contains = list(
@@ -666,6 +659,13 @@ ARMOR
 		/obj/item/clothing/head/helmet/riot,
 	)
 	cost = 50
+
+/datum/supply_packs/armor/marine_shield
+	name = "TL-172 Defensive Shield"
+	contains = list(
+		/obj/item/weapon/shield/riot/marine
+	)
+	cost = 20
 
 /datum/supply_packs/armor/b18
 	name = "B18 Armor Set"
