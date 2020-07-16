@@ -754,7 +754,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "additional flechette"
 	icon_state = "flechette"
 	max_range = 15
-	damage = 17
+	damage = 14
 	damage_falloff = 0.25
 	penetration = 15
 
