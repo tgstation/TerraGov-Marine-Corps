@@ -1,4 +1,0 @@
-author: "Hathkar"
-delete-after: True
-changes: 
-  - balance: "Mining drills produce crates at a rate of 1 per minutes, and hold a max of 2 boxes at once."
