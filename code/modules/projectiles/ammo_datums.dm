@@ -532,7 +532,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	accurate_range_min = 0
 	accurate_range = 30
-	damage = 65
+	damage = 55
 	scatter = -15
 	penetration = 15
 	sundering = 2
@@ -885,7 +885,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "minigun"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER
 	iff_signal = null
-	damage = 80
+	damage = 70
 	penetration = 30
 	sundering = 7.5
 	accurate_range_min = 2
