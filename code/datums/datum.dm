@@ -21,7 +21,7 @@
 	var/list/active_timers
 	/// Status traits attached to this datum
 	var/list/status_traits
-	
+
 	var/hidden_from_codex = FALSE //set to TRUE if you want something to be hidden.
 	var/interaction_flags = NONE //Defined at the datum level since some can be interacted with.
 
@@ -54,11 +54,6 @@
 
 	///Lazy associative list of currently active cooldowns.
 	var/list/cooldowns
-
-#ifdef TESTING
-	var/running_find_references
-	var/last_find_references = 0
-#endif
 
 #ifdef DATUMVAR_DEBUGGING_MODE
 	var/list/cached_vars

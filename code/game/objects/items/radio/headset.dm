@@ -550,3 +550,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/distress/sectoid
 	name = "\improper alien headset"
 	keyslot = /obj/item/encryptionkey/sectoid
+
+/obj/item/radio/headset/distress/echo
+	name = "\improper Echo Task Force headset"
+	keyslot = /obj/item/encryptionkey/echo

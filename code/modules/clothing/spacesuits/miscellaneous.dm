@@ -74,5 +74,5 @@
 	desc = "A heavy, bulky civilian space suit, fitted with armored plates. Commonly seen in the hands of mercenaries, explorers, scavengers, and researchers."
 	item_state = "compression"
 	icon_state = "compression"
-	soft_armor = list("melee" = 50, "bullet" = 55, "laser" = 65, "energy" = 70, "bomb" = 65, "bio" = 100, "rad" = 70, "fire" = 70, "acid" = 70)
+	soft_armor = list("melee" = 40, "bullet" = 55, "laser" = 65, "energy" = 70, "bomb" = 65, "bio" = 100, "rad" = 70, "fire" = 70, "acid" = 70)
 	resistance_flags = UNACIDABLE

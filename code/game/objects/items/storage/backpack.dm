@@ -651,6 +651,10 @@
 	desc = "The M68-B thermal cloak is a variant custom-purposed for snipers, allowing for faster, superior, stationary concealment at the expense of mobile concealment. It is designed to be paired with the lightweight M3 recon battle armor. Serves as a satchel."
 	shimmer_alpha = SCOUT_CLOAK_RUN_ALPHA * 0.5 //Half the normal shimmer transparency.
 
+/obj/item/storage/backpack/marine/satchel/scout_cloak/sniper/equippedsniper/Initialize()
+	. = ..()
+	new /obj/item/detpack(src)
+
 /obj/item/storage/backpack/marine/satchel/scout_cloak/sniper/process()
 	if(!wearer)
 		camo_off()

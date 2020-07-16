@@ -650,6 +650,13 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/scope/unremovable
 	flags_attach_features = ATTACH_ACTIVATION
 
+/obj/item/attachable/scope/unremovable/tl127
+	name = "T-45 rail scope"
+	aim_speed_mod = 0
+	wield_delay_mod = 0
+	attach_icon = "none"
+	desc = "A rail mounted zoom sight scope specialized for the T-127 sniper rifle. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	flags_attach_features = ATTACH_ACTIVATION
 
 /obj/item/attachable/scope/activate_attachment(mob/living/carbon/user, turn_off)
 	if(turn_off)
@@ -984,6 +991,20 @@ Defined in conflicts.dm of the #defines folder.
 	name = "\improper T-18 stock"
 	desc = "A specialized stock for the T-18."
 	icon_state = "t18stock"
+	wield_delay_mod = 0 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+	accuracy_mod = 0
+	recoil_mod = 0
+	melee_mod = 0
+	scatter_mod = 0
+	movement_acc_penalty_mod = 0
+
+/obj/item/attachable/stock/tl127stock
+	name = "\improper TL-127 stock"
+	desc = "A irremovable TL-127 sniper rifle stock."
+	icon_state = "tl127stock"
 	wield_delay_mod = 0 SECONDS
 	pixel_shift_x = 32
 	pixel_shift_y = 13
@@ -1596,13 +1617,11 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/hydro_cannon
 	name = "TL-84 Hydro Cannon"
 	desc = "An integrated component of the TL-84 flamethrower, the hydro cannon fires high pressure sprays of water; mainly to extinguish any wayward allies or unintended collateral damage."
-	icon_state = "hydrocannon"
+	icon_state = ""
 	attach_icon = ""
 	slot = "under"
 	flags_attach_features = ATTACH_ACTIVATION|ATTACH_UTILITY
 	attachment_action_type = /datum/action/item_action/toggle
-	var/max_water = 200
-	var/last_use
 
 /obj/item/attachable/hydro_cannon/activate_attachment(mob/living/user, turn_off)
 	if(master_gun.active_attachable == src)

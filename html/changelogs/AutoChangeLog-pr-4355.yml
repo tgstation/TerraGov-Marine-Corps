@@ -1,0 +1,6 @@
+author: "Hathkar"
+delete-after: True
+changes: 
+  - rscadd: "New phoron drill spots"
+  - rscadd: "New platinum drill spots"
+  - rscdel: "Removed some old drill spots"

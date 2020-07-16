@@ -9,7 +9,7 @@
 	wound_type = "praetorian" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 30
+	melee_damage = 20
 
 	// *** Tackle *** //
 	tackle_damage = 40
@@ -67,9 +67,6 @@
 	caste_desc = "A giant ranged monster. It looks a little more dangerous."
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Melee Attacks *** //
-	melee_damage = 34
-
 	// *** Tackle *** //
 	tackle_damage = 42
 
@@ -102,7 +99,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 35
+	melee_damage = 23
 
 	// *** Tackle *** //
 	tackle_damage = 47
@@ -137,7 +134,7 @@
 	ancient_message = "We are the strongest range fighter around. Our spit is devestating and we can fire nearly a constant stream."
 
 	// *** Melee Attacks *** //
-	melee_damage = 37
+	melee_damage = 23
 
 	// *** Tackle *** //
 	tackle_damage = 50
