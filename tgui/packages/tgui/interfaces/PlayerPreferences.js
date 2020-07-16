@@ -867,6 +867,7 @@ const KeybindSetting = (props, context) => {
       Reset keybindings
     </Button>
   );
+
   return (
     <Section title="Keybindings" buttons={resetButton}>
       {capture && (
@@ -882,7 +883,7 @@ const KeybindSetting = (props, context) => {
       <Grid>
         <Grid.Column>
           <Section title="Main">
-            {data.all_keybindings['MOVEMENT'].filter(filterSearch).map(kb => (
+            {data.all_keybindings['MOVEMENT']?.filter(filterSearch).map(kb => (
               <KeybindingPreference
                 key={kb.name}
                 keybind={kb}
@@ -890,7 +891,7 @@ const KeybindSetting = (props, context) => {
               />
             ))}
 
-            {data.all_keybindings['MOB'].filter(filterSearch).map(kb => (
+            {data.all_keybindings['MOB']?.filter(filterSearch).map(kb => (
               <KeybindingPreference
                 key={kb.name}
                 keybind={kb}
@@ -898,7 +899,7 @@ const KeybindSetting = (props, context) => {
               />
             ))}
 
-            {data.all_keybindings['CLIENT'].filter(filterSearch).map(kb => (
+            {data.all_keybindings['CLIENT']?.filter(filterSearch).map(kb => (
               <KeybindingPreference
                 key={kb.name}
                 keybind={kb}
@@ -906,7 +907,7 @@ const KeybindSetting = (props, context) => {
               />
             ))}
 
-            {data.all_keybindings['LIVING'].filter(filterSearch).map(kb => (
+            {data.all_keybindings['LIVING']?.filter(filterSearch).map(kb => (
               <KeybindingPreference
                 key={kb.name}
                 keybind={kb}
@@ -914,7 +915,7 @@ const KeybindSetting = (props, context) => {
               />
             ))}
 
-            {data.all_keybindings['CARBON'].filter(filterSearch).map(kb => (
+            {data.all_keybindings['CARBON']?.filter(filterSearch).map(kb => (
               <KeybindingPreference
                 key={kb.name}
                 keybind={kb}
@@ -922,7 +923,7 @@ const KeybindSetting = (props, context) => {
               />
             ))}
 
-            {data.all_keybindings['MISC'].filter(filterSearch).map(kb => (
+            {data.all_keybindings['MISC']?.filter(filterSearch).map(kb => (
               <KeybindingPreference
                 key={kb.name}
                 keybind={kb}
@@ -933,7 +934,7 @@ const KeybindSetting = (props, context) => {
           </Section>
           {data.is_admin && (
             <Section title="Administration (admin only)">
-              {data.all_keybindings['ADMIN'].filter(filterSearch).map(kb => (
+              {data.all_keybindings['ADMIN']?.filter(filterSearch).map(kb => (
                 <KeybindingPreference
                   key={kb.name}
                   keybind={kb}
@@ -948,7 +949,7 @@ const KeybindSetting = (props, context) => {
             <LabeledList.Item>
               <h3>Human</h3>
             </LabeledList.Item>
-            {data.all_keybindings['HUMAN'].filter(filterSearch).map(kb => (
+            {data.all_keybindings['HUMAN']?.filter(filterSearch).map(kb => (
               <KeybindingPreference
                 key={kb.name}
                 keybind={kb}
@@ -958,7 +959,7 @@ const KeybindSetting = (props, context) => {
             <LabeledList.Item>
               <h3>Xenomorph</h3>
             </LabeledList.Item>
-            {data.all_keybindings['XENO'].filter(filterSearch).map(kb => (
+            {data.all_keybindings['XENO']?.filter(filterSearch).map(kb => (
               <KeybindingPreference
                 key={kb.name}
                 keybind={kb}

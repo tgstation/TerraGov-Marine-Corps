@@ -16,6 +16,7 @@
 
 /datum/preferences/ui_data(mob/user)
 	. = list(
+		"is_admin" = user.client?.holder ? TRUE : FALSE,
 		"slot" = default_slot,
 		"real_name" = real_name,
 		"random_name" = random_name,
