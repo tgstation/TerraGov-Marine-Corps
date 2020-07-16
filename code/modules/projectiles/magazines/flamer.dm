@@ -43,8 +43,8 @@
 	name = "large flamerthrower tank"
 	desc = "A large fuel tank of ultra thick napthal, a sticky combustable liquid chemical, for use in the TL-84 flamethrower."
 	icon_state = "flametank_large"
-	max_rounds = 70
-	current_rounds = 70
+	max_rounds = 75
+	current_rounds = 75
 	reload_delay = 3 SECONDS
 	gun_type = /obj/item/weapon/gun/flamer/marinestandard
 
