@@ -9,7 +9,7 @@
 	default_ammo = /datum/ammo/flamethrower //doesn't actually need bullets. But we'll get null ammo error messages if we don't
 	max_rounds = 50 //Per turf.
 	current_rounds = 50
-	reload_delay = 3 SECONDS
+	reload_delay = 2 SECONDS
 	w_class = WEIGHT_CLASS_NORMAL //making sure you can't sneak this onto your belt.
 	gun_type = /obj/item/weapon/gun/flamer
 	caliber = "UT-Napthal Fuel" //Ultra Thick Napthal Fuel, from the lore book.
@@ -45,7 +45,7 @@
 	icon_state = "flametank_large"
 	max_rounds = 70
 	current_rounds = 70
-	reload_delay = 4 SECONDS
+	reload_delay = 3 SECONDS
 	gun_type = /obj/item/weapon/gun/flamer/marinestandard
 
 /obj/item/ammo_magazine/flamer_tank/large/B
