@@ -27,10 +27,6 @@ export class Dropdown extends Component {
     };
   }
 
-  shouldComponentUpdate(nextProps) {
-    return nextProps.selected !== this.state.selected;
-  }
-
   componentWillUnmount() {
     window.removeEventListener('click', this.handleClick);
   }
@@ -91,7 +87,7 @@ export class Dropdown extends Component {
 
     const menu = this.state.open ? (
       <div
-        ref={menu => { this.menuRef = menu; }}
+        ref={ref => { this.menuRef = ref; }}
         tabIndex="-1"
         style={{
           'width': width,
