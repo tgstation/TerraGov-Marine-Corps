@@ -1,0 +1,4 @@
+author: "rhomm-dev"
+delete-after: True
+changes: 
+  - bugfix: "fixed vendor bug that allowed duping guns and ammo"
