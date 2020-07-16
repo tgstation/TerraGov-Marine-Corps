@@ -35,6 +35,8 @@
 					/obj/item/ammo_magazine/pistol/standard_heavypistol = 25,
 					/obj/item/weapon/gun/energy/lasgun/lasrifle = 10,
 					/obj/item/cell/lasgun/lasrifle = 20,
+					/obj/item/weapon/gun/rifle/chambered = 20,
+					/obj/item/ammo_magazine/rifle/chamberedrifle = 20,
 					/obj/item/weapon/gun/shotgun/pump/t35 = 10,
 					/obj/item/weapon/gun/shotgun/combat/standardmarine = 10,
 					/obj/item/ammo_magazine/shotgun = 10,
@@ -119,6 +121,7 @@
 					/obj/item/weapon/gun/rifle/standard_dmr = 10,
 					/obj/item/weapon/gun/rifle/standard_br = 10,
 					/obj/item/weapon/gun/energy/lasgun/lasrifle = 10,
+					/obj/item/weapon/gun/rifle/chambered = 10,
 					/obj/item/weapon/gun/shotgun/pump/t35 = 10,
 					/obj/item/weapon/gun/shotgun/combat/standardmarine = 10,
 					/obj/item/weapon/gun/rifle/standard_autoshotgun = 10,
@@ -176,6 +179,7 @@
 					/obj/item/ammo_magazine/rifle/standard_dmr = 50,
 					/obj/item/ammo_magazine/rifle/standard_br = 50,
 					/obj/item/cell/lasgun/lasrifle = 50,
+					/obj/item/ammo_magazine/rifle/chamberedrifle = 50,
 					/obj/item/ammo_magazine/shotgun = 50,
 					/obj/item/ammo_magazine/shotgun/buckshot = 50,
 					/obj/item/ammo_magazine/shotgun/flechette = 50,
@@ -187,7 +191,7 @@
 					/obj/item/ammo_magazine/flamer_tank = 10,
 					/obj/item/ammo_magazine/smg/ppsh/ = 30,
 					/obj/item/ammo_magazine/smg/ppsh/extended = 10,
-					/obj/item/ammo_magazine/rifle/bolt = 30,
+					/obj/item/ammo_magazine/rifle/bolt = 7,
 					)
 	premium = list()
 

@@ -424,7 +424,7 @@
 		var/stamina_dmg = user.maxHealth * 2 + user.max_stamina_buffer
 		user.apply_damage(stamina_dmg, STAMINA) // complete winds the target
 		user.Unconscious(6 SECONDS) //THIS MIGHT NEED TWEAKS // still might! // tweaked it
-	flags_item |= NODROP
+	addtimer(VARSET_CALLBACK(src, flags_item, flags_item|NODROP), IMPREGNATION_TIME) // becomes stuck after min-impreg time
 	attached = TRUE
 	go_idle(FALSE, TRUE)
 	addtimer(CALLBACK(src, .proc/Impregnate, user), IMPREGNATION_TIME)
