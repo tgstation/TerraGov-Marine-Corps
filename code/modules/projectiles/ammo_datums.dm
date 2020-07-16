@@ -155,7 +155,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	for(var/i = 1 to bonus_projectiles_amount) //Want to run this for the number of bonus projectiles.
 		var/obj/projectile/new_proj = new /obj/projectile(main_proj.loc)
 		if(bonus_projectiles_type)
-			new_proj.generate_bullet(GLOB.ammo_list[bonus_projectiles_type]) 
+			new_proj.generate_bullet(GLOB.ammo_list[bonus_projectiles_type])
 			var/obj/item/weapon/gun/g = source
 			new_proj.damage *= g.damage_mult //Bonus or reduced damage based on damage modifiers on the gun.
 		else //If no bonus type is defined then the extra projectiles are the same as the main one.
@@ -532,10 +532,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	accurate_range_min = 0
 	accurate_range = 30
-	damage = 70
+	damage = 65
 	scatter = -15
 	penetration = 15
-	sundering = 2.5
+	sundering = 2
 
 /datum/ammo/bullet/rifle/standard_dmr/incendiary
 	name = "incendiary marksman bullet"
@@ -879,6 +879,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy = 40
 	damage = 150
 	sundering = 75
+
+/datum/ammo/bullet/sniper/pfc
+	name = "high caliber rifle bullet"
+	hud_state = "minigun"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
+	iff_signal = null
+	damage = 80
+	penetration = 30
+	sundering = 7.5
+	accurate_range_min = 2
+	damage_falloff = 0.25
 
 /*
 //================================================
@@ -1505,8 +1516,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_type = BURN
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR
 	armor_type = "fire"
-	max_range = 5
+	max_range = 7
 	damage = 50
+	var/fire_color = "red"
+	var/burnlevel = 24
+	var/burntime = 17
+	var/fire_delay = 20
 
 /datum/ammo/flamethrower/on_hit_mob(mob/M,obj/projectile/P)
 	drop_flame(get_turf(P))
@@ -1528,10 +1543,20 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/flamethrower/green
 	name = "green flame"
 	hud_state = "flame_green"
+	max_range = 4
+	fire_color = "green"
+	burnlevel = 10
+	burntime = 50
+	fire_delay = 35
 
 /datum/ammo/flamethrower/blue
 	name = "blue flame"
 	hud_state = "flame_blue"
+	max_range = 7
+	fire_color = "blue"
+	burnlevel = 36
+	burntime = 40
+	fire_delay = 35
 
 /datum/ammo/flare
 	name = "flare"

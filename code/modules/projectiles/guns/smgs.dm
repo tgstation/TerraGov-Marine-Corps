@@ -119,6 +119,12 @@
 	aim_slowdown = 0.25
 	burst_amount = 0
 
+/obj/item/weapon/gun/smg/standard_smg/breacher
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
+
+/obj/item/weapon/gun/smg/standard_smg/nonstandard
+	starting_attachment_types = list(/obj/item/attachable/reddot)
+
 //-------------------------------------------------------
 //M39 SMG
 

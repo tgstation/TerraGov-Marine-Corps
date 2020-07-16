@@ -7,8 +7,9 @@
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "hivelord" //used to match appropriate wound overlays
+
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 17
 
 	// *** Tackle *** //
 	tackle_damage = 30
@@ -73,9 +74,6 @@
 	caste_desc = "A builder of REALLY BIG hives. It looks a little more dangerous."
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Melee Attacks *** //
-	melee_damage = 23
-
 	// *** Tackle *** //
 	tackle_damage = 35
 
@@ -108,7 +106,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 25
+	melee_damage = 20
 
 	// *** Tackle *** //
 	tackle_damage = 40
@@ -143,7 +141,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 27
+	melee_damage = 20
 
 	// *** Tackle *** //
 	tackle_damage = 45
