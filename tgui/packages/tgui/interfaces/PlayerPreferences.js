@@ -890,6 +890,14 @@ const KeybindSetting = (props, context) => {
               />
             ))}
 
+            {data.all_keybindings['MOB'].filter(filterSearch).map(kb => (
+              <KeybindingPreference
+                key={kb.name}
+                keybind={kb}
+                setCapture={setCapture}
+              />
+            ))}
+
             {data.all_keybindings['CLIENT'].filter(filterSearch).map(kb => (
               <KeybindingPreference
                 key={kb.name}
@@ -913,6 +921,15 @@ const KeybindSetting = (props, context) => {
                 setCapture={setCapture}
               />
             ))}
+
+            {data.all_keybindings['MISC'].filter(filterSearch).map(kb => (
+              <KeybindingPreference
+                key={kb.name}
+                keybind={kb}
+                setCapture={setCapture}
+              />
+            ))}
+
           </Section>
           {data.is_admin && (
             <Section title="Administration (admin only)">
