@@ -231,6 +231,15 @@ If it is the same and the other stack isn't full, transfer an amount (default 1)
 	gun_type = new_gun_type
 	update_icon()
 
+// A pre-set version of the buckshot shells for the sake of pre-set marine jobs. Sorry Terra.
+// BUT IT HAS TO BE DONE.
+/obj/item/ammo_magazine/handful/buckshot
+	name = "handful of shotgun buckshot shells (12g)"
+	icon_state = "shotgun buckshot shell"
+	current_rounds = 5
+	default_ammo = /datum/ammo/bullet/shotgun/buckshot
+	caliber = "12g"
+
 //----------------------------------------------------------------//
 
 

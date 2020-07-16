@@ -228,6 +228,14 @@
 	color = "#DBCBB9"
 	smoke_traits = SMOKE_GASP|SMOKE_BLISTERING|SMOKE_OXYLOSS|SMOKE_PLASMALOSS|SMOKE_FOUL
 
+///////////////////////////////////////////
+// Plasma draining smoke
+//////////////////////////////////////////
+
+/obj/effect/particle_effect/smoke/plasmaloss
+	color = "#791697"
+	smoke_traits = SMOKE_PLASMALOSS
+
 //////////////////////////////////////
 // FLASHBANG SMOKE
 ////////////////////////////////////
@@ -276,6 +284,9 @@ datum/effect_system/smoke_spread/tactical
 
 /datum/effect_system/smoke_spread/phosphorus
 	smoke_type = /obj/effect/particle_effect/smoke/phosphorus
+
+/datum/effect_system/smoke_spread/plasmaloss
+	smoke_type = /obj/effect/particle_effect/smoke/plasmaloss
 
 /datum/effect_system/smoke_spread/xeno
 	smoke_type = /obj/effect/particle_effect/smoke/xeno
