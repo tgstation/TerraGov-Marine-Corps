@@ -17728,12 +17728,6 @@
 /obj/item/storage/fancy/cigarettes/dromedaryco,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
-"blw" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/sulaco/maintenance/lower_maint2)
 "cjh" = (
 /obj/machinery/vending/marine/cargo_guns,
 /turf/open/floor,
@@ -17746,6 +17740,13 @@
 /obj/structure/closet/crate/ammo,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
+"dZh" = (
+/obj/machinery/camera/autoname,
+/obj/structure/rack,
+/obj/item/tool/weldingtool/largetank,
+/obj/item/clothing/glasses/welding,
+/turf/open/floor/prison/sterilewhite,
+/area/mainship/command/self_destruct)
 "eaW" = (
 /obj/machinery/light,
 /obj/machinery/vending/uniform_supply,
@@ -17755,14 +17756,37 @@
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
+"eIm" = (
+/mob/living/simple_animal/mouse,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint2)
+"fnb" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint2)
+"fwY" = (
+/turf/closed/shuttle/wall3/diagonal{
+	dir = 4
+	},
+/area/sulaco/maintenance/lower_maint2)
 "fJz" = (
 /obj/structure/cable,
 /turf/open/space/basic,
 /area/space)
+"fMH" = (
+/obj/structure/closet/emcloset,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint2)
 "gfL" = (
 /obj/machinery/vending/marine/cargo_supply,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
+"gGh" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/plasteel/small_stack,
+/obj/item/stack/sheet/metal/large_stack,
+/turf/open/floor/prison/sterilewhite,
+/area/mainship/command/self_destruct)
 "gKQ" = (
 /obj/structure/table,
 /obj/item/toy/deck/kotahi,
@@ -17776,20 +17800,28 @@
 /obj/item/clothing/glasses/welding,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
-"hvS" = (
-/turf/closed/wall/sulaco,
-/area/mainship/command/self_destruct)
-"iFZ" = (
+"hry" = (
+/obj/structure/largecrate/random,
+/obj/effect/decal/cleanable/cobweb2,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint2)
+"iqH" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/plasteel/small_stack,
 /obj/item/stack/sheet/metal/large_stack,
-/turf/open/floor/prison/sterilewhite,
-/area/mainship/command/self_destruct)
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint2)
 "jdE" = (
 /turf/open/floor/tile/red/redtaupe{
 	dir = 4
 	},
 /area/sulaco/cargo)
+"kPX" = (
+/obj/structure/rack,
+/obj/item/tool/weldingtool/largetank,
+/obj/item/clothing/glasses/welding,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint2)
 "ldh" = (
 /obj/machinery/keycard_auth{
 	pixel_y = -30
@@ -17798,10 +17830,6 @@
 	icon_state = "floor4"
 	},
 /area/sulaco/bridge)
-"lhO" = (
-/mob/living/simple_animal/mouse,
-/turf/open/floor/plating,
-/area/sulaco/maintenance/lower_maint2)
 "lsj" = (
 /obj/structure/closet/crate/weapon,
 /turf/open/floor/mainship/mono,
@@ -17811,6 +17839,12 @@
 	dir = 2
 	},
 /area/sulaco/cargo)
+"lUS" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint2)
 "mbW" = (
 /obj/machinery/door/airlock/mainship/marine/requisitions{
 	dir = 1
@@ -17840,12 +17874,9 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
-"nMh" = (
-/obj/structure/rack,
-/obj/item/tool/weldingtool/largetank,
-/obj/item/clothing/glasses/welding,
+"nzM" = (
 /turf/open/floor/plating,
-/area/sulaco/maintenance/lower_maint2)
+/area/mainship/command/self_destruct)
 "ocn" = (
 /obj/structure/window/reinforced{
 	dir = 5
@@ -17859,40 +17890,13 @@
 	},
 /turf/open/floor/wood,
 /area/sulaco/cargo)
-"oLA" = (
-/obj/structure/closet/walllocker/hydrant,
-/turf/open/floor/plating,
-/area/sulaco/maintenance/lower_maint2)
-"oYq" = (
-/obj/structure/largecrate/random,
-/obj/effect/decal/cleanable/cobweb,
-/turf/open/floor/plating,
-/area/sulaco/maintenance/lower_maint2)
 "pxX" = (
 /obj/structure/largecrate/guns,
 /turf/open/floor/plating/plating_catwalk,
 /area/sulaco/cargo)
-"qsl" = (
-/obj/machinery/camera/autoname,
-/obj/structure/rack,
-/obj/item/tool/weldingtool/largetank,
-/obj/item/clothing/glasses/welding,
-/turf/open/floor/prison/sterilewhite,
-/area/mainship/command/self_destruct)
-"qvk" = (
-/obj/structure/largecrate/random,
-/obj/effect/decal/cleanable/cobweb2,
-/turf/open/floor/plating,
+"rpm" = (
+/turf/closed/shuttle/wall3/diagonal,
 /area/sulaco/maintenance/lower_maint2)
-"qFm" = (
-/obj/structure/rack,
-/obj/item/stack/sheet/plasteel/small_stack,
-/obj/item/stack/sheet/metal/large_stack,
-/turf/open/floor/plating,
-/area/sulaco/maintenance/lower_maint2)
-"ruF" = (
-/turf/open/floor/plating,
-/area/mainship/command/self_destruct)
 "smG" = (
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/closed/wall/sulaco,
@@ -17915,10 +17919,6 @@
 	},
 /turf/open/floor,
 /area/sulaco/cargo/office)
-"sVV" = (
-/obj/structure/closet/emcloset,
-/turf/open/floor/plating,
-/area/sulaco/maintenance/lower_maint2)
 "tzn" = (
 /obj/effect/step_trigger/teleporter/random{
 	affect_ghosts = 1;
@@ -17962,8 +17962,8 @@
 /obj/structure/ob_ammo/warhead/plasmaloss,
 /turf/open/floor/mainship/red,
 /area/mainship/shipboard/weapon_room)
-"vUM" = (
-/obj/structure/reagent_dispensers/fueltank,
+"wcs" = (
+/obj/structure/closet/walllocker/hydrant,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
 "whS" = (
@@ -17979,14 +17979,6 @@
 	dir = 2
 	},
 /area/sulaco/cargo)
-"wXD" = (
-/turf/closed/shuttle/wall3/diagonal{
-	dir = 4
-	},
-/area/sulaco/maintenance/lower_maint2)
-"xpe" = (
-/turf/closed/shuttle/wall3/diagonal,
-/area/sulaco/maintenance/lower_maint2)
 "xxV" = (
 /obj/structure/cable,
 /turf/closed/wall/mainship/outer,
@@ -17999,6 +17991,14 @@
 /obj/machinery/vending/lasgun,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
+"yiZ" = (
+/turf/closed/wall/sulaco,
+/area/mainship/command/self_destruct)
+"yky" = (
+/obj/structure/largecrate/random,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plating,
+/area/sulaco/maintenance/lower_maint2)
 
 (1,1,1) = {"
 aaa
@@ -40555,7 +40555,7 @@ aTM
 aPg
 aPg
 aPg
-xpe
+rpm
 aaa
 aaa
 aaa
@@ -41073,7 +41073,7 @@ aQw
 aQw
 aQw
 aQw
-xpe
+rpm
 aaa
 aaa
 aaa
@@ -41331,7 +41331,7 @@ aYM
 aYM
 aQw
 aQw
-xpe
+rpm
 aaa
 aaa
 aaa
@@ -41589,7 +41589,7 @@ aYM
 aQO
 aQw
 aQw
-xpe
+rpm
 aaa
 aaa
 aaa
@@ -41847,7 +41847,7 @@ aRk
 aQw
 aQw
 aQw
-xpe
+rpm
 aaa
 aaa
 aaa
@@ -42103,7 +42103,7 @@ aYM
 aRk
 aQw
 aQw
-hvS
+yiZ
 aTU
 aTU
 aTU
@@ -42360,7 +42360,7 @@ aYM
 aQh
 aQw
 aQw
-hvS
+yiZ
 aUf
 aTY
 aTY
@@ -42617,7 +42617,7 @@ aYM
 aQO
 aQw
 aQw
-hvS
+yiZ
 aTY
 aTY
 aTY
@@ -42874,7 +42874,7 @@ aPM
 aQw
 aQh
 aQw
-hvS
+yiZ
 bai
 aTY
 aTU
@@ -43131,7 +43131,7 @@ aTK
 aQw
 aQw
 aQw
-hvS
+yiZ
 aTY
 aTY
 aTU
@@ -43387,8 +43387,8 @@ aYM
 aYM
 aTO
 aQh
-hvS
-hvS
+yiZ
+yiZ
 aTY
 aTY
 aTU
@@ -44431,7 +44431,7 @@ aTU
 aTU
 aTU
 aTU
-qsl
+dZh
 aTY
 aTY
 aTY
@@ -44688,7 +44688,7 @@ aUB
 aUi
 aUy
 aTU
-iFZ
+gGh
 aTY
 aTY
 aTY
@@ -46486,11 +46486,11 @@ aUi
 aUi
 aUi
 aUi
-hvS
-hvS
-hvS
-ruF
-ruF
+yiZ
+yiZ
+yiZ
+nzM
+nzM
 aTU
 aaa
 aaa
@@ -46743,8 +46743,8 @@ aUi
 aUi
 aUi
 aUi
-hvS
-nMh
+yiZ
+kPX
 aQw
 aQw
 aQw
@@ -47000,8 +47000,8 @@ aUe
 akz
 aYQ
 aCh
-hvS
-qFm
+yiZ
+iqH
 aQw
 aQw
 aQw
@@ -47254,15 +47254,15 @@ aTU
 aZy
 aTU
 aTU
-hvS
-hvS
-hvS
-hvS
+yiZ
+yiZ
+yiZ
+yiZ
 aQw
 aQw
 aQw
 aPg
-wXD
+fwY
 aaa
 aaa
 aaa
@@ -47510,15 +47510,15 @@ aTU
 aUn
 aUb
 aTU
-qFm
-blw
+iqH
+lUS
 aQw
 aQw
 aQw
 aQw
 aQw
 aPg
-wXD
+fwY
 aaa
 aaa
 aaa
@@ -47767,14 +47767,14 @@ aaa
 aTU
 bao
 aTU
-qvk
-aQw
+hry
 aQw
 aQw
 aQw
 aQw
 aRg
 aPg
+fwY
 aaa
 aaa
 aaa
@@ -48025,13 +48025,13 @@ aUn
 aUv
 aTU
 aTU
-lhO
+eIm
 aQw
 aQw
+aQw
 aPg
-aPg
-aPg
-wXD
+fwY
+aaa
 aaa
 aaa
 aaa
@@ -48272,9 +48272,9 @@ aHv
 bdM
 beJ
 bdj
-oYq
+yky
 aQw
-vUM
+fnb
 aPg
 aaa
 aTU
@@ -48284,9 +48284,9 @@ aUb
 aTU
 aQw
 aQw
+aQw
 aPg
-wXD
-aaa
+fwY
 aaa
 aaa
 aaa
@@ -48542,7 +48542,7 @@ aTU
 aQw
 aQw
 aPg
-aaa
+fwY
 aaa
 aaa
 aaa
@@ -49043,15 +49043,15 @@ bdj
 bdj
 bdj
 bdj
-sVV
+fMH
 aQw
 aQw
 aPg
 aPg
 aTU
-hvS
-hvS
-hvS
+yiZ
+yiZ
+yiZ
 aTU
 aQw
 aQw
@@ -49297,7 +49297,7 @@ aZa
 bct
 baT
 aVY
-oLA
+wcs
 aQw
 aQw
 aQw
@@ -49826,7 +49826,7 @@ aPg
 aPg
 aPg
 aPg
-wXD
+fwY
 aaa
 aaa
 aaa
