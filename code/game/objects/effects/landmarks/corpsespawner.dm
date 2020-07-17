@@ -44,9 +44,9 @@
 	var/mob/living/carbon/human/M = new /mob/living/carbon/human (src.loc)
 	GLOB.round_statistics.total_humans_created-- //corpses don't count
 	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_humans_created")
-	
+
 	M.real_name = name
-	M.death(1) //Kills the new mob
+	M.death(silent = TRUE) //Kills the new mob
 	M.timeofdeath = -CONFIG_GET(number/revive_grace_period)
 	if(corpseuniform)
 		M.equip_to_slot_or_del(new corpseuniform(M), SLOT_W_UNIFORM)

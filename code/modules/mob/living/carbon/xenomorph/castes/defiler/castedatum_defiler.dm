@@ -11,13 +11,13 @@
 	wound_type = "defiler" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 30
+	melee_damage = 23
 
 	// *** Tackle *** //
 	tackle_damage = 30
 
 	// *** Speed *** //
-	speed = -1
+	speed = -0.7
 
 	// *** Plasma *** //
 	plasma_max = 400
@@ -63,9 +63,6 @@
 
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Melee Attacks *** //
-	melee_damage = 33
-
 	// *** Tackle *** //
 	tackle_damage = 35
 
@@ -95,7 +92,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 34
+	melee_damage = 26
 
 	// *** Tackle *** //
 	tackle_damage = 40
@@ -108,7 +105,7 @@
 	plasma_gain = 19
 
 	// *** Health *** //
-	max_health = 325
+	max_health = 300
 
 	// *** Evolution *** //
 	upgrade_threshold = 1000
@@ -126,7 +123,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 36
+	melee_damage = 26
 
 	// *** Tackle *** //
 	tackle_damage = 45
@@ -139,7 +136,7 @@
 	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 325
 
 	// *** Evolution *** //
 	upgrade_threshold = 1000

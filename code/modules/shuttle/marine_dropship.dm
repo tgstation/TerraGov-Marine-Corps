@@ -67,10 +67,14 @@
 	var/turf/left = locate(C.x - leftright, C.y, C.z)
 	var/turf/right = locate(C.x + leftright, C.y, C.z)
 
+	for(var/turf/T in range(3, rear)+range(3, left)+range(3, right)+range(2, front))
+		T.empty(/turf/open/floor/plating)
+
+	/*
 	explosion(front, 2, 4, 7, 0)
 	explosion(rear, 3, 5, 8, 0)
 	explosion(left, 3, 5, 8, 0)
-	explosion(right, 3, 5, 8, 0)
+	explosion(right, 3, 5, 8, 0)*/
 
 /obj/docking_port/stationary/marine_dropship/crash_target
 	name = "dropshipcrash"
@@ -380,11 +384,11 @@
 		to_chat(user, "<span class='warning'>The bird's mind is currently active. We need to wait until it's more vulnerable...</span>")
 		return FALSE
 	var/humans_on_ground = 0
-	for(var/i in GLOB.alive_human_list)
-		var/mob/living/carbon/human/H = i
-		if(isnestedhost(H))
-			continue
-		if(is_ground_level(H.z))
+	for(var/i in SSmapping.levels_by_trait(ZTRAIT_GROUND))
+		for(var/m in GLOB.humans_by_zlevel["[i]"])
+			var/mob/living/carbon/human/H = m
+			if(isnestedhost(H))
+				continue
 			humans_on_ground++
 	if(length(GLOB.alive_human_list) && ((humans_on_ground / length(GLOB.alive_human_list)) > ALIVE_HUMANS_FOR_CALLDOWN))
 		to_chat(user, "<span class='warning'>There's too many tallhosts still on the ground. They interfere with our psychic field. We must dispatch them before we are able to do this.</span>")
@@ -1022,22 +1026,54 @@
 	shuttleId = "tgs_canterbury"
 	possible_destinations = "canterbury_loadingdock"
 
+/obj/machinery/computer/shuttle/shuttle_control/canterbury/ui_interact(mob/user)
+	if(!allowed(user))
+		to_chat(user, "<span class='warning'>Access Denied!</span>")
+		return
+	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
+	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
+	if(M)
+		dat += "<A href='?src=[REF(src)];move=crash-infinite-transit'>Initiate Evacuation</A><br>"
+
+	var/datum/browser/popup = new(user, "computer", M ? M.name : "shuttle", 300, 200)
+	popup.set_content("<center>[dat]</center>")
+	popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
+	popup.open()
+
+
 /obj/machinery/computer/shuttle/shuttle_control/canterbury/Topic(href, href_list)
+	// Since we want to avoid the standard move topic, we are just gonna override everything.
+	add_fingerprint(usr, "topic")
+	if(!can_interact(usr))
+		return TRUE
+	if(isxeno(usr))
+		return TRUE
+	if(!allowed(usr))
+		to_chat(usr, "<span class='danger'>Access denied.</span>")
+		return TRUE
 	if(!href_list["move"] || !iscrashgamemode(SSticker.mode))
 		to_chat(usr, "<span class='warning'>[src] is unresponsive.</span>")
-		return
+		return FALSE
 
 	if(!length(GLOB.active_nuke_list) && alert(usr, "Are you sure you want to launch the shuttle? Without sufficiently dealing with the threat, you will be in direct violation of your orders!", "Are you sure?", "Yes", "Cancel") != "Yes")
-		return
+		return TRUE
 
 	log_admin("[key_name(usr)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
 	message_admins("[ADMIN_TPMONTY(usr)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
 
-	. = ..()
-	if(.)
-		return
+	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
+	if(!(M.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
+		to_chat(usr, "<span class='warning'>The engines are still refueling.</span>")
+		return TRUE
+	if(!M.can_move_topic(usr))
+		return TRUE
+
+	visible_message("<span class='notice'>Shuttle departing. Please stand away from the doors.</span>")
+	M.destination = null
+	M.mode = SHUTTLE_IGNITING
+	M.setTimer(M.ignitionTime)
 
 	var/datum/game_mode/infestation/crash/C = SSticker.mode
-	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_INPROGRESS), 15 SECONDS)
-	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_COMPLETED), 5 MINUTES)
+	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_INPROGRESS), M.ignitionTime + 10 SECONDS)
+	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_COMPLETED), 2 MINUTES)
 	return TRUE

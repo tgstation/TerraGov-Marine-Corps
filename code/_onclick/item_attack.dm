@@ -79,7 +79,7 @@
 
 /obj/attacked_by(obj/item/I, mob/living/user, def_zone)
 	user.visible_message("<span class='warning'>[user] hits [src] with [I]!</span>",
-		"<span class='warning'>You hit [src] with [I]!</span>")
+		"<span class='warning'>You hit [src] with [I]!</span>", visible_message_flags = COMBAT_MESSAGE)
 	log_combat(user, src, "attacked", I)
 	var/power = I.force + round(I.force * 0.3 * user.skills.getRating("melee_weapons")) //30% bonus per melee level
 	take_damage(power, I.damtype, "melee")
@@ -118,6 +118,7 @@
 	log_combat(user, src, "attacked", I, "(INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(I.damtype)]) (RAW DMG: [power])")
 	if(power && !user.mind?.bypass_ff && !mind?.bypass_ff && user.faction == faction)
 		var/turf/T = get_turf(src)
+		user.ff_check(power, src)
 		log_ffattack("[key_name(user)] attacked [key_name(src)] with \the [I] in [AREACOORD(T)] (RAW DMG: [power]).")
 		msg_admin_ff("[ADMIN_TPMONTY(user)] attacked [ADMIN_TPMONTY(src)] with \the [I] in [ADMIN_VERBOSEJMP(T)] (RAW DMG: [power]).")
 

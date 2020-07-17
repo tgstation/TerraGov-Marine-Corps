@@ -1,7 +1,9 @@
 #define UPLOAD_LIMIT			1000000	//Restricts client uploads to the server to 1MB
 #define UPLOAD_LIMIT_ADMIN		10000000	//Restricts admin uploads to the server to 10MB
 
-#define MIN_RECOMMENDED_CLIENT 1524
+#define MIN_RECOMMENDED_CLIENT 1526
+#define REQUIRED_CLIENT_MAJOR 513
+#define REQUIRED_CLIENT_MINOR 1493
 
 #define LIMITER_SIZE	5
 #define CURRENT_SECOND	1
@@ -213,8 +215,9 @@
 
 	chatOutput.start() // Starts the chat
 
-	if(byond_version < 512 || (byond_build && byond_build < 1421))
-		to_chat(src, "<span class='userdanger'>Your version of byond is severely out of date.</span>")
+	if(byond_version < REQUIRED_CLIENT_MAJOR || (byond_build && byond_build < REQUIRED_CLIENT_MINOR))
+		//to_chat(src, "<span class='userdanger'>Your version of byond is severely out of date.</span>")
+		to_chat(src, "<span class='userdanger'>TGMC now requires the first stable [REQUIRED_CLIENT_MAJOR] build, please update your client to [REQUIRED_CLIENT_MAJOR].[MIN_RECOMMENDED_CLIENT].</span>")
 		to_chat(src, "<span class='danger'>Please download a new version of byond. If [byond_build] is the latest, you can go to <a href=\"https://secure.byond.com/download/build\">BYOND's website</a> to download other versions.</span>")
 		addtimer(CALLBACK(src, qdel(src), 2 SECONDS))
 		return
@@ -604,8 +607,8 @@
 	var/viewscale = getviewsize(view)
 	var/x = viewscale[1]
 	var/y = viewscale[2]
-	x = CLAMP(x + change, min, max)
-	y = CLAMP(y + change, min,max)
+	x = clamp(x + change, min, max)
+	y = clamp(y + change, min,max)
 	change_view("[x]x[y]")
 
 

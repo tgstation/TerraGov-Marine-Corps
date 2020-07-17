@@ -84,7 +84,7 @@
 		if(!(user in watchers))
 			user.unset_interaction() // no usable camera on the network, we disconnect the user from the computer.
 			return
-	playsound(src, 'sound/machines/terminal_prompt.ogg', 25, 0)
+	playsound(src, 'sound/machines/terminal_on.ogg', 25, 0)
 	user.set_interaction(src)
 	use_camera_console(user)
 
@@ -152,7 +152,8 @@
 			continue
 		var/list/tempnetwork = C.network & network
 		if(length(tempnetwork))
-			valid_cams["[C.c_tag][(C.status ? null : " (Deactivated)")]"] = C
+			valid_cams["[C.c_tag]"] = C
+			// valid_cams["[C.c_tag][(C.status ? null : " (Deactivated)")]"] = C
 	return valid_cams
 
 

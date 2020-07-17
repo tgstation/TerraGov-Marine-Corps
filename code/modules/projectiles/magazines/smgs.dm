@@ -31,11 +31,11 @@
 //T-19 Machinepistol ammo
 
 /obj/item/ammo_magazine/smg/standard_machinepistol
-	name = "\improper T-19 machinepistol gun magazine (10x20mm)"
-	desc = "A 10x20mm caseless Submachine Gun magazine."
+	name = "\improper T-19 machinepistol magazine (10x20mm)"
+	desc = "A 10x20mm caseless machine pistol magazine."
 	caliber = "10x20mm caseless"
 	icon_state = "t19"
-	max_rounds = 40
+	max_rounds = 30
 	w_class = WEIGHT_CLASS_SMALL
 	gun_type = /obj/item/weapon/gun/smg/standard_machinepistol
 
@@ -44,7 +44,7 @@
 
 /obj/item/ammo_magazine/smg/standard_smg
 	name = "\improper T-90 submachine gun magazine (10x20mm)"
-	desc = "A 10x20mm caseless Submachine Gun magazine."
+	desc = "A 10x20mm caseless submachine gun magazine."
 	caliber = "10x20mm caseless"
 	icon_state = "t90"
 	max_rounds = 50
@@ -129,7 +129,7 @@
 //FP9000 //Based on the FN P90
 
 /obj/item/ammo_magazine/smg/p90
-	name = "FN FP9000 magazine (5.7x28mm)"
+	name = "\improper FN FP9000 magazine (5.7x28mm)"
 	desc = "A magazine for the FN FP9000 SMG."
 	default_ammo = /datum/ammo/bullet/smg/ap
 	caliber = "5.7x28mm"

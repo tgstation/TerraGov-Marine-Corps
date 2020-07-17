@@ -1,14 +1,6 @@
-#if DM_VERSION < 513
-#define islist(L) (istype(L, /list))
-#endif
-
 #define in_range(source, user) (get_dist(source, user) <= 1 && (get_step(source, 0)?:z) == (get_step(user, 0)?:z))
 
-#if DM_VERSION < 513
-#define ismovableatom(A) (istype(A, /atom/movable))
-#else
 #define ismovableatom(A) ismovable(A)
-#endif
 
 #define isatom(A) (isloc(A))
 
@@ -19,9 +11,15 @@
 
 #define isopenturf(A) (istype(A, /turf/open))
 
+#define isopengroundturf(A) (istype(A, /turf/open/ground/jungle) || istype(A, /turf/open/ground/grass))
+
 #define isspaceturf(A) (istype(A, /turf/open/space))
 
 #define islava(A) (istype(A, /turf/open/lavaland/lava))
+
+#define isbasalt(A) (istype(A, /turf/open/lavaland/basalt))
+
+#define islavacatwalk(A) (istype(A, /turf/open/lavaland/catwalk))
 
 #define isfloorturf(A) (istype(A, /turf/open/floor))
 

@@ -52,9 +52,10 @@
 	icon_state = "large_drop"
 	draw_mode = 0
 
-/obj/item/storage/pouch/general/large/command
-	fill_type = /obj/item/binoculars/tactical
-	fill_number = 1
+/obj/item/storage/pouch/general/large/command/Initialize()
+	. = ..()
+	new /obj/item/binoculars/tactical(src)
+	new /obj/item/megaphone(src)
 
 
 /obj/item/storage/pouch/general/som
@@ -118,6 +119,7 @@
 		/obj/item/stack/medical/ointment,
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical/bruise_pack,
+		/obj/item/storage/pill_bottle/packet/tricordrazine,
 		/obj/item/stack/medical/splint)
 
 /obj/item/storage/pouch/firstaid/full
@@ -127,7 +129,7 @@
 	. = ..()
 	new /obj/item/stack/medical/ointment (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol (src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine (src)
+	new /obj/item/storage/pill_bottle/packet/tricordrazine (src)
 	new /obj/item/stack/medical/bruise_pack (src)
 	new /obj/item/stack/medical/splint (src)
 
@@ -160,6 +162,7 @@
 		/obj/item/stack/medical/ointment,
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical/bruise_pack,
+		/obj/item/storage/pill_bottle/packet/tricordrazine,
 		/obj/item/stack/medical/splint)
 
 
@@ -183,10 +186,17 @@
 	max_w_class = 3
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
-		/obj/item/weapon/gun/revolver)
+		/obj/item/weapon/gun/revolver,
+		/obj/item/weapon/gun/smg/standard_machinepistol)
 	draw_mode = 1
 
+/obj/item/storage/pouch/pistol/vp70/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/pistol/vp70(src)
 
+/obj/item/storage/pouch/pistol/m4a3/Initialize()
+	. = ..()
+	new /obj/item/weapon/gun/pistol/m4a3(src)
 
 //// MAGAZINE POUCHES /////
 
@@ -206,12 +216,22 @@
 		/obj/item/ammo_magazine/handful,
 		/obj/item/cell/lasgun)
 
+/obj/item/storage/pouch/magazine/smgfull
+	fill_type = /obj/item/ammo_magazine/smg/standard_machinepistol
+	fill_number = 2
+
 /obj/item/storage/pouch/magazine/large
 	name = "large magazine pouch"
 	icon_state = "large_ammo_mag"
 	storage_slots = 3
 
+/obj/item/storage/pouch/magazine/large/m4rafull
+	fill_type = /obj/item/ammo_magazine/rifle/m4ra
+	fill_number = 3
 
+/obj/item/storage/pouch/magazine/large/t19full
+	fill_type = /obj/item/ammo_magazine/smg/standard_smg
+	fill_number = 3
 
 /obj/item/storage/pouch/magazine/pistol
 	name = "pistol magazine pouch"
@@ -222,7 +242,8 @@
 
 	can_hold = list(
 		/obj/item/ammo_magazine/pistol,
-		/obj/item/ammo_magazine/revolver)
+		/obj/item/ammo_magazine/revolver,
+		/obj/item/ammo_magazine/smg/standard_machinepistol)
 
 /obj/item/storage/pouch/magazine/pistol/large
 	name = "large pistol magazine pouch"
@@ -303,6 +324,13 @@
 	fill_type = /obj/item/explosive/grenade/frag
 	fill_number = 4
 
+/obj/item/storage/pouch/explosive/detpack/Initialize()
+	. = ..()
+	new /obj/item/detpack(src)
+	new /obj/item/detpack(src)
+	new /obj/item/detpack(src)
+	new /obj/item/assembly/signaler(src)
+
 /obj/item/storage/pouch/explosive/upp
 	fill_type = /obj/item/explosive/grenade/frag/upp
 	fill_number = 4
@@ -334,6 +362,7 @@
 		/obj/item/storage/pill_bottle,
 		/obj/item/stack/medical,
 		/obj/item/flashlight/pen,
+		/obj/item/storage/pill_bottle/packet,
 		/obj/item/reagent_containers/hypospray)
 
 /obj/item/storage/pouch/medical/full/Initialize()
@@ -341,6 +370,12 @@
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/advanced/ointment(src)
 	new /obj/item/stack/medical/splint(src)
+
+/obj/item/storage/pouch/medical/equippedcorpsman/Initialize()
+	. = ..()
+	new /obj/item/storage/pill_bottle/bicaridine(src)
+	new /obj/item/storage/pill_bottle/kelotane(src)
+	new /obj/item/healthanalyzer(src)
 
 /obj/item/storage/pouch/autoinjector
 	name = "auto-injector pouch"
@@ -404,6 +439,10 @@
 
 /obj/item/storage/pouch/medkit/full
 	fill_type = /obj/item/storage/firstaid/regular
+	fill_number = 1
+
+/obj/item/storage/pouch/medkit/equippedcorpsman
+	fill_type = /obj/item/storage/firstaid/adv
 	fill_number = 1
 
 /obj/item/storage/pouch/document
@@ -530,6 +569,12 @@
 	new /obj/item/stack/barbed_wire/small_stack (src)
 	new /obj/item/tool/shovel/etool (src)
 
+/obj/item/storage/pouch/construction/equippedengineer/Initialize()
+	. = ..()
+	new /obj/item/stack/sandbags_empty/half (src)
+	new /obj/item/stack/sheet/metal/large_stack (src)
+	new /obj/item/stack/sheet/plasteel/medium_stack (src)
+
 /obj/item/storage/pouch/tools
 	name = "tools pouch"
 	desc = "It's designed to hold maintenance tools - screwdriver, wrench, cable coil, etc. It also has a hook for an entrenching tool."
@@ -567,7 +612,7 @@
 /obj/item/storage/pouch/shotgun/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/M = I
-	
+
 		if(M.flags_magazine & AMMUNITION_REFILLABLE)
 			if(!M.current_rounds)
 				to_chat(user, "<span class='warning'>[M] is empty.</span>")

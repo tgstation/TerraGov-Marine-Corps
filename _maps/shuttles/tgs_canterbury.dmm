@@ -39,15 +39,12 @@
 /area/shuttle/canterbury/cic)
 "ah" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/card,
+/obj/machinery/computer/marine_card,
 /turf/open/floor/mainship/blue{
 	dir = 5
 	},
 /area/shuttle/canterbury/cic)
 "ai" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 4
-	},
 /turf/open/floor/mainship/blue{
 	dir = 8
 	},
@@ -57,37 +54,13 @@
 	icon_state = "pilot_chair";
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
 /obj/effect/landmark/start/job/crash/fieldcommander,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/cic)
 "ak" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 10
-	},
 /turf/open/floor/mainship/blue/full,
 /area/shuttle/canterbury/cic)
-"al" = (
-/obj/structure/bed/chair/dropship/pilot{
-	icon_state = "pilot_chair";
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/effect/landmark/start/job/crash/fieldcommander,
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury/cic)
 "am" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 8;
-	on = 1
-	},
 /turf/open/floor/mainship/blue{
 	dir = 4
 	},
@@ -97,11 +70,6 @@
 /area/shuttle/canterbury)
 "ao" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	icon_state = "pipe11-2";
-	dir = 1
-	},
 /obj/docking_port/mobile/crashmode,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
@@ -130,8 +98,6 @@
 /area/shuttle/canterbury/cic)
 "ar" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship,
 /area/shuttle/canterbury/cic)
 "as" = (
@@ -191,8 +157,6 @@
 	name = "\improper Command Cockpit"
 	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury/cic)
 "ax" = (
@@ -231,7 +195,6 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aA" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/structure/barricade/plasteel{
 	dir = 8
 	},
@@ -249,20 +212,7 @@
 "aD" = (
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
-"aE" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	icon_state = "manifold-2";
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1{
-	icon_state = "manifold-1";
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/canterbury)
 "aF" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /obj/structure/barricade/plasteel{
 	dir = 4
 	},
@@ -290,12 +240,6 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aI" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
 /obj/machinery/marine_turret{
 	icon_state = "sentry_base";
 	dir = 8
@@ -303,12 +247,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
 "aJ" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
 "aK" = (
@@ -419,29 +357,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/tcomms,
 /area/shuttle/canterbury)
-"ba" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 4;
-	on = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury)
 "bb" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury)
-"bc" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	icon_state = "pipe11-2";
-	dir = 1
-	},
-/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
 "bd" = (
 /obj/structure/window/reinforced/toughened{
@@ -463,9 +382,6 @@
 /area/shuttle/canterbury)
 "bg" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
 /obj/effect/landmark/start/job/crash/synthetic,
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
@@ -579,15 +495,6 @@
 	},
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
-"bx" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 10
-	},
-/turf/open/floor/mainship,
-/area/shuttle/canterbury)
 "by" = (
 /obj/structure/bed/chair/dropship/passenger,
 /obj/machinery/vending/nanomed,
@@ -657,12 +564,6 @@
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "bI" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 6
-	},
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
 "bJ" = (
@@ -675,47 +576,15 @@
 /obj/structure/window/framed/mainship/white/canterbury,
 /turf/open/floor/plating,
 /area/shuttle/canterbury/medical)
-"bL" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/open/floor/mainship/sterile,
-/area/shuttle/canterbury/medical)
 "bM" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
 /obj/machinery/marine_turret{
 	icon_state = "sentry_base";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
-"bN" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/canterbury)
 "bO" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/canterbury)
-"bP" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
 "bQ" = (
@@ -733,12 +602,6 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "bT" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
 /obj/machinery/power/apc/mainship{
 	dir = 1
 	},
@@ -767,13 +630,6 @@
 /obj/machinery/cryopod/right,
 /turf/open/floor/mainship,
 /area/shuttle/canterbury)
-"bY" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 8;
-	on = 1
-	},
-/turf/open/floor/mainship,
-/area/shuttle/canterbury)
 "bZ" = (
 /obj/machinery/optable,
 /obj/item/tank/anesthetic,
@@ -789,10 +645,6 @@
 /area/shuttle/canterbury/medical)
 "ca" = (
 /obj/effect/landmark/start/job/crash/cmo,
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 4;
-	on = 1
-	},
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "cb" = (
@@ -831,19 +683,6 @@
 /obj/machinery/vending/MarineMed,
 /turf/open/floor/mainship/sterile,
 /area/shuttle/canterbury/medical)
-"ch" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	icon_state = "pipe11-2";
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 6
-	},
-/obj/structure/barricade/plasteel{
-	dir = 8
-	},
-/turf/open/floor/mainship/stripesquare,
-/area/shuttle/canterbury)
 "ci" = (
 /obj/item/radio/intercom{
 	anyai = 1;
@@ -854,24 +693,7 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
-"cj" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 10
-	},
-/obj/structure/barricade/plasteel{
-	dir = 4
-	},
-/turf/open/floor/mainship/stripesquare,
-/area/shuttle/canterbury)
 "ck" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	icon_state = "vent_map-1";
-	dir = 1;
-	on = 1
-	},
 /obj/item/radio/intercom{
 	name = "General Listening Channel";
 	icon_state = "intercom";
@@ -923,84 +745,29 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/canterbury)
-"cq" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/manifold4w/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/manifold4w/supply/visible/layer1,
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/canterbury)
-"cr" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/canterbury)
 "cs" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 2
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
-"ct" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	icon_state = "pipe11-2";
-	dir = 1
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/canterbury)
-"cu" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	icon_state = "pipe11-2";
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1{
-	icon_state = "manifold-1";
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/canterbury)
 "cv" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "cw" = (
 /obj/machinery/light,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 9
-	},
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
 /area/shuttle/canterbury)
-"cx" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/canterbury)
 "cy" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 10
-	},
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
 /area/shuttle/canterbury)
 "cz" = (
 /obj/effect/landmark/start/job/crash/squadmarine,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
@@ -1008,34 +775,6 @@
 "cA" = (
 /obj/machinery/vending/marineFood,
 /turf/open/floor/mainship/red/full,
-/area/shuttle/canterbury)
-"cB" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1{
-	icon_state = "manifold-1";
-	dir = 8
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/canterbury)
-"cC" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/turf/open/floor/mainship,
-/area/shuttle/canterbury)
-"cD" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	icon_state = "pipe11-2";
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/visible/layer1{
-	icon_state = "manifold-1";
-	dir = 8
-	},
-/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
 "cE" = (
 /obj/effect/landmark/start/job/crash/squadleader,
@@ -1050,54 +789,20 @@
 /obj/machinery/door/airlock/mainship/marine/canterbury{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
 "cH" = (
 /obj/machinery/vending/nanomed,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
 /turf/open/floor/mainship,
 /area/shuttle/canterbury)
 "cI" = (
 /turf/closed/wall/mainship/white/canterbury,
 /area/shuttle/canterbury/medical)
 "cJ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "cK" = (
 /obj/effect/landmark/start/latejoin/crash,
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1
-	},
-/turf/open/floor/mainship,
-/area/shuttle/canterbury)
-"cL" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 9
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 1
-	},
-/turf/open/floor/mainship/sterile/dark,
-/area/shuttle/canterbury/medical)
-"cM" = (
-/obj/effect/landmark/start/latejoin/crash,
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 4;
-	on = 1
-	},
 /turf/open/floor/mainship,
 /area/shuttle/canterbury)
 "cN" = (
@@ -1156,11 +861,6 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "cW" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	icon_state = "vent_map-1";
-	dir = 1;
-	on = 1
-	},
 /obj/item/radio/intercom{
 	name = "General Listening Channel";
 	icon_state = "intercom";
@@ -1175,11 +875,6 @@
 /turf/open/floor/mainship/stripesquare,
 /area/shuttle/canterbury)
 "cX" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	icon_state = "pipe11-2";
-	dir = 1
-	},
 /obj/machinery/marine_turret,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
@@ -1187,31 +882,17 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 4;
-	on = 1
-	},
 /obj/structure/reagent_dispensers/fueltank,
 /obj/structure/barricade/plasteel,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "cZ" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	icon_state = "pipe11-2";
-	dir = 5
-	},
 /obj/structure/barricade/plasteel,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "da" = (
 /obj/machinery/light/small{
 	dir = 4
-	},
-/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
-	dir = 8
 	},
 /obj/machinery/alarm{
 	dir = 8
@@ -1287,11 +968,11 @@ aa
 an
 au
 aA
-ch
+aA
 ck
 an
 aQ
-ba
+aD
 bj
 bo
 aC
@@ -1321,7 +1002,7 @@ by
 bI
 cs
 cJ
-cL
+cJ
 cf
 bo
 cm
@@ -1341,7 +1022,7 @@ cv
 aT
 bo
 bz
-bL
+bI
 bK
 bU
 cb
@@ -1356,7 +1037,7 @@ ai
 ap
 ab
 cF
-bP
+aJ
 cR
 aN
 bf
@@ -1379,15 +1060,15 @@ aj
 aq
 ab
 cN
-bP
+aJ
 aD
 aD
 aD
-cx
+bO
 aD
 bp
 aD
-cr
+bO
 ci
 bV
 bV
@@ -1402,18 +1083,18 @@ ak
 ar
 aw
 bO
-cq
-bc
-bc
+bO
+bO
+bO
 ao
-cu
-cD
-bc
-bc
-aE
-cB
-ct
-ct
+bO
+bO
+bO
+bO
+bO
+aJ
+aJ
+aJ
 cX
 cZ
 co
@@ -1421,20 +1102,20 @@ co
 (9,1,1) = {"
 ac
 ag
-al
+aj
 as
 ab
 RS
-bP
+aJ
 aD
 aD
 aD
 aD
-bN
+aJ
 cE
 aD
 bJ
-bP
+aJ
 bW
 bW
 bW
@@ -1448,12 +1129,12 @@ am
 at
 ab
 cP
-bP
+aJ
 cS
 aO
 aU
 bd
-bN
+aJ
 br
 bB
 an
@@ -1476,7 +1157,7 @@ cT
 an
 aV
 be
-cC
+bm
 bs
 bC
 an
@@ -1499,14 +1180,14 @@ cU
 an
 aW
 bk
-cC
+bm
 bt
 bD
 an
-bx
+bm
 cK
 bm
-cM
+cK
 an
 cm
 "}
@@ -1517,12 +1198,12 @@ aa
 an
 ay
 aF
-cj
+aF
 cW
 an
 aX
 bq
-bY
+bm
 bu
 bE
 an
