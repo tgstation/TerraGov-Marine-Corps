@@ -50,7 +50,8 @@
 
 /datum/keybinding/client/ooc
 	name = "ooc"
-	full_name = "OOC (Other than O)"
+	full_name = "OOC"
+	hotkey_keys = list("O")
 	description = "Speak in OOC"
 	keybind_signal = COMSIG_KB_CLIENT_OOC_DOWN
 
@@ -64,7 +65,8 @@
 
 /datum/keybinding/client/looc
 	name = "looc"
-	full_name = "LOOC (Other than L)"
+	full_name = "LOOC"
+	hotkey_keys = list("L")
 	description = "Speak in local OOC"
 	keybind_signal = COMSIG_KB_CLIENT_LOOC_DOWN
 
