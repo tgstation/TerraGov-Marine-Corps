@@ -126,7 +126,7 @@
 	return ..()
 
 /obj/item/weapon/shield/riot/marine
-	name = "TL-172 Defensive Shield"
+	name = "\improper TL-172 defensive shield"
 	desc = "A heavy shield adept at blocking blunt or sharp objects from connecting with the shield wielder."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "marine_shield"
