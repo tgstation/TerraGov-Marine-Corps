@@ -868,7 +868,7 @@
 		/obj/item/attachable/stock/tl127stock,
 	)
 	burst_amount = 0
-	fire_delay = 1.35 SECONDS
+	fire_delay = 1.5 SECONDS
 	accuracy_mult = 1.35
 	accuracy_mult_unwielded = 0.7
 	scatter = -30
