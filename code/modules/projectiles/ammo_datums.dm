@@ -532,7 +532,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	accurate_range_min = 0
 	accurate_range = 30
-	damage = 55
+	damage = 60
 	scatter = -15
 	penetration = 15
 	sundering = 2
