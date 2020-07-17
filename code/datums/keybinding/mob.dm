@@ -134,6 +134,7 @@
 	name = "say"
 	full_name = "Say"
 	hotkey_keys = list("T")
+	classic_keys = list("T")
 	description = ""
 	keybind_signal = COMSIG_KB_MOB_SAY_DOWN
 
@@ -149,6 +150,7 @@
 	name = "me"
 	full_name = "Me"
 	hotkey_keys = list("M")
+	classic_keys = list("M")
 	description = ""
 	keybind_signal = COMSIG_KB_MOB_ME_DOWN
 
