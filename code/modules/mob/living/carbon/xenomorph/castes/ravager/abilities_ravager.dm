@@ -133,3 +133,55 @@
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return ..()
 	return TRUE
+
+
+// ***************************************
+// *********** Ignore pain
+// ***************************************
+/mob/living/carbon/xenomorph/ravager/get_crit_threshold()
+	if(ignore_pain)
+		return -INFINITY
+	return ..()
+
+/datum/action/xeno_action/activable/ignore_pain
+	name = "Ignore Pain"
+	action_icon_state = "ignore_pain"
+	mechanics_text = "For the next few moments you will not go into crit, but you still die."
+	ability_name = "ignore pain"
+	plasma_cost = 250
+	cooldown_timer = 2 MINUTES
+	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
+	keybind_signal = COMSIG_XENOABILITY_IGNORE_PAIN
+
+/datum/action/xeno_action/activable/ignore_pain/on_cooldown_finish()
+	to_chat(owner, "<span class='xenodanger'>We feel the plasma draining from our veins.</span>")
+	playsound(owner, "sound/effects/xeno_newlarva.ogg", 50, FALSE, 1)
+	return ..()
+
+/datum/action/xeno_action/activable/ignore_pain/use_ability(atom/A)
+	var/mob/living/carbon/xenomorph/ravager/X = owner
+
+	X.emote("roar")
+	X.visible_message("<span class='danger'>\The skin on the [X] begins to glow!</span>", \
+	"<span class='xenowarning'>We feel the plasma feeling our veins!</span>")
+
+	X.ignore_pain = addtimer(VARSET_CALLBACK(X, ignore_pain, FALSE), 10 SECONDS)
+
+	succeed_activate()
+	add_cooldown()
+
+
+/datum/action/xeno_action/activable/ignore_pain/ai_should_start_consider()
+	return TRUE
+
+/datum/action/xeno_action/activable/ignore_pain/ai_should_use(target)
+	var/mob/living/carbon/xenomorph/ravager/X = owner
+	if(!iscarbon(target))
+		return ..()
+	if(get_dist(target, owner) > WORLD_VIEW_NUM) // If we can be seen.
+		return ..()
+	if(X.health > 50)
+		return ..()
+	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
+		return ..()
+	return TRUE
