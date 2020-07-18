@@ -177,7 +177,7 @@
 
 /obj/machinery/body_scanconsole/Initialize()
 	. = ..()
-	connected = locate(/obj/machinery/bodyscanner, get_step(src, WEST))
+	set_connected(locate(/obj/machinery/bodyscanner, get_step(src, WEST)))
 
 
 /obj/machinery/body_scanconsole/update_icon()
@@ -236,3 +236,17 @@
 		else
 			to_chat(user, "<span class = 'deptradio'><a href='?src=\ref[src];scanreport=1'>It contains [occupant]: Scan from [R.fields["last_scan_time"]].</a></span>\n")
 		break
+
+
+///Wrapper to guarantee connected bodyscanner references are properly nulled and avoid hard deletes.
+/obj/machinery/body_scanconsole/proc/set_connected(obj/machinery/bodyscanner/new_connected)
+	if(connected)
+		UnregisterSignal(connected, COMSIG_PARENT_QDELETING)
+	connected = new_connected
+	if(connected)
+		RegisterSignal(connected, COMSIG_PARENT_QDELETING, .proc/on_bodyscanner_deletion)
+
+
+///Called by the deletion of the connected bodyscanner.
+/obj/machinery/body_scanconsole/proc/on_bodyscanner_deletion(obj/machinery/bodyscanner/source, force)
+	set_connected(null)

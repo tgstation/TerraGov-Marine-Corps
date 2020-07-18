@@ -227,9 +227,12 @@
 	var/area/shuttle/transit/assigned_area
 	var/obj/docking_port/mobile/owner
 
+	var/spawn_time
+
 /obj/docking_port/stationary/transit/Initialize()
 	. = ..()
 	SSshuttle.transit += src
+	spawn_time = world.time
 
 /obj/docking_port/stationary/transit/Destroy(force=FALSE)
 	if(force)
@@ -238,6 +241,7 @@
 		SSshuttle.transit -= src
 		if(owner)
 			if(owner.assigned_transit == src)
+				log_world("A transit dock was qdeled while it was assigned to [owner].")
 				owner.assigned_transit = null
 			owner = null
 		if(!QDELETED(reserved_area))

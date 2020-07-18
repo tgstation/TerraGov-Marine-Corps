@@ -137,6 +137,5 @@
 	if(!proximity) return
 	if(istype(A, /obj/effect/plantsegment))
 		for(var/obj/effect/plantsegment/B in orange(A,1))
-			if(prob(80))
-				qdel(B)
+			qdel(B)
 		qdel(A)

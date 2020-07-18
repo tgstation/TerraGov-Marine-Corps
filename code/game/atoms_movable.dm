@@ -79,7 +79,8 @@
 
 	if(!direct)
 		direct = get_dir(src, newloc)
-	setDir(direct)
+	if(!(flags_atom & DIRLOCK))
+		setDir(direct)
 
 	if(!loc.Exit(src, newloc))
 		return
@@ -180,7 +181,7 @@
 						moving_diagonally = SECOND_DIAG_STEP
 						. = step(src, SOUTH)
 			if(moving_diagonally == SECOND_DIAG_STEP)
-				if(!.)
+				if(!. && !(flags_atom & DIRLOCK))
 					setDir(first_step_dir)
 			moving_diagonally = 0
 			return
@@ -209,7 +210,8 @@
 
 	last_move = direct
 	last_move_time = world.time
-	setDir(direct)
+	if(!(flags_atom & DIRLOCK))
+		setDir(direct)
 	if(. && LAZYLEN(buckled_mobs) && !handle_buckled_mob_movement(loc, direct)) //movement failed due to buckled mob(s)
 		return FALSE
 

@@ -18,7 +18,7 @@
 	desc = "This can be used for various important functions."
 	icon_state = "comm"
 	req_access = list(ACCESS_MARINE_BRIDGE)
-	circuit = "/obj/item/circuitboard/computer/communications"
+	circuit = /obj/item/circuitboard/computer/communications
 	var/prints_intercept = TRUE
 	var/authenticated = 0
 	var/list/messagetitle = list()

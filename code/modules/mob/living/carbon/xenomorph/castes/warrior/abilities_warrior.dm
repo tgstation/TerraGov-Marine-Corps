@@ -259,7 +259,7 @@
 		return
 
 	X.visible_message("<span class='xenowarning'>\The [X] hits [src] in the [L.display_name] with a devastatingly powerful punch!</span>", \
-		"<span class='xenowarning'>We hit [src] in the [L.display_name] with a devastatingly powerful punch!</span>")
+		"<span class='xenowarning'>We hit [src] in the [L.display_name] with a devastatingly powerful punch!</span>", visible_message_flags = COMBAT_MESSAGE)
 
 	if(L.limb_status & LIMB_SPLINTED) //If they have it splinted, the splint won't hold.
 		L.remove_limb_flags(LIMB_SPLINTED)
@@ -283,75 +283,4 @@
 		return ..()
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return ..()
-	return TRUE
-
-// ***************************************
-// *********** Rip limb
-// ***************************************
-
-// Called when pulling something and attacking yourself with the pull
-/mob/living/carbon/xenomorph/proc/pull_power(mob/M)
-	if (isxenowarrior(src) && !ripping_limb && M.stat != DEAD)
-		ripping_limb = TRUE
-		if(rip_limb(M))
-			stop_pulling()
-		ripping_limb = FALSE
-
-
-// Warrior Rip Limb - called by pull_power()
-/mob/living/carbon/xenomorph/proc/rip_limb(mob/M)
-	if (!ishuman(M))
-		return FALSE
-
-	if(action_busy) //can't stack the attempts
-		return FALSE
-
-	if(stagger)
-		to_chat(src, "<span class='xenowarning'>Our limbs fail to respond as we try to shake up the shock!</span>")
-		return
-
-	var/mob/living/carbon/human/H = M
-	var/datum/limb/L = H.get_limb(check_zone(zone_selected))
-
-	if (!L || L.body_part == CHEST || L.body_part == GROIN || (L.limb_status & LIMB_DESTROYED) || L.body_part == HEAD) //Only limbs; no head
-		to_chat(src, "<span class='xenowarning'>We can't rip off that limb.</span>")
-		return FALSE
-	GLOB.round_statistics.warrior_limb_rips++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "warrior_limb_rips")
-	var/limb_time = rand(40,60)
-
-	visible_message("<span class='xenowarning'>\The [src] begins pulling on [M]'s [L.display_name] with incredible strength!</span>", \
-	"<span class='xenowarning'>We begin to pull on [M]'s [L.display_name] with incredible strength!</span>")
-
-	if(!do_after(src, limb_time, TRUE, H, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/break_do_after_checks, null, null, zone_selected)) || M.stat == DEAD)
-		to_chat(src, "<span class='notice'>We stop ripping off the limb.</span>")
-		return FALSE
-
-	if(L.limb_status & LIMB_DESTROYED)
-		return FALSE
-
-	if(L.limb_status & LIMB_ROBOT)
-		L.take_damage_limb(rand(30, 40)) // just do more damage
-		visible_message("<span class='xenowarning'>You hear [M]'s [L.display_name] being pulled beyond its load limits!</span>", \
-		"<span class='xenowarning'>\The [M]'s [L.display_name] begins to tear apart!</span>")
-	else
-		visible_message("<span class='xenowarning'>You hear the bones in [M]'s [L.display_name] snap with a sickening crunch!</span>", \
-		"<span class='xenowarning'>\The [M]'s [L.display_name] bones snap with a satisfying crunch!</span>")
-		L.take_damage_limb(rand(15, 25))
-		L.fracture()
-	log_combat(src, M, "ripped the [L.display_name] off", addition="1/2 progress")
-
-	if(!do_after(src, limb_time, TRUE, H, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, .proc/break_do_after_checks, null, null, zone_selected)) || M.stat == DEAD)
-		to_chat(src, "<span class='notice'>We stop ripping off the limb.</span>")
-		return FALSE
-
-	if(L.limb_status & LIMB_DESTROYED)
-		return FALSE
-
-	visible_message("<span class='xenowarning'>\The [src] rips [M]'s [L.display_name] away from [M.p_their()] body!</span>", \
-	"<span class='xenowarning'>\The [M]'s [L.display_name] rips away from [M.p_their()] body!</span>")
-	log_combat(src, M, "ripped the [L.display_name] off", addition="2/2 progress")
-
-	L.droplimb()
-
 	return TRUE

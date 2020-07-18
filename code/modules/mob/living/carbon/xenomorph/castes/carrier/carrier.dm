@@ -22,9 +22,8 @@
 // ***************************************
 // *********** Death
 // ***************************************
-/mob/living/carbon/xenomorph/carrier/death(gibbed)
-	. = ..()
-	if(. && !gibbed && length(huggers))
+/mob/living/carbon/xenomorph/carrier/on_death()
+	if(length(huggers))
 		var/chance = 75
 		visible_message("<span class='xenowarning'>The chittering mass of tiny aliens is trying to escape [src]!</span>")
 		for(var/i in 1 to 3)
@@ -34,11 +33,14 @@
 			if(prob(chance))
 				F.forceMove(loc)
 				step_away(F,src,1)
-				addtimer(CALLBACK(F, /obj/item/clothing/mask/facehugger.proc/GoActive, TRUE), 2 SECONDS)
+				addtimer(CALLBACK(F, /obj/item/clothing/mask/facehugger.proc/go_active, TRUE), 2 SECONDS)
 			else
 				qdel(F)
 			chance -= 30
 		QDEL_LIST(huggers)
+
+	return ..()
+
 
 // ***************************************
 // *********** Life overrides

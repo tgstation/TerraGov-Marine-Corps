@@ -160,8 +160,6 @@
 	. = ..()
 	if(isnull(parent))
 		return
-	if(prob(60))
-		return
 	var/health_percent = round((max_integrity / obj_integrity) * 100)
 	switch(health_percent)
 		if(-INFINITY to 25)

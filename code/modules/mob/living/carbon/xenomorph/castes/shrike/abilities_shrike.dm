@@ -104,12 +104,12 @@
 	if(istype(owner.r_hand, /obj/item/clothing/mask/facehugger))
 		var/obj/item/clothing/mask/facehugger/FH = owner.r_hand
 		if(FH.stat != DEAD)
-			FH.Die()
+			FH.kill_hugger()
 
 	if(istype(owner.l_hand, /obj/item/clothing/mask/facehugger))
 		var/obj/item/clothing/mask/facehugger/FH = owner.l_hand
 		if(FH.stat != DEAD)
-			FH.Die()
+			FH.kill_hugger()
 
 	succeed_activate()
 	add_cooldown()
@@ -196,12 +196,12 @@
 	if(istype(owner.r_hand, /obj/item/clothing/mask/facehugger))
 		var/obj/item/clothing/mask/facehugger/FH = owner.r_hand
 		if(FH.stat != DEAD)
-			FH.Die()
+			FH.kill_hugger()
 
 	if(istype(owner.l_hand, /obj/item/clothing/mask/facehugger))
 		var/obj/item/clothing/mask/facehugger/FH = owner.l_hand
 		if(FH.stat != DEAD)
-			FH.Die()
+			FH.kill_hugger()
 
 // ***************************************
 // *********** Psychic Choke

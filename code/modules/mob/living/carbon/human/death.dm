@@ -43,21 +43,22 @@
 	new /obj/effect/overlay/temp/dust_animation(loc, src, "dust-h")
 
 
-/mob/living/carbon/human/death(gibbed)
+/mob/living/carbon/human/death(gibbing, deathmessage, silent)
 	if(stat == DEAD)
-		return
+		return ..()
+	if(!silent && species.death_sound)
+		playsound(loc, species.death_sound, 50, TRUE)
+	return ..()
 
+
+/mob/living/carbon/human/on_death()
 	if(pulledby)
 		pulledby.stop_pulling()
 
 	//Handle species-specific deaths.
-	if(species)
-		species.handle_death(src, gibbed)
+	species.handle_death(src)
 
 	remove_typing_indicator()
-
-	if(!gibbed && species.death_sound)
-		playsound(loc, species.death_sound, 50, 1)
 
 	if(SSticker && SSticker.current_state == GAME_STATE_PLAYING) //game has started, to ignore the map placed corpses.
 		GLOB.round_statistics.total_human_deaths++
@@ -69,6 +70,7 @@
 	UnregisterSignal(src, COMSIG_MOVABLE_Z_CHANGED)
 
 	return ..()
+
 
 /mob/living/carbon/human/proc/makeSkeleton()
 	if(f_style)
