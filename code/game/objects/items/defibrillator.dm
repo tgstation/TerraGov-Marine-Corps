@@ -249,3 +249,4 @@
 	desc = "A handheld emergency defibrillator, used to restore fibrillating patients. Can optionally bring people back from the dead. Appears to be a civillian model."
 	icon_state = "civ_defib_full"
 	item_state = "defib"
+
