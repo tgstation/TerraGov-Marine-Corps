@@ -524,7 +524,7 @@ const JobPreferences = (props, context) => {
     null
   );
 
-  const xenoJobs = ['Xeno Queen', 'Xenomorph'];
+  const xenoJobs = ['Hive Leader', 'Xenomorph'];
   const commandRoles = [
     'Captain',
     'Field Commander',
