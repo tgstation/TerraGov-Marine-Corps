@@ -29,3 +29,16 @@
 	H.throw_at(get_turf(target_turf), RAV_CHARGEDISTANCE, RAV_CHARGESPEED, H)
 	H.Paralyze(2 SECONDS)
 	return
+
+// ***************************************
+// *********** Ability related
+// ***************************************
+/mob/living/carbon/xenomorph/ravager/get_crit_threshold()
+	if(ignore_pain)
+		return -INFINITY
+	return ..()
+
+/mob/living/carbon/xenomorph/ravager/get_death_threshold()
+	if(ignore_pain)
+		return xeno_caste.crit_health * 3
+	return ..()

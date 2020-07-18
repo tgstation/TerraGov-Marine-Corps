@@ -138,11 +138,6 @@
 // ***************************************
 // *********** Ignore pain
 // ***************************************
-/mob/living/carbon/xenomorph/ravager/get_crit_threshold()
-	if(ignore_pain)
-		return -INFINITY
-	return ..()
-
 /datum/action/xeno_action/activable/ignore_pain
 	name = "Ignore Pain"
 	action_icon_state = "ignore_pain"
@@ -154,7 +149,7 @@
 	keybind_signal = COMSIG_XENOABILITY_IGNORE_PAIN
 
 /datum/action/xeno_action/activable/ignore_pain/on_cooldown_finish()
-	to_chat(owner, "<span class='xenodanger'>We feel the plasma draining from our veins.</span>")
+	to_chat(owner, "<span class='notice'>We feel able to imbue ourselves with plasma to ignore pain once again!</span>")
 	playsound(owner, "sound/effects/xeno_newlarva.ogg", 50, FALSE, 1)
 	return ..()
 
@@ -163,9 +158,11 @@
 
 	X.emote("roar")
 	X.visible_message("<span class='danger'>\The skin on the [X] begins to glow!</span>", \
-	"<span class='xenowarning'>We feel the plasma feeling our veins!</span>")
+	"<span class='xenowarning'>We feel the plasma flowing through our veins!</span>")
 
 	X.ignore_pain = addtimer(VARSET_CALLBACK(X, ignore_pain, FALSE), 10 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, X, "<span class='xenodanger'>We feel the plasma draining from our veins.</span>"), 10 SECONDS)
+	addtimer(CALLBACK(X, /mob/living/.proc/do_jitter_animation, 1000), 7 SECONDS)
 
 	succeed_activate()
 	add_cooldown()

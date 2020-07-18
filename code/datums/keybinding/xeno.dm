@@ -340,6 +340,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_RAVAGER_CHARGE
 
+/datum/keybinding/xeno/ravager_ignore_pain
+	name = "ravager_ignore_pain"
+	full_name = "Ravager: Ignore Pain"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_IGNORE_PAIN
+
 /datum/keybinding/xeno/ravage
 	name = "ravage"
 	full_name = "Ravager: Ravage"
