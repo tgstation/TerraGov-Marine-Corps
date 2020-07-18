@@ -343,7 +343,7 @@
 /datum/keybinding/xeno/ravager_ignore_pain
 	name = "ravager_ignore_pain"
 	full_name = "Ravager: Ignore Pain"
-	description = ""
+	description = "While active, you will not go into crit and can take increased damage before dying. You will still die when the effect ends."
 	keybind_signal = COMSIG_XENOABILITY_IGNORE_PAIN
 
 /datum/keybinding/xeno/ravage
