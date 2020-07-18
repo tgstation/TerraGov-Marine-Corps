@@ -137,8 +137,7 @@
 		if(W)
 			W.melee_attack_chain(src, A, params)
 		else
-			var/datum/component/directional_attack/check = GetComponent(/datum/component/directional_attack)
-			if(check && check.active)
+			if(SEND_SIGNAL(src,COMSIG_DIRECTIONAL_ATTACK_ACTIVE) & COMPONENT_DIRECTIONAL_ATTACK_GO)
 				return
 			UnarmedAttack(A, 1)
 	else

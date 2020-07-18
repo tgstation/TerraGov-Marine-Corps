@@ -9,13 +9,20 @@
 	toggle_action = new()
 	toggle_action.give_action(parent)
 	toggle_action.update_button_icon(active)
-	RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, .proc/select_directional_action)
+	RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, .proc/living_activation_toggle)
 	if(active)
 		RegisterSignal(parent, COMSIG_MOB_CLICKON, .proc/select_directional_action)
 
 /datum/component/directional_attack/Destroy(force, silent)
     QDEL_NULL(toggle_action)
     return ..()
+
+/datum/component/directional_attack/RegisterWithParent()
+	RegisterSignal(parent, COMSIG_DIRECTIONAL_ATTACK_ACTIVE, .proc/attack_active)
+
+/datum/component/directional_attack/proc/attack_active()
+	if(active)
+		return COMPONENT_DIRECTIONAL_ATTACK_GO
 
 /datum/component/directional_attack/proc/select_directional_action(datum/source, atom/A, params)
 	if(isxeno(parent))

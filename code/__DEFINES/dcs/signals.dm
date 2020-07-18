@@ -58,7 +58,8 @@
 #define COMSIG_AUTOFIRE_SHOT "autofire_shot"
 	#define COMPONENT_AUTOFIRE_SHOT_SUCCESS (1<<0)
 #define ELEMENT_CLOSE_SHUTTER_LINKED "close_shutter_linked"
-
+#define COMSIG_DIRECTIONAL_ATTACK_ACTIVE "directional_attack_active"
+	#define COMPONENT_DIRECTIONAL_ATTACK_GO (1<<0)
 // /datum/limb signals
 #define COMSIG_LIMB_DESTROYED "limb_destroyed"
 #define COMSIG_LIMB_UNDESTROYED "limb_undestroyed"
