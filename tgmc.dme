@@ -1041,7 +1041,7 @@
 #include "code\modules\error_handler\error_handler.dm"
 #include "code\modules\error_handler\error_viewer.dm"
 #include "code\modules\flufftext\Dreaming.dm"
-#include "code\modules\flufftext\hallucination.dm"
+#include "code\modules\flufftext\Hallucination.dm"
 #include "code\modules\food\recipes_microwave.dm"
 #include "code\modules\goonchat\browserOutput.dm"
 #include "code\modules\hydroponics\biogenerator.dm"
