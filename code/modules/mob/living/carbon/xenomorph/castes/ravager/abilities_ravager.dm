@@ -142,7 +142,7 @@
 	action_icon_state = "ignore_pain"
 	mechanics_text = "For the next few moments you will not go into crit, but you still die."
 	ability_name = "ignore pain"
-	plasma_cost = 250
+	plasma_cost = 50
 	cooldown_timer = 2 MINUTES
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_IGNORE_PAIN
