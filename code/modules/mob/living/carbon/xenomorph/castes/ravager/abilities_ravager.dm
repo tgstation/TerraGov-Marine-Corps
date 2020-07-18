@@ -78,7 +78,6 @@
 // *********** Ravage
 // ***************************************
 /datum/action/xeno_action/activable/ravage
-
 	name = "Ravage"
 	action_icon_state = "ravage"
 	mechanics_text = "Attacks and knockbacks enemies in the direction your facing."
@@ -161,7 +160,8 @@
 	"<span class='xenowarning'>We feel the plasma flowing through our veins!</span>")
 
 	X.ignore_pain = addtimer(VARSET_CALLBACK(X, ignore_pain, FALSE), 10 SECONDS)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, X, "<span class='xenodanger'>We feel the plasma draining from our veins.</span>"), 10 SECONDS)
+	X.ignore_pain_state = 0
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, X, "<span class='xenodanger'>We feel the plasma draining from our veins.</span>"), 7 SECONDS)
 	addtimer(CALLBACK(X, /mob/living/.proc/do_jitter_animation, 1000), 7 SECONDS)
 
 	succeed_activate()
