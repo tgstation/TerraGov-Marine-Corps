@@ -306,7 +306,7 @@
 
 /obj/item/storage/box/m94
 	name = "\improper M40 FLDP flare pack"
-	desc = "A packet of five M40 FLDP Flares. Carried by TGMC soldiers to light dark areas that cannot be reached with the usual TNR Shoulder Lamp. Can be launched from an underslung grenade launcher."
+	desc = "A packet of seven M40 FLDP Flares. Carried by TGMC soldiers to light dark areas that cannot be reached with the usual TNR Shoulder Lamp. Can be launched from an underslung grenade launcher."
 	icon_state = "m40"
 	w_class = WEIGHT_CLASS_NORMAL
 	max_storage_space = 14
@@ -317,6 +317,11 @@
 	icon_state = initial(icon_state)
 	if(!length(contents))
 		icon_state += "_e"
+
+/obj/item/storage/box/m94/cas
+	name = "\improper M50 CFDP signal pack"
+	desc = "A packet of seven M40 CFPD signal Flares. Used to mark locations for fire support. Can be launched from an underslung grenade launcher."
+	spawn_type = /obj/item/explosive/grenade/flare/cas
 
 
 /obj/item/storage/box/nade_box

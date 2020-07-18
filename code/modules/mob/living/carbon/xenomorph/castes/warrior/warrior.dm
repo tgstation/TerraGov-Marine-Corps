@@ -21,10 +21,10 @@
 		return TRUE
 	return FALSE
 
-/mob/living/carbon/xenomorph/warrior/handle_special_wound_states()
+/mob/living/carbon/xenomorph/warrior/handle_special_wound_states(severity)
 	. = ..()
 	if(agility)
-		return image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="warrior_wounded_agility", "layer"=-X_WOUND_LAYER)
+		return "warrior_wounded_agility_[severity]"
 
 // ***************************************
 // *********** Mob overrides

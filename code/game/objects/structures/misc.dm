@@ -187,3 +187,8 @@ obj/item/alienjar
 /obj/structure/plasticflaps/mining //A specific type for mining that doesn't allow airflow because of them damn crates
 	name = "\improper Airtight plastic flaps"
 	desc = "Heavy duty, airtight, plastic flaps."
+
+/obj/structure/plasticflaps/sturdy //Anti-unga flaps
+	desc = "Plastic flaps for transporting supplies."
+	obj_flags = null
+	resistance_flags = XENO_DAMAGEABLE

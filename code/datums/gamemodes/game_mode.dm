@@ -462,6 +462,8 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	for(var/z in z_levels)
 		for(var/i in GLOB.humans_by_zlevel["[z]"])
 			var/mob/living/carbon/human/H = i
+			if(!istype(H)) // Small fix?
+				continue
 			if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
 				continue
 			if(H.status_flags & XENO_HOST)
@@ -473,6 +475,8 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	for(var/z in z_levels)
 		for(var/i in GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[z]"])
 			var/mob/living/carbon/xenomorph/X = i
+			if(!istype(X)) // Small fix?
+				continue
 			if(count_flags & COUNT_IGNORE_XENO_SSD && !X.client)
 				continue
 			if(count_flags & COUNT_IGNORE_XENO_SPECIAL_AREA && is_xeno_in_forbidden_zone(X))
@@ -616,6 +620,9 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	return FALSE
 
 /datum/game_mode/proc/transfer_xeno(mob/xeno_candidate, mob/living/carbon/xenomorph/X)
+	if(QDELETED(X))
+		stack_trace("[xeno_candidate] was put into a qdeleted mob [X]")
+		return
 	message_admins("[key_name(xeno_candidate)] has joined as [ADMIN_TPMONTY(X)].")
 	xeno_candidate.mind.transfer_to(X, TRUE)
 	if(X.is_ventcrawling)  //If we are in a vent, fetch a fresh vent map

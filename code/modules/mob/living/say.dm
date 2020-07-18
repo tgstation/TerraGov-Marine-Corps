@@ -131,11 +131,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		spans |= L.spans
 
 	if(message_mode == MODE_SING)
-	#if DM_VERSION < 513
-		var/randomnote = "~"
-	#else
 		var/randomnote = pick("\u2669", "\u266A", "\u266B")
-	#endif
 		spans |= SPAN_SINGING
 		message = "[randomnote] [message] [randomnote]"
 
@@ -200,6 +196,8 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		if(get_dist(M, src) > 7 || M.z != z) //they're out of range of normal hearing
 			if(!(M.client.prefs.toggles_chat & CHAT_GHOSTEARS))
 				continue
+		if((istype(M.remote_control, /mob/camera/aiEye) || isAI(M)) && !GLOB.cameranet.checkTurfVis(src))
+			continue // AI can't hear what they can't see
 		listening |= M
 		the_dead[M] = TRUE
 

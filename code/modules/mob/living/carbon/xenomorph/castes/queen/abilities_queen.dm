@@ -129,12 +129,12 @@
 	if(istype(X.r_hand, /obj/item/clothing/mask/facehugger))
 		var/obj/item/clothing/mask/facehugger/FH = X.r_hand
 		if(FH.stat != DEAD)
-			FH.Die()
+			FH.kill_hugger()
 
 	if(istype(X.l_hand, /obj/item/clothing/mask/facehugger))
 		var/obj/item/clothing/mask/facehugger/FH = X.l_hand
 		if(FH.stat != DEAD)
-			FH.Die()
+			FH.kill_hugger()
 
 	succeed_activate()
 	add_cooldown()
@@ -390,7 +390,7 @@
 	if(overwatch_active)
 		stop_overwatch()
 
-/datum/action/xeno_action/watch_xeno/proc/on_owner_death(datum/source, gibbed)
+/datum/action/xeno_action/watch_xeno/proc/on_owner_death(mob/source, gibbing)
 	if(overwatch_active)
 		stop_overwatch()
 

@@ -552,7 +552,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 
 /obj/structure/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	if(!density) //structure is passable
+	if(!density && !(obj_flags & PROJ_IGNORE_DENSITY)) //structure is passable
 		return FALSE
 	if(src == proj.original_target) //clicking on the structure itself hits the structure
 		return TRUE
@@ -690,6 +690,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /mob/living/do_projectile_hit(obj/projectile/proj)
 	proj.ammo.on_hit_mob(src, proj)
 	bullet_act(proj)
+/mob/living/carbon/do_projectile_hit(obj/projectile/proj)
+	. = ..()
+	if(!(species?.species_flags & NO_BLOOD) && proj.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(loc, proj.dir, get_blood_color())
 
 
 /mob/living/carbon/human/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
@@ -930,7 +934,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		current_bulletholes++
 
 	if(prob(30))
-		proj.visible_message("<span class='warning'>[src] is damaged by [proj]!</span>")
+		visible_message("<span class='warning'>[src] is damaged by [proj]!</span>", visible_message_flags = COMBAT_MESSAGE)
 	take_damage(damage)
 	return TRUE
 
@@ -979,7 +983,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /mob/living/carbon/human/bullet_message(obj/projectile/proj, feedback_flags, damage)
 	. = ..()
-	var/list/onlooker_feedback = list("[src] is hit by the [proj] in the [parse_zone(proj.def_zone)]!")
+	var/list/onlooker_feedback = list("[src] is hit by \the [proj] in the [parse_zone(proj.def_zone)]!")
 
 	var/list/victim_feedback = list()
 	if(proj.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
@@ -1002,7 +1006,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		onlooker_feedback += "[p_they(TRUE)] burst into flames!"
 
 	visible_message("<span class='danger'>[onlooker_feedback.Join(" ")]</span>",
-	"<span class='highdanger'>[victim_feedback.Join(" ")]</span>", null, 4)
+	"<span class='highdanger'>[victim_feedback.Join(" ")]</span>", null, 4, visible_message_flags = COMBAT_MESSAGE)
 
 	if(feedback_flags & BULLET_FEEDBACK_SCREAM && stat == CONSCIOUS && !(species.species_flags & NO_PAIN))
 		emote("scream")
@@ -1021,7 +1025,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 
 /mob/living/carbon/xenomorph/bullet_message(obj/projectile/proj, feedback_flags, damage)
 	. = ..()
-	var/list/onlooker_feedback = list("[src] is hit by the [proj] in the [parse_zone(proj.def_zone)]!")
+	var/list/onlooker_feedback = list("[src] is hit by \the [proj] in the [parse_zone(proj.def_zone)]!")
 
 	var/list/victim_feedback
 	if(proj.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
@@ -1046,7 +1050,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		emote(prob(70) ? "hiss" : "roar")
 
 	visible_message("<span class='danger'>[onlooker_feedback.Join(" ")]</span>",
-	"<span class='xenodanger'>[victim_feedback.Join(" ")]", null, 4)
+	"<span class='xenodanger'>[victim_feedback.Join(" ")]", null, 4, visible_message_flags = COMBAT_MESSAGE)
 
 // Sundering procs
 /mob/living/proc/adjust_sunder(adjustment)

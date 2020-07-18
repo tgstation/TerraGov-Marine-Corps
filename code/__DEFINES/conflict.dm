@@ -106,9 +106,6 @@
 #define DETPACK_TIMER_MIN			5
 #define DETPACK_TIMER_MAX			300
 
-//Define flamer
-#define M240T_WATER_AMOUNT 			reagents.get_reagent_amount(/datum/reagent/water)
-
 //Define sniper laser multipliers
 
 #define SNIPER_LASER_DAMAGE_MULTIPLIER	1.5 //+50% damage vs the aimed target

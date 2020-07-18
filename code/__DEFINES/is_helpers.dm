@@ -1,14 +1,6 @@
-#if DM_VERSION < 513
-#define islist(L) (istype(L, /list))
-#endif
-
 #define in_range(source, user) (get_dist(source, user) <= 1 && (get_step(source, 0)?:z) == (get_step(user, 0)?:z))
 
-#if DM_VERSION < 513
-#define ismovableatom(A) (istype(A, /atom/movable))
-#else
 #define ismovableatom(A) ismovable(A)
-#endif
 
 #define isatom(A) (isloc(A))
 
@@ -18,6 +10,8 @@
 //#define isturf(A) (istype(A, /turf)) This is actually a byond built-in. Added here for completeness sake.
 
 #define isopenturf(A) (istype(A, /turf/open))
+
+#define isopengroundturf(A) (istype(A, /turf/open/ground/jungle) || istype(A, /turf/open/ground/grass))
 
 #define isspaceturf(A) (istype(A, /turf/open/space))
 

@@ -12,6 +12,9 @@ GLOBAL_VAR(restart_counter)
 	if(fexists(extools))
 		call(extools, "maptick_initialize")()
 	enable_debugger()
+#ifdef REFERENCE_TRACKING
+	enable_reference_tracking()
+#endif
 
 	log_world("World loaded at [time_stamp()]!")
 
@@ -237,6 +240,27 @@ GLOBAL_VAR(restart_counter)
 	if(TEST_RUN_PARAMETER in params)
 		FinishTestRun()
 		return
+
+	if(TgsAvailable())
+		var/do_hard_reboot
+		// check the hard reboot counter
+		var/ruhr = CONFIG_GET(number/rounds_until_hard_restart)
+		switch(ruhr)
+			if(-1)
+				do_hard_reboot = FALSE
+			if(0)
+				do_hard_reboot = TRUE
+			else
+				if(GLOB.restart_counter >= ruhr)
+					do_hard_reboot = TRUE
+				else
+					text2file("[++GLOB.restart_counter]", RESTART_COUNTER_PATH)
+					do_hard_reboot = FALSE
+
+		if(do_hard_reboot)
+			log_world("World rebooted at [time_stamp()]")
+			shutdown_logging() // Past this point, no logging procs can be used, at risk of data loss.
+			TgsEndProcess()
 
 	var/linkylink = CONFIG_GET(string/server)
 	if(linkylink)

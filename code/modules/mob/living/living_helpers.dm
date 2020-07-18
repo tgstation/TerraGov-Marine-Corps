@@ -52,12 +52,12 @@
 		return
 
 	// We don't take action on victimless crimes
-	// if(victim.stat == DEAD || !victim.client)
-	// 	return
+	if(victim.stat == DEAD || !victim.client)
+		return
 
-	// var/list/adm = get_admin_counts(R_ADMIN)
-	// if(length(adm["present"]) > 0)
-	// 	return // Let an admin deal with it.
+	var/list/adm = get_admin_counts(R_ADMIN)
+	if(length(adm["present"]) > 0)
+		return // Let an admin deal with it.
 
 	var/ff_cooldown = CONFIG_GET(number/ff_damage_reset)
 	if(!COOLDOWN_CHECK(src, COOLDOWN_FRIENDLY_FIRE_CAUSED))
@@ -78,13 +78,10 @@
 	var/ff_limit = CONFIG_GET(number/ff_damage_threshold)
 	if(friendly_fire[FF_DAMAGE_OUTGOING] < ff_limit)
 		return
-	message_admins("[key_name_admin(src)] would've been kicked for excessive friendly fire. [friendly_fire[FF_DAMAGE_OUTGOING]] damage witin [ff_cooldown / 10] seconds. Victims: [english_list(friendly_fire[FF_VICTIM_LIST])]")
-	// send2tgs("FF ALERT", "[key_name(src)] was kicked for excessive friendly fire. [friendly_fire[FF_DAMAGE_OUTGOING]] damage witin [ff_cooldown / 10] seconds")
-	// create_message("note", ckey(client.key), "SYSTEM", "Autokicked due to excessive friendly fire. [friendly_fire[FF_DAMAGE_OUTGOING]] damage witin [ff_cooldown / 10] seconds.", null, null, FALSE, FALSE, null, FALSE, "Minor")
-	// ghostize(FALSE) // make them a ghost
-	// qdel(client) // Disconnect the client
-	// Reset the damage done - not needed if they are removed.
-	friendly_fire[FF_DAMAGE_OUTGOING] = 0
+	send2tgs("FF ALERT", "[key_name(src)] was kicked for excessive friendly fire. [friendly_fire[FF_DAMAGE_OUTGOING]] damage witin [ff_cooldown / 10] seconds")
+	create_message("note", ckey(client.key), "SYSTEM", "Autokicked due to excessive friendly fire. [friendly_fire[FF_DAMAGE_OUTGOING]] damage within [ff_cooldown / 10] seconds.", null, null, FALSE, FALSE, null, FALSE, "Minor")
+	ghostize(FALSE) // make them a ghost (so they can't return to the round)
+	qdel(client) // Disconnect the client
 
 	// Heal everyone involved
 	for(var/i in friendly_fire[FF_VICTIM_LIST])

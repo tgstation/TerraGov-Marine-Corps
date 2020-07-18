@@ -9,9 +9,19 @@
 	var/datum/hud/hud // A reference to the owner HUD, if any./obj/screen
 
 	//Map popups
+	/**
+	 * Map name assigned to this object.
+	 * Automatically set by /client/proc/add_obj_to_map.
+	 */
 	var/assigned_map
-	var/list/screen_info = list()//x,x pix, y, y pix || x,y
-	var/del_on_map_removal = TRUE//this could probably be changed to be a proc, for conditional removal. for now, this works.
+	/**
+	 * Mark this object as garbage-collectible after you clean the map
+	 * it was registered on.
+	 *
+	 * This could probably be changed to be a proc, for conditional removal.
+	 * But for now, this works.
+	 */
+	var/del_on_map_removal = TRUE
 
 /obj/screen/Destroy()
 	master = null

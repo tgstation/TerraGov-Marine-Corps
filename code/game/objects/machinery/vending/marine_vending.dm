@@ -35,6 +35,8 @@
 					/obj/item/ammo_magazine/pistol/standard_heavypistol = 25,
 					/obj/item/weapon/gun/energy/lasgun/lasrifle = 10,
 					/obj/item/cell/lasgun/lasrifle = 20,
+					/obj/item/weapon/gun/rifle/chambered = 20,
+					/obj/item/ammo_magazine/rifle/chamberedrifle = 20,
 					/obj/item/weapon/gun/shotgun/pump/t35 = 10,
 					/obj/item/weapon/gun/shotgun/combat/standardmarine = 10,
 					/obj/item/ammo_magazine/shotgun = 10,
@@ -43,6 +45,8 @@
 					/obj/item/weapon/gun/rifle/standard_autoshotgun = 10,
 					/obj/item/ammo_magazine/rifle/tx15_slug = 25,
 					/obj/item/ammo_magazine/rifle/tx15_flechette = 25,
+					/obj/item/weapon/gun/launcher/m92/standardmarine = 10,
+					/obj/item/explosive/grenade/frag = 30,
 					/obj/item/weapon/gun/pistol/standard_pocketpistol = 25,
 					/obj/item/ammo_magazine/pistol/standard_pocketpistol = 50,
 					/obj/item/attachable/bayonetknife = 20,
@@ -66,13 +70,6 @@
 	. = ..()
 	GLOB.marine_vendors.Remove(src)
 
-/obj/machinery/vending/marine/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(istype(I, /obj/item/weapon/gun) || istype(I, /obj/item/ammo_magazine))
-		stock(I, user)
-		return TRUE
-
 //What do grenade do against candy machine?
 /obj/machinery/vending/marine/ex_act(severity)
 	return
@@ -84,7 +81,7 @@
 	icon_vend = "synth-vend"
 	icon_deny = "synth-deny"
 	wrenchable = FALSE
-	req_one_access = list(ACCESS_MARINE_CARGO)
+	req_one_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_LOGISTICS)
 	products = list(
 					/obj/item/storage/box/ammo = 30,
 					/obj/item/storage/box/nade_box = 2,
@@ -95,7 +92,6 @@
 					/obj/item/ammo_magazine/rocket = 3,
 					/obj/item/ammo_magazine/minigun = 2,
 					/obj/item/ammo_magazine/shotgun/mbx900 = 2,
-					/obj/item/ammo_magazine/flamer_tank/large = 1,
 					/obj/item/bodybag/tarp = 2,
 					/obj/item/explosive/plastique = 2)
 
@@ -118,14 +114,16 @@
 					/obj/item/weapon/gun/rifle/standard_dmr = 10,
 					/obj/item/weapon/gun/rifle/standard_br = 10,
 					/obj/item/weapon/gun/energy/lasgun/lasrifle = 10,
+					/obj/item/weapon/gun/rifle/chambered = 10,
 					/obj/item/weapon/gun/shotgun/pump/t35 = 10,
 					/obj/item/weapon/gun/shotgun/combat/standardmarine = 10,
 					/obj/item/weapon/gun/rifle/standard_autoshotgun = 10,
+					/obj/item/weapon/gun/launcher/m92/standardmarine = 10,
 					/obj/item/weapon/gun/pistol/standard_pocketpistol = 20,
 					/obj/item/weapon/gun/shotgun/double = 5,
 					/obj/item/weapon/gun/shotgun/pump/ksg = 5,
 					/obj/item/weapon/gun/shotgun/pump/bolt = 5,
-					/obj/item/weapon/gun/flamer = 3,
+					/obj/item/weapon/gun/flamer/marinestandard = 2,
 					/obj/item/explosive/mine = 5,
 					/obj/item/explosive/grenade/frag/m15 = 25,
 					/obj/item/explosive/grenade/incendiary = 25,
@@ -174,17 +172,19 @@
 					/obj/item/ammo_magazine/rifle/standard_dmr = 50,
 					/obj/item/ammo_magazine/rifle/standard_br = 50,
 					/obj/item/cell/lasgun/lasrifle = 50,
+					/obj/item/ammo_magazine/rifle/chamberedrifle = 50,
 					/obj/item/ammo_magazine/shotgun = 50,
 					/obj/item/ammo_magazine/shotgun/buckshot = 50,
 					/obj/item/ammo_magazine/shotgun/flechette = 50,
 					/obj/item/ammo_magazine/rifle/tx15_slug = 50,
 					/obj/item/ammo_magazine/rifle/tx15_flechette = 50,
 					/obj/item/ammo_magazine/pistol/standard_pocketpistol = 50,
+					/obj/item/ammo_magazine/flamer_tank/large = 10,
 					/obj/item/ammo_magazine/standard_smartmachinegun = 2,
 					/obj/item/ammo_magazine/flamer_tank = 10,
 					/obj/item/ammo_magazine/smg/ppsh/ = 30,
 					/obj/item/ammo_magazine/smg/ppsh/extended = 10,
-					/obj/item/ammo_magazine/rifle/bolt = 30,
+					/obj/item/ammo_magazine/rifle/bolt = 7,
 					)
 	premium = list()
 
@@ -244,13 +244,6 @@
 				icon_state = "lascharger_50"
 			if(0.25 to 0.01)
 				icon_state = "lascharger_25"
-
-/obj/machinery/vending/lasgun/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(istype(I, /obj/item/cell/lasgun))
-		stock(I, user, TRUE)
-		return TRUE
 
 /obj/machinery/vending/lasgun/examine(mob/user)
 	. = ..()
@@ -522,7 +515,7 @@
 
 	premium = list(
 					/obj/item/storage/box/sentry = 1,
-					/obj/item/storage/box/m56d_hmg = 1
+					/obj/item/storage/box/standard_hmg = 1
 					)
 	shared = list(
 				/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
@@ -615,7 +608,6 @@
 						/obj/item/attachable/verticalgrip = 25,
 
 						/obj/item/attachable/stock/t19stock = 25,
-						/obj/item/attachable/stock/revolver = 25,
 						/obj/item/attachable/stock/t35stock = 25,
 						/obj/item/attachable/stock/tactical = 25,
 
@@ -647,16 +639,13 @@
 					/obj/item/storage/large_holster/machete/full = 10,
 					/obj/item/clothing/shoes/marine = 20,
 					/obj/item/clothing/under/marine/standard = 20,
+					/obj/item/clothing/under/marine/jaeger = 30,
 					/obj/item/storage/backpack/marine/standard = 10,
 					/obj/item/storage/backpack/marine/satchel = 10,
+					/obj/item/tool/weldpack/marinestandard = 10,
 					/obj/item/clothing/gloves/marine = 20,
-					/obj/item/clothing/suit/storage/marine = 10,
-					/obj/item/clothing/suit/storage/marine/M3HB = 10,
-					/obj/item/clothing/suit/storage/marine/M3LB = 10,
-					/obj/item/clothing/suit/storage/marine/M3IS = 10,
-					/obj/item/clothing/suit/storage/marine/harness = 10,
-					/obj/item/clothing/head/helmet/marine/standard = 20,
-					/obj/item/clothing/head/helmet/marine/heavy = 20,
+					/obj/item/clothing/suit/storage/marine/pasvest = 40,
+					/obj/item/clothing/head/helmet/marine = 40,
 					/obj/item/clothing/glasses/mgoggles = 10,
 					/obj/item/clothing/glasses/mgoggles/prescription = 10,
 					/obj/item/clothing/mask/rebreather/scarf = 10,
@@ -711,18 +700,19 @@
 					/obj/item/clothing/shoes/white = 50,
 					/obj/item/clothing/gloves/white = 50,
 					/obj/item/clothing/suit/modular = 20,
-					/obj/item/armor_module/armor/chest/heavy = 20,
-					/obj/item/armor_module/armor/chest/medium = 20,
-					/obj/item/armor_module/armor/chest/light = 20,
-					/obj/item/armor_module/armor/arms/heavy = 20,
-					/obj/item/armor_module/armor/arms/medium = 20,
-					/obj/item/armor_module/armor/arms/light = 20,
-					/obj/item/armor_module/armor/legs/heavy = 20,
-					/obj/item/armor_module/armor/legs/medium = 20,
-					/obj/item/armor_module/armor/legs/light = 20,
-					/obj/item/clothing/head/modular/heavy = 20,
-					/obj/item/clothing/head/modular/medium = 20,
-					/obj/item/clothing/head/modular/light = 20
+					/obj/item/armor_module/armor/chest/marine = 20,
+					/obj/item/armor_module/armor/chest/marine/skirmisher = 20,
+					/obj/item/armor_module/armor/chest/marine/assault = 20,
+					/obj/item/armor_module/armor/arms/marine = 20,
+					/obj/item/armor_module/armor/arms/marine/skirmisher = 20,
+					/obj/item/armor_module/armor/arms/marine/assault = 20,
+					/obj/item/armor_module/armor/legs/marine = 20,
+					/obj/item/armor_module/armor/legs/marine/skirmisher = 20,
+					/obj/item/armor_module/armor/legs/marine/assault = 20,
+					/obj/item/clothing/head/modular/marine = 20,
+					/obj/item/clothing/head/modular/marine/skirmisher = 20,
+					/obj/item/clothing/head/modular/marine/assault = 20,
+					/obj/item/facepaint/green = 20
 					)
 
 	prices = list()

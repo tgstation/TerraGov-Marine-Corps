@@ -903,9 +903,10 @@
 /mob/living/carbon/human/species
 	var/race = null
 
-/mob/living/carbon/human/species/Initialize()
-	. = ..()
-	set_species(race)
+/mob/living/carbon/human/species/set_species(new_species, default_colour)
+	if(!new_species)
+		new_species = race
+	return ..()
 
 /mob/living/carbon/human/proc/set_species(new_species, default_colour)
 
@@ -1049,67 +1050,68 @@
 
 /mob/living/carbon/human/proc/randomize_appearance()
 	gender = pick(MALE, FEMALE)
-	name = GLOB.namepool[/datum/namepool].get_random_name(gender)
+	name = species.random_name(gender)
 	real_name = name
 
-	switch(pick(15;"black", 15;"grey", 15;"brown", 15;"lightbrown", 10;"white", 15;"blonde", 15;"red"))
-		if("black")
-			r_hair = 10
-			g_hair = 10
-			b_hair = 10
-			r_facial = 10
-			g_facial = 10
-			b_facial = 10
-		if("grey")
-			r_hair = 50
-			g_hair = 50
-			b_hair = 50
-			r_facial = 50
-			g_facial = 50
-			b_facial = 50
-		if("brown")
-			r_hair = 70
-			g_hair = 35
-			b_hair = 0
-			r_facial = 70
-			g_facial = 35
-			b_facial = 0
-		if("lightbrown")
-			r_hair = 100
-			g_hair = 50
-			b_hair = 0
-			r_facial = 100
-			g_facial = 50
-			b_facial = 0
-		if("white")
-			r_hair = 235
-			g_hair = 235
-			b_hair = 235
-			r_facial = 235
-			g_facial = 235
-			b_facial = 235
-		if("blonde")
-			r_hair = 240
-			g_hair = 240
-			b_hair = 0
-			r_facial = 240
-			g_facial = 240
-			b_facial = 0
-		if("red")
-			r_hair = 128
-			g_hair = 0
-			b_hair = 0
-			r_facial = 128
-			g_facial = 0
-			b_facial = 0
+	if(!(species.species_flags & HAS_NO_HAIR))
+		switch(pick(15;"black", 15;"grey", 15;"brown", 15;"lightbrown", 10;"white", 15;"blonde", 15;"red"))
+			if("black")
+				r_hair = 10
+				g_hair = 10
+				b_hair = 10
+				r_facial = 10
+				g_facial = 10
+				b_facial = 10
+			if("grey")
+				r_hair = 50
+				g_hair = 50
+				b_hair = 50
+				r_facial = 50
+				g_facial = 50
+				b_facial = 50
+			if("brown")
+				r_hair = 70
+				g_hair = 35
+				b_hair = 0
+				r_facial = 70
+				g_facial = 35
+				b_facial = 0
+			if("lightbrown")
+				r_hair = 100
+				g_hair = 50
+				b_hair = 0
+				r_facial = 100
+				g_facial = 50
+				b_facial = 0
+			if("white")
+				r_hair = 235
+				g_hair = 235
+				b_hair = 235
+				r_facial = 235
+				g_facial = 235
+				b_facial = 235
+			if("blonde")
+				r_hair = 240
+				g_hair = 240
+				b_hair = 0
+				r_facial = 240
+				g_facial = 240
+				b_facial = 0
+			if("red")
+				r_hair = 128
+				g_hair = 0
+				b_hair = 0
+				r_facial = 128
+				g_facial = 0
+				b_facial = 0
 
-	h_style = random_hair_style(gender)
+		h_style = random_hair_style(gender)
 
-	switch(pick("none", "some"))
-		if("none")
-			f_style = "Shaved"
-		if("some")
-			f_style = random_facial_hair_style(gender)
+		switch(pick("none", "some"))
+			if("none")
+				f_style = "Shaved"
+			if("some")
+				f_style = random_facial_hair_style(gender)
 
 	switch(pick(15;"black", 15;"green", 15;"brown", 15;"blue", 15;"lightblue", 5;"red"))
 		if("black")

@@ -9,6 +9,12 @@
 	return ..()
 
 
+/datum/emote/living/carbon/human/blush
+	key = "blush"
+	key_third_person = "blushes"
+	message = "blushes."
+
+
 /datum/emote/living/carbon/human/blink
 	key = "blink"
 	key_third_person = "blinks"
@@ -16,7 +22,7 @@
 
 
 /datum/emote/living/carbon/human/blink_r
-	key = "blink_r"
+	key = "blinkr"
 	message = "blinks rapidly."
 
 
@@ -33,6 +39,13 @@
 	key_third_person = "chuckles"
 	message = "chuckles."
 	emote_type = EMOTE_AUDIBLE
+
+
+/datum/emote/living/carbon/human/cross
+	key = "cross"
+	key_third_person = "crosses"
+	message = "crosses their arms."
+	flags_emote = EMOTE_RESTRAINT_CHECK
 
 
 /datum/emote/living/carbon/human/clap
@@ -175,6 +188,12 @@
 	message = "smiles."
 
 
+/datum/emote/living/carbon/human/smug
+	key = "smug"
+	key_third_person = "smugs"
+	message = "grins smugly."
+
+
 /datum/emote/living/carbon/human/stare
 	key = "stare"
 	key_third_person = "stares"
@@ -182,10 +201,42 @@
 	message_param = "stares at %t."
 
 
+/datum/emote/living/carbon/human/strech
+	key = "stretch"
+	key_third_person = "stretches"
+	message = "stretches their arms."
+
+
+/datum/emote/living/carbon/human/sulk
+	key = "sulk"
+	key_third_person = "sulks"
+	message = "sulks down sadly."
+
+
+/datum/emote/living/carbon/human/surrender
+	key = "surrender"
+	key_third_person = "surrenders"
+	message = "puts their hands on their head and falls to the ground, they surrender!"
+	emote_type = EMOTE_AUDIBLE
+
+/datum/emote/living/carbon/human/surrender/run_emote(mob/user, params, type_override, intentional)
+	. = ..()
+	if(. && isliving(user))
+		var/mob/living/L = user
+		L.Paralyze(20 SECONDS)
+
+
 /datum/emote/living/carbon/human/sneeze
 	key = "sneeze"
 	key_third_person = "sneezes"
 	message = "sneezes."
+	emote_type = EMOTE_AUDIBLE
+
+
+/datum/emote/living/carbon/human/sniff
+	key = "sniff"
+	key_third_person = "sniffs"
+	message = "sniffs."
 	emote_type = EMOTE_AUDIBLE
 
 
@@ -196,12 +247,24 @@
 	emote_type = EMOTE_AUDIBLE
 
 
+/datum/emote/living/carbon/human/scowl
+	key = "scowl"
+	key_third_person = "scowls"
+	message = "scowls."
+	emote_type = EMOTE_AUDIBLE
+
+
 /datum/emote/living/carbon/human/sigh
 	key = "sigh"
 	key_third_person = "sighs"
 	message = "sighs."
 	emote_type = EMOTE_AUDIBLE
 
+
+/datum/emote/living/carbon/human/sit
+	key = "sit"
+	key_third_person = "sits"
+	message = "sits down."
 
 /datum/emote/living/carbon/human/shrug
 	key = "shrug"
@@ -223,6 +286,13 @@
 	message_param = "nods at %t."
 
 
+/datum/emote/living/carbon/human/gag
+	key = "gag"
+	key_third_person = "gags"
+	message = "gags."
+	emote_type = EMOTE_AUDIBLE
+
+
 /datum/emote/living/carbon/human/glare
 	key = "glare"
 	key_third_person = "glares"
@@ -237,10 +307,30 @@
 	message = "grins."
 
 
+/datum/emote/living/carbon/human/grimace
+	key = "grimace"
+	key_third_person = "grimaces"
+	message = "grimaces."
+
+
+/datum/emote/living/carbon/human/jump
+	key = "jump"
+	key_third_person = "jumps"
+	message = "jumps!"
+	flags_emote = EMOTE_RESTRAINT_CHECK
+
+
 /datum/emote/living/carbon/human/grumble
 	key = "grumble"
 	key_third_person = "grumbles"
 	message = "grumbles!"
+	emote_type = EMOTE_AUDIBLE
+
+/datum/emote/living/carbon/human/kiss
+	key = "kiss"
+	key_third_person = "kisses"
+	message = "blows a kiss."
+	message_param = "blows a kiss to %t."
 	emote_type = EMOTE_AUDIBLE
 
 
@@ -255,7 +345,7 @@
 	params = text2num(params)
 	if(params == 1 || !isnum(params))
 		return "raises one finger."
-	params = num2text(CLAMP(params, 2, 10))
+	params = num2text(clamp(params, 2, 10))
 	return ..()
 
 
@@ -326,6 +416,13 @@
 	message = "claps, clearly unimpressed."
 	flags_emote = EMOTE_RESTRAINT_CHECK
 	sound = 'sound/misc/golfclap.ogg'
+
+
+/datum/emote/living/carbon/human/pout
+	key = "pout"
+	key_third_person = "pouts"
+	message = "pouts."
+	emote_type = EMOTE_AUDIBLE
 
 
 /datum/emote/living/carbon/human/scream

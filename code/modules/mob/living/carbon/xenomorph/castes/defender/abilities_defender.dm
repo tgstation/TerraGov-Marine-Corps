@@ -285,7 +285,7 @@
 			to_chat(src, "<span class='xenowarning'>We raise our crest.</span>")
 		GLOB.round_statistics.defender_crest_raises++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_crest_raises")
-		soft_armor = soft_armor.setRating(bomb = XENO_BOMB_RESIST_0)
+		soft_armor = soft_armor.setRating(bomb = XENO_BOMB_RESIST_2)
 		armor_bonus -= xeno_caste.crest_defense_armor
 		remove_movespeed_modifier(MOVESPEED_ID_CRESTDEFENSE)
 	update_icons()
@@ -342,7 +342,7 @@
 		if(!silent)
 			to_chat(src, "<span class='xenowarning'>We resume our normal stance.</span>")
 		armor_bonus -= xeno_caste.fortify_armor
-		soft_armor = soft_armor.setRating(bomb = XENO_BOMB_RESIST_0)
+		soft_armor = soft_armor.setRating(bomb = XENO_BOMB_RESIST_2)
 		REMOVE_TRAIT(src, TRAIT_IMMOBILE, FORTIFY_TRAIT)
 	fortify = on
 	anchored = on

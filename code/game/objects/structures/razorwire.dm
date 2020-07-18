@@ -45,6 +45,8 @@
 	var/mob/living/M = O
 	if(CHECK_BITFIELD(M.restrained_flags, RESTRAINED_RAZORWIRE))
 		return
+	if(!M.density)
+		return
 	playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 	var/armor_block = null
 	var/def_zone = ran_zone()
@@ -70,6 +72,7 @@
 	RegisterSignal(entangled, COMSIG_LIVING_DO_RESIST, /atom/movable.proc/resisted_against)
 	RegisterSignal(entangled, COMSIG_PARENT_QDELETING, .proc/do_razorwire_untangle)
 	RegisterSignal(entangled, COMSIG_MOVABLE_UNCROSS, .proc/on_entangled_uncross)
+	RegisterSignal(entangled, COMSIG_MOVABLE_PULL_MOVED, .proc/razorwire_untangle)
 
 
 /obj/structure/razorwire/resisted_against(datum/source)
@@ -79,7 +82,6 @@
 		"<span class='warning'>You fail to disentangle yourself!</span>")
 		return FALSE
 	return razorwire_untangle(entangled)
-
 
 /obj/structure/razorwire/proc/razorwire_untangle(mob/living/entangled)
 	entangled.next_move_slowdown += RAZORWIRE_SLOWDOWN //big slowdown
@@ -95,7 +97,7 @@
 
 ///This proc is used for signals, so if you plan on adding a second argument, or making it return a value, then change those RegisterSignal's referncing it first.
 /obj/structure/razorwire/proc/do_razorwire_untangle(mob/living/entangled)
-	UnregisterSignal(entangled, list(COMSIG_PARENT_QDELETING, COMSIG_LIVING_DO_RESIST, COMSIG_MOVABLE_UNCROSS))
+	UnregisterSignal(entangled, list(COMSIG_PARENT_QDELETING, COMSIG_LIVING_DO_RESIST, COMSIG_MOVABLE_UNCROSS, COMSIG_MOVABLE_PULL_MOVED))
 	LAZYREMOVE(entangled_list, entangled)
 	DISABLE_BITFIELD(entangled.restrained_flags, RESTRAINED_RAZORWIRE)
 	REMOVE_TRAIT(entangled, TRAIT_IMMOBILE, type)

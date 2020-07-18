@@ -56,9 +56,9 @@
 		/datum/reagent/medicine/oxycodone,
 		/datum/reagent/medicine/tramadol)
 
-	var/datum/action/suit_autodoc_toggle/toggle_action
-	var/datum/action/suit_autodoc_scan/scan_action
-	var/datum/action/suit_autodoc_configure/configure_action
+	var/datum/action/suit_autodoc/toggle/toggle_action
+	var/datum/action/suit_autodoc/scan/scan_action
+	var/datum/action/suit_autodoc/configure/configure_action
 
 	var/mob/living/carbon/wearer
 
@@ -242,7 +242,7 @@
 
 	for(var/chem in chems)
 		var/datum/reagent/R = chem
-		var/amount_to_administer = CLAMP(\
+		var/amount_to_administer = clamp(\
 									initial(R.overdose_threshold) - H.reagents.get_reagent_amount(R),\
 									0,\
 									initial(R.overdose_threshold) * overdose_threshold_mod)
@@ -324,6 +324,9 @@
 	This will enable or disable the suit
 */
 /datum/component/suit_autodoc/proc/action_toggle(datum/source)
+	if(COOLDOWN_CHECK(src, COOLDOWN_TOGGLE))
+		return
+	COOLDOWN_START(src, COOLDOWN_TOGGLE, 2 SECONDS)
 	if(enabled)
 		disable()
 	else
@@ -396,10 +399,7 @@
 		return
 
 	if(href_list["automed_on"])
-		if(enabled)
-			disable()
-		else
-			enable()
+		action_toggle()
 
 	else if(href_list["analyzer"]) //Integrated scanner
 		analyzer.attack(wearer, wearer, TRUE)
@@ -414,28 +414,33 @@
 	else if(href_list["automed_damage"])
 		damage_threshold += text2num(href_list["automed_damage"])
 		damage_threshold = round(damage_threshold)
-		damage_threshold = CLAMP(damage_threshold,SUIT_AUTODOC_DAM_MIN,SUIT_AUTODOC_DAM_MAX)
+		damage_threshold = clamp(damage_threshold,SUIT_AUTODOC_DAM_MIN,SUIT_AUTODOC_DAM_MAX)
 	else if(href_list["automed_pain"])
 		pain_threshold += text2num(href_list["automed_pain"])
 		pain_threshold = round(pain_threshold)
-		pain_threshold = CLAMP(pain_threshold,SUIT_AUTODOC_DAM_MIN,SUIT_AUTODOC_DAM_MAX)
+		pain_threshold = clamp(pain_threshold,SUIT_AUTODOC_DAM_MIN,SUIT_AUTODOC_DAM_MAX)
 
 	interact(wearer)
 
 //// Action buttons
-/datum/action/suit_autodoc_toggle
-	name = "Toggle Suit Automedic"
+/datum/action/suit_autodoc
 	action_icon = 'icons/mob/screen_alert.dmi'
+
+/datum/action/suit_autodoc/can_use_action()
+	if(QDELETED(owner) || owner.incapacitated() || owner.lying_angle)
+		return FALSE
+	return TRUE
+
+/datum/action/suit_autodoc/toggle
+	name = "Toggle Suit Automedic"
 	action_icon_state = "suit_toggle"
 
-/datum/action/suit_autodoc_scan
+/datum/action/suit_autodoc/scan
 	name = "Suit Automedic User Scan"
-	action_icon = 'icons/mob/screen_alert.dmi'
 	action_icon_state = "suit_scan"
 
-/datum/action/suit_autodoc_configure
+/datum/action/suit_autodoc/configure
 	name = "Configure Suit Automedic"
-	action_icon = 'icons/mob/screen_alert.dmi'
 	action_icon_state = "suit_configure"
 
 #undef SUIT_AUTODOC_DAM_MAX

@@ -946,6 +946,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 /datum/limb/proc/robotize()
 	rejuvenate()
+	add_limb_flags(LIMB_ROBOT)
 	for(var/c in children)
 		var/datum/limb/child_limb = c
 		child_limb.robotize()
