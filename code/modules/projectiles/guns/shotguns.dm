@@ -434,7 +434,7 @@ can cause issues with ammo types getting mixed up during the burst.
 //MARINE DOUBLE SHOTTY
 
 /obj/item/weapon/gun/shotgun/double/marine
-	name = "TS-34 double barrel shotgun"
+	name = "\improper TS-34 double barrel shotgun"
 	desc = "A double barreled shotgun of archaic, but sturdy design used by the TGMC. Due to reports of barrel bursting, the abiility to fire both barrels has been disabled. Uses 12 gauge shells, but can only hold 2 at a time."
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "ts34"
