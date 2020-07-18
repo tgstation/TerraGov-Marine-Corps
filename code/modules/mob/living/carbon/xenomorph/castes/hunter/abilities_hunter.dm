@@ -244,9 +244,9 @@
 	action_icon_state = "haunt"
 	mechanics_text = "Haunts the target, causing hallucinations and minor paranoia."
 	ability_name = "haunt"
-	plasma_cost = 10
+	plasma_cost = 25
 	keybind_signal = COMSIG_XENOABILITY_HAUNT
-	cooldown_timer = 14 SECONDS
+	cooldown_timer = 30 SECONDS
 
 /datum/action/xeno_action/activable/haunt/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -268,6 +268,9 @@
 
 	if(!can_use_ability(A, TRUE, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return fail_activate()
+
+	if(get_dist(X, victim) > 5)
+		to_chat(X, "<span class='warning'>They are too far for us to reach their minds!</spam>")
 
 	succeed_activate()
 	to_chat(X, "<span class='notice'>We reach out into mind of the creature, infecting their thoughts...</span>")
