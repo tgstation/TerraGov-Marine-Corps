@@ -4,7 +4,6 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	/datum/hallucination/sounds = 100,
 	/datum/hallucination/chat = 50,
 	/datum/hallucination/battle = 20,
-	/datum/hallucination/xeno_attack = 12,
 ))
 
 
