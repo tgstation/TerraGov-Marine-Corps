@@ -1,4 +1,0 @@
-author: "psykzz"
-delete-after: True
-changes: 
-  - balance: "Valkyrie module has a larger delay between heals (2.5 minutes to 4minutes)"

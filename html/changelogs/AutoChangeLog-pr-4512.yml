@@ -1,4 +1,0 @@
-author: "spookydonut"
-delete-after: True
-changes: 
-  - tweak: "OOC, LOOC, me, say keys are now set as keybind defaults instead of being hardcoded, double check your keybinds."
