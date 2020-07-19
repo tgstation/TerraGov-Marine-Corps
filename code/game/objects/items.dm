@@ -345,7 +345,7 @@
 	if(ishuman(M))
 		//START HUMAN
 		var/mob/living/carbon/human/H = M
-		if(H.get_gender() = not_for_gender)
+		if(H.get_gender() == not_for_gender)
 			if(warning)
 				to_chat(H, "<span class='warning'>This isn't properly made for someone of your gender.</span>")
 			return FALSE

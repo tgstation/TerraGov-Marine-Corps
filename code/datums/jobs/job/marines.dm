@@ -8,7 +8,7 @@
 /datum/job/terragov/squad/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
 	. = ..()
 	C.hud_set_squad()
-	C.set_nutrition(NUTRITION_WELLFED))
+	C.set_nutrition(NUTRITION_WELLFED)
 	if(!ishuman(C))
 		return
 	var/mob/living/carbon/human/human_spawn = C

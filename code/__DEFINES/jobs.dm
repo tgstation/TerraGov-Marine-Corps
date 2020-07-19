@@ -28,6 +28,9 @@
 #define JOB_DISPLAY_ORDER_SQUAD_MARINE			24
 #define JOB_DISPLAY_ORDER_SURVIVOR				25
 
+#define JOB_DISPLAY_ORDER_USSR_SOLDIER          26
+#define JOB_DISPLAY_ORDER_NATSF_SOLDIER          27
+
 #define JOB_FLAG_SPECIALNAME (1<<0)
 #define JOB_FLAG_LATEJOINABLE (1<<1) //Can this job be selected for prefs to join as?
 #define JOB_FLAG_ROUNDSTARTJOINABLE (1<<2) //Joinable at roundstart
@@ -64,6 +67,9 @@
 #define SQUAD_ENGINEER "Squad Engineer"
 #define SQUAD_MARINE "Squad Marine"
 #define SILICON_AI "AI"
+
+#define USSR_SOLDIER "USSR Soldier"
+#define NATSF_SOLDIER "NATSF Soldier"
 
 #define JOB_CAT_COMMAND "Command"
 #define JOB_CAT_SILICON "Silicon"

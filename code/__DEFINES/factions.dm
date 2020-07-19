@@ -15,3 +15,5 @@
 #define FACTION_HIVEBOT "Hivebot"
 #define FACTION_HOSTILE "Hostile"
 #define FACTION_PIRATE "Pirate"
+#define FACTION_USSR "USSR"
+#define FACTION_NATSF "NATSF"
