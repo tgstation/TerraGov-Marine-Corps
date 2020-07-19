@@ -1,0 +1,4 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - balance: "Sniper and BR/DMR do five less damage. BR now properly fires at 0.4 rather than .35.  Sniper fires at a rate of 1.5."
