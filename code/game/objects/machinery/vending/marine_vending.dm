@@ -339,7 +339,6 @@
 	icon_state = "marinemed"
 	icon_deny = "marinemed-deny"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;All natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
-	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP) //Medics, doctors and researchers can access
 	wrenchable = FALSE
 	products = list(/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 6,
 					/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = 6,
