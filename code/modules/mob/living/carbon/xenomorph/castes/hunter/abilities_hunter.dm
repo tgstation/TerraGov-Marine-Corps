@@ -273,6 +273,7 @@
 		to_chat(X, "<span class='warning'>They are too far for us to reach their minds!</spam>")
 
 	succeed_activate()
+	X.playsound_local(X.loc, 'sound/voice/4_xeno_roars.ogg', 30, TRUE)
 	to_chat(X, "<span class='notice'>We reach out into mind of the creature, infecting their thoughts...</span>")
 	victim.hallucination += 100
 	add_cooldown()
