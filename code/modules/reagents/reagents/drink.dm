@@ -235,7 +235,7 @@
 //nice one jpr
 /datum/reagent/consumable/drink/coffee/atomiccoffee
 	name = "Atomic Coffee"
-	description = "TThis coffee is a brewed drink prepared from roasted seeds and enriched from use in atomic coffemaker. Consume in moderation"
+	description = "This coffee is a brewed drink prepared from roasted seeds and enriched from use in atomic coffemaker. Consume in moderation"
 	color = "#482000" // rgb: 72, 32, 0
 	nutriment_factor = 0
 	overdose_threshold = REAGENTS_OVERDOSE * 2
