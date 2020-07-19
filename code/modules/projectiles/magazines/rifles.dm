@@ -291,5 +291,5 @@
 	caliber = "8.6x70mm"
 	icon_state = "tl127"
 	default_ammo = /datum/ammo/bullet/sniper/pfc
-	max_rounds = 10
+	max_rounds = 7
 	gun_type = /obj/item/weapon/gun/rifle/chambered
