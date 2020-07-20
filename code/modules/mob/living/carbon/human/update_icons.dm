@@ -376,6 +376,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	update_burst()
 	UpdateDamageIcon()
 	update_transform()
+	update_shadow()
 
 
 /* --------------------------------------- */
@@ -868,3 +869,14 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 			if(15 to 20) overlays_standing[FIRE_LAYER] = image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing_medium", "layer"=-FIRE_LAYER)
 
 		apply_overlay(FIRE_LAYER)
+
+/mob/living/carbon/human/update_shadow()
+	remove_underlay(SHADOW_LAYER)
+
+	var/turf/T = get_turf(src)
+	if(lying_angle || (T && T.is_light_floor())) // don't dislay shadows on light floors
+		return
+
+	underlays_standing[SHADOW_LAYER] = image("icon" = 'icons/effects/effects.dmi', "icon_state"="mob_shadow", "pixel_y" = -3)
+	
+	apply_underlay(SHADOW_LAYER)

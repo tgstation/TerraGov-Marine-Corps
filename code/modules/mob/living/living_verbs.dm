@@ -51,6 +51,7 @@
 
 /mob/living/proc/update_resting()
 	hud_used?.rest_icon?.update_icon(src)
+	update_shadow()
 
 
 /mob/living/verb/ghost()

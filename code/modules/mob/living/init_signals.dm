@@ -52,6 +52,7 @@
 	else if(!lying_angle)
 		set_lying_angle(pick(90, 270))
 	set_canmove(FALSE)
+	update_shadow()
 
 ///Called when TRAIT_FLOORED is removed from the mob.
 /mob/living/proc/on_floored_trait_loss(datum/source)
@@ -59,6 +60,7 @@
 		set_lying_angle(0)
 	if(!HAS_TRAIT(src, TRAIT_IMMOBILE))
 		set_canmove(TRUE)
+		update_shadow()
 
 
 ///Called when TRAIT_LEGLESS is added to the mob.
