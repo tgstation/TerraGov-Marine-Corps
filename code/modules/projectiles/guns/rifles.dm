@@ -88,6 +88,12 @@
     aim_slowdown = 0.30
     damage_falloff_mult = 0.9
 
+/obj/item/weapon/gun/rifle/standard_carbine/pointman
+	starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/lasersight, /obj/item/attachable/flashlight, /obj/item/attachable/t18barrel)
+
+/obj/item/weapon/gun/rifle/standard_carbine/engineer
+    starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/t18barrel, /obj/item/attachable/angledgrip)
+
 //-------------------------------------------------------
 //T-12 Assault Rifle
 
@@ -140,6 +146,11 @@
     aim_slowdown = 0.5
     damage_falloff_mult = 0.5
 
+/obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
+    starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/reddot, /obj/item/attachable/t12barrel, /obj/item/attachable/attached_gun/grenade)
+
+/obj/item/weapon/gun/rifle/standard_assaultrifle/engineer
+    starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/t12barrel, /obj/item/attachable/angledgrip)
 
 //-------------------------------------------------------
 //T-37 DMR
@@ -192,6 +203,10 @@
 	scatter = -15
 	burst_amount = 1
 
+/obj/item/weapon/gun/rifle/standard_dmr/marksman
+	starting_attachment_types = list(/obj/item/attachable/scope, /obj/item/attachable/angledgrip, /obj/item/attachable/extended_barrel)
+
+
 
 //-------------------------------------------------------
 //T-64 BR
@@ -238,7 +253,7 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/br,/obj/item/attachable/scope/mini)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 17, "rail_y" = 18, "under_x" = 25, "under_y" = 12, "stock_x" = 14, "stock_y" = 10)
 
-	fire_delay = 0.35 SECONDS
+	fire_delay = 0.4 SECONDS
 	damage_mult = 0.5 //uses the marksman bullet, like the DMR.
 	accuracy_mult = 1.25
 	scatter = -10
@@ -557,6 +572,9 @@
 	scatter = 25
 	scatter_unwielded = 80
 
+/obj/item/weapon/gun/rifle/standard_lmg/autorifleman
+	starting_attachment_types = list(/obj/item/attachable/verticalgrip, /obj/item/attachable/t42barrel, /obj/item/attachable/reddot)
+
 //-------------------------------------------------------
 //M41AE2 Heavy Pulse Rifle
 
@@ -815,3 +833,78 @@
 		to_chat(user, "<span class='warning'>There's no trigger on this gun, you have no idea how to fire it!</span>")
 		return FALSE
 	return TRUE
+
+
+//-------------------------------------------------------
+//TL-127 bolt action sniper rifle
+
+/obj/item/weapon/gun/rifle/chambered
+	name = "\improper TL-127 bolt action rifle"
+	desc = "The TL-127 is the standard issue bolt action rifle used by the TGMC. Known for its long range accuracy and use by marksmen despite its age and lack of IFF. It has an irremoveable scope. Uses 8.6×70mm box magazines."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "tl127"
+	item_state = "tl127"
+	fire_sound = 'sound/weapons/guns/fire/tl127.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
+	caliber = "8.6x70mm" //codex
+	max_shells = 10 //codex
+	current_mag = /obj/item/ammo_magazine/rifle/chamberedrifle
+	type_of_casings = "cartridge"
+	attachable_allowed = list(
+						/obj/item/attachable/scope/unremovable/tl127,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
+						/obj/item/attachable/compensator)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 19,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 9, "stock_y" = 12)
+	starting_attachment_types = list(
+		/obj/item/attachable/scope/unremovable/tl127,
+		/obj/item/attachable/stock/tl127stock,
+	)
+	burst_amount = 0
+	fire_delay = 1.5 SECONDS
+	accuracy_mult = 1.35
+	accuracy_mult_unwielded = 0.7
+	scatter = -30
+	scatter_unwielded = 40
+	recoil = 0
+	recoil_unwielded = 4
+	aim_slowdown = 1
+	wield_delay = 1 SECONDS
+
+	var/rack_delay = 7
+	var/rack_sound = 'sound/weapons/guns/interact/tl-127_bolt.ogg'
+	var/racked_bolt = TRUE
+	var/cooldown_time
+
+/obj/item/weapon/gun/rifle/chambered/able_to_fire(mob/user)
+	. = ..()
+	if(!.)
+		return
+	if(!racked_bolt)
+		to_chat(user, "<span class='warning'>[src] does not have a round chambered!</span>")
+		return FALSE
+
+/obj/item/weapon/gun/rifle/chambered/unique_action(mob/user)
+	if(racked_bolt)
+		to_chat(user, "<span class='warning'>[src] already has a round chambered!</span>")
+		return
+	if(COOLDOWN_CHECK(src, COOLDOWN_RACK_BOLT))
+		return
+	return rack_bolt(user)
+
+/obj/item/weapon/gun/rifle/chambered/proc/rack_bolt(mob/user)
+	to_chat(user, "<span class='notice'>You cycle the bolt of the [src], loading in a new round!</span>")
+	COOLDOWN_START(src, COOLDOWN_RACK_BOLT, rack_delay)
+	racked_bolt = TRUE
+	playsound(loc, rack_sound, 25, 1, 4)
+
+/obj/item/weapon/gun/rifle/chambered/reload_into_chamber(mob/user)
+	. = ..()
+	racked_bolt = FALSE

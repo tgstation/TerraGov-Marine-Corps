@@ -56,6 +56,8 @@
 
 /obj/item/clothing/mask/facehugger/Destroy()
 	. = ..()
+	deltimer(jumptimer)
+	deltimer(lifetimer)
 	lifetimer = null
 	jumptimer = null
 
@@ -87,6 +89,8 @@
 	if(isxeno(user))
 		var/mob/living/carbon/xenomorph/X = user
 		if(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS)
+			deltimer(jumptimer)
+			jumptimer = null
 			return ..() // These can pick up huggers.
 		else
 			return FALSE // The rest can't.
@@ -136,8 +140,8 @@
 		go_active(TRUE)
 
 /obj/item/clothing/mask/facehugger/proc/go_idle(hybernate = FALSE, no_activate = FALSE)
-	deltimer(lifetimer)
 	deltimer(jumptimer)
+	deltimer(lifetimer)
 	lifetimer = null
 	jumptimer = null
 	if(stat == CONSCIOUS)
@@ -425,7 +429,7 @@
 		var/stamina_dmg = user.maxHealth * 2 + user.max_stamina_buffer
 		user.apply_damage(stamina_dmg, STAMINA) // complete winds the target
 		user.Unconscious(6 SECONDS) //THIS MIGHT NEED TWEAKS // still might! // tweaked it
-	flags_item |= NODROP
+	addtimer(VARSET_CALLBACK(src, flags_item, flags_item|NODROP), IMPREGNATION_TIME) // becomes stuck after min-impreg time
 	attached = TRUE
 	go_idle(FALSE, TRUE)
 	addtimer(CALLBACK(src, .proc/Impregnate, user), IMPREGNATION_TIME)
@@ -462,8 +466,8 @@
 		return
 	stat = DEAD
 
-	deltimer(lifetimer)
 	deltimer(jumptimer)
+	deltimer(lifetimer)
 	lifetimer = null
 	jumptimer = null
 

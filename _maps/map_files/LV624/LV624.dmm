@@ -3262,6 +3262,10 @@
 	dir = 4
 	},
 /area/lv624/ground/river3)
+"amp" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/east1)
 "amq" = (
 /obj/structure/disposalpipe/junction{
 	dir = 1
@@ -3588,6 +3592,7 @@
 /turf/open/ground/grass/grass2,
 /area/lv624/lazarus/atmos)
 "ano" = (
+/obj/machinery/miner/damaged,
 /turf/open/ground/grass/beach/corner{
 	dir = 2
 	},
@@ -18210,16 +18215,14 @@
 	dir = 8
 	},
 /area/shuttle/drop2/lz2)
+"bZw" = (
+/obj/machinery/miner/damaged,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle9)
 "cat" = (
 /obj/docking_port/stationary/crashmode,
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle7)
-"cfW" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/machinery/miner/damaged,
-/turf/open/floor/grass,
-/area/lv624/lazarus/main_hall)
 "ciV" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 1
@@ -18295,10 +18298,18 @@
 /obj/docking_port/stationary/crashmode,
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle9)
+"dVC" = (
+/obj/machinery/miner/damaged,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle4)
 "epV" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand2)
+"evl" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/n)
 "evP" = (
 /obj/structure/sign/atmosplaque{
 	dir = 1
@@ -18339,6 +18350,10 @@
 	},
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
+"eYd" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/central2)
 "fgu" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/cult,
@@ -18347,6 +18362,10 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral,
 /area/lv624/ground/caves/west1)
+"ftB" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/sand2)
 "fvY" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/ground/grass,
@@ -18370,6 +18389,12 @@
 	},
 /turf/closed/wall,
 /area/shuttle/drop2/lz2)
+"fTo" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 4
+	},
+/area/lv624/ground/caves/central2)
 "fTB" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 2
@@ -18394,6 +18419,10 @@
 	dir = 5
 	},
 /area/lv624/lazarus/research)
+"ghv" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/dirtgrassborder/corner,
+/area/lv624/ground/jungle7)
 "gnK" = (
 /obj/structure/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -18417,6 +18446,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/resin,
 /area/lv624/ground/caves/east2)
+"gTc" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/sand9)
 "gWo" = (
 /obj/structure/fence,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -18526,10 +18559,6 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral,
 /area/lv624/ground/sand7)
-"kEN" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/ground/grass,
-/area/lv624/ground/jungle9)
 "kFx" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/resin,
@@ -18581,6 +18610,10 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/quartstorage/outdoors)
+"mfF" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/sand7)
 "mic" = (
 /obj/effect/alien/weeds/node,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -18617,6 +18650,12 @@
 	},
 /turf/open/floor,
 /area/lv624/lazarus/security)
+"mTu" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/lv624/ground/jungle7)
 "mWY" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral,
@@ -18632,6 +18671,10 @@
 	dir = 8
 	},
 /area/shuttle/drop2/lz2)
+"nor" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle8)
 "nEg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -18653,6 +18696,10 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand5)
+"oqP" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/sand8)
 "oFi" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/dirt,
@@ -18691,10 +18738,6 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/canteen)
-"pnx" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/lazarus/quartstorage/outdoors)
 "prx" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/sign/botany,
@@ -18714,15 +18757,35 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
+"pIy" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 1
+	},
+/area/lv624/ground/jungle7)
 "pNb" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating,
 /area/lv624/lazarus/robotics)
+"qhx" = (
+/obj/machinery/miner/damaged,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle6)
 "qkd" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/atmos/outside)
+"qrL" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/lv624/ground/jungle6)
+"qzs" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/east2)
 "qGH" = (
 /obj/structure/flora/ausbushes/grassybush,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -18731,6 +18794,10 @@
 /obj/structure/cable,
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
+"qMS" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/sand5)
 "qQj" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/wall,
@@ -18760,10 +18827,6 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/internal_affairs)
-"rhJ" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle6)
 "rjY" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -18809,12 +18872,24 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central1)
+"siF" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/sand5)
+"slp" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle3)
 "sGt" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 8
 	},
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/main_hall)
+"sRg" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/tile/whiteyellow/full,
+/area/lv624/ground/sand6)
 "sUi" = (
 /obj/item/reagent_containers/food/snacks/worm,
 /turf/open/floor/plating/ground/dirt,
@@ -18944,6 +19019,10 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor,
 /area/lv624/ground/sand8)
+"vKd" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/west2)
 "vLs" = (
 /obj/structure/mineral_door/resin,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -18974,6 +19053,14 @@
 	dir = 2
 	},
 /area/lv624/ground/caves/east1)
+"wKk" = (
+/obj/machinery/miner/damaged,
+/turf/open/ground/grass/grass2,
+/area/lv624/ground/jungle9)
+"wLx" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/west1)
 "wNe" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 8
@@ -18992,6 +19079,10 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/wall,
 /area/shuttle/drop1/lz1)
+"xvZ" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/sand1)
 "xCo" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/dirt,
@@ -22074,7 +22165,7 @@ aTx
 aPC
 aPC
 aPC
-aPC
+dVC
 bci
 bcj
 bck
@@ -24074,7 +24165,7 @@ abb
 abb
 abb
 abc
-abc
+wLx
 abc
 abc
 abc
@@ -24530,7 +24621,7 @@ abc
 abc
 abc
 abd
-abc
+wLx
 abc
 abc
 abc
@@ -25431,7 +25522,7 @@ bcg
 bcg
 bch
 bfM
-bnE
+slp
 bnE
 bph
 bfb
@@ -26051,7 +26142,7 @@ abb
 abb
 abc
 abc
-abc
+wLx
 abc
 abc
 abc
@@ -26911,7 +27002,7 @@ awg
 awC
 awC
 awC
-awC
+mfF
 awC
 awC
 awC
@@ -27568,7 +27659,7 @@ aaX
 aaX
 aah
 aah
-aah
+vKd
 aah
 aah
 aah
@@ -27653,7 +27744,7 @@ abb
 abc
 abc
 abc
-abc
+wLx
 abk
 abk
 abk
@@ -27955,7 +28046,7 @@ awk
 avd
 aFl
 avx
-rhJ
+axR
 axR
 auH
 aFR
@@ -29602,7 +29693,7 @@ aah
 aah
 aah
 aah
-aah
+vKd
 aah
 aah
 aah
@@ -30004,7 +30095,7 @@ avc
 atH
 auk
 avd
-avd
+qhx
 avd
 avd
 avd
@@ -31962,7 +32053,7 @@ abc
 abc
 abc
 abc
-abc
+wLx
 abc
 abc
 ahr
@@ -32037,7 +32128,7 @@ aht
 aht
 aqD
 aqD
-aqD
+xvZ
 aqD
 aqD
 aqD
@@ -32256,7 +32347,7 @@ abc
 abu
 abu
 abc
-abc
+wLx
 abu
 abu
 abc
@@ -32270,7 +32361,7 @@ abu
 abu
 abc
 abc
-abc
+wLx
 abc
 abc
 abd
@@ -34260,7 +34351,7 @@ aad
 aao
 aao
 aao
-aao
+eYd
 aad
 abe
 abe
@@ -35190,7 +35281,7 @@ aET
 auh
 aES
 aES
-aES
+bZw
 aET
 aZk
 blb
@@ -35263,7 +35354,7 @@ aal
 aao
 aao
 aao
-aao
+eYd
 aao
 aao
 aao
@@ -35876,7 +35967,7 @@ agv
 ajG
 ajG
 ajG
-ajG
+oqP
 ajG
 ajG
 ajG
@@ -36197,7 +36288,7 @@ aMm
 aSe
 aLc
 aES
-kEN
+aES
 aES
 aFD
 aES
@@ -36674,7 +36765,7 @@ avd
 avx
 avQ
 ape
-avT
+qrL
 axc
 auJ
 axQ
@@ -37409,7 +37500,7 @@ agv
 agv
 agI
 agv
-agv
+ftB
 agv
 agv
 agv
@@ -38916,7 +39007,7 @@ abv
 abf
 abf
 abf
-abf
+six
 abf
 abf
 acN
@@ -40305,7 +40396,7 @@ avs
 aFB
 aFB
 aET
-aHT
+bZw
 aQT
 aET
 aHT
@@ -40475,7 +40566,7 @@ aev
 aev
 aev
 aen
-aen
+siF
 aen
 aen
 aen
@@ -41185,7 +41276,7 @@ aaA
 aaA
 aaW
 aaT
-aao
+eYd
 aao
 aaS
 aaR
@@ -41467,7 +41558,7 @@ abe
 abe
 abf
 abf
-abf
+six
 abf
 abf
 abf
@@ -41514,7 +41605,7 @@ aev
 fHY
 aev
 aen
-aen
+qMS
 agv
 agw
 agv
@@ -43350,7 +43441,7 @@ alc
 ald
 arp
 arW
-auq
+ghv
 atn
 avk
 auM
@@ -43628,7 +43719,7 @@ avZ
 mjZ
 aDC
 aAb
-aAb
+evl
 aAb
 aFw
 aFw
@@ -43845,7 +43936,7 @@ ajZ
 ajG
 ajG
 ajG
-ajG
+oqP
 ajG
 ajG
 amV
@@ -43926,8 +44017,8 @@ aXg
 aXg
 aXg
 bet
-aET
-aYw
+aES
+wKk
 bja
 biZ
 aES
@@ -44253,7 +44344,7 @@ aad
 aaf
 aam
 aap
-aao
+eYd
 aao
 aax
 aaA
@@ -45430,7 +45521,7 @@ aAb
 aEy
 aES
 aET
-aES
+bZw
 aET
 aET
 aET
@@ -45849,7 +45940,7 @@ abf
 abf
 acs
 abf
-abf
+six
 abf
 abf
 abf
@@ -46838,7 +46929,7 @@ aav
 aav
 aav
 aav
-aaM
+fTo
 aaf
 aaf
 aaf
@@ -47404,7 +47495,7 @@ abe
 abe
 abe
 mWY
-six
+abf
 acS
 acS
 acS
@@ -47415,7 +47506,7 @@ aeO
 aen
 aen
 aen
-aen
+siF
 aen
 aen
 aen
@@ -47632,7 +47723,7 @@ abe
 abe
 abe
 abe
-abf
+six
 abf
 abf
 abf
@@ -49560,7 +49651,7 @@ aRc
 aRH
 aSp
 aTc
-cfW
+aSp
 aUr
 aSp
 any
@@ -50301,7 +50392,7 @@ atX
 atX
 atX
 arW
-aut
+pIy
 auL
 auL
 arV
@@ -50684,7 +50775,7 @@ aad
 aad
 aao
 aao
-aao
+eYd
 aao
 aao
 aad
@@ -51055,7 +51146,7 @@ ajz
 ajz
 apf
 arn
-arp
+mTu
 arY
 arX
 arW
@@ -52874,7 +52965,7 @@ auO
 azJ
 aAk
 aAk
-pnx
+aAk
 aAk
 aAk
 aCb
@@ -54639,7 +54730,7 @@ ahf
 ahf
 akK
 akK
-akK
+gTc
 akK
 aeV
 anh
@@ -54828,7 +54919,7 @@ abg
 abn
 abi
 abi
-abi
+amp
 abi
 abi
 abG
@@ -55644,7 +55735,7 @@ abi
 afs
 afr
 aft
-aft
+sRg
 afA
 aft
 aft
@@ -57426,7 +57517,7 @@ abi
 abo
 abi
 abi
-abi
+amp
 abg
 abi
 abi
@@ -58260,7 +58351,7 @@ anr
 anr
 aoY
 aqk
-apP
+nor
 aqU
 aqi
 aoY
@@ -58658,7 +58749,7 @@ aas
 teE
 aas
 aas
-aas
+qzs
 aas
 aas
 aas
@@ -59723,7 +59814,7 @@ abg
 abg
 abo
 abi
-abi
+amp
 abi
 abi
 abF
