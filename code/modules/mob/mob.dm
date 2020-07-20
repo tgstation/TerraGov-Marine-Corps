@@ -19,6 +19,7 @@
 	for(var/a in actions)
 		var/datum/action/action_to_remove = a
 		action_to_remove.remove_action(src)
+	set_focus(null)
 	return ..()
 
 /mob/Initialize()
@@ -155,7 +156,7 @@
 // vision_distance (optional) define how many tiles away the message can be seen.
 // ignored_mob (optional) doesn't show any message to a given mob if TRUE.
 
-/atom/proc/visible_message(message, self_message, blind_message, vision_distance, ignored_mob)
+/atom/proc/visible_message(message, self_message, blind_message, vision_distance, ignored_mob, visible_message_flags = NONE, emote_prefix)
 	var/turf/T = get_turf(src)
 	if(!T)
 		return
@@ -164,9 +165,14 @@
 	if(vision_distance)
 		range = vision_distance
 
+	var/raw_msg = message
+	if(visible_message_flags & EMOTE_MESSAGE)
+		message = "[emote_prefix]<b>[src]</b> [message]"
+
 	for(var/mob/M in get_hearers_in_view(range, src))
 		if(!M.client)
 			continue
+
 		if(M == ignored_mob)
 			continue
 
@@ -175,13 +181,40 @@
 		if(M == src && self_message) //the src always see the main message or self message
 			msg = self_message
 
-		else if(M.see_invisible < invisibility || (T != loc && T != src)) //if src is invisible to us or is inside something (and isn't a turf),
-			if(!blind_message) // then people see blind message if there is one, otherwise nothing.
+			if(visible_message_flags & COMBAT_MESSAGE && M.client.prefs.mute_self_combat_messages)
 				continue
 
-			msg = blind_message
+		else
+			if(M.see_invisible < invisibility || (T != loc && T != src)) //if src is invisible to us or is inside something (and isn't a turf),
+				if(!blind_message) // then people see blind message if there is one, otherwise nothing.
+					continue
+
+				msg = blind_message
+
+			if(visible_message_flags & COMBAT_MESSAGE && M.client.prefs.mute_others_combat_messages)
+				continue
+
+		if(visible_message_flags & EMOTE_MESSAGE && rc_vc_msg_prefs_check(M, visible_message_flags))
+			M.create_chat_message(src, raw_message = raw_msg, runechat_flags = visible_message_flags)
 
 		M.show_message(msg, EMOTE_VISIBLE, blind_message, EMOTE_AUDIBLE)
+
+
+///Returns the client runechat visible messages preference according to the message type.
+/atom/proc/rc_vc_msg_prefs_check(mob/target, visible_message_flags = NONE)
+	if(!target.client?.prefs.chat_on_map || !target.client.prefs.see_chat_non_mob)
+		return FALSE
+	if(visible_message_flags & EMOTE_MESSAGE && !target.client.prefs.see_rc_emotes)
+		return FALSE
+	return TRUE
+
+/mob/rc_vc_msg_prefs_check(mob/target, message, visible_message_flags = NONE)
+	if(!target.client?.prefs.chat_on_map)
+		return FALSE
+	if(visible_message_flags & EMOTE_MESSAGE && !target.client.prefs.see_rc_emotes)
+		return FALSE
+	return TRUE
+
 
 
 // Show a message to all mobs in earshot of this one
@@ -191,15 +224,19 @@
 // deaf_message (optional) is what deaf people will see.
 // hearing_distance (optional) is the range, how many tiles away the message can be heard.
 
-/mob/audible_message(message, deaf_message, hearing_distance, self_message)
+/mob/audible_message(message, deaf_message, hearing_distance, self_message, audible_message_flags = NONE, emote_prefix)
 	var/range = 7
+	var/raw_msg = message
 	if(hearing_distance)
 		range = hearing_distance
-
+	if(audible_message_flags & EMOTE_MESSAGE)
+		message = "[emote_prefix]<b>[src]</b> [message]"
 	for(var/mob/M in get_hearers_in_view(range, src))
 		var/msg = message
 		if(self_message && M == src)
 			msg = self_message
+		if(audible_message_flags & EMOTE_MESSAGE && rc_vc_msg_prefs_check(M, audible_message_flags))
+			M.create_chat_message(src, raw_message = raw_msg, runechat_flags = audible_message_flags)
 		M.show_message(msg, EMOTE_AUDIBLE, deaf_message, EMOTE_VISIBLE)
 
 
@@ -208,12 +245,16 @@
 // message is the message output to anyone who can hear.
 // deaf_message (optional) is what deaf people will see.
 // hearing_distance (optional) is the range, how many tiles away the message can be heard.
-/atom/proc/audible_message(message, deaf_message, hearing_distance)
+/atom/proc/audible_message(message, deaf_message, hearing_distance, self_message, audible_message_flags = NONE, emote_prefix)
 	var/range = 7
+	var/raw_msg = message
 	if(hearing_distance)
 		range = hearing_distance
-
+	if(audible_message_flags & EMOTE_MESSAGE)
+		message = "[emote_prefix]<b>[src]</b> [message]"
 	for(var/mob/M in get_hearers_in_view(range, src))
+		if(audible_message_flags & EMOTE_MESSAGE && rc_vc_msg_prefs_check(M, audible_message_flags))
+			M.create_chat_message(src, raw_message = raw_msg, runechat_flags = audible_message_flags)
 		M.show_message(message, EMOTE_AUDIBLE, deaf_message, EMOTE_VISIBLE)
 
 
@@ -403,9 +444,13 @@
 	. = ..()
 	if(.)
 		return
-	if(dropping != user && ismob(dropping) && !isxeno(user) && !isxeno(dropping))
-		var/mob/dragged = dropping
-		dragged.show_inv(user)
+	if(!ismob(dropping) || isxeno(user) || isxeno(dropping))
+		return
+	// If not dragged onto myself or dragging my own sprite onto myself
+	if(user != src || dropping == user)
+		return
+	var/mob/dragged = dropping
+	dragged.show_inv(user)
 
 /mob/living/carbon/xenomorph/MouseDrop_T(atom/dropping, atom/user)
 	return
@@ -449,7 +494,7 @@
 		if(buckle.anchored)
 			return
 		return start_pulling(buckle)
-	
+
 	AM.set_glide_size(glide_size)
 
 	pulling = AM
@@ -477,7 +522,7 @@
 
 		if(pulled_mob.mob_size > MOB_SIZE_HUMAN || !(pulled_mob.status_flags & CANPUSH))
 			grab_item.icon_state = "!reinforce"
-		
+
 		set_pull_offsets(pulled_mob)
 
 	update_pull_movespeed()

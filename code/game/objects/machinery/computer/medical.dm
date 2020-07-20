@@ -3,7 +3,7 @@
 	desc = "This can be used to check medical records."
 	icon_state = "medcomp"
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_NT_CORPORATE)
-	circuit = "/obj/item/circuitboard/computer/med_data"
+	circuit = /obj/item/circuitboard/computer/med_data
 	var/obj/item/card/id/scan = null
 	var/authenticated = null
 	var/rank = null

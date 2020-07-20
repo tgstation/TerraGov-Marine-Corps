@@ -375,7 +375,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	leadership = SKILL_LEAD_TRAINED
 	powerloader = SKILL_POWERLOADER_MASTER
-	police = SKILL_POLICE_FLASH
+	police = SKILL_POLICE_MP//You broke into the wrong req bucko
 
 /datum/skills/ST
 	name = SHIP_TECH
@@ -639,7 +639,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 	medical = SKILL_MEDICAL_EXPERT
 	surgery = SKILL_SURGERY_EXPERT
-  
+
 
 /datum/skills/sectoid
 	name = "Sectoid"

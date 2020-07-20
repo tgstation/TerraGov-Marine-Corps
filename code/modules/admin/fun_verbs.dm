@@ -509,7 +509,7 @@
 
 	var/min = input("What should the minimum amount of mobs be?", "Min Mobs", SSticker.mode.picked_call.mob_min) as null|num
 	if(!min || min < 1)
-		return
+		min = 0
 
 	SSticker.mode.picked_call.mob_min = min
 

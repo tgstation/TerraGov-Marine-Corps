@@ -136,6 +136,7 @@
 	var/datum/hive_status/hive
 
 	var/list/overlays_standing[X_TOTAL_LAYERS]
+	var/atom/movable/vis_obj/xeno_wounds/wound_overlay
 	var/datum/xeno_caste/xeno_caste
 	var/caste_base_type
 	var/language = "Xenomorph"
@@ -200,7 +201,6 @@
 
 	// Warrior vars
 	var/agility = 0		// 0 - upright, 1 - all fours
-	var/ripping_limb = 0
 
 	// Defender vars
 	var/fortify = 0

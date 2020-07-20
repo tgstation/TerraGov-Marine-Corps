@@ -81,7 +81,6 @@
 /obj/effect/overlay/temp/laser_coordinate/Destroy()
 	if(source_binoc)
 		source_binoc.laser_cooldown = world.time + source_binoc.cooldown_duration
-		source_binoc.coord = null
 		source_binoc = null
 	. = ..()
 

@@ -39,6 +39,7 @@
 
 /obj/structure/closet/Initialize(mapload, ...)
 	. = ..()
+	RegisterSignal(src, COMSIG_MOVABLE_SHUTTLE_CRUSH, .proc/shuttle_crush)
 	return INITIALIZE_HINT_LATELOAD
 
 
@@ -59,6 +60,11 @@
 /obj/structure/closet/proc/PopulateContents()
 	return
 
+/obj/structure/closet/proc/shuttle_crush()
+	for(var/mob/living/L in contents)
+		L.gib()
+	for(var/atom/movable/AM in contents)
+		qdel(AM)
 
 /obj/structure/closet/open
 	icon_state = "open"

@@ -103,7 +103,7 @@
 			for(var/w in temp.wounds)
 				var/datum/wound/W = w
 				if(W.bleeding())
-					blood_max += (W.damage / 40)
+					blood_max += (W.damage / 60)
 			if (temp.surgery_open_stage)
 				blood_max += 0.6  //Yer stomach is cut open
 

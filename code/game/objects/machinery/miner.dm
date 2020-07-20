@@ -19,7 +19,7 @@
 	///Tracks how many ticks have passed since we last added a sheet of material
 	var/add_tick = 0
 	///How many times we neeed to tick for a resource to be created, in this case this is 2* the specified amount
-	var/required_ticks = 30  //make one crate every 60 seconds
+	var/required_ticks = 150  //make one crate every 300 seconds
 	///The mineral type that's produced
 	var/mineral_produced = /obj/structure/ore_box/phoron
 	///Health for the miner we use because changing obj_integrity is apparently bad
@@ -162,7 +162,7 @@
 	if(add_tick >= required_ticks)
 		stored_mineral += 1
 		add_tick = 0
-	if(stored_mineral >= 4)	//Stores 4 boxes worth of minerals
+	if(stored_mineral >= 2)	//Stores 2 boxes worth of minerals
 		stop_processing()
 	else
 		add_tick += 1

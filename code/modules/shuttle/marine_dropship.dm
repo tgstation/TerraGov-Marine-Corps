@@ -1026,22 +1026,54 @@
 	shuttleId = "tgs_canterbury"
 	possible_destinations = "canterbury_loadingdock"
 
+/obj/machinery/computer/shuttle/shuttle_control/canterbury/ui_interact(mob/user)
+	if(!allowed(user))
+		to_chat(user, "<span class='warning'>Access Denied!</span>")
+		return
+	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
+	var/dat = "Status: [M ? M.getStatusText() : "*Missing*"]<br><br>"
+	if(M)
+		dat += "<A href='?src=[REF(src)];move=crash-infinite-transit'>Initiate Evacuation</A><br>"
+
+	var/datum/browser/popup = new(user, "computer", M ? M.name : "shuttle", 300, 200)
+	popup.set_content("<center>[dat]</center>")
+	popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
+	popup.open()
+
+
 /obj/machinery/computer/shuttle/shuttle_control/canterbury/Topic(href, href_list)
+	// Since we want to avoid the standard move topic, we are just gonna override everything.
+	add_fingerprint(usr, "topic")
+	if(!can_interact(usr))
+		return TRUE
+	if(isxeno(usr))
+		return TRUE
+	if(!allowed(usr))
+		to_chat(usr, "<span class='danger'>Access denied.</span>")
+		return TRUE
 	if(!href_list["move"] || !iscrashgamemode(SSticker.mode))
 		to_chat(usr, "<span class='warning'>[src] is unresponsive.</span>")
-		return
+		return FALSE
 
 	if(!length(GLOB.active_nuke_list) && alert(usr, "Are you sure you want to launch the shuttle? Without sufficiently dealing with the threat, you will be in direct violation of your orders!", "Are you sure?", "Yes", "Cancel") != "Yes")
-		return
+		return TRUE
 
 	log_admin("[key_name(usr)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
 	message_admins("[ADMIN_TPMONTY(usr)] is launching the canterbury[!length(GLOB.active_nuke_list)? " early" : ""].")
 
-	. = ..()
-	if(.)
-		return
+	var/obj/docking_port/mobile/M = SSshuttle.getShuttle(shuttleId)
+	if(!(M.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
+		to_chat(usr, "<span class='warning'>The engines are still refueling.</span>")
+		return TRUE
+	if(!M.can_move_topic(usr))
+		return TRUE
+
+	visible_message("<span class='notice'>Shuttle departing. Please stand away from the doors.</span>")
+	M.destination = null
+	M.mode = SHUTTLE_IGNITING
+	M.setTimer(M.ignitionTime)
 
 	var/datum/game_mode/infestation/crash/C = SSticker.mode
-	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_INPROGRESS), 15 SECONDS)
-	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_COMPLETED), 5 MINUTES)
+	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_INPROGRESS), M.ignitionTime + 10 SECONDS)
+	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_COMPLETED), 2 MINUTES)
 	return TRUE

@@ -7,20 +7,30 @@
 
 //==========================================================================================
 
+
+
 //flags_atom
 
-#define NOINTERACT				(1<<0)		// You can't interact with it, at all. Useful when doing certain animations.
-#define CONDUCT					(1<<1)		// conducts electricity (metal etc.)
-#define ON_BORDER				(1<<2)		// 'border object'. item has priority to check when entering or leaving
-#define NOBLOODY				(1<<3)		// Don't want a blood overlay on this one.
-#define DIRLOCK					(1<<4)		// movable atom won't change direction when Moving()ing. Useful for items that have several dir states.
-#define INITIALIZED				(1<<5)  	//Whether /atom/Initialize() has already run for the object
-#define NODECONSTRUCT			(1<<6)
-#define OVERLAY_QUEUED			(1<<7)
-#define PREVENT_CLICK_UNDER		(1<<8)		//Prevent clicking things below it on the same turf
-#define CRITICAL_ATOM			(1<<9)		//Use when this shouldn't be obscured by large icons.
+#define NOINTERACT				(1<<3)		// You can't interact with it, at all. Useful when doing certain animations.
+#define CONDUCT					(1<<4)		// conducts electricity (metal etc.)
+#define ON_BORDER				(1<<5)		// 'border object'. item has priority to check when entering or leaving
+#define NOBLOODY				(1<<6)		// Don't want a blood overlay on this one.
+#define DIRLOCK					(1<<7)		// movable atom won't change direction when Moving()ing. Useful for items that have several dir states.
+#define INITIALIZED				(1<<8)  	//Whether /atom/Initialize() has already run for the object
+#define NODECONSTRUCT			(1<<9)
+#define OVERLAY_QUEUED			(1<<10)
+#define PREVENT_CLICK_UNDER		(1<<11)		//Prevent clicking things below it on the same turf
+#define CRITICAL_ATOM			(1<<12)		//Use when this shouldn't be obscured by large icons.
 ///Does not cascade explosions to its contents.
-#define PREVENT_CONTENTS_EXPLOSION	(1<<10)
+#define PREVENT_CONTENTS_EXPLOSION	(1<<13)
+/// was this spawned by an admin? used for stat tracking stuff.
+#define ADMIN_SPAWNED			(1<<14)
+
+//turf-only flags
+#define NOJAUNT_1					(1<<0)
+#define UNUSED_RESERVATION_TURF_1	(1<<1)
+/// If a turf can be made dirty at roundstart. This is also used in areas.
+#define CAN_BE_DIRTY_1				(1<<2)
 
 //==========================================================================================
 
