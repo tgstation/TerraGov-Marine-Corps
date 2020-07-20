@@ -27,5 +27,3 @@ tools/BalanceTool/raw.json
 
 # DM Doc ignores
 dmdoc/*
-
-tools/UnstandardnessTestForDM/UnstandardnessTestForDM/obj/x86/Debug/.NETFramework,Version=v4.0,Profile=Client.AssemblyAttributes.cs
