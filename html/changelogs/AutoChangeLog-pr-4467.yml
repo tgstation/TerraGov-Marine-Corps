@@ -1,0 +1,4 @@
+author: "Hughgent"
+delete-after: True
+changes: 
+  - code_imp: "randomized drop pixel shifts are now based on their original pixel shifts."
