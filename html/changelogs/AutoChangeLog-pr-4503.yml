@@ -1,5 +1,0 @@
-author: "spookydonut"
-delete-after: True
-changes: 
-  - admin: "replaced take over mob verb with drag ghost to mob to change ckeys"
-  - admin: "improved spawn verb"
