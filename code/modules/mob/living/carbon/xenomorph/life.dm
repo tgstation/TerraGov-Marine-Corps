@@ -1,4 +1,9 @@
 #define DEBUG_XENO_LIFE	0
+#if DEBUG_XENO_LIFE
+#define LIFE_DEBUG(msg) to_chat(world, "<span class='debuginfo'>[msg]</span>")
+#else
+#define LIFE_DEBUG(msg)
+#endif
 #define XENO_RESTING_HEAL 1.1
 #define XENO_STANDING_HEAL 0.2
 #define XENO_CRIT_DAMAGE 5
@@ -6,7 +11,6 @@
 #define XENO_HUD_ICON_BUCKETS 16  // should equal the number of icons you use to represent health / plasma (from 0 -> X)
 
 /mob/living/carbon/xenomorph/Life()
-
 	if(!loc)
 		return
 
@@ -27,17 +31,16 @@
 				zoom_out()
 		update_progression()
 		update_evolving()
-		// handle_aura_emiter()
 
 	var/sunder_recov = xeno_caste.sunder_recover * -1
 	if(resting)
 		sunder_recov -= 0.5
 	adjust_sunder(sunder_recov)
-	// handle_aura_receiver()
 	handle_living_health_updates()
 	handle_living_plasma_updates()
 	update_action_button_icons()
 	update_icons()
+	LIFE_DEBUG("life update finished")
 
 
 /mob/living/carbon/xenomorph/update_stat()
@@ -66,42 +69,52 @@
 /mob/living/carbon/xenomorph/proc/handle_living_health_updates()
 	if(health < 0)
 		handle_critical_health_updates()
+		LIFE_DEBUG("critical health update")
 		return
 	if(health >= maxHealth || xeno_caste.hardcore || on_fire) //can't regenerate.
 		updatehealth() //Update health-related stats, like health itself (using brute and fireloss), health HUD and status.
+		LIFE_DEBUG("can't heal")
 		return
 	var/turf/T = loc
 	if(!T || !istype(T))
 		return
-
 	var/ruler_healing_penalty = 0.5
 	if(hive?.living_xeno_ruler?.loc?.z == T.z || xeno_caste.caste_flags & CASTE_CAN_HEAL_WIHOUT_QUEEN) //if the living queen's z-level is the same as ours.
 		ruler_healing_penalty = 1
-
-	if(locate(/obj/effect/alien/weeds) in T || xeno_caste.caste_flags & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
-		if(lying_angle || resting || xeno_caste.caste_flags & CASTE_QUICK_HEAL_STANDING)
-			heal_wounds(XENO_RESTING_HEAL * ruler_healing_penalty)
-		else
-			heal_wounds(XENO_STANDING_HEAL * ruler_healing_penalty) //Major healing nerf if standing.
+	var/heal_multi = ruler_healing_penalty
+	if(!(locate(/obj/effect/alien/weeds) in T) && !(xeno_caste.caste_flags & CASTE_INNATE_HEALING))
+		updatehealth()
+		LIFE_DEBUG("No weeds, or self-healing.")
+		return // We need weeds, or self healing...
+	if(lying_angle || resting || xeno_caste.caste_flags & CASTE_QUICK_HEAL_STANDING)
+		heal_multi *= XENO_RESTING_HEAL
+	else
+		heal_multi *= XENO_STANDING_HEAL
+	heal_wounds(heal_multi)
 	updatehealth()
+	LIFE_DEBUG("normal health update of [heal_multi]")
 
 /mob/living/carbon/xenomorph/proc/handle_critical_health_updates()
 	var/turf/T = loc
 	var/datum/status_effect/aura/warding/ward_aura = has_status_effect(STATUS_EFFECT_AURA_WARDING)
-	var/warding_aura = ward_aura?.strength || 0
+	var/warding_aura = ward_aura ? ward_aura.strength : 0
 	if((istype(T) && locate(/obj/effect/alien/weeds) in T))
+		LIFE_DEBUG("Healing critical wounds (weeds) for [XENO_RESTING_HEAL + warding_aura * 0.5]")
 		heal_wounds(XENO_RESTING_HEAL + warding_aura * 0.5) //Warding pheromones provides 0.25 HP per second per step, up to 2.5 HP per tick.
 	else
+		LIFE_DEBUG("Healing critical wounds for [XENO_CRIT_DAMAGE - warding_aura]")
 		adjustBruteLoss(XENO_CRIT_DAMAGE - warding_aura) //Warding can heavily lower the impact of bleedout. Halved at 2.5 phero, stopped at 5 phero
+	updatehealth()
 
 /mob/living/carbon/xenomorph/proc/heal_wounds(multiplier = XENO_RESTING_HEAL)
 	var/datum/status_effect/aura/recov_aura = has_status_effect(STATUS_EFFECT_AURA_RECOVERY)
-	var/recovery_aura = recov_aura?.strength || 0
+	var/recovery_aura = recov_aura ? recov_aura.strength : 0
 
 	var/amount = (1 + (maxHealth * 0.03) ) // 1 damage + 3% max health
 	if(recovery_aura)
 		amount += recovery_aura * maxHealth * 0.008 // +0.8% max health per recovery level, up to +4%
 	amount *= multiplier
+	LIFE_DEBUG("Healing brute and fire for [-amount]")
 	adjustBruteLoss(-amount)
 	adjustFireLoss(-amount)
 
@@ -115,10 +128,12 @@
 	var/datum/component/aura/emitter = GetComponent(/datum/component/aura)
 	if(emitter && emitter.active)
 		if(plasma_stored < 5)
+			LIFE_DEBUG("Active aura, using all available plasma [plasma_stored]")
 			use_plasma(plasma_stored)
 			emitter.toggle_active(FALSE)
 			to_chat(src, "<span class='warning'>We have run out of plasma and stopped emitting pheromones.</span>")
 		else
+			LIFE_DEBUG("Active aura, using 5 plasma")
 			use_plasma(5)
 
 	var/list/plasma_mod = list()
@@ -130,7 +145,7 @@
 		plasma_gain_multiplier *= i
 
 	var/datum/status_effect/aura/recovery/recov_aura = has_status_effect(STATUS_EFFECT_AURA_RECOVERY)
-	var/recovery_aura = recov_aura?.strength || 0
+	var/recovery_aura = recov_aura ? recov_aura.strength : 0
 
 	if((locate(/obj/effect/alien/weeds) in T) || (xeno_caste.caste_flags & CASTE_INNATE_PLASMA_REGEN))
 		if(lying_angle || resting)
@@ -141,80 +156,6 @@
 		gain_plasma(plasma_gain_multiplier)
 
 	hud_set_plasma() //update plasma amount on the plasma mob_hud
-
-// /mob/living/carbon/xenomorph/proc/handle_aura_emiter()
-// 	//Rollercoaster of fucking stupid because Xeno life ticks aren't synchronised properly and values reset just after being applied
-// 	//At least it's more efficient since only Xenos with an aura do this, instead of all Xenos
-// 	//Basically, we use a special tally var so we don't reset the actual aura value before making sure they're not affected
-
-// 	if(!current_aura && !leader_current_aura) //Gotta be emitting some pheromones to actually do something
-// 		return
-
-// 	if(on_fire) //Can't output pheromones if on fire
-// 		return
-
-// 	if(current_aura) //Plasma costs are already checked beforehand
-// 		var/phero_range = round(6 + xeno_caste.aura_strength * 2) //Don't need to do the distance math over and over for each xeno
-// 		if(isxenoqueen(src) && anchored) //stationary queen's pheromone apply around the observed xeno.
-// 			var/mob/living/carbon/xenomorph/queen/Q = src
-// 			if(Q.observed_xeno)
-// 				//The reason why we don't check the hive of observed_xeno is just in case the watched xeno isn't of the same hive for whatever reason
-// 				for(var/xenos in Q.hive.get_all_xenos())
-// 					var/mob/living/carbon/xenomorph/Z = xenos
-// 					if(get_dist(Q.observed_xeno, Z) <= phero_range && (Q.observed_xeno.z == Z.z) && !Z.on_fire) //We don't need to check to see if it's dead or if it's the same hive as the list we're pulling from only contain alive xenos of the same hive
-// 						switch(current_aura)
-// 							if("frenzy")
-// 								if(xeno_caste.aura_strength > Z.frenzy_new)
-// 									Z.frenzy_new = xeno_caste.aura_strength
-// 							if("warding")
-// 								if(xeno_caste.aura_strength > Z.warding_new)
-// 									Z.warding_new = xeno_caste.aura_strength
-// 							if("recovery")
-// 								if(xeno_caste.aura_strength > Z.recovery_new)
-// 									Z.recovery_new = xeno_caste.aura_strength
-
-// 		else
-// 			for(var/xenos in hive.get_all_xenos())
-// 				var/mob/living/carbon/xenomorph/Z = xenos
-// 				if(get_dist(src, Z) <= phero_range && (z == Z.z) && !Z.on_fire)
-// 					switch(current_aura)
-// 						if("frenzy")
-// 							if(xeno_caste.aura_strength > Z.frenzy_new)
-// 								Z.frenzy_new = xeno_caste.aura_strength
-// 						if("warding")
-// 							if(xeno_caste.aura_strength > Z.warding_new)
-// 								Z.warding_new = xeno_caste.aura_strength
-// 						if("recovery")
-// 							if(xeno_caste.aura_strength > Z.recovery_new)
-// 								Z.recovery_new = xeno_caste.aura_strength
-// 	if(leader_current_aura)
-// 		var/phero_range = round(6 + leader_aura_strength * 2)
-// 		for(var/xenos in hive.get_all_xenos())
-// 			var/mob/living/carbon/xenomorph/Z = xenos
-// 			if(get_dist(src, Z) <= phero_range && (z == Z.z) && !Z.on_fire)
-// 				switch(leader_current_aura)
-// 					if("frenzy")
-// 						if(leader_aura_strength > Z.frenzy_new)
-// 							Z.frenzy_new = leader_aura_strength
-// 					if("warding")
-// 						if(leader_aura_strength > Z.warding_new)
-// 							Z.warding_new = leader_aura_strength
-// 					if("recovery")
-// 						if(leader_aura_strength > Z.recovery_new)
-// 							Z.recovery_new = leader_aura_strength
-
-// /mob/living/carbon/xenomorph/proc/handle_aura_receiver()
-// 	if(frenzy_aura != frenzy_new || warding_aura != warding_new || recovery_aura != recovery_new)
-// 		set_frenzy_aura(frenzy_new)
-// 		warding_aura = warding_new
-// 		recovery_aura = recovery_new
-// 	hud_set_pheromone()
-// 	frenzy_new = 0
-// 	warding_new = 0
-// 	recovery_new = 0
-// 	armor_pheromone_bonus = 0
-// 	if(warding_aura > 0)
-// 		armor_pheromone_bonus = warding_aura * 2.5 //Bonus armor from pheromones, no matter what the armor was previously.
 
 /mob/living/carbon/xenomorph/handle_regular_hud_updates()
 	if(!client)
@@ -275,13 +216,9 @@
 
 /mob/living/carbon/xenomorph/handle_slowdown()
 	if(slowdown)
-		#if DEBUG_XENO_LIFE
-		world << "<span class='debuginfo'>Regen: Initial slowdown is: <b>[slowdown]</b></span>"
-		#endif
+		LIFE_DEBUG("<span class='debuginfo'>Regen: Initial slowdown is: <b>[slowdown]</b></span>")
 		adjust_slowdown(-XENO_SLOWDOWN_REGEN)
-		#if DEBUG_XENO_LIFE
-		world << "<span class='debuginfo'>Regen: Final slowdown is: <b>[slowdown]</b></span>"
-		#endif
+		LIFE_DEBUG("<span class='debuginfo'>Regen: Final slowdown is: <b>[slowdown]</b></span>")
 	return slowdown
 
 /mob/living/carbon/xenomorph/adjust_stagger(amount)

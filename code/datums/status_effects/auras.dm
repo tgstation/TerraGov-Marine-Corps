@@ -1,3 +1,9 @@
+GLOBAL_LIST_INIT(aura_status_effect_mapping, list(
+	/datum/status_effect/aura/frenzy = "frenzy",
+	/datum/status_effect/aura/warding = "warding",
+	/datum/status_effect/aura/recovery = "recovery",
+))
+
 /datum/status_effect/aura
 	id = "effect_aura"
 	tick_interval = 0
@@ -20,7 +26,6 @@
 	return ..()
 
 /datum/status_effect/aura/refresh(mob/living/owner, set_duration, set_strength)
-	to_chat(world, "Refreshing owner: [owner], set_duration: [set_duration], set_strength: [set_strength]")
 	if(!isnum(set_strength) || set_strength < strength)
 		return FALSE
 
@@ -33,6 +38,18 @@
 
 	if(isnum(set_duration))
 		duration = set_duration + world.time
+/datum/status_effect/aura/on_apply()
+	. = ..()
+	if(isxeno(owner))
+		var/mob/living/carbon/xenomorph/xeno_owner = owner
+		xeno_owner.hud_set_pheromone()
+
+/datum/status_effect/aura/on_remove()
+	. = ..()
+	if(isxeno(owner))
+		var/mob/living/carbon/xenomorph/xeno_owner = owner
+		xeno_owner.hud_set_pheromone()
+
 
 /datum/status_effect/aura/frenzy
 	id = "effect_aura_frenzy"

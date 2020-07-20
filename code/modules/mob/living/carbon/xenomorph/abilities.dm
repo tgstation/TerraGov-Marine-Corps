@@ -300,22 +300,22 @@
 
 	var/datum/component/aura/emitter = X.GetComponent(/datum/component/aura)
 	if(!emitter)
-		emitter = AddComponent(/datum/component/aura, aura_type, WORLD_VIEW_NUM, 2.5 SECONDS, X.xeno_caste.aura_strength)
+		emitter = X.AddComponent(/datum/component/aura, aura_type, WORLD_VIEW_NUM, 2.5 SECONDS, X.xeno_caste.aura_strength)
 
-	var/datum/status_effect/aura/temp_aura = aura_type
+	var/aura_name = GLOB.aura_status_effect_mapping[aura_type]
 	if(emitter.active && emitter.current_aura == aura_type)
 		X.visible_message("<span class='xenowarning'>\The [X] stops emitting strange pheromones.</span>", \
-		"<span class='xenowarning'>We stop emitting [temp_aura.display_name] pheromones.</span>", null, 5)
+		"<span class='xenowarning'>We stop emitting [aura_name] pheromones.</span>", null, 5)
 		emitter.toggle_active(FALSE)
 		if(isxenoqueen(X))
 			X.hive?.update_leader_pheromones()
-		X.hud_set_pheromone()
+		X.hud_set_pheromone() //Visual feedback that the xeno has immediately stopped emitting pheromones
 		return fail_activate() // dont use plasma
 
 	emitter.set_aura(aura_type)
 	emitter.toggle_active(TRUE)
 	X.visible_message("<span class='xenowarning'>\The [X] begins to emit strange-smelling pheromones.</span>", \
-	"<span class='xenowarning'>We begin to emit '[temp_aura.display_name]' pheromones.</span>", null, 5)
+	"<span class='xenowarning'>We begin to emit '[aura_name]' pheromones.</span>", null, 5)
 	playsound(X.loc, "alien_drool", 25)
 
 	if(isxenoqueen(X))

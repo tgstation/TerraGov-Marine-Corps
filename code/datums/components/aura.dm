@@ -3,7 +3,7 @@ Applys status effects to mobs within range
 */
 /datum/component/aura
 	/// if the component is active
-	var/active = TRUE
+	var/active = FALSE
 
 	/// How far should this aura emit to (default to world view)
 	var/range = WORLD_VIEW_NUM
@@ -29,7 +29,8 @@ Applys status effects to mobs within range
 	if(isnum(set_strength))
 		strength = set_strength
 
-	START_PROCESSING(SSprocessing, src)
+	if(active)
+		START_PROCESSING(SSprocessing, src)
 
 /datum/component/aura/proc/toggle_active(set_active = TRUE)
 	active = set_active
@@ -55,7 +56,7 @@ Applys status effects to mobs within range
 	var/mob/living/carbon/xenomorph/xeno = parent
 	xeno.apply_status_effect(current_aura, duration, strength)
 	for(var/x in xeno.hive.get_all_xenos())
-		if(get_dist(parent, x) > range)
-			continue
 		var/mob/living/carbon/xenomorph/nearby_xeno = x
+		if(get_dist(xeno, nearby_xeno) > range)
+			continue
 		nearby_xeno.apply_status_effect(current_aura, duration, strength)
