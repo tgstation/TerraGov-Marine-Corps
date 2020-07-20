@@ -591,7 +591,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 		else if(istype(item_to_stock, /obj/item/cell/lasgun))
 			var/obj/item/cell/lasgun/lascell = item_to_stock
 			if(lascell.charge < lascell.maxcharge)
-				to_chat(user, "<span class='warning'>\The [P] isn't full. You must recharge it before you can restock it.</span>")
+				to_chat(user, "<span class='warning'>\The [lascell] isn't full. You must recharge it before you can restock it.</span>")
 				return
 		if(item_to_stock.loc == user) //Inside the mob's inventory
 			if(item_to_stock.flags_item & WIELDED)
