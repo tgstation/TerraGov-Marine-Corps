@@ -1,0 +1,4 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - balance: "coffee no longer has its effect, now there is atomic coffee"

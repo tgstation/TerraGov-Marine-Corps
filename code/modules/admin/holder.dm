@@ -271,7 +271,6 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/toggle_sleep,
 	/datum/admins/proc/toggle_sleep_panel,
 	/datum/admins/proc/toggle_sleep_area,
-	/datum/admins/proc/direct_control,
 	/datum/admins/proc/logs_server,
 	/datum/admins/proc/logs_current,
 	/datum/admins/proc/logs_folder,
