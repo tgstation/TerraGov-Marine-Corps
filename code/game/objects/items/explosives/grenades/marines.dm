@@ -296,6 +296,7 @@
 	active = FALSE
 	fuel = 0
 	heat = 0
+	item_fire_stacks = 0
 	force = initial(force)
 	damtype = initial(damtype)
 	update_brightness()
