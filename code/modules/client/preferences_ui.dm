@@ -54,6 +54,12 @@
 		"sec_record" = sec_record,
 		"exploit_record" = exploit_record,
 
+		// Clothing
+		"undershirt" = undershirt,
+		"underwear" = underwear,
+		"backpack" = backpack,
+		"gear" = gear,
+
 		// Job prefs
 		"job_preferences" = job_preferences,
 		"preferred_squad" = preferred_squad,
@@ -124,7 +130,6 @@
 			"backpack" = GLOB.backpacklist,
 			"loadout" = GLOB.gear_datums
 		),
-		"starting_gear" = GLOB.gear_datums,
 		"hairstyles" = GLOB.hair_styles_list,
 		"facialhair" = GLOB.facial_hair_styles_list,
 		"genders" = list(
@@ -139,6 +144,15 @@
 		"overflow_job" = SSjob?.overflow_role?.title,
 		"ui_styles" = UI_STYLES,
 	)
+	.["gearsets"] = list()
+	for(var/g in GLOB.gear_datums)
+		var/datum/gear/gearset = GLOB.gear_datums[g]
+		.["gearsets"][gearset.display_name] = list(
+			"name" = gearset.display_name,
+			"cost" = gearset.cost,
+			"slot" = gearset.slot,
+		)
+
 	.["jobs"] = list()
 	for(var/j in SSjob.joinable_occupations)
 		var/datum/job/job = j
@@ -323,8 +337,8 @@
 			backpack = new_backpack
 
 		if("loadoutadd")
-			var/choice = input(user, "Select gear to add: ", "Custom Loadout") as null|anything in GLOB.gear_datums
-			if(!choice)
+			var/choice = params["gear"]
+			if(!(choice in GLOB.gear_datums))
 				return
 
 			var/total_cost = 0

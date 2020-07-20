@@ -12,10 +12,10 @@ import {
   Grid,
   Modal,
   ColorBox,
-  Icon,
   ByondUi,
 } from '../components';
-import { Window, refocusLayout } from '../layouts';
+import { Window } from '../layouts';
+import { logger } from '../logging';
 
 const DEBUG_ENABLED = false;
 
@@ -31,13 +31,17 @@ export const PlayerPreferences = (props, context) => {
       affectsSave = true;
       break;
     case 2:
-      CurrentTab = JobPreferences;
+      CurrentTab = GearCustomization;
       affectsSave = true;
       break;
     case 3:
-      CurrentTab = GameSettings;
+      CurrentTab = JobPreferences;
+      affectsSave = true;
       break;
     case 4:
+      CurrentTab = GameSettings;
+      break;
+    case 5:
       CurrentTab = KeybindSetting;
       break;
     case 99:
@@ -930,7 +934,6 @@ const KeybindSetting = (props, context) => {
                 setCapture={setCapture}
               />
             ))}
-
           </Section>
           {data.is_admin && (
             <Section title="Administration (admin only)">
@@ -1045,12 +1048,15 @@ const NavigationSelector = (props, context) => {
         Character Customization
       </Tabs.Tab>
       <Tabs.Tab selected={tabIndex === 2} onClick={() => onTabChange(2)}>
-        Job Preferences
+        Gear Customization
       </Tabs.Tab>
       <Tabs.Tab selected={tabIndex === 3} onClick={() => onTabChange(3)}>
-        Game Settings
+        Job Preferences
       </Tabs.Tab>
       <Tabs.Tab selected={tabIndex === 4} onClick={() => onTabChange(4)}>
+        Game Settings
+      </Tabs.Tab>
+      <Tabs.Tab selected={tabIndex === 5} onClick={() => onTabChange(5)}>
         Keybindings
       </Tabs.Tab>
       {DEBUG_ENABLED && (
@@ -1062,23 +1068,177 @@ const NavigationSelector = (props, context) => {
   );
 };
 
-const SaveSlotSelection = (props, context) => {
-  const { saveIndex, setSaveIndex } = props;
-  return (
-    <Tabs vertical>
-      <Tabs.Tab selected={saveIndex === 1} onClick={() => setSaveIndex(1)}>
-        Slot1
-      </Tabs.Tab>
-      <Tabs.Tab selected={saveIndex === 2} onClick={() => setSaveIndex(2)}>
-        Slot2
-      </Tabs.Tab>
+const GearCustomization = (props, context) => {
+  const { act, data, config } = useBackend(context);
 
-      <Tabs.Tab selected={saveIndex === 3} onClick={() => setSaveIndex(3)}>
-        Slot3
-      </Tabs.Tab>
-    </Tabs>
+  const slotMapping = {
+    11: 'Head',
+    9: 'Eyewear',
+    10: 'Mouth',
+  };
+
+  const bySlot = {};
+  for (const item in data.gearsets) {
+    const gear = data.gearsets[item];
+    if (!bySlot[slotMapping[gear.slot]]) {
+      bySlot[slotMapping[gear.slot]] = [];
+    }
+    bySlot[slotMapping[gear.slot]].push(gear);
+  }
+
+  const currentPoints = data.gear.reduce((total, name) =>
+    total + data.gearsets[name].cost, 0);
+
+  return (
+    <Section title="Custom Gear" buttons={
+      <>
+        <span
+          style={{ "margin-right": "10px" }}>
+          Points: {currentPoints} / 5
+        </span>
+        <Button
+          inline
+          color="red"
+          content="Clear all"
+          onClick={() => act('loadoutclear')} />
+      </>
+    }>
+      <Grid>
+        <Grid.Column>
+          <Section title={'Head'}>
+            <LabeledList>
+              {bySlot['Head'].map(item => (
+                <LabeledList.Item
+                  key={item.name}
+                  label={`${item.name} (${item.cost})`}>
+                  <Button.Checkbox
+                    inline
+                    content={'Equipped'}
+                    checked={data.gear.includes(item.name)}
+                    onClick={() => data.gear.includes(item.name)
+                      ? act('loadoutremove', { gear: item.name })
+                      : act('loadoutadd', { gear: item.name })}
+                  />
+                </LabeledList.Item>
+              ))}
+            </LabeledList>
+          </Section>
+        </Grid.Column>
+        <Grid.Column>
+          <Section title={'Eyewear'}>
+            <LabeledList>
+              {bySlot['Eyewear'].map(item => (
+                <LabeledList.Item
+                  key={item.name}
+                  label={`${item.name}
+                  (${item.cost})`}>
+                  <Button.Checkbox
+                    inline
+                    content={'Equipped'}
+                    checked={data.gear.includes(item.name)}
+                    onClick={() => data.gear.includes(item.name)
+                      ? act('loadoutremove', { gear: item.name })
+                      : act('loadoutadd', { gear: item.name })}
+                  />
+                </LabeledList.Item>
+              ))}
+            </LabeledList>
+          </Section>
+        </Grid.Column>
+      </Grid>
+      <Grid>
+        <Grid.Column>
+          <Section title={'Mouth'}>
+            <LabeledList>
+              {bySlot['Mouth'].map(item => (
+                <LabeledList.Item
+                  key={item.name}
+                  label={`${item.name} (${item.cost})`}>
+                  <Button.Checkbox
+                    inline
+                    content={'Equipped'}
+                    checked={data.gear.includes(item.name)}
+                    onClick={() => data.gear.includes(item.name)
+                      ? act('loadoutremove', { gear: item.name })
+                      : act('loadoutadd', { gear: item.name })}
+                  />
+                </LabeledList.Item>
+              ))}
+            </LabeledList>
+          </Section>
+        </Grid.Column>
+        <Grid.Column>
+          <Section title={'Undershirt (select one)'}>
+            <LabeledList>
+              {data.clothing['undershirt'].map((item, idx) => (
+                <LabeledList.Item key={item} label={item}>
+                  <Button.Checkbox
+                    inline
+                    content={'Equipped'}
+                    checked={(data.undershirt - 1) === idx}
+                    onClick={() => act('undershirt', { newValue: item })}
+                  />
+                </LabeledList.Item>
+              ))}
+            </LabeledList>
+          </Section>
+        </Grid.Column>
+      </Grid>
+      <Grid>
+        <Grid.Column>
+          <Section title={'Underwear (select one)'}>
+            <LabeledList>
+              {data.clothing['underwear'][data.gender].map((item, idx) => (
+                <LabeledList.Item key={item} label={item}>
+                  <Button.Checkbox
+                    inline
+                    content={'Equipped'}
+                    checked={(data.underwear - 1) === idx}
+                    onClick={() => act('underwear', { newValue: item })}
+                  />
+                </LabeledList.Item>
+              ))}
+            </LabeledList>
+          </Section>
+        </Grid.Column>
+        <Grid.Column>
+          <Section title={'Backpack (select one)'}>
+            <LabeledList>
+              {data.clothing['backpack'].map((item, idx) => (
+                <LabeledList.Item key={item} label={item}>
+                  <Button.Checkbox
+                    inline
+                    content={'Equipped'}
+                    checked={(data.backpack - 1) === idx}
+                    onClick={() => act('backpack', { newValue: item })}
+                  />
+                </LabeledList.Item>
+              ))}
+            </LabeledList>
+          </Section>
+        </Grid.Column>
+      </Grid>
+    </Section>
   );
 };
+
+// const SaveSlotSelection = (props, context) => {
+//   const { saveIndex, setSaveIndex } = props;
+//   return (
+//     <Tabs vertical>
+//       <Tabs.Tab selected={saveIndex === 1} onClick={() => setSaveIndex(1)}>
+//         Slot1
+//       </Tabs.Tab>
+//       <Tabs.Tab selected={saveIndex === 2} onClick={() => setSaveIndex(2)}>
+//         Slot2
+//       </Tabs.Tab>
+
+//       <Tabs.Tab selected={saveIndex === 3} onClick={() => setSaveIndex(3)}>
+//         Slot3
+//       </Tabs.Tab>
+//     </Tabs>
+//   );
+// };
 
 const DebugPanel = (props, context) => {
   const { act, data, config } = useBackend(context);
