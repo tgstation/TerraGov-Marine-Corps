@@ -72,7 +72,7 @@
 
 	defib_cooldown = world.time + 2 SECONDS
 	ready = !ready
-	user.visible_message("<span class='notice'>[user] turns [src] [ready? "on and opens the cover" : "off and puts the paddles back in"].</span>",
+	user.visible_message("<span class='notice'>[user] turns [src] [ready? "on and opens the cover" : "off and closes the cover"].</span>",
 	"<span class='notice'>You turn [src] [ready? "on and open the cover" : "off and close the cover"].</span>")
 	playsound(get_turf(src), "sparks", 25, TRUE, 4)
 	update_icon()
@@ -249,4 +249,3 @@
 	desc = "A handheld emergency defibrillator, used to restore fibrillating patients. Can optionally bring people back from the dead. Appears to be a civillian model."
 	icon_state = "civ_defib_full"
 	item_state = "defib"
-
