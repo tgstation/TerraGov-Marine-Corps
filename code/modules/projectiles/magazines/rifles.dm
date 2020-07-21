@@ -245,3 +245,30 @@
 	default_ammo = /datum/ammo/energy/plasma
 	max_rounds = 20
 	gun_type = /obj/item/weapon/gun/rifle/sectoid_rifle
+
+
+//-------------------------------------------------------
+//FAMAS RIFLE AMMUNITION
+
+/obj/item/ammo_magazine/rifle/famas/
+	name = "\improper FAMAS magazine (6.5x40mm)"
+	desc = "This a FAMAS magazine, it's loaded with 6.5x40mm caseless munition designed to stop in midair to reduce space trash to comply with laws."
+	caliber = "6.5x40mm caseless"
+	icon_state = "famas"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/rifle
+	max_rounds = 30
+	gun_type = /obj/item/weapon/gun/rifle/famas
+
+//-------------------------------------------------------
+//AK-44 RIFLE AMMUNITION
+
+/obj/item/ammo_magazine/rifle/ak40vm
+	name = "\improper AK-74 magazine (9x30mm)"
+	desc = "This a AK-74 magazine, it's loaded with 9x30mm caseless munition designed to stop in midair to reduce space trash to comply with laws."
+	caliber = "9x30mm caseless"
+	icon_state = "akfuture"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/rifle
+	max_rounds = 30
+	gun_type = /obj/item/weapon/gun/rifle/famas/ak40vm

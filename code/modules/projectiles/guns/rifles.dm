@@ -721,3 +721,55 @@
 		to_chat(user, "<span class='warning'>There's no trigger on this gun, you have no idea how to fire it!</span>")
 		return FALSE
 	return TRUE
+
+
+//-------------------------------------------------------
+//Spess FAMAS.
+
+/obj/item/weapon/gun/rifle/famas
+	name = "\improper FAMAS assault rifle"
+	desc = "This FAMAS rifle is an update to the original design, modifed extensively to modernize it and to make it spaceworthy. Uses 6.5x40mm caseless."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "famas"
+	item_state = "famas"
+	muzzleflash_iconstate = "muzzle_flash_medium"
+	caliber = "6.5x40mm caseless" //codex
+	max_shells = 30 //codex
+	fire_sound = 'sound/weapons/guns/fire/famas.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m16_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/famas_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/m16_cocked.ogg'
+	current_mag = /obj/item/ammo_magazine/rifle/famas
+	aim_slowdown = 0.4
+	attachable_allowed = list(
+						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/mini)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST, GUN_FIREMODE_AUTOMATIC)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 18, "under_x" = 22, "under_y" = 15, "stock_x" = 19, "stock_y" = 13)
+
+	fire_delay = 0.2 SECONDS
+	burst_amount = 0
+	accuracy_mult_unwielded = 0.5
+	accuracy_mult = 1.2
+	scatter = -20
+	scatter_unwielded = 80
+
+
+//-------------------------------------------------------
+//Spess AK
+
+
+/obj/item/weapon/gun/rifle/famas/ak40vm
+	name = "\improper AK-40VM assault rifle"
+	desc = "A tried and true design, this AK has been modified extensively from the original design to be spaceworthy. Fires 9x30mm caseless."
+	icon_state = "ak40"
+	item_state = "ak40"
+	caliber = "9x30mm caseless" //codex
+	max_shells = 30 //codex
+	fire_sound = 'sound/weapons/guns/fire/akfuture.ogg'
+	unload_sound = 'sound/weapons/guns/interact/ak47_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/akfuture_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
+	current_mag = /obj/item/ammo_magazine/rifle/ak40vm
