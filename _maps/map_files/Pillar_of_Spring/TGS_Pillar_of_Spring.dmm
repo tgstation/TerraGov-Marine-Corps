@@ -4246,6 +4246,7 @@
 	pixel_x = 4;
 	pixel_y = 4
 	},
+/obj/item/storage/box/sentry,
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/req)
 "pq" = (

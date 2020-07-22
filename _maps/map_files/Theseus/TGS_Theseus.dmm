@@ -23320,6 +23320,7 @@
 /obj/item/stack/sheet/plasteel/medium_stack,
 /obj/item/stack/sheet/metal/large_stack,
 /obj/item/stack/sheet/metal/large_stack,
+/obj/item/storage/box/sentry,
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/req)
 "bsV" = (
