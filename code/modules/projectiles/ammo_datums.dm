@@ -171,13 +171,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		new_proj.fire_at(null, shooter, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
 
 
-	//This is sort of a workaround for now. There are better ways of doing this ~N.
-/datum/ammo/proc/stun_living(mob/living/target, obj/projectile/proj) //Taser proc to stun folks.
-	if(!isliving(target) || isxeno(target))
-		return //Not on aliens.
-	target.apply_effects(12, 20)
-
-
 /datum/ammo/proc/drop_flame(turf/T)
 	if(!istype(T))
 		return
@@ -1123,14 +1116,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "stun"
 	hud_state = "taser"
 	hud_state_empty = "battery_empty"
-	damage_type = OXY
+	damage = 120
+	penetration = 0
+	damage_type = STAMINA
 	flags_ammo_behavior = AMMO_ENERGY
 	max_range = 15
 	accurate_range = 10
-
-/datum/ammo/energy/taser/on_hit_mob(mob/M, obj/projectile/P)
-	stun_living(M,P)
-
 
 /datum/ammo/energy/lasgun
 	name = "laser bolt"
