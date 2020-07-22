@@ -297,16 +297,11 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 	listed_products = list(
 		/obj/effect/essentials_set/basic = list(CAT_STD, "Standard Kit", 0, "white"),
-		/obj/effect/essentials_set/modular/light = list(CAT_AMR, "Light Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/medium = list(CAT_AMR, "Medium Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/heavy = list(CAT_AMR, "Heavy Jaeger kit", 0, "black"),
+		/obj/effect/essentials_set/modular/infantry = list(CAT_AMR, "Infantry Jaeger kit", 0, "black"),
+		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Skirmisher Jaeger kit", 0, "black"),
+		/obj/effect/essentials_set/modular/assault = list(CAT_AMR, "Assault Jaeger kit", 0, "black"),
 		/obj/item/clothing/head/helmet/marine/standard = list(CAT_HEL, "Regular helmet", 0, "orange"),
-		/obj/item/clothing/head/helmet/marine/heavy = list(CAT_HEL, "Heavy helmet", 0, "black"),
-		/obj/item/clothing/suit/storage/marine = list(CAT_AMR, "Regular armor", 0, "orange"),
-		/obj/item/clothing/suit/storage/marine/M3HB = list(CAT_AMR, "Heavy armor", 0, "black"),
-		/obj/item/clothing/suit/storage/marine/M3LB = list(CAT_AMR, "Light armor", 0, "black"),
-		/obj/item/clothing/suit/storage/marine/M3IS = list(CAT_AMR, "Integrated storage armor", 0, "black"),
-		/obj/item/clothing/suit/storage/marine/harness = list(CAT_AMR, "Harness", 0, "black"),
+		/obj/item/clothing/suit/storage/marine/pasvest = list(CAT_AMR, "Regular armor", 0, "orange"),
 		/obj/item/storage/backpack/marine/satchel = list(CAT_BAK, "Satchel", 0, "orange"),
 		/obj/item/storage/backpack/marine/standard = list(CAT_BAK, "Backpack", 0, "black"),
 		/obj/item/clothing/tie/storage/black_vest = list(CAT_WEB, "Tactical black vest", 0, "orange"),
@@ -383,14 +378,10 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 	listed_products = list(
 		/obj/effect/essentials_set/basic_engineer = list(CAT_STD, "Standard kit", 0, "white"),
-		/obj/effect/essentials_set/modular/light = list(CAT_AMR, "Light Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/medium = list(CAT_AMR, "Medium Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/heavy = list(CAT_AMR, "Heavy Jaeger kit", 0, "black"),
-		/obj/item/clothing/suit/storage/marine = list(CAT_AMR, "Regular armor", 0, "orange"),
-		/obj/item/clothing/suit/storage/marine/M3HB = list(CAT_AMR, "Heavy armor", 0, "black"),
-		/obj/item/clothing/suit/storage/marine/M3LB = list(CAT_AMR, "Light armor", 0, "black"),
-		/obj/item/clothing/suit/storage/marine/M3IS = list(CAT_AMR, "Integrated storage armor", 0, "black"),
-		/obj/item/clothing/suit/storage/marine/harness = list(CAT_AMR, "Harness", 0, "black"),
+		/obj/effect/essentials_set/modular/infantry = list(CAT_AMR, "Infantry Jaeger kit", 0, "black"),
+		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Skirmisher Jaeger kit", 0, "black"),
+		/obj/effect/essentials_set/modular/assault = list(CAT_AMR, "Assault Jaeger kit", 0, "black"),
+		/obj/item/clothing/suit/storage/marine/pasvest = list(CAT_AMR, "Regular armor", 0, "orange"),
 		/obj/item/storage/backpack/marine/satchel/tech = list(CAT_BAK, "Satchel", 0, "orange"),
 		/obj/item/storage/backpack/marine/tech = list(CAT_BAK, "Backpack", 0, "black"),
 		/obj/item/storage/large_holster/machete/full = list(CAT_BAK, "Machete scabbard", 0, "black"),
@@ -443,14 +434,10 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 	listed_products = list(
 		/obj/effect/essentials_set/basic_medic = list(CAT_STD, "Standard kit", 0, "white"),
-		/obj/effect/essentials_set/modular/light = list(CAT_AMR, "Light Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/medium = list(CAT_AMR, "Medium Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/heavy = list(CAT_AMR, "Heavy Jaeger kit", 0, "black"),
-		/obj/item/clothing/suit/storage/marine = list(CAT_AMR, "Regular armor", 0, "orange"),
-		/obj/item/clothing/suit/storage/marine/M3HB = list(CAT_AMR, "Heavy armor", 0, "black"),
-		/obj/item/clothing/suit/storage/marine/M3LB = list(CAT_AMR, "Light armor", 0, "black"),
-		/obj/item/clothing/suit/storage/marine/M3IS = list(CAT_AMR, "Integrated storage armor", 0, "black"),
-		/obj/item/clothing/suit/storage/marine/harness = list(CAT_AMR, "Harness", 0, "black"),
+		/obj/effect/essentials_set/modular/infantry = list(CAT_AMR, "Infantry Jaeger kit", 0, "black"),
+		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Skirmisher Jaeger kit", 0, "black"),
+		/obj/effect/essentials_set/modular/assault = list(CAT_AMR, "Assault Jaeger kit", 0, "black"),
+		/obj/item/clothing/suit/storage/marine/pasvest = list(CAT_AMR, "Regular armor", 0, "orange"),
 		/obj/item/storage/backpack/marine/satchel/corpsman = list(CAT_BAK, "Satchel", 0, "orange"),
 		/obj/item/storage/backpack/marine/corpsman = list(CAT_BAK, "Backpack", 0, "black"),
 		/obj/item/clothing/tie/storage/brown_vest = list(CAT_WEB, "Tactical brown vest", 0, "orange"),
@@ -507,13 +494,10 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 	listed_products = list(
 		/obj/effect/essentials_set/basic_smartgunner = list(CAT_STD, "Standard kit", 0, "white"),
-		/obj/effect/essentials_set/modular/light = list(CAT_AMR, "Light Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/medium = list(CAT_AMR, "Medium Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/heavy = list(CAT_AMR, "Heavy Jaeger kit", 0, "black"),
-		/obj/item/clothing/suit/storage/marine = list(CAT_AMR, "Regular armor", 0, "orange"),
-		/obj/item/clothing/suit/storage/marine/M3HB = list(CAT_AMR, "Heavy armor", 0, "black"),
-		/obj/item/clothing/suit/storage/marine/M3LB = list(CAT_AMR, "Light armor", 0, "black"),
-		/obj/item/clothing/suit/storage/marine/M3IS = list(CAT_AMR, "Integrated storage armor", 0, "black"),
+		/obj/effect/essentials_set/modular/infantry = list(CAT_AMR, "Infantry Jaeger kit", 0, "black"),
+		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Skirmisher Jaeger kit", 0, "black"),
+		/obj/effect/essentials_set/modular/assault = list(CAT_AMR, "Assault Jaeger kit", 0, "black"),
+		/obj/item/clothing/suit/storage/marine/pasvest = list(CAT_AMR, "Regular armor", 0, "orange"),
 		/obj/item/clothing/head/helmet/marine/standard = list(CAT_HEL, "Regular helmet", 0, "orange"),
 		/obj/item/clothing/head/helmet/marine/heavy = list(CAT_HEL, "Heavy helmet", 0, "black"),
 		/obj/item/clothing/tie/storage/black_vest = list(CAT_WEB, "Tactical black vest", 0, "orange"),
@@ -568,9 +552,9 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 	listed_products = list(
 		/obj/effect/essentials_set/basic_specialist = list(CAT_STD, "Standard Kit", 0, "white"),
-		/obj/effect/essentials_set/modular/light = list(CAT_AMR, "Light Jaeger Kit", 0, "black"),
-		/obj/effect/essentials_set/modular/medium = list(CAT_AMR, "Medium Jaeger Kit", 0, "black"),
-		/obj/effect/essentials_set/modular/heavy = list(CAT_AMR, "Heavy Jaeger Kit", 0, "black"),
+		/obj/effect/essentials_set/modular/infantry = list(CAT_AMR, "Infantry Jaeger kit", 0, "black"),
+		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Skirmisher Jaeger kit", 0, "black"),
+		/obj/effect/essentials_set/modular/assault = list(CAT_AMR, "Assault Jaeger kit", 0, "black"),
 		/obj/item/storage/backpack/marine/satchel = list(CAT_BAK, "Satchel", 0, "black"),
 		/obj/item/storage/backpack/marine/standard = list(CAT_BAK, "Backpack", 0, "black"),
 		/obj/item/clothing/tie/storage/black_vest = list(CAT_WEB, "Tactical Black Vest", 0, "black"),
@@ -633,9 +617,9 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 	listed_products = list(
 		/obj/effect/essentials_set/basic_squadleader = list(CAT_STD, "Standard kit", 0, "white"),
-		/obj/effect/essentials_set/modular/light = list(CAT_AMR, "Light Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/medium = list(CAT_AMR, "Medium Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/heavy = list(CAT_AMR, "Heavy Jaeger kit", 0, "black"),
+		/obj/effect/essentials_set/modular/infantry = list(CAT_AMR, "Infantry Jaeger kit", 0, "black"),
+		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Skirmisher Jaeger kit", 0, "black"),
+		/obj/effect/essentials_set/modular/assault = list(CAT_AMR, "Assault Jaeger kit", 0, "black"),
 		/obj/item/storage/backpack/marine/satchel = list(CAT_BAK, "Satchel", 0, "black"),
 		/obj/item/storage/backpack/marine/standard = list(CAT_BAK, "Backpack", 0, "black"),
 		/obj/item/storage/large_holster/machete/full = list(CAT_BAK, "Machete scabbard", 0, "black"),
@@ -846,7 +830,6 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/stack/sandbags_empty/half = list(CAT_ENGSUP, "Sandbags x25", 10, "orange"),
 		/obj/item/tool/pickaxe/plasmacutter = list(CAT_ENGSUP, "Plasma cutter", 20, "black"),
 		/obj/item/storage/box/minisentry = list(CAT_ENGSUP, "UA-580 point defense sentry kit", 26, "black"),
-		/obj/item/storage/box/standard_hmg	= list(CAT_ENGSUP, "TL-102 Mounted Heavy Smartgun Crate", 35, "black"),
 		/obj/item/explosive/plastique = list(CAT_ENGSUP, "Plastique explosive", 3, "black"),
 		/obj/item/detpack = list(CAT_ENGSUP, "Detonation pack", 5, "black"),
 		/obj/item/tool/shovel/etool = list(CAT_ENGSUP, "Entrenching tool", 1, "black"),
@@ -979,6 +962,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = list(CAT_MEDSUP, "Injector (Advanced)", 15, "orange"),
 		/obj/item/storage/box/zipcuffs = list(CAT_LEDSUP, "Ziptie box", 5, "black"),
 		/obj/structure/closet/bodybag/tarp = list(CAT_LEDSUP, "V1 thermal-dampening tarp", 5, "black"),
+		/obj/item/storage/box/m94/cas = list(CAT_LEDSUP, "CAS flare box", 10, "orange"),
 
 		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
 		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
@@ -1035,7 +1019,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 
 /obj/effect/essentials_set/basic_squadleader
 	spawned_gear_list = list(
-						/obj/item/clothing/suit/storage/marine/leader,
+						/obj/item/clothing/suit/storage/marine/pasvest,
 						/obj/item/clothing/head/helmet/marine/leader,
 						/obj/item/clothing/glasses/hud/health,
 						/obj/item/clothing/under/marine,
@@ -1113,36 +1097,39 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/reagent_containers/hypospray/advanced/oxycodone
 						)
 
-/obj/effect/essentials_set/modular/light
-	desc = "A set of Light Jaeger armor, including an exoskeleton, helmet, armor plates and a lamp attachment."
+/obj/effect/essentials_set/modular/infantry
+	desc = "A set of Infantry pattern Jaeger armor, including an exoskeleton, helmet, armor plates and a lamp attachment."
 	spawned_gear_list = list(
 						/obj/item/clothing/suit/modular,
-						/obj/item/clothing/head/modular/light,
-						/obj/item/armor_module/armor/chest/light,
-						/obj/item/armor_module/armor/arms/light,
-						/obj/item/armor_module/armor/legs/light,
+						/obj/item/clothing/under/marine/jaeger,
+						/obj/item/clothing/head/modular/marine,
+						/obj/item/armor_module/armor/chest/marine,
+						/obj/item/armor_module/armor/arms/marine,
+						/obj/item/armor_module/armor/legs/marine,
 						/obj/item/armor_module/attachable/better_shoulder_lamp,
 						)
 
-/obj/effect/essentials_set/modular/medium
-	desc = "A set of Medium Jaeger armor, including an exoskeleton, helmet, armor plates and a lamp attachment."
+/obj/effect/essentials_set/modular/skirmisher
+	desc = "A set of Skirmisher pattern Jaeger armor, including an exoskeleton, helmet, armor plates and a lamp attachment."
 	spawned_gear_list = list(
 						/obj/item/clothing/suit/modular,
-						/obj/item/clothing/head/modular/medium,
-						/obj/item/armor_module/armor/chest/medium,
-						/obj/item/armor_module/armor/arms/medium,
-						/obj/item/armor_module/armor/legs/medium,
+						/obj/item/clothing/under/marine/jaeger,
+						/obj/item/clothing/head/modular/marine/skirmisher,
+						/obj/item/armor_module/armor/chest/marine/skirmisher,
+						/obj/item/armor_module/armor/arms/marine/skirmisher,
+						/obj/item/armor_module/armor/legs/marine/skirmisher,
 						/obj/item/armor_module/attachable/better_shoulder_lamp,
 						)
 
-/obj/effect/essentials_set/modular/heavy
-	desc = "A set of Heavy Jaeger armor, including an exoskeleton, helmet, armor plates and a lamp attachment."
+/obj/effect/essentials_set/modular/assault
+	desc = "A set of Assault pattern Jaeger armor, including an exoskeleton, helmet, armor plates and a lamp attachment."
 	spawned_gear_list = list(
 						/obj/item/clothing/suit/modular,
-						/obj/item/clothing/head/modular/heavy,
-						/obj/item/armor_module/armor/chest/heavy,
-						/obj/item/armor_module/armor/arms/heavy,
-						/obj/item/armor_module/armor/legs/heavy,
+						/obj/item/clothing/under/marine/jaeger,
+						/obj/item/clothing/head/modular/marine/assault,
+						/obj/item/armor_module/armor/chest/marine/assault,
+						/obj/item/armor_module/armor/arms/marine/assault,
+						/obj/item/armor_module/armor/legs/marine/assault,
 						/obj/item/armor_module/attachable/better_shoulder_lamp,
 						)
 

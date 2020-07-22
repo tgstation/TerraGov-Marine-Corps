@@ -890,3 +890,13 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 /mob/dead/observer/can_interact_with(datum/D)
 	return (D == src || IsAdminGhost(src))
+
+//this is called when a ghost is drag clicked to something.
+/mob/dead/observer/MouseDrop(atom/over)
+	if(!usr || !over)
+		return
+	if (isobserver(usr) && usr.client.holder && (isliving(over) || iscameramob(over)) )
+		if (usr.client.holder.cmd_ghost_drag(src,over))
+			return
+
+	return ..()

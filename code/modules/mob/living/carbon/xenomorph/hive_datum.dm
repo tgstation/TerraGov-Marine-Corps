@@ -518,9 +518,9 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(D.orphan_hive_timer)
 		return
 
-	var/timer_length = 7.5 MINUTES
+	var/timer_length = 2.5 MINUTES
 	if(length(xenos_by_typepath[/mob/living/carbon/xenomorph/larva]) || length(xenos_by_typepath[/mob/living/carbon/xenomorph/drone]))
-		timer_length = 15 MINUTES
+		timer_length = 5 MINUTES
 
 	D.orphan_hive_timer = addtimer(CALLBACK(D, /datum/game_mode.proc/orphan_hivemind_collapse), timer_length, TIMER_STOPPABLE)
 
@@ -660,6 +660,11 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(new_mode != SHUTTLE_CALL)
 		return
 	UnregisterSignal(source, COMSIG_SHUTTLE_SETMODE)
+
+	// Add extra xenos based on the difference of xenos / marines
+	var/players = SSticker.mode.count_humans_and_xenos()
+	var/difference = round(players[2] - (players[1] * 0.5)) // no of xenos - half the no of players
+
 	var/left_behind = 0
 	for(var/i in get_all_xenos())
 		var/mob/living/carbon/xenomorph/boarder = i
@@ -673,6 +678,8 @@ to_chat will check for valid clients itself already so no need to double check f
 		xeno_message("[left_behind > 1 ? "[left_behind] sisters" : "One sister"] perished due to being too slow to board the bird. The freeing of their psychic link allows us to call borrowed, at least.")
 		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 		xeno_job.add_job_positions(left_behind)
+		if(difference > 0)
+			xeno_job.add_job_positions(difference)
 	for(var/i in GLOB.xeno_resin_silos)
 		qdel(i)
 

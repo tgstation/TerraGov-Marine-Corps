@@ -57,7 +57,7 @@
 	var/list/tramadol = list(/datum/reagent/medicine/tramadol)
 	/// This will do nothing without the autodoc update
 	var/list/supported_limbs = list(CHEST, GROIN, ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT, LEG_LEFT, LEG_RIGHT, FOOT_LEFT, FOOT_RIGHT)
-	parent.AddComponent(/datum/component/suit_autodoc, 2.5 MINUTES, tricord, tricord, tricord, tricord, tramadol, 0.5)
+	parent.AddComponent(/datum/component/suit_autodoc, 4 MINUTES, tricord, tricord, tricord, tricord, tramadol, 0.5)
 	parent.AddElement(/datum/element/limb_support, supported_limbs)
 
 
@@ -77,13 +77,17 @@
 	item_state = "mod_fire"
 	hard_armor = list("fire" = 200)
 	slowdown = 0.4
+	/// How much the suit light is modified by
+	var/light_mod = -2
 
 /obj/item/armor_module/attachable/fire_proof/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
+	parent.light_strength += light_mod
 	parent.hard_armor = parent.hard_armor.attachArmor(hard_armor)
 	parent.max_heat_protection_temperature += FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/armor_module/attachable/fire_proof/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
+	parent.light_strength -= light_mod
 	parent.hard_armor = parent.hard_armor.detachArmor(hard_armor)
 	parent.max_heat_protection_temperature -= FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	return ..()

@@ -3,8 +3,8 @@
 	desc = "All slimy and yucky."
 	icon = 'icons/Xeno/1x1_Xenos.dmi'
 	icon_state = "Larva Dead"
-	reagents = /datum/reagent/consumable/larvajelly //good ol cookin
-	var/amount = 5
+	var/grinder_datum = /datum/reagent/consumable/larvajelly //good ol cookin
+	var/grinder_amount = 5
 	var/mob/living/affected_mob
 	var/stage = 0 //The stage of the bursts, with worsening effects.
 	var/counter = 0 //How developed the embryo is, if it ages up highly enough it has a chance to burst.
@@ -15,16 +15,15 @@
 
 /obj/item/alien_embryo/Initialize()
 	. = ..()
-	if(isliving(loc))
-		affected_mob = loc
-		affected_mob.status_flags |= XENO_HOST
-		log_combat(affected_mob, null, "been infected with an embryo")
-		START_PROCESSING(SSobj, src)
-		if(iscarbon(affected_mob))
-			var/mob/living/carbon/C = affected_mob
-			C.med_hud_set_status()
-	else
-		qdel(src)
+	if(!isliving(loc))
+		return
+	affected_mob = loc
+	affected_mob.status_flags |= XENO_HOST
+	log_combat(affected_mob, null, "been infected with an embryo")
+	START_PROCESSING(SSobj, src)
+	if(iscarbon(affected_mob))
+		var/mob/living/carbon/C = affected_mob
+		C.med_hud_set_status()
 
 
 /obj/item/alien_embryo/Destroy()

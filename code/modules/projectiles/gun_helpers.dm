@@ -260,23 +260,6 @@ should be alright.
 				//						 \\
 				//						 \\
 //----------------------------------------------------------
-
-/obj/item/weapon/gun/proc/unique_action(mob/M) //Anything unique the gun can do, like pump or spin or whatever.
-	return FALSE
-
-
-/mob/living/carbon/human/proc/do_unique_action()
-	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
-	if(incapacitated() || lying_angle)
-		return
-
-	var/obj/item/weapon/gun/G = get_active_held_item()
-	if(!istype(G))
-		return
-
-	G.unique_action(src)
-
-
 /obj/item/weapon/gun/proc/check_inactive_hand(mob/user)
 	if(user)
 		var/obj/item/weapon/gun/in_hand = user.get_inactive_held_item()
