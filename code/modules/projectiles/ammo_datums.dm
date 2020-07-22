@@ -1116,7 +1116,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "stun"
 	hud_state = "taser"
 	hud_state_empty = "battery_empty"
-	damage = 45
+	damage = 120
 	penetration = 0
 	damage_type = STAMINA
 	flags_ammo_behavior = AMMO_ENERGY
