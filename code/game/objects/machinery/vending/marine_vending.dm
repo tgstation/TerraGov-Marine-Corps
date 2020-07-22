@@ -120,7 +120,7 @@
 					/obj/item/weapon/gun/rifle/standard_autoshotgun = 10,
 					/obj/item/weapon/gun/launcher/m92/standardmarine = 10,
 					/obj/item/weapon/gun/pistol/standard_pocketpistol = 20,
-					/obj/item/weapon/gun/shotgun/double = 5,
+					/obj/item/weapon/gun/shotgun/double/marine = 5,
 					/obj/item/weapon/gun/shotgun/pump/ksg = 5,
 					/obj/item/weapon/gun/shotgun/pump/bolt = 5,
 					/obj/item/weapon/gun/flamer/marinestandard = 2,

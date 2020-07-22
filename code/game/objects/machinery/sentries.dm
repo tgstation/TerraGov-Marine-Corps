@@ -1220,6 +1220,8 @@
 	var/obj/item/marine_turret/mini/P = new(loc)
 	user.put_in_hands(P)
 	P.obj_integrity = obj_integrity
+	P.rounds = rounds
+	P.cell_charge = cell.charge
 	qdel(src)
 
 /obj/machinery/marine_turret/mini/update_icon()
@@ -1265,6 +1267,8 @@
 	item_state = "minisentry_packed"
 	w_class = WEIGHT_CLASS_BULKY
 	max_integrity = 200 //We keep track of this when folding up the sentry.
+	var/rounds = 500
+	var/cell_charge = 10000
 	flags_equip_slot = ITEM_SLOT_BACK
 
 /obj/item/marine_turret/mini/attack_self(mob/user) //click the sentry to deploy it.
@@ -1285,6 +1289,8 @@
 		playsound(target, 'sound/weapons/mine_armed.ogg', 25)
 		M.obj_integrity = obj_integrity
 		M.anchored = TRUE
+		M.rounds = rounds
+		M.cell.charge = cell_charge
 		M.activate_turret()
 		qdel(src)
 

@@ -291,7 +291,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	medical = SKILL_MEDICAL_EXPERT
 	surgery = SKILL_SURGERY_EXPERT
 	melee_weapons = SKILL_MELEE_WEAK
-	police = SKILL_POLICE_FLASH
+	police = SKILL_POLICE_MP
 
 /datum/skills/synthetic
 	name = SYNTHETIC
@@ -354,7 +354,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	leadership = SKILL_LEAD_EXPERT
 	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_AMATEUR
-	police = SKILL_POLICE_FLASH
+	police = SKILL_POLICE_MP
 
 /datum/skills/pilot
 	name = PILOT_OFFICER
@@ -367,7 +367,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	engineer = SKILL_ENGINEER_MASTER
 	construction = SKILL_CONSTRUCTION_MASTER
 	leadership = SKILL_LEAD_MASTER
-	police = SKILL_POLICE_FLASH
+	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_MASTER
 
 /datum/skills/RO
@@ -375,7 +375,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	leadership = SKILL_LEAD_TRAINED
 	powerloader = SKILL_POWERLOADER_MASTER
-	police = SKILL_POLICE_MP//You broke into the wrong req bucko
+	police = SKILL_POLICE_MP
 
 /datum/skills/ST
 	name = SHIP_TECH
