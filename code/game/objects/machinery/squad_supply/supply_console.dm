@@ -67,9 +67,7 @@
 		if("select_squad")
 			var/datum/squad/selected_squad = SSjob.squads[params["select_squad"]]
 			if(!istype(selected_squad))
-				to_chat(world, "Bad squad, [params["select_squad"]] -- selected_squad - [selected_squad]")
 				return
-			to_chat(world, "err squad, [params["select_squad"]] -- selected_squad - [selected_squad]")
 			current_squad = selected_squad
 			refresh_squad_pad()
 

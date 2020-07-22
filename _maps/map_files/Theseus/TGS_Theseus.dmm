@@ -6520,6 +6520,7 @@
 "ate" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/squad_changer,
+/obj/machinery/computer/supplydrop_console,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "atf" = (
@@ -7229,7 +7230,7 @@
 	name = "CIC Checkpoint Shutters";
 	pixel_x = 25
 	},
-/obj/item/tool/pen,
+/obj/item/storage/box/ids,
 /turf/open/floor/mainship{
 	dir = 4;
 	icon_state = "silver"
@@ -8214,7 +8215,7 @@
 	},
 /obj/machinery/computer/shuttle/shuttle_control/dropship1,
 /turf/open/floor/plating/mainship,
-/area/mainship/hallways/aft_hallway)
+/area/mainship/command/cic)
 "axS" = (
 /obj/structure/window/reinforced/toughened{
 	dir = 1
@@ -9654,6 +9655,7 @@
 "aBA" = (
 /obj/structure/table/mainship,
 /obj/item/megaphone,
+/obj/item/binoculars,
 /turf/open/floor/mainship,
 /area/mainship/command/cic)
 "aBB" = (
@@ -11404,9 +11406,7 @@
 /area/mainship/hallways/repair_bay)
 "aFY" = (
 /obj/structure/table/mainship,
-/obj/item/binoculars,
-/obj/item/storage/box/ids,
-/obj/item/storage/box/ids,
+/obj/machinery/computer/squad_changer,
 /turf/open/floor/mainship{
 	dir = 4;
 	icon_state = "silver"
@@ -35617,9 +35617,7 @@
 	dir = 8
 	},
 /obj/structure/table/mainship,
-/obj/item/storage/belt/utility/full,
-/obj/item/storage/belt/utility/full,
-/obj/item/lightreplacer,
+/obj/machinery/computer/supplydrop_console,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "gfj" = (
@@ -36973,6 +36971,12 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/cryo_cells)
+"oxv" = (
+/obj/structure/cable,
+/obj/structure/rack,
+/obj/item/lightreplacer,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "oxS" = (
 /obj/structure/cable,
 /obj/machinery/camera/autoname/mainship{
@@ -37773,6 +37777,13 @@
 /obj/machinery/vending/hydroseeds,
 /turf/open/floor/mainship/sterile,
 /area/mainship/medical/medical_science)
+"tgX" = (
+/obj/structure/cable,
+/obj/structure/rack,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "tjn" = (
 /obj/machinery/door/airlock/mainship/security{
 	name = "\improper Security Post"
@@ -79941,8 +79952,8 @@ brk
 gEh
 lEo
 tEQ
-qhO
-qhO
+oxv
+tgX
 qhO
 haf
 byd

@@ -10046,8 +10046,10 @@
 	},
 /area/sulaco/research)
 "aEb" = (
-/turf/open/space,
-/area/sulaco/engineering/engine)
+/obj/machinery/computer/supplydrop_console,
+/obj/structure/table/mainship,
+/turf/open/floor/mainship/mono,
+/area/sulaco/cargo)
 "aEc" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -62708,7 +62710,7 @@ aeU
 afO
 agT
 aiV
-aaK
+aEb
 aap
 alx
 amG
@@ -62724,10 +62726,10 @@ avY
 ayz
 avV
 aIt
-aEb
-aEb
-aEb
-aEb
+aDS
+aDS
+aDS
+aDS
 aIt
 aFV
 avV
@@ -62981,10 +62983,10 @@ aje
 azl
 ayD
 aIt
-aEb
-aEb
-aEb
-aEb
+aDS
+aDS
+aDS
+aDS
 aIt
 aJk
 avV
@@ -63238,10 +63240,10 @@ azn
 azS
 ajh
 aIt
-aEb
-aEb
-aEb
-aEb
+aDS
+aDS
+aDS
+aDS
 aIt
 aYX
 aHL
@@ -63495,10 +63497,10 @@ ajg
 aAp
 aBW
 aki
-aEb
-aEb
-aEb
-aEb
+aDS
+aDS
+aDS
+aDS
 aIt
 aJo
 aKg

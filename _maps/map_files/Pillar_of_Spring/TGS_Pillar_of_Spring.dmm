@@ -5568,13 +5568,12 @@
 /area/mainship/command/cic)
 "tZ" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/station_alert,
 /obj/machinery/light,
+/obj/machinery/computer/supplydrop_console,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "ua" = (
 /obj/structure/table/mainship,
-/obj/machinery/computer/secure_data,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "ub" = (
@@ -13489,6 +13488,8 @@
 /area/mainship/hallways/stern_hallway)
 "VE" = (
 /obj/structure/cable,
+/obj/machinery/computer/supplydrop_console,
+/obj/structure/table/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "VF" = (
