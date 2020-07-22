@@ -270,7 +270,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "pistol_ap"
 	damage = 20
 	accuracy = 10
-	penetration = 30
+	penetration = 12.5
 	shrapnel_chance = 25
 
 /datum/ammo/bullet/pistol/heavy
