@@ -1,0 +1,5 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - rscadd: "Added the ts-34 sprite"
+  - balance: "added the ts-34, a double barrel with no burst fire, and a few more attachment options"
