@@ -1,0 +1,4 @@
+author: "MacBlaze1"
+delete-after: True
+changes: 
+  - bugfix: "fixed a bug in which crafty bastard engineers would spam click the build barricade buttons to make xenos madder than they usually are via cade stacking"
