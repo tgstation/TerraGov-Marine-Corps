@@ -500,8 +500,8 @@
 
 /area/prison/research/secret/testing
 	name = "Biological Testing"
-//	icon_state = "toxtest"
-ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	icon_state = "toxtest"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/prison/residential
 	ceiling = CEILING_GLASS
