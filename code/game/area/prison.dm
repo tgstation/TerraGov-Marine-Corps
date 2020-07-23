@@ -500,7 +500,7 @@
 
 /area/prison/research/secret/biolab
 	name = "Biological Test Lab"
-	icon_state = "biolab"
+	icon_state = "anolab"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/prison/residential
