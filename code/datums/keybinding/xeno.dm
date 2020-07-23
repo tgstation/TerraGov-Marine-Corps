@@ -250,6 +250,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_STEALTH
 
+/datum/keybinding/xeno/haunt
+	name = "haunt"
+	full_name = "Hunter: Haunt"
+	description = "Haunt the target, causing minor hallucinations"
+	keybind_signal = COMSIG_XENOABILITY_HAUNT
+
 /datum/keybinding/xeno/psychic_whisper
 	name = "psychic_whisper"
 	full_name = "Psychic Whisper"

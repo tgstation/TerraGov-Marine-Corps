@@ -475,6 +475,7 @@
 
 #define COMSIG_XENOABILITY_TOGGLE_SAVAGE "xenoability_toggle_savage"
 #define COMSIG_XENOABILITY_POUNCE "xenoability_pounce"
+#define COMSIG_XENOABILITY_HAUNT "xenoability_haunt"
 
 #define COMSIG_XENOABILITY_TOGGLE_AGILITY "xenoability_toggle_agility"
 #define COMSIG_XENOABILITY_LUNGE "xenoability_lunge"
