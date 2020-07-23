@@ -498,9 +498,9 @@
 	icon_state = "xeno_f_store"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
-/area/prison/research/secret/testing
-	name = "Biological Testing"
-	icon_state = "toxtest"
+/area/prison/research/secret/biolab
+	name = "Biological Test Lab"
+	icon_state = "biolab"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/prison/residential
