@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes: 
+  - rscadd: "New hunter ability: Haunt - allows the hunter to give the target halluncinations"

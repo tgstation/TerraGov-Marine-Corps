@@ -23,6 +23,8 @@
 #define CRITICAL_ATOM			(1<<12)		//Use when this shouldn't be obscured by large icons.
 ///Does not cascade explosions to its contents.
 #define PREVENT_CONTENTS_EXPLOSION	(1<<13)
+/// was this spawned by an admin? used for stat tracking stuff.
+#define ADMIN_SPAWNED			(1<<14)
 
 //turf-only flags
 #define NOJAUNT_1					(1<<0)

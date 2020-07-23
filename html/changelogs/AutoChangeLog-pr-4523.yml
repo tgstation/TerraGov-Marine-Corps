@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes: 
+  - rscadd: "Added new Rav ability: Ignore Pain - Allows ravs to ignore crit for 10 seconds, but can still die from too much damage."
