@@ -3,7 +3,7 @@
 /obj/machinery/computer/supplydrop_console
 	name = "supply drop console"
 	desc = "uesd by shipside staff to issue supply drops to squad beacons"
-	icon_state = "comm"
+	icon_state = "supplydrop"
 	interaction_flags = INTERACT_MACHINE_TGUI
 
 	var/launch_cooldown = 2 MINUTES
