@@ -232,45 +232,6 @@
 			log_admin("[key_name(usr)] has unslept everyone in view.")
 			message_admins("[ADMIN_TPMONTY(usr)] has unslept everyone in view.")
 
-
-/datum/admins/proc/direct_control(mob/living/L in GLOB.mob_living_list)
-	set category = "Admin"
-	set name = "Take Over"
-	set desc = "Rohesie's verb."
-
-	if(!check_rights(R_ADMIN))
-		return
-
-	if(isnewplayer(usr))
-		return
-
-	var/replaced = FALSE
-	if(L.key)
-		if(isobserver(usr) && usr.client.key == copytext(L.key, 2))
-			var/mob/dead/observer/ghost = usr
-			ghost.can_reenter_corpse = TRUE
-			ghost.reenter_corpse()
-			return
-		else if(alert("This mob is being controlled by [L.key], they will be made a ghost. Are you sure?", "Take Over", "Yes", "No") != "Yes")
-			return
-		else if(!istype(L))
-			to_chat(usr, "<span class='warning'>Target is no longer valid.</span>")
-			return
-
-		L.ghostize()
-		replaced = TRUE
-
-	var/log = "[key_name(usr)]"
-	var/log2 = "[key_name(L)]"
-	var/message = "[key_name_admin(usr)]"
-	var/message2 = ADMIN_TPMONTY(L)
-
-	L.take_over(usr, TRUE)
-
-	log_admin("[log] took over [log2][replaced ? " replacing the previous owner" : ""].")
-	message_admins("[message] took over [message2][replaced ? " replacing the previous owner" : ""].")
-
-
 /datum/admins/proc/logs_server()
 	set category = "Admin"
 	set name = "Get Server Logs"
@@ -1221,3 +1182,43 @@
 	if(!check_rights(R_SPAWN))
 		return
 	togglebuildmode(mob)
+
+//returns TRUE to let the dragdrop code know we are trapping this event
+//returns FALSE if we don't plan to trap the event
+/datum/admins/proc/cmd_ghost_drag(mob/dead/observer/frommob, mob/tomob)
+
+	//this is the exact two check rights checks required to edit a ckey with vv.
+	if (!check_rights(R_VAREDIT,0) || !check_rights(R_SPAWN|R_DEBUG,0))
+		return FALSE
+
+	if (!frommob.ckey)
+		return FALSE
+
+	var/question = ""
+	if (tomob.ckey)
+		question = "This mob already has a user ([tomob.key]) in control of it! "
+	question += "Are you sure you want to place [frommob.name]([frommob.key]) in control of [tomob.name]?"
+
+	var/ask = alert(question, "Place ghost in control of mob?", "Yes", "No")
+	if (ask != "Yes")
+		return TRUE
+
+	if (!frommob || !tomob) //make sure the mobs don't go away while we waited for a response
+		return TRUE
+
+	// Disassociates observer mind from the body mind
+	if(tomob.client)
+		tomob.ghostize(FALSE)
+	else
+		for(var/mob/dead/observer/ghost in GLOB.dead_mob_list)
+			if(tomob.mind == ghost.mind)
+				ghost.mind = null
+
+	message_admins("<span class='adminnotice'>[key_name_admin(usr)] has put [frommob.key] in control of [tomob.name].</span>")
+	log_admin("[key_name(usr)] stuffed [frommob.key] into [tomob.name].")
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Ghost Drag Control")
+
+	tomob.ckey = frommob.ckey
+	qdel(frommob)
+
+	return TRUE

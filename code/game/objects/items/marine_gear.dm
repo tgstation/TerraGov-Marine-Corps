@@ -118,7 +118,7 @@
 
 /obj/structure/closet/bodybag/tarp/Crossed(mob/living/L)
 	. = ..()
-	if(!istype(L) || L.stat != CONSCIOUS || opened)
+	if(!istype(L) || L.stat != CONSCIOUS || opened || (L.status_flags & INCORPOREAL))
 		return
 	// Walking on the tarp reveals it
 	open()

@@ -144,7 +144,7 @@
 	},
 /obj/item/tool/hand_labeler,
 /obj/item/storage/toolbox/electrical,
-/obj/item/storage/box/m56d_hmg,
+/obj/item/storage/box/standard_hmg,
 /obj/machinery/light/small{
 	dir = 1
 	},
