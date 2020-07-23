@@ -98,5 +98,7 @@
 	if(bumper.next_move > world.time)
 		return COMPONENT_BUMP_RESOLVED //We don't want to push people while on attack cooldown.
 	bumper.UnarmedAttack(target, TRUE)
+	GLOB.round_statistics.xeno_bump_attacks++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_bump_attacks")
 	COOLDOWN_START(src, COOLDOWN_BUMP_ATTACK, CLICK_CD_MELEE)
 	return COMPONENT_BUMP_RESOLVED
