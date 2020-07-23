@@ -70,7 +70,7 @@
 #define AHELP_CLOSED 2
 #define AHELP_RESOLVED 3
 
-#define ROUNDSTART_LOGOUT_REPORT_TIME	6000 //Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
+#define ROUNDSTART_LOGOUT_REPORT_TIME	10 MINUTES //Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
 
 #define SPAM_TRIGGER_TIME_PERIOD 10 SECONDS //The time period for checking spammy messages
 #define SPAM_TRIGGER_WEIGHT_FORMULA(message) length(message) / 200
@@ -120,3 +120,5 @@
 #define APICKER_TURF	"Turf"
 #define APICKER_COORDS	"Coords"
 #define APICKER_PLAYER	"Cliented Mob"
+
+#define ADMIN_SPAWN_CAP 100
