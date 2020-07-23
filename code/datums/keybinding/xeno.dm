@@ -214,6 +214,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_FORTIFY
 
+/datum/keybinding/xeno/regenerate_skin
+	name = "regenerate_skin"
+	full_name = "Defender: Regenerate Skin"
+	description = "Regenerate your skin, restoring some health and removing all armor sunder."
+	keybind_signal = COMSIG_XENOABILITY_REGENERATE_SKIN
+
 /datum/keybinding/xeno/emit_neurogas
 	name = "emit_neurogas"
 	full_name = "Defiler: Emit Neurogas"
