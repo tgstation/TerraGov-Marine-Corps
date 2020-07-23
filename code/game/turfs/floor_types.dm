@@ -677,6 +677,17 @@
 /turf/open/floor/prison/red/corner
 	icon_state = "redcorner"
 
+
+////// Cold war floors
+
+
+
+/turf/open/floor/martiantile
+	icon_state = "martian_tile"
+
+/turf/open/floor/martiansolars
+	icon_state = "martian_solar"
+
 ////// Mechbay /////////////////:
 
 
