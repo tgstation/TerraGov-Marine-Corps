@@ -9056,6 +9056,7 @@
 /area/sulaco/medbay/west)
 "aAN" = (
 /obj/structure/table,
+/obj/machinery/computer/supplydrop_console,
 /turf/open/floor/tile/red/whitered{
 	dir = 10
 	},
