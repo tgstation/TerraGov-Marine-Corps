@@ -430,6 +430,41 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil = 3
 	recoil_unwielded = 5
 
+//-------------------------------------------------------
+//MARINE DOUBLE SHOTTY
+
+/obj/item/weapon/gun/shotgun/double/marine
+	name = "\improper TS-34 double barrel shotgun"
+	desc = "A double barreled shotgun of archaic, but sturdy design used by the TGMC. Due to reports of barrel bursting, the abiility to fire both barrels has been disabled. Uses 12 gauge shells, but can only hold 2 at a time."
+	flags_equip_slot = ITEM_SLOT_BACK
+	icon_state = "ts34"
+	item_state = "ts34"
+	max_shells = 2 //codex
+	current_mag = /obj/item/ammo_magazine/internal/shotgun/double
+	fire_sound = 'sound/weapons/guns/fire/shotgun_heavy.ogg'
+	reload_sound = 'sound/weapons/guns/interact/shotgun_db_insert.ogg'
+	cocked_sound = null //We don't want this.
+	attachable_allowed = list(
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
+						/obj/item/attachable/verticalgrip,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/gyro,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/magnetic_harness)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 19, "under_x" = 21, "under_y" = 13, "stock_x" = 13, "stock_y" = 16)
+
+	fire_delay = 5
+	burst_amount = 1
+	accuracy_mult = 1.15
+	accuracy_mult_unwielded = 0.85
+	scatter = 10
+	scatter_unwielded = 40
+	recoil = 2
+	recoil_unwielded = 4
+
 
 //-------------------------------------------------------
 //PUMP SHOTGUN

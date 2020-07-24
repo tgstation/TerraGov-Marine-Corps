@@ -298,41 +298,32 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 /datum/admins/proc/spawn_atom(object as text)
 	set category = "Debug"
+	set desc = "(atom path) Spawn an atom"
 	set name = "Spawn"
-	set desc = "Spawn an atom."
 
-	if(!check_rights(R_SPAWN))
+	if(!check_rights(R_SPAWN) || !object)
 		return
 
-	if(!object)
+	var/list/preparsed = splittext(object,":")
+	var/path = preparsed[1]
+	var/amount = 1
+	if(preparsed.len > 1)
+		amount = clamp(text2num(preparsed[2]),1,ADMIN_SPAWN_CAP)
+
+	var/chosen = pick_closest_path(path)
+	if(!chosen)
 		return
-
-	var/list/types = typesof(/atom)
-	var/list/matches = new()
-
-	for(var/path in types)
-		if(findtext("[path]", object))
-			matches += path
-
-	if(!length(matches))
-		return
-
-	var/chosen
-	if(length(matches) == 1)
-		chosen = matches[1]
-	else
-		chosen = input("Select an atom type", "Spawn Atom", matches[1]) as null|anything in matches
-		if(!chosen)
-			return
+	var/turf/T = get_turf(usr)
 
 	if(ispath(chosen, /turf))
-		var/turf/T = get_turf(usr.loc)
 		T.ChangeTurf(chosen)
 	else
-		new chosen(usr.loc)
+		for(var/i in 1 to amount)
+			var/atom/A = new chosen(T)
+			A.flags_atom |= ADMIN_SPAWNED
 
-	log_admin("[key_name(usr)] spawned [chosen] at [AREACOORD(usr.loc)].")
-	message_admins("[ADMIN_TPMONTY(usr)] spawned [chosen] at [ADMIN_VERBOSEJMP(usr.loc)].")
+	log_admin("[key_name(usr)] spawned [amount] x [chosen] at [AREACOORD(usr)]")
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Spawn Atom") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
 /datum/admins/proc/delete_atom(atom/A as obj|mob|turf in world)
