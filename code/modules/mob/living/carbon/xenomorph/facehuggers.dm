@@ -133,6 +133,11 @@
 	if(initial(sterile))
 		to_chat(user, "<span class='warning'>It looks like the proboscis has been removed.</span>")
 
+/obj/item/clothing/mask/facehugger/dropped(mob/user)
+	. = ..()
+	// Whena  xeno removes the hugger from storage we don't want to start the active timer until they drop or throw it
+	if(isxenocarrier(user))
+		go_active(TRUE)
 
 /obj/item/clothing/mask/facehugger/proc/go_idle(hybernate = FALSE, no_activate = FALSE)
 	deltimer(jumptimer)
@@ -424,7 +429,7 @@
 		var/stamina_dmg = user.maxHealth * 2 + user.max_stamina_buffer
 		user.apply_damage(stamina_dmg, STAMINA) // complete winds the target
 		user.Unconscious(6 SECONDS) //THIS MIGHT NEED TWEAKS // still might! // tweaked it
-	flags_item |= NODROP
+	addtimer(VARSET_CALLBACK(src, flags_item, flags_item|NODROP), IMPREGNATION_TIME) // becomes stuck after min-impreg time
 	attached = TRUE
 	go_idle(FALSE, TRUE)
 	addtimer(CALLBACK(src, .proc/Impregnate, user), IMPREGNATION_TIME)

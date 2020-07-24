@@ -51,8 +51,9 @@
 		/datum/action/xeno_action/toggle_crest_defense,
 		/datum/action/xeno_action/fortify,
 		/datum/action/xeno_action/activable/forward_charge,
-		/datum/action/xeno_action/activable/tail_sweep
-		)
+		/datum/action/xeno_action/activable/tail_sweep,
+		/datum/action/xeno_action/activable/regenerate_skin,
+	)
 
 /datum/xeno_caste/defender/young
 	upgrade_name = "Young"
