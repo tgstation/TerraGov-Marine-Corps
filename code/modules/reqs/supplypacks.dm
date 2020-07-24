@@ -381,11 +381,6 @@ ATTACHMENTS
 	contains = list(/obj/item/attachable/magnetic_harness)
 	cost = 5
 
-/datum/supply_packs/attachments/rail_quickfire
-	name = "quickfire adaptor attachment"
-	contains = list(/obj/item/attachable/quickfire)
-	cost = 15
-
 /datum/supply_packs/attachments/muzzle_suppressor
 	name = "suppressor attachment"
 	contains = list(/obj/item/attachable/suppressor)
