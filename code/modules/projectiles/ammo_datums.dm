@@ -1507,7 +1507,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_type = BURN
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR
 	armor_type = "fire"
-	max_range = 7
+	max_range = 6
 	damage = 50
 	var/fire_color = "red"
 	var/burnlevel = 24
@@ -1543,7 +1543,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/flamethrower/blue
 	name = "blue flame"
 	hud_state = "flame_blue"
-	max_range = 7
+	max_range = 6
 	fire_color = "blue"
 	burnlevel = 36
 	burntime = 40
