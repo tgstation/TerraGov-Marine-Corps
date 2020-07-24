@@ -677,13 +677,13 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 /obj/machinery/marine_selector/clothes/commander
 	name = "GHMME Automated Commander Closet"
-	req_access = list(ACCESS_MARINE_BRIDGE)
+	req_access = list(ACCESS_MARINE_COMMANDER)
 	vendor_role = /datum/job/terragov/command/fieldcommander
+	lock_flags = JOB_LOCK
 	gives_webbing = FALSE
 
 	listed_products = list(
 		/obj/effect/essentials_set/commander = list(CAT_STD, "Standard commander kit ", 0, "white"), 
-		/obj/effect/essentials_set/basic_squadleadermodular = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
 		/obj/effect/essentials_set/modular/infantry = list(CAT_AMR, "Infantry Jaeger kit", 0, "black"),
 		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Skirmisher Jaeger kit", 0, "black"),
 		/obj/effect/essentials_set/modular/assault = list(CAT_AMR, "Assault Jaeger kit", 0, "black"),
