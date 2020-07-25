@@ -3881,6 +3881,9 @@
 	},
 /area/mainship/medical/operating_room_two)
 "oe" = (
+/obj/structure/sink{
+	dir = 1
+	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 2
 	},
@@ -13721,12 +13724,6 @@
 /obj/structure/closet/crate/alpha,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
-"XG" = (
-/obj/structure/sink{
-	dir = 1
-	},
-/turf/closed/wall/mainship/white,
-/area/mainship/medical/operating_room_two)
 "XJ" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/machinery/landinglight/ds2,
@@ -42884,7 +42881,7 @@ hR
 JM
 cM
 oe
-XG
+ic
 gL
 wj
 gL
