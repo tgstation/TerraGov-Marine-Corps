@@ -5931,7 +5931,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/port_missiles)
 "vh" = (
-/obj/structure/closet/secure_closet/personal/cabinet,
+/obj/machinery/marine_selector/clothes/commander,
 /turf/open/floor/carpet{
 	dir = 10;
 	icon_state = "carpetside"

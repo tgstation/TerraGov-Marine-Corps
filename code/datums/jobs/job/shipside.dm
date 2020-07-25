@@ -62,7 +62,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	comm_title = "FCDR"
 	total_positions = 1
 	skills_type = /datum/skills/FO
-	access = list (ALL_MARINE_ACCESS, ACCESS_MARINE_COMMANDER)
+	access = list (ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA, ACCESS_MARINE_COMMANDER)
 	minimal_access = ALL_MARINE_ACCESS
 	display_order = JOB_DISPLAY_ORDER_EXECUTIVE_OFFICER
 	outfit = /datum/outfit/job/command/fieldcommander
