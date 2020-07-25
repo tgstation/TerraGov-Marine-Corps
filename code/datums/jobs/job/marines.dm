@@ -21,7 +21,7 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 //Squad Marine
 /datum/job/terragov/squad/standard
 	title = SQUAD_MARINE
-	paygrade = "E2"
+	paygrade = "E1"
 	comm_title = "Mar"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_DROPSHIP)
@@ -31,6 +31,16 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
 
+/datum/job/terragov/squad/standard/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	var/playtime_mins = user.client.calc_exp_type(get_exp_req_type())
+	switch(playtime_mins)
+		if(-INFINITY to 100)
+			paygrade = "E1"
+		if(101 to 10000)
+			paygrade = "E2"
+		if(10001 to INFINITY)
+			paygrade = "E3"
 
 /datum/job/terragov/squad/standard/radio_help_message(mob/M)
 	. = ..()
@@ -70,7 +80,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 //Squad Engineer
 /datum/job/terragov/squad/engineer
 	title = SQUAD_ENGINEER
-	paygrade = "E3"
+	paygrade = "E4"
 	comm_title = "Eng"
 	total_positions = 12
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_REMOTEBUILD, ACCESS_MARINE_ENGINEERING)
@@ -123,7 +133,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 //Squad Corpsman
 /datum/job/terragov/squad/corpsman
 	title = SQUAD_CORPSMAN
-	paygrade = "Corp"
+	paygrade = "E4"
 	comm_title = "Med"
 	total_positions = 16
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY)
@@ -187,7 +197,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 //Squad Smartgunner
 /datum/job/terragov/squad/smartgunner
 	title = SQUAD_SMARTGUNNER
-	paygrade = "E3"
+	paygrade = "E4"
 	comm_title = "SGnr"
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP)
@@ -245,7 +255,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 /datum/job/terragov/squad/specialist
 	title = SQUAD_SPECIALIST
 	req_admin_notify = TRUE
-	paygrade = "E4"
+	paygrade = "E4" // Dead
 	comm_title = "Spec"
 	total_positions = 0
 	max_positions = 0
