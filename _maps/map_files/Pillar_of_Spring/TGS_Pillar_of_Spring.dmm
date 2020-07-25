@@ -1709,12 +1709,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
-"gy" = (
-/obj/structure/sign/ROsign{
-	dir = 1
-	},
-/turf/closed/wall/mainship,
-/area/mainship/squads/req)
 "gz" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -10789,6 +10783,9 @@
 /area/mainship/living/numbertwobunks)
 "JH" = (
 /obj/structure/noticeboard,
+/obj/structure/sign/ROsign{
+	dir = 1
+	},
 /turf/closed/wall/mainship,
 /area/mainship/squads/req)
 "JI" = (
@@ -45388,7 +45385,7 @@ az
 ee
 gd
 Vn
-gy
+qG
 JH
 QS
 Rm
