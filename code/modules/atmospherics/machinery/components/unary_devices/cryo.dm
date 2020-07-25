@@ -166,7 +166,7 @@
 	update_icon()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/process()
-	. = ..()
+	..()
 	if(machine_stat & (NOPOWER|BROKEN))
 		turn_off()
 		updateUsrDialog()
