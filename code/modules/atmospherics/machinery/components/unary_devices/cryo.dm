@@ -190,7 +190,7 @@
 			idle_ticks_until_shutdown = 60 //reset idle ticks
 
 	updateUsrDialog()
-	return 1
+	return TRUE
 
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/relaymove(mob/user)
@@ -315,8 +315,7 @@
 	occupant = M
 //	M.metabslow = 1
 	update_icon()
-	start_processing()
-	return 1
+	return TRUE
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/Topic(href, href_list)
 	. = ..()
@@ -407,10 +406,9 @@
 	switch(action)
 		if("power")
 			if(on)
-				on = FALSE
+				turn_off()
 			else
-				on = TRUE
-			update_icon()
+				turn_on()
 			. = TRUE
 		if("autoeject")
 			autoeject = !autoeject
