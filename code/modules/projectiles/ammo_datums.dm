@@ -205,6 +205,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 10
 	shrapnel_chance = 10
 
+	// temp
+	iff_signal = ACCESS_IFF_MARINE
+
 /*
 //================================================
 					Pistol Ammo
@@ -1104,6 +1107,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	armor_type = "energy"
 	accuracy = 20
 
+	// temp
+	iff_signal = ACCESS_IFF_MARINE
+
 /datum/ammo/energy/emitter //Damage is determined in emitter.dm
 	name = "emitter bolt"
 	icon_state = "emitter"
@@ -1249,6 +1255,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 15
 	accuracy_var_low = 3
 	accuracy_var_high = 3
+
+	// temp
+	iff_signal = 0
 
 /datum/ammo/xeno/toxin
 	name = "neurotoxic spit"
