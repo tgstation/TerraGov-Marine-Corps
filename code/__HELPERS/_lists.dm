@@ -470,7 +470,16 @@
 			L[key] = temp[key]
 
 
-/proc/typecache_filter_list_reverse(list/atoms, list/typecache)
+//returns a new list with only atoms that are in typecache L
+/proc/typecache_filter_list(list/atoms, list/typecache)
+	RETURN_TYPE(/list)
+	. = list()
+	for(var/thing in atoms)
+		var/atom/A = thing
+		if (typecache[A.type])
+			. += A
+
+/proc/typecache_filter_list_reverse(list/atoms, list/typecache) //why would you port this but not the one above
 	RETURN_TYPE(/list)
 	. = list()
 	for(var/thing in atoms)
