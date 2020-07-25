@@ -410,6 +410,9 @@
 			else
 				turn_on()
 			. = TRUE
+		if("eject")
+			go_out()
+			. = TRUE
 		if("autoeject")
 			autoeject = !autoeject
 			. = TRUE
