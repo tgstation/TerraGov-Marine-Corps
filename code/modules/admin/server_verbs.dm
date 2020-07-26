@@ -71,7 +71,7 @@
 			#ifdef TGS_V3_API
 			if(alert("The round is currently in progress, continue with shutdown?", "Continue Shutting Down Server?", "Cancel", "Continue Shutting Down Server", "Cancel.") != "Continue Shutting Down Server")
 				return
-			waitforroundend = TRUE		
+			waitforroundend = TRUE
 			#else
 			to_chat(usr, "<span class='danger'>Restarting during the round requires the server toolkit. No server toolkit detected. Please end the round and try again.</span>")
 			return
@@ -168,10 +168,10 @@
 
 	if(CONFIG_GET(flag/looc_enabled))
 		CONFIG_SET(flag/looc_enabled, FALSE)
-		to_chat(world, "<span class='boldnotice'>LOOC channel has been enabled!</span>")
+		to_chat(world, "<span class='boldnotice'>LOOC channel has been disabled!</span>")
 	else
 		CONFIG_SET(flag/looc_enabled, TRUE)
-		to_chat(world, "<span class='boldnotice'>LOOC channel has been disabled!</span>")
+		to_chat(world, "<span class='boldnotice'>LOOC channel has been enabled!</span>")
 
 
 	log_admin("[key_name(usr)] has [CONFIG_GET(flag/looc_enabled) ? "enabled" : "disabled"] LOOC.")
