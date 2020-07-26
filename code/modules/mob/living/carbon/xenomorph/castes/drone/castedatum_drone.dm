@@ -22,7 +22,7 @@
 	plasma_gain = 25
 
 	// *** Health *** //
-	max_health = 275
+	max_health = 225
 
 	// *** Evolution *** //
 	evolution_threshold = 80
@@ -79,7 +79,7 @@
 	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 250
 
 	// *** Evolution *** //
 	upgrade_threshold = 120
@@ -110,7 +110,7 @@
 	plasma_gain = 35
 
 	// *** Health *** //
-	max_health = 225
+	max_health = 275
 
 	// *** Evolution *** //
 	upgrade_threshold = 240
