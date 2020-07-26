@@ -19,7 +19,6 @@
 		#include "map_files\MarineHQ\MarineHQ.dmm"
 		#include "map_files\Sulaco\Sulaco.dmm"
 		#include "map_files\Research_Outpost\Research_Outpost.dmm"
-		#include "map_files\Lava_Outpost\LavaOutpost.dmm"
 		#ifdef TRAVISBUILDING
 			#include "templates.dm"
 		#endif
