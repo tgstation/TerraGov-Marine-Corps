@@ -1,0 +1,4 @@
+author: "2whatever2"
+delete-after: True
+changes: 
+  - tweak: "Raises HE explosion size to 6/10/15"
