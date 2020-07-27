@@ -6,6 +6,26 @@
 	name = "Lava"
 	icon_state = "lava"
 
+// Volcano
+/area/magmoor/volcano
+	name = "Magmoor Central Fissure"
+	ceiling = CEILING_NONE
+
+/area/magmoor/volcano/flow
+	name = "Central Magmoor Lava Flows"
+
+/area/magmoor/volcano/flow/north
+	name = "North Magmoor Lava Flows"
+
+/area/magmoor/volcano/flow/south
+	name = "South Magmoor Lava Flows"
+
+/area/magmoor/volcano/flow/east
+	name = "East Magmoor Lava Flows"
+
+/area/magmoor/volcano/flow/west
+	name = "West Magmoor Lava Flows"
+
 //Caves
 
 /area/magmoor/cave/
