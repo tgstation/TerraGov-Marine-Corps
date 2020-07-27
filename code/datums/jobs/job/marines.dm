@@ -33,16 +33,19 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 
 /datum/job/terragov/squad/standard/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
 	var/playtime_mins = user?.client?.get_exp(title)
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
 		if(0 to 500)
-			new_mob.wear_id.paygrade = "E1"
+			new_human.wear_id.paygrade = "E1"
 		if(501 to 10000)
-			new_mob.wear_id.paygrade = "E2"
+			new_human.wear_id.paygrade = "E2"
 		if(10001 to INFINITY)
-			new_mob.wear_id.paygrade = "E3"
+			new_human.wear_id.paygrade = "E3"
 
 /datum/job/terragov/squad/standard/radio_help_message(mob/M)
 	. = ..()
