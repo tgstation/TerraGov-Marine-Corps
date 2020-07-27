@@ -123,7 +123,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 //Squad Corpsman
 /datum/job/terragov/squad/corpsman
 	title = SQUAD_CORPSMAN
-	paygrade = "Corp"
+	paygrade = "Sanitatssoldat"
 	comm_title = "Med"
 	total_positions = 16
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY)
