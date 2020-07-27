@@ -242,7 +242,7 @@
 		if("O2")
 			. = size ? "Hauptmann " : "Hauptmann"
 		if("O3")
-			. = size ? "Major " : "Major"
+			. = size ? "Stabshauptmann " : "Stabshauptmann" //only doctors use this
 		if("O4")
 			. = size ? "Oberstleutnant " : "Oberstleutnant"
 		if("O5")
