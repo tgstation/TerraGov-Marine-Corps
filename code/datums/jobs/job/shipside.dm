@@ -515,7 +515,7 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 	skills_type = /datum/skills/civilian
 	display_order = JOB_DISPLAY_ORDER_CORPORATE_LIAISON
 	outfit = /datum/outfit/job/civilian/liaison
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
+	job_flags = JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE, /datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
 
 
