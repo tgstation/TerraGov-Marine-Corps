@@ -232,33 +232,33 @@
 		if("E8")
 			. = size ? "Stabsfeldwebel " : "Stabsfeldwebel"
 		if("E8E")
-			. = size ? "Stabsbootsmann " : "Stabsbootsmann" //technically navy but who cares for the purpose of this shitpost.
+			. = size ? "Stabsbootsmann " : "Stabsbootsmann" //technically navy but this rank doesn't exist and is unused. but FUTURE RANKS
 		if("E9")
 			. = size ? "Oberstabsfeldwebel " : "Oberstabsfeldwebel"
 		if("E9E")
-			. = size ? "Oberstabsbootsmann " : "Oberstabsbootsmann" //again technically navy but who cares for the purpose of this shitpost.
+			. = size ? "Oberstabsbootsmann " : "Oberstabsbootsmann" //again technically stolen from the navy, but FUTURE RANKS
 		if("O1")
-			. = size ? "ENS " : "Ensign"
+			. = size ? "Leutnant " : "Leutnant"
 		if("O2")
-			. = size ? "LTJG " : "Lieutenant Junior Grade"
+			. = size ? "Hauptmann " : "Hauptmann"
 		if("O3")
-			. = size ? "LT " : "Lieutenant"
+			. = size ? "Major " : "Major"
 		if("O4")
-			. = size ? "LCDR " : "Lieutenant Commander"
+			. = size ? "Oberstleutnant " : "Oberstleutnant"
 		if("O5")
-			. = size ? "CDR " : "Commander"
+			. = size ? "Oberst " : "Oberst"
 		if("O6")
-			. = size ? "CPT " : "Captain"
+			. = size ? "Flottillenadmiral " : "Flottillenadmiral" //Is a navy rank.
 		if("O7")
-			. = size ? "COMM " : "Commodore"
+			. = size ? "Generalmajor " : "Generalmajor"
 		if("O8")
-			. = size ? "RADM " : "Rear Admiral"
+			. = size ? "Konteradmiral " : "Konteradmiral" // Navy, and navy below here.
 		if("O9")
-			. = size ? "VADM " : "Vice Admiral"
+			. = size ? "Vizeadmiral " : "Vizeadmiral"
 		if("10")
-			. = size ? "ADM " : "Admiral"
+			. = size ? "Admiral " : "Admiral"
 		if("11")
-			. = size ? "FADM " : "Fleet Admiral"
+			. = size ? "Fleet Admiral " : "Fleet Admiral"
 		if("WO")
 			. = size ? "WO " : "Warrant Officer"
 		if("CWO")
@@ -268,7 +268,7 @@
 		if("CPO")
 			. = size ? "CPO " : "Chief Petty Officer"
 		if("MO4")
-			. = size ? "MAJ " : "Major"
+			. = size ? "Major " : "Major"
 		if("UPP1")
 			. = size ? "UGNR " : "USL Gunner"
 		if("UPP2")
