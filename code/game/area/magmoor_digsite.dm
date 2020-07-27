@@ -104,7 +104,7 @@
 
 /area/magmoor/engi/atmos
 	name = "Atmospheric Processing"
-	icon_state = "lava_atmos
+	icon_state = "lava_atmos"
 
 /area/magmoor/engi/power
 	name = "Thermal Reactors"
