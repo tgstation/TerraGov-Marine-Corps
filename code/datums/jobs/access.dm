@@ -216,27 +216,27 @@
 		if("NT")
 			. = size ? (gender == "female" ? "Ms. " : "Mr. ") : "Junior Executive"
 		if("E1")
-			. = size ? "PVT " : "Private"
+			. = size ? "Schutze " : "Schutze"
 		if("E2")
-			. = size ? "PFC " : "Private First Class"
+			. = size ? "Gefreiter " : "Gefreiter"
 		if("E3")
-			. = size ? "LCPL " : "Lance Corporal"
+			. = size ? "Oberegefreiter " : "Obergefreiter"
 		if("E4")
-			. = size ? "CPL " : "Corporal"
+			. = size ? "STBGefreiter " : "Stabsgefreiter"
 		if("E5")
-			. = size ? "SGT " : "Sergeant"
+			. = size ? "Unteroffizer " : "Unteroffizier"
 		if("E6")
-			. = size ? "SSGT " : "Staff Sergeant"
+			. = size ? "Feldwebel " : "Feldwebel"
 		if("E7")
-			. = size ? "GYSGT " : "Gunnery Sergeant"
+			. = size ? "Hauptfeldwebel " : "Hauptfeldwebel"
 		if("E8")
-			. = size ? "MSGT " : "Master Sergeant"
+			. = size ? "Stabsfeldwebel " : "Stabsfeldwebel"
 		if("E8E")
-			. = size ? "FSGT " : "First Sergeant"
+			. = size ? "Stabsbootsmann " : "Stabsbootsmann" //technically navy but who cares for the purpose of this shitpost.
 		if("E9")
-			. = size ? "SGM " : "Sergeant Major"
+			. = size ? "Oberstabsfeldwebel " : "Oberstabsfeldwebel"
 		if("E9E")
-			. = size ? "CSGM " : "Command Sergeant Major"
+			. = size ? "Oberstabsbootsmann " : "Oberstabsbootsmann" //again technically navy but who cares for the purpose of this shitpost.
 		if("O1")
 			. = size ? "ENS " : "Ensign"
 		if("O2")
