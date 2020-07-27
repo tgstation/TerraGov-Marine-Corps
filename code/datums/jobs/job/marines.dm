@@ -33,7 +33,9 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 
 /datum/job/terragov/squad/standard/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
-	var/playtime_mins = user.client.calc_exp_type(get_exp_req_type())
+	var/playtime_mins = user?.client?.prefs?.exp[SQUAD_MARINE]
+	if(!playtime_mins)
+		return
 	switch(playtime_mins)
 		if(-INFINITY to 100)
 			paygrade = "E1"
