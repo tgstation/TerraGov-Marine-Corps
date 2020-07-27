@@ -51,32 +51,33 @@
 
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/process_occupant()
-	if(occupant)
-		if(occupant.stat == DEAD)
-			return
-		if(occupant.health > (occupant.maxHealth - 2) && autoeject) //release the patient automatically when at, or near full health
-			go_out(TRUE)
-			return
-		occupant.bodytemperature = 100 //Temp fix for broken atmos
-		occupant.set_stat(UNCONSCIOUS)
-		if(occupant.bodytemperature < T0C)
-			occupant.Paralyze(20 SECONDS)
-			if(occupant.getOxyLoss())
-				occupant.adjustOxyLoss(-1)
+	if(!occupant)
+		return
+	if(occupant.stat == DEAD)
+		return
+	if(occupant.health > (occupant.maxHealth - 2) && autoeject) //release the patient automatically when at, or near full health
+		go_out(TRUE)
+		return
+	occupant.bodytemperature = 100 //Temp fix for broken atmos
+	occupant.set_stat(UNCONSCIOUS)
+	if(occupant.bodytemperature < T0C)
+		occupant.Paralyze(20 SECONDS)
+		if(occupant.getOxyLoss())
+			occupant.adjustOxyLoss(-1)
 
-			//severe damage should heal waaay slower without proper chemicals
-			if(occupant.bodytemperature < 225)
-				if (occupant.getToxLoss())
-					occupant.adjustToxLoss(max(-1, -20/occupant.getToxLoss()))
-				var/heal_brute = occupant.getBruteLoss() ? min(1, 20/occupant.getBruteLoss()) : 0
-				var/heal_fire = occupant.getFireLoss() ? min(1, 20/occupant.getFireLoss()) : 0
-				occupant.heal_limb_damage(heal_brute, heal_fire, updating_health = TRUE)
-		var/has_cryo = occupant.reagents.get_reagent_amount(/datum/reagent/medicine/cryoxadone) >= 1
-		var/has_clonexa = occupant.reagents.get_reagent_amount(/datum/reagent/medicine/clonexadone) >= 1
-		var/has_cryo_medicine = has_cryo || has_clonexa
-		if(beaker && !has_cryo_medicine)
-			beaker.reagents.trans_to(occupant, 1, 10)
-			beaker.reagents.reaction(occupant)
+		//severe damage should heal waaay slower without proper chemicals
+		if(occupant.bodytemperature < 225)
+			if (occupant.getToxLoss())
+				occupant.adjustToxLoss(max(-1, -20/occupant.getToxLoss()))
+			var/heal_brute = occupant.getBruteLoss() ? min(1, 20/occupant.getBruteLoss()) : 0
+			var/heal_fire = occupant.getFireLoss() ? min(1, 20/occupant.getFireLoss()) : 0
+			occupant.heal_limb_damage(heal_brute, heal_fire, updating_health = TRUE)
+	var/has_cryo = occupant.reagents.get_reagent_amount(/datum/reagent/medicine/cryoxadone) >= 1
+	var/has_clonexa = occupant.reagents.get_reagent_amount(/datum/reagent/medicine/clonexadone) >= 1
+	var/has_cryo_medicine = has_cryo || has_clonexa
+	if(beaker && !has_cryo_medicine)
+		beaker.reagents.trans_to(occupant, 1, 10)
+		beaker.reagents.reaction(occupant)
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/on_construction()
 	..(dir, dir)
@@ -189,7 +190,7 @@
 			idle_ticks_until_shutdown = 60 //reset idle ticks
 
 	updateUsrDialog()
-	return 1
+	return TRUE
 
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/relaymove(mob/user)
@@ -314,7 +315,7 @@
 	occupant = M
 //	M.metabslow = 1
 	update_icon()
-	return 1
+	return TRUE
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/Topic(href, href_list)
 	. = ..()
@@ -405,10 +406,12 @@
 	switch(action)
 		if("power")
 			if(on)
-				on = FALSE
+				turn_off()
 			else
-				on = TRUE
-			update_icon()
+				turn_on()
+			. = TRUE
+		if("eject")
+			go_out()
 			. = TRUE
 		if("autoeject")
 			autoeject = !autoeject

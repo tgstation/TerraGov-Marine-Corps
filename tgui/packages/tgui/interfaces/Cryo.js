@@ -95,9 +95,10 @@ const CryoContent = (props, context) => {
           </LabeledList.Item>
           <LabeledList.Item label="Door">
             <Button
-              icon={data.isOpen ? "unlock" : "lock"}
-              onClick={() => act('door')}
-              content={data.isOpen ? "Open" : "Closed"} />
+              icon="eject"
+              disabled={!data.hasOccupant}
+              onClick={() => act('eject')}
+              content="eject patient" />
             <Button
               icon={data.autoEject ? "sign-out-alt" : "sign-in-alt"}
               onClick={() => act('autoeject')}
