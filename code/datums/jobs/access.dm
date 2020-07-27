@@ -222,7 +222,7 @@
 		if("E3")
 			. = size ? "Oberegefreiter " : "Obergefreiter"
 		if("E4")
-			. = size ? "STBGefreiter " : "Stabsgefreiter"
+			. = size ? "Stabsgefreiter " : "Stabsgefreiter"
 		if("E5")
 			. = size ? "Unteroffizer " : "Unteroffizier"
 		if("E6")
