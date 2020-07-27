@@ -214,7 +214,7 @@
 		if("PMCDSL")
 			. = size ? "APTL " : "Assets Protection Team Leader"
 		if("NT")
-			. = size ? (gender == "female" ? "Ms. " : "Mr. ") : "Junior Executive"
+			. = size ? (gender == FEMALE ? "Ms. " : "Mr. ") : "Junior Executive"
 		if("E1")
 			. = size ? "PVT " : "Private"
 		if("E2")
