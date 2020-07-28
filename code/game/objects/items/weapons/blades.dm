@@ -46,7 +46,7 @@
 	desc = "This appears to be a rather old blade that has been well taken care of, it is probably a family heirloom. Oddly despite its probable non-combat purpose it is sharpened and not blunt."
 	icon_state = "officer_sword"
 	item_state = "officer_sword"
-	force = 70
+	force = 60
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
 
