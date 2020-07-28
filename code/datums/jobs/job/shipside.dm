@@ -89,17 +89,17 @@ Make the TGMC proud!"})
 	jobtype = /datum/job/terragov/command/fieldcommander
 
 	id = /obj/item/card/id/dogtag
-	belt = /obj/item/storage/belt/gun/m4a3/fieldcommander/
+	belt = /obj/item/storage/large_holster/officer/full
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/exec
-	wear_suit = /obj/item/clothing/suit/storage/marine/smartgunner/fancy
+	wear_suit = /obj/item/clothing/suit/storage/marine/pasvest
 	shoes = /obj/item/clothing/shoes/marine
 	gloves = /obj/item/clothing/gloves/marine/officer
 	head = /obj/item/clothing/head/tgmcberet/fc
 	r_store = /obj/item/storage/pouch/general/large/command
 	l_store = /obj/item/hud_tablet/fieldcommand
-	back = /obj/item/smartgun_powerpack/fancy
-	suit_store = /obj/item/weapon/gun/smartgun
+	back = /obj/item/storage/backpack/marine/satchel
+	suit_store = /obj/item/storage/belt/gun/m4a3/fieldcommander/
 
 
 //Staff Officer
