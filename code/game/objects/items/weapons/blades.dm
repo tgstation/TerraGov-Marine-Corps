@@ -39,7 +39,7 @@
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
 
-//FC's sword. Based roghly off a german Dusack.
+//FC's sword.
 
 /obj/item/weapon/claymore/mercsword/officersword
 	name = "\improper Officers sword"
