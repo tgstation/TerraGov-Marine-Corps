@@ -76,7 +76,7 @@
 	name = "Fossil Deposits"
 	icon_state = "lava_mining_fossil"
 
-/area/magmoor/cave/mining/proc
+/area/magmoor/cave/mining/procc
 	name = "Mining Processing"
 	icon_state = "lava_mining_proc"
 
@@ -153,7 +153,7 @@
 	icon_state = "lava_dorms"
 	ceiling = CEILING_GLASS
 
-/area/magmoor/civilian/dorms
+/area/magmoor/civilian/jani
 	name = "Janitorial Office"
 	icon_state = "lava_jani"
 
