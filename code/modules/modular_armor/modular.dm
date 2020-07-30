@@ -56,7 +56,7 @@
 	var/obj/item/storage/internal/storage
 
 	/// How long it takes to attach or detach to this item
-	var/equip_delay = 3 SECONDS
+	var/equip_delay = 0.5 SECONDS
 
 	/// Misc stats
 	light_strength = 5
