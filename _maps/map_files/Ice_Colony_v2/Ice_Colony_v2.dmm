@@ -33520,7 +33520,7 @@
 /area/ice_colony/underground/maintenance/east)
 "mJD" = (
 /obj/machinery/computer/intel_computer,
-/turf/open/floor/tile/dark/red2{
+/turf/open/floor/tile/dark/red2,
 /area/ice_colony/underground/security/armory)
 "mKW" = (
 /obj/effect/landmark/lv624/fog_blocker,
