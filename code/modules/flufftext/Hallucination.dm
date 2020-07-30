@@ -4,8 +4,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	/datum/hallucination/sounds = 100,
 	/datum/hallucination/chat = 50,
 	/datum/hallucination/battle = 20,
-	/datum/hallucination/xeno_attack = 12,
-	/datum/hallucination/death = 1,
+	/datum/hallucination/xeno_attack = 8,
 ))
 
 
@@ -42,6 +41,24 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 
 //Returns a random turf in a ring around the target mob, useful for sound hallucinations
 /datum/hallucination/proc/random_far_turf()
+	var/x_based = prob(50)
+	var/first_offset = pick(-8,-7,-6,-5,5,6,7,8)
+	var/second_offset = rand(-8,8)
+	var/x_off
+	var/y_off
+	if(x_based)
+		x_off = first_offset
+		y_off = second_offset
+	else
+		y_off = first_offset
+		x_off = second_offset
+	var/turf/T = locate(target.x + x_off, target.y + y_off, target.z)
+	return T
+
+
+//Returns a random turf at the edge of a mobs vision
+/datum/hallucination/proc/random_visible_edge_turf()
+	// var/edge_range = target.client.view
 	var/x_based = prob(50)
 	var/first_offset = pick(-8,-7,-6,-5,5,6,7,8)
 	var/second_offset = rand(-8,8)
@@ -137,7 +154,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 /datum/hallucination/xeno_attack/New(mob/living/carbon/C, forced = TRUE)
 	set waitfor = FALSE
 	..()
-	for(var/obj/machinery/atmospherics/components/unary/vent_pump/U in orange(7,target))
+	for(var/obj/machinery/atmospherics/components/unary/vent_pump/U in orange(3, target))
 		if(!U.welded)
 			pump = U
 			break
@@ -150,7 +167,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		xeno.throw_at(pump.loc, 7, 1, xeno, FALSE, TRUE)
 		sleep(1 SECONDS)
 		to_chat(target, "<span class='notice'>[xeno.name] begins climbing into the ventilation system...</span>")
-		sleep(3.5 SECONDS)
+		sleep(1.5 SECONDS)
 		to_chat(target, "<span class='notice'>[xeno.name] scrambles into the ventilation ducts!</span>")
 		playsound(src, get_sfx("alien_ventpass"), 35, 1)
 		qdel(xeno)
@@ -217,8 +234,13 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		if(!chosen)
 			chosen = capitalize(pick(speak_messages))
 		chosen = replacetext(chosen, "%TARGETNAME%", target_name)
+		if(copytext(chosen, 1, 9) == "#stutter") // 9 = #stutter length
+			chosen = stutter(copytext(chosen, 9))
+		if(copytext(chosen, 1, 6) == "#slur") // 6 = #slur length
+			chosen = slur(copytext(chosen, 6))
+
 		var/image/speech_overlay = image('icons/mob/talk.dmi', person, "default0", layer = ABOVE_MOB_LAYER)
-		var/message = target.compose_message(person,understood_language,chosen,null,list(person.speech_span),face_name = TRUE)
+		var/message = target.compose_message(person, understood_language, chosen, null, list(person.speech_span), face_name = TRUE)
 		to_chat(target, message)
 		if(target.client)
 			target.client.images |= speech_overlay
@@ -231,7 +253,12 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		chosen = replacetext(chosen, "%TARGETNAME%", target_name)
 		var/list/humans = list()
 		for(var/mob/living/carbon/human/H in GLOB.alive_human_list)
+			if(H == target)
+				continue
 			humans += H
+		if(!length(humans))
+			qdel(src)
+			return
 		person = pick(humans)
 		var/message = target.compose_message(person,understood_language,chosen,"[FREQ_COMMON]",list(person.speech_span),face_name = TRUE)
 		to_chat(target, message)

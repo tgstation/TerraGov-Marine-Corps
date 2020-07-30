@@ -946,6 +946,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 /datum/limb/proc/robotize()
 	rejuvenate()
+	add_limb_flags(LIMB_ROBOT)
 	for(var/c in children)
 		var/datum/limb/child_limb = c
 		child_limb.robotize()
@@ -1211,7 +1212,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "head"
 	icon_name = "head"
 	display_name = "head"
-	max_damage = 150
+	max_damage = 100
 	min_broken_damage = 40
 	body_part = HEAD
 	vital = TRUE

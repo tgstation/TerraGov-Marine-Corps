@@ -245,7 +245,7 @@
 
 	invisibility = 100
 	for(var/mob/M in viewers(user))
-		to_chat(M, trick)
+		SEND_IMAGE(M, trick)
 	sleep(5)
 	trick.loc = null
 	if(loc && user)

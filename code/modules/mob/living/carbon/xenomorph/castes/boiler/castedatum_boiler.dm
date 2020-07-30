@@ -11,7 +11,7 @@
 	wound_type = "boiler" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 24
+	melee_damage = 17
 
 	// *** Tackle *** //
 	tackle_damage = 25
@@ -38,7 +38,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_ACID_BLOOD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 15, "acid" = 30)
+	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 40, "acid" = 30)
 
 	// *** Ranged Attack *** //
 	spit_delay = 4 SECONDS
@@ -71,9 +71,6 @@
 	caste_desc = "Some sort of abomination. It looks a little more dangerous."
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Melee Attacks *** //
-	melee_damage = 28
-
 	// *** Tackle *** //
 	tackle_damage = 25
 
@@ -91,7 +88,7 @@
 	upgrade_threshold = 500
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_0, "bio" = 33, "rad" = 33, "fire" = 20, "acid" = 33)
+	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_0, "bio" = 33, "rad" = 33, "fire" = 45, "acid" = 33)
 
 	// *** Ranged Attack *** //
 	spit_delay = 3 SECONDS
@@ -108,7 +105,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 32
+	melee_damage = 20
 
 	// *** Tackle *** //
 	tackle_damage = 30
@@ -127,7 +124,7 @@
 	upgrade_threshold = 1000
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45 , "energy" = 45, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 22, "acid" = 35)
+	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45 , "energy" = 45, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 45, "acid" = 35)
 
 	// *** Ranged Attack *** //
 	spit_delay = 2 SECONDS
@@ -145,7 +142,7 @@
 	ancient_message = "We are the master of ranged artillery. Let's bring death from above."
 
 	// *** Melee Attacks *** //
-	melee_damage = 36
+	melee_damage = 20
 
 	// *** Tackle *** //
 	tackle_damage = 30
@@ -161,7 +158,7 @@
 	max_health = 275
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_0, "bio" = 37, "rad" = 37, "fire" = 25, "acid" = 37)
+	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_0, "bio" = 37, "rad" = 37, "fire" = 45, "acid" = 37)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS

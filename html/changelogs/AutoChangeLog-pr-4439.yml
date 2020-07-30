@@ -1,6 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - refactor: "Refactored huggers to be more reliable"
-  - bugfix: "Huggers can no longer instantly hug"
-  - tweak: "Huggers can no longer hug after being dropped"
