@@ -1,0 +1,11 @@
+author: "Hathkar"
+delete-after: True
+changes: 
+  - rscadd: "More survivor spawn points in Prison Station"
+  - rscadd: "More mining drills in Prison Station"
+  - rscadd: "Rock walls and coastline in Prison Area to make \"underground\" areas visually identifiable"
+  - balance: "Made LZ2 actually worth using as a FOB"
+  - rscdel: "Removed timed shutters outside LZs in Prison Station"
+  - tweak: "Resin node locations"
+  - tweak: "Moved the LZ1 resin silo to the north Research Area"
+  - code_imp: "Added ceilings to each area in Prison Station"
