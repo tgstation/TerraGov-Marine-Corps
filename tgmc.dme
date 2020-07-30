@@ -235,6 +235,7 @@
 #include "code\datums\emotes.dm"
 #include "code\datums\fluff_emails.dm"
 #include "code\datums\holocall.dm"
+#include "code\datums\http.dm"
 #include "code\datums\map_config.dm"
 #include "code\datums\marine_main_ship.dm"
 #include "code\datums\materials.dm"
