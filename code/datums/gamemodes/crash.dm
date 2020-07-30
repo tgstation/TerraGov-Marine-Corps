@@ -50,6 +50,8 @@
 	. = ..()
 
 	// Spawn the ship
+	if(TGS_CLIENT_COUNT >= 30)
+		shuttle_id = "tgs_bigbury"
 	if(!SSmapping.shuttle_templates[shuttle_id])
 		message_admins("Gamemode: couldn't find a valid shuttle template for [shuttle_id]")
 		CRASH("Shuttle [shuttle_id] wasn't found and can't be loaded")
