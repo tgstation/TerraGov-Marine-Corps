@@ -7,6 +7,7 @@
 	anchored = TRUE
 	resistance_flags = UNACIDABLE
 	layer = ABOVE_MOB_LAYER
+
 //loose sand overlay
 /obj/structure/desertdam/decals/loose_sand_overlay
 	name = "loose sand"

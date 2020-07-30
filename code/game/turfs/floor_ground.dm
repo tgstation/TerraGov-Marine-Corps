@@ -119,6 +119,11 @@
 	icon = 'icons/turf/asphalt.dmi'
 	icon_state = "asphalt"
 
+//Randomize asphalf floor sprite
+/turf/open/floor/plating/ground/asphalt/Initialize()
+	. = ..()
+	setDir(pick(NORTH,SOUTH,EAST,WEST,NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST))
+
 
 //Desert Map
 

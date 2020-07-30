@@ -595,6 +595,9 @@
 /obj/structure/disposalpipe/segment/corner,
 /turf/closed/wall/r_wall,
 /area/magmoor/engi/power)
+"cn" = (
+/turf/open/floor/plating/ground/asphalt,
+/area/space)
 "co" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -2688,10 +2691,6 @@
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/magmoor/civilian/chapel)
-"kJ" = (
-/obj/structure/window/framed/colony,
-/turf/open/space/basic,
-/area/space)
 "kK" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	name = "\improper Hydroponics Dome North Wing"
@@ -2982,6 +2981,9 @@
 "lO" = (
 /turf/closed/wall,
 /area/magmoor/engi/storage)
+"lQ" = (
+/turf/open/floor/plating/ground/desertdam/cave,
+/area/space)
 "lR" = (
 /obj/structure/flora/pottedplant,
 /obj/machinery/light{
@@ -3448,6 +3450,9 @@
 /obj/machinery/bodyscanner,
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical)
+"nF" = (
+/turf/open/floor/plating/ground/desertdam/cave/outer_cave_floor,
+/area/space)
 "nH" = (
 /obj/structure/cryofeed,
 /obj/machinery/atmospherics/pipe/heat_exchanging/junction,
@@ -3537,10 +3542,6 @@
 "nW" = (
 /turf/open/lavaland/basalt/glowing,
 /area/magmoor/volcano)
-"nX" = (
-/obj/structure/plasticflaps,
-/turf/open/space/basic,
-/area/space)
 "nY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
@@ -3566,6 +3567,9 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile,
 /area/magmoor/medical)
+"ob" = (
+/turf/open/floor/carpet/edge2,
+/area/space)
 "oc" = (
 /obj/machinery/landinglight/ds2/delaytwo,
 /turf/open/floor/mainship/mono,
@@ -3952,6 +3956,9 @@
 /obj/machinery/vending/snack,
 /turf/open/floor/wood,
 /area/magmoor/medical)
+"pD" = (
+/turf/open/floor/plating/ground/desertdam/desert,
+/area/space)
 "pE" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -4356,6 +4363,13 @@
 /turf/open/floor/mainship/green{
 	dir = 10
 	},
+/area/space)
+"rm" = (
+/obj/machinery/conveyor,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating,
 /area/space)
 "rn" = (
 /obj/structure/cargo_container/horizontal{
@@ -5745,12 +5759,6 @@
 	dir = 4
 	},
 /area/magmoor/engi/atmos)
-"wB" = (
-/obj/structure/sign/double/barsign{
-	icon_state = "thedrunkcarp"
-	},
-/turf/open/space/basic,
-/area/space)
 "wC" = (
 /obj/item/explosive/grenade/chem_grenade/cleaner,
 /obj/item/explosive/grenade/chem_grenade/cleaner,
@@ -8044,6 +8052,9 @@
 	},
 /turf/open/floor/freezer,
 /area/space)
+"Fk" = (
+/turf/open/floor/carpet,
+/area/space)
 "Fl" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -8721,6 +8732,9 @@
 /mob/living/simple_animal/chick,
 /turf/open/floor/grass,
 /area/space)
+"HE" = (
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/space)
 "HF" = (
 /obj/structure/cargo_container/nt{
 	dir = 8
@@ -8984,6 +8998,9 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
+/area/space)
+"ID" = (
+/turf/open/floor/plating/ground/desertdam/cave/desert_into_outer_cave_floor,
 /area/space)
 "IE" = (
 /obj/structure/table/reinforced,
@@ -9406,6 +9423,9 @@
 	},
 /turf/open/floor/wood,
 /area/magmoor/civilian/chapel)
+"Kv" = (
+/turf/open/floor/plating/ground/desertdam/cave/outer_cave_to_inner_cave,
+/area/space)
 "Kw" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -10924,6 +10944,13 @@
 "Qz" = (
 /turf/open/lavaland/lava,
 /area/magmoor/volcano)
+"QA" = (
+/obj/structure/sign/double/barsign{
+	icon_state = "thedrunkcarp";
+	name = "The Drunk Carp"
+	},
+/turf/closed/wall,
+/area/magmoor/civilian/mess)
 "QB" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -35059,7 +35086,7 @@ qM
 KE
 kA
 NQ
-KE
+rm
 Co
 Xl
 er
@@ -38642,7 +38669,7 @@ JC
 JC
 JC
 JC
-JC
+cn
 JC
 JC
 JC
@@ -38899,13 +38926,13 @@ JC
 JC
 JC
 JC
-JC
-JC
-JC
-JC
-JC
-JC
-JC
+cn
+HE
+lQ
+ID
+nF
+Kv
+pD
 JC
 JC
 JC
@@ -39156,13 +39183,13 @@ JC
 JC
 JC
 JC
-JC
-JC
-JC
-JC
-JC
-JC
-JC
+cn
+HE
+lQ
+ID
+nF
+Kv
+pD
 JC
 JC
 JC
@@ -39413,13 +39440,13 @@ JC
 JC
 JC
 JC
-JC
-JC
-JC
-JC
-JC
-JC
-JC
+cn
+HE
+lQ
+ID
+nF
+Kv
+pD
 JC
 JC
 JC
@@ -41996,8 +42023,8 @@ jY
 jY
 RL
 mw
-kJ
-kJ
+fq
+fq
 mw
 EK
 jY
@@ -43261,8 +43288,8 @@ px
 WW
 px
 Zz
-rv
-wB
+QA
+JC
 JC
 JC
 JC
@@ -59396,7 +59423,7 @@ JC
 JC
 JC
 JC
-nX
+Ks
 We
 jY
 WI
@@ -59674,7 +59701,7 @@ JC
 JC
 JC
 JC
-JC
+Fk
 JC
 JC
 JC
@@ -59929,9 +59956,9 @@ JC
 JC
 JC
 JC
-JC
-JC
-JC
+Fk
+Fk
+Fk
 JC
 JC
 JC
@@ -60185,14 +60212,14 @@ JC
 JC
 JC
 JC
+Fk
+Fk
 JC
 JC
 JC
 JC
-JC
-JC
-JC
-JC
+Fk
+Fk
 JC
 JC
 JC
@@ -60443,12 +60470,12 @@ JC
 JC
 JC
 JC
+Fk
 JC
 JC
 JC
 JC
-JC
-JC
+Fk
 JC
 JC
 JC
@@ -60699,9 +60726,9 @@ JC
 JC
 JC
 JC
-JC
-JC
-JC
+Fk
+Fk
+Fk
 JC
 JC
 JC
@@ -61212,16 +61239,16 @@ JC
 JC
 JC
 JC
+Fk
+Fk
+Fk
 JC
 JC
 JC
 JC
+Fk
 JC
-JC
-JC
-JC
-JC
-JC
+Fk
 JC
 JC
 JC
@@ -61470,15 +61497,15 @@ JC
 JC
 JC
 JC
+Fk
+Fk
 JC
+Fk
 JC
+Fk
+Fk
 JC
-JC
-JC
-JC
-JC
-JC
-JC
+Fk
 JC
 JC
 JC
@@ -61723,14 +61750,14 @@ JC
 JC
 JC
 JC
+Fk
+Fk
 JC
 JC
 JC
+Fk
 JC
-JC
-JC
-JC
-JC
+Fk
 JC
 JC
 JC
@@ -61981,7 +62008,7 @@ JC
 JC
 JC
 JC
-JC
+Fk
 JC
 JC
 JC
@@ -62237,11 +62264,11 @@ JC
 JC
 JC
 JC
-JC
-JC
-JC
-JC
-JC
+Fk
+Fk
+Fk
+Fk
+Fk
 JC
 JC
 JC
@@ -62493,16 +62520,16 @@ JC
 JC
 JC
 JC
+Fk
+Fk
+Fk
 JC
 JC
 JC
 JC
 JC
-JC
-JC
-JC
-JC
-JC
+Fk
+Fk
 JC
 JC
 JC
@@ -62751,15 +62778,15 @@ JC
 JC
 JC
 JC
+Fk
+Fk
+Fk
+Fk
+Fk
 JC
 JC
-JC
-JC
-JC
-JC
-JC
-JC
-JC
+Fk
+Fk
 JC
 JC
 JC
@@ -63009,7 +63036,7 @@ JC
 JC
 JC
 JC
-JC
+Fk
 JC
 JC
 JC
@@ -63265,9 +63292,9 @@ JC
 JC
 JC
 JC
-JC
-JC
-JC
+Fk
+Fk
+Fk
 JC
 JC
 JC
@@ -63523,7 +63550,7 @@ JC
 JC
 JC
 JC
-JC
+Fk
 JC
 JC
 JC
@@ -63780,8 +63807,8 @@ JC
 JC
 JC
 JC
-JC
-JC
+Fk
+Fk
 JC
 JC
 JC
@@ -64555,11 +64582,11 @@ JC
 JC
 JC
 JC
-JC
-JC
-JC
-JC
-JC
+ob
+ob
+ob
+ob
+ob
 JC
 JC
 JC
@@ -64812,11 +64839,11 @@ JC
 JC
 JC
 JC
-JC
-JC
-JC
-JC
-JC
+ob
+Fk
+Fk
+Fk
+ob
 JC
 JC
 JC
@@ -65069,11 +65096,11 @@ JC
 JC
 JC
 JC
-JC
-JC
-JC
-JC
-JC
+ob
+Fk
+Fk
+Fk
+ob
 JC
 JC
 JC
@@ -65326,11 +65353,11 @@ JC
 JC
 JC
 JC
-JC
-JC
-JC
-JC
-JC
+ob
+Fk
+Fk
+Fk
+ob
 JC
 JC
 JC
@@ -65583,11 +65610,11 @@ JC
 JC
 JC
 JC
-JC
-JC
-JC
-JC
-JC
+ob
+Fk
+Fk
+Fk
+ob
 JC
 JC
 JC
@@ -65840,11 +65867,11 @@ JC
 JC
 JC
 JC
-JC
-JC
-JC
-JC
-JC
+ob
+ob
+ob
+ob
+ob
 JC
 JC
 JC
