@@ -404,13 +404,6 @@
 "abB" = (
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/surface/requesitions)
-"abC" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/valley/northwest)
 "abD" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/tile/dark,
@@ -44472,7 +44465,7 @@ aad
 aaB
 aaJ
 aaJ
-abC
+omz
 agd
 agd
 aaJ
@@ -44729,7 +44722,7 @@ aaB
 afO
 aaJ
 aaJ
-abC
+omz
 akO
 agd
 aaJ
