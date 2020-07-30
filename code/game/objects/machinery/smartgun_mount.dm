@@ -10,7 +10,7 @@
 // First thing we need is the ammo drum for this thing.
 /obj/item/ammo_magazine/standard_hmg
 	name = "TL-102 drum magazine (10x30mm Caseless)"
-	desc = "A box of 700, 10x30mm caseless tungsten rounds for the TL-102 mounted heavy smartgun. Just click the TL-102 with this to reload it."
+	desc = "A box of 300, 10x30mm caseless tungsten rounds for the TL-102 mounted heavy smartgun. Just click the TL-102 with this to reload it."
 	w_class = WEIGHT_CLASS_NORMAL
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "mag"
