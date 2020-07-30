@@ -1,0 +1,11 @@
+author: "Hathkar"
+delete-after: True
+changes: 
+  - rscadd: "A new atmospherics dome for LV624"
+  - rscadd: "Completely redone LZ2 LV624"
+  - rscadd: "New survivor spawn points LV624"
+  - rscadd: "New bridge north of LZ 2 LV624"
+  - rscdel: "Removed the far north caves LV624"
+  - tweak: "Cable and pipe placement LV624"
+  - tweak: "Jungle south of LZ1 LV624"
+  - balance: "LZ1 and LZ2 walls LV624"
