@@ -133,8 +133,8 @@
 	icon_state = "desert1"
 
 //asphalt road
-/turf/open/floor/plating/ground/desertdam/asphault
-	name = "asphault"
+/turf/open/floor/plating/ground/desertdam/asphalt
+	name = "asphalt"
 	icon_state = "sunbleached_asphalt1"
 
 //CAVE
