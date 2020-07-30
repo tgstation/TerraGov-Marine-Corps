@@ -591,6 +591,11 @@
 /obj/machinery/door/window/westright,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
+"fL" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/box/beakers,
+/turf/open/floor/mainship/sterile/dark,
+/area/shuttle/canterbury/medical)
 "gv" = (
 /obj/structure/barricade/plasteel,
 /turf/open/floor/mainship/stripesquare,
@@ -1251,7 +1256,7 @@ aN
 aR
 az
 aJ
-aY
+fL
 aY
 JN
 ap
