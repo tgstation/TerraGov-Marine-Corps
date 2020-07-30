@@ -1,5 +1,0 @@
-author: "Spritework by JJG, Code by TiviPlus"
-delete-after: True
-changes: 
-  - imageadd: "Added A LOT more xeno wounded sprites"
-  - refactor: "refactored xeno damage overlay to be more performant with the new sprites"

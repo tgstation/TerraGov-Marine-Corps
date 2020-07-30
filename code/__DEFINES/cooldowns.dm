@@ -23,6 +23,7 @@
 #define COOLDOWN_TOGGLE "toggle"
 #define COOLDOWN_CPR		"CPR"
 #define COOLDOWN_IV_PING	"iv_ping"
+#define COOLDOWN_RACK_BOLT	"rack_bolt"
 
 #define COOLDOWN_START(cd_source, cd_index, cd_time) LAZYSET(cd_source.cooldowns, cd_index, addtimer(CALLBACK(GLOBAL_PROC, /proc/end_cooldown, cd_source, cd_index), cd_time))
 
