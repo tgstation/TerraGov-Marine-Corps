@@ -1,4 +1,0 @@
-author: "rhomm-dev"
-delete-after: True
-changes: 
-  - bugfix: "makes curing IB with bica OD work as intended"
