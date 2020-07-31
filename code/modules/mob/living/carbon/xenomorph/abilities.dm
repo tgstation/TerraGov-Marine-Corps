@@ -752,6 +752,33 @@
 		return ..()
 	return TRUE
 
+/datum/action/xeno_action/activable/xeno_spit/burst
+
+/datum/action/xeno_action/activable/xeno_spit/burst/use_ability(atom/A)
+	var/mob/living/carbon/xenomorph/X = owner
+
+	var/turf/current_turf = get_turf(owner)
+
+	if(!current_turf)
+		return fail_activate()
+
+	X.visible_message("<span class='xenowarning'>\The [X] spits at \the [A]!</span>", \
+	"<span class='xenowarning'>We spit at \the [A]!</span>" )
+	var/sound_to_play = pick(1, 2) == 1 ? 'sound/voice/alien_spitacid.ogg' : 'sound/voice/alien_spitacid2.ogg'
+	playsound(X.loc, sound_to_play, 25, 1)
+
+	plasma_cost = X.ammo.spit_cost
+	for(var/i in 1 to 3)
+		var/obj/projectile/newspit = new /obj/projectile(current_turf)
+		newspit.generate_bullet(X.ammo, X.ammo.damage * SPIT_UPGRADE_BONUS(X))
+		newspit.permutated += X
+		newspit.def_zone = X.get_limbzone_target()
+		newspit.fire_at(A, X, null, X.ammo.max_range, X.ammo.shell_speed)
+		stoplag(2)
+
+	add_cooldown()
+
+	return succeed_activate()
 
 /datum/action/xeno_action/xenohide
 	name = "Hide"
