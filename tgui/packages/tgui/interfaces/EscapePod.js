@@ -17,6 +17,7 @@ export const EscapePod = (props, context) => {
             <Button.Confirm
               m="50"
               content="Launch evacuation pod"
+              disabled={data.can_launch}
               color="red"
               onClick={() => act('launch')} />
           </Box>
