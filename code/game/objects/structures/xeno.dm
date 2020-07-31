@@ -132,16 +132,16 @@
 
 /obj/effect/alien/resin/trap/flamer_fire_act()
 	if(hugger)
-		hugger.forceMove(loc)
 		hugger.kill_hugger()
+		hugger.forceMove(loc)
 		hugger = null
 		icon_state = "trap0"
 	..()
 
 /obj/effect/alien/resin/trap/fire_act()
 	if(hugger)
-		hugger.forceMove(loc)
 		hugger.kill_hugger()
+		hugger.forceMove(loc)
 		hugger = null
 		icon_state = "trap0"
 	..()
