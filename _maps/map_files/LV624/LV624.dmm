@@ -17643,6 +17643,12 @@
 	dir = 9
 	},
 /area/lv624/lazarus/comms)
+"eAQ" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 1
+	},
+/turf/closed/gm/dense,
+/area/lv624/ground/jungle5)
 "eJQ" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral,
@@ -18209,6 +18215,15 @@
 /obj/structure/jungle/vines,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle1)
+"kAD" = (
+/obj/structure/fence,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/lv624/lazarus/quartstorage/outdoors)
 "kFx" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/resin,
@@ -18290,6 +18305,9 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "lYR" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 1
+	},
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/quartstorage/outdoors)
 "mbU" = (
@@ -18710,6 +18728,9 @@
 	},
 /area/lv624/ground/jungle9)
 "qzs" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 8
+	},
 /turf/closed/gm/dense,
 /area/shuttle/drop1/lz1)
 "qBt" = (
@@ -18897,6 +18918,12 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
+"sqM" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 1
+	},
+/turf/closed/gm/dense,
+/area/lv624/lazarus/quartstorage/outdoors)
 "szb" = (
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 1
@@ -45831,7 +45858,7 @@ azK
 aAk
 aAk
 aAk
-aHs
+kAD
 aSB
 aTp
 aTR
@@ -46010,7 +46037,7 @@ azJ
 aAk
 aAk
 aAk
-aHs
+kAD
 aSB
 aTq
 aTR
@@ -46189,7 +46216,7 @@ azK
 aAk
 aAk
 aAk
-aHs
+kAD
 aSB
 aTr
 aTR
@@ -47263,7 +47290,7 @@ aNN
 azJ
 aNM
 aJG
-aJG
+sqM
 aSB
 aTp
 aTR
@@ -47442,7 +47469,7 @@ aAV
 aAV
 aAV
 aAV
-aAV
+eAQ
 aSB
 aTq
 aTR
@@ -47621,7 +47648,7 @@ aAV
 aAV
 aAV
 aAV
-aAV
+eAQ
 aSB
 aTr
 aTR
@@ -47800,7 +47827,7 @@ aAV
 aAV
 aAV
 aAV
-aAV
+eAQ
 aSB
 aTo
 aTS
@@ -47979,7 +48006,7 @@ aAV
 aAV
 aAV
 aAV
-aAV
+eAQ
 aSC
 aTt
 aTt
@@ -48158,7 +48185,7 @@ aAV
 aAV
 aAV
 aAV
-aAV
+eAQ
 qzs
 aSD
 aSD
