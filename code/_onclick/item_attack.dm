@@ -183,6 +183,6 @@
 	return I.attack_turf(src, user)
 
 /obj/item/proc/attack_turf(turf/T, mob/living/user)
-	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_TURF, T, user) & COMPONENT_NO_ATTACK_OBJ)
+	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_TURF, T, user) & COMPONENT_NO_ATTACK_TURF)
 		return FALSE
 	return FALSE
