@@ -646,9 +646,15 @@ Defined in conflicts.dm of the #defines folder.
 	var/zoom_offset = 11
 	var/zoom_viewsize = 12
 	var/zoom_accuracy = SCOPE_RAIL
-	var/has_nightvision = TRUE
+	var/has_nightvision = FALSE
 	var/active_nightvision = FALSE
 
+/obj/item/attachable/scope/nightvision
+	name = "T-46 Night vision scope"
+	icon_state = "nvscope"
+	attach_icon = "slavicscope"
+	desc = "A rail-mounted night vision scope developed by Roh-Easy industries for the TGMC. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	has_nightvision = TRUE
 
 /obj/item/attachable/scope/unremovable
 	flags_attach_features = ATTACH_ACTIVATION
