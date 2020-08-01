@@ -65,6 +65,7 @@
 	item_state = "binocular_head"
 	module_type = ARMOR_MODULE_TOGGLE
 	active = FALSE
+	flags_item = DOES_NOT_NEED_HANDS
 
 /obj/item/helmet_module/binoculars/toggle_module(mob/living/user, obj/item/clothing/head/modular/parent)
 	if(!active && !zoom)
