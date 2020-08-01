@@ -1,0 +1,5 @@
+author: "Hathkar"
+delete-after: True
+changes: 
+  - bugfix: "Removed an r-wall in a doorway"
+  - bugfix: "Some tile locations"
