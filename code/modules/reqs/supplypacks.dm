@@ -833,6 +833,16 @@ ARMOR
 	)
 	cost = 12
 
+/datum/supply_packs/armor/modular/armor/acid
+	name = "Jaeger Corrupted plate set"
+	contains = list(
+		/obj/item/armor_module/armor/chest/marine/acid,
+		/obj/item/armor_module/armor/arms/marine/acid,
+		/obj/item/armor_module/armor/legs/marine/acid
+	)
+	cost = 30
+
+
 
 /*******************************************************************************
 CLOTHING
