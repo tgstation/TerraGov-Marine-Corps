@@ -117,7 +117,7 @@
 
 /datum/reagent/medicine/oxycodone/on_mob_life(mob/living/L, metabolism)
 	L.reagent_pain_modifier += PAIN_REDUCTION_FULL
-	L.adjustStaminaLoss(2*REM)
+	L.adjustStaminaLoss(REM)
 	return ..()
 
 /datum/reagent/medicine/oxycodone/overdose_process(mob/living/L, metabolism)
@@ -170,7 +170,7 @@
 	var/target_temp = L.get_standard_bodytemperature()
 	L.heal_limb_damage(0, 2 * REM)
 	if(L.bodytemperature > target_temp)
-		L.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, target_temp)
+		L.adjust_bodytemperature(-2.5 * TEMPERATURE_DAMAGE_COEFFICIENT, target_temp)
 	if(volume > 10)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 	if(volume > 20)
@@ -196,14 +196,14 @@
 
 /datum/reagent/medicine/dermaline/on_mob_life(mob/living/L, metabolism)
 	var/target_temp = L.get_standard_bodytemperature()
-	L.heal_limb_damage(0, 4 * REM)
+	L.heal_limb_damage(0, 3 * REM)
 	if(L.bodytemperature > target_temp)
-		L.adjust_bodytemperature(-10 * TEMPERATURE_DAMAGE_COEFFICIENT, target_temp)
+		L.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, target_temp)
 	if(volume > 5)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
-	if(volume > 15)
+	if(volume > 10)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
-		L.heal_limb_damage(0, 2 * REM)
+		L.heal_limb_damage(0, 3 * REM)
 	return ..()
 
 /datum/reagent/medicine/dermaline/overdose_process(mob/living/L, metabolism)
@@ -288,7 +288,7 @@
 	description = "Dylovene is a broad-spectrum antitoxin."
 	color = "#A8F59C"
 	scannable = TRUE
-	purge_list = list(/datum/reagent/toxin, /datum/reagent/toxin/xeno_neurotoxin, /datum/reagent/consumable/drink/coffee)
+	purge_list = list(/datum/reagent/toxin, /datum/reagent/toxin/xeno_neurotoxin, /datum/reagent/consumable/drink/atomiccoffee, /datum/reagent/consumable/larvajelly)
 	purge_rate = 2
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
@@ -352,7 +352,7 @@
 
 /datum/reagent/medicine/synaptizine
 	name = "Synaptizine"
-	description = "Synaptizine is used to treat various diseases."
+	description = "Synaptizine is a commonly used performance-enhancing drug with minimal side effects."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose_threshold = REAGENTS_OVERDOSE/5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/5
@@ -565,7 +565,7 @@
 	scannable = TRUE
 
 /datum/reagent/medicine/peridaxon_plus/on_mob_life(mob/living/L, metabolism)
-	L.adjustToxLoss(20*REM)
+	L.reagents.add_reagent(/datum/reagent/toxin,5)
 	if(!ishuman(L))
 		return ..()
 	var/mob/living/carbon/human/H = L
@@ -575,7 +575,7 @@
 	return ..()
 
 /datum/reagent/medicine/peridaxon_plus/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(10*REM, TOX)
+	L.apply_damage(30*REM, TOX)
 
 /datum/reagent/peridaxon_plus/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(30*REM, TOX) //Ya triple-clicked. Ya shouldn'ta did that.
@@ -615,12 +615,12 @@
 	purge_rate = 0.2
 
 /datum/reagent/medicine/meralyne/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(4*REM, 0)
+	L.heal_limb_damage(3*REM, 0)
 	if(volume > 5)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
-	if(volume > 15)
+	if(volume > 10)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
-		L.heal_limb_damage(2*REM, 0)
+		L.heal_limb_damage(3*REM, 0)
 	return ..()
 
 
@@ -744,7 +744,7 @@
 
 /datum/reagent/medicine/ultrazine/on_mob_add(mob/living/L, metabolism)
 	. = ..()
-	L.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -2)
+	L.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1)
 
 /datum/reagent/medicine/ultrazine/on_mob_delete(mob/living/L, metabolism)
 	L.remove_movespeed_modifier(type)
