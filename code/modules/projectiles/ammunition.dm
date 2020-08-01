@@ -97,7 +97,8 @@ They're all essentially identical when it comes to getting the job done.
 	if(!source.current_rounds)
 		to_chat(user, "<span class='warning'>\The [source] is empty.</span>")
 		return
-//using handfuls; and filling internal mags has no delay.
+	
+	//using handfuls; and filling internal mags has no delay.
 	if(!istype(source, /obj/item/ammo_magazine/handful) && !istype(src, /obj/item/ammo_magazine/internal) ) 
 		to_chat(user, "<span class='notice'>You start refilling [src] with [source].</span>")
 		if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
@@ -105,14 +106,17 @@ They're all essentially identical when it comes to getting the job done.
 
 	to_chat(user, "<span class='notice'>You refill [src] with [source].</span>")
 
-	var/S = min(transfer_amount, max_rounds - current_rounds)
+	var/S = clamp(min(transfer_amount, max_rounds - current_rounds), 0, source.current_rounds)
 	source.current_rounds -= S
 	current_rounds += S
+	
 	if(source.current_rounds <= 0 && istype(source, /obj/item/ammo_magazine/handful)) //We want to delete it if it's a handful.
 		if(user)
 			user.temporarilyRemoveItemFromInventory(source)
 		qdel(source) //Dangerous. Can mean future procs break if they reference the source. Have to account for this.
-	else source.update_icon()
+	else 
+		source.update_icon()
+	
 	update_icon(S)
 	return S // We return the number transferred if it was successful.
 
