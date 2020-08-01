@@ -154,13 +154,13 @@
 //add separaters by doing . += "---"
 /datum/proc/vv_get_dropdown()
 	. = list()
-	VV_DROPDOWN_OPTION("", "---")
-	VV_DROPDOWN_OPTION(VV_HK_CALLPROC, "Call Proc")
-	VV_DROPDOWN_OPTION(VV_HK_MARK, "Mark Object")
-	VV_DROPDOWN_OPTION(VV_HK_DELETE, "Delete")
-	VV_DROPDOWN_OPTION(VV_HK_EXPOSE, "Show VV To Player")
+	. += "---"
+	.["Call Proc"] = "?_src_=vars;[HrefToken()];[VV_HK_CALLPROC]=[REF(src)]"
+	.["Mark Object"] = "?_src_=vars;[HrefToken()];[VV_HK_MARK]=[REF(src)]"
+	.["Delete"] = "?_src_=vars;[HrefToken()];[VV_HK_DELETE]=[REF(src)]"
+	.["Show VV To Player"] = "?_src_=vars;[HrefToken()];[VV_HK_EXPOSE]=[REF(src)]"
 	#ifdef REFERENCE_TRACKING
-	VV_DROPDOWN_OPTION(VV_HK_VIEW_REFERENCES, "View References")
+	.["View References"] = "?_src_=vars;[HrefToken()];[VV_HK_VIEW_REFERENCES]=[REF(src)]"
 	#endif
 
 

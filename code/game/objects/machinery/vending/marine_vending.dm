@@ -595,7 +595,6 @@
 
 						/obj/item/attachable/flashlight = 25,
 						/obj/item/attachable/magnetic_harness = 25,
-						/obj/item/attachable/quickfire = 25,
 						/obj/item/attachable/reddot = 25,
 						/obj/item/attachable/scope = 25,
 						/obj/item/attachable/scope/mini = 25,
