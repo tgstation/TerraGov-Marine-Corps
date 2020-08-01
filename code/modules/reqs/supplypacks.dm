@@ -381,11 +381,6 @@ ATTACHMENTS
 	contains = list(/obj/item/attachable/magnetic_harness)
 	cost = 5
 
-/datum/supply_packs/attachments/rail_quickfire
-	name = "quickfire adaptor attachment"
-	contains = list(/obj/item/attachable/quickfire)
-	cost = 15
-
 /datum/supply_packs/attachments/muzzle_suppressor
 	name = "suppressor attachment"
 	contains = list(/obj/item/attachable/suppressor)
@@ -734,7 +729,7 @@ ARMOR
 	cost = 1
 
 /datum/supply_packs/armor/modular/armor/infantry
-	name = "Jaeger Infantry plates"
+	name = "Jaeger Medium Infantry plates"
 	contains = list(
 		/obj/item/clothing/head/modular/marine,
 		/obj/item/armor_module/armor/chest/marine,
@@ -744,7 +739,7 @@ ARMOR
 	cost = 3
 
 /datum/supply_packs/armor/modular/armor/skirmisher
-	name = "Jaeger Skirmisher plates"
+	name = "Jaeger Light Skirmisher plates"
 	contains = list(
 		/obj/item/clothing/head/modular/marine/skirmisher,
 		/obj/item/armor_module/armor/chest/marine/skirmisher,
@@ -754,7 +749,7 @@ ARMOR
 	cost = 3
 
 /datum/supply_packs/armor/modular/armor/assault
-	name = "Jaeger Assault plates"
+	name = "Jaeger Heavy Assault plates"
 	contains = list(
 		/obj/item/clothing/head/modular/marine/assault,
 		/obj/item/armor_module/armor/chest/marine/assault,
