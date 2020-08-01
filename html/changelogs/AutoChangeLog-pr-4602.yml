@@ -1,0 +1,5 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - rscadd: "Added new sord and sheath for fc."
+  - balance: "Removed FCs SG, added sord."
