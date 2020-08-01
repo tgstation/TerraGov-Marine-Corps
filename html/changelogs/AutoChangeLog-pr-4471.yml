@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - rscadd: "Jerry cans can now be used to douse people and tiles in fuel to light them with flamers or lighters. Available in the req operations vendor"
