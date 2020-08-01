@@ -40,6 +40,12 @@
 /turf/open/floor/mainship/emerald
 	icon_state = "emerald"
 
+/turf/open/floor/mainship/emerald/corner
+	icon_state = "emeraldcorner"
+
+/turf/open/floor/mainship/emerald/full
+	icon_state = "emeraldfull"
+
 /turf/open/floor/mainship/orange
 	icon_state = "orange"
 
@@ -54,6 +60,36 @@
 
 /turf/open/floor/mainship/green/corner
 	icon_state = "greencorner"
+
+/turf/open/floor/mainship/green/full
+	icon_state = "greenfull"
+
+/turf/open/floor/mainship/black/
+	icon_state = "black"
+
+/turf/open/floor/mainship/black/corner
+	icon_state = "blackcorner"
+
+/turf/open/floor/mainship/black/full
+	icon_state = "blackfull"
+
+/turf/open/floor/mainship/white
+	icon_state = "white"
+
+/turf/open/floor/mainship/white/corner
+	icon_state = "whitecorner"
+
+/turf/open/floor/mainship/white/full
+	icon_state = "whitefull"
+
+/turf/open/floor/mainship/silver
+	icon_state = "silver"
+
+/turf/open/floor/mainship/silver/corner
+	icon_state = "silvercorner"
+
+/turf/open/floor/mainship/silverfull
+	icon_state = "silverfull"
 
 /turf/open/floor/mainship/red
 	icon_state = "red"
