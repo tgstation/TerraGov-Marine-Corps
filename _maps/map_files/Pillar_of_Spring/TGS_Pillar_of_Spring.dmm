@@ -1714,12 +1714,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
-"gy" = (
-/obj/structure/sign/ROsign{
-	dir = 1
-	},
-/turf/closed/wall/mainship,
-/area/mainship/squads/req)
 "gz" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -3896,6 +3890,9 @@
 	},
 /area/mainship/medical/operating_room_two)
 "oe" = (
+/obj/structure/sink{
+	dir = 1
+	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 2
 	},
@@ -10795,6 +10792,9 @@
 /area/mainship/living/numbertwobunks)
 "JH" = (
 /obj/structure/noticeboard,
+/obj/structure/sign/ROsign{
+	dir = 1
+	},
 /turf/closed/wall/mainship,
 /area/mainship/squads/req)
 "JI" = (
@@ -13707,12 +13707,6 @@
 /obj/structure/closet/crate/alpha,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
-"XG" = (
-/obj/structure/sink{
-	dir = 1
-	},
-/turf/closed/wall/mainship/white,
-/area/mainship/medical/operating_room_two)
 "XJ" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/machinery/landinglight/ds2,
@@ -42847,7 +42841,7 @@ hR
 JM
 cM
 oe
-XG
+ic
 gL
 wj
 gL
@@ -45407,7 +45401,7 @@ az
 ee
 gd
 Vn
-gy
+qG
 JH
 QS
 Rm
