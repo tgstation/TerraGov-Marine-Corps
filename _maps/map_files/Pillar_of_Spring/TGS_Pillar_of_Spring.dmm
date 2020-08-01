@@ -6,6 +6,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
+/obj/item/reagent_containers/jerrycan,
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/hallways/hangar)
 "ac" = (
@@ -1144,6 +1145,10 @@
 /obj/item/bedsheet/medical,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
+"dL" = (
+/obj/item/reagent_containers/jerrycan,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "dM" = (
 /obj/effect/attach_point/weapon/dropship2{
 	dir = 4;
@@ -2292,6 +2297,10 @@
 	dir = 4
 	},
 /area/mainship/command/cic)
+"iB" = (
+/obj/item/reagent_containers/jerrycan,
+/turf/open/floor/mainship/sterile/plain,
+/area/mainship/hallways/hangar)
 "iC" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -12918,6 +12927,13 @@
 "RF" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/machinery/landinglight/ds2/delaythree,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
+"RI" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/item/reagent_containers/jerrycan,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "RJ" = (
@@ -39980,7 +39996,7 @@ Mb
 Mf
 ar
 ap
-ap
+dL
 ap
 ap
 ap
@@ -40994,7 +41010,7 @@ aa
 bf
 aO
 ci
-af
+iB
 dV
 aT
 bh
@@ -43041,7 +43057,7 @@ aa
 aa
 ad
 ab
-an
+RI
 aq
 aK
 ag

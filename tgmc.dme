@@ -533,6 +533,7 @@
 #include "code\game\objects\items\reagent_containers\food.dm"
 #include "code\game\objects\items\reagent_containers\glass.dm"
 #include "code\game\objects\items\reagent_containers\hypospray.dm"
+#include "code\game\objects\items\reagent_containers\jerrycan.dm"
 #include "code\game\objects\items\reagent_containers\pill.dm"
 #include "code\game\objects\items\reagent_containers\reagent_container.dm"
 #include "code\game\objects\items\reagent_containers\robodropper.dm"
