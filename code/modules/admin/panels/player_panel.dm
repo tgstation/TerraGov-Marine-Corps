@@ -402,7 +402,7 @@
 
 	body += "<b>CentCom Galactic Ban DB: </b> "
 	if(CONFIG_GET(string/centcom_ban_db))
-		body += "<a href='?_src_=holder;[HrefToken()];centcomlookup=[M.client.ckey]'>Search</a>"
+		body += "<a href='?_src_=holder;[HrefToken()];centcomlookup=[M?.ckey]'>Search for ([M?.ckey])</a>"
 	else
 		body += "<i>Disabled</i>"
 
