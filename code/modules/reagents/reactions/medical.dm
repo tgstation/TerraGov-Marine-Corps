@@ -15,11 +15,6 @@
 	required_reagents = list(/datum/reagent/oxygen = 2, /datum/reagent/toxin/phoron = 0.1)
 	required_catalysts = list(/datum/reagent/toxin/phoron = 5)
 
-/datum/chemical_reaction/dermaline
-	name = "Dermaline"
-	results = list(/datum/reagent/medicine/dermaline = 3)
-	required_reagents = list(/datum/reagent/oxygen = 1, /datum/reagent/phosphorus = 1, /datum/reagent/medicine/kelotane = 1)
-
 /datum/chemical_reaction/dexalinplus
 	name = "Dexalin Plus"
 	results = list(/datum/reagent/medicine/dexalinplus = 3)
@@ -29,11 +24,6 @@
 	name = "Bicaridine"
 	results = list(/datum/reagent/medicine/bicaridine = 2)
 	required_reagents = list(/datum/reagent/medicine/inaprovaline = 1, /datum/reagent/carbon = 1)
-
-/datum/chemical_reaction/meralyne
-	name = "Meralyne"
-	results = list(/datum/reagent/medicine/meralyne = 2)
-	required_reagents = list(/datum/reagent/medicine/inaprovaline = 1, /datum/reagent/medicine/bicaridine = 1, /datum/reagent/iron = 1)
 
 /datum/chemical_reaction/ryetalyn
 	name = "Ryetalyn"
