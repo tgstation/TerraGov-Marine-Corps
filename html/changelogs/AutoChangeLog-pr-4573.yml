@@ -1,5 +1,0 @@
-author: "Sibg"
-delete-after: True
-changes: 
-  - rscadd: "The FC vendor"
-  - rscadd: "The FC now has its own access"
