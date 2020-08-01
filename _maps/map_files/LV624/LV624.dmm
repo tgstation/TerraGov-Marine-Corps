@@ -18567,7 +18567,10 @@
 "kir" = (
 /obj/docking_port/stationary/crashmode,
 /obj/docking_port/stationary/crashmode/bigbury,
-/turf/closed/gm/dense,
+/obj/structure/fence,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
 /area/lv624/ground/jungle6)
 "ktj" = (
 /obj/effect/landmark/lv624/fog_blocker,
