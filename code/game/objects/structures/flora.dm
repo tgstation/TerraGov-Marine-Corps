@@ -21,6 +21,7 @@
 /obj/structure/flora/fire_act()
 	take_damage(25, BURN, "fire")
 
+
 //TREES
 
 /obj/structure/flora/tree
@@ -466,3 +467,38 @@
 	desc = "A thick mat of dense grass."
 	icon_state = "grasscarpet"
 	layer = BELOW_MOB_LAYER
+
+//ROCKS
+/obj/structure/flora/rock
+	desc = "A volcanic rock. Pioneers used to ride these babies for miles."
+	icon = 'icons/obj/flora/rocks2.dmi'
+	density = TRUE
+	max_integrity = 250
+	layer = ABOVE_FLY_LAYER
+	icon_state = "basalt"
+
+/obj/structure/flora/rock/alt
+	icon_state = "basalt1"
+
+/obj/structure/flora/rock/alt2
+	icon_state = "basalt2"
+
+/obj/structure/flora/rock/alt3
+	icon_state = "basalt3"
+
+/obj/structure/flora/rock/pile
+	desc = "A pile of volcanic rocks."
+	density = FALSE
+	icon_state = "lavarocks"
+
+/obj/structure/flora/rock/pile/alt
+	icon_state = "lavarocks1"
+
+/obj/structure/flora/rock/pile/alt2
+	icon_state = "lavarocks2"
+
+/obj/structure/flora/rock/pile/alt3
+	icon_state = "lavarocks3"
+
+/obj/structure/flora/rock/pile/alt4
+	icon_state = "lavarocks4"

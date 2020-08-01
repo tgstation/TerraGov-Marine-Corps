@@ -119,6 +119,11 @@
 	icon = 'icons/turf/asphalt.dmi'
 	icon_state = "asphalt"
 
+//Randomize asphalf floor sprite
+/turf/open/floor/plating/ground/asphalt/Initialize()
+	. = ..()
+	setDir(pick(NORTH,SOUTH,EAST,WEST,NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST))
+
 
 //Desert Map
 
@@ -133,8 +138,8 @@
 	icon_state = "desert1"
 
 //asphalt road
-/turf/open/floor/plating/ground/desertdam/asphault
-	name = "asphault"
+/turf/open/floor/plating/ground/desertdam/asphalt
+	name = "asphalt"
 	icon_state = "sunbleached_asphalt1"
 
 //CAVE
