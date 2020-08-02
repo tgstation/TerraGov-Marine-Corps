@@ -62,7 +62,6 @@
 	if(obj_flags & CAN_BE_HIT)
 		return I.attack_obj(src, user)
 
-
 /obj/item/proc/attack_obj(obj/O, mob/living/user)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_OBJ, O, user) & COMPONENT_NO_ATTACK_OBJ)
 		return
@@ -175,3 +174,15 @@
 	. = M.attacked_by(src, user)
 	if(. && hitsound)
 		playsound(loc, hitsound, 25, TRUE)
+
+/turf/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(.)
+		return TRUE
+
+	return I.attack_turf(src, user)
+
+/obj/item/proc/attack_turf(turf/T, mob/living/user)
+	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_TURF, T, user) & COMPONENT_NO_ATTACK_TURF)
+		return FALSE
+	return FALSE
