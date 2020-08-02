@@ -43,6 +43,12 @@
 	icon_state = "wall2"
 	desc = "Some thick jungle."
 
+/turf/closed/gm/tree
+	name = "dense jungle trees"
+	icon_state = "jungletree"
+	desc = "Some thick jungle trees."
+
+
 	//Not yet
 /turf/closed/gm/ex_act(severity)
 	switch(severity)
