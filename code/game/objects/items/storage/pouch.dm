@@ -637,3 +637,51 @@
 			return TRUE
 
 	return ..()
+
+// Belt harness pouches. Do not fit inside pockets. They do in belts though
+
+/obj/item/storage/pouch/harness
+	name = "harness pouch"
+	desc = "A strange looking pouch used to carry.. Something. Clipped to the M210 harness."
+	icon_state = "small_drop"
+	w_class = WEIGHT_CLASS_BULKY //does not fit in backpack
+	max_w_class = 2
+	flags_equip_slot = ITEM_SLOT_BELT //Doesn't fit in your pocket.
+	storage_slots = 1
+	draw_mode = 0
+	allow_drawing_method = TRUE
+
+/obj/item/storage/pouch/harness/utility
+	name = "general harness pouch"
+	desc = "A general purpose pouch used to carry small items. Clipped to the M210 harness."
+	storage_slots = 2
+	icon_state = "belt_utility"
+	draw_mode = 0
+
+/obj/item/storage/pouch/harness/magazine
+	name = "magazine harness pouch"
+	desc = "It can contain two ammo magazines, clipped to the M210 harness."
+	icon_state = "belt_ammo"
+	max_w_class = 3
+	storage_slots = 2
+	draw_mode = 0
+	can_hold = list(
+		/obj/item/ammo_magazine/rifle,
+		/obj/item/ammo_magazine/smg,
+		/obj/item/ammo_magazine/pistol,
+		/obj/item/ammo_magazine/revolver,
+		/obj/item/ammo_magazine/sniper,
+		/obj/item/ammo_magazine/handful,
+		/obj/item/cell/lasgun)
+
+/obj/item/storage/pouch/harness/magazine/large
+	name = "large magazine harness  pouch"
+	desc = "It can contain one large ammo magazine, clipped to the M210 harness."
+	icon_state = "belt_ammo"
+	max_w_class = 3
+	storage_slots = 1
+	draw_mode = 0
+	can_hold = list(
+		/obj/item/ammo_magazine/standard_gpmg,
+		/obj/item/ammo_magazine/m41ae2_hpr,
+		/obj/item/ammo_magazine/standard_lmg)

@@ -481,6 +481,19 @@
 	icon_state= "sparepouch"
 	item_state= "sparepouch"
 
+//Harness belt. Has specific pouches clipped onto it that hold things.
+
+/obj/item/storage/belt/harnessbelt
+	name = "\improper M-210 pattern harness rig"
+	desc = "The M210 is a load-bearing equipment of the TGMC. It consists of a modular harness with various clips for pouches of different uses. This one holds exactly two pouches."
+	icon_state = "belt_harness"
+	item_state = "belt_harness"
+	storage_slots = 2
+	max_w_class = 6
+	max_storage_space = 21
+	can_hold = list(
+		/obj/item/storage/pouch/harness
+		)
 
 
 
