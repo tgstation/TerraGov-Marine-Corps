@@ -55,5 +55,4 @@ params
 
 		if(GLOB.admin_approvals[approval_id] != -1)
 			. = options[GLOB.admin_approvals[approval_id]]
-			log_admin_private("[user] has .resolved admin approval [admin_message]")
 			break
