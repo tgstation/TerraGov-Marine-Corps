@@ -102,6 +102,7 @@
 #define TRAIT_FLASHBANGIMMUNE	"flashbang_immunity"
 #define TRAIT_FAKEDEATH			"fakedeath" //Makes the owner appear as dead to most forms of medical examination
 #define TRAIT_LEGLESS			"legless" //Has lost all the appendages needed to stay standing up.
+#define TRAIT_NOPLASMAREGEN		"noplasmaregen"//xeno plasma wont recharge
 
 // item traits
 #define TRAIT_T_RAY_VISIBLE		"t-ray-visible" // Visible on t-ray scanners if the atom/var/level == 1

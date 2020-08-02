@@ -164,7 +164,11 @@
 	return newbeam
 
 /proc/zap_beam(atom/source, zap_range, damage, list/blacklistmobs)
-	for(var/mob/living/living in oview(zap_range, source))
+	var/list/mobs = list()
+	for(var/mob/living/carbon/xenomorph/beno in oview(zap_range, source))
+		mobs += beno
+	for(var/xeno in mobs)
+		var/mob/living/carbon/xenomorph/living = xeno
 		if(!living)
 			return
 		if(living.stat == DEAD)
@@ -172,5 +176,6 @@
 		if(living in blacklistmobs)
 			continue
 		source.beam(living, icon_state="lightning[rand(1,12)]", time=3, maxdistance = zap_range+2)
-		living.electrocute_act(damage, source)
+		living.apply_status_effect(/datum/status_effect/noplasmaregen, 5 SECONDS/length(mobs))
+		living.apply_status_effect(/datum/status_effect/plasmadrain, 5 SECONDS/length(mobs))
 		log_attack("[living] was zapped by [source]")

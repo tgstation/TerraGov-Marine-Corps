@@ -115,21 +115,22 @@
 		else
 			use_plasma(5)
 
-	var/list/plasma_mod = list()
+	if(!HAS_TRAIT(src, TRAIT_NOPLASMAREGEN))
+		var/list/plasma_mod = list()
 
-	SEND_SIGNAL(src, COMSIG_XENOMORPH_PLASMA_REGEN, plasma_mod)
+		SEND_SIGNAL(src, COMSIG_XENOMORPH_PLASMA_REGEN, plasma_mod)
 
-	var/plasma_gain_multiplier = 1
-	for(var/i in plasma_mod)
-		plasma_gain_multiplier *= i
+		var/plasma_gain_multiplier = 1
+		for(var/i in plasma_mod)
+			plasma_gain_multiplier *= i
 
-	if((locate(/obj/effect/alien/weeds) in T) || (xeno_caste.caste_flags & CASTE_INNATE_PLASMA_REGEN))
-		if(lying_angle || resting)
-			gain_plasma((xeno_caste.plasma_gain + round(xeno_caste.plasma_gain * recovery_aura * 0.25)) * 2 * plasma_gain_multiplier) // Empty recovery aura will always equal 0
+		if((locate(/obj/effect/alien/weeds) in T) || (xeno_caste.caste_flags & CASTE_INNATE_PLASMA_REGEN))
+			if(lying_angle || resting)
+				gain_plasma((xeno_caste.plasma_gain + round(xeno_caste.plasma_gain * recovery_aura * 0.25)) * 2 * plasma_gain_multiplier) // Empty recovery aura will always equal 0
+			else
+				gain_plasma(max(((xeno_caste.plasma_gain + round(xeno_caste.plasma_gain * recovery_aura * 0.25)) * 0.5), 1) * plasma_gain_multiplier)
 		else
-			gain_plasma(max(((xeno_caste.plasma_gain + round(xeno_caste.plasma_gain * recovery_aura * 0.25)) * 0.5), 1) * plasma_gain_multiplier)
-	else
-		gain_plasma(plasma_gain_multiplier)
+			gain_plasma(plasma_gain_multiplier)
 
 	hud_set_plasma() //update plasma amount on the plasma mob_hud
 
