@@ -55,8 +55,7 @@
 	if(alert_observers)
 		if(!admin_approval("Event:[name]"))
 			triggering = FALSE
-			message_admins("[key_name_admin(usr)] cancelled event [name].")
-			log_admin_private("[key_name(usr)] cancelled event [name].")
+			message_admins("An admin cancelled event [name].")
 			SSblackbox.record_feedback("tally", "event_admin_cancelled", 1, typepath)
 			return EVENT_CANCELLED
 		if(!triggering)
