@@ -845,7 +845,9 @@ ARMOR
 		/obj/item/helmet_module/welding,
 		/obj/item/helmet_module/welding,
 		/obj/item/helmet_module/binoculars,
-		/obj/item/helmet_module/binoculars
+		/obj/item/helmet_module/binoculars,
+		/obj/item/helmet_module/antenna,
+		/obj/item/helmet_module/antenna
 	)
 	cost = 6
 
