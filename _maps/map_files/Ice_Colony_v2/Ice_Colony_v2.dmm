@@ -5752,7 +5752,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor/tile/red/whiteredfull,
+/turf/open/floor/tile/red/whitered/full,
 /area/ice_colony/surface/clinic/lobby)
 "aub" = (
 /obj/structure/cable,
@@ -5930,7 +5930,7 @@
 	dir = 1;
 	name = "\improper Aurora Medical Clinic"
 	},
-/turf/open/floor/tile/red/whiteredfull,
+/turf/open/floor/tile/red/whitered/full,
 /area/ice_colony/surface/clinic/lobby)
 "auz" = (
 /obj/structure/disposalpipe/segment{

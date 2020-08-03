@@ -3285,7 +3285,7 @@
 /area/lv624/ground/river2)
 "amx" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
 /area/lv624/ground/jungle7)
@@ -3311,8 +3311,8 @@
 	dir = 8
 	},
 /obj/structure/catwalk,
-/turf/open/floor/plating/ground/dirtgrassborder{
-	dir = 1
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
+	dir = 8
 	},
 /area/lv624/ground/jungle7)
 "amC" = (
@@ -3701,7 +3701,7 @@
 /area/lv624/ground/jungle9)
 "anM" = (
 /obj/machinery/colony_floodlight,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/lv624/ground/jungle7)
@@ -3709,7 +3709,7 @@
 /turf/closed/wall/wood,
 /area/lv624/ground/jungle8)
 "anO" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/jungle8)
 "anP" = (
 /turf/open/floor/wood/broken,
@@ -3858,7 +3858,7 @@
 /turf/open/floor/wood/broken,
 /area/lv624/ground/jungle8)
 "aos" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/lv624/ground/jungle8)
@@ -3980,7 +3980,7 @@
 /area/lv624/ground/river2)
 "aoQ" = (
 /obj/machinery/colony_floodlight,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
 /area/lv624/ground/river2)
@@ -4038,7 +4038,7 @@
 /area/lv624/ground/jungle8)
 "ape" = (
 /obj/structure/flora/tree/jungle/small,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
 /area/lv624/ground/jungle6)
@@ -4108,7 +4108,7 @@
 /area/lv624/ground/jungle7)
 "aps" = (
 /obj/structure/jungle/vines,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/lv624/ground/jungle8)
@@ -4216,7 +4216,7 @@
 /turf/open/ground/river,
 /area/lv624/ground/river2)
 "apT" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 4
 	},
 /area/lv624/ground/jungle8)
@@ -4253,7 +4253,7 @@
 /area/lv624/ground/river2)
 "aqd" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/lv624/ground/jungle8)
@@ -4268,7 +4268,7 @@
 	},
 /area/lv624/ground/river3)
 "aqh" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/lv624/ground/river3)
@@ -4303,7 +4303,7 @@
 /area/lv624/ground/jungle8)
 "aqq" = (
 /obj/structure/jungle/vines/heavy,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/jungle8)
 "aqr" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -4471,7 +4471,7 @@
 	},
 /area/lv624/ground/jungle7)
 "aro" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/lv624/ground/jungle7)
@@ -4481,7 +4481,7 @@
 	},
 /area/lv624/ground/jungle7)
 "arq" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
 /area/lv624/ground/jungle7)
@@ -4514,7 +4514,7 @@
 /area/lv624/ground/jungle5)
 "arz" = (
 /obj/structure/jungle/plantbot1/alien,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
 /area/lv624/ground/jungle5)
@@ -4618,7 +4618,7 @@
 	},
 /area/lv624/ground/river1)
 "arU" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/lv624/ground/river2)
@@ -4664,7 +4664,7 @@
 	},
 /area/lv624/ground/jungle5)
 "asj" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/lv624/ground/jungle5)
@@ -4775,7 +4775,7 @@
 "asM" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/fence,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
 /area/lv624/ground/jungle7)
@@ -4800,7 +4800,7 @@
 /area/lv624/ground/jungle7)
 "asR" = (
 /obj/structure/fence,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/lv624/ground/jungle7)
@@ -4921,7 +4921,7 @@
 "att" = (
 /obj/structure/jungle/vines,
 /obj/structure/jungle/vines/heavy,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/lv624/ground/jungle7)
@@ -4984,7 +4984,7 @@
 /turf/open/floor,
 /area/lv624/ground/jungle6)
 "atH" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/lv624/ground/jungle6)
@@ -5086,7 +5086,7 @@
 	},
 /area/lv624/ground/jungle8)
 "aud" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
 /area/lv624/ground/jungle8)
@@ -5101,7 +5101,7 @@
 	},
 /area/lv624/ground/river1)
 "aug" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/lv624/ground/river1)
@@ -5121,7 +5121,7 @@
 /area/lv624/ground/jungle6)
 "auj" = (
 /obj/machinery/colony_floodlight,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/lv624/ground/jungle6)
@@ -5158,10 +5158,10 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/ground/jungle7)
 "aur" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/jungle7)
 "aus" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 4
 	},
 /area/lv624/ground/jungle7)
@@ -5353,7 +5353,7 @@
 /area/lv624/ground/jungle7)
 "avi" = (
 /obj/structure/flora/ausbushes/fernybush,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/lv624/ground/jungle7)
@@ -5501,7 +5501,7 @@
 /area/lv624/ground/jungle6)
 "avR" = (
 /obj/structure/jungle/vines,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 4
 	},
 /area/lv624/ground/jungle6)
@@ -6032,7 +6032,7 @@
 /area/lv624/lazarus/hydroponics)
 "axL" = (
 /obj/structure/fence,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/lv624/ground/jungle9)
@@ -6157,7 +6157,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/ground/jungle5)
 "ayi" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/jungle5)
 "ayj" = (
 /obj/structure/jungle/vines,
@@ -6357,7 +6357,7 @@
 /area/lv624/ground/jungle5)
 "ayS" = (
 /obj/structure/jungle/vines,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/lv624/ground/jungle5)
@@ -6388,7 +6388,7 @@
 /turf/open/ground/river,
 /area/lv624/ground/river1)
 "ayY" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
 /area/lv624/ground/jungle6)
@@ -6399,7 +6399,7 @@
 /area/lv624/ground/jungle6)
 "aza" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/jungle6)
 "azb" = (
 /obj/item/shard,
@@ -6536,7 +6536,7 @@
 /area/lv624/ground/sand7)
 "azz" = (
 /obj/structure/fence,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/jungle9)
 "azA" = (
 /obj/structure/fence,
@@ -6608,11 +6608,11 @@
 /area/lv624/lazarus/quartstorage/outdoors)
 "azL" = (
 /obj/structure/fence,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/lazarus/quartstorage/outdoors)
 "azM" = (
 /obj/structure/fence,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 4
 	},
 /area/lv624/lazarus/quartstorage/outdoors)
@@ -6682,7 +6682,7 @@
 /area/lv624/ground/jungle7)
 "aAi" = (
 /obj/structure/jungle/vines,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
 /area/lv624/ground/jungle7)
@@ -6827,7 +6827,7 @@
 	},
 /area/lv624/ground/compound/n)
 "aAO" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/lv624/ground/compound/n)
@@ -6971,7 +6971,7 @@
 	},
 /area/lv624/lazarus/medbay)
 "aBs" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 4
 	},
 /area/lv624/ground/compound/n)
@@ -7064,7 +7064,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle5)
 "aBM" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 4
 	},
 /area/lv624/ground/jungle6)
@@ -7151,7 +7151,7 @@
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "aCe" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 4
 	},
 /area/lv624/ground/jungle5)
@@ -7164,14 +7164,8 @@
 /obj/structure/catwalk,
 /turf/open/ground/river,
 /area/lv624/ground/river1)
-"aCo" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/open/ground/coast/corner{
-	dir = 4
-	},
-/area/lv624/ground/jungle6)
 "aCp" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/jungle6)
 "aCq" = (
 /obj/item/weapon/claymore/mercsword/machete,
@@ -7204,7 +7198,7 @@
 	},
 /area/lv624/lazarus/medbay)
 "aCy" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/compound/n)
 "aCz" = (
 /obj/effect/landmark/monkey_spawn,
@@ -7378,7 +7372,7 @@
 /area/lv624/ground/river1)
 "aDx" = (
 /obj/machinery/colony_floodlight,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
 /area/lv624/ground/jungle6)
@@ -7488,7 +7482,7 @@
 	},
 /area/lv624/ground/jungle6)
 "aEf" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
 /area/lv624/ground/compound/n)
@@ -8190,7 +8184,7 @@
 /area/lv624/lazarus/quartstorage/outdoors)
 "aHu" = (
 /obj/structure/fence,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
 /area/lv624/lazarus/quartstorage/outdoors)
@@ -8388,7 +8382,7 @@
 /area/lv624/ground/river1)
 "aIk" = (
 /obj/structure/fence,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
 /area/lv624/ground/jungle6)
@@ -8936,7 +8930,7 @@
 /area/lv624/ground/compound/ne)
 "aKw" = (
 /obj/structure/fence,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
 /area/lv624/ground/compound/ne)
@@ -9068,7 +9062,7 @@
 "aLk" = (
 /obj/structure/jungle/vines,
 /obj/structure/jungle/vines/heavy,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/lv624/ground/jungle5)
@@ -9984,7 +9978,7 @@
 	},
 /area/lv624/ground/compound/c)
 "aOZ" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 4
 	},
 /area/lv624/ground/compound/c)
@@ -10146,7 +10140,7 @@
 /area/shuttle/drop2/lz2)
 "aPO" = (
 /obj/structure/flora/ausbushes/ywflowers,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
 /area/lv624/ground/jungle4)
@@ -10373,7 +10367,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle4)
 "aQL" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/lv624/ground/jungle4)
@@ -10580,7 +10574,7 @@
 /area/lv624/lazarus/robotics)
 "aRs" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 4
 	},
 /area/lv624/ground/jungle4)
@@ -10752,7 +10746,7 @@
 /area/lv624/ground/compound/c)
 "aSc" = (
 /obj/structure/fence,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
 /area/lv624/ground/compound/c)
@@ -10762,7 +10756,7 @@
 /area/lv624/ground/compound/c)
 "aSe" = (
 /obj/structure/fence,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/lv624/ground/compound/c)
@@ -11563,7 +11557,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "aVi" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/shuttle/drop1/lz1)
@@ -11576,7 +11570,7 @@
 /obj/structure/cargo_container/horizontal{
 	dir = 1
 	},
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
 /area/shuttle/drop1/lz1)
@@ -11855,7 +11849,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "aWG" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
 /area/lv624/ground/compound/c)
@@ -11940,7 +11934,7 @@
 /area/lv624/lazarus/quartstorage)
 "aWU" = (
 /obj/machinery/colony_floodlight,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 4
 	},
 /area/shuttle/drop1/lz1)
@@ -11952,7 +11946,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/shuttle/drop1/lz1)
 "aWX" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/shuttle/drop1/lz1)
 "aXb" = (
 /turf/open/floor,
@@ -14245,7 +14239,7 @@
 /area/lv624/lazarus/internal_affairs)
 "bfY" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/lv624/ground/compound/sw)
@@ -15214,7 +15208,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/shuttle/drop1/lz1)
@@ -15222,7 +15216,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/shuttle/drop1/lz1)
@@ -15233,7 +15227,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
 /area/shuttle/drop1/lz1)
@@ -15250,7 +15244,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/shuttle/drop1/lz1)
@@ -15258,7 +15252,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
 /area/shuttle/drop1/lz1)
@@ -15680,7 +15674,7 @@
 	},
 /area/lv624/lazarus/comms)
 "blN" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/lv624/lazarus/quartstorage/outdoors)
@@ -16252,7 +16246,7 @@
 /area/lv624/ground/compound/se)
 "bnZ" = (
 /obj/structure/fence,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 4
 	},
 /area/lv624/ground/compound/se)
@@ -16342,7 +16336,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "boo" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/jungle3)
 "bop" = (
 /obj/structure/rack,
@@ -16518,7 +16512,7 @@
 /area/lv624/ground/compound/se)
 "boR" = (
 /obj/machinery/colony_floodlight,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 4
 	},
 /area/lv624/ground/jungle9)
@@ -16559,7 +16553,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle1)
 "boZ" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 4
 	},
 /area/lv624/ground/jungle1)
@@ -16568,7 +16562,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/ground/jungle1)
 "bpb" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/jungle1)
 "bpe" = (
 /turf/open/floor/tile/whiteyellow/full,
@@ -16586,7 +16580,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "bph" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/lv624/ground/jungle3)
@@ -16751,7 +16745,7 @@
 /area/lv624/ground/jungle1)
 "bpS" = (
 /obj/structure/jungle/vines,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
 /area/lv624/ground/jungle1)
@@ -16764,7 +16758,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle1)
 "bpV" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/lv624/ground/jungle1)
@@ -17004,7 +16998,7 @@
 /area/lv624/ground/compound/se)
 "brb" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
 /area/lv624/ground/jungle1)
@@ -17393,7 +17387,7 @@
 /area/lv624/lazarus/atmos)
 "bHX" = (
 /obj/structure/jungle/vines/heavy,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/lv624/ground/jungle7)
@@ -17941,7 +17935,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle1)
 "hnZ" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
 /area/lv624/ground/compound/sw)
@@ -18300,7 +18294,7 @@
 /area/shuttle/drop2/lz2)
 "mdx" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/lv624/ground/jungle3)
@@ -18331,7 +18325,7 @@
 	},
 /area/lv624/lazarus/atmos)
 "mos" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/compound/sw)
 "mrh" = (
 /obj/docking_port/stationary/crashmode,
@@ -18976,7 +18970,7 @@
 /area/lv624/lazarus/atmos)
 "tes" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 4
 	},
 /area/lv624/ground/jungle6)
@@ -18995,7 +18989,7 @@
 /area/lv624/lazarus/atmos)
 "tqG" = (
 /obj/machinery/colony_floodlight,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/compound/sw)
 "tqW" = (
 /obj/effect/decal/cleanable/blood/drip,
@@ -24332,7 +24326,7 @@ aba
 aaT
 aba
 awj
-aCo
+ayo
 aEa
 avd
 auJ
@@ -36301,8 +36295,8 @@ ajz
 ajz
 ajz
 aqb
-alc
-ald
+alb
+aiJ
 arp
 arW
 ghv

@@ -103,7 +103,7 @@
 /turf/open/floor/mainship/silver/corner
 	icon_state = "silvercorner"
 
-/turf/open/floor/mainship/silverfull
+/turf/open/floor/mainship/silver/full
 	icon_state = "silverfull"
 
 /turf/open/floor/mainship/red

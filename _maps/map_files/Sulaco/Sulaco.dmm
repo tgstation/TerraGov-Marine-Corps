@@ -6735,10 +6735,7 @@
 	layer = 2
 	},
 /obj/machinery/door/airlock/mainship/generic,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tile/red/redtaupe,
 /area/sulaco/cafeteria)
 "auy" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
@@ -6878,9 +6875,8 @@
 /obj/structure/cable,
 /obj/machinery/door/poddoor/open/port,
 /obj/machinery/door/airlock/mainship/generic,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "cafeteria"
+/turf/open/floor/tile/red/redtaupe{
+	dir = 1
 	},
 /area/sulaco/cafeteria)
 "auP" = (
@@ -10648,11 +10644,6 @@
 	},
 /turf/open/floor/tile/lightred/full,
 /area/sulaco/brig)
-"aFP" = (
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 4
-	},
-/area/sulaco/research)
 "aFQ" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -10847,9 +10838,7 @@
 /area/sulaco/engineering/storage)
 "aGu" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 4
-	},
+/turf/open/floor/tile/white,
 /area/sulaco/research)
 "aGv" = (
 /obj/machinery/light/small{
@@ -12397,7 +12386,7 @@
 /area/sulaco/marine/alpha)
 "aLx" = (
 /obj/structure/prop/mainship/cannon_cable_connector,
-/turf/open/floor/tile/red/redtaupecorner{
+/turf/open/floor/mainship/red/corner{
 	dir = 4
 	},
 /area/mainship/shipboard/weapon_room)
@@ -16853,9 +16842,7 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 4
-	},
+/turf/open/floor/tile/white,
 /area/sulaco/research)
 "aZW" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden{
@@ -17769,6 +17756,17 @@
 	dir = 4
 	},
 /area/sulaco/maintenance/lower_maint2)
+"fCY" = (
+/obj/machinery/alarm{
+	dir = 4
+	},
+/turf/open/floor/tile/white,
+/area/sulaco/research)
+"fFq" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on,
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/sulaco/research)
 "fJz" = (
 /obj/structure/cable,
 /turf/open/space/basic,
@@ -17781,6 +17779,12 @@
 /obj/machinery/vending/marine/cargo_supply,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
+"gyA" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden,
+/obj/machinery/door/firedoor,
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/sulaco/research)
 "gGh" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/plasteel/small_stack,
@@ -17805,6 +17809,10 @@
 /obj/effect/decal/cleanable/cobweb2,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
+"ibF" = (
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/sulaco/research)
 "iqH" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/plasteel/small_stack,
@@ -17830,6 +17838,11 @@
 	icon_state = "floor4"
 	},
 /area/sulaco/bridge)
+"lfK" = (
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden,
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/sulaco/research)
 "lsj" = (
 /obj/structure/closet/crate/weapon,
 /turf/open/floor/mainship/mono,
@@ -17955,6 +17968,11 @@
 "vvh" = (
 /turf/closed/wall/sulaco/hull,
 /area/sulaco/bridge/office)
+"vFe" = (
+/obj/machinery/power/apc/mainship,
+/obj/structure/cable,
+/turf/open/floor/tile/white,
+/area/sulaco/research)
 "vJm" = (
 /obj/structure/rack,
 /obj/structure/ob_ammo/warhead/plasmaloss,
@@ -41570,7 +41588,7 @@ aDZ
 aEg
 aEJ
 aFv
-aFP
+aRI
 aZV
 aGu
 aQo
@@ -42600,7 +42618,7 @@ aFs
 aMh
 aPk
 aRI
-aRI
+fCY
 aGO
 aWA
 aVD
@@ -42856,9 +42874,9 @@ aRI
 aRI
 aRI
 aRI
-aST
-aSn
-aVO
+fFq
+lfK
+gyA
 aTg
 aVH
 aWr
@@ -43113,7 +43131,7 @@ aRI
 aRI
 aRI
 aRI
-aRI
+ibF
 aOW
 aRh
 aZW
@@ -43370,7 +43388,7 @@ aRh
 aRh
 aRh
 aZU
-aRI
+ibF
 aRI
 aHm
 aTi
@@ -43626,8 +43644,8 @@ aRG
 aSm
 aSX
 aRh
-aRI
-aRI
+vFe
+ibF
 aQk
 aRh
 aTm

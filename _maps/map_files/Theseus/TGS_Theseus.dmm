@@ -1069,7 +1069,10 @@
 "adt" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/marine_card,
-/turf/open/floor/carpet,
+/turf/open/floor/carpet{
+	dir = 1;
+	icon_state = "carpetside"
+	},
 /area/mainship/living/commandbunks)
 "adu" = (
 /obj/structure/table/mainship,
@@ -12936,7 +12939,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/emerald{
-	dir = 5
+	dir = 10
 	},
 /area/mainship/command/cic)
 "aKl" = (
@@ -34047,7 +34050,9 @@
 	height = 1;
 	id = "brigladder"
 	},
-/turf/open/floor/plating/mainship,
+/turf/open/floor/mainship/red{
+	dir = 10
+	},
 /area/mainship/hallways/hangar)
 "cht" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -37322,8 +37327,7 @@
 "qeY" = (
 /obj/structure/window/framed/mainship/white,
 /turf/open/floor/carpet{
-	dir = 9;
-	icon_state = "carpetside"
+	dir = 6
 	},
 /area/mainship/medical/upper_medical)
 "qfC" = (

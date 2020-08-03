@@ -1112,7 +1112,7 @@
 "gk" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/structure/cable,
-/turf/open/floor/tile/dark,
+/turf/open/floor/tile/dark/red2,
 /area/outpost/engineering/security)
 "gm" = (
 /obj/machinery/iv_drip,
@@ -2600,7 +2600,9 @@
 "ok" = (
 /obj/structure/table,
 /obj/item/tool/pen,
-/turf/open/floor/tile/dark,
+/turf/open/floor/tile/dark/red2{
+	dir = 8
+	},
 /area/outpost/engineering/security)
 "ol" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -3086,9 +3088,7 @@
 "qH" = (
 /obj/structure/table,
 /obj/effect/spawner/random/technology_scanner,
-/turf/open/floor/tile/dark/red2/corner{
-	dir = 4
-	},
+/turf/open/floor/tile/dark,
 /area/outpost/science/xenobiology)
 "qK" = (
 /obj/structure/closet/bombclosetsecurity,
@@ -4248,7 +4248,9 @@
 "xy" = (
 /obj/structure/filingcabinet/security,
 /obj/structure/cable,
-/turf/open/floor/tile/dark,
+/turf/open/floor/tile/dark/red2{
+	dir = 4
+	},
 /area/outpost/engineering/security)
 "xz" = (
 /obj/effect/decal/cleanable/blood/writing{
@@ -5413,7 +5415,9 @@
 "EL" = (
 /obj/structure/table,
 /obj/structure/paper_bin,
-/turf/open/floor/tile/dark,
+/turf/open/floor/tile/dark/red2{
+	dir = 9
+	},
 /area/outpost/engineering/security)
 "EM" = (
 /obj/structure/filingcabinet/filingcabinet,
@@ -5698,7 +5702,7 @@
 "Gs" = (
 /obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor/tile/dark/purple2{
-	dir = 1
+	dir = 9
 	},
 /area/outpost/science/rd_office)
 "Gu" = (
@@ -6280,7 +6284,9 @@
 	},
 /obj/item/trash/cigbutt/cigarbutt,
 /obj/item/radio,
-/turf/open/floor/tile/dark,
+/turf/open/floor/tile/dark/red2{
+	dir = 1
+	},
 /area/outpost/engineering/security)
 "JO" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -6810,7 +6816,7 @@
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /turf/open/floor/tile/dark/red2{
-	dir = 8
+	dir = 5
 	},
 /area/outpost/engineering/security)
 "MB" = (
@@ -7184,7 +7190,9 @@
 /obj/item/ammo_magazine/rifle/ak47,
 /obj/item/weapon/gun/rifle/ak47,
 /obj/item/attachable/flashlight,
-/turf/open/floor/tile/dark/red2,
+/turf/open/floor/tile/dark/red2{
+	dir = 6
+	},
 /area/outpost/engineering/security)
 "Oy" = (
 /obj/structure/cable,
@@ -8944,7 +8952,9 @@
 "XU" = (
 /obj/structure/table,
 /obj/item/trash/popcorn,
-/turf/open/floor/tile/dark,
+/turf/open/floor/tile/dark/red2{
+	dir = 10
+	},
 /area/outpost/engineering/security)
 "XX" = (
 /turf/open/floor/plating/ground/mars/random/cave,

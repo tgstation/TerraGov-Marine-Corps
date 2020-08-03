@@ -2490,21 +2490,21 @@
 /area/bigredv2/caves/lambda_lab)
 "aiX" = (
 /obj/machinery/computer/forensic_scanning,
-/turf/open/floor/animated/bcircuit,
+/turf/open/floor/rcircuit,
 /area/bigredv2/outside/marshal_office)
 "aiY" = (
-/turf/open/floor/animated/bcircuit,
+/turf/open/floor/rcircuit/off,
 /area/bigredv2/outside/marshal_office)
 "aiZ" = (
 /obj/machinery/computer/security,
 /obj/structure/table,
-/turf/open/floor/animated/bcircuit,
+/turf/open/floor/rcircuit,
 /area/bigredv2/outside/marshal_office)
 "aja" = (
 /obj/structure/table,
 /obj/item/ore/diamond,
 /obj/item/ore/uranium,
-/turf/open/floor/animated/bcircuit,
+/turf/open/floor/rcircuit/off,
 /area/bigredv2/outside/marshal_office)
 "ajb" = (
 /turf/open/floor/tile/red/redtaupecorner{
@@ -2647,7 +2647,7 @@
 "ajC" = (
 /obj/structure/table,
 /obj/item/radio/survivor,
-/turf/open/floor/animated/bcircuit,
+/turf/open/floor/rcircuit/off,
 /area/bigredv2/outside/marshal_office)
 "ajD" = (
 /obj/structure/table,
@@ -2828,7 +2828,7 @@
 "ake" = (
 /obj/structure/table,
 /obj/item/ore/uranium,
-/turf/open/floor/animated/bcircuit,
+/turf/open/floor/rcircuit/off,
 /area/bigredv2/outside/marshal_office)
 "akf" = (
 /obj/machinery/light{
@@ -10795,7 +10795,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aLK" = (
-/turf/open/floor/greengrid,
+/turf/open/floor/bcircuit/anim,
 /area/bigredv2/caves/lambda_lab)
 "aLL" = (
 /obj/structure/closet/l3closet/virology,
@@ -10991,21 +10991,18 @@
 /area/bigredv2/caves/lambda_lab)
 "aMr" = (
 /obj/machinery/computer3/server/rack,
-/turf/open/floor/greengrid,
-/area/bigredv2/caves/lambda_lab)
-"aMs" = (
-/turf/open/floor/bluegrid,
+/turf/open/floor/bcircuit/anim,
 /area/bigredv2/caves/lambda_lab)
 "aMt" = (
 /obj/effect/landmark/start/job/xenomorph,
 /obj/effect/alien/weeds/node,
-/turf/open/floor/bluegrid,
+/turf/open/floor/bcircuit/anim,
 /area/bigredv2/caves/lambda_lab)
 "aMu" = (
 /obj/structure/cryofeed/right{
 	name = "\improper coolant feed"
 	},
-/turf/open/floor/greengrid,
+/turf/open/floor/bcircuit/anim,
 /area/bigredv2/caves/lambda_lab)
 "aMw" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -11430,7 +11427,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aOo" = (
 /obj/structure/computer3frame,
-/turf/open/floor/greengrid,
+/turf/open/floor/bcircuit/anim,
 /area/bigredv2/caves/lambda_lab)
 "aOq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -16066,7 +16063,6 @@
 /area/bigredv2/outside/w)
 "bhA" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/landinglight/ds2/delaytwo,
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "bhD" = (
@@ -22134,12 +22130,6 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
-"qpW" = (
-/obj/machinery/landinglight/ds2{
-	dir = 1
-	},
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/sw)
 "qtI" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	on = 1
@@ -30716,7 +30706,7 @@ bev
 bdZ
 bdZ
 aVG
-beQ
+bhu
 bhA
 bie
 bie
@@ -30738,8 +30728,8 @@ bie
 bie
 bie
 bie
-buP
-qpW
+bsb
+bpv
 bpv
 bpv
 sWt
@@ -65404,7 +65394,7 @@ agQ
 aJK
 aHR
 aLI
-aMs
+aLK
 aLJ
 aOo
 afv
@@ -65622,7 +65612,7 @@ aJQ
 auy
 aLJ
 aMt
-aMs
+aLK
 aLK
 aPq
 aQw

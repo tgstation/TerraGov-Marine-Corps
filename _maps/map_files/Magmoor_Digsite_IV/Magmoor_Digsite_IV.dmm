@@ -113,7 +113,7 @@
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	name = "\improper Medical Clinic Operating Theatre"
 	},
-/turf/open/space/basic,
+/turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical)
 "ap" = (
 /obj/machinery/door/airlock/mainship/engineering/atmos{
@@ -196,6 +196,15 @@
 /obj/structure/sink,
 /turf/open/floor/prison/kitchen,
 /area/magmoor/engi/storage)
+"aJ" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
+	dir = 8
+	},
+/area/space)
 "aK" = (
 /obj/machinery/conveyor{
 	id = "lower_garbage"
@@ -658,6 +667,12 @@
 	dir = 1
 	},
 /area/space)
+"cB" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 4
+	},
+/area/space)
 "cD" = (
 /obj/structure/table/woodentable,
 /obj/item/tool/candle,
@@ -1076,7 +1091,7 @@
 /area/space)
 "dZ" = (
 /obj/machinery/navbeacon,
-/turf/open/floor/marking/delivery,
+/turf/open/floor/marking/delivery/white,
 /area/magmoor/medical/chemistry)
 "ea" = (
 /obj/structure/flora/ausbushes/grassybush,
@@ -1117,9 +1132,8 @@
 	},
 /area/magmoor/engi/power)
 "eg" = (
-/turf/open/floor/mainship{
-	dir = 8;
-	icon_state = "silvercorner"
+/turf/open/floor/mainship/silver/corner{
+	dir = 8
 	},
 /area/space)
 "eh" = (
@@ -1198,9 +1212,6 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/mess)
 "eA" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 10
-	},
 /obj/machinery/power/port_gen/pacman/super,
 /turf/open/floor/mainship/cargo,
 /area/magmoor/engi/storage)
@@ -1330,13 +1341,11 @@
 /area/space)
 "fa" = (
 /obj/structure/window/framed/colony/reinforced,
-/turf/open/space/basic,
+/turf/open/floor/mainship/mono,
 /area/magmoor/civilian/command)
 "fb" = (
 /obj/structure/flora/pottedplant/twentyone,
-/obj/structure/sign/nosmoking_2{
-	dir = 1
-	},
+/obj/structure/sign/pharmacy,
 /turf/open/floor/mainship/sterile/corner,
 /area/magmoor/medical)
 "fc" = (
@@ -1487,7 +1496,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/turf/open/floor/mainship,
+/turf/open/floor/mainship/floor,
 /area/space)
 "fF" = (
 /turf/open/floor/mainship/orange{
@@ -1748,9 +1757,6 @@
 /obj/machinery/light,
 /turf/open/floor/plating,
 /area/magmoor/engi/power)
-"gD" = (
-/turf/open/space/basic,
-/area/magmoor/medical)
 "gE" = (
 /obj/machinery/light{
 	dir = 1
@@ -1835,9 +1841,6 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/dorms)
 "gZ" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/mainship/cargo,
 /area/magmoor/engi/storage)
@@ -1964,9 +1967,8 @@
 	},
 /area/magmoor/civilian/bathrooms)
 "hF" = (
-/turf/open/floor/mainship{
-	dir = 4;
-	icon_state = "silver"
+/turf/open/floor/mainship/silver{
+	dir = 4
 	},
 /area/space)
 "hG" = (
@@ -2083,6 +2085,12 @@
 /obj/machinery/vending/coffee,
 /turf/open/floor/wood,
 /area/magmoor/civilian/command)
+"id" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/plating/mainship,
+/area/magmoor/engi/storage)
 "ie" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
@@ -2122,10 +2130,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/power)
-"ij" = (
-/obj/structure/window/framed/colony,
-/turf/open/space/basic,
-/area/magmoor/medical)
 "ik" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -2198,9 +2202,8 @@
 /turf/open/floor/freezer,
 /area/magmoor/civilian/cook)
 "iE" = (
-/turf/open/floor/mainship{
-	dir = 9;
-	icon_state = "silver"
+/turf/open/floor/mainship/white{
+	dir = 9
 	},
 /area/space)
 "iF" = (
@@ -2344,9 +2347,8 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/security/infocenter)
 "jc" = (
-/turf/open/floor/mainship{
-	dir = 10;
-	icon_state = "silver"
+/turf/open/floor/mainship/white{
+	dir = 10
 	},
 /area/space)
 "je" = (
@@ -2429,7 +2431,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/mainship,
+/turf/open/floor/mainship/floor,
 /area/space)
 "jv" = (
 /obj/structure/reagent_dispensers/watertank,
@@ -2497,11 +2499,6 @@
 	},
 /turf/open/floor/freezer,
 /area/magmoor/civilian/bathrooms)
-"jM" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/machinery/light/small,
-/turf/open/ground/grass,
-/area/space)
 "jN" = (
 /obj/structure/flora/ausbushes/sunnybush,
 /turf/open/floor/grass,
@@ -2610,11 +2607,20 @@
 	dir = 4
 	},
 /area/space)
+"km" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/turf/open/floor/plating/mainship,
+/area/magmoor/engi/storage)
 "kn" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/turf/open/floor/mainship,
+/turf/open/floor/mainship/floor,
 /area/space)
 "ko" = (
 /obj/machinery/power/terminal{
@@ -2723,6 +2729,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/space)
+"kQ" = (
+/obj/machinery/light/small,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2,
+/area/space)
 "kR" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -2730,6 +2740,9 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/magmoor/civilian/chapel)
+"kS" = (
+/turf/open/floor/plating/ground/asphaltlines/edge,
+/area/space)
 "kT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -2768,7 +2781,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
-/turf/open/floor/mainship,
+/turf/open/floor/mainship/floor,
 /area/space)
 "la" = (
 /turf/open/lavaland/lava/side{
@@ -2856,6 +2869,12 @@
 "lq" = (
 /obj/structure/cargo_container/red,
 /turf/open/space/basic,
+/area/space)
+"lr" = (
+/obj/machinery/portable_atmospherics/hydroponics,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
+	dir = 1
+	},
 /area/space)
 "lt" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
@@ -3010,18 +3029,6 @@
 /obj/structure/largecrate/chick,
 /turf/open/floor/freezer,
 /area/space)
-"lW" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark/blue2{
-	dir = 1
-	},
-/area/magmoor/civilian/command)
 "lX" = (
 /obj/machinery/faxmachine,
 /obj/structure/table/reinforced,
@@ -3348,12 +3355,6 @@
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/mainship/orange/corner,
 /area/space)
-"nl" = (
-/obj/structure/disposalpipe/segment/corner{
-	dir = 1
-	},
-/turf/open/space/basic,
-/area/magmoor/engi/power)
 "nm" = (
 /obj/machinery/atmospherics/components/unary/tank/oxygen,
 /obj/machinery/light{
@@ -3480,6 +3481,11 @@
 	dir = 5
 	},
 /area/magmoor/engi/atmos)
+"nK" = (
+/turf/open/floor/mainship/silver{
+	dir = 6
+	},
+/area/space)
 "nL" = (
 /obj/structure/rack,
 /obj/item/explosive/plastique,
@@ -3567,9 +3573,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile,
 /area/magmoor/medical)
-"ob" = (
-/turf/open/floor/carpet/edge2,
-/area/space)
 "oc" = (
 /obj/machinery/landinglight/ds2/delaytwo,
 /turf/open/floor/mainship/mono,
@@ -3577,6 +3580,9 @@
 "of" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
 	},
 /turf/open/floor/plating/mainship,
 /area/magmoor/engi/storage)
@@ -4623,9 +4629,6 @@
 /turf/open/floor/mainship/mono,
 /area/space)
 "sm" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
 /obj/machinery/power/port_gen/pacman,
 /turf/open/floor/mainship/cargo,
 /area/magmoor/engi/storage)
@@ -4806,9 +4809,8 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/mess)
 "tb" = (
-/turf/open/floor/mainship{
-	dir = 6;
-	icon_state = "silver"
+/turf/open/floor/mainship/white{
+	dir = 6
 	},
 /area/space)
 "tc" = (
@@ -5014,9 +5016,6 @@
 /turf/open/floor/plating,
 /area/magmoor/engi/power)
 "tK" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
 /obj/structure/table/mainship,
 /obj/machinery/cell_charger,
 /obj/effect/spawner/random/powercell,
@@ -5555,6 +5554,12 @@
 /obj/machinery/vending/cigarette,
 /turf/open/floor/mainship/mono,
 /area/magmoor/security/infocenter)
+"vK" = (
+/obj/machinery/portable_atmospherics/hydroponics,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
+	dir = 4
+	},
+/area/space)
 "vL" = (
 /obj/machinery/landinglight/ds1/delaythree{
 	dir = 1
@@ -5897,6 +5902,9 @@
 	dir = 1;
 	on = 1
 	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
 /turf/open/floor/plating/mainship,
 /area/magmoor/engi/storage)
 "xf" = (
@@ -6069,9 +6077,6 @@
 	},
 /area/space)
 "xJ" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 9
-	},
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/mainship/cargo,
 /area/magmoor/engi/storage)
@@ -6229,6 +6234,11 @@
 	},
 /turf/open/floor/mainship/green{
 	dir = 9
+	},
+/area/space)
+"yj" = (
+/turf/open/floor/mainship/silver{
+	dir = 5
 	},
 /area/space)
 "yn" = (
@@ -6575,6 +6585,9 @@
 	dir = 5
 	},
 /area/magmoor/civilian/jani)
+"zA" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/area/space)
 "zB" = (
 /obj/structure/table/mainship,
 /obj/machinery/light/built{
@@ -6660,9 +6673,6 @@
 /turf/open/floor/freezer,
 /area/magmoor/civilian/bar)
 "zS" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/toolbox,
 /obj/machinery/light{
@@ -6670,6 +6680,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/storage)
+"zT" = (
+/obj/structure/cargo_container/nt{
+	dir = 4
+	},
+/turf/open/floor/mainship/floor,
+/area/space)
 "zU" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -6681,17 +6697,6 @@
 	dir = 10
 	},
 /area/magmoor/civilian/bathrooms)
-"zV" = (
-/obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access{
-	name = "\improper Colony Offices"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
-/turf/open/floor/tile/dark/blue2{
-	dir = 8
-	},
-/area/magmoor/civilian/command)
 "zW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -6709,9 +6714,8 @@
 /turf/open/floor/plating,
 /area/space)
 "zY" = (
-/turf/open/floor/mainship{
-	dir = 4;
-	icon_state = "silvercorner"
+/turf/open/floor/mainship/silver/corner{
+	dir = 4
 	},
 /area/space)
 "zZ" = (
@@ -6810,9 +6814,6 @@
 /turf/open/floor/plating,
 /area/magmoor/security/infocenter)
 "Aq" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/tool,
 /turf/open/floor/mainship/mono,
@@ -6824,6 +6825,16 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
+/area/space)
+"At" = (
+/obj/machinery/portable_atmospherics/hydroponics,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2,
+/area/space)
+"Au" = (
+/obj/machinery/portable_atmospherics/hydroponics,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
+	dir = 8
+	},
 /area/space)
 "Av" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -7128,6 +7139,11 @@
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/sterile/corner,
 /area/magmoor/medical/chemistry)
+"BE" = (
+/turf/open/floor/mainship/silver{
+	dir = 10
+	},
+/area/space)
 "BF" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -7222,9 +7238,8 @@
 	},
 /area/magmoor/security/infocenter)
 "BU" = (
-/turf/open/floor/mainship{
-	dir = 5;
-	icon_state = "silver"
+/turf/open/floor/mainship/white{
+	dir = 5
 	},
 /area/space)
 "BV" = (
@@ -7252,7 +7267,9 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/ground/grass,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
+	dir = 1
+	},
 /area/space)
 "Ca" = (
 /obj/structure/cable,
@@ -7395,6 +7412,10 @@
 	},
 /turf/open/floor/freezer,
 /area/magmoor/civilian/bathrooms)
+"Cz" = (
+/obj/structure/cargo_container/hd_blue,
+/turf/open/floor/mainship/mono,
+/area/space)
 "CA" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -7448,7 +7469,9 @@
 /turf/open/floor/plating,
 /area/magmoor/engi/power)
 "CK" = (
-/obj/structure/disposalpipe/down,
+/obj/structure/disposalpipe/water_pipe{
+	dir = 1
+	},
 /turf/open/lavaland/lava,
 /area/space)
 "CL" = (
@@ -7928,16 +7951,7 @@
 	},
 /area/magmoor/medical)
 "EK" = (
-/turf/open/floor/mainship{
-	icon_state = "silver"
-	},
-/area/space)
-"EL" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/open/ground/grass,
+/turf/open/floor/mainship/white,
 /area/space)
 "EM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -7997,6 +8011,11 @@
 /obj/structure/girder,
 /turf/open/space/basic,
 /area/space)
+"EX" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 8
+	},
+/area/space)
 "EY" = (
 /obj/structure/window/reinforced/tinted{
 	dir = 4
@@ -8024,6 +8043,15 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/security)
+"Fc" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/plating/mainship,
+/area/magmoor/engi/storage)
 "Fe" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
@@ -8051,9 +8079,6 @@
 	dir = 4
 	},
 /turf/open/floor/freezer,
-/area/space)
-"Fk" = (
-/turf/open/floor/carpet,
 /area/space)
 "Fl" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -8463,8 +8488,8 @@
 	},
 /area/magmoor/engi/storage)
 "GF" = (
-/obj/structure/disposalpipe/down{
-	dir = 8
+/obj/structure/disposalpipe/water_pipe{
+	dir = 4
 	},
 /turf/open/lavaland/lava,
 /area/space)
@@ -8502,7 +8527,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/mainship,
+/turf/open/floor/mainship/floor,
 /area/space)
 "GN" = (
 /obj/structure/largecrate/supply/supplies/mre,
@@ -8670,6 +8695,12 @@
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/magmoor/civilian/chapel)
+"Ho" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 2
+	},
+/turf/open/floor/plating/mainship,
+/area/magmoor/engi/storage)
 "Hq" = (
 /obj/structure/flora/pottedplant{
 	icon_state = "plant-18"
@@ -8804,6 +8835,11 @@
 "HT" = (
 /turf/open/ground/coast/corner2{
 	dir = 2
+	},
+/area/space)
+"HU" = (
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 4
 	},
 /area/space)
 "HV" = (
@@ -9077,6 +9113,15 @@
 	dir = 6
 	},
 /area/space)
+"IW" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/mainship/floor,
+/area/space)
 "IY" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
@@ -9213,6 +9258,12 @@
 /obj/structure/table/mainship,
 /turf/open/floor/freezer,
 /area/magmoor/civilian/bathrooms)
+"JB" = (
+/obj/structure/cargo_container/hd_blue{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/space)
 "JC" = (
 /turf/open/space/basic,
 /area/space)
@@ -9540,7 +9591,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/mainship,
+/turf/open/floor/mainship/floor,
 /area/space)
 "KW" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -9793,7 +9844,7 @@
 	dir = 4;
 	name = "\improper Colony Security Checkpoint"
 	},
-/turf/open/space/basic,
+/turf/open/floor/mainship/mono,
 /area/magmoor/security/storage)
 "Mj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -9861,7 +9912,9 @@
 /area/space)
 "Mr" = (
 /obj/machinery/light/small,
-/turf/open/ground/grass,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
+	dir = 4
+	},
 /area/space)
 "Mt" = (
 /obj/structure/cable,
@@ -9927,7 +9980,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/floor/mainship,
+/turf/open/floor/mainship/floor,
 /area/space)
 "MG" = (
 /turf/open/floor/mainship/sterile/side{
@@ -10116,6 +10169,11 @@
 	dir = 8
 	},
 /area/space)
+"No" = (
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 8
+	},
+/area/space)
 "Np" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/wood,
@@ -10134,9 +10192,6 @@
 	},
 /area/space)
 "Ns" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
 /obj/machinery/portable_atmospherics/scrubber/huge,
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/storage)
@@ -10313,9 +10368,6 @@
 /turf/open/space/basic,
 /area/space)
 "Oa" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
 /obj/machinery/portable_atmospherics/scrubber,
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/storage)
@@ -10436,9 +10488,8 @@
 /area/magmoor/civilian/command)
 "OB" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
-/turf/open/floor/mainship{
-	dir = 8;
-	icon_state = "silver"
+/turf/open/floor/mainship/silver{
+	dir = 8
 	},
 /area/space)
 "OC" = (
@@ -10453,9 +10504,6 @@
 	},
 /area/space)
 "OG" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
 /turf/open/floor/mainship/cargo,
 /area/magmoor/engi/storage)
 "OI" = (
@@ -10979,6 +11027,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/command)
+"QI" = (
+/obj/effect/decal/warning_stripes/thin,
+/turf/open/floor/mainship/floor,
+/area/space)
 "QJ" = (
 /obj/structure/cable,
 /obj/effect/decal/warning_stripes/thin{
@@ -11013,6 +11065,12 @@
 	dir = 9
 	},
 /area/magmoor/civilian/bathrooms)
+"QP" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/plating/mainship,
+/area/magmoor/engi/storage)
 "QQ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
@@ -11023,9 +11081,8 @@
 /turf/open/floor/mainship/mono,
 /area/space)
 "QR" = (
-/turf/open/floor/mainship{
-	dir = 1;
-	icon_state = "silvercorner"
+/turf/open/floor/mainship/silver/corner{
+	dir = 1
 	},
 /area/space)
 "QS" = (
@@ -11093,6 +11150,12 @@
 	dir = 1
 	},
 /area/magmoor/civilian/dorms)
+"Rc" = (
+/obj/structure/cargo_container/hd_blue{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/space)
 "Rd" = (
 /turf/open/floor/mainship/mono,
 /area/magmoor/security/infocenter)
@@ -11209,9 +11272,8 @@
 	},
 /area/space)
 "RC" = (
-/turf/open/floor/mainship{
-	dir = 8;
-	icon_state = "silver"
+/turf/open/floor/mainship/silver{
+	dir = 8
 	},
 /area/space)
 "RD" = (
@@ -11254,9 +11316,8 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/command)
 "RL" = (
-/turf/open/floor/mainship{
-	dir = 1;
-	icon_state = "silver"
+/turf/open/floor/mainship/white{
+	dir = 1
 	},
 /area/space)
 "RM" = (
@@ -11363,6 +11424,9 @@
 	dir = 9
 	},
 /area/space)
+"So" = (
+/turf/open/floor/mainship/silver,
+/area/space)
 "Sq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -11386,6 +11450,9 @@
 	id = "garbage"
 	},
 /turf/open/floor/mainship/mono,
+/area/space)
+"Su" = (
+/turf/open/floor/mainship/floor,
 /area/space)
 "Sv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -11415,7 +11482,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/mainship/sterile/dark,
+/turf/open/floor/wood,
 /area/magmoor/medical)
 "Sy" = (
 /obj/structure/window/reinforced,
@@ -11617,9 +11684,7 @@
 /turf/open/floor/prison/kitchen,
 /area/magmoor/engi/storage)
 "Tz" = (
-/turf/open/floor/mainship{
-	icon_state = "silvercorner"
-	},
+/turf/open/floor/mainship/silver/corner,
 /area/space)
 "TA" = (
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -11800,15 +11865,6 @@
 	dir = 2
 	},
 /area/magmoor/medical)
-"Uj" = (
-/obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	name = "\improper Medical Clinic Treatment"
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/structure/cable,
-/turf/open/space/basic,
-/area/magmoor/medical)
 "Uk" = (
 /obj/machinery/power/apc/drained{
 	dir = 8
@@ -11858,6 +11914,9 @@
 	dir = 8
 	},
 /area/magmoor/civilian/command)
+"Uu" = (
+/turf/open/floor/plating/ground/asphaltlines,
+/area/space)
 "Uv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -11875,11 +11934,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/magmoor/security/infocenter)
-"Uy" = (
-/turf/open/floor/tile/dark/blue2{
-	dir = 4
-	},
-/area/magmoor/civilian/command)
 "Uz" = (
 /turf/open/floor/mainship/green{
 	dir = 9
@@ -12138,9 +12192,6 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/command)
 "VA" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
 /obj/machinery/portable_atmospherics/pump,
 /turf/open/floor/mainship/cargo,
 /area/magmoor/engi/storage)
@@ -12163,6 +12214,11 @@
 	dir = 5
 	},
 /turf/open/floor/mainship/mono,
+/area/space)
+"VF" = (
+/turf/open/floor/mainship/silver{
+	dir = 9
+	},
 /area/space)
 "VI" = (
 /obj/structure/filingcabinet/medical,
@@ -12444,12 +12500,6 @@
 "WK" = (
 /turf/open/floor/freezer,
 /area/space)
-"WL" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/magmoor/engi/storage)
 "WO" = (
 /obj/structure/rack,
 /obj/item/explosive/grenade/incendiary{
@@ -12751,6 +12801,12 @@
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical)
+"XR" = (
+/obj/structure/cargo_container/nt{
+	dir = 8
+	},
+/turf/open/floor/mainship/floor,
+/area/space)
 "XS" = (
 /turf/open/floor/wood,
 /area/magmoor/civilian/chapel)
@@ -12788,6 +12844,11 @@
 	},
 /obj/machinery/floodlight/landing,
 /turf/open/floor/mainship/mono,
+/area/space)
+"Yc" = (
+/turf/open/floor/mainship/silver{
+	dir = 1
+	},
 /area/space)
 "Yd" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -13114,8 +13175,8 @@
 	},
 /area/magmoor/security/storage)
 "Zj" = (
-/obj/structure/disposalpipe/down{
-	dir = 4
+/obj/structure/disposalpipe/water_pipe{
+	dir = 8
 	},
 /turf/open/lavaland/lava,
 /area/space)
@@ -18598,8 +18659,8 @@ rb
 rb
 mw
 mw
-EL
-eO
+BY
+No
 Mr
 mw
 mw
@@ -18622,7 +18683,7 @@ JC
 mw
 mw
 BY
-eO
+No
 Mr
 mw
 mw
@@ -18854,11 +18915,11 @@ JC
 JC
 JC
 pw
-Hu
-eO
+lr
+cB
 gf
-eO
-Vt
+Tj
+vK
 pw
 JC
 JC
@@ -18877,11 +18938,11 @@ JC
 JC
 JC
 pw
-Hu
-Zr
+lr
+cB
 gf
-eO
-Vt
+Tj
+vK
 pw
 JC
 JC
@@ -19113,7 +19174,7 @@ JC
 pw
 dz
 eO
-eO
+Zr
 eO
 le
 pw
@@ -19371,7 +19432,7 @@ pw
 Hu
 eO
 gf
-Zr
+eO
 Vt
 pw
 JC
@@ -19627,8 +19688,8 @@ JC
 pw
 dz
 eO
-Zr
 eO
+Zr
 le
 pw
 JC
@@ -19882,11 +19943,11 @@ JC
 JC
 JC
 pw
-Hu
-eO
+Au
+EX
 gf
-eO
-Vt
+zA
+At
 pw
 JC
 JC
@@ -19905,11 +19966,11 @@ JC
 JC
 JC
 pw
-Hu
-eO
+Au
+EX
 gf
-eO
-Vt
+zA
+At
 pw
 JC
 JC
@@ -20140,9 +20201,9 @@ JC
 JC
 mw
 mw
-BY
-Zr
-Mr
+aJ
+HU
+kQ
 mw
 mw
 JC
@@ -20163,9 +20224,9 @@ JC
 JC
 mw
 mw
-EL
-eO
-Mr
+aJ
+HU
+kQ
 mw
 mw
 JC
@@ -22706,7 +22767,7 @@ JC
 mw
 mw
 BY
-Zr
+No
 Mr
 mw
 mw
@@ -22739,8 +22800,8 @@ JC
 mw
 mw
 BY
-eO
-jM
+No
+Mr
 mw
 mw
 JC
@@ -22961,11 +23022,11 @@ JC
 JC
 JC
 pw
-Hu
-eO
+lr
+cB
 gf
-Zr
-Vt
+Tj
+vK
 pw
 JC
 JC
@@ -22994,11 +23055,11 @@ mw
 JC
 JC
 pw
-Hu
-eO
+lr
+cB
 gf
-eO
-Vt
+Tj
+vK
 pw
 JC
 JC
@@ -23220,7 +23281,7 @@ JC
 pw
 dz
 eO
-eO
+Zr
 eO
 le
 pw
@@ -23252,9 +23313,9 @@ JC
 JC
 pw
 dz
-Zr
 eO
 Zr
+eO
 le
 pw
 JC
@@ -23733,7 +23794,7 @@ JC
 JC
 pw
 dz
-Zr
+eO
 eO
 Zr
 le
@@ -23989,11 +24050,11 @@ JC
 JC
 JC
 pw
-Hu
-eO
+Au
+EX
 gf
-eO
-Vt
+zA
+At
 pw
 JC
 JC
@@ -24022,11 +24083,11 @@ JC
 JC
 JC
 pw
-Hu
-eO
+Au
+EX
 gf
-eO
-Vt
+zA
+At
 pw
 JC
 JC
@@ -24247,9 +24308,9 @@ JC
 JC
 mw
 mw
-BY
-eO
-Mr
+aJ
+HU
+kQ
 mw
 mw
 JC
@@ -24280,9 +24341,9 @@ JC
 JC
 mw
 mw
-BY
-eO
-Mr
+aJ
+HU
+kQ
 mw
 mw
 JC
@@ -26560,9 +26621,9 @@ JC
 JC
 mw
 mw
-EL
-eO
-jM
+BY
+No
+Mr
 mw
 mw
 JC
@@ -26594,7 +26655,7 @@ JC
 mw
 mw
 BY
-eO
+No
 Mr
 mw
 mw
@@ -26816,11 +26877,11 @@ JC
 JC
 JC
 pw
-Hu
-eO
+lr
+cB
 gf
-eO
-Vt
+Tj
+vK
 pw
 JC
 JC
@@ -26849,11 +26910,11 @@ JC
 JC
 JC
 pw
-Hu
-eO
+lr
+cB
 gf
-Zr
-Vt
+Tj
+vK
 pw
 JC
 JC
@@ -27074,8 +27135,8 @@ JC
 JC
 pw
 dz
-Zr
 eO
+Zr
 eO
 le
 pw
@@ -27107,8 +27168,8 @@ JC
 JC
 pw
 dz
-Zr
 eO
+Zr
 eO
 le
 pw
@@ -27366,7 +27427,7 @@ pw
 Hu
 eO
 gf
-Zr
+eO
 Vt
 pw
 JC
@@ -27844,11 +27905,11 @@ JC
 JC
 JC
 pw
-Hu
-Zr
+Au
+EX
 gf
-eO
-Vt
+zA
+At
 pw
 JC
 JC
@@ -27877,11 +27938,11 @@ JC
 JC
 JC
 pw
-Hu
-eO
+Au
+EX
 gf
-eO
-Vt
+zA
+At
 pw
 JC
 JC
@@ -28102,9 +28163,9 @@ JC
 JC
 mw
 mw
-BY
-eO
-Mr
+aJ
+HU
+kQ
 mw
 mw
 JC
@@ -28135,9 +28196,9 @@ JC
 JC
 mw
 mw
-BY
-eO
-Mr
+aJ
+HU
+kQ
 mw
 mw
 JC
@@ -32764,7 +32825,7 @@ jY
 YW
 cz
 NA
-Ah
+Su
 NA
 cz
 Mq
@@ -33264,8 +33325,8 @@ JC
 mw
 Yp
 oT
-Ah
-HF
+Su
+XR
 nd
 gJ
 WJ
@@ -33779,7 +33840,7 @@ mw
 RM
 oT
 TQ
-sc
+zT
 kk
 Ds
 Gt
@@ -34576,7 +34637,7 @@ jY
 jY
 eM
 jY
-gA
+QI
 eW
 JC
 JC
@@ -35070,7 +35131,7 @@ PY
 sE
 PY
 PY
-ik
+IW
 pz
 Lm
 Lm
@@ -38155,7 +38216,7 @@ JC
 JC
 JC
 JC
-JC
+cn
 JC
 JC
 JC
@@ -38410,9 +38471,9 @@ RD
 Os
 JC
 JC
-JC
-JC
-JC
+cn
+kS
+cn
 JC
 JC
 JC
@@ -38668,7 +38729,7 @@ Fq
 JC
 JC
 JC
-JC
+kS
 cn
 JC
 JC
@@ -38924,8 +38985,8 @@ HA
 Fq
 JC
 JC
-JC
-JC
+Uu
+kS
 cn
 HE
 lQ
@@ -39181,8 +39242,8 @@ tf
 Os
 JC
 JC
-JC
-JC
+Uu
+kS
 cn
 HE
 lQ
@@ -39438,7 +39499,7 @@ om
 Os
 JC
 JC
-JC
+Uu
 JC
 cn
 HE
@@ -39697,7 +39758,7 @@ JC
 JC
 JC
 JC
-JC
+cn
 JC
 JC
 JC
@@ -40737,10 +40798,10 @@ JC
 mw
 mw
 mw
-iE
+VF
 RC
 RC
-jc
+BE
 mw
 mw
 mw
@@ -40992,14 +41053,14 @@ fq
 mw
 fq
 mw
-iE
+VF
 RC
 QR
 jY
 jY
 eg
 RC
-jc
+BE
 mw
 fq
 mw
@@ -41244,7 +41305,7 @@ JC
 JC
 JC
 fq
-iE
+VF
 RC
 RC
 RC
@@ -41261,7 +41322,7 @@ RC
 RC
 RC
 RC
-jc
+BE
 fq
 JC
 JC
@@ -41501,7 +41562,7 @@ JC
 JC
 JC
 OB
-QR
+jY
 jY
 jY
 jY
@@ -41765,10 +41826,10 @@ jY
 jY
 jY
 Tz
-jc
+BE
 RC
 RC
-iE
+VF
 zY
 jY
 jY
@@ -42015,24 +42076,24 @@ JC
 JC
 JC
 mw
-RL
+Yc
 jY
 jY
 jY
 jY
 jY
-RL
+Yc
 mw
 fq
 fq
 mw
-EK
+So
 jY
 jY
 jY
 jY
 jY
-EK
+So
 mw
 JC
 JC
@@ -42279,10 +42340,10 @@ jY
 jY
 jY
 eg
-tb
+nK
 hF
 hF
-BU
+yj
 QR
 jY
 jY
@@ -42529,7 +42590,7 @@ JC
 JC
 JC
 hF
-zY
+jY
 jY
 jY
 jY
@@ -42786,7 +42847,7 @@ JC
 JC
 JC
 fq
-BU
+yj
 hF
 hF
 hF
@@ -42803,7 +42864,7 @@ hF
 hF
 hF
 hF
-tb
+nK
 fq
 JC
 JC
@@ -43048,14 +43109,14 @@ fq
 mw
 fq
 mw
-BU
+yj
 hF
 zY
 jY
 jY
 Tz
 hF
-tb
+nK
 mw
 fq
 mw
@@ -43307,10 +43368,10 @@ JC
 mw
 mw
 mw
-BU
+yj
 hF
 hF
-tb
+nK
 mw
 mw
 JC
@@ -48661,7 +48722,7 @@ mU
 TZ
 xi
 HW
-nl
+mv
 JC
 JC
 JC
@@ -50158,7 +50219,7 @@ ZO
 NB
 pP
 Gr
-Uj
+FX
 JC
 JC
 JC
@@ -50415,7 +50476,7 @@ FU
 UV
 LV
 os
-gD
+AK
 JC
 JC
 JC
@@ -52966,7 +53027,7 @@ Ud
 pp
 Iu
 ZC
-ij
+et
 Cx
 fH
 vN
@@ -54020,7 +54081,7 @@ JC
 Te
 Te
 Te
-lW
+Oo
 kW
 Te
 Te
@@ -54787,7 +54848,7 @@ JC
 JC
 JC
 JC
-zV
+Cp
 cv
 tA
 xg
@@ -54838,7 +54899,7 @@ oV
 JC
 lO
 sm
-bg
+QP
 bg
 cQ
 hj
@@ -55044,7 +55105,7 @@ JC
 JC
 JC
 JC
-Uy
+nc
 ZQ
 lc
 Xb
@@ -55095,11 +55156,11 @@ oV
 JC
 lO
 Oa
-bg
+QP
 bg
 KH
 PC
-bg
+Ho
 Ns
 lO
 JC
@@ -55352,12 +55413,12 @@ oV
 JC
 lO
 Oa
-bg
-bg
-bg
+Fc
+id
+id
 of
-bg
-WL
+km
+BG
 Vp
 JC
 JC
@@ -59701,7 +59762,7 @@ JC
 JC
 JC
 JC
-Fk
+JC
 JC
 JC
 JC
@@ -59956,9 +60017,9 @@ JC
 JC
 JC
 JC
-Fk
-Fk
-Fk
+JC
+JC
+JC
 JC
 JC
 JC
@@ -60212,14 +60273,14 @@ JC
 JC
 JC
 JC
-Fk
-Fk
 JC
 JC
 JC
 JC
-Fk
-Fk
+JC
+JC
+JC
+JC
 JC
 JC
 JC
@@ -60470,12 +60531,12 @@ JC
 JC
 JC
 JC
-Fk
 JC
 JC
 JC
 JC
-Fk
+JC
+JC
 JC
 JC
 JC
@@ -60726,9 +60787,9 @@ JC
 JC
 JC
 JC
-Fk
-Fk
-Fk
+JC
+JC
+JC
 JC
 JC
 JC
@@ -61239,16 +61300,16 @@ JC
 JC
 JC
 JC
-Fk
-Fk
-Fk
 JC
 JC
 JC
 JC
-Fk
 JC
-Fk
+JC
+JC
+JC
+JC
+JC
 JC
 JC
 JC
@@ -61497,15 +61558,15 @@ JC
 JC
 JC
 JC
-Fk
-Fk
 JC
-Fk
 JC
-Fk
-Fk
 JC
-Fk
+JC
+JC
+JC
+JC
+JC
+JC
 JC
 JC
 JC
@@ -61750,14 +61811,14 @@ JC
 JC
 JC
 JC
-Fk
-Fk
 JC
 JC
 JC
-Fk
 JC
-Fk
+JC
+JC
+JC
+JC
 JC
 JC
 JC
@@ -62008,7 +62069,7 @@ JC
 JC
 JC
 JC
-Fk
+JC
 JC
 JC
 JC
@@ -62264,11 +62325,11 @@ JC
 JC
 JC
 JC
-Fk
-Fk
-Fk
-Fk
-Fk
+JC
+JC
+JC
+JC
+JC
 JC
 JC
 JC
@@ -62478,7 +62539,7 @@ LK
 eW
 kn
 Co
-mK
+Cz
 xc
 eX
 Ed
@@ -62520,16 +62581,16 @@ JC
 JC
 JC
 JC
-Fk
-Fk
-Fk
 JC
 JC
 JC
 JC
 JC
-Fk
-Fk
+JC
+JC
+JC
+JC
+JC
 JC
 JC
 JC
@@ -62735,7 +62796,7 @@ LK
 eW
 NC
 Co
-ng
+Rc
 Co
 Co
 Co
@@ -62778,15 +62839,15 @@ JC
 JC
 JC
 JC
-Fk
-Fk
-Fk
-Fk
-Fk
 JC
 JC
-Fk
-Fk
+JC
+JC
+JC
+JC
+JC
+JC
+JC
 JC
 JC
 JC
@@ -62992,7 +63053,7 @@ GK
 zl
 eh
 Co
-iP
+JB
 Pq
 Jv
 bQ
@@ -63036,7 +63097,7 @@ JC
 JC
 JC
 JC
-Fk
+JC
 JC
 JC
 JC
@@ -63292,9 +63353,9 @@ JC
 JC
 JC
 JC
-Fk
-Fk
-Fk
+JC
+JC
+JC
 JC
 JC
 JC
@@ -63550,7 +63611,7 @@ JC
 JC
 JC
 JC
-Fk
+JC
 JC
 JC
 JC
@@ -63807,8 +63868,8 @@ JC
 JC
 JC
 JC
-Fk
-Fk
+JC
+JC
 JC
 JC
 JC
@@ -64582,11 +64643,11 @@ JC
 JC
 JC
 JC
-ob
-ob
-ob
-ob
-ob
+JC
+JC
+JC
+JC
+JC
 JC
 JC
 JC
@@ -64839,11 +64900,11 @@ JC
 JC
 JC
 JC
-ob
-Fk
-Fk
-Fk
-ob
+JC
+JC
+JC
+JC
+JC
 JC
 JC
 JC
@@ -65096,11 +65157,11 @@ JC
 JC
 JC
 JC
-ob
-Fk
-Fk
-Fk
-ob
+JC
+JC
+JC
+JC
+JC
 JC
 JC
 JC
@@ -65353,11 +65414,11 @@ JC
 JC
 JC
 JC
-ob
-Fk
-Fk
-Fk
-ob
+JC
+JC
+JC
+JC
+JC
 JC
 JC
 JC
@@ -65610,11 +65671,11 @@ JC
 JC
 JC
 JC
-ob
-Fk
-Fk
-Fk
-ob
+JC
+JC
+JC
+JC
+JC
 JC
 JC
 JC
@@ -65867,11 +65928,11 @@ JC
 JC
 JC
 JC
-ob
-ob
-ob
-ob
-ob
+JC
+JC
+JC
+JC
+JC
 JC
 JC
 JC
