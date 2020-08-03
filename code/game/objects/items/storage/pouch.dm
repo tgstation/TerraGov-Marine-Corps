@@ -642,7 +642,7 @@
 
 /obj/item/storage/pouch/harness
 	name = "harness pouch"
-	desc = "A strange looking pouch used to carry.. Something. Clipped to the M-210 harness."
+	desc = "A strange looking pouch used to carry.. Something. Designed to be clipped to the M-210 harness. Too big to fit in a pocket."
 	icon_state = "small_drop"
 	w_class = WEIGHT_CLASS_BULKY //does not fit in backpack
 	max_w_class = 2
@@ -653,14 +653,14 @@
 
 /obj/item/storage/pouch/harness/utility
 	name = "general harness pouch"
-	desc = "A general purpose pouch used to carry small items. Clipped to the M-210 harness."
+	desc = "A general purpose pouch used to carry two small items. Designed to be clipped to the M-210 harness. Too big to fit in a pocket."
 	storage_slots = 2
 	icon_state = "belt_utility"
 	draw_mode = 0
 
 /obj/item/storage/pouch/harness/utility/big
 	name = "general harness pouch"
-	desc = "A general purpose pouch used to carry a single large item. Clipped to the M-210 harness."
+	desc = "A general purpose pouch used to carry a single large item. Designed to be clipped to the M-210 harness. Too big to fit in a pocket."
 	storage_slots = 1
 	max_w_class = 3
 	icon_state = "belt_utility_big"
@@ -668,7 +668,7 @@
 
 /obj/item/storage/pouch/harness/magazine
 	name = "magazine harness pouch"
-	desc = "It can contain two ammo magazines, clipped to the M-210 harness."
+	desc = "This pouch can contain two ammo magazines, Designed to be clipped to the M-210 harness. Too big to fit in a pocket."
 	icon_state = "belt_ammo"
 	max_w_class = 3
 	storage_slots = 2
@@ -684,7 +684,7 @@
 
 /obj/item/storage/pouch/harness/magazine/large
 	name = "large magazine harness pouch"
-	desc = "It can contain one large ammo magazine, Clipped to the M-210 harness."
+	desc = "This pouch can contain one large ammo magazine, Designed to be clipped to the M-210 harness. Too big to fit in a pocket."
 	icon_state = "belt_lmg"
 	max_w_class = 3
 	storage_slots = 1
@@ -696,7 +696,7 @@
 
 /obj/item/storage/pouch/harness/medical
 	name = "medical harness pouch"
-	desc = "It can contain some medical supplies. Clipped to the M-210 harness. "
+	desc = "This pouch can contain some medical supplies. Designed to be clipped to the M-210 harness. Too big to fit in a pocket."
 	icon_state = "belt_medical"
 	storage_slots = 4
 	can_hold = list(
@@ -713,7 +713,7 @@
 
 /obj/item/storage/pouch/harness/grenade
 	name = "Grenade harness pouch"
-	desc = "It can contain grenades. Clipped to the M-210 harness"
+	desc = "It can contain grenades. Designed to be clipped to the M-210 harness. Too big to fit in a pocket."
 	icon_state = "belt_grenade"
 	storage_slots = 6
 	can_hold = list(
