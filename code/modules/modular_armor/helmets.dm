@@ -90,4 +90,4 @@
 
 /obj/item/helmet_module/antenna/toggle_module(mob/living/user, obj/item/clothing/head/modular/parent)
 	var/turf/location = get_turf(src)
-	usr.show_message("<span class='warning'>The [src] beeps and states, \"Current location coordinates: LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\"</span>", EMOTE_AUDIBLE, "<span class='notice'>The [src] vibrates but you can not hear it!</span>")
+	user.show_message("<span class='warning'>The [src] beeps and states, \"Current location coordinates: LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\"</span>", EMOTE_AUDIBLE, "<span class='notice'>The [src] vibrates but you can not hear it!</span>")

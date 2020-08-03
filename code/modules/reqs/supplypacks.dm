@@ -840,7 +840,7 @@ ARMOR
 	)
 	cost = 5
 /datum/supply_packs/armor/modular/attachments/generic_helmet_modules
-	name = "Jaeger mimir module"
+	name = "Generic Jaeger helmet modules"
 	contains = list(
 		/obj/item/helmet_module/welding,
 		/obj/item/helmet_module/welding,
