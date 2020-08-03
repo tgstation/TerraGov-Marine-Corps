@@ -3,6 +3,7 @@
 /obj/item/helmet_module/welding
 	name = "Welding Helmet Module"
 	icon_state = "welding_head_obj"
+	item_state = "welding_head_inactive"
 	module_type = ARMOR_MODULE_TOGGLE
 
 	active = FALSE
@@ -32,6 +33,9 @@
 
 	active = !active
 	to_chat(user, "<span class='notice'>You toggle \the [src]. [active ? "enabling" : "disabling"] it.</span>")
+	item_state = "welding_head_[active ? "" : "in"]active"
+	parent.update_overlays()
+	user.update_inv_head()
 
 
 /obj/item/helmet_module/attachable/mimir_environment_protection
@@ -62,7 +66,7 @@
 /obj/item/helmet_module/binoculars
 	name = "Binocular Helmet Module"
 	icon_state = "binocular_head_obj"
-	item_state = "binocular_head"
+	item_state = "binocular_head_inactive"
 	module_type = ARMOR_MODULE_TOGGLE
 	active = FALSE
 	flags_item = DOES_NOT_NEED_HANDS
@@ -78,3 +82,6 @@
 
 	active = !active
 	to_chat(user, "<span class='notice'>You toggle \the [src]. [active ? "enabling" : "disabling"] it.</span>")
+	item_state = "binocular_head_[active ? "" : "in"]active"
+	parent.update_overlays()
+	user.update_inv_head()
