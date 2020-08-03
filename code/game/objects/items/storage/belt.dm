@@ -490,7 +490,7 @@
 	item_state = "belt_harness"
 	storage_slots = 2
 	w_class = WEIGHT_CLASS_HUGE
-	max_w_class = 7
+	max_w_class = 6
 	max_storage_space = 21
 	can_hold = list(
 		/obj/item/storage/pouch/harness
