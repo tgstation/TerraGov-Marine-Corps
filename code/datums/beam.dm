@@ -66,6 +66,8 @@
 /datum/beam/proc/recalculate_in(time)
 	if(timing_id)
 		deltimer(timing_id)
+	if(QDELETED(src))
+		return
 	timing_id = addtimer(CALLBACK(src, .proc/recalculate), time, TIMER_STOPPABLE)
 
 /datum/beam/proc/after_calculate()
@@ -164,10 +166,10 @@
 	return newbeam
 
 /proc/zap_beam(atom/source, zap_range, damage, list/blacklistmobs)
-	var/list/mobs = list()
+	. = list()
 	for(var/mob/living/carbon/xenomorph/beno in oview(zap_range, source))
-		mobs += beno
-	for(var/xeno in mobs)
+		. += beno
+	for(var/xeno in .)
 		var/mob/living/carbon/xenomorph/living = xeno
 		if(!living)
 			return
@@ -176,6 +178,6 @@
 		if(living in blacklistmobs)
 			continue
 		source.beam(living, icon_state="lightning[rand(1,12)]", time=3, maxdistance = zap_range+2)
-		living.apply_status_effect(/datum/status_effect/noplasmaregen, 5 SECONDS/length(mobs))
-		living.apply_status_effect(/datum/status_effect/plasmadrain, 5 SECONDS/length(mobs))
+		living.apply_status_effect(/datum/status_effect/noplasmaregen, 30 SECONDS/length(.))
+		living.apply_status_effect(/datum/status_effect/plasmadrain, 30 SECONDS/length(.))
 		log_attack("[living] was zapped by [source]")
