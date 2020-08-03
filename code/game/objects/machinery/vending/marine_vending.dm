@@ -761,7 +761,7 @@
 
 /obj/machinery/vending/vending_harness
 	name = "\improper Surplus Harness Vendor"
-	desc = "A automated equipment rack hooked up to a  storage of harnesses and pouches."
+	desc = "A automated equipment rack hooked up to a storage of harnesses and pouches."
 	icon_state = "marineuniform"
 	icon_vend = "marineuniform_vend"
 	icon_deny = "marineuniform"
