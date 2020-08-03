@@ -758,3 +758,22 @@
 /obj/machinery/vending/uniform_supply/Destroy()
 	. = ..()
 	GLOB.marine_vendors.Remove(src)
+
+/obj/machinery/vending/vending_harness
+	name = "\improper Surplus Harness Vendor"
+	desc = "A automated equipment rack hooked up to a  storage of harnesses and pouches."
+	icon_state = "marineuniform"
+	icon_vend = "marineuniform_vend"
+	icon_deny = "marineuniform"
+
+	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
+	products = list(
+				/obj/item/storage/belt/harnessbelt = 50,
+					/obj/item/storage/pouch/harness/utility = 20,
+					/obj/item/storage/pouch/harness/utility/big = 20,
+					/obj/item/storage/pouch/harness/magazine = 20,
+					/obj/item/storage/pouch/harness/magazine/large = 20,
+					/obj/item/storage/pouch/harness/grenade = 20,
+					/obj/item/storage/pouch/harness/medical = 20
+					)
+
