@@ -35,7 +35,6 @@
 	to_chat(user, "<span class='notice'>You toggle \the [src]. [active ? "enabling" : "disabling"] it.</span>")
 	item_state = "welding_head_[active ? "" : "in"]active"
 	parent.update_overlays()
-	user.update_inv_head()
 
 
 /obj/item/helmet_module/attachable/mimir_environment_protection
@@ -84,4 +83,3 @@
 	to_chat(user, "<span class='notice'>You toggle \the [src]. [active ? "enabling" : "disabling"] it.</span>")
 	item_state = "binocular_head_[active ? "" : "in"]active"
 	parent.update_overlays()
-	user.update_inv_head()
