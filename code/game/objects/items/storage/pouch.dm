@@ -658,6 +658,14 @@
 	icon_state = "belt_utility"
 	draw_mode = 0
 
+/obj/item/storage/pouch/harness/utility/big
+	name = "general harness pouch"
+	desc = "A general purpose pouch used to carry a single large item. Clipped to the M210 harness."
+	storage_slots = 1
+	max_w_class = 3
+	icon_state = "belt_utility_big"
+	draw_mode = 0
+
 /obj/item/storage/pouch/harness/magazine
 	name = "magazine harness pouch"
 	desc = "It can contain two ammo magazines, clipped to the M210 harness."
@@ -675,9 +683,9 @@
 		/obj/item/cell/lasgun)
 
 /obj/item/storage/pouch/harness/magazine/large
-	name = "large magazine harness  pouch"
-	desc = "It can contain one large ammo magazine, clipped to the M210 harness."
-	icon_state = "belt_ammo"
+	name = "large magazine harness pouch"
+	desc = "It can contain one large ammo magazine, Clipped to the M210 harness."
+	icon_state = "belt_lmg"
 	max_w_class = 3
 	storage_slots = 1
 	draw_mode = 0
@@ -685,3 +693,28 @@
 		/obj/item/ammo_magazine/standard_gpmg,
 		/obj/item/ammo_magazine/m41ae2_hpr,
 		/obj/item/ammo_magazine/standard_lmg)
+
+/obj/item/storage/pouch/harness/medical
+	name = "medical harness pouch"
+	desc = "It can contain some medical supplies. Clipped to the M210 harness. "
+	icon_state = "belt_medical"
+	storage_slots = 4
+	can_hold = list(
+		/obj/item/healthanalyzer,
+		/obj/item/reagent_containers/dropper,
+		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/storage/pill_bottle,
+		/obj/item/stack/medical,
+		/obj/item/flashlight/pen,
+		/obj/item/storage/pill_bottle/packet,
+		/obj/item/reagent_containers/hypospray)
+
+/obj/item/storage/pouch/harness/grenade
+	name = "Grenade harness pouch"
+	desc = "It can contain grenades."
+	icon_state = "belt_grenade"
+	storage_slots = 6
+	can_hold = list(
+		/obj/item/explosive/grenade)
