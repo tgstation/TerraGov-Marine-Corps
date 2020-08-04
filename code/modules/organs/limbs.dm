@@ -72,14 +72,14 @@
 	hard_armor = getArmor()
 	return ..()
 
-/datum/limb/Destroy(force, ...)
-	. = ..()
+/datum/limb/Destroy()
 	QDEL_NULL(hidden)
 	owner = null
 	parent = null
 	children = null
 	soft_armor = null
 	hard_armor = null
+	return ..()
 
 /*
 /datum/limb/proc/get_icon(icon/race_icon, icon/deform_icon)
