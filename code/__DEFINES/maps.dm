@@ -26,6 +26,11 @@ require only minor tweaks.
 #define ZTRAIT_GROUND "Ground"
 #define ZTRAIT_MARINE_MAIN_SHIP "Marine Main Ship"
 
+// boolean - weather types that occur on the level
+#define ZTRAIT_SNOWSTORM "Weather_Snowstorm"
+#define ZTRAIT_ASHSTORM "Weather_Ashstorm"
+#define ZTRAIT_ACIDRAIN "Weather_Acidrain"
+
 // number - bombcap is multiplied by this before being applied to bombs
 #define ZTRAIT_BOMBCAP_MULTIPLIER "Bombcap Multiplier"
 

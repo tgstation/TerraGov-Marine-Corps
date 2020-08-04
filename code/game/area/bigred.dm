@@ -319,6 +319,7 @@
 	name = "Unknown Area"
 	icon_state = "bluenew"
 	ceiling = CEILING_UNDERGROUND
+	outside = FALSE
 
 /area/bigredv2/outside/nanotrasen_lab/outside
 	name = "Nanotrasen Compound"
@@ -329,31 +330,37 @@
 	name = "Nanotrasen Research Lab"
 	icon_state = "engine"
 	ceiling = CEILING_UNDERGROUND_METAL
+	outside = FALSE
 
 /area/bigredv2/outside/cargo
 	name = "Cargo"
 	icon_state = "storage"
 	ceiling = CEILING_METAL
+	outside = FALSE
 
 /area/bigredv2/outside/general_store
 	name = "General Store"
 	icon_state = "blueold"
 	ceiling = CEILING_METAL
+	outside = FALSE
 
 /area/bigredv2/outside/marshal_office
 	name = "Marshal Offices"
 	icon_state = "brig"
 	ceiling = CEILING_METAL
+	outside = FALSE
 
 /area/bigredv2/outside/medical
 	name = "Hospital"
 	icon_state = "CMO"
 	ceiling = CEILING_METAL
+	outside = FALSE
 
 /area/bigredv2/outside/admin_building
 	name = "Administration"
 	icon_state = "bridge"
 	ceiling = CEILING_METAL
+	outside = FALSE
 
 /area/bigredv2/outside/filtration_plant
 	name = "Filtration Plant"
@@ -364,56 +371,67 @@
 	name = "Virology Lab"
 	icon_state = "LP"
 	ceiling = CEILING_UNDERGROUND_METAL
+	outside = FALSE
 
 /area/bigredv2/outside/dorms
 	name = "Dormitories"
 	icon_state = "fitness"
 	ceiling = CEILING_METAL
+	outside = FALSE
 
 /area/bigredv2/outside/bar
 	name = "Bar"
 	icon_state = "bar"
 	ceiling = CEILING_METAL
+	outside = FALSE
 
 /area/bigredv2/outside/chapel
 	name = "Chapel"
 	icon_state = "courtroom"
 	ceiling = CEILING_METAL
+	outside = FALSE
 
 /area/bigredv2/outside/hydroponics
 	name = "Hydroponics"
 	icon_state = "garden"
 	ceiling = CEILING_METAL
+	outside = FALSE
 
 /area/bigredv2/outside/library
 	name = "Library"
 	icon_state = "library"
 	ceiling = CEILING_METAL
+	outside = FALSE
 
 /area/bigredv2/outside/office_complex
 	name = "Office Complex"
 	icon_state = "explored"
 	ceiling = CEILING_METAL
+	outside = FALSE
 
 /area/bigredv2/outside/space_port
 	name = "Space Port"
 	icon_state = "green"
 	ceiling = CEILING_NONE
+	outside = FALSE
 
 /area/bigredv2/outside/telecomm
 	name = "Telecommunications"
 	icon_state = "ass_line"
 	ceiling = CEILING_UNDERGROUND_METAL
+	outside = FALSE
 
 /area/bigredv2/outside/engineering
 	name = "Engineering Complex"
 	icon_state = "engine"
 	ceiling = CEILING_METAL
+	outside = FALSE
 
 /area/bigredv2/outside/storage
 	name = "Storage"
 	icon_state = "storage"
 	ceiling = CEILING_METAL
+	outside = FALSE
 
 /area/bigredv2/outside/solar_plant
 	name = "Solar Power Plant"
@@ -429,8 +447,10 @@
 	name = "Lambda Lab"
 	icon_state = "party"
 	ceiling = CEILING_UNDERGROUND_METAL
+	outside = FALSE
 
 /area/bigredv2/outside/general_offices
 	name = "General Offices"
 	icon_state = "storage"
 	ceiling = CEILING_METAL
+	outside = FALSE

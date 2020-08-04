@@ -243,7 +243,7 @@
 
 		if(!lastarea)
 			lastarea = get_area(src.loc)
-		if(isspaceturf(loc) || !lastarea.has_gravity)
+		if(isspaceturf(loc))
 			inertia_dir = get_dir(target, src)
 			step(src, inertia_dir)
 

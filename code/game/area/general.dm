@@ -218,7 +218,6 @@
 	icon_state = "start"
 	requires_power = 0
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
-	has_gravity = 1
 
 
 /area/syndicate_mothership
