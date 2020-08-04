@@ -409,12 +409,6 @@
 /obj/structure/disposalpipe/up,
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/maxsec/north)
-"adC" = (
-/obj/structure/window/framed/prison/reinforced/hull,
-/turf/open/floor/prison/trim/red{
-	dir = 9
-	},
-/area/prison/security/monitoring/maxsec/panopticon)
 "adD" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 2
@@ -824,12 +818,6 @@
 /obj/structure/window/framed/prison/reinforced/hull,
 /turf/open/floor/prison,
 /area/prison/cellblock/maxsec/north)
-"aeM" = (
-/obj/structure/window/framed/prison/reinforced/hull,
-/turf/open/floor/prison/trim/red{
-	dir = 5
-	},
-/area/prison/security/monitoring/maxsec/panopticon)
 "aeN" = (
 /obj/structure/bed,
 /turf/open/floor/prison,
@@ -1541,7 +1529,7 @@
 "agV" = (
 /obj/machinery/vending/security,
 /turf/open/floor/prison/trim/red{
-	dir = 9
+	dir = 1
 	},
 /area/prison/security/monitoring/maxsec/panopticon)
 "agW" = (
@@ -1872,7 +1860,9 @@
 /turf/open/floor/prison/darkpurple,
 /area/prison/research/secret/containment)
 "ahT" = (
-/turf/open/floor/prison/darkpurple/corner,
+/turf/open/floor/prison/darkpurple/corner{
+	dir = 1
+	},
 /area/prison/research/secret/containment)
 "ahU" = (
 /obj/structure/cable,
@@ -37641,7 +37631,9 @@
 /area/prison/security/armory/lethal)
 "clW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/prison,
+/turf/open/floor/prison/darkred/corners{
+	dir = 4
+	},
 /area/prison/security/armory/lethal)
 "clX" = (
 /obj/structure/rack,
@@ -41791,13 +41783,6 @@
 	},
 /turf/open/ground/grass,
 /area/prison/residential/central)
-"dkP" = (
-/obj/structure/window/framed/prison/reinforced/hull,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 1
-	},
-/turf/open/space/basic,
-/area/prison/hangar/civilian)
 "dpL" = (
 /turf/closed/wall/r_wall/prison,
 /area/prison/residential/central)
@@ -42480,10 +42465,6 @@
 /obj/machinery/computer/shuttle/shuttle_control/dropship1,
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
-"lwP" = (
-/obj/structure/window/framed/prison/reinforced/hull,
-/turf/open/space/basic,
-/area/prison/residential/central)
 "lAp" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/prison,
@@ -42591,7 +42572,9 @@
 /area/prison/residential/south)
 "ndE" = (
 /obj/effect/alien/weeds/node,
-/turf/open/floor/prison/darkpurple/corner,
+/turf/open/floor/prison/darkpurple/corner{
+	dir = 8
+	},
 /area/prison/research/secret/containment)
 "neb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -43024,7 +43007,7 @@
 	name = "Hangar-Barracks Maintenance"
 	},
 /obj/structure/cable,
-/turf/open/space/basic,
+/turf/open/floor/plating,
 /area/prison/maintenance/hangar_barracks)
 "shC" = (
 /obj/item/toy/beach_ball,
@@ -43063,7 +43046,7 @@
 "syK" = (
 /obj/structure/window/framed/prison/reinforced/hull,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
-/turf/open/space/basic,
+/turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "sFc" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -49850,7 +49833,7 @@ aab
 aab
 aab
 aab
-dkP
+hdB
 epq
 bgp
 bkv
@@ -49859,7 +49842,7 @@ ays
 bgp
 bkv
 tnU
-dkP
+hdB
 aab
 aab
 aab
@@ -50107,7 +50090,7 @@ aZP
 aab
 aab
 aab
-dkP
+hdB
 ays
 bgp
 bkv
@@ -50116,7 +50099,7 @@ ays
 bgp
 bkv
 ays
-dkP
+hdB
 aab
 aab
 aab
@@ -50361,9 +50344,9 @@ baK
 aWo
 aWo
 aWr
-lwP
-lwP
-lwP
+aWn
+aWn
+aWn
 amu
 bjK
 qVC
@@ -50374,9 +50357,9 @@ qVC
 iVD
 bjK
 amu
-lwP
-lwP
-lwP
+aWn
+aWn
+aWn
 aWr
 aWo
 aWo
@@ -75203,7 +75186,7 @@ kYV
 kYV
 kYV
 kYV
-adC
+ags
 akk
 aVp
 kQt
@@ -75460,7 +75443,7 @@ kYV
 kYV
 kYV
 kYV
-aeM
+ags
 akk
 aVp
 aVp
