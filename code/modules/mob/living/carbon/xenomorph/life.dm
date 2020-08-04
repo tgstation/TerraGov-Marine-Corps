@@ -95,7 +95,7 @@
 /mob/living/carbon/xenomorph/proc/heal_wounds(multiplier = XENO_RESTING_HEAL)
 	var/amount = (1 + (maxHealth * 0.03) ) // 1 damage + 3% max health
 	if(recovery_aura)
-		amount += recovery_aura * maxHealth * 0.004 // +0.8% max health per recovery level, up to +2%
+		amount += recovery_aura * maxHealth * 0.008 // +0.8% max health per recovery level, up to +4%
 	amount *= multiplier
 	adjustBruteLoss(-amount)
 	adjustFireLoss(-amount)
