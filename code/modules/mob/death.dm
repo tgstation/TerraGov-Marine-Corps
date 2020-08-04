@@ -1,10 +1,9 @@
 //This is the proc for gibbing a mob. Cannot gib ghosts.
 //added different sort of gibs and animations. N
 /mob/proc/gib()
-	death(1)
 	gib_animation()
 	spawn_gibs()
-	qdel(src)
+	death(TRUE)
 
 
 /mob/proc/gib_animation()
@@ -21,10 +20,9 @@
 //Originally created for wizard disintegrate. I've removed the virus code since it's irrelevant here.
 //Dusting robots does not eject the MMI, so it's a bit more powerful than gib() /N
 /mob/proc/dust()
-	death(1)
 	dust_animation()
 	spawn_dust_remains()
-	qdel(src)
+	death(TRUE)
 
 
 /mob/proc/spawn_dust_remains()
@@ -35,18 +33,27 @@
 
 
 
-/mob/proc/death(gibbed, deathmessage = "seizes up and falls limp...")
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_LOGIN, src)
-	SEND_SIGNAL(src, COMSIG_MOB_DEATH, gibbed)
-	log_combat(src, src, "[deathmessage]")
+/mob/proc/death(gibbing, deathmessage = "seizes up and falls limp...", silent)
 	if(stat == DEAD)
-		return FALSE
+		if(gibbing)
+			qdel(src)
+		return
 
-	if(!gibbed)
-		src.visible_message("<b>\The [src.name]</b> [deathmessage]")
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MOB_DEATH, src)
+	SEND_SIGNAL(src, COMSIG_MOB_DEATH, gibbing)
+	log_combat(src, src, "[deathmessage]")
+
+	if(deathmessage && !silent && !gibbing)
+		visible_message("<b>\The [name]</b> [deathmessage]")
 
 	set_stat(DEAD)
 
+	if(!QDELETED(src) && gibbing)
+		qdel(src)
+
+
+/mob/proc/on_death()
+	SHOULD_CALL_PARENT(TRUE) // no exceptions
 	client?.change_view(WORLD_VIEW) //just so we never get stuck with a large view somehow
 
 	hide_fullscreens()
@@ -73,5 +80,3 @@
 
 	if(SSticker.HasRoundStarted())
 		SSblackbox.ReportDeath(src)
-		
-	return TRUE

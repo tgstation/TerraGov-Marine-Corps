@@ -11,6 +11,8 @@
 
 #define isopenturf(A) (istype(A, /turf/open))
 
+#define isopengroundturf(A) (istype(A, /turf/open/ground/jungle) || istype(A, /turf/open/ground/grass))
+
 #define isspaceturf(A) (istype(A, /turf/open/space))
 
 #define islava(A) (istype(A, /turf/open/lavaland/lava))
@@ -138,6 +140,8 @@
 #define isdead(A) (istype(A, /mob/dead))
 
 #define isnewplayer(A) (istype(A, /mob/new_player))
+
+#define iscameramob(A) (istype(A, /mob/camera))
 
 //Objects
 #define isobj(A) istype(A, /obj) //override the byond proc because it returns true on children of /atom/movable that aren't objs

@@ -348,3 +348,42 @@
 	anchored = on
 	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 30, TRUE)
 	update_icons()
+
+// ***************************************
+// *********** Regenerate Skin
+// ***************************************
+/datum/action/xeno_action/activable/regenerate_skin
+	name = "Regenerate Skin"
+	action_icon_state = "regenerate_skin"
+	mechanics_text = "Regenerate your hard exoskeleton skin, restoring some health and removing all sunder."
+	ability_name = "regenerate skin"
+	use_state_flags = XACT_USE_FORTIFIED|XACT_USE_CRESTED|XACT_TARGET_SELF|XACT_IGNORE_SELECTED_ABILITY|XACT_KEYBIND_USE_ABILITY
+	plasma_cost = 160
+	cooldown_timer = 1 MINUTES
+	keybind_flags = XACT_KEYBIND_USE_ABILITY
+	keybind_signal = COMSIG_XENOABILITY_REGENERATE_SKIN
+
+/datum/action/xeno_action/activable/regenerate_skin/on_cooldown_finish()
+	var/mob/living/carbon/xenomorph/X = owner
+	to_chat(X, "<span class='notice'>We feel we are ready to shred out skin and grow another.</span>")
+	return ..()
+
+/datum/action/xeno_action/activable/regenerate_skin/action_activate()
+	var/mob/living/carbon/xenomorph/defender/X = owner
+
+	if(!can_use_ability(src, TRUE))
+		return fail_activate()
+
+	if(X.on_fire)
+		to_chat(X, "<span class='xenowarning'>We can't use that while on fire.</span>")
+		return fail_activate()
+
+	X.emote("roar")
+	X.visible_message("<span class='warning'>The skin on \the [src] shreds and a new layer can be seen in it's place!</span>",
+		"<span class='notice'>We shed our skin, showing the fresh new layer underneath!</span>")
+
+	X.do_jitter_animation(1000)
+	X.set_sunder(0)
+	X.heal_overall_damage(25, 25, TRUE)
+	add_cooldown()
+	return succeed_activate()

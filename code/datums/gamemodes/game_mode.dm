@@ -449,6 +449,9 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		dat += "[GLOB.round_statistics.defiler_defiler_stings] number of times Defilers stung."
 	if(GLOB.round_statistics.defiler_neurogas_uses)
 		dat += "[GLOB.round_statistics.defiler_neurogas_uses] number of times Defilers vented neurogas."
+	if(GLOB.round_statistics.xeno_unarmed_attacks && GLOB.round_statistics.xeno_bump_attacks)
+		dat += "[GLOB.round_statistics.xeno_bump_attacks] bump attacks, which made up [(GLOB.round_statistics.xeno_bump_attacks / GLOB.round_statistics.xeno_unarmed_attacks) * 100]% of all attacks ([GLOB.round_statistics.xeno_unarmed_attacks])."
+
 	var/output = jointext(dat, "<br>")
 	for(var/mob/player in GLOB.player_list)
 		if(player?.client?.prefs?.toggles_chat & CHAT_STATISTICS)
@@ -475,6 +478,8 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	for(var/z in z_levels)
 		for(var/i in GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[z]"])
 			var/mob/living/carbon/xenomorph/X = i
+			if(!istype(X)) // Small fix?
+				continue
 			if(count_flags & COUNT_IGNORE_XENO_SSD && !X.client)
 				continue
 			if(count_flags & COUNT_IGNORE_XENO_SPECIAL_AREA && is_xeno_in_forbidden_zone(X))

@@ -62,7 +62,6 @@
 	if(obj_flags & CAN_BE_HIT)
 		return I.attack_obj(src, user)
 
-
 /obj/item/proc/attack_obj(obj/O, mob/living/user)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_OBJ, O, user) & COMPONENT_NO_ATTACK_OBJ)
 		return
@@ -79,7 +78,7 @@
 
 /obj/attacked_by(obj/item/I, mob/living/user, def_zone)
 	user.visible_message("<span class='warning'>[user] hits [src] with [I]!</span>",
-		"<span class='warning'>You hit [src] with [I]!</span>")
+		"<span class='warning'>You hit [src] with [I]!</span>", visible_message_flags = COMBAT_MESSAGE)
 	log_combat(user, src, "attacked", I)
 	var/power = I.force + round(I.force * 0.3 * user.skills.getRating("melee_weapons")) //30% bonus per melee level
 	take_damage(power, I.damtype, "melee")
@@ -175,3 +174,15 @@
 	. = M.attacked_by(src, user)
 	if(. && hitsound)
 		playsound(loc, hitsound, 25, TRUE)
+
+/turf/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(.)
+		return TRUE
+
+	return I.attack_turf(src, user)
+
+/obj/item/proc/attack_turf(turf/T, mob/living/user)
+	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_TURF, T, user) & COMPONENT_NO_ATTACK_TURF)
+		return FALSE
+	return FALSE

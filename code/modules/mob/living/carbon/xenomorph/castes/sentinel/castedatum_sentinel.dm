@@ -8,7 +8,7 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
-	melee_damage = 18
+	melee_damage = 16
 
 	// *** Tackle *** //
 	tackle_damage = 25
@@ -33,7 +33,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 0, "acid" = 15)
+	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
@@ -59,9 +59,6 @@
 
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Melee Attacks *** //
-	melee_damage = 21
-
 	// *** Tackle *** //
 	tackle_damage = 30
 
@@ -79,7 +76,7 @@
 	upgrade_threshold = 120
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 5, "acid" = 20)
+	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
@@ -92,7 +89,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 24
+	melee_damage = 17
 
 	// *** Tackle *** //
 	tackle_damage = 35
@@ -111,7 +108,7 @@
 	upgrade_threshold = 240
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 23, "bullet" = 23, "laser" = 23, "energy" = 23, "bomb" = XENO_BOMB_RESIST_0, "bio" = 23, "rad" = 23, "fire" = 10, "acid" = 23)
+	soft_armor = list("melee" = 23, "bullet" = 23, "laser" = 23, "energy" = 23, "bomb" = XENO_BOMB_RESIST_0, "bio" = 23, "rad" = 23, "fire" = 23, "acid" = 23)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
@@ -124,7 +121,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 27
+	melee_damage = 17
 
 	// *** Tackle *** //
 	tackle_damage = 40
@@ -143,7 +140,7 @@
 	upgrade_threshold = 240
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 26, "bullet" = 26, "laser" = 26, "energy" = 26, "bomb" = XENO_BOMB_RESIST_0, "bio" = 25, "rad" = 25, "fire" = 15, "acid" = 25)
+	soft_armor = list("melee" = 26, "bullet" = 26, "laser" = 26, "energy" = 26, "bomb" = XENO_BOMB_RESIST_0, "bio" = 25, "rad" = 25, "fire" = 26, "acid" = 25)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS

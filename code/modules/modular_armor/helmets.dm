@@ -1,8 +1,8 @@
 
 /** Helmet attachments */
 /obj/item/helmet_module/welding
-	name = "welding thing"
-	icon_state = "mod_welding"
+	name = "Welding Helmet Module"
+	icon_state = "welding_head_obj"
 	module_type = ARMOR_MODULE_TOGGLE
 
 	active = FALSE
@@ -29,6 +29,52 @@
 		ENABLE_BITFIELD(parent.flags_inv_hide, HIDEEYES)
 		ENABLE_BITFIELD(parent.flags_armor_protection, EYES)
 		parent.eye_protection -= eye_protection_mod
+
+	active = !active
+	to_chat(user, "<span class='notice'>You toggle \the [src]. [active ? "enabling" : "disabling"] it.</span>")
+
+
+/obj/item/helmet_module/attachable/mimir_environment_protection
+	name = "Mimir Environmental Helmet System"
+	desc = "Designed for mounting on a Jaeger Helmet. When attached, this system provides substantial resistance to environmental hazards, such as gases, acidic elements, and radiological exposure. Best paired with the Mimir Environmental Resistance System. Will impact mobility when attached."
+	icon_state = "mimir_head_obj"
+	item_state = "mimir_head"
+	soft_armor = list("bio" = 20, "rad" = 50, "acid" = 20)
+	module_type = ARMOR_MODULE_TOGGLE
+	var/siemens_coefficient_mod = -0.9
+	var/permeability_coefficient_mod = -1
+	var/gas_transfer_coefficient_mod = -1
+
+/obj/item/helmet_module/attachable/mimir_environment_protection/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
+	. = ..()
+	parent.soft_armor = parent.soft_armor.attachArmor(soft_armor)
+	parent.siemens_coefficient += siemens_coefficient_mod
+	parent.permeability_coefficient += permeability_coefficient_mod
+	parent.gas_transfer_coefficient += siemens_coefficient_mod
+
+/obj/item/helmet_module/attachable/mimir_environment_protection/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
+	parent.soft_armor = parent.soft_armor.detachArmor(soft_armor)
+	parent.siemens_coefficient -= siemens_coefficient_mod
+	parent.permeability_coefficient -= permeability_coefficient_mod
+	parent.gas_transfer_coefficient -= siemens_coefficient_mod
+	return ..()
+
+/obj/item/helmet_module/binoculars
+	name = "Binocular Helmet Module"
+	icon_state = "binocular_head_obj"
+	item_state = "binocular_head"
+	module_type = ARMOR_MODULE_TOGGLE
+	active = FALSE
+	flags_item = DOES_NOT_NEED_HANDS
+
+/obj/item/helmet_module/binoculars/toggle_module(mob/living/user, obj/item/clothing/head/modular/parent)
+	if(!active && !zoom)
+		RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CLIENT_MOUSEDOWN), .proc/toggle_module) //No shooting while zoomed
+		zoom(user, 11, 12)
+	else
+		UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CLIENT_MOUSEDOWN))
+		if(zoom)
+			zoom(user)
 
 	active = !active
 	to_chat(user, "<span class='notice'>You toggle \the [src]. [active ? "enabling" : "disabling"] it.</span>")

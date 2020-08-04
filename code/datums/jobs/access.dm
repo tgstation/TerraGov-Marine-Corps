@@ -63,7 +63,7 @@
 		if(4)
 			return list(ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING)//engineering and maintenance
 		if(5)
-			return list(ACCESS_MARINE_CAPTAIN, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CARGO)//command
+			return list(ACCESS_MARINE_CAPTAIN, ACCESS_MARINE_COMMANDER, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CARGO)//command
 		if(6)
 			return list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_SPECPREP)//spess mahreens
 		if(7)
@@ -214,7 +214,7 @@
 		if("PMCDSL")
 			. = size ? "APTL " : "Assets Protection Team Leader"
 		if("NT")
-			. = size ? (gender == "female" ? "Ms. " : "Mr. ") : "Junior Executive"
+			. = size ? (gender == FEMALE ? "Ms. " : "Mr. ") : "Junior Executive"
 		if("E1")
 			. = size ? "PVT " : "Private"
 		if("E2")

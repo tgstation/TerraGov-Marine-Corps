@@ -116,6 +116,7 @@
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/bodybag,
 		/obj/item/defibrillator,
+		/obj/item/storage/pill_bottle/packet,
 		/obj/item/roller)
 
 /obj/item/storage/belt/medical/Initialize()
@@ -151,6 +152,7 @@
 		/obj/item/storage/pill_bottle,
 		/obj/item/storage/syringe_case,
 		/obj/item/reagent_containers/hypospray/autoinjector,
+		/obj/item/storage/pill_bottle/packet,
 		/obj/item/stack/medical
 	)
 
@@ -275,6 +277,46 @@
 		/obj/item/reagent_containers/food/snacks
 		)
 
+/obj/item/storage/belt/marine/t18/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
+	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
+	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
+	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
+	new /obj/item/ammo_magazine/rifle/standard_carbine(src)
+
+/obj/item/storage/belt/marine/t12/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
+	new /obj/item/ammo_magazine/rifle/standard_assaultrifle(src)
+
+/obj/item/storage/belt/marine/t90/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/smg/standard_smg(src)
+	new /obj/item/ammo_magazine/smg/standard_smg(src)
+	new /obj/item/ammo_magazine/smg/standard_smg(src)
+	new /obj/item/ammo_magazine/smg/standard_smg(src)
+	new /obj/item/ammo_magazine/smg/standard_smg(src)
+
+/obj/item/storage/belt/marine/m42a/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/sniper/flak(src)
+	new /obj/item/ammo_magazine/sniper/flak(src)
+	new /obj/item/ammo_magazine/sniper/incendiary(src)
+	new /obj/item/ammo_magazine/sniper/incendiary(src)
+	new /obj/item/ammo_magazine/sniper(src)
+
+/obj/item/storage/belt/marine/m4ra/Initialize()
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
+	new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
+	new /obj/item/ammo_magazine/rifle/m4ra/incendiary(src)
+	new /obj/item/ammo_magazine/rifle/m4ra/incendiary(src)
+	new /obj/item/ammo_magazine/rifle/m4ra(src)
+
 /obj/item/storage/belt/marine/upp
 	name = "\improper Type 41 pattern load rig"
 	desc = "The Type 41 load rig is the standard-issue LBE of the USL pirates. The primary function of this belt is to provide easy access to mags for the Type 71 during operations. Despite being designed for the Type 71 weapon system, the pouches are modular enough to fit other types of ammo and equipment."
@@ -329,10 +371,10 @@
 
 
 /obj/item/storage/belt/shotgun/attackby(obj/item/I, mob/user, params)
-	
+
 	if(istype(I, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/M = I
-	
+
 		if(M.flags_magazine & AMMUNITION_REFILLABLE)
 			if(!M.current_rounds)
 				to_chat(user, "<span class='warning'>[M] is empty.</span>")
@@ -432,7 +474,7 @@
 
 /obj/item/storage/belt/sparepouch
 	name= "\improper G8 general utility pouch"
-	desc= "A small, lightweight pouch that can be clipped onto Armat Systems M3 Pattern armor or your belt to provide additional storage."
+	desc= "A small, lightweight pouch that can be clipped onto Armat Systems M3 Pattern armor or your belt to provide additional storage for miscellaneous gear or box and drum magazines."
 	storage_slots = 3
 	w_class = WEIGHT_CLASS_BULKY
 	max_w_class = 3
@@ -671,11 +713,11 @@
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new_gun.on_enter_storage(src)
 
-/obj/item/storage/belt/gun/mateba/admiral/Initialize()
+/obj/item/storage/belt/gun/mateba/notmarine/Initialize()
 	. = ..()
 	icon_state = "a_mateba_holster"
 	item_state = "a_mateba_holster"
-	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba/admiral(src)
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/revolver/mateba/(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)
 	new /obj/item/ammo_magazine/revolver/mateba(src)

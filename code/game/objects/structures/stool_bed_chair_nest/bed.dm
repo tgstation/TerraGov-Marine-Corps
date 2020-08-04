@@ -455,8 +455,9 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 	visible_message("<span class='notice'><b>[M] vanishes in a flash of sparks as [src]'s bluespace engine generates its displacement field.</b></span>")
 	if(buckled_bodybag)
+		var/obj/structure/closet/bodybag/teleported_bodybag = buckled_bodybag
 		unbuckle_bodybag()
-		buckled_bodybag.forceMove(get_turf(linked_beacon))
+		teleported_bodybag.forceMove(get_turf(linked_beacon))
 	else
 		unbuckle_mob(M)
 		M.forceMove(get_turf(linked_beacon))

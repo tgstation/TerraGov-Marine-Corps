@@ -7,7 +7,7 @@ SUBSYSTEM_DEF(timer)
 	name = "Timer"
 	wait = 1 //SS_TICKER subsystem, so wait is in ticks
 	init_order = INIT_ORDER_TIMER
-
+	priority = FIRE_PRIORITY_TIMER
 	flags = SS_TICKER|SS_NO_INIT
 
 	var/list/datum/timedevent/second_queue = list() //awe, yes, you've had first queue, but what about second queue?
@@ -46,7 +46,7 @@ SUBSYSTEM_DEF(timer)
 
 	if(lit && lit < last_check && head_offset < last_check && last_invoke_warning < last_check)
 		last_invoke_warning = world.time
-		var/msg = "No regular timers processed in the last [BUCKET_LEN * 1.5] ticks[bucket_auto_reset ? ", resetting buckets" : ""]."
+		var/msg = "No regular timers processed in the last [BUCKET_LEN*1.5] ticks[bucket_auto_reset ? ", resetting buckets" : ""]!"
 		message_admins(msg)
 		WARNING(msg)
 		if(bucket_auto_reset)
@@ -94,7 +94,7 @@ SUBSYSTEM_DEF(timer)
 		if(ctime_timer.flags & TIMER_LOOP)
 			ctime_timer.spent = 0
 			ctime_timer.timeToRun = REALTIMEOFDAY + ctime_timer.wait
-			BINARY_INSERT(ctime_timer, clienttime_timers, datum/timedevent, timeToRun)
+			BINARY_INSERT(ctime_timer, clienttime_timers, datum/timedevent, ctime_timer, timeToRun, COMPARE_KEY)
 		else
 			qdel(ctime_timer)
 
@@ -279,7 +279,7 @@ SUBSYSTEM_DEF(timer)
 
 
 		if (!timer.callBack || timer.spent)
-			stack_trace("Invalid timer: [get_timer_debug_string(timer)] world.time: [world.time], head_offset: [head_offset], practical_offset: [practical_offset]")
+			WARNING("Invalid timer: [get_timer_debug_string(timer)] world.time: [world.time], head_offset: [head_offset], practical_offset: [practical_offset]")
 			if (timer.callBack)
 				qdel(timer)
 			continue
@@ -423,7 +423,7 @@ SUBSYSTEM_DEF(timer)
 		L = SStimer.second_queue
 
 	if(L)
-		BINARY_INSERT(src, L, datum/timedevent, timeToRun)
+		BINARY_INSERT(src, L, datum/timedevent, src, timeToRun, COMPARE_KEY)
 		return
 
 	//get the list of buckets
@@ -447,6 +447,7 @@ SUBSYSTEM_DEF(timer)
 	next.prev = src
 	prev.next = src
 
+///Returns a string of the type of the callback for this timer
 /datum/timedevent/proc/getcallingtype()
 	. = "ERROR"
 	if (callBack.object == GLOBAL_PROC)
@@ -454,6 +455,14 @@ SUBSYSTEM_DEF(timer)
 	else
 		. = "[callBack.object.type]"
 
+/**
+  * Create a new timer and insert it in the queue
+  *
+  * Arguments:
+  * * callback the callback to call on timer finish
+  * * wait deciseconds to run the timer for
+  * * flags flags for this timer, see: code\__DEFINES\subsystems.dm
+  */
 /proc/addtimer(datum/callback/callback, wait = 0, flags = 0)
 	if (!callback)
 		CRASH("addtimer called without a callback")
@@ -498,6 +507,12 @@ SUBSYSTEM_DEF(timer)
 	var/datum/timedevent/timer = new(callback, wait, flags, hash)
 	return timer.id
 
+/**
+  * Delete a timer
+  *
+  * Arguments:
+  * * id a timerid or a /datum/timedevent
+  */
 /proc/deltimer(id)
 	if (!id)
 		return FALSE
@@ -514,7 +529,12 @@ SUBSYSTEM_DEF(timer)
 		return TRUE
 	return FALSE
 
-// How long left on a timer
+/**
+  * Get the remaining deciseconds on a timer
+  *
+  * Arguments:
+  * * id a timerid or a /datum/timedevent
+  */
 /proc/timeleft(id)
 	if (!id)
 		return null

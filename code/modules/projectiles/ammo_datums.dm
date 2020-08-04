@@ -155,7 +155,9 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	for(var/i = 1 to bonus_projectiles_amount) //Want to run this for the number of bonus projectiles.
 		var/obj/projectile/new_proj = new /obj/projectile(main_proj.loc)
 		if(bonus_projectiles_type)
-			new_proj.generate_bullet(GLOB.ammo_list[bonus_projectiles_type]) //No bonus damage or anything.
+			new_proj.generate_bullet(GLOB.ammo_list[bonus_projectiles_type])
+			var/obj/item/weapon/gun/g = source
+			new_proj.damage *= g.damage_mult //Bonus or reduced damage based on damage modifiers on the gun.
 		else //If no bonus type is defined then the extra projectiles are the same as the main one.
 			new_proj.generate_bullet(src)
 		new_proj.accuracy = round(new_proj.accuracy * main_proj.accuracy/initial(main_proj.accuracy)) //if the gun changes the accuracy of the main projectile, it also affects the bonus ones.
@@ -167,13 +169,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		else if(new_angle > 380)
 			new_angle -= 380
 		new_proj.fire_at(null, shooter, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
-
-
-	//This is sort of a workaround for now. There are better ways of doing this ~N.
-/datum/ammo/proc/stun_living(mob/living/target, obj/projectile/proj) //Taser proc to stun folks.
-	if(!isliving(target) || isxeno(target))
-		return //Not on aliens.
-	target.apply_effects(12, 20)
 
 
 /datum/ammo/proc/drop_flame(turf/T)
@@ -268,7 +263,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "pistol_ap"
 	damage = 20
 	accuracy = 10
-	penetration = 30
+	penetration = 12.5
 	shrapnel_chance = 25
 
 /datum/ammo/bullet/pistol/heavy
@@ -360,12 +355,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "high-impact revolver bullet"
 	hud_state = "revolver_impact"
 	accuracy_var_high = 10
-	damage = 45
-	penetration = 15
-	sundering = 5
+	damage = 50
+	penetration = 20
+	sundering = 3
 
 /datum/ammo/bullet/revolver/highimpact/on_hit_mob(mob/M,obj/projectile/P)
-	staggerstun(M, P, weaken = 1, stagger = 2, slowdown = 2, knockback = 1)
+	staggerstun(M, P, weaken = 1, stagger = 1, slowdown = 1, knockback = 1)
 
 
 /datum/ammo/bullet/revolver/ricochet
@@ -530,10 +525,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	accurate_range_min = 0
 	accurate_range = 30
-	damage = 70
+	damage = 60
 	scatter = -15
 	penetration = 15
-	sundering = 2.5
+	sundering = 2
 
 /datum/ammo/bullet/rifle/standard_dmr/incendiary
 	name = "incendiary marksman bullet"
@@ -878,6 +873,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 150
 	sundering = 75
 
+/datum/ammo/bullet/sniper/pfc
+	name = "high caliber rifle bullet"
+	hud_state = "minigun"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER
+	iff_signal = null
+	damage = 70
+	penetration = 30
+	sundering = 7.5
+	accurate_range_min = 2
+	damage_falloff = 0.25
+
 /*
 //================================================
 					Special Ammo
@@ -967,11 +973,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	iff_signal = ACCESS_IFF_MARINE
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SKIPS_HUMANS|AMMO_SUNDERING
 	accurate_range = 15
-	damage = 75
-	penetration = 75 //Bumped the penetration to serve a different role from sentries, MGs are a bit more offensive
+	damage = 40 //Reduced damage due to vastly increased mobility
+	penetration = 40 //Reduced penetration due to vastly increased mobility
 	accuracy = 15
 	barricade_clear_distance = 2
-	sundering = 20
+	sundering = 5
 
 /datum/ammo/bullet/minigun
 	name = "minigun bullet"
@@ -980,10 +986,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_low = 3
 	accuracy_var_high = 3
 	accurate_range = 5
-	damage = 30
+	damage = 25
 	penetration = 15
 	shrapnel_chance = 25
-	sundering = 1.5
+	sundering = 2.5
 
 /*
 //================================================
@@ -1110,14 +1116,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "stun"
 	hud_state = "taser"
 	hud_state_empty = "battery_empty"
-	damage_type = OXY
+	damage = 120
+	penetration = 0
+	damage_type = STAMINA
 	flags_ammo_behavior = AMMO_ENERGY
 	max_range = 15
 	accurate_range = 10
-
-/datum/ammo/energy/taser/on_hit_mob(mob/M, obj/projectile/P)
-	stun_living(M,P)
-
 
 /datum/ammo/energy/lasgun
 	name = "laser bolt"
@@ -1503,8 +1507,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_type = BURN
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR
 	armor_type = "fire"
-	max_range = 5
+	max_range = 6
 	damage = 50
+	var/fire_color = "red"
+	var/burnlevel = 24
+	var/burntime = 17
+	var/fire_delay = 20
 
 /datum/ammo/flamethrower/on_hit_mob(mob/M,obj/projectile/P)
 	drop_flame(get_turf(P))
@@ -1526,10 +1534,20 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/flamethrower/green
 	name = "green flame"
 	hud_state = "flame_green"
+	max_range = 4
+	fire_color = "green"
+	burnlevel = 10
+	burntime = 50
+	fire_delay = 35
 
 /datum/ammo/flamethrower/blue
 	name = "blue flame"
 	hud_state = "flame_blue"
+	max_range = 6
+	fire_color = "blue"
+	burnlevel = 36
+	burntime = 40
+	fire_delay = 35
 
 /datum/ammo/flare
 	name = "flare"

@@ -206,38 +206,9 @@
 	adj_sleepy = -2
 	adj_temp = 20
 	taste_description = "bitterness"
-	purge_list = list(/datum/reagent/consumable/frostoil, /datum/reagent/medicine/oxycodone)
 	purge_rate = 2
 	trait_flags = TACHYCARDIC
 
-/datum/reagent/consumable/drink/coffee/on_mob_add(mob/living/L, metabolism)
-	. = ..()
-	L.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -0.2)
-
-/datum/reagent/consumable/drink/coffee/on_mob_delete(mob/living/L, metabolism)
-	L.remove_movespeed_modifier(type)
-	var/amount = (current_cycle * 0.5) // 15/cup
-	L.adjustStaminaLoss(amount)
-
-
-/datum/reagent/consumable/drink/coffee/on_mob_life(mob/living/L, metabolism)
-	switch(current_cycle)
-		if(1 to 10)
-			L.adjustStaminaLoss(-2*REM)
-		if(11 to 30)
-			L.adjustStaminaLoss(-1*REM)
-		if(11 to 60)
-			L.adjustStaminaLoss(-0.5*REM)
-			L.jitter(1)
-		if(61 to 150)
-			L.adjustStaminaLoss(0.5*REM)
-			L.apply_damage(0.2, TOX)
-			L.jitter(2)
-		if(151 to INFINITY)
-			L.adjustStaminaLoss(5*REM)
-			L.apply_damage(0.5, TOX) //someone'll antitox you eventually, which purges coffee at 3x speed
-			L.jitter(5)
-	return ..()
 
 /datum/reagent/consumable/drink/coffee/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(0.2, TOX)
@@ -260,6 +231,53 @@
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 		if(E)
 			E.take_damage(1, TRUE)
+
+//nice one jpr
+/datum/reagent/consumable/drink/coffee/atomiccoffee
+	name = "Atomic Coffee"
+	description = "This coffee is a brewed drink prepared from roasted seeds and enriched from use in atomic coffemaker. Consume in moderation"
+	color = "#482000" // rgb: 72, 32, 0
+	nutriment_factor = 0
+	overdose_threshold = REAGENTS_OVERDOSE * 2
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 3
+	custom_metabolism = REAGENTS_METABOLISM * 5 //1u/tick
+	adj_dizzy = -5
+	adj_drowsy = -3
+	adj_sleepy = -2
+	adj_temp = 20
+	taste_description = "bitterness"
+	purge_list = list(/datum/reagent/consumable/frostoil, /datum/reagent/medicine/oxycodone)
+	purge_rate = 2
+	trait_flags = TACHYCARDIC
+
+/datum/reagent/consumable/drink/atomiccoffee/on_mob_add(mob/living/L, metabolism)
+	. = ..()
+	L.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -0.2)
+
+/datum/reagent/consumable/drink/atomiccoffee/on_mob_delete(mob/living/L, metabolism)
+	L.remove_movespeed_modifier(type)
+	var/amount = (current_cycle * 0.5) // 15/cup
+	L.adjustStaminaLoss(amount)
+
+
+/datum/reagent/consumable/drink/atomiccoffee/on_mob_life(mob/living/L, metabolism)
+	switch(current_cycle)
+		if(1 to 10)
+			L.adjustStaminaLoss(-2*REM)
+		if(11 to 30)
+			L.adjustStaminaLoss(-1*REM)
+		if(11 to 60)
+			L.adjustStaminaLoss(-0.5*REM)
+			L.jitter(1)
+		if(61 to 150)
+			L.adjustStaminaLoss(0.5*REM)
+			L.apply_damage(5, TOX)
+			L.jitter(2)
+		if(151 to INFINITY)
+			L.adjustStaminaLoss(5*REM)
+			L.apply_damage(10, TOX) //You're having a bad day.
+			L.jitter(5)
+	return ..()
 
 /datum/reagent/consumable/drink/coffee/icecoffee
 	name = "Iced Coffee"

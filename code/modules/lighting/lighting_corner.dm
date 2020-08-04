@@ -85,11 +85,12 @@ GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST,
 		T = thing
 		if (T.lighting_object)
 			active = TRUE
+			return
 
 
 // God that was a mess, now to do the rest of the corner code! Hooray!
 /datum/lighting_corner/proc/update_lumcount(delta_r, delta_g, delta_b)
-	if((abs(delta_r) + abs(delta_g) + abs(delta_b)) == 0)
+	if(!(delta_r || delta_g || delta_b)) // 0 is falsey ok
 		return
 
 	lum_r += delta_r
@@ -102,7 +103,7 @@ GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST,
 
 
 /datum/lighting_corner/proc/update_objects()
-	// Cache these values a head of time so 4 individual lighting objects don't all calculate them individually.
+	// Cache these values ahead of time so 4 individual lighting objects don't all calculate them individually.
 	var/lum_r = src.lum_r
 	var/lum_g = src.lum_g
 	var/lum_b = src.lum_b
@@ -127,10 +128,9 @@ GLOBAL_LIST_INIT(LIGHTING_CORNER_DIAGONAL, list(NORTHEAST, SOUTHEAST, SOUTHWEST,
 
 	for(var/TT in masters)
 		var/turf/T = TT
-		if(T.lighting_object)
-			if(!T.lighting_object.needs_update)
-				T.lighting_object.needs_update = TRUE
-				SSlighting.objects_queue += T.lighting_object
+		if(T.lighting_object && !T.lighting_object.needs_update)
+			T.lighting_object.needs_update = TRUE
+			SSlighting.objects_queue += T.lighting_object
 
 
 /datum/lighting_corner/dummy/New()

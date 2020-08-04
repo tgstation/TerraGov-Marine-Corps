@@ -66,7 +66,7 @@
 
 /** Chest pieces */
 /obj/item/armor_module/armor/chest
-	icon_state = "medium_chest"
+	icon_state = "infantry_chest"
 
 /obj/item/armor_module/armor/chest/can_attach(mob/living/user, obj/item/clothing/suit/modular/parent, silent = FALSE)
 	. = ..()
@@ -85,34 +85,31 @@
 	parent.slot_chest = null
 	return ..()
 
-/obj/item/armor_module/armor/chest/light
-	name = "\improper Jaeger Pattern light chestplates"
-	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides a light amount of protection and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor provides somewhat minimal defensive qualities, but has very little impact on the users mobility."
-	icon_state = "light_chest"
-	soft_armor = list("melee" = 19, "bullet" = 19, "laser" = 19, "energy" = 19, "bomb" = 19, "bio" = 19, "rad" = 19, "fire" = 19, "acid" = 19)
-	slowdown = 0.15
-
-
-/obj/item/armor_module/armor/chest/medium
-	name = "\improper Jaeger Pattern medium chestplates"
-	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides a medium amount of protection and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor provides moderate defensive qualities, with a moderate impact on the users mobility."
-	icon_state = "medium_chest"
-	soft_armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = 25, "bio" = 25, "rad" = 25, "fire" = 25, "acid" = 25)
+/obj/item/armor_module/armor/chest/marine
+	name = "\improper Jaeger Pattern Medium Infantry chestplates"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides moderate protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Infantry armor piece."
+	icon_state = "infantry_chest"
+	soft_armor = list("melee" = 17, "bullet" = 15, "laser" = 15, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 17)
 	slowdown = 0.3
 
+/obj/item/armor_module/armor/chest/marine/skirmisher
+	name = "\improper Jaeger Pattern Light Skirmisher chestplates"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides minor protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Skirmisher armor piece."
+	icon_state = "skirmisher_chest"
+	soft_armor = list("melee" = 10, "bullet" = 12.5, "laser" = 12.5, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	slowdown = 0.2
 
-/obj/item/armor_module/armor/chest/heavy
-	name = "\improper Jaeger Pattern heavy chestplates"
-	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides a heavy amount of protection and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor provides heavy defensive qualities, with a notable impact on the users mobility."
-	icon_state = "heavy_chest"
-	soft_armor = list("melee" = 31, "bullet" = 31, "laser" = 31, "energy" = 31, "bomb" = 31, "bio" = 31, "rad" = 31, "fire" = 31, "acid" = 31)
-	slowdown = 0.6
-
+/obj/item/armor_module/armor/chest/marine/assault
+	name = "\improper Jaeger Pattern Heavy Assault chestplates"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Assault armor piece."
+	icon_state = "assault_chest"
+	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 20)
+	slowdown = 0.4
 
 
 /** Legs pieces */
 /obj/item/armor_module/armor/legs
-	icon_state = "medium_legs"
+	icon_state = "infantry_legs"
 
 /obj/item/armor_module/armor/legs/can_attach(mob/living/user, obj/item/clothing/suit/modular/parent, silent = FALSE)
 	. = ..()
@@ -131,31 +128,30 @@
 	parent.slot_legs = null
 	return ..()
 
-/obj/item/armor_module/armor/legs/light
-	name = "\improper Jaeger Pattern light leg plates"
-	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides a light amount of protection and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor provides somewhat minimal defensive qualities, but has very little impact on the users mobility."
-	icon_state = "light_legs"
-	soft_armor = list("melee" = 8, "bullet" = 8, "laser" = 8, "energy" = 8, "bomb" = 8, "bio" = 8, "rad" = 8, "fire" = 8, "acid" = 8)
-	slowdown = 0.05
+/obj/item/armor_module/armor/legs/marine
+	name = "\improper Jaeger Pattern Medium Infantry leg plates"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides moderate protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Infantry armor piece."
+	icon_state = "infantry_legs"
+	soft_armor = list("melee" = 9, "bullet" = 12.5, "laser" = 12.5, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 9)
+	slowdown = 0.15
 
-/obj/item/armor_module/armor/legs/medium
-	name = "\improper Jaeger Pattern medium leg plates"
-	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides a medium amount of protection and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor provides moderate defensive qualities, with a moderate impact on the users mobility."
-	icon_state = "medium_legs"
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+/obj/item/armor_module/armor/legs/marine/skirmisher
+	name = "\improper Jaeger Pattern Skirmisher Light leg plates"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides minor protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Skirmisher armor piece."
+	icon_state = "skirmisher_legs"
+	soft_armor = list("melee" = 5, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 5)
 	slowdown = 0.1
 
-/obj/item/armor_module/armor/legs/heavy
-	name = "\improper Jaeger Pattern heavy leg plates"
-	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides a heavy amount of protection and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor provides heavy defensive qualities, with a notable impact on the users mobility."
-	icon_state = "heavy_legs"
-	soft_armor = list("melee" = 12, "bullet" = 12, "laser" = 12, "energy" = 12, "bomb" = 12, "bio" = 12, "rad" = 12, "fire" = 12, "acid" = 12)
+/obj/item/armor_module/armor/legs/marine/assault
+	name = "\improper Jaeger Pattern Heavy Assault leg plates"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Assault armor piece."
+	icon_state = "assault_legs"
+	soft_armor = list("melee" = 10, "bullet" = 15, "laser" = 15, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	slowdown = 0.2
-
 
 /** Arms pieces */
 /obj/item/armor_module/armor/arms
-	icon_state = "medium_arms"
+	icon_state = "infantry_arms"
 
 /obj/item/armor_module/armor/arms/can_attach(mob/living/user, obj/item/clothing/suit/modular/parent, silent = FALSE)
 	. = ..()
@@ -174,23 +170,23 @@
 	parent.slot_arms = null
 	return ..()
 
-/obj/item/armor_module/armor/arms/light
-	name = "\improper Jaeger Pattern light arm plates"
-	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides a light amount of protection and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor provides somewhat minimal defensive qualities, but has very little impact on the users mobility."
-	icon_state = "light_arms"
-	soft_armor = list("melee" = 8, "bullet" = 8, "laser" = 8, "energy" = 8, "bomb" = 8, "bio" = 8, "rad" = 8, "fire" = 8, "acid" = 8)
-	slowdown = 0.05
+/obj/item/armor_module/armor/arms/marine
+	name = "\improper Jaeger Pattern Medium Infantry arm plates"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides moderate protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Infantry armor piece."
+	icon_state = "infantry_arms"
+	soft_armor = list("melee" = 9, "bullet" = 12.5, "laser" = 12.5, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 9)
+	slowdown = 0.15
 
-/obj/item/armor_module/armor/arms/medium
-	name = "\improper Jaeger Pattern medium arm plates"
-	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides a medium amount of protection and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor provides moderate defensive qualities, with a moderate impact on the users mobility."
-	icon_state = "medium_arms"
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+/obj/item/armor_module/armor/arms/marine/skirmisher
+	name = "\improper Jaeger Pattern Light Skirmisher arm plates"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides minor protection and encumbrance  when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Skirmisher armor piece."
+	icon_state = "skirmisher_arms"
+	soft_armor = list("melee" = 7.5, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 7.5)
 	slowdown = 0.1
 
-/obj/item/armor_module/armor/arms/heavy
-	name = "\improper Jaeger Pattern heavy arm plates"
-	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides a heavy amount of protection and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor provides heavy defensive qualities, with a notable impact on the users mobility."
-	icon_state = "heavy_arms"
-	soft_armor = list("melee" = 12, "bullet" = 12, "laser" = 12, "energy" = 12, "bomb" = 12, "bio" = 12, "rad" = 12, "fire" = 12, "acid" = 12)
+/obj/item/armor_module/armor/arms/marine/assault
+	name = "\improper Jaeger Pattern Heavy Assault arm plates"
+	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Assault armor piece."
+	icon_state = "assault_arms"
+	soft_armor = list("melee" = 10, "bullet" = 15, "laser" = 15, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	slowdown = 0.2

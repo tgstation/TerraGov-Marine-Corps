@@ -85,6 +85,7 @@
 	// *** Warrior Abilities *** //
 	var/agility_speed_increase = 0 // this opens up possibilities for balancing
 
+
 	// *** Boiler Abilities *** //
 	var/max_ammo = 0
 	var/bomb_strength = 0
@@ -137,6 +138,7 @@
 	var/datum/hive_status/hive
 
 	var/list/overlays_standing[X_TOTAL_LAYERS]
+	var/atom/movable/vis_obj/xeno_wounds/wound_overlay
 	var/datum/xeno_caste/xeno_caste
 	var/caste_base_type
 	var/language = "Xenomorph"
@@ -211,7 +213,6 @@
 
 	// Warrior vars
 	var/agility = 0		// 0 - upright, 1 - all fours
-	var/ripping_limb = 0
 
 	// Defender vars
 	var/fortify = 0
@@ -225,10 +226,12 @@
 	var/savage = FALSE
 	var/savage_used = FALSE
 
+	// *** Ravager vars *** //
+	var/ignore_pain = FALSE // when true the rav will not go into crit or take crit damage.
+	var/ignore_pain_state = 0 // how far "dead" the rav has got while ignoring pain.
+
 	//Notification spam controls
 	var/recent_notice = 0
 	var/notice_delay = 20 //2 second between notices
 
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
-
-	var/butchery_progress = 0
