@@ -235,9 +235,9 @@
 	if(istype(user))
 		if(isAI(user) && !GLOB.cameranet.checkTurfVis(T))
 			return FALSE
-		else if(user.client && !(get_turf(target) in hear(user.client.view, user)))
+		else if(user.client && !(get_turf(target) in get_hear(user.client.view, user)))
 			return FALSE
-		else if(!(get_turf(target) in hear(WORLD_VIEW, user)))
+		else if(!(get_turf(target) in get_hear(WORLD_VIEW, user)))
 			return FALSE
 	else					//user is an atom
 		if(!(get_turf(target) in view(WORLD_VIEW, user)))
@@ -287,7 +287,7 @@
 	var/list/viewlist = (user && user.client)? getviewsize(user.client.view) : getviewsize(WORLD_VIEW)
 	var/viewr = max(viewlist[1], viewlist[2]) + max(size_x, size_y)
 	var/viewc = user.client? user.client.eye : target
-	seen = hear(viewr, viewc)
+	seen = get_hear(viewr, viewc)
 	var/list/turfs = list()
 	var/list/mobs = list()
 	var/clone_area = SSmapping.RequestBlockReservation(size_x * 2 + 1, size_y * 2 + 1)
