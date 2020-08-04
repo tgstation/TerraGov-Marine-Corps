@@ -6,6 +6,20 @@
 	density = TRUE
 	anchored = TRUE
 
+/obj/structure/showcase/two
+	icon_state = "showcase_2"
+
+/obj/structure/showcase/three
+	icon_state = "showcase_3"
+
+/obj/structure/showcase/four
+	icon_state = "showcase_4"
+	desc = "A stand with the empty shell of a mech bolted to it."
+
+/obj/structure/showcase/five
+	icon_state = "showcase_5"
+	desc = "A stand with the empty shell of a mech bolted to it."
+
 /obj/structure/showcase/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
@@ -100,23 +114,24 @@ obj/structure/xenoautopsy/tank
 	icon_state = "tank_empty"
 	desc = "It is empty."
 
+obj/structure/xenoautopsy/tank/escaped
+	name = "broken cryo tank"
+	icon_state = "tank_escaped"
+	desc = "Something broke it..."
+
 obj/structure/xenoautopsy/tank/broken
-	name = "cryo tank"
 	icon_state = "tank_broken"
 	desc = "Something broke it..."
 
 obj/structure/xenoautopsy/tank/alien
-	name = "cryo tank"
 	icon_state = "tank_alien"
 	desc = "There is something big inside..."
 
 obj/structure/xenoautopsy/tank/hugger
-	name = "cryo tank"
 	icon_state = "tank_hugger"
 	desc = "There is something spider-like inside..."
 
 obj/structure/xenoautopsy/tank/larva
-	name = "cryo tank"
 	icon_state = "tank_larva"
 	desc = "There is something worm-like inside..."
 

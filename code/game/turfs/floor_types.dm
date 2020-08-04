@@ -53,7 +53,7 @@
 	icon_state = "emeraldfull"
 
 /turf/open/floor/mainship/purple
-	icon_state = "emerald"
+	icon_state = "purple"
 
 /turf/open/floor/mainship/purple/corner
 	icon_state = "purplecorner"
@@ -143,6 +143,15 @@
 /turf/open/floor/mainship/tcomms
 	icon_plating = "tcomms"
 	icon_state = "tcomms"
+
+/turf/open/floor/mainship/sterile/purple
+	icon_state = "sterile_purple"
+
+/turf/open/floor/mainship/sterile/purple/corner
+	icon_state = "sterile_purple_corner"
+
+/turf/open/floor/mainship/sterile/purple/side
+	icon_state = "sterile_purple_side"
 
 /turf/open/floor/mainship/office
 	icon_state = "office_tile"
@@ -480,11 +489,12 @@
 /turf/open/floor/tile/caution/corner
 	icon_state = "cautioncorner"
 
-/turf/open/floor/tile/ss13
-	icon_state = "ss13a"
+/turf/open/floor/tile/logoss
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "logoss"
 
-/turf/open/floor/tile/ss13/ss13b
-	icon_state = "ss13b"
+/turf/open/floor/tile/logoss/two
+	icon_state = "logoss2"
 
 /turf/open/floor/tile/solarpanel
 	icon_state = "solarpanel"
@@ -857,9 +867,6 @@
 
 /turf/open/floor/prison/darkyellow/corner
 	icon_state = "darkyellowcorners2"
-
-/turf/open/floor/prison/darkgreen
-	icon_state = "darkgreen2"
 
 /turf/open/floor/prison/darkbrown
 	icon_state = "darkbrown2"

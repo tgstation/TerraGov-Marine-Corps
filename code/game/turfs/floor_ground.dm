@@ -150,21 +150,21 @@
 	setDir(pick(NORTH,SOUTH,EAST,WEST,NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST))
 
 // Colony tiles
-/turf/open/floor/plating/ground/asphalt
-	name = "asphalt"
-	icon = 'icons/turf/asphalt.dmi'
-	icon_state = "asphalt"
+/turf/open/floor/plating/ground/concrete
+	name = "concrete"
+	icon = 'icons/turf/concrete.dmi'
+	icon_state = "concrete0"
 
-//Randomize asphalt floor sprite
-/turf/open/floor/plating/ground/asphalt/Initialize()
+//Randomize concrete floor sprite
+/turf/open/floor/plating/ground/concrete/Initialize()
 	. = ..()
-	icon_state = "asphalt[pick("0","1","2","3","4")]"
+	icon_state = "concrete[pick("0","1","2","3","4")]"
 
-/turf/open/floor/plating/ground/asphaltlines
-	icon_state = "asphaltlines"
+/turf/open/floor/plating/ground/concrete/lines
+	icon_state = "concrete_lines"
 
-/turf/open/floor/plating/ground/asphaltlines/edge
-	icon_state = "asphaltedgelines_edge"
+/turf/open/floor/plating/ground/concrete/edge
+	icon_state = "concrete_edge"
 
 
 //Desert Map

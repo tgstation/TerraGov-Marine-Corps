@@ -191,10 +191,21 @@
 /obj/structure/sign/double/maltesefalcon/right
 	icon_state = "maltesefalcon-right"
 
-/obj/structure/sign/science			//These 3 have multiple types, just var-edit the icon_state to whatever one you want on the map
+/obj/structure/sign/science
 	name = "\improper SCIENCE!"
 	desc = "A warning sign which reads 'SCIENCE!'."
 	icon_state = "science1"
+
+/obj/structure/sign/science/two
+	icon_state = "science2"
+
+/obj/structure/sign/xenobio
+	name = "\improper SCIENCE!"
+	desc = "A warning sign which reads 'SCIENCE!'."
+	icon_state = "xenobio4"
+
+/obj/structure/sign/xenobio/two
+	icon_state = "xenobio"
 
 /obj/structure/sign/chemistry
 	name = "\improper CHEMISTRY"
@@ -233,6 +244,53 @@
 	name = "\improper Maintenance Tunnel sign"
 	desc = "A sign labelling an area where the departments are linked together."
 	icon_state = "mait2"
+
+/obj/structure/sign/botany
+	name = "\improper BODY DISPOSAL"
+	desc = "A guidance sign which reads 'BODY DISPOSAL'."
+	icon_state = "bodysposal"
+
+/obj/structure/sign/doors
+	name = "\improper DOORS"
+	desc = "A guidance sign which reads 'DOORS'."
+	icon_state = "doors"
+
+/obj/structure/sign/engie
+	name = "\improper ENGINEERING"
+	desc = "A guidance sign which reads 'ENGINEERING'."
+	icon_state = "engine"
+
+/obj/structure/sign/evac
+	name = "\improper EVACUATION"
+	desc = "A guidance sign which reads 'EVACUATION'."
+	icon_state = "evac"
+
+/obj/structure/sign/hydro
+	name = "\improper HYDROPNICS"
+	desc = "A guidance sign which reads 'HYDROPNICS'."
+	icon_state = "hydro1"
+
+/obj/structure/sign/hydro/two
+	icon_state = "hydro2"
+
+/obj/structure/sign/hydro/three
+	icon_state = "hydro3"
+
+/obj/structure/sign/restroom
+	name = "\improper RESTROOM"
+	desc = "A guidance sign which reads 'RESTROOM'."
+	icon_state = "restroom"
+
+/obj/structure/sign/security
+	name = "\improper SECURITY"
+	desc = "A guidance sign which reads 'SECURITY'."
+	icon_state = "security"
+
+/obj/structure/sign/testchamber
+	name = "\improper TEST CHAMBER"
+	desc = "A guidance sign which reads 'TEST CHAMBER'."
+	icon_state = "testchamber"
+
 
 /obj/structure/sign/directions/science
 	name = "\improper Science department"
@@ -273,6 +331,7 @@
 	name = "mining department sign"
 	desc = "A direction sign, pointing out which way the Mining department is."
 	icon_state = "direction_mining"
+
 
 /obj/structure/sign/safety/
 	name = "sign"
