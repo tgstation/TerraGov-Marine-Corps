@@ -53,6 +53,7 @@
 					/obj/item/weapon/throwing_knife = 5,
 					/obj/item/storage/box/m94 = 5,
 					/obj/item/attachable/flashlight = 10,
+					/obj/item/explosive/grenade/mirage = 5,
 					)
 	prices = list()
 
