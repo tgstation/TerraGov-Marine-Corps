@@ -90,7 +90,7 @@
 			if(next_fire > world.time)
 				return
 
-			if(!current_squad || current_squad.sbeacon)
+			if(!current_squad?.sbeacon)
 				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>There was an issue with that squads beacon. Check it's still active.</span>")
 				return
 
