@@ -250,7 +250,7 @@
 
 
 /obj/machinery/camera/proc/can_see()
-	return get_hear(view_range, get_turf(src))
+	return hear(view_range, get_turf(src))
 
 
 //Return a working camera that can see a given mob
