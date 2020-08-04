@@ -26,6 +26,11 @@
 /datum/internal_organ/process()
 		return 0
 
+/datum/internal_organ/Destroy(force, ...)
+	. = ..()
+	owner = null
+	organ_holder = null
+
 //Germs
 /datum/internal_organ/proc/handle_antibiotics()
 	var/antibiotics = owner.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
