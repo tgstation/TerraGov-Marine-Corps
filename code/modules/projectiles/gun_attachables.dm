@@ -47,6 +47,7 @@ Defined in conflicts.dm of the #defines folder.
 
 	//These are flat bonuses applied and are passive, though they may be applied at different points.
 	var/accuracy_mod 	= 0 //Modifier to firing accuracy, works off a multiplier.
+	var/scoped_accuracy_mod = 0 //as above but for scoped.
 	var/accuracy_unwielded_mod = 0 //same as above but for onehanded.
 	var/damage_mod 		= 0 //Modifer to the damage mult, works off a multiplier.
 	var/damage_falloff_mod = 0 //Modifier to damage falloff, works off a multiplier.
@@ -640,7 +641,7 @@ Defined in conflicts.dm of the #defines folder.
 	accuracy_mod = 0.1
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 	attachment_action_type = /datum/action/item_action/toggle
-	scope_zoom_mod = TRUE
+	scope_zoom_mod = TRUE // codex
 	accuracy_unwielded_mod = -0.05
 	var/zoom_offset = 11
 	var/zoom_viewsize = 12
@@ -1620,7 +1621,7 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = ""
 	attach_icon = ""
 	slot = "under"
-	flags_attach_features = ATTACH_ACTIVATION|ATTACH_UTILITY
+	flags_attach_features = ATTACH_ACTIVATION|ATTACH_UTILITY|GUN_ALLOW_SYNTHETIC
 	attachment_action_type = /datum/action/item_action/toggle
 
 /obj/item/attachable/hydro_cannon/activate_attachment(mob/living/user, turn_off)
@@ -1646,6 +1647,6 @@ Defined in conflicts.dm of the #defines folder.
 	if(istype(rail,/obj/item/attachable/scope))
 		var/obj/item/attachable/scope/S = rail
 		if(zoom)
-			S.accuracy_mod = S.zoom_accuracy
+			accuracy_mult += S.scoped_accuracy_mod
 		else
-			S.accuracy_mod = 0
+			accuracy_mult -= S.scoped_accuracy_mod

@@ -52,7 +52,7 @@
 	if(!cooldown_id)
 		X.dropItemToGround(F)
 		F.go_active(TRUE)
-		playsound(X, 'sound/effects/throw.ogg', 30, 1)
+		playsound(X, 'sound/effects/throw.ogg', 30, TRUE)
 		F.throw_at(A, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
 		X.visible_message("<span class='xenowarning'>\The [X] throws something towards \the [A]!</span>", \
 		"<span class='xenowarning'>We throw a facehugger towards \the [A]!</span>")

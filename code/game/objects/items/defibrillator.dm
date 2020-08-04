@@ -72,8 +72,8 @@
 
 	defib_cooldown = world.time + 2 SECONDS
 	ready = !ready
-	user.visible_message("<span class='notice'>[user] turns [src] [ready? "on and takes the paddles out" : "off and puts the paddles back in"].</span>",
-	"<span class='notice'>You turn [src] [ready? "on and take the paddles out" : "off and put the paddles back in"].</span>")
+	user.visible_message("<span class='notice'>[user] turns [src] [ready? "on and opens the cover" : "off and closes the cover"].</span>",
+	"<span class='notice'>You turn [src] [ready? "on and open the cover" : "off and close the cover"].</span>")
 	playsound(get_turf(src), "sparks", 25, TRUE, 4)
 	update_icon()
 
@@ -243,3 +243,9 @@
 	to_chat(H, "<span class='notice'>You suddenly feel a spark and your consciousness returns, dragging you back to the mortal plane.</span>")
 
 	notify_ghosts("<b>[user]</b> has brought <b>[H.name]</b> back to life!", source = H, action = NOTIFY_ORBIT)
+
+/obj/item/defibrillator/civi
+	name = "emergency defibrillator"
+	desc = "A handheld emergency defibrillator, used to restore fibrillating patients. Can optionally bring people back from the dead. Appears to be a civillian model."
+	icon_state = "civ_defib_full"
+	item_state = "defib"
