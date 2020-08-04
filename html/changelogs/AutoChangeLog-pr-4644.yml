@@ -1,0 +1,4 @@
+author: "Hathkar"
+delete-after: True
+changes: 
+  - bugfix: "Shutters and Wall fix for LZ1 on LV"
