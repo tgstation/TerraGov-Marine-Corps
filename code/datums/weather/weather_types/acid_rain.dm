@@ -4,10 +4,10 @@
 	desc = "The planet's thunderstorms are by nature acidic, and will incinerate anyone standing beneath them without protection."
 
 	telegraph_duration = 400
-	telegraph_message = "<span class='boldwarning'>Thunder rumbles far above. You hear droplets drumming against the canopy. Seek shelter.</span>"
+	telegraph_message = "<span class='boldannounce'>Thunder rumbles far above. You hear droplets drumming against the canopy. Seek shelter.</span>"
 	telegraph_sound = 'sound/weather/acidrain/acidrain_start.ogg'
 
-	weather_message = "<span class='boldwarning'><i>Acidic rain pours down around you! Get inside!</i></span>"
+	weather_message = "<span class='boldannounce'><i>Acidic rain pours down around you! Get inside!</i></span>"
 	weather_overlay = "acid_rain"
 	weather_duration_lower = 600
 	weather_duration_upper = 1500
@@ -45,4 +45,4 @@
 	var/resist = L.getarmor(null, "acid")
 	if(prob(max(0,100-resist)))
 		L.adjustFireLoss(10)
-		to_chat(L, "<span class='boldwarning'>You feel the acid rain melting you away!</span>")
+		to_chat(L, "<span class='boldannounce'>You feel the acid rain melting you away!</span>")

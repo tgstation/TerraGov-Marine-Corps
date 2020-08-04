@@ -347,6 +347,7 @@
 #include "code\datums\weather\weather.dm"
 #include "code\datums\weather\weather_types\acid_rain.dm"
 #include "code\datums\weather\weather_types\ash_storm.dm"
+#include "code\datums\weather\weather_types\sand_storm.dm"
 #include "code\datums\weather\weather_types\snow_storm.dm"
 #include "code\datums\wires\_wires.dm"
 #include "code\datums\wires\airalarm.dm"

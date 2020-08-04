@@ -3,11 +3,11 @@
 	name = "ash storm"
 	desc = "An intense atmospheric storm lifts ash off of the planet's surface and billows it down across the area, dealing intense fire damage to the unprotected."
 
-	telegraph_message = "<span class='boldwarning'>An eerie moan rises on the wind. Sheets of burning ash blacken the horizon. Seek shelter.</span>"
+	telegraph_message = "<span class='boldannounce'>An eerie moan rises on the wind. Sheets of burning ash blacken the horizon. Seek shelter.</span>"
 	telegraph_duration = 300
 	telegraph_overlay = "light_ash"
 
-	weather_message = "<span class='boldwarning'><i>Smoldering clouds of scorching ash billow down around you! Get inside!</i></span>"
+	weather_message = "<span class='boldannounce'><i>Smoldering clouds of scorching ash billow down around you! Get inside!</i></span>"
 	weather_duration_lower = 600
 	weather_duration_upper = 1200
 	weather_overlay = "ash_storm"
@@ -75,17 +75,17 @@
 	sound_wo.stop()
 	sound_wi.stop()
 
-/datum/weather/ash_storm/proc/is_ash_immune(atom/L)
+/datum/weather/ash_storm/proc/is_storm_immune(atom/L)
 	while (L && !isturf(L))
 		if(isliving(L))// if we're a non immune mob inside an immune mob we have to reconsider if that mob is immune to protect ourselves
 			var/mob/living/the_mob = L
-			if("ash" in the_mob.weather_immunities)
+			if(immunity_type in the_mob.weather_immunities)
 				return TRUE
 		L = L.loc //Check parent items immunities (recurses up to the turf)
 	return FALSE //RIP you
 
 /datum/weather/ash_storm/weather_act(mob/living/L)
-	if(is_ash_immune(L))
+	if(is_storm_immune(L))
 		return
 	L.adjustFireLoss(4)
 
