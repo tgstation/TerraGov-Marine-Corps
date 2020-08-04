@@ -10,13 +10,13 @@
 // First thing we need is the ammo drum for this thing.
 /obj/item/ammo_magazine/standard_hmg
 	name = "TL-102 drum magazine (10x30mm Caseless)"
-	desc = "A box of 700, 10x30mm caseless tungsten rounds for the TL-102 mounted heavy smartgun. Just click the TL-102 with this to reload it."
+	desc = "A box of 300, 10x30mm caseless tungsten rounds for the TL-102 mounted heavy smartgun. Just click the TL-102 with this to reload it."
 	w_class = WEIGHT_CLASS_NORMAL
 	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "mag"
 	flags_magazine = NONE //can't be refilled or emptied by hand
 	caliber = "10x30mm"
-	max_rounds = 700
+	max_rounds = 300
 	default_ammo = /datum/ammo/bullet/smartgun
 	gun_type = null
 
@@ -63,7 +63,7 @@
 	if(!ishuman(user))
 		return
 	if(rounds)
-		to_chat(usr, "It has [rounds] out of 700 rounds.")
+		to_chat(usr, "It has [rounds] out of 300 rounds.")
 	else
 		to_chat(usr, "It seems to be lacking a ammo drum.")
 
@@ -85,7 +85,7 @@
 			to_chat(user, "The TL-102 already has a ammo drum mounted on it!")
 			return
 
-		rounds = 700
+		rounds = 300
 		qdel(I)
 		update_icon()
 /obj/item/standard_hmg/attack_self(mob/user) //click the gun to unfold it.
@@ -163,7 +163,7 @@
 	max_integrity = 300
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0, "fire" = 0, "acid" = 0)
 	var/rounds = 0 //Have it be empty upon spawn.
-	var/rounds_max = 700
+	var/rounds_max = 300
 	var/fire_delay = 2 //Gotta have rounds down quick. // Ren's changes
 	var/burst_delay = 1 // Ren's changes
 	var/last_fired = 0

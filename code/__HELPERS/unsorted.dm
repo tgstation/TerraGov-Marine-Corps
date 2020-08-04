@@ -22,7 +22,9 @@
 #undef DELTA_CALC
 
 #define UNTIL(X) while(!(X)) stoplag()
-#define SIGN(x) (x < 0 ? -1  : 1)
+
+/// Gets the sign of x, returns -1 if negative, 0 if 0, 1 if positive
+#define SIGN(x) ( ((x) > 0) - ((x) < 0) )
 
 //datum may be null, but it does need to be a typed var
 #define NAMEOF(datum, X) (#X || ##datum.##X)

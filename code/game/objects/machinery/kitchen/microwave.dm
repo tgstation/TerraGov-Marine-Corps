@@ -321,7 +321,7 @@
 	visible_message("<span class='warning'> The microwave gets covered in muck!</span>")
 	dirty = 100 // Make it dirty so it can't be used util cleaned
 	DISABLE_BITFIELD(reagents.reagent_flags, OPENCONTAINER) //So you can't add condiments
-	icon_state = "mwbloody" // Make it look dirty too
+	icon_state = "mwbloody0" // Make it look dirty too
 	operating = 0 // Turn it off again aferwards
 	updateUsrDialog()
 
