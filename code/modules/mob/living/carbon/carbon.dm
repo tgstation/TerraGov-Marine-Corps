@@ -16,8 +16,8 @@
 		QDEL_NULL(internal)
 	if(handcuffed)
 		QDEL_NULL(handcuffed)
+	. = ..()
 	species = null
-	return ..()
 
 /mob/living/carbon/Move(NewLoc, direct)
 	. = ..()
