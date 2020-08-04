@@ -15202,13 +15202,6 @@
 	dir = 1
 	},
 /area/shuttle/drop1/lz1)
-"bkc" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
-/obj/structure/fence,
-/turf/open/ground/grass,
-/area/shuttle/drop1/lz1)
 "bkd" = (
 /obj/structure/fence,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -18181,6 +18174,12 @@
 /obj/item/tool/pen,
 /turf/open/floor,
 /area/shuttle/drop2/lz2)
+"kgp" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 1
+	},
+/turf/closed/gm/dense,
+/area/lv624/lazarus/quartstorage/outdoors)
 "kir" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -18290,6 +18289,9 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "lYR" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 1
+	},
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/quartstorage/outdoors)
 "mbU" = (
@@ -18361,6 +18363,10 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle4)
+"mBe" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/closed/gm/dense,
+/area/lv624/ground/jungle5)
 "mEa" = (
 /obj/structure/jungle/planttop1,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -18539,6 +18545,12 @@
 	},
 /turf/closed/wall,
 /area/lv624/lazarus/quartstorage)
+"oKm" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 1
+	},
+/turf/closed/wall/r_wall,
+/area/shuttle/drop1/lz1)
 "oLs" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -18710,6 +18722,7 @@
 	},
 /area/lv624/ground/jungle9)
 "qzs" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/gm/dense,
 /area/shuttle/drop1/lz1)
 "qBt" = (
@@ -18958,15 +18971,6 @@
 	dir = 1
 	},
 /area/lv624/lazarus/atmos)
-"tbe" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
-/obj/structure/fence,
-/turf/open/floor/plating/ground/dirtgrassborder/corner{
-	dir = 1
-	},
-/area/shuttle/drop1/lz1)
 "tei" = (
 /obj/machinery/computer3/server,
 /obj/effect/decal/warning_stripes/thin{
@@ -19348,6 +19352,12 @@
 	},
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
+"xOk" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 1
+	},
+/turf/closed/gm/dense,
+/area/lv624/ground/jungle5)
 "xQl" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/structure/jungle/vines,
@@ -44783,7 +44793,7 @@ aWs
 bhN
 bgy
 bjv
-aAu
+oKm
 bkT
 bkk
 bdh
@@ -44962,7 +44972,7 @@ aWs
 aWs
 aWs
 bjv
-tbe
+oKm
 bjz
 bkl
 bdh
@@ -45141,7 +45151,7 @@ aWs
 aWs
 aWs
 bjv
-bkc
+oKm
 bdg
 bdg
 myp
@@ -45320,7 +45330,7 @@ aWs
 aWs
 aWs
 bjv
-bkc
+oKm
 bdg
 bkY
 bmo
@@ -45499,7 +45509,7 @@ aTn
 aTn
 aTn
 aWq
-bkc
+oKm
 bmm
 bdh
 bdi
@@ -45678,7 +45688,7 @@ aVQ
 aWu
 aTo
 bjv
-aAu
+oKm
 bef
 oCY
 bmp
@@ -45831,7 +45841,7 @@ azK
 aAk
 aAk
 aAk
-aHs
+lYR
 aSB
 aTp
 aTR
@@ -46010,7 +46020,7 @@ azJ
 aAk
 aAk
 aAk
-aHs
+lYR
 aSB
 aTq
 aTR
@@ -46189,7 +46199,7 @@ azK
 aAk
 aAk
 aAk
-aHs
+lYR
 aSB
 aTr
 aTR
@@ -47263,7 +47273,7 @@ aNN
 azJ
 aNM
 aJG
-aJG
+kgp
 aSB
 aTp
 aTR
@@ -47442,7 +47452,7 @@ aAV
 aAV
 aAV
 aAV
-aAV
+xOk
 aSB
 aTq
 aTR
@@ -47621,7 +47631,7 @@ aAV
 aAV
 aAV
 aAV
-aAV
+xOk
 aSB
 aTr
 aTR
@@ -47800,7 +47810,7 @@ aAV
 aAV
 aAV
 aAV
-aAV
+xOk
 aSB
 aTo
 aTS
@@ -47979,7 +47989,7 @@ aAV
 aAV
 aAV
 aAV
-aAV
+xOk
 aSC
 aTt
 aTt
@@ -48158,7 +48168,7 @@ aAV
 aAV
 aAV
 aAV
-aAV
+mBe
 qzs
 aSD
 aSD
