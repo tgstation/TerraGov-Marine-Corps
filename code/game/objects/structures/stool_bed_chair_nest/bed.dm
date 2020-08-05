@@ -440,7 +440,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	UnregisterSignal(src, COMSIG_MOVABLE_UNBUCKLE)
 	deltimer(teleport_timer)
 	playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
-	visible_message("<span class='warning'>[src]'s safeties kick in, not detecting buckled mob.</span>")
+	visible_message("<span class='warning'>[src]'s safeties kick in, no longer detecting a buckled mob.</span>")
 
 
 /obj/structure/bed/medevac_stretcher/proc/medevac_teleport(mob/user)
