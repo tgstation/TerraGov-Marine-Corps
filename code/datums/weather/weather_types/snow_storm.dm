@@ -7,19 +7,17 @@
 	telegraph_duration = 300
 	telegraph_overlay = "light_snow"
 
-	weather_message = "<span class='warning'><i>Harsh winds pick up as dense snow begins to fall from the sky! Seek shelter!</i></span>"
+	weather_message = "<span class='warning'><i>Harsh winds pick up as dense snow begins to fall from the sky!</i></span>"
 	weather_overlay = "snow_storm"
 	weather_duration_lower = 600
 	weather_duration_upper = 1500
 
 	end_duration = 100
-	end_message = "<span class='boldannounce'>The snowfall dies down, it should be safe to go outside again.</span>"
+	end_message = "<span class='boldannounce'>The snowfall begins to slow.</span>"
 
 	area_type = /area
 	protect_indoors = TRUE
 	target_trait = ZTRAIT_SNOWSTORM
 	aesthetic = TRUE
-
-	immunity_type = "snow"
 
 	barometer_predictable = TRUE

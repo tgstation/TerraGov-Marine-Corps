@@ -16,9 +16,7 @@
 
 	target_trait = ZTRAIT_SANDSTORM
 
-	probability = 80
-
-	immunity_type = "sand"
+	probability = 30
 
 /datum/weather/ash_storm/sand/weather_act(mob/living/L)
 	if(is_storm_immune(L))
@@ -29,6 +27,7 @@
 	name = "Sandfall"
 	desc = "A passing sandstorm blankets the area in sand."
 
+	telegraph_message = "<span class='boldannounce'>The wind begins to intensify, blowing sand up from the ground...</span>"
 	telegraph_overlay = "dust_low"
 
 	weather_message = "<span class='notice'>Gentle sand wafts down around you like grotesque snow. The storm seems to have passed you by...</span>"
@@ -39,4 +38,4 @@
 
 	aesthetic = TRUE
 
-	probability = 20
+	probability = 70

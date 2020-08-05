@@ -77,9 +77,9 @@
 
 /datum/weather/ash_storm/proc/is_storm_immune(atom/L)
 	while (L && !isturf(L))
-		if(isliving(L))// if we're a non immune mob inside an immune mob we have to reconsider if that mob is immune to protect ourselves
-			var/mob/living/the_mob = L
-			if(immunity_type in the_mob.weather_immunities)
+		if(iscarbon(L))// if we're a non immune mob inside an immune mob we have to reconsider if that mob is immune to protect ourselves
+			var/mob/living/carbon/the_mob = L
+			if(the_mob.wear_mask)	//safety first
 				return TRUE
 		L = L.loc //Check parent items immunities (recurses up to the turf)
 	return FALSE //RIP you

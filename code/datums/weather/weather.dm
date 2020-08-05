@@ -62,8 +62,6 @@
 	var/overlay_plane = BLACKNESS_PLANE
 	/// If the weather has no purpose other than looks
 	var/aesthetic = FALSE
-	/// Used by mobs to prevent them from being affected by the weather
-	var/immunity_type = "storm"
 
     /// The stage of the weather, from 1-4
 	var/stage = END_STAGE
@@ -93,9 +91,7 @@
 	if(stage == STARTUP_STAGE)
 		return
 	stage = STARTUP_STAGE
-	var/list/affectareas = list()
-	for(var/V in get_areas(area_type))
-		affectareas += V
+	var/list/affectareas = get_areas(area_type)
 	for(var/V in protected_areas)
 		affectareas -= get_areas(V)
 	for(var/V in affectareas)
@@ -128,9 +124,8 @@
 		return
 	stage = MAIN_STAGE
 	update_areas()
-	for(var/M in GLOB.player_list)
-		var/turf/mob_turf = get_turf(M)
-		if(mob_turf && (mob_turf.z in impacted_z_levels))
+	for(var/num in impacted_z_levels)
+		for(var/M in GLOB.humans_by_zlevel["[num]"])
 			if(weather_message)
 				to_chat(M, weather_message)
 			if(weather_sound)
@@ -149,9 +144,8 @@
 		return
 	stage = WIND_DOWN_STAGE
 	update_areas()
-	for(var/M in GLOB.player_list)
-		var/turf/mob_turf = get_turf(M)
-		if(mob_turf && (mob_turf.z in impacted_z_levels))
+	for(var/num in impacted_z_levels)
+		for(var/M in GLOB.humans_by_zlevel["[num]")
 			if(end_message)
 				to_chat(M, end_message)
 			if(end_sound)
@@ -167,7 +161,7 @@
   */
 /datum/weather/proc/end()
 	if(stage == END_STAGE)
-		return 1
+		return TRUE
 	stage = END_STAGE
 	STOP_PROCESSING(SSweather, src)
 	update_areas()
@@ -178,9 +172,7 @@
   */
 /datum/weather/proc/can_weather_act(mob/living/L)
 	var/turf/mob_turf = get_turf(L)
-	if(mob_turf && !(mob_turf.z in impacted_z_levels))
-		return
-	if(immunity_type in L.weather_immunities)
+	if(L && !(mob_turf.z in impacted_z_levels))
 		return
 	if(!(get_area(L) in impacted_areas))
 		return
