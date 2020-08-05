@@ -21,7 +21,7 @@ ADMIN_LEGACY_SYSTEM
 ## Add a # infront of this to disable the shutdown server verb.
 ALLOW_SHUTDOWN
 
-## If you use /tg/station-server 3 and you want to allow the shutdown server verb, 
+## If you use /tg/station-server 3 and you want to allow the shutdown server verb,
 ##	the server needs to be able to tell tgs3 that the shutdown is not a crash.
 ## This should be the path to the TGCommandLine.exe program in your tgstation-server install.
 ## Defaults to C:\Program Files (x86)\TG Station Server\TGCommandLine.exe if not set.
