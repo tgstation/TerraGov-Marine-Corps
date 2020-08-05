@@ -36,29 +36,31 @@ SUBSYSTEM_DEF(weather)
 /datum/controller/subsystem/weather/Initialize(start_timeofday)
 	for(var/V in subtypesof(/datum/weather))
 		var/datum/weather/W = V
+		var/probability = initial(W.probability)
+		var/target_trait = initial(W.target_trait)
 
 		// any weather with a probability set may occur at random
-		if (W.probability)
-			for(var/z in SSmapping.levels_by_trait(W.target_trait))
+		if(probability)
+			for(var/z in SSmapping.levels_by_trait(target_trait))
 				LAZYINITLIST(eligible_zlevels["[z]"])
-				eligible_zlevels["[z]"][W] = W.probability
+				eligible_zlevels["[z]"][W] = probability
 	return ..()
 
 /datum/controller/subsystem/weather/proc/run_weather(datum/weather/weather_datum_type, z_levels)
-	if (istext(weather_datum_type))
-		for (var/V in subtypesof(/datum/weather))
+	if(istext(weather_datum_type))
+		for(var/V in subtypesof(/datum/weather))
 			var/datum/weather/W = V
-			if (W.name == weather_datum_type)
+			if(W.name == weather_datum_type)
 				weather_datum_type = V
 				break
-	if (!ispath(weather_datum_type, /datum/weather))
+	if(!ispath(weather_datum_type, /datum/weather))
 		CRASH("run_weather called with invalid weather_datum_type: [weather_datum_type || "null"]")
 
-	if (isnull(z_levels))
+	if(isnull(z_levels))
 		z_levels = SSmapping.levels_by_trait(weather_datum_type.target_trait)
-	else if (isnum(z_levels))
+	else if(isnum(z_levels))
 		z_levels = list(z_levels)
-	else if (!islist(z_levels))
+	else if(!islist(z_levels))
 		CRASH("run_weather called with invalid z_levels: [z_levels || "null"]")
 
 	var/datum/weather/W = new weather_datum_type(z_levels)
