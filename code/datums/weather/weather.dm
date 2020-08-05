@@ -145,7 +145,7 @@
 	stage = WIND_DOWN_STAGE
 	update_areas()
 	for(var/num in impacted_z_levels)
-		for(var/M in GLOB.humans_by_zlevel["[num]")
+		for(var/M in GLOB.humans_by_zlevel["[num]"])
 			if(end_message)
 				to_chat(M, end_message)
 			if(end_sound)
