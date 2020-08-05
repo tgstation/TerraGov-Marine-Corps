@@ -1,4 +1,4 @@
-/obj/item/clothing/head/helmet/headphones
+/obj/item/clothing/head/headphones
 	name = "Nanotrasen brand headphones"
 	desc = "A pair of black headphones, perfect for playing any music, anywhere!"
 	icon_state = "headphones"
@@ -6,7 +6,7 @@
 	var/musiclink
 	var/list/queuedmusic
 
-/obj/item/clothing/head/helmet/headphones/verb/addmusic()
+/obj/item/clothing/head/headphones/verb/addmusic()
 	set category = "Headphones"
 	set name = "Add music!"
 
@@ -33,7 +33,7 @@
 			return
 		LAZYADD(queuedmusic, web_sound_input)
 
-/obj/item/clothing/head/helmet/headphones/verb/playmusic()
+/obj/item/clothing/head/headphones/verb/playmusic()
 	set category = "Headphones"
 	set name = "Play next song!"
 
@@ -88,7 +88,7 @@
 			queuedmusic = null
 	RegisterSignal(src, list(COMSIG_ITEM_UNEQUIPPED, COMSIG_ITEM_DROPPED, COMSIG_PARENT_PREQDELETED), .verb/stopmusic, TRUE)
 
-/obj/item/clothing/head/helmet/headphones/verb/stopmusic()
+/obj/item/clothing/head/headphones/verb/stopmusic()
 	set category = "Headphones"
 	set name = "Stop current music"
 
