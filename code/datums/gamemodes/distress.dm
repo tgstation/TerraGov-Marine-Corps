@@ -5,7 +5,7 @@
 	name = "Distress Signal"
 	config_tag = "Distress Signal"
 	required_players = 2
-	flags_round_type = MODE_INFESTATION|MODE_LZ_SHUTTERS|MODE_XENO_RULER
+	flags_round_type = MODE_INFESTATION|MODE_LZ_SHUTTERS|MODE_XENO_RULER|MODE_XENO_RESPAWN_WAVE
 	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM
 	round_end_states = list(MODE_INFESTATION_X_MAJOR, MODE_INFESTATION_M_MAJOR, MODE_INFESTATION_X_MINOR, MODE_INFESTATION_M_MINOR, MODE_INFESTATION_DRAW_DEATH)
 
@@ -33,11 +33,16 @@
 		/datum/job/xenomorph/queen = 1
 	)
 
+	// Xeno respawns
+	xeno_respawn_wave_timer = 15 MINUTES
+	xeno_respawn_silo_reduction = 2 MINUTES
+
 	var/round_stage = DISTRESS_MARINE_DEPLOYMENT
 
-	var/bioscan_current_interval = 45 MINUTES
+	var/bioscan_current_interval = 30 MINUTES
 	var/bioscan_ongoing_interval = 20 MINUTES
 	var/orphan_hive_timer
+
 
 
 /datum/game_mode/infestation/distress/announce()
@@ -71,9 +76,6 @@
 /datum/game_mode/infestation/distress/post_setup()
 	. = ..()
 	scale_gear()
-	for(var/i in GLOB.xeno_resin_silo_turfs)
-		new /obj/structure/resin/silo(i)
-
 	addtimer(CALLBACK(src, .proc/announce_bioscans, FALSE, 1), rand(30 SECONDS, 1 MINUTES)) //First scan shows no location but more precise numbers.
 
 /datum/game_mode/infestation/distress/proc/map_announce()
@@ -83,21 +85,37 @@
 	priority_announce(SSmapping.configs[GROUND_MAP].announce_text, SSmapping.configs[SHIP_MAP].map_name)
 
 
+/datum/game_mode/infestation/disstress/spawn_resin_silos()
+	// Want a max of only 5 silos
+	var/all_silos = GLOB.xeno_resin_silo_turfs.Copy()
+	for(var/i in 1 to 5)
+		var/silo_spawn = pick_n_take(all_silos)
+		if(!silo_spawn)
+			stack_trace("There were not enough silos to spawn. Iteration: [i]")
+		new /obj/structure/resin/silo(silo_spawn)
+
+
 /datum/game_mode/infestation/distress/process()
-	if(round_finished)
-		return FALSE
+	. = ..()
+	if(.)
+		return
 
 	//Automated bioscan / Queen Mother message
 	if(world.time > bioscan_current_interval)
 		announce_bioscans()
-		var/total[] = count_humans_and_xenos(count_flags = COUNT_IGNORE_XENO_SPECIAL_AREA)
-		var/marines = total[1]
-		var/xenos = total[2]
+		var/list/totals = count_humans_and_xenos(count_flags = COUNT_IGNORE_XENO_SPECIAL_AREA)
+		var/marines = totals[1]
+		var/xenos = totals[2]
 		var/bioscan_scaling_factor = xenos / max(marines, 1)
 		bioscan_scaling_factor = max(bioscan_scaling_factor, 0.25)
 		bioscan_scaling_factor = min(bioscan_scaling_factor, 1.5)
 		bioscan_current_interval += bioscan_ongoing_interval * bioscan_scaling_factor
 
+/datum/game_mode/infestation/distress/scale_burrowed_larva()
+	. = ..()
+	to_chat(world, "starting [larva_check_interval]")
+	larva_check_interval -= length(GLOB.xeno_resin_silos) * xeno_respawn_silo_reduction
+	to_chat(world, "finished [larva_check_interval] reduced by [length(GLOB.xeno_resin_silos) * xeno_respawn_silo_reduction]")
 
 /datum/game_mode/infestation/distress/check_finished()
 	if(round_finished)

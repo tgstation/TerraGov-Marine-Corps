@@ -2,7 +2,7 @@
 	name = "Crash"
 	config_tag = "Crash"
 	required_players = 2
-	flags_round_type = MODE_INFESTATION|MODE_XENO_SPAWN_PROTECT
+	flags_round_type = MODE_INFESTATION|MODE_XENO_SPAWN_PROTECT|MODE_XENO_RESPAWN_WAVE
 	flags_landmarks = MODE_LANDMARK_SPAWN_XENO_TUNNELS|MODE_LANDMARK_SPAWN_MAP_ITEM
 
 	round_end_states = list(MODE_CRASH_X_MAJOR, MODE_CRASH_M_MAJOR, MODE_CRASH_X_MINOR, MODE_CRASH_M_MINOR, MODE_CRASH_DRAW_DEATH)
@@ -22,6 +22,10 @@
 		/datum/job/xenomorph = 1
 	)
 
+	// Xeno respawns
+	xeno_respawn_wave_timer = 15 SECONDS
+	xeno_respawn_silo_reduction = 0
+
 	// Round end conditions
 	var/shuttle_landed = FALSE
 	var/planet_nuked = CRASH_NUKE_NONE
@@ -34,7 +38,6 @@
 	// Round start info
 	var/starting_squad = "Alpha"
 
-	var/larva_check_interval = 0
 	var/bioscan_interval = INFINITY
 
 
@@ -83,9 +86,6 @@
 
 /datum/game_mode/infestation/crash/post_setup()
 	. = ..()
-	for(var/i in GLOB.xeno_resin_silo_turfs)
-		new /obj/structure/resin/silo(i)
-
 	for(var/i in GLOB.nuke_spawn_locs)
 		new /obj/machinery/nuclearbomb(i)
 
@@ -120,12 +120,9 @@
 
 
 /datum/game_mode/infestation/crash/process()
-	if(round_finished)
+	. = ..()
+	if(.)
 		return
-
-	// Burrowed Larva
-	if(world.time > larva_check_interval)
-		balance_scales()
 
 	// Bioscan alerts
 	if(world.time > bioscan_interval)
@@ -340,24 +337,7 @@
 		if(XENO_TIER_TWO)
 			new_xeno.upgrade_xeno(XENO_UPGRADE_ONE)
 
+
 /datum/game_mode/infestation/crash/can_summon_dropship(mob/user)
 	to_chat(src, "<span class='warning'>This power doesn't work in this gamemode.</span>")
 	return FALSE
-
-/datum/game_mode/infestation/crash/proc/balance_scales()
-	var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
-	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	var/num_xenos = xeno_hive.get_total_xeno_number() + stored_larva
-	var/larvapoints = (get_total_joblarvaworth() - (num_xenos * xeno_job.job_points_needed )) / xeno_job.job_points_needed
-	if(!num_xenos)
-		if(!length(GLOB.xeno_resin_silos))
-			check_finished(TRUE)
-			return //RIP benos.
-		if(stored_larva)
-			return //No need for respawns nor to end the game. They can use their burrowed larvas.
-		xeno_job.add_job_positions(max(1, round(larvapoints, 1))) //At least one, rounded to nearest integer if more.
-		return
-	if(round(larvapoints, 1) < 1)
-		return //Things are balanced, no burrowed needed
-	xeno_job.add_job_positions(round(larvapoints, 1)) //However many burrowed they can afford to buy, rounded to nearest integer.

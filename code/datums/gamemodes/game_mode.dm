@@ -98,7 +98,9 @@
 
 
 /datum/game_mode/process()
-	return TRUE
+	if(round_finished)
+		return TRUE
+	return FALSE
 
 
 /datum/game_mode/proc/create_characters()
@@ -338,6 +340,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 
 	for(var/i in GLOB.player_list)
 		var/mob/M = i
+		grant_eord_respawn(null, M)
 		if(isnewplayer(M))
 			continue
 		if(!(M.client?.prefs?.be_special & BE_DEATHMATCH))
