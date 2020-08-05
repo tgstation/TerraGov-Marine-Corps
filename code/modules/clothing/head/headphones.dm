@@ -77,7 +77,7 @@
 	var/client/C = usr?.client
 	if(!C?.prefs)
 		return
-	if((C.prefs.toggles_sound & SOUND_MIDI) && C.chatOutput?.working && C.chatOutput.loaded)
+	if(C.chatOutput?.working && C.chatOutput.loaded)
 		C.chatOutput.sendMusic(web_sound_url, music_extra_data)
 		to_chat(C, "<span class='notice'>Now playing: <a href='[data["webpage_url"]]'>[title]</a></span>")
 		log_game(" [C] has played <a href='[data["webpage_url"]]'>[title] on their [src]")
