@@ -113,9 +113,7 @@
 
 /datum/game_mode/infestation/distress/scale_burrowed_larva()
 	. = ..()
-	to_chat(world, "starting [larva_check_interval]")
 	larva_check_interval -= length(GLOB.xeno_resin_silos) * xeno_respawn_silo_reduction
-	to_chat(world, "finished [larva_check_interval] reduced by [length(GLOB.xeno_resin_silos) * xeno_respawn_silo_reduction]")
 
 /datum/game_mode/infestation/distress/check_finished()
 	if(round_finished)
