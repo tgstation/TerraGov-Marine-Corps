@@ -285,6 +285,24 @@
 /turf/open/lavaland/lava/lpiece
 	icon_state = "lpiece"
 
+/turf/open/lavaland/lava/single/
+	icon_state = "single"
+
+/turf/open/lavaland/lava/single/intersection
+	icon_state = "single_intersection"
+
+/turf/open/lavaland/lava/single_intersection/direction
+	icon_state = "single_intersection_direction"
+
+/turf/open/lavaland/lava/single/middle
+	icon_state = "single_middle"
+
+/turf/open/lavaland/lava/single/end
+	icon_state = "single_end"
+
+/turf/open/lavaland/lava/single/corners
+	icon_state = "single_corners"
+
 /turf/open/lavaland/lava/New()
 	..()
 
