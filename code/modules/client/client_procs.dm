@@ -428,7 +428,7 @@
 		'html/browser/panels.css',
 		'html/browser/common.css'
 		)
-	spawn(10) //removing this spawn causes all clients to not get verbs.
+	spawn(20) //removing this spawn causes all clients to not get verbs. - increased cause its starting happening (psykzz)
 		//Precache the client with all other assets slowly, so as to not block other browse() calls
 		getFilesSlow(src, SSassets.preload, register_asset = FALSE)
 
