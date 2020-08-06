@@ -431,6 +431,8 @@
 	spawn(20) //removing this spawn causes all clients to not get verbs. - increased cause its starting happening (psykzz)
 		//Precache the client with all other assets slowly, so as to not block other browse() calls
 		getFilesSlow(src, SSassets.preload, register_asset = FALSE)
+		addtimer(CALLBACK(GLOBAL_PROC, /proc/getFilesSlow, src, SSassets.preload, FALSE), 5 SECONDS)
+
 
 
 //Hook, override it to run code when dir changes
