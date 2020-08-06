@@ -1,7 +1,7 @@
 /datum/game_mode/infestation
 	/// How often do the xenos get new larva to spawn from
 	var/larva_check_interval = 0
-	var/xeno_respawn_wave_timer = 30 SECONDS
+	var/xeno_respawn_wave_timer = 30 MINUTES
 	var/xeno_respawn_silo_reduction = 2 MINUTES
 
 /datum/game_mode/infestation/post_setup()
