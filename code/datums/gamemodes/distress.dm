@@ -85,7 +85,7 @@
 	priority_announce(SSmapping.configs[GROUND_MAP].announce_text, SSmapping.configs[SHIP_MAP].map_name)
 
 
-/datum/game_mode/infestation/disstress/spawn_resin_silos()
+/datum/game_mode/infestation/distress/spawn_resin_silos()
 	// Want a max of only 5 silos
 	var/all_silos = GLOB.xeno_resin_silo_turfs.Copy()
 	for(var/i in 1 to 5)
