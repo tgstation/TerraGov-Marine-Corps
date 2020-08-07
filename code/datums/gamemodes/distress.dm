@@ -103,7 +103,7 @@
 	if(round_finished)
 		return TRUE
 
-	if(world.time < (SSticker.round_start_time + 5 SECONDS))
+	if(world.time < (SSticker.round_start_time + 30 SECONDS))
 		return FALSE
 
 	var/living_player_list[] = count_humans_and_xenos(count_flags = COUNT_IGNORE_ALIVE_SSD|COUNT_IGNORE_XENO_SPECIAL_AREA)
