@@ -2145,7 +2145,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("nicknumber")
 				previous = X.nicknumber
 
-				change = input("Select a nicknumber.", "Xeno Panel", previous) as null|anything
+				change = input("Select a nicknumber.", "Xeno Panel", previous)
 				if(!change || change == previous)
 					return
 
