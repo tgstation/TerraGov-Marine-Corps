@@ -1,4 +1,5 @@
 /obj/effect/decal/cleanable/liquid_fuel
+	name = "fuel puddle"
 	//Liquid fuel is used for things that used to rely on volatile fuels or phoron being contained to a couple tiles.
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "fuel"
@@ -7,11 +8,18 @@
 	dir = NORTHEAST //Spawns with a diagonal direction, for spread optimization.
 	var/amount = 1 //Basically moles.
 	var/spread_fail_chance = 75 //percent
+	///Used for the fire_lvl of the resulting fire
+	var/fire_lvl
+	///Used for the burn_lvl of the resulting fire
+	var/burn_lvl
+	var/f_color = "red"
 
 
 /obj/effect/decal/cleanable/liquid_fuel/Initialize(mapload, amt = 1, logs = TRUE, newDir)
 	. = ..()
 	amount = amt
+	burn_lvl = rand(0, 25)
+	fire_lvl = rand(5,30)
 	if(newDir)
 		setDir(newDir)
 	return INITIALIZE_HINT_LATELOAD
@@ -29,13 +37,12 @@
 
 /obj/effect/decal/cleanable/liquid_fuel/proc/fuel_spread()
 	//Allows liquid fuels to sometimes flow into other tiles.
-	var/spread_dirs = ISDIAGONALDIR(dir) ? CARDINAL_DIRS : list(turn(dir,90), turn(dir,-90), dir)
-	if(amount < (length(spread_dirs) + 1)) //At least one unit per transfer
+	if(amount < 5) //At least one unit per transfer
 		return
-	var/slice_per_transfer = round(1 / (length(spread_dirs) + 1), 0.01)
+	var/slice_per_transfer = round((1 / 5), 0.01)
 	var/successful_spread = 0
 	var/turf/S = get_turf(src)
-	for(var/D in spread_dirs)
+	for(var/D in CARDINAL_DIRS)
 		if(prob(spread_fail_chance))
 			continue
 		var/turf/T = get_step(S, D)
@@ -63,6 +70,23 @@
 		successful_spread++
 	amount *= max(0, 1 - (successful_spread * slice_per_transfer))
 
+/obj/effect/decal/cleanable/liquid_fuel/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(istype(I, /obj/item/tool/lighter))
+		ignite_fuel()
+
+/obj/effect/decal/cleanable/liquid_fuel/flamer_fire_act()
+	. = ..()
+	ignite_fuel()
+
+/obj/effect/decal/cleanable/liquid_fuel/proc/ignite_fuel()
+	new /obj/flamer_fire(loc, fire_lvl, burn_lvl, f_color)
+	var/turf/S = get_turf(src)
+	for(var/D in CARDINAL_DIRS)
+		var/turf/T = get_step(S, D)
+		for(var/obj/effect/decal/cleanable/liquid_fuel/other in T)
+			INVOKE_NEXT_TICK(other, .proc/ignite_fuel)	//Spread effect
+	qdel(src)
 
 /obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel
 	icon_state = "mustard"

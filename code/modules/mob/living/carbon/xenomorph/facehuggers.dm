@@ -246,23 +246,23 @@
 		if(leaping && M.can_be_facehugged(src)) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
 			if(!Attach(M))
 				go_idle()
-			return
+			return ..()
 		else
-			step(src, turn(dir, 180)) //We want the hugger to bounce off if it hits a mob.
+			step(src, REVERSE_DIR(dir)) //We want the hugger to bounce off if it hits a mob.
 			deltimer(jumptimer)
 			jumptimer = addtimer(CALLBACK(src, .proc/fast_activate), 1.5 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
-
+			return ..()
 	else
 		for(var/mob/living/carbon/M in loc)
 			if(M.can_be_facehugged(src))
 				if(!Attach(M))
 					go_idle()
-				return
+				return ..()
 		deltimer(jumptimer)
 		jumptimer = addtimer(CALLBACK(src, .proc/fast_activate), ACTIVATE_TIME, TIMER_STOPPABLE|TIMER_UNIQUE)
 	. = ..()
 	leaping = FALSE
-	go_idle(FALSE, TRUE)
+	go_idle(FALSE)
 
 
 //////////////////////

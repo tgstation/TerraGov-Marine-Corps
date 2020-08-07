@@ -24,7 +24,7 @@
 	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 200
+	max_health = 250
 
 	// *** Evolution *** //
 	upgrade_threshold = 250
@@ -38,7 +38,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_ACID_BLOOD
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 15, "acid" = 30)
+	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 40, "acid" = 30)
 
 	// *** Ranged Attack *** //
 	spit_delay = 4 SECONDS
@@ -82,13 +82,13 @@
 	plasma_gain = 35
 
 	// *** Health *** //
-	max_health = 220
+	max_health = 270
 
 	// *** Evolution *** //
 	upgrade_threshold = 500
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_0, "bio" = 33, "rad" = 33, "fire" = 20, "acid" = 33)
+	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_0, "bio" = 33, "rad" = 33, "fire" = 45, "acid" = 33)
 
 	// *** Ranged Attack *** //
 	spit_delay = 3 SECONDS
@@ -118,13 +118,13 @@
 	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 240
+	max_health = 290
 
 	// *** Evolution *** //
 	upgrade_threshold = 1000
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45 , "energy" = 45, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 22, "acid" = 35)
+	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45 , "energy" = 45, "bomb" = XENO_BOMB_RESIST_0, "bio" = 35, "rad" = 35, "fire" = 45, "acid" = 35)
 
 	// *** Ranged Attack *** //
 	spit_delay = 2 SECONDS
@@ -155,10 +155,10 @@
 	plasma_gain = 50
 
 	// *** Health *** //
-	max_health = 275
+	max_health = 325
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_0, "bio" = 37, "rad" = 37, "fire" = 25, "acid" = 37)
+	soft_armor = list("melee" = 45, "bullet" = 45, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_0, "bio" = 37, "rad" = 37, "fire" = 45, "acid" = 37)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS

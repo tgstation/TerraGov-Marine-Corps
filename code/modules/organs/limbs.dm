@@ -541,7 +541,11 @@ Note that amputating the affected organ does in fact remove the infection from t
 				W.open_wound(0.1 * wound_update_accuracy)
 			if(bicardose >= 30)	//overdose of bicaridine begins healing IB
 				W.damage = max(0, W.damage - 0.2)
-
+			
+			if(W.damage <= 0)
+				wounds -= W // otherwise we are stuck with a 0 damage IB for a while
+				continue
+			
 			if(!owner.reagents.get_reagent_amount(/datum/reagent/medicine/quickclot)) //Quickclot stops bleeding, magic!
 				owner.blood_volume = max(0, owner.blood_volume - wound_update_accuracy * W.damage/40) //line should possibly be moved to handle_blood, so all the bleeding stuff is in one place.
 				if(prob(1 * wound_update_accuracy))

@@ -53,6 +53,7 @@
 					/obj/item/weapon/throwing_knife = 5,
 					/obj/item/storage/box/m94 = 5,
 					/obj/item/attachable/flashlight = 10,
+					/obj/item/explosive/grenade/mirage = 5,
 					)
 	prices = list()
 
@@ -595,7 +596,6 @@
 
 						/obj/item/attachable/flashlight = 25,
 						/obj/item/attachable/magnetic_harness = 25,
-						/obj/item/attachable/quickfire = 25,
 						/obj/item/attachable/reddot = 25,
 						/obj/item/attachable/scope = 25,
 						/obj/item/attachable/scope/mini = 25,
