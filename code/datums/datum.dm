@@ -262,4 +262,4 @@
 /proc/end_cooldown(datum/source, index)
 	if(QDELETED(source))
 		return
-	COOLDOWN_END(source, index)
+	TIMER_COOLDOWN_END(source, index)

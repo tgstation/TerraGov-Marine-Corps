@@ -48,7 +48,7 @@
 		return FALSE
 	var/flags_to_check = use_state_flags|override_flags
 
-	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_COOLDOWN) && !action_cooldown_check())
+	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_COOLDOWN) && !action_TIMER_COOLDOWN_CHECK())
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We can't use [ability_name] yet, we must wait [cooldown_remaining()] seconds!</span>")
 		return FALSE
@@ -115,7 +115,7 @@
 
 //checks if the linked ability is on some cooldown.
 //The action can still be activated by clicking the button
-/datum/action/xeno_action/proc/action_cooldown_check()
+/datum/action/xeno_action/proc/action_TIMER_COOLDOWN_CHECK()
 	return !cooldown_id
 
 
@@ -154,7 +154,7 @@
 /datum/action/xeno_action/update_button_icon()
 	if(!can_use_action(TRUE, XACT_IGNORE_COOLDOWN))
 		button.color = "#80000080" // rgb(128,0,0,128)
-	else if(!action_cooldown_check())
+	else if(!action_TIMER_COOLDOWN_CHECK())
 		button.color = "#f0b400c8" // rgb(240,180,0,200)
 	else
 		button.color = "#ffffffff" // rgb(255,255,255,255)

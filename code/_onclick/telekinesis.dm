@@ -274,9 +274,9 @@ Redefine as needed.
 	var/mob/living/carbon/human/victim = source
 	if(victim.restrained(RESTRAINED_PSYCHICGRAB))
 		return COMSIG_LIVING_RESIST_SUCCESSFUL
-	if(COOLDOWN_CHECK(victim, COOLDOWN_RESIST))
+	if(TIMER_COOLDOWN_CHECK(victim, COOLDOWN_RESIST))
 		return COMSIG_LIVING_RESIST_SUCCESSFUL
-	COOLDOWN_START(victim, COOLDOWN_RESIST, CLICK_CD_RESIST_PSYCHIC_GRAB)
+	TIMER_COOLDOWN_START(victim, COOLDOWN_RESIST, CLICK_CD_RESIST_PSYCHIC_GRAB)
 
 	var/mob/living/carbon/xenomorph/shrike/master = tk_user
 
