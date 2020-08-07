@@ -834,7 +834,7 @@ ARMOR
 	)
 	cost = 12
 
-/datum/supply_packs/armor/modular/attachments/mimir_environment_protection
+/datum/supply_packs/armor/modular/attachments/freya_bombimmune
 	name = "Jaeger freya module"
 	contains = list(
 		/obj/item/armor_module/attachable/freya_explosive_armor
