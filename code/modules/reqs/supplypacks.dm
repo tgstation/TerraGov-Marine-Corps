@@ -791,7 +791,7 @@ ARMOR
 		/obj/item/armor_module/attachable/fire_proof,
 		/obj/item/armor_module/attachable/tyr_extra_armor,
 		/obj/item/armor_module/attachable/mimir_environment_protection,
-		/obj/item/armor_module/attachable/freya_explosive_armor
+		/obj/item/armor_module/attachable/hlin_explosive_armor
 	)
 	cost = 40
 
@@ -834,10 +834,10 @@ ARMOR
 	)
 	cost = 12
 
-/datum/supply_packs/armor/modular/attachments/freya_bombimmune
-	name = "Jaeger freya module"
+/datum/supply_packs/armor/modular/attachments/hlin_bombimmune
+	name = "Jaeger Hlin module"
 	contains = list(
-		/obj/item/armor_module/attachable/freya_explosive_armor
+		/obj/item/armor_module/attachable/hlin_explosive_armor
 	)
 	cost = 12
 
