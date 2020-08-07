@@ -351,11 +351,9 @@
 	name = "engraved floor"
 	icon_state = "cult"
 
-
 /turf/open/floor/engine/vacuum
 	name = "vacuum floor"
 	icon_state = "engine"
-
 
 /turf/open/floor/engine/mars/exterior
 	name = "floor"
@@ -366,19 +364,6 @@
 
 /turf/open/floor/scorched/two
 	icon_state = "floorscorched2"
-
-
-/turf/open/floor/bluegrid
-	icon = 'icons/turf/floors.dmi'
-	icon_state = "bcircuit"
-
-/turf/open/floor/animated/bcircuit
-	icon_state = "bcircuit"
-
-/turf/open/floor/greengrid
-	icon = 'icons/turf/floors.dmi'
-	icon_state = "gcircuit"
-
 
 /turf/open/floor/bcircuit
 	icon = 'icons/turf/floors.dmi'
@@ -409,7 +394,6 @@
 
 /turf/open/floor/gcircuit/anim
 	icon_state = "gcircuitanim"
-
 
 /turf/open/floor/asteroid
 	icon_state = "asteroid"
@@ -514,20 +498,8 @@
 /turf/open/floor/tile/plaque
 	icon_state = "plaque"
 
-
 /turf/open/floor/tile/whitebluegreen
 	icon_state = "whitebluegreen"
-
-
-
-
-
-
-
-
-
-
-
 
 /turf/open/floor/tile/chapel
 	icon_state = "chapel"
@@ -547,12 +519,6 @@
 
 /turf/open/floor/tile/brown/corner
 	icon_state = "browncorner"
-
-
-
-
-
-
 
 /turf/open/floor/tile/dark
 	icon_state = "dark"

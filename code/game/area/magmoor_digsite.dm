@@ -6,6 +6,16 @@
 	name = "Lava"
 	icon_state = "lava"
 
+
+
+/area/magmoor/landing
+	name = "Landing Zone One"
+	ceiling = CEILING_NONE
+
+/area/magmoor/landing/two
+	name = "Landing Zone Two"
+
+
 // Volcano
 /area/magmoor/volcano
 	name = "Magmoor Central Fissure"
@@ -76,9 +86,6 @@
 	name = "Fossil Deposits"
 	icon_state = "lava_mining_fossil"
 
-/area/magmoor/cave/mining/procc
-	name = "Mining Processing"
-	icon_state = "lava_mining_proc"
 
 //Medical
 
@@ -95,7 +102,36 @@
 	name = "Chief Medical Office"
 	icon_state = "lava_cmo"
 
-//"Engineer"
+/area/magmoor/medical/breakroom
+	name = "Medical Break Room"
+	icon_state = "cafeteria"
+
+/area/magmoor/medical/lobby
+	name = "Medical Lobby"
+	icon_state = "lava_med"
+
+/area/magmoor/medical/surgery
+	name = "Operating Theatre"
+	icon_state = "surgery"
+
+/area/magmoor/medical/morgue
+	name = "Medical Morgue"
+	icon_state = "morgue"
+
+/area/magmoor/medical/storage
+	name = "Medical Storage"
+	icon_state = "lava_med"
+
+/area/magmoor/medical/treatment
+	name = "Medical Treatment Center"
+	icon_state = "medbay2"
+
+/area/magmoor/medical/patient
+	name = "Medical Patient Room"
+	icon_state = "medbay3"
+
+
+//Engineer
 
 /area/magmoor/engi/
 	name = "Engineering"
@@ -109,10 +145,9 @@
 /area/magmoor/engi/power
 	name = "Thermal Reactors"
 	icon_state = "lava_power"
-	ceiling = CEILING_DEEP_UNDERGROUND
 
 /area/magmoor/engi/storage
-	name = "Engineering Storage"
+	name = "Engineering Lobby & Storage"
 	icon_state = "lava_engi_storage"
 
 //Security
@@ -123,16 +158,28 @@
 	ceiling = CEILING_METAL
 
 /area/magmoor/security/storage
-	name = "Prison Facility Storage"
+	name = "Security Armory"
 	icon_state = "lava_sec_secure"
 
 /area/magmoor/security/infocenter
-	name = "Prison Facility Information Center"
+	name = "Security Information Center"
 	icon_state = "lava_sec"
 
 /area/magmoor/security/nuke
 	name = "Emergency Nuclear Fission Facility"
 	icon_state = "lava_sec_nuke"
+
+/area/magmoor/security/arrivals/south
+	name = "Southern Arrivals Security Checkpoint"
+	icon_state = "lava_sec"
+
+/area/magmoor/security/arrivals/east
+	name = "Eastern Arrivals Security Checkpoint"
+	icon_state = "lava_sec"
+
+/area/magmoor/security/lobby
+	name = "Security Lobby"
+	icon_state = "lava_sec"
 
 //Civilian
 
@@ -145,58 +192,155 @@
 
 /area/magmoor/civilian/bar
 	name = "The Drunk Carp"
-	icon_state = "lava_bar"
-	ceiling = CEILING_GLASS
 
 /area/magmoor/civilian/dorms
 	name = "Dormitories"
 	icon_state = "lava_dorms"
-	ceiling = CEILING_GLASS
 
 /area/magmoor/civilian/jani
 	name = "Janitorial Office"
 	icon_state = "lava_jani"
 
-/area/magmoor/civilian/mess
-	name = "Mess Hall"
-	icon_state = "lava_mess"
-	ceiling = CEILING_GLASS
-
-/area/magmoor/civilian/disposal
-	name = "Disposals Processing"
-	icon_state = "lava_disposal"
-
-/area/magmoor/civilian/storage
-	name = "General Storage"
-	icon_state = "lava_storage"
-
-/area/magmoor/civilian/bathrooms
-	name = "Main Bathrooms"
+/area/magmoor/civilian/clean
+	name = "Washrooms"
 	icon_state = "lava_bathrooms"
+
+/area/magmoor/civilian/clean/toilet
+	name = "Bathrooms"
+	icon_state = "red"
+
+/area/magmoor/civilian/clean/shower
+	name = "Showers"
+	icon_state = "blue"
 
 /area/magmoor/civilian/chapel
 	name = "Chapel"
 	icon_state = "lava_chapel"
 	ceiling = CEILING_GLASS
 
-/area/magmoor/civilian/garden
-	name = "Hydropnics & Livestock"
-	icon_state = "lava_civ_garden"
+/area/magmoor/civilian/arrival
+	name = "Southern Arrivals Hallway"
+	icon_state = "lava_civ"
 	ceiling = CEILING_GLASS
 
-/area/magmoor/civilian/cargo
-	name = "Cargo Loading & Unloading"
-	icon_state = "lava_civ_cargo"
+/area/magmoor/civilian/arrival/east
+	name = "Eastern Arrivals Hallway"
 
-/area/magmoor/civilian/command
-	name = "Overseer's Office"
-	icon_state = "lava_comm"
 
 // Research
 /area/magmoor/research
 	name = "Research & Archaeology"
 	icon_state = "lava_research"
-	ceiling = CEILING_UNDERGROUND
 
 /area/magmoor/research/containment
-	name = "Research Materials"
+	name = "Research Materials & Containment"
+	icon_state = "storage"
+
+/area/magmoor/research/researchdirector
+	name = "Research Director's Office"
+	icon_state = "blue"
+
+/area/magmoor/research/decontamination
+	name = "Research Decontamination"
+	icon_state = "decontamination"
+
+/area/magmoor/research/serverroom
+	name = "Research Server Room"
+	icon_state = "party"
+
+/area/magmoor/research/rnd
+	name = "Research & Development"
+	icon_state = "research"
+
+/area/magmoor/research/rnd/lobby
+	name = "Research & Development Lobby"
+	icon_state = "purple"
+
+/area/magmoor/research/lab
+	name = "Research Material Study"
+	icon_state = "lava_research"
+
+//Cargo
+/area/magmoor/cargo
+	ceiling = CEILING_METAL
+
+/area/magmoor/cargo/processing
+	name = "Cargo Processing East"
+	icon_state = "lava_civ_cargo"
+
+/area/magmoor/cargo/processing/south
+	name = "Cargo Processing South"
+
+/area/magmoor/cargo/storage
+	name = "Cargo Storage East"
+	icon_state = "storage"
+
+/area/magmoor/cargo/storage/south
+	name = "Cargo Storage South"
+
+/area/magmoor/cargo/storage/secure
+	name = "Cargo Secure Storage East"
+	icon_state = "auxstorage"
+
+/area/magmoor/cargo/storage/secure/south
+	name = "Cargo Secure Storage South"
+
+/area/magmoor/cargo/freezer
+	name = "Cargo Freezer East"
+	icon_state = "kitchen"
+
+//Hydroponics
+/area/magmoor/hydroponics
+	name = "Hydropnics Lobby & Livestock"
+	icon_state = "lava_civ_garden"
+	ceiling = CEILING_GLASS
+
+/area/magmoor/hydroponics/south
+	name = "Hydropnics North"
+
+/area/magmoor/hydroponics/north
+	name = "Hydropnics South"
+
+//Command
+/area/magmoor/command
+	ceiling = CEILING_METAL
+
+/area/magmoor/command/lobby
+	name = "North Command Lobby"
+	icon_state = "blue2"
+
+/area/magmoor/command/lobby/east
+	name = "East Command Lobby"
+
+/area/magmoor/command/office
+	name = "Command Office"
+	icon_state = "law"
+
+/area/magmoor/command/office/main
+	name = "Overseer's Office"
+	icon_state = "lava_comm"
+
+/area/magmoor/command/conference
+	name = "Command Conference Room"
+	icon_state = "head_quarters"
+
+/area/magmoor/command/commandroom
+	name = "Command Control Room"
+	icon_state = "bridge"
+
+//Mining
+/area/magmoor/mining/
+	name = "Mining Equipment & Break Room"
+	icon_state = "lava_mining"
+
+/area/magmoor/mining/garage
+	name = "Mining Garage & Storage"
+	icon_state = "storage"
+
+/area/magmoor/mining/refinery
+	name = "Ore Refinery"
+	icon_state = "lava_mining_proc"
+
+/area/magmoor/mining/storage
+	name = "Mineral Storage"
+	icon_state = "storage"

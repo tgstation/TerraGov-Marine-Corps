@@ -215,14 +215,14 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "aR" = (
-/turf/open/floor/bluegrid,
+/turf/open/floor/podhatch/floor,
 /area/tdome)
 "aS" = (
 /obj/machinery/flasher{
 	id = "flash";
 	name = "Thunderdome Flash"
 	},
-/turf/open/floor/bluegrid,
+/turf/open/floor/podhatch/floor,
 /area/tdome)
 "aT" = (
 /obj/structure/dropship_piece/one/front/left,

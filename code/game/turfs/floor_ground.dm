@@ -184,7 +184,6 @@
 	icon_state = "desert[pick("0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15")]"
 
 
-
 //asphalt road
 /turf/open/floor/plating/ground/desertdam/asphalt
 	name = "asphalt"
@@ -197,6 +196,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge
 	name = "asphalt"
 	icon_state = "sunbleached_asphalt_edge"
+
 
 //CAVE
 /turf/open/floor/plating/ground/desertdam/cave
@@ -221,11 +221,11 @@
 //inner cave floor
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
 	name = "cave"
-	icon_state = "inner_cavefull0"
+	icon_state = "inner_cave_full0"
 
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor/Initialize()
 	. = ..()
-	icon_state = "innercavefull[pick("0","1")]"
+	icon_state = "inner_cave_full[pick("0","1")]"
 
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave/corners
 	name = "cave"

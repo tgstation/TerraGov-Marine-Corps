@@ -268,18 +268,18 @@
 /area/ai_monitored/storage/emergency)
 "abi" = (
 /obj/item/moneybag,
-/turf/open/floor/greengrid,
+/turf/open/floor/podhatch/floor,
 /area/ai_monitored/storage/emergency)
 "abj" = (
 /obj/machinery/alarm,
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/greengrid,
+/turf/open/floor/podhatch/floor,
 /area/ai_monitored/storage/emergency)
 "abk" = (
 /obj/machinery/miner/damaged,
-/turf/open/floor/greengrid,
+/turf/open/floor/podhatch/floor,
 /area/ai_monitored/storage/emergency)
 "abl" = (
 /obj/structure/filingcabinet,
@@ -2703,7 +2703,7 @@
 /area/gateway)
 "akC" = (
 /obj/machinery/firealarm,
-/turf/open/floor/greengrid,
+/turf/open/floor/podhatch/floor,
 /area/ai_monitored/storage/emergency)
 "akD" = (
 /obj/machinery/firealarm,
@@ -6996,7 +6996,7 @@
 /area/janitor)
 "azL" = (
 /obj/structure/cable,
-/turf/open/floor/greengrid,
+/turf/open/floor/podhatch/floor,
 /area/ai_monitored/storage/emergency)
 "azN" = (
 /obj/structure/cable,
@@ -7593,11 +7593,11 @@
 	wrenchable = 1
 	},
 /obj/item/stack/sheet/mineral/gold,
-/turf/open/floor/greengrid,
+/turf/open/floor/podhatch/floor,
 /area/ai_monitored/storage/emergency)
 "aBV" = (
 /obj/item/stack/sheet/mineral/iron,
-/turf/open/floor/greengrid,
+/turf/open/floor/podhatch/floor,
 /area/ai_monitored/storage/emergency)
 "aBW" = (
 /obj/structure/computer3frame,

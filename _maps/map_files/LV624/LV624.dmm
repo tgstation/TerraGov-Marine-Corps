@@ -9967,7 +9967,7 @@
 /obj/effect/decal/warning_stripes/thick{
 	dir = 9
 	},
-/turf/open/floor/bluegrid{
+/turf/open/floor/podhatch/floor{
 	icon_state = "bcircuitoff"
 	},
 /area/lv624/lazarus/atmos)
@@ -10149,7 +10149,7 @@
 /obj/effect/decal/warning_stripes/thick{
 	dir = 6
 	},
-/turf/open/floor/bluegrid{
+/turf/open/floor/podhatch/floor{
 	icon_state = "bcircuitoff"
 	},
 /area/lv624/lazarus/atmos)
@@ -10379,7 +10379,7 @@
 /obj/effect/decal/warning_stripes/thick{
 	dir = 10
 	},
-/turf/open/floor/bluegrid{
+/turf/open/floor/podhatch/floor{
 	icon_state = "bcircuitoff"
 	},
 /area/lv624/lazarus/atmos)
@@ -13501,7 +13501,7 @@
 /obj/effect/decal/warning_stripes{
 	icon_state = "SW-in"
 	},
-/turf/open/floor/bluegrid{
+/turf/open/floor/podhatch/floor{
 	icon_state = "bcircuitoff"
 	},
 /area/lv624/lazarus/atmos)
@@ -13584,7 +13584,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/turf/open/floor/bluegrid{
+/turf/open/floor/podhatch/floor{
 	icon_state = "bcircuitoff"
 	},
 /area/lv624/lazarus/atmos)
@@ -13998,7 +13998,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
 	},
-/turf/open/floor/bluegrid{
+/turf/open/floor/podhatch/floor{
 	icon_state = "bcircuitoff"
 	},
 /area/lv624/lazarus/atmos)
@@ -14211,7 +14211,7 @@
 	dir = 4;
 	name = "Corporate Dome"
 	},
-/turf/open/floor/greengrid,
+/turf/open/floor/podhatch/floor,
 /area/lv624/lazarus/internal_affairs)
 "bfU" = (
 /obj/item/spacecash/c100,
@@ -15068,7 +15068,7 @@
 /obj/effect/decal/warning_stripes{
 	icon_state = "W-corner"
 	},
-/turf/open/floor/bluegrid{
+/turf/open/floor/podhatch/floor{
 	icon_state = "bcircuitoff"
 	},
 /area/lv624/lazarus/atmos)
@@ -15308,7 +15308,7 @@
 /obj/effect/decal/warning_stripes{
 	icon_state = "E-corner"
 	},
-/turf/open/floor/bluegrid{
+/turf/open/floor/podhatch/floor{
 	icon_state = "bcircuitoff"
 	},
 /area/lv624/lazarus/atmos)
@@ -15428,7 +15428,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/turf/open/floor/bluegrid{
+/turf/open/floor/podhatch/floor{
 	icon_state = "bcircuitoff"
 	},
 /area/lv624/lazarus/atmos)
@@ -15595,7 +15595,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/turf/open/floor/bluegrid{
+/turf/open/floor/podhatch/floor{
 	icon_state = "bcircuitoff"
 	},
 /area/lv624/lazarus/atmos)
@@ -15889,7 +15889,7 @@
 /obj/effect/decal/warning_stripes/thick{
 	dir = 10
 	},
-/turf/open/floor/bluegrid{
+/turf/open/floor/podhatch/floor{
 	icon_state = "bcircuitoff"
 	},
 /area/lv624/lazarus/atmos)
@@ -16882,7 +16882,7 @@
 /obj/effect/decal/warning_stripes/thick{
 	dir = 6
 	},
-/turf/open/floor/bluegrid{
+/turf/open/floor/podhatch/floor{
 	icon_state = "bcircuitoff"
 	},
 /area/lv624/lazarus/atmos)
@@ -17033,7 +17033,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
-/turf/open/floor/bluegrid{
+/turf/open/floor/podhatch/floor{
 	icon_state = "bcircuitoff"
 	},
 /area/lv624/lazarus/atmos)
@@ -17356,7 +17356,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/turf/open/floor/bluegrid{
+/turf/open/floor/podhatch/floor{
 	icon_state = "bcircuitoff"
 	},
 /area/lv624/lazarus/atmos)
