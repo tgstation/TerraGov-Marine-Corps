@@ -21,7 +21,7 @@
 /datum/weather/ash_storm/sand/weather_act(mob/living/L)
 	if(is_storm_immune(L))
 		return
-	L.adjustBruteLoss(4)
+	L.adjustBruteLoss(10)
 
 /datum/weather/ash_storm/sand/harmless
 	name = "Sandfall"

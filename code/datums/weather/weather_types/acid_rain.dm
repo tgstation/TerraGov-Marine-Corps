@@ -37,6 +37,7 @@
 	midsound.output_atoms = eligible_areas
 
 /datum/weather/acid_rain/start()
+	. = ..()
 	midsound.start()
 
 /datum/weather/acid_rain/end()
@@ -46,7 +47,7 @@
 /datum/weather/acid_rain/weather_act(mob/living/L)
 	var/resist = L.getarmor(null, "acid")
 	if(prob(max(0,100-resist)))
-		L.adjustFireLoss(10)
+		L.adjustFireLoss(20)
 		to_chat(L, "<span class='boldannounce'>You feel the acid rain melting you away!</span>")
 
 /datum/weather/acid_rain/harmless
