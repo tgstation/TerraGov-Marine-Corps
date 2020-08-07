@@ -135,8 +135,6 @@
 	return lookers
 
 /obj/item/storage/proc/open(mob/user)
-	if(!isliving(user))
-		return
 	if(!opened)
 		orient2hud()
 		opened = 1
