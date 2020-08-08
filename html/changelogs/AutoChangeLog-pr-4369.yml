@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - rscadd: "Midround events system"
-  - rscadd: "Added tgui-next intel computers and a intel event"

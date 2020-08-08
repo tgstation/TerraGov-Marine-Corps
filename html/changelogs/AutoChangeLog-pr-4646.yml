@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - rscadd: "Spatial agent suit"
-  - tweak: "Spatial agent glasses are nodrop"
