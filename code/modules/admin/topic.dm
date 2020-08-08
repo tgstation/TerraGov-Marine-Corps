@@ -215,6 +215,29 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 					if(!L.client)
 						continue
 					L.revive()
+	else if(href_list["force_event"])
+		if(!check_rights(R_FUN))
+			return
+		var/datum/round_event_control/E = locate(href_list["force_event"]) in SSevents.control
+		if(E)
+			return
+		E.admin_setup(usr)
+		var/datum/round_event/event = E.run_event()
+		if(event.announce_when>0)
+			event.processing = FALSE
+			var/prompt = alert(usr, "Would you like to alert the crew?", "Alert", "Yes", "No", "Cancel")
+			switch(prompt)
+				if("Yes")
+					event.announce_chance = 100
+				if("Cancel")
+					event.kill()
+					return
+				if("No")
+					event.announce_chance = 0
+			event.processing = TRUE
+		message_admins("[key_name_admin(usr)] has triggered an event. ([E.name])")
+		log_admin("[key_name(usr)] has triggered an event. ([E.name])")
+		return
 
 
 	else if(href_list["kick"])

@@ -4426,7 +4426,7 @@
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/security)
 "qx" = (
-/obj/structure/largecrate/guns/merc,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/security)
 "qy" = (
@@ -5063,6 +5063,10 @@
 /obj/item/storage/firstaid,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/LZ2)
+"th" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/plating/mainship,
+/area/icy_caves/caves/crashed_ship)
 "tm" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -5090,6 +5094,10 @@
 	},
 /area/icy_caves/outpost/outside)
 "wM" = (
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
+"xk" = (
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
 "yl" = (
@@ -5292,6 +5300,10 @@
 	dir = 4
 	},
 /area/icy_caves/caves/OOB)
+"VQ" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/garage)
 "VU" = (
 /turf/closed/ice_rock/singleEnd{
 	dir = 8
@@ -5303,6 +5315,14 @@
 /obj/machinery/computer/nuke_disk_generator/blue,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
+"XJ" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/snow,
+/area/icy_caves/outpost/outside)
+"XP" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/dorms)
 "YA" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 4
@@ -10913,8 +10933,8 @@ dc
 dc
 dz
 qH
-ea
-Co
+xk
+Jf
 wM
 wM
 ea
@@ -19170,7 +19190,7 @@ mT
 mT
 mT
 mT
-mW
+XP
 mW
 mW
 mW
@@ -21974,7 +21994,7 @@ aU
 aU
 gw
 he
-hg
+VQ
 hg
 hX
 ij
@@ -34460,7 +34480,7 @@ mj
 mj
 az
 ac
-ak
+th
 af
 am
 af
