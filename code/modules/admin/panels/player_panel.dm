@@ -400,6 +400,13 @@
 
 	body += "<b>CID:</b> [M.computer_id] | <b>IP:</b> [M.ip_address]<br>"
 
+	body += "<b>CentCom Galactic Ban DB: </b> "
+	if(CONFIG_GET(string/centcom_ban_db))
+		body += "<a href='?_src_=holder;[HrefToken()];centcomlookup=[M?.ckey]'>Search for ([M?.ckey])</a>"
+	else
+		body += "<i>Disabled</i>"
+
+	body += "<br><br>"
 	if(M.client)
 		body += "<a href='?src=[ref];playtime=[REF(M)]'>Playtime</a> | "
 		body += "<a href='?src=[ref];kick=[REF(M)]'>Kick</a> | "

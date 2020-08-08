@@ -9,7 +9,7 @@
 	wound_type = "ravager" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 26
+	melee_damage = 36
 	attack_delay = 7
 
 	// *** Tackle *** //
@@ -23,7 +23,7 @@
 	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 240
+	max_health = 290
 
 	// *** Evolution *** //
 	upgrade_threshold = 250
@@ -70,7 +70,7 @@
 	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 260
+	max_health = 310
 
 	// *** Evolution *** //
 	upgrade_threshold = 500
@@ -85,7 +85,7 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 32
+	melee_damage = 42
 
 	// *** Tackle *** //
 	tackle_damage = 45
@@ -98,7 +98,7 @@
 	plasma_gain = 35
 
 	// *** Health *** //
-	max_health = 280
+	max_health = 330
 
 	// *** Evolution *** //
 	upgrade_threshold = 1000
@@ -113,7 +113,7 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 32
+	melee_damage = 42
 
 	// *** Tackle *** //
 	tackle_damage = 50
@@ -126,7 +126,7 @@
 	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 350
 
 	// *** Evolution *** //
 	upgrade_threshold = 1000

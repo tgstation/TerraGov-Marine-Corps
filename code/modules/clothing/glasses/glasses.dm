@@ -279,6 +279,10 @@
 	. = ..()
 	AddComponent(/datum/component/clothing_tint, TINT_NONE)
 
+/obj/item/clothing/glasses/sunglasses/sa/nodrop
+	desc = "Glasses worn by a spatial agent. cannot be dropped"
+	flags_item = DELONDROP
+
 /obj/item/clothing/glasses/sunglasses/sechud
 	name = "HUDSunglasses"
 	desc = "Sunglasses with a HUD."
