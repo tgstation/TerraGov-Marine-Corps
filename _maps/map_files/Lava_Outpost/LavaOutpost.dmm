@@ -746,6 +746,11 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/wood,
 /area/lavaland/civilian)
+"jH" = (
+/obj/docking_port/stationary/crashmode/bigbury,
+/obj/docking_port/stationary/crashmode,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/central)
 "jI" = (
 /obj/structure/table,
 /obj/machinery/microwave,
@@ -3311,11 +3316,6 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/asteroidfloor,
 /area/lavaland/cave/northeast)
-"LE" = (
-/obj/docking_port/stationary/crashmode,
-/obj/docking_port/stationary/crashmode/bigbury,
-/turf/open/lavaland/basalt,
-/area/lavaland/cave/central)
 "LG" = (
 /obj/effect/spawner/random/toolbox,
 /turf/open/lavaland/basalt,
@@ -30858,7 +30858,7 @@ Qb
 Qb
 Qb
 Eu
-Qb
+jH
 Qb
 Qb
 Qb
@@ -33695,7 +33695,7 @@ Qb
 Qb
 Fa
 Qb
-LE
+Qb
 YL
 YL
 Dt
