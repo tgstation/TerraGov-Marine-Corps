@@ -366,6 +366,7 @@
 	name = "Filtration Plant"
 	icon_state = "atmos"
 	ceiling = CEILING_METAL
+	outside = FALSE
 
 /area/bigredv2/outside/virology
 	name = "Virology Lab"

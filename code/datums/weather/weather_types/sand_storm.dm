@@ -16,7 +16,7 @@
 
 	target_trait = ZTRAIT_SANDSTORM
 
-	probability = 30
+	probability = 60
 
 /datum/weather/ash_storm/sand/weather_act(mob/living/L)
 	if(is_storm_immune(L))
@@ -38,4 +38,4 @@
 
 	aesthetic = TRUE
 
-	probability = 70
+	probability = 40

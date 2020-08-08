@@ -24,7 +24,7 @@
 
 	barometer_predictable = TRUE
 
-	probability = 30
+	probability = 60
 
 	var/datum/looping_sound/acidrain/midsound = new(list(), FALSE, TRUE)
 
@@ -63,4 +63,4 @@
 
 	aesthetic = TRUE
 
-	probability = 70
+	probability = 40
