@@ -418,12 +418,8 @@
 
 /obj/item/clothing/head/modular/update_overlays()
 	. = ..()
-
-	if(overlays)
-		cut_overlays()
-
 	if(installed_module)
-		add_overlay(image(installed_module.icon, installed_module.item_state))
+		. += image(installed_module.icon, installed_module.item_state)
 
 
 /obj/item/clothing/head/modular/get_mechanics_info()
