@@ -4,7 +4,7 @@
 	desc = "The planet's thunderstorms are by nature acidic, and will incinerate anyone standing beneath them without protection."
 
 	telegraph_duration = 400
-	telegraph_message = "<span class='boldannounce'>Thunder rumbles far above. You hear droplets drumming against the canopy. Seek shelter.</span>"
+	telegraph_message = "<span class='boldannounce'>Thunder rumbles far above. You hear droplets hissing against the canopy. Seek shelter!</span>"
 	telegraph_sound = 'sound/weather/acidrain/acidrain_start.ogg'
 	telegraph_overlay = "rain_med"
 
