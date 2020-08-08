@@ -153,7 +153,8 @@
 		return
 	if(!user)
 		return
-
+	if(!istype(user))
+		return
 	if(anchored)
 		to_chat(user, "[src] is anchored to the ground.")
 		return

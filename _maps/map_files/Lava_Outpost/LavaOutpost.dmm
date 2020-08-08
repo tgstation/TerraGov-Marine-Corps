@@ -807,9 +807,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/lavaland/engie/engine)
 "kg" = (
-/obj/structure/rack,
-/obj/item/attachable/attached_gun/grenade,
-/obj/item/attachable/attached_gun/grenade,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -947,6 +945,10 @@
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/northwest)
+"lu" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "lx" = (
 /obj/machinery/landinglight/ds2/delaythree,
 /turf/open/floor/plating/asteroidwarning{
@@ -3118,6 +3120,10 @@
 	dir = 1
 	},
 /area/shuttle/drop2/lz2)
+"JE" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/white,
+/area/lavaland/security/infocenter)
 "JH" = (
 /obj/machinery/landinglight/ds2{
 	dir = 8
@@ -3966,8 +3972,7 @@
 	},
 /area/lavaland)
 "Ts" = (
-/obj/structure/table,
-/obj/structure/xenoautopsy,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/white,
 /area/lavaland/medical/cmo)
 "Tw" = (
@@ -22690,7 +22695,7 @@ Ve
 ax
 Bj
 FL
-Pa
+JE
 ax
 Yy
 Yy
@@ -28464,7 +28469,7 @@ al
 al
 al
 fw
-aY
+lu
 aY
 iS
 ks

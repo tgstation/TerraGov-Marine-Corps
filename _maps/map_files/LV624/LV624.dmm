@@ -4391,7 +4391,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/structure/bed,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "aqP" = (
@@ -17514,6 +17514,10 @@
 	dir = 1
 	},
 /area/lv624/lazarus/atmos)
+"cTN" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/grimy,
+/area/lv624/lazarus/hop)
 "cTX" = (
 /obj/structure/jungle/vines/heavy,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -18004,6 +18008,12 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
+"inf" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 5
+	},
+/area/lv624/lazarus/research)
 "iuG" = (
 /obj/structure/mineral_door/resin,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -18044,6 +18054,10 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/cult,
 /area/lv624/ground/sand4)
+"iMd" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/plating,
+/area/lv624/ground/sand6)
 "iMU" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -18635,7 +18649,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 1
 	},
-/area/lv624/ground/jungle9)
+/area/lv624/ground/jungle7)
 "pBc" = (
 /obj/structure/cargo_container/nt{
 	dir = 4
@@ -33654,7 +33668,7 @@ aAb
 aAb
 aAb
 aFo
-aFp
+inf
 aGB
 aHh
 aEN
@@ -39784,7 +39798,7 @@ bjl
 bjP
 bkN
 bhE
-bmc
+cTN
 bmR
 bnw
 boc
@@ -41086,7 +41100,7 @@ mWY
 abe
 acJ
 acJ
-acR
+iMd
 acV
 adf
 adm
