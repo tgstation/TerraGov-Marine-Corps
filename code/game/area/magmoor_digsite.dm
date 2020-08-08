@@ -295,10 +295,10 @@
 	icon_state = "lava_civ_garden"
 	ceiling = CEILING_GLASS
 
-/area/magmoor/hydroponics/south
+/area/magmoor/hydroponics/north
 	name = "Hydropnics North"
 
-/area/magmoor/hydroponics/north
+/area/magmoor/hydroponics/south
 	name = "Hydropnics South"
 
 //Command

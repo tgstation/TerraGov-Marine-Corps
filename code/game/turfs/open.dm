@@ -366,6 +366,22 @@
 	name = "basalt"
 	icon_state = "basalt"
 
+/turf/open/lavaland/basalt/cave
+	name = "cave"
+	icon_state = "basalt_to_cave"
+
+/turf/open/lavaland/basalt/cave/corner
+	name = "cave"
+	icon_state = "basalt_to_cave_corner"
+
+/turf/open/lavaland/basalt/dirt
+	name = "dirt"
+	icon_state = "basalt_to_dirt"
+
+/turf/open/lavaland/basalt/dirt/corner
+	name = "dirt"
+	icon_state = "basalt_to_dirt_corner"
+
 /turf/open/lavaland/basalt/glowing
 	icon_state = "basaltglow"
 	light_range = 4
