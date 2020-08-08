@@ -734,8 +734,8 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	O.contents.Cut()
 
 	for(var/V in original.vars - GLOB.duplicate_forbidden_vars)
-		if(istype(original.vars[V], /datum)) // this would reference the original's object, that will break when it is used or deleted.
-			continue
+		if(istype(original.vars[V], /datum) || ismob(original.vars[V]))
+			continue // this would reference the original's object, that will break when it is used or deleted.
 		else if(islist(original.vars[V]))
 			var/list/L = original.vars[V]
 			O.vars[V] = L.Copy()
@@ -752,6 +752,11 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		if(ismachinery(O))
 			var/obj/machinery/M = O
 			M.power_change()
+
+	if(ismob(O)) //Overlays are carried over despite disallowing them, if a fix is found remove this.
+		var/mob/M = O
+		M.cut_overlays()
+		M.regenerate_icons()
 
 	return O
 
