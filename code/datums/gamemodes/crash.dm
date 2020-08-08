@@ -318,7 +318,7 @@
 	addtimer(VARSET_CALLBACK(src, planet_nuked, CRASH_NUKE_COMPLETED), nuketime)
 	addtimer(CALLBACK(src, .proc/do_nuke_z_level, z_level), nuketime * 0.5)
 
-	Cinematic(CINEMATIC_SELFDESTRUCT, world)
+	Cinematic(CINEMATIC_CRASH_NUKE, world)
 
 
 /datum/game_mode/infestation/crash/proc/do_nuke_z_level(z_level)
