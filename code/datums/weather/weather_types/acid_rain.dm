@@ -1,4 +1,4 @@
-//Acid rain is part of the natural weather cycle in the humid forests of Planetstation, and cause acid damage to anyone unprotected.
+//Acid rain is part of the natural weather cycle in the humid forests of LV, and cause acid damage to anyone unprotected.
 /datum/weather/acid_rain
 	name = "acid rain"
 	desc = "The planet's thunderstorms are by nature acidic, and will incinerate anyone standing beneath them without protection."
@@ -47,7 +47,7 @@
 /datum/weather/acid_rain/weather_act(mob/living/L)
 	var/resist = L.getarmor(null, "acid")
 	if(prob(max(0,100-resist)))
-		L.adjustFireLoss(20)
+		L.adjustFireLoss(10)
 		to_chat(L, "<span class='boldannounce'>You feel the acid rain melting you away!</span>")
 
 /datum/weather/acid_rain/harmless
