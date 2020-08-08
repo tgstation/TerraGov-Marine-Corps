@@ -194,7 +194,7 @@
 
 
 		var/override = FALSE
-		if(M.client.holder && (chat_toggles & CHAT_DEAD))
+		if(check_other_rights(M.client, R_ADMIN, FALSE) && (chat_toggles & CHAT_DEAD))
 			override = TRUE
 		// if(HAS_TRAIT(M, TRAIT_SIXTHSENSE) && message_type == DEADCHAT_REGULAR)
 		// 	override = TRUE
