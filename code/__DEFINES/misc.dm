@@ -98,7 +98,6 @@ GLOBAL_VAR_INIT(global_unique_id, 1)
 #define DEADCHAT_ANNOUNCEMENT "announcement"
 #define DEADCHAT_ARRIVALRATTLE "arrivalrattle"
 #define DEADCHAT_DEATHRATTLE "deathrattle"
-#define DEADCHAT_LAWCHANGE "lawchange"
 #define DEADCHAT_REGULAR "regular-deadchat"
 
 
