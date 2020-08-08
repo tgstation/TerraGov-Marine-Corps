@@ -611,7 +611,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	var/datum/job/job = player.assigned_role
 	job.on_late_spawn(player.new_character)
 	var/area/A = get_area(player.new_character)
-	deadchat_broadcast("<span class='game'> has woken from cryosleep at <span class='name'>[A?.name]</span>.</span>", "<span class='game'><span class='name'>[player.new_character.real_name]</span> ([job.title])</span>", follow_target = player.new_character, message_type = DEADCHAT_ARRIVALRATTLE)
+	deadchat_broadcast("<span class='game'> has woken at <span class='name'>[A?.name]</span>.</span>", "<span class='game'><span class='name'>[player.new_character.real_name]</span> ([job.title])</span>", follow_target = player.new_character, message_type = DEADCHAT_ARRIVALRATTLE)
 	qdel(player)
 
 /datum/game_mode/proc/attempt_to_join_as_larva(mob/xeno_candidate)
