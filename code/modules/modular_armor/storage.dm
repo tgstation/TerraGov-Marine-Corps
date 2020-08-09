@@ -154,6 +154,7 @@
 		/obj/item/tool/wirecutters,
 		/obj/item/tool/crowbar,
 		/obj/item/tool/screwdriver,
+		/obj/item/multitool,
 		)
 	cant_hold = list()
 
