@@ -269,7 +269,7 @@
 	name = "lava"
 	icon_state = "full"
 
-	light_range = 4
+	light_range = 2
 	light_power = 0.75
 	light_color = LIGHT_COLOR_LAVA
 

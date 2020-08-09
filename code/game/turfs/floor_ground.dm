@@ -155,11 +155,6 @@
 	icon = 'icons/turf/concrete.dmi'
 	icon_state = "concrete0"
 
-//Randomize concrete floor sprite
-/turf/open/floor/plating/ground/concrete/Initialize()
-	. = ..()
-	icon_state = "concrete[pick("0","1","2","3","4")]"
-
 /turf/open/floor/plating/ground/concrete/lines
 	icon_state = "concrete_lines"
 
