@@ -20,6 +20,16 @@
 	result_path = /obj/structure/light_construct
 	inverse = TRUE
 
+/obj/item/wallframe/light_fixture/after_attach(obj/O)
+	. = ..()
+	switch(dir)
+		if(NORTH)
+			O.pixel_y = 20
+		if(EAST)
+			O.pixel_x = 10
+		if(WEST)
+			O.pixel_x = -10
+
 /obj/item/wallframe/light_fixture/small
 	name = "small light fixture frame"
 	icon_state = "bulb-construct-item"
@@ -296,6 +306,14 @@
 
 	if(start_with_cell && !no_emergency)
 		cell = new/obj/item/stock_parts/cell/emergency_light(src)
+
+	switch(dir)
+		if(NORTH)
+			pixel_y = 20
+		if(EAST)
+			pixel_x = 10
+		if(WEST)
+			pixel_x = -10
 
 	return INITIALIZE_HINT_LATELOAD
 
