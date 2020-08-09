@@ -66,8 +66,6 @@
 	if(!isliving(mymob))
 		return
 	var/mob/living/L = mymob
-	// if(istype(L) && L.client && L.client.prefs && L.client.prefs.ambientocclusion)
-	filters += AMBIENT_OCCLUSION
 	if(istype(L) && L.eye_blurry)
 		filters += GAUSSIAN_BLUR(clamp(L.eye_blurry * 0.1, 0.6, 3))
 
