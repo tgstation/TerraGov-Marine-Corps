@@ -23,3 +23,4 @@
 	name = "active mining drill brace"
 	icon_state = "mining_brace_active"
 	anchored = TRUE
+	
