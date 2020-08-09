@@ -250,6 +250,9 @@
 	. = ..()
 	to_chat(user, "<b>It has [machine_current_charge] of [machine_max_charge] charge remaining.</b>")
 
+/obj/machinery/vending/lasgun/wrench_act(mob/living/user, obj/item/I)
+	anchored = !anchored
+	to_chat(user, "You [anchored ? "unanchor": "anchor"] the [src]")
 
 /obj/machinery/vending/lasgun/MouseDrop_T(atom/movable/A, mob/user)
 	if(machine_stat & (BROKEN|NOPOWER))
