@@ -109,8 +109,8 @@
 	icon_state = "cold"
 
 /obj/structure/sign/heat
-	name = "\improper LOW TEMPERATURE"
-	desc = "A warning sign which reads 'LOW TEMPERATURE'."
+	name = "\improper HIGH TEMPERATURE"
+	desc = "A warning sign which reads 'HIGH TEMPERATURE'."
 	icon_state = "heat"
 
 /obj/structure/sign/gas

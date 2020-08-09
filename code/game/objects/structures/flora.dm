@@ -470,6 +470,7 @@
 
 //ROCKS
 /obj/structure/flora/rock
+	name = "volcanic rock"
 	desc = "A volcanic rock. Pioneers used to ride these babies for miles."
 	icon = 'icons/obj/flora/rocks2.dmi'
 	density = TRUE
@@ -498,7 +499,6 @@
 	icon_state = "lavarocks2"
 
 /obj/structure/flora/rock/pile/alt3
+	name = "fossils"
+	desc = "A pile of ancient fossils. There are some oddly shaped skulls in here..."
 	icon_state = "lavarocks3"
-
-/obj/structure/flora/rock/pile/alt4
-	icon_state = "lavarocks4"

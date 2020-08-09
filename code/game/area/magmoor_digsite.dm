@@ -21,25 +21,10 @@
 	name = "Magmoor Central Fissure"
 	ceiling = CEILING_NONE
 
-/area/magmoor/volcano/flow
-	name = "Central Magmoor Lava Flows"
-
-/area/magmoor/volcano/flow/north
-	name = "North Magmoor Lava Flows"
-
-/area/magmoor/volcano/flow/south
-	name = "South Magmoor Lava Flows"
-
-/area/magmoor/volcano/flow/east
-	name = "East Magmoor Lava Flows"
-
-/area/magmoor/volcano/flow/west
-	name = "West Magmoor Lava Flows"
-
 //Caves
 
 /area/magmoor/cave/
-	ceiling = CEILING_UNDERGROUND
+	ceiling = CEILING_DEEP_UNDERGROUND
 
 /area/magmoor/cave/central
 	name = "Central Caves"
@@ -77,15 +62,47 @@
 	name = "West Caves"
 	icon_state = "lava_cave_w"
 
-/area/magmoor/cave/mining
-	name = "Central Mining Shaft"
-	icon_state = "lava_mining"
-	ceiling = CEILING_DEEP_UNDERGROUND
-
 /area/magmoor/cave/mining/fossil
-	name = "Fossil Deposits"
+	name = "Southwest Fossil Deposits"
 	icon_state = "lava_mining_fossil"
 
+//Compound Outside
+/area/magmoor/compound
+	ceiling = CEILING_NONE
+	name = "Central Magmoor Compound"
+	icon_state = "central"
+
+/area/magmoor/compound/north
+	name = "North Magmoor Compound"
+	icon_state = "north"
+
+/area/magmoor/compound/northeast
+	name = "Northeast Magmoor Compound"
+	icon_state = "northeast"
+
+/area/magmoor/compound/northwest
+	name = "Northwest Magmoor Compound"
+	icon_state = "northwest"
+
+/area/magmoor/compound/south
+	name = "South Magmoor Compound"
+	icon_state = "south"
+
+/area/magmoor/compound/southeast
+	name = "Southeast Magmoor Compound"
+	icon_state = "southeast"
+
+/area/magmoor/compound/southwest
+	name = "Southwest Magmoor Compound"
+	icon_state = "southwest"
+
+/area/magmoor/compound/east
+	name = "East Magmoor Compound"
+	icon_state = "east"
+
+/area/magmoor/compound/west
+	name = "West Magmoor Compound"
+	icon_state = "west"
 
 //Medical
 
