@@ -41870,6 +41870,7 @@
 	dir = 1
 	},
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/toilet/canteen)
 "epq" = (
@@ -43109,6 +43110,7 @@
 /area/space)
 "tlK" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/wall/prison,
 /area/prison/cellblock/vip)
 "tlV" = (
@@ -43521,6 +43523,7 @@
 	dir = 8
 	},
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/south)
 "ydX" = (
