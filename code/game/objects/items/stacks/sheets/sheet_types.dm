@@ -56,8 +56,8 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 		), 4), \
 	null, \
 	new/datum/stack_recipe("grenade casing", /obj/item/explosive/grenade/chem_grenade), \
-	new/datum/stack_recipe("light fixture frame", /obj/item/frame/light_fixture, 2), \
-	new/datum/stack_recipe("small light fixture frame", /obj/item/frame/light_fixture/small, 1), \
+	new/datum/stack_recipe("light fixture frame", /obj/item/wallframe/light_fixture, 2), \
+	new/datum/stack_recipe("small light fixture frame", /obj/item/wallframe/light_fixture/small, 1), \
 	null, \
 	new/datum/stack_recipe("apc frame", /obj/item/frame/apc, 2), \
 	new/datum/stack_recipe("air alarm frame", /obj/item/frame/air_alarm, 2), \

@@ -1,6 +1,13 @@
 /obj/effect/overlay
 	name = "overlay"
-	var/i_attached//Added for possible image attachments to objects. For hallucinations and the like.
+	var/i_attached //Added for possible image attachments to objects. For hallucinations and the like.
+
+/obj/effect/overlay/vis
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	anchored = TRUE
+	vis_flags = NONE
+	var/unused = 0 //When detected to be unused it gets set to world.time, after a while it gets removed
+	var/cache_expiration = 2 MINUTES // overlays which go unused for 2 minutes get cleaned up
 
 /obj/effect/overlay/beam//Not actually a projectile, just an effect.
 	name="beam"

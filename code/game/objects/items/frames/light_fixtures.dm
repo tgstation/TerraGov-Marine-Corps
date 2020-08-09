@@ -35,9 +35,9 @@
 		return
 	switch(fixture_type)
 		if("bulb")
-			newlight = new /obj/machinery/light_construct/small(constrloc)
+			newlight = new /obj/machinery/light/small(constrloc)
 		if("tube")
-			newlight = new /obj/machinery/light_construct(constrloc)
+			newlight = new /obj/machinery/light(constrloc)
 	newlight.setDir(constrdir)
 
 	usr.visible_message("[usr.name] attaches [src] to the wall.", \

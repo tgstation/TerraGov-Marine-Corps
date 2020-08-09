@@ -18,7 +18,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 6
-	power_channel = ENVIRON
+	power_channel = AREA_USAGE_ENVIRON
 
 
 /obj/machinery/keycard_auth/attackby(obj/item/I, mob/user, params)

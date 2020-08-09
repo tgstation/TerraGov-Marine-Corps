@@ -229,15 +229,15 @@ GLOBAL_LIST_EMPTY(autolathe_categories)
 	path = /obj/item/assembly/prox_sensor
 	category = "Devices and Components"
 
-/datum/autolathe/recipe/tube
-	name = "light tube"
-	path = /obj/item/light_bulb/tube
-	category = "General"
+// /datum/autolathe/recipe/tube
+// 	name = "light tube"
+// 	path = /obj/item/light_bulb/tube
+// 	category = "General"
 
-/datum/autolathe/recipe/bulb
-	name = "light bulb"
-	path = /obj/item/light_bulb/bulb
-	category = "General"
+// /datum/autolathe/recipe/bulb
+// 	name = "light bulb"
+// 	path = /obj/item/light_bulb/bulb
+// 	category = "General"
 
 /datum/autolathe/recipe/ashtray_glass
 	name = "glass ashtray"

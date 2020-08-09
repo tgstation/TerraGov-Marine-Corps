@@ -853,12 +853,12 @@
 	if(!area.requires_power)
 		return
 
-	lastused_light = area.usage(STATIC_LIGHT)
-	lastused_light += area.usage(LIGHT)
-	lastused_equip = area.usage(EQUIP)
-	lastused_equip += area.usage(STATIC_EQUIP)
-	lastused_environ = area.usage(ENVIRON)
-	lastused_environ += area.usage(STATIC_ENVIRON)
+	lastused_light = area.usage(AREA_USAGE_STATIC_LIGHT)
+	lastused_light += area.usage(AREA_USAGE_LIGHT)
+	lastused_equip = area.usage(AREA_USAGE_EQUIP)
+	lastused_equip += area.usage(AREA_USAGE_STATIC_EQUIP)
+	lastused_environ = area.usage(AREA_USAGE_ENVIRON)
+	lastused_environ += area.usage(AREA_USAGE_STATIC_ENVIRON)
 	area.clear_usage()
 
 	lastused_total = lastused_light + lastused_equip + lastused_environ
@@ -1064,7 +1064,7 @@
 
 /obj/machinery/power/apc/proc/break_lights()
 	for(var/obj/machinery/light/L in get_area(src))
-		L.broken()
+		L.break_light_tube()
 		L.on = FALSE
 		stoplag()
 

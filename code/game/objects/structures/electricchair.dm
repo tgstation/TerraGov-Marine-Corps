@@ -28,7 +28,7 @@
 		return
 	last_time = world.time
 
-	if(!use_power(5000, EQUIP))
+	if(!use_power(5000, AREA_USAGE_EQUIP))
 		return
 
 	flick("echair1", src)

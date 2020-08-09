@@ -5,7 +5,7 @@
 	desc = "A remote control switch."
 	icon = 'icons/obj/machines/buttons.dmi'
 	icon_state = "doorctrl"
-	power_channel = ENVIRON
+	power_channel = AREA_USAGE_ENVIRON
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 5

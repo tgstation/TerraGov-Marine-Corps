@@ -398,7 +398,7 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 	if(hull_floor) //no interaction for hulls
 		return
 
-	else if(istype(I, /obj/item/light_bulb/bulb)) //Only for light tiles
+	else if(istype(I, /obj/item/light/bulb)) //Only for light tiles
 		if(is_light_floor())
 			var/obj/item/stack/tile/light/T = floor_tile
 			if(!T.state)
@@ -406,7 +406,7 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 				return
 
 			user.drop_held_item(I)
-			qdel(I)
+			qdel(I) // DELETE THEN ASSIGN WOT.
 			T.state = I //Fixing it by bashing it with a light bulb, fun eh?
 			update_icon()
 			to_chat(user, "<span class='notice'>You replace the light bulb.</span>")

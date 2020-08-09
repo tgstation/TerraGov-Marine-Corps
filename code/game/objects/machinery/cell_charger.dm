@@ -7,7 +7,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 5
 	active_power_usage = 40000	//40 kW. (this the power drawn when charging)
-	power_channel = EQUIP
+	power_channel = AREA_USAGE_EQUIP
 	var/obj/item/cell/charging = null
 	var/chargelevel = -1
 

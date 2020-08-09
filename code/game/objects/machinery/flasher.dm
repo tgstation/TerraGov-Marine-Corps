@@ -6,7 +6,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "mflash1"
 	anchored = TRUE
-	power_channel = EQUIP
+	power_channel = AREA_USAGE_EQUIP
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 1500

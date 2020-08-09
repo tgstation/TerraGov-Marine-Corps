@@ -278,11 +278,11 @@
 		return FALSE
 
 	switch(chan)
-		if(EQUIP)
+		if(AREA_USAGE_EQUIP)
 			return power_equip
-		if(LIGHT)
+		if(AREA_USAGE_LIGHT)
 			return power_light
-		if(ENVIRON)
+		if(AREA_USAGE_ENVIRON)
 			return power_environ
 
 	return FALSE
@@ -297,14 +297,12 @@
 /area/proc/usage(chan)
 	var/used = 0
 	switch(chan)
-		if(LIGHT)
+		if(AREA_USAGE_LIGHT)
 			used += used_light
-		if(EQUIP)
+		if(AREA_USAGE_EQUIP)
 			used += used_equip
-		if(ENVIRON)
+		if(AREA_USAGE_ENVIRON)
 			used += used_environ
-		if(TOTAL)
-			used += used_light + used_equip + used_environ
 	return used
 
 
@@ -316,11 +314,11 @@
 
 /area/proc/use_power(amount, chan)
 	switch(chan)
-		if(EQUIP)
+		if(AREA_USAGE_EQUIP)
 			used_equip += amount
-		if(LIGHT)
+		if(AREA_USAGE_LIGHT)
 			used_light += amount
-		if(ENVIRON)
+		if(AREA_USAGE_ENVIRON)
 			used_environ += amount
 
 

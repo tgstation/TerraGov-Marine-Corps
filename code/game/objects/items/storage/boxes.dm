@@ -253,7 +253,7 @@
 	foldable = /obj/item/stack/sheet/cardboard //BubbleWrap
 	max_storage_space = 42	//holds 21 items of w_class 2
 	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
-	spawn_type = /obj/item/light_bulb/bulb
+	spawn_type = /obj/item/light/bulb
 	spawn_number = 21
 
 /obj/item/storage/box/lights/bulbs // mapping placeholder
@@ -262,22 +262,22 @@
 	name = "box of replacement tubes"
 	icon_state = "lighttube"
 	w_class = WEIGHT_CLASS_NORMAL
-	spawn_type = /obj/item/light_bulb/tube/large
+	spawn_type = /obj/item/light/tube
 	spawn_number = 21
 
 /obj/item/storage/box/lights/mixed
 	name = "box of replacement lights"
 	icon_state = "lightmixed"
 	can_hold = list(
-		/obj/item/light_bulb/tube/large,
-		/obj/item/light_bulb/bulb)
+		/obj/item/light/tube,
+		/obj/item/light/bulb)
 
 /obj/item/storage/box/lights/mixed/Initialize(mapload, ...)
 	. = ..()
 	for(var/i in 1 to 14)
-		new /obj/item/light_bulb/tube/large(src)
+		new /obj/item/light/tube(src)
 	for(var/i in 1 to 7)
-		new /obj/item/light_bulb/bulb(src)
+		new /obj/item/light/bulb(src)
 
 
 

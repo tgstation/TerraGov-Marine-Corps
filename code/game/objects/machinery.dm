@@ -15,7 +15,7 @@
 	var/active_power_usage = 0
 	var/machine_current_charge = 0 //Does it have an integrated, unremovable capacitor? Normally 10k if so.
 	var/machine_max_charge = 0
-	var/power_channel = EQUIP
+	var/power_channel = AREA_USAGE_EQUIP
 	var/list/component_parts //list of all the parts used to build it, if made from certain kinds of frames.
 
 	var/wrenchable = FALSE

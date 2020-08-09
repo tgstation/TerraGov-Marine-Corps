@@ -135,7 +135,7 @@ obj/machinery/airlock_sensor
 	name = "airlock sensor"
 
 	anchored = TRUE
-	power_channel = ENVIRON
+	power_channel = AREA_USAGE_ENVIRON
 
 	var/id_tag
 	var/master_tag
@@ -214,7 +214,7 @@ obj/machinery/access_button
 	name = "access button"
 
 	anchored = TRUE
-	power_channel = ENVIRON
+	power_channel = AREA_USAGE_ENVIRON
 
 	var/master_tag
 	var/frequency = 1449

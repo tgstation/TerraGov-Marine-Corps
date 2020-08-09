@@ -18,7 +18,7 @@
 	layer = FIREDOOR_OPEN_LAYER
 	open_layer = FIREDOOR_OPEN_LAYER // Just below doors when open
 	closed_layer = FIREDOOR_CLOSED_LAYER // Just above doors when closed
-	power_channel = ENVIRON
+	power_channel = AREA_USAGE_ENVIRON
 	use_power = TRUE
 	idle_power_usage = 5
 	active_power_usage = 360

@@ -308,6 +308,10 @@
 	if(!ishuman(user))
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
+	var/turf/T = user.loc
+
+	if(try_wallmount(I, user, T) || try_decon(I, user, T))
+		return TRUE
 
 	else if(istype(I, /obj/item/frame/apc))
 		var/obj/item/frame/apc/AH = I
@@ -321,13 +325,13 @@
 		var/obj/item/frame/fire_alarm/AH = I
 		AH.try_build(src)
 
-	else if(istype(I, /obj/item/frame/light_fixture))
-		var/obj/item/frame/light_fixture/AH = I
-		AH.try_build(src)
+	// else if(istype(I, /obj/item/frame/light_fixture))
+	// 	var/obj/item/frame/light_fixture/AH = I
+	// 	AH.try_build(src)
 
-	else if(istype(I, /obj/item/frame/light_fixture/small))
-		var/obj/item/frame/light_fixture/small/AH = I
-		AH.try_build(src)
+	// else if(istype(I, /obj/item/frame/light_fixture/small))
+	// 	var/obj/item/frame/light_fixture/small/AH = I
+	// 	AH.try_build(src)
 
 	else if(istype(I, /obj/item/frame/camera))
 		var/obj/item/frame/camera/AH = I
@@ -499,3 +503,32 @@
 
 /turf/closed/wall/can_be_dissolved()
 	return !(resistance_flags & INDESTRUCTIBLE)
+
+
+/turf/closed/wall/proc/try_wallmount(obj/item/W, mob/user, turf/T)
+	//check for wall mounted frames
+	if(istype(W, /obj/item/wallframe))
+		var/obj/item/wallframe/F = W
+		if(F.try_build(src, user))
+			F.attach(src, user)
+		return TRUE
+	// //Poster stuff
+	// else if(istype(W, /obj/item/contaband/poster))
+	// 	place_poster(W,user)
+	// 	return TRUE
+
+	return FALSE
+
+/turf/closed/wall/proc/try_decon(obj/item/I, mob/user, turf/T)
+	// if(I.tool_behaviour == TOOL_WELDER)
+	// 	if(!I.tool_start_check(user, amount=0))
+	// 		return FALSE
+
+	// 	to_chat(user, "<span class='notice'>You begin slicing through the outer plating...</span>")
+	// 	if(I.use_tool(src, user, slicing_duration, volume=100))
+	// 		if(iswallturf(src))
+	// 			to_chat(user, "<span class='notice'>You remove the outer plating.</span>")
+	// 			dismantle_wall()
+	// 		return TRUE
+
+	return FALSE

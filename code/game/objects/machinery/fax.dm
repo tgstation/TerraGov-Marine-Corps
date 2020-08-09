@@ -7,7 +7,7 @@
 	use_power = TRUE
 	idle_power_usage = 30
 	active_power_usage = 200
-	power_channel = EQUIP
+	power_channel = AREA_USAGE_EQUIP
 
 	var/obj/item/card/id/idscan = null
 	var/authenticated = FALSE
