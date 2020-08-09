@@ -298,8 +298,6 @@
 
 	glowybit = SSvis_overlays.add_vis_overlay(src, overlayicon, base_state, layer, plane, dir, alpha = 0, unique = TRUE)
 
-	if(!glowybit)
-		stack_trace("here?!")
 	if(!mapload) //sync up nightshift lighting for player made lights
 		// var/area/A = get_area(src)
 		// var/obj/machinery/power/apc/temp_apc = A.get_apc()
@@ -329,13 +327,12 @@
 			brightness = 4
 			if(prob(5))
 				break_light_tube(1)
-	addtimer(CALLBACK(src, .proc/update, 0), 1)
+	INVOKE_NEXT_TICK(src, .proc/update, 0)
 
 /obj/machinery/light/Destroy()
 	var/area/A = get_area(src)
 	if(A)
 		on = FALSE
-//		A.update_lights()
 	QDEL_NULL(cell)
 	vis_contents.Cut()
 	QDEL_NULL(glowybit)
@@ -358,10 +355,6 @@
 
 /obj/machinery/light/update_overlays()
 	. = ..()
-	if(!glowybit)
-		to_chat(world, "[world.time] - Didn't have one [src] [ADMIN_JMP(src)]")
-		glowybit = SSvis_overlays.add_vis_overlay(src, overlayicon, base_state, layer, plane, dir, alpha = 0, unique = TRUE)
-
 	if(on && status == LIGHT_OK)
 		glowybit.alpha = clamp(light_power*250, 30, 200)
 	else

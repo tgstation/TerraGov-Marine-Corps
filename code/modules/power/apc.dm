@@ -67,7 +67,7 @@
 	var/update_state = NONE
 	var/update_overlay = -1
 	var/global/status_overlays = 0
-	var/updating_icon = 0
+	var/updating_icon = TRUE /// Whether or not we should update the icon next process (default TRUE, since its always useful on create)
 	var/crash_break_probability = 85 //Probability of APC being broken by a shuttle crash on the same z-level
 	var/global/list/status_overlays_lock
 	var/global/list/status_overlays_charging
@@ -90,27 +90,11 @@
 		return
 	..()
 
-/obj/machinery/power/apc/Initialize(mapload, ndir, building)
+/obj/machinery/power/apc/Initialize(mapload, ndir, building = FALSE)
 	. = ..()
 	GLOB.apcs_list += src
 	wires = new /datum/wires/apc(src)
 
-/obj/machinery/power/apc/Destroy()
-	GLOB.apcs_list -= src
-
-	area.power_light = 0
-	area.power_equip = 0
-	area.power_environ = 0
-	area.power_change()
-
-	QDEL_NULL(cell)
-	QDEL_NULL(wires)
-	if(terminal)
-		disconnect_terminal()
-
-	. = ..()
-
-/obj/machinery/power/apc/Initialize(mapload, ndir, building = FALSE)
 	// offset 32 pixels in direction of dir
 	// this allows the APC to be embedded in a wall, yet still inside an area
 	if (ndir)
@@ -133,12 +117,6 @@
 		operating = FALSE
 		name = "\improper [area.name] APC"
 		machine_stat |= MAINT
-		update_icon()
-		addtimer(CALLBACK(src, .proc/update), 5)
-
-	start_processing()
-
-	. = ..()
 
 	if(mapload)
 		has_electronics = APC_ELECTRONICS_SECURED
@@ -159,15 +137,32 @@
 			area = get_area_name(areastring)
 			name = "\improper [area.name] APC"
 
-		update_icon()
 		make_terminal()
 
-		update() //areas should be lit on startup
+		addtimer(CALLBACK(src, .proc/update), 5) //areas should be lit on startup
 
 		//Break few ACPs on the colony
 		if(!start_charge && is_ground_level(z) && prob(10))
-			addtimer(CALLBACK(src, .proc/set_broken), 5)
+			addtimer(CALLBACK(src, .proc/set_broken), 10)
 
+	addtimer(CALLBACK(src, .proc/update), 5) //areas should be lit on startup
+	start_processing()
+
+
+/obj/machinery/power/apc/Destroy()
+	GLOB.apcs_list -= src
+
+	area.power_light = 0
+	area.power_equip = 0
+	area.power_environ = 0
+	area.power_change()
+
+	QDEL_NULL(cell)
+	QDEL_NULL(wires)
+	if(terminal)
+		disconnect_terminal()
+
+	return ..()
 
 ///Wrapper to guarantee powercells are properly nulled and avoid hard deletes.
 /obj/machinery/power/apc/proc/set_cell(obj/item/cell/new_cell)
