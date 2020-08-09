@@ -1,11 +1,11 @@
 //Darude sandstorm starts playing
 /datum/weather/ash_storm/sand
 	name = "severe sandstorm"
-	telegraph_message = "<span class='boldannounce'>You see a dust cloud rising over the horizon. That can't be good...</span>"
+	telegraph_message = "<span class='highdanger'>You see a dust cloud rising over the horizon. That can't be good...</span>"
 	telegraph_duration = 300
 	telegraph_overlay = "dust_med"
 
-	weather_message = "<span class='boldannounce'><i>Sand and wind batter you! Get inside!</i></span>"
+	weather_message = "<span class='highdanger'><i>Sand and wind batter you! Get inside!</i></span>"
 	weather_duration_lower = 600
 	weather_duration_upper = 1200
 	weather_overlay = "dust_high"
