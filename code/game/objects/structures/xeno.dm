@@ -373,7 +373,7 @@
 */
 
 /obj/effect/alien/egg
-	desc = "It looks like a weird egg."
+	desc = "It looks like a weird egg"
 	name = "egg"
 	icon_state = "Egg Growing"
 	density = FALSE
