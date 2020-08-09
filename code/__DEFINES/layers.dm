@@ -19,15 +19,29 @@
 #define CLICKCATCHER_PLANE -99
 
 #define PLANE_SPACE -95
+#define PLANE_SPACE_RENDER_TARGET "PLANE_SPACE"
 #define PLANE_SPACE_PARALLAX -90
+#define PLANE_SPACE_PARALLAX_RENDER_TARGET "PLANE_SPACE_PARALLAX"
+
+#define OPENSPACE_LAYER 17 //Openspace layer over all
+#define OPENSPACE_PLANE -4 //Openspace plane below all turfs
+#define OPENSPACE_BACKDROP_PLANE -3 //Black square just over openspace plane to guaranteed cover all in openspace turf
 
 #define FLOOR_PLANE -2
+#define FLOOR_PLANE_RENDER_TARGET "FLOOR_PLANE"
 #define GAME_PLANE -1
+#define GAME_PLANE_RENDER_TARGET "GAME_PLANE"
 #define BLACKNESS_PLANE 0 //To keep from conflicts with SEE_BLACKNESS internals
+#define BLACKNESS_PLANE_RENDER_TARGET "BLACKNESS_PLANE"
+
+//#define AREA_LAYER 1 //For easy recordkeeping; this is a byond define
 
 #define SPACE_LAYER 1.8
 
 #define UNDER_TURF_LAYER 1.99
+
+//#define TURF_LAYER 2 //For easy recordkeeping; this is a byond define
+
 #define ABOVE_TURF_LAYER 2.01
 
 #define LATTICE_LAYER 2.15
@@ -82,7 +96,7 @@
 
 #define LOWER_ITEM_LAYER 2.99 //for items that should be at the bottom of the pile of items
 
-//#define OBJ_LAYER 3
+//#define OBJ_LAYER 3 //For easy recordkeeping; this is a byond define
 
 #define UPPER_ITEM_LAYER 3.01 //for items that should be at the top of the pile of items
 
@@ -107,7 +121,8 @@
 
 #define ABOVE_LYING_MOB_LAYER 3.9 //drone (not the xeno)
 
-//#define MOB_LAYER 4
+//#define MOB_LAYER 4 //For easy recordkeeping; this is a byond define
+
 #define RIVER_OVERLAY_LAYER 4.01
 
 #define FACEHUGGER_LAYER 4.05
@@ -116,7 +131,7 @@
 
 #define ABOVE_ALL_MOB_LAYER 4.5
 
-//#define FLY_LAYER 5
+//#define FLY_LAYER 5  //For easy recordkeeping; this is a byond define
 
 #define RIPPLE_LAYER 5.1
 
@@ -132,9 +147,23 @@
 
 #define POINT_LAYER 12
 
+#define EMISSIVE_BLOCKER_PLANE 12
+#define EMISSIVE_BLOCKER_LAYER 12
+#define EMISSIVE_BLOCKER_RENDER_TARGET "*EMISSIVE_BLOCKER_PLANE"
+
 #define CHAT_LAYER 12.1
 
+#define EMISSIVE_PLANE 13
+#define EMISSIVE_LAYER 13
+#define EMISSIVE_RENDER_TARGET "*EMISSIVE_PLANE"
+
+#define EMISSIVE_UNBLOCKABLE_PLANE 14
+#define EMISSIVE_UNBLOCKABLE_LAYER 14
+#define EMISSIVE_UNBLOCKABLE_RENDER_TARGET "*EMISSIVE_UNBLOCKABLE_PLANE"
+
 #define LIGHTING_PLANE 15
+#define LIGHTING_LAYER 15
+#define LIGHTING_RENDER_TARGET "LIGHT_PLANE"
 
 #define ABOVE_LIGHTING_PLANE 16
 #define ABOVE_LIGHTING_LAYER 16
@@ -145,6 +174,7 @@
 
 #define CAMERA_STATIC_PLANE 18
 #define CAMERA_STATIC_LAYER 18
+#define CAMERA_STATIC_RENDER_TARGET "CAMERA_STATIC_PLANE"
 
 #define FULLSCREEN_LAYER 18
 #define FULLSCREEN_IMPAIRED_LAYER 18.02 //visual impairment from wearing welding helmet, etc

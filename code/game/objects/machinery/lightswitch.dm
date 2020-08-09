@@ -1,70 +1,59 @@
-// the light switch
-// can have multiple per area
-// can also operate on non-loc area through "otherarea" var
+/// The light switch. Can have multiple per area.
 /obj/machinery/light_switch
 	name = "light switch"
-	desc = "It turns lights on and off. What are you, simple?"
 	icon = 'icons/obj/power.dmi'
-	icon_state = "light1"
-	anchored = TRUE
-	var/on = 1
+	icon_state = "light-p"
+	desc = "Make dark."
+	power_channel = AREA_USAGE_LIGHT
+	/// Set this to a string, path, or area instance to control that area
+	/// instead of the switch's location.
 	var/area/area = null
-	var/otherarea = null
 
 /obj/machinery/light_switch/Initialize()
 	. = ..()
-	src.area = get_area(src)
-
-	if(otherarea)
-		src.area = locate(text2path("/area/[otherarea]"))
+	if(istext(area))
+		area = text2path(area)
+	if(ispath(area))
+		area = GLOB.areas_by_type[area]
+	if(!area)
+		area = get_area(src)
 
 	if(!name)
 		name = "light switch ([area.name])"
 
-	src.on = src.area.lightswitch
-	updateicon()
+	update_icon()
 
-/obj/machinery/light_switch/proc/updateicon()
+/obj/machinery/light_switch/update_icon_state()
+	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
+	luminosity = 0
 	if(machine_stat & NOPOWER)
-		icon_state = "light-p"
+		return
 	else
-		if(on)
-			icon_state = "light1"
-		else
-			icon_state = "light0"
+		luminosity = 1
+		SSvis_overlays.add_vis_overlay(src, icon, "light-glow", EMISSIVE_LAYER, EMISSIVE_PLANE, dir, alpha)
+		SSvis_overlays.add_vis_overlay(src, icon, area.lightswitch ? "light1" : "light0", layer, plane, dir, alpha)
 
 /obj/machinery/light_switch/examine(mob/user)
-	..()
-	to_chat(user, "It is [on? "on" : "off"].")
-
-
-/obj/machinery/light_switch/attack_paw(mob/living/carbon/monkey/user)
-	src.attack_hand(user)
-
-/obj/machinery/light_switch/attack_hand(mob/living/user)
 	. = ..()
-	if(.)
-		return
-	on = !on
+	to_chat(user, "It is [area.lightswitch ? "on" : "off"].")
 
-	area.lightswitch = on
+/obj/machinery/light_switch/interact(mob/user)
+	. = ..()
+
+	area.lightswitch = !area.lightswitch
 	area.update_icon()
+
+	for(var/obj/machinery/light_switch/L in area)
+		L.update_icon()
 
 	area.power_change()
 
 /obj/machinery/light_switch/power_change()
-
-	if(!otherarea)
-		if(powered(AREA_USAGE_LIGHT))
-			machine_stat &= ~NOPOWER
-		else
-			machine_stat |= NOPOWER
-
-		updateicon()
+	SHOULD_CALL_PARENT(0)
+	if(area == get_area(src))
+		return ..()
 
 /obj/machinery/light_switch/emp_act(severity)
-	if(machine_stat & (BROKEN|NOPOWER))
-		..(severity)
-		return
-	power_change()
-	..(severity)
+	. = ..()
+	if(!(machine_stat & (BROKEN|NOPOWER)))
+		power_change()
