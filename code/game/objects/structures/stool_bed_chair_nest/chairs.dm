@@ -152,10 +152,6 @@
 	desc = "An old fashioned wood pew."
 	icon_state = "pews"
 
-
-
-
-
 /obj/structure/bed/chair/office
 	anchored = FALSE
 	buckle_flags = CAN_BUCKLE
