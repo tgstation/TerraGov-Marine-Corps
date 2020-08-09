@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - rscadd: "helmet modules now have a overlay when attached"
