@@ -324,14 +324,24 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/captain
 	name = CAPTAIN
+	leadership = SKILL_LEAD_MASTER
+	police = SKILL_POLICE_MP
+	medical = SKILL_MEDICAL_COMPETENT
+	surgery = SKILL_SURGERY_PROFESSIONAL
 	engineer = SKILL_ENGINEER_ENGI
 	construction = SKILL_CONSTRUCTION_ADVANCED
+	powerloader = SKILL_POWERLOADER_MASTER
+	cqc = SKILL_CQC_DEFAULT
+	melee_weapons = SKILL_MELEE_DEFAULT
+	firearms = SKILL_FIREARMS_TRAINED
+	pistols = SKILL_PISTOLS_TRAINED
+	shotguns = SKILL_SHOTGUNS_TRAINED
+	rifles = SKILL_RIFLES_TRAINED
+	smgs = SKILL_SMGS_TRAINED
+	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
 	smartgun = SKILL_SMART_TRAINED
-	leadership = SKILL_LEAD_MASTER
-	medical = SKILL_MEDICAL_PRACTICED
-	surgery = SKILL_SURGERY_AMATEUR
-	police = SKILL_POLICE_MP
-	powerloader = SKILL_POWERLOADER_TRAINED
+	spec_weapons = SKILL_SPEC_TRAINED /// Eh
+
 
 /datum/skills/FO
 	name = FIELD_COMMANDER
