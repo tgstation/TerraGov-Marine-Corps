@@ -386,7 +386,7 @@
 	var/status = EGG_GROWING
 	var/hivenumber = XENO_HIVE_NORMAL
 
-/obj/effect/alien/egg/prop/ //just useful as a map prop
+/obj/effect/alien/egg/prop //just useful as a map prop
 	icon_state = "Egg Opened"
 	status = EGG_BURST
 	trigger_size = 0
