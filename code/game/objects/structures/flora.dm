@@ -466,3 +466,39 @@
 	desc = "A thick mat of dense grass."
 	icon_state = "grasscarpet"
 	layer = BELOW_MOB_LAYER
+
+//Sword Base
+
+/obj/structure/flora/rock
+	anchored = TRUE
+	density = TRUE
+	name = "rock"
+	desc = "It's not a boulder, it's a rock!"
+	var/icon_tag = null
+	var/variations = null
+	icon = 'icons/obj/flora/sword_base.dmi'
+	icon_state = "rock1"
+	icon_tag = "rock"
+	variations = 3
+
+/obj/structure/flora/rock/Initialize()
+	. = ..()
+	icon_state = "[icon_tag][rand(1,variations)]"
+
+/obj/structure/flora/rock/rocks
+	name = "rocks"
+	icon_state = "rocks1"
+	icon_tag = "rocks"
+	variations = 3
+
+/obj/structure/flora/rock/beachrock
+	name = "beach rock"
+	icon_state = "beachrock1"
+	icon_tag = "beackrock"
+	variations = 3
+
+/obj/structure/flora/rock/beachrocks
+	name = "beach rocks"
+	icon_state = "beachrocks1"
+	icon_tag = "beachrocks"
+	variations = 2
