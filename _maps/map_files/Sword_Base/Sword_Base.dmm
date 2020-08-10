@@ -10,7 +10,7 @@
 "eg" = (/turf/open/swordbase/snowstone,/area/space)
 "ej" = (/obj/effect/landmark/start/job/squadmarine,/turf/open/floor/plating/ground/asphalt,/area/space)
 "eo" = (/turf/open/floor/plating/ground/snow/layer3,/area/space)
-"fJ" = (/obj/machinery/door/poddoor/shutters{dir = 2; id = loading bay; name = "Loading Bay"},/turf/open/floor/plating/ground/asphalt,/area/space)
+"fJ" = (/obj/machinery/door/poddoor/shutters{dir = 2},/turf/open/floor/plating/ground/asphalt,/area/space)
 "fN" = (/obj/structure/platform,/turf/open/floor/plating/ground/asphalt,/area/space)
 "gb" = (/obj/structure/platform{dir = 1},/turf/open/floor/plating/ground/asphalt,/area/space)
 "gm" = (/obj/vehicle/train/cargo/trolley,/turf/open/floor/plating/ground/asphalt,/area/space)
