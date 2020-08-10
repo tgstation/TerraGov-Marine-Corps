@@ -1,6 +1,7 @@
-/*
-Cloning shit
+/**
+Marine cloning.
 
+These act as a respawn mechanic growning a body and offering it up to ghosts.
 */
 /obj/machinery/cloning
 	name = "broken cloning machine"
@@ -31,7 +32,7 @@ Cloning shit
 
 
 /**
-These automatically generate marine bodies baded ona  timer.
+These automatically generate marine bodies baded on a timer.
 These hold the body until taken by a ghost where they "burst" from the vat.
 
 The vat then needs to be repaired and refilled with biomass.
@@ -74,7 +75,7 @@ The vat then needs to be repaired and refilled with biomass.
 		visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> beeps in error, 'not enough biomass'.</span>")
 		return TRUE
 
-	visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> whirls as it starts to create a new clone.</span>")
+
 	linked_machine.grow_human()
 
 
@@ -107,7 +108,6 @@ The vat then needs to be repaired and refilled with biomass.
 	// Force tthe clone out, if they have a client
 	if(occupant)
 		eject_user()
-	occupant = null
 
 	QDEL_NULL(beaker)
 	return ..()
@@ -202,8 +202,26 @@ The vat then needs to be repaired and refilled with biomass.
 		finish_growing_human()
 		return
 
+	visible_message("[icon2html(src, viewers(src))] <span><b>[src]</b> whirls as it starts to create a new clone.</span>")
 	timerid = addtimer(CALLBACK(src, .proc/finish_growing_human), grow_timer, TIMER_STOPPABLE)
 	update_icon()
+
+
+/obj/machinery/cloning/vats/proc/finish_growing_human()
+	occupant = new(src)
+	var/datum/job/job_instance = SSjob.GetJobType(/datum/job/terragov/squad/vatgrown)
+	occupant.apply_assigned_role_to_spawn(job_instance)
+	occupant.set_species("Early Vat-Grown Human")
+	occupant.fully_replace_character_name(occupant.real_name, occupant.species.random_name(occupant.gender))
+	occupant.disabilities |= (BLIND & DEAF)
+	occupant.set_blindness(10) // Temp fix until blindness is fixed.
+	// Blindness doenst't trigger with just the disability, you need to set_blindness
+
+	GLOB.offered_mob_list += occupant
+	notify_ghosts("<span class='boldnotice'>A new clone is available! Name: [name]</span>", enter_link = "claim=[REF(occupant)]", source = src, action = NOTIFY_ORBIT)
+
+	// Cleanup the timers
+	timerid = null
 
 
 /obj/machinery/cloning/vats/proc/eject_user(silent = FALSE)
@@ -225,20 +243,3 @@ You are weak, best rest up and get your strength before fighting.</span>"})
 
 	occupant = null
 	update_icon()
-
-
-/obj/machinery/cloning/vats/proc/finish_growing_human()
-	occupant = new(src)
-	var/datum/job/job_instance = SSjob.GetJobType(/datum/job/terragov/squad/vatgrown)
-	occupant.apply_assigned_role_to_spawn(job_instance)
-	occupant.set_species("Early Vat-Grown Human")
-	occupant.fully_replace_character_name(occupant.real_name, occupant.species.random_name(occupant.gender))
-	occupant.disabilities |= (BLIND & DEAF)
-	occupant.set_blindness(10) // Temp fix until blindness is fixed.
-	// Blindness doenst't trigger with just the disability, you need to set_blindness
-
-	GLOB.offered_mob_list += occupant
-	notify_ghosts("<span class='boldnotice'>A new clone is available! Name: [name]</span>", enter_link = "claim=[REF(occupant)]", source = src, action = NOTIFY_ORBIT)
-
-	// Cleanup the timers
-	timerid = null
