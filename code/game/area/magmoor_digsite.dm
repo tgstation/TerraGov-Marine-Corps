@@ -5,7 +5,7 @@
 /area/magmoor
 	name = "Lava"
 	icon_state = "lava"
-
+	var/outside = TRUE/FALSE
 
 
 /area/magmoor/landing
@@ -20,11 +20,12 @@
 /area/magmoor/volcano
 	name = "Magmoor Central Fissure"
 	ceiling = CEILING_NONE
-
+	outside = TRUE
 //Caves
 
 /area/magmoor/cave/
 	ceiling = CEILING_DEEP_UNDERGROUND
+	outside = FALSE
 
 /area/magmoor/cave/central
 	name = "Central Caves"
@@ -71,6 +72,7 @@
 	ceiling = CEILING_NONE
 	name = "Central Magmoor Compound"
 	icon_state = "central"
+	outside = TRUE
 
 /area/magmoor/compound/north
 	name = "North Magmoor Compound"
@@ -110,6 +112,7 @@
 	name = "Medical Clinic"
 	icon_state = "lava_med"
 	ceiling = CEILING_METAL
+	outside = FALSE
 
 /area/magmoor/medical/chemistry
 	name = "Medical Clinic Chemistry"
@@ -154,6 +157,7 @@
 	name = "Engineering"
 	icon_state = "lava_engie"
 	ceiling = CEILING_METAL
+	outside = FALSE
 
 /area/magmoor/engi/atmos
 	name = "Atmospheric Processing"
@@ -173,6 +177,7 @@
 	name = "Holding Cells"
 	icon_state = "lava_sec_prison"
 	ceiling = CEILING_METAL
+	outside = FALSE
 
 /area/magmoor/security/storage
 	name = "Security Armory"
@@ -202,6 +207,7 @@
 
 /area/magmoor/civilian
 	ceiling = CEILING_METAL
+	outside = FALSE
 
 /area/magmoor/civilian/cook
 	name = "Kitchen"
@@ -248,6 +254,7 @@
 /area/magmoor/research
 	name = "Research & Archaeology"
 	icon_state = "lava_research"
+	outside = FALSE
 
 /area/magmoor/research/containment
 	name = "Research Materials & Containment"
@@ -280,6 +287,7 @@
 //Cargo
 /area/magmoor/cargo
 	ceiling = CEILING_METAL
+	outside = FALSE
 
 /area/magmoor/cargo/processing
 	name = "Cargo Processing East"
@@ -311,6 +319,7 @@
 	name = "Hydropnics Lobby & Livestock"
 	icon_state = "lava_civ_garden"
 	ceiling = CEILING_GLASS
+	outside = TRUE
 
 /area/magmoor/hydroponics/north
 	name = "Hydropnics North"
@@ -321,6 +330,7 @@
 //Command
 /area/magmoor/command
 	ceiling = CEILING_METAL
+	outside = FALSE
 
 /area/magmoor/command/lobby
 	name = "North Command Lobby"
@@ -349,6 +359,7 @@
 /area/magmoor/mining/
 	name = "Mining Equipment & Break Room"
 	icon_state = "lava_mining"
+	outside = FALSE
 
 /area/magmoor/mining/garage
 	name = "Mining Garage & Storage"
