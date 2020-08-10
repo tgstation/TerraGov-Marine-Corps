@@ -6,6 +6,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
+/obj/item/reagent_containers/jerrycan,
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/hallways/hangar)
 "ac" = (
@@ -1144,6 +1145,10 @@
 /obj/item/bedsheet/medical,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
+"dL" = (
+/obj/item/reagent_containers/jerrycan,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "dM" = (
 /obj/effect/attach_point/weapon/dropship2{
 	dir = 4;
@@ -1709,12 +1714,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
-"gy" = (
-/obj/structure/sign/ROsign{
-	dir = 1
-	},
-/turf/closed/wall/mainship,
-/area/mainship/squads/req)
 "gz" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -2292,6 +2291,10 @@
 	dir = 4
 	},
 /area/mainship/command/cic)
+"iB" = (
+/obj/item/reagent_containers/jerrycan,
+/turf/open/floor/mainship/sterile/plain,
+/area/mainship/hallways/hangar)
 "iC" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -3887,6 +3890,9 @@
 	},
 /area/mainship/medical/operating_room_two)
 "oe" = (
+/obj/structure/sink{
+	dir = 1
+	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 2
 	},
@@ -5931,7 +5937,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/port_missiles)
 "vh" = (
-/obj/structure/closet/secure_closet/personal/cabinet,
+/obj/machinery/marine_selector/clothes/commander,
 /turf/open/floor/carpet{
 	dir = 10;
 	icon_state = "carpetside"
@@ -10786,6 +10792,9 @@
 /area/mainship/living/numbertwobunks)
 "JH" = (
 /obj/structure/noticeboard,
+/obj/structure/sign/ROsign{
+	dir = 1
+	},
 /turf/closed/wall/mainship,
 /area/mainship/squads/req)
 "JI" = (
@@ -12920,6 +12929,13 @@
 /obj/machinery/landinglight/ds2/delaythree,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"RI" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/item/reagent_containers/jerrycan,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "RJ" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/emergency,
@@ -13691,12 +13707,6 @@
 /obj/structure/closet/crate/alpha,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
-"XG" = (
-/obj/structure/sink{
-	dir = 1
-	},
-/turf/closed/wall/mainship/white,
-/area/mainship/medical/operating_room_two)
 "XJ" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/machinery/landinglight/ds2,
@@ -39980,7 +39990,7 @@ Mb
 Mf
 ar
 ap
-ap
+dL
 ap
 ap
 ap
@@ -40994,7 +41004,7 @@ aa
 bf
 aO
 ci
-af
+iB
 dV
 aT
 bh
@@ -42831,7 +42841,7 @@ hR
 JM
 cM
 oe
-XG
+ic
 gL
 wj
 gL
@@ -43041,7 +43051,7 @@ aa
 aa
 ad
 ab
-an
+RI
 aq
 aK
 ag
@@ -45391,7 +45401,7 @@ az
 ee
 gd
 Vn
-gy
+qG
 JH
 QS
 Rm

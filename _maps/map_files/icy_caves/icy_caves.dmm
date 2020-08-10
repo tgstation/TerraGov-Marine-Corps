@@ -4426,7 +4426,7 @@
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/security)
 "qx" = (
-/obj/structure/largecrate/guns/merc,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/security)
 "qy" = (
@@ -4673,6 +4673,7 @@
 /area/icy_caves/outpost/LZ2)
 "rt" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
 "rw" = (
@@ -5063,6 +5064,10 @@
 /obj/item/storage/firstaid,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/LZ2)
+"th" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/plating/mainship,
+/area/icy_caves/caves/crashed_ship)
 "tm" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -5092,8 +5097,13 @@
 "wM" = (
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
+"xk" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
 "yl" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/dorms)
 "zl" = (
@@ -5104,6 +5114,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/ground/snow,
 /area/icy_caves/outpost/outside)
 "Co" = (
@@ -5165,6 +5176,7 @@
 /area/icy_caves/outpost/research)
 "LI" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/ice_rock/single,
 /area/icy_caves/caves/west)
 "MQ" = (
@@ -5176,6 +5188,7 @@
 /area/icy_caves/caves/northern)
 "Nf" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/east)
 "NE" = (
@@ -5216,6 +5229,7 @@
 	dir = 2
 	},
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/refinery)
 "Rh" = (
@@ -5244,6 +5258,7 @@
 /area/icy_caves/outpost/research)
 "ST" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/ice/thin/intersection,
 /area/icy_caves/caves/south)
 "Tb" = (
@@ -5269,6 +5284,7 @@
 /area/icy_caves/outpost/research)
 "Uk" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/ice/thin/junction{
 	dir = 1
 	},
@@ -5292,6 +5308,10 @@
 	dir = 4
 	},
 /area/icy_caves/caves/OOB)
+"VQ" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/garage)
 "VU" = (
 /turf/closed/ice_rock/singleEnd{
 	dir = 8
@@ -5303,6 +5323,14 @@
 /obj/machinery/computer/nuke_disk_generator/blue,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
+"XJ" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/snow,
+/area/icy_caves/outpost/outside)
+"XP" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/dorms)
 "YA" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 4
@@ -10913,8 +10941,8 @@ dc
 dc
 dz
 qH
-ea
-Co
+xk
+Jf
 wM
 wM
 ea
@@ -19170,7 +19198,7 @@ mT
 mT
 mT
 mT
-mW
+XP
 mW
 mW
 mW
@@ -21974,7 +22002,7 @@ aU
 aU
 gw
 he
-hg
+VQ
 hg
 hX
 ij
@@ -34460,7 +34488,7 @@ mj
 mj
 az
 ac
-ak
+th
 af
 am
 af

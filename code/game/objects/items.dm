@@ -153,7 +153,8 @@
 		return
 	if(!user)
 		return
-
+	if(!istype(user))
+		return
 	if(anchored)
 		to_chat(user, "[src] is anchored to the ground.")
 		return
@@ -670,7 +671,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		to_chat(user, "<span class='warning'>Your vision is too obscured for you to look through \the [zoom_device].</span>")
 		return
 
-	if(!zoom && user.get_active_held_item() != src)
+	if((!zoom && user.get_active_held_item() != src) && (!(flags_item & DOES_NOT_NEED_HANDS)))
 		to_chat(user, "<span class='warning'>You need to hold \the [zoom_device] to look through it.</span>")
 		return
 

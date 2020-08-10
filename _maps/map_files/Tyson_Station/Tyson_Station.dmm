@@ -6120,6 +6120,7 @@
 "awK" = (
 /obj/docking_port/stationary/marine_dropship/lz2,
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "awL" = (
@@ -9138,6 +9139,7 @@
 "aHw" = (
 /obj/docking_port/stationary/marine_dropship/lz1,
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "aHx" = (
@@ -9520,6 +9522,7 @@
 /obj/machinery/alarm,
 /obj/effect/decal/cleanable/dirt,
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/tile/bar,
 /area/medical/surgery2)
 "aJn" = (
@@ -17557,6 +17560,7 @@
 /area/bridge)
 "icA" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating,
 /area/maintenance/port)
 "ipH" = (

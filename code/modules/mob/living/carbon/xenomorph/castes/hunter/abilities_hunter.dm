@@ -265,6 +265,9 @@
 	if(!istype(victim))
 		return
 
+	if(victim.stat == DEAD)
+		return
+
 	if(!can_use_ability(A, TRUE, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return fail_activate()
 

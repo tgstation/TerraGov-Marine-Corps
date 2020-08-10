@@ -4262,6 +4262,7 @@
 /area/magmoor/cargo/storage/secure/south)
 "dlB" = (
 /obj/effect/landmark/corpsespawner/colonist,
+/obj/structure/bed/nest,
 /turf/open/floor/cult,
 /area/magmoor/cave/northeast)
 "dlN" = (
@@ -5140,6 +5141,10 @@
 /obj/effect/landmark/corpsespawner/bridgeofficer,
 /turf/open/floor/carpet,
 /area/magmoor/command/conference)
+"dUW" = (
+/obj/effect/alien/weeds/node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/northeast)
 "dUZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -5680,6 +5685,10 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/magmoor/mining/garage)
+"epj" = (
+/obj/effect/alien/weeds/node,
+/turf/open/floor/cult,
+/area/magmoor/cave/north)
 "epk" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -9694,6 +9703,7 @@
 /area/magmoor/cave/east)
 "hvh" = (
 /obj/effect/landmark/corpsespawner/colonist,
+/obj/structure/bed/nest,
 /turf/open/floor/cult,
 /area/magmoor/cave/northwest)
 "hvm" = (
@@ -14311,6 +14321,10 @@
 /obj/machinery/conveyor,
 /turf/open/floor/plating,
 /area/magmoor/mining/refinery)
+"kNh" = (
+/obj/effect/alien/weeds/node,
+/turf/open/floor/cult,
+/area/magmoor/cave/northwest)
 "kNk" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /obj/structure/cable,
@@ -16074,6 +16088,10 @@
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/cult,
 /area/magmoor/cave/west)
+"mcG" = (
+/obj/effect/alien/weeds/node,
+/turf/open/floor/cult,
+/area/magmoor/cave/northeast)
 "mcP" = (
 /obj/structure/guardrail{
 	dir = 1
@@ -18507,6 +18525,10 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/magmoor/engi/atmos)
+"nOk" = (
+/obj/effect/alien/weeds/node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/west)
 "nOp" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4
@@ -19374,6 +19396,11 @@
 	dir = 4
 	},
 /area/magmoor/compound/northeast)
+"ovV" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/alien/weeds/node,
+/turf/open/floor/cult,
+/area/magmoor/cave/northwest)
 "owa" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -24795,6 +24822,7 @@
 /area/magmoor/hydroponics/north)
 "sdX" = (
 /obj/effect/landmark/corpsespawner/colonist,
+/obj/structure/bed/nest,
 /turf/open/floor/cult,
 /area/magmoor/cave/north)
 "sem" = (
@@ -27445,6 +27473,7 @@
 /area/magmoor/cargo/storage)
 "tUe" = (
 /obj/effect/landmark/corpsespawner/miner,
+/obj/structure/bed/nest,
 /turf/open/floor/cult,
 /area/magmoor/cave/north)
 "tUm" = (
@@ -28012,6 +28041,10 @@
 	dir = 1
 	},
 /area/magmoor/engi/storage)
+"urr" = (
+/obj/effect/alien/weeds/node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/north)
 "urt" = (
 /turf/open/lavaland/basalt/cave{
 	dir = 6
@@ -30038,6 +30071,10 @@
 	dir = 8
 	},
 /area/magmoor/compound/south)
+"vNO" = (
+/obj/effect/alien/weeds/node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/magmoor/cave/northwest)
 "vOh" = (
 /turf/closed/glass/thin/straight,
 /area/magmoor/compound/west)
@@ -30270,6 +30307,7 @@
 /area/magmoor/engi/storage)
 "vXv" = (
 /obj/effect/landmark/corpsespawner/miner,
+/obj/structure/bed/nest,
 /turf/open/floor/cult,
 /area/magmoor/cave/northwest)
 "vYa" = (
@@ -31659,6 +31697,11 @@
 	dir = 6
 	},
 /area/magmoor/hydroponics)
+"wWQ" = (
+/obj/effect/landmark/start/job/xenomorph,
+/obj/effect/alien/weeds/node,
+/turf/open/floor/cult,
+/area/magmoor/cave/northwest)
 "wWZ" = (
 /obj/structure/guardrail{
 	dir = 4
@@ -35930,7 +35973,7 @@ rwF
 tvK
 rwF
 tvK
-tvK
+nOk
 tvK
 tvK
 rwF
@@ -36905,7 +36948,7 @@ kal
 kal
 tvK
 rgo
-tvK
+nOk
 tvK
 rwF
 rwF
@@ -37111,7 +37154,7 @@ nMN
 nMN
 nMN
 pGg
-pGg
+vNO
 pGg
 pGg
 nMN
@@ -37616,7 +37659,7 @@ tvK
 rwF
 tvK
 tvK
-tvK
+nOk
 uHe
 tvK
 kal
@@ -38330,7 +38373,7 @@ nMN
 pGg
 pGg
 pGg
-pGg
+vNO
 pGg
 rTq
 tvK
@@ -38343,7 +38386,7 @@ tvK
 uHe
 tvK
 tvK
-tvK
+nOk
 tvK
 tvK
 tvK
@@ -39280,7 +39323,7 @@ bCo
 nqC
 nqC
 nqC
-nqC
+kNh
 qlL
 nqC
 nqC
@@ -39514,7 +39557,7 @@ nMN
 nMN
 nMN
 pGg
-pGg
+vNO
 pGg
 nMN
 bCo
@@ -39771,7 +39814,7 @@ ehD
 pGg
 tvO
 pGg
-pGg
+vNO
 pGg
 nMN
 nMN
@@ -40517,7 +40560,7 @@ tvK
 kal
 fHm
 kal
-tvK
+nOk
 tvK
 rwF
 tvK
@@ -40745,7 +40788,7 @@ pGg
 tvK
 tvK
 rwF
-tvK
+nOk
 rwF
 rwF
 rwF
@@ -41924,7 +41967,7 @@ nMN
 pGg
 pGg
 pGg
-pGg
+vNO
 pGg
 pGg
 pGg
@@ -41941,7 +41984,7 @@ pGg
 pGg
 nMN
 nMN
-pGg
+vNO
 pGg
 nMN
 pGg
@@ -43120,7 +43163,7 @@ nMN
 nMN
 nMN
 pGg
-pGg
+vNO
 pGg
 pGg
 pGg
@@ -43140,7 +43183,7 @@ pGg
 pGg
 pGg
 pGg
-pGg
+vNO
 tvO
 pGg
 pGg
@@ -43630,7 +43673,7 @@ pGg
 nMN
 nMN
 pGg
-pGg
+vNO
 nMN
 nMN
 pGg
@@ -44808,7 +44851,7 @@ nqC
 nqC
 vXv
 nqC
-nqC
+kNh
 hvh
 ehD
 nqC
@@ -46022,7 +46065,7 @@ nqC
 nqC
 nMN
 pGg
-pGg
+vNO
 pGg
 nMN
 pGg
@@ -46497,7 +46540,7 @@ kwx
 kwx
 nqC
 nqC
-ehD
+ovV
 nqC
 nqC
 nqC
@@ -46731,7 +46774,7 @@ ehD
 kwx
 kwx
 kwx
-kwx
+wWQ
 kwx
 kwx
 kwx
@@ -46980,7 +47023,7 @@ inQ
 qlL
 nqC
 ehD
-nqC
+kNh
 nqC
 nqC
 nqC
@@ -48198,7 +48241,7 @@ pGg
 pGg
 pGg
 pGg
-pGg
+vNO
 pGg
 nMN
 nMN
@@ -48900,7 +48943,7 @@ bCo
 pGg
 pGg
 pGg
-pGg
+vNO
 tvO
 pGg
 pGg
@@ -49873,7 +49916,7 @@ pGg
 pGg
 pGg
 tvO
-pGg
+vNO
 pGg
 pGg
 pGg
@@ -51793,7 +51836,7 @@ qkn
 qkn
 qkn
 aMD
-aMD
+urr
 qkn
 aMD
 aMD
@@ -52768,7 +52811,7 @@ aMD
 aMD
 qkn
 aMD
-aMD
+urr
 aMD
 qkn
 aMD
@@ -53000,7 +53043,7 @@ aMD
 nhd
 nhd
 fCk
-fCk
+epj
 fCk
 fCk
 fCk
@@ -54698,7 +54741,7 @@ aMD
 aMD
 aMD
 aMD
-aMD
+urr
 aMD
 aMD
 aMD
@@ -55406,7 +55449,7 @@ ohi
 qkn
 qkn
 aMD
-aMD
+urr
 aMD
 aMD
 aMD
@@ -56390,7 +56433,7 @@ aMD
 aMD
 aMD
 aMD
-aMD
+urr
 aMD
 qkn
 aMD
@@ -57103,7 +57146,7 @@ aMD
 qkn
 aMD
 aMD
-aMD
+urr
 aMD
 aMD
 aMD
@@ -58081,7 +58124,7 @@ aMD
 eeE
 aMD
 aMD
-aMD
+urr
 aMD
 aMD
 qkn
@@ -58309,7 +58352,7 @@ fCk
 fCk
 nex
 fCk
-fCk
+epj
 fCk
 fCk
 fCk
@@ -58555,7 +58598,7 @@ fCk
 tUe
 fCk
 fCk
-fCk
+epj
 odR
 qkn
 qkn
@@ -59264,7 +59307,7 @@ qkn
 qkn
 qkn
 qkn
-aMD
+urr
 aMD
 uwb
 nhd
@@ -59285,7 +59328,7 @@ aMD
 aMD
 aMD
 aMD
-aMD
+urr
 qkn
 aMD
 aMD
@@ -60232,7 +60275,7 @@ aMD
 aMD
 uwb
 nhd
-fCk
+epj
 fCk
 fCk
 fCk
@@ -60722,7 +60765,7 @@ hrR
 hrR
 hrR
 hrR
-hrR
+mcG
 hrR
 vFC
 vFC
@@ -61690,7 +61733,7 @@ idd
 jFh
 idd
 idd
-idd
+dUW
 idd
 idd
 idd
@@ -61921,7 +61964,7 @@ idd
 idd
 idd
 idd
-idd
+dUW
 idd
 idd
 idd
@@ -62181,7 +62224,7 @@ jUo
 idd
 jUo
 jUo
-idd
+dUW
 idd
 xUN
 idd
@@ -64108,7 +64151,7 @@ idd
 idd
 idd
 idd
-idd
+dUW
 idd
 idd
 idd
@@ -64333,6 +64376,7 @@ idd
 idd
 idd
 idd
+dUW
 idd
 idd
 idd
@@ -64342,8 +64386,7 @@ idd
 idd
 idd
 idd
-idd
-idd
+dUW
 idd
 idd
 idd
@@ -64816,7 +64859,7 @@ vFC
 vFC
 hrR
 hrR
-hrR
+mcG
 vFC
 vFC
 rAc
@@ -65786,7 +65829,7 @@ hrR
 aOd
 hrR
 idd
-idd
+dUW
 jUo
 idd
 idd
@@ -66253,7 +66296,7 @@ jUo
 jUo
 jUo
 jUo
-idd
+dUW
 idd
 tbN
 hrR
@@ -66503,7 +66546,7 @@ vFC
 meg
 hrR
 hrR
-hrR
+mcG
 meg
 vFC
 kTQ

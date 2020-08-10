@@ -14281,6 +14281,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/item/reagent_containers/jerrycan,
 /turf/open/floor/tile/vault,
 /area/mainship/living/pilotbunks)
 "aRD" = (
@@ -17719,6 +17720,10 @@
 /obj/machinery/vending/marine/cargo_guns,
 /turf/open/floor,
 /area/sulaco/cargo)
+"dmc" = (
+/obj/item/reagent_containers/jerrycan,
+/turf/open/floor/mainship/ai,
+/area/sulaco/hangar)
 "dyW" = (
 /obj/structure/largecrate/guns/russian,
 /turf/open/floor/plating/plating_catwalk,
@@ -17739,6 +17744,13 @@
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor,
 /area/sulaco/cargo)
+"emb" = (
+/obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
+	dir = 8
+	},
+/obj/item/reagent_containers/jerrycan,
+/turf/open/floor/tile/dark,
+/area/sulaco/maintenance/lower_maint)
 "eAf" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
@@ -17953,6 +17965,10 @@
 	},
 /turf/open/floor/plating/platebotc,
 /area/sulaco/cargo)
+"utd" = (
+/obj/item/reagent_containers/jerrycan,
+/turf/open/floor/tile/vault,
+/area/mainship/living/pilotbunks)
 "uOE" = (
 /obj/structure/largecrate/supply/supplies/mre,
 /turf/open/floor/mainship/mono,
@@ -53659,7 +53675,7 @@ aIZ
 aJB
 aQe
 aRC
-aQe
+utd
 aRM
 aQa
 aPZ
@@ -55726,7 +55742,7 @@ aTp
 aPY
 aPY
 aPY
-aPK
+dmc
 aRx
 aRx
 aXb
@@ -56244,7 +56260,7 @@ aMP
 aWW
 aYF
 aXe
-aWW
+emb
 bal
 aNA
 aYe
