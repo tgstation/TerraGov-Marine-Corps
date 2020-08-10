@@ -36,7 +36,7 @@
 
 /obj/item/weapon/powerfist
 	name = "powerfist"
-	desc = "A metal gauntlet with a energy-powered fist to throw back enemies."
+	desc = "A metal gauntlet with a energy-powered fist to throw back enemies. Altclick to clamp it around your hand, use it to change power settings and screwdriver to pop out the cell."
 	icon_state = "powerfist"
 	item_state = "powerfist"
 	flags_equip_slot = ITEM_SLOT_BELT
