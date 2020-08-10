@@ -537,6 +537,15 @@
 /obj/docking_port/mobile/proc/create_ripples(obj/docking_port/stationary/S1, animate_time)
 	if(!use_ripples)
 		return FALSE
+
+	// Landing lights
+	var/list/landing_lights = get_landing_lights(id, S1.z)
+	for(var/obj/machinery/landinglight/F in landing_lights)
+		if(F.id == id)
+			F.turn_on()
+			addtimer(CALLBACK(F, /obj/machinery/landinglight.proc/turn_off), 30 SECONDS)
+
+	// Ripples
 	var/list/turfs = ripple_area(S1)
 	for(var/t in turfs)
 		ripples += new /obj/effect/abstract/ripple(t, animate_time)
