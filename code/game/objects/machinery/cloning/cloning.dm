@@ -157,7 +157,7 @@ The vat then needs to be repaired and refilled with biomass.
 		for(var/instance in hit_by.reagents.reagent_list)
 			var/datum/reagent/regent = instance
 			if(!istype(regent, /datum/reagent/medicine/biomass) && !istype(regent, /datum/reagent/medicine/biomass/xeno))
-				to_chat(user, "<span class='warning'>\The [src] rejects the beaker.</span>")
+				to_chat(user, "<span class='warning'>\The [src] rejects the beaker due to incompatible contents.</span>")
 				return
 
 		beaker = hit_by
