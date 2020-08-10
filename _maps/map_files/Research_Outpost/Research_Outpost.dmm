@@ -3712,7 +3712,7 @@
 	},
 /area/outpost/lz1)
 "up" = (
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 1
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -4236,7 +4236,7 @@
 /area/outpost/arrivals)
 "xw" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -4280,7 +4280,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_east)
 "xM" = (
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -8933,7 +8933,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/brig)
 "XS" = (
-/obj/machinery/landinglight/ds2,
+/obj/machinery/landinglight/delayzero/ds2,
 /turf/open/floor/marking/asteroidwarning,
 /area/outpost/lz1)
 "XT" = (
@@ -9194,7 +9194,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/science/rd_office)
 "Zo" = (
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{

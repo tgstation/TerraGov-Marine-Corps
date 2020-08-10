@@ -153,7 +153,7 @@
 /turf/closed/ice_rock/westWall,
 /area/ice_colony/exterior/surface/cliff)
 "aaH" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 1
 	},
 /turf/open/floor/plating/icefloor,
@@ -468,7 +468,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/north)
 "abS" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 8
 	},
 /turf/open/floor/plating/icefloor,
@@ -654,7 +654,7 @@
 /turf/closed/ice_rock/corners,
 /area/ice_colony/exterior/surface/cliff)
 "acE" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 4
 	},
 /turf/open/floor/plating/icefloor,
@@ -1085,7 +1085,7 @@
 /obj/machinery/landinglight/delaytwo/ds1{
 	dir = 8
 	},
-/obj/machinery/landinglight/ds1,
+/obj/machinery/landinglight/delayzero/ds1,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad2)
 "aen" = (
@@ -1190,7 +1190,7 @@
 /obj/machinery/landinglight/delaytwo/ds1{
 	dir = 4
 	},
-/obj/machinery/landinglight/ds1,
+/obj/machinery/landinglight/delayzero/ds1,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad2)
 "aeG" = (
@@ -1295,14 +1295,14 @@
 /area/ice_colony/exterior/surface/valley/north)
 "aeY" = (
 /obj/machinery/camera/autoname/lz_camera,
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 8
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad2)
 "aeZ" = (
 /obj/machinery/camera/autoname/lz_camera,
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 4
 	},
 /turf/open/floor/plating/icefloor,
@@ -15669,7 +15669,7 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
 "aYp" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 4
 	},
 /turf/open/floor/plating/icefloor/warnplate{
@@ -15893,7 +15893,7 @@
 	},
 /area/ice_colony/exterior/surface/landing_pad)
 "aZi" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 8
 	},
 /turf/open/floor/plating/icefloor,
@@ -16546,7 +16546,7 @@
 	},
 /area/ice_colony/surface/hangar/beta)
 "bbb" = (
-/obj/machinery/landinglight/ds2,
+/obj/machinery/landinglight/delayzero/ds2,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad_external)
 "bbc" = (
@@ -17184,7 +17184,7 @@
 	},
 /area/ice_colony/exterior/surface/landing_pad_external)
 "bdk" = (
-/obj/machinery/landinglight/ds1,
+/obj/machinery/landinglight/delayzero/ds1,
 /obj/machinery/landinglight/delaythree/ds1{
 	dir = 8
 	},
@@ -17194,7 +17194,7 @@
 /area/ice_colony/exterior/surface/landing_pad)
 "bdl" = (
 /obj/machinery/floodlight/landing,
-/obj/machinery/landinglight/ds1,
+/obj/machinery/landinglight/delayzero/ds1,
 /obj/machinery/landinglight/delayone/ds1{
 	dir = 4
 	},
@@ -17397,7 +17397,7 @@
 	},
 /area/ice_colony/underground/requesition)
 "bdS" = (
-/obj/machinery/landinglight/ds2,
+/obj/machinery/landinglight/delayzero/ds2,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
@@ -17783,7 +17783,7 @@
 	},
 /area/ice_colony/exterior/surface/landing_pad)
 "bfg" = (
-/obj/machinery/landinglight/ds1,
+/obj/machinery/landinglight/delayzero/ds1,
 /turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/landing_pad)
 "bfh" = (
@@ -20566,7 +20566,7 @@
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/hallway/south_east)
 "boK" = (
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 4
 	},
 /turf/open/floor/plating/icefloor,
@@ -22061,7 +22061,7 @@
 	},
 /area/ice_colony/underground/medical/hallway)
 "btJ" = (
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 8
 	},
 /turf/open/floor/plating/icefloor,
@@ -29750,13 +29750,13 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/underground/hangar)
 "bRA" = (
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 4
 	},
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
 "bRB" = (
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 8
 	},
 /turf/open/floor/plating/icefloor,
@@ -29840,7 +29840,7 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
 "bRQ" = (
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 4
 	},
 /turf/open/floor/plating/icefloor/warnplate,
@@ -30465,7 +30465,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
 "bUc" = (
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 8
 	},
 /turf/open/floor/plating/icefloor/warnplate,
@@ -32155,7 +32155,7 @@
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/underground/engineering)
 "bZw" = (
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 4
 	},
 /turf/open/floor/plating/icefloor/warnplate{
@@ -32181,7 +32181,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/engineering)
 "bZA" = (
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 8
 	},
 /turf/open/floor/plating/icefloor/warnplate{
@@ -32326,7 +32326,7 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
 "bZT" = (
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 1
 	},
 /turf/open/floor/plating/icefloor,
@@ -33176,7 +33176,7 @@
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/crew/leisure)
 "iao" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 4
 	},
 /obj/structure/table/reinforced,

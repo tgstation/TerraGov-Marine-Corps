@@ -909,7 +909,7 @@
 	},
 /area/mainship/hallways/hangar)
 "adc" = (
-/obj/machinery/landinglight/ds2,
+/obj/machinery/landinglight/delayzero/ds2,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
@@ -939,7 +939,7 @@
 	},
 /area/mainship/hallways/hangar)
 "adi" = (
-/obj/machinery/landinglight/ds1,
+/obj/machinery/landinglight/delayzero/ds1,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
@@ -965,7 +965,7 @@
 	},
 /area/mainship/hallways/starboard_hallway)
 "adm" = (
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 4
 	},
 /turf/open/floor/mainship{
@@ -981,7 +981,7 @@
 	},
 /area/mainship/hallways/hangar)
 "ado" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 4
 	},
 /turf/open/floor/mainship{
@@ -1315,7 +1315,7 @@
 	},
 /area/mainship/hallways/hangar)
 "aen" = (
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 8
 	},
 /turf/open/floor/mainship{
@@ -1375,7 +1375,7 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "aev" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 8
 	},
 /turf/open/floor/mainship{
@@ -3044,7 +3044,7 @@
 	},
 /area/mainship/hallways/hangar)
 "ajj" = (
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 1
 	},
 /turf/open/floor/mainship{
@@ -3076,7 +3076,7 @@
 	},
 /area/mainship/hallways/hangar)
 "ajn" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 1
 	},
 /turf/open/floor/mainship{

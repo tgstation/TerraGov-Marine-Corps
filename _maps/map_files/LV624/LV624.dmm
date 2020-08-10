@@ -9521,7 +9521,7 @@
 	},
 /area/lv624/ground/jungle5)
 "aMV" = (
-/obj/machinery/landinglight/ds1,
+/obj/machinery/landinglight/delayzero/ds1,
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "aNa" = (
@@ -10132,7 +10132,7 @@
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle4)
 "aPD" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -11153,7 +11153,7 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "aTr" = (
-/obj/machinery/landinglight/ds1,
+/obj/machinery/landinglight/delayzero/ds1,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "aTs" = (
@@ -11583,7 +11583,7 @@
 	},
 /area/shuttle/drop1/lz1)
 "aVl" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -11593,7 +11593,7 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "aVn" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -14253,7 +14253,7 @@
 	},
 /area/lv624/ground/compound/sw)
 "bfZ" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -14858,7 +14858,7 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "biI" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -17957,7 +17957,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/shuttle/drop2/lz2)
 "hvg" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 1
 	},
 /turf/open/floor/plating,

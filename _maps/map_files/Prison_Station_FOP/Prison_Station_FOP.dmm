@@ -8265,7 +8265,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -17005,7 +17005,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/machinery/landinglight/ds1,
+/obj/machinery/landinglight/delayzero/ds1,
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "baI" = (
@@ -17463,7 +17463,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -17604,7 +17604,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -18294,7 +18294,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -20839,7 +20839,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 4
 	},
 /turf/open/floor/prison/darkyellow{
@@ -24234,7 +24234,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -39874,7 +39874,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -42027,7 +42027,7 @@
 /area/prison/maintenance/residential/access/south)
 "gCN" = (
 /obj/effect/decal/warning_stripes/thin,
-/obj/machinery/landinglight/ds2,
+/obj/machinery/landinglight/delayzero/ds2,
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "gHF" = (

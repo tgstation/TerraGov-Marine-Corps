@@ -21327,7 +21327,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bkS" = (
-/obj/machinery/landinglight/ds2,
+/obj/machinery/landinglight/delayzero/ds2,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bkT" = (
@@ -21362,7 +21362,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bkZ" = (
-/obj/machinery/landinglight/ds1,
+/obj/machinery/landinglight/delayzero/ds1,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bla" = (
@@ -21490,7 +21490,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "blz" = (
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -21512,7 +21512,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "blG" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -22647,7 +22647,7 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "bqp" = (
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -22692,7 +22692,7 @@
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/command/cic)
 "bqA" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -28174,7 +28174,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -28575,7 +28575,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bPi" = (
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -28620,7 +28620,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bPp" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -34753,7 +34753,7 @@
 	},
 /area/mainship/hallways/hangar)
 "ckc" = (
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo/arrow{
@@ -34769,7 +34769,7 @@
 	},
 /area/mainship/hallways/hangar)
 "cke" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo/arrow{
@@ -34801,7 +34801,7 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "ckp" = (
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo/arrow{
@@ -34817,7 +34817,7 @@
 	},
 /area/mainship/hallways/hangar)
 "ckr" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo/arrow{

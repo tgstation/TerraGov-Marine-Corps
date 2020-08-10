@@ -33,7 +33,7 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
 "aak" = (
-/obj/machinery/landinglight/ds1,
+/obj/machinery/landinglight/delayzero/ds1,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
 "aal" = (
@@ -72,7 +72,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/telecomm)
 "aat" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -205,7 +205,7 @@
 	},
 /area/bigredv2/outside/space_port)
 "aaT" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -1153,7 +1153,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
 "aeh" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 1
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -16049,7 +16049,7 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/w)
 "bhw" = (
-/obj/machinery/landinglight/ds2,
+/obj/machinery/landinglight/delayzero/ds2,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/w)
 "bhx" = (
@@ -16351,7 +16351,7 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/w)
 "biH" = (
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -16493,7 +16493,7 @@
 /area/bigredv2/outside/w)
 "bjp" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -16870,7 +16870,7 @@
 	},
 /area/bigredv2/outside/se)
 "bkY" = (
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -18162,7 +18162,7 @@
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/se)
 "brb" = (
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -18373,7 +18373,7 @@
 /turf/open/floor/plating/asteroidplating,
 /area/bigredv2/outside/sw)
 "bsb" = (
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 1
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -22162,7 +22162,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "qpW" = (
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 1
 	},
 /turf/open/floor/asteroidfloor,
@@ -22758,7 +22758,7 @@
 	},
 /area/bigredv2/outside/admin_building)
 "xFx" = (
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{

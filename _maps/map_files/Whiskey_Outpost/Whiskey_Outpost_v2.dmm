@@ -970,7 +970,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "dA" = (
-/obj/machinery/landinglight/ds1,
+/obj/machinery/landinglight/delayzero/ds1,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "dB" = (
@@ -1917,7 +1917,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/whiskey_outpost/outside/north)
 "gI" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidfloor,
@@ -3210,7 +3210,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
 "nf" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidfloor,
@@ -4291,7 +4291,7 @@
 	},
 /area/whiskey_outpost)
 "qE" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 1
 	},
 /turf/open/floor/plating/asteroidfloor,

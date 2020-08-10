@@ -45,7 +45,7 @@
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
-/obj/machinery/landinglight/ds2,
+/obj/machinery/landinglight/delayzero/ds2,
 /turf/open/floor/plating/asteroidwarning/down,
 /area/shuttle/drop2/lz2)
 "am" = (
@@ -63,7 +63,7 @@
 /turf/open/floor/plating/asteroidwarning/down,
 /area/shuttle/drop2/lz2)
 "ao" = (
-/obj/machinery/landinglight/ds2,
+/obj/machinery/landinglight/delayzero/ds2,
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
@@ -104,7 +104,7 @@
 /obj/structure/barricade/wooden{
 	dir = 8
 	},
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -115,7 +115,7 @@
 /obj/structure/barricade/wooden{
 	dir = 4
 	},
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -176,7 +176,7 @@
 /turf/open/floor/plating,
 /area/maintenance/apmaint)
 "aF" = (
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -282,7 +282,7 @@
 /area/shuttle/drop2/lz2)
 "aU" = (
 /obj/structure/barricade/wooden,
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 1
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -317,7 +317,7 @@
 	},
 /area/shuttle/drop2/lz2)
 "aY" = (
-/obj/machinery/landinglight/ds2{
+/obj/machinery/landinglight/delayzero/ds2{
 	dir = 1
 	},
 /obj/structure/barricade/wooden,
@@ -564,7 +564,7 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "bW" = (
-/obj/machinery/landinglight/ds1,
+/obj/machinery/landinglight/delayzero/ds1,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "bX" = (
@@ -593,7 +593,7 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "cc" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -603,7 +603,7 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "ce" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -680,7 +680,7 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "cz" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 1
 	},
 /turf/open/floor/plating,

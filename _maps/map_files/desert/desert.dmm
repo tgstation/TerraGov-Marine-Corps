@@ -569,7 +569,7 @@
 /turf/open/floor/plating/warning,
 /area/shuttle/drop1/lz1)
 "cl" = (
-/obj/machinery/landinglight/ds1,
+/obj/machinery/landinglight/delayzero/ds1,
 /turf/open/floor/plating/warning,
 /area/shuttle/drop1/lz1)
 "cm" = (
@@ -706,7 +706,7 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "cM" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 8
 	},
 /turf/open/floor/plating/warning{
@@ -1375,7 +1375,7 @@
 	},
 /area/shuttle/drop1/lz1)
 "fd" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 1
 	},
 /turf/open/floor/plating/warning{
@@ -1396,7 +1396,7 @@
 	},
 /area/desert/interior/main_building)
 "fg" = (
-/obj/machinery/landinglight/ds1{
+/obj/machinery/landinglight/delayzero/ds1{
 	dir = 4
 	},
 /turf/open/floor/plating/warning{
