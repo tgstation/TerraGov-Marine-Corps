@@ -962,11 +962,11 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
 "dy" = (
-/obj/machinery/landinglight/ds1/delaytwo,
+/obj/machinery/landinglight/delaytwo/ds1,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "dz" = (
-/obj/machinery/landinglight/ds1/delayone,
+/obj/machinery/landinglight/delayone/ds1,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "dA" = (
@@ -1038,7 +1038,7 @@
 	},
 /area/whiskey_outpost)
 "dO" = (
-/obj/machinery/landinglight/ds1/delaythree,
+/obj/machinery/landinglight/delaythree/ds1,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "dP" = (
@@ -1966,7 +1966,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "gT" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidfloor,
@@ -3085,7 +3085,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/whiskey_outpost)
 "mc" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidfloor,
@@ -3128,7 +3128,7 @@
 	},
 /area/whiskey_outpost)
 "ms" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidfloor,
@@ -3266,7 +3266,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/whiskey_outpost/outside/north)
 "no" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidfloor,
@@ -3320,7 +3320,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/whiskey_outpost/outside/north)
 "nx" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidfloor,
@@ -4085,7 +4085,7 @@
 /turf/open/floor/plating,
 /area/whiskey_outpost)
 "qb" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidfloor,
@@ -4297,7 +4297,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "qF" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 1
 	},
 /turf/open/floor/plating/asteroidfloor,
@@ -4312,20 +4312,20 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "qH" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 1
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "qI" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 1
 	},
 /obj/effect/landmark/start/job/squadmarine,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost)
 "qJ" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 1
 	},
 /turf/open/floor/plating/asteroidfloor,

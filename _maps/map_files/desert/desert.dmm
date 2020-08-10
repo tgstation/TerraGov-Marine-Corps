@@ -561,11 +561,11 @@
 /turf/open/floor/mech_bay_recharge_floor,
 /area/shuttle/drop1/lz1)
 "cj" = (
-/obj/machinery/landinglight/ds1/delaytwo,
+/obj/machinery/landinglight/delaytwo/ds1,
 /turf/open/floor/plating/warning,
 /area/shuttle/drop1/lz1)
 "ck" = (
-/obj/machinery/landinglight/ds1/delayone,
+/obj/machinery/landinglight/delayone/ds1,
 /turf/open/floor/plating/warning,
 /area/shuttle/drop1/lz1)
 "cl" = (
@@ -623,7 +623,7 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "cv" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 8
 	},
 /turf/open/floor/plating/warning{
@@ -718,7 +718,7 @@
 /turf/open/floor/wood,
 /area/desert/interior/command)
 "cO" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 8
 	},
 /turf/open/floor/plating/warning{
@@ -798,7 +798,7 @@
 /turf/open/floor/plating,
 /area/desert/interior/shipping/central)
 "da" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 8
 	},
 /turf/open/floor/plating/warning{
@@ -1191,7 +1191,7 @@
 /turf/open/floor/plating,
 /area/desert/interior/security)
 "ez" = (
-/obj/machinery/landinglight/ds1/delaythree,
+/obj/machinery/landinglight/delaythree/ds1,
 /turf/open/floor/plating/warning,
 /area/shuttle/drop1/lz1)
 "eA" = (
@@ -1268,7 +1268,7 @@
 /turf/open/floor/tile/white,
 /area/desert/interior/main_building)
 "eK" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 4
 	},
 /turf/open/floor/plating/warning{
@@ -1367,7 +1367,7 @@
 /turf/open/floor/plating,
 /area/desert/outside/nw)
 "fc" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 1
 	},
 /turf/open/floor/plating/warning{
@@ -1383,7 +1383,7 @@
 	},
 /area/shuttle/drop1/lz1)
 "fe" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 1
 	},
 /turf/open/floor/plating/warning{
@@ -1407,7 +1407,7 @@
 /turf/open/floor/tile/dark,
 /area/desert/hive)
 "fi" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 4
 	},
 /turf/open/floor/plating/warning{
@@ -1460,7 +1460,7 @@
 	},
 /area/desert/interior/main_building)
 "fp" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 4
 	},
 /turf/open/floor/plating/warning{
@@ -2384,7 +2384,7 @@
 /turf/open/floor/plating,
 /area/desert/interior/engineering)
 "it" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 1
 	},
 /turf/open/floor/plating/warning{

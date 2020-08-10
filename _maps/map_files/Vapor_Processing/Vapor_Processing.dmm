@@ -28,7 +28,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/shuttle/drop2/lz2)
 "aj" = (
-/obj/machinery/landinglight/ds2/delaytwo,
+/obj/machinery/landinglight/delaytwo/ds2,
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
@@ -38,7 +38,7 @@
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
-/obj/machinery/landinglight/ds2/delayone,
+/obj/machinery/landinglight/delayone/ds2,
 /turf/open/floor/plating/asteroidwarning/down,
 /area/shuttle/drop2/lz2)
 "al" = (
@@ -52,14 +52,14 @@
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
-/obj/machinery/landinglight/ds2/delaythree,
+/obj/machinery/landinglight/delaythree/ds2,
 /turf/open/floor/plating/asteroidwarning/down,
 /area/shuttle/drop2/lz2)
 "an" = (
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
-/obj/machinery/landinglight/ds2/delaytwo,
+/obj/machinery/landinglight/delaytwo/ds2,
 /turf/open/floor/plating/asteroidwarning/down,
 /area/shuttle/drop2/lz2)
 "ao" = (
@@ -73,7 +73,7 @@
 /obj/structure/barricade/wooden{
 	dir = 8
 	},
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/delaythree/ds2{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -87,7 +87,7 @@
 /obj/structure/barricade/wooden{
 	dir = 4
 	},
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/delayone/ds2{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -130,7 +130,7 @@
 /obj/structure/barricade/wooden{
 	dir = 8
 	},
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/delayone/ds2{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -145,7 +145,7 @@
 /obj/structure/barricade/wooden{
 	dir = 4
 	},
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/delaythree/ds2{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -160,7 +160,7 @@
 /obj/structure/barricade/wooden{
 	dir = 4
 	},
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -184,7 +184,7 @@
 	},
 /area/shuttle/drop2/lz2)
 "aG" = (
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/delayone/ds2{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -192,7 +192,7 @@
 	},
 /area/shuttle/drop2/lz2)
 "aI" = (
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/delaythree/ds2{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -200,7 +200,7 @@
 	},
 /area/shuttle/drop2/lz2)
 "aJ" = (
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -209,7 +209,7 @@
 /area/shuttle/drop2/lz2)
 "aK" = (
 /obj/effect/landmark/monkey_spawn,
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -217,7 +217,7 @@
 	},
 /area/shuttle/drop2/lz2)
 "aL" = (
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/delayone/ds2{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -225,7 +225,7 @@
 	},
 /area/shuttle/drop2/lz2)
 "aM" = (
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -239,7 +239,7 @@
 /turf/open/floor,
 /area/shuttle/drop2/lz2)
 "aO" = (
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/delayone/ds2{
 	dir = 4
 	},
 /obj/structure/barricade/wooden{
@@ -250,7 +250,7 @@
 	},
 /area/shuttle/drop2/lz2)
 "aP" = (
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 4
 	},
 /obj/structure/barricade/wooden{
@@ -264,7 +264,7 @@
 /obj/structure/barricade/wooden{
 	dir = 8
 	},
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -273,7 +273,7 @@
 /area/shuttle/drop2/lz2)
 "aT" = (
 /obj/structure/barricade/wooden,
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/delaythree/ds2{
 	dir = 1
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -291,7 +291,7 @@
 /area/shuttle/drop2/lz2)
 "aV" = (
 /obj/structure/barricade/wooden,
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/delayone/ds2{
 	dir = 1
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -299,7 +299,7 @@
 	},
 /area/shuttle/drop2/lz2)
 "aW" = (
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 1
 	},
 /obj/structure/barricade/wooden,
@@ -308,7 +308,7 @@
 	},
 /area/shuttle/drop2/lz2)
 "aX" = (
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/delaythree/ds2{
 	dir = 1
 	},
 /obj/structure/barricade/wooden,
@@ -326,7 +326,7 @@
 	},
 /area/shuttle/drop2/lz2)
 "aZ" = (
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/delayone/ds2{
 	dir = 1
 	},
 /obj/structure/barricade/wooden,
@@ -556,11 +556,11 @@
 /turf/open/floor/mech_bay_recharge_floor,
 /area/shuttle/drop1/lz1)
 "bU" = (
-/obj/machinery/landinglight/ds1/delaytwo,
+/obj/machinery/landinglight/delaytwo/ds1,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "bV" = (
-/obj/machinery/landinglight/ds1/delayone,
+/obj/machinery/landinglight/delayone/ds1,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "bW" = (
@@ -568,11 +568,11 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "bX" = (
-/obj/machinery/landinglight/ds1/delaythree,
+/obj/machinery/landinglight/delaythree/ds1,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "bY" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -581,7 +581,7 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "ca" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -609,25 +609,25 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "cf" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 4
 	},
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "cg" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 8
 	},
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "ch" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 4
 	},
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "cj" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -674,7 +674,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/lv624/lazarus/fitness)
 "cy" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -686,13 +686,13 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "cA" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 1
 	},
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "cB" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 1
 	},
 /turf/open/floor/plating,

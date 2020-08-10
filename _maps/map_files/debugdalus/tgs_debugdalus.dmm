@@ -897,13 +897,13 @@
 	},
 /area/mainship/shipboard/starboard_point_defense)
 "ada" = (
-/obj/machinery/landinglight/ds2/delaytwo,
+/obj/machinery/landinglight/delaytwo/ds2,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
 /area/mainship/hallways/hangar)
 "adb" = (
-/obj/machinery/landinglight/ds2/delayone,
+/obj/machinery/landinglight/delayone/ds2,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
@@ -915,7 +915,7 @@
 	},
 /area/mainship/hallways/hangar)
 "add" = (
-/obj/machinery/landinglight/ds2/delaythree,
+/obj/machinery/landinglight/delaythree/ds2,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
@@ -927,13 +927,13 @@
 	},
 /area/mainship/hallways/hangar)
 "adg" = (
-/obj/machinery/landinglight/ds1/delaytwo,
+/obj/machinery/landinglight/delaytwo/ds1,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
 /area/mainship/hallways/hangar)
 "adh" = (
-/obj/machinery/landinglight/ds1/delayone,
+/obj/machinery/landinglight/delayone/ds1,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
@@ -945,7 +945,7 @@
 	},
 /area/mainship/hallways/hangar)
 "adj" = (
-/obj/machinery/landinglight/ds1/delaythree,
+/obj/machinery/landinglight/delaythree/ds1,
 /turf/open/floor/mainship{
 	pixel_z = -1
 	},
@@ -973,7 +973,7 @@
 	},
 /area/mainship/hallways/hangar)
 "adn" = (
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/delaythree/ds2{
 	dir = 8
 	},
 /turf/open/floor/mainship{
@@ -989,7 +989,7 @@
 	},
 /area/mainship/hallways/hangar)
 "adp" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 8
 	},
 /turf/open/floor/mainship{
@@ -1098,7 +1098,7 @@
 	},
 /area/mainship/hallways/hangar)
 "adG" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 8
 	},
 /turf/open/floor/mainship{
@@ -1227,7 +1227,7 @@
 	},
 /area/mainship/hallways/hangar)
 "adX" = (
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/delayone/ds2{
 	dir = 4
 	},
 /turf/open/floor/mainship{
@@ -1248,7 +1248,7 @@
 	},
 /area/mainship/command/cic)
 "adZ" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 4
 	},
 /turf/open/floor/mainship{
@@ -1256,7 +1256,7 @@
 	},
 /area/mainship/hallways/hangar)
 "aea" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 8
 	},
 /turf/open/floor/mainship{
@@ -1307,7 +1307,7 @@
 	},
 /area/mainship/shipboard/weapon_room)
 "aem" = (
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 4
 	},
 /turf/open/floor/mainship{
@@ -1336,7 +1336,7 @@
 	},
 /area/mainship/command/cic)
 "aeq" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 4
 	},
 /turf/open/floor/mainship{
@@ -1503,7 +1503,7 @@
 	},
 /area/mainship/command/telecomms)
 "aeN" = (
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/delaythree/ds2{
 	dir = 4
 	},
 /turf/open/floor/mainship{
@@ -1543,7 +1543,7 @@
 	},
 /area/mainship/command/cic)
 "aeR" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 4
 	},
 /turf/open/floor/mainship{
@@ -1614,7 +1614,7 @@
 	},
 /area/mainship/command/telecomms)
 "afe" = (
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 8
 	},
 /turf/open/floor/mainship{
@@ -2202,7 +2202,7 @@
 	},
 /area/mainship/shipboard/weapon_room)
 "agN" = (
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/delayone/ds2{
 	dir = 8
 	},
 /turf/open/floor/mainship{
@@ -3052,7 +3052,7 @@
 	},
 /area/mainship/hallways/hangar)
 "ajk" = (
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/delayone/ds2{
 	dir = 1
 	},
 /turf/open/floor/mainship{
@@ -3060,7 +3060,7 @@
 	},
 /area/mainship/hallways/hangar)
 "ajl" = (
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 1
 	},
 /turf/open/floor/mainship{
@@ -3068,7 +3068,7 @@
 	},
 /area/mainship/hallways/hangar)
 "ajm" = (
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/delaythree/ds2{
 	dir = 1
 	},
 /turf/open/floor/mainship{
@@ -3084,7 +3084,7 @@
 	},
 /area/mainship/hallways/hangar)
 "ajo" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 1
 	},
 /turf/open/floor/mainship{
@@ -3092,7 +3092,7 @@
 	},
 /area/mainship/hallways/hangar)
 "ajp" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 1
 	},
 /turf/open/floor/mainship{
@@ -3100,7 +3100,7 @@
 	},
 /area/mainship/hallways/hangar)
 "ajq" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 1
 	},
 /turf/open/floor/mainship{

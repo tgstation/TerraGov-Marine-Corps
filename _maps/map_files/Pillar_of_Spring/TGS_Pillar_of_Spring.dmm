@@ -221,7 +221,7 @@
 /area/mainship/hallways/hangar)
 "aS" = (
 /obj/effect/decal/warning_stripes/thin,
-/obj/machinery/landinglight/ds1/delayone,
+/obj/machinery/landinglight/delayone/ds1,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "aT" = (
@@ -239,7 +239,7 @@
 /area/mainship/hallways/hangar)
 "aV" = (
 /obj/effect/decal/warning_stripes/thin,
-/obj/machinery/landinglight/ds1/delaythree,
+/obj/machinery/landinglight/delaythree/ds1,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "aW" = (
@@ -258,7 +258,7 @@
 /area/mainship/medical/lower_medical)
 "aZ" = (
 /obj/effect/decal/warning_stripes/thin,
-/obj/machinery/landinglight/ds1/delaytwo,
+/obj/machinery/landinglight/delaytwo/ds1,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "ba" = (
@@ -343,7 +343,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -426,7 +426,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -435,7 +435,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/delaythree/ds2{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -500,7 +500,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -535,7 +535,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/delayone/ds2{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -589,7 +589,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -670,7 +670,7 @@
 	dir = 8
 	},
 /obj/effect/decal/warning_stripes/thin,
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -786,7 +786,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -1160,7 +1160,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo/arrow{
@@ -1187,7 +1187,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 8
 	},
 /turf/open/floor/mainship/cargo/arrow{
@@ -1238,7 +1238,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 8
 	},
 /turf/open/floor/mainship/cargo/arrow{
@@ -1500,7 +1500,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -1653,7 +1653,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -1724,7 +1724,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/delayone/ds2{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -1733,7 +1733,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -1771,7 +1771,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/delaythree/ds2{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -1817,7 +1817,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -1839,7 +1839,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/delayone/ds2{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -1892,7 +1892,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/delayone/ds2{
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo/arrow,
@@ -1965,7 +1965,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo/arrow,
@@ -2315,7 +2315,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -2600,7 +2600,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "jI" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 8
 	},
 /obj/effect/decal/warning_stripes/thin{
@@ -2770,7 +2770,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -2904,7 +2904,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo/arrow{
@@ -2915,7 +2915,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo/arrow{
@@ -9630,7 +9630,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/delayone/ds2{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -11967,7 +11967,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -11982,7 +11982,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/delaythree/ds2{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -12633,7 +12633,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -12754,7 +12754,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -12776,7 +12776,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -12846,7 +12846,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -12926,7 +12926,7 @@
 /area/mainship/hallways/starboard_hallway)
 "RF" = (
 /obj/effect/decal/warning_stripes/thin,
-/obj/machinery/landinglight/ds2/delaythree,
+/obj/machinery/landinglight/delaythree/ds2,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "RI" = (
@@ -12949,7 +12949,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -12968,7 +12968,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
 "RS" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 8
 	},
 /obj/effect/decal/warning_stripes/thin{
@@ -12987,7 +12987,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -13042,7 +13042,7 @@
 /area/mainship/shipboard/firing_range)
 "Sn" = (
 /obj/effect/decal/warning_stripes/thin,
-/obj/machinery/landinglight/ds2/delayone,
+/obj/machinery/landinglight/delayone/ds2,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "Sp" = (
@@ -13086,7 +13086,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/delaythree/ds2{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -13376,7 +13376,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "UX" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 8
 	},
 /obj/effect/decal/warning_stripes/thin{
@@ -13413,7 +13413,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -13448,7 +13448,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/delayone/ds2{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -13487,7 +13487,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -13660,7 +13660,7 @@
 /area/mainship/living/cafeteria_starboard)
 "Xh" = (
 /obj/effect/decal/warning_stripes/thin,
-/obj/machinery/landinglight/ds2/delaytwo,
+/obj/machinery/landinglight/delaytwo/ds2,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "Xn" = (

@@ -10365,7 +10365,7 @@
 /turf/open/floor/tile/vault,
 /area/lv624/lazarus/robotics)
 "aQD" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -10715,7 +10715,7 @@
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/robotics)
 "aRU" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -11145,11 +11145,11 @@
 /turf/open/floor/mech_bay_recharge_floor,
 /area/shuttle/drop1/lz1)
 "aTp" = (
-/obj/machinery/landinglight/ds1/delaytwo,
+/obj/machinery/landinglight/delaytwo/ds1,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "aTq" = (
-/obj/machinery/landinglight/ds1/delayone,
+/obj/machinery/landinglight/delayone/ds1,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "aTr" = (
@@ -11157,7 +11157,7 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "aTs" = (
-/obj/machinery/landinglight/ds1/delaythree,
+/obj/machinery/landinglight/delaythree/ds1,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "aTt" = (
@@ -11240,7 +11240,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "aTQ" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -11249,7 +11249,7 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "aTS" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -11702,13 +11702,13 @@
 	},
 /area/shuttle/drop1/lz1)
 "aVQ" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 4
 	},
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "aVR" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -11828,13 +11828,13 @@
 	},
 /area/shuttle/drop1/lz1)
 "aWu" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 4
 	},
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "aWw" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -12517,11 +12517,11 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/sw)
 "aZo" = (
-/obj/machinery/landinglight/ds1/delaytwo,
+/obj/machinery/landinglight/delaytwo/ds1,
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "aZp" = (
-/obj/machinery/landinglight/ds1/delayone,
+/obj/machinery/landinglight/delayone/ds1,
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "aZu" = (
@@ -12529,7 +12529,7 @@
 /turf/open/floor/plating/platebotc,
 /area/lv624/ground/jungle9)
 "aZw" = (
-/obj/machinery/landinglight/ds1/delaythree,
+/obj/machinery/landinglight/delaythree/ds1,
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "aZx" = (
@@ -12684,7 +12684,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle6)
 "aZY" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -14852,7 +14852,7 @@
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
 "biH" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -14864,13 +14864,13 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "biJ" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 1
 	},
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "biK" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -15804,7 +15804,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle1)
 "bmq" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -17476,7 +17476,7 @@
 	},
 /area/lv624/ground/jungle9)
 "csn" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 4
 	},
 /turf/open/floor/plating,
@@ -17699,7 +17699,7 @@
 	},
 /area/lv624/lazarus/atmos)
 "eXq" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -18371,7 +18371,7 @@
 /turf/open/floor,
 /area/lv624/ground/sand2)
 "mup" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -18823,7 +18823,7 @@
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/main_hall)
 "rmy" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -18946,7 +18946,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "szb" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 1
 	},
 /turf/open/floor/plating,

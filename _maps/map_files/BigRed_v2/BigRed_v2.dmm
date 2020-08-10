@@ -25,11 +25,11 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "aai" = (
-/obj/machinery/landinglight/ds1/delaytwo,
+/obj/machinery/landinglight/delaytwo/ds1,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
 "aaj" = (
-/obj/machinery/landinglight/ds1/delayone,
+/obj/machinery/landinglight/delayone/ds1,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
 "aak" = (
@@ -37,7 +37,7 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
 "aal" = (
-/obj/machinery/landinglight/ds1/delaythree,
+/obj/machinery/landinglight/delaythree/ds1,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/space_port)
 "aam" = (
@@ -49,7 +49,7 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "aap" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -84,7 +84,7 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "aav" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -122,7 +122,7 @@
 /turf/open/floor/plating/asteroidplating,
 /area/bigredv2/outside/telecomm)
 "aaE" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -134,7 +134,7 @@
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "aaG" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -197,7 +197,7 @@
 /turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
 "aaS" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -236,7 +236,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "aba" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -290,7 +290,7 @@
 /area/bigredv2/outside/space_port)
 "abj" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -353,7 +353,7 @@
 /area/bigredv2/outside/telecomm)
 "abt" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -1161,7 +1161,7 @@
 	},
 /area/bigredv2/outside/space_port)
 "aei" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 1
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -1169,7 +1169,7 @@
 	},
 /area/bigredv2/outside/space_port)
 "aej" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 1
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -1177,7 +1177,7 @@
 	},
 /area/bigredv2/outside/space_port)
 "aek" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 1
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -16041,11 +16041,11 @@
 /turf/open/floor/plating/asteroidplating,
 /area/bigredv2/outside/w)
 "bhu" = (
-/obj/machinery/landinglight/ds2/delaytwo,
+/obj/machinery/landinglight/delaytwo/ds2,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/w)
 "bhv" = (
-/obj/machinery/landinglight/ds2/delayone,
+/obj/machinery/landinglight/delayone/ds2,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/w)
 "bhw" = (
@@ -16053,22 +16053,22 @@
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/w)
 "bhx" = (
-/obj/machinery/landinglight/ds2/delaythree,
+/obj/machinery/landinglight/delaythree/ds2,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/w)
 "bhy" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/landinglight/ds2/delayone,
+/obj/machinery/landinglight/delayone/ds2,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/w)
 "bhz" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/landinglight/ds2/delaythree,
+/obj/machinery/landinglight/delaythree/ds2,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/w)
 "bhA" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/landinglight/ds2/delaytwo,
+/obj/machinery/landinglight/delaytwo/ds2,
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "bhD" = (
@@ -16202,7 +16202,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
 "bid" = (
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/delaythree/ds2{
 	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -16213,7 +16213,7 @@
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "bif" = (
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/delaythree/ds2{
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -16363,7 +16363,7 @@
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "biJ" = (
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -16435,7 +16435,7 @@
 	},
 /area/bigredv2/outside/se)
 "bjd" = (
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/delayone/ds2{
 	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -16447,7 +16447,7 @@
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "bjf" = (
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/delayone/ds2{
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -16484,7 +16484,7 @@
 	},
 /area/bigredv2/outside/se)
 "bjn" = (
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -16600,7 +16600,7 @@
 /area/bigredv2/outside/office_complex)
 "bjO" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/delaythree/ds2{
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -17782,7 +17782,7 @@
 	},
 /area/bigredv2/caves)
 "bpu" = (
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/delaythree/ds2{
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -17941,7 +17941,7 @@
 	},
 /area/bigredv2/caves)
 "bqd" = (
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -18058,7 +18058,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/se)
 "bqE" = (
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/delayone/ds2{
 	dir = 8
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -18381,7 +18381,7 @@
 	},
 /area/bigredv2/outside/sw)
 "bsc" = (
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/delayone/ds2{
 	dir = 1
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -18389,7 +18389,7 @@
 	},
 /area/bigredv2/outside/sw)
 "bsd" = (
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 1
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -18397,7 +18397,7 @@
 	},
 /area/bigredv2/outside/sw)
 "bse" = (
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/delaythree/ds2{
 	dir = 1
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -21168,7 +21168,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "dmr" = (
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/delaythree/ds2{
 	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -21324,7 +21324,7 @@
 /turf/closed/wall,
 /area/bigredv2/outside/cargo)
 "fil" = (
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/delayone/ds2{
 	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{
@@ -22321,7 +22321,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "shZ" = (
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 4
 	},
 /turf/open/floor/marking/asteroidwarning{

@@ -21319,11 +21319,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bkQ" = (
-/obj/machinery/landinglight/ds2/delaytwo,
+/obj/machinery/landinglight/delaytwo/ds2,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bkR" = (
-/obj/machinery/landinglight/ds2/delayone,
+/obj/machinery/landinglight/delayone/ds2,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bkS" = (
@@ -21331,7 +21331,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bkT" = (
-/obj/machinery/landinglight/ds2/delaythree,
+/obj/machinery/landinglight/delaythree/ds2,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bkU" = (
@@ -21354,11 +21354,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bkX" = (
-/obj/machinery/landinglight/ds1/delaytwo,
+/obj/machinery/landinglight/delaytwo/ds1,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bkY" = (
-/obj/machinery/landinglight/ds1/delayone,
+/obj/machinery/landinglight/delayone/ds1,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bkZ" = (
@@ -21366,7 +21366,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bla" = (
-/obj/machinery/landinglight/ds1/delaythree,
+/obj/machinery/landinglight/delaythree/ds1,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "blb" = (
@@ -21499,7 +21499,7 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "blE" = (
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/delaythree/ds2{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -21518,7 +21518,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "blL" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -21719,7 +21719,7 @@
 "bmK" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/structure/prop/mainship/hangar_stencil,
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -22147,13 +22147,13 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "bom" = (
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/delayone/ds2{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bos" = (
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/delayone/ds2{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -22163,13 +22163,13 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "bou" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "boA" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -22635,7 +22635,7 @@
 	},
 /area/mainship/shipboard/starboard_missiles)
 "bqf" = (
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -22653,7 +22653,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bqq" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -23219,13 +23219,13 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "bsc" = (
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/delaythree/ds2{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bsm" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -23574,13 +23574,13 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "btY" = (
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "buj" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -28581,19 +28581,19 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bPj" = (
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/delayone/ds2{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bPk" = (
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bPl" = (
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/delaythree/ds2{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -28626,19 +28626,19 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bPq" = (
-/obj/machinery/landinglight/ds1/delayone{
+/obj/machinery/landinglight/delayone/ds1{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bPr" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "bPs" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -34709,7 +34709,7 @@
 	},
 /area/mainship/medical/operating_room_two)
 "cjU" = (
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/delaythree/ds2{
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo/arrow{
@@ -34729,7 +34729,7 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "cjX" = (
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/delaythree/ds2{
 	dir = 8
 	},
 /turf/open/floor/mainship/cargo/arrow{
@@ -34737,7 +34737,7 @@
 	},
 /area/mainship/hallways/hangar)
 "cjY" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo/arrow{
@@ -34745,7 +34745,7 @@
 	},
 /area/mainship/hallways/hangar)
 "cka" = (
-/obj/machinery/landinglight/ds1/delaythree{
+/obj/machinery/landinglight/delaythree/ds1{
 	dir = 8
 	},
 /turf/open/floor/mainship/cargo/arrow{
@@ -34761,7 +34761,7 @@
 	},
 /area/mainship/hallways/hangar)
 "ckd" = (
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 8
 	},
 /turf/open/floor/mainship/cargo/arrow{
@@ -34777,7 +34777,7 @@
 	},
 /area/mainship/hallways/hangar)
 "ckf" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 8
 	},
 /turf/open/floor/mainship/cargo/arrow{
@@ -34809,7 +34809,7 @@
 	},
 /area/mainship/hallways/hangar)
 "ckq" = (
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo/arrow{
@@ -34825,7 +34825,7 @@
 	},
 /area/mainship/hallways/hangar)
 "cks" = (
-/obj/machinery/landinglight/ds1/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds1{
 	dir = 1
 	},
 /turf/open/floor/mainship/cargo/arrow{

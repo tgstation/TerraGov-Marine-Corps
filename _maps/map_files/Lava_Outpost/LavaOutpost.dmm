@@ -19,7 +19,7 @@
 	},
 /area/lavaland)
 "at" = (
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -110,7 +110,7 @@
 /turf/open/floor/tile/white,
 /area/lavaland/medical)
 "bw" = (
-/obj/machinery/landinglight/ds2/delaytwo,
+/obj/machinery/landinglight/delaytwo/ds2,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 2
 	},
@@ -315,7 +315,7 @@
 /turf/open/lavaland/catwalk,
 /area/lavaland/cave/north)
 "eG" = (
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/delayone/ds2{
 	dir = 1
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -538,7 +538,7 @@
 /turf/open/floor/wood,
 /area/lavaland/civilian)
 "hr" = (
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 1
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -839,7 +839,7 @@
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/engine)
 "ky" = (
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/delaythree/ds2{
 	dir = 1
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -956,7 +956,7 @@
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/engine)
 "lx" = (
-/obj/machinery/landinglight/ds2/delaythree,
+/obj/machinery/landinglight/delaythree/ds2,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 2
 	},
@@ -998,7 +998,7 @@
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/southeast)
 "lW" = (
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/delayone/ds2{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -1006,7 +1006,7 @@
 	},
 /area/shuttle/drop2/lz2)
 "me" = (
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/delaythree/ds2{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -1192,7 +1192,7 @@
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian/cargo)
 "ol" = (
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/delayone/ds2{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -1300,7 +1300,7 @@
 /turf/open/floor/tile/dark,
 /area/lavaland/security/nuke)
 "pg" = (
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -1530,7 +1530,7 @@
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian/cargo)
 "rR" = (
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -1850,7 +1850,7 @@
 /turf/open/floor/plating,
 /area/lavaland/engie/one)
 "vo" = (
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/delayone/ds2{
 	dir = 1
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -1893,7 +1893,7 @@
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian/cargo)
 "vS" = (
-/obj/machinery/landinglight/ds2/delayone,
+/obj/machinery/landinglight/delayone/ds2,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 2
 	},
@@ -2427,7 +2427,7 @@
 	},
 /area/lavaland/cave/south)
 "BF" = (
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/delaythree/ds2{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -2690,7 +2690,7 @@
 	},
 /area/lavaland/cave/south)
 "EO" = (
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 1
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -2702,7 +2702,7 @@
 /turf/open/floor/tile/white,
 /area/lavaland/security/infocenter)
 "ES" = (
-/obj/machinery/landinglight/ds2/delaytwo,
+/obj/machinery/landinglight/delaytwo/ds2,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 2
 	},
@@ -2777,7 +2777,7 @@
 /turf/open/floor/tile/white,
 /area/lavaland/security)
 "FE" = (
-/obj/machinery/landinglight/ds2/delayone,
+/obj/machinery/landinglight/delayone/ds2,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 2
 	},
@@ -2913,7 +2913,7 @@
 /turf/closed/wall,
 /area/lavaland/cave/central)
 "GQ" = (
-/obj/machinery/landinglight/ds2/delaythree,
+/obj/machinery/landinglight/delaythree/ds2,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 2
 	},
@@ -2960,7 +2960,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/lavaland/engie/engine)
 "Hw" = (
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/delaythree/ds2{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -3073,7 +3073,7 @@
 /turf/closed/wall/r_wall,
 /area/shuttle/drop2/lz2)
 "Jb" = (
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/delayone/ds2{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -3121,7 +3121,7 @@
 /turf/open/floor/tile/white,
 /area/lavaland/security)
 "JC" = (
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/delaythree/ds2{
 	dir = 1
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -3338,7 +3338,7 @@
 /turf/open/floor/tile/dark,
 /area/lavaland/engie/three)
 "LL" = (
-/obj/machinery/landinglight/ds2/delayone{
+/obj/machinery/landinglight/delayone/ds2{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -3756,7 +3756,7 @@
 /turf/open/floor/plating,
 /area/lavaland/engie/two)
 "Rh" = (
-/obj/machinery/landinglight/ds2/delaythree{
+/obj/machinery/landinglight/delaythree/ds2{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -3828,7 +3828,7 @@
 /turf/closed/wall,
 /area/storage/testroom)
 "RO" = (
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidwarning{
@@ -3985,7 +3985,7 @@
 /turf/open/floor/tile/white,
 /area/lavaland/medical/cmo)
 "TA" = (
-/obj/machinery/landinglight/ds2/delaytwo{
+/obj/machinery/landinglight/delaytwo/ds2{
 	dir = 8
 	},
 /obj/machinery/light{
