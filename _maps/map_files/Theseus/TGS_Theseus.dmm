@@ -1974,7 +1974,6 @@
 /obj/item/reagent_containers/spray/cleaner,
 /obj/machinery/door_control/mainship/research{
 	dir = 1;
-	id = "researchdoorext";
 	name = "Exterior Doors";
 	pixel_x = -10;
 	pixel_y = 8
@@ -5327,10 +5326,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/door_control/mainship/corporate{
-	id = "cl_shutters";
-	name = "Privacy Shutters"
-	},
+/obj/machinery/door_control/mainship/corporate,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "apz" = (
@@ -8338,8 +8334,6 @@
 /area/mainship/hallways/aft_hallway)
 "ayh" = (
 /obj/machinery/door_control/mainship/corporate{
-	id = "cl_shutters";
-	name = "Privacy Shutters";
 	pixel_y = 30
 	},
 /obj/structure/cable,
@@ -12210,8 +12204,6 @@
 /area/mainship/command/airoom)
 "aIe" = (
 /obj/machinery/door_control/mainship/tcomms{
-	id = "tcomms";
-	name = "Telecommunications Entrance";
 	pixel_y = 25
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -16293,8 +16285,7 @@
 "aSZ" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 2;
-	id = "tcomms";
-	name = "\improper Podlock"
+	id = "tcomms"
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/command/telecomms)
@@ -24050,8 +24041,7 @@
 /obj/structure/table/mainship,
 /obj/machinery/cell_charger,
 /obj/item/radio/intercom/general{
-	dir = 4;
-	icon_state = "intercom"
+	dir = 4
 	},
 /turf/open/floor/mainship/green{
 	dir = 1
@@ -26692,8 +26682,8 @@
 /area/mainship/living/cryo_cells)
 "bHB" = (
 /obj/structure/table/mainship,
-/obj/item/light_bulb/tube,
-/obj/item/light_bulb/tube,
+/obj/item/light/tube,
+/obj/item/light/tube,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/machinery/light{
 	dir = 8
@@ -31551,8 +31541,7 @@
 	dir = 2
 	},
 /obj/machinery/door/airlock/mainship/generic/pilot{
-	dir = 2;
-	name = "\improper Pilot's Office"
+	dir = 2
 	},
 /turf/open/floor/mainship,
 /area/mainship/living/pilotbunks)
@@ -31814,9 +31803,7 @@
 "bZH" = (
 /obj/structure/cable,
 /obj/machinery/door/firedoor/mainship,
-/obj/machinery/door/airlock/mainship/generic/pilot{
-	name = "\improper Pilot's Office"
-	},
+/obj/machinery/door/airlock/mainship/generic/pilot,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
 "bZJ" = (
@@ -32017,9 +32004,7 @@
 /area/mainship/living/pilotbunks)
 "cat" = (
 /obj/machinery/door/firedoor/mainship,
-/obj/machinery/door/airlock/mainship/generic/pilot{
-	name = "\improper Pilot's Office"
-	},
+/obj/machinery/door/airlock/mainship/generic/pilot,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -36136,6 +36121,10 @@
 "iUO" = (
 /turf/open/floor/mainship,
 /area/mainship/engineering/ce_room)
+"iXo" = (
+/obj/item/reagent_containers/jerrycan,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "iXT" = (
 /obj/machinery/light{
 	dir = 8
@@ -36149,10 +36138,6 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
-"iXo" = (
-/obj/item/reagent_containers/jerrycan,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "iZq" = (
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -36202,7 +36187,6 @@
 	},
 /obj/machinery/door_control/mainship/cic{
 	id = "CIC Lockdown";
-	name = "CIC Lockdown";
 	pixel_x = -7;
 	pixel_y = 9
 	},
@@ -38432,9 +38416,7 @@
 /turf/closed/wall/mainship/outer,
 /area/mainship/hull/upper_hull)
 "xek" = (
-/turf/open/floor/mainship/green{
-	dir = 2
-	},
+/turf/open/floor/mainship/green,
 /area/mainship/hallways/starboard_hallway)
 "xfC" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
