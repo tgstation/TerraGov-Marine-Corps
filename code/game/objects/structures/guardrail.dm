@@ -14,7 +14,7 @@
 	soft_armor = list("melee" = 90, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 15, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
 
 
-/obj/structure/barricade/CheckExit(atom/movable/O, turf/target)
+/obj/structure/guardrail/CheckExit(atom/movable/O, turf/target)
 	if(closed)
 		return TRUE
 
