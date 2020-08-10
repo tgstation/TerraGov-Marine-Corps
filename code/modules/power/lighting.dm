@@ -211,7 +211,9 @@
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = AREA_USAGE_LIGHT //Lights are calc'd via area so they dont need to be in the machine list
-	var/on = FALSE					// 1 if on, 0 if off
+	resistance_flags = UNACIDABLE
+
+	var/on = TRUE					// 1 if on, 0 if off
 	var/on_gs = FALSE
 	var/static_power_used = 0
 	var/brightness = 8			// luminosity when on, also used in power calculation
@@ -237,7 +239,7 @@
 
 	var/emergency_mode = FALSE	// if true, the light is in emergency mode
 	var/no_emergency = FALSE	// if true, this light cannot ever have an emergency mode
-	var/bulb_emergency_brightness_mul = 0.25	// multiplier for this light's base brightness in emergency power mode
+	var/bulb_emergency_brightness_mul = 0.5	// multiplier for this light's base brightness in emergency power mode
 	var/bulb_emergency_colour = "#FF3232"	// determines the colour of the light while it's in emergency mode
 	var/bulb_emergency_pow_mul = 0.75	// the multiplier for determining the light's power in emergency mode
 	var/bulb_emergency_pow_min = 0.5	// the minimum value for the light's power in emergency mode
@@ -247,6 +249,9 @@
 /obj/machinery/light/broken
 	status = LIGHT_BROKEN
 	icon_state = "tube-broken"
+
+/obj/machinery/light/off
+	on = FALSE
 
 /obj/machinery/light/dim
 	nightshift_allowed = FALSE
@@ -465,9 +470,7 @@
 		. += "Its backup power charge meter reads [round((cell.charge / cell.maxcharge) * 100, 0.1)]%."
 
 
-
 // attack with item - insert light (if right type), otherwise try to break the light
-
 /obj/machinery/light/attackby(obj/item/W, mob/living/user, params)
 
 	//Light replacer code
@@ -521,6 +524,13 @@
 					electrocute_mob(user, get_area(src), src, (rand(7,10) * 0.1), TRUE)
 	else
 		return ..()
+
+
+/obj/machinery/light/attack_alien(mob/living/carbon/xenomorph/M)
+	. = ..()
+	M.do_attack_animation(src)
+	break_light_tube()
+
 
 /obj/machinery/light/deconstruct(disassembled = TRUE)
 	if(!(flags_atom & NODECONSTRUCT))
@@ -713,8 +723,7 @@
 
 
 // break the light and make sparks if was on
-
-/obj/machinery/light/proc/break_light_tube(skip_sound_and_sparks = 0)
+/obj/machinery/light/proc/break_light_tube(skip_sound_and_sparks = FALSE)
 	if(status == LIGHT_EMPTY || status == LIGHT_BROKEN)
 		return
 
