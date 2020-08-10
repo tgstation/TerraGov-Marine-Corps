@@ -34,7 +34,7 @@
 
 /turf/open/floor/plating/ground/dirt/desert/Initialize()
 	. = ..()
-		icon_state = "desert[pick("5","6")]"
+	icon_state = "desert[pick("5","6")]"
 
 /turf/open/floor/plating/ground/dirtgrassborder
 	name = "grass"
