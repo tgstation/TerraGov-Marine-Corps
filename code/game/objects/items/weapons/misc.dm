@@ -53,11 +53,11 @@
 
 /obj/item/weapon/powerfist/examine(user)
 	. = ..()
-	. += "It's power setting is set to [setting]."
+	to_chat(user, "It's power setting is set to [setting].")
 	if(cell)
-		. += "It has [cell.charge] power remaining."
+		to_chat(user, "It has [cell.charge] power remaining.")
 	else
-		. += "There is no cell installed!"
+		to_chat(user, "There is no cell installed!")
 
 /obj/item/weapon/powerfist/attack_self(mob/user)
 	. = ..()
@@ -66,6 +66,23 @@
 	else
 		setting += 1
 	to_chat(user, "<span class='notice'>You set the [src]'s power level to [setting].</span>")
+
+/obj/item/weapon/powerfist/AltClick(mob/user)
+	if(!can_interact(user))
+		return ..()
+	if(!ishuman(user))
+		return ..()
+	if(!(user.l_hand == src || user.r_hand == src))
+		return ..()
+	TOGGLE_BITFIELD(flags_item, NODROP)
+	if(CHECK_BITFIELD(flags_item, NODROP))
+		to_chat(user, "<span class='warning'>You feel the [src] clamp shut around your hand!</span>")
+		playsound(user, 'sound/weapons/fistclamp.ogg', 25, 1, 7)
+	else
+		to_chat(user, "<span class='notice'>You feel the [src] loosen around your hand!</span>")
+		playsound(user, 'sound/weapons/fistunclamp.ogg', 25, 1, 7)
+
+
 
 /obj/item/weapon/powerfist/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!cell)
