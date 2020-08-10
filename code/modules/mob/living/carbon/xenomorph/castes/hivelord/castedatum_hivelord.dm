@@ -56,7 +56,8 @@
 		/datum/action/xeno_action/activable/psychic_cure/drone,
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/choose_resin/hivelord,
-		/datum/action/xeno_action/activable/secrete_resin/hivelord, // TODO: (psykzz) Disabled until this is fixed.
+		/datum/action/xeno_action/activable/secrete_resin/hivelord,
+		/datum/action/xeno_action/activable/build_silo,
 		/datum/action/xeno_action/activable/transfer_plasma/improved,
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/build_tunnel,
