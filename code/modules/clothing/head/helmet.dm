@@ -296,7 +296,6 @@
 	name = "\improper M10E pattern marine helmet"
 	desc = "A standard M10E Pattern Helmet. This is a modified version of the standard M10 helmet, offering an enclosed visor apparatus. It doesn't look to be any more protective damage wise."
 	icon_state = "heavyhelmet"
-	soft_armor = list("melee" = 50, "bullet" = 60, "laser" = 30, "energy" = 20, "bomb" = 20, "bio" = 50, "rad" = 0, "fire" = 50, "acid" = 50)
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
 
 /obj/item/clothing/head/helmet/marine/leader
