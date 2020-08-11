@@ -11,15 +11,16 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	opacity = FALSE
 	anchored = TRUE
 	max_integrity = 200
+	COOLDOWN_DECLARE(relay_cooldown)
 
 /obj/machinery/cloning/Initialize(mapload, ...)
 	. = ..()
 	START_PROCESSING(SSmachines, src) // Registered for power usage
 
 /obj/machinery/cloning/relaymove(mob/user)
-	if(COOLDOWN_CHECK(user, COOLDOWN_RELAYMOVE))
+	if(COOLDOWN_CHECK(src, relay_cooldown))
 		return
-	COOLDOWN_START(user, COOLDOWN_RELAYMOVE, 2 SECONDS)
+	COOLDOWN_START(src, relay_cooldown, 2 SECONDS)
 	user.visible_message("You hear something bang on the window of \the [src]", "The door won't budge")
 	return FALSE
 
@@ -44,7 +45,7 @@ The vat then needs to be repaired and refilled with biomass.
 	density = FALSE
 	anchored = TRUE
 	use_power = IDLE_POWER_USE
-	idle_power_usage = 3
+	idle_power_usage = 50
 	resistance_flags = UNACIDABLE | INDESTRUCTIBLE // For now, we should work out how we want xenos to counter this
 
 	var/obj/machinery/cloning/vats/linked_machine
