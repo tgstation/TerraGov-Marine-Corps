@@ -6,8 +6,8 @@
 #include "keybinding_init.dm"
 #include "spawn_humans.dm"
 #include "spawn_xenos.dm"
-#include "xeno_logical_scaling.dm"
 #include "subsystem_init.dm"
 #include "timer_sanity.dm"
 #include "unit_test.dm"
+#include "xeno_logical_scaling.dm"
 #endif
