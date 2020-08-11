@@ -2,7 +2,9 @@
 	parent_type = /datum // black magic
 	preload_rsc = 0 // This is 0 so we can set it to an URL once the player logs in and have them download the resources from a different server.
 	view = WORLD_VIEW
-	var/datum/chatOutput/chatOutput //Goonchat holder
+
+	///goonchat chatoutput of the client
+	var/datum/chat_output/chatOutput
 	var/datum/tooltip/tooltips
 
 	//Admin related
@@ -59,12 +61,6 @@
 	var/account_join_date = null	//Date of byond account creation in ISO 8601 format
 	var/account_age = -1	//Age of byond account in days
 
-	//Asset cache
-	var/list/cache = list() // List of all assets sent to this client by the asset cache.
-	var/list/completed_asset_jobs = list() // List of all completed jobs, awaiting acknowledgement.
-	var/list/sending = list()
-	var/last_asset_job = 0 // Last job done.
-
 	//Codex
 	var/codex_on_cooldown = FALSE
 	var/const/max_codex_entries_shown = 10
@@ -87,6 +83,15 @@
 	 * Format: list(<mapname> = list(/obj/screen))
 	 */
 	var/list/screen_maps = list()
+
+	/* Asset cache */
+	// List of all asset filenames sent to this client by the asset cache, along with their assoicated md5s
+	var/list/sent_assets = list()
+	/// List of all completed blocking send jobs awaiting acknowledgement by send_asset
+	var/list/completed_asset_jobs = list()
+	/// Last asset send job id.
+	var/last_asset_job = 0
+	var/last_completed_asset_job = 0
 
 	/// Messages currently seen by this client
 	var/list/seen_messages

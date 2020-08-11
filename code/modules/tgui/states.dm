@@ -1,7 +1,9 @@
 /**
- * tgui states
+ * Base state and helpers for states. Just does some sanity checks,
+ * implement a proper state for in-depth checks.
  *
- * Base state and helpers for states. Just does some sanity checks, implement a state for in-depth checks.
+ * Copyright (c) 2020 Aleksej Komarov
+ * SPDX-License-Identifier: MIT
  */
 
 /**
@@ -26,9 +28,10 @@
 			. = max(., UI_INTERACTIVE)
 
 		// Regular ghosts can always at least view if in range.
-		var/clientviewlist = getviewsize(user.client.view)
-		if(get_dist(src_object, user) < max(clientviewlist[1],clientviewlist[2]))
-			. = max(., UI_UPDATE)
+		if(user.client)
+			var/clientviewlist = getviewsize(user.client.view)
+			if(get_dist(src_object, user) < max(clientviewlist[1], clientviewlist[2]))
+				. = max(., UI_UPDATE)
 
 	// Check if the state allows interaction
 	var/result = state.can_use_topic(src_object, user)
@@ -46,7 +49,8 @@
  * return UI_state The state of the UI.
  */
 /datum/ui_state/proc/can_use_topic(src_object, mob/user)
-	return UI_CLOSE // Don't allow interaction by default.
+	// Don't allow interaction by default.
+	return UI_CLOSE
 
 /**
  * public
@@ -56,13 +60,17 @@
  * return UI_state The state of the UI.
  */
 /mob/proc/shared_ui_interaction(src_object)
-	if(!client) // Close UIs if mindless.
+	// Close UIs if mindless.
+	if(!client)
 		return UI_CLOSE
-	else if(stat) // Disable UIs if unconcious.
+	// Disable UIs if unconcious.
+	else if(stat)
 		return UI_DISABLED
-	else if(incapacitated()) // Update UIs if incapicitated but concious.
+	// Update UIs if incapicitated but concious.
+	else if(incapacitated())
 		return UI_UPDATE
 	return UI_INTERACTIVE
+
 
 /**
  * public
@@ -77,7 +85,8 @@
  * return UI_state The state of the UI.
  */
 /atom/proc/contents_ui_distance(src_object, mob/living/user)
-	return user.shared_living_ui_distance(src_object) // Just call this mob's check.
+	// Just call this mob's check.
+	return user.shared_living_ui_distance(src_object)
 
 /**
  * public
@@ -89,14 +98,18 @@
  * return UI_state The state of the UI.
  */
 /mob/living/proc/shared_living_ui_distance(atom/movable/src_object, viewcheck = TRUE)
-	if(viewcheck && !(src_object in view(src))) // If the object is obscured, close it.
+	// If the object is obscured, close it.
+	if(viewcheck && !(src_object in view(src)))
 		return UI_CLOSE
-
 	var/dist = get_dist(src_object, src)
-	if(dist <= 1) // Open and interact if 1-0 tiles away.
+	// Open and interact if 1-0 tiles away.
+	if(dist <= 1)
 		return UI_INTERACTIVE
-	else if(dist <= 2) // View only if 2-3 tiles away.
+	// View only if 2-3 tiles away.
+	else if(dist <= 2)
 		return UI_UPDATE
-	else if(dist <= 5) // Disable if 5 tiles away.
+	// Disable if 5 tiles away.
+	else if(dist <= 5)
 		return UI_DISABLED
-	return UI_CLOSE // Otherwise, we got nothing.
+	// Otherwise, we got nothing.
+	return UI_CLOSE

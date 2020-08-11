@@ -399,7 +399,7 @@
 		var/client/C = M?.client
 		if(!C?.prefs)
 			continue
-		if((C.prefs.toggles_sound & SOUND_MIDI) && C.chatOutput?.working && C.chatOutput.loaded)
+		if((C.prefs.toggles_sound & SOUND_MIDI) && C.chatOutput?.loaded && !C.chatOutput.broken)
 			C.chatOutput.sendMusic(web_sound_url, music_extra_data)
 			if(show)
 				to_chat(C, "<span class='boldnotice'>An admin played: <a href='[data["webpage_url"]]'>[title]</a></span>")
@@ -432,10 +432,9 @@
 
 	for(var/i in GLOB.clients)
 		var/client/C = i
-		if(!C?.chatOutput.loaded || !C.chatOutput.working)
+		if(!C?.chatOutput.loaded || C.chatOutput.broken)
 			continue
 		C.chatOutput.stopMusic()
-
 
 	log_admin("[key_name(usr)] stopped the currently playing music.")
 	message_admins("[ADMIN_TPMONTY(usr)] stopped the currently playing music.")

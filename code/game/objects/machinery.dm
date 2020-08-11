@@ -22,7 +22,9 @@
 	var/obj/item/circuitboard/circuit // Circuit to be created and inserted when the machinery is created
 	var/mob/living/carbon/human/operator
 
-	var/ui_x	//For storing and overriding ui dimensions
+	// For storing and overriding ui id
+	var/tgui_id // ID of TGUI interface
+	var/ui_x
 	var/ui_y
 
 /obj/machinery/Initialize()

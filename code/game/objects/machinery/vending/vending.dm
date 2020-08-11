@@ -137,6 +137,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	/obj/item/storage/pouch/firstaid
 )))
 
+GLOBAL_LIST_EMPTY(vending_products)
 /obj/machinery/vending/proc/build_inventory(list/productlist,hidden=0,req_coin=0)
 
 	for(var/typepath in productlist)
@@ -146,6 +147,7 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 
 		var/obj/item/temp_path = typepath
 		var/datum/data/vending_product/R = new /datum/data/vending_product()
+		GLOB.vending_products[typepath] = 1
 
 		R.product_path = typepath
 		R.amount = amount
@@ -389,13 +391,17 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 
 	return TRUE
 
-/obj/machinery/vending/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/vending/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "Vending", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "Vending")
 		ui.open()
+
+/obj/machinery/vending/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/spritesheet/vending),
+	)
 
 /obj/machinery/vending/ui_static_data(mob/user)
 	. = list()
@@ -405,13 +411,37 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 	.["coin_records"] = list()
 	for(var/datum/data/vending_product/R in product_records)
 		var/prodname = adminscrub(R.product_name)
-		.["displayed_records"] += list(list("product_name" = prodname, "product_color" = R.display_color, "prod_index" = GetProductIndex(R), "prod_cat" = R.category, "prod_price" = R.price, "prod_desc" = initial(R.product_path.desc)))
+		.["displayed_records"] += list(list(
+			"name" = prodname,
+			"color" = R.display_color,
+			"index" = GetProductIndex(R),
+			"category" = R.category,
+			"price" = R.price,
+			"path" = replacetext(replacetext("[R.product_path]", "/obj/item/", ""), "/", "-"),
+			"desc" = initial(R.product_path.desc)
+		))
 	for(var/datum/data/vending_product/R in hidden_records)
 		var/prodname = adminscrub(R.product_name)
-		.["hidden_records"] += list(list("product_name" = prodname, "product_color" = R.display_color, "prod_index" = GetProductIndex(R), "prod_cat" = R.category, "prod_price" = R.price, "prod_desc" = initial(R.product_path.desc)))
+		.["hidden_records"] += list(list(
+			"name" = prodname,
+			"color" = R.display_color,
+			"index" = GetProductIndex(R),
+			"category" = R.category,
+			"price" = R.price,
+			"img" = icon2base64(icon(initial(R.product_path.icon), initial(R.product_path.icon_state))),
+			"desc" = initial(R.product_path.desc)
+		))
 	for(var/datum/data/vending_product/R in coin_records)
 		var/prodname = adminscrub(R.product_name)
-		.["coin_records"] += list(list("product_name" = prodname, "product_color" = R.display_color, "prod_index" = GetProductIndex(R), "prod_cat" = R.category, "prod_price" = R.price, "prod_desc" = initial(R.product_path.desc)))
+		.["coin_records"] += list(list(
+			"name" = prodname,
+			"color" = R.display_color,
+			"index" = GetProductIndex(R),
+			"category" = R.category,
+			"price" = R.price,
+			"img" = icon2base64(icon(initial(R.product_path.icon), initial(R.product_path.icon_state))),
+			"desc" = initial(R.product_path.desc)
+		))
 
 	.["premium_length"] = premium.len
 

@@ -1,3 +1,4 @@
+import { classes } from 'common/react';
 import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
 import { Button, Section, Box, LabeledList, ProgressBar, Modal, Divider } from '../components';
@@ -19,7 +20,7 @@ export const Vending = (props, context) => {
   ] = useLocalState(context, 'showEmpty', 0);
 
   return (
-    <Window>
+    <Window title={data.vendor_name} width={500} height={550}>
       {showDesc ? (
         <Modal width="400px">
           <Box>{showDesc}</Box>
@@ -115,21 +116,13 @@ const Premium = (props, context) => {
             {coin_records.map(coin_record => {
               const {
                 id,
-                prod_index,
-                prod_cat,
-                product_color,
-                product_name,
-                prod_desc,
+                index,
               } = coin_record;
               return (
                 <ProductEntry
-                  stock={coin_stock[prod_index]}
+                  stock={coin_stock[index]}
                   key={id}
-                  prod_index={prod_index}
-                  prod_cat={prod_cat}
-                  product_color={product_color}
-                  product_name={product_name}
-                  prod_desc={prod_desc} />
+                  {...display_record} />
               );
             })}
           </LabeledList>
@@ -147,11 +140,12 @@ const ProductEntry = (props, context) => {
 
   const {
     stock,
-    prod_index,
-    prod_cat,
-    product_color,
-    product_name,
-    prod_desc,
+    index,
+    category,
+    color,
+    name,
+    desc,
+    path,
   } = props;
 
   const [
@@ -177,23 +171,29 @@ const ProductEntry = (props, context) => {
           <Box inline width="4px" />
           <Button
             selected={currently_vending_index
-              === prod_index}
+              === index}
             onClick={() => act(
               'vend',
-              { vend: prod_index,
-                cat: prod_cat })}
+              { vend: index,
+                cat: category })}
             disabled={!stock}>
-            <Box color={product_color} bold={1}>
+            <Box color={color} bold={1}>
               Vend
             </Box>
           </Button>
         </Fragment>
       }
-      label={decodeHtmlEntities(product_name)}>
-      {!!prod_desc && (
+      label={decodeHtmlEntities(name)}>
+      {!!desc && (
         <Button
-          onClick={() => setShowDesc(prod_desc)}>?
+          onClick={() => setShowDesc(desc)}>?
         </Button>)}
+      <span
+        className={classes(['vending32x32', path])}
+        style={{
+          'horizontal-align': 'middle',
+          'vertical-align': 'middle',
+        }} />
     </LabeledListItem>
   );
 };
@@ -212,21 +212,17 @@ const Hacked = (props, context) => {
         {hidden_records.map(hidden_record => {
           const {
             id,
-            prod_index,
-            prod_cat,
-            product_color,
-            product_name,
-            prod_desc,
+            index,
+            cat,
+            color,
+            name,
+            desc,
           } = hidden_record;
           return (
             <ProductEntry
-              stock={hidden_stock[prod_index]}
+              stock={hidden_stock[index]}
               key={id}
-              prod_index={prod_index}
-              prod_cat={prod_cat}
-              product_color={product_color}
-              product_name={product_name}
-              prod_desc={prod_desc} />
+              {...display_record} />
           );
         })}
       </LabeledList>
@@ -256,22 +252,14 @@ const Products = (props, context) => {
           displayed_records.map(display_record => {
             const {
               id,
-              prod_index,
-              prod_cat,
-              product_color,
-              product_name,
-              prod_desc,
+              index,
             } = display_record;
             return (
-              ((showEmpty || !!displayed_stock[prod_index]) && (
+              ((showEmpty || !!displayed_stock[index]) && (
                 <ProductEntry
-                  stock={displayed_stock[prod_index]}
+                  stock={displayed_stock[index]}
                   key={id}
-                  prod_index={prod_index}
-                  prod_cat={prod_cat}
-                  product_color={product_color}
-                  product_name={product_name}
-                  prod_desc={prod_desc} />
+                  {...display_record} />
               ))
             );
           })

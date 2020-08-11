@@ -34,7 +34,7 @@ var opts = {
 	'wasd': false, //Is the user in wasd mode?
 	'priorChatHeight': 0, //Thing for height-resizing detection
 	'restarting': false, //Is the round restarting?
-	'darkmode':false, //Are we using darkmode?
+	'darkmode':false, //Are we using darkmode? If not WHY ARE YOU LIVING IN 2009???
 
 	//Options menu
 	'selectedSubLoop': null, //Contains the interval loop for closing the selected sub menu
@@ -42,10 +42,13 @@ var opts = {
 	'highlightTerms': [],
 	'highlightLimit': 5,
 	'highlightColor': '#FFFF00', //The color of the highlighted message
+	'pingDisabled': false, //Has the user disabled the ping counter
 
 	//Ping display
 	'lastPang': 0, //Timestamp of the last response from the server.
 	'pangLimit': 35000,
+	'pingTime': 0, //Timestamp of when ping sent
+	'pongTime': 0, //Timestamp of when ping received
 	'noResponse': false, //Tracks the state of the previous ping request
 	'noResponseCount': 0, //How many failed pings?
 
@@ -55,7 +58,7 @@ var opts = {
 	'preventFocus': false, //Prevents switching focus to the game window
 
 	//Client Connection Data
-	'clientDataLimit': 5, //Should match MAX_COOKIE_LENGTH in browserOutput.dm
+	'clientDataLimit': 5,
 	'clientData': [],
 
 	//Admin music volume update
@@ -197,40 +200,40 @@ function getTextNodes(elem, pattern) {
 	return result;
 }
 
-	// Highlight all text terms matching the registered regex patterns
-	function highlightTerms(el) {
-		var pattern = new RegExp("(" + opts.highlightTerms.join('|') + ")", 'gi');
-		var nodes = getTextNodes(el, pattern);
+// Highlight all text terms matching the registered regex patterns
+function highlightTerms(el) {
+	var pattern = new RegExp("(" + opts.highlightTerms.join('|') + ")", 'gi');
+	var nodes = getTextNodes(el, pattern);
 
-		nodes.each(function (idx, node) {
-			var content = $(node).text();
-			var parent = $(node).parent();
-			var pre = $(node.previousSibling);
-			$(node).remove();
-			content.split(pattern).forEach(function (chunk) {
-				// Get our highlighted span/text node
-				var toInsert = null;
-				if (pattern.test(chunk)) {
-					var tmpElem = $(createHighlightMarkup());
-					tmpElem.text(chunk);
-					toInsert = tmpElem;
-				}
-				else {
-					toInsert = document.createTextNode(chunk);
-				}
+	nodes.each(function (idx, node) {
+		var content = $(node).text();
+		var parent = $(node).parent();
+		var pre = $(node.previousSibling);
+		$(node).remove();
+		content.split(pattern).forEach(function (chunk) {
+			// Get our highlighted span/text node
+			var toInsert = null;
+			if (pattern.test(chunk)) {
+				var tmpElem = $(createHighlightMarkup());
+				tmpElem.text(chunk);
+				toInsert = tmpElem;
+			}
+			else {
+				toInsert = document.createTextNode(chunk);
+			}
 
-				// Insert back into our element
-				if (pre.length == 0) {
-					var result = parent.prepend(toInsert);
-					pre = $(result[0].firstChild);
-				}
-				else {
-					pre.after(toInsert);
-					pre = $(pre[0].nextSibling);
-				}
-			});
+			// Insert back into our element
+			if (pre.length == 0) {
+				var result = parent.prepend(toInsert);
+				pre = $(result[0].firstChild);
+			}
+			else {
+				pre.after(toInsert);
+				pre = $(pre[0].nextSibling);
+			}
 		});
-	}
+	});
+}
 
 function iconError(E) {
 	var that = this;
@@ -466,12 +469,11 @@ function toHex(n) {
 }
 
 function swap() { //Swap to darkmode
-	if(opts.darkmode) {
+	if (opts.darkmode){
 		document.getElementById("sheetofstyles").href = "browserOutput_white.css";
 		opts.darkmode = false;
 		runByond('?_src_=chat&proc=swaptolightmode');
-	}
-	else {
+	} else {
 		document.getElementById("sheetofstyles").href = "browserOutput.css";
 		opts.darkmode = true;
 		runByond('?_src_=chat&proc=swaptodarkmode');
@@ -514,6 +516,18 @@ function ehjaxCallback(data) {
 		opts.pingCounter = 0; //reset
 		opts.pingTime = Date.now();
 		runByond('?_src_=chat&proc=ping');
+
+	} else if (data == 'pong') {
+		if (opts.pingDisabled) {return;}
+		opts.pongTime = Date.now();
+		var pingDuration = Math.ceil((opts.pongTime - opts.pingTime) / 2);
+		$('#pingMs').text(pingDuration+'ms');
+		pingDuration = Math.min(pingDuration, 255);
+		var red = pingDuration;
+		var green = 255 - pingDuration;
+		var blue = 0;
+		var hex = rgbToHex(red, green, blue);
+		$('#pingDot').css('color', '#'+hex);
 
 	} else if (data == 'roundrestart') {
 		opts.restarting = true;
@@ -714,6 +728,7 @@ $(function() {
 	var savedConfig = {
 		fontsize: getCookie('fontsize'),
 		lineheight: getCookie('lineheight'),
+		'spingDisabled': getCookie('pingdisabled'),
 		'shighlightTerms': getCookie('highlightterms'),
 		'shighlightColor': getCookie('highlightcolor'),
 		'smusicVolume': getCookie('musicVolume'),
@@ -731,6 +746,13 @@ $(function() {
 	}
 	if(savedConfig.sdarkmode == 'true'){
 		swap();
+	}
+	if (savedConfig.spingDisabled) {
+		if (savedConfig.spingDisabled == 'true') {
+			opts.pingDisabled = true;
+			$('#ping').hide();
+		}
+		internalOutput('<span class="internal boldnshit">Loaded ping display of: '+(opts.pingDisabled ? 'hidden' : 'visible')+'</span>', 'internal');
 	}
 	if (savedConfig.shighlightTerms) {
 		var savedTerms = $.parseJSON(savedConfig.shighlightTerms).filter(function (entry) {
@@ -765,8 +787,6 @@ $(function() {
 			opts.messageCombining = true;
 		}
 	}
-
-
 	(function() {
 		var dataCookie = getCookie('connData');
 		if (dataCookie) {
@@ -836,76 +856,17 @@ $(function() {
 			href = escaper(href);
 			runByond('?action=openLink&link='+href);
 		}
+		runByond('byond://winset?mapwindow.map.focus=true');
 	});
 
-	//Fuck everything about this event. Will look into alternatives.
 	$('body').on('keydown', function(e) {
 		if (e.target.nodeName == 'INPUT' || e.target.nodeName == 'TEXTAREA') {
 			return;
 		}
-
 		if (e.ctrlKey || e.altKey || e.shiftKey) { //Band-aid "fix" for allowing ctrl+c copy paste etc. Needs a proper fix.
 			return;
 		}
-
-		e.preventDefault()
-
-		var k = e.which;
-		// Hardcoded because else there would be no feedback message.
-		if (k == 113) { // F2
-			runByond('byond://winset?screenshot=auto');
-			internalOutput('Screenshot taken', 'internal');
-		}
-
-		var c = "";
-		switch (k) {
-			case 8:
-				c = 'BACK';
-			case 9:
-				c = 'TAB';
-			case 13:
-				c = 'ENTER';
-			case 19:
-				c = 'PAUSE';
-			case 27:
-				c = 'ESCAPE';
-			case 33: // Page up
-				c = 'NORTHEAST';
-			case 34: // Page down
-				c = 'SOUTHEAST';
-			case 35: // End
-				c = 'SOUTHWEST';
-			case 36: // Home
-				c = 'NORTHWEST';
-			case 37:
-				c = 'WEST';
-			case 38:
-				c = 'NORTH';
-			case 39:
-				c = 'EAST';
-			case 40:
-				c = 'SOUTH';
-			case 45:
-				c = 'INSERT';
-			case 46:
-				c = 'DELETE';
-			case 93: // That weird thing to the right of alt gr.
-				c = 'APPS';
-
-			default:
-				c = String.fromCharCode(k);
-		}
-
-		if (c.length == 0) {
-			if (!e.shiftKey) {
-				c = c.toLowerCase();
-			}
-			runByond('byond://winset?mapwindow.map.focus=true;mainwindow.input.text='+c);
-			return false;
-		} else {
-			runByond('byond://winset?mapwindow.map.focus=true');
-			return false;
-		}
+		runByond('byond://winset?mapwindow.map.focus=true');
 	});
 
 	//Mildly hacky fix for scroll issues on mob change (interface gets resized sometimes, messing up snap-scroll)
@@ -933,11 +894,9 @@ $(function() {
 	$('#toggleOptions').click(function(e) {
 		handleToggleClick($subOptions, $(this));
 	});
-
 	$('#darkmodetoggle').click(function(e) {
 		swap();
 	});
-
 	$('#toggleAudio').click(function(e) {
 		handleToggleClick($subAudio, $(this));
 	});
@@ -978,6 +937,17 @@ $(function() {
 		internalOutput('<span class="internal boldnshit">Line height set to '+savedConfig.lineheight+'</span>', 'internal');
 	});
 
+	$('#togglePing').click(function(e) {
+		if (opts.pingDisabled) {
+			$('#ping').slideDown('fast');
+			opts.pingDisabled = false;
+		} else {
+			$('#ping').slideUp('fast');
+			opts.pingDisabled = true;
+		}
+		setCookie('pingdisabled', (opts.pingDisabled ? 'true' : 'false'), 365);
+	});
+
 	$('#saveLog').click(function(e) {
 		// Requires IE 10+ to issue download commands. Just opening a popup
 		// window will cause Ctrl+S to save a blank page, ignoring innerHTML.
@@ -988,7 +958,7 @@ $(function() {
 
 		$.ajax({
 			type: 'GET',
-			url: 'browserOutput.css',
+			url: 'browserOutput_white.css',
 			success: function(styleData) {
 				var blob = new Blob(['<head><title>Chat Log</title><style>', styleData, '</style></head><body>', $messages.html(), '</body>']);
 

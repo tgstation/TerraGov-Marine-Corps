@@ -127,12 +127,11 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 	return TRUE
 
-/obj/machinery/marine_selector/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
-										datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/marine_selector/ui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 
 	if(!ui)
-		ui = new(user, src, ui_key, "MarineSelector", name, ui_x, ui_y, master_ui, state)
+		ui = new(user, src, "MarineSelector")
 		ui.open()
 
 /obj/machinery/marine_selector/ui_static_data(mob/user)
@@ -682,7 +681,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	gives_webbing = FALSE
 
 	listed_products = list(
-		/obj/effect/essentials_set/commander = list(CAT_STD, "Standard Commander kit ", 0, "white"), 
+		/obj/effect/essentials_set/commander = list(CAT_STD, "Standard Commander kit ", 0, "white"),
 		/obj/effect/essentials_set/modular/infantry = list(CAT_AMR, "Infantry Jaeger kit", 0, "black"),
 		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Skirmisher Jaeger kit", 0, "black"),
 		/obj/effect/essentials_set/modular/assault = list(CAT_AMR, "Assault Jaeger kit", 0, "black"),

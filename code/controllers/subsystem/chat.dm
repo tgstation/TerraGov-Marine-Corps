@@ -52,7 +52,7 @@ SUBSYSTEM_DEF(chat)
 			//Send it to the old style output window.
 			SEND_TEXT(C, original_message)
 
-			if(!C.chatOutput?.working) //A player who hasn't updated his skin file.
+			if(C.chatOutput?.broken) //A player who hasn't updated his skin file.
 				continue
 
 			if(!C.chatOutput.loaded) //Client still loading, put their messages in a queue
@@ -72,7 +72,7 @@ SUBSYSTEM_DEF(chat)
 		//Send it to the old style output window.
 		SEND_TEXT(C, original_message)
 
-		if(!C?.chatOutput?.working) //A player who hasn't updated his skin file.
+		if(C?.chatOutput?.broken) //A player who hasn't updated his skin file.
 			return
 
 		if(!C.chatOutput.loaded) //Client still loading, put their messages in a queue

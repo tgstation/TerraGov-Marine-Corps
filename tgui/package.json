@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "tgui",
-  "version": "3.0.0",
+  "version": "4.1.0",
   "workspaces": [
     "packages/*"
   ],
@@ -9,12 +9,11 @@
     "build": "eslint packages && cd packages/tgui && npx webpack --mode=production",
     "watch": "cd packages/tgui-dev-server && node --experimental-modules index.js",
     "analyze": "cd packages/tgui && npx webpack --mode=production --env.analyze=1",
-    "lint": "eslint packages",
-    "fix": "eslint packages --fix"
+    "lint": "eslint packages"
   },
   "dependencies": {
     "babel-eslint": "^10.0.3",
-    "eslint": "^6.7.2",
+    "eslint": "^7.4.0",
     "eslint-plugin-react": "^7.17.0"
   }
 }

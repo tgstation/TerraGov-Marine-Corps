@@ -111,6 +111,7 @@ window "mainwindow"
 		anchor1 = none
 		anchor2 = none
 		is-visible = false
+		auto-format = false
 		saved-params = ""
 	elem "tooltip"
 		type = BROWSER

@@ -30,18 +30,12 @@
 	if(!usr || usr != mob)	//stops us calling Topic for somebody else's client. Also helps prevent usr=null
 		return
 
-	//Asset cache
-	var/job
+	// asset_cache
+	var/asset_cache_job
 	if(href_list["asset_cache_confirm_arrival"])
-		job = round(text2num(href_list["asset_cache_confirm_arrival"]))
-		//because we skip the limiter, we have to make sure this is a valid arrival and not somebody tricking us
-		//into letting append to a list without limit.
-		if(job > 0 && job <= last_asset_job && !(job in completed_asset_jobs))
-			completed_asset_jobs += job
+		asset_cache_job = asset_cache_confirm_arrival(href_list["asset_cache_confirm_arrival"])
+		if (!asset_cache_job)
 			return
-		else if(job in completed_asset_jobs) //byond bug ID:2256651
-			to_chat(src, "<span class='danger'>An error has been detected in how your client is receiving resources. Attempting to correct.... (If you keep seeing these messages you might want to close byond and reconnect)</span>")
-			src << browse("...", "window=asset_cache_browser")
 
 
 	var/mtl = CONFIG_GET(number/minute_topic_limit)
@@ -81,10 +75,29 @@
 		log_href("[src] (usr:[usr]\[[COORD(usr)]\]) : [hsrc ? "[hsrc] " : ""][href]")
 
 	//byond bug ID:2256651
-	if(job && (job in completed_asset_jobs))
+	if (asset_cache_job && (asset_cache_job in completed_asset_jobs))
 		to_chat(src, "<span class='danger'>An error has been detected in how your client is receiving resources. Attempting to correct.... (If you keep seeing these messages you might want to close byond and reconnect)</span>")
 		src << browse("...", "window=asset_cache_browser")
+		return
+	if (href_list["asset_cache_preload_data"])
+		asset_cache_preload_data(href_list["asset_cache_preload_data"])
+		return
 
+	// // Keypress passthrough
+	// if(href_list["__keydown"])
+	// 	var/keycode = browser_keycode_to_byond(href_list["__keydown"])
+	// 	if(keycode)
+	// 		keyDown(keycode)
+	// 	return
+	// if(href_list["__keyup"])
+	// 	var/keycode = browser_keycode_to_byond(href_list["__keyup"])
+	// 	if(keycode)
+	// 		keyUp(keycode)
+	// 	return
+
+	// Tgui Topic middleware
+	if(!tgui_Topic(href_list))
+		return
 
 	//Admin PM
 	if(href_list["priv_msg"])
@@ -132,7 +145,7 @@
 
 /client/New(TopicData)
 	var/tdata = TopicData //save this for later use
-	chatOutput = new /datum/chatOutput(src)
+	chatOutput = new /datum/chat_output(src)
 	TopicData = null	//Prevent calls to client.Topic from connect
 
 	if(connection != "seeker" && connection != "web")	//Invalid connection type.
@@ -420,14 +433,18 @@
 	return FALSE
 
 
-//send resources to the client. It's here in its own proc so we can move it around easiliy if need be
+/// Send resources to the client. It's here in its own proc so we can move it around easiliy if need be
 /client/proc/send_assets()
 	//get the common files
 	getFiles(
 		'html/browser/search.js',
 		'html/browser/panels.css',
-		'html/browser/common.css'
-		)
+		'html/browser/common.css',
+	)
+
+	//load info on what assets the client has
+	src << browse('code/modules/asset_cache/validate_assets.html', "window=asset_cache_browser")
+
 	spawn(10) //removing this spawn causes all clients to not get verbs.
 		//Precache the client with all other assets slowly, so as to not block other browse() calls
 		getFilesSlow(src, SSassets.preload, register_asset = FALSE)
