@@ -45,22 +45,24 @@ export const PortableBasicInfo = (props, context) => {
             disabled={!holding}
             onClick={() => act('eject')} />
         )}>
-        {holding ? (
-          <LabeledList>
-            <LabeledList.Item label="Label">
-              {holding.name}
-            </LabeledList.Item>
-            <LabeledList.Item label="Pressure">
-              <AnimatedNumber
-                value={holding.pressure} />
-              {' kPa'}
-            </LabeledList.Item>
-          </LabeledList>
-        ) : (
-          <Box color="average">
-            No holding tank
-          </Box>
-        )}
+        {holding
+          ? (
+            <LabeledList>
+              <LabeledList.Item label="Label">
+                {holding.name}
+              </LabeledList.Item>
+              <LabeledList.Item label="Pressure">
+                <AnimatedNumber
+                  value={holding.pressure} />
+                {' kPa'}
+              </LabeledList.Item>
+            </LabeledList>
+          )
+          : (
+            <Box color="average">
+              No holding tank
+            </Box>
+          )}
       </Section>
     </Fragment>
   );

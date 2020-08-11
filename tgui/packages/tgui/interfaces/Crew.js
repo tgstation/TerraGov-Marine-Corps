@@ -93,11 +93,9 @@ export const Crew = (props, context) => {
                   )}
                 </Table.Cell>
                 <Table.Cell>
-                  {crewmember.sensor_type === 3 ? (
-                    crewmember.area+" "+crewmember.x+", "+crewmember.y
-                  ) : (
-                    "Not Available"
-                  )}
+                  {crewmember.sensor_type === 3
+                    ? (`${crewmember.area} ${crewmember.x}, ${crewmember.y}`)
+                    : ("Not Available")}
                 </Table.Cell>
               </Table.Row>
             ))}

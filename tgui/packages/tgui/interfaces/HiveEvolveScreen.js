@@ -26,17 +26,19 @@ const CasteView = props => {
 
   return (
     <Section title={`${props.name} - Abilities`}>
-      {props.abilites ? (
-        abilites.map(ability => (
-          <Button
-            fluid={1}
-            key={ability.name}
-            color="transparent"
-            tooltip={ability.desc}
-            tooltipPosition={"bottom"}
-            content={ability.name} />
-        ))
-      ) : "This caste has no abilites"}
+      {props.abilites
+        ? (
+          abilites.map(ability => (
+            <Button
+              fluid={1}
+              key={ability.name}
+              color="transparent"
+              tooltip={ability.desc}
+              tooltipPosition={"bottom"}
+              content={ability.name} />
+          ))
+        )
+        : "This caste has no abilites"}
     </Section>
   );
 };

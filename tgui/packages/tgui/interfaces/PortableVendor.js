@@ -21,17 +21,19 @@ export const PortableVendor = (props, context) => {
         )}
         {data.displayed_records.map(display_record => (
           <Section key={display_record.id}>
-            {display_record.prod_color ? (
-              <Button
-                disabled={!display_record.prod_available}
-                onClick={() => act(
-                  'vend',
-                  { vend: display_record.prod_index })}>
-                {display_record.prod_name}
-              </Button>
-            ) : (
-              <Box>{display_record.prod_name}</Box>
-            )}
+            {display_record.prod_color
+              ? (
+                <Button
+                  disabled={!display_record.prod_available}
+                  onClick={() => act(
+                    'vend',
+                    { vend: display_record.prod_index })}>
+                  {display_record.prod_name}
+                </Button>
+              )
+              : (
+                <Box>{display_record.prod_name}</Box>
+              )}
             {display_record.prod_desc && (
               <Box>{display_record.prod_desc}</Box>
             )}

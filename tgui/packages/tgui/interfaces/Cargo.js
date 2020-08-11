@@ -340,19 +340,21 @@ const Pack = (props, context) => {
     contains,
   } = supplypackscontents[pack];
   return (
-    !!contains && (contains.constructor === Object) ? (
-      <Collapsible
-        color="gray"
-        title={
-          <PackName cost={cost} name={name} pl={0} />
-        }>
-        <Table>
-          <PackContents contains={contains} />
-        </Table>
-      </Collapsible>
-    ) : (
-      <PackName cost={cost} name={name} pl="22px" />
-    )
+    !!contains && (contains.constructor === Object)
+      ? (
+        <Collapsible
+          color="gray"
+          title={
+            <PackName cost={cost} name={name} pl={0} />
+          }>
+          <Table>
+            <PackContents contains={contains} />
+          </Table>
+        </Collapsible>
+      )
+      : (
+        <PackName cost={cost} name={name} pl="22px" />
+      )
   );
 };
 

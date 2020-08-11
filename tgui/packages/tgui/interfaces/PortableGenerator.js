@@ -2,6 +2,22 @@ import { useBackend } from '../backend';
 import { Box, Button, LabeledList, NoticeBox, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 
+const getHeatStatus = heat => {
+  let color = "average";
+  let message = "Caution";
+  if (heat < 100) {
+    color = "good";
+    message = "Nominal";
+  } else if (heat < 200) {
+    color = "average";
+    message = "Caution";
+  } else {
+    color = "bad";
+    message = "DANGER";
+  }
+  return (<Box inline color="average">Caution</Box>);
+};
+
 export const PortableGenerator = (props, context) => {
   const { act, data } = useBackend(context);
   const {
@@ -50,15 +66,7 @@ export const PortableGenerator = (props, context) => {
                 }} />
             </LabeledList.Item>
             <LabeledList.Item label="Heat level">
-              {data.current_heat < 100 ? (
-                <Box inline color="good">Nominal</Box>
-              ) : (
-                data.current_heat < 200 ? (
-                  <Box inline color="average">Caution</Box>
-                ) : (
-                  <Box inline color="bad">DANGER</Box>
-                )
-              )}
+              {getHeatStatus(data.current_heat)}
             </LabeledList.Item>
           </LabeledList>
         </Section>

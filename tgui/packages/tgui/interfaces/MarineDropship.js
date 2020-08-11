@@ -9,14 +9,16 @@ export const MarineDropship = (props, context) => {
   return (
     <Window>
       <Window.Content scrollable>
-        {!data.hijack_state ? (
-          <NoticeBox>
-            <Box>POSSIBLE HIJACK</Box>
-            <Box>SYSTEMS REBOOTING...</Box>
-          </NoticeBox>
-        ) : (
-          <NormalOperation />
-        )}
+        {!data.hijack_state
+          ? (
+            <NoticeBox>
+              <Box>POSSIBLE HIJACK</Box>
+              <Box>SYSTEMS REBOOTING...</Box>
+            </NoticeBox>
+          )
+          : (
+            <NormalOperation />
+          )}
       </Window.Content>
     </Window>
   );

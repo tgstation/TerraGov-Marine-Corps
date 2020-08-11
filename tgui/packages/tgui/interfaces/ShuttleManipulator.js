@@ -116,7 +116,7 @@ export const ShuttleManipulatorTemplates = (props, context) => {
                 key={templateId}
                 selected={selectedTemplateId === templateId}
                 onClick={() => setSelectedTemplateId(templateId)}>
-                {template.port_id}
+                {template.templates[0].name || templateId}
               </Tabs.Tab>
             ))(templateObject)}
           </Tabs>
@@ -142,20 +142,27 @@ export const ShuttleManipulatorTemplates = (props, context) => {
                 )}>
                 {(!!actualTemplate.description
                   || !!actualTemplate.admin_notes
-                ) && (
-                  <LabeledList>
-                    {!!actualTemplate.description && (
-                      <LabeledList.Item label="Description">
-                        {actualTemplate.description}
-                      </LabeledList.Item>
-                    )}
-                    {!!actualTemplate.admin_notes && (
-                      <LabeledList.Item label="Admin Notes">
-                        {actualTemplate.admin_notes}
-                      </LabeledList.Item>
-                    )}
-                  </LabeledList>
-                )}
+                )
+                  ? (
+                    <LabeledList>
+                      {!!actualTemplate.description && (
+                        <LabeledList.Item label="Description">
+                          {actualTemplate.description}
+                        </LabeledList.Item>
+                      )}
+                      {!!actualTemplate.admin_notes && (
+                        <LabeledList.Item label="Admin Notes">
+                          {actualTemplate.admin_notes}
+                        </LabeledList.Item>
+                      )}
+                    </LabeledList>
+                  )
+                  : (
+                    <span>
+                      This shuttle doesn&apos;t have a description
+                      or any admin notes.
+                    </span>
+                  )}
               </Section>
             );
           })}
@@ -171,72 +178,76 @@ export const ShuttleManipulatorModification = (props, context) => {
   const existingShuttle = data.existing_shuttle || {};
   return (
     <Section>
-      {selected ? (
-        <Fragment>
-          <Section
-            level={2}
-            title={selected.name}>
-            {(!!selected.description || !!selected.admin_notes) && (
-              <LabeledList>
-                {!!selected.description && (
-                  <LabeledList.Item label="Description">
-                    {selected.description}
-                  </LabeledList.Item>
-                )}
-                {!!selected.admin_notes && (
-                  <LabeledList.Item label="Admin Notes">
-                    {selected.admin_notes}
-                  </LabeledList.Item>
-                )}
-              </LabeledList>
-            )}
-          </Section>
-          {existingShuttle ? (
+      {selected
+        ? (
+          <Fragment>
             <Section
               level={2}
-              title={'Existing Shuttle: ' + existingShuttle.name}>
-              <LabeledList>
-                <LabeledList.Item
-                  label="Status"
-                  buttons={(
-                    <Button
-                      content="Jump To"
-                      onClick={() => act('jump_to', {
-                        type: 'mobile',
-                        id: existingShuttle.id,
-                      })} />
-                  )}>
-                  {existingShuttle.status}
-                  {!!existingShuttle.timer && (
-                    <Fragment>
-                      ({existingShuttle.timeleft})
-                    </Fragment>
+              title={selected.name}>
+              {(!!selected.description || !!selected.admin_notes) && (
+                <LabeledList>
+                  {!!selected.description && (
+                    <LabeledList.Item label="Description">
+                      {selected.description}
+                    </LabeledList.Item>
                   )}
-                </LabeledList.Item>
-              </LabeledList>
+                  {!!selected.admin_notes && (
+                    <LabeledList.Item label="Admin Notes">
+                      {selected.admin_notes}
+                    </LabeledList.Item>
+                  )}
+                </LabeledList>
+              )}
             </Section>
-          ) : (
+            {existingShuttle
+              ? (
+                <Section
+                  level={2}
+                  title={'Existing Shuttle: ' + existingShuttle.name}>
+                  <LabeledList>
+                    <LabeledList.Item
+                      label="Status"
+                      buttons={(
+                        <Button
+                          content="Jump To"
+                          onClick={() => act('jump_to', {
+                            type: 'mobile',
+                            id: existingShuttle.id,
+                          })} />
+                      )}>
+                      {existingShuttle.status}
+                      {!!existingShuttle.timer && (
+                        <Fragment>
+                          ({existingShuttle.timeleft})
+                        </Fragment>
+                      )}
+                    </LabeledList.Item>
+                  </LabeledList>
+                </Section>
+              )
+              : (
+                <Section
+                  level={2}
+                  title="Existing Shuttle: None" />
+              )}
             <Section
               level={2}
-              title="Existing Shuttle: None" />
-          )}
-          <Section
-            level={2}
-            title="Status">
-            <Button
-              content="Preview"
-              onClick={() => act('preview', {
-                shuttle_id: selected.shuttle_id,
-              })} />
-            <Button
-              content="Load"
-              color="bad"
-              onClick={() => act('load', {
-                shuttle_id: selected.shuttle_id,
-              })} />
-          </Section>
-        </Fragment>
-      ) : 'No shuttle selected'}
+              title="Status">
+              <Button
+                content="Preview"
+                onClick={() => act('preview', {
+                  shuttle_id: selected.shuttle_id,
+                })} />
+              <Button
+                content="Load"
+                color="bad"
+                onClick={() => act('load', {
+                  shuttle_id: selected.shuttle_id,
+                })} />
+            </Section>
+          </Fragment>
+        )
+        : 'No shuttle selected'}
     </Section>
   );
 };

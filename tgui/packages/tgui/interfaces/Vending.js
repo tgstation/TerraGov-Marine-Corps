@@ -20,20 +20,22 @@ export const Vending = (props, context) => {
 
   return (
     <Window>
-      {showDesc ? (
-        <Modal width="400px">
-          <Box>{showDesc}</Box>
-          <Button
-            content="Dismiss"
-            onClick={() => setShowDesc(null)} />
-        </Modal>
-      ) : (
-        data.currently_vending_name && (
+      {showDesc
+        ? (
           <Modal width="400px">
-            <Buying />
+            <Box>{showDesc}</Box>
+            <Button
+              content="Dismiss"
+              onClick={() => setShowDesc(null)} />
           </Modal>
         )
-      )}
+        : (
+          data.currently_vending_name && (
+            <Modal width="400px">
+              <Buying />
+            </Modal>
+          )
+        )}
       <div>
         <div
           className="VendingWindow__header">
@@ -250,32 +252,34 @@ const Products = (props, context) => {
   return (
     <Section>
       <LabeledList>
-        {displayed_records.length === 0 ? (
-          <Box color="red">No product loaded!</Box>
-        ) : (
-          displayed_records.map(display_record => {
-            const {
-              id,
-              prod_index,
-              prod_cat,
-              product_color,
-              product_name,
-              prod_desc,
-            } = display_record;
-            return (
-              ((showEmpty || !!displayed_stock[prod_index]) && (
-                <ProductEntry
-                  stock={displayed_stock[prod_index]}
-                  key={id}
-                  prod_index={prod_index}
-                  prod_cat={prod_cat}
-                  product_color={product_color}
-                  product_name={product_name}
-                  prod_desc={prod_desc} />
-              ))
-            );
-          })
-        )}
+        {displayed_records.length === 0
+          ? (
+            <Box color="red">No product loaded!</Box>
+          )
+          : (
+            displayed_records.map(display_record => {
+              const {
+                id,
+                prod_index,
+                prod_cat,
+                product_color,
+                product_name,
+                prod_desc,
+              } = display_record;
+              return (
+                ((showEmpty || !!displayed_stock[prod_index]) && (
+                  <ProductEntry
+                    stock={displayed_stock[prod_index]}
+                    key={id}
+                    prod_index={prod_index}
+                    prod_cat={prod_cat}
+                    product_color={product_color}
+                    product_name={product_name}
+                    prod_desc={prod_desc} />
+                ))
+              );
+            })
+          )}
       </LabeledList>
     </Section>
   );

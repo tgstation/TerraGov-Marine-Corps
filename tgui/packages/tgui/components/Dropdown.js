@@ -26,8 +26,7 @@ export class Dropdown extends Component {
     if (open) {
       setTimeout(() => window.addEventListener('click', this.handleClick));
       this.menuRef.focus();
-    }
-    else {
+    } else {
       window.removeEventListener('click', this.handleClick);
     }
   }
@@ -68,27 +67,28 @@ export class Dropdown extends Component {
       disabled,
       ...boxProps
     } = props;
-    const {
-      className,
-      ...rest
-    } = boxProps;
+    const { className, ...rest } = boxProps;
 
     const adjustedOpen = over ? !this.state.open : this.state.open;
 
-    const menu = this.state.open ? (
-      <div
-        ref={menu => { this.menuRef = menu; }}
-        tabIndex="-1"
-        style={{
-          'width': width,
-        }}
-        className={classes([
-          noscroll && 'Dropdown__menu-noscroll' || 'Dropdown__menu',
-          over && 'Dropdown__over',
-        ])}>
-        {this.buildMenu()}
-      </div>
-    ) : null;
+    const menu = this.state.open
+      ? (
+        <div
+          ref={menu => {
+            this.menuRef = menu;
+          }}
+          tabIndex="-1"
+          style={{
+            width: width,
+          }}
+          className={classes([
+            (noscroll && 'Dropdown__menu-noscroll') || 'Dropdown__menu',
+            over && 'Dropdown__over',
+          ])}>
+          {this.buildMenu()}
+        </div>
+      )
+      : null;
 
     return (
       <div className="Dropdown">
@@ -108,9 +108,7 @@ export class Dropdown extends Component {
             }
             this.setOpen(!this.state.open);
           }}>
-          <span className="Dropdown__selected-text">
-            {this.state.selected}
-          </span>
+          <span className="Dropdown__selected-text">{this.state.selected}</span>
           {!!nochevron || (
             <span className="Dropdown__arrow-button">
               <Icon name={adjustedOpen ? 'chevron-up' : 'chevron-down'} />
