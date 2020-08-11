@@ -483,9 +483,9 @@
 	if(isnestedhost(src))
 		return
 
-	if(COOLDOWN_CHECK(src, COOLDOWN_ACID))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ACID))
 		return
-	COOLDOWN_START(src, COOLDOWN_ACID, 2 SECONDS)
+	TIMER_COOLDOWN_START(src, COOLDOWN_ACID, 2 SECONDS)
 
 	if(isxenopraetorian(X))
 		GLOB.round_statistics.praetorian_spray_direct_hits++
