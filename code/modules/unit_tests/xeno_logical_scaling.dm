@@ -35,13 +35,17 @@
 			var/current_value = greater_test_vars[stat]
 			var/new_value = initial(mob_data[XENO_UPGRADE_ZERO].vars[stat])
 			if(new_value < current_value)
-				Fail("Invalid stats on [xenopath]. It's [stat]@[XENO_UPGRADE_ZERO] has [new_value] compared to base value of [current_value]")
+				Fail("Invalid stats on [xenopath]. It's [stat]@[XENO_UPGRADE_ZERO] has [new_value] compared to base value of [current_value] (expected greater)")
 			current_value = new_value
 
 			for(var/upgrade in list(XENO_UPGRADE_ONE, XENO_UPGRADE_TWO, XENO_UPGRADE_THREE))
+				// We need to ignore upgrade_threshold on the last tier, since its never set
+				if(upgrade == XENO_UPGRADE_THREE && stat == "upgrade_threshold")
+					continue
+
 				new_value = initial(mob_data[upgrade].vars[stat])
 				if(new_value < current_value)
-					Fail("Invalid stats on [xenopath]. It's [stat]@[upgrade] has [new_value] compared to previous [current_value]")
+					Fail("Invalid stats on [xenopath]. It's [stat]@[upgrade] has [new_value] compared to previous [current_value] (expected greater)")
 				current_value = new_value
 
 		// Test for values that are should shrink with each level
@@ -49,7 +53,7 @@
 			var/current_value = lesser_test_vars[stat]
 			var/new_value = initial(mob_data[XENO_UPGRADE_ZERO].vars[stat])
 			if(new_value > current_value)
-				Fail("Invalid stats on [xenopath]. It's [stat]@[XENO_UPGRADE_ZERO] has [new_value] compared to base value of [current_value] (expected greater)")
+				Fail("Invalid stats on [xenopath]. It's [stat]@[XENO_UPGRADE_ZERO] has [new_value] compared to base value of [current_value] (expected lower)")
 			current_value = new_value
 
 			for(var/upgrade in list(XENO_UPGRADE_ONE, XENO_UPGRADE_TWO, XENO_UPGRADE_THREE))
