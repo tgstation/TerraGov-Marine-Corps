@@ -35,41 +35,40 @@
 
 
 /mob/proc/say_dead(message)
-	if(!client)
-		return
-
 	if(!check_rights(R_ADMIN, FALSE))
 		if(!GLOB.dsay_allowed)
 			to_chat(src, "<span class='warning'>Deadchat is globally muted</span>")
 			return
-		if(client.prefs.muted & MUTE_DEADCHAT)
-			to_chat(src, "<span class='warning'>You cannot emote in deadchat (muted).</span>")
-			return
-		if(client?.prefs && !(client.prefs.toggles_chat & CHAT_DEAD))
-			to_chat(usr, "<span class='warning'>You have deadchat muted.</span>")
-			return
-		if(client.handle_spam_prevention(message, MUTE_IC))
-			return
+		if(client)
+			if(client.prefs.muted & MUTE_DEADCHAT)
+				to_chat(src, "<span class='danger'>You cannot talk in deadchat (muted).</span>")
+				return
+			if(client?.prefs && !(client.prefs.toggles_chat & CHAT_DEAD))
+				to_chat(usr, "<span class='warning'>You have deadchat muted.</span>")
+				return
+			if(client.handle_spam_prevention(message, MUTE_DEADCHAT))
+				return
 
-	log_talk(message, LOG_SAY, "ghost")
+	var/name = "GHOST" // Just defined incase its empty
+	var/alt_name = ""
+	if(mind && mind.name)
+		name = "[mind.name]"
+	else
+		name = real_name
+	if(name != real_name)
+		alt_name = " (died as [real_name])"
 
-	for(var/i in GLOB.player_list)
-		var/mob/M = i
+	var/spanned = say_quote(message)
+	var/source = "<span class='game'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span>[alt_name]"
+	var/rendered = " <span class='message'>[emoji_parse(spanned)]</span></span>"
+	log_talk(message, LOG_SAY, tag = "DEAD")
+	if(SEND_SIGNAL(src, COMSIG_MOB_DEADSAY, message) & MOB_DEADSAY_SIGNAL_INTERCEPT)
+		return
+	var/displayed_key = key
+	if(client.holder?.fakekey)
+		displayed_key = null
 
-		if(isnewplayer(M))
-			continue
-
-		if(!(M.client.prefs.toggles_chat & CHAT_DEAD))
-			continue
-
-		// Admin links for name
-		var/name = real_name
-		if(check_other_rights(M.client, R_ADMIN, FALSE))
-			name = "<a class='hidelink' href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[name]</a>"
-
-		var/rendered = "[M != src ? FOLLOW_LINK(M, src) : ""] <span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span> says, <span class='message'>\"[emoji_parse(message)]\"</span></span>"
-		if(M.client && (M.stat == DEAD || check_other_rights(M.client, R_ADMIN, FALSE)))
-			to_chat(M, rendered)
+	deadchat_broadcast(rendered, source, follow_target = src, speaker_key = displayed_key)
 
 
 /mob/proc/get_message_mode(message)

@@ -416,6 +416,10 @@ GLOBAL_LIST_INIT(bitfields, list(
 	"toggles_gameplay" = list(
 		"RADIAL_MEDICAL" = RADIAL_MEDICAL
 		),
+	"toggles_deadchat" = list(
+		"DISABLE_DEATHRATTLE" = DISABLE_DEATHRATTLE,
+		"DEADCHAT_ARRIVALRATTLE" = DEADCHAT_ARRIVALRATTLE
+		),
 	"toggles_chat" = list(
 		"CHAT_OOC" = CHAT_OOC,
 		"CHAT_DEAD" = CHAT_DEAD,
