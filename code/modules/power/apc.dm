@@ -64,6 +64,7 @@
 	var/overload = 1 //Used for the Blackout malf module
 	var/beenhit = 0 //Used for counting how many times it has been hit, used for Aliens at the moment
 	var/longtermpower = 10
+	var/emergency_lights = FALSE
 	var/update_state = NONE
 	var/update_overlay = -1
 	var/global/status_overlays = 0
@@ -689,6 +690,7 @@
 		"chargingStatus" = charging,
 		"totalLoad" = DisplayPower(lastused_total),
 		"coverLocked" = coverlocked,
+		"emergency_lights" = emergency_lights,
 		"siliconUser" = issilicon(user),
 
 		"powerChannels" = list(
@@ -786,6 +788,13 @@
 			if(usr.has_unlimited_silicon_privilege)
 				overload_lighting()
 				. = TRUE
+		if("emergency_lighting")
+			emergency_lights = !emergency_lights
+			for(var/obj/machinery/light/L in area)
+				if(!initial(L.no_emergency)) //If there was an override set on creation, keep that override
+					L.no_emergency = emergency_lights
+					INVOKE_ASYNC(L, /obj/machinery/light/.proc/update, FALSE)
+				CHECK_TICK
 	return TRUE
 
 /obj/machinery/power/apc/proc/report()

@@ -124,14 +124,7 @@ const ApcContent = (props, context) => {
           </LabeledList.Item>
         </LabeledList>
       </Section>
-      <Section
-        title="Misc"
-        buttons={!!data.siliconUser && (
-          <Button
-            icon="lightbulb-o"
-            content="Overload"
-            onClick={() => act('overload')} />
-        )}>
+      <Section title="Misc">
         <LabeledList.Item
           label="Cover Lock"
           buttons={(
@@ -140,6 +133,15 @@ const ApcContent = (props, context) => {
               content={data.coverLocked ? 'Engaged' : 'Disengaged'}
               disabled={locked}
               onClick={() => act('cover')} />
+          )} />
+        <LabeledList.Item
+          label="Emergency Lighting"
+          buttons={(
+            <Button
+              icon={data.emergency_lights ? "lightbulb" : "lightbulb-o"}
+              content={data.emergency_lights ? 'Enabled' : 'Disabled'}
+              disabled={locked}
+              onClick={() => act('emergency_lighting')} />
           )} />
       </Section>
     </Fragment>
