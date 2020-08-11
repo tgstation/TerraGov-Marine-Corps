@@ -254,8 +254,6 @@
 
 /datum/proc/interact(mob/user) //Return value = handled (same as attack_hand)
 	user.set_interaction(src)
-	if(!(interaction_flags & INTERACT_SILICON_ALLOWED) && !IsAdminGhost(user))
-		return FALSE
 	if(interaction_flags & INTERACT_UI_INTERACT)
 		return ui_interact(user)
 	return FALSE
