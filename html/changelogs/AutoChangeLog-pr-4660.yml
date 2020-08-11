@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes: 
+  - refactor: "how deadchat is handled"

@@ -246,6 +246,8 @@
 	#define COMPONENT_ITEM_NO_ATTACK (1<<0)
 #define COMSIG_MOB_ITEM_AFTERATTACK "mob_item_afterattack"		//from base of obj/item/afterattack(): (atom/target, mob/user, proximity_flag, click_parameters)
 #define COMSIG_MOB_SAY "mob_say" 								// from /mob/living/say(): (proc args list)
+#define COMSIG_MOB_DEADSAY "mob_deadsay" 							// from /mob/living/say_dead(): (proc args list)
+	#define MOB_DEADSAY_SIGNAL_INTERCEPT (1<<0)
 #define COMSIG_MOB_LOGIN "mob_login"							//from /mob/Login(): ()
 #define COMSIG_MOB_LOGOUT "mob_logout"							//from /mob/Logout(): ()
 #define COMSIG_MOB_GUN_FIRED "mob_gun_fired"					//from gun system: (atom/target,obj/item/weapon/gun/gun, mob/living/user)
