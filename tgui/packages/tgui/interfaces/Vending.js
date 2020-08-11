@@ -122,7 +122,7 @@ const Premium = (props, context) => {
                 <ProductEntry
                   stock={coin_stock[index]}
                   key={id}
-                  {...display_record} />
+                  {...coin_record} />
               );
             })}
           </LabeledList>
@@ -213,16 +213,12 @@ const Hacked = (props, context) => {
           const {
             id,
             index,
-            cat,
-            color,
-            name,
-            desc,
           } = hidden_record;
           return (
             <ProductEntry
               stock={hidden_stock[index]}
               key={id}
-              {...display_record} />
+              {...hidden_record} />
           );
         })}
       </LabeledList>
