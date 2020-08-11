@@ -8,7 +8,7 @@
 	var/max_damage
 	var/probability
 	var/flags
-	// COOLDOWN_DECLARE(caltrop_cooldown)
+	COOLDOWN_DECLARE(caltrop_cooldown)
 
 
 /datum/component/caltrop/Initialize(_min_damage = 0, _max_damage = 0, _probability = 100,  _flags = NONE)
@@ -50,8 +50,8 @@
 
 		var/damage = rand(min_damage, max_damage)
 
-		if(!(flags & CALTROP_SILENT) && COOLDOWN_CHECK(src, COOLDOWN_ARMOR_ACTION))
-			COOLDOWN_START(src, COOLDOWN_ARMOR_ACTION, 1 SECONDS) //cooldown to avoid message spam.
+		if(!(flags & CALTROP_SILENT) && COOLDOWN_CHECK(src, caltrop_cooldown))
+			COOLDOWN_START(src, caltrop_cooldown, 1 SECONDS) //cooldown to avoid message spam.
 			var/atom/A = parent
 			if(!H.incapacitated(ignore_restrained = TRUE))
 				H.visible_message("<span class='danger'>[H] steps on [A].</span>", \
