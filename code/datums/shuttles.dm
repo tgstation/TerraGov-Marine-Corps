@@ -144,6 +144,10 @@
 	shuttle_id = "tgs_canterbury"
 	name = "Canterbury"
 
+/datum/map_template/shuttle/tgs_bigbury
+	shuttle_id = "tgs_bigbury"
+	name = "Bigbury"
+
 /datum/map_template/shuttle/escape_shuttle
 	shuttle_id = "escape_shuttle"
 	name = "Escape Shuttle"

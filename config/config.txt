@@ -21,7 +21,7 @@ ADMIN_LEGACY_SYSTEM
 ## Add a # infront of this to disable the shutdown server verb.
 ALLOW_SHUTDOWN
 
-## If you use /tg/station-server 3 and you want to allow the shutdown server verb, 
+## If you use /tg/station-server 3 and you want to allow the shutdown server verb,
 ##	the server needs to be able to tell tgs3 that the shutdown is not a crash.
 ## This should be the path to the TGCommandLine.exe program in your tgstation-server install.
 ## Defaults to C:\Program Files (x86)\TG Station Server\TGCommandLine.exe if not set.
@@ -47,13 +47,10 @@ PROTECT_LEGACY_RANKS
 #GITHUBURL
 #BANAPPEALS
 
-## Feel free to just uncomment these.
-#SHIPURL https://goo.gl/utUdpq
-#LV624URL https://goo.gl/6tuwfg
-#BIGREDURL https://goo.gl/TN7mmT
-#ICECOLONYURL https://goo.gl/KYKNgJ
-#PRISONSTATIONURL https://goo.gl/GXoxnA
-#WHISKEYOUTPOSTURL https://goo.gl/ZwTS5X
+## Uncomment to enable global ban DB using the provided URL. The API should expect to receive a ckey at the end of the URL.
+## More API details can be found here: https://centcom.melonmesa.com
+CENTCOM_BAN_DB https://centcom.melonmesa.com/ban/search
+
 
 ## Logging. Recommended you keep all of these on.
 LOG_OOC
@@ -91,7 +88,7 @@ LIMBS_CAN_BREAK
 ## Only enable this if you have youtube-dl installed!
 # INVOKE_YOUTUBEDL youtube-dl
 
-#Here are the lobby music configs. 
+#Here are the lobby music configs.
 #index link startSecond endSecond
 
 #Space Hero

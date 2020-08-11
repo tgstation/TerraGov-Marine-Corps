@@ -176,3 +176,53 @@
 		var/mob/M = i
 		if(M.stat != DEAD)
 			.++
+
+
+/// Displays a message in deadchat, sent by source. Source is not linkified, message is, to avoid stuff like character names to be linkified.
+/// Automatically gives the class deadsay to the whole message (message + source)
+/proc/deadchat_broadcast(message, source = null, mob/follow_target = null, turf/turf_target = null, speaker_key = null, message_type = DEADCHAT_REGULAR)
+	message = "<span class='deadsay'>[source]<span class='linkify'>[message]</span></span>"
+	for(var/mob/M in GLOB.player_list)
+		var/chat_toggles = TOGGLES_CHAT_DEFAULT
+		var/deadchat_toggles = TOGGLES_DEADCHAT_DEFAULT
+		if(M.client.prefs)
+			var/datum/preferences/prefs = M.client.prefs
+			chat_toggles = prefs.toggles_chat
+			deadchat_toggles = prefs.toggles_deadchat
+
+
+		var/override = FALSE
+		if(check_other_rights(M.client, R_ADMIN, FALSE) && (chat_toggles & CHAT_DEAD))
+			override = TRUE
+		if(SSticker.current_state == GAME_STATE_FINISHED)
+			override = TRUE
+		if(isnewplayer(M) && !override)
+			continue
+		if(M.stat != DEAD && !override)
+			continue
+
+		switch(message_type)
+			if(DEADCHAT_DEATHRATTLE)
+				if(deadchat_toggles & DISABLE_DEATHRATTLE)
+					continue
+			if(DEADCHAT_ARRIVALRATTLE)
+				if(deadchat_toggles & DISABLE_ARRIVALRATTLE)
+					continue
+
+		if(isobserver(M))
+			var/rendered_message = message
+
+			if(follow_target)
+				var/F
+				if(turf_target)
+					F = FOLLOW_OR_TURF_LINK(M, follow_target, turf_target)
+				else
+					F = FOLLOW_LINK(M, follow_target)
+				rendered_message = "[F] [message]"
+			else if(turf_target)
+				var/turf_link = TURF_LINK(M, turf_target)
+				rendered_message = "[turf_link] [message]"
+
+			to_chat(M, rendered_message)
+		else
+			to_chat(M, message)
