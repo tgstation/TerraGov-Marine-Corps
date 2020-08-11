@@ -73,7 +73,7 @@
 	if(!isturf(user.loc))
 		to_chat(user, "<span class='warning'>You cannot turn the light on while in [user.loc].</span>")
 		return
-	if(COOLDOWN_CHECK(src, COOLDOWN_ARMOR_LIGHT))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ARMOR_LIGHT))
 		return
 	if(!ishuman(user))
 		return
@@ -531,7 +531,7 @@
 		to_chat(user, "<span class='warning'>You cannot turn the light on while in [user.loc].</span>")
 		return
 
-	if(COOLDOWN_CHECK(src, COOLDOWN_ARMOR_LIGHT))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ARMOR_LIGHT))
 		return
 
 	if(!ishuman(user)) return
