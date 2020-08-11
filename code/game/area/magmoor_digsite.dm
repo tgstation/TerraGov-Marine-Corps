@@ -5,7 +5,7 @@
 /area/magmoor
 	name = "Lava"
 	icon_state = "lava"
-	var/outside = TRUE/FALSE
+	var/outside = FALSE
 
 
 /area/magmoor/landing
