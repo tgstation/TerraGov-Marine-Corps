@@ -54,7 +54,8 @@
 #define UNDERFLOOR_OBJ_LAYER 2.5 //bluespace beacon, navigation beacon, etc
 
 #define CATWALK_LAYER 2.51 //catwalk overlay of /turf/open/floor/plating/plating_catwalk
-#define XENO_WEEDS_LAYER 2.52
+#define XENO_WEEDS_LAYER 2.52 //weed layer so that it goes above catwalks
+
 #define ATMOS_DEVICE_LAYER 2.53 //vents, connector ports, atmos devices that should be above pipe layer.
 
 #define FIREDOOR_OPEN_LAYER 2.549		//Right under poddoors
