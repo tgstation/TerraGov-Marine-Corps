@@ -13,7 +13,7 @@
 	max_integrity = 150
 	soft_armor = list("melee" = 90, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 15, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
 	var/closed = TRUE
-	var/iswired = TRUE
+	var/is_wired = TRUE
 
 /obj/structure/guardrail/CheckExit(atom/movable/O, turf/target)
 	if(closed)
