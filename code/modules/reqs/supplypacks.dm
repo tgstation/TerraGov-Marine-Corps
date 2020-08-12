@@ -70,6 +70,11 @@ OPERATIONS
 	contains = list(/obj/item/bodybag/tarp)
 	cost = 6
 
+/datum/supply_packs/operations/sellingpad
+	name = "ASRS Bluespace Selling Point"
+	contains = list(/obj/machinery/sellingpad)
+	cost = 50
+
 /datum/supply_packs/operations/alpha
 	name = "Alpha Supply Crate"
 	contains = list(/obj/structure/closet/crate/alpha)
