@@ -1,5 +1,5 @@
-/obj/machinery/sellingpad
-	name = "ASRS Bluespace Selling Point"
+/obj/machinery/exportpad
+	name = "ASRS Bluespace Export Point"
 	desc = "A bluespace telepad for sending valuble assets, such as valuble minerals and alien corpses. It needs to be wrenched down in a powered area to function."
 	icon = 'icons/obj/machines/telecomms.dmi'
 	icon_state = "broadcaster_off"
@@ -7,12 +7,11 @@
 	anchored = FALSE
 	use_power = IDLE_POWER_USE
 	wrenchable = TRUE
-	idle_power_usage = 300
-	active_power_usage = 300
-	var/selling_cooldown = 0
+	idle_power_usage = 50
+	active_power_usage = 3000
+	COOLDOWN_DECLARE(selling_cooldown)
 
-
-/obj/machinery/sellingpad/attack_hand(mob/living/user)
+/obj/machinery/exportpad/attack_hand(mob/living/user)
 	. = ..()
 
 	if (!anchored)
@@ -24,8 +23,8 @@
 		playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 		return
 
-	if(selling_cooldown > world.time)
-		to_chat(user, "<span class='warning'>The [src] is not ready to send yet!</span>")
+	if(!COOLDOWN_CHECK(src, selling_cooldown))
+		to_chat(user, "<span class='warning'>The [src] is still recharging! It will be ready in [round(COOLDOWN_TIMELEFT(src, selling_cooldown) / 10)] seconds.</span>")
 		return
 
 	for(var/i in get_turf(src))
@@ -44,10 +43,12 @@
 
 	do_sparks(5, TRUE, src)
 	playsound(loc,'sound/effects/phasein.ogg', 50, FALSE)
-	selling_cooldown = world.time + 15 SECONDS
+	COOLDOWN_START(src, selling_cooldown, 30 SECONDS)
+	use_power = ACTIVE_POWER_USE//takes a lot more power while cooling down
+	addtimer(VARSET_CALLBACK(src, use_power, IDLE_POWER_USE), 30 SECONDS)
 
 
-/obj/machinery/sellingpad/attackby(obj/item/I, mob/user, params)
+/obj/machinery/exportpad/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(!ishuman(user))
@@ -57,9 +58,9 @@
 		anchored = !anchored
 		if(anchored)
 			to_chat(user, "You bolt the [src] to the ground, activating it.")
-			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+			playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
 			icon_state = "broadcaster"
 		else
 			to_chat(user, "You unbolt the [src] from the ground, deactivating it.")
-			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+			playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
 			icon_state = "broadcaster_off"

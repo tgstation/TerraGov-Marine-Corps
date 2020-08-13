@@ -70,9 +70,9 @@ OPERATIONS
 	contains = list(/obj/item/bodybag/tarp)
 	cost = 6
 
-/datum/supply_packs/operations/sellingpad
-	name = "ASRS Bluespace Selling Point"
-	contains = list(/obj/machinery/sellingpad)
+/datum/supply_packs/operations/exportpad
+	name = "ASRS Bluespace Export Point"
+	contains = list(/obj/machinery/exportpad)
 	cost = 50
 
 /datum/supply_packs/operations/alpha
