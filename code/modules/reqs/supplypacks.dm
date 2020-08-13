@@ -779,7 +779,6 @@ ARMOR
 		/obj/item/armor_module/storage/general,
 		/obj/item/armor_module/storage/ammo_mag,
 		/obj/item/armor_module/storage/medical,
-		/obj/item/armor_module/storage/integrated,
 		/obj/item/armor_module/storage/engineering,
 	)
 	cost = 3

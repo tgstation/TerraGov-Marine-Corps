@@ -670,7 +670,6 @@
 					/obj/item/armor_module/storage/ammo_mag = 20,
 					/obj/item/armor_module/storage/engineering = 20,
 					/obj/item/armor_module/storage/medical = 20,
-					/obj/item/armor_module/storage/integrated = 20,
 					/obj/item/storage/pouch/pistol = 10,
 					/obj/item/storage/pouch/magazine = 10,
 					/obj/item/storage/pouch/magazine/large = 5,
