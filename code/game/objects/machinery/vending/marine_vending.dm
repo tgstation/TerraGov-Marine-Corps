@@ -53,6 +53,7 @@
 					/obj/item/weapon/throwing_knife = 5,
 					/obj/item/storage/box/m94 = 5,
 					/obj/item/attachable/flashlight = 10,
+					/obj/item/explosive/grenade/mirage = 5,
 					)
 	prices = list()
 
@@ -645,6 +646,7 @@
 					/obj/item/clothing/gloves/marine = 20,
 					/obj/item/clothing/suit/storage/marine/pasvest = 40,
 					/obj/item/clothing/head/helmet/marine = 40,
+					/obj/item/clothing/head/helmet/marine/heavy = 10,
 					/obj/item/clothing/glasses/mgoggles = 10,
 					/obj/item/clothing/glasses/mgoggles/prescription = 10,
 					/obj/item/clothing/mask/rebreather/scarf = 10,

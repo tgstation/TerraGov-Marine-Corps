@@ -371,6 +371,7 @@
 /area/lavaland/engie/engine)
 "fH" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/brock,
 /area/lavaland/cave/north)
 "fQ" = (
@@ -745,6 +746,11 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/wood,
 /area/lavaland/civilian)
+"jH" = (
+/obj/docking_port/stationary/crashmode/bigbury,
+/obj/docking_port/stationary/crashmode,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/central)
 "jI" = (
 /obj/structure/table,
 /obj/machinery/microwave,
@@ -807,9 +813,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/lavaland/engie/engine)
 "kg" = (
-/obj/structure/rack,
-/obj/item/attachable/attached_gun/grenade,
-/obj/item/attachable/attached_gun/grenade,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -947,6 +951,10 @@
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/northwest)
+"lu" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "lx" = (
 /obj/machinery/landinglight/ds2/delaythree,
 /turf/open/floor/plating/asteroidwarning{
@@ -1687,6 +1695,7 @@
 /area/lavaland/civilian/cargo)
 "tW" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/brock,
 /area/lavaland/cave/southeast)
 "tY" = (
@@ -2129,6 +2138,7 @@
 /area/lavaland/cave/east)
 "yC" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/lavaland/lava,
 /area/lavaland/cave/north)
 "yH" = (
@@ -3118,6 +3128,10 @@
 	dir = 1
 	},
 /area/shuttle/drop2/lz2)
+"JE" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/white,
+/area/lavaland/security/infocenter)
 "JH" = (
 /obj/machinery/landinglight/ds2{
 	dir = 8
@@ -3308,10 +3322,6 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/asteroidfloor,
 /area/lavaland/cave/northeast)
-"LE" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/lavaland/basalt,
-/area/lavaland/cave/central)
 "LG" = (
 /obj/effect/spawner/random/toolbox,
 /turf/open/lavaland/basalt,
@@ -3638,6 +3648,7 @@
 /area/lavaland/engie/two)
 "Qi" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/lavaland/lava/side,
 /area/lavaland)
 "Qm" = (
@@ -3966,8 +3977,7 @@
 	},
 /area/lavaland)
 "Ts" = (
-/obj/structure/table,
-/obj/structure/xenoautopsy,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/white,
 /area/lavaland/medical/cmo)
 "Tw" = (
@@ -22690,7 +22700,7 @@ Ve
 ax
 Bj
 FL
-Pa
+JE
 ax
 Yy
 Yy
@@ -28464,7 +28474,7 @@ al
 al
 al
 fw
-aY
+lu
 aY
 iS
 ks
@@ -30853,7 +30863,7 @@ Qb
 Qb
 Qb
 Eu
-Qb
+jH
 Qb
 Qb
 Qb
@@ -33690,7 +33700,7 @@ Qb
 Qb
 Fa
 Qb
-LE
+Qb
 YL
 YL
 Dt

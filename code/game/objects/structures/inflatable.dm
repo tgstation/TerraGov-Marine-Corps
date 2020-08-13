@@ -174,7 +174,7 @@
 		return
 	if(ismob(user))
 		var/mob/M = user
-		if(COOLDOWN_CHECK(M, COOLDOWN_BUMP))
+		if(TIMER_COOLDOWN_CHECK(M, COOLDOWN_BUMP))
 			return
 		if(M.client)
 			if(iscarbon(M))
@@ -183,7 +183,7 @@
 					SwitchState()
 			else
 				SwitchState()
-			COOLDOWN_START(M, COOLDOWN_BUMP, 6 SECONDS)
+			TIMER_COOLDOWN_START(M, COOLDOWN_BUMP, 6 SECONDS)
 
 /obj/structure/inflatable/door/proc/SwitchState()
 	if(state)

@@ -4,6 +4,7 @@
 	name = "Welding Helmet Module"
 	desc = "Designed for mounting on a Jaeger Helmet. When attached, this module can be flipped up or down to function as a welding mask."
 	icon_state = "welding_head_obj"
+	item_state = "welding_head_inactive"
 	module_type = ARMOR_MODULE_TOGGLE
 
 	active = FALSE
@@ -33,6 +34,8 @@
 
 	active = !active
 	to_chat(user, "<span class='notice'>You toggle \the [src]. [active ? "enabling" : "disabling"] it.</span>")
+	item_state = "welding_head_[active ? "" : "in"]active"
+	parent.update_overlays()
 
 
 /obj/item/helmet_module/attachable/mimir_environment_protection
@@ -64,7 +67,7 @@
 	name = "Binocular Helmet Module"
 	desc = "Designed for mounting on a Jaeger Helmet. When attached, can be flipped down to view into the distance."
 	icon_state = "binocular_head_obj"
-	item_state = "binocular_head"
+	item_state = "binocular_head_inactive"
 	module_type = ARMOR_MODULE_TOGGLE
 	active = FALSE
 	flags_item = DOES_NOT_NEED_HANDS
@@ -80,6 +83,8 @@
 
 	active = !active
 	to_chat(user, "<span class='notice'>You toggle \the [src]. [active ? "enabling" : "disabling"] it.</span>")
+	item_state = "binocular_head_[active ? "" : "in"]active"
+	parent.update_overlays()
 
 /obj/item/helmet_module/antenna
 	name = "Antenna helmet module"

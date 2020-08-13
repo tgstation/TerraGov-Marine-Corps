@@ -895,13 +895,13 @@
 	if(racked_bolt)
 		to_chat(user, "<span class='warning'>[src] already has a round chambered!</span>")
 		return
-	if(COOLDOWN_CHECK(src, COOLDOWN_RACK_BOLT))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_RACK_BOLT))
 		return
 	return rack_bolt(user)
 
 /obj/item/weapon/gun/rifle/chambered/proc/rack_bolt(mob/user)
 	to_chat(user, "<span class='notice'>You cycle the bolt of the [src], loading in a new round!</span>")
-	COOLDOWN_START(src, COOLDOWN_RACK_BOLT, rack_delay)
+	TIMER_COOLDOWN_START(src, COOLDOWN_RACK_BOLT, rack_delay)
 	racked_bolt = TRUE
 	playsound(loc, rack_sound, 25, 1, 4)
 

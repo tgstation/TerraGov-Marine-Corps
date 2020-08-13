@@ -65,10 +65,10 @@
 
 	if(screen == 1)
 		dat += "Select an event to trigger:<ul>"
-		dat += "<li><A href='?src=\ref[src];triggerevent=Red alert'>Red alert</A></li>"
+		dat += "<li><A href='?src=\ref[src];trigger_event=Red alert'>Red alert</A></li>"
 
-		dat += "<li><A href='?src=\ref[src];triggerevent=Grant Emergency Maintenance Access'>Grant Emergency Maintenance Access</A></li>"
-		dat += "<li><A href='?src=\ref[src];triggerevent=Revoke Emergency Maintenance Access'>Revoke Emergency Maintenance Access</A></li>"
+		dat += "<li><A href='?src=\ref[src];trigger_event=Grant Emergency Maintenance Access'>Grant Emergency Maintenance Access</A></li>"
+		dat += "<li><A href='?src=\ref[src];trigger_event=Revoke Emergency Maintenance Access'>Revoke Emergency Maintenance Access</A></li>"
 		dat += "</ul>"
 
 	else if(screen == 2)
@@ -85,8 +85,8 @@
 	if(.)
 		return
 
-	if(href_list["triggerevent"])
-		event = href_list["triggerevent"]
+	if(href_list["trigger_event"])
+		event = href_list["trigger_event"]
 		screen = 2
 
 	if(href_list["reset"])
