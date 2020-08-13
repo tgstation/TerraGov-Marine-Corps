@@ -397,7 +397,8 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"DELONDROP" = DELONDROP,
 		"TWOHANDED" = TWOHANDED,
 		"WIELDED" = WIELDED,
-		"ITEM_ABSTRACT" = ITEM_ABSTRACT
+		"ITEM_ABSTRACT" = ITEM_ABSTRACT,
+		"DOES_NOT_NEED_HANDS" = DOES_NOT_NEED_HANDS
 		),
 	"ghost_hud" = list(
 		"GHOST_HUD_MED" = GHOST_HUD_MED,
@@ -414,6 +415,10 @@ GLOBAL_LIST_INIT(bitfields, list(
 		),
 	"toggles_gameplay" = list(
 		"RADIAL_MEDICAL" = RADIAL_MEDICAL
+		),
+	"toggles_deadchat" = list(
+		"DISABLE_DEATHRATTLE" = DISABLE_DEATHRATTLE,
+		"DEADCHAT_ARRIVALRATTLE" = DEADCHAT_ARRIVALRATTLE
 		),
 	"toggles_chat" = list(
 		"CHAT_OOC" = CHAT_OOC,

@@ -19039,6 +19039,7 @@
 /obj/structure/table/mainship,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/item/reagent_containers/jerrycan,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/exoarmor)
 "bdV" = (
@@ -36148,6 +36149,10 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
+"iXo" = (
+/obj/item/reagent_containers/jerrycan,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "iZq" = (
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -38307,6 +38312,7 @@
 /area/mainship/living/briefing)
 "woW" = (
 /obj/structure/table/mainship,
+/obj/item/reagent_containers/jerrycan,
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
@@ -53974,7 +53980,7 @@ bbE
 bfV
 bbE
 bgb
-biL
+iXo
 bjC
 bkS
 blA
@@ -58600,7 +58606,7 @@ bYq
 ciJ
 ciQ
 bgb
-bbQ
+iXo
 bjE
 bkP
 bdW
@@ -60399,7 +60405,7 @@ bdW
 bbQ
 bbQ
 bgb
-bbQ
+iXo
 bjG
 bkY
 blA

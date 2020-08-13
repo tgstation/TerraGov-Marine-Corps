@@ -72,6 +72,15 @@
 	hard_armor = getArmor()
 	return ..()
 
+/datum/limb/Destroy()
+	QDEL_NULL(hidden)
+	owner = null
+	parent = null
+	children = null
+	soft_armor = null
+	hard_armor = null
+	return ..()
+
 /*
 /datum/limb/proc/get_icon(icon/race_icon, icon/deform_icon)
 	return icon('icons/mob/human.dmi',"blank")
@@ -541,6 +550,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 				W.open_wound(0.1 * wound_update_accuracy)
 			if(bicardose >= 30)	//overdose of bicaridine begins healing IB
 				W.damage = max(0, W.damage - 0.2)
+
+			if(W.damage <= 0)
+				wounds -= W // otherwise we are stuck with a 0 damage IB for a while
+				continue
 
 			if(!owner.reagents.get_reagent_amount(/datum/reagent/medicine/quickclot)) //Quickclot stops bleeding, magic!
 				owner.blood_volume = max(0, owner.blood_volume - wound_update_accuracy * W.damage/40) //line should possibly be moved to handle_blood, so all the bleeding stuff is in one place.
@@ -1212,7 +1225,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	name = "head"
 	icon_name = "head"
 	display_name = "head"
-	max_damage = 150
+	max_damage = 100
 	min_broken_damage = 40
 	body_part = HEAD
 	vital = TRUE

@@ -4,6 +4,12 @@
 #define DEBUG_XENO_DEFENSE	0
 #define DEBUG_CREST_DEFENSE	0
 
+#if DEBUG_HIT_CHANCE
+#define BULLET_DEBUG(msg) to_chat(world, "<span class='debuginfo'>[msg]</span>")
+#else
+#define BULLET_DEBUG(msg)
+#endif
+
 #define BULLET_FEEDBACK_PEN (1<<0)
 #define BULLET_FEEDBACK_SOAK (1<<1)
 #define BULLET_FEEDBACK_FIRE (1<<2)
@@ -615,44 +621,50 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	if((proj.ammo.flags_ammo_behavior & AMMO_XENO) && (isnestedhost(src) || stat == DEAD))
 		return FALSE
 	. += proj.accuracy //We want a temporary variable so accuracy doesn't change every time the bullet misses.
-	#if DEBUG_HIT_CHANCE
-	to_chat(world, "<span class='debuginfo'>Base accuracy is <b>[.]; scatter:[proj.scatter]; distance:[proj.distance_travelled]</b></span>")
-	#endif
-
+	BULLET_DEBUG("Base accuracy is <b>[.]; scatter:[proj.scatter]; distance:[proj.distance_travelled]</b>")
 	if(proj.distance_travelled <= proj.ammo.accurate_range) //If bullet stays within max accurate range + random variance.
 		if(proj.distance_travelled <= proj.ammo.point_blank_range) //If bullet within point blank range, big accuracy buff.
+			BULLET_DEBUG("Point blank range (+25)")
 			. += 25
 		else if((proj.ammo.flags_ammo_behavior & AMMO_SNIPER) && proj.distance_travelled <= proj.ammo.accurate_range_min) //Snipers have accuracy falloff at closer range before point blank
+			BULLET_DEBUG("Sniper ammo, too close (-[(proj.ammo.accurate_range_min - proj.distance_travelled) * 5])")
 			. -= (proj.ammo.accurate_range_min - proj.distance_travelled) * 5
 	else
+		BULLET_DEBUG("Too far (+[(proj.ammo.flags_ammo_behavior & AMMO_SNIPER) ? (proj.distance_travelled * 3) : (proj.distance_travelled * 5)])")
 		. -= (proj.ammo.flags_ammo_behavior & AMMO_SNIPER) ? (proj.distance_travelled * 3) : (proj.distance_travelled * 5) //Snipers have a smaller falloff constant due to longer max range
 
 	. = max(5, .) //default hit chance is at least 5%.
 	if(lying_angle && stat != CONSCIOUS)
 		. += 15 //Bonus hit against unconscious people.
 
+	var/obj/item/shot_source = proj.shot_from
 	if(isliving(proj.firer))
 		var/mob/living/shooter_living = proj.firer
-		if(!can_see(shooter_living, src, WORLD_VIEW_NUM))
+		if(!can_see(shooter_living, src, WORLD_VIEW_NUM) && (!istype(shot_source) || !shot_source.zoom))
+			BULLET_DEBUG("Can't see target (-15).")
 			. -= 15 //Can't see the target (Opaque thing between shooter and target)
 		if(shooter_living.last_move_intent < world.time - 2 SECONDS) //We get a nice accuracy bonus for standing still.
+			BULLET_DEBUG("Stationary (+15).")
 			. += 15
 		else if(shooter_living.m_intent == MOVE_INTENT_WALK) //We get a decent accuracy bonus for walking
+			BULLET_DEBUG("walk intent bonus (+10).")
 			. += 10
 		if(ishuman(proj.firer))
 			var/mob/living/carbon/human/shooter_human = shooter_living
-			. -= round(max(30,(shooter_human.traumatic_shock) * 0.2)) //Chance to hit declines with pain, being reduced by 0.2% per point of pain.
+			BULLET_DEBUG("Traumatic shock (-[round(min(30, shooter_human.traumatic_shock * 0.2))]).")
+			. -= round(min(30, shooter_human.traumatic_shock * 0.2)) //Chance to hit declines with pain, being reduced by 0.2% per point of pain.
 			if(shooter_human.stagger)
+				BULLET_DEBUG("Stagged (-30).")
 				. -= 30 //Being staggered fucks your aim.
 			if(shooter_human.marksman_aura) //Accuracy bonus from active focus order: flat bonus + bonus per tile traveled
+				BULLET_DEBUG("marksman_aura (+[shooter_human.marksman_aura * 3] + [proj.distance_travelled * shooter_human.marksman_aura * 0.35]).")
 				. += shooter_human.marksman_aura * 3
 				. += proj.distance_travelled * shooter_human.marksman_aura * 0.35
 
+	BULLET_DEBUG("Hit zone penalty (-[GLOB.base_miss_chance[proj.def_zone]]) ([proj.def_zone])")
 	. -= GLOB.base_miss_chance[proj.def_zone] //Reduce accuracy based on spot.
 
-	#if DEBUG_HIT_CHANCE
-	to_chat(world, "<span class='debuginfo'>Final accuracy is <b>[.]</b></span>")
-	#endif
+	BULLET_DEBUG("Final accuracy is <b>[.]</b>")
 
 	if(. <= 0) //If by now the sum is zero or negative, we won't be hitting at all.
 		return FALSE

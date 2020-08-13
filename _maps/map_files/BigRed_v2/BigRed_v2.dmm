@@ -1108,7 +1108,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "adV" = (
-/obj/structure/filingcabinet/security,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "adW" = (
@@ -7262,6 +7262,7 @@
 	dir = 4
 	},
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/tile/white/warningstripe{
 	dir = 8
 	},
@@ -12141,6 +12142,7 @@
 "aRs" = (
 /obj/machinery/light,
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/hydroponics)
 "aRu" = (
@@ -21062,6 +21064,7 @@
 /area/bigredv2/outside/ne)
 "bZF" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves)
 "cca" = (
@@ -21070,6 +21073,7 @@
 /area/bigredv2/caves/lambda_lab)
 "ccP" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/wall,
 /area/bigredv2/outside/office_complex)
 "cfS" = (
@@ -21109,10 +21113,12 @@
 "cGZ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
 "cTr" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/se)
 "cWF" = (
@@ -21154,6 +21160,7 @@
 	name = "\improper General Store"
 	},
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
 "dmd" = (
@@ -21174,6 +21181,7 @@
 /area/bigredv2/outside/chapel)
 "dzS" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
 "dBp" = (
@@ -21297,6 +21305,10 @@
 	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
+"eWE" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/podhatch/floor,
+/area/bigredv2/outside/admin_building)
 "feK" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -21357,6 +21369,7 @@
 /area/bigredv2/outside/se)
 "fLz" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "fMu" = (
@@ -21514,6 +21527,7 @@
 /area/bigredv2/outside/c)
 "hvV" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/wall,
 /area/bigredv2/outside/cargo)
 "hzx" = (
@@ -21522,6 +21536,7 @@
 /area/bigredv2/caves)
 "hEq" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/engineering)
 "hHN" = (
@@ -21533,6 +21548,7 @@
 "hIr" = (
 /obj/structure/cable,
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
 "hKr" = (
@@ -21558,6 +21574,7 @@
 /area/bigredv2/outside/general_offices)
 "hVF" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/wall,
 /area/bigredv2/outside/admin_building)
 "iiY" = (
@@ -21583,6 +21600,7 @@
 "iCt" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "iWB" = (
@@ -21659,6 +21677,7 @@
 /area/bigredv2/outside/virology)
 "khG" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
 "knF" = (
@@ -21735,10 +21754,12 @@
 /area/bigredv2/outside/cargo)
 "lji" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/se)
 "loj" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/engine/cult{
 	dir = 2
 	},
@@ -22010,6 +22031,7 @@
 	name = "\improper Engineering Shutters"
 	},
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "pbI" = (
@@ -22039,6 +22061,10 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/s)
+"pmR" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/elevatorshaft,
+/area/bigredv2/caves/lambda_lab)
 "ptp" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/bigred,
@@ -22074,6 +22100,7 @@
 /area/bigredv2/outside/marshal_office)
 "pRv" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/c)
 "pRU" = (
@@ -22189,6 +22216,7 @@
 /area/bigredv2/caves/lambda_lab)
 "qKE" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/se)
 "qNm" = (
@@ -22353,6 +22381,7 @@
 /area/bigredv2/outside/s)
 "sZi" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "sZl" = (
@@ -22461,6 +22490,7 @@
 "uja" = (
 /obj/structure/window/framed/colony/reinforced/hull,
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating,
 /area/bigredv2/outside/se)
 "ujn" = (
@@ -22528,6 +22558,7 @@
 /area/bigredv2/outside/cargo)
 "uUn" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
 "uUK" = (
@@ -22556,6 +22587,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "vsq" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/c)
 "vvM" = (
@@ -22566,6 +22598,7 @@
 /area/bigredv2/outside/w)
 "vAP" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/nw)
 "vDI" = (
@@ -22691,6 +22724,7 @@
 /area/bigredv2/outside/cargo)
 "xnD" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/wall,
 /area/bigredv2/outside/dorms)
 "xqo" = (
@@ -22745,6 +22779,7 @@
 /area/bigredv2/outside/sw)
 "xHV" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves)
 "xRR" = (
@@ -39372,7 +39407,7 @@ aPK
 aQV
 aRT
 aKn
-aVR
+eWE
 aNF
 aVQ
 aKn
@@ -59737,7 +59772,7 @@ afy
 adZ
 ara
 arG
-arF
+pmR
 atf
 adZ
 auk

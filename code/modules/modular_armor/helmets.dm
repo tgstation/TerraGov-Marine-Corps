@@ -2,7 +2,8 @@
 /** Helmet attachments */
 /obj/item/helmet_module/welding
 	name = "Welding Helmet Module"
-	icon_state = "mod_welding"
+	icon_state = "welding_head_obj"
+	item_state = "welding_head_inactive"
 	module_type = ARMOR_MODULE_TOGGLE
 
 	active = FALSE
@@ -32,6 +33,8 @@
 
 	active = !active
 	to_chat(user, "<span class='notice'>You toggle \the [src]. [active ? "enabling" : "disabling"] it.</span>")
+	item_state = "welding_head_[active ? "" : "in"]active"
+	parent.update_overlays()
 
 
 /obj/item/helmet_module/attachable/mimir_environment_protection
@@ -58,3 +61,25 @@
 	parent.permeability_coefficient -= permeability_coefficient_mod
 	parent.gas_transfer_coefficient -= siemens_coefficient_mod
 	return ..()
+
+/obj/item/helmet_module/binoculars
+	name = "Binocular Helmet Module"
+	icon_state = "binocular_head_obj"
+	item_state = "binocular_head_inactive"
+	module_type = ARMOR_MODULE_TOGGLE
+	active = FALSE
+	flags_item = DOES_NOT_NEED_HANDS
+
+/obj/item/helmet_module/binoculars/toggle_module(mob/living/user, obj/item/clothing/head/modular/parent)
+	if(!active && !zoom)
+		RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CLIENT_MOUSEDOWN), .proc/toggle_module) //No shooting while zoomed
+		zoom(user, 11, 12)
+	else
+		UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CLIENT_MOUSEDOWN))
+		if(zoom)
+			zoom(user)
+
+	active = !active
+	to_chat(user, "<span class='notice'>You toggle \the [src]. [active ? "enabling" : "disabling"] it.</span>")
+	item_state = "binocular_head_[active ? "" : "in"]active"
+	parent.update_overlays()

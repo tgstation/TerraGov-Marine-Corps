@@ -9,6 +9,8 @@
 
 	var/atom/S = A.handle_barriers(src)
 	S.attack_alien(src)
+	GLOB.round_statistics.xeno_unarmed_attacks++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_unarmed_attacks")
 
 
 /atom/proc/attack_alien(mob/living/carbon/xenomorph/X)
