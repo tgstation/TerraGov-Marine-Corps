@@ -1218,17 +1218,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 
 /datum/ammo/energy/plasma
-	name = "plasma bolt"
-	icon_state = "pulse2"
-	hud_state = "plasma"
-	armor_type = "laser"
-	shell_speed = 4
-	accurate_range = 15
-	damage = 40
-	penetration = 15
-	max_range = 30
-	accuracy_var_low = 3
-	accuracy_var_high = 3
+    name = "plasma bolt"
+    icon_state = "pulse2"
+    hud_state = "plasma"
+    armor_type = "laser"
+    shell_speed = 4
+    accurate_range = 15
+    damage = 40
+    penetration = 15
+    max_range = 30
+    accuracy_var_low = 3
+    accuracy_var_high = 3
 
 /*
 //================================================
@@ -1624,3 +1624,54 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "smoke grenade shell"
 	nade_type = /obj/item/explosive/grenade/smokebomb
 	icon_state = "smoke_shell"
+
+
+//Halo
+
+//Rifles
+
+//SMG
+
+//Pistol
+
+//Shotguns
+
+//Plasma
+
+//Special
+
+/datum/ammo/rocket/m41spnkr
+	name = "M41 SPNKR Rocket"
+	hud_state = "rocket_he"
+
+/datum/ammo/rocket/m26
+	name = "M26 high explosive rocket"
+	icon_state = "m26_exp"
+	hud_state = "rocket_he"
+	hud_state_empty = "rocket_empty"
+	ping = null //no bounce off.
+	sound_bounce	= "rocket_bounce"
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
+	armor_type = "bomb"
+	damage_falloff = 0
+	shell_speed = 2
+	accuracy = 40
+	accurate_range = 20
+	max_range = 30
+	damage = 200
+	penetration = 100
+	sundering = 100
+
+/datum/ammo/rocket/m26/incendiary
+	name = "M26 incendiary rocket"
+	icon_state = "m26_inc"
+	hud_state = "rocket_fire"
+	flags_ammo_behavior = AMMO_ROCKET|AMMO_INCENDIARY|AMMO_EXPLOSIVE|AMMO_SUNDERING
+	armor_type = "fire"
+	damage_type = BURN
+	accuracy_var_low = 7
+	accurate_range = 15
+	damage = 200
+	penetration = 75
+	max_range = 20
+	sundering = 100

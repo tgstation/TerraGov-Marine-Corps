@@ -242,3 +242,30 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	max_rounds = 300
 	gun_type = /obj/item/weapon/gun/pistol/chimp
 
+
+//Halo//
+
+/obj/item/ammo_magazine/pistol/m6
+	name = "M6 Pattern Magazine"
+	default_ammo = /datum/ammo/bullet/pistol
+	caliber = "12.7x40mm"
+	icon_state = "magnum"
+	max_rounds = 12
+	gun_type = /obj/item/weapon/gun/pistol/m6
+
+/obj/item/ammo_magazine/pistol/m6/AP
+	name = "M6 Pattern AP Magazine"
+	default_ammo = /datum/ammo/bullet/pistol/ap
+	caliber = "12.7x40mm"
+	icon_state = "socom"
+	max_rounds = 12
+	gun_type = /obj/item/weapon/gun/pistol/m6
+
+/obj/item/ammo_magazine/pistol/handgonne
+	name = "Handgonne Shell"
+	default_ammo = /datum/ammo/bullet/pistol/ap
+	caliber = "14.5mm"
+	icon_state = "handgonne"
+	max_rounds = 1
+	gun_type = /obj/item/weapon/gun/pistol/handgonne
+

@@ -531,6 +531,15 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "muzzle"
 	flags_attach_features = NONE
 
+/obj/item/attachable/unremovable/m392barrel
+	name = "m392 barrel"
+	desc = "A lengthened barrel allows for lessened scatter, greater accuracy and muzzle velocity due to increased stabilization and shockwave exposure."
+	slot = "muzzle"
+	icon_state = "m392barrel"
+	flags_attach_features = NONE
+
+
+
 ///////////// Rail attachments ////////////////////////
 
 /obj/item/attachable/reddot
@@ -647,7 +656,6 @@ Defined in conflicts.dm of the #defines folder.
 	var/zoom_viewsize = 12
 	var/zoom_accuracy = SCOPE_RAIL
 
-
 /obj/item/attachable/scope/unremovable
 	flags_attach_features = ATTACH_ACTIVATION
 
@@ -658,6 +666,30 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "none"
 	desc = "A rail mounted zoom sight scope specialized for the T-127 sniper rifle. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	flags_attach_features = ATTACH_ACTIVATION
+
+//Halo Scopes//
+
+/obj/item/attachable/scope/unremovable/m392
+	name = "M392 scope"
+	icon_state = "m392scope"
+	attach_icon = "none"
+	desc = "A rail mounted zoom sight scope specialized for the M392 Designated Marksman Rifle. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	flags_attach_features = ATTACH_ACTIVATION
+
+/obj/item/attachable/scope/unremovable/br55
+	name = "BR55 scope"
+	icon_state = "br55scope_a"
+	attach_icon = "none"
+	desc = "A rail mounted zoom sight scope specialized for the BR55 Service Rifle. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	flags_attach_features = ATTACH_ACTIVATION
+
+obj/item/attachable/scope/unremovable/srs99
+	name = "SRS99 scope"
+	icon_state = "srs99scope_a"
+	attach_icon = "none"
+	desc = "A rail mounted zoom sight scope specialized for the SRS99 Sniper Rifle. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	flags_attach_features = ATTACH_ACTIVATION
+
 
 /obj/item/attachable/scope/activate_attachment(mob/living/carbon/user, turn_off)
 	if(turn_off)

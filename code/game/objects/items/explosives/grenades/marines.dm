@@ -406,3 +406,16 @@
 /obj/item/explosive/grenade/flare/cas/turn_off()
 	QDEL_NULL(target)
 	return ..()
+
+
+/obj/item/explosive/grenade/frag/m9
+	name = "M9 HE-DP"
+	desc = "The M9 HEDP grenade is the standard-issue hand grenade of the UNSC. This simple design has been found its way into the hands of many rebel groups and terrorist organizations."
+	icon_state = "m9"
+	item_state = "m9"
+	hud_state = "grenade_frag"
+	underslug_launchable = FALSE
+
+/obj/item/explosive/grenade/frag/m9/prime()
+	explosion(loc, light_impact_range = 5)
+	qdel(src)

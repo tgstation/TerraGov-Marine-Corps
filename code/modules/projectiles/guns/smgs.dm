@@ -369,3 +369,31 @@
 	scatter = 10
 	aim_slowdown = 0.5
 	wield_delay = 0.65 SECONDS
+
+//Halo//
+
+/obj/item/weapon/gun/smg/m7
+	name = "M7 Submachine Gun"
+	desc = "todo"
+	fire_sound = 'sound/halo/SMG_Mini_Burst_Sound_Effect.ogg'
+	unload_sound = 'sound/halo/SMG_Reload_New.wav'
+	reload_sound = 'sound/halo/SMG_Reload_New.wav'
+	icon_state = "m7"
+	item_state = "m7"
+	flags_equip_slot = ITEM_SLOT_BACK | ITEM_SLOT_BELT
+	current_mag = /obj/item/ammo_magazine/smg/m7
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC)
+
+/obj/item/weapon/gun/smg/m7/m7s
+	name = "M7S Submachine Gun"
+	desc = "todo"
+	fire_sound = 'sound/halo/SMG_SOCOM_Fire.wav'
+	unload_sound = 'sound/halo/SMG_Reload_New.wav'
+	reload_sound = 'sound/halo/SMG_Reload_New.wav'
+	icon_state = "m7s"
+	item_state = "m7s"
+	flags_equip_slot = ITEM_SLOT_BACK | ITEM_SLOT_BELT
+	current_mag = /obj/item/ammo_magazine/smg/m7
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	gun_firemode_list = list(GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC)

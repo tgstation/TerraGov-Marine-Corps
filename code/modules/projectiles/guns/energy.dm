@@ -133,8 +133,6 @@
 	accuracy_mult_unwielded = 0.6
 	scatter_unwielded = 80 //Heavy and unwieldy
 	damage_falloff_mult = 0.5
-
-
 //-------------------------------------------------------
 //M43 Sunfury Lasgun MK1
 
