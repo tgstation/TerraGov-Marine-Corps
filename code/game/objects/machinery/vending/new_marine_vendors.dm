@@ -1210,7 +1210,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/whistle,
 						/obj/item/radio,
 						/obj/item/motiondetector,
-						/obj/item/smartgun_powerpack/fancy,
 						)
 
 /obj/effect/essentials_set/synth
