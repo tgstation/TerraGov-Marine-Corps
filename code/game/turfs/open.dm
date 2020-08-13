@@ -376,3 +376,19 @@
 	deconstructing = FALSE
 	playsound(src, 'sound/weapons/genhit.ogg', 50, TRUE)
 	ChangeTurf(/turf/open/lavaland/lava)
+
+//Sword Base
+
+/turf/open/swordbase/snowstone
+	name = "snowstone"
+	var/icon_tag = null
+	var/variations = null
+	icon = 'icons/obj/flora/sword_base.dmi'
+	icon_state = "snowstone1"
+	icon_tag = "snowstone"
+	variations = 3
+
+
+/turf/open/swordbase/snowstone/Initialize()
+	. = ..()
+	icon_state = "[icon_tag][rand(1,variations)]"
