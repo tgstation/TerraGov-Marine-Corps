@@ -247,7 +247,8 @@ should be alright.
 			if(do_after(user,tac_reload_time, TRUE, AM) && loc == user)
 				if(istype(AM.loc, /obj/item/storage))
 					var/obj/item/storage/S = AM.loc
-					S.remove_from_storage(AM)
+					S.remove_from_storage(AM, get_turf(user))
+				user.put_in_any_hand_if_possible(AM)
 				reload(user, AM)
 	else
 		..()

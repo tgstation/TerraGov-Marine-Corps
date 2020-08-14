@@ -59,7 +59,7 @@
 /obj/structure/razorwire/proc/razorwire_tangle(mob/living/entangled, duration = RAZORWIRE_ENTANGLE_DELAY)
 	if(QDELETED(src)) //Sanity check so that you can't get entangled if the razorwire is destroyed; this happens apparently.
 		CRASH("QDELETED razorwire called razorwire_tangle()")
-	COOLDOWN_START(entangled, COOLDOWN_ENTANGLE, duration)
+	TIMER_COOLDOWN_START(entangled, COOLDOWN_ENTANGLE, duration)
 	entangled.visible_message("<span class='danger'>[entangled] gets entangled in the barbed wire!</span>",
 	"<span class='danger'>You got entangled in the barbed wire! Resist to untangle yourself after [duration * 0.1] seconds since you were entangled!</span>", null, null, 5)
 	do_razorwire_tangle(entangled)
@@ -77,7 +77,7 @@
 
 /obj/structure/razorwire/resisted_against(datum/source)
 	var/mob/living/entangled = source
-	if(COOLDOWN_CHECK(entangled, COOLDOWN_ENTANGLE))
+	if(TIMER_COOLDOWN_CHECK(entangled, COOLDOWN_ENTANGLE))
 		entangled.visible_message("<span class='danger'>[entangled] attempts to disentangle itself from [src] but is unsuccessful!</span>",
 		"<span class='warning'>You fail to disentangle yourself!</span>")
 		return FALSE

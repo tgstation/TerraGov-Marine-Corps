@@ -849,7 +849,7 @@
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
 	caliber = "8.6x70mm" //codex
-	max_shells = 10 //codex
+	max_shells = 7 //codex
 	current_mag = /obj/item/ammo_magazine/rifle/chamberedrifle
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
@@ -876,7 +876,7 @@
 	recoil = 0
 	recoil_unwielded = 4
 	aim_slowdown = 1
-	wield_delay = 1 SECONDS
+	wield_delay = 1.3 SECONDS
 
 	var/rack_delay = 7
 	var/rack_sound = 'sound/weapons/guns/interact/tl-127_bolt.ogg'
@@ -895,13 +895,13 @@
 	if(racked_bolt)
 		to_chat(user, "<span class='warning'>[src] already has a round chambered!</span>")
 		return
-	if(COOLDOWN_CHECK(src, COOLDOWN_RACK_BOLT))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_RACK_BOLT))
 		return
 	return rack_bolt(user)
 
 /obj/item/weapon/gun/rifle/chambered/proc/rack_bolt(mob/user)
 	to_chat(user, "<span class='notice'>You cycle the bolt of the [src], loading in a new round!</span>")
-	COOLDOWN_START(src, COOLDOWN_RACK_BOLT, rack_delay)
+	TIMER_COOLDOWN_START(src, COOLDOWN_RACK_BOLT, rack_delay)
 	racked_bolt = TRUE
 	playsound(loc, rack_sound, 25, 1, 4)
 

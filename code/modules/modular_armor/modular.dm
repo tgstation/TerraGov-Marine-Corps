@@ -27,12 +27,11 @@
 		/obj/item/storage/belt/knifepouch
 	)
 	flags_equip_slot = ITEM_SLOT_OCLOTHING
-	slowdown = 0.1
 	w_class = WEIGHT_CLASS_BULKY
 	time_to_equip = 2 SECONDS
 	time_to_unequip = 1 SECONDS
 
-	soft_armor = list("melee" = 15, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
+	soft_armor = list("melee" = 10, "bullet" = 25, "laser" = 25, "energy" = 20, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 	siemens_coefficient = 0.9
 	permeability_coefficient = 1
 	gas_transfer_coefficient = 1
@@ -57,7 +56,7 @@
 	var/obj/item/storage/internal/storage
 
 	/// How long it takes to attach or detach to this item
-	var/equip_delay = 3 SECONDS
+	var/equip_delay = 0.5 SECONDS
 
 	/// Misc stats
 	light_strength = 5
@@ -90,7 +89,7 @@
 	if(!isturf(user.loc))
 		to_chat(user, "<span class='warning'>You cannot turn the light on while in [user.loc].</span>")
 		return
-	if(COOLDOWN_CHECK(src, COOLDOWN_ARMOR_LIGHT) || !ishuman(user))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ARMOR_LIGHT) || !ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
 	if(H.wear_suit != src)
@@ -386,7 +385,7 @@
 	if(!isturf(user.loc))
 		to_chat(user, "<span class='warning'>You cannot turn the module on while in [user.loc].</span>")
 		return
-	if(COOLDOWN_CHECK(user, COOLDOWN_ARMOR_ACTION) || !ishuman(user))
+	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_ARMOR_ACTION) || !ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
 	if(H.head != src)
@@ -419,11 +418,11 @@
 
 /obj/item/clothing/head/modular/update_overlays()
 	. = ..()
-	update_clothing_icon()
+	if(installed_module)
+		. += image(installed_module.icon, installed_module.item_state)
 
 
 /obj/item/clothing/head/modular/get_mechanics_info()
-	. = ..()
 	. = ..()
 	. += "<br><br />This is a piece of modular armor, It can equip different attachments.<br />"
 	. += "<br>It currently has [installed_module ? installed_module : "nothing"] installed."
@@ -448,12 +447,14 @@
 
 	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))
 		return FALSE
+	update_overlays()
 
 /obj/item/clothing/head/modular/proc/can_detach(mob/living/user, obj/item/helmet_module/module, silent = FALSE)
 	. = TRUE
 
 	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))
 		return FALSE
+	update_overlays()
 
 /obj/item/clothing/head/modular/marine
 	name = "Jaeger Pattern Infantry Helmet"

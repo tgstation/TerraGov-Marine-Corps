@@ -22,7 +22,7 @@
 	plasma_gain = 8
 
 	// *** Health *** //
-	max_health = 240
+	max_health = 290
 
 	// *** Evolution *** //
 	evolution_threshold = 180
@@ -35,7 +35,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 30, "bullet" = 40, "laser" = 40, "energy" = 30, "bomb" = XENO_BOMB_RESIST_2, "bio" = 36, "rad" = 36, "fire" = 0, "acid" = 36)
+	soft_armor = list("melee" = 30, "bullet" = 40, "laser" = 40, "energy" = 30, "bomb" = XENO_BOMB_RESIST_2, "bio" = 36, "rad" = 36, "fire" = 40, "acid" = 36)
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0
@@ -71,13 +71,13 @@
 	plasma_gain = 10
 
 	// *** Health *** //
-	max_health = 260
+	max_health = 310
 
 	// *** Evolution *** //
 	upgrade_threshold = 240
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 34, "bullet" = 45, "laser" = 45, "energy" = 34, "bomb" = XENO_BOMB_RESIST_2, "bio" = 36, "rad" = 36, "fire" = 0, "acid" = 36)
+	soft_armor = list("melee" = 34, "bullet" = 45, "laser" = 45, "energy" = 34, "bomb" = XENO_BOMB_RESIST_2, "bio" = 36, "rad" = 36, "fire" = 45, "acid" = 36)
 
 	// *** Warrior Abilities *** //
 
@@ -101,13 +101,13 @@
 	plasma_gain = 11
 
 	// *** Health *** //
-	max_health = 280
+	max_health = 330
 
 	// *** Evolution *** //
 	upgrade_threshold = 480
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 38, "bullet" = 50, "laser" = 50, "energy" = 38, "bomb" = XENO_BOMB_RESIST_2, "bio" = 40, "rad" = 40, "fire" = 0, "acid" = 40)
+	soft_armor = list("melee" = 38, "bullet" = 50, "laser" = 50, "energy" = 38, "bomb" = XENO_BOMB_RESIST_2, "bio" = 40, "rad" = 40, "fire" = 50, "acid" = 40)
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0
@@ -132,13 +132,13 @@
 	plasma_gain = 12
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 350
 
 	// *** Evolution *** //
 	upgrade_threshold = 480
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 42, "bullet" = 55, "laser" = 55, "energy" = 42, "bomb" = XENO_BOMB_RESIST_2, "bio" = 50, "rad" = 50, "fire" = 0, "acid" = 50)
+	soft_armor = list("melee" = 42, "bullet" = 55, "laser" = 55, "energy" = 42, "bomb" = XENO_BOMB_RESIST_2, "bio" = 50, "rad" = 50, "fire" = 55, "acid" = 50)
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0
