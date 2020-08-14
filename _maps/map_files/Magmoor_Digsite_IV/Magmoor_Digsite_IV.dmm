@@ -8367,9 +8367,6 @@
 	dir = 9
 	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 9
-	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/security/arrivals/south)
 "gim" = (
@@ -8760,9 +8757,6 @@
 /area/magmoor/compound/southeast)
 "gwR" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -14548,9 +14542,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/security/arrivals/south)
 "kFk" = (
@@ -22445,9 +22436,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/security/arrivals/south)
 "qcZ" = (
@@ -22901,9 +22889,6 @@
 /area/magmoor/compound/northeast)
 "qpZ" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
@@ -26867,9 +26852,6 @@
 	dir = 6
 	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 6
-	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/security/arrivals/south)
 "sTW" = (
@@ -29463,7 +29445,6 @@
 	},
 /area/magmoor/compound/northeast)
 "uKz" = (
-/obj/structure/table/mainship,
 /obj/structure/table/mainship,
 /obj/item/book/manual/engineering_guide,
 /turf/open/floor/mainship/mono,
