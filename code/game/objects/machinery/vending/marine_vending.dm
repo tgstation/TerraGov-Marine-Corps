@@ -14,7 +14,7 @@
 					/obj/item/weapon/gun/rifle/ma37 = 25,
 					/obj/item/ammo_magazine/rifle/ma37 = 100,
 					/obj/item/weapon/gun/rifle/m392 = 15,
-					/obj/item/ammo_magazine/rifle/m392 = 60
+					/obj/item/ammo_magazine/rifle/m392 = 60,
 					/obj/item/weapon/gun/rifle/br55 = 15,
 					/obj/item/ammo_magazine/rifle/br55 = 60,
 					/obj/item/weapon/gun/rifle/srs99 = 5,
@@ -32,8 +32,8 @@
 					/obj/item/weapon/gun/launcher/rocket/m41spnkr = 5,
 					/obj/item/ammo_magazine/m41spnkr = 20,
 
-						
 					)
+
 	prices = list()
 
 
