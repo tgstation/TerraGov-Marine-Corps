@@ -29,6 +29,8 @@ Basics, the most important.
 
 /datum/config_entry/string/dburl
 
+/// URL for the CentCom Galactic Ban DB API
+/datum/config_entry/string/centcom_ban_db
 
 /// Host of the webmap
 /datum/config_entry/string/webmap_host

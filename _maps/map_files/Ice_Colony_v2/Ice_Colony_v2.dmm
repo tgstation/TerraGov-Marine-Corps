@@ -404,13 +404,6 @@
 "abB" = (
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/surface/requesitions)
-"abC" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/valley/northwest)
 "abD" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/tile/dark,
@@ -18231,7 +18224,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/ice_colony/underground/responsehangar)
 "bgF" = (
-/obj/machinery/computer3,
+/obj/machinery/computer/intel_computer,
 /turf/open/shuttle/dropship/floor,
 /area/ice_colony/underground/responsehangar)
 "bgG" = (
@@ -32873,6 +32866,7 @@
 /area/ice_colony/exterior/surface/cliff)
 "cVK" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating,
 /area/ice_colony/exterior/surface/landing_pad2)
 "dfk" = (
@@ -32988,6 +32982,12 @@
 	dir = 1
 	},
 /area/ice_colony/underground/maintenance/east)
+"ftt" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/ice_colony/surface/dorms)
 "fzT" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice_rock/corners{
@@ -33033,6 +33033,12 @@
 	dir = 1
 	},
 /area/ice_colony/exterior/underground/caves)
+"fPd" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/dark/brown2{
+	dir = 1
+	},
+/area/ice_colony/surface/garage/one)
 "fPF" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice_rock/corners{
@@ -33451,6 +33457,7 @@
 /area/ice_colony/exterior/underground/caves)
 "lPy" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
 "lSx" = (
@@ -33506,6 +33513,10 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/east)
+"mJD" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/dark/red2,
+/area/ice_colony/underground/security/armory)
 "mKW" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -33599,6 +33610,12 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice,
 /area/ice_colony/underground/maintenance/east)
+"nLw" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/dark/yellow2{
+	dir = 1
+	},
+/area/ice_colony/surface/research/field_gear)
 "nLI" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/straight,
@@ -43778,7 +43795,7 @@ abb
 aaC
 aaC
 aMX
-aNX
+nLw
 aOb
 aOb
 aOb
@@ -44472,7 +44489,7 @@ aad
 aaB
 aaJ
 aaJ
-abC
+omz
 agd
 agd
 aaJ
@@ -44729,7 +44746,7 @@ aaB
 afO
 aaJ
 aaJ
-abC
+omz
 akO
 agd
 aaJ
@@ -58878,7 +58895,7 @@ aax
 aax
 aax
 arD
-aox
+ftt
 apZ
 apP
 azq
@@ -61353,7 +61370,7 @@ bJq
 bNr
 bKl
 bOV
-bKK
+mJD
 bPW
 bQF
 bQF
@@ -66875,7 +66892,7 @@ ayb
 abL
 abL
 azD
-azU
+fPd
 aAR
 aBn
 aBQ

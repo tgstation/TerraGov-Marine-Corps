@@ -45,6 +45,8 @@
 	if (isAI)
 		gib()
 
+	return ..()
+
 
 /mob/living/carbon/xenomorph/proc/xeno_death_alert()
 	if(is_centcom_level(z))

@@ -47,6 +47,7 @@ Defined in conflicts.dm of the #defines folder.
 
 	//These are flat bonuses applied and are passive, though they may be applied at different points.
 	var/accuracy_mod 	= 0 //Modifier to firing accuracy, works off a multiplier.
+	var/scoped_accuracy_mod = 0 //as above but for scoped.
 	var/accuracy_unwielded_mod = 0 //same as above but for onehanded.
 	var/damage_mod 		= 0 //Modifer to the damage mult, works off a multiplier.
 	var/damage_falloff_mod = 0 //Modifier to damage falloff, works off a multiplier.
@@ -640,12 +641,20 @@ Defined in conflicts.dm of the #defines folder.
 	accuracy_mod = 0.1
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 	attachment_action_type = /datum/action/item_action/toggle
-	scope_zoom_mod = TRUE
+	scope_zoom_mod = TRUE // codex
 	accuracy_unwielded_mod = -0.05
 	var/zoom_offset = 11
 	var/zoom_viewsize = 12
 	var/zoom_accuracy = SCOPE_RAIL
+	var/has_nightvision = FALSE
+	var/active_nightvision = FALSE
 
+/obj/item/attachable/scope/nightvision
+	name = "T-46 Night vision scope"
+	icon_state = "nvscope"
+	attach_icon = "slavicscope"
+	desc = "A rail-mounted night vision scope developed by Roh-Easy industries for the TGMC. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	has_nightvision = TRUE
 
 /obj/item/attachable/scope/unremovable
 	flags_attach_features = ATTACH_ACTIVATION
@@ -662,6 +671,11 @@ Defined in conflicts.dm of the #defines folder.
 	if(turn_off)
 		if(master_gun.zoom)
 			master_gun.zoom(user, zoom_offset, zoom_viewsize)
+		if(has_nightvision)
+			user.update_sight()
+			user.reset_perspective(user)
+			active_nightvision = FALSE
+			UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
 		return TRUE
 
 	if(!master_gun.zoom && !(master_gun.flags_item & WIELDED))
@@ -670,8 +684,25 @@ Defined in conflicts.dm of the #defines folder.
 		return FALSE
 	else
 		master_gun.zoom(user, zoom_offset, zoom_viewsize)
+		if(has_nightvision)
+			if(active_nightvision)
+				user.update_sight()
+				user.reset_perspective(user)
+				active_nightvision = FALSE
+				UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+			else
+				update_remote_sight(user)
+				user.reset_perspective(src)
+				active_nightvision = TRUE
+				RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/activate_attachment)
 	return TRUE
 
+/obj/item/attachable/scope/update_remote_sight(mob/living/user)
+	. = ..()
+	user.see_in_dark = 32
+	user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	user.sync_lighting_plane_alpha()
+	return TRUE
 
 /obj/item/attachable/scope/mini
 	name = "mini rail scope"
@@ -687,6 +718,7 @@ Defined in conflicts.dm of the #defines folder.
 	zoom_viewsize = 7
 	zoom_accuracy = SCOPE_RAIL_MINI
 	scope_zoom_mod = TRUE
+	has_nightvision = FALSE
 
 /obj/item/attachable/scope/mini/m4ra
 	name = "T-45 rail scope"
@@ -1620,7 +1652,7 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = ""
 	attach_icon = ""
 	slot = "under"
-	flags_attach_features = ATTACH_ACTIVATION|ATTACH_UTILITY
+	flags_attach_features = ATTACH_ACTIVATION|ATTACH_UTILITY|GUN_ALLOW_SYNTHETIC
 	attachment_action_type = /datum/action/item_action/toggle
 
 /obj/item/attachable/hydro_cannon/activate_attachment(mob/living/user, turn_off)
@@ -1646,6 +1678,6 @@ Defined in conflicts.dm of the #defines folder.
 	if(istype(rail,/obj/item/attachable/scope))
 		var/obj/item/attachable/scope/S = rail
 		if(zoom)
-			S.accuracy_mod = S.zoom_accuracy
+			accuracy_mult += S.scoped_accuracy_mod
 		else
-			S.accuracy_mod = 0
+			accuracy_mult -= S.scoped_accuracy_mod

@@ -57,7 +57,7 @@
 	],
 
 	"nuke": [
-		"where is the nuke?", 
+		"where is the nuke?",
 		"what disks do we need?",
 		"have you got the red disk?",
 		"have you got the green disk?",
@@ -92,12 +92,14 @@
 		"HELP",
 		"HELP",
 		"HELP",
+		"@pick(xeno)!",
 		"HELP ME",
 		"HELP HIM",
 		"HELP HER",
 		"HELP THEM",
 		"HELP US",
-		"HELP YOURSELF"
+		"HELP YOURSELF",
+		"@pick(people)is dead!"
 	],
 
 	"escape": [
@@ -105,7 +107,12 @@
 		"They're behind me!",
 		"It's here!",
 		"@pick(add_name)follow me!",
-		"@pick(add_name)follow me"
+		"@pick(add_name)follow me",
+		"Get back to the Alamo!",
+		"The FOB is lost evac!",
+		"Evac!",
+		"#stutterFOB is lost Evac!",
+		"#stutterNeed to evac Evac!"
 	],
 
 	"infection_advice": [
@@ -116,12 +123,35 @@
 	],
 
 	"people": [
-		"Synth",
-		"CO",
-		"SL",
-		"PO",
-		"AI",
-		"%TARGETNAME%"
-	]
+		"Synth ",
+		"CO" ,
+		"@pick(squad)SL ",
+		"PO ",
+		"AI ",
+		"%TARGETNAME% "
+	],
 
+	"squad": [
+		"alpha ",
+		"bravo ",
+		"charlie ",
+		"delta ",
+		""
+	],
+
+	"xeno": [
+		"Queen",
+		"Shrike",
+		"Prae",
+		"Crusher",
+		"Boiler",
+		"Defiler",
+		"Carrier",
+		"Spitter",
+		"Warrior",
+		"Hunter",
+		"Runner",
+		"Sent",
+		"Defender"
+	]
 }

@@ -105,3 +105,6 @@
 
 /datum/config_entry/flag/distress_ert_allowed
 	config_entry_value = TRUE
+
+/datum/config_entry/flag/events_disallowed
+	config_entry_value = FALSE
