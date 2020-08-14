@@ -60,8 +60,7 @@
 
 /obj/structure/sign/double/barsign/carp/Initialize()
 	. = ..()
-	ChangeSign(pick(
-	"thedrunkcarp"))
+	ChangeSign("thedrunkcarp")
 
 /obj/structure/sign/double/barsign/proc/ChangeSign(Text)
 		src.icon_state = "[Text]"

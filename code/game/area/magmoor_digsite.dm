@@ -25,7 +25,6 @@
 
 /area/magmoor/cave/
 	ceiling = CEILING_DEEP_UNDERGROUND
-	outside = FALSE
 
 /area/magmoor/cave/central
 	name = "Central Caves"
@@ -112,7 +111,6 @@
 	name = "Medical Clinic"
 	icon_state = "lava_med"
 	ceiling = CEILING_METAL
-	outside = FALSE
 
 /area/magmoor/medical/chemistry
 	name = "Medical Clinic Chemistry"
@@ -157,7 +155,6 @@
 	name = "Engineering"
 	icon_state = "lava_engie"
 	ceiling = CEILING_METAL
-	outside = FALSE
 
 /area/magmoor/engi/atmos
 	name = "Atmospheric Processing"
@@ -177,7 +174,6 @@
 	name = "Holding Cells"
 	icon_state = "lava_sec_prison"
 	ceiling = CEILING_METAL
-	outside = FALSE
 
 /area/magmoor/security/storage
 	name = "Security Armory"
@@ -207,7 +203,6 @@
 
 /area/magmoor/civilian
 	ceiling = CEILING_METAL
-	outside = FALSE
 
 /area/magmoor/civilian/cook
 	name = "Kitchen"
@@ -254,7 +249,6 @@
 /area/magmoor/research
 	name = "Research & Archaeology"
 	icon_state = "lava_research"
-	outside = FALSE
 
 /area/magmoor/research/containment
 	name = "Research Materials & Containment"
@@ -287,7 +281,6 @@
 //Cargo
 /area/magmoor/cargo
 	ceiling = CEILING_METAL
-	outside = FALSE
 
 /area/magmoor/cargo/processing
 	name = "Cargo Processing East"
@@ -330,7 +323,6 @@
 //Command
 /area/magmoor/command
 	ceiling = CEILING_METAL
-	outside = FALSE
 
 /area/magmoor/command/lobby
 	name = "North Command Lobby"
@@ -359,7 +351,6 @@
 /area/magmoor/mining/
 	name = "Mining Equipment & Break Room"
 	icon_state = "lava_mining"
-	outside = FALSE
 
 /area/magmoor/mining/garage
 	name = "Mining Garage & Storage"
