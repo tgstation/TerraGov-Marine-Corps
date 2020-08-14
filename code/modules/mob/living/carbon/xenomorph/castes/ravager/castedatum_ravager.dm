@@ -13,7 +13,7 @@
 	attack_delay = 7
 
 	// *** Tackle *** //
-	tackle_damage = 35
+	tackle_damage = 45
 
 	// *** Speed *** //
 	speed = -0.7
@@ -60,7 +60,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Tackle *** //
-	tackle_damage = 40
+	tackle_damage = 45
 
 	// *** Speed *** //
 	speed = -0.8
@@ -88,7 +88,7 @@
 	melee_damage = 42
 
 	// *** Tackle *** //
-	tackle_damage = 45
+	tackle_damage = 52
 
 	// *** Speed *** //
 	speed = -0.9
@@ -116,7 +116,7 @@
 	melee_damage = 42
 
 	// *** Tackle *** //
-	tackle_damage = 50
+	tackle_damage = 52
 
 	// *** Speed *** //
 	speed = -1
