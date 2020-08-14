@@ -1488,7 +1488,7 @@
 	pixel_x = 17
 	},
 /turf/open/floor/mainship/emerald{
-	dir = 6
+	dir = 5
 	},
 /area/mainship/command/cic)
 "fi" = (
@@ -2955,6 +2955,9 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "kS" = (
+/obj/structure/barricade/metal{
+	dir = 1
+	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/req)
 "kT" = (
@@ -3150,7 +3153,7 @@
 "lu" = (
 /obj/structure/prop/mainship/mapping_computer,
 /turf/open/floor/mainship/emerald{
-	dir = 5
+	dir = 9
 	},
 /area/mainship/command/cic)
 "lv" = (
@@ -4239,20 +4242,7 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/req)
 "pp" = (
-/obj/item/stack/sheet/metal/large_stack,
-/obj/item/stack/sheet/metal/large_stack,
-/obj/item/stack/sheet/glass{
-	amount = 50;
-	pixel_x = 3;
-	pixel_y = 3
-	},
 /obj/structure/closet/crate/construction,
-/obj/item/stack/sheet/plasteel{
-	amount = 30;
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/storage/box/sentry,
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/req)
 "pq" = (
@@ -6308,11 +6298,6 @@
 /area/mainship/living/pilotbunks)
 "wt" = (
 /obj/structure/table/mainship,
-/obj/item/stack/sheet/metal/medium_stack,
-/obj/item/stack/sheet/metal/medium_stack{
-	pixel_x = 5;
-	pixel_y = 10
-	},
 /obj/item/tool/extinguisher/mini,
 /obj/item/tool/extinguisher/mini,
 /obj/item/radio,
@@ -6322,6 +6307,11 @@
 /obj/item/attachable/scope,
 /obj/item/ammo_magazine/standard_lmg,
 /obj/item/weapon/gun/rifle/standard_lmg,
+/obj/item/stack/sheet/metal/medium_stack,
+/obj/item/stack/sheet/metal/medium_stack{
+	pixel_x = 5;
+	pixel_y = 10
+	},
 /turf/open/floor/mainship/orange/full,
 /area/mainship/command/cic)
 "wu" = (
@@ -6627,6 +6617,12 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
+"xr" = (
+/obj/structure/table/mainship,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
+/turf/open/floor/mainship,
+/area/mainship/hallways/aft_hallway)
 "xs" = (
 /obj/structure/rack,
 /obj/structure/ob_ammo/ob_fuel,
@@ -7011,18 +7007,6 @@
 	dir = 8
 	},
 /obj/item/lightreplacer,
-/obj/item/stack/sheet/metal{
-	amount = 50
-	},
-/obj/item/stack/sheet/metal{
-	amount = 50
-	},
-/obj/item/stack/sheet/plasteel{
-	amount = 10
-	},
-/obj/item/stack/sheet/plasteel{
-	amount = 10
-	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "yF" = (
@@ -11737,6 +11721,34 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/living/cryo_cells)
+"MD" = (
+/obj/item/storage/box/sentry,
+/obj/structure/rack,
+/obj/item/stack/sheet/glass{
+	amount = 50;
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/stack/sheet/plasteel/medium_stack,
+/obj/item/stack/sheet/plasteel/medium_stack,
+/obj/item/stack/sheet/metal{
+	amount = 50
+	},
+/obj/item/stack/sheet/metal{
+	amount = 50
+	},
+/obj/item/stack/sheet/metal{
+	amount = 50;
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/stack/sheet/metal{
+	amount = 50;
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "ME" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/junction/flipped{
@@ -12545,9 +12557,6 @@
 "Pu" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/surgical_tray,
-/obj/item/stack/sheet/metal{
-	amount = 50
-	},
 /obj/item/clothing/under/rank/roboticist,
 /obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/mainship/sterile/corner{
@@ -13806,6 +13815,9 @@
 "Yq" = (
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/machinery/line_nexter{
+	dir = 1
 	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/req)
@@ -44152,7 +44164,7 @@ az
 oW
 aA
 Gm
-ap
+MD
 ap
 ap
 ap
@@ -45964,7 +45976,7 @@ kO
 ga
 ga
 ga
-ga
+xr
 ga
 gd
 kM

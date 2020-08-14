@@ -1403,9 +1403,6 @@
 "aep" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/under/rank/roboticist,
-/obj/item/stack/sheet/metal{
-	amount = 50
-	},
 /obj/item/storage/surgical_tray,
 /obj/machinery/firealarm{
 	dir = 8
@@ -1652,15 +1649,6 @@
 /obj/structure/table/mainship,
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
-/obj/item/stack/sheet/metal{
-	amount = 50
-	},
-/obj/item/stack/sheet/plasteel{
-	amount = 30;
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/stack/sheet/metal/large_stack,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/upper_engineering)
 "afj" = (
@@ -12934,7 +12922,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/emerald{
-	dir = 5
+	dir = 10
 	},
 /area/mainship/command/cic)
 "aKl" = (
@@ -23318,10 +23306,6 @@
 /area/mainship/squads/req)
 "bsU" = (
 /obj/structure/closet/crate/construction,
-/obj/item/stack/sheet/plasteel/medium_stack,
-/obj/item/stack/sheet/metal/large_stack,
-/obj/item/stack/sheet/metal/large_stack,
-/obj/item/storage/box/sentry,
 /turf/open/floor/mainship/cargo,
 /area/mainship/squads/req)
 "bsV" = (
@@ -36108,6 +36092,10 @@
 "iUO" = (
 /turf/open/floor/mainship,
 /area/mainship/engineering/ce_room)
+"iXo" = (
+/obj/item/reagent_containers/jerrycan,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "iXT" = (
 /obj/machinery/light{
 	dir = 8
@@ -36121,10 +36109,6 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
-"iXo" = (
-/obj/item/reagent_containers/jerrycan,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "iZq" = (
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -36724,6 +36708,8 @@
 /obj/structure/table/mainship,
 /obj/machinery/cell_charger,
 /obj/item/cell/high,
+/obj/item/tool/hand_labeler,
+/obj/item/tool/hand_labeler,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "mRy" = (
@@ -37913,6 +37899,25 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/squads/req)
+"ulP" = (
+/obj/structure/rack,
+/obj/item/storage/box/sentry,
+/obj/item/stack/sheet/plasteel/medium_stack,
+/obj/item/stack/sheet/plasteel/medium_stack,
+/obj/item/stack/sheet/metal/large_stack,
+/obj/item/stack/sheet/metal/large_stack,
+/obj/item/stack/sheet/metal{
+	amount = 50;
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/stack/sheet/metal{
+	amount = 50;
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "umA" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -57552,7 +57557,7 @@ bbE
 aTu
 biK
 bjE
-bbQ
+ulP
 rNF
 gUL
 eUT
