@@ -7530,6 +7530,9 @@
 	dir = 10
 	},
 /obj/structure/cable,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 5
 	},
@@ -9463,6 +9466,10 @@
 	},
 /area/magmoor/medical/patient)
 "heN" = (
+/obj/machinery/power/apc/drained{
+	dir = 1
+	},
+/obj/structure/cable,
 /turf/open/floor/mainship/purple{
 	dir = 6
 	},
@@ -9515,7 +9522,7 @@
 	dir = 8;
 	on = 1
 	},
-/obj/machinery/light/built{
+/obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/tile/blue/whiteblue{
@@ -10322,6 +10329,9 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/patient)
 "hKb" = (
@@ -15309,7 +15319,7 @@
 	},
 /area/magmoor/compound/west)
 "liX" = (
-/obj/machinery/light/built{
+/obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor/tile/blue/whiteblue{
@@ -16464,9 +16474,6 @@
 /area/magmoor/hydroponics/north)
 "lZF" = (
 /obj/structure/bed/chair{
-	dir = 8
-	},
-/obj/machinery/power/apc/drained{
 	dir = 8
 	},
 /obj/structure/sign/pharmacy{
@@ -19477,7 +19484,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4
 	},
-/obj/machinery/light/built{
+/obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/tile/blue/whiteblue{
@@ -20266,6 +20273,14 @@
 	dir = 4
 	},
 /area/magmoor/engi/atmos)
+"oGA" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/sterile/side{
+	dir = 4
+	},
+/area/magmoor/medical/patient)
 "oGL" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -20405,6 +20420,12 @@
 /obj/structure/disposalpipe/segment/corner,
 /turf/open/floor/plating/ground/concrete/lines,
 /area/magmoor/cave/south)
+"oLN" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/purple{
+	dir = 4
+	},
+/area/magmoor/research/rnd/lobby)
 "oMd" = (
 /obj/machinery/light{
 	dir = 8
@@ -22553,10 +22574,10 @@
 /turf/open/ground/grass,
 /area/magmoor/hydroponics/south)
 "qge" = (
-/obj/machinery/light/built{
+/obj/structure/cable,
+/obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/freezer,
 /area/magmoor/civilian/clean/toilet)
 "qgG" = (
@@ -28097,7 +28118,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/light/built,
+/obj/machinery/light,
 /turf/open/floor/freezer,
 /area/magmoor/civilian/clean/shower)
 "tNb" = (
@@ -29184,7 +29205,7 @@
 /turf/open/floor/plating/ground/concrete/lines,
 /area/magmoor/cave/west)
 "uBa" = (
-/obj/machinery/light/built{
+/obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/tile/blue/whiteblue{
@@ -31915,7 +31936,7 @@
 /area/magmoor/cargo/processing)
 "wzu" = (
 /obj/structure/table/mainship,
-/obj/machinery/light/built{
+/obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/freezer,
@@ -32362,7 +32383,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/light/built,
+/obj/machinery/light,
 /turf/open/floor/freezer,
 /area/magmoor/civilian/clean/toilet)
 "wPp" = (
@@ -65615,7 +65636,7 @@ gzC
 gOP
 rJw
 hxZ
-hzR
+oGA
 dmG
 hKI
 hds
@@ -72601,7 +72622,7 @@ yeC
 pqX
 pqX
 gwR
-pqX
+oLN
 heN
 uIT
 uRM
