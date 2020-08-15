@@ -20745,6 +20745,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
+"bjA" = (
+/obj/structure/largecrate/random/barrel/green,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "bjB" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -21481,6 +21485,10 @@
 	dir = 5
 	},
 /area/mainship/shipboard/starboard_missiles)
+"blx" = (
+/obj/structure/largecrate/random/barrel/white,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "blz" = (
 /obj/machinery/landinglight/ds2{
 	dir = 4
@@ -21672,6 +21680,10 @@
 "bmr" = (
 /turf/open/floor/mainship,
 /area/mainship/shipboard/starboard_missiles)
+"bms" = (
+/obj/structure/largecrate/random/barrel/yellow,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "bmt" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -27863,6 +27875,10 @@
 /obj/item/clothing/mask/breath/medical,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/operating_room_four)
+"bMn" = (
+/obj/structure/largecrate/random/barrel/green,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/hangar)
 "bMo" = (
 /obj/machinery/door_control/mainship/checkpoint{
 	id = "hangarentrancesouth";
@@ -35403,10 +35419,6 @@
 /obj/structure/platform,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
-"eVQ" = (
-/obj/structure/largecrate/random/barrel/green,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "eZt" = (
 /obj/machinery/vending/marine/cargo_guns,
 /turf/open/floor/mainship,
@@ -35417,10 +35429,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
-"ffa" = (
-/obj/structure/largecrate/random/barrel/white,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "ffs" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -36128,10 +36136,6 @@
 "iUO" = (
 /turf/open/floor/mainship,
 /area/mainship/engineering/ce_room)
-"iXo" = (
-/obj/item/reagent_containers/jerrycan,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "iXT" = (
 /obj/machinery/light{
 	dir = 8
@@ -36145,6 +36149,10 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
+"iXo" = (
+/obj/item/reagent_containers/jerrycan,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "iZq" = (
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -37116,10 +37124,6 @@
 /obj/structure/plasticflaps/sturdy,
 /turf/open/floor/plating/mainship,
 /area/mainship/squads/req)
-"pkp" = (
-/obj/structure/largecrate/random/barrel/yellow,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "pkU" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/camera/autoname/mainship{
@@ -37972,10 +37976,6 @@
 /obj/machinery/vending/snack,
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/captain_mess)
-"uvw" = (
-/obj/structure/largecrate/random/barrel/green,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/hangar)
 "uwI" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/mainship/orange{
@@ -50643,8 +50643,8 @@ bbQ
 bmu
 biQ
 biQ
-ffa
-pkp
+blx
+bms
 bbQ
 bsO
 btL
@@ -50660,8 +50660,8 @@ bmu
 bdY
 bJf
 boh
-ffa
-eVQ
+blx
+bjA
 boh
 bbQ
 biK
@@ -50920,7 +50920,7 @@ bKo
 biR
 biQ
 biQ
-pkp
+bms
 bvk
 bdY
 bRz
@@ -51157,7 +51157,7 @@ beU
 bGF
 bLz
 bLz
-eVQ
+bjA
 boi
 beU
 bsb
@@ -51173,7 +51173,7 @@ bbQ
 bLO
 beU
 bJh
-uvw
+bMn
 bLz
 biR
 boi
@@ -60148,7 +60148,7 @@ bbQ
 bbQ
 bbQ
 bgb
-ffa
+blx
 bjG
 bkX
 blA
