@@ -209,4 +209,3 @@
 	id = human_mob.wear_id?.type
 	l_store = human_mob.l_store?.type
 	r_store = human_mob.r_store?.type
-	// suit_store = human_mob.
