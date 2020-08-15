@@ -363,6 +363,13 @@
 	flags_cold_protection = CHEST|ARMS
 	min_cold_protection_temperature = T0C
 	siemens_coefficient = 0.7
+	allowed = list (
+		/obj/item/flashlight,
+		/obj/item/binoculars,
+		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/storage/large_holster/machete
+	)
 
 /obj/item/clothing/suit/replica
 	name = "replica armor"

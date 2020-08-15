@@ -37,6 +37,14 @@
 	permeability_coefficient = 0.8
 	flags_armor_protection = CHEST
 	soft_armor = list("melee" = 20, "bullet" = 30, "laser" = 25, "energy" = 10, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
+	allowed = list (
+		/obj/item/flashlight,
+		/obj/item/binoculars,
+		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/storage/large_holster/machete
+	)
+
 
 /obj/item/clothing/suit/armor/vest/pilot
 	name = "\improper M70 flak jacket"
@@ -61,6 +69,7 @@
 		/obj/item/explosive/grenade,
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/large_holster/machete,
 		/obj/item/storage/belt/gun/m4a3,

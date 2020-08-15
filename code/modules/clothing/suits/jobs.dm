@@ -15,7 +15,12 @@
 		/obj/item/analyzer/plant_analyzer,
 		/obj/item/seeds,
 		/obj/item/reagent_containers/glass/fertilizer,
-		/obj/item/tool/minihoe
+		/obj/item/tool/minihoe,
+		/obj/item/flashlight,
+		/obj/item/binoculars,
+		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/storage/large_holster/machete
 	)
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
@@ -128,7 +133,10 @@
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/tool/lighter,
 		/obj/item/detective_scanner,
-		/obj/item/taperecorder
+		/obj/item/taperecorder,
+		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/storage/large_holster/machete
 	)
 	soft_armor = list("melee" = 50, "bullet" = 10, "laser" = 25, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
@@ -252,9 +260,9 @@
 		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/hypospray,
 		/obj/item/reagent_containers/syringe,
-		/obj/item/healthanalyzer, 
-		/obj/item/flashlight, 
-		/obj/item/radio, 
+		/obj/item/healthanalyzer,
+		/obj/item/flashlight,
+		/obj/item/radio,
 		/obj/item/tank/emergency_oxygen
 	)
 	flags_armor_protection = CHEST|ARMS
