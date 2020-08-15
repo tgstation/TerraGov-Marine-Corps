@@ -1,5 +1,11 @@
 // MARINE STORAGE ARMOR
 
+/obj/item/clothing/suit/storage/marine/mob_can_equip(mob/user, slot, warning)
+	if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+		to_chat(user, "<span class='warning'>Your programming restricts wearing heavy armor.</span>")
+		return FALSE
+
+
 /obj/item/clothing/suit/storage/marine
 	name = "\improper M3 pattern marine armor"
 	desc = "A standard TerraGov Marine Corps M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
@@ -480,6 +486,12 @@
 	soft_armor = list("melee" = 75, "bullet" = 60, "laser" = 55, "energy" = 40, "bomb" = 45, "bio" = 15, "rad" = 15, "fire" = 40, "acid" = 40)
 
 //===========================//U.S.L\\================================
+
+
+/obj/item/clothing/suit/storage/faction/mob_can_equip(mob/user, slot, warning)
+	if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+		to_chat(user, "<span class='warning'>Your programming restricts wearing heavy armor.</span>")
+		return FALSE
 
 /obj/item/clothing/suit/storage/faction
 	icon = 'icons/obj/clothing/cm_suits.dmi'

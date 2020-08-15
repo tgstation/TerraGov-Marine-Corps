@@ -80,6 +80,9 @@
 		if(!istype(undersuit))
 			to_chat(user, "<span class='warning'>You must be wearing a marine jumpsuit to equip this.</span>")
 			return FALSE
+		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+			to_chat(user, "<span class='warning'>Your programming restricts wearing heavy armor.</span>")
+			return FALSE
 	return ..()
 
 /obj/item/clothing/suit/modular/attack_self(mob/user)
