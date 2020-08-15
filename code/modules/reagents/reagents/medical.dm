@@ -64,15 +64,19 @@
 
 /datum/reagent/medicine/paracetamol
 	name = "Paracetamol"
-	description = "Most probably know this as Tylenol, but this chemical is a mild, simple painkiller."
+	description = "Most probably know this as Tylenol, but this chemical is a mild, simple painkiller, good for enduring heavy labor."
 	color = "#C855DC"
 	scannable = TRUE
 	custom_metabolism = REAGENTS_METABOLISM * 0.125
+	purge_list = list(/datum/reagent/medicine)
+	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE*2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*2
 
 /datum/reagent/medicine/paracetamol/on_mob_life(mob/living/L, metabolism)
 	L.reagent_pain_modifier += PAIN_REDUCTION_HEAVY
+	L.heal_limb_damage(0.2*REM, 0.2*REM)
+	L.adjustStaminaLoss(-2*REM)
 	return ..()
 
 /datum/reagent/paracetamol/overdose_process(mob/living/L, metabolism)
