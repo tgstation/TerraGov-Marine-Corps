@@ -662,13 +662,57 @@
 	return ..()
 
 
-/datum/species/synthetic/old //Different in looks only
+/datum/species/early_synthetic
 	name = "Early Synthetic"
 	name_plural = "Early Synthetics"
 	icobase = 'icons/mob/human_races/r_synthetic.dmi'
 	deform = 'icons/mob/human_races/r_synthetic.dmi'
+	default_language_holder = /datum/language_holder/synthetic
+	unarmed_type = /datum/unarmed_attack/punch
+	rarity_value = 1.5
+	slowdown = 1.3 //Slower than later synths
+	total_health = 140 //But more durable
+	insulated = 1
+	brute_mod = 0.60 //but more durable
+	burn_mod = 0.60 //previous comment
 
+	cold_level_1 = -1
+	cold_level_2 = -1
+	cold_level_3 = -1
+
+	heat_level_1 = 500
+	heat_level_2 = 1000
+	heat_level_3 = 2000
+
+	body_temperature = 350
+
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_UNDERWEAR
+
+	blood_color = "#EEEEEE"
 	hair_color = "#000000"
+	has_organ = list(
+		"heart" =    /datum/internal_organ/heart/prosthetic,
+		"brain" =    /datum/internal_organ/brain/prosthetic,
+		)
+
+	lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
+	see_in_dark = 6
+
+	screams = list(MALE = "male_scream", FEMALE = "female_scream")
+	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
+	goredcries = list(MALE = "male_gored", FEMALE = "female_gored")
+
+
+/datum/species/early_synthetic/handle_post_spawn(mob/living/carbon/human/H)
+	. = ..()
+	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
+	AH.add_hud_to(H)
+
+
+/datum/species/early_synthetic/post_species_loss(mob/living/carbon/human/H)
+	var/datum/atom_hud/AH = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED_SYNTH]
+	AH.remove_hud_from(H)
+	return ..()
 
 
 /mob/living/carbon/human/proc/reset_jitteriness()
