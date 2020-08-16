@@ -48,19 +48,13 @@
 	addtimer(VARSET_CALLBACK(src, use_power, IDLE_POWER_USE), 30 SECONDS)
 
 
-/obj/machinery/exportpad/attackby(obj/item/I, mob/user, params)
-	. = ..()
-
-	if(!ishuman(user))
-		return
-
-	if(iswrench(I))
-		anchored = !anchored
-		if(anchored)
-			to_chat(user, "You bolt the [src] to the ground, activating it.")
-			playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
-			icon_state = "broadcaster"
-		else
-			to_chat(user, "You unbolt the [src] from the ground, deactivating it.")
-			playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
-			icon_state = "broadcaster_off"
+/obj/machinery/exportpad/wrench_act(mob/living/user, obj/item/I)
+	anchored = !anchored
+	if(anchored)
+		to_chat(user, "You bolt the [src] to the ground, activating it.")
+		playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
+		icon_state = "broadcaster"
+	else
+		to_chat(user, "You unbolt the [src] from the ground, deactivating it.")
+		playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
+		icon_state = "broadcaster_off"
