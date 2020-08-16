@@ -132,9 +132,7 @@
 
 /datum/keybinding/mob/say
 	name = "say"
-	full_name = "Say"
-	hotkey_keys = list("T")
-	classic_keys = list("T")
+	full_name = "Say (Other than S)"
 	description = ""
 	keybind_signal = COMSIG_KB_MOB_SAY_DOWN
 
@@ -148,9 +146,7 @@
 
 /datum/keybinding/mob/me
 	name = "me"
-	full_name = "Me"
-	hotkey_keys = list("M")
-	classic_keys = list("M")
+	full_name = "Me (Other than M)"
 	description = ""
 	keybind_signal = COMSIG_KB_MOB_ME_DOWN
 
