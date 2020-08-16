@@ -59,9 +59,9 @@
 	name = "briefing"
 	icon_state = "briefing"
 
-/area/swordbase/ground/briefingoffice
-	name = "briefing office"
-	icon_state = "briefing_office"
+/area/swordbase/ground/medicaloffice
+	name = "medical office"
+	icon_state = "medical_office"
 
 /area/swordbase/ground/bridge
 	name = "bridge"
@@ -110,3 +110,11 @@
 /area/swordbase/ground/maingate
 	name = "main gate"
 	icon_state = "main_gate"
+
+/area/swordbase/ground/medsci
+	name = "medical science"
+	icon_state = "medical_science"
+
+/area/swordbase/ground/vault
+	name = "vault"
+	icon_state = "vault"
