@@ -18,7 +18,7 @@
 	name = "Synthetic Blood"
 	color = "#EEEEEE"
 	taste_description = "sludge"
-	description = "A synthetic blood-like liquid used by all Synthetics."
+	description = "A white blood-like liquid used by all Synthetics."
 
 /datum/reagent/blood/xeno_blood
 	name = "Acid Blood"
