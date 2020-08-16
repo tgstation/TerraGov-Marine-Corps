@@ -13,7 +13,7 @@
 /area/swordbase/ground/outdoors
 	name = "outdoors"
 	icon_state = "outdoors"
-	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/swordbase/ground/interiorwalls
 	name = "interior walls"
