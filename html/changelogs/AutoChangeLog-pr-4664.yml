@@ -1,4 +1,0 @@
-author: "psykzz"
-delete-after: True
-changes: 
-  - bugfix: "fixes the map loader to assign the correct traits"
