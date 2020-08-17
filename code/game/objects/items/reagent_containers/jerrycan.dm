@@ -23,7 +23,7 @@
 	new /obj/effect/decal/cleanable/liquid_fuel(A, fuel_usage/2)
 	reagents.remove_reagent(/datum/reagent/fuel, fuel_usage)
 	user.visible_message("<span class='notice'>[user] splashes some fuel on \the [A]</span>", "<span class='notice'>You splash some fuel on [A]</span>")
-	log_attack("[key_name(user)] has doused [A] in fuel in [AREACOORD(user)]")
+	log_attack("[key_name(user)] has splashed fuel on  [A] in [AREACOORD(user)]")
 
 /obj/item/reagent_containers/jerrycan/attack(mob/living/M, mob/living/user)
 	. = ..()
