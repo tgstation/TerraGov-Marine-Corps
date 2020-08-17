@@ -10,7 +10,14 @@
 	if(isxeno(loc))
 		var/mob/living/carbon/xenomorph/devourer = loc
 		devourer.do_regurgitate(src)
-	return ..()
+	if(back)
+		QDEL_NULL(back)
+	if(internal)
+		QDEL_NULL(internal)
+	if(handcuffed)
+		QDEL_NULL(handcuffed)
+	. = ..()
+	species = null
 
 /mob/living/carbon/Move(NewLoc, direct)
 	. = ..()
@@ -108,10 +115,10 @@
 	if(stat == DEAD) //Corpses don't puke
 		return
 
-	if(COOLDOWN_CHECK(src, COOLDOWN_PUKE))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_PUKE))
 		return
 
-	COOLDOWN_START(src, COOLDOWN_PUKE, 40 SECONDS) //5 seconds before the actual action plus 35 before the next one.
+	TIMER_COOLDOWN_START(src, COOLDOWN_PUKE, 40 SECONDS) //5 seconds before the actual action plus 35 before the next one.
 	to_chat(src, "<spawn class='warning'>You feel like you are about to throw up!")
 	addtimer(CALLBACK(src, .proc/do_vomit), 5 SECONDS)
 

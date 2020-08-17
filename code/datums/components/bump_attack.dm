@@ -46,7 +46,7 @@
 
 
 /datum/component/bump_attack/proc/living_bump_action_checks(atom/target)
-	if(COOLDOWN_CHECK(src, COOLDOWN_BUMP_ATTACK))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BUMP_ATTACK))
 		return NONE
 	var/mob/living/bumper = parent
 	if(!isliving(target) || bumper.throwing || bumper.incapacitated())
@@ -100,5 +100,5 @@
 	bumper.UnarmedAttack(target, TRUE)
 	GLOB.round_statistics.xeno_bump_attacks++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_bump_attacks")
-	COOLDOWN_START(src, COOLDOWN_BUMP_ATTACK, CLICK_CD_MELEE)
+	TIMER_COOLDOWN_START(src, COOLDOWN_BUMP_ATTACK, CLICK_CD_MELEE)
 	return COMPONENT_BUMP_RESOLVED

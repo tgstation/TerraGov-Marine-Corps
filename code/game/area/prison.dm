@@ -7,6 +7,7 @@
 /area/prison/security
 	name = "Security Department"
 	icon_state = "security"
+	ceiling = CEILING_METAL
 
 /area/prison/security/briefing
 	name = "Briefing"
@@ -19,10 +20,12 @@
 /area/prison/security/armory/riot
 	name = "Riot Armory"
 	icon_state = "armory"
+	ceiling = CEILING_UNDERGROUND_METAL
 
 /area/prison/security/armory/lethal
 	name = "Lethal Armory"
 	icon_state = "Tactical"
+	ceiling = CEILING_UNDERGROUND_METAL
 
 /area/prison/security/armory/highsec_monitoring
 	name = "High-Security Monitoring Armory"
@@ -39,18 +42,23 @@
 
 /area/prison/security/monitoring/medsec/south
 	name = "Medium-Security Monitoring"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/prison/security/monitoring/medsec/central
 	name = "Central Medium-Security Monitoring"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/prison/security/monitoring/highsec
 	name = "High-Security Monitoring"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/prison/security/monitoring/maxsec
 	name = "Maximum-Security Monitoring"
+	ceiling = CEILING_UNDERGROUND_METAL
 
 /area/prison/security/monitoring/maxsec/panopticon
 	name = "Panopticon Monitoring"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/prison/security/monitoring/protective
 	name = "Protective Custody Monitoring"
@@ -72,12 +80,14 @@
 
 /area/prison/security/checkpoint/maxsec
 	name = "Maximum-Security Checkpoint"
+	ceiling = CEILING_UNDERGROUND_METAL
 
 /area/prison/security/checkpoint/highsec_medsec
 	name = "High-to-Medium-Security Checkpoint"
 
 /area/prison/security/checkpoint/maxsec_highsec
 	name = "Maximum-to-High-Security Checkpoint"
+	ceiling = CEILING_UNDERGROUND_METAL
 
 /area/prison/security/checkpoint/hangar
 	name = "Main Hangar Traffic Control"
@@ -99,9 +109,11 @@
 
 /area/prison/recreation
 	icon_state = "party"
+	ceiling = CEILING_METAL
 
 /area/prison/recreation/staff
 	name = "Staff Recreation"
+	ceiling = CEILING_GLASS
 
 /area/prison/recreation/medsec
 	name = "Medium-Security Recreation"
@@ -115,14 +127,19 @@
 /area/prison/execution
 	name = "Execution"
 	icon_state = "dark"
+	ceiling = CEILING_METAL
 
 /area/prison/store
 	name = "Prison Store"
 	icon_state = "bar"
+	ceiling = CEILING_METAL
 
 /area/prison/chapel
 	name = "Chapel"
 	icon_state = "chapel"
+
+/area/prison/holding
+	ceiling = CEILING_METAL
 
 /area/prison/holding/holding1
 	name = "Holding Cell 1"
@@ -135,11 +152,11 @@
 /area/prison/cleaning
 	name = "Custodial Supplies"
 	icon_state = "janitor"
+	ceiling = CEILING_METAL
 
 /area/prison/command/office
 	name = "Warden's Office"
 	icon_state = "Warden"
-	ceiling = CEILING_GLASS
 
 /area/prison/command/secretary_office
 	name = "Warden's Secretary's Office"
@@ -151,6 +168,7 @@
 
 /area/prison/toilet
 	icon_state = "restrooms"
+	ceiling = CEILING_METAL
 
 /area/prison/toilet/canteen
 	name = "Canteen Restooms"
@@ -182,9 +200,11 @@
 
 /area/prison/maintenance/residential/access/north
 	name = "North Civilian Residences Access"
+	ceiling = CEILING_GLASS
 
 /area/prison/maintenance/residential/access/south
 	name = "South Civilian Residences Access"
+	ceiling = CEILING_GLASS
 
 /area/prison/maintenance/staff_research
 	name = "Staff-Research Maintenance"
@@ -193,6 +213,7 @@
 /area/prison/maintenance/research_medbay
 	name = "Research-Infirmary Maintenance"
 	icon_state = "maint_research_port"
+	ceiling = CEILING_UNDERGROUND_METAL
 
 /area/prison/maintenance/hangar_barracks
 	name = "Hangar-Barracks Maintenance"
@@ -205,10 +226,12 @@
 /area/prison/kitchen
 	name = "Kitchen"
 	icon_state = "kitchen"
+	ceiling = CEILING_METAL
 
 /area/prison/laundry
 	name = "Laundry"
 	icon_state = "bluenew"
+	ceiling = CEILING_METAL
 
 /area/prison/library
 	name = "Library"
@@ -217,6 +240,7 @@
 /area/prison/engineering
 	name = "Engineering"
 	icon_state = "engine"
+	ceiling = CEILING_METAL
 
 /area/prison/engineering/atmos
 	name = "Atmospherics"
@@ -225,10 +249,12 @@
 /area/prison/intake
 	name = "Intake Processing"
 	icon_state = "green"
+	ceiling = CEILING_METAL
 
 /area/prison/parole/main
 	name = "Parole"
 	icon_state = "blue2"
+	ceiling = CEILING_METAL
 
 /area/prison/parole/protective_custody
 	name = "Protective Custody Parole"
@@ -237,16 +263,19 @@
 /area/prison/visitation
 	name = "Visitation"
 	icon_state = "yellow"
+	ceiling = CEILING_METAL
 
 /area/prison/yard
 	name = "Yard"
 	icon_state = "thunder"
 	ceiling = CEILING_NONE
 
+/area/prison/hallway
+	ceiling = CEILING_METAL
+
 /area/prison/hallway/entrance
 	name = "Entrance Hallway"
 	icon_state = "entry"
-
 
 /area/prison/hallway/central
 	name = "Central Ring"
@@ -263,6 +292,9 @@
 /area/prison/hallway/engineering
 	name = "Engineering Hallway"
 	icon_state = "dk_yellow"
+
+/area/prison/quarters
+	ceiling = CEILING_METAL
 
 /area/prison/quarters/staff
 	name = "Staff Quarters"
@@ -302,18 +334,22 @@
 /area/prison/cellblock/mediumsec/north
 	name = "Medium-Security Cellblock North"
 	icon_state = "cells_med_n"
+	ceiling = CEILING_UNDERGROUND_METAL
 
 /area/prison/cellblock/mediumsec/south
 	name = "Medium-Security Cellblock South"
 	icon_state = "cells_med_s"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/prison/cellblock/mediumsec/east
 	name = "Medium-Security Cellblock East"
 	icon_state = "cells_med_e"
+	ceiling = CEILING_UNDERGROUND_METAL
 
 /area/prison/cellblock/mediumsec/west
 	name = "Medium-Security Cellblock West"
 	icon_state = "cells_med_w"
+	ceiling = CEILING_UNDERGROUND_METAL
 
 /area/prison/cellblock/highsec/north/north
 	name = "North High-Security Cellblock North"
@@ -334,10 +370,12 @@
 /area/prison/cellblock/maxsec/north
 	name = "Maximum-Security Panopticon Cellblock"
 	icon_state = "cells_max_n"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/prison/cellblock/maxsec/south
 	name = "Maximum-Security Suspended Cellblock"
 	icon_state = "cells_max_s"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/prison/cellblock/vip
 	name = "VIP Cells"
@@ -350,10 +388,12 @@
 /area/prison/disposal
 	name = "Disposals"
 	icon_state = "disposal"
+	ceiling = CEILING_METAL
 
 /area/prison/medbay
 	name = "Infirmary"
 	icon_state = "medbay"
+	ceiling = CEILING_METAL
 
 /area/prison/medbay/foyer
 	name = "Infirmary Foyer"
@@ -362,14 +402,17 @@
 /area/prison/medbay/surgery
 	name = "Operating Theatre"
 	icon_state = "medbay3"
+	ceiling = CEILING_UNDERGROUND_METAL
 
 /area/prison/medbay/morgue
 	name = "Morgue"
 	icon_state = "morgue"
+	ceiling = CEILING_UNDERGROUND_METAL
 
 /area/prison/research/
 	name = "Biological Research Department"
 	icon_state = "research"
+	ceiling = CEILING_UNDERGROUND_METAL
 
 /area/prison/research/RD
 	name = "Research Director's office"
@@ -378,6 +421,7 @@
 /area/prison/research/secret/
 	name = "Classified Research"
 	icon_state = "toxlab"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/prison/research/secret/dissection
 	name = "Dissection"
@@ -386,21 +430,24 @@
 /area/prison/research/secret/chemistry
 	name = "Chemistry"
 	icon_state = "chem"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/prison/research/secret/bioengineering
 	name = "Bioengineering"
 	icon_state = "toxmisc"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/prison/research/secret/containment
 	name = "Test Subject Containment"
 	icon_state = "xeno_f_store"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
-/area/prison/research/secret/testing
-	name = "Biological Testing"
-//	icon_state = "toxtest"
+/area/prison/research/secret/biolab
+	name = "Biological Test Lab"
+	icon_state = "anolab"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/prison/residential
-	ceiling = CEILING_GLASS
 
 /area/prison/residential/central
 	name = "Civilian Residences Central"
@@ -416,7 +463,6 @@
 
 /area/prison/monorail
 	icon_state = "purple"
-	ceiling = CEILING_GLASS
 
 /area/prison/monorail/east
 	name = "East Monorail Station"
@@ -429,37 +475,35 @@
 	icon_state = "hangar_alpha"
 	ceiling = CEILING_NONE
 
-
 /area/prison/hangar/civilian
 	name = "Civilian Hangar"
 	icon_state = "hangar_beta"
-	ceiling = CEILING_NONE
-
 
 /area/prison/hangar_storage/main
 	name = "Main Hangar Storage"
 	icon_state = "quartstorage"
-
+	ceiling = CEILING_METAL
 
 /area/prison/hangar_storage/research
 	name = "Research Hangar Storage"
 	icon_state = "toxstorage"
-
+	ceiling = CEILING_METAL
 
 /area/prison/telecomms
 	name = "Telecommunications"
 	icon_state = "tcomsatcham"
-
+	ceiling = CEILING_METAL
 
 /area/prison/pirate
 	name = "Tramp Freighter \"Rocinante\""
 	icon_state = "syndie-ship"
-
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/prison/secret
 	name = "Secret Room"
 	icon_state = "tcomsatcham"
-
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/prison/console
 	name = "Shuttle Console"
+	ceiling = CEILING_METAL

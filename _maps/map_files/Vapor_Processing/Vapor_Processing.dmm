@@ -97,6 +97,7 @@
 "as" = (
 /obj/docking_port/stationary/marine_dropship/lz2,
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "at" = (
@@ -588,6 +589,7 @@
 "cb" = (
 /obj/docking_port/stationary/marine_dropship/lz1,
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating,
 /area/shuttle/drop1/lz1)
 "cc" = (
@@ -5599,6 +5601,7 @@
 /area/space)
 "FJ" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/grass,
 /area/lv624/ground/compound/se)
 "Gn" = (
@@ -5692,6 +5695,10 @@
 /obj/effect/landmark/nuke_spawn,
 /turf/open/floor/prison/yellow,
 /area/lv624/lazarus/engineering)
+"SJ" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/whiteyellow/full,
+/area/lv624/lazarus/quart)
 "Ud" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/scorched/two,
@@ -5704,6 +5711,12 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/ground,
 /area/lv624/ground/caves/central1)
+"Xd" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 1
+	},
+/area/vapor_processing/cargo3)
 "Xw" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
@@ -9841,7 +9854,7 @@ fd
 fr
 fs
 fT
-gQ
+SJ
 hi
 hh
 mO
@@ -11375,7 +11388,7 @@ fj
 fj
 ep
 hO
-hZ
+Xd
 im
 im
 rH

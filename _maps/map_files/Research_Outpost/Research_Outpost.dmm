@@ -270,6 +270,7 @@
 /area/outpost/science/research)
 "bx" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/yard/west)
 "bz" = (
@@ -370,6 +371,7 @@
 /area/outpost/yard/west)
 "ce" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south_east)
 "cf" = (
@@ -1532,6 +1534,7 @@
 /area/outpost/medbay/storage)
 "iu" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating,
 /area/outpost/lz1)
 "iw" = (
@@ -2102,7 +2105,7 @@
 	},
 /area/outpost/hallway/east)
 "ln" = (
-/obj/structure/table,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
@@ -4286,6 +4289,7 @@
 /area/outpost/lz1)
 "xN" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
 	},
@@ -8013,8 +8017,7 @@
 /turf/open/floor/tile/dark/red2,
 /area/outpost/arrivals/security)
 "SO" = (
-/obj/structure/table,
-/obj/structure/cable,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark/red2,
 /area/outpost/medbay/security)
 "SS" = (
@@ -8579,6 +8582,7 @@
 /area/outpost/caves/north_west)
 "VZ" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/mineral/bigred,
 /area/outpost/caves/east)
 "Wb" = (
@@ -8708,7 +8712,7 @@
 /turf/open/floor/tile/dark,
 /area/outpost/engineering)
 "WM" = (
-/obj/structure/table,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark/red2{
 	dir = 10
 	},
@@ -9098,7 +9102,7 @@
 	},
 /area/outpost/dormitories)
 "YL" = (
-/obj/structure/table,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark/red2{
 	dir = 10
 	},
@@ -9249,6 +9253,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
+"Zy" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/wood,
+/area/outpost/dormitories)
 "Zz" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -36145,7 +36153,7 @@ QL
 mH
 sK
 fG
-HT
+Zy
 HT
 HT
 fG

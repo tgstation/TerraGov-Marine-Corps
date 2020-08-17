@@ -599,7 +599,6 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 					var/leader = S.squad_leader == src
 					if(GLOB.helmetmarkings[S.type]) // just assume if it exists for both
 						standing.overlays += leader? GLOB.helmetmarkings_sl[S.type] : GLOB.helmetmarkings[S.type]
-
 			var/image/I
 			for(var/i in marine_helmet.helmet_overlays)
 				I = marine_helmet.helmet_overlays[i]
@@ -611,6 +610,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 			var/obj/item/clothing/head/modular/helmet = head
 			var/t_icon = helmet.item_state ? helmet.item_state : helmet.icon_state
 			standing = image("icon" = helmet.icon, "icon_state" = t_icon)
+			if(helmet.installed_module)
+				var/image/moduleimg = image(helmet.installed_module.icon, ITEM_STATE_IF_SET(helmet.installed_module))
+				standing.overlays += moduleimg
 
 		if(head.blood_overlay)
 			var/image/bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "helmetblood")
