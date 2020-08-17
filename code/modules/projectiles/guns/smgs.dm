@@ -134,7 +134,7 @@
 	icon_state = "m39"
 	item_state = "m39"
 	caliber = "10x20mm caseless" //codex
-	max_shells = 40 //codex
+	max_shells = 60 //codex
 	flags_equip_slot = ITEM_SLOT_BACK
 	current_mag = /obj/item/ammo_magazine/smg/m39
 	type_of_casings = null
