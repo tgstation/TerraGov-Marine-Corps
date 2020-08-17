@@ -103,7 +103,7 @@
 		user.visible_message("[user] wrenches [src]'s faucet [modded ? "closed" : "open"].", \
 		"You wrench [src]'s faucet [modded ? "closed" : "open"]")
 		modded = !modded
-		log_attack("[key_name(user)] has wrenched [src] open in [AREACOORD(user)]")
+		log_attack("[key_name(user)] has wrenched [src] [modded ? "closed" : "open"] in [AREACOORD(user)]")
 		if(modded)
 			leak_fuel(amount_per_transfer_from_this)
 
