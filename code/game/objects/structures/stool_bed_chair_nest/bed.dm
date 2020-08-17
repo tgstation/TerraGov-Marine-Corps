@@ -306,6 +306,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	base_bed_icon = "stretcher"
 	accepts_bodybag = TRUE
 	resistance_flags = NONE
+	var/teleport_timer = null
 	var/last_teleport = null
 	var/obj/item/medevac_beacon/linked_beacon = null
 	var/stretcher_activated
@@ -432,7 +433,15 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	user.visible_message("<span class='warning'>[user] activates [src]'s bluespace engine, causing it to rev to life.</span>",
 	"<span class='warning'>You activate [src]'s bluespace engine, causing it to rev to life.</span>")
 	playsound(loc,'sound/mecha/powerup.ogg', 25, FALSE)
-	addtimer(CALLBACK(src, .proc/medevac_teleport, user), MEDEVAC_TELE_DELAY) //Activate after 5 second delay.
+	teleport_timer = addtimer(CALLBACK(src, .proc/medevac_teleport, user), MEDEVAC_TELE_DELAY, TIMER_STOPPABLE|TIMER_UNIQUE) //Activate after 5 second delay.
+	RegisterSignal(src, COMSIG_MOVABLE_UNBUCKLE, .proc/on_mob_unbuckle)
+
+/obj/structure/bed/medevac_stretcher/proc/on_mob_unbuckle(datum/source, mob/living/buckled_mob, force = FALSE)
+	UnregisterSignal(src, COMSIG_MOVABLE_UNBUCKLE)
+	deltimer(teleport_timer)
+	playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+	visible_message("<span class='warning'>[src]'s safeties kick in, no longer detecting a buckled mob.</span>")
+
 
 /obj/structure/bed/medevac_stretcher/proc/medevac_teleport(mob/user)
 	if(!linked_beacon || !linked_beacon.check_power() || !linked_beacon.planted) //Beacon has to be planted in a powered area.
@@ -453,6 +462,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		visible_message("<span class='warning'>[src]'s bluespace engine aborts displacement, being unable to detect an appropriate evacuee.</span>")
 		return
 
+	UnregisterSignal(src, COMSIG_MOVABLE_UNBUCKLE)
 	visible_message("<span class='notice'><b>[M] vanishes in a flash of sparks as [src]'s bluespace engine generates its displacement field.</b></span>")
 	if(buckled_bodybag)
 		var/obj/structure/closet/bodybag/teleported_bodybag = buckled_bodybag

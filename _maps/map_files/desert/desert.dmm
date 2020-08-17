@@ -472,6 +472,7 @@
 /area/desert/outside/sw)
 "bT" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/tile/white,
 /area/desert/interior/main_building)
 "bU" = (
@@ -2562,6 +2563,7 @@
 /area/desert/outside/sw)
 "ja" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/tile/dark,
 /area/desert/interior/shipping/central)
 "jb" = (
@@ -2853,6 +2855,7 @@
 "kj" = (
 /obj/structure/cable,
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating,
 /area/desert/outside/nw)
 "kk" = (
@@ -3266,6 +3269,7 @@
 	icon_state = "pdoor1"
 	},
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/wall/r_wall,
 /area/desert/interior/shipping/north)
 "Bv" = (
@@ -3281,15 +3285,18 @@
 /area/desert/outside/nw)
 "EQ" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/ground,
 /area/desert/outside)
 "EV" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/plating_catwalk,
 /area/desert/interior/shipping/south)
 "OJ" = (
 /obj/effect/alien/weeds/node/strong,
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/ground,
 /area/desert/outside)
 

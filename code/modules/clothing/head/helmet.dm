@@ -293,11 +293,9 @@
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
 
 /obj/item/clothing/head/helmet/marine/heavy
-	name = "\improper M10H pattern marine helmet"
-	desc = "A standard M10H Pattern Helmet. This is a upgraded version of the standard M10 helmet, offering more protection and face cover in expense of accuracy and visibility."
+	name = "\improper M10E pattern marine helmet"
+	desc = "A standard M10E Pattern Helmet. This is a modified version of the standard M10 helmet, offering an enclosed visor apparatus. It doesn't look to be any more protective damage wise."
 	icon_state = "heavyhelmet"
-	soft_armor = list("melee" = 75, "bullet" = 70, "laser" = 60, "energy" = 40, "bomb" = 60, "bio" = 50, "rad" = 0, "fire" = 50, "acid" = 55)
-	accuracy_mod = -15
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT|ITEM_ICE_PROTECTION)
 
 /obj/item/clothing/head/helmet/marine/leader

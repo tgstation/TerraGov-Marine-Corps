@@ -50,3 +50,8 @@
 	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 	to_chat(user, "<span class='notice'>You refill [src] with [fuel_transfer_amount] units of fuel.</span>")
 	return ..()
+
+/obj/item/reagent_containers/jerrycan/attack_obj(obj/O, mob/living/user)
+	if(istype(O, /obj/effect/alien/weeds))
+		return attack_turf(get_turf(O), user)
+	return ..()
