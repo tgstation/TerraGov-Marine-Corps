@@ -24,6 +24,7 @@
 	reagents.remove_reagent(/datum/reagent/fuel, fuel_usage)
 	user.visible_message("<span class='notice'>[user] splashes some fuel on \the [A]</span>", "<span class='notice'>You splash some fuel on [A]</span>")
 	log_attack("[key_name(user)] has splashed fuel on  [A] in [AREACOORD(user)]")
+	A.add_fingerprint(user, "attack_turf", "doused with fuel from [src]")
 
 /obj/item/reagent_containers/jerrycan/attack(mob/living/M, mob/living/user)
 	. = ..()
