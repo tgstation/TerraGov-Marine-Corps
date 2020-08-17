@@ -20,7 +20,7 @@
 		return TRUE
 
 	if(O.throwing)
-		if(is_wired && iscarbon(O)) //Leaping mob against barbed wire fails
+		if(is_wired && iscarbon(O)) //this is ugly but it works
 			if(get_dir(loc, target) & dir)
 				return FALSE
 		return TRUE
@@ -35,7 +35,7 @@
 		return TRUE
 
 	if(mover && mover.throwing)
-		if(is_wired && iscarbon(mover)) //Leaping mob against barbed wire fails
+		if(is_wired && iscarbon(mover))
 			if(get_dir(loc, target) & dir)
 				return FALSE
 		return TRUE
