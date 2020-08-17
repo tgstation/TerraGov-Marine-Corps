@@ -41870,6 +41870,7 @@
 	dir = 1
 	},
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/toilet/canteen)
 "epq" = (
@@ -41919,6 +41920,12 @@
 /obj/structure/cable,
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/north/south)
+"eUt" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/prison/blue{
+	dir = 5
+	},
+/area/prison/command/secretary_office)
 "eZF" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/prison/bright_clean/two,
@@ -42799,6 +42806,12 @@
 	},
 /turf/open/floor/plating,
 /area/prison/cellblock/maxsec/south)
+"pYg" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/prison/darkyellow{
+	dir = 4
+	},
+/area/prison/storage/medsec)
 "qcr" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall/prison_unmeltable,
@@ -43097,6 +43110,7 @@
 /area/space)
 "tlK" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/wall/prison,
 /area/prison/cellblock/vip)
 "tlV" = (
@@ -43132,6 +43146,16 @@
 	},
 /turf/open/floor/plating,
 /area/prison/hangar_storage/research)
+"tyd" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/wall/r_wall/prison_unmeltable,
+/area/prison/maintenance/hangar_barracks)
+"tHS" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/prison/whitegreen{
+	dir = 9
+	},
+/area/prison/medbay)
 "tuQ" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/prison/yellow{
@@ -43298,6 +43322,10 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/prison/cellblock/vip)
+"vmo" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/wood,
+/area/prison/residential/south)
 "vlb" = (
 /obj/item/stack/sheet/metal,
 /turf/open/ground/coast/corner2{
@@ -43495,6 +43523,7 @@
 	dir = 8
 	},
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/south)
 "ydX" = (
@@ -49862,7 +49891,7 @@ aab
 aab
 aab
 bKl
-bGR
+vmo
 bLL
 bMB
 bLL
@@ -80450,7 +80479,7 @@ aKN
 aKN
 aKN
 bPL
-bPP
+pYg
 bRp
 bQw
 bPP
@@ -81909,7 +81938,7 @@ agt
 anP
 anJ
 apt
-apL
+tHS
 aqv
 aqv
 aqv
@@ -100187,7 +100216,7 @@ aab
 aab
 aab
 aNF
-aOS
+eUt
 aQt
 aRI
 aSG

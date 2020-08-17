@@ -2416,6 +2416,7 @@
 	},
 /obj/item/explosive/grenade/incendiary,
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating,
 /area/lv624/ground/sand2)
 "ajc" = (
@@ -4391,7 +4392,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
 	},
-/obj/structure/bed,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "aqP" = (
@@ -6385,6 +6386,7 @@
 /area/lv624/lazarus/security)
 "ayX" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/ground/river,
 /area/lv624/ground/river1)
 "ayY" = (
@@ -12840,6 +12842,7 @@
 	},
 /obj/structure/cable,
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "bax" = (
@@ -17405,6 +17408,7 @@
 /area/lv624/ground/caves/central3)
 "bOR" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor,
 /area/lv624/ground/river2)
 "bRK" = (
@@ -17424,6 +17428,7 @@
 /area/lv624/ground/jungle9)
 "cat" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle7)
 "chK" = (
@@ -17514,6 +17519,10 @@
 	dir = 1
 	},
 /area/lv624/lazarus/atmos)
+"cTN" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/grimy,
+/area/lv624/lazarus/hop)
 "cTX" = (
 /obj/structure/jungle/vines/heavy,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -17583,6 +17592,7 @@
 /area/lv624/ground/jungle6)
 "dRM" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle9)
 "dTd" = (
@@ -17603,6 +17613,7 @@
 /area/lv624/ground/jungle4)
 "epV" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand2)
 "etB" = (
@@ -17961,6 +17972,7 @@
 /area/lv624/lazarus/engineering)
 "hDA" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/wall,
 /area/lv624/ground/river2)
 "hHD" = (
@@ -18004,6 +18016,12 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
+"inf" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 5
+	},
+/area/lv624/lazarus/research)
 "iuG" = (
 /obj/structure/mineral_door/resin,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -18028,6 +18046,7 @@
 /area/shuttle/drop2/lz2)
 "iEQ" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/marking/bot,
 /area/shuttle/drop1/lz1)
 "iFV" = (
@@ -18044,6 +18063,10 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/wall/cult,
 /area/lv624/ground/sand4)
+"iMd" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/plating,
+/area/lv624/ground/sand6)
 "iMU" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -18068,6 +18091,7 @@
 /area/lv624/ground/jungle3)
 "jeZ" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "jgW" = (
@@ -18101,6 +18125,7 @@
 /area/lv624/lazarus/atmos)
 "jzY" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand4)
 "jAh" = (
@@ -18134,6 +18159,7 @@
 /obj/structure/table,
 /obj/structure/cable,
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
@@ -18167,6 +18193,7 @@
 /area/lv624/ground/caves/west1)
 "jVV" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/ground/river,
 /area/lv624/ground/river2)
 "jZC" = (
@@ -18181,6 +18208,8 @@
 /turf/closed/gm/dense,
 /area/lv624/lazarus/quartstorage/outdoors)
 "kir" = (
+/obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 1
@@ -18222,6 +18251,7 @@
 /area/lv624/ground/jungle6)
 "kPi" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand5)
 "lda" = (
@@ -18337,6 +18367,7 @@
 /area/lv624/ground/compound/sw)
 "mrh" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor,
 /area/lv624/ground/sand2)
 "mup" = (
@@ -18347,6 +18378,7 @@
 /area/shuttle/drop2/lz2)
 "mvX" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
 "myp" = (
@@ -18618,6 +18650,7 @@
 "puV" = (
 /obj/structure/window/framed/colony,
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "pxC" = (
@@ -18635,7 +18668,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 1
 	},
-/area/lv624/ground/jungle9)
+/area/lv624/ground/jungle7)
 "pBc" = (
 /obj/structure/cargo_container/nt{
 	dir = 4
@@ -18845,6 +18878,7 @@
 /area/shuttle/drop2/lz2)
 "rDw" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/wall,
 /area/lv624/ground/river3)
 "rJn" = (
@@ -18862,6 +18896,7 @@
 /area/lv624/lazarus/internal_affairs)
 "rOf" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "rPv" = (
@@ -19036,6 +19071,7 @@
 /area/lv624/ground/caves/east1)
 "tUO" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
 "tWO" = (
@@ -19097,6 +19133,7 @@
 "uNG" = (
 /obj/structure/jungle/plantbot1/alien,
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/ground/river,
 /area/lv624/ground/river1)
 "uVd" = (
@@ -19149,6 +19186,7 @@
 /area/lv624/ground/sand4)
 "vuY" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
 	},
@@ -19186,6 +19224,7 @@
 "vJf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "vJq" = (
@@ -33654,7 +33693,7 @@ aAb
 aAb
 aAb
 aFo
-aFp
+inf
 aGB
 aHh
 aEN
@@ -39784,7 +39823,7 @@ bjl
 bjP
 bkN
 bhE
-bmc
+cTN
 bmR
 bnw
 boc
@@ -41086,7 +41125,7 @@ mWY
 abe
 acJ
 acJ
-acR
+iMd
 acV
 adf
 adm

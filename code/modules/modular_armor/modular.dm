@@ -89,7 +89,7 @@
 	if(!isturf(user.loc))
 		to_chat(user, "<span class='warning'>You cannot turn the light on while in [user.loc].</span>")
 		return
-	if(COOLDOWN_CHECK(src, COOLDOWN_ARMOR_LIGHT) || !ishuman(user))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ARMOR_LIGHT) || !ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
 	if(H.wear_suit != src)
@@ -385,7 +385,7 @@
 	if(!isturf(user.loc))
 		to_chat(user, "<span class='warning'>You cannot turn the module on while in [user.loc].</span>")
 		return
-	if(COOLDOWN_CHECK(user, COOLDOWN_ARMOR_ACTION) || !ishuman(user))
+	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_ARMOR_ACTION) || !ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
 	if(H.head != src)
@@ -418,11 +418,11 @@
 
 /obj/item/clothing/head/modular/update_overlays()
 	. = ..()
-	update_clothing_icon()
+	if(installed_module)
+		. += image(installed_module.icon, installed_module.item_state)
 
 
 /obj/item/clothing/head/modular/get_mechanics_info()
-	. = ..()
 	. = ..()
 	. += "<br><br />This is a piece of modular armor, It can equip different attachments.<br />"
 	. += "<br>It currently has [installed_module ? installed_module : "nothing"] installed."
@@ -447,12 +447,14 @@
 
 	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))
 		return FALSE
+	update_overlays()
 
 /obj/item/clothing/head/modular/proc/can_detach(mob/living/user, obj/item/helmet_module/module, silent = FALSE)
 	. = TRUE
 
 	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))
 		return FALSE
+	update_overlays()
 
 /obj/item/clothing/head/modular/marine
 	name = "Jaeger Pattern Infantry Helmet"

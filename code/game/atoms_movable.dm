@@ -49,6 +49,9 @@
 	if(throw_source)
 		throw_source = null
 
+	if(thrower)
+		thrower = null
+
 	. = ..()
 
 	loc?.handle_atom_del(src)
