@@ -1,0 +1,4 @@
+author: "Hathkar"
+delete-after: True
+changes: 
+  - bugfix: "Fixed some duplicate pipes on the Sulaco"
