@@ -928,7 +928,7 @@
 	/// How long does it take to build
 	var/build_time = 10 SECONDS
 
-	/// how many dead / non-chestbusrted mobs are required to build the silo
+	/// how many dead / non-chestbursted mobs are required to build the silo
 	var/required_mobs = 3
 
 /datum/action/xeno_action/activable/build_silo/can_use_ability(atom/A, silent, override_flags)
