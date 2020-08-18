@@ -713,6 +713,9 @@
 					/obj/item/clothing/head/modular/marine = 20,
 					/obj/item/clothing/head/modular/marine/skirmisher = 20,
 					/obj/item/clothing/head/modular/marine/assault = 20,
+					/obj/item/helmet_module/welding = 20,
+					/obj/item/helmet_module/binoculars = 20,
+					/obj/item/helmet_module/antenna = 20,
 					/obj/item/facepaint/green = 20
 					)
 
