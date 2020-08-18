@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - balance: "Removes SG in the POS and adds tazers to POS armoury"
