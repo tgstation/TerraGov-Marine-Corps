@@ -667,7 +667,6 @@
 					/obj/item/storage/belt/gun/pistol/standard_pistol = 10,
 					/obj/item/storage/belt/gun/revolver/standard_revolver = 10,
 					/obj/item/armor_module/storage/general = 20,
-					/obj/item/armor_module/storage/ammo_mag = 20,
 					/obj/item/armor_module/storage/engineering = 20,
 					/obj/item/armor_module/storage/medical = 20,
 					/obj/item/storage/pouch/pistol = 10,
