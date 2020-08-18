@@ -1,6 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - rscadd: "New Antenna helmet module"
-  - rscadd: "Helmet modules now available in surplus/standard vendors and req"
-  - bugfix: "added missing descriptions"
