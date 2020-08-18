@@ -1,0 +1,43 @@
+/obj/machinery/computer/droppod_control
+	name = "Droppod launch computer"
+	desc = "A personal computer used to view emails"
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "terminal1"
+	interaction_flags = INTERACT_MACHINE_TGUI
+	var/list/linked_pods
+
+/obj/machinery/computer/droppod_control/Destroy()
+	LAZYCLEARLIST(linked_pods)
+	return ..()
+
+/obj/machinery/computer/droppod_control/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	if(..())
+		return
+	switch(action)
+		if("relink")
+			LAZYCLEARLIST(linked_pods)
+			for(var/i in GLOB.droppod_list)
+				var/obj/structure/droppod/pod = i
+				if(pod.z == z)
+					LAZYADD(linked_pods, pod)
+		if("launchall")
+			for(var/p in linked_pods)
+				var/obj/structure/droppod/pod = p
+				if(!pod?.occupant)
+					continue
+				var/predroptime = rand(5, 1 SECONDS)	//Randomize it a bit so its staggered
+				addtimer(CALLBACK(pod, /obj/structure/droppod/.proc/launchpod, pod.occupant), predroptime)
+			LAZYCLEARLIST(linked_pods)//Clear references for the next drop
+
+/obj/machinery/computer/droppod_control/ui_data(mob/user)
+
+	var/list/data = list()
+	data["pods"] = LAZYLEN(linked_pods)
+	return data
+
+/obj/machinery/computer/droppod_control/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
+							datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	if (!ui)
+		ui = new(user, src, ui_key, "DroppodControl", "[name]", 450, 250, master_ui, state)
+		ui.open()

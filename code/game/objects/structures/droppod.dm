@@ -1,20 +1,27 @@
+#define DROPPOD_READY 1
+#define DROPPOD_ACTIVE 2
+#define DROPPOD_LANDED 3
 ///Marine steel rain style drop pods, very cool!
 /obj/structure/droppod
-	name = "TGMC "
+	name = "TGMC Zeus Orbital drop pods"
 	desc = "A menacing metal hunk of steel that is used by the TGMC for quick tactical redeployment."
-	icon = 'icons/obj/structures/structures.dmi'
-	icon_state = "grille"
+	icon = 'icons/obj/structures/droppod.dmi'
+	icon_state = "singlepod_open"
 	density = TRUE
 	anchored = TRUE
-	layer = OBJ_LAYER
+	layer = ABOVE_OBJ_LAYER
 	resistance_flags = XENO_DAMAGEABLE
 	soft_armor = list("melee" = 50, "bullet" = 70, "laser" = 70, "energy" = 100, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 0)
 	max_integrity = 50
-	var/occupant
-	var/max_occupants = 5
-	var/target_turf
+	flags_atom = PREVENT_CONTENTS_EXPLOSION
+	var/mob/occupant
+	var/target_x = 1
+	var/target_y = 1
 	var/entertime = 5
 	var/image/userimg
+	var/drop_state = DROPPOD_READY
+	var/launch_time = 10 SECONDS
+	var/datum/turf_reservation/reserved_area
 
 /obj/structure/droppod/Initialize()
 	. = ..()
@@ -22,27 +29,167 @@
 
 /obj/structure/droppod/Destroy()
 	. = ..()
+	if(occupant)
+		exitpod(occupant)
+	userimg = null
+	QDEL_NULL(reserved_area)
 	GLOB.droppod_list -= src
 
+/obj/structure/droppod/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+	if(..())
+		return
+	switch(action)
+		if("set_x_target")
+			var/new_x = text2num(params["set_x"])
+			if(!new_x)
+				return
+			target_x = clamp(new_x, 1, world.maxx)
+
+		if("set_y_target")
+			var/new_y = text2num(params["set_y"])
+			if(!new_y)
+				return
+			target_y = clamp(new_y, 1, world.maxy)
+		if("check_droppoint")
+			checklanding(occupant)
+		if("launch")
+			launchpod(occupant)
+		if("exitpod")
+			exitpod(occupant)
+
+
+/obj/structure/droppod/ui_data(mob/user)
+	var/list/data = list(
+		"occupant" = "Unknown User",
+		"target_x" = target_x,
+		"target_y" = target_y,
+		"drop_state" = drop_state,
+	)
+	if(occupant?.name)
+		data["occupant"] = occupant.name
+	return data
+
+
+/obj/structure/droppod/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, \
+							datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	if (!ui)
+		ui = new(user, src, ui_key, "Droppod", "[name]", 450, 250, master_ui, state)
+		ui.open()
+
 /obj/structure/droppod/attack_hand(mob/living/user)
-	if(occcupant)
-		to_chat(user, "full")
+	if(occupant)
+		to_chat(user, "<span class='notice'>The droppod is already occupied!</span>")
+		return
+
+	if(drop_state != DROPPOD_READY)
+		to_chat(user, "<span class='notice'>The droppod has already landed!</span>")
 		return
 
 	if(!do_after(user, entertime, TRUE, src))
 		return
 
 	if(occupant)
-		to_chat(user, "full")
+		to_chat(user, "<span class='warning'>Someone was faster than you!</span>")
 		return
 
 	occupant = user
 	user.forceMove(src)
 	userimg = image(user)
-	userimg.plane = ABOVE_HUMAN_PLANE//tofix
-	userimg.layer = LADDER_LAYER//tofix
-	userimg.pixel_y = 7
-	overlays += userimg
+	userimg.layer = DOOR_CLOSED_LAYER
+	userimg.pixel_y = 5
+	add_overlay(userimg)
+	ui_interact(user)
 
-/obj/structure/droppod/verb/launchpod()
+/obj/structure/droppod/proc/checklanding(mob/user)
+	var/turf/target = locate(target_x, target_y, 2)
+	if(target.density)
+		to_chat(user, "<span class='warning'>Dense Landing zone detected. Invalid area.</span>")
+		return FALSE
+	if(isspaceturf(target))
+		to_chat(user, "<span class='warning'>Location outside mission parameters. Invalid area.</span>")
+		return FALSE
+	for(var/x in target.contents)
+		var/atom/object = x
+		if(object.density)
+			to_chat(user, "<span class='warning'>Dense object detected in target location.</span>")
+			return TRUE
+	to_chat(user, "<span class='notice'>Valid area confirmed!</span>")
+	return TRUE
 
+/obj/structure/droppod/verb/openui()
+	set category = "Drop pod"
+	set name = "Open drop pod UI"
+	set desc = "Opens the drop pod UI"
+	set src in view(0)
+	ui_interact(usr)
+
+/obj/structure/droppod/proc/launchpod(mob/user)
+	if(!occupant)
+		return
+	if(drop_state != DROPPOD_READY)
+		return
+	if(!checklanding(user))
+		return
+
+	reserved_area = SSmapping.RequestBlockReservation(3,3)
+
+	drop_state = DROPPOD_ACTIVE
+	icon_state = "singlepod"
+	cut_overlays()
+	playsound(src, 'sound/effects/escape_pod_launch.ogg', 70)
+	playsound(src, 'sound/effects/droppod_launch.ogg', 70)
+	addtimer(CALLBACK(src, .proc/finish_drop, user), launch_time)
+	forceMove(pick(reserved_area.reserved_turfs))
+	new /area/arrival(loc)	//adds a safezone so we dont suffocate on the way down, cleaned up with reserved turfs
+
+/obj/structure/droppod/proc/finish_drop(mob/user)
+	var/turf/targetturf = locate(target_x, target_y, 2)
+	for(var/a in targetturf.contents)
+		var/atom/target = a
+		if(target.density)	//if theres something dense in the turf try to recalculate a new turf
+			to_chat(occupant, "<span class='warning'>[icon2html(src,user)] WARNING! TARGET ZONE OCCUPIED! EVADING!</span>")
+			var/turf/T0 = locate(target_x + 2,target_y + 2,2)
+			var/turf/T1 = locate(target_x - 2,target_y - 2,2)
+			for(var/t in block(T0,T1))//Randomly selects a free turf in a 5x5 block around the target
+				var/turf/attemptdrop = t
+				if(!attemptdrop.density)
+					targetturf = attemptdrop
+					break
+			if(targetturf.density)//We tried and failed, revert to the old one, which has a new dense obj but is at least not dense
+				to_chat(occupant, "<span class='warning'>[icon2html(src,user)] RECALCULATION FAILED!</span>")
+				targetturf = locate(target_x, target_y,2)
+			break
+	forceMove(targetturf)
+	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100)
+	explosion(targetturf,-1,-1,2,-1)
+	QDEL_NULL(reserved_area)
+	sleep(5)//Dramatic effect
+	icon_state = "singlepod_open"
+	drop_state = DROPPOD_LANDED
+	exitpod(user)
+
+/obj/structure/droppod/proc/exitpod(mob/user)
+	if(!occupant)
+		return
+	if(drop_state == DROPPOD_ACTIVE)
+		to_chat(user, "<span class='warning'>You can't get out while the pod is in transit!</span>")
+		return
+	occupant.forceMove(get_turf(src))
+	occupant = null
+	userimg = null
+	cut_overlays()
+
+/obj/structure/dropprop	//Just a prop for now but if the pods are someday made movable make a requirement to have these on the turf
+	name = "Zeus pod launch bay"
+	desc = "A hatch in the ground wih support for a Zeus drop pod launch."
+	icon = 'icons/obj/structures/droppod.dmi'
+	icon_state = "launch_bay"
+	density = FALSE
+	anchored = TRUE
+	layer = ABOVE_TURF_LAYER
+	resistance_flags = INDESTRUCTIBLE
+
+#undef DROPPOD_READY
+#undef DROPPOD_ACTIVE
+#undef DROPPOD_LANDED

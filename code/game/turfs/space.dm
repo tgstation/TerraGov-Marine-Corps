@@ -37,7 +37,7 @@
 
 	if(opacity)
 		has_opaque_atom = TRUE
-	
+
 	update_icon()
 
 	return INITIALIZE_HINT_NORMAL
