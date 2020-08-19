@@ -19,9 +19,11 @@
 	probability = 40
 
 /datum/weather/ash_storm/sand/weather_act(mob/living/L)
+	if(L.stat == DEAD)
+		return
 	if(is_storm_immune(L))
 		return
-	L.adjustFireLoss(6)
+	L.adjustBruteLoss(6)
 
 /datum/weather/ash_storm/sand/harmless
 	name = "Sandfall"

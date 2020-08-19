@@ -83,6 +83,8 @@
 	return FALSE //RIP you
 
 /datum/weather/ash_storm/weather_act(mob/living/L)
+	if(L.stat == DEAD)
+		return
 	if(is_storm_immune(L))
 		return
 	L.adjustFireLoss(6)
