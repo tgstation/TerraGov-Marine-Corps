@@ -109,6 +109,7 @@
 	if(isspaceturf(target))
 		to_chat(user, "<span class='warning'>Location outside mission parameters. Invalid area.</span>")
 		return FALSE
+	var/area/targetarea = get_area(target)
 	if(!targetarea.outside)
 		to_chat(user, "<span class='warning'>Cannot launch pod at a roofed area.</span>")
 		return FALSE
