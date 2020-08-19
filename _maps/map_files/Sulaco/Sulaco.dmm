@@ -13288,10 +13288,6 @@
 /area/sulaco/hangar/two)
 "aOh" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/visible{
-	dir = 10;
-	icon_state = "intact"
-	},
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden{
 	dir = 10
 	},
 /turf/open/floor/tile/dark,
@@ -14623,7 +14619,6 @@
 "aSE" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /obj/machinery/door/airlock/mainship/research{
 	dir = 2
 	},

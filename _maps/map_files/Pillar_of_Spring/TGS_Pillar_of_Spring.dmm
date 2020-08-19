@@ -5892,9 +5892,8 @@
 /area/mainship/command/cic)
 "va" = (
 /obj/structure/closet/secure_closet/securecom,
-/obj/item/weapon/gun/smartgun,
-/obj/item/smartgun_powerpack/fancy,
-/obj/item/clothing/suit/storage/marine/smartgunner/fancy,
+/obj/item/moneybag/vault,
+/obj/item/moneybag/vault,
 /turf/open/floor/mainship/red/full,
 /area/mainship/command/cic)
 "vb" = (
@@ -12072,6 +12071,8 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
+/obj/item/weapon/gun/energy/taser,
+/obj/item/weapon/gun/energy/taser,
 /turf/open/floor/mainship/cargo,
 /area/mainship/command/cic)
 "Nz" = (
