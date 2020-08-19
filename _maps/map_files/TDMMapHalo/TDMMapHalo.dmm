@@ -1,16 +1,20 @@
 "aa" = (/obj/structure/rack,/obj/item/fuelCell/full,/obj/item/fuelCell/full,/obj/item/fuelCell/full,/obj/item/fuelCell/full,/obj/item/fuelCell/full,/obj/item/fuelCell/full,/turf/open/floor/tile/dark,/area/swordbase/ground/engineering)
 "al" = (/obj/structure/rack,/obj/item/fuelCell/full,/obj/item/fuelCell/full,/obj/item/fuelCell/full,/obj/item/fuelCell/full,/obj/item/fuelCell/full,/obj/item/fuelCell/full,/turf/open/floor/tile/dark/yellow2{dir = 5},/area/swordbase/ground/engineering)
+"am" = (/obj/structure/largecrate/supply/supplies/mre,/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/inniecave)
 "ao" = (/obj/structure/platform_decoration{dir = 1},/turf/open/floor/tile/dark/blue2{dir = 5},/area/swordbase/ground/briefing)
 "as" = (/turf/open/floor/tile/dark/blue2/corner{dir = 8},/area/swordbase/ground/briefing)
 "az" = (/turf/open/floor/tile/dark,/area/mainship/shipboard/brig)
 "aD" = (/obj/machinery/light{dir = 4},/turf/open/floor/mainship/sterile/side{dir = 4},/area/swordbase/ground/medbaysouth)
+"aE" = (/obj/structure/closet/wardrobe/chemistry_white,/obj/machinery/light,/turf/open/floor/mainship/sterile/side,/area/swordbase/ground/inniecave)
 "aI" = (/obj/machinery/power/apc/mainship{dir = 8; pixel_x = 16},/turf/open/floor/tile/dark,/area/swordbase/ground/engineering)
 "aJ" = (/turf/open/floor/tile/dark/blue2{dir = 4},/area/swordbase/ground/briefing)
 "aL" = (/obj/machinery/vending/medical,/turf/open/floor/mainship/sterile/corner,/area/swordbase/ground/medbaysouth)
 "aM" = (/obj/item/storage/toolbox/syndicate,/obj/structure/table/reinforced,/obj/machinery/light{dir = 1},/obj/machinery/power/apc/mainship{dir = 8; pixel_x = 16},/turf/open/floor/tile/dark/red2{dir = 4},/area/swordbase/ground/checkpoint)
+"aP" = (/obj/structure/sink{dir = 8; pixel_x = -12; pixel_y = 2},/turf/open/floor/mainship/sterile/side{dir = 8},/area/swordbase/ground/inniecave)
 "aR" = (/turf/open/floor/mainship/sterile/side{dir = 8},/area/swordbase/ground/medbaysouth)
 "aX" = (/turf/open/floor/tile/dark/red2/corner,/area/swordbase/ground/firingrange)
 "ba" = (/obj/structure/window/framed/prison/reinforced,/turf/open/floor/tile/dark,/area/swordbase/ground/outdoors)
+"bf" = (/obj/machinery/autodoc,/turf/open/floor/mainship/sterile,/area/swordbase/ground/inniecave)
 "bq" = (/turf/open/floor/tile/dark/red2{dir = 9},/area/swordbase/ground/outdoors)
 "bs" = (/obj/structure/stairs{dir = 4},/turf/open/floor/tile/dark/blue2/corner,/area/swordbase/ground/briefing)
 "bu" = (/obj/structure/platform_decoration{dir = 8},/turf/open/floor/tile/dark/blue2{dir = 5},/area/swordbase/ground/briefing)
@@ -20,7 +24,9 @@
 "bH" = (/obj/machinery/door/airlock/glass_engineering{name = "\improper Engineering"},/turf/open/floor/tile/dark,/area/swordbase/ground/engineering)
 "bI" = (/obj/machinery/power/terminal{dir = 8},/turf/open/floor/tile/dark,/area/swordbase/ground/engineering)
 "bK" = (/turf/closed/wall/mainship,/area/swordbase/ground/engineering)
+"bL" = (/obj/structure/largecrate/random/case/small,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating,/area/swordbase/ground/inniecave)
 "bN" = (/obj/item/storage/belt,/obj/structure/table,/turf/open/floor/tile/dark/purple2{dir = 8},/area/swordbase/ground/science)
+"bR" = (/obj/structure/largecrate/supply/supplies/sandbags,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "bT" = (/obj/machinery/light/spot{dir = 4},/turf/open/floor/tile/dark,/area/swordbase/ground/engineering)
 "bY" = (/obj/structure/bed/chair{dir = 1},/turf/open/floor/tile/dark,/area/swordbase/ground/briefing)
 "bZ" = (/obj/structure/bed/chair{dir = 1},/turf/open/floor/tile/dark/blue2{dir = 4},/area/swordbase/ground/briefing)
@@ -31,6 +37,7 @@
 "cz" = (/obj/structure/closet/secure_closet/security,/turf/open/floor/tile/dark/red2{dir = 6},/area/swordbase/ground/checkpoint)
 "cB" = (/obj/structure/bed/chair{dir = 1},/turf/open/floor/tile/dark/blue2{dir = 8},/area/swordbase/ground/briefing)
 "cC" = (/turf/open/floor/tile/dark/yellow2,/area/swordbase/ground/engineering)
+"cF" = (/turf/open/floor/mainship/sterile,/area/swordbase/ground/inniecave)
 "cG" = (/obj/machinery/power/fusion_engine,/turf/open/floor/tile/dark/yellow2{dir = 6},/area/swordbase/ground/engineering)
 "cI" = (/obj/structure/sign/chemistry,/turf/closed/wall/mainship/white,/area/swordbase/ground/medbaysouth)
 "db" = (/obj/structure/largecrate/supply/supplies/metal,/turf/open/floor/tile/dark/red2{dir = 10},/area/mainship/shipboard/brig)
@@ -38,11 +45,13 @@
 "df" = (/turf/closed/wall/mainship/research/containment/wall/corner{dir = 4},/area/swordbase/ground/medsci)
 "dh" = (/obj/effect/decal/cleanable/cobweb,/obj/structure/closet/cabinet,/turf/open/floor/wood,/area/swordbase/ground/conferenceroom)
 "dl" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor/wood,/area/swordbase/ground/conferenceroom)
+"dm" = (/obj/structure/largecrate/supply/explosives,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating,/area/swordbase/ground/inniecave)
 "dq" = (/obj/effect/decal/cleanable/cobweb2,/turf/open/floor/wood,/area/swordbase/ground/conferenceroom)
 "dt" = (/obj/structure/bed/chair{dir = 1},/turf/open/floor/tile/dark/blue2{dir = 9},/area/swordbase/ground/briefing)
 "dw" = (/turf/open/floor/mainship/sterile/side{dir = 6},/area/swordbase/ground/medbaysouth)
 "dD" = (/turf/closed/wall/mainship/research/containment/wall/west,/area/swordbase/ground/medsci)
 "dH" = (/obj/structure/rack,/obj/structure/xenoautopsy/jar_shelf,/obj/machinery/light{dir = 8},/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
+"dK" = (/obj/machinery/autodoc_console,/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/inniecave)
 "dM" = (/obj/machinery/flasher{id = "Containment Cell 3"; pixel_y = 30},/obj/machinery/light{dir = 1},/turf/open/floor/mainship/research/containment/floor2{dir = 1},/area/swordbase/ground/medsci)
 "dS" = (/turf/open/floor/tile/dark/green2/corner{dir = 8},/area/swordbase/ground/kitchen)
 "dT" = (/obj/effect/decal/cleanable/greenglow,/turf/open/floor/mainship/research/containment/floor2{dir = 5},/area/swordbase/ground/medsci)
@@ -68,6 +77,7 @@
 "eQ" = (/obj/machinery/power/fusion_engine,/turf/open/floor/tile/dark/yellow2{dir = 1},/area/swordbase/ground/engineering)
 "eY" = (/obj/machinery/power/fusion_engine,/turf/open/floor/tile/dark/yellow2{dir = 5},/area/swordbase/ground/engineering)
 "fb" = (/obj/machinery/camera/autoname/mainship{dir = 8},/turf/closed/wall/mainship/research/containment/wall/west,/area/swordbase/ground/medsci)
+"fc" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/vending/uniform_supply,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "fg" = (/turf/open/floor/mainship/research/containment/floor1,/area/swordbase/ground/medsci)
 "fh" = (/obj/machinery/disposal,/turf/open/floor/mainship/sterile/corner{dir = 4},/area/swordbase/ground/medbaysouth)
 "ft" = (/turf/open/floor/mainship/research/containment/floor2{dir = 4},/area/swordbase/ground/medsci)
@@ -76,19 +86,24 @@
 "fA" = (/obj/structure/window/framed/mainship/toughened,/turf/open/floor/tile/dark,/area/swordbase/ground/engineering)
 "fB" = (/obj/machinery/door/poddoor/shutters/mainship/cell{id = "containment_cell2"},/obj/machinery/door/airlock/mainship/research/glass/cell,/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
 "fD" = (/mob/living/simple_animal/chick,/turf/open/floor/mainship/research/containment/floor1,/area/swordbase/ground/medsci)
+"fE" = (/obj/structure/window/framed/mainship/white/canterbury,/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/inniecave)
 "fF" = (/obj/machinery/power/apc/mainship{pixel_y = 16},/turf/open/floor/tile/dark/red2{dir = 1},/area/mainship/shipboard/brig)
 "fG" = (/obj/machinery/power/apc/mainship{dir = 8; pixel_x = 16},/turf/open/floor/tile/dark/green2{dir = 4},/area/swordbase/ground/cryogenics)
 "fI" = (/obj/machinery/botany/editor,/turf/open/floor/tile/dark/green2{dir = 1},/area/swordbase/ground/hydro)
 "fT" = (/obj/item/reagent_containers/food/snacks/egg,/turf/open/floor/mainship/research/containment/floor2{dir = 4},/area/swordbase/ground/medsci)
 "fW" = (/obj/structure/mineral_door/wood{name = "Closet"},/turf/open/floor/wood,/area/swordbase/ground/conferenceroom)
 "fY" = (/obj/machinery/light{dir = 8},/turf/open/floor/tile/dark/yellow2{dir = 8},/area/swordbase/ground/engineering)
+"ga" = (/obj/machinery/vending/marine_medic,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "gf" = (/obj/machinery/light{dir = 4},/turf/open/floor/tile/dark/yellow2{dir = 4},/area/swordbase/ground/engineering)
 "gk" = (/obj/effect/decal/cleanable/greenglow,/turf/open/floor/mainship/research/containment/floor2{dir = 10},/area/swordbase/ground/medsci)
 "gl" = (/obj/structure/rack,/obj/structure/xenoautopsy/tank,/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
+"gm" = (/obj/structure/table/reinforced,/obj/item/taperecorder,/obj/item/clothing/glasses/sunglasses,/obj/item/clothing/glasses/sunglasses,/obj/item/clothing/glasses/sunglasses,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "go" = (/turf/open/floor/plating,/area/swordbase/ground/storage)
+"gp" = (/obj/structure/largecrate,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating,/area/swordbase/ground/inniecave)
 "gq" = (/obj/structure/platform{dir = 1},/turf/open/beach/sand,/area/swordbase/ground/mainhall)
 "gv" = (/obj/machinery/door/airlock/mainship/medical/free_access{dir = 1; name = "\improper Morgue"},/turf/open/floor/mainship/sterile/plain,/area/swordbase/ground/medbaynorth)
 "gy" = (/obj/machinery/light/small,/turf/open/floor/mainship/research/containment/floor2,/area/swordbase/ground/medsci)
+"gz" = (/obj/effect/landmark/start/job/squadmarine,/turf/open/floor/plating,/area/swordbase/ground/inniecave)
 "gD" = (/obj/structure/filingcabinet/chestdrawer,/turf/open/floor/carpet,/area/swordbase/ground/conferenceroom)
 "gR" = (/obj/effect/landmark/start/job/squadmarine,/turf/open/floor/tile/dark/green2{dir = 8},/area/swordbase/ground/cryogenics)
 "gS" = (/turf/open/floor/tile/dark/red2,/area/swordbase/ground/checkpoint)
@@ -96,6 +111,7 @@
 "he" = (/turf/closed/wall/mainship/research/containment/wall/purple,/area/swordbase/ground/medsci)
 "hk" = (/turf/closed/wall/mainship/research/containment/wall/purple{dir = 8},/area/swordbase/ground/medsci)
 "hl" = (/turf/open/floor/mainship/research/containment/floor2{dir = 10},/area/swordbase/ground/medsci)
+"hm" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/vending/marine,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "hr" = (/obj/structure/sign/nosmoking_1,/turf/closed/wall/mainship/white,/area/swordbase/ground/medbaynorth)
 "hv" = (/obj/machinery/disposal,/turf/open/floor/wood,/area/swordbase/ground/conferenceroom)
 "hB" = (/obj/structure/bed/chair/office/light{dir = 4},/turf/open/floor/carpet,/area/swordbase/ground/conferenceroom)
@@ -106,14 +122,19 @@
 "hQ" = (/obj/structure/reagent_dispensers/water_cooler,/turf/open/floor/wood,/area/swordbase/ground/conferenceroom)
 "hT" = (/turf/open/floor/tile/dark/green2/corner{dir = 8},/area/swordbase/ground/hydro)
 "hU" = (/obj/structure/table/reinforced,/obj/structure/paper_bin{pixel_x = -3; pixel_y = 7},/obj/item/tool/pen{pixel_x = 4; pixel_y = 4},/turf/open/floor/tile/dark/yellow2{dir = 9},/area/swordbase/ground/engineering)
+"hY" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/obj/effect/decal/cleanable/dirt,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "hZ" = (/obj/machinery/power/monitor/core,/turf/open/floor/tile/dark/yellow2{dir = 5},/area/swordbase/ground/engineering)
 "ig" = (/turf/closed/wall/mainship/research/containment/wall/corner,/area/swordbase/ground/medsci)
 "ih" = (/obj/machinery/door_control{id = containment_cell1; name = "Conatainment Lockdown"; pixel_x = -25},/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
 "ik" = (/obj/machinery/chem_master,/turf/open/floor/mainship/sterile/side{dir = 1},/area/swordbase/ground/medbaysouth)
 "im" = (/obj/machinery/door/airlock/multi_tile/glass{name = "Cafeteria"},/turf/open/floor/prison/kitchen,/area/swordbase/ground/kitchen)
+"in" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/light/spot{dir = 8},/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
+"iv" = (/obj/effect/landmark/start/latejoin,/obj/effect/decal/cleanable/dirt,/obj/machinery/light/spot,/turf/open/floor/plating,/area/swordbase/ground/inniecave)
+"iw" = (/obj/structure/rack,/obj/item/weapon/baton,/obj/item/hailer,/obj/item/restraints/handcuffs,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "ix" = (/obj/machinery/door_control{id = containment_cell2; name = "Containment Lockdown"; pixel_x = 25},/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
 "iy" = (/obj/machinery/light,/turf/open/floor/mainship/sterile/side,/area/swordbase/ground/medbaysouth)
 "iE" = (/obj/structure/bed/chair/office/light,/turf/open/floor/carpet,/area/swordbase/ground/conferenceroom)
+"iL" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/light/spot{dir = 1},/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "iM" = (/obj/structure/table/reinforced,/obj/machinery/door/window,/obj/machinery/door/window{dir = 8},/turf/open/floor/tile/dark,/area/swordbase/ground/engineering)
 "iN" = (/obj/structure/bed/chair/office/light{dir = 8},/turf/open/floor/tile/dark,/area/swordbase/ground/engineering)
 "iX" = (/obj/machinery/light{dir = 4},/obj/machinery/power/monitor/grid,/turf/open/floor/tile/dark,/area/swordbase/ground/engineering)
@@ -121,17 +142,20 @@
 "ja" = (/turf/open/floor/tile/dark/red2/corner{dir = 1},/area/swordbase/ground/firingrange)
 "jc" = (/obj/machinery/r_n_d/destructive_analyzer,/turf/open/floor/tile/dark,/area/swordbase/ground/science)
 "jd" = (/obj/machinery/light/spot{dir = 1},/turf/open/floor/tile/dark/purple2{dir = 5},/area/swordbase/ground/science)
+"je" = (/obj/structure/table/reinforced,/obj/item/storage/surgical_tray,/obj/structure/sink{dir = 8; pixel_x = -12; pixel_y = 2},/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/inniecave)
 "jf" = (/obj/structure/platform,/turf/open/floor/tile/dark,/area/swordbase/ground/firingrange)
 "jh" = (/obj/structure/rack,/obj/item/ammo_magazine/tank/flamer{pixel_x = 9},/obj/item/ammo_magazine/tank/flamer,/obj/item/ammo_magazine/tank/flamer{pixel_x = -9},/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
 "jq" = (/obj/structure/window/reinforced/tinted{dir = 1},/obj/structure/toilet{dir = 4},/obj/machinery/door/window,/turf/open/floor/freezer,/area/swordbase/ground/bathroom)
 "jt" = (/obj/structure/table/reinforced,/obj/item/reagent_containers/blood/OMinus{pixel_x = -7},/obj/item/reagent_containers/blood/OMinus{pixel_x = -7},/obj/item/reagent_containers/blood/OMinus{pixel_x = -7},/obj/item/reagent_containers/blood/OMinus{pixel_x = -7},/obj/item/reagent_containers/blood/OMinus{pixel_x = -7},/obj/item/reagent_containers/blood/OMinus{pixel_x = -7},/obj/item/roller{pixel_x = 9},/obj/item/roller{pixel_x = 9},/obj/item/roller{pixel_x = 9},/obj/item/roller{pixel_x = 9},/obj/item/roller{pixel_x = 9},/obj/item/roller{pixel_x = 9},/turf/open/floor/mainship/sterile/side{dir = 4},/area/swordbase/ground/medbaysouth)
 "ju" = (/obj/structure/table/woodentable,/obj/item/reagent_containers/food/drinks/coffee,/turf/open/floor/carpet,/area/swordbase/ground/conferenceroom)
 "jz" = (/obj/machinery/power/apc/mainship{pixel_y = 16},/turf/open/floor/freezer,/area/swordbase/ground/bathroom)
+"jA" = (/obj/structure/table/reinforced,/obj/machinery/door/window{dir = 1},/obj/machinery/door/window{dir = 2},/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/inniecave)
 "jE" = (/mob/living/simple_animal/lizard,/turf/open/floor/plating,/area/swordbase/ground/janitor_closet)
 "jF" = (/obj/machinery/computer/operating,/turf/closed/wall/mainship/white,/area/swordbase/ground/medbaynorth)
 "jH" = (/obj/structure/table/woodentable,/obj/item/reagent_containers/food/drinks/coffee/cafe_latte,/turf/open/floor/carpet,/area/swordbase/ground/conferenceroom)
 "jJ" = (/obj/structure/bed/chair/office/light{dir = 8},/turf/open/floor/carpet,/area/swordbase/ground/conferenceroom)
 "jK" = (/obj/machinery/power/apc/mainship{dir = 4; pixel_x = -48},/turf/open/floor/tile/dark/purple2{dir = 8},/area/swordbase/ground/science)
+"jR" = (/obj/machinery/bodyscanner,/turf/open/floor/mainship/sterile,/area/swordbase/ground/inniecave)
 "jW" = (/obj/machinery/computer/general_air_control/large_tank_control{input_tag = "cooling_in"; name = "Core Cooling"; output_tag = "cooling_out"; sensors = list("core_sensor" = "Tank")},/turf/open/floor/tile/dark/yellow2{dir = 6},/area/swordbase/ground/engineering)
 "jZ" = (/obj/machinery/power/smes,/turf/open/floor/tile/dark,/area/swordbase/ground/engineering)
 "ka" = (/obj/structure/mopbucket,/turf/open/floor/plating,/area/swordbase/ground/janitor_closet)
@@ -143,7 +167,10 @@
 "kz" = (/obj/structure/table/woodentable,/obj/item/storage/donut_box,/turf/open/floor/carpet,/area/swordbase/ground/conferenceroom)
 "kB" = (/obj/structure/rack,/obj/structure/xenoautopsy,/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
 "kH" = (/obj/machinery/light{dir = 1},/obj/machinery/cryopod/right,/turf/open/floor/tile/dark/green2{dir = 1},/area/swordbase/ground/cryogenics)
+"kQ" = (/obj/machinery/light{dir = 8},/turf/open/floor/tile/dark/red2{dir = 8},/area/swordbase/ground/checkpoint)
+"kR" = (/obj/structure/table/reinforced,/obj/item/reagent_containers/glass/beaker/bluespace,/obj/item/reagent_containers/glass/beaker/bluespace,/obj/item/reagent_containers/glass/beaker/bluespace,/obj/item/reagent_containers/syringe{pixel_y = -7},/obj/item/reagent_containers/syringe{pixel_y = -7},/turf/open/floor/mainship/sterile/side{dir = 1},/area/swordbase/ground/inniecave)
 "kT" = (/turf/closed/wall/mainship,/area/swordbase/ground/hydro)
+"kV" = (/obj/structure/sign/chemistry,/turf/closed/wall/mainship/white,/area/swordbase/ground/inniecave)
 "lc" = (/obj/machinery/power/apc/mainship{dir = 1; pixel_y = -48},/turf/open/floor/mainship_hull,/area/swordbase/ground/vault)
 "lg" = (/obj/machinery/computer/rdservercontrol,/turf/open/floor/tile/dark/purple2{dir = 10},/area/swordbase/ground/science)
 "lk" = (/obj/structure/closet/lawcloset,/turf/open/floor/carpet,/area/swordbase/ground/conferenceroom)
@@ -154,8 +181,10 @@
 "lD" = (/obj/machinery/light{dir = 1},/obj/machinery/power/apc/mainship{pixel_y = 16},/turf/open/floor/tile/dark,/area/swordbase/ground/mainhall)
 "lE" = (/obj/structure/table,/obj/item/folder/black{pixel_x = -6},/obj/item/folder/red{pixel_x = 6; pixel_y = 3},/turf/open/floor/carpet,/area/swordbase/ground/conferenceroom)
 "lJ" = (/obj/machinery/cell_charger,/obj/structure/table/reinforced,/turf/open/floor/mainship/sterile/side{dir = 8},/area/swordbase/ground/medbaysouth)
+"lM" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/light/spot{dir = 4},/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "lO" = (/obj/structure/table,/obj/machinery/computer3/laptop,/obj/structure/window/reinforced{dir = 4},/turf/open/floor/carpet,/area/swordbase/ground/conferenceroom)
 "lQ" = (/obj/structure/bed/chair/office/light{dir = 1},/turf/open/floor/carpet,/area/swordbase/ground/conferenceroom)
+"lU" = (/obj/structure/closet/secure_closet/brig,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "lY" = (/turf/open/floor/tile/dark/green2/corner{dir = 1},/area/swordbase/ground/hydro)
 "ma" = (/obj/structure/platform,/turf/open/floor/tile/dark/blue2{dir = 1},/area/swordbase/ground/briefing)
 "md" = (/obj/structure/platform{dir = 1},/obj/structure/platform{dir = 8},/obj/structure/platform_decoration{dir = 5},/turf/open/beach/sand,/area/swordbase/ground/mainhall)
@@ -164,17 +193,23 @@
 "mh" = (/obj/structure/table,/obj/item/reagent_containers/food/drinks/coffee/cafe_latte,/obj/structure/window/reinforced{dir = 4},/turf/open/floor/carpet,/area/swordbase/ground/conferenceroom)
 "mj" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/turf/open/floor/tile/dark/brown2,/area/swordbase/ground/armory)
 "ml" = (/obj/structure/table/reinforced,/obj/machinery/door/window{dir = 1},/obj/machinery/door/window{dir = 2},/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/medbaynorth)
+"ms" = (/obj/machinery/chem_master,/turf/open/floor/mainship/sterile/side{dir = 1},/area/swordbase/ground/inniecave)
 "mu" = (/obj/machinery/light,/turf/open/floor/wood,/area/swordbase/ground/conferenceroom)
 "mv" = (/turf/open/floor/tile/dark/purple2{dir = 9},/area/swordbase/ground/science)
+"mA" = (/obj/machinery/light{dir = 1},/obj/machinery/vending/marine,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "mC" = (/obj/machinery/door/airlock/multi_tile/medical{dir = 1; name = "Medical Research"},/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
 "mK" = (/obj/structure/flora/rock/beachrocks,/obj/structure/platform{dir = 1},/turf/open/beach/sand,/area/swordbase/ground/mainhall)
 "mL" = (/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/medbaysouth)
-"mP" = (/obj/machinery/light,/turf/open/floor/tile/dark,/area/swordbase/ground/checkpoint)
+"mP" = (/obj/effect/decal/cleanable/dirt,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
+"mR" = (/obj/structure/table/reinforced,/obj/item/storage/pill_bottle/dylovene,/obj/item/storage/pill_bottle/dylovene,/obj/item/storage/pill_bottle/dylovene,/obj/item/storage/pill_bottle/inaprovaline{pixel_x = -7},/obj/item/storage/pill_bottle/inaprovaline{pixel_x = -7},/obj/item/storage/pill_bottle/inaprovaline{pixel_x = -7},/obj/item/storage/pill_bottle/dexalin{pixel_x = 7},/obj/item/storage/pill_bottle/dexalin{pixel_x = 7},/obj/item/storage/pill_bottle/dexalin{pixel_x = 7},/obj/machinery/light{dir = 1},/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/inniecave)
 "mS" = (/obj/structure/table/reinforced,/obj/structure/table/reinforced,/obj/machinery/cell_charger,/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
+"mU" = (/obj/machinery/vending/uniform_supply,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "na" = (/obj/structure/platform{dir = 1},/obj/structure/platform{dir = 4},/obj/structure/platform_decoration{dir = 9},/turf/open/ground/desertdam/river/clean/deep_water_clean,/area/swordbase/ground/mainhall)
 "nd" = (/obj/structure/table/reinforced,/obj/machinery/door/window{dir = 8},/obj/machinery/door/window,/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
 "ng" = (/turf/open/floor/tile/dark,/area/swordbase/ground/checkpoint)
 "ni" = (/obj/machinery/bodyscanner,/turf/open/floor/mainship/sterile/side{dir = 8},/area/swordbase/ground/medbaynorth)
+"nn" = (/obj/structure/window/reinforced,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
+"no" = (/obj/structure/table/reinforced,/obj/machinery/light,/turf/open/floor/mainship/sterile,/area/swordbase/ground/inniecave)
 "np" = (/obj/machinery/door/airlock/mainship/secure/free_access{dir = 1; name = "\improper Janitor's Closet"},/turf/open/swordbase/snowstone,/area/swordbase/ground/janitor_closet)
 "nq" = (/obj/machinery/light{dir = 1},/turf/open/floor/mainship/sterile/side{dir = 1},/area/swordbase/ground/medbaysouth)
 "nu" = (/obj/machinery/light{dir = 1},/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
@@ -183,12 +218,15 @@
 "nx" = (/obj/machinery/door/airlock/multi_tile/secure{name = "Vault"},/turf/open/floor/mainship_hull,/area/swordbase/ground/vault)
 "nH" = (/obj/structure/table/reinforced,/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
 "nO" = (/turf/closed/wall/r_wall/prison,/area/swordbase/ground/outdoors)
+"nQ" = (/obj/machinery/bioprinter{stored_metal = 1000},/turf/open/floor/mainship/sterile/side,/area/swordbase/ground/inniecave)
 "nV" = (/obj/machinery/vending/hydroseeds,/turf/open/floor/tile/dark/green2{dir = 1},/area/swordbase/ground/hydro)
 "nW" = (/obj/machinery/door/poddoor/four_tile_hor{id = upper main gate; name = "\improper Upper Main Gate"},/turf/open/floor/tile/dark,/area/swordbase/ground/maingate)
 "nY" = (/obj/structure/grille/fence/east_west,/turf/open/swordbase/snowstone,/area/swordbase/ground/outdoors)
 "nZ" = (/obj/effect/overlay/coconut,/obj/structure/platform{dir = 8},/turf/open/beach/sand,/area/swordbase/ground/mainhall)
+"oa" = (/obj/structure/ladder{height = 2; icon_state = "ladderdown"; id = "southeast"},/turf/open/floor/plating,/area/swordbase/ground/outdoors)
 "ob" = (/obj/structure/table/reinforced,/obj/item/storage/belt/medical,/obj/item/clothing/glasses/hud/health,/obj/item/clothing/gloves/latex,/turf/open/floor/mainship/sterile/corner{dir = 4},/area/swordbase/ground/medbaysouth)
 "od" = (/obj/machinery/disposal,/turf/open/floor/tile/dark,/area/swordbase/ground/firingrange)
+"oe" = (/obj/structure/largecrate/supply/medicine/iv,/obj/machinery/light{dir = 4},/turf/open/floor/mainship/sterile,/area/swordbase/ground/inniecave)
 "og" = (/obj/structure/bed/chair/sofa,/turf/open/floor/tile/dark,/area/swordbase/ground/mainhall)
 "oi" = (/obj/structure/flora/rock/beachrocks,/turf/open/beach/sand,/area/swordbase/ground/mainhall)
 "oj" = (/obj/machinery/vending/MarineMed,/turf/open/floor/mainship/sterile/side,/area/swordbase/ground/medbaysouth)
@@ -196,16 +234,22 @@
 "or" = (/obj/structure/sink/bathroom{dir = 8; pixel_x = 15},/obj/structure/mirror{pixel_x = 30},/turf/open/floor/freezer,/area/swordbase/ground/bathroom)
 "ow" = (/obj/structure/reagent_dispensers/watertank,/obj/machinery/light/spot,/turf/open/floor/tile/dark/green2,/area/swordbase/ground/hydro)
 "oB" = (/mob/living/simple_animal/crab,/turf/open/ground/desertdam/river/clean/deep_water_clean,/area/swordbase/ground/mainhall)
+"oC" = (/obj/machinery/light{dir = 8},/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/inniecave)
+"oL" = (/obj/structure/bed/chair/office/light{dir = 1},/turf/open/floor/mainship/sterile/side{dir = 1},/area/swordbase/ground/inniecave)
 "oR" = (/obj/effect/overlay/palmtree_r,/turf/open/beach/sand,/area/swordbase/ground/mainhall)
 "oY" = (/turf/open/floor/tile/dark/red2{dir = 6},/area/swordbase/ground/outdoors)
 "pf" = (/obj/structure/platform{dir = 4},/obj/machinery/light{dir = 4},/turf/open/ground/desertdam/river/clean/deep_water_clean,/area/swordbase/ground/mainhall)
 "pk" = (/obj/structure/bed/chair/office/light{dir = 1},/turf/open/floor/mainship/sterile/side{dir = 1},/area/swordbase/ground/medbaysouth)
 "po" = (/obj/machinery/atmospherics/components/unary/vent_scrubber/on{dir = 8},/obj/machinery/light{dir = 1},/turf/open/floor/freezer,/area/swordbase/ground/kitchen)
+"pp" = (/obj/machinery/light{dir = 4},/obj/effect/decal/cleanable/dirt,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "pr" = (/obj/machinery/door/airlock/multi_tile/security{name = "Checkpoint"},/turf/open/floor/tile/dark/red2{dir = 8},/area/swordbase/ground/checkpoint)
 "pv" = (/obj/machinery/power/apc/mainship{pixel_y = 16},/turf/open/floor/freezer,/area/swordbase/ground/kitchen)
 "pz" = (/obj/machinery/door/airlock/freezer,/turf/open/floor/prison/kitchen,/area/swordbase/ground/kitchen)
+"pD" = (/obj/structure/table/reinforced,/obj/structure/paper_bin{pixel_x = -3; pixel_y = 7},/obj/item/tool/pen{pixel_x = 4; pixel_y = 4},/obj/effect/decal/cleanable/dirt,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "pG" = (/turf/closed/wall/mainship,/area/swordbase/ground/janitor_closet)
 "pH" = (/obj/structure/closet/secure_closet/freezer/meat,/obj/machinery/light{dir = 1},/turf/open/floor/prison/kitchen,/area/swordbase/ground/kitchen)
+"pK" = (/obj/machinery/chem_dispenser,/turf/open/floor/mainship/sterile/corner,/area/swordbase/ground/inniecave)
+"pQ" = (/obj/structure/window/reinforced{dir = 4},/obj/effect/decal/cleanable/dirt,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "pR" = (/obj/structure/rack,/obj/item/storage/box/bodybags,/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
 "pT" = (/obj/structure/table,/obj/item/storage/box/botanydisk,/obj/item/storage/box/botanydisk,/obj/machinery/light/spot{dir = 8},/turf/open/floor/tile/dark/green2{dir = 9},/area/swordbase/ground/hydro)
 "pW" = (/obj/structure/morgue{dir = 8},/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
@@ -213,24 +257,38 @@
 "pY" = (/obj/machinery/disposal,/turf/open/floor/prison/kitchen,/area/swordbase/ground/kitchen)
 "qf" = (/obj/structure/closet/l3closet/janitor,/turf/open/floor/plating,/area/swordbase/ground/janitor_closet)
 "qm" = (/obj/item/reagent_containers/glass/bucket/janibucket,/obj/machinery/light/small{dir = 1},/turf/open/floor/plating,/area/swordbase/ground/janitor_closet)
+"qq" = (/obj/structure/largecrate/random/case,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating,/area/swordbase/ground/inniecave)
 "qs" = (/obj/structure/bed/chair{dir = 1},/turf/open/floor/tile/dark/blue2{dir = 5},/area/swordbase/ground/briefing)
 "qv" = (/obj/structure/table/reinforced,/obj/item/storage/surgical_tray,/obj/machinery/light{dir = 1},/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
 "qy" = (/obj/structure/bed,/obj/item/bedsheet/medical,/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/medbaysouth)
 "qC" = (/obj/machinery/r_n_d/circuit_imprinter,/turf/open/floor/tile/dark,/area/swordbase/ground/science)
+"qE" = (/turf/open/floor/mainship/sterile/side{dir = 4},/area/swordbase/ground/inniecave)
+"qG" = (/obj/item/tool/shovel/etool,/obj/item/tool/shovel/etool,/obj/item/tool/shovel/etool,/obj/item/tool/shovel/etool,/obj/item/tool/shovel/etool,/obj/structure/table/reinforced,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
+"qI" = (/turf/closed/wall/r_wall/prison,/area/swordbase/ground/inniecave)
 "qJ" = (/obj/machinery/light/spot{dir = 1},/turf/open/floor/tile/dark,/area/swordbase/ground/maingate)
+"qK" = (/obj/machinery/disposal,/turf/open/floor/mainship/sterile/corner{dir = 4},/area/swordbase/ground/inniecave)
+"qL" = (/turf/open/floor/plating,/area/swordbase/ground/inniecave)
 "qO" = (/obj/structure/table/reinforced,/obj/item/reagent_containers/spray/surgery{pixel_x = 6; pixel_y = -4},/obj/item/clothing/suit/surgical{pixel_x = -8; pixel_y = -5},/obj/item/clothing/mask/surgical{pixel_x = 5; pixel_y = 12},/obj/item/clothing/head/surgery/blue{pixel_x = -10; pixel_y = 7},/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
 "qQ" = (/turf/closed/wall/mainship/research/containment/wall/corner{dir = 8},/area/swordbase/ground/medsci)
+"qR" = (/obj/machinery/computer/operating,/turf/closed/wall/mainship/white,/area/swordbase/ground/inniecave)
 "qV" = (/turf/open/floor/tile/dark/red2{dir = 4},/area/swordbase/ground/checkpoint)
+"qY" = (/turf/open/floor/tile/dark/red2/corner,/area/swordbase/ground/checkpoint)
 "rp" = (/obj/structure/reagent_dispensers/watertank,/turf/open/floor/tile/dark/green2{dir = 6},/area/swordbase/ground/hydro)
+"rE" = (/obj/effect/landmark/start/latejoin,/turf/open/floor/plating,/area/swordbase/ground/inniecave)
 "rJ" = (/obj/machinery/iv_drip,/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/medbaysouth)
 "rT" = (/obj/structure/rack,/obj/item/organ/diona/node{pixel_x = -4},/obj/item/organ/brain/prosthetic{pixel_x = 5},/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
+"rV" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/vending/marine_medic,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "sa" = (/obj/structure/table/reinforced,/obj/item/book/manual/marine_law,/obj/item/clothing/glasses/sunglasses,/turf/open/floor/tile/dark/red2{dir = 9},/area/mainship/shipboard/brig)
 "sc" = (/obj/structure/table/reinforced,/obj/item/taperecorder,/turf/open/floor/tile/dark/red2{dir = 1},/area/mainship/shipboard/brig)
 "se" = (/obj/structure/table/reinforced,/obj/item/tool/taperoll/police,/obj/structure/reagent_dispensers/wallmounted/peppertank{pixel_y = 16},/turf/open/floor/tile/dark/red2{dir = 1},/area/mainship/shipboard/brig)
+"sj" = (/obj/machinery/light{dir = 1},/obj/effect/decal/cleanable/dirt,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "sm" = (/obj/machinery/light{dir = 8},/obj/structure/table/reinforced,/obj/item/detective_scanner,/obj/item/detective_scanner,/obj/item/storage/box/gloves,/obj/item/storage/box/handcuffs,/obj/item/storage/box/evidence,/obj/item/folder/red,/obj/item/folder/red,/obj/structure/paper_bin,/obj/item/tool/pen,/turf/open/floor/tile/dark/red2{dir = 1},/area/mainship/shipboard/brig)
+"sA" = (/obj/structure/ladder{height = 1; icon_state = "ladderup"; id = "southeast"},/obj/effect/decal/cleanable/dirt,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
+"sB" = (/obj/effect/landmark/start/job/squadmarine,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating,/area/swordbase/ground/inniecave)
 "sE" = (/obj/item/storage/toolbox/syndicate,/obj/structure/table/reinforced,/obj/machinery/light{dir = 1},/turf/open/floor/tile/dark/red2{dir = 1},/area/mainship/shipboard/brig)
 "sG" = (/obj/machinery/light/spot{dir = 8},/turf/open/floor/tile/dark/green2{dir = 8},/area/swordbase/ground/hydro)
 "sJ" = (/obj/structure/closet/secure_closet/security,/turf/open/floor/tile/dark/red2{dir = 1},/area/mainship/shipboard/brig)
+"sK" = (/obj/structure/window/reinforced{dir = 8},/obj/effect/decal/cleanable/dirt,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "sL" = (/obj/machinery/vending/security,/obj/machinery/light{dir = 1},/turf/open/floor/tile/dark/red2{dir = 5},/area/mainship/shipboard/brig)
 "sT" = (/turf/open/floor/mainship/sterile/side{dir = 9},/area/swordbase/ground/medbaysouth)
 "sU" = (/turf/open/floor/mainship/sterile/corner{dir = 4},/area/swordbase/ground/medbaynorth)
@@ -247,18 +305,24 @@
 "tH" = (/obj/structure/table/reinforced/prison,/obj/item/reagent_containers/food/snacks/bigbiteburger,/turf/open/floor/prison/kitchen,/area/swordbase/ground/kitchen)
 "tJ" = (/obj/structure/flora/rock/beachrocks,/obj/structure/platform{dir = 4},/turf/open/beach/sand,/area/swordbase/ground/mainhall)
 "tN" = (/obj/machinery/light{dir = 1},/turf/open/floor/tile/dark/red2{dir = 1},/area/swordbase/ground/checkpoint)
-"tO" = (/turf/open/floor/tile/dark/red2{dir = 5},/area/swordbase/ground/checkpoint)
+"tO" = (/obj/effect/decal/cleanable/dirt,/obj/structure/ladder{height = 1; icon_state = "ladderup"; id = "northeast"},/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "tP" = (/turf/open/floor/carpet,/area/swordbase/ground/conferenceroom)
 "tT" = (/obj/structure/table/reinforced,/obj/item/storage/pill_bottle/dylovene,/obj/item/storage/pill_bottle/dylovene,/obj/item/storage/pill_bottle/dylovene,/obj/item/storage/pill_bottle/inaprovaline{pixel_x = -7},/obj/item/storage/pill_bottle/inaprovaline{pixel_x = -7},/obj/item/storage/pill_bottle/inaprovaline{pixel_x = -7},/obj/item/storage/pill_bottle/dexalin{pixel_x = 7},/obj/item/storage/pill_bottle/dexalin{pixel_x = 7},/obj/item/storage/pill_bottle/dexalin{pixel_x = 7},/obj/machinery/light{dir = 1},/turf/open/floor/mainship/sterile/side{dir = 1},/area/swordbase/ground/medbaysouth)
 "tW" = (/obj/machinery/light{dir = 4},/turf/open/floor/wood,/area/swordbase/ground/conferenceroom)
 "ua" = (/obj/item/tool/mop,/turf/open/floor/plating,/area/swordbase/ground/janitor_closet)
+"ud" = (/obj/machinery/cryopod,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating,/area/swordbase/ground/inniecave)
 "ue" = (/obj/machinery/light{dir = 8},/turf/open/floor/tile/dark,/area/swordbase/ground/maingate)
+"um" = (/obj/structure/table/mainship,/obj/item/facepaint/black{pixel_x = -7},/obj/item/facepaint/sniper{pixel_x = 7},/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "up" = (/obj/structure/sink{dir = 8; pixel_x = -12},/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
+"ut" = (/obj/machinery/door/airlock/multi_tile/secure{dir = 1},/turf/open/floor/tile/dark/red2,/area/swordbase/ground/checkpoint)
+"uz" = (/obj/machinery/cryopod/right,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating,/area/swordbase/ground/inniecave)
+"uF" = (/obj/machinery/computer/med_data,/turf/open/floor/mainship/sterile,/area/swordbase/ground/inniecave)
 "uH" = (/obj/structure/curtain/medical,/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
 "uK" = (/obj/structure/table/reinforced,/obj/item/book/manual/marine_law,/obj/item/clothing/glasses/sunglasses,/turf/open/floor/tile/dark/red2{dir = 8},/area/mainship/shipboard/brig)
 "uN" = (/obj/machinery/light{dir = 8},/turf/open/floor/prison/kitchen,/area/swordbase/ground/kitchen)
 "uV" = (/obj/structure/largecrate/supply/medicine/blood,/obj/machinery/light,/turf/open/floor/mainship/sterile/side,/area/swordbase/ground/medbaysouth)
 "va" = (/obj/machinery/door/airlock/mainship/medical/free_access{name = "\improper Morgue"},/turf/open/floor/mainship/sterile/plain,/area/swordbase/ground/medbaynorth)
+"vb" = (/obj/machinery/light,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "vi" = (/obj/structure/table/reinforced,/obj/machinery/reagentgrinder,/turf/open/floor/prison/kitchen,/area/swordbase/ground/kitchen)
 "vm" = (/turf/open/floor/tile/dark/red2{dir = 10},/area/swordbase/ground/outdoors)
 "vw" = (/obj/structure/table/reinforced,/obj/item/clothing/head/chefhat,/obj/item/tool/kitchen/rollingpin,/turf/open/floor/prison/kitchen,/area/swordbase/ground/kitchen)
@@ -267,34 +331,40 @@
 "vC" = (/turf/open/floor/mainship/mono,/area/swordbase/ground/medicaloffice)
 "vJ" = (/obj/machinery/autodoc,/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/medbaynorth)
 "vL" = (/turf/open/floor/wood,/area/swordbase/ground/medicaloffice)
-"vM" = (/obj/structure/grille/fence/north_south,/turf/open/swordbase/snowstone,/area/swordbase/ground/outdoors)
+"vM" = (/obj/effect/decal/cleanable/dirt,/turf/closed/wall/r_wall/prison,/area/swordbase/ground/inniecave)
 "vO" = (/obj/structure/platform{dir = 4},/turf/open/beach/sand,/area/swordbase/ground/mainhall)
 "vS" = (/obj/structure/table/reinforced,/obj/item/explosive/grenade/chem_grenade,/obj/item/explosive/grenade/chem_grenade,/obj/item/explosive/grenade/chem_grenade,/obj/item/explosive/grenade/chem_grenade,/obj/item/explosive/grenade/chem_grenade,/obj/item/storage/box/beakers{pixel_x = -7; pixel_y = 10},/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
+"vW" = (/obj/structure/table/reinforced,/obj/item/storage/pill_bottle/spaceacillin,/obj/item/storage/pill_bottle/spaceacillin,/obj/item/storage/pill_bottle/spaceacillin,/obj/item/storage/pill_bottle/peridaxon{pixel_x = -7},/obj/item/storage/pill_bottle/peridaxon{pixel_x = -7},/obj/item/storage/pill_bottle/peridaxon{pixel_x = -7},/obj/item/storage/pill_bottle/quickclot{pixel_x = 7},/obj/item/storage/pill_bottle/quickclot{pixel_x = 6},/obj/item/storage/pill_bottle/quickclot{pixel_x = 7},/turf/open/floor/mainship/sterile,/area/swordbase/ground/inniecave)
 "vY" = (/obj/effect/landmark/start/job/squadmarine,/turf/open/floor/tile/dark/green2/corner,/area/swordbase/ground/cryogenics)
 "wa" = (/turf/open/floor/mainship/sterile/corner{dir = 1},/area/swordbase/ground/medbaynorth)
 "we" = (/obj/structure/kitchenspike,/turf/open/floor/freezer,/area/swordbase/ground/kitchen)
 "wi" = (/obj/effect/decal/cleanable/flour,/turf/open/floor/prison/kitchen,/area/swordbase/ground/kitchen)
 "wn" = (/obj/machinery/light,/turf/open/floor/tile/dark/red2,/area/mainship/shipboard/brig)
+"ws" = (/obj/structure/curtain/medical,/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/inniecave)
 "wv" = (/turf/open/floor/tile/dark/red2{dir = 8},/area/swordbase/ground/outdoors)
+"wy" = (/obj/structure/ladder{height = 2; icon_state = "ladderdown"; id = "southwest"},/turf/open/floor/plating,/area/swordbase/ground/outdoors)
 "wz" = (/turf/open/floor/tile/dark/purple2{dir = 8},/area/swordbase/ground/science)
 "wB" = (/turf/open/floor/mainship/sterile/side{dir = 6},/area/swordbase/ground/medbaynorth)
 "wD" = (/turf/open/floor/tile/dark/yellow2{dir = 6},/area/swordbase/ground/engineering)
 "wM" = (/obj/machinery/door/airlock/multi_tile/engineering{name = "Engineering"},/turf/open/floor/tile/dark/yellow2{dir = 8},/area/swordbase/ground/engineering)
 "wP" = (/obj/machinery/door/airlock/multi_tile/security{dir = 1; name = "Checkpoint"},/turf/open/floor/tile/dark/red2,/area/swordbase/ground/checkpoint)
+"wT" = (/obj/machinery/light/spot{dir = 8},/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "wU" = (/obj/structure/bed/chair/janicart,/turf/open/floor/plating,/area/swordbase/ground/janitor_closet)
 "wV" = (/obj/structure/sign/greencross,/turf/closed/wall/mainship/white,/area/swordbase/ground/medbaynorth)
 "wW" = (/obj/machinery/vending/medical,/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
 "wX" = (/obj/machinery/door/airlock/multi_tile/command{dir = 1; name = "Briefing Office"},/turf/open/floor/mainship/mono,/area/swordbase/ground/medicaloffice)
 "xa" = (/obj/structure/table,/obj/item/storage/box/cups,/obj/machinery/light{dir = 1},/turf/open/floor/wood,/area/swordbase/ground/medicaloffice)
 "xc" = (/obj/structure/reagent_dispensers/water_cooler,/turf/open/floor/wood,/area/swordbase/ground/medicaloffice)
+"xd" = (/obj/machinery/door/window/southright,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "xi" = (/obj/machinery/door/airlock/mainship/medical/glass/chemistry{dir = 2},/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
 "xm" = (/turf/open/beach/sand,/area/swordbase/ground/mainhall)
 "xr" = (/obj/structure/bed/chair/wheelchair,/turf/open/floor/mainship/sterile/side{dir = 4},/area/swordbase/ground/medbaysouth)
+"xs" = (/obj/effect/landmark/start/latejoin,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating,/area/swordbase/ground/inniecave)
 "xw" = (/obj/machinery/r_n_d/protolathe,/turf/open/floor/tile/dark,/area/swordbase/ground/science)
 "xH" = (/obj/structure/table/reinforced,/obj/item/storage/bible,/turf/open/floor/mainship/sterile/plain,/area/swordbase/ground/medbaynorth)
 "xI" = (/obj/machinery/power/apc/mainship{pixel_y = 16},/turf/open/floor/wood,/area/swordbase/ground/medicaloffice)
 "xJ" = (/obj/machinery/disposal,/turf/open/floor/wood,/area/swordbase/ground/medicaloffice)
-"xL" = (/obj/machinery/door/firedoor/mainship{id = bridge view lockdown},/obj/structure/window/framed/mainship/white,/turf/open/floor/wood,/area/swordbase/ground/medicaloffice)
+"xL" = (/turf/closed/wall/mainship/white,/area/swordbase/ground/inniecave)
 "xO" = (/obj/structure/table/reinforced,/obj/structure/paper_bin{pixel_x = -3; pixel_y = 7},/obj/item/tool/pen{pixel_x = 4; pixel_y = 4},/turf/open/floor/tile/dark/red2{dir = 10},/area/mainship/shipboard/brig)
 "xP" = (/obj/machinery/light/spot{dir = 8},/turf/open/floor/tile/dark/yellow2{dir = 9},/area/swordbase/ground/engineering)
 "xQ" = (/obj/effect/overlay/coconut,/turf/open/beach/sand,/area/swordbase/ground/mainhall)
@@ -324,10 +394,13 @@
 "zv" = (/obj/structure/flora/rock/beachrocks,/obj/structure/platform,/turf/open/beach/sand,/area/swordbase/ground/mainhall)
 "zF" = (/obj/structure/bed/chair/comfy{dir = 1},/turf/open/floor/tile/dark/green2{dir = 1},/area/swordbase/ground/kitchen)
 "zI" = (/turf/closed/wall/mainship/white,/area/swordbase/ground/medicaloffice)
+"zN" = (/obj/structure/grille/fence/north_south,/turf/open/swordbase/snowstone,/area/swordbase/ground/outdoors)
 "zP" = (/turf/open/floor/tile/dark/red2{dir = 9},/area/swordbase/ground/firingrange)
 "zQ" = (/obj/structure/platform{dir = 8},/turf/open/beach/sand,/area/swordbase/ground/mainhall)
 "zR" = (/obj/structure/table/reinforced,/obj/machinery/button/door{id = lower main gate; name = "Lower Main Gate Control"; pixel_y = -3},/obj/machinery/button/door{id = upper main gate; name = "Upper Main Gate Control"; pixel_y = 8},/turf/open/floor/tile/dark/red2{dir = 8},/area/swordbase/ground/checkpoint)
+"zV" = (/obj/structure/table/reinforced,/turf/open/floor/mainship/sterile,/area/swordbase/ground/inniecave)
 "zX" = (/obj/structure/table/reinforced,/obj/item/explosive/grenade/chem_grenade,/obj/item/explosive/grenade/chem_grenade,/obj/item/explosive/grenade/chem_grenade,/obj/item/explosive/grenade/chem_grenade,/obj/item/explosive/grenade/chem_grenade,/obj/item/storage/box/beakers{pixel_x = -7; pixel_y = 10},/obj/item/reagent_containers/dropper{pixel_y = 7},/turf/open/floor/mainship/sterile/side{dir = 1},/area/swordbase/ground/medbaysouth)
+"Ae" = (/obj/structure/ladder{height = 2; icon_state = "ladderdown"; id = "northeast"},/turf/open/floor/plating,/area/swordbase/ground/outdoors)
 "Af" = (/obj/machinery/door/airlock/mainship/secure/free_access{dir = 1; name = "\improper Janitor's Closet"},/turf/open/floor/plating,/area/swordbase/ground/janitor_closet)
 "Ag" = (/obj/machinery/power/apc/mainship{pixel_y = 16},/turf/open/floor/tile/dark/green2{dir = 1},/area/swordbase/ground/kitchen)
 "Ai" = (/obj/structure/bed/chair/office/light{dir = 8},/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
@@ -348,13 +421,18 @@
 "Bt" = (/obj/structure/table/mainship,/obj/item/storage/box/drinkingglasses,/turf/open/floor/tile/dark/green2{dir = 8},/area/swordbase/ground/kitchen)
 "Bw" = (/turf/open/floor/tile/dark/red2{dir = 5},/area/swordbase/ground/outdoors)
 "Bx" = (/obj/machinery/holosign/surgery{id = surgery1},/obj/machinery/door/airlock/mainship/medical/glass/free_access{dir = 1; name = "\improper Surgery"},/turf/open/floor/mainship/sterile,/area/swordbase/ground/medbaynorth)
+"Bz" = (/obj/machinery/light{dir = 8},/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
+"BI" = (/obj/structure/table/reinforced,/obj/item/clipboard{pixel_x = -6},/obj/item/folder/red{pixel_x = 7; pixel_y = 3},/obj/machinery/light{dir = 8},/obj/effect/decal/cleanable/dirt,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "BN" = (/obj/machinery/light{dir = 1},/turf/open/floor/tile/dark/red2{dir = 1},/area/swordbase/ground/firingrange)
 "BQ" = (/obj/structure/platform{dir = 4},/obj/machinery/light{dir = 4},/turf/open/beach/sand,/area/swordbase/ground/mainhall)
+"BS" = (/obj/structure/largecrate/supply/medicine/medkits,/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/inniecave)
 "BW" = (/obj/machinery/vending/marineFood,/turf/open/floor/tile/dark/green2{dir = 4},/area/swordbase/ground/kitchen)
 "BY" = (/obj/structure/table/reinforced,/obj/item/reagent_containers/glass/beaker/bluespace,/obj/item/reagent_containers/glass/beaker/bluespace,/obj/item/reagent_containers/dropper{pixel_y = 7},/obj/item/reagent_containers/glass/beaker/bluespace,/obj/item/reagent_containers/syringe{pixel_y = -7},/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
+"BZ" = (/obj/effect/landmark/start/latejoin,/obj/effect/decal/cleanable/dirt,/obj/machinery/light/spot{dir = 1},/turf/open/floor/plating,/area/swordbase/ground/inniecave)
 "Cc" = (/turf/open/floor/tile/dark/red2{dir = 1},/area/mainship/shipboard/brig)
 "Cj" = (/obj/machinery/chem_master,/obj/machinery/light,/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
 "Cl" = (/obj/structure/table/reinforced,/obj/machinery/cell_charger,/obj/machinery/light,/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
+"Cn" = (/obj/machinery/light{dir = 1},/obj/machinery/vending/uniform_supply,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "Cq" = (/turf/open/floor/prison/kitchen,/area/swordbase/ground/kitchen)
 "Cr" = (/obj/structure/table,/obj/item/storage/toolbox/mechanical,/turf/open/floor/tile/dark/purple2{dir = 8},/area/swordbase/ground/science)
 "Cx" = (/obj/structure/filingcabinet/chestdrawer,/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
@@ -363,6 +441,7 @@
 "CJ" = (/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
 "CK" = (/obj/machinery/power/apc/mainship{pixel_y = 16},/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
 "CQ" = (/obj/machinery/door/airlock/mainship/medical/glass/free_access{name = "\improper Medical Reception"},/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
+"CR" = (/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/inniecave)
 "Df" = (/obj/structure/filingcabinet/chestdrawer,/turf/open/floor/wood,/area/swordbase/ground/medicaloffice)
 "Dg" = (/obj/structure/table,/obj/item/reagent_containers/food/drinks/coffee/cafe_latte{pixel_x = -4},/obj/item/folder/red{pixel_x = 6; pixel_y = 3},/turf/open/floor/wood,/area/swordbase/ground/medicaloffice)
 "Dh" = (/obj/machinery/chem_dispenser,/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
@@ -370,20 +449,27 @@
 "Dm" = (/obj/structure/curtain/shower,/obj/structure/window/reinforced/tinted{dir = 1},/obj/structure/window/reinforced/tinted,/obj/machinery/shower{dir = 4},/turf/open/floor/freezer,/area/swordbase/ground/bathroom)
 "Do" = (/obj/effect/landmark/start/job/squadmarine,/turf/open/floor/tile/dark/green2{dir = 9},/area/swordbase/ground/cryogenics)
 "Dx" = (/obj/machinery/light{dir = 1},/obj/machinery/cryopod,/turf/open/floor/tile/dark/green2{dir = 1},/area/swordbase/ground/cryogenics)
+"Dz" = (/obj/machinery/body_scanconsole,/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/inniecave)
+"DH" = (/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 1},/obj/effect/decal/cleanable/dirt,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
+"DL" = (/obj/machinery/door/window/southright,/obj/effect/decal/cleanable/dirt,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "DO" = (/turf/closed/wall/r_wall/prison,/area/swordbase/ground/vault)
 "DP" = (/turf/open/floor/tile/dark/blue2/corner,/area/swordbase/ground/briefing)
 "DQ" = (/obj/effect/landmark/start/job/squadmarine,/turf/open/floor/tile/dark/green2{dir = 5},/area/swordbase/ground/cryogenics)
+"DT" = (/obj/machinery/vending/marineFood,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
+"DY" = (/turf/open/floor/mainship/sterile/side,/area/swordbase/ground/inniecave)
 "DZ" = (/obj/machinery/door/airlock/multi_tile/medical{dir = 1; name = "Medical"},/turf/open/floor/mainship/sterile/side,/area/swordbase/ground/medbaysouth)
 "Ea" = (/turf/open/floor/tile/dark/green2{dir = 9},/area/swordbase/ground/cryogenics)
 "Ef" = (/obj/structure/bed/chair/sofa/right,/turf/open/floor/tile/dark,/area/swordbase/ground/mainhall)
 "Em" = (/turf/open/floor/tile/dark/green2{dir = 5},/area/swordbase/ground/cryogenics)
 "Ep" = (/obj/machinery/door/airlock/multi_tile/medical{name = "Medical Research"},/turf/open/floor/mainship/mono,/area/swordbase/ground/medbaynorth)
+"Er" = (/obj/machinery/vending/medical,/turf/open/floor/mainship/sterile,/area/swordbase/ground/inniecave)
 "Es" = (/obj/machinery/door/airlock/multi_tile/medical{name = "Medical"},/turf/open/floor/mainship/sterile/side{dir = 8},/area/swordbase/ground/medbaynorth)
 "Et" = (/obj/structure/window/framed/prison/reinforced,/turf/open/floor/tile/dark,/area/swordbase/ground/checkpoint)
 "Ev" = (/obj/structure/closet/secure_closet/chemical,/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
+"Ew" = (/obj/machinery/cryopod,/turf/open/floor/plating,/area/swordbase/ground/inniecave)
 "Ey" = (/obj/machinery/botany/extractor,/turf/open/floor/tile/dark/green2{dir = 4},/area/swordbase/ground/hydro)
 "Ez" = (/obj/machinery/door/airlock/multi_tile/command{name = "Briefing Office"},/turf/open/floor/wood,/area/swordbase/ground/medicaloffice)
-"EC" = (/obj/machinery/door/firedoor/mainship{dir = 1; id = bridge view lockdown},/obj/structure/window/framed/mainship/white,/turf/open/floor/wood,/area/swordbase/ground/medicaloffice)
+"EC" = (/obj/structure/largecrate/random/barrel,/obj/effect/decal/cleanable/dirt,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "EE" = (/obj/effect/landmark/start/latejoin,/obj/machinery/light,/turf/open/floor/tile/dark/green2,/area/swordbase/ground/cryogenics)
 "EH" = (/turf/open/floor/tile/dark/green2/corner{dir = 8},/area/swordbase/ground/cryogenics)
 "EM" = (/turf/closed/wall/mainship/research/containment/wall/north,/area/swordbase/ground/medsci)
@@ -396,9 +482,12 @@
 "Fm" = (/turf/open/floor/tile/dark/green2/corner,/area/swordbase/ground/cryogenics)
 "Fn" = (/turf/open/floor/tile/dark/green2/corner{dir = 4},/area/swordbase/ground/cryogenics)
 "Fu" = (/turf/open/floor/tile/dark/green2{dir = 1},/area/swordbase/ground/cryogenics)
+"Fv" = (/obj/structure/largecrate/supply/supplies/flares,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating,/area/swordbase/ground/inniecave)
 "Fz" = (/obj/machinery/door/airlock/multi_tile/glass{dir = 1; name = "Cryogenics"},/turf/open/floor/tile/dark/green2,/area/swordbase/ground/cryogenics)
 "FB" = (/turf/open/floor/tile/dark/red2{dir = 4},/area/mainship/shipboard/brig)
+"FD" = (/obj/machinery/light/spot{dir = 4},/turf/open/floor/plating,/area/swordbase/ground/inniecave)
 "FF" = (/turf/open/floor/tile/dark/green2/corner{dir = 1},/area/swordbase/ground/kitchen)
+"FG" = (/obj/machinery/door/airlock/multi_tile/secure,/turf/open/floor/tile/dark/red2{dir = 8},/area/swordbase/ground/checkpoint)
 "FR" = (/obj/machinery/vending/marine_special,/turf/open/floor/tile/dark/brown2{dir = 6},/area/swordbase/ground/armory)
 "FS" = (/obj/structure/table/mainship,/obj/item/facepaint/green,/turf/open/floor/tile/dark,/area/swordbase/ground/kitchen)
 "FT" = (/turf/open/floor/tile/dark/purple2/corner{dir = 4},/area/swordbase/ground/science)
@@ -409,6 +498,7 @@
 "Gj" = (/turf/open/floor/tile/dark,/area/swordbase/ground/hydro)
 "Gn" = (/turf/open/floor/mainship/sterile/side{dir = 9},/area/swordbase/ground/medbaynorth)
 "Gt" = (/obj/structure/table,/obj/item/tool/plantspray/pests/old,/obj/item/tool/plantspray/pests/old,/obj/item/tool/plantspray/weeds,/obj/item/tool/plantspray/weeds,/turf/open/floor/tile/dark/green2,/area/swordbase/ground/hydro)
+"Gy" = (/obj/structure/table/reinforced,/obj/item/storage/belt/medical,/obj/item/storage/belt/medical,/obj/item/storage/belt/medical,/obj/item/storage/belt/medical,/obj/item/storage/belt/medical,/obj/item/clothing/glasses/hud/health,/obj/item/clothing/glasses/hud/health,/obj/item/clothing/glasses/hud/health,/obj/item/clothing/glasses/hud/health,/obj/item/clothing/glasses/hud/health,/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/inniecave)
 "Gz" = (/obj/structure/table/reinforced,/obj/item/reagent_containers/glass/beaker/bluespace,/obj/item/reagent_containers/glass/beaker/bluespace,/obj/item/reagent_containers/glass/beaker/bluespace,/obj/item/reagent_containers/syringe{pixel_y = -7},/obj/item/reagent_containers/syringe{pixel_y = -7},/turf/open/floor/mainship/sterile/side{dir = 1},/area/swordbase/ground/medbaysouth)
 "GA" = (/obj/structure/closet/crate/ammo,/obj/effect/decal/cleanable/cobweb,/turf/open/floor/plating,/area/swordbase/ground/storage)
 "GC" = (/obj/structure/closet/crate/freezer/rations,/turf/open/floor/plating,/area/swordbase/ground/storage)
@@ -426,6 +516,7 @@
 "HW" = (/obj/machinery/door/airlock/multi_tile/medical{dir = 1; name = "Medical Equipment Storage"},/turf/open/floor/mainship/sterile/side,/area/swordbase/ground/medbaysouth)
 "HX" = (/turf/open/floor/tile/dark/red2{dir = 8},/area/swordbase/ground/mainhall)
 "Ia" = (/obj/structure/table/mainship,/obj/item/storage/box/donkpockets,/turf/open/floor/tile/dark/green2{dir = 4},/area/swordbase/ground/kitchen)
+"Ie" = (/turf/closed/wall/r_wall/prison,/area/swordbase/ground/bathroom)
 "Ih" = (/obj/structure/window/framed/mainship/canterbury,/turf/open/swordbase/snowstone,/area/swordbase/ground/science)
 "Ij" = (/turf/open/floor/tile/dark/red2/corner{dir = 8},/area/mainship/shipboard/brig)
 "Im" = (/obj/machinery/light/small{dir = 8},/turf/open/floor/plating,/area/swordbase/ground/storage)
@@ -433,28 +524,35 @@
 "Ix" = (/obj/effect/decal/cleanable/blood/oil,/turf/open/floor/plating,/area/swordbase/ground/storage)
 "Iy" = (/obj/structure/largecrate/supply/supplies/sandbags,/turf/open/floor/plating,/area/swordbase/ground/storage)
 "Iz" = (/obj/structure/largecrate/random/barrel/yellow,/turf/open/floor/plating,/area/swordbase/ground/storage)
+"ID" = (/obj/machinery/vending/marine,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
+"IF" = (/obj/machinery/door/window/southright,/obj/machinery/light/spot{dir = 4},/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "IM" = (/turf/closed/wall/mainship,/area/swordbase/ground/cryogenics)
 "IP" = (/obj/machinery/door/airlock/multi_tile/glass{dir = 1; name = "Storage"},/turf/open/floor/plating,/area/swordbase/ground/storage)
 "IR" = (/turf/open/floor/tile/dark/red2/corner{dir = 8},/area/swordbase/ground/checkpoint)
 "IZ" = (/turf/open/floor/mainship/sterile/side{dir = 10},/area/swordbase/ground/medbaynorth)
 "Jb" = (/turf/open/floor/tile/dark/red2{dir = 10},/area/mainship/shipboard/brig)
 "Jd" = (/obj/machinery/vending/cola,/turf/open/floor/tile/dark,/area/swordbase/ground/mainhall)
+"Je" = (/obj/machinery/light,/obj/effect/decal/cleanable/dirt,/obj/machinery/vending/marine,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "Jg" = (/obj/machinery/light{dir = 1},/turf/open/floor/carpet,/area/swordbase/ground/conferenceroom)
+"Jm" = (/obj/structure/table/reinforced,/obj/item/reagent_containers/spray/surgery{pixel_x = 6; pixel_y = -4},/obj/item/clothing/suit/surgical{pixel_x = -8; pixel_y = -5},/obj/item/clothing/mask/surgical{pixel_x = 5; pixel_y = 12},/obj/item/clothing/head/surgery/blue{pixel_x = -10; pixel_y = 7},/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/inniecave)
 "Jo" = (/turf/open/floor/tile/dark/green2{dir = 8},/area/swordbase/ground/kitchen)
 "Jy" = (/obj/machinery/washing_machine,/obj/machinery/light{dir = 1},/turf/open/floor/freezer,/area/swordbase/ground/bathroom)
 "Jz" = (/obj/structure/table/mainship,/obj/item/storage/box/MRE,/turf/open/floor/tile/dark,/area/swordbase/ground/kitchen)
 "JB" = (/obj/machinery/vending/cola,/turf/open/floor/tile/dark/green2{dir = 4},/area/swordbase/ground/kitchen)
 "JH" = (/obj/structure/largecrate/guns/russian,/turf/open/floor/plating,/area/swordbase/ground/storage)
+"JR" = (/obj/structure/window/reinforced{dir = 8},/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
+"JT" = (/obj/machinery/light{dir = 1},/turf/open/floor/tile/dark/red2{dir = 9},/area/swordbase/ground/checkpoint)
 "JV" = (/obj/structure/largecrate/random/case,/obj/effect/decal/cleanable/molten_item,/turf/open/floor/plating,/area/swordbase/ground/storage)
 "JW" = (/obj/structure/inflatable/popped,/turf/open/floor/plating,/area/swordbase/ground/storage)
 "Kh" = (/obj/structure/bed/chair{dir = 1},/turf/open/floor/tile/dark/blue2{dir = 1},/area/swordbase/ground/briefing)
 "Kj" = (/obj/machinery/light{dir = 4},/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
-"Kk" = (/obj/machinery/light{dir = 4},/obj/structure/table/reinforced,/obj/item/restraints/handcuffs,/obj/item/restraints/handcuffs,/obj/item/restraints/handcuffs,/turf/open/floor/tile/dark/red2{dir = 5},/area/mainship/shipboard/brig)
+"Kk" = (/obj/machinery/light{dir = 4},/obj/structure/table/reinforced,/obj/item/restraints/handcuffs,/obj/item/restraints/handcuffs,/obj/item/restraints/handcuffs,/obj/item/restraints/handcuffs,/obj/item/restraints/handcuffs,/obj/item/restraints/handcuffs,/turf/open/floor/tile/dark/red2{dir = 5},/area/mainship/shipboard/brig)
 "Kl" = (/obj/machinery/door/airlock/multi_tile/glass{name = "Bathroom"},/turf/open/floor/freezer,/area/swordbase/ground/bathroom)
 "Kr" = (/obj/machinery/door/airlock/multi_tile/glass{name = "Armory"},/turf/open/floor/tile/dark/brown2{dir = 8},/area/swordbase/ground/armory)
 "Ks" = (/obj/machinery/botany,/turf/open/floor/tile/dark,/area/swordbase/ground/hydro)
 "Ku" = (/turf/open/floor/tile/dark/red2{dir = 8},/area/swordbase/ground/checkpoint)
 "Kv" = (/obj/machinery/light{dir = 8},/turf/open/floor/tile/dark/red2{dir = 8},/area/mainship/shipboard/brig)
+"Kw" = (/obj/structure/largecrate/supply/supplies/metal,/turf/open/floor/plating,/area/swordbase/ground/inniecave)
 "KA" = (/obj/structure/closet/secure_closet/brig,/turf/open/floor/tile/dark/red2{dir = 4},/area/mainship/shipboard/brig)
 "KE" = (/obj/machinery/door/window/southright,/turf/open/floor/tile/dark/red2{dir = 8},/area/mainship/shipboard/brig)
 "KG" = (/turf/open/floor/mainship/sterile/side{dir = 10},/area/swordbase/ground/medbaysouth)
@@ -465,6 +563,7 @@
 "La" = (/obj/machinery/light{dir = 8},/turf/open/floor/tile/dark,/area/swordbase/ground/engineering)
 "Lb" = (/turf/open/floor/tile/dark/green2{dir = 4},/area/swordbase/ground/kitchen)
 "Le" = (/obj/structure/largecrate/supply/supplies/flares,/turf/open/floor/plating,/area/swordbase/ground/storage)
+"Ln" = (/obj/machinery/light{dir = 1},/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/inniecave)
 "Lz" = (/obj/effect/decal/cleanable/blood/gibs/robot,/turf/open/floor/plating,/area/swordbase/ground/storage)
 "LF" = (/obj/effect/decal/cleanable/molten_item,/obj/structure/closet/crate,/turf/open/floor/plating,/area/swordbase/ground/storage)
 "LH" = (/turf/open/floor/tile/dark/yellow2{dir = 4},/area/swordbase/ground/engineering)
@@ -475,6 +574,7 @@
 "Ma" = (/obj/structure/stairs{dir = 8},/turf/open/floor/tile/dark/blue2/corner{dir = 8},/area/swordbase/ground/briefing)
 "Mc" = (/obj/machinery/vending/hydronutrients,/turf/open/floor/tile/dark/green2{dir = 1},/area/swordbase/ground/hydro)
 "Mh" = (/obj/effect/landmark/start/job/squadmarine,/turf/open/floor/tile/dark/green2{dir = 4},/area/swordbase/ground/cryogenics)
+"Mm" = (/obj/structure/table/reinforced,/obj/item/explosive/grenade/chem_grenade,/obj/item/explosive/grenade/chem_grenade,/obj/item/explosive/grenade/chem_grenade,/obj/item/explosive/grenade/chem_grenade,/obj/item/explosive/grenade/chem_grenade,/obj/item/storage/box/beakers{pixel_x = -7; pixel_y = 10},/obj/item/reagent_containers/dropper{pixel_y = 7},/turf/open/floor/mainship/sterile/side{dir = 1},/area/swordbase/ground/inniecave)
 "Mp" = (/turf/open/floor/mainship/sterile,/area/swordbase/ground/medbaynorth)
 "Mq" = (/turf/open/floor/mainship/sterile/corner,/area/swordbase/ground/medbaynorth)
 "Mr" = (/obj/structure/table/reinforced,/obj/item/storage/surgical_tray,/obj/structure/sink{dir = 4; pixel_x = 12; pixel_y = 2},/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/medbaynorth)
@@ -488,6 +588,8 @@
 "MI" = (/obj/machinery/botany,/obj/machinery/light/spot{dir = 4},/turf/open/floor/tile/dark/green2{dir = 4},/area/swordbase/ground/hydro)
 "MM" = (/obj/machinery/botany,/turf/open/floor/tile/dark/green2{dir = 8},/area/swordbase/ground/hydro)
 "MN" = (/obj/structure/curtain/medical,/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/medbaynorth)
+"MP" = (/turf/open/floor/tile/dark/red2{dir = 5},/area/swordbase/ground/checkpoint)
+"MV" = (/obj/machinery/light,/obj/effect/decal/cleanable/dirt,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "MX" = (/turf/open/floor/tile/dark/red2{dir = 4},/area/swordbase/ground/outdoors)
 "MZ" = (/obj/structure/sink{dir = 8; pixel_x = -12; pixel_y = 2},/turf/open/floor/mainship/sterile/side{dir = 8},/area/swordbase/ground/medbaysouth)
 "Ni" = (/obj/structure/table/reinforced,/obj/machinery/recharger,/turf/open/floor/tile/dark/red2{dir = 6},/area/mainship/shipboard/brig)
@@ -495,6 +597,7 @@
 "No" = (/obj/structure/window/framed/mainship/canterbury,/turf/open/floor/tile/dark,/area/swordbase/ground/cryogenics)
 "Np" = (/obj/structure/rack,/obj/item/weapon/baton,/obj/item/hailer,/obj/item/restraints/handcuffs,/turf/open/floor/tile/dark/red2{dir = 10},/area/mainship/shipboard/brig)
 "Nq" = (/obj/structure/rack,/obj/item/hailer,/obj/item/weapon/baton,/obj/item/restraints/handcuffs,/turf/open/floor/tile/dark/red2,/area/mainship/shipboard/brig)
+"Nu" = (/obj/effect/decal/cleanable/dirt,/obj/structure/ladder{height = 1; icon_state = "ladderup"; id = "southwest"},/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "Nv" = (/obj/structure/window/framed/mainship/white/canterbury,/turf/open/floor/mainship/sterile/side{dir = 8},/area/swordbase/ground/medbaynorth)
 "Ny" = (/obj/structure/rack,/obj/item/hailer,/obj/item/weapon/baton,/obj/item/restraints/handcuffs,/turf/open/floor/tile/dark/red2{dir = 6},/area/mainship/shipboard/brig)
 "NC" = (/obj/structure/table/reinforced,/obj/machinery/door/window{dir = 1},/obj/machinery/door/window{dir = 2},/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/medbaysouth)
@@ -510,6 +613,10 @@
 "NZ" = (/turf/closed/wall/mainship,/area/swordbase/ground/armory)
 "Od" = (/obj/machinery/vending/cigarette/colony,/turf/open/floor/tile/dark/green2{dir = 10},/area/swordbase/ground/kitchen)
 "Oe" = (/obj/machinery/vending/coffee,/turf/open/floor/tile/dark/green2{dir = 6},/area/swordbase/ground/kitchen)
+"Of" = (/obj/item/storage/box/bodybags,/obj/machinery/light{dir = 4},/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/inniecave)
+"Ok" = (/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
+"Ol" = (/obj/machinery/light,/turf/open/floor/mainship/sterile/side,/area/swordbase/ground/inniecave)
+"Om" = (/obj/machinery/vending/medical,/obj/machinery/light{dir = 1},/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/inniecave)
 "Or" = (/turf/open/floor/tile/dark/red2{dir = 4},/area/swordbase/ground/mainhall)
 "Os" = (/obj/structure/table/reinforced,/obj/machinery/door/window,/obj/machinery/door/window{dir = 8},/turf/open/floor/tile/dark,/area/swordbase/ground/science)
 "OT" = (/obj/machinery/light{dir = 4},/turf/open/floor/tile/dark,/area/swordbase/ground/maingate)
@@ -517,7 +624,9 @@
 "OV" = (/turf/open/floor/tile/dark/green2{dir = 10},/area/swordbase/ground/cryogenics)
 "OW" = (/obj/structure/window/framed/mainship/white/canterbury,/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/medbaynorth)
 "OX" = (/obj/structure/table,/obj/item/storage/toolbox/electrical,/turf/open/floor/tile/dark,/area/swordbase/ground/science)
+"Pe" = (/obj/machinery/optable,/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/inniecave)
 "Pn" = (/obj/machinery/light{dir = 8},/turf/open/floor/mainship/sterile/side{dir = 8},/area/swordbase/ground/medbaysouth)
+"Po" = (/turf/closed/desertdamrockwall,/area/swordbase/ground/inniecave)
 "Pr" = (/obj/machinery/autodoc_console,/turf/open/floor/mainship/sterile/side,/area/swordbase/ground/medbaynorth)
 "Ps" = (/obj/structure/rack,/obj/item/stack/sheet/mineral/diamond,/obj/item/stack/sheet/mineral/silver,/obj/item/stack/sheet/mineral/gold,/obj/machinery/light/spot{dir = 4},/turf/open/floor/tile/dark/purple2{dir = 4},/area/swordbase/ground/science)
 "Pw" = (/obj/structure/morgue{dir = 2},/turf/open/floor/mainship/sterile/plain,/area/swordbase/ground/medbaynorth)
@@ -526,13 +635,16 @@
 "PF" = (/obj/structure/table/mainship,/obj/machinery/chem_dispenser/beer{dir = 4},/turf/open/floor/tile/dark/green2{dir = 9},/area/swordbase/ground/kitchen)
 "PH" = (/obj/structure/closet/secure_closet/freezer/kitchen,/turf/open/floor/freezer,/area/swordbase/ground/kitchen)
 "PJ" = (/obj/machinery/light{dir = 4},/turf/open/floor/tile/dark/red2{dir = 4},/area/swordbase/ground/firingrange)
+"PK" = (/obj/machinery/light{dir = 8},/turf/open/floor/mainship/sterile/corner{dir = 1},/area/swordbase/ground/inniecave)
 "PL" = (/obj/machinery/door/airlock/multi_tile/glass{name = "Cryogenics"},/turf/open/floor/tile/dark,/area/swordbase/ground/cryogenics)
+"PQ" = (/obj/machinery/light,/turf/open/floor/tile/dark/red2,/area/swordbase/ground/checkpoint)
 "PS" = (/turf/open/floor/plating,/area/swordbase/ground/outdoors)
 "PV" = (/turf/open/floor/tile/dark,/area/swordbase/ground/cryogenics)
 "PX" = (/obj/structure/window/framed/mainship/white/canterbury,/obj/machinery/smartfridge/chemistry,/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/medbaysouth)
 "Qa" = (/obj/machinery/vending/uniform_supply,/turf/open/floor/tile/dark/brown2{dir = 9},/area/swordbase/ground/armory)
 "Qi" = (/obj/structure/largecrate/supply/medicine/medkits,/turf/open/floor/mainship/sterile/side,/area/swordbase/ground/medbaysouth)
 "Qk" = (/obj/machinery/vending/uniform_supply,/obj/machinery/light{dir = 1},/turf/open/floor/tile/dark/brown2{dir = 1},/area/swordbase/ground/armory)
+"Ql" = (/obj/machinery/vending/marineFood,/obj/effect/decal/cleanable/dirt,/obj/machinery/light/spot{dir = 8},/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "Qm" = (/obj/machinery/vending/uniform_supply,/turf/open/floor/tile/dark/brown2{dir = 1},/area/swordbase/ground/armory)
 "Qo" = (/obj/structure/table/mainship,/obj/machinery/recharger,/turf/open/floor/tile/dark/brown2{dir = 1},/area/swordbase/ground/armory)
 "Qs" = (/obj/structure/table/reinforced,/obj/machinery/computer/station_alert,/turf/open/floor/tile/dark/yellow2{dir = 10},/area/swordbase/ground/engineering)
@@ -541,17 +653,20 @@
 "Qx" = (/turf/open/floor/tile/dark/red2,/area/mainship/shipboard/brig)
 "QA" = (/turf/open/floor/tile/dark/brown2/corner{dir = 1},/area/swordbase/ground/armory)
 "QE" = (/turf/open/floor/tile/dark/yellow2{dir = 10},/area/swordbase/ground/engineering)
+"QG" = (/obj/structure/largecrate/supply/supplies/mre,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating,/area/swordbase/ground/inniecave)
 "QH" = (/obj/machinery/power/apc/mainship{dir = 8; pixel_x = 16},/obj/machinery/light{dir = 4},/obj/structure/bed/chair/wheelchair,/turf/open/floor/mainship/sterile/side{dir = 4},/area/swordbase/ground/medbaysouth)
 "QO" = (/obj/structure/largecrate/random/barrel/red,/turf/open/floor/plating,/area/swordbase/ground/storage)
 "QQ" = (/turf/open/floor/tile/dark/brown2/corner{dir = 4},/area/swordbase/ground/armory)
 "QT" = (/obj/machinery/optable,/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
 "QU" = (/obj/machinery/light{dir = 1},/turf/open/floor/tile/dark/brown2{dir = 1},/area/swordbase/ground/armory)
 "QV" = (/obj/structure/stairs{dir = 1},/turf/open/floor/tile/dark,/area/swordbase/ground/firingrange)
+"QW" = (/obj/structure/largecrate/random/barrel,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating,/area/swordbase/ground/inniecave)
 "QY" = (/obj/structure/window/framed/mainship/canterbury,/turf/open/floor/tile/dark,/area/swordbase/ground/science)
 "QZ" = (/turf/closed/wall/r_wall/prison,/area/swordbase/ground/checkpoint)
 "Rg" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/turf/open/floor/tile/dark/brown2{dir = 1},/area/swordbase/ground/armory)
 "Rj" = (/mob/living/simple_animal/crab,/turf/open/beach/sand,/area/swordbase/ground/mainhall)
 "Rl" = (/obj/structure/rack,/obj/item/stack/sheet/glass/large_stack,/turf/open/floor/tile/dark/purple2{dir = 4},/area/swordbase/ground/science)
+"Rp" = (/obj/structure/largecrate/supply/medicine/blood,/turf/open/floor/mainship/sterile,/area/swordbase/ground/inniecave)
 "Rq" = (/obj/machinery/light{dir = 4},/turf/open/floor/tile/dark,/area/swordbase/ground/mainhall)
 "RB" = (/obj/machinery/vending/shared_vending/marine_engi,/turf/open/floor/tile/dark/brown2{dir = 5},/area/swordbase/ground/armory)
 "RE" = (/obj/machinery/light{dir = 4},/turf/open/floor/mainship/sterile/plain,/area/swordbase/ground/medbaynorth)
@@ -565,6 +680,7 @@
 "RZ" = (/obj/structure/table,/obj/item/analyzer/plant_analyzer,/turf/open/floor/tile/dark/green2{dir = 10},/area/swordbase/ground/hydro)
 "Sb" = (/obj/structure/platform_decoration{dir = 1},/turf/open/floor/tile/dark,/area/swordbase/ground/firingrange)
 "Sc" = (/turf/open/floor/tile/dark/red2/corner{dir = 4},/area/swordbase/ground/firingrange)
+"Sf" = (/obj/machinery/door/airlock/mainship/medical/glass/chemistry,/turf/open/floor/mainship/sterile,/area/swordbase/ground/inniecave)
 "Sh" = (/obj/structure/table/reinforced,/obj/machinery/recharger,/turf/open/floor/tile/dark/red2{dir = 5},/area/swordbase/ground/firingrange)
 "Sj" = (/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/machinery/light{dir = 8},/turf/open/floor/tile/dark/brown2{dir = 9},/area/swordbase/ground/armory)
 "Sl" = (/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/turf/open/floor/tile/dark/brown2{dir = 1},/area/swordbase/ground/armory)
@@ -572,6 +688,7 @@
 "Sz" = (/turf/open/floor/tile/dark/purple2{dir = 4},/area/swordbase/ground/science)
 "SE" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/turf/open/floor/tile/dark/brown2{dir = 1},/area/swordbase/ground/armory)
 "SF" = (/obj/item/tool/soap,/obj/structure/table,/turf/open/floor/freezer,/area/swordbase/ground/bathroom)
+"SG" = (/turf/open/floor/tile/dark/red2/corner{dir = 1},/area/swordbase/ground/checkpoint)
 "SJ" = (/turf/open/floor/tile/dark/brown2{dir = 10},/area/swordbase/ground/armory)
 "SM" = (/turf/open/floor/tile/dark/brown2,/area/swordbase/ground/armory)
 "SO" = (/turf/open/floor/tile/dark/brown2{dir = 6},/area/swordbase/ground/armory)
@@ -590,11 +707,14 @@
 "TL" = (/obj/structure/morgue/crematorium{id = "crema"},/obj/machinery/light{dir = 1},/turf/open/floor/mainship/sterile/plain,/area/swordbase/ground/medbaynorth)
 "TN" = (/turf/open/floor/tile/dark,/area/swordbase/ground/armory)
 "TP" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/turf/open/floor/tile/dark,/area/swordbase/ground/armory)
+"TU" = (/obj/structure/largecrate/supply/explosives/grenades,/turf/open/floor/plating,/area/swordbase/ground/inniecave)
 "TV" = (/obj/structure/closet/secure_closet/security,/turf/open/floor/tile/dark/red2,/area/mainship/shipboard/brig)
 "Ub" = (/obj/machinery/light{dir = 1},/turf/open/floor/tile/dark,/area/swordbase/ground/mainhall)
 "Ud" = (/obj/machinery/vending/marine_medic,/obj/machinery/light{dir = 4},/turf/open/floor/tile/dark/brown2{dir = 4},/area/swordbase/ground/armory)
 "Ue" = (/turf/open/floor/mainship/sterile/side{dir = 4},/area/swordbase/ground/medbaysouth)
+"Ug" = (/obj/structure/table/reinforced,/obj/structure/paper_bin{pixel_x = -3; pixel_y = 7},/obj/item/tool/pen{pixel_x = 4; pixel_y = 4},/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/inniecave)
 "Ui" = (/turf/closed/wall/mainship/white,/area/swordbase/ground/medbaysouth)
+"Uo" = (/obj/structure/closet/secure_closet/chemical,/turf/open/floor/mainship/sterile/corner{dir = 8},/area/swordbase/ground/inniecave)
 "Us" = (/obj/structure/sign/safety/autodoc,/turf/closed/wall/mainship/white,/area/swordbase/ground/medbaynorth)
 "Uu" = (/obj/structure/table/mainship,/obj/item/facepaint/black,/turf/open/floor/tile/dark,/area/swordbase/ground/kitchen)
 "Uy" = (/turf/open/floor/tile/dark/green2{dir = 8},/area/swordbase/ground/cryogenics)
@@ -609,7 +729,9 @@
 "UM" = (/obj/structure/bed/chair/office/light{dir = 4},/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
 "UQ" = (/turf/open/floor/mainship/stripesquare,/area/swordbase/ground/firingrange)
 "US" = (/turf/open/floor/tile/dark/green2{dir = 1},/area/swordbase/ground/kitchen)
+"UT" = (/obj/structure/largecrate/supply/medicine/medkits,/obj/machinery/light{dir = 4},/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/inniecave)
 "UW" = (/obj/machinery/chem_dispenser,/turf/open/floor/mainship/sterile/corner,/area/swordbase/ground/medbaysouth)
+"UX" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/power/apc/mainship{pixel_y = 16},/obj/machinery/vending/marineFood,/turf/open/floor/plating,/area/swordbase/ground/inniecave)
 "Va" = (/obj/structure/target_stake,/obj/item/target,/turf/open/floor/mainship/stripesquare,/area/swordbase/ground/firingrange)
 "Vd" = (/obj/structure/table/woodentable,/obj/item/reagent_containers/food/drinks/britcup,/turf/open/floor/carpet,/area/swordbase/ground/conferenceroom)
 "Ve" = (/obj/structure/table/reinforced,/obj/item/storage/belt/medical,/obj/item/storage/belt/medical,/obj/item/storage/belt/medical,/obj/item/clothing/glasses/hud/health,/obj/item/clothing/glasses/hud/health,/obj/item/clothing/glasses/hud/health,/turf/open/floor/mainship/sterile/side{dir = 4},/area/swordbase/ground/medbaysouth)
@@ -618,6 +740,7 @@
 "Vl" = (/turf/open/floor/tile/dark/blue2{dir = 8},/area/swordbase/ground/briefing)
 "Vp" = (/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/medbaynorth)
 "Vu" = (/turf/open/floor/tile/dark/brown2/corner{dir = 8},/area/swordbase/ground/armory)
+"Vv" = (/obj/machinery/door/airlock/multi_tile/medical{name = "Medical"},/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/inniecave)
 "Vx" = (/turf/closed/wall/mainship,/area/swordbase/ground/mainhall)
 "Vz" = (/obj/structure/largecrate/supply/explosives,/turf/open/floor/tile/dark/red2{dir = 9},/area/mainship/shipboard/brig)
 "VB" = (/turf/open/floor/mainship/sterile/side,/area/swordbase/ground/medbaysouth)
@@ -627,7 +750,9 @@
 "VL" = (/turf/open/floor/mainship/mono,/area/swordbase/ground/medbaynorth)
 "VQ" = (/obj/structure/reagent_dispensers/water_cooler,/turf/open/floor/mainship/sterile/corner{dir = 1},/area/swordbase/ground/medbaynorth)
 "VS" = (/turf/closed/wall/mainship,/area/swordbase/ground/bathroom)
+"VU" = (/turf/open/floor/tile/dark/red2{dir = 6},/area/swordbase/ground/checkpoint)
 "VZ" = (/turf/open/floor/wood,/area/swordbase/ground/conferenceroom)
+"Wc" = (/obj/machinery/vending/nanomed,/turf/closed/wall/mainship/white,/area/swordbase/ground/inniecave)
 "Wd" = (/obj/machinery/door/airlock/multi_tile/medical{dir = 1; name = "Chemical Storage"},/turf/open/floor/mainship/sterile/side,/area/swordbase/ground/medbaysouth)
 "We" = (/turf/open/floor/mainship/sterile/plain,/area/swordbase/ground/medbaynorth)
 "Wf" = (/obj/item/storage/box/cups,/obj/structure/table/reinforced,/obj/machinery/power/apc/mainship{pixel_y = 16},/turf/open/floor/mainship/sterile/side{dir = 1},/area/swordbase/ground/medbaynorth)
@@ -635,14 +760,19 @@
 "Wi" = (/obj/machinery/power/fusion_engine,/turf/open/floor/tile/dark/yellow2,/area/swordbase/ground/engineering)
 "Wj" = (/obj/machinery/disposal,/obj/machinery/light{dir = 1},/turf/open/floor/mainship/sterile/corner,/area/swordbase/ground/medbaynorth)
 "Wp" = (/obj/machinery/light{dir = 1},/turf/open/floor/mainship/sterile/corner{dir = 1},/area/swordbase/ground/medbaynorth)
+"Wu" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/vending/marineFood,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "Ww" = (/obj/machinery/power/apc/mainship{pixel_y = 16},/turf/open/floor/tile/dark/red2{dir = 1},/area/swordbase/ground/firingrange)
+"Wz" = (/obj/structure/window/framed/mainship/white/canterbury,/obj/machinery/smartfridge/chemistry,/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/inniecave)
 "WA" = (/obj/structure/closet/wardrobe/chemistry_white,/obj/machinery/light,/turf/open/floor/mainship/sterile/side,/area/swordbase/ground/medbaysouth)
 "WB" = (/turf/closed/wall/r_wall/prison,/area/mainship/shipboard/brig)
 "WD" = (/obj/effect/decal/warning_stripes/thin,/turf/open/floor/plating/mainship,/area/swordbase/ground/firingrange)
 "WE" = (/obj/structure/target_stake,/obj/effect/decal/warning_stripes/thin,/obj/item/target,/turf/open/floor/plating/mainship,/area/swordbase/ground/firingrange)
+"WF" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/table/reinforced,/obj/item/restraints/handcuffs,/obj/item/restraints/handcuffs,/obj/item/restraints/handcuffs,/obj/item/restraints/handcuffs,/obj/item/restraints/handcuffs,/obj/item/restraints/handcuffs,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
+"WI" = (/turf/open/floor/tile/dark/red2{dir = 10},/area/swordbase/ground/checkpoint)
 "WO" = (/turf/open/floor/tile/dark,/area/swordbase/ground/briefing)
 "WP" = (/obj/structure/table/mainship,/obj/item/facepaint/brown,/turf/open/floor/tile/dark,/area/swordbase/ground/kitchen)
 "WQ" = (/obj/structure/window/framed/mainship/white/canterbury,/turf/open/floor/tile/dark,/area/swordbase/ground/medbaynorth)
+"WR" = (/obj/structure/table/mainship,/obj/item/facepaint/brown{pixel_x = 7},/obj/item/facepaint/green{pixel_x = -7},/obj/effect/decal/cleanable/dirt,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "WW" = (/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/machinery/light{dir = 8},/turf/open/floor/tile/dark/brown2{dir = 10},/area/swordbase/ground/armory)
 "WX" = (/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/turf/open/floor/tile/dark/brown2,/area/swordbase/ground/armory)
 "Xb" = (/turf/open/floor/tile/dark/brown2{dir = 9},/area/swordbase/ground/armory)
@@ -652,6 +782,7 @@
 "Xg" = (/obj/machinery/light,/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
 "Xh" = (/obj/structure/largecrate/supply/explosives/grenades,/obj/machinery/light{dir = 8},/turf/open/floor/tile/dark/red2{dir = 8},/area/mainship/shipboard/brig)
 "Xi" = (/obj/structure/table/reinforced,/obj/item/storage/belt/medical,/obj/item/clothing/glasses/hud/health,/obj/item/clothing/gloves/latex,/turf/open/floor/mainship/sterile/side{dir = 4},/area/swordbase/ground/medbaysouth)
+"Xl" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating,/area/swordbase/ground/inniecave)
 "Xn" = (/turf/open/floor/tile/dark/brown2{dir = 4},/area/swordbase/ground/armory)
 "Xp" = (/obj/structure/window/framed/mainship/white,/turf/open/floor/mainship/mono,/area/swordbase/ground/medsci)
 "Xq" = (/obj/machinery/body_scanconsole,/turf/open/floor/mainship/sterile/dark,/area/swordbase/ground/medbaynorth)
@@ -663,6 +794,7 @@
 "Xz" = (/obj/structure/platform{dir = 1},/turf/open/floor/tile/dark/red2{dir = 8},/area/swordbase/ground/firingrange)
 "XC" = (/obj/structure/morgue{dir = 8},/turf/open/floor/mainship/sterile/plain,/area/swordbase/ground/medbaynorth)
 "XD" = (/obj/structure/platform{dir = 1},/turf/open/floor/tile/dark,/area/swordbase/ground/firingrange)
+"XE" = (/obj/machinery/light/spot,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "XI" = (/turf/closed/wall/mainship/white,/area/swordbase/ground/medsci)
 "XL" = (/turf/closed/wall/mainship,/area/swordbase/ground/conferenceroom)
 "XO" = (/turf/closed/wall/mainship,/area/swordbase/ground/storage)
@@ -670,6 +802,7 @@
 "XR" = (/obj/structure/stairs,/turf/open/floor/tile/dark,/area/swordbase/ground/firingrange)
 "XT" = (/obj/structure/platform_decoration{dir = 4},/turf/open/floor/tile/dark,/area/swordbase/ground/firingrange)
 "XX" = (/obj/machinery/vending/marineFood,/turf/open/floor/tile/dark/green2{dir = 5},/area/swordbase/ground/kitchen)
+"XZ" = (/obj/structure/largecrate/supply/supplies/metal,/obj/effect/decal/cleanable/dirt,/obj/machinery/light/spot{dir = 4},/turf/open/floor/plating,/area/swordbase/ground/inniecave)
 "Ya" = (/obj/machinery/vending/marine,/turf/open/floor/tile/dark/brown2{dir = 10},/area/swordbase/ground/armory)
 "Yd" = (/obj/machinery/vending/marine,/obj/machinery/light,/turf/open/floor/tile/dark/brown2,/area/swordbase/ground/armory)
 "Yf" = (/turf/open/floor/tile/dark,/area/swordbase/ground/mainhall)
@@ -680,11 +813,13 @@
 "Ym" = (/turf/open/floor/tile/dark/brown2/corner,/area/swordbase/ground/armory)
 "Yo" = (/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 1},/turf/open/floor/tile/dark/brown2,/area/swordbase/ground/armory)
 "Yp" = (/obj/machinery/vending/marine_leader,/turf/open/floor/tile/dark/brown2{dir = 6},/area/swordbase/ground/armory)
+"Yr" = (/obj/structure/table/reinforced,/obj/item/storage/pill_bottle/bicaridine{pixel_x = -7},/obj/item/storage/pill_bottle/bicaridine{pixel_x = -7},/obj/item/storage/pill_bottle/bicaridine{pixel_x = -7},/obj/item/storage/pill_bottle/kelotane,/obj/item/storage/pill_bottle/kelotane,/obj/item/storage/pill_bottle/kelotane,/obj/item/storage/pill_bottle/tramadol{pixel_x = 8},/obj/item/storage/pill_bottle/tramadol{pixel_x = 7},/obj/item/storage/pill_bottle/tramadol{pixel_x = 7},/turf/open/floor/mainship/sterile,/area/swordbase/ground/inniecave)
 "Ys" = (/obj/machinery/door/airlock/mainship/medical/glass/free_access{name = "\improper Medical Reception"},/turf/open/floor/mainship/sterile,/area/swordbase/ground/medbaynorth)
 "Yt" = (/turf/open/floor/tile/dark/red2,/area/swordbase/ground/firingrange)
 "Yv" = (/obj/machinery/iv_drip,/obj/machinery/light{dir = 4},/turf/open/floor/mainship/sterile/side{dir = 4},/area/swordbase/ground/medbaynorth)
 "Yw" = (/obj/structure/table/reinforced,/obj/structure/paper_bin{pixel_x = -3; pixel_y = 7},/obj/item/tool/pen{pixel_x = 4; pixel_y = 4},/turf/open/floor/mainship/sterile/plain,/area/swordbase/ground/medbaynorth)
 "Yz" = (/obj/machinery/door/airlock/mainship/medical/glass/chemistry,/turf/open/floor/mainship/sterile,/area/swordbase/ground/medbaysouth)
+"YB" = (/obj/machinery/cryopod/right,/turf/open/floor/plating,/area/swordbase/ground/inniecave)
 "YD" = (/obj/structure/morgue{dir = 1},/turf/open/floor/mainship/sterile/plain,/area/swordbase/ground/medbaynorth)
 "YE" = (/turf/closed/wall/mainship,/area/swordbase/ground/firingrange)
 "YF" = (/obj/machinery/computer/crew,/turf/open/floor/mainship/sterile/corner{dir = 4},/area/swordbase/ground/medbaynorth)
@@ -712,6 +847,7 @@
 "Zx" = (/obj/structure/filingcabinet/chestdrawer,/turf/open/floor/mainship/sterile/side{dir = 8},/area/swordbase/ground/medbaynorth)
 "Zy" = (/turf/open/floor/mainship/sterile/side{dir = 5},/area/swordbase/ground/medbaysouth)
 "ZB" = (/obj/structure/table/mainship,/obj/machinery/chem_dispenser/soda{dir = 4},/turf/open/floor/tile/dark/green2{dir = 8},/area/swordbase/ground/kitchen)
+"ZC" = (/obj/structure/window/reinforced,/obj/effect/decal/cleanable/dirt,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
 "ZE" = (/obj/machinery/holosign_switch{id = surgery1},/turf/closed/wall/mainship/white,/area/swordbase/ground/medbaynorth)
 "ZG" = (/obj/structure/filingcabinet/chestdrawer,/turf/open/floor/mainship/sterile/plain,/area/swordbase/ground/medbaynorth)
 "ZI" = (/obj/machinery/light/spot{dir = 8},/turf/open/floor/tile/dark/purple2{dir = 8},/area/swordbase/ground/science)
@@ -724,124 +860,124 @@
 "ZX" = (/obj/structure/rack,/obj/machinery/light,/turf/open/floor/tile/dark,/area/swordbase/ground/firingrange)
 
 (1,1,1) = {"
-nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwbKbKbKbKbKnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnweKeKeKeKeKeKeKeKeKeKeKnwnwbKUGaaalbKnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnweKWODPclmamamaaoasWOeKnwnwbKLaeeaIbKbKbKbKbKbKbKbKnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnweKWOaJMaWOWOWObsVlWOeKnwnwbKQEeewDbKeeeeeeoooooobKnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnweKWOWObubvbvbvbDWOWOeKbKbKbKbKbHbKbKeejZbIeeeebTbKXIXIXIXIXIXIXIXIXIXIXIXIXIXInwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwnwnwnwXLXLXLXLXLnwnwnwnwnweKbYbYbYbZcscBbYbYbYeKxPyRQEcCcCcCcCcCcCcCWiWicGbKdcEMEMEMdfCJnuCJdcEMEMEMdfXInwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwnwnwnwXLdhdldqXLnwnwnwnwnweKKhKhKhqscsdtKhKhKheKZeeeZeZeZeZeZeZeZeZeZeZeZebKdDQvdMdTdUCJCJCJdZefdMehepXInwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwnwnwnwXLeyVZeBXLnwnwnwnwnweKKhKhKhqscsdtKhKhKheKZeeDeIyRyRyRyRyRyRyReQeQeYbKfbXwfgftfvCJCJCJfBXwfDfTepXInwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwnwnwXLXLXLfWXLXLXLXLXLXLXLeKKhKhKhqscsdtKhKhKheKfYgfbKbKbHbKbKeejZbIeeeebTbKdDgkgygTheCJCJCJhkhlgygTepXInwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwnwnwXLhvVZVZVZVZhEVZVZhOhQeKKhKhKhqscsdtKhKhKheKZeLHfAhUeehZbKeeeeeeoooooobKqQUJUJUJigihCJixqQUJUJUJigXInwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwnwnwXLVZVZtPiEiEiEiEtPVZVZeKeKeKeKWOWOWOeKeKeKeKZeLHiMiNeeiXbKbKbKbKbKbKbKbKXIXIXIXIXICJCJCJiYjhXIXIXIXInwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwXLXLXLXLXLVZtPhBjuZOZOjHjJtPVZXLYfYfUbYfYfYfUbYfYfbKZeLHfAQseejWbKbKEfogkpJdktVxVxXIXIXIdHCJCJCJCJKjXIXIXIXInwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwXLgDJgtPVZVZhBVdkzZOZOkzjujJtWXLYfYfYfYfYfYfYfYfYfbKwMLHbKbKbKbKbKbKToToYfYfYfVxVxVxXIXIkBCJCJCJCJCJCJCKCJXInwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwXLlktPtPVZVZtPhBZOZOlwZOjJtPVZXLYfYfYfYfYfYfYfYfYfYfYfYfYfUbYfYfYfYfYfYfYfYfYflDVxVxVxXIglCJCJCJCJCJCJCJCJXInwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwXLlEiElOVZVZVZtPlQlQlQlQtPVZYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfCJCJCJCJCJCJCJCJCJKjXIXInwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwXLmfmgmhVZmuVZVZVZVZmuVZVZYfYfYfYfYfYfYfYfYfYfYfYfMAYfYfYfYfYfYfYfYfMAYfYfYfYfYfYfYfMAmCCJXgCJCJCJCJCJCJCJmSXInwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwXLXLXLXLXLXLXLXLXLXLXLXLYfYfYfYfYfmdXdgqgqmKnaMtMtMtMtMtMtimCqMtMtMtMtpGnppGpGDOnxZrDOXIXIXIXIXIXIXIXICJCJnHXInwnwnwnwnwnwnwnwnwnwnwnwnwnwnOnYZWZWnOZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwWBWBWBWBWBWBWBWBWBWBWBWBWBzrYfYfYfYfnZRjoiZkoBpfMtyepopvTipzCqCqpHpXpYMtqfXvqmpGDOZrZrDODODOXIQTqvqOrTXIXPCJXIXIXIXIXIXIXIXIXInwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwWBsascsesmtoCcsEsJsJsJsLWBYfYfYfYfYfzQZkZkZkZksWMtTisYTisZMttdCqCqCqtiMttzXvuapGDOZrZrZrZrDOXIupCJCJCJuHCJCJCJnuCJCJCJCJCJCJzIzIzIzInwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwWBuKazazazazazazazazazFBWBYfYfYfYfYfNTZkZkZkxmvOMtGdTiTiPHMtuNviCqvwCqMtvBjEkapGDOZrZrZrZrDOXICJpRCJpWXICJCJCJCJCJCJCJCJCJCJvCvLvLzIzIzIzIzIZWZWZWZWvMZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwWBtkazazazazazazazazazFBWBYfYfYfYfYfNTZkZkRjoRtJMtATTiweYgMtCqCqCqCqwiMtwUXvRQpGDOZrZrZrZrDOXIxiXpXpXIXICJKjXIXpXpXpXpXICJCJwXvLvLxaxcxIxJxLZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwWBxOQxQxIjXywnIjazazazFBWBzrYfYfYfYfNToBoixmxQBQMtMtxWMtMtMtxXtHBrylyxMtpGAfpGpGDOZrZrZrZrDOXICJyzEvwWXpCJCJXpyMyWzgzjXICJCJzIvLvLvLvLvLvLxLZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwWBWBWBWBYRFBWBYRazazazFBWBYfYfYfYfYfznzozozvzoNFVxVxVxMtPFUSUSzFzFzFzFUSAgUSXXMtDOZrZrlcZrDOXIXPCJUMDhXpCJCJndAiCJCJKjXICJCJzIvLvLvLvLArAzxLZWZWZWZWvMZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwWBAEFBWBBdTVTVTVBhWBYfYfYfYfYfIMIMIMIMIMIMIMIMIMIMBtUFUFUFUFUFUFUFUFUFBWMtDODODODODODOXIBYvSnHCjXpCJCJXpClCxCJCJCQCJCJzIvLvLDfvLDgDixLZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwWBYRFBWBWBWBWBWBWBWBWBWBzrYfYfIMDoDxDQEaEmDokHDQIMZBUFUFUFUFUFUFUFUFUFBWMtXOXOXOXOXOXOXIXIXIXIYYYYEpVLYYYYYYYYYYYYEsSqYYEzvLzIECECECzIZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwWBYRBcCcCcCcCcEUEXtoEZWBYfYfYfNoUyRJebEHFmUyRJFnFuFFUFUFZvZvZvZvZvUFUFGeMtGAGCGLGTHegozkHmQOgoGJGJGnHAGJGJGJGJGJGJGnHAGJGnSqYYZWZWZWZWZWZWZWZWvMZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwWBJbQxIjazazazazazazBcCcYfYfYfNogRHPMhEaEmgRTbvYFzdSUFUFVfUuVfVfFSUFUFIaMtImIxzkIyIzHmgoIxgoIPNLNLNLNLNLIZVpwBNLNLNLNLNLNLsUYYZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwWBWBWBWBWBYRazXywnIjazazXylAYfYfYfNoUyRJebEHFmUyRJfGIMJoUFUFWPVfVfJzGXUFUFJBMtJHHmQOgoJVzkJWHmgoXOYYYYZgjFYYUHNLSqYYjFZgYYYYYYYYYYZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwWBVzfFKkWBKvazKAWBKETzTzKIWBYfYfYfNoKUHPMhEaEmgRTbvyIMJoUFUFKZKZKZKZKZUFUFLbMtLeLzgoIxLFgoLPLSLUXOYYLXtwyZYYMqMpwaYYyZtwMrYYZWZWZWZWZWZWZWZWZWZWZWvMZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwWBXhazFBMvYRazKAWBYRMxMCFBWBzrYfYfNoUyRJebEHFmUyRJebIMJoUFUFUFUFUFUFUFUFUFLbMtXOXOXOXOMEgoXOXOXOXOYYMGVpVpMNSqMpUHMNVpVpMGYYZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwWBdbQxNiWBNpNqNyWBJbNHNPNXWBYfYfYfNogRHPMhEaEmgRTbMhIMOddSXfnvnvnvnvnvdSXfOeMtVxVxYfUbYfYfUbYfYfYfYYYYYYYYYYSqMpUHYYYYYYYYYYYYYYYYZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwWBWBWBWBWBWBWBWBWBWBWBWBWBWBHXYfOrIMOVEEZhEHFmOVEEZhIMNZNZNZNZNZNZNZNZKrXnNZNZNZVxYfYfYfYfYfYfYfRqYYvJPrNLNLsUMpZfYYTLPwPwPwPwPwYYZWZWZWZWZWZWZWZWvMZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwUAUAUAUAzPPDBNPDPDPDWwBNjaYNPJYEYEIMIMPLPVIMIMIMNZQaQkQmQmQmQkQoQuQAQQQURgRBVxzrYfYfYfYfYfYfYfYYSqMpMpMpMpMpUHYYOUWeWeWeWeREYYZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwUAUAUAUARTjfjfjfjfQVRVSbYNYNScShYEYfUbYfYfUbYfYfNZSjSlSlSlSESESJSMSMSMSORgRBVxYfYfYfYfYfYfYfYfYYvJSYGJGJMqMpUHvaWeWeWeXCWeXCYYZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwUAUATjTpTjTjTjTjTjTjTjTATDYNYNScPDYfYfYfYfYfYfYfQuQATNTNTNTNTNTNTNTNTNTNTPUdVxYfYfYfYfYfYfYfYfYYYYYYYYYYZEBxUsYYYYUzWeXCWeXCYYZWZWZWZWZWZWZWZWvMZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwUAUAUCUQUQUQVaUQUQUQUQTATDYNYNYNYNYfYfYfYfYfYfYfVgVuTNTNTNTNTNTNTNTNTNTNTPVIVxYfYfYfYfYfYfYfRqWQVQWfWjYYWpGJGJWjYYxHWeXCWeXCYYZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwUAUAWDWDWDWDWDWDWDWEWDTATDYNYNaXYtYfYfYfYfYfYfYfNZWWWXWXWXWXWXXbQuQuQuXcmjFRVxYfYfYfYfYfYfYfYfWQUHVpSqYYniXqVpXuYYXxWeWeWeREYYZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwUAUAUAUAXzXDXDXDXDXRXDXTYNYNYNAVYEYfYfYfYfYfYfYfNZYaYdYjYjYjYdYlSMVuYmTEYoYpVxzrYfYfYfYfYfYfYfWQZxVpSqYsUHVpVpYvZgYwWeYDYDYDYYZWZWZWZWZWZWZWZWvMZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwUAUAUAUAYJYLYOYtYtYtYtYtYtYZZaVEYEYfYfYfYfYfYfYfNZNZNZNZNZNZNZNZNZKrXnNZNZNZVxYfYfYfYfYfYfYfYfYYZcZpYFYYniXqVpXuYYZwWeZGYYYYYYUiUiUiUiZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwnwnwUAUAUAUAYEYEYEYEZLZXodYEYEYEYEzrYfYfYfYfYfYfYfYfUbYfYfYfUbYfYfYfYfYfUbYfYfYfYfYfYfYfYfYfRqwVNvmlOWhrUHVpVpSqYYYYgvYYUiBstTezyhaLUiZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWYEYEYEYEYEVxVxVxYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfetetetetnqetetetetnqetetetetsTmLmLmLxrUiZWZWZWZWvMZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWVxVxYfYfYfYfMAYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfMAYfYfYfYfDZVBVBVBVBVBVBiyVBVBVBVBVBWdKGmLmLmLQHUiZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWVxWhZdSzWhWhWhWhzrYfYfYfYfYfRqVxVxYfYfYfYfVSVSKlUKVSVSVSVSVSVSUiPXNCRFRFRFRFcIaRmLmLmLUeUilJmLmLmLVeUiZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWWhwzenWhmvjdOsYfYfYfYfYfYfYfVxVxzrYfYfYfVSRPUKUKjzUKJykuVSVSUiGGpkzXGzikUWUiaRqyrJqyaDUiNJmLmLmLFhUiZWZWZWZWvMZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWWhZdSzWhwzRlQYYfYfYfYfYfYfYfVxVxYfYfYfYfVSDmUKUKGIUKUKUKVSVSUiMZmLmLmLmLUeYzaRqymLqyUeUiPxmLmLmLjtUiZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWWhwzFTCEynkbIhYkYkhGYkYkYkkTVxVxYfYfYfYfVSDmUKUKVSjqUKUKVSVSUiGcWAerVBiyfhUiPnqyrJqyZyetsTmLmLmLFgUiZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-nwnwnwnwnwnwZWZWvMZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWWhwzZKZKZKPsWhpTMcAjnVfIZQkTVxVxYfYfYfYfVSDmUKyfVSjqUKorVSVSUiUiUiUiUiUiUiUiaRmLmLmLdwHWKGmLmLmLXiUiZWZWZWZWvMZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWWhwzZKZKZKSzZKlYGjGjGjGjEykTVxVxYfYfYfRqVSSFUKUKVSjqGIorVSVSZWZWZWZWZWZWZWUizlojFjiyfhUihDuVQiZoobUiZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWWhRMZKqCjcSzfuhTGjGjGjGjlpkTVxVxYfYfYfYfVSVSVSVSVSVSVSVSVSVSZWZWZWZWZWZWZWUiUiUiUiUiUiUiUiUiUiUiUiUiZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWnwnwnwZWZWZWvMZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWWhbNZKOXxwSzQYMMGjGjGjGjGfAjYfYfYfYfYfYfngSXSXtNtOQZZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWvMZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWWhCrZKZKZKSzQYMMGjKsKsGjZUCDYfMAYfYfYfYfmPwPgSIRqVQZZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWWhNnZKZKZKKNQYMMGjKsKsGjMINMNMNMnWeqeqeqNMNMQZprqVQZQZQZZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWvMZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWWhZIZKZKZKBiQYMMGjKsKsGjVKNMeqqJeqeqeqeqqJeqEtKuNRSXzbQZZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWvMZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWWhjKZKZKZKSzQYMMGjKsKsGjVKNMeqeqeqeqeqeqeqeqEtevngngkgQZZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWWhlgSSSSHutDWhsGGjGjGjGjIqNMcmeqeqeqeqeqeqeqEtzRngngaMQZZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWvMZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWWhWhWhWhWhWhWhRZycZtGtowrpNMeqeqeqeqeqeqeqeqEtAHdYgSczQZZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWvMZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWkTkTkTkTkTkTkTNMueeqeqeqeqeqeqOTQZQZQZQZQZQZZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWNMNMNMzieqeqeqNMNMNMZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWvMZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWPSPSPSPSPSPSPSPSZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWvMZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWPSbEbEbEbEPSZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWPSbEbEbEbEPSZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWvMZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWPSbEbEbEbEPSZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWvMZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWPSPSPSPSZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnOnOAunOnOZWZWZWZWPSbEbEbEbEPSZWZWZWZWnOnOAunOnOZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWvMZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnObqlyBwnOZWZWZWZWPSbEbEbEbEPSZWZWZWZWnObqlyBwnOZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWvMZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWnOnYZWZWnYZWZWnYZWZWnYZWZWnYZWZWnYZWZWnYZWZWnOMXAuwvnOnYZWZWnObEbEbEbEbEbEnOnYZWZWnOMXAuwvnOnYZWZWnYZWZWnYZWZWnYZWZWnYZWZWnYZWZWnYZWZWnYZWZWnOZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWbavmcooYbaZWZWZWZWPSbEbEbEbEPSZWZWZWZWbavmcooYbaZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWbababababaZWZWZWZWPSbEbEbEbEPSZWZWZWZWbababababaZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWPSPSPSPSZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
-ZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZW
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwPoPoPoPonwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwPoPoOkmPPoPonwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwPoOktOmPmPPonwnwnwnwnwnwnwnwPoPoPoPoPoPoPoPoPoPonwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwPoPomPmPmPPoPonwnwnwnwnwnwnwnwPoqIvMqIqIqIqIPoPoPonwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwxLxLxLxLxLnwnwnwnwnwPomPmPmPPoPonwnwnwnwnwnwnwPoPoPoECQGUXTUbLgpKwqIPonwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwxLxLxLYrmRvWxLxLnwnwnwnwPomPmPlMPonwnwnwnwnwnwnwPoPobRqGmPmPXlXlqqQWXZqIPonwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwbKbKbKbKbKnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwxLxLxLOmErCRcFCRuFxLnwnwnwnwPomPmPmPPonwnwnwnwnwnwPoPoinOkmPmPmPOkXlXldmFvqIPonwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnweKeKeKeKeKeKeKeKeKeKeKnwnwbKUGaaalbKnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwxLxLbfdKcFCRcFCRcFOfxLnwnwnwnwPomPmPOkPoPonwnwnwPoPoPoOkmPmPmPmPmPmPmPXlPoPoqIPonwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnweKWODPclmamamaaoasWOeKnwnwbKLaeeaIbKbKbKbKbKbKbKbKnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwPoPoPoPoPoPoxLjRDzcFCRcFCRcFCRcFxLxLnwnwnwPoOkmPmPOkPonwnwPoPoWRummPmPmPOkmPmPXEmPWuPoPoPoPonwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnweKWOaJMaWOWOWObsVlWOeKnwnwbKQEeewDbKeeeeeeoooooobKnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwPoPoPoIDmUCnmPfcxLoCcFCRcFCRcFCRcFCRoexLxLnwnwPoPomPmPmPPoPonwPoQlOkmPmPOkOkqIqIqIqIqIqIqIPonwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnweKWOWObubvbvbvbDWOWOeKbKbKbKbKbHbKbKeejZbIeeeebTbKXIXIXIXIXIXIXIXIXIXIXIXIXIXInwnwnwnwnwnwnwPoPoOkmAmPOkmPmPOkxLjRDzzVGynoUgcFCRcFBSRpxLPoPoPoPoPomPmPOkPoPoPoDTmPmPmPmPOkqIXlsBBZxssBXlPonwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwXLXLXLXLXLnwnwnwnwnweKbYbYbYbZcscBbYbYbYeKxPyRQEcCcCcCcCcCcCcCWiWicGbKdcEMEMEMdfCJnuCJdcEMEMEMdfXInwnwnwnwnwnwPoPomPmPmPmPOkmPmPppxLxLxLxLxLxLxLVvcFxLxLxLxLOkmPOkOkiLOkmPmPOkPoPoPomPmPOkmPOkqIXlEwsBgzuzXlPonwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwXLdhdldqXLnwnwnwnwnweKKhKhKhqscsdtKhKhKheKZeeeZeZeZeZeZeZeZeZeZeZeZebKdDQvdMdTdUCJCJCJdZefdMehepXInwnwnwnwnwnwPomPmPOkOkmPmPmPmPOkmPmPOkmPOkmPsjOkOkmPmPOkOkmPmPmPmPOkmPmPmPmPlMPomPmPmPmPOkmPqLqLsBrExssBXlPonwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwXLeyVZeBXLnwnwnwnwnweKKhKhKhqscsdtKhKhKheKZeeDeIyRyRyRyRyRyRyReQeQeYbKfbXwfgftfvCJCJCJfBXwfDfTepXInwnwnwnwnwnwPoBzmPmPmPmPOkOkmPmPmPmPmPmPmPmPmPmPmPmPmPmPmPmPmPmPmPmPOkmPmPOkmPmPmPmPmPOkmPOkXlXlEwsBsBuzFDPonwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwXLXLXLfWXLXLXLXLXLXLXLeKKhKhKhqscsdtKhKhKheKfYgfbKbKbHbKbKeejZbIeeeebTbKdDgkgygTheCJCJCJhkhlgygTepXInwnwnwnwnwnwPomPmPmPOkmPmPmPOkmPOkvbmPmPmPOkmPOkmPmPMVmPOkmPOkmPmPmPmPmPmPOkmPmPmPOkmPOkmPmPqLqLgzxsxssBXlPonwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwXLhvVZVZVZVZhEVZVZhOhQeKKhKhKhqscsdtKhKhKheKZeLHfAhUeehZbKeeeeeeoooooobKqQUJUJUJigihCJixqQUJUJUJigXInwnwnwnwnwnwPoPoOkmPOkmPOkmPmPppPoxLWzjAfEfEfEfEkVwsxLxLxLOkmPOkmPmPmPmPmPmPmPmPmPmPmPmPmPlMqIXludsBsBYBqLPonwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwXLVZVZtPiEiEiEiEtPVZVZeKeKeKeKWOWOWOeKeKeKeKZeLHiMiNeeiXbKbKbKbKbKbKbKbKXIXIXIXIXICJCJCJiYjhXIXIXIXInwnwnwnwnwnwnwPoPoPoMVOkmPmPmPhmPoxLPKoLMmkRmspKxLCRCRUTPoPoPomPmPmPmPOkmPmPOkPoBImPmPOkmPmPqIXlgzivrEsBXlPonwnwnwnwnwnwnw
+nwnwnwnwnwXLXLXLXLXLVZtPhBjuZOZOjHjJtPVZXLYfYfUbYfYfYfUbYfYfbKZeLHfAQseejWbKbKEfogkpJdktVxVxXIXIXIdHCJCJCJCJKjXIXIXIXInwnwnwnwnwnwnwnwnwPoPogafcJerVOkPoxLaPCRCRCRCRqESfCRamnwnwPoPomPOkOkmPmPmPmPPoPopDOkOkOkmPOkqIqIqIqIqIqIqIPonwnwnwnwnwnwnw
+nwnwnwnwnwXLgDJgtPVZVZhBVdkzZOZOkzjujJtWXLYfYfYfYfYfYfYfYfYfbKwMLHbKbKbKbKbKbKToToYfYfYfVxVxVxXIXIkBCJCJCJCJCJCJCKCJXInwnwnwnwnwnwnwnwnwnwPoPoPoPoPoPoPoxLUoaEnQDYOlqKxLCRnwnwPoPoOkOkmPOkmPmPmPOkPoPoPogmOkmPmPmPiLOkmPmPiwiwPoPonwnwnwnwnwnwnw
+nwnwnwnwnwXLlktPtPVZVZtPhBZOZOlwZOjJtPVZXLYfYfYfYfYfYfYfYfYfYfYfYfYfUbYfYfYfYfYfYfYfYfYflDVxVxVxXIglCJCJCJCJCJCJCJCJXInwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwxLxLxLxLxLxLWcqRwsnwnwPoOkmPOkmPmPmPOkXEPoPoPoPoPoPomPmPmPOkmPmPOkOkiwPoPoPonwnwnwnwnwnw
+nwnwnwnwnwXLlEiElOVZVZVZtPlQlQlQlQtPVZYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfCJCJCJCJCJCJCJCJCJKjXIXInwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwxLjeLnCRCRnwnwPomPmPOkmPOkOkOkPoPoPoPoPoPoPoPomPmPmPmPZCDLxdnnnnIFPonwnwnwnwnwnw
+nwnwnwnwnwXLmfmgmhVZmuVZVZVZVZmuVZVZYfYfYfYfYfYfYfYfYfYfYfYfMAYfYfYfYfYfYfYfYfMAYfYfYfYfYfYfYfMAmCCJXgCJCJCJCJCJCJCJmSXInwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwxLJmCRPexLnwnwPomPOkmPmPOkmPmPOkPoPoPoPoPoPowTmPlUlUpQDHpQsKhYDHmPPonwnwnwnwnwnw
+nwnwnwnwnwXLXLXLXLXLXLXLXLXLXLXLXLYfYfYfYfYfmdXdgqgqmKnaMtMtMtMtMtMtimCqMtMtMtMtpGnppGpGDOnxZrDOXIXIXIXIXIXIXIXICJCJnHXInwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwxLxLxLxLxLnwnwPoinmPmPmPmPmPmPOkOkPoPoPoPomPmPmPPoPoWFsKpQsKpQJROkPonwnwnwnwnwnw
+nwnwnwnwWBWBWBWBWBWBWBWBWBWBWBWBWBzrYfYfYfYfnZRjoiZkoBpfMtyepopvTipzCqCqpHpXpYMtqfXvqmpGDOZrZrDODODOXIQTqvqOrTXIXPCJXIXIXIXIXIXIXIXIXInwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwPomPOkmPOkmPmPmPmPmPmPmPmPmPmPOkOkPoPoPoPoPoPoPoPoPoPonwnwnwnwnwnw
+nwnwnwnwWBsascsesmtoCcsEsJsJsJsLWBYfYfYfYfYfzQZkZkZkZksWMtTisYTisZMttdCqCqCqtiMttzXvuapGDOZrZrZrZrDOXIupCJCJCJuHCJCJCJnuCJCJCJCJCJCJzIzIzIzInwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwPomPmPNuOkmPPoPoOkOkmPXEmPOkmPPoPoPonwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwWBuKazazazazazazazazazFBWBYfYfYfYfYfNTZkZkZkxmvOMtGdTiTiPHMtuNviCqvwCqMtvBjEkapGDOZrZrZrZrDOXICJpRCJpWXICJCJCJCJCJCJCJCJCJCJvCvLvLzIzIzIzIzInwnwnwnwnwnwnwnwnwnwnwnwnwPoPoOkOkmPOkPoPoPoPoPoPoPomPmPPoPonwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwWBtkazazazazazazazazazFBWBYfYfYfYfYfNTZkZkRjoRtJMtATTiweYgMtCqCqCqCqwiMtwUXvRQpGDOZrZrZrZrDOXIxiXpXpXIXICJKjXIXpXpXpXpXICJCJwXvLvLxaxcxIxJzInwnwnwnwnwnwnwnwnwnwnwnwnwnwPoPoPoPoPoPonwnwnwnwnwPomPOkmPPonwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwWBxOQxQxIjXywnIjazazazFBWBzrYfYfYfYfNToBoixmxQBQMtMtxWMtMtMtxXtHBrylyxMtpGAfpGpGDOZrZrZrZrDOXICJyzEvwWXpCJCJXpyMyWzgzjXICJCJzIvLvLvLvLvLvLzInwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwPomPmPOkPoPonwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwWBWBWBWBYRFBWBYRazazazFBWBYfYfYfYfYfznzozozvzoNFVxVxVxMtPFUSUSzFzFzFzFUSAgUSXXMtDOZrZrlcZrDOXIXPCJUMDhXpCJCJndAiCJCJKjXICJCJzIvLvLvLvLArAzzInwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwPoOkmPmPOkPoPonwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwWBAEFBWBBdTVTVTVBhWBYfYfYfYfYfIMIMIMIMIMIMIMIMIMIMBtUFUFUFUFUFUFUFUFUFBWMtDODODODODODOXIBYvSnHCjXpCJCJXpClCxCJCJCQCJCJzIvLvLDfvLDgDizInwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwPoPoinmPmPOkPoPonwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwWBYRFBWBWBWBWBWBWBWBWBWBzrYfYfIMDoDxDQEaEmDokHDQIMZBUFUFUFUFUFUFUFUFUFBWMtXOXOXOXOXOXOXIXIXIXIYYYYEpVLYYYYYYYYYYYYEsSqYYEzvLzIzIzIzIzInwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwPoPoOkmPsAmPPonwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwWBYRBcCcCcCcCcEUEXtoEZWBYfYfYfNoUyRJebEHFmUyRJFnFuFFUFUFZvZvZvZvZvUFUFGeMtGAGCGLGTHegozkHmQOgoGJGJGnHAGJGJGJGJGJGJGnHAGJGnSqYYnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwPoPoOkmPmPPonwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwWBJbQxIjazazazazazazBcCcYfYfYfNogRHPMhEaEmgRTbvYFzdSUFUFVfUuVfVfFSUFUFIaMtImIxzkIyIzHmgoIxgoIPNLNLNLNLNLIZVpwBNLNLNLNLNLNLsUYYnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwPoPoPoPoPonwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwWBWBWBWBWBYRazXywnIjazazXylAYfYfYfNoUyRJebEHFmUyRJfGIMJoUFUFWPVfVfJzGXUFUFJBMtJHHmQOgoJVzkJWHmgoXOYYYYZgjFYYUHNLSqYYjFZgYYYYYYYYYYnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwWBVzfFKkWBKvazKAWBKETzTzKIWBYfYfYfNoKUHPMhEaEmgRTbvyIMJoUFUFKZKZKZKZKZUFUFLbMtLeLzgoIxLFgoLPLSLUXOYYLXtwyZYYMqMpwaYYyZtwMrYYnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwWBXhazFBMvYRazKAWBYRMxMCFBWBzrYfYfNoUyRJebEHFmUyRJebIMJoUFUFUFUFUFUFUFUFUFLbMtXOXOXOXOMEgoXOXOXOXOYYMGVpVpMNSqMpUHMNVpVpMGYYnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwWBdbQxNiWBNpNqNyWBJbNHNPNXWBYfYfYfNogRHPMhEaEmgRTbMhIMOddSXfnvnvnvnvnvdSXfOeMtVxVxYfUbYfYfUbYfYfYfYYYYYYYYYYSqMpUHYYYYYYYYYYYYYYYYnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwWBWBWBWBWBWBWBWBWBWBWBWBWBWBHXYfOrIMOVEEZhEHFmOVEEZhIMNZNZNZNZNZNZNZNZKrXnNZNZNZNZYfYfYfYfYfYfYfRqYYvJPrNLNLsUMpZfYYTLPwPwPwPwPwYYnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwUAUAUAUAzPPDBNPDPDPDWwBNjaYNPJYEYEIMIMPLPVIMIMIMNZQaQkQmQmQmQkQoQuQAQQQURgRBNZzrYfYfYfYfYfYfYfYYSqMpMpMpMpMpUHYYOUWeWeWeWeREYYnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwUAUAUAUARTjfjfjfjfQVRVSbYNYNScShYEYfUbYfYfUbYfYfNZSjSlSlSlSESESJSMSMSMSORgRBNZYfYfYfYfYfYfYfYfYYvJSYGJGJMqMpUHvaWeWeWeXCWeXCYYnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwUAUATjTpTjTjTjTjTjTjTjTATDYNYNScPDYfYfYfYfYfYfYfQuQATNTNTNTNTNTNTNTNTNTNTPUdNZYfYfYfYfYfYfYfYfYYYYYYYYYYZEBxUsYYYYUzWeXCWeXCYYnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwUAUAUCUQUQUQVaUQUQUQUQTATDYNYNYNYNYfYfYfYfYfYfYfVgVuTNTNTNTNTNTNTNTNTNTNTPVINZYfYfYfYfYfYfYfRqWQVQWfWjYYWpGJGJWjYYxHWeXCWeXCYYnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwUAUAWDWDWDWDWDWDWDWEWDTATDYNYNaXYtYfYfYfYfYfYfYfNZWWWXWXWXWXWXXbQuQuQuXcmjFRNZYfYfYfYfYfYfYfYfWQUHVpSqYYniXqVpXuYYXxWeWeWeREYYnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwUAUAUAUAXzXDXDXDXDXRXDXTYNYNYNAVYEYfYfYfYfYfYfYfNZYaYdYjYjYjYdYlSMVuYmTEYoYpNZzrYfYfYfYfYfYfYfWQZxVpSqYsUHVpVpYvZgYwWeYDYDYDYYnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwUAUAUAUAYJYLYOYtYtYtYtYtYtYZZaVEYEYfYfYfYfYfYfYfNZNZNZNZNZNZNZNZNZKrXnNZNZNZNZYfYfYfYfYfYfYfYfYYZcZpYFYYniXqVpXuYYZwWeZGYYYYYYUiUiUiUinwnwZWZWZWZWZWZWZWZWZWnwnwZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwUAUAUAUAYEYEYEYEZLZXodYEYEYEYEzrYfYfYfYfYfYfYfYfUbYfYfYfUbYfYfYfYfYfUbYfYfYfYfYfYfYfYfYfRqwVNvmlOWhrUHVpVpSqYYYYgvYYUiBstTezyhaLUinwnwZWZWZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWYEYEYEYEYEVxVxVxYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfetetetetnqetetetetnqetetetetsTmLmLmLxrUinwZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWVxVxYfYfYfYfMAYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfYfMAYfYfYfYfDZVBVBVBVBVBVBiyVBVBVBVBVBWdKGmLmLmLQHUinwZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWVxWhZdSzWhWhWhWhzrYfYfYfYfYfRqVxVxYfYfYfYfVSVSKlUKVSVSVSVSVSVSUiPXNCRFRFRFRFcIaRmLmLmLUeUilJmLmLmLVeUinwZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWnwnwZWZWZWZWZWWhwzenWhmvjdOsYfYfYfYfYfYfYfVxVxzrYfYfYfVSRPUKUKjzUKJykuVSVSUiGGpkzXGzikUWUiaRqyrJqyaDUiNJmLmLmLFhUiZWZWZWZWZWZWnwnwZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwZWZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWWhZdSzWhwzRlQYYfYfYfYfYfYfYfVxVxYfYfYfYfVSDmUKUKGIUKUKUKVSVSUiMZmLmLmLmLUeYzaRqymLqyUeUiPxmLmLmLjtUiZWZWZWZWZWnwnwnwnwZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwZWZWZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWWhwzFTCEynkbIhYkYkhGYkYkYkkTVxVxYfYfYfYfVSDmUKUKVSjqUKUKVSVSUiGcWAerVBiyfhUiPnqyrJqyZyetsTmLmLmLFgUiZWZWZWZWnwnwnwnwnwZWZWZWZWZWZWnwnwnwnwZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwZWZWZWZWZWZWZWZWnwnwnwnwnwnwZWZWZWZWWhwzZKZKZKPsWhpTMcAjnVfIZQkTVxVxYfYfYfYfVSDmUKyfVSjqUKorVSVSUiUiUiUiUiUiUiUiaRmLmLmLdwHWKGmLmLmLXiUiZWZWZWnwnwnwnwnwnwZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwZWZWZWZWZWZWZWZWnwnwnwnwnwnwZWZWZWZWWhwzZKZKZKSzZKlYGjGjGjGjEykTVxVxYfYfYfRqVSSFUKUKVSjqGIorVSIeQZQZQZQZQZQZQZUizlojFjiyfhUihDuVQiZoobUiZWZWZWnwnwnwnwnwnwZWZWZWZWZWZWnwnwnwnwnwZWAeZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwZWZWZWZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWWhRMZKqCjcSzfuhTGjGjGjGjlpkTVxVxYfYfYfYfIeIeIeIeIeIeIeIeIeIeJTSXSXSXtNMPQZUiUiUiUiUiUiUiUiUiUiUiUiUiZWZWZWnwnwnwnwnwnwZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwZWZWZWnwZWZWZWZWZWZWnwnwnwnwZWZWZWZWZWWhbNZKOXxwSzQYMMGjGjGjGjGfAjYfYfYfYfYfYfYfSXSXtNSXSXSXSXSXSXSGngngngngkgQZZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwZWZWnwnwnwnwnwZWZWZWZWnwnwZWZWZWZWZWZWWhCrZKZKZKSzQYMMGjKsKsGjZUCDYfMAYfYfYfYfMAwPgSIRqYgSgSutIRngngngngngngqVQZZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwZWZWZWZWZWZWZWnwnwnwnwnwnwZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwZWZWZWnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWWhNnZKZKZKKNQYMMGjKsKsGjMINMNMNMnWeqeqeqNMNMQZprqVQZQZQZKungngngngngngqVQZZWZWZWZWZWZWZWnwnwnwZWZWZWZWZWZWnwnwnwnwZWZWZWZWZWZWnwnwnwnwnwnwZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwZWnwnwnwZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWZWZWZWZWWhZIZKZKZKBiQYMMGjKsKsGjVKNMeqqJeqeqeqeqqJeqEtKuNRSXzbQZkQngngngngngngqVQZZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWZWnwnwZWZWZWZWZWZWZWnwnwnwnwnwnwZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwZWnwnwnwZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWZWZWZWWhjKZKZKZKSzQYMMGjKsKsGjVKNMeqeqeqeqeqeqeqeqEtevngngkgQZKungngngngngngkgQZZWZWZWZWZWZWnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwZWZWnwnwZWZWZWZWZWZWZWZWnwnwnwnwZWZWZWZWZWZWZWWhlgSSSSHutDWhsGGjGjGjGjIqNMcmeqeqeqeqeqeqeqEtzRngngaMQZWIgSPQIRqYPQgSVUQZZWZWZWZWZWnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwZWZWnwZWZWZWZWZWZWZWZWZWZWnwnwnwnwZWZWZWZWZWnOWhWhWhWhWhWhWhRZycZtGtowrpNMeqeqeqeqeqeqeqeqEtAHdYgSczQZQZQZQZFGqVQZQZQZQZZWZWZWZWnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWnwnwZWZWZWZWnwnwnwZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWkTkTkTkTkTkTkTNMueeqeqeqeqeqeqOTQZQZQZQZQZQZZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWnwnwnwnwZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWNMNMNMzieqeqeqNMNMNMZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWzNZWZWZWZWZWZWZWZWZWZWZWZWZWZWPSPSPSbEbEPSPSPSZWZWZWZWZWZWZWZWZWZWZWZWZWZWzNZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWZWZWnwnwnwnwnwnwZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWPSbEbEbEbEPSZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwZWZWZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwZWZWZWZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWPSbEbEbEbEPSZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwZWZWZWZWZWZWZWnwnwnwnwnwnwZWZWZWZWZWzNZWZWZWZWZWZWZWZWZWZWZWZWZWZWPSbEbEPSPSbEbEPSZWZWZWZWZWZWZWZWZWZWZWZWZWZWzNZWZWZWZWZWZWZWZWZWZWnwnwnwZWZWZWZWZWZWnwnwZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwZWZWZWZWZWZWnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWPSbEbEPSPSbEbEPSZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwZWZWZWZWZWnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWnOnOAunOnOZWZWZWPSbEbEPSPSbEbEPSZWZWZWnOnOAunOnOZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwZWZWZWZWnwnwnwnwnwnwnwZWZWZWZWZWZWZWzNZWZWZWZWZWZWnObqlyBwnOZWZWZWPSbEbEPSPSbEbEPSZWZWZWnObqlyBwnOZWZWZWZWZWZWzNZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwZWZWZWnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWnOnYZWZWnYZWZWnOMXAuwvnOnYZWZWnObEbEPSPSbEbEnOnYZWZWnOMXAuwvnOnYZWZWnYZWZWnOZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwZWZWZWnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWbavmcooYbaZWZWZWZWPSbEbEbEbEPSZWZWZWZWbavmcooYbaZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwZWZWZWZWnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWbababababaZWZWZWZWPSbEbEbEbEPSZWZWZWZWbababababaZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnw
+nwnwnwnwZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWZWZWZWZWnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWPSbEbEPSZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnw
+nwnwnwnwZWZWZWZWZWnwnwnwnwnwnwnwZWZWZWZWZWZWnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnw
+nwnwnwnwZWZWZWZWZWZWnwnwnwnwnwnwnwZWZWZWZWZWnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnw
+nwnwnwZWZWZWZWZWZWZWZWnwnwnwnwnwnwZWZWZWZWZWZWnwnwnwZWZWZWZWZWZWZWZWZWZWZWnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwZWZWZWZWZWZWnwnwZWZWZWZWZWZWnwnwnwnwnwnwZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnw
+nwnwnwZWZWZWnwZWZWZWZWZWZWnwnwnwnwZWZWZWZWZWZWZWnwnwZWZWZWZWZWZWZWZWZWZWnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwZWZWZWZWnwnwnwnwnwZWZWZWZWZWnwnwnwnwnwnwZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnw
+nwnwZWZWZWnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwZWZWZWZWZWZWZWZWZWZWnwnwnwnwZWZWZWZWZWZWZWZWZWZWnwnwZWZWZWZWnwnwnwnwZWZWZWZWnwnwnwnwnwZWZWZWZWZWZWnwnwnwnwZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnw
+nwnwZWZWZWnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwZWZWZWZWZWZWZWZWnwnwnwnwnwZWZWZWnwnwnwZWZWZWZWnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWnwZWZWZWZWZWZWZWZWZWZWZWnwnwnw
+nwnwZWZWnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWZWZWnwnwnwnwnwnwZWZWZWZWnwnwZWZWZWnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwZWZWZWZWZWZWZWZWZWZWZWnwnw
+nwZWZWZWnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWZWnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwZWZWZWZWZWZWZWZWZWZWZWnwnw
+nwZWZWnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwZWZWZWZWZWZWnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwZWZWZWZWZWZWZWZWZWZWnwnw
+nwZWnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWZWZWnwnwZWZWZWnwnwnwZWZWZWZWnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWnwnwZWZWZWZWZWnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWZWZWZWZWnwnw
+nwZWnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWnwnwnwnwnwnwZWZWZWZWZWnwnwnwZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwZWZWZWnwnwnwnwZWZWZWnwnwnwnwZWZWZWZWZWZWZWZWZWZWnwnwnwnwZWZWZWnwnwnwZWZWZWZWZWZWZWZWnwnwnwnwZWZWZWZWZWZWnwnwnwnwnwnwZWZWZWZWZWZWZWnwnwnw
+nwZWnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWnwnwnwnwnwnwnwZWZWZWnwnwnwnwZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwZWZWZWnwnwnwnwnwnwZWZWZWnwnwZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwZWZWnwnwnwnwnwZWZWZWZWZWZWnwnwnwnwnwnwZWZWZWZWnwnwnwnwnwnwnwZWZWZWZWZWZWZWnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwZWZWnwnwnwnwZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwZWZWZWZWnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwZWZWZWnwnwnwnwnwZWZWZWZWZWZWnwnwnwnwnwnwZWZWZWZWnwnwnwnwnwnwnwnwZWZWZWZWZWZWnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWnwnwnwnwZWZWZWZWZWnwnwnwnwnwnwnwZWZWZWZWnwnwnwnwnwnwnwnwZWZWZWZWZWZWnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWnwnwZWZWZWZWZWZWnwnwnwnwnwnwnwZWZWZWnwnwnwnwnwnwnwnwnwZWZWZWZWZWnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwZWZWZWZWnwnwnwnwnwnwnwnwnwZWZWZWZWZWnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwZWZWZWnwnwnwnwnwnwZWZWZWZWnwnwnwnwnwnwnwnwnwnwZWZWZWZWnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWnwnwnwnwnwnwZWZWZWZWZWnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwZWZWZWZWnwZWZWZWnwnwnwnwnwZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwZWZWZWnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWnwnwnwnwZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwZWZWZWZWZWnwnwnwZWZWZWnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwZWZWnwnwZWZWZWZWnwnwnwnwZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwZWZWZWnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWnwZWZWZWZWZWnwnwnwZWZWZWZWnwnwnwZWZWnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwZWZWnwnwnwZWZWZWZWnwnwZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwZWZWZWZWZWZWZWnwnwnwZWZWZWnwnwnwnwZWZWZWZWnwnwnwnwZWZWnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwZWZWZWnwnwnwZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWnwZWZWZWZWnwnwnwnwnwnwnwZWZWZWZWZWZWnwnwnwnwnwZWZWnwnwnwnwZWZWZWZWZWnwnwnwZWZWZWnwnwnwZWZWZWZWZWnwZWZWZWZWnwnwnwnwZWZWnwnwnwnwZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWnwnwZWZWZWZWZWnwnwnwnwnwnwnwZWZWZWZWnwnwnwnwnwnwZWZWZWnwnwZWZWZWZWZWZWZWnwnwnwZWZWZWZWZWZWZWZWZWnwnwnwZWZWZWnwnwnwZWZWZWnwnwnwnwZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWnwnwZWZWZWZWZWZWZWZWnwnwnwnwZWZWZWnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwZWZWZWZWZWZWnwnwnwnwnwZWZWZWnwZWZWZWnwnwnwnwnwnwZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWnwnwnwZWZWZWZWZWZWZWZWZWnwnwnwZWZWZWnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWnwnwnwnwnwnwZWZWZWZWZWZWnwnwnwnwnwnwZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWnwnwnwZWZWZWZWnwnwZWZWZWZWZWZWZWZWZWZWZWnwZWZWZWnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwZWZWZWnwnwnwnwnwnwnwZWZWZWZWZWZWnwnwnwnwnwnwZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWnwnwnwnwnwnwZWZWnwnwZWZWZWZWZWnwnwnwZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwZWZWZWZWnwnwnwnwnwnwnwZWZWZWZWZWnwnwnwnwnwnwnwnwnwZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWZWZWnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwZWZWZWZWnwnwnwnwnwnwnwnwnwnwZWZWZWZWnwnwnwnwnwnwnwnwnwnwZWZWZWnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWZWZWZWnwnwnwnwnwnwZWZWZWZWZWZWZWZWnwnwZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwZWZWZWnwnwnwnwnwnwnwnwnwnwZWZWZWZWnwnwnwnwnwnwnwnwnwnwZWZWZWnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWnwnwnwnwZWZWZWZWZWZWZWZWZWZWnwnwnwZWZWZWZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWnwnwnwnwnwnwnwnwnwnwZWZWZWZWnwnwnwnwnwnwnwnwZWZWZWnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWnwnwnwZWZWZWZWnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWoaZWZWnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWnwnwnwnwnwZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWnwZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWnwnwnwZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWnwnwnwnwZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWnwnwnwZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWnwnwnwnwnwZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWwyZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwZWZWZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwZWZWnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
+nwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnwnw
 "}
