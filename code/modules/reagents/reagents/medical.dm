@@ -977,17 +977,13 @@
 	color = "#19C832"
 	overdose_threshold = REAGENTS_OVERDOSE * 0.5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 0.5
-	custom_metabolism = REAGENTS_METABOLISM * 2
+	custom_metabolism = REAGENTS_METABOLISM * 5
+	purge_rate = 5
 	scannable = TRUE
 	taste_description = "punishment"
 	taste_multi = 8
 
 /datum/reagent/medicine/hypervene/on_mob_life(mob/living/L, metabolism)
-	for(var/datum/reagent/R in L.reagents.reagent_list)
-		if(R != src)
-			L.reagents.remove_reagent(R.type,HYPERVENE_REMOVAL_AMOUNT * REM)
-			if(R.type == /datum/reagent/medicine/hyperzine)
-				R.current_cycle += HYPERVENE_REMOVAL_AMOUNT * REM * 1 / max(1,custom_metabolism) //Increment hyperzine's purge cycle in proportion to the amount removed.
 	L.reagent_shock_modifier -= PAIN_REDUCTION_HEAVY //Significant pain while metabolized.
 	if(prob(5)) //causes vomiting
 		L.vomit()
@@ -1001,7 +997,7 @@
 
 /datum/reagent/medicine/hypervene/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(4*REM, 4*REM)
-	if(prob(20)) //violent vomiting
+	if(prob(50)) //violent vomiting
 		L.vomit()
 	L.reagent_shock_modifier -= PAIN_REDUCTION_FULL //Unlimited agony.
 
