@@ -124,7 +124,7 @@
 
 		B.use(1)
 		wire()
-		
+
 
 /obj/structure/barricade/proc/wire()
 	if(!closed)
@@ -319,6 +319,28 @@
 				deconstructed = FALSE
 				break
 			deconstruct(deconstructed)
+
+/*----------------------*/
+// GUARD RAIL
+/*----------------------*/
+
+/obj/structure/barricade/guardrail
+	name = "guard rail"
+	desc = "A short wall made of rails to prevent entry into dangerous areas."
+	icon_state = "railing_0"
+	coverage = 25
+	resistance_flags = UNACIDABLE
+	max_integrity = 150
+	soft_armor = list("melee" = 90, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 15, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
+	layer = OBJ_LAYER
+	climbable = FALSE
+	throwpass = FALSE
+	stack_type = /obj/item/stack/rods
+	destroyed_stack_amount = 3
+	hit_sound = "sound/effects/metalhit.ogg"
+	barricade_type = "railing"
+	can_wire = FALSE
+
 
 /*----------------------*/
 // WOOD
