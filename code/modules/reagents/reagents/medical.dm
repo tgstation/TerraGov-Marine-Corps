@@ -68,7 +68,7 @@
 	color = "#C855DC"
 	scannable = TRUE
 	custom_metabolism = REAGENTS_METABOLISM * 0.125
-	purge_list = list(/datum/reagent/medicine)
+	purge_list = list(/datum/reagent/medicine/kelotane, /datum/reagent/medicine/tricordrazine, /datum/reagent/medicine/bicaridine)
 	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE*2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*2
@@ -76,6 +76,7 @@
 /datum/reagent/medicine/paracetamol/on_mob_life(mob/living/L, metabolism)
 	L.reagent_pain_modifier += PAIN_REDUCTION_HEAVY
 	L.heal_limb_damage(0.2*REM, 0.2*REM)
+	L.adjustToxLoss(-2 * REM)
 	L.adjustStaminaLoss(-2*REM)
 	return ..()
 
@@ -292,14 +293,13 @@
 	description = "Dylovene is a broad-spectrum antitoxin."
 	color = "#A8F59C"
 	scannable = TRUE
-	purge_list = list(/datum/reagent/toxin, /datum/reagent/toxin/xeno_neurotoxin, /datum/reagent/consumable/drink/atomiccoffee, /datum/reagent/consumable/larvajelly)
+	purge_list = list(/datum/reagent/toxin, /datum/reagent/toxin/xeno_neurotoxin, /datum/reagent/consumable/drink/atomiccoffee, /datum/reagent/consumable/larvajelly, /datum/reagent/medicine/paracetamol)
 	purge_rate = 2
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "a roll of gauze"
 
 /datum/reagent/medicine/dylovene/on_mob_life(mob/living/L,metabolism)
-	L.adjustDrowsyness(-2 * REM)
 	L.hallucination = max(0, L.hallucination -  5 * REM)
 	L.adjustToxLoss(-2 * REM)
 	if(volume > 10)
