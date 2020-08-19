@@ -166,7 +166,7 @@
 				to_chat(occupant, "<span class='warning'>[icon2html(src,user)] RECALCULATION FAILED!</span>")
 				targetturf = locate(target_x, target_y,2)
 			break
-	deadchat_broadcast("has landed at [getarea(targetturf)]!", src, occupant)
+	deadchat_broadcast("has landed at [get_area(targetturf)]!", src, occupant)
 	forceMove(targetturf)
 	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100)
 	explosion(targetturf,-1,-1,2,-1)
