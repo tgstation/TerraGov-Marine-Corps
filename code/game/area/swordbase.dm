@@ -118,3 +118,7 @@
 /area/swordbase/ground/vault
 	name = "vault"
 	icon_state = "vault"
+
+/area/swordbase/ground/conferenceroom
+	name = "conference room"
+	icon_state = "conferenceroom"
