@@ -3,7 +3,7 @@
 #define DROPPOD_LANDED 3
 ///Marine steel rain style drop pods, very cool!
 /obj/structure/droppod
-	name = "TGMC Zeus Orbital drop pods"
+	name = "TGMC Zeus Orbital drop pod"
 	desc = "A menacing metal hunk of steel that is used by the TGMC for quick tactical redeployment."
 	icon = 'icons/obj/structures/droppod.dmi'
 	icon_state = "singlepod_open"
@@ -127,11 +127,17 @@
 /obj/structure/droppod/proc/launchpod(mob/user)
 	if(!occupant)
 		return
+	if(world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
+		to_chat(user, "<span class='notice'>Unable to launch, the ship has not yet reached the combat area.</span>")
+		return
 	if(drop_state != DROPPOD_READY)
 		return
 	if(!checklanding(user))
 		return
 
+	var/turf/target = locate(target_x, target_y, 2)
+	log_game("[key_name(user)] launched pod [src] at [AREACOORD(target)]")
+	deadchat_broadcast(" has been launched", src, turf_target = target)
 	reserved_area = SSmapping.RequestBlockReservation(3,3)
 
 	drop_state = DROPPOD_ACTIVE
@@ -160,6 +166,7 @@
 				to_chat(occupant, "<span class='warning'>[icon2html(src,user)] RECALCULATION FAILED!</span>")
 				targetturf = locate(target_x, target_y,2)
 			break
+	deadchat_broadcast("has landed at [getarea(targetturf)]!", src, occupant)
 	forceMove(targetturf)
 	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100)
 	explosion(targetturf,-1,-1,2,-1)
