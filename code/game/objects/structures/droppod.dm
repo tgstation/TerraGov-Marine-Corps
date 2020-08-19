@@ -109,6 +109,9 @@
 	if(isspaceturf(target))
 		to_chat(user, "<span class='warning'>Location outside mission parameters. Invalid area.</span>")
 		return FALSE
+	if(!targetarea.outside)
+		to_chat(user, "<span class='warning'>Cannot launch pod at a roofed area.</span>")
+		return FALSE
 	for(var/x in target.contents)
 		var/atom/object = x
 		if(object.density)
