@@ -25,8 +25,6 @@
 	var/used_light = 0
 	var/used_environ = 0
 
-	var/has_gravity = TRUE
-
 	var/global/global_uid = 0
 	var/uid
 
@@ -41,6 +39,7 @@
 
 	var/ceiling = CEILING_NONE //the material the ceiling is made of. Used for debris from airstrikes and orbital beacons in ceiling_debris()
 	var/fake_zlevel // for multilevel maps in the same z level
+	var/outside = TRUE
 
 	var/list/cameras
 	var/list/all_doors = list()		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
