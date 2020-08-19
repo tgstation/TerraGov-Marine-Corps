@@ -55,12 +55,13 @@
 /area/ice_colony/exterior/surface/landing_pad
 	name = "Aerodrome Landing Pad"
 	icon_state = "landing_pad"
+	outside = FALSE
 
 //Landing Pad for the Vindi. THIS IS NOT THE SHUTTLE AREA
 /area/ice_colony/exterior/surface/landing_pad2
 	name = "Emergency Landing Pad"
 	icon_state = "landing_pad"
-
+	outside = FALSE
 
 //Everything around the physical landing pad
 /area/ice_colony/exterior/surface/landing_pad_external
@@ -144,6 +145,7 @@
 	name = "Ice Colony - Exterior Underground"
 	icon_state = "cave"
 	ceiling = CEILING_DEEP_UNDERGROUND
+	outside = FALSE
 
 
 //
@@ -175,6 +177,7 @@
 	name = "Ice Colony - Built Surface"
 	icon_state = "clear"
 	ceiling = CEILING_METAL
+	outside = FALSE
 
 /*
 * Surface - Bar
@@ -462,6 +465,7 @@
 	name = "Ice Colony - Built Underground"
 	icon_state = "explored"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	outside = FALSE
 
 /*
 * Underground - Crew Areas

@@ -34,6 +34,7 @@
 /area/shuttle //DO NOT TURN THE dynamic_lighting STUFF ON FOR SHUTTLES. IT BREAKS THINGS.
 	requires_power = 0
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	outside = FALSE
 
 /area/shuttle/arrival
 	name = "Abandoned Arrival Shuttle"
@@ -218,7 +219,6 @@
 	icon_state = "start"
 	requires_power = 0
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
-	has_gravity = 1
 
 
 /area/syndicate_mothership
