@@ -57,6 +57,9 @@
 		if(is_wired && iscarbon(O)) //Leaping mob against barbed wire fails
 			if(get_dir(loc, target) & dir)
 				return FALSE
+	if(!throwpass && !istype(O, /obj/projectile))
+		if(get_dir(loc, target) & dir)
+			return FALSE
 		return TRUE
 
 	if(get_dir(loc, target) & dir)
@@ -72,6 +75,9 @@
 		if(is_wired && iscarbon(mover)) //Leaping mob against barbed wire fails
 			if(get_dir(loc, target) & dir)
 				return FALSE
+	if(!throwpass && !istype(mover, /obj/projectile))
+		if(get_dir(loc, target) & dir)
+			return FALSE
 		return TRUE
 
 	if(istype(mover, /obj/vehicle/multitile))
