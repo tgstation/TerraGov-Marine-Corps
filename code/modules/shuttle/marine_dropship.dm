@@ -88,15 +88,9 @@
 	name = "Landing Zone One"
 	id = "lz1"
 
-/obj/docking_port/stationary/marine_dropship/lz1/prison
-	name = "Main Hangar"
-
 /obj/docking_port/stationary/marine_dropship/lz2
 	name = "Landing Zone Two"
 	id = "lz2"
-
-/obj/docking_port/stationary/marine_dropship/lz2/prison
-	name = "Civ Residence Hangar"
 
 /obj/docking_port/stationary/marine_dropship/hangar/one
 	name = "Theseus Hangar Pad One"

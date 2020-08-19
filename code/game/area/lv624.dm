@@ -7,6 +7,14 @@
 	icon_state = "green"
 	always_unpowered = TRUE //Will this mess things up? God only knows
 
+/area/lv624/drop1/lz1
+	name = "Landing Zone One"
+	icon_state = "away1"
+
+/area/lv624/drop2/lz2
+	name = "Alamo Landing Two"
+	icon_state = "away2"
+
 //Jungle
 /area/lv624/ground/jungle1
 	name ="Southeast Jungle"

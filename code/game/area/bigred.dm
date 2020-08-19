@@ -416,6 +416,9 @@
 	ceiling = CEILING_NONE
 	outside = FALSE
 
+/area/bigredv2/outside/space_port/alt
+	name = "Cargo Landing Port"
+
 /area/bigredv2/outside/telecomm
 	name = "Telecommunications"
 	icon_state = "ass_line"

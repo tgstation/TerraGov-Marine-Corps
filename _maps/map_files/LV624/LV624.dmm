@@ -6120,7 +6120,7 @@
 /area/lv624/lazarus/security)
 "axZ" = (
 /turf/closed/wall/r_wall,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aya" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/structure/jungle/vines,
@@ -6736,7 +6736,7 @@
 	dir = 2
 	},
 /turf/closed/wall/r_wall,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aAw" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -7790,7 +7790,7 @@
 /turf/open/floor/marking/warning{
 	dir = 9
 	},
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "aFU" = (
 /obj/structure/jungle/plantbot1,
 /turf/open/ground/grass,
@@ -8399,7 +8399,7 @@
 	dir = 2
 	},
 /turf/closed/wall,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "aIp" = (
 /obj/machinery/vending/tool,
 /turf/open/floor/tile/vault,
@@ -8533,7 +8533,7 @@
 /obj/structure/powerloader_wreckage,
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/mech_bay_recharge_floor,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "aIY" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -9087,7 +9087,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/ground/dirtgrassborder,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "aLo" = (
 /obj/structure/flora/ausbushes/fernybush,
 /turf/open/floor/plating/ground/dirt,
@@ -9523,7 +9523,7 @@
 "aMV" = (
 /obj/machinery/landinglight/ds1,
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "aNa" = (
 /obj/item/mecha_parts/part/gygax_torso,
 /turf/open/floor/tile/vault,
@@ -10136,16 +10136,16 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "aPE" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "aPK" = (
 /turf/open/floor/marking/warning{
 	dir = 6
 	},
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "aPO" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
@@ -10369,7 +10369,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "aQK" = (
 /obj/structure/flora/ausbushes/fernybush,
 /turf/open/ground/grass,
@@ -10719,7 +10719,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "aRV" = (
 /obj/effect/decal/remains/human,
 /obj/structure/jungle/vines,
@@ -10924,7 +10924,7 @@
 /turf/open/floor/marking/warning{
 	dir = 9
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aSA" = (
 /obj/structure/largecrate,
 /obj/item/mecha_parts/part/gygax_armour,
@@ -10934,19 +10934,19 @@
 /turf/open/floor/marking/warning{
 	dir = 1
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aSC" = (
 /turf/open/floor/marking/warning{
 	dir = 5
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aSD" = (
 /obj/structure/fence,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 8
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aSJ" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -11138,33 +11138,33 @@
 /turf/open/floor/marking/warning{
 	dir = 8
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aTo" = (
 /obj/machinery/floodlight/landing,
 /obj/effect/decal/warning_stripes,
 /turf/open/floor/mech_bay_recharge_floor,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aTp" = (
 /obj/machinery/landinglight/ds1/delaytwo,
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aTq" = (
 /obj/machinery/landinglight/ds1/delayone,
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aTr" = (
 /obj/machinery/landinglight/ds1,
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aTs" = (
 /obj/machinery/landinglight/ds1/delaythree,
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aTt" = (
 /turf/open/floor/marking/warning{
 	dir = 4
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aTy" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
@@ -11244,16 +11244,16 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aTR" = (
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aTS" = (
 /obj/machinery/landinglight/ds1/delayone{
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aUa" = (
 /obj/machinery/computer/general_air_control,
 /obj/effect/decal/warning_stripes/thin{
@@ -11387,7 +11387,7 @@
 "aUA" = (
 /obj/docking_port/stationary/marine_dropship/lz1,
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aUB" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/jungle/vines,
@@ -11405,17 +11405,17 @@
 /turf/open/floor/marking/warning{
 	dir = 1
 	},
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "aUF" = (
 /turf/open/floor/marking/warning{
 	dir = 1
 	},
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "aUG" = (
 /turf/open/floor/marking/warning{
 	dir = 5
 	},
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "aUI" = (
 /obj/item/stool,
 /turf/open/floor/tile/dark,
@@ -11568,12 +11568,12 @@
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 1
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aVj" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 1
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aVk" = (
 /obj/structure/cargo_container/horizontal{
 	dir = 1
@@ -11581,28 +11581,28 @@
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 8
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aVl" = (
 /obj/machinery/landinglight/ds1{
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aVm" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aVn" = (
 /obj/machinery/landinglight/ds1{
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aVo" = (
 /turf/open/floor/marking/warning{
 	dir = 8
 	},
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "aVq" = (
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
@@ -11684,15 +11684,15 @@
 /turf/open/floor/marking/warning{
 	dir = 1
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aVN" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 8
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aVO" = (
 /turf/open/ground/grass,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aVP" = (
 /obj/structure/cargo_container/horizontal{
 	dir = 4
@@ -11700,23 +11700,23 @@
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aVQ" = (
 /obj/machinery/landinglight/ds1/delayone{
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aVR" = (
 /obj/machinery/landinglight/ds1/delaythree{
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aVS" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/wall,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "aVV" = (
 /obj/structure/ore_box,
 /turf/open/floor/plating/platebot,
@@ -11810,15 +11810,15 @@
 /turf/open/floor/marking/warning{
 	dir = 10
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aWr" = (
 /turf/open/floor/marking/warning/corner{
 	dir = 1
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aWs" = (
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aWt" = (
 /obj/structure/cargo_container/horizontal{
 	dir = 2
@@ -11826,19 +11826,19 @@
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aWu" = (
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aWw" = (
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aWx" = (
 /obj/structure/jungle/vines,
 /obj/structure/fence,
@@ -11846,7 +11846,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 8
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aWy" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 4
@@ -11945,20 +11945,20 @@
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 4
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aWV" = (
 /obj/structure/lazarus_sign,
 /turf/open/floor/plating/ground/dirtgrassborder,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aWW" = (
 /turf/open/floor/plating/ground/dirtgrassborder,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aWX" = (
 /turf/open/floor/plating/ground/dirtgrassborder2/corner,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aXb" = (
 /turf/open/floor,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "aXc" = (
 /turf/open/ground/grass,
 /area/lv624/lazarus/atmos)
@@ -11969,7 +11969,7 @@
 /turf/open/floor/marking/warning{
 	dir = 1
 	},
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "aXf" = (
 /obj/structure/jungle/plantbot1,
 /obj/structure/flora/ausbushes/fullgrass,
@@ -12101,7 +12101,7 @@
 /turf/open/floor/marking/warning/corner{
 	dir = 8
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aXE" = (
 /obj/machinery/computer/shuttle/shuttle_control/dropship1,
 /obj/structure/table/reinforced/flipped{
@@ -12115,7 +12115,7 @@
 /turf/open/floor/marking/warning/corner{
 	dir = 4
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aXG" = (
 /obj/structure/barricade/wooden{
 	dir = 4
@@ -12123,7 +12123,7 @@
 /turf/open/floor/marking/warning{
 	dir = 4
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aXH" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating/warning{
@@ -12136,16 +12136,16 @@
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
 	},
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "aXM" = (
 /obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "aXN" = (
 /obj/structure/cable,
 /turf/open/floor,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "aXO" = (
 /obj/machinery/colony_floodlight,
 /turf/open/floor/plating/ground/dirt,
@@ -12265,15 +12265,15 @@
 /area/lv624/lazarus/main_hall)
 "aYi" = (
 /turf/open/floor/marking/bot,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aYj" = (
 /obj/machinery/floodlight/landing,
 /obj/effect/decal/warning_stripes,
 /turf/open/floor/mech_bay_recharge_floor,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "aYp" = (
 /turf/open/floor/marking/bot,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "aYr" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/tile/blue/whiteblue{
@@ -12448,13 +12448,13 @@
 /turf/open/floor/marking/loadingarea{
 	dir = 8
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "aYX" = (
 /obj/structure/cargo_container{
 	dir = 1
 	},
 /turf/open/floor/marking/bot,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "aZa" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/mainship{
@@ -12519,11 +12519,11 @@
 "aZo" = (
 /obj/machinery/landinglight/ds1/delaytwo,
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "aZp" = (
 /obj/machinery/landinglight/ds1/delayone,
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "aZu" = (
 /obj/structure/jungle/vines,
 /turf/open/floor/plating/platebotc,
@@ -12531,7 +12531,7 @@
 "aZw" = (
 /obj/machinery/landinglight/ds1/delaythree,
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "aZx" = (
 /obj/structure/fence,
 /turf/open/ground/grass/grass2,
@@ -12688,7 +12688,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "baa" = (
 /obj/structure/flora/ausbushes/leafybush,
 /obj/structure/jungle/vines,
@@ -12891,7 +12891,7 @@
 /turf/open/floor/marking/warning{
 	dir = 8
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "baD" = (
 /obj/item/bedsheet/rd,
 /obj/item/toy/bikehorn/rubberducky,
@@ -12938,7 +12938,7 @@
 "baP" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "baY" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/tile/dark/brown2/corner,
@@ -13339,7 +13339,7 @@
 /turf/open/floor/marking/warning{
 	dir = 8
 	},
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "bcJ" = (
 /obj/structure/fence,
 /turf/open/ground/grass/grass2,
@@ -13496,15 +13496,15 @@
 	},
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "bdn" = (
 /turf/open/floor/marking/warning,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "bdp" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "bdq" = (
 /obj/structure/cryofeed,
 /obj/effect/decal/warning_stripes{
@@ -13729,7 +13729,7 @@
 /turf/open/floor/marking/warning{
 	dir = 9
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "bef" = (
 /obj/structure/jungle/planttop1,
 /turf/closed/gm/dense,
@@ -13935,25 +13935,25 @@
 /turf/open/floor/marking/warning{
 	dir = 8
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "beS" = (
 /obj/structure/cargo_container{
 	dir = 4
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "beT" = (
 /obj/structure/cargo_container{
 	dir = 1
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "beU" = (
 /obj/structure/cargo_container{
 	dir = 8
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "beV" = (
 /obj/structure/jungle/plantbot1,
 /turf/open/ground/grass,
@@ -14146,25 +14146,25 @@
 /turf/open/floor/marking/warning{
 	dir = 8
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "bfF" = (
 /obj/structure/cargo_container/nt{
 	dir = 8
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "bfG" = (
 /obj/structure/cargo_container/nt{
 	dir = 1
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "bfH" = (
 /obj/structure/cargo_container/nt{
 	dir = 4
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "bfK" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
@@ -14257,7 +14257,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "bgc" = (
 /obj/structure/flora/ausbushes/fernybush,
 /obj/structure/jungle/vines,
@@ -14327,21 +14327,21 @@
 /turf/open/floor/marking/warning{
 	dir = 10
 	},
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "bgx" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/marking/warning{
 	dir = 8
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "bgy" = (
 /obj/structure/largecrate/random,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "bgz" = (
 /obj/structure/largecrate/random/barrel,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "bgA" = (
 /obj/item/weapon/combat_knife{
 	desc = "A curved blade made of a strange material. It looks both old and very sharp.";
@@ -14618,19 +14618,19 @@
 	dir = 8
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "bhM" = (
 /obj/structure/cargo_container/green{
 	dir = 1
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "bhN" = (
 /obj/structure/cargo_container/green{
 	dir = 4
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "bhQ" = (
 /obj/structure/jungle/vines,
 /obj/structure/jungle/vines/heavy,
@@ -14846,35 +14846,35 @@
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "biG" = (
 /obj/structure/largecrate/random/barrel/yellow,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "biH" = (
 /obj/machinery/landinglight/ds1/delaythree{
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "biI" = (
 /obj/machinery/landinglight/ds1{
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "biJ" = (
 /obj/machinery/landinglight/ds1/delayone{
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "biK" = (
 /obj/machinery/landinglight/ds1/delaytwo{
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "biL" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/ground/jungle1)
@@ -15019,15 +15019,15 @@
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "bjv" = (
 /turf/open/floor/marking/warning,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "bjw" = (
 /turf/open/floor/marking/warning{
 	dir = 6
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "bjx" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
@@ -15204,7 +15204,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 1
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "bkd" = (
 /obj/structure/fence,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -15213,7 +15213,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 1
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "bke" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -15221,7 +15221,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 1
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "bkf" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -15232,13 +15232,13 @@
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 8
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "bkg" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "bkh" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -15249,7 +15249,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 1
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "bki" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -15257,7 +15257,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
 	dir = 8
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "bkj" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 8
@@ -15808,7 +15808,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "bmr" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
@@ -17377,7 +17377,7 @@
 "bFI" = (
 /obj/machinery/light,
 /turf/open/floor/marking/warning,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "bGG" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -17421,7 +17421,7 @@
 	dir = 2
 	},
 /turf/closed/wall/r_wall,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "bZw" = (
 /obj/machinery/miner/damaged,
 /turf/open/ground/grass,
@@ -17461,7 +17461,7 @@
 /obj/structure/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/wall,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "cnD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -17480,7 +17480,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "cyG" = (
 /obj/structure/flora/ausbushes/fernybush,
 /obj/structure/sign/botany{
@@ -17495,7 +17495,7 @@
 "cJc" = (
 /obj/structure/cargo_container,
 /turf/open/floor/marking/bot,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "cRw" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/ausbushes/fullgrass,
@@ -17561,7 +17561,7 @@
 /turf/open/floor/marking/warning{
 	dir = 4
 	},
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "dgb" = (
 /obj/structure/cable,
 /turf/open/floor/plating/warning{
@@ -17602,7 +17602,7 @@
 /area/lv624/lazarus/atmos)
 "dVC" = (
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "emp" = (
 /turf/open/ground/grass/beach/corner{
 	dir = 4
@@ -17620,7 +17620,7 @@
 /obj/structure/cable,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "euR" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -17659,7 +17659,7 @@
 	dir = 2
 	},
 /turf/closed/wall/r_wall,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "eLi" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1;
@@ -17703,13 +17703,13 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "eYd" = (
 /obj/machinery/vending/cigarette/colony,
 /turf/open/floor/marking/warning{
 	dir = 4
 	},
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "fca" = (
 /obj/effect/landmark/monkey_spawn,
 /turf/closed/gm/dense,
@@ -17796,7 +17796,7 @@
 /turf/open/floor/marking/warning{
 	dir = 1
 	},
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "fRf" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -17939,7 +17939,7 @@
 "gWo" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/wall/r_wall,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "heg" = (
 /obj/structure/flora/tree/jungle,
 /turf/open/ground/grass,
@@ -17955,13 +17955,13 @@
 	dir = 2
 	},
 /turf/open/floor/plating/asteroidfloor,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "hvg" = (
 /obj/machinery/landinglight/ds1{
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "hzX" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/cult,
@@ -17988,7 +17988,7 @@
 	dir = 4
 	},
 /turf/open/floor/marking/bot,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "hUU" = (
 /obj/machinery/computer/area_atmos/area,
 /turf/open/floor/tile/dark,
@@ -18008,7 +18008,7 @@
 "icy" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/marking/bot,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "imm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -18030,7 +18030,7 @@
 "ixc" = (
 /obj/docking_port/stationary/marine_dropship/lz2,
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "ixC" = (
 /obj/structure/jungle/vines,
 /turf/closed/gm/dense,
@@ -18043,12 +18043,12 @@
 	dir = 2
 	},
 /turf/closed/wall/r_wall,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "iEQ" = (
 /obj/docking_port/stationary/crashmode,
 /obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/marking/bot,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "iFV" = (
 /obj/machinery/vending/coffee,
 /obj/structure/foamedmetal,
@@ -18072,7 +18072,7 @@
 	dir = 2
 	},
 /turf/closed/gm/dense,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "iTb" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/closed/gm/dense,
@@ -18116,7 +18116,7 @@
 /obj/effect/decal/cleanable/blood,
 /obj/item/clothing/head/tgmccap/req,
 /turf/open/floor,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "jzD" = (
 /obj/structure/closet/firecloset/full,
 /turf/open/floor/tile/dark/brown2/corner{
@@ -18133,7 +18133,7 @@
 /turf/open/floor/marking/warning{
 	dir = 4
 	},
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "jAE" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/mainship{
@@ -18168,7 +18168,7 @@
 /turf/open/floor/marking/loadingarea{
 	dir = 4
 	},
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "jLW" = (
 /obj/structure/bed/chair/comfy{
 	dir = 8
@@ -18176,17 +18176,17 @@
 /turf/open/floor/marking/warning{
 	dir = 4
 	},
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "jOz" = (
 /turf/open/floor/marking/warning{
 	dir = 4
 	},
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "jTU" = (
 /turf/open/floor/marking/warning/corner{
 	dir = 8
 	},
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "jUj" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral,
@@ -18200,7 +18200,7 @@
 /obj/item/clipboard,
 /obj/item/tool/pen,
 /turf/open/floor,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "kgp" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 1
@@ -18303,7 +18303,7 @@
 	dir = 2
 	},
 /turf/open/floor,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "lPP" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 2
@@ -18313,7 +18313,7 @@
 "lRQ" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "lXt" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/dirt,
@@ -18329,7 +18329,7 @@
 /turf/open/floor/marking/warning{
 	dir = 1
 	},
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "mdx" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirtgrassborder2/corner{
@@ -18375,7 +18375,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "mvX" = (
 /obj/docking_port/stationary/crashmode,
 /obj/docking_port/stationary/crashmode/bigbury,
@@ -18398,7 +18398,7 @@
 "mBe" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/gm/dense,
-/area/lv624/ground/jungle5)
+/area/lv624/drop1/lz1)
 "mEa" = (
 /obj/structure/jungle/planttop1,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -18410,7 +18410,7 @@
 	dir = 8
 	},
 /turf/closed/wall/r_wall,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "mGh" = (
 /obj/machinery/door/airlock/mainship/security/locked/free_access{
 	name = "\improper Nexus Dome Marshal Office"
@@ -18423,7 +18423,7 @@
 /turf/open/floor/marking/warning{
 	dir = 4
 	},
-/area/lv624/lazarus/console)
+/area/lv624/drop2/lz2)
 "mTu" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
@@ -18483,7 +18483,7 @@
 /turf/open/floor/marking/warning{
 	dir = 4
 	},
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "nAQ" = (
 /obj/structure/flora/ausbushes/sunnybush,
 /turf/open/ground/grass,
@@ -18521,7 +18521,7 @@
 	dir = 1
 	},
 /turf/open/floor/marking/bot,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "oeN" = (
 /turf/closed/wall,
 /area/storage/testroom)
@@ -18582,7 +18582,7 @@
 	dir = 1
 	},
 /turf/closed/wall/r_wall,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "oLs" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -18613,7 +18613,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 1
 	},
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "phD" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/tile/whiteyellow/full,
@@ -18674,7 +18674,7 @@
 	dir = 4
 	},
 /turf/open/floor/marking/bot,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "pBj" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1;
@@ -18687,7 +18687,7 @@
 "pDQ" = (
 /obj/item/paper/manifest,
 /turf/open/floor,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "pIy" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/tile/dark/brown2/corner{
@@ -18754,10 +18754,6 @@
 	dir = 1
 	},
 /area/lv624/ground/jungle9)
-"qzs" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/gm/dense,
-/area/shuttle/drop1/lz1)
 "qBt" = (
 /obj/structure/flora/ausbushes/fernybush,
 /turf/open/ground/grass/grass2,
@@ -18784,7 +18780,7 @@
 /turf/open/floor/marking/warning{
 	dir = 4
 	},
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "qSA" = (
 /obj/machinery/button/door/open_only/landing_zone,
 /obj/structure/window/reinforced,
@@ -18797,7 +18793,7 @@
 /turf/open/floor/marking/warning{
 	dir = 5
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "qXT" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
@@ -18827,7 +18823,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "rpH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -18875,7 +18871,7 @@
 /turf/open/floor/marking/warning{
 	dir = 5
 	},
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "rDw" = (
 /obj/docking_port/stationary/crashmode,
 /obj/docking_port/stationary/crashmode/bigbury,
@@ -18930,7 +18926,7 @@
 /turf/open/floor/marking/warning{
 	dir = 6
 	},
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "six" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/dirt,
@@ -18950,14 +18946,14 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "sCq" = (
 /obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/marking/warning{
 	dir = 4
 	},
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "sED" = (
 /obj/structure/lazarus_sign,
 /turf/open/floor/plating/ground/dirtgrassborder,
@@ -19190,13 +19186,13 @@
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
 	},
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "vzU" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
 /turf/closed/wall,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "vAO" = (
 /obj/structure/catwalk,
 /turf/open/ground/grass/beach{
@@ -19281,7 +19277,7 @@
 /turf/open/floor/marking/warning{
 	dir = 5
 	},
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "wvF" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/jungle/vines,
@@ -19307,7 +19303,7 @@
 	dir = 8
 	},
 /turf/open/floor/marking/bot,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "wDI" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/engine/cult{
@@ -19367,7 +19363,7 @@
 "xsY" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/wall,
-/area/shuttle/drop1/lz1)
+/area/lv624/drop1/lz1)
 "xvZ" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/dirt,
@@ -19396,7 +19392,7 @@
 	dir = 1
 	},
 /turf/closed/gm/dense,
-/area/lv624/ground/jungle5)
+/area/lv624/drop1/lz1)
 "xQl" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/structure/jungle/vines,
@@ -19425,13 +19421,13 @@
 	dir = 2
 	},
 /turf/open/floor,
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 "ykF" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/marking/warning{
 	dir = 8
 	},
-/area/shuttle/drop2/lz2)
+/area/lv624/drop2/lz2)
 
 (1,1,1) = {"
 aab
@@ -48208,7 +48204,7 @@ aAV
 aAV
 aAV
 mBe
-qzs
+mBe
 aSD
 aSD
 xsY

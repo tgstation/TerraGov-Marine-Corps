@@ -4091,7 +4091,7 @@
 /turf/open/floor/prison/darkpurple/full,
 /area/prison/research/secret/chemistry)
 "aoj" = (
-/obj/docking_port/stationary/marine_dropship/lz2/prison,
+/obj/docking_port/stationary/marine_dropship/lz2,
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
 "aok" = (
@@ -17610,7 +17610,7 @@
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bcF" = (
-/obj/docking_port/stationary/marine_dropship/lz1/prison,
+/obj/docking_port/stationary/marine_dropship/lz1,
 /turf/open/floor/plating,
 /area/prison/hangar/main)
 "bcG" = (
@@ -43146,16 +43146,6 @@
 	},
 /turf/open/floor/plating,
 /area/prison/hangar_storage/research)
-"tyd" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/r_wall/prison_unmeltable,
-/area/prison/maintenance/hangar_barracks)
-"tHS" = (
-/obj/machinery/computer/intel_computer,
-/turf/open/floor/prison/whitegreen{
-	dir = 9
-	},
-/area/prison/medbay)
 "tuQ" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/prison/yellow{
@@ -43167,6 +43157,12 @@
 /obj/structure/cable,
 /turf/open/floor/prison/rampbottom,
 /area/prison/maintenance/residential/sw)
+"tHS" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/prison/whitegreen{
+	dir = 9
+	},
+/area/prison/medbay)
 "tKy" = (
 /obj/machinery/light{
 	dir = 1
@@ -43322,16 +43318,16 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/prison/cellblock/vip)
-"vmo" = (
-/obj/machinery/computer/intel_computer,
-/turf/open/floor/wood,
-/area/prison/residential/south)
 "vlb" = (
 /obj/item/stack/sheet/metal,
 /turf/open/ground/coast/corner2{
 	dir = 1
 	},
 /area/space)
+"vmo" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/wood,
+/area/prison/residential/south)
 "vnS" = (
 /obj/machinery/light{
 	dir = 8
