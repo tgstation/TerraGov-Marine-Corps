@@ -403,7 +403,8 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/ghost_interact,
 	/client/proc/toggle_buildmode,
 	/client/proc/force_event,
-	/client/proc/toggle_events
+	/client/proc/toggle_events,
+	/client/proc/run_weather
 	)
 GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 GLOBAL_PROTECT(admin_verbs_fun)
