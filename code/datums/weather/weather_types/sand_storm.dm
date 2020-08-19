@@ -5,7 +5,7 @@
 	telegraph_duration = 300
 	telegraph_overlay = "dust_med"
 
-	weather_message = "<span class='highdanger'><i>Sand and wind batter you! Get inside!</i></span>"
+	weather_message = "<span class='highdanger'><i>Hot sand and wind batter you! Get inside!</i></span>"
 	weather_duration_lower = 600
 	weather_duration_upper = 1200
 	weather_overlay = "dust_high"
@@ -16,12 +16,12 @@
 
 	target_trait = ZTRAIT_SANDSTORM
 
-	probability = 60
+	probability = 40
 
 /datum/weather/ash_storm/sand/weather_act(mob/living/L)
 	if(is_storm_immune(L))
 		return
-	L.adjustBruteLoss(10)
+	L.adjustFireLoss(6)
 
 /datum/weather/ash_storm/sand/harmless
 	name = "Sandfall"
@@ -38,4 +38,4 @@
 
 	aesthetic = TRUE
 
-	probability = 40
+	probability = 60
