@@ -5,7 +5,7 @@
 	climbable = TRUE
 	anchored = TRUE
 	density = TRUE
-	throwpass = TRUE //You can throw objects over this, despite its density.
+	throwpass = TRUE //You can throw objects over this, despite its density.//This comment is a lie, throwpass is for projectiles apparently
 	layer = BELOW_OBJ_LAYER
 	flags_atom = ON_BORDER
 	resistance_flags = XENO_DAMAGEABLE
@@ -17,7 +17,7 @@
 	var/crusher_resistant = TRUE //Whether a crusher can ram through it.
 	var/base_acid_damage = 2
 	var/barricade_resistance = 5 //How much force an item needs to even damage it at all.
-
+	var/allow_thrown_objs = TRUE
 	var/barricade_type = "barricade" //"metal", "plasteel", etc.
 	var/can_change_dmg_state = TRUE
 	var/closed = FALSE
@@ -57,12 +57,12 @@
 		if(is_wired && iscarbon(O)) //Leaping mob against barbed wire fails
 			if(get_dir(loc, target) & dir)
 				return FALSE
-		if(!throwpass && !istype(O, /obj/projectile))
+		if(!allow_thrown_objs && !istype(O, /obj/projectile))
 			if(get_dir(loc, target) & dir)
 				return FALSE
 		return TRUE
 
-	if(!(get_dir(loc, target) & dir))
+	if(get_dir(loc, target) & dir)
 		return FALSE
 	else
 		return TRUE
@@ -75,8 +75,8 @@
 		if(is_wired && iscarbon(mover)) //Leaping mob against barbed wire fails
 			if(get_dir(loc, target) & dir)
 				return FALSE
-		if(!throwpass && !istype(mover, /obj/projectile))
-			if(!(get_dir(loc, target) & dir))
+		if(!allow_thrown_objs && !istype(mover, /obj/projectile))
+			if(get_dir(loc, target) & dir)
 				return FALSE
 		return TRUE
 
@@ -338,13 +338,13 @@
 	resistance_flags = UNACIDABLE
 	max_integrity = 150
 	soft_armor = list("melee" = 90, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 15, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
-	layer = OBJ_LAYER
 	climbable = FALSE
-	throwpass = FALSE
+	crusher_resistant = TRUE
 	stack_type = /obj/item/stack/rods
 	destroyed_stack_amount = 3
 	hit_sound = "sound/effects/metalhit.ogg"
 	barricade_type = "railing"
+	allow_thrown_objs = FALSE
 	can_wire = FALSE
 
 
