@@ -243,7 +243,8 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 	. = ..()
 	if(.)
 		return
-
+	if(!allowed(user))
+		return
 	if(!SU)
 		SU = new(src)
 	return SU.interact(user)
@@ -253,7 +254,7 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 	desc = "A console for an Automated Storage and Retrieval System"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "supply"
-	req_access = list(ACCESS_MARINE_CARGO)
+	req_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP)
 	circuit = null
 	var/datum/supply_ui/SU
 
@@ -261,7 +262,8 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 	. = ..()
 	if(.)
 		return
-
+	if(!allowed(user))
+		return
 	if(!SU)
 		SU = new(src)
 	return SU.interact(user)
