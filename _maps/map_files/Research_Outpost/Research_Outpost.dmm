@@ -1459,9 +1459,6 @@
 /obj/machinery/light,
 /turf/open/floor/tile/dark/purple2,
 /area/outpost/science/xenobiology)
-"ie" = (
-/turf/open/floor/plating/ground/mars,
-/area/outpost/caves/north_east)
 "ig" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
@@ -36381,7 +36378,7 @@ cg
 cg
 cg
 cg
-ie
+Af
 Jh
 cg
 cg
@@ -36639,7 +36636,7 @@ cg
 cg
 cg
 cg
-ie
+Af
 Jh
 cg
 cg
