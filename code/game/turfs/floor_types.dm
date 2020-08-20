@@ -162,8 +162,8 @@
 /turf/open/floor/mainship/empty
 	name = "empty space"
 	desc = "There seems to be an awful lot of machinery down below"
-	icon = 'icons/turf/floors.dmi'
-	icon_state = "black"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "1"
 
 /turf/open/floor/mainship/empty/is_weedable()
 	return FALSE
@@ -298,7 +298,7 @@
 	mediumxenofootstep = FOOTSTEP_WOOD
 
 /turf/open/floor/wood/broken
-	icon_state = "wood-broken"
+	icon_state = "wood-broken1"
 	burnt = TRUE
 
 /turf/open/floor/vault

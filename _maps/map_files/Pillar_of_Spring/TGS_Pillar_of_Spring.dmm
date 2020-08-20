@@ -1245,10 +1245,6 @@
 	dir = 8
 	},
 /area/mainship/hallways/hangar)
-"ee" = (
-/obj/machinery/vending/nanomed,
-/turf/open/floor/mainship,
-/area/mainship/hallways/aft_hallway)
 "ef" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -1623,9 +1619,6 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/mainship/cargo,
 /area/mainship/living/briefing)
-"ga" = (
-/turf/open/floor/mainship,
-/area/mainship/hallways/aft_hallway)
 "gb" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -1690,9 +1683,6 @@
 /obj/machinery/suit_storage_unit/carbon_unit,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_umbilical)
-"go" = (
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hallways/aft_hallway)
 "gp" = (
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
@@ -1752,7 +1742,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
-/turf/open/floor/mainship,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
 "gJ" = (
 /obj/machinery/door/airlock/mainship/maint,
@@ -2180,7 +2170,7 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/sterile/plain,
 /area/mainship/hallways/hangar)
 "ic" = (
 /turf/closed/wall/mainship/white,
@@ -2430,7 +2420,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/turf/open/floor/mainship,
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/aft_hallway)
 "ja" = (
 /obj/structure/dropship_equipment/sentry_holder,
@@ -2625,7 +2615,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/mainship,
+/turf/open/floor/mainship/sterile/plain,
 /area/mainship/hallways/aft_hallway)
 "jN" = (
 /obj/structure/cable,
@@ -2926,9 +2916,6 @@
 /obj/structure/closet/crate/ammo,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
-"kL" = (
-/turf/open/floor/mainship,
-/area/mainship/hallways/hangar)
 "kM" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
@@ -3246,7 +3233,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/mainship,
+/turf/open/floor/mainship/sterile/plain,
 /area/mainship/hallways/aft_hallway)
 "lP" = (
 /obj/structure/toilet,
@@ -3348,7 +3335,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/turf/open/floor/mainship,
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/aft_hallway)
 "mi" = (
 /obj/structure/reagent_dispensers/water_cooler,
@@ -7250,7 +7237,7 @@
 	dir = 9
 	},
 /obj/item/tool/warning_cone,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/mainship/sterile/plain,
 /area/mainship/hallways/hangar)
 "zr" = (
 /obj/machinery/door/airlock/mainship/engineering/storage{
@@ -9218,7 +9205,7 @@
 /area/mainship/command/cic)
 "FA" = (
 /obj/machinery/light,
-/turf/open/floor/plating/plating_catwalk,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
 "FB" = (
 /obj/machinery/light{
@@ -11297,7 +11284,7 @@
 	dir = 5
 	},
 /obj/structure/cable,
-/turf/open/floor/mainship,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
 "KZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -11307,7 +11294,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/mainship,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
 "Lb" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -12033,7 +12020,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/mainship,
+/obj/item/radio/intercom/general,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
 "Nv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -12046,7 +12034,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/mainship,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
 "Nw" = (
 /obj/structure/cable,
@@ -13604,6 +13592,16 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
+"WI" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/aft_hallway)
 "WN" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -41030,7 +41028,7 @@ bh
 bh
 bh
 QM
-lO
+WI
 gd
 cC
 cC
@@ -41287,8 +41285,8 @@ bh
 bh
 bh
 VA
-lO
-ga
+WI
+gd
 nj
 aY
 aY
@@ -41545,7 +41543,7 @@ bh
 bh
 kH
 qE
-ga
+gd
 aY
 aY
 aY
@@ -41802,7 +41800,7 @@ bh
 bh
 kI
 qE
-ga
+gd
 bd
 bT
 aY
@@ -42315,8 +42313,8 @@ bh
 bh
 bh
 VA
-lO
-go
+WI
+gd
 nk
 nk
 nk
@@ -42572,8 +42570,8 @@ bh
 bh
 bh
 Yf
-lO
-go
+WI
+gd
 nk
 bu
 bK
@@ -42829,7 +42827,7 @@ bh
 bh
 bh
 PX
-lO
+WI
 FA
 nk
 bv
@@ -43599,7 +43597,7 @@ af
 bn
 ap
 ca
-kL
+af
 lO
 gd
 gd
@@ -44354,8 +44352,8 @@ Gb
 Gd
 Gj
 ib
-Gb
-Gb
+eB
+eB
 zq
 af
 af
@@ -44628,7 +44626,7 @@ eP
 ap
 Np
 Jb
-ga
+gd
 gd
 kM
 kM
@@ -44885,7 +44883,7 @@ fc
 gz
 ap
 GW
-ga
+gd
 gd
 kM
 kM
@@ -45142,7 +45140,7 @@ fq
 gz
 ap
 GW
-ga
+gd
 gd
 kM
 kP
@@ -45399,7 +45397,7 @@ gl
 ap
 Np
 az
-ee
+Oi
 gd
 Vn
 qG
@@ -45655,7 +45653,7 @@ az
 eO
 eO
 GV
-dA
+az
 Nt
 gd
 kM
@@ -45913,7 +45911,7 @@ ap
 ap
 ap
 vx
-ga
+gd
 gd
 kM
 kS
@@ -46171,7 +46169,7 @@ Gb
 Gb
 GL
 gI
-ga
+gd
 kM
 kS
 hH
@@ -46428,7 +46426,7 @@ hb
 Ns
 JO
 KY
-ga
+gd
 kM
 kS
 XR
@@ -46685,7 +46683,7 @@ ih
 mU
 mU
 KZ
-ga
+gd
 kM
 kS
 cV

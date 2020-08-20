@@ -476,26 +476,33 @@
 	density = TRUE
 	max_integrity = 250
 	layer = ABOVE_FLY_LAYER
+	coverage = 100
 	icon_state = "basalt"
 
 /obj/structure/flora/rock/alt
+	name = "volcanic rock"
 	icon_state = "basalt1"
 
 /obj/structure/flora/rock/alt2
+	name = "volcanic rock"
 	icon_state = "basalt2"
 
 /obj/structure/flora/rock/alt3
+	name = "volcanic rock"
 	icon_state = "basalt3"
 
 /obj/structure/flora/rock/pile
-	desc = "A pile of volcanic rocks."
+	name = "rock pile"
+	desc = "pile of volcanic rocks."
 	density = FALSE
 	icon_state = "lavarocks"
 
 /obj/structure/flora/rock/pile/alt
+	name = "rock pile"
 	icon_state = "lavarocks1"
 
 /obj/structure/flora/rock/pile/alt2
+	name = "rock pile"
 	icon_state = "lavarocks2"
 
 /obj/structure/flora/rock/pile/alt3

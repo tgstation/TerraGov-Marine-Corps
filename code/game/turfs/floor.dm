@@ -263,7 +263,7 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 		icon_state = "panelscorched"
 		burnt = 1
 	else if(is_wood_floor())
-		icon_state = "wood-broken"
+		icon_state = "wood-broken1"
 		burnt = 1
 	else if(is_carpet_floor())
 		icon_state = "carpet-broken"
