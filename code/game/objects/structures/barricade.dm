@@ -347,6 +347,10 @@
 	allow_thrown_objs = FALSE
 	can_wire = FALSE
 
+/obj/structure/barricade/guardrail/update_icon()
+	. = ..()
+	if(dir == NORTH)
+		pixel_y = 12
 
 /*----------------------*/
 // WOOD
