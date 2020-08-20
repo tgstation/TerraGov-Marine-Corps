@@ -489,16 +489,26 @@
 	alt_toggle_message = "You deactive the tactical visor."
 	can_toggle = 1
 
+/obj/item/clothing/head/modular/marine/unscmarine/item_action_slot_check(mob/user, slot)
+	if(!ishuman(user))
+		return FALSE
+	if(slot != SLOT_HEAD)
+		return FALSE
+	if(!isnull(installed_module) && installed_module.module_type != ARMOR_MODULE_TOGGLE)
+		return FALSE
+	return TRUE //only give action button when armor is worn.
+
 
 /obj/item/clothing/head/modular/attack_self(mob/user)
-	if(can_toggle && !user.incapacitated())
-		if(world.time > cooldown + toggle_cooldown)
-			cooldown = world.time
-			up = !up
-			icon_state = "[initial(icon_state)][up ? "up" : ""]"
-			to_chat(user, "<span class='notice'>[up ? alt_toggle_message : toggle_message] \the [src].</span>")
-
-			user.update_inv_head()
-			if(iscarbon(user))
-				var/mob/living/carbon/C = user
-				C.head_update(src, forced = 1)
+	if(!can_toggle || user.incapacitated())
+		return
+	
+	if(world.time < cooldown + toggle_cooldown)
+		return
+	
+	cooldown = world.time
+	up = !up
+	icon_state = "[initial(icon_state)][up ? "_visor" : ""]_icon"
+	item_state = "[initial(icon_state)][up ? "_visor" : ""]"
+	to_chat(user, "<span class='notice'>[up ? alt_toggle_message : toggle_message] \the [src].</span>")
+	user.update_inv_head()
