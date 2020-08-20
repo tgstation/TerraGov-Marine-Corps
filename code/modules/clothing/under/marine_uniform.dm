@@ -366,3 +366,14 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield-blue"
 	flags_item = NODROP|DELONDROP
+
+
+//halo
+
+/obj/item/clothing/under/marine/unscmarine
+	name = "UNSC Marine undersuit"
+	desc = "A standard-issuse UNSC Marine undersuit."
+	icon_state = "unsc_marine_jumpsuit"
+	item_state = "unsc_marine_jumpsuit"
+	rollable_sleeves = FALSE
+

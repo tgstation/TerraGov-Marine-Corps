@@ -190,3 +190,13 @@
 	icon_state = "assault_arms"
 	soft_armor = list("melee" = 10, "bullet" = 15, "laser" = 15, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	slowdown = 0.2
+
+//halo
+
+/obj/item/armor_module/armor/arms/marine/marineshoulders
+	name = "UNSC Marine pattern shoulder plates"
+	desc = "Attachable shoulder plates for use in UNSC Marine pattern armor."
+	icon_state = "marine_shoulders"
+	icon_state = "marine_shoulders"
+	soft_armor = list("melee" = 10, "bullet" = 15, "laser" = 15, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	slowdown = 0.10

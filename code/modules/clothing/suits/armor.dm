@@ -376,3 +376,6 @@
 	flags_inv_hide = NONE
 	siemens_coefficient = 0.6
 	flags_armor_protection = CHEST|ARMS
+
+	//Halo
+

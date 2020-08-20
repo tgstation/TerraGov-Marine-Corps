@@ -472,3 +472,33 @@
 	name = "Jaeger Pattern Assault Helmet"
 	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings."
 	icon_state = "assault_helmet"
+
+//halo
+
+/obj/item/clothing/suit/modular/unscmarine
+	name = "UNSC Marine Chest Rig"
+	desc = "A barebones UNSC Marine chest rig. It can mount and be improved with various pieces of armor and plating."
+	icon_state = "marine_chest"
+	item_state = "marine_chest"
+
+/obj/item/clothing/head/modular/marine/unscmarine
+	name = "UNSC Marine Helmet"
+	desc = "A helmet for UNSC Marines. It can be equipped with a tactical visor that can be toggled."
+	icon_state = "marine_helmet"
+	toggle_message = "You activate the tactical visor"
+	alt_toggle_message = "You deactive the tactical visor."
+	can_toggle = 1
+
+
+/obj/item/clothing/head/modular/attack_self(mob/user)
+	if(can_toggle && !user.incapacitated())
+		if(world.time > cooldown + toggle_cooldown)
+			cooldown = world.time
+			up = !up
+			icon_state = "[initial(icon_state)][up ? "up" : ""]"
+			to_chat(user, "<span class='notice'>[up ? alt_toggle_message : toggle_message] \the [src].</span>")
+
+			user.update_inv_head()
+			if(iscarbon(user))
+				var/mob/living/carbon/C = user
+				C.head_update(src, forced = 1)
