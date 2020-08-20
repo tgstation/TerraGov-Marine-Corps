@@ -4,25 +4,23 @@
 /turf/open/floor/mainship/cargo,
 /area/magmoor/cargo/storage/secure/south)
 "aaH" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
 /turf/open/lavaland/lava/lpiece,
 /area/magmoor/compound/northeast)
-"aaV" = (
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
+"aaP" = (
 /obj/structure/barricade/guardrail{
 	dir = 4
 	},
-/turf/open/lavaland/lava/single/middle{
+/obj/structure/barricade/guardrail{
 	dir = 1
 	},
-/area/magmoor/compound/south)
+/turf/open/lavaland/lava/lpiece{
+	dir = 8
+	},
+/area/magmoor/compound/northeast)
 "abv" = (
 /turf/open/lavaland/lava/single/end,
 /area/magmoor/cave/northwest)
@@ -30,11 +28,9 @@
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 1
-	},
-/obj/structure/barricade/guardrail{
-	 = 
 	},
 /turf/open/lavaland/lava/single/middle,
 /area/magmoor/compound/southeast)
@@ -144,14 +140,6 @@
 /obj/structure/flora/rock/alt,
 /turf/open/floor,
 /area/magmoor/cave/northeast)
-"afz" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
-/turf/open/lavaland/lava/lpiece{
-	dir = 4
-	},
-/area/magmoor/compound/south)
 "afO" = (
 /obj/machinery/light{
 	dir = 1
@@ -242,11 +230,9 @@
 /area/magmoor/research/containment)
 "ajZ" = (
 /obj/structure/lattice,
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 1
-	},
-/obj/structure/barricade/guardrail{
-	 = 
 	},
 /turf/open/lavaland/lava/single/middle,
 /area/magmoor/compound/southeast)
@@ -440,9 +426,6 @@
 /obj/structure/barricade/guardrail{
 	dir = 4
 	},
-/obj/structure/barricade/guardrail{
-	dir = 1
-	},
 /turf/open/lavaland/lava/lpiece{
 	dir = 8
 	},
@@ -501,14 +484,6 @@
 	dir = 1
 	},
 /area/magmoor/hydroponics)
-"atW" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
-/turf/open/lavaland/lava/lpiece{
-	dir = 1
-	},
-/area/magmoor/compound/northeast)
 "aum" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -537,9 +512,7 @@
 	},
 /area/magmoor/hydroponics/north)
 "auO" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/side{
 	dir = 1
 	},
@@ -698,9 +671,7 @@
 /area/magmoor/civilian/bar)
 "azY" = (
 /obj/structure/lattice,
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
@@ -724,9 +695,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 4
 	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/lpiece{
 	dir = 1
 	},
@@ -797,14 +766,12 @@
 /turf/open/floor/mainship/cargo,
 /area/magmoor/landing/two)
 "aGi" = (
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 1
+	},
+/obj/structure/barricade/guardrail{
+	dir = 8
 	},
 /turf/open/lavaland/lava/single/middle,
 /area/magmoor/compound/northeast)
@@ -947,9 +914,7 @@
 	},
 /area/magmoor/research/containment)
 "aPl" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 4
 	},
@@ -1228,9 +1193,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava,
 /area/magmoor/cave/south)
 "bad" = (
@@ -1248,6 +1211,9 @@
 /area/magmoor/landing)
 "bax" = (
 /obj/structure/lattice,
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
 /turf/open/lavaland/lava/side{
 	dir = 8
 	},
@@ -1447,6 +1413,16 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/central)
+"bko" = (
+/obj/structure/lattice,
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava/lpiece{
+	dir = 1
+	},
+/area/magmoor/compound/northeast)
 "bkw" = (
 /obj/structure/lattice,
 /obj/structure/barricade/guardrail{
@@ -1474,14 +1450,12 @@
 	},
 /area/magmoor/landing)
 "bkP" = (
-/obj/structure/barricade/guardrail{
-	dir = 4
-	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 1
 	},
 /obj/structure/barricade/guardrail{
-	 = 
+	dir = 4
 	},
 /turf/open/lavaland/lava/single/middle,
 /area/magmoor/compound/south)
@@ -1492,6 +1466,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/storage/south)
+"blH" = (
+/obj/structure/lattice,
+/turf/open/lavaland/basalt/dirt{
+	dir = 5
+	},
+/area/magmoor/compound/west)
 "blW" = (
 /obj/structure/lattice,
 /turf/open/lavaland/basalt/dirt{
@@ -1586,6 +1566,13 @@
 	dir = 8
 	},
 /area/magmoor/command/lobby/east)
+"bpj" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava/single/middle,
+/area/magmoor/cave/west)
 "bpv" = (
 /obj/machinery/alarm{
 	dir = 1
@@ -1783,9 +1770,7 @@
 	},
 /area/magmoor/research/containment)
 "bvF" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/side{
 	dir = 1
 	},
@@ -1898,10 +1883,10 @@
 /area/magmoor/research/containment)
 "bzQ" = (
 /obj/structure/barricade/guardrail{
-	dir = 4
+	dir = 1
 	},
 /obj/structure/barricade/guardrail{
-	dir = 1
+	dir = 4
 	},
 /turf/open/lavaland/lava/lpiece{
 	dir = 1
@@ -1958,13 +1943,11 @@
 /area/magmoor/cargo/storage)
 "bCH" = (
 /obj/structure/barricade/guardrail{
-	dir = 1
-	},
-/obj/structure/barricade/guardrail{
 	dir = 4
 	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
-	 = 
+	dir = 1
 	},
 /turf/open/lavaland/lava/single/middle,
 /area/magmoor/compound/east)
@@ -2129,6 +2112,14 @@
 "bGr" = (
 /turf/closed/wall,
 /area/magmoor/mining)
+"bGs" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/lava/lpiece{
+	dir = 4
+	},
+/area/magmoor/cave/west)
 "bGG" = (
 /obj/machinery/processor,
 /turf/open/floor/prison/kitchen,
@@ -2367,9 +2358,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/lpiece{
 	dir = 4
 	},
@@ -2380,25 +2369,6 @@
 	},
 /turf/open/lavaland/lava/lpiece,
 /area/magmoor/cave/east)
-"bPF" = (
-/obj/structure/barricade/guardrail{
-	dir = 4
-	},
-/obj/structure/barricade/guardrail{
-	dir = 1
-	},
-/turf/open/lavaland/lava/lpiece{
-	dir = 8
-	},
-/area/magmoor/compound/north)
-"bPU" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
-/turf/open/lavaland/lava/lpiece{
-	dir = 1
-	},
-/area/magmoor/cave/west)
 "bPV" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8
@@ -2497,9 +2467,7 @@
 	},
 /area/magmoor/compound/northwest)
 "bVb" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
@@ -2619,12 +2587,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 1
 	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/single/middle,
 /area/magmoor/cave/northeast)
 "caa" = (
@@ -2749,6 +2712,14 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/cargo,
 /area/magmoor/landing/two)
+"cft" = (
+/obj/structure/lattice,
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava/single/middle,
+/area/magmoor/compound/east)
 "cfy" = (
 /obj/structure/window/phoronreinforced{
 	dir = 4
@@ -2817,9 +2788,7 @@
 /area/magmoor/cave/south)
 "cia" = (
 /obj/structure/lattice,
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 1
 	},
@@ -2846,6 +2815,14 @@
 /obj/structure/largecrate/supply/supplies/water,
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/storage/south)
+"ciV" = (
+/obj/structure/lattice,
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/turf/open/lavaland/lava/single/middle,
+/area/magmoor/cave/east)
 "ciW" = (
 /obj/structure/flora/rock/pile/alt,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -3339,9 +3316,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/lpiece{
 	dir = 4
 	},
@@ -3406,17 +3381,6 @@
 	},
 /turf/open/floor/mainship/sterile/purple,
 /area/magmoor/research/lab)
-"cFq" = (
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
-/turf/open/lavaland/lava/lpiece{
-	dir = 4
-	},
-/area/magmoor/cave/east)
 "cFz" = (
 /obj/structure/toilet,
 /obj/machinery/light/small{
@@ -3455,11 +3419,9 @@
 /turf/open/floor/plating,
 /area/magmoor/compound)
 "cGC" = (
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 1
-	},
-/obj/structure/barricade/guardrail{
-	 = 
 	},
 /turf/open/lavaland/lava/single/middle,
 /area/magmoor/cave/east)
@@ -3471,9 +3433,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 1
 	},
@@ -3502,9 +3462,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/lpiece{
 	dir = 4
 	},
@@ -3816,6 +3774,11 @@
 	dir = 1
 	},
 /area/magmoor/hydroponics/north)
+"cTF" = (
+/turf/open/lavaland/lava/lpiece{
+	dir = 4
+	},
+/area/magmoor/compound)
 "cTN" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -4225,6 +4188,9 @@
 "dgJ" = (
 /obj/structure/barricade/guardrail{
 	dir = 8
+	},
+/obj/structure/barricade/guardrail{
+	dir = 1
 	},
 /obj/structure/barricade/guardrail{
 	dir = 1
@@ -4654,9 +4620,7 @@
 /turf/open/floor/plating,
 /area/magmoor/cave/west)
 "dsI" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 1
 	},
@@ -4868,8 +4832,9 @@
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
-	 = 
+	dir = 1
 	},
 /turf/open/lavaland/lava/lpiece{
 	dir = 1
@@ -5072,9 +5037,6 @@
 /obj/structure/barricade/guardrail{
 	dir = 4
 	},
-/obj/structure/barricade/guardrail{
-	dir = 1
-	},
 /turf/open/lavaland/lava/lpiece{
 	dir = 8
 	},
@@ -5165,12 +5127,6 @@
 	dir = 8
 	},
 /area/magmoor/compound/south)
-"dLY" = (
-/obj/structure/barricade/guardrail{
-	dir = 1
-	},
-/turf/open/lavaland/lava/lpiece,
-/area/magmoor/cave/central)
 "dLZ" = (
 /obj/structure/sink{
 	dir = 8
@@ -5495,9 +5451,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/lpiece{
 	dir = 4
 	},
@@ -5627,6 +5581,15 @@
 	dir = 4
 	},
 /area/magmoor/compound/south)
+"ecW" = (
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava/lpiece{
+	dir = 1
+	},
+/area/magmoor/compound/northeast)
 "edm" = (
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -5688,12 +5651,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 4
 	},
-/obj/structure/barricade/guardrail{
-	dir = 1
-	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/lpiece{
 	dir = 8
 	},
@@ -5838,14 +5796,6 @@
 /obj/structure/cable,
 /turf/open/lavaland/catwalk,
 /area/magmoor/cave/northwest)
-"eiX" = (
-/obj/structure/barricade/guardrail{
-	dir = 4
-	},
-/turf/open/lavaland/lava/single/middle{
-	dir = 1
-	},
-/area/magmoor/compound/east)
 "ejs" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/mainship/mono,
@@ -5863,6 +5813,12 @@
 /obj/structure/largecrate/supply/supplies/water,
 /turf/open/floor/mainship/floor,
 /area/magmoor/landing/two)
+"eko" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/lava/lpiece,
+/area/magmoor/compound/west)
 "ekP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -6081,9 +6037,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 4
 	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/lpiece{
 	dir = 1
 	},
@@ -6182,11 +6136,9 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/mining)
 "eyg" = (
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 8
-	},
-/obj/structure/barricade/guardrail{
-	 = 
 	},
 /turf/open/lavaland/lava/lpiece{
 	dir = 1
@@ -6240,17 +6192,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing)
-"eBM" = (
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
-/obj/structure/barricade/guardrail{
-	dir = 4
-	},
-/turf/open/lavaland/lava/single/middle{
-	dir = 1
-	},
-/area/magmoor/cave/east)
 "eBN" = (
 /obj/item/stack/nanopaste,
 /obj/structure/table/mainship,
@@ -6378,9 +6319,6 @@
 /area/magmoor/security/infocenter)
 "eHg" = (
 /obj/structure/lattice,
-/obj/structure/barricade/guardrail{
-	dir = 1
-	},
 /turf/open/lavaland/lava/single/middle,
 /area/magmoor/cave/east)
 "eHz" = (
@@ -6462,9 +6400,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/lpiece{
 	dir = 4
 	},
@@ -6496,10 +6432,10 @@
 	dir = 1
 	},
 /obj/structure/barricade/guardrail{
-	dir = 8
+	dir = 4
 	},
 /obj/structure/barricade/guardrail{
-	dir = 4
+	dir = 8
 	},
 /turf/open/lavaland/lava/single/middle{
 	dir = 1
@@ -6566,11 +6502,9 @@
 "ePJ" = (
 /obj/structure/lattice,
 /obj/structure/barricade/guardrail{
-	 = 
-	},
-/obj/structure/barricade/guardrail{
 	dir = 1
 	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/single/middle,
 /area/magmoor/cave/west)
 "ePL" = (
@@ -6692,6 +6626,9 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/plain,
 /area/magmoor/security/infocenter)
+"eSO" = (
+/turf/open/lavaland/lava/single/middle,
+/area/magmoor/cave/west)
 "eSP" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -6766,11 +6703,9 @@
 /obj/structure/barricade/guardrail{
 	dir = 4
 	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 1
-	},
-/obj/structure/barricade/guardrail{
-	 = 
 	},
 /turf/open/lavaland/lava/single/middle,
 /area/magmoor/compound/southeast)
@@ -6960,9 +6895,6 @@
 "fcT" = (
 /obj/structure/barricade/guardrail{
 	dir = 8
-	},
-/obj/structure/barricade/guardrail{
-	 = 
 	},
 /turf/open/lavaland/lava/lpiece{
 	dir = 4
@@ -7454,11 +7386,9 @@
 /area/magmoor/civilian/clean/shower)
 "fwF" = (
 /obj/structure/barricade/guardrail{
-	 = 
-	},
-/obj/structure/barricade/guardrail{
 	dir = 4
 	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
@@ -7543,9 +7473,7 @@
 /turf/open/floor/tile/dark2,
 /area/magmoor/medical/morgue)
 "fzC" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/lpiece{
 	dir = 4
 	},
@@ -7628,9 +7556,7 @@
 /turf/open/floor/mainship/sterile/purple,
 /area/magmoor/research/rnd)
 "fBP" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 4
 	},
@@ -7680,12 +7606,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/storage)
 "fDf" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
-/obj/structure/barricade/guardrail{
-	dir = 1
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/single/middle,
 /area/magmoor/compound)
 "fDy" = (
@@ -8069,17 +7990,6 @@
 "fRk" = (
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/processing/south)
-"fRz" = (
-/obj/structure/barricade/guardrail{
-	dir = 1
-	},
-/obj/structure/barricade/guardrail{
-	dir = 4
-	},
-/turf/open/lavaland/lava/lpiece{
-	dir = 8
-	},
-/area/magmoor/compound)
 "fRN" = (
 /obj/structure/closet/secure_closet/personal/morgue,
 /obj/machinery/power/apc/drained{
@@ -8093,10 +8003,10 @@
 /area/magmoor/medical/morgue)
 "fSf" = (
 /obj/structure/barricade/guardrail{
-	dir = 1
+	dir = 4
 	},
 /obj/structure/barricade/guardrail{
-	dir = 4
+	dir = 1
 	},
 /turf/open/lavaland/lava/lpiece,
 /area/magmoor/cave/southwest)
@@ -8214,11 +8124,9 @@
 	},
 /area/magmoor/compound/east)
 "fXo" = (
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 1
-	},
-/obj/structure/barricade/guardrail{
-	 = 
 	},
 /obj/structure/barricade/guardrail{
 	dir = 4
@@ -8364,9 +8272,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 4
 	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/lpiece{
 	dir = 1
 	},
@@ -8508,6 +8414,14 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/magmoor/landing/two)
+"gku" = (
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/turf/open/lavaland/lava/single/middle{
+	dir = 1
+	},
+/area/magmoor/compound/northwest)
 "gkC" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -8911,6 +8825,15 @@
 	dir = 1
 	},
 /area/magmoor/compound/southeast)
+"gAq" = (
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava/lpiece{
+	dir = 1
+	},
+/area/magmoor/compound)
 "gAR" = (
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/mainship/floor,
@@ -9134,10 +9057,10 @@
 /area/magmoor/compound)
 "gNQ" = (
 /obj/structure/barricade/guardrail{
-	dir = 8
+	dir = 4
 	},
 /obj/structure/barricade/guardrail{
-	dir = 4
+	dir = 8
 	},
 /turf/open/lavaland/lava/single/middle{
 	dir = 1
@@ -9244,14 +9167,12 @@
 /area/magmoor/compound/west)
 "gRZ" = (
 /obj/structure/barricade/guardrail{
-	 = 
-	},
-/obj/structure/barricade/guardrail{
 	dir = 8
 	},
 /obj/structure/barricade/guardrail{
 	dir = 1
 	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/single/middle,
 /area/magmoor/compound/east)
 "gSc" = (
@@ -9386,10 +9307,10 @@
 /area/magmoor/medical/treatment)
 "gVU" = (
 /obj/structure/barricade/guardrail{
-	dir = 8
+	dir = 4
 	},
 /obj/structure/barricade/guardrail{
-	dir = 4
+	dir = 8
 	},
 /turf/open/lavaland/lava/single/middle{
 	dir = 1
@@ -9400,6 +9321,18 @@
 	dir = 6
 	},
 /area/magmoor/medical/treatment)
+"gWH" = (
+/obj/structure/lattice,
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/lava/single/middle{
+	dir = 1
+	},
+/area/magmoor/compound/west)
 "gWX" = (
 /turf/open/floor/mainship/sterile/side,
 /area/magmoor/medical/treatment)
@@ -9584,9 +9517,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 4
 	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/lpiece{
 	dir = 1
 	},
@@ -9650,6 +9581,14 @@
 	dir = 4
 	},
 /area/magmoor/research)
+"hhD" = (
+/obj/structure/lattice,
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava/single/middle,
+/area/magmoor/cave/east)
 "hhH" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
@@ -10189,6 +10128,7 @@
 	},
 /area/magmoor/cave/west)
 "hAa" = (
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
@@ -10329,10 +10269,22 @@
 /area/magmoor/cave/south)
 "hGn" = (
 /obj/structure/lattice,
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
 /turf/open/lavaland/lava/lpiece{
 	dir = 4
 	},
 /area/magmoor/compound/southeast)
+"hGG" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/lava/single/middle{
+	dir = 1
+	},
+/area/magmoor/compound/north)
 "hGL" = (
 /obj/structure/sign/nosmoking_2{
 	dir = 1
@@ -10482,6 +10434,13 @@
 	dir = 1
 	},
 /area/magmoor/medical/patient)
+"hLz" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava/single/middle,
+/area/magmoor/compound/northeast)
 "hLL" = (
 /obj/structure/flora/pottedplant/twentytwo,
 /turf/open/floor/mainship/purple{
@@ -10833,6 +10792,11 @@
 "hXx" = (
 /turf/open/floor/cult,
 /area/magmoor/cave/mining/fossil)
+"hXB" = (
+/obj/structure/lattice,
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava/single/middle,
+/area/magmoor/compound/northeast)
 "hXG" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -10904,9 +10868,6 @@
 "hZO" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
-	},
-/obj/structure/barricade/guardrail{
-	dir = 8
 	},
 /turf/open/lavaland/lava/side{
 	dir = 4
@@ -10999,9 +10960,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 4
 	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/lpiece{
 	dir = 1
 	},
@@ -11073,9 +11032,7 @@
 	},
 /area/magmoor/cave/south)
 "igb" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
@@ -11108,14 +11065,6 @@
 /area/magmoor/research/serverroom)
 "igx" = (
 /turf/open/lavaland/catwalk,
-/area/magmoor/cave/east)
-"igA" = (
-/obj/structure/barricade/guardrail{
-	dir = 4
-	},
-/turf/open/lavaland/lava/lpiece{
-	dir = 1
-	},
 /area/magmoor/cave/east)
 "igJ" = (
 /obj/machinery/power/apc/drained,
@@ -11206,6 +11155,10 @@
 /area/magmoor/civilian/dorms)
 "ijQ" = (
 /obj/structure/lattice,
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
 /turf/open/lavaland/lava/lpiece{
 	dir = 8
 	},
@@ -11232,14 +11185,6 @@
 	dir = 1
 	},
 /area/magmoor/cave/east)
-"ikx" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
-/turf/open/lavaland/lava/lpiece{
-	dir = 4
-	},
-/area/magmoor/compound/northeast)
 "ikA" = (
 /obj/machinery/light/small,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -11304,9 +11249,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/lpiece{
 	dir = 4
 	},
@@ -11685,8 +11628,9 @@
 	},
 /area/magmoor/cave/south)
 "iys" = (
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
-	 = 
+	dir = 4
 	},
 /turf/open/lavaland/lava/lpiece{
 	dir = 1
@@ -11808,9 +11752,7 @@
 /turf/open/lavaland/basalt/dirt/corner,
 /area/magmoor/compound/northeast)
 "iES" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava,
 /area/magmoor/cave/south)
 "iFD" = (
@@ -12259,9 +12201,6 @@
 /turf/open/floor/plating/ground/concrete,
 /area/magmoor/compound/south)
 "jak" = (
-/obj/structure/barricade/guardrail{
-	dir = 4
-	},
 /turf/open/lavaland/lava/single/middle{
 	dir = 1
 	},
@@ -12279,9 +12218,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 4
 	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/side{
 	dir = 8
 	},
@@ -12472,6 +12409,15 @@
 	dir = 4
 	},
 /area/magmoor/cargo/processing/south)
+"jij" = (
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava/lpiece{
+	dir = 1
+	},
+/area/magmoor/cave/south)
 "jio" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
@@ -12892,6 +12838,11 @@
 	dir = 1
 	},
 /area/magmoor/engi/atmos)
+"jww" = (
+/turf/open/lavaland/lava/lpiece{
+	dir = 8
+	},
+/area/magmoor/compound)
 "jwF" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
@@ -13136,9 +13087,7 @@
 	},
 /area/magmoor/mining/refinery)
 "jFK" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 4
 	},
@@ -13863,10 +13812,10 @@
 "kcb" = (
 /obj/structure/lattice,
 /obj/structure/barricade/guardrail{
-	dir = 8
+	dir = 4
 	},
 /obj/structure/barricade/guardrail{
-	dir = 4
+	dir = 8
 	},
 /turf/open/lavaland/lava/single/middle{
 	dir = 1
@@ -13949,11 +13898,9 @@
 /area/magmoor/hydroponics)
 "kfv" = (
 /obj/structure/barricade/guardrail{
-	 = 
-	},
-/obj/structure/barricade/guardrail{
 	dir = 8
 	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/lpiece{
 	dir = 1
 	},
@@ -14205,11 +14152,9 @@
 /turf/open/floor/plating,
 /area/magmoor/mining/refinery)
 "koW" = (
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 8
-	},
-/obj/structure/barricade/guardrail{
-	 = 
 	},
 /turf/open/lavaland/lava/single/middle{
 	dir = 1
@@ -14517,15 +14462,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/chemistry)
-"kAq" = (
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
-/obj/structure/barricade/guardrail{
-	dir = 1
-	},
-/turf/open/lavaland/lava/lpiece,
-/area/magmoor/cave/west)
 "kAw" = (
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access{
 	dir = 1;
@@ -14533,6 +14469,16 @@
 	},
 /turf/open/floor/wood,
 /area/magmoor/command/conference)
+"kAx" = (
+/obj/structure/lattice,
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/lava/lpiece,
+/area/magmoor/compound/west)
 "kAz" = (
 /turf/open/lavaland/lava/lpiece{
 	dir = 8
@@ -14726,6 +14672,12 @@
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/atmos)
+"kGF" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/turf/open/lavaland/lava/single/middle,
+/area/magmoor/compound/east)
 "kGN" = (
 /obj/machinery/conveyor{
 	dir = 5
@@ -14815,9 +14767,7 @@
 /turf/open/floor/tile/purple,
 /area/magmoor/civilian/jani)
 "kJn" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 1
 	},
@@ -14883,9 +14833,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/magmoor/compound/east)
 "kNL" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/single/middle,
 /area/magmoor/compound/northeast)
 "kNT" = (
@@ -15424,9 +15372,6 @@
 	},
 /area/magmoor/cave/northwest)
 "liq" = (
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
 /turf/open/lavaland/lava/single/middle{
 	dir = 1
 	},
@@ -15448,16 +15393,6 @@
 	dir = 4
 	},
 /area/magmoor/medical/chemistry)
-"lji" = (
-/obj/structure/lattice,
-/obj/structure/barricade/guardrail{
-	 = 
-	},
-/obj/structure/barricade/guardrail{
-	dir = 1
-	},
-/turf/open/lavaland/lava/single/middle,
-/area/magmoor/cave/east)
 "ljw" = (
 /turf/open/lavaland/lava/side,
 /area/magmoor/cave/northeast)
@@ -15527,9 +15462,6 @@
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
-/obj/structure/barricade/guardrail{
-	dir = 4
-	},
 /turf/open/lavaland/lava/lpiece{
 	dir = 8
 	},
@@ -15591,9 +15523,8 @@
 /area/magmoor/civilian/jani)
 "lpz" = (
 /obj/structure/lattice,
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 1
 	},
@@ -15767,9 +15698,7 @@
 /area/magmoor/command/lobby)
 "lvF" = (
 /obj/structure/lattice,
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/single/middle,
 /area/magmoor/cave/east)
 "lvP" = (
@@ -15913,6 +15842,9 @@
 /turf/open/floor/mainship/floor,
 /area/magmoor/landing/two)
 "lAo" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
@@ -16173,14 +16105,6 @@
 	dir = 8
 	},
 /area/magmoor/compound/east)
-"lKq" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
-/turf/open/lavaland/lava/lpiece{
-	dir = 4
-	},
-/area/magmoor/cave/west)
 "lKW" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -16404,9 +16328,6 @@
 /turf/open/floor/plating,
 /area/magmoor/mining/refinery)
 "lSp" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
 /obj/structure/barricade/guardrail{
 	dir = 4
 	},
@@ -16942,17 +16863,6 @@
 "mnJ" = (
 /turf/open/floor/mainship/purple/corner,
 /area/magmoor/research)
-"mnY" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
-/obj/structure/barricade/guardrail{
-	dir = 4
-	},
-/turf/open/lavaland/lava/lpiece{
-	dir = 1
-	},
-/area/magmoor/cave/west)
 "moB" = (
 /turf/open/lavaland/lava/single/middle,
 /area/magmoor/compound/north)
@@ -17006,15 +16916,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/storage/south)
-"mqo" = (
-/obj/structure/barricade/guardrail{
-	dir = 1
-	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
-/turf/open/lavaland/lava/single/middle,
-/area/magmoor/cave/northeast)
 "mqr" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -17439,9 +17340,7 @@
 /turf/open/floor/plating,
 /area/magmoor/cave/west)
 "mGX" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 4
 	},
@@ -17984,9 +17883,6 @@
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
 /turf/open/lavaland/lava/lpiece{
 	dir = 4
 	},
@@ -18122,11 +18018,9 @@
 /area/magmoor/landing/two)
 "nbo" = (
 /obj/structure/barricade/guardrail{
-	 = 
-	},
-/obj/structure/barricade/guardrail{
 	dir = 1
 	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/single/middle,
 /area/magmoor/compound/east)
 "nbr" = (
@@ -18165,6 +18059,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/purple,
 /area/magmoor/civilian/jani)
+"ndg" = (
+/obj/structure/lattice,
+/turf/open/lavaland/lava/single/middle,
+/area/magmoor/compound/east)
 "ndk" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -18291,11 +18189,9 @@
 /turf/open/floor/tile/bar,
 /area/magmoor/civilian/clean)
 "nfZ" = (
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 8
-	},
-/obj/structure/barricade/guardrail{
-	 = 
 	},
 /turf/open/lavaland/lava/lpiece{
 	dir = 4
@@ -18332,14 +18228,6 @@
 "nhd" = (
 /turf/closed/wall/cult,
 /area/magmoor/cave/north)
-"nhN" = (
-/obj/structure/barricade/guardrail{
-	dir = 4
-	},
-/turf/open/lavaland/lava/single/middle{
-	dir = 1
-	},
-/area/magmoor/compound/north)
 "nhT" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -18484,14 +18372,12 @@
 	},
 /area/magmoor/cargo/storage/secure/south)
 "nlC" = (
-/obj/structure/barricade/guardrail{
-	dir = 4
-	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 1
+	},
+/obj/structure/barricade/guardrail{
+	dir = 4
 	},
 /turf/open/lavaland/lava/single/middle,
 /area/magmoor/compound/east)
@@ -18630,14 +18516,6 @@
 "nqC" = (
 /turf/open/floor/cult,
 /area/magmoor/cave/northwest)
-"nqS" = (
-/obj/structure/barricade/guardrail{
-	dir = 4
-	},
-/turf/open/lavaland/lava/lpiece{
-	dir = 8
-	},
-/area/magmoor/cave/south)
 "nrq" = (
 /turf/open/lavaland/basalt/glowing,
 /area/magmoor/compound/southeast)
@@ -18755,13 +18633,19 @@
 	dir = 1
 	},
 /area/magmoor/command/lobby)
+"nxh" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/turf/open/lavaland/lava/lpiece{
+	dir = 1
+	},
+/area/magmoor/cave/east)
 "nxw" = (
 /obj/structure/lattice,
 /obj/structure/barricade/guardrail{
 	dir = 1
-	},
-/obj/structure/barricade/guardrail{
-	dir = 8
 	},
 /turf/open/lavaland/lava/lpiece,
 /area/magmoor/cave/east)
@@ -18878,12 +18762,6 @@
 	},
 /area/magmoor/compound/west)
 "nDp" = (
-/obj/structure/barricade/guardrail{
-	dir = 4
-	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
 /turf/open/lavaland/lava/lpiece{
 	dir = 1
 	},
@@ -18940,9 +18818,7 @@
 /area/magmoor/cave/southeast)
 "nGj" = (
 /obj/structure/lattice,
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/lpiece{
 	dir = 1
 	},
@@ -19183,6 +19059,14 @@
 	},
 /turf/open/floor/plating,
 /area/magmoor/cave/north)
+"nOg" = (
+/obj/structure/lattice,
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/turf/open/lavaland/lava/single/middle,
+/area/magmoor/compound/northeast)
 "nOj" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/visible{
 	dir = 1
@@ -19243,18 +19127,6 @@
 	dir = 8
 	},
 /area/magmoor/cave/central)
-"nQx" = (
-/obj/structure/lattice,
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
-/obj/structure/barricade/guardrail{
-	dir = 4
-	},
-/turf/open/lavaland/lava/single/middle{
-	dir = 1
-	},
-/area/magmoor/compound)
 "nQz" = (
 /turf/open/lavaland/basalt/cave{
 	dir = 8
@@ -19285,14 +19157,12 @@
 	},
 /area/magmoor/engi/atmos)
 "nSm" = (
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 1
 	},
 /obj/structure/barricade/guardrail{
-	 = 
+	dir = 8
 	},
 /turf/open/lavaland/lava/single/middle,
 /area/magmoor/compound/south)
@@ -19454,15 +19324,6 @@
 	},
 /turf/open/floor/mainship,
 /area/magmoor/landing/two)
-"nYh" = (
-/obj/structure/barricade/guardrail{
-	dir = 1
-	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
-/turf/open/lavaland/lava/single/middle,
-/area/magmoor/compound/northeast)
 "nYk" = (
 /mob/living/simple_animal/chick,
 /turf/open/floor/grass,
@@ -19742,9 +19603,7 @@
 	},
 /area/magmoor/engi/atmos)
 "ojn" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 1
 	},
@@ -19924,6 +19783,12 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/carpet,
 /area/magmoor/command/conference)
+"opE" = (
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava/lpiece{
+	dir = 4
+	},
+/area/magmoor/compound/east)
 "opP" = (
 /obj/structure/bed/chair/office/light{
 	dir = 4
@@ -20398,6 +20263,11 @@
 /obj/machinery/alarm,
 /turf/open/floor/wood,
 /area/magmoor/command/conference)
+"oFs" = (
+/turf/open/lavaland/lava/single/middle{
+	dir = 1
+	},
+/area/magmoor/cave/west)
 "oFX" = (
 /turf/closed/glass/thin/end{
 	dir = 8
@@ -20470,14 +20340,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/magmoor/civilian/arrival)
-"oHK" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
-/turf/open/lavaland/lava/lpiece{
-	dir = 1
-	},
-/area/magmoor/compound/west)
 "oIl" = (
 /turf/open/floor/mainship/blue,
 /area/magmoor/command/lobby)
@@ -20519,12 +20381,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
-/obj/structure/barricade/guardrail{
-	dir = 1
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/lpiece,
 /area/magmoor/compound)
 "oJl" = (
@@ -20611,6 +20468,9 @@
 /area/magmoor/engi/atmos)
 "oNr" = (
 /obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/obj/structure/barricade/guardrail{
 	dir = 8
 	},
 /turf/open/lavaland/lava/single/middle{
@@ -20660,9 +20520,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/single/middle{
 	dir = 1
 	},
@@ -20724,13 +20582,16 @@
 /area/magmoor/cargo/storage)
 "oQD" = (
 /obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/obj/structure/barricade/guardrail{
 	dir = 1
 	},
 /obj/structure/barricade/guardrail{
 	dir = 8
-	},
-/obj/structure/barricade/guardrail{
-	dir = 4
 	},
 /turf/open/lavaland/lava/lpiece,
 /area/magmoor/cave/west)
@@ -20863,18 +20724,6 @@
 	dir = 2
 	},
 /area/magmoor/research)
-"oXB" = (
-/obj/structure/lattice,
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
-/obj/structure/barricade/guardrail{
-	dir = 4
-	},
-/turf/open/lavaland/lava/single/middle{
-	dir = 1
-	},
-/area/magmoor/compound/west)
 "oXD" = (
 /turf/closed/glass/thin/end{
 	dir = 8
@@ -21062,9 +20911,7 @@
 /area/magmoor/security/storage)
 "pdi" = (
 /obj/structure/lattice,
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 1
 	},
@@ -21625,6 +21472,17 @@
 	dir = 1
 	},
 /area/magmoor/compound)
+"ptl" = (
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/turf/open/lavaland/lava/single/middle{
+	dir = 1
+	},
+/area/magmoor/compound/southeast)
 "ptC" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/machinery/light/small{
@@ -22405,13 +22263,11 @@
 /area/magmoor/mining/storage)
 "pUA" = (
 /obj/structure/barricade/guardrail{
-	dir = 1
-	},
-/obj/structure/barricade/guardrail{
 	dir = 4
 	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
-	 = 
+	dir = 1
 	},
 /turf/open/lavaland/lava/single/middle,
 /area/magmoor/compound/northeast)
@@ -22531,14 +22387,12 @@
 	},
 /area/magmoor/cave/northeast)
 "pZe" = (
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
-	 = 
+	dir = 8
 	},
 /obj/structure/barricade/guardrail{
 	dir = 4
-	},
-/obj/structure/barricade/guardrail{
-	dir = 8
 	},
 /turf/open/lavaland/lava/single/middle{
 	dir = 1
@@ -22690,18 +22544,6 @@
 	dir = 4
 	},
 /area/magmoor/cave/southeast)
-"qfx" = (
-/obj/structure/barricade/guardrail{
-	dir = 1
-	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
-/obj/structure/barricade/guardrail{
-	dir = 4
-	},
-/turf/open/lavaland/lava/single/middle,
-/area/magmoor/cave/northeast)
 "qfC" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
@@ -22958,9 +22800,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 4
 	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/lpiece{
 	dir = 1
 	},
@@ -23163,11 +23003,10 @@
 /area/magmoor/mining/storage)
 "qsL" = (
 /obj/structure/lattice,
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
-	 = 
-	},
-/obj/structure/barricade/guardrail{
-	dir = 4
+	dir = 4;
+	pixel_y = 7
 	},
 /turf/open/lavaland/lava/lpiece{
 	dir = 1
@@ -23286,6 +23125,15 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/magmoor/mining/storage)
+"qye" = (
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava/lpiece{
+	dir = 1
+	},
+/area/magmoor/cave/southwest)
 "qyf" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -23294,15 +23142,6 @@
 	dir = 8
 	},
 /area/magmoor/cave/north)
-"qyg" = (
-/obj/structure/barricade/guardrail{
-	dir = 1
-	},
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
-/turf/open/lavaland/lava/lpiece,
-/area/magmoor/compound)
 "qyi" = (
 /turf/open/floor/mainship/orange/corner{
 	dir = 1
@@ -23346,10 +23185,10 @@
 "qzA" = (
 /obj/structure/lattice,
 /obj/structure/barricade/guardrail{
-	dir = 8
+	dir = 4
 	},
 /obj/structure/barricade/guardrail{
-	dir = 4
+	dir = 8
 	},
 /turf/open/lavaland/lava/single/middle{
 	dir = 1
@@ -23398,12 +23237,7 @@
 /area/magmoor/cave/east)
 "qCC" = (
 /obj/structure/lattice,
-/obj/structure/barricade/guardrail{
-	dir = 1
-	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/single/middle,
 /area/magmoor/compound/south)
 "qCM" = (
@@ -23880,9 +23714,7 @@
 	},
 /area/magmoor/compound)
 "qVn" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 4
 	},
@@ -24007,9 +23839,7 @@
 	},
 /area/magmoor/compound/northeast)
 "qYh" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 1
 	},
@@ -24101,9 +23931,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/side{
 	dir = 4
 	},
@@ -24157,10 +23985,10 @@
 "rgp" = (
 /obj/structure/lattice,
 /obj/structure/barricade/guardrail{
-	dir = 8
+	dir = 4
 	},
 /obj/structure/barricade/guardrail{
-	dir = 4
+	dir = 8
 	},
 /turf/open/lavaland/lava/single/middle{
 	dir = 1
@@ -24176,6 +24004,14 @@
 	icon_state = "carpetside"
 	},
 /area/magmoor/research/researchdirector)
+"rgt" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/turf/open/lavaland/lava/lpiece{
+	dir = 8
+	},
+/area/magmoor/cave/central)
 "rgF" = (
 /turf/open/floor/mainship/white/corner{
 	dir = 4
@@ -24211,9 +24047,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 4
 	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/lpiece{
 	dir = 1
 	},
@@ -24600,6 +24434,14 @@
 "rtk" = (
 /turf/open/ground/grass,
 /area/magmoor/hydroponics/south)
+"rtD" = (
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/turf/open/lavaland/lava/single/middle{
+	dir = 1
+	},
+/area/magmoor/compound/south)
 "rtG" = (
 /obj/machinery/chem_master/condimaster,
 /turf/open/floor/freezer,
@@ -24826,9 +24668,7 @@
 /area/magmoor/mining/storage)
 "rBu" = (
 /obj/structure/lattice,
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 1
 	},
@@ -24878,11 +24718,9 @@
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 1
-	},
-/obj/structure/barricade/guardrail{
-	 = 
 	},
 /turf/open/lavaland/lava/lpiece,
 /area/magmoor/cave/east)
@@ -25148,17 +24986,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/magmoor/research)
-"rHO" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
-/obj/structure/barricade/guardrail{
-	dir = 4
-	},
-/turf/open/lavaland/lava/lpiece{
-	dir = 1
-	},
-/area/magmoor/cave/east)
 "rIi" = (
 /turf/closed/mineral,
 /area/magmoor/compound/west)
@@ -25446,6 +25273,9 @@
 	dir = 6
 	},
 /area/magmoor/engi/atmos)
+"rTg" = (
+/turf/open/lavaland/lava/lpiece,
+/area/magmoor/cave/west)
 "rTi" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /turf/open/floor/mainship/blue{
@@ -25553,9 +25383,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/lpiece{
 	dir = 4
 	},
@@ -26164,15 +25992,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/magmoor/landing/two)
-"stM" = (
-/obj/structure/barricade/guardrail{
-	dir = 1
-	},
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
-/turf/open/lavaland/lava/lpiece,
-/area/magmoor/cave/west)
 "stY" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/mars/dirttosand,
@@ -26220,6 +26039,12 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/magmoor/engi/power)
+"svs" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/lava/lpiece,
+/area/magmoor/compound)
 "svt" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -26274,10 +26099,10 @@
 /area/magmoor/cave/central)
 "swT" = (
 /obj/structure/barricade/guardrail{
-	dir = 8
+	dir = 4
 	},
 /obj/structure/barricade/guardrail{
-	dir = 4
+	dir = 8
 	},
 /turf/open/lavaland/lava/single/middle{
 	dir = 1
@@ -26373,9 +26198,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 4
 	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/lpiece{
 	dir = 1
 	},
@@ -26445,6 +26268,10 @@
 	dir = 4
 	},
 /area/magmoor/compound/south)
+"sBz" = (
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava/single/middle,
+/area/magmoor/compound/east)
 "sBD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -26503,13 +26330,11 @@
 /area/magmoor/landing/two)
 "sDx" = (
 /obj/structure/barricade/guardrail{
-	dir = 1
-	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
-/obj/structure/barricade/guardrail{
 	dir = 8
+	},
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 1
 	},
 /turf/open/lavaland/lava/single/middle,
 /area/magmoor/cave/southwest)
@@ -26605,9 +26430,7 @@
 	},
 /area/magmoor/compound/south)
 "sFQ" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 1
 	},
@@ -26615,10 +26438,10 @@
 /area/magmoor/cave/west)
 "sFW" = (
 /obj/structure/barricade/guardrail{
-	dir = 1
+	dir = 4
 	},
 /obj/structure/barricade/guardrail{
-	dir = 4
+	dir = 1
 	},
 /obj/structure/barricade/guardrail{
 	dir = 8
@@ -26861,17 +26684,6 @@
 	dir = 1
 	},
 /area/magmoor/cave/southwest)
-"sOh" = (
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
-/obj/structure/barricade/guardrail{
-	dir = 4
-	},
-/turf/open/lavaland/lava/single/middle{
-	dir = 1
-	},
-/area/magmoor/compound)
 "sOk" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
@@ -26925,9 +26737,7 @@
 /turf/open/floor/wood,
 /area/magmoor/command/conference)
 "sPO" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 1
 	},
@@ -27028,17 +26838,6 @@
 	dir = 6
 	},
 /area/magmoor/compound/south)
-"sSL" = (
-/obj/structure/barricade/guardrail{
-	dir = 4
-	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
-/turf/open/lavaland/lava/lpiece{
-	dir = 1
-	},
-/area/magmoor/compound)
 "sST" = (
 /turf/open/lavaland/lava,
 /area/magmoor/compound/east)
@@ -27160,6 +26959,12 @@
 /area/magmoor/cave/west)
 "sWU" = (
 /obj/structure/lattice,
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
 /turf/open/lavaland/lava/lpiece{
 	dir = 8
 	},
@@ -27969,9 +27774,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder2,
 /area/magmoor/hydroponics/south)
 "tzg" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
@@ -28030,9 +27833,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 1
 	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/single/middle,
 /area/magmoor/cave/northeast)
 "tAz" = (
@@ -28421,10 +28222,10 @@
 /area/magmoor/civilian/clean)
 "tSr" = (
 /obj/structure/barricade/guardrail{
-	dir = 8
+	dir = 4
 	},
 /obj/structure/barricade/guardrail{
-	dir = 4
+	dir = 8
 	},
 /obj/structure/barricade/guardrail{
 	dir = 1
@@ -28489,9 +28290,7 @@
 /turf/open/floor/cult,
 /area/magmoor/cave/north)
 "tUm" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 4
 	},
@@ -28791,9 +28590,7 @@
 	},
 /area/magmoor/security/infocenter)
 "ugv" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/single/middle,
 /area/magmoor/cave/southwest)
 "ugM" = (
@@ -28916,12 +28713,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/cargo,
 /area/magmoor/landing)
-"uka" = (
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
-/turf/open/lavaland/lava/lpiece,
-/area/magmoor/compound/northeast)
 "ukm" = (
 /obj/effect/decal/cleanable/cobweb{
 	dir = 4
@@ -30109,11 +29900,9 @@
 "vak" = (
 /obj/structure/lattice,
 /obj/structure/barricade/guardrail{
-	 = 
-	},
-/obj/structure/barricade/guardrail{
 	dir = 4
 	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/lpiece{
 	dir = 1
 	},
@@ -30154,17 +29943,6 @@
 	dir = 9
 	},
 /area/magmoor/compound/northwest)
-"vbF" = (
-/obj/structure/barricade/guardrail{
-	dir = 1
-	},
-/obj/structure/barricade/guardrail{
-	dir = 4
-	},
-/turf/open/lavaland/lava/side{
-	dir = 8
-	},
-/area/magmoor/cave/south)
 "vbH" = (
 /turf/open/floor/mainship/orange/corner,
 /area/magmoor/engi/storage)
@@ -30647,6 +30425,17 @@
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/mainship/cargo,
 /area/magmoor/engi/storage)
+"vsm" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/lava/side{
+	dir = 4
+	},
+/area/magmoor/cave/south)
 "vsK" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -30805,9 +30594,7 @@
 /turf/open/floor/mainship/orange,
 /area/magmoor/engi/storage)
 "vAK" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
@@ -30826,11 +30613,9 @@
 /turf/open/floor/mainship/cargo,
 /area/magmoor/cargo/storage/south)
 "vBu" = (
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 8
-	},
-/obj/structure/barricade/guardrail{
-	 = 
 	},
 /turf/open/lavaland/lava/lpiece{
 	dir = 4
@@ -31143,12 +30928,7 @@
 	},
 /area/magmoor/cargo/processing)
 "vNH" = (
-/obj/structure/barricade/guardrail{
-	dir = 4
-	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/lpiece{
 	dir = 1
 	},
@@ -31302,9 +31082,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 4
 	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 1
 	},
@@ -31314,9 +31092,6 @@
 /obj/structure/lattice,
 /obj/structure/barricade/guardrail{
 	dir = 8
-	},
-/obj/structure/barricade/guardrail{
-	dir = 4
 	},
 /turf/open/lavaland/lava/single/middle{
 	dir = 1
@@ -31468,6 +31243,12 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/east)
+"vZW" = (
+/obj/structure/lattice,
+/turf/open/lavaland/lava/lpiece{
+	dir = 4
+	},
+/area/magmoor/compound/east)
 "wai" = (
 /turf/open/floor/plating/ground/concrete/edge,
 /area/magmoor/cave/southeast)
@@ -31580,17 +31361,9 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/processing/south)
-"weX" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
-/turf/open/lavaland/lava/single/middle,
-/area/magmoor/compound/north)
 "wfj" = (
 /obj/structure/lattice,
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/lpiece{
 	dir = 4
 	},
@@ -31771,9 +31544,7 @@
 /turf/open/floor/mainship/orange,
 /area/magmoor/engi/storage)
 "wlL" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/lpiece{
 	dir = 4
 	},
@@ -32023,13 +31794,10 @@
 /area/magmoor/compound/south)
 "wtN" = (
 /obj/structure/barricade/guardrail{
-	dir = 4
-	},
-/obj/structure/barricade/guardrail{
-	 = 
-	},
-/obj/structure/barricade/guardrail{
 	dir = 1
+	},
+/obj/structure/barricade/guardrail{
+	dir = 4
 	},
 /turf/open/lavaland/lava/lpiece{
 	dir = 1
@@ -32111,9 +31879,7 @@
 /turf/open/lavaland/basalt/cave,
 /area/magmoor/cave/northeast)
 "wxf" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
@@ -32638,12 +32404,6 @@
 	dir = 4
 	},
 /area/magmoor/cargo/processing/south)
-"wPG" = (
-/obj/structure/barricade/guardrail{
-	dir = 1
-	},
-/turf/open/lavaland/lava/lpiece,
-/area/magmoor/cave/southwest)
 "wPJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -32656,6 +32416,13 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/magmoor/cave/east)
+"wQq" = (
+/obj/structure/barricade/guardrail,
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/turf/open/lavaland/lava/single/middle,
+/area/magmoor/compound)
 "wQy" = (
 /obj/effect/decal/warning_stripes/thin,
 /obj/machinery/conveyor_switch,
@@ -32675,17 +32442,6 @@
 	dir = 1
 	},
 /area/magmoor/compound/southwest)
-"wRr" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
-/obj/structure/barricade/guardrail{
-	dir = 4
-	},
-/turf/open/lavaland/lava/lpiece{
-	dir = 1
-	},
-/area/magmoor/compound/north)
 "wRs" = (
 /turf/closed/glass/thin/junction{
 	dir = 4
@@ -32734,6 +32490,15 @@
 	dir = 8
 	},
 /area/magmoor/hydroponics/north)
+"wSW" = (
+/obj/structure/lattice,
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/lavaland/lava/single/middle{
+	dir = 1
+	},
+/area/magmoor/cave/east)
 "wTc" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
@@ -32780,6 +32545,13 @@
 	dir = 4
 	},
 /area/magmoor/cave/south)
+"wUl" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/obj/structure/barricade/guardrail,
+/turf/open/lavaland/lava/single/middle,
+/area/magmoor/cave/east)
 "wUp" = (
 /turf/open/floor/mainship/purple{
 	dir = 1
@@ -33448,26 +33220,6 @@
 	dir = 1
 	},
 /area/magmoor/cargo/processing)
-"xsY" = (
-/obj/structure/lattice,
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
-/obj/structure/barricade/guardrail{
-	dir = 4
-	},
-/turf/open/lavaland/lava/single/middle{
-	dir = 1
-	},
-/area/magmoor/cave/east)
-"xsZ" = (
-/obj/structure/barricade/guardrail{
-	dir = 8
-	},
-/turf/open/lavaland/lava/lpiece{
-	dir = 4
-	},
-/area/magmoor/compound/south)
 "xtg" = (
 /turf/closed/wall,
 /area/magmoor/civilian/arrival)
@@ -33567,9 +33319,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/processing/south)
 "xuZ" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/single/middle,
 /area/magmoor/cave/east)
 "xvf" = (
@@ -33741,12 +33491,7 @@
 	},
 /area/magmoor/cave/northeast)
 "xzB" = (
-/obj/structure/barricade/guardrail{
-	 = 
-	},
-/obj/structure/barricade/guardrail{
-	dir = 4
-	},
+/obj/structure/barricade/guardrail,
 /turf/open/lavaland/lava/lpiece{
 	dir = 1
 	},
@@ -33975,6 +33720,14 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/magmoor/cargo/storage/secure/south)
+"xIB" = (
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/turf/open/lavaland/lava/single/middle{
+	dir = 1
+	},
+/area/magmoor/compound/northeast)
 "xJp" = (
 /obj/effect/decal/siding{
 	dir = 9
@@ -34799,11 +34552,9 @@
 /area/magmoor/cargo/storage/south)
 "ygP" = (
 /obj/structure/barricade/guardrail{
-	 = 
-	},
-/obj/structure/barricade/guardrail{
 	dir = 4
 	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
@@ -34952,9 +34703,7 @@
 /area/magmoor/cave/northeast)
 "ylq" = (
 /obj/structure/lattice,
-/obj/structure/barricade/guardrail{
-	 = 
-	},
+/obj/structure/barricade/guardrail,
 /obj/structure/barricade/guardrail{
 	dir = 1
 	},
@@ -41180,7 +40929,7 @@ jns
 jns
 qXh
 xHJ
-dPX
+dEL
 agt
 kZI
 jns
@@ -41420,8 +41169,8 @@ jns
 jns
 qXh
 xHJ
-tit
-qmo
+dEL
+agt
 kZI
 jns
 slM
@@ -41660,8 +41409,8 @@ uwV
 frk
 qXh
 xHJ
-tit
-qmo
+dEL
+agt
 kZI
 lIc
 jns
@@ -41901,7 +41650,7 @@ bQx
 qXh
 gRQ
 tit
-qmo
+agt
 kZI
 lIc
 jns
@@ -42140,8 +41889,8 @@ jyS
 uyW
 bQx
 bQx
-oXB
-qmo
+gWH
+lSp
 kZI
 lIc
 jns
@@ -43489,7 +43238,7 @@ dSd
 dSd
 rqu
 iVx
-eAp
+eSO
 sEl
 tvK
 tvK
@@ -43577,7 +43326,7 @@ uwV
 frk
 tnn
 xHJ
-tit
+eko
 cgy
 bQx
 bQx
@@ -43730,7 +43479,7 @@ tTv
 hPx
 ajn
 iVx
-eAp
+eSO
 sEl
 tvK
 tvK
@@ -43816,8 +43565,8 @@ olM
 qXh
 lRD
 xHJ
-tit
-swT
+dPX
+qNR
 qmo
 jHp
 lIc
@@ -43971,7 +43720,7 @@ tvK
 emI
 ajn
 iVx
-eAp
+eSO
 sEl
 tvK
 rwF
@@ -44055,9 +43804,9 @@ tkA
 gbt
 olM
 gRQ
-chs
+kAx
 swT
-qmo
+lSp
 kZI
 uwY
 lIc
@@ -44212,7 +43961,7 @@ tvK
 emI
 ajn
 iVx
-eAp
+eSO
 jpy
 tvK
 rwF
@@ -44453,8 +44202,8 @@ tvK
 emI
 ajn
 iVx
-sfx
-lKq
+pey
+eNJ
 sEl
 rwF
 owr
@@ -44695,7 +44444,7 @@ emI
 ajn
 tvK
 aXa
-sFQ
+eAp
 sEl
 tvK
 owr
@@ -44936,7 +44685,7 @@ emI
 ajn
 tvK
 iVx
-sFQ
+eAp
 sEl
 tvK
 owr
@@ -45177,7 +44926,7 @@ emI
 ajn
 tvK
 iVx
-sFQ
+bpj
 sEl
 tvK
 owr
@@ -45418,7 +45167,7 @@ nxY
 ajn
 tvK
 iVx
-sFQ
+bpj
 sEl
 tvK
 owr
@@ -45659,7 +45408,7 @@ nyB
 ajn
 tvK
 iVx
-sFQ
+bpj
 sEl
 tvK
 owr
@@ -45675,8 +45424,8 @@ tcR
 gkG
 tcR
 mSB
-wPG
-mBn
+eHJ
+cCd
 kAa
 oRQ
 oRQ
@@ -45900,7 +45649,7 @@ nAL
 ajn
 tvK
 iVx
-sFQ
+bpj
 jpy
 tvK
 owr
@@ -45967,7 +45716,7 @@ lRD
 tnn
 xHJ
 tit
-oXB
+gWH
 kbm
 eMW
 tkA
@@ -46206,7 +45955,7 @@ xrt
 kTW
 pEk
 swT
-swT
+liq
 qmo
 jHp
 olM
@@ -46681,7 +46430,7 @@ jns
 qXh
 tnn
 xHJ
-chs
+kAx
 kTW
 eSo
 xrt
@@ -46920,8 +46669,8 @@ jns
 jns
 qXh
 xHJ
-tit
-swT
+dEL
+qNR
 cgy
 kTW
 kHW
@@ -47160,8 +46909,8 @@ jns
 qXh
 tnn
 xHJ
-tit
-oHK
+dEL
+agt
 kZI
 dEo
 uwV
@@ -47399,7 +47148,7 @@ jns
 jns
 jns
 avZ
-tit
+dEL
 liq
 agt
 lCt
@@ -48116,8 +47865,8 @@ eij
 vHW
 vES
 res
-gNQ
-gNQ
+gku
+gku
 lSp
 kZI
 uwY
@@ -48312,7 +48061,7 @@ tvK
 tvK
 tvK
 iVx
-sFQ
+eAp
 aXa
 pey
 dab
@@ -48365,8 +48114,8 @@ jns
 hdo
 nCf
 bFf
-qNR
-fcT
+liq
+tZD
 rEA
 tnn
 vCA
@@ -48375,7 +48124,7 @@ kTW
 eSo
 xrt
 kTW
-tnn
+lRD
 tnn
 jns
 jns
@@ -48553,7 +48302,7 @@ tvK
 rwF
 tvK
 iVx
-sFQ
+eAp
 sEl
 jGO
 aXa
@@ -48608,15 +48357,15 @@ hdo
 uwY
 nCf
 lWT
-swT
-fcT
+qNR
+tZD
 rEA
-tnn
+lRD
 gqi
 uFX
 wik
 gqi
-swT
+gWH
 fcT
 rEA
 yeZ
@@ -48794,7 +48543,7 @@ tvK
 rwF
 tvK
 iVx
-sFQ
+eAp
 sEl
 tvK
 iVx
@@ -48852,12 +48601,12 @@ uwY
 nCf
 lWT
 swT
-swT
+gWH
 kTW
 eSo
 xrt
 kTW
-nCf
+blH
 lWT
 liq
 kjd
@@ -49035,7 +48784,7 @@ rwF
 rwF
 tvK
 iVx
-sFQ
+eSO
 sEl
 tvK
 gfW
@@ -49093,7 +48842,7 @@ jns
 hdo
 uwY
 uwY
-uwY
+dEo
 kTW
 kHW
 nXR
@@ -49276,7 +49025,7 @@ tvK
 tvK
 lNo
 rDK
-sFQ
+eSO
 sEl
 ciW
 tvK
@@ -49516,8 +49265,8 @@ ajn
 tvK
 tvK
 iVx
-stM
-mnY
+rTg
+qqp
 sEl
 tvK
 tvK
@@ -49757,7 +49506,7 @@ ajn
 tvK
 tvK
 iVx
-sFQ
+eSO
 uie
 tvK
 tvK
@@ -49971,8 +49720,8 @@ vaK
 wpM
 nIm
 iVx
-fTf
-igb
+sfx
+cIs
 sEl
 emI
 ajn
@@ -49998,7 +49747,7 @@ ajn
 nQz
 nQz
 rDK
-sFQ
+eSO
 sEl
 tvK
 tvK
@@ -50238,8 +49987,8 @@ emI
 ajn
 oQD
 gVU
-dab
-bPU
+oFs
+qqp
 sEl
 tvK
 tvK
@@ -50696,7 +50445,7 @@ pGg
 tvK
 iVx
 xph
-igb
+cIs
 wfM
 tTv
 tTv
@@ -51185,7 +50934,7 @@ dab
 dab
 dab
 dab
-cIs
+bGs
 jpy
 nQz
 nQz
@@ -51196,7 +50945,7 @@ sXu
 tvK
 lNo
 rDK
-kAq
+gof
 dab
 dab
 dab
@@ -51217,7 +50966,7 @@ tcR
 tcR
 mSB
 fSf
-mBn
+qye
 kAa
 tcR
 bew
@@ -51436,7 +51185,7 @@ cuv
 uCJ
 cuI
 rLK
-gof
+rTg
 qqp
 uie
 jGO
@@ -52626,7 +52375,7 @@ ggm
 ueK
 vns
 ukO
-ydR
+rgt
 txw
 txw
 owd
@@ -52903,7 +52652,7 @@ tiS
 tzg
 amS
 amS
-dky
+vsm
 tro
 tro
 lqA
@@ -54362,7 +54111,7 @@ gon
 gon
 cmM
 ifA
-xuC
+mfk
 srz
 gon
 wtP
@@ -57322,7 +57071,7 @@ hkW
 hOi
 bhT
 cBi
-qYo
+nFD
 nKb
 aIF
 gNM
@@ -57444,7 +57193,7 @@ meh
 and
 nPX
 ccU
-dLY
+bxj
 txw
 txw
 nif
@@ -57736,7 +57485,7 @@ wtP
 gon
 gon
 wNb
-kJn
+xuC
 lzl
 gon
 wtP
@@ -57799,8 +57548,8 @@ bhT
 bhT
 bhT
 cBi
-qYo
-mRP
+nFD
+nKb
 koW
 lvZ
 lvZ
@@ -57977,7 +57726,7 @@ gon
 wtP
 gon
 wNb
-kJn
+xuC
 kSk
 gon
 gon
@@ -58040,7 +57789,7 @@ bhT
 bhT
 bhT
 cBi
-aGM
+adJ
 afV
 fna
 nXD
@@ -58218,7 +57967,7 @@ gon
 wtP
 gon
 wNb
-kJn
+mfk
 lpi
 xno
 kwi
@@ -58281,7 +58030,7 @@ bhT
 bhT
 bhT
 cBi
-aGM
+adJ
 dQY
 ror
 bhT
@@ -58459,7 +58208,7 @@ gon
 gon
 gon
 wNb
-kJn
+mfk
 wTI
 suP
 suP
@@ -58522,7 +58271,7 @@ bhT
 oCb
 oCb
 qLj
-fDf
+adJ
 uYU
 bhT
 bhT
@@ -58700,7 +58449,7 @@ xwz
 eUR
 qKx
 tiS
-qUe
+xJI
 nLt
 cCe
 suP
@@ -58761,9 +58510,9 @@ sWm
 oCb
 qLj
 qYo
-sOh
-sOh
-qVn
+mRP
+nKb
+aIF
 uYU
 bhT
 bhT
@@ -58938,9 +58687,9 @@ xXo
 ybP
 gon
 wNb
-rNT
+oEo
 hZO
-kas
+tro
 afP
 lqA
 tYF
@@ -58998,9 +58747,9 @@ rnu
 lvZ
 lvZ
 knL
-nQx
-sOh
-sOh
+oTu
+kIy
+kIy
 qVn
 nMT
 nXD
@@ -59421,10 +59170,10 @@ rCI
 kdf
 agv
 afP
-qAd
-qAd
-qAd
-xzB
+leB
+leB
+leB
+nDp
 lzl
 cmM
 aGS
@@ -59470,9 +59219,9 @@ bhT
 bhT
 bhT
 cBi
-qYo
-sOh
-sOh
+svs
+kIy
+kIy
 iru
 tuQ
 gOD
@@ -59661,7 +59410,7 @@ fvu
 amS
 mHF
 uIi
-nDp
+jij
 lzl
 cmM
 cmM
@@ -59891,9 +59640,9 @@ aZN
 amS
 amS
 dky
-kas
+tro
 hZO
-kas
+tro
 afP
 afP
 uIi
@@ -59919,10 +59668,10 @@ bhc
 aGS
 aGS
 jdp
-bPF
-rQJ
-rQJ
-rQJ
+qvc
+hGG
+hGG
+hGG
 rQJ
 euH
 lbF
@@ -59948,11 +59697,11 @@ bhT
 ago
 oCb
 qLj
-qYo
-mRP
-mRP
-kIy
-qVn
+nFD
+nKb
+nKb
+hlv
+gAq
 uYU
 rgJ
 rgJ
@@ -60116,7 +59865,7 @@ cUK
 cUK
 voS
 cNS
-ydR
+plO
 owd
 dSH
 bJr
@@ -60176,8 +59925,8 @@ knL
 jOc
 qop
 kIy
-kIy
-eKQ
+mRP
+cTF
 ayb
 oCb
 bhT
@@ -60187,8 +59936,8 @@ bhT
 bhT
 ago
 qLj
-qYo
-mRP
+nFD
+nKb
 aIF
 afV
 ykd
@@ -60358,7 +60107,7 @@ cUK
 vns
 mzw
 cNS
-ydR
+plO
 owd
 dSH
 bJr
@@ -60372,11 +60121,11 @@ iyq
 jaT
 amS
 amS
-vbF
+qiR
 leB
 afP
 afP
-nDp
+jij
 lzl
 waq
 gon
@@ -60394,7 +60143,7 @@ ozA
 aTc
 aTc
 fQN
-weX
+moB
 naK
 siS
 suP
@@ -60418,16 +60167,16 @@ bhT
 nXD
 nXD
 qcZ
-qop
-kIy
-eKQ
+jww
+nKb
+cTF
 ayb
 bhT
 ago
 oCb
 oCb
 qLj
-qYo
+nFD
 pMf
 afV
 kso
@@ -60600,7 +60349,7 @@ vns
 cUK
 mzw
 cNS
-ydR
+plO
 owd
 dSH
 bJr
@@ -60615,7 +60364,7 @@ cmM
 cmM
 cmM
 ifA
-nqS
+iyq
 nDp
 lzl
 sfv
@@ -60633,9 +60382,9 @@ gon
 yhm
 iyK
 vlt
-nhN
-nhN
-wRr
+flk
+flk
+aEi
 naK
 suP
 suP
@@ -60661,7 +60410,7 @@ bhT
 bhT
 nXD
 qcZ
-qop
+jww
 eKQ
 ayb
 qLj
@@ -60842,7 +60591,7 @@ vns
 vns
 vns
 cNS
-ydR
+plO
 owd
 fFz
 vns
@@ -61084,7 +60833,7 @@ vns
 vns
 mzw
 cNS
-nJd
+kjW
 dSH
 vns
 vns
@@ -61151,8 +60900,8 @@ uHT
 ido
 ror
 cBi
-fRz
-hlv
+jww
+nKb
 wlL
 uYU
 bhT
@@ -61325,7 +61074,7 @@ vns
 vns
 vns
 ukO
-ydR
+plO
 owd
 fFz
 vns
@@ -61635,7 +61384,7 @@ bhT
 bhT
 bhT
 cBi
-fRz
+jww
 vAK
 uYU
 mDe
@@ -61837,7 +61586,7 @@ kPM
 vAq
 iyK
 vlt
-wRr
+aEi
 naK
 suP
 iLh
@@ -62077,7 +61826,7 @@ kPM
 kPM
 bUl
 fQN
-weX
+moB
 bhc
 suP
 suP
@@ -62318,7 +62067,7 @@ mRb
 mRb
 eTf
 vlt
-wRr
+aEi
 naK
 suP
 suP
@@ -62358,7 +62107,7 @@ cJJ
 jRe
 hkW
 cBi
-qyg
+nFD
 qVn
 uYU
 mDe
@@ -62599,7 +62348,7 @@ rqe
 qey
 hkW
 cBi
-fDf
+wQq
 nMT
 bhT
 mDe
@@ -62840,7 +62589,7 @@ hjY
 qey
 hkW
 cBi
-fDf
+wQq
 uYU
 bhT
 mDe
@@ -63081,7 +62830,7 @@ hjY
 qey
 hkW
 cBi
-fDf
+wQq
 uYU
 bhT
 mDe
@@ -63253,7 +63002,7 @@ eEq
 ufq
 eEq
 dOZ
-uQN
+bPD
 xdH
 fUY
 xJq
@@ -63322,7 +63071,7 @@ hjY
 qey
 hkW
 cBi
-fDf
+wQq
 uYU
 bhT
 mDe
@@ -63563,7 +63312,7 @@ hjY
 qey
 hkW
 cBi
-fDf
+wQq
 uYU
 bhT
 mDe
@@ -63735,7 +63484,7 @@ eEq
 eEq
 eEq
 efy
-eHg
+ciV
 kDu
 eEq
 eEq
@@ -63804,7 +63553,7 @@ hjY
 qey
 hkW
 cBi
-fDf
+wQq
 ayb
 bhT
 mDe
@@ -65422,7 +65171,7 @@ cqA
 oWk
 oWk
 mKx
-lji
+ciV
 iUx
 eEq
 eEq
@@ -65900,7 +65649,7 @@ eEq
 cqA
 oWk
 nlR
-wDM
+uQN
 xdH
 uar
 wOo
@@ -65974,7 +65723,7 @@ qey
 bhT
 bhT
 cBi
-fDf
+wQq
 uYU
 mDe
 hkW
@@ -66140,8 +65889,8 @@ cqA
 oWk
 nlR
 wDM
-eBM
-igA
+bVG
+xdH
 amt
 xJq
 gZN
@@ -66215,7 +65964,7 @@ qey
 bhT
 bhT
 cBi
-fDf
+wQq
 uYU
 mDe
 hkW
@@ -66456,7 +66205,7 @@ qey
 bhT
 bhT
 cBi
-fDf
+wQq
 uYU
 mDe
 hkW
@@ -66697,7 +66446,7 @@ qey
 tCH
 bhT
 cBi
-fDf
+wQq
 uYU
 mDe
 hkW
@@ -66851,7 +66600,7 @@ hKT
 hds
 xvm
 gzC
-rHi
+wSW
 iUW
 vPW
 ozn
@@ -66859,7 +66608,7 @@ hYy
 vPW
 eEq
 nlR
-cGC
+fHt
 mVw
 eEq
 voz
@@ -66938,7 +66687,7 @@ qey
 bhT
 bhT
 cBi
-fDf
+wQq
 uYU
 mDe
 hkW
@@ -67100,7 +66849,7 @@ wDm
 vPW
 mKx
 wDM
-riT
+nxh
 awU
 eEq
 voz
@@ -67179,7 +66928,7 @@ qey
 bhT
 bhT
 cBi
-fDf
+wQq
 uYU
 mDe
 hkW
@@ -67333,13 +67082,13 @@ ixJ
 hds
 xvm
 gzC
-eEq
+dOZ
 dIB
 wQj
 lKW
 igx
 wQj
-xsY
+rHi
 riT
 mVw
 eEq
@@ -67420,7 +67169,7 @@ qqL
 bhT
 ago
 qLj
-fDf
+wQq
 uYU
 bhT
 hCX
@@ -67455,13 +67204,13 @@ afV
 cpJ
 ror
 thd
-aaV
-aaV
-aaV
-aaV
-aaV
-aaV
-aaV
+lhM
+lhM
+lhM
+vcP
+vcP
+vcP
+vcP
 rgp
 vEx
 roE
@@ -67660,8 +67409,8 @@ hOi
 bhT
 bhT
 cBi
-qYo
-qVn
+nFD
+aIF
 uYU
 bhT
 bhT
@@ -67710,10 +67459,10 @@ iXH
 hbm
 rmN
 pZO
-vcP
-vcP
-vcP
-xsZ
+rtD
+lhM
+lhM
+bVN
 tmI
 csX
 csX
@@ -67901,7 +67650,7 @@ bhT
 bhT
 bhT
 cBi
-aGM
+adJ
 nMT
 bhT
 bhT
@@ -68142,7 +67891,7 @@ bhT
 bhT
 bhT
 cBi
-aGM
+adJ
 uYU
 bhT
 bhT
@@ -68165,11 +67914,11 @@ tuQ
 sWm
 qLj
 qYo
-sOh
-sOh
-sOh
-sOh
-sSL
+kIy
+nKb
+nKb
+nKb
+gAq
 nMT
 qcZ
 hxl
@@ -68180,7 +67929,7 @@ eLb
 eOe
 lhM
 lhM
-afz
+bVN
 tPS
 eDK
 eDK
@@ -68404,8 +68153,8 @@ teL
 teL
 knL
 pni
-sOh
-sSL
+kIy
+gAq
 nMT
 nXD
 nXD
@@ -68422,8 +68171,8 @@ uRs
 uRs
 veO
 llH
-vcP
-vcP
+rtD
+rtD
 vcP
 nfZ
 tmI
@@ -69596,9 +69345,9 @@ dBh
 dBh
 dBh
 bnh
-wXg
-pln
-aAL
+qnf
+bTR
+wEx
 nHq
 mKW
 aTF
@@ -69721,7 +69470,7 @@ jUo
 idd
 idd
 cOQ
-mqo
+bZZ
 wwU
 idd
 jUo
@@ -69962,7 +69711,7 @@ idd
 idd
 idd
 cOQ
-mqo
+bZZ
 wwU
 idd
 idd
@@ -70203,7 +69952,7 @@ idd
 idd
 idd
 cOQ
-qfx
+bZZ
 wwU
 idd
 idd
@@ -70245,7 +69994,7 @@ eEq
 eEq
 eEq
 efy
-lvF
+hhD
 iUx
 kPM
 kPM
@@ -70486,7 +70235,7 @@ eEq
 eEq
 eEq
 dOZ
-xuZ
+wUl
 awU
 kPM
 kPM
@@ -70727,7 +70476,7 @@ eEq
 eEq
 cqA
 nlR
-xuZ
+wUl
 hKS
 kPM
 kPM
@@ -70969,7 +70718,7 @@ cqA
 nlR
 qCl
 krp
-cFq
+jbV
 mOa
 mRb
 rlV
@@ -71284,7 +71033,7 @@ nHq
 pNd
 kls
 bTR
-rWX
+vKt
 tUD
 jiw
 dBh
@@ -71491,11 +71240,11 @@ hCv
 yff
 uKx
 tNP
-rkA
-rkA
-rkA
-rkA
-msI
+mRS
+mRS
+mRS
+fIB
+pln
 aAL
 pfU
 fjq
@@ -71504,14 +71253,14 @@ siz
 lTg
 lTg
 fjq
-vVd
-msI
-msI
-msI
-msI
-msI
-msI
-msI
+bky
+pln
+pln
+pln
+pln
+pln
+bTR
+bTR
 bTR
 sST
 sST
@@ -71525,9 +71274,9 @@ dBh
 dBh
 mKW
 pNd
-asn
-pln
-rWX
+kls
+bTR
+opE
 gPw
 dBh
 mBZ
@@ -71768,7 +71517,7 @@ dBh
 dBh
 mKW
 pNd
-nbo
+sBz
 tUD
 fCD
 mBZ
@@ -72018,7 +71767,7 @@ lzR
 vTx
 vTx
 fjq
-imZ
+vZW
 tUD
 jiw
 jiw
@@ -72184,14 +71933,14 @@ vYT
 vYT
 rlV
 qzF
-fIB
-fIB
-fIB
-fIB
-fIB
-fIB
-fIB
-fIB
+rkA
+rkA
+rkA
+rkA
+xIB
+mRS
+mRS
+mRS
 wCn
 wgn
 xuu
@@ -72259,9 +72008,9 @@ siz
 lTg
 lTg
 eJI
-dNq
-pln
-pln
+lKp
+bTR
+bTR
 oOX
 lTg
 tUD
@@ -72410,7 +72159,7 @@ uQN
 bAV
 bAV
 bAV
-rHO
+nxh
 awU
 rVX
 hCv
@@ -72434,7 +72183,7 @@ yff
 yff
 uKx
 tNP
-fIB
+mRS
 pZe
 nZB
 wgn
@@ -72987,7 +72736,7 @@ cgv
 hqA
 oJl
 bnh
-nbo
+hde
 gPw
 dBh
 lFi
@@ -73228,7 +72977,7 @@ dBh
 dBh
 wqv
 bnh
-pdi
+ndg
 rxr
 jBI
 lFi
@@ -73402,7 +73151,7 @@ hCv
 hCv
 hCv
 xhL
-qYh
+eXY
 wgn
 hCv
 hCv
@@ -73469,7 +73218,7 @@ dBh
 dBh
 lec
 bnh
-pdi
+ndg
 kqf
 kqf
 caA
@@ -73644,7 +73393,7 @@ hCv
 hCv
 xhL
 tNP
-ikx
+wCn
 rRG
 hCv
 hCv
@@ -73885,7 +73634,7 @@ hCv
 hCv
 hCv
 uKx
-qYh
+eXY
 rRG
 hCv
 hCv
@@ -73928,7 +73677,7 @@ dBh
 dBh
 dBh
 pNd
-nbo
+hde
 gPw
 dBh
 dBh
@@ -74126,7 +73875,7 @@ vEL
 hCv
 hCv
 xhL
-qYh
+eXY
 wgn
 hCv
 hCv
@@ -74169,7 +73918,7 @@ dBh
 dBh
 dBh
 bnh
-nbo
+hde
 gPw
 dBh
 dBh
@@ -74850,7 +74599,7 @@ hCv
 hCv
 hCv
 xhL
-vHk
+aaP
 wxf
 rRG
 hCv
@@ -74892,10 +74641,10 @@ dBh
 dBh
 dBh
 bnh
-asn
-msI
-msI
-msI
+ask
+pln
+pln
+pln
 bVb
 gPw
 dBh
@@ -75054,7 +74803,7 @@ eEq
 mOM
 mky
 xhL
-qYh
+hLz
 ugU
 hCv
 hCv
@@ -75092,7 +74841,7 @@ hCv
 hCv
 hCv
 xOR
-lpz
+nOg
 nGy
 hCv
 vEL
@@ -75295,7 +75044,7 @@ okx
 vzl
 mky
 xhL
-qYh
+hLz
 rRG
 hCv
 hCv
@@ -75536,7 +75285,7 @@ dFj
 dFj
 szl
 qNS
-qYh
+hLz
 rRG
 hCv
 hCv
@@ -75656,7 +75405,7 @@ sBL
 cXY
 xYJ
 ijQ
-hIP
+deS
 pJL
 gTn
 gTn
@@ -75776,8 +75525,8 @@ hCv
 hCv
 xhL
 nkR
-rkA
-tUm
+fIB
+ecW
 rRG
 ean
 ean
@@ -75897,7 +75646,7 @@ okf
 hRV
 xYJ
 lqr
-pAj
+deS
 wmr
 eop
 lHF
@@ -76016,7 +75765,7 @@ hCv
 hCv
 iEB
 qNS
-mcv
+hLz
 ugU
 yff
 hCv
@@ -76138,8 +75887,8 @@ hig
 vek
 xYJ
 vSl
-ibN
-nKD
+deS
+ptl
 smY
 nKD
 nKD
@@ -76256,8 +76005,8 @@ hCv
 hCv
 hCv
 xhL
-eVQ
-ndA
+nkR
+ecW
 rRG
 hCv
 ean
@@ -76497,7 +76246,7 @@ hCv
 uMP
 hCv
 xhL
-eXY
+mcv
 ugU
 hCv
 hCv
@@ -76824,7 +76573,7 @@ oJl
 joI
 dBh
 eug
-pdi
+cft
 fll
 jiw
 jiw
@@ -77066,9 +76815,9 @@ joI
 dBh
 bnh
 ask
-pln
-pln
-pln
+msI
+msI
+msI
 rWX
 tUD
 dBh
@@ -77552,7 +77301,7 @@ dBh
 dBh
 dBh
 pNd
-nbo
+kGF
 tUD
 dBh
 dBh
@@ -78226,7 +77975,7 @@ oqY
 oqY
 oqY
 yiR
-lpz
+hXB
 nGy
 oqY
 gaD
@@ -78467,7 +78216,7 @@ xkY
 xkY
 xkY
 xhL
-qYh
+kNL
 rRG
 rqK
 oNN
@@ -78708,7 +78457,7 @@ hCv
 hCv
 hCv
 xhL
-qYh
+kNL
 rRG
 btK
 oqY
@@ -78949,7 +78698,7 @@ hCv
 hCv
 hCv
 xhL
-qYh
+kNL
 rRG
 btK
 oqY
@@ -79190,7 +78939,7 @@ hCv
 hCv
 iEB
 qNS
-qYh
+kNL
 rRG
 btK
 oqY
@@ -79431,7 +79180,7 @@ hCv
 hCv
 xhL
 eVQ
-atW
+ndA
 rRG
 sjm
 oqY
@@ -79445,7 +79194,7 @@ vkP
 fIB
 fIB
 fIB
-vNH
+ecW
 ugU
 yff
 mKW
@@ -79477,10 +79226,10 @@ siz
 lTg
 lTg
 fjq
-vVd
-msI
-msI
-eiX
+bky
+pln
+pln
+bTR
 bTR
 bTR
 mxl
@@ -79682,7 +79431,7 @@ euV
 xJP
 hCv
 xhL
-nYh
+qYh
 ugU
 yff
 yff
@@ -79923,7 +79672,7 @@ pgz
 xJP
 hAj
 qNS
-nYh
+qYh
 rRG
 tbM
 hCv
@@ -80152,7 +79901,7 @@ hCv
 hCv
 hCv
 xhL
-nkR
+eVQ
 dBD
 rRG
 hAj
@@ -80164,7 +79913,7 @@ xuH
 euV
 klA
 fIB
-vNH
+ecW
 rRG
 vEL
 vEL
@@ -80403,7 +80152,7 @@ ruC
 nZB
 nZB
 euV
-nEP
+bko
 ugU
 yff
 oqY
@@ -80635,7 +80384,7 @@ hCv
 xhL
 eVQ
 ndA
-uka
+eVQ
 fIB
 nEP
 euV
@@ -82309,7 +82058,7 @@ mRS
 mRS
 mRS
 mRS
-vNH
+ecW
 ugU
 yff
 hCv
