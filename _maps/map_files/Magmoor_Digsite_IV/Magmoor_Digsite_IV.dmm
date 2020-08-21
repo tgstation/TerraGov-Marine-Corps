@@ -1120,7 +1120,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/northwest)
 "baf" = (
-/obj/docking_port/stationary/marine_dropship/crash_target,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/cult,
 /area/magmoor/cave/north)
 "bai" = (
@@ -1395,7 +1395,7 @@
 	},
 /area/magmoor/compound/west)
 "bnG" = (
-/obj/docking_port/stationary/marine_dropship/crash_target,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/north)
 "boi" = (
@@ -8347,7 +8347,7 @@
 /turf/open/floor/mainship/purple/corner,
 /area/magmoor/research)
 "gfW" = (
-/obj/docking_port/stationary/marine_dropship/crash_target,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/mainship/purple,
 /area/magmoor/research)
 "gfX" = (
@@ -23100,10 +23100,6 @@
 /obj/structure/largecrate/chick,
 /turf/open/floor/freezer,
 /area/magmoor/cargo/freezer)
-"rnO" = (
-/obj/docking_port/stationary/marine_dropship/crash_target,
-/turf/open/floor/plating/ground/mars/random/dirt,
-/area/magmoor/compound/northeast)
 "rnW" = (
 /turf/open/lavaland/lava/side{
 	dir = 4
@@ -27035,7 +27031,7 @@
 	},
 /area/magmoor/engi/storage)
 "tJV" = (
-/obj/docking_port/stationary/marine_dropship/crash_target,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound/east)
 "tKf" = (
@@ -75128,7 +75124,7 @@ tam
 sCq
 sxo
 ydi
-rnO
+uoy
 hCv
 hCv
 hCv
@@ -75806,7 +75802,7 @@ hCv
 hCv
 hCv
 hCv
-rnO
+uoy
 hCv
 hCv
 hCv
