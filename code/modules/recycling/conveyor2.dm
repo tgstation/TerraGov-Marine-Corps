@@ -64,6 +64,7 @@
 	update_icon()
 
 /obj/machinery/conveyor/update_icon()
+	. = ..()
 	if(machine_stat & BROKEN)
 		icon_state = "conveyor-broken"
 		operating = 0
