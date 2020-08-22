@@ -50,7 +50,7 @@
 #define	ITEM_ABSTRACT			(1<<5)	//The item is abstract (grab, powerloader_clamp, etc)
 #define BEING_REMOVED			(1<<6)	//Cuffs
 #define DOES_NOT_NEED_HANDS		(1<<7)	//Dont need hands to use it
-
+#define SYNTH_RESTRICTED		(1<<8)	//Prevents synths from wearing items with this flag
 //==========================================================================================
 
 
@@ -91,7 +91,6 @@
 //To successfully stop taking all pressure damage you must have both a suit and head item with this flag.
 #define BLOCKSHARPOBJ 	(1<<6)  //From /tg: prevents syringes, parapens and hypos if the external suit or helmet (if targeting head) has this flag. Example: space suits, biosuit, bombsuits, thick suits that cover your body.
 #define NOPRESSUREDMAGE (1<<7) //This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage.
-#define SYNTH_RESTRICTED (1<<8) //Prevents synths from wearing items with this flag
 //SUITS AND HELMETS====================================================================================
 
 //vision obscuring facegear and etc.
