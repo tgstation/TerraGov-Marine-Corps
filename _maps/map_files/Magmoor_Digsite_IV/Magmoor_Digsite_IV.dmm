@@ -793,9 +793,6 @@
 	},
 /area/magmoor/cargo/storage/south)
 "aMe" = (
-/obj/machinery/button/door/open_only/landing_zone{
-	pixel_y = -32
-	},
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -803,6 +800,9 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced,
+/obj/machinery/button/door/open_only/landing_zone/lz2{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/magmoor/landing)
 "aMs" = (
@@ -5139,6 +5139,13 @@
 "dLR" = (
 /turf/closed/glass/thin/junction,
 /area/magmoor/compound/southeast)
+"dMH" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/mainship/silver/corner{
+	dir = 8
+	},
+/area/magmoor/civilian/arrival)
 "dMO" = (
 /obj/structure/bed/stool,
 /turf/open/floor/mainship/purple{
@@ -7671,6 +7678,14 @@
 	dir = 4
 	},
 /area/magmoor/medical/patient)
+"fGH" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/turf/open/floor/mainship/silver{
+	dir = 8
+	},
+/area/magmoor/civilian/arrival)
 "fGI" = (
 /obj/structure/closet/walllocker/hydrant/extinguisher{
 	dir = 8
@@ -16552,6 +16567,10 @@
 	dir = 1
 	},
 /area/magmoor/engi/atmos)
+"mEY" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/turf/open/floor/wood,
+/area/magmoor/command/conference)
 "mFa" = (
 /turf/open/floor/mainship/sterile,
 /area/magmoor/medical/lobby)
@@ -31839,7 +31858,7 @@
 /area/magmoor/compound/east)
 "wAs" = (
 /obj/machinery/button/door/open_only/landing_zone/lz2{
-	pixel_y = -32
+	dir = 8
 	},
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -34256,7 +34275,8 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/command/commandroom)
 "xSh" = (
-/obj/structure/reagent_dispensers/water_cooler,
+/obj/structure/table/mainship,
+/obj/item/book/manual,
 /turf/open/floor/mainship,
 /area/magmoor/command/commandroom)
 "xSi" = (
@@ -34568,8 +34588,8 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 8
 	},
-/obj/machinery/computer/communications,
 /obj/structure/table/mainship,
+/obj/machinery/computer/skills,
 /turf/open/floor/mainship/mono,
 /area/magmoor/command/commandroom)
 "xYJ" = (
@@ -53552,7 +53572,7 @@ csX
 csX
 csX
 csX
-pWr
+bzU
 lyK
 lsu
 csX
@@ -53784,10 +53804,10 @@ csX
 csX
 csX
 csX
-xSC
-yhn
-qar
-aTZ
+hob
+wMP
+lyK
+bzU
 csX
 csX
 csX
@@ -54017,10 +54037,10 @@ csX
 csX
 csX
 csX
-bzU
-lyK
-lsu
-csX
+ewf
+yhn
+qar
+ewf
 csX
 csX
 csX
@@ -54249,11 +54269,11 @@ csX
 csX
 csX
 csX
+csX
+ewf
+sLR
 hob
 wMP
-lyK
-bzU
-csX
 csX
 csX
 csX
@@ -54482,10 +54502,10 @@ csX
 csX
 csX
 csX
-ewf
-yhn
-qar
-ewf
+csX
+hcX
+chw
+wMP
 csX
 csX
 csX
@@ -54715,10 +54735,10 @@ csX
 csX
 csX
 csX
-ewf
-sLR
-hob
-wMP
+csX
+csX
+csX
+csX
 csX
 csX
 csX
@@ -54948,9 +54968,9 @@ csX
 csX
 csX
 csX
-hcX
-chw
-wMP
+csX
+csX
+csX
 csX
 csX
 xJp
@@ -56769,7 +56789,7 @@ snM
 tEG
 snM
 snM
-bsU
+hkW
 hjY
 qey
 hkW
@@ -57002,7 +57022,7 @@ brB
 cPQ
 sxk
 snM
-hkW
+bsU
 hjY
 qey
 hkW
@@ -59592,8 +59612,8 @@ wAW
 wXe
 mCg
 kZR
-iiI
-sZc
+dMH
+fGH
 xGD
 xGD
 xGD
@@ -60226,7 +60246,7 @@ rCm
 wnp
 wuc
 wKG
-xpd
+mEY
 wuL
 xxA
 ydR
