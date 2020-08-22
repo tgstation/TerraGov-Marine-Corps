@@ -316,7 +316,7 @@
 	name = "\improper Marine Food and Drinks Vendor"
 	desc = "Standard Issue Food and Drinks Vendor, containing standard military food and drinks."
 	icon_state = "sustenance"
-	wrenchable = FALSE
+	wrenchable = TRUE
 	products = list(/obj/item/reagent_containers/food/snacks/protein_pack = 50,
 					/obj/item/reagent_containers/food/snacks/mre_pack/meal1 = 15,
 					/obj/item/reagent_containers/food/snacks/mre_pack/meal2 = 15,
@@ -344,7 +344,7 @@
 	icon_deny = "marinemed-deny"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;All natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
 	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_MEDPREP) //Medics, doctors and researchers can access
-	wrenchable = FALSE
+	wrenchable = TRUE
 	products = list(/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 6,
 					/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = 6,
 					/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 6,
