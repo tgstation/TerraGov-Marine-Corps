@@ -6515,12 +6515,6 @@
 	dir = 1
 	},
 /area/magmoor/compound/east)
-"eOl" = (
-/obj/structure/girder/reinforced,
-/turf/open/floor/plating/ground/mars/dirttosand{
-	dir = 10
-	},
-/area/magmoor/compound/south)
 "ePj" = (
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 4
@@ -8024,6 +8018,14 @@
 /obj/structure/window/framed/colony,
 /turf/open/floor/wood,
 /area/magmoor/medical/breakroom)
+"fRO" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/structure/cable,
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 8
+	},
+/area/magmoor/compound/south)
 "fSf" = (
 /obj/machinery/photocopier,
 /obj/machinery/light{
@@ -8738,6 +8740,18 @@
 	dir = 4
 	},
 /area/magmoor/cave/east)
+"gqx" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 9
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/ground/concrete/edge{
+	dir = 1
+	},
+/area/magmoor/compound/south)
 "gqA" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -11304,12 +11318,6 @@
 	dir = 8
 	},
 /area/magmoor/cave/west)
-"iwe" = (
-/obj/structure/sign/directions/command{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/magmoor/compound/south)
 "iwi" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/mainship/floor,
@@ -15445,6 +15453,18 @@
 	dir = 4
 	},
 /area/magmoor/cargo/storage/secure)
+"lHL" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 8
+	},
+/area/magmoor/compound/south)
 "lIe" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
@@ -16124,18 +16144,6 @@
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/open/floor/freezer,
 /area/magmoor/civilian/bar)
-"mnM" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 5
-	},
-/obj/structure/cable,
-/turf/open/floor/plating/ground/concrete/lines{
-	dir = 8
-	},
-/area/magmoor/compound/south)
 "moB" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/mineral/uranium,
@@ -16400,19 +16408,6 @@
 	dir = 8
 	},
 /area/magmoor/cave/west)
-"mBi" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/effect/landmark/corpsespawner/colonist,
-/turf/open/floor/plating/ground/concrete/edge{
-	dir = 4
-	},
-/area/magmoor/compound/south)
 "mBl" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
@@ -16520,18 +16515,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/atmos)
-"mEh" = (
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
-	dir = 8
-	},
-/obj/structure/cable,
-/turf/open/floor/plating/ground/concrete/lines{
-	dir = 8
-	},
-/area/magmoor/compound/south)
 "mEk" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
@@ -17094,6 +17077,14 @@
 /obj/item/shard,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
+"mWb" = (
+/obj/structure/sign/directions/command{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 8
+	},
+/area/magmoor/compound)
 "mWk" = (
 /obj/machinery/light{
 	dir = 4
@@ -26155,6 +26146,18 @@
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/magmoor/civilian/chapel)
+"tiR" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/ground/concrete/lines{
+	dir = 8
+	},
+/area/magmoor/compound/south)
 "tjv" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/drinks/bottle/holywater,
@@ -26661,6 +26664,12 @@
 	dir = 8
 	},
 /area/magmoor/compound/southwest)
+"tzt" = (
+/obj/structure/girder/reinforced,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 8
+	},
+/area/magmoor/compound/south)
 "tzE" = (
 /obj/structure/barricade/guardrail{
 	dir = 1
@@ -29792,12 +29801,6 @@
 /obj/machinery/landinglight/ds2/delayone,
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing/two)
-"vpI" = (
-/obj/structure/flora/rock,
-/turf/open/floor/plating/ground/mars/dirttosand{
-	dir = 8
-	},
-/area/magmoor/compound/south)
 "vpN" = (
 /obj/machinery/landinglight/ds2,
 /turf/open/floor/mainship/mono,
@@ -56789,13 +56792,13 @@ nMW
 ykK
 fMf
 nMW
-rfk
-fZM
-fZM
-fZM
-fZM
-fZM
-fZM
+dGo
+csX
+csX
+csX
+csX
+csX
+csX
 csX
 csX
 csX
@@ -57022,14 +57025,14 @@ nMW
 ykK
 fMf
 nMW
-nMW
-nMW
-nMW
-nMW
-nMW
-nMW
-nMW
 dGo
+csX
+csX
+csX
+csX
+csX
+csX
+csX
 csX
 csX
 nTJ
@@ -57238,15 +57241,6 @@ qey
 hkW
 hOi
 bhT
-bhT
-bhT
-bhT
-bhT
-bhT
-bhT
-csX
-sMg
-nMW
 cet
 xCE
 xCE
@@ -57259,10 +57253,19 @@ xCE
 xCE
 xCE
 xCE
-mnM
-gDB
+lHL
+fRO
+gqx
+fMf
 nMW
 dGo
+csX
+csX
+csX
+csX
+csX
+csX
+csX
 csX
 csX
 csX
@@ -57471,15 +57474,6 @@ qey
 hkW
 hOi
 bhT
-bhT
-bhT
-jMU
-bhT
-bhT
-bhT
-csX
-sMg
-nMW
 ykK
 rNO
 ybo
@@ -57493,9 +57487,18 @@ ybo
 ybo
 ybo
 xJY
-fMf
+rNO
+ybo
+vnU
 nMW
 dGo
+csX
+csX
+csX
+csX
+csX
+csX
+csX
 csX
 csX
 csX
@@ -57704,31 +57707,31 @@ qey
 hkW
 hOi
 bhT
-bhT
-bhT
-bhT
-bhT
-bhT
-bhT
+ykK
+fMf
+nMW
+nMW
+nMW
+nMW
+nMW
+nMW
+nMW
+nMW
+nMW
+nMW
+ykK
+fMf
+nMW
+nMW
+rRk
 csX
-sMg
-nMW
-ykK
-fMf
-nMW
-nMW
-nMW
-nMW
-nMW
-nMW
-nMW
-nMW
-nMW
-nMW
-ykK
-fMf
-nMW
-dGo
+csX
+csX
+csX
+csX
+csX
+csX
+csX
 csX
 csX
 csX
@@ -57937,15 +57940,6 @@ qey
 hkW
 hOi
 bhT
-bhT
-bhT
-bhT
-bhT
-bhT
-bhT
-csX
-sMg
-nMW
 ykK
 fMf
 nMW
@@ -57962,6 +57956,15 @@ qzE
 gSB
 xtg
 wPm
+rfk
+fZM
+csX
+csX
+csX
+csX
+csX
+csX
+csX
 csX
 csX
 csX
@@ -58170,15 +58173,6 @@ qey
 hkW
 hOi
 bhT
-bhT
-bhT
-bhT
-bhT
-bhT
-bhT
-csX
-sMg
-nMW
 ykK
 fMf
 nMW
@@ -58197,6 +58191,15 @@ bXa
 wPm
 wPm
 wPm
+rfk
+fZM
+fZM
+fZM
+fZM
+csX
+csX
+csX
+csX
 csX
 csX
 csX
@@ -58403,15 +58406,6 @@ qey
 hkW
 vPA
 wXc
-wXc
-wXc
-wXc
-wXc
-wXc
-wXc
-fZM
-xqG
-nMW
 ykK
 fMf
 nMW
@@ -58435,6 +58429,15 @@ wPm
 xtg
 wPm
 wPm
+rfk
+fZM
+fZM
+fZM
+fZM
+fZM
+fZM
+fZM
+fZM
 xqG
 nMW
 nMW
@@ -58636,15 +58639,6 @@ qey
 hkW
 hkW
 hkW
-hkW
-hkW
-hkW
-hkW
-hkW
-hkW
-nMW
-nMW
-nMW
 ykK
 fMf
 nMW
@@ -58668,6 +58662,15 @@ mzE
 mzE
 bXa
 xtg
+nMW
+nMW
+nMW
+nMW
+nMW
+nMW
+nMW
+nMW
+nMW
 nMW
 nMW
 uVK
@@ -58869,15 +58872,6 @@ wGm
 yaX
 yaX
 yaX
-yaX
-yaX
-yaX
-yaX
-yaX
-yaX
-xCE
-xCE
-xCE
 vSv
 lgp
 xCE
@@ -58901,6 +58895,15 @@ rgm
 ext
 iiI
 sZc
+fRO
+ppz
+ppz
+ppz
+ppz
+ppz
+ppz
+ppz
+ppz
 ppz
 ppz
 iQa
@@ -59102,15 +59105,6 @@ xOY
 vzt
 xSv
 xSv
-xSv
-xSv
-xSv
-xSv
-xSv
-xSv
-ybo
-ybo
-bRU
 xJY
 rNO
 ybo
@@ -59134,6 +59128,15 @@ hTb
 lEx
 wrQ
 slc
+ybo
+ybo
+ybo
+ybo
+ybo
+ybo
+ybo
+ybo
+ybo
 ybo
 ybo
 ybo
@@ -59335,15 +59338,6 @@ qey
 hkW
 hkW
 hkW
-hkW
-hkW
-hkW
-hkW
-hkW
-hkW
-nMW
-nMW
-nMW
 ykK
 fMf
 nMW
@@ -59367,6 +59361,15 @@ jDI
 foY
 dmW
 wPm
+nMW
+nMW
+nMW
+nMW
+nMW
+nMW
+nMW
+nMW
+nMW
 nMW
 nMW
 nMW
@@ -59568,15 +59571,6 @@ wGm
 yaX
 yaX
 yaX
-yaX
-yaX
-yaX
-yaX
-yaX
-yaX
-xCE
-xCE
-xCE
 vSv
 lgp
 xCE
@@ -59600,6 +59594,15 @@ mCg
 kZR
 iiI
 sZc
+xGD
+xGD
+xGD
+xGD
+xGD
+xGD
+xGD
+xGD
+xGD
 xGD
 xGD
 xGD
@@ -59801,15 +59804,6 @@ xOY
 xSv
 xSv
 xSv
-xSv
-xSv
-xSv
-xSv
-xSv
-xSv
-ybo
-ybo
-ybo
 xJY
 rNO
 ybo
@@ -59833,6 +59827,15 @@ xnf
 lEx
 wrQ
 slc
+ybo
+ybo
+ybo
+ybo
+ybo
+ybo
+ybo
+ybo
+ybo
 ybo
 ybo
 rgy
@@ -60034,15 +60037,6 @@ qey
 hkW
 hkW
 hkW
-hkW
-hkW
-hkW
-hkW
-hkW
-hkW
-nMW
-nMW
-nMW
 ykK
 fMf
 nMW
@@ -60066,6 +60060,15 @@ slc
 lEx
 jOt
 xtg
+nMW
+nMW
+nMW
+nMW
+nMW
+nMW
+nMW
+nMW
+nMW
 nMW
 nMW
 xEj
@@ -60265,17 +60268,8 @@ hkW
 hjY
 qey
 hkW
-wtN
-yjc
-yjc
-yjc
-yjc
-yjc
-yjc
-yjc
-wSQ
-eOl
-iwe
+nbU
+mWb
 ykK
 fMf
 nMW
@@ -60299,6 +60293,15 @@ gVb
 cVU
 nbj
 tOe
+wSQ
+wSQ
+wSQ
+wSQ
+wSQ
+wSQ
+wSQ
+wSQ
+wSQ
 pbw
 nMW
 nMW
@@ -60500,15 +60503,6 @@ qey
 hkW
 hOi
 bhT
-bhT
-bhT
-xkc
-bhT
-bhT
-bhT
-csX
-sMg
-nMW
 ykK
 fMf
 nMW
@@ -60532,6 +60526,15 @@ oKL
 nFm
 nYK
 tOe
+csX
+csX
+csX
+csX
+csX
+csX
+csX
+csX
+csX
 csX
 pbw
 nMW
@@ -60733,15 +60736,6 @@ qey
 hkW
 hOi
 bhT
-bhT
-bhT
-bhT
-bhT
-bhT
-bhT
-csX
-sMg
-nMW
 ykK
 fMf
 nMW
@@ -60765,6 +60759,15 @@ vOi
 cUX
 qmE
 tOe
+csX
+csX
+csX
+csX
+csX
+csX
+csX
+csX
+csX
 csX
 sMg
 nMW
@@ -60966,15 +60969,6 @@ qey
 hkW
 hOi
 bhT
-bhT
-bhT
-bhT
-bhT
-bhT
-bhT
-csX
-sMg
-nMW
 ykK
 fMf
 nMW
@@ -60998,6 +60992,15 @@ xtQ
 lst
 yer
 tOe
+csX
+csX
+csX
+csX
+csX
+csX
+csX
+csX
+csX
 csX
 sMg
 nMW
@@ -61199,15 +61202,6 @@ ueW
 hkW
 hOi
 bhT
-tEn
-tEn
-bhT
-tEn
-bhT
-bhT
-csX
-sMg
-nMW
 hOJ
 lgp
 xCE
@@ -61215,7 +61209,7 @@ xCE
 xCE
 xCE
 xCE
-mEh
+fRO
 xCE
 xCE
 xCE
@@ -61223,14 +61217,23 @@ xCE
 nKM
 fMf
 nMW
-dGo
+rfk
+fZM
+tOe
+tOe
+tOe
+tOe
+tOe
+tOe
 csX
-tOe
-tOe
-tOe
-tOe
-tOe
-tOe
+csX
+csX
+csX
+csX
+csX
+csX
+csX
+csX
 csX
 sMg
 nMW
@@ -61432,15 +61435,6 @@ hkW
 wtN
 bhT
 bhT
-tEn
-bhT
-bhT
-tEn
-bhT
-bhT
-csX
-sMg
-nMW
 xEj
 ybo
 ybo
@@ -61448,15 +61442,24 @@ ybo
 ybo
 ybo
 ybo
-mBi
-rNO
+bRU
 ybo
 ybo
 ybo
 ybo
-vnU
+rgy
+fMf
+nMW
+nMW
+nMW
+nMW
 nMW
 dGo
+csX
+csX
+csX
+csX
+csX
 csX
 csX
 csX
@@ -61667,29 +61670,29 @@ bhT
 bhT
 bhT
 bhT
-bhT
-bhT
-bhT
-bhT
-csX
-sMg
-nMW
-nMW
+tTl
+hkW
+hkW
+hkW
 nMW
 nMW
 nMW
 nMW
 eoI
 nMW
-ykK
-fMf
-nMW
-nMW
-nMW
-nMW
-nMW
+nkl
+gUX
+tIa
+tIa
+tiR
+gDB
 nMW
 dGo
+csX
+csX
+csX
+csX
+csX
 csX
 csX
 csX
@@ -61901,27 +61904,27 @@ bhT
 bhT
 ygP
 bhT
-bhT
+yjc
 tEn
-bhT
-csX
-csX
+yjc
 wSQ
 wSQ
 wSQ
 wSQ
-wSQ
-wSQ
-eOl
+tzt
 nMW
-ykK
+xEj
+ybo
+ybo
+ybo
+xJY
 fMf
 nMW
-rRk
-wSQ
-wSQ
-vpI
-wSQ
+dGo
+csX
+csX
+cqR
+csX
 csX
 csX
 csX
@@ -62142,10 +62145,10 @@ csX
 csX
 csX
 csX
-csX
-csX
-csX
-sMg
+pbw
+nMW
+nMW
+nMW
 nMW
 ykK
 fMf
@@ -62376,9 +62379,9 @@ csX
 xCg
 csX
 csX
-csX
-csX
-sMg
+wSQ
+wSQ
+pbw
 uAT
 ykK
 fMf
