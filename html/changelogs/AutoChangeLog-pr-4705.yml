@@ -1,0 +1,6 @@
+author: "Hathkar"
+delete-after: True
+changes: 
+  - rscadd: "Logging for fuel puddles"
+  - bugfix: "Grief puddles are now logged"
+  - code_imp: "Logging for fuel puddles"
