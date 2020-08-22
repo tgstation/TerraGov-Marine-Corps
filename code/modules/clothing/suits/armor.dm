@@ -148,6 +148,7 @@
 	item_state = "swat"
 
 /obj/item/clothing/suit/armor/riot/mob_can_equip(mob/user, slot, warning)
+	. = ..()
 	if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		to_chat(user, "<span class='warning'>Your programming restricts wearing heavy armor.</span>")
 		return FALSE
@@ -181,6 +182,7 @@
 	flags_armor_protection = CHEST|ARMS
 
 /obj/item/clothing/suit/armor/swat/mob_can_equip(mob/user, slot, warning)
+	. = ..()
 	if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		to_chat(user, "<span class='warning'>Your programming restricts wearing heavy armor.</span>")
 		return FALSE
@@ -304,6 +306,7 @@
 	siemens_coefficient = 0.7
 
 /obj/item/clothing/suit/armor/tactical/mob_can_equip(mob/user, slot, warning)
+	. = ..()
 	if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		to_chat(user, "<span class='warning'>Your programming restricts wearing heavy armor.</span>")
 		return FALSE
@@ -377,6 +380,7 @@
 	item_state = "ertarmor_med"
 
 /obj/item/clothing/suit/armor/vest/ert/mob_can_equip(mob/user, slot, warning)
+	. = ..()
 	if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		to_chat(user, "<span class='warning'>Your programming restricts wearing heavy armor.</span>")
 		return FALSE
@@ -403,6 +407,7 @@
 	flags_armor_protection = CHEST|ARMS
 
 /obj/item/clothing/suit/armor/hos/mob_can_equip(mob/user, slot, warning)
+	. = ..()
 	if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		to_chat(user, "<span class='warning'>Your programming restricts wearing heavy armor.</span>")
 		return FALSE
