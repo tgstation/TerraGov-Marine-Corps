@@ -41,6 +41,8 @@
 
 	var/blade_dulling = DULLING_FLOOR
 	var/attacked_sound
+	///Lumcount added by sources other than lighting datum objects, such as the overlay lighting component.
+	var/dynamic_lumcount = 0
 
 	var/break_sound = null //The sound played when a turf breaks
 	var/debris = null

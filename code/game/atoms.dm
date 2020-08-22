@@ -90,6 +90,14 @@
 
 	var/list/alternate_appearances
 
+	///Boolean variable for toggleable lights. Has no effect without the proper light_system, light_range and light_power values.
+	var/light_on = TRUE
+	///Light systems, both shouldn't be active at the same time.
+	var/light_system = STATIC_LIGHT
+	///Bitflags to determine lighting-related atom properties.
+	var/light_flags = NONE
+	
+
 /**
   * Called when an atom is created in byond (built in engine proc)
   *
@@ -158,7 +166,7 @@
 	if(color)
 		add_atom_colour(color, FIXED_COLOUR_PRIORITY)
 
-	if (light_power && light_range)
+	if (light_system == STATIC_LIGHT && light_power && light_range)
 		update_light()
 
 	if (opacity && isturf(loc))

@@ -26,7 +26,6 @@
 	var/charge_time = 15
 	var/detonation_damage = 50
 	var/backstab_bonus = 30
-	var/light_on = FALSE
 	var/brightness_on = 5
 
 /obj/item/twohanded/kinetic_crusher/Initialize()

@@ -555,7 +555,7 @@
 	name = "void torch"
 	desc = ""
 	w_class = WEIGHT_CLASS_SMALL
-	brightness_on = 1
+	light_power = 1
 	icon_state = "torch"
 	item_state = "torch"
 	color = "#ff0000"
