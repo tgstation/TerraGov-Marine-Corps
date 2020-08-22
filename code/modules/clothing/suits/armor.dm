@@ -147,12 +147,6 @@
 	icon_state = "riot"
 	item_state = "swat"
 
-/obj/item/clothing/suit/armor/riot/mob_can_equip(mob/user, slot, warning)
-	. = ..()
-	if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
-		to_chat(user, "<span class='warning'>Your programming restricts wearing heavy armor.</span>")
-		return FALSE
-
 /obj/item/clothing/suit/armor/swat
 	name = "swat suit"
 	desc = "A heavily armored suit that protects against moderate damage. Used in special operations."
@@ -181,11 +175,6 @@
 	flags_inv_hide = NONE
 	flags_armor_protection = CHEST|ARMS
 
-/obj/item/clothing/suit/armor/swat/mob_can_equip(mob/user, slot, warning)
-	. = ..()
-	if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
-		to_chat(user, "<span class='warning'>Your programming restricts wearing heavy armor.</span>")
-		return FALSE
 
 /obj/item/clothing/suit/armor/det_suit
 	name = "armor"
@@ -305,12 +294,6 @@
 	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 40, "bomb" = 20, "bio" = 0, "rad" = 0, "fire" = 40, "acid" = 40)
 	siemens_coefficient = 0.7
 
-/obj/item/clothing/suit/armor/tactical/mob_can_equip(mob/user, slot, warning)
-	. = ..()
-	if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
-		to_chat(user, "<span class='warning'>Your programming restricts wearing heavy armor.</span>")
-		return FALSE
-
 
 /obj/item/clothing/suit/armor/tactical/verb/holster()
 	set name = "Holster"
@@ -379,12 +362,6 @@
 	icon_state = "ertarmor_med"
 	item_state = "ertarmor_med"
 
-/obj/item/clothing/suit/armor/vest/ert/mob_can_equip(mob/user, slot, warning)
-	. = ..()
-	if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
-		to_chat(user, "<span class='warning'>Your programming restricts wearing heavy armor.</span>")
-		return FALSE
-
 
 /obj/item/clothing/suit/armor/hos
 	name = "armored coat"
@@ -406,9 +383,3 @@
 	siemens_coefficient = 0.6
 	flags_armor_protection = CHEST|ARMS
 
-/obj/item/clothing/suit/armor/hos/mob_can_equip(mob/user, slot, warning)
-	. = ..()
-	if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
-		to_chat(user, "<span class='warning'>Your programming restricts wearing heavy armor.</span>")
-		return FALSE
-	return ..()
