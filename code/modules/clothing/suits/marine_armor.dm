@@ -1,6 +1,7 @@
 // MARINE STORAGE ARMOR
 
 /obj/item/clothing/suit/storage/marine/mob_can_equip(mob/user, slot, warning)
+	. = ..()
 	if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		to_chat(user, "<span class='warning'>Your programming restricts wearing heavy armor.</span>")
 		return FALSE
@@ -492,6 +493,7 @@
 
 
 /obj/item/clothing/suit/storage/faction/mob_can_equip(mob/user, slot, warning)
+	. = ..()
 	if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		to_chat(user, "<span class='warning'>Your programming restricts wearing heavy armor.</span>")
 		return FALSE
