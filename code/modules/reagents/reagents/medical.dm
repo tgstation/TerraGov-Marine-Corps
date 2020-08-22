@@ -75,8 +75,8 @@
 
 /datum/reagent/medicine/paracetamol/on_mob_life(mob/living/L, metabolism)
 	L.reagent_pain_modifier += PAIN_REDUCTION_HEAVY
-	L.heal_limb_damage(0.2*REM, 0.2*REM)
-	L.adjustToxLoss(-2 * REM)
+	L.heal_limb_damage(0.4*REM, 0.4*REM)
+	L.adjustToxLoss(-0.2 * REM)
 	L.adjustStaminaLoss(-2*REM)
 	return ..()
 
@@ -158,7 +158,7 @@
 
 /datum/reagent/medicine/leporazine/overdose_process(mob/living/L, metabolism)
 	if(prob(10))
-		L.Unconscious(30 SECONDS)
+		L.Unconscious(5 SECONDS)
 
 /datum/reagent/medicine/leporazine/overdose_crit_process(mob/living/L, metabolism)
 	L.drowsyness  = max(L.drowsyness, 30)
@@ -201,7 +201,7 @@
 
 /datum/reagent/medicine/dermaline/on_mob_life(mob/living/L, metabolism)
 	var/target_temp = L.get_standard_bodytemperature()
-	L.heal_limb_damage(0, 3 * REM)
+	L.heal_limb_damage(0, 4 * REM)
 	if(L.bodytemperature > target_temp)
 		L.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, target_temp)
 	if(volume > 5)
@@ -374,11 +374,11 @@
 	L.hallucination = max(0, L.hallucination - 10)
 	switch(current_cycle)
 		if(1 to 5)
-			L.adjustStaminaLoss(-10*REM)
+			L.adjustStaminaLoss(-15*REM)
 		if(6 to 20)
-			L.adjustStaminaLoss((current_cycle*2 - 22)*REM)
+			L.adjustStaminaLoss((current_cycle*3 - 28)*REM)
 		if(20 to INFINITY)
-			L.adjustStaminaLoss(20*REM)
+			L.adjustStaminaLoss(30*REM)
 	return ..()
 
 /datum/reagent/medicine/synaptizine/overdose_process(mob/living/L, metabolism)
@@ -411,8 +411,8 @@
 	L.AdjustParalyzed(-20)
 	L.AdjustSleeping(-40)
 	L.adjustStaminaLoss(-60*REM)
-	L.heal_limb_damage(10*REM, 10 * REM)
-	L.adjustToxLoss(5*REM)
+	L.heal_limb_damage(15*REM, 15 * REM)
+	L.adjustToxLoss(7.5*REM)
 	return ..()
 
 /datum/reagent/medicine/neuraline/overdose_process(mob/living/L, metabolism)
@@ -619,7 +619,7 @@
 	purge_rate = 0.2
 
 /datum/reagent/medicine/meralyne/on_mob_life(mob/living/L, metabolism)
-	L.heal_limb_damage(3*REM, 0)
+	L.heal_limb_damage(4*REM, 0)
 	if(volume > 5)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 	if(volume > 10)
@@ -941,7 +941,7 @@
 			L.adjustToxLoss(2.5*REM)
 			L.Sleeping(10 SECONDS)
 		if(51 to INFINITY)
-			L.adjustToxLoss((current_cycle/5-35)*REM) //why yes, the sleeping stops after it stops working. Yay screaming patients running off!
+			L.adjustToxLoss((current_cycle/5-9.2)*REM) //why yes, the sleeping stops after it stops working. Yay screaming patients running off!
 	return ..()
 
 /datum/reagent/medicine/polyhexanide/overdose_crit_process(mob/living/L, metabolism)
@@ -977,7 +977,8 @@
 	color = "#19C832"
 	overdose_threshold = REAGENTS_OVERDOSE * 0.5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 0.5
-	custom_metabolism = REAGENTS_METABOLISM * 5
+	custom_metabolism = REAGENTS_METABOLISM * 0.05 //set to *5 when i fix this
+	purge_list = list(/datum/reagent/medicine, /datum/reagent/toxin)
 	purge_rate = 5
 	scannable = TRUE
 	taste_description = "punishment"
