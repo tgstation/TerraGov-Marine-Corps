@@ -800,7 +800,7 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced,
-/obj/machinery/button/door/open_only/landing_zone/lz2{
+/obj/machinery/button/door/open_only/landing_zone{
 	dir = 8
 	},
 /turf/open/floor/plating,
