@@ -274,7 +274,7 @@ SUBSYSTEM_DEF(mapping)
 		var/datum/map_template/modular/M = new modular_type()
 
 		LAZYINITLIST(modular_templates[M.modular_id])
-		modular_templates[M.modular_id].Add(M)
+		modular_templates[M.modular_id] += M
 		map_templates[M.type] = M
 
 /datum/controller/subsystem/mapping/proc/RequestBlockReservation(width, height, z, type = /datum/turf_reservation, turf_type_override)
