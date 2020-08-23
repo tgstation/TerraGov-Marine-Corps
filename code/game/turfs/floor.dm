@@ -246,7 +246,8 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 		icon_state = "carpet-broken"
 		broken = 1
 	else if(is_grass_floor())
-		icon_state = "sand[pick("1", "2", "3")]"
+		icon = 'icons/turf/ground_map.dmi'
+		icon_state = "sand"
 		broken = 1
 
 /turf/open/floor/proc/burn_tile()
