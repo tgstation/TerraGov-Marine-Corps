@@ -116,35 +116,35 @@
 /obj/structure/razorwire/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/grab))
-		if(isxeno(user))
-			return
-
-		var/obj/item/grab/G = I
-		if(!isliving(G.grabbed_thing))
-			return
-
-		var/mob/living/M = G.grabbed_thing
-		if(user.a_intent == INTENT_HARM)
-			if(user.grab_state <= GRAB_AGGRESSIVE)
-				to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
-				return
-
-			var/armor_block = null
-			var/def_zone = ran_zone()
-			M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, TRUE)
-			UPDATEHEALTH(M)
-			user.visible_message("<span class='danger'>[user] spartas [M]'s into [src]!</span>",
-			"<span class='danger'>You sparta [M]'s against [src]!</span>")
-			log_combat(user, M, "spartaed", "", "against \the [src]")
-			playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
-
-		else if(user.grab_state >= GRAB_AGGRESSIVE)
-			M.forceMove(loc)
-			M.Paralyze(10 SECONDS)
-			user.visible_message("<span class='danger'>[user] throws [M] on [src].</span>",
-			"<span class='danger'>You throw [M] on [src].</span>")
+	if(!istype(I, /obj/item/grab))
 		return
+	if(isxeno(user))//I am very tempted to remove this >:)
+		return
+
+	var/obj/item/grab/G = I
+	if(!isliving(G.grabbed_thing))
+		return
+
+	var/mob/living/M = G.grabbed_thing
+	if(user.a_intent == INTENT_HARM)
+		if(user.grab_state <= GRAB_AGGRESSIVE)
+			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
+			return
+
+		var/armor_block = null
+		var/def_zone = ran_zone()
+		M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, TRUE)
+		UPDATEHEALTH(M)
+		user.visible_message("<span class='danger'>[user] spartas [M]'s into [src]!</span>",
+		"<span class='danger'>You sparta [M]'s against [src]!</span>")
+		log_combat(user, M, "spartaed", "", "against \the [src]")
+		playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
+
+	else if(user.grab_state >= GRAB_AGGRESSIVE)
+		M.forceMove(loc)
+		M.Paralyze(10 SECONDS)
+		user.visible_message("<span class='danger'>[user] throws [M] on [src].</span>",
+		"<span class='danger'>You throw [M] on [src].</span>")
 
 /obj/structure/razorwire/wirecutter_act(mob/living/user, obj/item/I)
 	user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
