@@ -692,3 +692,9 @@
 
 /turf/open/floor/mech_bay_recharge_floor/asteroid
 	icon_state = "recharge_floor_asteroid"
+
+//Industrial//
+
+/turf/open/floor/industrial
+	icon = 'icons/turf/industrial.dmi'
+	icon_state = "industrial"
