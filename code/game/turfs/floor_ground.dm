@@ -97,8 +97,12 @@
 
 /turf/open/floor/plating/ground/mars
 	icon = 'icons/turf/bigred.dmi'
+	shoefootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	mediumxenofootstep = FOOTSTEP_SAND
 
 /turf/open/floor/plating/ground/mars/random/cave
+
 	name = "cave"
 	icon_state = "mars_cave"
 
@@ -113,9 +117,6 @@
 /turf/open/floor/plating/ground/mars/random/sand
 	name = "sand"
 	icon_state = "mars_sand"
-	shoefootstep = FOOTSTEP_SAND
-	barefootstep = FOOTSTEP_SAND
-	mediumxenofootstep = FOOTSTEP_SAND
 
 /turf/open/floor/plating/ground/mars/random/Initialize()
 	. = ..()
@@ -143,6 +144,9 @@
 	name = "ice floor"
 	icon = 'icons/turf/ice.dmi'
 	icon_state = "ice_floor"
+	shoefootstep = FOOTSTEP_ICE
+	barefootstep = FOOTSTEP_ICE
+	mediumxenofootstep = FOOTSTEP_ICE
 
 //Randomize ice floor sprite
 /turf/open/floor/plating/ground/ice/Initialize()
@@ -229,4 +233,4 @@
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave/sides
 	name = "cave"
 	icon_state = "inner_cavesides"
-	
+
