@@ -146,37 +146,43 @@
 			"<span class='danger'>You throw [M] on [src].</span>")
 		return
 
-	else if(iswirecutter(I))
-		user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
-		"<span class='notice'>You start disassembling [src].</span>")
-		var/delay_disassembly = SKILL_TASK_AVERAGE - (0.5 SECONDS + user.skills.getRating("engineer"))
+/obj/structure/razorwire/wirecutter_act(mob/living/user, obj/item/I)
+	user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
+	"<span class='notice'>You start disassembling [src].</span>")
+	var/delay_disassembly = SKILL_TASK_AVERAGE - (0.5 SECONDS + user.skills.getRating("engineer"))
 
-		if(!do_after(user, delay_disassembly, TRUE, src, BUSY_ICON_BUILD))
-			return
+	if(!do_after(user, delay_disassembly, TRUE, src, BUSY_ICON_BUILD))
+		return TRUE
 
-		user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
-		"<span class='notice'>You disassemble [src].</span>")
-		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-		deconstruct(TRUE)
+	user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
+	"<span class='notice'>You disassemble [src].</span>")
+	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
+	deconstruct(TRUE)
+	return TRUE
 
-	else if(iswelder(I))
-		var/obj/item/tool/weldingtool/WT = I
-		if(!WT.remove_fuel(0, user))
-			return
+/obj/structure/razorwire/welder_act(mob/living/user, obj/item/I)
+	var/obj/item/tool/weldingtool/WT = I
+	if(!WT.remove_fuel(0, user))
+		return TRUE
 
-		var/delay = SKILL_TASK_TOUGH - (1 SECONDS + user.skills.getRating("engineer") * 5)
-		user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
-		"<span class='notice'>You begin repairing the damage to [src].</span>")
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-		var/old_loc = loc
-		if(!do_after(user, delay, TRUE, src, BUSY_ICON_FRIENDLY) || old_loc != loc)
-			return
+	if(obj_integrity >= max_integrity)
+		to_chat(user, "<span class='notice'>[src] is already fully intact.</span>")
+		return TRUE
 
-		user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
-		"<span class='notice'>You repair [src].</span>")
-		repair_damage(100)
-		update_icon()
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
+	var/delay = SKILL_TASK_TOUGH - (1 SECONDS + user.skills.getRating("engineer") * 5)
+	user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
+	"<span class='notice'>You begin repairing the damage to [src].</span>")
+	playsound(loc, 'sound/items/welder2.ogg', 25, 1)
+	var/old_loc = loc
+	if(!do_after(user, delay, TRUE, src, BUSY_ICON_FRIENDLY) || old_loc != loc)
+		return TRUE
+
+	user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
+	"<span class='notice'>You repair [src].</span>")
+	repair_damage(100)
+	update_icon()
+	playsound(loc, 'sound/items/welder2.ogg', 25, 1)
+	return TRUE
 
 
 /obj/structure/razorwire/attack_alien(mob/living/carbon/xenomorph/M)
