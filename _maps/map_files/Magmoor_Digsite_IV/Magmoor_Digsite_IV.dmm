@@ -1133,6 +1133,18 @@
 "bhT" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound)
+"bhX" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/stairs/rampbottom{
+	dir = 8
+	},
+/area/magmoor/compound)
 "bid" = (
 /turf/open/lavaland/lava/single/middle,
 /area/magmoor/cave/northwest)
@@ -1170,10 +1182,9 @@
 /turf/open/floor/plating/ground/concrete,
 /area/magmoor/compound/south)
 "bjs" = (
-/obj/structure/stairs{
+/turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
-/turf/open/floor/plating,
 /area/magmoor/cave/north)
 "bjG" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -4031,10 +4042,9 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/structure/stairs{
+/turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
-/turf/open/floor/plating,
 /area/magmoor/cave/north)
 "dgE" = (
 /obj/structure/table/reinforced,
@@ -4543,10 +4553,9 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/structure/stairs{
-	dir = 4
+/turf/open/floor/stairs/rampbottom{
+	dir = 8
 	},
-/turf/open/floor/plating,
 /area/magmoor/cave/northwest)
 "dzb" = (
 /obj/machinery/light{
@@ -4935,10 +4944,9 @@
 	},
 /area/magmoor/research/rnd/lobby)
 "dLi" = (
-/obj/structure/stairs{
-	dir = 4
+/turf/open/floor/stairs/rampbottom{
+	dir = 8
 	},
-/turf/open/floor/plating,
 /area/magmoor/cave/northwest)
 "dLC" = (
 /obj/structure/cable,
@@ -6218,11 +6226,10 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival)
 "eHW" = (
-/obj/structure/stairs,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/plating,
+/turf/open/floor/stairs/rampbottom,
 /area/magmoor/compound/south)
 "eIb" = (
 /turf/open/lavaland/lava/lpiece{
@@ -7727,8 +7734,7 @@
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
 "fNq" = (
-/obj/structure/stairs,
-/turf/open/floor/plating,
+/turf/open/floor/stairs/rampbottom,
 /area/magmoor/compound)
 "fNt" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
@@ -10665,8 +10671,7 @@
 /turf/open/floor/mainship/tcomms,
 /area/magmoor/research/serverroom)
 "ibR" = (
-/obj/structure/stairs,
-/turf/open/floor/plating,
+/turf/open/floor/stairs/rampbottom,
 /area/magmoor/compound/east)
 "ibX" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
@@ -11251,10 +11256,9 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/lobby)
 "iza" = (
-/obj/structure/stairs{
+/turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
-/turf/open/floor/plating,
 /area/magmoor/cave/east)
 "izb" = (
 /turf/closed/wall,
@@ -12208,9 +12212,6 @@
 /turf/open/floor/tile,
 /area/magmoor/mining/refinery)
 "jlg" = (
-/obj/structure/stairs{
-	dir = 8
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -12218,7 +12219,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/plating,
+/turf/open/floor/stairs/rampbottom{
+	dir = 8
+	},
 /area/magmoor/compound/south)
 "jlh" = (
 /obj/structure/barricade/guardrail,
@@ -12512,11 +12515,10 @@
 /turf/open/floor/plating/ground/concrete/edge,
 /area/magmoor/cave/east)
 "jts" = (
-/obj/structure/stairs,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/open/floor/stairs/rampbottom,
 /area/magmoor/compound)
 "jtx" = (
 /obj/machinery/computer/shuttle/shuttle_control/dropship1,
@@ -14201,8 +14203,7 @@
 	},
 /area/magmoor/compound/northeast)
 "kMj" = (
-/obj/structure/stairs,
-/turf/open/floor/plating,
+/turf/open/floor/stairs/rampbottom,
 /area/magmoor/cave/west)
 "kMo" = (
 /obj/structure/barricade/guardrail{
@@ -14215,11 +14216,10 @@
 /turf/open/lavaland/basalt/cave/corner,
 /area/magmoor/cave/west)
 "kNh" = (
-/obj/structure/stairs,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/open/floor/stairs/rampbottom,
 /area/magmoor/cave/west)
 "kNk" = (
 /obj/machinery/atmospherics/pipe/simple/general/visible{
@@ -14719,8 +14719,7 @@
 /turf/closed/wall/cult,
 /area/magmoor/cave/mining/fossil)
 "lkv" = (
-/obj/structure/stairs,
-/turf/open/floor/plating,
+/turf/open/floor/stairs/rampbottom,
 /area/magmoor/cave/east)
 "lkH" = (
 /obj/machinery/power/apc/drained{
@@ -15182,10 +15181,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/structure/stairs{
+/turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
-/turf/open/floor/plating,
 /area/magmoor/cave/east)
 "lDy" = (
 /obj/structure/rack,
@@ -15575,9 +15573,6 @@
 	},
 /area/magmoor/compound/east)
 "lPe" = (
-/obj/structure/stairs{
-	dir = 8
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -15585,7 +15580,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/plating,
+/turf/open/floor/stairs/rampbottom{
+	dir = 8
+	},
 /area/magmoor/compound/west)
 "lQm" = (
 /turf/open/lavaland/lava/lpiece{
@@ -17196,10 +17193,9 @@
 	},
 /area/magmoor/engi/power)
 "ngv" = (
-/obj/structure/stairs{
+/turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
-/turf/open/floor/plating,
 /area/magmoor/cave/southeast)
 "ngW" = (
 /obj/structure/barricade/guardrail,
@@ -17480,10 +17476,9 @@
 	},
 /area/magmoor/cave/southwest)
 "nrV" = (
-/obj/structure/stairs{
+/turf/open/floor/stairs/rampbottom{
 	dir = 8
 	},
-/turf/open/floor/plating,
 /area/magmoor/compound/south)
 "nsl" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -18679,8 +18674,7 @@
 	},
 /area/magmoor/cave/southwest)
 "ojh" = (
-/obj/structure/stairs,
-/turf/open/floor/plating,
+/turf/open/floor/stairs/rampbottom,
 /area/magmoor/compound/northeast)
 "ojO" = (
 /turf/open/lavaland/basalt/cave{
@@ -19111,8 +19105,7 @@
 /turf/open/lavaland/lava/lpiece,
 /area/magmoor/cave/southwest)
 "oyB" = (
-/obj/structure/stairs,
-/turf/open/floor/plating,
+/turf/open/floor/stairs/rampbottom,
 /area/magmoor/compound/southeast)
 "oyN" = (
 /obj/structure/disposalpipe/water_pipe{
@@ -19324,11 +19317,10 @@
 	},
 /area/magmoor/cave/east)
 "oGq" = (
-/obj/structure/stairs,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/open/floor/stairs/rampbottom,
 /area/magmoor/cave/east)
 "oGr" = (
 /obj/structure/rack,
@@ -19910,11 +19902,10 @@
 	},
 /area/magmoor/cargo/processing/south)
 "pcy" = (
-/obj/structure/stairs,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/open/floor/stairs/rampbottom,
 /area/magmoor/cave/southwest)
 "pcE" = (
 /obj/structure/table/reinforced,
@@ -20036,8 +20027,7 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/power)
 "pfU" = (
-/obj/structure/stairs,
-/turf/open/floor/plating,
+/turf/open/floor/stairs/rampbottom,
 /area/magmoor/cave/southwest)
 "pgt" = (
 /obj/structure/disposalpipe/segment{
@@ -21793,10 +21783,9 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
-/obj/structure/stairs{
+/turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
-/turf/open/floor/plating,
 /area/magmoor/cave/south)
 "qsD" = (
 /turf/open/lavaland/lava/lpiece{
@@ -22108,10 +22097,9 @@
 /turf/open/floor/plating/ground/concrete/lines,
 /area/magmoor/compound)
 "qEj" = (
-/obj/structure/stairs{
+/turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
-/turf/open/floor/plating,
 /area/magmoor/cave/south)
 "qEz" = (
 /obj/machinery/miner/damaged,
@@ -22305,10 +22293,9 @@
 	},
 /area/magmoor/compound/northeast)
 "qOa" = (
-/obj/structure/stairs{
+/turf/open/floor/stairs/rampbottom{
 	dir = 8
 	},
-/turf/open/floor/plating,
 /area/magmoor/compound/west)
 "qOb" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -22761,10 +22748,9 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/structure/stairs{
-	dir = 4
+/turf/open/floor/stairs/rampbottom{
+	dir = 8
 	},
-/turf/open/floor/plating,
 /area/magmoor/compound/northwest)
 "rgy" = (
 /turf/open/floor/plating/ground/concrete/edge{
@@ -23195,11 +23181,10 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/structure/stairs{
+/obj/docking_port/stationary/crashmode/bigbury,
+/turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
-/obj/docking_port/stationary/crashmode/bigbury,
-/turf/open/floor/plating,
 /area/magmoor/compound)
 "rux" = (
 /obj/structure/flora/rock/alt2,
@@ -23333,10 +23318,9 @@
 /turf/open/floor/mainship/orange,
 /area/magmoor/engi/storage)
 "rzB" = (
-/obj/structure/stairs{
+/turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
-/turf/open/floor/plating,
 /area/magmoor/compound/east)
 "rzF" = (
 /turf/closed/glass/thin/end{
@@ -23606,8 +23590,7 @@
 /turf/open/floor/mainship/orange,
 /area/magmoor/cargo/processing)
 "rGY" = (
-/obj/structure/stairs,
-/turf/open/floor/plating,
+/turf/open/floor/stairs/rampbottom,
 /area/magmoor/cave/south)
 "rHa" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -23842,10 +23825,9 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/structure/stairs{
+/turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
-/turf/open/floor/plating,
 /area/magmoor/cave/southeast)
 "rNO" = (
 /turf/open/floor/plating/ground/concrete/edge,
@@ -25520,6 +25502,11 @@
 /obj/machinery/light,
 /turf/open/floor/mainship/orange,
 /area/magmoor/cargo/processing)
+"sSk" = (
+/turf/open/floor/stairs/rampbottom{
+	dir = 8
+	},
+/area/magmoor/compound)
 "sSw" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
@@ -25899,10 +25886,9 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/structure/stairs{
+/turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
-/turf/open/floor/plating,
 /area/magmoor/compound)
 "teQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -26210,10 +26196,9 @@
 /turf/closed/glass/thin/corner,
 /area/magmoor/compound/west)
 "tqe" = (
-/obj/structure/stairs{
+/turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
-/turf/open/floor/plating,
 /area/magmoor/compound/northeast)
 "tqv" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1,
@@ -26433,10 +26418,9 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/structure/stairs{
+/turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
-/turf/open/floor/plating,
 /area/magmoor/compound/northeast)
 "tye" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -27206,10 +27190,9 @@
 /turf/open/floor/plating,
 /area/magmoor/compound/northwest)
 "tYc" = (
-/obj/structure/stairs{
-	dir = 4
+/turf/open/floor/stairs/rampbottom{
+	dir = 8
 	},
-/turf/open/floor/plating,
 /area/magmoor/compound/northwest)
 "tYF" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
@@ -30698,10 +30681,9 @@
 /turf/open/floor/mainship/mono,
 /area/magmoor/cargo/processing/south)
 "wba" = (
-/obj/structure/stairs{
+/turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
-/turf/open/floor/plating,
 /area/magmoor/compound)
 "wbu" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
@@ -32165,10 +32147,9 @@
 	},
 /area/magmoor/compound)
 "wPb" = (
-/obj/structure/stairs{
+/turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
-/turf/open/floor/plating,
 /area/magmoor/compound/north)
 "wPm" = (
 /turf/closed/wall,
@@ -32276,11 +32257,10 @@
 	},
 /area/magmoor/compound/south)
 "wSH" = (
-/obj/structure/stairs,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/open/floor/stairs/rampbottom,
 /area/magmoor/cave/south)
 "wSP" = (
 /obj/machinery/portable_atmospherics/hydroponics,
@@ -33603,11 +33583,10 @@
 	},
 /area/magmoor/civilian/arrival)
 "xES" = (
-/obj/structure/stairs,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/open/floor/stairs/rampbottom,
 /area/magmoor/compound/east)
 "xEX" = (
 /obj/structure/closet/walllocker/hydrant/extinguisher{
@@ -34417,10 +34396,9 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/structure/stairs{
+/turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
-/turf/open/floor/plating,
 /area/magmoor/compound/east)
 "xZE" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -54456,10 +54434,10 @@ bhT
 bhT
 bhT
 hph
-wba
-teL
-wba
-wba
+sSk
+bhX
+sSk
+sSk
 hph
 wGr
 wTG
@@ -54922,10 +54900,10 @@ wTG
 qPY
 nkW
 hph
-wba
-teL
-wba
-wba
+sSk
+bhX
+sSk
+sSk
 hph
 aIQ
 wUK
