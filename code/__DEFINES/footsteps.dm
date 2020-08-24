@@ -83,7 +83,7 @@ GLOBAL_LIST_INIT(shoefootstep, list(
 		'sound/effects/footstep/ice2.ogg',
 		'sound/effects/footstep/ice3.ogg',
 		'sound/effects/footstep/ice4.ogg',
-		'sound/effects/footstep/ice5.ogg'), 80, 1),
+		'sound/effects/footstep/ice5.ogg'), 60, 1),
 	FOOTSTEP_CONCRETE = list(list(
 		'sound/effects/footstep/concrete1.ogg',
 		'sound/effects/footstep/concrete2.ogg',
@@ -147,7 +147,7 @@ GLOBAL_LIST_INIT(barefootstep, list(
 		'sound/effects/footstep/ice2.ogg',
 		'sound/effects/footstep/ice3.ogg',
 		'sound/effects/footstep/ice4.ogg',
-		'sound/effects/footstep/ice5.ogg'), 80, 0),
+		'sound/effects/footstep/ice5.ogg'), 50, 0),
 	FOOTSTEP_CONCRETE = list(list(
 		'sound/effects/footstep/hardbarefoot1.ogg',
 		'sound/effects/footstep/hardbarefoot2.ogg',
@@ -206,7 +206,7 @@ GLOBAL_LIST_INIT(xenomediumstep, list(
 		'sound/effects/footstep/ice2.ogg',
 		'sound/effects/footstep/ice3.ogg',
 		'sound/effects/footstep/ice4.ogg',
-		'sound/effects/footstep/ice5.ogg'), 70, 1),
+		'sound/effects/footstep/ice5.ogg'), 50, 1),
 	FOOTSTEP_CONCRETE = list(list(
 		'sound/effects/footstep/concrete1.ogg',
 		'sound/effects/footstep/concrete2.ogg',

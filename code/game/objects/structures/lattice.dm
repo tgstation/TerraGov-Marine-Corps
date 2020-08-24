@@ -75,6 +75,9 @@
 /obj/structure/catwalk
 	icon = 'icons/turf/catwalks.dmi'
 	icon_state = "catwalk0"
+	shoefootstep = FOOTSTEP_CATWALK
+	barefootstep = FOOTSTEP_CATWALK
+	mediumxenofootstep = FOOTSTEP_CATWALK
 
 /obj/structure/catwalk/Initialize()
 	. = ..()

@@ -39,6 +39,9 @@
 	name = "catwalk"
 	desc = "Cats really don't like these things."
 	var/covered = TRUE
+	shoefootstep = FOOTSTEP_CATWALK
+	barefootstep = FOOTSTEP_CATWALK
+	mediumxenofootstep = FOOTSTEP_CATWALK
 
 
 /turf/open/floor/plating/plating_catwalk/Initialize()
@@ -94,7 +97,9 @@
 	name = "catwalk"
 	desc = "Cats really don't like these things."
 	layer = ATMOS_PIPE_LAYER
-
+	shoefootstep = FOOTSTEP_CATWALK
+	barefootstep = FOOTSTEP_CATWALK
+	mediumxenofootstep = FOOTSTEP_CATWALK
 
 /turf/open/floor/plating/warning
 	icon_state = "warnplate"
