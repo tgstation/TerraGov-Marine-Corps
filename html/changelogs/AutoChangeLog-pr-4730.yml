@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - rscadd: "Tame-ased runechat layering"
+  - bugfix: "Runechat emotes will now not show correctly"

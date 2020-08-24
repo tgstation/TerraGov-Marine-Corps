@@ -163,6 +163,9 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 #undef SKILLSID
 
+/datum/skills/proc/getPercent(rating, max_rating)
+	return CLAMP01(vars[rating] * 100 / max_rating * 0.01)
+
 /datum/skills/proc/getRating(rating)
 	return vars[rating]
 

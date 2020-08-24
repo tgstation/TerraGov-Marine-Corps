@@ -406,10 +406,10 @@
 	if(last_slash == 1)
 		switch(child)
 			if(/datum)
-				return
-			if(/obj || /mob)
+				return null
+			if(/obj, /mob)
 				return /atom/movable
-			if(/area || /turf)
+			if(/area, /turf)
 				return /atom
 			else
 				return /datum

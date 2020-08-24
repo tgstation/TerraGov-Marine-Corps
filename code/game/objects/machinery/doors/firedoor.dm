@@ -51,18 +51,18 @@
 	var/area/A = get_area(src)
 	ASSERT(istype(A))
 
-	A.all_doors.Add(src)
+	LAZYADD(A.all_fire_doors, src)
 	areas_added = list(A)
 
 	for(var/direction in GLOB.cardinals)
 		A = get_area(get_step(src,direction))
 		if(istype(A) && !(A in areas_added))
-			A.all_doors.Add(src)
+			LAZYADD(A.all_fire_doors, src)
 			areas_added += A
 
 /obj/machinery/door/firedoor/Destroy()
 	for(var/area/A in areas_added)
-		A.all_doors.Remove(src)
+		LAZYREMOVE(A.all_fire_doors, src)
 	. = ..()
 
 

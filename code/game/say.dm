@@ -87,6 +87,10 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	if(ishuman(speaker))
 		var/mob/living/carbon/human/H = speaker
 
+		var/paygrade = H.get_paygrade()
+		if(paygrade)
+			return "[paygrade]"	//Attempt to read off the id before defaulting to job
+
 		var/datum/job/J = H.job
 		if(!istype(J))
 			return ""

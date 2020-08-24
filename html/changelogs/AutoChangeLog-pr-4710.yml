@@ -1,4 +1,4 @@
 author: "TiviPlus"
 delete-after: True
 changes: 
-  - rscdel: "Removed an unused map"
+  - bugfix: "fixed paygrades"

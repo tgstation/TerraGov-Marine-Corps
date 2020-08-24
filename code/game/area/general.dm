@@ -208,12 +208,6 @@
 	requires_power = 0
 
 
-/area/airtunnel1/      // referenced in airtunnel.dm:759
-
-
-/area/dummy/           // Referenced in engine.dm:261
-
-
 /area/start            // will be unused once kurper gets his login interface patch done
 	name = "start area"
 	icon_state = "start"
