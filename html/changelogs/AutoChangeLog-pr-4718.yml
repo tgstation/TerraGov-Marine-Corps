@@ -1,0 +1,6 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - bugfix: "Modular helmet icons will update on use correctly"
+  - bugfix: "Modular helmet binoculars will deactivate correctly"
+  - bugfix: "Modular helmet welding helmet will update tint correctly"
