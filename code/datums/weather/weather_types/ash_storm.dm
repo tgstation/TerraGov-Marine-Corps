@@ -20,7 +20,7 @@
 	protect_indoors = TRUE
 	target_trait = ZTRAIT_ASHSTORM
 
-	probability = 90
+	probability = 40
 
 	barometer_predictable = TRUE
 
@@ -83,9 +83,11 @@
 	return FALSE //RIP you
 
 /datum/weather/ash_storm/weather_act(mob/living/L)
+	if(L.stat == DEAD)
+		return
 	if(is_storm_immune(L))
 		return
-	L.adjustFireLoss(10)
+	L.adjustFireLoss(6)
 
 
 //Emberfalls are the result of an ash storm passing by close to the playable area of lavaland. They have a 10% chance to trigger in place of an ash storm.
@@ -103,4 +105,4 @@
 
 	aesthetic = TRUE
 
-	probability = 10
+	probability = 60
