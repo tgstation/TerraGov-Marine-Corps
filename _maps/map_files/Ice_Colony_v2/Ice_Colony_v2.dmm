@@ -32866,6 +32866,7 @@
 /area/ice_colony/exterior/surface/cliff)
 "cVK" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating,
 /area/ice_colony/exterior/surface/landing_pad2)
 "dfk" = (
@@ -33456,6 +33457,7 @@
 /area/ice_colony/exterior/underground/caves)
 "lPy" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
 "lSx" = (

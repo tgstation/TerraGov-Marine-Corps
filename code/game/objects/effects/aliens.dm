@@ -60,9 +60,9 @@
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		var/armor_block
-		if(COOLDOWN_CHECK(H, COOLDOWN_ACID))
+		if(TIMER_COOLDOWN_CHECK(H, COOLDOWN_ACID))
 			return
-		COOLDOWN_START(H, COOLDOWN_ACID, 1 SECONDS)
+		TIMER_COOLDOWN_START(H, COOLDOWN_ACID, 1 SECONDS)
 		if(!H.lying_angle)
 			to_chat(H, "<span class='danger'>Your feet scald and burn! Argh!</span>")
 			if(!(H.species.species_flags & NO_PAIN))

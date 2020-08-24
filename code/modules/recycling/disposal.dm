@@ -533,10 +533,10 @@
 
 	var/mob/living/living_user = user
 
-	if(living_user.stat || COOLDOWN_CHECK(living_user, COOLDOWN_DISPOSAL))
+	if(living_user.stat || TIMER_COOLDOWN_CHECK(living_user, COOLDOWN_DISPOSAL))
 		return
 
-	COOLDOWN_START(living_user, COOLDOWN_DISPOSAL, 10 SECONDS)
+	TIMER_COOLDOWN_START(living_user, COOLDOWN_DISPOSAL, 10 SECONDS)
 
 	playsound(loc, 'sound/effects/clang.ogg', 25)
 

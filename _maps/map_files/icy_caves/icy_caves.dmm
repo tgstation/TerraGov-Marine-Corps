@@ -4673,6 +4673,7 @@
 /area/icy_caves/outpost/LZ2)
 "rt" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
 "rw" = (
@@ -5102,6 +5103,7 @@
 /area/icy_caves/outpost/research)
 "yl" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/dorms)
 "zl" = (
@@ -5112,6 +5114,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/ground/snow,
 /area/icy_caves/outpost/outside)
 "Co" = (
@@ -5173,6 +5176,7 @@
 /area/icy_caves/outpost/research)
 "LI" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/ice_rock/single,
 /area/icy_caves/caves/west)
 "MQ" = (
@@ -5184,6 +5188,7 @@
 /area/icy_caves/caves/northern)
 "Nf" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/east)
 "NE" = (
@@ -5224,6 +5229,7 @@
 	dir = 2
 	},
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/refinery)
 "Rh" = (
@@ -5252,6 +5258,7 @@
 /area/icy_caves/outpost/research)
 "ST" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/ice/thin/intersection,
 /area/icy_caves/caves/south)
 "Tb" = (
@@ -5277,6 +5284,7 @@
 /area/icy_caves/outpost/research)
 "Uk" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/ice/thin/junction{
 	dir = 1
 	},
