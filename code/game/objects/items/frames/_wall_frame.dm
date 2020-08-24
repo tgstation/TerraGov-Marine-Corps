@@ -1,9 +1,12 @@
 /obj/item/wallframe
 	icon = 'icons/obj/wallframes.dmi'
-	// custom_materials = list(/datum/material/iron=MINERAL_MATERIAL_AMOUNT*2)
 	flags_atom = CONDUCT
 	item_state = "syringe_kit"
 	w_class = WEIGHT_CLASS_SMALL
+	materials = list(
+		/datum/material/metal = 5,
+		/datum/material/glass = 5,
+	)
 	var/result_path
 	var/inverse = 0 // For inverse dir frames like light fixtures.
 	var/pixel_shift //The amount of pixels
@@ -64,8 +67,8 @@
 		if(iswallturf(T))
 			T.attackby(src, user, params)
 
-	var/metal_amt = 5 // round(custom_materials[SSmaterials.GetMaterialRef(/datum/material/iron)]/MINERAL_MATERIAL_AMOUNT) //Replace this shit later
-	var/glass_amt = 5 // round(custom_materials[SSmaterials.GetMaterialRef(/datum/material/glass)]/MINERAL_MATERIAL_AMOUNT) //Replace this shit later
+	var/metal_amt = materials[/datum/material/metal]
+	var/glass_amt = materials[/datum/material/glass]
 
 	if(W.tool_behaviour == TOOL_WRENCH && (metal_amt || glass_amt))
 		to_chat(user, "<span class='notice'>You dismantle [src].</span>")

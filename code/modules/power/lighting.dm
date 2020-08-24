@@ -71,9 +71,6 @@
 	QDEL_NULL(cell)
 	return ..()
 
-/obj/structure/light_construct/get_cell()
-	return cell
-
 /obj/structure/light_construct/examine(mob/user)
 	. = ..()
 	switch(stage)
@@ -450,9 +447,6 @@
 /obj/machinery/light/proc/set_on(s)
 	on = (s && status == LIGHT_OK)
 	update()
-
-/obj/machinery/light/get_cell()
-	return cell
 
 // examine verb
 /obj/machinery/light/examine(mob/user)

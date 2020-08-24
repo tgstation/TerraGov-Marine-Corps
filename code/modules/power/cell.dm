@@ -17,11 +17,7 @@
 	var/corrupted = FALSE /// If the power cell was damaged by an explosion, chance for it to become corrupted and function the same as rigged.
 	var/chargerate = 100 //how much power is given every tick in a recharger
 	var/self_recharge = 0 //does it self recharge, over time, or not?
-	var/ratingdesc = TRUE
 	var/grown_battery = FALSE // If it's a grown that acts as a battery, add a wire overlay to it.
-
-/obj/item/stock_parts/cell/get_cell()
-	return src
 
 /obj/item/stock_parts/cell/Initialize(mapload, override_maxcharge)
 	. = ..()
@@ -30,8 +26,6 @@
 	if (override_maxcharge)
 		maxcharge = override_maxcharge
 	charge = maxcharge
-	if(ratingdesc)
-		desc += " This one has a rating of [DisplayEnergy(maxcharge)], and you should not swallow it."
 	update_icon()
 
 /obj/item/stock_parts/cell/Destroy()
@@ -67,7 +61,7 @@
 /obj/item/stock_parts/cell/proc/percent()		// return % charge of cell
 	return 100*charge/maxcharge
 
-// use power from a cell
+/// use power from a cell
 /obj/item/stock_parts/cell/use(amount)
 	if(rigged && amount > 0)
 		explode()
@@ -79,7 +73,7 @@
 		SSblackbox.record_feedback("tally", "cell_used", 1, type)
 	return 1
 
-// recharge the cell
+/// recharge the cell
 /obj/item/stock_parts/cell/proc/give(amount)
 	if(rigged && amount > 0)
 		explode()
@@ -150,9 +144,6 @@
 		return clamp(20 + round(charge/25000), 20, 195) + rand(-5,5)
 	else
 		return 0
-
-/obj/item/stock_parts/cell/get_part_rating()
-	return rating * maxcharge
 
 /* Cell variants*/
 /obj/item/stock_parts/cell/empty/Initialize()
@@ -290,7 +281,7 @@
 // 	icon = 'icons/obj/abductor.dmi'
 // 	icon_state = "cell"
 // 	maxcharge = 50000
-// 	ratingdesc = FALSE
+// 	 = FALSE
 
 // /obj/item/stock_parts/cell/infinite/abductor/ComponentInitialize()
 // 	. = ..()

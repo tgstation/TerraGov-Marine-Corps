@@ -5,8 +5,7 @@
 	icon_state = "light-p"
 	desc = "Make dark."
 	power_channel = AREA_USAGE_LIGHT
-	/// Set this to a string, path, or area instance to control that area
-	/// instead of the switch's location.
+	/// Set this to a string, path, or area instance to control that area instead of the switch's location.
 	var/area/area = null
 
 /obj/machinery/light_switch/Initialize()
