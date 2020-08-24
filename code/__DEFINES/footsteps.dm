@@ -9,6 +9,7 @@
 #define FOOTSTEP_CATWALK "catwalk"
 #define FOOTSTEP_SNOW "snow"
 #define FOOTSTEP_ICE "ice"
+#define FOOTSTEP_CONCRETE "concrete"
 //barefoot and claw sounds
 #define FOOTSTEP_HARD "hard"
 //misc footstep sounds
@@ -82,7 +83,13 @@ GLOBAL_LIST_INIT(shoefootstep, list(
 		'sound/effects/footstep/ice2.ogg',
 		'sound/effects/footstep/ice3.ogg',
 		'sound/effects/footstep/ice4.ogg',
-		'sound/effects/footstep/ice5.ogg'), 100, 1),
+		'sound/effects/footstep/ice5.ogg'), 80, 1),
+	FOOTSTEP_CONCRETE = list(list(
+		'sound/effects/footstep/concrete1.ogg',
+		'sound/effects/footstep/concrete2.ogg',
+		'sound/effects/footstep/concrete3.ogg',
+		'sound/effects/footstep/concrete4.ogg',
+		'sound/effects/footstep/concrete5.ogg'), 100, 1),
 ))
 //bare footsteps lists
 GLOBAL_LIST_INIT(barefootstep, list(
@@ -129,6 +136,24 @@ GLOBAL_LIST_INIT(barefootstep, list(
 		'sound/effects/footstep/catwalk3.ogg',
 		'sound/effects/footstep/catwalk4.ogg',
 		'sound/effects/footstep/catwalk5.ogg'), 80, -1),
+	FOOTSTEP_SNOW = list(list(
+		'sound/effects/footstep/snow1.ogg',
+		'sound/effects/footstep/snow2.ogg',
+		'sound/effects/footstep/snow3.ogg',
+		'sound/effects/footstep/snow4.ogg',
+		'sound/effects/footstep/snow5.ogg'), 80, 0),
+	FOOTSTEP_ICE = list(list(
+		'sound/effects/footstep/ice1.ogg',
+		'sound/effects/footstep/ice2.ogg',
+		'sound/effects/footstep/ice3.ogg',
+		'sound/effects/footstep/ice4.ogg',
+		'sound/effects/footstep/ice5.ogg'), 80, 0),
+	FOOTSTEP_CONCRETE = list(list(
+		'sound/effects/footstep/hardbarefoot1.ogg',
+		'sound/effects/footstep/hardbarefoot2.ogg',
+		'sound/effects/footstep/hardbarefoot3.ogg',
+		'sound/effects/footstep/hardbarefoot4.ogg',
+		'sound/effects/footstep/hardbarefoot5.ogg'), 80, -1),
 ))
 
 //claw footsteps lists
@@ -170,6 +195,24 @@ GLOBAL_LIST_INIT(xenomediumstep, list(
 		'sound/effects/footstep/catwalk3.ogg',
 		'sound/effects/footstep/catwalk4.ogg',
 		'sound/effects/footstep/catwalk5.ogg'), 90, 1),
+	FOOTSTEP_SNOW = list(list(
+		'sound/effects/footstep/snow1.ogg',
+		'sound/effects/footstep/snow2.ogg',
+		'sound/effects/footstep/snow3.ogg',
+		'sound/effects/footstep/snow4.ogg',
+		'sound/effects/footstep/snow5.ogg'), 90, 1),
+	FOOTSTEP_ICE = list(list(
+		'sound/effects/footstep/ice1.ogg',
+		'sound/effects/footstep/ice2.ogg',
+		'sound/effects/footstep/ice3.ogg',
+		'sound/effects/footstep/ice4.ogg',
+		'sound/effects/footstep/ice5.ogg'), 70, 1),
+	FOOTSTEP_CONCRETE = list(list(
+		'sound/effects/footstep/concrete1.ogg',
+		'sound/effects/footstep/concrete2.ogg',
+		'sound/effects/footstep/concrete3.ogg',
+		'sound/effects/footstep/concrete4.ogg',
+		'sound/effects/footstep/concrete5.ogg'), 90, 1),
 ))
 
 //heavy footsteps list

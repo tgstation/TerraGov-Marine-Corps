@@ -4,7 +4,9 @@
 	icon_state = "plating"
 	floor_tile = null
 	intact_tile = FALSE
-
+	shoefootstep = FOOTSTEP_PLATING
+	barefootstep = FOOTSTEP_PLATING
+	mediumxenofootstep = FOOTSTEP_PLATING
 
 /turf/open/floor/plating/mainship
 	icon = 'icons/turf/mainship.dmi'

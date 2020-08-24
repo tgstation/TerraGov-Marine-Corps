@@ -158,6 +158,10 @@
 	name = "concrete"
 	icon = 'icons/turf/concrete.dmi'
 	icon_state = "concrete0"
+	shoefootstep = FOOTSTEP_CONCRETE
+	barefootstep = FOOTSTEP_CONCRETE
+	mediumxenofootstep = FOOTSTEP_CONCRETE
+
 
 /turf/open/floor/plating/ground/concrete/lines
 	icon_state = "concrete_lines"
@@ -177,6 +181,9 @@
 /turf/open/floor/plating/ground/desertdam/desert
 	name = "desert"
 	icon_state = "desert0"
+	shoefootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	mediumxenofootstep = FOOTSTEP_SAND
 
 /turf/open/floor/plating/ground/desertdam/desert/Initialize()
 	. = ..()
@@ -187,6 +194,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt
 	name = "asphalt"
 	icon_state = "sunbleached_asphalt"
+	shoefootstep = FOOTSTEP_CONCRETE
+	barefootstep = FOOTSTEP_CONCRETE
+	mediumxenofootstep = FOOTSTEP_CONCRETE
 
 /turf/open/floor/plating/ground/desertdam/asphalt/corner
 	name = "asphalt"
@@ -201,6 +211,9 @@
 /turf/open/floor/plating/ground/desertdam/cave
 	name = "cave"
 	icon_state = "outer_cave_floor"
+	shoefootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	mediumxenofootstep = FOOTSTEP_SAND
 
 //desert floor to outer cave floor transition
 /turf/open/floor/plating/ground/desertdam/cave/desert_into_outer_cave_floor
