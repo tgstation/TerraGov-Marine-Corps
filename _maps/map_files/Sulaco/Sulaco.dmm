@@ -3325,12 +3325,6 @@
 	dir = 4
 	},
 /obj/structure/rack,
-/obj/item/weapon/gun/rifle/standard_lmg,
-/obj/item/weapon/gun/rifle/standard_lmg,
-/obj/item/ammo_magazine/standard_lmg,
-/obj/item/ammo_magazine/standard_lmg,
-/obj/item/ammo_magazine/standard_lmg,
-/obj/item/ammo_magazine/standard_lmg,
 /turf/open/floor/mainship,
 /area/mainship/command/self_destruct)
 "akA" = (
@@ -9425,25 +9419,6 @@
 /obj/machinery/camera/autoname,
 /turf/open/floor/tile/lightred/full,
 /area/sulaco/brig)
-"aCh" = (
-/obj/structure/rack,
-/obj/item/ammo_magazine/smg/standard_smg,
-/obj/item/ammo_magazine/smg/standard_smg,
-/obj/item/ammo_magazine/smg/standard_smg,
-/obj/item/ammo_magazine/smg/standard_smg,
-/obj/item/ammo_magazine/smg/standard_smg,
-/obj/item/ammo_magazine/rifle/standard_assaultrifle,
-/obj/item/ammo_magazine/rifle/standard_assaultrifle,
-/obj/item/ammo_magazine/rifle/standard_assaultrifle,
-/obj/item/ammo_magazine/rifle/standard_assaultrifle,
-/obj/item/ammo_magazine/rifle/standard_assaultrifle,
-/obj/item/ammo_magazine/rifle/standard_assaultrifle,
-/obj/item/ammo_magazine/rifle/standard_assaultrifle,
-/obj/item/ammo_magazine/rifle/standard_assaultrifle,
-/obj/item/ammo_magazine/rifle/standard_assaultrifle,
-/obj/item/ammo_magazine/rifle/standard_assaultrifle,
-/turf/open/floor/mainship,
-/area/mainship/command/self_destruct)
 "aCj" = (
 /obj/machinery/door/poddoor/open/bridge{
 	dir = 4
@@ -14976,11 +14951,7 @@
 /area/sulaco/morgue)
 "aUe" = (
 /obj/structure/rack,
-/obj/item/shotgunbox/buckshot,
-/obj/item/shotgunbox/flechette,
 /obj/machinery/camera/autoname,
-/obj/item/weapon/gun/shotgun/pump/t35,
-/obj/item/weapon/gun/shotgun/pump/t35,
 /turf/open/floor/mainship,
 /area/mainship/command/self_destruct)
 "aUf" = (
@@ -15369,9 +15340,10 @@
 /turf/closed/wall/sulaco/unmeltable,
 /area/shuttle/distress/arrive_1)
 "aVz" = (
-/obj/machinery/computer/secure_data/detective_computer,
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship,
+/obj/structure/table/woodentable,
+/obj/machinery/computer/security/wooden_tv,
 /turf/open/floor/carpet,
 /area/sulaco/liaison/quarters)
 "aVA" = (
@@ -16361,10 +16333,6 @@
 /area/sulaco/telecomms)
 "aYQ" = (
 /obj/structure/rack,
-/obj/item/weapon/gun/rifle/standard_assaultrifle,
-/obj/item/weapon/gun/rifle/standard_assaultrifle,
-/obj/item/weapon/gun/rifle/standard_assaultrifle,
-/obj/item/weapon/gun/smg/standard_smg,
 /turf/open/floor/mainship,
 /area/mainship/command/self_destruct)
 "aYR" = (
@@ -17459,11 +17427,6 @@
 /obj/machinery/light/small,
 /turf/open/floor/plating,
 /area/sulaco/hallway/lower_main_hall)
-"bej" = (
-/obj/structure/table/woodentable,
-/obj/machinery/computer/security/wooden_tv,
-/turf/open/floor/carpet,
-/area/sulaco/liaison/quarters)
 "bek" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on{
 	dir = 1
@@ -17594,8 +17557,6 @@
 "dZh" = (
 /obj/machinery/camera/autoname,
 /obj/structure/rack,
-/obj/item/tool/weldingtool/largetank,
-/obj/item/clothing/glasses/welding,
 /turf/open/floor/prison/sterilewhite,
 /area/mainship/command/self_destruct)
 "eaW" = (
@@ -17615,6 +17576,10 @@
 /obj/item/reagent_containers/jerrycan,
 /turf/open/floor/tile/dark,
 /area/sulaco/maintenance/lower_maint)
+"ezr" = (
+/obj/machinery/computer/secure_data/detective_computer,
+/turf/open/floor/wood,
+/area/sulaco/liaison/quarters)
 "eAf" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
@@ -17696,12 +17661,6 @@
 /obj/machinery/vending/tool,
 /turf/open/floor,
 /area/sulaco/marine/bravo)
-"kPX" = (
-/obj/structure/rack,
-/obj/item/tool/weldingtool/largetank,
-/obj/item/clothing/glasses/welding,
-/turf/open/floor/plating,
-/area/sulaco/maintenance/lower_maint2)
 "kYo" = (
 /obj/structure/cable,
 /turf/open/floor/tile/red/redtaupecorner{
@@ -46746,7 +46705,7 @@ aUi
 aUi
 aUi
 yiZ
-kPX
+iqH
 aQw
 aQw
 aQw
@@ -47001,7 +46960,7 @@ yiZ
 aUe
 akz
 aYQ
-aCh
+aYQ
 yiZ
 iqH
 aQw
@@ -47242,7 +47201,7 @@ bcN
 bdj
 bdI
 bdY
-bej
+bea
 bev
 beG
 aPP
@@ -47501,7 +47460,7 @@ aRo
 bdZ
 bea
 bdM
-bdM
+ezr
 aPP
 aaa
 aaa
