@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - balance: "Nerfed storm damage and slightly decreased probability f harmful storms"
-  - bugfix: "fixed storms gibbing people"
