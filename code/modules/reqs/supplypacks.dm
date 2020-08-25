@@ -159,6 +159,11 @@ WEAPONS
 	contains = list(/obj/item/storage/box/standard_hmg)
 	cost = 80
 
+/datum/supply_packs/weapons/quadlauncher
+	name = "T-800 Quad Thermobaric Launcher"
+	contains = list(/obj/item/weapon/gun/launcher/rocket/m57a4)
+	cost = 250
+
 /datum/supply_packs/weapons/specgrenadier
 	name = "Grenadier Specialist kit"
 	contains = list(/obj/item/weapon/gun/launcher/m92)
@@ -422,6 +427,11 @@ AMMO
 	name = "Box of Incendiary Slugs"
 	contains = list(/obj/item/ammo_magazine/shotgun/incendiary)
 	cost = 10
+
+/datum/supply_packs/ammo/quadlauncher
+	name = "T-800 thermobaric rocket array"
+	contains = list(/obj/item/ammo_magazine/rocket/m57a4)
+	cost = 50
 
 /datum/supply_packs/ammo/scout_regular
 	name = "M4RA scout magazine"
@@ -979,6 +989,12 @@ ENGINEERING
 /datum/supply_packs/engineering
 	group = "Engineering"
 	containertype = /obj/structure/closet/crate/supply
+
+/datum/supply_packs_engineering
+	name = "RPL-Y Cargo Loader"
+	contains = list(/obj/vehicle/powerloader)
+	cost = 20
+	containertype = null
 
 /datum/supply_packs/engineering/sandbags
 	name = "50 empty sandbags"
