@@ -43,7 +43,10 @@ OPERATIONS
 
 /datum/supply_packs/operations/fulton_extraction_pack
 	name = "fulton extraction pack"
-	contains = list(/obj/item/fulton_extraction_pack)
+	contains = list(
+		/obj/item/fulton_extraction_pack,
+		/obj/structure/fulton_extraction_point
+	)
 	cost = 5
 
 /datum/supply_packs/operations/cas_flares
@@ -927,16 +930,6 @@ MEDICAL
 	name = "advanced first aid kit"
 	contains = list(/obj/item/storage/firstaid/adv)
 	cost = 5
-
-/datum/supply_packs/medical/fire_kit
-	name = "advanced fire medkit"
-	contains = list(/obj/item/storage/firstaid/fire_adv)
-	cost = 20
-
-/datum/supply_packs/medical/brute_kit
-	name = "advanced brute medkit"
-	contains = list(/obj/item/storage/firstaid/brute_adv)
-	cost = 20
 
 /datum/supply_packs/medical/bodybag
 	name = "body bags"
