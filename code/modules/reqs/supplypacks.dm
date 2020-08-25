@@ -990,7 +990,7 @@ ENGINEERING
 	group = "Engineering"
 	containertype = /obj/structure/closet/crate/supply
 
-/datum/supply_packs_engineering
+/datum/supply_packs_engineering/powerloader
 	name = "RPL-Y Cargo Loader"
 	contains = list(/obj/vehicle/powerloader)
 	cost = 20
