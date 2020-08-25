@@ -95,8 +95,11 @@
 
 // Big Red
 
+
+
 /turf/open/floor/plating/ground/mars
 	icon = 'icons/turf/bigred.dmi'
+	icon_state = "mars_sand"
 
 /turf/open/floor/plating/ground/mars/random/cave
 	name = "cave"
@@ -229,4 +232,4 @@
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave/sides
 	name = "cave"
 	icon_state = "inner_cavesides"
-	
+

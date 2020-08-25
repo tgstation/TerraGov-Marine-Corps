@@ -3352,9 +3352,6 @@
 	dir = 10
 	},
 /area/outpost/science)
-"sa" = (
-/turf/open/floor/plating/ground/mars/random,
-/area/outpost/yard/south)
 "sb" = (
 /obj/structure/xenoautopsy/tank/broken,
 /turf/open/floor/tile/dark/purple2{
@@ -31272,7 +31269,7 @@ fG
 mN
 wj
 qN
-sa
+mN
 Dn
 RV
 Ip
@@ -31530,7 +31527,7 @@ jZ
 jF
 kN
 qN
-sa
+mN
 Dn
 wa
 Ip
@@ -31788,7 +31785,7 @@ tK
 Np
 Np
 rA
-sa
+mN
 Dn
 wa
 BQ
@@ -32043,10 +32040,10 @@ fG
 MC
 fG
 fG
-sa
-sa
-sa
-sa
+mN
+mN
+mN
+mN
 Dn
 wa
 BQ
@@ -32301,9 +32298,9 @@ ta
 HT
 xi
 fG
-sa
-sa
-sa
+mN
+mN
+mN
 ep
 wa
 wa
