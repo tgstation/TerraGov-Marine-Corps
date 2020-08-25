@@ -22,7 +22,7 @@
 
 /datum/supply_export/xemomorph/embryo
 	cost = 5
-	export_obj = /mob/living/carbon/xenomorph/embryo
+	export_obj = /obj/item/alien_embryo
 
 /datum/supply_export/xemomorph/drone
 	cost = 30
