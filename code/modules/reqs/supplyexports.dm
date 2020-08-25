@@ -20,7 +20,7 @@
 	cost = 15
 	export_obj = /mob/living/carbon/xenomorph/larva
 
-/datum/supply_export/xenomorph/embryo
+/datum/supply_export/xemomorph/embryo
 	cost = 5
 	export_obj = /mob/living/carbon/xenomorph/embryo
 
