@@ -370,7 +370,7 @@
 						/obj/item/attachable/scope,
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/scope/mini)
-	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 17, "rail_y" = 23, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 19)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 17, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 19)
 
 //-------------------------------------------------------
 //RUSSIAN REVOLVER //Based on the 7.62mm Russian revolvers.

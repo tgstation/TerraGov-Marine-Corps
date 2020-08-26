@@ -833,6 +833,23 @@ ARMOR
 	)
 	cost = 12
 
+/datum/supply_packs/armor/modular/attachments/mimir_helmet_protection
+	name = "Jaeger helmet mimir module"
+	contains = list(
+		/obj/item/helmet_module/attachable/mimir_environment_protection
+	)
+	cost = 5
+/datum/supply_packs/armor/modular/attachments/generic_helmet_modules
+	name = "Generic Jaeger helmet modules"
+	contains = list(
+		/obj/item/helmet_module/welding,
+		/obj/item/helmet_module/welding,
+		/obj/item/helmet_module/binoculars,
+		/obj/item/helmet_module/binoculars,
+		/obj/item/helmet_module/antenna,
+		/obj/item/helmet_module/antenna
+	)
+	cost = 6
 
 /*******************************************************************************
 CLOTHING

@@ -5,7 +5,7 @@
 /area/lv624/ground
 	name = "Ground"
 	icon_state = "green"
-	always_unpowered = 1 //Will this mess things up? God only knows
+	always_unpowered = TRUE //Will this mess things up? God only knows
 
 //Jungle
 /area/lv624/ground/jungle1
@@ -145,6 +145,7 @@
 	icon_state = "cave"
 	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen12.ogg','sound/ambience/ambisin4.ogg')
 	ceiling = CEILING_DEEP_UNDERGROUND
+	outside = FALSE
 
 //Caves
 /area/lv624/ground/caves/west1
@@ -180,6 +181,7 @@
 	name = "\improper Lazarus"
 	icon_state = "green"
 	ceiling = CEILING_METAL
+	outside = FALSE
 
 /area/lv624/lazarus/atmos
 	name = "\improper Atmospherics"
