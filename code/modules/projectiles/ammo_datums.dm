@@ -884,17 +884,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range_min = 2
 	damage_falloff = 0.25
 
-/datum/ammo/bullet/sniper/auto
-	name = "high caliber rifle bullet"
-	hud_state = "minigun"
-	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER|AMMO_SKIPS_HUMANS
-	iff_signal = null
-	damage = 80
-	penetration = 30
-	sundering = 7.5
-	accurate_range_min = 2
-	damage_falloff = 0.25
-
 /*
 //================================================
 					Special Ammo
