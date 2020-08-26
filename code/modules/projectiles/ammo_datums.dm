@@ -888,7 +888,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "high caliber rifle bullet"
 	hud_state = "minigun"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER|AMMO_SKIPS_HUMANS
-	iff_signal = null
+	iff_signal = ACCESS_IFF_MARINE
 	damage = 80
 	penetration = 30
 	sundering = 7.5

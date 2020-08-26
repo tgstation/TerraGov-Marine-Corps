@@ -926,7 +926,8 @@
 	current_mag = /obj/item/ammo_magazine/rifle/autosniper
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
-						/obj/item/attachable/scope/unremovable/t81barrel,
+						/obj/item/attachable/autosniperbarrel,
+						/obj/item/attachable/scope/nightvision,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
@@ -935,9 +936,9 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 19,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 9, "stock_y" = 12)
+	attachable_offset = list("muzzle_x" = 51, "muzzle_y" = 18,"rail_x" = 23, "rail_y" = 19, "under_x" = 37, "under_y" = 16, "stock_x" = 9, "stock_y" = 12)
 	starting_attachment_types = list(
-		/obj/item/attachable/scope/unremovable/t81barrel,
+		/obj/item/attachable/autosniperbarrel
 	)
 
 	burst_amount = 0

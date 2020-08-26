@@ -435,6 +435,17 @@ Defined in conflicts.dm of the #defines folder.
 	accuracy_mod = 0.15
 	scatter_mod = -15
 
+/obj/item/attachable/autosniperbarrel
+	name = "auto sniper barrel"
+	icon_state = "t81barrel"
+	desc = "A heavy barrel. CANNOT BE REMOVED."
+	slot = "under"
+	flags_attach_features = NONE
+	pixel_shift_x = 7
+	pixel_shift_y = 16
+	accuracy_mod = 0
+	scatter_mod = -5
+
 /obj/item/attachable/smartbarrel
 	name = "smartgun barrel"
 	icon_state = "smartbarrel"
