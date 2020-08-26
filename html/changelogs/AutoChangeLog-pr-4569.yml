@@ -1,0 +1,4 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - balance: "smartgunner sights now only have 5 tiles of night vision, rather than 8"
