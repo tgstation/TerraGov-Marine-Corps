@@ -1,0 +1,4 @@
+author: "psykzz"
+delete-after: True
+changes: 
+  - rscadd: "Squad marines now rank up from E1 to E3 based on playtime"
