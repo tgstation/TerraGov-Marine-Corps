@@ -758,7 +758,7 @@
 
 /obj/item/weapon/gun/rifle/standard_smartmachinegun
 	name = "\improper T-29 smart machine gun"
-	desc = "The T-29 is the TGMC's current standard IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
+	desc = "The T-29 is the TGMC's current standard IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. Requires special training and it cannot turn off IFF. It uses 8.6x70mm ammunition."
 	icon_state = "t29"
 	item_state = "t29"
 	caliber = "10x26mm caseless" //codex
@@ -908,3 +908,45 @@
 /obj/item/weapon/gun/rifle/chambered/reload_into_chamber(mob/user)
 	. = ..()
 	racked_bolt = FALSE
+
+//-------------------------------------------------------
+//T-81 Auto-Sniper
+
+/obj/item/weapon/gun/rifle/standard_autosniper
+	name = "\improper T-81 Automatic Sniper Rifle"
+	desc = "The T-81 AS is the TerraGov Marine Corps Automatic Sniper Rifle. It is rather well-known for it's very consistent target placement at longer than usual range, it however lacks a burst fire mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 8.6x70mm caseless IFF caliber."
+	icon_state = "t81"
+	item_state = "t81"
+	fire_sound = 'sound/weapons/guns/fire/tl127.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
+	caliber = "8.6x70mm" //codex
+	max_shells = 7 //codex
+	current_mag = /obj/item/ammo_magazine/rifle/autosniper
+	type_of_casings = "cartridge"
+	attachable_allowed = list(
+						/obj/item/attachable/scope/unremovable/t81barrel,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
+						/obj/item/attachable/compensator)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
+	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 19,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 9, "stock_y" = 12)
+	starting_attachment_types = list(
+		/obj/item/attachable/scope/unremovable/t81barrel,
+	)
+
+	burst_amount = 0
+	fire_delay = 1.75 SECONDS
+	accuracy_mult = 1.35
+	accuracy_mult_unwielded = 0.7
+	scatter = -30
+	scatter_unwielded = 40
+	recoil = 0
+	recoil_unwielded = 4
+	aim_slowdown = 1
+	wield_delay = 1.3 SECONDS
