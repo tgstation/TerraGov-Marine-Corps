@@ -12,7 +12,7 @@ Format:
 	disabled (disables the map)
 endmap
 
-map debugdalus
+map sword_base_z
 	default
 	voteweight 0
 endmap
