@@ -43,10 +43,7 @@ OPERATIONS
 
 /datum/supply_packs/operations/fulton_extraction_pack
 	name = "fulton extraction pack"
-	contains = list(
-		/obj/item/fulton_extraction_pack,
-		/obj/structure/fulton_extraction_point
-	)
+	contains = list(/obj/item/fulton_extraction_pack)
 	cost = 5
 
 /datum/supply_packs/operations/cas_flares
@@ -1375,4 +1372,3 @@ Imports
 	name = "Highpower Automag Ammo"
 	contains = list(/obj/item/ammo_magazine/pistol/highpower)
 	cost = 3
-
