@@ -188,7 +188,7 @@
 	var/selected_resin = /obj/structure/bed/nest //which resin structure to build when we secrete resin
 
 	//Naming variables
-	var/nicknumber = 0 //The number after the name. Saved right here so it transfers between castes.
+	var/nicknumber = 0 //The number/name after the xeno type. Saved right here so it transfers between castes.
 
 	//This list of inherent verbs lets us take any proc basically anywhere and add them.
 	//If they're not a xeno subtype it might crash or do weird things, like using human verb procs

@@ -48,11 +48,13 @@
 					/obj/item/ammo_magazine/rifle/tx15_slug = 25,
 					/obj/item/ammo_magazine/rifle/tx15_flechette = 25,
 					/obj/item/weapon/gun/launcher/m92/standardmarine = 10,
+					/obj/item/weapon/gun/launcher/m81 = 15,
 					/obj/item/explosive/grenade/frag = 30,
 					/obj/item/attachable/bayonetknife = 20,
 					/obj/item/weapon/throwing_knife = 5,
 					/obj/item/storage/box/m94 = 5,
 					/obj/item/attachable/flashlight = 10,
+					/obj/item/explosive/grenade/mirage = 5,
 					)
 	prices = list()
 
@@ -119,9 +121,11 @@
 					/obj/item/weapon/gun/shotgun/combat/standardmarine = 10,
 					/obj/item/weapon/gun/rifle/standard_autoshotgun = 10,
 					/obj/item/weapon/gun/launcher/m92/standardmarine = 10,
+					/obj/item/weapon/gun/launcher/m81 = 15,
 					/obj/item/weapon/gun/pistol/standard_pocketpistol = 20,
 					/obj/item/weapon/gun/shotgun/double/marine = 5,
 					/obj/item/weapon/gun/shotgun/pump/ksg = 5,
+					/obj/item/weapon/gun/shotgun/pump/cmb = 5,
 					/obj/item/weapon/gun/shotgun/pump/bolt = 5,
 					/obj/item/weapon/gun/flamer/marinestandard = 2,
 					/obj/item/explosive/mine = 5,
@@ -595,7 +599,6 @@
 
 						/obj/item/attachable/flashlight = 25,
 						/obj/item/attachable/magnetic_harness = 25,
-						/obj/item/attachable/quickfire = 25,
 						/obj/item/attachable/reddot = 25,
 						/obj/item/attachable/scope = 25,
 						/obj/item/attachable/scope/mini = 25,
@@ -646,6 +649,7 @@
 					/obj/item/clothing/gloves/marine = 20,
 					/obj/item/clothing/suit/storage/marine/pasvest = 40,
 					/obj/item/clothing/head/helmet/marine = 40,
+					/obj/item/clothing/head/helmet/marine/heavy = 10,
 					/obj/item/clothing/glasses/mgoggles = 10,
 					/obj/item/clothing/glasses/mgoggles/prescription = 10,
 					/obj/item/clothing/mask/rebreather/scarf = 10,
@@ -712,6 +716,9 @@
 					/obj/item/clothing/head/modular/marine = 20,
 					/obj/item/clothing/head/modular/marine/skirmisher = 20,
 					/obj/item/clothing/head/modular/marine/assault = 20,
+					/obj/item/helmet_module/welding = 20,
+					/obj/item/helmet_module/binoculars = 20,
+					/obj/item/helmet_module/antenna = 20,
 					/obj/item/facepaint/green = 20
 					)
 

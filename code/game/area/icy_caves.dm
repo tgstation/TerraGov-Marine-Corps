@@ -1,4 +1,6 @@
 // ICY CAVES AREAS
+/area/icy_caves
+	outside = FALSE
 
 /area/icy_caves/caves/OOB //You shouldnt be able to get here, if you are here its an issue and @isy
 	name ="Out Of Bounds"
@@ -79,4 +81,4 @@
 	name = "\improper Colony Grounds"
 	icon_state = "blue"
 	ceiling = CEILING_NONE
-
+	outside = TRUE

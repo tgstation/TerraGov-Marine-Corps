@@ -54,6 +54,7 @@
 #define INIT_ORDER_SERVER_MAINT		17
 #define INIT_ORDER_INPUT			16
 #define INIT_ORDER_CODEX 			15
+#define INIT_ORDER_EVENTS			14
 #define INIT_ORDER_JOBS				12
 #define INIT_ORDER_TICKER			10
 #define INIT_ORDER_MAPPING			9
@@ -92,8 +93,10 @@
 #define FIRE_PRIORITY_TGUI			110
 #define FIRE_PRIORITY_TICKER		200
 #define FIRE_PRIORITY_CHAT			400
+#define FIRE_PRIORITY_RUNECHAT		410
 #define FIRE_PRIORITY_OVERLAYS		500
 #define FIRE_PRIORITY_EXPLOSIONS	666
+#define FIRE_PRIORITY_TIMER			700
 #define FIRE_PRIORITY_INPUT			1000 // This must always always be the max highest priority. Player input must never be lost.
 
 // SS runlevels

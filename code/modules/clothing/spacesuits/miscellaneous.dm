@@ -76,3 +76,23 @@
 	icon_state = "compression"
 	soft_armor = list("melee" = 40, "bullet" = 55, "laser" = 65, "energy" = 70, "bomb" = 65, "bio" = 100, "rad" = 70, "fire" = 70, "acid" = 70)
 	resistance_flags = UNACIDABLE
+
+/obj/item/clothing/head/helmet/space/chronos
+	name = "\improper Chronos Mk 0 Bluespace helmet"
+	desc = "A sleek silver helmet. It almost seems to stem from the future..."
+	item_state = "chronos"
+	icon_state = "chronos"
+	soft_armor = list("melee" = 100, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)
+	resistance_flags = UNACIDABLE
+	siemens_coefficient = 0
+
+/obj/item/clothing/suit/space/chronos
+	name = "\improper Chronos Mk 0 Bluespace armor"
+	desc = "A sleek silver suit. It almost seems to stem from the future..."
+	item_state = "chronos"
+	icon_state = "chronos"
+	soft_armor = list("melee" = 100, "bullet" = 100, "laser" = 100, "energy" = 100, "bomb" = 100, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 100)	//DONT FUCK WITH THIS SENATOR
+	resistance_flags = UNACIDABLE
+	siemens_coefficient = 0
+	slowdown = 0
+	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/baton,/obj/item/restraints/handcuffs,/obj/item/tank/emergency_oxygen)

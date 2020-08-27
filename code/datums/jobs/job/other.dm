@@ -67,5 +67,5 @@
 	belt = /obj/item/storage/belt/utility/full
 	shoes = /obj/item/clothing/shoes/marinechief/sa
 	gloves = /obj/item/clothing/gloves/marine/officer/chief/sa
-	glasses = /obj/item/clothing/glasses/sunglasses/sa
+	glasses = /obj/item/clothing/glasses/sunglasses/sa/nodrop
 	back = /obj/item/storage/backpack/marine/satchel
