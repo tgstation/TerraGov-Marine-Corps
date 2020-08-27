@@ -33,9 +33,11 @@
 		parent.eye_protection -= eye_protection_mod
 
 	active = !active
+	SEND_SIGNAL(parent, COMSIG_ITEM_TOGGLE_ACTION, user)
 	to_chat(user, "<span class='notice'>You toggle \the [src]. [active ? "enabling" : "disabling"] it.</span>")
 	item_state = "welding_head_[active ? "" : "in"]active"
 	parent.update_overlays()
+	user.update_inv_head()
 
 
 /obj/item/helmet_module/attachable/mimir_environment_protection
@@ -74,10 +76,10 @@
 
 /obj/item/helmet_module/binoculars/toggle_module(mob/living/user, obj/item/clothing/head/modular/parent)
 	if(!active && !zoom)
-		RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CLIENT_MOUSEDOWN), .proc/toggle_module) //No shooting while zoomed
+		RegisterSignal(user, list(COMSIG_MOVABLE_MOVED,COMSIG_MOB_MOUSEDOWN), .proc/toggle_module)//No shooting while zoomed
 		zoom(user, 11, 12)
 	else
-		UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CLIENT_MOUSEDOWN))
+		UnregisterSignal(user,list(COMSIG_MOVABLE_MOVED,COMSIG_MOB_MOUSEDOWN))
 		if(zoom)
 			zoom(user)
 
@@ -85,6 +87,7 @@
 	to_chat(user, "<span class='notice'>You toggle \the [src]. [active ? "enabling" : "disabling"] it.</span>")
 	item_state = "binocular_head_[active ? "" : "in"]active"
 	parent.update_overlays()
+	user.update_inv_head()
 
 /obj/item/helmet_module/antenna
 	name = "Antenna helmet module"
