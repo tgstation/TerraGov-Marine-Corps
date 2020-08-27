@@ -9299,7 +9299,7 @@
 /area/ice_colony/surface/command/control)
 "aEW" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor/westleft{
+/obj/machinery/door/window/secure/westleft{
 	name = "Security Desk"
 	},
 /obj/machinery/door/window/eastright{
@@ -11952,7 +11952,7 @@
 /area/ice_colony/surface/hangar/checkpoint)
 "aNp" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor/westright{
+/obj/machinery/door/window/secure/westright{
 	name = "Security Desk"
 	},
 /obj/machinery/door/window/eastleft{
@@ -12148,7 +12148,7 @@
 /area/ice_colony/exterior/surface/clearing/south)
 "aNS" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor/westleft{
+/obj/machinery/door/window/secure/westleft{
 	name = "Security Desk"
 	},
 /obj/machinery/door/window/eastright{
@@ -18727,7 +18727,7 @@
 /obj/structure/table/woodentable{
 	icon_state = "reinf_table"
 	},
-/obj/machinery/door/window/brigdoor/southleft{
+/obj/machinery/door/window/secure/southleft/req{
 	name = "Requesitions Desk"
 	},
 /obj/machinery/door/window/southright{
@@ -20933,11 +20933,11 @@
 /area/ice_colony/underground/hallway/south_east)
 "bpY" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor/eastleft{
+/obj/machinery/door/window/secure/eastleft{
 	icon_state = "leftsecure";
 	id = "brg"
 	},
-/obj/machinery/door/window/brigdoor/westleft{
+/obj/machinery/door/window/secure/westleft{
 	id = "brg"
 	},
 /obj/structure/paper_bin,
@@ -21770,7 +21770,7 @@
 "bsR" = (
 /obj/structure/table/reinforced,
 /obj/structure/paper_bin,
-/obj/machinery/door/window/brigdoor/southleft{
+/obj/machinery/door/window/secure/southleft{
 	icon_state = "leftsecure";
 	id = "brg";
 	name = "Security Desk"
@@ -22646,7 +22646,7 @@
 /area/ice_colony/underground/medical/lobby)
 "bvv" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor/northright,
+/obj/machinery/door/window/secure/northright,
 /obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
 /turf/open/floor/tile/red/whitered{
@@ -23067,7 +23067,7 @@
 /area/ice_colony/underground/medical/lobby)
 "bwF" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor/westleft,
+/obj/machinery/door/window/secure/westleft,
 /obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
 /turf/open/floor/tile/red/whitered{
@@ -26176,10 +26176,10 @@
 /area/ice_colony/underground/security/hallway)
 "bGg" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor/eastleft{
+/obj/machinery/door/window/secure/eastleft{
 	id = "brg"
 	},
-/obj/machinery/door/window/brigdoor/westleft{
+/obj/machinery/door/window/secure/westleft{
 	id = "brg"
 	},
 /obj/structure/paper_bin,
@@ -26719,7 +26719,7 @@
 	pixel_x = -6
 	},
 /obj/structure/paper_bin,
-/obj/machinery/door/window/brigdoor/westright{
+/obj/machinery/door/window/secure/westright{
 	name = "Security Desk"
 	},
 /obj/machinery/door/window/eastleft{
@@ -27815,7 +27815,7 @@
 	},
 /area/ice_colony/underground/security/brig)
 "bLf" = (
-/obj/machinery/door/window/brigdoor/westleft{
+/obj/machinery/door/window/secure/westleft{
 	dir = 4;
 	icon_state = "leftsecure";
 	id = "brg"
@@ -28294,7 +28294,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security/armory)
 "bMQ" = (
-/obj/machinery/door/window/brigdoor/westleft{
+/obj/machinery/door/window/secure/westleft{
 	dir = 1;
 	icon_state = "leftsecure";
 	id = "brg"
@@ -29916,7 +29916,7 @@
 /area/ice_colony/exterior/surface/valley/south)
 "bSg" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor/westleft{
+/obj/machinery/door/window/secure/westleft{
 	name = "Security Desk"
 	},
 /obj/machinery/door/window/eastright{
@@ -30785,8 +30785,8 @@
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bVj" = (
-/obj/machinery/door/window/brigdoor/northleft,
-/obj/machinery/door/window/brigdoor/southright,
+/obj/machinery/door/window/secure/northleft,
+/obj/machinery/door/window/secure/southright,
 /obj/structure/table/reinforced,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,

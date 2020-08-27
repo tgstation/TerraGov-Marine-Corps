@@ -5117,10 +5117,6 @@
 /obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/ground/snow,
 /area/icy_caves/outpost/outside)
-"Co" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/tile/dark2,
-/area/icy_caves/outpost/research)
 "Gk" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -5323,10 +5319,6 @@
 /obj/machinery/computer/nuke_disk_generator/blue,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
-"XJ" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/snow,
-/area/icy_caves/outpost/outside)
 "XP" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark2,

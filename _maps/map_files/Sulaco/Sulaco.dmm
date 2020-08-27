@@ -3625,7 +3625,7 @@
 	layer = 3.3;
 	name = "RO Office"
 	},
-/obj/machinery/door/window/eastleft/req{
+/obj/machinery/door/window/secure/eastleft/req{
 	dir = 8
 	},
 /obj/machinery/door/window/eastright,
@@ -4699,7 +4699,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/machinery/door/window/mainship/bridge{
+/obj/machinery/door/window/secure/eastleft/bridge{
 	name = "interior door"
 	},
 /turf/open/floor/stairs/rampbottom{
@@ -4845,7 +4845,7 @@
 	},
 /area/sulaco/bridge)
 "apq" = (
-/obj/machinery/door/window/eastright/bridge,
+/obj/machinery/door/window/secure/eastright/bridge,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -5811,7 +5811,7 @@
 /turf/open/floor/tile/red/redtaupe,
 /area/sulaco/hallway/central_hall)
 "ast" = (
-/obj/machinery/door/window/mainship/bridge{
+/obj/machinery/door/window/secure/eastleft/bridge{
 	name = "Commander's Deck"
 	},
 /turf/open/floor/stairs/rampbottom{
@@ -7074,7 +7074,7 @@
 /area/sulaco/briefing)
 "avv" = (
 /obj/structure/window/reinforced,
-/obj/machinery/door/window/eastright/bridge,
+/obj/machinery/door/window/secure/eastright/bridge,
 /obj/structure/cable,
 /turf/open/floor/stairs/rampbottom{
 	dir = 4
@@ -7390,7 +7390,7 @@
 /turf/open/floor,
 /area/sulaco/briefing)
 "awn" = (
-/obj/machinery/door/window/mainship/bridge{
+/obj/machinery/door/window/secure/eastleft/bridge{
 	name = "interior door"
 	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
@@ -8608,7 +8608,7 @@
 	},
 /area/sulaco/bridge)
 "azG" = (
-/obj/machinery/door/window/westleft/bridge,
+/obj/machinery/door/window/secure/westleft/bridge,
 /obj/machinery/door/window/eastleft,
 /obj/structure/table/reinforced,
 /obj/machinery/door/poddoor/open/bridge,
@@ -8758,7 +8758,7 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
 	},
-/obj/machinery/door/window/northleft/req,
+/obj/machinery/door/window/secure/northleft/req,
 /turf/open/floor,
 /area/sulaco/briefing)
 "aAg" = (
@@ -9612,7 +9612,7 @@
 /turf/open/floor,
 /area/sulaco/maintenance/south_solar_maint)
 "aCK" = (
-/obj/machinery/door/window/westleft/req,
+/obj/machinery/door/window/secure/westleft/req,
 /turf/open/floor,
 /area/sulaco/briefing)
 "aCL" = (
@@ -10095,7 +10095,7 @@
 /area/sulaco/brig)
 "aEy" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/eastleft/brig,
+/obj/machinery/door/window/secure/eastleft,
 /obj/machinery/door/window/westleft,
 /obj/structure/paper_bin,
 /obj/machinery/door_control/mainship/brigarmory{
@@ -10510,7 +10510,7 @@
 /turf/open/floor/wood,
 /area/sulaco/cap_office)
 "aFF" = (
-/obj/machinery/door/window/brigdoor/mainship/cell_1{
+/obj/machinery/door/window/secure/brig/cell_1{
 	dir = 2
 	},
 /turf/open/floor/tile/lightred/full,
@@ -10540,7 +10540,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/westright,
 /obj/item/folder/red,
-/obj/machinery/door/window/eastright/briefing,
+/obj/machinery/door/window/secure/eastright/bridge,
 /turf/open/floor/tile/lightred/full,
 /area/sulaco/brig)
 "aFL" = (
@@ -13107,7 +13107,7 @@
 /turf/open/floor/tile/dark,
 /area/sulaco/hangar/two)
 "aNU" = (
-/obj/machinery/door/window/brigdoor/southright,
+/obj/machinery/door/window/secure/southright,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating/warning/grime{
 	dir = 2
@@ -15218,7 +15218,7 @@
 /turf/open/floor/mainship/ai,
 /area/mainship/command/self_destruct)
 "aVg" = (
-/obj/machinery/door/window/brigdoor/mainship/cell_2{
+/obj/machinery/door/window/secure/brig/cell_2{
 	dir = 2
 	},
 /turf/open/floor/tile/lightred/full,
@@ -15263,19 +15263,19 @@
 	},
 /area/sulaco/morgue)
 "aVm" = (
-/obj/machinery/door/window/brigdoor/mainship/cell_3{
+/obj/machinery/door/window/secure/brig/cell_3{
 	dir = 2
 	},
 /turf/open/floor/tile/lightred/full,
 /area/sulaco/brig)
 "aVn" = (
-/obj/machinery/door/window/brigdoor/mainship/cell_4{
+/obj/machinery/door/window/secure/brig/cell_4{
 	dir = 2
 	},
 /turf/open/floor/tile/lightred/full,
 /area/sulaco/brig)
 "aVo" = (
-/obj/machinery/door/window/brigdoor/mainship/cell_5{
+/obj/machinery/door/window/secure/brig/cell_5{
 	dir = 2
 	},
 /turf/open/floor/tile/lightred/full,

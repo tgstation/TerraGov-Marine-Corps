@@ -2963,12 +2963,14 @@
 "kT" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/northleft,
-/obj/machinery/door/window/southleft,
 /obj/machinery/door/poddoor/shutters/mainship/req/ro{
 	dir = 2
 	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 1
+	},
+/obj/machinery/door/window/secure/southleft/req{
+	name = "Requesitions Desk"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
@@ -5371,8 +5373,8 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/obj/machinery/door/window/eastleft,
 /mob/living/simple_animal/corgi/Ian,
+/obj/machinery/door/window/secure/eastleft/bridge,
 /turf/open/floor/plating/mainship,
 /area/mainship/command/cic)
 "tz" = (
@@ -5420,8 +5422,8 @@
 /area/mainship/hull/lower_hull)
 "tF" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/northleft/brig,
-/obj/machinery/door/window/southleft/brig,
+/obj/machinery/door/window/secure/brig,
+/obj/machinery/door/window/secure/brig,
 /obj/structure/paper_bin{
 	pixel_x = -4;
 	pixel_y = 5
@@ -6835,8 +6837,8 @@
 /area/mainship/engineering/upper_engineering)
 "yb" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/northleft/brig,
-/obj/machinery/door/window/southleft/brig,
+/obj/machinery/door/window/secure/brig,
+/obj/machinery/door/window/secure/brig,
 /obj/machinery/door/firedoor/mainship{
 	dir = 1
 	},

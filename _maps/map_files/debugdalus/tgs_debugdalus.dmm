@@ -208,8 +208,8 @@
 /area/mainship/shipboard/starboard_point_defense)
 "aaF" = (
 /obj/docking_port/stationary/ert/target{
-	name = "Starboard";
-	id = "starboard_target"
+	id = "starboard_target";
+	name = "Starboard"
 	},
 /turf/open/floor/mainship{
 	pixel_z = -1
@@ -1783,8 +1783,8 @@
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/adv,
 /obj/item/reagent_containers/spray/cleaner{
-	name = "Surgery Cleaner";
 	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
+	name = "Surgery Cleaner";
 	pixel_x = 12;
 	pixel_y = 2
 	},
@@ -1936,8 +1936,8 @@
 /area/mainship/living/cryo_cells)
 "aga" = (
 /obj/docking_port/stationary/ert/target{
-	name = "Aft";
-	id = "aft_target"
+	id = "aft_target";
+	name = "Aft"
 	},
 /turf/open/floor/mainship{
 	pixel_z = -1
@@ -2146,7 +2146,7 @@
 /area/space)
 "agC" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/eastleft/req,
+/obj/machinery/door/window/secure/eastleft/req,
 /obj/machinery/door/window/westright,
 /turf/open/floor/mainship{
 	pixel_z = -1
@@ -3180,8 +3180,8 @@
 /area/mainship/hallways/port_hallway)
 "ajK" = (
 /obj/docking_port/stationary/ert/target{
-	name = "Port";
-	id = "port_target"
+	id = "port_target";
+	name = "Port"
 	},
 /turf/open/floor/mainship{
 	pixel_z = -1

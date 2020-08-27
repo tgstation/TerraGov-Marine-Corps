@@ -1869,7 +1869,7 @@
 /area/bigredv2/outside/marshal_office)
 "agI" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor/eastleft,
+/obj/machinery/door/window/secure/eastleft,
 /obj/item/weapon/shield/riot,
 /turf/open/floor/tile/vault{
 	dir = 8
@@ -2661,7 +2661,7 @@
 /area/bigredv2/outside/marshal_office)
 "ajF" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor/westright,
+/obj/machinery/door/window/secure/westright,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -3048,7 +3048,7 @@
 "akQ" = (
 /obj/structure/table/reinforced,
 /obj/structure/cable,
-/obj/machinery/door/window/brigdoor/southright,
+/obj/machinery/door/window/secure/southright,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -22057,14 +22057,14 @@
 	},
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/space_port)
-"poJ" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/s)
 "pmR" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
+"poJ" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/s)
 "ptp" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/bigred,
