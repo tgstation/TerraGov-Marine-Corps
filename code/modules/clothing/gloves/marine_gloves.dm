@@ -98,3 +98,21 @@
 	icon_state = "gloves_commissar"
 	item_state = "gloves_commissar"
 	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 15, "bio" = 10, "rad" = 0, "fire" = 20, "acid" = 20)
+
+
+/obj/item/clothing/gloves/marine/unscmarine
+	name = "UNSC combat gloves"
+	desc = "Standard issue UNSC tactical gloves."
+	icon_state = "gloves_unsc"
+	item_state = "gloves_unsc"
+
+/obj/item/clothing/gloves/marine/unscmarine/insulated
+	name = "insulated UNSC combat gloves"
+	desc = "Insulated UNSC tactical gloves that protect against electrical shocks."
+	siemens_coefficient = 0
+
+/obj/item/clothing/gloves/marine/urf
+	name = "URF combat gloves"
+	desc = "Standard issue URF tactical gloves."
+	icon_state = "urf_gloves"
+	item_state = "urf_gloves"

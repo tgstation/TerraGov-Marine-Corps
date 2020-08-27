@@ -476,13 +476,13 @@
 //halo
 
 /obj/item/clothing/suit/modular/unscmarine
-	name = "UNSC Marine Chest Rig"
+	name = "UNSC Marine chest rig"
 	desc = "A barebones UNSC Marine chest rig. It can mount and be improved with various pieces of armor and plating."
-	icon_state = "marine_chest"
-	item_state = "marine_chest"
+	icon_state = "marine_under"
+	item_state = "marine_under"
 
 /obj/item/clothing/head/modular/marine/unscmarine
-	name = "UNSC Marine Helmet"
+	name = "UNSC Combat helmet"
 	desc = "A helmet for UNSC Marines. It can be equipped with a tactical visor that can be toggled."
 	icon_state = "marine_helmet"
 	toggle_message = "You activate the tactical visor"
@@ -502,13 +502,13 @@
 /obj/item/clothing/head/modular/attack_self(mob/user)
 	if(!can_toggle || user.incapacitated())
 		return
-	
+
 	if(world.time < cooldown + toggle_cooldown)
 		return
-	
+
 	cooldown = world.time
 	up = !up
 	icon_state = "[initial(icon_state)][up ? "_visor" : ""]_icon"
 	item_state = "[initial(icon_state)][up ? "_visor" : ""]"
-	to_chat(user, "<span class='notice'>[up ? alt_toggle_message : toggle_message] \the [src].</span>")
+	to_chat(user, "<span class='notice'>[up ? alt_toggle_message : toggle_message] </span>")
 	user.update_inv_head()
