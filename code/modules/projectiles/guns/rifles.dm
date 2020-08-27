@@ -914,7 +914,7 @@
 
 /obj/item/weapon/gun/rifle/standard_autosniper
 	name = "\improper T-81 Automatic Sniper Rifle"
-	desc = "The T-81 AS is the TerraGov Marine Corps Automatic Sniper Rifle. It is rather well-known for it's very consistent target placement at longer than usual range, it however lacks a burst fire mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 8.6x70mm caseless IFF caliber."
+	desc = "The T-81 AS is the TerraGov Marine Corps Automatic Sniper Rifle. It is rather well-known for it's night vision scope and IFF ammo, it however lacks a burst fire mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 8.6x70mm caseless IFF caliber."
 	icon_state = "t81"
 	item_state = "t81"
 	fire_sound = 'sound/weapons/guns/fire/tl127.ogg'
@@ -936,9 +936,10 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	attachable_offset = list("muzzle_x" = 51, "muzzle_y" = 18,"rail_x" = 23, "rail_y" = 19, "under_x" = 37, "under_y" = 16, "stock_x" = 9, "stock_y" = 12)
+	attachable_offset = list("muzzle_x" = 51, "muzzle_y" = 18,"rail_x" = 23, "rail_y" = 23, "under_x" = 37, "under_y" = 16, "stock_x" = 9, "stock_y" = 12)
 	starting_attachment_types = list(
-		/obj/item/attachable/autosniperbarrel
+		/obj/item/attachable/autosniperbarrel,
+		/obj/item/attachable/scope/nightvision,
 	)
 
 	burst_amount = 0

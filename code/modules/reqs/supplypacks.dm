@@ -180,12 +180,12 @@ WEAPONS
 	)
 	cost = 100
 
-/datum/supply_packs/weapons/specsniper
-	name = "Sniper Specialist kit"
+/datum/supply_packs/weapons/autosniper
+	name = "IFF Auto Sniper kit"
 	contains = list(
-		/obj/item/weapon/gun/rifle/sniper/M42A,
-		/obj/item/ammo_magazine/sniper,
-		/obj/item/ammo_magazine/sniper,
+		/obj/item/weapon/gun/rifle/standard_autosniper,
+		/obj/item/ammo_magazine/rifle/autosniper,
+		/obj/item/ammo_magazine/rifle/autosniper,
 	)
 	cost = 100
 
@@ -551,20 +551,10 @@ AMMO
 	contains = list(/obj/item/ammo_magazine/rifle/m4ra/smart)
 	cost = 13
 
-/datum/supply_packs/ammo/sniper_regular
-	name = "M42A sniper magazine"
-	contains = list(/obj/item/ammo_magazine/sniper)
+/datum/supply_packs/ammo/autosniper_regular
+	name = "T-81 IFF sniper magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/autosniper)
 	cost = 5
-
-/datum/supply_packs/ammo/sniper_flak
-	name = "M42A sniper flak magazine"
-	contains = list(/obj/item/ammo_magazine/sniper/flak)
-	cost = 5
-
-/datum/supply_packs/ammo/sniper_incendiary
-	name = "M42A sniper incendiary magazine"
-	contains = list(/obj/item/ammo_magazine/sniper/incendiary)
-	cost = 7
 
 /datum/supply_packs/ammo/mbx900
 	name = "MBX 900 ammo crate"

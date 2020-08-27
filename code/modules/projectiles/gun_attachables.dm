@@ -663,7 +663,7 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/scope/nightvision
 	name = "T-46 Night vision scope"
 	icon_state = "nvscope"
-	attach_icon = "slavicscope"
+	attach_icon = "nvscope_a"
 	desc = "A rail-mounted night vision scope developed by Roh-Easy industries for the TGMC. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	has_nightvision = TRUE
 
