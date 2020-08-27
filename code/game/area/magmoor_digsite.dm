@@ -25,6 +25,7 @@
 
 /area/magmoor/cave/
 	ceiling = CEILING_DEEP_UNDERGROUND
+	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambilava3.ogg')
 
 /area/magmoor/cave/central
 	name = "Central Caves"
@@ -72,6 +73,7 @@
 	name = "Central Magmoor Compound"
 	icon_state = "central"
 	outside = TRUE
+	ambience = list('sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambilava3.ogg')
 
 /area/magmoor/compound/north
 	name = "North Magmoor Compound"
@@ -155,6 +157,7 @@
 	name = "Engineering"
 	icon_state = "lava_engie"
 	ceiling = CEILING_METAL
+	ambience = list('sound/ambience/ambisin1.ogg', 'sound/ambience/ambisin2.ogg', 'sound/ambience/ambisin3.ogg', 'sound/ambience/ambisin4.ogg')
 
 /area/magmoor/engi/atmos
 	name = "Atmospheric Processing"
@@ -235,6 +238,7 @@
 	name = "Chapel"
 	icon_state = "lava_chapel"
 	ceiling = CEILING_GLASS
+	ambience = list('sound/ambience/ambicha1.ogg','sound/ambience/ambicha2.ogg','sound/ambience/ambicha3.ogg','sound/ambience/ambicha4.ogg')
 
 /area/magmoor/civilian/arrival
 	name = "Southern Arrivals Hallway"
@@ -249,6 +253,7 @@
 /area/magmoor/research
 	name = "Research & Archaeology"
 	icon_state = "lava_research"
+	ambience = list('sound/ambience/ambitech.ogg', 'sound/ambience/ambitech2.ogg')
 
 /area/magmoor/research/containment
 	name = "Research Materials & Containment"
@@ -346,6 +351,7 @@
 /area/magmoor/command/commandroom
 	name = "Command Control Room"
 	icon_state = "bridge"
+	ambience = list('sound/ambience/signal.ogg')
 
 //Mining
 /area/magmoor/mining/
