@@ -118,3 +118,11 @@
 /area/swordbase/ground/vault
 	name = "vault"
 	icon_state = "vault"
+
+/area/swordbase/ground/conferenceroom
+	name = "conference room"
+	icon_state = "conferenceroom"
+
+/area/swordbase/ground/inniecave
+	name = "innie cave"
+	icon_state = "inniecave"
