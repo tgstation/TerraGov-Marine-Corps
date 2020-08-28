@@ -30,10 +30,23 @@
 		update_handcuffed(null)
 		. = ITEM_UNEQUIP_UNEQUIPPED
 
-
-/mob/living/carbon/proc/wear_mask_update(obj/item/I, equipping = FALSE)
-	if(!equipping && internal)
-		if(hud_used?.internals)
-			hud_used.internals.icon_state = "internal0"
-		internal = null
+//handle stuff to update when a mob equips/unequips a mask.
+/mob/living/proc/wear_mask_update(obj/item/I, toggle_off = 1)
 	update_inv_wear_mask()
+
+/mob/living/carbon/wear_mask_update(obj/item/I, toggle_off = 1)
+	var/obj/item/clothing/C = I
+	if(istype(C) && (C.tint || initial(C.tint)))
+		update_tint()
+	update_inv_wear_mask()
+
+//handle stuff to update when a mob equips/unequips a headgear.
+/mob/living/carbon/proc/head_update(obj/item/I, forced)
+	if(istype(I, /obj/item/clothing))
+		var/obj/item/clothing/C = I
+		if(C.tint || initial(C.tint))
+			update_tint()
+		update_sight()
+		update_inv_wear_mask()
+	update_inv_head()
+	

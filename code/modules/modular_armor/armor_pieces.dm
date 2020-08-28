@@ -190,3 +190,27 @@
 	icon_state = "assault_arms"
 	soft_armor = list("melee" = 10, "bullet" = 15, "laser" = 15, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	slowdown = 0.2
+
+//halo
+
+/obj/item/armor_module/armor/chest/unsc
+	name = "UNSC Marine chest plate"
+	desc = "Attachable chest plate for use with UNSC Marine armor."
+	icon_state = "marine_chest"
+	soft_armor = list("melee" = 10, "bullet" = 12.5, "laser" = 12.5, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	slowdown = 0.2
+
+/obj/item/armor_module/armor/arms/unsc
+	name = "UNSC Marine shoulder plates"
+	desc = "Attachable shoulder plates for use with UNSC Marine armor."
+	icon_state = "marine_arms"
+	soft_armor = list("melee" = 10, "bullet" = 15, "laser" = 15, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	slowdown = 0.10
+
+/obj/item/armor_module/armor/legs/unsc
+	name = "UNSC Marine knee pads"
+	desc = "UNSC Marine knee pads for use with UNSC Marine armor."
+	icon_state = "marine_legs"
+	soft_armor = list("melee" = 9, "bullet" = 12.5, "laser" = 12.5, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 9)
+	slowdown = 0.15
+	
