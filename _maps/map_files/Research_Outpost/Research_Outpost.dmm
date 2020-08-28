@@ -1264,7 +1264,6 @@
 /area/outpost/brig/armoury)
 "hd" = (
 /obj/machinery/door/airlock/mainship/security/glass/free_access{
-	dir = 4;
 	name = "\improper Marshal Office Armory"
 	},
 /turf/open/floor/tile/dark,
@@ -2008,9 +2007,7 @@
 	},
 /area/outpost/hallway/south_cent)
 "kS" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
-	dir = 2
-	},
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
@@ -2838,11 +2835,6 @@
 	dir = 5
 	},
 /area/outpost/hallway/south_west)
-"po" = (
-/turf/open/floor/plating/asteroidwarning{
-	dir = 2
-	},
-/area/outpost/lz2)
 "pr" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -40037,7 +40029,7 @@ io
 io
 Hr
 gT
-po
+BM
 hY
 Zm
 Qz
@@ -40295,7 +40287,7 @@ Qz
 Qz
 lD
 gT
-po
+BM
 hY
 hY
 hY
@@ -40823,7 +40815,7 @@ vo
 vo
 vo
 vo
-po
+BM
 hY
 KR
 OF
@@ -41081,7 +41073,7 @@ vo
 vo
 vo
 vo
-po
+BM
 hY
 KR
 OF
@@ -41339,7 +41331,7 @@ vo
 vo
 vo
 vo
-po
+BM
 hY
 KR
 OF
@@ -41597,7 +41589,7 @@ vo
 vo
 vo
 vo
-po
+BM
 Sm
 KR
 OF
@@ -41855,7 +41847,7 @@ vo
 vo
 vo
 vo
-po
+BM
 io
 KR
 OF
@@ -42113,7 +42105,7 @@ vo
 vo
 vo
 vo
-po
+BM
 io
 KR
 OF
@@ -42371,7 +42363,7 @@ vo
 vo
 vo
 vo
-po
+BM
 Qz
 KR
 OF
@@ -42629,7 +42621,7 @@ vo
 vo
 vo
 vo
-po
+BM
 hY
 KR
 OF
@@ -42887,7 +42879,7 @@ vo
 vo
 vo
 vo
-po
+BM
 hY
 KR
 OF
@@ -43145,7 +43137,7 @@ vo
 vo
 vo
 vo
-po
+BM
 hY
 KR
 OF
@@ -43403,7 +43395,7 @@ vo
 vo
 vo
 vo
-po
+BM
 hY
 KR
 OF
