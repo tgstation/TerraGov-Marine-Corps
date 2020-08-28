@@ -13,17 +13,17 @@ Format:
 endmap
 
 map sword_base_z
-	default
 	voteweight 0
 endmap
 
-map theseus
+map
 endmap
 
 map pillar_of_spring
 endmap
 
 map risingstar
+	default
 endmap
 
 map sulaco
