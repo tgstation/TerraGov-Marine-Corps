@@ -394,7 +394,7 @@
 /area/swordbase/ground/medsci)
 "dE" = (
 /obj/machinery/door/airlock/multi_tile/ice{
-	id = lower main gate;
+	id = "lower main gate";
 	name = "Lower Main Gate"
 	},
 /turf/open/floor/tile/dark,
@@ -1022,7 +1022,7 @@
 /area/swordbase/ground/medsci)
 "ih" = (
 /obj/machinery/door_control{
-	id = containment_cell1;
+	id = "containment_cell1";
 	name = "Conatainment Lockdown";
 	pixel_x = -25
 	},
@@ -1068,7 +1068,7 @@
 /area/swordbase/ground/inniecave)
 "ix" = (
 /obj/machinery/door_control{
-	id = containment_cell2;
+	id = "containment_cell2";
 	name = "Containment Lockdown";
 	pixel_x = 25
 	},
@@ -2667,7 +2667,7 @@
 "wC" = (
 /obj/machinery/light,
 /obj/machinery/button/door{
-	id = side entrance lockdown;
+	id = "side entrance lockdown";
 	pixel_y = -21
 	},
 /turf/open/floor/tile/dark/red2,
@@ -2967,7 +2967,7 @@
 /area/swordbase/ground/medsci)
 "zi" = (
 /obj/machinery/door/airlock/multi_tile/ice{
-	id = upper main gate;
+	id = "upper main gate";
 	name = "Upper Main Gate"
 	},
 /turf/open/floor/tile/dark,
@@ -3042,12 +3042,12 @@
 "zR" = (
 /obj/structure/table/reinforced,
 /obj/machinery/button/door{
-	id = lower main gate;
+	id = "lower main gate";
 	name = "Lower Main Gate Control";
 	pixel_y = -3
 	},
 /obj/machinery/button/door{
-	id = upper main gate;
+	id = "upper main gate";
 	name = "Upper Main Gate Control";
 	pixel_y = 8
 	},
@@ -3257,7 +3257,7 @@
 /area/swordbase/ground/outdoors)
 "Bx" = (
 /obj/machinery/holosign/surgery{
-	id = surgery1
+	id = "surgery1"
 	},
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 1;
@@ -3442,7 +3442,7 @@
 "Di" = (
 /obj/structure/table,
 /obj/machinery/button/door{
-	id = bridge view lockdown
+	id = "bridge view lockdown"
 	},
 /turf/open/floor/wood,
 /area/swordbase/ground/medicaloffice)
@@ -3745,7 +3745,7 @@
 /area/swordbase/ground/armory)
 "FG" = (
 /obj/machinery/door/poddoor/two_tile_hor{
-	id = side entrance lockdown
+	id = "side entrance lockdown"
 	},
 /obj/machinery/door/airlock/multi_tile/secure{
 	name = "Side Entrance"
@@ -6196,7 +6196,7 @@
 /area/swordbase/ground/inniecave)
 "ZE" = (
 /obj/machinery/holosign_switch{
-	id = surgery1
+	id = "surgery1"
 	},
 /turf/closed/wall/mainship/white,
 /area/swordbase/ground/medbaynorth)
