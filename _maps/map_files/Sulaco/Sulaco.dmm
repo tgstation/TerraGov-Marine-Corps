@@ -4699,9 +4699,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/machinery/door/window/secure/eastleft/bridge{
-	name = "interior door"
-	},
+/obj/machinery/door/window/secure/eastleft/bridge,
 /turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
@@ -5811,9 +5809,7 @@
 /turf/open/floor/tile/red/redtaupe,
 /area/sulaco/hallway/central_hall)
 "ast" = (
-/obj/machinery/door/window/secure/eastleft/bridge{
-	name = "Commander's Deck"
-	},
+/obj/machinery/door/window/secure/eastleft/bridge,
 /turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},
@@ -7390,12 +7386,10 @@
 /turf/open/floor,
 /area/sulaco/briefing)
 "awn" = (
-/obj/machinery/door/window/secure/eastleft/bridge{
-	name = "interior door"
-	},
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
+/obj/machinery/door/window/secure/eastleft/bridge,
 /turf/open/floor/stairs/rampbottom{
 	dir = 4
 	},

@@ -2969,9 +2969,7 @@
 /obj/machinery/door/firedoor/mainship{
 	dir = 1
 	},
-/obj/machinery/door/window/secure/southleft/req{
-	name = "Requesitions Desk"
-	},
+/obj/machinery/door/window/secure/southleft/req,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "kU" = (
@@ -5422,8 +5420,8 @@
 /area/mainship/hull/lower_hull)
 "tF" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/secure/brig,
-/obj/machinery/door/window/secure/brig,
+/obj/machinery/door/window/secure/northleft,
+/obj/machinery/door/window/secure/southleft,
 /obj/structure/paper_bin{
 	pixel_x = -4;
 	pixel_y = 5
@@ -6837,8 +6835,8 @@
 /area/mainship/engineering/upper_engineering)
 "yb" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/secure/brig,
-/obj/machinery/door/window/secure/brig,
+/obj/machinery/door/window/secure/northleft,
+/obj/machinery/door/window/secure/southleft,
 /obj/machinery/door/firedoor/mainship{
 	dir = 1
 	},

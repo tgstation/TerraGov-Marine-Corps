@@ -18727,7 +18727,7 @@
 /obj/structure/table/woodentable{
 	icon_state = "reinf_table"
 	},
-/obj/machinery/door/window/secure/southleft/req{
+/obj/machinery/door/window/secure/southleft{
 	name = "Requesitions Desk"
 	},
 /obj/machinery/door/window/southright{
