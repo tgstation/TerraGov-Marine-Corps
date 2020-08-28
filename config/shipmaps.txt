@@ -17,13 +17,13 @@ map sword_base_z
 endmap
 
 map
-	default
 endmap
 
 map pillar_of_spring
 endmap
 
 map risingstar
+	default
 endmap
 
 map sulaco
