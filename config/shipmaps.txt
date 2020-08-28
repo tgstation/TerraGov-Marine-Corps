@@ -13,11 +13,11 @@ Format:
 endmap
 
 map sword_base_z
-	default
 	voteweight 0
 endmap
 
-map theseus
+map
+	default
 endmap
 
 map pillar_of_spring
