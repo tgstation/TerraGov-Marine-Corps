@@ -40,18 +40,18 @@
 ///******INNIE VENDOR******///
 
 
-	/obj/machinery/vending/insurrectionist
-		name = "\improper Stolen Automated Weapons Rack"
-		desc = "A stolen UNSC weapons rack."
-		icon_state = "marinearmory"
-		icon_vend = "marinearmory-vend"
-		icon_deny = "marinearmory"
-		wrenchable = FALSE
-		tokensupport = TOKEN_MARINE //stand in until job tags are sorted
+/obj/machinery/vending/insurrectionist
+	name = "\improper Stolen Automated Weapons Rack"
+	desc = "A stolen UNSC weapons rack."
+	icon_state = "marinearmory"
+	icon_vend = "marinearmory-vend"
+	icon_deny = "marinearmory"
+	wrenchable = FALSE
+	tokensupport = TOKEN_MARINE //stand in until job tags are sorted
 
-		product_ads = "Death to the UNSC!;Do it for Reno!;Remember, it's only a warcrime if you get caught!;Don't forget the Organ Crusher Grenades!"
+	product_ads = "Death to the UNSC!;Do it for Reno!;Remember, it's only a warcrime if you get caught!;Don't forget the Organ Crusher Grenades!"
 
-		products = list(
+	products = list(
 						/obj/item/weapon/gun/rifle/ma3 = 25,
 						/obj/item/ammo_magazine/rifle/ma3 = 100,
 						/obj/item/weapon/gun/shotgun/pump/m45 = 10,
