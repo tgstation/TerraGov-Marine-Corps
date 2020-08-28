@@ -13,6 +13,14 @@
 	/// Used by headgear mostly to affect accuracy
 	var/accuracy_mod = 0
 
+	var/toggle_message = null
+	var/alt_toggle_message = null
+	var/active_sound = null
+	var/toggle_cooldown = null
+	var/cooldown = 0
+	var/can_toggle = null
+	var/up = 0					//but separated to allow items to protect but not impair vision, like space helmets
+	var/tint = 0				//Sets the item's level of visual impairment tint, normally set to the same as flash_protect
 
 /obj/item/clothing/equipped(mob/user, slot)
 	. = ..()
