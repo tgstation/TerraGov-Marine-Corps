@@ -95,7 +95,7 @@
 
 
 	// *** Tackle *** //
-	tackle_damage = 28
+	tackle_damage = 30
 
 	// *** Speed *** //
 	speed = -1.2
@@ -128,7 +128,7 @@
 
 
 	// *** Tackle *** //
-	tackle_damage = 28
+	tackle_damage = 30
 
 	// *** Speed *** //
 	speed = -1.4
