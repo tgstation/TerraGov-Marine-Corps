@@ -213,3 +213,4 @@
 	icon_state = "marine_legs"
 	soft_armor = list("melee" = 9, "bullet" = 12.5, "laser" = 12.5, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 9)
 	slowdown = 0.15
+	

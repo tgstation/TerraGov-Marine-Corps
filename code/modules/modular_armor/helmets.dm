@@ -96,3 +96,4 @@
 	to_chat(user, "<span class='notice'>You toggle \the [src]. [active ? "enabling" : "disabling"] it.</span>")
 	item_state = "binocular_head_[active ? "" : "in"]active"
 	parent.update_overlays()
+	

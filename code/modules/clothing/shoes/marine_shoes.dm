@@ -170,4 +170,3 @@
 	desc = "A pair of combat boots that provides minor protection. May protect against toe stubs."
 	icon_state = "urf_white"
 	item_state = "urf_white"
-

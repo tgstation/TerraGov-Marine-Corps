@@ -116,3 +116,5 @@
 	desc = "Standard issue URF tactical gloves."
 	icon_state = "urf_gloves"
 	item_state = "urf_gloves"
+
+	

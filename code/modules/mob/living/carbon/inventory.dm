@@ -49,3 +49,4 @@
 		update_sight()
 		update_inv_wear_mask()
 	update_inv_head()
+	

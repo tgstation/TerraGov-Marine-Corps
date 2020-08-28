@@ -648,3 +648,5 @@
 	icon_state = "urf_helmet_white"
 	item_state = "urf_helmet_white"
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 22, "bomb" = 12, "bio" = 50, "rad" = 5, "fire" = 22, "acid" = 45)
+
+	
