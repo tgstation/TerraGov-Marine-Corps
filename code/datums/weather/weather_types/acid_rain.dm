@@ -24,7 +24,7 @@
 
 	barometer_predictable = TRUE
 
-	probability = 60
+	probability = 40
 
 	var/datum/looping_sound/acidrain/midsound = new(list(), FALSE, TRUE)
 
@@ -45,6 +45,8 @@
 	midsound.stop()
 
 /datum/weather/acid_rain/weather_act(mob/living/L)
+	if(L.stat == DEAD)
+		return
 	var/resist = L.getarmor(null, "acid")
 	if(prob(max(0,100-resist)))
 		L.adjustFireLoss(7)
@@ -63,4 +65,4 @@
 
 	aesthetic = TRUE
 
-	probability = 40
+	probability = 60

@@ -455,8 +455,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			names.Add(name)
 			namecounts[name] = 1
 
-		if(X.client?.prefs?.xeno_name && X.client.prefs.xeno_name != "Undefined")
-			name += " - [X.client.prefs.xeno_name]"
 
 		if((X.client && X.client?.is_afk()) || (!X.client && (X.key || X.ckey)))
 			if(isaghost(X))
