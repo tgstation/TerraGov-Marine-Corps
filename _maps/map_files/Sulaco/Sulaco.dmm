@@ -15435,6 +15435,12 @@
 	dir = 4
 	},
 /area/sulaco/marine/delta)
+"kpz" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/sulaco/cargo)
 "kqp" = (
 /obj/machinery/vending/tool,
 /turf/open/floor,
@@ -60437,7 +60443,7 @@ aaM
 aaM
 aaM
 aaM
-aaM
+kpz
 aaM
 gfL
 nja
