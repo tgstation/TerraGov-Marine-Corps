@@ -31,6 +31,7 @@
 	var/list/armor_overlays
 	actions_types = list(/datum/action/item_action/toggle)
 	flags_armor_features = ARMOR_LAMP_OVERLAY
+	flags_item = SYNTH_RESTRICTED
 	w_class = WEIGHT_CLASS_HUGE
 	time_to_unequip = 2 SECONDS
 	time_to_equip = 2 SECONDS
@@ -510,6 +511,7 @@
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/large_holster/machete)
 	flags_armor_features = ARMOR_LAMP_OVERLAY
+	flags_item = SYNTH_RESTRICTED
 	var/locate_cooldown = 0 //Cooldown for SL locator
 	var/armor_overlays["lamp"]
 	actions_types = list(/datum/action/item_action/toggle)
@@ -605,6 +607,7 @@
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_heat_protection =CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	flags_item = SYNTH_RESTRICTED
 	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 30, "bomb" = 60, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 30)
 	allowed = list(/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
@@ -624,7 +627,7 @@
 	desc = "A green jacket worn by crew on the Colonial Marshals."
 	icon_state = "CMB_jacket"
 	blood_overlay_type = "coat"
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 30, "bomb" = 60, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 30)
+	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 20, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	allowed = list(/obj/item/weapon/gun/,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/storage/belt/sparepouch,
