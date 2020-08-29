@@ -160,7 +160,7 @@ WEAPONS
 	cost = 80
 
 /datum/supply_packs/weapons/quadlauncher
-	name = "T-800 Quad Thermobaric Launcher"
+	name = "M57A4 Quad Thermobaric Launcher"
 	contains = list(/obj/item/weapon/gun/launcher/rocket/m57a4)
 	cost = 250
 
@@ -429,7 +429,7 @@ AMMO
 	cost = 10
 
 /datum/supply_packs/ammo/quadlauncher
-	name = "T-800 thermobaric rocket array"
+	name = "M57A4 thermobaric rocket array"
 	contains = list(/obj/item/ammo_magazine/rocket/m57a4)
 	cost = 50
 
@@ -1020,6 +1020,11 @@ ENGINEERING
 	name = "50 wooden planks"
 	contains = list(/obj/item/stack/sheet/wood/large_stack)
 	cost = 10
+
+/datum/supply_packs/engineering/quikdeploycade
+	name = "quikdeploy barricade"
+	contains = list(/obj/item/quikdeploy/cade)
+	cost = 6
 
 /datum/supply_packs/engineering/pacman
 	name = "P.A.C.M.A.N. Portable Generator"
