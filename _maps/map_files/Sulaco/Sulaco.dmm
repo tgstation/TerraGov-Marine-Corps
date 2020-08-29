@@ -86,12 +86,6 @@
 	},
 /turf/open/floor/tile/white,
 /area/sulaco/medbay/surgery_two)
-"aay" = (
-/obj/effect/landmark/start/job/squadspecialist,
-/turf/open/floor/tile/white/warningstripe{
-	dir = 1
-	},
-/area/sulaco/cryosleep)
 "aaz" = (
 /obj/machinery/cryopod,
 /obj/machinery/light{
@@ -122,7 +116,6 @@
 /area/sulaco/cryosleep)
 "aaD" = (
 /obj/machinery/vending/nanomed,
-/obj/effect/landmark/start/job/squadspecialist,
 /turf/open/floor/tile/white/warningstripe{
 	dir = 1
 	},
@@ -6132,6 +6125,7 @@
 /obj/item/tool/crowbar,
 /obj/machinery/camera/autoname,
 /obj/item/storage/firstaid/toxin,
+/obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/tile/yellow/full,
 /area/sulaco/engineering)
 "awh" = (
@@ -7407,7 +7401,6 @@
 	icon_state = "ladderdown";
 	id = "medsci"
 	},
-/obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/tile/white,
 /area/sulaco/medbay/west)
 "aAN" = (
@@ -11680,7 +11673,6 @@
 /turf/closed/wall/sulaco,
 /area/sulaco/research)
 "aRi" = (
-/obj/docking_port/stationary/marine_dropship/crash_target,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 6
@@ -12026,6 +12018,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/cult,
 /area/sulaco/morgue)
 "aSz" = (
@@ -14883,6 +14876,10 @@
 	dir = 1
 	},
 /area/sulaco/hangar/one)
+"eCR" = (
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/open/floor/plating,
+/area/sulaco/hangar)
 "eER" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
@@ -15242,6 +15239,10 @@
 "hTU" = (
 /turf/open/floor/tile/vault,
 /area/sulaco/maintenance/lower_maint2)
+"hUp" = (
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/closed/wall/sulaco,
+/area/sulaco/medbay/west)
 "hWP" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -15340,6 +15341,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/distress/arrive_1)
+"iSG" = (
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/open/floor/tile/white,
+/area/sulaco/cafeteria)
 "iWP" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor,
@@ -15850,6 +15855,7 @@
 /turf/open/floor/tile/dark,
 /area/sulaco/maintenance/lower_maint)
 "nzM" = (
+/obj/machinery/door/poddoor/mainship/ai/exterior,
 /turf/open/floor/plating,
 /area/mainship/command/self_destruct)
 "nAv" = (
@@ -16063,6 +16069,7 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 5
 	},
+/obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/tile/white,
 /area/sulaco/cryosleep)
 "pmr" = (
@@ -16208,6 +16215,10 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/mainship/mono,
 /area/shuttle/distress/arrive_1)
+"qru" = (
+/obj/machinery/door_control/ai/exterior,
+/turf/closed/wall/sulaco,
+/area/mainship/command/self_destruct)
 "qrX" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -16248,6 +16259,12 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor,
 /area/sulaco/hallway/central_hall3)
+"qRG" = (
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/open/floor/tile/red/redtaupe{
+	dir = 1
+	},
+/area/sulaco/hangar/one)
 "qTh" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -41410,7 +41427,7 @@ ktq
 ajC
 abD
 aAM
-abD
+hUp
 aof
 jTt
 apc
@@ -45670,7 +45687,7 @@ aUi
 aUi
 yiZ
 yiZ
-yiZ
+qru
 nzM
 nzM
 aTU
@@ -48719,7 +48736,7 @@ aPZ
 aPZ
 aPZ
 aPZ
-aPZ
+eCR
 aSr
 aPY
 aPY
@@ -52446,7 +52463,7 @@ aaa
 aaa
 aad
 abq
-aay
+abb
 aaY
 aaY
 aaY
@@ -53988,7 +54005,7 @@ aaa
 aaa
 aaa
 abq
-aay
+abb
 abb
 aba
 aaY
@@ -55296,7 +55313,7 @@ aqA
 arJ
 aoS
 ato
-any
+iSG
 aoS
 aoS
 anw
@@ -55530,7 +55547,7 @@ aaa
 aaa
 aaa
 abq
-aay
+abb
 abb
 aaY
 abQ
@@ -61452,7 +61469,7 @@ aRy
 ouA
 aSN
 iFt
-aSc
+qRG
 bcZ
 alx
 cjh
