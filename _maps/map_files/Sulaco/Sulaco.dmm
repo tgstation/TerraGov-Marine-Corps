@@ -8885,9 +8885,6 @@
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
 "aGA" = (
-/obj/machinery/power/apc/mainship{
-	dir = 8
-	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -16880,6 +16877,14 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/medbay/surgery_two)
+"veu" = (
+/obj/machinery/power/apc/mainship{
+	dir = 8
+	},
+/turf/open/floor/prison/red{
+	dir = 4
+	},
+/area/mainship/shipboard/weapon_room)
 "vge" = (
 /obj/effect/decal/warning_stripes,
 /obj/structure/dropship_equipment/fuel/cooling_system,
@@ -40869,7 +40874,7 @@ aDm
 mbo
 nAv
 goJ
-goJ
+veu
 goJ
 goJ
 goJ
