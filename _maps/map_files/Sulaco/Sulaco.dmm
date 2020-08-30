@@ -6717,10 +6717,7 @@
 	layer = 2
 	},
 /obj/machinery/door/airlock/mainship/generic,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tile/white,
 /area/sulaco/cafeteria)
 "auy" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
@@ -6860,10 +6857,7 @@
 /obj/structure/cable,
 /obj/machinery/door/poddoor/open/port,
 /obj/machinery/door/airlock/mainship/generic,
-/turf/open/floor{
-	dir = 2;
-	icon_state = "cafeteria"
-	},
+/turf/open/floor/tile/white,
 /area/sulaco/cafeteria)
 "auP" = (
 /obj/machinery/door/poddoor/open/bridge,
