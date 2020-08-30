@@ -267,11 +267,12 @@
 	underslug_launchable = TRUE
 	w_class = WEIGHT_CLASS_SMALL
 	hud_state = "grenade_frag"
+	light_system = MOVABLE_LIGHT
+	light_range = 6
+	light_color = LIGHT_COLOR_FLARE
 	var/fuel = 0
 	var/lower_fuel_limit = 800
 	var/upper_fuel_limit = 1000
-	var/flare_brightness = 5
-	var/flare_color= LIGHT_COLOR_FLARE
 
 /obj/item/explosive/grenade/flare/Initialize()
 	. = ..()
@@ -347,10 +348,10 @@
 /obj/item/explosive/grenade/flare/proc/update_brightness()
 	if(active && fuel > 0)
 		icon_state = "[initial(icon_state)]_active"
-		set_light(flare_brightness, l_color = flare_color)
+		set_light_on(TRUE)
 	else
 		icon_state = initial(icon_state)
-		set_light(0)
+		set_light_on(FALSE)
 
 /obj/item/explosive/grenade/flare/throw_impact(atom/hit_atom, speed)
 	. = ..()
@@ -381,8 +382,8 @@
 	hud_state = "grenade_frag"
 	lower_fuel_limit = 25
 	upper_fuel_limit = 30
-	flare_brightness = 3
-	flare_color= LIGHT_COLOR_GREEN
+	light_power = 3
+	light_color = LIGHT_COLOR_GREEN
 	var/datum/squad/user_squad
 	var/obj/effect/overlay/temp/laser_target/target
 

@@ -92,6 +92,11 @@
 	desc = "A tool that cuts with deadly hot plasma. You could use it to cut limbs off of xenos! Or, you know, cut apart walls or mine through stone. Eye protection strongly recommended."
 	drill_verb = "cutting"
 	heat = 3800
+	light_system = MOVABLE_LIGHT
+	light_range = 2
+	light_power = 0.6
+	light_color = LIGHT_COLOR_PURPLE
+	light_on = FALSE
 	var/cutting_sound = 'sound/items/welder2.ogg'
 	var/powered = FALSE
 	var/dirt_amt_per_dig = 5
@@ -150,7 +155,7 @@
 /obj/item/tool/pickaxe/plasmacutter/proc/start_cut(mob/user, name = "", atom/source, charge_amount = PLASMACUTTER_BASE_COST, custom_string, no_string, SFX = TRUE)
 	if(!(cell.charge >= charge_amount) || !powered) //Check power
 		fizzle_message(user)
-		return 0
+		return FALSE
 	eyecheck(user)
 	if(SFX)
 		playsound(source, cutting_sound, 25, 1)
@@ -164,7 +169,7 @@
 			to_chat(user, "<span class='notice'>[custom_string] <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
 		else
 			to_chat(user, "<span class='notice'>You start cutting apart the [name] with [src]. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
-	return 1
+	return TRUE
 
 /obj/item/tool/pickaxe/plasmacutter/proc/cut_apart(mob/user, name = "", atom/source, charge_amount = PLASMACUTTER_BASE_COST, custom_string)
 	eyecheck(user)
@@ -230,14 +235,14 @@
 		force = 5
 		damtype = "brute"
 		heat = 0
-		set_light(0)
+		set_light_on(FALSE)
 	else
 		icon_state = "plasma_cutter_on"
 		powered = TRUE
 		force = 40
 		damtype = "fire"
 		heat = 3800
-		set_light(LIGHTER_LUMINOSITY)
+		set_light_on(TRUE)
 
 
 /obj/item/tool/pickaxe/plasmacutter/attackby(obj/item/I, mob/user, params)

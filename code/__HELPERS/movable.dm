@@ -26,7 +26,7 @@
 
 	for(var/i in 1 to total_distance - 1)
 		turf_to_check = get_step(turf_to_check, get_dir(turf_to_check, target_turf))
-		if(turf_to_check.opacity)
+		if(IS_OPAQUE_TURF(turf_to_check))
 			return FALSE //First and last turfs' opacity don't matter, but the ones in-between do.
 		for(var/obj/stuff_in_turf in turf_to_check)
 			if(!stuff_in_turf.opacity)

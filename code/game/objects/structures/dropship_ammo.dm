@@ -366,7 +366,7 @@
 	icon_state = "" //No sprite
 	invisibility = INVISIBILITY_MAXIMUM
 	mouse_opacity = 0
-	brightness_on = 7 //Magnesium/sodium fires (White star) really are bright
+	light_power = 7 //Magnesium/sodium fires (White star) really are bright
 
 /obj/item/flashlight/flare/on/cas/Initialize()
 	. = ..()

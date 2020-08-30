@@ -27,7 +27,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_state = "candle1"
 	item_state = "candle1"
 	w_class = WEIGHT_CLASS_TINY
-
+	light_system = MOVABLE_LIGHT
+	light_range = 2
+	light_power = 0.6
+	light_color = LIGHT_COLOR_FIRE
+	light_on = FALSE
 	var/wax = 800
 
 /obj/item/tool/candle/update_icon()
@@ -60,7 +64,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(!flavor_text)
 			flavor_text = "<span class ='notice'>[usr] lights [src].</span>"
 		visible_message(flavor_text)
-		set_light(CANDLE_LUM)
+		set_light_on(TRUE)
 		update_icon()
 		START_PROCESSING(SSobj, src)
 
@@ -93,6 +97,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	desc = "A simple match stick, used for lighting fine smokables."
 	icon = 'icons/obj/items/cigarettes.dmi'
 	icon_state = "match_unlit"
+	light_system = MOVABLE_LIGHT
+	light_range = 2
+	light_power = 0.6
+	light_color = LIGHT_COLOR_FIRE
+	light_on = FALSE
 	var/burnt = 0
 	var/smoketime = 5
 	w_class = WEIGHT_CLASS_TINY
@@ -121,7 +130,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	heat = 1000
 	damtype = "burn"
 	icon_state = "match_lit"
-	set_light(LIGHTER_LUMINOSITY)
+	set_light_on(TRUE)
 
 	START_PROCESSING(SSobj, src)
 	update_icon()
@@ -461,6 +470,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/icon_on = "lighter-g-on"
 	var/icon_off = "lighter-g"
 	var/clr = "g"
+	light_system = MOVABLE_LIGHT
+	light_range = 2
+	light_power = 0.6
+	light_color = LIGHT_COLOR_FIRE
+	light_on = FALSE
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 4
 	flags_atom = CONDUCT
@@ -502,16 +516,14 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 						user.apply_damage(2,BURN,"r_hand")
 					user.visible_message("<span class='notice'>After a few attempts, [user] manages to light the [src], they however burn their finger in the process.</span>")
 				playsound(loc, 'sound/items/lighter_on.ogg', 15, 1)
-
-			user.set_light(LIGHTER_LUMINOSITY)
-			START_PROCESSING(SSobj, src)
+			set_light_on(TRUE)
 		else
-			turn_off(user, 0)
+			turn_off(user, FALSE)
 	else
 		return ..()
 	return
 
-/obj/item/tool/lighter/proc/turn_off(mob/living/bearer, silent = 1)
+/obj/item/tool/lighter/proc/turn_off(mob/living/bearer, silent = TRUE)
 	if(heat)
 		heat = 0
 		icon_state = icon_off
@@ -523,10 +535,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			else
 				bearer.visible_message("<span class='notice'>[bearer] quietly shuts off the [src].")
 				playsound(loc, 'sound/items/lighter_off.ogg', 15, 1)
-		set_light(0)
-		STOP_PROCESSING(SSobj, src)
-		return 1
-	return 0
+		set_light_on(FALSE)
+		return TRUE
+	return FALSE
 
 /obj/item/tool/lighter/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!isliving(M))
@@ -545,6 +556,4 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			else
 				cig.light("<span class='notice'>[user] holds the [name] out for [M], and lights the [cig.name].</span>")
 	else
-		..()
-
-/obj/item/tool/lighter/process()
+		return ..()

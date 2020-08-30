@@ -179,7 +179,7 @@
 
 /mob/living/carbon/xenomorph/boiler/ExtinguishMob()
 	. = ..()
-	updateBoilerGlow()
+	update_boiler_glow()
 
 /mob/living/proc/update_fire()
 	return

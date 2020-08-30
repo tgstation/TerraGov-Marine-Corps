@@ -16,3 +16,9 @@
 
 /proc/send_global_signal(signal) //Wrapper for callbacks and the likes.
 	SEND_GLOBAL_SIGNAL(signal)
+
+/// Signifies that this proc is used to handle signals. Every proc you pass to RegisterSignal must have this.
+#define SIGNAL_HANDLER SHOULD_NOT_SLEEP(TRUE)
+
+/// Signifies that this proc is used to handle signals, but also sleeps. Do not use this for new work.
+#define SIGNAL_HANDLER_DOES_SLEEP
