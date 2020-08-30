@@ -147,4 +147,3 @@
 	icon_state = "m7"
 	max_rounds = 50
 	gun_type = /obj/item/weapon/gun/smg/m7
-
