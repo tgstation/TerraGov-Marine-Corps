@@ -455,7 +455,7 @@
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "red_2"
 	layer = BELOW_OBJ_LAYER
-	light_sytem = MOVABLE_LIGHT
+	light_system = MOVABLE_LIGHT
 	light_on = TRUE
 	light_power = 3
 	light_color = LIGHT_COLOR_LAVA

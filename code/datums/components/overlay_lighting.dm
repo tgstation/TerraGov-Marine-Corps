@@ -185,14 +185,12 @@
 
 ///Called when the current_holder is qdeleted, to remove the light effect.
 /datum/component/overlay_lighting/proc/on_holder_qdel(atom/movable/source, force)
-	SIGNAL_HANDLER
 	UnregisterSignal(current_holder, list(COMSIG_PARENT_QDELETING, COMSIG_MOVABLE_MOVED))
 	set_holder(null)
 
 
 ///Called when current_holder changes loc.
 /datum/component/overlay_lighting/proc/on_holder_moved(atom/movable/source, OldLoc, Dir, Forced)
-	SIGNAL_HANDLER
 	if(!(overlay_lighting_flags & LIGHTING_ON))
 		return
 	make_luminosity_update()
@@ -200,7 +198,6 @@
 
 ///Called when parent changes loc.
 /datum/component/overlay_lighting/proc/on_parent_moved(atom/movable/source, OldLoc, Dir, Forced)
-	SIGNAL_HANDLER
 	check_holder()
 	if(!(overlay_lighting_flags & LIGHTING_ON) || !current_holder)
 		return
@@ -209,7 +206,6 @@
 
 ///Changes the range which the light reaches. 0 means no light, 6 is the maximum value.
 /datum/component/overlay_lighting/proc/set_range(atom/source, new_range)
-	SIGNAL_HANDLER
 	if(range == new_range)
 		return
 	if(range == 0)
@@ -231,7 +227,6 @@
 
 ///Changes the intensity/brightness of the light by altering the visual object's alpha.
 /datum/component/overlay_lighting/proc/set_power(atom/source, new_power)
-	SIGNAL_HANDLER
 	set_lum_power(new_power >= 0 ? 0.5 : -0.5)
 	set_alpha = min(230, (abs(new_power) * 120) + 30)
 	visible_mask.alpha = set_alpha
@@ -239,13 +234,11 @@
 
 ///Changes the light's color, pretty straightforward.
 /datum/component/overlay_lighting/proc/set_color(atom/source, new_color)
-	SIGNAL_HANDLER
 	visible_mask.color = new_color
 
 
 ///Toggles the light on and off.
 /datum/component/overlay_lighting/proc/on_toggle(atom/source, new_value)
-	SIGNAL_HANDLER
 	if(new_value) //Truthy value input, turn on.
 		turn_on()
 		return
