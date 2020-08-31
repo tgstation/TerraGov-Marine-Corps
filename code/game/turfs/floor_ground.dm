@@ -95,11 +95,14 @@
 
 // Big Red
 
+
+
 /turf/open/floor/plating/ground/mars
 	icon = 'icons/turf/bigred.dmi'
-	shoefootstep = FOOTSTEP_SAND
-	barefootstep = FOOTSTEP_SAND
+	icon_state = "mars_sand"
 	mediumxenofootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	shoefootstep = FOOTSTEP_SAND
 
 /turf/open/floor/plating/ground/mars/random/cave
 
@@ -158,17 +161,15 @@
 	name = "concrete"
 	icon = 'icons/turf/concrete.dmi'
 	icon_state = "concrete0"
-	shoefootstep = FOOTSTEP_CONCRETE
-	barefootstep = FOOTSTEP_CONCRETE
 	mediumxenofootstep = FOOTSTEP_CONCRETE
-
+	barefootstep = FOOTSTEP_CONCRETE
+	shoefootstep = FOOTSTEP_CONCRETE
 
 /turf/open/floor/plating/ground/concrete/lines
 	icon_state = "concrete_lines"
 
 /turf/open/floor/plating/ground/concrete/edge
 	icon_state = "concrete_edge"
-
 
 //Desert Map
 
@@ -181,9 +182,9 @@
 /turf/open/floor/plating/ground/desertdam/desert
 	name = "desert"
 	icon_state = "desert0"
-	shoefootstep = FOOTSTEP_SAND
-	barefootstep = FOOTSTEP_SAND
 	mediumxenofootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	shoefootstep = FOOTSTEP_SAND
 
 /turf/open/floor/plating/ground/desertdam/desert/Initialize()
 	. = ..()
