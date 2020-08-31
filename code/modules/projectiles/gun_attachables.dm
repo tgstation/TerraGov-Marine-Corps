@@ -284,18 +284,11 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "suppressor_a"
 	attach_shell_speed_mod = -1
 	accuracy_mod = 0.1
-	damage_mod = -0.05
 	recoil_mod = -2
 	scatter_mod = -5
 	recoil_unwielded_mod = -3
 	scatter_unwielded_mod = -5
 	damage_falloff_mod = 0.1
-
-
-/obj/item/attachable/suppressor/Initialize()
-	. = ..()
-	attach_icon = pick("suppressor_a","suppressor2_a")
-
 
 /obj/item/attachable/suppressor/unremovable
 	flags_attach_features = NONE
@@ -371,7 +364,7 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "ebarrel"
 	attach_icon = "ebarrel_a"
 	attach_shell_speed_mod = 1
-	accuracy_mod = 0.15
+	accuracy_mod = 0.1
 	accuracy_unwielded_mod = 0.1
 	scatter_mod = -5
 	size_mod = 1
@@ -383,9 +376,9 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "muzzle"
 	icon_state = "hbarrel"
 	attach_icon = "hbarrel_a"
-	accuracy_mod = -0.45
-	damage_mod = 0.2
-	scatter_mod = 10
+	accuracy_mod = -0.5
+	damage_mod = 0.1
+	scatter_mod = 25
 	accuracy_unwielded_mod = -0.3
 
 
@@ -539,7 +532,7 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "reddot"
 	attach_icon = "reddot_a"
 	slot = "rail"
-	accuracy_mod = 0.15
+	accuracy_mod = 0.1
 	accuracy_unwielded_mod = 0.1
 
 
@@ -649,10 +642,16 @@ Defined in conflicts.dm of the #defines folder.
 	var/has_nightvision = FALSE
 	var/active_nightvision = FALSE
 
+
+/obj/item/attachable/scope/marine
+	name = "rail scope"
+	icon_state = "marinescope"
+	attach_icon = "marinescope_a"
+
 /obj/item/attachable/scope/nightvision
 	name = "T-46 Night vision scope"
 	icon_state = "nvscope"
-	attach_icon = "slavicscope"
+	attach_icon = "nvscope_a"
 	desc = "A rail-mounted night vision scope developed by Roh-Easy industries for the TGMC. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	has_nightvision = TRUE
 
