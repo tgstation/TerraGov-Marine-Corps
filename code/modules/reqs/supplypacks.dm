@@ -70,6 +70,11 @@ OPERATIONS
 	contains = list(/obj/item/bodybag/tarp)
 	cost = 6
 
+/datum/supply_packs/operations/exportpad
+	name = "ASRS Bluespace Export Point"
+	contains = list(/obj/machinery/exportpad)
+	cost = 50
+
 /datum/supply_packs/operations/alpha
 	name = "Alpha Supply Crate"
 	contains = list(/obj/structure/closet/crate/alpha)
@@ -836,7 +841,7 @@ ARMOR
 /datum/supply_packs/armor/modular/attachments/mimir_helmet_protection
 	name = "Jaeger helmet mimir module"
 	contains = list(
-		/obj/item/armor_module/attachable/mimir_environment_protection
+		/obj/item/helmet_module/attachable/mimir_environment_protection
 	)
 	cost = 5
 /datum/supply_packs/armor/modular/attachments/generic_helmet_modules

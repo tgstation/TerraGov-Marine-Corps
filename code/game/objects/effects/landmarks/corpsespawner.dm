@@ -275,15 +275,15 @@
 	corpsehelmet = /obj/item/clothing/head/helmet/space/rig/mining
 
 /obj/effect/landmark/corpsespawner/security
-	corpseuniform = /obj/item/clothing/under/marine/veteran/PMC
+	corpseuniform = /obj/item/clothing/under/rank/security
 	corpseshoes = /obj/item/clothing/shoes/jackboots
 	corpsesuit = /obj/item/clothing/suit/armor/vest/security
-	xenovictim = TRUE
 
 /obj/effect/landmark/corpsespawner/prison_security
 	name = "Prison Guard"
 	corpseuniform = /obj/item/clothing/under/rank/security
 	corpseshoes = /obj/item/clothing/shoes/jackboots
+	corpsegloves = /obj/item/clothing/gloves/black
 	corpsesuit = /obj/item/clothing/suit/armor/vest/security
 	corpsehelmet = /obj/item/clothing/head/helmet
 	corpseid = 1
@@ -302,6 +302,12 @@
 	corpsemask = /obj/item/clothing/mask/gas/PMC/damaged
 	corpseradio = /obj/item/radio/headset/survivor
 	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/PMC
+	xenovictim = TRUE
+
+/obj/effect/landmark/corpsespawner/colonist
+	name = "Colonist"
+	corpseuniform = /obj/item/clothing/under/colonist
+	corpseshoes = /obj/item/clothing/shoes/black
 	xenovictim = TRUE
 
 

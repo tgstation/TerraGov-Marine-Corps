@@ -253,7 +253,7 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/br,/obj/item/attachable/scope/mini)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 17, "rail_y" = 18, "under_x" = 25, "under_y" = 12, "stock_x" = 14, "stock_y" = 10)
 
-	fire_delay = 0.4 SECONDS
+	fire_delay = 0.35 SECONDS
 	damage_mult = 0.5 //uses the marksman bullet, like the DMR.
 	accuracy_mult = 1.25
 	scatter = -10
@@ -868,7 +868,7 @@
 		/obj/item/attachable/stock/tl127stock,
 	)
 	burst_amount = 0
-	fire_delay = 1.5 SECONDS
+	fire_delay = 1.35 SECONDS
 	accuracy_mult = 1.35
 	accuracy_mult_unwielded = 0.7
 	scatter = -30

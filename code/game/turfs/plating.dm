@@ -1,5 +1,6 @@
 /turf/open/floor/plating
 	name = "plating"
+	icon = 'icons/turf/floors.dmi'
 	icon_state = "plating"
 	floor_tile = null
 	intact_tile = FALSE
