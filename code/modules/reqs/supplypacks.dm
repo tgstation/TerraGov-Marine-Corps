@@ -803,12 +803,8 @@ ARMOR
 	name = "Jaeger baldur modules"
 	contains = list(
 		/obj/item/armor_module/attachable/better_shoulder_lamp,
-		/obj/item/armor_module/attachable/better_shoulder_lamp,
-		/obj/item/armor_module/attachable/better_shoulder_lamp,
-		/obj/item/armor_module/attachable/better_shoulder_lamp,
-		/obj/item/armor_module/attachable/better_shoulder_lamp,
 	)
-	cost = 7
+	cost = 10
 
 /datum/supply_packs/armor/modular/attachments/valkyrie_autodoc
 	name = "Jaeger valkyrie modules"
