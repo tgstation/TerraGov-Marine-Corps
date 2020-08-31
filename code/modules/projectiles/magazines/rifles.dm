@@ -297,7 +297,7 @@
 //-------------------------------------------------------
 
 /obj/item/ammo_magazine/rifle/ma37
-	name = "MA37 7.62mm magazine"
+	name = "MA37 ICWS Magazine"
 	desc = "A 7.62x51mm magazine for use in the MA37 ICWS"
 	caliber = "7.62x51mm"
 	icon_state = "ma37"
@@ -307,7 +307,7 @@
 	gun_type = /obj/item/weapon/gun/rifle/ma37
 
 /obj/item/ammo_magazine/rifle/ma5b
-	name = "MA5B 7.62mm magazine"
+	name = "MA5B ICWS Magazine"
 	desc = "A 7.62x51mm magazine for use in the MA5B ICWS"
 	caliber = "7.62x51mm"
 	icon_state = "ma5b"
@@ -317,7 +317,7 @@
 	gun_type = /obj/item/weapon/gun/rifle/ma5b
 
 /obj/item/ammo_magazine/rifle/m392
-	name = "M392 7.62mm magazine"
+	name = "M392 7.62mm FMJ AP Magazine"
 	desc = "A 7.62x51mm magazine for use in the M392 Designated Marksman Rifle"
 	caliber = "7.62x51mm"
 	icon_state = "m392"
@@ -327,7 +327,7 @@
 	gun_type = /obj/item/weapon/gun/rifle/m392
 
 /obj/item/ammo_magazine/rifle/br55
-	name = "BR55 9.5mm Magazine"
+	name = "9.5mm BR55 HP-SX Magazine"
 	desc = "A 9.5x40mm magazine for use in the BR55 Service Rifle"
 	caliber = "9.5x40mm"
 	icon_state = "br55"
@@ -362,8 +362,8 @@ obj/item/ammo_magazine/rifle/m739
 //-------------------------------------------------------
 
 /obj/item/ammo_magazine/rifle/ma3
-	name = "MA3 7.62mm magazine"
-	desc = "A 7.62x51mm magazine for use in the MA3 Assault Rifle"
+	name = "MA3 7.62mm Magazine"
+	desc = "A 7.62x51mm magazine for use in the MA3 Assault Rifle."
 	caliber = "7.62x51mm"
 	icon_state = "ma3"
 	w_class = WEIGHT_CLASS_NORMAL
@@ -382,12 +382,12 @@ obj/item/ammo_magazine/rifle/m739
 	gun_type = /obj/item/weapon/gun/rifle/lmg30cal
 
 /obj/item/ammo_magazine/rifle/kv32
-	name = "KV-23 Automatic Shotgun"
-	desc = "A magazing containing 4 16 gauge shells for use in the KV-32 automatic shotgun"
+	name = "16 Gauge Experimental Shotgun Magazine"
+	desc = "A magazine containing 4 16 gauge shells for use in the KV-32 automatic shotgun"
 	caliber = "16 gauge"
 	icon_state = "kv32"
 	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/bullet/shotgun/sx16_buckshot
+	default_ammo = /datum/ammo/bullet/shotgun/buckshot/kv32
 	max_rounds = 4
 	gun_type = /obj/item/weapon/gun/rifle/kv32
 

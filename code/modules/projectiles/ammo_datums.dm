@@ -1716,8 +1716,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 4
 	penetration = 0
 
-/datum/ammo/bullet/shotgun/slug
-	name = "shotgun slug"
+/datum/ammo/bullet/shotgun/slug/halo
+	name = "8 Gauge Sabot Slug"
 	hud_state = "shotgun_slug"
 	flags_ammo_behavior = AMMO_BALLISTIC
 	shell_speed = 3
@@ -1726,8 +1726,34 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 40
 	damage_falloff = 3
 
+/datum/ammo/bullet/shotgun/buckshot/kv32
+	name = "16 Gauge Experimental Buckshot"
+	icon_state = "buckshot"
+	hud_state = "shotgun_buckshot"
+	flags_ammo_behavior = AMMO_BALLISTIC
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread/halo
+	bonus_projectiles_amount = 4
+	bonus_projectiles_scatter = 10
+	accuracy_var_low = 9
+	accuracy_var_high = 9
+	accurate_range = 5
+	max_range = 10
+	damage = 25
+	damage_falloff = 3
+	penetration = 0
 
-
+//special kv32 spread
+/datum/ammo/bullet/shotgun/spread/halo
+	name = "additional buckshot"
+	icon_state = "buckshot"
+	shell_speed = 2
+	accuracy_var_low = 9
+	accuracy_var_high = 9
+	accurate_range = 3
+	max_range = 10
+	damage = 20
+	damage_falloff = 4
+	penetration = 0
 //Plasma
 
 //Special
