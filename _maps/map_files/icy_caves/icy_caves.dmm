@@ -1400,9 +1400,6 @@
 	dir = 1
 	},
 /area/icy_caves/caves/south)
-"fE" = (
-/turf/open/floor/plating/icefloor,
-/area/icy_caves/outpost/LZ1)
 "fF" = (
 /turf/closed/ice/end{
 	dir = 1
@@ -1587,7 +1584,7 @@
 /area/icy_caves/outpost/LZ2)
 "gu" = (
 /obj/docking_port/stationary/marine_dropship/lz2,
-/turf/open/floor/plating/icefloor,
+/turf/open/floor/plating,
 /area/icy_caves/outpost/LZ2)
 "gv" = (
 /turf/open/floor/plating/ground/snow/layer2,
@@ -4541,10 +4538,6 @@
 /obj/structure/closet/secure_closet/scientist,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
-"rg" = (
-/obj/machinery/floodlight/outpost,
-/turf/open/floor/plating/ground/ice,
-/area/icy_caves/outpost/LZ2)
 "rh" = (
 /obj/effect/landmark/corpsespawner/pmc,
 /turf/open/floor/tile/dark2,
@@ -4576,10 +4569,6 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
-/turf/open/floor/plating/ground/ice,
-/area/icy_caves/caves/east)
-"rp" = (
-/obj/machinery/floodlight/outpost,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/east)
 "rq" = (
@@ -4936,12 +4925,22 @@
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
+"ti" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ1)
 "tm" = (
 /obj/machinery/light/small{
 	dir = 8
 	},
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
+"tB" = (
+/obj/machinery/landinglight/ds1/delaythree{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ1)
 "tE" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -4954,6 +4953,12 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/outside)
+"tL" = (
+/obj/machinery/landinglight/ds1/delaythree{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ2)
 "tM" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/ice,
@@ -5010,6 +5015,18 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/outside)
+"vx" = (
+/obj/machinery/landinglight/ds1/delaytwo{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ1)
+"vA" = (
+/obj/machinery/landinglight/ds1{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ1)
 "vP" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/ice_rock/singlePart{
@@ -5024,6 +5041,10 @@
 	dir = 8
 	},
 /area/icy_caves/caves/east)
+"wu" = (
+/obj/machinery/camera/autoname/lz_camera,
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ2)
 "wM" = (
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
@@ -5043,6 +5064,12 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/ice/junction,
 /area/icy_caves/caves/east)
+"yg" = (
+/obj/machinery/landinglight/ds1/delayone{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ1)
 "yh" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -5070,6 +5097,18 @@
 	dir = 8
 	},
 /area/icy_caves/caves/OOB)
+"yH" = (
+/obj/machinery/landinglight/ds1/delaythree{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ1)
+"zg" = (
+/obj/machinery/landinglight/ds1/delaytwo{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ1)
 "zl" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/plating/ground/ice,
@@ -5110,6 +5149,22 @@
 	dir = 9
 	},
 /area/icy_caves/caves/OOB)
+"AG" = (
+/obj/machinery/landinglight/ds1/delayone,
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ1)
+"AK" = (
+/obj/machinery/landinglight/ds1/delaytwo{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ2)
+"AS" = (
+/obj/machinery/landinglight/ds1/delaytwo{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ2)
 "Bs" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -5117,6 +5172,20 @@
 /obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/ground/snow,
 /area/icy_caves/outpost/outside)
+"Bx" = (
+/obj/machinery/landinglight/ds1,
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ2)
+"BI" = (
+/obj/machinery/landinglight/ds1/delayone{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ1)
+"Cx" = (
+/obj/machinery/landinglight/ds1/delaythree,
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ2)
 "CM" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -5130,6 +5199,12 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/east)
+"CW" = (
+/obj/machinery/landinglight/ds1/delaythree{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ2)
 "Dc" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/ice_rock/singlePart{
@@ -5144,6 +5219,11 @@
 	dir = 6
 	},
 /area/icy_caves/caves/OOB)
+"EI" = (
+/obj/machinery/floodlight/landing,
+/obj/effect/decal/warning_stripes,
+/turf/open/floor/mech_bay_recharge_floor,
+/area/icy_caves/outpost/LZ2)
 "EK" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/ice_rock/northWall,
@@ -5154,12 +5234,24 @@
 	},
 /turf/closed/ice_rock/northWall,
 /area/icy_caves/caves/OOB)
+"Fo" = (
+/obj/machinery/landinglight/ds1/delayone{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ2)
 "FG" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/ice_rock/singlePart{
 	dir = 9
 	},
 /area/icy_caves/caves/OOB)
+"FJ" = (
+/obj/machinery/landinglight/ds1/delaytwo{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ2)
 "Gk" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -5175,6 +5267,12 @@
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)
+"Hi" = (
+/obj/machinery/landinglight/ds1{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ1)
 "Ho" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/ice/junction{
@@ -5205,6 +5303,12 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
+"Jy" = (
+/obj/machinery/landinglight/ds1/delayone{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ2)
 "JB" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -5213,6 +5317,10 @@
 	dir = 8
 	},
 /area/icy_caves/caves/OOB)
+"JM" = (
+/obj/machinery/landinglight/ds1/delaythree,
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ1)
 "JT" = (
 /obj/structure/sign/science{
 	dir = 1
@@ -5231,6 +5339,14 @@
 /obj/structure/dispenser,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
+"KV" = (
+/obj/machinery/landinglight/ds1,
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ1)
+"Lq" = (
+/obj/machinery/landinglight/ds1/delaytwo,
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ1)
 "LI" = (
 /obj/docking_port/stationary/crashmode,
 /obj/docking_port/stationary/crashmode/bigbury,
@@ -5242,6 +5358,12 @@
 	dir = 6
 	},
 /area/icy_caves/caves/OOB)
+"LZ" = (
+/obj/machinery/landinglight/ds1{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ1)
 "Mi" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -5275,6 +5397,10 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/east)
+"Np" = (
+/obj/machinery/landinglight/ds1/delayone,
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ2)
 "NE" = (
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/OOB)
@@ -5291,6 +5417,22 @@
 "NU" = (
 /turf/closed/ice_rock/fourway,
 /area/icy_caves/outpost/outside)
+"Ob" = (
+/obj/machinery/landinglight/ds1/delaytwo,
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ2)
+"OC" = (
+/obj/machinery/landinglight/ds1{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ2)
+"OH" = (
+/obj/machinery/landinglight/ds1{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ2)
 "OK" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/ice_rock/corners{
@@ -5345,6 +5487,12 @@
 /obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/refinery)
+"QR" = (
+/obj/machinery/landinglight/ds1/delayone{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ2)
 "QY" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -5368,6 +5516,18 @@
 "Ry" = (
 /turf/closed/wall/r_wall,
 /area/icy_caves/caves/OOB)
+"RA" = (
+/obj/machinery/landinglight/ds1/delayone{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ1)
+"RI" = (
+/obj/machinery/landinglight/ds1{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ2)
 "RN" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark2,
@@ -5387,6 +5547,12 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
+"Sh" = (
+/obj/machinery/landinglight/ds1/delaythree{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ2)
 "Sr" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -5475,6 +5641,9 @@
 	dir = 4
 	},
 /area/icy_caves/caves/OOB)
+"VN" = (
+/turf/open/floor/mech_bay_recharge_floor,
+/area/icy_caves/outpost/LZ1)
 "VQ" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark2,
@@ -5488,6 +5657,12 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/ice/intersection,
 /area/icy_caves/caves/east)
+"WS" = (
+/obj/machinery/landinglight/ds1/delaytwo{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ1)
 "Xs" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/ice_rock/single,
@@ -5543,6 +5718,12 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/east)
+"Zm" = (
+/obj/machinery/landinglight/ds1/delaythree{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/icy_caves/outpost/LZ1)
 "ZH" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -7327,29 +7508,29 @@ bK
 nM
 gy
 gO
-kV
-kV
-kV
-kV
-kV
-kV
-kV
-kV
-kV
-kV
-kV
-kV
-kV
-kV
-kV
-kV
-jr
-jr
-jr
-jr
-jr
-jr
-gO
+VN
+tB
+tB
+LZ
+BI
+WS
+tB
+LZ
+BI
+WS
+tB
+VN
+BI
+WS
+tB
+LZ
+BI
+WS
+tB
+LZ
+BI
+WS
+VN
 gO
 gO
 ny
@@ -7584,7 +7765,18 @@ nD
 ma
 Tm
 gO
-kV
+Lq
+la
+la
+ti
+la
+la
+la
+la
+la
+la
+la
+ti
 la
 la
 la
@@ -7593,20 +7785,9 @@ la
 la
 la
 la
+ti
 la
-la
-la
-la
-la
-la
-la
-la
-la
-la
-la
-la
-la
-jr
+yH
 gO
 gO
 mh
@@ -7841,7 +8022,7 @@ ls
 ls
 Rh
 gO
-kV
+AG
 la
 la
 la
@@ -7863,7 +8044,7 @@ la
 la
 la
 la
-jr
+vA
 gO
 gO
 nz
@@ -8098,7 +8279,7 @@ nz
 Tb
 Io
 jr
-kV
+KV
 la
 la
 la
@@ -8120,7 +8301,7 @@ la
 la
 la
 la
-jr
+RA
 gO
 gO
 nA
@@ -8355,7 +8536,7 @@ mh
 qS
 PD
 jr
-kV
+JM
 la
 la
 la
@@ -8377,7 +8558,7 @@ la
 la
 la
 la
-jr
+zg
 gO
 gO
 nA
@@ -8612,7 +8793,7 @@ ls
 qS
 PD
 jr
-kV
+Lq
 la
 la
 la
@@ -8634,7 +8815,7 @@ la
 la
 la
 la
-jr
+yH
 gO
 gO
 nA
@@ -8869,7 +9050,7 @@ ls
 YA
 Tm
 jr
-kV
+AG
 la
 la
 la
@@ -8878,11 +9059,10 @@ la
 la
 la
 la
-fE
+la
 la
 pt
 la
-fE
 la
 la
 la
@@ -8891,7 +9071,8 @@ la
 la
 la
 la
-jr
+la
+vA
 gO
 gO
 nA
@@ -9126,7 +9307,7 @@ Tb
 NU
 Ka
 jr
-kV
+KV
 la
 la
 la
@@ -9137,7 +9318,6 @@ la
 la
 la
 la
-fE
 la
 la
 la
@@ -9148,7 +9328,8 @@ la
 la
 la
 la
-jr
+la
+RA
 gO
 gO
 mh
@@ -9383,7 +9564,7 @@ VU
 VU
 vq
 jr
-kV
+JM
 la
 la
 la
@@ -9394,7 +9575,6 @@ la
 la
 la
 la
-fE
 la
 la
 la
@@ -9405,7 +9585,8 @@ la
 la
 la
 la
-jr
+la
+zg
 gO
 gO
 nz
@@ -9640,7 +9821,7 @@ gv
 gv
 gC
 jr
-kV
+Lq
 la
 la
 la
@@ -9662,7 +9843,7 @@ la
 la
 la
 la
-jr
+yH
 gO
 gO
 ny
@@ -9897,7 +10078,7 @@ gv
 gv
 gC
 jr
-kV
+AG
 la
 la
 la
@@ -9919,7 +10100,7 @@ la
 la
 la
 la
-jr
+vA
 jr
 gO
 mh
@@ -10154,7 +10335,18 @@ gw
 gw
 gD
 jr
-kV
+KV
+la
+la
+ti
+la
+la
+la
+la
+la
+la
+la
+ti
 la
 la
 la
@@ -10163,20 +10355,9 @@ la
 la
 la
 la
+ti
 la
-la
-la
-la
-la
-la
-la
-la
-la
-la
-la
-la
-la
-jr
+RA
 jr
 gO
 nz
@@ -10411,29 +10592,29 @@ gw
 gw
 gD
 jr
-kV
-kV
-kV
-kV
-kV
-kV
-kV
-kV
-kV
-kV
-kV
-kV
-kV
-kV
-kV
-kV
-kV
-kV
-kV
-kV
-kV
-kV
-jr
+VN
+yg
+yg
+Hi
+Zm
+vx
+yg
+Hi
+Zm
+vx
+yg
+VN
+Zm
+vx
+yg
+Hi
+Zm
+vx
+yg
+Hi
+Zm
+vx
+VN
 jr
 gO
 ny
@@ -34268,12 +34449,12 @@ hn
 ge
 hB
 ro
-rp
+ds
 gd
 el
 gc
 ds
-rp
+ds
 sa
 dt
 dt
@@ -35815,12 +35996,12 @@ qX
 qX
 qX
 qX
-rg
+qX
 rn
 rq
 rq
 rn
-rg
+qX
 qX
 qX
 qX
@@ -37357,12 +37538,12 @@ qX
 qX
 qX
 qX
-rg
+qX
 rn
 rq
 rq
 rn
-rg
+qX
 qX
 qX
 qX
@@ -38894,17 +39075,17 @@ qX
 qX
 qX
 qX
-rg
 qX
 qX
 qX
 qX
-rg
+qX
+qX
 rn
 bN
 bN
 rn
-rg
+qX
 qX
 qX
 qX
@@ -40690,29 +40871,29 @@ JB
 ny
 an
 bN
-an
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
+EI
+Sh
+Sh
+OH
+Jy
+AK
+Sh
+OH
+Jy
+AK
+Sh
+EI
+Jy
+AK
+Sh
+OH
+Jy
+AK
+Sh
+OH
+Jy
+AK
+EI
 an
 mh
 ny
@@ -40947,7 +41128,18 @@ Ak
 mh
 an
 bN
-bN
+Ob
+gp
+gp
+wu
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+wu
 gp
 gp
 gp
@@ -40956,20 +41148,9 @@ gp
 gp
 gp
 gp
+wu
 gp
-gp
-gp
-gp
-gp
-gp
-gp
-gp
-gp
-gp
-gp
-gp
-gp
-bN
+tL
 an
 an
 ny
@@ -41204,7 +41385,7 @@ MZ
 lQ
 an
 an
-bN
+Np
 gp
 gp
 gp
@@ -41226,7 +41407,7 @@ gp
 gp
 gp
 gp
-bN
+OC
 an
 an
 ln
@@ -41461,7 +41642,7 @@ MZ
 ma
 an
 an
-bN
+Bx
 gp
 gp
 gp
@@ -41483,7 +41664,7 @@ gp
 gp
 gp
 gp
-bN
+QR
 an
 an
 lm
@@ -41718,7 +41899,7 @@ zT
 lQ
 an
 an
-bN
+Cx
 gp
 gp
 gp
@@ -41740,7 +41921,7 @@ gp
 gp
 gp
 gp
-bN
+FJ
 an
 an
 ny
@@ -41975,7 +42156,7 @@ Ej
 ma
 an
 an
-bN
+Ob
 gp
 gp
 gp
@@ -41997,7 +42178,7 @@ gp
 gp
 gp
 gp
-bN
+tL
 an
 an
 ny
@@ -42232,7 +42413,7 @@ MZ
 nC
 an
 an
-bN
+Np
 gp
 gp
 gp
@@ -42254,7 +42435,7 @@ gp
 gp
 gp
 gp
-bN
+OC
 an
 an
 ny
@@ -42489,7 +42670,7 @@ MZ
 nC
 an
 an
-bN
+Bx
 gp
 gp
 gp
@@ -42511,7 +42692,7 @@ gp
 gp
 gp
 gp
-bN
+QR
 an
 an
 mh
@@ -42746,7 +42927,7 @@ MZ
 nC
 an
 an
-bN
+Cx
 gp
 gp
 gp
@@ -42768,7 +42949,7 @@ gp
 gp
 gp
 gp
-bN
+FJ
 an
 an
 nz
@@ -43003,7 +43184,7 @@ JB
 nz
 an
 an
-bN
+Ob
 gp
 gp
 gp
@@ -43025,7 +43206,7 @@ gp
 gp
 gp
 gp
-bN
+tL
 an
 an
 nA
@@ -43260,7 +43441,7 @@ Ak
 nA
 an
 an
-bN
+Np
 gp
 gp
 gp
@@ -43282,7 +43463,7 @@ gp
 gp
 gp
 gp
-bN
+OC
 an
 an
 ny
@@ -43517,7 +43698,18 @@ PX
 nA
 an
 an
-bN
+Bx
+gp
+gp
+wu
+gp
+gp
+gp
+gp
+gp
+gp
+gp
+wu
 gp
 gp
 gp
@@ -43526,20 +43718,9 @@ gp
 gp
 gp
 gp
+wu
 gp
-gp
-gp
-gp
-gp
-gp
-gp
-gp
-gp
-gp
-gp
-gp
-gp
-bN
+QR
 an
 an
 mh
@@ -43774,29 +43955,29 @@ MZ
 lZ
 an
 an
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
-bN
+EI
+Fo
+Fo
+RI
+CW
+AS
+Fo
+RI
+CW
+AS
+Fo
+EI
+CW
+AS
+Fo
+RI
+CW
+AS
+Fo
+RI
+CW
+AS
+EI
 an
 lm
 lQ
