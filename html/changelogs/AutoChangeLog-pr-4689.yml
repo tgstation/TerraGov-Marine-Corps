@@ -1,4 +1,0 @@
-author: "Spyroshark"
-delete-after: True
-changes: 
-  - rscadd: "Requisitions can now order an ASRS Bluespace Selling Point to remotely sell valubles on the planet."
