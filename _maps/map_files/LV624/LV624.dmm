@@ -17389,7 +17389,6 @@
 /turf/open/ground/grass,
 /area/lv624/ground/compound/sw)
 "cSo" = (
-/obj/structure/window/framed/colony,
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
