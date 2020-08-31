@@ -1,0 +1,5 @@
+author: "David-Stormwell"
+delete-after: True
+changes: 
+  - balance: "Ravager's slashing is decreased."
+  - balance: "rebalanced all Xenomorph tackling damage to be more normalized"
