@@ -6,17 +6,24 @@
 	. = 3
 	SSpoints.supply_points += .
 
+/obj/structure/ore_box/phoron/supply_export()
+	. = 20
+	SSpoints.supply_points += .
+
+/obj/structure/ore_box/platinum/supply_export()
+	. = 40
+	SSpoints.supply_points += .
 
 /mob/living/carbon/xenomorph/supply_export()
 	switch(tier)
 		if(XENO_TIER_ZERO)
-			. = 1
+			. = 15
 		if(XENO_TIER_ONE)
-			. = 5
-		if(XENO_TIER_TWO)
-			. = 10
-		if(XENO_TIER_THREE)
 			. = 30
-		if(XENO_TIER_FOUR)
+		if(XENO_TIER_TWO)
+			. = 40
+		if(XENO_TIER_THREE)
 			. = 50
+		if(XENO_TIER_FOUR)
+			. = 100
 	SSpoints.supply_points += .
