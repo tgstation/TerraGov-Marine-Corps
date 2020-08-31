@@ -2905,6 +2905,8 @@
 /obj/item/defibrillator,
 /obj/item/storage/belt/medical,
 /obj/item/storage/belt/medical,
+/obj/item/storage/belt/combatLifesaver,
+/obj/item/storage/belt/combatLifesaver,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/medbay/storage2)
 "ajU" = (
