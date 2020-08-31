@@ -302,7 +302,7 @@
 	caliber = "7.62x51mm"
 	icon_state = "ma37"
 	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/bullet/rifle
+	default_ammo = /datum/ammo/bullet/ma37
 	max_rounds = 32
 	gun_type = /obj/item/weapon/gun/rifle/ma37
 
@@ -312,7 +312,7 @@
 	caliber = "7.62x51mm"
 	icon_state = "ma5b"
 	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/bullet/rifle
+	default_ammo = /datum/ammo/bullet/ma37
 	max_rounds = 60
 	gun_type = /obj/item/weapon/gun/rifle/ma5b
 
@@ -322,7 +322,7 @@
 	caliber = "7.62x51mm"
 	icon_state = "m392"
 	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/bullet/rifle
+	default_ammo = /datum/ammo/bullet/ma37/ap
 	max_rounds = 15
 	gun_type = /obj/item/weapon/gun/rifle/m392
 
@@ -332,7 +332,7 @@
 	caliber = "9.5x40mm"
 	icon_state = "br55"
 	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/bullet/rifle
+	default_ammo = /datum/ammo/bullet/br
 	max_rounds = 36
 	gun_type = /obj/item/weapon/gun/rifle/br55
 
@@ -367,7 +367,7 @@ obj/item/ammo_magazine/rifle/m739
 	caliber = "7.62x51mm"
 	icon_state = "ma3"
 	w_class = WEIGHT_CLASS_NORMAL
-	default_ammo = /datum/ammo/bullet/rifle
+	default_ammo = /datum/ammo/bullet/ma37
 	max_rounds = 40
 	gun_type = /obj/item/weapon/gun/rifle/ma3
 
@@ -400,4 +400,3 @@ obj/item/ammo_magazine/rifle/m739
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 5
 	gun_type = /obj/item/weapon/gun/rifle/ssrs
-
