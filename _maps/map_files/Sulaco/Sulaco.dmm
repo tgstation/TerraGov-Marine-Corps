@@ -6757,11 +6757,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/stack/sheet/metal/medium_stack,
-/obj/item/stack/sheet/metal/medium_stack{
-	pixel_x = 5;
-	pixel_y = 10
-	},
+/obj/item/lightreplacer,
 /turf/open/floor/prison/darkyellow{
 	dir = 8
 	},
@@ -13928,6 +13924,8 @@
 	pixel_x = 3;
 	pixel_y = 3
 	},
+/obj/item/stack/sheet/metal/medium_stack,
+/obj/item/stack/sheet/metal/small_stack,
 /turf/open/floor/prison,
 /area/sulaco/hangar)
 "gnS" = (
