@@ -442,7 +442,7 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "under"
 	flags_attach_features = NONE
 	pixel_shift_x = 7
-	pixel_shift_y = 16
+	pixel_shift_y = 14
 	accuracy_mod = 0
 	scatter_mod = -5
 

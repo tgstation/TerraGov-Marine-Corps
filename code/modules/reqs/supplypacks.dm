@@ -187,7 +187,7 @@ WEAPONS
 		/obj/item/ammo_magazine/rifle/autosniper,
 		/obj/item/ammo_magazine/rifle/autosniper,
 	)
-	cost = 100
+	cost = 70
 
 /datum/supply_packs/weapons/specminigun
 	name = "MIC-A7 Vindicator Minigun"
@@ -554,7 +554,7 @@ AMMO
 /datum/supply_packs/ammo/autosniper_regular
 	name = "T-81 IFF sniper magazine"
 	contains = list(/obj/item/ammo_magazine/rifle/autosniper)
-	cost = 5
+	cost = 3
 
 /datum/supply_packs/ammo/mbx900
 	name = "MBX 900 ammo crate"
