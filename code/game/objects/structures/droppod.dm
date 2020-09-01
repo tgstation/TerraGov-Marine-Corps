@@ -11,7 +11,7 @@
 	anchored = TRUE
 	layer = ABOVE_OBJ_LAYER
 	resistance_flags = XENO_DAMAGEABLE
-	soft_armor = list("melee" = 50, "bullet" = 70, "laser" = 70, "energy" = 100, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 0)
+	soft_armor = list("melee" = 50, "bullet" = 70, "laser" = 70, "energy" = 100, "bomb" = 70, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 0)
 	max_integrity = 50
 	flags_atom = PREVENT_CONTENTS_EXPLOSION
 	var/mob/occupant
@@ -30,7 +30,7 @@
 /obj/structure/droppod/Destroy()
 	. = ..()
 	if(occupant)
-		exitpod(occupant)
+		exitpod(occupant, TRUE)
 	userimg = null
 	QDEL_NULL(reserved_area)
 	GLOB.droppod_list -= src
@@ -117,7 +117,7 @@
 		var/atom/object = x
 		if(object.density)
 			to_chat(user, "<span class='warning'>Dense object detected in target location.</span>")
-			return TRUE
+			return FALSE
 	to_chat(user, "<span class='notice'>Valid area confirmed!</span>")
 	return TRUE
 
@@ -131,7 +131,7 @@
 /obj/structure/droppod/proc/launchpod(mob/user)
 	if(!occupant)
 		return
-	if(world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
+	if(world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock + DROPPOD_DEPLOY_DELAY)
 		to_chat(user, "<span class='notice'>Unable to launch, the ship has not yet reached the combat area.</span>")
 		return
 	if(drop_state != DROPPOD_READY)
@@ -158,32 +158,33 @@
 	for(var/a in targetturf.contents)
 		var/atom/target = a
 		if(target.density)	//if theres something dense in the turf try to recalculate a new turf
-			to_chat(occupant, "<span class='warning'>[icon2html(src,user)] WARNING! TARGET ZONE OCCUPIED! EVADING!</span>")
+			to_chat(occupant, "<span class='warning'>[icon2html(src,occupant)] WARNING! TARGET ZONE OCCUPIED! EVADING!</span>")
 			var/turf/T0 = locate(target_x + 2,target_y + 2,2)
 			var/turf/T1 = locate(target_x - 2,target_y - 2,2)
-			for(var/t in block(T0,T1))//Randomly selects a free turf in a 5x5 block around the target
+			var/list/block = block(T0,T1) - targetturf
+			for(var/t in block)//Randomly selects a free turf in a 5x5 block around the target
 				var/turf/attemptdrop = t
 				if(!attemptdrop.density)
 					targetturf = attemptdrop
 					break
 			if(targetturf.density)//We tried and failed, revert to the old one, which has a new dense obj but is at least not dense
-				to_chat(occupant, "<span class='warning'>[icon2html(src,user)] RECALCULATION FAILED!</span>")
+				to_chat(occupant, "<span class='warning'>[icon2html(src,occupant)] RECALCULATION FAILED!</span>")
 				targetturf = locate(target_x, target_y,2)
 			break
 	deadchat_broadcast("has landed at [get_area(targetturf)]!", src, occupant)
+	explosion(targetturf,-1,-1,1,-1)
 	forceMove(targetturf)
 	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100)
-	explosion(targetturf,-1,-1,2,-1)
 	QDEL_NULL(reserved_area)
-	sleep(5)//Dramatic effect
+	sleep(7)//Dramatic effect
 	icon_state = "singlepod_open"
 	drop_state = DROPPOD_LANDED
 	exitpod(user)
 
-/obj/structure/droppod/proc/exitpod(mob/user)
+/obj/structure/droppod/proc/exitpod(mob/user, forced = FALSE)
 	if(!occupant)
 		return
-	if(drop_state == DROPPOD_ACTIVE)
+	if(drop_state == DROPPOD_ACTIVE && !forced)
 		to_chat(user, "<span class='warning'>You can't get out while the pod is in transit!</span>")
 		return
 	occupant.forceMove(get_turf(src))
