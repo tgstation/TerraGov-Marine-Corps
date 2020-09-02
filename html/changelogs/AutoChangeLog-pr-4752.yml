@@ -1,0 +1,5 @@
+author: "Hathkar"
+delete-after: True
+changes: 
+  - rscadd: "More guns/ammo to Magmoor"
+  - balance: "Miners close to LZs in Magmoor. Stop fob camping"
