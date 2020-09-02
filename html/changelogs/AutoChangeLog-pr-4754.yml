@@ -1,0 +1,5 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - rscdel: "Removed IS and Ammo magazine from being acquireable at all."
+  - balance: "Removed IS and ammo magazine storages from modular armor. Reversed overall storage creep. General storage only holds 2 items."
