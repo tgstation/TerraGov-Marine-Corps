@@ -1,0 +1,4 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - balance: "Baldur lights are no longer free in vendors. Baldur now costs 10 points in req and is only 1 per module like the other modules."
