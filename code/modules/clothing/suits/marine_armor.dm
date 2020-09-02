@@ -244,7 +244,6 @@
 	icon_state = "marinevest"
 	soft_armor = list("melee" = 45, "bullet" = 65, "laser" = 55, "energy" = 40, "bomb" = 40, "bio" = 40, "rad" = 15, "fire" = 40, "acid" = 45)
 	slowdown = 0.6 //Same as modular armor.
-	light_strength = 8
 
 
 //===========================SPECIALIST================================
