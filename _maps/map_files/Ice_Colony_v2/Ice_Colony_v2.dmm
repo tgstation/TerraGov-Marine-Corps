@@ -1078,7 +1078,7 @@
 /area/ice_colony/surface/engineering/generator)
 "aej" = (
 /obj/structure/cable,
-/turf/open/floor/animated/bcircuit,
+/turf/open/floor/podhatch/floor,
 /area/ice_colony/surface/engineering/generator)
 "ael" = (
 /obj/machinery/landinglight/ds1/delaytwo{
@@ -1584,7 +1584,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/animated/bcircuit,
+/turf/open/floor/podhatch/floor,
 /area/ice_colony/surface/engineering/generator)
 "afW" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -5072,7 +5072,7 @@
 /area/ice_colony/surface/dorms)
 "arS" = (
 /obj/structure/cable,
-/turf/open/floor/animated/bcircuit,
+/turf/open/floor/podhatch/floor,
 /area/ice_colony/surface/tcomms)
 "arT" = (
 /turf/open/floor/plating,
@@ -5724,7 +5724,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor/tile/red/whiteredfull,
+/turf/open/floor/tile/red/whitered/full,
 /area/ice_colony/surface/clinic/lobby)
 "aub" = (
 /obj/structure/cable,
@@ -5900,7 +5900,7 @@
 	dir = 1;
 	name = "\improper Aurora Medical Clinic"
 	},
-/turf/open/floor/tile/red/whiteredfull,
+/turf/open/floor/tile/red/whitered/full,
 /area/ice_colony/surface/clinic/lobby)
 "auz" = (
 /obj/structure/disposalpipe/segment{
@@ -18496,7 +18496,7 @@
 /area/ice_colony/underground/hangar)
 "bih" = (
 /obj/structure/cable,
-/turf/open/floor/animated/bcircuit,
+/turf/open/floor/podhatch/floor,
 /area/ice_colony/underground/hangar)
 "bii" = (
 /obj/vehicle/train/cargo/engine,
@@ -18521,7 +18521,7 @@
 /obj/machinery/power/apc/drained{
 	dir = 1
 	},
-/turf/open/floor/animated/bcircuit,
+/turf/open/floor/podhatch/floor,
 /area/ice_colony/underground/engineering/substation)
 "bio" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -29821,7 +29821,7 @@
 /area/ice_colony/underground/medical/treatment)
 "bSV" = (
 /obj/structure/cable,
-/turf/open/floor/animated/bcircuit,
+/turf/open/floor/podhatch/floor,
 /area/ice_colony/underground/engineering/substation)
 "bSW" = (
 /turf/closed/ice_rock/corners{

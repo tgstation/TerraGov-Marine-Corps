@@ -2511,7 +2511,7 @@
 /area/icy_caves/outpost/engineering)
 "jJ" = (
 /obj/structure/cable,
-/turf/open/floor/animated/bcircuit,
+/turf/open/floor/podhatch/floor,
 /area/icy_caves/outpost/engineering)
 "jL" = (
 /obj/structure/cable,

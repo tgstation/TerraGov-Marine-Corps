@@ -1114,7 +1114,7 @@
 "gk" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/structure/cable,
-/turf/open/floor/tile/dark,
+/turf/open/floor/tile/dark/red2,
 /area/outpost/engineering/security)
 "gm" = (
 /obj/machinery/iv_drip,
@@ -1458,9 +1458,6 @@
 /obj/machinery/light,
 /turf/open/floor/tile/dark/purple2,
 /area/outpost/science/xenobiology)
-"ie" = (
-/turf/open/floor/plating/ground/mars,
-/area/outpost/caves/north_east)
 "ig" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
@@ -2600,7 +2597,9 @@
 "ok" = (
 /obj/structure/table,
 /obj/item/tool/pen,
-/turf/open/floor/tile/dark,
+/turf/open/floor/tile/dark/red2{
+	dir = 8
+	},
 /area/outpost/engineering/security)
 "ol" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -3081,9 +3080,7 @@
 "qH" = (
 /obj/structure/table,
 /obj/effect/spawner/random/technology_scanner,
-/turf/open/floor/tile/dark/red2/corner{
-	dir = 4
-	},
+/turf/open/floor/tile/dark,
 /area/outpost/science/xenobiology)
 "qK" = (
 /obj/structure/closet/bombclosetsecurity,
@@ -3347,9 +3344,6 @@
 	dir = 10
 	},
 /area/outpost/science)
-"sa" = (
-/turf/open/floor/plating/ground/mars/random,
-/area/outpost/yard/south)
 "sb" = (
 /obj/structure/xenoautopsy/tank/broken,
 /turf/open/floor/tile/dark/purple2{
@@ -4243,7 +4237,9 @@
 "xy" = (
 /obj/structure/filingcabinet/security,
 /obj/structure/cable,
-/turf/open/floor/tile/dark,
+/turf/open/floor/tile/dark/red2{
+	dir = 4
+	},
 /area/outpost/engineering/security)
 "xz" = (
 /obj/effect/decal/cleanable/blood/writing{
@@ -5409,7 +5405,9 @@
 "EL" = (
 /obj/structure/table,
 /obj/structure/paper_bin,
-/turf/open/floor/tile/dark,
+/turf/open/floor/tile/dark/red2{
+	dir = 9
+	},
 /area/outpost/engineering/security)
 "EM" = (
 /obj/structure/filingcabinet/filingcabinet,
@@ -5694,7 +5692,7 @@
 "Gs" = (
 /obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor/tile/dark/purple2{
-	dir = 1
+	dir = 9
 	},
 /area/outpost/science/rd_office)
 "Gu" = (
@@ -6276,7 +6274,9 @@
 	},
 /obj/item/trash/cigbutt/cigarbutt,
 /obj/item/radio,
-/turf/open/floor/tile/dark,
+/turf/open/floor/tile/dark/red2{
+	dir = 1
+	},
 /area/outpost/engineering/security)
 "JO" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -6806,7 +6806,7 @@
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /turf/open/floor/tile/dark/red2{
-	dir = 8
+	dir = 5
 	},
 /area/outpost/engineering/security)
 "MB" = (
@@ -7180,7 +7180,9 @@
 /obj/item/ammo_magazine/rifle/ak47,
 /obj/item/weapon/gun/rifle/ak47,
 /obj/item/attachable/flashlight,
-/turf/open/floor/tile/dark/red2,
+/turf/open/floor/tile/dark/red2{
+	dir = 6
+	},
 /area/outpost/engineering/security)
 "Oy" = (
 /obj/structure/cable,
@@ -8940,7 +8942,9 @@
 "XU" = (
 /obj/structure/table,
 /obj/item/trash/popcorn,
-/turf/open/floor/tile/dark,
+/turf/open/floor/tile/dark/red2{
+	dir = 10
+	},
 /area/outpost/engineering/security)
 "XX" = (
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -31257,7 +31261,7 @@ fG
 mN
 wj
 qN
-sa
+mN
 Dn
 RV
 Ip
@@ -31515,7 +31519,7 @@ jZ
 jF
 kN
 qN
-sa
+mN
 Dn
 wa
 Ip
@@ -31773,7 +31777,7 @@ tK
 Np
 Np
 rA
-sa
+mN
 Dn
 wa
 BQ
@@ -32028,10 +32032,10 @@ fG
 MC
 fG
 fG
-sa
-sa
-sa
-sa
+mN
+mN
+mN
+mN
 Dn
 wa
 BQ
@@ -32286,9 +32290,9 @@ ta
 HT
 xi
 fG
-sa
-sa
-sa
+mN
+mN
+mN
 ep
 wa
 wa
@@ -36363,7 +36367,7 @@ cg
 cg
 cg
 cg
-ie
+Af
 Jh
 cg
 cg
@@ -36621,7 +36625,7 @@ cg
 cg
 cg
 cg
-ie
+Af
 Jh
 cg
 cg
