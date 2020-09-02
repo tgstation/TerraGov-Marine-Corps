@@ -64,6 +64,10 @@
 "aZ" = (
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/north)
+"ba" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating,
+/area/lavaland/cave/central)
 "bb" = (
 /obj/machinery/bodyscanner,
 /turf/open/floor/tile/white,
@@ -276,7 +280,7 @@
 /turf/open/floor/tile/white,
 /area/lavaland/security)
 "dY" = (
-/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/north)
 "em" = (
@@ -367,6 +371,7 @@
 /area/lavaland/engie/engine)
 "fH" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/brock,
 /area/lavaland/cave/north)
 "fQ" = (
@@ -569,6 +574,10 @@
 /obj/machinery/chem_dispenser/beer,
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
+"hC" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/central)
 "hD" = (
 /obj/structure/table,
 /obj/item/trash/snack_bowl,
@@ -657,6 +666,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/lavaland/medical)
+"iL" = (
+/obj/machinery/miner/damaged,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/southwest)
 "iN" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -733,6 +746,11 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/wood,
 /area/lavaland/civilian)
+"jH" = (
+/obj/docking_port/stationary/crashmode/bigbury,
+/obj/docking_port/stationary/crashmode,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/central)
 "jI" = (
 /obj/structure/table,
 /obj/machinery/microwave,
@@ -795,9 +813,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/lavaland/engie/engine)
 "kg" = (
-/obj/structure/rack,
-/obj/item/attachable/attached_gun/grenade,
-/obj/item/attachable/attached_gun/grenade,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -831,8 +847,8 @@
 	},
 /area/shuttle/drop1/lz1)
 "kz" = (
-/mob/living/simple_animal/cow,
 /obj/machinery/light,
+/mob/living/simple_animal/cow,
 /turf/open/floor/grass,
 /area/lavaland/civilian/garden)
 "kD" = (
@@ -935,6 +951,10 @@
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/northwest)
+"lu" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "lx" = (
 /obj/machinery/landinglight/ds2/delaythree,
 /turf/open/floor/plating/asteroidwarning{
@@ -973,6 +993,10 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/cook)
+"lM" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/southeast)
 "lW" = (
 /obj/machinery/landinglight/ds2/delayone{
 	dir = 4
@@ -1671,6 +1695,7 @@
 /area/lavaland/civilian/cargo)
 "tW" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/brock,
 /area/lavaland/cave/southeast)
 "tY" = (
@@ -1905,6 +1930,10 @@
 /obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/tile/white,
 /area/lavaland/medical/chemistry)
+"wp" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/west)
 "wD" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/corpsespawner/security,
@@ -2071,7 +2100,7 @@
 /area/lavaland/security/storage)
 "yp" = (
 /obj/structure/rack,
-/obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/asteroidfloor,
 /area/lavaland/engie/engine)
 "yq" = (
@@ -2109,6 +2138,7 @@
 /area/lavaland/cave/east)
 "yC" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/lavaland/lava,
 /area/lavaland/cave/north)
 "yH" = (
@@ -2126,6 +2156,10 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
 /area/lavaland/civilian)
+"yQ" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/lavaland/lava,
+/area/lavaland)
 "yS" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
@@ -2400,6 +2434,10 @@
 	dir = 8
 	},
 /area/shuttle/drop2/lz2)
+"BJ" = (
+/obj/machinery/miner/damaged,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/northwest)
 "BL" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating/asteroidfloor,
@@ -2427,6 +2465,10 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/south)
+"BX" = (
+/obj/machinery/miner/damaged,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/north)
 "BZ" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/lavaland/basalt,
@@ -3086,6 +3128,10 @@
 	dir = 1
 	},
 /area/shuttle/drop2/lz2)
+"JE" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/white,
+/area/lavaland/security/infocenter)
 "JH" = (
 /obj/machinery/landinglight/ds2{
 	dir = 8
@@ -3108,6 +3154,10 @@
 	},
 /turf/open/floor/tile/white,
 /area/lavaland/security)
+"JM" = (
+/obj/machinery/miner/damaged,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/central)
 "JR" = (
 /obj/structure/barricade/metal,
 /turf/open/lavaland/basalt,
@@ -3224,10 +3274,6 @@
 /obj/effect/landmark/corpsespawner/miner,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/north)
-"Le" = (
-/obj/machinery/miner/damaged,
-/turf/open/lavaland/basalt,
-/area/lavaland/cave/south)
 "Lj" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/lavaland/basalt,
@@ -3272,10 +3318,10 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/white,
 /area/lavaland/medical)
-"LE" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/lavaland/basalt,
-/area/lavaland/cave/central)
+"LD" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/asteroidfloor,
+/area/lavaland/cave/northeast)
 "LG" = (
 /obj/effect/spawner/random/toolbox,
 /turf/open/lavaland/basalt,
@@ -3430,6 +3476,10 @@
 	},
 /turf/open/floor/tile/white,
 /area/lavaland/security/infocenter)
+"NS" = (
+/obj/machinery/miner/damaged,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/northeast)
 "NV" = (
 /obj/effect/alien/weeds/node,
 /turf/open/lavaland/basalt,
@@ -3588,11 +3638,6 @@
 	},
 /turf/open/floor/plating/platebot,
 /area/lavaland/security/nuke)
-"PU" = (
-/obj/structure/rack,
-/obj/effect/landmark/weapon_spawn/tier5_weapon_spawn,
-/turf/open/floor/plating/asteroidfloor,
-/area/lavaland/engie/engine)
 "Qb" = (
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/central)
@@ -3603,6 +3648,7 @@
 /area/lavaland/engie/two)
 "Qi" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/lavaland/lava/side,
 /area/lavaland)
 "Qm" = (
@@ -3851,6 +3897,10 @@
 /obj/item/tool/surgery/circular_saw,
 /turf/open/floor/tile/white,
 /area/lavaland/medical/chemistry)
+"Sw" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/southwest)
 "Sy" = (
 /turf/closed/wall,
 /area/lavaland/medical/cmo)
@@ -3927,8 +3977,7 @@
 	},
 /area/lavaland)
 "Ts" = (
-/obj/structure/table,
-/obj/structure/xenoautopsy,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/white,
 /area/lavaland/medical/cmo)
 "Tw" = (
@@ -12649,7 +12698,7 @@ Vz
 Vz
 ym
 Vz
-Vz
+Sw
 Vz
 Vz
 QM
@@ -12856,8 +12905,8 @@ ZN
 ZN
 ZN
 ZN
-ZN
 gy
+ZN
 ZN
 ZN
 ZN
@@ -14430,7 +14479,7 @@ Vz
 Vz
 Dq
 Vz
-Vz
+Sw
 Vz
 Vz
 Vz
@@ -14561,7 +14610,7 @@ QR
 QR
 QR
 QR
-QR
+BJ
 QR
 QR
 QR
@@ -15359,7 +15408,7 @@ QR
 QR
 QR
 QR
-QR
+BJ
 QR
 QR
 QR
@@ -16431,7 +16480,7 @@ ZN
 ZN
 ZN
 ZN
-ZN
+gy
 ZN
 Dt
 US
@@ -17239,7 +17288,7 @@ HQ
 HQ
 HQ
 HQ
-Vz
+Sw
 Vz
 Vz
 Vz
@@ -17478,7 +17527,7 @@ kf
 ZN
 ZN
 ZN
-ZN
+gy
 ZN
 ZN
 ZN
@@ -17727,7 +17776,7 @@ yH
 hO
 RY
 RY
-PU
+yp
 RY
 RY
 RY
@@ -18046,7 +18095,7 @@ HQ
 HQ
 HQ
 Vz
-Vz
+Sw
 Vz
 Vz
 Vz
@@ -18280,7 +18329,7 @@ Ot
 Hb
 HQ
 HQ
-Vz
+iL
 Vz
 Vz
 Dq
@@ -18730,7 +18779,7 @@ ZN
 ZN
 ZN
 ZN
-ZN
+gy
 ZN
 ZN
 ZN
@@ -20840,7 +20889,7 @@ HQ
 HQ
 HQ
 HQ
-Vz
+Sw
 Vz
 Vz
 HQ
@@ -21256,7 +21305,7 @@ aZ
 aZ
 aZ
 aZ
-aZ
+BX
 aZ
 aZ
 aZ
@@ -22054,7 +22103,7 @@ aZ
 aZ
 aZ
 aZ
-aZ
+BX
 aZ
 aZ
 fx
@@ -22623,7 +22672,7 @@ ZN
 ZN
 ZN
 ZN
-ZN
+wp
 ZN
 ZN
 ZN
@@ -22651,7 +22700,7 @@ Ve
 ax
 Bj
 FL
-Pa
+JE
 ax
 Yy
 Yy
@@ -22671,7 +22720,7 @@ ZK
 Yy
 Yy
 Yy
-Yy
+TB
 Yy
 Yy
 Yy
@@ -23805,7 +23854,7 @@ al
 al
 al
 aZ
-aZ
+BX
 aZ
 aZ
 al
@@ -24125,7 +24174,7 @@ ZW
 ZW
 ZN
 ZN
-ZN
+gy
 Gn
 Ix
 ZN
@@ -27503,7 +27552,7 @@ RA
 RA
 RA
 RA
-RA
+ba
 RA
 RA
 RA
@@ -28425,7 +28474,7 @@ al
 al
 al
 fw
-aY
+lu
 aY
 iS
 ks
@@ -28749,7 +28798,7 @@ al
 ZW
 ZW
 ZW
-ZN
+gy
 ZN
 ZN
 ZN
@@ -28968,7 +29017,7 @@ aZ
 aZ
 aZ
 aZ
-aZ
+BX
 aZ
 aZ
 al
@@ -30635,7 +30684,7 @@ TO
 TO
 TO
 US
-Yy
+TB
 Yy
 Yy
 Dt
@@ -30814,7 +30863,7 @@ Qb
 Qb
 Qb
 Eu
-Qb
+jH
 Qb
 Qb
 Qb
@@ -30874,7 +30923,7 @@ Rq
 Rq
 Rq
 Yy
-Yy
+TB
 Yy
 Yy
 Yy
@@ -31587,7 +31636,7 @@ Qb
 Qb
 Qb
 Qb
-Qb
+JM
 Qb
 Fa
 Qb
@@ -33418,7 +33467,7 @@ YL
 Qb
 Qb
 Qb
-Qb
+hC
 YL
 YL
 YL
@@ -33651,7 +33700,7 @@ Qb
 Qb
 Fa
 Qb
-LE
+Qb
 YL
 YL
 Dt
@@ -33661,7 +33710,7 @@ FK
 Qb
 Qb
 Qb
-Gz
+JM
 Qb
 Qb
 Qb
@@ -34884,7 +34933,7 @@ al
 aZ
 aZ
 aZ
-aZ
+BX
 aZ
 aZ
 aZ
@@ -35418,7 +35467,7 @@ aZ
 aZ
 uc
 aZ
-aZ
+BX
 aZ
 aZ
 aZ
@@ -35495,7 +35544,7 @@ ZK
 ZK
 Yy
 Yy
-Le
+Yy
 Yy
 Yy
 Yy
@@ -37578,7 +37627,7 @@ Yy
 Yy
 Yy
 Yy
-TB
+Yy
 Yy
 Yy
 Yy
@@ -37834,7 +37883,7 @@ ZK
 ZK
 Yy
 Yy
-Yy
+TB
 Yy
 Yy
 Yy
@@ -38018,7 +38067,7 @@ as
 as
 as
 qc
-TO
+yQ
 qc
 TO
 qc
@@ -39583,7 +39632,7 @@ TO
 US
 Qb
 Qb
-Qb
+hC
 RA
 RA
 Qb
@@ -40341,7 +40390,7 @@ EB
 EB
 EB
 EF
-EF
+kR
 EF
 EF
 EF
@@ -40896,7 +40945,7 @@ US
 Yy
 Yy
 Yy
-Yy
+TB
 Yy
 Yy
 Yy
@@ -41588,7 +41637,7 @@ OD
 OD
 OD
 OD
-OD
+NS
 OD
 OD
 sa
@@ -42191,7 +42240,7 @@ US
 ZS
 ZS
 ZS
-wj
+lM
 wj
 wj
 wj
@@ -44400,7 +44449,7 @@ TW
 TW
 TW
 TW
-TW
+LD
 TW
 TW
 TW
@@ -45205,7 +45254,7 @@ US
 EB
 EF
 EF
-EF
+kR
 EF
 EF
 EF
@@ -46040,7 +46089,7 @@ ZS
 ZS
 wj
 wj
-wj
+lM
 wj
 QC
 wj
@@ -46076,7 +46125,7 @@ ZS
 ZS
 Oz
 wj
-wj
+lM
 wj
 wj
 BZ
@@ -46260,7 +46309,7 @@ EF
 EF
 EF
 EF
-EF
+kR
 EF
 EB
 SB
@@ -48046,7 +48095,7 @@ EB
 EB
 EF
 EF
-EF
+kR
 EF
 EF
 EF
@@ -50946,7 +50995,7 @@ wj
 wj
 wj
 wj
-wj
+lM
 wj
 ZS
 ZS
@@ -51621,7 +51670,7 @@ yH
 hO
 RY
 RY
-PU
+yp
 RY
 RY
 tz
@@ -52194,7 +52243,7 @@ wj
 wj
 wj
 wj
-wj
+lM
 wj
 wj
 wj
@@ -53710,7 +53759,7 @@ EF
 EF
 EF
 Pd
-EF
+kR
 EF
 EF
 EF
@@ -54225,7 +54274,7 @@ EF
 EF
 EF
 EF
-kR
+EF
 EF
 EF
 EF
@@ -56550,7 +56599,7 @@ EF
 EF
 EF
 EF
-EF
+kR
 EF
 EF
 EF
@@ -60364,7 +60413,7 @@ EF
 EF
 EF
 EF
-EF
+kR
 EF
 EB
 EB

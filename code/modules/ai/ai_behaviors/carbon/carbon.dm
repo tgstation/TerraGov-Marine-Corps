@@ -28,7 +28,7 @@
 
 //Signal wrappers; this can apply to both humans, xenos and other carbons that attack
 
-/datum/ai_behavior/carbon/proc/reason_target_killed()
+/datum/ai_behavior/carbon/proc/reason_target_killed(mob/source, gibbing)
 	change_state(REASON_TARGET_KILLED)
 
 //Processing; this is for abilities so we don't need to make endless xeno types to code specifically for what abilities they spawn with

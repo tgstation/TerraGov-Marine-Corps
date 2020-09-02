@@ -156,10 +156,10 @@
 		var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
 		var/obj/item/clothing/mask/facehugger/G = get_inactive_held_item()
 		if(istype(F))
-			F.Die()
+			F.kill_hugger()
 			dropItemToGround(F)
 		if(istype(G))
-			G.Die()
+			G.kill_hugger()
 			dropItemToGround(G)
 
 

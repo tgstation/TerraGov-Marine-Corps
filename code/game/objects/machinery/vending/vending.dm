@@ -293,6 +293,9 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 		else
 			user.visible_message("[user] unfastens the bolts securing \the [src] to the floor.", "You unfasten the bolts securing \the [src] to the floor.")
 
+	else if(istype(I, /obj/item))
+		var/obj/item/to_stock = I
+		stock(to_stock, user)
 
 /obj/machinery/vending/proc/scan_card(obj/item/card/I)
 	if(!currently_vending) return
@@ -557,49 +560,55 @@ GLOBAL_LIST_INIT(vending_white_items, typecacheof(list(
 		stock(I, user)
 
 /obj/machinery/vending/proc/stock(obj/item/item_to_stock, mob/user, recharge = FALSE)
-	var/datum/data/vending_product/R //Let's try with a new datum.
 	//More accurate comparison between absolute paths.
-	for(R in (product_records + hidden_records + coin_records))
-		if(item_to_stock.type == R.product_path && !istype(item_to_stock,/obj/item/storage)) //Nice try, specialists/engis
-			if(istype(item_to_stock, /obj/item/weapon/gun))
-				var/obj/item/weapon/gun/G = item_to_stock
-				if(G.in_chamber || (G.current_mag && !istype(G.current_mag, /obj/item/ammo_magazine/internal)) || (istype(G.current_mag, /obj/item/ammo_magazine/internal) && G.current_mag.current_rounds > 0) )
-					to_chat(user, "<span class='warning'>[G] is still loaded. Unload it before you can restock it.</span>")
+	for(var/iter in (product_records + hidden_records + coin_records))
+		var/datum/data/vending_product/R = iter //Let's try with a new datum.
+		if(item_to_stock.type != R.product_path || istype(item_to_stock, /obj/item/storage)) //Nice try, specialists/engis
+			continue
+		if(istype(item_to_stock, /obj/item/weapon/gun))
+			var/obj/item/weapon/gun/G = item_to_stock
+			if(G.in_chamber || (G.current_mag && !istype(G.current_mag, /obj/item/ammo_magazine/internal)) || (istype(G.current_mag, /obj/item/ammo_magazine/internal) && G.current_mag.current_rounds > 0) )
+				to_chat(user, "<span class='warning'>[G] is still loaded. Unload it before you can restock it.</span>")
+				return
+			for(var/obj/item/attachable/A in G.contents) //Search for attachments on the gun. This is the easier method
+				if((A.flags_attach_features & ATTACH_REMOVABLE) && !(is_type_in_list(A, G.starting_attachment_types))) //There are attachments that are default and others that can't be removed
+					to_chat(user, "<span class='warning'>[G] has non-standard attachments equipped. Detach them before you can restock it.</span>")
 					return
-				for(var/obj/item/attachable/A in G.contents) //Search for attachments on the gun. This is the easier method
-					if((A.flags_attach_features & ATTACH_REMOVABLE) && !(is_type_in_list(A, G.starting_attachment_types))) //There are attachments that are default and others that can't be removed
-						to_chat(user, "<span class='warning'>[G] has non-standard attachments equipped. Detach them before you can restock it.</span>")
-						return
 
-			else if(istype(item_to_stock, /obj/item/ammo_magazine))
-				var/obj/item/ammo_magazine/A = item_to_stock
-				if(A.current_rounds < A.max_rounds)
-					to_chat(user, "<span class='warning'>[A] isn't full. Fill it before you can restock it.</span>")
-					return
-			else if(istype(item_to_stock, /obj/item/smartgun_powerpack))
-				var/obj/item/smartgun_powerpack/P = item_to_stock
-				if(!P.pcell)
-					to_chat(user, "<span class='warning'>The [P] doesn't have a cell. You must put one in before you can restock it.</span>")
-					return
-				if(P.pcell.charge < P.pcell.maxcharge)
-					to_chat(user, "<span class='warning'>The [P] cell isn't full. You must recharge it before you can restock it.</span>")
-					return
-			if(item_to_stock.loc == user) //Inside the mob's inventory
-				if(item_to_stock.flags_item & WIELDED)
-					item_to_stock.unwield(user)
-				user.temporarilyRemoveItemFromInventory(item_to_stock)
+		else if(istype(item_to_stock, /obj/item/ammo_magazine))
+			var/obj/item/ammo_magazine/A = item_to_stock
+			if(A.current_rounds < A.max_rounds)
+				to_chat(user, "<span class='warning'>[A] isn't full. Fill it before you can restock it.</span>")
+				return
+		else if(istype(item_to_stock, /obj/item/smartgun_powerpack))
+			var/obj/item/smartgun_powerpack/P = item_to_stock
+			if(!P.pcell)
+				to_chat(user, "<span class='warning'>The [P] doesn't have a cell. You must put one in before you can restock it.</span>")
+				return
+			if(P.pcell.charge < P.pcell.maxcharge)
+				to_chat(user, "<span class='warning'>The [P] cell isn't full. You must recharge it before you can restock it.</span>")
+				return
+		else if(istype(item_to_stock, /obj/item/cell/lasgun))
+			var/obj/item/cell/lasgun/lascell = item_to_stock
+			if(lascell.charge < lascell.maxcharge)
+				to_chat(user, "<span class='warning'>\The [lascell] isn't full. You must recharge it before you can restock it.</span>")
+				return
+		if(item_to_stock.loc == user) //Inside the mob's inventory
+			if(item_to_stock.flags_item & WIELDED)
+				item_to_stock.unwield(user)
+			user.temporarilyRemoveItemFromInventory(item_to_stock)
 
-			if(istype(item_to_stock.loc, /obj/item/storage)) //inside a storage item
-				var/obj/item/storage/S = item_to_stock.loc
-				S.remove_from_storage(item_to_stock, user.loc)
+		if(istype(item_to_stock.loc, /obj/item/storage)) //inside a storage item
+			var/obj/item/storage/S = item_to_stock.loc
+			S.remove_from_storage(item_to_stock, user.loc)
 
-			qdel(item_to_stock)
-			if(!recharge)
-				user.visible_message("<span class='notice'>[user] stocks [src] with \a [R.product_name].</span>",
-				"<span class='notice'>You stock [src] with \a [R.product_name].</span>")
-			R.amount++
-			updateUsrDialog()
-			return //We found our item, no reason to go on.
+		qdel(item_to_stock)
+		if(!recharge)
+			user.visible_message("<span class='notice'>[user] stocks [src] with \a [R.product_name].</span>",
+			"<span class='notice'>You stock [src] with \a [R.product_name].</span>")
+		R.amount++
+		updateUsrDialog()
+		return //We found our item, no reason to go on.
 
 /obj/machinery/vending/process()
 	if(machine_stat & (BROKEN|NOPOWER))

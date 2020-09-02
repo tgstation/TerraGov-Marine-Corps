@@ -85,6 +85,7 @@
 	// *** Warrior Abilities *** //
 	var/agility_speed_increase = 0 // this opens up possibilities for balancing
 
+
 	// *** Boiler Abilities *** //
 	var/max_ammo = 0
 	var/bomb_strength = 0
@@ -137,6 +138,7 @@
 	var/datum/hive_status/hive
 
 	var/list/overlays_standing[X_TOTAL_LAYERS]
+	var/atom/movable/vis_obj/xeno_wounds/wound_overlay
 	var/datum/xeno_caste/xeno_caste
 	var/caste_base_type
 	var/language = "Xenomorph"
@@ -186,7 +188,7 @@
 	var/selected_resin = /obj/structure/bed/nest //which resin structure to build when we secrete resin
 
 	//Naming variables
-	var/nicknumber = 0 //The number after the name. Saved right here so it transfers between castes.
+	var/nicknumber = 0 //The number/name after the xeno type. Saved right here so it transfers between castes.
 
 	//This list of inherent verbs lets us take any proc basically anywhere and add them.
 	//If they're not a xeno subtype it might crash or do weird things, like using human verb procs
@@ -211,7 +213,6 @@
 
 	// Warrior vars
 	var/agility = 0		// 0 - upright, 1 - all fours
-	var/ripping_limb = 0
 
 	// Defender vars
 	var/fortify = 0
@@ -225,10 +226,12 @@
 	var/savage = FALSE
 	var/savage_used = FALSE
 
+	// *** Ravager vars *** //
+	var/ignore_pain = FALSE // when true the rav will not go into crit or take crit damage.
+	var/ignore_pain_state = 0 // how far "dead" the rav has got while ignoring pain.
+
 	//Notification spam controls
 	var/recent_notice = 0
 	var/notice_delay = 20 //2 second between notices
 
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
-
-	var/butchery_progress = 0

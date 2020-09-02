@@ -49,6 +49,9 @@
 	if(throw_source)
 		throw_source = null
 
+	if(thrower)
+		thrower = null
+
 	. = ..()
 
 	loc?.handle_atom_del(src)
@@ -79,7 +82,8 @@
 
 	if(!direct)
 		direct = get_dir(src, newloc)
-	setDir(direct)
+	if(!(flags_atom & DIRLOCK))
+		setDir(direct)
 
 	if(!loc.Exit(src, newloc))
 		return
@@ -180,7 +184,7 @@
 						moving_diagonally = SECOND_DIAG_STEP
 						. = step(src, SOUTH)
 			if(moving_diagonally == SECOND_DIAG_STEP)
-				if(!.)
+				if(!. && !(flags_atom & DIRLOCK))
 					setDir(first_step_dir)
 			moving_diagonally = 0
 			return
@@ -209,7 +213,8 @@
 
 	last_move = direct
 	last_move_time = world.time
-	setDir(direct)
+	if(!(flags_atom & DIRLOCK))
+		setDir(direct)
 	if(. && LAZYLEN(buckled_mobs) && !handle_buckled_mob_movement(loc, direct)) //movement failed due to buckled mob(s)
 		return FALSE
 
@@ -400,10 +405,9 @@
 		dy = SOUTH
 	var/dist_travelled = 0
 	var/dist_since_sleep = 0
-	var/area/a = get_area(loc)
 	if(dist_x > dist_y)
 		var/error = dist_x/2 - dist_y
-		while(!gc_destroyed && target &&((((x < target.x && dx == EAST) || (x > target.x && dx == WEST)) && dist_travelled < range) || (a && a.has_gravity == 0)  || isspaceturf(loc)) && throwing && istype(loc, /turf))
+		while(!gc_destroyed && target &&((((x < target.x && dx == EAST) || (x > target.x && dx == WEST)) && dist_travelled < range) || isspaceturf(loc)) && throwing && istype(loc, /turf))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dy)
@@ -429,10 +433,9 @@
 				if(dist_since_sleep >= speed)
 					dist_since_sleep = 0
 					sleep(1)
-			a = get_area(loc)
 	else
 		var/error = dist_y/2 - dist_x
-		while(!gc_destroyed && target &&((((y < target.y && dy == NORTH) || (y > target.y && dy == SOUTH)) && dist_travelled < range) || a && a.has_gravity == 0 || isspaceturf(loc)) && throwing && istype(loc, /turf))
+		while(!gc_destroyed && target &&((((y < target.y && dy == NORTH) || (y > target.y && dy == SOUTH)) && dist_travelled < range) || isspaceturf(loc)) && throwing && istype(loc, /turf))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dx)
@@ -458,8 +461,6 @@
 				if(dist_since_sleep >= speed)
 					dist_since_sleep = 0
 					sleep(1)
-
-			a = get_area(loc)
 
 	//done throwing, either because it hit something or it finished moving
 	if(isobj(src) && throwing)

@@ -271,7 +271,6 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/toggle_sleep,
 	/datum/admins/proc/toggle_sleep_panel,
 	/datum/admins/proc/toggle_sleep_area,
-	/datum/admins/proc/direct_control,
 	/datum/admins/proc/logs_server,
 	/datum/admins/proc/logs_current,
 	/datum/admins/proc/logs_folder,
@@ -352,6 +351,10 @@ GLOBAL_PROTECT(admin_verbs_asay)
 	/datum/admins/proc/reestablish_db_connection,
 	/datum/admins/proc/view_runtimes,
 	/datum/admins/proc/spatial_agent,
+#ifdef REFERENCE_TRACKING
+	/datum/admins/proc/view_refs,
+	/datum/admins/proc/view_del_failures,
+#endif
 	/datum/admins/proc/check_bomb_impacts
 	)
 GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
@@ -398,7 +401,10 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/play_cinematic,
 	/datum/admins/proc/set_tip,
 	/datum/admins/proc/ghost_interact,
-	/client/proc/toggle_buildmode
+	/client/proc/toggle_buildmode,
+	/client/proc/force_event,
+	/client/proc/toggle_events,
+	/client/proc/run_weather
 	)
 GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 GLOBAL_PROTECT(admin_verbs_fun)

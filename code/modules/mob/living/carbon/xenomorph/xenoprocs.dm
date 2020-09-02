@@ -19,8 +19,6 @@
 			xenoinfo += "<tr><td>[leadprefix][X.name] "
 		if(!X.client)
 			xenoinfo += " <i>(SSD)</i>"
-		else if(X.client.prefs.xeno_name && X.client.prefs.xeno_name != "Undefined")
-			xenoinfo += "- [X.client.prefs.xeno_name]"
 
 		var/area/A = get_area(X)
 		xenoinfo += " <b><font color=green>([A ? A.name : null])</b></td></tr>"
@@ -261,7 +259,7 @@
 					// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.
 					var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 					var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-					var/upgrade_points = 1 + (FLOOR(stored_larva / 3, 1))
+					var/upgrade_points = 1 + (stored_larva/6)
 					upgrade_stored = min(upgrade_stored + upgrade_points, xeno_caste.upgrade_threshold)
 
 /mob/living/carbon/xenomorph/proc/update_evolving()
@@ -479,12 +477,13 @@
 	return TRUE
 
 /mob/living/carbon/acid_spray_act(mob/living/carbon/xenomorph/X)
+	ExtinguishMob()
 	if(isnestedhost(src))
 		return
 
-	if(COOLDOWN_CHECK(src, COOLDOWN_ACID))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ACID))
 		return
-	COOLDOWN_START(src, COOLDOWN_ACID, 2 SECONDS)
+	TIMER_COOLDOWN_START(src, COOLDOWN_ACID, 2 SECONDS)
 
 	if(isxenopraetorian(X))
 		GLOB.round_statistics.praetorian_spray_direct_hits++
@@ -506,8 +505,10 @@
 	Paralyze(20)
 
 /mob/living/carbon/xenomorph/acid_spray_act(mob/living/carbon/xenomorph/X)
-	return
+	ExtinguishMob()
 
+/obj/flamer_fire/acid_spray_act(mob/living/carbon/xenomorph/X)
+	Destroy()
 
 // Vent Crawl
 /mob/living/carbon/xenomorph/proc/vent_crawl()
@@ -625,14 +626,10 @@
 	return FALSE
 
 /mob/living/carbon/human/can_sting()
+	if(species?.species_flags & IS_SYNTHETIC)
+		return FALSE
 	if(stat != DEAD)
 		return TRUE
-	return FALSE
-
-/mob/living/carbon/human/species/machine/can_sting()
-	return FALSE
-
-/mob/living/carbon/human/species/synthetic/can_sting()
 	return FALSE
 
 /mob/living/carbon/xenomorph/proc/setup_verbs()

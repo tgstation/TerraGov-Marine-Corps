@@ -56,9 +56,9 @@
 		/datum/reagent/medicine/oxycodone,
 		/datum/reagent/medicine/tramadol)
 
-	var/datum/action/suit_autodoc_toggle/toggle_action
-	var/datum/action/suit_autodoc_scan/scan_action
-	var/datum/action/suit_autodoc_configure/configure_action
+	var/datum/action/suit_autodoc/toggle/toggle_action
+	var/datum/action/suit_autodoc/scan/scan_action
+	var/datum/action/suit_autodoc/configure/configure_action
 
 	var/mob/living/carbon/wearer
 
@@ -143,19 +143,19 @@
 */
 /datum/component/suit_autodoc/proc/examine(datum/source, mob/user)
 	var/details
-	if(COOLDOWN_CHECK(src, COOLDOWN_CHEM_BURN))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_BURN))
 		details += "Its burn treatment injector is currently refilling.</br>"
 
-	if(COOLDOWN_CHECK(src, COOLDOWN_CHEM_BRUTE))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_BRUTE))
 		details += "Its trauma treatment injector is currently refilling.</br>"
 
-	if(COOLDOWN_CHECK(src, COOLDOWN_CHEM_OXY))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_OXY))
 		details += "Its oxygenating injector is currently refilling.</br>"
 
-	if(COOLDOWN_CHECK(src, COOLDOWN_CHEM_TOX))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_TOX))
 		details += "Its anti-toxin injector is currently refilling.</br>"
 
-	if(COOLDOWN_CHECK(src, COOLDOWN_CHEM_PAIN))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_PAIN))
 		details += "Its painkiller injector is currently refilling.</br>"
 
 	if(details)
@@ -235,7 +235,7 @@
 	chemicals into the user and sets the cooldown again
 */
 /datum/component/suit_autodoc/proc/inject_chems(list/chems, mob/living/carbon/human/H, cooldown_type, damage, threshold, treatment_message, message_prefix)
-	if(!length(chems) || COOLDOWN_CHECK(src, cooldown_type) || damage < threshold)
+	if(!length(chems) || TIMER_COOLDOWN_CHECK(src, cooldown_type) || damage < threshold)
 		return
 
 	var/drugs
@@ -252,7 +252,7 @@
 
 	if(LAZYLEN(drugs))
 		. = "[message_prefix] administered. <span class='bold'>Dosage:[drugs]</span><br/>"
-		COOLDOWN_START(src, cooldown_type, chem_cooldown)
+		TIMER_COOLDOWN_START(src, cooldown_type, chem_cooldown)
 		addtimer(CALLBACK(src, .proc/nextuse_ready, treatment_message), chem_cooldown)
 
 /**
@@ -324,6 +324,9 @@
 	This will enable or disable the suit
 */
 /datum/component/suit_autodoc/proc/action_toggle(datum/source)
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_TOGGLE))
+		return
+	TIMER_COOLDOWN_START(src, COOLDOWN_TOGGLE, 2 SECONDS)
 	if(enabled)
 		disable()
 	else
@@ -396,10 +399,7 @@
 		return
 
 	if(href_list["automed_on"])
-		if(enabled)
-			disable()
-		else
-			enable()
+		action_toggle()
 
 	else if(href_list["analyzer"]) //Integrated scanner
 		analyzer.attack(wearer, wearer, TRUE)
@@ -423,19 +423,24 @@
 	interact(wearer)
 
 //// Action buttons
-/datum/action/suit_autodoc_toggle
-	name = "Toggle Suit Automedic"
+/datum/action/suit_autodoc
 	action_icon = 'icons/mob/screen_alert.dmi'
+
+/datum/action/suit_autodoc/can_use_action()
+	if(QDELETED(owner) || owner.incapacitated() || owner.lying_angle)
+		return FALSE
+	return TRUE
+
+/datum/action/suit_autodoc/toggle
+	name = "Toggle Suit Automedic"
 	action_icon_state = "suit_toggle"
 
-/datum/action/suit_autodoc_scan
+/datum/action/suit_autodoc/scan
 	name = "Suit Automedic User Scan"
-	action_icon = 'icons/mob/screen_alert.dmi'
 	action_icon_state = "suit_scan"
 
-/datum/action/suit_autodoc_configure
+/datum/action/suit_autodoc/configure
 	name = "Configure Suit Automedic"
-	action_icon = 'icons/mob/screen_alert.dmi'
 	action_icon_state = "suit_configure"
 
 #undef SUIT_AUTODOC_DAM_MAX

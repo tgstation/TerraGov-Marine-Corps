@@ -153,7 +153,8 @@
 		return
 	if(!user)
 		return
-
+	if(!istype(user))
+		return
 	if(anchored)
 		to_chat(user, "[src] is anchored to the ground.")
 		return
@@ -329,6 +330,9 @@
 /obj/item/proc/item_action_slot_check(mob/user, slot)
 	return TRUE
 
+// Anything unique the item can do, like pumping a shotgun, spin or whatever.
+/obj/item/proc/unique_action(mob/user)
+	return FALSE
 
 // The mob M is attempting to equip this item into the slot passed through as 'slot'. Return 1 if it can do this and 0 if it can't.
 // If you are making custom procs but would like to retain partial or complete functionality of this one, include a 'return ..()' to where you want this to happen.
@@ -667,7 +671,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		to_chat(user, "<span class='warning'>Your vision is too obscured for you to look through \the [zoom_device].</span>")
 		return
 
-	if(!zoom && user.get_active_held_item() != src)
+	if((!zoom && user.get_active_held_item() != src) && (!(flags_item & DOES_NOT_NEED_HANDS)))
 		to_chat(user, "<span class='warning'>You need to hold \the [zoom_device] to look through it.</span>")
 		return
 
@@ -675,7 +679,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.visible_message("<span class='notice'>[user] looks up from [zoom_device].</span>",
 		"<span class='notice'>You look up from [zoom_device].</span>")
 		zoom = FALSE
-		COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)
+		TIMER_COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)
 
 		if(user.interactee == src)
 			user.unset_interaction()
@@ -687,9 +691,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			user.client.pixel_y = 0
 
 	else //Otherwise we want to zoom in.
-		if(COOLDOWN_CHECK(user, COOLDOWN_ZOOM)) //If we are spamming the zoom, cut it out
+		if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_ZOOM)) //If we are spamming the zoom, cut it out
 			return
-		COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)
+		TIMER_COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)
 
 		if(user.client)
 			user.client.change_view(VIEW_NUM_TO_STRING(viewsize))
@@ -861,7 +865,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 				sleep(2)
 			qdel(W)
 
-	if(isspaceturf(user.loc) || user.lastarea.has_gravity == 0)
+	if(isspaceturf(user.loc))
 		user.inertia_dir = get_dir(target, user)
 		step(user, user.inertia_dir)
 

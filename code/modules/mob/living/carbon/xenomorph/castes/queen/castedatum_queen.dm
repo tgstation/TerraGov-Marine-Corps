@@ -10,10 +10,10 @@
 	wound_type = "queen" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 35
+	melee_damage = 20
 
 	// *** Tackle *** //
-	tackle_damage = 45
+	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = 0
@@ -23,7 +23,7 @@
 	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 375
+	max_health = 425
 
 	// *** Evolution *** //
 	upgrade_threshold = 350
@@ -81,11 +81,8 @@
 
 	upgrade = XENO_UPGRADE_ONE
 
-	// *** Melee Attacks *** //
-	melee_damage = 40
-
 	// *** Tackle *** //
-	tackle_damage = 50
+	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = -0.1
@@ -95,7 +92,7 @@
 	plasma_gain = 50
 
 	// *** Health *** //
-	max_health = 400
+	max_health = 450
 
 	// *** Evolution *** //
 	upgrade_threshold = 500
@@ -118,10 +115,10 @@
 	upgrade = XENO_UPGRADE_TWO
 
 	// *** Melee Attacks *** //
-	melee_damage = 50
+	melee_damage = 23
 
 	// *** Tackle *** //
-	tackle_damage = 55
+	tackle_damage = 28
 
 	// *** Speed *** //
 	speed = -0.2
@@ -131,7 +128,7 @@
 	plasma_gain = 60
 
 	// *** Health *** //
-	max_health = 425
+	max_health = 475
 
 	// *** Evolution *** //
 	upgrade_threshold = 1000
@@ -154,10 +151,10 @@
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
-	melee_damage = 50
+	melee_damage = 23
 
 	// *** Tackle *** //
-	tackle_damage = 60
+	tackle_damage = 28
 
 	// *** Speed *** //
 	speed = -0.3
@@ -167,7 +164,7 @@
 	plasma_gain = 70
 
 	// *** Health *** //
-	max_health = 450
+	max_health = 500
 
 	// *** Evolution *** //
 	upgrade_threshold = 1000

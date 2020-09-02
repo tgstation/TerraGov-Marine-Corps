@@ -29,8 +29,10 @@ Basics, the most important.
 
 /datum/config_entry/string/dburl
 
+/// URL for the CentCom Galactic Ban DB API
+/datum/config_entry/string/centcom_ban_db
 
- /// Host of the webmap
+/// Host of the webmap
 /datum/config_entry/string/webmap_host
 	config_entry_value = "https://affectedarc07.co.uk/tgmc.php?m="
 
@@ -180,7 +182,7 @@ Administrative related.
 	min_val = 0
 
 /datum/config_entry/number/glide_size_mod
-	config_entry_value = 0
+	config_entry_value = 80
 /*
 Voting
 */
@@ -191,6 +193,9 @@ Voting
 /datum/config_entry/flag/default_no_vote
 
 /datum/config_entry/flag/no_dead_vote
+
+/datum/config_entry/number/rounds_until_hard_restart
+	config_entry_value = -1 // -1 is disabled by default, 0 is every round, x is after so many rounds
 
 /datum/config_entry/number/vote_delay	// Minimum time between voting sessions. (deciseconds, 10 minute default)
 	config_entry_value = 6000

@@ -2512,7 +2512,7 @@
 /area/icy_caves/outpost/engineering)
 "jJ" = (
 /obj/structure/cable,
-/turf/open/floor/animated/bcircuit,
+/turf/open/floor/podhatch/floor,
 /area/icy_caves/outpost/engineering)
 "jL" = (
 /obj/structure/cable,
@@ -4426,7 +4426,7 @@
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/security)
 "qx" = (
-/obj/structure/largecrate/guns/merc,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/security)
 "qy" = (
@@ -4673,6 +4673,7 @@
 /area/icy_caves/outpost/LZ2)
 "rt" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/west)
 "rw" = (
@@ -5063,12 +5064,24 @@
 /obj/item/storage/firstaid,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/LZ2)
+"th" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/plating/mainship,
+/area/icy_caves/caves/crashed_ship)
 "tm" = (
 /obj/machinery/light/small{
 	dir = 8
 	},
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
+"tH" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow/layer2,
+/area/icy_caves/outpost/outside)
+"tM" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/south)
 "uT" = (
 /obj/structure/closet/secure_closet/medical3,
 /turf/open/floor/tile/dark2,
@@ -5081,15 +5094,16 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/outside)
-"vC" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/ice,
-/area/icy_caves/outpost/LZ2)
 "wM" = (
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
+"xk" = (
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
 "yl" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/dorms)
 "zl" = (
@@ -5100,14 +5114,23 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/ground/snow,
 /area/icy_caves/outpost/outside)
+"Co" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/research)
 "Gk" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
 	},
 /turf/closed/wall/r_wall,
 /area/icy_caves/caves/east)
+"GD" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/dmg1,
+/area/icy_caves/caves/crashed_ship)
 "GZ" = (
 /obj/structure/bed,
 /obj/effect/landmark/start/job/survivor,
@@ -5153,6 +5176,7 @@
 /area/icy_caves/outpost/research)
 "LI" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/ice_rock/single,
 /area/icy_caves/caves/west)
 "MQ" = (
@@ -5164,6 +5188,7 @@
 /area/icy_caves/caves/northern)
 "Nf" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/east)
 "NE" = (
@@ -5195,11 +5220,16 @@
 "Ql" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area)
+"QI" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/icy_caves/outpost/outside)
 "QK" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/wall/r_wall,
 /area/icy_caves/outpost/refinery)
 "Rh" = (
@@ -5217,6 +5247,10 @@
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/caves/east)
+"RS" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/snow,
+/area/icy_caves/outpost/outside)
 "RU" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/structure/cable,
@@ -5224,6 +5258,7 @@
 /area/icy_caves/outpost/research)
 "ST" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/ice/thin/intersection,
 /area/icy_caves/caves/south)
 "Tb" = (
@@ -5239,12 +5274,17 @@
 	dir = 4
 	},
 /area/icy_caves/outpost/outside)
+"TH" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/ice,
+/area/icy_caves/caves/south)
 "Ud" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark2,
 /area/icy_caves/outpost/research)
 "Uk" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/ice/thin/junction{
 	dir = 1
 	},
@@ -5268,6 +5308,10 @@
 	dir = 4
 	},
 /area/icy_caves/caves/OOB)
+"VQ" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/garage)
 "VU" = (
 /turf/closed/ice_rock/singleEnd{
 	dir = 8
@@ -5283,6 +5327,10 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/snow,
 /area/icy_caves/outpost/outside)
+"XP" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/dark2,
+/area/icy_caves/outpost/dorms)
 "YA" = (
 /turf/closed/ice_rock/singlePart{
 	dir = 4
@@ -5292,10 +5340,6 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/east)
-"Zp" = (
-/obj/machinery/miner/damaged,
-/turf/open/floor/plating/ground/ice,
-/area/icy_caves/caves/west)
 
 (1,1,1) = {"
 aa
@@ -9328,7 +9372,7 @@ ls
 mh
 ln
 ma
-dc
+UE
 dc
 fd
 cY
@@ -10897,7 +10941,7 @@ dc
 dc
 dz
 qH
-ea
+xk
 Jf
 wM
 wM
@@ -12891,7 +12935,7 @@ aJ
 bC
 aJ
 aR
-aJ
+MV
 aJ
 aJ
 bC
@@ -13465,7 +13509,7 @@ fs
 eb
 dc
 dF
-Zp
+dc
 dc
 de
 cZ
@@ -15245,7 +15289,7 @@ dc
 dc
 dc
 dc
-UE
+dc
 kR
 dc
 dc
@@ -15501,7 +15545,7 @@ dc
 dc
 dc
 dc
-dc
+UE
 dc
 dc
 dc
@@ -17859,7 +17903,7 @@ aU
 aU
 aU
 aU
-aU
+RS
 aU
 mL
 aU
@@ -19154,7 +19198,7 @@ mT
 mT
 mT
 mT
-mW
+XP
 mW
 mW
 mW
@@ -19551,7 +19595,7 @@ aJ
 aJ
 aJ
 aJ
-aJ
+MV
 aJ
 aK
 aJ
@@ -20411,7 +20455,7 @@ gi
 aU
 aU
 aU
-XJ
+aU
 aU
 aU
 aU
@@ -21143,7 +21187,7 @@ dm
 dm
 dm
 dm
-dm
+tM
 dm
 dm
 jq
@@ -21424,7 +21468,7 @@ gv
 gw
 eh
 lg
-gw
+QI
 gw
 gw
 dL
@@ -21646,7 +21690,7 @@ dm
 eG
 dm
 dm
-dm
+tM
 fz
 fU
 fZ
@@ -21958,7 +22002,7 @@ aU
 aU
 gw
 he
-hg
+VQ
 hg
 hX
 ij
@@ -24265,7 +24309,7 @@ fW
 fW
 fi
 gw
-gv
+tH
 gv
 gw
 fh
@@ -25216,7 +25260,7 @@ bL
 nz
 nz
 aJ
-aJ
+MV
 aJ
 aJ
 aJ
@@ -27331,7 +27375,7 @@ fy
 hV
 dk
 dm
-dm
+TH
 dm
 dm
 dm
@@ -27363,7 +27407,7 @@ gw
 aU
 aU
 aU
-aU
+RS
 aU
 aU
 aU
@@ -32153,7 +32197,7 @@ bt
 aS
 aJ
 aJ
-aJ
+MV
 aJ
 bH
 bR
@@ -32250,7 +32294,7 @@ dt
 ds
 dx
 gQ
-Zk
+ds
 ds
 ds
 ds
@@ -32905,7 +32949,7 @@ mj
 mj
 mi
 bL
-ay
+GD
 af
 af
 ay
@@ -33735,7 +33779,7 @@ ds
 ds
 ds
 ds
-ds
+Zk
 ds
 ds
 jp
@@ -33781,7 +33825,7 @@ ds
 ds
 ds
 ds
-ds
+Zk
 ds
 jp
 ds
@@ -33971,7 +34015,7 @@ bA
 aR
 aR
 aR
-aJ
+MV
 aJ
 aJ
 aR
@@ -34444,7 +34488,7 @@ mj
 mj
 az
 ac
-ak
+th
 af
 am
 af
@@ -39401,7 +39445,7 @@ lm
 qB
 lk
 qX
-vC
+qX
 bN
 bN
 bN

@@ -403,3 +403,11 @@
 	L.adjustOxyLoss(-0,5 * REM)
 	L.adjustToxLoss(-0,5 * REM)
 	return ..()
+
+/datum/reagent/consumable/larvajelly
+	name = "Larva Jelly"
+	description = "The blood and guts of a xenomorph larva blended into a paste."
+	reagent_state = LIQUID
+	nutriment_factor = 1
+	color = "#66801e"
+	taste_description = "burning"

@@ -509,7 +509,7 @@
 
 	var/min = input("What should the minimum amount of mobs be?", "Min Mobs", SSticker.mode.picked_call.mob_min) as null|num
 	if(!min || min < 1)
-		return
+		min = 0
 
 	SSticker.mode.picked_call.mob_min = min
 
@@ -1164,3 +1164,26 @@
 
 	log_admin("[key_name(usr)] has [usr.client.holder.ghost_interact ? "enabled" : "disabled"] ghost interact.")
 	message_admins("[ADMIN_TPMONTY(usr)] has [usr.client.holder.ghost_interact ? "enabled" : "disabled"] ghost interact.")
+
+/client/proc/run_weather()
+	set category = "Fun"
+	set name = "Run Weather"
+	set desc = "Triggers a weather on the z-level you choose."
+
+	if(!holder)
+		return
+
+	var/weather_type = input("Choose a weather", "Weather")  as null|anything in subtypesof(/datum/weather)
+	if(!weather_type)
+		return
+
+	var/turf/T = get_turf(mob)
+	var/z_level = input("Z-Level to target?", "Z-Level", T?.z) as num|null
+	if(!isnum(z_level))
+		return
+
+	SSweather.run_weather(weather_type, z_level)
+
+	message_admins("[key_name_admin(usr)] started weather of type [weather_type] on the z-level [z_level].")
+	log_admin("[key_name(usr)] started weather of type [weather_type] on the z-level [z_level].")
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Run Weather")

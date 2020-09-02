@@ -155,6 +155,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "cargo_headset"
 	item_state = "headset"
 	frequency = FREQ_COMMON
+	flags_atom = CONDUCT | PREVENT_CONTENTS_EXPLOSION
 	var/obj/machinery/camera/camera
 	var/datum/atom_hud/squadhud = null
 	var/mob/living/carbon/human/wearer = null
@@ -178,6 +179,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		enable_squadhud()
 	if(camera)
 		camera.c_tag = user.name
+		if(user.assigned_squad)
+			camera.network |= lowertext(user.assigned_squad.name)
 	return ..()
 
 
@@ -191,6 +194,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 			squadhud = null
 	if(camera)
 		camera.c_tag = "Unknown"
+		if(user.assigned_squad)
+			camera.network -= lowertext(user.assigned_squad.name)
 	return ..()
 
 
@@ -545,3 +550,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/distress/sectoid
 	name = "\improper alien headset"
 	keyslot = /obj/item/encryptionkey/sectoid
+
+/obj/item/radio/headset/distress/echo
+	name = "\improper Echo Task Force headset"
+	keyslot = /obj/item/encryptionkey/echo

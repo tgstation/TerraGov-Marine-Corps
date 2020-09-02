@@ -7,8 +7,9 @@
 	desc = "A fuel tank of usually ultra thick napthal, a sticky combustable liquid chemical, for use in the M240A1 incinerator unit. Handle with care."
 	icon_state = "flametank"
 	default_ammo = /datum/ammo/flamethrower //doesn't actually need bullets. But we'll get null ammo error messages if we don't
-	max_rounds = 60 //Per turf.
-	current_rounds = 60
+	max_rounds = 50 //Per turf.
+	current_rounds = 50
+	reload_delay = 2 SECONDS
 	w_class = WEIGHT_CLASS_NORMAL //making sure you can't sneak this onto your belt.
 	gun_type = /obj/item/weapon/gun/flamer
 	caliber = "UT-Napthal Fuel" //Ultra Thick Napthal Fuel, from the lore book.
@@ -39,21 +40,22 @@
 	return
 
 /obj/item/ammo_magazine/flamer_tank/large	// Extra thicc tank
-	name = "large incinerator tank"
-	desc = "A large fuel tank of ultra thick napthal, a sticky combustable liquid chemical, for use in the M240-T incinerator unit. Handle with care."
+	name = "large flamerthrower tank"
+	desc = "A large fuel tank of ultra thick napthal, a sticky combustable liquid chemical, for use in the TL-84 flamethrower."
 	icon_state = "flametank_large"
-	max_rounds = 100
-	current_rounds = 100
-	gun_type = /obj/item/weapon/gun/flamer/M240T
+	max_rounds = 75
+	current_rounds = 75
+	reload_delay = 3 SECONDS
+	gun_type = /obj/item/weapon/gun/flamer/marinestandard
 
 /obj/item/ammo_magazine/flamer_tank/large/B
-	name = "large incinerator tank (B)"
-	desc = "A large fuel tank of ultra thick napthal type B, a wide-spreading sticky combustable liquid chemical, for use in the M240-T incinerator unit. Handle with care."
+	name = "large flamethrower tank (B)"
+	desc = "A large fuel tank of ultra thick napthal type B, a wide-spreading sticky combustable liquid chemical, for use in the TL-84 flamethrower. Handle with care."
 	icon_state = "flametank_large_green"
 	default_ammo = /datum/ammo/flamethrower/green
 
 /obj/item/ammo_magazine/flamer_tank/large/X
-	name = "large incinerator tank (X)"
-	desc = "A large fuel tank of ultra thick napthal Fuel type X, a sticky combustable liquid chemical that burns extremely hot, for use in the M240-T incinerator unit. Handle with care."
+	name = "large flamethrower tank (X)"
+	desc = "A large fuel tank of ultra thick napthal Fuel type X, a sticky combustable liquid chemical that burns extremely hot, for use in the TL-84 flamethrower. Handle with care."
 	icon_state = "flametank_large_blue"
 	default_ammo = /datum/ammo/flamethrower/blue

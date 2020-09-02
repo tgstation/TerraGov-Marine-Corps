@@ -23,14 +23,15 @@
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/large_holster/machete,
 		/obj/item/weapon/claymore,
-		/obj/item/storage/belt/gun
+		/obj/item/storage/belt/gun,
+		/obj/item/storage/belt/knifepouch
 	)
 	flags_equip_slot = ITEM_SLOT_OCLOTHING
 	w_class = WEIGHT_CLASS_BULKY
 	time_to_equip = 2 SECONDS
 	time_to_unequip = 1 SECONDS
 
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	soft_armor = list("melee" = 10, "bullet" = 25, "laser" = 25, "energy" = 20, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 	siemens_coefficient = 0.9
 	permeability_coefficient = 1
 	gas_transfer_coefficient = 1
@@ -55,7 +56,7 @@
 	var/obj/item/storage/internal/storage
 
 	/// How long it takes to attach or detach to this item
-	var/equip_delay = 3 SECONDS
+	var/equip_delay = 0.5 SECONDS
 
 	/// Misc stats
 	light_strength = 5
@@ -88,7 +89,7 @@
 	if(!isturf(user.loc))
 		to_chat(user, "<span class='warning'>You cannot turn the light on while in [user.loc].</span>")
 		return
-	if(COOLDOWN_CHECK(src, COOLDOWN_ARMOR_LIGHT) || !ishuman(user))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ARMOR_LIGHT) || !ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
 	if(H.wear_suit != src)
@@ -207,7 +208,7 @@
 
 	if(user.action_busy)
 		return FALSE
-	
+
 	if(ismob(loc) && (user.r_hand != src && user.l_hand != src))
 		to_chat(user, "<span class='warning'>You need to remove the armor first.</span>")
 		return TRUE
@@ -245,7 +246,7 @@
 		return
 
 	if(user.action_busy)
-		return FALSE	
+		return FALSE
 
 	if(!installed_storage)
 		to_chat(user, "<span class='notice'>There is nothing to remove</span>")
@@ -382,9 +383,9 @@
 	if(.)
 		return
 	if(!isturf(user.loc))
-		to_chat(user, "<span class='warning'>You cannot turn the light on while in [user.loc].</span>")
+		to_chat(user, "<span class='warning'>You cannot turn the module on while in [user.loc].</span>")
 		return
-	if(cooldowns[COOLDOWN_ARMOR_ACTION] || !ishuman(user))
+	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_ARMOR_ACTION) || !ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user
 	if(H.head != src)
@@ -417,11 +418,11 @@
 
 /obj/item/clothing/head/modular/update_overlays()
 	. = ..()
-	update_clothing_icon()
+	if(installed_module)
+		. += image(installed_module.icon, installed_module.item_state)
 
 
 /obj/item/clothing/head/modular/get_mechanics_info()
-	. = ..()
 	. = ..()
 	. += "<br><br />This is a piece of modular armor, It can equip different attachments.<br />"
 	. += "<br>It currently has [installed_module ? installed_module : "nothing"] installed."
@@ -441,32 +442,33 @@
 			to_chat(user,"<span class='warning'>There is already an installed module.</span>")
 		return FALSE
 
+	if(user.action_busy)
+		return FALSE
+
 	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))
 		return FALSE
+	update_overlays()
 
 /obj/item/clothing/head/modular/proc/can_detach(mob/living/user, obj/item/helmet_module/module, silent = FALSE)
 	. = TRUE
 
 	if(!do_after(user, equip_delay, TRUE, user, BUSY_ICON_GENERIC))
 		return FALSE
+	update_overlays()
 
-/obj/item/clothing/head/modular/light
-	name = "Jaeger Pattern light Helmet"
-	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
-	icon_state = "light_helmet"
+/obj/item/clothing/head/modular/marine
+	name = "Jaeger Pattern Infantry Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings."
+	icon_state = "infantry_helmet"
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
-	accuracy_mod = 10
-
-/obj/item/clothing/head/modular/medium
-	name = "Jaeger Pattern medium Helmet"
-	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
-	icon_state = "medium_helmet"
-	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = 60, "bio" = 60, "rad" = 60, "fire" = 60, "acid" = 60)
 	accuracy_mod = 0
 
-/obj/item/clothing/head/modular/heavy
-	name = "Jaeger Pattern heavy Helmet"
-	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points."
-	icon_state = "heavy_helmet"
-	soft_armor = list("melee" = 75, "bullet" = 75, "laser" = 75, "energy" = 75, "bomb" = 75, "bio" = 75, "rad" = 75, "fire" = 75, "acid" = 75)
-	accuracy_mod = -10
+/obj/item/clothing/head/modular/marine/skirmisher
+	name = "Jaeger Pattern Skirmisher Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings."
+	icon_state = "skirmisher_helmet"
+
+/obj/item/clothing/head/modular/marine/assault
+	name = "Jaeger Pattern Assault Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings."
+	icon_state = "assault_helmet"

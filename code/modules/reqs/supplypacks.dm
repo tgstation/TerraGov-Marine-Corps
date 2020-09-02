@@ -4,7 +4,7 @@
 //NOTE: Don't add living things to crates, that's bad, it will break the shuttle.
 //NOTE: Do NOT set the price of any crates below 7 points. Doing so allows infinite points.
 
-GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Hardpoint Modules", "Attachments", "Ammo", "Armor", "Clothing", "Medical", "Engineering", "Supplies", "Imports"))
+GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Attachments", "Ammo", "Armor", "Clothing", "Medical", "Engineering", "Supplies", "Imports"))
 
 /datum/supply_packs
 	var/name
@@ -41,6 +41,11 @@ OPERATIONS
 	contains = list(/obj/item/squad_beacon/bomb)
 	cost = 30
 
+/datum/supply_packs/operations/cas_flares
+	name = "CAS flare pack"
+	contains = list(/obj/item/storage/box/m94/cas)
+	cost = 10
+
 /datum/supply_packs/operations/binoculars_regular
 	name = "binoculars"
 	contains = list(/obj/item/binoculars)
@@ -64,6 +69,11 @@ OPERATIONS
 	name = "V1 thermal-dampening tarp"
 	contains = list(/obj/item/bodybag/tarp)
 	cost = 6
+
+/datum/supply_packs/operations/exportpad
+	name = "ASRS Bluespace Export Point"
+	contains = list(/obj/machinery/exportpad)
+	cost = 50
 
 /datum/supply_packs/operations/alpha
 	name = "Alpha Supply Crate"
@@ -89,6 +99,35 @@ OPERATIONS
 	cost = 10
 	containertype = null
 
+/datum/supply_packs/operations/warhead_cluster
+	name = "Cluster orbital warhead"
+	contains = list(/obj/structure/ob_ammo/warhead/cluster)
+	cost = 40
+	containertype = null
+
+/datum/supply_packs/operations/warhead_explosive
+	name = "HE orbital warhead"
+	contains = list(/obj/structure/ob_ammo/warhead/explosive)
+	cost = 40
+	containertype = null
+
+/datum/supply_packs/operations/warhead_incendiary
+	name = "Incendiary orbital warhead"
+	contains = list(/obj/structure/ob_ammo/warhead/incendiary)
+	cost = 40
+	containertype = null
+
+/datum/supply_packs/operations/warhead_plasmaloss
+	name = "Plasma draining orbital warhead"
+	contains = list(/obj/structure/ob_ammo/warhead/plasmaloss)
+	cost = 40
+	containertype = null
+
+/datum/supply_packs/operations/ob_fuel
+	name = "Solid fuel"
+	contains = list(/obj/structure/ob_ammo/ob_fuel)
+	cost = 15
+	containertype = null
 /*******************************************************************************
 WEAPONS
 *******************************************************************************/
@@ -108,8 +147,8 @@ WEAPONS
 	cost = 70
 
 /datum/supply_packs/weapons/m56d_emplacement
-	name = "M56D Stationary Machinegun"
-	contains = list(/obj/item/storage/box/m56d_hmg)
+	name = "TL-102 Mounted Heavy Smartgun"
+	contains = list(/obj/item/storage/box/standard_hmg)
 	cost = 80
 
 /datum/supply_packs/weapons/specgrenadier
@@ -143,14 +182,6 @@ WEAPONS
 		/obj/item/weapon/gun/launcher/rocket,
 		/obj/item/ammo_magazine/rocket,
 		/obj/item/ammo_magazine/rocket,
-	)
-	cost = 100
-
-/datum/supply_packs/weapons/specpyro
-	name = "Pyro Specialist kit"
-	contains = list(
-		/obj/item/weapon/gun/flamer/M240T,
-		/obj/item/storage/backpack/marine/engineerpack/flamethrower,
 	)
 	cost = 100
 
@@ -259,6 +290,13 @@ WEAPONS
 	)
 	cost = 10
 
+/datum/supply_packs/weapons/flamethrower
+	name = "Surplus flamethrower"
+	contains = list(
+		/obj/item/weapon/gun/flamer/marinestandard,
+	)
+	cost = 10
+
 /datum/supply_packs/weapons/explosives
 	name = "surplus explosives"
 	contains = list(
@@ -322,128 +360,6 @@ WEAPONS
 	cost = 16
 
 /*******************************************************************************
-HARDPOINT MODULES (and their ammo)
-*******************************************************************************/
-/datum/supply_packs/hardpoints
-	group = "Hardpoint Modules"
-	containertype = /obj/structure/closet/crate/weapon
-
-/datum/supply_packs/hardpoints/ltb_cannon
-	name = "LTB Cannon Assembly"
-	contains = list(/obj/item/hardpoint/primary/cannon)
-	cost = 60
-
-/datum/supply_packs/hardpoints/ltaaap_minigun
-	name = "LTAA-AP Minigun Assembly"
-	contains = list(/obj/item/hardpoint/primary/minigun)
-	cost = 60
-
-/datum/supply_packs/hardpoints/flamer_module
-	name = "Secondary Flamer Assembly"
-	contains = list(/obj/item/hardpoint/secondary/flamer)
-	cost = 60
-
-/datum/supply_packs/hardpoints/towlauncher
-	name = "Secondary TOW Launcher Assembly"
-	contains = list(/obj/item/hardpoint/secondary/towlauncher)
-	cost = 60
-
-/datum/supply_packs/hardpoints/m56_cupola
-	name = "Secondary M56 Cupola Assembly"
-	contains = list(/obj/item/hardpoint/secondary/m56cupola)
-	cost = 60
-
-/datum/supply_packs/hardpoints/tank_glauncher
-	name = "Secondary Grenade Launcher Assembly"
-	contains = list(/obj/item/hardpoint/secondary/grenade_launcher)
-	cost = 60
-
-/datum/supply_packs/hardpoints/tank_slauncher
-	name = "Smoke Launcher Assembly"
-	contains = list(/obj/item/hardpoint/support/smoke_launcher)
-	cost = 60
-
-/datum/supply_packs/hardpoints/weapons_sensor
-	name = "Weapons Sensor Array"
-	contains = list(/obj/item/hardpoint/support/weapons_sensor)
-	cost = 60
-
-/datum/supply_packs/hardpoints/artillery_module
-	name = "Artillery Module"
-	contains = list(/obj/item/hardpoint/support/artillery_module)
-	cost = 60
-
-/datum/supply_packs/hardpoints/overdrive_enhancer
-	name = "Overdrive Enhancer"
-	contains = list(/obj/item/hardpoint/support/overdrive_enhancer)
-	cost = 60
-
-/datum/supply_packs/hardpoints/ballistic_armor
-	name = "Ballistic Armor Plating"
-	contains = list(/obj/item/hardpoint/armor/ballistic)
-	cost = 60
-
-/datum/supply_packs/hardpoints/caustic_armor
-	name = "Caustic Armor Plating"
-	contains = list(/obj/item/hardpoint/armor/caustic)
-	cost = 60
-
-/datum/supply_packs/hardpoints/concussive_armor
-	name = "Concussive Armor Plating"
-	contains = list(/obj/item/hardpoint/armor/concussive)
-	cost = 60
-
-/datum/supply_packs/hardpoints/paladin_armor
-	name = "Paladin Armor Module"
-	contains = list(/obj/item/hardpoint/armor/paladin)
-	cost = 60
-
-/datum/supply_packs/hardpoints/snowplow_armor
-	name = "Snowplow Module"
-	contains = list(/obj/item/hardpoint/armor/snowplow)
-	cost = 40
-
-/datum/supply_packs/hardpoints/tank_treads
-	name = "Tank Treads"
-	contains = list(/obj/item/hardpoint/treads/standard)
-	cost = 60
-
-/datum/supply_packs/hardpoints/ltb_cannon_ammo
-	name = "LTB Cannon Magazine"
-	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon)
-	cost = 3
-
-/datum/supply_packs/hardpoints/ltaaap_minigun_ammo
-	name = "LTAA AP Minigun Magazine"
-	contains = list(/obj/item/ammo_magazine/tank/ltaaap_minigun)
-	cost = 10
-
-/datum/supply_packs/hardpoints/tank_glauncher_ammo
-	name = "Grenade Launcher Magazine"
-	contains = list(/obj/item/ammo_magazine/tank/tank_glauncher)
-	cost = 3
-
-/datum/supply_packs/hardpoints/tank_slauncher_ammo
-	name = "Smoke Launcher Magazine"
-	contains = list(/obj/item/ammo_magazine/tank/tank_slauncher)
-	cost = 3
-
-/datum/supply_packs/hardpoints/tank_towlauncher_ammo
-	name = "TOW Launcher Magazine"
-	contains = list(/obj/item/ammo_magazine/tank/towlauncher)
-	cost = 7
-
-/datum/supply_packs/hardpoints/tank_cupola_ammo
-	name = "M56 Cupola Magazine"
-	contains = list(/obj/item/ammo_magazine/tank/m56_cupola)
-	cost = 15
-
-/datum/supply_packs/hardpoints/tank_flamer_ammo
-	name = "Flamer Magazine"
-	contains = list(/obj/item/ammo_magazine/tank/flamer)
-	cost = 6
-
-/*******************************************************************************
 ATTACHMENTS
 *******************************************************************************/
 /datum/supply_packs/attachments
@@ -469,11 +385,6 @@ ATTACHMENTS
 	name = "magnetic harness attachment"
 	contains = list(/obj/item/attachable/magnetic_harness)
 	cost = 5
-
-/datum/supply_packs/attachments/rail_quickfire
-	name = "quickfire adaptor attachment"
-	contains = list(/obj/item/attachable/quickfire)
-	cost = 15
 
 /datum/supply_packs/attachments/muzzle_suppressor
 	name = "suppressor attachment"
@@ -702,19 +613,9 @@ AMMO
 	cost = 15
 
 /datum/supply_packs/ammo/napalm
-	name = "M240 fuel crate"
+	name = "TL-84 normal fuel tank"
 	contains = list(/obj/item/ammo_magazine/flamer_tank)
-	cost = 5
-
-/datum/supply_packs/ammo/pyro
-	name = "M240-T fuels"
-	contains = list(
-		/obj/item/ammo_magazine/flamer_tank/large,
-		/obj/item/ammo_magazine/flamer_tank/large,
-		/obj/item/ammo_magazine/flamer_tank/large/B,
-		/obj/item/ammo_magazine/flamer_tank/large/X,
-	)
-	cost = 60
+	cost = 3
 
 /datum/supply_packs/ammo/mortar_ammo_he
 	name = "M402 mortar HE shell"
@@ -747,8 +648,8 @@ AMMO
 	cost = 10
 
 /datum/supply_packs/ammo/m56d
-	name = "M56D mounted smartgun ammo"
-	contains = list(/obj/item/ammo_magazine/m56d)
+	name = "TL-102 mounted heavy smartgun ammo"
+	contains = list(/obj/item/ammo_magazine/standard_hmg)
 	cost = 15
 
 /datum/supply_packs/ammo/lasguncharger
@@ -793,6 +694,13 @@ ARMOR
 	)
 	cost = 50
 
+/datum/supply_packs/armor/marine_shield
+	name = "TL-172 Defensive Shield"
+	contains = list(
+		/obj/item/weapon/shield/riot/marine
+	)
+	cost = 20
+
 /datum/supply_packs/armor/b18
 	name = "B18 Armor Set"
 	contains = list(
@@ -809,31 +717,13 @@ ARMOR
 	)
 	cost = 100
 
-/datum/supply_packs/armor/pyro
-	name = "Pyro Armor Set"
-	contains = list(
-		/obj/item/clothing/suit/storage/marine/M35,
-		/obj/item/clothing/head/helmet/marine/pyro,
-		/obj/item/clothing/shoes/marine/pyro,
-	)
-	cost = 100
-
 /datum/supply_packs/armor/basic
-	name = "M3 pattern armor"
+	name = "PAS-11 pattern armor"
 	contains = list(
 		/obj/item/clothing/head/helmet/marine/standard,
-		/obj/item/clothing/suit/storage/marine,
+		/obj/item/clothing/suit/storage/marine/pasvest,
 	)
 	cost = 4
-
-/datum/supply_packs/armor/leader
-	name = "M3 pattern squad leader armor"
-	contains = list(
-		/obj/item/clothing/head/helmet/marine/leader,
-		/obj/item/clothing/suit/storage/marine/leader,
-	)
-	cost = 20
-
 
 // Modular armor + Attachments
 /datum/supply_packs/armor/modular/exosuit
@@ -843,58 +733,56 @@ ARMOR
 	)
 	cost = 1
 
-/datum/supply_packs/armor/modular/armor/heavy
-	name = "Jaeger heavy plates"
+/datum/supply_packs/armor/modular/armor/infantry
+	name = "Jaeger Medium Infantry plates"
 	contains = list(
-		/obj/item/clothing/head/modular/heavy,
-		/obj/item/armor_module/armor/chest/heavy,
-		/obj/item/armor_module/armor/arms/heavy,
-		/obj/item/armor_module/armor/legs/heavy,
+		/obj/item/clothing/head/modular/marine,
+		/obj/item/armor_module/armor/chest/marine,
+		/obj/item/armor_module/armor/arms/marine,
+		/obj/item/armor_module/armor/legs/marine,
 	)
 	cost = 3
 
-/datum/supply_packs/armor/modular/armor/medium
-	name = "Jaeger medium plates"
+/datum/supply_packs/armor/modular/armor/skirmisher
+	name = "Jaeger Light Skirmisher plates"
 	contains = list(
-		/obj/item/clothing/head/modular/medium,
-		/obj/item/armor_module/armor/chest/medium,
-		/obj/item/armor_module/armor/arms/medium,
-		/obj/item/armor_module/armor/legs/medium,
+		/obj/item/clothing/head/modular/marine/skirmisher,
+		/obj/item/armor_module/armor/chest/marine/skirmisher,
+		/obj/item/armor_module/armor/arms/marine/skirmisher,
+		/obj/item/armor_module/armor/legs/marine/skirmisher,
 	)
 	cost = 3
 
-/datum/supply_packs/armor/modular/armor/light
-	name = "Jaeger light plates"
+/datum/supply_packs/armor/modular/armor/assault
+	name = "Jaeger Heavy Assault plates"
 	contains = list(
-		/obj/item/clothing/head/modular/light,
-		/obj/item/armor_module/armor/chest/light,
-		/obj/item/armor_module/armor/arms/light,
-		/obj/item/armor_module/armor/legs/light,
+		/obj/item/clothing/head/modular/marine/assault,
+		/obj/item/armor_module/armor/chest/marine/assault,
+		/obj/item/armor_module/armor/arms/marine/assault,
+		/obj/item/armor_module/armor/legs/marine/assault,
 	)
 	cost = 3
 
-/datum/supply_packs/armor/modular/helmet/heavy
+/datum/supply_packs/armor/modular/helmet/infantry
 	name = "Jaeger heavy helmets"
-	contains = list(/obj/item/clothing/head/modular/heavy)
+	contains = list(/obj/item/clothing/head/modular/marine)
 	cost = 1
 
-/datum/supply_packs/armor/modular/helmet/medium
+/datum/supply_packs/armor/modular/helmet/skirmisher
 	name = "Jaeger medium helmets"
-	contains = list(/obj/item/clothing/head/modular/medium)
+	contains = list(/obj/item/clothing/head/modular/marine/skirmisher)
 	cost = 1
 
-/datum/supply_packs/armor/modular/helmet/light
+/datum/supply_packs/armor/modular/helmet/assault
 	name = "Jaeger light helmets"
-	contains = list(/obj/item/clothing/head/modular/light)
+	contains = list(/obj/item/clothing/head/modular/marine/assault)
 	cost = 1
 
 /datum/supply_packs/armor/modular/storage
 	name = "Jaeger assorted storage modules"
 	contains = list(
 		/obj/item/armor_module/storage/general,
-		/obj/item/armor_module/storage/ammo_mag,
 		/obj/item/armor_module/storage/medical,
-		/obj/item/armor_module/storage/integrated,
 		/obj/item/armor_module/storage/engineering,
 	)
 	cost = 3
@@ -913,12 +801,8 @@ ARMOR
 	name = "Jaeger baldur modules"
 	contains = list(
 		/obj/item/armor_module/attachable/better_shoulder_lamp,
-		/obj/item/armor_module/attachable/better_shoulder_lamp,
-		/obj/item/armor_module/attachable/better_shoulder_lamp,
-		/obj/item/armor_module/attachable/better_shoulder_lamp,
-		/obj/item/armor_module/attachable/better_shoulder_lamp,
 	)
-	cost = 7
+	cost = 10
 
 /datum/supply_packs/armor/modular/attachments/valkyrie_autodoc
 	name = "Jaeger valkyrie modules"
@@ -948,6 +832,23 @@ ARMOR
 	)
 	cost = 12
 
+/datum/supply_packs/armor/modular/attachments/mimir_helmet_protection
+	name = "Jaeger helmet mimir module"
+	contains = list(
+		/obj/item/helmet_module/attachable/mimir_environment_protection
+	)
+	cost = 5
+/datum/supply_packs/armor/modular/attachments/generic_helmet_modules
+	name = "Generic Jaeger helmet modules"
+	contains = list(
+		/obj/item/helmet_module/welding,
+		/obj/item/helmet_module/welding,
+		/obj/item/helmet_module/binoculars,
+		/obj/item/helmet_module/binoculars,
+		/obj/item/helmet_module/antenna,
+		/obj/item/helmet_module/antenna
+	)
+	cost = 6
 
 /*******************************************************************************
 CLOTHING

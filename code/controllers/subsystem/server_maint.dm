@@ -45,6 +45,22 @@ SUBSYSTEM_DEF(server_maint)
 					log_world("Found a null in human_mob_list!")
 				cleanup_ticker++
 			if(20)
+				var/found = FALSE
+				for(var/level in GLOB.humans_by_zlevel)
+					if(listclearnulls(GLOB.humans_by_zlevel["[level]"]))
+						found = TRUE
+				if(found)
+					log_world("Found a null in humans_by_zlevel!")
+				cleanup_ticker++
+			if(25)
+				var/found = FALSE
+				for(var/level in GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel)
+					if(listclearnulls(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[level]"]))
+						found = TRUE
+				if(found)
+					log_world("Found a null in GLOB.hive_datums(XENO_HIVE_NORMAL).xenos_by_zlevel!")
+				cleanup_ticker++
+			if(30)
 				cleanup_ticker = 0
 			else
 				cleanup_ticker++

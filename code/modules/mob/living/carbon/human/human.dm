@@ -37,6 +37,7 @@
 	RegisterSignal(src, list(COMSIG_KB_QUICKEQUIP, COMSIG_CLICK_QUICKEQUIP), .proc/do_quick_equip)
 	RegisterSignal(src, COMSIG_KB_HOLSTER, .proc/do_holster)
 	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, .proc/do_unique_action)
+	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, .proc/fireman_carry_grabbed) // Fireman carry
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN)
 
 /mob/living/carbon/human/proc/human_z_changed(datum/source, old_z, new_z)
@@ -757,15 +758,15 @@
 	return ..()
 
 
-/mob/living/carbon/human/mouse_buckle_handling(atom/movable/dropping, mob/living/user)
-	. = ..()
-	if(!isliving(.))
-		return
-	if(pulling == . && grab_state >= GRAB_AGGRESSIVE && stat == CONSCIOUS && user != . && can_be_firemanned(.))
+/mob/living/carbon/human/proc/fireman_carry_grabbed()
+	var/mob/living/grabbed = pulling
+	if(!istype(grabbed))
+		return NONE
+	if(/*grab_state >= GRAB_AGGRESSIVE &&*/ stat == CONSCIOUS && can_be_firemanned(grabbed))
 		//If you dragged them to you and you're aggressively grabbing try to fireman carry them
-		fireman_carry(.)
-		return TRUE
-	return FALSE
+		fireman_carry(grabbed)
+		return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
+	return NONE
 
 //src is the user that will be carrying, target is the mob to be carried
 /mob/living/carbon/human/proc/can_be_firemanned(mob/living/carbon/target)
@@ -777,7 +778,8 @@
 		return
 	visible_message("<span class='notice'>[src] starts lifting [target] onto [p_their()] back...</span>",
 	"<span class='notice'>You start to lift [target] onto your back...</span>")
-	if(!do_mob(src, target, 5 SECONDS, target_display = BUSY_ICON_HOSTILE))
+	var/delay = 1 SECONDS + LERP(0 SECONDS, 4 SECONDS, skills.getPercent("medical", SKILL_MEDICAL_MASTER))
+	if(!do_mob(src, target, delay, target_display = BUSY_ICON_HOSTILE))
 		visible_message("<span class='warning'>[src] fails to fireman carry [target]!</span>")
 		return
 	//Second check to make sure they're still valid to be carried
@@ -903,9 +905,10 @@
 /mob/living/carbon/human/species
 	var/race = null
 
-/mob/living/carbon/human/species/Initialize()
-	. = ..()
-	set_species(race)
+/mob/living/carbon/human/species/set_species(new_species, default_colour)
+	if(!new_species)
+		new_species = race
+	return ..()
 
 /mob/living/carbon/human/proc/set_species(new_species, default_colour)
 
@@ -1049,67 +1052,68 @@
 
 /mob/living/carbon/human/proc/randomize_appearance()
 	gender = pick(MALE, FEMALE)
-	name = GLOB.namepool[/datum/namepool].get_random_name(gender)
+	name = species.random_name(gender)
 	real_name = name
 
-	switch(pick(15;"black", 15;"grey", 15;"brown", 15;"lightbrown", 10;"white", 15;"blonde", 15;"red"))
-		if("black")
-			r_hair = 10
-			g_hair = 10
-			b_hair = 10
-			r_facial = 10
-			g_facial = 10
-			b_facial = 10
-		if("grey")
-			r_hair = 50
-			g_hair = 50
-			b_hair = 50
-			r_facial = 50
-			g_facial = 50
-			b_facial = 50
-		if("brown")
-			r_hair = 70
-			g_hair = 35
-			b_hair = 0
-			r_facial = 70
-			g_facial = 35
-			b_facial = 0
-		if("lightbrown")
-			r_hair = 100
-			g_hair = 50
-			b_hair = 0
-			r_facial = 100
-			g_facial = 50
-			b_facial = 0
-		if("white")
-			r_hair = 235
-			g_hair = 235
-			b_hair = 235
-			r_facial = 235
-			g_facial = 235
-			b_facial = 235
-		if("blonde")
-			r_hair = 240
-			g_hair = 240
-			b_hair = 0
-			r_facial = 240
-			g_facial = 240
-			b_facial = 0
-		if("red")
-			r_hair = 128
-			g_hair = 0
-			b_hair = 0
-			r_facial = 128
-			g_facial = 0
-			b_facial = 0
+	if(!(species.species_flags & HAS_NO_HAIR))
+		switch(pick(15;"black", 15;"grey", 15;"brown", 15;"lightbrown", 10;"white", 15;"blonde", 15;"red"))
+			if("black")
+				r_hair = 10
+				g_hair = 10
+				b_hair = 10
+				r_facial = 10
+				g_facial = 10
+				b_facial = 10
+			if("grey")
+				r_hair = 50
+				g_hair = 50
+				b_hair = 50
+				r_facial = 50
+				g_facial = 50
+				b_facial = 50
+			if("brown")
+				r_hair = 70
+				g_hair = 35
+				b_hair = 0
+				r_facial = 70
+				g_facial = 35
+				b_facial = 0
+			if("lightbrown")
+				r_hair = 100
+				g_hair = 50
+				b_hair = 0
+				r_facial = 100
+				g_facial = 50
+				b_facial = 0
+			if("white")
+				r_hair = 235
+				g_hair = 235
+				b_hair = 235
+				r_facial = 235
+				g_facial = 235
+				b_facial = 235
+			if("blonde")
+				r_hair = 240
+				g_hair = 240
+				b_hair = 0
+				r_facial = 240
+				g_facial = 240
+				b_facial = 0
+			if("red")
+				r_hair = 128
+				g_hair = 0
+				b_hair = 0
+				r_facial = 128
+				g_facial = 0
+				b_facial = 0
 
-	h_style = random_hair_style(gender)
+		h_style = random_hair_style(gender)
 
-	switch(pick("none", "some"))
-		if("none")
-			f_style = "Shaved"
-		if("some")
-			f_style = random_facial_hair_style(gender)
+		switch(pick("none", "some"))
+			if("none")
+				f_style = "Shaved"
+			if("some")
+				f_style = random_facial_hair_style(gender)
 
 	switch(pick(15;"black", 15;"green", 15;"brown", 15;"blue", 15;"lightblue", 5;"red"))
 		if("black")

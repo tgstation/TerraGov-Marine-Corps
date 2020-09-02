@@ -449,6 +449,9 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		dat += "[GLOB.round_statistics.defiler_defiler_stings] number of times Defilers stung."
 	if(GLOB.round_statistics.defiler_neurogas_uses)
 		dat += "[GLOB.round_statistics.defiler_neurogas_uses] number of times Defilers vented neurogas."
+	if(GLOB.round_statistics.xeno_unarmed_attacks && GLOB.round_statistics.xeno_bump_attacks)
+		dat += "[GLOB.round_statistics.xeno_bump_attacks] bump attacks, which made up [(GLOB.round_statistics.xeno_bump_attacks / GLOB.round_statistics.xeno_unarmed_attacks) * 100]% of all attacks ([GLOB.round_statistics.xeno_unarmed_attacks])."
+
 	var/output = jointext(dat, "<br>")
 	for(var/mob/player in GLOB.player_list)
 		if(player?.client?.prefs?.toggles_chat & CHAT_STATISTICS)
@@ -475,6 +478,8 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	for(var/z in z_levels)
 		for(var/i in GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[z]"])
 			var/mob/living/carbon/xenomorph/X = i
+			if(!istype(X)) // Small fix?
+				continue
 			if(count_flags & COUNT_IGNORE_XENO_SSD && !X.client)
 				continue
 			if(count_flags & COUNT_IGNORE_XENO_SPECIAL_AREA && is_xeno_in_forbidden_zone(X))
@@ -605,8 +610,9 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	player.mind.transfer_to(player.new_character)
 	var/datum/job/job = player.assigned_role
 	job.on_late_spawn(player.new_character)
+	var/area/A = get_area(player.new_character)
+	deadchat_broadcast("<span class='game'> has woken at <span class='name'>[A?.name]</span>.</span>", "<span class='game'><span class='name'>[player.new_character.real_name]</span> ([job.title])</span>", follow_target = player.new_character, message_type = DEADCHAT_ARRIVALRATTLE)
 	qdel(player)
-
 
 /datum/game_mode/proc/attempt_to_join_as_larva(mob/xeno_candidate)
 	to_chat(xeno_candidate, "<span class='warning'>This is unavailable in this gamemode.</span>")
@@ -618,6 +624,9 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	return FALSE
 
 /datum/game_mode/proc/transfer_xeno(mob/xeno_candidate, mob/living/carbon/xenomorph/X)
+	if(QDELETED(X))
+		stack_trace("[xeno_candidate] was put into a qdeleted mob [X]")
+		return
 	message_admins("[key_name(xeno_candidate)] has joined as [ADMIN_TPMONTY(X)].")
 	xeno_candidate.mind.transfer_to(X, TRUE)
 	if(X.is_ventcrawling)  //If we are in a vent, fetch a fresh vent map
