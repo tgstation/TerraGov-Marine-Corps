@@ -78,7 +78,7 @@
 
 /obj/item/storage/internal/modular/general
 	max_storage_space = 10
-	storage_slots = 3
+	storage_slots = 2
 	max_w_class = WEIGHT_CLASS_NORMAL
 	can_hold = list(
 		/obj/item/weapon/combat_knife,

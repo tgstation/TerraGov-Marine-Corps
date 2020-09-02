@@ -8,3 +8,7 @@
 		ENABLE_BITFIELD(sight, SEE_OBJS)
 		ENABLE_BITFIELD(sight, SEE_TURFS)
 		update_sight()
+
+	if(client.prefs?.xeno_name != "Undefined")
+		nicknumber = client.prefs.xeno_name
+		generate_name()

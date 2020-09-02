@@ -639,6 +639,7 @@
 	load_method = SINGLE_CASING //codex
 	materials = list(/datum/material/metal = 7000)
 	w_class = WEIGHT_CLASS_BULKY
+	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	throw_speed = 2
 	throw_range = 10
 	force = 5.0
@@ -647,7 +648,7 @@
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
 	aim_slowdown = 1
 	gun_skill_category = GUN_SKILL_FIREARMS
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_AMMO_COUNTER
 	attachable_allowed = list()
 	var/grenade
 	var/grenade_type_allowed = /obj/item/explosive/grenade
@@ -1013,7 +1014,6 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
 
 	fire_delay = 0.175 SECONDS
-	burst_amount = 7
 	scatter = 10
 	recoil = 2
 	recoil_unwielded = 4

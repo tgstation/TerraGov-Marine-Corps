@@ -869,7 +869,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 				sleep(2)
 			qdel(W)
 
-	if(isspaceturf(user.loc) || user.lastarea.has_gravity == 0)
+	if(isspaceturf(user.loc))
 		user.inertia_dir = get_dir(target, user)
 		step(user, user.inertia_dir)
 

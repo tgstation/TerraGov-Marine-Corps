@@ -2,6 +2,7 @@
 /** Helmet attachments */
 /obj/item/helmet_module/welding
 	name = "Welding Helmet Module"
+	desc = "Designed for mounting on a Jaeger Helmet. When attached, this module can be flipped up or down to function as a welding mask."
 	icon_state = "welding_head_obj"
 	item_state = "welding_head_inactive"
 	module_type = ARMOR_MODULE_TOGGLE
@@ -32,9 +33,11 @@
 		parent.eye_protection -= eye_protection_mod
 
 	active = !active
+	SEND_SIGNAL(parent, COMSIG_ITEM_TOGGLE_ACTION, user)
 	to_chat(user, "<span class='notice'>You toggle \the [src]. [active ? "enabling" : "disabling"] it.</span>")
 	item_state = "welding_head_[active ? "" : "in"]active"
 	parent.update_overlays()
+	user.update_inv_head()
 
 
 /obj/item/helmet_module/attachable/mimir_environment_protection
@@ -64,6 +67,7 @@
 
 /obj/item/helmet_module/binoculars
 	name = "Binocular Helmet Module"
+	desc = "Designed for mounting on a Jaeger Helmet. When attached, can be flipped down to view into the distance."
 	icon_state = "binocular_head_obj"
 	item_state = "binocular_head_inactive"
 	module_type = ARMOR_MODULE_TOGGLE
@@ -72,10 +76,10 @@
 
 /obj/item/helmet_module/binoculars/toggle_module(mob/living/user, obj/item/clothing/head/modular/parent)
 	if(!active && !zoom)
-		RegisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CLIENT_MOUSEDOWN), .proc/toggle_module) //No shooting while zoomed
+		RegisterSignal(user, list(COMSIG_MOVABLE_MOVED,COMSIG_MOB_MOUSEDOWN), .proc/toggle_module)//No shooting while zoomed
 		zoom(user, 11, 12)
 	else
-		UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_CLIENT_MOUSEDOWN))
+		UnregisterSignal(user,list(COMSIG_MOVABLE_MOVED,COMSIG_MOB_MOUSEDOWN))
 		if(zoom)
 			zoom(user)
 
@@ -83,3 +87,15 @@
 	to_chat(user, "<span class='notice'>You toggle \the [src]. [active ? "enabling" : "disabling"] it.</span>")
 	item_state = "binocular_head_[active ? "" : "in"]active"
 	parent.update_overlays()
+	user.update_inv_head()
+
+/obj/item/helmet_module/antenna
+	name = "Antenna helmet module"
+	desc = "Designed for mounting on a Jaeger Helmet. When attached, this module is able to provide quick readuts of the users coordinates."
+	icon_state = "antenna_head_obj"
+	item_state = "antenna_head"
+	module_type = ARMOR_MODULE_TOGGLE
+
+/obj/item/helmet_module/antenna/toggle_module(mob/living/user, obj/item/clothing/head/modular/parent)
+	var/turf/location = get_turf(src)
+	user.show_message("<span class='warning'>The [src] beeps and states, \"Current location coordinates: LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(src)]\"</span>", EMOTE_AUDIBLE, "<span class='notice'>The [src] vibrates but you can not hear it!</span>")
