@@ -17892,6 +17892,24 @@
 	},
 /turf/open/floor/mainship/ai,
 /area/sulaco/hangar/droppod)
+"qvJ" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
+/turf/open/floor/mainship/ai,
+/area/sulaco/hangar/droppod)
+"qBJ" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/turf/open/floor/mainship/ai,
+/area/sulaco/hangar/droppod)
 "qDQ" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -17954,11 +17972,14 @@
 /turf/open/floor,
 /area/sulaco/cargo/office)
 "tha" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 8
+	},
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
 /turf/open/floor/mainship/ai,
-/area/sulaco/hangar)
+/area/sulaco/hangar/droppod)
 "tsx" = (
 /obj/machinery/light{
 	dir = 4
@@ -18032,6 +18053,9 @@
 "uQn" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
+	},
+/obj/machinery/camera/autoname{
+	dir = 1
 	},
 /turf/open/floor/mainship/ai,
 /area/sulaco/hangar/droppod)
@@ -52547,7 +52571,7 @@ siT
 ubj
 siT
 ubj
-gLH
+qBJ
 xiI
 aDS
 aDS
@@ -53056,7 +53080,7 @@ aPF
 aYD
 ubj
 fno
-qDQ
+tha
 nqw
 qDQ
 nqw
@@ -53823,7 +53847,7 @@ aPZ
 aPZ
 aPZ
 bbC
-tha
+aPF
 aUx
 djt
 djt
@@ -54598,7 +54622,7 @@ aPF
 aYD
 ubj
 qvd
-lzC
+qvJ
 okP
 lzC
 okP

@@ -788,6 +788,7 @@
 /area/mainship/medical/chemistry)
 "cq" = (
 /obj/structure/cable,
+/obj/machinery/light/small,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "cs" = (
@@ -810,9 +811,6 @@
 "cu" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 1
-	},
-/obj/machinery/light{
-	dir = 4
 	},
 /turf/closed/wall/mainship/outer,
 /area/mainship/hull/lower_hull)
@@ -1074,9 +1072,6 @@
 "dr" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 1
-	},
-/obj/machinery/light{
-	dir = 4
 	},
 /turf/closed/wall/mainship,
 /area/mainship/hallways/hangar)
@@ -8270,20 +8265,6 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
-"Cd" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/mainship{
-	dir = 1
-	},
-/obj/machinery/door/poddoor/mainship/droppod{
-	dir = 1
-	},
-/turf/open/floor/stairs/rampbottom{
-	dir = 1
-	},
-/area/mainship/hull/lower_hull)
 "Ce" = (
 /obj/machinery/power/monitor/grid,
 /obj/structure/cable,
@@ -11661,6 +11642,12 @@
 	dir = 6
 	},
 /area/mainship/shipboard/weapon_room)
+"LQ" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/hangar)
 "LU" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 2
@@ -12776,6 +12763,9 @@
 /obj/machinery/door_control/mainship/droppod{
 	pixel_y = -21
 	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 1
+	},
 /turf/open/floor/mainship/sterile/plain,
 /area/sulaco/hangar/droppod)
 "PS" = (
@@ -13219,9 +13209,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "Sh" = (
-/obj/machinery/light{
-	dir = 8
-	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 1
 	},
@@ -13278,6 +13265,12 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
+"Sw" = (
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
+/turf/open/floor/mainship/sterile/plain,
+/area/sulaco/hangar/droppod)
 "Sx" = (
 /obj/machinery/light{
 	dir = 4
@@ -13553,6 +13546,16 @@
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/firing_range)
+"Uu" = (
+/obj/effect/decal/warning_stripes/thin,
+/obj/effect/decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/camera/autoname/mainship{
+	dir = 4
+	},
+/turf/open/floor/mainship/sterile/plain,
+/area/sulaco/hangar/droppod)
 "Uw" = (
 /obj/machinery/door/airlock/mainship/generic/bathroom{
 	dir = 1
@@ -13888,20 +13891,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/self_destruct)
-"Wx" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/door/firedoor/mainship{
-	dir = 1
-	},
-/obj/machinery/door/poddoor/mainship/droppod{
-	dir = 1
-	},
-/turf/open/floor/stairs/rampbottom{
-	dir = 1
-	},
-/area/mainship/hallways/hangar)
 "WA" = (
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/mainship/mono,
@@ -14079,9 +14068,6 @@
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/hallways/hangar)
 "XX" = (
-/obj/machinery/light{
-	dir = 8
-	},
 /obj/machinery/door/firedoor/mainship{
 	dir = 1
 	},
@@ -14161,10 +14147,19 @@
 /obj/machinery/status_display,
 /turf/closed/wall/mainship,
 /area/mainship/living/bridgebunks)
+"Yw" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/mainship/maint,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/lower_hull)
 "Yx" = (
 /obj/machinery/vending/shared_vending/marine_engi,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
+"Yy" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "YB" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -40673,7 +40668,7 @@ aa
 aa
 aa
 ad
-aL
+aW
 az
 cE
 ap
@@ -41701,7 +41696,7 @@ ag
 Qn
 Mb
 ad
-aO
+Ek
 az
 aN
 dV
@@ -41958,7 +41953,7 @@ az
 az
 az
 ad
-aO
+Yw
 az
 aN
 dV
@@ -43243,7 +43238,7 @@ az
 az
 az
 ad
-aO
+Yw
 az
 ap
 eM
@@ -43757,7 +43752,7 @@ aM
 Ue
 Mb
 Mb
-gJ
+Yy
 dA
 cF
 eM
@@ -44780,7 +44775,7 @@ ad
 gh
 Gv
 gh
-Gg
+Uu
 gh
 Gv
 gh
@@ -46069,9 +46064,9 @@ Gg
 gh
 Yo
 Vi
-Cd
+Sh
 aO
-Wx
+XX
 aN
 GH
 RF
@@ -46327,7 +46322,7 @@ gh
 Yo
 PN
 ad
-aO
+Yw
 az
 XI
 GH
@@ -46586,7 +46581,7 @@ Yn
 ad
 aO
 az
-aN
+LQ
 Gm
 Sn
 bh
@@ -47096,9 +47091,9 @@ at
 Vi
 Vi
 Vi
-Vi
+Sw
 ad
-aO
+Ek
 az
 aN
 GH

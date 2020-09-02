@@ -28,6 +28,8 @@
 
 /// Sent when a marine dropship enters transit level
 #define COMSIG_GLOB_DROPSHIP_TRANSIT "!dropship_transit"
+///Sent when xenos launch a hijacked dropship
+#define COMSIG_GLOB_DROPSHIP_HIJACKED "!dropship_hijacked"
 
 //////////////////////////////////////////////////////////////////
 

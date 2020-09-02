@@ -21,11 +21,17 @@
 	var/image/userimg
 	var/drop_state = DROPPOD_READY
 	var/launch_time = 10 SECONDS
+	var/launch_allowed = TRUE
 	var/datum/turf_reservation/reserved_area
 
 /obj/structure/droppod/Initialize()
 	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/disable_launching)
 	GLOB.droppod_list += src
+
+/obj/structure/droppod/disable_launching()
+	launch_allowed = FALSE
+	UnregisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED)
 
 /obj/structure/droppod/Destroy()
 	. = ..()
@@ -133,6 +139,9 @@
 		return
 	if(world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock + DROPPOD_DEPLOY_DELAY)
 		to_chat(user, "<span class='notice'>Unable to launch, the ship has not yet reached the combat area.</span>")
+		return
+	if(!launch_allowed)
+		to_chat(user, "<span class='notice'>Error. Ship calibration unavailable. Please %#&ç:*</span>")
 		return
 	if(drop_state != DROPPOD_READY)
 		return
