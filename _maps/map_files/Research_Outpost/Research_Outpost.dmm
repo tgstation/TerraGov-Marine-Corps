@@ -212,9 +212,6 @@
 	dir = 5
 	},
 /area/outpost/arrivals)
-"be" = (
-/turf/open/floor/tile/dark/brown2,
-/area/outpost/dormitories)
 "bg" = (
 /obj/structure/largecrate/random/secure,
 /turf/open/floor/tile/dark/brown2{
@@ -287,6 +284,10 @@
 "bD" = (
 /turf/open/floor/tile/dark,
 /area/outpost/science)
+"bF" = (
+/obj/structure/cable,
+/turf/open/floor/plating/asteroidfloor,
+/area/outpost/cargo)
 "bL" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/dark,
@@ -329,11 +330,6 @@
 	},
 /turf/open/floor/tile/dark/yellow2,
 /area/outpost/engineering/hallway)
-"bV" = (
-/turf/open/floor/tile/dark/brown2/corner{
-	dir = 8
-	},
-/area/outpost/dormitories)
 "bW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -666,6 +662,13 @@
 	dir = 1
 	},
 /area/outpost/dormitories)
+"eb" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark2,
+/area/outpost/cargo)
 "ec" = (
 /obj/machinery/light{
 	dir = 1
@@ -813,6 +816,7 @@
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 2
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/outpost/dormitories)
 "eO" = (
@@ -939,6 +943,7 @@
 /turf/open/floor/tile/dark/red2,
 /area/outpost/brig/gear_room)
 "fw" = (
+/obj/structure/cable,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 10
 	},
@@ -1758,6 +1763,13 @@
 	dir = 8
 	},
 /area/outpost/engineering/hallway)
+"jB" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/outpost/lz2)
 "jD" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -1845,6 +1857,10 @@
 	dir = 9
 	},
 /area/outpost/brig/armoury)
+"ke" = (
+/obj/structure/cable,
+/turf/open/floor/marking/asteroidwarning,
+/area/outpost/lz2)
 "kf" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1
@@ -3507,6 +3523,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/dark/brown2/corner,
 /area/outpost/dormitories)
 "sK" = (
@@ -3709,6 +3726,10 @@
 	dir = 6
 	},
 /area/outpost/hallway/south_east)
+"tR" = (
+/obj/structure/cable,
+/turf/open/floor/marking/asteroidwarning,
+/area/outpost/lz1)
 "tS" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 8
@@ -3843,6 +3864,13 @@
 	dir = 8
 	},
 /area/outpost/hallway/south_west)
+"uW" = (
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark2,
+/area/outpost/cargo)
 "uY" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark/purple2,
@@ -3897,6 +3925,7 @@
 /area/outpost/science/research)
 "vn" = (
 /obj/machinery/light,
+/obj/structure/cable,
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/dormitories)
 "vo" = (
@@ -4289,6 +4318,10 @@
 	dir = 10
 	},
 /area/outpost/hallway/south_cent)
+"xs" = (
+/obj/structure/cable,
+/turf/open/floor/plating/asteroidfloor,
+/area/outpost/lz1)
 "xu" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -4780,6 +4813,10 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_east)
+"Ar" = (
+/obj/structure/cable,
+/turf/open/floor/plating/asteroidfloor,
+/area/outpost/caves/east)
 "As" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /turf/open/floor/tile/dark/purple2{
@@ -5006,6 +5043,13 @@
 	dir = 6
 	},
 /area/outpost/yard/south_east)
+"BE" = (
+/obj/machinery/power/apc/drained{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/outpost/lz1)
 "BJ" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/yard/south_east)
@@ -5097,6 +5141,10 @@
 "Cp" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_west)
+"Cq" = (
+/obj/structure/cable,
+/turf/open/floor/plating/asteroidwarning,
+/area/outpost/caves/east)
 "Ct" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
@@ -5123,6 +5171,12 @@
 "CB" = (
 /turf/open/floor/tile/dark/red2,
 /area/outpost/brig/gear_room)
+"CC" = (
+/obj/structure/cable,
+/turf/open/floor/plating/asteroidwarning{
+	dir = 6
+	},
+/area/outpost/caves/east)
 "CD" = (
 /turf/closed/wall/r_wall,
 /area/outpost/medbay/security)
@@ -5744,6 +5798,10 @@
 /obj/item/trash/raisins,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
+"FM" = (
+/obj/structure/cable,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/outpost/lz1)
 "FR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/purple2{
@@ -6211,6 +6269,12 @@
 	dir = 1
 	},
 /area/outpost/cargo)
+"II" = (
+/obj/structure/cable,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 1
+	},
+/area/outpost/lz2)
 "IJ" = (
 /obj/machinery/vending/snack,
 /turf/open/floor/tile/dark/brown2{
@@ -6376,6 +6440,12 @@
 	},
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
+"JH" = (
+/obj/structure/cable,
+/turf/open/floor/tile/dark/brown2{
+	dir = 8
+	},
+/area/outpost/cargo)
 "JI" = (
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/caves/east)
@@ -6943,6 +7013,7 @@
 	},
 /area/outpost/arrivals)
 "Mu" = (
+/obj/structure/cable,
 /turf/open/floor/tile/dark/brown2{
 	dir = 6
 	},
@@ -7124,6 +7195,11 @@
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/engineering/engine)
+"No" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/tile/dark2,
+/area/outpost/cargo)
 "Np" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 4
@@ -7397,6 +7473,11 @@
 	dir = 8
 	},
 /area/outpost/hallway/south_cent)
+"OE" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
+/obj/structure/cable,
+/turf/closed/mineral/bigred,
+/area/outpost/caves/east)
 "OF" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/mineral/bigred,
@@ -9268,6 +9349,7 @@
 	},
 /area/outpost/hallway/central)
 "Yw" = (
+/obj/structure/cable,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/east)
 "Yx" = (
@@ -9578,6 +9660,11 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/brown2/corner,
 /area/outpost/hallway/central)
+"ZO" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/obj/structure/cable,
+/turf/open/floor/plating/asteroidfloor,
+/area/outpost/lz1)
 "ZP" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/dark,
@@ -21721,14 +21808,14 @@ sV
 yc
 Eb
 Eb
-Eb
-gh
-Hc
-Hc
-Hc
-Hc
-Hc
-Hc
+xs
+tR
+FM
+FM
+FM
+FM
+FM
+BE
 Hc
 VS
 sV
@@ -21979,7 +22066,7 @@ XE
 yc
 Eb
 Eb
-Eb
+xs
 gh
 XE
 XE
@@ -22237,7 +22324,7 @@ XE
 yc
 Eb
 Eb
-Eb
+xs
 gh
 XE
 XE
@@ -22495,7 +22582,7 @@ XE
 yc
 Eb
 Eb
-Eb
+xs
 gh
 XE
 XE
@@ -22753,7 +22840,7 @@ dr
 yc
 Eb
 Eb
-Eb
+xs
 gh
 XE
 XE
@@ -23011,7 +23098,7 @@ rq
 ur
 rd
 rd
-rd
+ZO
 zp
 rq
 GF
@@ -23269,7 +23356,7 @@ dr
 yc
 Eb
 Eb
-Eb
+xs
 gh
 dr
 dr
@@ -23527,7 +23614,7 @@ QY
 gW
 Vn
 Vn
-Vn
+bF
 tl
 QY
 QY
@@ -23785,7 +23872,7 @@ TE
 lS
 lS
 lS
-lS
+JH
 lS
 TE
 lS
@@ -24043,7 +24130,7 @@ fA
 Jc
 Jc
 Jc
-Jc
+pw
 Jc
 CF
 vB
@@ -24301,7 +24388,7 @@ hZ
 Jc
 Jc
 Jc
-Jc
+pw
 Jc
 pf
 jx
@@ -24559,7 +24646,7 @@ Jc
 Jc
 Jc
 Jz
-hQ
+No
 vA
 hQ
 hQ
@@ -24817,7 +24904,7 @@ Ul
 Jc
 Jc
 Jc
-Jc
+pw
 Xj
 CF
 rK
@@ -25075,7 +25162,7 @@ oN
 Jc
 Jc
 Jc
-Jc
+pw
 Xj
 zC
 jx
@@ -25333,7 +25420,7 @@ Jc
 zw
 Jc
 Jz
-vA
+uW
 DN
 hQ
 hQ
@@ -25591,7 +25678,7 @@ Jc
 Jc
 Jc
 Jc
-Xj
+eb
 Jc
 tD
 vB
@@ -34091,7 +34178,7 @@ fG
 fG
 fG
 Fu
-be
+aG
 fG
 fG
 fG
@@ -34349,7 +34436,7 @@ gt
 VJ
 fG
 Fu
-be
+aG
 fG
 VJ
 UH
@@ -34865,7 +34952,7 @@ HT
 av
 fG
 Fu
-be
+aG
 fG
 Kb
 HT
@@ -35123,7 +35210,7 @@ MC
 fG
 fG
 Fu
-be
+aG
 fG
 fG
 MC
@@ -35381,7 +35468,7 @@ Lx
 Lx
 Lx
 xc
-bV
+OG
 Lx
 Lx
 Lx
@@ -35897,7 +35984,7 @@ MC
 fG
 fG
 Rt
-be
+aG
 fG
 fG
 MC
@@ -36155,7 +36242,7 @@ HT
 dc
 fG
 Rt
-be
+aG
 fG
 An
 HT
@@ -37187,7 +37274,7 @@ Xi
 Xi
 RD
 ZQ
-Gm
+Cq
 eA
 Xi
 Xi
@@ -37445,7 +37532,7 @@ Xi
 Xi
 RD
 ZQ
-Gm
+Cq
 eA
 HS
 Xi
@@ -37703,7 +37790,7 @@ Xi
 Xi
 RD
 ZQ
-Gm
+Cq
 eA
 eA
 eA
@@ -37961,7 +38048,7 @@ Xi
 Xi
 Xi
 ZQ
-JI
+Ar
 wz
 wz
 wz
@@ -38219,7 +38306,7 @@ Xi
 Xi
 Xi
 ZQ
-JI
+Ar
 xg
 xg
 xg
@@ -38477,7 +38564,7 @@ Xi
 Xi
 Xi
 ZQ
-Gm
+Cq
 eA
 eA
 eA
@@ -38735,7 +38822,7 @@ Ls
 Xi
 jr
 JI
-Gm
+Cq
 eA
 eA
 HD
@@ -38993,7 +39080,7 @@ HS
 Ls
 ZQ
 JI
-zf
+CC
 eA
 Xi
 Xi
@@ -39509,7 +39596,7 @@ kW
 kW
 Vb
 Gh
-sy
+OE
 sy
 sy
 sy
@@ -40025,7 +40112,7 @@ ss
 hY
 zG
 lz
-ZG
+ke
 KR
 KR
 uI
@@ -40283,9 +40370,9 @@ eF
 KR
 Qk
 zI
-ZG
-md
-io
+ke
+II
+jB
 io
 io
 io
