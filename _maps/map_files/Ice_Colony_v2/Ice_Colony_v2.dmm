@@ -1079,7 +1079,7 @@
 /area/ice_colony/surface/engineering/generator)
 "aej" = (
 /obj/structure/cable,
-/turf/open/floor/animated/bcircuit,
+/turf/open/floor/podhatch/floor,
 /area/ice_colony/surface/engineering/generator)
 "ael" = (
 /obj/machinery/landinglight/ds1/delaytwo{
@@ -1586,7 +1586,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/animated/bcircuit,
+/turf/open/floor/podhatch/floor,
 /area/ice_colony/surface/engineering/generator)
 "afW" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -5090,7 +5090,7 @@
 /area/ice_colony/surface/dorms)
 "arS" = (
 /obj/structure/cable,
-/turf/open/floor/animated/bcircuit,
+/turf/open/floor/podhatch/floor,
 /area/ice_colony/surface/tcomms)
 "arT" = (
 /turf/open/floor/plating,
@@ -5752,7 +5752,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor/tile/red/whiteredfull,
+/turf/open/floor/tile/red/whitered/full,
 /area/ice_colony/surface/clinic/lobby)
 "aub" = (
 /obj/structure/cable,
@@ -5930,7 +5930,7 @@
 	dir = 1;
 	name = "\improper Aurora Medical Clinic"
 	},
-/turf/open/floor/tile/red/whiteredfull,
+/turf/open/floor/tile/red/whitered/full,
 /area/ice_colony/surface/clinic/lobby)
 "auz" = (
 /obj/structure/disposalpipe/segment{
@@ -18224,7 +18224,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/ice_colony/underground/responsehangar)
 "bgF" = (
-/obj/machinery/computer3,
+/obj/machinery/computer/intel_computer,
 /turf/open/shuttle/dropship/floor,
 /area/ice_colony/underground/responsehangar)
 "bgG" = (
@@ -18686,7 +18686,7 @@
 /area/ice_colony/underground/hangar)
 "bih" = (
 /obj/structure/cable,
-/turf/open/floor/animated/bcircuit,
+/turf/open/floor/podhatch/floor,
 /area/ice_colony/underground/hangar)
 "bii" = (
 /obj/vehicle/train/cargo/engine,
@@ -18711,7 +18711,7 @@
 /obj/machinery/power/apc/drained{
 	dir = 1
 	},
-/turf/open/floor/animated/bcircuit,
+/turf/open/floor/podhatch/floor,
 /area/ice_colony/underground/engineering/substation)
 "bio" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -30147,7 +30147,7 @@
 /area/ice_colony/underground/medical/treatment)
 "bSV" = (
 /obj/structure/cable,
-/turf/open/floor/animated/bcircuit,
+/turf/open/floor/podhatch/floor,
 /area/ice_colony/underground/engineering/substation)
 "bSW" = (
 /turf/closed/ice_rock/corners{
@@ -32866,6 +32866,7 @@
 /area/ice_colony/exterior/surface/cliff)
 "cVK" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating,
 /area/ice_colony/exterior/surface/landing_pad2)
 "dfk" = (
@@ -32981,6 +32982,12 @@
 	dir = 1
 	},
 /area/ice_colony/underground/maintenance/east)
+"ftt" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/ice_colony/surface/dorms)
 "fzT" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice_rock/corners{
@@ -33026,6 +33033,12 @@
 	dir = 1
 	},
 /area/ice_colony/exterior/underground/caves)
+"fPd" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/dark/brown2{
+	dir = 1
+	},
+/area/ice_colony/surface/garage/one)
 "fPF" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/ice_rock/corners{
@@ -33444,6 +33457,7 @@
 /area/ice_colony/exterior/underground/caves)
 "lPy" = (
 /obj/docking_port/stationary/crashmode,
+/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
 "lSx" = (
@@ -33499,6 +33513,10 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/east)
+"mJD" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/dark/red2,
+/area/ice_colony/underground/security/armory)
 "mKW" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -33592,6 +33610,12 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice,
 /area/ice_colony/underground/maintenance/east)
+"nLw" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/dark/yellow2{
+	dir = 1
+	},
+/area/ice_colony/surface/research/field_gear)
 "nLI" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/ice/straight,
@@ -43771,7 +43795,7 @@ abb
 aaC
 aaC
 aMX
-aNX
+nLw
 aOb
 aOb
 aOb
@@ -58871,7 +58895,7 @@ aax
 aax
 aax
 arD
-aox
+ftt
 apZ
 apP
 azq
@@ -61346,7 +61370,7 @@ bJq
 bNr
 bKl
 bOV
-bKK
+mJD
 bPW
 bQF
 bQF
@@ -66868,7 +66892,7 @@ ayb
 abL
 abL
 azD
-azU
+fPd
 aAR
 aBn
 aBQ

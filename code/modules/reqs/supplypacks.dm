@@ -70,6 +70,11 @@ OPERATIONS
 	contains = list(/obj/item/bodybag/tarp)
 	cost = 6
 
+/datum/supply_packs/operations/exportpad
+	name = "ASRS Bluespace Export Point"
+	contains = list(/obj/machinery/exportpad)
+	cost = 50
+
 /datum/supply_packs/operations/alpha
 	name = "Alpha Supply Crate"
 	contains = list(/obj/structure/closet/crate/alpha)
@@ -777,9 +782,7 @@ ARMOR
 	name = "Jaeger assorted storage modules"
 	contains = list(
 		/obj/item/armor_module/storage/general,
-		/obj/item/armor_module/storage/ammo_mag,
 		/obj/item/armor_module/storage/medical,
-		/obj/item/armor_module/storage/integrated,
 		/obj/item/armor_module/storage/engineering,
 	)
 	cost = 3
@@ -799,12 +802,8 @@ ARMOR
 	name = "Jaeger baldur modules"
 	contains = list(
 		/obj/item/armor_module/attachable/better_shoulder_lamp,
-		/obj/item/armor_module/attachable/better_shoulder_lamp,
-		/obj/item/armor_module/attachable/better_shoulder_lamp,
-		/obj/item/armor_module/attachable/better_shoulder_lamp,
-		/obj/item/armor_module/attachable/better_shoulder_lamp,
 	)
-	cost = 7
+	cost = 10
 
 /datum/supply_packs/armor/modular/attachments/valkyrie_autodoc
 	name = "Jaeger valkyrie modules"
@@ -834,6 +833,23 @@ ARMOR
 	)
 	cost = 12
 
+/datum/supply_packs/armor/modular/attachments/mimir_helmet_protection
+	name = "Jaeger helmet mimir module"
+	contains = list(
+		/obj/item/helmet_module/attachable/mimir_environment_protection
+	)
+	cost = 5
+/datum/supply_packs/armor/modular/attachments/generic_helmet_modules
+	name = "Generic Jaeger helmet modules"
+	contains = list(
+		/obj/item/helmet_module/welding,
+		/obj/item/helmet_module/welding,
+		/obj/item/helmet_module/binoculars,
+		/obj/item/helmet_module/binoculars,
+		/obj/item/helmet_module/antenna,
+		/obj/item/helmet_module/antenna
+	)
+	cost = 6
 /datum/supply_packs/armor/modular/attachments/hlin_bombimmune
 	name = "Jaeger Hlin module"
 	contains = list(

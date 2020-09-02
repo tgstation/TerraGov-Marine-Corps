@@ -5,7 +5,7 @@
 	climbable = TRUE
 	anchored = TRUE
 	density = TRUE
-	throwpass = TRUE //You can throw objects over this, despite its density.
+	throwpass = TRUE //You can throw objects over this, despite its density.//This comment is a lie, throwpass is for projectiles apparently
 	layer = BELOW_OBJ_LAYER
 	flags_atom = ON_BORDER
 	resistance_flags = XENO_DAMAGEABLE
@@ -17,7 +17,7 @@
 	var/crusher_resistant = TRUE //Whether a crusher can ram through it.
 	var/base_acid_damage = 2
 	var/barricade_resistance = 5 //How much force an item needs to even damage it at all.
-
+	var/allow_thrown_objs = TRUE
 	var/barricade_type = "barricade" //"metal", "plasteel", etc.
 	var/can_change_dmg_state = TRUE
 	var/closed = FALSE
@@ -57,6 +57,9 @@
 		if(is_wired && iscarbon(O)) //Leaping mob against barbed wire fails
 			if(get_dir(loc, target) & dir)
 				return FALSE
+		if(!allow_thrown_objs && !istype(O, /obj/projectile))
+			if(get_dir(loc, target) & dir)
+				return FALSE
 		return TRUE
 
 	if(get_dir(loc, target) & dir)
@@ -70,6 +73,9 @@
 
 	if(mover && mover.throwing)
 		if(is_wired && iscarbon(mover)) //Leaping mob against barbed wire fails
+			if(get_dir(loc, target) & dir)
+				return FALSE
+		if(!allow_thrown_objs && !istype(mover, /obj/projectile))
 			if(get_dir(loc, target) & dir)
 				return FALSE
 		return TRUE
@@ -124,7 +130,7 @@
 
 		B.use(1)
 		wire()
-		
+
 
 /obj/structure/barricade/proc/wire()
 	if(!closed)
@@ -319,6 +325,31 @@
 				deconstructed = FALSE
 				break
 			deconstruct(deconstructed)
+
+/*----------------------*/
+// GUARD RAIL
+/*----------------------*/
+
+/obj/structure/barricade/guardrail
+	name = "guard rail"
+	desc = "A short wall made of rails to prevent entry into dangerous areas."
+	icon_state = "railing_0"
+	coverage = 25
+	max_integrity = 150
+	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 15, "bio" = 100, "rad" = 100, "fire" = 100, "acid" = 10)
+	climbable = FALSE
+	crusher_resistant = TRUE
+	stack_type = /obj/item/stack/rods
+	destroyed_stack_amount = 3
+	hit_sound = "sound/effects/metalhit.ogg"
+	barricade_type = "railing"
+	allow_thrown_objs = FALSE
+	can_wire = FALSE
+
+/obj/structure/barricade/guardrail/update_icon()
+	. = ..()
+	if(dir == NORTH)
+		pixel_y = 12
 
 /*----------------------*/
 // WOOD

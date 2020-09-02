@@ -73,7 +73,7 @@
 	if(!isturf(user.loc))
 		to_chat(user, "<span class='warning'>You cannot turn the light on while in [user.loc].</span>")
 		return
-	if(COOLDOWN_CHECK(src, COOLDOWN_ARMOR_LIGHT))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ARMOR_LIGHT))
 		return
 	if(!ishuman(user))
 		return
@@ -236,7 +236,7 @@
 	desc = "A heavy protective vest designed to be worn with the M56 Smartgun System. \nIt has specially designed straps and reinforcement to carry the Smartgun and accessories. This luxury model appears to belong to the CO. You feel like you probably could get fired for touching this.."
 	icon_state = "8fancy"
 
-// MARINE PAS-11 vests, the new armor. It is basically equivalent to a modular armor with baldur and all the pieces on, and a magazine pouch.
+// MARINE PAS-11 vests, the new armor. It is basically equivalent to a modular armor with general storage on it.
 
 /obj/item/clothing/suit/storage/marine/pasvest
 	name = "\improper PAS-11 pattern armored vest"
@@ -245,27 +245,6 @@
 	soft_armor = list("melee" = 45, "bullet" = 65, "laser" = 55, "energy" = 40, "bomb" = 40, "bio" = 40, "rad" = 15, "fire" = 40, "acid" = 45)
 	slowdown = 0.6 //Same as modular armor.
 	light_strength = 8
-	pockets = /obj/item/storage/internal/suit/pas11
-
-/obj/item/storage/internal/suit/pas11
-	max_storage_space = 15
-	storage_slots = 4
-	max_w_class = WEIGHT_CLASS_NORMAL
-	can_hold = list(
-		/obj/item/weapon/combat_knife,
-		/obj/item/flashlight/flare,
-		/obj/item/explosive/grenade/flare,
-		/obj/item/ammo_magazine/rifle,
-		/obj/item/cell/lasgun,
-		/obj/item/ammo_magazine/smg,
-		/obj/item/ammo_magazine/pistol,
-		/obj/item/ammo_magazine/revolver,
-		/obj/item/ammo_magazine/sniper,
-		/obj/item/ammo_magazine/handful,
-		/obj/item/explosive/grenade,
-		/obj/item/explosive/mine,
-		/obj/item/reagent_containers/food/snacks
-		)
 
 
 //===========================SPECIALIST================================
@@ -531,7 +510,7 @@
 		to_chat(user, "<span class='warning'>You cannot turn the light on while in [user.loc].</span>")
 		return
 
-	if(COOLDOWN_CHECK(src, COOLDOWN_ARMOR_LIGHT))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ARMOR_LIGHT))
 		return
 
 	if(!ishuman(user)) return
