@@ -30,9 +30,6 @@ map prison_station_fop
 	maxplayers 60
 endmap
 
-map tyson_station
-endmap
-
 map vapor_processing
 endmap
 
@@ -52,6 +49,10 @@ map lava_outpost
 endmap
 
 map whiskey_outpost_v2
+endmap
+
+map magmoor_digsite_iv
+	minplayers 20
 endmap
 
 map marine_hq

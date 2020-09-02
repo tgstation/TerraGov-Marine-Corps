@@ -351,11 +351,11 @@
 		return FALSE
 	if(user.action_busy) //Already resisting or doing something like it.
 		return FALSE
-	if(COOLDOWN_CHECK(user, COOLDOWN_RESIST))
+	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_RESIST))
 		return FALSE
 	//okay, so the closet is either welded or locked... resist!!!
 	user.changeNext_move(CLICK_CD_BREAKOUT)
-	COOLDOWN_START(user, COOLDOWN_RESIST, CLICK_CD_BREAKOUT)
+	TIMER_COOLDOWN_START(user, COOLDOWN_RESIST, CLICK_CD_BREAKOUT)
 	user.visible_message("<span class='warning'>[src] begins to shake violently!</span>", \
 		"<span class='notice'>You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)</span>", \
 		"<span class='italics'>You hear banging from [src].</span>")

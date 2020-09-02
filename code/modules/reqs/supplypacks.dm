@@ -70,6 +70,11 @@ OPERATIONS
 	contains = list(/obj/item/bodybag/tarp)
 	cost = 6
 
+/datum/supply_packs/operations/exportpad
+	name = "ASRS Bluespace Export Point"
+	contains = list(/obj/machinery/exportpad)
+	cost = 50
+
 /datum/supply_packs/operations/alpha
 	name = "Alpha Supply Crate"
 	contains = list(/obj/structure/closet/crate/alpha)
@@ -380,11 +385,6 @@ ATTACHMENTS
 	name = "magnetic harness attachment"
 	contains = list(/obj/item/attachable/magnetic_harness)
 	cost = 5
-
-/datum/supply_packs/attachments/rail_quickfire
-	name = "quickfire adaptor attachment"
-	contains = list(/obj/item/attachable/quickfire)
-	cost = 15
 
 /datum/supply_packs/attachments/muzzle_suppressor
 	name = "suppressor attachment"
@@ -734,7 +734,7 @@ ARMOR
 	cost = 1
 
 /datum/supply_packs/armor/modular/armor/infantry
-	name = "Jaeger Infantry plates"
+	name = "Jaeger Medium Infantry plates"
 	contains = list(
 		/obj/item/clothing/head/modular/marine,
 		/obj/item/armor_module/armor/chest/marine,
@@ -744,7 +744,7 @@ ARMOR
 	cost = 3
 
 /datum/supply_packs/armor/modular/armor/skirmisher
-	name = "Jaeger Skirmisher plates"
+	name = "Jaeger Light Skirmisher plates"
 	contains = list(
 		/obj/item/clothing/head/modular/marine/skirmisher,
 		/obj/item/armor_module/armor/chest/marine/skirmisher,
@@ -754,7 +754,7 @@ ARMOR
 	cost = 3
 
 /datum/supply_packs/armor/modular/armor/assault
-	name = "Jaeger Assault plates"
+	name = "Jaeger Heavy Assault plates"
 	contains = list(
 		/obj/item/clothing/head/modular/marine/assault,
 		/obj/item/armor_module/armor/chest/marine/assault,
@@ -782,9 +782,7 @@ ARMOR
 	name = "Jaeger assorted storage modules"
 	contains = list(
 		/obj/item/armor_module/storage/general,
-		/obj/item/armor_module/storage/ammo_mag,
 		/obj/item/armor_module/storage/medical,
-		/obj/item/armor_module/storage/integrated,
 		/obj/item/armor_module/storage/engineering,
 	)
 	cost = 3
@@ -803,12 +801,8 @@ ARMOR
 	name = "Jaeger baldur modules"
 	contains = list(
 		/obj/item/armor_module/attachable/better_shoulder_lamp,
-		/obj/item/armor_module/attachable/better_shoulder_lamp,
-		/obj/item/armor_module/attachable/better_shoulder_lamp,
-		/obj/item/armor_module/attachable/better_shoulder_lamp,
-		/obj/item/armor_module/attachable/better_shoulder_lamp,
 	)
-	cost = 7
+	cost = 10
 
 /datum/supply_packs/armor/modular/attachments/valkyrie_autodoc
 	name = "Jaeger valkyrie modules"
@@ -838,6 +832,23 @@ ARMOR
 	)
 	cost = 12
 
+/datum/supply_packs/armor/modular/attachments/mimir_helmet_protection
+	name = "Jaeger helmet mimir module"
+	contains = list(
+		/obj/item/helmet_module/attachable/mimir_environment_protection
+	)
+	cost = 5
+/datum/supply_packs/armor/modular/attachments/generic_helmet_modules
+	name = "Generic Jaeger helmet modules"
+	contains = list(
+		/obj/item/helmet_module/welding,
+		/obj/item/helmet_module/welding,
+		/obj/item/helmet_module/binoculars,
+		/obj/item/helmet_module/binoculars,
+		/obj/item/helmet_module/antenna,
+		/obj/item/helmet_module/antenna
+	)
+	cost = 6
 
 /*******************************************************************************
 CLOTHING

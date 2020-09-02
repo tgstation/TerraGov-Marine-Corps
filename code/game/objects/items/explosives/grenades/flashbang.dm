@@ -15,13 +15,13 @@
 /obj/item/explosive/grenade/flashbang/prime()
 	..()
 	var/turf/T = get_turf(src)
-	for(var/obj/structure/closet/L in hear(7, T))
+	for(var/obj/structure/closet/L in get_hear(7, T))
 		if(locate(/mob/living/carbon/, L))
 			for(var/mob/living/carbon/M in L)
 				bang(get_turf(src), M)
 
 
-	for(var/mob/living/carbon/M in hear(7, T))
+	for(var/mob/living/carbon/M in get_hear(7, T))
 		if(!HAS_TRAIT(M, TRAIT_FLASHBANGIMMUNE))
 			bang(T, M)
 

@@ -57,6 +57,16 @@
 	explosion(rear_left, 3, 4, 7, 0)
 */
 // -- Shuttles
+
+/obj/docking_port/stationary/crashmode/bigbury
+	id = "bigbury_dock"
+	name = "Bigbury Crash Site"
+	dir = SOUTH
+	width = 19
+	height = 31
+	dwidth = 9
+	dheight = 15
+
 /obj/docking_port/mobile/crashmode
 	name = "TGS Canterbury"
 	dir = SOUTH
@@ -81,3 +91,11 @@
 	name = "Hangar Pad One"
 	id = "canterbury"
 	roundstart_template = /datum/map_template/shuttle/tgs_canterbury
+
+/obj/docking_port/mobile/crashmode/bigbury
+	name = "TGS Bigbury"
+	dir = SOUTH
+	width = 19
+	height = 31
+	dwidth = 9
+	dheight = 15

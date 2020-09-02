@@ -86,6 +86,19 @@
 	icon_state = "katana_holster_full"
 	new /obj/item/weapon/katana(src)
 
+/obj/item/storage/large_holster/officer
+	name = "\improper officer sword scabbard"
+	desc = "A large leather scabbard used to carry a sword. Appears to be a reproduction, rather than original. It can be strapped to the waist or armor."
+	base_icon = "officer_sheath"
+	icon_state = "officer_sheath"
+	flags_equip_slot = ITEM_SLOT_BELT
+	can_hold = list(/obj/item/weapon/claymore/mercsword/officersword)
+
+/obj/item/storage/large_holster/officer/full/Initialize()
+	. = ..()
+	icon_state = "officer_sheath_full"
+	new /obj/item/weapon/claymore/mercsword/officersword(src)
+
 /obj/item/storage/large_holster/t35
 	name = "\improper L44 T-35 scabbard"
 	desc = "A large leather holster allowing the storage of an T-35 Shotgun. It contains harnesses that allow it to be secured to the back for easy storage."

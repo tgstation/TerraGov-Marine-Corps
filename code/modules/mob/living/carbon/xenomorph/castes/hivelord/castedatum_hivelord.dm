@@ -12,7 +12,7 @@
 	melee_damage = 17
 
 	// *** Tackle *** //
-	tackle_damage = 30
+	tackle_damage = 21
 
 	// *** Speed *** //
 	speed = 0.4
@@ -22,7 +22,7 @@
 	plasma_gain = 50
 
 	// *** Health *** //
-	max_health = 250
+	max_health = 300
 
 	// *** Evolution *** //
 	evolution_threshold = 180
@@ -53,6 +53,7 @@
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/plant_weeds,
+		/datum/action/xeno_action/activable/psychic_cure/drone,
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/choose_resin/hivelord,
 		/datum/action/xeno_action/activable/secrete_resin/hivelord, // TODO: (psykzz) Disabled until this is fixed.
@@ -75,7 +76,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Tackle *** //
-	tackle_damage = 35
+	tackle_damage = 21
 
 	// *** Speed *** //
 	speed = 0.3
@@ -85,7 +86,7 @@
 	plasma_gain = 60
 
 	// *** Health *** //
-	max_health = 275
+	max_health = 325
 
 	// *** Evolution *** //
 	upgrade_threshold = 240
@@ -109,7 +110,7 @@
 	melee_damage = 20
 
 	// *** Tackle *** //
-	tackle_damage = 40
+	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = 0.2
@@ -119,7 +120,7 @@
 	plasma_gain = 63
 
 	// *** Health *** //
-	max_health = 290
+	max_health = 340
 
 	// *** Evolution *** //
 	upgrade_threshold = 480
@@ -144,7 +145,7 @@
 	melee_damage = 20
 
 	// *** Tackle *** //
-	tackle_damage = 45
+	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = 0.1
@@ -154,7 +155,7 @@
 	plasma_gain = 65
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 350
 
 	// *** Evolution *** //
 	upgrade_threshold = 480

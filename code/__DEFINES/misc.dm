@@ -94,6 +94,12 @@ GLOBAL_VAR_INIT(global_unique_id, 1)
 
 #define GHOST_DEFAULT_FORM 		"ghost"
 
+// Deadchat types
+#define DEADCHAT_ANNOUNCEMENT "announcement"
+#define DEADCHAT_ARRIVALRATTLE "arrivalrattle"
+#define DEADCHAT_DEATHRATTLE "deathrattle"
+#define DEADCHAT_REGULAR "regular-deadchat"
+
 
 //for obj explosion block calculation
 #define EXPLOSION_BLOCK_PROC -1
