@@ -29,7 +29,7 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, .proc/disable_launching)
 	GLOB.droppod_list += src
 
-/obj/structure/droppod/disable_launching()
+/obj/structure/droppod/proc/disable_launching()
 	launch_allowed = FALSE
 	UnregisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED)
 
@@ -173,14 +173,14 @@
 			var/list/block = block(T0,T1) - targetturf
 			for(var/t in block)//Randomly selects a free turf in a 5x5 block around the target
 				var/turf/attemptdrop = t
-				if(!attemptdrop.density)
+				if(!attemptdrop.density && !istype(get_area(targetturf), /area/space))
 					targetturf = attemptdrop
 					break
 			if(targetturf.density)//We tried and failed, revert to the old one, which has a new dense obj but is at least not dense
 				to_chat(occupant, "<span class='warning'>[icon2html(src,occupant)] RECALCULATION FAILED!</span>")
 				targetturf = locate(target_x, target_y,2)
 			break
-	deadchat_broadcast("has landed at [get_area(targetturf)]!", src, occupant)
+	deadchat_broadcast(" has landed at [get_area(targetturf)]!", src, occupant)
 	explosion(targetturf,-1,-1,1,-1)
 	forceMove(targetturf)
 	playsound(targetturf, 'sound/effects/droppod_impact.ogg', 100)
