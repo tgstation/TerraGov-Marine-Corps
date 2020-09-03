@@ -642,6 +642,12 @@ Defined in conflicts.dm of the #defines folder.
 	var/has_nightvision = FALSE
 	var/active_nightvision = FALSE
 
+
+/obj/item/attachable/scope/marine
+	name = "rail scope"
+	icon_state = "marinescope"
+	attach_icon = "marinescope_a"
+
 /obj/item/attachable/scope/nightvision
 	name = "T-46 Night vision scope"
 	icon_state = "nvscope"
