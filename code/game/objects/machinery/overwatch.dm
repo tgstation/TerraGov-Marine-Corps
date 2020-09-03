@@ -301,15 +301,6 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 			mark_insubordination()
 		if("squad_transfer")
 			transfer_squad()
-<<<<<<< Updated upstream
-		if("dropsupply")
-			if(current_squad)
-				if((current_squad.supply_cooldown + 2 MINUTES) > world.time)
-					to_chat(usr, "[icon2html(src, usr)] <span class='warning'>Supply drop not yet available!</span>")
-				else
-					handle_supplydrop()
-=======
->>>>>>> Stashed changes
 		if("dropbomb")
 			handle_bombard()
 		if("shootrailgun")
