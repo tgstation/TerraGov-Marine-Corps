@@ -276,7 +276,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/suppressor
 	name = "suppressor"
-	desc = "A small tube with exhaust ports to expel noise and gas.\nDoes not completely silence a weapon, but does make it much quieter and a little more accurate and stable at the cost of slightly reduced damage and bullet speed."
+	desc = "A small tube with exhaust ports to expel noise and gas.\nDoes not completely silence a weapon, but does make it much quieter and a little more accurate and stable at the cost of bullet speed."
 	icon_state = "suppressor"
 	slot = "muzzle"
 	silence_mod = 1
@@ -284,18 +284,11 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "suppressor_a"
 	attach_shell_speed_mod = -1
 	accuracy_mod = 0.1
-	damage_mod = -0.05
 	recoil_mod = -2
 	scatter_mod = -5
 	recoil_unwielded_mod = -3
 	scatter_unwielded_mod = -5
 	damage_falloff_mod = 0.1
-
-
-/obj/item/attachable/suppressor/Initialize()
-	. = ..()
-	attach_icon = pick("suppressor_a","suppressor2_a")
-
 
 /obj/item/attachable/suppressor/unremovable
 	flags_attach_features = NONE
