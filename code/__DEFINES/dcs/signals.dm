@@ -179,6 +179,8 @@
 #define COMSIG_ITEM_AFTERATTACK "item_afterattack"				//from base of obj/item/afterattack(): (atom/target, mob/user, proximity_flag, click_parameters)
 #define COMSIG_ITEM_ATTACK_OBJ "item_attack_obj"				//from base of obj/item/attack_obj(): (/obj, /mob)
 	#define COMPONENT_NO_ATTACK_OBJ 1
+#define COMSIG_ITEM_ATTACK_TURF "item_attack_turf"				//from base of obj/item/attack_turf(): (/turf, /mob)
+	#define COMPONENT_NO_ATTACK_TURF 1
 #define COMSIG_ITEM_TOGGLE_ACTION "item_toggle_action"			//from base of obj/item/ui_interact(): (/mob/user)
 #define COMSIG_ITEM_TOGGLE_ACTIVE "item_toggle_active"			//from base of /obj/item/toggle_active(): (new_state)
 
@@ -238,6 +240,8 @@
 	#define COMPONENT_ITEM_NO_ATTACK (1<<0)
 #define COMSIG_MOB_ITEM_AFTERATTACK "mob_item_afterattack"		//from base of obj/item/afterattack(): (atom/target, mob/user, proximity_flag, click_parameters)
 #define COMSIG_MOB_SAY "mob_say" 								// from /mob/living/say(): (proc args list)
+#define COMSIG_MOB_DEADSAY "mob_deadsay" 							// from /mob/living/say_dead(): (proc args list)
+	#define MOB_DEADSAY_SIGNAL_INTERCEPT (1<<0)
 #define COMSIG_MOB_LOGIN "mob_login"							//from /mob/Login(): ()
 #define COMSIG_MOB_LOGOUT "mob_logout"							//from /mob/Logout(): ()
 #define COMSIG_MOB_GUN_FIRED "mob_gun_fired"					//from gun system: (atom/target,obj/item/weapon/gun/gun, mob/living/user)
@@ -438,6 +442,7 @@
 #define COMSIG_XENOABILITY_FORWARD_CHARGE "xenoability_forward_charge"
 #define COMSIG_XENOABILITY_CREST_DEFENSE "xenoability_crest_defense"
 #define COMSIG_XENOABILITY_FORTIFY "xenoability_fortify"
+#define COMSIG_XENOABILITY_REGENERATE_SKIN "xenoability_regenerate_skin"
 
 #define COMSIG_XENOABILITY_EMIT_NEUROGAS "xenoability_emit_neurogas"
 
@@ -470,9 +475,11 @@
 #define COMSIG_XENOABILITY_RAVAGER_CHARGE "xenoability_ravager_charge"
 #define COMSIG_XENOABILITY_RAVAGE "xenoability_ravage"
 #define COMSIG_XENOABILITY_SECOND_WIND "xenoability_second_wind"
+#define COMSIG_XENOABILITY_IGNORE_PAIN "xenoability_ignore_pain"
 
 #define COMSIG_XENOABILITY_TOGGLE_SAVAGE "xenoability_toggle_savage"
 #define COMSIG_XENOABILITY_POUNCE "xenoability_pounce"
+#define COMSIG_XENOABILITY_HAUNT "xenoability_haunt"
 
 #define COMSIG_XENOABILITY_TOGGLE_AGILITY "xenoability_toggle_agility"
 #define COMSIG_XENOABILITY_LUNGE "xenoability_lunge"

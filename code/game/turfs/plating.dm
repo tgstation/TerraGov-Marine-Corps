@@ -1,5 +1,6 @@
 /turf/open/floor/plating
 	name = "plating"
+	icon = 'icons/turf/floors.dmi'
 	icon_state = "plating"
 	floor_tile = null
 	intact_tile = FALSE
@@ -90,7 +91,7 @@
 	icon_state = "catwalk0"
 	name = "catwalk"
 	desc = "Cats really don't like these things."
-	layer = ATMOS_PIPE_LAYER
+	layer = CATWALK_LAYER
 
 
 /turf/open/floor/plating/warning

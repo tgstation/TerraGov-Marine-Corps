@@ -341,6 +341,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 /mob/living/carbon/xenomorph/revive()
 	plasma_stored = xeno_caste.plasma_max
 	stagger = 0
+	sunder = 0
 	set_slowdown(0)
 	if(stat == DEAD)
 		hive?.on_xeno_revive(src)

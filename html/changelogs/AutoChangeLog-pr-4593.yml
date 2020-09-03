@@ -1,0 +1,6 @@
+author: "Hathkar"
+delete-after: True
+changes: 
+  - rscadd: "Req windoors are now secure windoors"
+  - code_imp: "Made secure windoors a parent type"
+  - code_imp: "Rearranged var-edits on the map files to be in alphabetical order"

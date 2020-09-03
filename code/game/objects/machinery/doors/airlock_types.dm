@@ -72,7 +72,7 @@
 	assembly_type = /obj/structure/door_assembly/door_assembly_hatch
 
 /obj/machinery/door/airlock/hatch/engineering
-	req_access = list(ACCESS_CIVILIAN_ENGINEERING)
+	req_access = list(ACCESS_MARINE_ENGINEERING)
 
 /obj/machinery/door/airlock/maintenance_hatch
 	name = "\improper Maintenance Hatch"
@@ -249,7 +249,7 @@
 	req_access = null
 
 /obj/machinery/door/airlock/mainship/security/checkpoint
-	name = "\improper Security Checkpoint"	
+	name = "\improper Security Checkpoint"
 
 /obj/machinery/door/airlock/mainship/security/CMA
 	name = "\improper Chief Master at Arms's Bunks"
@@ -264,10 +264,10 @@
 	req_access = null
 
 /obj/machinery/door/airlock/mainship/security/glass/office
-	name = "\improper Security Office"	
+	name = "\improper Security Office"
 
 /obj/machinery/door/airlock/mainship/security/glass/cells
-	name = "\improper Security Cells"	
+	name = "\improper Security Cells"
 
 /obj/machinery/door/airlock/mainship/security/glass/CMA
 	name = "\improper Chief Master at Arms's Office"
@@ -296,12 +296,13 @@
 	req_access = null
 
 /obj/machinery/door/airlock/mainship/command/canterbury //For wall-smoothing
+	req_access = list(ACCESS_MARINE_DROPSHIP)
 
 /obj/machinery/door/airlock/mainship/command/cic
-	name = "\improper Combat Information Center"	
+	name = "\improper Combat Information Center"
 
 /obj/machinery/door/airlock/mainship/command/brief
-	name = "\improper Briefing Room"	
+	name = "\improper Briefing Room"
 
 /obj/machinery/door/airlock/mainship/command/CPToffice
 	name = "\improper Captain's Office"
@@ -377,7 +378,7 @@
 /obj/machinery/door/airlock/mainship/maint/free_access
 
 /obj/machinery/door/airlock/mainship/maint/core
-	name = "\improper Core Hatch"	
+	name = "\improper Core Hatch"
 
 /obj/machinery/door/airlock/mainship/maint/hangar
 	name = "\improper Hangar Control Room"
@@ -395,7 +396,7 @@
 
 /obj/machinery/door/airlock/mainship/engineering/storage
 	name = "\improper Engineering Storage"
-	icon = 'icons/obj/doors/mainship/maintdoor.dmi'	
+	icon = 'icons/obj/doors/mainship/maintdoor.dmi'
 
 /obj/machinery/door/airlock/mainship/engineering/disposals
 	name = "\improper Disposals"
@@ -404,11 +405,11 @@
 	name = "\improper Engineering Workshop"
 
 /obj/machinery/door/airlock/mainship/engineering/engine
-	name = "\improper Engineering Engine Monitoring"	
+	name = "\improper Engineering Engine Monitoring"
 
 /obj/machinery/door/airlock/mainship/engineering/atmos
 	name = "\improper Atmospherics Wing"
-	
+
 /obj/machinery/door/airlock/mainship/engineering/CSEoffice
 	name = "\improper Chief Ship Engineer's Office"
 	req_access = list(ACCESS_MARINE_CE)
@@ -429,19 +430,19 @@
 	req_access = list(ACCESS_MARINE_CHEMISTRY)
 
 /obj/machinery/door/airlock/mainship/medical/or
-	name = "\improper Operating Theatre"	
+	name = "\improper Operating Theatre"
 
 /obj/machinery/door/airlock/mainship/medical/or/or1
-	name = "\improper Operating Theatre 1"	
+	name = "\improper Operating Theatre 1"
 
 /obj/machinery/door/airlock/mainship/medical/or/or2
-	name = "\improper Operating Theatre 2"	
+	name = "\improper Operating Theatre 2"
 
 /obj/machinery/door/airlock/mainship/medical/or/or3
-	name = "\improper Operating Theatre 3"	
+	name = "\improper Operating Theatre 3"
 
 /obj/machinery/door/airlock/mainship/medical/or/or4
-	name = "\improper Operating Theatre 4"	
+	name = "\improper Operating Theatre 4"
 
 /obj/machinery/door/airlock/mainship/medical/or/free_access
 	req_one_access = null
@@ -536,7 +537,7 @@
 	req_access = list(ACCESS_NT_CORPORATE)
 
 /obj/machinery/door/airlock/mainship/generic/corporate/quarters
-	name = "Corporate Liaison's Quarters"	
+	name = "Corporate Liaison's Quarters"
 
 /obj/machinery/door/airlock/mainship/generic/bathroom
 	name = "\improper Bathroom"

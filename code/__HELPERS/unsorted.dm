@@ -22,7 +22,9 @@
 #undef DELTA_CALC
 
 #define UNTIL(X) while(!(X)) stoplag()
-#define SIGN(x) (x < 0 ? -1  : 1)
+
+/// Gets the sign of x, returns -1 if negative, 0 if 0, 1 if positive
+#define SIGN(x) ( ((x) > 0) - ((x) < 0) )
 
 //datum may be null, but it does need to be a typed var
 #define NAMEOF(datum, X) (#X || ##datum.##X)
@@ -732,8 +734,8 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	O.contents.Cut()
 
 	for(var/V in original.vars - GLOB.duplicate_forbidden_vars)
-		if(istype(original.vars[V], /datum)) // this would reference the original's object, that will break when it is used or deleted.
-			continue
+		if(istype(original.vars[V], /datum) || ismob(original.vars[V]))
+			continue // this would reference the original's object, that will break when it is used or deleted.
 		else if(islist(original.vars[V]))
 			var/list/L = original.vars[V]
 			O.vars[V] = L.Copy()
@@ -750,6 +752,11 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		if(ismachinery(O))
 			var/obj/machinery/M = O
 			M.power_change()
+
+	if(ismob(O)) //Overlays are carried over despite disallowing them, if a fix is found remove this.
+		var/mob/M = O
+		M.cut_overlays()
+		M.regenerate_icons()
 
 	return O
 
@@ -1326,7 +1333,7 @@ will handle it, but:
 		used_key_list[input_key] = 1
 	return input_key
 
-//Returns a list of all items of interest with their name
+///Returns a list of all items of interest with their name
 /proc/getpois(mobs_only=FALSE,skip_mindless=FALSE)
 	var/list/mobs = sortmobs()
 	var/list/namecounts = list()
@@ -1349,7 +1356,7 @@ will handle it, but:
 
 	return pois
 
-//Returns the left and right dir of the input dir, used for AI stutter step while attacking
+///Returns the left and right dir of the input dir, used for AI stutter step while attacking
 /proc/LeftAndRightOfDir(direction, diagonal_check = FALSE)
 	if(diagonal_check)
 		if(ISDIAGONALDIR(direction))
@@ -1361,3 +1368,28 @@ will handle it, but:
 	return call(source, proctype)(arglist(arguments))
 
 #define TURF_FROM_COORDS_LIST(List) (locate(List[1], List[2], List[3]))
+
+
+///Takes: Area type as text string or as typepath OR an instance of the area. Returns: A list of all areas of that type in the world.
+/proc/get_areas(areatype, subtypes=TRUE)
+	if(istext(areatype))
+		areatype = text2path(areatype)
+	else if(isarea(areatype))
+		var/area/areatemp = areatype
+		areatype = areatemp.type
+	else if(!ispath(areatype))
+		return null
+
+	var/list/areas = list()
+	if(subtypes)
+		var/list/cache = typecacheof(areatype)
+		for(var/V in GLOB.sorted_areas)
+			var/area/A = V
+			if(cache[A.type])
+				areas += V
+	else
+		for(var/V in GLOB.sorted_areas)
+			var/area/A = V
+			if(A.type == areatype)
+				areas += V
+	return areas
