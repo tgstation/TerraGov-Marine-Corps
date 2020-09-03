@@ -282,7 +282,6 @@
 /area/shuttle/canterbury)
 "bi" = (
 /obj/machinery/door_control{
-	dir = 2;
 	id = "port_umbilical_outer";
 	name = "outer door-control";
 	pixel_y = 32
@@ -356,9 +355,9 @@
 /obj/item/clothing/suit/storage/hazardvest,
 /obj/item/facepaint/black,
 /obj/item/stack/sheet/glass{
+	amount = 50;
 	pixel_x = 3;
-	pixel_y = 3;
-	amount = 50
+	pixel_y = 3
 	},
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
@@ -455,7 +454,6 @@
 /area/shuttle/canterbury/cic)
 "bK" = (
 /obj/structure/bed/chair/dropship/pilot{
-	icon_state = "pilot_chair";
 	dir = 1
 	},
 /obj/effect/landmark/start/job/crash/fieldcommander,
@@ -527,7 +525,6 @@
 "bW" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 1;
-	icon_state = "pdoor1";
 	id = "aft_engine_podlock"
 	},
 /obj/machinery/door/poddoor/shutters/transit{
@@ -1025,7 +1022,6 @@
 /area/shuttle/canterbury)
 "Vy" = (
 /obj/machinery/marine_turret{
-	icon_state = "sentry_base";
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -1054,7 +1050,6 @@
 /area/shuttle/canterbury)
 "WY" = (
 /obj/machinery/marine_turret{
-	icon_state = "sentry_base";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -1062,7 +1057,6 @@
 "Xb" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 1;
-	icon_state = "pdoor1";
 	id = "aft_engine_podlock"
 	},
 /obj/machinery/door/poddoor/shutters/transit{
