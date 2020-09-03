@@ -670,6 +670,7 @@
 #include "code\game\objects\machinery\scoreboard.dm"
 #include "code\game\objects\machinery\seed_extractor.dm"
 #include "code\game\objects\machinery\self_destruct.dm"
+#include "code\game\objects\machinery\sellingpad.dm"
 #include "code\game\objects\machinery\sentries.dm"
 #include "code\game\objects\machinery\shield_gen.dm"
 #include "code\game\objects\machinery\Sleeper.dm"

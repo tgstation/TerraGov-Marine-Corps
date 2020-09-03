@@ -230,7 +230,6 @@
 /area/bigredv2/outside/space_port)
 "aaY" = (
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
-	dir = 4;
 	name = "\improper Eta Lab Secure Storage"
 	},
 /turf/open/floor/asteroidfloor,
@@ -381,7 +380,6 @@
 "abx" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
 	id = "Spaceport";
 	name = "\improper Spaceport Shutters"
 	},
@@ -428,35 +426,25 @@
 /obj/effect/spawner/random/bomb_supply,
 /obj/effect/spawner/random/technology_scanner,
 /obj/effect/spawner/random/tool,
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 2
-	},
+/turf/open/floor/tile/darkgreen/darkgreen2,
 /area/bigredv2/outside/space_port)
 "abG" = (
 /obj/structure/table,
 /obj/effect/spawner/random/technology_scanner,
 /obj/effect/spawner/random/tool,
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 2
-	},
+/turf/open/floor/tile/darkgreen/darkgreen2,
 /area/bigredv2/outside/space_port)
 "abH" = (
 /obj/machinery/computer/security,
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 2
-	},
+/turf/open/floor/tile/darkgreen/darkgreen2,
 /area/bigredv2/outside/space_port)
 "abI" = (
 /obj/item/shard,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 2
-	},
+/turf/open/floor/tile/darkgreen/darkgreen2,
 /area/bigredv2/outside/space_port)
 "abJ" = (
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 2
-	},
+/turf/open/floor/tile/darkgreen/darkgreen2,
 /area/bigredv2/outside/space_port)
 "abK" = (
 /obj/structure/table,
@@ -524,9 +512,7 @@
 /obj/structure/closet/walllocker/hydrant/full{
 	dir = 1
 	},
-/turf/open/floor/tile/dark/purple2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/purple2,
 /area/bigredv2/caves/lambda_lab)
 "abW" = (
 /obj/structure/filingcabinet,
@@ -587,44 +573,32 @@
 /obj/structure/cargo_container/green{
 	dir = 8
 	},
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
+/turf/open/floor/plating/warning,
 /area/bigredv2/outside/space_port)
 "acf" = (
 /obj/structure/cargo_container/green{
 	dir = 1
 	},
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
+/turf/open/floor/plating/warning,
 /area/bigredv2/outside/space_port)
 "acg" = (
 /obj/structure/cargo_container/green{
 	dir = 4
 	},
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
+/turf/open/floor/plating/warning,
 /area/bigredv2/outside/space_port)
 "ach" = (
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
+/turf/open/floor/plating/warning,
 /area/bigredv2/outside/space_port)
 "aci" = (
 /obj/structure/cable,
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
+/turf/open/floor/plating/warning,
 /area/bigredv2/outside/space_port)
 "acj" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
+/turf/open/floor/plating/warning,
 /area/bigredv2/outside/space_port)
 "ack" = (
 /obj/structure/closet/walllocker/hydrant/full,
@@ -1443,7 +1417,6 @@
 /area/bigredv2/outside/space_port)
 "afi" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 4;
 	name = "\improper Marshal Office Isolation"
 	},
 /turf/open/floor,
@@ -1565,15 +1538,11 @@
 "afD" = (
 /obj/item/mass_spectrometer/adv,
 /obj/structure/foamedmetal,
-/turf/open/floor/tile/whiteyellow{
-	dir = 2
-	},
+/turf/open/floor/tile/whiteyellow,
 /area/bigredv2/caves/lambda_lab)
 "afE" = (
 /obj/structure/cable,
-/turf/open/floor/tile/whiteyellow{
-	dir = 2
-	},
+/turf/open/floor/tile/whiteyellow,
 /area/bigredv2/caves/lambda_lab)
 "afF" = (
 /obj/machinery/light,
@@ -1710,8 +1679,7 @@
 "agf" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window{
-	dir = 2;
-	icon_state = "left"
+	dir = 2
 	},
 /obj/structure/foamedmetal,
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -1813,7 +1781,6 @@
 "agy" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
 	id = "Marshal Offices";
 	name = "\improper Marshal Offices Shutters"
 	},
@@ -1869,7 +1836,7 @@
 /area/bigredv2/outside/marshal_office)
 "agI" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor/eastleft,
+/obj/machinery/door/window/secure/eastleft,
 /obj/item/weapon/shield/riot,
 /turf/open/floor/tile/vault{
 	dir = 8
@@ -1926,9 +1893,7 @@
 "agT" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/donkpockets,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/bigredv2/caves/lambda_lab)
 "agU" = (
 /obj/structure/cable,
@@ -2025,9 +1990,7 @@
 /area/bigredv2/outside/space_port)
 "ahj" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/marshal_office)
 "ahl" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -2058,8 +2021,7 @@
 /area/bigredv2/outside/marshal_office)
 "ahp" = (
 /obj/structure/reagent_dispensers/wallmounted/virusfood{
-	dir = 4;
-	icon_state = "virusfoodtank"
+	dir = 4
 	},
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
@@ -2111,23 +2073,15 @@
 	dir = 1;
 	name = "\improper Lambda Lab Surgery"
 	},
-/turf/open/floor/tile/dark/purple2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/purple2,
 /area/bigredv2/caves/lambda_lab)
 "ahC" = (
 /obj/structure/cable,
-/turf/open/floor/tile/dark/purple2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/purple2,
 /area/bigredv2/caves/lambda_lab)
 "ahD" = (
-/obj/structure/sign/safety/medical_supplies{
-	dir = 2
-	},
-/turf/open/floor/tile/dark/purple2{
-	dir = 2
-	},
+/obj/structure/sign/safety/medical_supplies,
+/turf/open/floor/tile/dark/purple2,
 /area/bigredv2/caves/lambda_lab)
 "ahE" = (
 /obj/machinery/vending/nanomed{
@@ -2135,9 +2089,7 @@
 	},
 /obj/machinery/light,
 /obj/effect/alien/weeds/node,
-/turf/open/floor/tile/dark/purple2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/purple2,
 /area/bigredv2/caves/lambda_lab)
 "ahF" = (
 /obj/effect/decal/cleanable/dirt,
@@ -2153,22 +2105,16 @@
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/chapel)
 "ahH" = (
-/turf/open/floor/tile/dark/purple2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/purple2,
 /area/bigredv2/caves/lambda_lab)
 "ahI" = (
 /obj/structure/foamedmetal,
-/turf/open/floor/tile/dark/purple2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/purple2,
 /area/bigredv2/caves/lambda_lab)
 "ahJ" = (
 /obj/structure/foamedmetal,
 /obj/machinery/light,
-/turf/open/floor/tile/dark/purple2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/purple2,
 /area/bigredv2/caves/lambda_lab)
 "ahK" = (
 /obj/structure/cable,
@@ -2251,27 +2197,19 @@
 	name = "Storm Shutters";
 	pixel_x = -32
 	},
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/marshal_office)
 "aib" = (
 /obj/machinery/light,
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/marshal_office)
 "aic" = (
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/marshal_office)
 "aif" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/marshal_office)
 "aig" = (
 /obj/structure/cable,
@@ -2384,7 +2322,6 @@
 /area/bigredv2/outside/nw)
 "aiC" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 4;
 	name = "\improper Marshal Office Brig"
 	},
 /turf/open/floor/marking/delivery,
@@ -2452,7 +2389,6 @@
 /area/bigredv2/outside/marshal_office)
 "aiQ" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 4;
 	name = "\improper Marshal Office"
 	},
 /turf/open/floor,
@@ -2479,7 +2415,6 @@
 /area/bigredv2/caves/lambda_lab)
 "aiU" = (
 /obj/machinery/door/airlock/mainship/generic{
-	dir = 4;
 	name = "\improper Lambda Lab Prison Restroom"
 	},
 /turf/open/floor/tile/dark,
@@ -2513,9 +2448,7 @@
 /area/bigredv2/outside/marshal_office)
 "ajc" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/marshal_office)
 "ajd" = (
 /obj/effect/decal/cleanable/dirt,
@@ -2591,9 +2524,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 10
 	},
-/turf/open/floor/tile/dark/purple2/corner{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/purple2/corner,
 /area/bigredv2/caves/lambda_lab)
 "ajr" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
@@ -2661,7 +2592,7 @@
 /area/bigredv2/outside/marshal_office)
 "ajF" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor/westright,
+/obj/machinery/door/window/secure/westright,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -2689,7 +2620,6 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/security/glass/free_access{
-	dir = 4;
 	name = "\improper Marshal Office Armory"
 	},
 /turf/open/floor/tile/dark,
@@ -2843,7 +2773,6 @@
 /area/bigredv2/outside/marshal_office)
 "akh" = (
 /obj/machinery/door/airlock/mainship/security/glass/free_access{
-	dir = 4;
 	name = "\improper Marshal Office Interrogation"
 	},
 /turf/open/floor/tile/darkish,
@@ -3048,7 +2977,7 @@
 "akQ" = (
 /obj/structure/table/reinforced,
 /obj/structure/cable,
-/obj/machinery/door/window/brigdoor/southright,
+/obj/machinery/door/window/secure/southright,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -3071,7 +3000,6 @@
 "akU" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
 	id = "Office Complex 2";
 	name = "\improper Marshal Office Complex Shutters"
 	},
@@ -3376,9 +3304,7 @@
 	},
 /area/bigredv2/outside/nw)
 "amb" = (
-/obj/structure/sign/safety/hazard{
-	dir = 2
-	},
+/obj/structure/sign/safety/hazard,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "amc" = (
@@ -3524,9 +3450,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/marshal_office)
 "amw" = (
-/obj/structure/sign/safety/hazard{
-	dir = 2
-	},
+/obj/structure/sign/safety/hazard,
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/telecomm)
 "amx" = (
@@ -3560,8 +3484,7 @@
 /area/bigredv2/outside/marshal_office)
 "amB" = (
 /obj/item/radio/intercom/general/colony{
-	dir = 1;
-	icon_state = "intercom"
+	dir = 1
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
@@ -3602,19 +3525,13 @@
 /area/bigredv2/caves/lambda_lab)
 "amK" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
+/turf/open/floor/plating/warning,
 /area/bigredv2/caves/lambda_lab)
 "amL" = (
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
+/turf/open/floor/plating/warning,
 /area/bigredv2/caves/lambda_lab)
 "amM" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 4
-	},
+/obj/machinery/door/poddoor/mainship,
 /turf/open/floor/plating/warning{
 	dir = 6
 	},
@@ -3716,26 +3633,20 @@
 	dir = 1;
 	on = 1
 	},
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/marshal_office)
 "anc" = (
 /obj/machinery/alarm{
 	dir = 1
 	},
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/marshal_office)
 "and" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/frame/table,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/marshal_office)
 "ane" = (
 /obj/machinery/vending/nanomed{
@@ -3755,17 +3666,13 @@
 "ang" = (
 /obj/structure/table/woodentable,
 /obj/item/paper/Court,
-/turf/open/floor/engine/cult{
-	dir = 2
-	},
+/turf/open/floor/engine/cult,
 /area/bigredv2/outside/marshal_office)
 "anh" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 8
 	},
-/turf/open/floor/engine/cult{
-	dir = 2
-	},
+/turf/open/floor/engine/cult,
 /area/bigredv2/outside/marshal_office)
 "ani" = (
 /obj/structure/bed/chair{
@@ -3795,7 +3702,6 @@
 "ano" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/maint/free_access{
-	dir = 4;
 	name = "\improper Lambda Lab Maintenance Storage"
 	},
 /turf/open/floor/plating,
@@ -3877,7 +3783,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 4;
 	name = "\improper Marshal Office"
 	},
 /turf/open/floor,
@@ -3905,17 +3810,13 @@
 /area/bigredv2/outside/marshal_office)
 "anE" = (
 /obj/structure/table/woodentable,
-/turf/open/floor/engine/cult{
-	dir = 2
-	},
+/turf/open/floor/engine/cult,
 /area/bigredv2/outside/marshal_office)
 "anF" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/engine/cult{
-	dir = 2
-	},
+/turf/open/floor/engine/cult,
 /area/bigredv2/outside/marshal_office)
 "anG" = (
 /obj/structure/table/woodentable,
@@ -3977,9 +3878,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "anR" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 4
-	},
+/obj/machinery/door/poddoor/mainship,
 /turf/open/floor/plating/warning{
 	dir = 5
 	},
@@ -4086,14 +3985,10 @@
 "aok" = (
 /obj/structure/table/woodentable,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/engine/cult{
-	dir = 2
-	},
+/turf/open/floor/engine/cult,
 /area/bigredv2/outside/marshal_office)
 "aol" = (
-/turf/open/floor/stairs/rampbottom{
-	dir = 2
-	},
+/turf/open/floor/stairs/rampbottom,
 /area/bigredv2/outside/marshal_office)
 "aom" = (
 /obj/structure/table/woodentable,
@@ -4254,9 +4149,7 @@
 	name = "Qurantine Lockdown";
 	pixel_x = -25
 	},
-/obj/structure/sign/biohazard{
-	dir = 2
-	},
+/obj/structure/sign/biohazard,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 10
 	},
@@ -4354,16 +4247,13 @@
 	dir = 9
 	},
 /obj/machinery/light/built,
-/obj/structure/sign/biohazard{
-	dir = 2
-	},
+/obj/structure/sign/biohazard,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},
 /area/bigredv2/caves/lambda_lab)
 "apm" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 4;
 	name = "\improper Dormitories EVA"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -4437,9 +4327,7 @@
 /turf/open/floor/tile/green/whitegreenfull,
 /area/bigredv2/caves/lambda_lab)
 "apA" = (
-/turf/open/floor/tile/green/whitegreencorner{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/caves/lambda_lab)
 "apB" = (
 /obj/machinery/portable_atmospherics/hydroponics,
@@ -4473,7 +4361,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 4;
 	name = "\improper Marshal Office"
 	},
 /turf/open/floor,
@@ -4505,7 +4392,6 @@
 /area/bigredv2/outside/general_offices)
 "apM" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	dir = 4;
 	name = "\improper Dormitories Lavatory"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -4623,18 +4509,14 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 2
-	},
+/turf/open/floor/tile/purple/whitepurple,
 /area/bigredv2/caves/lambda_lab)
 "aqf" = (
 /obj/effect/decal/cleanable/blood,
 /obj/structure/xenoautopsy/tank/broken,
 /obj/effect/decal/cleanable/blood/gibs/xeno/body,
 /obj/effect/decal/warning_stripes,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 2
-	},
+/turf/open/floor/tile/purple/whitepurple,
 /area/bigredv2/caves/lambda_lab)
 "aqg" = (
 /obj/structure/xenoautopsy/tank/alien,
@@ -4642,9 +4524,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 2
-	},
+/turf/open/floor/tile/purple/whitepurple,
 /area/bigredv2/caves/lambda_lab)
 "aqh" = (
 /obj/structure/table/reinforced,
@@ -4690,21 +4570,15 @@
 /area/bigredv2/caves/lambda_lab)
 "aql" = (
 /obj/machinery/seed_extractor,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/bigredv2/caves/lambda_lab)
 "aqm" = (
 /obj/machinery/biogenerator,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/bigredv2/caves/lambda_lab)
 "aqn" = (
 /obj/machinery/portable_atmospherics/hydroponics,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/bigredv2/caves/lambda_lab)
 "aqo" = (
 /obj/machinery/vending/hydronutrients,
@@ -5419,7 +5293,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 4;
 	name = "\improper Dormitories"
 	},
 /turf/open/floor,
@@ -5510,9 +5383,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/general_offices)
 "asY" = (
-/obj/structure/sign/safety/hazard{
-	dir = 2
-	},
+/obj/structure/sign/safety/hazard,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "asZ" = (
@@ -5529,9 +5400,7 @@
 /area/bigredv2/outside/ne)
 "atb" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/sign/safety/hazard{
-	dir = 2
-	},
+/obj/structure/sign/safety/hazard,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "atd" = (
@@ -5573,9 +5442,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
 	},
-/turf/open/floor/tile/dark/purple2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/purple2,
 /area/bigredv2/caves/lambda_lab)
 "atj" = (
 /obj/machinery/vending/coffee{
@@ -5649,7 +5516,6 @@
 "atw" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
 	id = "Dormitories";
 	name = "\improper Dormitories Shutters"
 	},
@@ -5727,9 +5593,7 @@
 "atM" = (
 /obj/structure/cable,
 /obj/structure/window/reinforced,
-/turf/open/floor/tile/dark/purple2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/purple2,
 /area/bigredv2/caves/lambda_lab)
 "atN" = (
 /obj/structure/cable,
@@ -5740,9 +5604,7 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced,
-/turf/open/floor/tile/dark/purple2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/purple2,
 /area/bigredv2/caves/lambda_lab)
 "atO" = (
 /obj/machinery/light{
@@ -5922,29 +5784,21 @@
 	name = "Observation Shutters";
 	pixel_y = 28
 	},
-/turf/open/floor/tile/dark/purple2/corner{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/purple2/corner,
 /area/bigredv2/caves/lambda_lab)
 "auA" = (
 /obj/structure/inflatable/door,
-/turf/open/floor/tile/dark/purple2/corner{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/purple2/corner,
 /area/bigredv2/caves/lambda_lab)
 "auB" = (
 /obj/structure/barricade/wooden,
-/turf/open/floor/tile/dark/purple2/corner{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/purple2/corner,
 /area/bigredv2/caves/lambda_lab)
 "auC" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/tile/dark/purple2/corner{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/purple2/corner,
 /area/bigredv2/caves/lambda_lab)
 "auD" = (
 /obj/effect/decal/cleanable/mucus,
@@ -5953,9 +5807,7 @@
 	name = "Observation Shutters";
 	pixel_y = 28
 	},
-/turf/open/floor/tile/dark/purple2/corner{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/purple2/corner,
 /area/bigredv2/caves/lambda_lab)
 "auE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -6064,7 +5916,6 @@
 /area/bigredv2/outside/dorms)
 "auV" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 4;
 	name = "\improper Dormitories Tool Storage"
 	},
 /turf/open/floor,
@@ -6610,20 +6461,14 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "awN" = (
-/turf/open/floor/tile/green/whitegreencorner{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "awO" = (
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/bigredv2/outside/medical)
 "awP" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/bigredv2/outside/medical)
 "awQ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -6632,9 +6477,7 @@
 /area/bigredv2/outside/medical)
 "awR" = (
 /obj/machinery/iv_drip,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/bigredv2/outside/medical)
 "awS" = (
 /obj/machinery/door_control{
@@ -6642,9 +6485,7 @@
 	name = "Storm Shutters";
 	pixel_y = -32
 	},
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/bigredv2/outside/medical)
 "awT" = (
 /turf/open/floor/tile/green/whitegreencorner{
@@ -6873,7 +6714,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 4;
 	name = "\improper Dormitories"
 	},
 /turf/open/floor,
@@ -6973,9 +6813,7 @@
 	},
 /area/bigredv2/outside/medical)
 "ayj" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
-	dir = 2
-	},
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "ayk" = (
@@ -7227,9 +7065,7 @@
 /area/bigredv2/outside/medical)
 "azr" = (
 /obj/structure/bed/roller,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/bigredv2/outside/medical)
 "azs" = (
 /obj/structure/bed/roller,
@@ -7705,7 +7541,6 @@
 "aAW" = (
 /obj/machinery/conveyor{
 	dir = 9;
-	icon_state = "conveyor0";
 	id = "anomalybelt"
 	},
 /obj/effect/alien/weeds/node,
@@ -7716,9 +7551,7 @@
 /turf/open/floor/podhatch/floor,
 /area/bigredv2/caves/lambda_lab)
 "aAZ" = (
-/obj/structure/cargo_container/horizontal{
-	dir = 2
-	},
+/obj/structure/cargo_container/horizontal,
 /turf/open/floor/plating,
 /area/bigredv2/outside/nw)
 "aBa" = (
@@ -7749,9 +7582,7 @@
 /area/bigredv2/outside/medical)
 "aBf" = (
 /obj/item/healthanalyzer,
-/turf/open/floor/tile/green/whitegreencorner{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "aBg" = (
 /obj/effect/decal/cleanable/dirt,
@@ -7761,9 +7592,7 @@
 	pixel_y = -32
 	},
 /obj/machinery/iv_drip,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/bigredv2/outside/medical)
 "aBh" = (
 /turf/open/floor/tile/green/whitegreen{
@@ -7931,15 +7760,11 @@
 /area/bigredv2/outside/medical)
 "aBK" = (
 /obj/structure/closet/wardrobe/medic_white,
-/turf/open/floor/tile/green/whitegreencorner{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "aBL" = (
 /obj/structure/closet/secure_closet/medical1,
-/turf/open/floor/tile/green/whitegreencorner{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "aBM" = (
 /obj/structure/closet/secure_closet/medical1,
@@ -7954,17 +7779,13 @@
 "aBO" = (
 /obj/structure/table,
 /obj/machinery/recharger,
-/turf/open/floor/tile/green/whitegreencorner{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "aBP" = (
 /obj/structure/table,
 /obj/item/storage/box/gloves,
 /obj/item/healthanalyzer,
-/turf/open/floor/tile/green/whitegreencorner{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "aBQ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -8036,7 +7857,6 @@
 "aCe" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
 	id = "Greenhouse";
 	name = "\improper Greenhouse Shutters"
 	},
@@ -8139,8 +7959,7 @@
 "aCz" = (
 /obj/machinery/power/emitter{
 	anchored = 1;
-	dir = 1;
-	icon_state = "emitter"
+	dir = 1
 	},
 /obj/effect/decal/warning_stripes{
 	icon_state = "U-N"
@@ -8179,18 +7998,14 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor/tile/green/whitegreencorner{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "aCE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/green/whitegreencorner{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "aCG" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
@@ -8222,7 +8037,6 @@
 "aCL" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
 	id = "Medical";
 	name = "\improper Medical Storm Shutters"
 	},
@@ -8245,7 +8059,6 @@
 /area/bigredv2/outside/dorms)
 "aCQ" = (
 /obj/machinery/door/airlock/mainship/generic{
-	dir = 4;
 	name = "\improper Dormitories Restroom"
 	},
 /turf/open/floor/freezer,
@@ -8337,15 +8150,11 @@
 /area/bigredv2/caves/lambda_lab)
 "aDk" = (
 /obj/effect/landmark/monkey_spawn,
-/turf/open/floor/tile/purple/whitepurplecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/purple/whitepurplecorner,
 /area/bigredv2/caves/lambda_lab)
 "aDl" = (
 /obj/structure/ore_box,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 2
-	},
+/turf/open/floor/tile/purple/whitepurple,
 /area/bigredv2/caves/lambda_lab)
 "aDm" = (
 /obj/structure/barricade/metal{
@@ -8493,15 +8302,11 @@
 "aDI" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/tool/extinguisher,
-/turf/open/floor/tile/green/whitegreencorner{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "aDJ" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/green/whitegreencorner{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "aDK" = (
 /obj/structure/curtain/medical,
@@ -8599,7 +8404,6 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/generic{
-	dir = 4;
 	name = "\improper Bar Backroom"
 	},
 /turf/open/floor/wood,
@@ -8638,9 +8442,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "aEo" = (
-/turf/open/floor/tile/purple/whitepurplecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/purple/whitepurplecorner,
 /area/bigredv2/caves/lambda_lab)
 "aEp" = (
 /turf/open/floor/tile/purple/whitepurple{
@@ -8711,9 +8513,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/tile/green/whitegreencorner{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "aEC" = (
 /obj/effect/decal/cleanable/blood/gibs/body,
@@ -8755,7 +8555,6 @@
 	corpseback = null;
 	corpsegloves = /obj/item/clothing/gloves/latex;
 	corpseidjob = "Doctor";
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Ted Koso"
 	},
 /obj/structure/cable,
@@ -8881,16 +8680,12 @@
 "aFg" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/toolbox,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 2
-	},
+/turf/open/floor/tile/purple/whitepurple,
 /area/bigredv2/caves/lambda_lab)
 "aFh" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/technology_scanner,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 2
-	},
+/turf/open/floor/tile/purple/whitepurple,
 /area/bigredv2/caves/lambda_lab)
 "aFi" = (
 /obj/structure/closet/secure_closet/scientist,
@@ -8938,9 +8733,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/caves/lambda_lab)
 "aFo" = (
-/turf/open/floor/tile/purple/taupepurple/corner{
-	dir = 2
-	},
+/turf/open/floor/tile/purple/taupepurple/corner,
 /area/bigredv2/caves/lambda_lab)
 "aFp" = (
 /turf/open/floor/tile/purple/taupepurple{
@@ -9010,9 +8803,7 @@
 "aFD" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/adv,
-/turf/open/floor/tile/green/whitegreencorner{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "aFE" = (
 /obj/item/reagent_containers/pill/happy,
@@ -9022,9 +8813,7 @@
 /obj/structure/sink{
 	dir = 4
 	},
-/turf/open/floor/tile/green/whitegreencorner{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "aFG" = (
 /obj/structure/bed,
@@ -9166,7 +8955,6 @@
 	},
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	dir = 4;
 	name = "\improper Greenhouse Storage"
 	},
 /turf/open/floor/wood,
@@ -9208,18 +8996,14 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aGl" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/effect/alien/weeds/node,
 /turf/open/floor/tile/green/whitegreencorner{
 	dir = 1
 	},
 /area/bigredv2/caves/lambda_lab)
 "aGm" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/green/whitegreencorner{
 	dir = 4
 	},
@@ -9281,16 +9065,12 @@
 	dir = 8
 	},
 /obj/item/storage/firstaid/adv,
-/turf/open/floor/tile/green/whitegreencorner{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "aGA" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/o2,
-/turf/open/floor/tile/green/whitegreencorner{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "aGB" = (
 /obj/structure/bed,
@@ -9322,7 +9102,6 @@
 "aGF" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 4;
 	name = "\improper Dormitories"
 	},
 /turf/open/floor,
@@ -9475,9 +9254,7 @@
 "aHs" = (
 /obj/machinery/body_scanconsole,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/bigredv2/outside/medical)
 "aHt" = (
 /obj/machinery/light,
@@ -9490,9 +9267,7 @@
 /obj/item/storage/firstaid/fire,
 /obj/item/storage/firstaid/fire,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/green/whitegreencorner{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "aHv" = (
 /obj/structure/table,
@@ -9509,16 +9284,12 @@
 "aHx" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/regular,
-/turf/open/floor/tile/green/whitegreencorner{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "aHy" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/rad,
-/turf/open/floor/tile/green/whitegreencorner{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "aHz" = (
 /obj/structure/bed,
@@ -9573,7 +9344,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 4;
 	name = "\improper Kitchen Storage"
 	},
 /turf/open/floor,
@@ -9867,7 +9637,6 @@
 "aII" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
 	id = "Library";
 	name = "\improper Library Shutters"
 	},
@@ -10068,7 +9837,6 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/generic{
-	dir = 4;
 	name = "\improper Kitchen Storage"
 	},
 /turf/open/floor/freezer,
@@ -10106,7 +9874,6 @@
 	},
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/generic{
-	dir = 4;
 	name = "\improper Kitchen Storage"
 	},
 /turf/open/floor/tile/yellow/full,
@@ -10138,24 +9905,18 @@
 /area/bigredv2/outside/library)
 "aJE" = (
 /obj/structure/cable,
-/turf/open/floor/tile/dark/purple2/corner{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/purple2/corner,
 /area/bigredv2/caves/lambda_lab)
 "aJF" = (
 /obj/effect/landmark/start/job/xenomorph,
 /obj/structure/cable,
 /obj/effect/alien/weeds/node,
-/turf/open/floor/tile/dark/purple2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/purple2,
 /area/bigredv2/caves/lambda_lab)
 "aJH" = (
 /obj/structure/cable,
 /obj/structure/mineral_door/resin,
-/turf/open/floor/tile/dark/purple2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/purple2,
 /area/bigredv2/caves/lambda_lab)
 "aJI" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -10165,9 +9926,7 @@
 	dir = 5
 	},
 /obj/structure/cable,
-/turf/open/floor/tile/dark/purple2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/purple2,
 /area/bigredv2/caves/lambda_lab)
 "aJJ" = (
 /obj/structure/cable,
@@ -10178,9 +9937,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/tile/dark/purple2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/purple2,
 /area/bigredv2/caves/lambda_lab)
 "aJK" = (
 /obj/structure/cable,
@@ -10190,9 +9947,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/tile/dark/purple2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/purple2,
 /area/bigredv2/caves/lambda_lab)
 "aJL" = (
 /obj/structure/cable,
@@ -10203,9 +9958,7 @@
 	dir = 4
 	},
 /obj/structure/mineral_door/resin,
-/turf/open/floor/tile/dark/purple2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/purple2,
 /area/bigredv2/caves/lambda_lab)
 "aJM" = (
 /obj/structure/cable,
@@ -10225,9 +9978,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
-/turf/open/floor/tile/dark/purple2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/purple2,
 /area/bigredv2/caves/lambda_lab)
 "aJO" = (
 /obj/structure/cable,
@@ -10238,9 +9989,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/tile/dark/purple2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/purple2,
 /area/bigredv2/caves/lambda_lab)
 "aJQ" = (
 /obj/structure/cable,
@@ -10248,9 +9997,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/tile/dark/purple2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/purple2,
 /area/bigredv2/caves/lambda_lab)
 "aJR" = (
 /obj/structure/cable,
@@ -10264,9 +10011,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/tile/dark/purple2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/purple2,
 /area/bigredv2/caves/lambda_lab)
 "aJS" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -10280,9 +10025,7 @@
 	dir = 4
 	},
 /obj/structure/sign/biohazard,
-/turf/open/floor/tile/dark/purple2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/purple2,
 /area/bigredv2/caves/lambda_lab)
 "aJT" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -10407,9 +10150,7 @@
 /turf/open/floor/tile/darkish,
 /area/bigredv2/caves/lambda_lab)
 "aKd" = (
-/turf/open/floor/tile/darkgreen/darkgreen2/corner{
-	dir = 2
-	},
+/turf/open/floor/tile/darkgreen/darkgreen2/corner,
 /area/bigredv2/caves/lambda_lab)
 "aKe" = (
 /obj/structure/window/reinforced/toughened,
@@ -10473,7 +10214,6 @@
 "aKu" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
 	id = "Bar Complex";
 	name = "\improper Bar Complex Shutters"
 	},
@@ -10611,9 +10351,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
-/turf/open/floor/tile/darkgreen/darkgreen2/corner{
-	dir = 2
-	},
+/turf/open/floor/tile/darkgreen/darkgreen2/corner,
 /area/bigredv2/caves/lambda_lab)
 "aKZ" = (
 /obj/structure/window/reinforced/toughened{
@@ -10633,9 +10371,7 @@
 /obj/effect/decal/warning_stripes/thick{
 	dir = 9
 	},
-/turf/open/floor/tile/green/whitegreencorner{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/caves/lambda_lab)
 "aLb" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -10815,12 +10551,9 @@
 	dir = 8
 	},
 /obj/machinery/door/window{
-	dir = 1;
-	icon_state = "left"
+	dir = 1
 	},
-/turf/open/floor/tile/white/warningstripe{
-	dir = 2
-	},
+/turf/open/floor/tile/white/warningstripe,
 /area/bigredv2/caves/lambda_lab)
 "aLN" = (
 /obj/structure/closet/l3closet/virology,
@@ -10848,7 +10581,6 @@
 /area/bigredv2/caves/lambda_lab)
 "aLQ" = (
 /obj/structure/window/reinforced/toughened{
-	dir = 2;
 	icon_state = "fwindow"
 	},
 /obj/structure/window/reinforced/toughened{
@@ -10861,7 +10593,6 @@
 /area/bigredv2/caves/lambda_lab)
 "aLR" = (
 /obj/structure/window/reinforced/toughened{
-	dir = 2;
 	icon_state = "fwindow"
 	},
 /obj/structure/window/reinforced/toughened{
@@ -10894,9 +10625,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/virology)
 "aLV" = (
-/obj/structure/sign/biohazard{
-	dir = 2
-	},
+/obj/structure/sign/biohazard,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/virology)
 "aLW" = (
@@ -11011,9 +10740,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/bigredv2/caves/lambda_lab)
 "aMx" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -11021,9 +10748,7 @@
 	},
 /obj/effect/alien/weeds/node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/bigredv2/caves/lambda_lab)
 "aMz" = (
 /turf/closed/wall/r_wall,
@@ -11134,7 +10859,6 @@
 "aMX" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	dir = 4;
 	name = "\improper Lambda Lab Virology Quarantine"
 	},
 /turf/open/floor/marking/delivery,
@@ -11212,7 +10936,6 @@
 /area/bigredv2/outside/general_store)
 "aNp" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	dir = 4;
 	name = "\improper General Store"
 	},
 /turf/open/floor,
@@ -11562,7 +11285,6 @@
 "aOQ" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
 	id = "Operations";
 	name = "\improper Operations Shutters"
 	},
@@ -11684,9 +11406,7 @@
 	dir = 1;
 	name = "\improper Virology Lab Decontamination"
 	},
-/turf/open/floor/tile/white/warningstripe{
-	dir = 2
-	},
+/turf/open/floor/tile/white/warningstripe,
 /area/bigredv2/outside/virology)
 "aPu" = (
 /obj/machinery/light{
@@ -11911,7 +11631,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	dir = 4;
 	name = "\improper Lambda Lab Virology Quarantine"
 	},
 /turf/open/floor/marking/delivery,
@@ -12145,7 +11864,6 @@
 "aRu" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 4;
 	name = "\improper Library"
 	},
 /turf/open/floor/wood,
@@ -12306,14 +12024,12 @@
 /area/bigredv2/outside/admin_building)
 "aSc" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 4;
 	name = "\improper Bar"
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "aSe" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 4;
 	name = "\improper Kitchen"
 	},
 /turf/open/floor,
@@ -12989,9 +12705,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aUH" = (
 /obj/effect/decal/cleanable/mucus,
-/turf/open/floor/tile/darkgreen/darkgreen2/corner{
-	dir = 2
-	},
+/turf/open/floor/tile/darkgreen/darkgreen2/corner,
 /area/bigredv2/caves/lambda_lab)
 "aUI" = (
 /obj/structure/curtain/medical,
@@ -13035,7 +12749,6 @@
 "aUR" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
 	id = "General Store";
 	name = "\improper General Store Shutters"
 	},
@@ -13209,9 +12922,7 @@
 	},
 /area/bigredv2/caves/lambda_lab)
 "aVz" = (
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 2
-	},
+/turf/open/floor/tile/darkgreen/darkgreen2,
 /area/bigredv2/caves/lambda_lab)
 "aVA" = (
 /obj/effect/alien/weeds/node,
@@ -13259,7 +12970,6 @@
 /area/bigredv2/outside/w)
 "aVJ" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	dir = 4;
 	name = "\improper General Store"
 	},
 /turf/open/floor/tile/bar,
@@ -13335,9 +13045,7 @@
 "aWb" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/nt_mre,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/bigredv2/caves/lambda_lab)
 "aWc" = (
 /obj/structure/table/reinforced,
@@ -13401,7 +13109,6 @@
 "aWo" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	dir = 4;
 	name = "\improper General Store"
 	},
 /turf/open/floor/tile/bar,
@@ -13480,7 +13187,6 @@
 /area/bigredv2/outside/admin_building)
 "aWE" = (
 /turf/open/floor{
-	dir = 2;
 	icon_state = "darkbluecorners2"
 	},
 /area/bigredv2/outside/admin_building)
@@ -13488,9 +13194,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/bigredv2/outside/admin_building)
 "aWG" = (
 /obj/machinery/computer/communications,
@@ -13527,7 +13231,6 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
-	dir = 4;
 	name = "\improper Virology Lab Chemistry"
 	},
 /turf/open/floor/tile/white,
@@ -13665,7 +13368,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 4;
 	name = "\improper Office Complex"
 	},
 /turf/open/floor,
@@ -13689,7 +13391,6 @@
 /area/bigredv2/outside/virology)
 "aXx" = (
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
-	dir = 4;
 	name = "\improper Virology Lab Cell"
 	},
 /turf/open/floor/freezer,
@@ -13758,7 +13459,6 @@
 /area/bigredv2/outside/cargo)
 "aXJ" = (
 /obj/machinery/door/airlock/mainship/maint/free_access{
-	dir = 4;
 	name = "\improper General Store Storage"
 	},
 /turf/open/floor/plating,
@@ -13786,16 +13486,12 @@
 	},
 /area/bigredv2/outside/admin_building)
 "aXO" = (
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/bigredv2/outside/admin_building)
 "aXP" = (
 /obj/structure/table,
 /obj/item/tool/pen,
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/bigredv2/outside/admin_building)
 "aXQ" = (
 /obj/structure/table,
@@ -14123,7 +13819,6 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 4;
 	name = "\improper Chapel"
 	},
 /turf/open/floor/tile/darkish,
@@ -14204,7 +13899,6 @@
 "aZy" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
 	id = "Cargonia";
 	name = "\improper Cargo Shutters"
 	},
@@ -14230,9 +13924,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/admin_building)
 "aZE" = (
-/turf/open/floor/tile/white/warningstripe{
-	dir = 2
-	},
+/turf/open/floor/tile/white/warningstripe,
 /area/bigredv2/outside/office_complex)
 "aZF" = (
 /obj/structure/cable,
@@ -14243,9 +13935,7 @@
 /area/bigredv2/outside/office_complex)
 "aZH" = (
 /obj/structure/closet/wardrobe/chaplain_black,
-/turf/open/floor/engine/cult{
-	dir = 2
-	},
+/turf/open/floor/engine/cult,
 /area/bigredv2/outside/chapel)
 "aZK" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -14340,7 +14030,6 @@
 "bab" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
 	id = "Office Complex 1";
 	name = "\improper Office Complex Shutters"
 	},
@@ -14371,9 +14060,7 @@
 /area/bigredv2/outside/office_complex)
 "bai" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "baj" = (
 /obj/structure/bed/chair/office/light,
@@ -14382,16 +14069,13 @@
 "bak" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
 	id = "Chapel";
 	name = "\improper Chapel Shutters"
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/chapel)
 "bal" = (
-/turf/open/floor/engine/cult{
-	dir = 2
-	},
+/turf/open/floor/engine/cult,
 /area/bigredv2/outside/chapel)
 "bam" = (
 /turf/open/floor/stairs/rampbottom{
@@ -14401,9 +14085,7 @@
 "ban" = (
 /obj/structure/table/woodentable,
 /obj/item/radio/headset/survivor,
-/turf/open/floor/engine/cult{
-	dir = 2
-	},
+/turf/open/floor/engine/cult,
 /area/bigredv2/outside/chapel)
 "bao" = (
 /turf/open/floor/tile/chapel{
@@ -14533,9 +14215,7 @@
 /area/bigredv2/outside/office_complex)
 "baR" = (
 /obj/structure/table/woodentable,
-/turf/open/floor/engine/cult{
-	dir = 2
-	},
+/turf/open/floor/engine/cult,
 /area/bigredv2/outside/chapel)
 "baS" = (
 /turf/open/floor/tile/chapel{
@@ -14619,9 +14299,7 @@
 "bbm" = (
 /obj/structure/table,
 /obj/machinery/computer/med_data/laptop,
-/turf/open/floor/carpet/edge2{
-	dir = 2
-	},
+/turf/open/floor/carpet/edge2,
 /area/bigredv2/outside/admin_building)
 "bbn" = (
 /obj/structure/safe,
@@ -14694,9 +14372,7 @@
 	},
 /area/bigredv2/outside/office_complex)
 "bbB" = (
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "bbC" = (
 /obj/structure/bed/chair/office/light{
@@ -14709,9 +14385,7 @@
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor/engine/cult{
-	dir = 2
-	},
+/turf/open/floor/engine/cult,
 /area/bigredv2/outside/chapel)
 "bbE" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -14719,9 +14393,7 @@
 	},
 /obj/structure/table/woodentable,
 /obj/item/storage/bible,
-/turf/open/floor/engine/cult{
-	dir = 2
-	},
+/turf/open/floor/engine/cult,
 /area/bigredv2/outside/chapel)
 "bbF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -14773,9 +14445,7 @@
 "bbX" = (
 /obj/structure/table,
 /obj/item/ashtray/bronze,
-/turf/open/floor/carpet/edge2{
-	dir = 2
-	},
+/turf/open/floor/carpet/edge2,
 /area/bigredv2/outside/admin_building)
 "bbY" = (
 /obj/structure/bed/chair/office/dark,
@@ -14810,30 +14480,22 @@
 /area/bigredv2/outside/office_complex)
 "bcg" = (
 /obj/structure/table,
-/turf/open/floor/tile/white/warningstripe{
-	dir = 2
-	},
+/turf/open/floor/tile/white/warningstripe,
 /area/bigredv2/outside/office_complex)
 "bch" = (
 /obj/structure/table,
 /obj/item/clipboard,
-/turf/open/floor/tile/white/warningstripe{
-	dir = 2
-	},
+/turf/open/floor/tile/white/warningstripe,
 /area/bigredv2/outside/office_complex)
 "bci" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/white/warningstripe{
-	dir = 2
-	},
+/turf/open/floor/tile/white/warningstripe,
 /area/bigredv2/outside/office_complex)
 "bcj" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "bck" = (
 /obj/machinery/door/airlock/mainship/generic{
@@ -14975,11 +14637,6 @@
 	},
 /turf/open/floor/carpet/edge2,
 /area/bigredv2/outside/admin_building)
-"bcN" = (
-/turf/open/floor/carpet/edge2{
-	dir = 2
-	},
-/area/bigredv2/outside/admin_building)
 "bcO" = (
 /obj/structure/table,
 /obj/item/clothing/mask/cigarette/cigar,
@@ -15049,9 +14706,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "bdd" = (
-/turf/open/floor/stairs/rampbottom{
-	dir = 2
-	},
+/turf/open/floor/stairs/rampbottom,
 /area/bigredv2/outside/chapel)
 "bdf" = (
 /turf/open/floor/asteroidfloor,
@@ -15169,9 +14824,7 @@
 	name = "Storm Shutters";
 	pixel_x = -32
 	},
-/turf/open/floor/engine/cult{
-	dir = 2
-	},
+/turf/open/floor/engine/cult,
 /area/bigredv2/outside/chapel)
 "bdI" = (
 /obj/machinery/alarm{
@@ -15470,14 +15123,11 @@
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "beU" = (
-/turf/open/floor/marking/loadingarea{
-	dir = 2
-	},
+/turf/open/floor/marking/loadingarea,
 /area/bigredv2/outside/cargo)
 "beV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 4;
 	name = "\improper Cargo Offices"
 	},
 /turf/open/floor,
@@ -15567,18 +15217,14 @@
 "bfl" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/cable,
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "bfm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "bfn" = (
 /obj/machinery/light,
@@ -15587,17 +15233,13 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "bfo" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/cable,
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "bfp" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -15605,9 +15247,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "bfq" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -15630,25 +15270,19 @@
 	dir = 4
 	},
 /obj/item/trash/cheesie,
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "bft" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "bfu" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "bfv" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
@@ -15719,14 +15353,11 @@
 "bfP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "bfQ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 4;
 	name = "\improper Office Complex Janitor Room"
 	},
 /turf/open/floor/tile/whiteyellow/full,
@@ -15816,9 +15447,7 @@
 /area/bigredv2/outside/office_complex)
 "bgl" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "bgm" = (
 /obj/structure/janitorialcart,
@@ -15998,9 +15627,7 @@
 	dir = 1;
 	on = 1
 	},
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "bhm" = (
 /obj/structure/table,
@@ -16330,14 +15957,12 @@
 /area/bigredv2/outside/c)
 "biD" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 4;
 	name = "\improper Office Complex"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "biE" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 4;
 	name = "\improper Office Complex Janitor Room"
 	},
 /turf/open/floor,
@@ -16503,7 +16128,6 @@
 /area/bigredv2/outside/cargo)
 "bju" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 4;
 	name = "\improper Cargo Bay Storage"
 	},
 /turf/open/floor,
@@ -16651,9 +16275,7 @@
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
 "bkf" = (
-/obj/structure/sign/safety/atmospherics{
-	dir = 2
-	},
+/obj/structure/sign/safety/atmospherics,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/barricade/wooden,
 /turf/open/floor/marking/asteroidwarning{
@@ -16751,7 +16373,6 @@
 /area/bigredv2/outside/se)
 "bkz" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 4;
 	name = "\improper Cargo Bay Quartermaster"
 	},
 /turf/open/floor,
@@ -16834,7 +16455,6 @@
 /area/bigredv2/outside/filtration_plant)
 "bkP" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 4;
 	name = "\improper Atmospherics Condenser Storage"
 	},
 /turf/open/floor,
@@ -16971,7 +16591,6 @@
 "blw" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
 	id = "Filtration Plant";
 	name = "\improper Filtration Plant Shutters"
 	},
@@ -17015,7 +16634,6 @@
 /area/bigredv2/outside/filtration_plant)
 "blF" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 4;
 	name = "\improper Atmospherics Condenser Air Filtration"
 	},
 /turf/open/floor/plating,
@@ -17025,7 +16643,6 @@
 /area/bigredv2/outside/engineering)
 "blK" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 4;
 	name = "\improper Engineering Complex"
 	},
 /turf/open/floor/tile/dark,
@@ -17038,7 +16655,6 @@
 "blR" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 4;
 	name = "\improper Engineering Complex"
 	},
 /turf/open/floor,
@@ -17253,7 +16869,6 @@
 	corpsehelmet = /obj/item/clothing/head/welding;
 	corpseidjob = "Engineer";
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Ted Jarka"
 	},
 /turf/open/floor,
@@ -17316,7 +16931,6 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 4;
 	name = "\improper Atmospherics Condenser Storage"
 	},
 /turf/open/floor,
@@ -17394,7 +17008,6 @@
 /area/bigredv2/outside/engineering)
 "bnA" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 4;
 	name = "\improper Atmospherics Condenser"
 	},
 /turf/open/floor,
@@ -17512,7 +17125,6 @@
 "boi" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
 	id = "Engineering";
 	name = "\improper Engineering Shutters"
 	},
@@ -17666,7 +17278,6 @@
 "boV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 4;
 	name = "\improper Engineering Complex"
 	},
 /turf/open/floor,
@@ -17734,7 +17345,6 @@
 	corpsehelmet = /obj/item/clothing/head/welding;
 	corpseidjob = "Engineer";
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Ted Jarka"
 	},
 /turf/open/floor,
@@ -17898,7 +17508,6 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 4;
 	name = "\improper Atmospherics Condenser Water Filtration"
 	},
 /turf/open/floor,
@@ -18006,7 +17615,6 @@
 "bqt" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 4;
 	name = "\improper Atmospherics Condenser Water Filtration"
 	},
 /turf/open/floor,
@@ -18084,7 +17692,6 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 4;
 	name = "\improper Engineering Workshop"
 	},
 /turf/open/floor,
@@ -18149,9 +17756,7 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bqX" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bqZ" = (
@@ -18179,7 +17784,6 @@
 /area/bigredv2/outside/engineering)
 "brf" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 4;
 	name = "\improper Engineering Workshop"
 	},
 /turf/open/floor,
@@ -18518,21 +18122,18 @@
 "bsV" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 4;
 	name = "\improper Engine Reactor Control"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bsX" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 4;
 	name = "\improper Engineering Complex"
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "bsY" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 4;
 	name = "\improper Atmospherics Condenser"
 	},
 /turf/open/floor,
@@ -18722,7 +18323,6 @@
 "bua" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 4;
 	name = "\improper Engineering Complex"
 	},
 /turf/open/floor,
@@ -18986,14 +18586,10 @@
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	name = "\improper Eta Lab Storage Bay"
 	},
-/turf/open/floor/marking/loadingarea{
-	dir = 2
-	},
+/turf/open/floor/marking/loadingarea,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bwH" = (
-/turf/open/floor/marking/loadingarea{
-	dir = 2
-	},
+/turf/open/floor/marking/loadingarea,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bwI" = (
 /obj/structure/cable,
@@ -19157,7 +18753,6 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
-	dir = 4;
 	name = "\improper Eta Lab Robotics"
 	},
 /turf/open/floor,
@@ -19324,9 +18919,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bya" = (
-/turf/open/floor/tile/darkgreen/darkgreen2/corner{
-	dir = 2
-	},
+/turf/open/floor/tile/darkgreen/darkgreen2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "byc" = (
 /obj/effect/alien/weeds/node,
@@ -19656,15 +19249,11 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzw" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/darkgreen/darkgreen2/corner{
-	dir = 2
-	},
+/turf/open/floor/tile/darkgreen/darkgreen2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzx" = (
 /obj/machinery/light,
-/turf/open/floor/tile/darkgreen/darkgreen2/corner{
-	dir = 2
-	},
+/turf/open/floor/tile/darkgreen/darkgreen2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzz" = (
 /obj/effect/decal/cleanable/dirt,
@@ -19678,24 +19267,18 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor/tile/darkgreen/darkgreen2/corner{
-	dir = 2
-	},
+/turf/open/floor/tile/darkgreen/darkgreen2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
-/turf/open/floor/tile/darkgreen/darkgreen2/corner{
-	dir = 2
-	},
+/turf/open/floor/tile/darkgreen/darkgreen2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor/tile/darkgreen/darkgreen2/corner{
-	dir = 2
-	},
+/turf/open/floor/tile/darkgreen/darkgreen2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bzD" = (
 /obj/structure/cable,
@@ -19900,7 +19483,6 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAw" = (
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
-	dir = 4;
 	name = "\improper Eta Lab Server"
 	},
 /turf/open/floor/tile/darkish,
@@ -19946,7 +19528,6 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
-	dir = 4;
 	name = "\improper Eta Lab Director's Office"
 	},
 /turf/open/floor/tile/dark,
@@ -20007,9 +19588,7 @@
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAS" = (
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bAU" = (
 /obj/machinery/light,
@@ -20049,9 +19628,7 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/darkgreen/darkgreen2/corner{
-	dir = 2
-	},
+/turf/open/floor/tile/darkgreen/darkgreen2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBb" = (
 /obj/machinery/light{
@@ -20191,14 +19768,12 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
-	dir = 4;
 	name = "\improper Eta Lab Biology Laboratory"
 	},
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bBH" = (
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
-	dir = 4;
 	name = "\improper Eta Lab Cell"
 	},
 /turf/open/floor/tile/dark,
@@ -20433,7 +20008,6 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
-	dir = 4;
 	name = "\improper Eta Lab Xenobiology Lab"
 	},
 /turf/open/floor/tile/dark,
@@ -20523,9 +20097,7 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCP" = (
 /obj/machinery/light,
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 2
-	},
+/turf/open/floor/tile/darkgreen/darkgreen2,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bCQ" = (
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -20870,7 +20442,6 @@
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "bEj" = (
 /obj/machinery/door/airlock/mainship/generic{
-	dir = 4;
 	name = "\improper Eta Lab Restroom"
 	},
 /turf/open/floor/tile/dark,
@@ -20980,7 +20551,6 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
-	dir = 4;
 	name = "\improper Eta Lab Relaxation"
 	},
 /turf/open/floor,
@@ -21418,7 +20988,6 @@
 /area/bigredv2/outside/space_port)
 "ggV" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 4;
 	name = "\improper Chief Engineer's Office"
 	},
 /obj/structure/cable,
@@ -21465,7 +21034,6 @@
 /area/bigredv2/outside/nw)
 "gQc" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 4;
 	name = "\improper Engineering Workshop"
 	},
 /obj/structure/cable,
@@ -21480,7 +21048,6 @@
 "gVL" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 4;
 	name = "\improper Engineering SMES"
 	},
 /turf/open/floor/plating,
@@ -21508,9 +21075,7 @@
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor/carpet/edge2{
-	dir = 2
-	},
+/turf/open/floor/carpet/edge2,
 /area/bigredv2/outside/admin_building)
 "hkk" = (
 /obj/effect/landmark/lv624/fog_blocker,
@@ -21756,9 +21321,7 @@
 "loj" = (
 /obj/docking_port/stationary/crashmode,
 /obj/docking_port/stationary/crashmode/bigbury,
-/turf/open/floor/engine/cult{
-	dir = 2
-	},
+/turf/open/floor/engine/cult,
 /area/bigredv2/outside/chapel)
 "loF" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -21767,9 +21330,7 @@
 /turf/open/floor/plating/dmg2,
 /area/bigredv2/outside/space_port)
 "loH" = (
-/obj/structure/sign/safety/rad_hazard{
-	dir = 2
-	},
+/obj/structure/sign/safety/rad_hazard,
 /turf/closed/wall/r_wall,
 /area/bigredv2/caves/lambda_lab)
 "ltt" = (
@@ -22053,14 +21614,14 @@
 	},
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/space_port)
-"poJ" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/s)
 "pmR" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/elevatorshaft,
 /area/bigredv2/caves/lambda_lab)
+"poJ" = (
+/obj/machinery/miner/damaged/platinum,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/s)
 "ptp" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/bigred,
@@ -22146,9 +21707,7 @@
 /area/bigredv2/outside/general_offices)
 "qnu" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/tile/darkgreen/darkgreen2/corner{
-	dir = 2
-	},
+/turf/open/floor/tile/darkgreen/darkgreen2/corner,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "qny" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -22326,9 +21885,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/turf/open/floor/carpet/edge2{
-	dir = 2
-	},
+/turf/open/floor/carpet/edge2,
 /area/bigredv2/outside/admin_building)
 "sBV" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -22399,7 +21956,6 @@
 "txn" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
 	id = "Engineering";
 	name = "\improper Engineering Shutters"
 	},
@@ -22527,7 +22083,6 @@
 "uJV" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
 	id = "Cargonia";
 	name = "\improper Cargo Shutters"
 	},
@@ -22743,9 +22298,7 @@
 	dir = 8;
 	on = 1
 	},
-/turf/open/floor/carpet/edge2{
-	dir = 2
-	},
+/turf/open/floor/carpet/edge2,
 /area/bigredv2/outside/admin_building)
 "xFx" = (
 /obj/machinery/landinglight/ds2{
@@ -22793,9 +22346,7 @@
 /area/bigredv2/outside/virology)
 "xWK" = (
 /obj/effect/landmark/corpsespawner/scientist,
-/turf/open/floor/tile/darkgreen/darkgreen2{
-	dir = 2
-	},
+/turf/open/floor/tile/darkgreen/darkgreen2,
 /area/bigredv2/caves/lambda_lab)
 "xXV" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
@@ -39628,7 +39179,7 @@ baG
 aZA
 baG
 aZA
-bcN
+aYL
 bdO
 aMe
 aHD
@@ -39845,7 +39396,7 @@ baH
 bbj
 baH
 bcE
-bcN
+aYL
 aYO
 aMe
 aHD
@@ -42447,8 +41998,8 @@ aNF
 aZX
 aKn
 swt
-bcN
-bcN
+aYL
+aYL
 aOO
 aOO
 aMe
