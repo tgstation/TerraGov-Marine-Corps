@@ -54,6 +54,9 @@ GLOBAL_PROTECT(exp_specialmap)
 
 	var/list/jobworth = list() //Associative list of indexes increased when someone joins as this job.
 
+	/// Description shown in the player's job preferences
+	var/html_description = ""
+
 /datum/job/New()
 	if(outfit)
 		if(!ispath(outfit, /datum/outfit))

@@ -159,6 +159,7 @@
 		var/rank = job.title
 		.["jobs"][rank] = list(
 			"color" = job.selection_color,
+			"description" = job.html_description,
 			"banned" = is_banned_from(user.ckey, rank),
 			"playtime_req" = job.required_playtime_remaining(user.client),
 			"account_age_req" = !job.player_old_enough(user.client),

@@ -576,8 +576,8 @@ const JobPreferences = (props, context) => {
         </Button>
       }>
       {shownDescription && (
-        <Modal width="300px" height="200px">
-          <Box>{shownDescription}</Box>
+        <Modal width="500px" min-height="300px">
+          <Box dangerouslySetInnerHTML={{ __html: shownDescription }} />
           <Box align="right">
             <Button align="right" onClick={() => setShownDescription(false)}>
               X

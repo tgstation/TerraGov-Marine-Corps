@@ -5,6 +5,13 @@
 	display_order = JOB_DISPLAY_ORDER_SURVIVOR
 	skills_type = /datum/skills/civilian/survivor
 	faction = FACTION_TERRAGOV
+	html_description = {"
+		<b>Difficulty</b>: Very Hard<br /><br />
+		<b>You answer to the</b> anyone who might rescue you.<br /><br />
+		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Gamemode Availability</b>: Distress<br /><br /><br />
+		<b>Duty</b>: Survive. Retreat into the safety of anyone who will rescue you.
+	"}
 
 /datum/job/survivor/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
 	. = ..()
