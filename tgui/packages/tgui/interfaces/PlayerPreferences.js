@@ -641,6 +641,27 @@ const JobPreferences = (props, context) => {
                   />
                 ))}
               </Flex.Item>
+              <Flex.Item>
+                <h4>Occupational choices</h4>
+                {Object.keys(data.special_occupations).map((special, idx) => (
+                  <>
+                    <Button.Checkbox
+                      key={data.special_occupations[special]}
+                      inline
+                      content={special}
+                      checked={
+                        data.special_occupation
+                        & data.special_occupations[special]
+                      }
+                      onClick={() =>
+                        act('be_special', {
+                          flag: data.special_occupations[special],
+                        })}
+                    />
+                    {idx === 1 && <br />}
+                  </>
+                ))}
+              </Flex.Item>
             </Flex>
           </Section>
         </Grid.Column>

@@ -65,6 +65,8 @@
 		"preferred_squad" = preferred_squad,
 		"alternate_option" = alternate_option,
 
+		"special_occupation" = be_special,
+
 		// Game prefs
 		"ui_style" = ui_style,
 		"ui_style_color" = ui_style_color,
@@ -94,11 +96,9 @@
 	// Get save slot name
 	.["save_slot_names"] = list()
 	if(!path)
-		to_chat(world, "no path")
 		return
 	var/savefile/S = new (path)
 	if(!S)
-		to_chat(world, "no save")
 		return
 	var/name
 	for(var/i in 1 to MAX_SAVE_SLOTS)
@@ -166,6 +166,12 @@
 				"bold" = (job.job_flags & JOB_FLAG_BOLD_NAME_ON_SELECTION) ? TRUE : FALSE
 			)
 		)
+	.["special_occupations"] = list(
+		"Latejoin Xenomorph" = BE_ALIEN,
+		"Xenomorph when unrevivable" = BE_ALIEN_UNREVIVABLE,
+		"End of Round Deathmatch" = BE_DEATHMATCH,
+		"Prefer Squad over Role" = BE_SQUAD_STRICT
+	)
 
 	// Group keybinds by category
 	.["all_keybindings"] = list()
