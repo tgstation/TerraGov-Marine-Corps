@@ -21,6 +21,9 @@ ADMIN_LEGACY_SYSTEM
 ## Add a # infront of this to disable the shutdown server verb.
 ALLOW_SHUTDOWN
 
+## Uncomment to have the changelog file automatically open when a user connects and hasn't seen the latest changelog
+#AGGRESSIVE_CHANGELOG
+
 ## If you use /tg/station-server 3 and you want to allow the shutdown server verb,
 ##	the server needs to be able to tell tgs3 that the shutdown is not a crash.
 ## This should be the path to the TGCommandLine.exe program in your tgstation-server install.
