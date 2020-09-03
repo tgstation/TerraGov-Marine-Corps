@@ -770,7 +770,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/research/containment)
 "aPL" = (
-/obj/machinery/door/window/brigdoor,
+/obj/machinery/door/window/secure,
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 8
 	},
@@ -1247,7 +1247,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/research/containment)
 "blx" = (
-/obj/machinery/door/window/brigdoor,
+/obj/machinery/door/window/secure,
 /turf/open/floor/mainship/sterile/purple/side{
 	dir = 4
 	},
@@ -9302,7 +9302,7 @@
 /area/magmoor/compound/south)
 "gVb" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor/westleft{
+/obj/machinery/door/window/secure/westleft{
 	dir = 4
 	},
 /obj/machinery/door/window/eastright{
@@ -17753,7 +17753,7 @@
 /obj/machinery/door/window/eastright{
 	name = "Security Desk"
 	},
-/obj/machinery/door/window/brigdoor/westleft{
+/obj/machinery/door/window/secure/westleft{
 	name = "Security Desk"
 	},
 /obj/item/storage/donut_box,
@@ -24105,7 +24105,7 @@
 /turf/open/floor/mainship/cargo,
 /area/magmoor/engi/storage)
 "rVz" = (
-/obj/machinery/door/window/brigdoor/southleft{
+/obj/machinery/door/window/secure/southleft{
 	name = "Requesitions Desk"
 	},
 /obj/structure/table/mainship,
@@ -27801,7 +27801,7 @@
 /area/magmoor/hydroponics)
 "upZ" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor/westleft,
+/obj/machinery/door/window/secure/westleft,
 /obj/machinery/door/window/eastleft,
 /turf/open/floor/plating,
 /area/magmoor/security/infocenter)
@@ -30813,7 +30813,7 @@
 /area/magmoor/civilian/cook)
 "wbX" = (
 /obj/structure/table/mainship,
-/obj/machinery/door/window/brigdoor/southleft{
+/obj/machinery/door/window/secure/southleft{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -30977,7 +30977,7 @@
 /area/magmoor/civilian/bar)
 "whi" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor/westleft{
+/obj/machinery/door/window/secure/westleft{
 	dir = 1;
 	id = "brg"
 	},

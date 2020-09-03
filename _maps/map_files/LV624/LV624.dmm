@@ -86,30 +86,22 @@
 /turf/closed/mineral,
 /area/lv624/ground/caves/east2)
 "aaD" = (
-/turf/open/floor/engine/cult{
-	dir = 2
-	},
+/turf/open/floor/engine/cult,
 /area/lv624/ground/caves/west2)
 "aaE" = (
 /obj/effect/decal/remains/xeno,
-/turf/open/floor/engine/cult{
-	dir = 2
-	},
+/turf/open/floor/engine/cult,
 /area/lv624/ground/caves/west2)
 "aaF" = (
 /obj/effect/alien/weeds/node,
-/turf/open/floor/engine/cult{
-	dir = 2
-	},
+/turf/open/floor/engine/cult,
 /area/lv624/ground/caves/west2)
 "aaG" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3)
 "aaH" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor,
 /area/lv624/ground/caves/central3)
 "aaI" = (
@@ -265,9 +257,7 @@
 /turf/closed/wall/resin,
 /area/lv624/ground/caves/east1)
 "abr" = (
-/turf/open/floor/engine/cult{
-	dir = 2
-	},
+/turf/open/floor/engine/cult,
 /area/lv624/ground/caves/east2)
 "abs" = (
 /obj/machinery/colony_floodlight,
@@ -278,9 +268,7 @@
 /area/lv624/ground/sand8)
 "abt" = (
 /obj/effect/decal/remains/xeno,
-/turf/open/floor/engine/cult{
-	dir = 2
-	},
+/turf/open/floor/engine/cult,
 /area/lv624/ground/caves/east2)
 "abu" = (
 /turf/closed/wall/resin,
@@ -290,9 +278,7 @@
 /area/lv624/ground/caves/central1)
 "abw" = (
 /obj/effect/alien/weeds/node,
-/turf/open/floor/engine/cult{
-	dir = 2
-	},
+/turf/open/floor/engine/cult,
 /area/lv624/ground/caves/east2)
 "abx" = (
 /obj/structure/bed/nest,
@@ -319,9 +305,7 @@
 "abB" = (
 /obj/machinery/optable,
 /obj/item/tank/anesthetic,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "abC" = (
 /obj/structure/cable,
@@ -361,7 +345,6 @@
 /obj/effect/landmark/corpsespawner/scientist{
 	corpseback = null;
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpsesuit = /obj/item/clothing/suit/storage/labcoat;
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Kegan Mills"
 	},
@@ -383,7 +366,6 @@
 /obj/effect/landmark/corpsespawner/scientist{
 	corpseback = null;
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpsesuit = /obj/item/clothing/suit/storage/labcoat;
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Harry Trent"
 	},
@@ -405,9 +387,7 @@
 "abQ" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "abR" = (
 /obj/structure/table/reinforced/flipped{
@@ -420,7 +400,6 @@
 /obj/effect/landmark/corpsespawner/doctor{
 	corpseback = null;
 	corpsegloves = /obj/item/clothing/gloves/latex;
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Redo Koster"
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -445,7 +424,6 @@
 /obj/effect/landmark/corpsespawner/scientist{
 	corpseback = null;
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpsesuit = /obj/item/clothing/suit/storage/labcoat;
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Evan Kark"
 	},
@@ -457,7 +435,6 @@
 	corpseback = null;
 	corpsegloves = /obj/item/clothing/gloves/latex;
 	corpseidjob = "Doctor";
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Drew Bellel"
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -476,7 +453,6 @@
 	corpseback = null;
 	corpsehelmet = /obj/item/clothing/head/tgmccap/req;
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpsesuit = /obj/item/clothing/suit/storage/labcoat;
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Lee Hesto"
 	},
@@ -488,7 +464,6 @@
 /obj/effect/landmark/corpsespawner/scientist{
 	corpseback = null;
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpsesuit = /obj/item/clothing/suit/storage/labcoat;
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Ellis Bark"
 	},
@@ -499,7 +474,6 @@
 /obj/effect/landmark/corpsespawner/miner{
 	corpseback = null;
 	corpseidjob = "Laborer";
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Olgin Vekin"
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -521,7 +495,6 @@
 	corpseback = null;
 	corpsebelt = /obj/item/weapon/gun/pistol/holdout;
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpsesuit = /obj/item/clothing/suit/storage/labcoat;
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Luther Yovin"
 	},
@@ -532,7 +505,6 @@
 /obj/effect/landmark/corpsespawner/scientist{
 	corpseback = null;
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpsesuit = /obj/item/clothing/suit/storage/labcoat;
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Chang Lin"
 	},
@@ -552,15 +524,12 @@
 	corpseback = /obj/item/storage/backpack;
 	corpseidjob = "Engineer";
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Wes Uvin"
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west2)
 "ack" = (
-/obj/structure/table/reinforced/flipped{
-	dir = 2
-	},
+/obj/structure/table/reinforced/flipped,
 /obj/item/ammo_casing,
 /turf/open/floor/plating,
 /area/lv624/ground/tfort)
@@ -575,7 +544,6 @@
 	corpsehelmet = /obj/item/clothing/head/welding;
 	corpseidjob = "Engineer";
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Ted Jarka"
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -585,7 +553,6 @@
 /obj/effect/landmark/corpsespawner/doctor{
 	corpseback = null;
 	corpsegloves = /obj/item/clothing/gloves/latex;
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Ben Harris"
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -595,7 +562,6 @@
 /obj/effect/landmark/corpsespawner/doctor{
 	corpseback = null;
 	corpsegloves = /obj/item/clothing/gloves/latex;
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Mio Linno"
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -614,7 +580,6 @@
 	corpseback = /obj/item/storage/backpack;
 	corpseidjob = "Engineer";
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Everett Mison"
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -632,7 +597,6 @@
 	corpseback = null;
 	corpsegloves = /obj/item/clothing/gloves/latex;
 	corpseidjob = "Doctor";
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Ted Koso"
 	},
 /obj/effect/alien/weeds/node,
@@ -653,7 +617,6 @@
 	corpseback = /obj/item/storage/backpack;
 	corpsehelmet = /obj/item/clothing/head/flatcap;
 	corpseidjob = "Laborer";
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Terrin Yin"
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -663,7 +626,6 @@
 /obj/effect/landmark/corpsespawner/scientist{
 	corpseback = null;
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpsesuit = /obj/item/clothing/suit/storage/labcoat;
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Marko Quin"
 	},
@@ -675,7 +637,6 @@
 	corpseback = null;
 	corpsehelmet = /obj/item/clothing/head/flatcap;
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpsesuit = /obj/item/clothing/suit/storage/labcoat;
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Jackson Martin"
 	},
@@ -707,7 +668,6 @@
 	corpseback = null;
 	corpsehelmet = /obj/item/clothing/head/soft/grey;
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpsesuit = /obj/item/clothing/suit/storage/labcoat;
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Innio Morris"
 	},
@@ -718,7 +678,6 @@
 /obj/effect/landmark/corpsespawner/scientist{
 	corpseback = null;
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpsesuit = /obj/item/clothing/suit/storage/labcoat;
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Braxton Oxto"
 	},
@@ -729,7 +688,6 @@
 /obj/effect/landmark/corpsespawner/miner{
 	corpseback = null;
 	corpseidjob = "Laborer";
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Kira Von"
 	},
 /obj/effect/alien/weeds/node,
@@ -740,7 +698,6 @@
 /obj/effect/landmark/corpsespawner/miner{
 	corpseback = null;
 	corpseidjob = "Laborer";
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Bren Foras"
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -911,7 +868,6 @@
 /area/lv624/ground/caves/central3)
 "adk" = (
 /obj/machinery/door/airlock/mainship/secure/locked/free_access{
-	dir = 4;
 	name = "\improper Mining Storage"
 	},
 /turf/open/floor/tile/dark,
@@ -938,9 +894,7 @@
 /turf/open/floor/vault,
 /area/lv624/ground/sand6)
 "adp" = (
-/turf/open/floor/engine/cult{
-	dir = 2
-	},
+/turf/open/floor/engine/cult,
 /area/lv624/ground/caves/west1)
 "adq" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -1002,9 +956,7 @@
 /area/lv624/ground/sand6)
 "adz" = (
 /obj/effect/decal/remains/xeno,
-/turf/open/floor/engine/cult{
-	dir = 2
-	},
+/turf/open/floor/engine/cult,
 /area/lv624/ground/caves/west1)
 "adA" = (
 /turf/closed/wall/resin/thick,
@@ -1052,9 +1004,7 @@
 /area/lv624/ground/sand6)
 "adI" = (
 /obj/effect/alien/weeds/node,
-/turf/open/floor/engine/cult{
-	dir = 2
-	},
+/turf/open/floor/engine/cult,
 /area/lv624/ground/caves/west1)
 "adJ" = (
 /turf/open/floor/plating/platebotc,
@@ -1231,9 +1181,7 @@
 /area/lv624/ground/sand5)
 "aew" = (
 /obj/structure/flora/ausbushes/fullgrass,
-/turf/open/ground/coast/corner2{
-	dir = 2
-	},
+/turf/open/ground/coast/corner2,
 /area/lv624/ground/sand2)
 "aex" = (
 /obj/structure/window/reinforced{
@@ -1245,18 +1193,14 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand6)
 "aez" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2
 	},
 /turf/open/floor/plating,
 /area/lv624/ground/sand6)
 "aeA" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/lv624/ground/sand6)
 "aeB" = (
@@ -1272,9 +1216,7 @@
 	},
 /area/lv624/ground/caves/central3)
 "aeD" = (
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
+/turf/open/floor/plating/warning,
 /area/lv624/ground/caves/central3)
 "aeE" = (
 /obj/effect/alien/weeds/node,
@@ -1319,9 +1261,7 @@
 /turf/open/floor,
 /area/lv624/ground/sand5)
 "aeO" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor,
 /area/lv624/ground/sand5)
 "aeP" = (
@@ -1376,17 +1316,13 @@
 /area/lv624/lazarus/fitness)
 "afb" = (
 /obj/effect/alien/weeds/node,
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor,
 /area/lv624/ground/caves/central3)
 "afc" = (
 /obj/structure/mineral_door/resin,
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor,
 /area/lv624/ground/sand5)
 "afd" = (
@@ -1394,9 +1330,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor,
 /area/lv624/ground/sand5)
 "afe" = (
@@ -1475,9 +1409,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand5)
 "afv" = (
-/obj/structure/cargo_container/horizontal{
-	dir = 2
-	},
+/obj/structure/cargo_container/horizontal,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand5)
 "afw" = (
@@ -1532,9 +1464,7 @@
 	},
 /area/lv624/ground/sand5)
 "afG" = (
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
+/turf/open/floor/plating/warning,
 /area/lv624/lazarus/robotics)
 "afH" = (
 /obj/item/stack/sheet/metal,
@@ -1545,9 +1475,7 @@
 /obj/structure/table,
 /obj/item/toy/deck,
 /obj/item/storage/fancy/cigarettes,
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "afJ" = (
 /obj/structure/fence,
@@ -1659,9 +1587,7 @@
 	},
 /area/lv624/ground/river1)
 "age" = (
-/obj/structure/cargo_container/horizontal{
-	dir = 2
-	},
+/obj/structure/cargo_container/horizontal,
 /turf/open/floor/marking/bot,
 /area/lv624/ground/sand5)
 "agf" = (
@@ -1704,9 +1630,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand5)
 "agn" = (
-/turf/open/ground/coast/corner2{
-	dir = 2
-	},
+/turf/open/ground/coast/corner2,
 /area/lv624/ground/sand8)
 "ago" = (
 /obj/machinery/colony_floodlight,
@@ -1882,9 +1806,7 @@
 	},
 /area/lv624/ground/sand8)
 "aha" = (
-/obj/structure/cargo_container/horizontal{
-	dir = 2
-	},
+/obj/structure/cargo_container/horizontal,
 /turf/open/floor,
 /area/lv624/ground/sand2)
 "ahb" = (
@@ -2315,9 +2237,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/river2)
 "aiK" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor,
 /area/lv624/ground/sand2)
 "aiL" = (
@@ -2367,9 +2287,7 @@
 /turf/open/floor/grimy,
 /area/lv624/lazarus/captain)
 "aiT" = (
-/turf/open/ground/coast/corner2{
-	dir = 2
-	},
+/turf/open/ground/coast/corner2,
 /area/lv624/ground/river3)
 "aiU" = (
 /turf/closed/wall/mineral/sandstone,
@@ -2527,9 +2445,7 @@
 	},
 /area/lv624/ground/tfort)
 "ajv" = (
-/turf/open/ground/coast/corner2{
-	dir = 2
-	},
+/turf/open/ground/coast/corner2,
 /area/lv624/ground/sand2)
 "ajw" = (
 /turf/open/ground/coast/corner2{
@@ -2592,9 +2508,7 @@
 "ajL" = (
 /obj/structure/fence,
 /obj/structure/catwalk,
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
+/turf/open/floor/plating/warning,
 /area/lv624/ground/sand8)
 "ajM" = (
 /obj/item/ammo_casing,
@@ -2656,17 +2570,13 @@
 /turf/open/floor/plating/catwalk,
 /area/lv624/ground/sand8)
 "akb" = (
-/obj/structure/table/reinforced/flipped{
-	dir = 2
-	},
+/obj/structure/table/reinforced/flipped,
 /obj/effect/decal/remains/human,
 /obj/item/ammo_casing,
 /turf/open/floor/plating,
 /area/lv624/ground/tfort)
 "akc" = (
-/obj/structure/table/reinforced/flipped{
-	dir = 2
-	},
+/obj/structure/table/reinforced/flipped,
 /obj/item/explosive/grenade/incendiary,
 /turf/open/floor/plating,
 /area/lv624/ground/tfort)
@@ -2693,9 +2603,7 @@
 /turf/open/ground/coast/corner,
 /area/lv624/ground/sand8)
 "akm" = (
-/turf/open/ground/coast/corner2{
-	dir = 2
-	},
+/turf/open/ground/coast/corner2,
 /area/lv624/ground/river2)
 "akn" = (
 /obj/structure/disposalpipe/segment,
@@ -2892,9 +2800,7 @@
 	},
 /area/lv624/ground/tfort)
 "alf" = (
-/obj/structure/table/reinforced/flipped{
-	dir = 2
-	},
+/obj/structure/table/reinforced/flipped,
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/warning{
@@ -2910,9 +2816,7 @@
 	},
 /area/lv624/ground/tfort)
 "alh" = (
-/obj/structure/table/reinforced/flipped{
-	dir = 2
-	},
+/obj/structure/table/reinforced/flipped,
 /obj/item/ammo_magazine/smg/uzi/extended,
 /turf/open/floor/plating/warning{
 	dir = 2
@@ -3260,7 +3164,6 @@
 /obj/effect/landmark/corpsespawner/miner{
 	corpseback = /obj/item/storage/backpack;
 	corpseidjob = "Laborer";
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Roester Kalin"
 	},
 /turf/open/floor/tile/red/yellowfull,
@@ -3372,9 +3275,7 @@
 /area/lv624/ground/sand9)
 "amM" = (
 /obj/effect/landmark/start/job/survivor,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "amN" = (
 /obj/structure/window/reinforced/tinted{
@@ -3404,9 +3305,7 @@
 /obj/item/tool/pen{
 	pixel_y = 7
 	},
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "amQ" = (
 /obj/structure/bed/chair/office/dark{
@@ -3425,7 +3324,6 @@
 /obj/effect/landmark/corpsespawner/scientist{
 	corpseback = null;
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpsesuit = /obj/item/clothing/suit/storage/labcoat;
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Tevin Marks"
 	},
@@ -3469,7 +3367,6 @@
 /area/lv624/ground/sand8)
 "ana" = (
 /obj/machinery/door/airlock/mainship/secure/free_access{
-	dir = 4;
 	name = "\improper Water Filtration Plant"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -3505,27 +3402,20 @@
 	},
 /area/lv624/ground/filtration)
 "ane" = (
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
+/turf/open/floor/plating/warning,
 /area/lv624/ground/sand8)
 "anf" = (
 /obj/machinery/door/airlock/mainship/secure/free_access{
-	dir = 4;
 	name = "\improper Water Filtration Plant"
 	},
 /turf/open/floor/plating/platebot,
 /area/lv624/ground/filtration)
 "ang" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor,
 /area/lv624/ground/sand8)
 "anh" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor,
 /area/lv624/ground/sand9)
 "ani" = (
@@ -3544,9 +3434,7 @@
 /turf/open/floor,
 /area/lv624/ground/sand9)
 "anl" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
@@ -3600,9 +3488,7 @@
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
 "anz" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
 	},
@@ -3770,9 +3656,7 @@
 /area/lv624/ground/ruin)
 "anZ" = (
 /obj/structure/fence,
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
+/turf/open/floor/plating/warning,
 /area/lv624/ground/sand8)
 "aoa" = (
 /obj/structure/flora/tree/jungle,
@@ -3783,15 +3667,11 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
+/turf/open/floor/plating/warning,
 /area/lv624/ground/sand8)
 "aoc" = (
 /obj/structure/fence,
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
+/turf/open/floor/plating/warning,
 /area/lv624/ground/river2)
 "aod" = (
 /turf/open/floor/plating/catwalk,
@@ -3805,23 +3685,17 @@
 "aog" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/window/framed/colony,
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
+/turf/open/floor/plating/warning,
 /area/lv624/ground/river2)
 "aoh" = (
 /obj/structure/jungle/planttop1,
 /turf/closed/wall,
 /area/lv624/ground/river2)
 "aoi" = (
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
+/turf/open/floor/plating/warning,
 /area/lv624/ground/river3)
 "aoj" = (
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
+/turf/open/floor/plating/warning,
 /area/lv624/ground/sand9)
 "aol" = (
 /turf/closed/wall,
@@ -3894,9 +3768,7 @@
 /turf/open/ground/river,
 /area/lv624/ground/river2)
 "aoB" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -4098,9 +3970,7 @@
 /turf/open/floor,
 /area/lv624/ground/compound/n)
 "apr" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -4154,9 +4024,7 @@
 /turf/open/floor,
 /area/lv624/ground/river2)
 "apF" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
@@ -4182,15 +4050,11 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor,
 /area/lv624/ground/compound/n)
 "apJ" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor,
 /area/lv624/ground/jungle7)
 "apK" = (
@@ -4353,9 +4217,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand1)
 "aqF" = (
-/turf/open/ground/coast/corner2{
-	dir = 2
-	},
+/turf/open/ground/coast/corner2,
 /area/lv624/ground/sand4)
 "aqG" = (
 /obj/structure/ore_box,
@@ -4389,9 +4251,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
@@ -4439,9 +4299,7 @@
 /turf/open/ground/coast/corner,
 /area/lv624/ground/sand1)
 "arc" = (
-/turf/open/ground/coast/corner2{
-	dir = 2
-	},
+/turf/open/ground/coast/corner2,
 /area/lv624/ground/sand1)
 "ard" = (
 /turf/open/ground/river,
@@ -4533,9 +4391,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle5)
 "arD" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /turf/open/floor,
@@ -4558,9 +4414,7 @@
 	},
 /area/lv624/ground/sand1)
 "arL" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -4577,9 +4431,7 @@
 /obj/structure/sink{
 	dir = 4
 	},
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "arN" = (
 /obj/structure/flora/ausbushes/stalkybush,
@@ -4748,9 +4600,7 @@
 /obj/structure/sink{
 	dir = 8
 	},
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "asI" = (
 /obj/machinery/portable_atmospherics/hydroponics,
@@ -4883,9 +4733,7 @@
 	},
 /area/lv624/ground/jungle7)
 "ato" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -4905,9 +4753,7 @@
 /turf/open/floor,
 /area/lv624/ground/jungle7)
 "atr" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
@@ -4979,9 +4825,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor,
 /area/lv624/ground/jungle6)
 "atH" = (
@@ -5003,9 +4847,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle6)
 "atL" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -5112,9 +4954,7 @@
 /turf/open/ground/grass,
 /area/lv624/ground/jungle9)
 "aui" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -5316,9 +5156,7 @@
 /turf/open/ground/coast,
 /area/lv624/ground/river1)
 "ava" = (
-/turf/open/ground/coast/corner2{
-	dir = 2
-	},
+/turf/open/ground/coast/corner2,
 /area/lv624/ground/river1)
 "avb" = (
 /turf/open/ground/coast/corner2{
@@ -5413,9 +5251,7 @@
 /area/lv624/lazarus/fitness)
 "avv" = (
 /obj/structure/flora/ausbushes/reedbush,
-/turf/open/ground/coast/corner2{
-	dir = 2
-	},
+/turf/open/ground/coast/corner2,
 /area/lv624/ground/river1)
 "avw" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
@@ -5475,9 +5311,7 @@
 	dir = 1
 	},
 /obj/machinery/light,
-/turf/open/floor/tile/white/warningstripe{
-	dir = 2
-	},
+/turf/open/floor/tile/white/warningstripe,
 /area/lv624/lazarus/fitness)
 "avL" = (
 /turf/open/floor/plating/ground/dirt,
@@ -5586,14 +5420,10 @@
 /area/lv624/ground/jungle7)
 "awm" = (
 /obj/structure/closet/secure_closet/medical3,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "awn" = (
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "awp" = (
 /obj/structure/table,
@@ -5687,17 +5517,13 @@
 /area/lv624/ground/river1)
 "awG" = (
 /obj/machinery/bioprinter,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "awH" = (
 /obj/structure/table,
 /obj/item/storage/surgical_tray,
 /obj/item/reagent_containers/spray/surgery,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "awI" = (
 /obj/structure/sink{
@@ -5707,7 +5533,6 @@
 /obj/item/clothing/mask/facehugger/dead,
 /obj/effect/landmark/corpsespawner/scientist{
 	corpseshoes = /obj/item/clothing/shoes/black;
-	corpsesuit = /obj/item/clothing/suit/storage/labcoat;
 	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Jan Horris"
 	},
@@ -5718,9 +5543,7 @@
 /area/lv624/lazarus/medbay)
 "awK" = (
 /obj/machinery/vending/medical,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "awL" = (
 /obj/structure/table,
@@ -5740,9 +5563,7 @@
 	amount = 40
 	},
 /obj/item/autopsy_scanner,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "awM" = (
 /obj/structure/cable,
@@ -5756,9 +5577,7 @@
 "awN" = (
 /obj/structure/table,
 /obj/item/tank/anesthetic,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "awO" = (
 /obj/structure/table,
@@ -5857,17 +5676,13 @@
 /area/lv624/ground/jungle6)
 "axe" = (
 /obj/machinery/vending/MarineMed/Blood,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "axf" = (
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "axg" = (
 /obj/machinery/light{
@@ -5889,15 +5704,11 @@
 	dir = 8
 	},
 /obj/item/storage/surgical_tray,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "axk" = (
 /obj/item/tool/surgery/retractor,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "axl" = (
 /obj/structure/table,
@@ -5972,9 +5783,7 @@
 /area/lv624/ground/jungle6)
 "axy" = (
 /obj/machinery/iv_drip,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "axA" = (
 /obj/machinery/door_control{
@@ -5982,9 +5791,7 @@
 	name = "OR1 Shutters";
 	pixel_x = 30
 	},
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "axB" = (
 /obj/structure/window/reinforced/tinted{
@@ -6009,16 +5816,12 @@
 	name = "OR2 Shutters";
 	pixel_x = -30
 	},
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "axE" = (
 /obj/machinery/optable,
 /obj/effect/decal/cleanable/blood/gibs,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "axF" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -6069,9 +5872,7 @@
 	dir = 2;
 	id = "OR1"
 	},
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "axU" = (
 /obj/structure/window/framed/colony,
@@ -6081,9 +5882,7 @@
 /obj/machinery/door/airlock/colony/medical/domesurgery{
 	dir = 1
 	},
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "axW" = (
 /obj/machinery/door/airlock/colony/medical/domestorage{
@@ -6094,12 +5893,9 @@
 	dir = 2;
 	icon_state = "shutter0";
 	id = "OR2";
-	name = "\improper Shutters";
 	opacity = 0
 	},
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "axX" = (
 /obj/structure/window/framed/colony,
@@ -6108,7 +5904,6 @@
 	dir = 2;
 	icon_state = "shutter0";
 	id = "OR2";
-	name = "\improper Shutters";
 	opacity = 0
 	},
 /turf/open/floor/plating,
@@ -6203,25 +5998,19 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "ays" = (
 /obj/structure/table,
 /obj/item/stack/medical/bruise_pack,
 /obj/item/stack/medical/ointment,
 /obj/item/storage/box/masks,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "ayt" = (
 /obj/item/storage/firstaid/toxin,
 /obj/structure/table,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "ayu" = (
 /obj/machinery/door_control{
@@ -6232,17 +6021,13 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "ayv" = (
 /obj/structure/table,
 /obj/item/storage/box/masks,
 /obj/item/storage/box/gloves,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "ayw" = (
 /obj/structure/cable,
@@ -6254,24 +6039,18 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "ayx" = (
 /obj/item/stack/medical/bruise_pack,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "ayy" = (
 /obj/structure/table,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/storage/firstaid,
 /obj/item/storage/firstaid,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "ayz" = (
 /obj/structure/table,
@@ -6282,15 +6061,11 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 1
 	},
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "ayB" = (
 /obj/structure/cable,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "ayC" = (
 /obj/machinery/door/airlock/mainship/secure/free_access{
@@ -6330,7 +6105,6 @@
 /area/lv624/lazarus/quartstorage)
 "ayL" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	dir = 4;
 	name = "\improper Hydroponics Dome"
 	},
 /turf/open/floor/tile/green/greentaupe{
@@ -6413,17 +6187,13 @@
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "aze" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "azf" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
@@ -6433,9 +6203,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "azg" = (
 /obj/structure/flora/ausbushes/ppflowers,
@@ -6546,43 +6314,29 @@
 /area/lv624/ground/compound/ne)
 "azB" = (
 /obj/machinery/bodyscanner,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "azC" = (
 /obj/machinery/body_scanconsole,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "azD" = (
 /obj/structure/closet/crate/medical,
 /obj/item/storage/firstaid/adv,
 /obj/item/storage/box/bodybags,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "azE" = (
 /obj/item/clothing/suit/surgical,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "azF" = (
 /obj/machinery/sleeper,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "azG" = (
-/obj/machinery/sleep_console{
-	density = 0
-	},
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/obj/machinery/sleep_console,
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "azH" = (
 /obj/machinery/door_control{
@@ -6807,21 +6561,15 @@
 /obj/structure/table,
 /obj/item/reagent_containers/hypospray,
 /obj/item/tool/surgery/FixOVein,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "aAL" = (
 /obj/structure/bed/chair,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "aAM" = (
 /obj/structure/table,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "aAN" = (
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -6936,41 +6684,29 @@
 /obj/item/bodybag,
 /obj/structure/table,
 /obj/item/tank/anesthetic,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "aBm" = (
 /obj/machinery/light,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "aBn" = (
 /obj/machinery/door/window/southright,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "aBp" = (
 /obj/machinery/door/window/southleft,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "aBq" = (
 /obj/structure/bed/chair/wheelchair,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "aBr" = (
 /obj/structure/table,
 /obj/item/clothing/glasses/sunglasses/blindfold,
 /obj/item/clothing/mask/muzzle,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "aBs" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
@@ -7084,47 +6820,35 @@
 /obj/structure/table,
 /obj/item/reagent_containers/hypospray/autoinjector/quickclot,
 /obj/item/tool/surgery/bonegel,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "aBR" = (
 /obj/structure/table,
 /obj/item/tool/surgery/bonesetter,
 /obj/item/tool/surgery/cautery,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "aBS" = (
 /obj/item/reagent_containers/spray,
 /obj/item/healthanalyzer,
 /obj/structure/table,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "aBT" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
 	},
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "aBU" = (
 /obj/structure/table,
 /obj/item/folder/blue,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "aBV" = (
 /obj/structure/table,
 /obj/item/clothing/glasses/eyepatch,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "aBX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -7189,15 +6913,11 @@
 /area/lv624/ground/jungle6)
 "aCw" = (
 /obj/structure/bed/roller,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "aCx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "aCy" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
@@ -7282,9 +7002,7 @@
 	name = "\improper Medical Dome"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/tile/blue/whitebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/whitebluecorner,
 /area/lv624/lazarus/medbay)
 "aCZ" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -7630,9 +7348,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "aFc" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "aFd" = (
@@ -7792,7 +7508,6 @@
 "aFV" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/mainship{
-	dir = 4;
 	id = "science_blast";
 	name = "\improper Science Wing Blast Door"
 	},
@@ -7936,7 +7651,6 @@
 /area/lv624/lazarus/research)
 "aGy" = (
 /obj/machinery/door/airlock/mainship/research/locked/free_access{
-	dir = 4;
 	name = "\improper Research Dome"
 	},
 /turf/open/floor/tile/purple/whitepurple{
@@ -8196,7 +7910,6 @@
 /area/lv624/lazarus/quartstorage/outdoors)
 "aHx" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 4;
 	name = "\improper Storage Dome"
 	},
 /turf/open/floor/tile/dark,
@@ -8211,9 +7924,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage)
 "aHz" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -8575,12 +8286,10 @@
 /area/lv624/lazarus/robotics)
 "aJj" = (
 /obj/machinery/door/poddoor/mainship{
-	dir = 4;
 	id = "science_blast";
 	name = "\improper Science Wing Blast Door"
 	},
 /obj/machinery/door/airlock/mainship/research/locked/free_access{
-	dir = 4;
 	name = "\improper Research Dome"
 	},
 /obj/structure/cable,
@@ -8649,7 +8358,6 @@
 "aJu" = (
 /obj/machinery/door/poddoor/mainship{
 	density = 0;
-	dir = 4;
 	icon_state = "pdoor0";
 	name = "\improper Forced Blast Door";
 	opacity = 0
@@ -8827,7 +8535,6 @@
 /obj/item/clothing/mask/facehugger/dead,
 /obj/machinery/door/poddoor/mainship{
 	density = 0;
-	dir = 4;
 	icon_state = "pdoor0";
 	name = "\improper Forced Blast Door";
 	opacity = 0
@@ -8896,7 +8603,6 @@
 /area/lv624/lazarus/fitness)
 "aKq" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	dir = 4;
 	name = "\improper Leisure Dome"
 	},
 /turf/open/floor/tile/purple/whitepurple{
@@ -9304,9 +9010,7 @@
 "aMh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
+/turf/open/floor/plating/warning,
 /area/lv624/lazarus/robotics)
 "aMj" = (
 /obj/structure/table,
@@ -9608,15 +9312,11 @@
 "aNw" = (
 /obj/structure/bed,
 /obj/item/bedsheet/brown,
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aNx" = (
 /obj/structure/closet/open,
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aNy" = (
 /turf/closed/wall,
@@ -9837,9 +9537,7 @@
 "aOE" = (
 /obj/structure/bed,
 /obj/item/bedsheet/blue,
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aOF" = (
 /obj/structure/closet,
@@ -9849,9 +9547,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aOG" = (
 /obj/machinery/light{
@@ -10002,9 +9698,7 @@
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aPj" = (
 /obj/item/contraband/poster,
@@ -10012,29 +9706,21 @@
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aPl" = (
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aPm" = (
 /obj/structure/bed,
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aPn" = (
 /obj/structure/closet,
 /obj/item/clothing/under/rank/scientist,
 /obj/structure/window/reinforced/tinted,
 /obj/item/stack/medical/advanced/bruise_pack,
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aPo" = (
 /obj/machinery/vending/cigarette/colony,
@@ -10228,40 +9914,30 @@
 "aQh" = (
 /obj/structure/flora/pottedplant,
 /obj/item/trash/cheesie,
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aQi" = (
 /obj/structure/bed/chair/office/light{
 	dir = 1
 	},
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aQj" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aQk" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
 	on = 1
 	},
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aQl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aQm" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -10349,7 +10025,6 @@
 /area/lv624/lazarus/quartstorage)
 "aQx" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 4;
 	name = "\improper Storage Dome"
 	},
 /turf/open/floor/vault,
@@ -10420,7 +10095,6 @@
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/mainship{
 	density = 0;
-	dir = 4;
 	icon_state = "pdoor0";
 	id = "nexus_blast";
 	name = "\improper Nexus Blast Door";
@@ -10435,47 +10109,35 @@
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aQW" = (
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aQX" = (
 /obj/item/stack/medical/advanced/bruise_pack,
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aQY" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 4
 	},
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aQZ" = (
 /obj/structure/table,
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aRb" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1;
 	name = "\improper Nexus Dome Male Dormitories"
 	},
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aRc" = (
 /obj/item/stack/sheet/wood,
@@ -10483,9 +10145,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
 	},
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/main_hall)
 "aRd" = (
 /obj/structure/cable,
@@ -10610,38 +10270,28 @@
 "aRC" = (
 /obj/effect/decal/cleanable/blood,
 /obj/item/stack/sheet/wood,
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aRD" = (
 /obj/structure/table,
 /obj/item/trash/cheesie,
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aRE" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aRF" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 1
 	},
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aRG" = (
-/turf/open/floor/tile/green/whitegreencorner{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreencorner,
 /area/lv624/lazarus/main_hall)
 "aRH" = (
 /obj/structure/flora/ausbushes/grassybush,
@@ -10778,50 +10428,38 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/job/survivor,
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aSi" = (
 /obj/structure/table,
 /obj/item/ammo_magazine/smg/uzi/extended,
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aSj" = (
 /obj/structure/table,
 /obj/item/tool/pen,
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aSk" = (
 /obj/item/trash/cheesie,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aSl" = (
 /obj/structure/bed/roller,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aSm" = (
 /obj/structure/bed,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aSn" = (
 /obj/structure/bed,
@@ -10829,17 +10467,13 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aSo" = (
 /obj/structure/bed,
 /obj/item/bedsheet/blue,
 /obj/machinery/light,
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aSp" = (
 /obj/structure/cable,
@@ -10972,26 +10606,20 @@
 /obj/effect/decal/cleanable/blood,
 /obj/item/flashlight/lamp,
 /obj/structure/table,
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aSU" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 1
 	},
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aSV" = (
 /obj/effect/decal/cleanable/blood,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aSW" = (
 /obj/structure/closet,
@@ -11001,9 +10629,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aSX" = (
 /obj/structure/closet/open,
@@ -11011,18 +10637,14 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aSY" = (
 /obj/structure/closet,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aSZ" = (
 /obj/structure/closet,
@@ -11030,16 +10652,12 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aTa" = (
 /obj/structure/closet,
 /obj/item/storage/fancy/cigarettes/dromedaryco,
-/turf/open/floor/tile/blue/taupebluecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/blue/taupebluecorner,
 /area/lv624/lazarus/sleep_male)
 "aTb" = (
 /obj/structure/bed/chair,
@@ -11651,7 +11269,6 @@
 /area/lv624/lazarus/quart)
 "aVI" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 4;
 	name = "\improper Storage Dome"
 	},
 /turf/open/floor/plating,
@@ -11738,9 +11355,7 @@
 /obj/structure/table/reinforced/flipped{
 	dir = 1
 	},
-/turf/open/floor/tile/green/whitegreencorner{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreencorner,
 /area/lv624/lazarus/main_hall)
 "aWg" = (
 /obj/structure/table/reinforced/flipped{
@@ -11814,9 +11429,7 @@
 /turf/open/floor,
 /area/shuttle/drop1/lz1)
 "aWt" = (
-/obj/structure/cargo_container/horizontal{
-	dir = 2
-	},
+/obj/structure/cargo_container/horizontal,
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
 	},
@@ -11895,9 +11508,7 @@
 /area/lv624/lazarus/chapel)
 "aWO" = (
 /obj/item/ammo_casing,
-/turf/open/floor/tile/green/whitegreencorner{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreencorner,
 /area/lv624/lazarus/main_hall)
 "aWP" = (
 /obj/structure/flora/ausbushes/brflowers,
@@ -12120,9 +11731,7 @@
 /area/shuttle/drop1/lz1)
 "aXH" = (
 /obj/effect/decal/cleanable/blood/oil,
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
+/turf/open/floor/plating/warning,
 /area/lv624/lazarus/robotics)
 "aXI" = (
 /obj/structure/fence,
@@ -12172,7 +11781,6 @@
 "aXT" = (
 /obj/machinery/door/poddoor/mainship{
 	density = 0;
-	dir = 4;
 	icon_state = "pdoor0";
 	id = "nexus_blast";
 	name = "\improper Nexus Blast Door";
@@ -12246,7 +11854,6 @@
 "aYh" = (
 /obj/machinery/door/poddoor/mainship{
 	density = 0;
-	dir = 4;
 	icon_state = "pdoor0";
 	id = "nexus_blast";
 	name = "\improper Nexus Blast Door";
@@ -12305,7 +11912,6 @@
 	},
 /obj/machinery/door/poddoor/mainship{
 	density = 0;
-	dir = 4;
 	icon_state = "pdoor0";
 	id = "nexus_blast";
 	name = "\improper Nexus Blast Door";
@@ -12427,7 +12033,6 @@
 	},
 /obj/machinery/door/poddoor/mainship{
 	density = 0;
-	dir = 4;
 	icon_state = "pdoor0";
 	id = "nexus_blast";
 	name = "\improper Nexus Blast Door";
@@ -12452,7 +12057,6 @@
 "aZa" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/mainship{
-	dir = 4;
 	id = "corporate_blast";
 	name = "\improper Corporate Dome Blast Door"
 	},
@@ -12534,7 +12138,6 @@
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/mainship{
 	density = 0;
-	dir = 4;
 	icon_state = "pdoor0";
 	id = "nexus_blast";
 	name = "\improper Nexus Blast Door";
@@ -12545,14 +12148,10 @@
 "aZz" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/tile/whiteyellow/corner{
-	dir = 2
-	},
+/turf/open/floor/tile/whiteyellow/corner,
 /area/lv624/lazarus/main_hall)
 "aZA" = (
-/turf/open/floor/tile/whiteyellow{
-	dir = 2
-	},
+/turf/open/floor/tile/whiteyellow,
 /area/lv624/lazarus/main_hall)
 "aZB" = (
 /obj/structure/cable,
@@ -12610,9 +12209,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "aZI" = (
-/turf/open/floor/tile/whiteyellow/corner{
-	dir = 2
-	},
+/turf/open/floor/tile/whiteyellow/corner,
 /area/lv624/lazarus/main_hall)
 "aZJ" = (
 /turf/open/floor/tile/whiteyellow/corner{
@@ -12639,7 +12236,6 @@
 /area/lv624/lazarus/internal_affairs)
 "aZQ" = (
 /obj/machinery/door/airlock/mainship/generic/corporate{
-	dir = 4;
 	name = "Corporate Dome"
 	},
 /turf/open/floor/wood,
@@ -12698,7 +12294,6 @@
 /obj/structure/window_frame/colony/reinforced,
 /obj/machinery/door/poddoor/mainship{
 	density = 0;
-	dir = 4;
 	icon_state = "pdoor0";
 	id = "nexus_blast";
 	name = "\improper Nexus Blast Door";
@@ -13022,9 +12617,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "bbq" = (
-/turf/open/ground/grass/beach/corner{
-	dir = 2
-	},
+/turf/open/ground/grass/beach/corner,
 /area/lv624/ground/jungle9)
 "bbw" = (
 /obj/machinery/light/small,
@@ -13048,17 +12641,13 @@
 /area/lv624/lazarus/main_hall)
 "bbA" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
-/obj/structure/table/reinforced/flipped{
-	dir = 2
-	},
+/obj/structure/table/reinforced/flipped,
 /obj/item/ammo_casing,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "bbB" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
-/obj/structure/table/reinforced/flipped{
-	dir = 2
-	},
+/obj/structure/table/reinforced/flipped,
 /obj/item/ammo_casing,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -13066,9 +12655,7 @@
 /area/lv624/lazarus/main_hall)
 "bbC" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
-/obj/structure/table/reinforced/flipped{
-	dir = 2
-	},
+/obj/structure/table/reinforced/flipped,
 /obj/item/ammo_casing,
 /obj/item/ammo_magazine/smg/uzi/extended,
 /turf/open/floor/tile/blue/whiteblue{
@@ -13093,9 +12680,7 @@
 /turf/open/floor/tile/blue/whiteblue,
 /area/lv624/lazarus/internal_affairs)
 "bbI" = (
-/obj/machinery/firealarm{
-	dir = 2
-	},
+/obj/machinery/firealarm,
 /obj/machinery/vending/cigarette/colony,
 /turf/open/floor/tile/blue/whiteblue,
 /area/lv624/lazarus/internal_affairs)
@@ -13115,9 +12700,7 @@
 	},
 /area/lv624/lazarus/atmos/outside)
 "bbM" = (
-/turf/open/ground/grass/beach{
-	dir = 2
-	},
+/turf/open/ground/grass/beach,
 /area/lv624/ground/jungle9)
 "bbN" = (
 /turf/open/ground/coast{
@@ -13151,7 +12734,6 @@
 	},
 /obj/machinery/door/poddoor/mainship{
 	density = 0;
-	dir = 4;
 	icon_state = "pdoor0";
 	id = "nexus_blast";
 	name = "\improper Nexus Blast Door";
@@ -13230,11 +12812,9 @@
 /area/lv624/ground/jungle3)
 "bcr" = (
 /obj/machinery/door/airlock/mainship/generic/corporate{
-	dir = 4;
 	name = "Corporate Dome"
 	},
 /obj/machinery/door/poddoor/mainship{
-	dir = 4;
 	id = "corporate_blast";
 	name = "\improper Corporate Dome Blast Door"
 	},
@@ -13289,12 +12869,10 @@
 /area/lv624/lazarus/internal_affairs)
 "bcz" = (
 /obj/machinery/door/poddoor/mainship{
-	dir = 4;
 	id = "corporate_blast";
 	name = "\improper Corporate Dome Blast Door"
 	},
 /obj/machinery/door/airlock/mainship/generic/corporate{
-	dir = 4;
 	name = "Corporate Dome"
 	},
 /obj/structure/cable,
@@ -13387,9 +12965,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 2
-	},
+/turf/open/floor/tile/red/redtaupecorner,
 /area/lv624/lazarus/security)
 "bcQ" = (
 /obj/structure/table/reinforced,
@@ -13424,9 +13000,7 @@
 "bcW" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
-/turf/open/floor/tile/green/whitegreen{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreen,
 /area/lv624/lazarus/main_hall)
 "bcY" = (
 /obj/structure/reagent_dispensers/watertank,
@@ -13818,19 +13392,13 @@
 /turf/open/floor,
 /area/lv624/lazarus/security)
 "beD" = (
-/obj/structure/table/reinforced/flipped{
-	dir = 2
-	},
+/obj/structure/table/reinforced/flipped,
 /obj/item/ammo_casing,
 /obj/structure/cable,
-/turf/open/floor/tile/green/whitegreencorner{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreencorner,
 /area/lv624/lazarus/main_hall)
 "beE" = (
-/obj/structure/table/reinforced/flipped{
-	dir = 2
-	},
+/obj/structure/table/reinforced/flipped,
 /obj/item/ammo_casing,
 /obj/item/ammo_magazine/smg/uzi/extended,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -13838,9 +13406,7 @@
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
 "beF" = (
-/obj/structure/table/reinforced/flipped{
-	dir = 2
-	},
+/obj/structure/table/reinforced/flipped,
 /obj/item/ammo_casing,
 /obj/item/weapon/gun/smg/uzi,
 /turf/open/floor/tile/green/whitegreencorner{
@@ -13913,7 +13479,6 @@
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/mainship{
 	density = 0;
-	dir = 4;
 	icon_state = "pdoor0";
 	id = "nexus_blast";
 	name = "\improper Nexus Blast Door";
@@ -14101,9 +13666,7 @@
 /turf/open/floor/grass,
 /area/lv624/lazarus/main_hall)
 "bfw" = (
-/obj/structure/table/reinforced/flipped{
-	dir = 2
-	},
+/obj/structure/table/reinforced/flipped,
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "bfx" = (
@@ -14211,7 +13774,6 @@
 /area/lv624/lazarus/internal_affairs)
 "bfT" = (
 /obj/machinery/door/airlock/mainship/generic/corporate{
-	dir = 4;
 	name = "Corporate Dome"
 	},
 /turf/open/floor/podhatch/floor,
@@ -15083,7 +14645,6 @@
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/mainship{
 	density = 0;
-	dir = 4;
 	icon_state = "pdoor0";
 	id = "nexus_blast";
 	name = "\improper Nexus Blast Door";
@@ -15137,9 +14698,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/turf/open/floor/tile/green/whitegreencorner{
-	dir = 2
-	},
+/turf/open/floor/tile/green/whitegreencorner,
 /area/lv624/lazarus/main_hall)
 "bjS" = (
 /obj/structure/cable,
@@ -15182,7 +14741,6 @@
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/mainship{
 	density = 0;
-	dir = 4;
 	icon_state = "pdoor0";
 	id = "nexus_blast";
 	name = "\improper Nexus Blast Door";
@@ -15430,7 +14988,6 @@
 /area/lv624/lazarus/atmos)
 "bkV" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 4;
 	name = "\improper Atmospherics Condenser"
 	},
 /turf/open/floor/tile/dark,
@@ -15481,9 +15038,7 @@
 	},
 /area/lv624/lazarus/comms)
 "blh" = (
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
+/turf/open/floor/plating/warning,
 /area/lv624/lazarus/engineering)
 "blj" = (
 /obj/structure/cable,
@@ -16383,7 +15938,6 @@
 /area/lv624/lazarus/secure_storage)
 "bow" = (
 /obj/machinery/door/poddoor/mainship{
-	dir = 4;
 	id = "secure_blast";
 	name = "\improper Secure Armory Blast Door"
 	},
@@ -16439,9 +15993,7 @@
 	},
 /area/lv624/lazarus/engineering)
 "boG" = (
-/obj/structure/sign/electricshock{
-	dir = 2
-	},
+/obj/structure/sign/electricshock,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -16608,7 +16160,6 @@
 /area/lv624/lazarus/secure_storage)
 "bpq" = (
 /obj/machinery/door/poddoor/mainship{
-	dir = 4;
 	id = "secure_blast";
 	name = "\improper Secure Armory Blast Door"
 	},
@@ -16625,7 +16176,6 @@
 /area/lv624/lazarus/secure_storage)
 "bps" = (
 /obj/machinery/door/poddoor/mainship{
-	dir = 4;
 	id = "secure_blast";
 	name = "\improper Secure Armory Blast Door"
 	},
@@ -16705,9 +16255,7 @@
 /area/lv624/lazarus/engineering)
 "bpJ" = (
 /obj/item/ammo_magazine/pistol,
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
+/turf/open/floor/plating/warning,
 /area/lv624/lazarus/engineering)
 "bpM" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
@@ -16894,15 +16442,11 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "bqH" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "bqI" = (
@@ -17465,9 +17009,7 @@
 /area/lv624/ground/compound/sw)
 "coA" = (
 /obj/structure/catwalk,
-/turf/open/ground/grass/beach{
-	dir = 2
-	},
+/turf/open/ground/grass/beach,
 /area/lv624/ground/jungle9)
 "csn" = (
 /obj/machinery/landinglight/ds1/delaytwo{
@@ -17558,9 +17100,7 @@
 /area/shuttle/drop2/lz2)
 "dgb" = (
 /obj/structure/cable,
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
+/turf/open/floor/plating/warning,
 /area/lv624/lazarus/engineering)
 "doR" = (
 /obj/effect/decal/cleanable/blood,
@@ -17807,9 +17347,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/atmos)
 "fTB" = (
-/obj/structure/extinguisher_cabinet{
-	dir = 2
-	},
+/obj/structure/extinguisher_cabinet,
 /turf/open/floor/tile/brown{
 	dir = 9
 	},
@@ -18150,7 +17688,6 @@
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/mainship{
 	density = 0;
-	dir = 4;
 	icon_state = "pdoor0";
 	id = "nexus_blast";
 	name = "\improper Nexus Blast Door";
@@ -18322,9 +17859,7 @@
 /turf/open/floor,
 /area/shuttle/drop2/lz2)
 "lPP" = (
-/obj/structure/extinguisher_cabinet{
-	dir = 2
-	},
+/obj/structure/extinguisher_cabinet,
 /turf/open/floor/tile/dark/brown2/corner,
 /area/lv624/lazarus/atmos)
 "lRQ" = (
@@ -18760,7 +18295,6 @@
 /area/shuttle/drop2/lz2)
 "qwP" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 4;
 	name = "\improper Atmospherics Condenser"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -19334,9 +18868,7 @@
 /area/shuttle/drop2/lz2)
 "wDI" = (
 /obj/effect/landmark/xeno_silo_spawn,
-/turf/open/floor/engine/cult{
-	dir = 2
-	},
+/turf/open/floor/engine/cult,
 /area/lv624/ground/caves/east2)
 "wKk" = (
 /obj/machinery/miner/damaged,
