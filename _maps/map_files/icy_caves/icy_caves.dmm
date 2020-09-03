@@ -1101,7 +1101,6 @@
 /area/icy_caves/caves/west)
 "eF" = (
 /obj/machinery/door/airlock/mainship/secure/locked/free_access{
-	dir = 4;
 	name = "\improper Mining Storage"
 	},
 /obj/structure/cable,
@@ -4003,7 +4002,6 @@
 /obj/effect/landmark/corpsespawner/miner{
 	corpseback = null;
 	corpseidjob = "Laborer";
-	corpseuniform = /obj/item/clothing/under/colonist;
 	name = "Colonist Kira Von"
 	},
 /obj/effect/decal/cleanable/blood,

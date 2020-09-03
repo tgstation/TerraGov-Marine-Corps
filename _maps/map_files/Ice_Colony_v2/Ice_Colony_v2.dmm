@@ -746,7 +746,6 @@
 /area/ice_colony/exterior/surface/valley/north)
 "adn" = (
 /obj/machinery/door/airlock/mainship/secure/locked/free_access{
-	dir = 4;
 	name = "\improper Colony Requesitions Storage Pod"
 	},
 /turf/open/floor/plating/icefloor,
@@ -1283,7 +1282,6 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 4;
 	name = "\improper Colony Engineering Material Storage"
 	},
 /turf/open/floor/tile/dark2,
@@ -1813,7 +1811,6 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 4;
 	name = "\improper Colony Engineering Locker Room"
 	},
 /turf/open/floor/tile/dark2,
@@ -2207,7 +2204,6 @@
 /area/ice_colony/surface/hydroponics/north)
 "aiP" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	dir = 4;
 	name = "\improper Hydroponics North Wing Dome"
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -3130,9 +3126,7 @@
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/clearing/north)
 "ami" = (
-/obj/structure/ore_box{
-	anchored = 0
-	},
+/obj/structure/ore_box,
 /turf/open/floor/plating,
 /area/ice_colony/surface/mining)
 "amj" = (
@@ -3394,7 +3388,6 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	dir = 4;
 	name = "\improper Hydroponics North Wing Technical Storage"
 	},
 /turf/open/floor/tile/dark2,
@@ -3628,7 +3621,6 @@
 /area/ice_colony/surface/hydroponics/north)
 "anY" = (
 /obj/machinery/door/airlock/mainship/generic{
-	dir = 4;
 	name = "\improper Toilet Unit"
 	},
 /turf/open/floor/freezer,
@@ -3711,7 +3703,6 @@
 /area/ice_colony/surface/dorms/restroom_e)
 "aom" = (
 /obj/machinery/door/airlock/mainship/generic{
-	dir = 4;
 	name = "\improper Toilet Unit"
 	},
 /turf/open/floor/freezer,
@@ -3958,7 +3949,6 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	dir = 4;
 	name = "\improper Aurora Medical Clinic Recovery Room"
 	},
 /turf/open/floor/tile/white,
@@ -4017,9 +4007,7 @@
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
 "apk" = (
-/turf/open/floor/tile/red/whitered{
-	dir = 2
-	},
+/turf/open/floor/tile/red/whitered,
 /area/ice_colony/surface/clinic/treatment)
 "apm" = (
 /obj/structure/toilet{
@@ -4041,7 +4029,6 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	dir = 4;
 	name = "\improper Aurora Medical Clinic Scanning Unit"
 	},
 /turf/open/floor/tile/white,
@@ -4172,9 +4159,7 @@
 "apI" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/surgical_tray,
-/turf/open/floor/tile/red/whitered{
-	dir = 2
-	},
+/turf/open/floor/tile/red/whitered,
 /area/ice_colony/surface/clinic/treatment)
 "apK" = (
 /obj/structure/rack,
@@ -4212,9 +4197,7 @@
 /obj/effect/landmark/corpsespawner/scientist,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/gibs,
-/turf/open/floor/tile/red/whitered{
-	dir = 2
-	},
+/turf/open/floor/tile/red/whitered,
 /area/ice_colony/surface/clinic/treatment)
 "apO" = (
 /obj/machinery/iv_drip,
@@ -4521,7 +4504,6 @@
 	},
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	dir = 4;
 	name = "\improper Aurora Medical Clinic Storage"
 	},
 /turf/open/floor/tile/white,
@@ -5035,16 +5017,12 @@
 /area/ice_colony/surface/clinic/treatment)
 "asj" = (
 /obj/structure/curtain/medical,
-/turf/open/floor/tile/red/whitered{
-	dir = 2
-	},
+/turf/open/floor/tile/red/whitered,
 /area/ice_colony/surface/clinic/treatment)
 "ask" = (
 /obj/structure/bed/chair/wheelchair,
 /obj/machinery/light,
-/turf/open/floor/tile/red/whitered{
-	dir = 2
-	},
+/turf/open/floor/tile/red/whitered,
 /area/ice_colony/surface/clinic/treatment)
 "asl" = (
 /turf/open/floor/tile/red/whitered/corner{
@@ -5064,9 +5042,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/red/whitered/corner{
-	dir = 2
-	},
+/turf/open/floor/tile/red/whitered/corner,
 /area/ice_colony/surface/clinic/treatment)
 "asp" = (
 /obj/machinery/disposal,
@@ -5085,9 +5061,7 @@
 /area/ice_colony/surface/clinic/storage)
 "asr" = (
 /obj/structure/bed/chair/wheelchair,
-/turf/open/floor/tile/red/whitered{
-	dir = 2
-	},
+/turf/open/floor/tile/red/whitered,
 /area/ice_colony/surface/clinic/storage)
 "ast" = (
 /obj/structure/bed,
@@ -5136,7 +5110,6 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "asE" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	dir = 4;
 	name = "\improper Aurora Medical Clinic Treatment"
 	},
 /turf/open/floor/tile/red/whitered{
@@ -5157,7 +5130,6 @@
 	name = "\improper Aurora Medical Clinic Storage"
 	},
 /turf/open/floor{
-	dir = 2;
 	icon_state = "cafeteria"
 	},
 /area/ice_colony/surface/clinic/storage)
@@ -5734,9 +5706,7 @@
 /obj/machinery/power/apc/drained{
 	dir = 1
 	},
-/turf/open/floor/tile/red/whitered{
-	dir = 2
-	},
+/turf/open/floor/tile/red/whitered,
 /area/ice_colony/surface/clinic/lobby)
 "aus" = (
 /obj/structure/fence,
@@ -5937,17 +5907,13 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
-/turf/open/floor/tile/red/whitered/corner{
-	dir = 2
-	},
+/turf/open/floor/tile/red/whitered/corner,
 /area/ice_colony/surface/clinic/lobby)
 "auV" = (
 /obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
 /obj/structure/table/reinforced,
-/turf/open/floor/tile/red/whitered{
-	dir = 2
-	},
+/turf/open/floor/tile/red/whitered,
 /area/ice_colony/surface/clinic/lobby)
 "auW" = (
 /obj/effect/turf_underlay/icefloor,
@@ -5955,9 +5921,7 @@
 /area/ice_colony/exterior/surface/valley/southeast)
 "auX" = (
 /obj/item/shard,
-/turf/open/floor/tile/red/whitered{
-	dir = 2
-	},
+/turf/open/floor/tile/red/whitered,
 /area/ice_colony/surface/clinic/lobby)
 "auY" = (
 /obj/machinery/light{
@@ -6891,14 +6855,10 @@
 /area/ice_colony/exterior/surface/cliff)
 "axT" = (
 /obj/item/trash/candy,
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
+/turf/open/floor/plating/warning,
 /area/ice_colony/surface/disposals)
 "axW" = (
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
+/turf/open/floor/plating/warning,
 /area/ice_colony/surface/disposals)
 "axX" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -6992,9 +6952,7 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "ayj" = (
 /obj/item/trash/liquidfood,
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
+/turf/open/floor/plating/warning,
 /area/ice_colony/surface/disposals)
 "ayk" = (
 /obj/effect/turf_underlay/icefloor,
@@ -7357,9 +7315,7 @@
 	name = "Colony Emergency Armory";
 	pixel_y = -26
 	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/dorms)
 "azr" = (
 /obj/structure/cable,
@@ -7871,7 +7827,6 @@
 /area/ice_colony/surface/disposals)
 "aBf" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	dir = 4;
 	name = "\improper Hydroponics South Wing Dome"
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -7879,9 +7834,7 @@
 	},
 /area/ice_colony/surface/hydroponics/south)
 "aBh" = (
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/dorms)
 "aBi" = (
 /turf/closed/wall/r_wall,
@@ -7891,9 +7844,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/dorms)
 "aBk" = (
 /obj/machinery/light,
@@ -7901,16 +7852,12 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/dorms)
 "aBm" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/dorms)
 "aBn" = (
 /obj/vehicle/train/cargo/trolley,
@@ -7921,9 +7868,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/dorms)
 "aBq" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -7942,9 +7887,7 @@
 	},
 /obj/machinery/light,
 /obj/structure/cable,
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/dorms)
 "aBt" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -7966,9 +7909,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/dorms)
 "aBw" = (
 /turf/open/floor/tile/dark/blue2{
@@ -8007,9 +7948,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/dorms)
 "aBB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -8255,9 +8194,7 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/turf/open/floor/tile/red/whitered{
-	dir = 2
-	},
+/turf/open/floor/tile/red/whitered,
 /area/ice_colony/surface/clinic/lobby)
 "aCl" = (
 /obj/structure/table,
@@ -8271,9 +8208,7 @@
 	dir = 1
 	},
 /obj/machinery/light,
-/turf/open/floor/tile/red/whitered{
-	dir = 2
-	},
+/turf/open/floor/tile/red/whitered,
 /area/ice_colony/surface/clinic/lobby)
 "aCn" = (
 /obj/structure/disposalpipe/segment,
@@ -8535,7 +8470,6 @@
 "aDh" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/security/glass/free_access{
-	dir = 4;
 	name = "\improper Colony Security Checkpoint"
 	},
 /turf/open/floor/tile/dark/red2{
@@ -8816,7 +8750,6 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/mainship/secure/free_access{
-	dir = 4;
 	name = "\improper Colony Garage"
 	},
 /turf/open/floor/tile/dark2,
@@ -8944,29 +8877,21 @@
 	},
 /area/ice_colony/surface/command/control/office)
 "aEq" = (
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/command/control/office)
 "aEr" = (
 /obj/item/shard,
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/command/control/office)
 "aEs" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/command/control/office)
 "aEt" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
 	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/command/control/office)
 "aEu" = (
 /obj/machinery/power/apc/drained{
@@ -9085,7 +9010,6 @@
 /obj/item/shard,
 /obj/machinery/door/poddoor/mainship{
 	density = 0;
-	dir = 4;
 	icon_state = "pdoor0";
 	name = "\improper Forced Blast Door";
 	opacity = 0
@@ -9154,7 +9078,7 @@
 /area/ice_colony/surface/command/control)
 "aEW" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor/westleft{
+/obj/machinery/door/window/secure/westleft{
 	name = "Security Desk"
 	},
 /obj/machinery/door/window/eastright{
@@ -9232,7 +9156,6 @@
 	},
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	dir = 4;
 	name = "\improper Hydroponics South Wing Technical Storage"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -9271,9 +9194,7 @@
 	pixel_x = 28;
 	pixel_y = 7
 	},
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
+/turf/open/floor/plating/warning,
 /area/ice_colony/surface/disposals)
 "aFn" = (
 /obj/effect/decal/cleanable/blood,
@@ -9299,7 +9220,6 @@
 /area/ice_colony/surface/command/control)
 "aFr" = (
 /obj/machinery/door/poddoor/mainship{
-	dir = 4;
 	id = "colony_admin_top";
 	name = "\improper Colony Administration Blast Door"
 	},
@@ -9580,9 +9500,7 @@
 /obj/machinery/power/apc/drained{
 	dir = 1
 	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/command/control)
 "aGi" = (
 /obj/machinery/alarm{
@@ -9593,9 +9511,7 @@
 	},
 /area/ice_colony/surface/command/control)
 "aGj" = (
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/command/control)
 "aGk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -9789,7 +9705,6 @@
 	},
 /obj/structure/cable,
 /obj/machinery/door/poddoor/mainship{
-	dir = 4;
 	id = "colony_admin_top";
 	name = "\improper Colony Administration Blast Door"
 	},
@@ -10002,9 +9917,7 @@
 /area/ice_colony/surface/command/crisis)
 "aHp" = (
 /obj/machinery/light,
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/command/control)
 "aHq" = (
 /obj/item/evidencebag,
@@ -10017,35 +9930,27 @@
 	pixel_x = 4;
 	pixel_y = 14
 	},
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
+/turf/open/floor/plating/warning,
 /area/ice_colony/surface/disposals)
 "aHr" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/machinery/light,
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/command/control)
 "aHs" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood/gibs/xeno/down,
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/command/control)
 "aHt" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/command/control)
 "aHu" = (
 /obj/structure/cable,
@@ -10064,7 +9969,6 @@
 "aHw" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/machinery/door/poddoor/mainship{
-	dir = 4;
 	id = "colony_admin_top";
 	name = "\improper Colony Administration Blast Door"
 	},
@@ -10617,9 +10521,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/dorms)
 "aJm" = (
 /obj/machinery/space_heater,
@@ -10641,9 +10543,7 @@
 /area/ice_colony/surface/dorms)
 "aJp" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/dorms)
 "aJq" = (
 /obj/structure/table/woodentable,
@@ -11111,9 +11011,7 @@
 	},
 /area/ice_colony/surface/hydroponics/north)
 "aLb" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/red2,
 /area/ice_colony/underground/responsehangar)
 "aLc" = (
@@ -11501,9 +11399,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/canteen)
 "aMp" = (
-/obj/machinery/firealarm{
-	dir = 2
-	},
+/obj/machinery/firealarm,
 /obj/structure/table,
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/canteen)
@@ -11557,9 +11453,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
 "aMx" = (
-/obj/machinery/firealarm{
-	dir = 2
-	},
+/obj/machinery/firealarm,
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
 "aMy" = (
@@ -11607,7 +11501,6 @@
 "aMH" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/security/glass/free_access{
-	dir = 4;
 	name = "\improper Colony Security Checkpoint"
 	},
 /turf/open/floor/tile/dark/red2{
@@ -11707,9 +11600,7 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/command/checkpoint)
 "aNb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -11807,7 +11698,7 @@
 /area/ice_colony/surface/hangar/checkpoint)
 "aNp" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor/westright{
+/obj/machinery/door/window/secure/westright{
 	name = "Security Desk"
 	},
 /obj/machinery/door/window/eastleft{
@@ -12003,7 +11894,7 @@
 /area/ice_colony/exterior/surface/clearing/south)
 "aNS" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor/westleft{
+/obj/machinery/door/window/secure/westleft{
 	name = "Security Desk"
 	},
 /obj/machinery/door/window/eastright{
@@ -12256,9 +12147,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/hangar/alpha)
 "aOL" = (
@@ -12276,9 +12165,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/hangar/alpha)
 "aOO" = (
@@ -12355,9 +12242,7 @@
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/hangar/checkpoint)
 "aOZ" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -12743,7 +12628,6 @@
 /area/ice_colony/surface/research)
 "aQm" = (
 /obj/machinery/door/airlock/mainship/secure/locked/free_access{
-	dir = 4;
 	id = "research_entrance";
 	name = "\improper Omicron Research Dome"
 	},
@@ -12770,9 +12654,7 @@
 /area/ice_colony/surface/bar/bar)
 "aQq" = (
 /obj/item/trash/raisins,
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
+/turf/open/floor/plating/warning,
 /area/ice_colony/surface/disposals)
 "aQr" = (
 /obj/structure/cable,
@@ -12815,9 +12697,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/hangar/alpha)
 "aQz" = (
@@ -12831,9 +12711,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/hangar/alpha)
 "aQB" = (
@@ -12929,9 +12807,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/hangar/beta)
 "aQM" = (
@@ -12955,9 +12831,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/hangar/beta)
 "aQQ" = (
@@ -13155,9 +13029,7 @@
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
 "aRo" = (
-/obj/structure/extinguisher_cabinet{
-	dir = 2
-	},
+/obj/structure/extinguisher_cabinet,
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
@@ -13591,17 +13463,13 @@
 	},
 /area/ice_colony/surface/research)
 "aSI" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/purple2/corner{
 	dir = 4
 	},
 /area/ice_colony/surface/research)
 "aSJ" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
@@ -13610,23 +13478,17 @@
 	},
 /area/ice_colony/surface/research)
 "aSK" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/brown2{
 	dir = 10
 	},
 /area/ice_colony/surface/research)
 "aSL" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/brown2,
 /area/ice_colony/surface/research)
 "aSM" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/machinery/door_control{
 	id = "researchoutside";
 	name = "Research Garage Lock";
@@ -14194,17 +14056,13 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
 /area/ice_colony/surface/research)
 "aUv" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/purple2/corner{
 	dir = 1
 	},
@@ -14473,7 +14331,6 @@
 	},
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 4;
 	name = "\improper Omicron Temporary Sample Storage"
 	},
 /turf/open/floor/tile/dark/yellow2{
@@ -14680,9 +14537,7 @@
 	},
 /area/ice_colony/surface/hangar/beta)
 "aVT" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -14712,9 +14567,7 @@
 	},
 /area/ice_colony/exterior/surface/container_yard)
 "aVY" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/structure/disposalpipe/segment{
 	dir = 8
 	},
@@ -14723,9 +14576,7 @@
 	},
 /area/ice_colony/surface/research)
 "aVZ" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/disposalpipe/segment/corner{
 	dir = 2
@@ -14749,9 +14600,7 @@
 	},
 /area/ice_colony/surface/hangar/alpha)
 "aWc" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/dark/purple2{
 	dir = 1
 	},
@@ -14776,9 +14625,7 @@
 	},
 /area/ice_colony/surface/hangar/alpha)
 "aWg" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/machinery/light,
 /turf/open/floor/tile/dark/purple2{
 	dir = 1
@@ -15153,9 +15000,7 @@
 	},
 /area/ice_colony/surface/hangar/alpha)
 "aXl" = (
-/obj/machinery/firealarm{
-	dir = 2
-	},
+/obj/machinery/firealarm,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
@@ -15336,9 +15181,7 @@
 	},
 /area/ice_colony/surface/hangar/alpha)
 "aXK" = (
-/obj/structure/cargo_container/horizontal{
-	dir = 2
-	},
+/obj/structure/cargo_container/horizontal,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
 "aXL" = (
@@ -16233,9 +16076,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor/plating/warning{
-	dir = 2
-	},
+/turf/open/floor/plating/warning,
 /area/ice_colony/underground/maintenance/east)
 "baN" = (
 /obj/structure/disposalpipe/segment,
@@ -16244,9 +16085,7 @@
 /turf/open/floor/plating/ground/snow/layer3,
 /area/ice_colony/exterior/surface/clearing/south)
 "baO" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "hangar_ice_1";
@@ -16260,9 +16099,7 @@
 	},
 /area/ice_colony/surface/hangar/alpha)
 "baP" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "hangar_ice_1";
@@ -16273,9 +16110,7 @@
 	},
 /area/ice_colony/surface/hangar/alpha)
 "baQ" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -16327,9 +16162,7 @@
 	},
 /area/ice_colony/underground/westroadtunnel)
 "baV" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "hangar_ice_2";
@@ -16351,9 +16184,7 @@
 	},
 /area/ice_colony/exterior/surface/cliff)
 "baX" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
 	id = "hangar_ice_2";
@@ -16377,9 +16208,7 @@
 	},
 /area/ice_colony/exterior/surface/cliff)
 "bba" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -16725,9 +16554,7 @@
 /area/ice_colony/exterior/surface/valley/south)
 "bcg" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
-/obj/machinery/firealarm{
-	dir = 2
-	},
+/obj/machinery/firealarm,
 /turf/open/floor/freezer,
 /area/ice_colony/underground/requesition/storage)
 "bch" = (
@@ -16740,7 +16567,6 @@
 /area/ice_colony/surface/excavation)
 "bcj" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	dir = 4;
 	name = "\improper Colony Xenoarcheology Outpost"
 	},
 /turf/open/floor/tile/dark2,
@@ -16808,9 +16634,7 @@
 	},
 /area/ice_colony/surface/research)
 "bcy" = (
-/obj/machinery/firealarm{
-	dir = 2
-	},
+/obj/machinery/firealarm,
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
@@ -17901,9 +17725,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
-/obj/machinery/firealarm{
-	dir = 2
-	},
+/obj/machinery/firealarm,
 /turf/open/floor/tile/dark/brown2{
 	dir = 5
 	},
@@ -18310,16 +18132,12 @@
 "bhv" = (
 /obj/structure/table,
 /obj/machinery/microwave,
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/excavation)
 "bhw" = (
 /obj/structure/table,
 /obj/item/storage/box/donkpockets,
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/excavation)
 "bhx" = (
 /obj/structure/cable,
@@ -18329,21 +18147,15 @@
 /area/ice_colony/underground/requesition)
 "bhy" = (
 /obj/structure/table,
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/excavation)
 "bhz" = (
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/excavation)
 "bhA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/light,
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/surface/excavation)
 "bhB" = (
 /obj/structure/bed/chair{
@@ -18464,9 +18276,7 @@
 	},
 /area/ice_colony/underground/requesition)
 "bhV" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition)
 "bhW" = (
@@ -18569,7 +18379,7 @@
 /obj/structure/table/woodentable{
 	icon_state = "reinf_table"
 	},
-/obj/machinery/door/window/brigdoor/southleft{
+/obj/machinery/door/window/secure/southleft{
 	name = "Requesitions Desk"
 	},
 /obj/machinery/door/window/southright{
@@ -18677,9 +18487,7 @@
 /obj/machinery/alarm{
 	dir = 8
 	},
-/obj/machinery/firealarm{
-	dir = 2
-	},
+/obj/machinery/firealarm,
 /turf/open/floor/tile/dark/brown2{
 	dir = 5
 	},
@@ -18834,9 +18642,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition/lobby)
 "bjq" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition/lobby)
@@ -19335,7 +19141,6 @@
 "blg" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/secure/locked/free_access{
-	dir = 4;
 	id = "st_17";
 	name = "\improper Power Storage Unit"
 	},
@@ -19653,9 +19458,7 @@
 	},
 /area/ice_colony/exterior/surface/valley/southwest)
 "bmo" = (
-/obj/machinery/firealarm{
-	dir = 2
-	},
+/obj/machinery/firealarm,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
@@ -20218,9 +20021,7 @@
 /obj/structure/table/reinforced,
 /obj/item/book/manual/marine_law,
 /obj/item/storage/donut_box,
-/obj/machinery/firealarm{
-	dir = 2
-	},
+/obj/machinery/firealarm,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
@@ -20297,9 +20098,7 @@
 /area/ice_colony/underground/hallway/north_west)
 "bop" = (
 /obj/structure/flora/pottedplant,
-/obj/machinery/firealarm{
-	dir = 2
-	},
+/obj/machinery/firealarm,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 5
 	},
@@ -20425,7 +20224,6 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/secure/free_access{
-	dir = 4;
 	name = "\improper Underground Morgue"
 	},
 /turf/open/floor/tile/dark2,
@@ -20439,8 +20237,7 @@
 "boO" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/lowcharge{
-	dir = 4;
-	icon_state = "apc0"
+	dir = 4
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 8
@@ -20675,7 +20472,6 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/generic{
-	dir = 4;
 	name = "\improper Underground Requesitions Freezer"
 	},
 /turf/open/floor/freezer,
@@ -20775,11 +20571,10 @@
 /area/ice_colony/underground/hallway/south_east)
 "bpY" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor/eastleft{
-	icon_state = "leftsecure";
+/obj/machinery/door/window/secure/eastleft{
 	id = "brg"
 	},
-/obj/machinery/door/window/brigdoor/westleft{
+/obj/machinery/door/window/secure/westleft{
 	id = "brg"
 	},
 /obj/structure/paper_bin,
@@ -21240,9 +21035,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/engineering)
 "brw" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/requesition)
@@ -21331,9 +21124,7 @@
 /obj/machinery/power/apc/drained{
 	dir = 1
 	},
-/turf/open/floor/tile/red/whitered{
-	dir = 2
-	},
+/turf/open/floor/tile/red/whitered,
 /area/ice_colony/underground/medical/treatment)
 "brR" = (
 /obj/structure/bed/chair,
@@ -21403,7 +21194,6 @@
 "bse" = (
 /obj/machinery/door/poddoor/mainship{
 	density = 0;
-	dir = 4;
 	icon_state = "pdoor0";
 	id = "Colony_PMC_Hangar";
 	name = "\improper Forced Blast Door";
@@ -21434,7 +21224,6 @@
 "bsk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
-	dir = 4;
 	name = "\improper Underground Medical Laboratory"
 	},
 /turf/open/floor/tile/dark2,
@@ -21612,8 +21401,7 @@
 "bsR" = (
 /obj/structure/table/reinforced,
 /obj/structure/paper_bin,
-/obj/machinery/door/window/brigdoor/southleft{
-	icon_state = "leftsecure";
+/obj/machinery/door/window/secure/southleft{
 	id = "brg";
 	name = "Security Desk"
 	},
@@ -22148,9 +21936,7 @@
 /obj/machinery/power/apc/drained{
 	dir = 1
 	},
-/turf/open/floor/tile/red/whitered{
-	dir = 2
-	},
+/turf/open/floor/tile/red/whitered,
 /area/ice_colony/underground/medical/hallway)
 "buz" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -22298,8 +22084,7 @@
 	},
 /obj/effect/decal/warning_stripes,
 /obj/structure/hoop{
-	dir = 8;
-	icon_state = "hoop"
+	dir = 8
 	},
 /obj/structure/window/reinforced{
 	dir = 4
@@ -22320,7 +22105,6 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	dir = 4;
 	name = "\improper Underground Sports Center"
 	},
 /turf/open/floor/tile/dark2,
@@ -22488,7 +22272,7 @@
 /area/ice_colony/underground/medical/lobby)
 "bvv" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor/northright,
+/obj/machinery/door/window/secure/northright,
 /obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
 /turf/open/floor/tile/red/whitered{
@@ -22630,8 +22414,7 @@
 	},
 /obj/effect/decal/warning_stripes,
 /obj/structure/hoop{
-	dir = 4;
-	icon_state = "hoop"
+	dir = 4
 	},
 /obj/structure/window/reinforced{
 	dir = 8
@@ -22680,9 +22463,7 @@
 	},
 /area/ice_colony/underground/medical/lobby)
 "bvZ" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/structure/window/reinforced,
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
@@ -22693,9 +22474,7 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/medical/lobby)
 "bwb" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -22709,9 +22488,7 @@
 /obj/effect/decal/warning_stripes{
 	icon_state = "E-corner"
 	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -22766,9 +22543,7 @@
 	},
 /area/ice_colony/underground/medical/or)
 "bwk" = (
-/turf/open/floor/tile/red/whitered{
-	dir = 2
-	},
+/turf/open/floor/tile/red/whitered,
 /area/ice_colony/underground/medical/or)
 "bwl" = (
 /obj/structure/disposalpipe/segment/corner{
@@ -22789,7 +22564,6 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	dir = 4;
 	name = "\improper Underground Medical Laboratory Lobby"
 	},
 /turf/open/floor/tile/white,
@@ -22912,7 +22686,7 @@
 /area/ice_colony/underground/medical/lobby)
 "bwF" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor/westleft,
+/obj/machinery/door/window/secure/westleft,
 /obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
 /turf/open/floor/tile/red/whitered{
@@ -22984,9 +22758,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -23014,9 +22786,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/medical/treatment)
 "bwU" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -23027,9 +22797,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
 "bwV" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -23038,9 +22806,7 @@
 /area/ice_colony/underground/crew/bball)
 "bwW" = (
 /obj/effect/decal/warning_stripes/nscenter,
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/structure/window/reinforced,
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball)
@@ -23219,9 +22985,7 @@
 /obj/machinery/power/apc/drained{
 	dir = 1
 	},
-/turf/open/floor/tile/red/whitered{
-	dir = 2
-	},
+/turf/open/floor/tile/red/whitered,
 /area/ice_colony/underground/medical/storage)
 "bxD" = (
 /obj/structure/bed/chair/wood/normal{
@@ -23266,21 +23030,15 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/engineering)
 "bxJ" = (
-/turf/open/floor/tile/red/whitered{
-	dir = 2
-	},
+/turf/open/floor/tile/red/whitered,
 /area/ice_colony/underground/medical/lobby)
 "bxK" = (
 /obj/structure/reagent_dispensers/water_cooler,
-/turf/open/floor/tile/red/whitered{
-	dir = 2
-	},
+/turf/open/floor/tile/red/whitered,
 /area/ice_colony/underground/medical/lobby)
 "bxL" = (
 /obj/structure/filingcabinet,
-/turf/open/floor/tile/red/whitered{
-	dir = 2
-	},
+/turf/open/floor/tile/red/whitered,
 /area/ice_colony/underground/medical/lobby)
 "bxM" = (
 /obj/structure/filingcabinet,
@@ -23380,9 +23138,7 @@
 /area/ice_colony/underground/medical/treatment)
 "bya" = (
 /obj/machinery/body_scanconsole,
-/turf/open/floor/tile/red/whitered{
-	dir = 2
-	},
+/turf/open/floor/tile/red/whitered,
 /area/ice_colony/underground/medical/treatment)
 "byb" = (
 /obj/machinery/power/apc/drained{
@@ -23398,17 +23154,13 @@
 /area/ice_colony/underground/maintenance/engineering)
 "byd" = (
 /obj/structure/curtain/medical,
-/turf/open/floor/tile/red/whitered{
-	dir = 2
-	},
+/turf/open/floor/tile/red/whitered,
 /area/ice_colony/underground/medical/treatment)
 "bye" = (
 /obj/structure/bed,
 /obj/item/bedsheet/medical,
 /obj/machinery/light/small,
-/turf/open/floor/tile/red/whitered{
-	dir = 2
-	},
+/turf/open/floor/tile/red/whitered,
 /area/ice_colony/underground/medical/treatment)
 "byf" = (
 /obj/structure/curtain/medical,
@@ -23623,9 +23375,7 @@
 	},
 /area/ice_colony/underground/command/center)
 "byN" = (
-/obj/machinery/firealarm{
-	dir = 2
-	},
+/obj/machinery/firealarm,
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/ice_colony/underground/security/detective)
@@ -23678,9 +23428,7 @@
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/ice_colony/underground/crew/canteen)
 "byX" = (
-/obj/machinery/firealarm{
-	dir = 2
-	},
+/obj/machinery/firealarm,
 /turf/open/floor/wood,
 /area/ice_colony/underground/security/marshal)
 "byY" = (
@@ -23712,9 +23460,7 @@
 	},
 /area/ice_colony/underground/medical/hallway)
 "bzd" = (
-/turf/open/floor/tile/red/whitered{
-	dir = 2
-	},
+/turf/open/floor/tile/red/whitered,
 /area/ice_colony/underground/medical/hallway)
 "bze" = (
 /obj/structure/cable,
@@ -23890,9 +23636,7 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/command/pv1)
 "bzI" = (
-/obj/machinery/firealarm{
-	dir = 2
-	},
+/obj/machinery/firealarm,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 5
 	},
@@ -24250,15 +23994,11 @@
 /area/ice_colony/underground/medical/storage)
 "bAQ" = (
 /obj/structure/closet/secure_closet/medical3/colony,
-/turf/open/floor/tile/red/whitered{
-	dir = 2
-	},
+/turf/open/floor/tile/red/whitered,
 /area/ice_colony/underground/medical/storage)
 "bAR" = (
 /obj/structure/closet/secure_closet/medical1/colony,
-/turf/open/floor/tile/red/whitered{
-	dir = 2
-	},
+/turf/open/floor/tile/red/whitered,
 /area/ice_colony/underground/medical/storage)
 "bAS" = (
 /obj/structure/bed/chair/comfy/brown,
@@ -24268,21 +24008,15 @@
 /area/ice_colony/underground/command/pv2)
 "bAT" = (
 /obj/machinery/iv_drip,
-/turf/open/floor/tile/red/whitered{
-	dir = 2
-	},
+/turf/open/floor/tile/red/whitered,
 /area/ice_colony/underground/medical/storage)
 "bAU" = (
 /obj/structure/bed/roller,
-/turf/open/floor/tile/red/whitered{
-	dir = 2
-	},
+/turf/open/floor/tile/red/whitered,
 /area/ice_colony/underground/medical/storage)
 "bAV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/red/whitered{
-	dir = 2
-	},
+/turf/open/floor/tile/red/whitered,
 /area/ice_colony/underground/medical/storage)
 "bAW" = (
 /turf/open/floor/tile/dark/blue2{
@@ -24396,9 +24130,7 @@
 	},
 /area/ice_colony/underground/security/hallway)
 "bBn" = (
-/obj/machinery/firealarm{
-	dir = 2
-	},
+/obj/machinery/firealarm,
 /obj/structure/bed/chair,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
@@ -24644,7 +24376,6 @@
 /area/ice_colony/underground/responsehangar)
 "bBU" = (
 /obj/machinery/door/poddoor/mainship{
-	dir = 4;
 	id = "Colony_PMC_Hangar";
 	name = "\improper Colony Response Team Hangar"
 	},
@@ -25021,17 +24752,13 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
 	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/underground/command/center)
 "bDg" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/underground/command/center)
 "bDh" = (
 /obj/structure/table/reinforced,
@@ -25115,22 +24842,16 @@
 "bDq" = (
 /obj/structure/table,
 /obj/structure/paper_bin,
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/underground/command/center)
 "bDr" = (
 /obj/structure/table,
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/underground/command/center)
 "bDs" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/underground/command/center)
 "bDt" = (
 /obj/structure/bed/chair,
@@ -25694,34 +25415,24 @@
 "bFi" = (
 /obj/structure/table/reinforced,
 /obj/item/circuitboard/machine/smes,
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/underground/storage/highsec)
 "bFj" = (
 /obj/structure/table/reinforced,
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/underground/storage/highsec)
 "bFk" = (
 /obj/structure/table/reinforced,
 /obj/item/circuitboard/computer/crew,
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/underground/storage/highsec)
 "bFl" = (
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/underground/storage/highsec)
 "bFm" = (
 /obj/structure/table/reinforced,
 /obj/item/circuitboard/computer/powermonitor,
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/underground/storage/highsec)
 "bFn" = (
 /obj/structure/filingcabinet,
@@ -25733,16 +25444,12 @@
 /obj/item/spacecash/c100,
 /obj/item/spacecash/c10,
 /obj/item/spacecash/c1,
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/underground/storage/highsec)
 "bFp" = (
 /obj/structure/table/reinforced,
 /obj/item/toy/farwadoll,
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/underground/storage/highsec)
 "bFq" = (
 /obj/structure/table/reinforced,
@@ -25777,13 +25484,10 @@
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/dorm_l)
 "bFw" = (
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/underground/command/center)
 "bFx" = (
 /obj/machinery/door/poddoor/mainship{
-	dir = 4;
 	id = "Colony_PMC_Hangar";
 	name = "\improper Colony Response Team Hangar"
 	},
@@ -25791,9 +25495,7 @@
 /area/ice_colony/underground/responsehangar)
 "bFy" = (
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/underground/command/center)
 "bFz" = (
 /obj/structure/flora/pottedplant,
@@ -25878,9 +25580,7 @@
 /obj/structure/table/reinforced,
 /obj/item/book/manual/marine_law,
 /obj/item/storage/donut_box,
-/obj/machinery/firealarm{
-	dir = 2
-	},
+/obj/machinery/firealarm,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
@@ -26021,10 +25721,10 @@
 /area/ice_colony/underground/security/hallway)
 "bGg" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor/eastleft{
+/obj/machinery/door/window/secure/eastleft{
 	id = "brg"
 	},
-/obj/machinery/door/window/brigdoor/westleft{
+/obj/machinery/door/window/secure/westleft{
 	id = "brg"
 	},
 /obj/structure/paper_bin,
@@ -26564,7 +26264,7 @@
 	pixel_x = -6
 	},
 /obj/structure/paper_bin,
-/obj/machinery/door/window/brigdoor/westright{
+/obj/machinery/door/window/secure/westright{
 	name = "Security Desk"
 	},
 /obj/machinery/door/window/eastleft{
@@ -26598,7 +26298,6 @@
 	},
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	dir = 4;
 	name = "\improper Underground Medical Laboratory Treatment"
 	},
 /turf/open/floor/tile/white,
@@ -26806,9 +26505,7 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security)
 "bIw" = (
-/obj/machinery/firealarm{
-	dir = 2
-	},
+/obj/machinery/firealarm,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
@@ -26900,9 +26597,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/underground/command/checkpoint)
 "bIO" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -26983,35 +26678,27 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/underground/command/checkpoint)
 "bJa" = (
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access{
 	dir = 1;
 	name = "\improper Colony Offices"
 	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/underground/command/checkpoint)
 "bJb" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
 	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/underground/command/checkpoint)
 "bJc" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /obj/machinery/light,
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/underground/command/checkpoint)
 "bJd" = (
 /obj/machinery/vending/cigarette/colony,
@@ -27141,7 +26828,6 @@
 	},
 /obj/structure/cable,
 /turf/open/floor{
-	dir = 2;
 	icon_state = "cafeteria"
 	},
 /area/ice_colony/underground/medical/treatment)
@@ -27327,9 +27013,7 @@
 	},
 /area/ice_colony/underground/responsehangar)
 "bKe" = (
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/underground/command/checkpoint)
 "bKf" = (
 /obj/structure/cable,
@@ -27660,9 +27344,8 @@
 	},
 /area/ice_colony/underground/security/brig)
 "bLf" = (
-/obj/machinery/door/window/brigdoor/westleft{
+/obj/machinery/door/window/secure/westleft{
 	dir = 4;
-	icon_state = "leftsecure";
 	id = "brg"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -27808,9 +27491,7 @@
 /area/ice_colony/underground/hallway/south_east)
 "bLJ" = (
 /obj/structure/cable,
-/obj/machinery/firealarm{
-	dir = 2
-	},
+/obj/machinery/firealarm,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 1
 	},
@@ -27897,9 +27578,7 @@
 	},
 /area/ice_colony/underground/crew/disposals)
 "bMa" = (
-/obj/machinery/firealarm{
-	dir = 2
-	},
+/obj/machinery/firealarm,
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
@@ -28139,9 +27818,8 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security/armory)
 "bMQ" = (
-/obj/machinery/door/window/brigdoor/westleft{
+/obj/machinery/door/window/secure/westleft{
 	dir = 1;
-	icon_state = "leftsecure";
 	id = "brg"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -28243,7 +27921,6 @@
 /area/ice_colony/underground/hangar)
 "bNf" = (
 /obj/machinery/door/poddoor/mainship{
-	dir = 4;
 	id = "Colony_PMC_Hangar";
 	name = "\improper Colony Response Team Hangar"
 	},
@@ -28773,8 +28450,7 @@
 	dir = 1
 	},
 /obj/structure/disposaloutlet{
-	dir = 4;
-	icon_state = "outlet"
+	dir = 4
 	},
 /turf/open/floor/plating/warning{
 	dir = 1
@@ -29761,7 +29437,7 @@
 /area/ice_colony/exterior/surface/valley/south)
 "bSg" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor/westleft{
+/obj/machinery/door/window/secure/westleft{
 	name = "Security Desk"
 	},
 /obj/machinery/door/window/eastright{
@@ -29940,9 +29616,7 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/hallway/north_west)
 "bSM" = (
-/obj/machinery/firealarm{
-	dir = 2
-	},
+/obj/machinery/firealarm,
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/hallway/north_west)
 "bSN" = (
@@ -30085,7 +29759,6 @@
 /area/ice_colony/underground/engineering)
 "bTm" = (
 /obj/machinery/door/airlock/mainship/generic{
-	dir = 4;
 	name = "\improper Underground Lavatory"
 	},
 /turf/open/floor/tile/white,
@@ -30406,7 +30079,6 @@
 /area/ice_colony/underground/hallway/south_east)
 "bUw" = (
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
 	id = "mining_garage";
 	name = "\improper Garage Shutters"
 	},
@@ -30623,8 +30295,8 @@
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bVj" = (
-/obj/machinery/door/window/brigdoor/northleft,
-/obj/machinery/door/window/brigdoor/southright,
+/obj/machinery/door/window/secure/northleft,
+/obj/machinery/door/window/secure/southright,
 /obj/structure/table/reinforced,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -31212,7 +30884,6 @@
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bXg" = (
 /obj/machinery/door/poddoor/shutters/mainship{
-	dir = 4;
 	id = "mining_garage";
 	name = "\improper Garage Shutters"
 	},
@@ -31483,17 +31154,13 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bXU" = (
-/obj/structure/ore_box{
-	anchored = 0
-	},
+/obj/structure/ore_box,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
 /area/ice_colony/surface/excavationbarracks)
 "bXV" = (
-/obj/structure/ore_box{
-	anchored = 0
-	},
+/obj/structure/ore_box,
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -31577,9 +31244,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "bYj" = (
-/obj/machinery/firealarm{
-	dir = 2
-	},
+/obj/machinery/firealarm,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 9
 	},
@@ -31805,9 +31470,7 @@
 /turf/open/floor/tile/white,
 /area/ice_colony/underground/hallway/north_west)
 "bYU" = (
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/underground/hallway/south_east)
 "bYV" = (
 /obj/structure/rack,
@@ -31974,7 +31637,6 @@
 /area/ice_colony/underground/hangar)
 "bZt" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
-	dir = 4;
 	name = "\improper Underground Engineering Locker Room"
 	},
 /turf/open/floor/tile/dark2,
@@ -32409,9 +32071,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/tile/red/whitered{
-	dir = 2
-	},
+/turf/open/floor/tile/red/whitered,
 /area/ice_colony/underground/medical/or)
 "cbS" = (
 /obj/item/ammo_casing/bullet,
@@ -32463,16 +32123,12 @@
 "ccA" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/corpsespawner/pmc,
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/underground/command/center)
 "ccB" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/drip,
-/turf/open/floor/tile/dark/blue2{
-	dir = 2
-	},
+/turf/open/floor/tile/dark/blue2,
 /area/ice_colony/underground/command/center)
 "ccC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -33203,9 +32859,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/button/door/open_only/landing_zone/lz2{
-	dir = 2
-	},
+/obj/machinery/button/door/open_only/landing_zone/lz2,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/surface/landing_pad_external)
 "izd" = (

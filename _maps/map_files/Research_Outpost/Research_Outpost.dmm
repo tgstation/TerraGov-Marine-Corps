@@ -1263,13 +1263,12 @@
 /area/outpost/cargo)
 "hb" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor/eastleft,
+/obj/machinery/door/window/secure/eastleft,
 /obj/item/weapon/shield/riot,
 /turf/open/floor/tile/dark,
 /area/outpost/brig/armoury)
 "hd" = (
 /obj/machinery/door/airlock/mainship/security/glass/free_access{
-	dir = 4;
 	name = "\improper Marshal Office Armory"
 	},
 /turf/open/floor/tile/dark,
@@ -2039,9 +2038,7 @@
 	},
 /area/outpost/hallway/south_cent)
 "kS" = (
-/obj/machinery/atmospherics/components/unary/thermomachine/freezer{
-	dir = 2
-	},
+/obj/machinery/atmospherics/components/unary/thermomachine/freezer,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
@@ -2525,7 +2522,7 @@
 /area/outpost/medbay)
 "ny" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor/southright,
+/obj/machinery/door/window/secure/southright,
 /turf/open/floor/tile/dark,
 /area/outpost/brig/wardens_office)
 "nB" = (
@@ -2891,11 +2888,6 @@
 	dir = 5
 	},
 /area/outpost/hallway/south_west)
-"po" = (
-/turf/open/floor/plating/asteroidwarning{
-	dir = 2
-	},
-/area/outpost/lz2)
 "pr" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -40379,7 +40371,7 @@ io
 io
 Hr
 gT
-po
+BM
 hY
 Zm
 Qz
@@ -40637,7 +40629,7 @@ Qz
 Qz
 lD
 gT
-po
+BM
 hY
 hY
 hY
