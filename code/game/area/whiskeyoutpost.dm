@@ -3,6 +3,20 @@
 	icon_state = "green"
 	ceiling = CEILING_METAL
 
+/area/whiskey_outpost/outside
+	name = "Unused"
+	icon_state = "green"
+	ceiling = CEILING_NONE
+
+	requires_power = TRUE
+	always_unpowered = TRUE
+	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
+	power_light = FALSE
+	power_equip = FALSE
+	power_environ = FALSE
+	outside = FALSE
+
+
 /area/whiskey_outpost/outside/north
 	name = "Whiskey Outpost North"
 	icon_state = "north"
@@ -18,16 +32,3 @@
 /area/whiskey_outpost/outside/south
 	name = "Whiskey Outpost South"
 	icon_state = "south"
-
-
-/area/whiskey_outpost/outside
-	name = "Unused"
-	icon_state = "green"
-	ceiling = CEILING_NONE
-
-	requires_power = 1
-	always_unpowered = 1
-	dynamic_lighting = DYNAMIC_LIGHTING_ENABLED
-	power_light = 0
-	power_equip = 0
-	power_environ = 0

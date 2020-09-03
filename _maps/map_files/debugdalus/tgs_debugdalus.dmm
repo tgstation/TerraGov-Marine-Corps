@@ -2147,7 +2147,7 @@
 /area/space)
 "agC" = (
 /obj/structure/table/reinforced,
-/obj/machinery/door/window/eastleft/req,
+/obj/machinery/door/window/secure/eastleft/req,
 /obj/machinery/door/window/westright,
 /turf/open/floor/mainship{
 	pixel_z = -1
@@ -2619,7 +2619,6 @@
 /area/mainship/medical/operating_room_three)
 "ahT" = (
 /obj/machinery/door/poddoor/railing{
-	dir = 4;
 	id = "supply_elevator_railing"
 	},
 /turf/open/floor/mainship{
@@ -3459,9 +3458,7 @@
 	},
 /area/mainship/squads/charlie)
 "aky" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "akz" = (
