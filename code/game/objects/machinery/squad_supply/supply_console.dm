@@ -7,7 +7,7 @@
 	interaction_flags = INTERACT_MACHINE_TGUI
 
 	var/launch_cooldown = 2 MINUTES
-	var/next_fire = 0
+	COOLDOWN_DECLARE(next_fire)
 
 	var/squad_lock = null
 	var/datum/squad/current_squad = null
@@ -52,8 +52,7 @@
 		"y_coords" = current_squad?.sbeacon?.loc.y
 	)
 	.["supplies_count"] = length(supplies)
-	.["next_fire"] = next_fire
-	.["current_time"] = world.time
+	.["next_fire"] = COOLDOWN_TIMELEFT(src, next_fire)
 	.["x_offset"] = x_offset
 	.["y_offset"] = y_offset
 
@@ -87,7 +86,7 @@
 			refresh_squad_pad()
 
 		if("send_beacon")
-			if(next_fire > world.time)
+			if(!COOLDOWN_CHECK(src, next_fire))
 				return
 
 			if(!current_squad?.sbeacon)
@@ -111,7 +110,7 @@
 				to_chat(usr, "[icon2html(src, usr)] <span class='warning'>The [current_squad.sbeacon.name]'s landing zone appears to be obstructed or out of bounds.</span>")
 				return
 
-			next_fire = world.time + launch_cooldown
+			COOLDOWN_START(src, next_fire, launch_cooldown)
 			current_squad.send_supplydrop(supplies, x_offset, y_offset)
 			to_chat(world, "Beacon sent to [current_squad.sbeacon]")
 

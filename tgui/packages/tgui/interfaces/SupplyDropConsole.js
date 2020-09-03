@@ -15,7 +15,7 @@ export const SupplyDropConsole = (_props, context) => {
   const { act, data } = useBackend(context);
 
 
-  const timeLeft = Math.max(0, data.next_fire - data.current_time);
+  const timeLeft = data.next_fire;
   const timeLeftPct = timeLeft / data.launch_cooldown;
 
   const beacon = data.current_beacon;
