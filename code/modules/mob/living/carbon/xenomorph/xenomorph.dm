@@ -90,7 +90,7 @@
 
 /mob/living/carbon/xenomorph/proc/generate_nicknumber()
 	//We don't have a nicknumber yet, assign one to stick with us
-	if(!nicknumber)
+	if(!nicknumber || nicknumber == "Undefined")
 		var/tempnumber = rand(1, 999)
 		var/list/xenolist = hive.get_all_xenos(FALSE)
 		while(tempnumber in xenolist)
@@ -205,10 +205,8 @@
 	remove_from_hive()
 
 	vis_contents -= wound_overlay
-	QDEL_NULL(wound_overlay)
-
 	. = ..()
-
+	QDEL_NULL(wound_overlay)
 
 
 /mob/living/carbon/xenomorph/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)

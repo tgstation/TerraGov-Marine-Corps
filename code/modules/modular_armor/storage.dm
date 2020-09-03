@@ -78,7 +78,7 @@
 
 /obj/item/storage/internal/modular/general
 	max_storage_space = 10
-	storage_slots = 3
+	storage_slots = 2
 	max_w_class = WEIGHT_CLASS_NORMAL
 	can_hold = list(
 		/obj/item/weapon/combat_knife,
@@ -148,7 +148,14 @@
 		/obj/item/stack/rods,
 		/obj/item/stack/cable_coil,
 		/obj/item/tool/shovel/etool,
-		/obj/item/stack/sandbags_empty)
+		/obj/item/stack/sandbags_empty,
+		/obj/item/tool/wrench,
+		/obj/item/tool/weldingtool,
+		/obj/item/tool/wirecutters,
+		/obj/item/tool/crowbar,
+		/obj/item/tool/screwdriver,
+		/obj/item/multitool,
+		)
 	cant_hold = list()
 
 /obj/item/armor_module/storage/medical

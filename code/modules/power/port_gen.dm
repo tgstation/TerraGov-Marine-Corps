@@ -84,11 +84,11 @@
 	name = "\improper P.A.C.M.A.N.-type portable generator"
 	circuit = /obj/item/circuitboard/machine/pacman
 	var/sheets = 0
-	var/max_sheets = 100
+	var/max_sheets = 10
 	var/sheet_name = ""
 	var/sheet_path = /obj/item/stack/sheet/mineral/phoron
 	var/sheet_left = 0 // How much is left of the sheet
-	var/time_per_sheet = 580
+	var/time_per_sheet = 300
 	var/current_heat = 0
 	power_gen = 15000
 	interaction_flags = INTERACT_MACHINE_TGUI

@@ -274,7 +274,11 @@
 	apply_clickcatcher()
 
 	if(prefs.lastchangelog != GLOB.changelog_hash) //bolds the changelog button on the interface so we know there are updates.
-		winset(src, "infowindow.changelog", "font-style=bold")
+		to_chat(src, "<span class='info'>You have unread updates in the changelog.</span>")
+		if(CONFIG_GET(flag/aggressive_changelog))
+			changes()
+		else
+			winset(src, "infowindow.changelog", "font-style=bold")
 
 	if(ckey in GLOB.clientmessages)
 		for(var/message in GLOB.clientmessages[ckey])

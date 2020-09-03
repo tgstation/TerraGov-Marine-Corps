@@ -514,28 +514,40 @@ REAGENT SCANNER
 
 
 /obj/item/analyzer/attack_self(mob/user as mob)
-
-	if (user.stat)
+	..()
+	var/turf/T = get_turf(user)
+	if(!T)
 		return
 
-	var/turf/location = user.loc
-	if (!( istype(location, /turf) ))
+	playsound(src, 'sound/effects/pop.ogg', 100)
+	var/area/user_area = T.loc
+	var/datum/weather/ongoing_weather = null
+
+	if(!user_area.outside)
+		to_chat(user, "<span class='warning'>[src]'s barometer function won't work indoors!</span>")
 		return
 
-	var/env_pressure = location.return_pressure()
-	var/env_gas = location.return_gas()
-	var/env_temp = location.return_temperature()
+	for(var/V in SSweather.processing)
+		var/datum/weather/W = V
+		if(W.barometer_predictable && (T.z in W.impacted_z_levels) && W.area_type == user_area.type && !(W.stage == END_STAGE))
+			ongoing_weather = W
+			break
 
-	user.show_message("<span class='boldnotice'>Results:</span>", 1)
-	if(abs(env_pressure - ONE_ATMOSPHERE) < 10)
-		user.show_message("<span class='notice'> Pressure: [round(env_pressure,0.1)] kPa</span>", 1)
+	if(ongoing_weather)
+		if((ongoing_weather.stage == MAIN_STAGE) || (ongoing_weather.stage == WIND_DOWN_STAGE))
+			to_chat(user, "<span class='warning'>[src]'s barometer function can't trace anything while the storm is [ongoing_weather.stage == MAIN_STAGE ? "already here!" : "winding down."]</span>")
+			return
+
+		to_chat(user, "<span class='notice'>The next [ongoing_weather] will hit in [(ongoing_weather.next_hit_time - world.time)/10] Seconds.</span>")
+		if(ongoing_weather.aesthetic)
+			to_chat(user, "<span class='warning'>[src]'s barometer function says that the next storm will breeze on by.</span>")
 	else
-		user.show_message("<span class='warning'> Pressure: [round(env_pressure,0.1)] kPa</span>", 1)
-	if(env_pressure > 0)
-		user.show_message("<span class='notice'> Gas Type: [env_gas]</span>", 1)
-		user.show_message("<span class='notice'> Temperature: [round(env_temp-T0C)]&deg;C</span>", 1)
-
-	return
+		var/next_hit = SSweather.next_hit_by_zlevel["[T.z]"]
+		var/fixed = next_hit ? timeleft(next_hit) : -1
+		if(fixed < 0)
+			to_chat(user, "<span class='warning'>[src]'s barometer function was unable to trace any weather patterns.</span>")
+		else
+			to_chat(user, "<span class='warning'>[src]'s barometer function says a storm will land in approximately [fixed/10] Seconds].</span>")
 
 /obj/item/mass_spectrometer
 	desc = "A hand-held mass spectrometer which identifies trace chemicals in a blood sample."
