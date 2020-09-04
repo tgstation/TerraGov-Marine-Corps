@@ -1,0 +1,4 @@
+author: "2whatever2"
+delete-after: True
+changes: 
+  - tweak: "Raises the cool down on ravagers charge and raises the plasma cost (6 seconds to 10, 250 plasma to 300 plasma)"
