@@ -13,13 +13,10 @@
 	var/toggle_path
 	if(ishuman(parent))
 		bump_action_path = .proc/human_bump_action
-		cross_action_path = .proc/human_bump_action
 	else if(isxeno(parent))
 		bump_action_path = .proc/xeno_bump_action
-		cross_action_path = .proc/xeno_bump_action
 	else
 		bump_action_path = .proc/living_bump_action
-		cross_action_path = .proc/living_bump_action
 	toggle_path = .proc/living_activation_toggle
 	toggle_action.give_action(parent)
 	toggle_action.update_button_icon(active)
