@@ -46,6 +46,7 @@
 	icon_state = "bluenew"
 	ceiling = CEILING_UNDERGROUND
 	outside = FALSE
+	ambience = list('sound/ambience/ambicave.ogg', 'sound/ambience/ambilava1.ogg', 'sound/ambience/ambilava2.ogg', 'sound/ambience/ambilava3.ogg')
 
 /area/bigredv2/caves/north
 	name = "Northern Caves"

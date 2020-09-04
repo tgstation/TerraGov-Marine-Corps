@@ -214,11 +214,6 @@
 	icon_state = "containment_corner_4"
 
 
-
-
-
-
-
 //Outerhull
 
 /turf/open/floor/mainship_hull
@@ -229,9 +224,6 @@
 
 /turf/open/floor/mainship_hull/dir
 	icon_state = "outerhull_dir"
-
-
-
 
 
 //***********
