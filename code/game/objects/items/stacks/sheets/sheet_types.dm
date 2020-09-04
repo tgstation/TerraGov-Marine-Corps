@@ -69,7 +69,7 @@ GLOBAL_LIST_INIT(metal_recipes, list ( \
 	desc = "Sheets made out of metal. It has been dubbed Metal Sheets."
 	singular_name = "metal sheet"
 	icon_state = "sheet-metal"
-	materials = list(/datum/material/metal = 3750)
+	materials = list(/datum/material/metal = 4000)
 	throwforce = 14.0
 	flags_atom = CONDUCT
 	merge_type = /obj/item/stack/sheet/metal

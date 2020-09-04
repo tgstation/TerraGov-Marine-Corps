@@ -1,0 +1,6 @@
+author: "Hathkar"
+delete-after: True
+changes: 
+  - code_imp: "Resin, catwalk, vent, and scrubber layers."
+  - code_imp: "Weeds can now be planted and spread to catwalks. Incidentally, this makes it so that pipes/wires are layered under resin."
+  - code_imp: "Girders now check the turf they're on before being wrenched down."

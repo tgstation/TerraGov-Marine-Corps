@@ -301,11 +301,10 @@
 	else
 		new_xeno.key = key
 
-	//Pass on the unique nicknumber, then regenerate the new mob's name now that our player is inside
+	//Pass on the unique nicknumber, then regenerate the new mob's name on Login()
 	new_xeno.nicknumber = nicknumber
 	new_xeno.hivenumber = hivenumber
 	new_xeno.transfer_to_hive(hivenumber)
-	new_xeno.generate_name()
 
 	if(new_xeno.health - getBruteLoss(src) - getFireLoss(src) > 0) //Cmon, don't kill the new one! Shouldnt be possible though
 		new_xeno.bruteloss = src.bruteloss //Transfers the damage over.

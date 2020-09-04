@@ -1058,7 +1058,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/shoes/marine,
 						/obj/item/attachable/bayonetknife,
 						/obj/item/storage/box/MRE,
-						/obj/item/armor_module/attachable/better_shoulder_lamp,
 						/obj/item/facepaint/green,
 						)
 
@@ -1077,7 +1076,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/shoes/marine,
 						/obj/item/attachable/bayonetknife,
 						/obj/item/storage/box/MRE,
-						/obj/item/armor_module/attachable/better_shoulder_lamp,
 						/obj/item/facepaint/green,
 						)
 
@@ -1120,7 +1118,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/shoes/marine,
 						/obj/item/attachable/bayonetknife,
 						/obj/item/storage/box/MRE,
-						/obj/item/armor_module/attachable/better_shoulder_lamp,
 						/obj/item/facepaint/green,
 						)
 
@@ -1143,7 +1140,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/shoes/marine,
 						/obj/item/attachable/bayonetknife,
 						/obj/item/storage/box/MRE,
-						/obj/item/armor_module/attachable/better_shoulder_lamp,
 						/obj/item/facepaint/green,
 						)
 
@@ -1167,7 +1163,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/shoes/marine,
 						/obj/item/attachable/bayonetknife,
 						/obj/item/storage/box/MRE,
-						/obj/item/armor_module/attachable/better_shoulder_lamp,
 						/obj/item/clothing/gloves/marine/insulated,
 						/obj/item/facepaint/green,
 						)
