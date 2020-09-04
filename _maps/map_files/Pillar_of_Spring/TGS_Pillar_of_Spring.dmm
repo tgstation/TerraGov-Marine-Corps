@@ -5082,9 +5082,9 @@
 /turf/closed/wall/mainship/outer,
 /area/mainship/hallways/starboard_hallway)
 "sH" = (
-/obj/effect/landmark/start/job/squadspecialist,
+/obj/machinery/marine_selector/gear/smartgun,
 /turf/open/floor/mainship,
-/area/mainship/living/cryo_cells)
+/area/mainship/squads/general)
 "sI" = (
 /obj/machinery/door/airlock/mainship/command/officer{
 	dir = 2
@@ -5108,15 +5108,15 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
 "sK" = (
-/obj/structure/closet/firecloset,
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/mask/gas,
-/turf/open/floor/mainship/cargo,
-/area/mainship/hallways/starboard_hallway)
+/obj/machinery/marine_selector/clothes/smartgun,
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
 "sL" = (
-/obj/structure/closet/emcloset,
-/obj/item/clothing/mask/gas,
-/turf/open/floor/mainship/cargo,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/closet/toolcloset,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
 "sM" = (
 /obj/machinery/cryopod,
@@ -6436,11 +6436,10 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
 "wV" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/closet/toolcloset,
-/turf/open/floor/mainship/mono,
+/obj/structure/closet/firecloset,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas,
+/turf/open/floor/mainship/cargo,
 /area/mainship/hallways/starboard_hallway)
 "wW" = (
 /obj/structure/closet/secure_closet/guncabinet/mp_armory,
@@ -10259,18 +10258,10 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "Iv" = (
-/obj/machinery/marine_selector/gear/spec,
-/turf/open/floor/mainship,
-/area/mainship/squads/general)
-"Iw" = (
-/obj/machinery/door/firedoor/mainship,
-/obj/machinery/door/airlock/mainship/marine/general/spec,
-/turf/open/floor/mainship,
-/area/mainship/squads/general)
-"Ix" = (
-/obj/machinery/marine_selector/gear/smartgun,
-/turf/open/floor/mainship,
-/area/mainship/squads/general)
+/obj/structure/closet/emcloset,
+/obj/item/clothing/mask/gas,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/starboard_hallway)
 "Iy" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -12887,10 +12878,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/upper_engineering)
-"Sd" = (
-/obj/machinery/marine_selector/clothes/specialist,
-/turf/open/floor/mainship,
-/area/mainship/squads/general)
 "Se" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -13231,10 +13218,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/red/corner,
 /area/mainship/shipboard/firing_range)
-"UD" = (
-/obj/machinery/marine_selector/clothes/smartgun,
-/turf/open/floor/mainship,
-/area/mainship/squads/general)
 "UE" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/mainship/mono,
@@ -46922,8 +46905,8 @@ qC
 qC
 qC
 qC
-qC
-wV
+sL
+jy
 jy
 Hb
 jy
@@ -47168,19 +47151,19 @@ qC
 Wa
 It
 th
+jl
+jl
 Wa
 qC
 Wa
-It
+jl
 th
-Wa
-qC
-Wa
+jl
 It
-th
 Wa
 qC
-sK
+wV
+jy
 FS
 Hc
 Dx
@@ -47425,19 +47408,19 @@ qC
 Bw
 jl
 jl
+jl
+jl
 Bw
 qC
-Iv
+sH
 jl
 jl
-Iv
+jl
+jl
+sH
 qC
-Ix
-jl
-jl
-Ix
-qC
-sL
+Iv
+jy
 Dq
 jy
 jy
@@ -47682,17 +47665,17 @@ qC
 ES
 jl
 jl
+jl
+jl
 ES
 qC
-Sd
+sK
 jl
 jl
-Sd
+jl
+jl
+sK
 qC
-UD
-jl
-jl
-UD
 qC
 Ne
 Ne
@@ -47942,7 +47925,7 @@ qC
 qC
 qC
 qC
-Iw
+qC
 qC
 qC
 qC
@@ -47950,7 +47933,7 @@ qC
 Kl
 qC
 qC
-qC
+sM
 sM
 sM
 EV
@@ -48721,7 +48704,7 @@ KS
 KR
 KT
 KV
-sH
+sy
 sz
 sz
 sP
@@ -48978,7 +48961,7 @@ Co
 pQ
 sy
 sy
-sH
+sy
 sM
 sM
 sx
@@ -49492,7 +49475,7 @@ pQ
 pQ
 Ah
 sy
-sH
+sy
 sz
 sz
 sx
@@ -49749,7 +49732,7 @@ pQ
 pQ
 sy
 sy
-sH
+sy
 sM
 sM
 sP
