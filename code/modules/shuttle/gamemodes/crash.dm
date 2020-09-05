@@ -58,7 +58,7 @@
 */
 // -- Shuttles
 
-/obj/docking_port/stationary/crashmode/bigbury
+/obj/docking_port/stationary/crashmode/bigbury // How-to-use: Put ontop/below of an allready existing crash dock site.
 	id = "bigbury_dock"
 	name = "Bigbury Crash Site"
 	dir = SOUTH
