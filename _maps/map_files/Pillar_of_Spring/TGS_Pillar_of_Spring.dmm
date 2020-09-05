@@ -14134,6 +14134,7 @@
 /obj/structure/table/mainship,
 /obj/item/ammo_magazine/shotgun,
 /obj/item/weapon/gun/shotgun/pump/t35,
+/obj/structure/sign/securearea/firingrange,
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/firing_range)
 "ZP" = (
