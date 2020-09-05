@@ -759,7 +759,7 @@
 /obj/item/weapon/gun/rifle/m41a1{
 	desc = "An outdated rifle for the TerraGov Marine Corps, carried by a few coporate mercenary groups, the M41A1 is a very rare sight in TerraGov systems. Uses 10x24mm caseless ammunition. Inscribed is Moth"
 	},
-/turf/closed/wall/mainship,
+/turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range)
 "ck" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -13952,7 +13952,7 @@
 /obj/machinery/door/airlock/mainship/secure/evac{
 	dir = 2
 	},
-/turf/closed/wall/mainship,
+/turf/open/floor/mainship/mono,
 /area/mainship/powered)
 "YR" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -49481,7 +49481,7 @@ qV
 qW
 hW
 Uv
-NU
+NZ
 jS
 kb
 jU
@@ -49738,7 +49738,7 @@ qV
 qW
 hW
 ZN
-NZ
+NU
 YK
 kb
 Td
