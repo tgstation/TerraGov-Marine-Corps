@@ -442,6 +442,9 @@
 	if(.)
 		return
 
+	if(!ishuman(user))
+		return
+
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the console.</span>",
 		"<span class='notice'>You fumble around figuring out how to use the console.</span>")
