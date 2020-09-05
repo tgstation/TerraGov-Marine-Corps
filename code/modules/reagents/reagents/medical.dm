@@ -64,15 +64,20 @@
 
 /datum/reagent/medicine/paracetamol
 	name = "Paracetamol"
-	description = "Most probably know this as Tylenol, but this chemical is a mild, simple painkiller."
+	description = "Most probably know this as Tylenol, but this chemical is a mild, simple painkiller, good for enduring heavy labor."
 	color = "#C855DC"
 	scannable = TRUE
 	custom_metabolism = REAGENTS_METABOLISM * 0.125
+	purge_list = list(/datum/reagent/medicine/kelotane, /datum/reagent/medicine/tricordrazine, /datum/reagent/medicine/bicaridine)
+	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE*2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*2
 
 /datum/reagent/medicine/paracetamol/on_mob_life(mob/living/L, metabolism)
 	L.reagent_pain_modifier += PAIN_REDUCTION_HEAVY
+	L.heal_limb_damage(0.4*REM, 0.4*REM)
+	L.adjustToxLoss(-0.2 * REM)
+	L.adjustStaminaLoss(-2*REM)
 	return ..()
 
 /datum/reagent/paracetamol/overdose_process(mob/living/L, metabolism)
@@ -117,7 +122,7 @@
 
 /datum/reagent/medicine/oxycodone/on_mob_life(mob/living/L, metabolism)
 	L.reagent_pain_modifier += PAIN_REDUCTION_FULL
-	L.adjustStaminaLoss(2*REM)
+	L.adjustStaminaLoss(REM)
 	return ..()
 
 /datum/reagent/medicine/oxycodone/overdose_process(mob/living/L, metabolism)
@@ -153,7 +158,7 @@
 
 /datum/reagent/medicine/leporazine/overdose_process(mob/living/L, metabolism)
 	if(prob(10))
-		L.Unconscious(30 SECONDS)
+		L.Unconscious(5 SECONDS)
 
 /datum/reagent/medicine/leporazine/overdose_crit_process(mob/living/L, metabolism)
 	L.drowsyness  = max(L.drowsyness, 30)
@@ -170,7 +175,7 @@
 	var/target_temp = L.get_standard_bodytemperature()
 	L.heal_limb_damage(0, 2 * REM)
 	if(L.bodytemperature > target_temp)
-		L.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, target_temp)
+		L.adjust_bodytemperature(-2.5 * TEMPERATURE_DAMAGE_COEFFICIENT, target_temp)
 	if(volume > 10)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
 	if(volume > 20)
@@ -198,12 +203,12 @@
 	var/target_temp = L.get_standard_bodytemperature()
 	L.heal_limb_damage(0, 4 * REM)
 	if(L.bodytemperature > target_temp)
-		L.adjust_bodytemperature(-10 * TEMPERATURE_DAMAGE_COEFFICIENT, target_temp)
+		L.adjust_bodytemperature(-5 * TEMPERATURE_DAMAGE_COEFFICIENT, target_temp)
 	if(volume > 5)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
-	if(volume > 15)
+	if(volume > 10)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
-		L.heal_limb_damage(0, 2 * REM)
+		L.heal_limb_damage(0, 3 * REM)
 	return ..()
 
 /datum/reagent/medicine/dermaline/overdose_process(mob/living/L, metabolism)
@@ -288,14 +293,13 @@
 	description = "Dylovene is a broad-spectrum antitoxin."
 	color = "#A8F59C"
 	scannable = TRUE
-	purge_list = list(/datum/reagent/toxin, /datum/reagent/toxin/xeno_neurotoxin, /datum/reagent/consumable/drink/coffee)
+	purge_list = list(/datum/reagent/toxin, /datum/reagent/toxin/xeno_neurotoxin, /datum/reagent/consumable/drink/atomiccoffee, /datum/reagent/consumable/larvajelly, /datum/reagent/medicine/paracetamol)
 	purge_rate = 2
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "a roll of gauze"
 
 /datum/reagent/medicine/dylovene/on_mob_life(mob/living/L,metabolism)
-	L.adjustDrowsyness(-2 * REM)
 	L.hallucination = max(0, L.hallucination -  5 * REM)
 	L.adjustToxLoss(-2 * REM)
 	if(volume > 10)
@@ -352,7 +356,7 @@
 
 /datum/reagent/medicine/synaptizine
 	name = "Synaptizine"
-	description = "Synaptizine is used to treat various diseases."
+	description = "Synaptizine is a commonly used performance-enhancing drug with minimal side effects."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose_threshold = REAGENTS_OVERDOSE/5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/5
@@ -370,11 +374,11 @@
 	L.hallucination = max(0, L.hallucination - 10)
 	switch(current_cycle)
 		if(1 to 5)
-			L.adjustStaminaLoss(-10*REM)
+			L.adjustStaminaLoss(-15*REM)
 		if(6 to 20)
-			L.adjustStaminaLoss((current_cycle*2 - 22)*REM)
+			L.adjustStaminaLoss((current_cycle*3 - 28)*REM)
 		if(20 to INFINITY)
-			L.adjustStaminaLoss(20*REM)
+			L.adjustStaminaLoss(30*REM)
 	return ..()
 
 /datum/reagent/medicine/synaptizine/overdose_process(mob/living/L, metabolism)
@@ -407,8 +411,8 @@
 	L.AdjustParalyzed(-20)
 	L.AdjustSleeping(-40)
 	L.adjustStaminaLoss(-60*REM)
-	L.heal_limb_damage(10*REM, 10 * REM)
-	L.adjustToxLoss(5*REM)
+	L.heal_limb_damage(15*REM, 15 * REM)
+	L.adjustToxLoss(7.5*REM)
 	return ..()
 
 /datum/reagent/medicine/neuraline/overdose_process(mob/living/L, metabolism)
@@ -565,7 +569,7 @@
 	scannable = TRUE
 
 /datum/reagent/medicine/peridaxon_plus/on_mob_life(mob/living/L, metabolism)
-	L.adjustToxLoss(20*REM)
+	L.reagents.add_reagent(/datum/reagent/toxin,5)
 	if(!ishuman(L))
 		return ..()
 	var/mob/living/carbon/human/H = L
@@ -575,7 +579,7 @@
 	return ..()
 
 /datum/reagent/medicine/peridaxon_plus/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(10*REM, TOX)
+	L.apply_damage(30*REM, TOX)
 
 /datum/reagent/peridaxon_plus/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(30*REM, TOX) //Ya triple-clicked. Ya shouldn'ta did that.
@@ -618,9 +622,9 @@
 	L.heal_limb_damage(4*REM, 0)
 	if(volume > 5)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
-	if(volume > 15)
+	if(volume > 10)
 		L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
-		L.heal_limb_damage(2*REM, 0)
+		L.heal_limb_damage(3*REM, 0)
 	return ..()
 
 
@@ -744,7 +748,7 @@
 
 /datum/reagent/medicine/ultrazine/on_mob_add(mob/living/L, metabolism)
 	. = ..()
-	L.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -2)
+	L.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, -1)
 
 /datum/reagent/medicine/ultrazine/on_mob_delete(mob/living/L, metabolism)
 	L.remove_movespeed_modifier(type)
@@ -937,7 +941,7 @@
 			L.adjustToxLoss(2.5*REM)
 			L.Sleeping(10 SECONDS)
 		if(51 to INFINITY)
-			L.adjustToxLoss((current_cycle/5-35)*REM) //why yes, the sleeping stops after it stops working. Yay screaming patients running off!
+			L.adjustToxLoss((current_cycle/5-9.2)*REM) //why yes, the sleeping stops after it stops working. Yay screaming patients running off!
 	return ..()
 
 /datum/reagent/medicine/polyhexanide/overdose_crit_process(mob/living/L, metabolism)
@@ -973,17 +977,14 @@
 	color = "#19C832"
 	overdose_threshold = REAGENTS_OVERDOSE * 0.5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 0.5
-	custom_metabolism = REAGENTS_METABOLISM * 2
+	custom_metabolism = REAGENTS_METABOLISM * 0.05 //set to *5 when i fix this
+	purge_list = list(/datum/reagent/medicine, /datum/reagent/toxin)
+	purge_rate = 5
 	scannable = TRUE
 	taste_description = "punishment"
 	taste_multi = 8
 
 /datum/reagent/medicine/hypervene/on_mob_life(mob/living/L, metabolism)
-	for(var/datum/reagent/R in L.reagents.reagent_list)
-		if(R != src)
-			L.reagents.remove_reagent(R.type,HYPERVENE_REMOVAL_AMOUNT * REM)
-			if(R.type == /datum/reagent/medicine/hyperzine)
-				R.current_cycle += HYPERVENE_REMOVAL_AMOUNT * REM * 1 / max(1,custom_metabolism) //Increment hyperzine's purge cycle in proportion to the amount removed.
 	L.reagent_shock_modifier -= PAIN_REDUCTION_HEAVY //Significant pain while metabolized.
 	if(prob(5)) //causes vomiting
 		L.vomit()
@@ -997,7 +998,7 @@
 
 /datum/reagent/medicine/hypervene/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(4*REM, 4*REM)
-	if(prob(20)) //violent vomiting
+	if(prob(50)) //violent vomiting
 		L.vomit()
 	L.reagent_shock_modifier -= PAIN_REDUCTION_FULL //Unlimited agony.
 
