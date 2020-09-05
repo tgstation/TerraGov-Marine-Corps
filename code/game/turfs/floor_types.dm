@@ -762,11 +762,17 @@
 /turf/open/floor/prison/kitchen
 	icon_state = "kitchen"
 
-/turf/open/floor/prison/cleanmarked
-	icon_state = "bright_clean_marked"
-
 /turf/open/floor/prison/marked
 	icon_state = "floor_marked"
+
+/turf/open/floor/prison/cleanmarked
+	icon_state = "floor_marked_white"
+
+/turf/open/floor/prison/arrow
+	icon_state = "floor_arrow"
+
+/turf/open/floor/prison/arrow/clean
+	icon_state = "floor_arrow_white"
 
 /turf/open/floor/prison/cellstripe
 	icon_state = "cell_stripe"
