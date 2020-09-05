@@ -1105,7 +1105,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sundering = 50
 
 /datum/ammo/rocket/recoilless/drop_nade(turf/T)
-	explosion(T, 0, 4, 5, 5)
+	explosion(T, 0, 3, 4, 5)
 
 /datum/ammo/rocket/recoilless/heat
 	name = "HEAT shell"
@@ -1121,7 +1121,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy = 40
 	accurate_range = 20
 	max_range = 30
-	damage = 150
+	damage = 175
 	penetration = 100
 	sundering = 100
 
