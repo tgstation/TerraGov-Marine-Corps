@@ -15035,8 +15035,8 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
 	},
-/obj/machinery/door/poddoor/mainship/droppod{
-	dir = 1
+/obj/machinery/door/poddoor/mainship/umbilical/south{
+	dir = 2
 	},
 /turf/open/floor/mainship/ai,
 /area/sulaco/hangar)
@@ -16740,11 +16740,11 @@
 /turf/open/shuttle/escapepod,
 /area/mainship/command/self_destruct)
 "bap" = (
-/obj/machinery/door/poddoor/mainship/droppod{
-	dir = 1
+/obj/machinery/door/poddoor/mainship/umbilical/south{
+	dir = 2
 	},
 /turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
+/area/sulaco/hangar)
 "baq" = (
 /turf/closed/wall/sulaco/unmeltable,
 /area/sulaco/maintenance/lower_maint)
@@ -16808,11 +16808,9 @@
 /turf/open/floor/engine/vacuum,
 /area/sulaco/telecomms)
 "baB" = (
-/obj/machinery/door_control/mainship/droppod{
-	pixel_y = -21
-	},
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar)
+/obj/docking_port/stationary/ert_big,
+/turf/open/space,
+/area/space)
 "baC" = (
 /obj/machinery/door_timer/cell_5,
 /turf/closed/wall/sulaco,
@@ -17533,17 +17531,10 @@
 	dir = 4
 	},
 /area/sulaco/cargo/office)
-"djt" = (
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
 "dmc" = (
 /obj/item/reagent_containers/jerrycan,
 /turf/open/floor/mainship/ai,
 /area/sulaco/hangar)
-"dsu" = (
-/obj/docking_port/stationary/ert_big,
-/turf/open/space/basic,
-/area/space)
 "dyW" = (
 /obj/structure/largecrate/guns/russian,
 /turf/open/floor/plating/plating_catwalk,
@@ -17552,16 +17543,6 @@
 /obj/structure/closet/crate/ammo,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
-"dPy" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
 "dZh" = (
 /obj/machinery/camera/autoname,
 /obj/structure/rack,
@@ -17596,32 +17577,10 @@
 /mob/living/simple_animal/mouse,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
-"eSy" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
 "fnb" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
-"fno" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 10
-	},
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
 "fwY" = (
 /turf/closed/shuttle/wall3/diagonal{
 	dir = 4
@@ -17638,13 +17597,6 @@
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
-"fRh" = (
-/obj/machinery/door_control/mainship/droppod{
-	pixel_x = 22
-	},
-/obj/structure/rack,
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
 "fRO" = (
 /turf/open/floor/marking/bot,
 /area/sulaco/marine/bravo)
@@ -17656,24 +17608,11 @@
 /obj/structure/cable,
 /turf/closed/wall/sulaco/unmeltable,
 /area/sulaco/marine/delta)
-"gHZ" = (
-/obj/machinery/light,
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
 "gKQ" = (
 /obj/structure/table,
 /obj/item/toy/deck/kotahi,
 /turf/open/floor/tile/white,
 /area/sulaco/cafeteria)
-"gLH" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
 "gQS" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/ai,
@@ -17703,24 +17642,6 @@
 /obj/structure/rack,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
-"itV" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
-"iKW" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
-"jzE" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 9
-	},
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
 "jTG" = (
 /obj/machinery/marine_selector/clothes/specialist/alpha,
 /turf/open/floor,
@@ -17755,12 +17676,6 @@
 /obj/structure/closet/crate/weapon,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
-"lzC" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
 "lJq" = (
 /obj/structure/cable,
 /turf/open/floor/tile/red/redtaupe{
@@ -17787,11 +17702,6 @@
 /obj/machinery/vending/shared_vending/marine_engi,
 /turf/open/floor,
 /area/sulaco/cargo/office)
-"mBy" = (
-/obj/structure/table/mainship,
-/obj/item/clothing/head/helmet/space/deathsquad/beret,
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
 "mQl" = (
 /obj/machinery/marine_selector/clothes/specialist/delta,
 /obj/structure/cable,
@@ -17812,15 +17722,6 @@
 /obj/structure/closet/crate/construction,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
-"nqw" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 10
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 9
-	},
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
 "nzM" = (
 /turf/open/floor/plating,
 /area/mainship/command/self_destruct)
@@ -17835,15 +17736,6 @@
 /obj/structure/grille,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/cargo)
-"okP" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 6
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 5
-	},
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
 "ooe" = (
 /obj/structure/bed/chair/sofa/left{
 	dir = 1
@@ -17855,11 +17747,6 @@
 /obj/machinery/power/apc/mainship,
 /turf/open/floor/tile/white,
 /area/sulaco/research)
-"ozL" = (
-/obj/machinery/computer/droppod_control,
-/obj/structure/table/mainship,
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
 "oTv" = (
 /obj/machinery/marine_selector/clothes/specialist/bravo,
 /turf/open/floor,
@@ -17870,52 +17757,10 @@
 	},
 /turf/closed/wall/sulaco,
 /area/sulaco/hangar)
-"phC" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 1
-	},
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
 "pxX" = (
 /obj/structure/largecrate/guns,
 /turf/open/floor/plating/plating_catwalk,
 /area/sulaco/cargo)
-"qvd" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 6
-	},
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
-"qvJ" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
-"qBJ" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
-"qDQ" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
-	},
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
 "qFW" = (
 /obj/machinery/door_control/ai/interior,
 /turf/closed/wall/sulaco,
@@ -17939,13 +17784,6 @@
 	},
 /turf/closed/wall/sulaco,
 /area/mainship/living/pilotbunks)
-"siT" = (
-/obj/effect/decal/warning_stripes/thin,
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
 "smG" = (
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/closed/wall/sulaco,
@@ -17979,16 +17817,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
-"tsx" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
+/area/sulaco/hangar)
 "tzn" = (
 /obj/effect/step_trigger/teleporter/random{
 	affect_ghosts = 1;
@@ -18010,11 +17839,6 @@
 	},
 /turf/open/floor/plating/platebotc,
 /area/sulaco/cargo)
-"ubj" = (
-/obj/structure/droppod,
-/obj/structure/dropprop,
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
 "ueI" = (
 /obj/machinery/light{
 	dir = 1
@@ -18037,28 +17861,10 @@
 /obj/item/reagent_containers/jerrycan,
 /turf/open/floor/tile/vault,
 /area/mainship/living/pilotbunks)
-"uMR" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
 "uOE" = (
 /obj/structure/largecrate/supply/supplies/mre,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
-"uQn" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 5
-	},
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
 "uYS" = (
 /obj/structure/cable,
 /turf/closed/wall/sulaco/unmeltable,
@@ -18087,15 +17893,6 @@
 /obj/structure/closet/walllocker/hydrant,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
-"wcR" = (
-/obj/machinery/door_control/mainship/droppod{
-	pixel_y = 23
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
 "wec" = (
 /obj/structure/cable,
 /turf/open/floor/tile/white,
@@ -18113,28 +17910,14 @@
 	icon_state = "red"
 	},
 /area/sulaco/cargo)
-"wBO" = (
-/obj/structure/rack,
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
 "wNd" = (
 /obj/machinery/marine_selector/gear/spec,
 /turf/open/floor,
 /area/sulaco/marine/alpha)
-"wWk" = (
-/obj/structure/rack,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
 "xaF" = (
 /obj/machinery/marine_selector/gear/spec,
 /turf/open/floor,
 /area/sulaco/marine/bravo)
-"xiI" = (
-/turf/closed/wall/sulaco/unmeltable,
-/area/sulaco/hangar/droppod)
 "xmw" = (
 /obj/machinery/marine_selector/gear/spec,
 /turf/open/floor,
@@ -18147,17 +17930,6 @@
 /obj/machinery/door/airlock/mainship/marine/alpha/spec,
 /turf/open/floor/marking/bot,
 /area/sulaco/marine/alpha)
-"xMN" = (
-/obj/machinery/light,
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
-"xNI" = (
-/obj/structure/table/mainship,
-/obj/item/tool/pen,
-/obj/item/paper,
-/obj/item/clipboard,
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
 "xPA" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden,
 /obj/structure/cable,
@@ -51536,15 +51308,15 @@ aSu
 aPF
 aPF
 aYD
-xiI
-xiI
-xiI
-xiI
-xiI
-xiI
-xiI
-xiI
-xiI
+aaa
+aaa
+aaa
+aaa
+aDS
+aDS
+aDS
+aDS
+aDS
 aDS
 aDS
 aDS
@@ -51793,15 +51565,15 @@ aPF
 aPF
 aPF
 aYD
-ubj
-eSy
-ubj
-eSy
-ubj
-eSy
-ubj
-uMR
-xiI
+aaa
+aaa
+aaa
+aaa
+aDS
+aDS
+aDS
+aDS
+aDS
 aDS
 aDS
 aDS
@@ -52050,15 +51822,15 @@ bbv
 bbA
 aPF
 aYD
-ubj
-siT
-ubj
-siT
-ubj
-siT
-ubj
-gLH
-xiI
+aaa
+aaa
+aaa
+aaa
+aDS
+aDS
+aDS
+aDS
+aDS
 aDS
 aDS
 aDS
@@ -52307,15 +52079,15 @@ aPZ
 bbC
 gQS
 aYD
-ubj
-siT
-ubj
-siT
-ubj
-siT
-ubj
-gHZ
-xiI
+aaa
+aaa
+aaa
+aaa
+aDS
+aDS
+aDS
+aDS
+aDS
 aDS
 aDS
 aDS
@@ -52564,15 +52336,15 @@ aPZ
 bbC
 aPF
 aYD
-ubj
-siT
-ubj
-siT
-ubj
-siT
-ubj
-qBJ
-xiI
+aaa
+aaa
+aaa
+aaa
+aDS
+aDS
+aDS
+aDS
+aDS
 aDS
 aDS
 aDS
@@ -52821,15 +52593,15 @@ aPZ
 bbC
 aPF
 aYD
-ubj
-siT
-ubj
-siT
-ubj
-siT
-ubj
-gLH
-xiI
+aaa
+aaa
+aaa
+aaa
+aDS
+aDS
+aDS
+aDS
+aDS
 aDS
 aDS
 aDS
@@ -53078,15 +52850,15 @@ aPZ
 bbC
 aPF
 aYD
-ubj
-fno
-tha
-nqw
-qDQ
-nqw
-qDQ
-jzE
-xiI
+aZb
+aaa
+aaa
+aaa
+aDS
+aDS
+aDS
+aDS
+aDS
 aDS
 aDS
 aDS
@@ -53335,19 +53107,19 @@ aPZ
 bbC
 aPF
 aYD
-xiI
-xiI
-xiI
-xiI
-iKW
-djt
-djt
-xMN
-xiI
+aQb
+aQb
+aQb
+aQb
 aDS
 aDS
 aDS
 aDS
+aDS
+aDS
+aDS
+aDS
+baB
 aDS
 aDS
 aDS
@@ -53592,15 +53364,15 @@ aPZ
 bbC
 aPF
 aUx
-djt
-itV
-djt
+aPF
+aQr
+aPF
 bap
-djt
-djt
-xNI
-djt
-xiI
+aDS
+aDS
+aDS
+aDS
+aDS
 aDS
 aDS
 aDS
@@ -53847,17 +53619,17 @@ aPZ
 aPZ
 aPZ
 bbC
+tha
+aYD
 aPF
-aUx
-djt
-djt
-djt
-bap
-djt
-djt
-ozL
-phC
-xiI
+aPF
+aQb
+aQb
+aDS
+aDS
+aDS
+aDS
+aDS
 aDS
 aDS
 aDS
@@ -54105,16 +53877,16 @@ aPZ
 aPZ
 bbC
 aPF
-aUx
-wBO
-wWk
-fRh
-bap
-djt
-djt
-mBy
-djt
-xiI
+aYD
+aYA
+aYA
+aQb
+aZm
+aDS
+aDS
+aDS
+aDS
+aDS
 aDS
 aDS
 aDS
@@ -54361,17 +54133,17 @@ aPZ
 aPZ
 aPZ
 bbC
-baB
+aPF
 aYD
-xiI
-xiI
-xiI
-xiI
-wcR
-djt
-djt
-xMN
-xiI
+aQb
+aQb
+aQb
+aaa
+aDS
+aDS
+aDS
+aDS
+aDS
 aDS
 aDS
 aDS
@@ -54620,15 +54392,15 @@ aPZ
 bbC
 aPF
 aYD
-ubj
-qvd
-qvJ
-okP
-lzC
-okP
-lzC
-uQn
-xiI
+aZm
+aaa
+aaa
+aaa
+aDS
+aDS
+aDS
+aDS
+aDS
 aDS
 aDS
 aDS
@@ -54877,15 +54649,15 @@ aPZ
 bbC
 aPF
 aYD
-ubj
-siT
-ubj
-siT
-ubj
-siT
-ubj
-gLH
-xiI
+aaa
+aaa
+aaa
+aaa
+aDS
+aDS
+aDS
+aDS
+aDS
 aDS
 aDS
 aDS
@@ -55134,15 +54906,15 @@ bah
 bbF
 gQS
 aYD
-ubj
-siT
-ubj
-siT
-ubj
-siT
-ubj
-gLH
-xiI
+aaa
+aaa
+aaa
+aaa
+aDS
+aDS
+aDS
+aDS
+aDS
 aDS
 aDS
 aDS
@@ -55391,15 +55163,15 @@ aPF
 aPF
 aPF
 aYD
-ubj
-dPy
-ubj
-dPy
-ubj
-dPy
-ubj
-tsx
-xiI
+aaa
+aaa
+aaa
+aaa
+aDS
+aDS
+aDS
+aDS
+aDS
 aDS
 aDS
 aDS
@@ -55648,15 +55420,15 @@ aPF
 aPF
 aPF
 aYD
-xiI
-xiI
-xiI
-xiI
-xiI
-xiI
-xiI
-xiI
-xiI
+aaa
+aaa
+aaa
+aaa
+aDS
+aDS
+aDS
+aDS
+aDS
 aDS
 aDS
 aDS
@@ -60023,7 +59795,7 @@ aaa
 aaa
 aaa
 aaa
-dsu
+aaa
 aaa
 aaa
 aaa
