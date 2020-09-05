@@ -1,7 +1,0 @@
-author: "Hathkar"
-delete-after: True
-changes: 
-  - rscadd: "Added missing landing zone lights to maps"
-  - rscadd: "Missing wires and APCs in landing zones."
-  - rscadd: "More easily identifiable cave areas to BigRed (No more Unknown Area for all caves)"
-  - tweak: "Moved landing zone shutters 1 tile out further so marines can see what they need to barricade"
