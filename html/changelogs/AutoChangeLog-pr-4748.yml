@@ -1,0 +1,9 @@
+author: "Hathkar"
+delete-after: True
+changes: 
+  - rscadd: "Outer hull to the Pillar of Spring"
+  - rscdel: "Spec prep sent to the next dimension"
+  - tweak: "Moved PoS firing range to prep"
+  - tweak: "Moved self server req vendors to prep"
+  - tweak: "Moved escape shuttle to firing range's former spot"
+  - tweak: "Expanded SD to take up the shuttle's former spot"
