@@ -4339,11 +4339,6 @@
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
-"pJ" = (
-/obj/structure/table/mainship,
-/obj/machinery/door/window/northright,
-/turf/open/floor/mainship/stripesquare,
-/area/mainship/shipboard/firing_range)
 "pK" = (
 /obj/machinery/shower{
 	dir = 8
@@ -4641,7 +4636,6 @@
 /area/space)
 "qV" = (
 /obj/structure/table/mainship,
-/obj/machinery/door/window/northleft,
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/shipboard/firing_range)
 "qW" = (
@@ -48925,7 +48919,7 @@ fB
 fB
 fB
 fB
-pJ
+qV
 qW
 hW
 pH
@@ -49439,7 +49433,7 @@ fB
 fB
 fB
 fB
-pJ
+qV
 qW
 hW
 Uv
@@ -49953,7 +49947,7 @@ Mx
 Mx
 pH
 pH
-pJ
+qV
 qW
 hW
 rF
