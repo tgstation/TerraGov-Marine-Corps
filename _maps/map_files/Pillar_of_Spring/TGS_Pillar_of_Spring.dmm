@@ -12379,6 +12379,10 @@
 	dir = 9
 	},
 /area/mainship/command/self_destruct)
+"PA" = (
+/obj/machinery/vending/uniform_supply,
+/turf/open/floor/mainship,
+/area/mainship/living/cafeteria_starboard)
 "PB" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
@@ -49229,7 +49233,7 @@ Bs
 jl
 XQ
 jl
-pQ
+PA
 qd
 qd
 pQ
