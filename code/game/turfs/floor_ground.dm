@@ -100,8 +100,12 @@
 /turf/open/floor/plating/ground/mars
 	icon = 'icons/turf/bigred.dmi'
 	icon_state = "mars_sand"
+	mediumxenofootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	shoefootstep = FOOTSTEP_SAND
 
 /turf/open/floor/plating/ground/mars/random/cave
+
 	name = "cave"
 	icon_state = "mars_cave"
 
@@ -116,9 +120,6 @@
 /turf/open/floor/plating/ground/mars/random/sand
 	name = "sand"
 	icon_state = "mars_sand"
-	shoefootstep = FOOTSTEP_SAND
-	barefootstep = FOOTSTEP_SAND
-	mediumxenofootstep = FOOTSTEP_SAND
 
 /turf/open/floor/plating/ground/mars/random/Initialize()
 	. = ..()
@@ -146,6 +147,9 @@
 	name = "ice floor"
 	icon = 'icons/turf/ice.dmi'
 	icon_state = "ice_floor"
+	shoefootstep = FOOTSTEP_ICE
+	barefootstep = FOOTSTEP_ICE
+	mediumxenofootstep = FOOTSTEP_ICE
 
 //Randomize ice floor sprite
 /turf/open/floor/plating/ground/ice/Initialize()
@@ -157,13 +161,15 @@
 	name = "concrete"
 	icon = 'icons/turf/concrete.dmi'
 	icon_state = "concrete0"
+	mediumxenofootstep = FOOTSTEP_CONCRETE
+	barefootstep = FOOTSTEP_CONCRETE
+	shoefootstep = FOOTSTEP_CONCRETE
 
 /turf/open/floor/plating/ground/concrete/lines
 	icon_state = "concrete_lines"
 
 /turf/open/floor/plating/ground/concrete/edge
 	icon_state = "concrete_edge"
-
 
 //Desert Map
 
@@ -176,6 +182,9 @@
 /turf/open/floor/plating/ground/desertdam/desert
 	name = "desert"
 	icon_state = "desert0"
+	mediumxenofootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	shoefootstep = FOOTSTEP_SAND
 
 /turf/open/floor/plating/ground/desertdam/desert/Initialize()
 	. = ..()
@@ -186,6 +195,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt
 	name = "asphalt"
 	icon_state = "sunbleached_asphalt"
+	shoefootstep = FOOTSTEP_CONCRETE
+	barefootstep = FOOTSTEP_CONCRETE
+	mediumxenofootstep = FOOTSTEP_CONCRETE
 
 /turf/open/floor/plating/ground/desertdam/asphalt/corner
 	name = "asphalt"
@@ -200,6 +212,9 @@
 /turf/open/floor/plating/ground/desertdam/cave
 	name = "cave"
 	icon_state = "outer_cave_floor"
+	shoefootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	mediumxenofootstep = FOOTSTEP_SAND
 
 //desert floor to outer cave floor transition
 /turf/open/floor/plating/ground/desertdam/cave/desert_into_outer_cave_floor

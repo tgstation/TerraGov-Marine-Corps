@@ -782,9 +782,7 @@ ARMOR
 	name = "Jaeger assorted storage modules"
 	contains = list(
 		/obj/item/armor_module/storage/general,
-		/obj/item/armor_module/storage/ammo_mag,
 		/obj/item/armor_module/storage/medical,
-		/obj/item/armor_module/storage/integrated,
 		/obj/item/armor_module/storage/engineering,
 	)
 	cost = 3
@@ -803,12 +801,8 @@ ARMOR
 	name = "Jaeger baldur modules"
 	contains = list(
 		/obj/item/armor_module/attachable/better_shoulder_lamp,
-		/obj/item/armor_module/attachable/better_shoulder_lamp,
-		/obj/item/armor_module/attachable/better_shoulder_lamp,
-		/obj/item/armor_module/attachable/better_shoulder_lamp,
-		/obj/item/armor_module/attachable/better_shoulder_lamp,
 	)
-	cost = 7
+	cost = 10
 
 /datum/supply_packs/armor/modular/attachments/valkyrie_autodoc
 	name = "Jaeger valkyrie modules"

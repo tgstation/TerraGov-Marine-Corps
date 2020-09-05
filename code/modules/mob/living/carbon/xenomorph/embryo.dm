@@ -83,6 +83,9 @@
 	if(affected_mob.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_growthtoxin))
 		counter += 2 //Accelerates larval growth somewhat. You don't want this stuff in your body. Larva hits Stage 5 in exactly 5 minutes (lower if healthy and nested), assuming the victim has growth toxin for the full duration.
 
+	if(affected_mob.reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly))
+		counter += 10 //Accelerates larval growth massively. Voluntarily drinking larval jelly while infected is straight-up suicide. Larva hits Stage 5 in exactly ONE minute.
+
 	if(stage < 5 && counter >= 120)
 		counter = 0
 		stage++

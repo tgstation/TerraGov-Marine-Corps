@@ -9,7 +9,7 @@
 	icon_state = "base"
 	anchored = TRUE
 	density = FALSE
-	layer = TURF_LAYER
+	layer = XENO_WEEDS_LAYER
 	plane = FLOOR_PLANE
 	max_integrity = 25
 
