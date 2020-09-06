@@ -442,7 +442,7 @@
 	if(.)
 		return
 
-	if(!ishuman(user))
+	if(!allowed(user))
 		return
 
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
