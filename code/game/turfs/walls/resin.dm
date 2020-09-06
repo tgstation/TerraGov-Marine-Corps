@@ -1,8 +1,8 @@
 /**
  * Resin walls
- * 
+ *
  * Used mostly be xenomorphs
- */ 
+ */
 /turf/closed/wall/resin
 	name = "resin wall"
 	desc = "Weird slime solidified into a wall."
@@ -156,17 +156,19 @@
 	max_integrity = 100
 
 	/// Total health possible for a wall after regenerating at max health
-	var/max_upgradable_health = 600 
-	/// How much the walls integrity heals per tick (2 seconds)
-	var/heal_per_tick = 10
-	/// How much the walls max_integrity increases per tick (2 seconds)
-	var/max_upgrade_per_tick = 1
+	var/max_upgradable_health = 600
+	/// How much the walls integrity heals per tick (5 seconds)
+	var/heal_per_tick = 25
+	/// How much the walls max_integrity increases per tick (5 seconds)
+	var/max_upgrade_per_tick = 3
 	/// How long should the wall stop healing for when taking dmg
 	var/cooldown_on_taking_dmg = 30 SECONDS
+	///Whether we have a timer already to stop from clogging up the timer ss
+	var/existingtimer = FALSE
 
 /turf/closed/wall/resin/regenerating/Initialize(mapload, ...)
 	. = ..()
-	START_PROCESSING(SSobj, src)
+	START_PROCESSING(SSslowprocess, src)
 
 /**
  * Try to start processing on the wall.
@@ -175,12 +177,14 @@
 /turf/closed/wall/resin/regenerating/proc/start_healing()
 	if(wall_integrity == max_upgradable_health)
 		return
-	START_PROCESSING(SSobj, src)
+	if(wall_integrity <= 0)
+		return
+	existingtimer = FALSE
+	START_PROCESSING(SSslowprocess, src)
 
 /turf/closed/wall/resin/regenerating/process()
 	if(wall_integrity == max_upgradable_health)
-		STOP_PROCESSING(SSobj, src)
-		return
+		return PROCESS_KILL
 	repair_damage(heal_per_tick)
 	if(wall_integrity == max_integrity)
 		max_integrity = min(max_integrity + max_upgrade_per_tick, max_upgradable_health)
@@ -188,10 +192,13 @@
 /turf/closed/wall/resin/regenerating/take_damage(damage)
 	var/destroyed = (wall_integrity - damage <= 0)
 	. = ..()
-	STOP_PROCESSING(SSobj, src)
+	STOP_PROCESSING(SSslowprocess, src)
 	if(destroyed) // I can't check qdel because the turf is replaced instead
 		return
+	if(existingtimer)// Dont spam timers >:(
+		return
 	addtimer(CALLBACK(src, .proc/start_healing), cooldown_on_taking_dmg)
+	existingtimer = TRUE
 
 
 /* Hivelord walls, they start off stronger */
