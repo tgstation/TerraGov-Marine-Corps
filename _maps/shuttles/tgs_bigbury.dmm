@@ -619,9 +619,6 @@
 /obj/effect/landmark/start/job/crash/squadengineer,
 /turf/open/floor/mainship/red/full,
 /area/shuttle/canterbury)
-"mk" = (
-/turf/open/floor/mainship/blue/full,
-/area/space)
 "ms" = (
 /obj/structure/bed/chair/dropship/passenger,
 /obj/effect/landmark/start/job/crash/squadmarine,
@@ -1505,7 +1502,7 @@ Uo
 Uo
 ad
 bJ
-mk
+MY
 bQ
 al
 Wl

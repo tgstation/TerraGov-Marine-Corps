@@ -267,7 +267,6 @@
 /area/outpost/science/research)
 "bx" = (
 /obj/docking_port/stationary/crashmode,
-/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/yard/west)
 "bz" = (
@@ -363,7 +362,6 @@
 /area/outpost/yard/west)
 "ce" = (
 /obj/docking_port/stationary/crashmode,
-/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south_east)
 "cf" = (
@@ -1535,7 +1533,6 @@
 /area/outpost/medbay/storage)
 "iu" = (
 /obj/docking_port/stationary/crashmode,
-/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating,
 /area/outpost/lz1)
 "iw" = (
@@ -4379,7 +4376,6 @@
 /area/outpost/lz1)
 "xN" = (
 /obj/docking_port/stationary/crashmode,
-/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
 	},
@@ -8883,7 +8879,6 @@
 /area/outpost/caves/north_west)
 "VZ" = (
 /obj/docking_port/stationary/crashmode,
-/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/mineral/bigred,
 /area/outpost/caves/east)
 "Wb" = (
