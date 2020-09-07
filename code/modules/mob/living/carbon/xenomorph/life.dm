@@ -93,7 +93,7 @@
 		adjustBruteLoss(XENO_CRIT_DAMAGE - warding_aura) //Warding can heavily lower the impact of bleedout. Halved at 2.5 phero, stopped at 5 phero
 
 /mob/living/carbon/xenomorph/proc/heal_wounds(multiplier = XENO_RESTING_HEAL, var/scaling = FALSE)
-	var/amount = 1 + (maxHealth * 0.02) // 1 damage + 2% max health, with scaling power.
+	var/amount = 1 + (maxHealth * 0.03) // 1 damage + 2% max health, with scaling power.
 	if(recovery_aura)
 		amount += recovery_aura * maxHealth * 0.008 // +0.8% max health per recovery level, up to +4%
 	if(scaling)
