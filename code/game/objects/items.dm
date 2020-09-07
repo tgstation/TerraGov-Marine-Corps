@@ -355,6 +355,10 @@
 		if(H.species && !(slot in mob_equip))
 			return FALSE
 
+		if(issynth(H) && CHECK_BITFIELD(flags_item, SYNTH_RESTRICTED) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+			to_chat(H, "<span class='warning'>Your programming prevents you from wearing this.</span>")
+			return FALSE
+
 		switch(slot)
 			if(SLOT_L_HAND)
 				if(H.l_hand)
