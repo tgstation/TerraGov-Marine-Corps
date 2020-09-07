@@ -82,6 +82,7 @@
 	max_w_class = WEIGHT_CLASS_NORMAL
 	can_hold = list(
 		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
 		/obj/item/flashlight/flare,
 		/obj/item/explosive/grenade/flare,
 		/obj/item/ammo_magazine/rifle,
@@ -109,6 +110,7 @@
 	max_w_class = WEIGHT_CLASS_NORMAL
 	can_hold = list(
 		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
 		/obj/item/flashlight/flare,
 		/obj/item/explosive/grenade/flare,
 		/obj/item/ammo_magazine/rifle,
