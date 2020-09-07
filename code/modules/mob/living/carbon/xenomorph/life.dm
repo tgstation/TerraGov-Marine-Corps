@@ -98,7 +98,7 @@
 		amount += recovery_aura * maxHealth * 0.008 // +0.8% max health per recovery level, up to +4%
 	if(scaling)
 		if(recovery_aura)
-			regen_power = clamp(regen_power + 0.2,0.2,1) //Ignores the 10 second cooldown.
+			regen_power = clamp(regen_power + 0.4,0.4,1) //Ignores the 10 second cooldown, and gives a boost.
 		else if(regen_power < 0) // We're not supposed to regenerate yet. This will take 10 seconds to kick from being damaged in as I have been told that 1 life tick is 2 seconds.
 			regen_power++
 			return
