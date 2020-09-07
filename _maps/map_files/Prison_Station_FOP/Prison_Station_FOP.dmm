@@ -2187,9 +2187,7 @@
 /area/prison/security/monitoring/maxsec/panopticon)
 "aiT" = (
 /obj/machinery/vending/robotics,
-/turf/open/floor/prison/darkpurple{
-	dir = 9
-	},
+/turf/open/floor/prison/whitepurple/full,
 /area/prison/research/secret)
 "aiU" = (
 /obj/structure/cable,
@@ -41451,7 +41449,7 @@
 	dir = 5
 	},
 /turf/open/floor/plating,
-/area/prison/maintenance/residential/sw)
+/area/prison/maintenance/residential/nw)
 "cRI" = (
 /obj/effect/decal/woodsiding{
 	dir = 8
@@ -41927,6 +41925,12 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/wood,
 /area/prison/parole/main)
+"iBH" = (
+/obj/effect/decal/warning_stripes/thin{
+	dir = 6
+	},
+/turf/open/floor/plating,
+/area/prison/hangar_storage/research)
 "iDz" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/prison,
@@ -41968,7 +41972,7 @@
 "iSZ" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/prison/maintenance/residential/sw)
+/area/prison/maintenance/residential/nw)
 "iTH" = (
 /obj/effect/decal/woodsiding{
 	dir = 9
@@ -42001,6 +42005,11 @@
 /obj/machinery/computer/nuke_disk_generator/red,
 /turf/open/floor/prison,
 /area/prison/security/head)
+"jeP" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/wood/broken,
+/area/prison/chapel)
 "jlg" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
@@ -42362,6 +42371,12 @@
 	dir = 8
 	},
 /area/prison/cellblock/mediumsec/north)
+"nkA" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
+/turf/open/floor/plating,
+/area/prison/maintenance/residential/nw)
 "nlm" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/prison/darkred,
@@ -42453,7 +42468,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating,
-/area/prison/maintenance/residential/sw)
+/area/prison/maintenance/residential/nw)
 "oGc" = (
 /obj/effect/alien/weeds/node,
 /turf/open/floor/prison/darkpurple,
@@ -42477,7 +42492,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/prison/maintenance/residential/sw)
+/area/prison/maintenance/residential/nw)
 "ped" = (
 /turf/open/ground/coast{
 	dir = 5
@@ -42609,7 +42624,7 @@
 	on = 1
 	},
 /turf/open/floor/plating,
-/area/prison/maintenance/residential/sw)
+/area/prison/maintenance/residential/nw)
 "qjX" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/prison/bright_clean/two,
@@ -42724,7 +42739,7 @@
 /area/prison/residential/central)
 "rqK" = (
 /turf/open/floor/prison/rampbottom,
-/area/prison/maintenance/residential/sw)
+/area/prison/maintenance/residential/nw)
 "rrt" = (
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/prison/research/secret/biolab)
@@ -42783,7 +42798,7 @@
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/prison/maintenance/residential/sw)
+/area/prison/maintenance/residential/nw)
 "rZZ" = (
 /obj/machinery/door/poddoor/four_tile_ver/secure{
 	name = "Civilian Hangar Door"
@@ -42950,7 +42965,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
 /turf/open/floor/prison/rampbottom,
-/area/prison/maintenance/residential/sw)
+/area/prison/maintenance/residential/nw)
 "tHS" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/prison/whitegreen{
@@ -48110,12 +48125,12 @@ avl
 aab
 aab
 aab
-bwu
-bwu
-bwu
-bwu
-bwu
-yhs
+aRS
+aRS
+aRS
+aRS
+aRS
+pYD
 jFi
 qBi
 gCN
@@ -48367,12 +48382,12 @@ avl
 aab
 aab
 aab
-bwu
+aRS
 rTX
 iSZ
 rqK
-bxf
-sEQ
+aSN
+nkA
 bFG
 mRK
 xRQ
@@ -48624,7 +48639,7 @@ avl
 aab
 aab
 aab
-bwu
+aRS
 qiV
 cQu
 tDi
@@ -49937,12 +49952,12 @@ hdB
 iHW
 aab
 aab
+aZP
+aZP
 dpL
-dpL
-dpL
-dpL
-dpL
-dpL
+aZP
+aZP
+aZP
 aWn
 aWn
 bwu
@@ -71482,7 +71497,7 @@ ayB
 azt
 aAg
 aAg
-aAg
+jeP
 aEb
 aFg
 xbZ
@@ -89975,7 +89990,7 @@ aab
 aab
 atl
 atl
-atl
+iBH
 lhZ
 lhZ
 lhZ
