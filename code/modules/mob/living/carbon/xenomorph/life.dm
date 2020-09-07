@@ -94,14 +94,17 @@
 
 /mob/living/carbon/xenomorph/proc/heal_wounds(multiplier = XENO_RESTING_HEAL, var/scaling = FALSE)
 	var/amount = 1 + (maxHealth * 0.02) // 1 damage + 2% max health, with scaling power.
-	if(scaling)
-		if(regen_power < 0) // We're not supposed to regenerate yet. This will take 10 seconds to kick from being damaged in as I have been told that 1 life tick is 2 seconds.
-			regen_power++
-			return
-		regen_power = min(regen_power + 0.08,1)
-		amount *= regen_power
 	if(recovery_aura)
 		amount += recovery_aura * maxHealth * 0.008 // +0.8% max health per recovery level, up to +4%
+	if(scaling)
+		if(recovery_aura)
+			regen_power = clamp(regen_power + 0.2,0.2,1) //Ignores the 10 second cooldown.
+		else if(regen_power < 0) // We're not supposed to regenerate yet. This will take 10 seconds to kick from being damaged in as I have been told that 1 life tick is 2 seconds.
+			regen_power++
+			return
+		else
+			regen_power = min(regen_power + 0.2,1) //0.2 means 10% regen every second, up to 100%.
+		amount *= regen_power
 	amount *= multiplier
 	adjustBruteLoss(-amount)
 	adjustFireLoss(-amount)
