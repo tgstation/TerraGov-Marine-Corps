@@ -1010,7 +1010,7 @@
 	fire_sound = "sound/halo/MA3firefix.ogg"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/t18_unload.ogg'
- 	reload_sound = 'sound/halo/MA3reload.ogg'
+	reload_sound = 'sound/halo/MA3reload.ogg'
 	force = 15
 	fire_delay = 0.2 SECONDS
 	current_mag = /obj/item/ammo_magazine/rifle/ma3
