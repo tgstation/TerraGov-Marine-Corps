@@ -132,6 +132,9 @@
 
 	if(updating_health)
 		updatehealth()
+
+	regen_power = 0
+
 	return damage
 
 

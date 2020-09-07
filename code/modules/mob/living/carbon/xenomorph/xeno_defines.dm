@@ -176,6 +176,8 @@
 	var/warding_aura = 0
 	var/recovery_aura = 0
 
+	var/regen_power = 0 //Increases by 0.1 every time you regen. Resets when you take damage.
+
 	var/is_zoomed = 0
 	var/zoom_turf = null
 	var/attack_delay = 0 //Bonus or pen to time in between attacks. + makes slashes slower.

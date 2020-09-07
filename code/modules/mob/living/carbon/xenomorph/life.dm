@@ -80,9 +80,9 @@
 
 	if(locate(/obj/effect/alien/weeds) in T || xeno_caste.caste_flags & CASTE_INNATE_HEALING) //We regenerate on weeds or can on our own.
 		if(lying_angle || resting || xeno_caste.caste_flags & CASTE_QUICK_HEAL_STANDING)
-			heal_wounds(XENO_RESTING_HEAL * ruler_healing_penalty)
+			heal_wounds(XENO_RESTING_HEAL * ruler_healing_penalty, TRUE)
 		else
-			heal_wounds(XENO_STANDING_HEAL * ruler_healing_penalty) //Major healing nerf if standing.
+			heal_wounds(XENO_STANDING_HEAL * ruler_healing_penalty, TRUE) //Major healing nerf if standing.
 	updatehealth()
 
 /mob/living/carbon/xenomorph/proc/handle_critical_health_updates()
@@ -92,8 +92,11 @@
 	else
 		adjustBruteLoss(XENO_CRIT_DAMAGE - warding_aura) //Warding can heavily lower the impact of bleedout. Halved at 2.5 phero, stopped at 5 phero
 
-/mob/living/carbon/xenomorph/proc/heal_wounds(multiplier = XENO_RESTING_HEAL)
-	var/amount = (1 + (maxHealth * 0.03) ) // 1 damage + 3% max health
+/mob/living/carbon/xenomorph/proc/heal_wounds(multiplier = XENO_RESTING_HEAL, var/scaling = FALSE)
+	var/amount = 1 + (maxHealth * 0.02 * regen_power) // 1 damage + 2% max health, with scaling power.
+	if(scaling)
+		regen_power = min(regen_power + 0.08,1)
+		amount *= regen_power
 	if(recovery_aura)
 		amount += recovery_aura * maxHealth * 0.008 // +0.8% max health per recovery level, up to +4%
 	amount *= multiplier
