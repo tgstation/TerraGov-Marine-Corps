@@ -1,0 +1,4 @@
+author: "2whatever2"
+delete-after: True
+changes: 
+  - balance: "Incendiary OB flames were changed to the same stats as X fuel (Burn Intensity 36, Duration 40) Old stats were 25 Intensity and 25 Duration."
