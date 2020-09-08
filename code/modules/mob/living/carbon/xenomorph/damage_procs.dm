@@ -133,7 +133,7 @@
 	if(updating_health)
 		updatehealth()
 
-	regen_power = -5 //This will take 10 seconds to kick in as I have been told that 1 life tick is 2 seconds.
+	regen_power = -xeno_caste.regen_delay //Remember, this is in deciseconds.
 
 	return damage
 

@@ -92,18 +92,18 @@
 	else
 		adjustBruteLoss(XENO_CRIT_DAMAGE - warding_aura) //Warding can heavily lower the impact of bleedout. Halved at 2.5 phero, stopped at 5 phero
 
-/mob/living/carbon/xenomorph/proc/heal_wounds(multiplier = XENO_RESTING_HEAL, var/scaling = FALSE)
+/mob/living/carbon/xenomorph/proc/heal_wounds(multiplier = XENO_RESTING_HEAL, scaling = FALSE)
 	var/amount = 1 + (maxHealth * 0.03) // 1 damage + 2% max health, with scaling power.
 	if(recovery_aura)
 		amount += recovery_aura * maxHealth * 0.008 // +0.8% max health per recovery level, up to +4%
 	if(scaling)
 		if(recovery_aura)
-			regen_power = clamp(regen_power + 0.4,0.4,1) //Ignores the 10 second cooldown, and gives a boost.
-		else if(regen_power < 0) // We're not supposed to regenerate yet. This will take 10 seconds to kick from being damaged in as I have been told that 1 life tick is 2 seconds.
-			regen_power++
+			regen_power = clamp(regen_power + xeno_caste.regen_ramp_amount*30,0,1) //Ignores the cooldown, and gives a 50% boost.
+		else if(regen_power < 0) // We're not supposed to regenerate yet. Start a countdown for regeneration.
+			regen_power += 2 SECONDS //Life ticks are 2 seconds.
 			return
 		else
-			regen_power = min(regen_power + 0.2,1) //0.2 means 10% regen every second, up to 100%.
+			regen_power = min(regen_power + xeno_caste.regen_ramp_amount*20,1)
 		amount *= regen_power
 	amount *= multiplier
 	adjustBruteLoss(-amount)
