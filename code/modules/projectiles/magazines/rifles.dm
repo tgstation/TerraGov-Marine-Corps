@@ -302,5 +302,5 @@
 	caliber = "8.6x70mm"
 	icon_state = "t81"
 	default_ammo = /datum/ammo/bullet/sniper/auto
-	max_rounds = 7
+	max_rounds = 12
 	gun_type = /obj/item/weapon/gun/rifle/standard_autosniper
