@@ -1,7 +1,6 @@
 /datum/component/bump_attack
 	var/active = TRUE
 	var/bump_action_path
-	var/cross_action_path
 	var/datum/action/bump_attack_toggle/toggle_action
 
 
@@ -23,7 +22,6 @@
 	RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, toggle_path)
 	if(active)
 		RegisterSignal(parent, COMSIG_MOVABLE_BUMP, bump_action_path)
-		RegisterSignal(parent, COMSIG_MOVABLE_CROSSED, cross_action_path)
 
 /datum/component/bump_attack/Destroy(force, silent)
 	QDEL_NULL(toggle_action)
@@ -36,9 +34,8 @@
 	to_chat(bumper, "<span class='notice'>You will now [active ? "attack" : "push"] enemies who are in your way.</span>")
 	if(active)
 		RegisterSignal(bumper, COMSIG_MOVABLE_BUMP, bump_action_path)
-		RegisterSignal(bumper, COMSIG_MOVABLE_CROSSED, cross_action_path)
 	else
-		UnregisterSignal(bumper, list(COMSIG_MOVABLE_BUMP, COMSIG_MOVABLE_CROSSED))
+		UnregisterSignal(bumper, COMSIG_MOVABLE_BUMP)
 	toggle_action.update_button_icon(active)
 
 
