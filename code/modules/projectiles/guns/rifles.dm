@@ -913,7 +913,7 @@
 //T-81 Auto-Sniper
 
 /obj/item/weapon/gun/rifle/standard_autosniper
-	name = "\improper T-81 Automatic Sniper Rifle"
+	name = "\improper T-81 automatic sniper rifle"
 	desc = "The T-81 is the TerraGov Marine Corps's automatic sniper rifle. It is rather well-known for it's night vision scope and IFF ammo, it however lacks a burst fire mode. It is mostly used by people who prefer to do more careful shooting than most. Uses 8.6x70mm caseless IFF caliber."
 	icon_state = "t81"
 	item_state = "t81"
