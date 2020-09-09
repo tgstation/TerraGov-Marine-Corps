@@ -297,7 +297,7 @@
 //-------------------------------------------------------
 //Marine magazine automatic sniper, or the T-81.
 /obj/item/ammo_magazine/rifle/autosniper
-	name = "T-81 Automatic sniper rifle magazine"
+	name = "\improper T-81 automatic sniper rifle magazine"
 	desc = "A box magazine filled with 8.6x70mm rifle rounds for the T-81."
 	caliber = "8.6x70mm"
 	icon_state = "t81"
