@@ -8,6 +8,9 @@
 	icon = 'icons/turf/snow2.dmi'
 	icon_state = "snow_0"
 	hull_floor = TRUE
+	shoefootstep = FOOTSTEP_SNOW
+	barefootstep = FOOTSTEP_SNOW
+	mediumxenofootstep = FOOTSTEP_SNOW
 
 // Melting snow
 /turf/open/floor/plating/ground/snow/fire_act(exposed_temperature, exposed_volume)

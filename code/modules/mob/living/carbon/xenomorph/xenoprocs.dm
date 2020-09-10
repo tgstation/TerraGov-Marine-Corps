@@ -19,8 +19,6 @@
 			xenoinfo += "<tr><td>[leadprefix][X.name] "
 		if(!X.client)
 			xenoinfo += " <i>(SSD)</i>"
-		else if(X.client.prefs.xeno_name && X.client.prefs.xeno_name != "Undefined")
-			xenoinfo += "- [X.client.prefs.xeno_name]"
 
 		var/area/A = get_area(X)
 		xenoinfo += " <b><font color=green>([A ? A.name : null])</b></td></tr>"

@@ -142,7 +142,11 @@
 			qdel(src)
 			return TRUE
 		if(GIRDER_NORMAL)
+			var/turf/T = get_turf(src)
 			if(anchored)
+				return FALSE
+			if(!isfloorturf(T) && !isbasalt(T) && !islavacatwalk(T) && !isopengroundturf(T))
+				to_chat(usr, "<span class='warning'>The girder must be secured on the floor!</span>")
 				return FALSE
 			playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>Now securing the girder</span>")
@@ -156,7 +160,6 @@
 			update_icon()
 			return TRUE
 	return FALSE
-
 
 /obj/structure/girder/crowbar_act(mob/living/user, obj/item/I)
 	if(user.action_busy)

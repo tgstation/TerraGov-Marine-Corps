@@ -10,7 +10,17 @@
 	desc = "An enormous drill."
 	icon_state = "mining_drill"
 
+/obj/machinery/mining/drill/braced
+	anchored = TRUE
+	icon_state = "mining_drill_braced"
+
 /obj/machinery/mining/brace
 	name = "mining drill brace"
 	desc = "A machinery brace for an industrial drill. It looks easily two feet thick."
 	icon_state = "mining_brace"
+
+/obj/machinery/mining/brace/active
+	name = "active mining drill brace"
+	icon_state = "mining_brace_active"
+	anchored = TRUE
+	
