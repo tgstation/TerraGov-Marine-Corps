@@ -439,8 +439,6 @@
 	damageable = FALSE
 	deconstructable = FALSE
 	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
-	max_integrity = 1000000 //Failsafe, shouldn't matter
-
 /obj/structure/window/framed/colony
 	name = "window"
 	icon_state = "col_window0"
