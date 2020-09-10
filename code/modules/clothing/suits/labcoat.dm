@@ -201,7 +201,7 @@
 	icon_state = "snowsuit_alpha"
 	flags_armor_protection = CHEST|GROIN|ARMS
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS
-	soft_armor = list("melee" = 15, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	soft_armor = list("melee" = 10, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	blood_overlay_type = "armor"
 	siemens_coefficient = 0.7

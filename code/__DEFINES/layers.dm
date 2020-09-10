@@ -54,6 +54,7 @@
 #define UNDERFLOOR_OBJ_LAYER 2.5 //bluespace beacon, navigation beacon, etc
 
 #define CATWALK_LAYER 2.51 //catwalk overlay of /turf/open/floor/plating/plating_catwalk
+#define XENO_WEEDS_LAYER 2.52 //weed layer so that it goes above catwalks
 
 #define ATMOS_DEVICE_LAYER 2.53 //vents, connector ports, atmos devices that should be above pipe layer.
 
@@ -132,7 +133,8 @@
 
 #define POINT_LAYER 12
 
-#define CHAT_LAYER 12.1
+#define CHAT_LAYER 12.0001 // Do not insert layers between these two values
+#define CHAT_LAYER_MAX 12.9999
 
 #define LIGHTING_PLANE 15
 

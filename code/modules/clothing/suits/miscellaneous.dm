@@ -46,6 +46,7 @@
 	item_state = "hgpirate"
 	flags_inv_hide = HIDEJUMPSUIT
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
+	flags_item = SYNTH_RESTRICTED
 	soft_armor = list("melee" = 60, "bullet" = 90, "laser" = 60, "energy" = 20, "bomb" = 25, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 20)
 
 
@@ -363,6 +364,13 @@
 	flags_cold_protection = CHEST|ARMS
 	min_cold_protection_temperature = T0C
 	siemens_coefficient = 0.7
+	allowed = list (
+		/obj/item/flashlight,
+		/obj/item/binoculars,
+		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/storage/large_holster/machete
+	)
 
 /obj/item/clothing/suit/replica
 	name = "replica armor"

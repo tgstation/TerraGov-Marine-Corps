@@ -357,7 +357,11 @@
 	..()
 	icon_state = "[type]vault"
 
-
+/turf/closed/wall/desertcavewall
+	name = "cave wall"
+	icon = 'icons/turf/desertdam_map.dmi'
+	icon_state = "cavewall0"
+	walltype = "cavewall"
 
 
 //Prison wall
