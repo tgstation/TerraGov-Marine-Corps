@@ -708,7 +708,6 @@ ARMOR
 	)
 	cost = 10
 
-
 /datum/supply_packs/armor/modular/attachments/valkyrie_autodoc
 	name = "Jaeger valkyrie modules"
 	contains = list(
