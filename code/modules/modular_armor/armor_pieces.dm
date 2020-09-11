@@ -183,3 +183,4 @@
 	name = "\improper Jaeger Pattern  Assault arm plates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a Assault armor piece."
 	icon_state = "assault_arms"
+	
