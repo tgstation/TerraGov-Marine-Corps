@@ -335,6 +335,9 @@
 /turf/closed/shuttle/wall3/diagonal
 	icon_state = "diagonalWall3"
 
+/turf/closed/shuttle/wall4/diagonal
+	icon_state = "diag_gray"
+
 /turf/closed/shuttle/wall3/diagonal/white
 	icon_state = "diagonalWall3white"
 
