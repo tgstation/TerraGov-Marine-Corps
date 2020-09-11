@@ -1,0 +1,9 @@
+author: "Hathkar"
+delete-after: True
+changes: 
+  - rscadd: "Reroutes Sulaco's disposal network"
+  - rscadd: "New windows on the Sulaco"
+  - rscdel: "Removes old grille+fulltile windows on the Sulaco"
+  - tweak: "Sulaco req should be a bit less cramped now"
+  - bugfix: "Missing APCs, wires, pipes"
+  - imageadd: "New walls, windows, tiles to the Sulaco."
