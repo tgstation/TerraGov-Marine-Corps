@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - rscadd: "Modular mapping"
+  - rscadd: "The civres pool on prison now has two random versions"
