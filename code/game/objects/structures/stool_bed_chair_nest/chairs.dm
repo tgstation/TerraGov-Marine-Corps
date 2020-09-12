@@ -146,6 +146,12 @@
 /obj/structure/bed/chair/sofa/corner
 	icon_state = "sofacorner"
 
+
+/obj/structure/bed/chair/pew
+	name = "chapel pew"
+	desc = "An old fashioned wood pew."
+	icon_state = "pews"
+
 /obj/structure/bed/chair/office
 	anchored = FALSE
 	buckle_flags = CAN_BUCKLE

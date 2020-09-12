@@ -1,5 +1,6 @@
 // MARINE STORAGE ARMOR
 
+
 /obj/item/clothing/suit/storage/marine
 	name = "\improper M3 pattern marine armor"
 	desc = "A standard TerraGov Marine Corps M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
@@ -30,6 +31,7 @@
 	var/list/armor_overlays
 	actions_types = list(/datum/action/item_action/toggle)
 	flags_armor_features = ARMOR_LAMP_OVERLAY
+	flags_item = SYNTH_RESTRICTED
 	w_class = WEIGHT_CLASS_HUGE
 	time_to_unequip = 2 SECONDS
 	time_to_equip = 2 SECONDS
@@ -180,6 +182,7 @@
 		/obj/item/explosive/grenade,
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/hailer,
 		/obj/item/storage/large_holster/machete,
@@ -217,6 +220,7 @@
 					/obj/item/ammo_magazine,
 					/obj/item/explosive/mine,
 					/obj/item/weapon/combat_knife,
+					/obj/item/attachable/bayonetknife,
 					/obj/item/weapon/gun/smartgun,
 					/obj/item/weapon/gun/rifle/standard_smartmachinegun,
 					/obj/item/storage/belt/sparepouch)
@@ -236,7 +240,7 @@
 	desc = "A heavy protective vest designed to be worn with the M56 Smartgun System. \nIt has specially designed straps and reinforcement to carry the Smartgun and accessories. This luxury model appears to belong to the CO. You feel like you probably could get fired for touching this.."
 	icon_state = "8fancy"
 
-// MARINE PAS-11 vests, the new armor. It is basically equivalent to a modular armor with baldur and all the pieces on, and a magazine pouch.
+// MARINE PAS-11 vests, the new armor. It is basically equivalent to a modular armor with general storage on it.
 
 /obj/item/clothing/suit/storage/marine/pasvest
 	name = "\improper PAS-11 pattern armored vest"
@@ -245,27 +249,6 @@
 	soft_armor = list("melee" = 45, "bullet" = 65, "laser" = 55, "energy" = 40, "bomb" = 40, "bio" = 40, "rad" = 15, "fire" = 40, "acid" = 45)
 	slowdown = 0.6 //Same as modular armor.
 	light_strength = 8
-	pockets = /obj/item/storage/internal/suit/pas11
-
-/obj/item/storage/internal/suit/pas11
-	max_storage_space = 15
-	storage_slots = 4
-	max_w_class = WEIGHT_CLASS_NORMAL
-	can_hold = list(
-		/obj/item/weapon/combat_knife,
-		/obj/item/flashlight/flare,
-		/obj/item/explosive/grenade/flare,
-		/obj/item/ammo_magazine/rifle,
-		/obj/item/cell/lasgun,
-		/obj/item/ammo_magazine/smg,
-		/obj/item/ammo_magazine/pistol,
-		/obj/item/ammo_magazine/revolver,
-		/obj/item/ammo_magazine/sniper,
-		/obj/item/ammo_magazine/handful,
-		/obj/item/explosive/grenade,
-		/obj/item/explosive/mine,
-		/obj/item/reagent_containers/food/snacks
-		)
 
 
 //===========================SPECIALIST================================
@@ -481,6 +464,7 @@
 
 //===========================//U.S.L\\================================
 
+
 /obj/item/clothing/suit/storage/faction
 	icon = 'icons/obj/clothing/cm_suits.dmi'
 	sprite_sheet_id = 1
@@ -501,9 +485,11 @@
 		/obj/item/explosive/grenade,
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/large_holster/machete)
 	flags_armor_features = ARMOR_LAMP_OVERLAY
+	flags_item = SYNTH_RESTRICTED
 	var/locate_cooldown = 0 //Cooldown for SL locator
 	var/armor_overlays["lamp"]
 	actions_types = list(/datum/action/item_action/toggle)
@@ -599,6 +585,7 @@
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_heat_protection =CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	flags_item = SYNTH_RESTRICTED
 	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 30, "bomb" = 60, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 30)
 	allowed = list(/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
@@ -607,6 +594,7 @@
 		/obj/item/explosive/grenade,
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/large_holster/machete,
 		/obj/item/weapon/baseballbat)
@@ -617,7 +605,7 @@
 	desc = "A green jacket worn by crew on the Colonial Marshals."
 	icon_state = "CMB_jacket"
 	blood_overlay_type = "coat"
-	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 30, "bomb" = 60, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 30)
+	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 20, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	allowed = list(/obj/item/weapon/gun/,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/storage/belt/sparepouch,

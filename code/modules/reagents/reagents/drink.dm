@@ -232,7 +232,7 @@
 		if(E)
 			E.take_damage(1, TRUE)
 
-//nice one jpr
+//nice one jpr~
 /datum/reagent/consumable/drink/coffee/atomiccoffee
 	name = "Atomic Coffee"
 	description = "This coffee is a brewed drink prepared from roasted seeds and enriched from use in atomic coffemaker. Consume in moderation"
@@ -469,6 +469,7 @@
 	color = "#FF8CFF" // rgb: 255, 140, 255
 	taste_description = "homely fruit"
 	nutriment_factor = - 1
+	custom_metabolism = REAGENTS_METABOLISM * 0.25 //Twice the rate of paracetamol
 	adj_dizzy = - 10
 
 /datum/reagent/consumable/drink/doctor_delight/on_mob_life(mob/living/L, metabolism)

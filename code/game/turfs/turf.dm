@@ -498,11 +498,6 @@
 	return !slayer && ..()
 
 
-/turf/open/floor/plating/plating_catwalk/is_weedable() //covered catwalks are unweedable
-	. = ..()
-	if(covered)
-		return FALSE
-
 
 /turf/proc/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
 	var/has_obstacle

@@ -215,14 +215,14 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
 "aR" = (
-/turf/open/floor/bluegrid,
+/turf/open/floor/podhatch/floor,
 /area/tdome)
 "aS" = (
 /obj/machinery/flasher{
 	id = "flash";
 	name = "Thunderdome Flash"
 	},
-/turf/open/floor/bluegrid,
+/turf/open/floor/podhatch/floor,
 /area/tdome)
 "aT" = (
 /obj/structure/dropship_piece/one/front/left,
@@ -806,7 +806,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/deathmatch)
 "df" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 4
 	},
 /area/deathmatch)
@@ -918,7 +918,6 @@
 /area/deathmatch)
 "dD" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	dir = 4;
 	name = "\improper General Store"
 	},
 /turf/open/floor/tile/bar,
@@ -997,7 +996,6 @@
 /area/deathmatch)
 "dU" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	dir = 4;
 	name = "\improper Civilian Housing"
 	},
 /turf/open/floor/wood/broken,
@@ -1227,7 +1225,7 @@
 	},
 /area/deathmatch)
 "eT" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
 /area/deathmatch)
@@ -1570,7 +1568,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/deathmatch)
@@ -1757,7 +1755,7 @@
 /turf/closed/wall,
 /area/deathmatch)
 "pU" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/deathmatch)
 "qh" = (
 /turf/open/ground/coast/corner,
@@ -1791,7 +1789,7 @@
 	},
 /area/deathmatch)
 "qu" = (
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 1
 	},
 /area/deathmatch)

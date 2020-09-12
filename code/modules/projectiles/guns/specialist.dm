@@ -611,7 +611,7 @@
 	wield_delay = 1 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/m92_attachable.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m92_cocked.ogg'
-	aim_slowdown = 1
+	aim_slowdown = 1.2
 	general_codex_key = "explosive weapons"
 	attachable_allowed = list(
 						/obj/item/attachable/magnetic_harness,
@@ -623,7 +623,7 @@
 	gun_skill_category = GUN_SKILL_FIREARMS
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 11, "stock_y" = 12)
 
-	fire_delay = 2.2 SECONDS
+	fire_delay = 1.2 SECONDS
 
 /obj/item/weapon/gun/launcher/m92/standardmarine/Initialize()
 	. = ..()
@@ -1014,7 +1014,6 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
 
 	fire_delay = 0.175 SECONDS
-	burst_amount = 7
 	scatter = 10
 	recoil = 2
 	recoil_unwielded = 4
