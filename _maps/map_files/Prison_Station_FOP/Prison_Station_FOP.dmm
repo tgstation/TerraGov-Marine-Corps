@@ -30583,10 +30583,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison/bright_clean,
 /area/prison/laundry)
-"bQY" = (
-/obj/structure/closet/athletic_mixed,
-/turf/open/beach/sand,
-/area/prison/residential/south)
 "bRb" = (
 /obj/structure/cable,
 /turf/open/floor/prison/bright_clean,
@@ -31402,13 +31398,6 @@
 /obj/machinery/power/apc/drained,
 /turf/open/floor/prison,
 /area/prison/recreation/medsec)
-"bTG" = (
-/obj/machinery/atmospherics/components/unary/vent_scrubber{
-	dir = 4
-	},
-/obj/structure/bed/chair/comfy,
-/turf/open/beach/sand,
-/area/prison/residential/south)
 "bTH" = (
 /obj/machinery/power/apc/drained{
 	dir = 8
@@ -31457,20 +31446,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
-/turf/open/beach/sand,
-/area/prison/residential/south)
-"bTN" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/bed/chair/comfy,
-/turf/open/beach/sand,
-/area/prison/residential/south)
-"bTO" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 5
-	},
-/turf/open/beach/sand,
+/turf/template_noop,
 /area/prison/residential/south)
 "bTP" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -31486,14 +31462,6 @@
 /obj/structure/window/framed/prison/reinforced/hull,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/south)
-"bTS" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 8;
-	on = 1
-	},
-/obj/structure/bed/chair/comfy,
-/turf/open/beach/sand,
-/area/prison/residential/south)
 "bTT" = (
 /obj/structure/bed/chair,
 /turf/open/floor/prison/red{
@@ -31908,9 +31876,6 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/south)
-"bVm" = (
-/turf/open/beach/sand,
-/area/prison/residential/south)
 "bVn" = (
 /obj/machinery/door/airlock/mainship/maint/free_access{
 	name = "Custodial Closet"
@@ -31922,10 +31887,6 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
 /turf/open/floor/prison/sterilewhite,
-/area/prison/residential/south)
-"bVp" = (
-/obj/item/toy/inflatable_duck,
-/turf/open/beach/sand,
 /area/prison/residential/south)
 "bVq" = (
 /obj/machinery/door/airlock/mainship/secure/open/free_access{
@@ -32273,10 +32234,6 @@
 /obj/structure/flora/pottedplant,
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/residential/south)
-"bWD" = (
-/obj/item/toy/beach_ball,
-/turf/open/beach/sand,
-/area/prison/residential/south)
 "bWE" = (
 /obj/structure/flora/pottedplant/ten,
 /turf/open/floor/prison/bright_clean/two,
@@ -32457,9 +32414,6 @@
 "bXe" = (
 /turf/open/floor/prison/yellow/full,
 /area/prison/cellblock/mediumsec/north)
-"bXh" = (
-/turf/open/beach/coastline,
-/area/prison/residential/south)
 "bXi" = (
 /obj/machinery/light/small,
 /turf/open/floor/prison/darkred{
@@ -32817,7 +32771,7 @@
 	},
 /area/prison/cellblock/highsec/south/south)
 "bYs" = (
-/turf/open/beach/water,
+/turf/template_noop,
 /area/prison/residential/south)
 "bYt" = (
 /obj/effect/decal/warning_stripes/thin{
@@ -42961,6 +42915,10 @@
 	dir = 1
 	},
 /area/prison/cellblock/mediumsec/south)
+"tyd" = (
+/obj/effect/spawner/modularmap/prison/civressouth,
+/turf/template_noop,
+/area/prison/residential/south)
 "tDi" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/cable,
@@ -51518,17 +51476,17 @@ bCb
 bNL
 bQG
 bGQ
-bQY
-bVm
-bVm
-bVm
-bVm
-bVm
-bXh
 bYs
 bYs
 bYs
 bYs
+bYs
+bYs
+bYs
+bYs
+bYs
+bYs
+tyd
 bGQ
 aab
 aab
@@ -51775,13 +51733,13 @@ bCb
 bNK
 bCb
 bSg
-bVm
-bVm
-bVm
-bVm
-bVm
-bVm
-bXh
+bYs
+bYs
+bYs
+bYs
+bYs
+bYs
+bYs
 bYs
 bYs
 bYs
@@ -52032,13 +51990,13 @@ bCb
 bNK
 bCb
 bSg
-bTG
-bVm
-bVm
-bVm
-bVm
-bVm
-bXh
+bYs
+bYs
+bYs
+bYs
+bYs
+bYs
+bYs
 bYs
 bYs
 bYs
@@ -52290,12 +52248,12 @@ bPc
 bQH
 bSh
 bTM
-bVm
-bVp
-bVm
-bVm
-bVm
-bXh
+bYs
+bYs
+bYs
+bYs
+bYs
+bYs
 bYs
 bYs
 bYs
@@ -52546,13 +52504,13 @@ bCc
 bPd
 bQI
 bGU
-bTN
-bVm
-bVm
-bVm
-bVm
-bVm
-bXh
+bYs
+bYs
+bYs
+bYs
+bYs
+bYs
+bYs
 bYs
 bYs
 bYs
@@ -52803,13 +52761,13 @@ bCb
 bNL
 cvs
 bSi
-bTO
-bVm
-bVm
-bVm
-bVm
-bVm
-bXh
+bYs
+bYs
+bYs
+bYs
+bYs
+bYs
+bYs
 bYs
 bYs
 bYs
@@ -53060,13 +53018,13 @@ bCb
 bNK
 bCb
 bSg
-bTS
-bVm
-bVm
-bWD
-bVm
-bVm
-bXh
+bYs
+bYs
+bYs
+bYs
+bYs
+bYs
+bYs
 bYs
 bYs
 bYs
@@ -53317,13 +53275,13 @@ bCb
 bNK
 bCb
 bSg
-bVm
-bVm
-bVm
-bVm
-bVm
-bVm
-bXh
+bYs
+bYs
+bYs
+bYs
+bYs
+bYs
+bYs
 bYs
 bYs
 bYs
@@ -53574,13 +53532,13 @@ bEg
 bPc
 bQK
 bGQ
-bVm
-bVm
-bVm
-bVm
-bVm
-bVm
-bXh
+bYs
+bYs
+bYs
+bYs
+bYs
+bYs
+bYs
 bYs
 bYs
 bYs
