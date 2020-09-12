@@ -521,25 +521,25 @@
 
 /obj/item/clothing/mask/facehugger/dropped(mob/user)
     . = ..()
-    GoIdle()
+    go_idle()
 
 /obj/item/clothing/mask/facehugger/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
 	if(!.)
 		return
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID) || CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_NEURO))
-		GoIdle()
+		go_idle()
 
 /obj/item/clothing/mask/facehugger/dropped(mob/user)
     . = ..()
-    GoIdle()
+    go_idle()
 
 /obj/item/clothing/mask/facehugger/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
 	if(!.)
 		return
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID) || CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_NEURO))
-		GoIdle()
+		go_idle()
 
 /////////////////////////////
 // SUBTYPES
