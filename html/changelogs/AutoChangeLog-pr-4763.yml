@@ -1,0 +1,5 @@
+author: "RenGusta"
+delete-after: True
+changes: 
+  - balance: "buffed GL firerate"
+  - balance: "nerfed GL wielded speed"
