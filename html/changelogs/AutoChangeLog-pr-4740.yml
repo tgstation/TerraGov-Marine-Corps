@@ -1,6 +1,0 @@
-author: "David-Stormwell"
-delete-after: True
-changes: 
-  - rscadd: "Added a Automatic NV, IFF Sniper rifle. Auto Sniper sprite courtesy of Kuro."
-  - imageadd: "added some icons for the Auto Sniper and NV scope. NV scope courtesy of TheBrimmer231."
-  - imagedel: "Replaced the old NV scope with the new one."
