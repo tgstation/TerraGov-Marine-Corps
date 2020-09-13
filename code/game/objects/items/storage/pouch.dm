@@ -413,7 +413,7 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/hyperzine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
 
 
 

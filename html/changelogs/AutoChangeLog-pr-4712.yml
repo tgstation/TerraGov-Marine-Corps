@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - balance: "Added slightly more access to cargo console"
+  - bugfix: "Req consoles will now check for access correctly"
