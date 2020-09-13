@@ -19,6 +19,7 @@
 	var/expand = 1
 	animate_movement = NO_STEPS
 	var/metal = 0
+	var/razorburn = 0
 
 
 /obj/effect/particle_effect/foam/New(loc, ismetal=0)
@@ -35,6 +36,8 @@
 
 		if(metal)
 			new /obj/structure/foamedmetal(loc)
+		if(razorburn)
+			new /obj/structure/razorwire(loc)
 
 		flick("[icon_state]-disolve", src)
 		QDEL_IN(src, 5)
@@ -100,6 +103,7 @@
 	var/amount = 5				// the size of the foam spread.
 	var/list/carried_reagents	// the IDs of reagents present when the foam was mixed
 	var/metal = 0				// 0=foam, 1=metalfoam, 2=ironfoam
+	var/razorburn = 0			// 3=razorburn
 
 
 
