@@ -5,6 +5,7 @@ GLOBAL_VAR_INIT(deployed_cameras, 0)
 	desc = "The ROC-58 deployable camera, designed for use in the field to increase the tactical utility of overwatch."
 	network = list("marinesl", "marine")
 	icon_state = "deployable"
+	layer = ABOVE_ALL_MOB_LAYER//it flies after all
 
 /obj/machinery/camera/deployable/update_icon()
 	if(obj_integrity <= 0)
@@ -28,12 +29,13 @@ GLOBAL_VAR_INIT(deployed_cameras, 0)
 	if(ishuman(user))
 		var/mob/living/carbon/human/squaddie = user
 		var/datum/squad/squad = squaddie.assigned_squad
-		newcam.network += list("[lowertext(squad.name)]")
-		dat += squad.name
-		dat += " "
+		if(squad)
+			newcam.network + list("[lowertext(squad.name)]")
+			dat += squad.name
+			dat += " "
 	dat += newcam.name
 	GLOB.deployed_cameras++
-	dat += " [camindex]"
+	dat += " [GLOB.deployed_cameras]"
 	newcam.name = dat
 	newcam.c_tag = newcam.name
 	newcam.setDir(user.dir)

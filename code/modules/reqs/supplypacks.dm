@@ -72,7 +72,7 @@ OPERATIONS
 
 /datum/supply_packs/operations/deployablecams
 	name = "3 Deployable Cameras"
-	contains = 	contains = list(
+	contains = list(
 		/obj/item/deployable_camera,
 		/obj/item/deployable_camera,
 		/obj/item/deployable_camera,
