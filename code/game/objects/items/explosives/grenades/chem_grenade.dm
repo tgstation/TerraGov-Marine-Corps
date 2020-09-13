@@ -233,6 +233,28 @@
 	icon_state = initial(icon_state) +"_locked"
 
 
+/obj/item/explosive/grenade/chem_grenade/razorburn
+	name = "Razorburn Grenade"
+	desc = "Contains construction nanites ready to turn an area into razorwire after a few seconds. DO NOT ENTER AREA WHILE ACTIVE."
+	stage = CG_READY
+
+
+/obj/item/explosive/grenade/chem_grenade/razorburn/Initialize(mapload, ...)
+	. = ..()
+	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
+	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
+
+	B1.reagents.add_reagent(/datum/reagent/nanites2, 40)
+	B2.reagents.add_reagent(/datum/reagent/fluorosurfactant, 30)
+
+	beakers += B1
+	beakers += B2
+	icon_state = initial(icon_state) +"_locked"
+
+
+
+
+
 /obj/item/explosive/grenade/chem_grenade/incendiary
 	name = "Incendiary Grenade"
 	desc = "Used for clearing rooms of living things."
