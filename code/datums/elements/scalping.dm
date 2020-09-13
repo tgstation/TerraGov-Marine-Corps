@@ -7,7 +7,6 @@
 	UnregisterSignal(source, COMSIG_ITEM_ATTACK)
 
 /datum/element/scalping/proc/on_attack(datum/source, mob/living/M, mob/living/user)
-	. = ..()
 	if(!isxeno(M) || (M.stat != DEAD))
 		return NONE
 	M.visible_message("<span class='notice'>[user] starts to tear into [M] with \the [source]</span>" ,"<span class='notice'>You start hacking away at [M] with \the [source]</span>")
