@@ -688,6 +688,7 @@
 #include "code\game\objects\machinery\bots\mulebot.dm"
 #include "code\game\objects\machinery\camera\camera.dm"
 #include "code\game\objects\machinery\camera\camera_assembly.dm"
+#include "code\game\objects\machinery\camera\deployable_camera.dm"
 #include "code\game\objects\machinery\camera\tracking.dm"
 #include "code\game\objects\machinery\computer\aifixer.dm"
 #include "code\game\objects\machinery\computer\arcade.dm"
