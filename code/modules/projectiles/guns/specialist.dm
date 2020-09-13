@@ -534,6 +534,8 @@
 	if(!length(grenades))
 		to_chat(user, "<span class='warning'>The grenade launcher is empty.</span>")
 		return
+	if(fire_animation)
+		flick("[fire_animation]", src)
 	fire_grenade(target,user)
 	var/obj/screen/ammo/A = user.hud_used.ammo
 	A.update_hud(user)
@@ -600,6 +602,7 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t70"
 	item_state = "t70"
+	fire_animation = "t70_fire"
 	max_shells = 6 //codex
 	caliber = "40mm grenades" //codex
 	load_method = SINGLE_CASING //codex

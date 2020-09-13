@@ -17,7 +17,8 @@
 	var/atom/movable/vis_obj/effect/muzzle_flash/muzzle_flash
 	var/muzzleflash_iconstate
 	var/muzzle_flash_lum = 3 //muzzle flash brightness
-
+	
+	var/fire_animation = null //State for a fire animation if the gun has any
 	var/fire_sound 		= 'sound/weapons/guns/fire/gunshot.ogg'
 	var/dry_fire_sound	= 'sound/weapons/guns/fire/empty.ogg'
 	var/unload_sound 	= 'sound/weapons/flipblade.ogg'
@@ -458,6 +459,8 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		return
 
 	if(!istype(A, /obj/screen))
+		if(fire_animation)
+			flick("[fire_animation]", src)
 		Fire(A, user, params) //Otherwise, fire normally.
 
 /*
