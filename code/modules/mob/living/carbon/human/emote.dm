@@ -536,6 +536,32 @@
 	if(user.species.burstscreams[NEUTER])
 		return user.species.burstscreams[NEUTER]
 
+/datum/emote/living/carbon/human/awoo
+    key = "awoo"
+    key_third_person = "awoos"
+    message = "awoos."
+    emote_type = EMOTE_AUDIBLE
+/datum/emote/living/carbon/human/awoo/get_sound(mob/living/user)
+        return 'sound/voice/awoo.ogg'
+
+/datum/emote/living/carbon/human/awoo/run_emote(mob/user, params, type_override, intentional)
+	. = ..()
+	if(. && isliving(user))
+		var/mob/living/L = user
+		to_chat(user, "<span class='warning'>An angry god smites you.</span>")
+		L.Unconscious(3 SECONDS)
+
+/datum/emote/living/carbon/human/dab
+    key = "dab"
+    key_third_person = "dabs"
+    message = "looks confused"
+
+/datum/emote/living/carbon/human/dab/run_emote(mob/user, params, type_override, intentional)
+	. = ..()
+	if(. && isliving(user))
+		to_chat(user, "<span class='warning'>You quickly stop yourself from using your arms for that stupidity.</span>")
+
+
 
 /datum/emote/living/carbon/human/burstscream/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
 	. = ..()
