@@ -22,10 +22,11 @@
 	var/razorburn = 0
 
 
-/obj/effect/particle_effect/foam/New(loc, ismetal=0)
+/obj/effect/particle_effect/foam/New(loc, ismetal=0, israzorburn=0)
 	..(loc)
 	icon_state = "[ismetal ? "m":""]foam"
 	metal = ismetal
+	nanites2 = israzorburn
 	playsound(src, 'sound/effects/bubbles2.ogg', 25, 1, 5)
 	spawn(3 + metal*3)
 		process()
@@ -103,7 +104,7 @@
 	var/amount = 5				// the size of the foam spread.
 	var/list/carried_reagents	// the IDs of reagents present when the foam was mixed
 	var/metal = 0				// 0=foam, 1=metalfoam, 2=ironfoam
-	var/razorburn = 0			// 3=razorburn
+	var/nanites2 = 0			// 3=razorburn
 
 
 
@@ -117,6 +118,7 @@
 
 		carried_reagents = list()
 		metal = metalfoam
+		nanites2 = razorburn
 
 
 		// bit of a hack here. Foam carries along any reagent also present in the glass it is mixed
