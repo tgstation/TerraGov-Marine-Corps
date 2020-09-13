@@ -30,7 +30,7 @@ GLOBAL_VAR_INIT(deployed_cameras, 0)
 		var/mob/living/carbon/human/squaddie = user
 		var/datum/squad/squad = squaddie.assigned_squad
 		if(squad)
-			newcam.network + list("[lowertext(squad.name)]")
+			newcam.network += list("[lowertext(squad.name)]")
 			dat += squad.name
 			dat += " "
 	dat += newcam.name
