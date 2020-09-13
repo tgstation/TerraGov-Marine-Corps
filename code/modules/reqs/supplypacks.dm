@@ -70,6 +70,11 @@ OPERATIONS
 	contains = list(/obj/item/bodybag/tarp)
 	cost = 6
 
+/datum/supply_packs/operations/exportpad
+	name = "ASRS Bluespace Export Point"
+	contains = list(/obj/machinery/exportpad)
+	cost = 50
+
 /datum/supply_packs/operations/alpha
 	name = "Alpha Supply Crate"
 	contains = list(/obj/structure/closet/crate/alpha)
@@ -180,14 +185,14 @@ WEAPONS
 	)
 	cost = 100
 
-/datum/supply_packs/weapons/specsniper
-	name = "Sniper Specialist kit"
+/datum/supply_packs/weapons/autosniper
+	name = "IFF Auto Sniper kit"
 	contains = list(
-		/obj/item/weapon/gun/rifle/sniper/M42A,
-		/obj/item/ammo_magazine/sniper,
-		/obj/item/ammo_magazine/sniper,
+		/obj/item/weapon/gun/rifle/standard_autosniper,
+		/obj/item/ammo_magazine/rifle/autosniper,
+		/obj/item/ammo_magazine/rifle/autosniper,
 	)
-	cost = 100
+	cost = 70
 
 /datum/supply_packs/weapons/specminigun
 	name = "MIC-A7 Vindicator Minigun"
@@ -551,20 +556,10 @@ AMMO
 	contains = list(/obj/item/ammo_magazine/rifle/m4ra/smart)
 	cost = 13
 
-/datum/supply_packs/ammo/sniper_regular
-	name = "M42A sniper magazine"
-	contains = list(/obj/item/ammo_magazine/sniper)
-	cost = 5
-
-/datum/supply_packs/ammo/sniper_flak
-	name = "M42A sniper flak magazine"
-	contains = list(/obj/item/ammo_magazine/sniper/flak)
-	cost = 5
-
-/datum/supply_packs/ammo/sniper_incendiary
-	name = "M42A sniper incendiary magazine"
-	contains = list(/obj/item/ammo_magazine/sniper/incendiary)
-	cost = 7
+/datum/supply_packs/ammo/autosniper_regular
+	name = "T-81 IFF sniper magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/autosniper)
+	cost = 3
 
 /datum/supply_packs/ammo/mbx900
 	name = "MBX 900 ammo crate"
@@ -777,9 +772,7 @@ ARMOR
 	name = "Jaeger assorted storage modules"
 	contains = list(
 		/obj/item/armor_module/storage/general,
-		/obj/item/armor_module/storage/ammo_mag,
 		/obj/item/armor_module/storage/medical,
-		/obj/item/armor_module/storage/integrated,
 		/obj/item/armor_module/storage/engineering,
 	)
 	cost = 3
@@ -798,12 +791,8 @@ ARMOR
 	name = "Jaeger baldur modules"
 	contains = list(
 		/obj/item/armor_module/attachable/better_shoulder_lamp,
-		/obj/item/armor_module/attachable/better_shoulder_lamp,
-		/obj/item/armor_module/attachable/better_shoulder_lamp,
-		/obj/item/armor_module/attachable/better_shoulder_lamp,
-		/obj/item/armor_module/attachable/better_shoulder_lamp,
 	)
-	cost = 7
+	cost = 10
 
 /datum/supply_packs/armor/modular/attachments/valkyrie_autodoc
 	name = "Jaeger valkyrie modules"
@@ -833,6 +822,23 @@ ARMOR
 	)
 	cost = 12
 
+/datum/supply_packs/armor/modular/attachments/mimir_helmet_protection
+	name = "Jaeger helmet mimir module"
+	contains = list(
+		/obj/item/helmet_module/attachable/mimir_environment_protection
+	)
+	cost = 5
+/datum/supply_packs/armor/modular/attachments/generic_helmet_modules
+	name = "Generic Jaeger helmet modules"
+	contains = list(
+		/obj/item/helmet_module/welding,
+		/obj/item/helmet_module/welding,
+		/obj/item/helmet_module/binoculars,
+		/obj/item/helmet_module/binoculars,
+		/obj/item/helmet_module/antenna,
+		/obj/item/helmet_module/antenna
+	)
+	cost = 6
 
 /*******************************************************************************
 CLOTHING

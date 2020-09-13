@@ -377,7 +377,7 @@
 
 /obj/structure/ob_ammo/warhead/incendiary/warhead_impact(turf/target, inaccuracy_amt = 0)
 	var/range_num = max(15 - inaccuracy_amt, 12)
-	flame_radius(range_num, target)
+	flame_radius(range_num, target,	burn_intensity = 36, burn_duration = 40, colour = "blue")
 
 
 /obj/structure/ob_ammo/warhead/cluster
@@ -440,6 +440,9 @@
 /obj/machinery/computer/orbital_cannon_console/interact(mob/user)
 	. = ..()
 	if(.)
+		return
+
+	if(!allowed(user))
 		return
 
 	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)

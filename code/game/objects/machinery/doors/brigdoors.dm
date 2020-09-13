@@ -32,7 +32,7 @@
 		if(WEST)
 			pixel_x = -32
 
-	for(var/obj/machinery/door/window/brigdoor/M in GLOB.machines)
+	for(var/obj/machinery/door/window/secure/M in GLOB.machines)
 		if (M.id == src.id)
 			targets += M
 
@@ -85,7 +85,7 @@
 	// Set releasetime
 	releasetime = world.timeofday + timetoset
 
-	for(var/obj/machinery/door/window/brigdoor/door in targets)
+	for(var/obj/machinery/door/window/secure/door in targets)
 		if(door.density)	continue
 		INVOKE_ASYNC(door, /obj/machinery/door.proc/close)
 
@@ -105,7 +105,7 @@
 	// Reset releasetime
 	releasetime = 0
 
-	for(var/obj/machinery/door/window/brigdoor/door in targets)
+	for(var/obj/machinery/door/window/secure/door in targets)
 		if(!door.density)	continue
 		INVOKE_ASYNC(door, /obj/machinery/door.proc/open)
 

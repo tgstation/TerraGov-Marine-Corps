@@ -263,6 +263,7 @@
 	max_storage_space = 15
 	can_hold = list(
 		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
 		/obj/item/flashlight/flare,
 		/obj/item/explosive/grenade/flare,
 		/obj/item/ammo_magazine/rifle,
@@ -346,6 +347,7 @@
 	item_state = "swatbelt"
 	can_hold = list(
 		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
 		/obj/item/explosive/grenade,
 		/obj/item/ammo_magazine/rifle,
 		/obj/item/cell/lasgun,

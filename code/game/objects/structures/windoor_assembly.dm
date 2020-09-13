@@ -228,7 +228,7 @@ obj/structure/windoor_assembly/Destroy()
 				to_chat(user, "<span class='notice'>You finish the windoor!</span>")
 
 				if(secure)
-					var/obj/machinery/door/window/brigdoor/BR = new(loc)
+					var/obj/machinery/door/window/secure/BR = new(loc)
 					if(facing == "l")
 						BR.icon_state = "leftsecureopen"
 						BR.base_state = "leftsecure"
