@@ -211,7 +211,7 @@
 	item_state = "grenade_smoke"
 	hud_state = "grenade_smoke"
 	underslug_launchable = TRUE
-	var/datum/effect_system/smoke_spread/plasmaloss
+	var/datum/effect_system/smoke_spread/plasmaloss/smoke
 
 /obj/item/explosive/grenade/drainbomb/Initialize()
 	. = ..()
@@ -222,9 +222,6 @@
 	smoke.set_up(3, loc, 7)
 	smoke.start()
 	qdel(src)
-
-
-
 
 
 /obj/item/explosive/grenade/phosphorus
