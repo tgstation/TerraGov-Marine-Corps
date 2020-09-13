@@ -59,7 +59,7 @@
 /obj/structure/razorwire/proc/razorwire_tangle(mob/living/entangled, duration = RAZORWIRE_ENTANGLE_DELAY)
 	if(QDELETED(src)) //Sanity check so that you can't get entangled if the razorwire is destroyed; this happens apparently.
 		CRASH("QDELETED razorwire called razorwire_tangle()")
-	COOLDOWN_START(entangled, COOLDOWN_ENTANGLE, duration)
+	TIMER_COOLDOWN_START(entangled, COOLDOWN_ENTANGLE, duration)
 	entangled.visible_message("<span class='danger'>[entangled] gets entangled in the barbed wire!</span>",
 	"<span class='danger'>You got entangled in the barbed wire! Resist to untangle yourself after [duration * 0.1] seconds since you were entangled!</span>", null, null, 5)
 	do_razorwire_tangle(entangled)
@@ -77,7 +77,7 @@
 
 /obj/structure/razorwire/resisted_against(datum/source)
 	var/mob/living/entangled = source
-	if(COOLDOWN_CHECK(entangled, COOLDOWN_ENTANGLE))
+	if(TIMER_COOLDOWN_CHECK(entangled, COOLDOWN_ENTANGLE))
 		entangled.visible_message("<span class='danger'>[entangled] attempts to disentangle itself from [src] but is unsuccessful!</span>",
 		"<span class='warning'>You fail to disentangle yourself!</span>")
 		return FALSE
@@ -116,67 +116,73 @@
 /obj/structure/razorwire/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/grab))
-		if(isxeno(user))
-			return
-
-		var/obj/item/grab/G = I
-		if(!isliving(G.grabbed_thing))
-			return
-
-		var/mob/living/M = G.grabbed_thing
-		if(user.a_intent == INTENT_HARM)
-			if(user.grab_state <= GRAB_AGGRESSIVE)
-				to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
-				return
-
-			var/armor_block = null
-			var/def_zone = ran_zone()
-			M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, TRUE)
-			UPDATEHEALTH(M)
-			user.visible_message("<span class='danger'>[user] spartas [M]'s into [src]!</span>",
-			"<span class='danger'>You sparta [M]'s against [src]!</span>")
-			log_combat(user, M, "spartaed", "", "against \the [src]")
-			playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
-
-		else if(user.grab_state >= GRAB_AGGRESSIVE)
-			M.forceMove(loc)
-			M.Paralyze(10 SECONDS)
-			user.visible_message("<span class='danger'>[user] throws [M] on [src].</span>",
-			"<span class='danger'>You throw [M] on [src].</span>")
+	if(!istype(I, /obj/item/grab))
+		return
+	if(isxeno(user))//I am very tempted to remove this >:)
 		return
 
-	else if(iswirecutter(I))
-		user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
-		"<span class='notice'>You start disassembling [src].</span>")
-		var/delay_disassembly = SKILL_TASK_AVERAGE - (0.5 SECONDS + user.skills.getRating("engineer"))
+	var/obj/item/grab/G = I
+	if(!isliving(G.grabbed_thing))
+		return
 
-		if(!do_after(user, delay_disassembly, TRUE, src, BUSY_ICON_BUILD))
+	var/mob/living/M = G.grabbed_thing
+	if(user.a_intent == INTENT_HARM)
+		if(user.grab_state <= GRAB_AGGRESSIVE)
+			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
 			return
 
-		user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
-		"<span class='notice'>You disassemble [src].</span>")
-		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-		deconstruct(TRUE)
+		var/armor_block = null
+		var/def_zone = ran_zone()
+		M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, TRUE)
+		UPDATEHEALTH(M)
+		user.visible_message("<span class='danger'>[user] spartas [M]'s into [src]!</span>",
+		"<span class='danger'>You sparta [M]'s against [src]!</span>")
+		log_combat(user, M, "spartaed", "", "against \the [src]")
+		playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 
-	else if(iswelder(I))
-		var/obj/item/tool/weldingtool/WT = I
-		if(!WT.remove_fuel(0, user))
-			return
+	else if(user.grab_state >= GRAB_AGGRESSIVE)
+		M.forceMove(loc)
+		M.Paralyze(10 SECONDS)
+		user.visible_message("<span class='danger'>[user] throws [M] on [src].</span>",
+		"<span class='danger'>You throw [M] on [src].</span>")
 
-		var/delay = SKILL_TASK_TOUGH - (1 SECONDS + user.skills.getRating("engineer") * 5)
-		user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
-		"<span class='notice'>You begin repairing the damage to [src].</span>")
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-		var/old_loc = loc
-		if(!do_after(user, delay, TRUE, src, BUSY_ICON_FRIENDLY) || old_loc != loc)
-			return
+/obj/structure/razorwire/wirecutter_act(mob/living/user, obj/item/I)
+	user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
+	"<span class='notice'>You start disassembling [src].</span>")
+	var/delay_disassembly = SKILL_TASK_AVERAGE - (0.5 SECONDS + user.skills.getRating("engineer"))
 
-		user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
-		"<span class='notice'>You repair [src].</span>")
-		repair_damage(100)
-		update_icon()
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
+	if(!do_after(user, delay_disassembly, TRUE, src, BUSY_ICON_BUILD))
+		return TRUE
+
+	user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
+	"<span class='notice'>You disassemble [src].</span>")
+	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
+	deconstruct(TRUE)
+	return TRUE
+
+/obj/structure/razorwire/welder_act(mob/living/user, obj/item/I)
+	var/obj/item/tool/weldingtool/WT = I
+	if(!WT.remove_fuel(0, user))
+		return TRUE
+
+	if(obj_integrity >= max_integrity)
+		to_chat(user, "<span class='notice'>[src] is already fully intact.</span>")
+		return TRUE
+
+	var/delay = SKILL_TASK_TOUGH - (1 SECONDS + user.skills.getRating("engineer") * 5)
+	user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
+	"<span class='notice'>You begin repairing the damage to [src].</span>")
+	playsound(loc, 'sound/items/welder2.ogg', 25, 1)
+	var/old_loc = loc
+	if(!do_after(user, delay, TRUE, src, BUSY_ICON_FRIENDLY) || old_loc != loc)
+		return TRUE
+
+	user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
+	"<span class='notice'>You repair [src].</span>")
+	repair_damage(100)
+	update_icon()
+	playsound(loc, 'sound/items/welder2.ogg', 25, 1)
+	return TRUE
 
 
 /obj/structure/razorwire/attack_alien(mob/living/carbon/xenomorph/M)

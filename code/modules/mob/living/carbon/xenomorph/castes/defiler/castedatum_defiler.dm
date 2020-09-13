@@ -14,7 +14,7 @@
 	melee_damage = 23
 
 	// *** Tackle *** //
-	tackle_damage = 30
+	tackle_damage = 28
 
 	// *** Speed *** //
 	speed = -0.7
@@ -24,7 +24,7 @@
 	plasma_gain = 14
 
 	// *** Health *** //
-	max_health = 250
+	max_health = 300
 
 	// *** Evolution *** //
 	upgrade_threshold = 250
@@ -64,7 +64,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Tackle *** //
-	tackle_damage = 35
+	tackle_damage = 28
 
 	// *** Speed *** //
 	speed = -0.8
@@ -74,7 +74,7 @@
 	plasma_gain = 17
 
 	// *** Health *** //
-	max_health = 275
+	max_health = 325
 
 	// *** Evolution *** //
 	upgrade_threshold = 500
@@ -95,7 +95,7 @@
 	melee_damage = 26
 
 	// *** Tackle *** //
-	tackle_damage = 40
+	tackle_damage = 32
 
 	// *** Speed *** //
 	speed = -0.9
@@ -105,7 +105,7 @@
 	plasma_gain = 19
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 350
 
 	// *** Evolution *** //
 	upgrade_threshold = 1000
@@ -126,7 +126,7 @@
 	melee_damage = 26
 
 	// *** Tackle *** //
-	tackle_damage = 45
+	tackle_damage = 32
 
 	// *** Speed *** //
 	speed = -1
@@ -136,7 +136,7 @@
 	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 325
+	max_health = 375
 
 	// *** Evolution *** //
 	upgrade_threshold = 1000

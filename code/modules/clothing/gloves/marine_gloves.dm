@@ -57,6 +57,7 @@
 	desc = "A pair of heavily armored gloves."
 	icon_state = "armored"
 	item_state = "bgloves"
+	flags_item = SYNTH_RESTRICTED
 	soft_armor = list("melee" = 25, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 25)
 	resistance_flags = UNACIDABLE
 
@@ -66,6 +67,7 @@
 	icon_state = "black"
 	item_state = "bgloves"
 	siemens_coefficient = 0
+	flags_item = SYNTH_RESTRICTED
 	soft_armor = list("melee" = 15, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 15)
 
 /obj/item/clothing/gloves/marine/veteran/PMC/commando

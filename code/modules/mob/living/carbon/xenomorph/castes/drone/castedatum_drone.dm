@@ -12,7 +12,7 @@
 	melee_damage = 16
 
 	// *** Tackle *** //
-	tackle_damage = 25
+	tackle_damage = 20
 
 	// *** Speed *** //
 	speed = -0.8
@@ -22,7 +22,7 @@
 	plasma_gain = 25
 
 	// *** Health *** //
-	max_health = 175
+	max_health = 225
 
 	// *** Evolution *** //
 	evolution_threshold = 80
@@ -69,7 +69,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Tackle *** //
-	tackle_damage = 30
+	tackle_damage = 20
 
 	// *** Speed *** //
 	speed = -0.9
@@ -79,7 +79,7 @@
 	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 200
+	max_health = 250
 
 	// *** Evolution *** //
 	upgrade_threshold = 120
@@ -100,7 +100,7 @@
 	melee_damage = 20
 
 	// *** Tackle *** //
-	tackle_damage = 35
+	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = -1.0
@@ -110,7 +110,7 @@
 	plasma_gain = 35
 
 	// *** Health *** //
-	max_health = 225
+	max_health = 275
 
 	// *** Evolution *** //
 	upgrade_threshold = 240
@@ -131,7 +131,7 @@
 	melee_damage = 20
 
 	// *** Tackle *** //
-	tackle_damage = 40
+	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = -1.2
@@ -141,7 +141,7 @@
 	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 250
+	max_health = 300
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 31, "bullet" = 31, "laser" = 31, "energy" = 31, "bomb" = XENO_BOMB_RESIST_0, "bio" = 15, "rad" = 15, "fire" = 31, "acid" = 15)

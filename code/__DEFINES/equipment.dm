@@ -49,7 +49,8 @@
 #define WIELDED					(1<<4)	// The item is wielded with both hands.
 #define	ITEM_ABSTRACT			(1<<5)	//The item is abstract (grab, powerloader_clamp, etc)
 #define BEING_REMOVED			(1<<6)	//Cuffs
-
+#define DOES_NOT_NEED_HANDS		(1<<7)	//Dont need hands to use it
+#define SYNTH_RESTRICTED		(1<<8)	//Prevents synths from wearing items with this flag
 //==========================================================================================
 
 

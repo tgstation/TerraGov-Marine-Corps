@@ -296,6 +296,7 @@
 	req_access = null
 
 /obj/machinery/door/airlock/mainship/command/canterbury //For wall-smoothing
+	req_access = list(ACCESS_MARINE_DROPSHIP)
 
 /obj/machinery/door/airlock/mainship/command/cic
 	name = "\improper Combat Information Center"

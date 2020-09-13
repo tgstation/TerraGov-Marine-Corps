@@ -62,6 +62,32 @@
 	icon_state = "[walltype][junction]"
 	junctiontype = junction
 
+/turf/closed/wall/mainship/gray
+	walltype = "gwall"
+	icon_state = "gwall0"
+
+/turf/closed/wall/mainship/gray/outer
+	name = "outer hull"
+	desc = "A huge chunk of metal used to seperate space from the ship"
+	walltype = "gwall"
+	resistance_flags = RESIST_ALL
+
+/turf/closed/wall/mainship/gray/handle_icon_junction(junction)
+	if (!walltype)
+		return
+	//lets make some detailed randomized shit happen.
+	var/r1 = rand(0,10) //Make a random chance for this to happen
+	var/r2 = rand(0,3) // Which wall if we do choose it
+	if(junction == 12)
+		switch(r1)
+			if(0 to 8)
+				icon_state = "[walltype]12"
+			if(9 to 10)
+				icon_state = "gmainship_deco_wall[r2]"
+	else
+		icon_state = "[walltype][junction]"
+	junctiontype = junction
+
 /turf/closed/wall/mainship/white/canterbury //For ship smoothing.
 
 /turf/closed/wall/mainship/research/can_be_dissolved()
@@ -357,7 +383,11 @@
 	..()
 	icon_state = "[type]vault"
 
-
+/turf/closed/wall/desertcavewall
+	name = "cave wall"
+	icon = 'icons/turf/desertdam_map.dmi'
+	icon_state = "cavewall0"
+	walltype = "cavewall"
 
 
 //Prison wall
