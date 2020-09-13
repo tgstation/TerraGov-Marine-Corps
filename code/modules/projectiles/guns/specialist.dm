@@ -534,8 +534,6 @@
 	if(!length(grenades))
 		to_chat(user, "<span class='warning'>The grenade launcher is empty.</span>")
 		return
-	if(fire_animation)
-		flick("[fire_animation]", src)
 	fire_grenade(target,user)
 	var/obj/screen/ammo/A = user.hud_used.ammo
 	A.update_hud(user)
@@ -582,6 +580,8 @@
 		F.throwforce += F.launchforce //Throws with signifcantly more force than a standard marine can.
 		F.throw_at(target, 20, 3, user)
 		playsound(F.loc, fire_sound, 50, 1)
+		if(fire_animation)
+			flick("[fire_animation]", src)
 
 /obj/item/weapon/gun/launcher/m92/get_ammo_type()
 	if(length(grenades) == 0)

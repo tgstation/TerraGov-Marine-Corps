@@ -459,8 +459,6 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		return
 
 	if(!istype(A, /obj/screen))
-		if(fire_animation)
-			flick("[fire_animation]", src)
 		Fire(A, user, params) //Otherwise, fire normally.
 
 /*
@@ -629,6 +627,10 @@ and you're good to go.
 		//vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 		projectile_to_fire.fire_at(target, user, src, projectile_to_fire.ammo.max_range, projectile_to_fire.ammo.shell_speed, firing_angle)
 		//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+		if(fire_animation) //Fires gun firing animation if it has any. ex: rotating barrel
+			flick("[fire_animation]", src)
+
 		last_fired = world.time
 
 		//This is where we load the next bullet in the chamber. We check for attachments too, since we don't want to load anything if an attachment is active.
