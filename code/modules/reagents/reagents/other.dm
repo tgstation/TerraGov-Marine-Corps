@@ -666,3 +666,15 @@
 /datum/reagent/sterilizine/on_mob_life(mob/living/L, metabolism)
 	L.adjustToxLoss(2*REM)
 	return ..()
+
+/datum/reagent/nanites2 //cause I don't want to deal with people turning into cyborgs
+	name = "Nanomachines"
+	description = "Microscopic construction robots designed to tear iron out of the surroundings and build jagged structures of wire when mixed into a foam. Drinking this is a bad idea."
+	taste_description = "poor life choices, followed by burning agony"
+	reagent_state = LIQUID
+	color = "#535E66" // rgb: 83, 94, 102
+
+/datum/reagent/nanites2/on_mob_life(mob/living/L, metabolism)
+	L.apply_damages(20*REM, 6*REM, 6*REM) //DO NOT DRINK THIS. Seriously!
+	return ..()
+
