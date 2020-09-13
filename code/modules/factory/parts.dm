@@ -1,0 +1,29 @@
+///Base item used in factories, only changes icon and stage for the item then creates a new item when its done
+/obj/item/factory_part
+	name = "test part"
+	desc = "you shouldnt be seeing this"
+	icon = 'icons/obj/items/items.dmi'
+	icon_state = "implant_evil"
+	///How many cycles of processing we've gone through
+	var/stage = 0
+	///How many cycles we go through until we become the result
+	var/completion_stage = 4
+	///What type of machine the obj goes through first/next
+	var/next_machine = FACTORY_MACHINE_FLATTER
+	///Static assoc list recipe for the item
+	var/static/list/recipe = list(
+			list("next_machine" = FACTORY_MACHINE_STAMPER, "icon_state" = "decompiler"),
+			list("next_machine" = FACTORY_MACHINE_HEATER, "icon_state" = "battererburnt"),
+			list("next_machine" = FACTORY_MACHINE_FORMER, "icon_state" = "batterer"),
+			)
+	///What result we become when we've run through all our machines
+	var/result = /obj/item/violin
+
+/obj/item/factory_part/proc/advance_stage()
+	stage++
+	if(stage >= completion_stage)
+		new result(loc)
+		qdel(src)
+		return
+	next_machine = recipe[stage]["next_machine"]
+	icon_state = recipe[stage]["icon_state"]

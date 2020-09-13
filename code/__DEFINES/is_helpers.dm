@@ -172,6 +172,8 @@
 
 #define iscrowbar(I) (istype(I, /obj/item/tool/crowbar))
 
+#define isfactorypart(I) (istype(I, /obj/item/factory_part))
+
 #define isstructure(A) (istype(A, /obj/structure))
 
 #define iscable(A) (istype(A, /obj/structure/cable))
