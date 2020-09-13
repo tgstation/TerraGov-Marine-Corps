@@ -203,6 +203,29 @@
 	smoke.start()
 	qdel(src)
 
+/obj/item/explosive/grenade/drainbomb
+	name = "\improper M40-P smoke grenade"
+	desc = "The M40-P is a small, but powerful smoke grenade, designed to remove plasma with minimal side effects. Based off the same platform as the M40 HEDP. It is set to detonate in 2 seconds."
+	icon_state = "grenade_smoke"
+	det_time = 20
+	item_state = "grenade_smoke"
+	hud_state = "grenade_smoke"
+	underslug_launchable = TRUE
+	var/datum/effect_system/smoke_spread/plasmaloss
+
+/obj/item/explosive/grenade/drainbomb/Initialize()
+	. = ..()
+	smoke = new(src)
+
+/obj/item/explosive/grenade/drainbomb/prime()
+	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(3, loc, 7)
+	smoke.start()
+	qdel(src)
+
+
+
+
 
 /obj/item/explosive/grenade/phosphorus
 	name = "\improper M40 HPDP grenade"
