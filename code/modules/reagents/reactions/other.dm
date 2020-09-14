@@ -249,7 +249,7 @@
 	name = "Razorburn Gas"
 	required_reagents = list(/datum/reagent/fluorosurfactant = 1, /datum/reagent/nanites2 = 1)
 
-/datum/chemical_reaction/razorfoam/on_reaction(datum/reagents/holder, created_volume)
+/datum/chemical_reaction/razorburn/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/mob/M in viewers(WORLD_VIEW_NUM, location))
 		to_chat(M, "<span class='danger'>The solution spews out a dense, ground-hugging gas! Get away!</span>")
