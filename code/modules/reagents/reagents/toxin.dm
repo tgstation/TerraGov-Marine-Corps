@@ -437,6 +437,21 @@
 	meltprob = 30
 	taste_multi = 1.5
 
+/datum/reagent/toxin/nanites2 //cause I don't want to deal with people turning into cyborgs
+	name = "Nanomachines"
+	description = "Microscopic construction robots designed to tear iron out of the surroundings and build jagged structures of wire when mixed into a foam. Drinking this is a bad idea."
+	taste_description = "poor life choices, followed by burning agony"
+	reagent_state = LIQUID
+	color = "#535E66" // rgb: 83, 94, 102
+
+/datum/reagent/toxin/nanites2/on_mob_life(mob/living/L, metabolism)
+	L.apply_damages(10*REM, 6*REM, 6*REM) //DO NOT DRINK THIS. Seriously!
+		if(iscarbon(L))
+		var/mob/living/carbon/C = L
+		if(C.blood_volume < BLOOD_VOLUME_MAXIMUM)
+			C.blood_volume -= 10
+	return ..()
+
 /datum/reagent/toxin/xeno_neurotoxin
 	name = "Neurotoxin"
 	description = "A debilitating nerve toxin. Impedes motor control in high doses. Causes progressive loss of mobility over time."
