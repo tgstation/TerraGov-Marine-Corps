@@ -1,0 +1,5 @@
+author: "jroinc"
+delete-after: True
+changes: 
+  - balance: "Lowered both flamer fire delays from 2 seconds to 0.4 seconds."
+  - balance: "Lowered welding fuel backpacks capacity from 600 and 700 to 500 for both."
