@@ -1,0 +1,6 @@
+author: "MacBlaze1 & Chaznoodles"
+delete-after: True
+changes: 
+  - bugfix: "facehuggers now go idle when they drop from a xenos hand"
+  - bugfix: "facehuggers now go idle in gas
+feature: carriers now can throw facehuggers in 1 click if they click on a tile and still have the previous way to throw them elsewise"
