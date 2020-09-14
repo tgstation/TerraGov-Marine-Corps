@@ -19,14 +19,12 @@
 	var/expand = 1
 	animate_movement = NO_STEPS
 	var/metal = 0
-	var/razorburn = 0
 
 
-/obj/effect/particle_effect/foam/New(loc, ismetal=0, israzorburn=0)
+/obj/effect/particle_effect/foam/New(loc, ismetal=0)
 	..(loc)
 	icon_state = "[ismetal ? "m":""]foam"
 	metal = ismetal
-	razorburn = israzorburn
 	playsound(src, 'sound/effects/bubbles2.ogg', 25, 1, 5)
 	spawn(3 + metal*3)
 		process()
@@ -35,10 +33,10 @@
 		STOP_PROCESSING(SSobj, src)
 		sleep(30)
 
-		if(metal)
-			new /obj/structure/foamedmetal(loc)
-		if(razorburn)
+		if(metal == 3)
 			new /obj/structure/razorwire(loc)
+		else if(metal)
+			new /obj/structure/foamedmetal(loc)		
 
 		flick("[icon_state]-disolve", src)
 		QDEL_IN(src, 5)
@@ -103,8 +101,7 @@
 /datum/effect_system/foam_spread
 	var/amount = 5				// the size of the foam spread.
 	var/list/carried_reagents	// the IDs of reagents present when the foam was mixed
-	var/metal = 0				// 0=foam, 1=metalfoam, 2=ironfoam
-	var/razorburn = 0			// 3=razorburn
+	var/metal = 0				// 0=foam, 1=metalfoam, 2=ironfoam, 3=razorburn
 
 
 
@@ -118,7 +115,6 @@
 
 		carried_reagents = list()
 		metal = metalfoam
-		razorburn = razorburn
 
 
 		// bit of a hack here. Foam carries along any reagent also present in the glass it is mixed
