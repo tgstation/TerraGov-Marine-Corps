@@ -241,7 +241,7 @@
 		to_chat(M, "<span class='warning'>The solution spews out a metallic foam!</span>")
 
 	var/datum/effect_system/foam_spread/s = new()
-	s.set_up(created_volume, location, holder, 2)
+	s.set_up(created_volume, location, holder, 1)
 	s.start()
 	holder.clear_reagents()
 
@@ -254,7 +254,7 @@
 	for(var/mob/M in viewers(WORLD_VIEW_NUM, location))
 		to_chat(M, "<span class='danger'>The solution spews out a dense, ground-hugging gas! Get away!</span>")
 	var/datum/effect_system/foam_spread/s = new()
-	s.set_up(created_volume, location, holder, 3)
+	s.set_up(created_volume, location, holder, 2)
 	s.start()
 	holder.clear_reagents()
 
