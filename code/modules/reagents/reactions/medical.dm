@@ -66,7 +66,7 @@
 /datum/chemical_reaction/larvaway
 	name = "Larvaway"
 	results = list(/datum/reagent/medicine/larvaway = 3)
-	required_reagents = list(/datum/reagent/spaceacillin = 1, /datum/reagent/medicine/polyhexanide = 1, /datum/reagent/medicine/sterilizine = 1)
+	required_reagents = list(/datum/reagent/medicine/spaceacillin = 1, /datum/reagent/medicine/polyhexanide = 1, /datum/reagent/medicine/sterilizine = 1)
 
 /datum/chemical_reaction/imidazoline
 	name = "imidazoline"
