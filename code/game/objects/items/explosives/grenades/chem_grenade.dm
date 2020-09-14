@@ -244,8 +244,11 @@
 	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
 
-	B1.reagents.add_reagent(/datum/reagent/nanites2, 40)
-	B2.reagents.add_reagent(/datum/reagent/fluorosurfactant, 30)
+	B1.reagents.add_reagent(/datum/reagent/nanites2, 45)
+	B1.reagents.add_reagent(/datum/reagent/potassium, 5)
+	B2.reagents.add_reagent(/datum/reagent/fluorosurfactant, 40)
+	B2.reagents.add_reagent(/datum/reagent/phosphorus, 5)
+	B2.reagents.add_reagent(/datum/reagent/consumable/sugar, 5)
 
 	beakers += B1
 	beakers += B2
