@@ -580,6 +580,8 @@
 		F.throwforce += F.launchforce //Throws with signifcantly more force than a standard marine can.
 		F.throw_at(target, 20, 3, user)
 		playsound(F.loc, fire_sound, 50, 1)
+		if(fire_animation)
+			flick("[fire_animation]", src)
 
 /obj/item/weapon/gun/launcher/m92/get_ammo_type()
 	if(length(grenades) == 0)
@@ -600,6 +602,7 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t70"
 	item_state = "t70"
+	fire_animation = "t70_fire"
 	max_shells = 6 //codex
 	caliber = "40mm grenades" //codex
 	load_method = SINGLE_CASING //codex
