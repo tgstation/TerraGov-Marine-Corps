@@ -186,10 +186,14 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/launcher/rocket)
 	cost = 90
 
-/datum/supply_packs/weapons/specsniper
-	name = "Sniper Specialist kit"
-	contains = list(/obj/item/weapon/gun/rifle/sniper/M42A)
-	cost = 90
+/datum/supply_packs/weapons/autosniper
+	name = "IFF Auto Sniper kit"
+	contains = list(
+		/obj/item/weapon/gun/rifle/standard_autosniper,
+		/obj/item/ammo_magazine/rifle/autosniper,
+		/obj/item/ammo_magazine/rifle/autosniper,
+	)
+	cost = 70
 
 /datum/supply_packs/weapons/specminigun
 	name = "MIC-A7 Vindicator Minigun"
@@ -455,20 +459,10 @@ AMMO
 	contains = list(/obj/item/ammo_magazine/rifle/m4ra/smart)
 	cost = 7
 
-/datum/supply_packs/ammo/sniper_regular
-	name = "M42A sniper magazine"
-	contains = list(/obj/item/ammo_magazine/sniper)
-	cost = 5
-
-/datum/supply_packs/ammo/sniper_flak
-	name = "M42A sniper flak magazine"
-	contains = list(/obj/item/ammo_magazine/sniper/flak)
-	cost = 5
-
-/datum/supply_packs/ammo/sniper_incendiary
-	name = "M42A sniper incendiary magazine"
-	contains = list(/obj/item/ammo_magazine/sniper/incendiary)
-	cost = 7
+/datum/supply_packs/ammo/autosniper_regular
+	name = "T-81 IFF sniper magazine"
+	contains = list(/obj/item/ammo_magazine/rifle/autosniper)
+	cost = 3
 
 /datum/supply_packs/ammo/mbx900
 	name = "MBX-900 Sabot Shells"
