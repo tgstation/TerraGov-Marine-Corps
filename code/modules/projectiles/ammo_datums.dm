@@ -1097,6 +1097,77 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		return
 	explosion(T, 0, 3, 5, 5, throw_range = 0)
 
+/*
+//================================================
+					Crossbow Ammo
+//================================================
+*/
+
+/datum/ammo/bolt
+	name = "armour piercing bolt"
+	icon_state = "bolt"
+	hud_state = "bolt_ap"
+	hud_state_empty = "bolt_empty"
+	ping = null //no bounce off.
+	sound_bounce	= "rocket_bounce"
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
+	armor_type = "bomb"
+	damage_falloff = 0
+	shell_speed = 2
+	accuracy = 40
+	accurate_range = 20
+	max_range = 30
+	damage = 200
+	penetration = 100
+	sundering = 100
+
+/datum/ammo/rocket/drop_nade(turf/T)
+	explosion(T, 0, 4, 6, 5)
+
+/datum/ammo/rocket/on_hit_mob(mob/M, obj/projectile/P)
+	drop_nade(get_turf(M))
+
+/datum/ammo/rocket/on_hit_obj(obj/O, obj/projectile/P)
+	drop_nade(get_turf(O))
+
+/datum/ammo/rocket/on_hit_turf(turf/T, obj/projectile/P)
+	drop_nade(T)
+
+/datum/ammo/rocket/do_at_max_range(obj/projectile/P)
+	drop_nade(get_turf(P))
+
+/datum/ammo/bolt/sb
+	name = "sabot bolt"
+	hud_state = "bolt_ap"
+	damage_falloff = 0
+	accurate_range = 15
+	penetration = 150
+	damage = 325
+
+/datum/ammo/rocket/ap/drop_nade(turf/T)
+	explosion(T, flash_range = 1)
+
+/datum/ammo/rocket/ltb/drop_nade(turf/T)
+	explosion(T, 0, 4, 6, 7)
+
+/datum/ammo/rocket/wp
+	name = "incendiary bolt"
+	hud_state = "bolt_fire"
+	flags_ammo_behavior = AMMO_ROCKET|AMMO_INCENDIARY|AMMO_EXPLOSIVE|AMMO_SUNDERING
+	armor_type = "fire"
+	damage_type = BURN
+	accuracy_var_low = 7
+	accurate_range = 15
+	damage = 200
+	penetration = 75
+	max_range = 20
+	sundering = 100
+
+/datum/ammo/rocket/wp/drop_nade(turf/T, radius = 3)
+	if(!T || !isturf(T))
+		return
+	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
+	flame_radius(radius, T, 27, 27, 27, 17)
 
 /*
 //================================================

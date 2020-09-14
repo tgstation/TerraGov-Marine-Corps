@@ -762,6 +762,39 @@
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_POLICE|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	req_access = list(ACCESS_MARINE_BRIG)
 
+/*
+* Crossbow
+*/
+
+/obj/item/weapon/gun/launcher/crossbow
+	name = "\improper X8 Crossbow"
+	desc = "A weapon favored big game Hunters."
+	icon_state = "x8"
+	item_state = "x8"
+	max_shells = 1 //codex
+	caliber = "crossbow bolts" //codex
+	load_method = SINGLE_CASING //codex
+	materials = list(/datum/material/metal = 10000)
+	current_mag = /obj/item/ammo_magazine/bolt
+	flags_equip_slot = NONE
+	w_class = WEIGHT_CLASS_HUGE
+	force = 15
+	wield_delay = 12
+	wield_penalty = 1.6 SECONDS
+	aim_slowdown = 1.75
+	general_codex_key = "explosive weapons"
+	attachable_allowed = list(
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/scope/mini)
+
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	gun_skill_category = GUN_SKILL_FIREARMS
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+
+	fire_delay = 1 SECONDS
+	recoil = 3
+	scatter = -100
+
 //-------------------------------------------------------
 //M5 RPG
 
@@ -774,7 +807,7 @@
 	caliber = "84mm rockets" //codex
 	load_method = SINGLE_CASING //codex
 	materials = list(/datum/material/metal = 10000)
-	current_mag = /obj/item/ammo_magazine/rocket
+	current_mag = /obj/item/ammo_magazine/bolt
 	flags_equip_slot = NONE
 	w_class = WEIGHT_CLASS_HUGE
 	force = 15
