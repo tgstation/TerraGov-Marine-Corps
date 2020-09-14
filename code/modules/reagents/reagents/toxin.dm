@@ -446,7 +446,7 @@
 
 /datum/reagent/toxin/nanites2/on_mob_life(mob/living/L, metabolism)
 	L.apply_damages(10*REM, 6*REM, 6*REM) //DO NOT DRINK THIS. Seriously!
-		if(iscarbon(L))
+	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		if(C.blood_volume < BLOOD_VOLUME_MAXIMUM)
 			C.blood_volume -= 10
