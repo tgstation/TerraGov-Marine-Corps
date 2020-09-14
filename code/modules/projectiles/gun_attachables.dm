@@ -428,6 +428,17 @@ Defined in conflicts.dm of the #defines folder.
 	accuracy_mod = 0.15
 	scatter_mod = -15
 
+/obj/item/attachable/autosniperbarrel
+	name = "auto sniper barrel"
+	icon_state = "t81barrel"
+	desc = "A heavy barrel. CANNOT BE REMOVED."
+	slot = "under"
+	flags_attach_features = NONE
+	pixel_shift_x = 7
+	pixel_shift_y = 14
+	accuracy_mod = 0
+	scatter_mod = -5
+
 /obj/item/attachable/smartbarrel
 	name = "smartgun barrel"
 	icon_state = "smartbarrel"
@@ -651,7 +662,7 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/scope/nightvision
 	name = "T-46 Night vision scope"
 	icon_state = "nvscope"
-	attach_icon = "slavicscope"
+	attach_icon = "nvscope_a"
 	desc = "A rail-mounted night vision scope developed by Roh-Easy industries for the TGMC. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	has_nightvision = TRUE
 

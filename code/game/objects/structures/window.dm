@@ -419,6 +419,26 @@
 
 /obj/structure/window/framed/mainship/white/canterbury //So we can wallsmooth properly.
 
+/obj/structure/window/framed/mainship/gray
+	icon_state = "gray_window0"
+	basestate = "gray_window"
+	window_frame = /obj/structure/window_frame/mainship/gray
+	reinf = FALSE
+
+/obj/structure/window/framed/mainship/gray/toughened
+	name = "safety glass"
+	desc = "A very tough looking glass window with a special rod matrice, probably bullet proof."
+	max_integrity = 300
+	reinf = TRUE
+	icon_state = "gray_rwindow0"
+	basestate = "gray_rwindow"
+
+/obj/structure/window/framed/mainship/gray/toughened/hull
+	name = "hull window"
+	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
+	damageable = FALSE
+	deconstructable = FALSE
+	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
 /obj/structure/window/framed/colony
 	name = "window"
 	icon_state = "col_window0"
