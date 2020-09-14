@@ -131,6 +131,7 @@
 					/obj/item/explosive/mine = 5,
 					/obj/item/explosive/grenade/frag/m15 = 25,
 					/obj/item/explosive/grenade/incendiary = 25,
+					/obj/item/explosive/grenade/drainbomb = 25,
 					/obj/item/explosive/grenade/smokebomb = 25,
 					/obj/item/explosive/grenade/cloakbomb = 25,
 					/obj/item/storage/box/m94 = 30
