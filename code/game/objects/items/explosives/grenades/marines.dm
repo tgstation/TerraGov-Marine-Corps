@@ -177,7 +177,7 @@
 
 /obj/item/explosive/grenade/smokebomb/prime()
 	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(3, loc, 7)
+	smoke.set_up(7, loc, 11)
 	smoke.start()
 	qdel(src)
 
@@ -199,13 +199,13 @@
 
 /obj/item/explosive/grenade/cloakbomb/prime()
 	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(3, loc, 9)
+	smoke.set_up(7, loc, 11)
 	smoke.start()
 	qdel(src)
 
 /obj/item/explosive/grenade/drainbomb
-	name = "\improper M40-P smoke grenade"
-	desc = "The M40-P is a small, but powerful smoke grenade, designed to remove plasma with minimal side effects. Based off the same platform as the M40 HEDP. It is set to detonate in 2 seconds."
+	name = "\improper M40-T smoke grenade"
+	desc = "The M40-P is a small, but powerful Tanglefoot grenade, designed to remove plasma with minimal side effects. Based off the same platform as the M40 HEDP. It is set to detonate in 2 seconds."
 	icon_state = "grenade_smoke"
 	det_time = 20
 	item_state = "grenade_smoke"
@@ -240,7 +240,7 @@
 
 /obj/item/explosive/grenade/phosphorus/prime()
 	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(5, loc, 7)
+	smoke.set_up(6, loc, 7)
 	smoke.start()
 	flame_radius(4, get_turf(src))
 	flame_radius(1, get_turf(src), burn_intensity = 45, burn_duration = 75, burn_damage = 15, fire_stacks = 75)	//The closer to the middle you are the more it hurts
