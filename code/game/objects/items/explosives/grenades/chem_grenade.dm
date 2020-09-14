@@ -233,19 +233,38 @@
 	icon_state = initial(icon_state) +"_locked"
 
 
-/obj/item/explosive/grenade/chem_grenade/razorburn
+/obj/item/explosive/grenade/chem_grenade/razorburn_smol
 	name = "Razorburn Grenade"
-	desc = "Contains construction nanites ready to turn an area into razorwire after a few seconds. DO NOT ENTER AREA WHILE ACTIVE."
+	desc = "Contains construction nanites ready to turn a small area into razorwire after a few seconds. DO NOT ENTER AREA WHILE ACTIVE."
 	stage = CG_READY
 
 
-/obj/item/explosive/grenade/chem_grenade/razorburn/Initialize(mapload, ...)
+/obj/item/explosive/grenade/chem_grenade/razorburn_smol/Initialize(mapload, ...)
 	. = ..()
 	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
 
-	B1.reagents.add_reagent(/datum/reagent/nanites2, 40)
-	B2.reagents.add_reagent(/datum/reagent/fluorosurfactant, 30)
+	B1.reagents.add_reagent(/datum/reagent/toxin/nanites2, 10)
+	B2.reagents.add_reagent(/datum/reagent/foaming_agent, 5)
+
+	beakers += B1
+	beakers += B2
+	icon_state = initial(icon_state) +"_locked"
+
+/obj/item/explosive/grenade/chem_grenade/razorburn_large
+	name = "Razorburn Canister"
+	desc = "Contains construction nanites ready to turn a large area into razorwire after a few seconds. DO NOT ENTER AREA WHILE ACTIVE."
+	icon_state = "clusterbang"
+	stage = CG_READY
+
+
+/obj/item/explosive/grenade/chem_grenade/razorburn_large/Initialize(mapload, ...)
+	. = ..()
+	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
+	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
+
+	B1.reagents.add_reagent(/datum/reagent/toxin/nanites2, 60)
+	B2.reagents.add_reagent(/datum/reagent/foaming_agent, 50)
 
 	beakers += B1
 	beakers += B2
