@@ -1313,8 +1313,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_hallway)
 "en" = (
-/obj/structure/flora/pottedplant/twentyone,
-/obj/machinery/vending/nanomed,
+/obj/machinery/vending/boozeomat,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "eo" = (
@@ -1524,6 +1523,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"fp" = (
+/obj/structure/closet/firecloset,
+/obj/item/clothing/mask/gas,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/turf/open/floor/mainship/cargo,
+/area/mainship/hallways/stern_hallway)
 "fq" = (
 /obj/structure/table/mainship,
 /obj/item/storage/firstaid/regular,
@@ -3409,7 +3414,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "md" = (
-/obj/machinery/computer/arcade,
+/obj/structure/flora/pottedplant/twentyone,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
 "mg" = (
@@ -5239,6 +5244,7 @@
 /area/mainship/living/cryo_cells)
 "sR" = (
 /obj/structure/closet/firecloset,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/bridgebunks)
 "sS" = (
@@ -6120,6 +6126,7 @@
 /area/mainship/command/cic)
 "vD" = (
 /obj/structure/closet/toolcloset,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/starboard_umbilical)
 "vE" = (
@@ -8128,11 +8135,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/lower_engine_monitoring)
 "Cf" = (
-/obj/structure/bed/chair{
-	dir = 8
-	},
 /obj/machinery/light{
 	dir = 1
+	},
+/obj/structure/bed/chair{
+	dir = 4
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/command/corporateliaison)
@@ -12617,6 +12624,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /obj/structure/table/mainship,
+/obj/item/storage/bible/booze,
 /turf/open/floor/mainship,
 /area/mainship/living/cafeteria_starboard)
 "QP" = (
@@ -12712,6 +12720,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 5
 	},
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
 /turf/open/floor/mainship/red/full,
 /area/mainship/shipboard/firing_range)
 "Rf" = (
@@ -13677,6 +13686,10 @@
 /obj/structure/lattice,
 /turf/open/space/basic,
 /area/space)
+"Xd" = (
+/obj/machinery/vending/nanomed,
+/turf/closed/wall/mainship,
+/area/mainship/command/corporateliaison)
 "Xg" = (
 /turf/open/floor/mainship/black{
 	dir = 8
@@ -13771,6 +13784,15 @@
 /obj/machinery/landinglight/ds2,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
+"XK" = (
+/obj/structure/closet/crate,
+/obj/item/stack/sheet/mineral/phoron{
+	amount = 25
+	},
+/obj/item/storage/briefcase/inflatable,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/turf/open/floor/mainship/cargo,
+/area/mainship/engineering/engineering_workshop)
 "XL" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -40016,7 +40038,7 @@ BM
 uM
 uM
 uM
-uM
+Xd
 KE
 gi
 rm
@@ -47755,7 +47777,7 @@ uW
 uW
 uW
 FY
-xY
+fp
 OM
 zF
 JY
@@ -47764,7 +47786,7 @@ OM
 zR
 zX
 Ai
-Ax
+XK
 Mb
 aO
 ad
