@@ -1,5 +1,0 @@
-author: "SplinterGP"
-delete-after: True
-changes: 
-  - imageadd: "adds shooting and pump/bolt animation to GL-70, T-35, mosin and mateba."
-  - rscadd: "added code to allow shooting and pump/bolt animation to guns."
