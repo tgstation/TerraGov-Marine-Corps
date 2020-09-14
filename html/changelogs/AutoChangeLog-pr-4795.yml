@@ -1,0 +1,6 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - balance: "balances PAS armor to be more like base medium jaeger."
+  - balance: "all jaeger arm and legpieces are now the same with only cosmetic differences."
+  - balance: "reduces jaeger armor to intended, they got a small speed buff in return."
