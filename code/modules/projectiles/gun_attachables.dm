@@ -655,7 +655,7 @@ Defined in conflicts.dm of the #defines folder.
 
 
 /obj/item/attachable/scope/marine
-	name = "rail scope"
+	name = "T-47 rail scope"
 	icon_state = "marinescope"
 	attach_icon = "marinescope_a"
 
