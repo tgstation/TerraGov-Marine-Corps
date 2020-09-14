@@ -247,7 +247,7 @@
 
 /datum/chemical_reaction/razorburn
 	name = "Razorburn Gas"
-	required_reagents = list(/datum/reagent/fluorosurfactant = 1, /datum/reagent/nanites2 = 1)
+	required_reagents = list(/datum/reagent/foaming_agent = 1, /datum/reagent/toxin/nanites2 = 1)
 
 /datum/chemical_reaction/razorburn/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
