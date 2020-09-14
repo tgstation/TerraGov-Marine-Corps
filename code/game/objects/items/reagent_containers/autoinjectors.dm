@@ -126,10 +126,10 @@
 /obj/item/reagent_containers/hypospray/autoinjector/hypervene
 	name = "hypervene autoinjector"
 	desc = "An auto-injector loaded with 3 uses of hypervene, an emergency medicine that rapidly purges chems. Causes pain and vomiting."
-	amount_per_transfer_from_this = 3
-	volume = 9
+	amount_per_transfer_from_this = 12
+	volume = 36
 	icon_state = "autoinjector-8" //TEMP
-	list_reagents = list(/datum/reagent/medicine/hypervene = 9)
+	list_reagents = list(/datum/reagent/medicine/hypervene = 36)
 
 /obj/item/reagent_containers/hypospray/autoinjector/hyperzine/expired
 	name = "expired hyperzine autoinjector"
@@ -178,10 +178,11 @@
 /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus
 	name = "Peridaxon Plus autoinjector"
 	desc = "An auto-injector loaded with 3 doses of Peridaxon Plus, a chemical that heals organs while causing severe toxic damage. !DO NOT USE MORE THAN ONCE AT A TIME!"
-	amount_per_transfer_from_this = 1
-	volume = 3
+	amount_per_transfer_from_this = 3
+	volume = 9
 	icon_state = "autoinjector-8" 
-	list_reagents = list(/datum/reagent/medicine/peridaxon_plus = 3)
+	list_reagents = list(/datum/reagent/medicine/peridaxon_plus = 3,
+						/datum/reagent/medicine/arithrazine = 6)
 
 /obj/item/reagent_containers/hypospray/autoinjector/roulettium
 	name = "Roulettium autoinjector"

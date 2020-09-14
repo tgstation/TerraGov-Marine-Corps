@@ -190,6 +190,9 @@
 	icon_state = "floor"
 	icon = 'icons/turf/shuttle.dmi'
 	allow_construction = FALSE
+	shoefootstep = FOOTSTEP_PLATING
+	barefootstep = FOOTSTEP_PLATING
+	mediumxenofootstep = FOOTSTEP_PLATING
 
 
 /turf/open/shuttle/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)
@@ -265,10 +268,10 @@
 	plane = FLOOR_PLANE
 	baseturfs = /turf/open/lavaland/lava
 
+
 /turf/open/lavaland/lava
 	name = "lava"
 	icon_state = "full"
-
 	light_range = 2
 	light_power = 0.75
 	light_color = LIGHT_COLOR_LAVA
@@ -365,6 +368,9 @@
 /turf/open/lavaland/basalt
 	name = "basalt"
 	icon_state = "basalt"
+	shoefootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	mediumxenofootstep = FOOTSTEP_SAND
 
 /turf/open/lavaland/basalt/cave
 	name = "cave"
@@ -394,6 +400,9 @@
 	light_range = 4
 	light_power = 0.75
 	light_color = LIGHT_COLOR_LAVA
+	shoefootstep = FOOTSTEP_CATWALK
+	barefootstep = FOOTSTEP_CATWALK
+	mediumxenofootstep = FOOTSTEP_CATWALK
 
 /turf/open/lavaland/catwalk/built
 	var/deconstructing = FALSE
