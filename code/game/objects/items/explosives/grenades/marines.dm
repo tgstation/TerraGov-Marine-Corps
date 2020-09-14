@@ -219,7 +219,7 @@
 
 /obj/item/explosive/grenade/drainbomb/prime()
 	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(3, loc, 7)
+	smoke.set_up(7, loc, 11)
 	smoke.start()
 	qdel(src)
 
