@@ -65,6 +65,14 @@
 	icon_state = "autoinjector-7"
 	list_reagents = list(/datum/reagent/medicine/quickclot = 30)
 
+/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus
+	name = "quick-clot autoinjector"
+	desc = "An autoinjector loaded with 3 uses of quick-clot plus, a chemical designed to remove internal bleeding. DO NOT USE IN COMBAT."
+	amount_per_transfer_from_this = 5
+	volume = 15
+	icon_state = "autoinjector-7"
+	list_reagents = list(/datum/reagent/medicine/quickclotplus = 15)
+
 /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus
 	name = "dexalin plus autoinjector"
 	desc = "An autoinjector loaded with 3 uses of dexalin plus, designed to immediately oxygenate the entire body."
