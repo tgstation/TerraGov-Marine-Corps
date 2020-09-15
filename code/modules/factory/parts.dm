@@ -12,7 +12,7 @@
 	var/next_machine = FACTORY_MACHINE_FLATTER
 	///Static assoc list recipe for the item
 	var/static/list/recipe = list(
-			list("next_machine" = FACTORY_MACHINE_STAMPER, "icon_state" = "decompiler"),
+			list("next_machine" = FACTORY_MACHINE_CUTTER, "icon_state" = "decompiler"),
 			list("next_machine" = FACTORY_MACHINE_HEATER, "icon_state" = "battererburnt"),
 			list("next_machine" = FACTORY_MACHINE_FORMER, "icon_state" = "batterer"),
 			)
@@ -27,3 +27,21 @@
 		return
 	next_machine = recipe[stage]["next_machine"]
 	icon_state = recipe[stage]["icon_state"]
+
+/obj/item/factory_part/phosnade
+	name = "Phosphorus Grenade assembly"
+	desc = "A incomplete phosphorus grenade assembly"
+	result = /obj/item/explosive/grenade/phosphorus
+
+/obj/item/factory_part/m15_nade
+	name = "M15 grenade assembly"
+	desc = "An incomplete M15 grenade"
+	icon = 'icons/unused/r_predator.dmi'//aaaaaaa
+	icon_state = "r_foot"
+	result = /obj/item/explosive/grenade/frag/m15
+	next_machine = FACTORY_MACHINE_CUTTER
+	recipe = list(
+		list("next_machine" = FACTORY_MACHINE_FORMER, "icon_state" = "r_arm"),
+		list("next_machine" = FACTORY_MACHINE_CUTTER, "icon_state" = "r_leg"),
+		)
+
