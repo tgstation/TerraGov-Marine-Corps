@@ -244,7 +244,7 @@
 	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
 
-	B1.reagents.add_reagent(/datum/reagent/toxin/nanites2, 10)
+	B1.reagents.add_reagent(/datum/reagent/toxin/nanites2, 10) // 1 tile radius
 	B2.reagents.add_reagent(/datum/reagent/foaming_agent, 5)
 
 	beakers += B1
@@ -262,8 +262,8 @@
 	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
 
-	B1.reagents.add_reagent(/datum/reagent/toxin/nanites2, 60)
-	B2.reagents.add_reagent(/datum/reagent/foaming_agent, 50)
+	B1.reagents.add_reagent(/datum/reagent/toxin/nanites2, 40) // 3 tile radius
+	B2.reagents.add_reagent(/datum/reagent/foaming_agent, 30)
 
 	beakers += B1
 	beakers += B2
