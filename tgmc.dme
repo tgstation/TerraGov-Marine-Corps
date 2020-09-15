@@ -230,6 +230,7 @@
 #include "code\datums\armor.dm"
 #include "code\datums\atom_hud.dm"
 #include "code\datums\balance.dm"
+#include "code\datums\beam.dm"
 #include "code\datums\browser.dm"
 #include "code\datums\callback.dm"
 #include "code\datums\chatmessage.dm"
