@@ -974,10 +974,6 @@
 /obj/item/weapon/gun/revolver/cmb,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/northwest)
-"baf" = (
-/obj/docking_port/stationary/crashmode/bigbury,
-/turf/open/floor/cult,
-/area/magmoor/cave/north)
 "bai" = (
 /turf/open/floor/mainship/green{
 	dir = 1
@@ -1265,10 +1261,6 @@
 	dir = 1
 	},
 /area/magmoor/compound/west)
-"bnG" = (
-/obj/docking_port/stationary/crashmode/bigbury,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/north)
 "boi" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -2530,10 +2522,6 @@
 "cjB" = (
 /turf/open/floor/plating/mainship,
 /area/magmoor/mining/garage)
-"cjJ" = (
-/obj/docking_port/stationary/crashmode/bigbury,
-/turf/open/floor/plating/ground/mars/random/dirt,
-/area/magmoor/compound/south)
 "cjP" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -3826,10 +3814,6 @@
 	dir = 1
 	},
 /area/magmoor/cave/northwest)
-"cZT" = (
-/obj/docking_port/stationary/crashmode/bigbury,
-/turf/closed/mineral,
-/area/magmoor/cave/mining/fossil)
 "dae" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -8168,7 +8152,6 @@
 /obj/structure/closet/walllocker/hydrant/extinguisher{
 	dir = 8
 	},
-/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 9
 	},
@@ -8224,7 +8207,6 @@
 /turf/open/floor/mainship/purple/corner,
 /area/magmoor/research)
 "gfW" = (
-/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/mainship/purple,
 /area/magmoor/research)
 "gfX" = (
@@ -13680,12 +13662,6 @@
 	},
 /turf/open/floor/plating/ground/concrete/lines,
 /area/magmoor/cave/west)
-"koN" = (
-/obj/docking_port/stationary/crashmode/bigbury,
-/turf/open/lavaland/basalt/dirt{
-	dir = 5
-	},
-/area/magmoor/compound/south)
 "koY" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 6
@@ -18533,11 +18509,6 @@
 	dir = 8
 	},
 /area/magmoor/cargo/storage)
-"oaQ" = (
-/obj/structure/largecrate/goat,
-/obj/docking_port/stationary/crashmode/bigbury,
-/turf/open/floor/mainship/mono,
-/area/magmoor/cargo/storage)
 "oaS" = (
 /turf/open/floor/mainship/orange/corner,
 /area/magmoor/engi/atmos)
@@ -18628,11 +18599,6 @@
 	dir = 8
 	},
 /area/magmoor/cave/southwest)
-"odP" = (
-/obj/structure/window/framed/colony/reinforced,
-/obj/docking_port/stationary/crashmode/bigbury,
-/turf/open/floor/plating,
-/area/magmoor/engi/atmos)
 "odR" = (
 /turf/open/lavaland/lava/lpiece,
 /area/magmoor/cave/southwest)
@@ -22171,10 +22137,6 @@
 "qDL" = (
 /turf/open/floor/plating,
 /area/magmoor/cave/south)
-"qEi" = (
-/obj/docking_port/stationary/crashmode/bigbury,
-/turf/open/floor/plating/ground/concrete/lines,
-/area/magmoor/compound)
 "qEj" = (
 /turf/open/floor/stairs/rampbottom{
 	dir = 4
@@ -23258,19 +23220,6 @@
 /obj/structure/cable,
 /turf/open/floor/freezer,
 /area/magmoor/civilian/cook)
-"ruw" = (
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/docking_port/stationary/crashmode/bigbury,
-/turf/open/floor/stairs/rampbottom{
-	dir = 4
-	},
-/area/magmoor/compound)
 "rux" = (
 /obj/structure/flora/rock/alt2,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -23384,7 +23333,6 @@
 	},
 /area/magmoor/landing)
 "rxE" = (
-/obj/docking_port/stationary/crashmode/bigbury,
 /obj/structure/closet/emcloset,
 /turf/open/floor/mainship/orange,
 /area/magmoor/engi/storage)
@@ -26599,12 +26547,6 @@
 	dir = 1
 	},
 /area/magmoor/compound/north)
-"tAp" = (
-/obj/docking_port/stationary/crashmode/bigbury,
-/turf/open/lavaland/basalt/dirt{
-	dir = 10
-	},
-/area/magmoor/compound/east)
 "tAz" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -26676,12 +26618,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/magmoor/landing)
-"tCQ" = (
-/obj/docking_port/stationary/crashmode/bigbury,
-/turf/open/lavaland/basalt/dirt{
-	dir = 5
-	},
-/area/magmoor/compound/northeast)
 "tDe" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
@@ -26915,10 +26851,6 @@
 	dir = 5
 	},
 /area/magmoor/engi/storage)
-"tJV" = (
-/obj/docking_port/stationary/crashmode/bigbury,
-/turf/open/floor/plating/ground/mars/random/dirt,
-/area/magmoor/compound/east)
 "tKf" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -27753,10 +27685,6 @@
 	dir = 2
 	},
 /turf/closed/mineral,
-/area/magmoor/compound/northeast)
-"uoy" = (
-/obj/docking_port/stationary/crashmode/bigbury,
-/turf/open/floor/plating/ground/mars/random/dirt,
 /area/magmoor/compound/northeast)
 "uoK" = (
 /obj/structure/lattice,
@@ -28741,10 +28669,6 @@
 /obj/item/weapon/broken_bottle,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
-"uOB" = (
-/obj/docking_port/stationary/crashmode/bigbury,
-/turf/open/floor/plating/ground/mars/random/dirt,
-/area/magmoor/compound/northwest)
 "uOY" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/wood,
@@ -29690,7 +29614,6 @@
 /obj/machinery/alarm{
 	dir = 8
 	},
-/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 4
 	},
@@ -31128,11 +31051,6 @@
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/wood,
 /area/magmoor/command/conference)
-"wkX" = (
-/obj/structure/window/framed/colony/reinforced,
-/obj/docking_port/stationary/crashmode/bigbury,
-/turf/open/floor/plating,
-/area/magmoor/compound/east)
 "wlF" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -42154,7 +42072,7 @@ bcM
 tpi
 yla
 awJ
-uOB
+nYL
 nYL
 nYL
 nYL
@@ -44301,7 +44219,7 @@ jns
 jns
 slM
 slM
-cZT
+slM
 slM
 vZN
 kBQ
@@ -49200,7 +49118,7 @@ xSv
 xSv
 xSv
 scg
-qEi
+qey
 hkW
 hkW
 rCg
@@ -49756,7 +49674,7 @@ qkn
 qkn
 qkn
 aMD
-bnG
+aMD
 fvv
 bOi
 dCi
@@ -55346,7 +55264,7 @@ nhd
 nhd
 akz
 urr
-baf
+urr
 asn
 urr
 aMD
@@ -55731,7 +55649,7 @@ bhT
 csX
 csX
 csX
-cjJ
+csX
 csX
 csX
 sMg
@@ -64330,7 +64248,7 @@ wxu
 wGr
 hph
 wba
-ruw
+teL
 wba
 wba
 hph
@@ -64367,7 +64285,7 @@ csX
 csX
 csX
 bUz
-koN
+pwq
 jyE
 bsG
 oMH
@@ -64489,7 +64407,7 @@ quH
 nex
 nzy
 nNF
-odP
+wai
 kPM
 fsX
 tlp
@@ -65944,7 +65862,7 @@ dBh
 dBh
 dBh
 vIg
-tAp
+kls
 kDT
 hEq
 ppR
@@ -66145,7 +66063,7 @@ hCv
 hCv
 hCv
 hCv
-tCQ
+xhL
 rgp
 tUp
 ucX
@@ -67595,7 +67513,7 @@ wxp
 xUE
 wxp
 wxp
-wkX
+sTk
 pfd
 oRP
 oRP
@@ -70576,7 +70494,7 @@ hCv
 hCv
 hCv
 hCv
-uoy
+hCv
 hCv
 hCv
 uLF
@@ -71710,7 +71628,7 @@ ocQ
 rht
 nuR
 nkR
-oaQ
+euV
 nSr
 ofL
 oUn
@@ -74118,7 +74036,7 @@ kDT
 qtm
 dBh
 dBh
-tJV
+dBh
 dBh
 dBh
 dBh
@@ -75006,7 +74924,7 @@ tam
 sCq
 sxo
 ydi
-uoy
+hCv
 hCv
 hCv
 hCv
@@ -75684,7 +75602,7 @@ hCv
 hCv
 hCv
 hCv
-uoy
+hCv
 hCv
 hCv
 hCv
