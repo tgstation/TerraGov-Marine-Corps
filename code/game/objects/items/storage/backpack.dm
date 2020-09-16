@@ -780,6 +780,26 @@
 	else
 		return ..()
 
+/obj/item/storage/backpack/fc_fob
+	name = "FoB backpack"
+	desc = "It's a backpack loaded with all the needed equipment to make one 3x3 FoB on any terrain within 20 seconds, or to patch multiple holes in a more conventional FoB."
+	icon_state = "engiepack"
+
+/obj/item/storage/backpack/fc_fob/Initialize()
+	. = ..()
+	new /obj/item/explosive/grenade/chem_grenade/razorburn_large(src)
+	new /obj/item/tool/wirecutters(src)
+	new /obj/item/quikdeploy/cade/plasteel(src)
+	new /obj/item/quikdeploy/cade/plasteel(src)
+	new /obj/item/quikdeploy/cade/plasteel(src)
+	new /obj/item/quikdeploy/cade/plasteel(src)
+	new /obj/item/quikdeploy/cade(src)
+	new /obj/item/quikdeploy/cade(src)
+	new /obj/item/quikdeploy/cade(src)
+	new /obj/item/stack/sandbags_empty/half (src)
+	new /obj/item/tool/shovel/etool (src)
+
+
 
 /obj/item/storage/backpack/lightpack
 	name = "\improper lightweight combat pack"
