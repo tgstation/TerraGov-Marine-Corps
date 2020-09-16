@@ -1021,8 +1021,11 @@ ENGINEERING
 	cost = 10
 
 /datum/supply_packs/engineering/quikdeploycade
-	name = "quikdeploy barricade"
-	contains = list(/obj/item/quikdeploy/cade)
+	name = "quikdeploy barricade (x2)"
+	contains = list(
+		/obj/item/quikdeploy/cade,
+		/obj/item/quikdeploy/cade,
+	)
 	cost = 6
 
 /datum/supply_packs/engineering/pacman
