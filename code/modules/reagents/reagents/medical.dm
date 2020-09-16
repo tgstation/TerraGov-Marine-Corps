@@ -690,17 +690,13 @@
 
 /datum/reagent/medicine/quickclotplus/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(6*REM, TOX)
-	if(iscarbon(L))
-		var/mob/living/carbon/C = L
-		if(C.blood_volume < BLOOD_VOLUME_MAXIMUM)
-			C.blood_volume -= 2
+		if(L.blood_volume < BLOOD_VOLUME_MAXIMUM)
+			L.blood_volume -= 2
 	return ..()
 
 /datum/reagent/medicine/quickclotplus/overdose_crit_process(mob/living/L, metabolism)
-	if(iscarbon(L))
-		var/mob/living/carbon/C = L
-		if(C.blood_volume < BLOOD_VOLUME_MAXIMUM)
-			C.blood_volume -= 20
+		if(L.blood_volume < BLOOD_VOLUME_MAXIMUM)
+			L.blood_volume -= 20
 	return ..()
 
 
