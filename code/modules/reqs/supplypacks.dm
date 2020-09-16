@@ -628,9 +628,9 @@ AMMO
 	cost = 1
 
 /datum/supply_packs/ammo/mortar_ammo_flash
-	name = "M402 mortar flash shell"
-	contains = list(/obj/item/mortal_shell/flash)
-	cost = 1
+	name = "M402 mortar tanglefoot shell"
+	contains = list(/obj/item/mortal_shell/tangle_smoke)
+	cost = 2
 
 /datum/supply_packs/ammo/minisentry
 	name = "UA-580 point defense sentry ammo"
