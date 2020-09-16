@@ -361,8 +361,8 @@
 	taste_description = "iron"
 
 /datum/reagent/iron/on_mob_life(mob/living/L, metabolism)
-		if(L.blood_volume < BLOOD_VOLUME_NORMAL)
-			L.blood_volume += 0.8
+	if(L.blood_volume < BLOOD_VOLUME_NORMAL)
+		L.blood_volume += 0.8
 	return ..()
 
 /datum/reagent/iron/overdose_process(mob/living/L, metabolism)
