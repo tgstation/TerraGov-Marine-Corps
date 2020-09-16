@@ -166,6 +166,15 @@ WEAPONS
 	contains = list(/obj/item/weapon/gun/launcher/rocket/m57a4)
 	cost = 250
 
+/datum/supply_packs/weapons/tesla
+	name = "Energy Ball Rifle"
+	contains = list(
+		/obj/item/weapon/gun/energy/lasgun/tesla,
+		/obj/item/cell/lasgun/tesla,
+		/obj/item/cell/lasgun/tesla
+	)
+	cost = 60
+
 /datum/supply_packs/weapons/specgrenadier
 	name = "Grenadier Specialist kit"
 	contains = list(/obj/item/weapon/gun/launcher/m92)
@@ -378,6 +387,15 @@ AMMO
 /datum/supply_packs/ammo
 	containertype = /obj/structure/closet/crate/ammo
 	group = "Ammo"
+
+/datum/supply_packs/ammo
+	name = "Energy Rifle cells 3x"
+	contains = list(
+		/obj/item/cell/lasgun/tesla,
+		/obj/item/cell/lasgun/tesla,
+		/obj/item/cell/lasgun/tesla
+	)
+	cost = 30
 
 /datum/supply_packs/ammo/boxslug
 	name = "Slug Ammo Box"

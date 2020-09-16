@@ -115,6 +115,9 @@
 		else
 			use_plasma(5)
 
+	if(HAS_TRAIT(src, TRAIT_NOPLASMAREGEN))
+		hud_set_plasma()
+		return
 	var/list/plasma_mod = list()
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_PLASMA_REGEN, plasma_mod)
@@ -126,6 +129,7 @@
 	if(!(locate(/obj/effect/alien/weeds) in T) && !(xeno_caste.caste_flags & CASTE_INNATE_PLASMA_REGEN))
 		hud_set_plasma() // since we used some plasma via the aura
 		return
+
 	var/plasma_gain = xeno_caste.plasma_gain
 
 	if(lying_angle || resting)
