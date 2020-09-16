@@ -102,38 +102,26 @@ obj/item/ammo_magazine/rifle/m4ra/smart
 //-------------------------------------------------------
 //CROSSBOW
 
-/obj/item/ammo_magazine/internal/launcher/bolt
-	name = "\improper Bolt flight groove"
-	desc = "The flight groove for a crossbow."
-	caliber = "bolt"
-	default_ammo = /datum/ammo/bolt
-	max_rounds = 1
-	current_rounds = 0
-	reload_delay = 60
+/obj/item/ammo_magazine/handful/bolt
+	name = "handful of ap crossbow bolts"
+	caliber = "12g"
+	icon_state = "  "
+	current_rounds = 5
+	default_ammo = /datum/ammo/bullet/shotgun/bolt
 
-/obj/item/ammo_magazine/bolt
-	name = "\improper crossbow bolt"
-	desc = "A crossbow bolt"
-	caliber = "bolt"
-	icon_state = "bolt"
-	w_class = WEIGHT_CLASS_NORMAL
-	max_rounds = 1
-	default_ammo = /datum/ammo/bolt
-	gun_type = /obj/item/weapon/gun/launcher/crossbow
-	flags_magazine = NONE
-	reload_delay = 60
+/obj/item/ammo_magazine/handful/bolt/ib
+	caliber = "12g"
+	name = "handful of incendiary crossbow bolts"
+	icon_state = "  "
+	current_rounds = 5
+	default_ammo = /datum/ammo/bullet/shotgun/bolt/ib
 
-/obj/item/ammo_magazine/bolt/ap
-	name = "\improper sabot bolt"
-	icon_state = "ap_rocket"
-	default_ammo = /datum/ammo/bolt/sb
-	desc = "A tube for an AP rocket, the warhead of which is extremely dense and turns molten on impact. When empty, use this frame to deconstruct it."
-
-/obj/item/ammo_magazine/bolt/ib
-	name = "\improper incendiary bolt"
-	icon_state = "wp_rocket"
-	default_ammo = /datum/ammo/rocket/wp
-	desc = "A highly destructive bolt that bursts into deadly flames on impact. Use this in hand to deconstruct it."
+/obj/item/ammo_magazine/handful/bolt/ex
+	caliber = "12g"
+	name = "handful of explosive crossbow bolts"
+	icon_state = "  "
+	current_rounds = 5
+	default_ammo = /datum/ammo/bullet/shotgun/bolt/ex
 
 //-------------------------------------------------------
 //M5 RPG
