@@ -268,10 +268,14 @@
 	w_class = WEIGHT_CLASS_SMALL
 	hud_state = "grenade_frag"
 	var/fuel = 0
+	var/lower_fuel_limit = 800
+	var/upper_fuel_limit = 1000
+	var/flare_brightness = 5
+	var/flare_color= LIGHT_COLOR_FLARE
 
 /obj/item/explosive/grenade/flare/Initialize()
 	. = ..()
-	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
+	fuel = rand(lower_fuel_limit, upper_fuel_limit) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
 
 /obj/item/explosive/grenade/flare/flamer_fire_act()
 	if(!fuel) //it's out of fuel, an empty shell.
@@ -292,10 +296,11 @@
 	active = FALSE
 	fuel = 0
 	heat = 0
+	item_fire_stacks = 0
 	force = initial(force)
 	damtype = initial(damtype)
 	update_brightness()
-	icon_state = "[initial(icon_state)]-empty" // override icon state set by update_brightness
+	icon_state = "[initial(icon_state)]_empty" // override icon state set by update_brightness
 	STOP_PROCESSING(SSobj, src)
 
 /obj/item/explosive/grenade/flare/proc/turn_on()
@@ -342,7 +347,7 @@
 /obj/item/explosive/grenade/flare/proc/update_brightness()
 	if(active && fuel > 0)
 		icon_state = "[initial(icon_state)]_active"
-		set_light(5, l_color = LIGHT_COLOR_FLARE)
+		set_light(flare_brightness, l_color = flare_color)
 	else
 		icon_state = initial(icon_state)
 		set_light(0)
@@ -368,3 +373,36 @@
 	if(N)
 		qdel(N)
 		turn_off()
+
+/obj/item/explosive/grenade/flare/cas
+	name = "\improper M50 CFDP signal flare"
+	desc = "A TGMC signal flare utilizing the standard DP canister chassis. Capable of being loaded in the M92 Launcher, or thrown by hand. when activated, provides a target for CAS pilots."
+	icon_state = "cas_flare_grenade"
+	hud_state = "grenade_frag"
+	lower_fuel_limit = 25
+	upper_fuel_limit = 30
+	flare_brightness = 3
+	flare_color= LIGHT_COLOR_GREEN
+	var/datum/squad/user_squad
+	var/obj/effect/overlay/temp/laser_target/target
+
+/obj/item/explosive/grenade/flare/cas/turn_on(mob/living/carbon/human/user)
+	. = ..()
+	if(user.assigned_squad)
+		user_squad = user.assigned_squad
+	var/turf/TU = get_turf(src)
+	if(!istype(TU))
+		return
+	if(is_ground_level(TU.z))
+		target = new(src, name, user_squad)//da lazer is stored in the grenade
+
+/obj/item/explosive/grenade/flare/cas/process()
+	. = ..()
+	var/turf/TU = get_turf(src)
+	if(is_ground_level(TU.z))
+		if(!target && active)
+			target = new(src, name, user_squad)
+
+/obj/item/explosive/grenade/flare/cas/turn_off()
+	QDEL_NULL(target)
+	return ..()

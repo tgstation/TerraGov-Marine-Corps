@@ -119,6 +119,11 @@
 	basestate = "white_window"
 	window_type = /obj/structure/window/framed/mainship/white
 
+/obj/structure/window_frame/mainship/gray
+	icon_state = "gray_window0_frame"
+	basestate = "gray_window"
+	window_type = /obj/structure/window/framed/mainship/gray
+
 /obj/structure/window_frame/colony
 	icon_state = "col_window0_frame"
 	basestate = "col_window"

@@ -120,4 +120,3 @@
 
 	/// How much friendly fire damage has this mob done in the last 30 seconds.
 	var/list/friendly_fire = list()
-

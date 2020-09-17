@@ -14,7 +14,7 @@
 		return
 	if(!check_plasma(50))
 		return
-	if(COOLDOWN_CHECK(src, COOLDOWN_ORDER))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ORDER))
 		return
 	plasma_stored -= 50
 	var/txt = stripped_input(src, "Set the hive's orders to what? Leave blank to clear it.", "Hive Orders")
@@ -25,7 +25,7 @@
 	else
 		hive.hive_orders = ""
 
-	COOLDOWN_START(src, COOLDOWN_ORDER, 15 SECONDS)
+	TIMER_COOLDOWN_START(src, COOLDOWN_ORDER, 15 SECONDS)
 
 // ***************************************
 // *********** Hive message
@@ -255,7 +255,7 @@
 	if(!.)
 		return FALSE
 	var/mob/living/carbon/xenomorph/queen/X = owner
-	if(COOLDOWN_CHECK(X, COOLDOWN_GUT))
+	if(TIMER_COOLDOWN_CHECK(X, COOLDOWN_GUT))
 		return FALSE
 	if(!iscarbon(A))
 		return FALSE
@@ -288,7 +288,7 @@
 
 	succeed_activate()
 
-	COOLDOWN_START(X, COOLDOWN_GUT, 5 SECONDS)
+	TIMER_COOLDOWN_START(X, COOLDOWN_GUT, 5 SECONDS)
 
 	X.visible_message("<span class='xenowarning'>\The [X] begins slowly lifting \the [victim] into the air.</span>", \
 	"<span class='xenowarning'>We begin focusing our anger as we slowly lift \the [victim] into the air.</span>")

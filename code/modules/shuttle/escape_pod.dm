@@ -126,31 +126,36 @@
 /obj/machinery/computer/shuttle/escape_pod/escape_shuttle
 	name = "escape shuttle controller"
 
-/obj/machinery/computer/shuttle/escape_pod/ui_interact(mob/user)
-	var/dat = "<A href='?src=[REF(src)];launch=1'>Launch</A><br>"
+/obj/machinery/computer/shuttle/escape_pod/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = FALSE, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "EscapePod", "Escape pod", 400, 140, master_ui, state)
+		ui.open()
 
-	var/datum/browser/popup = new(user, "computer", "escape pod", 300, 200)
-	popup.set_content("<center>[dat]</center>")
-	popup.open()
+/obj/machinery/computer/shuttle/escape_pod/ui_data(mob/user)
+	. = ..()
+	var/obj/docking_port/mobile/escape_pod/M = SSshuttle.getShuttle(shuttleId)
+	var/list/data = list()
+	data["can_launch"] = M.can_launch
 
-/obj/machinery/computer/shuttle/escape_pod/Topic(href, href_list)
+	return data
+
+/obj/machinery/computer/shuttle/escape_pod/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
 	if(.)
 		return
 
-	if(!href_list["launch"])
-		return
+	if(action == "launch")
+		var/obj/docking_port/mobile/escape_pod/M = SSshuttle.getShuttle(shuttleId)
+		if(!M)
+			return
 
-	var/obj/docking_port/mobile/escape_pod/M = SSshuttle.getShuttle(shuttleId)
-	if(!M)
-		return
+		if(!M.can_launch)
+			to_chat(usr, "<span class='warning'>Evacuation is not enabled!</span>")
+			return
 
-	if(!M.can_launch)
-		to_chat(usr, "<span class='warning'>Evacuation is not enabled!</span>")
-		return
-
-	to_chat(usr, "<span class='highdanger'>You slam your fist down on the launch button!</span>")
-	M.launch(TRUE)
+		to_chat(usr, "<span class='highdanger'>You slam your fist down on the launch button!</span>")
+		M.launch(TRUE)
 
 //=========================================================================================
 //================================Evacuation Sleeper=======================================

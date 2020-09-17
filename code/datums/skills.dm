@@ -163,6 +163,9 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 #undef SKILLSID
 
+/datum/skills/proc/getPercent(rating, max_rating)
+	return CLAMP01(vars[rating] * 100 / max_rating * 0.01)
+
 /datum/skills/proc/getRating(rating)
 	return vars[rating]
 
@@ -291,7 +294,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	medical = SKILL_MEDICAL_EXPERT
 	surgery = SKILL_SURGERY_EXPERT
 	melee_weapons = SKILL_MELEE_WEAK
-	police = SKILL_POLICE_FLASH
+	police = SKILL_POLICE_MP
 
 /datum/skills/synthetic
 	name = SYNTHETIC
@@ -302,7 +305,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	cqc = SKILL_CQC_MASTER
 	surgery = SKILL_SURGERY_EXPERT
 	pilot = SKILL_PILOT_TRAINED
-	melee_weapons = SKILL_MELEE_TRAINED
+	melee_weapons = SKILL_MELEE_DEFAULT
 	pistols = SKILL_PISTOLS_TRAINED
 	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_MASTER
@@ -313,11 +316,12 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	engineer = SKILL_ENGINEER_MASTER
 	construction = SKILL_CONSTRUCTION_MASTER
 	firearms = SKILL_FIREARMS_UNTRAINED
-	medical = SKILL_MEDICAL_COMPETENT
+	medical = SKILL_MEDICAL_EXPERT
 	cqc = SKILL_CQC_MASTER
-	surgery = SKILL_SURGERY_PROFESSIONAL
-	melee_weapons = SKILL_MELEE_SUPER
+	surgery = SKILL_SURGERY_EXPERT
 	pilot = SKILL_PILOT_TRAINED
+	melee_weapons = SKILL_MELEE_DEFAULT
+	pistols = SKILL_PISTOLS_TRAINED
 	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_MASTER
 	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
@@ -354,7 +358,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	leadership = SKILL_LEAD_EXPERT
 	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_AMATEUR
-	police = SKILL_POLICE_FLASH
+	police = SKILL_POLICE_MP
 
 /datum/skills/pilot
 	name = PILOT_OFFICER
@@ -367,7 +371,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	engineer = SKILL_ENGINEER_MASTER
 	construction = SKILL_CONSTRUCTION_MASTER
 	leadership = SKILL_LEAD_MASTER
-	police = SKILL_POLICE_FLASH
+	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_MASTER
 
 /datum/skills/RO
@@ -375,7 +379,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	leadership = SKILL_LEAD_TRAINED
 	powerloader = SKILL_POWERLOADER_MASTER
-	police = SKILL_POLICE_FLASH
+	police = SKILL_POLICE_MP
 
 /datum/skills/ST
 	name = SHIP_TECH
@@ -639,7 +643,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 	medical = SKILL_MEDICAL_EXPERT
 	surgery = SKILL_SURGERY_EXPERT
-  
+
 
 /datum/skills/sectoid
 	name = "Sectoid"

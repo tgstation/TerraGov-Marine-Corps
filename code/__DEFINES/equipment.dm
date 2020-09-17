@@ -23,6 +23,8 @@
 #define CRITICAL_ATOM			(1<<12)		//Use when this shouldn't be obscured by large icons.
 ///Does not cascade explosions to its contents.
 #define PREVENT_CONTENTS_EXPLOSION	(1<<13)
+/// was this spawned by an admin? used for stat tracking stuff.
+#define ADMIN_SPAWNED			(1<<14)
 
 //turf-only flags
 #define NOJAUNT_1					(1<<0)
@@ -47,7 +49,8 @@
 #define WIELDED					(1<<4)	// The item is wielded with both hands.
 #define	ITEM_ABSTRACT			(1<<5)	//The item is abstract (grab, powerloader_clamp, etc)
 #define BEING_REMOVED			(1<<6)	//Cuffs
-
+#define DOES_NOT_NEED_HANDS		(1<<7)	//Dont need hands to use it
+#define SYNTH_RESTRICTED		(1<<8)	//Prevents synths from wearing items with this flag
 //==========================================================================================
 
 

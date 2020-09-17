@@ -39,6 +39,17 @@
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
 
+//FC's sword.
+
+/obj/item/weapon/claymore/mercsword/officersword
+	name = "\improper Officers sword"
+	desc = "This appears to be a rather old blade that has been well taken care of, it is probably a family heirloom. Oddly despite its probable non-combat purpose it is sharpened and not blunt."
+	icon_state = "officer_sword"
+	item_state = "officer_sword"
+	force = 60
+	attack_speed = 12
+	w_class = WEIGHT_CLASS_BULKY
+
 /obj/item/weapon/claymore/mercsword/commissar_sword
 	name = "\improper commissars sword"
 	desc = "The pride of an imperial commissar, held high as they charge into battle."

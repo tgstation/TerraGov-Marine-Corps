@@ -263,6 +263,7 @@
 	max_storage_space = 15
 	can_hold = list(
 		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
 		/obj/item/flashlight/flare,
 		/obj/item/explosive/grenade/flare,
 		/obj/item/ammo_magazine/rifle,
@@ -346,6 +347,7 @@
 	item_state = "swatbelt"
 	can_hold = list(
 		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
 		/obj/item/explosive/grenade,
 		/obj/item/ammo_magazine/rifle,
 		/obj/item/cell/lasgun,
@@ -474,7 +476,7 @@
 
 /obj/item/storage/belt/sparepouch
 	name= "\improper G8 general utility pouch"
-	desc= "A small, lightweight pouch that can be clipped onto Armat Systems M3 Pattern armor or your belt to provide additional storage."
+	desc= "A small, lightweight pouch that can be clipped onto Armat Systems M3 Pattern armor or your belt to provide additional storage for miscellaneous gear or box and drum magazines."
 	storage_slots = 3
 	w_class = WEIGHT_CLASS_BULKY
 	max_w_class = 3

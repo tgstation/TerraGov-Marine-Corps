@@ -171,13 +171,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		new_proj.fire_at(null, shooter, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
 
 
-	//This is sort of a workaround for now. There are better ways of doing this ~N.
-/datum/ammo/proc/stun_living(mob/living/target, obj/projectile/proj) //Taser proc to stun folks.
-	if(!isliving(target) || isxeno(target))
-		return //Not on aliens.
-	target.apply_effects(12, 20)
-
-
 /datum/ammo/proc/drop_flame(turf/T)
 	if(!istype(T))
 		return
@@ -270,7 +263,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "pistol_ap"
 	damage = 20
 	accuracy = 10
-	penetration = 30
+	penetration = 12.5
 	shrapnel_chance = 25
 
 /datum/ammo/bullet/pistol/heavy
@@ -880,6 +873,28 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 150
 	sundering = 75
 
+/datum/ammo/bullet/sniper/pfc
+	name = "high caliber rifle bullet"
+	hud_state = "minigun"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER
+	iff_signal = null
+	damage = 80
+	penetration = 30
+	sundering = 7.5
+	accurate_range_min = 2
+	damage_falloff = 0.25
+
+/datum/ammo/bullet/sniper/auto
+	name = "high caliber rifle bullet"
+	hud_state = "minigun"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER|AMMO_SKIPS_HUMANS
+	iff_signal = ACCESS_IFF_MARINE
+	damage = 80
+	penetration = 30
+	sundering = 7.5
+	accurate_range_min = 2
+	damage_falloff = 0.25
+
 /*
 //================================================
 					Special Ammo
@@ -1112,14 +1127,21 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "stun"
 	hud_state = "taser"
 	hud_state_empty = "battery_empty"
-	damage_type = OXY
+	damage = 120
+	penetration = 0
+	damage_type = STAMINA
 	flags_ammo_behavior = AMMO_ENERGY
 	max_range = 15
 	accurate_range = 10
 
-/datum/ammo/energy/taser/on_hit_mob(mob/M, obj/projectile/P)
-	stun_living(M,P)
-
+/datum/ammo/energy/tesla
+	name = "energy ball"
+	icon_state = "tesla"
+	hud_state = "taser"
+	hud_state_empty = "battery_empty"
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_CHAINING
+	damage = 20
+	penetration = 20
 
 /datum/ammo/energy/lasgun
 	name = "laser bolt"
@@ -1505,8 +1527,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_type = BURN
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR
 	armor_type = "fire"
-	max_range = 5
+	max_range = 6
 	damage = 50
+	var/fire_color = "red"
+	var/burnlevel = 24
+	var/burntime = 17
+	var/fire_delay = 20
 
 /datum/ammo/flamethrower/on_hit_mob(mob/M,obj/projectile/P)
 	drop_flame(get_turf(P))
@@ -1528,10 +1554,20 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/flamethrower/green
 	name = "green flame"
 	hud_state = "flame_green"
+	max_range = 4
+	fire_color = "green"
+	burnlevel = 10
+	burntime = 50
+	fire_delay = 35
 
 /datum/ammo/flamethrower/blue
 	name = "blue flame"
 	hud_state = "flame_blue"
+	max_range = 6
+	fire_color = "blue"
+	burnlevel = 36
+	burntime = 40
+	fire_delay = 35
 
 /datum/ammo/flare
 	name = "flare"
