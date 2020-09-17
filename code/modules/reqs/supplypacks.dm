@@ -75,11 +75,6 @@ OPERATIONS
 	)
 	cost = 2
 
-/datum/supply_packs/operations/tarps
-	name = "V1 thermal-dampening tarp"
-	contains = list(/obj/item/bodybag/tarp)
-	cost = 6
-
 /datum/supply_packs/operations/exportpad
 	name = "ASRS Bluespace Export Point"
 	contains = list(/obj/machinery/exportpad)
