@@ -656,6 +656,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/scope/marine
 	name = "T-47 rail scope"
+	desc = "A marine standard mounted zoom sight scope. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 	icon_state = "marinescope"
 	attach_icon = "marinescope_a"
 
