@@ -28,8 +28,6 @@ GLOBAL_VAR(restart_counter)
 
 	load_admins()
 
-	SetupExternalRSC()
-
 	populate_seed_list()
 	populate_gear_list()
 	make_datum_references_lists()
@@ -97,6 +95,7 @@ GLOBAL_VAR(restart_counter)
 		GLOB.log_directory = "data/logs/[override_dir]"
 
 	GLOB.world_game_log = "[GLOB.log_directory]/game.log"
+	GLOB.world_asset_log = "[GLOB.log_directory]/asset.log"
 	GLOB.world_attack_log = "[GLOB.log_directory]/attack.log"
 	GLOB.world_manifest_log = "[GLOB.log_directory]/manifest.log"
 	GLOB.world_href_log = "[GLOB.log_directory]/hrefs.log"
@@ -320,12 +319,6 @@ GLOBAL_VAR(restart_counter)
 	maxz++
 	SSmobs.MaxZChanged()
 	SSidlenpcpool.MaxZChanged()
-
-
-/world/proc/SetupExternalRSC()
-	if(!CONFIG_GET(string/resource_url))
-		return
-	GLOB.external_rsc_url = CONFIG_GET(string/resource_url)
 
 
 /world/proc/update_hub_visibility(new_visibility)

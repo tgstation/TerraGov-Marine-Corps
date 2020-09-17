@@ -117,6 +117,12 @@
 	// be tagged, so this is an effective unwrap
 	html = replacetextEx(html, "\[tgui:ref]", "\ref[src]")
 
+	// var/flushqueue = window.send_asset(get_asset_datum(/datum/asset/simple/namespaced/fontawesome))
+	// for(var/datum/asset/asset in src_object.ui_assets(user))
+	// 	flushqueue |= window.send_asset(asset)
+	// if (flushqueue)
+	// 	user.client.browse_queue_flush()
+
 	// Open the window.
 	user << browse(html, "window=[window_id];[window_options]")
 
