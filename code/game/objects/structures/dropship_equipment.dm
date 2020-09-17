@@ -384,35 +384,35 @@
 
 ////////////////////////////////// FUEL EQUIPMENT /////////////////////////////////
 
-/obj/structure/dropship_equipment/fuel
-	icon = 'icons/Marine/mainship_props64.dmi'
-	equip_category = DROPSHIP_FUEL_EQP
+///obj/structure/dropship_equipment/fuel
+//	icon = 'icons/Marine/mainship_props64.dmi'
+//	equip_category = DROPSHIP_FUEL_EQP
 
 
-/obj/structure/dropship_equipment/fuel/update_equipment()
-	if(ship_base)
-		pixel_x = ship_base.pixel_x
-		pixel_y = ship_base.pixel_y
-		icon_state = "[initial(icon_state)]_installed"
-	else
-		pixel_x = initial(pixel_x)
-		pixel_y = initial(pixel_y)
-		bound_width = initial(bound_width)
-		bound_height = initial(bound_height)
-		icon_state = initial(icon_state)
+///obj/structure/dropship_equipment/fuel/update_equipment()
+//	if(ship_base)
+//		pixel_x = ship_base.pixel_x
+//		pixel_y = ship_base.pixel_y
+//		icon_state = "[initial(icon_state)]_installed"
+//	else
+//		pixel_x = initial(pixel_x)
+//		pixel_y = initial(pixel_y)
+//		bound_width = initial(bound_width)
+//		bound_height = initial(bound_height)
+//		icon_state = initial(icon_state)
 
 
-/obj/structure/dropship_equipment/fuel/fuel_enhancer
-	name = "fuel enhancer"
-	desc = "A fuel enhancement system for dropships. It improves the thrust produced by the fuel combustion for faster travels. Fits inside the engine attach points. You need a powerloader to lift it."
-	icon_state = "fuel_enhancer"
-	point_cost = 800
+///obj/structure/dropship_equipment/fuel/fuel_enhancer
+//	name = "fuel enhancer"
+//	desc = "A fuel enhancement system for dropships. It improves the thrust produced by the fuel combustion for faster travels. Fits inside the engine attach points. You need a powerloader to lift it."
+//	icon_state = "fuel_enhancer"
+//	point_cost = 800
 
-/obj/structure/dropship_equipment/fuel/cooling_system
-	name = "cooling system"
-	desc = "A cooling system for dropships. It produces additional cooling reducing delays between launch. Fits inside the engine attach points. You need a powerloader to lift it."
-	icon_state = "cooling_system"
-	point_cost = 800
+///obj/structure/dropship_equipment/fuel/cooling_system
+//	name = "cooling system"
+//	desc = "A cooling system for dropships. It produces additional cooling reducing delays between launch. Fits inside the engine attach points. You need a powerloader to lift it."
+//	icon_state = "cooling_system"
+//	point_cost = 800
 
 
 ///////////////////////////////////// ELECTRONICS /////////////////////////////////////////
@@ -780,7 +780,7 @@
 	. = ..()
 	if(!deployed_table)
 		to_chat(user, "Its table is broken.")
-		
+
 /obj/structure/dropship_equipment/operatingtable/Destroy()
 	QDEL_NULL(deployed_table)
 	return ..()
