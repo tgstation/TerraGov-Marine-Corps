@@ -781,7 +781,6 @@
 		return ..()
 
 
-
 /obj/item/storage/backpack/lightpack
 	name = "\improper lightweight combat pack"
 	desc = "A small lightweight pack for expeditions and short-range operations."
