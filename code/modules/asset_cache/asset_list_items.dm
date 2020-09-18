@@ -90,7 +90,7 @@
 /datum/asset/simple/jquery
 	legacy = TRUE
 	assets = list(
-//		"jquery.min.js" = 'html/jquery.min.js',
+		"jquery.min.js"            = 'code/modules/goonchat/jquery.min.js',
 	)
 
 /datum/asset/simple/namespaced/fontawesome
@@ -102,6 +102,20 @@
 		"v4shim.css"          = 'html/font-awesome/css/v4-shims.min.css'
 	)
 	parents = list("font-awesome.css" = 'html/font-awesome/css/all.min.css')
+
+
+/datum/asset/simple/goonchat
+	assets = list(
+		"json2.min.js"             = 'code/modules/goonchat/json2.min.js',
+		"browserOutput.js"         = 'code/modules/goonchat/browserOutput.js',
+		"fontawesome-webfont.eot"  = 'code/modules/goonchat/fonts/fontawesome-webfont.eot',
+		"fontawesome-webfont.svg"  = 'code/modules/goonchat/fonts/fontawesome-webfont.svg',
+		"fontawesome-webfont.ttf"  = 'code/modules/goonchat/fonts/fontawesome-webfont.ttf',
+		"fontawesome-webfont.woff" = 'code/modules/goonchat/fonts/fontawesome-webfont.woff',
+		"goonchatfont-awesome.css" = 'code/modules/goonchat/font-awesome.css',
+		"browserOutput.css"	       = 'code/modules/goonchat/browserOutput.css',
+		"browserOutput_white.css"  = 'code/modules/goonchat/browserOutput_white.css',
+	)
 
 /datum/asset/spritesheet/chat
 	name = "chat"
