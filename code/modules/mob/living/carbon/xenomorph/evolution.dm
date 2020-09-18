@@ -143,6 +143,10 @@
 		to_chat(src, "<span class='warning'>Nuh-uhh.</span>")
 		return
 
+	if(!forced && !(new_caste_type in xeno_caste.evolves_to))
+		to_chat(src, "<span class='warning'>We can't evolve to that caste from our current one.</span>")
+		return
+
 	// used below
 	var/tierzeros //Larva and burrowed larva if it's a certain kinda hive
 	var/tierones
