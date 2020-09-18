@@ -1,5 +1,0 @@
-author: "carlarctg"
-delete-after: True
-changes: 
-  - tweak: "first aid pouch with injectors is now named combat injector pouch"
-  - imageadd: "new sprite for combat injector pouch"
