@@ -56,7 +56,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("tmp/iconCache.sav")) //Cache of ico
 	if(!owner)
 		return
 
-	var/datum/asset/stuff = get_asset_datum(/datum/asset/spritesheet/chat)///datum/asset/group/goonchat)
+	var/datum/asset/stuff = get_asset_datum(/datum/asset/group/goonchat)
 	stuff.send(owner)
 
 	owner << browse(file('code/modules/goonchat/browserOutput.html'), "window=browseroutput")

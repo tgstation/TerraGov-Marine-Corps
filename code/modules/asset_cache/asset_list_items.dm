@@ -133,6 +133,13 @@
 			Insert("language-[icon_state]", icon, icon_state=icon_state)
 	..()
 
+/datum/asset/group/goonchat
+	children = list(
+		/datum/asset/simple/jquery,
+		/datum/asset/simple/goonchat,
+		/datum/asset/spritesheet/chat
+	)
+
 /datum/asset/simple/namespaced/common
 	assets = list("padlock.png"	= 'html/images/padlock.png')
 	parents = list("common.css" = 'html/browser/common.css')
