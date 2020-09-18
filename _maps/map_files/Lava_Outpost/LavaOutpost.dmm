@@ -111,9 +111,7 @@
 /area/lavaland/medical)
 "bw" = (
 /obj/machinery/landinglight/ds2/delaytwo,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 2
-	},
+/turf/open/floor/plating/asteroidwarning,
 /area/shuttle/drop2/lz2)
 "by" = (
 /turf/open/lavaland/lava/lpiece,
@@ -259,9 +257,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/shuttle/drop2/lz2)
 "dC" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/dark,
 /area/lavaland/security/nuke)
 "dE" = (
@@ -371,7 +367,6 @@
 /area/lavaland/engie/engine)
 "fH" = (
 /obj/docking_port/stationary/crashmode,
-/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/brock,
 /area/lavaland/cave/north)
 "fQ" = (
@@ -747,7 +742,6 @@
 /turf/open/floor/wood,
 /area/lavaland/civilian)
 "jH" = (
-/obj/docking_port/stationary/crashmode/bigbury,
 /obj/docking_port/stationary/crashmode,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/central)
@@ -957,9 +951,7 @@
 /area/lavaland/engie/engine)
 "lx" = (
 /obj/machinery/landinglight/ds2/delaythree,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 2
-	},
+/turf/open/floor/plating/asteroidwarning,
 /area/shuttle/drop2/lz2)
 "lA" = (
 /obj/structure/window/framed/colony,
@@ -1695,7 +1687,6 @@
 /area/lavaland/civilian/cargo)
 "tW" = (
 /obj/docking_port/stationary/crashmode,
-/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/brock,
 /area/lavaland/cave/southeast)
 "tY" = (
@@ -1894,9 +1885,7 @@
 /area/lavaland/civilian/cargo)
 "vS" = (
 /obj/machinery/landinglight/ds2/delayone,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 2
-	},
+/turf/open/floor/plating/asteroidwarning,
 /area/shuttle/drop2/lz2)
 "vT" = (
 /obj/structure/largecrate/random/barrel,
@@ -2138,7 +2127,6 @@
 /area/lavaland/cave/east)
 "yC" = (
 /obj/docking_port/stationary/crashmode,
-/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/lavaland/lava,
 /area/lavaland/cave/north)
 "yH" = (
@@ -2703,9 +2691,7 @@
 /area/lavaland/security/infocenter)
 "ES" = (
 /obj/machinery/landinglight/ds2/delaytwo,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 2
-	},
+/turf/open/floor/plating/asteroidwarning,
 /area/shuttle/drop1/lz1)
 "ET" = (
 /obj/structure/cable,
@@ -2778,9 +2764,7 @@
 /area/lavaland/security)
 "FE" = (
 /obj/machinery/landinglight/ds2/delayone,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 2
-	},
+/turf/open/floor/plating/asteroidwarning,
 /area/shuttle/drop1/lz1)
 "FF" = (
 /obj/machinery/light{
@@ -2871,9 +2855,7 @@
 /area/shuttle/drop2/lz2)
 "Gw" = (
 /obj/machinery/landinglight/ds2,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 2
-	},
+/turf/open/floor/plating/asteroidwarning,
 /area/shuttle/drop1/lz1)
 "Gy" = (
 /obj/structure/closet/firecloset,
@@ -2914,9 +2896,7 @@
 /area/lavaland/cave/central)
 "GQ" = (
 /obj/machinery/landinglight/ds2/delaythree,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 2
-	},
+/turf/open/floor/plating/asteroidwarning,
 /area/shuttle/drop1/lz1)
 "GS" = (
 /turf/closed/wall/indestructible/mineral,
@@ -2996,9 +2976,7 @@
 /area/lavaland/engie/refine)
 "Io" = (
 /obj/machinery/landinglight/ds2,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 2
-	},
+/turf/open/floor/plating/asteroidwarning,
 /area/shuttle/drop2/lz2)
 "Iq" = (
 /obj/structure/largecrate/guns/merc,
@@ -3415,7 +3393,6 @@
 	dir = 2;
 	icon_state = "shutter0";
 	id = "OR2";
-	name = "\improper Shutters";
 	opacity = 0
 	},
 /obj/structure/window/framed/colony,
@@ -3648,7 +3625,6 @@
 /area/lavaland/engie/two)
 "Qi" = (
 /obj/docking_port/stationary/crashmode,
-/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/lavaland/lava/side,
 /area/lavaland)
 "Qm" = (
@@ -3720,9 +3696,7 @@
 /turf/open/floor/plating,
 /area/lavaland/engie/one)
 "QX" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},

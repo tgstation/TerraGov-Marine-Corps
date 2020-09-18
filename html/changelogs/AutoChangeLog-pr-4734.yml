@@ -1,0 +1,10 @@
+author: "Chaznoodles"
+delete-after: True
+changes: 
+  - rscadd: "Larva embryos can now be sold to Requisitions. How much are you willing to forgo those precious advanced drugs?"
+  - rscadd: "New items added to Requisitions, including stealthy cloaks, armageddon in four doses and a method to send things skywards with ease. Sell the world."
+  - rscdel: "Removed some unused Surplus weapons and regular weapons. We've got enough of those in the vendors."
+  - tweak: "Requisitions pricing tweaked across the board using information from Electric's previous PR to encourage buying things, but still at a cost."
+  - tweak: "Specialist gear is now cheaper, but doesn't come with ammunition. B17 and B18 have been dropped in price due to it piling up in the belowdecks. Please, we're drowning in it."
+  - tweak: "Miner crate prices have been upped somewhat, to account for a slower Requisitions points gain and slower crate generation."
+  - tweak: "Default ammunition in big ammo boxes upped from 600 to 800. Regular ammo boxes added to Requisitions listings."

@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - rscadd: "Machetes and Knives can now be used to scalp dead xenos"

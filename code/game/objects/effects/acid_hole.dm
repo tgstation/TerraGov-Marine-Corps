@@ -89,9 +89,10 @@
 			to_chat(user, "<span class='warning'>The hole's exit is blocked by something!</span>")
 			return
 
-	if(locate(/obj/machinery/door/poddoor/timed_late/containment) in get_turf(src))
-		to_chat(user, "<span class='warning'>You can't reach the hole's entrance under the shutters.</span>")
-		return
+	for(var/obj/machinery/door/poddoor/timed_late/containment/shutter in get_turf(src))
+		if(shutter.density)
+			to_chat(user, "<span class='warning'>You can't reach the hole's entrance under the shutters.</span>")
+			return
 
 	if(user.action_busy)
 		return

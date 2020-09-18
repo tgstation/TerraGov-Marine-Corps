@@ -139,6 +139,7 @@
 	mechanics_text = "Unleashes our raw psychic power, pushing aside anyone who stands in our path."
 	cooldown_timer = 50 SECONDS
 	plasma_cost = 300
+	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_UNRELENTING_FORCE
 
 
@@ -152,7 +153,8 @@
 	add_cooldown()
 	addtimer(CALLBACK(owner, /mob.proc/update_icons), 1 SECONDS)
 	owner.icon_state = "Shrike Screeching"
-	owner.face_atom(target)
+	if(target) // Keybind use doesn't have a target
+		owner.face_atom(target)
 
 	var/turf/lower_left
 	var/turf/upper_right

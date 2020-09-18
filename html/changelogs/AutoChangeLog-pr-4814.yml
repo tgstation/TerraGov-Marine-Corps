@@ -1,0 +1,5 @@
+author: "Hathkar"
+delete-after: True
+changes: 
+  - rscadd: "Booze-o-mat Vendor in CL's quarters on the Pillar"
+  - rscadd: "5 hidden bottles of vodka on the Pillar"

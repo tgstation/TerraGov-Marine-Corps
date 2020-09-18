@@ -112,7 +112,7 @@
 
 /obj/item/storage/pouch/firstaid
 	name = "first-aid pouch"
-	desc = "It can contain autoinjectors, ointments, and bandages."
+	desc = "Standard marine first-aid pouch. It can contain autoinjectors, ointments, and bandages."
 	icon_state = "firstaid"
 	storage_slots = 5
 	can_hold = list(
@@ -123,7 +123,7 @@
 		/obj/item/stack/medical/splint)
 
 /obj/item/storage/pouch/firstaid/full
-	desc = "Contains a painkiller autoinjector, first-aid autoinjector, splints, some ointment, and some bandages."
+	desc = "Standard marine first-aid pouch. Contains a painkiller autoinjector, a soothing pill packet, splints, some ointment, and some bandages."
 
 /obj/item/storage/pouch/firstaid/full/Initialize()
 	. = ..()
@@ -135,14 +135,13 @@
 
 
 /obj/item/storage/pouch/firstaid/injectors
-	name = "first-aid pouch"
-	desc = "It can contain autoinjectors."
-	icon_state = "firstaid"
-	storage_slots = 5
+	name = "combat injector pouch"
+	desc = "Standard marine first-aid combat injector pouch. Specialized to store only autoinjectors."
+	icon_state = "firstaid_injector"
 	can_hold = list(/obj/item/reagent_containers/hypospray/autoinjector)
 
 /obj/item/storage/pouch/firstaid/injectors/full
-	desc = "Contains 3 combat autoinjectors, an oxycodone injector, and a stimulant injector."
+	desc = "Standard marine first-aid combat injector pouch. Specialized to store only autoinjectors. Contains 3 combat autoinjectors, an oxycodone injector, and a stimulant injector."
 
 /obj/item/storage/pouch/firstaid/injectors/full/Initialize()
 	. = ..()
@@ -413,7 +412,7 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/hyperzine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
 
 
 
