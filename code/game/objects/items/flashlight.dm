@@ -20,7 +20,7 @@
 	. = ..()
 	if(light_on)
 		icon_state = "[initial(icon_state)]-on"
-	update_brightness()
+		set_light_on(TRUE)
 
 
 /obj/item/flashlight/proc/update_brightness(mob/user = null)

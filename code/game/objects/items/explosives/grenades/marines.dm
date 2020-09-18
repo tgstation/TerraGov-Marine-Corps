@@ -270,6 +270,7 @@
 	light_system = MOVABLE_LIGHT
 	light_range = 6
 	light_color = LIGHT_COLOR_FLARE
+	light_on = FALSE
 	var/fuel = 0
 	var/lower_fuel_limit = 800
 	var/upper_fuel_limit = 1000
@@ -286,7 +287,7 @@
 
 /obj/item/explosive/grenade/flare/Destroy()
 	turn_off()
-	. = ..()
+	return ..()
 
 /obj/item/explosive/grenade/flare/process()
 	fuel = max(fuel - 1, 0)
