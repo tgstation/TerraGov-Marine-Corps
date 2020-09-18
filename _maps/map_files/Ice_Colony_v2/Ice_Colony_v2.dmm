@@ -14683,7 +14683,6 @@
 /area/ice_colony/exterior/surface/landing_pad_external)
 "aWq" = (
 /obj/docking_port/stationary/marine_dropship/lz1,
-/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating,
 /area/ice_colony/exterior/surface/landing_pad2)
 "aWr" = (
@@ -33149,7 +33148,6 @@
 /area/ice_colony/exterior/surface/valley/southeast)
 "lPy" = (
 /obj/docking_port/stationary/crashmode,
-/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/landing_pad)
 "lSx" = (

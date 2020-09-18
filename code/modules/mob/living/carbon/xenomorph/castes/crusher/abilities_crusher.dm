@@ -33,6 +33,7 @@
 			GLOB.round_statistics.crusher_stomp_victims++
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "crusher_stomp_victims")
 			M.take_overall_damage(damage, 0, M.run_armor_check("chest", "melee"))
+			M.Paralyze(20)
 			to_chat(M, "<span class='highdanger'>You are stomped on by [X]!</span>")
 			shake_camera(M, 3, 3)
 		else

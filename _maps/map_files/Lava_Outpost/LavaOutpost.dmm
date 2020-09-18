@@ -367,7 +367,6 @@
 /area/lavaland/engie/engine)
 "fH" = (
 /obj/docking_port/stationary/crashmode,
-/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/brock,
 /area/lavaland/cave/north)
 "fQ" = (
@@ -743,7 +742,6 @@
 /turf/open/floor/wood,
 /area/lavaland/civilian)
 "jH" = (
-/obj/docking_port/stationary/crashmode/bigbury,
 /obj/docking_port/stationary/crashmode,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/central)
@@ -1689,7 +1687,6 @@
 /area/lavaland/civilian/cargo)
 "tW" = (
 /obj/docking_port/stationary/crashmode,
-/obj/docking_port/stationary/crashmode/bigbury,
 /turf/closed/brock,
 /area/lavaland/cave/southeast)
 "tY" = (
@@ -2130,7 +2127,6 @@
 /area/lavaland/cave/east)
 "yC" = (
 /obj/docking_port/stationary/crashmode,
-/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/lavaland/lava,
 /area/lavaland/cave/north)
 "yH" = (
@@ -3629,7 +3625,6 @@
 /area/lavaland/engie/two)
 "Qi" = (
 /obj/docking_port/stationary/crashmode,
-/obj/docking_port/stationary/crashmode/bigbury,
 /turf/open/lavaland/lava/side,
 /area/lavaland)
 "Qm" = (

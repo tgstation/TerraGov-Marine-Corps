@@ -1134,6 +1134,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 15
 	accurate_range = 10
 
+/datum/ammo/energy/tesla
+	name = "energy ball"
+	icon_state = "tesla"
+	hud_state = "taser"
+	hud_state_empty = "battery_empty"
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_CHAINING
+	damage = 20
+	penetration = 20
+
 /datum/ammo/energy/lasgun
 	name = "laser bolt"
 	icon_state = "laser"

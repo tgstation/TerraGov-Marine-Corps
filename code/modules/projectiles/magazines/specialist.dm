@@ -161,7 +161,7 @@ obj/item/ammo_magazine/rifle/m4ra/smart
 
 /obj/item/ammo_magazine/rocket/m57a4
 	name = "\improper 84mm thermobaric rocket array"
-	desc = "A thermobaric rocket tube for an M57-A4 quad launcher. Activate in hand to receive some metal when it's used up."
+	desc = "A thermobaric rocket tube for a M57A4 quad launcher. Activate in hand to receive some metal when it's used up."
 	caliber = "rocket array"
 	icon_state = "quad_rocket"
 	max_rounds = 4
@@ -170,7 +170,7 @@ obj/item/ammo_magazine/rifle/m4ra/smart
 	reload_delay = 200
 
 /obj/item/ammo_magazine/internal/launcher/rocket/m57a4
-	desc = "The internal tube of an M57-A4 thermobaric launcher."
+	desc = "The internal tube of an M57A4 thermobaric launcher."
 	caliber = "rocket array"
 	default_ammo = /datum/ammo/rocket/wp/quad
 	max_rounds = 4

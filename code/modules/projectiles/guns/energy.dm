@@ -134,6 +134,24 @@
 	scatter_unwielded = 80 //Heavy and unwieldy
 	damage_falloff_mult = 0.5
 
+/obj/item/weapon/gun/energy/lasgun/tesla
+	name = "\improper Energy Rifle"
+	desc = "A wieldy rifle that fires balls of elecricity that shock all those near them. Handle only with insulated clothing. Reloaded with power cells."
+	icon_state = "m43"
+	item_state = "m43"
+	fire_sound = 'sound/weapons/guns/fire/tesla.ogg'
+	ammo = /datum/ammo/energy/tesla
+	cell_type = /obj/item/cell/lasgun/tesla
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_ENERGY|GUN_AMMO_COUNTER
+	aim_slowdown = 0.75
+	wield_delay = 1 SECONDS
+	gun_skill_category = GUN_SKILL_RIFLES
+
+	charge_cost = 500
+	fire_delay = 4 SECONDS
+	accuracy_mult = 1.5
+	accuracy_mult_unwielded = 0.6
+	damage_falloff_mult = 0.5
 
 //-------------------------------------------------------
 //M43 Sunfury Lasgun MK1
@@ -438,6 +456,7 @@
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/attached_gun/grenade,
 						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/marine,
 						/obj/item/attachable/attached_gun/flamer,
 						/obj/item/attachable/attached_gun/shotgun,
 						/obj/item/attachable/scope/mini)
