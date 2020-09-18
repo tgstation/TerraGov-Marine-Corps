@@ -645,7 +645,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range = 3
 	max_range = 10
 	damage = 96
-	damage_falloff = 4
+	damage_falloff = 2
 	penetration = 0
 
 
@@ -661,7 +661,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range = 3
 	max_range = 10
 	damage = 96
-	damage_falloff = 4
+	damage_falloff = 2
 	penetration = 0
 
 //buckshot variant only used by the masterkey shotgun attachment.
