@@ -37,9 +37,6 @@
 	if(SSticker?.mode?.mode_new_player_panel(src))
 		return
 
-	var/datum/asset/asset_datum = get_asset_datum(/datum/asset/simple/lobby)
-	asset_datum.send(client)
-
 	var/output = "<div align='center'>"
 	output += "<br><i>You are part of the <b>TerraGov Marine Corps</b>, a military branch of the TerraGov council.</i>"
 	output +="<hr>"

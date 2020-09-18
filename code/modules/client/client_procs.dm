@@ -35,8 +35,9 @@
 	if(href_list["asset_cache_confirm_arrival"])
 		asset_cache_job = asset_cache_confirm_arrival(href_list["asset_cache_confirm_arrival"])
 		if (!asset_cache_job)
+			return
 
-
+	// Rate limiting
 	var/mtl = CONFIG_GET(number/minute_topic_limit)
 	if (!holder && mtl)
 		var/minute = round(world.time, 600)

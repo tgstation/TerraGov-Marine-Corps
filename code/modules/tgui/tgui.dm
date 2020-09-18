@@ -80,8 +80,8 @@
 		master_ui.children += src
 	src.state = state
 
-	var/datum/asset/assets = get_asset_datum(/datum/asset/group/tgui)
-	assets.send(user)
+//	var/datum/asset/assets = get_asset_datum(/datum/asset/group/tgui)
+//	assets.send(user)
 
 /**
  * public

@@ -3,21 +3,21 @@
 /datum/asset/simple/tgui_common
 	keep_local_name = TRUE
 	assets = list(
-		"tgui-common.chunk.js" = 'tgui/public/tgui-common.chunk.js',
+//		"tgui-common.chunk.js" = 'tgui/public/tgui-common.chunk.js',
 	)
 
 /datum/asset/simple/tgui
 	keep_local_name = TRUE
 	assets = list(
-		"tgui.bundle.js" = 'tgui/public/tgui.bundle.js',
-		"tgui.bundle.css" = 'tgui/public/tgui.bundle.css',
+//		"tgui.bundle.js" = 'tgui/public/tgui.bundle.js',
+//		"tgui.bundle.css" = 'tgui/public/tgui.bundle.css',
 	)
 
 /datum/asset/simple/tgui_panel
 	keep_local_name = TRUE
 	assets = list(
-		"tgui-panel.bundle.js" = 'tgui/public/tgui-panel.bundle.js',
-		"tgui-panel.bundle.css" = 'tgui/public/tgui-panel.bundle.css',
+//		"tgui-panel.bundle.js" = 'tgui/public/tgui-panel.bundle.js',
+//		"tgui-panel.bundle.css" = 'tgui/public/tgui-panel.bundle.css',
 	)
 
 // /datum/asset/simple/headers
@@ -53,7 +53,7 @@
 
 /datum/asset/simple/irv
 	assets = list(
-		"jquery-ui.custom-core-widgit-mouse-sortable-min.js" = 'html/IRV/jquery-ui.custom-core-widgit-mouse-sortable-min.js',
+//		"jquery-ui.custom-core-widgit-mouse-sortable-min.js" = 'html/IRV/jquery-ui.custom-core-widgit-mouse-sortable-min.js',
 	)
 
 /datum/asset/group/irv
@@ -64,25 +64,25 @@
 
 /datum/asset/simple/namespaced/changelog
 	assets = list(
-		"88x31.png" = 'html/88x31.png',
-		"bug-minus.png" = 'html/bug-minus.png',
-		"cross-circle.png" = 'html/cross-circle.png',
-		"hard-hat-exclamation.png" = 'html/hard-hat-exclamation.png',
-		"image-minus.png" = 'html/image-minus.png',
-		"image-plus.png" = 'html/image-plus.png',
-		"music-minus.png" = 'html/music-minus.png',
-		"music-plus.png" = 'html/music-plus.png',
-		"tick-circle.png" = 'html/tick-circle.png',
-		"wrench-screwdriver.png" = 'html/wrench-screwdriver.png',
-		"spell-check.png" = 'html/spell-check.png',
-		"burn-exclamation.png" = 'html/burn-exclamation.png',
-		"chevron.png" = 'html/chevron.png',
-		"chevron-expand.png" = 'html/chevron-expand.png',
-		"scales.png" = 'html/scales.png',
-		"coding.png" = 'html/coding.png',
-		"ban.png" = 'html/ban.png',
-		"chrome-wrench.png" = 'html/chrome-wrench.png',
-		"changelog.css" = 'html/changelog.css'
+		"88x31.png" = 'html/images/88x31.png',
+		"bug-minus.png" = 'html/images/bug-minus.png',
+		"cross-circle.png" = 'html/images/cross-circle.png',
+		"hard-hat-exclamation.png" = 'html/images/hard-hat-exclamation.png',
+		"image-minus.png" = 'html/images/image-minus.png',
+		"image-plus.png" = 'html/images/image-plus.png',
+		"music-minus.png" = 'html/images/music-minus.png',
+		"music-plus.png" = 'html/images/music-plus.png',
+		"tick-circle.png" = 'html/images/tick-circle.png',
+		"wrench-screwdriver.png" = 'html/images/wrench-screwdriver.png',
+		"spell-check.png" = 'html/images/spell-check.png',
+		"burn-exclamation.png" = 'html/images/burn-exclamation.png',
+		"chevron.png" = 'html/images/chevron.png',
+		"chevron-expand.png" = 'html/images/chevron-expand.png',
+		"scales.png" = 'html/images/scales.png',
+		"coding.png" = 'html/images/coding.png',
+		"ban.png" = 'html/images/ban.png',
+		"chrome-wrench.png" = 'html/images/chrome-wrench.png',
+		"changelog.css" = 'html/browser/changelog.css'
 	)
 	parents = list("changelog.html" = 'html/changelog.html')
 
@@ -90,7 +90,7 @@
 /datum/asset/simple/jquery
 	legacy = TRUE
 	assets = list(
-		"jquery.min.js" = 'html/jquery.min.js',
+//		"jquery.min.js" = 'html/jquery.min.js',
 	)
 
 /datum/asset/simple/namespaced/fontawesome
@@ -107,7 +107,7 @@
 	name = "chat"
 
 /datum/asset/spritesheet/chat/register()
-	InsertAll("emoji", 'icons/emoji.dmi')
+	InsertAll("emoji", 'icons/misc/emoji.dmi')
 	// pre-loading all lanugage icons also helps to avoid meta
 	InsertAll("language", 'icons/misc/language.dmi')
 	// catch languages which are pulling icons from another file
@@ -119,19 +119,14 @@
 			Insert("language-[icon_state]", icon, icon_state=icon_state)
 	..()
 
-/datum/asset/simple/lobby
-	assets = list(
-		"playeroptions.css" = 'html/browser/playeroptions.css'
-	)
-
 /datum/asset/simple/namespaced/common
-	assets = list("padlock.png"	= 'html/padlock.png')
+	assets = list("padlock.png"	= 'html/images/padlock.png')
 	parents = list("common.css" = 'html/browser/common.css')
 
 /datum/asset/simple/permissions
 	assets = list(
-		"search.js" = 'html/admin/search.js',
-		"panels.css" = 'html/admin/panels.css'
+		"search.js" = 'html/browser/search.js',
+		"panels.css" = 'html/browser/panels.css'
 	)
 
 /datum/asset/group/permissions
@@ -142,47 +137,20 @@
 
 /datum/asset/simple/notes
 	assets = list(
-		"high_button.png" = 'html/high_button.png',
-		"medium_button.png" = 'html/medium_button.png',
-		"minor_button.png" = 'html/minor_button.png',
-		"none_button.png" = 'html/none_button.png',
+		"high_button.png" = 'html/images/high_button.png',
+		"medium_button.png" = 'html/images/medium_button.png',
+		"minor_button.png" = 'html/images/minor_button.png',
+		"none_button.png" = 'html/images/none_button.png',
 	)
 
-
-/datum/asset/spritesheet/simple/pills
-	name ="pills"
-	assets = list(
-		"pill1" = 'icons/UI_Icons/Pills/pill1.png',
-		"pill2" = 'icons/UI_Icons/Pills/pill2.png',
-		"pill3" = 'icons/UI_Icons/Pills/pill3.png',
-		"pill4" = 'icons/UI_Icons/Pills/pill4.png',
-		"pill5" = 'icons/UI_Icons/Pills/pill5.png',
-		"pill6" = 'icons/UI_Icons/Pills/pill6.png',
-		"pill7" = 'icons/UI_Icons/Pills/pill7.png',
-		"pill8" = 'icons/UI_Icons/Pills/pill8.png',
-		"pill9" = 'icons/UI_Icons/Pills/pill9.png',
-		"pill10" = 'icons/UI_Icons/Pills/pill10.png',
-		"pill11" = 'icons/UI_Icons/Pills/pill11.png',
-		"pill12" = 'icons/UI_Icons/Pills/pill12.png',
-		"pill13" = 'icons/UI_Icons/Pills/pill13.png',
-		"pill14" = 'icons/UI_Icons/Pills/pill14.png',
-		"pill15" = 'icons/UI_Icons/Pills/pill15.png',
-		"pill16" = 'icons/UI_Icons/Pills/pill16.png',
-		"pill17" = 'icons/UI_Icons/Pills/pill17.png',
-		"pill18" = 'icons/UI_Icons/Pills/pill18.png',
-		"pill19" = 'icons/UI_Icons/Pills/pill19.png',
-		"pill20" = 'icons/UI_Icons/Pills/pill20.png',
-		"pill21" = 'icons/UI_Icons/Pills/pill21.png',
-		"pill22" = 'icons/UI_Icons/Pills/pill22.png',
-	)
 
 //this exists purely to avoid meta by pre-loading all language icons.
-/datum/asset/language/register()
+/datum/asset/language/register() //todounneeded
 	for(var/path in typesof(/datum/language))
 		set waitfor = FALSE
 		var/datum/language/L = new path ()
 		L.get_icon()
-
+/*
 /datum/asset/simple/orbit
 	assets = list(
 		"ghost.png"	= 'html/ghost.png'
@@ -193,12 +161,4 @@
 		"view_variables.css" = 'html/admin/view_variables.css'
 	)
 
-/datum/asset/spritesheet/sheetmaterials
-	name = "sheetmaterials"
-
-/datum/asset/spritesheet/sheetmaterials/register()
-	InsertAll("", 'icons/obj/stack_objects.dmi')
-
-	// Special case to handle Bluespace Crystals
-	Insert("polycrystal", 'icons/obj/telescience.dmi', "polycrystal")
-	..()
+*/
