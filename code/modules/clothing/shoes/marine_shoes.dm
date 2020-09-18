@@ -62,7 +62,7 @@
 		icon_state = initial(icon_state)
 
 /obj/item/clothing/shoes/marine/full
-  pockets = /obj/item/storage/internal/shoes/boot_knife/full
+	pockets = /obj/item/storage/internal/shoes/boot_knife/full
 
 /obj/item/storage/internal/shoes/boot_knife/full/Initialize()
     . = ..()
