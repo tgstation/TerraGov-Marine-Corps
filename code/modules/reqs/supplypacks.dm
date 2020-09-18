@@ -4,7 +4,7 @@
 //NOTE: Don't add living things to crates, that's bad, it will break the shuttle.
 //NOTE: Do NOT set the price of any crates below 7 points. Doing so allows infinite points.
 
-GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Attachments", "Ammo", "Armor", "Clothing", "Medical", "Engineering", "Supplies", "Imports"))
+GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Attachments", "Ammo", "Armor", "Clothing", "Medical", "Engineering", "Supplies", "Imports", "Factory"))
 
 /datum/supply_packs
 	var/name
@@ -1495,5 +1495,66 @@ Imports
 		/obj/item/ammo_magazine/pistol/holdout,
 		/obj/item/ammo_magazine/pistol/holdout,
 		/obj/item/ammo_magazine/pistol/holdout,
+	)
+	cost = 10
+
+/*******************************************************************************
+FACTORY
+*******************************************************************************/
+
+/datum/supply_packs/factory
+	group = "Factory"
+	containertype = /obj/structure/closet/crate
+
+/datum/supply_packs/factory/starter
+	name = "Starter Pack"
+	contains = list(
+		/obj/machinery/factory/cutter,
+		/obj/machinery/factory/heater,
+		/obj/machinery/factory/flatter,
+		/obj/machinery/factory/former
+	)
+	cost = 40
+
+/datum/supply_packs/factory/cutter
+	name = "Industrial cutter"
+	contains = list(
+		/obj/machinery/factory/cutter
+	)
+	cost = 10
+
+/datum/supply_packs/factory/heater
+	name = "Industrial heater"
+	contains = list(
+		/obj/machinery/factory/heater
+	)
+	cost = 10
+
+/datum/supply_packs/factory/flatter
+	name = "Industrial flatter"
+	contains = list(
+		/obj/machinery/factory/flatter
+	)
+	cost = 10
+
+/datum/supply_packs/factory/former
+	name = "Industrial former"
+	contains = list(
+		/obj/machinery/factory/former
+	)
+	cost = 10
+
+/datum/supply_packs/factory/phosrefill
+	name = "Phosphorus-resistant plates refill"
+	contains = list(
+		/obj/machinery/outputter/phosnade
+	)
+	cost = 10
+
+/datum/supply_packs/factory/phosoutputter
+	name = "2x Phosphorus-resistant plates refill"
+	contains = list(
+		/obj/item/factory_refill/phosnade,
+		/obj/item/factory_refill/phosnade
 	)
 	cost = 10

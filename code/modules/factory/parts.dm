@@ -40,8 +40,8 @@
 	icon_state = "r_foot"
 	result = /obj/item/explosive/grenade/frag/m15
 	next_machine = FACTORY_MACHINE_CUTTER
-	recipe = list(
+	/*recipe = list(
 		list("next_machine" = FACTORY_MACHINE_FORMER, "icon_state" = "r_arm"),
 		list("next_machine" = FACTORY_MACHINE_CUTTER, "icon_state" = "r_leg"),
-		)
+		)*/
 

@@ -80,6 +80,9 @@
 	processiconstate = "protolate_n"
 	process_type = FACTORY_MACHINE_FORMER
 
+
+
+
 /obj/item/factory_refill
 	name = "generic refiller"
 	desc = "you shouldnt be seeing this."
@@ -100,6 +103,7 @@
 	icon = 'icons/obj/machines/mining_machines.dmi'
 	icon_state = "stacker"
 	resistance_flags = XENO_DAMAGEABLE
+	density = TRUE
 	///the amount of resouce we have left to output factory_parts
 	var/production_amount_left = 0
 	///Maximum amount of resource we can hold
@@ -109,9 +113,9 @@
 	///Bool for whether the outputter is producing things
 	var/on = FALSE
 
-/obj/machinery/factory/outputter/examine(mob/user, distance, infix, suffix)
+/obj/machinery/outputter/examine(mob/user, distance, infix, suffix)
 	. = ..()
-	to_chat(user, "It is currently facing [dir2text(dir)], and outputting [initial(production_type.name)]. It has [production_amount_left] resources remaining.")
+//tivi	to_chat(user, "It is currently facing [dir2text(dir)], and outputting [initial(production_type.name)]. It has [production_amount_left] resources remaining.")
 
 /obj/machinery/outputter/wrench_act(mob/living/user, obj/item/I)
 	anchored = !anchored
@@ -120,10 +124,10 @@
 /obj/machinery/outputter/attack_hand(mob/living/user)
 	on = !on
 	if(on)
-		START_PROCESSING(src, SSmachines)
+		START_PROCESSING(SSmachines, src)
 		visible_message("<span class='notice'>\The [src] rumbles to life.</span>")
 	else
-		STOP_PROCESSING(src, SSmachines)
+		STOP_PROCESSING(SSmachines, src)
 		visible_message("<span class='notice'>\The [src] slows and becomes quiet.</span>")
 
 /obj/machinery/outputter/attack_ai(mob/living/silicon/ai/user)
@@ -139,14 +143,17 @@
 /obj/machinery/outputter/attacked_by(obj/item/I, mob/living/user, def_zone)
 	if(!isfactoryrefill(I))
 		return ..()
-	if(!istype(src, I.refill_type))
+	var/obj/item/factory_refill/refill = I
+	if(!istype(src, refill.refill_type))
 		to_chat(user, "<span class='warning'>This type of refiller is incompatible.</span>")
 		return
-	var/to_refill = min(max_fill_amount - production_amount_left, I.refill_amount)
+	var/to_refill = min(max_fill_amount - production_amount_left, refill.refill_amount)
 	production_amount_left += to_refill
-	I.refill_amount -= to_refill
-	if(I.refill_amount <= 0)
-		qdel(I)
+	refill.refill_amount -= to_refill
+	visible_message("<span class='notice'>[user] restocks \the [src] with [refill]!</span>", "<span class='notice'>You restock \the [src] with [refill]!</span>")
+	if(refill.refill_amount <= 0)
+		qdel(refill)
+		new /obj/item/stack/sheet/metal(user.loc)//trash
 
 /obj/machinery/outputter/phosnade
 	name = "Phosphorus resistant plate outputter"
@@ -158,7 +165,7 @@
 	name = "Phosphorus resistant laminate plates"
 	desc = "A box with what seem to be strangely colored metal plates inside. Used to refill Outputters."
 	icon_state = "phosphorus"
-	production_type = /obj/machinery/outputter/phosnade
+	refill_type = /obj/machinery/outputter/phosnade
 
 /obj/machinery/outputter/m15_nade
 	name = "Rounded grenade plate outputter"
@@ -170,4 +177,4 @@
 	name = "Box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
 	icon_state = "grenade"
-	production_type = /obj/machinery/outputter/m15_nade
+	refill_type = /obj/machinery/outputter/m15_nade
