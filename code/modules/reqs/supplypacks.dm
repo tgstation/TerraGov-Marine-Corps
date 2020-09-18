@@ -185,6 +185,11 @@ WEAPONS
 	)
 	cost = 100
 
+/datum/supply_packs/weapons/recoillessrifle
+	name = "Recoilless rifle kit"
+	contains = list(/obj/item/storage/box/recoilless_system)
+	cost = 100
+
 /datum/supply_packs/weapons/specsniper
 	name = "Sniper Specialist kit"
 	contains = list(
@@ -596,6 +601,16 @@ AMMO
 	name = "M5 RPG WP rocket"
 	contains = list(/obj/item/ammo_magazine/rocket/wp)
 	cost = 5
+
+/datum/supply_packs/ammo/shell_regular
+	name = "T-160 High explosive rocket"
+	contains = list(/obj/item/ammo_magazine/rocket/recoilless)
+	cost = 7
+
+/datum/supply_packs/ammo/shell_le
+	name = "T-160 Light explosive rocket"
+	contains = list(/obj/item/ammo_magazine/rocket/recoilless/light)
+	cost = 7
 
 /datum/supply_packs/ammo/smartgun
 	name = "M56 smartgun powerpack"

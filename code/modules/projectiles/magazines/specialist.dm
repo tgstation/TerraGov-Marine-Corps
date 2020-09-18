@@ -156,13 +156,13 @@ obj/item/ammo_magazine/rifle/m4ra/smart
 	reload_delay = 60
 
 //-------------------------------------------------------
-//T-TBD recoilless rifle
+//T-160 recoilless rifle
 
 /obj/item/ammo_magazine/rocket/recoilless
 	name = "\improper 67mm high-explosive shell"
-	desc = "A high explosive shell for the T-TBD recoilless rifle. Causes a heavy explosion over a small area. Requires specialized storage to carry."
-	caliber = "rocket"
-	icon_state = "rocket"
+	desc = "A high explosive shell for the T-160 recoilless rifle. Causes a heavy explosion over a small area. Requires specialized storage to carry."
+	caliber = "67mm shell"
+	icon_state = "shell"
 	w_class = WEIGHT_CLASS_BULKY
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/recoilless
@@ -172,9 +172,9 @@ obj/item/ammo_magazine/rifle/m4ra/smart
 
 /obj/item/ammo_magazine/rocket/recoilless/light
 	name = "\improper 67mm light-explosive shell"
-	desc = "A light explosive shell for the T-TBD recoilless rifle. Causes a light explosion over a large area. Requires specialized storage to carry."
-	caliber = "rocket"
-	icon_state = "rocket"
+	desc = "A light explosive shell for the T-160 recoilless rifle. Causes a light explosion over a large area. Can go farther than other shells of its type due to the light payload. Requires specialized storage to carry."
+	caliber = "67mm shell"
+	icon_state = "shell_le"
 	w_class = WEIGHT_CLASS_BULKY
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/recoilless/light
@@ -184,9 +184,9 @@ obj/item/ammo_magazine/rifle/m4ra/smart
 
 /obj/item/ammo_magazine/rocket/recoilless/heat
 	name = "\improper 67mm HEAT shell"
-	desc = "A high explosive-anti tank shell for the T-TBD recoilless rifle. Causes a medium explosion over a small area after impacting. Requires specialized storage to carry."
-	caliber = "rocket"
-	icon_state = "rocket"
+	desc = "A high explosive-anti tank shell for the T-160 recoilless rifle. Causes a medium explosion over a small area after impacting. Requires specialized storage to carry."
+	caliber = "67mm shell"
+	icon_state = "shell_heat"
 	w_class = WEIGHT_CLASS_BULKY
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/recoilless/heat
