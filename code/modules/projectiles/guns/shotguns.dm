@@ -426,7 +426,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	accuracy_mult_unwielded = 0.85
 	scatter = 20
 	scatter_unwielded = 40
-	damage_mult = 1.4
 	recoil = 3
 	recoil_unwielded = 5
 
