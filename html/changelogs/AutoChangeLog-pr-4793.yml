@@ -1,0 +1,4 @@
+author: "2whatever2"
+delete-after: True
+changes: 
+  - tweak: "0.5 slowdown to 0.4 and adds angle grip to it's attachment list."
