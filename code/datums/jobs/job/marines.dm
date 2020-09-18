@@ -66,7 +66,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	ears = /obj/item/radio/headset/mainship/marine
 	w_uniform = /obj/item/clothing/under/marine
 	wear_suit = /obj/item/clothing/suit/storage/marine/harness
-	shoes = /obj/item/clothing/shoes/marine
+	shoes = /obj/item/clothing/shoes/marine/full
 	gloves =/obj/item/clothing/gloves/marine
 	l_store = /obj/item/storage/pouch/firstaid/full
 	r_hand = /obj/item/portable_vendor/marine/squadmarine
@@ -116,7 +116,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	ears = /obj/item/radio/headset/mainship/marine
 	w_uniform = /obj/item/clothing/under/marine/engineer
 	wear_suit = /obj/item/clothing/suit/storage/marine
-	shoes = /obj/item/clothing/shoes/marine
+	shoes = /obj/item/clothing/shoes/marine/full
 	gloves =/obj/item/clothing/gloves/marine/insulated
 	l_store = /obj/item/storage/pouch/firstaid/full
 	r_store = /obj/item/storage/pouch/construction/equippedengineer
@@ -168,7 +168,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	ears = /obj/item/radio/headset/mainship/marine
 	w_uniform = /obj/item/clothing/under/marine/corpsman
 	wear_suit = /obj/item/clothing/suit/storage/marine
-	shoes = /obj/item/clothing/shoes/marine
+	shoes = /obj/item/clothing/shoes/marine/full
 	gloves =/obj/item/clothing/gloves/marine
 	head = /obj/item/clothing/head/helmet/marine/corpsman
 	l_store = /obj/item/storage/pouch/medkit/equippedcorpsman
@@ -232,7 +232,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	ears = /obj/item/radio/headset/mainship/marine
 	w_uniform = /obj/item/clothing/under/marine
 	wear_suit = /obj/item/clothing/suit/storage/marine/smartgunner
-	shoes = /obj/item/clothing/shoes/marine
+	shoes = /obj/item/clothing/shoes/marine/full
 	gloves =/obj/item/clothing/gloves/marine
 	head = /obj/item/clothing/head/helmet/marine
 	l_store = /obj/item/storage/pouch/firstaid/full
@@ -328,7 +328,7 @@ You are also in charge of communicating with command and letting them know about
 	ears = /obj/item/radio/headset/mainship/marine
 	w_uniform = /obj/item/clothing/under/marine
 	wear_suit = /obj/item/clothing/suit/storage/marine/leader
-	shoes = /obj/item/clothing/shoes/marine
+	shoes = /obj/item/clothing/shoes/marine/full
 	gloves =/obj/item/clothing/gloves/marine
 	head = /obj/item/clothing/head/helmet/marine/leader
 	glasses = /obj/item/clothing/glasses/hud/health

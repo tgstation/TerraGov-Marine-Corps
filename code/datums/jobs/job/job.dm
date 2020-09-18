@@ -143,7 +143,7 @@ GLOBAL_PROTECT(exp_specialmap)
 /datum/job/proc/radio_help_message(mob/M)
 	to_chat(M, {"
 <span class='role_body'>|______________________|</span>
-<span class='role_header'>You are a: [title]!</span>
+<span class='role_header'>You are a <b>[title]</b>!</span>
 <span class='role_body'>As a [title] you answer to [supervisors]. Special circumstances may change this.</span>
 <span class='role_body'>|______________________|</span>
 "})
