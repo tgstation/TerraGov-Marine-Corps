@@ -287,6 +287,7 @@
 #include "code\datums\elements\gestures.dm"
 #include "code\datums\elements\limb_support.dm"
 #include "code\datums\elements\pathfinder.dm"
+#include "code\datums\elements\scalping.dm"
 #include "code\datums\elements\undertile.dm"
 #include "code\datums\elements\windowshutter.dm"
 #include "code\datums\emergency_calls\clf.dm"

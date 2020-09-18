@@ -364,6 +364,10 @@ Defined in conflicts.dm of the #defines folder.
 	accuracy_unwielded_mod = -0.1
 	size_mod = 1
 
+/obj/item/attachable/bayonetknife/Initialize()
+	. = ..()
+	AddElement(/datum/element/scalping)
+
 /obj/item/attachable/extended_barrel
 	name = "extended barrel"
 	desc = "A lengthened barrel allows for lessened scatter, greater accuracy and muzzle velocity due to increased stabilization and shockwave exposure."
