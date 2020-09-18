@@ -910,6 +910,23 @@ MEDICAL
 	)
 	cost = 30
 
+/datum/supply_packs/medical/dogtags
+	name = "dogtags crate"
+	contains = list(
+		/obj/item/storage/box/ids/dogtag,
+		/obj/item/storage/box/ids/dogtag,
+		/obj/item/storage/box/ids/dogtag,
+	)
+	cost = 10
+
+/datum/supply_packs/medical/biomass
+	name = "biomass crate"
+	contains = list(
+		/obj/item/reagent_containers/glass/beaker/biomass,
+	)
+	cost = 15
+
+
 /datum/supply_packs/medical/medical
 	name = "Pills and Chemicals"
 	contains = list(
