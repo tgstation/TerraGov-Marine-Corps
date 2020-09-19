@@ -88,9 +88,11 @@
 	set name = "EORD Respawn"
 	set category = "OOC"
 
-	if(health >= 0)
-		to_chat(src, "You can only use this when you're dead or crit.")
-		return
+	if(isliving(usr))
+		var/mob/living/liver = usr
+		if(liver.health >= 0)
+			to_chat(src, "You can only use this when you're dead or crit.")
+			return
 
 	var/list/spawn_types = pick(
 		500 ; /mob/living/carbon/human,
