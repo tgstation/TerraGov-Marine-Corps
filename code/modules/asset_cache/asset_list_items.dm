@@ -1,16 +1,15 @@
 //DEFINITIONS FOR ASSET DATUMS START HERE.
 
-/datum/asset/simple/tgui_common
-	keep_local_name = TRUE
-	assets = list(
-//		"tgui-common.chunk.js" = 'tgui/public/tgui-common.chunk.js',
-	)
-
 /datum/asset/simple/tgui
-	keep_local_name = TRUE
+	legacy = TRUE
 	assets = list(
-//		"tgui.bundle.js" = 'tgui/public/tgui.bundle.js',
-//		"tgui.bundle.css" = 'tgui/public/tgui.bundle.css',
+		"tgui.bundle.js" = 'tgui/packages/tgui/public/tgui.bundle.js',
+		"tgui.bundle.css" = 'tgui/packages/tgui/public/tgui.bundle.css',
+	)
+/datum/asset/group/tgui
+	children = list(
+		/datum/asset/simple/tgui,
+		/datum/asset/simple/namespaced/fontawesome
 	)
 
 /datum/asset/simple/tgui_panel
@@ -171,7 +170,7 @@
 
 
 //this exists purely to avoid meta by pre-loading all language icons.
-/datum/asset/language/register() //todounneeded
+/datum/asset/language/register()
 	for(var/path in typesof(/datum/language))
 		set waitfor = FALSE
 		var/datum/language/L = new path ()

@@ -80,9 +80,14 @@
 		master_ui.children += src
 	src.state = state
 
-//	var/datum/asset/assets = get_asset_datum(/datum/asset/group/tgui)
-//	assets.send(user)
+	var/datum/asset/assets = get_asset_datum(/datum/asset/group/tgui)
+	assets.send(user)
 
+	var/flush_queue = get_asset_datum(/datum/asset/group/tgui)
+	for(var/datum/asset/asset in src_object.ui_assets(user))
+		flush_queue |= asset.send(user)
+	if (flush_queue)
+		user.client.browse_queue_flush()
 /**
  * public
  *
@@ -116,12 +121,6 @@
 	// NOTE: Intentional \ref usage; tgui datums can't/shouldn't
 	// be tagged, so this is an effective unwrap
 	html = replacetextEx(html, "\[tgui:ref]", "\ref[src]")
-
-	// var/flushqueue = window.send_asset(get_asset_datum(/datum/asset/simple/namespaced/fontawesome))
-	// for(var/datum/asset/asset in src_object.ui_assets(user))
-	// 	flushqueue |= window.send_asset(asset)
-	// if (flushqueue)
-	// 	user.client.browse_queue_flush()
 
 	// Open the window.
 	user << browse(html, "window=[window_id];[window_options]")
