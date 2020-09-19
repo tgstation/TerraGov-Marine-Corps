@@ -19,8 +19,7 @@
 /obj/item/flashlight/Initialize()
 	. = ..()
 	if(light_on)
-		icon_state = "[initial(icon_state)]-on"
-		set_light_on(TRUE)
+		update_brightness()
 
 
 /obj/item/flashlight/proc/update_brightness(mob/user = null)
@@ -130,7 +129,7 @@
 	item_state = "lamp"
 	light_range = 5
 	w_class = WEIGHT_CLASS_BULKY
-	light_on = TRUE
+	light_on = FALSE
 	raillight_compatible = FALSE
 
 //Menorah!
@@ -141,7 +140,6 @@
 	item_state = "menorah"
 	light_range = 2
 	w_class = WEIGHT_CLASS_BULKY
-	light_on = TRUE
 
 //Green-shaded desk lamp
 /obj/item/flashlight/lamp/green
