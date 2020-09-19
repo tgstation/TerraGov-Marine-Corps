@@ -1107,13 +1107,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "armour piercing bolt"
 	icon_state = "bolt"
 	hud_state = "bolt_ap"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING
 	hud_state_empty = "bolt_empty"
 	damage_falloff = 0
 	shell_speed = 2
 	accuracy = 40
-	damage = 200
-	penetration = 100
-	sundering = 100
+	damage = 70
+	penetration = 40
+	sundering = 10
 
 /datum/ammo/bullet/shotgun/bolt/ib
 	name = "napalm bolt"
@@ -1123,10 +1124,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_type = BURN
 	accuracy_var_low = 7
 	accurate_range = 15
-	damage = 200
-	penetration = 75
+	damage = 65
+	penetration = 35
 	max_range = 20
-	sundering = 100
+	sundering = 5
 
 /datum/ammo/bullet/shotgun/bolt/ib/drop_nade(turf/T, radius = 3)
 	if(!T || !isturf(T))
@@ -1140,8 +1141,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_SUNDERING
 	damage_falloff = 0
 	accurate_range = 15
-	penetration = 150
-	damage = 325
+	penetration = 30
+	damage = 60
 
 
 /datum/ammo/bullet/shotgun/bolt/ex/drop_nade(turf/T)

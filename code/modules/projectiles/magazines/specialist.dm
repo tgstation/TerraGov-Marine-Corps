@@ -105,7 +105,7 @@ obj/item/ammo_magazine/rifle/m4ra/smart
 /obj/item/ammo_magazine/handful/bolt
 	name = "handful of ap crossbow bolts"
 	caliber = "12g"
-	icon_state = "  "
+	icon_state = "crossbow piercing bolt"
 	current_rounds = 5
 	default_ammo = /datum/ammo/bullet/shotgun/bolt
 

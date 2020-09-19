@@ -771,6 +771,7 @@
 	desc = "A lightweight X8 Crossbow developed by Heron Hunting, it smells like fresh metal. "
 	icon_state = "x8"
 	item_state = "x8"
+	fire_sound = null
 	max_shells = 1 //codex
 	load_method = SINGLE_CASING //codex
 	materials = list(/datum/material/metal = 10000)

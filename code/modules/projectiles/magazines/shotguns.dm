@@ -133,6 +133,7 @@ also doesn't really matter. You can only reload them with handfuls.
 	current_rounds = 0
 
 /obj/item/ammo_magazine/internal/shotgun/bolt
+	name = "bolt feed"
 	default_ammo = /datum/ammo/bullet/shotgun/bolt
 	max_rounds = 1
 	current_rounds = 0
