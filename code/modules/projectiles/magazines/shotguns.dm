@@ -80,7 +80,6 @@ Generic internal magazine. All shotguns will use this or a variation with differ
 Since all shotguns share ammo types, the gun path is going to be the same for all of them. And it
 also doesn't really matter. You can only reload them with handfuls.
 */
-
 /obj/item/ammo_magazine/internal/shotgun
 	name = "shotgun tube"
 	desc = "An internal magazine. It is not supposed to be seen or removed."
