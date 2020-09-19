@@ -600,7 +600,7 @@
 						/obj/item/attachable/flashlight = 25,
 						/obj/item/attachable/magnetic_harness = 25,
 						/obj/item/attachable/reddot = 25,
-						/obj/item/attachable/scope = 25,
+						/obj/item/attachable/scope/marine = 25,
 						/obj/item/attachable/scope/mini = 25,
 
 						/obj/item/attachable/angledgrip = 25,

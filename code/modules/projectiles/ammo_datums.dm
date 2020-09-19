@@ -884,6 +884,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range_min = 2
 	damage_falloff = 0.25
 
+/datum/ammo/bullet/sniper/auto
+	name = "high caliber rifle bullet"
+	hud_state = "minigun"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER|AMMO_SKIPS_HUMANS
+	iff_signal = ACCESS_IFF_MARINE
+	damage = 80
+	penetration = 30
+	sundering = 7.5
+	accurate_range_min = 2
+	damage_falloff = 0.25
+
 /*
 //================================================
 					Special Ammo
@@ -1184,6 +1195,15 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_ENERGY
 	max_range = 15
 	accurate_range = 10
+
+/datum/ammo/energy/tesla
+	name = "energy ball"
+	icon_state = "tesla"
+	hud_state = "taser"
+	hud_state_empty = "battery_empty"
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_CHAINING
+	damage = 20
+	penetration = 20
 
 /datum/ammo/energy/lasgun
 	name = "laser bolt"

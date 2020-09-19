@@ -194,6 +194,18 @@
 				. = "Jeri"
 		to_chat(prefs.parent, "<span class='warning'>You forgot to set your synthetic name in your preferences. Please do so next time.</span>")
 
+/datum/species/early_synthetic/prefs_name(datum/preferences/prefs)
+	. = prefs.synthetic_name
+	if(!. || . == "Undefined") //In case they don't have a name set.
+		switch(prefs.gender)
+			if(MALE)
+				. = "David"
+			if(FEMALE)
+				. = "Anna"
+			else
+				. = "Jeri"
+		to_chat(prefs.parent, "<span class='warning'>You forgot to set your synthetic name in your preferences. Please do so next time.</span>")
+
 //special things to change after we're no longer that species
 /datum/species/proc/post_species_loss(mob/living/carbon/human/H)
 	return
@@ -306,6 +318,45 @@
 	heat_level_2 = 480
 	heat_level_3 = 1100
 
+/datum/species/human/vatgrown
+	name = "Vat-Grown Human"
+	name_plural = "Vat-Grown Humans"
+	species_flags = HAS_SKIN_TONE
+	brute_mod = 1.05
+	burn_mod = 1.05
+	slowdown = 1.05
+
+/datum/species/human/vatgrown/random_name(gender)
+	. = "CS-[gender == FEMALE ? "F": "M"]-[rand(111,999)]"
+
+/datum/species/human/vatgrown/handle_post_spawn(mob/living/carbon/human/H)
+	. = ..()
+	H.h_style = "Bald"
+	H.skills = getSkillsType(/datum/skills/vatgrown)
+
+/datum/species/human/vatgrown/early
+	name = "Early Vat-Grown Human"
+	name_plural = "Early Vat-Grown Humans"
+	brute_mod = 1.3
+	burn_mod = 1.3
+	slowdown = 1.3
+
+	var/timerid
+
+/datum/species/human/vatgrown/early/handle_post_spawn(mob/living/carbon/human/H)
+	. = ..()
+	H.skills = getSkillsType(/datum/skills/vatgrown/early)
+	timerid = addtimer(CALLBACK(src, .proc/handle_age, H), 15 MINUTES, TIMER_STOPPABLE)
+
+/datum/species/human/vatgrown/early/post_species_loss(mob/living/carbon/human/H)
+	. = ..()
+	// Ensure we don't update the species again
+	if(timerid)
+		deltimer(timerid)
+		timerid = null
+
+/datum/species/human/vatgrown/early/proc/handle_age(mob/living/carbon/human/H)
+	H.set_species("Vat-Grown Human")
 
 //Various horrors that spawn in and haunt the living.
 /datum/species/human/spook
@@ -334,15 +385,16 @@
 	cold_level_2 = 50
 	cold_level_3 = 20
 
-	//To show them we mean business.
-	handle_unique_behavior(var/mob/living/carbon/human/H)
-		if(prob(25)) animation_horror_flick(H)
+//To show them we mean business.
+/datum/species/human/spook/handle_unique_behavior(mob/living/carbon/human/H)
+	if(prob(25))
+		animation_horror_flick(H)
 
-		//Organ damage will likely still take them down eventually.
-		H.adjustBruteLoss(-3)
-		H.adjustFireLoss(-3)
-		H.adjustOxyLoss(-15)
-		H.adjustToxLoss(-15)
+	//Organ damage will likely still take them down eventually.
+	H.adjustBruteLoss(-3)
+	H.adjustFireLoss(-3)
+	H.adjustOxyLoss(-15)
+	H.adjustToxLoss(-15)
 
 /datum/species/unathi
 	name = "Unathi"
@@ -618,10 +670,10 @@
 	unarmed_type = /datum/unarmed_attack/punch
 	rarity_value = 2
 
-	total_health = 150 //more health than regular humans
+	total_health = 125 //more health than regular humans
 
-	brute_mod = 0.75
-	burn_mod = 0.90 //Synthetics should not be instantly melted by acid compared to humans - This is a test to hopefully fix very glaring issues involving synthetics taking 2.6 trillion damage when so much as touching acid
+	brute_mod = 0.70
+	burn_mod = 0.70 //Synthetics should not be instantly melted by acid compared to humans - This is a test to hopefully fix very glaring issues involving synthetics taking 2.6 trillion damage when so much as touching acid
 
 	cold_level_1 = -1
 	cold_level_2 = -1
@@ -662,7 +714,7 @@
 	return ..()
 
 
-/datum/species/early_synthetic
+/datum/species/early_synthetic //cosmetic differences only
 	name = "Early Synthetic"
 	name_plural = "Early Synthetics"
 	icobase = 'icons/mob/human_races/r_synthetic.dmi'
@@ -670,11 +722,9 @@
 	default_language_holder = /datum/language_holder/synthetic
 	unarmed_type = /datum/unarmed_attack/punch
 	rarity_value = 1.5
-	slowdown = 1.3 //Slower than later synths
-	total_health = 200 //But more durable
-	insulated = 1
-	brute_mod = 0.60 //but more durable
-	burn_mod = 0.90 //previous comment
+	total_health = 125
+	brute_mod = 0.70
+	burn_mod = 0.70
 
 	cold_level_1 = -1
 	cold_level_2 = -1
@@ -695,8 +745,8 @@
 		"brain" =    /datum/internal_organ/brain/prosthetic,
 		)
 
-	lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
-	see_in_dark = 6
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
+	see_in_dark = 8
 
 	screams = list(MALE = "male_scream", FEMALE = "female_scream")
 	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
