@@ -166,7 +166,7 @@ obj/item/ammo_magazine/rifle/m4ra/smart
 	w_class = WEIGHT_CLASS_BULKY
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/recoilless
-	gun_type = /obj/item/weapon/gun/launcher/rocket/recoillesslance
+	gun_type = /obj/item/weapon/gun/launcher/rocket/recoillessrifle
 	flags_magazine = NONE
 	reload_delay = 30
 
@@ -178,7 +178,7 @@ obj/item/ammo_magazine/rifle/m4ra/smart
 	w_class = WEIGHT_CLASS_BULKY
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/recoilless/light
-	gun_type = /obj/item/weapon/gun/launcher/rocket/recoillesslance
+	gun_type = /obj/item/weapon/gun/launcher/rocket/recoillessrifle
 	flags_magazine = NONE
 	reload_delay = 10
 
@@ -190,7 +190,7 @@ obj/item/ammo_magazine/rifle/m4ra/smart
 	w_class = WEIGHT_CLASS_BULKY
 	max_rounds = 1
 	default_ammo = /datum/ammo/rocket/recoilless/heat
-	gun_type = /obj/item/weapon/gun/launcher/rocket/recoillesslance
+	gun_type = /obj/item/weapon/gun/launcher/rocket/recoillessrifle
 	flags_magazine = NONE
 	reload_delay = 30
 

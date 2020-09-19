@@ -955,7 +955,7 @@
 //-------------------------------------------------------
 //T-160 Recoilless Rifle. Its effectively an RPG codewise.
 
-/obj/item/weapon/gun/launcher/rocket/recoillesslance
+/obj/item/weapon/gun/launcher/rocket/recoillessrifle
 	name = "\improper T-160 recoilless rifle"
 	desc = "The T-160 recoilless rifle is a long range explosive ordanance device used by the TGMC used to fire explosive shells at far distances. Uses a variety of 67mm shells designed for various purposes."
 	icon = 'icons/Marine/gun64.dmi'

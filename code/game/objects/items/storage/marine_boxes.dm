@@ -292,7 +292,7 @@
 
 /obj/item/storage/box/recoilless_system/Initialize(mapload, ...)
 	. = ..()
-	new /obj/item/weapon/gun/launcher/rocket/recoillesslance(src)
+	new /obj/item/weapon/gun/launcher/rocket/recoillessrifle(src)
 	new /obj/item/ammo_magazine/rocket/recoilless(src)
 	new /obj/item/ammo_magazine/rocket/recoilless(src)
 	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
