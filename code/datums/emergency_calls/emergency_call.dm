@@ -180,7 +180,7 @@
 		cooldown_timer = addtimer(CALLBACK(src, .proc/reset), COOLDOWN_COMM_REQUEST, TIMER_STOPPABLE)
 		return
 
-	var/datum/mind/picked_candidates = list()
+	var/list/datum/mind/picked_candidates = list()
 	if(length(valid_candidates) > mob_max)
 		for(var/i in 1 to mob_max)
 			if(!length(valid_candidates)) //We ran out of candidates.
