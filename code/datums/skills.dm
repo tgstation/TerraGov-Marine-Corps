@@ -590,7 +590,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	powerloader = SKILL_POWERLOADER_MASTER
 	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
 
-//======//I.o.M.\\======\\
+/*======  I.o.M.  ======*/
 
 /datum/skills/imperial
 	name = "Guardsman"

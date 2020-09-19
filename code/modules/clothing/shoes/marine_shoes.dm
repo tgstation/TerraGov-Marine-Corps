@@ -115,7 +115,7 @@
 	siemens_coefficient = 0.2
 	resistance_flags = UNACIDABLE
 
-//=========//Imperium\\=========\\
+/*=========Imperium=========*/
 
 /obj/item/clothing/shoes/marine/imperial
 	name = "guardsmen combat boots"

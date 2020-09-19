@@ -154,7 +154,7 @@
 	icon_state = "cmohat"
 
 
-//============================//BERETS\\=================================\\
+/*============================BERETS=================================*/
 //Berets have armor, so they have their own category. PMC caps are helmets, so they're in helmets.dm.
 
 /obj/item/clothing/head/beret/marine
@@ -188,8 +188,8 @@
 	desc = "A beret with the lieutenant insignia emblazoned on it. It inspires a feeling of respect."
 	icon_state = "hosberet"
 
-//==========================//PROTECTIVE\\===============================\\
-//=======================================================================\\
+/*=========================PROTECTIVE===============================
+=======================================================================*/
 
 /obj/item/clothing/head/ushanka
 	name = "ushanka"
