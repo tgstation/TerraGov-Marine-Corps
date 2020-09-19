@@ -689,15 +689,11 @@
 
 
 /datum/reagent/medicine/quickclotplus/overdose_process(mob/living/L, metabolism)
-	L.apply_damage(6*REM, TOX)
-	if(L.blood_volume < BLOOD_VOLUME_MAXIMUM)
-		L.blood_volume -= 2
-	return ..()
+	L.apply_damage(3*REM, TOX)
+	L.blood_volume -= 4
 
 /datum/reagent/medicine/quickclotplus/overdose_crit_process(mob/living/L, metabolism)
-	if(L.blood_volume < BLOOD_VOLUME_MAXIMUM)
-		L.blood_volume -= 20
-	return ..()
+	L.blood_volume -= 20
 
 
 /datum/reagent/medicine/hyperzine
