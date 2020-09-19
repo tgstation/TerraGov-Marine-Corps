@@ -109,19 +109,19 @@ obj/item/ammo_magazine/rifle/m4ra/smart
 	current_rounds = 5
 	default_ammo = /datum/ammo/bullet/shotgun/bolt
 
-/obj/item/ammo_magazine/handful/bolt/ib
+/obj/item/ammo_magazine/handful/bolt/incendiary_bolts
 	caliber = "12g"
 	name = "handful of incendiary crossbow bolts"
-	icon_state = "  "
+	icon_state = "crossbow piercing bolt"
 	current_rounds = 5
-	default_ammo = /datum/ammo/bullet/shotgun/bolt/ib
+	default_ammo = /datum/ammo/bullet/shotgun/bolt/incendiary_bolts
 
-/obj/item/ammo_magazine/handful/bolt/ex
+/obj/item/ammo_magazine/handful/bolt/explosive_bolts
 	caliber = "12g"
 	name = "handful of explosive crossbow bolts"
-	icon_state = "  "
+	icon_state = "crossbow piercing bolt"
 	current_rounds = 5
-	default_ammo = /datum/ammo/bullet/shotgun/bolt/ex
+	default_ammo = /datum/ammo/bullet/shotgun/bolt/explosive_bolts
 
 //-------------------------------------------------------
 //M5 RPG

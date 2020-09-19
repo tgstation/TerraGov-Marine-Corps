@@ -1116,7 +1116,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 40
 	sundering = 10
 
-/datum/ammo/bullet/shotgun/bolt/ib
+/datum/ammo/bullet/shotgun/bolt/incendiary_bolts
 	name = "napalm bolt"
 	hud_state = "bolt_fire"
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_EXPLOSIVE|AMMO_SUNDERING
@@ -1135,7 +1135,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
 	flame_radius(radius, T, 27, 27, 27, 17)
 
-/datum/ammo/bullet/shotgun/bolt/ex
+/datum/ammo/bullet/shotgun/bolt/explosive_bolts
 	name = "explosive bolt"
 	hud_state = "bolt_ap"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_SUNDERING
