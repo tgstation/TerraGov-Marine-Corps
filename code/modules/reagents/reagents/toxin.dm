@@ -446,8 +446,7 @@
 
 /datum/reagent/toxin/nanites/on_mob_life(mob/living/L, metabolism)
 	L.apply_damages(10*REM, 6*REM, 6*REM) //DO NOT DRINK THIS. Seriously!
-	if(L.blood_volume < BLOOD_VOLUME_MAXIMUM)
-		L.blood_volume -= 10
+	L.blood_volume -= 10
 	return ..()
 
 /datum/reagent/toxin/xeno_neurotoxin
