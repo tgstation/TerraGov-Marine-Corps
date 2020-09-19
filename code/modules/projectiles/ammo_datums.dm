@@ -1102,8 +1102,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "shell"
 	hud_state = "shell_he"
 	hud_state_empty = "shell_empty"
-	ping = null //no bounce off.
-	sound_bounce	= "rocket_bounce"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
 	armor_type = "bomb"
 	damage_falloff = 0
