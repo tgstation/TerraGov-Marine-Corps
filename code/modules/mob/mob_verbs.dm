@@ -88,8 +88,8 @@
 	set name = "EORD Respawn"
 	set category = "OOC"
 
-	if(stat != DEAD)
-		to_chat(src, "You can only use this when you're dead.")
+	if(health >= 0)
+		to_chat(src, "You can only use this when you're dead or crit.")
 		return
 
 	var/list/spawn_types = pick(
