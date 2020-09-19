@@ -66,7 +66,7 @@
 	list_reagents = list(/datum/reagent/medicine/quickclot = 30)
 
 /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus
-	name = "quick-clot autoinjector"
+	name = "quick-clot plus autoinjector"
 	desc = "An autoinjector loaded with 3 uses of quick-clot plus, a chemical designed to remove internal bleeding. DO NOT USE IN COMBAT."
 	amount_per_transfer_from_this = 5
 	volume = 15
