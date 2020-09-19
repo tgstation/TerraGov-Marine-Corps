@@ -910,6 +910,23 @@ MEDICAL
 	)
 	cost = 30
 
+/datum/supply_packs/medical/dogtags
+	name = "dogtags crate"
+	contains = list(
+		/obj/item/storage/box/ids/dogtag,
+		/obj/item/storage/box/ids/dogtag,
+		/obj/item/storage/box/ids/dogtag,
+	)
+	cost = 10
+
+/datum/supply_packs/medical/biomass
+	name = "biomass crate"
+	contains = list(
+		/obj/item/reagent_containers/glass/beaker/biomass,
+	)
+	cost = 15
+
+
 /datum/supply_packs/medical/medical
 	name = "Pills and Chemicals"
 	contains = list(
@@ -1021,8 +1038,11 @@ ENGINEERING
 	cost = 10
 
 /datum/supply_packs/engineering/quikdeploycade
-	name = "quikdeploy barricade"
-	contains = list(/obj/item/quikdeploy/cade)
+	name = "quikdeploy barricade (x2)"
+	contains = list(
+		/obj/item/quikdeploy/cade,
+		/obj/item/quikdeploy/cade,
+	)
 	cost = 6
 
 /datum/supply_packs/engineering/pacman

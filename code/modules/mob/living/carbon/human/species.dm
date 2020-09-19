@@ -318,6 +318,45 @@
 	heat_level_2 = 480
 	heat_level_3 = 1100
 
+/datum/species/human/vatgrown
+	name = "Vat-Grown Human"
+	name_plural = "Vat-Grown Humans"
+	species_flags = HAS_SKIN_TONE
+	brute_mod = 1.05
+	burn_mod = 1.05
+	slowdown = 1.05
+
+/datum/species/human/vatgrown/random_name(gender)
+	. = "CS-[gender == FEMALE ? "F": "M"]-[rand(111,999)]"
+
+/datum/species/human/vatgrown/handle_post_spawn(mob/living/carbon/human/H)
+	. = ..()
+	H.h_style = "Bald"
+	H.skills = getSkillsType(/datum/skills/vatgrown)
+
+/datum/species/human/vatgrown/early
+	name = "Early Vat-Grown Human"
+	name_plural = "Early Vat-Grown Humans"
+	brute_mod = 1.3
+	burn_mod = 1.3
+	slowdown = 1.3
+
+	var/timerid
+
+/datum/species/human/vatgrown/early/handle_post_spawn(mob/living/carbon/human/H)
+	. = ..()
+	H.skills = getSkillsType(/datum/skills/vatgrown/early)
+	timerid = addtimer(CALLBACK(src, .proc/handle_age, H), 15 MINUTES, TIMER_STOPPABLE)
+
+/datum/species/human/vatgrown/early/post_species_loss(mob/living/carbon/human/H)
+	. = ..()
+	// Ensure we don't update the species again
+	if(timerid)
+		deltimer(timerid)
+		timerid = null
+
+/datum/species/human/vatgrown/early/proc/handle_age(mob/living/carbon/human/H)
+	H.set_species("Vat-Grown Human")
 
 //Various horrors that spawn in and haunt the living.
 /datum/species/human/spook
@@ -346,15 +385,16 @@
 	cold_level_2 = 50
 	cold_level_3 = 20
 
-	//To show them we mean business.
-	handle_unique_behavior(var/mob/living/carbon/human/H)
-		if(prob(25)) animation_horror_flick(H)
+//To show them we mean business.
+/datum/species/human/spook/handle_unique_behavior(mob/living/carbon/human/H)
+	if(prob(25))
+		animation_horror_flick(H)
 
-		//Organ damage will likely still take them down eventually.
-		H.adjustBruteLoss(-3)
-		H.adjustFireLoss(-3)
-		H.adjustOxyLoss(-15)
-		H.adjustToxLoss(-15)
+	//Organ damage will likely still take them down eventually.
+	H.adjustBruteLoss(-3)
+	H.adjustFireLoss(-3)
+	H.adjustOxyLoss(-15)
+	H.adjustToxLoss(-15)
 
 /datum/species/unathi
 	name = "Unathi"
