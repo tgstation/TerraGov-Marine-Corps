@@ -89,6 +89,7 @@
 					/obj/item/storage/box/nade_box = 2,
 					/obj/item/storage/box/nade_box/HIDP = 2,
 					/obj/item/storage/box/nade_box/M15 = 2,
+					/obj/item/storage/box/nade_box/tanglefoot = 2,
 					/obj/item/ammo_magazine/sniper = 3,
 					/obj/item/ammo_magazine/rifle/m4ra = 3,
 					/obj/item/ammo_magazine/rocket = 3,
