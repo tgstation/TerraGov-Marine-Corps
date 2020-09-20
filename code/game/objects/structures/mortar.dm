@@ -335,14 +335,12 @@
 	mouse_opacity = 0
 	brightness_on = 7 //Way brighter than most lights
 
-	New()
-
-		..()
-		fuel = rand(400, 500) // Half the duration of a flare, but justified since it's invincible
+/obj/item/flashlight/flare/on/illumination/Initialize()
+	. = ..()
+	fuel = rand(400, 500) // Half the duration of a flare, but justified since it's invincible
 
 /obj/item/flashlight/flare/on/illumination/turn_off()
-
-	..()
+	. = ..()
 	qdel(src)
 
 /obj/item/flashlight/flare/on/illumination/ex_act(severity)
