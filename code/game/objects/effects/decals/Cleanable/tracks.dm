@@ -23,10 +23,10 @@
 	var/crusty=0
 	var/image/overlay
 
-	New(_direction,_color,_wet)
-		src.direction=_direction
-		src.basecolor=_color
-		src.wet=_wet
+/datum/fluidtrack/New(_direction,_color,_wet)
+	direction = _direction
+	basecolor = _color
+	wet = _wet
 
 // Footprints, tire trails...
 /obj/effect/decal/cleanable/blood/tracks
@@ -37,7 +37,7 @@
 	icon_state = ""
 	var/coming_state="blood1"
 	var/going_state="blood2"
-	var/updatedtracks=0
+	var/updatedtracks = FALSE
 
 	// dir = id in stack
 	var/list/setdirs=list(
@@ -51,95 +51,96 @@
 		"128"=0
 	)
 
-	// List of laid tracks and their colors.
+	/// List of laid tracks and their colors.
 	var/list/datum/fluidtrack/stack=list()
 
-	/**
-	* Add tracks to an existing trail.
-	*
-	* @param DNA bloodDNA to add to collection.
-	* @param comingdir Direction tracks come from, or 0.
-	* @param goingdir Direction tracks are going to (or 0).
-	* @param bloodcolor Color of the blood when wet.
-	*/
-	proc/AddTracks(var/list/DNA, var/comingdir, var/goingdir, var/bloodcolor="#A10808")
-		var/updated=0
-		// Shift our goingdir 4 spaces to the left so it's in the GOING bitblock.
-		var/realgoing=goingdir<<4
+/**
+  * Add tracks to an existing trail.
+  *
+  * Arguments:
+  * * DNA: bloodDNA to add to collection.
+  * * comingdir: Direction tracks come from, or 0.
+  * * goingdir: Direction tracks are going to (or 0).
+  * * bloodcolor: Color of the blood when wet.
+  */
+/obj/effect/decal/cleanable/blood/tracks/proc/AddTracks(var/list/DNA, var/comingdir, var/goingdir, var/bloodcolor="#A10808")
+	var/updated = FALSE
+	// Shift our goingdir 4 spaces to the left so it's in the GOING bitblock.
+	var/realgoing=goingdir<<4
 
-		// Current bit
-		var/b=0
+	// Current bit
+	var/b=0
 
-		// When tracks will start to dry out
-		var/t=world.time + TRACKS_CRUSTIFY_TIME
+	// When tracks will start to dry out
+	var/t=world.time + TRACKS_CRUSTIFY_TIME
 
-		var/datum/fluidtrack/track
+	var/datum/fluidtrack/track
 
-		// Process 4 bits
-		for(var/bi=0;bi<4;bi++)
-			b=1<<bi
-			// COMING BIT
-			// If setting
-			if(comingdir&b)
-				// If not wet or not set
-				if(dirs&b)
-					var/sid=setdirs["[b]"]
-					track=stack[sid]
-					if(track.wet==t && track.basecolor==bloodcolor)
-						continue
-					// Remove existing stack entry
-					stack.Remove(track)
-				track=new /datum/fluidtrack(b,bloodcolor,t)
-				stack.Add(track)
-				setdirs["[b]"]=stack.Find(track)
-				updatedtracks |= b
-				updated=1
+	// Process 4 bits
+	for(var/bi=0;bi<4;bi++)
+		b=1<<bi
+		// COMING BIT
+		// If setting
+		if(comingdir&b)
+			// If not wet or not set
+			if(dirs&b)
+				var/sid=setdirs["[b]"]
+				track=stack[sid]
+				if(track.wet==t && track.basecolor==bloodcolor)
+					continue
+				// Remove existing stack entry
+				stack.Remove(track)
+			track=new /datum/fluidtrack(b,bloodcolor,t)
+			stack.Add(track)
+			setdirs["[b]"]=stack.Find(track)
+			updatedtracks |= b
+			updated = TRUE
 
-			// GOING BIT (shift up 4)
-			b=b<<4
-			if(realgoing&b)
-				// If not wet or not set
-				if(dirs&b)
-					var/sid=setdirs["[b]"]
-					track=stack[sid]
-					if(track.wet==t && track.basecolor==bloodcolor)
-						continue
-					// Remove existing stack entry
-					stack.Remove(track)
-				track=new /datum/fluidtrack(b,bloodcolor,t)
-				stack.Add(track)
-				setdirs["[b]"]=stack.Find(track)
-				updatedtracks |= b
-				updated=1
+		// GOING BIT (shift up 4)
+		b=b<<4
+		if(realgoing&b)
+			// If not wet or not set
+			if(dirs&b)
+				var/sid=setdirs["[b]"]
+				track=stack[sid]
+				if(track.wet==t && track.basecolor==bloodcolor)
+					continue
+				// Remove existing stack entry
+				stack.Remove(track)
+			track=new /datum/fluidtrack(b,bloodcolor,t)
+			stack.Add(track)
+			setdirs["[b]"]=stack.Find(track)
+			updatedtracks |= b
+			updated = TRUE
 
-		dirs |= comingdir|realgoing
-		if(updated)
-			update_icon()
+	dirs |= comingdir|realgoing
+	if(updated)
+		update_icon()
 
-	update_icon()
-		overlays.Cut()
-		color = "#FFFFFF"
-		var/truedir=0
+/obj/effect/decal/cleanable/blood/tracks/update_icon()
+	overlays.Cut()
+	color = "#FFFFFF"
+	var/truedir=0
 
-		// Update ONLY the overlays that have changed.
-		for(var/datum/fluidtrack/track in stack)
-			var/stack_idx=setdirs["[track.direction]"]
-			var/state=coming_state
-			truedir=track.direction
-			if(truedir&240) // Check if we're in the GOING block
-				state=going_state
-				truedir=truedir>>4
+	// Update ONLY the overlays that have changed.
+	for(var/datum/fluidtrack/track in stack)
+		var/stack_idx=setdirs["[track.direction]"]
+		var/state=coming_state
+		truedir=track.direction
+		if(truedir&240) // Check if we're in the GOING block
+			state=going_state
+			truedir=truedir>>4
 
-			if(track.overlay)
-				track.overlay=null
-			var/image/I = image(icon, icon_state=state, dir=num2dir(truedir))
-			I.color = track.basecolor
+		if(track.overlay)
+			track.overlay=null
+		var/image/I = image(icon, icon_state=state, dir=num2dir(truedir))
+		I.color = track.basecolor
 
-			track.fresh=0
-			track.overlay=I
-			stack[stack_idx]=track
-			overlays += I
-		updatedtracks=0 // Clear our memory of updated tracks.
+		track.fresh=0
+		track.overlay=I
+		stack[stack_idx]=track
+		overlays += I
+	updatedtracks = FALSE // Clear our memory of updated tracks.
 
 /obj/effect/decal/cleanable/blood/tracks/footprints
 	name = "wet footprints"

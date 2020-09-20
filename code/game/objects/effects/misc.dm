@@ -53,12 +53,12 @@
 	icon_state = "exhaust"
 	anchored = TRUE
 
-	New(var/turf/nloc, var/ndir, var/temp)
-		setDir(ndir)
-		..(nloc)
+/obj/effect/engine_exhaust/Initialize(mapload, ndir, temp)
+	setDir(ndir)
+	. = ..()
 
-		spawn(20)
-			loc = null
+	spawn(20)
+		return INITIALIZE_HINT_QDEL
 
 
 

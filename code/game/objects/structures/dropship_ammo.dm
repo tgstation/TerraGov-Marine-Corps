@@ -25,39 +25,42 @@
 	var/point_cost = 0 //how many points it costs to build this with the fabricator, set to 0 if unbuildable.
 
 
-	attackby(obj/item/I, mob/user)
+/obj/structure/ship_ammo/attackby(obj/item/I, mob/user)
 
-		if(istype(I, /obj/item/powerloader_clamp))
-			var/obj/item/powerloader_clamp/PC = I
-			if(PC.linked_powerloader)
-				if(PC.loaded)
-					if(istype(PC.loaded, /obj/structure/ship_ammo))
-						var/obj/structure/ship_ammo/SA = PC.loaded
-						if(SA.transferable_ammo && SA.ammo_count > 0 && SA.type == type)
-							if(ammo_count < max_ammo_count)
-								var/transf_amt = min(max_ammo_count - ammo_count, SA.ammo_count)
-								ammo_count += transf_amt
-								SA.ammo_count -= transf_amt
-								playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
-								to_chat(user, "<span class='notice'>You transfer [transf_amt] [ammo_name] to [src].</span>")
-								if(!SA.ammo_count)
-									PC.loaded = null
-									PC.update_icon()
-									qdel(SA)
-				else
-					forceMove(PC.linked_powerloader)
-					PC.loaded = src
-					playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
-					PC.update_icon()
-					to_chat(user, "<span class='notice'>You grab [PC.loaded] with [PC].</span>")
-					update_icon()
+	if(!istype(I, /obj/item/powerloader_clamp))
+		return ..()
+	var/obj/item/powerloader_clamp/PC = I
+	if(!PC.linked_powerloader)
+		return FALSE
+	if(PC.loaded)
+		if(!istype(PC.loaded, /obj/structure/ship_ammo))
 			return TRUE
-		. = ..()
+		var/obj/structure/ship_ammo/SA = PC.loaded
+		if(SA.transferable_ammo && SA.ammo_count > 0 && SA.type == type)
+			if(ammo_count < max_ammo_count)
+				var/transf_amt = min(max_ammo_count - ammo_count, SA.ammo_count)
+				ammo_count += transf_amt
+				SA.ammo_count -= transf_amt
+				playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
+				to_chat(user, "<span class='notice'>You transfer [transf_amt] [ammo_name] to [src].</span>")
+				if(!SA.ammo_count)
+					return TRUE
+				PC.loaded = null
+				PC.update_icon()
+				qdel(SA)
+	else
+		forceMove(PC.linked_powerloader)
+		PC.loaded = src
+		playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
+		PC.update_icon()
+		to_chat(user, "<span class='notice'>You grab [PC.loaded] with [PC].</span>")
+		update_icon()
+	return TRUE
 
 
-	examine(mob/user)
-		..()
-		to_chat(user, "Moving this will require some sort of lifter.")
+/obj/structure/ship_ammo/examine(mob/user)
+	. = ..()
+	to_chat(user, "Moving this will require some sort of lifter.")
 
 //what to show to the user that examines the weapon we're loaded on.
 /obj/structure/ship_ammo/proc/show_loaded_desc(mob/user)
@@ -82,39 +85,39 @@
 	point_cost = 150
 	var/bullet_spread_range = 4 //how far from the real impact turf can bullets land
 
-	examine(mob/user)
-		..()
-		to_chat(user, "It has [ammo_count] round\s.")
+/obj/structure/ship_ammo/examine(mob/user)
+	. = ..()
+	to_chat(user, "It has [ammo_count] round\s.")
 
-	show_loaded_desc(mob/user)
-		if(ammo_count)
-			to_chat(user, "It's loaded with \a [src] containing [ammo_count] round\s.")
-		else
-			to_chat(user, "It's loaded with an empty [name].")
+/obj/structure/ship_ammo/show_loaded_desc(mob/user)
+	if(ammo_count)
+		to_chat(user, "It's loaded with \a [src] containing [ammo_count] round\s.")
+	else
+		to_chat(user, "It's loaded with an empty [name].")
 
-	detonate_on(turf/impact)
-		set waitfor = 0
-		var/list/turf_list = list()
-		for(var/turf/T in range(impact, bullet_spread_range))
-			turf_list += T
-		var/soundplaycooldown = 0
-		var/debriscooldown = 0
-		for(var/i=1, i<=ammo_used_per_firing, i++)
-			var/turf/U = pick(turf_list)
-			turf_list -= U
-			sleep(1)
-			U.ex_act(3)
-			for(var/atom/movable/AM in U)
-				AM.ex_act(3)
-			if(!soundplaycooldown) //so we don't play the same sound 20 times very fast.
-				playsound(U, get_sfx("explosion"), 40, 1, 20, falloff = 3)
-				soundplaycooldown = 3
-			soundplaycooldown--
-			if(!debriscooldown)
-				U.ceiling_debris_check(1)
-				debriscooldown = 6
-			debriscooldown--
-			new /obj/effect/particle_effect/expl_particles(U)
+/obj/structure/ship_ammo/heavygun/detonate_on(turf/impact)
+	set waitfor = FALSE
+	var/list/turf_list = list()
+	for(var/turf/T in range(impact, bullet_spread_range))
+		turf_list += T
+	var/soundplaycooldown = 0
+	var/debriscooldown = 0
+	for(var/i=1 to ammo_used_per_firing)
+		var/turf/U = pick(turf_list)
+		turf_list -= U
+		sleep(1)
+		U.ex_act(3)
+		for(var/atom/movable/AM in U)
+			AM.ex_act(3)
+		if(!soundplaycooldown) //so we don't play the same sound 20 times very fast.
+			playsound(U, get_sfx("explosion"), 40, 1, 20, falloff = 3)
+			soundplaycooldown = 3
+		soundplaycooldown--
+		if(!debriscooldown)
+			U.ceiling_debris_check(1)
+			debriscooldown = 6
+		debriscooldown--
+		new /obj/effect/particle_effect/expl_particles(U)
 
 
 /obj/structure/ship_ammo/heavygun/highvelocity

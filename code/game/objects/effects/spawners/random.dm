@@ -16,9 +16,9 @@
 	return INITIALIZE_HINT_QDEL
 
 
-// this function should return a specific item to spawn
+/// this function should return a specific item to spawn
 /obj/effect/spawner/random/proc/item_to_spawn()
-	return 0
+	return null
 
 
 // creates the random item
@@ -30,13 +30,14 @@
 /obj/effect/spawner/random/tool
 	name = "Random Tool"
 	icon_state = "random_tool"
-	item_to_spawn()
-		return pick(/obj/item/tool/screwdriver,\
-					/obj/item/tool/wirecutters,\
-					/obj/item/tool/weldingtool,\
-					/obj/item/tool/crowbar,\
-					/obj/item/tool/wrench,\
-					/obj/item/flashlight)
+
+/obj/effect/spawner/random/tool/item_to_spawn()
+	return pick(/obj/item/tool/screwdriver,\
+				/obj/item/tool/wirecutters,\
+				/obj/item/tool/weldingtool,\
+				/obj/item/tool/crowbar,\
+				/obj/item/tool/wrench,\
+				/obj/item/flashlight)
 
 
 /obj/effect/spawner/random/technology_scanner
@@ -44,54 +45,57 @@
 	desc = "This is a random technology scanner."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "atmos"
-	item_to_spawn()
-		return pick(prob(5);/obj/item/t_scanner,\
-					prob(2);/obj/item/radio,\
-					prob(5);/obj/item/analyzer)
+
+/obj/effect/spawner/random/technology_scanner/item_to_spawn()
+	return pick(prob(5);/obj/item/t_scanner,\
+				prob(2);/obj/item/radio,\
+				prob(5);/obj/item/analyzer)
 
 
 /obj/effect/spawner/random/powercell
 	name = "Random Powercell"
 	icon_state = "random_cell"
-	item_to_spawn()
-		return pick(prob(10);/obj/item/cell/crap,\
-					prob(40);/obj/item/cell,\
-					prob(40);/obj/item/cell/high,\
-					prob(9);/obj/item/cell/super,\
-					prob(1);/obj/item/cell/hyper)
+/obj/effect/spawner/random/powercell/item_to_spawn()
+	return pick(prob(10);/obj/item/cell/crap,\
+				prob(40);/obj/item/cell,\
+				prob(40);/obj/item/cell/high,\
+				prob(9);/obj/item/cell/super,\
+				prob(1);/obj/item/cell/hyper)
 
 
 /obj/effect/spawner/random/bomb_supply
 	name = "Bomb Supply"
 	icon_state = "random_scanner"
-	item_to_spawn()
-		return pick(/obj/item/assembly/igniter,\
-					/obj/item/assembly/prox_sensor,\
-					/obj/item/assembly/signaler,\
-					/obj/item/multitool)
+
+/obj/effect/spawner/random/bomb_supply/item_to_spawn()
+	return pick(/obj/item/assembly/igniter,\
+				/obj/item/assembly/prox_sensor,\
+				/obj/item/assembly/signaler,\
+				/obj/item/multitool)
 
 
 /obj/effect/spawner/random/toolbox
 	name = "Random Toolbox"
 	icon_state = "random_toolbox"
-	item_to_spawn()
-		return pick(prob(3);/obj/item/storage/toolbox/mechanical,\
-					prob(2);/obj/item/storage/toolbox/electrical,\
-					prob(1);/obj/item/storage/toolbox/emergency)
+
+/obj/effect/spawner/random/toolbox/item_to_spawn()
+	return pick(prob(3);/obj/item/storage/toolbox/mechanical,\
+				prob(2);/obj/item/storage/toolbox/electrical,\
+				prob(1);/obj/item/storage/toolbox/emergency)
 
 
 /obj/effect/spawner/random/tech_supply
 	name = "Random Tech Supply"
 	icon_state = "random_cell"
 	spawn_nothing_percentage = 50
-	item_to_spawn()
-		return pick(prob(3);/obj/effect/spawner/random/powercell,\
-					prob(2);/obj/effect/spawner/random/technology_scanner,\
-					prob(1);/obj/item/packageWrap,\
-					prob(2);/obj/effect/spawner/random/bomb_supply,\
-					prob(1);/obj/item/tool/extinguisher,\
-					prob(1);/obj/item/clothing/gloves/fyellow,\
-					prob(3);/obj/item/stack/cable_coil,\
-					prob(2);/obj/effect/spawner/random/toolbox,\
-					prob(2);/obj/item/storage/belt/utility,\
-					prob(5);/obj/effect/spawner/random/tool)
+/obj/effect/spawner/random/tech_supply/item_to_spawn()
+	return pick(prob(3);/obj/effect/spawner/random/powercell,\
+				prob(2);/obj/effect/spawner/random/technology_scanner,\
+				prob(1);/obj/item/packageWrap,\
+				prob(2);/obj/effect/spawner/random/bomb_supply,\
+				prob(1);/obj/item/tool/extinguisher,\
+				prob(1);/obj/item/clothing/gloves/fyellow,\
+				prob(3);/obj/item/stack/cable_coil,\
+				prob(2);/obj/effect/spawner/random/toolbox,\
+				prob(2);/obj/item/storage/belt/utility,\
+				prob(5);/obj/effect/spawner/random/tool)

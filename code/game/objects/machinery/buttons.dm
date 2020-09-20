@@ -151,13 +151,10 @@
 	icon_state = "crema_switch"
 	anchored = TRUE
 	req_access = list(ACCESS_MARINE_MEDBAY)
-	var/on = 0
+	var/on = FALSE
 	var/area/area = null
 	var/otherarea = null
 	var/id = 1
-
-	attack_paw(mob/user as mob)
-		return
 
 /obj/machinery/medical_help_button
 	name = "Medical attention required"

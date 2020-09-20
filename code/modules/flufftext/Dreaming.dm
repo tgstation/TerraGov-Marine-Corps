@@ -14,21 +14,24 @@
 "a synthetic man","meat","a planet","the U.P.P.","Nanotrasen","tools" \
 )
 
-mob/living/carbon/proc/dream()
-	dreaming = 1
+//TODO REFACTOR THIS
+/mob/living/carbon/proc/dream()
+	dreaming = TRUE
 
 	spawn(0)
 		for(var/i = rand(1,4),i > 0, i--)
 			to_chat(src, "<span class='notice'><i>... [pick(POSSIBLE_DREAM_TOPICS)] ...</i></span>")
 			sleep(rand(40,70))
 			if(!IsUnconscious())
-				dreaming = 0
-				return 0
-		dreaming = 0
-		return 1
+				dreaming = FALSE
+				return FALSE
+		dreaming = FALSE
+		return TRUE
 
-mob/living/carbon/proc/handle_dreams()
+/mob/living/carbon/proc/handle_dreams()
 	if(client && !dreaming && prob(5))
 		dream()
 
-mob/living/carbon/var/dreaming = 0
+//TODO HOLY SHIT CAN YOU NOT MOVE THIS TO DEFINES AND MAKE IT A STATUS EFFECT OR AT LEAST A BITFLAG
+/mob/living/carbon
+	var/dreaming = FALSE

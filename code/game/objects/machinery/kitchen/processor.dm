@@ -17,70 +17,67 @@
 	var/input
 	var/output
 	var/time = 40
-	process(loc, what)
-		if (src.output && loc)
-			new src.output(loc)
-		if (what)
-			qdel(what)
+
+/datum/food_processor_process/process(loc, what)
+	if(output && loc)
+		new output(loc)
+	if(what)
+		qdel(what)
 
 	/* objs */
-	meat
+/datum/food_processor_process/meat
 		input = /obj/item/reagent_containers/food/snacks/meat
 		output = /obj/item/reagent_containers/food/snacks/meatball
 
-	potato
+/datum/food_processor_process/potato
 		input = /obj/item/reagent_containers/food/snacks/grown/potato
 		output = /obj/item/reagent_containers/food/snacks/rawsticks
 
-	carrot
+/datum/food_processor_process/carrot
 		input = /obj/item/reagent_containers/food/snacks/grown/carrot
 		output = /obj/item/reagent_containers/food/snacks/carrotfries
 
-	soybeans
+/datum/food_processor_process/soybeans
 		input = /obj/item/reagent_containers/food/snacks/grown/soybeans
 		output = /obj/item/reagent_containers/food/snacks/soydope
 
-	wheat
+/datum/food_processor_process/wheat
 		input = /obj/item/reagent_containers/food/snacks/grown/wheat
 		output = /obj/item/reagent_containers/food/snacks/flour
 
-	spaghetti
+/datum/food_processor_process/spaghetti
 		input = /obj/item/reagent_containers/food/snacks/flour
 		output = /obj/item/reagent_containers/food/snacks/spagetti
 
 	/* mobs */
-	mob
-		process(loc, what)
-			..()
+/datum/food_processor_process/monkey
+	input = /mob/living/carbon/monkey
+	output = null
 
+/datum/food_processor_process/monkey/process(loc, what)
+	var/mob/living/carbon/monkey/O = what
+	if(O.client) //grief-proof
+		O.loc = loc
+		O.visible_message("<span class='notice'> Suddenly [O] jumps out from the processor!</span>", \
+				"You jump out from the processor", \
+				"You hear chimp")
+		return
+	var/obj/item/reagent_containers/glass/bucket/bucket_of_blood = new(loc)
+	var/datum/reagent/blood/B = new()
+	B.holder = bucket_of_blood
+	B.volume = 70
+	//set reagent data
+	B.data["donor"] = O
 
-		monkey
-			process(loc, what)
-				var/mob/living/carbon/monkey/O = what
-				if (O.client) //grief-proof
-					O.loc = loc
-					O.visible_message("<span class='notice'> Suddenly [O] jumps out from the processor!</span>", \
-							"You jump out from the processor", \
-							"You hear chimp")
-					return
-				var/obj/item/reagent_containers/glass/bucket/bucket_of_blood = new(loc)
-				var/datum/reagent/blood/B = new()
-				B.holder = bucket_of_blood
-				B.volume = 70
-				//set reagent data
-				B.data["donor"] = O
+	bucket_of_blood.reagents.reagent_list += B
+	bucket_of_blood.reagents.update_total()
+	bucket_of_blood.on_reagent_change()
+	//bucket_of_blood.reagents.handle_reactions() //blood doesn't react
+	return ..()
 
-				bucket_of_blood.reagents.reagent_list += B
-				bucket_of_blood.reagents.update_total()
-				bucket_of_blood.on_reagent_change()
-				//bucket_of_blood.reagents.handle_reactions() //blood doesn't react
-				..()
-
-			input = /mob/living/carbon/monkey
-			output = null
 
 /obj/machinery/processor/proc/select_recipe(X)
-	for (var/Type in subtypesof(/datum/food_processor_process) - /datum/food_processor_process/mob)
+	for(var/Type in subtypesof(/datum/food_processor_process))
 		var/datum/food_processor_process/P = new Type()
 		if (!istype(X, P.input))
 			continue

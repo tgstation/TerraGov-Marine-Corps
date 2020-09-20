@@ -1,21 +1,14 @@
-proc/isdeaf(A)
+/proc/isdeaf(A)
 	if(isliving(A))
 		var/mob/living/M = A
 		return M.ear_deaf || M.disabilities & DEAF
 	return FALSE
 
-proc/is_blind(A)
+/proc/is_blind(A)
 	if(isliving(A))
 		var/mob/living/M = A
 		return M.eye_blind
 	return FALSE
-
-proc/hasorgans(A)
-	return ishuman(A)
-
-/proc/hsl2rgb(h, s, l)
-	return //TODO: Implement
-
 
 
 /mob/proc/can_use_hands()
@@ -397,7 +390,7 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 /mob/proc/get_eye_protection()
 	return 0
 
-mob/proc/get_standard_bodytemperature()
+/mob/proc/get_standard_bodytemperature()
 	return BODYTEMP_NORMAL
 
 /mob/log_message(message, message_type, color=null, log_globally = TRUE)

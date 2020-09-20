@@ -1,4 +1,4 @@
-//NEVER USE THIS IT SUX	-PETETHEGOAT
+//NEVER USE THIS IT SUX	-PETETHEGOAT //still sucks
 
 /obj/item/reagent_containers/glass/paint
 	desc = "It's a paint bucket."
@@ -14,59 +14,58 @@
 	init_reagent_flags = OPENCONTAINER
 	var/paint_type = ""
 
-	afterattack(turf/target, mob/user, proximity)
-		if(!proximity) return
-		if(istype(target) && reagents.total_volume > 5)
-			user.visible_message("<span class='warning'> \The [target] has been splashed with something by [user]!</span>")
-			spawn(5)
-				reagents.reaction(target, TOUCH)
-				reagents.remove_any(5)
-		else
-			return ..()
+/obj/item/reagent_containers/glass/paint/afterattack(turf/target, mob/user, proximity)
+	if(!proximity) return
+	if(istype(target) && reagents.total_volume > 5)
+		user.visible_message("<span class='warning'> \The [target] has been splashed with something by [user]!</span>")
+		spawn(5)
+			reagents.reaction(target, TOUCH)
+			reagents.remove_any(5)
+	else
+		return ..()
 
-	New()
-		if(paint_type == "remover")
-			name = "paint remover bucket"
-		else if(paint_type && length(paint_type) > 0)
-			name = paint_type + " " + name
-		..()
-		reagents.add_reagent(text2path("/datum/reagent/paint/[paint_type]"), volume)
+/obj/item/reagent_containers/glass/paint/Initialize()
+	. = ..()
+	if(paint_type && length(paint_type) > 0 && !(paint_type = "remover"))
+		name = paint_type + " " + name
+	reagents.add_reagent(text2path("/datum/reagent/paint/[paint_type]"), volume)
 
-	on_reagent_change() //Until we have a generic "paint", this will give new colours to all paints in the can
-		var/mixedcolor = mix_color_from_reagents(reagents.reagent_list)
-		for(var/datum/reagent/paint/P in reagents.reagent_list)
-			P.color = mixedcolor
+/obj/item/reagent_containers/glass/paint/on_reagent_change() //Until we have a generic "paint", this will give new colours to all paints in the can
+	var/mixedcolor = mix_color_from_reagents(reagents.reagent_list)
+	for(var/datum/reagent/paint/P in reagents.reagent_list)
+		P.color = mixedcolor
 
-	red
-		icon_state = "paint_red"
-		paint_type = "red"
+/obj/item/reagent_containers/glass/paint/red
+	icon_state = "paint_red"
+	paint_type = "red"
 
-	green
-		icon_state = "paint_green"
-		paint_type = "green"
+/obj/item/reagent_containers/glass/paint/green
+	icon_state = "paint_green"
+	paint_type = "green"
 
-	blue
-		icon_state = "paint_blue"
-		paint_type = "blue"
+/obj/item/reagent_containers/glass/paint/blue
+	icon_state = "paint_blue"
+	paint_type = "blue"
 
-	yellow
-		icon_state = "paint_yellow"
-		paint_type = "yellow"
+/obj/item/reagent_containers/glass/paint/yellow
+	icon_state = "paint_yellow"
+	paint_type = "yellow"
 
-	violet
-		icon_state = "paint_violet"
-		paint_type = "violet"
+/obj/item/reagent_containers/glass/paint/violet
+	icon_state = "paint_violet"
+	paint_type = "violet"
 
-	black
-		icon_state = "paint_black"
-		paint_type = "black"
+/obj/item/reagent_containers/glass/paint/black
+	icon_state = "paint_black"
+	paint_type = "black"
 
-	white
-		icon_state = "paint_white"
-		paint_type = "white"
+/obj/item/reagent_containers/glass/paint/white
+	icon_state = "paint_white"
+	paint_type = "white"
 
-	remover
-		paint_type = "remover"
+/obj/item/reagent_containers/glass/paint/remover
+	name = "paint remover bucket"
+	paint_type = "remover"
 
 /datum/reagent/paint
 	name = "Paint"

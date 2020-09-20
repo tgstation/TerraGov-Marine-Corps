@@ -25,7 +25,7 @@
 
 //############################## THE ACTUAL DECALS ###########################
 
-obj/structure/sign/poster
+/obj/structure/sign/poster
 	name = "poster"
 	desc = "A large piece of space-resistant printed paper. "
 	icon = 'icons/obj/contraband.dmi'
@@ -34,7 +34,7 @@ obj/structure/sign/poster
 	var/ruined = 0
 
 
-obj/structure/sign/poster/New(var/serial)
+/obj/structure/sign/poster/New(var/serial)
 
 	serial_number = serial
 
@@ -46,7 +46,7 @@ obj/structure/sign/poster/New(var/serial)
 	name += " - [design.name]"
 	desc += " [design.desc]"
 	icon_state = design.icon_state // poster[serial_number]
-	..()
+	return ..()
 
 /obj/structure/sign/poster/attackby(obj/item/I, mob/user, params)
 	. = ..()

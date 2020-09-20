@@ -8,18 +8,15 @@
 	icon_broken = "secureresbroken"
 	icon_off = "secureresoff"
 
-	New()
-		..()
-		sleep(2)
-		new /obj/item/clothing/under/marine/officer/researcher(src)
-		new /obj/item/clothing/under/marine/officer/researcher(src)
-		new /obj/item/clothing/suit/storage/labcoat(src)
-		new /obj/item/clothing/shoes/white(src)
-//		new /obj/item/cartridge/signal/science(src)
-//		new /obj/item/radio/headset/headset_sci(src)
-		new /obj/item/tank/air(src)
-		new /obj/item/clothing/mask/gas(src)
-		return
+/obj/structure/closet/secure_closet/scientist/PopulateContents()
+	new /obj/item/clothing/under/marine/officer/researcher(src)
+	new /obj/item/clothing/under/marine/officer/researcher(src)
+	new /obj/item/clothing/suit/storage/labcoat(src)
+	new /obj/item/clothing/shoes/white(src)
+//	new /obj/item/cartridge/signal/science(src)
+//	new /obj/item/radio/headset/headset_sci(src)
+	new /obj/item/tank/air(src)
+	new /obj/item/clothing/mask/gas(src)
 
 
 
@@ -33,20 +30,17 @@
 	icon_broken = "rdsecurebroken"
 	icon_off = "rdsecureoff"
 
-	New()
-		..()
-		sleep(2)
-		new /obj/item/clothing/suit/bio_suit/scientist(src)
-		new /obj/item/clothing/head/bio_hood/scientist(src)
-		new /obj/item/clothing/under/rank/research_director(src)
-		new /obj/item/clothing/under/rank/research_director/rdalt(src)
-		new /obj/item/clothing/under/rank/research_director/dress_rd(src)
-		new /obj/item/clothing/suit/storage/labcoat(src)
-		new /obj/item/clothing/shoes/white(src)
-		new /obj/item/clothing/shoes/leather(src)
-		new /obj/item/clothing/gloves/latex(src)
-//		new /obj/item/radio/headset/heads/rd(src)
-		new /obj/item/tank/air(src)
-		new /obj/item/clothing/mask/gas(src)
-		new /obj/item/flash(src)
-		return
+/obj/structure/closet/secure_closet/RD/PopulateContents()
+	new /obj/item/clothing/suit/bio_suit/scientist(src)
+	new /obj/item/clothing/head/bio_hood/scientist(src)
+	new /obj/item/clothing/under/rank/research_director(src)
+	new /obj/item/clothing/under/rank/research_director/rdalt(src)
+	new /obj/item/clothing/under/rank/research_director/dress_rd(src)
+	new /obj/item/clothing/suit/storage/labcoat(src)
+	new /obj/item/clothing/shoes/white(src)
+	new /obj/item/clothing/shoes/leather(src)
+	new /obj/item/clothing/gloves/latex(src)
+//	new /obj/item/radio/headset/heads/rd(src)
+	new /obj/item/tank/air(src)
+	new /obj/item/clothing/mask/gas(src)
+	new /obj/item/flash(src)

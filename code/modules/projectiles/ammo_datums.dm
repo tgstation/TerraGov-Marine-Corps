@@ -1599,8 +1599,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "\improper toy rocket"
 	damage = 1
 
-	on_hit_mob(mob/M,obj/projectile/P)
-		to_chat(M, "<font size=6 color=red>NO BUGS</font>")
+/datum/ammo/rocket/toy/on_hit_mob(mob/M,obj/projectile/P)
+	to_chat(M, "<font size=6 color=red>NO BUGS</font>")
 
 /datum/ammo/rocket/toy/on_hit_obj(obj/O,obj/projectile/P)
 	return

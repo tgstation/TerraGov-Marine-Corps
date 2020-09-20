@@ -2,8 +2,8 @@
 obj/item/limb
 	icon = 'icons/mob/human_races/r_human.dmi'
 
-obj/item/limb/New(loc, mob/living/carbon/human/H)
-	..(loc)
+/obj/item/limb/Initialize(mapload, mob/living/carbon/human/H)
+	. = ..()
 	if(!istype(H))
 		return
 	//Forming icon for the limb

@@ -34,7 +34,7 @@
 		else
 			icon_state = "[base_bed_icon]_down"
 
-obj/structure/bed/Destroy()
+/obj/structure/bed/Destroy()
 	if(buckled_bodybag)
 		unbuckle_bodybag()
 	return ..()

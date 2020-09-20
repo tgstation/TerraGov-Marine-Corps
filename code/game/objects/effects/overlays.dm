@@ -153,9 +153,9 @@
 	name = "emp sparks"
 	effect_duration = 10
 
-	New(loc)
-		setDir(pick(GLOB.cardinals))
-		..()
+/obj/effect/overlay/temp/emp_sparks/Initialize()
+	. = ..()
+	setDir(pick(GLOB.cardinals))
 
 /obj/effect/overlay/temp/emp_pulse
 	name = "emp pulse"

@@ -20,11 +20,11 @@
 	icon = 'icons/obj/inflatable.dmi'
 	icon_state = "folded_door"
 
-	attack_self(mob/user)
-		playsound(loc, 'sound/items/zip.ogg', 25, 1)
-		to_chat(user, "<span class='notice'>You inflate [src].</span>")
-		new /obj/structure/inflatable/door(user.loc)
-		qdel(src)
+/obj/item/inflatable/door/attack_self(mob/user)
+	playsound(loc, 'sound/items/zip.ogg', 25, 1)
+	to_chat(user, "<span class='notice'>You inflate [src].</span>")
+	new /obj/structure/inflatable/door(user.loc)
+	qdel(src)
 
 
 
@@ -250,12 +250,12 @@
 	item_state = "syringe_kit"
 	max_storage_space = 21
 
-	New()
-		..()
-		new /obj/item/inflatable/door(src)
-		new /obj/item/inflatable/door(src)
-		new /obj/item/inflatable/door(src)
-		new /obj/item/inflatable(src)
-		new /obj/item/inflatable(src)
-		new /obj/item/inflatable(src)
-		new /obj/item/inflatable(src)
+/obj/item/storage/briefcase/inflatable/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/inflatable/door(src)
+	new /obj/item/inflatable/door(src)
+	new /obj/item/inflatable/door(src)
+	new /obj/item/inflatable(src)
+	new /obj/item/inflatable(src)
+	new /obj/item/inflatable(src)
+	new /obj/item/inflatable(src)

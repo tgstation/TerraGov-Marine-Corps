@@ -95,7 +95,7 @@
 
 
 //datum effect system
-
+////TODO PORT TG FOAM BECAUSE THIS IS SHIT
 /datum/effect_system/foam_spread
 	var/amount = 5				// the size of the foam spread.
 	var/list/carried_reagents	// the IDs of reagents present when the foam was mixed
@@ -104,44 +104,44 @@
 
 
 
-	set_up(amt=5, loca, var/datum/reagents/carry = null, var/metalfoam = 0)
-		amount = round(sqrt(amt / 3), 1)
-		if(istype(loca, /turf/))
-			location = loca
-		else
-			location = get_turf(loca)
+/datum/effect_system/foam_spread/set_up(amt=5, loca, var/datum/reagents/carry = null, var/metalfoam = 0)
+	amount = round(sqrt(amt / 3), 1)
+	if(istype(loca, /turf/))
+		location = loca
+	else
+		location = get_turf(loca)
 
-		carried_reagents = list()
-		metal = metalfoam
-
-
-		// bit of a hack here. Foam carries along any reagent also present in the glass it is mixed
-		// with (defaults to water if none is present). Rather than actually transfer the reagents,
-		// this makes a list of the reagent ids and spawns 1 unit of that reagent when the foam disolves.
+	carried_reagents = list()
+	metal = metalfoam
 
 
-		if(carry && !metal)
-			for(var/datum/reagent/R in carry.reagent_list)
-				carried_reagents += R.type
+	// bit of a hack here. Foam carries along any reagent also present in the glass it is mixed
+	// with (defaults to water if none is present). Rather than actually transfer the reagents,
+	// this makes a list of the reagent ids and spawns 1 unit of that reagent when the foam disolves.
 
-	start()
-		spawn(0)
-			var/obj/effect/particle_effect/foam/F = locate() in location
-			if(F)
-				F.amount += amount
-				return
 
-			F = new(src.location, metal)
-			F.amount = amount
+	if(carry && !metal)
+		for(var/datum/reagent/R in carry.reagent_list)
+			carried_reagents += R.type
 
-			if(!metal)			// don't carry other chemicals if a metal foam
-				F.create_reagents(10)
+/datum/effect_system/foam_spread/start()
+	spawn(0)
+		var/obj/effect/particle_effect/foam/F = locate() in location
+		if(F)
+			F.amount += amount
+			return
 
-				if(carried_reagents)
-					for(var/id in carried_reagents)
-						F.reagents.add_reagent(id, 1, null, 1) //makes a safety call because all reagents should have already reacted anyway
-				else
-					F.reagents.add_reagent(/datum/reagent/water, 1, safety = 1)
+		F = new(src.location, metal)
+		F.amount = amount
+
+		if(!metal)			// don't carry other chemicals if a metal foam
+			F.create_reagents(10)
+
+			if(carried_reagents)
+				for(var/id in carried_reagents)
+					F.reagents.add_reagent(id, 1, null, 1) //makes a safety call because all reagents should have already reacted anyway
+			else
+				F.reagents.add_reagent(/datum/reagent/water, 1, safety = 1)
 
 
 

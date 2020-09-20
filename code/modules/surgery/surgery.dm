@@ -25,15 +25,15 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 	var/blood_level = 0 //How much blood this step can get on surgeon. 1 - hands, 2 - full body
 
 	//Returns how well tool is suited for this step
-	proc/tool_quality(obj/item/tool)
-		for(var/T in allowed_tools)
-			if(istype(tool, T))
-				return allowed_tools[T]
-		return 0
+/datum/surgery_step/proc/tool_quality(obj/item/tool)
+	for(var/T in allowed_tools)
+		if(istype(tool, T))
+			return allowed_tools[T]
+	return 0
 
 //Checks if this step applies to the user mob at all
 /datum/surgery_step/proc/is_valid_target(mob/living/carbon/target)
-	if(!hasorgans(target))
+	if(!ishuman(target))
 		return 0
 	if(allowed_species)
 		for(var/species in allowed_species)
@@ -71,7 +71,7 @@ GLOBAL_LIST_EMPTY(surgery_steps)
 /datum/surgery_step/proc/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	return null
 
-proc/spread_germs_to_organ(datum/limb/E, mob/living/carbon/human/user)
+/proc/spread_germs_to_organ(datum/limb/E, mob/living/carbon/human/user)
 	if(!istype(user) || !istype(E))
 		return
 
@@ -110,13 +110,13 @@ proc/spread_germs_to_organ(datum/limb/E, mob/living/carbon/human/user)
 		E.germ_level += 100
 
 
-proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
+/proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 	if(!istype(M))
-		return 0
+		return FALSE
 	if(user.a_intent == INTENT_HARM) //Check for Hippocratic Oath
-		return 0
+		return FALSE
 	if(user.action_busy) //already doing an action
-		return 1
+		return TRUE
 	if(user.skills.getRating("surgery") < SKILL_SURGERY_PROFESSIONAL)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to operate [M].</span>",
 		"<span class='notice'>You fumble around figuring out how to operate [M].</span>")
@@ -183,19 +183,19 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 				else //This failing silently was a pain.
 					to_chat(user, "<span class='warning'>You must remain close to your patient to conduct surgery.</span>")
 				affected.in_surgery_op = FALSE
-				return 1				   //Don't want to do weapony things after surgery
+				return TRUE				   //Don't want to do weapony things after surgery
 
 	if(user.a_intent == INTENT_HELP)
 		to_chat(user, "<span class='warning'>You can't see any useful way to use \the [tool] on [M].</span>")
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 //Comb Sort. This works apparently, so we're keeping it that way
 /proc/sort_surgeries()
 	var/gap = length(GLOB.surgery_steps)
-	var/swapped = 1
+	var/swapped = TRUE
 	while(gap > 1 || swapped)
-		swapped = 0
+		swapped = FALSE
 		if(gap > 1)
 			gap = round(gap / 1.247330950103979)
 		if(gap < 1)
@@ -205,7 +205,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 			var/datum/surgery_step/r = GLOB.surgery_steps[gap+i]	//how lists work here
 			if(l.priority < r.priority)
 				GLOB.surgery_steps.Swap(i, gap + i)
-				swapped = 1
+				swapped = TRUE
 
 
 

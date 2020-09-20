@@ -56,7 +56,7 @@
 	update_icon()
 
 
-obj/machinery/recharger/attack_hand(mob/living/user)
+/obj/machinery/recharger/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
@@ -71,10 +71,10 @@ obj/machinery/recharger/attack_hand(mob/living/user)
 		percent_charge_complete = 0
 		update_icon()
 
-obj/machinery/recharger/attack_paw(mob/living/carbon/monkey/user)
+/obj/machinery/recharger/attack_paw(mob/living/carbon/monkey/user)
 	return attack_hand(user)
 
-obj/machinery/recharger/process()
+/obj/machinery/recharger/process()
 	if(machine_stat & (NOPOWER|BROKEN) || !anchored)
 		update_icon()
 		return
@@ -132,7 +132,7 @@ obj/machinery/recharger/process()
 			return
 
 
-obj/machinery/recharger/emp_act(severity)
+/obj/machinery/recharger/emp_act(severity)
 	if(machine_stat & (NOPOWER|BROKEN) || !anchored)
 		..(severity)
 		return
@@ -141,7 +141,7 @@ obj/machinery/recharger/emp_act(severity)
 		var/obj/item/weapon/baton/B = charging
 		if(B.bcell)
 			B.bcell.charge = 0
-	..(severity)
+	return ..()
 
 /obj/machinery/recharger/update_icon()
 	overlays = list()

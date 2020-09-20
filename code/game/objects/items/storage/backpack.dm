@@ -79,16 +79,17 @@
 	max_w_class = 4
 	max_storage_space = 28
 
-	proc/failcheck(mob/user as mob)
-		if (prob(src.reliability)) return 1 //No failure
-		if (prob(src.reliability))
-			to_chat(user, "<span class='warning'>The Bluespace portal resists your attempt to add another item.</span>")
-		else
-			to_chat(user, "<span class='warning'>The Bluespace generator malfunctions!</span>")
-			for (var/obj/O in src.contents) //it broke, delete what was in it
-				qdel(O)
-			crit_fail = 1
-			icon_state = "brokenpack"
+/obj/item/storage/backpack/holding/proc/failcheck(mob/user as mob)
+	if(prob(reliability))
+		return TRUE //No failure
+	if(prob(reliability))
+		to_chat(user, "<span class='warning'>The Bluespace portal resists your attempt to add another item.</span>")
+		return
+	to_chat(user, "<span class='warning'>The Bluespace generator malfunctions!</span>")
+	for(var/obj/O in src.contents) //it broke, delete what was in it
+		qdel(O)
+	crit_fail = TRUE
+	icon_state = "brokenpack"
 
 /obj/item/storage/backpack/holding/attackby(obj/item/I, mob/user, params)
 	if(crit_fail)

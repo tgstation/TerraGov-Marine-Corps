@@ -129,7 +129,7 @@
 /mob/living/proc/setMaxHealth(newMaxHealth)
 	maxHealth = newMaxHealth
 
-mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
+/mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	return
 
 /mob/living/proc/Losebreath(amount, forced = FALSE)

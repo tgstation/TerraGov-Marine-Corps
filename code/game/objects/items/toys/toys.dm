@@ -154,15 +154,15 @@
 	icon_state = "snappop"
 	w_class = WEIGHT_CLASS_TINY
 
-	throw_impact(atom/hit_atom)
-		..()
-		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-		s.set_up(3, 1, src)
-		s.start()
-		new /obj/effect/decal/cleanable/ash(src.loc)
-		src.visible_message("<span class='warning'> The [src.name] explodes!</span>","<span class='warning'> You hear a snap!</span>")
-		playsound(src, 'sound/effects/snap.ogg', 25, 1)
-		qdel(src)
+/obj/item/toy/snappop/throw_impact(atom/hit_atom)
+	. = ..()
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+	s.set_up(3, 1, src)
+	s.start()
+	new /obj/effect/decal/cleanable/ash(src.loc)
+	src.visible_message("<span class='warning'> The [src.name] explodes!</span>","<span class='warning'> You hear a snap!</span>")
+	playsound(src, 'sound/effects/snap.ogg', 25, 1)
+	qdel(src)
 
 /obj/item/toy/snappop/Crossed(atom/movable/H)
 	. = ..()
@@ -401,9 +401,9 @@
 	throw_speed = 1
 	throw_range = 20
 
-	afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
-		user.drop_held_item()
-		throw_at(target, throw_range, throw_speed, user)
+/obj/item/toy/beach_ball/afterattack(atom/target, mob/user)
+	user.drop_held_item()
+	throw_at(target, throw_range, throw_speed, user)
 
 
 /obj/item/toy/dice

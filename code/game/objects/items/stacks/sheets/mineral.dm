@@ -75,7 +75,7 @@ obj/item/stack/sheet/mineral/iron
 	perunit = 3750
 
 
-obj/item/stack/sheet/mineral/iron/Initialize()
+/obj/item/stack/sheet/mineral/iron/Initialize()
 	. = ..()
 	recipes = GLOB.iron_recipes
 

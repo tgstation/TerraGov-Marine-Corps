@@ -189,7 +189,7 @@
 
 /obj/item/tool/weldingtool/attack(mob/M, mob/user)
 
-	if(hasorgans(M))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/datum/limb/S = H.get_limb(user.zone_selected)
 
