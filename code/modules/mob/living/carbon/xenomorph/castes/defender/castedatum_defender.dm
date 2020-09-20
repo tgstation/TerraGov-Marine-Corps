@@ -43,7 +43,7 @@
 
 	// *** Defender Abilities *** //
 	crest_defense_armor = 22
-	fortify_armor = 52
+	fortify_armor = 50
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -86,7 +86,7 @@
 
 	// *** Defender Abilities *** //
 	crest_defense_armor = 26
-	fortify_armor = 61
+	fortify_armor = 52
 
 /datum/xeno_caste/defender/elder
 	upgrade_name = "Elder"
@@ -117,7 +117,7 @@
 
 	// *** Defender Abilities *** //
 	crest_defense_armor = 30
-	fortify_armor = 68
+	fortify_armor = 55
 
 /datum/xeno_caste/defender/ancient
 	upgrade_name = "Ancient"

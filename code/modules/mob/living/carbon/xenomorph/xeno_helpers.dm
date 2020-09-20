@@ -21,3 +21,9 @@
 
 /mob/living/carbon/xenomorph/get_death_threshold()
 	return xeno_caste.crit_health
+
+/mob/living/carbon/xenomorph/proc/returncrestarmor(var/armor) //Defender helper for getting their bonus armor
+	return xeno_caste.soft_armor["[armor]"] + xeno_caste.crest_defense_armor
+
+/mob/living/carbon/xenomorph/proc/returnfortifyarmor(var/armor) //Defender helper for getting their bonus armor
+	return xeno_caste.soft_armor["[armor]"] + xeno_caste.fortify_armor
