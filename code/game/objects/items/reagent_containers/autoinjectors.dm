@@ -67,7 +67,7 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus
 	name = "quick-clot plus autoinjector"
-	desc = "An autoinjector loaded with 3 uses of quick-clot plus, a chemical designed to remove internal bleeding. DO NOT USE IN COMBAT."
+	desc = "An autoinjector loaded with 3 uses of quick-clot plus, a chemical designed to remove internal bleeding. Use with antitoxin. !DO NOT USE IN ACTIVE COMBAT!"
 	amount_per_transfer_from_this = 5
 	volume = 15
 	icon_state = "autoinjector-7"
@@ -139,14 +139,6 @@
 	icon_state = "autoinjector-8" //TEMP
 	list_reagents = list(/datum/reagent/medicine/hypervene = 36)
 
-/obj/item/reagent_containers/hypospray/autoinjector/hyperzine/expired
-	name = "expired hyperzine autoinjector"
-	desc = "An auto-injector said to be loaded with a safe-to-use hyperzine mix, 3 months past it's expiration date."
-	list_reagents = list(/datum/reagent/medicine/hyperzine = 4,
-						/datum/reagent/medicine/dexalin = 8,
-						/datum/reagent/medicine/inaprovaline = 8,
-						/datum/reagent/toxin = 5)
-
 /obj/item/reagent_containers/hypospray/autoinjector/hyperzine
 	name = "hyperzine autoinjector"
 	desc = "An auto-injector freshly loaded with a safe-to-use hyperzine mix."
@@ -156,6 +148,14 @@
 	list_reagents = list(/datum/reagent/medicine/hyperzine = 5,
 						/datum/reagent/medicine/dexalin = 10,
 						/datum/reagent/medicine/inaprovaline = 10)
+
+/obj/item/reagent_containers/hypospray/autoinjector/hyperzine/expired
+	name = "expired hyperzine autoinjector"
+	desc = "An auto-injector said to be loaded with a safe-to-use hyperzine mix, 3 months past it's expiration date."
+	list_reagents = list(/datum/reagent/medicine/hyperzine = 4,
+						/datum/reagent/medicine/dexalin = 8,
+						/datum/reagent/medicine/inaprovaline = 8,
+						/datum/reagent/toxin = 5)
 
 /obj/item/reagent_containers/hypospray/autoinjector/synaptizine
 	name = "Synaptizine autoinjector"
@@ -185,7 +185,7 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus
 	name = "Peridaxon Plus autoinjector"
-	desc = "An auto-injector loaded with 3 doses of Peridaxon Plus, a chemical that heals organs while causing severe toxic damage. !DO NOT USE MORE THAN ONCE AT A TIME!"
+	desc = "An auto-injector loaded with 3 doses of Peridaxon Plus, a chemical that heals organs while causing a buildup of toxins. Use with antitoxin. !DO NOT USE IN ACTIVE COMBAT!"
 	amount_per_transfer_from_this = 3
 	volume = 9
 	icon_state = "autoinjector-8" 
