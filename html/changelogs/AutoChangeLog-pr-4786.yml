@@ -1,0 +1,5 @@
+author: "BurgerBB"
+delete-after: True
+changes: 
+  - balance: "Taking damage as a Xenomorph disables PASSIVE regeneration for 10 seconds. When the 10 seconds are up, you regenerate your health at 0% strength, but it increases by 5% every second, up to 100%."
+  - balance: "A regeneration aura changes this behavior by disabling the 10 second cooldown, and regenerating your health by  0% strength, but it increases by 7.5% every second, up to 100%."
