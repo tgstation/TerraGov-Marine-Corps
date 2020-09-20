@@ -247,8 +247,8 @@
 	desc = "A somewhat outdated but robust armored vest, still in use despite the rise of exoskeleton armor due to ease of use and manufacturing. Tougher than it looks. Use it to toggle the built-in flashlight."
 	icon_state = "marinevest"
 	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
-	slowdown = 0.5 //a bit less 
-	light_range = 5
+	slowdown = 0.5 //a bit less
+	light_range = 6
 
 
 //===========================SPECIALIST================================

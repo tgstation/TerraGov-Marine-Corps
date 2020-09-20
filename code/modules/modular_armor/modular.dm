@@ -59,7 +59,7 @@
 	var/equip_delay = 0.5 SECONDS
 
 	/// Misc stats
-	light_range = 4
+	light_range = 5
 
 
 /obj/item/clothing/suit/modular/Destroy()
