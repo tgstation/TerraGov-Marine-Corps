@@ -88,7 +88,7 @@
 
 	// *** Warrior Abilities *** //
 	var/agility_speed_increase = 0 // this opens up possibilities for balancing
-
+	var/agility_speed_armor = 0 //Same as above
 
 	// *** Boiler Abilities *** //
 	var/max_ammo = 0
@@ -163,8 +163,6 @@
 	var/upgrade_stored = 0 //How much upgrade points they have stored.
 	var/upgrade = XENO_UPGRADE_INVALID  //This will track their upgrade level.
 
-	var/armor_bonus = 0
-	var/armor_pheromone_bonus = 0
 	var/sunder = 0 // sunder affects armour values and does a % removal before dmg is applied. 50 sunder == 50% effective armour values
 	var/fire_resist_modifier = 0
 
@@ -244,3 +242,17 @@
 	var/notice_delay = 20 //2 second between notices
 
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
+
+	//Last armor specific bonus(or debonus) applied on the mob
+	
+	//This tells what was some of the last applied armor bonus, uses it to remove before applying a new one, might as well turn into a list buuuuuuuuut lazy.
+	
+	//Warding Phero
+	var/lastwardingbonus = 0 
+
+	//Defender bonuses
+	var/lastfortifybonus = 0
+	var/lastcrestbonus = 0 
+
+	//warrior agility debonus
+	var/lastagilitybonus = 0

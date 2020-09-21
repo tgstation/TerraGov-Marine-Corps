@@ -277,16 +277,22 @@
 			to_chat(src, "<span class='xenowarning'>We tuck ourselves into a defensive stance.</span>")
 		GLOB.round_statistics.defender_crest_lowerings++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_crest_lowerings")
-		soft_armor = soft_armor.setRating(melee = returncrestarmor("melee"), bullet = returncrestarmor("bullet"), laser = returncrestarmor("laser"), bomb = XENO_BOMB_RESIST_3, fire = returnfortifyarmor("fire"))
-		armor_bonus += xeno_caste.crest_defense_armor
+		if(silent) //if we were fortifying remove fortifying bonus first
+			soft_armor = soft_armor.modifyAllRatings(-lastfortifybonus)
+			lastfortifybonus = 0
+		var/defensebonus = xeno_caste.crest_defense_armor
+		soft_armor = soft_armor.modifyAllRatings(defensebonus)
+		soft_armor = soft_armor.setRating(bomb = XENO_BOMB_RESIST_3)
+		lastcrestbonus = defensebonus
 		add_movespeed_modifier(MOVESPEED_ID_CRESTDEFENSE, TRUE, 0, NONE, TRUE, DEFENDER_CRESTDEFENSE_SLOWDOWN)
 	else
 		if(!silent)
 			to_chat(src, "<span class='xenowarning'>We raise our crest.</span>")
 		GLOB.round_statistics.defender_crest_raises++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_crest_raises")
-		soft_armor = getArmor(arglist(xeno_caste.soft_armor))
-		armor_bonus -= xeno_caste.crest_defense_armor
+		soft_armor = soft_armor.modifyAllRatings(-lastcrestbonus)
+		soft_armor = soft_armor.setRating(bomb = XENO_BOMB_RESIST_2)
+		lastcrestbonus = 0
 		remove_movespeed_modifier(MOVESPEED_ID_CRESTDEFENSE)
 	update_icons()
 
@@ -336,13 +342,19 @@
 		ADD_TRAIT(src, TRAIT_IMMOBILE, FORTIFY_TRAIT)
 		if(!silent)
 			to_chat(src, "<span class='xenowarning'>We tuck ourselves into a defensive stance.</span>")
-		armor_bonus += xeno_caste.fortify_armor
-		soft_armor = soft_armor.setRating(melee = returnfortifyarmor("melee"), bullet = returnfortifyarmor("bullet"), laser = returnfortifyarmor("laser"), bomb = XENO_BOMB_RESIST_4, fire = returnfortifyarmor("fire"))
+		if(silent) //If we were crest defending remove crest defense bonus first
+			soft_armor = soft_armor.modifyAllRatings(-lastcrestbonus)
+			lastcrestbonus = 0
+		var/fortifyAB = xeno_caste.fortify_armor
+		soft_armor = soft_armor.modifyAllRatings(fortifyAB)
+		soft_armor = soft_armor.setRating(bomb = XENO_BOMB_RESIST_4)
+		lastfortifybonus = fortifyAB
 	else
 		if(!silent)
 			to_chat(src, "<span class='xenowarning'>We resume our normal stance.</span>")
-		armor_bonus -= xeno_caste.fortify_armor
-		soft_armor = getArmor(arglist(xeno_caste.soft_armor))
+		soft_armor = soft_armor.modifyAllRatings(-lastfortifybonus)
+		soft_armor = soft_armor.setRating(bomb = XENO_BOMB_RESIST_2)
+		lastfortifybonus = 0
 		REMOVE_TRAIT(src, TRAIT_IMMOBILE, FORTIFY_TRAIT)
 	fortify = on
 	anchored = on
