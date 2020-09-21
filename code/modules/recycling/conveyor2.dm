@@ -5,7 +5,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 
 /obj/machinery/conveyor
 	icon = 'icons/obj/recycling.dmi'
-	icon_state = "conveyor0"
+	icon_state = "conveyor_map"
 	name = "conveyor belt"
 	desc = "A conveyor belt."
 	layer = FIREDOOR_OPEN_LAYER
@@ -41,7 +41,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	. = ..()
 	if(.)
 		operating = TRUE
-		update_icon()
+	update_icon()
 
 // create a conveyor
 /obj/machinery/conveyor/Initialize(mapload, newdir, newid)
