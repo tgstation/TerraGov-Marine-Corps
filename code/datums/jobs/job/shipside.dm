@@ -53,6 +53,21 @@ Godspeed, captain! And remember, you are not above the law."})
 	l_store = /obj/item/hud_tablet/leadership
 	back = /obj/item/storage/backpack/marine/satchel
 
+/datum/job/terragov/command/captain/after_spawn(mob/living/new_mob, mob/user, latejoin)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 500)
+			new_human.wear_id.paygrade = "O6"
+		if(501 to 10000)
+			new_human.wear_id.paygrade = "O7"
+		if(10001 to INFINITY)
+			new_human.wear_id.paygrade = "O8"
 
 //Field Commander
 /datum/job/terragov/command/fieldcommander

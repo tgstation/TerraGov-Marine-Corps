@@ -85,7 +85,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 //Squad Engineer
 /datum/job/terragov/squad/engineer
 	title = SQUAD_ENGINEER
-	paygrade = "E4"
+	paygrade = "E3"
 	comm_title = "Eng"
 	total_positions = 12
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_ENGPREP, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_REMOTEBUILD, ACCESS_MARINE_ENGINEERING)
@@ -135,10 +135,26 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	H.equip_to_slot_or_del(new /obj/item/circuitboard/general, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
 
+/datum/job/terragov/squad/engineer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 500)
+			new_human.wear_id.paygrade = "E3"
+		if(501 to 10000)
+			new_human.wear_id.paygrade = "E4"
+		if(10001 to INFINITY)
+			new_human.wear_id.paygrade = "E5"
+
 //Squad Corpsman
 /datum/job/terragov/squad/corpsman
 	title = SQUAD_CORPSMAN
-	paygrade = "E4"
+	paygrade = "E3"
 	comm_title = "Med"
 	total_positions = 16
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY)
@@ -199,10 +215,26 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	H.equip_to_slot_or_del(new /obj/item/stack/medical/advanced/ointment, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/stack/medical/advanced/ointment, SLOT_IN_BACKPACK)
 
+/datum/job/terragov/squad/corpsman/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 500)
+			new_human.wear_id.paygrade = "E3"
+		if(501 to 10000)
+			new_human.wear_id.paygrade = "E4"
+		if(10001 to INFINITY)
+			new_human.wear_id.paygrade = "E5"
+
 //Squad Smartgunner
 /datum/job/terragov/squad/smartgunner
 	title = SQUAD_SMARTGUNNER
-	paygrade = "E4"
+	paygrade = "E3"
 	comm_title = "SGnr"
 	total_positions = 4
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_PREP, ACCESS_MARINE_SMARTPREP)
@@ -218,6 +250,21 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	. = ..()
 	to_chat(M, {"\nYou are the smartgunner. Your job is to provide heavy weapons support."})
 
+/datum/job/terragov/squad/smartgunner/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 500)
+			new_human.wear_id.paygrade = "E3"
+		if(501 to 10000)
+			new_human.wear_id.paygrade = "E4"
+		if(10001 to INFINITY)
+			new_human.wear_id.paygrade = "E5"
 
 /datum/outfit/job/marine/smartgunner
 	name = SQUAD_SMARTGUNNER
@@ -255,6 +302,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
+
 
 //Squad Specialist
 /datum/job/terragov/squad/specialist
@@ -358,17 +406,28 @@ You are also in charge of communicating with command and letting them know about
 	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
 
 
-/datum/job/terragov/squad/leader/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
+/datum/job/terragov/squad/leader/after_spawn(mob/living/carbon/C, mob/user, latejoin = FALSE)
 	. = ..()
 	if(!latejoin || !ishuman(C))
 		return
-	var/mob/living/carbon/human/H = C
-	if(!H.assigned_squad)
+	var/mob/living/carbon/human/new_human = C
+	if(!new_human.assigned_squad)
 		return
-	if(H.assigned_squad.squad_leader != H)
-		if(H.assigned_squad.squad_leader)
-			H.assigned_squad.demote_leader()
-		H.assigned_squad.promote_leader(H)
+	if(new_human.assigned_squad.squad_leader != new_human)
+		if(new_human.assigned_squad.squad_leader)
+			new_human.assigned_squad.demote_leader()
+		new_human.assigned_squad.promote_leader(new_human)
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 500)
+			new_human.wear_id.paygrade = "E5"
+		if(501 to 10000)
+			new_human.wear_id.paygrade = "E6"
+		if(10001 to INFINITY)
+			new_human.wear_id.paygrade = "E7"
+
 
 
 /datum/job/terragov/squad/vatgrown
