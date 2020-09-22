@@ -917,7 +917,7 @@ TUNNEL
 	icon = 'icons/unused/Marine_Research.dmi'
 	icon_state = "biomass"
 	soft_armor = list("fire" = 200)
-	var/immune_time = 8 SECONDS
+	var/immune_time = 12 SECONDS
 
 /obj/item/resin_jelly/attack_alien(mob/living/carbon/xenomorph/X)
 	if(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_JELLY)
