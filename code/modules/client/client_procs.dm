@@ -267,7 +267,7 @@
 	get_message_output("watchlist entry", ckey)
 	validate_key_in_db()
 
-	send_assets()
+	send_resources()
 
 	generate_clickcatcher()
 	apply_clickcatcher()
@@ -420,7 +420,7 @@
 
 
 /// Send resources to the client. Sends both game resources and browser assets.
-/client/proc/send_assets()
+/client/proc/send_resources()
 #if (PRELOAD_RSC == 0)
 	var/static/next_external_rsc = 0
 	var/list/external_rsc_urls = CONFIG_GET(keyed_list/external_rsc_urls)
