@@ -1129,11 +1129,14 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 20
 	sundering = 5
 
-/datum/ammo/bullet/shotgun/bolt/incendiary_bolt/drop_nade(turf/T, radius = 3)
+/datum/ammo/bullet/shotgun/bolt/incendiary_bolt/drop_nade(turf/T)
 	if(!T || !isturf(T))
 		return
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
-	flame_radius(radius, T, 27, 27, 27, 17)
+	flame_radius(3, T, 15, 15, 15, 15)
+
+/datum/ammo/bullet/shotgun/bolt/incendiary_bolt/on_hit_mob(mob/M, obj/projectile/P)
+	drop_nade(get_turf(M))
 
 /datum/ammo/bullet/shotgun/bolt/explosive_bolt
 	name = "explosive bolt"

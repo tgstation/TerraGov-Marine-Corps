@@ -116,7 +116,7 @@ obj/item/ammo_magazine/rifle/m4ra/smart
 	current_rounds = 5
 	default_ammo = /datum/ammo/bullet/shotgun/bolt/incendiary_bolt
 
-/obj/item/ammo_magazine/handful/bolt/explosive_bolts
+/obj/item/ammo_magazine/handful/bolt/explosive_bolt
 	caliber = "12g"
 	name = "handful of explosive crossbow bolt"
 	icon_state = "crossbow piercing bolt"
