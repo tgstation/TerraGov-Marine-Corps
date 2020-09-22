@@ -53,6 +53,9 @@
 	LoadPolicy()
 	LoadChatFilter()
 
+	if(Master)
+		Master.OnConfigLoad()
+
 
 /datum/controller/configuration/proc/full_wipe()
 	if(IsAdminAdvancedProcCall())
@@ -111,7 +114,7 @@
 	stack = stack + filename_to_test
 
 	log_config("Loading config file [filename]...")
-	var/list/lines = world.file2list("[directory]/[filename]")
+	var/list/lines = file2list("[directory]/[filename]")
 	var/list/_entries = entries
 	for(var/L in lines)
 		L = trim(L)
@@ -281,7 +284,7 @@ Example config:
 /datum/controller/configuration/proc/loadmaplist(filename, maptype)
 	log_config("Loading config file [filename]...")
 	filename = "[directory]/[filename]"
-	var/list/Lines = world.file2list(filename)
+	var/list/Lines = file2list(filename)
 
 	var/datum/map_config/currentmap
 	for(var/t in Lines)
@@ -353,7 +356,7 @@ Example config:
 
 	log_config("Loading config file in_character_filter.txt...")
 
-	for(var/line in world.file2list("[directory]/in_character_filter.txt"))
+	for(var/line in file2list("[directory]/in_character_filter.txt"))
 		if(!line)
 			continue
 		if(findtextEx(line,"#",1,2))

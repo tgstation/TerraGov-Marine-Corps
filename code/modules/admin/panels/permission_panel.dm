@@ -12,7 +12,9 @@
 /datum/admins/proc/permissions_edit(action, target, operation, page)
 	if(!check_rights(R_PERMISSIONS))
 		return
-	var/list/output = list("<link rel='stylesheet' type='text/css' href='panels.css'><a href='?_src_=holder;[HrefToken()];editrightsbrowser=1'>\[Permissions\]</a>")
+	var/datum/asset/asset_cache_datum = get_asset_datum(/datum/asset/group/permissions)
+	asset_cache_datum.send(usr)
+	var/list/output = list("<link rel='stylesheet' type='text/css' href='[SSassets.transport.get_asset_url("panels.css")]'><a href='?_src_=holder;[HrefToken()];editrightsbrowser=1'>\[Permissions\]</a>")
 	if(action)
 		output += " | <a href='?_src_=holder;[HrefToken()];editrightsbrowserlog=1;editrightspage=0'>\[Log\]</a> | <a href='?_src_=holder;[HrefToken()];editrightsbrowsermanage=1'>\[Management\]</a><hr style='background:#000000; border:0; height:3px'>"
 	else
@@ -88,7 +90,7 @@
 	else if(!action)
 		output += {"<head>
 		<title>Permissions Panel</title>
-		<script type='text/javascript' src='search.js'></script>
+		<script type='text/javascript' src='[SSassets.transport.get_asset_url("search.js")]'></script>
 		</head>
 		<body onload='selectTextField();updateSearch();'>
 		<div id='main'><table id='searchable' cellspacing='0'>
@@ -133,7 +135,7 @@
 	if(IsAdminAdvancedProcCall())
 		to_chat(usr, "<span class='admin prefix'>Admin Edit blocked: Advanced ProcCall detected.</span>")
 		return
-	var/datum/asset/permissions_assets = get_asset_datum(/datum/asset/simple/permissions)
+	var/datum/asset/permissions_assets = get_asset_datum(/datum/asset/simple/namespaced/common)
 	permissions_assets.send(src)
 	var/admin_key = href_list["key"]
 	var/admin_ckey = ckey(admin_key)
