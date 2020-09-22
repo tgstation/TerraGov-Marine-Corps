@@ -767,8 +767,8 @@
 */
 
 /obj/item/weapon/gun/shotgun/crossbow
-	name = "\improper X8 Crossbow"
-	desc = "A lightweight X8 Crossbow developed by Heron Hunting, it smells like fresh metal. "
+	name = "\improper X8 crossbow"
+	desc = "A lightweight X8 Crossbow developed by Heron Hunting, it smells like fresh metal."
 	icon_state = "x8"
 	item_state = "x8"
 	fire_sound = null

@@ -1116,10 +1116,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 40
 	sundering = 10
 
-/datum/ammo/bullet/shotgun/bolt/incendiary_bolts
+/datum/ammo/bullet/shotgun/bolt/incendiary_bolt
 	name = "napalm bolt"
 	hud_state = "bolt_fire"
-	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_EXPLOSIVE|AMMO_SUNDERING
+	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_SUNDERING
 	armor_type = "fire"
 	damage_type = BURN
 	accuracy_var_low = 7
@@ -1129,13 +1129,13 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 20
 	sundering = 5
 
-/datum/ammo/bullet/shotgun/bolt/ib/drop_nade(turf/T, radius = 3)
+/datum/ammo/bullet/shotgun/bolt/incendiary_bolt/drop_nade(turf/T, radius = 3)
 	if(!T || !isturf(T))
 		return
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1, 4)
 	flame_radius(radius, T, 27, 27, 27, 17)
 
-/datum/ammo/bullet/shotgun/bolt/explosive_bolts
+/datum/ammo/bullet/shotgun/bolt/explosive_bolt
 	name = "explosive bolt"
 	hud_state = "bolt_ap"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_SUNDERING
@@ -1145,19 +1145,19 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 60
 
 
-/datum/ammo/bullet/shotgun/bolt/ex/drop_nade(turf/T)
+/datum/ammo/bullet/shotgun/bolt/explosive_bolt/drop_nade(turf/T)
 	explosion(T, 0, 4, 6, 5)
 
-/datum/ammo/bullet/shotgun/bolt/ex/on_hit_mob(mob/M, obj/projectile/P)
+/datum/ammo/bullet/shotgun/bolt/explosive_bolt/on_hit_mob(mob/M, obj/projectile/P)
 	drop_nade(get_turf(M))
 
-/datum/ammo/bullet/shotgun/bolt/ex/on_hit_obj(obj/O, obj/projectile/P)
+/datum/ammo/bullet/shotgun/bolt/explosive_bolt/on_hit_obj(obj/O, obj/projectile/P)
 	drop_nade(get_turf(O))
 
-/datum/ammo/bullet/shotgun/bolt/ex/on_hit_turf(turf/T, obj/projectile/P)
+/datum/ammo/bullet/shotgun/bolt/explosive_bolt/on_hit_turf(turf/T, obj/projectile/P)
 	drop_nade(T)
 
-/datum/ammo/bullet/shotgun/bolt/ex/do_at_max_range(obj/projectile/P)
+/datum/ammo/bullet/shotgun/bolt/explosive_bolt/do_at_max_range(obj/projectile/P)
 	drop_nade(get_turf(P))
 
 /*
