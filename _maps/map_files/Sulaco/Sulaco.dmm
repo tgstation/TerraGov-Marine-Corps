@@ -464,7 +464,6 @@
 /area/sulaco/disposal)
 "abY" = (
 /obj/machinery/conveyor_switch/oneway{
-	convdir = -1;
 	id = "garbage";
 	name = "disposal coveyor"
 	},
