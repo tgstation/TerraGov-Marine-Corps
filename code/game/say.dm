@@ -60,7 +60,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 	var/endspanpart = "</span>"
 
 	//Message
-	var/messagepart = " <span class='message'>[lang_treat(speaker, message_language, raw_message, spans, message_mode)]</span></span>"
+	var/messagepart = " <span class='message'>[say_emphasis(lang_treat(speaker, message_language, raw_message, spans, message_mode))]</span></span>"
 
 	var/languageicon = ""
 	var/datum/language/D = GLOB.language_datum_instances[message_language]
@@ -139,6 +139,19 @@ GLOBAL_LIST_INIT(freqtospan, list(
 
 	var/spanned = attach_spans(input, spans)
 	return "[say_mod(input, message_mode, language)], \"[spanned]\""
+
+
+#define ENCODE_HTML_EPHASIS(input, char, html, varname) \
+	var/static/regex/##varname = regex("[char]{2}(.+?)[char]{2}", "g");\
+	input = varname.Replace_char(input, "<[html]>$1</[html]>")
+
+/atom/movable/proc/say_emphasis(input)
+	ENCODE_HTML_EPHASIS(input, "\\|", "i", italics)
+	ENCODE_HTML_EPHASIS(input, "\\+", "b", bold)
+	ENCODE_HTML_EPHASIS(input, "_", "u", underline)
+	return input
+
+#undef ENCODE_HTML_EPHASIS
 
 
 /atom/movable/proc/lang_treat(atom/movable/speaker, datum/language/language, raw_message, list/spans, message_mode, no_quote = FALSE)
