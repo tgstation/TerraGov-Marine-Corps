@@ -1,0 +1,4 @@
+author: "XSlayer300"
+delete-after: True
+changes: 
+  - rscadd: "Muzzleflashes are now animated, based off from CM13."
