@@ -59,10 +59,18 @@
 	H.moth_wings = pick(GLOB.moth_wings_list - "Burnt Off")
 
 /mob/living/carbon/human/species/vatgrown
-	race = "Vat-Grown"
+	race = "Vat-Grown Human"
+
+/datum/species/human/vatgrown/handle_post_spawn(mob/living/carbon/human/H)
+	. = ..()
+	H.ethnicity = "Recently Born"
 
 /mob/living/carbon/human/species/sectoid
 	race = "Sectoid"
 
 /mob/living/carbon/human/species/vatborn
-	race = "Vatborn"
+	race = "Vat-Born Human"
+
+/datum/species/human/vatborn/handle_post_spawn(mob/living/carbon/human/H)
+	. = ..()
+	H.ethnicity = "Recently Born"

@@ -112,3 +112,8 @@
 	name = "Polynesian"
 	icon_name = "polynesian"
 	ethnic_category = "Oceania"
+
+/datum/ethnicity/born
+	name = "Recently Born"
+	icon_name = "born"
+	ethnic_category = "Vat-Grown"

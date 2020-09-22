@@ -324,6 +324,6 @@
 		if("MRC3")
 			. = size ? "MERC " : "MERC Engineer"
 		if("VM")
-			. = size ? "VAT " : "VatGrown Marine"
+			. = size ? "VAT " : "Vat-Grown Marine"
 		else
 			. = paygrade + " " //custom paygrade

@@ -79,7 +79,7 @@
 
 			if ("head")
 				return "[limb_name]_[get_gender_name(gender)]"
-			
+
 			if ("synthetic head")
 				return "head_[get_gender_name(gender)]"
 
@@ -145,6 +145,46 @@
 
 	if (!E)
 		e_icon = "western"
+	else
+		e_icon = E.icon_name
+
+	if (!B)
+		b_icon = "mesomorphic"
+	else
+		b_icon = B.icon_name
+
+	for(var/datum/limb/L in limbs)
+		L.icon_name = get_limb_icon_name(species, b_icon, gender, L.display_name, e_icon)
+
+/mob/living/carbon/human/vatborn/set_limb_icons()
+	var/datum/ethnicity/E = GLOB.ethnicities_list[ethnicity]
+	var/datum/body_type/B = GLOB.body_types_list[body_type]
+
+	var/e_icon
+	var/b_icon
+
+	if (!E)
+		e_icon = "born"
+	else
+		e_icon = E.icon_name
+
+	if (!B)
+		b_icon = "mesomorphic"
+	else
+		b_icon = B.icon_name
+
+	for(var/datum/limb/L in limbs)
+		L.icon_name = get_limb_icon_name(species, b_icon, gender, L.display_name, e_icon)
+
+/mob/living/carbon/human/vatgrown/set_limb_icons()
+	var/datum/ethnicity/E = GLOB.ethnicities_list[ethnicity]
+	var/datum/body_type/B = GLOB.body_types_list[body_type]
+
+	var/e_icon
+	var/b_icon
+
+	if (!E)
+		e_icon = "born"
 	else
 		e_icon = E.icon_name
 

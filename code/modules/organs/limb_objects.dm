@@ -172,3 +172,6 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 	name = "synthetic head"
 	brain_item_type = /obj/item/organ/brain/prosthetic
 	braindeath_on_decap = 0
+
+obj/item/limb/vatborn
+	icon = 'icons/mob/human_races/r_vatborn.dmi'

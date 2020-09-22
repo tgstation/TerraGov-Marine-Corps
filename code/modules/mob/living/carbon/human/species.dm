@@ -298,8 +298,11 @@
 	/*abilities = list(/client/proc/test_ability)*/
 
 /datum/species/human/vatborn
-	name = "Vatborn"
-	name_plural = "Vatborns"
+	name = "Vat-Born Human"
+	name_plural = "Vat-Born Humans"
+	icobase = 'icons/mob/human_races/r_vatborn.dmi'
+	deform = 'icons/mob/human_races/r_vatborn.dmi'
+	species_flags = HAS_SKIN_TONE|HAS_LIPS|HAS_UNDERWEAR
 
 	namepool = /datum/namepool/vatborn
 
@@ -321,7 +324,9 @@
 /datum/species/human/vatgrown
 	name = "Vat-Grown Human"
 	name_plural = "Vat-Grown Humans"
-	species_flags = HAS_SKIN_TONE
+	icobase = 'icons/mob/human_races/r_vatborn.dmi'
+	deform = 'icons/mob/human_races/r_vatborn.dmi'
+	species_flags = HAS_SKIN_TONE|HAS_LIPS
 	brute_mod = 1.05
 	burn_mod = 1.05
 	slowdown = 1.05
