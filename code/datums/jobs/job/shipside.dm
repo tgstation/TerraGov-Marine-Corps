@@ -34,7 +34,7 @@
 While you may support Nanotrasen, you report to the TGMC High Command, not the corporate office.
 Your primary task is the safety of the ship and her crew, and ensuring the survival and success of the marines.
 Your first order of business should be briefing the marines on the mission they are about to undertake.
-If you require any help, use adminhelp to ask mentors about what you're supposed to do.
+If you require any help, use <b>mentorhelp</b> to ask mentors about what you're supposed to do.
 Godspeed, captain! And remember, you are not above the law."})
 
 
@@ -201,7 +201,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	. = ..()
 	to_chat(M, {"Your job is to operate and maintain the ship's armored vehicles.
 Your authority is limited to your own vehicle, but you are next in line on the field, after the field commander.
-You could use MTs help to repair and replace hardpoints."})
+You could use STs help to repair and replace hardpoints."})
 
 
 
@@ -249,7 +249,7 @@ You could use MTs help to repair and replace hardpoints."})
 /datum/job/terragov/engineering/chief/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"Your job is to maintain the ship's engine and keep everything running.
-If you have no idea how to set up the engine, or it's your first time, adminhelp so that a mentor can assist you.
+If you have no idea how to set up the engine, or it's your first time, <b>mentorhelp</b> so that a mentor can assist you.
 You are also next in the chain of command, should the bridge crew fall in the line of duty."})
 
 
@@ -340,7 +340,6 @@ requisitions line and later on to be ready to send supplies for marines who are 
 /datum/job/terragov/requisitions/officer/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"Your job is to dispense supplies to the marines, including weapon attachments.
-Your cargo techs can help you out, but you have final say in your department. Make sure they're not goofing off.
 While you may request paperwork for supplies, do not go out of your way to screw with marines, unless you want to get deposed.
 A happy ship is a well-functioning ship."})
 
@@ -434,7 +433,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	. = ..()
 	to_chat(M, {"You are a military doctor stationed aboard the [SSmapping.configs[SHIP_MAP].map_name].
 You are tasked with keeping the marines healthy and strong, usually in the form of surgery.
-You are also an expert when it comes to medication and treatment. If you do not know what you are doing, adminhelp so a mentor can assist you."})
+You are also an expert when it comes to medication and treatment. If you do not know what you are doing, <b>mentorhelp</b> so a mentor can assist you."})
 
 
 /datum/outfit/job/medical/medicalofficer
@@ -576,9 +575,8 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 
 /datum/job/terragov/silicon/synthetic/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"Your primary job is to support and assist all TGMC Departments and Personnel on-board.
-In addition, being a Synthetic gives you knowledge in every field and specialization possible on-board the ship.
-As a Synthetic you answer to the acting captain. Special circumstances may change this!"})
+	to_chat(M, {"Your primary job is to support and assist all TGMC departments and personnel on-board.
+In addition, being a Synthetic gives you knowledge in every field and specialization possible on-board the ship."})
 
 
 /datum/outfit/job/civilian/synthetic
@@ -603,7 +601,7 @@ As a Synthetic you answer to the acting captain. Special circumstances may chang
 	comm_title = "AI"
 	total_positions = 1
 	selection_color = "#92c255"
-	supervisors = "your laws"
+	supervisors = "your laws and the human crew"
 	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_REGULAR_ALL
 	exp_type_department = EXP_TYPE_SILICON
@@ -618,6 +616,13 @@ As a Synthetic you answer to the acting captain. Special circumstances may chang
 
 /datum/job/terragov/silicon/ai/return_spawn_type(datum/preferences/prefs)
 	return /mob/living/silicon/ai
+
+/datum/job/terragov/silicon/ai/radio_help_message(mob/M)
+	. = ..()
+	to_chat(M, {"Your primary job is to support and assist all TGMC departments and personnel on-board.
+However, your vision is limited through cameras from the ship or to marines groundside.
+Recon any threats and report findings at various communication channels.
+If you require any help, use <b>mentorhelp</b> to ask mentors about what you're supposed to do."})
 
 
 /datum/job/terragov/silicon/ai/announce(mob/living/announced_mob)

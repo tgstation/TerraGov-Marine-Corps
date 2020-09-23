@@ -1,5 +1,5 @@
 /datum/emergency_call/freelancers
-	name = "Freelancers"
+	name = "Freelancer Mercenary Group"
 	probability = 25
 
 
@@ -31,16 +31,16 @@
 		leader = H
 		var/datum/job/J = SSjob.GetJobType(/datum/job/freelancer/leader)
 		H.apply_assigned_role_to_spawn(J)
-		to_chat(H, "<span class='notice'>You are the Freelancer mercenary assigned to lead this group in responding to the TGMC distress signal sent nearby. Keep your team in one piece to make sure they earn their payment!</notice>")
+		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are the Freelancer mercenary assigned to lead this group in responding to the TGMC distress signal sent nearby. Keep your team in one piece to make sure they earn their payment!</notice></p>")
 		return
 
 	if(medics < max_medics)
 		var/datum/job/J = SSjob.GetJobType(/datum/job/freelancer/medic)
 		H.apply_assigned_role_to_spawn(J)
 		medics++
-		to_chat(H, "<span class='notice'>You are a Freelancer mercenary medic assigned to this group to respond to the TGMC distress signal sent nearby. Do not let your teammates fall in battle!</notice>")
+		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a Freelancer mercenary medic assigned to this group to respond to the TGMC distress signal sent nearby. Do not let your teammates fall in battle!</notice></p>")
 		return
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/freelancer/standard)
 	H.apply_assigned_role_to_spawn(J)
-	to_chat(H, "<span class='notice'>You are a Freelancer mercenary assigned to this group to respond to the TGMC distress signal sent nearby. Don't let you and your team's guard down!</notice>")
+	to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a Freelancer mercenary assigned to this group to respond to the TGMC distress signal sent nearby. Don't let you and your team's guard down!</notice></p>")
