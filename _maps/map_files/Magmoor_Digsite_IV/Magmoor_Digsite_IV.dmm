@@ -376,6 +376,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing)
+"awm" = (
+/obj/structure/largecrate/goat,
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/mainship/mono,
+/area/magmoor/cargo/storage)
 "awF" = (
 /obj/structure/mineral_door/resin,
 /turf/open/floor/cult,
@@ -1987,6 +1992,19 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/magmoor/mining/garage)
+"bMC" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/stairs/rampbottom{
+	dir = 4
+	},
+/area/magmoor/compound)
 "bMF" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
@@ -3725,6 +3743,11 @@
 /obj/item/weapon/gun/revolver/cmb,
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/security/infocenter)
+"cXd" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating,
+/area/magmoor/engi/atmos)
 "cXf" = (
 /turf/open/floor/mainship/red{
 	dir = 6
@@ -8152,6 +8175,7 @@
 /obj/structure/closet/walllocker/hydrant/extinguisher{
 	dir = 8
 	},
+/obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 9
 	},
@@ -8207,6 +8231,7 @@
 /turf/open/floor/mainship/purple/corner,
 /area/magmoor/research)
 "gfW" = (
+/obj/docking_port/stationary/crashmode,
 /turf/open/floor/mainship/purple,
 /area/magmoor/research)
 "gfX" = (
@@ -9614,6 +9639,11 @@
 	},
 /turf/open/floor/mainship/sterile/side,
 /area/magmoor/medical/lobby)
+"hlT" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating,
+/area/magmoor/compound/east)
 "hmc" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 6
@@ -9898,6 +9928,12 @@
 	icon_state = "carpetside"
 	},
 /area/magmoor/research/researchdirector)
+"hxE" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/lavaland/basalt/dirt{
+	dir = 10
+	},
+/area/magmoor/compound/east)
 "hxT" = (
 /obj/structure/table/mainship,
 /obj/machinery/alarm,
@@ -9984,6 +10020,10 @@
 /obj/item/ore/phoron,
 /turf/open/floor/plating,
 /area/magmoor/mining/refinery)
+"hCL" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/magmoor/compound/northwest)
 "hCN" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/med_data/laptop{
@@ -11123,6 +11163,10 @@
 /obj/structure/lattice,
 /turf/open/lavaland/basalt/dirt,
 /area/magmoor/compound/south)
+"itL" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/concrete/lines,
+/area/magmoor/compound)
 "itR" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -15061,6 +15105,10 @@
 "lyt" = (
 /turf/closed/glass/thin/junction,
 /area/magmoor/cave/east)
+"lyu" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/magmoor/compound/east)
 "lyK" = (
 /turf/open/lavaland/lava/single/middle,
 /area/magmoor/compound/south)
@@ -17370,6 +17418,12 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/cult,
 /area/magmoor/cave/mining/fossil)
+"nlp" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/lavaland/basalt/dirt{
+	dir = 5
+	},
+/area/magmoor/compound/south)
 "nlx" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -23004,6 +23058,10 @@
 	dir = 1
 	},
 /area/magmoor/compound/west)
+"roY" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/magmoor/compound/south)
 "rpb" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -23334,6 +23392,7 @@
 /area/magmoor/landing)
 "rxE" = (
 /obj/structure/closet/emcloset,
+/obj/docking_port/stationary/crashmode,
 /turf/open/floor/mainship/orange,
 /area/magmoor/engi/storage)
 "ryo" = (
@@ -26630,6 +26689,10 @@
 	dir = 10
 	},
 /area/magmoor/compound/northwest)
+"tDi" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/magmoor/compound/northeast)
 "tDk" = (
 /turf/closed/mineral,
 /area/magmoor/landing)
@@ -28621,6 +28684,12 @@
 /obj/structure/toilet,
 /turf/open/floor/mainship/mono,
 /area/magmoor/security)
+"uNv" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/lavaland/basalt/dirt{
+	dir = 5
+	},
+/area/magmoor/compound/northeast)
 "uNy" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -29591,6 +29660,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/landing/two)
+"vpB" = (
+/obj/docking_port/stationary/crashmode,
+/turf/closed/mineral,
+/area/magmoor/cave/mining/fossil)
 "vpF" = (
 /obj/machinery/landinglight/ds2/delayone,
 /turf/open/floor/mainship/mono,
@@ -29614,6 +29687,7 @@
 /obj/machinery/alarm{
 	dir = 8
 	},
+/obj/docking_port/stationary/crashmode,
 /turf/open/floor/tile/blue/taupeblue{
 	dir = 4
 	},
@@ -42072,7 +42146,7 @@ bcM
 tpi
 yla
 awJ
-nYL
+hCL
 nYL
 nYL
 nYL
@@ -44219,7 +44293,7 @@ jns
 jns
 slM
 slM
-slM
+vpB
 slM
 vZN
 kBQ
@@ -49118,7 +49192,7 @@ xSv
 xSv
 xSv
 scg
-qey
+itL
 hkW
 hkW
 rCg
@@ -55649,7 +55723,7 @@ bhT
 csX
 csX
 csX
-csX
+roY
 csX
 csX
 sMg
@@ -64248,7 +64322,7 @@ wxu
 wGr
 hph
 wba
-teL
+bMC
 wba
 wba
 hph
@@ -64285,7 +64359,7 @@ csX
 csX
 csX
 bUz
-pwq
+nlp
 jyE
 bsG
 oMH
@@ -64407,7 +64481,7 @@ quH
 nex
 nzy
 nNF
-wai
+cXd
 kPM
 fsX
 tlp
@@ -65862,7 +65936,7 @@ dBh
 dBh
 dBh
 vIg
-kls
+hxE
 kDT
 hEq
 ppR
@@ -66063,7 +66137,7 @@ hCv
 hCv
 hCv
 hCv
-xhL
+uNv
 rgp
 tUp
 ucX
@@ -67513,7 +67587,7 @@ wxp
 xUE
 wxp
 wxp
-sTk
+hlT
 pfd
 oRP
 oRP
@@ -70494,7 +70568,7 @@ hCv
 hCv
 hCv
 hCv
-hCv
+tDi
 hCv
 hCv
 uLF
@@ -71628,7 +71702,7 @@ ocQ
 rht
 nuR
 nkR
-euV
+awm
 nSr
 ofL
 oUn
@@ -74036,7 +74110,7 @@ kDT
 qtm
 dBh
 dBh
-dBh
+lyu
 dBh
 dBh
 dBh
@@ -74924,7 +74998,7 @@ tam
 sCq
 sxo
 ydi
-hCv
+tDi
 hCv
 hCv
 hCv
@@ -75136,7 +75210,7 @@ hCv
 hCv
 hCv
 hCv
-hCv
+tDi
 hCv
 hCv
 hCv
