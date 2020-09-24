@@ -133,12 +133,17 @@
 		chatOutput.sendMusic(web_sound_url,music_extra_data)
 
 /client/proc/play_title_music_legacy(vol = 85)
-	if(!SSticker?.login_music)
-		return FALSE
-	if(prefs && (prefs.toggles_sound & SOUND_LOBBY))
-		//Since this is the legacy, replace this hardcoded ogg with your list of hosted files
-		SEND_SOUND(src, sound('sound/music/DawsonChristian.ogg', repeat = 0, wait = 0, volume = vol, channel = CHANNEL_LOBBYMUSIC)) // MAD JAMS
-
+    var/songs = list(
+    'sound/music/loopingsteps.ogg',
+    'sound/music/pogo.ogg',
+    'sound/music/setyoufree.ogg',
+    'sound/music/slider.ogg',
+    )
+    if(!SSticker?.login_music)
+        return FALSE
+    if(prefs && (prefs.toggles_sound & SOUND_LOBBY))
+        //Since this is the legacy, replace this hardcoded ogg with your list of hosted files
+        SEND_SOUND(src, sound(pick(songs), repeat = 0, wait = 0, volume = vol, channel = CHANNEL_LOBBYMUSIC)) // MAD JAMS
 
 /proc/playsound_z(z, soundin, _volume) // Play sound for all online mobs on a given Z-level. Good for ambient sounds.
 	soundin = sound(get_sfx(soundin), channel = open_sound_channel(), volume = _volume)
