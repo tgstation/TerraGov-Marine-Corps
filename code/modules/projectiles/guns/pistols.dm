@@ -586,7 +586,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 
 /obj/item/weapon/gun/pistol/m6
 	name = "M6G PDWS"
-	desc = "The M6G PDWS is a handgum commonly used by all branches of the UNSC. It is known for its extreme reliability and high stopping power."
+	desc = "The M6G PDWS is a handgun commonly used by all branches of the UNSC. It is known for its extreme reliability and high stopping power."
 	icon_state = "m6g"
 	item_state = "m6g"
 	fire_sound = 'sound/halo/MagnumShotSoundEffect.ogg'
