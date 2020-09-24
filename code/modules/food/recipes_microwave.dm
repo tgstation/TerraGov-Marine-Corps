@@ -189,14 +189,14 @@ I said no!
 	)
 	result = /obj/item/reagent_containers/food/snacks/donkpocket //SPECIAL
 
-/datum/recipe/donkpocket/proc/warm_up(var/obj/item/reagent_containers/food/snacks/donkpocket/being_cooked)
+/datum/recipe/donkpocket/proc/warm_up(obj/item/reagent_containers/food/snacks/donkpocket/being_cooked)
 	being_cooked.warm = 1
 	being_cooked.reagents.add_reagent(/datum/reagent/medicine/tricordrazine, 5)
 	being_cooked.bitesize = 6
 	being_cooked.name = "Warm " + being_cooked.name
 	being_cooked.cooltime()
 
-/datum/recipe/donkpocket/make_food(var/obj/container)
+/datum/recipe/donkpocket/make_food(obj/container)
 	var/obj/item/reagent_containers/food/snacks/donkpocket/being_cooked = ..(container)
 	warm_up(being_cooked)
 	return being_cooked
@@ -208,7 +208,7 @@ I said no!
 	)
 	result = /obj/item/reagent_containers/food/snacks/donkpocket //SPECIAL
 
-/datum/recipe/donkpocket/warn/make_food(var/obj/container)
+/datum/recipe/donkpocket/warn/make_food(obj/container)
 	var/obj/item/reagent_containers/food/snacks/donkpocket/being_cooked = locate() in container
 	if(being_cooked && !being_cooked.warm)
 		warm_up(being_cooked)
@@ -490,7 +490,7 @@ I said no!
 	)
 	result = /obj/item/reagent_containers/food/snacks/fortunecookie
 
-/datum/recipe/fortunecookie/make_food(var/obj/container)
+/datum/recipe/fortunecookie/make_food(obj/container)
 	var/obj/item/paper/paper = locate() in container
 	paper.loc = null //prevent deletion
 	var/obj/item/reagent_containers/food/snacks/fortunecookie/being_cooked = ..(container)
@@ -498,7 +498,7 @@ I said no!
 	being_cooked.trash = paper //so the paper is left behind as trash without special-snowflake(TM Nodrak) code ~carn
 	return being_cooked
 
-/datum/recipe/fortunecookie/check_items(var/obj/container)
+/datum/recipe/fortunecookie/check_items(obj/container)
 	. = ..()
 	if(.)
 		var/obj/item/paper/paper = locate() in container
@@ -594,7 +594,7 @@ I said no!
 	)
 	result = /obj/item/reagent_containers/food/snacks/amanitajelly
 
-/datum/recipe/amanitajelly/make_food(var/obj/container)
+/datum/recipe/amanitajelly/make_food(obj/container)
 	var/obj/item/reagent_containers/food/snacks/amanitajelly/being_cooked = ..(container)
 	being_cooked.reagents.del_reagent(/datum/reagent/toxin/amatoxin)
 	return being_cooked
@@ -1130,7 +1130,7 @@ I said no!
 	)
 	result = /obj/item/reagent_containers/food/snacks/validsalad
 
-/datum/recipe/validsalad/make_food(var/obj/container)
+/datum/recipe/validsalad/make_food(obj/container)
 	var/obj/item/reagent_containers/food/snacks/validsalad/being_cooked = ..(container)
 	being_cooked.reagents.del_reagent(/datum/reagent/toxin)
 	return being_cooked
