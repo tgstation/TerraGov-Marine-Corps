@@ -3,16 +3,6 @@
 /turf/open/space/basic,
 /area/space)
 "aab" = (
-/obj/effect/step_trigger/teleporter/random{
-	affect_ghosts = 1;
-	name = "tele_ground1";
-	teleport_x = 180;
-	teleport_x_offset = 200;
-	teleport_y = 50;
-	teleport_y_offset = 80;
-	teleport_z = 1;
-	teleport_z_offset = 1
-	},
 /turf/open/space,
 /area/space)
 "aac" = (
@@ -35703,10 +35693,6 @@
 /obj/item/tool/lighter/zippo,
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
-"hcq" = (
-/obj/machinery/portable_atmospherics/hydroponics,
-/turf/open/floor/mainship/sterile,
-/area/mainship/medical/medical_science)
 "hem" = (
 /obj/structure/cable,
 /obj/machinery/status_display{
@@ -37125,16 +37111,6 @@
 /turf/open/floor/mainship,
 /area/mainship/living/briefing)
 "pvg" = (
-/obj/effect/step_trigger/teleporter/random{
-	affect_ghosts = 1;
-	name = "tele_ground1";
-	teleport_x = 180;
-	teleport_x_offset = 200;
-	teleport_y = 50;
-	teleport_y_offset = 80;
-	teleport_z = 1;
-	teleport_z_offset = 1
-	},
 /obj/structure/cable,
 /turf/open/space,
 /area/space)
