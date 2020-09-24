@@ -11969,12 +11969,12 @@
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint)
 "bam" = (
-/obj/machinery/door/airlock/mainship/secure{
-	dir = 1;
-	name = "Self Destruct Room"
-	},
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct{
 	dir = 1
+	},
+/obj/machinery/door/airlock/mainship/secure/free_access{
+	dir = 2;
+	name = "Self Destruct Room"
 	},
 /turf/open/floor/plating,
 /area/mainship/command/self_destruct)
@@ -13326,11 +13326,11 @@
 /turf/open/floor/plating/warning,
 /area/sulaco/command/eva)
 "eEP" = (
-/obj/machinery/door/airlock/mainship/secure{
-	name = "Self Destruct Room"
-	},
 /obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
 /obj/structure/cable,
+/obj/machinery/door/airlock/mainship/secure/free_access{
+	name = "Self Destruct Room"
+	},
 /turf/open/floor/prison/bright_clean,
 /area/mainship/command/self_destruct)
 "eKm" = (
@@ -14289,7 +14289,7 @@
 /area/sulaco/hallway/central_hall2)
 "iqO" = (
 /obj/structure/cable,
-/obj/machinery/door/airlock/mainship/secure{
+/obj/machinery/door/airlock/mainship/secure/free_access{
 	name = "Self Destruct Room"
 	},
 /turf/open/floor/prison/bright_clean,
@@ -14854,12 +14854,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/sulaco/hallway/lower_main_hall)
-"kYL" = (
-/obj/machinery/door/airlock/mainship/secure{
-	name = "Self Destruct Room"
-	},
-/turf/open/floor/prison/bright_clean,
-/area/mainship/command/self_destruct)
 "lae" = (
 /obj/effect/landmark/start/job/medicalofficer,
 /turf/open/floor/prison/whitegreen/corner,
@@ -15115,9 +15109,9 @@
 /turf/open/floor/prison,
 /area/mainship/shipboard/weapon_room)
 "lTe" = (
-/obj/machinery/door/airlock/mainship/secure{
+/obj/machinery/door/airlock/mainship/secure/free_access{
 	dir = 2;
-	name = "\improper Exterior Airlock"
+	name = "Self Destruct Room"
 	},
 /turf/open/floor/prison/bright_clean,
 /area/mainship/command/self_destruct)
@@ -15752,8 +15746,8 @@
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "olH" = (
-/obj/machinery/door/airlock/mainship/secure{
-	name = "\improper Self Destruct Control Room"
+/obj/machinery/door/airlock/mainship/secure/free_access{
+	name = "Self Destruct Room"
 	},
 /turf/open/floor/prison/bright_clean,
 /area/mainship/command/self_destruct)
@@ -17856,10 +17850,10 @@
 /turf/closed/wall/mainship/gray,
 /area/sulaco/cafeteria)
 "uXx" = (
-/obj/machinery/door/airlock/mainship/secure{
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
+/obj/machinery/door/airlock/mainship/secure/free_access{
 	name = "Self Destruct Room"
 	},
-/obj/machinery/door/poddoor/shutters/mainship/selfdestruct,
 /turf/open/floor/prison/bright_clean,
 /area/mainship/command/self_destruct)
 "uYq" = (
@@ -57508,7 +57502,7 @@ aPN
 aZw
 iqO
 yiZ
-kYL
+olH
 aZw
 aPN
 aPN
