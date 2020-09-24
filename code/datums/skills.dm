@@ -350,7 +350,6 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	name = FIELD_COMMANDER
 	engineer = SKILL_ENGINEER_ENGI //to fix CIC apc.
 	construction = SKILL_CONSTRUCTION_PLASTEEL
-	smartgun = SKILL_SMART_TRAINED
 	leadership = SKILL_LEAD_MASTER
 	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_AMATEUR
