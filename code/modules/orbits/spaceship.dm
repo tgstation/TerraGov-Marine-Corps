@@ -132,12 +132,12 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 	if (href_list["UP"])
 		message_admins("[ADMIN_TPMONTY(usr)] Has sent the ship Upward in orbit")
 		do_orbit_checks("UP")
-		COOLDOWN_START(src, COOLDOWN_ORBIT_CHANGE, 1 MINUTES)
+		TIMER_COOLDOWN_START(src, COOLDOWN_ORBIT_CHANGE, 1 MINUTES)
 
 	else if (href_list["DOWN"])
 		message_admins("[ADMIN_TPMONTY(usr)] Has sent the ship Downward in orbit")
 		do_orbit_checks("DOWN")
-		COOLDOWN_START(src, COOLDOWN_ORBIT_CHANGE, 1 MINUTES)
+		TIMER_COOLDOWN_START(src, COOLDOWN_ORBIT_CHANGE, 1 MINUTES)
 
 	else if (href_list["escape"])
 		//are you REALLY sure you want to escape?
@@ -169,7 +169,7 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 	addtimer(CALLBACK(src, .proc/do_change_orbit, current_orbit, direction), 10 SECONDS)
 
 /obj/machinery/computer/navigation/proc/can_change_orbit(current_orbit, direction, silent = FALSE)
-	if(COOLDOWN_CHECK(src, COOLDOWN_ORBIT_CHANGE))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ORBIT_CHANGE))
 		if(!silent)
 			to_chat(usr, "The ship is currently recalculating based on previous selection.")
 		return FALSE
