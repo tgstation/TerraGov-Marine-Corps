@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - tweak: "dropship table will layer consistently and will relay clicks by powerloaders"
