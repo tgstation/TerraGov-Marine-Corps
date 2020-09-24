@@ -90,7 +90,7 @@
 
 	if(isliving(usr))
 		var/mob/living/liver = usr
-		if(liver.health >= 0)
+		if(liver.health >= health_threshold_crit)
 			to_chat(src, "You can only use this when you're dead or crit.")
 			return
 
