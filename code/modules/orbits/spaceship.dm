@@ -146,7 +146,7 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 			return
 		message_admins("[ADMIN_TPMONTY(usr)] Is going to finish the round via the spaceship orbits mechanic")
 		do_orbit_checks("escape")
-		COOLDOWN_START(src, COOLDOWN_ORBIT_CHANGE, 1 MINUTES)
+		TIMER_COOLDOWN_START(src, COOLDOWN_ORBIT_CHANGE, 1 MINUTES)
 		//end the round, xeno minor.
 
 	updateUsrDialog()
