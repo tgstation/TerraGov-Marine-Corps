@@ -34,7 +34,7 @@
 	var/ruined = 0
 
 
-/obj/structure/sign/poster/New(var/serial)
+/obj/structure/sign/poster/Initialize(mapload, serial)
 
 	serial_number = serial
 

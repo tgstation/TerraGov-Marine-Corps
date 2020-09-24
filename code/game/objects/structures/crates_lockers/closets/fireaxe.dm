@@ -14,7 +14,7 @@
 	locked = TRUE
 	var/smashed = 0
 
-/obj/structure/closet/fireaxecabinet/attackby(obj/item/O, var/mob/user)  //Marker -Agouri
+/obj/structure/closet/fireaxecabinet/attackby(obj/item/O, mob/user)  //Marker -Agouri
 	if(locked)
 		if(ismultitool(O))
 			to_chat(user, "<span class='warning'>Resetting circuitry...</span>")

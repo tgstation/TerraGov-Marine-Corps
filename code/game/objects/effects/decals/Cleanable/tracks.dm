@@ -63,7 +63,7 @@
   * * goingdir: Direction tracks are going to (or 0).
   * * bloodcolor: Color of the blood when wet.
   */
-/obj/effect/decal/cleanable/blood/tracks/proc/AddTracks(var/list/DNA, var/comingdir, var/goingdir, var/bloodcolor="#A10808")
+/obj/effect/decal/cleanable/blood/tracks/proc/AddTracks(list/DNA, comingdir, goingdir, bloodcolor="#A10808")
 	var/updated = FALSE
 	// Shift our goingdir 4 spaces to the left so it's in the GOING bitblock.
 	var/realgoing=goingdir<<4
