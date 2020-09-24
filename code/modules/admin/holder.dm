@@ -405,7 +405,8 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/client/proc/toggle_buildmode,
 	/client/proc/force_event,
 	/client/proc/toggle_events,
-	/client/proc/run_weather
+	/client/proc/run_weather,
+	/client/proc/cmd_display_del_log,
 	)
 GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 GLOBAL_PROTECT(admin_verbs_fun)
