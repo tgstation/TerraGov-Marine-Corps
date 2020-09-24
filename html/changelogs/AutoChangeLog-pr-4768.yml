@@ -1,0 +1,4 @@
+author: "MJP, Kuro"
+delete-after: True
+changes: 
+  - rscadd: "Added a recoilless rifle and bag for it. Added it to SL vendors. Added it to req."
