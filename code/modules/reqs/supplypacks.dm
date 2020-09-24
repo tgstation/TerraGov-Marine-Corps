@@ -80,6 +80,15 @@ OPERATIONS
 	contains = list(/obj/item/bodybag/tarp)
 	cost = 6
 
+/datum/supply_packs/operations/deployablecams
+	name = "3 Deployable Cameras"
+	contains = list(
+		/obj/item/deployable_camera,
+		/obj/item/deployable_camera,
+		/obj/item/deployable_camera,
+	)
+	cost = 6
+
 /datum/supply_packs/operations/exportpad
 	name = "ASRS Bluespace Export Point"
 	contains = list(/obj/machinery/exportpad)
