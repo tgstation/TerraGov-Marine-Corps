@@ -165,7 +165,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	var/mob/living/carbon/xenomorph/hivelord/X = owner
 	X.visible_message("<span class='xenonotice'>\The [X] digs out a tunnel entrance.</span>", \
-	"<span class='xenonotice'>We da tunnel, connecting it to our network.</span>", null, 5)
+	"<span class='xenonotice'>We dig out a tunnel, connecting it to our network.</span>", null, 5)
 	var/obj/structure/tunnel/newt = new(T)
 	playsound(T, 'sound/weapons/pierce.ogg', 25, 1)
 
