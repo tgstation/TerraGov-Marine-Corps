@@ -151,9 +151,11 @@
 		/obj/item/reagent_containers/syringe,
 		/obj/item/storage/pill_bottle,
 		/obj/item/storage/syringe_case,
-		/obj/item/reagent_containers/hypospray/autoinjector,
+		/obj/item/reagent_containers/hypospray,
+		/obj/item/healthanalyzer,
 		/obj/item/storage/pill_bottle/packet,
 		/obj/item/stack/medical
+		
 	)
 
 /obj/item/storage/belt/combatLifesaver/Initialize()  //The belt, with all it's magic inside!
