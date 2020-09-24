@@ -184,6 +184,12 @@ WEAPONS
 	)
 	cost = 60
 
+/datum/supply_packs/weapons/recoillesskit
+	name = "Recoilless rifle kit"
+	contains = list(/obj/item/storage/box/recoilless_system)
+	cost = 40
+
+
 /datum/supply_packs/weapons/specgrenadier
 	name = "Grenadier Specialist kit"
 	contains = list(/obj/item/weapon/gun/launcher/m92)
@@ -520,6 +526,16 @@ AMMO
 	name = "T-152 RPG WP rocket"
 	contains = list(/obj/item/ammo_magazine/rocket/wp)
 	cost = 7
+
+/datum/supply_packs/ammo/shell_regular
+	name = "T-160 RR HE shell"
+	contains = list(/obj/item/ammo_magazine/rocket/recoilless)
+	cost = 3
+
+/datum/supply_packs/ammo/shell_le
+	name = "T-160 RR LE shell"
+	contains = list(/obj/item/ammo_magazine/rocket/recoilless/light)
+	cost = 3
 
 /datum/supply_packs/ammo/smartmachinegun
 	name = "T-29 smartmachinegun ammo"
