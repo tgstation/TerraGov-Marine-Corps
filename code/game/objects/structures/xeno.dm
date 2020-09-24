@@ -615,10 +615,8 @@ TUNNEL
 
 	max_integrity = 140
 	var/mob/living/carbon/xenomorph/hivelord/creator = null
-	var/obj/structure/tunnel/other = null
-	var/id = null //For mapping
 
-/obj/structure/tunnel/Initialize()
+/obj/structure/tunnel/Initialize(mapload)
 	. = ..()
 	GLOB.xeno_tunnels += src
 
@@ -627,29 +625,17 @@ TUNNEL
 	GLOB.xeno_tunnels -= src
 	if(creator)
 		creator.tunnels -= src
-	if(other)
-		other.other = null
-		qdel(other)
 	return ..()
 
 /obj/structure/tunnel/examine(mob/user)
-	..()
+	. = ..()
 	if(!isxeno(user) && !isobserver(user))
 		return
-
-	if(!other)
-		to_chat(user, "<span class='warning'>It does not seem to lead anywhere.</span>")
-	else
-		var/area/A = get_area(other)
-		to_chat(user, "<span class='info'>It seems to lead to <b>[A.name]</b>.</span>")
-		if(tunnel_desc)
-			to_chat(user, "<span class='info'>The Hivelord scent reads: \'[tunnel_desc]\'</span>")
+	if(tunnel_desc)
+		to_chat(user, "<span class='info'>The Hivelord scent reads: \'[tunnel_desc]\'</span>")
 
 /obj/structure/tunnel/deconstruct(disassembled = TRUE)
 	visible_message("<span class='danger'>[src] suddenly collapses!</span>")
-	if(isturf(other?.loc))
-		visible_message("<span class='danger'>[other] suddenly collapses!</span>")
-		QDEL_NULL(other)
 	return ..()
 
 /obj/structure/tunnel/ex_act(severity)
@@ -689,32 +675,33 @@ TUNNEL
 		to_chat(M, "<span class='xenowarning'>We can't climb through a tunnel while immobile.</span>")
 		return FALSE
 
-	if(!other || !isturf(other.loc))
-		to_chat(M, "<span class='warning'>\The [src] doesn't seem to lead anywhere.</span>")
-		return
-
 	if(LAZYLEN(M.stomach_contents))
 		to_chat(M, "<span class='warning'>We must spit out the host inside of us first.</span>")
 		return
 
-	var/distance = get_dist( get_turf(src), get_turf(other) )
+	var/obj/structure/tunnel/targettunnel = input(M, "Choose a tunnel to crawl to", "Tunnel") as null|anything in GLOB.xeno_tunnels
+	if(!targettunnel)
+		return
+	if(targettunnel.z != z)
+		to_chat(M, "<span class='warning'>That tunnel isn't connected to this one!</span>")
+		return
+	var/distance = get_dist(get_turf(src), get_turf(targettunnel))
 	var/tunnel_time = clamp(distance, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_SMALL_MAX_TRAVEL_TIME)
-	var/area/A = get_area(other)
 
 	if(M.mob_size == MOB_SIZE_BIG) //Big xenos take longer
 		tunnel_time = clamp(distance * 1.5, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_LARGE_MAX_TRAVEL_TIME)
 		M.visible_message("<span class='xenonotice'>[M] begins heaving their huge bulk down into \the [src].</span>", \
-		"<span class='xenonotice'>We begin heaving our monstrous bulk into \the [src] to <b>[A.name] (X: [A.x], Y: [A.y])</b>.</span>")
+		"<span class='xenonotice'>We begin heaving our monstrous bulk into \the [src] to <b>[targettunnel.tunnel_desc]</b>.</span>")
 	else
 		M.visible_message("<span class='xenonotice'>\The [M] begins crawling down into \the [src].</span>", \
-		"<span class='xenonotice'>We begin crawling down into \the [src] to <b>[A.name] (X: [A.x], Y: [A.y])</b>.</span>")
+		"<span class='xenonotice'>We begin crawling down into \the [src] to <b>[targettunnel.tunnel_desc]</b>.</span>")
 
 	if(isxenolarva(M)) //Larva can zip through near-instantly, they are wormlike after all
 		tunnel_time = 5
 
 	if(do_after(M, tunnel_time, FALSE, src, BUSY_ICON_GENERIC))
-		if(other && isturf(other.loc)) //Make sure the end tunnel is still there
-			M.forceMove(other.loc)
+		if(targettunnel && isturf(targettunnel.loc)) //Make sure the end tunnel is still there
+			M.forceMove(targettunnel.loc)
 			M.visible_message("<span class='xenonotice'>\The [M] pops out of \the [src].</span>", \
 			"<span class='xenonotice'>We pop out through the other side!</span>")
 		else

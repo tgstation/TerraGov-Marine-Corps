@@ -283,20 +283,10 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 /datum/game_mode/proc/setup_xeno_tunnels()
 	var/i = 0
 	while(length(GLOB.xeno_tunnel_landmarks) && i++ < MAX_TUNNELS_PER_MAP)
-		var/obj/structure/tunnel/ONE
-		var/obj/effect/landmark/xeno_tunnel/L
-		var/turf/T
-		L = pick(GLOB.xeno_tunnel_landmarks)
-		GLOB.xeno_tunnel_landmarks -= L
-		T = L.loc
-		ONE = new(T)
-		ONE.id = "hole[i]"
-		for(var/x in GLOB.xeno_tunnels)
-			var/obj/structure/tunnel/TWO = x
-			if(ONE.id != TWO.id || ONE == TWO || ONE.other || TWO.other)
-				continue
-			ONE.other = TWO
-			TWO.other = ONE
+		var/obj/effect/landmark/xeno_tunnel/tunnelmarker = pick(GLOB.xeno_tunnel_landmarks)
+		GLOB.xeno_tunnel_landmarks -= tunnelmarker
+		var/turf/T = tunnelmarker.loc
+		new /obj/structure/tunnel(T)
 
 
 /datum/game_mode/proc/setup_blockers()
