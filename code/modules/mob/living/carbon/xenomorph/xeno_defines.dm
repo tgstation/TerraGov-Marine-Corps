@@ -176,6 +176,7 @@
 	var/current_aura = null //"frenzy", "warding", "recovery"
 	var/frenzy_aura = 0 //Strength of aura we are affected by. NOT THE ONE WE ARE EMITTING
 	var/warding_aura = 0
+	var/last_warding_bonus = 0 
 	var/recovery_aura = 0
 
 	var/regen_power = 0 //Resets to -xeno_caste.regen_delay when you take damage.
@@ -242,17 +243,3 @@
 	var/notice_delay = 20 //2 second between notices
 
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
-
-	//Last armor specific bonus(or debonus) applied on the mob
-	
-	//This tells what was some of the last applied armor bonus, uses it to remove before applying a new one, might as well turn into a list buuuuuuuuut lazy.
-	
-	//Warding Phero
-	var/lastwardingbonus = 0 
-
-	//Defender bonuses
-	var/lastfortifybonus = 0
-	var/lastcrestbonus = 0 
-
-	//warrior agility debonus
-	var/lastagilitybonus = 0

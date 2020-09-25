@@ -242,6 +242,12 @@
 	use_state_flags = XACT_USE_FORTIFIED|XACT_USE_CRESTED // duh
 	cooldown_timer = 1 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_CREST_DEFENSE
+	var/last_crest_bonus = 0
+
+/datum/action/xeno_action/toggle_crest_defense/on_xeno_upgrade()
+	var/mob/living/carbon/xenomorph/X = owner
+	if(X.crest_defense)
+		set_crest_defense(TRUE, TRUE)
 
 /datum/action/xeno_action/toggle_crest_defense/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/defender/X = owner
@@ -252,49 +258,47 @@
 	var/mob/living/carbon/xenomorph/defender/X = owner
 
 	if(X.crest_defense)
-		X.set_crest_defense(FALSE)
+		set_crest_defense(FALSE)
 		add_cooldown()
 		return succeed_activate()
 
 	var/was_fortified = X.fortify
 	if(X.fortify)
-		var/datum/action/xeno_action/FT = X.actions_by_path[/datum/action/xeno_action/fortify]
+		var/datum/action/xeno_action/fortify/FT = X.actions_by_path[/datum/action/xeno_action/fortify]
 		if(FT.cooldown_id)
 			to_chat(X, "<span class='xenowarning'>We cannot yet untuck ourselves!</span>")
 			return fail_activate()
-		X.set_fortify(FALSE, TRUE)
+		FT.set_fortify(FALSE, TRUE)
 		FT.add_cooldown()
 		to_chat(X, "<span class='xenowarning'>We carefully untuck, keeping our crest lowered.</span>")
 
-	X.set_crest_defense(TRUE, was_fortified)
+	set_crest_defense(TRUE, was_fortified)
 	add_cooldown()
 	return succeed_activate()
 
-/mob/living/carbon/xenomorph/defender/proc/set_crest_defense(on, silent = FALSE)
-	crest_defense = on
+/datum/action/xeno_action/toggle_crest_defense/proc/set_crest_defense(on, silent = FALSE)
+	var/mob/living/carbon/xenomorph/defender/X = owner
+	X.crest_defense = on
 	if(on)
 		if(!silent)
-			to_chat(src, "<span class='xenowarning'>We tuck ourselves into a defensive stance.</span>")
+			to_chat(X, "<span class='xenowarning'>We tuck ourselves into a defensive stance.</span>")
 		GLOB.round_statistics.defender_crest_lowerings++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_crest_lowerings")
-		if(silent) //if we were fortifying remove fortifying bonus first
-			soft_armor = soft_armor.modifyAllRatings(-lastfortifybonus)
-			lastfortifybonus = 0
-		var/defensebonus = xeno_caste.crest_defense_armor
-		soft_armor = soft_armor.modifyAllRatings(defensebonus)
-		soft_armor = soft_armor.setRating(bomb = XENO_BOMB_RESIST_3)
-		lastcrestbonus = defensebonus
-		add_movespeed_modifier(MOVESPEED_ID_CRESTDEFENSE, TRUE, 0, NONE, TRUE, DEFENDER_CRESTDEFENSE_SLOWDOWN)
+		var/defensebonus = X.xeno_caste.crest_defense_armor
+		X.soft_armor = X.soft_armor.modifyAllRatings(defensebonus)
+		X.soft_armor = X.soft_armor.setRating(bomb = XENO_BOMB_RESIST_3)
+		last_crest_bonus = defensebonus
+		X.add_movespeed_modifier(MOVESPEED_ID_CRESTDEFENSE, TRUE, 0, NONE, TRUE, DEFENDER_CRESTDEFENSE_SLOWDOWN)
 	else
 		if(!silent)
-			to_chat(src, "<span class='xenowarning'>We raise our crest.</span>")
+			to_chat(X, "<span class='xenowarning'>We raise our crest.</span>")
 		GLOB.round_statistics.defender_crest_raises++
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_crest_raises")
-		soft_armor = soft_armor.modifyAllRatings(-lastcrestbonus)
-		soft_armor = soft_armor.setRating(bomb = XENO_BOMB_RESIST_2)
-		lastcrestbonus = 0
-		remove_movespeed_modifier(MOVESPEED_ID_CRESTDEFENSE)
-	update_icons()
+		X.soft_armor = X.soft_armor.modifyAllRatings(-last_crest_bonus)
+		X.soft_armor = X.soft_armor.setRating(bomb = XENO_BOMB_RESIST_2)
+		last_crest_bonus = 0
+		X.remove_movespeed_modifier(MOVESPEED_ID_CRESTDEFENSE)
+	X.update_icons()
 
 // ***************************************
 // *********** Fortify
@@ -307,6 +311,12 @@
 	use_state_flags = XACT_USE_FORTIFIED|XACT_USE_CRESTED // duh
 	cooldown_timer = 1 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_FORTIFY
+	var/last_fortify_bonus = 0
+
+/datum/action/xeno_action/fortify/on_xeno_upgrade()
+	var/mob/living/carbon/xenomorph/X = owner
+	if(X.fortify)
+		set_fortify(TRUE, TRUE)
 
 /datum/action/xeno_action/fortify/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
@@ -317,49 +327,47 @@
 	var/mob/living/carbon/xenomorph/defender/X = owner
 
 	if(X.fortify)
-		X.set_fortify(FALSE)
+		set_fortify(FALSE)
 		add_cooldown()
 		return succeed_activate()
 
 	var/was_crested = X.crest_defense
 	if(X.crest_defense)
-		var/datum/action/xeno_action/CD = X.actions_by_path[/datum/action/xeno_action/toggle_crest_defense]
+		var/datum/action/xeno_action/toggle_crest_defense/CD = X.actions_by_path[/datum/action/xeno_action/toggle_crest_defense]
 		if(CD.cooldown_id)
 			to_chat(X, "<span class='xenowarning'>We cannot yet transition to a defensive stance!</span>")
 			return fail_activate()
-		X.set_crest_defense(FALSE, TRUE)
+		CD.set_crest_defense(FALSE, TRUE)
 		CD.add_cooldown()
 		to_chat(X, "<span class='xenowarning'>We tuck our lowered crest into ourselves.</span>")
 
-	X.set_fortify(TRUE, was_crested)
+	set_fortify(TRUE, was_crested)
 	add_cooldown()
 	return succeed_activate()
 
-/mob/living/carbon/xenomorph/defender/proc/set_fortify(on, silent = FALSE)
+/datum/action/xeno_action/fortify/proc/set_fortify(on, silent = FALSE)
+	var/mob/living/carbon/xenomorph/defender/X = owner
 	GLOB.round_statistics.defender_fortifiy_toggles++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_fortifiy_toggles")
 	if(on)
-		ADD_TRAIT(src, TRAIT_IMMOBILE, FORTIFY_TRAIT)
+		ADD_TRAIT(X, TRAIT_IMMOBILE, FORTIFY_TRAIT)
 		if(!silent)
-			to_chat(src, "<span class='xenowarning'>We tuck ourselves into a defensive stance.</span>")
-		if(silent) //If we were crest defending remove crest defense bonus first
-			soft_armor = soft_armor.modifyAllRatings(-lastcrestbonus)
-			lastcrestbonus = 0
-		var/fortifyAB = xeno_caste.fortify_armor
-		soft_armor = soft_armor.modifyAllRatings(fortifyAB)
-		soft_armor = soft_armor.setRating(bomb = XENO_BOMB_RESIST_4)
-		lastfortifybonus = fortifyAB
+			to_chat(X, "<span class='xenowarning'>We tuck ourselves into a defensive stance.</span>")
+		var/fortifyAB = X.xeno_caste.fortify_armor
+		X.soft_armor = X.soft_armor.modifyAllRatings(fortifyAB)
+		X.soft_armor = X.soft_armor.setRating(bomb = XENO_BOMB_RESIST_4)
+		last_fortify_bonus = fortifyAB
 	else
 		if(!silent)
-			to_chat(src, "<span class='xenowarning'>We resume our normal stance.</span>")
-		soft_armor = soft_armor.modifyAllRatings(-lastfortifybonus)
-		soft_armor = soft_armor.setRating(bomb = XENO_BOMB_RESIST_2)
-		lastfortifybonus = 0
-		REMOVE_TRAIT(src, TRAIT_IMMOBILE, FORTIFY_TRAIT)
-	fortify = on
-	anchored = on
-	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 30, TRUE)
-	update_icons()
+			to_chat(X, "<span class='xenowarning'>We resume our normal stance.</span>")
+		X.soft_armor = X.soft_armor.modifyAllRatings(-last_fortify_bonus)
+		X.soft_armor = X.soft_armor.setRating(bomb = XENO_BOMB_RESIST_2)
+		last_fortify_bonus = 0
+		REMOVE_TRAIT(X, TRAIT_IMMOBILE, FORTIFY_TRAIT)
+	X.fortify = on
+	X.anchored = on
+	playsound(X.loc, 'sound/effects/stonedoor_openclose.ogg', 30, TRUE)
+	X.update_icons()
 
 // ***************************************
 // *********** Regenerate Skin
