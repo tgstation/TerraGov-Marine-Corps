@@ -431,9 +431,10 @@
 /obj/item/storage/pouch/medkit
 	name = "medkit pouch"
 	desc = "A standard use medkit pouch that can contain all kinds of stuff."
+	icon_state = "medkit"
 	w_class = WEIGHT_CLASS_BULKY //does not fit in backpack
 	max_w_class = 4
-	draw_mode = 1
+	storage_slots = 7
 	can_hold = list(
 		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/dropper,
@@ -445,16 +446,26 @@
 		/obj/item/flashlight/pen,
 		/obj/item/storage/pill_bottle/packet,
 		/obj/item/reagent_containers/hypospray)
-	icon_state = "medkit"
 
+/obj/item/storage/pouch/medkit/full/Initialize()
+	. = ..()
+	new /obj/item/healthanalyzer(src)
+	new /obj/item/stack/medical/bruise_pack(src)
+	new /obj/item/stack/medical/ointment(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/storage/syringe_case/regular(src)
 
-/obj/item/storage/pouch/medkit/full
-	fill_type = /obj/item/storage/firstaid/regular
-	fill_number = 1
-
-/obj/item/storage/pouch/medkit/equippedcorpsman
-	fill_type = /obj/item/storage/firstaid/adv
-	fill_number = 1
+/obj/item/storage/pouch/medkit/equippedcorpsman/Initialize()
+	. = ..()
+	new /obj/item/healthanalyzer(src)
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/storage/pill_bottle/bicaridine(src)
+	new /obj/item/storage/pill_bottle/kelotane(src)
+	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/stack/medical/splint(src)
 
 /obj/item/storage/pouch/document
 	name = "document pouch"
