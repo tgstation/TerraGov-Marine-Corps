@@ -104,6 +104,7 @@
 	icon_state = "stacker"
 	resistance_flags = XENO_DAMAGEABLE
 	density = TRUE
+	anchored = FALSE
 	///the amount of resouce we have left to output factory_parts
 	var/production_amount_left = 0
 	///Maximum amount of resource we can hold
@@ -122,6 +123,9 @@
 	user.visible_message("<span class='notice'>[user] [anchored ? "" : "un"]anchors [src]</span>" ,"<span class='notice'>You [anchored ? "" : "un"]anchor [src].</span>")
 
 /obj/machinery/outputter/attack_hand(mob/living/user)
+	if(!anchored)
+		to_chat(user, "<span class='warning'>The machine must be anchored to turn it on!.</span>")
+		return
 	on = !on
 	if(on)
 		START_PROCESSING(SSmachines, src)
