@@ -426,16 +426,26 @@
 	max_storage_space = 10
 	can_hold = list(/obj/item/reagent_containers/syringe)
 
+// It really fits here more, but essentially a medkit in your pouch
 
 /obj/item/storage/pouch/medkit
 	name = "medkit pouch"
+	desc = "A standard use medkit pouch that can contain all kinds of stuff."
 	w_class = WEIGHT_CLASS_BULKY //does not fit in backpack
 	max_w_class = 4
 	draw_mode = 1
+	can_hold = list(
+		/obj/item/healthanalyzer,
+		/obj/item/reagent_containers/dropper,
+		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/storage/pill_bottle,
+		/obj/item/stack/medical,
+		/obj/item/flashlight/pen,
+		/obj/item/storage/pill_bottle/packet,
+		/obj/item/reagent_containers/hypospray)
 	icon_state = "medkit"
-	desc = "It's specifically made to hold a medkit."
-	can_hold = list(/obj/item/storage/firstaid)
-	bypass_w_limit = list(/obj/item/storage/firstaid)
 
 
 /obj/item/storage/pouch/medkit/full
