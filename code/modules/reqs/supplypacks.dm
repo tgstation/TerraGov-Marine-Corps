@@ -1472,7 +1472,7 @@ FACTORY
 	cost = 10
 
 /datum/supply_packs/factory/phosrefill
-	name = "Phosphorus-resistant plates refill"
+	name = "Phosphorus-resistant plates outputter"
 	contains = list(
 		/obj/machinery/outputter/phosnade
 	)
@@ -1483,5 +1483,20 @@ FACTORY
 	contains = list(
 		/obj/item/factory_refill/phosnade,
 		/obj/item/factory_refill/phosnade
+	)
+	cost = 10
+
+/datum/supply_packs/factory/m15refill
+	name = "Rounded plates outputter"
+	contains = list(
+		/obj/machinery/outputter/m15_nade
+	)
+	cost = 10
+
+/datum/supply_packs/factory/m15outputter
+	name = "2x rounded plates refill"
+	contains = list(
+		/obj/item/factory_refill/m15_nade,
+		/obj/item/factory_refill/m15_nade
 	)
 	cost = 10

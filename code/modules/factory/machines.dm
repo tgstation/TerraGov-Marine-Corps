@@ -173,7 +173,7 @@
 	max_fill_amount = 120
 	production_type = /obj/item/factory_part/m15_nade
 
-/obj/item/factory_refill/phosnade
+/obj/item/factory_refill/m15_nade
 	name = "Box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
 	icon_state = "grenade"
