@@ -39,7 +39,10 @@
     core.parent = src
 
 /mob/living/carbon/xenomorph/hivemind/Destroy()
-	QDEL_NULL(core)
+	if(!QDELETED(core))
+		QDEL_NULL(core)
+	else
+		core = null
 	return ..()
 
 /mob/living/carbon/xenomorph/hivemind/Move(NewLoc, Dir = 0)
