@@ -205,8 +205,8 @@
 	remove_from_hive()
 
 	vis_contents -= wound_overlay
-	. = ..()
 	QDEL_NULL(wound_overlay)
+	return ..()
 
 
 /mob/living/carbon/xenomorph/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
