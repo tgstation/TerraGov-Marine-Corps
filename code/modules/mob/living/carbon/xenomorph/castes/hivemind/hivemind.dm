@@ -148,7 +148,10 @@
 	to_chat(parent, "<span class='xenohighdanger'>Your core has been destroyed!</span>")
 	xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... \the [parent] has been slain!</span>", 2, parent.hivenumber)
 	parent.ghostize()
-	QDEL_NULL(parent)
+	if(!QDELETED(parent))
+		QDEL_NULL(parent)
+	else
+		parent = null
 	return ..()
 
 //hivemind cores
