@@ -47,7 +47,7 @@
 	draw_mode = 0
 
 /obj/item/storage/pouch/general/large
-	name = "large general pouch"
+	name = "General pouch"
 	storage_slots = 3
 	icon_state = "large_drop"
 	draw_mode = 0
@@ -220,7 +220,8 @@
 	fill_number = 2
 
 /obj/item/storage/pouch/magazine/large
-	name = "large magazine pouch"
+	name = "Magazine pouch"
+	desc = "This pouch can contain three ammo magazines."
 	icon_state = "large_ammo_mag"
 	storage_slots = 3
 
@@ -245,7 +246,8 @@
 		/obj/item/ammo_magazine/smg/standard_machinepistol)
 
 /obj/item/storage/pouch/magazine/pistol/large
-	name = "large pistol magazine pouch"
+	name = "Pistol magazine pouch"
+	desc = "This pouch can contain six pistol and revolver ammo magazines."
 	storage_slots = 6
 	icon_state = "large_pistol_mag"
 
