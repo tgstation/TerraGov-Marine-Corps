@@ -580,6 +580,8 @@
 		F.throwforce += F.launchforce //Throws with signifcantly more force than a standard marine can.
 		F.throw_at(target, 20, 3, user)
 		playsound(F.loc, fire_sound, 50, 1)
+		if(fire_animation)
+			flick("[fire_animation]", src)
 
 /obj/item/weapon/gun/launcher/m92/get_ammo_type()
 	if(length(grenades) == 0)
@@ -600,6 +602,7 @@
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "t70"
 	item_state = "t70"
+	fire_animation = "t70_fire"
 	max_shells = 6 //codex
 	caliber = "40mm grenades" //codex
 	load_method = SINGLE_CASING //codex
@@ -930,8 +933,8 @@
 //M5 RPG'S MEAN FUCKING COUSIN
 
 /obj/item/weapon/gun/launcher/rocket/m57a4
-	name = "\improper M57-A4 'Lightning Bolt' quad thermobaric launcher"
-	desc = "The M57-A4 'Lightning Bolt' is posssibly the most destructive man-portable weapon ever made. It is a 4-barreled missile launcher capable of burst-firing 4 thermobaric missiles. Enough said."
+	name = "\improper M57A4 quad thermobaric launcher"
+	desc = "The M57A4 is posssibly the most destructive man-portable weapon ever made. It is a 4-barreled missile launcher capable of burst-firing 4 thermobaric missiles. Enough said."
 	icon_state = "m57a4"
 	item_state = "m57a4"
 	max_shells = 4 //codex
@@ -947,6 +950,41 @@
 	burst_delay = 0.4 SECONDS
 	burst_amount = 4
 	accuracy_mult = 0.8
+
+
+//-------------------------------------------------------
+//T-160 Recoilless Rifle. Its effectively an RPG codewise.
+
+/obj/item/weapon/gun/launcher/rocket/recoillessrifle
+	name = "\improper T-160 recoilless rifle"
+	desc = "The T-160 recoilless rifle is a long range explosive ordanance device used by the TGMC used to fire explosive shells at far distances. Uses a variety of 67mm shells designed for various purposes."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "t160"
+	item_state = "t160"
+	max_shells = 1 //codex
+	caliber = "67mm shells" //codex
+	load_method = SINGLE_CASING //codex
+	materials = list(/datum/material/metal = 10000)
+	current_mag = /obj/item/ammo_magazine/rocket/recoilless
+	flags_equip_slot = NONE
+	w_class = WEIGHT_CLASS_HUGE
+	force = 15
+	wield_delay = 1 SECONDS
+	recoil = 1
+	wield_penalty = 1.6 SECONDS
+	aim_slowdown = 1
+	general_codex_key = "explosive weapons"
+	attachable_allowed = list(
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/scope/mini)
+
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	gun_skill_category = GUN_SKILL_FIREARMS
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+
+	fire_delay = 1 SECONDS
+	recoil = 3
+	scatter = -100
 
 //-------------------------------------------------------
 //SCOUT SHOTGUN

@@ -83,6 +83,11 @@
 	var/datum/asset/assets = get_asset_datum(/datum/asset/group/tgui)
 	assets.send(user)
 
+	var/flush_queue = get_asset_datum(/datum/asset/group/tgui)
+	for(var/datum/asset/asset in src_object.ui_assets(user))
+		flush_queue |= asset.send(user)
+	if (flush_queue)
+		user.client.browse_queue_flush()
 /**
  * public
  *

@@ -14,7 +14,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 /obj/item/radio/headset
 	name = "radio headset"
-	desc = "An updated, modular intercom that fits over the head. Takes encryption keys"
+	desc = "An updated, modular intercom that fits over the head. Takes encryption keys."
 	icon_state = "headset"
 	item_state = "headset"
 	materials = list(/datum/material/metal = 75)
@@ -516,40 +516,48 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 
 /obj/item/radio/headset/distress/dutch
-	name = "Dutch's Dozen headset"
+	name = "colonist headset"
 	keyslot = /obj/item/encryptionkey/dutch
+	frequency = FREQ_COLONIST
 
 
 /obj/item/radio/headset/distress/PMC
-	name = "PMC headset"
+	name = "contractor headset"
 	keyslot = /obj/item/encryptionkey/PMC
 	keyslot2 = /obj/item/encryptionkey/mcom
+	frequency = FREQ_PMC
 
 
 /obj/item/radio/headset/distress/usl
-	name = "Non standard headset"
-	frequency = FREQ_CIV_GENERAL
+	name = "non-standard headset"
 	keyslot = /obj/item/encryptionkey/usl
+	frequency = FREQ_USL
 
 
 /obj/item/radio/headset/distress/commando
-	name = "Commando headset"
+	name = "commando headset"
 	keyslot = /obj/item/encryptionkey/commando
 	keyslot2 = /obj/item/encryptionkey/mcom
+	frequency = FREQ_DEATHSQUAD
 
 
 /obj/item/radio/headset/distress/imperial
-	name = "Imperial headset"
+	name = "imperial headset"
 	keyslot = /obj/item/encryptionkey/imperial
+	frequency = FREQ_IMPERIAL
 
 
 /obj/item/radio/headset/distress/som
-	name = "\improper Sons of Mars headset"
+	name = "miners' headset"
 	keyslot = /obj/item/encryptionkey/som
+	frequency = FREQ_SOM
+
 
 /obj/item/radio/headset/distress/sectoid
-	name = "\improper alien headset"
+	name = "alien headset"
 	keyslot = /obj/item/encryptionkey/sectoid
+	frequency = FREQ_SECTOID
+
 
 /obj/item/radio/headset/distress/echo
 	name = "\improper Echo Task Force headset"

@@ -155,13 +155,61 @@ obj/item/ammo_magazine/rifle/m4ra/smart
 	current_rounds = 0
 	reload_delay = 60
 
+//-------------------------------------------------------
+//T-160 recoilless rifle
+
+/obj/item/ammo_magazine/rocket/recoilless
+	name = "\improper 67mm high-explosive shell"
+	desc = "A high explosive shell for the T-160 recoilless rifle. Causes a heavy explosion over a small area. Requires specialized storage to carry."
+	caliber = "67mm shell"
+	icon_state = "shell"
+	w_class = WEIGHT_CLASS_BULKY
+	max_rounds = 1
+	default_ammo = /datum/ammo/rocket/recoilless
+	gun_type = /obj/item/weapon/gun/launcher/rocket/recoillessrifle
+	flags_magazine = NONE
+	reload_delay = 30
+
+/obj/item/ammo_magazine/rocket/recoilless/light
+	name = "\improper 67mm light-explosive shell"
+	desc = "A light explosive shell for the T-160 recoilless rifle. Causes a light explosion over a large area. Can go farther than other shells of its type due to the light payload. Requires specialized storage to carry."
+	caliber = "67mm shell"
+	icon_state = "shell_le"
+	w_class = WEIGHT_CLASS_BULKY
+	max_rounds = 1
+	default_ammo = /datum/ammo/rocket/recoilless/light
+	gun_type = /obj/item/weapon/gun/launcher/rocket/recoillessrifle
+	flags_magazine = NONE
+	reload_delay = 10
+
+/obj/item/ammo_magazine/rocket/recoilless/heat
+	name = "\improper 67mm HEAT shell"
+	desc = "A high explosive-anti tank shell for the T-160 recoilless rifle. Causes a medium explosion over a small area after impacting. Requires specialized storage to carry."
+	caliber = "67mm shell"
+	icon_state = "shell_heat"
+	w_class = WEIGHT_CLASS_BULKY
+	max_rounds = 1
+	default_ammo = /datum/ammo/rocket/recoilless/heat
+	gun_type = /obj/item/weapon/gun/launcher/rocket/recoillessrifle
+	flags_magazine = NONE
+	reload_delay = 30
+
+
+/obj/item/ammo_magazine/internal/launcher/rocket/recoilless
+	name = "\improper 67mm internal tube"
+	desc = "The internal tube of a T-TBD recoilless rifle."
+	caliber = "rocket"
+	default_ammo = /datum/ammo/rocket/recoilless
+	max_rounds = 1
+	current_rounds = 0
+	reload_delay = 30
 
 //-------------------------------------------------------
 //M5 RPG'S MEAN FUCKING COUSIN
 
 /obj/item/ammo_magazine/rocket/m57a4
 	name = "\improper 84mm thermobaric rocket array"
-	desc = "A thermobaric rocket tube for an M57-A4 quad launcher. Activate in hand to receive some metal when it's used up."
+	desc = "A thermobaric rocket tube for a M57A4 quad launcher. Activate in hand to receive some metal when it's used up."
 	caliber = "rocket array"
 	icon_state = "quad_rocket"
 	max_rounds = 4
@@ -170,7 +218,7 @@ obj/item/ammo_magazine/rifle/m4ra/smart
 	reload_delay = 200
 
 /obj/item/ammo_magazine/internal/launcher/rocket/m57a4
-	desc = "The internal tube of an M57-A4 thermobaric launcher."
+	desc = "The internal tube of an M57A4 thermobaric launcher."
 	caliber = "rocket array"
 	default_ammo = /datum/ammo/rocket/wp/quad
 	max_rounds = 4

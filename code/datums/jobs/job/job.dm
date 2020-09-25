@@ -143,8 +143,8 @@ GLOBAL_PROTECT(exp_specialmap)
 /datum/job/proc/radio_help_message(mob/M)
 	to_chat(M, {"
 <span class='role_body'>|______________________|</span>
-<span class='role_header'>You are a: [title]!</span>
-<span class='role_body'>As a [title] you answer to [supervisors]. Special circumstances may change this.</span>
+<span class='role_header'>You are \an [title]!</span>
+<span class='role_body'>As \an <b>[title]</b> you answer to [supervisors]. Special circumstances may change this.</span>
 <span class='role_body'>|______________________|</span>
 "})
 	if(!(job_flags & JOB_FLAG_NOHEADSET))
@@ -275,10 +275,10 @@ GLOBAL_PROTECT(exp_specialmap)
 		job.outfit.handle_id(src)
 		job.outfit.equip(src)
 
-	if(job.job_flags & JOB_FLAG_ALLOWS_PREFS_GEAR)
+	if((job.job_flags & JOB_FLAG_ALLOWS_PREFS_GEAR) && player)
 		equip_preference_gear(player)
 
-	if(!src.assigned_squad)
+	if(!src.assigned_squad && assigned_squad)
 		job.equip_spawning_squad(src, assigned_squad, player)
 
 

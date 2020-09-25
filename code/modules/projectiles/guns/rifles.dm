@@ -72,6 +72,7 @@
 						/obj/item/attachable/attached_gun/grenade,
 						/obj/item/attachable/attached_gun/flamer,
 						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/marine,
 						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/attached_gun/shotgun)
 
@@ -128,8 +129,10 @@
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/scope,
 						/obj/item/attachable/scope/mini,
+						/obj/item/attachable/scope/marine,
 						/obj/item/attachable/attached_gun/grenade,
 						/obj/item/attachable/attached_gun/flamer,
+						/obj/item/attachable/angledgrip,
 						/obj/item/attachable/attached_gun/shotgun)
 
     flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
@@ -143,7 +146,7 @@
     scatter = -10
     wield_delay = 0.7 SECONDS
     burst_amount = 3
-    aim_slowdown = 0.5
+    aim_slowdown = 0.4
     damage_falloff_mult = 0.5
 
 /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
@@ -191,6 +194,7 @@
 						/obj/item/attachable/attached_gun/flamer,
 						/obj/item/attachable/attached_gun/shotgun,
 						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/marine,
 						/obj/item/attachable/scope/mini/dmr)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_CAN_POINTBLANK
@@ -246,6 +250,7 @@
 						/obj/item/attachable/attached_gun/flamer,
 						/obj/item/attachable/attached_gun/shotgun,
 						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/marine,
 						/obj/item/attachable/scope/mini)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_CAN_POINTBLANK
@@ -508,6 +513,7 @@
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/marine,
 						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/stock/t42stock,
@@ -555,6 +561,7 @@
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/marine,
 						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/stock/t60stock,
 						/obj/item/attachable/magnetic_harness)

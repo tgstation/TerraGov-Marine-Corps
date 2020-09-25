@@ -133,7 +133,8 @@
 					/obj/item/explosive/grenade/incendiary = 25,
 					/obj/item/explosive/grenade/smokebomb = 25,
 					/obj/item/explosive/grenade/cloakbomb = 25,
-					/obj/item/storage/box/m94 = 30
+					/obj/item/storage/box/m94 = 30,
+					/obj/item/storage/box/recoilless_system = 1,
 					)
 
 	premium = list()
@@ -600,7 +601,7 @@
 						/obj/item/attachable/flashlight = 25,
 						/obj/item/attachable/magnetic_harness = 25,
 						/obj/item/attachable/reddot = 25,
-						/obj/item/attachable/scope = 25,
+						/obj/item/attachable/scope/marine = 25,
 						/obj/item/attachable/scope/mini = 25,
 
 						/obj/item/attachable/angledgrip = 25,

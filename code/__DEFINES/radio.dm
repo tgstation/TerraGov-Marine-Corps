@@ -49,7 +49,7 @@
 #define RADIO_CHANNEL_IMPERIAL "Imperial"
 #define RADIO_CHANNEL_SOM "Sons of Mars"
 #define RADIO_CHANNEL_SECTOID "Alien"
-#define RADIO_CHANNEL_ECHO "Echo TF"
+#define RADIO_CHANNEL_ECHO "Echo"
 #define RADIO_CHANNEL_DS1 "Alamo"
 #define RADIO_CHANNEL_DS2 "Normandy"
 
@@ -57,7 +57,7 @@
 #define MIN_FREE_FREQ 1201 // -------------------------------------------------
 // Frequencies are always odd numbers and range from 1201 to 1599.
 
-#define FREQ_PMC		1332
+#define FREQ_PMC		1331
 #define FREQ_COLONIST	1335
 #define FREQ_USL		1337
 #define FREQ_DEATHSQUAD	1339
@@ -65,7 +65,7 @@
 #define FREQ_SOM		1343
 #define FREQ_AI			1345
 #define FREQ_SECTOID	1347
-#define FREQ_ECHO		1348
+#define FREQ_ECHO		1349
 
 #define FREQ_COMMAND 		1353
 #define FREQ_MEDICAL		1355
