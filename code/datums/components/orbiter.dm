@@ -25,6 +25,7 @@
 		tracker = new(target, CALLBACK(src, .proc/move_react))
 
 /datum/component/orbiter/UnregisterFromParent()
+	UnregisterSignal(parent, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE)
 	var/atom/target = parent
 	target.orbiters = null
 	QDEL_NULL(tracker)
@@ -39,6 +40,7 @@
 
 /datum/component/orbiter/InheritComponent(datum/component/orbiter/newcomp, original, atom/movable/orbiter, radius, clockwise, rotation_speed, rotation_segments, pre_rotation)
 	if(!newcomp)
+		RegisterSignal(parent, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE, .proc/orbiter_glide_size_update)
 		begin_orbit(arglist(args.Copy(3)))
 		return
 	// The following only happens on component transfers
@@ -79,6 +81,7 @@
 	orbiter.SpinAnimation(rotation_speed, -1, clockwise, rotation_segments, parallel = FALSE)
 
 	orbiter.forceMove(get_turf(parent))
+	orbiter_glide_size_update(src, parent)
 	to_chat(orbiter, "<span class='notice'>Now orbiting [parent].</span>")
 
 /datum/component/orbiter/proc/end_orbit(atom/movable/orbiter, refreshing=FALSE)
@@ -92,6 +95,7 @@
 	orbiters -= orbiter
 	orbiter.stop_orbit(src)
 	orbiter.orbiting = null
+	orbiter.glide_size = 8 //Reset to the default for atom/movable as ours was matched to the orbit target
 	if(!refreshing && !length(orbiters) && !QDELING(src))
 		qdel(src)
 
@@ -121,6 +125,12 @@
 	if(orbiter.loc == get_turf(parent))
 		return
 	end_orbit(orbiter)
+
+/datum/component/orbiter/proc/orbiter_glide_size_update(datum/source, target)
+	var/atom/movable/movable_target = target
+	for(var/orbiter in orbiters)
+		var/atom/movable/movable_orbiter = orbiter
+		movable_orbiter.glide_size = movable_target.glide_size
 
 /////////////////////
 
