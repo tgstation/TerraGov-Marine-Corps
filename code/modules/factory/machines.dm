@@ -140,8 +140,8 @@
 	new production_type(get_step(src, dir))
 	production_amount_left--
 
-/obj/machinery/outputter/attacked_by(obj/item/I, mob/living/user, def_zone)
-	if(!isfactoryrefill(I))
+/obj/machinery/outputter/attackby(obj/item/I, mob/living/user, def_zone)
+	if(!isfactoryrefill(I) || user.a_intent == INTENT_HARM)
 		return ..()
 	var/obj/item/factory_refill/refill = I
 	if(!istype(src, refill.refill_type))
@@ -150,7 +150,7 @@
 	var/to_refill = min(max_fill_amount - production_amount_left, refill.refill_amount)
 	production_amount_left += to_refill
 	refill.refill_amount -= to_refill
-	visible_message("<span class='notice'>[user] restocks \the [src] with [refill]!</span>", "<span class='notice'>You restock \the [src] with [refill]!</span>")
+	visible_message("<span class='notice'>[user] restocks \the [src] with \the [refill]!</span>", "<span class='notice'>You restock \the [src] with [refill]!</span>")
 	if(refill.refill_amount <= 0)
 		qdel(refill)
 		new /obj/item/stack/sheet/metal(user.loc)//trash
@@ -168,13 +168,13 @@
 	refill_type = /obj/machinery/outputter/phosnade
 
 /obj/machinery/outputter/m15_nade
-	name = "Rounded grenade plate outputter"
+	name = "rounded grenade plate outputter"
 	desc = "A large machine that produces plating for grenade casings."
 	max_fill_amount = 120
 	production_type = /obj/item/factory_part/m15_nade
 
 /obj/item/factory_refill/m15_nade
-	name = "Box of rounded metal plates"
+	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Outputters."
 	icon_state = "grenade"
 	refill_type = /obj/machinery/outputter/m15_nade

@@ -10,12 +10,8 @@
 	var/completion_stage = 4
 	///What type of machine the obj goes through first/next
 	var/next_machine = FACTORY_MACHINE_FLATTER
-	///Static assoc list recipe for the item
-	var/static/list/recipe = list(
-			list("next_machine" = FACTORY_MACHINE_CUTTER, "icon_state" = "decompiler"),
-			list("next_machine" = FACTORY_MACHINE_HEATER, "icon_state" = "battererburnt"),
-			list("next_machine" = FACTORY_MACHINE_FORMER, "icon_state" = "batterer"),
-			)
+	///Static reference to a glob list
+	var/list/recipe = list()
 	///What result we become when we've run through all our machines
 	var/result = /obj/item/violin
 
@@ -28,10 +24,25 @@
 	next_machine = recipe[stage]["next_machine"]
 	icon_state = recipe[stage]["icon_state"]
 
+GLOBAL_LIST_INIT(phosnade_recipe, list(
+			list("next_machine" = FACTORY_MACHINE_CUTTER, "icon_state" = "decompiler"),
+			list("next_machine" = FACTORY_MACHINE_HEATER, "icon_state" = "battererburnt"),
+			list("next_machine" = FACTORY_MACHINE_FORMER, "icon_state" = "batterer"),
+			))
+
 /obj/item/factory_part/phosnade
 	name = "Phosphorus Grenade assembly"
 	desc = "A incomplete phosphorus grenade assembly"
 	result = /obj/item/explosive/grenade/phosphorus
+
+/obj/item/factory_part/phosnade/Initialize()
+	. = ..()
+	recipe = GLOB.phosnade_recipe
+
+GLOBAL_LIST_INIT(m15_recipe,  list(
+		list("next_machine" = FACTORY_MACHINE_FORMER, "icon_state" = "r_arm"),
+		list("next_machine" = FACTORY_MACHINE_CUTTER, "icon_state" = "r_leg"),
+		))
 
 /obj/item/factory_part/m15_nade
 	name = "M15 grenade assembly"
@@ -40,8 +51,7 @@
 	icon_state = "r_foot"
 	result = /obj/item/explosive/grenade/frag/m15
 	next_machine = FACTORY_MACHINE_CUTTER
-	/*recipe = list(
-		list("next_machine" = FACTORY_MACHINE_FORMER, "icon_state" = "r_arm"),
-		list("next_machine" = FACTORY_MACHINE_CUTTER, "icon_state" = "r_leg"),
-		)*/
 
+/obj/item/factory_part/m15_nade/Initialize()
+	. = ..()
+	recipe = GLOB.phosnade_recipe
