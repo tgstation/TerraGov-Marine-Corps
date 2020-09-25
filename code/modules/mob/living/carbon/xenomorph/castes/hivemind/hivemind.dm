@@ -38,10 +38,6 @@
     core = new(loc)
     core.parent = src
 
-/mob/living/carbon/xenomorph/hivemind/Destroy()
-	QDEL_NULL(core)
-	return ..()
-
 /mob/living/carbon/xenomorph/hivemind/Move(NewLoc, Dir = 0)
 	var/obj/effect/alien/weeds/W = locate() in range("3x3", NewLoc)
 	if(!W)

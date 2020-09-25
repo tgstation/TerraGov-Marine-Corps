@@ -97,8 +97,6 @@
 	GLOB.offered_mob_list -= src
 	SSmobs.stop_processing(src)
 	job = null
-	hard_armor = null
-	soft_armor = null
 	return ..()
 
 
