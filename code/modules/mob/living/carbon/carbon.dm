@@ -10,12 +10,9 @@
 	if(isxeno(loc))
 		var/mob/living/carbon/xenomorph/devourer = loc
 		devourer.do_regurgitate(src)
-	if(back)
-		QDEL_NULL(back)
-	if(internal)
-		QDEL_NULL(internal)
-	if(handcuffed)
-		QDEL_NULL(handcuffed)
+	QDEL_NULL(back)
+	QDEL_NULL(internal)
+	QDEL_NULL(handcuffed)
 	. = ..()
 	species = null
 

@@ -92,7 +92,7 @@
 
 
 /turf/Destroy(force)
-	. = QDEL_HINT_IWILLGC
+
 	if(!changing_turf)
 		stack_trace("Incorrect turf deletion")
 	changing_turf = FALSE
@@ -104,11 +104,13 @@
 			qdel(A)
 		for(var/I in B.vars)
 			B.vars[I] = null
-		return
+		return QDEL_HINT_IWILLGC
 	visibilityChanged()
 	DISABLE_BITFIELD(flags_atom, INITIALIZED)
+	soft_armor = null
+	hard_armor = null
 	..()
-
+	return QDEL_HINT_IWILLGC
 
 /turf/Enter(atom/movable/mover, atom/oldloc)
 	// Do not call ..()
