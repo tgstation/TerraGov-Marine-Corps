@@ -212,10 +212,9 @@
 	if(frenzy_aura != frenzy_new || warding_aura != warding_new || recovery_aura != recovery_new)
 		set_frenzy_aura(frenzy_new)
 		if(warding_aura != warding_new)
-			soft_armor = soft_armor.modifyAllRatings(-lastwardingbonus)
+			soft_armor = soft_armor.modifyAllRatings(-warding_aura * 2.5)
 			warding_aura = warding_new
 			soft_armor = soft_armor.modifyAllRatings(warding_aura * 2.5)
-			lastwardingbonus = warding_aura * 2.5
 		else
 			warding_aura = warding_new
 		recovery_aura = recovery_new

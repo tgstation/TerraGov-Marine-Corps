@@ -176,7 +176,6 @@
 	var/current_aura = null //"frenzy", "warding", "recovery"
 	var/frenzy_aura = 0 //Strength of aura we are affected by. NOT THE ONE WE ARE EMITTING
 	var/warding_aura = 0
-	var/last_warding_bonus = 0 
 	var/recovery_aura = 0
 
 	var/regen_power = 0 //Resets to -xeno_caste.regen_delay when you take damage.
