@@ -41,3 +41,9 @@
 	mapid = "southcivres"
 	spawner_width = 9
 	spawner_height = 11
+
+/************BIG RED******/
+/obj/effect/spawner/modularmap/bigred/operations //todo decrease y by one
+	mapid = "broperations"
+	spawner_width = 29
+	spawner_height = 25

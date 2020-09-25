@@ -20,9 +20,23 @@
 	template_width = 9
 	template_height = 11
 
-/datum/map_template/modular/prison/hi2
+/datum/map_template/modular/prison/civrespool
 	name = "Civres south pool"
 	mappath = "_maps/modularmaps/prison/civresgym.dmm"
 	modular_id = "southcivres"
 	template_width = 9
 	template_height = 11
+
+/datum/map_template/modular/bigred/barracks
+	name = "Big red Barracks"
+	mappath = "_maps/modularmaps/big_red/barracks.dmm"
+	modular_id = "broperations"
+	template_width = 29
+	template_height = 25
+
+/datum/map_template/modular/bigred/operations
+	name = "Big red administration"
+	mappath = "_maps/modularmaps/big_red/operation.dmm"
+	modular_id = "broperations"
+	template_width = 29
+	template_height = 25
