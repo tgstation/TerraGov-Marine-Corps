@@ -251,7 +251,6 @@
 		"fireloss" = H.getFireLoss(),
 		"oxyloss" = H.getOxyLoss(),
 		"toxloss" = H.getToxLoss(),
-		"rads" = H.radiation,
 		"cloneloss" = H.getCloneLoss(),
 		"brainloss" = H.getBrainLoss(),
 		"knocked_out" = H.AmountUnconscious(),

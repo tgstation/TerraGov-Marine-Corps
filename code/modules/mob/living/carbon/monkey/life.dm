@@ -3,12 +3,7 @@
 
 	life_tick++
 
-	if (stat != DEAD)
-
-		//Mutations and radiation
-		handle_mutations_and_radiation()
-
-	else
+	if(stat == DEAD)
 		SSmobs.stop_processing(src)
 
 	//Handle temperature/pressure differences between body and environment
@@ -22,49 +17,6 @@
 
 		if(prob(1))
 			emote(pick("scratch","jump","roll","tail"))
-
-
-/mob/living/carbon/monkey/proc/handle_mutations_and_radiation()
-
-	if(getFireLoss())
-		if(prob(50))
-			switch(getFireLoss())
-				if(1 to 50)
-					adjustFireLoss(-1)
-				if(51 to 100)
-					adjustFireLoss(-5)
-
-	if (radiation)
-
-		if (radiation > 100)
-			radiation = 100
-			Paralyze(20 SECONDS)
-			if(!lying_angle)
-				to_chat(src, "<span class='warning'>You feel weak.</span>")
-				emote("collapse")
-
-		switch(radiation)
-			if(1 to 49)
-				radiation--
-				if(prob(25))
-					adjustToxLoss(1)
-
-			if(50 to 74)
-				radiation -= 2
-				adjustToxLoss(1)
-				if(prob(5))
-					radiation -= 5
-					Paralyze(60)
-					if(!lying_angle)
-						to_chat(src, "<span class='warning'>You feel weak.</span>")
-						emote("collapse")
-
-			if(75 to 100)
-				radiation -= 3
-				adjustToxLoss(3)
-				if(prob(1))
-					to_chat(src, "<span class='warning'>You mutate!</span>")
-					emote("gasp")
 
 /mob/living/carbon/monkey/handle_breath(list/air_info)
 	if(status_flags & GODMODE)
@@ -117,7 +69,7 @@
 			if(SA_pp > 30)
 				Sleeping(20 SECONDS)
 			else if(SA_pp > 20) // Enough to make us paralysed for a bit
-				Unconscious(60) 
+				Unconscious(60)
 				//Enough to make us sleep as well
 			else if(SA_pp > 1)	// There is sleeping gas in their lungs, but only a little, so give them a bit of a warning
 				if(prob(10))
