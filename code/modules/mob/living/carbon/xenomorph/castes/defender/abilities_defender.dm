@@ -365,7 +365,7 @@
 
 /datum/action/xeno_action/activable/regenerate_skin/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
-	to_chat(X, "<span class='notice'>We feel we are ready to shred out skin and grow another.</span>")
+	to_chat(X, "<span class='notice'>We feel we are ready to shred our skin and grow another.</span>")
 	return ..()
 
 /datum/action/xeno_action/activable/regenerate_skin/action_activate()
@@ -379,7 +379,7 @@
 		return fail_activate()
 
 	X.emote("roar")
-	X.visible_message("<span class='warning'>The skin on \the [src] shreds and a new layer can be seen in it's place!</span>",
+	X.visible_message("<span class='warning'>The skin on \the [X] shreds and a new layer can be seen in it's place!</span>",
 		"<span class='notice'>We shed our skin, showing the fresh new layer underneath!</span>")
 
 	X.do_jitter_animation(1000)

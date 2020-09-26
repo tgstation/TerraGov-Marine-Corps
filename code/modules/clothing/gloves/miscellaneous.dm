@@ -42,7 +42,7 @@
 
 /obj/item/clothing/gloves/ruggedgloves
 	desc = "A pair of gloves used by workers in dangerous environments."
-	name = "Rugged Gloves"
+	name = "rugged gloves"
 	icon_state = "black"
 	item_state = "swat_gl"
 	siemens_coefficient = 0

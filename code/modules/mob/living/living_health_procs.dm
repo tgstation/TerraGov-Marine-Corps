@@ -251,7 +251,6 @@
 	fire_stacks = 0
 
 	// shut down ongoing problems
-	radiation = 0
 	bodytemperature = get_standard_bodytemperature()
 	disabilities = 0
 
