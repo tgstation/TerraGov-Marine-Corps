@@ -123,7 +123,7 @@
 			message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped our marines, xeno major victory
 			round_finished = MODE_INFESTATION_X_MAJOR
 			return TRUE
-		message_admins("Round finished: [MODE_INFESTATION_X_MINOR]") //xenos wiped out ALL the marines without hijacking, xeno major victory
+		message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped out ALL the marines without hijacking, xeno major victory
 		round_finished = MODE_INFESTATION_X_MAJOR
 		return TRUE
 	if(!num_xenos)
