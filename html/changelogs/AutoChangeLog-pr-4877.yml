@@ -1,0 +1,5 @@
+author: "Hathkar"
+delete-after: True
+changes: 
+  - rscadd: "Dirt on the floors in the Sulaco"
+  - tweak: "Sulaco SD is slightly easier to defend"
