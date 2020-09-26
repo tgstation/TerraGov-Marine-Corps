@@ -191,7 +191,7 @@
 			body += "<a href='?src=\ref[src];choice=mode;mode_target=1'>Access Crew Manifest</a>"
 		dat = "<tt>[header][body]<hr><br></tt>"
 
-	var/datum/browser/popup = new(user, "id_com", "<div align='center'>Identification Card Modifier</div>", 625, 600)
+	var/datum/browser/popup = new(user, "id_com", "<div align='center'>Identification Card Modifier</div>", 800, 650)
 	popup.set_content(dat)
 	popup.open()
 
