@@ -14166,7 +14166,7 @@
 /area/lv624/lazarus/comms)
 "bhW" = (
 /obj/structure/table,
-/obj/item/mmi/radio_enabled,
+/obj/item/mmi,
 /turf/open/floor/tile/brown{
 	dir = 9
 	},
