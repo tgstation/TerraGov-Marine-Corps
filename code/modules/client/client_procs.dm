@@ -241,8 +241,6 @@
 		to_chat(src, "<span class='alert'>[GLOB.custom_info]</span>")
 		to_chat(src, "<br>")
 
-	preload_rsc = GLOB.external_rsc_url
-
 	connection_time = world.time
 	connection_realtime = world.realtime
 	connection_timeofday = world.timeofday
