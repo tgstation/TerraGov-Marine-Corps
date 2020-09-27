@@ -857,9 +857,8 @@ CLOTHING
 /datum/supply_packs/clothing/pouches_general
 	name = "general pouches"
 	contains = list(
-		/obj/item/storage/pouch/general,
-		/obj/item/storage/pouch/general,
-		/obj/item/storage/pouch/general/medium,
+		/obj/item/storage/pouch/general/large,
+		/obj/item/storage/pouch/general/large,
 		/obj/item/storage/pouch/general/large,
 	)
 	cost = 5
@@ -876,9 +875,9 @@ CLOTHING
 /datum/supply_packs/clothing/pouches_ammo
 	name = "ammo pouches"
 	contains = list(
-		/obj/item/storage/pouch/magazine,
 		/obj/item/storage/pouch/magazine/large,
-		/obj/item/storage/pouch/magazine/pistol,
+		/obj/item/storage/pouch/magazine/large,
+		/obj/item/storage/pouch/magazine/pistol/large,
 		/obj/item/storage/pouch/magazine/pistol/large,
 	)
 	cost = 5
