@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - bugfix: "Fixes linter throwing an error in a code block"
