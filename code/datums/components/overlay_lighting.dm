@@ -76,10 +76,10 @@
 	if(!isnull(starts_on))
 		movable_parent.set_light_on(starts_on)
 
-
 /datum/component/overlay_lighting/RegisterWithParent()
 	. = ..()
 	RegisterSignal(parent, COMSIG_MOVABLE_MOVED, .proc/on_parent_moved)
+	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/check_holder)
 	RegisterSignal(parent, COMSIG_ATOM_SET_LIGHT_RANGE, .proc/set_range)
 	RegisterSignal(parent, COMSIG_ATOM_SET_LIGHT_POWER, .proc/set_power)
 	RegisterSignal(parent, COMSIG_ATOM_SET_LIGHT_COLOR, .proc/set_color)
