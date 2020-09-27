@@ -315,6 +315,7 @@
 #include "code\datums\jobs\job\clf.dm"
 #include "code\datums\jobs\job\deathsquad.dm"
 #include "code\datums\jobs\job\freelancers.dm"
+#include "code\datums\jobs\job\halo.dm"
 #include "code\datums\jobs\job\imperium.dm"
 #include "code\datums\jobs\job\job.dm"
 #include "code\datums\jobs\job\job_exp.dm"

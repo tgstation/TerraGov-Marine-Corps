@@ -629,11 +629,11 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	reload_sound = 'sound/halo/MagnumReloadSoundEffect.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/m6
 
-/obj/item/weapon/gun/pistol/handgonne
+/* /obj/item/weapon/gun/pistol/handgonne
 	name = "Handgonne"
 	desc = "A very rare sidearm made for some kind of big game hunting. Rebel cells often equip themselves with these to take out large targets."
-	icon_state = "handgonne"
-	item_state = "handgonne"
+	icon_state = "hg"
+	item_state = "hg_e"
 	fire_sound = 'sound/halo/MagnumShotSoundEffect.ogg'
 	reload_sound = 'sound/halo/MagnumReloadSoundEffect.ogg'
-	current_mag = /obj/item/ammo_magazine/pistol/handgonne
+	current_mag = /obj/item/ammo_magazine/pistol/handgonne */ // removed for now because icon states are quite terrible

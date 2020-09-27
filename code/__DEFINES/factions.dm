@@ -15,3 +15,8 @@
 #define FACTION_HIVEBOT "Hivebot"
 #define FACTION_HOSTILE "Hostile"
 #define FACTION_PIRATE "Pirate"
+
+// halo
+
+#define FACTION_UNSC "UNSC"
+#define FACTION_INSURRECTION "Insurrection"
