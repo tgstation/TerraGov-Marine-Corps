@@ -1,6 +1,6 @@
 ///******MARINE VENDOR******///
 
-/obj/machinery/vending/marine
+/obj/machinery/vending/marine  // fuck me, this was VERY bad form
 	name = "\improper Automated Weapons Rack"
 	desc = "A automated weapon rack hooked up to a colossal storage of standard-issue weapons."
 	icon_state = "marinearmory"
@@ -17,61 +17,51 @@
 					/obj/item/ammo_magazine/rifle/m392 = 60,
 					/obj/item/weapon/gun/rifle/br55 = 15,
 					/obj/item/ammo_magazine/rifle/br55 = 60,
-					/obj/item/weapon/gun/rifle/srs99 = 5,
-					/obj/item/ammo_magazine/rifle/srs99 = 20,
 					/obj/item/weapon/gun/shotgun/pump/m90 = 10,
-					/obj/item/ammo_magazine/shotgun = 10,
-					/obj/item/ammo_magazine/shotgun/buckshot = 10,
-					/obj/item/ammo_magazine/shotgun/flechette = 10,
+					/obj/item/ammo_magazine/shotgun/eightGauge = 60,
+					/obj/item/ammo_magazine/shotgun/eightGauge/slug = 60,
 					/obj/item/weapon/gun/smg/m7 = 15,
-					/obj/item/weapon/gun/smg/m7/m7s = 15,
 					/obj/item/ammo_magazine/smg/m7 = 60,
 					/obj/item/weapon/gun/pistol/m6 = 15,
-					/obj/item/weapon/gun/pistol/m6/SOCOM = 15,
 					/obj/item/ammo_magazine/pistol/m6 = 60,
-					/obj/item/weapon/gun/launcher/rocket/m41spnkr = 5,
-					/obj/item/ammo_magazine/m41spnkr = 20,
 
 					)
 
 	prices = list()
 
 
+/obj/machinery/vending/marine/unscGuns
+	req_one_access = list(ACCESS_UNSC_MARINE, ACCESS_UNSC_LEADER)
+
 ///******INNIE VENDOR******///
 
 
-/obj/machinery/vending/insurrectionist
+/obj/machinery/vending/innieGuns
 	name = "\improper Stolen Automated Weapons Rack"
 	desc = "A stolen UNSC weapons rack."
 	icon_state = "marinearmory"
 	icon_vend = "marinearmory-vend"
 	icon_deny = "marinearmory"
 	wrenchable = FALSE
-	tokensupport = TOKEN_MARINE //stand in until job tags are sorted
+	req_one_access = list(ACCESS_INSURRECTIONIST_SOLDIER, ACCESS_INSURRECTIONIST_LEADER)
+
 
 	product_ads = "Death to the UNSC!;Do it for Reno!;Remember, it's only a warcrime if you get caught!;Don't forget the Organ Crusher Grenades!"
 
 	products = list(
-						/obj/item/weapon/gun/rifle/ma3 = 25,
-						/obj/item/ammo_magazine/rifle/ma3 = 100,
-						/obj/item/weapon/gun/shotgun/pump/m45 = 10,
-						/obj/item/ammo_magazine/shotgun = 10,
-						/obj/item/ammo_magazine/shotgun/buckshot = 10,
-						/obj/item/ammo_magazine/shotgun/flechette = 10,
-						/obj/item/weapon/gun/rifle/kv32 = 10,
-						/obj/item/ammo_magazine/rifle/kv32 = 40,
-						/obj/item/weapon/gun/smg/m7 = 15,
-						/obj/item/ammo_magazine/smg/m7 = 60,
-						/obj/item/weapon/gun/pistol/m6/m6b_security = 30,
+						/obj/item/weapon/gun/rifle/ma3 = 50,
+						/obj/item/ammo_magazine/rifle/ma3 = 200,
+						/obj/item/weapon/gun/shotgun/pump/m45 = 30,
+						/obj/item/ammo_magazine/shotgun/eightGauge = 60,
+						/obj/item/ammo_magazine/shotgun/eightGauge/slug = 60,
+						/obj/item/weapon/gun/rifle/kv32 = 30,
+						/obj/item/ammo_magazine/rifle/kv32 = 120,
+						/obj/item/weapon/gun/smg/m7 = 40,
+						/obj/item/ammo_magazine/smg/m7 = 100,
+						/obj/item/weapon/gun/pistol/m6/m6b_security = 80,
 						/obj/item/ammo_magazine/pistol/m6 = 90,
-						/obj/item/weapon/gun/pistol/handgonne = 10,
-						/obj/item/ammo_magazine/pistol/handgonne = 40,
-						/obj/item/weapon/gun/rifle/ssrs = 5,
-						/obj/item/ammo_magazine/rifle/ssrs = 20,
-						/obj/item/weapon/gun/launcher/rocket/acl55 = 5,
-						/obj/item/ammo_magazine/rocket/m26 = 20,
-						/obj/item/weapon/gun/rifle/lmg30cal = 5,
-						/obj/item/ammo_magazine/rifle/lmg30cal = 20,
+						//handgonne gone for now....
+
 
 		)
 

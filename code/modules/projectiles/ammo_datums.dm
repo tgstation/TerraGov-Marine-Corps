@@ -1700,7 +1700,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 
 //Shotguns
-/datum/ammo/bullet/shotgun/buckshot/halo
+datum/ammo/bullet/shotgun/halo
+
+
+/datum/ammo/bullet/shotgun/halo/buckshot
 	name = "8 Gauge 000 Buckshot"
 	icon_state = "buckshot"
 	hud_state = "shotgun_buckshot"
@@ -1716,7 +1719,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 4
 	penetration = 0
 
-/datum/ammo/bullet/shotgun/slug/halo
+/datum/ammo/bullet/shotgun/halo/slug
 	name = "8 Gauge Sabot Slug"
 	hud_state = "shotgun_slug"
 	flags_ammo_behavior = AMMO_BALLISTIC
