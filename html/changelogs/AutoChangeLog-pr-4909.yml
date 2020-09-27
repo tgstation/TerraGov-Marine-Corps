@@ -1,0 +1,5 @@
+author: "Fikou"
+delete-after: True
+changes: 
+  - bugfix: "fixes uniform vendors not having marine radios, additionally theres now a new radio type just for those radios"
+  - bugfix: "fixes squad huds not being removed when you drop a radio"
