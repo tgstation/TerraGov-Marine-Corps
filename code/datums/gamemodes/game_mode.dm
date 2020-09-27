@@ -270,7 +270,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		to_chat(M, {"<span class='alert'>[numXenosPlanet] xeno\s on the planet.
 [numXenosShip] xeno\s on the ship.
 [numHostsPlanet] human\s on the planet.
-[numHostsShip] human\s on the ship."
+[numHostsShip] human\s on the ship.
 [numHostsTransit] human\s in transit.
 [numXenosTransit] xeno\s in transit.</span>"})
 

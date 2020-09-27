@@ -1,6 +1,0 @@
-author: "Hathkar"
-delete-after: True
-changes: 
-  - rscadd: "The Sulaco now has a memorial above the briefing room."
-  - rscadd: "Added a tip explaining how to use dogtags on memorials."
-  - rscdel: "Removed an outdated tip on ammo types."

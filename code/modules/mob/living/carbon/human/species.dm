@@ -107,6 +107,7 @@
 	var/see_in_dark
 
 	var/datum/namepool/namepool = /datum/namepool
+	var/special_death_message = "You have perished." // Special death message that gets overwritten if possible.
 
 /datum/species/New()
 	if(hud_type)
@@ -293,6 +294,7 @@
 	gasps = list(MALE = "male_gasp", FEMALE = "female_gasp")
 	coughs = list(MALE = "male_cough", FEMALE = "female_cough")
 	burstscreams = list(MALE = "male_preburst", FEMALE = "female_preburst")
+	special_death_message = "<big>You have perished.</big><br><small>But it is not the end of you yet... if you still have your body or an unbursted corpse, wait until somebody can resurrect you...</small>"
 
 	//If you wanted to add a species-level ability:
 	/*abilities = list(/client/proc/test_ability)*/
@@ -544,6 +546,7 @@
 	reagent_tag = IS_SECTOID
 
 	namepool = /datum/namepool/sectoid
+	special_death_message = "You have perished."
 
 /datum/species/vox
 	name = "Vox"
@@ -661,6 +664,7 @@
 		"heart" =    /datum/internal_organ/heart,
 		"brain" =    /datum/internal_organ/brain,
 		)
+	special_death_message = "You have shut down."
 
 /datum/species/synthetic
 	name = "Synthetic"
@@ -700,6 +704,7 @@
 	screams = list(MALE = "male_scream", FEMALE = "female_scream")
 	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
 	goredcries = list(MALE = "male_gored", FEMALE = "female_gored")
+	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
 
 /datum/species/synthetic/handle_post_spawn(mob/living/carbon/human/H)
@@ -751,6 +756,7 @@
 	screams = list(MALE = "male_scream", FEMALE = "female_scream")
 	paincries = list(MALE = "male_pain", FEMALE = "female_pain")
 	goredcries = list(MALE = "male_gored", FEMALE = "female_gored")
+	special_death_message = "You have been shut down.<br><small>But it is not the end of you yet... if you still have your body, wait until somebody can resurrect you...</small>"
 
 
 /datum/species/early_synthetic/handle_post_spawn(mob/living/carbon/human/H)

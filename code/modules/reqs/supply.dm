@@ -254,7 +254,7 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 	desc = "A console for an Automated Storage and Retrieval System"
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "supply"
-	req_access = list(ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP)
+	req_access = list(ACCESS_MARINE_CARGO)
 	circuit = null
 	var/datum/supply_ui/SU
 
