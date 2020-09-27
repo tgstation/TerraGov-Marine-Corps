@@ -1,0 +1,4 @@
+author: "Hathkar"
+delete-after: True
+changes: 
+  - bugfix: "Fixed case where a xeno major was instead being recorded as a xeno minor"
