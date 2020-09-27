@@ -1,6 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes: 
-  - rscadd: "Added new medkit pouch sprites."
-  - rscdel: "Removed the useless medical pouch, removed useless small/medium pouches."
-  - tweak: "Tweaked how medkit pouch works to literally be a medkit in your pocket."
