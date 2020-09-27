@@ -1,0 +1,5 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - bugfix: "Fixes ghosts smooth movement not syncing with what they orbit."
+  - bugfix: "Fixes ghosts orbits of xenos ending when they evolve."
