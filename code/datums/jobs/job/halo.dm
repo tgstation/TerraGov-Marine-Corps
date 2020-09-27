@@ -40,19 +40,25 @@
 
 /datum/job/unsc/marine/leader/radio_help_message(mob/M)
   . = ..()
-  to_chat(M, {"\nYou are an NCO in the UNSC, charged with leading a squad of marines Keep your unit cohesive,
+  to_chat(M, {"\nYou are an NCO in the UNSC, charged with leading a squad of marines. Keep your unit cohesive,
 and make sure everyone escapes with their lives."})
 
 
 /datum/outfit/job/unsc
-  name = "UNSC Marine"
-  jobtype = /datum/job/unsc/marine
-  id = /obj/item/card/id/dogtag
+	name = "UNSC Marine"
+	jobtype = /datum/job/unsc/marine
+	id = /obj/item/card/id/dogtag
+	ears = /obj/item/radio/headset/unsc
+
+
+
+
 
 /datum/outfit/job/unsc/leader
 	name = "UNSC Squad Leader"
 	jobtype = /datum/job/unsc/marine/leader
 	id = /obj/item/card/id/dogtag
+	ears = /obj/item/radio/headset/unsc
 
 //Innies\\
 
@@ -104,8 +110,10 @@ and make sure everyone escapes with their lives."})
 	name = "Insurrectionist"
 	jobtype = /datum/job/insurrectionist
 	id = /obj/item/card/id/dogtag
+	ears = /obj/item/radio/headset/innie
 
 /datum/outfit/job/insurrection/leader
 	name = "Insurrection Squad Leader"
 	jobtype = /datum/job/insurrectionist/leader
 	id = /obj/item/card/id/dogtag
+	ears = /obj/item/radio/headset/innie

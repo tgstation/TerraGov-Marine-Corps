@@ -41,6 +41,14 @@
 #define RADIO_KEY_DELTA "d"
 #define RADIO_TOKEN_DELTA ":d"
 
+#define RADIO_CHANNEL_UNSC "UNSCCOMM"
+#define RADIO_KEY_UNSC "u"
+#define RADIO_TOKEN_UNSC ":u"
+
+#define RADIO_CHANNEL_INNIE "INNIECOMM"
+#define RADIO_KEY_INNIE "i"
+#define RADIO_TOKEN_INNIE ":i"
+
 
 #define RADIO_CHANNEL_COLONIST "Colonist"
 #define RADIO_CHANNEL_PMC "NT PMC"
@@ -92,6 +100,11 @@
 #define FREQ_COMMON		1461
 
 #define FREQ_CIV_GENERAL	1469
+
+//halo
+
+#define FREQ_UNSCCOMM 1475
+#define FREQ_INNIECOMM 1479
 
 
 #define MAX_FREQ 1489 // ------------------------------------------------------

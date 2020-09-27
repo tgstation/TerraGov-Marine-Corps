@@ -8,7 +8,9 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	RADIO_CHANNEL_ALPHA = RADIO_TOKEN_ALPHA,
 	RADIO_CHANNEL_BRAVO = RADIO_TOKEN_BRAVO,
 	RADIO_CHANNEL_CHARLIE = RADIO_TOKEN_CHARLIE,
-	RADIO_CHANNEL_DELTA = RADIO_TOKEN_DELTA
+	RADIO_CHANNEL_DELTA = RADIO_TOKEN_DELTA,
+	RADIO_CHANNEL_UNSC = RADIO_TOKEN_UNSC,
+	RADIO_CHANNEL_INNIE = RADIO_TOKEN_INNIE
 ))
 
 
@@ -554,3 +556,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/distress/echo
 	name = "\improper Echo Task Force headset"
 	keyslot = /obj/item/encryptionkey/echo
+
+/obj/item/radio/headset/unsc
+	name = "\improper UNSC Headset"
+	keyslot = /obj/item/encryptionkey/unsc
+
+/obj/item/radio/headset/innie
+	name = "Insurrectionist Headset"
+	keyslot = /obj/item/encryptionkey/innie
