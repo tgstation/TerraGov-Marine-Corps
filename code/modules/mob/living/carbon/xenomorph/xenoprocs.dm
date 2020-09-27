@@ -254,8 +254,6 @@
 			if(!hive?.living_xeno_ruler || hive.living_xeno_ruler.loc.z == loc.z)
 				if(upgrade_stored >= xeno_caste.upgrade_threshold)
 					if(health == maxHealth && !incapacitated() && !handcuffed)
-						//if (agility || fortify || crest_defense) // just return until dude stop using this, avoids breaking armor values and causing issues :)
-							//return 
 						upgrade_xeno(upgrade_next())
 				else
 					// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.
