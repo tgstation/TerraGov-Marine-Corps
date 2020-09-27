@@ -29,8 +29,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	// 	var/turf/closed/wall/resin/WR = A
 	// 	var/oldname = WR.name
 	// 	if(WR.thicken())
-	// 		owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a thick substance and thickens [oldname].</span>", \
-	// 		"<span class='xenonotice'>You regurgitate some resin and thicken [oldname].</span>", null, 5)
+	// 		owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a thick substance and thickens [oldname].</span>","<span class='xenonotice'>You regurgitate some resin and thicken [oldname].</span>", null, 5)
 	// 		playsound(owner.loc, "alien_resin_build", 25)
 	// 		return succeed_activate()
 	// 	to_chat(owner, "<span class='xenowarning'>[WR] can't be made thicker.</span>")
@@ -40,8 +39,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	// 	var/obj/structure/mineral_door/resin/DR = A
 	// 	var/oldname = DR.name
 	// 	if(DR.thicken())
-	// 		owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a thick substance and thickens [oldname].</span>", \
-	// 			"<span class='xenonotice'>We regurgitate some resin and thicken [oldname].</span>", null, 5)
+	// 		owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a thick substance and thickens [oldname].</span>", "<span class='xenonotice'>We regurgitate some resin and thicken [oldname].</span>", null, 5)
 	// 		playsound(owner.loc, "alien_resin_build", 25)
 	// 		return succeed_activate()
 	// 	to_chat(owner, "<span class='xenowarning'>[DR] can't be made thicker.</span>")
