@@ -21,8 +21,8 @@
 
 
 /datum/job/unsc/marine/radio_help_message(mob/M)
-  . = ..()
-  to_chat(M, {"\nYou are a marine in the esteemed United Nations Space Command. You enforce peace across the galaxy."})
+	. = ..()
+	to_chat(M, {"\nYou are a marine in the esteemed United Nations Space Command. You enforce peace across the galaxy."})
 
 
 /datum/job/unsc/marine/leader
@@ -39,9 +39,8 @@
 
 
 /datum/job/unsc/marine/leader/radio_help_message(mob/M)
-  . = ..()
-  to_chat(M, {"\nYou are an NCO in the UNSC, charged with leading a squad of marines. Keep your unit cohesive,
-and make sure everyone escapes with their lives."})
+	. = ..()
+	to_chat(M, {"\nYou are an NCO in the UNSC, charged with leading a squad of marines. Keep your unit cohesive, and make sure everyone escapes with their lives."})
 
 
 /datum/outfit/job/unsc
@@ -81,8 +80,8 @@ and make sure everyone escapes with their lives."})
 
 
 /datum/job/insurrectionist/radio_help_message(mob/M)
-  . = ..()
-  to_chat(M, {"\nYou are an insurrectionist, fighting the tyranny of the UNSC. Avenge Far Isle."})
+	. = ..()
+	to_chat(M, {"\nYou are an insurrectionist, fighting the tyranny of the UNSC. Avenge Far Isle."})
 
 
 
@@ -101,8 +100,8 @@ and make sure everyone escapes with their lives."})
 
 
 /datum/job/insurrectionist/leader/radio_help_message(mob/M)
-  . = ..()
-  to_chat(M, {"\nYou are an insurrectionist leader. Lead your squad against the UNSC, and maintain unit cohesion."})
+	. = ..()
+	to_chat(M, {"\nYou are an insurrectionist leader. Lead your squad against the UNSC, and maintain unit cohesion."})
 
 //outfits
 
