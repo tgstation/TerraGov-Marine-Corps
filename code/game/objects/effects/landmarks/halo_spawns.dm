@@ -1,11 +1,3 @@
-// these use typepaths to avoid issues caused by mispellings when mapping or job titles changing
-/obj/effect/landmark/start/job
-	var/job
-
-/obj/effect/landmark/start/job/Initialize()
-	. = ..()
-	GLOB.spawns_by_job[job] += list(loc)
-
 //halo spawn points
 
 /obj/effect/landmark/start/job/urf_leader

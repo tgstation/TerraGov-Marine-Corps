@@ -931,7 +931,7 @@
 	unload_sound = 'sound/halo/Assault_Rifle_Reload_New.wav'
 	reload_sound = 'sound/halo/Assault_Rifle_Reload_New.wav'
 	current_mag = /obj/item/ammo_magazine/rifle/ma5b
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.16 SECONDS
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 
@@ -944,7 +944,7 @@
 	fire_sound = "sound/halo/dmr_fire_new.wav"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/halo/dmr_reload_new.wav'
-	fire_delay = 0.2 SECONDS
+	fire_delay = 0.8 SECONDS
 	reload_sound = 'sound/halo/dmr_reload_new.wav'
 	current_mag = /obj/item/ammo_magazine/rifle/m392
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
@@ -959,7 +959,7 @@
 	icon_state = "br55"
 	item_state = "br55"
 	fire_sound = 'sound/halo/Battle_Rifle_Fire_New.wav'
-	burst_delay = 0.1 SECONDS
+	burst_delay = 0.13 SECONDS
 	fire_delay = 0.3 SECONDS
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/halo/Battle_Rifle_Reload_New.wav'
@@ -980,6 +980,7 @@
 	unload_sound = 'sound/halo/SniperRifleReloadSoundEffect.ogg'
 	reload_sound = 'sound/halo/SniperRifleReloadSoundEffect.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/srs99
+	fire_delay = 6 SECONDS
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/srs99)
@@ -996,6 +997,7 @@
 	reload_sound = 'sound/halo/UNSC_Saw_Reload_Sound_Effect.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/m739
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
+	fire_delay = 0.13 SECONDS
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 
 //-------------------------------------------------------
@@ -1029,6 +1031,7 @@
 	reload_sound = 'sound/halo/Innie30calreload.ogg'
 	force = 15
 	current_mag = /obj/item/ammo_magazine/rifle/lmg30cal
+	fire_delay = 0.13 SECONDS
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_WIELDED_FIRING_ONLY
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 
@@ -1058,6 +1061,7 @@
 	unload_sound = 'sound/halo/SniperRifleReloadSoundEffect.ogg'
 	reload_sound = 'sound/halo/SniperRifleReloadSoundEffect.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/ssrs
+	fire_delay = 6 SECONDS
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/srs99)
