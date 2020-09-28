@@ -904,7 +904,7 @@
 /area/swordbase/ground/medsci)
 "hm" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/vending/insurrectionist,
+/obj/machinery/vending/marine,
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "hr" = (
@@ -1525,7 +1525,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/vending/insurrectionist,
+/obj/machinery/vending/marine,
 /turf/open/swordbase/snowstone,
 /area/swordbase/ground/inniecave)
 "mC" = (
@@ -4037,7 +4037,7 @@
 /turf/open/floor/plating,
 /area/swordbase/ground/storage)
 "ID" = (
-/obj/machinery/vending/insurrectionist,
+/obj/machinery/vending/marine,
 /turf/open/swordbase/snowstone,
 /area/swordbase/ground/inniecave)
 "IF" = (
@@ -4089,7 +4089,7 @@
 "Je" = (
 /obj/machinery/light,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/vending/insurrectionist,
+/obj/machinery/vending/marine,
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "Jf" = (
@@ -7601,7 +7601,7 @@ XL
 fC
 gW
 gW
-Ga
+gW
 gW
 gW
 gW
