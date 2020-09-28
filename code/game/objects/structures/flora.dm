@@ -487,6 +487,7 @@
 
 /obj/structure/flora/rock/rocks
 	name = "rocks"
+	density = FALSE
 	icon_state = "rocks1"
 	icon_tag = "rocks"
 	variations = 3

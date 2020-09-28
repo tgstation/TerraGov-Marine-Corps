@@ -1657,7 +1657,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/halosmg //smgs foe today???
 	name = "5x23mm M443 Caseless Full Metal Jacket"
-	damage = 15 // technically a 2s ttk at pb, but will have dmg falloff & worse accuracy at range, truly a short range weapon
+	damage = 10 // technically a 2s ttk at pb, but will have dmg falloff & worse accuracy at range, truly a short range weapon
 	hud_state = "smg"
 	hud_state_empty = "smg_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC
@@ -1700,8 +1700,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 
 //Shotguns
-datum/ammo/bullet/shotgun/halo
 
+/datum/ammo/bullet/shotgun/halo
 
 /datum/ammo/bullet/shotgun/halo/buckshot
 	name = "8 Gauge 000 Buckshot"
@@ -1719,8 +1719,10 @@ datum/ammo/bullet/shotgun/halo
 	damage_falloff = 4
 	penetration = 0
 
+
 /datum/ammo/bullet/shotgun/halo/slug
 	name = "8 Gauge Sabot Slug"
+	icon_state = "shotgun_slug"
 	hud_state = "shotgun_slug"
 	flags_ammo_behavior = AMMO_BALLISTIC
 	shell_speed = 3

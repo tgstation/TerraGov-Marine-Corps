@@ -368,7 +368,7 @@ obj/item/ammo_magazine/rifle/m739
 	icon_state = "ma3"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/ma37
-	max_rounds = 40
+	max_rounds = 32
 	gun_type = /obj/item/weapon/gun/rifle/ma3
 
 /obj/item/ammo_magazine/rifle/lmg30cal

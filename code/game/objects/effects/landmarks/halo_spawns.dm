@@ -1,4 +1,4 @@
-//halo spawns
+//halo spawn points
 
 /obj/effect/landmark/start/job/urf_leader
 	icon_state = "FC"
