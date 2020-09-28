@@ -112,6 +112,10 @@
 	shuttle_id = "normandy"
 	name = "Normandy"
 
+/datum/map_template/shuttle/cas
+	shuttle_id = "condor"
+	name = "Condor"
+
 /datum/map_template/shuttle/escape_pod
 	shuttle_id = "escape_pod"
 	name = "Escape Pod"
