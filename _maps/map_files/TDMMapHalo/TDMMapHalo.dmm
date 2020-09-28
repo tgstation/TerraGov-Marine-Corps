@@ -626,8 +626,8 @@
 /area/swordbase/ground/medsci)
 "fc" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/vending/uniform_supply,
-/turf/open/swordbase/snowstone,
+/obj/machinery/marine_selector/clothes/insurrection,
+/turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "fg" = (
 /turf/open/floor/mainship/research/containment/floor1,
@@ -708,7 +708,7 @@
 /turf/open/floor/mainship/mono,
 /area/swordbase/ground/medsci)
 "fC" = (
-/obj/machinery/vending/dress_supply,
+/obj/machinery/marine_selector/clothes/unscMarine/leader,
 /turf/open/floor/tile/dark/brown2{
 	dir = 9
 	},
@@ -859,7 +859,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/swordbase/ground/outdoors)
 "gW" = (
-/obj/machinery/vending/dress_supply,
+/obj/machinery/marine_selector/clothes/unscMarine,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},
@@ -904,7 +904,7 @@
 /area/swordbase/ground/medsci)
 "hm" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/vending/marine,
+/obj/machinery/marine_selector/gear/innieEquipment,
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "hr" = (
@@ -1525,7 +1525,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/vending/marine,
+/obj/machinery/marine_selector/gear/innieEquipment,
 /turf/open/swordbase/snowstone,
 /area/swordbase/ground/inniecave)
 "mC" = (
@@ -1593,8 +1593,8 @@
 /turf/open/floor/mainship/mono,
 /area/swordbase/ground/medsci)
 "mU" = (
-/obj/machinery/vending/uniform_supply,
-/turf/open/swordbase/snowstone,
+/obj/machinery/marine_selector/clothes/insurrection,
+/turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "mW" = (
 /obj/item/tool/candle,
@@ -2071,7 +2071,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/swordbase/ground/medbaysouth)
 "rK" = (
-/obj/machinery/vending/marine,
+/obj/machinery/marine_selector/gear/unscEquipment,
 /turf/open/floor/tile/dark/brown2{
 	dir = 5
 	},
@@ -3367,8 +3367,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/vending/uniform_supply,
-/turf/open/swordbase/snowstone,
+/obj/machinery/marine_selector/clothes/insurrection,
+/turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "Cq" = (
 /turf/open/floor/prison/kitchen,
@@ -3463,6 +3463,9 @@
 /area/swordbase/ground/outdoors)
 "Dp" = (
 /obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
@@ -4037,7 +4040,7 @@
 /turf/open/floor/plating,
 /area/swordbase/ground/storage)
 "ID" = (
-/obj/machinery/vending/marine,
+/obj/machinery/marine_selector/gear/innieEquipment,
 /turf/open/swordbase/snowstone,
 /area/swordbase/ground/inniecave)
 "IF" = (
@@ -4067,7 +4070,7 @@
 /turf/open/floor/asteroidfloor,
 /area/swordbase/ground/outdoors)
 "IY" = (
-/obj/machinery/vending/marine,
+/obj/machinery/marine_selector/gear/unscEquipment,
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
@@ -4089,7 +4092,7 @@
 "Je" = (
 /obj/machinery/light,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/vending/marine,
+/obj/machinery/marine_selector/gear/innieEquipment,
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "Jf" = (
@@ -4881,7 +4884,7 @@
 /area/swordbase/ground/science)
 "Pu" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/vending/uniform_supply,
+/obj/machinery/marine_selector/clothes/insurrection/leader,
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "Pw" = (
@@ -7599,7 +7602,7 @@ nw
 nw
 XL
 fC
-gW
+XL
 gW
 gW
 gW
@@ -7721,7 +7724,7 @@ nw
 nw
 XL
 Dp
-VZ
+ZO
 VZ
 VZ
 VZ
