@@ -116,7 +116,11 @@
 	. = ..()
 	toggle_mode(user)
 
-/obj/item/binoculars/tactical/proc/toggle_mode(mob/user)
+/obj/item/binoculars/tactical/verb/toggle_mode(mob/user)
+	set category = "Object"
+	set name = "Toggle Laser Mode"
+	if(!user)
+		user = usr
 	if(zoom)
 		return
 	if(!changable)
