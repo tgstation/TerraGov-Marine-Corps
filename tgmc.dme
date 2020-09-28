@@ -381,6 +381,7 @@
 #include "code\game\area\prison.dm"
 #include "code\game\area\research_outpost.dm"
 #include "code\game\area\sulaco.dm"
+#include "code\game\area\swordbase.dm"
 #include "code\game\area\tyson_station.dm"
 #include "code\game\area\vaporprocessing.dm"
 #include "code\game\area\whiskeyoutpost.dm"
