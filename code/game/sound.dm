@@ -145,6 +145,7 @@
     'sound/music/animyst.ogg',
     'sound/music/guitar.ogg',
     'sound/music/space.ogg',
+    'sound/music/legend.ogg',
     )
     if(!SSticker?.login_music)
         return FALSE
