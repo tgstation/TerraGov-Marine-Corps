@@ -1,6 +1,7 @@
 /atom
 	layer = TURF_LAYER
 	plane = GAME_PLANE
+	appearance_flags = TILE_BOUND
 	var/level = 2
 
 	var/flags_atom = NONE
