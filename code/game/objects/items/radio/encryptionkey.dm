@@ -118,3 +118,11 @@
 /obj/item/encryptionkey/echo
 	name = "\improper Echo Task Force encryption key"
 	channels = list(RADIO_CHANNEL_ECHO = TRUE, RADIO_CHANNEL_COMMAND = TRUE, RADIO_CHANNEL_POLICE = TRUE, RADIO_CHANNEL_ALPHA = TRUE, RADIO_CHANNEL_BRAVO = TRUE, RADIO_CHANNEL_CHARLIE = TRUE, RADIO_CHANNEL_DELTA = TRUE, RADIO_CHANNEL_ENGINEERING = TRUE, RADIO_CHANNEL_MEDICAL = TRUE, RADIO_CHANNEL_REQUISITIONS = TRUE)
+
+/obj/item/encryptionkey/unsc
+	name = "\improper UNSC encryption key"
+	channels = list(RADIO_CHANNEL_UNSC = TRUE)
+
+/obj/item/encryptionkey/innie
+	name = "\improper Insurrection encryption key"
+	channels = list(RADIO_CHANNEL_INNIE = TRUE)

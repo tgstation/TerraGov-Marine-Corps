@@ -73,6 +73,22 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	icon_state = "mbx900_tracker"
 	default_ammo = /datum/ammo/bullet/shotgun/mbx900_tracker
 
+/obj/item/ammo_magazine/shotgun/eightGauge
+	name = "box of 8 gauge buckshot shells"
+	desc = "A box of UNSC standard 8 gauge shells. These are buckshots."
+	icon_state = "mbx900_buckshot"
+	default_ammo = /datum/ammo/bullet/shotgun/halo/buckshot
+	caliber = "8g" //Halo shotguns are 8 gauge
+	gun_type = /obj/item/weapon/gun/shotgun/pump
+	max_rounds = 30 // 6 handfuls
+
+/obj/item/ammo_magazine/shotgun/eightGauge/slug
+	name = "box of 8 gauge slugs"
+	desc = "A box of UNSC standard 8 gauge shells. These are slugs."
+	icon_state = "mbx900_sabot"
+	default_ammo = /datum/ammo/bullet/shotgun/halo/slug
+
+
 //-------------------------------------------------------
 
 /*
@@ -87,6 +103,14 @@ also doesn't really matter. You can only reload them with handfuls.
 	caliber = "12g"
 	max_rounds = 8
 	chamber_closed = 0
+//halo
+
+/obj/item/ammo_magazine/internal/shotgun/pump/halo
+	name = "shotgun tube"
+	default_ammo = /datum/ammo/bullet/shotgun/halo
+	caliber = "8g"
+	max_rounds = 8
+	chamber_closed = 1
 
 /obj/item/ammo_magazine/internal/shotgun/pump
 

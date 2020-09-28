@@ -126,6 +126,9 @@ a.popt {text-decoration: none;}
 .charlieradio			{color: #AA55AA;}
 .deltaradio				{color: #007FCF;}
 
+.unscradio			{color: #ad9734}
+.innieradio				{color: #852a15}
+
 .binarysay    			{color: #20c20e; background-color: #000000; display: block;}
 .binarysay a  			{color: #00ff00;}
 .binarysay a:active, .binarysay a:visited {color: #88ff88;}
