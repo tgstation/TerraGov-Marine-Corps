@@ -239,6 +239,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/structure/window/reinforced,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "aaS" = (
@@ -311,9 +312,11 @@
 /area/mainship/command/self_destruct)
 "abc" = (
 /obj/machinery/vending/uniform_supply,
-/obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
 	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
 	},
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
@@ -390,9 +393,6 @@
 /area/mainship/command/self_destruct)
 "abu" = (
 /obj/machinery/vending/attachments,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
 /obj/structure/window/reinforced{
 	dir = 8
 	},
@@ -2440,6 +2440,11 @@
 "bOu" = (
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
+"bXN" = (
+/obj/structure/cable,
+/obj/structure/closet/secure_closet/medical_doctor,
+/turf/open/floor/mainship,
+/area/mainship/medical/medical_science)
 "cCb" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -2555,6 +2560,11 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
+"umn" = (
+/obj/structure/cable,
+/obj/structure/closet/secure_closet/medical3,
+/turf/open/floor/mainship,
+/area/mainship/medical/lower_medical)
 "way" = (
 /obj/structure/cable,
 /obj/machinery/landinglight/ds1/delaytwo,
@@ -4804,7 +4814,7 @@ ahF
 ahF
 ahg
 ahy
-ahh
+umn
 ahg
 ahg
 ahg
@@ -4864,7 +4874,7 @@ ahY
 aij
 aix
 ahY
-aiU
+bXN
 ahq
 ajD
 ahY
