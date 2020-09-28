@@ -137,7 +137,14 @@
     'sound/music/loopingsteps.ogg',
     'sound/music/pogo.ogg',
     'sound/music/setyoufree.ogg',
-    'sound/music/slider.ogg',
+    'sound/music/bspmusic.ogg',
+    'sound/music/dream.ogg',
+    'sound/music/themall.ogg',
+    'sound/music/egghead.ogg',
+    'sound/music/sexmusic.ogg',
+    'sound/music/animyst.ogg',
+    'sound/music/guitar.ogg',
+    'sound/music/space.ogg',
     )
     if(!SSticker?.login_music)
         return FALSE
