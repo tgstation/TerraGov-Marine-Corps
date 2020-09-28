@@ -1,6 +1,6 @@
 // jobs for WC
 
-//UNSC\\
+//UNSC
 
 /datum/job/unsc/marine
 	title = "UNSC Marine"
