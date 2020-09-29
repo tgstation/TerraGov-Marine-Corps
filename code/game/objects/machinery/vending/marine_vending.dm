@@ -689,6 +689,7 @@
 					/obj/item/storage/pouch/field_pouch = 10,
 					/obj/item/storage/pouch/general/large = 10,
 					/obj/item/storage/pouch/document = 10,
+					/obj/item/clothing/tie/storage/black_vest = 10,
 					/obj/item/clothing/tie/storage/brown_vest = 10,
 					/obj/item/clothing/tie/storage/white_vest/medic = 10,
 					/obj/item/clothing/tie/storage/webbing = 10,
