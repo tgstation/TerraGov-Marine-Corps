@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - bugfix: "Fixed goonchat showing the red \"You are AFK\" message while you are connected and playing."

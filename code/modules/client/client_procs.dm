@@ -31,59 +31,54 @@
 		return
 
 	//Asset cache
-	var/job
+	var/asset_cache_job
 	if(href_list["asset_cache_confirm_arrival"])
-		job = round(text2num(href_list["asset_cache_confirm_arrival"]))
-		//because we skip the limiter, we have to make sure this is a valid arrival and not somebody tricking us
-		//into letting append to a list without limit.
-		if(job > 0 && job <= last_asset_job && !(job in completed_asset_jobs))
-			completed_asset_jobs += job
+		asset_cache_job = asset_cache_confirm_arrival(href_list["asset_cache_confirm_arrival"])
+		if (!asset_cache_job)
 			return
-		else if(job in completed_asset_jobs) //byond bug ID:2256651
-			to_chat(src, "<span class='danger'>An error has been detected in how your client is receiving resources. Attempting to correct.... (If you keep seeing these messages you might want to close byond and reconnect)</span>")
-			src << browse("...", "window=asset_cache_browser")
 
-
+	// Rate limiting
 	var/mtl = CONFIG_GET(number/minute_topic_limit)
-	if(mtl && !check_rights(R_ADMIN, FALSE))
+	if (!holder && mtl)
 		var/minute = round(world.time, 600)
-		if(!topiclimiter)
+		if (!topiclimiter)
 			topiclimiter = new(LIMITER_SIZE)
-		if(minute != topiclimiter[CURRENT_MINUTE])
+		if (minute != topiclimiter[CURRENT_MINUTE])
 			topiclimiter[CURRENT_MINUTE] = minute
 			topiclimiter[MINUTE_COUNT] = 0
 		topiclimiter[MINUTE_COUNT] += 1
 		if (topiclimiter[MINUTE_COUNT] > mtl)
 			var/msg = "Your previous action was ignored because you've done too many in a minute."
-			if(minute != topiclimiter[ADMINSWARNED_AT]) //only one admin message per-minute. (if they spam the admins can just boot/ban them)
+			if (minute != topiclimiter[ADMINSWARNED_AT]) //only one admin message per-minute. (if they spam the admins can just boot/ban them)
 				topiclimiter[ADMINSWARNED_AT] = minute
-				log_admin_private("[key_name(src)] has hit the per-minute topic limit of [mtl] topic calls.")
-				message_admins("[ADMIN_LOOKUP(src)] has hit the per-minute topic limit of [mtl] topic calls.")
+				msg += " Administrators have been informed."
+				log_game("[key_name(src)] Has hit the per-minute topic limit of [mtl] topic calls in a given game minute")
+				message_admins("[ADMIN_LOOKUPFLW(usr)] [ADMIN_KICK(usr)] Has hit the per-minute topic limit of [mtl] topic calls in a given game minute")
 			to_chat(src, "<span class='danger'>[msg]</span>")
 			return
-
 	var/stl = CONFIG_GET(number/second_topic_limit)
-	if(stl && !check_rights(R_ADMIN, FALSE))
+	if (!holder && stl)
 		var/second = round(world.time, 10)
-		if(!topiclimiter)
+		if (!topiclimiter)
 			topiclimiter = new(LIMITER_SIZE)
-		if(second != topiclimiter[CURRENT_SECOND])
+		if (second != topiclimiter[CURRENT_SECOND])
 			topiclimiter[CURRENT_SECOND] = second
 			topiclimiter[SECOND_COUNT] = 0
 		topiclimiter[SECOND_COUNT] += 1
-		if(topiclimiter[SECOND_COUNT] > stl)
+		if (topiclimiter[SECOND_COUNT] > stl)
 			to_chat(src, "<span class='danger'>Your previous action was ignored because you've done too many in a second</span>")
 			return
-
-
 	//Logs all hrefs, except chat pings
 	if(!(href_list["_src_"] == "chat" && href_list["proc"] == "ping" && LAZYLEN(href_list) == 2))
 		log_href("[src] (usr:[usr]\[[COORD(usr)]\]) : [hsrc ? "[hsrc] " : ""][href]")
-
 	//byond bug ID:2256651
-	if(job && (job in completed_asset_jobs))
+	if (asset_cache_job && (asset_cache_job in completed_asset_jobs))
 		to_chat(src, "<span class='danger'>An error has been detected in how your client is receiving resources. Attempting to correct.... (If you keep seeing these messages you might want to close byond and reconnect)</span>")
 		src << browse("...", "window=asset_cache_browser")
+		return
+	if (href_list["asset_cache_preload_data"])
+		asset_cache_preload_data(href_list["asset_cache_preload_data"])
+		return
 
 
 	//Admin PM
@@ -246,8 +241,6 @@
 		to_chat(src, "<span class='alert'>[GLOB.custom_info]</span>")
 		to_chat(src, "<br>")
 
-	preload_rsc = GLOB.external_rsc_url
-
 	connection_time = world.time
 	connection_realtime = world.realtime
 	connection_timeofday = world.timeofday
@@ -272,13 +265,17 @@
 	get_message_output("watchlist entry", ckey)
 	validate_key_in_db()
 
-	send_assets()
+	send_resources()
 
 	generate_clickcatcher()
 	apply_clickcatcher()
 
 	if(prefs.lastchangelog != GLOB.changelog_hash) //bolds the changelog button on the interface so we know there are updates.
-		winset(src, "infowindow.changelog", "font-style=bold")
+		to_chat(src, "<span class='info'>You have unread updates in the changelog.</span>")
+		if(CONFIG_GET(flag/aggressive_changelog))
+			changes()
+		else
+			winset(src, "infowindow.changelog", "font-style=bold")
 
 	if(ckey in GLOB.clientmessages)
 		for(var/message in GLOB.clientmessages[ckey])
@@ -420,17 +417,24 @@
 	return FALSE
 
 
-//send resources to the client. It's here in its own proc so we can move it around easiliy if need be
-/client/proc/send_assets()
-	//get the common files
-	getFiles(
-		'html/browser/search.js',
-		'html/browser/panels.css',
-		'html/browser/common.css'
-		)
-	spawn(10) //removing this spawn causes all clients to not get verbs.
+/// Send resources to the client. Sends both game resources and browser assets.
+/client/proc/send_resources()
+#if (PRELOAD_RSC == 0)
+	var/static/next_external_rsc = 0
+	var/list/external_rsc_urls = CONFIG_GET(keyed_list/external_rsc_urls)
+	if(length(external_rsc_urls))
+		next_external_rsc = WRAP(next_external_rsc+1, 1, external_rsc_urls.len+1)
+		preload_rsc = external_rsc_urls[next_external_rsc]
+#endif
+
+	spawn (10) //removing this spawn causes all clients to not get verbs.
+
+		//load info on what assets the client has
+		src << browse('code/modules/asset_cache/validate_assets.html', "window=asset_cache_browser")
+
 		//Precache the client with all other assets slowly, so as to not block other browse() calls
-		getFilesSlow(src, SSassets.preload, register_asset = FALSE)
+		if (CONFIG_GET(flag/asset_simple_preload))
+			addtimer(CALLBACK(SSassets.transport, /datum/asset_transport.proc/send_assets_slow, src, SSassets.transport.preload), 5 SECONDS)
 
 
 //Hook, override it to run code when dir changes

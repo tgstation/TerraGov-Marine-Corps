@@ -291,5 +291,16 @@
 	caliber = "8.6x70mm"
 	icon_state = "tl127"
 	default_ammo = /datum/ammo/bullet/sniper/pfc
-	max_rounds = 10
+	max_rounds = 7
 	gun_type = /obj/item/weapon/gun/rifle/chambered
+
+//-------------------------------------------------------
+//Marine magazine automatic sniper, or the T-81.
+/obj/item/ammo_magazine/rifle/autosniper
+	name = "\improper T-81 automatic sniper rifle magazine"
+	desc = "A box magazine filled with 8.6x70mm rifle rounds for the T-81."
+	caliber = "8.6x70mm"
+	icon_state = "t81"
+	default_ammo = /datum/ammo/bullet/sniper/auto
+	max_rounds = 12
+	gun_type = /obj/item/weapon/gun/rifle/standard_autosniper

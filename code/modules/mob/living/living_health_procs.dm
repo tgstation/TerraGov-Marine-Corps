@@ -251,7 +251,6 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	fire_stacks = 0
 
 	// shut down ongoing problems
-	radiation = 0
 	bodytemperature = get_standard_bodytemperature()
 	disabilities = 0
 
@@ -341,6 +340,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 /mob/living/carbon/xenomorph/revive()
 	plasma_stored = xeno_caste.plasma_max
 	stagger = 0
+	sunder = 0
 	set_slowdown(0)
 	if(stat == DEAD)
 		hive?.on_xeno_revive(src)

@@ -171,13 +171,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		new_proj.fire_at(null, shooter, source, range, speed, new_angle, TRUE) //Angle-based fire. No target.
 
 
-	//This is sort of a workaround for now. There are better ways of doing this ~N.
-/datum/ammo/proc/stun_living(mob/living/target, obj/projectile/proj) //Taser proc to stun folks.
-	if(!isliving(target) || isxeno(target))
-		return //Not on aliens.
-	target.apply_effects(12, 20)
-
-
 /datum/ammo/proc/drop_flame(turf/T)
 	if(!istype(T))
 		return
@@ -270,7 +263,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	hud_state = "pistol_ap"
 	damage = 20
 	accuracy = 10
-	penetration = 30
+	penetration = 12.5
 	shrapnel_chance = 25
 
 /datum/ammo/bullet/pistol/heavy
@@ -891,6 +884,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range_min = 2
 	damage_falloff = 0.25
 
+/datum/ammo/bullet/sniper/auto
+	name = "high caliber rifle bullet"
+	hud_state = "minigun"
+	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SUNDERING|AMMO_SNIPER|AMMO_SKIPS_HUMANS
+	iff_signal = ACCESS_IFF_MARINE
+	damage = 80
+	penetration = 30
+	sundering = 7.5
+	accurate_range_min = 2
+	damage_falloff = 0.25
+
 /*
 //================================================
 					Special Ammo
@@ -934,7 +938,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shrapnel_chance = 75
 
 /datum/ammo/bullet/smartgun/dirty/on_hit_mob(mob/living/victim, obj/projectile/proj)
-	victim.radiation += 3 //Needs a refactor.
+	victim.adjustToxLoss(10)//does tox damage now
 
 /datum/ammo/bullet/smartgun/dirty/lethal
 	flags_ammo_behavior = AMMO_BALLISTIC
@@ -1093,6 +1097,62 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		return
 	explosion(T, 0, 3, 5, 5, throw_range = 0)
 
+/datum/ammo/rocket/recoilless
+	name = "high explosive shell"
+	icon_state = "shell"
+	hud_state = "shell_he"
+	hud_state_empty = "shell_empty"
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
+	armor_type = "bomb"
+	damage_falloff = 0
+	shell_speed = 2
+	accuracy = 40
+	accurate_range = 20
+	max_range = 30
+	damage = 100
+	penetration = 50
+	sundering = 50
+
+/datum/ammo/rocket/recoilless/drop_nade(turf/T)
+	explosion(T, 0, 3, 4, 5)
+
+/datum/ammo/rocket/recoilless/heat //placeholder/adminbus for now
+	name = "HEAT shell"
+	icon_state = "shell"
+	hud_state = "shell_heat"
+	hud_state_empty = "shell_empty"
+	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET|AMMO_SUNDERING
+	armor_type = "bomb"
+	damage_falloff = 0
+	shell_speed = 2
+	accuracy = 40
+	accurate_range = 20
+	max_range = 30
+	damage = 175
+	penetration = 100
+	sundering = 100
+
+/datum/ammo/rocket/recoilless/heat/drop_nade(turf/T)
+	explosion(T, 0, 2, 3, 5)
+
+/datum/ammo/rocket/recoilless/light
+	name = "light explosive shell"
+	icon_state = "shell"
+	hud_state = "shell_le"
+	hud_state_empty = "shell_empty"
+	flags_ammo_behavior = AMMO_ROCKET|AMMO_SUNDERING //We want this to specifically go farther than onscreen range.
+	armor_type = "bomb"
+	damage_falloff = 0
+	shell_speed = 3
+	accuracy = 40
+	accurate_range = 15
+	max_range = 20
+	damage = 75
+	penetration = 50
+	sundering = 25
+
+/datum/ammo/rocket/recoilless/light/drop_nade(turf/T)
+	explosion(T, 0, 1, 8, 5)
 
 /*
 //================================================
@@ -1123,14 +1183,21 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	icon_state = "stun"
 	hud_state = "taser"
 	hud_state_empty = "battery_empty"
-	damage_type = OXY
+	damage = 120
+	penetration = 0
+	damage_type = STAMINA
 	flags_ammo_behavior = AMMO_ENERGY
 	max_range = 15
 	accurate_range = 10
 
-/datum/ammo/energy/taser/on_hit_mob(mob/M, obj/projectile/P)
-	stun_living(M,P)
-
+/datum/ammo/energy/tesla
+	name = "energy ball"
+	icon_state = "tesla"
+	hud_state = "taser"
+	hud_state_empty = "battery_empty"
+	flags_ammo_behavior = AMMO_ENERGY|AMMO_CHAINING
+	damage = 20
+	penetration = 20
 
 /datum/ammo/energy/lasgun
 	name = "laser bolt"
@@ -1516,7 +1583,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_type = BURN
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR
 	armor_type = "fire"
-	max_range = 7
+	max_range = 6
 	damage = 50
 	var/fire_color = "red"
 	var/burnlevel = 24
@@ -1552,7 +1619,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 /datum/ammo/flamethrower/blue
 	name = "blue flame"
 	hud_state = "flame_blue"
-	max_range = 7
+	max_range = 6
 	fire_color = "blue"
 	burnlevel = 36
 	burntime = 40

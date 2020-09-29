@@ -26,7 +26,12 @@
 /datum/internal_organ/process()
 		return 0
 
-//Germs
+/datum/internal_organ/Destroy()
+	owner = null
+	organ_holder = null
+	return ..()
+
+///Handles germs on the organ
 /datum/internal_organ/proc/handle_antibiotics()
 	var/antibiotics = owner.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
 
@@ -225,7 +230,7 @@
 					O.take_damage(0.2  * PROCESS_ACCURACY, TRUE)
 
 		// Heal a bit if needed and we're not busy. This allows recovery from low amounts of toxins.
-		if(!owner.drunkenness && owner.getToxLoss() <= 15 && !owner.radiation && min_bruised_damage > damage > 0)
+		if(!owner.drunkenness && owner.getToxLoss() <= 15 && min_bruised_damage > damage > 0)
 			if(!owner.reagents.has_reagent(/datum/reagent/medicine/dylovene)) // Detox effect
 				heal_organ_damage(0.2 * PROCESS_ACCURACY)
 			else

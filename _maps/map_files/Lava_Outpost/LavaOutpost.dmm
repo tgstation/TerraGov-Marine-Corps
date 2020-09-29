@@ -111,9 +111,7 @@
 /area/lavaland/medical)
 "bw" = (
 /obj/machinery/landinglight/ds2/delaytwo,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 2
-	},
+/turf/open/floor/plating/asteroidwarning,
 /area/shuttle/drop2/lz2)
 "by" = (
 /turf/open/lavaland/lava/lpiece,
@@ -259,9 +257,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/shuttle/drop2/lz2)
 "dC" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/tile/dark,
 /area/lavaland/security/nuke)
 "dE" = (
@@ -745,6 +741,10 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/wood,
 /area/lavaland/civilian)
+"jH" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/central)
 "jI" = (
 /obj/structure/table,
 /obj/machinery/microwave,
@@ -807,9 +807,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/lavaland/engie/engine)
 "kg" = (
-/obj/structure/rack,
-/obj/item/attachable/attached_gun/grenade,
-/obj/item/attachable/attached_gun/grenade,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -947,11 +945,13 @@
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/northwest)
+"lu" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "lx" = (
 /obj/machinery/landinglight/ds2/delaythree,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 2
-	},
+/turf/open/floor/plating/asteroidwarning,
 /area/shuttle/drop2/lz2)
 "lA" = (
 /obj/structure/window/framed/colony,
@@ -1885,9 +1885,7 @@
 /area/lavaland/civilian/cargo)
 "vS" = (
 /obj/machinery/landinglight/ds2/delayone,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 2
-	},
+/turf/open/floor/plating/asteroidwarning,
 /area/shuttle/drop2/lz2)
 "vT" = (
 /obj/structure/largecrate/random/barrel,
@@ -2693,9 +2691,7 @@
 /area/lavaland/security/infocenter)
 "ES" = (
 /obj/machinery/landinglight/ds2/delaytwo,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 2
-	},
+/turf/open/floor/plating/asteroidwarning,
 /area/shuttle/drop1/lz1)
 "ET" = (
 /obj/structure/cable,
@@ -2768,9 +2764,7 @@
 /area/lavaland/security)
 "FE" = (
 /obj/machinery/landinglight/ds2/delayone,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 2
-	},
+/turf/open/floor/plating/asteroidwarning,
 /area/shuttle/drop1/lz1)
 "FF" = (
 /obj/machinery/light{
@@ -2861,9 +2855,7 @@
 /area/shuttle/drop2/lz2)
 "Gw" = (
 /obj/machinery/landinglight/ds2,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 2
-	},
+/turf/open/floor/plating/asteroidwarning,
 /area/shuttle/drop1/lz1)
 "Gy" = (
 /obj/structure/closet/firecloset,
@@ -2904,9 +2896,7 @@
 /area/lavaland/cave/central)
 "GQ" = (
 /obj/machinery/landinglight/ds2/delaythree,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 2
-	},
+/turf/open/floor/plating/asteroidwarning,
 /area/shuttle/drop1/lz1)
 "GS" = (
 /turf/closed/wall/indestructible/mineral,
@@ -2986,9 +2976,7 @@
 /area/lavaland/engie/refine)
 "Io" = (
 /obj/machinery/landinglight/ds2,
-/turf/open/floor/plating/asteroidwarning{
-	dir = 2
-	},
+/turf/open/floor/plating/asteroidwarning,
 /area/shuttle/drop2/lz2)
 "Iq" = (
 /obj/structure/largecrate/guns/merc,
@@ -3118,6 +3106,10 @@
 	dir = 1
 	},
 /area/shuttle/drop2/lz2)
+"JE" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/white,
+/area/lavaland/security/infocenter)
 "JH" = (
 /obj/machinery/landinglight/ds2{
 	dir = 8
@@ -3308,10 +3300,6 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/asteroidfloor,
 /area/lavaland/cave/northeast)
-"LE" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/lavaland/basalt,
-/area/lavaland/cave/central)
 "LG" = (
 /obj/effect/spawner/random/toolbox,
 /turf/open/lavaland/basalt,
@@ -3405,7 +3393,6 @@
 	dir = 2;
 	icon_state = "shutter0";
 	id = "OR2";
-	name = "\improper Shutters";
 	opacity = 0
 	},
 /obj/structure/window/framed/colony,
@@ -3709,9 +3696,7 @@
 /turf/open/floor/plating,
 /area/lavaland/engie/one)
 "QX" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
@@ -3966,8 +3951,7 @@
 	},
 /area/lavaland)
 "Ts" = (
-/obj/structure/table,
-/obj/structure/xenoautopsy,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/white,
 /area/lavaland/medical/cmo)
 "Tw" = (
@@ -22690,7 +22674,7 @@ Ve
 ax
 Bj
 FL
-Pa
+JE
 ax
 Yy
 Yy
@@ -28464,7 +28448,7 @@ al
 al
 al
 fw
-aY
+lu
 aY
 iS
 ks
@@ -30853,7 +30837,7 @@ Qb
 Qb
 Qb
 Eu
-Qb
+jH
 Qb
 Qb
 Qb
@@ -33690,7 +33674,7 @@ Qb
 Qb
 Fa
 Qb
-LE
+Qb
 YL
 YL
 Dt

@@ -270,7 +270,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		to_chat(M, {"<span class='alert'>[numXenosPlanet] xeno\s on the planet.
 [numXenosShip] xeno\s on the ship.
 [numHostsPlanet] human\s on the planet.
-[numHostsShip] human\s on the ship."
+[numHostsShip] human\s on the ship.
 [numHostsTransit] human\s in transit.
 [numXenosTransit] xeno\s in transit.</span>"})
 
@@ -449,6 +449,9 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		dat += "[GLOB.round_statistics.defiler_defiler_stings] number of times Defilers stung."
 	if(GLOB.round_statistics.defiler_neurogas_uses)
 		dat += "[GLOB.round_statistics.defiler_neurogas_uses] number of times Defilers vented neurogas."
+	if(GLOB.round_statistics.xeno_unarmed_attacks && GLOB.round_statistics.xeno_bump_attacks)
+		dat += "[GLOB.round_statistics.xeno_bump_attacks] bump attacks, which made up [(GLOB.round_statistics.xeno_bump_attacks / GLOB.round_statistics.xeno_unarmed_attacks) * 100]% of all attacks ([GLOB.round_statistics.xeno_unarmed_attacks])."
+
 	var/output = jointext(dat, "<br>")
 	for(var/mob/player in GLOB.player_list)
 		if(player?.client?.prefs?.toggles_chat & CHAT_STATISTICS)
@@ -607,8 +610,9 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	player.mind.transfer_to(player.new_character)
 	var/datum/job/job = player.assigned_role
 	job.on_late_spawn(player.new_character)
+	var/area/A = get_area(player.new_character)
+	deadchat_broadcast("<span class='game'> has woken at <span class='name'>[A?.name]</span>.</span>", "<span class='game'><span class='name'>[player.new_character.real_name]</span> ([job.title])</span>", follow_target = player.new_character, message_type = DEADCHAT_ARRIVALRATTLE)
 	qdel(player)
-
 
 /datum/game_mode/proc/attempt_to_join_as_larva(mob/xeno_candidate)
 	to_chat(xeno_candidate, "<span class='warning'>This is unavailable in this gamemode.</span>")

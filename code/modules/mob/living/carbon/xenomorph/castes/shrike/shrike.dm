@@ -31,18 +31,6 @@
 
 
 // ***************************************
-// *********** Name
-// ***************************************
-/mob/living/carbon/xenomorph/shrike/generate_name()
-	name = "[hive.prefix][xeno_caste.upgrade_name] [xeno_caste.display_name]" //No number, shrikes are unique.
-
-	//Update linked data so they show up properly
-	real_name = name
-	if(mind)
-		mind.name = name
-
-
-// ***************************************
 // *********** Pain Hud
 // ***************************************
 /mob/living/carbon/xenomorph/prepare_huds()

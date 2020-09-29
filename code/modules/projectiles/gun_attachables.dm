@@ -47,6 +47,7 @@ Defined in conflicts.dm of the #defines folder.
 
 	//These are flat bonuses applied and are passive, though they may be applied at different points.
 	var/accuracy_mod 	= 0 //Modifier to firing accuracy, works off a multiplier.
+	var/scoped_accuracy_mod = 0 //as above but for scoped.
 	var/accuracy_unwielded_mod = 0 //same as above but for onehanded.
 	var/damage_mod 		= 0 //Modifer to the damage mult, works off a multiplier.
 	var/damage_falloff_mod = 0 //Modifier to damage falloff, works off a multiplier.
@@ -275,7 +276,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/suppressor
 	name = "suppressor"
-	desc = "A small tube with exhaust ports to expel noise and gas.\nDoes not completely silence a weapon, but does make it much quieter and a little more accurate and stable at the cost of slightly reduced damage and bullet speed."
+	desc = "A small tube with exhaust ports to expel noise and gas.\nDoes not completely silence a weapon, but does make it much quieter and a little more accurate and stable at the cost of bullet speed."
 	icon_state = "suppressor"
 	slot = "muzzle"
 	silence_mod = 1
@@ -283,18 +284,11 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "suppressor_a"
 	attach_shell_speed_mod = -1
 	accuracy_mod = 0.1
-	damage_mod = -0.05
 	recoil_mod = -2
 	scatter_mod = -5
 	recoil_unwielded_mod = -3
 	scatter_unwielded_mod = -5
 	damage_falloff_mod = 0.1
-
-
-/obj/item/attachable/suppressor/Initialize()
-	. = ..()
-	attach_icon = pick("suppressor_a","suppressor2_a")
-
 
 /obj/item/attachable/suppressor/unremovable
 	flags_attach_features = NONE
@@ -363,6 +357,10 @@ Defined in conflicts.dm of the #defines folder.
 	accuracy_unwielded_mod = -0.1
 	size_mod = 1
 
+/obj/item/attachable/bayonetknife/Initialize()
+	. = ..()
+	AddElement(/datum/element/scalping)
+
 /obj/item/attachable/extended_barrel
 	name = "extended barrel"
 	desc = "A lengthened barrel allows for lessened scatter, greater accuracy and muzzle velocity due to increased stabilization and shockwave exposure."
@@ -382,9 +380,9 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "muzzle"
 	icon_state = "hbarrel"
 	attach_icon = "hbarrel_a"
-	accuracy_mod = -0.45
-	damage_mod = 0.2
-	scatter_mod = 10
+	accuracy_mod = -0.6
+	damage_mod = 0.1
+	scatter_mod = 25
 	accuracy_unwielded_mod = -0.3
 
 
@@ -433,6 +431,17 @@ Defined in conflicts.dm of the #defines folder.
 	flags_attach_features = NONE
 	accuracy_mod = 0.15
 	scatter_mod = -15
+
+/obj/item/attachable/autosniperbarrel
+	name = "auto sniper barrel"
+	icon_state = "t81barrel"
+	desc = "A heavy barrel. CANNOT BE REMOVED."
+	slot = "under"
+	flags_attach_features = NONE
+	pixel_shift_x = 7
+	pixel_shift_y = 14
+	accuracy_mod = 0
+	scatter_mod = -5
 
 /obj/item/attachable/smartbarrel
 	name = "smartgun barrel"
@@ -640,12 +649,27 @@ Defined in conflicts.dm of the #defines folder.
 	accuracy_mod = 0.1
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 	attachment_action_type = /datum/action/item_action/toggle
-	scope_zoom_mod = TRUE
+	scope_zoom_mod = TRUE // codex
 	accuracy_unwielded_mod = -0.05
 	var/zoom_offset = 11
 	var/zoom_viewsize = 12
 	var/zoom_accuracy = SCOPE_RAIL
+	var/has_nightvision = FALSE
+	var/active_nightvision = FALSE
 
+
+/obj/item/attachable/scope/marine
+	name = "T-47 rail scope"
+	desc = "A marine standard mounted zoom sight scope. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	icon_state = "marinescope"
+	attach_icon = "marinescope_a"
+
+/obj/item/attachable/scope/nightvision
+	name = "T-46 Night vision scope"
+	icon_state = "nvscope"
+	attach_icon = "nvscope_a"
+	desc = "A rail-mounted night vision scope developed by Roh-Easy industries for the TGMC. Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	has_nightvision = TRUE
 
 /obj/item/attachable/scope/unremovable
 	flags_attach_features = ATTACH_ACTIVATION
@@ -662,6 +686,11 @@ Defined in conflicts.dm of the #defines folder.
 	if(turn_off)
 		if(master_gun.zoom)
 			master_gun.zoom(user, zoom_offset, zoom_viewsize)
+		if(has_nightvision)
+			user.update_sight()
+			user.reset_perspective(user)
+			active_nightvision = FALSE
+			UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
 		return TRUE
 
 	if(!master_gun.zoom && !(master_gun.flags_item & WIELDED))
@@ -670,8 +699,25 @@ Defined in conflicts.dm of the #defines folder.
 		return FALSE
 	else
 		master_gun.zoom(user, zoom_offset, zoom_viewsize)
+		if(has_nightvision)
+			if(active_nightvision)
+				user.update_sight()
+				user.reset_perspective(user)
+				active_nightvision = FALSE
+				UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+			else
+				update_remote_sight(user)
+				user.reset_perspective(src)
+				active_nightvision = TRUE
+				RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/activate_attachment)
 	return TRUE
 
+/obj/item/attachable/scope/update_remote_sight(mob/living/user)
+	. = ..()
+	user.see_in_dark = 32
+	user.lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	user.sync_lighting_plane_alpha()
+	return TRUE
 
 /obj/item/attachable/scope/mini
 	name = "mini rail scope"
@@ -687,6 +733,7 @@ Defined in conflicts.dm of the #defines folder.
 	zoom_viewsize = 7
 	zoom_accuracy = SCOPE_RAIL_MINI
 	scope_zoom_mod = TRUE
+	has_nightvision = FALSE
 
 /obj/item/attachable/scope/mini/m4ra
 	name = "T-45 rail scope"
@@ -1620,7 +1667,7 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = ""
 	attach_icon = ""
 	slot = "under"
-	flags_attach_features = ATTACH_ACTIVATION|ATTACH_UTILITY
+	flags_attach_features = ATTACH_ACTIVATION|ATTACH_UTILITY|GUN_ALLOW_SYNTHETIC
 	attachment_action_type = /datum/action/item_action/toggle
 
 /obj/item/attachable/hydro_cannon/activate_attachment(mob/living/user, turn_off)
@@ -1646,6 +1693,6 @@ Defined in conflicts.dm of the #defines folder.
 	if(istype(rail,/obj/item/attachable/scope))
 		var/obj/item/attachable/scope/S = rail
 		if(zoom)
-			S.accuracy_mod = S.zoom_accuracy
+			accuracy_mult += S.scoped_accuracy_mod
 		else
-			S.accuracy_mod = 0
+			accuracy_mult -= S.scoped_accuracy_mod

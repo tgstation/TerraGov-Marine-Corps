@@ -47,7 +47,7 @@
 	draw_mode = 0
 
 /obj/item/storage/pouch/general/large
-	name = "large general pouch"
+	name = "general pouch"
 	storage_slots = 3
 	icon_state = "large_drop"
 	draw_mode = 0
@@ -112,7 +112,7 @@
 
 /obj/item/storage/pouch/firstaid
 	name = "first-aid pouch"
-	desc = "It can contain autoinjectors, ointments, and bandages."
+	desc = "Standard marine first-aid pouch. It can contain autoinjectors, ointments, and bandages."
 	icon_state = "firstaid"
 	storage_slots = 5
 	can_hold = list(
@@ -123,7 +123,7 @@
 		/obj/item/stack/medical/splint)
 
 /obj/item/storage/pouch/firstaid/full
-	desc = "Contains a painkiller autoinjector, first-aid autoinjector, splints, some ointment, and some bandages."
+	desc = "Standard marine first-aid pouch. Contains a painkiller autoinjector, a soothing pill packet, splints, some ointment, and some bandages."
 
 /obj/item/storage/pouch/firstaid/full/Initialize()
 	. = ..()
@@ -135,14 +135,13 @@
 
 
 /obj/item/storage/pouch/firstaid/injectors
-	name = "first-aid pouch"
-	desc = "It can contain autoinjectors."
-	icon_state = "firstaid"
-	storage_slots = 5
+	name = "combat injector pouch"
+	desc = "Standard marine first-aid combat injector pouch. Specialized to store only autoinjectors."
+	icon_state = "firstaid_injector"
 	can_hold = list(/obj/item/reagent_containers/hypospray/autoinjector)
 
 /obj/item/storage/pouch/firstaid/injectors/full
-	desc = "Contains 3 combat autoinjectors, an oxycodone injector, and a stimulant injector."
+	desc = "Standard marine first-aid combat injector pouch. Specialized to store only autoinjectors. Contains 3 combat autoinjectors, an oxycodone injector, and a stimulant injector."
 
 /obj/item/storage/pouch/firstaid/injectors/full/Initialize()
 	. = ..()
@@ -221,7 +220,8 @@
 	fill_number = 2
 
 /obj/item/storage/pouch/magazine/large
-	name = "large magazine pouch"
+	name = "magazine pouch"
+	desc = "This pouch can contain three ammo magazines."
 	icon_state = "large_ammo_mag"
 	storage_slots = 3
 
@@ -246,7 +246,8 @@
 		/obj/item/ammo_magazine/smg/standard_machinepistol)
 
 /obj/item/storage/pouch/magazine/pistol/large
-	name = "large pistol magazine pouch"
+	name = "pistol magazine pouch"
+	desc = "This pouch can contain six pistol and revolver ammo magazines."
 	storage_slots = 6
 	icon_state = "large_pistol_mag"
 
@@ -413,7 +414,7 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/hyperzine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
 
 
 
@@ -425,25 +426,46 @@
 	max_storage_space = 10
 	can_hold = list(/obj/item/reagent_containers/syringe)
 
+// It really fits here more, but essentially a medkit in your pouch
 
 /obj/item/storage/pouch/medkit
 	name = "medkit pouch"
+	desc = "A standard use medkit pouch that can contain all kinds of stuff."
+	icon_state = "medkit"
 	w_class = WEIGHT_CLASS_BULKY //does not fit in backpack
 	max_w_class = 4
-	draw_mode = 1
-	icon_state = "medkit"
-	desc = "It's specifically made to hold a medkit."
-	can_hold = list(/obj/item/storage/firstaid)
-	bypass_w_limit = list(/obj/item/storage/firstaid)
+	storage_slots = 7
+	can_hold = list(
+		/obj/item/healthanalyzer,
+		/obj/item/reagent_containers/dropper,
+		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/storage/pill_bottle,
+		/obj/item/stack/medical,
+		/obj/item/flashlight/pen,
+		/obj/item/storage/pill_bottle/packet,
+		/obj/item/reagent_containers/hypospray)
 
+/obj/item/storage/pouch/medkit/full/Initialize()
+	. = ..()
+	new /obj/item/healthanalyzer(src)
+	new /obj/item/stack/medical/bruise_pack(src)
+	new /obj/item/stack/medical/ointment(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/tramadol(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/storage/syringe_case/regular(src)
 
-/obj/item/storage/pouch/medkit/full
-	fill_type = /obj/item/storage/firstaid/regular
-	fill_number = 1
-
-/obj/item/storage/pouch/medkit/equippedcorpsman
-	fill_type = /obj/item/storage/firstaid/adv
-	fill_number = 1
+/obj/item/storage/pouch/medkit/equippedcorpsman/Initialize()
+	. = ..()
+	new /obj/item/healthanalyzer(src)
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/storage/pill_bottle/bicaridine(src)
+	new /obj/item/storage/pill_bottle/kelotane(src)
+	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/stack/medical/splint(src)
 
 /obj/item/storage/pouch/document
 	name = "document pouch"

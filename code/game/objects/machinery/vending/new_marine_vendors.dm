@@ -290,6 +290,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		CAT_AMR = list(MARINE_CAN_BUY_ARMOR),
 		CAT_BAK = list(MARINE_CAN_BUY_BACKPACK),
 		CAT_WEB = list(MARINE_CAN_BUY_WEBBING),
+		CAT_BEL = list(MARINE_CAN_BUY_BELT),
 		CAT_POU = list(MARINE_CAN_BUY_R_POUCH,MARINE_CAN_BUY_L_POUCH),
 		CAT_MAS = list(MARINE_CAN_BUY_MASK),
 		CAT_ATT = list(MARINE_CAN_BUY_ATTACHMENT,MARINE_CAN_BUY_ATTACHMENT2),
@@ -297,10 +298,14 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 	listed_products = list(
 		/obj/effect/essentials_set/basic = list(CAT_STD, "Standard Kit", 0, "white"),
-		/obj/effect/essentials_set/modular/infantry = list(CAT_AMR, "Infantry Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Skirmisher Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/assault = list(CAT_AMR, "Assault Jaeger kit", 0, "black"),
-		/obj/item/clothing/head/helmet/marine/standard = list(CAT_HEL, "Regular helmet", 0, "orange"),
+		/obj/effect/essentials_set/basicmodular = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
+		/obj/effect/essentials_set/modular/infantry = list(CAT_AMR, "Medium Infantry Jaeger kit", 0, "orange"),
+		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Light Skirmisher Jaeger kit", 0, "orange"),
+		/obj/effect/essentials_set/modular/assault = list(CAT_AMR, "Heavy Assault Jaeger kit", 0, "orange"),
+		/obj/item/helmet_module/welding = list(CAT_HEL, "Jaeger welding module", 0, "orange"),
+		/obj/item/helmet_module/binoculars =  list(CAT_HEL, "Jaeger binoculars module", 0, "orange"),
+		/obj/item/helmet_module/antenna = list(CAT_HEL, "Jaeger Antenna module", 0, "orange"),
+		/obj/item/clothing/head/helmet/marine/standard = list(CAT_HEL, "Regular helmet", 0, "black"),
 		/obj/item/clothing/suit/storage/marine/pasvest = list(CAT_AMR, "Regular armor", 0, "orange"),
 		/obj/item/storage/backpack/marine/satchel = list(CAT_BAK, "Satchel", 0, "orange"),
 		/obj/item/storage/backpack/marine/standard = list(CAT_BAK, "Backpack", 0, "black"),
@@ -309,16 +314,16 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/tie/holster = list(CAT_WEB, "Shoulder handgun holster", 0, "black"),
 		/obj/item/storage/belt/sparepouch = list(CAT_BEL, "Utility belt", 0, "black"),
 		/obj/item/storage/belt/marine = list(CAT_BEL, "Standard ammo belt", 0, "orange"),
-		/obj/item/storage/belt/shotgun = list(CAT_BEL, "Shotgun ammo belt", 0, "black"),
+		/obj/item/storage/belt/shotgun = list(CAT_BEL, "Shotgun ammo belt", 0, "orange"),
 		/obj/item/storage/belt/knifepouch = list(CAT_BEL, "Knives belt", 0, "black"),
 		/obj/item/storage/belt/gun/pistol/standard_pistol = list(CAT_BEL, "Pistol belt", 0, "black"),
 		/obj/item/storage/belt/gun/revolver/standard_revolver = list(CAT_BEL, "Revolver belt", 0, "black"),
 		/obj/item/belt_harness/marine = list(CAT_BEL, "Belt harness", 0, "black"),
-		/obj/item/storage/pouch/shotgun = list(CAT_POU, "Shotgun shell pouch", 0, "orange"),
-		/obj/item/storage/pouch/magazine = list(CAT_POU, "Magazine pouch", 0, "black"),
+		/obj/item/storage/pouch/shotgun = list(CAT_POU, "Shotgun shell pouch", 0, "black"),
+		/obj/item/storage/pouch/magazine/large = list(CAT_POU, "Magazine pouch", 0, "black"),
 		/obj/item/storage/pouch/flare/full = list(CAT_POU, "Flare pouch", 0, "orange"),
 		/obj/item/storage/pouch/firstaid/full = list(CAT_POU, "Firstaid pouch", 0,"orange"),
-		/obj/item/storage/pouch/firstaid/injectors/full = list(CAT_POU, "Injector pouch", 0,"orange"),
+		/obj/item/storage/pouch/firstaid/injectors/full = list(CAT_POU, "Combat injector pouch", 0,"orange"),
 		/obj/item/storage/pouch/tools/full = list(CAT_POU, "Tool pouch (tools included)", 0,"black"),
 		/obj/item/storage/pouch/grenade/slightlyfull = list(CAT_POU, "Grenade pouch (grenades included)", 0,"black"),
 		/obj/item/storage/pouch/construction/full = list(CAT_POU, "Construction pouch (materials included)", 0,"black"),
@@ -336,8 +341,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0,"orange"),
 		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil compensator", 0,"black"),
 		/obj/item/attachable/magnetic_harness = list(CAT_ATT, "Magnetic harness", 0,"orange"),
-		/obj/item/attachable/reddot = list(CAT_ATT, "Red dot sight", 0,"black"),
-		/obj/item/attachable/quickfire = list(CAT_ATT, "Quickfire assembly", 0,"black"),
+ 		/obj/item/attachable/reddot = list(CAT_ATT, "Red dot sight", 0,"black"),
 		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0,"black"),
 		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0,"black"),
 		/obj/item/attachable/scope/mini = list(CAT_ATT, "Mini scope", 0,"black"),
@@ -378,9 +382,10 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 	listed_products = list(
 		/obj/effect/essentials_set/basic_engineer = list(CAT_STD, "Standard kit", 0, "white"),
-		/obj/effect/essentials_set/modular/infantry = list(CAT_AMR, "Infantry Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Skirmisher Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/assault = list(CAT_AMR, "Assault Jaeger kit", 0, "black"),
+		/obj/effect/essentials_set/basic_engineermodular = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
+		/obj/effect/essentials_set/modular/infantry = list(CAT_AMR, "Medium Infantry Jaeger kit", 0, "orange"),
+		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Light Skirmisher Jaeger kit", 0, "orange"),
+		/obj/effect/essentials_set/modular/assault = list(CAT_AMR, "Heavy Assault Jaeger kit", 0, "orange"),
 		/obj/item/clothing/suit/storage/marine/pasvest = list(CAT_AMR, "Regular armor", 0, "orange"),
 		/obj/item/storage/backpack/marine/satchel/tech = list(CAT_BAK, "Satchel", 0, "orange"),
 		/obj/item/storage/backpack/marine/tech = list(CAT_BAK, "Backpack", 0, "black"),
@@ -389,7 +394,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/tie/storage/brown_vest = list(CAT_WEB, "Tactical brown vest", 0, "orange"),
 		/obj/item/clothing/tie/storage/webbing = list(CAT_WEB, "Tactical webbing", 0, "black"),
 		/obj/item/clothing/tie/holster = list(CAT_WEB, "Shoulder handgun holster", 0, "black"),
-		/obj/item/storage/belt/utility/full = list(CAT_BEL, "Tool belt", 0, "orange"),
+		/obj/item/storage/belt/utility/full = list(CAT_BEL, "Tool belt", 0, "white"),
 		/obj/item/storage/pouch/shotgun = list(CAT_POU, "Shotgun shell pouch", 0, "black"),
 		/obj/item/storage/pouch/construction = list(CAT_POU, "Construction pouch", 0, "orange"),
 		/obj/item/storage/pouch/explosive = list(CAT_POU, "Explosive pouch", 0, "black"),
@@ -400,8 +405,8 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/storage/pouch/general/medium = list(CAT_POU, "Medium general pouch", 0, "black"),
 		/obj/item/storage/pouch/flare/full = list(CAT_POU, "Flare pouch", 0, "black"),
 		/obj/item/storage/pouch/firstaid/full = list(CAT_POU, "Firstaid pouch", 0, "orange"),
-		/obj/item/storage/pouch/firstaid/injectors/full = list(CAT_POU, "Injector pouch", 0,"orange"),
-		/obj/item/storage/pouch/magazine/pistol/large = list(CAT_POU, "Large pistol magazine pouch", 0, "black"),
+		/obj/item/storage/pouch/firstaid/injectors/full = list(CAT_POU, "Combat injector pouch", 0,"orange"),
+		/obj/item/storage/pouch/magazine/pistol/large = list(CAT_POU, "Pistol magazine pouch", 0, "black"),
 		/obj/item/storage/pouch/pistol = list(CAT_POU, "Sidearm pouch", 0, "black"),
 		/obj/item/clothing/mask/gas = list(CAT_MAS, "Gas mask", 0, "black"),
 		/obj/item/clothing/mask/rebreather/scarf = list(CAT_MAS, "Heat absorbent coif", 0, "black"),
@@ -434,9 +439,10 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 	listed_products = list(
 		/obj/effect/essentials_set/basic_medic = list(CAT_STD, "Standard kit", 0, "white"),
-		/obj/effect/essentials_set/modular/infantry = list(CAT_AMR, "Infantry Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Skirmisher Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/assault = list(CAT_AMR, "Assault Jaeger kit", 0, "black"),
+		/obj/effect/essentials_set/basic_medicmodular = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
+		/obj/effect/essentials_set/modular/infantry = list(CAT_AMR, "Medium Infantry Jaeger kit", 0, "orange"),
+		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Light Skirmisher Jaeger kit", 0, "orange"),
+		/obj/effect/essentials_set/modular/assault = list(CAT_AMR, "Heavy Assault Jaeger kit", 0, "orange"),
 		/obj/item/clothing/suit/storage/marine/pasvest = list(CAT_AMR, "Regular armor", 0, "orange"),
 		/obj/item/storage/backpack/marine/satchel/corpsman = list(CAT_BAK, "Satchel", 0, "orange"),
 		/obj/item/storage/backpack/marine/corpsman = list(CAT_BAK, "Backpack", 0, "black"),
@@ -447,15 +453,14 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/tie/storage/white_vest = list(CAT_WEB, "Corpsman surgical vest", 0, "black"),
 		/obj/item/storage/belt/combatLifesaver = list(CAT_BEL, "Lifesaver belt", 0, "orange"),
 		/obj/item/storage/belt/medical = list(CAT_BEL, "Medical belt", 0, "black"),
-		/obj/item/storage/pouch/medical = list(CAT_POU, "Medical pouch", 0, "orange"),
-		/obj/item/storage/pouch/medkit = list(CAT_POU, "Medkit pouch", 0, "orange"),
-		/obj/item/storage/pouch/autoinjector/full = list(CAT_POU, "Autoinjector pouch", 0, "orange"),
+		/obj/item/storage/pouch/medkit = list(CAT_POU, "Medkit pouch", 0, "black"),
+		/obj/item/storage/pouch/autoinjector/advanced/full = list(CAT_POU, "Advanced Autoinjector pouch", 0, "orange"),
 		/obj/item/storage/pouch/shotgun = list(CAT_POU, "Shotgun shell pouch", 0, "black"),
 		/obj/item/storage/pouch/magazine = list(CAT_POU, "Magazine pouch", 0, "black"),
 		/obj/item/storage/pouch/general/medium = list(CAT_POU, "Medium general pouch", 0, "black"),
 		/obj/item/storage/pouch/flare/full = list(CAT_POU, "Flare pouch", 0, "black"),
 		/obj/item/storage/pouch/firstaid/full = list(CAT_POU, "Firstaid pouch", 0, "black"),
-		/obj/item/storage/pouch/magazine/pistol/large = list(CAT_POU, "Large pistol magazine pouch", 0, "black"),
+		/obj/item/storage/pouch/magazine/pistol/large = list(CAT_POU, "Pistol magazine pouch", 0, "black"),
 		/obj/item/storage/pouch/pistol = list(CAT_POU, "Sidearm pouch", 0, "black"),
 		/obj/item/clothing/mask/gas = list(CAT_MAS, "Gas mask", 0, "black"),
 		/obj/item/clothing/mask/rebreather/scarf = list(CAT_MAS, "Heat absorbent coif", 0, "black"),
@@ -494,11 +499,15 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 	listed_products = list(
 		/obj/effect/essentials_set/basic_smartgunner = list(CAT_STD, "Standard kit", 0, "white"),
-		/obj/effect/essentials_set/modular/infantry = list(CAT_AMR, "Infantry Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Skirmisher Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/assault = list(CAT_AMR, "Assault Jaeger kit", 0, "black"),
+		/obj/effect/essentials_set/basic_smartgunnermodular = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
+		/obj/effect/essentials_set/modular/infantry = list(CAT_AMR, "Medium Infantry Jaeger kit", 0, "orange"),
+		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Light Skirmisher Jaeger kit", 0, "orange"),
+		/obj/effect/essentials_set/modular/assault = list(CAT_AMR, "Heavy Assault Jaeger kit", 0, "orange"),
 		/obj/item/clothing/suit/storage/marine/pasvest = list(CAT_AMR, "Regular armor", 0, "orange"),
-		/obj/item/clothing/head/helmet/marine/standard = list(CAT_HEL, "Regular helmet", 0, "orange"),
+		/obj/item/helmet_module/welding = list(CAT_HEL, "Jaeger welding module", 0, "orange"),
+		/obj/item/helmet_module/binoculars =  list(CAT_HEL, "Jaeger binoculars module", 0, "orange"),
+		/obj/item/helmet_module/antenna = list(CAT_HEL, "Jaeger Antenna module", 0, "orange"),
+		/obj/item/clothing/head/helmet/marine/standard = list(CAT_HEL, "Regular helmet", 0, "black"),
 		/obj/item/clothing/head/helmet/marine/heavy = list(CAT_HEL, "Heavy helmet", 0, "black"),
 		/obj/item/clothing/tie/storage/black_vest = list(CAT_WEB, "Tactical black vest", 0, "orange"),
 		/obj/item/clothing/tie/storage/webbing = list(CAT_WEB, "Tactical webbing", 0, "black"),
@@ -506,17 +515,17 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/storage/belt/marine = list(CAT_BEL, "Standard ammo belt", 0, "black"),
 		/obj/item/storage/belt/shotgun = list(CAT_BEL, "Shotgun ammo belt", 0, "black"),
 		/obj/item/storage/belt/knifepouch = list(CAT_BEL, "Knives belt", 0, "black"),
-		/obj/item/storage/belt/gun/pistol/standard_pistol = list(CAT_BEL, "Pistol belt", 0, "black"),
-		/obj/item/storage/belt/gun/revolver/standard_revolver = list(CAT_BEL, "Revolver belt", 0, "black"),
-		/obj/item/storage/belt/sparepouch = list(CAT_BEL, "G8 general utility pouch", 0, "black"),
+		/obj/item/storage/belt/gun/pistol/standard_pistol = list(CAT_BEL, "Pistol belt", 0, "orange"),
+		/obj/item/storage/belt/gun/revolver/standard_revolver = list(CAT_BEL, "Revolver belt", 0, "orange"),
+		/obj/item/storage/belt/sparepouch = list(CAT_BEL, "G8 general utility pouch", 0, "orange"),
 		/obj/item/storage/pouch/shotgun = list(CAT_POU, "Shotgun shell pouch", 0, "black"),
 		/obj/item/storage/pouch/grenade/slightlyfull = list(CAT_POU, "Grenade pouch (grenades included)", 0,"black"),
 		/obj/item/storage/pouch/magazine = list(CAT_POU, "Magazine pouch", 0, "black"),
 		/obj/item/storage/pouch/general/medium = list(CAT_POU, "Medium general pouch", 0, "black"),
 		/obj/item/storage/pouch/flare/full = list(CAT_POU, "Flare pouch", 0, "orange"),
-		/obj/item/storage/pouch/firstaid/injectors/full = list(CAT_POU, "Injector pouch", 0,"orange"),
+		/obj/item/storage/pouch/firstaid/injectors/full = list(CAT_POU, "Combat injector pouch", 0,"orange"),
 		/obj/item/storage/pouch/firstaid/full = list(CAT_POU, "Firstaid pouch", 0, "orange"),
-		/obj/item/storage/pouch/magazine/pistol/large = list(CAT_POU, "Large pistol magazine pouch", 0, "black"),
+		/obj/item/storage/pouch/magazine/pistol/large = list(CAT_POU, "Pistol magazine pouch", 0, "black"),
 		/obj/item/storage/pouch/pistol = list(CAT_POU, "Sidearm pouch", 0, "black"),
 		/obj/item/clothing/mask/gas = list(CAT_MAS, "Gas mask", 0, "black"),
 		/obj/item/clothing/mask/rebreather/scarf = list(CAT_MAS, "Heat absorbent coif", 0, "black"),
@@ -552,9 +561,9 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 
 	listed_products = list(
 		/obj/effect/essentials_set/basic_specialist = list(CAT_STD, "Standard Kit", 0, "white"),
-		/obj/effect/essentials_set/modular/infantry = list(CAT_AMR, "Infantry Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Skirmisher Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/assault = list(CAT_AMR, "Assault Jaeger kit", 0, "black"),
+		/obj/effect/essentials_set/modular/infantry = list(CAT_AMR, "Medium Infantry Jaeger kit", 0, "black"),
+		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Light Skirmisher Jaeger kit", 0, "black"),
+		/obj/effect/essentials_set/modular/assault = list(CAT_AMR, "Heavy Assault Jaeger kit", 0, "black"),
 		/obj/item/storage/backpack/marine/satchel = list(CAT_BAK, "Satchel", 0, "black"),
 		/obj/item/storage/backpack/marine/standard = list(CAT_BAK, "Backpack", 0, "black"),
 		/obj/item/clothing/tie/storage/black_vest = list(CAT_WEB, "Tactical Black Vest", 0, "black"),
@@ -568,13 +577,13 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/storage/belt/sparepouch = list(CAT_BEL, "G8 general utility pouch", 0, "black"),
 		/obj/item/belt_harness/marine = list(CAT_BEL, "Belt Harness", 0, "black"),
 		/obj/item/storage/pouch/shotgun = list(CAT_POU, "Shotgun shell pouch", 0, "black"),
-		/obj/item/storage/pouch/magazine/large = list(CAT_POU, "Large magazine pouch", 0, "black"),
-		/obj/item/storage/pouch/general/medium = list(CAT_POU, "Medium general pouch", 0, "black"),
+		/obj/item/storage/pouch/magazine/large = list(CAT_POU, "Magazine pouch", 0, "black"),
+		/obj/item/storage/pouch/general/large = list(CAT_POU, "General pouch", 0, "black"),
 		/obj/item/storage/pouch/grenade/slightlyfull = list(CAT_POU, "Grenade pouch (Grenades included)", 0,"black"),
 		/obj/item/storage/pouch/flare/full = list(CAT_POU, "Flare pouch", 0, "black"),
-		/obj/item/storage/pouch/firstaid/injectors/full = list(CAT_POU, "Injector pouch", 0,"orange"),
+		/obj/item/storage/pouch/firstaid/injectors/full = list(CAT_POU, "Combat injector pouch", 0,"orange"),
 		/obj/item/storage/pouch/firstaid/full = list(CAT_POU, "Firstaid pouch", 0, "black"),
-		/obj/item/storage/pouch/magazine/pistol/large = list(CAT_POU, "Large pistol magazine pouch", 0, "black"),
+		/obj/item/storage/pouch/magazine/pistol/large = list(CAT_POU, "Pistol magazine pouch", 0, "black"),
 		/obj/item/storage/pouch/pistol = list(CAT_POU, "Sidearm pouch", 0, "black"),
 		/obj/item/storage/pouch/explosive = list(CAT_POU, "Explosive pouch", 0, "black"),
 		/obj/item/clothing/mask/gas = list(CAT_MAS, "Gas mask", 0, "black"),
@@ -616,10 +625,11 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	gives_webbing = FALSE
 
 	listed_products = list(
-		/obj/effect/essentials_set/basic_squadleader = list(CAT_STD, "Standard kit", 0, "white"),
-		/obj/effect/essentials_set/modular/infantry = list(CAT_AMR, "Infantry Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Skirmisher Jaeger kit", 0, "black"),
-		/obj/effect/essentials_set/modular/assault = list(CAT_AMR, "Assault Jaeger kit", 0, "black"),
+		/obj/effect/essentials_set/basic_squadleader = list(CAT_STD, "Standard kit (vest included)", 0, "white"),
+		/obj/effect/essentials_set/basic_squadleadermodular = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
+		/obj/effect/essentials_set/modular/infantry = list(CAT_AMR, "Medium Infantry Jaeger kit", 0, "black"),
+		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Light Skirmisher Jaeger kit", 0, "black"),
+		/obj/effect/essentials_set/modular/assault = list(CAT_AMR, "Heavy Assault Jaeger kit", 0, "black"),
 		/obj/item/storage/backpack/marine/satchel = list(CAT_BAK, "Satchel", 0, "black"),
 		/obj/item/storage/backpack/marine/standard = list(CAT_BAK, "Backpack", 0, "black"),
 		/obj/item/storage/large_holster/machete/full = list(CAT_BAK, "Machete scabbard", 0, "black"),
@@ -634,16 +644,16 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/storage/belt/sparepouch = list(CAT_BEL, "G8 general utility pouch", 0, "black"),
 		/obj/item/belt_harness/marine = list(CAT_BEL, "Belt Harness", 0, "black"),
 		/obj/item/storage/pouch/shotgun = list(CAT_POU, "Shotgun shell pouch", 0, "black"),
-		/obj/item/storage/pouch/general/large = list(CAT_POU, "Large general pouch", 0, "black"),
-		/obj/item/storage/pouch/magazine/large = list(CAT_POU, "Large magazine pouch", 0, "black"),
+		/obj/item/storage/pouch/general/large = list(CAT_POU, "General pouch", 0, "black"),
+		/obj/item/storage/pouch/magazine/large = list(CAT_POU, "Magazine pouch", 0, "black"),
 		/obj/item/storage/pouch/flare/full = list(CAT_POU, "Flare pouch", 0, "black"),
-		/obj/item/storage/pouch/firstaid/injectors/full = list(CAT_POU, "Injector pouch", 0,"orange"),
-		/obj/item/storage/pouch/firstaid/full = list(CAT_POU, "Firstaid pouch", 0, "black"),
+		/obj/item/storage/pouch/firstaid/injectors/full = list(CAT_POU, "Combat injector pouch", 0,"orange"),
+		/obj/item/storage/pouch/firstaid/full = list(CAT_POU, "Firstaid pouch", 0, "orange"),
 		/obj/item/storage/pouch/medkit = list(CAT_POU, "Medkit pouch", 0, "black"),
 		/obj/item/storage/pouch/tools/full = list(CAT_POU, "Tool pouch (tools included)", 0, "black"),
 		/obj/item/storage/pouch/grenade/slightlyfull = list(CAT_POU, "Grenade pouch (grenades included)", 0,"black"),
 		/obj/item/storage/pouch/construction/full = list(CAT_POU, "Construction pouch (materials included)", 0, "black"),
-		/obj/item/storage/pouch/magazine/pistol/large = list(CAT_POU, "Large pistol magazine pouch", 0, "black"),
+		/obj/item/storage/pouch/magazine/pistol/large = list(CAT_POU, "Pistol magazine pouch", 0, "black"),
 		/obj/item/storage/pouch/pistol = list(CAT_POU, "Sidearm pouch", 0, "black"),
 		/obj/item/storage/pouch/explosive = list(CAT_POU, "Explosive pouch", 0, "black"),
 		/obj/item/clothing/mask/gas = list(CAT_MAS, "Gas mask", 0, "black"),
@@ -669,6 +679,51 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 	squad_tag = "Delta"
 	req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DELTA)
 
+/obj/machinery/marine_selector/clothes/commander
+	name = "GHMME Automated Commander Closet"
+	req_access = list(ACCESS_MARINE_COMMANDER)
+	vendor_role = /datum/job/terragov/command/fieldcommander
+	lock_flags = JOB_LOCK
+	gives_webbing = FALSE
+
+	listed_products = list(
+		/obj/effect/essentials_set/commander = list(CAT_STD, "Standard Commander kit ", 0, "white"),
+		/obj/effect/essentials_set/modular/infantry = list(CAT_AMR, "Infantry Jaeger kit", 0, "black"),
+		/obj/effect/essentials_set/modular/skirmisher = list(CAT_AMR, "Skirmisher Jaeger kit", 0, "black"),
+		/obj/effect/essentials_set/modular/assault = list(CAT_AMR, "Assault Jaeger kit", 0, "black"),
+		/obj/item/storage/backpack/marine/satchel = list(CAT_BAK, "Satchel", 0, "black"),
+		/obj/item/storage/backpack/marine/standard = list(CAT_BAK, "Backpack", 0, "black"),
+		/obj/item/storage/large_holster/machete/full = list(CAT_BAK, "Machete scabbard", 0, "black"),
+		/obj/item/clothing/tie/storage/black_vest = list(CAT_WEB, "Tactical black vest", 0, "black"),
+		/obj/item/clothing/tie/storage/webbing = list(CAT_WEB, "Tactical webbing", 0, "black"),
+		/obj/item/clothing/tie/holster = list(CAT_WEB, "Shoulder handgun holster", 0, "black"),
+		/obj/item/storage/belt/marine = list(CAT_BEL, "Standard ammo belt", 0, "black"),
+		/obj/item/storage/belt/shotgun = list(CAT_BEL, "Shotgun ammo belt", 0, "black"),
+		/obj/item/storage/belt/knifepouch = list(CAT_BEL, "Knives belt", 0, "black"),
+		/obj/item/storage/belt/gun/pistol/standard_pistol = list(CAT_BEL, "Pistol belt", 0, "black"),
+		/obj/item/storage/belt/gun/revolver/standard_revolver = list(CAT_BEL, "Revolver belt", 0, "black"),
+		/obj/item/storage/belt/sparepouch = list(CAT_BEL, "G8 general utility pouch", 0, "black"),
+		/obj/item/belt_harness/marine = list(CAT_BEL, "Belt Harness", 0, "black"),
+		/obj/item/storage/pouch/shotgun = list(CAT_POU, "Shotgun shell pouch", 0, "black"),
+		/obj/item/storage/pouch/general/large = list(CAT_POU, "General pouch", 0, "black"),
+		/obj/item/storage/pouch/magazine/large = list(CAT_POU, "Magazine pouch", 0, "black"),
+		/obj/item/storage/pouch/flare/full = list(CAT_POU, "Flare pouch", 0, "black"),
+		/obj/item/storage/pouch/firstaid/injectors/full = list(CAT_POU, "Combat injector pouch", 0,"orange"),
+		/obj/item/storage/pouch/firstaid/full = list(CAT_POU, "Firstaid pouch", 0, "orange"),
+		/obj/item/storage/pouch/medkit = list(CAT_POU, "Medkit pouch", 0, "black"),
+		/obj/item/storage/pouch/tools/full = list(CAT_POU, "Tool pouch (tools included)", 0, "black"),
+		/obj/item/storage/pouch/grenade/slightlyfull = list(CAT_POU, "Grenade pouch (grenades included)", 0,"black"),
+		/obj/item/storage/pouch/construction/full = list(CAT_POU, "Construction pouch (materials included)", 0, "black"),
+		/obj/item/storage/pouch/magazine/pistol/large = list(CAT_POU, "Pistol magazine pouch", 0, "black"),
+		/obj/item/storage/pouch/pistol = list(CAT_POU, "Sidearm pouch", 0, "black"),
+		/obj/item/storage/pouch/explosive = list(CAT_POU, "Explosive pouch", 0, "black"),
+		/obj/item/clothing/mask/gas = list(CAT_MAS, "Gas mask", 0, "black"),
+		/obj/item/clothing/mask/rebreather/scarf = list(CAT_MAS, "Heat absorbent coif", 0, "black"),
+		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
+		/obj/item/clothing/head/headband/red = list(CAT_HEL, "FC Headband", 0, "black"),
+		/obj/item/clothing/head/tgmcberet/fc = list(CAT_HEL, "FC Beret", 0, "black"),
+		/obj/item/clothing/head/helmet/marine/leader = list(CAT_HEL, "FC Helmet", 0, "black"),
+	)
 
 
 /obj/machinery/marine_selector/clothes/synth
@@ -691,19 +746,42 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/under/whites = list(CAT_STD, "TGMC dress uniform", 0, "black"),
 		/obj/item/clothing/under/marine/officer/pilot = list(CAT_STD, "Pilot bodysuit", 0, "black"),
 		/obj/item/clothing/under/marine/mp = list(CAT_STD, "Military police uniform", 0, "black"),
+		/obj/item/clothing/under/marine/officer/warden = list(CAT_STD, "Marine Officer uniform", 0, "black"),
 		/obj/item/clothing/under/marine/officer/researcher = list(CAT_STD, "Researcher outfit", 0, "black"),
 		/obj/item/clothing/under/rank/chef = list(CAT_STD, "Chef uniform", 0, "black"),
 		/obj/item/clothing/under/rank/bartender = list(CAT_STD, "Bartender uniform", 0, "black"),
+		/obj/item/clothing/under/rank/chef/altchef = list(CAT_STD, "Red Chef uniform", 0, "black"),
+		/obj/item/clothing/under/rank/vice = list(CAT_STD, "Vice Officer's uniform", 0, "black"),
+		/obj/item/clothing/under/rank/janitor = list(CAT_STD, "Janitor uniform", 0, "black"),
+		/obj/item/clothing/under/rank/det = list(CAT_STD, "Detective uniform", 0, "black"),
+		/obj/item/clothing/under/rank/dispatch = list(CAT_STD, "Dispatch uniform", 0, "black"),
+		/obj/item/clothing/under/overalls = list(CAT_STD, "Overalls", 0, "black"),
+		/obj/item/clothing/under/CM_uniform = list(CAT_STD, "Colonial Marshal uniform", 0, "black"),
+		/obj/item/clothing/under/gentlesuit = list(CAT_STD, "Gentleman's Suit", 0, "black"),
+		/obj/item/clothing/under/sl_suit = list(CAT_STD, "Amish Suit", 0, "black"),
+		/obj/item/clothing/under/kilt = list(CAT_STD, "Kilt", 0, "black"),
+		/obj/item/clothing/under/waiter = list(CAT_STD, "Waiter's uniform", 0, "black"),
 		/obj/item/clothing/suit/storage/hazardvest = list(CAT_AMR, "Hazard vest", 0, "black"),
 		/obj/item/clothing/suit/surgical = list(CAT_AMR, "Surgical apron", 0, "black"),
 		/obj/item/clothing/suit/storage/labcoat = list(CAT_AMR, "Labcoat", 0, "black"),
 		/obj/item/clothing/suit/storage/labcoat/researcher = list(CAT_AMR, "Researcher's labcoat", 0, "black"),
-		/obj/item/clothing/suit/storage/snow_suit = list(CAT_AMR, "Snow suit", 0, "black"),
+		/obj/item/clothing/suit/storage/CMB = list(CAT_AMR, "CMB Jacket", 0, "black"),
+		/obj/item/clothing/suit/storage/RO = list(CAT_AMR, "TGMC RO Jacket", 0, "black"),
+		/obj/item/clothing/suit/storage/lawyer/bluejacket = list(CAT_AMR, "Blue Jacket", 0, "black"),
+		/obj/item/clothing/suit/storage/lawyer/purpjacket = list(CAT_AMR, "Purple Jacket", 0, "black"),
+		/obj/item/clothing/suit/storage/snow_suit = list(CAT_AMR, "Snowsuit", 0, "black"),
+		/obj/item/clothing/suit/armor/bulletproof = list(CAT_AMR, "Bulletproof Vest", 0, "black"),
 		/obj/item/clothing/suit/armor/vest/pilot = list(CAT_AMR, "M70 flak jacket", 0, "black"),
-		/obj/item/clothing/suit/storage/marine/MP = list(CAT_AMR, "N2 pattern MA armor", 0, "black"),
-		/obj/item/clothing/suit/storage/marine/MP/RO = list(CAT_AMR, "M3 pattern officer armor", 0, "black"),
 		/obj/item/clothing/suit/chef = list(CAT_AMR, "Chef's apron", 0, "black"),
 		/obj/item/clothing/suit/wcoat = list(CAT_AMR, "Waistcoat", 0, "black"),
+		/obj/item/clothing/suit/wizrobe/gentlecoat = list(CAT_AMR, "Gentleman's Coat", 0, "black"),
+		/obj/item/clothing/suit/bomber = list(CAT_AMR, "Bomber Jacket", 0, "black"),
+		/obj/item/clothing/suit/security/navyhos = list(CAT_AMR, "Navy HoS Jacket", 0, "black"),
+		/obj/item/clothing/suit/chef/classic = list(CAT_AMR, "Classic Chef vest", 0, "black"),
+		/obj/item/clothing/suit/ianshirt = list(CAT_AMR, "Ian Shirt", 0, "black"),
+		/obj/item/clothing/suit/suspenders = list(CAT_AMR, "Suspenders", 0, "black"),
+		/obj/item/clothing/suit/apron = list(CAT_AMR, "Apron", 0, "black"),
+		/obj/item/clothing/suit/apron/overalls = list(CAT_AMR, "Overalls", 0, "black"),
 		/obj/item/storage/backpack/marine/satchel = list(CAT_BAK, "Satchel", 0, "black"),
 		/obj/item/storage/backpack/marine = list(CAT_BAK, "Lightweight IMP backpack", 0, "black"),
 		/obj/item/storage/backpack/industrial = list(CAT_BAK, "Industrial backpack", 0, "black"),
@@ -716,6 +794,9 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/tie/storage/webbing = list(CAT_WEB, "Webbing", 0, "black"),
 		/obj/item/clothing/tie/storage/black_vest = list(CAT_WEB, "Tactical Black Vest", 0, "black"),
 		/obj/item/clothing/tie/storage/white_vest/medic = list(CAT_WEB, "White medical vest", 0, "black"),
+		/obj/item/clothing/tie/red = list(CAT_WEB, "Red Tie", 0, "black"),
+		/obj/item/clothing/tie/blue = list(CAT_WEB, "Blue Tie", 0, "black"),
+		/obj/item/clothing/tie/horrible = list(CAT_WEB, "Horrible Tie", 0, "black"),
 		/obj/item/clothing/gloves/yellow = list(CAT_GLO, "Insulated gloves", 0, "black"),
 		/obj/item/clothing/gloves/latex = list(CAT_GLO, "Latex gloves", 0, "black"),
 		/obj/item/clothing/gloves/marine/officer = list(CAT_GLO, "Officer gloves", 0, "black"),
@@ -727,12 +808,14 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/storage/belt/sparepouch = list(CAT_BEL, "G8 general utility pouch", 0, "black"),
 		/obj/item/clothing/shoes/marine = list(CAT_SHO, "Marine combat boots", 0, "black"),
 		/obj/item/clothing/shoes/white = list(CAT_SHO, "White shoes", 0, "black"),
-		/obj/item/clothing/shoes/marinechief = list(CAT_SHO, "Formal shoes", 0, "black"),
-		/obj/item/storage/pouch/general/large = list(CAT_POU, "Large general pouch", 0, "black"),
+		/obj/item/clothing/shoes/brown = list(CAT_SHO, "Brown shoes", 0, "black"),
+		/obj/item/clothing/shoes/leather = list(CAT_SHO, "Leather Shoes", 0, "black"),
+		/obj/item/clothing/shoes/centcom = list(CAT_SHO, "Dress Shoes", 0, "black"),
+		/obj/item/clothing/shoes/black = list(CAT_SHO, "Black Shoes", 0, "black"),
+		/obj/item/storage/pouch/general/large = list(CAT_POU, "General pouch", 0, "black"),
 		/obj/item/storage/pouch/tools/full = list(CAT_POU, "Tool pouch", 0, "black"),
 		/obj/item/storage/pouch/construction/full = list(CAT_POU, "Construction pouch", 0, "black"),
 		/obj/item/storage/pouch/electronics/full = list(CAT_POU, "Electronics pouch", 0, "black"),
-		/obj/item/storage/pouch/medical = list(CAT_POU, "Medical pouch", 0, "black"),
 		/obj/item/storage/pouch/medkit = list(CAT_POU, "Medkit pouch", 0, "black"),
 		/obj/item/storage/pouch/autoinjector/full = list(CAT_POU, "Autoinjector pouch", 0, "orange"),
 		/obj/item/storage/pouch/flare/full = list(CAT_POU, "Flare pouch", 0, "black"),
@@ -748,6 +831,16 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/head/beret/eng = list(CAT_HEL, "Engineering beret", 0, "black"),
 		/obj/item/clothing/head/ushanka = list(CAT_HEL, "Ushanka", 0, "black"),
 		/obj/item/clothing/head/collectable/tophat = list(CAT_HEL, "Top hat", 0, "black"),
+		/obj/item/clothing/head/beret = list(CAT_HEL, "Beret", 0, "black"),
+		/obj/item/clothing/head/beanie = list(CAT_HEL, "Beanie", 0, "black"),
+		/obj/item/clothing/head/beret/marine/logisticsofficer = list(CAT_HEL, "Logistics Officer Cap", 0, "black"),
+		/obj/item/clothing/head/beret/jan = list(CAT_HEL, "Purple Beret", 0, "black"),
+		/obj/item/clothing/head/tgmccap/ro = list(CAT_HEL, "RO's Cap", 0, "black"),
+		/obj/item/clothing/head/bowlerhat = list(CAT_HEL, "Bowler hat", 0, "black"),
+		/obj/item/clothing/head/hairflower = list(CAT_HEL, "Hairflower pin", 0, "black"),
+		/obj/item/clothing/head/fez = list(CAT_HEL, "Fez", 0, "black"),
+		/obj/item/clothing/head/chefhat = list(CAT_HEL, "Chef's hat", 0, "black"),
+		/obj/item/clothing/head/beaverhat = list(CAT_HEL, "Beaver hat", 0, "black"),
 		/obj/item/clothing/mask/surgical = list(CAT_MAS, "Sterile mask", 0, "black"),
 		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
 		/obj/item/clothing/mask/rebreather/scarf = list(CAT_MAS, "Heat absorbent coif", 0, "black"),
@@ -785,18 +878,17 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/effect/essentials_set/medic = list(CAT_ESS, "Essential Medic Set", 0, "white"),
 
 		/obj/item/storage/firstaid/regular = list(CAT_MEDSUP, "Firstaid kit", 2, "black"),
-		/obj/item/storage/firstaid/adv = list(CAT_MEDSUP, "Advanced firstaid kit", 4, "orange"),
-		/obj/item/storage/pouch/autoinjector/advanced/full = list(CAT_MEDSUP, "Advanced Medical Injectors", 15, "orange"),
-		/obj/item/storage/pill_bottle/paracetamol = list(CAT_MEDSUP, "Paracetamol pills", 10, "black"),
-		/obj/item/storage/syringe_case/meralyne = list(CAT_MEDSUP, "syringe Case (120u Meralyne)", 9, "orange"),
-		/obj/item/storage/syringe_case/dermaline = list(CAT_MEDSUP, "syringe Case (120u Dermaline)", 9, "orange"),
-		/obj/item/storage/syringe_case/meraderm = list(CAT_MEDSUP, "syringe Case (120u Meraderm)", 9, "orange"),
+		/obj/item/storage/firstaid/adv = list(CAT_MEDSUP, "Advanced firstaid kit", 4, "black"),
+		/obj/item/storage/pill_bottle/paracetamol = list(CAT_MEDSUP, "Paracetamol pills", 10, "orange"),
+		/obj/item/storage/syringe_case/meralyne = list(CAT_MEDSUP, "syringe Case (120u Meralyne)", 16, "orange"),
+		/obj/item/storage/syringe_case/dermaline = list(CAT_MEDSUP, "syringe Case (120u Dermaline)", 16, "orange"),
+		/obj/item/storage/syringe_case/meraderm = list(CAT_MEDSUP, "syringe Case (120u Meraderm)", 16, "orange"),
 		/obj/item/storage/syringe_case/ironsugar = list(CAT_MEDSUP, "syringe Case (120u Ironsugar)", 5, "black"),
-		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = list(CAT_MEDSUP, "Injector (Advanced)", 5, "orange"),
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = list(CAT_MEDSUP, "Injector (Advanced)", 5, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/oxycodone = list(CAT_MEDSUP, "Injector (Oxycodone)", 1, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/hypervene = list(CAT_MEDSUP, "Injector (Hypervene)", 1, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_MEDSUP, "Injector (Synaptizine)", 4, "orange"),
-		/obj/item/reagent_containers/hypospray/autoinjector/neuraline = list(CAT_MEDSUP, "Injector (Neuraline)", 15, "orange"),
+		/obj/item/reagent_containers/hypospray/autoinjector/neuraline = list(CAT_MEDSUP, "Injector (Neuraline)", 14, "orange"),
 		/obj/item/reagent_containers/hypospray/advanced = list(CAT_MEDSUP, "Advanced hypospray", 2, "black"),
 		/obj/item/clothing/glasses/hud/health = list(CAT_MEDSUP, "Medical HUD glasses", 2, "black"),
 
@@ -805,7 +897,6 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil compensator", 0, "black"),
 		/obj/item/attachable/magnetic_harness = list(CAT_ATT, "Magnetic harness", 0, "orange"),
 		/obj/item/attachable/reddot = list(CAT_ATT, "Red dot sight", 0, "black"),
-		/obj/item/attachable/quickfire = list(CAT_ATT, "Quickfire assembly", 0, "black"),
 		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0, "black"),
 		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0, "black"),
 		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0, "orange"),
@@ -847,7 +938,6 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil compensator", 0, "black"),
 		/obj/item/attachable/magnetic_harness = list(CAT_ATT, "Magnetic harness", 0, "orange"),
 		/obj/item/attachable/reddot = list(CAT_ATT, "Red dot sight", 0, "black"),
-		/obj/item/attachable/quickfire = list(CAT_ATT, "Quickfire assembly", 0, "black"),
 		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0, "black"),
 		/obj/item/attachable/scope/mini = list(CAT_ATT, "Mini-Scope", 0,"black"),
 		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0, "black"),
@@ -875,7 +965,6 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil compensator", 0, "black"),
 		/obj/item/attachable/magnetic_harness = list(CAT_ATT, "Magnetic harness", 0, "orange"),
 		/obj/item/attachable/reddot = list(CAT_ATT, "Red dot sight", 0, "black"),
-		/obj/item/attachable/quickfire = list(CAT_ATT, "Quickfire assembly", 0, "black"),
 		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0, "black"),
 		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0, "black"),
 		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0, "orange"),
@@ -912,7 +1001,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil compensator", 0, "black"),
 		/obj/item/attachable/magnetic_harness = list(CAT_ATT, "Magnetic harness", 0, "orange"),
 		/obj/item/attachable/reddot = list(CAT_ATT, "Red dot sight", 0, "black"),
-		/obj/item/attachable/quickfire = list(CAT_ATT, "Quickfire assembly", 0, "black"),
 		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0, "black"),
 		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0, "black"),
 		/obj/item/attachable/scope/mini = list(CAT_ATT, "Mini-Scope", 0,"black"),
@@ -963,13 +1051,13 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/storage/box/zipcuffs = list(CAT_LEDSUP, "Ziptie box", 5, "black"),
 		/obj/structure/closet/bodybag/tarp = list(CAT_LEDSUP, "V1 thermal-dampening tarp", 5, "black"),
 		/obj/item/storage/box/m94/cas = list(CAT_LEDSUP, "CAS flare box", 10, "orange"),
+		/obj/item/deployable_camera = list(CAT_LEDSUP, "Deployable Overwatch Camera", 2, "orange"),
 
 		/obj/item/attachable/suppressor = list(CAT_ATT, "Suppressor", 0, "black"),
 		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0, "orange"),
 		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil compensator", 0, "black"),
 		/obj/item/attachable/magnetic_harness = list(CAT_ATT, "Magnetic harness", 0, "orange"),
 		/obj/item/attachable/reddot = list(CAT_ATT, "Red dot sight", 0, "black"),
-		/obj/item/attachable/quickfire = list(CAT_ATT, "Quickfire assembly", 0, "black"),
 		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0, "black"),
 		/obj/item/attachable/scope/mini = list(CAT_ATT, "Mini-Scope", 0,"black"),
 		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0, "black"),
@@ -995,25 +1083,39 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 /obj/effect/essentials_set/basic
 	spawned_gear_list = list(
 						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine,
-						/obj/item/attachable/bayonetknife,
+						/obj/item/clothing/shoes/marine/full,
 						/obj/item/storage/box/MRE,
 						)
 
+/obj/effect/essentials_set/basicmodular
+	spawned_gear_list = list(
+						/obj/item/clothing/under/marine/jaeger,
+						/obj/item/clothing/suit/modular,
+						/obj/item/clothing/shoes/marine/full,
+						/obj/item/storage/box/MRE,
+						/obj/item/facepaint/green,
+						)
 
 /obj/effect/essentials_set/basic_smartgunner
 	spawned_gear_list = list(
 						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine,
-						/obj/item/attachable/bayonetknife,
+						/obj/item/clothing/shoes/marine/full,
 						/obj/item/storage/box/MRE
+						)
+
+/obj/effect/essentials_set/basic_smartgunnermodular
+	spawned_gear_list = list(
+						/obj/item/clothing/under/marine/jaeger,
+						/obj/item/clothing/suit/modular,
+						/obj/item/clothing/shoes/marine/full,
+						/obj/item/storage/box/MRE,
+						/obj/item/facepaint/green,
 						)
 
 /obj/effect/essentials_set/basic_specialist
 	spawned_gear_list = list(
 						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine,
-						/obj/item/attachable/bayonetknife,
+						/obj/item/clothing/shoes/marine/full,
 						/obj/item/storage/box/MRE
 						)
 
@@ -1023,9 +1125,29 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/head/helmet/marine/leader,
 						/obj/item/clothing/glasses/hud/health,
 						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine,
-						/obj/item/attachable/bayonetknife,
+						/obj/item/clothing/shoes/marine/full,
 						/obj/item/storage/box/MRE
+						)
+
+/obj/effect/essentials_set/basic_commander
+	spawned_gear_list = list(
+						/obj/item/clothing/suit/storage/marine/pasvest,
+						/obj/item/clothing/head/helmet/marine/leader,
+						/obj/item/clothing/glasses/hud/health,
+						/obj/item/clothing/under/marine,
+						/obj/item/clothing/shoes/marine/full,
+						/obj/item/storage/box/MRE
+						)
+
+/obj/effect/essentials_set/basic_squadleadermodular
+	spawned_gear_list = list(
+						/obj/item/clothing/under/marine/jaeger,
+						/obj/item/clothing/suit/modular,
+						/obj/item/clothing/head/helmet/marine/leader,
+						/obj/item/clothing/glasses/hud/health,
+						/obj/item/clothing/shoes/marine/full,
+						/obj/item/storage/box/MRE,
+						/obj/item/facepaint/green,
 						)
 
 /obj/effect/essentials_set/basic_medic
@@ -1033,9 +1155,19 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/head/helmet/marine/corpsman,
 						/obj/item/clothing/glasses/hud/health,
 						/obj/item/clothing/under/marine/corpsman,
-						/obj/item/clothing/shoes/marine,
-						/obj/item/attachable/bayonetknife,
+						/obj/item/clothing/shoes/marine/full,
 						/obj/item/storage/box/MRE
+						)
+
+/obj/effect/essentials_set/basic_medicmodular
+	spawned_gear_list = list(
+						/obj/item/clothing/under/marine/jaeger,
+						/obj/item/clothing/suit/modular,
+						/obj/item/clothing/head/helmet/marine/corpsman,
+						/obj/item/clothing/glasses/hud/health,
+						/obj/item/clothing/shoes/marine/full,
+						/obj/item/storage/box/MRE,
+						/obj/item/facepaint/green,
 						)
 
 /obj/effect/essentials_set/basic_engineer
@@ -1043,10 +1175,21 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/head/helmet/marine/tech,
 						/obj/item/clothing/glasses/welding,
 						/obj/item/clothing/under/marine/engineer,
-						/obj/item/clothing/shoes/marine,
-						/obj/item/attachable/bayonetknife,
+						/obj/item/clothing/shoes/marine/full,
 						/obj/item/storage/box/MRE,
-						/obj/item/clothing/gloves/marine/insulated
+						/obj/item/clothing/gloves/marine/insulated,
+						)
+
+/obj/effect/essentials_set/basic_engineermodular
+	spawned_gear_list = list(
+						/obj/item/clothing/under/marine/jaeger,
+						/obj/item/clothing/suit/modular,
+						/obj/item/clothing/head/helmet/marine/tech,
+						/obj/item/clothing/glasses/welding,
+						/obj/item/clothing/shoes/marine/full,
+						/obj/item/storage/box/MRE,
+						/obj/item/clothing/gloves/marine/insulated,
+						/obj/item/facepaint/green,
 						)
 
 /obj/effect/essentials_set/medic
@@ -1083,6 +1226,17 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/binoculars/tactical,
 						)
 
+/obj/effect/essentials_set/commander
+	spawned_gear_list = list(
+						/obj/item/squad_beacon,
+						/obj/item/squad_beacon/bomb,
+						/obj/item/healthanalyzer,
+						/obj/item/roller/medevac,
+						/obj/item/medevac_beacon,
+						/obj/item/whistle,
+						/obj/item/radio,
+						/obj/item/motiondetector,
+						)
 
 /obj/effect/essentials_set/synth
 	spawned_gear_list = list(
@@ -1098,39 +1252,30 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						)
 
 /obj/effect/essentials_set/modular/infantry
-	desc = "A set of Infantry pattern Jaeger armor, including an exoskeleton, helmet, armor plates and a lamp attachment."
+	desc = "A set of light Infantry pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
 	spawned_gear_list = list(
-						/obj/item/clothing/suit/modular,
-						/obj/item/clothing/under/marine/jaeger,
 						/obj/item/clothing/head/modular/marine,
 						/obj/item/armor_module/armor/chest/marine,
 						/obj/item/armor_module/armor/arms/marine,
 						/obj/item/armor_module/armor/legs/marine,
-						/obj/item/armor_module/attachable/better_shoulder_lamp,
 						)
 
 /obj/effect/essentials_set/modular/skirmisher
-	desc = "A set of Skirmisher pattern Jaeger armor, including an exoskeleton, helmet, armor plates and a lamp attachment."
+	desc = "A set of medium Skirmisher pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
 	spawned_gear_list = list(
-						/obj/item/clothing/suit/modular,
-						/obj/item/clothing/under/marine/jaeger,
 						/obj/item/clothing/head/modular/marine/skirmisher,
 						/obj/item/armor_module/armor/chest/marine/skirmisher,
 						/obj/item/armor_module/armor/arms/marine/skirmisher,
 						/obj/item/armor_module/armor/legs/marine/skirmisher,
-						/obj/item/armor_module/attachable/better_shoulder_lamp,
 						)
 
 /obj/effect/essentials_set/modular/assault
-	desc = "A set of Assault pattern Jaeger armor, including an exoskeleton, helmet, armor plates and a lamp attachment."
+	desc = "A set of heavy Assault pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
 	spawned_gear_list = list(
-						/obj/item/clothing/suit/modular,
-						/obj/item/clothing/under/marine/jaeger,
 						/obj/item/clothing/head/modular/marine/assault,
 						/obj/item/armor_module/armor/chest/marine/assault,
 						/obj/item/armor_module/armor/arms/marine/assault,
 						/obj/item/armor_module/armor/legs/marine/assault,
-						/obj/item/armor_module/attachable/better_shoulder_lamp,
 						)
 
 #undef MARINE_CAN_BUY_UNIFORM

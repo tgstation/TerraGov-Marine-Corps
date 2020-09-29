@@ -97,22 +97,26 @@ They're all essentially identical when it comes to getting the job done.
 	if(!source.current_rounds)
 		to_chat(user, "<span class='warning'>\The [source] is empty.</span>")
 		return
-//using handfuls; and filling internal mags has no delay.
-	if(!istype(source, /obj/item/ammo_magazine/handful) && !istype(src, /obj/item/ammo_magazine/internal) ) 
+
+	//using handfuls; and filling internal mags has no delay.
+	if(!istype(source, /obj/item/ammo_magazine/handful) && !istype(src, /obj/item/ammo_magazine/internal) )
 		to_chat(user, "<span class='notice'>You start refilling [src] with [source].</span>")
 		if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 			return
 
 	to_chat(user, "<span class='notice'>You refill [src] with [source].</span>")
 
-	var/S = min(transfer_amount, max_rounds - current_rounds)
+	var/S = clamp(min(transfer_amount, max_rounds - current_rounds), 0, source.current_rounds)
 	source.current_rounds -= S
 	current_rounds += S
+
 	if(source.current_rounds <= 0 && istype(source, /obj/item/ammo_magazine/handful)) //We want to delete it if it's a handful.
 		if(user)
 			user.temporarilyRemoveItemFromInventory(source)
 		qdel(source) //Dangerous. Can mean future procs break if they reference the source. Have to account for this.
-	else source.update_icon()
+	else
+		source.update_icon()
+
 	update_icon(S)
 	return S // We return the number transferred if it was successful.
 
@@ -319,8 +323,8 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	flags_equip_slot = ITEM_SLOT_BACK
 	var/base_icon_state = "big_ammo_box"
 	var/default_ammo = /datum/ammo/bullet/rifle
-	var/bullet_amount = 600
-	var/max_bullet_amount = 600
+	var/bullet_amount = 800
+	var/max_bullet_amount = 800
 	var/caliber = "10x24mm caseless"
 
 /obj/item/big_ammo_box/update_icon()
@@ -398,8 +402,8 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	w_class = WEIGHT_CLASS_HUGE
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "ammobox"
-	var/magazine_amount = 30
-	var/max_magazine_amount = 30
+	var/magazine_amount = 40
+	var/max_magazine_amount = 40
 	var/max_magazine_rounds = 32
 	var/ammo_type = /datum/ammo/bullet/rifle
 	var/magazine_type = /obj/item/ammo_magazine/rifle/standard_carbine

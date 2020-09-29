@@ -455,8 +455,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 			names.Add(name)
 			namecounts[name] = 1
 
-		if(X.client?.prefs?.xeno_name && X.client.prefs.xeno_name != "Undefined")
-			name += " - [X.client.prefs.xeno_name]"
 
 		if((X.client && X.client?.is_afk()) || (!X.client && (X.key || X.ckey)))
 			if(isaghost(X))
@@ -890,3 +888,13 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 /mob/dead/observer/can_interact_with(datum/D)
 	return (D == src || IsAdminGhost(src))
+
+//this is called when a ghost is drag clicked to something.
+/mob/dead/observer/MouseDrop(atom/over)
+	if(!usr || !over)
+		return
+	if (isobserver(usr) && usr.client.holder && (isliving(over) || iscameramob(over)) )
+		if (usr.client.holder.cmd_ghost_drag(src,over))
+			return
+
+	return ..()

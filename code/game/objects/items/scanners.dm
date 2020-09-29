@@ -119,7 +119,6 @@ REAGENT SCANNER
 
 	var/infection_present = 0
 	var/unrevivable = 0
-	var/rad = M.radiation
 	var/overdosed = 0
 
 	// Show specific limb damage
@@ -188,11 +187,6 @@ REAGENT SCANNER
 				dat += "\n"
 
 	// Show red messages - broken bokes, infection, etc
-	if (rad)
-		if(rad > 5)
-			dat += "\t<span class='scanner'> *Dangerous levels of ionizing radiation detected.</span>\n"
-		else
-			dat += "\t<span class='scanner'> *Ionizing radiation detected.</span>\n"
 	if (M.getCloneLoss())
 		dat += "\t<span class='scanner'> *Subject appears to have been imperfectly cloned.</span>\n"
 	if (M.getBrainLoss() >= 100 || !M.has_brain())
@@ -351,17 +345,6 @@ REAGENT SCANNER
 				advice += "<span class='scanner'><b>Low Blood:</b> Administer or recommend consumption of food[iron]</span>\n"
 			if(overdosed && reagents_in_body[/datum/reagent/medicine/hypervene] < 3)
 				advice += "<span class='scanner'><b>Overdose:</b> Administer one dose of hypervene or perform dialysis on patient via sleeper.</span>\n"
-			if(rad > 5)
-				var/arithrazine = ""
-				var/hyronalin = ""
-				//var/hypervene = ""
-				//if(reagents_in_body[/datum/reagent/medicine/hypervene] < 3)
-				//	hypervene = "hypervene"
-				if(reagents_in_body[/datum/reagent/medicine/arithrazine] < 3)
-					arithrazine = "arithrazine"
-				if(reagents_in_body[/datum/reagent/medicine/hyronalin] < 3)
-					hyronalin = "hyronalin"
-				advice += "<span class='scanner'><b>Radiation:</b> Administer one dose of: [arithrazine] | [hyronalin]</span>\n"
 			if(unknown_body)
 				advice += "<span class='scanner'><b>Shrapnel/Embedded Object(s):</b> Seek surgical remedy to remove embedded object(s).</span>\n"
 			//if(infected)
@@ -375,10 +358,7 @@ REAGENT SCANNER
 				advice += "<span class='scanner'><b>Internal Bleeding:</b> [internal_bleed_advice]</span>\n"
 			if(H.getToxLoss() > 10)
 				var/dylovene = ""
-				//var/hypervene = ""
 				var/dylo_recommend = ""
-				//if(reagents_in_body[/datum/reagent/medicine/hypervene] < 3)
-				//	hypervene = "hypervene"
 				if(reagents_in_body[/datum/reagent/medicine/dylovene] < 5)
 					if(synaptizine_amount)
 						dylo_recommend = "Addendum: Dylovene recommended, but conflicting synaptizine present."
@@ -514,28 +494,40 @@ REAGENT SCANNER
 
 
 /obj/item/analyzer/attack_self(mob/user as mob)
-
-	if (user.stat)
+	..()
+	var/turf/T = get_turf(user)
+	if(!T)
 		return
 
-	var/turf/location = user.loc
-	if (!( istype(location, /turf) ))
+	playsound(src, 'sound/effects/pop.ogg', 100)
+	var/area/user_area = T.loc
+	var/datum/weather/ongoing_weather = null
+
+	if(!user_area.outside)
+		to_chat(user, "<span class='warning'>[src]'s barometer function won't work indoors!</span>")
 		return
 
-	var/env_pressure = location.return_pressure()
-	var/env_gas = location.return_gas()
-	var/env_temp = location.return_temperature()
+	for(var/V in SSweather.processing)
+		var/datum/weather/W = V
+		if(W.barometer_predictable && (T.z in W.impacted_z_levels) && W.area_type == user_area.type && !(W.stage == END_STAGE))
+			ongoing_weather = W
+			break
 
-	user.show_message("<span class='boldnotice'>Results:</span>", 1)
-	if(abs(env_pressure - ONE_ATMOSPHERE) < 10)
-		user.show_message("<span class='notice'> Pressure: [round(env_pressure,0.1)] kPa</span>", 1)
+	if(ongoing_weather)
+		if((ongoing_weather.stage == MAIN_STAGE) || (ongoing_weather.stage == WIND_DOWN_STAGE))
+			to_chat(user, "<span class='warning'>[src]'s barometer function can't trace anything while the storm is [ongoing_weather.stage == MAIN_STAGE ? "already here!" : "winding down."]</span>")
+			return
+
+		to_chat(user, "<span class='notice'>The next [ongoing_weather] will hit in [(ongoing_weather.next_hit_time - world.time)/10] Seconds.</span>")
+		if(ongoing_weather.aesthetic)
+			to_chat(user, "<span class='warning'>[src]'s barometer function says that the next storm will breeze on by.</span>")
 	else
-		user.show_message("<span class='warning'> Pressure: [round(env_pressure,0.1)] kPa</span>", 1)
-	if(env_pressure > 0)
-		user.show_message("<span class='notice'> Gas Type: [env_gas]</span>", 1)
-		user.show_message("<span class='notice'> Temperature: [round(env_temp-T0C)]&deg;C</span>", 1)
-
-	return
+		var/next_hit = SSweather.next_hit_by_zlevel["[T.z]"]
+		var/fixed = next_hit ? timeleft(next_hit) : -1
+		if(fixed < 0)
+			to_chat(user, "<span class='warning'>[src]'s barometer function was unable to trace any weather patterns.</span>")
+		else
+			to_chat(user, "<span class='warning'>[src]'s barometer function says a storm will land in approximately [fixed/10] Seconds].</span>")
 
 /obj/item/mass_spectrometer
 	desc = "A hand-held mass spectrometer which identifies trace chemicals in a blood sample."

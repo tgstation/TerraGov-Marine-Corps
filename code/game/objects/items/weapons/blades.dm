@@ -12,6 +12,10 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
+/obj/item/weapon/claymore/Initialize()
+	. = ..()
+	AddElement(/datum/element/scalping)
+
 /obj/item/weapon/claymore/suicide_act(mob/user)
 	user.visible_message("<span class='danger'>[user] is falling on the [src.name]! It looks like [user.p_theyre()] trying to commit suicide.</span>")
 	return(BRUTELOSS)
@@ -35,6 +39,17 @@
 	name = "\improper M2132 machete"
 	desc = "Latest issue of the TGMC Machete. Great for clearing out jungle or brush on outlying colonies. Found commonly in the hands of scouts and trackers, but difficult to carry with the usual kit."
 	icon_state = "machete"
+	force = 60
+	attack_speed = 12
+	w_class = WEIGHT_CLASS_BULKY
+
+//FC's sword.
+
+/obj/item/weapon/claymore/mercsword/officersword
+	name = "\improper Officers sword"
+	desc = "This appears to be a rather old blade that has been well taken care of, it is probably a family heirloom. Oddly despite its probable non-combat purpose it is sharpened and not blunt."
+	icon_state = "officer_sword"
+	item_state = "officer_sword"
 	force = 60
 	attack_speed = 12
 	w_class = WEIGHT_CLASS_BULKY
@@ -98,23 +113,25 @@
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 
-	attackby(obj/item/I as obj, mob/user as mob)
-		if(istype(I,/obj/item/stack/cable_coil))
-			var/obj/item/stack/cable_coil/CC = I
-			if (CC.use(5))
-				to_chat(user, "You wrap some cable around the bayonet. It can now be attached to a gun.")
-				if(loc == user)
-					user.temporarilyRemoveItemFromInventory(src)
-				var/obj/item/attachable/bayonet/F = new(src.loc)
-				user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
-				if(F.loc != user) //It ended up on the floor, put it whereever the old flashlight is.
-					F.loc = get_turf(src)
-				qdel(src) //Delete da old knife
-			else
-				to_chat(user, "<span class='notice'>You don't have enough cable for that.</span>")
-				return
-		else
-			..()
+/obj/item/weapon/combat_knife/attackby(obj/item/I, mob/user)
+	if(!istype(I,/obj/item/stack/cable_coil))
+		return ..()
+	var/obj/item/stack/cable_coil/CC = I
+	if(!CC.use(5))
+		to_chat(user, "<span class='notice'>You don't have enough cable for that.</span>")
+		return
+	to_chat(user, "You wrap some cable around the bayonet. It can now be attached to a gun.")
+	if(loc == user)
+		user.temporarilyRemoveItemFromInventory(src)
+	var/obj/item/attachable/bayonet/F = new(src.loc)
+	user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
+	if(F.loc != user) //It ended up on the floor, put it whereever the old flashlight is.
+		F.loc = get_turf(src)
+	qdel(src) //Delete da old knife
+
+/obj/item/weapon/combat_knife/Initialize()
+	. = ..()
+	AddElement(/datum/element/scalping)
 
 /obj/item/weapon/combat_knife/suicide_act(mob/user)
 	user.visible_message(pick("<span class='danger'>[user] is slitting [user.p_their()] wrists with the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>", \

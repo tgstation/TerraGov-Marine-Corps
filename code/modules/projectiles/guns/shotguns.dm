@@ -426,9 +426,43 @@ can cause issues with ammo types getting mixed up during the burst.
 	accuracy_mult_unwielded = 0.85
 	scatter = 20
 	scatter_unwielded = 40
-	damage_mult = 1.4
 	recoil = 3
 	recoil_unwielded = 5
+
+//-------------------------------------------------------
+//MARINE DOUBLE SHOTTY
+
+/obj/item/weapon/gun/shotgun/double/marine
+	name = "\improper TS-34 double barrel shotgun"
+	desc = "A double barreled shotgun of archaic, but sturdy design used by the TGMC. Due to reports of barrel bursting, the abiility to fire both barrels has been disabled. Uses 12 gauge shells, but can only hold 2 at a time."
+	flags_equip_slot = ITEM_SLOT_BACK
+	icon_state = "ts34"
+	item_state = "ts34"
+	max_shells = 2 //codex
+	current_mag = /obj/item/ammo_magazine/internal/shotgun/double
+	fire_sound = 'sound/weapons/guns/fire/shotgun_heavy.ogg'
+	reload_sound = 'sound/weapons/guns/interact/shotgun_db_insert.ogg'
+	cocked_sound = null //We don't want this.
+	attachable_allowed = list(
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
+						/obj/item/attachable/verticalgrip,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/gyro,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/magnetic_harness)
+
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 19, "under_x" = 21, "under_y" = 13, "stock_x" = 13, "stock_y" = 16)
+
+	fire_delay = 5
+	burst_amount = 1
+	accuracy_mult = 1.15
+	accuracy_mult_unwielded = 0.85
+	scatter = 10
+	scatter_unwielded = 40
+	recoil = 2
+	recoil_unwielded = 4
 
 
 //-------------------------------------------------------
@@ -449,6 +483,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	var/recent_pump //world.time to see when they last pumped it.
 	var/recent_notice //world.time to see when they last got a notice.
 	var/pump_lock = FALSE //Modern shotguns normally lock after being pumped; this lock is undone by pumping or operating the slide release i.e. unloading a shell manually.
+	var/pump_animation = null
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/bayonetknife,
@@ -518,6 +553,8 @@ can cause issues with ammo types getting mixed up during the burst.
 		make_casing(type_of_casings)
 
 	pump_notice(user)
+	if(pump_animation)
+		flick("[pump_animation]", src)
 	playsound(user, pump_sound, 25, 1)
 	recent_pump = world.time
 	if(in_chamber) //Lock only if we have ammo loaded.
@@ -628,6 +665,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	desc = "A mosin nagant rifle, even just looking at it you can feel the cosmoline already. Commonly known by its slang, \"Moist Nugget\", by downbrained colonists and outlaws."
 	icon_state = "mosin"
 	item_state = "mosin" //thank you Alterist
+	pump_animation = "mosin_pump"
 	fire_sound = 'sound/weapons/guns/fire/mosin.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mosin_reload.ogg'
@@ -643,6 +681,7 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/marine,
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/bayonet)
 	flags_item_map_variant = NONE
@@ -764,6 +803,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/verticalgrip)
@@ -783,6 +823,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	flags_equip_slot = ITEM_SLOT_BACK
 	icon_state = "t35"
 	item_state = "t35"
+	pump_animation = "t35_pump"
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump
 	fire_sound = 'sound/weapons/guns/fire/t35.ogg'
 	max_shells = 9

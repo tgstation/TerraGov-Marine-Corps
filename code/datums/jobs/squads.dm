@@ -207,7 +207,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 	//Handle aSL skill level and radio
 	if(!ismarineleaderjob(squad_leader.job))
-		squad_leader.skills.setRating(leadership = SKILL_LEAD_NOVICE)
+		squad_leader.skills = squad_leader.skills.setRating(leadership = SKILL_LEAD_NOVICE)
 		if(squad_leader.mind)
 			var/datum/job/J = squad_leader.job
 			squad_leader.comm_title = J.comm_title
@@ -238,7 +238,7 @@ GLOBAL_LIST_EMPTY(helmetmarkings_sl)
 
 	//Handle aSL skill level and radio
 	if(!ismarineleaderjob(squad_leader.job))
-		squad_leader.skills.setRating(leadership = SKILL_LEAD_TRAINED)
+		squad_leader.skills = squad_leader.skills.setRating(leadership = SKILL_LEAD_TRAINED)
 		squad_leader.comm_title = "aSL"
 		var/obj/item/card/id/ID = squad_leader.get_idcard()
 		if(istype(ID))

@@ -143,6 +143,10 @@
 		to_chat(src, "<span class='warning'>Nuh-uhh.</span>")
 		return
 
+	if(!forced && !(new_caste_type in xeno_caste.evolves_to))
+		to_chat(src, "<span class='warning'>We can't evolve to that caste from our current one.</span>")
+		return
+
 	// used below
 	var/tierzeros //Larva and burrowed larva if it's a certain kinda hive
 	var/tierones
@@ -301,11 +305,11 @@
 	else
 		new_xeno.key = key
 
-	//Pass on the unique nicknumber, then regenerate the new mob's name now that our player is inside
+	//Pass on the unique nicknumber, then regenerate the new mob's name on Login()
 	new_xeno.nicknumber = nicknumber
 	new_xeno.hivenumber = hivenumber
 	new_xeno.transfer_to_hive(hivenumber)
-	new_xeno.generate_name()
+	transfer_observers_to(new_xeno)
 
 	if(new_xeno.health - getBruteLoss(src) - getFireLoss(src) > 0) //Cmon, don't kill the new one! Shouldnt be possible though
 		new_xeno.bruteloss = src.bruteloss //Transfers the damage over.
@@ -328,6 +332,9 @@
 	"<span class='xenodanger'>We emerge in a greater form from the husk of our old body. For the hive!</span>")
 
 	SEND_SIGNAL(hive, COMSIG_XENOMORPH_POSTEVOLVING, new_xeno)
+
+	var/turf/T = get_turf(new_xeno)
+	deadchat_broadcast(" has evolved into a <b>[new_xeno.xeno_caste.caste_name]</b> at <b>[get_area_name(T)]</b>.", "<b>[src]</b>", follow_target = new_xeno, turf_target = T)
 
 	GLOB.round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
 	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_xenos_created")
