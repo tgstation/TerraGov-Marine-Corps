@@ -38,7 +38,7 @@
 		sleep(30)
 
 		if(metal == RAZOR_FOAM)
-			new /obj/structure/razorwire(loc)
+			new /obj/structure/razorwire/foam(loc)
 		else if(metal == METAL_FOAM)
 			new /obj/structure/foamedmetal(loc)		
 
@@ -159,11 +159,12 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "metalfoam"
 	density = TRUE
-	opacity = TRUE 	// changed in New()
+	opacity = FALSE 	// changed in New()
 	anchored = TRUE
 	name = "foamed metal"
 	desc = "A lightweight foamed metal wall."
 	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 200
 
 
 #undef METAL_FOAM
