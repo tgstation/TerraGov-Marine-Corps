@@ -923,3 +923,12 @@
 /mob/living/carbon/xenomorph/proc/remove_abilities()
 	for(var/action_datum in xeno_abilities)
 		qdel(action_datum)
+
+/datum/action/toggle_attack
+	name = "Toggle Attack Type"
+	var/static/atom/movable/vis_obj/action/bump_attack_inactive/inactive_icon = new
+	
+
+/datum/action/toggle_attack/New()
+	. = ..()
+	button.overlays.Cut()

@@ -184,6 +184,7 @@
 
 	var/list/datum/action/xeno_abilities = list()
 	var/datum/action/xeno_action/activable/selected_ability
+	/datum/action/toggle_attack/toggle_action
 	var/selected_resin = /obj/structure/bed/nest //which resin structure to build when we secrete resin
 
 	//Naming variables
