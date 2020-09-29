@@ -17,6 +17,7 @@
 	item_state = "underarmor"
 	flags_atom = CONDUCT
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
+	flags_item = SYNTH_RESTRICTED
 	/// What is allowed to be equipped in suit storage
 	allowed = list(
 		/obj/item/weapon/gun,
