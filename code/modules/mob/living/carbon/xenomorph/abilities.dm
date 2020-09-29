@@ -933,3 +933,6 @@
 /datum/action/toggle_attack/New()
 	. = ..()
 	button.overlays.Cut()
+
+/datum/action/toggle_attack/update_button_icon()
+	button.vis_contents += inactive_icon

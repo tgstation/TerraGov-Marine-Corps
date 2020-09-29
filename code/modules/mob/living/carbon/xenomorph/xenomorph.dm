@@ -56,6 +56,8 @@
 	if(!job) //It might be setup on spawn.
 		setup_job()
 	toggle_action = new()
+	toggle_action.give_action(src)
+	toggle_action.update_button_icon()
 	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, .proc/devour_grabbed) //Devour ability.
 	RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, .proc/switch_attack_type)
 	AddComponent(/datum/component/bump_attack)

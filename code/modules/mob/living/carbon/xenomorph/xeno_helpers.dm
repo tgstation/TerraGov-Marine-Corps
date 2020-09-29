@@ -22,16 +22,5 @@
 /mob/living/carbon/xenomorph/get_death_threshold()
 	return xeno_caste.crit_health
 
-/mob/living/carbon/xenomorph/switch_attack_type()
-	/datum/component/directional_attack/d_attack = GetComponent(/datum/component/directional_attack)
-	/datum/component/directional_attack/b_attack = GetComponent(/datum/component/bump_attack)
-	b_attack.active = !b_attack.active
-	d_attack.active = !d_attack.active
-	if(d_attack.active && !b_attack.active)
-		to_chat(src, "<span class='notice'>You will now attack enemies in melee range upon clicking in their direction.</span>")
-		RegisterSignal(src, COMSIG_MOB_CLICKON, .proc/d_attack.select_directional_action)
-		UnregisterSignal(src, COMSIG_MOVABLE_BUMP)
-	else if(b_attack.active && !d_attack.active)
-		RegisterSignal(src, COMSIG_MOVABLE_BUMP, .proc/b_attack.bump_action_path)
-		UnregisterSignal(src, COMSIG_MOB_CLICKON, .proc/d_attack.select_directional_action)
-		
+/mob/living/carbon/xenomorph/proc/switch_attack_type()
+	SEND_SIGNAL(src, COMSIG_SWITCH_ATTACK_TYPE)

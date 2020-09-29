@@ -1,43 +1,32 @@
 /datum/component/bump_attack
-	var/active = TRUE
+	var/active = FALSE
 	var/bump_action_path
-	var/datum/action/bump_attack_toggle/toggle_action
-
 
 /datum/component/bump_attack/Initialize()
 	. = ..()
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
-	toggle_action = new()
-	var/toggle_path
 	if(ishuman(parent))
 		bump_action_path = .proc/human_bump_action
 	else if(isxeno(parent))
 		bump_action_path = .proc/xeno_bump_action
 	else
 		bump_action_path = .proc/living_bump_action
-	toggle_path = .proc/living_activation_toggle
-	toggle_action.give_action(parent)
-	toggle_action.update_button_icon(active)
-	RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, toggle_path)
+	RegisterSignal(parent, COMSIG_SWITCH_ATTACK_TYPE, .proc/handle_switch)
 	if(active)
 		RegisterSignal(parent, COMSIG_MOVABLE_BUMP, bump_action_path)
 
 /datum/component/bump_attack/Destroy(force, silent)
-	QDEL_NULL(toggle_action)
 	return ..()
 
-
-/datum/component/bump_attack/proc/living_activation_toggle(datum/source)
+/datum/component/bump_attack/proc/handle_switch(datum/source)
 	var/mob/living/bumper = parent
 	active = !active
-	to_chat(bumper, "<span class='notice'>You will now [active ? "attack" : "push"] enemies who are in your way.</span>")
 	if(active)
+		to_chat(bumper, "<span class='notice'>You will now attack enemies who are in your way.</span>")
 		RegisterSignal(bumper, COMSIG_MOVABLE_BUMP, bump_action_path)
 	else
 		UnregisterSignal(bumper, COMSIG_MOVABLE_BUMP)
-	toggle_action.update_button_icon(active)
-
 
 /datum/component/bump_attack/proc/living_bump_action_checks(atom/target)
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BUMP_ATTACK))

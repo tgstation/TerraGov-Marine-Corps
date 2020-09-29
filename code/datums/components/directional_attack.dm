@@ -5,11 +5,20 @@
 	. = ..()
 	if(!isliving(parent))
 		return COMPONENT_INCOMPATIBLE
+	RegisterSignal(parent, COMSIG_SWITCH_ATTACK_TYPE, .proc/handle_switch)
 	if(active)
 		RegisterSignal(parent, COMSIG_MOB_CLICKON, .proc/select_directional_action)
 
+/datum/component/directional_attack/proc/handle_switch()
+	var/mob/living/attacker = parent
+	active = !active
+	if(active)
+		to_chat(attacker, "<span class='notice'>You will now attack enemies in melee range upon clicking in their direction.</span>")
+		RegisterSignal(attacker, COMSIG_MOB_CLICKON, .proc/select_directional_action)
+	else
+		UnregisterSignal(attacker, COMSIG_MOB_CLICKON, .proc/select_directional_action)
+
 /datum/component/directional_attack/Destroy(force, silent)
-    QDEL_NULL(toggle_action)
     return ..()
 
 /datum/component/directional_attack/RegisterWithParent()
@@ -29,7 +38,7 @@
 
 /datum/component/directional_attack/proc/living_directional_action_checks(mob/living/L)
 	var/mob/living/carbon/attacker = parent
-	if(COOLDOWN_CHECK(src, COOLDOWN_DIRECTIONAL_ATTACK))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_DIRECTIONAL_ATTACK))
 		return NONE
 	if(L.throwing)
 		return NONE
@@ -72,7 +81,7 @@
 		if(!isnull(.))
 			return
 	else 
-		if(COOLDOWN_CHECK(src, COOLDOWN_DIRECTIONAL_ATTACK))
+		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_DIRECTIONAL_ATTACK))
 			return
 	return living_do_directional_action(hold)
 
@@ -96,7 +105,7 @@
 		if(attacker.faction == L.faction)
 			return //FF
 	else 
-		if(COOLDOWN_CHECK(src, COOLDOWN_DIRECTIONAL_ATTACK))
+		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_DIRECTIONAL_ATTACK))
 			return
 	return living_do_directional_action(hold)
 
@@ -120,13 +129,13 @@
 		if(attacker.issamexenohive(L))
 			return //No more nibbling.
 	else 
-		if(COOLDOWN_CHECK(src, COOLDOWN_DIRECTIONAL_ATTACK))
+		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_DIRECTIONAL_ATTACK))
 			return
 	return living_do_directional_action(hold)
 
 /datum/component/directional_attack/proc/living_do_directional_action(atom/target)
 	var/mob/living/attacker = parent
 	attacker.UnarmedAttack(target, TRUE)
-	COOLDOWN_START(src, COOLDOWN_DIRECTIONAL_ATTACK, CLICK_CD_MELEE)
+	TIMER_COOLDOWN_START(src, COOLDOWN_DIRECTIONAL_ATTACK, CLICK_CD_MELEE)
 
 
