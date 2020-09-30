@@ -25,11 +25,12 @@
 	X.xeno_abilities += src
 	if(keybind_signal)
 		RegisterSignal(L, keybind_signal, .proc/keybind_activation)
-		RegisterSignal(L, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE, .proc/on_xeno_upgrade)
+	RegisterSignal(L, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE, .proc/on_xeno_upgrade)
 
 /datum/action/xeno_action/remove_action(mob/living/L)
 	if(keybind_signal)
 		UnregisterSignal(L, keybind_signal)
+	UnregisterSignal(L, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE)
 	if(cooldown_id)
 		deltimer(cooldown_id)
 	var/mob/living/carbon/xenomorph/X = L

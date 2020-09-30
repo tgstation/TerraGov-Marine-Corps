@@ -247,7 +247,10 @@
 /datum/action/xeno_action/toggle_crest_defense/on_xeno_upgrade()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.crest_defense)
-		set_crest_defense(TRUE, TRUE)
+		var/defensebonus = X.xeno_caste.crest_defense_armor
+		X.soft_armor = X.soft_armor.modifyAllRatings(defensebonus)
+		X.soft_armor = X.soft_armor.setRating(bomb = XENO_BOMB_RESIST_3)
+		last_crest_bonus = defensebonus
 
 /datum/action/xeno_action/toggle_crest_defense/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/defender/X = owner
@@ -316,7 +319,10 @@
 /datum/action/xeno_action/fortify/on_xeno_upgrade()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.fortify)
-		set_fortify(TRUE, TRUE)
+		var/fortifyAB = X.xeno_caste.fortify_armor
+		X.soft_armor = X.soft_armor.modifyAllRatings(fortifyAB)
+		X.soft_armor = X.soft_armor.setRating(bomb = XENO_BOMB_RESIST_4)
+		last_fortify_bonus = fortifyAB
 
 /datum/action/xeno_action/fortify/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
