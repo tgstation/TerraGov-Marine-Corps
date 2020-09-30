@@ -134,23 +134,39 @@ obj/item/ammo_magazine/rifle/m4ra/smart
 			desc = "A spent rocket rube. Activate it to deconstruct it and receive some materials."
 			icon_state = type == /obj/item/ammo_magazine/rocket/m57a4? "quad_rocket_e" : "rocket_e"
 
-/obj/item/ammo_magazine/rocket/ap
+//-------------------------------------------------------
+//T-152
+
+/obj/item/ammo_magazine/rocket/sadar
+	name = "\improper 84mm high-explosive rocket"
+	desc = "A rocket tube for the T-152 rocket launcher."
+	caliber = "rocket"
+	icon_state = "rocket"
+	w_class = WEIGHT_CLASS_NORMAL
+	max_rounds = 1
+	default_ammo = /datum/ammo/rocket
+	gun_type = /obj/item/weapon/gun/launcher/rocket/sadar
+	flags_magazine = NONE
+	reload_delay = 60
+
+/obj/item/ammo_magazine/rocket/sadar/ap
 	name = "\improper 84mm anti-armor rocket"
 	icon_state = "ap_rocket"
 	default_ammo = /datum/ammo/rocket/ap
 	desc = "A tube for an AP rocket, the warhead of which is extremely dense and turns molten on impact. When empty, use this frame to deconstruct it."
 
-/obj/item/ammo_magazine/rocket/wp
+/obj/item/ammo_magazine/rocket/sadar/wp
 	name = "\improper 84mm white-phosphorus rocket"
 	icon_state = "wp_rocket"
 	default_ammo = /datum/ammo/rocket/wp
 	desc = "A highly destructive warhead that bursts into deadly flames on impact. Use this in hand to deconstruct it."
 
-/obj/item/ammo_magazine/internal/launcher/rocket
+/obj/item/ammo_magazine/internal/launcher/rocket/sadar
 	name = "\improper 84mm internal tube"
 	desc = "The internal tube of a T-152 rocket launcher."
 	caliber = "rocket"
 	default_ammo = /datum/ammo/rocket
+	gun_type = /obj/item/weapon/gun/launcher/rocket/sadar
 	max_rounds = 1
 	current_rounds = 0
 	reload_delay = 60
