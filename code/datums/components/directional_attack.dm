@@ -60,7 +60,7 @@
 	var/clickDir = get_dir(parent, target)
 	var/turf/presumedPos = get_step(parent, clickDir)
 	var/mob/living/L = locate() in presumedPos
-	if(presumedPos == get_turf(target) && L == null)
+	if((presumedPos == get_turf(target) && L == null) || L == parent)
 		return target
 	return L
 
