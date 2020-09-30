@@ -42,12 +42,10 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	switch(playtime_mins)
 		if(0 to 600)
 			new_human.wear_id.paygrade = "E1"
-		if(601 to 4800)
+		if(601 to 6600)
 			new_human.wear_id.paygrade = "E2"
-		if(4801 to 9600)
+		if(6601 to INFINITY)
 			new_human.wear_id.paygrade = "E3"
-		if(9601 to INFINITY)
-			new_human.wear_id.paygrade = "E4"
 
 /datum/job/terragov/squad/standard/radio_help_message(mob/M)
 	. = ..()
