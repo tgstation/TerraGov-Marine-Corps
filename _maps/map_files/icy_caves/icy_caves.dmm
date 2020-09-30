@@ -2942,9 +2942,6 @@
 /obj/structure/table,
 /obj/item/cell/high/empty,
 /obj/machinery/cell_charger,
-/obj/machinery/firealarm{
-	dir = 4
-	},
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
