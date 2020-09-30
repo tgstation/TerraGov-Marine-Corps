@@ -658,7 +658,6 @@
 					/obj/item/clothing/mask/bandanna/green = 10,
 					/obj/item/clothing/mask/bandanna/white = 10,
 					/obj/item/clothing/mask/bandanna/black = 10,
-					/obj/item/clothing/mask/bandanna = 10,
 					/obj/item/clothing/mask/rebreather = 10,
 					/obj/item/clothing/mask/breath = 10,
 					/obj/item/clothing/mask/gas = 10,
@@ -674,9 +673,7 @@
 					/obj/item/armor_module/storage/engineering = 20,
 					/obj/item/armor_module/storage/medical = 20,
 					/obj/item/storage/pouch/pistol = 10,
-					/obj/item/storage/pouch/magazine = 10,
 					/obj/item/storage/pouch/magazine/large = 5,
-					/obj/item/storage/pouch/magazine/pistol = 10,
 					/obj/item/storage/pouch/magazine/pistol/large = 5,
 					/obj/item/storage/pouch/shotgun = 10,
 					/obj/item/storage/pouch/flare = 10,
@@ -684,8 +681,7 @@
 					/obj/item/storage/pouch/explosive = 10,
 					/obj/item/storage/pouch/firstaid = 10,
 					/obj/item/storage/pouch/syringe = 5,
-					/obj/item/storage/pouch/medical = 5,
-					/obj/item/storage/pouch/medkit = 10,
+					/obj/item/storage/pouch/medkit = 15,
 					/obj/item/storage/pouch/autoinjector = 10,
 					/obj/item/storage/pouch/construction = 10,
 					/obj/item/storage/pouch/electronics = 10,
@@ -693,6 +689,7 @@
 					/obj/item/storage/pouch/field_pouch = 10,
 					/obj/item/storage/pouch/general/large = 10,
 					/obj/item/storage/pouch/document = 10,
+					/obj/item/clothing/tie/storage/black_vest = 10,
 					/obj/item/clothing/tie/storage/brown_vest = 10,
 					/obj/item/clothing/tie/storage/white_vest/medic = 10,
 					/obj/item/clothing/tie/storage/webbing = 10,
@@ -741,23 +738,22 @@
 /obj/machinery/vending/uniform_supply/Initialize()
 	. = ..()
 	var/products2[]
-	if(squad_tag != null) //probably some better way to slide this in but no sleep is no sleep.
-		switch(squad_tag)
-			if("Alpha")
-				products2 = list(/obj/item/radio/headset/mainship/marine/alpha = 20,
+	switch(squad_tag)
+		if("Alpha")
+			products2 = list(/obj/item/radio/headset/mainship/marine/alpha = 20,
 								/obj/item/clothing/mask/bandanna/alpha = 10)
-			if("Bravo")
-				products2 = list(/obj/item/radio/headset/mainship/marine/bravo = 20,
-								/obj/item/clothing/mask/bandanna/bravo = 10)
-			if("Charlie")
-				products2 = list(/obj/item/radio/headset/mainship/marine/charlie = 20,
-								/obj/item/clothing/mask/bandanna/charlie = 10)
-			if("Delta")
-				products2 = list(/obj/item/radio/headset/mainship/marine/delta = 20,
-								/obj/item/clothing/mask/bandanna/delta = 10)
-	else
-		products2 = list(/obj/item/radio/headset/mainship = 20,
-						/obj/item/clothing/mask/bandanna = 10)
+		if("Bravo")
+			products2 = list(/obj/item/radio/headset/mainship/marine/bravo = 20,
+							/obj/item/clothing/mask/bandanna/bravo = 10)
+		if("Charlie")
+			products2 = list(/obj/item/radio/headset/mainship/marine/charlie = 20,
+							/obj/item/clothing/mask/bandanna/charlie = 10)
+		if("Delta")
+			products2 = list(/obj/item/radio/headset/mainship/marine/delta = 20,
+							/obj/item/clothing/mask/bandanna/delta = 10)
+		else
+			products2 = list(/obj/item/radio/headset/mainship/marine/generic = 20,
+							/obj/item/clothing/mask/bandanna = 10)
 	build_inventory(products2)
 	GLOB.marine_vendors.Add(src)
 

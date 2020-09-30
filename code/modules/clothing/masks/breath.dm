@@ -67,7 +67,7 @@
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/mask/bandanna
-	name = "Tan bandanna"
+	name = "tan bandanna"
 	desc = "A colored, resilient, and insulating cloth to cover your face from the elements. This one is Desert Tan"
 	icon_state = "bandanna"
 	item_state = "bandanna"

@@ -20,7 +20,7 @@
 			"<span class='notice'>We start focusing your sight to look off into the distance.</span>", null, 5)
 		if(!do_after(X, 1 SECONDS, FALSE, null, BUSY_ICON_GENERIC) || X.is_zoomed)
 			return
-		X.zoom_in()
+		X.zoom_in(11)
 		..()
 
 // ***************************************
