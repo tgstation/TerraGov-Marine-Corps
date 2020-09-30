@@ -1,0 +1,4 @@
+author: "Fikou"
+delete-after: True
+changes: 
+  - tweak: "underbarrel attachments now dont deactivate on pb"
