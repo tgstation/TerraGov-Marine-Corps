@@ -207,7 +207,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/specdemo
 	name = "Demolitionist Specialist kit"
-	contains = list(/obj/item/weapon/gun/launcher/rocket)
+	contains = list(/obj/item/weapon/gun/launcher/rocket/sadar)
 	cost = 90
 
 /datum/supply_packs/weapons/autosniper
