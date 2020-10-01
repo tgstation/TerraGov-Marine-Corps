@@ -15,10 +15,11 @@
 #define MARINE_CAN_BUY_ATTACHMENT2	(1 << 14)
 
 #define MARINE_CAN_BUY_WEBBING		(1 << 15)
+#define MARINE_CAN_BUY_MODULE		(1 << 16)
 
 
 
-#define MARINE_CAN_BUY_ALL			((1 << 16) - 1)
+#define MARINE_CAN_BUY_ALL			((1 << 17) - 1)
 
 #define MARINE_TOTAL_BUY_POINTS		45
 
@@ -35,6 +36,7 @@
 #define CAT_BEL "BELT"
 #define CAT_MAS "MASKS"
 #define CAT_ATT "GUN ATTACHMENTS"
+#define CAT_MOD "JAEGER STORAGE MODULES"
 
 #define CAT_MEDSUP "MEDICAL SUPPLIES"
 #define CAT_ENGSUP "ENGINEERING SUPPLIES"
@@ -45,6 +47,7 @@
 /obj/item/card/id/var/marine_buy_flags = MARINE_CAN_BUY_ALL
 
 GLOBAL_LIST_INIT(marine_selector_cats, list(
+		CAT_MOD = list(MARINE_CAN_BUY_MODULE),
 		CAT_STD = list(MARINE_CAN_BUY_UNIFORM),
 		CAT_SHO = list(MARINE_CAN_BUY_SHOES),
 		CAT_HEL = list(MARINE_CAN_BUY_HELMET),
@@ -294,9 +297,13 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		CAT_POU = list(MARINE_CAN_BUY_R_POUCH,MARINE_CAN_BUY_L_POUCH),
 		CAT_MAS = list(MARINE_CAN_BUY_MASK),
 		CAT_ATT = list(MARINE_CAN_BUY_ATTACHMENT,MARINE_CAN_BUY_ATTACHMENT2),
+		CAT_MOD = list(MARINE_CAN_BUY_MODULE),
 	)
 
 	listed_products = list(
+		/obj/item/armor_module/storage/medical = list(CAT_MOD, "Medical Storage Module", 0, "black"),
+		/obj/item/armor_module/storage/general = list(CAT_MOD, "General Purpose Storage Module", 0, "black"),
+		/obj/item/armor_module/storage/engineering = list(CAT_MOD, "Engineering Storage Module", 0, "black"),
 		/obj/effect/essentials_set/basic = list(CAT_STD, "Standard Kit", 0, "white"),
 		/obj/effect/essentials_set/basicmodular = list(CAT_STD, "Essential Jaeger Kit", 0, "white"),
 		/obj/effect/essentials_set/modular/infantry = list(CAT_AMR, "Medium Infantry Jaeger kit", 0, "orange"),
