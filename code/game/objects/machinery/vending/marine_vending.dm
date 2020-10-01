@@ -718,6 +718,7 @@
 					/obj/item/clothing/head/modular/marine/skirmisher = 20,
 					/obj/item/clothing/head/modular/marine = 20,
 					/obj/item/clothing/head/modular/marine/eva = 20,
+					/obj/item/clothing/head/modular/marine/eva/skull = 20,
 					/obj/item/clothing/head/modular/marine/assault = 20,
 					/obj/item/clothing/head/modular/marine/eod = 20,
 					/obj/item/helmet_module/welding = 20,
