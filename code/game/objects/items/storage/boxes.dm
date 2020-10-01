@@ -445,6 +445,32 @@
 		isopened = 1
 		icon_state = "mealpackopened"
 
+//The MRE every marine gets. It always comes with 3 protein bars, a canteen and some sugar.
+
+/obj/item/storage/box/survival_MRE
+	name = "\improper TGMC survival MRE"
+	desc = "Meal Ready-to-Eat, meant to be consumed in the field, this one is a standard issue survival MRE, and thus has space for flasks and other things. The protein bars inside can keep you alive for about 3 days, longer than your unit's life expectancy."
+	icon_state = "survivalpack"
+	w_class = WEIGHT_CLASS_SMALL
+	can_hold = list()
+	storage_slots = 5
+	max_w_class = 0
+	foldable = 0
+	can_hold = list(
+		/obj/item/reagent_containers/food/snacks,
+		/obj/item/reagent_containers/food/drinks/flask)
+	bypass_w_limit = list(/obj/item/reagent_containers/food/drinks/flask)
+
+/obj/item/storage/box/survival_MRE/Initialize()
+	. = ..()
+	new /obj/item/reagent_containers/food/drinks/flask(src)
+	new /obj/item/reagent_containers/food/snacks/sugarpacket(src)
+	new /obj/item/reagent_containers/food/snacks/packaged_probar(src)
+	new /obj/item/reagent_containers/food/snacks/packaged_probar(src)
+	new /obj/item/reagent_containers/food/snacks/packaged_probar(src)
+
+
+
 //Fillable Ammo Box
 /obj/item/storage/box/ammo
 	name = "\improper Ammo Box"

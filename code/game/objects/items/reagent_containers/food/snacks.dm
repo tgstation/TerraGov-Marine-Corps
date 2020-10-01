@@ -2760,6 +2760,14 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/coco = 2, /datum/reagent/medicine/tramadol = 1, /datum/reagent/medicine/tramadol = 1)
 	tastes = list("cough syrup" = 1)
 
+/obj/item/reagent_containers/food/snacks/sugarpacket
+	name = "Sugar packet"
+	icon_state = "sugarpack"
+	desc = "A regular large sugar packet. Holds about 2 handfuls of sugar."
+	filling_color = "#FFE591"
+	list_reagents = list(/datum/reagent/consumable/sugar = 20)
+	bitesize = 5
+
 //MREs
 
 /obj/item/reagent_containers/food/snacks/packaged_meal
@@ -2811,20 +2819,20 @@
 	icon_state = "lollipop_stick"
 	item_state = "lollipop_stick"
 	flags_equip_slot = ITEM_SLOT_MASK
-	w_class = WEIGHT_CLASS_TINY	
+	w_class = WEIGHT_CLASS_TINY
 	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/sugar = 4)
-	tastes = list("candy" = 1)	
+	tastes = list("candy" = 1)
 	var/mutable_appearance/head
 	var/headcolor = rgb(0, 0, 0)
 	var/succ_int = 100
 	var/next_succ = 0
 	var/mob/living/carbon/human/owner
- 
+
 /obj/item/reagent_containers/food/snacks/lollipop/Initialize()
 	. = ..()
 	head = mutable_appearance('icons/obj/items/lollipop.dmi', "lollipop_head")
 	change_head_color(rgb(rand(0, 255), rand(0, 255), rand(0, 255)))
- 
+
 //makes lollipops actually wearable as masks and still edible the old fashioned way.
 /obj/item/reagent_containers/food/snacks/lollipop/proc/handle_reagents()
 	var/fraction = min(FOOD_METABOLISM/reagents.total_volume, 1)
@@ -2839,7 +2847,7 @@
 	if(!reagents)
 		stack_trace("lollipop processing without a reagents datum")
 		return PROCESS_KILL
-	if(owner.stat == DEAD)	
+	if(owner.stat == DEAD)
 		return PROCESS_KILL
 	if(!reagents.total_volume)
 		qdel(src)
@@ -2847,7 +2855,7 @@
 	if(next_succ <= world.time)
 		handle_reagents()
 		next_succ = world.time + succ_int
- 
+
 /obj/item/reagent_containers/food/snacks/lollipop/equipped(mob/user, slot)
 	. = ..()
 	if(!iscarbon(user))
@@ -2858,11 +2866,11 @@
 		return
 	owner = user
 	START_PROCESSING(SSobj, src)
- 
+
 /obj/item/reagent_containers/food/snacks/lollipop/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
- 
+
 /obj/item/reagent_containers/food/snacks/lollipop/proc/change_head_color(C)
 	headcolor = C
 	cut_overlay(head)

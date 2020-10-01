@@ -1084,7 +1084,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	spawned_gear_list = list(
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine/full,
-						/obj/item/storage/box/MRE,
+						/obj/item/storage/box/survival_MRE,
 						)
 
 /obj/effect/essentials_set/basicmodular
@@ -1092,7 +1092,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/under/marine/jaeger,
 						/obj/item/clothing/suit/modular,
 						/obj/item/clothing/shoes/marine/full,
-						/obj/item/storage/box/MRE,
+						/obj/item/storage/box/survival_MRE,
 						/obj/item/facepaint/green,
 						)
 
@@ -1100,7 +1100,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	spawned_gear_list = list(
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine/full,
-						/obj/item/storage/box/MRE
+						/obj/item/storage/box/survival_MRE
 						)
 
 /obj/effect/essentials_set/basic_smartgunnermodular
@@ -1108,7 +1108,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/under/marine/jaeger,
 						/obj/item/clothing/suit/modular,
 						/obj/item/clothing/shoes/marine/full,
-						/obj/item/storage/box/MRE,
+						/obj/item/storage/box/survival_MRE,
 						/obj/item/facepaint/green,
 						)
 
@@ -1116,7 +1116,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	spawned_gear_list = list(
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine/full,
-						/obj/item/storage/box/MRE
+						/obj/item/storage/box/survival_MRE
 						)
 
 /obj/effect/essentials_set/basic_squadleader
@@ -1126,7 +1126,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/glasses/hud/health,
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine/full,
-						/obj/item/storage/box/MRE
+						/obj/item/storage/box/survival_MRE
 						)
 
 /obj/effect/essentials_set/basic_commander
@@ -1136,7 +1136,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/glasses/hud/health,
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine/full,
-						/obj/item/storage/box/MRE
+						/obj/item/storage/box/survival_MRE
 						)
 
 /obj/effect/essentials_set/basic_squadleadermodular
@@ -1146,7 +1146,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/head/helmet/marine/leader,
 						/obj/item/clothing/glasses/hud/health,
 						/obj/item/clothing/shoes/marine/full,
-						/obj/item/storage/box/MRE,
+						/obj/item/storage/box/survival_MRE,
 						/obj/item/facepaint/green,
 						)
 
@@ -1156,7 +1156,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/glasses/hud/health,
 						/obj/item/clothing/under/marine/corpsman,
 						/obj/item/clothing/shoes/marine/full,
-						/obj/item/storage/box/MRE
+						/obj/item/storage/box/survival_MRE
 						)
 
 /obj/effect/essentials_set/basic_medicmodular
@@ -1166,7 +1166,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/head/helmet/marine/corpsman,
 						/obj/item/clothing/glasses/hud/health,
 						/obj/item/clothing/shoes/marine/full,
-						/obj/item/storage/box/MRE,
+						/obj/item/storage/box/survival_MRE,
 						/obj/item/facepaint/green,
 						)
 
@@ -1176,7 +1176,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/glasses/welding,
 						/obj/item/clothing/under/marine/engineer,
 						/obj/item/clothing/shoes/marine/full,
-						/obj/item/storage/box/MRE,
+						/obj/item/storage/box/survival_MRE,
 						/obj/item/clothing/gloves/marine/insulated,
 						)
 
@@ -1187,7 +1187,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/clothing/head/helmet/marine/tech,
 						/obj/item/clothing/glasses/welding,
 						/obj/item/clothing/shoes/marine/full,
-						/obj/item/storage/box/MRE,
+						/obj/item/storage/box/survival_MRE,
 						/obj/item/clothing/gloves/marine/insulated,
 						/obj/item/facepaint/green,
 						)

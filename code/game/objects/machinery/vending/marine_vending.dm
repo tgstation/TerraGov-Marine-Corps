@@ -325,6 +325,7 @@
 					/obj/item/reagent_containers/food/snacks/mre_pack/meal4 = 15,
 					/obj/item/reagent_containers/food/snacks/mre_pack/meal6 = 15,
 					/obj/item/storage/box/MRE = 10,
+					/obj/item/storage/box/survival_MRE = 10,
 					/obj/item/reagent_containers/food/drinks/flask = 5)
 //Christmas inventory
 /*

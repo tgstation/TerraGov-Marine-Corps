@@ -221,6 +221,22 @@
 	bitesize = 4
 	tastes = list("nutraloafed food" = 7, "cocoa" = 1)
 
+/obj/item/reagent_containers/food/snacks/packaged_probar
+	name = "TGMC protein bar"
+	desc = "The most fake looking protein bar you have ever laid eyes on, covered in the a subtitution chocolate. The powder used to make these is a subsitute of a substitute of whey substitute."
+	icon_state = "contained_yummers"
+	bitesize = 4
+	package = TRUE
+	list_reagents = list(/datum/reagent/consumable/nutriment = 8)
+	tastes = list("nutraloafed food" = 7, "cocoa" = 1)
+
+/obj/item/reagent_containers/food/snacks/packaged_probar/attack_self(mob/user as mob)
+	if(package)
+		playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1)
+		to_chat(user, "<span class='notice'>You pull off the wrapping from the squishy burrito!</span>")
+		package = FALSE
+		icon_state = "yummers"
+
 
 /obj/item/reagent_containers/food/snacks/mre_pack
 	name = "\improper generic MRE pack"
