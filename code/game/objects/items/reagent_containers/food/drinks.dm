@@ -234,6 +234,13 @@
 	center_of_mass = list("x"=17, "y"=8)
 	list_reagents = list(/datum/reagent/water = 51, /datum/reagent/consumable/ethanol/hooch = 9)
 
+/obj/item/reagent_containers/food/drinks/flask/survival
+	name = "\improper TGMC flask"
+	desc = "A metal flask with a decent liquid capacity."
+	icon_state = "flask_tgmc"
+	center_of_mass = list("x"=17, "y"=8)
+	list_reagents = list(/datum/reagent/water = 30)
+
 /obj/item/reagent_containers/food/drinks/flask/detflask
 	name = "detective's flask"
 	desc = "A metal flask with a leather band and golden badge belonging to the detective."

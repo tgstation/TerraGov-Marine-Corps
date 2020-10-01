@@ -463,7 +463,7 @@
 
 /obj/item/storage/box/survival_MRE/Initialize()
 	. = ..()
-	new /obj/item/reagent_containers/food/drinks/flask(src)
+	new /obj/item/reagent_containers/food/drinks/flask/survival(src)
 	new /obj/item/reagent_containers/food/snacks/sugarpacket(src)
 	new /obj/item/reagent_containers/food/snacks/packaged_probar(src)
 	new /obj/item/reagent_containers/food/snacks/packaged_probar(src)
