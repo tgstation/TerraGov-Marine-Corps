@@ -232,7 +232,7 @@
 		if("E3")
 			. = size ? "LCPL " : "Lance Corporal"
 		if("E4E")
-			. = size ? "SCPL " : "Section Corporal" //Anarachronistic if we're going by common US ranks, above E3 but below E4.
+			. = size ? "SCPL " : "Section Corporal" //Anachronistic if we're going by common US ranks, above E3 but below E4.
 		if("E4")
 			. = size ? "CPL " : "Corporal"
 		if("E5")
