@@ -1278,6 +1278,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	desc = "A set of medium EVA pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
 	spawned_gear_list = list(
 						/obj/item/clothing/head/modular/marine/eva,
+						/obj/item/clothing/head/modular/marine/eva/skull,
 						/obj/item/armor_module/armor/chest/marine/eva,
 						/obj/item/armor_module/armor/arms/marine/eva,
 						/obj/item/armor_module/armor/legs/marine/eva,
