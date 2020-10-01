@@ -466,10 +466,20 @@
 
 /obj/item/clothing/head/modular/marine/skirmisher
 	name = "Jaeger Pattern Skirmisher Helmet"
-	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings."
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Skirmisher markings."
 	icon_state = "skirmisher_helmet"
 
 /obj/item/clothing/head/modular/marine/assault
 	name = "Jaeger Pattern Assault Helmet"
-	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings."
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Assault markings."
 	icon_state = "assault_helmet"
+
+/obj/item/clothing/head/modular/marine/eva
+	name = "Jaeger Pattern EVA Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EVA markings."
+	icon_state = "eva_helmet"
+
+/obj/item/clothing/head/modular/marine/eod
+	name = "Jaeger Pattern EOD Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EOD markings"
+	icon_state = "eod_helmet"
