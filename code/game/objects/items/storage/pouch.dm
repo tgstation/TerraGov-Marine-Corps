@@ -48,7 +48,8 @@
 
 /obj/item/storage/pouch/general/large
 	name = "general pouch"
-	storage_slots = 3
+	storage_slots = null
+	max_storage_space = 6
 	icon_state = "large_drop"
 	draw_mode = 0
 
