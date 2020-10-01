@@ -47,7 +47,7 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 		if(6601 to 18000)
 			new_human.wear_id.paygrade = "E3"
 		if(18001 to INFINITY)
-			new_human.wear_id.paygrade = "E4E"
+			new_human.wear_id.paygrade = "E3E"
 
 /datum/job/terragov/squad/standard/radio_help_message(mob/M)
 	. = ..()
