@@ -127,9 +127,8 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 		eject_user()
 
 	QDEL_NULL(beaker)
-	if(linked_console)
-		linked_console.linked_machine = null
-		linked_console = null
+	linked_console?.linked_machine = null
+	linked_console = null
 	return ..()
 
 
