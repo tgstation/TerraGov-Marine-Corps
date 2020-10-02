@@ -185,8 +185,7 @@
 	max_w_class = 3
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
-		/obj/item/weapon/gun/revolver,
-		/obj/item/weapon/gun/smg/standard_machinepistol)
+		/obj/item/weapon/gun/revolver)
 	draw_mode = 1
 
 /obj/item/storage/pouch/pistol/vp70/Initialize()
