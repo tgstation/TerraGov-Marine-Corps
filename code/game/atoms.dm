@@ -611,6 +611,7 @@ Proc for attack log creation, because really why not
 	to_chat(user, "<span class='warning'>Cannot extract [src].</span>")
 	return TRUE
 
+///This proc is called on atoms when they are loaded into a shuttle
 /atom/proc/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	return
 

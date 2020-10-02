@@ -306,7 +306,7 @@
 		QDEL_NULL(assigned_transit)		//don't need it where we're goin'!
 		shuttle_areas = null
 		remove_ripples()
-	. = ..()
+	return ..()
 
 /obj/docking_port/mobile/Initialize(mapload)
 	. = ..()

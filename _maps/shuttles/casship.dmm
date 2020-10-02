@@ -1,5 +1,622 @@
-"a" = ()
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"au" = (
+/obj/structure/caspart{
+	icon_state = "7"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"aC" = (
+/obj/structure/caspart{
+	icon_state = "46"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"aF" = (
+/obj/structure/caspart{
+	icon_state = "8"
+	},
+/turf/template_noop,
+/area/template_noop)
+"aL" = (
+/obj/structure/caspart{
+	icon_state = "21"
+	},
+/turf/open/space/basic,
+/area/shuttle/cas/main)
+"cM" = (
+/obj/structure/caspart{
+	icon_state = "61"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"dY" = (
+/obj/structure/caspart{
+	icon_state = "15"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"ei" = (
+/obj/structure/caspart{
+	icon_state = "12"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"em" = (
+/obj/structure/caspart{
+	icon_state = "32"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"fv" = (
+/obj/structure/caspart,
+/turf/template_noop,
+/area/shuttle/cas/main)
+"hf" = (
+/obj/structure/caspart{
+	icon_state = "49"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"jf" = (
+/obj/structure/caspart{
+	icon_state = "70"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"kA" = (
+/obj/structure/caspart{
+	icon_state = "18"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"kK" = (
+/obj/structure/caspart{
+	icon_state = "66"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"lA" = (
+/obj/structure/caspart{
+	icon_state = "69"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"mO" = (
+/obj/structure/caspart{
+	icon_state = "72"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"nB" = (
+/obj/structure/caspart{
+	icon_state = "37"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"or" = (
+/obj/structure/caspart{
+	icon_state = "44"
+	},
+/turf/open/space/basic,
+/area/shuttle/cas/main)
+"pF" = (
+/obj/structure/caspart{
+	icon_state = "16"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"sD" = (
+/obj/structure/caspart{
+	icon_state = "59"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"sR" = (
+/obj/structure/caspart{
+	icon_state = "34"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"sV" = (
+/obj/structure/caspart{
+	icon_state = "26"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"ts" = (
+/obj/structure/caspart{
+	icon_state = "36"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"uK" = (
+/obj/structure/caspart{
+	icon_state = "23"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"vj" = (
+/obj/structure/caspart{
+	icon_state = "5"
+	},
+/obj/structure/caspart{
+	icon_state = "6"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"vr" = (
+/obj/structure/caspart{
+	icon_state = "48"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"vH" = (
+/obj/structure/caspart{
+	icon_state = "62"
+	},
+/turf/open/space/basic,
+/area/shuttle/cas/main)
+"wg" = (
+/obj/structure/caspart{
+	icon_state = "68"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"yO" = (
+/obj/structure/caspart{
+	icon_state = "31"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"Cy" = (
+/obj/structure/caspart{
+	icon_state = "11"
+	},
+/turf/open/space/basic,
+/area/shuttle/cas/main)
+"CG" = (
+/obj/structure/caspart{
+	icon_state = "53"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"Da" = (
+/obj/structure/caspart{
+	icon_state = "29"
+	},
+/turf/template_noop,
+/area/template_noop)
+"DO" = (
+/obj/structure/caspart{
+	icon_state = "51"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"DR" = (
+/obj/structure/caspart{
+	icon_state = "30"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"Eh" = (
+/obj/structure/caspart{
+	icon_state = "28"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"EI" = (
+/obj/structure/caspart{
+	icon_state = "24"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"EQ" = (
+/obj/structure/caspart{
+	icon_state = "43"
+	},
+/turf/open/space/basic,
+/area/shuttle/cas/main)
+"Fj" = (
+/obj/structure/caspart/caschair,
+/turf/open/space/basic,
+/area/shuttle/cas/main)
+"FT" = (
+/obj/structure/caspart{
+	icon_state = "47"
+	},
+/turf/open/space/basic,
+/area/shuttle/cas/main)
+"GG" = (
+/obj/structure/caspart{
+	icon_state = "55"
+	},
+/turf/open/space/basic,
+/area/shuttle/cas/main)
+"Ha" = (
+/obj/structure/caspart{
+	icon_state = "74"
+	},
+/turf/open/space/basic,
+/area/shuttle/cas/main)
+"Hd" = (
+/obj/structure/caspart{
+	icon_state = "71"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"Hp" = (
+/obj/structure/caspart{
+	icon_state = "3"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"Is" = (
+/obj/structure/caspart{
+	icon_state = "14"
+	},
+/turf/template_noop,
+/area/template_noop)
+"IC" = (
+/obj/structure/caspart{
+	icon_state = "27"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"IF" = (
+/obj/structure/caspart{
+	icon_state = "10"
+	},
+/turf/open/space/basic,
+/area/shuttle/cas/main)
+"Jf" = (
+/obj/structure/caspart{
+	icon_state = "57"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"Jl" = (
+/obj/structure/caspart{
+	icon_state = "17"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"Jp" = (
+/obj/structure/caspart{
+	icon_state = "25"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"Lr" = (
+/obj/structure/caspart{
+	icon_state = "20"
+	},
+/turf/open/space/basic,
+/area/shuttle/cas/main)
+"LN" = (
+/obj/structure/caspart{
+	icon_state = "58"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"MF" = (
+/obj/structure/caspart{
+	icon_state = "38"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"Nt" = (
+/obj/structure/caspart{
+	icon_state = "73"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"NU" = (
+/obj/structure/caspart{
+	icon_state = "33"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"Op" = (
+/obj/structure/caspart{
+	icon_state = "39"
+	},
+/turf/open/space/basic,
+/area/shuttle/cas/main)
+"Ot" = (
+/obj/structure/caspart{
+	icon_state = "13"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"OD" = (
+/obj/structure/caspart{
+	icon_state = "5"
+	},
+/obj/structure/caspart{
+	icon_state = "6"
+	},
+/obj/structure/caspart{
+	icon_state = "5"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"OM" = (
+/obj/structure/caspart{
+	icon_state = "67"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"Py" = (
+/obj/structure/caspart{
+	icon_state = "35"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"PI" = (
+/obj/structure/caspart{
+	icon_state = "9"
+	},
+/turf/template_noop,
+/area/template_noop)
+"Qb" = (
+/obj/structure/caspart{
+	icon_state = "75"
+	},
+/turf/open/space/basic,
+/area/shuttle/cas/main)
+"Qk" = (
+/obj/structure/caspart{
+	icon_state = "2"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"Qv" = (
+/obj/structure/caspart{
+	icon_state = "19"
+	},
+/turf/open/space/basic,
+/area/shuttle/cas/main)
+"QP" = (
+/obj/structure/caspart{
+	icon_state = "45"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"Ss" = (
+/obj/structure/caspart/internalengine/left,
+/turf/template_noop,
+/area/shuttle/cas/main)
+"SA" = (
+/obj/structure/caspart{
+	icon_state = "60"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"Tl" = (
+/obj/structure/caspart{
+	icon_state = "cockpit"
+	},
+/turf/open/space/basic,
+/area/shuttle/cas/main)
+"TX" = (
+/obj/structure/caspart{
+	icon_state = "56"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"Us" = (
+/obj/structure/caspart{
+	icon_state = "52"
+	},
+/turf/open/space/basic,
+/area/shuttle/cas/main)
+"Vj" = (
+/obj/structure/caspart{
+	icon_state = "65"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"Xu" = (
+/obj/structure/caspart/internalengine/right,
+/turf/template_noop,
+/area/shuttle/cas/main)
+"XN" = (
+/obj/structure/caspart{
+	icon_state = "40"
+	},
+/turf/open/space/basic,
+/area/shuttle/cas/main)
+"XU" = (
+/obj/structure/caspart{
+	icon_state = "41"
+	},
+/turf/open/space/basic,
+/area/shuttle/cas/main)
+"Yq" = (
+/obj/structure/caspart{
+	icon_state = "63"
+	},
+/turf/open/space/basic,
+/area/shuttle/cas/main)
+"YD" = (
+/obj/structure/caspart{
+	icon_state = "42"
+	},
+/turf/open/space/basic,
+/area/shuttle/cas/main)
+"Zj" = (
+/turf/template_noop,
+/area/template_noop)
+"Zq" = (
+/obj/structure/caspart{
+	icon_state = "76"
+	},
+/turf/template_noop,
+/area/shuttle/cas/main)
+"Zw" = (
+/obj/structure/caspart{
+	icon_state = "22"
+	},
+/turf/open/space/basic,
+/area/shuttle/cas/main)
+"ZB" = (
+/obj/structure/caspart{
+	icon_state = "64"
+	},
+/turf/open/space/basic,
+/area/shuttle/cas/main)
 
 (1,1,1) = {"
-a
+Zj
+Zj
+Zj
+Zj
+em
+NU
+sR
+Zj
+Zj
+Zj
+Zj
+Zj
+"}
+(2,1,1) = {"
+Zj
+Zj
+Zj
+Zj
+yO
+Op
+Py
+Zj
+Zj
+Zj
+Zj
+Zj
+"}
+(3,1,1) = {"
+Zj
+Zj
+Zj
+Zj
+DR
+XN
+ts
+Zj
+Zj
+LN
+Nt
+mO
+"}
+(4,1,1) = {"
+Zj
+Zj
+Zj
+Da
+Eh
+XU
+nB
+QP
+Ss
+Jf
+ZB
+Hd
+"}
+(5,1,1) = {"
+aF
+au
+vj
+OD
+IC
+YD
+MF
+aC
+CG
+TX
+Yq
+jf
+"}
+(6,1,1) = {"
+fv
+Tl
+Fj
+IF
+Cy
+EQ
+or
+FT
+Us
+GG
+vH
+lA
+"}
+(7,1,1) = {"
+PI
+Qk
+Hp
+Hp
+ei
+Zw
+sV
+vr
+DO
+sD
+Ha
+wg
+"}
+(8,1,1) = {"
+Zj
+Zj
+Zj
+Is
+Ot
+aL
+Jp
+hf
+Xu
+SA
+Qb
+OM
+"}
+(9,1,1) = {"
+Zj
+Zj
+Zj
+Zj
+dY
+Lr
+EI
+Zj
+Zj
+cM
+Vj
+kK
+"}
+(10,1,1) = {"
+Zj
+Zj
+Zj
+Zj
+pF
+Qv
+uK
+Zj
+Zj
+Zj
+Zj
+Zj
+"}
+(11,1,1) = {"
+Zj
+Zj
+Zj
+Zj
+Jl
+kA
+Zq
+Zj
+Zj
+Zj
+Zj
+Zj
 "}

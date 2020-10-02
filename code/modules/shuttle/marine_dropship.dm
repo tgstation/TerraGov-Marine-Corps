@@ -211,7 +211,7 @@
 	if(crashing)
 		force = TRUE
 
-	. = ..()
+	return ..()
 
 /obj/docking_port/mobile/marine_dropship/one
 	id = "alamo"

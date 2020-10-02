@@ -378,11 +378,6 @@
 /turf/closed/shuttle/dropship2/transparent
 	opacity = FALSE
 
-/turf/closed/shuttle/dropship1
-	name = "\improper Condor Jet"
-	icon = 'icons/turf/casship.dmi'
-	icon_state = "1"
-	plane = GAME_PLANE
 
 /turf/closed/shuttle/escapepod
 	name = "wall"
