@@ -487,6 +487,7 @@
 
 /obj/structure/flora/rock/rocks
 	name = "rocks"
+	density = FALSE
 	icon_state = "rocks1"
 	icon_tag = "rocks"
 	variations = 3
@@ -499,6 +500,7 @@
 
 /obj/structure/flora/rock/beachrocks
 	name = "beach rocks"
+	density = FALSE
 	icon_state = "beachrocks1"
 	icon_tag = "beachrocks"
 	variations = 2

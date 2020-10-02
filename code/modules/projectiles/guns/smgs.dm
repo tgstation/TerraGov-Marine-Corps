@@ -380,7 +380,7 @@
 	reload_sound = 'sound/halo/SMG_Reload_New.wav'
 	icon_state = "m7"
 	item_state = "m7"
-	fire_delay = 0.1 SECONDS
+	fire_delay = 0.15 SECONDS
 	flags_equip_slot = ITEM_SLOT_BACK | ITEM_SLOT_BELT
 	current_mag = /obj/item/ammo_magazine/smg/m7
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
@@ -394,7 +394,7 @@
 	reload_sound = 'sound/halo/SMG_Reload_New.wav'
 	icon_state = "m7s"
 	item_state = "m7s"
-	fire_delay = 0.1 SECONDS
+	fire_delay = 0.15 SECONDS
 	flags_equip_slot = ITEM_SLOT_BACK | ITEM_SLOT_BELT
 	current_mag = /obj/item/ammo_magazine/smg/m7
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER

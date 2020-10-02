@@ -97,9 +97,9 @@ They're all essentially identical when it comes to getting the job done.
 	if(!source.current_rounds)
 		to_chat(user, "<span class='warning'>\The [source] is empty.</span>")
 		return
-	
+
 	//using handfuls; and filling internal mags has no delay.
-	if(!istype(source, /obj/item/ammo_magazine/handful) && !istype(src, /obj/item/ammo_magazine/internal) ) 
+	if(!istype(source, /obj/item/ammo_magazine/handful) && !istype(src, /obj/item/ammo_magazine/internal) )
 		to_chat(user, "<span class='notice'>You start refilling [src] with [source].</span>")
 		if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 			return
@@ -109,14 +109,14 @@ They're all essentially identical when it comes to getting the job done.
 	var/S = clamp(min(transfer_amount, max_rounds - current_rounds), 0, source.current_rounds)
 	source.current_rounds -= S
 	current_rounds += S
-	
+
 	if(source.current_rounds <= 0 && istype(source, /obj/item/ammo_magazine/handful)) //We want to delete it if it's a handful.
 		if(user)
 			user.temporarilyRemoveItemFromInventory(source)
 		qdel(source) //Dangerous. Can mean future procs break if they reference the source. Have to account for this.
-	else 
+	else
 		source.update_icon()
-	
+
 	update_icon(S)
 	return S // We return the number transferred if it was successful.
 
@@ -127,7 +127,7 @@ They're all essentially identical when it comes to getting the job done.
 		return
 
 	var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
-	var/MR = (caliber in list("12g", "7.62x54mmR", ".410")) ? 5 : 8
+	var/MR = (caliber in list("12g", "7.62x54mmR", ".410", "8g")) ? 5 : 8
 	R = transfer_amount ? min(current_rounds, transfer_amount) : min(current_rounds, MR)
 	new_handful.generate_handful(default_ammo, caliber, MR, R, gun_type)
 	current_rounds -= R
@@ -173,7 +173,7 @@ They're all essentially identical when it comes to getting the job done.
 
 /*
 Handfuls are generated dynamically and they are never actually loaded into the item.
-What they do instead is refill the magazine with ammo and sometime save what sort of
+What they do instead is refill the magazine with ammo, and sometimes save what sort of
 ammo they are in order to use later. The internal magazine for the gun really does the
 brunt of the work. This is also far, far better than generating individual items for
 bullets/shells. ~N
@@ -221,7 +221,7 @@ If it is the same and the other stack isn't full, transfer an amount (default 1)
 
 	name = "handful of [ammo_name + (ammo_name == "shotgun buckshot"? " ":"s ") + "([new_caliber])"]"
 	switch(new_caliber)
-		if("12g",".410")
+		if("12g",".410","8g")
 			icon_state = ammo_name
 		if("7.62x54mmR")
 			icon_state = "mosin bullet"

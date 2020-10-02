@@ -1,6 +1,6 @@
 // jobs for WC
 
-//UNSC\\
+//UNSC
 
 /datum/job/unsc/marine
 	title = "UNSC Marine"
@@ -59,7 +59,7 @@
 	id = /obj/item/card/id/dogtag
 	ears = /obj/item/radio/headset/unsc
 
-//Innies\\
+//Innies
 
 /datum/job/insurrectionist
 	title = "Insurrectionist"
