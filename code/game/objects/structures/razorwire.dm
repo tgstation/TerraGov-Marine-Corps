@@ -22,8 +22,6 @@
 	max_integrity = RAZORWIRE_MAX_HEALTH
 	obj_integrity = RAZORWIRE_MAX_HEALTH/2
 
-
-
 /obj/structure/razorwire/deconstruct(disassembled = TRUE)
 	if(disassembled)
 		if(obj_integrity > max_integrity * 0.5)
