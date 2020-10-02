@@ -157,6 +157,7 @@
 		/obj/item/tool/crowbar,
 		/obj/item/tool/screwdriver,
 		/obj/item/multitool,
+		/obj/item/binoculars/tactical/range,
 		)
 	cant_hold = list()
 
