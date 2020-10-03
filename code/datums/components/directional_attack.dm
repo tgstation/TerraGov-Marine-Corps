@@ -117,6 +117,8 @@
 		T = get_turf(A)
 	var/mob/living/carbon/xenomorph/attacker = parent
 	var/atom/hold = figure_out_living_target(T)
+	if(attacker.is_ventcrawling)
+		return
 	if (isnull(hold))
 		return
 	if(isturf(hold))
