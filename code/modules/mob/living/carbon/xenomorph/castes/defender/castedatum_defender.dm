@@ -43,6 +43,7 @@
 
 	// *** Defender Abilities *** //
 	crest_defense_armor = 22
+	crest_defense_slowdown = 0.8
 	fortify_armor = 50
 
 	actions = list(
@@ -86,6 +87,7 @@
 
 	// *** Defender Abilities *** //
 	crest_defense_armor = 26
+	crest_defense_slowdown = 0.8
 	fortify_armor = 52
 
 /datum/xeno_caste/defender/elder
@@ -117,6 +119,7 @@
 
 	// *** Defender Abilities *** //
 	crest_defense_armor = 30
+	crest_defense_slowdown = 0.8
 	fortify_armor = 55
 
 /datum/xeno_caste/defender/ancient
@@ -149,4 +152,5 @@
 
 	// *** Defender Abilities *** //
 	crest_defense_armor = 30
+	crest_defense_slowdown = 0.8
 	fortify_armor = 50

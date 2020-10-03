@@ -17,6 +17,7 @@
 		var/armor_change = X.xeno_caste.agility_speed_armor
 		X.soft_armor = X.soft_armor.modifyAllRatings(armor_change)
 		last_agility_bonus = armor_change
+		X.add_movespeed_modifier(MOVESPEED_ID_WARRIOR_AGILITY , TRUE, 0, NONE, TRUE, X.xeno_caste.agility_speed_increase)
 
 /datum/action/xeno_action/toggle_agility/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner

@@ -104,6 +104,7 @@
 	// *** Defender Abilities *** //
 	var/crest_defense_armor = 0
 	var/fortify_armor = 0
+	var/crest_defense_slowdown = 0
 
 	// *** Queen Abilities *** //
 	var/queen_leader_limit = 0 //Amount of leaders allowed
