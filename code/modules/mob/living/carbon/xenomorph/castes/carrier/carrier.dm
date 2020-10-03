@@ -22,14 +22,14 @@
 // ***************************************
 // *********** Death
 // ***************************************
-/mob/living/carbon/xenomorph/carrier/death()
+/mob/living/carbon/xenomorph/carrier/on_death()
 	if(length(huggers))
 		var/chance = 75
 		visible_message("<span class='xenowarning'>The chittering mass of tiny aliens is trying to escape [src]!</span>")
 		for(var/i in 1 to 3)
 			var/obj/item/clothing/mask/facehugger/F = pick_n_take(huggers)
 			if(!F)
-				return
+				break
 			if(prob(chance))
 				F.forceMove(loc)
 				step_away(F,src,1)
