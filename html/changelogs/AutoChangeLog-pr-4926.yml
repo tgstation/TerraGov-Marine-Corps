@@ -1,4 +1,0 @@
-author: "Fikou"
-delete-after: True
-changes: 
-  - rscadd: "makes cloning vats announce on radio when a clone is ejected"

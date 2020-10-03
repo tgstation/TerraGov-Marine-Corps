@@ -1,4 +1,0 @@
-author: "Chaznoodles"
-delete-after: True
-changes: 
-  - tweak: "Fixes #4579, T19 no longer storeable in pistol pouch"

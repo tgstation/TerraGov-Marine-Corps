@@ -1,4 +1,0 @@
-author: "Hathkar"
-delete-after: True
-changes: 
-  - bugfix: "Magmoor buildings located in caves are now underground"
