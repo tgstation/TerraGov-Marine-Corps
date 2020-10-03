@@ -661,6 +661,7 @@
 					/obj/item/clothing/mask/rebreather = 10,
 					/obj/item/clothing/mask/breath = 10,
 					/obj/item/clothing/mask/gas = 10,
+					/obj/item/clothing/mask/gas/coif = 10,
 					/obj/item/storage/belt/marine = 10,
 					/obj/item/storage/belt/shotgun = 10,
 					/obj/item/storage/belt/grenade = 10,
