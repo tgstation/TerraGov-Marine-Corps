@@ -22,7 +22,7 @@
 // ***************************************
 // *********** Death
 // ***************************************
-/mob/living/carbon/xenomorph/carrier/on_death()
+/mob/living/carbon/xenomorph/carrier/death()
 	if(length(huggers))
 		var/chance = 75
 		visible_message("<span class='xenowarning'>The chittering mass of tiny aliens is trying to escape [src]!</span>")
