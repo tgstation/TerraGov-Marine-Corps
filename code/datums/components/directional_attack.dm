@@ -42,7 +42,7 @@
 	var/second_dir = turn(dir, 45)
 	var/turf/new_turf_one = get_step(parent,first_dir)
 	var/turf/new_turf_two = get_step(parent,second_dir)
-	if(new_turf_one.density && new_turf_two.density)
+	if(is_blocked_turf(new_turf_one) && is_blocked_turf(new_turf_two))
 		return NONE
 /datum/component/directional_attack/proc/living_directional_action_checks(mob/living/L)
 	var/mob/living/carbon/attacker = parent
