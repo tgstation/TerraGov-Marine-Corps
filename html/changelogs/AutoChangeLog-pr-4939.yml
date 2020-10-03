@@ -1,9 +1,0 @@
-author: "Kuro, SplinterGP"
-delete-after: True
-changes: 
-  - rscadd: "added EVA Medium Jaeger variant, with alt. skull helmet."
-  - rscadd: "added EOD Heavy Jaeger variant."
-  - tweak: "replaced order of Medium/Light/Heavy Jaeger to Light/Medium/Heavy Jaeger on vendors."
-  - spellcheck: "fixed a typo where Jaeger skirmisher was called medium and infantry light."
-  - spellcheck: "fixed Jaeger helmet markings description."
-  - bugfix: "fixes Jaeger helmet not having centered sprite(object sprite, not onmob)."
