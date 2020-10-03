@@ -36,11 +36,21 @@
 	else
 		living_directional_action(A, params)
 
+/datum/component/directional_attack/proc/check_attack_sanity(mob/living/L)
+	var/dir = get_dir(parent, L)
+	var/first_dir = turn(dir, -45)
+	var/second_dir = turn(dir, 45)
+	var/turf/new_turf_one = get_step(parent,first_dir)
+	var/turf/new_turf_two = get_step(parent,second_dir)
+	if(new_turf_one.density && new_turf_two.density)
+		return NONE
 /datum/component/directional_attack/proc/living_directional_action_checks(mob/living/L)
 	var/mob/living/carbon/attacker = parent
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_DIRECTIONAL_ATTACK))
 		return NONE
 	if(L.throwing)
+		return NONE
+	if(check_attack_sanity(L) ==  NONE)
 		return NONE
 	if(attacker.get_active_held_item())
 		return NONE //We have something in our hand.
