@@ -6,6 +6,7 @@
 	item_state = ""
 	w_class = WEIGHT_CLASS_TINY
 	var/list/channels = list()
+	var/independent = FALSE
 
 
 /obj/item/encryptionkey/engi
@@ -84,36 +85,43 @@
 /obj/item/encryptionkey/dutch
 	name = "\improper Colonist encryption key"
 	channels = list(RADIO_CHANNEL_COLONIST = TRUE)
+	independent = TRUE
 
 
 /obj/item/encryptionkey/PMC
 	name = "\improper Nanotrasen encryption key"
 	channels = list(RADIO_CHANNEL_PMC = TRUE)
+	independent = TRUE
 
 
 /obj/item/encryptionkey/usl
 	name = "\improper USL encryption key"
 	channels = list(RADIO_CHANNEL_USL = TRUE)
+	independent = TRUE
 
 
 /obj/item/encryptionkey/commando
 	name = "\improper NT commando encryption key"
 	channels = list(RADIO_CHANNEL_DEATHSQUAD = TRUE)
+	independent = TRUE
 
 
 /obj/item/encryptionkey/imperial
 	name = "\improper Imperial encryption key"
 	channels = list(RADIO_CHANNEL_IMPERIAL = TRUE)
+	independent = TRUE
 
 
 /obj/item/encryptionkey/som
 	name = "\improper Sons of Mars encryption key"
 	channels = list(RADIO_CHANNEL_SOM = TRUE)
+	independent = TRUE
 
 
 /obj/item/encryptionkey/sectoid
 	name = "\improper alien encryption key"
 	channels = list(RADIO_CHANNEL_SECTOID = TRUE)
+	independent = TRUE
 
 /obj/item/encryptionkey/echo
 	name = "\improper Echo Task Force encryption key"

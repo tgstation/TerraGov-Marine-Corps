@@ -162,6 +162,12 @@
 				if(!R.subspace_transmission && R.can_receive(frequency, levels))
 					radios += R
 
+		if(TRANSMISSION_SUPERSPACE)
+			// Only radios which are independent
+			for(var/obj/item/radio/R in GLOB.all_radios["[frequency]"])
+				if(R.independent && R.can_receive(frequency, levels))
+					radios += R
+
 	// From the list of radios, find all mobs who can hear those.
 	var/list/receive = get_mobs_in_radio_ranges(radios)
 
