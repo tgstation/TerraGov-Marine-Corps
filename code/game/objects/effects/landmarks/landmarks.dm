@@ -78,6 +78,15 @@
 	GLOB.latejoin_cryo += loc
 	return INITIALIZE_HINT_QDEL
 
+/obj/effect/landmark/start/latejoin_unsc/Initialize()
+	. = ..()
+	GLOB.latejoin_unsc += loc
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/start/latejoin_innie/Initialize()
+	. = ..()
+	GLOB.latejoin_innie += loc
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/thunderdome/one
 	icon_state = "tdome_t1"
