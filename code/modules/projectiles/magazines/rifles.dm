@@ -113,7 +113,7 @@
 
 /obj/item/ammo_magazine/rifle/slr
 	name = "\improper L21A3 magazine (7.62x51mm)"
-	desc = "A 10mm battle rifle magazine."
+	desc = "A 7.62mm battle rifle magazine."
 	caliber = "7.62x51mm"
 	icon_state = "fal"
 	w_class = WEIGHT_CLASS_NORMAL
