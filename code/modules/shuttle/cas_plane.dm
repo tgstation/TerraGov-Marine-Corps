@@ -218,6 +218,11 @@
 		engine.cut_overlays()
 	state = PLANE_STATE_ACTIVATED
 
+///Called to check if a equipment was changed and to unset the active equipment if it got removed
+/obj/docking_port/mobile/marine_dropship/casplane/proc/on_equipment_change(datum/source)
+	if(!locate(active_weapon) in equipments)
+		active_weapon = null
+
 ///Updates our state. We use a different var from mode so we can distinguish when engines are turned on/ we are in-flight
 /obj/docking_port/mobile/marine_dropship/casplane/proc/update_state(datum/source, mode)
 	if(state == PLANE_STATE_DEACTIVATED)
@@ -263,6 +268,7 @@
 	user.reset_perspective(eyeobj)
 	eyeobj.setLoc(eyeobj.loc)
 	RegisterSignal(user, COMSIG_MOB_CLICKON, .proc/fire_weapons_at)
+	user.client.mouse_pointer_icon = 'icons/effects/supplypod_down_target.dmi'
 
 ///Ends the CAS mission
 /obj/docking_port/mobile/marine_dropship/casplane/proc/end_cas_mission(mob/living/user)
@@ -271,6 +277,7 @@
 	if(eyeobj?.eye_user != user)
 		return
 	UnregisterSignal(user, COMSIG_MOB_CLICKON)
+	user.client.mouse_pointer_icon = initial(user.client.mouse_pointer_icon)
 	off_action.remove_action(user)
 	for(var/V in eyeobj.visibleCameraChunks)
 		var/datum/camerachunk/C = V

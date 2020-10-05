@@ -145,6 +145,7 @@
 		return
 	var/obj/docking_port/mobile/marine_dropship/casplane/plane = port
 	static_weapon = new(plane)
+	static_weapon.uses_ammo = FALSE //so POs have something to do when they have no ammo
 	plane.equipments += static_weapon
 	static_weapon.ammo_equipped = new /obj/structure/ship_ammo/heavygun(static_weapon)
 
