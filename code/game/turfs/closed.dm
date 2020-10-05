@@ -85,7 +85,6 @@
 
 /turf/closed/brock/Initialize(mapload)
 	. = ..()
-	icon_state = setDir(pick(NORTH,SOUTH,EAST,WEST))
 	for(var/direction in GLOB.cardinals)
 		var/turf/turf_to_check = get_step(src, direction)
 		if(istype(turf_to_check, /turf/open))
