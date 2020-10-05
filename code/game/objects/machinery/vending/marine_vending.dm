@@ -439,7 +439,8 @@
 						/obj/item/storage/pouch/medkit = 4,
 						/obj/item/storage/pouch/magazine/large = 4,
 						/obj/item/storage/pouch/magazine/pistol/large = 4,
-						/obj/item/clothing/mask/gas = 4
+						/obj/item/clothing/mask/gas = 4,
+						/obj/item/storage/pouch/pistol = 4
 					)
 	contraband = list(/obj/item/reagent_containers/blood/OMinus = 1)
 
@@ -672,6 +673,7 @@
 					/obj/item/armor_module/storage/general = 20,
 					/obj/item/armor_module/storage/engineering = 20,
 					/obj/item/armor_module/storage/medical = 20,
+					/obj/item/storage/pouch/pistol = 10,
 					/obj/item/storage/pouch/magazine/large = 5,
 					/obj/item/storage/pouch/magazine/pistol/large = 5,
 					/obj/item/storage/pouch/shotgun = 10,
