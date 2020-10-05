@@ -279,6 +279,8 @@
 			return attack_alien_grab(X)
 
 		if(INTENT_HARM)
+			if(TIMER_COOLDOWN_CHECK(X, COOLDOWN_DIRECTIONAL_ATTACK))
+				return	
 			return attack_alien_harm(X, dam_bonus, set_location, random_location, no_head, no_crit, force_intent)
 
 		if(INTENT_DISARM)

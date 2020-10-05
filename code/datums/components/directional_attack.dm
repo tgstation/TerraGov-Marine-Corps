@@ -7,26 +7,19 @@
 		return COMPONENT_INCOMPATIBLE
 	RegisterSignal(parent, COMSIG_SWITCH_ATTACK_TYPE, .proc/handle_switch)
 	if(active)
-		RegisterSignal(parent, COMSIG_MOB_CLICKON, .proc/select_directional_action)
+		RegisterSignal(parent, COMSIG_MOB_DIRECT_ATTACK, .proc/select_directional_action)
 
 /datum/component/directional_attack/proc/handle_switch()
 	var/mob/living/attacker = parent
 	active = !active
 	if(active)
 		to_chat(attacker, "<span class='notice'>You will now attack enemies in melee range upon clicking in their direction.</span>")
-		RegisterSignal(attacker, COMSIG_MOB_CLICKON, .proc/select_directional_action)
+		RegisterSignal(attacker, COMSIG_MOB_DIRECT_ATTACK, .proc/select_directional_action)
 	else
-		UnregisterSignal(attacker, COMSIG_MOB_CLICKON, .proc/select_directional_action)
+		UnregisterSignal(attacker, COMSIG_MOB_DIRECT_ATTACK, .proc/select_directional_action)
 
 /datum/component/directional_attack/Destroy(force, silent)
     return ..()
-
-/datum/component/directional_attack/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_DIRECTIONAL_ATTACK_ACTIVE, .proc/attack_active)
-
-/datum/component/directional_attack/proc/attack_active()
-	if(active)
-		return COMPONENT_DIRECTIONAL_ATTACK_GO
 
 /datum/component/directional_attack/proc/select_directional_action(datum/source, atom/A, params)
 	if(isxeno(parent))
@@ -46,7 +39,7 @@
 		return NONE
 /datum/component/directional_attack/proc/living_directional_action_checks(mob/living/L)
 	var/mob/living/carbon/attacker = parent
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_DIRECTIONAL_ATTACK))
+	if(TIMER_COOLDOWN_CHECK(parent, COOLDOWN_DIRECTIONAL_ATTACK))
 		return NONE
 	if(L.throwing)
 		return NONE
@@ -91,7 +84,7 @@
 		if(!isnull(.))
 			return
 	else 
-		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_DIRECTIONAL_ATTACK))
+		if(TIMER_COOLDOWN_CHECK(parent, COOLDOWN_DIRECTIONAL_ATTACK))
 			return
 	return living_do_directional_action(hold)
 
@@ -115,7 +108,7 @@
 		if(attacker.faction == L.faction)
 			return //FF
 	else 
-		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_DIRECTIONAL_ATTACK))
+		if(TIMER_COOLDOWN_CHECK(parent, COOLDOWN_DIRECTIONAL_ATTACK))
 			return
 	return living_do_directional_action(hold)
 
@@ -137,17 +130,17 @@
 		var/mob/living/L = hold
 		. = carbon_directional_action_checks(L)
 		if(!isnull(.))
-			return
+			return FALSE
 		if(attacker.issamexenohive(L))
-			return //No more nibbling.
+			return FALSE//No more nibbling.
 	else 
-		if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_DIRECTIONAL_ATTACK))
+		if(TIMER_COOLDOWN_CHECK(parent, COOLDOWN_DIRECTIONAL_ATTACK))
 			return
 	return living_do_directional_action(hold)
 
 /datum/component/directional_attack/proc/living_do_directional_action(atom/target)
 	var/mob/living/attacker = parent
 	attacker.UnarmedAttack(target, TRUE)
-	TIMER_COOLDOWN_START(src, COOLDOWN_DIRECTIONAL_ATTACK, CLICK_CD_MELEE)
+	TIMER_COOLDOWN_START(parent, COOLDOWN_DIRECTIONAL_ATTACK, CLICK_CD_MELEE)
 
 

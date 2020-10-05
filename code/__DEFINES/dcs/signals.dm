@@ -58,8 +58,6 @@
 #define COMSIG_AUTOFIRE_SHOT "autofire_shot"
 	#define COMPONENT_AUTOFIRE_SHOT_SUCCESS (1<<0)
 #define ELEMENT_CLOSE_SHUTTER_LINKED "close_shutter_linked"
-#define COMSIG_DIRECTIONAL_ATTACK_ACTIVE "directional_attack_active"
-	#define COMPONENT_DIRECTIONAL_ATTACK_GO (1<<0)
 #define COMSIG_SWITCH_ATTACK_TYPE "switch_attack_type"
 // /datum/limb signals
 #define COMSIG_LIMB_DESTROYED "limb_destroyed"
@@ -230,6 +228,7 @@
 #define COMSIG_MOB_MOUSEDOWN "mob_mousedown"					//from /client/MouseDown(): (atom/object, turf/location, control, params)
 #define COMSIG_MOB_MOUSEUP "mob_mouseup"						//from /client/MouseUp(): (atom/object, turf/location, control, params)
 #define COMSIG_MOB_CLICKON "mob_clickon"						//from base of mob/clickon(): (atom/A, params)
+#define COMSIG_MOB_DIRECT_ATTACK "mob_direct_attack"			//from the base of mob/clickon(): (atom/A, params) used for directional attack
 #define COMSIG_MOB_CLICK_SHIFT "mob_click_shift"				//from base of mob/ShiftClickOn(): (atom/A)
 #define COMSIG_MOB_CLICK_ALT "mob_click_alt"					//from base of mob/AltClickOn(): (atom/A)
 	#define COMSIG_MOB_CLICK_CANCELED (1<<0)

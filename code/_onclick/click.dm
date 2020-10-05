@@ -86,6 +86,9 @@
 		CtrlClickOn(A)
 		return
 
+	if(SEND_SIGNAL(src, COMSIG_MOB_DIRECT_ATTACK, A, params) & COMSIG_MOB_CLICK_CANCELED)
+		return
+
 	if(incapacitated(TRUE))
 		return
 
@@ -137,8 +140,6 @@
 		if(W)
 			W.melee_attack_chain(src, A, params)
 		else
-			if(SEND_SIGNAL(src,COMSIG_DIRECTIONAL_ATTACK_ACTIVE) & COMPONENT_DIRECTIONAL_ATTACK_GO)
-				return
 			UnarmedAttack(A, 1)
 	else
 		if(W)
@@ -305,6 +306,7 @@
 	if(!middle_mouse_toggle || !selected_ability)
 		return
 	if(selected_ability.can_use_ability(A))
+		TIMER_COOLDOWN_START(src, COOLDOWN_DIRECTIONAL_ATTACK, CLICK_CD_MELEE)
 		selected_ability.use_ability(A)
 
 /*
