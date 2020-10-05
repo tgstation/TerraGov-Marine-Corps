@@ -265,59 +265,6 @@
 	burst_amount = 1
 
 //-------------------------------------------------------
-//Based on the FAL, specifically the commonwealths version of it.
-
-/obj/item/weapon/gun/rifle/slr
-	name = "\improper L21A3 self loading rifle"
-	desc = "The L21A3 SLR is a rather well known descendant of an ancient semi automatic rifle. And is widely seen in the greater galaxy as a cheap and effective weapon, even if it lacks fully automatic fire. Uses 7.62x51mm caliber."
-	icon = 'icons/Marine/gun64.dmi'
-	icon_state = "fal"
-	item_state = "fal"
-	muzzleflash_iconstate = "muzzle_flash_medium"
-	fire_sound = "sound/weapons/guns/fire/BR.ogg"
-	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
-	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
-	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
-	type_of_casings = "cartridge"
-	caliber = "7.62x51mm" //codex
-	aim_slowdown = 0.55
-	wield_delay = 0.9 SECONDS
-	force = 20
-	max_shells = 20 //codex
-	current_mag = /obj/item/ammo_magazine/rifle/slr //could make it into the BR mag, but that might be a tad confusing
-	attachable_allowed = list(
-						/obj/item/attachable/suppressor,
-						/obj/item/attachable/bayonet,
-						/obj/item/attachable/bayonetknife,
-						/obj/item/attachable/compensator,
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/verticalgrip,
-						/obj/item/attachable/angledgrip,
-						/obj/item/attachable/lasersight,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/bipod,
-						/obj/item/attachable/gyro,
-						/obj/item/attachable/extended_barrel,
-						/obj/item/attachable/heavy_barrel,
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/attached_gun/grenade,
-						/obj/item/attachable/attached_gun/flamer,
-						/obj/item/attachable/attached_gun/shotgun,
-						/obj/item/attachable/scope,
-						/obj/item/attachable/scope/marine,
-						/obj/item/attachable/scope/mini/dmr)
-
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER|GUN_CAN_POINTBLANK
-	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
-	attachable_offset = list("muzzle_x" = 48, "muzzle_y" = 21,"rail_x" = 21, "rail_y" = 24, "under_x" = 31, "under_y" = 15, "stock_x" = 14, "stock_y" = 10)
-
-	fire_delay = 0.5 SECONDS
-	damage_mult = 0.75 //Semi only.
-	accuracy_mult = 1.25
-	scatter = -15
-	burst_amount = 1
-
-//-------------------------------------------------------
 //M41A PULSE RIFLE
 
 /obj/item/weapon/gun/rifle/m41a1
