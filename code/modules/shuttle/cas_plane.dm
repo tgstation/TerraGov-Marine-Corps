@@ -63,13 +63,13 @@
 			owner.state = PLANE_STATE_ACTIVATED
 			return
 		if(PLANE_STATE_PREPARED | PLANE_STATE_FLYING)
-			to_chat("<span class='warning'>The plane is in-flight!!</span>")
+			to_chat("<span class='warning'>The plane is in-flight!</span>")
 			return
 		if(PLANE_STATE_ACTIVATED)
 			if(occupant)
-				to_chat(user, "<span class='warning'>Someones already inside!</span>")
+				to_chat(user, "<span class='warning'>Someone is already inside!</span>")
 				return
-			to_chat(user, "<span class='notice'>Youu start climbing into the cockpit...</span>")
+			to_chat(user, "<span class='notice'>You start climbing into the cockpit...</span>")
 			if(!do_after(user, 2 SECONDS, TRUE, src))
 				return
 			user.visible_message("<span class='notice'>[user] climbs into the plane cockpit!</span>", "<span class='notice'>You get in the seat!</span>")
@@ -131,7 +131,7 @@
 	plane.chair = src
 
 /obj/docking_port/stationary/marine_dropship/cas
-	name = "CAS plane Hangar Pad"
+	name = "CAS plane hangar pad"
 	id = "casplane"
 	roundstart_template = /datum/map_template/shuttle/cas
 
@@ -243,7 +243,7 @@
 		to_chat(user, "<span class='warning'>No fuel remaining!</span>")
 		return
 	if(state != PLANE_STATE_FLYING)
-		to_chat(user, "<span class='warning'>You're in-flight!</span>")
+		to_chat(user, "<span class='warning'>You are in-flight!</span>")
 		return
 	if(!eyeobj)
 		eyeobj = new()
