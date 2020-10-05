@@ -1210,6 +1210,16 @@ Imports
 	contains = list(/obj/item/ammo_magazine/m41ae2_hpr)
 	cost = 5
 
+/datum/supply_packs/imports/slr
+	name = "L21A3 Self Loading Rifle"
+	contains = list(/obj/item/weapon/gun/rifle/slr)
+	cost = 15
+
+/datum/supply_packs/imports/slr/ammo
+	name = "L21A3 Self Loading Rifle ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/slr)
+	cost = 1
+
 /datum/supply_packs/imports/type71	//Moff gun
 	name = "Type 71 Pulse Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/type71)
