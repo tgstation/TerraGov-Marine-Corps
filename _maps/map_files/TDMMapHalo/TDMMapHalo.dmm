@@ -2238,6 +2238,10 @@
 /obj/item/storage/box/cups,
 /turf/open/floor/mainship/mono,
 /area/swordbase/ground/medsci)
+"sg" = (
+/obj/machinery/marine_selector/gear/unscEquipment,
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/armory)
 "sj" = (
 /obj/machinery/light{
 	dir = 1
@@ -2493,6 +2497,10 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/swordbase/ground/inniecave)
+"tR" = (
+/obj/effect/landmark/start/latejoin_unsc,
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/cryogenics)
 "tS" = (
 /obj/machinery/light{
 	dir = 8
@@ -3144,9 +3152,10 @@
 	},
 /area/swordbase/ground/checkpoint)
 "zc" = (
-/obj/machinery/marine_selector/clothes/insurrection/leader,
-/turf/open/floor/tile/dark,
-/area/swordbase/ground/engineering)
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/start/latejoin_innie,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
 "zf" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock{
 	dir = 8
@@ -3560,6 +3569,10 @@
 	dir = 1
 	},
 /area/mainship/shipboard/brig)
+"Ci" = (
+/obj/effect/landmark/start/latejoin_innie,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
 "Cj" = (
 /obj/machinery/chem_master,
 /obj/machinery/light,
@@ -3693,8 +3706,9 @@
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/outdoors)
 "Dp" = (
-/obj/machinery/light{
-	dir = 4
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
 	},
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/armory)
@@ -4170,6 +4184,12 @@
 	},
 /turf/open/floor/plating,
 /area/swordbase/ground/storage)
+"Hg" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/armory)
 "Hk" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/floodlight/landing/hq,
@@ -7065,11 +7085,11 @@ nw
 nw
 ca
 RC
-dS
+tR
 BP
-dS
+tR
 BP
-dS
+tR
 BP
 mh
 ca
@@ -7675,11 +7695,11 @@ nw
 nw
 ca
 nm
-dS
+tR
 Bl
-dS
+tR
 Bl
-dS
+tR
 Bl
 mh
 ca
@@ -8527,7 +8547,7 @@ XL
 hr
 VZ
 Dp
-VZ
+Hg
 VZ
 VZ
 VZ
@@ -8648,8 +8668,8 @@ nw
 XL
 rE
 IY
+sg
 XL
-QX
 QX
 QX
 QX
@@ -10971,7 +10991,7 @@ yR
 bH
 ee
 ee
-zc
+ee
 bK
 Yf
 Yf
@@ -19627,11 +19647,11 @@ UY
 XQ
 qI
 XQ
-XQ
+zc
 pK
-XQ
+zc
 pK
-XQ
+zc
 XQ
 qI
 cO
@@ -20237,11 +20257,11 @@ Po
 Po
 qI
 XQ
+zc
 XQ
+Ci
 XQ
-pK
-XQ
-pK
+Ci
 XQ
 qI
 Po
