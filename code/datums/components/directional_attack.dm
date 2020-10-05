@@ -126,6 +126,8 @@
 		return
 	if(isturf(hold))
 		hold = A
+	if(attacker.get_active_held_item())
+		return
 	if(isliving(hold))
 		var/mob/living/L = hold
 		. = carbon_directional_action_checks(L)
