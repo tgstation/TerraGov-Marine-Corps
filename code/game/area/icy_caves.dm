@@ -67,8 +67,12 @@
 	icon_state = "cafeteria"
 	ceiling = CEILING_GLASS
 
-/area/icy_caves/outpost/mining
-	name = "\improper Mining"
+/area/icy_caves/outpost/mining/west
+	name = "\improper Mining West"
+	icon_state = "blue"
+
+/area/icy_caves/outpost/mining/east
+	name = "\improper Mining East"
 	icon_state = "blue"
 
 /area/icy_caves/outpost/kitchen
