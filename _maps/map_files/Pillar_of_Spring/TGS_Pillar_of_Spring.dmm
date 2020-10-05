@@ -13103,6 +13103,10 @@
 /obj/structure/toilet,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks)
+"SQ" = (
+/obj/docking_port/stationary/marine_dropship/cas,
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "ST" = (
 /obj/machinery/alarm{
 	dir = 8
@@ -46556,7 +46560,7 @@ bh
 bh
 bh
 bh
-bh
+SQ
 bh
 bh
 bh
