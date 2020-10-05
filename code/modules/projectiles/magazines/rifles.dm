@@ -109,6 +109,19 @@
 	gun_type = /obj/item/weapon/gun/rifle/standard_br
 
 //-------------------------------------------------------
+//FAL
+
+/obj/item/ammo_magazine/rifle/slr
+	name = "\improper L21A3 magazine (7.62x51mm)"
+	desc = "A 10mm battle rifle magazine."
+	caliber = "7.62x51mm"
+	icon_state = "fal"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/rifle/standard_dmr
+	max_rounds = 20
+	gun_type = /obj/item/weapon/gun/rifle/slr
+
+//-------------------------------------------------------
 //M41A TRUE AND ORIGINAL
 
 /obj/item/ammo_magazine/rifle/m41a
