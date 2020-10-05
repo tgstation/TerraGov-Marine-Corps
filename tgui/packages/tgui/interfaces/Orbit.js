@@ -1,5 +1,5 @@
 import { createSearch } from 'common/string';
-import { Box, Button, Input, Section } from '../components';
+import { Button, Input, Section } from '../components';
 import { Window } from '../layouts';
 import { useBackend, useLocalState } from '../backend';
 

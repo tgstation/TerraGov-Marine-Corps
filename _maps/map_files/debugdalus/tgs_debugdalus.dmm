@@ -2420,6 +2420,10 @@
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
 /area/mainship/command/telecomms)
+"aPt" = (
+/obj/docking_port/stationary/marine_dropship/cas,
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "bgb" = (
 /turf/closed/wall/mainship,
 /area/mainship/hallways/hangar)
@@ -4977,7 +4981,7 @@ bOu
 bOu
 bOu
 bOu
-bOu
+aPt
 bOu
 bOu
 bOu

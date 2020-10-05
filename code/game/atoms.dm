@@ -201,7 +201,7 @@ directive is properly returned.
 
 
 /atom/proc/examine(mob/user)
-	SHOULD_CALL_PARENT(1)
+	SHOULD_CALL_PARENT(TRUE)
 	if(!istype(src, /obj/item))
 		to_chat(user, "[icon2html(src, user)] That's \a [src].")
 

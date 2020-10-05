@@ -15,50 +15,54 @@
 	icon = 'icons/Marine/mainship_props.dmi'
 	icon_state = "equip_base"
 	layer = ABOVE_OBJ_LAYER
+	dir = NORTH
 	var/base_category //what kind of equipment this base accepts.
 	var/ship_tag //used to associate the base to a dropship.
+	var/equipment_offset_x = 0
+	var/equipment_offset_y = 0
 	var/obj/structure/dropship_equipment/installed_equipment
 
 /obj/effect/attach_point/Destroy()
-	if(installed_equipment)
-		qdel(installed_equipment)
-		installed_equipment = null
+	QDEL_NULL(installed_equipment)
 	return ..()
 
 /obj/effect/attach_point/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(istype(I, /obj/item/powerloader_clamp))
-		var/obj/item/powerloader_clamp/PC = I
-		if(!istype(PC.loaded, /obj/structure/dropship_equipment))
+		var/obj/item/powerloader_clamp/clamp = I
+		if(!istype(clamp.loaded, /obj/structure/dropship_equipment))
 			return TRUE
 
-		var/obj/structure/dropship_equipment/SE = PC.loaded
-		if(SE.equip_category != base_category)
-			to_chat(user, "<span class='warning'>[SE] doesn't fit on [src].</span>")
+		var/obj/structure/dropship_equipment/loaded_equipment = clamp.loaded
+		if(loaded_equipment.equip_category != base_category)
+			to_chat(user, "<span class='warning'>[loaded_equipment] doesn't fit on [src].</span>")
 			return TRUE
 		if(installed_equipment)
 			return TRUE
 		playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
-		if(!do_after(user, 70, FALSE, src))
+		if(!do_after(user, 7 SECONDS, FALSE, src))
 			return TRUE
-		if(installed_equipment || PC.loaded != SE)
+		if(installed_equipment || clamp.loaded != loaded_equipment)
 			return TRUE
-		to_chat(user, "<span class='notice'>You install [SE] on [src].</span>")
-		SE.forceMove(loc)
-		PC.loaded = null
+		to_chat(user, "<span class='notice'>You install [loaded_equipment] on [src].</span>")
+		loaded_equipment.forceMove(loc)
+		clamp.loaded = null
 		playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
-		PC.update_icon()
-		installed_equipment = SE
-		SE.ship_base = src
+		clamp.update_icon()
+		installed_equipment = loaded_equipment
+		loaded_equipment.ship_base = src
 
 		for(var/obj/docking_port/mobile/marine_dropship/S in SSshuttle.dropships)
 			if(S.id == ship_tag)
-				SE.linked_shuttle = S
-				S.equipments += SE
+				loaded_equipment.linked_shuttle = S
+				S.equipments += loaded_equipment
 				break
 
-		SE.update_equipment()
+		loaded_equipment.pixel_x = equipment_offset_x
+		loaded_equipment.pixel_y = equipment_offset_y
+
+		loaded_equipment.update_equipment()
 		return TRUE
 
 
@@ -73,6 +77,10 @@
 /obj/effect/attach_point/weapon/dropship2
 	ship_tag = "normandy"
 
+/obj/effect/attach_point/weapon/cas
+	ship_tag = "casplane"
+	icon = 'icons/Marine/casship.dmi'
+	icon_state = "15"
 
 /obj/effect/attach_point/crew_weapon
 	name = "rear attach point"
@@ -233,14 +241,15 @@
 /obj/structure/dropship_equipment/beforeShuttleMove(turf/newT, rotation, move_mode, obj/docking_port/mobile/moving_dock)
 	. = ..()
 	on_launch()
+
 /obj/structure/dropship_equipment/proc/update_equipment()
 	return
 
-//things to do when the shuttle this equipment is attached to is about to launch.
+///things to do when the shuttle this equipment is attached to is about to launch.
 /obj/structure/dropship_equipment/proc/on_launch()
 	return
 
-//things to do when the shuttle this equipment is attached to land.
+///things to do when the shuttle this equipment is attached to land.
 /obj/structure/dropship_equipment/proc/on_arrival()
 	return
 
@@ -310,10 +319,14 @@
 				else
 					deployed_turret.camera.network.Add("dropship2")
 			switch(dir)
-				if(SOUTH) deployed_turret.pixel_y = 8
-				if(NORTH) deployed_turret.pixel_y = -8
-				if(EAST) deployed_turret.pixel_x = -8
-				if(WEST) deployed_turret.pixel_x = 8
+				if(SOUTH)
+					deployed_turret.pixel_y = 8
+				if(NORTH)
+					deployed_turret.pixel_y = -8
+				if(EAST)
+					deployed_turret.pixel_x = -8
+				if(WEST)
+					deployed_turret.pixel_x = 8
 	else
 		setDir(initial(dir))
 		if(deployed_turret)
@@ -583,7 +596,7 @@
 	is_weapon = TRUE
 	screen_mode = 1
 	is_interactable = TRUE
-	var/last_fired //used for weapon cooldown after use.
+	COOLDOWN_DECLARE(last_fired) //used for weapon cooldown after use.
 	var/firing_sound
 	var/firing_delay = 20 //delay between firing. 2 seconds by default
 	var/fire_mission_only = TRUE //whether the weapon can only be fire in fire mission mode.
@@ -631,7 +644,7 @@
 	var/ammo_travelling_time = SA.travelling_time //how long the rockets/bullets take to reach the ground target.
 	var/ammo_warn_sound = SA.warning_sound
 	deplete_ammo()
-	last_fired = world.time
+	COOLDOWN_START(src, last_fired, firing_delay)
 	if(linked_shuttle)
 		for(var/obj/structure/dropship_equipment/electronics/targeting_system/TS in linked_shuttle.equipments)
 			ammo_accuracy_range = max(ammo_accuracy_range-2, 0) //targeting system increase accuracy and reduce travelling time.
@@ -754,8 +767,10 @@
 	if(ammo_equipped?.ammo_count)
 		icon_state = "launch_bay_loaded"
 	else
-		if(ship_base) icon_state = "launch_bay"
-		else icon_state = "launch_bay"
+		if(ship_base)
+			icon_state = "launch_bay"
+		else
+			icon_state = "launch_bay"
 
 
 

@@ -442,7 +442,8 @@
 	return
 
 /obj/docking_port/mobile/proc/on_prearrival()
-	playsound(destination.return_center_turf(), landing_sound, 60, 0)
+	if(destination)
+		playsound(destination.return_center_turf(), landing_sound, 60, 0)
 	playsound(return_center_turf(), landing_sound, 60, 0)
 	return
 

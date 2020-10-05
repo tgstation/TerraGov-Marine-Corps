@@ -32,7 +32,7 @@
 /area/shuttle/dropship/normandy
 	name = "Dropship Normandy"
 
-/area/shuttle/cas/main
+/area/shuttle/cas
 	name = "Condor Jet"
 
 /area/shuttle/ert
