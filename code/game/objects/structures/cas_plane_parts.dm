@@ -6,6 +6,7 @@
 	appearance_flags = TILE_BOUND|KEEP_TOGETHER
 	layer = OBJ_LAYER
 	plane = GAME_PLANE
+	opacity = FALSE
 
 /turf/closed/shuttle/cas/computer
 	name = "Condor piloting computer"
@@ -114,6 +115,7 @@
 	layer = OBJ_LAYER
 	density = TRUE
 	appearance_flags = TILE_BOUND|KEEP_TOGETHER
+	opacity = FALSE
 
 /obj/structure/caspart/leftprong
 	icon_state = "28"

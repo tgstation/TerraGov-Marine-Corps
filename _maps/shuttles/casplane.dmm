@@ -180,6 +180,7 @@
 	},
 /area/shuttle/cas)
 "GG" = (
+/obj/machinery/telecomms/relay/preset/telecomms/onboard,
 /turf/closed/shuttle/cas{
 	icon_state = "55"
 	},
