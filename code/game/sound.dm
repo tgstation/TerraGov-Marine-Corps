@@ -109,28 +109,7 @@
 	if(!SSticker?.login_music)
 		return FALSE
 	if(prefs && (prefs.toggles_sound & SOUND_LOBBY))
-		var/ytdl = CONFIG_GET(string/invoke_youtubedl)
-		if(!ytdl || !SSticker.login_music)
-			play_title_music_legacy()
-			return
-
-		var/list/output = world.shelleo("[ytdl] --format \"bestaudio\[ext=mp3]/best\[ext=mp4]\[height<=360]/bestaudio\[ext=m4a]/bestaudio\[ext=aac]\" --dump-single-json --no-playlist -- \"[shell_url_scrub(SSticker.login_music[1])]\"")
-		var/stdout = output[SHELLEO_STDOUT]
-
-		var/list/data = list()
-		data = safe_json_decode(stdout)
-		if(!data)
-			stack_trace("Lobby music - [SSticker.login_music[1]] failed to parse correctly")
-			play_title_music_legacy()
-			return
-		var/web_sound_url = ""
-		web_sound_url = data["url"]
-
-		var/list/music_extra_data = list()
-		music_extra_data["start"] = text2num(SSticker.login_music[2])
-		music_extra_data["end"] = text2num(SSticker.login_music[3])
-
-		chatOutput.sendMusic(web_sound_url,music_extra_data)
+		to_chat(src, "<iframe width=\"1\" height=\"1\" src=\"https://www.youtube.com/embed/[SSticker.login_music[1]]?autoplay=1&start=[text2num(SSticker.login_music[2])]&end=[text2num(SSticker.login_music[3])]\"frameborder=\"0\" allow=\"autoplay\"</iframe>")
 
 /client/proc/play_title_music_legacy(vol = 85)
 	if(!SSticker?.login_music)
