@@ -256,8 +256,11 @@
 		to_chat(user, "<span class='warning'>No active laser targets detected!</span>")
 		return
 	to_chat(user, "<span class='warning'>Laser targets detected, routing to target.</span>")
+	var/input = input(user, "Select a CAS target", "CAS targetting") as null|anything in GLOB.active_laser_targets
+	if(!input)
+		return
 	give_eye_control(user)
-	eyeobj.setLoc(get_turf(pick(GLOB.active_laser_targets)))
+	eyeobj.setLoc(get_turf(input))
 
 ///Gives user control of the eye and allows them to start shooting
 /obj/docking_port/mobile/marine_dropship/casplane/proc/give_eye_control(mob/user)
@@ -300,6 +303,10 @@
 		return
 	if(!active_weapon)
 		to_chat(source, "<span class='warning'>No active weapon selected!</span>")
+		return
+	var/area/A = get_area(target)
+	if(A.ceiling >= CEILING_DEEP_UNDERGROUND)
+		to_chat(source, "<span class='warning'>That target is too deep underground!</span>")
 		return
 	if(active_weapon.ammo_equipped?.ammo_count <= 0)
 		to_chat(source, "<span class='warning'>No ammo remaining!</span>")
