@@ -326,11 +326,11 @@
 //Special flare subtype for the illumination flare shell
 //Acts like a flare, just even stronger, and set length
 /obj/item/flashlight/flare/on/illumination
-
 	name = "illumination flare"
 	desc = "It's really bright, and unreachable."
 	icon_state = "" //No sprite
 	invisibility = INVISIBILITY_MAXIMUM //Can't be seen or found, it's "up in the sky"
+	resistance_flags = RESIST_ALL
 	mouse_opacity = 0
 	light_range = 7 //Way brighter than most lights
 
@@ -343,12 +343,7 @@
 	..()
 	qdel(src)
 
-/obj/item/flashlight/flare/on/illumination/ex_act(severity)
-
-	return //Nope
-
 /obj/structure/closet/crate/mortar_ammo
-
 	name = "\improper M402 mortar ammo crate"
 	desc = "A crate containing live mortar shells with various payloads. DO NOT DROP. KEEP AWAY FROM FIRE SOURCES."
 	icon = 'icons/Marine/mortar.dmi'
