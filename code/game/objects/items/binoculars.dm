@@ -119,8 +119,8 @@
 /obj/item/binoculars/tactical/verb/toggle_mode(mob/user)
 	set category = "Object"
 	set name = "Toggle Laser Mode"
-	if(!user)
-		user = usr
+	if(!user && isliving(loc))
+		user = loc
 	if(zoom)
 		return
 	if(!changable)
