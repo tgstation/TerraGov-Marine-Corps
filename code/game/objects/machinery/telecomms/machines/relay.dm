@@ -70,4 +70,4 @@
 
 /obj/machinery/telecomms/relay/preset/telecomms/onboard
 	icon_state = ""
-	alpha = 0
+	invisibility = INVISIBILITY_MAXIMUM

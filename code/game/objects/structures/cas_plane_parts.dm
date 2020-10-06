@@ -113,6 +113,7 @@
 	icon = 'icons/Marine/casship.dmi'
 	icon_state = "2"
 	layer = OBJ_LAYER
+	resistance_flags = RESIST_ALL
 	density = TRUE
 	appearance_flags = TILE_BOUND|KEEP_TOGETHER
 	opacity = FALSE
@@ -140,16 +141,20 @@
 	desc = " A terrifying radial-mounted GAU-30mm minigun. You don't want to be on the wrong end of this."
 	icon_state = "1"
 	///static weapon we start with at the tip
-	var/obj/structure/dropship_equipment/weapon/heavygun/static_weapon
+	var/obj/structure/dropship_equipment/weapon/heavygun/radial_cas/static_weapon
 
 /obj/structure/caspart/minigun/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	if(!istype(port, /obj/docking_port/mobile/marine_dropship/casplane))
 		return
 	var/obj/docking_port/mobile/marine_dropship/casplane/plane = port
-	static_weapon = new(plane)
-	static_weapon.uses_ammo = FALSE //so POs have something to do when they have no ammo
-	plane.equipments += static_weapon
-	static_weapon.ammo_equipped = new /obj/structure/ship_ammo/heavygun(static_weapon)
+	plane.equipments += new static_weapon(plane)
+
+/obj/structure/caspart/minigun/Destroy()
+	static_weapon = null
+	return ..()
+
+/obj/structure/caspart/minigun/attackby(obj/item/I, mob/user, params)
+	return static_weapon.attackby(I, user, params)
 
 /obj/structure/caspart/internalengine
 	var/image/engine_overlay

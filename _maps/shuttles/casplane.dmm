@@ -129,7 +129,7 @@
 	equipment_offset_y = 12;
 	icon_state = "31"
 	},
-/turf/open/floor/plating/dmg1,
+/turf/open/floor/plating,
 /area/shuttle/cas)
 "Cy" = (
 /obj/structure/caspart{
@@ -158,11 +158,11 @@
 	equipment_offset_y = 12;
 	icon_state = "30"
 	},
-/turf/open/floor/plating/dmg1,
+/turf/open/floor/plating,
 /area/shuttle/cas)
 "Eh" = (
 /obj/structure/caspart/leftprong,
-/turf/open/floor/plating/dmg1,
+/turf/open/floor/plating,
 /area/shuttle/cas)
 "EQ" = (
 /obj/docking_port/mobile/marine_dropship/casplane,
@@ -200,7 +200,7 @@
 /obj/structure/caspart{
 	icon_state = "27"
 	},
-/turf/open/floor/plating/dmg1,
+/turf/open/floor/plating,
 /area/shuttle/cas)
 "IF" = (
 /turf/closed/shuttle/cas/centertop,

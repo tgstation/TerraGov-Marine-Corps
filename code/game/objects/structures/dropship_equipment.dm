@@ -149,15 +149,13 @@
 	//the ship base the equipment is currently installed on.
 	var/obj/effect/attach_point/ship_base
 	///whether it uses ammo
-	var/uses_ammo = FALSE
+	var/dropship_equipment_flags = NONE
 	///the ammo currently equipped.
 	var/obj/structure/ship_ammo/ammo_equipped
 	///whether the equipment is a weapon usable for dropship bombardment.
-	var/is_weapon = FALSE
 	///the weapons console of the dropship we're installed on. Not used by CAS planes
 	var/obj/machinery/computer/dropship_weapons/linked_console
 	///whether they get a button when shown on the shuttle console's equipment list.
-	var/is_interactable = FALSE
 	var/obj/docking_port/mobile/marine_dropship/linked_shuttle
 	///used by the dropship console code when this equipment is selected
 	var/screen_mode = 0
@@ -185,7 +183,7 @@
 		return
 	var/obj/item/powerloader_clamp/clamp = I
 	if(clamp.loaded)
-		if(!ship_base || !uses_ammo || ammo_equipped || !istype(clamp.loaded, /obj/structure/ship_ammo))
+		if(!ship_base || !(dropship_equipment_flags & USES_AMMO) || ammo_equipped || !istype(clamp.loaded, /obj/structure/ship_ammo))
 			return FALSE
 		var/obj/structure/ship_ammo/clamp_ammo = clamp.loaded
 		if(clamp_ammo.equipment_type != type)
@@ -204,7 +202,7 @@
 		ammo_equipped = clamp_ammo
 		update_equipment()
 		return TRUE //refilled dropship ammo
-	else if(uses_ammo && ammo_equipped)
+	else if((dropship_equipment_flags & USES_AMMO) && ammo_equipped)
 		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
 		if(!do_after(user, 30, FALSE, src, BUSY_ICON_BUILD))
 			return FALSE
@@ -223,7 +221,7 @@
 		ammo_equipped = null
 		update_icon()
 		return TRUE //emptied or removed dropship ammo
-	else if(!current_acid)
+	else if(!current_acid && !(dropship_equipment_flags & IS_NOT_REMOVABLE))
 		playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
 		var/duration_time = ship_base ? 70 : 10 //uninstalling equipment takes more time
 		if(!do_after(user, duration_time, FALSE, src, BUSY_ICON_BUILD))
@@ -268,7 +266,7 @@
 	return
 
 /obj/structure/dropship_equipment/proc/equipment_interact(mob/user)
-	if(is_interactable)
+	if(dropship_equipment_flags & IS_INTERACTABLE)
 		if(linked_console.selected_equipment)
 			return
 		linked_console.selected_equipment = src
@@ -283,7 +281,7 @@
 	name = "sentry deployment system"
 	desc = "A box that deploys a sentry turret. Fits on the weapon attach points of dropships. You need a powerloader to lift it."
 	icon_state = "sentry_system"
-	is_interactable = TRUE
+	dropship_equipment_flags = IS_INTERACTABLE
 	point_cost = 500
 	var/deployment_cooldown
 	var/obj/machinery/marine_turret/premade/dropship/deployed_turret
@@ -458,7 +456,7 @@
 	name = "spotlight"
 	icon_state = "spotlights"
 	desc = "A set of highpowered spotlights to illuminate large areas. Fits on electronics attach points of dropships. Moving this will require a powerloader."
-	is_interactable = TRUE
+	dropship_equipment_flags = IS_INTERACTABLE
 	point_cost = 300
 	var/spotlights_cooldown
 	var/brightness = 11
@@ -603,14 +601,11 @@
 	equip_category = DROPSHIP_WEAPON
 	bound_width = 32
 	bound_height = 64
-	uses_ammo = TRUE
-	is_weapon = TRUE
+	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE|FIRE_MISSION_ONLY
 	screen_mode = 1
-	is_interactable = TRUE
 	COOLDOWN_DECLARE(last_fired) //used for weapon cooldown after use.
 	var/firing_sound
 	var/firing_delay = 20 //delay between firing. 2 seconds by default
-	var/fire_mission_only = TRUE //whether the weapon can only be fire in fire mission mode.
 
 /obj/structure/dropship_equipment/weapon/update_equipment()
 	if(ship_base)
@@ -624,7 +619,7 @@
 	update_icon()
 
 /obj/structure/dropship_equipment/weapon/equipment_interact(mob/user)
-	if(is_interactable)
+	if(dropship_equipment_flags & IS_INTERACTABLE)
 		if(linked_console.selected_equipment == src)
 			linked_console.selected_equipment = null
 		else
@@ -686,7 +681,7 @@
 	icon_state = "30mm_cannon"
 	firing_sound = 'sound/effects/cannon30.ogg'
 	point_cost = 400
-	fire_mission_only = FALSE
+	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE
 
 /obj/structure/dropship_equipment/weapon/heavygun/update_icon()
 	if(ammo_equipped)
@@ -697,6 +692,13 @@
 		else
 			icon_state = "30mm_cannon"
 
+/obj/structure/dropship_equipment/weapon/heavygun/radial_cas
+	name = "Condor Jet Radial minigun"
+	dropship_equipment_flags = IS_NOT_REMOVABLE
+
+/obj/structure/dropship_equipment/weapon/heavygun/Initialize()
+	. = ..()
+	ammo_equipped = new /obj/structure/ship_ammo/heavygun(src)
 
 /obj/structure/dropship_equipment/weapon/rocket_pod
 	name = "rocket pod"
@@ -751,7 +753,7 @@
 	firing_sound = 'sound/effects/phasein.ogg'
 	firing_delay = 50 //5 seconds
 	point_cost = 500
-	fire_mission_only = FALSE
+	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE
 
 /obj/structure/dropship_equipment/weapon/laser_beam_gun/update_icon()
 	if(ammo_equipped && ammo_equipped.ammo_count)
@@ -825,7 +827,7 @@
 	equip_category = DROPSHIP_CREW_WEAPON
 	icon_state = "medevac_system"
 	point_cost = 500
-	is_interactable = TRUE
+	dropship_equipment_flags = IS_INTERACTABLE
 	var/obj/structure/bed/medevac_stretcher/linked_stretcher
 	var/medevac_cooldown
 	var/busy_winch

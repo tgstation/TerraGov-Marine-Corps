@@ -36,6 +36,7 @@
 #include "code\__DEFINES\construction.dm"
 #include "code\__DEFINES\cooldowns.dm"
 #include "code\__DEFINES\coordinates.dm"
+#include "code\__DEFINES\dropship_equipment.dm"
 #include "code\__DEFINES\equipment.dm"
 #include "code\__DEFINES\events.dm"
 #include "code\__DEFINES\factions.dm"

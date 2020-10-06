@@ -7,7 +7,8 @@ export const MarineCasship = (props, context) => {
   const { act, data } = useBackend(context);
 
   return (
-    <Window>
+    <Window
+      theme="ntos">
       <Window.Content scrollable>
         {data.plane_state === 0 ? (
           <EnginesOff />
@@ -53,6 +54,7 @@ const NormalOperation = (props, context) => {
     <Fragment>
       <Section title="Ship Status">
         <NoticeBox>{data.ship_status}</NoticeBox>
+        <NoticeBox>{data.active_lasers} Active Lasers Detected</NoticeBox>
         <NoticeBox>Fuel level</NoticeBox>
         <ProgressBar
           ranges={{

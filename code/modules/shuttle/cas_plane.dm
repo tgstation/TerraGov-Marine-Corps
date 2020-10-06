@@ -156,9 +156,9 @@
 	///Action to stop the eye
 	var/datum/action/innate/camera_off/cas/off_action
 	///Number for how much fuel we have left, this x15 seconds is how much time we have while flying
-	var/fuel_left = 15
+	var/fuel_left = 30
 	///How much fuel we can hold maximum
-	var/fuel_max = 15
+	var/fuel_max = 30
 	///Our currently selected weapon we will fire
 	var/obj/structure/dropship_equipment/weapon/active_weapon
 
@@ -174,9 +174,10 @@
 
 /obj/docking_port/mobile/marine_dropship/casplane/process()
 	fuel_left--
-	if(fuel_left <= 0)
+	if((fuel_left <= 0) && (state == PLANE_STATE_FLYING))
 		SSshuttle.moveShuttle(id, "casplane", TRUE)
-		return PROCESS_KILL
+		end_cas_mission(chair.occupant)
+		turn_off_engines()
 
 
 /obj/docking_port/mobile/marine_dropship/casplane/on_ignition()
@@ -188,7 +189,6 @@
 		engine_overlay.pixel_x = engine.x_offset
 		engine_overlay.layer += 0.1
 		engine.add_overlay(engine_overlay)
-	START_PROCESSING(SSslowprocess, src)
 
 /obj/docking_port/mobile/marine_dropship/casplane/on_prearrival()
 	. = ..()
@@ -199,7 +199,6 @@
 		engine_overlay.pixel_x = engine.x_offset
 		engine_overlay.layer += 0.1
 		engine.add_overlay(engine_overlay)
-	STOP_PROCESSING(SSslowprocess, src)
 
 ///Updates state and overlay to make te engines on
 /obj/docking_port/mobile/marine_dropship/casplane/proc/turn_on_engines()
@@ -210,6 +209,7 @@
 		engine_overlay.layer += 0.1
 		engine.add_overlay(engine_overlay)
 	state = PLANE_STATE_PREPARED
+	START_PROCESSING(SSslowprocess, src)
 
 ///Updates state and overlay to make te engines off
 /obj/docking_port/mobile/marine_dropship/casplane/proc/turn_off_engines()
@@ -217,6 +217,7 @@
 		var/obj/structure/caspart/internalengine/engine = i
 		engine.cut_overlays()
 	state = PLANE_STATE_ACTIVATED
+	STOP_PROCESSING(SSslowprocess, src)
 
 ///Called to check if a equipment was changed and to unset the active equipment if it got removed
 /obj/docking_port/mobile/marine_dropship/casplane/proc/on_equipment_change(datum/source)
@@ -295,11 +296,14 @@
 	if(state != PLANE_STATE_FLYING)
 		end_cas_mission(source)
 		return
+	if(!GLOB.cameranet.checkTurfVis(get_turf_pixel(target)))
+		return
 	if(!active_weapon)
 		to_chat(source, "<span class='warning'>No active weapon selected!</span>")
 		return
 	if(active_weapon.ammo_equipped?.ammo_count <= 0)
 		to_chat(source, "<span class='warning'>No ammo remaining!</span>")
+		return
 	if(!COOLDOWN_CHECK(active_weapon, last_fired))
 		to_chat(source, "<span class='warning'>[active_weapon] just fired, wait for it to cool down.</span>")
 		return
@@ -334,6 +338,7 @@
 		if(weapon == active_weapon)
 			.["active_weapon_tag"] = element_nbr
 		element_nbr++
+	.["active_lasers"] = length(GLOB.active_laser_targets)
 	.["active_weapon_name"] = null
 	.["active_weapon_ammo"] = null
 	.["active_weapon_max_ammo"] = null
@@ -385,6 +390,7 @@
 			owner.active_weapon = owner.equipments[selection]
 		if("deselect")
 			owner.active_weapon = null
+			. = TRUE
 		if("toggle_engines")
 			switch(owner.state)
 				if(PLANE_STATE_ACTIVATED)
@@ -392,7 +398,6 @@
 				if(PLANE_STATE_PREPARED)
 					owner.turn_off_engines()
 
-	updateUsrDialog()
 
 
 /obj/structure/caspart/caschair/on_unset_interaction(mob/M)
