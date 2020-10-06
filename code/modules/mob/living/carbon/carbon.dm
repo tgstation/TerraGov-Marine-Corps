@@ -463,6 +463,8 @@
 		return
 	if(client)
 		return
+	if (SSticker.current_state != GAME_STATE_PLAYING)
+		return
 
 	var/mob/picked = get_alien_candidate()
 	if(!picked)
