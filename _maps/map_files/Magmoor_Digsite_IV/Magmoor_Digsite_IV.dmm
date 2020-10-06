@@ -2806,11 +2806,11 @@
 /area/magmoor/research/lab)
 "ctz" = (
 /obj/effect/decal/warning_stripes/thin,
-/obj/structure/closet/secure_closet/req_officer,
 /obj/machinery/power/apc/drained{
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/structure/closet/secure_closet/shiptech,
 /turf/open/floor/mainship/orange{
 	dir = 6
 	},
@@ -23971,11 +23971,11 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/structure/closet/secure_closet/req_officer,
 /obj/machinery/light/small,
 /obj/machinery/alarm{
 	dir = 1
 	},
+/obj/structure/closet/secure_closet/shiptech,
 /turf/open/floor/mainship/orange{
 	dir = 10
 	},
