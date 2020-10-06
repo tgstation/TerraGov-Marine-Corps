@@ -9,102 +9,69 @@
 	anchored = TRUE
 	density = TRUE
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
-	var/targ_x = 0 //Initial target coordinates
-	var/targ_y = 0
+	var/list/coords = list("targ_x" = 0, "targ_y" = 0, "dial_x" = 0, "dial_y" = 0)
 	var/offset_x = 0 //Automatic offset from target
 	var/offset_y = 0
 	var/offset_per_turfs = 10 //Number of turfs to offset from target by 1
-	var/dial_x = 0 //Dial adjustment from target
-	var/dial_y = 0
 	var/travel_time = 45 //Constant, assuming perfect parabolic trajectory. ONLY THE DELAY BEFORE INCOMING WARNING WHICH ADDS 45 TICKS
 	var/busy = 0
 	var/firing = 0 //Used for deconstruction and aiming sanity
 	var/fixed = 0 //If set to 1, can't unanchor and move the mortar, used for map spawns and WO
-
 /obj/structure/mortar/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
-		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
-		var/fumbling_time = 4 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-			return
+	
 	if(busy)
 		to_chat(user, "<span class='warning'>Someone else is currently using [src].</span>")
 		return
 	if(firing)
 		to_chat(user, "<span class='warning'>[src]'s barrel is still steaming hot. Wait a few seconds and stop firing it.</span>")
 		return
+	ui_interact(user)
 
-	var/choice = alert(user, "Would you like to set the mortar's target coordinates, or dial the mortar? Setting coordinates will make you lose your fire adjustment.", "Mortar Dialing", "Target", "Dial", "Cancel")
-	if(choice == "Cancel")
+	user.visible_message("<span class='notice'>[user] adjusts [src]'s firing angle and distance.</span>",
+	"<span class='notice'>You adjust [src]'s firing angle and distance to match the new coordinates.</span>")
+
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+	var/offset_x_max = round(abs((coords["targ_x"] + coords["dial_x"]) - x)/offset_per_turfs) //Offset of mortar shot, grows by 1 every 10 tiles travelled
+	var/offset_y_max = round(abs((coords["targ_y"] + coords["dial_y"]) - y)/offset_per_turfs)
+	offset_x = rand(-offset_x_max, offset_x_max)
+	offset_y = rand(-offset_y_max, offset_y_max)
+
+/obj/structure/mortar/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
+  ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+  if(!ui)
+    ui = new(user, src, ui_key, "Mortar", "M402 Mortar", 500, 500, master_ui, state)
+    ui.open()
+
+/obj/structure/mortar/ui_data(mob/user)
+	. = ..()
+	var/data = list()
+	data["X"] = coords["targ_x"]
+	data["Y"] = coords["targ_y"]
+	data["D1"] = coords["dial_x"]
+	data["D2"] = coords["dial_y"]
+	return data
+
+/obj/structure/mortar/ui_act(action, params)
+	. = ..()
+	if(.)
 		return
-	if(choice == "Target")
-		var/temp_targ_x = input("Set longitude of strike from 0 to [world.maxx].") as num
-		if(dial_x + temp_targ_x > world.maxx || dial_x + temp_targ_x < 0)
-			to_chat(user, "<span class='warning'>You cannot aim at this coordinate, it is outside of the area of operations.</span>")
-			return
-		var/temp_targ_y = input("Set latitude of strike from 0 to [world.maxy].") as num
-		if(dial_y + temp_targ_y > world.maxy || dial_y + temp_targ_y < 0)
-			to_chat(user, "<span class='warning'>You cannot aim at this coordinate, it is outside of the area of operations.</span>")
-			return
-		var/turf/T = locate(temp_targ_x + dial_x, temp_targ_y + dial_y, z)
-		if(get_dist(loc, T) < 7)
-			to_chat(user, "<span class='warning'>You cannot aim at this coordinate, it is too close to your mortar.</span>")
-			return
-		if(busy)
-			to_chat(user, "<span class='warning'>Someone else is currently using this mortar.</span>")
-			return
-		user.visible_message("<span class='notice'>[user] starts adjusting [src]'s firing angle and distance.</span>",
-		"<span class='notice'>You start adjusting [src]'s firing angle and distance to match the new coordinates.</span>")
-		busy = 1
-		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-		if(do_after(user, 30, TRUE, src, BUSY_ICON_GENERIC))
-			user.visible_message("<span class='notice'>[user] finishes adjusting [src]'s firing angle and distance.</span>",
-			"<span class='notice'>You finish adjusting [src]'s firing angle and distance to match the new coordinates.</span>")
-			busy = 0
-			targ_x = temp_targ_x
-			targ_y = temp_targ_y
-			var/offset_x_max = round(abs((targ_x + dial_x) - x)/offset_per_turfs) //Offset of mortar shot, grows by 1 every 10 tiles travelled
-			var/offset_y_max = round(abs((targ_y + dial_y) - y)/offset_per_turfs)
-			offset_x = rand(-offset_x_max, offset_x_max)
-			offset_y = rand(-offset_y_max, offset_y_max)
-		else busy = 0
-	if(choice == "Dial")
-		var/temp_dial_x = input("Set longitude adjustement from -10 to 10.") as num
-		if(temp_dial_x + targ_x > world.maxx || temp_dial_x + targ_x < 0)
-			to_chat(user, "<span class='warning'>You cannot dial to this coordinate, it is outside of the area of operations.</span>")
-			return
-		if(temp_dial_x < -10 || temp_dial_x > 10)
-			to_chat(user, "<span class='warning'>You cannot dial to this coordinate, it is too far away. You need to set [src] up instead.</span>")
-			return
-		var/temp_dial_y = input("Set latitude adjustement from -10 to 10.") as num
-		if(temp_dial_y + targ_y > world.maxy || temp_dial_y + targ_y < 0)
-			to_chat(user, "<span class='warning'>You cannot dial to this coordinate, it is outside of the area of operations.</span>")
-			return
-		var/turf/T = locate(targ_x + temp_dial_x, targ_y + temp_dial_y, z)
-		if(get_dist(loc, T) < 10)
-			to_chat(user, "<span class='warning'>You cannot dial to this coordinate, it is too close to your mortar.</span>")
-			return
-		if(temp_dial_y < -10 || temp_dial_y > 10)
-			to_chat(user, "<span class='warning'>You cannot dial to this coordinate, it is too far away. You need to set [src] up instead.</span>")
-			return
-		if(busy)
-			to_chat(user, "<span class='warning'>Someone else is currently using this mortar.</span>")
-			return
-		user.visible_message("<span class='notice'>[user] starts dialing [src]'s firing angle and distance.</span>",
-		"<span class='notice'>You start dialing [src]'s firing angle and distance to match the new coordinates.</span>")
-		busy = 1
-		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-		if(do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
-			user.visible_message("<span class='notice'>[user] finishes dialing [src]'s firing angle and distance.</span>",
-			"<span class='notice'>You finish dialing [src]'s firing angle and distance to match the new coordinates.</span>")
-			busy = 0
-			dial_x = temp_dial_x
-			dial_y = temp_dial_y
-		else busy = 0
+	. = TRUE
+
+	switch(action)
+		if("change_target")
+			var/isdial
+			if(params["varname"] == "targ_x" || "targ_y")
+				isdial = FALSE
+			else
+				isdial = TRUE
+			var/turf/T = locate((params["target_x"] + params["dial_one"]), (params["target_y"] + params["dial_two"]), z)
+			if(get_dist(loc, T) < 10)
+				to_chat(usr, "<span class='warning'>You cannot target this coordinate, it is too close to your mortar.</span>")
+				return
+			coords["[params["varname"]]"] = text2num(clamp(params["value"], isdial ? -15 : 0, isdial ? 15 : 0))
 
 /obj/structure/mortar/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -131,11 +98,11 @@
 			to_chat(user, "<span class='warning'>You cannot fire [src] here.</span>")
 			return
 
-		if(targ_x == 0 && targ_y == 0) //Mortar wasn't set
+		if(coords["targ_x"] == 0 && coords["targ_y"] == 0) //Mortar wasn't set
 			to_chat(user, "<span class='warning'>[src] needs to be aimed first.</span>")
 			return
 
-		var/turf/T = locate(targ_x + dial_x + offset_x, targ_y + dial_y + offset_y, z)
+		var/turf/T = locate(coords["targ_x"] + coords["dial_x"] + offset_x, coords["targ_y"]  + coords["dial_x"] + offset_y, z)
 		if(!isturf(T))
 			to_chat(user, "<span class='warning'>You cannot fire [src] to this target.</span>")
 			return
