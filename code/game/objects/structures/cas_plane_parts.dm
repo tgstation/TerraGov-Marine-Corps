@@ -147,8 +147,7 @@
 	if(!istype(port, /obj/docking_port/mobile/marine_dropship/casplane))
 		return
 	var/obj/docking_port/mobile/marine_dropship/casplane/plane = port
-	var/weapon = new static_weapon(plane)
-	plane.equipments += weapon
+	plane.equipments += new static_weapon(plane)
 
 /obj/structure/caspart/minigun/Destroy()
 	static_weapon = null
