@@ -696,7 +696,7 @@
 	name = "Condor Jet Radial minigun"
 	dropship_equipment_flags = IS_NOT_REMOVABLE
 
-/obj/structure/dropship_equipment/weapon/heavygun/Initialize()
+/obj/structure/dropship_equipment/weapon/heavygun/radial_cas/Initialize()
 	. = ..()
 	ammo_equipped = new /obj/structure/ship_ammo/heavygun(src)
 

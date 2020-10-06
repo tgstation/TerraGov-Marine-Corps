@@ -141,7 +141,7 @@
 	desc = " A terrifying radial-mounted GAU-30mm minigun. You don't want to be on the wrong end of this."
 	icon_state = "1"
 	///static weapon we start with at the tip
-	var/obj/structure/dropship_equipment/weapon/heavygun/radial_cas/static_weapon
+	var/obj/structure/dropship_equipment/weapon/heavygun/static_weapon = /obj/structure/dropship_equipment/weapon/heavygun/radial_cas
 
 /obj/structure/caspart/minigun/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	if(!istype(port, /obj/docking_port/mobile/marine_dropship/casplane))
