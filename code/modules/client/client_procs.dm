@@ -199,10 +199,6 @@
 		GLOB.player_details[ckey] = player_details
 
 	. = ..()	//calls mob.Login()
-	if(length(GLOB.stickybanadminexemptions))
-		GLOB.stickybanadminexemptions -= ckey
-		if (!length(GLOB.stickybanadminexemptions))
-			restore_stickybans()
 
 	if(SSinput.initialized)
 		set_macros()
