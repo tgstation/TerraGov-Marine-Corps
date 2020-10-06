@@ -53,7 +53,9 @@
 /obj/structure/bed/chair/office{
 	dir = 8
 	},
-/turf/open/ground/grass,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
 /area/lv624/ground/jungle9)
 "ep" = (
 /obj/structure/jungle/vines,
@@ -194,9 +196,7 @@
 /area/lv624/ground/jungle9)
 "yi" = (
 /obj/item/trash/chips,
-/turf/open/floor/plating/ground/dirtgrassborder{
-	dir = 1
-	},
+/turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "zZ" = (
 /obj/structure/jungle/vines/heavy,
@@ -299,7 +299,9 @@
 	pixel_x = 4;
 	pixel_y = 8
 	},
-/turf/open/ground/grass,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
 /area/lv624/ground/jungle9)
 "Hs" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -308,10 +310,8 @@
 	},
 /area/lv624/ground/jungle9)
 "Is" = (
-/turf/open/floor/plating/ground/dirtgrassborder/corner2{
-	dir = 8
-	},
-/area/lv624/ground/jungle9)
+/turf/open/floor/plating/ground/dirtgrassborder/corner2,
+/area/lv624/ground/jungle7)
 "Ix" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
@@ -327,8 +327,10 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "JB" = (
-/turf/open/floor/plating/ground/dirtgrassborder/corner2,
-/area/lv624/ground/jungle7)
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
+	dir = 8
+	},
+/area/lv624/ground/jungle9)
 "JU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/jungle/vines,
@@ -391,7 +393,9 @@
 /area/lv624/ground/jungle7)
 "QD" = (
 /obj/structure/flora/ausbushes/sunnybush,
-/turf/open/ground/grass,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
 /area/lv624/ground/jungle9)
 "QG" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -478,7 +482,9 @@
 /obj/structure/bed/chair/office{
 	dir = 4
 	},
-/turf/open/ground/grass,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
 /area/lv624/ground/jungle9)
 "Xh" = (
 /turf/closed/wall,
@@ -564,8 +570,8 @@ la
 CE
 QV
 ly
-Ma
-VS
+Ix
+Lr
 QG
 Tr
 Wz
@@ -608,7 +614,7 @@ Vq
 Fh
 da
 ly
-Lr
+Ix
 GW
 jf
 RS
@@ -630,7 +636,7 @@ Vq
 Vq
 da
 ly
-Lr
+Ix
 eo
 jf
 Xl
@@ -652,8 +658,8 @@ Vq
 Vq
 yd
 ly
+Ix
 Lr
-jf
 RS
 Xl
 Xl
@@ -674,8 +680,8 @@ Vq
 Vq
 yd
 ly
+Ix
 Lr
-jf
 jf
 Xl
 jf
@@ -696,7 +702,7 @@ Vq
 WC
 yd
 ly
-Lr
+Ix
 QD
 jf
 jf
@@ -715,12 +721,12 @@ Dq
 Dq
 Vq
 Fh
-Vq
-yd
+UQ
+Is
 Fz
-Lr
-jf
-jf
+Ix
+JB
+Ta
 td
 RS
 RS
@@ -737,12 +743,12 @@ Dq
 Dq
 Vq
 UQ
-PR
-JB
-ly
 Is
-DI
-DI
+nd
+ly
+Ix
+Ix
+JB
 AQ
 AQ
 Jm
@@ -788,9 +794,9 @@ CE
 Va
 Va
 Va
-Va
-Va
-Va
+QV
+Ix
+Ma
 Va
 Va
 Lt
@@ -810,9 +816,9 @@ up
 RS
 XQ
 Ta
-jf
-jf
-jf
+MX
+Va
+VS
 yh
 jf
 jf
