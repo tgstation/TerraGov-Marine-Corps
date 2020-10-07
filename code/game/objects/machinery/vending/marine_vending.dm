@@ -441,7 +441,6 @@
 						/obj/item/storage/pouch/magazine/pistol/large = 4,
 						/obj/item/clothing/mask/gas = 4,
 						/obj/item/storage/pouch/pistol = 4
-
 					)
 	contraband = list(/obj/item/reagent_containers/blood/OMinus = 1)
 
