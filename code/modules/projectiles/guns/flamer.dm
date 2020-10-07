@@ -517,7 +517,7 @@
 /mob/living/carbon/xenomorph/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
-	fire_mod = fire_resist
+	fire_mod = clamp(xeno_caste.fire_resist + fire_resist_modifier, 0, 1)
 	return ..()
 
 
@@ -585,6 +585,7 @@
 /mob/living/carbon/xenomorph/flamer_fire_act(burnlevel, firelevel)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
+	burnlevel *= clamp(xeno_caste.fire_resist + fire_resist_modifier, 0, 1)
 	. = ..()
 	updatehealth()
 

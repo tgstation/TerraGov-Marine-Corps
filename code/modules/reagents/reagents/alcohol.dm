@@ -143,10 +143,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "grain alcohol"
 	boozepwr = 65
 
-/datum/reagent/consumable/ethanol/vodka/on_mob_life(mob/living/L, metabolism)
-	L.radiation = max(L.radiation-1,0)
-	return ..()
-
 /datum/reagent/consumable/ethanol/bilk
 	name = "Bilk"
 	description = "This appears to be beer mixed with milk. Disgusting."

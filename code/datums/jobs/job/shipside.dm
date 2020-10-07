@@ -34,7 +34,7 @@
 While you may support Nanotrasen, you report to the TGMC High Command, not the corporate office.
 Your primary task is the safety of the ship and her crew, and ensuring the survival and success of the marines.
 Your first order of business should be briefing the marines on the mission they are about to undertake.
-If you require any help, use adminhelp to ask mentors about what you're supposed to do.
+If you require any help, use <b>mentorhelp</b> to ask mentors about what you're supposed to do.
 Godspeed, captain! And remember, you are not above the law."})
 
 
@@ -53,6 +53,21 @@ Godspeed, captain! And remember, you are not above the law."})
 	l_store = /obj/item/hud_tablet/leadership
 	back = /obj/item/storage/backpack/marine/satchel
 
+/datum/job/terragov/command/captain/after_spawn(mob/living/new_mob, mob/user, latejoin)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 500)
+			new_human.wear_id.paygrade = "O6"
+		if(501 to 10000)
+			new_human.wear_id.paygrade = "O7"
+		if(10001 to INFINITY)
+			new_human.wear_id.paygrade = "O8"
 
 //Field Commander
 /datum/job/terragov/command/fieldcommander
@@ -62,7 +77,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	comm_title = "FCDR"
 	total_positions = 1
 	skills_type = /datum/skills/FO
-	access = list (ACCESS_IFF_MARINE, ACCESS_MARINE_CAPTAIN, ACCESS_MARINE_COMMANDER, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_ARMORY, ACCESS_MARINE_WO, ACCESS_MARINE_CMO, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_ENGPREP,ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_SPECPREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_TANK, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_REMOTEBUILD)
+	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
 	display_order = JOB_DISPLAY_ORDER_EXECUTIVE_OFFICER
 	outfit = /datum/outfit/job/command/fieldcommander
@@ -146,8 +161,8 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	paygrade = "WO"
 	comm_title = "PO"
 	total_positions = 2
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PILOT)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PILOT, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
+	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
 	skills_type = /datum/skills/pilot
 	display_order = JOB_DISPLAY_ORDER_PILOT_OFFICER
 	outfit = /datum/outfit/job/command/pilot
@@ -186,7 +201,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	paygrade = "E7"
 	comm_title = "TC"
 	total_positions = 0
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_TANK)
+	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_TANK)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_TANK, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
 	skills_type = /datum/skills/tank_crew
 	display_order = JOB_DISPLAY_ORDER_TANK_CREWMAN
@@ -201,7 +216,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	. = ..()
 	to_chat(M, {"Your job is to operate and maintain the ship's armored vehicles.
 Your authority is limited to your own vehicle, but you are next in line on the field, after the field commander.
-You could use MTs help to repair and replace hardpoints."})
+You could use STs help to repair and replace hardpoints."})
 
 
 
@@ -235,8 +250,8 @@ You could use MTs help to repair and replace hardpoints."})
 	comm_title = "CSE"
 	selection_color = "#ffeeaa"
 	total_positions = 1
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
+	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PREP)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
 	skills_type = /datum/skills/CE
 	display_order = JOB_DISPLAY_ORDER_CHIEF_ENGINEER
 	outfit = /datum/outfit/job/engineering/chief
@@ -249,7 +264,7 @@ You could use MTs help to repair and replace hardpoints."})
 /datum/job/terragov/engineering/chief/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"Your job is to maintain the ship's engine and keep everything running.
-If you have no idea how to set up the engine, or it's your first time, adminhelp so that a mentor can assist you.
+If you have no idea how to set up the engine, or it's your first time, <b>mentorhelp</b> so that a mentor can assist you.
 You are also next in the chain of command, should the bridge crew fall in the line of duty."})
 
 
@@ -327,7 +342,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	selection_color = "#9990B2"
 	total_positions = 1
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS)
 	skills_type = /datum/skills/RO
 	display_order = JOB_DISPLAY_ORDER_REQUISITIONS_OFFICER
 	outfit = /datum/outfit/job/requisitions/officer
@@ -340,7 +355,6 @@ requisitions line and later on to be ready to send supplies for marines who are 
 /datum/job/terragov/requisitions/officer/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"Your job is to dispense supplies to the marines, including weapon attachments.
-Your cargo techs can help you out, but you have final say in your department. Make sure they're not goofing off.
 While you may request paperwork for supplies, do not go out of your way to screw with marines, unless you want to get deposed.
 A happy ship is a well-functioning ship."})
 
@@ -377,8 +391,8 @@ A happy ship is a well-functioning ship."})
 	total_positions = 1
 	supervisors = "the acting captain"
 	selection_color = "#99FF99"
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CHEMISTRY)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP)
+	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CHEMISTRY)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS)
 	skills_type = /datum/skills/CMO
 	display_order = JOB_DISPLAY_ORDER_CHIEF_MEDICAL_OFFICER
 	outfit = /datum/outfit/job/medical/professor
@@ -434,7 +448,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	. = ..()
 	to_chat(M, {"You are a military doctor stationed aboard the [SSmapping.configs[SHIP_MAP].map_name].
 You are tasked with keeping the marines healthy and strong, usually in the form of surgery.
-You are also an expert when it comes to medication and treatment. If you do not know what you are doing, adminhelp so a mentor can assist you."})
+You are also an expert when it comes to medication and treatment. If you do not know what you are doing, <b>mentorhelp</b> so a mentor can assist you."})
 
 
 /datum/outfit/job/medical/medicalofficer
@@ -510,7 +524,7 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 	comm_title = "CL"
 	supervisors = "the NT corporate office"
 	total_positions = 1
-	access = list(ACCESS_IFF_MARINE, ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_LOGISTICS)
+	access = list(ACCESS_IFF_MARINE, ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_MEDBAY)
 	skills_type = /datum/skills/civilian
 	display_order = JOB_DISPLAY_ORDER_CORPORATE_LIAISON
@@ -576,9 +590,8 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 
 /datum/job/terragov/silicon/synthetic/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"Your primary job is to support and assist all TGMC Departments and Personnel on-board.
-In addition, being a Synthetic gives you knowledge in every field and specialization possible on-board the ship.
-As a Synthetic you answer to the acting captain. Special circumstances may change this!"})
+	to_chat(M, {"Your primary job is to support and assist all TGMC departments and personnel on-board.
+In addition, being a Synthetic gives you knowledge in every field and specialization possible on-board the ship."})
 
 
 /datum/outfit/job/civilian/synthetic
@@ -603,7 +616,7 @@ As a Synthetic you answer to the acting captain. Special circumstances may chang
 	comm_title = "AI"
 	total_positions = 1
 	selection_color = "#92c255"
-	supervisors = "your laws"
+	supervisors = "your laws and the human crew"
 	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_REGULAR_ALL
 	exp_type_department = EXP_TYPE_SILICON
@@ -618,6 +631,13 @@ As a Synthetic you answer to the acting captain. Special circumstances may chang
 
 /datum/job/terragov/silicon/ai/return_spawn_type(datum/preferences/prefs)
 	return /mob/living/silicon/ai
+
+/datum/job/terragov/silicon/ai/radio_help_message(mob/M)
+	. = ..()
+	to_chat(M, {"Your primary job is to support and assist all TGMC departments and personnel on-board.
+However, your vision is limited through cameras from the ship or to marines groundside.
+Recon any threats and report findings at various communication channels.
+If you require any help, use <b>mentorhelp</b> to ask mentors about what you're supposed to do."})
 
 
 /datum/job/terragov/silicon/ai/announce(mob/living/announced_mob)

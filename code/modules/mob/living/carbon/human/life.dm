@@ -14,8 +14,6 @@
 			if(germ_level < GERM_LEVEL_AMBIENT && prob(30))	//if you're just standing there, you shouldn't get more germs beyond an ambient level
 				germ_level++
 
-			//Mutations and radiation
-			handle_mutations_and_radiation()
 
 			//blood
 			handle_blood()

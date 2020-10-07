@@ -330,32 +330,6 @@
 	walltype = "uranium"
 	mineral = "uranium"
 
-/turf/closed/wall/mineral/uranium/proc/radiate()
-	if(!active)
-		if(world.time > last_event+15)
-			active = 1
-			for(var/mob/living/L in range(3,src))
-				L.apply_effect(12, IRRADIATE)
-				UPDATEHEALTH(L)
-			for(var/turf/closed/wall/mineral/uranium/T in range(3,src))
-				T.radiate()
-			last_event = world.time
-			active = null
-			return
-	return
-
-/turf/closed/wall/mineral/uranium/attack_hand(mob/living/user)
-	radiate()
-	return ..()
-
-/turf/closed/wall/mineral/uranium/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	radiate()
-
-/turf/closed/wall/mineral/uranium/Bumped(AM as mob|obj)
-	radiate()
-	..()
-
 /turf/closed/wall/mineral/phoron
 	name = "phoron wall"
 	desc = "A wall with phoron plating. This is definately a bad idea."

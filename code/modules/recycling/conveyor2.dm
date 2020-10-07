@@ -227,9 +227,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 	. = ..()
 	update()
 
-// the conveyor control switch
-//
-//
+///////// the conveyor control switch
 
 /obj/machinery/conveyor_switch
 	name = "conveyor switch"

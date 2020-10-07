@@ -258,7 +258,7 @@
 	var/env_temperature = loc.return_temperature()
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE))
 		if(env_temperature > (T0C + 66))
-			adjustFireLoss((env_temperature - (T0C + 66) ) * 0.2 * clamp(xeno_caste.fire_resist + fire_resist_modifier, 0, 1) ) //Might be too high, check in testing.
+			adjustFireLoss((env_temperature - (T0C + 66) ) * 0.2 * clamp(xeno_caste.fire_resist + fire_resist_modifier, 0, 1)) //Might be too high, check in testing.
 			updatehealth() //unused while atmos is off
 			if(hud_used && hud_used.fire_icon)
 				hud_used.fire_icon.icon_state = "fire2"

@@ -224,7 +224,7 @@ SUBSYSTEM_DEF(mapping)
 
 /proc/generateMapList(filename)
 	. = list()
-	var/list/Lines = world.file2list(filename)
+	var/list/Lines = file2list(filename)
 
 	if(!Lines.len)
 		return
