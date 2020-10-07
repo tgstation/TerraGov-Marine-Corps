@@ -1,4 +1,0 @@
-author: "Hathkar"
-delete-after: True
-changes: 
-  - bugfix: "Survivors who spawn with shotguns now have ammo in their bag"
