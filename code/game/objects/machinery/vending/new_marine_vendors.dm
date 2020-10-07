@@ -1202,6 +1202,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/medevac_beacon,
 						/obj/item/roller,
 						/obj/item/reagent_containers/hypospray/advanced/oxycodone,
+						/obj/item/storage/firstaid/adv,
 						)
 
 /obj/effect/essentials_set/engi
