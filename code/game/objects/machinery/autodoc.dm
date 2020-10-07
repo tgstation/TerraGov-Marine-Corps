@@ -75,6 +75,7 @@
 
 
 /obj/machinery/autodoc/proc/shuttle_crush()
+	SIGNAL_HANDLER
 	if(occupant)
 		var/mob/living/carbon/human/H = occupant
 		go_out()

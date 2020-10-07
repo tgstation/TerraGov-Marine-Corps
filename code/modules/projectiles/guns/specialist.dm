@@ -178,6 +178,7 @@
 
 
 /obj/item/weapon/gun/rifle/sniper/M42A/proc/scan_turf_for_target(datum/source, turf/target_turf)
+	SIGNAL_HANDLER
 	if(QDELETED(laser_target) || !isturf(laser_target.loc))
 		return NONE
 	if(get_turf(laser_target) == target_turf)

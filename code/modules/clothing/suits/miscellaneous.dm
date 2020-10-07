@@ -194,6 +194,7 @@
 
 
 /obj/item/clothing/suit/straight_jacket/proc/on_removal(datum/source, mob/living/user)
+	SIGNAL_HANDLER
 	DISABLE_BITFIELD(user.restrained_flags, RESTRAINED_STRAIGHTJACKET)
 	UnregisterSignal(src, COMSIG_ITEM_DROPPED)
 

@@ -82,6 +82,7 @@
   * Calls qdel on the chatmessage when its parent is deleted, used to register qdel signal
   */
 /datum/chatmessage/proc/on_parent_qdel()
+	SIGNAL_HANDLER
 	qdel(src)
 
 

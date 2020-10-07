@@ -11,10 +11,12 @@
 	UnregisterSignal(target, list(COMSIG_OBJ_DECONSTRUCT, ELEMENT_CLOSE_SHUTTER_LINKED))
 
 /datum/element/windowshutter/proc/spawn_shutter_first(datum/source)
+	SIGNAL_HANDLER
 	playsound(source, 'sound/machines/hiss.ogg', 50, 1)
 	spawn_shutter(source)
 
 /datum/element/windowshutter/proc/spawn_shutter(datum/source)
+	SIGNAL_HANDLER
 	UnregisterSignal(source, ELEMENT_CLOSE_SHUTTER_LINKED)
 	for(var/direction in GLOB.cardinals)
 		for(var/obj/structure/window/W in get_step(source,direction) )

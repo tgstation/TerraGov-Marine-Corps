@@ -46,6 +46,7 @@
 
 
 /datum/component/automatic_fire/proc/wake_up(datum/source, fire_mode, client/usercli)
+	SIGNAL_HANDLER
 	switch(fire_mode)
 		if(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 			component_fire_mode = fire_mode
@@ -74,6 +75,7 @@
 
 
 /datum/component/automatic_fire/proc/sleep_up()
+	SIGNAL_HANDLER
 	if(autofire_stat & AUTOFIRE_STAT_SLEEPING)
 		return //Already asleep
 
@@ -86,6 +88,7 @@
 
 // There is a gun and there is a user wielding it. The component now waits for the mouse click.
 /datum/component/automatic_fire/proc/autofire_on(client/usercli)
+	SIGNAL_HANDLER
 	if(autofire_stat & (AUTOFIRE_STAT_ALERT|AUTOFIRE_STAT_FIRING))
 		return
 	autofire_stat = AUTOFIRE_STAT_ALERT
@@ -99,6 +102,7 @@
 
 
 /datum/component/automatic_fire/proc/autofire_off(datum/source)
+	SIGNAL_HANDLER
 	if(autofire_stat & (AUTOFIRE_STAT_SLEEPING|AUTOFIRE_STAT_IDLE))
 		return
 	if(autofire_stat & AUTOFIRE_STAT_FIRING)
@@ -211,6 +215,7 @@
 
 
 /datum/component/automatic_fire/proc/on_mouse_up(datum/source, atom/object, turf/location, control, params)
+	SIGNAL_HANDLER
 	UnregisterSignal(clicker, COMSIG_CLIENT_MOUSEUP)
 	mouse_status = AUTOFIRE_MOUSEUP
 	if(autofire_stat == AUTOFIRE_STAT_FIRING)
@@ -219,6 +224,7 @@
 
 
 /datum/component/automatic_fire/proc/stop_autofiring(datum/source, atom/object, turf/location, control, params)
+	SIGNAL_HANDLER
 	switch(autofire_stat)
 		if(AUTOFIRE_STAT_SLEEPING, AUTOFIRE_STAT_IDLE, AUTOFIRE_STAT_ALERT)
 			return
@@ -250,6 +256,7 @@
 
 
 /datum/component/automatic_fire/proc/on_mouse_drag(client/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
+	SIGNAL_HANDLER
 	if(isnull(over_location)) //This happens when the mouse is over an inventory or screen object, or on entering deep darkness, for example.
 		var/list/modifiers = params2list(params)
 		var/new_target = params2turf(modifiers["screen-loc"], get_turf(source.eye), source)
@@ -304,6 +311,7 @@
 
 
 /datum/component/automatic_fire/proc/itemgun_equipped(datum/source, mob/shooter, slot)
+	SIGNAL_HANDLER
 	switch(slot)
 		if(SLOT_L_HAND, SLOT_R_HAND)
 			autofire_on(shooter.client)
@@ -314,12 +322,15 @@
 
 
 /datum/component/automatic_fire/proc/modify_firedelay(datum/source, new_delay)
+	SIGNAL_HANDLER
 	autofire_shot_delay = new_delay
 
 /datum/component/automatic_fire/proc/modify_burst_delay(datum/source, new_delay)
+	SIGNAL_HANDLER
 	burstfire_shot_delay = new_delay
 
 /datum/component/automatic_fire/proc/modify_burst_amount(datum/source, new_amount)
+	SIGNAL_HANDLER
 	shots_to_fire = new_amount
 
 // Gun procs.
@@ -336,11 +347,13 @@
 
 
 /obj/item/weapon/gun/proc/autofire_bypass_check(datum/source, client/clicker, atom/target, turf/location, control, params)
+	SIGNAL_HANDLER
 	if(clicker.mob.get_active_held_item() != src)
 		return COMPONENT_AUTOFIRE_ONMOUSEDOWN_BYPASS
 
 
 /obj/item/weapon/gun/proc/do_autofire(datum/source, atom/target, mob/living/shooter, params, shots_fired)
+	SIGNAL_HANDLER
 	SEND_SIGNAL(src, COMSIG_GUN_AUTOFIRE, target, shooter)
 	var/obj/projectile/projectile_to_fire = load_into_chamber(shooter)
 	in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.

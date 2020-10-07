@@ -1084,6 +1084,7 @@ and you're good to go.
 
 
 /obj/item/weapon/gun/proc/do_fire_attachment(datum/source, atom/target, mob/user)
+	SIGNAL_HANDLER
 	if(!able_to_fire(user))
 		return
 	if(gun_on_cooldown(user))

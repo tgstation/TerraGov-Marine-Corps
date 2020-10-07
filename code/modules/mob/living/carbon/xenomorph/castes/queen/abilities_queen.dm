@@ -308,24 +308,30 @@
 
 
 /datum/action/xeno_action/watch_xeno/proc/on_list_xeno_selection(datum/source, mob/living/carbon/xenomorph/selected_xeno)
+	SIGNAL_HANDLER_DOES_SLEEP
 	select_xeno(selected_xeno)
 
 /datum/action/xeno_action/watch_xeno/proc/on_xeno_evolution(datum/source, mob/living/carbon/xenomorph/new_xeno)
+	SIGNAL_HANDLER
 	start_overwatch(new_xeno)
 
 /datum/action/xeno_action/watch_xeno/proc/on_xeno_death(datum/source, mob/living/carbon/xenomorph/dead_xeno)
+	SIGNAL_HANDLER
 	if(overwatch_active)
 		stop_overwatch()
 
 /datum/action/xeno_action/watch_xeno/proc/on_owner_death(mob/source, gibbing)
+	SIGNAL_HANDLER
 	if(overwatch_active)
 		stop_overwatch()
 
 /datum/action/xeno_action/watch_xeno/proc/on_movement(datum/source, atom/oldloc, direction, Forced)
+	SIGNAL_HANDLER
 	if(overwatch_active)
 		stop_overwatch()
 
 /datum/action/xeno_action/watch_xeno/proc/on_ctrl_middle_click(datum/source, atom/A)
+	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/queen/watcher = owner
 	if(!watcher.check_state())
 		return

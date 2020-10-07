@@ -37,6 +37,7 @@
 
 
 /datum/component/dripping/proc/drip_on_walk(datum/source, atom/oldloc, direction, Forced = FALSE)
+	SIGNAL_HANDLER
 	var/mob/living/dripper = parent
 	if(!isturf(dripper.loc))
 		return

@@ -193,6 +193,7 @@
 
 ///Called by the deletion of the referenced powercell.
 /obj/vehicle/proc/on_cell_deletion(obj/item/cell/source, force)
+	SIGNAL_HANDLER
 	set_cell(null)
 
 
