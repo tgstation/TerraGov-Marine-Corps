@@ -337,12 +337,12 @@ SUBSYSTEM_DEF(job)
 		message_admins(assigned_role.faction)
 		return
 	if(assigned_role && length(GLOB.latejoin_unsc))
-		if(assigned_role.faction == FACTION_UNSC)
+		if(assigned_role.job_category == JOB_CAT_UNSC)
 			message_admins(assigned_role.faction)
 			SendToAtom(M, pick(GLOB.latejoin_unsc))
 		return
 	if(assigned_role && length(GLOB.latejoin_innie))
-		if(assigned_role.faction == FACTION_INSURRECTION)
+		if(assigned_role.job_category == JOB_CAT_INSURRECTION)
 			message_admins(assigned_role.faction)
 			SendToAtom(M, pick(GLOB.latejoin_innie))
 		return
