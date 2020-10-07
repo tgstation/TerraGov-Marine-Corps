@@ -2107,6 +2107,9 @@
 /area/bigredv2/outside/nw)
 "ahS" = (
 /obj/structure/cable,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/nw)
 "ahT" = (
@@ -2116,6 +2119,9 @@
 /area/bigredv2/outside/nw)
 "ahU" = (
 /obj/structure/solaris_sign,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/nw)
 "ahV" = (
@@ -2126,6 +2132,9 @@
 "ahW" = (
 /obj/item/stack/rods,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
 "ahX" = (
@@ -2136,12 +2145,18 @@
 /obj/item/stack/sheet/metal,
 /obj/item/stack/rods,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
 "ahZ" = (
 /obj/item/stack/rods,
 /obj/item/stack/rods,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/nw)
 "aia" = (
@@ -20501,6 +20516,13 @@
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
+"bQc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/nw)
 "bSC" = (
 /obj/machinery/light{
 	dir = 8
@@ -20513,6 +20535,13 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/ne)
+"bXE" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/closed/mineral/bigred,
+/area/bigredv2/caves/northwest)
 "bZF" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -20559,6 +20588,14 @@
 	dir = 9
 	},
 /area/shuttle/drop2/lz2)
+"cyL" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 10
+	},
+/area/bigredv2/outside/nw)
 "cBD" = (
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/bigredv2/outside/sw)
@@ -20567,6 +20604,12 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
+"cQC" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northwest)
 "cTr" = (
 /obj/docking_port/stationary/crashmode,
 /turf/closed/wall/r_wall,
@@ -20793,12 +20836,22 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
 /area/bigredv2/outside/hydroponics)
+"eRn" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northwest)
 "eRJ" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/marking/asteroidwarning{
 	dir = 1
 	},
 /area/shuttle/drop2/lz2)
+"eTT" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/closed/mineral/bigred,
+/area/bigredv2/caves/northwest)
 "eVX" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -20916,6 +20969,12 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
+"fNY" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/nw)
 "fOi" = (
 /obj/structure/cable,
 /turf/open/floor/marking/asteroidwarning{
@@ -21112,6 +21171,14 @@
 /obj/docking_port/stationary/crashmode,
 /turf/closed/wall,
 /area/bigredv2/outside/cargo)
+"hwL" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 4
+	},
+/area/bigredv2/outside/nw)
 "hzx" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/bigred,
@@ -21168,6 +21235,14 @@
 /obj/docking_port/stationary/crashmode,
 /turf/closed/wall,
 /area/bigredv2/outside/admin_building)
+"hXl" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 6
+	},
+/area/bigredv2/outside/nw)
 "iiY" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
@@ -21245,6 +21320,10 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating,
 /area/bigredv2/caves/south)
+"jsp" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/bigredv2/outside/nw)
 "jtk" = (
 /turf/open/floor/plating,
 /area/bigredv2/caves/south)
@@ -21350,6 +21429,12 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/outside/s)
+"ktH" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/closed/mineral/bigred,
+/area/bigredv2/caves/northwest)
 "kvX" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -21499,6 +21584,14 @@
 	},
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
+"lPV" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 10
+	},
+/area/bigredv2/outside/nw)
 "lVv" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -21649,6 +21742,13 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
+"nOm" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/northwest)
 "nRT" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/west)
@@ -21820,6 +21920,10 @@
 /obj/structure/mineral_door/resin,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
+"pOZ" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/closed/mineral/bigred,
+/area/bigredv2/caves/northwest)
 "pQK" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
@@ -22035,6 +22139,12 @@
 	dir = 1
 	},
 /area/bigredv2/outside/chapel)
+"rBN" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/bigredv2/outside/nw)
 "rMV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22143,6 +22253,12 @@
 "tku" = (
 /turf/closed/wall/indestructible/mineral,
 /area/storage/testroom)
+"tkR" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/marking/asteroidwarning,
+/area/bigredv2/outside/nw)
 "tnm" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -22286,6 +22402,12 @@
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/south)
+"uHG" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/mars/random/cave/rock,
+/area/bigredv2/caves/northwest)
 "uHK" = (
 /obj/item/tool/wet_sign,
 /obj/effect/decal/cleanable/dirt,
@@ -22424,6 +22546,7 @@
 /area/bigredv2/caves/lambda_lab)
 "wgk" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/mineral/bigred,
 /area/bigredv2/caves/northwest)
 "wmv" = (
@@ -23977,26 +24100,26 @@ aac
 aac
 aac
 aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
+pOZ
+pOZ
+pOZ
+pOZ
+pOZ
+pOZ
+pOZ
+pOZ
+pOZ
+pOZ
 wgk
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
+pOZ
+pOZ
+pOZ
+pOZ
+pOZ
+pOZ
+pOZ
+pOZ
+pOZ
 aac
 aac
 aac
@@ -24194,7 +24317,7 @@ aac
 aac
 aac
 aac
-aac
+ktH
 acA
 acA
 acA
@@ -24213,7 +24336,7 @@ aae
 aae
 aae
 aae
-aac
+ktH
 aac
 aac
 aac
@@ -24411,7 +24534,7 @@ aac
 aac
 aac
 aac
-aac
+ktH
 acA
 acY
 adq
@@ -24430,7 +24553,7 @@ aaf
 aaf
 aaf
 aae
-aac
+ktH
 aac
 aac
 aac
@@ -24628,7 +24751,7 @@ aac
 aac
 aac
 aac
-aac
+ktH
 acA
 acZ
 ade
@@ -24647,7 +24770,7 @@ aaf
 aaf
 alH
 aae
-aac
+ktH
 aac
 aac
 aac
@@ -24845,7 +24968,7 @@ aac
 aac
 aac
 aac
-aac
+ktH
 acA
 ada
 ade
@@ -24864,7 +24987,7 @@ gkA
 aaf
 vbs
 aae
-mAi
+uHG
 aad
 aac
 aac
@@ -25062,7 +25185,7 @@ aac
 aac
 aac
 aac
-aac
+ktH
 acA
 ada
 adr
@@ -25081,7 +25204,7 @@ aaf
 aaf
 alH
 aae
-aad
+cQC
 aad
 aad
 aad
@@ -25276,10 +25399,10 @@ aac
 aac
 aac
 aac
-aac
-aac
-aac
-aac
+pOZ
+pOZ
+pOZ
+ktH
 acA
 acQ
 acQ
@@ -25298,7 +25421,7 @@ aaf
 aaf
 jLQ
 aae
-aad
+cQC
 aad
 aad
 aad
@@ -25493,7 +25616,7 @@ aac
 aac
 aac
 aac
-aac
+ktH
 aae
 aae
 aae
@@ -25515,7 +25638,7 @@ aaf
 aaf
 alH
 aae
-aad
+cQC
 aad
 aad
 aad
@@ -25710,7 +25833,7 @@ aac
 aac
 aac
 aac
-aac
+ktH
 aae
 abQ
 aas
@@ -25732,7 +25855,7 @@ aaf
 aaf
 vbs
 aae
-aad
+cQC
 aad
 aad
 aad
@@ -25927,7 +26050,7 @@ aac
 aac
 aac
 aac
-aac
+ktH
 aae
 aaf
 acJ
@@ -25949,7 +26072,7 @@ gkA
 aaf
 alH
 aae
-aac
+ktH
 aac
 aac
 aac
@@ -26135,16 +26258,16 @@ aac
 aac
 aac
 aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
+pOZ
+pOZ
+pOZ
+pOZ
+pOZ
+pOZ
+pOZ
+pOZ
+pOZ
+ktH
 aae
 aaf
 aas
@@ -26166,7 +26289,7 @@ aaf
 aaf
 aaf
 aae
-aac
+ktH
 aac
 aac
 aac
@@ -26352,7 +26475,7 @@ aac
 aac
 aac
 aac
-aac
+ktH
 aae
 aae
 aae
@@ -26383,7 +26506,7 @@ aaf
 aaf
 aaf
 aae
-aac
+ktH
 aac
 aac
 aac
@@ -26569,7 +26692,7 @@ aac
 aac
 aac
 aac
-aac
+ktH
 aae
 aaf
 aaf
@@ -26600,7 +26723,7 @@ aaf
 aaf
 fVb
 aae
-aac
+ktH
 aac
 aac
 aac
@@ -26786,7 +26909,7 @@ aac
 aac
 aac
 aac
-aac
+ktH
 aae
 aaf
 aaf
@@ -26817,7 +26940,7 @@ acJ
 acJ
 acJ
 aae
-aac
+ktH
 aac
 aac
 aac
@@ -27003,7 +27126,7 @@ aac
 aac
 aac
 aac
-aac
+ktH
 aae
 aag
 aaf
@@ -27034,7 +27157,7 @@ aaf
 aaf
 fYS
 aae
-aac
+ktH
 aac
 aac
 aac
@@ -27220,7 +27343,7 @@ aac
 aac
 aac
 aac
-aac
+ktH
 aae
 gFh
 aaf
@@ -27251,7 +27374,7 @@ aaf
 aaf
 fYS
 aae
-aac
+ktH
 aac
 aac
 aac
@@ -27437,7 +27560,7 @@ aac
 aac
 aac
 aac
-aac
+ktH
 aae
 gFh
 aai
@@ -27468,7 +27591,7 @@ aaf
 gkA
 fYS
 aae
-aac
+ktH
 aac
 aac
 aac
@@ -27654,7 +27777,7 @@ aac
 aac
 aac
 aac
-aac
+ktH
 aae
 gFh
 aaj
@@ -27685,7 +27808,7 @@ aaf
 aaf
 fYS
 aae
-aac
+ktH
 aac
 aad
 aad
@@ -27871,7 +27994,7 @@ aac
 aac
 aac
 aac
-aac
+ktH
 aae
 gFh
 aak
@@ -27902,7 +28025,7 @@ aaf
 aaf
 fYS
 aae
-aad
+cQC
 aad
 aad
 aad
@@ -28088,7 +28211,7 @@ aac
 aac
 aac
 aac
-aac
+ktH
 aae
 gFh
 aal
@@ -28119,7 +28242,7 @@ aaf
 aaf
 amb
 aae
-aad
+cQC
 mAi
 aad
 aad
@@ -28305,7 +28428,7 @@ aac
 aac
 aac
 aac
-aac
+ktH
 aae
 gFh
 aai
@@ -28336,7 +28459,7 @@ aaf
 aaf
 fYS
 aae
-aad
+cQC
 aad
 aac
 aac
@@ -28522,7 +28645,7 @@ aac
 aac
 aac
 aac
-aac
+ktH
 aae
 iUZ
 aaj
@@ -28553,7 +28676,7 @@ aaf
 aaf
 fYS
 aae
-aac
+ktH
 aac
 aac
 aac
@@ -28739,7 +28862,7 @@ aac
 aac
 aac
 aac
-aac
+ktH
 aae
 gFh
 aak
@@ -28770,7 +28893,7 @@ gkA
 aaf
 iFE
 aae
-aac
+ktH
 aac
 aac
 aac
@@ -28956,7 +29079,7 @@ aac
 aac
 aac
 aac
-aac
+ktH
 aae
 gFh
 aal
@@ -28987,7 +29110,7 @@ aaf
 aaf
 fYS
 aae
-aac
+ktH
 aac
 aac
 aac
@@ -29173,7 +29296,7 @@ aac
 aac
 aac
 aac
-aac
+ktH
 aae
 gFh
 aai
@@ -29204,7 +29327,7 @@ aaf
 aaf
 fYS
 aae
-aac
+ktH
 aac
 aac
 aac
@@ -29390,7 +29513,7 @@ aac
 aac
 aac
 aac
-aac
+ktH
 aae
 gFh
 aaj
@@ -29421,7 +29544,7 @@ aaf
 aaf
 fYS
 aae
-aac
+ktH
 aac
 aac
 aac
@@ -29607,7 +29730,7 @@ aac
 aac
 aac
 aac
-aac
+ktH
 aae
 gFh
 aak
@@ -29638,7 +29761,7 @@ aaf
 aaf
 fYS
 aae
-aac
+ktH
 aac
 aac
 aac
@@ -29824,7 +29947,7 @@ aac
 aac
 aac
 aac
-aac
+ktH
 aae
 gFh
 aaf
@@ -29855,7 +29978,7 @@ aaf
 aaf
 fYS
 aae
-aac
+ktH
 aac
 aeI
 aeI
@@ -30041,7 +30164,7 @@ aac
 aac
 aac
 aac
-aac
+ktH
 aae
 aag
 aam
@@ -30072,7 +30195,7 @@ aam
 aam
 ago
 aae
-aac
+ktH
 aac
 aeI
 aeI
@@ -30258,7 +30381,7 @@ aac
 aac
 aac
 aac
-aac
+ktH
 aae
 aah
 aah
@@ -30289,7 +30412,7 @@ aah
 aah
 aaK
 aae
-aac
+ktH
 aeI
 aeI
 aeI
@@ -30475,7 +30598,7 @@ aac
 aac
 aac
 aac
-aac
+ktH
 aae
 aah
 aah
@@ -30506,7 +30629,7 @@ aah
 aah
 aaK
 aae
-ahO
+cyL
 aeI
 aeI
 aeI
@@ -30692,7 +30815,7 @@ aac
 aac
 aac
 aac
-aac
+ktH
 aae
 aah
 aah
@@ -30723,7 +30846,7 @@ aah
 aah
 aaK
 aae
-ahP
+rBN
 ahO
 aeI
 aeI
@@ -30909,7 +31032,7 @@ aac
 aac
 aac
 aac
-aac
+ktH
 aae
 aah
 adL
@@ -30940,7 +31063,7 @@ aah
 aah
 wQg
 aae
-ahQ
+lPV
 ahP
 ahO
 aeI
@@ -31126,7 +31249,7 @@ aac
 aac
 aac
 aac
-aac
+ktH
 aae
 aae
 aae
@@ -31157,7 +31280,7 @@ aah
 aah
 aaK
 aae
-ahR
+tkR
 ahP
 ahP
 ahO
@@ -31343,10 +31466,10 @@ hzx
 hzx
 hzx
 hzx
-hkk
-hkk
-hkk
-hkk
+eRn
+eRn
+eRn
+nOm
 aae
 aah
 aah
@@ -31374,7 +31497,7 @@ aah
 aah
 agq
 ahe
-ahQ
+lPV
 aiw
 aiw
 aiw
@@ -31563,7 +31686,7 @@ aac
 aad
 aad
 aad
-hkk
+nOm
 aae
 aaq
 aaK
@@ -31780,7 +31903,7 @@ aad
 aad
 aad
 aad
-hkk
+nOm
 aae
 abR
 aaK
@@ -31808,7 +31931,7 @@ aah
 aah
 ags
 aam
-ahT
+hXl
 aiy
 aiy
 ajx
@@ -31997,7 +32120,7 @@ aad
 aad
 aad
 aad
-hzx
+bXE
 aae
 aaw
 aaM
@@ -32214,7 +32337,7 @@ aad
 aad
 aad
 aad
-hzx
+bXE
 aae
 aax
 aaM
@@ -32242,7 +32365,7 @@ aah
 aah
 rkk
 aae
-ahT
+hXl
 ahP
 ahP
 ajy
@@ -32431,7 +32554,7 @@ aad
 aad
 aad
 aad
-hzx
+bXE
 aae
 aay
 aaO
@@ -32459,7 +32582,7 @@ aah
 aah
 agv
 aae
-ahV
+hwL
 ahV
 ahP
 ajy
@@ -32648,7 +32771,7 @@ aad
 aad
 aad
 aac
-hzx
+bXE
 aae
 aaB
 aaO
@@ -32865,7 +32988,7 @@ aad
 aad
 aad
 aac
-hzx
+bXE
 aae
 aaB
 aaP
@@ -32893,7 +33016,7 @@ aah
 afM
 agw
 agv
-ahX
+bQc
 ahX
 aiA
 ajy
@@ -33082,7 +33205,7 @@ aad
 aad
 aac
 aac
-hzx
+bXE
 aae
 aaA
 aaO
@@ -33299,7 +33422,7 @@ aad
 aad
 aac
 aac
-hzx
+bXE
 aae
 aaO
 aaO
@@ -33327,7 +33450,7 @@ aah
 aah
 afM
 agw
-aeI
+fNY
 ahX
 aiA
 ajy
@@ -33516,7 +33639,7 @@ aad
 aad
 aac
 aac
-hzx
+bXE
 aae
 aaC
 aaQ
@@ -33733,7 +33856,7 @@ aad
 aad
 aac
 aac
-hzx
+bXE
 aae
 aae
 aae
@@ -33761,7 +33884,7 @@ aah
 aah
 afM
 ahh
-ahX
+bQc
 aeI
 aiA
 ajy
@@ -33950,16 +34073,16 @@ aad
 aad
 aad
 aac
-hzx
-hzx
-hzx
-hzx
-hzx
-hzx
-hzx
-hzx
-hzx
-hzx
+eTT
+eTT
+eTT
+eTT
+eTT
+eTT
+eTT
+eTT
+eTT
+bXE
 aae
 aae
 aae
@@ -33978,7 +34101,7 @@ aae
 aae
 aae
 vwf
-ahX
+bQc
 aeI
 aiA
 ajz
@@ -34176,26 +34299,26 @@ aac
 aac
 aac
 aac
-aac
-hzx
-hzx
-hzx
-hzx
-hzx
-hzx
-hzx
-hzx
-hzx
-hzx
-hkk
-hkk
-hzx
-aac
-aac
-aac
-aac
-aac
-aeI
+pOZ
+eTT
+eTT
+eTT
+eTT
+eTT
+eTT
+eTT
+eTT
+eTT
+eTT
+eRn
+eRn
+eTT
+pOZ
+pOZ
+pOZ
+pOZ
+pOZ
+jsp
 aeI
 aiA
 ajy
