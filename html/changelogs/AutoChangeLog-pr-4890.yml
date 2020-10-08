@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - bugfix: "Fixes a lot of bad garbage collection, game should be even faster"
