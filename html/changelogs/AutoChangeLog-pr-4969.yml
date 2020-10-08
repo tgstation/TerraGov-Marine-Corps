@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - bugfix: "Fixes SSD Xenos keeping their old name or number when taken over by a ghost with no name set."
