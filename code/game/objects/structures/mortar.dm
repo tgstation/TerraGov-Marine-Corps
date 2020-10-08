@@ -41,10 +41,10 @@
 	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
 /obj/structure/mortar/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-  ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
-  if(!ui)
-    ui = new(user, src, ui_key, "Mortar", "M402 Mortar", 500, 500, master_ui, state)
-    ui.open()
+	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "Mortar", "M402 Mortar", 500, 500, master_ui, state)
+		ui.open()
 
 /obj/structure/mortar/ui_data(mob/user)
 	. = ..()
@@ -78,15 +78,15 @@
 		if("set_saved_coord_three")
 			coords = get_new_list("coords_three")
 
-/obj/structure/mortar/proc/get_new_list(var/string)
+/obj/structure/mortar/proc/get_new_list(str)
 	var/list/target_data = list()
-	if(string == "coords_three")
+	if(str == "coords_three")
 		target_data.Add(last_three_inputs["coords_three"])
-	if(string == "coords_two")
+	if(str == "coords_two")
 		target_data.Add(last_three_inputs["coords_two"])
-	if(string == "coords_one")
+	if(str == "coords_one")
 		target_data.Add(last_three_inputs["coords_one"])
-	if(string == "coords")
+	if(str == "coords")
 		target_data.Add(coords)
 	return target_data
 
