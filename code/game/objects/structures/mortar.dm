@@ -10,6 +10,11 @@
 	density = TRUE
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	var/list/coords = list("targ_x" = 0, "targ_y" = 0, "dial_x" = 0, "dial_y" = 0)
+	var/list/last_three_inputs = list(
+		"coords_one" = list("targ_x" = 0, "targ_y" = 0, "dial_x" = 0, "dial_y" = 0),
+		"coords_two" = list("targ_x" = 0, "targ_y" = 0, "dial_x" = 0, "dial_y" = 0),
+		"coords_three" = list("targ_x" = 0, "targ_y" = 0, "dial_x" = 0, "dial_y" = 0)
+		)
 	var/offset_x = 0 //Automatic offset from target
 	var/offset_y = 0
 	var/offset_per_turfs = 10 //Number of turfs to offset from target by 1
@@ -30,14 +35,10 @@
 		return
 	ui_interact(user)
 
-	user.visible_message("<span class='notice'>[user] adjusts [src]'s firing angle and distance.</span>",
-	"<span class='notice'>You adjust [src]'s firing angle and distance to match the new coordinates.</span>")
+	user.visible_message("<span class='notice'>[user] starts adjusting [src]'s firing angle and distance.</span>",
+	"<span class='notice'>You begin to adjust [src]'s firing angle and distance to match the new coordinates.</span>")
 
 	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-	var/offset_x_max = round(abs((coords["targ_x"] + coords["dial_x"]) - x)/offset_per_turfs) //Offset of mortar shot, grows by 1 every 10 tiles travelled
-	var/offset_y_max = round(abs((coords["targ_y"] + coords["dial_y"]) - y)/offset_per_turfs)
-	offset_x = rand(-offset_x_max, offset_x_max)
-	offset_y = rand(-offset_y_max, offset_y_max)
 
 /obj/structure/mortar/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
   ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
@@ -52,6 +53,7 @@
 	data["Y"] = coords["targ_y"]
 	data["D1"] = coords["dial_x"]
 	data["D2"] = coords["dial_y"]
+	data["last_three_inputs"] = last_three_inputs
 	return data
 
 /obj/structure/mortar/ui_act(action, params)
@@ -61,23 +63,25 @@
 	. = TRUE
 
 	switch(action)
-		if("change_target")
-			var/isdial
-			if(params["varname"] == "targ_x" || "targ_y")
-				isdial = FALSE
-			else
-				isdial = TRUE
-			var/turf/T = locate((params["target_x"] + params["dial_one"]), (params["target_y"] + params["dial_two"]), z)
-			if(get_dist(loc, T) < 10)
-				to_chat(usr, "<span class='warning'>You cannot target this coordinate, it is too close to your mortar.</span>")
-				return
-			coords["[params["varname"]]"] = text2num(clamp(params["value"], isdial ? -15 : 0, isdial ? 15 : 0))
+		if("change_target_x")
+			coords["targ_x"] = clamp(text2num(params["target_x"]), 0, world.maxx)
+		if("change_target_y")
+			coords["targ_y"] = clamp(text2num(params["target_y"]), 0, world.maxy)
+		if("change_dial_x")
+			coords["dial_x"] = clamp(text2num(params["dial_one"]), 0, 10)
+		if("change_dial_y")
+			coords["dial_y"] = clamp(text2num(params["dial_two"]), 0, 10)
 
 /obj/structure/mortar/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
 	if(istype(I, /obj/item/mortal_shell))
 		var/obj/item/mortal_shell/mortar_shell = I
+
+		var/offset_x_max = round(abs((coords["targ_x"] + coords["dial_x"]) - x)/offset_per_turfs) //Offset of mortar shot, grows by 1 every 10 tiles travelled
+		var/offset_y_max = round(abs((coords["targ_y"] + coords["dial_y"]) - y)/offset_per_turfs)
+		offset_x = rand(-offset_x_max, offset_x_max)
+		offset_y = rand(-offset_y_max, offset_y_max)
 
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to fire [src].</span>",
@@ -102,6 +106,11 @@
 			to_chat(user, "<span class='warning'>[src] needs to be aimed first.</span>")
 			return
 
+		var/turf/selfown = locate((coords["targ_x"] + coords["dial_x"]), (coords["targ_y"] + coords["dial_y"]), z)
+		if(get_dist(loc, selfown) < 10)
+			to_chat(usr, "<span class='warning'>You cannot target this coordinate, it is too close to your mortar.</span>")
+			return		
+
 		var/turf/T = locate(coords["targ_x"] + coords["dial_x"] + offset_x, coords["targ_y"]  + coords["dial_x"] + offset_y, z)
 		if(!isturf(T))
 			to_chat(user, "<span class='warning'>You cannot fire [src] to this target.</span>")
@@ -121,6 +130,11 @@
 			return
 
 		busy = FALSE
+
+		last_three_inputs[3] = last_three_inputs[2]
+		last_three_inputs[2] = last_three_inputs[1]
+		last_three_inputs[1] = coords
+		
 		user.visible_message("<span class='notice'>[user] loads \a [mortar_shell.name] into [src].</span>",
 		"<span class='notice'>You load \a [mortar_shell.name] into [src].</span>")
 		visible_message("[icon2html(src, viewers(src))] <span class='danger'>The [name] fires!</span>")

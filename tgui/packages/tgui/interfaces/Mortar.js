@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Box, Button, Section, NumberInput, Flex, LabeledList } from '../components';
+import { Box, Button, Section, NumberInput, Flex, Table, LabeledList } from '../components';
 import { Window } from '../layouts';
 
 export const Mortar = (props, context) => {
@@ -9,7 +9,9 @@ export const Mortar = (props, context) => {
     Y,
     D1,
     D2,
+   
   } = data;
+  var firstcoords = data.last_three_inputs[0] || [];
   return (
     <Window
       resizable>
@@ -39,9 +41,8 @@ export const Mortar = (props, context) => {
                   minValue={0}
                   maxValue={255}
                   width="43px"
-                  onChange={(e, value) => act("change_target", {
+                  onChange={(e, value) => act("change_target_x", {
                   target_x: value, 
-                  varname: "targ_x",
                   })}>
                 </NumberInput>
               </Flex.Item>
@@ -51,9 +52,8 @@ export const Mortar = (props, context) => {
                   minValue={0}
                   maxValue={255}
                   width="43px"
-                  onChange={(e, value) => act("change_target", {
+                  onChange={(e, value) => act("change_target_y", {
                   target_y: value,
-                  varname: "targ_y",
                   })}>
                 </NumberInput>
               </Flex.Item>
@@ -63,9 +63,8 @@ export const Mortar = (props, context) => {
                   minValue={0}
                   width="43px"
                   maxValue={10}
-                  onChange={(e, value) =>  act("change_target", {
+                  onChange={(e, value) =>  act("change_dial_x", {
                   dial_one: value,
-                  varname: "dial_x",
                   })}>
                 </NumberInput>
               </Flex.Item>
@@ -75,13 +74,66 @@ export const Mortar = (props, context) => {
                   minValue={0}
                   maxValue={10}
                   width="43px"
-                  onChange={(e, value) => act("change_target",{
+                  onChange={(e, value) =>  act("change_dial_y",{
                   dial_two: value,
-                  varname: "dial_y",
                   })}>
                 </NumberInput>
               </Flex.Item>
             </Flex>
+          </Flex.Item>
+          <Flex.Item>
+            <Table justify = "space-evenly">
+              <Table.Row>
+                <Table.Cell bold>
+                  Button
+                </Table.Cell>
+                <Table.Cell> 
+                </Table.Cell>
+                <Table.Cell>
+                  coordy
+                </Table.Cell>
+                <Table.Cell>
+                  dialx
+                </Table.Cell>
+                <Table.Cell>
+                  dialy
+                </Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell bold>
+                  Button
+                </Table.Cell>
+                <Table.Cell>
+                  coordx
+                </Table.Cell>
+                <Table.Cell>
+                  coordy
+                </Table.Cell>
+                <Table.Cell>
+                  dialx
+                </Table.Cell>
+                <Table.Cell>
+                  dialy
+                </Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell bold>
+                  Button
+                </Table.Cell>
+                <Table.Cell>
+                  coordx
+                </Table.Cell>
+                <Table.Cell>
+                  coordy
+                </Table.Cell>
+                <Table.Cell>
+                  dialx
+                </Table.Cell>
+                <Table.Cell>
+                  dialy
+                </Table.Cell>
+              </Table.Row>
+            </Table>
           </Flex.Item>
         </Flex>
       </Window.Content>
