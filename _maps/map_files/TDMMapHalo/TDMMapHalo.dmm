@@ -50,6 +50,11 @@
 	dir = 5
 	},
 /area/swordbase/ground/briefing)
+"ar" = (
+/obj/item/disk/nuclear/green,
+/obj/structure/table/reinforced,
+/turf/open/floor/mainship_hull,
+/area/swordbase/ground/vault)
 "as" = (
 /turf/open/floor/tile/dark/blue2/corner{
 	dir = 8
@@ -758,6 +763,11 @@
 	},
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/mainhall)
+"fS" = (
+/obj/item/disk/nuclear,
+/obj/structure/table/reinforced,
+/turf/open/floor/mainship_hull,
+/area/swordbase/ground/vault)
 "fT" = (
 /obj/item/reagent_containers/food/snacks/egg,
 /turf/open/floor/mainship/research/containment/floor2{
@@ -3618,6 +3628,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/swordbase/ground/outdoors)
+"CX" = (
+/obj/machinery/nuclearbomb,
+/turf/open/floor/mainship_hull,
+/area/swordbase/ground/vault)
 "Df" = (
 /obj/structure/filingcabinet/chestdrawer,
 /turf/open/floor/wood,
@@ -3927,6 +3941,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
+"Fx" = (
+/obj/item/disk/nuclear/red,
+/obj/structure/table/reinforced,
+/turf/open/floor/mainship_hull,
+/area/swordbase/ground/vault)
 "Fz" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/tile/dark,
@@ -5147,6 +5166,10 @@
 /obj/machinery/optable,
 /turf/open/floor/plating/asteroidfloor,
 /area/swordbase/ground/inniecave)
+"Pf" = (
+/obj/machinery/computer/security/nuclear,
+/turf/open/floor/mainship_hull,
+/area/swordbase/ground/vault)
 "Ph" = (
 /obj/structure/table,
 /obj/item/folder/white{
@@ -5857,6 +5880,8 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
+/obj/item/disk/nuclear/blue,
+/obj/structure/table/reinforced,
 /turf/open/floor/mainship_hull,
 /area/swordbase/ground/vault)
 "UW" = (
@@ -5987,6 +6012,12 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
+/obj/structure/table/reinforced,
+/obj/item/weapon/gun/pistol/m6/captain,
+/obj/item/ammo_magazine/pistol/m6,
+/obj/item/ammo_magazine/pistol/m6,
+/obj/item/ammo_magazine/pistol/m6,
+/obj/item/ammo_magazine/pistol/m6,
 /turf/open/floor/mainship_hull,
 /area/swordbase/ground/vault)
 "VU" = (
@@ -12297,7 +12328,7 @@ Zr
 Zr
 Zr
 Zr
-Zr
+CX
 Zr
 DO
 XO
@@ -12416,7 +12447,7 @@ Yf
 MA
 DO
 DO
-Zr
+Pf
 Zr
 Zr
 Zr
@@ -12539,9 +12570,9 @@ mC
 XI
 DO
 VT
-Zr
-Zr
-Zr
+fS
+Fx
+ar
 UV
 DO
 XO
