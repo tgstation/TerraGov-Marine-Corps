@@ -340,12 +340,12 @@ SUBSYSTEM_DEF(job)
 		if(assigned_role.job_category == JOB_CAT_UNSC)
 			message_admins(assigned_role.faction)
 			SendToAtom(M, pick(GLOB.latejoin_unsc))
-		return
+			return
 	if(assigned_role && length(GLOB.latejoin_innie))
 		if(assigned_role.job_category == JOB_CAT_INSURRECTION)
 			message_admins(assigned_role.faction)
 			SendToAtom(M, pick(GLOB.latejoin_innie))
-		return
+			return
 
 	message_admins("Unable to send mob [M] to late join!")
 	CRASH("Unable to send mob [M] to late join!")
