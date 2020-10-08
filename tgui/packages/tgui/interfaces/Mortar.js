@@ -15,9 +15,9 @@ export const Mortar = (props, context) => {
     <Window
       resizable>
       <Window.Content>
-        <Flex direction = "column"  justify = "space-between">
+        <Flex direction="column" justify="space-between">
           <Flex.Item>
-            <Flex direction = "row" justify = "space-between">
+            <Flex direction="row" justify="space-between">
               <Flex.Item>
                 LONGITUDE 
               </Flex.Item>
@@ -33,7 +33,7 @@ export const Mortar = (props, context) => {
             </Flex>
           </Flex.Item>
           <Flex.Item>
-            <Flex direction = "row" justify = "space-between">
+            <Flex direction="row" justify="space-between">
               <Flex.Item>
                 <NumberInput
                   value={X}
@@ -41,9 +41,8 @@ export const Mortar = (props, context) => {
                   maxValue={255}
                   width="43px"
                   onChange={(e, value) => act("change_target_x", {
-                  target_x: value, 
-                  })}>
-                </NumberInput>
+                    target_x: value, 
+                  })} />
               </Flex.Item>
               <Flex.Item>
                 <NumberInput
@@ -52,9 +51,8 @@ export const Mortar = (props, context) => {
                   maxValue={255}
                   width="43px"
                   onChange={(e, value) => act("change_target_y", {
-                  target_y: value,
-                  })}>
-                </NumberInput>
+                    target_y: value,
+                  })} />
               </Flex.Item>
               <Flex.Item>
                 <NumberInput
@@ -62,10 +60,9 @@ export const Mortar = (props, context) => {
                   minValue={0}
                   width="43px"
                   maxValue={10}
-                  onChange={(e, value) =>  act("change_dial_x", {
-                  dial_one: value,
-                  })}>
-                </NumberInput>
+                  onChange={(e, value) => act("change_dial_x", {
+                    dial_one: value,
+                  })} />
               </Flex.Item>
               <Flex.Item>
                 <NumberInput
@@ -73,21 +70,19 @@ export const Mortar = (props, context) => {
                   minValue={0}
                   maxValue={10}
                   width="43px"
-                  onChange={(e, value) =>  act("change_dial_y",{
-                  dial_two: value,
-                  })}>
-                </NumberInput>
+                  onChange={(e, value) => act("change_dial_y", {
+                    dial_two: value,
+                  })} />
               </Flex.Item>
             </Flex>
           </Flex.Item>
           <Flex.Item>
-            <Table justify = "space-evenly">
+            <Table justify="space-evenly">
               <Table.Row>
                 <Table.Cell>
                   <Button
-                    content = "Select Coordinates:"
-                    onClick = {() => act("set_saved_coord_one")}>
-                  </Button>
+                    content="Select Coordinates:"
+                    onClick={() => act("set_saved_coord_one")} />
                 </Table.Cell>
                 <Table.Cell> 
                   {last_three_inputs["coords_one"]["targ_x"]}
@@ -105,9 +100,8 @@ export const Mortar = (props, context) => {
               <Table.Row>
                 <Table.Cell>
                   <Button
-                    content = "Select Coordinates:"
-                    onClick = {() => act("set_saved_coord_two")}>
-                  </Button>
+                    content="Select Coordinates:"
+                    onClick={() => act("set_saved_coord_two")} />
                 </Table.Cell>
                 <Table.Cell>
                   {last_three_inputs["coords_two"]["targ_x"]}
@@ -125,9 +119,8 @@ export const Mortar = (props, context) => {
               <Table.Row>
                 <Table.Cell>
                   <Button
-                    content = "Select Coordinates:"
-                    onClick = {() => act("set_saved_coord_three")}>
-                  </Button>
+                    content="Select Coordinates:"
+                    onClick={() => act("set_saved_coord_three")} />
                 </Table.Cell>
                 <Table.Cell>
                   {last_three_inputs["coords_three"]["targ_x"]}
