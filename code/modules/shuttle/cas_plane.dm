@@ -103,7 +103,7 @@
 
 
 /obj/structure/caspart/caschair/resisted_against(datum/source)
-	if(owner.state == PLANE_STATE_PREPARED|| owner.state == PLANE_STATE_FLYING)
+	if(owner.state == PLANE_STATE_PREPARED || owner.state == PLANE_STATE_FLYING || owner.mode == SHUTTLE_IGNITING)
 		ui_interact(occupant)
 		return
 	INVOKE_ASYNC(src, .proc/eject_user)
@@ -244,7 +244,7 @@
 		to_chat(user, "<span class='warning'>No fuel remaining!</span>")
 		return
 	if(state != PLANE_STATE_FLYING)
-		to_chat(user, "<span class='warning'>You are in-flight!</span>")
+		to_chat(user, "<span class='warning'>You are not in-flight!</span>")
 		return
 	if(!eyeobj)
 		eyeobj = new()
@@ -399,6 +399,8 @@
 			owner.active_weapon = null
 			. = TRUE
 		if("toggle_engines")
+			if(owner.mode == SHUTTLE_IGNITING)
+				return
 			switch(owner.state)
 				if(PLANE_STATE_ACTIVATED)
 					owner.turn_on_engines()
