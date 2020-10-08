@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Box, Button, Section, NumberInput, Flex, Table, LabeledList } from '../components';
+import { Button, Section, NumberInput, Flex, Table } from '../components';
 import { Window } from '../layouts';
 
 export const Mortar = (props, context) => {

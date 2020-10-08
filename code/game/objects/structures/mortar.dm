@@ -33,12 +33,15 @@
 	if(firing)
 		to_chat(user, "<span class='warning'>[src]'s barrel is still steaming hot. Wait a few seconds and stop firing it.</span>")
 		return
+
+	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
+		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
+		var/fumbling_time = 4 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
+		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+			return
 	ui_interact(user)
 
-	user.visible_message("<span class='notice'>[user] starts adjusting [src]'s firing angle and distance.</span>",
-	"<span class='notice'>You begin to adjust [src]'s firing angle and distance to match the new coordinates.</span>")
-
-	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
 /obj/structure/mortar/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
@@ -77,7 +80,10 @@
 			coords = get_new_list("coords_two")
 		if("set_saved_coord_three")
 			coords = get_new_list("coords_three")
-
+	if((coords["targ_x"] != 0 && coords["targ_y"] != 0))
+		usr.visible_message("<span class='notice'>[usr] adjusts [src]'s firing angle and distance.</span>",
+		"<span class='notice'>You adjust [src]'s firing angle and distance to match the new coordinates.</span>")
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 /obj/structure/mortar/proc/get_new_list(str)
 	var/list/target_data = list()
 	if(str == "coords_three")
