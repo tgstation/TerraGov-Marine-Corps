@@ -763,11 +763,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/mainhall)
-"fS" = (
-/obj/item/disk/nuclear,
-/obj/structure/table/reinforced,
-/turf/open/floor/mainship_hull,
-/area/swordbase/ground/vault)
 "fT" = (
 /obj/item/reagent_containers/food/snacks/egg,
 /turf/open/floor/mainship/research/containment/floor2{
@@ -12570,7 +12565,7 @@ mC
 XI
 DO
 VT
-fS
+Zr
 Fx
 ar
 UV
