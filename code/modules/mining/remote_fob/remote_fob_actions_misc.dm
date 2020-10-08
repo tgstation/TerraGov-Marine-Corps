@@ -28,7 +28,7 @@
 		return FALSE
 	if(fobdrone.action_busy)
 		to_chat(owner, "<span class='warning'>You are already building something.")
-		return FALSE	
+		return FALSE
 
 	return TRUE
 
@@ -38,7 +38,7 @@
 /datum/action/innate/remote_fob/metal_cade
 	name = "Place Metal Barricade"
 	action_icon_state = "metal_cade"
-	
+
 
 /datum/action/innate/remote_fob/metal_cade/Activate()
 	. = ..()
@@ -110,7 +110,6 @@
 	cade.closed = FALSE
 	cade.density = TRUE
 	cade.update_icon()
-	cade.update_overlay()
 	if(console.do_wiring)
 		if(console.metal_remaining <= 1)
 			to_chat(owner, "<span class='warning'>Not enough material for razor-wiring.</span>")
@@ -120,7 +119,7 @@
 		cade.wire()
 		to_chat(owner, "<span class='notice'>Barricade placed with wiring. [console.plasteel_remaining] plasteel sheets, [console.metal_remaining] metal sheets remaining.remaining.</span>")
 		return
-	to_chat(owner, "<span class='notice'>Barricade placed. [console.plasteel_remaining] plasteel sheets remaining.</span>")		
+	to_chat(owner, "<span class='notice'>Barricade placed. [console.plasteel_remaining] plasteel sheets remaining.</span>")
 
 /datum/action/innate/remote_fob/toggle_wiring
 	name = "Toggle Razorwire"
