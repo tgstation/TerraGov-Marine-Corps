@@ -21,8 +21,8 @@
 /turf/open/floor/plating,
 /area/swordbase/ground/outdoors)
 "ak" = (
-/turf/closed/wall/mainship/white,
-/area/swordbase/ground/outdoors)
+/turf/closed/wall/mainship,
+/area/swordbase/ground/cryogenics)
 "al" = (
 /obj/structure/rack,
 /obj/item/fuelCell/full,
@@ -39,30 +39,21 @@
 /obj/structure/largecrate/supply/supplies/mre,
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
-"ao" = (
-/obj/structure/platform_decoration{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 5
-	},
-/area/swordbase/ground/briefing)
 "ar" = (
 /obj/item/disk/nuclear/green,
 /obj/structure/table/reinforced,
 /turf/open/floor/mainship_hull,
 /area/swordbase/ground/vault)
-"as" = (
-/turf/open/floor/tile/dark/blue2/corner{
-	dir = 8
-	},
-/area/swordbase/ground/briefing)
+"av" = (
+/turf/open/ground/desertdam/river/toxic/shallow_water_toxic,
+/area/swordbase/ground/outdoors)
 "az" = (
 /turf/open/floor/tile/dark,
 /area/mainship/shipboard/brig)
+"aA" = (
+/obj/structure/flora/desert/grass,
+/turf/open/floor/plating/ground/desertdam/desert,
+/area/swordbase/ground/outdoors)
 "aD" = (
 /obj/machinery/light{
 	dir = 4
@@ -102,16 +93,20 @@
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/engineering)
 "aJ" = (
-/turf/open/floor/tile/dark/blue2{
-	dir = 4
+/obj/machinery/marine_selector/clothes/unscMarine,
+/turf/open/floor/tile/dark/brown2{
+	dir = 9
 	},
-/area/swordbase/ground/briefing)
+/area/swordbase/ground/armory)
 "aK" = (
 /obj/effect/decal/cleanable/generic,
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "aL" = (
 /obj/machinery/vending/medical,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/mainship/sterile/corner,
 /area/swordbase/ground/medbaysouth)
 "aM" = (
@@ -171,38 +166,21 @@
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "bq" = (
+/obj/structure/filingcabinet/filingcabinet,
 /turf/open/floor/tile/dark/red2{
 	dir = 9
 	},
 /area/swordbase/ground/outdoors)
-"bs" = (
-/obj/structure/stairs{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/blue2/corner,
-/area/swordbase/ground/briefing)
-"bu" = (
-/obj/structure/platform_decoration{
-	dir = 8
-	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 5
-	},
-/area/swordbase/ground/briefing)
-"bv" = (
-/obj/structure/platform{
-	dir = 1
-	},
-/turf/open/floor/tile/dark/blue2,
-/area/swordbase/ground/briefing)
-"bD" = (
-/obj/structure/platform_decoration{
-	dir = 4
-	},
+"bt" = (
 /turf/open/floor/tile/dark/blue2{
 	dir = 9
 	},
 /area/swordbase/ground/briefing)
+"bv" = (
+/turf/open/floor/tile/dark/brown2/corner{
+	dir = 1
+	},
+/area/swordbase/ground/armory)
 "bE" = (
 /turf/open/floor/plating/asteroidfloor,
 /area/swordbase/ground/outdoors)
@@ -241,31 +219,25 @@
 /obj/machinery/light/spot{
 	dir = 4
 	},
-/turf/open/floor/tile/dark,
+/turf/open/floor/tile/dark/yellow2{
+	dir = 4
+	},
 /area/swordbase/ground/engineering)
 "bY" = (
-/obj/structure/bed/chair{
-	dir = 1
-	},
-/turf/open/floor/tile/dark,
-/area/swordbase/ground/briefing)
+/turf/open/floor/tile/dark/blue2,
+/area/swordbase/ground/mainhall)
 "bZ" = (
-/turf/open/floor/tile/dark/blue2{
-	dir = 5
-	},
-/area/swordbase/ground/briefing)
-"ca" = (
-/turf/closed/wall/mainship,
-/area/swordbase/ground/cryogenics)
-"cl" = (
-/obj/structure/platform_decoration,
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 9
+/obj/structure/table/mainship,
+/obj/item/ammo_magazine/rifle/m739,
+/obj/item/ammo_magazine/rifle/m739,
+/obj/item/weapon/gun/rifle/m739,
+/turf/open/floor/tile/dark/brown2{
+	dir = 1
 	},
-/area/swordbase/ground/briefing)
+/area/swordbase/ground/armory)
 "cm" = (
 /obj/machinery/power/apc/mainship{
 	dir = 4;
@@ -286,9 +258,6 @@
 /obj/item/weapon/katana,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/swordbase/ground/inniecave)
-"cs" = (
-/turf/open/floor/tile/dark/blue2,
-/area/swordbase/ground/briefing)
 "cz" = (
 /obj/structure/closet/secure_closet/security,
 /turf/open/floor/tile/dark/red2{
@@ -296,10 +265,11 @@
 	},
 /area/swordbase/ground/checkpoint)
 "cB" = (
-/turf/open/floor/tile/dark/blue2{
-	dir = 9
+/obj/machinery/marine_selector/gear/unscEquipment,
+/turf/open/floor/tile/dark/brown2{
+	dir = 1
 	},
-/area/swordbase/ground/briefing)
+/area/swordbase/ground/armory)
 "cC" = (
 /turf/open/floor/tile/dark/yellow2,
 /area/swordbase/ground/engineering)
@@ -329,6 +299,12 @@
 /obj/item/weapon/baseballbat/metal,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/swordbase/ground/inniecave)
+"cS" = (
+/obj/machinery/vending/shared_vending/marine_engi,
+/turf/open/floor/tile/dark/brown2{
+	dir = 10
+	},
+/area/swordbase/ground/armory)
 "cU" = (
 /obj/structure/cargo_container/ch_red,
 /obj/effect/decal/cleanable/dirt,
@@ -371,9 +347,15 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/swordbase/ground/inniecave)
 "dk" = (
-/obj/machinery/vending/shared_vending/marine_engi,
-/obj/machinery/light,
-/turf/open/floor/tile/dark/brown2,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/table/mainship,
+/obj/item/weapon/shield/riot/marine,
+/obj/item/weapon/shield/riot/marine,
+/turf/open/floor/tile/dark/brown2{
+	dir = 1
+	},
 /area/swordbase/ground/armory)
 "dm" = (
 /obj/structure/largecrate/supply/explosives,
@@ -391,17 +373,11 @@
 /turf/closed/wall/mainship/white,
 /area/swordbase/ground/medbaysouth)
 "dr" = (
-/obj/machinery/vending/marine_medic,
-/turf/open/floor/tile/dark/brown2,
+/obj/machinery/marine_selector/gear/unscEquipment,
+/turf/open/floor/tile/dark/brown2{
+	dir = 5
+	},
 /area/swordbase/ground/armory)
-"dt" = (
-/obj/structure/bed/chair{
-	dir = 1
-	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 9
-	},
-/area/swordbase/ground/briefing)
 "dw" = (
 /turf/open/floor/mainship/sterile/side{
 	dir = 6
@@ -449,7 +425,10 @@
 /turf/open/floor/tile/dark/green2/corner,
 /area/swordbase/ground/mainhall)
 "dS" = (
-/turf/open/floor/tile/dark,
+/obj/effect/landmark/start/job/unsc_leader,
+/turf/open/floor/tile/dark/green2{
+	dir = 9
+	},
 /area/swordbase/ground/cryogenics)
 "dT" = (
 /obj/effect/decal/cleanable/greenglow,
@@ -462,11 +441,6 @@
 	dir = 1
 	},
 /area/swordbase/ground/medsci)
-"dV" = (
-/turf/open/floor/tile/dark/brown2{
-	dir = 4
-	},
-/area/swordbase/ground/armory)
 "dY" = (
 /obj/structure/table/reinforced,
 /obj/item/clipboard{
@@ -525,10 +499,16 @@
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "ek" = (
-/turf/open/floor/tile/dark/brown2/corner{
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/machinery/light{
 	dir = 4
 	},
-/area/swordbase/ground/armory)
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/swordbase/ground/briefing)
 "en" = (
 /obj/machinery/light{
 	dir = 4
@@ -558,8 +538,11 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/tile/dark,
-/area/swordbase/ground/engineering)
+/obj/machinery/cryopod,
+/turf/open/floor/tile/dark/green2{
+	dir = 1
+	},
+/area/swordbase/ground/cryogenics)
 "ew" = (
 /obj/structure/platform,
 /turf/open/ground/desertdam/river/clean/deep_water_clean,
@@ -600,16 +583,16 @@
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "eH" = (
-/turf/open/ground/desertdam/river/toxic/shallow_water_cave_waterway_toxic,
-/area/swordbase/ground/outdoors)
+/obj/effect/landmark/start/job/unsc_leader,
+/turf/open/floor/tile/dark/green2{
+	dir = 5
+	},
+/area/swordbase/ground/cryogenics)
 "eI" = (
 /turf/open/floor/tile/dark/yellow2{
 	dir = 9
 	},
 /area/swordbase/ground/engineering)
-"eK" = (
-/turf/closed/wall/mainship,
-/area/swordbase/ground/briefing)
 "eQ" = (
 /obj/machinery/power/fusion_engine,
 /turf/open/floor/tile/dark/yellow2{
@@ -627,12 +610,30 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
+"eV" = (
+/obj/structure/largecrate/random/barrel/yellow,
+/turf/open/floor/asteroidfloor,
+/area/swordbase/ground/outdoors)
+"eW" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/dark/green2{
+	dir = 8
+	},
+/area/swordbase/ground/cryogenics)
 "eY" = (
 /obj/machinery/power/fusion_engine,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 5
 	},
 /area/swordbase/ground/engineering)
+"fa" = (
+/obj/structure/stairs{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2/corner,
+/area/swordbase/ground/briefing)
 "fb" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
@@ -671,6 +672,14 @@
 /obj/structure/sign/nosmoking_1,
 /turf/closed/wall/mainship,
 /area/swordbase/ground/mainhall)
+"fp" = (
+/obj/machinery/door/airlock/multi_tile/glass{
+	name = "Armory"
+	},
+/turf/open/floor/tile/dark/brown2{
+	dir = 8
+	},
+/area/swordbase/ground/armory)
 "fq" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/asteroidfloor,
@@ -723,12 +732,6 @@
 /obj/machinery/door/airlock/mainship/research/glass/cell,
 /turf/open/floor/mainship/mono,
 /area/swordbase/ground/medsci)
-"fC" = (
-/obj/machinery/marine_selector/clothes/unscMarine,
-/turf/open/floor/tile/dark/brown2{
-	dir = 9
-	},
-/area/swordbase/ground/armory)
 "fD" = (
 /mob/living/simple_animal/chick,
 /turf/open/floor/mainship/research/containment/floor1,
@@ -769,6 +772,17 @@
 	dir = 4
 	},
 /area/swordbase/ground/medsci)
+"fW" = (
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/swordbase/ground/mainhall)
+"fX" = (
+/obj/structure/flora/desert/grass,
+/turf/open/floor/plating/ground/mars/random/cave/rock{
+	dir = 5
+	},
+/area/swordbase/ground/outdoors)
 "fY" = (
 /obj/machinery/light{
 	dir = 8
@@ -790,14 +804,14 @@
 	},
 /area/swordbase/ground/engineering)
 "gh" = (
-/obj/structure/bed/chair{
-	dir = 1
+/turf/open/floor/tile/dark/green2{
+	dir = 9
 	},
-/obj/machinery/light,
-/turf/open/floor/tile/dark/blue2{
-	dir = 1
-	},
-/area/swordbase/ground/briefing)
+/area/swordbase/ground/cryogenics)
+"gi" = (
+/obj/item/tool/crowbar,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
 "gk" = (
 /obj/effect/decal/cleanable/greenglow,
 /turf/open/floor/mainship/research/containment/floor2{
@@ -832,6 +846,14 @@
 	},
 /turf/open/floor/mainship/sterile/plain,
 /area/swordbase/ground/medbaynorth)
+"gx" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 5
+	},
+/area/swordbase/ground/briefing)
 "gy" = (
 /obj/machinery/light/small,
 /turf/open/floor/mainship/research/containment/floor2,
@@ -856,6 +878,12 @@
 	},
 /turf/open/floor/wood,
 /area/swordbase/ground/conferenceroom)
+"gI" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/blue2,
+/area/swordbase/ground/briefing)
 "gJ" = (
 /obj/structure/flora/rock/rocks,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -888,11 +916,11 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/swordbase/ground/outdoors)
 "gW" = (
-/obj/machinery/marine_selector/clothes/unscMarine,
-/turf/open/floor/tile/dark/brown2{
-	dir = 8
+/obj/structure/platform,
+/turf/open/floor/tile/dark/blue2{
+	dir = 9
 	},
-/area/swordbase/ground/armory)
+/area/swordbase/ground/briefing)
 "hb" = (
 /obj/structure/barricade/metal{
 	dir = 8
@@ -930,18 +958,6 @@
 /obj/machinery/vending/innieGuns,
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
-"hr" = (
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/tile/dark/brown2{
-	dir = 1
-	},
-/area/swordbase/ground/armory)
 "hs" = (
 /obj/effect/decal/warning_stripes/thick,
 /turf/open/floor/tile/dark,
@@ -952,6 +968,9 @@
 /area/swordbase/ground/outdoors)
 "hD" = (
 /obj/structure/largecrate/supply/medicine/iv,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
 	},
@@ -966,22 +985,16 @@
 	},
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/hydro)
-"hI" = (
-/turf/open/floor/tile/dark/green2/corner{
-	dir = 4
-	},
-/area/swordbase/ground/cryogenics)
 "hK" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "hM" = (
-/obj/machinery/vending/shared_vending/marine_engi,
-/turf/open/floor/tile/dark/brown2{
-	dir = 10
+/turf/open/floor/tile/dark/green2{
+	dir = 5
 	},
-/area/swordbase/ground/armory)
+/area/swordbase/ground/cryogenics)
 "hQ" = (
 /obj/structure/largecrate/supply/supplies/sandbags,
 /turf/open/floor/plating,
@@ -1005,13 +1018,6 @@
 	dir = 9
 	},
 /area/swordbase/ground/engineering)
-"hV" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	dir = 1;
-	name = "Armory"
-	},
-/turf/open/floor/tile/dark/brown2,
-/area/swordbase/ground/armory)
 "hX" = (
 /obj/structure/flora/rock/beachrocks,
 /obj/structure/platform,
@@ -1067,8 +1073,14 @@
 	},
 /area/swordbase/ground/inniecave)
 "io" = (
-/obj/structure/flora/desert/grass,
-/turf/open/floor/plating/ground/desertdam/desert,
+/obj/effect/landmark/start/job/unsc_marine,
+/turf/open/floor/tile/dark/green2{
+	dir = 9
+	},
+/area/swordbase/ground/cryogenics)
+"iu" = (
+/obj/structure/largecrate/random/case/double,
+/turf/open/floor/asteroidfloor,
 /area/swordbase/ground/outdoors)
 "iv" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1253,6 +1265,10 @@
 	dir = 4
 	},
 /area/swordbase/ground/medbaysouth)
+"jx" = (
+/obj/structure/largecrate/random/barrel/green,
+/turf/open/floor/asteroidfloor,
+/area/swordbase/ground/outdoors)
 "jz" = (
 /obj/machinery/power/apc/mainship{
 	pixel_y = 16
@@ -1271,22 +1287,6 @@
 /obj/machinery/computer/operating,
 /turf/closed/wall/mainship/white,
 /area/swordbase/ground/medbaynorth)
-"jH" = (
-/obj/structure/table/mainship,
-/obj/item/weapon/gun/rifle/ma37{
-	pixel_y = 12
-	},
-/obj/item/weapon/gun/rifle/ma37,
-/obj/item/weapon/gun/rifle/ma37{
-	pixel_y = -12
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/brown2{
-	dir = 4
-	},
-/area/swordbase/ground/armory)
 "jK" = (
 /obj/machinery/power/apc/mainship{
 	dir = 4;
@@ -1296,6 +1296,10 @@
 	dir = 8
 	},
 /area/swordbase/ground/science)
+"jM" = (
+/obj/structure/largecrate/random/case,
+/turf/open/floor/asteroidfloor,
+/area/swordbase/ground/outdoors)
 "jQ" = (
 /turf/open/floor/tile/dark/green2{
 	dir = 4
@@ -1305,6 +1309,10 @@
 /obj/machinery/bodyscanner,
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
+"jU" = (
+/obj/item/key/cargo_train,
+/turf/open/floor/asteroidfloor,
+/area/swordbase/ground/outdoors)
 "jV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/start/job/urf_leader,
@@ -1383,16 +1391,18 @@
 	},
 /turf/open/beach/sand,
 /area/swordbase/ground/mainhall)
-"kN" = (
-/obj/structure/table/mainship,
-/obj/machinery/recharger,
+"kI" = (
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/open/floor/tile/dark/brown2{
-	dir = 8
-	},
+/turf/open/floor/tile/dark,
 /area/swordbase/ground/armory)
+"kL" = (
+/obj/machinery/light,
+/turf/open/floor/tile/dark/green2{
+	dir = 10
+	},
+/area/swordbase/ground/cryogenics)
 "kQ" = (
 /obj/machinery/light{
 	dir = 8
@@ -1419,6 +1429,12 @@
 "kT" = (
 /turf/closed/wall/mainship,
 /area/swordbase/ground/hydro)
+"kU" = (
+/obj/effect/landmark/start/job/unsc_marine,
+/turf/open/floor/tile/dark/green2/corner{
+	dir = 4
+	},
+/area/swordbase/ground/cryogenics)
 "kV" = (
 /obj/structure/sign/chemistry,
 /turf/closed/wall/r_wall/prison,
@@ -1443,12 +1459,6 @@
 	dir = 4
 	},
 /area/swordbase/ground/inniecave)
-"lf" = (
-/obj/effect/landmark/start/job/unsc_marine,
-/turf/open/floor/tile/dark/green2{
-	dir = 5
-	},
-/area/swordbase/ground/cryogenics)
 "lg" = (
 /obj/machinery/computer/rdservercontrol,
 /turf/open/floor/tile/dark/purple2{
@@ -1461,6 +1471,11 @@
 	},
 /turf/open/floor/plating,
 /area/swordbase/ground/outdoors)
+"lo" = (
+/turf/open/floor/tile/dark/blue2{
+	dir = 6
+	},
+/area/swordbase/ground/mainhall)
 "lp" = (
 /obj/machinery/biogenerator,
 /obj/machinery/light/spot{
@@ -1500,8 +1515,12 @@
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/mainhall)
 "lE" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/cryopod/right,
 /turf/open/floor/tile/dark/green2{
-	dir = 5
+	dir = 1
 	},
 /area/swordbase/ground/cryogenics)
 "lJ" = (
@@ -1538,20 +1557,21 @@
 	},
 /area/swordbase/ground/hydro)
 "ma" = (
-/obj/structure/platform,
-/turf/open/floor/tile/dark/blue2{
-	dir = 1
+/obj/machinery/marine_selector/clothes/unscMarine/leader,
+/turf/open/floor/tile/dark/brown2{
+	dir = 8
 	},
-/area/swordbase/ground/briefing)
+/area/swordbase/ground/armory)
 "mg" = (
+/obj/effect/landmark/start/job/unsc_marine,
 /turf/open/floor/tile/dark/green2{
-	dir = 10
+	dir = 5
 	},
 /area/swordbase/ground/cryogenics)
 "mh" = (
-/obj/machinery/light,
-/turf/open/floor/tile/dark/green2,
-/area/swordbase/ground/cryogenics)
+/obj/machinery/marine_selector/clothes/unscMarine,
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/armory)
 "ml" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/window{
@@ -1569,9 +1589,14 @@
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/mainhall)
 "mu" = (
-/obj/machinery/marine_selector/gear/unscEquipment,
-/obj/machinery/light,
-/turf/open/floor/tile/dark/brown2,
+/obj/structure/table/mainship,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/ammo_magazine/rifle/m739,
+/obj/item/ammo_magazine/rifle/m739,
+/obj/item/weapon/gun/rifle/m739,
+/turf/open/floor/tile/dark,
 /area/swordbase/ground/armory)
 "mv" = (
 /turf/open/floor/tile/dark/purple2{
@@ -1617,15 +1642,17 @@
 	},
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
+"mH" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 9
+	},
+/area/swordbase/ground/briefing)
 "mL" = (
 /turf/open/floor/mainship/sterile/dark,
 /area/swordbase/ground/medbaysouth)
-"mM" = (
-/obj/effect/landmark/start/job/unsc_marine,
-/turf/open/floor/tile/dark/green2{
-	dir = 8
-	},
-/area/swordbase/ground/cryogenics)
 "mN" = (
 /obj/vehicle/train/cargo/trolley,
 /turf/open/floor/plating,
@@ -1668,6 +1695,19 @@
 /obj/machinery/cell_charger,
 /turf/open/floor/mainship/mono,
 /area/swordbase/ground/medsci)
+"mT" = (
+/obj/structure/curtain/shower,
+/obj/structure/window/reinforced/tinted{
+	dir = 4
+	},
+/obj/structure/window/reinforced/tinted{
+	dir = 8
+	},
+/obj/machinery/shower{
+	dir = 1
+	},
+/turf/open/floor/freezer,
+/area/swordbase/ground/bathroom)
 "mU" = (
 /obj/machinery/marine_selector/clothes/insurrection,
 /obj/effect/decal/cleanable/dirt,
@@ -1705,13 +1745,10 @@
 /area/swordbase/ground/medbaynorth)
 "nm" = (
 /obj/machinery/light{
-	dir = 1
+	dir = 8
 	},
-/obj/machinery/cryopod/right,
-/turf/open/floor/tile/dark/green2{
-	dir = 1
-	},
-/area/swordbase/ground/cryogenics)
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/briefing)
 "nn" = (
 /obj/structure/window/reinforced,
 /turf/open/floor/plating/asteroidplating,
@@ -1719,6 +1756,12 @@
 "no" = (
 /obj/structure/table/reinforced,
 /obj/machinery/light,
+/obj/item/storage/firstaid/adv,
+/obj/item/storage/firstaid/adv,
+/obj/item/storage/firstaid/adv,
+/obj/item/storage/firstaid/adv,
+/obj/item/storage/firstaid/adv,
+/obj/item/storage/firstaid/adv,
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "nq" = (
@@ -1773,6 +1816,7 @@
 "nX" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table/reinforced,
+/obj/item/storage/firstaid/adv,
 /turf/open/floor/plating/asteroidfloor,
 /area/swordbase/ground/inniecave)
 "nZ" = (
@@ -1792,6 +1836,9 @@
 /obj/item/storage/belt/medical,
 /obj/item/clothing/glasses/hud/health,
 /obj/item/clothing/gloves/latex,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
 	},
@@ -1807,6 +1854,9 @@
 	},
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
+"of" = (
+/turf/open/ground/desertdam/river/toxic/shallow_water_desert_coast_toxic,
+/area/swordbase/ground/outdoors)
 "og" = (
 /obj/structure/bed/chair/sofa,
 /obj/machinery/light{
@@ -1818,10 +1868,13 @@
 /obj/machinery/vending/MarineMed,
 /turf/open/floor/mainship/sterile/side,
 /area/swordbase/ground/medbaysouth)
+"ok" = (
+/turf/closed/wall/r_wall/prison,
+/area/swordbase/ground/mainhall)
 "oo" = (
-/obj/machinery/power/fusion_engine,
+/obj/machinery/vending/marine/unscGuns,
 /turf/open/floor/tile/dark,
-/area/swordbase/ground/engineering)
+/area/swordbase/ground/armory)
 "op" = (
 /turf/open/beach/sand,
 /area/swordbase/ground/mainhall)
@@ -1856,6 +1909,10 @@
 /obj/structure/largecrate/random/barrel/green,
 /turf/open/floor/plating,
 /area/swordbase/ground/outdoors)
+"oX" = (
+/obj/machinery/vending/marine_medic,
+/turf/open/floor/tile/dark/brown2,
+/area/swordbase/ground/armory)
 "oY" = (
 /obj/structure/table/mainship,
 /obj/item/tool/pen{
@@ -1888,6 +1945,13 @@
 	},
 /turf/open/floor/carpet,
 /area/swordbase/ground/conferenceroom)
+"pn" = (
+/obj/machinery/vending/marineFood,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/mainhall)
 "po" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 8
@@ -1979,6 +2043,19 @@
 	dir = 9
 	},
 /area/swordbase/ground/hydro)
+"pU" = (
+/turf/open/floor/tile/dark/blue2{
+	dir = 9
+	},
+/area/swordbase/ground/mainhall)
+"pV" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/weapon/shield/riot/marine,
+/obj/item/weapon/katana,
+/turf/open/floor/plating/ground/mars/random/cave/rock{
+	dir = 10
+	},
+/area/swordbase/ground/inniecave)
 "pW" = (
 /obj/structure/morgue{
 	dir = 8
@@ -2007,6 +2084,11 @@
 /obj/structure/closet/l3closet/janitor,
 /turf/open/floor/plating,
 /area/swordbase/ground/janitor_closet)
+"qj" = (
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/swordbase/ground/briefing)
 "qm" = (
 /obj/item/reagent_containers/glass/bucket/janibucket,
 /obj/machinery/light/small{
@@ -2027,13 +2109,10 @@
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "qs" = (
-/obj/structure/bed/chair{
-	dir = 1
+/turf/open/floor/tile/dark/brown2/corner{
+	dir = 8
 	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 5
-	},
-/area/swordbase/ground/briefing)
+/area/swordbase/ground/armory)
 "qt" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -2065,6 +2144,11 @@
 /obj/machinery/r_n_d/circuit_imprinter,
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/science)
+"qF" = (
+/turf/open/floor/tile/dark/green2{
+	dir = 6
+	},
+/area/swordbase/ground/cryogenics)
 "qG" = (
 /obj/item/tool/shovel/etool,
 /obj/item/tool/shovel/etool,
@@ -2130,33 +2214,47 @@
 "qY" = (
 /turf/open/floor/tile/dark/red2/corner,
 /area/swordbase/ground/checkpoint)
+"rf" = (
+/obj/item/tool/warning_cone,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/outdoors)
+"rl" = (
+/obj/machinery/light,
+/turf/open/floor/tile/dark/blue2,
+/area/swordbase/ground/mainhall)
 "rp" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/tile/dark/green2{
 	dir = 6
 	},
 /area/swordbase/ground/hydro)
-"rE" = (
-/obj/machinery/marine_selector/gear/unscEquipment,
-/turf/open/floor/tile/dark/brown2{
-	dir = 5
-	},
-/area/swordbase/ground/armory)
 "rJ" = (
 /obj/machinery/iv_drip,
 /turf/open/floor/mainship/sterile/dark,
 /area/swordbase/ground/medbaysouth)
 "rK" = (
 /obj/machinery/light{
-	dir = 8
+	dir = 1
 	},
-/turf/open/floor/tile/dark,
-/area/swordbase/ground/briefing)
-"rR" = (
-/turf/open/floor/tile/dark/green2/corner{
-	dir = 8
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
 	},
+/area/swordbase/ground/mainhall)
+"rP" = (
+/turf/open/floor/tile/dark/green2,
 /area/swordbase/ground/cryogenics)
+"rR" = (
+/obj/structure/table/mainship,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/weapon/shield/riot/marine,
+/obj/item/weapon/shield/riot/marine,
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/armory)
 "rT" = (
 /obj/structure/rack,
 /obj/item/organ/diona/node{
@@ -2186,12 +2284,6 @@
 	dir = 9
 	},
 /area/mainship/shipboard/brig)
-"sb" = (
-/obj/machinery/marine_selector/clothes/unscMarine/leader,
-/turf/open/floor/tile/dark/brown2{
-	dir = 8
-	},
-/area/swordbase/ground/armory)
 "sc" = (
 /obj/structure/table/reinforced,
 /obj/item/taperecorder,
@@ -2214,10 +2306,9 @@
 /obj/item/storage/box/cups,
 /turf/open/floor/mainship/mono,
 /area/swordbase/ground/medsci)
-"sg" = (
-/obj/machinery/marine_selector/gear/unscEquipment,
-/turf/open/floor/tile/dark,
-/area/swordbase/ground/armory)
+"sh" = (
+/turf/open/ground/desertdam/river/toxic/shallow_water_cave_waterway_toxic,
+/area/swordbase/ground/outdoors)
 "sj" = (
 /obj/machinery/light{
 	dir = 1
@@ -2248,12 +2339,6 @@
 	dir = 1
 	},
 /area/mainship/shipboard/brig)
-"ss" = (
-/obj/effect/landmark/start/job/unsc_marine,
-/turf/open/floor/tile/dark/green2{
-	dir = 9
-	},
-/area/swordbase/ground/cryogenics)
 "sv" = (
 /obj/structure/sign/directions/medical{
 	dir = 4
@@ -2322,14 +2407,11 @@
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "sL" = (
-/obj/machinery/vending/security,
-/obj/machinery/light{
-	dir = 1
+/obj/machinery/marine_selector/clothes/unscMarine,
+/turf/open/floor/tile/dark/brown2{
+	dir = 8
 	},
-/turf/open/floor/tile/dark/red2{
-	dir = 5
-	},
-/area/mainship/shipboard/brig)
+/area/swordbase/ground/armory)
 "sT" = (
 /turf/open/floor/mainship/sterile/side{
 	dir = 9
@@ -2403,16 +2485,20 @@
 	},
 /area/mainship/shipboard/brig)
 "tr" = (
-/obj/effect/landmark/start/job/unsc_leader,
-/turf/open/floor/tile/dark/green2{
-	dir = 5
+/obj/machinery/marine_selector/gear/unscEquipment,
+/turf/open/floor/tile/dark/brown2{
+	dir = 4
 	},
-/area/swordbase/ground/cryogenics)
+/area/swordbase/ground/armory)
 "ts" = (
 /turf/open/floor/tile/dark/green2/corner{
 	dir = 1
 	},
 /area/swordbase/ground/kitchen)
+"tu" = (
+/obj/item/storage/belt/utility/full,
+/turf/open/floor/plating/asteroidfloor,
+/area/swordbase/ground/inniecave)
 "tw" = (
 /obj/machinery/light{
 	dir = 1
@@ -2473,10 +2559,6 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/swordbase/ground/inniecave)
-"tR" = (
-/obj/effect/landmark/start/latejoin_unsc,
-/turf/open/floor/tile/dark,
-/area/swordbase/ground/cryogenics)
 "tS" = (
 /obj/machinery/light{
 	dir = 8
@@ -2506,28 +2588,19 @@
 /obj/item/storage/pill_bottle/dexalin{
 	pixel_x = 7
 	},
-/obj/machinery/light{
-	dir = 1
-	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
 /area/swordbase/ground/medbaysouth)
 "tU" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/landmark/start/job/unsc_marine,
 /turf/open/floor/tile/dark/green2{
 	dir = 8
 	},
 /area/swordbase/ground/cryogenics)
 "tV" = (
-/obj/structure/flora/desert/grass,
-/turf/open/floor/plating/ground/mars/random/cave/rock{
-	dir = 5
-	},
-/area/swordbase/ground/outdoors)
+/obj/effect/landmark/start/latejoin_unsc,
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/cryogenics)
 "ua" = (
 /obj/item/tool/mop,
 /turf/open/floor/plating,
@@ -2538,11 +2611,10 @@
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "ue" = (
-/obj/machinery/light{
-	dir = 8
+/turf/open/floor/tile/dark/green2{
+	dir = 4
 	},
-/turf/open/floor/tile/dark,
-/area/swordbase/ground/maingate)
+/area/swordbase/ground/cryogenics)
 "ul" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -2577,6 +2649,11 @@
 	},
 /turf/open/floor/tile/dark/red2,
 /area/swordbase/ground/checkpoint)
+"uv" = (
+/turf/open/floor/tile/dark/brown2{
+	dir = 1
+	},
+/area/swordbase/ground/engineering)
 "uw" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/drinks/tea,
@@ -2595,6 +2672,11 @@
 /obj/structure/curtain/medical,
 /turf/open/floor/mainship/mono,
 /area/swordbase/ground/medsci)
+"uI" = (
+/turf/open/floor/tile/dark/green2/corner{
+	dir = 4
+	},
+/area/swordbase/ground/cryogenics)
 "uJ" = (
 /turf/open/floor/tile/dark/red2/corner,
 /area/swordbase/ground/mainhall)
@@ -2614,7 +2696,6 @@
 /area/swordbase/ground/kitchen)
 "uV" = (
 /obj/structure/largecrate/supply/medicine/blood,
-/obj/machinery/light,
 /turf/open/floor/mainship/sterile/side,
 /area/swordbase/ground/medbaysouth)
 "va" = (
@@ -2628,11 +2709,10 @@
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "vg" = (
-/obj/machinery/marine_selector/gear/unscEquipment,
-/turf/open/floor/tile/dark/brown2{
-	dir = 6
+/turf/open/floor/tile/dark/green2/corner{
+	dir = 8
 	},
-/area/swordbase/ground/armory)
+/area/swordbase/ground/cryogenics)
 "vi" = (
 /obj/structure/table/reinforced,
 /obj/machinery/reagentgrinder,
@@ -2645,6 +2725,17 @@
 	dir = 10
 	},
 /area/swordbase/ground/outdoors)
+"vs" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/platform_decoration{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 8
+	},
+/area/swordbase/ground/briefing)
 "vw" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/head/chefhat,
@@ -2692,6 +2783,14 @@
 "vL" = (
 /turf/open/floor/wood,
 /area/swordbase/ground/medicaloffice)
+"vP" = (
+/obj/structure/stairs{
+	dir = 8
+	},
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 8
+	},
+/area/swordbase/ground/briefing)
 "vR" = (
 /obj/machinery/light{
 	dir = 8
@@ -2768,6 +2867,24 @@
 	dir = 5
 	},
 /area/swordbase/ground/outdoors)
+"wk" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/item/explosive/plastique,
+/obj/structure/rack,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
 "wn" = (
 /obj/machinery/light,
 /turf/open/floor/tile/dark/red2,
@@ -2782,6 +2899,10 @@
 	},
 /turf/open/floor/tile/dark/yellow2/corner,
 /area/swordbase/ground/mainhall)
+"wu" = (
+/obj/item/storage/firstaid/adv,
+/turf/open/floor/plating/asteroidfloor,
+/area/swordbase/ground/inniecave)
 "wv" = (
 /turf/open/floor/tile/dark/red2{
 	dir = 8
@@ -2810,6 +2931,9 @@
 /turf/open/floor/tile/dark/red2,
 /area/swordbase/ground/checkpoint)
 "wD" = (
+/obj/structure/rack,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 6
 	},
@@ -2853,6 +2977,13 @@
 	},
 /turf/open/floor/tile/dark/red2,
 /area/swordbase/ground/checkpoint)
+"wQ" = (
+/obj/machinery/vending/security,
+/obj/machinery/light,
+/turf/open/floor/tile/dark/red2{
+	dir = 6
+	},
+/area/mainship/shipboard/brig)
 "wR" = (
 /obj/machinery/light,
 /turf/open/floor/tile/dark/red2/corner,
@@ -2869,11 +3000,10 @@
 /turf/open/floor/plating,
 /area/swordbase/ground/janitor_closet)
 "wV" = (
-/obj/machinery/light{
+/turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
-/turf/open/floor/tile/dark,
-/area/swordbase/ground/briefing)
+/area/swordbase/ground/armory)
 "wW" = (
 /obj/machinery/vending/medical,
 /turf/open/floor/mainship/mono,
@@ -2909,6 +3039,17 @@
 /obj/machinery/door/window/southright,
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
+"xg" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/swordbase/ground/briefing)
 "xi" = (
 /obj/machinery/door/airlock/mainship/medical/glass/chemistry{
 	dir = 2
@@ -2935,14 +3076,25 @@
 /obj/machinery/r_n_d/protolathe,
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/science)
+"xz" = (
+/obj/machinery/vending/security,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/red2{
+	dir = 5
+	},
+/area/mainship/shipboard/brig)
 "xF" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/rack,
-/obj/item/stack/sheet/metal/large_stack,
-/obj/item/stack/sheet/metal/large_stack,
-/obj/item/stack/sheet/metal/large_stack,
+/turf/open/floor/tile/dark/red2,
+/area/swordbase/ground/checkpoint)
+"xG" = (
+/obj/item/ammo_magazine/shotgun/eightGauge/slug,
+/obj/item/ammo_magazine/shotgun/eightGauge/slug,
+/obj/structure/table/mainship,
 /turf/open/floor/tile/dark/red2,
 /area/swordbase/ground/checkpoint)
 "xH" = (
@@ -2960,6 +3112,10 @@
 /obj/machinery/disposal,
 /turf/open/floor/wood,
 /area/swordbase/ground/medicaloffice)
+"xK" = (
+/obj/vehicle/train/cargo/trolley,
+/turf/open/floor/asteroidfloor,
+/area/swordbase/ground/outdoors)
 "xO" = (
 /obj/structure/table/reinforced,
 /obj/structure/paper_bin{
@@ -2979,7 +3135,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark/yellow2{
-	dir = 9
+	dir = 1
 	},
 /area/swordbase/ground/engineering)
 "xW" = (
@@ -2998,11 +3154,6 @@
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/swordbase/ground/outdoors)
-"ya" = (
-/turf/open/floor/tile/dark/brown2/corner{
-	dir = 1
-	},
-/area/swordbase/ground/armory)
 "yc" = (
 /obj/structure/table,
 /obj/item/tool/minihoe,
@@ -3058,6 +3209,11 @@
 /obj/structure/table/reinforced/prison,
 /turf/open/floor/prison/kitchen,
 /area/swordbase/ground/kitchen)
+"yy" = (
+/turf/open/floor/tile/dark/green2{
+	dir = 10
+	},
+/area/swordbase/ground/cryogenics)
 "yz" = (
 /obj/structure/closet/wardrobe/chemistry_white,
 /turf/open/floor/mainship/mono,
@@ -3066,11 +3222,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall/r_wall/prison,
 /area/swordbase/ground/inniecave)
-"yF" = (
-/turf/open/floor/tile/dark/green2{
-	dir = 8
-	},
-/area/swordbase/ground/cryogenics)
 "yM" = (
 /obj/structure/table/reinforced,
 /obj/structure/paper_bin{
@@ -3161,9 +3312,7 @@
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/mainhall)
 "zq" = (
-/turf/open/floor/tile/dark/green2{
-	dir = 9
-	},
+/turf/open/floor/tile/dark/green2/corner,
 /area/swordbase/ground/cryogenics)
 "zr" = (
 /obj/machinery/light{
@@ -3187,8 +3336,14 @@
 	},
 /area/swordbase/ground/kitchen)
 "zG" = (
-/turf/open/floor/plating/ground/desertdam/desert,
-/area/swordbase/ground/outdoors)
+/obj/effect/landmark/start/job/unsc_leader,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/dark/green2{
+	dir = 8
+	},
+/area/swordbase/ground/cryogenics)
 "zI" = (
 /turf/closed/wall/mainship/white,
 /area/swordbase/ground/medicaloffice)
@@ -3215,6 +3370,7 @@
 /area/swordbase/ground/checkpoint)
 "zV" = (
 /obj/structure/table/reinforced,
+/obj/item/tool/crowbar,
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "zX" = (
@@ -3250,6 +3406,13 @@
 	dir = 1
 	},
 /area/swordbase/ground/kitchen)
+"Ah" = (
+/obj/machinery/door/airlock/multi_tile/glass{
+	dir = 1;
+	name = "Armory"
+	},
+/turf/open/floor/tile/dark/brown2,
+/area/swordbase/ground/engineering)
 "Ai" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
@@ -3300,11 +3463,9 @@
 	},
 /area/swordbase/ground/checkpoint)
 "AJ" = (
-/obj/structure/flora/desert/grass,
-/turf/open/floor/plating/ground/mars/random/cave{
-	dir = 8
-	},
-/area/swordbase/ground/outdoors)
+/obj/machinery/cryopod,
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/cryogenics)
 "AM" = (
 /mob/living/simple_animal/crab/kreb,
 /turf/open/ground/desertdam/river/clean/deep_water_clean,
@@ -3316,8 +3477,11 @@
 /turf/open/floor/freezer,
 /area/swordbase/ground/kitchen)
 "AU" = (
-/turf/open/ground/desertdam/river/toxic/shallow_water_toxic,
-/area/swordbase/ground/outdoors)
+/obj/effect/landmark/start/job/unsc_leader,
+/turf/open/floor/tile/dark/green2{
+	dir = 4
+	},
+/area/swordbase/ground/cryogenics)
 "AV" = (
 /obj/machinery/light{
 	dir = 4
@@ -3342,12 +3506,11 @@
 	},
 /area/mainship/shipboard/brig)
 "Bh" = (
-/obj/machinery/vending/security,
-/obj/machinery/light,
-/turf/open/floor/tile/dark/red2{
-	dir = 6
+/obj/effect/landmark/start/job/unsc_marine,
+/turf/open/floor/tile/dark/green2{
+	dir = 8
 	},
-/area/mainship/shipboard/brig)
+/area/swordbase/ground/cryogenics)
 "Bi" = (
 /obj/structure/table,
 /obj/machinery/cell_charger,
@@ -3355,10 +3518,6 @@
 	dir = 4
 	},
 /area/swordbase/ground/science)
-"Bl" = (
-/obj/machinery/cryopod/right,
-/turf/open/floor/tile/dark,
-/area/swordbase/ground/cryogenics)
 "Bq" = (
 /obj/machinery/light{
 	dir = 1
@@ -3400,6 +3559,9 @@
 /obj/item/storage/pill_bottle/tramadol{
 	pixel_x = 7
 	},
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/mainship/sterile/corner{
 	dir = 1
 	},
@@ -3409,6 +3571,7 @@
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/mainhall)
 "Bw" = (
+/obj/structure/filingcabinet/filingcabinet,
 /turf/open/floor/tile/dark/red2{
 	dir = 5
 	},
@@ -3437,17 +3600,10 @@
 "BB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light,
+/obj/item/weapon/shield/riot/marine,
+/obj/item/weapon/katana,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/swordbase/ground/inniecave)
-"BD" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/landmark/start/job/unsc_marine,
-/turf/open/floor/tile/dark/green2{
-	dir = 4
-	},
-/area/swordbase/ground/cryogenics)
 "BG" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/rifle/kv32,
@@ -3481,7 +3637,7 @@
 	},
 /area/swordbase/ground/firingrange)
 "BP" = (
-/obj/machinery/cryopod,
+/obj/machinery/cryopod/right,
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/cryogenics)
 "BQ" = (
@@ -3551,6 +3707,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/swordbase/snowstone,
 /area/swordbase/ground/inniecave)
+"Co" = (
+/obj/structure/rack,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/turf/open/floor/tile/dark/yellow2{
+	dir = 10
+	},
+/area/swordbase/ground/engineering)
 "Cq" = (
 /turf/open/floor/prison/kitchen,
 /area/swordbase/ground/kitchen)
@@ -3571,6 +3735,11 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/swordbase/ground/outdoors)
 "CA" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/plasteel/large_stack,
+/obj/item/stack/sheet/plasteel/large_stack,
+/obj/item/stack/sheet/plasteel/large_stack,
+/obj/item/stack/sheet/plasteel/large_stack,
 /turf/open/floor/tile/dark/red2{
 	dir = 10
 	},
@@ -3602,7 +3771,7 @@
 /area/swordbase/ground/medsci)
 "CM" = (
 /obj/machinery/light,
-/turf/open/floor/tile/dark,
+/turf/open/floor/tile/dark/yellow2,
 /area/swordbase/ground/engineering)
 "CQ" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
@@ -3653,6 +3822,13 @@
 	},
 /turf/open/floor/wood,
 /area/swordbase/ground/medicaloffice)
+"Dk" = (
+/obj/structure/rack,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
+/turf/open/floor/plating/asteroidfloor,
+/area/swordbase/ground/outdoors)
 "Dm" = (
 /obj/structure/curtain/shower,
 /obj/structure/window/reinforced/tinted{
@@ -3669,12 +3845,10 @@
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/outdoors)
 "Dp" = (
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 8
 	},
-/turf/open/floor/tile/dark,
-/area/swordbase/ground/armory)
+/area/swordbase/ground/briefing)
 "Dv" = (
 /obj/structure/ladder{
 	height = 2;
@@ -3714,8 +3888,18 @@
 /turf/closed/wall/r_wall/prison,
 /area/swordbase/ground/vault)
 "DP" = (
-/turf/open/floor/tile/dark/blue2/corner,
-/area/swordbase/ground/briefing)
+/obj/effect/landmark/start/job/unsc_marine,
+/obj/machinery/power/apc/mainship{
+	dir = 8;
+	pixel_x = 16
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/green2{
+	dir = 4
+	},
+/area/swordbase/ground/cryogenics)
 "DQ" = (
 /obj/structure/platform{
 	dir = 1
@@ -3881,6 +4065,12 @@
 /obj/item/storage/bible/koran,
 /turf/open/floor/plating/asteroidfloor,
 /area/swordbase/ground/outdoors)
+"Fe" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/armory)
 "Ff" = (
 /obj/machinery/floodlight/landing/hq,
 /turf/open/floor/plating/asteroidplating,
@@ -3892,9 +4082,7 @@
 /obj/item/storage/firstaid/adv,
 /obj/item/storage/firstaid/adv,
 /obj/item/storage/firstaid/adv,
-/obj/machinery/light{
-	dir = 4
-	},
+/obj/item/storage/firstaid/adv,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
@@ -3904,6 +4092,9 @@
 /obj/item/storage/syringe_case,
 /obj/item/reagent_containers/syringe{
 	pixel_y = -3
+	},
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
@@ -3927,10 +4118,22 @@
 /turf/open/ground/desertdam/river/clean/deep_water_clean,
 /area/swordbase/ground/mainhall)
 "Fs" = (
-/turf/open/floor/tile/dark/brown2{
-	dir = 8
+/obj/structure/bed/chair{
+	dir = 1
 	},
-/area/swordbase/ground/armory)
+/turf/open/floor/tile/dark/blue2{
+	dir = 5
+	},
+/area/swordbase/ground/briefing)
+"Fu" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/metal/large_stack,
+/obj/item/stack/sheet/metal/large_stack,
+/obj/item/stack/sheet/metal/large_stack,
+/turf/open/floor/tile/dark/red2{
+	dir = 4
+	},
+/area/swordbase/ground/checkpoint)
 "Fv" = (
 /obj/structure/largecrate/supply/supplies/flares,
 /obj/effect/decal/cleanable/dirt,
@@ -3956,9 +4159,6 @@
 	dir = 1
 	},
 /area/swordbase/ground/engineering)
-"FF" = (
-/turf/open/floor/tile/dark/brown2/corner,
-/area/swordbase/ground/armory)
 "FG" = (
 /obj/machinery/door/poddoor/two_tile_hor{
 	id = "side entrance lockdown"
@@ -4004,6 +4204,14 @@
 	dir = 6
 	},
 /area/swordbase/ground/outdoors)
+"Ga" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/brown2/corner{
+	dir = 4
+	},
+/area/swordbase/ground/armory)
 "Gc" = (
 /obj/structure/closet/secure_closet/chemical,
 /turf/open/floor/mainship/sterile/corner{
@@ -4040,6 +4248,11 @@
 /obj/item/reagent_containers/food/drinks/britcup,
 /turf/open/floor/carpet,
 /area/swordbase/ground/conferenceroom)
+"Gr" = (
+/obj/machinery/marine_selector/clothes/unscMarine/leader,
+/obj/machinery/light,
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/armory)
 "Gt" = (
 /obj/structure/table,
 /obj/item/tool/plantspray/pests/old,
@@ -4049,11 +4262,10 @@
 /turf/open/floor/tile/dark/green2,
 /area/swordbase/ground/hydro)
 "Gv" = (
-/obj/effect/landmark/start/job/unsc_leader,
-/turf/open/floor/tile/dark/green2{
+/turf/open/floor/tile/dark/brown2/corner{
 	dir = 4
 	},
-/area/swordbase/ground/cryogenics)
+/area/swordbase/ground/armory)
 "Gy" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/belt/medical,
@@ -4112,15 +4324,17 @@
 	dir = 1
 	},
 /area/swordbase/ground/medbaynorth)
-"GK" = (
-/turf/open/floor/tile/dark/brown2{
-	dir = 1
-	},
-/area/swordbase/ground/armory)
 "GL" = (
 /obj/structure/largecrate/cow,
 /turf/open/floor/plating,
 /area/swordbase/ground/storage)
+"GM" = (
+/obj/machinery/door/airlock/multi_tile/glass{
+	dir = 2;
+	name = "Bathroom"
+	},
+/turf/open/floor/freezer,
+/area/swordbase/ground/bathroom)
 "GS" = (
 /obj/structure/window/framed/prison/reinforced,
 /turf/open/floor/tile/dark,
@@ -4136,16 +4350,10 @@
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/kitchen)
 "Hb" = (
-/obj/structure/bed/chair{
+/turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 1
-	},
-/area/swordbase/ground/briefing)
+/area/swordbase/ground/armory)
 "He" = (
 /obj/machinery/power/apc/mainship{
 	pixel_y = 16
@@ -4153,11 +4361,10 @@
 /turf/open/floor/plating,
 /area/swordbase/ground/storage)
 "Hg" = (
-/obj/machinery/light{
-	dir = 4
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
 	},
-/turf/open/floor/tile/dark,
-/area/swordbase/ground/armory)
+/area/swordbase/ground/briefing)
 "Hk" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/floodlight/landing/hq,
@@ -4224,6 +4431,11 @@
 	dir = 8
 	},
 /area/swordbase/ground/mainhall)
+"HY" = (
+/turf/open/floor/tile/dark/blue2/corner{
+	dir = 1
+	},
+/area/swordbase/ground/mainhall)
 "HZ" = (
 /obj/structure/sign/chemistry2,
 /turf/closed/wall/mainship/white,
@@ -4236,7 +4448,7 @@
 	},
 /area/swordbase/ground/kitchen)
 "Ib" = (
-/turf/open/floor/tile/dark/green2/corner{
+/turf/open/floor/tile/dark/green2{
 	dir = 1
 	},
 /area/swordbase/ground/cryogenics)
@@ -4244,16 +4456,10 @@
 /turf/closed/wall/r_wall/prison,
 /area/swordbase/ground/bathroom)
 "Ih" = (
-/obj/structure/bed/chair{
+/turf/open/floor/tile/dark/green2/corner{
 	dir = 1
 	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 1
-	},
-/area/swordbase/ground/briefing)
+/area/swordbase/ground/cryogenics)
 "Ii" = (
 /obj/structure/rack,
 /obj/item/explosive/grenade/frag/m9,
@@ -4278,6 +4484,14 @@
 	dir = 4
 	},
 /area/swordbase/ground/hydro)
+"Is" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 9
+	},
+/area/swordbase/ground/briefing)
 "Iw" = (
 /obj/structure/barricade/metal{
 	dir = 1
@@ -4308,6 +4522,11 @@
 	},
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
+"IM" = (
+/turf/open/floor/tile/dark/green2{
+	dir = 1
+	},
+/area/swordbase/ground/armory)
 "IP" = (
 /obj/machinery/door/airlock/multi_tile/glass{
 	dir = 1;
@@ -4328,11 +4547,8 @@
 /turf/open/floor/asteroidfloor,
 /area/swordbase/ground/outdoors)
 "IY" = (
-/obj/machinery/marine_selector/gear/unscEquipment,
-/turf/open/floor/tile/dark/brown2{
-	dir = 4
-	},
-/area/swordbase/ground/armory)
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/briefing)
 "IZ" = (
 /turf/open/floor/mainship/sterile/side{
 	dir = 10
@@ -4360,11 +4576,16 @@
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/mainhall)
 "Jg" = (
-/obj/effect/landmark/start/job/unsc_leader,
-/turf/open/floor/tile/dark/green2{
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/cryogenics)
+"Jl" = (
+/obj/structure/platform_decoration{
 	dir = 8
 	},
-/area/swordbase/ground/cryogenics)
+/turf/open/floor/tile/dark/blue2{
+	dir = 5
+	},
+/area/swordbase/ground/briefing)
 "Jm" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/spray/surgery{
@@ -4406,8 +4627,12 @@
 	},
 /area/swordbase/ground/inniecave)
 "Jx" = (
-/turf/open/floor/tile/dark/green2/corner,
-/area/swordbase/ground/cryogenics)
+/obj/machinery/marine_selector/clothes/unscMarine,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/armory)
 "Jy" = (
 /obj/machinery/washing_machine,
 /obj/machinery/light{
@@ -4450,6 +4675,11 @@
 /obj/machinery/light,
 /turf/open/floor/plating/asteroidfloor,
 /area/swordbase/ground/outdoors)
+"JO" = (
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/swordbase/ground/briefing)
 "JR" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -4474,14 +4704,16 @@
 /obj/structure/inflatable/popped,
 /turf/open/floor/plating,
 /area/swordbase/ground/storage)
+"JY" = (
+/turf/open/floor/tile/dark/yellow2/corner{
+	dir = 4
+	},
+/area/swordbase/ground/engineering)
 "Kh" = (
-/obj/structure/bed/chair{
-	dir = 1
-	},
 /turf/open/floor/tile/dark/blue2{
-	dir = 1
+	dir = 4
 	},
-/area/swordbase/ground/briefing)
+/area/swordbase/ground/mainhall)
 "Kj" = (
 /obj/machinery/light{
 	dir = 4
@@ -4514,6 +4746,14 @@
 	dir = 6
 	},
 /area/swordbase/ground/outdoors)
+"Kq" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/rack,
+/obj/item/ammo_magazine/rifle/lmg30cal,
+/obj/item/ammo_magazine/rifle/lmg30cal,
+/obj/item/weapon/gun/rifle/lmg30cal,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
 "Kr" = (
 /obj/machinery/light,
 /turf/open/floor/wood,
@@ -4613,6 +4853,12 @@
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/swordbase/ground/medicaloffice)
+"Lk" = (
+/obj/machinery/light,
+/turf/open/floor/tile/dark/green2{
+	dir = 6
+	},
+/area/swordbase/ground/cryogenics)
 "Ln" = (
 /obj/machinery/light{
 	dir = 1
@@ -4624,6 +4870,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/swordbase/ground/outdoors)
+"Lr" = (
+/obj/structure/largecrate/random/case/small,
+/turf/open/floor/asteroidfloor,
+/area/swordbase/ground/outdoors)
 "Lx" = (
 /obj/item/trash/boonie,
 /turf/open/floor/tile/dark,
@@ -4634,10 +4884,11 @@
 	},
 /area/swordbase/ground/inniecave)
 "LB" = (
-/turf/open/floor/tile/dark/green2{
-	dir = 4
+/obj/structure/bed/chair{
+	dir = 1
 	},
-/area/swordbase/ground/cryogenics)
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/briefing)
 "LC" = (
 /obj/machinery/light{
 	dir = 8
@@ -4658,9 +4909,7 @@
 	},
 /area/swordbase/ground/engineering)
 "LM" = (
-/obj/structure/flora/rock/rocks,
-/obj/structure/flora/desert/grass,
-/turf/open/floor/plating/ground/mars/random/cave,
+/turf/open/floor/plating/ground/desertdam/desert,
 /area/swordbase/ground/outdoors)
 "LO" = (
 /obj/effect/decal/cleanable/dirt,
@@ -4679,10 +4928,6 @@
 /obj/structure/largecrate/supply/supplies/metal,
 /turf/open/floor/plating,
 /area/swordbase/ground/storage)
-"LT" = (
-/obj/effect/landmark/start/job/unsc_marine,
-/turf/open/floor/tile/dark/green2/corner,
-/area/swordbase/ground/cryogenics)
 "LU" = (
 /obj/machinery/light/small,
 /obj/structure/largecrate/supply/supplies/metal,
@@ -4702,13 +4947,8 @@
 /turf/closed/wall/mainship,
 /area/swordbase/ground/outdoors)
 "Ma" = (
-/obj/structure/stairs{
-	dir = 8
-	},
-/turf/open/floor/tile/dark/blue2/corner{
-	dir = 8
-	},
-/area/swordbase/ground/briefing)
+/turf/closed/wall/mainship,
+/area/swordbase/ground/armory)
 "Mc" = (
 /obj/machinery/vending/hydronutrients,
 /turf/open/floor/tile/dark/green2{
@@ -4796,10 +5036,10 @@
 /turf/open/floor/tile/dark,
 /area/mainship/shipboard/brig)
 "ME" = (
-/turf/open/floor/tile/dark/brown2/corner{
-	dir = 8
+/turf/open/floor/tile/dark/blue2{
+	dir = 5
 	},
-/area/swordbase/ground/armory)
+/area/swordbase/ground/briefing)
 "MF" = (
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/outdoors)
@@ -4843,9 +5083,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/swordbase/ground/medbaynorth)
 "MP" = (
-/obj/structure/rack,
-/obj/item/stack/sheet/plasteel/large_stack,
-/obj/item/stack/sheet/plasteel/large_stack,
+/obj/structure/largecrate/supply/supplies/sandbags,
 /turf/open/floor/tile/dark/red2{
 	dir = 5
 	},
@@ -5005,6 +5243,9 @@
 /area/mainship/shipboard/brig)
 "NJ" = (
 /obj/machinery/computer/med_data,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
 	},
@@ -5023,11 +5264,12 @@
 /turf/closed/wall/r_wall/prison,
 /area/swordbase/ground/maingate)
 "NN" = (
-/obj/effect/landmark/start/job/unsc_leader,
-/turf/open/floor/tile/dark/green2{
-	dir = 9
+/obj/machinery/vending/marine/unscGuns,
+/obj/machinery/light{
+	dir = 4
 	},
-/area/swordbase/ground/cryogenics)
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/armory)
 "NP" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -5107,27 +5349,53 @@
 	},
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/science)
+"Ou" = (
+/obj/machinery/door/airlock/multi_tile/glass{
+	dir = 1;
+	name = "Armory"
+	},
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/armory)
+"Oz" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/green2{
+	dir = 4
+	},
+/area/swordbase/ground/cryogenics)
 "OA" = (
 /obj/machinery/light,
 /turf/open/floor/tile/dark/green2,
 /area/swordbase/ground/kitchen)
+"OE" = (
+/turf/open/floor/tile/dark/yellow2/corner{
+	dir = 8
+	},
+/area/swordbase/ground/engineering)
 "OG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
+"OJ" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/swordbase/ground/briefing)
 "OK" = (
 /obj/effect/decal/cleanable/molten_item,
 /obj/structure/closet/crate,
 /turf/open/floor/plating,
 /area/swordbase/ground/storage)
 "OT" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/swordbase/ground/maingate)
+/turf/open/floor/tile/dark/brown2/corner,
+/area/swordbase/ground/armory)
 "OU" = (
 /obj/machinery/crema_switch{
 	id = "crema";
@@ -5172,6 +5440,13 @@
 	},
 /turf/open/floor/carpet,
 /area/swordbase/ground/conferenceroom)
+"Pl" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/platform_decoration,
+/turf/open/floor/tile/dark/blue2/corner,
+/area/swordbase/ground/briefing)
 "Pn" = (
 /obj/machinery/light{
 	dir = 8
@@ -5247,6 +5522,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/item/storage/belt/utility/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/swordbase/ground/inniecave)
 "PM" = (
@@ -5262,11 +5538,20 @@
 "PS" = (
 /turf/open/floor/plating,
 /area/swordbase/ground/outdoors)
+"PU" = (
+/obj/structure/flora/desert/grass,
+/turf/open/floor/plating/ground/mars/random/cave{
+	dir = 8
+	},
+/area/swordbase/ground/outdoors)
 "PX" = (
 /obj/structure/window/framed/mainship/white/canterbury,
 /obj/machinery/smartfridge/chemistry,
 /turf/open/floor/mainship/sterile/dark,
 /area/swordbase/ground/medbaysouth)
+"PY" = (
+/turf/open/floor/tile/dark/blue2/corner,
+/area/swordbase/ground/briefing)
 "Qa" = (
 /obj/effect/decal/cleanable/cobweb,
 /obj/structure/closet/cabinet,
@@ -5282,6 +5567,7 @@
 /area/swordbase/ground/outdoors)
 "Qi" = (
 /obj/structure/largecrate/supply/medicine/medkits,
+/obj/item/tool/crowbar,
 /turf/open/floor/mainship/sterile/side,
 /area/swordbase/ground/medbaysouth)
 "Qk" = (
@@ -5341,6 +5627,10 @@
 	dir = 10
 	},
 /area/swordbase/ground/engineering)
+"QF" = (
+/obj/machinery/marine_selector/clothes/unscMarine/leader,
+/turf/open/space/basic,
+/area/swordbase/ground/armory)
 "QG" = (
 /obj/structure/largecrate/supply/supplies/mre,
 /obj/effect/decal/cleanable/dirt,
@@ -5350,9 +5640,6 @@
 /obj/machinery/power/apc/mainship{
 	dir = 8;
 	pixel_x = 16
-	},
-/obj/machinery/light{
-	dir = 4
 	},
 /obj/structure/bed/chair/wheelchair,
 /turf/open/floor/mainship/sterile/side{
@@ -5379,11 +5666,11 @@
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "QX" = (
-/obj/machinery/vending/marine/unscGuns,
-/turf/open/floor/tile/dark/brown2{
+/obj/machinery/light{
 	dir = 4
 	},
-/area/swordbase/ground/armory)
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/briefing)
 "QY" = (
 /obj/structure/window/framed/mainship/canterbury,
 /turf/open/floor/tile/dark,
@@ -5403,6 +5690,7 @@
 /area/swordbase/ground/medbaynorth)
 "Rd" = (
 /obj/item/tool/warning_cone,
+/obj/machinery/light,
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/maingate)
 "Rg" = (
@@ -5450,6 +5738,13 @@
 /obj/item/storage/fancy/candle_box,
 /turf/open/floor/plating/asteroidfloor,
 /area/swordbase/ground/outdoors)
+"Ru" = (
+/obj/machinery/door/airlock/multi_tile/glass{
+	dir = 1;
+	name = "Armory"
+	},
+/turf/open/floor/tile/dark/green2,
+/area/swordbase/ground/armory)
 "Ry" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
@@ -5485,14 +5780,12 @@
 /turf/open/floor/wood,
 /area/swordbase/ground/conferenceroom)
 "RC" = (
-/obj/machinery/light{
-	dir = 1
+/obj/machinery/door/airlock/multi_tile/glass{
+	dir = 1;
+	name = "Armory"
 	},
-/obj/machinery/cryopod,
-/turf/open/floor/tile/dark/green2{
-	dir = 1
-	},
-/area/swordbase/ground/cryogenics)
+/turf/open/floor/tile/dark/brown2,
+/area/swordbase/ground/armory)
 "RD" = (
 /obj/structure/rack,
 /obj/item/reagent_containers/spray/pepper{
@@ -5514,6 +5807,12 @@
 /obj/structure/window/framed/mainship/white/canterbury,
 /turf/open/floor/mainship/sterile/dark,
 /area/swordbase/ground/medbaysouth)
+"RH" = (
+/obj/effect/landmark/start/job/unsc_marine,
+/turf/open/floor/tile/dark/green2{
+	dir = 4
+	},
+/area/swordbase/ground/cryogenics)
 "RJ" = (
 /mob/living/simple_animal/crab,
 /turf/open/ground/desertdam/river/clean/deep_water_clean,
@@ -5536,6 +5835,11 @@
 "RN" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/tile/dark,
+/area/swordbase/ground/outdoors)
+"RO" = (
+/obj/structure/flora/rock/rocks,
+/obj/structure/flora/desert/grass,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/swordbase/ground/outdoors)
 "RP" = (
 /obj/machinery/light{
@@ -5602,6 +5906,11 @@
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
+"St" = (
+/obj/effect/decal/cleanable/generic,
+/obj/item/tool/crowbar,
+/turf/open/floor/plating,
+/area/swordbase/ground/storage)
 "Sz" = (
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
@@ -5652,12 +5961,6 @@
 	dir = 1
 	},
 /area/swordbase/ground/kitchen)
-"Tf" = (
-/obj/effect/landmark/start/job/unsc_marine,
-/turf/open/floor/tile/dark/green2{
-	dir = 4
-	},
-/area/swordbase/ground/cryogenics)
 "Ti" = (
 /turf/open/floor/freezer,
 /area/swordbase/ground/kitchen)
@@ -5684,6 +5987,23 @@
 /obj/item/target,
 /turf/open/floor/plating/mainship,
 /area/swordbase/ground/firingrange)
+"Ts" = (
+/obj/structure/platform_decoration{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 9
+	},
+/area/swordbase/ground/briefing)
+"Tw" = (
+/obj/machinery/vending/marine/unscGuns,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/brown2{
+	dir = 4
+	},
+/area/swordbase/ground/armory)
 "Ty" = (
 /obj/structure/mineral_door/wood{
 	name = "Closet"
@@ -5723,6 +6043,10 @@
 /obj/machinery/vending/cigarette,
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/mainhall)
+"TH" = (
+/obj/item/tool/crowbar,
+/turf/open/floor/plating,
+/area/swordbase/ground/outdoors)
 "TI" = (
 /obj/structure/table,
 /obj/item/folder/black{
@@ -5922,10 +6246,8 @@
 /turf/open/floor/carpet,
 /area/swordbase/ground/conferenceroom)
 "Vl" = (
-/turf/open/floor/tile/dark/blue2{
-	dir = 8
-	},
-/area/swordbase/ground/briefing)
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/armory)
 "Vn" = (
 /turf/open/floor/carpet,
 /area/swordbase/ground/outdoors)
@@ -5969,7 +6291,7 @@
 /turf/open/floor/mainship/sterile/side,
 /area/swordbase/ground/medbaysouth)
 "VE" = (
-/obj/machinery/vending/marine/cargo_ammo,
+/obj/machinery/marine_selector/gear/unscEquipment,
 /turf/open/floor/tile/dark/red2{
 	dir = 6
 	},
@@ -6023,12 +6345,11 @@
 	},
 /area/swordbase/ground/checkpoint)
 "VZ" = (
-/obj/structure/window/reinforced{
+/obj/structure/platform,
+/turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
-/obj/structure/window/reinforced,
-/turf/open/floor/tile/dark,
-/area/swordbase/ground/armory)
+/area/swordbase/ground/briefing)
 "Wc" = (
 /obj/machinery/vending/nanomed,
 /turf/closed/desertdamrockwall,
@@ -6068,9 +6389,11 @@
 /turf/open/floor/mainship/sterile/corner,
 /area/swordbase/ground/medbaynorth)
 "Wl" = (
-/turf/open/floor/tile/dark/green2{
-	dir = 6
+/obj/machinery/door/airlock/multi_tile/glass{
+	dir = 1;
+	name = "Cryogenics"
 	},
+/turf/open/floor/tile/dark/green2,
 /area/swordbase/ground/cryogenics)
 "Wo" = (
 /obj/structure/window/framed/prison/reinforced,
@@ -6119,6 +6442,12 @@
 "WB" = (
 /turf/closed/wall/r_wall/prison,
 /area/mainship/shipboard/brig)
+"WC" = (
+/obj/vehicle/train/cargo/engine{
+	dir = 2
+	},
+/turf/open/floor/asteroidfloor,
+/area/swordbase/ground/outdoors)
 "WD" = (
 /obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/plating/mainship,
@@ -6151,16 +6480,18 @@
 /area/swordbase/ground/outdoors)
 "WI" = (
 /obj/structure/table/mainship,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/item/ammo_magazine/shotgun/eightGauge,
+/obj/item/ammo_magazine/shotgun/eightGauge,
 /turf/open/floor/tile/dark/red2{
 	dir = 10
 	},
 /area/swordbase/ground/checkpoint)
 "WO" = (
-/turf/open/floor/tile/dark,
-/area/swordbase/ground/briefing)
+/obj/machinery/vending/marine/unscGuns,
+/turf/open/floor/tile/dark/brown2{
+	dir = 4
+	},
+/area/swordbase/ground/armory)
 "WP" = (
 /obj/structure/table/mainship,
 /obj/item/facepaint/brown,
@@ -6189,11 +6520,8 @@
 /turf/open/floor/carpet,
 /area/swordbase/ground/conferenceroom)
 "WZ" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/tile/dark,
-/area/swordbase/ground/armory)
+/turf/open/floor/tile/dark/blue2,
+/area/swordbase/ground/briefing)
 "Xb" = (
 /obj/structure/table/woodentable,
 /turf/open/floor/carpet,
@@ -6281,6 +6609,10 @@
 	dir = 8
 	},
 /area/swordbase/ground/firingrange)
+"XB" = (
+/obj/machinery/marine_selector/clothes/unscMarine/leader,
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/armory)
 "XC" = (
 /obj/structure/morgue{
 	dir = 8
@@ -6298,14 +6630,13 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/swordbase/ground/inniecave)
 "XG" = (
-/obj/machinery/power/apc/mainship{
-	dir = 8;
-	pixel_x = 16
+/obj/structure/bed/chair{
+	dir = 1
 	},
-/turf/open/floor/tile/dark/green2{
-	dir = 4
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
 	},
-/area/swordbase/ground/cryogenics)
+/area/swordbase/ground/briefing)
 "XH" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
@@ -6313,9 +6644,6 @@
 "XI" = (
 /turf/closed/wall/mainship/white,
 /area/swordbase/ground/medsci)
-"XL" = (
-/turf/closed/wall/mainship,
-/area/swordbase/ground/armory)
 "XN" = (
 /obj/structure/table/mainship,
 /obj/item/weapon/gun/shotgun/pump/m45,
@@ -6369,11 +6697,12 @@
 /turf/open/floor/carpet,
 /area/swordbase/ground/conferenceroom)
 "Yb" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	dir = 1;
-	name = "Cryogenics"
-	},
-/turf/open/floor/tile/dark,
+/turf/closed/wall/mainship,
+/area/swordbase/ground/briefing)
+"Yc" = (
+/obj/machinery/vending/shared_vending/marine_engi,
+/obj/machinery/light,
+/turf/open/floor/tile/dark/brown2,
 /area/swordbase/ground/armory)
 "Yd" = (
 /obj/structure/table,
@@ -6390,6 +6719,11 @@
 /obj/machinery/gibber,
 /turf/open/floor/freezer,
 /area/swordbase/ground/kitchen)
+"Yh" = (
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/swordbase/ground/mainhall)
 "Yk" = (
 /obj/structure/window/framed/mainship/canterbury,
 /turf/open/floor/tile/dark,
@@ -6404,8 +6738,11 @@
 /turf/open/floor/wood,
 /area/swordbase/ground/conferenceroom)
 "Yq" = (
-/turf/open/ground/desertdam/river/toxic/shallow_water_desert_coast_toxic,
-/area/swordbase/ground/outdoors)
+/obj/effect/landmark/start/job/unsc_marine,
+/turf/open/floor/tile/dark/green2/corner{
+	dir = 8
+	},
+/area/swordbase/ground/cryogenics)
 "Yr" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/pill_bottle/bicaridine{
@@ -6469,6 +6806,12 @@
 /obj/machinery/cryopod/right,
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
+"YC" = (
+/obj/machinery/door/airlock/multi_tile/glass{
+	name = "Armory"
+	},
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/armory)
 "YD" = (
 /obj/structure/morgue{
 	dir = 1
@@ -6519,12 +6862,8 @@
 "YY" = (
 /turf/closed/wall/mainship/white,
 /area/swordbase/ground/medbaynorth)
-"YZ" = (
-/obj/machinery/vending/lasgun,
-/turf/open/floor/tile/dark/red2,
-/area/swordbase/ground/firingrange)
 "Za" = (
-/obj/machinery/vending/marine/cargo_guns,
+/obj/machinery/vending/marine/unscGuns,
 /turf/open/floor/tile/dark/red2,
 /area/swordbase/ground/firingrange)
 "Zc" = (
@@ -6657,8 +6996,11 @@
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/outdoors)
 "ZO" = (
-/turf/open/floor/tile/dark,
-/area/swordbase/ground/armory)
+/obj/structure/platform,
+/turf/open/floor/tile/dark/blue2{
+	dir = 5
+	},
+/area/swordbase/ground/briefing)
 "ZP" = (
 /obj/machinery/light/spot,
 /obj/effect/decal/cleanable/dirt,
@@ -6680,6 +7022,7 @@
 "ZX" = (
 /obj/structure/rack,
 /obj/machinery/light,
+/obj/item/tool/crowbar,
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/firingrange)
 
@@ -6819,16 +7162,6 @@ nw
 nw
 nw
 nw
-ca
-ca
-ca
-ca
-ca
-ca
-ca
-ca
-ca
-ca
 nw
 nw
 nw
@@ -6864,11 +7197,21 @@ nw
 nw
 nw
 nw
-Rk
-MR
-hA
-hA
-MR
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
 nw
 nw
 nw
@@ -6941,16 +7284,6 @@ nw
 nw
 nw
 nw
-ca
-NN
-yF
-Jg
-yF
-tU
-yF
-mM
-mg
-ca
 nw
 nw
 nw
@@ -6988,20 +7321,30 @@ nw
 nw
 nw
 nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+Rk
 MR
+hA
+hA
 MR
-MR
-MR
-MR
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
 nw
 nw
 nw
@@ -7063,16 +7406,25 @@ nw
 nw
 nw
 nw
-ca
-RC
-tR
-BP
-tR
-BP
-tR
-BP
-mh
-ca
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
 nw
 nw
 nw
@@ -7116,16 +7468,7 @@ MR
 MR
 MR
 MR
-nw
-nw
-nw
 MR
-MR
-MR
-MR
-nw
-nw
-nw
 nw
 nw
 nw
@@ -7185,16 +7528,16 @@ nw
 nw
 nw
 nw
-ca
-tr
-LB
-Gv
-LB
-Tf
-LB
-Tf
-Wl
-ca
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
 WB
 WB
 WB
@@ -7233,29 +7576,29 @@ nw
 nw
 nw
 nw
-MR
-MR
-MR
-MR
-MR
-MR
-nw
-MR
-MR
-MR
-MR
-MR
-MR
-MR
-MR
-MR
-MR
 nw
 nw
 nw
 nw
 nw
 nw
+nw
+nw
+nw
+nw
+nw
+nw
+MR
+MR
+MR
+MR
+nw
+nw
+nw
+MR
+MR
+MR
+MR
 nw
 nw
 nw
@@ -7307,16 +7650,16 @@ nw
 nw
 nw
 nw
-ca
-zq
-rR
-zq
-dS
-dS
-mg
-Ib
-mg
-ca
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
 WB
 sa
 uK
@@ -7348,37 +7691,37 @@ nw
 nw
 nw
 nw
-MR
-AJ
-MR
-MR
-MR
-MR
-MR
-MR
-MR
-MR
-MR
-MR
-ZW
-MR
-MR
-MR
-MR
-MR
-MR
-hA
-hA
-hA
-hA
-MR
-MR
 nw
 nw
 nw
 nw
 nw
 nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+MR
+MR
+MR
+MR
+MR
+MR
+nw
+MR
+MR
+MR
+MR
+MR
+MR
 nw
 nw
 nw
@@ -7429,16 +7772,16 @@ nw
 nw
 nw
 nw
-ca
-lE
-Jx
-lE
-dS
-dS
-Wl
-hI
-Wl
-ca
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
 WB
 sc
 az
@@ -7468,39 +7811,39 @@ nw
 nw
 nw
 nw
-Yq
-zG
-tV
-hA
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
 MR
-hA
+PU
+MR
+MR
+MR
+MR
+MR
+MR
+MR
 MR
 MR
 MR
 ZW
 MR
+MR
+MR
+MR
+MR
+MR
 hA
-MR
-MR
-MR
-MR
-MR
-MR
-MR
-MR
-MR
-MR
-MR
-MR
-MR
-MR
-MR
-nw
-nw
-nw
-nw
-nw
-nw
 nw
 nw
 nw
@@ -7548,19 +7891,19 @@ nw
 nw
 nw
 nw
+Yb
+Yb
+Yb
+Yb
+Yb
+Yb
+Yb
+Yb
+Yb
+Yb
+Yb
 nw
 nw
-nw
-ca
-ss
-yF
-mM
-yF
-mM
-yF
-mM
-mg
-ca
 WB
 se
 az
@@ -7589,40 +7932,40 @@ nw
 nw
 nw
 nw
-AU
-Yq
-zG
-MR
-MR
 nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+of
+LM
+fX
+hA
+MR
+hA
+MR
+MR
+MR
+ZW
+MR
 hA
 MR
 MR
 MR
 MR
 MR
-hA
 MR
 MR
 MR
 MR
 MR
-MR
-MR
-MR
-MR
-MR
-MR
-MR
-MR
-MR
-MR
-MR
-nw
-nw
-nw
-nw
-nw
 nw
 nw
 nw
@@ -7670,19 +8013,19 @@ nw
 nw
 nw
 nw
-nw
-nw
-nw
-ca
+Yb
+IY
+IY
+IY
 nm
-tR
-Bl
-tR
-Bl
-tR
-Bl
-mh
-ca
+LB
+XG
+XG
+xg
+XG
+Yb
+nw
+nw
 WB
 sm
 az
@@ -7710,40 +8053,40 @@ nw
 nw
 nw
 nw
-AU
-AU
-Yq
-zG
-MR
 nw
 nw
 nw
-MR
-MR
-MR
-MR
-MR
-MR
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+av
+of
 LM
 MR
 MR
-gJ
-MR
-MR
-MR
 nw
-nw
-nw
+hA
+MR
+MR
+MR
+MR
+MR
+hA
 MR
 MR
 MR
 MR
 MR
 MR
-nw
-nw
-nw
-nw
+MR
+MR
+MR
 nw
 nw
 nw
@@ -7792,19 +8135,19 @@ nw
 nw
 nw
 nw
-nw
-nw
-nw
-ca
-lf
+Yb
+IY
+PY
+qj
+IY
 LB
-Tf
 XG
-BD
-hI
-LT
-Wl
-ca
+XG
+XG
+XG
+Yb
+nw
+nw
 WB
 to
 az
@@ -7831,39 +8174,39 @@ UA
 nw
 nw
 nw
-AU
-AU
-AU
-Yq
-zG
-hA
-hA
 nw
 nw
-Rk
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+av
+av
+of
+LM
+MR
+nw
+nw
+nw
 MR
 MR
 MR
+MR
+MR
+MR
+RO
 MR
 MR
 gJ
 MR
 MR
 MR
-MR
-MR
-nw
-nw
-nw
-nw
-nw
-nw
-MR
-MR
-MR
-MR
-MR
-nw
 nw
 nw
 nw
@@ -7913,20 +8256,20 @@ nw
 nw
 nw
 nw
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-ZO
+nw
 Yb
-XL
-XL
+Pl
+mH
+vP
+Jl
+LB
+XG
+XG
+XG
+OJ
+Yb
+Vx
+Vx
 WB
 SC
 az
@@ -7953,41 +8296,41 @@ UA
 nw
 nw
 nw
-AU
-AU
-AU
-Yq
-zG
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+av
+av
+av
+of
+LM
 hA
+hA
+nw
+nw
+Rk
+MR
+MR
+MR
+MR
+MR
+gJ
+MR
+MR
+MR
+MR
 MR
 nw
 nw
 nw
-MR
-MR
-MR
-MR
-MR
-MR
-MR
-MR
-MR
-MR
-MR
-MR
-nw
-nw
-nw
-nw
-nw
-nw
-MR
-MR
-MR
-MR
-MR
-MR
-MR
 nw
 nw
 nw
@@ -8035,20 +8378,20 @@ nw
 nw
 nw
 nw
-XL
-fC
+nw
+Yb
 gW
-gW
-gW
-gW
-XL
-sb
-kN
+IY
+IY
+gI
 Fs
-ya
+Fs
+Fs
+Fs
+Fs
 ME
-hM
-XL
+Yf
+Yf
 WB
 sE
 az
@@ -8074,29 +8417,6 @@ YJ
 UA
 nw
 nw
-AU
-AU
-AU
-AU
-Yq
-zG
-MR
-MR
-nw
-nw
-nw
-nw
-MR
-MR
-MR
-MR
-MR
-MR
-MR
-MR
-MR
-MR
-MR
 nw
 nw
 nw
@@ -8104,13 +8424,36 @@ nw
 nw
 nw
 nw
-MR
-MR
-MR
-MR
-MR
+nw
+nw
+nw
+nw
+nw
+av
+av
+av
+of
+LM
 hA
 MR
+nw
+nw
+nw
+MR
+MR
+MR
+MR
+MR
+MR
+MR
+MR
+MR
+MR
+MR
+MR
+nw
+nw
+nw
 MR
 nw
 nw
@@ -8157,20 +8500,20 @@ nw
 nw
 nw
 nw
-XL
-hr
+nw
+Yb
 VZ
-VZ
-VZ
-VZ
+IY
+IY
+gI
 WZ
-VZ
-ZO
-ZO
-ZO
-ZO
-dk
-XL
+WZ
+WZ
+WZ
+WZ
+WZ
+Yf
+MA
 WB
 sJ
 az
@@ -8196,32 +8539,25 @@ YL
 UA
 nw
 nw
-AU
-AU
-AU
-AU
-Yq
-zG
-MR
-hA
-MR
 nw
 nw
 nw
-MR
-MR
-MR
-MR
-MR
-nw
-MR
-nw
-MR
-MR
-MR
-MR
 nw
 nw
+nw
+nw
+nw
+nw
+nw
+nw
+av
+av
+av
+av
+of
+LM
+MR
+MR
 nw
 nw
 nw
@@ -8232,7 +8568,14 @@ MR
 MR
 MR
 MR
-hA
+MR
+MR
+MR
+MR
+MR
+nw
+nw
+nw
 MR
 MR
 MR
@@ -8279,20 +8622,20 @@ nw
 nw
 nw
 nw
-XL
-GK
+nw
+Yb
 ZO
-ZO
-ZO
-ZO
-ZO
-ZO
-ZO
-ZO
-ZO
-ZO
-dr
-XL
+IY
+IY
+gI
+Is
+Is
+Is
+Is
+Is
+bt
+Yf
+Yf
 WB
 sJ
 az
@@ -8317,35 +8660,27 @@ XD
 YO
 YE
 nw
-AU
-AU
-AU
-AU
-AU
-Yq
-io
-Rk
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+av
+av
+av
+av
+of
+LM
 MR
+hA
 MR
-nw
-nw
-nw
-nw
-MR
-MR
-MR
-nw
-nw
-nw
-nw
-MR
-MR
-MR
-MR
-MR
-nw
-nw
-nw
 nw
 nw
 nw
@@ -8354,7 +8689,15 @@ MR
 MR
 MR
 MR
+nw
 MR
+nw
+MR
+MR
+MR
+MR
+nw
+nw
 hA
 hA
 MR
@@ -8401,20 +8744,20 @@ nw
 nw
 nw
 nw
-XL
-GK
-ZO
-ZO
-ZO
-ZO
-ZO
-ZO
-ZO
-ZO
-ZO
-ZO
-dr
-XL
+nw
+Yb
+vs
+gx
+fa
+Ts
+LB
+XG
+XG
+XG
+OJ
+Yb
+Yf
+Yf
 WB
 sJ
 az
@@ -8439,17 +8782,6 @@ XD
 Yt
 YE
 nw
-AU
-AU
-AU
-AU
-AU
-Yq
-nw
-nw
-MR
-hA
-MR
 nw
 nw
 nw
@@ -8460,11 +8792,15 @@ nw
 nw
 nw
 nw
-MR
-MR
-MR
-MR
-MR
+nw
+av
+av
+av
+av
+av
+of
+aA
+Rk
 MR
 MR
 nw
@@ -8474,9 +8810,16 @@ nw
 MR
 MR
 MR
+nw
+nw
+nw
+nw
 MR
 MR
 MR
+MR
+MR
+nw
 MR
 MR
 hA
@@ -8523,27 +8866,27 @@ nw
 nw
 nw
 nw
-XL
-hr
-VZ
+nw
+Yb
+IY
 Dp
 Hg
-VZ
-VZ
-VZ
-ZO
-ZO
-ZO
-ZO
-mu
-XL
+IY
+LB
+XG
+XG
+XG
+XG
+Yb
+Yf
+Yf
 WB
-sL
-FB
-FB
-FB
-FB
-Bh
+sJ
+az
+az
+az
+az
+TV
 WB
 EX
 az
@@ -8561,34 +8904,34 @@ XD
 Yt
 YE
 nw
-eH
-eH
-eH
-eH
-eH
 nw
 nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+av
+av
+av
+av
+av
+of
 nw
 nw
 MR
+hA
 MR
-MR
 nw
 nw
 nw
 nw
 nw
 nw
-nw
-nw
-nw
-MR
-wy
-MR
-MR
-MR
-MR
-MR
 nw
 nw
 nw
@@ -8645,27 +8988,27 @@ nw
 nw
 nw
 nw
-XL
-rE
+nw
+Yb
 IY
-sg
-XL
+IY
+IY
 QX
-QX
-QX
-jH
+LB
+XG
+XG
 ek
-FF
-dV
-vg
-XL
+XG
+Yb
+Yf
+MA
 WB
-WB
-WB
-WB
-WB
-WB
-WB
+xz
+FB
+FB
+FB
+FB
+wQ
 WB
 to
 az
@@ -8684,8 +9027,6 @@ Yt
 YE
 nw
 nw
-MR
-hA
 nw
 nw
 nw
@@ -8693,33 +9034,35 @@ nw
 nw
 nw
 nw
-MR
-MR
-MR
+nw
+nw
+nw
+sh
+sh
+sh
+sh
+sh
 nw
 nw
 nw
 nw
-nw
-nw
-nw
-MR
-MR
-MR
-MR
-MR
-MR
 MR
 MR
 MR
 nw
 nw
 nw
+nw
+nw
+nw
+nw
+nw
+nw
 MR
-gJ
-hA
-hA
-hA
+wy
+MR
+MR
+MR
 MR
 MR
 MR
@@ -8767,27 +9110,27 @@ nw
 nw
 nw
 nw
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-GK
-hV
-XL
-XL
-XL
-Vx
-Vx
-Vx
-Vx
-Vx
-Vx
-Vx
+nw
+Yb
+Yb
+JO
+WZ
+Yb
+Yb
+Yb
+Yb
+Yb
+Yb
+Yb
+Yf
+Yf
+ok
+ok
+ok
+ok
+ok
+ok
+ok
 WB
 EZ
 Bc
@@ -8806,6 +9149,18 @@ Yt
 YE
 YE
 nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+nw
+MR
 hA
 nw
 nw
@@ -8814,8 +9169,6 @@ nw
 nw
 nw
 nw
-nw
-MR
 MR
 MR
 MR
@@ -8824,13 +9177,8 @@ nw
 nw
 nw
 nw
-MR
-MR
-MR
-MR
-hA
-MR
-MR
+nw
+nw
 MR
 MR
 MR
@@ -8838,11 +9186,6 @@ MR
 MR
 MR
 MR
-MR
-MR
-MR
-MR
-ZW
 MR
 MR
 MR
@@ -8890,19 +9233,19 @@ nw
 nw
 nw
 nw
-nw
-nw
-nw
-nw
-nw
-nw
+Vx
+Vx
+Yh
+bY
+Vx
+Vx
 Vx
 Yf
+zr
 Yf
 Yf
 Yf
 Yf
-Vx
 zr
 Yf
 hg
@@ -8928,7 +9271,7 @@ Yt
 ZX
 YE
 nw
-MR
+nw
 nw
 nw
 nw
@@ -9011,13 +9354,13 @@ nw
 nw
 nw
 nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
+Vx
+Vx
+Vx
+Yh
+rl
+Vx
+Vx
 Vx
 hg
 Yf
@@ -9050,8 +9393,8 @@ Yt
 od
 YE
 nw
-MR
-MR
+nw
+nw
 nw
 nw
 nw
@@ -9131,16 +9474,16 @@ nw
 nw
 nw
 nw
-eK
-eK
-eK
-eK
-eK
-eK
-eK
-eK
-eK
-eK
+nw
+nw
+Vx
+pU
+fW
+HY
+bY
+Vx
+Vx
+Vx
 TE
 Yf
 nZ
@@ -9168,14 +9511,14 @@ YN
 YN
 YN
 YN
-YZ
+Za
 YE
 YE
 nw
-MR
-MR
-MR
-MR
+nw
+nw
+nw
+nw
 MR
 MR
 MR
@@ -9253,16 +9596,16 @@ nw
 nw
 nw
 nw
-eK
-WO
-WO
+nw
+nw
+Vx
 rK
-bY
+GF
 Kh
-Kh
-Hb
-Kh
-eK
+lo
+Vx
+Vx
+Vx
 pf
 Yf
 nZ
@@ -9294,7 +9637,7 @@ Za
 YE
 Vx
 nw
-Rk
+nw
 MR
 MR
 MR
@@ -9375,17 +9718,17 @@ nw
 nw
 nw
 nw
-eK
-DP
-aJ
-WO
+nw
+nw
+Vx
+Yh
 bY
-Kh
-Kh
-Kh
-Kh
-eK
-hg
+Vx
+Vx
+Vx
+Vx
+Vx
+pn
 Yf
 nZ
 lt
@@ -9419,8 +9762,8 @@ nw
 nw
 nw
 nw
-nw
-nw
+MR
+MR
 MR
 MR
 MR
@@ -9490,24 +9833,24 @@ nw
 nw
 "}
 (24,1,1) = {"
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-eK
-cl
 Ma
-bu
-bY
-Kh
-Kh
-Kh
-gh
-eK
-Ub
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Vl
+Ou
+Ma
+Ma
+Vx
+Vx
+Vx
+Yf
 Yf
 Yf
 Yf
@@ -9543,11 +9886,11 @@ nw
 nw
 nw
 nw
-nw
-nw
-nw
-nw
-nw
+MR
+MR
+MR
+MR
+MR
 nw
 nw
 nw
@@ -9612,23 +9955,23 @@ nw
 nw
 "}
 (25,1,1) = {"
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-eK
+Ma
+aJ
+sL
+sL
+sL
+sL
+sL
+Ma
 ma
-WO
+QF
 bv
 qs
-qs
-qs
-qs
-qs
-bZ
+cS
+Ma
+Vx
+Vx
+Vx
 Yf
 Yf
 Yf
@@ -9734,23 +10077,23 @@ nw
 nw
 "}
 (26,1,1) = {"
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-eK
-ma
-WO
-bv
-cs
-cs
-cs
-cs
-cs
-cs
+Ma
+bZ
+Vl
+Vl
+Vl
+Vl
+Vl
+kI
+Vl
+Vl
+Vl
+Vl
+Yc
+Ma
+Vx
+Vx
+Vx
 Yf
 Yf
 Yf
@@ -9800,7 +10143,7 @@ mZ
 mZ
 mZ
 mZ
-mZ
+jx
 mZ
 mZ
 mZ
@@ -9856,24 +10199,24 @@ nw
 nw
 "}
 (27,1,1) = {"
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-eK
-ma
-WO
-bv
-dt
-dt
-dt
-dt
-dt
+Ma
 cB
-Yf
+Vl
+Vl
+Vl
+Vl
+Vl
+Vl
+Vl
+Vl
+Vl
+Vl
+oX
+Ma
+Vx
+Vx
+Vx
+Ub
 Yf
 Yf
 Yf
@@ -9918,7 +10261,7 @@ ZK
 ZK
 SS
 Wh
-mZ
+jx
 mZ
 mZ
 mZ
@@ -9978,24 +10321,24 @@ nw
 nw
 "}
 (28,1,1) = {"
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-eK
-ao
-bs
-bD
-bY
-Kh
-Kh
-Kh
-gh
-eK
-Ub
+Ma
+cB
+Vl
+Vl
+Vl
+Vl
+Vl
+Vl
+Vl
+Vl
+Vl
+Vl
+oX
+Ma
+Vx
+Vx
+Vx
+Yf
 Yf
 Yf
 Yf
@@ -10100,23 +10443,23 @@ nw
 nw
 "}
 (29,1,1) = {"
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-eK
-as
+Ma
+dk
 Vl
-WO
-bY
-Kh
-Kh
-Kh
-Kh
-eK
+Vl
+Vl
+Vl
+Vl
+Vl
+Vl
+Vl
+Vl
+Vl
+qs
+fp
+Yf
+Yf
+Yf
 Yf
 Yf
 Yf
@@ -10164,10 +10507,10 @@ Hu
 Wh
 mZ
 mZ
+iu
 mZ
 mZ
-mZ
-mZ
+jM
 mZ
 mZ
 mZ
@@ -10222,23 +10565,23 @@ nw
 nw
 "}
 (30,1,1) = {"
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-eK
+Ma
+dr
+tr
+tr
+Gv
+OT
+WO
+Tw
 WO
 WO
 wV
-bY
-Kh
-Kh
-Ih
-Kh
-eK
+Ga
+OT
+wV
+Yf
+Rq
+Yf
 Yf
 Yf
 Yf
@@ -10290,8 +10633,8 @@ mZ
 mZ
 mZ
 mZ
-mZ
-mZ
+Lr
+eV
 mZ
 zN
 xn
@@ -10344,23 +10687,23 @@ nw
 nw
 "}
 (31,1,1) = {"
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-eK
-eK
-eK
-eK
-eK
-eK
-eK
-eK
-eK
-eK
+Ma
+Ma
+Ma
+Ma
+Hb
+RC
+Ma
+Ma
+Ma
+Ma
+bK
+uv
+Ah
+bK
+bK
+bK
+bK
 bK
 bK
 Yf
@@ -10411,8 +10754,8 @@ mZ
 mZ
 mZ
 mZ
-mZ
-mZ
+jM
+iu
 nO
 nO
 nO
@@ -10469,16 +10812,16 @@ nw
 nw
 nw
 nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
+Vx
+Yf
+Yf
+Vx
+Vx
+Vx
+Vx
 bK
 xP
-Ze
+OE
 Ze
 fY
 Ze
@@ -10591,13 +10934,13 @@ nw
 nw
 nw
 nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
+Vx
+Yf
+Yf
+Vx
+Vx
+Vx
+Vx
 bK
 yR
 ee
@@ -10652,7 +10995,7 @@ Gj
 yc
 kT
 mZ
-mZ
+jx
 mZ
 mZ
 mZ
@@ -10713,9 +11056,9 @@ nw
 nw
 nw
 nw
-nw
-nw
-nw
+Vx
+Yf
+Yf
 bK
 bK
 bK
@@ -10835,13 +11178,13 @@ nw
 nw
 nw
 nw
-nw
-nw
-nw
+Vx
+Yf
+Yf
 bK
 UG
 La
-QE
+Co
 bK
 cC
 Ze
@@ -10898,7 +11241,7 @@ kT
 mZ
 mZ
 mZ
-mZ
+jx
 mZ
 mZ
 nO
@@ -10957,9 +11300,9 @@ nw
 nw
 nw
 nw
-nw
-nw
-nw
+Vx
+Ub
+Yf
 bK
 aa
 ee
@@ -11079,9 +11422,9 @@ nw
 nw
 nw
 nw
-nw
-nw
-nw
+Vx
+Yf
+Yf
 bK
 al
 aI
@@ -11201,9 +11544,9 @@ nw
 nw
 nw
 nw
-nw
-nw
-nw
+Vx
+Yf
+Yf
 bK
 bK
 bK
@@ -11323,22 +11666,22 @@ nw
 nw
 nw
 nw
-nw
-nw
-nw
-nw
-nw
-bK
-ee
-ee
-cC
+Vx
+Yf
+Yf
 Ze
-yR
-ee
-ee
+Ze
+Ze
+Ze
+Ze
+QE
+Ze
+eI
+Ze
+QE
 bK
-bK
-bK
+Vx
+Vx
 Yf
 Yf
 Yf
@@ -11382,7 +11725,7 @@ eq
 eq
 cm
 eq
-ue
+eq
 NM
 MF
 mZ
@@ -11445,13 +11788,13 @@ nw
 nw
 nw
 nw
-nw
-nw
-nw
-nw
-nw
-bK
-ev
+Vx
+Yf
+Yf
+ee
+ee
+ee
+ee
 jZ
 cC
 Ze
@@ -11506,13 +11849,13 @@ eq
 eq
 Rd
 NM
-Ud
+rf
 MF
 MF
 bE
 bE
 bE
-bE
+Dk
 nO
 Ud
 MF
@@ -11567,19 +11910,19 @@ nw
 nw
 nw
 nw
-nw
-nw
-nw
-nw
-nw
-bK
-ee
+Vx
+Yf
+Yf
+LH
+gf
+LH
+JY
 bI
 cC
 Ze
 yR
 bI
-ee
+cC
 bK
 og
 To
@@ -11689,19 +12032,19 @@ nw
 nw
 nw
 nw
-nw
-nw
-nw
-nw
-nw
+Vx
+Yf
+Yf
 bK
-oo
+bK
+bK
+eQ
 ee
 Wi
 Ze
 eQ
 ee
-oo
+Wi
 bK
 kp
 Yf
@@ -11811,19 +12154,19 @@ nw
 nw
 nw
 nw
-nw
-nw
-nw
-nw
-nw
+Vx
+Ub
+Yf
+Vx
+Vx
 bK
-oo
+eQ
 ee
 Wi
 Ze
 eQ
 ee
-oo
+Wi
 bK
 Jd
 Yf
@@ -11933,19 +12276,19 @@ nw
 nw
 nw
 nw
-nw
-nw
-nw
-nw
-nw
+Vx
+Yf
+Yf
+Vx
+Vx
 bK
-oo
+eY
 bT
 cG
 Ze
 eY
 bT
-oo
+cG
 bK
 kt
 Yf
@@ -12055,11 +12398,11 @@ nw
 nw
 nw
 nw
-nw
-nw
-nw
-nw
-nw
+Vx
+Yf
+Yf
+Vx
+Vx
 bK
 bK
 bK
@@ -12103,8 +12446,8 @@ Yf
 VS
 VS
 VS
-VS
-VS
+UK
+GM
 VS
 Ie
 Yf
@@ -12116,7 +12459,7 @@ eq
 eq
 Rd
 NM
-Ud
+rf
 MF
 MF
 bE
@@ -12174,16 +12517,16 @@ nw
 nw
 "}
 (46,1,1) = {"
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
+ak
+ak
+ak
+ak
+Ib
+Wl
+ak
+ak
+ak
+ak
 XI
 dc
 dD
@@ -12225,8 +12568,8 @@ Yf
 VS
 RP
 Dm
-Dm
-Dm
+UK
+UK
 SF
 Ie
 SX
@@ -12236,7 +12579,7 @@ eq
 eq
 eq
 eq
-OT
+eq
 NM
 MF
 mZ
@@ -12296,16 +12639,16 @@ nw
 nw
 "}
 (47,1,1) = {"
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
+ak
+dS
+tU
+zG
+Ih
+Yq
+eW
+Bh
+yy
+ak
 XI
 EM
 Qv
@@ -12349,7 +12692,7 @@ UK
 UK
 UK
 UK
-UK
+mT
 Ie
 SX
 gS
@@ -12418,16 +12761,16 @@ nw
 nw
 "}
 (48,1,1) = {"
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
+ak
+ev
+tV
+AJ
+tV
+AJ
+tV
+AJ
+rP
+ak
 XI
 EM
 dM
@@ -12471,7 +12814,7 @@ UK
 UK
 UK
 yf
-UK
+mT
 Ie
 tN
 IR
@@ -12540,16 +12883,16 @@ nw
 nw
 "}
 (49,1,1) = {"
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
+ak
+eH
+ue
+AU
+ue
+RH
+ue
+RH
+Lk
+ak
 XI
 EM
 dT
@@ -12662,16 +13005,16 @@ nw
 nw
 "}
 (50,1,1) = {"
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
+ak
+gh
+vg
+gh
+Jg
+Jg
+yy
+Ih
+yy
+ak
 XI
 df
 dU
@@ -12694,7 +13037,7 @@ DO
 DO
 XO
 QO
-Hm
+St
 zk
 go
 Yf
@@ -12784,16 +13127,16 @@ nw
 nw
 "}
 (51,1,1) = {"
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
+ak
+hM
+zq
+hM
+Jg
+Jg
+qF
+uI
+qF
+ak
 XI
 CJ
 CJ
@@ -12849,7 +13192,7 @@ cz
 QZ
 mZ
 mZ
-mZ
+jx
 mZ
 mZ
 mZ
@@ -12906,16 +13249,16 @@ nw
 nw
 "}
 (52,1,1) = {"
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
+ak
+io
+tU
+Bh
+tU
+Bh
+tU
+Bh
+kL
+ak
 XI
 nu
 CJ
@@ -13028,16 +13371,16 @@ nw
 nw
 "}
 (53,1,1) = {"
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
+ak
+lE
+tV
+BP
+tV
+BP
+tV
+BP
+rP
+ak
 XI
 CJ
 CJ
@@ -13094,7 +13437,7 @@ mZ
 mZ
 mZ
 mZ
-mZ
+jU
 mZ
 mZ
 nO
@@ -13150,16 +13493,16 @@ nw
 nw
 "}
 (54,1,1) = {"
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
+ak
+mg
+ue
+DP
+ue
+RH
+Oz
+kU
+rP
+ak
 XI
 dc
 dZ
@@ -13210,13 +13553,13 @@ ng
 ng
 ng
 ng
-gS
+xG
 QZ
 mZ
-mZ
-mZ
-mZ
-mZ
+xK
+xK
+xK
+WC
 mZ
 mZ
 nO
@@ -13272,17 +13615,17 @@ nw
 nw
 "}
 (55,1,1) = {"
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-XI
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+IM
+Ru
+Ma
+Ma
 EM
 ef
 Xw
@@ -13335,7 +13678,7 @@ ng
 wC
 QZ
 mZ
-mZ
+xK
 mZ
 mZ
 mZ
@@ -13394,17 +13737,17 @@ nw
 nw
 "}
 (56,1,1) = {"
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-XI
+Ma
+mh
+mh
+mh
+Jx
+mh
+mh
+Vl
+Vl
+XB
+Ma
 EM
 dM
 fD
@@ -13516,17 +13859,17 @@ nw
 nw
 "}
 (57,1,1) = {"
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-XI
+Ma
+mu
+Vl
+Vl
+Vl
+Vl
+Vl
+Vl
+Vl
+Gr
+Ma
 EM
 eh
 fT
@@ -13638,17 +13981,17 @@ nw
 nw
 "}
 (58,1,1) = {"
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-XI
+Ma
+oo
+Vl
+Vl
+Vl
+Vl
+Vl
+Vl
+Vl
+oo
+Ma
 df
 ep
 ep
@@ -13693,7 +14036,7 @@ er
 Ui
 QZ
 Ns
-qV
+Fu
 CA
 PM
 ng
@@ -13701,14 +14044,14 @@ ng
 PQ
 QZ
 mZ
+jx
 mZ
 mZ
 mZ
 mZ
 mZ
 mZ
-mZ
-mZ
+jx
 zN
 xn
 MR
@@ -13760,16 +14103,17 @@ nw
 nw
 "}
 (59,1,1) = {"
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
+Ma
+oo
+Vl
+Vl
+Vl
+Vl
+Vl
+Vl
+Vl
+oo
+Ma
 XI
 XI
 XI
@@ -13777,9 +14121,8 @@ XI
 XI
 XI
 XI
-XI
-XI
-XI
+nu
+CJ
 XI
 mS
 nH
@@ -13882,26 +14225,26 @@ nw
 nw
 "}
 (60,1,1) = {"
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
+Ma
+rR
+Vl
+Vl
+Vl
+Vl
+Vl
+Vl
+Vl
+Vl
+YC
+CJ
+CJ
+CJ
+CJ
+CJ
+CJ
+CJ
+CJ
+CJ
 XI
 XI
 XI
@@ -14004,29 +14347,29 @@ nw
 nw
 "}
 (61,1,1) = {"
+Ma
+oo
+oo
+oo
+NN
+oo
+oo
+oo
+Vl
+Fe
+Vl
+CJ
+CJ
+Kj
+CJ
+CJ
+CJ
+Kj
+CJ
+CJ
+XI
 nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-ak
+XI
 XI
 CJ
 CJ
@@ -14126,29 +14469,29 @@ nw
 nw
 "}
 (62,1,1) = {"
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+Ma
+XI
+XI
+XI
+XI
+XI
+XI
+XI
+XI
+XI
+XI
 nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-nw
-ak
+XI
 PG
 CJ
 CJ
@@ -14270,7 +14613,7 @@ nw
 nw
 nw
 nw
-ak
+XI
 nu
 CJ
 CJ
@@ -14392,7 +14735,7 @@ nw
 nw
 nw
 nw
-ak
+XI
 sf
 CJ
 CJ
@@ -14514,7 +14857,7 @@ nw
 nw
 nw
 nw
-ak
+XI
 XI
 CJ
 CJ
@@ -14792,7 +15135,7 @@ dw
 fh
 Ui
 nw
-nw
+MR
 MR
 MR
 nO
@@ -14873,7 +15216,7 @@ cr
 XQ
 mP
 mP
-LP
+pV
 qI
 Po
 Po
@@ -14914,7 +15257,7 @@ HW
 Ui
 Ui
 nw
-nw
+MR
 MR
 MR
 zN
@@ -15035,8 +15378,8 @@ sT
 KG
 hD
 Ui
-nw
-nw
+MR
+MR
 MR
 MR
 zN
@@ -15157,8 +15500,8 @@ mL
 mL
 uV
 Ui
-nw
-nw
+MR
+MR
 MR
 MR
 zN
@@ -15279,15 +15622,15 @@ mL
 mL
 Qi
 Ui
-nw
-nw
+MR
+MR
 MR
 MR
 zN
 PS
 mN
 PS
-PS
+TH
 hQ
 Vr
 PS
@@ -15402,7 +15745,7 @@ mL
 Zo
 Ui
 nw
-nw
+MR
 MR
 MR
 zN
@@ -15524,7 +15867,7 @@ Xi
 ob
 Ui
 nw
-nw
+MR
 MR
 hA
 zN
@@ -15599,7 +15942,7 @@ nw
 nw
 nw
 Po
-XQ
+Kq
 XQ
 XQ
 mP
@@ -15646,7 +15989,7 @@ Ui
 Ui
 Ui
 nw
-nw
+MR
 MR
 MR
 zN
@@ -15727,7 +16070,7 @@ pp
 mP
 XQ
 XQ
-pp
+wk
 hm
 qI
 Po
@@ -16023,7 +16366,7 @@ Rb
 PS
 Rb
 PS
-PS
+TH
 qt
 PS
 zN
@@ -16709,7 +17052,7 @@ Vv
 qK
 Wc
 Ln
-Vv
+wu
 Po
 Po
 nw
@@ -16816,7 +17159,7 @@ nw
 Po
 Po
 vW
-Vv
+tu
 pK
 Vv
 Vv
@@ -16942,7 +17285,7 @@ uF
 Of
 pK
 pK
-pK
+gi
 qI
 XQ
 XQ
