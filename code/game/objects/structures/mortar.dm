@@ -71,7 +71,24 @@
 			coords["dial_x"] = clamp(text2num(params["dial_one"]), 0, 10)
 		if("change_dial_y")
 			coords["dial_y"] = clamp(text2num(params["dial_two"]), 0, 10)
+		if("set_saved_coord_one")
+			coords = get_new_list("coords_one")
+		if("set_saved_coord_two")
+			coords = get_new_list("coords_two")
+		if("set_saved_coord_three")
+			coords = get_new_list("coords_three")
 
+/obj/structure/mortar/proc/get_new_list(var/string)
+	var/list/target_data = list()
+	if(string == "coords_three")
+		target_data.Add(last_three_inputs["coords_three"])
+	if(string == "coords_two")
+		target_data.Add(last_three_inputs["coords_two"])
+	if(string == "coords_one")
+		target_data.Add(last_three_inputs["coords_one"])
+	if(string == "coords")
+		target_data.Add(coords)
+	return target_data
 /obj/structure/mortar/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
@@ -131,9 +148,9 @@
 
 		busy = FALSE
 
-		last_three_inputs[3] = last_three_inputs[2]
-		last_three_inputs[2] = last_three_inputs[1]
-		last_three_inputs[1] = coords
+		last_three_inputs["coords_three"] = get_new_list("coords_two")
+		last_three_inputs["coords_two"] = get_new_list("coords_one")
+		last_three_inputs["coords_one"] = get_new_list("coords")
 		
 		user.visible_message("<span class='notice'>[user] loads \a [mortar_shell.name] into [src].</span>",
 		"<span class='notice'>You load \a [mortar_shell.name] into [src].</span>")

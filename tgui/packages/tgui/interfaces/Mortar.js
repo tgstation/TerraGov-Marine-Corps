@@ -9,9 +9,8 @@ export const Mortar = (props, context) => {
     Y,
     D1,
     D2,
-   
+    last_three_inputs,
   } = data;
-  var firstcoords = data.last_three_inputs[0] || [];
   return (
     <Window
       resizable>
@@ -84,53 +83,63 @@ export const Mortar = (props, context) => {
           <Flex.Item>
             <Table justify = "space-evenly">
               <Table.Row>
-                <Table.Cell bold>
-                  Button
+                <Table.Cell>
+                  <Button
+                    content = "Select Coordinates:"
+                    onClick = {() => act("set_saved_coord_one")}>
+                  </Button>
                 </Table.Cell>
                 <Table.Cell> 
+                  {last_three_inputs["coords_one"]["targ_x"]}
                 </Table.Cell>
                 <Table.Cell>
-                  coordy
+                  {last_three_inputs["coords_one"]["targ_y"]}
                 </Table.Cell>
                 <Table.Cell>
-                  dialx
+                  {last_three_inputs["coords_one"]["dial_x"]}
                 </Table.Cell>
                 <Table.Cell>
-                  dialy
+                  {last_three_inputs["coords_one"]["dial_y"]}
                 </Table.Cell>
               </Table.Row>
               <Table.Row>
-                <Table.Cell bold>
-                  Button
+                <Table.Cell>
+                  <Button
+                    content = "Select Coordinates:"
+                    onClick = {() => act("set_saved_coord_two")}>
+                  </Button>
                 </Table.Cell>
                 <Table.Cell>
-                  coordx
+                  {last_three_inputs["coords_two"]["targ_x"]}
                 </Table.Cell>
                 <Table.Cell>
-                  coordy
+                  {last_three_inputs["coords_two"]["targ_y"]}
                 </Table.Cell>
                 <Table.Cell>
-                  dialx
+                  {last_three_inputs["coords_two"]["dial_x"]}
                 </Table.Cell>
                 <Table.Cell>
-                  dialy
+                  {last_three_inputs["coords_two"]["dial_y"]}
                 </Table.Cell>
               </Table.Row>
               <Table.Row>
-                <Table.Cell bold>
-                  Button
+                <Table.Cell>
+                  <Button
+                    content = "Select Coordinates:"
+                    onClick = {() => act("set_saved_coord_three")}>
+                  </Button>
                 </Table.Cell>
                 <Table.Cell>
-                  coordx
+                  {last_three_inputs["coords_three"]["targ_x"]}
                 </Table.Cell>
                 <Table.Cell>
-                  coordy
+                  {last_three_inputs["coords_three"]["targ_y"]}
                 </Table.Cell>
                 <Table.Cell>
-                  dialx
+                  {last_three_inputs["coords_three"]["dial_x"]}
                 </Table.Cell>
                 <Table.Cell>
-                  dialy
+                  {last_three_inputs["coords_three"]["dial_y"]}
                 </Table.Cell>
               </Table.Row>
             </Table>
