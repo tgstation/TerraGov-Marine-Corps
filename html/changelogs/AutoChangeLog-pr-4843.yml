@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - rscadd: "Plasteel cades can be linked with a crowbar"
-  - code_imp: "Minor cade refactor"

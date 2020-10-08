@@ -1,4 +1,0 @@
-author: "Wayland-Smithy"
-delete-after: True
-changes: 
-  - bugfix: "Fixed Xenos that are taken over while ventcrawling being stuck resting and unable to stop resting/move."
