@@ -89,6 +89,13 @@
 	if(string == "coords")
 		target_data.Add(coords)
 	return target_data
+
+/obj/structure/mortar/proc/check_bombard_spam()
+	var/list/temp = get_new_list("coords")
+	for(var/i in temp)
+		if(!(last_three_inputs["coords_one"][i] == temp[i]) && !(last_three_inputs["coords_two"][i] == temp[i]) && !(last_three_inputs["coords_three"][i] == temp[i]))
+			return FALSE
+	return TRUE
 /obj/structure/mortar/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
@@ -147,11 +154,11 @@
 			return
 
 		busy = FALSE
+		if(!check_bombard_spam())
+			last_three_inputs["coords_three"] = get_new_list("coords_two")
+			last_three_inputs["coords_two"] = get_new_list("coords_one")
+			last_three_inputs["coords_one"] = get_new_list("coords")
 
-		last_three_inputs["coords_three"] = get_new_list("coords_two")
-		last_three_inputs["coords_two"] = get_new_list("coords_one")
-		last_three_inputs["coords_one"] = get_new_list("coords")
-		
 		user.visible_message("<span class='notice'>[user] loads \a [mortar_shell.name] into [src].</span>",
 		"<span class='notice'>You load \a [mortar_shell.name] into [src].</span>")
 		visible_message("[icon2html(src, viewers(src))] <span class='danger'>The [name] fires!</span>")
