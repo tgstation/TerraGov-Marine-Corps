@@ -16508,6 +16508,7 @@
 /area/sulaco/showers)
 "qWq" = (
 /obj/structure/closet/walllocker/emerglocker,
+/obj/structure/closet/secure_closet/staff_officer,
 /turf/open/floor/prison/red/full,
 /area/sulaco/bridge)
 "qWI" = (
@@ -17019,6 +17020,7 @@
 /area/sulaco/maintenance/north_solar_maint)
 "soQ" = (
 /obj/structure/cable,
+/obj/structure/closet/secure_closet/staff_officer,
 /turf/open/floor/prison/red/full{
 	dir = 1
 	},
