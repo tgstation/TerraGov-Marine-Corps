@@ -324,6 +324,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 
 
 /datum/game_mode/proc/grant_eord_respawn(datum/dcs, mob/source)
+	SIGNAL_HANDLER
 	source.verbs += /mob/proc/eord_respawn
 
 /datum/game_mode/proc/end_of_round_deathmatch()

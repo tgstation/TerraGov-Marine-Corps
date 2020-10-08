@@ -132,21 +132,25 @@
 
 
 /mob/verb/eastface()
+	SIGNAL_HANDLER
 	set hidden = 1
 	return facedir(EAST)
 
 
 /mob/verb/westface()
+	SIGNAL_HANDLER
 	set hidden = 1
 	return facedir(WEST)
 
 
 /mob/verb/northface()
+	SIGNAL_HANDLER
 	set hidden = 1
 	return facedir(NORTH)
 
 
 /mob/verb/southface()
+	SIGNAL_HANDLER
 	set hidden = 1
 	return facedir(SOUTH)
 

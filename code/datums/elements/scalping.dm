@@ -7,6 +7,7 @@
 	UnregisterSignal(source, COMSIG_ITEM_ATTACK)
 
 /datum/element/scalping/proc/on_attack(datum/source, mob/living/M, mob/living/user)
+	SIGNAL_HANDLER_DOES_SLEEP
 	if(!isxeno(M) || (M.stat != DEAD))
 		return NONE
 	if(M.a_intent == INTENT_HARM)

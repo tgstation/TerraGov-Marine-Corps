@@ -59,6 +59,7 @@
 	RegisterSignal(parent, COMSIG_PARENT_QDELETING, .proc/on_parent_del)
 
 /mob/living/simple_animal/hostile/illusion/proc/on_parent_del()
+	SIGNAL_HANDLER
 	parent = null
 
 /mob/living/simple_animal/hostile/illusion/Destroy()

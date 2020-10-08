@@ -46,6 +46,7 @@
 // *********** Gibbing behaviour
 // ***************************************
 /mob/living/carbon/xenomorph/boiler/proc/gib_explode()
+	SIGNAL_HANDLER
 	visible_message("<span class='danger'>[src] begins to bulge grotesquely, and explodes in a cloud of corrosive gas!</span>")
 	smoke.set_up(2, get_turf(src))
 	smoke.start()

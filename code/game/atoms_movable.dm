@@ -876,6 +876,8 @@
 
 
 /atom/movable/proc/resisted_against(datum/source) //COMSIG_LIVING_DO_RESIST
+	SIGNAL_HANDLER_DOES_SLEEP
+
 	var/mob/resisting_mob = source
 	if(resisting_mob.restrained(RESTRAINED_XENO_NEST))
 		return FALSE

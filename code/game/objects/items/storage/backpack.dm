@@ -613,12 +613,14 @@
 		camo_off(user)
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/damage_taken(datum/source, damage)
+	SIGNAL_HANDLER
 	var/mob/living/carbon/human/wearer = source
 	if(damage >= 15)
 		to_chat(wearer, "<span class='danger'>Your cloak shimmers from the damage!</span>")
 		apply_shimmer()
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/action_taken() //This is used by multiple signals passing different parameters.
+	SIGNAL_HANDLER
 	to_chat(wearer, "<span class='danger'>Your cloak shimmers from your actions!</span>")
 	apply_shimmer()
 

@@ -45,6 +45,7 @@
 
 
 /atom/proc/attackby(obj/item/I, mob/user, params)
+	SIGNAL_HANDLER_DOES_SLEEP
 	add_fingerprint(user, "attackby", I)
 	if(SEND_SIGNAL(src, COMSIG_PARENT_ATTACKBY, I, user, params) & COMPONENT_NO_AFTERATTACK)
 		return TRUE

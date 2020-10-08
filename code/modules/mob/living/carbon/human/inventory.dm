@@ -1,4 +1,5 @@
 /mob/living/carbon/human/proc/do_quick_equip()
+	SIGNAL_HANDLER_DOES_SLEEP
 	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
 
 	if(incapacitated() || lying_angle || istype(loc, /obj/vehicle/multitile/root/cm_armored))
