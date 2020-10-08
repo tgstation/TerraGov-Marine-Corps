@@ -97,7 +97,9 @@
 	GLOB.offered_mob_list -= src
 	SSmobs.stop_processing(src)
 	job = null
-	return ..()
+	. = ..()
+	hard_armor = null
+	soft_armor = null
 
 
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
