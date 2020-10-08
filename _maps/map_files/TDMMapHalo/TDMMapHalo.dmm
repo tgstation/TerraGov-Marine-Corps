@@ -471,9 +471,6 @@
 	pixel_x = 7;
 	pixel_y = 3
 	},
-/obj/machinery/light{
-	dir = 8
-	},
 /turf/open/floor/tile/dark/red2,
 /area/swordbase/ground/checkpoint)
 "dZ" = (
@@ -891,13 +888,6 @@
 	dir = 8
 	},
 /area/swordbase/ground/armory)
-"gX" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/vending/marineFood,
-/turf/open/floor/tile/dark,
-/area/swordbase/ground/mainhall)
 "hb" = (
 /obj/structure/barricade/metal{
 	dir = 8
@@ -940,6 +930,9 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
@@ -948,13 +941,6 @@
 /obj/effect/decal/warning_stripes/thick,
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/maingate)
-"hu" = (
-/obj/structure/table/mainship,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/swordbase/ground/mainhall)
 "hA" = (
 /obj/structure/flora/desert/grass,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -980,14 +966,6 @@
 	dir = 4
 	},
 /area/swordbase/ground/cryogenics)
-"hJ" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/tile/dark/brown2{
-	dir = 1
-	},
-/area/swordbase/ground/armory)
 "hK" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/corpsespawner/scientist,
@@ -1738,13 +1716,6 @@
 /obj/machinery/light,
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
-"np" = (
-/obj/machinery/door/airlock/mainship/secure/free_access{
-	dir = 1;
-	name = "\improper Janitor's Closet"
-	},
-/turf/open/swordbase/snowstone,
-/area/swordbase/ground/janitor_closet)
 "nq" = (
 /obj/machinery/light{
 	dir = 1
@@ -3090,14 +3061,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall/r_wall/prison,
 /area/swordbase/ground/inniecave)
-"yE" = (
-/obj/machinery/button/door{
-	id = "lower main gate";
-	name = "Lower Main Gate Control";
-	pixel_y = -3
-	},
-/turf/closed/wall/r_wall/prison,
-/area/swordbase/ground/checkpoint)
 "yF" = (
 /turf/open/floor/tile/dark/green2{
 	dir = 8
@@ -3326,16 +3289,7 @@
 /area/mainship/shipboard/brig)
 "AH" = (
 /obj/structure/table/reinforced,
-/obj/machinery/button/door{
-	id = "lower main gate";
-	name = "Lower Main Gate Control";
-	pixel_y = -3
-	},
-/obj/machinery/button/door{
-	id = "upper main gate";
-	name = "Upper Main Gate Control";
-	pixel_y = 8
-	},
+/obj/machinery/light,
 /turf/open/floor/tile/dark/red2{
 	dir = 10
 	},
@@ -8300,7 +8254,7 @@ nw
 nw
 nw
 XL
-hJ
+GK
 ZO
 ZO
 ZO
@@ -8422,7 +8376,7 @@ nw
 nw
 nw
 XL
-hJ
+GK
 ZO
 ZO
 ZO
@@ -8927,8 +8881,8 @@ zr
 Yf
 hg
 hg
-gX
-Yf
+hg
+zr
 Oe
 WB
 WB
@@ -9052,13 +9006,13 @@ Yf
 Yf
 Yf
 Yf
-zr
+Vx
 Yf
 Yf
 Yf
 Yf
 Yf
-Yf
+Vx
 HX
 ja
 YN
@@ -9296,13 +9250,13 @@ Yf
 Yf
 Yf
 Yf
-Yf
-Yf
-Rq
-Yf
+Vx
 Yf
 Rq
 Yf
+Yf
+Rq
+Vx
 Or
 PJ
 Sc
@@ -9781,7 +9735,7 @@ kt
 Yf
 Yf
 Yf
-Yf
+Vx
 GF
 yp
 DQ
@@ -9903,7 +9857,7 @@ Jd
 Yf
 zo
 zo
-zo
+Vx
 yp
 uJ
 Ea
@@ -10022,10 +9976,10 @@ Yf
 Yf
 Vx
 pf
-Yf
+Rq
 NF
 BQ
-hu
+Vx
 uJ
 BJ
 Em
@@ -10415,7 +10369,7 @@ Yf
 Wh
 Os
 QY
-QY
+Wh
 Wh
 ZK
 fu
@@ -11728,7 +11682,7 @@ Yf
 Yf
 Yf
 Yf
-np
+Af
 Xv
 Xv
 jE
@@ -12500,7 +12454,7 @@ Ku
 Ku
 zR
 AH
-yE
+QZ
 mZ
 mZ
 mZ

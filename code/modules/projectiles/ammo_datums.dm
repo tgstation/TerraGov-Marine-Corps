@@ -1715,7 +1715,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
-	damage = 40
+	damage = 60
 	damage_falloff = 4
 	penetration = 0
 
