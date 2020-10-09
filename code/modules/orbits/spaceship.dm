@@ -8,6 +8,9 @@
 
 #define REQUIRED_POWER_AMOUNT 250000
 
+#define AUTHORIZED 		1
+#define AUTHORIZED_PLUS	2
+
 //so we can use the current orbit in other files
 GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 
@@ -22,7 +25,7 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 	anchored = TRUE
 	idle_power_usage = 10
 	var/changing_orbit = FALSE
-	var/authenticated = 0
+	var/authenticated = FALSE
 	var/shorted = FALSE
 	var/aidisabled = FALSE
 
@@ -114,25 +117,25 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 
 	if(href_list["login"])
 		if(isAI(usr))
-			authenticated = 2
+			authenticated = AUTHORIZED_PLUS
 			updateUsrDialog()
 			return
 		var/mob/living/carbon/human/C = usr
 		var/obj/item/card/id/I = C.get_active_held_item()
 		if(istype(I))
 			if(check_access(I))
-				authenticated = 1
+				authenticated = AUTHORIZED
 			if(ACCESS_MARINE_BRIDGE in I.access)
-				authenticated = 2
+				authenticated = AUTHORIZED_PLUS
 		else
 			I = C.wear_id
 			if(istype(I))
 				if(check_access(I))
-					authenticated = 1
+					authenticated = AUTHORIZED
 				if(ACCESS_MARINE_BRIDGE in I.access)
-					authenticated = 2
+					authenticated = AUTHORIZED_PLUS
 	if(href_list["logout"])
-		authenticated = 0
+		authenticated = FALSE
 
 	if (href_list["UP"])
 		message_admins("[ADMIN_TPMONTY(usr)] Has sent the ship Upward in orbit")
