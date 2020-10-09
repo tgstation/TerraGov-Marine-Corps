@@ -9,7 +9,9 @@
 	anchored = TRUE
 	density = TRUE
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
+	/// list of the target x and y, and the dialing we can do to them
 	var/list/coords = list("targ_x" = 0, "targ_y" = 0, "dial_x" = 0, "dial_y" = 0)
+	/// saved last three inputs that were actually used to fire a round
 	var/list/last_three_inputs = list(
 		"coords_one" = list("targ_x" = 0, "targ_y" = 0, "dial_x" = 0, "dial_y" = 0),
 		"coords_two" = list("targ_x" = 0, "targ_y" = 0, "dial_x" = 0, "dial_y" = 0),
@@ -83,6 +85,10 @@
 		"<span class='notice'>You adjust [src]'s firing angle and distance to match the new coordinates.</span>")
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
+/*
+* this proc is used because pointers suck and references would break the saving of coordinates.
+*
+*/
 /obj/structure/mortar/proc/get_new_list(str)
 	var/list/target_data = list()
 	switch(str)
@@ -96,6 +102,10 @@
 			target_data.Add(coords)
 	return target_data
 
+/*
+* checks if we are entering in the exact same coordinates, 
+* and does not save them again.
+*/
 /obj/structure/mortar/proc/check_bombard_spam()
 	var/list/temp = get_new_list("coords")
 	for(var/i in temp)
@@ -162,6 +172,7 @@
 
 		busy = FALSE
 		if(!check_bombard_spam())
+			// rotate the coordinates, removing the last, and adding the new one.
 			last_three_inputs["coords_three"] = get_new_list("coords_two")
 			last_three_inputs["coords_two"] = get_new_list("coords_one")
 			last_three_inputs["coords_one"] = get_new_list("coords")
