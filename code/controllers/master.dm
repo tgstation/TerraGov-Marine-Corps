@@ -596,7 +596,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 /// Warns us that the end of tick byond map_update will be laggier then normal, so that we can just skip running subsystems this tick.
 /datum/controller/master/proc/laggy_byond_map_update_incoming()
 	if (!skip_ticks)
-		skip_ticks = 1
+		skip_ticks = TRUE
 
 
 /datum/controller/master/stat_entry(msg)
