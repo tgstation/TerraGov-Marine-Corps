@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - rscadd: "LV domes and hydro roads are now modularily mapped"
+  - tweak: "the internal affairs dome blue disk has been moved to engineering"
