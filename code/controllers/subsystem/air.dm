@@ -3,7 +3,7 @@ SUBSYSTEM_DEF(air)
 	init_order = INIT_ORDER_AIR
 	priority = FIRE_PRIORITY_AIR
 	wait = 2.5 SECONDS
-	flags = SS_NO_FIRE
+	flags = SS_NO_FIRE|SS_BACKGROUND
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 
 	var/list/networks = list()
