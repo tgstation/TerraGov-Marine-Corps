@@ -6,6 +6,8 @@
 #define CLOSE_ORBIT 		2
 #define SKIM_ATMOSPHERE 	1
 
+#define REQUIRED_POWER_AMOUNT 250000
+
 //so we can use the current orbit in other files
 GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 
@@ -85,7 +87,7 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 		dat += "<br><center><h3>[GLOB.orbital_mechanics.current_orbit]</h3></center>" //display the current orbit level
 		dat += "<br><center>Power Level: [get_power_amount()]|Engines prepared: [can_change_orbit(silent = TRUE) ? "Ready" : "Recalculating"]</center>" //display ship nav stats, power level, cooldown.
 
-		if(get_power_amount() >= 250000) //some arbitrary number
+		if(get_power_amount() >= REQUIRED_POWER_AMOUNT)
 			dat += "<center><b><a href='byond://?src=\ref[src];UP=1'>Increase orbital level</a>|" //move farther away, current_orbit++
 			dat += "<a href='byond://?src=[REF(src)];DOWN=1'>Decrease orbital level</a>|" //move closer in, current_orbit--
 		else
