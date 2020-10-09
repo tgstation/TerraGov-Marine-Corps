@@ -221,7 +221,10 @@
 		ammo_equipped = null
 		update_icon()
 		return TRUE //emptied or removed dropship ammo
-	else if(!current_acid && !(dropship_equipment_flags & IS_NOT_REMOVABLE))
+	else if(dropship_equipment_flags & IS_NOT_REMOVABLE)
+		to_chat(user, "<span class='notice'>You cannot remove [src]!</span>")
+		return FALSE
+	else if(!current_acid)
 		playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
 		var/duration_time = ship_base ? 70 : 10 //uninstalling equipment takes more time
 		if(!do_after(user, duration_time, FALSE, src, BUSY_ICON_BUILD))
@@ -694,7 +697,7 @@
 
 /obj/structure/dropship_equipment/weapon/heavygun/radial_cas
 	name = "Condor Jet Radial minigun"
-	dropship_equipment_flags = IS_NOT_REMOVABLE
+	dropship_equipment_flags = USES_AMMO|IS_WEAPON|IS_INTERACTABLE|IS_NOT_REMOVABLE
 
 /obj/structure/dropship_equipment/weapon/heavygun/radial_cas/Initialize()
 	. = ..()
