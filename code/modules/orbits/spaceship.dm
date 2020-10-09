@@ -12,11 +12,7 @@
 #define AUTHORIZED_PLUS	2
 
 //so we can use the current orbit in other files
-GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
-
-//just in case people want to add other ways of changing how the round feels
-/datum/orbital_mechanics
-	var/current_orbit = 3
+GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 
 /obj/machinery/computer/navigation
 	name = "\improper Helms computer"
@@ -87,7 +83,7 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 		dat += "<BR>\[ <A HREF='?src=\ref[src];logout=1'>LOG OUT</A> \]"
 		dat += "<center><h4>[SSmapping.configs[SHIP_MAP].map_name]</h4></center>"//get the current ship map name
 
-		dat += "<br><center><h3>[GLOB.orbital_mechanics.current_orbit]</h3></center>" //display the current orbit level
+		dat += "<br><center><h3>[GLOB.current_orbit]</h3></center>" //display the current orbit level
 		dat += "<br><center>Power Level: [get_power_amount()]|Engines prepared: [can_change_orbit(silent = TRUE) ? "Ready" : "Recalculating"]</center>" //display ship nav stats, power level, cooldown.
 
 		if(get_power_amount() >= REQUIRED_POWER_AMOUNT)
@@ -97,7 +93,7 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 			dat += "<center><h4>Insufficient Power Reserves to change orbit"
 			dat += "<br>"
 
-		if(GLOB.orbital_mechanics.current_orbit == ESCAPE_VELOCITY)
+		if(GLOB.current_orbit == ESCAPE_VELOCITY)
 			dat += "<center><h4><a href='byond://?src=[REF(src)];escape=1'>RETREAT</a>" //big ol red escape button. ends round after X MINUTES
 
 		dat += "</b></center>"
@@ -161,7 +157,7 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 
 
 /obj/machinery/computer/navigation/proc/do_orbit_checks(direction)
-	var/current_orbit = GLOB.orbital_mechanics.current_orbit
+	var/current_orbit = GLOB.current_orbit
 
 	if(!can_change_orbit(current_orbit, direction))
 		return
@@ -221,7 +217,7 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 	if(direction == "DOWN")
 		current_orbit--
 
-	GLOB.orbital_mechanics.current_orbit = current_orbit
+	GLOB.current_orbit = current_orbit
 	changing_orbit = FALSE
 	engine_shudder()
 
