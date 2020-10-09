@@ -137,7 +137,7 @@
 			return
 
 		var/turf/selfown = locate((coords["targ_x"] + coords["dial_x"]), (coords["targ_y"] + coords["dial_y"]), z)
-		if(get_dist(loc, selfown) < 10)
+		if(get_dist(loc, selfown) < 7)
 			to_chat(usr, "<span class='warning'>You cannot target this coordinate, it is too close to your mortar.</span>")
 			return		
 
