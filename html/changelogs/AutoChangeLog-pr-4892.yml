@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - rscadd: "The ship will now creak during large explosions on it"
-  - rscadd: "More varied distant explosion sounds"

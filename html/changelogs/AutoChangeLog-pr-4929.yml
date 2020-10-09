@@ -1,5 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes: 
-  - rscadd: "Added a generic rpg"
-  - bugfix: "fixed the ability to load ap/wp/he sadar rockets in other rpgs"
