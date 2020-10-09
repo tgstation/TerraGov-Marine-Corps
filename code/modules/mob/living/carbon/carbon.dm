@@ -10,14 +10,16 @@
 	if(isxeno(loc))
 		var/mob/living/carbon/xenomorph/devourer = loc
 		devourer.do_regurgitate(src)
-	if(back)
-		QDEL_NULL(back)
-	if(internal)
-		QDEL_NULL(internal)
-	if(handcuffed)
-		QDEL_NULL(handcuffed)
+	QDEL_NULL(back)
+	QDEL_NULL(internal)
+	QDEL_NULL(handcuffed)
 	. = ..()
 	species = null
+
+/mob/living/carbon/on_death()
+	if(species)
+		to_chat(src,"<b><span class='deadsay'><p style='font-size:1.5em'>[species.special_death_message]</p></span></b>")
+	return ..()
 
 /mob/living/carbon/Move(NewLoc, direct)
 	. = ..()

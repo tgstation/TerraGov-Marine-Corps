@@ -85,7 +85,7 @@
 #define MAX_COMMANDS_PER_KEY 5
 ///Max amount of keypress messages per second over two seconds before client is autokicked
 #define MAX_KEYPRESS_AUTOKICK 50
-///Length of held key rolling buffer
+///Length of held key buffer
 #define HELD_KEY_BUFFER_LENGTH 15
 ///Maximum keys allowed per keybind
 #define MAX_KEYS_PER_KEYBIND 3
@@ -122,3 +122,7 @@
 #define APICKER_PLAYER	"Cliented Mob"
 
 #define ADMIN_SPAWN_CAP 100
+
+// LOG BROWSE TYPES
+#define BROWSE_ROOT_ALL_LOGS 1
+#define BROWSE_ROOT_CURRENT_LOGS 2

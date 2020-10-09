@@ -179,7 +179,7 @@
 	..()
 	update_icon()
 
-///////// the conveyor control switch\\\\\\\\\
+///////// the conveyor control switch
 
 /obj/machinery/conveyor_switch
 

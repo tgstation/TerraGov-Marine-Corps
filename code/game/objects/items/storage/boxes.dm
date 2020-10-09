@@ -167,6 +167,13 @@
 	spawn_type = /obj/item/card/id
 	spawn_number = 7
 
+/obj/item/storage/box/ids/dogtag
+	name = "box of spare Dogtags"
+	desc = "Has so many empty Dogtags."
+	icon_state = "id"
+	spawn_type = /obj/item/card/id/dogtag
+	spawn_number = 7
+
 /obj/item/storage/box/handcuffs
 	name = "box of handcuffs"
 	desc = "A box full of handcuffs."

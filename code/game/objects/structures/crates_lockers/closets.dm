@@ -61,6 +61,7 @@
 	return
 
 /obj/structure/closet/proc/shuttle_crush()
+	SIGNAL_HANDLER
 	for(var/mob/living/L in contents)
 		L.gib()
 	for(var/atom/movable/AM in contents)
@@ -480,6 +481,7 @@
 
 
 /mob/living/proc/on_closet_dump(datum/source, obj/structure/closet/origin)
+	SIGNAL_HANDLER
 	SetStun(origin.closet_stun_delay)//Action delay when going out of a closet
 	if(!lying_angle && IsStun())
 		visible_message("<span class='warning'>[src] suddenly gets out of [origin]!</span>",

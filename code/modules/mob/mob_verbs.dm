@@ -88,9 +88,11 @@
 	set name = "EORD Respawn"
 	set category = "OOC"
 
-	if(stat != DEAD)
-		to_chat(src, "You can only use this when you're dead.")
-		return
+	if(isliving(usr))
+		var/mob/living/liver = usr
+		if(liver.health >= liver.health_threshold_crit)
+			to_chat(src, "You can only use this when you're dead or crit.")
+			return
 
 	var/list/spawn_types = pick(
 		500 ; /mob/living/carbon/human,
@@ -132,21 +134,25 @@
 
 
 /mob/verb/eastface()
+	SIGNAL_HANDLER
 	set hidden = 1
 	return facedir(EAST)
 
 
 /mob/verb/westface()
+	SIGNAL_HANDLER
 	set hidden = 1
 	return facedir(WEST)
 
 
 /mob/verb/northface()
+	SIGNAL_HANDLER
 	set hidden = 1
 	return facedir(NORTH)
 
 
 /mob/verb/southface()
+	SIGNAL_HANDLER
 	set hidden = 1
 	return facedir(SOUTH)
 

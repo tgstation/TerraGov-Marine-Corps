@@ -24,4 +24,5 @@
 	return FALSE
 
 /datum/keybinding/proc/intercept_mouse_special(datum/source)
+	SIGNAL_HANDLER
 	return COMSIG_MOB_CLICK_CANCELED

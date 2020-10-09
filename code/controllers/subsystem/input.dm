@@ -24,7 +24,8 @@ SUBSYSTEM_DEF(input)
 	"Any+UP" = "\"KeyUp \[\[*\]\]\"",
 	"Back" = "\".winset \\\"input.text=\\\"\\\"\\\"\"",
 	"Tab" = "\".winset \\\"input.focus=true ? map.focus=true : input.focus=true\\\"\"",
-	"Escape" = "\".winset \\\"input.text=\\\"\\\"\\\"\"")
+	"Escape" = "Reset-Held-Keys",
+	)
 
 
 /datum/controller/subsystem/input/proc/refresh_client_macro_sets()

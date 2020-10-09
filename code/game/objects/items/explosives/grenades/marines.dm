@@ -9,13 +9,11 @@
 	underslug_launchable = TRUE
 
 /obj/item/explosive/grenade/frag/prime()
-	explosion(loc, light_impact_range = 4)
+	explosion(loc, light_impact_range = 4, small_animation = TRUE)
 	qdel(src)
 
 /obj/item/explosive/grenade/frag/flamer_fire_act()
-	var/turf/T = loc
-	qdel(src)
-	explosion(T, light_impact_range = 4)
+	prime()
 
 
 
@@ -50,7 +48,7 @@
 	underslug_launchable = FALSE
 
 /obj/item/explosive/grenade/frag/PMC/prime()
-	explosion(loc, light_impact_range = 5)
+	explosion(loc, light_impact_range = 5, small_animation = TRUE)
 	qdel(src)
 
 
@@ -63,7 +61,7 @@
 	underslug_launchable = FALSE
 
 /obj/item/explosive/grenade/frag/m15/prime()
-	explosion(loc, light_impact_range = 5)
+	explosion(loc, light_impact_range = 5, small_animation = TRUE)
 	qdel(src)
 
 
@@ -81,7 +79,7 @@
 	underslug_launchable = FALSE
 
 /obj/item/explosive/grenade/frag/stick/prime()
-	explosion(loc, light_impact_range = 4)
+	explosion(loc, light_impact_range = 4, small_animation = TRUE)
 	del(src)
 
 
@@ -96,7 +94,7 @@
 	underslug_launchable = FALSE
 
 /obj/item/explosive/grenade/frag/upp/prime()
-	explosion(loc, light_impact_range = 4)
+	explosion(loc, light_impact_range = 4, small_animation = TRUE)
 	del(src)
 
 
@@ -108,7 +106,7 @@
 	underslug_launchable = FALSE
 
 /obj/item/explosive/grenade/frag/sectoid/prime()
-	explosion(loc, light_impact_range = 6)
+	explosion(loc, light_impact_range = 6)// no animation cus space tech and so
 	qdel(src)
 
 
