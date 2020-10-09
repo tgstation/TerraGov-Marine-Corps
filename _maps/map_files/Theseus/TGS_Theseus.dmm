@@ -35703,10 +35703,6 @@
 /obj/item/tool/lighter/zippo,
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
-"hcq" = (
-/obj/machinery/portable_atmospherics/hydroponics,
-/turf/open/floor/mainship/sterile,
-/area/mainship/medical/medical_science)
 "hem" = (
 /obj/structure/cable,
 /obj/machinery/status_display{
@@ -37753,6 +37749,10 @@
 "tpI" = (
 /obj/structure/platform{
 	dir = 4
+	},
+/obj/machinery/computer/navigation{
+	icon_state = "shuttlecomputer";
+	dir = 8
 	},
 /turf/open/floor/mainship,
 /area/mainship/command/cic)

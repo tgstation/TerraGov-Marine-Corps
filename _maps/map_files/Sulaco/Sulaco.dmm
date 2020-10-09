@@ -6459,10 +6459,9 @@
 	},
 /area/sulaco/hallway/central_hall)
 "ayq" = (
-/obj/structure/table/mainship,
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-23";
-	pixel_y = 12
+/obj/machinery/computer/navigation{
+	icon_state = "shuttlecomputer";
+	dir = 4
 	},
 /turf/open/floor/prison/red{
 	dir = 10
@@ -8556,8 +8555,8 @@
 /obj/machinery/power/apc/mainship{
 	dir = 1
 	},
-/mob/living/simple_animal/cat/Jones,
 /obj/structure/cable,
+/mob/living/simple_animal/cat/Jones,
 /turf/open/floor/wood,
 /area/sulaco/cap_office)
 "aHq" = (
