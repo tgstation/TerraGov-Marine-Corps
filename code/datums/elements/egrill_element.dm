@@ -40,8 +40,7 @@
 
 /datum/element/egrill/proc/attack_alien(obj/source, mob/living/carbon/xenomorph/attacker)
 	SIGNAL_HANDLER
-	if(shock(source, attacker))
-		return COMPONENT_NO_ATTACK_ALIEN
+	shock(source, attacker)
 
 /datum/element/egrill/proc/shock(obj/source, mob/living/user)
 	if(!source.anchored || source.obj_integrity <= source.integrity_failure)		// anchored/destroyed grilles are never connected

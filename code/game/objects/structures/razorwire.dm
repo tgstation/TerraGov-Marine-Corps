@@ -164,7 +164,7 @@
 	return TRUE
 
 /obj/structure/razorwire/attack_alien(mob/living/carbon/xenomorph/M)
-	M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_LOW, RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MAX_DAMAGE_MULT_LOW)) //About a third as damaging as actually entering
+	M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MAX_DAMAGE_MULT_LOW, RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED)) //About a third as damaging as actually entering
 	UPDATEHEALTH(M)
 	update_icon()
 	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_RAZORWIRE)
