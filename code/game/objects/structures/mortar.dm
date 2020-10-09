@@ -102,10 +102,10 @@
 			target_data.Add(coords)
 	return target_data
 
-/*
-* checks if we are entering in the exact same coordinates, 
-* and does not save them again.
-*/
+/**
+  * checks if we are entering in the exact same coordinates, 
+  * and does not save them again.
+  */
 /obj/structure/mortar/proc/check_bombard_spam()
 	var/list/temp = get_new_list("coords")
 	for(var/i in temp)
