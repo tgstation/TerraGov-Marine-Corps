@@ -100,3 +100,9 @@
 	desc = "These look pretty fancy."
 	icon_state = "latex"
 	item_state = "lgloves"
+
+/obj/item/clothing/gloves/techpriest
+	name = "Techpriest gloves"
+	desc = "Praise the Omnissiah!"
+	icon_state = "tp_gloves"
+	item_state = "tp_gloves"
