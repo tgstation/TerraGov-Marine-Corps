@@ -82,6 +82,7 @@
 		usr.visible_message("<span class='notice'>[usr] adjusts [src]'s firing angle and distance.</span>",
 		"<span class='notice'>You adjust [src]'s firing angle and distance to match the new coordinates.</span>")
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+
 /obj/structure/mortar/proc/get_new_list(str)
 	var/list/target_data = list()
 	switch(str)
@@ -101,6 +102,7 @@
 		if(!(last_three_inputs["coords_one"][i] == temp[i]) && !(last_three_inputs["coords_two"][i] == temp[i]) && !(last_three_inputs["coords_three"][i] == temp[i]))
 			return FALSE
 	return TRUE
+
 /obj/structure/mortar/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
