@@ -90,6 +90,7 @@
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/AltClick(mob/user)
+	. = ..()
 	toggle_gun_safety()
 
 
