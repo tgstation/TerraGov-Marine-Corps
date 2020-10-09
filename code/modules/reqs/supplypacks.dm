@@ -207,7 +207,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/specdemo
 	name = "Demolitionist Specialist kit"
-	contains = list(/obj/item/weapon/gun/launcher/rocket)
+	contains = list(/obj/item/weapon/gun/launcher/rocket/sadar)
 	cost = 90
 
 /datum/supply_packs/weapons/autosniper
@@ -514,17 +514,17 @@ AMMO
 
 /datum/supply_packs/ammo/rpg_regular
 	name = "T-152 RPG HE rocket"
-	contains = list(/obj/item/ammo_magazine/rocket)
+	contains = list(/obj/item/ammo_magazine/rocket/sadar)
 	cost = 7
 
 /datum/supply_packs/ammo/rpg_ap
 	name = "T-152 RPG AP rocket"
-	contains = list(/obj/item/ammo_magazine/rocket/ap)
+	contains = list(/obj/item/ammo_magazine/rocket/sadar/ap)
 	cost = 7
 
 /datum/supply_packs/ammo/rpg_wp
 	name = "T-152 RPG WP rocket"
-	contains = list(/obj/item/ammo_magazine/rocket/wp)
+	contains = list(/obj/item/ammo_magazine/rocket/sadar/wp)
 	cost = 7
 
 /datum/supply_packs/ammo/shell_regular
