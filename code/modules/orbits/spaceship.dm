@@ -28,14 +28,17 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 // Standard procs
 //-------------------------------------------
 
-/obj/machinery/computer/navigation/attackby(obj/item/I, mob/user, params)
+/obj/machinery/computer/navigation/screwdriver_act(mob/living/user, obj/item/I)
 	. = ..()
 
-	if(isscrewdriver(I)) //keep this? make it hackable so regular marines can run?
-		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
-		update_icon()
-		to_chat(user, "The wires have been [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "exposed" : "unexposed"]")
+	if(.)
 		return
+
+	//keep this? make it hackable so regular marines can run?
+	TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
+	update_icon()
+	to_chat(user, "The wires have been [CHECK_BITFIELD(machine_stat, PANEL_OPEN) ? "exposed" : "unexposed"]")
+	return
 
 /obj/machinery/computer/navigation/Initialize() //need anything special?
 	. = ..()
@@ -171,19 +174,19 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 /obj/machinery/computer/navigation/proc/can_change_orbit(current_orbit, direction, silent = FALSE)
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ORBIT_CHANGE))
 		if(!silent)
-			to_chat(usr, "The ship is currently recalculating based on previous selection.")
+			to_chat(usr, "<span class='warning'>The ship is currently recalculating based on previous selection.</span>")
 		return FALSE
 	if(changing_orbit)
 		if(!silent)
-			to_chat(usr, "The ship is currently changing orbit.")
+			to_chat(usr, "<span class='warning'>The ship is currently changing orbit.</span>")
 		return FALSE
 	if(direction == "UP" && current_orbit == ESCAPE_VELOCITY)
 		if(!silent)
-			to_chat(usr, "The ship is already at escape velocity! It is already prepped for the escape jump!")
+			to_chat(usr, "<span class='warning'>The ship is already at escape velocity! It is already prepped for the escape jump!</span>")
 		return FALSE
 	if(direction == "DOWN" && current_orbit == SKIM_ATMOSPHERE)
 		if(!silent)
-			to_chat(usr, "WARNING, AUTOMATIC SAFETY ENGAGED. OVERRIDING USER INPUT.")
+			to_chat(usr, "<span class='warning'>WARNING, AUTOMATIC SAFETY ENGAGED. OVERRIDING USER INPUT.</span>")
 		return FALSE
 	return TRUE
 
@@ -238,6 +241,8 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 		var/datum/game_mode/infestation/distress/distress_mode = SSticker.mode
 		if(distress_mode.round_stage == DISTRESS_DROPSHIP_CRASHED)
 			//Xenos got onto the ship before it fully got away.
+			var/message = "The [SSmapping.configs[SHIP_MAP].map_name] is unable to initiate jump due to structual damage. Please schedule maintenance at your earliest convenience."
+			priority_announce(message, title = "Maintenance Report")
 			return
 
 		var/message = "The [SSmapping.configs[SHIP_MAP].map_name] has left the AO."
