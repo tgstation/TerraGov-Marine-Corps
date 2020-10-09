@@ -204,6 +204,7 @@
 
 
 /mob/living/proc/resist_fire(datum/source)
+	SIGNAL_HANDLER
 	fire_stacks = max(fire_stacks - rand(3, 6), 0)
 	Paralyze(80)
 

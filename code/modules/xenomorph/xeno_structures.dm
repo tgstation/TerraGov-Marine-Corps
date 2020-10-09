@@ -87,5 +87,6 @@
 
 
 /obj/structure/resin/silo/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos)
+	SIGNAL_HANDLER
 	if(associated_hive)
 		silos += src

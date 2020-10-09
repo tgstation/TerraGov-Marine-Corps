@@ -669,8 +669,6 @@ and you're good to go.
 			return TRUE
 		DISABLE_BITFIELD(flags_gun_features, GUN_BURST_FIRING)
 		//Point blanking simulates firing the bullet proper but without actually firing it.
-		if(active_attachable && !CHECK_BITFIELD(active_attachable.flags_attach_features, ATTACH_PROJECTILE))
-			active_attachable.activate_attachment(null, TRUE)//No way.
 		var/obj/projectile/projectile_to_fire = load_into_chamber(user)
 		in_chamber = null //Projectiles live and die fast. It's better to null the reference early so the GC can handle it immediately.
 		if(!projectile_to_fire) //We actually have a projectile, let's move on. We're going to simulate the fire cycle.
@@ -1086,6 +1084,7 @@ and you're good to go.
 
 
 /obj/item/weapon/gun/proc/do_fire_attachment(datum/source, atom/target, mob/user)
+	SIGNAL_HANDLER
 	if(!able_to_fire(user))
 		return
 	if(gun_on_cooldown(user))

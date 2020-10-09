@@ -426,7 +426,6 @@ can cause issues with ammo types getting mixed up during the burst.
 	accuracy_mult_unwielded = 0.85
 	scatter = 20
 	scatter_unwielded = 40
-	damage_mult = 1.4
 	recoil = 3
 	recoil_unwielded = 5
 
@@ -682,6 +681,7 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/bayonetknife,
 						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/marine,
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/bayonet)
 	flags_item_map_variant = NONE
@@ -803,6 +803,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
 		/obj/item/attachable/suppressor,
 		/obj/item/attachable/verticalgrip)

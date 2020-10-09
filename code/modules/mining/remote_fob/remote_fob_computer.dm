@@ -37,6 +37,7 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_TRANSIT, .proc/disable_drone_creation)
 
 /obj/machinery/computer/camera_advanced/remote_fob/proc/disable_drone_creation()
+	SIGNAL_HANDLER
 	drone_creation_allowed = FALSE
 	UnregisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_TRANSIT)
 
@@ -49,7 +50,7 @@
 	QDEL_NULL(sentry)
 	QDEL_NULL(eject_metal)
 	QDEL_NULL(eject_plasteel)
-	
+
 	return ..()
 
 
@@ -69,7 +70,7 @@
 	eyeobj.register_facedir_signals(user)
 	if(eyeobj.eye_initialized)
 		eyeobj.setLoc(get_turf(spawn_spot))
-	
+
 /obj/machinery/computer/camera_advanced/remote_fob/interact(mob/living/user)
 	if(machine_stat & (NOPOWER|BROKEN))
 		return
@@ -88,7 +89,7 @@
 			spawn_spot = locate(/obj/docking_port/stationary/marine_dropship/lz1) in SSshuttle.stationary
 			if(!spawn_spot)
 				to_chat(user, "<span class='warning'>No valid location for drone deployment found.</span>")
-				return	
+				return
 		if("LZ2")
 			spawn_spot = locate(/obj/docking_port/stationary/marine_dropship/lz2) in SSshuttle.stationary
 			if(!spawn_spot)
@@ -151,7 +152,7 @@
 	if(plast_cade)
 		plast_cade.target = src
 		plast_cade.give_action(user)
-		actions += plast_cade	
+		actions += plast_cade
 
 	if(toggle_wiring)
 		toggle_wiring.target = src

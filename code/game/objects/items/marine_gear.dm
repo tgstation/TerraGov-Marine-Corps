@@ -79,6 +79,7 @@
 		deploy_triggers()
 
 /obj/structure/closet/bodybag/tarp/proc/on_bodybag_occupant_death(mob/source, gibbing)
+	SIGNAL_HANDLER
 	open()
 
 

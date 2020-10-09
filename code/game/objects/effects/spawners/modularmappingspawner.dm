@@ -34,9 +34,9 @@
 	template.load(get_turf(src), centered = template.keepcentered)
 	qdel(src)
 
-//////////////////Types\\\\\\\\\\\\\\\
+/*********Types********/
 
-//////////Prison / Fiona penitentiary\\\\\\
+/*****Prison / Fiona penitentiary****/
 /obj/effect/spawner/modularmap/prison/civressouth
 	mapid = "southcivres"
 	spawner_width = 9

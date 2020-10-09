@@ -1,15 +1,15 @@
 /**
 	Called to create the prefix for xeno hivemind messages
-	
-	Used to apply styling for queen/shrike/hivemind, giving them largetext and specific colouring.
+
+	Used to apply styling for queen/shrike/hivemind/leaders, giving them largetext and specific colouring.
 	This is also paired with [/mob/living/carbon/xenomorph/hivemind_end]
 */
 /mob/living/carbon/xenomorph/proc/hivemind_start()
-	return "<span class='game say hivemind'>Hivemind, <span class='name'>[name]</span>"
+	return "<span class='game say hivemind [queen_chosen_lead?"xenoleader":""]'>Hivemind, <span class='name'>[name]</span>"
 
 /**
 	Called to create the suffix for xeno hivemind messages
-	
+
 	This should be used to close off any opened elements from [/mob/living/carbon/xenomorph/hivemind_start].
 */
 /mob/living/carbon/xenomorph/proc/hivemind_end()

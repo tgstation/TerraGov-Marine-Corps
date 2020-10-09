@@ -80,7 +80,7 @@ SUBSYSTEM_DEF(weeds)
 
 /datum/controller/subsystem/weeds/proc/add_weed(obj/effect/alien/weeds/W)
 	if(!W)
-		stack_trace("SSweed.add_turf called with a null obj")
+		stack_trace("SSweed.add_weed called with a null obj")
 		return FALSE
 
 	var/turf/T = get_turf(W)

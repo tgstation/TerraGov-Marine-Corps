@@ -13,7 +13,7 @@
 
 /datum/job/xenomorph/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, "<b>Your job is to spread the hive and protect the Queen. If there's no Queen, you can become the Queen yourself by evolving into a drone.</b><br>\
+	to_chat(M, "<b>Your job is to spread the hive and protect the Hive Leader. If there's no Hive Leader, you can become the Shrike or Queen yourself by evolving into a drone.</b><br>\
 	Talk in Hivemind using <strong>;</strong>, <strong>.a</strong>, or <strong>,a</strong> (e.g. ';My life for the queen!')")
 
 /datum/job/xenomorph/handle_special_preview(client/parent)

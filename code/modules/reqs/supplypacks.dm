@@ -80,6 +80,15 @@ OPERATIONS
 	contains = list(/obj/item/bodybag/tarp)
 	cost = 6
 
+/datum/supply_packs/operations/deployablecams
+	name = "3 Deployable Cameras"
+	contains = list(
+		/obj/item/deployable_camera,
+		/obj/item/deployable_camera,
+		/obj/item/deployable_camera,
+	)
+	cost = 6
+
 /datum/supply_packs/operations/exportpad
 	name = "ASRS Bluespace Export Point"
 	contains = list(/obj/machinery/exportpad)
@@ -174,6 +183,12 @@ WEAPONS
 		/obj/item/cell/lasgun/tesla
 	)
 	cost = 60
+
+/datum/supply_packs/weapons/recoillesskit
+	name = "Recoilless rifle kit"
+	contains = list(/obj/item/storage/box/recoilless_system)
+	cost = 40
+
 
 /datum/supply_packs/weapons/specgrenadier
 	name = "Grenadier Specialist kit"
@@ -512,6 +527,16 @@ AMMO
 	contains = list(/obj/item/ammo_magazine/rocket/wp)
 	cost = 7
 
+/datum/supply_packs/ammo/shell_regular
+	name = "T-160 RR HE shell"
+	contains = list(/obj/item/ammo_magazine/rocket/recoilless)
+	cost = 3
+
+/datum/supply_packs/ammo/shell_le
+	name = "T-160 RR LE shell"
+	contains = list(/obj/item/ammo_magazine/rocket/recoilless/light)
+	cost = 3
+
 /datum/supply_packs/ammo/smartmachinegun
 	name = "T-29 smartmachinegun ammo"
 	contains = list(/obj/item/ammo_magazine/standard_smartmachinegun)
@@ -832,9 +857,8 @@ CLOTHING
 /datum/supply_packs/clothing/pouches_general
 	name = "general pouches"
 	contains = list(
-		/obj/item/storage/pouch/general,
-		/obj/item/storage/pouch/general,
-		/obj/item/storage/pouch/general/medium,
+		/obj/item/storage/pouch/general/large,
+		/obj/item/storage/pouch/general/large,
 		/obj/item/storage/pouch/general/large,
 	)
 	cost = 5
@@ -851,9 +875,9 @@ CLOTHING
 /datum/supply_packs/clothing/pouches_ammo
 	name = "ammo pouches"
 	contains = list(
-		/obj/item/storage/pouch/magazine,
 		/obj/item/storage/pouch/magazine/large,
-		/obj/item/storage/pouch/magazine/pistol,
+		/obj/item/storage/pouch/magazine/large,
+		/obj/item/storage/pouch/magazine/pistol/large,
 		/obj/item/storage/pouch/magazine/pistol/large,
 	)
 	cost = 5
@@ -909,6 +933,23 @@ MEDICAL
 		/obj/item/stack/nanopaste,
 	)
 	cost = 30
+
+/datum/supply_packs/medical/dogtags
+	name = "dogtags crate"
+	contains = list(
+		/obj/item/storage/box/ids/dogtag,
+		/obj/item/storage/box/ids/dogtag,
+		/obj/item/storage/box/ids/dogtag,
+	)
+	cost = 10
+
+/datum/supply_packs/medical/biomass
+	name = "biomass crate"
+	contains = list(
+		/obj/item/reagent_containers/glass/beaker/biomass,
+	)
+	cost = 15
+
 
 /datum/supply_packs/medical/medical
 	name = "Pills and Chemicals"
@@ -1021,8 +1062,11 @@ ENGINEERING
 	cost = 10
 
 /datum/supply_packs/engineering/quikdeploycade
-	name = "quikdeploy barricade"
-	contains = list(/obj/item/quikdeploy/cade)
+	name = "quikdeploy barricade (x2)"
+	contains = list(
+		/obj/item/quikdeploy/cade,
+		/obj/item/quikdeploy/cade,
+	)
 	cost = 6
 
 /datum/supply_packs/engineering/pacman
