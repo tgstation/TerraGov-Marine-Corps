@@ -50,14 +50,12 @@
 		ui.open()
 
 /obj/structure/mortar/ui_data(mob/user)
-	. = ..()
-	var/data = list()
-	data["X"] = coords["targ_x"]
-	data["Y"] = coords["targ_y"]
-	data["D1"] = coords["dial_x"]
-	data["D2"] = coords["dial_y"]
-	data["last_three_inputs"] = last_three_inputs
-	return data
+	. = list()
+	.["X"] = coords["targ_x"]
+	.["Y"] = coords["targ_y"]
+	.["D1"] = coords["dial_x"]
+	.["D2"] = coords["dial_y"]
+	.["last_three_inputs"] = last_three_inputs
 
 /obj/structure/mortar/ui_act(action, params)
 	. = ..()
