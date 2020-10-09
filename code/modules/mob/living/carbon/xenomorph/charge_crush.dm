@@ -393,7 +393,7 @@
 		charge_datum.do_stop_momentum()
 		return PRECRUSH_STOPPED
 	if(anchored)
-		. = (CHARGE_SPEED(charge_datum) * 50) //Damage to inflict. 3 rams, 2 times taking damage.
+		. = (CHARGE_SPEED(charge_datum) * 30) // 2.1 * 30 = 63 Damage to inflict. if its already been hit by an acid spit, a charge will kill it without the crusher taking damage from the razorwire. 
 		charge_datum.speed_down(3)
 		return
 	return (CHARGE_SPEED(charge_datum) * 20) //Damage to inflict.
