@@ -84,6 +84,11 @@
 		usr.visible_message("<span class='notice'>[usr] adjusts [src]'s firing angle and distance.</span>",
 		"<span class='notice'>You adjust [src]'s firing angle and distance to match the new coordinates.</span>")
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		// allows for offsetting using the dial, I had accidentally misplaced this.
+		var/offset_x_max = round(abs((coords["targ_x"] + coords["dial_x"]) - x)/offset_per_turfs) //Offset of mortar shot, grows by 1 every 10 tiles travelled
+		var/offset_y_max = round(abs((coords["targ_y"] + coords["dial_y"]) - y)/offset_per_turfs)
+		offset_x = rand(-offset_x_max, offset_x_max)
+		offset_y = rand(-offset_y_max, offset_y_max)
 
 /**
   * this proc is used because pointers suck and references would break the saving of coordinates.
@@ -118,11 +123,6 @@
 
 	if(istype(I, /obj/item/mortal_shell))
 		var/obj/item/mortal_shell/mortar_shell = I
-
-		var/offset_x_max = round(abs((coords["targ_x"] + coords["dial_x"]) - x)/offset_per_turfs) //Offset of mortar shot, grows by 1 every 10 tiles travelled
-		var/offset_y_max = round(abs((coords["targ_y"] + coords["dial_y"]) - y)/offset_per_turfs)
-		offset_x = rand(-offset_x_max, offset_x_max)
-		offset_y = rand(-offset_y_max, offset_y_max)
 
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to fire [src].</span>",
