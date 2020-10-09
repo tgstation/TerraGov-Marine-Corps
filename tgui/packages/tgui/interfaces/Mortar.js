@@ -57,7 +57,7 @@ export const Mortar = (props, context) => {
               <Flex.Item>
                 <NumberInput
                   value={D1}
-                  minValue={0}
+                  minValue={-10}
                   width="43px"
                   maxValue={10}
                   onChange={(e, value) => act("change_dial_x", {
@@ -67,7 +67,7 @@ export const Mortar = (props, context) => {
               <Flex.Item>
                 <NumberInput
                   value={D2}
-                  minValue={0}
+                  minValue={-10}
                   maxValue={10}
                   width="43px"
                   onChange={(e, value) => act("change_dial_y", {
