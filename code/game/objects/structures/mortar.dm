@@ -85,10 +85,10 @@
 		"<span class='notice'>You adjust [src]'s firing angle and distance to match the new coordinates.</span>")
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
-/*
-* this proc is used because pointers suck and references would break the saving of coordinates.
-*
-*/
+/**
+  * this proc is used because pointers suck and references would break the saving of coordinates.
+  *
+  */
 /obj/structure/mortar/proc/get_new_list(str)
 	var/list/target_data = list()
 	switch(str)
