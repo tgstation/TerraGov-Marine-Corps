@@ -42,7 +42,7 @@ GLOBAL_DATUM_INIT(orbital_mechanics, /datum/orbital_mechanics, new)
 
 /obj/machinery/computer/navigation/Initialize() //need anything special?
 	. = ..()
-	desc = "The navigation console for the [SSmapping.configs[SHIP_MAP].map_name]."```
+	desc = "The navigation console for the [SSmapping.configs[SHIP_MAP].map_name]."
 
 /obj/machinery/computer/navigation/proc/reset(wire)
 	switch(wire)
