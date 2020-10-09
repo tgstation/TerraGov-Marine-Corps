@@ -53,8 +53,8 @@
 	. = list()
 	.["X"] = coords["targ_x"]
 	.["Y"] = coords["targ_y"]
-	.["D1"] = coords["dial_x"]
-	.["D2"] = coords["dial_y"]
+	.["DX"] = coords["dial_x"]
+	.["DY"] = coords["dial_y"]
 	.["last_three_inputs"] = last_three_inputs
 
 /obj/structure/mortar/ui_act(action, params)

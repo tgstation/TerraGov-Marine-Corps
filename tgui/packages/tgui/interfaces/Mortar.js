@@ -7,8 +7,8 @@ export const Mortar = (props, context) => {
   const {
     X,
     Y,
-    D1,
-    D2,
+    DX,
+    DY,
     last_three_inputs,
   } = data;
   return (
@@ -56,7 +56,7 @@ export const Mortar = (props, context) => {
               </Flex.Item>
               <Flex.Item>
                 <NumberInput
-                  value={D1}
+                  value={DX}
                   minValue={-10}
                   width="43px"
                   maxValue={10}
@@ -66,7 +66,7 @@ export const Mortar = (props, context) => {
               </Flex.Item>
               <Flex.Item>
                 <NumberInput
-                  value={D2}
+                  value={DY}
                   minValue={-10}
                   maxValue={10}
                   width="43px"
