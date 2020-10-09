@@ -1,0 +1,892 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"bv" = (
+/obj/structure/jungle/vines,
+/obj/structure/jungle/vines/heavy,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle9)
+"bA" = (
+/turf/open/ground/grass,
+/area/lv624/ground/jungle7)
+"dr" = (
+/obj/structure/fence,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/ne)
+"eg" = (
+/obj/structure/fence,
+/turf/open/floor/plating/ground/dirtgrassborder,
+/area/lv624/ground/compound/ne)
+"eM" = (
+/obj/structure/jungle/vines,
+/turf/closed/wall,
+/area/lv624/ground/compound/ne)
+"fl" = (
+/obj/structure/window_frame/colony/reinforced,
+/obj/item/shard,
+/obj/machinery/door/poddoor/mainship{
+	density = 0;
+	dir = 2;
+	icon_state = "pdoor0";
+	id = "nexus_blast";
+	name = "\improper Nexus Blast Door";
+	opacity = 0
+	},
+/turf/open/floor/plating,
+/area/lv624/lazarus/main_hall)
+"hJ" = (
+/obj/machinery/colony_floodlight{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle7)
+"iQ" = (
+/obj/structure/jungle/vines,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/lv624/ground/jungle9)
+"jL" = (
+/obj/structure/jungle/planttop1,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle9)
+"kt" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/lv624/ground/jungle9)
+"lf" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle9)
+"ls" = (
+/turf/open/floor/plating/ground/dirtgrassborder/corner,
+/area/lv624/ground/jungle9)
+"lF" = (
+/turf/closed/wall,
+/area/lv624/ground/jungle7)
+"md" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/machinery/colony_floodlight{
+	dir = 8
+	},
+/turf/closed/gm/dense,
+/area/lv624/ground/compound/ne)
+"nL" = (
+/obj/structure/fence,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/lv624/ground/jungle9)
+"ov" = (
+/turf/open/floor/plating/ground/dirtgrassborder/corner,
+/area/lv624/ground/jungle7)
+"pc" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 1
+	},
+/area/lv624/ground/jungle7)
+"po" = (
+/obj/docking_port/stationary/crashmode,
+/turf/closed/gm/dense,
+/area/lv624/ground/jungle9)
+"ps" = (
+/turf/closed/gm/dense,
+/area/lv624/ground/jungle7)
+"px" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/lv624/ground/jungle7)
+"pI" = (
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 8
+	},
+/area/lv624/ground/jungle7)
+"qj" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/ne)
+"qD" = (
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 4
+	},
+/area/lv624/ground/jungle7)
+"rd" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle7)
+"rp" = (
+/obj/structure/jungle/plantbot1,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle9)
+"rv" = (
+/obj/structure/jungle/vines,
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 8
+	},
+/area/lv624/ground/jungle9)
+"se" = (
+/obj/structure/jungle/vines,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle9)
+"sG" = (
+/obj/machinery/door/poddoor/mainship{
+	density = 0;
+	dir = 2;
+	icon_state = "pdoor0";
+	id = "nexus_blast";
+	name = "\improper Nexus Blast Door";
+	opacity = 0
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/tile/white,
+/area/lv624/lazarus/main_hall)
+"tQ" = (
+/obj/structure/fence,
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
+	dir = 8
+	},
+/area/lv624/ground/compound/ne)
+"uR" = (
+/obj/structure/jungle/vines,
+/turf/open/floor/plating/ground/dirtgrassborder/corner,
+/area/lv624/ground/jungle9)
+"vw" = (
+/obj/effect/decal/remains/xeno,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/ne)
+"wl" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/door/poddoor/mainship{
+	density = 0;
+	dir = 2;
+	icon_state = "pdoor0";
+	id = "nexus_blast";
+	name = "\improper Nexus Blast Door";
+	opacity = 0
+	},
+/turf/open/floor/plating,
+/area/lv624/lazarus/main_hall)
+"wn" = (
+/obj/structure/jungle/vines/heavy,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle9)
+"wt" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/machinery/colony_floodlight{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder,
+/area/lv624/ground/jungle9)
+"wD" = (
+/turf/open/ground/grass,
+/area/lv624/ground/compound/ne)
+"wT" = (
+/turf/open/floor/plating/ground/dirtgrassborder,
+/area/lv624/ground/jungle9)
+"xI" = (
+/obj/structure/jungle/vines,
+/turf/open/ground/grass,
+/area/lv624/ground/compound/ne)
+"yb" = (
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/lv624/ground/jungle7)
+"yC" = (
+/turf/open/ground/grass,
+/area/lv624/ground/jungle9)
+"yG" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle9)
+"zh" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 4
+	},
+/area/lv624/ground/jungle7)
+"zj" = (
+/obj/structure/jungle/vines,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle7)
+"AV" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/ne)
+"Dd" = (
+/obj/structure/jungle/vines/heavy,
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 1
+	},
+/area/lv624/ground/jungle9)
+"DF" = (
+/turf/closed/gm/dense,
+/area/lv624/ground/jungle9)
+"EK" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	name = "\improper Nexus Dome"
+	},
+/obj/machinery/door/poddoor/mainship{
+	density = 0;
+	dir = 2;
+	icon_state = "pdoor0";
+	id = "nexus_blast";
+	name = "\improper Nexus Blast Door";
+	opacity = 0
+	},
+/turf/open/floor/tile/white,
+/area/lv624/lazarus/main_hall)
+"EN" = (
+/obj/machinery/door/poddoor/mainship{
+	density = 0;
+	dir = 2;
+	icon_state = "pdoor0";
+	id = "nexus_blast";
+	name = "\improper Nexus Blast Door";
+	opacity = 0
+	},
+/turf/open/floor/tile/white,
+/area/lv624/lazarus/main_hall)
+"Fv" = (
+/obj/structure/jungle/vines,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
+	},
+/area/lv624/ground/jungle9)
+"FF" = (
+/obj/structure/jungle/vines/heavy,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle7)
+"GL" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/ground/grass,
+/area/lv624/ground/compound/ne)
+"HV" = (
+/obj/structure/jungle/vines,
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 4
+	},
+/area/lv624/ground/jungle9)
+"HZ" = (
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/ne)
+"IA" = (
+/obj/structure/fence,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/lv624/ground/compound/ne)
+"II" = (
+/obj/structure/fence,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
+	},
+/area/lv624/ground/jungle7)
+"IT" = (
+/obj/structure/fence,
+/turf/open/floor/plating/ground/dirtgrassborder/corner2,
+/area/lv624/ground/jungle9)
+"Jv" = (
+/turf/closed/wall,
+/area/lv624/ground/jungle9)
+"Jy" = (
+/obj/structure/jungle/vines,
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 1
+	},
+/area/lv624/ground/jungle9)
+"Kf" = (
+/obj/structure/jungle/vines,
+/turf/open/floor/plating/ground/dirtgrassborder/corner2{
+	dir = 8
+	},
+/area/lv624/ground/jungle7)
+"Kk" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
+	},
+/area/lv624/ground/jungle7)
+"Kx" = (
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 4
+	},
+/area/lv624/ground/jungle9)
+"KP" = (
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 8
+	},
+/area/lv624/ground/jungle9)
+"KW" = (
+/obj/machinery/colony_floodlight,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle7)
+"Lp" = (
+/obj/structure/jungle/vines,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/lv624/ground/jungle9)
+"MK" = (
+/obj/structure/jungle/vines,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
+	},
+/area/lv624/ground/jungle7)
+"NS" = (
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/lv624/ground/jungle9)
+"On" = (
+/turf/closed/wall/r_wall,
+/area/lv624/lazarus/main_hall)
+"Pr" = (
+/obj/structure/fence,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
+	},
+/area/lv624/ground/compound/ne)
+"Pw" = (
+/turf/open/floor/plating/ground/dirtgrassborder,
+/area/lv624/ground/jungle7)
+"Pz" = (
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 1
+	},
+/area/lv624/ground/jungle7)
+"PM" = (
+/obj/structure/jungle/vines,
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 8
+	},
+/area/lv624/ground/jungle7)
+"QM" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle7)
+"QV" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/closed/gm/dense,
+/area/lv624/ground/compound/ne)
+"RA" = (
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 4
+	},
+/area/lv624/ground/jungle7)
+"Ss" = (
+/obj/structure/fence,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/lv624/ground/jungle9)
+"SX" = (
+/obj/structure/fence,
+/turf/open/floor/plating/ground/dirtgrassborder,
+/area/lv624/ground/jungle7)
+"TU" = (
+/obj/structure/jungle/vines,
+/turf/open/floor/plating/ground/dirtgrassborder,
+/area/lv624/ground/jungle9)
+"Vd" = (
+/obj/structure/jungle/vines,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle7)
+"VQ" = (
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
+	},
+/area/lv624/ground/jungle9)
+"Wt" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/ne)
+"Xa" = (
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/lv624/ground/jungle9)
+"Xt" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 1
+	},
+/area/lv624/ground/jungle9)
+"XC" = (
+/turf/open/floor/plating/ground/dirtgrassborder{
+	dir = 8
+	},
+/area/lv624/ground/jungle7)
+"Yx" = (
+/turf/open/floor/plating/ground/dirtgrassborder/corner{
+	dir = 1
+	},
+/area/lv624/ground/jungle9)
+"YD" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/compound/ne)
+"YY" = (
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle7)
+"Zj" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/machinery/colony_floodlight{
+	dir = 4
+	},
+/turf/open/ground/grass,
+/area/lv624/ground/jungle9)
+"Zo" = (
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle9)
+"ZU" = (
+/turf/closed/wall,
+/area/lv624/ground/compound/ne)
+
+(1,1,1) = {"
+RA
+pI
+bA
+SX
+HZ
+YD
+qj
+HZ
+Jv
+yC
+yG
+se
+wn
+yC
+DF
+yC
+yC
+yC
+wn
+DF
+"}
+(2,1,1) = {"
+YY
+px
+rd
+SX
+HZ
+HZ
+qj
+HZ
+Ss
+ls
+kt
+rv
+yC
+DF
+DF
+DF
+DF
+NS
+KP
+uR
+"}
+(3,1,1) = {"
+Kk
+zh
+bA
+lF
+HZ
+HZ
+qj
+HZ
+Ss
+wt
+lf
+Lp
+DF
+DF
+DF
+DF
+TU
+lf
+Xt
+wT
+"}
+(4,1,1) = {"
+bA
+bA
+QM
+SX
+HZ
+HZ
+qj
+HZ
+Jv
+Yx
+Fv
+HV
+po
+DF
+DF
+bv
+Dd
+VQ
+Kx
+Jy
+"}
+(5,1,1) = {"
+bA
+bA
+bA
+SX
+HZ
+HZ
+qj
+HZ
+Ss
+yC
+se
+bv
+yC
+DF
+yC
+yC
+se
+DF
+DF
+DF
+"}
+(6,1,1) = {"
+ov
+RA
+pI
+lF
+HZ
+HZ
+qj
+HZ
+Ss
+yC
+DF
+DF
+yC
+se
+yC
+yC
+DF
+DF
+DF
+yC
+"}
+(7,1,1) = {"
+Pw
+KW
+yb
+SX
+HZ
+HZ
+qj
+HZ
+Jv
+se
+DF
+DF
+yC
+yG
+yC
+yG
+ls
+iQ
+rv
+se
+"}
+(8,1,1) = {"
+Pz
+XC
+qD
+SX
+HZ
+HZ
+qj
+HZ
+Ss
+yC
+DF
+yC
+yC
+yC
+jL
+rp
+wT
+lf
+Xa
+se
+"}
+(9,1,1) = {"
+bA
+Vd
+bA
+SX
+HZ
+HZ
+qj
+HZ
+Ss
+yC
+yC
+yC
+yG
+yC
+Zj
+yC
+wT
+Zo
+Xa
+yC
+"}
+(10,1,1) = {"
+ps
+ps
+bA
+lF
+HZ
+HZ
+qj
+HZ
+Jv
+nL
+nL
+nL
+Jv
+nL
+nL
+Jv
+IT
+dr
+tQ
+On
+"}
+(11,1,1) = {"
+ps
+ps
+bA
+SX
+HZ
+HZ
+qj
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+vw
+HZ
+EK
+"}
+(12,1,1) = {"
+ps
+ps
+Vd
+SX
+HZ
+HZ
+Wt
+AV
+AV
+AV
+AV
+AV
+AV
+AV
+AV
+AV
+AV
+AV
+AV
+sG
+"}
+(13,1,1) = {"
+ps
+ps
+bA
+lF
+HZ
+HZ
+HZ
+HZ
+HZ
+YD
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+wl
+"}
+(14,1,1) = {"
+PM
+bA
+bA
+SX
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+fl
+"}
+(15,1,1) = {"
+Kf
+RA
+pI
+SX
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+wl
+"}
+(16,1,1) = {"
+zj
+zj
+yb
+SX
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+HZ
+EK
+"}
+(17,1,1) = {"
+MK
+MK
+qD
+lF
+II
+II
+lF
+II
+II
+ZU
+HZ
+HZ
+HZ
+YD
+HZ
+HZ
+HZ
+HZ
+HZ
+EN
+"}
+(18,1,1) = {"
+Vd
+Vd
+Vd
+bA
+bA
+bA
+ov
+RA
+pI
+eg
+HZ
+HZ
+HZ
+ZU
+Pr
+Pr
+eM
+Pr
+Pr
+On
+"}
+(19,1,1) = {"
+FF
+ps
+ps
+ps
+Vd
+bA
+Pw
+hJ
+yb
+eg
+HZ
+HZ
+HZ
+IA
+md
+QV
+xI
+xI
+wD
+wD
+"}
+(20,1,1) = {"
+ps
+ps
+ps
+ps
+Vd
+rd
+pc
+XC
+qD
+ZU
+HZ
+HZ
+HZ
+IA
+GL
+QV
+xI
+wD
+xI
+wD
+"}
