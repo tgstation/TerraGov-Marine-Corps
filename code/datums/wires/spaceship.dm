@@ -15,7 +15,7 @@
 /datum/wires/navigation/can_interact(mob/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	var/obj/machinery/computer/navigation/A = holder
 	if(CHECK_BITFIELD(A.machine_stat, PANEL_OPEN))
 		return TRUE
@@ -23,11 +23,10 @@
 
 /datum/wires/navigation/get_status()
 	var/obj/machinery/computer/navigation/A = holder
-	var/list/status = list()
-	status += "The interface light is [A.authenticated ? "red" : "green"]."
-	status += "The short indicator is [A.shorted ? "lit" : "off"]."
-	status += "The AI connection light is [!A.aidisabled ? "on" : "off"]."
-	return status
+	. = list()
+	. += "The interface light is [A.authenticated ? "red" : "green"]."
+	. += "The short indicator is [A.shorted ? "lit" : "off"]."
+	. += "The AI connection light is [!A.aidisabled ? "on" : "off"]."
 
 
 /datum/wires/navigation/on_pulse(wire)
