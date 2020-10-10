@@ -35703,10 +35703,6 @@
 /obj/item/tool/lighter/zippo,
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
-"hcq" = (
-/obj/machinery/portable_atmospherics/hydroponics,
-/turf/open/floor/mainship/sterile,
-/area/mainship/medical/medical_science)
 "hem" = (
 /obj/structure/cable,
 /obj/machinery/status_display{

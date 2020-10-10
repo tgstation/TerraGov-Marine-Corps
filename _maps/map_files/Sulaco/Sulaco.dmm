@@ -13246,6 +13246,11 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall3)
+"eql" = (
+/obj/structure/droppod,
+/obj/structure/dropprop,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "erP" = (
 /turf/closed/wall/mainship/gray,
 /area/mainship/living/starboard_garden)
@@ -13376,6 +13381,10 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/maintenance/lower_maint)
+"eTd" = (
+/obj/structure/window/framed/mainship/gray/toughened/hull,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "eTC" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -13897,6 +13906,14 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison,
 /area/sulaco/engineering)
+"gWm" = (
+/obj/structure/droppod,
+/obj/structure/dropprop,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "gWY" = (
 /obj/machinery/conveyor{
 	dir = 4;
@@ -14027,6 +14044,15 @@
 "hCz" = (
 /turf/closed/wall/mainship/gray,
 /area/sulaco/cargo/office)
+"hFa" = (
+/obj/structure/table/mainship,
+/obj/item/newspaper,
+/obj/item/tool/pen{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "hFy" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 1
@@ -14371,6 +14397,15 @@
 	},
 /turf/open/floor/prison/plate,
 /area/shuttle/distress/arrive_1)
+"iDP" = (
+/obj/structure/table/mainship,
+/obj/item/stack/sheet/glass{
+	amount = 50;
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "iGm" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -14854,6 +14889,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/sulaco/hallway/lower_main_hall)
+"kYJ" = (
+/obj/machinery/computer/droppod_control,
+/obj/structure/table/mainship,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "lae" = (
 /obj/effect/landmark/start/job/medicalofficer,
 /turf/open/floor/prison/whitegreen/corner,
@@ -15119,6 +15159,10 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/bridge)
+"lWr" = (
+/obj/machinery/light,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "lWx" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -15327,6 +15371,12 @@
 "mDu" = (
 /turf/open/floor/mainship_hull/gray,
 /area/space)
+"mET" = (
+/obj/machinery/door/poddoor/mainship/droppod{
+	dir = 1
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "mFc" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
@@ -15996,6 +16046,12 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria)
+"peA" = (
+/obj/machinery/door_control/mainship/droppod{
+	pixel_y = 26
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "peL" = (
 /obj/machinery/computer3/powermonitor,
 /turf/open/floor/mainship/tcomms,
@@ -16082,6 +16138,10 @@
 	dir = 8
 	},
 /area/sulaco/medbay/surgery_two)
+"ppK" = (
+/obj/structure/window/framed/mainship/gray/toughened/hull,
+/turf/open/floor/plating/platebotc,
+/area/sulaco/hangar/droppod)
 "ptg" = (
 /obj/structure/table/mainship,
 /obj/item/storage/belt/utility/full,
@@ -16147,6 +16207,11 @@
 /obj/structure/ship_ammo/heavygun,
 /turf/open/floor/prison,
 /area/sulaco/maintenance/lower_maint)
+"pAy" = (
+/obj/structure/dropprop,
+/obj/structure/droppod,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "pBw" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /obj/machinery/door/poddoor/open/bridge,
@@ -16519,6 +16584,12 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/command/ai)
+"qZV" = (
+/obj/structure/droppod,
+/obj/structure/dropprop,
+/obj/machinery/light,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "qZW" = (
 /obj/structure/largecrate/guns,
 /obj/machinery/camera/autoname,
@@ -16732,6 +16803,9 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/cargo)
+"rBS" = (
+/turf/closed/wall/mainship/gray/outer,
+/area/sulaco/hangar/droppod)
 "rDF" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1,
@@ -17460,6 +17534,9 @@
 /obj/machinery/door/poddoor/open/bridge,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/bridge/office)
+"tua" = (
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "tvk" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -18128,6 +18205,12 @@
 	dir = 4
 	},
 /area/mainship/shipboard/weapon_room)
+"wkI" = (
+/obj/structure/droppod,
+/obj/machinery/light,
+/obj/structure/dropprop,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "wlR" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
@@ -18638,6 +18721,15 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/sulaco/engineering/storage)
+"xJU" = (
+/obj/structure/droppod,
+/obj/structure/dropprop,
+/obj/machinery/camera/autoname,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "xLr" = (
 /obj/structure/bed/chair,
 /obj/structure/disposalpipe/segment{
@@ -51564,10 +51656,10 @@ aaa
 aaa
 nzi
 mDu
-mDu
-mDu
-mDu
-bFa
+rBS
+eql
+tua
+eql
 bFa
 aPU
 aQx
@@ -51820,11 +51912,11 @@ aaa
 aaa
 aaa
 tZr
-vDU
-vDU
 mDu
-mDu
-mDu
+rBS
+eql
+tua
+eql
 bFa
 bFa
 aPY
@@ -52077,12 +52169,12 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-tZr
-mDu
-mDu
-mDu
+nzi
+rBS
+gWm
+tua
+eql
+tua
 bFa
 aQg
 tWu
@@ -52334,12 +52426,12 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-tZr
-mDu
-mDu
+nzi
+rBS
+eql
+tua
+eql
+lWr
 bFa
 bFa
 aQu
@@ -52591,12 +52683,12 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
 nzi
-mDu
+rBS
+eql
+tua
+eql
+tua
 bFa
 bFa
 aQv
@@ -52848,13 +52940,13 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
 nzi
-mDu
-mDu
+ppK
+tua
+tua
+tua
+tua
+eql
 bFa
 aQI
 vVE
@@ -53105,14 +53197,14 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-tZr
-mDu
-mDu
-aSN
+nzi
+ppK
+tua
+tua
+eql
+tua
+eql
+bFa
 aPF
 aPF
 rts
@@ -53362,14 +53454,14 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
-mDu
-aSN
+ppK
+tua
+tua
+eql
+tua
+wkI
+bFa
 gHU
 aPF
 rts
@@ -53619,15 +53711,15 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
-mDu
-aSN
-aPF
+rBS
+xJU
+tua
+eql
+tua
+eql
+bFa
+peA
 aPF
 rts
 aPZ
@@ -53876,14 +53968,14 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
-mDu
-bFa
+rBS
+eql
+tua
+pAy
+tua
+tua
+mET
 bWf
 aPF
 rts
@@ -54133,14 +54225,14 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
-mDu
-bFa
+ppK
+hFa
+tua
+pAy
+tua
+tua
+mET
 aPF
 gHU
 rts
@@ -54390,14 +54482,14 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
-mDu
-aSN
+ppK
+kYJ
+tua
+tua
+tua
+tua
+mET
 aPF
 aPF
 rts
@@ -54647,14 +54739,14 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
-mDu
-aSN
+ppK
+iDP
+tua
+tua
+tua
+eql
+bFa
 aPF
 aPF
 rcb
@@ -54904,14 +54996,14 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
-mDu
-aSN
+rBS
+eql
+tua
+eql
+tua
+eql
+bFa
 aPF
 aPF
 aYw
@@ -55161,13 +55253,13 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
-mDu
+rBS
+eql
+tua
+eql
+tua
+eql
 bFa
 aPF
 aPF
@@ -55418,13 +55510,13 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
-mDu
+rBS
+gWm
+tua
+eql
+tua
+qZV
 bFa
 aPF
 aPF
@@ -55675,13 +55767,13 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
-mDu
+rBS
+eql
+tua
+eql
+tua
+eql
 bFa
 aPF
 aPF
@@ -55932,13 +56024,13 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
-mDu
+rBS
+eql
+tua
+eql
+tua
+eql
 bFa
 aQR
 aQR
@@ -56189,13 +56281,13 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-nzi
-mDu
+tZr
+rBS
+rBS
+eTd
+eTd
+eTd
+rBS
 bFa
 aRR
 aPF
@@ -56447,11 +56539,11 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-nzi
+tZr
+mDu
+mDu
+mDu
+mDu
 mDu
 bFa
 bFa
@@ -56705,10 +56797,10 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-nzi
+tZr
+mDu
+mDu
+mDu
 mDu
 mDu
 mDu
@@ -56963,9 +57055,9 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-tZr
+vDU
+vDU
+vDU
 vDU
 vDU
 vDU
