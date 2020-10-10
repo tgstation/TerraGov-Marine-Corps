@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Button, Section, NumberInput, Flex, Table } from '../components';
+import { Button, Section, NumberInput, Flex, Table, Input } from '../components';
 import { Window } from '../layouts';
 
 export const Mortar = (props, context) => {
@@ -77,12 +77,43 @@ export const Mortar = (props, context) => {
             </Flex>
           </Flex.Item>
           <Flex.Item>
+            <Flex direction="row">
+              <Button
+                content="Save 1:"
+                inline
+                onClick={() => act("change_saved_coord_one", {
+                  name: last_three_inputs["coords_one"]["name"],
+                })} />
+              <Button
+                content="Save 2:"
+                inline
+                onClick={() => act("change_saved_coord_two", {
+                  name: last_three_inputs["coords_two"]["name"],
+                })} />
+              <Button
+                content="Save 3:"
+                inline
+               
+                onClick={() => act("change_saved_coord_three", {
+                  name: last_three_inputs["coords_three"]["name"],
+                })} />
+            </Flex>
+          </Flex.Item>
+          <Flex.Item>
             <Table justify="space-evenly">
               <Table.Row>
                 <Table.Cell>
                   <Button
-                    content="Select Coordinates:"
+                    content="Select:"
                     onClick={() => act("set_saved_coord_one")} />
+                </Table.Cell>
+                <Table.Cell>
+                  <Input
+                    value={last_three_inputs["coords_one"]["name"]}
+                    width="100px"
+                    onChange={(e, value) => act("change_saved_coord_one", {
+                      name: value,
+                    })} />
                 </Table.Cell>
                 <Table.Cell> 
                   {last_three_inputs["coords_one"]["targ_x"]}
@@ -100,8 +131,16 @@ export const Mortar = (props, context) => {
               <Table.Row>
                 <Table.Cell>
                   <Button
-                    content="Select Coordinates:"
+                    content="Select:"
                     onClick={() => act("set_saved_coord_two")} />
+                </Table.Cell>
+                <Table.Cell>
+                  <Input
+                    value={last_three_inputs["coords_two"]["name"]}
+                    width="100px"
+                    onChange={(e, value) => act("change_saved_coord_two", {
+                      name: value,
+                    })} />
                 </Table.Cell>
                 <Table.Cell>
                   {last_three_inputs["coords_two"]["targ_x"]}
@@ -119,8 +158,16 @@ export const Mortar = (props, context) => {
               <Table.Row>
                 <Table.Cell>
                   <Button
-                    content="Select Coordinates:"
+                    content="Select:"
                     onClick={() => act("set_saved_coord_three")} />
+                </Table.Cell>
+                <Table.Cell>
+                  <Input
+                    value={last_three_inputs["coords_three"]["name"]}
+                    width="100px"
+                    onChange={(e, value) => act("change_saved_coord_three", {
+                      name: value,
+                    })} />
                 </Table.Cell>
                 <Table.Cell>
                   {last_three_inputs["coords_three"]["targ_x"]}

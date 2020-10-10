@@ -10,12 +10,12 @@
 	density = TRUE
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	/// list of the target x and y, and the dialing we can do to them
-	var/list/coords = list("targ_x" = 0, "targ_y" = 0, "dial_x" = 0, "dial_y" = 0)
+	var/list/coords = list("name"= "", "targ_x" = 0, "targ_y" = 0, "dial_x" = 0, "dial_y" = 0)
 	/// saved last three inputs that were actually used to fire a round
 	var/list/last_three_inputs = list(
-		"coords_one" = list("targ_x" = 0, "targ_y" = 0, "dial_x" = 0, "dial_y" = 0),
-		"coords_two" = list("targ_x" = 0, "targ_y" = 0, "dial_x" = 0, "dial_y" = 0),
-		"coords_three" = list("targ_x" = 0, "targ_y" = 0, "dial_x" = 0, "dial_y" = 0)
+		"coords_one" = list("name"="Target 1", "targ_x" = 0, "targ_y" = 0, "dial_x" = 0, "dial_y" = 0),
+		"coords_two" = list("name"="Target 2", "targ_x" = 0, "targ_y" = 0, "dial_x" = 0, "dial_y" = 0),
+		"coords_three" = list("name"="Target 3", "targ_x" = 0, "targ_y" = 0, "dial_x" = 0, "dial_y" = 0)
 		)
 	var/offset_x = 0 //Automatic offset from target
 	var/offset_y = 0
@@ -48,7 +48,7 @@
 /obj/structure/mortar/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
 	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "Mortar", name, 430, 150, master_ui, state)
+		ui = new(user, src, ui_key, "Mortar", name, 450, 180, master_ui, state)
 		ui.open()
 
 /obj/structure/mortar/ui_data(mob/user)
@@ -64,7 +64,7 @@
 	if(.)
 		return
 	. = TRUE
-
+	var/new_name = ""
 	switch(action)
 		if("change_target_x")
 			coords["targ_x"] = clamp(text2num(params["target_x"]), 0, world.maxx)
@@ -80,6 +80,19 @@
 			coords = get_new_list("coords_two")
 		if("set_saved_coord_three")
 			coords = get_new_list("coords_three")
+		if("change_saved_coord_one")
+			new_name = params["name"]
+			coords["name"] = new_name
+			last_three_inputs["coords_one"] = get_new_list("coords")
+		if("change_saved_coord_two")
+			new_name = params["name"]
+			coords["name"] = new_name
+			last_three_inputs["coords_two"] = get_new_list("coords")
+		if("change_saved_coord_three")
+			new_name = params["name"]
+			coords["name"] = new_name
+			last_three_inputs["coords_three"] = get_new_list("coords")
+
 	if((coords["targ_x"] != 0 && coords["targ_y"] != 0))
 		usr.visible_message("<span class='notice'>[usr] adjusts [src]'s firing angle and distance.</span>",
 		"<span class='notice'>You adjust [src]'s firing angle and distance to match the new coordinates.</span>")
@@ -171,11 +184,6 @@
 			return
 
 		busy = FALSE
-		if(!check_bombard_spam())
-			// rotate the coordinates, removing the last, and adding the new one.
-			last_three_inputs["coords_three"] = get_new_list("coords_two")
-			last_three_inputs["coords_two"] = get_new_list("coords_one")
-			last_three_inputs["coords_one"] = get_new_list("coords")
 
 		user.visible_message("<span class='notice'>[user] loads \a [mortar_shell.name] into [src].</span>",
 		"<span class='notice'>You load \a [mortar_shell.name] into [src].</span>")
