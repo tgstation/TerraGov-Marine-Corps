@@ -100,7 +100,6 @@
 #define STUN		"stun"
 #define WEAKEN		"weaken"
 #define PARALYZE	"paralize"
-#define IRRADIATE	"irradiate"
 #define AGONY		"agony" // Added in PAIN!
 #define STUTTER		"stutter"
 #define EYE_BLUR	"eye_blur"
@@ -458,6 +457,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_CAN_HEAL_WITHOUT_QUEEN (1<<12) // Xenomorphs can heal even without a queen on the same z level
 #define CASTE_INNATE_PLASMA_REGEN 	(1<<13) // Xenos get full plasma regardless if they are on weeds or not
 #define CASTE_ACID_BLOOD (1<<13) //The acid blood effect which damages humans near xenos that take damage
+#define CASTE_CAN_HOLD_JELLY (1<<14)//whether we can hold fireproof jelly in our hands
 
 //Charge-Crush
 #define CHARGE_OFF			0
@@ -498,8 +498,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define RAV_CHARGE_TYPE					3
 
 //crusher defines
-#define CRUSHER_STOMP_LOWER_DMG			80
-#define CRUSHER_STOMP_UPPER_DMG			100
+#define CRUSHER_STOMP_LOWER_DMG			40
+#define CRUSHER_STOMP_UPPER_DMG			60
 #define CRUSHER_CHARGE_BARRICADE_MULTI	60
 #define CRUSHER_CHARGE_RAZORWIRE_MULTI	100
 #define CRUSHER_CHARGE_TANK_MULTI		100

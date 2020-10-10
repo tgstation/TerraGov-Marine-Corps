@@ -243,7 +243,8 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 	. = ..()
 	if(.)
 		return
-
+	if(!allowed(user))
+		return
 	if(!SU)
 		SU = new(src)
 	return SU.interact(user)
@@ -261,7 +262,8 @@ GLOBAL_LIST_EMPTY_TYPED(exports_types, /datum/supply_export)
 	. = ..()
 	if(.)
 		return
-
+	if(!allowed(user))
+		return
 	if(!SU)
 		SU = new(src)
 	return SU.interact(user)

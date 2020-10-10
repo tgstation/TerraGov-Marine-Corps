@@ -272,6 +272,7 @@
 
 
 /obj/structure/closet/bodybag/cryobag/proc/on_bodybag_occupant_death(mob/source, gibbing)
+	SIGNAL_HANDLER
 	if(!QDELETED(bodybag_occupant))
 		visible_message("<span class='notice'>\The [src] rejects the corpse.</span>")
 	open()

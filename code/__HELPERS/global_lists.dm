@@ -143,9 +143,17 @@ GLOBAL_LIST_EMPTY(randomized_pill_icons)
 		var/datum/chemical_reaction/D = new path()
 		var/list/reaction_ids = list()
 
-		if(D.required_reagents && D.required_reagents.len)
+		if(length(D.required_reagents))
+			for(var/result in D.results)
+				GLOB.chemical_required_reagents[result] = list(
+					"catalysts" = D.required_catalysts,
+					"reagents" = D.required_reagents
+				)
+
 			for(var/reaction in D.required_reagents)
 				reaction_ids += reaction
+
+
 
 		// Create filters based on each reagent id in the required reagents list
 		for(var/id in reaction_ids)

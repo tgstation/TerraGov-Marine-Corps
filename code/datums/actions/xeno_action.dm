@@ -38,6 +38,7 @@
 
 
 /datum/action/xeno_action/proc/keybind_activation()
+	SIGNAL_HANDLER_DOES_SLEEP
 	if(can_use_action())
 		action_activate()
 	return COMSIG_KB_ACTIVATED
@@ -131,6 +132,7 @@
 
 
 /datum/action/xeno_action/proc/add_cooldown()
+	SIGNAL_HANDLER
 	if(cooldown_id) // stop doubling up
 		return
 	last_use = world.time

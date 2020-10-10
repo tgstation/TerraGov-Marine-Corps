@@ -452,6 +452,8 @@
 
 #define COMSIG_XENOABILITY_RESIN_WALKER "xenoability_resin_walker"
 #define COMSIG_XENOABILITY_BUILD_TUNNEL "xenoability_build_tunnel"
+#define COMSIG_XENOABILITY_PLACE_JELLY_POD "xenoability_place_jelly_pod"
+#define COMSIG_XENOABILITY_CREATE_JELLY "xenoability_create_jelly"
 
 #define COMSIG_XENOABILITY_TOGGLE_STEALTH "xenoability_toggle_stealth"
 

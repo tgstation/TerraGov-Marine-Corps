@@ -1,0 +1,875 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aK" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/door/poddoor/mainship{
+	id = "corporate_blast";
+	name = "\improper Corporate Dome Blast Door"
+	},
+/turf/open/floor/plating,
+/area/lv624/lazarus/internal_affairs)
+"bF" = (
+/obj/effect/spawner/random/toolbox,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 8
+	},
+/area/lv624/lazarus/internal_affairs)
+"bV" = (
+/obj/structure/table/woodentable,
+/turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
+"cf" = (
+/obj/structure/computerframe{
+	anchored = 1
+	},
+/turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
+"dG" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/grass,
+/area/lv624/lazarus/internal_affairs)
+"eq" = (
+/obj/structure/table/woodentable,
+/obj/item/flashlight/lamp,
+/turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
+"eE" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 8
+	},
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 8
+	},
+/area/lv624/lazarus/internal_affairs)
+"fb" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 1;
+	on = 1
+	},
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/lv624/lazarus/internal_affairs)
+"fA" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/door/airlock/mainship/generic/corporate{
+	dir = 1;
+	name = "Corporate Dome"
+	},
+/obj/machinery/door/poddoor/mainship{
+	dir = 1;
+	id = "corporate_blast";
+	name = "\improper Corporate Dome Blast Door"
+	},
+/turf/open/floor/plating,
+/area/lv624/lazarus/internal_affairs)
+"gU" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 8
+	},
+/area/lv624/lazarus/internal_affairs)
+"hb" = (
+/obj/item/storage/toolbox/mechanical,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
+	},
+/area/lv624/lazarus/internal_affairs)
+"hU" = (
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 8
+	},
+/area/lv624/lazarus/internal_affairs)
+"if" = (
+/obj/item/flashlight,
+/obj/item/ammo_magazine/smg/mp5,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 8
+	},
+/area/lv624/lazarus/internal_affairs)
+"it" = (
+/obj/machinery/door/airlock/mainship/generic/corporate{
+	dir = 1;
+	name = "Corporate Dome"
+	},
+/turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
+"jc" = (
+/obj/machinery/door/airlock/mainship/generic/corporate{
+	name = "Corporate Dome"
+	},
+/obj/machinery/door/poddoor/mainship{
+	id = "corporate_blast";
+	name = "\improper Corporate Dome Blast Door"
+	},
+/turf/open/floor/plating,
+/area/lv624/lazarus/internal_affairs)
+"jv" = (
+/obj/machinery/newscaster{
+	pixel_y = -28
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/lv624/lazarus/internal_affairs)
+"ky" = (
+/obj/item/folder/blue,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/tile/blue/whitebluefull,
+/area/lv624/lazarus/internal_affairs)
+"kz" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/lv624/lazarus/internal_affairs)
+"lf" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
+	},
+/area/lv624/lazarus/internal_affairs)
+"lJ" = (
+/turf/open/floor/tile/blue/whitebluefull,
+/area/lv624/lazarus/internal_affairs)
+"no" = (
+/obj/structure/table/woodentable,
+/obj/machinery/computer/crew,
+/turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
+"ns" = (
+/obj/structure/safe{
+	spawnkey = 0
+	},
+/turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
+"nP" = (
+/obj/machinery/vending/cola,
+/turf/open/floor/tile/blue/whiteblue,
+/area/lv624/lazarus/internal_affairs)
+"os" = (
+/obj/structure/table/woodentable,
+/obj/item/pinpointer,
+/turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
+"qp" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/lv624/lazarus/internal_affairs)
+"rO" = (
+/obj/structure/table/woodentable,
+/obj/item/megaphone,
+/turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
+"rX" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4;
+	on = 1
+	},
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
+	},
+/area/lv624/lazarus/internal_affairs)
+"sS" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
+"tF" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/lv624/lazarus/internal_affairs)
+"vo" = (
+/obj/item/bedsheet/rd,
+/obj/item/toy/bikehorn/rubberducky,
+/obj/structure/bed/fancy,
+/turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
+"xc" = (
+/turf/closed/wall/r_wall,
+/area/lv624/lazarus/internal_affairs)
+"xH" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/tile/blue/whitebluefull,
+/area/lv624/lazarus/internal_affairs)
+"yr" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/lv624/lazarus/internal_affairs)
+"yL" = (
+/obj/item/spacecash/c500{
+	pixel_x = 5;
+	pixel_y = -2
+	},
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
+	},
+/area/lv624/lazarus/internal_affairs)
+"zM" = (
+/obj/structure/extinguisher_cabinet{
+	dir = 1
+	},
+/turf/open/floor/tile/blue/whiteblue,
+/area/lv624/lazarus/internal_affairs)
+"zZ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/lv624/lazarus/internal_affairs)
+"Au" = (
+/obj/machinery/vending/snack,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
+	},
+/area/lv624/lazarus/internal_affairs)
+"BP" = (
+/obj/machinery/door_control{
+	id = "corporate_blast";
+	name = "Dome Lockdown";
+	pixel_y = -25
+	},
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/lv624/lazarus/internal_affairs)
+"CI" = (
+/turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
+"CY" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 8
+	},
+/area/lv624/lazarus/internal_affairs)
+"Dg" = (
+/obj/item/spacecash/c100{
+	pixel_x = -12
+	},
+/obj/item/reagent_containers/food/drinks/bottle/sake,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 8
+	},
+/area/lv624/lazarus/internal_affairs)
+"EF" = (
+/turf/open/floor/tile/blue/whiteblue,
+/area/lv624/lazarus/internal_affairs)
+"EI" = (
+/obj/structure/table/woodentable,
+/obj/item/storage/box/donkpockets,
+/obj/item/clothing/glasses/sunglasses/big{
+	pixel_y = 5
+	},
+/turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
+"Fn" = (
+/obj/structure/closet/gmcloset,
+/turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
+"FP" = (
+/obj/item/shard,
+/obj/structure/displaycase/destroyed,
+/turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
+"Ge" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/lv624/lazarus/internal_affairs)
+"Hq" = (
+/turf/template_noop,
+/area/template_noop)
+"Hs" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
+	},
+/area/lv624/lazarus/internal_affairs)
+"Hx" = (
+/obj/structure/bookcase,
+/turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
+"HP" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
+	},
+/area/lv624/lazarus/internal_affairs)
+"If" = (
+/obj/machinery/light/small,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/lv624/lazarus/internal_affairs)
+"Jf" = (
+/obj/structure/table/woodentable,
+/obj/item/ashtray/glass,
+/obj/item/toy/deck,
+/obj/item/mecha_parts/part/gygax_head,
+/turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
+"Jh" = (
+/obj/item/clothing/glasses/regular,
+/turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
+"Jr" = (
+/obj/effect/landmark/corpsespawner/bridgeofficer{
+	corpseidjob = "Bridge Officer";
+	corpseuniform = /obj/item/clothing/under/waiter;
+	name = "Mr. Johnson Telovin"
+	},
+/obj/item/tool/crowbar,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/lv624/lazarus/internal_affairs)
+"JX" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
+	},
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 8
+	},
+/area/lv624/lazarus/internal_affairs)
+"Ks" = (
+/obj/item/spacecash/c200{
+	pixel_y = 4
+	},
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 8
+	},
+/area/lv624/lazarus/internal_affairs)
+"KD" = (
+/obj/item/ammo_casing{
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/obj/item/ammo_casing,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/lv624/lazarus/internal_affairs)
+"Lj" = (
+/obj/machinery/door/poddoor/mainship{
+	id = "corporate_blast";
+	name = "\improper Corporate Dome Blast Door"
+	},
+/obj/machinery/door/airlock/mainship/generic/corporate{
+	name = "Corporate Dome"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/lv624/lazarus/internal_affairs)
+"LM" = (
+/obj/machinery/firealarm,
+/obj/machinery/vending/cigarette/colony,
+/turf/open/floor/tile/blue/whiteblue,
+/area/lv624/lazarus/internal_affairs)
+"MR" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/tile/blue/whitebluefull,
+/area/lv624/lazarus/internal_affairs)
+"Nr" = (
+/obj/item/weapon/gun/smg/mp5,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
+	},
+/area/lv624/lazarus/internal_affairs)
+"Ny" = (
+/obj/machinery/door/airlock/mainship/generic/corporate{
+	name = "Corporate Dome"
+	},
+/turf/open/floor/podhatch/floor,
+/area/lv624/lazarus/internal_affairs)
+"NK" = (
+/obj/machinery/door_control{
+	id = "secure_blast";
+	name = "Vault Access";
+	pixel_x = -25
+	},
+/turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
+"NN" = (
+/obj/machinery/vending/coffee,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/lv624/lazarus/internal_affairs)
+"Of" = (
+/obj/structure/bookcase,
+/obj/item/book/manual/chef_recipes,
+/obj/item/book/manual/nuclear,
+/turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
+"Pg" = (
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
+	},
+/area/lv624/lazarus/internal_affairs)
+"PF" = (
+/obj/item/spacecash/c100,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/lv624/lazarus/internal_affairs)
+"PW" = (
+/obj/machinery/door_control{
+	id = "science_blast";
+	name = "Science Wing Lockdown";
+	pixel_x = -25
+	},
+/turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
+"Qi" = (
+/obj/machinery/power/apc,
+/obj/structure/cable,
+/turf/open/floor/tile/blue/whiteblue,
+/area/lv624/lazarus/internal_affairs)
+"Ql" = (
+/obj/structure/closet/cabinet,
+/turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
+"QA" = (
+/obj/item/spacecash/c100,
+/obj/item/spacecash/c200{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/lv624/lazarus/internal_affairs)
+"Rb" = (
+/obj/machinery/status_display{
+	pixel_y = 30
+	},
+/obj/item/folder/white,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/tile/blue/whiteblue,
+/area/lv624/lazarus/internal_affairs)
+"Tk" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
+"UW" = (
+/obj/item/clothing/glasses/regular/hipster,
+/obj/item/bedsheet/captain,
+/obj/structure/bed/fancy,
+/turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
+"Ve" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/turf/open/floor/tile/blue/whitebluefull,
+/area/lv624/lazarus/internal_affairs)
+"Vq" = (
+/obj/machinery/light/small,
+/turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
+"Vu" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/door/poddoor/mainship{
+	dir = 1;
+	id = "corporate_blast";
+	name = "\improper Corporate Dome Blast Door"
+	},
+/turf/open/floor/plating,
+/area/lv624/lazarus/internal_affairs)
+"Wd" = (
+/obj/machinery/door/poddoor/mainship{
+	dir = 1;
+	id = "corporate_blast";
+	name = "\improper Corporate Dome Blast Door"
+	},
+/obj/machinery/door/airlock/mainship/generic/corporate{
+	dir = 1;
+	name = "Corporate Dome"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/lv624/lazarus/internal_affairs)
+"Wx" = (
+/obj/structure/cable,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/lv624/lazarus/internal_affairs)
+"WH" = (
+/obj/machinery/door/airlock/mainship/generic/corporate{
+	name = "Corporate Dome"
+	},
+/turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
+"Xd" = (
+/turf/closed/wall,
+/area/lv624/lazarus/internal_affairs)
+"Xo" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
+	},
+/area/lv624/lazarus/internal_affairs)
+"XD" = (
+/obj/structure/largecrate/random,
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 4
+	},
+/area/lv624/lazarus/internal_affairs)
+"XK" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4;
+	on = 1
+	},
+/turf/open/floor/tile/blue/whitebluefull,
+/area/lv624/lazarus/internal_affairs)
+"XP" = (
+/obj/item/book/manual/security_space_law,
+/obj/item/book/manual/ripley_build_and_repair,
+/turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
+"Ya" = (
+/obj/item/contraband/poster,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/lv624/lazarus/internal_affairs)
+"YP" = (
+/turf/open/floor/tile/blue/whiteblue{
+	dir = 1
+	},
+/area/lv624/lazarus/internal_affairs)
+"YZ" = (
+/obj/structure/jungle/vines,
+/turf/closed/wall/r_wall,
+/area/lv624/lazarus/internal_affairs)
+
+(1,1,1) = {"
+Hq
+Hq
+Hq
+Hq
+Hq
+xc
+aK
+jc
+aK
+xc
+Hq
+Hq
+Hq
+Hq
+Hq
+"}
+(2,1,1) = {"
+Hq
+xc
+aK
+aK
+aK
+xc
+nP
+lJ
+YP
+xc
+aK
+aK
+aK
+YZ
+Hq
+"}
+(3,1,1) = {"
+Hq
+Vu
+Ql
+Tk
+vo
+Xd
+EF
+XK
+If
+Xd
+Of
+Ya
+EI
+Vu
+Hq
+"}
+(4,1,1) = {"
+Hq
+Vu
+Hx
+CI
+sS
+it
+EF
+ky
+YP
+it
+CI
+CI
+no
+Vu
+Hq
+"}
+(5,1,1) = {"
+Hq
+Vu
+Hx
+CI
+ns
+Xd
+zM
+MR
+YP
+Xd
+CI
+CI
+Jf
+Vu
+Hq
+"}
+(6,1,1) = {"
+xc
+xc
+Xd
+WH
+Xd
+Xd
+EF
+MR
+BP
+Xd
+Xd
+Ny
+Xd
+xc
+xc
+"}
+(7,1,1) = {"
+Vu
+XD
+rX
+Pg
+lf
+Pg
+Xo
+HP
+hb
+yL
+Nr
+Pg
+Hs
+Au
+Vu
+"}
+(8,1,1) = {"
+fA
+zZ
+tF
+zZ
+zZ
+zZ
+yr
+dG
+KD
+Jr
+QA
+PF
+kz
+Ge
+Wd
+"}
+(9,1,1) = {"
+Vu
+bF
+gU
+hU
+hU
+hU
+CY
+eE
+if
+hU
+Dg
+Ks
+JX
+hU
+Vu
+"}
+(10,1,1) = {"
+xc
+xc
+Xd
+WH
+Xd
+Xd
+LM
+MR
+Wx
+Xd
+Xd
+WH
+Xd
+xc
+xc
+"}
+(11,1,1) = {"
+Hq
+Vu
+PW
+CI
+Fn
+Xd
+Qi
+xH
+jv
+Xd
+NK
+CI
+cf
+Vu
+Hq
+"}
+(12,1,1) = {"
+Hq
+Vu
+rO
+CI
+CI
+it
+EF
+xH
+qp
+it
+XP
+Jh
+Vq
+Vu
+Hq
+"}
+(13,1,1) = {"
+Hq
+Vu
+FP
+CI
+UW
+Xd
+Rb
+Ve
+fb
+Xd
+os
+eq
+bV
+Vu
+Hq
+"}
+(14,1,1) = {"
+Hq
+YZ
+aK
+aK
+aK
+xc
+EF
+xH
+NN
+xc
+aK
+aK
+aK
+xc
+Hq
+"}
+(15,1,1) = {"
+Hq
+Hq
+Hq
+Hq
+Hq
+xc
+aK
+Lj
+aK
+xc
+Hq
+Hq
+Hq
+Hq
+Hq
+"}

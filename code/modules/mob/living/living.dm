@@ -97,7 +97,9 @@
 	GLOB.offered_mob_list -= src
 	SSmobs.stop_processing(src)
 	job = null
-	return ..()
+	. = ..()
+	hard_armor = null
+	soft_armor = null
 
 
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
@@ -576,9 +578,14 @@ below 100 is not dizzy
 		log_game("[key_name(M)] has taken over [key_name_admin(src)].")
 		message_admins("[key_name_admin(M)] has taken over [ADMIN_TPMONTY(src)].")
 
+	GLOB.offered_mob_list -= src
+
+	if(isxeno(src))
+		SSticker.mode.transfer_xeno(M, src, TRUE)
+		return TRUE
+
 	M.mind.transfer_to(src, TRUE)
 	fully_replace_character_name(M.real_name, real_name)
-	GLOB.offered_mob_list -= src
 	return TRUE
 
 

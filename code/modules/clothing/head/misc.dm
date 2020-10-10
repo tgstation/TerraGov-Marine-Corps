@@ -153,6 +153,7 @@
 	icon_state = "hgpiratecap"
 	item_state = "hgpiratecap"
 	flags_armor_protection = 0
+	flags_item = SYNTH_RESTRICTED
 	soft_armor = list("melee" = 50, "bullet" = 80, "laser" = 50, "energy" = 10, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 
 /obj/item/clothing/head/bandanna
@@ -249,3 +250,11 @@
 	desc = "The white dress hat for your dress uniform."
 	icon_state = "white_dress" //with thanks to Baystation12
 	item_state = "white_dress" //with thanks to Baystation12
+
+/obj/item/clothing/head/techpriest
+	name = "Techpriest hood"
+	desc = "Praise the Omnissiah!"
+	icon_state = "tp_hood"
+	item_state = "tp_hood"
+	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
+	flags_armor_protection = HEAD|FACE|EYES
