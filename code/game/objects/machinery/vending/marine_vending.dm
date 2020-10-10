@@ -514,17 +514,12 @@
 	wrenchable = FALSE
 	tokensupport = TOKEN_ENGI
 
-	products = list(
-					/obj/item/coin/marine/engineer = 1,
-					)
 	contraband = list(/obj/item/cell/super = 1)
 
-	premium = list(
-					/obj/item/storage/box/sentry = 1,
-					/obj/item/storage/box/standard_hmg = 1
-					)
 	shared = list(
 				/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
+				/obj/item/storage/box/sentry = 3,
+				/obj/item/storage/box/standard_hmg = 1
 				)
 	prices = list()
 
