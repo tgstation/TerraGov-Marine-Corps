@@ -419,5 +419,3 @@
 /obj/item/explosive/grenade/frag/m9/prime()
 	explosion(loc, light_impact_range = 5)
 	qdel(src)
-
-	
