@@ -12696,16 +12696,6 @@
 "cdy" = (
 /turf/open/floor/prison,
 /area/sulaco/hangar)
-"cfg" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/closed/wall/indestructible/fakeglass,
-/area/sulaco/hangar/droppod)
-"chD" = (
-/obj/machinery/light,
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
 "cjc" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /turf/open/floor/mainship/tcomms,
@@ -14161,12 +14151,6 @@
 	dir = 4
 	},
 /area/sulaco/marine/charlie)
-"hWP" = (
-/obj/machinery/camera/autoname{
-	dir = 1
-	},
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
 "hYp" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
@@ -14776,11 +14760,6 @@
 /obj/structure/disposalpipe/segment/corner,
 /turf/open/floor/prison/red,
 /area/sulaco/hallway/central_hall3)
-"kIV" = (
-/obj/machinery/computer/droppod_control,
-/obj/structure/table/mainship,
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
 "kJu" = (
 /obj/structure/prop/mainship/mission_planning_system{
 	desc = "This gathers all information about the Self-Destruct and pools it into one repository.";
@@ -15714,13 +15693,6 @@
 	dir = 4
 	},
 /area/space)
-"oaw" = (
-/obj/structure/table/mainship,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
 "ocn" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/plating/platebotc,
@@ -15731,12 +15703,6 @@
 	},
 /turf/open/floor/prison/whitegreen,
 /area/sulaco/research)
-"ogl" = (
-/obj/structure/window/reinforced,
-/turf/closed/wall/indestructible/fakeglass{
-	dir = 1
-	},
-/area/sulaco/hangar/droppod)
 "oiA" = (
 /obj/effect/landmark/start/job/synthetic,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -17079,7 +17045,7 @@
 /area/sulaco/hallway/central_hall3)
 "stk" = (
 /obj/machinery/vending/tool,
-/turf/open/floor,
+/turf/open/floor/prison,
 /area/sulaco/marine/delta)
 "stp" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -17121,8 +17087,8 @@
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "swp" = (
-/obj/structure/largecrate/supply/supplies/flares,
-/turf/open/floor/mainship/mono,
+/obj/structure/supply_drop/alpha,
+/turf/open/floor/prison/plate,
 /area/sulaco/cargo)
 "sxx" = (
 /obj/machinery/marine_selector/clothes/synth,
@@ -17333,10 +17299,12 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 5
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
+	dir = 9
 	},
-/turf/open/floor,
+/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/turf/open/floor/prison,
 /area/sulaco/cargo/office)
 "sTR" = (
 /obj/effect/decal/cleanable/dirt,
@@ -17426,8 +17394,8 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/sulaco/research)
 "tha" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 8
+/obj/machinery/camera/autoname{
+	dir = 1
 	},
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
@@ -17435,10 +17403,6 @@
 /obj/machinery/door/poddoor/open/sb,
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall)
-"tiH" = (
-/obj/structure/prop/mainship/mapping_computer,
-/turf/open/floor/mainship/ai,
-/area/sulaco/hangar/droppod)
 "tjq" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 10
@@ -52882,14 +52846,6 @@ aaa
 aaa
 aaa
 aaa
-ueI
-eGT
-fLx
-kWT
-fLx
-kWT
-fLx
-cfg
 aaa
 aaa
 aaa
@@ -53147,14 +53103,6 @@ aaa
 aaa
 aaa
 aaa
-ueI
-kWT
-fLx
-kWT
-fLx
-kWT
-fLx
-cfg
 aaa
 aaa
 aaa
@@ -53412,14 +53360,6 @@ aaa
 aaa
 aaa
 aaa
-ueI
-kWT
-fLx
-kWT
-fLx
-kWT
-fLx
-cfg
 aaa
 aaa
 aaa
@@ -53677,14 +53617,6 @@ aaa
 aaa
 aaa
 aaa
-ueI
-kWT
-fLx
-kWT
-fLx
-kWT
-fLx
-cfg
 aaa
 aaa
 aaa
@@ -54980,7 +54912,6 @@ aaa
 nzi
 mDu
 aSN
-aPF
 aPF
 aPF
 aYw
