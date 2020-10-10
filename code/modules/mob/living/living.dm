@@ -386,6 +386,8 @@
 			return
 
 	if(ismovableatom(A))
+		if(signal_procs.Find(COMSIG_MOVABLE_BUMP) != 0 && istype(istype(A,/mob/living/carbon/human) && (a_intent == INTENT_HARM || a_intent == INTENT_DISARM)))
+			return
 		PushAM(A)
 
 
