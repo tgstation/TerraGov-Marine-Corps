@@ -183,10 +183,10 @@
 		return
 	var/obj/item/powerloader_clamp/clamp = I
 	if(clamp.loaded)
-		if((!ship_base && !(dropship_equipment_flags & IS_NOT_REMOVABLE)) || !(dropship_equipment_flags & USES_AMMO) || ammo_equipped || !istype(clamp.loaded, /obj/structure/ship_ammo))
+		if(!ship_base || !(dropship_equipment_flags & USES_AMMO) || ammo_equipped || !istype(clamp.loaded, /obj/structure/ship_ammo))
 			return FALSE
 		var/obj/structure/ship_ammo/clamp_ammo = clamp.loaded
-		if(!istype(type, clamp_ammo.equipment_type))
+		if(clamp_ammo.equipment_type != type)
 			to_chat(user, "<span class='warning'>[clamp_ammo] doesn't fit in [src].</span>")
 			return FALSE
 		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
