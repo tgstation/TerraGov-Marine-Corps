@@ -110,7 +110,7 @@ export const Mortar = (props, context) => {
                   <Input
                     value={last_three_inputs["coords_one"]["name"]}
                     width="100px"
-                    onChange={(e, value) => act("change_saved_coord_one", {
+                    onChange={(e, value) => act("change_saved_one_name", {
                       name: value,
                     })} />
                 </Table.Cell>
@@ -137,7 +137,7 @@ export const Mortar = (props, context) => {
                   <Input
                     value={last_three_inputs["coords_two"]["name"]}
                     width="100px"
-                    onChange={(e, value) => act("change_saved_coord_two", {
+                    onChange={(e, value) => act("change_saved_two_name", {
                       name: value,
                     })} />
                 </Table.Cell>
@@ -164,7 +164,7 @@ export const Mortar = (props, context) => {
                   <Input
                     value={last_three_inputs["coords_three"]["name"]}
                     width="100px"
-                    onChange={(e, value) => act("change_saved_coord_three", {
+                    onChange={(e, value) => act("change_saved_three_name", {
                       name: value,
                     })} />
                 </Table.Cell>

@@ -92,7 +92,15 @@
 			new_name = params["name"]
 			coords["name"] = new_name
 			last_three_inputs["coords_three"] = get_new_list("coords")
-
+		if("change_saved_one_name")
+			new_name = params["name"]
+			last_three_inputs["coords_one"]["name"] = new_name
+		if("change_saved_two_name")
+			new_name = params["name"]
+			last_three_inputs["coords_two"]["name"] = new_name
+		if("change_saved_three_name")
+			new_name = params["name"]
+			last_three_inputs["coords_three"]["name"] = new_name
 	if((coords["targ_x"] != 0 && coords["targ_y"] != 0))
 		usr.visible_message("<span class='notice'>[usr] adjusts [src]'s firing angle and distance.</span>",
 		"<span class='notice'>You adjust [src]'s firing angle and distance to match the new coordinates.</span>")
