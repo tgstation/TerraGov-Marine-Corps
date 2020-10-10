@@ -5,7 +5,7 @@
   * Note: if you read parts of this code and think "why is it doing it that way"
   * Odds are, there is a reason
   *
- **/
+  **/
 
 //This is the ABSOLUTE ONLY THING that should init globally like this
 //2019 update: the failsafe,config and Global controllers also do it
@@ -18,41 +18,45 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 /datum/controller/master
 	name = "Master"
 
-	// Are we processing (higher values increase the processing delay by n ticks)
+	/// Are we processing (higher values increase the processing delay by n ticks)
 	var/processing = TRUE
-	// How many times have we ran
+	/// How many times have we ran
 	var/iteration = 0
 
-	// world.time of last fire, for tracking lag outside of the mc
+	/// world.time of last fire, for tracking lag outside of the mc
 	var/last_run
 
-	// List of subsystems to process().
+	/// List of subsystems to process().
 	var/list/subsystems
 
-	// Vars for keeping track of tick drift.
+	/// Vars for keeping track of tick drift.
 	var/init_timeofday
 	var/init_time
 	var/tickdrift = 0
 
 	var/sleep_delta = 1
 
-	///Only run ticker subsystems for the next n ticks.
+	/// Only run ticker subsystems for the next n ticks.
 	var/skip_ticks = 0
 
 	var/make_runtime = FALSE
 
-	var/initializations_finished_with_no_players_logged_in	//I wonder what this could be?
+	var/initializations_finished_with_no_players_logged_in = FALSE	//I wonder what this could be?
 
-	// The type of the last subsystem to be process()'d.
+	/// The type of the last subsystem to be process()'d.
 	var/last_type_processed
 
-	var/datum/controller/subsystem/queue_head //Start of queue linked list
-	var/datum/controller/subsystem/queue_tail //End of queue linked list (used for appending to the list)
+	///Start of queue linked list
+	var/datum/controller/subsystem/queue_head
+	//End of queue linked list (used for appending to the list)
+	var/datum/controller/subsystem/queue_tail
 	var/queue_priority_count = 0 //Running total so that we don't have to loop thru the queue each run to split up the tick
 	var/queue_priority_count_bg = 0 //Same, but for background subsystems
-	var/map_loading = FALSE	//Are we loading in a new map?
+	///Are we loading a new map? used to prevent lag
+	var/map_loading = FALSE
 
-	var/current_runlevel	//for scheduling different subsystems for different stages of the round
+	///Used for scheduling different subsystems for different stages of the round
+	var/current_runlevel
 	var/sleep_offline_after_initializations = TRUE
 
 	var/static/restart_clear = 0
@@ -61,8 +65,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 	var/static/random_seed
 
-	//current tick limit, assigned before running a subsystem.
-	//used by CHECK_TICK as well so that the procs subsystems call can obey that SS's tick limits
+	///current tick limit, assigned before running a subsystem. used by CHECK_TICK as well so that the procs subsystems call can obey that SS's tick limits
 	var/static/current_ticklimit = TICK_LIMIT_RUNNING
 	/// normalized version of the byond internal tick usage metric to smooth out peaks.
 	var/normalized_internal_tick_usage = 0
@@ -73,7 +76,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	// Highlander-style: there can only be one! Kill off the old and replace it with the new.
 
 	if(!random_seed)
-		random_seed = rand(1, 1e9)
+		random_seed = (TEST_RUN_PARAMETER in world.params) ? 29051994 : rand(1, 1e9)
 		rand_seed(random_seed)
 
 	var/list/_subsystems = list()
@@ -171,7 +174,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 // Please don't stuff random bullshit here,
 // 	Make a subsystem, give it the SS_NO_FIRE flag, and do your work in it's Initialize()
 /datum/controller/master/Initialize(delay, init_sss, tgs_prime)
-	set waitfor = 0
+	set waitfor = FALSE
 
 	if(delay)
 		sleep(delay)
@@ -233,7 +236,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 // Starts the mc, and sticks around to restart it if the loop ever ends.
 /datum/controller/master/proc/StartProcessing(delay)
-	set waitfor = 0
+	set waitfor = FALSE
 	if(delay)
 		sleep(delay)
 	testing("Master starting processing")
@@ -335,7 +338,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		//debug
 		if (make_runtime)
 			var/datum/controller/subsystem/SS
-			SS.can_fire = 0
+			SS.can_fire = FALSE
 
 		if (!Failsafe || (Failsafe.processing_interval > 0 && (Failsafe.lasttick+(Failsafe.processing_interval*5)) < world.time))
 			new/datum/controller/failsafe() // (re)Start the failsafe.
@@ -428,8 +431,11 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 // Run thru the queue of subsystems to run, running them while balancing out their allocated tick precentage
 /datum/controller/master/proc/RunQueue()
 	. = 0
+	///The subsystem we're running this run
 	var/datum/controller/subsystem/queue_node = queue_head
+	//Cache of queue node flags
 	var/queue_node_flags
+	///Cache of queue node priority
 	var/queue_node_priority
 	var/queue_node_paused
 
@@ -595,9 +601,12 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		skip_ticks = TRUE
 
 
-/datum/controller/master/stat_entry(msg)
-	msg = "(TickRate:[Master.processing]) (Iteration:[Master.iteration]) (TickLimit: [round(Master.current_ticklimit, 0.1)])"
-	return msg
+/datum/controller/master/stat_entry()
+	if(!statclick)
+		statclick = new/obj/effect/statclick/debug(null, "Initializing...", src)
+
+	stat("Byond:", "(FPS:[world.fps]) (TickCount:[world.time/world.tick_lag]) (TickDrift:[round(Master.tickdrift,1)]([round((Master.tickdrift/(world.time/world.tick_lag))*100,0.1)]%)) (Internal Tick Usage: [round(MAPTICK_LAST_INTERNAL_TICK_USAGE,0.1)]%)")
+	stat("Master Controller:", statclick.update("(TickRate:[Master.processing]) (Iteration:[Master.iteration]) (TickLimit: [round(Master.current_ticklimit, 0.1)]) (ticklimitrunningbackground:[TICK_LIMIT_RUNNING_BACKGROUND]) (tivklag:[world.tick_usage])"))
 
 
 /datum/controller/master/StartLoadingMap()
