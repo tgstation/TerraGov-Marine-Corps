@@ -551,6 +551,8 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 		queue_node = queue_node.queue_next
 
+	queue_priority_count = 0
+	queue_priority_count_bg = 0
 	. = 1
 
 //resets the queue, and all subsystems, while filtering out the subsystem lists
