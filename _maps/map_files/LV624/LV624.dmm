@@ -15087,6 +15087,14 @@
 /obj/docking_port/stationary/crashmode,
 /turf/closed/gm/dense,
 /area/lv624/ground/jungle7)
+"cbi" = (
+/obj/structure/prop/mainship/hangar_stencil,
+/obj/effect/decal/warning_stripes/thick{
+	dir = 8
+	},
+/obj/effect/decal/warning_stripes/thick,
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "chK" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -15241,6 +15249,12 @@
 	dir = 1
 	},
 /area/lv624/ground/river1)
+"dBQ" = (
+/obj/effect/decal/warning_stripes/thick{
+	dir = 5
+	},
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "dCd" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
@@ -15559,6 +15573,12 @@
 	},
 /turf/open/ground/grass,
 /area/lv624/ground/jungle5)
+"gEH" = (
+/obj/effect/decal/warning_stripes/thick{
+	dir = 8
+	},
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "gFA" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/structure/foamedmetal,
@@ -16113,6 +16133,12 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/n)
+"mmj" = (
+/obj/effect/decal/warning_stripes/thick{
+	dir = 4
+	},
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "mos" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/lv624/ground/compound/sw)
@@ -16253,6 +16279,12 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/n)
+"nFI" = (
+/obj/structure/prop/mainship/hangar_stencil/two,
+/turf/open/floor/marking/warning{
+	dir = 10
+	},
+/area/shuttle/drop2/lz2)
 "nGq" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -16401,6 +16433,12 @@
 /obj/item/paper/manifest,
 /turf/open/floor,
 /area/shuttle/drop2/lz2)
+"pGM" = (
+/obj/effect/decal/warning_stripes/thick{
+	dir = 9
+	},
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "pNb" = (
 /obj/structure/jungle/vines,
 /turf/open/ground/grass,
@@ -16554,6 +16592,10 @@
 /obj/structure/catwalk,
 /turf/open/ground/coast,
 /area/lv624/ground/jungle9)
+"rLV" = (
+/obj/effect/decal/warning_stripes/thick,
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "rOf" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/platebotc,
@@ -16584,6 +16626,13 @@
 	dir = 6
 	},
 /area/shuttle/drop2/lz2)
+"sax" = (
+/obj/effect/decal/warning_stripes/thick{
+	dir = 4
+	},
+/obj/effect/decal/warning_stripes/thick,
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "seB" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -16619,6 +16668,12 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/compound/sw)
+"sKi" = (
+/obj/effect/decal/warning_stripes/thick{
+	dir = 1
+	},
+/turf/open/floor,
+/area/shuttle/drop1/lz1)
 "sKw" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -20928,7 +20983,7 @@ aUF
 aXb
 aFT
 aVo
-bgw
+nFI
 aXb
 aXb
 aXb
@@ -42611,9 +42666,9 @@ aSB
 beU
 bfH
 aWs
-aWs
-aWs
-aWs
+pGM
+gEH
+cbi
 bjv
 axZ
 kuh
@@ -42790,9 +42845,9 @@ aSB
 aWs
 aWs
 aWs
+sKi
 aWs
-aWs
-aWs
+rLV
 bjv
 axZ
 cYA
@@ -42969,9 +43024,9 @@ aSB
 aWs
 aWs
 aWs
-aWs
-aWs
-aWs
+dBQ
+mmj
+sax
 aNP
 axZ
 cYA

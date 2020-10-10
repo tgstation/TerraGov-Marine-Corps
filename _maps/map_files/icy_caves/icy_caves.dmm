@@ -1938,6 +1938,7 @@
 	dir = 8
 	},
 /obj/effect/decal/warning_stripes/thin,
+/obj/structure/prop/mainship/hangar_stencil/two,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
 "lm" = (
@@ -1953,6 +1954,7 @@
 	},
 /obj/effect/decal/warning_stripes/thin,
 /obj/structure/largecrate/supply/supplies,
+/obj/structure/prop/mainship/hangar_stencil/two,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
 "lo" = (
@@ -1961,6 +1963,7 @@
 	},
 /obj/effect/decal/warning_stripes/thin,
 /obj/structure/largecrate/supply/ammo/shotgun,
+/obj/structure/prop/mainship/hangar_stencil/two,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
 "lp" = (
@@ -2240,6 +2243,7 @@
 /obj/structure/table,
 /obj/item/restraints/handcuffs,
 /obj/item/flashlight,
+/obj/structure/prop/mainship/hangar_stencil/two,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
 "nc" = (
@@ -2261,6 +2265,7 @@
 	},
 /obj/effect/decal/warning_stripes/thin,
 /obj/structure/reagent_dispensers/watertank,
+/obj/structure/prop/mainship/hangar_stencil/two,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
 "nf" = (
@@ -2290,6 +2295,7 @@
 /obj/structure/table,
 /obj/item/roller,
 /obj/item/storage/firstaid,
+/obj/structure/prop/mainship/hangar_stencil/two,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
 "nm" = (
@@ -3791,6 +3797,10 @@
 "xI" = (
 /turf/closed/wall,
 /area/icy_caves/outpost/mining/west)
+"xJ" = (
+/obj/structure/prop/mainship/hangar_stencil,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/LZ1)
 "xM" = (
 /turf/closed/ice/straight{
 	dir = 4
@@ -10303,7 +10313,7 @@ UE
 WD
 uw
 uw
-uw
+xJ
 uw
 uw
 uw
@@ -10319,7 +10329,7 @@ uw
 uw
 uw
 uw
-uw
+xJ
 WD
 UE
 UM
