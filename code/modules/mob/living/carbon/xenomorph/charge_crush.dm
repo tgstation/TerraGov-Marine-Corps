@@ -393,7 +393,7 @@
 		charge_datum.do_stop_momentum()
 		return PRECRUSH_STOPPED
 	if(anchored)
-		. = (CHARGE_SPEED(charge_datum) * 35) // 2.1 * 30 = 73.5 Damage to inflict. if its already been hit by one acid spit, a charge will kill it without the crusher taking damage from the razorwire. 
+		. = (CHARGE_SPEED(charge_datum) * 36) // 2.1 * 30 = 75.60 Damage to inflict. if its already been hit by one acid spit, a charge will kill it without the crusher taking damage from the razorwire. 2 mature boiler globs are enough too for a charge too.
 		charge_datum.speed_down(3)
 		return
 	return (CHARGE_SPEED(charge_datum) * 20) //Damage to inflict.
