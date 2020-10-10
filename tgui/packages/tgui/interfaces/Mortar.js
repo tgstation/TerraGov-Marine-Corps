@@ -93,7 +93,6 @@ export const Mortar = (props, context) => {
               <Button
                 content="Save 3:"
                 inline
-               
                 onClick={() => act("change_saved_coord_three", {
                   name: last_three_inputs["coords_three"]["name"],
                 })} />
