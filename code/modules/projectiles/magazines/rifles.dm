@@ -185,7 +185,7 @@
 /obj/item/ammo_magazine/m412l1_hpr
     name = "\improper M412L1 box magazine (10x24mm)"
     desc = "A semi-rectangular box of rounds for the M412L1 heavy pulse rifle."
-    icon_state = "m41l1"
+    icon_state = "m412l1"
     caliber = "10x24mm caseless"
     default_ammo = /datum/ammo/bullet/rifle
     w_class = WEIGHT_CLASS_NORMAL
