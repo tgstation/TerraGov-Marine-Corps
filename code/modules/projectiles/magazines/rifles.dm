@@ -23,14 +23,14 @@
 	gun_type = /obj/item/weapon/gun/rifle/m412
 
 /obj/item/ammo_magazine/rifle/incendiary
-	name = "\improper M41A1 incendiary magazine (10x24mm)"
+	name = "\improper M412 incendiary magazine (10x24mm)"
 	desc = "A 10mm assault rifle magazine."
 	icon_state = "m41a1_incendiary"
 	default_ammo = /datum/ammo/bullet/rifle/incendiary
 	gun_type = /obj/item/weapon/gun/rifle/m412
 
 /obj/item/ammo_magazine/rifle/ap
-	name = "\improper M41A1 AP magazine (10x24mm)"
+	name = "\improper M412 AP magazine (10x24mm)"
 	desc = "A 10mm armor piercing magazine."
 	icon_state = "m41a1_ap"
 	default_ammo = /datum/ammo/bullet/rifle/ap
@@ -183,9 +183,9 @@
 //-------------------------------------------------------
 //M41AE2 HEAVY PULSE RIFLE
 
-/obj/item/ammo_magazine/m41ae2_hpr
-    name = "\improper M41AE2 box magazine (10x24mm)"
-    desc = "A semi-rectangular box of rounds for the M41AE2 heavy pulse rifle."
+/obj/item/ammo_magazine/m412l1_hpr
+    name = "\improper M412L1 box magazine (10x24mm)"
+    desc = "A semi-rectangular box of rounds for the M412L1 heavy pulse rifle."
     icon_state = "m41ae2"
     caliber = "10x24mm caseless"
     default_ammo = /datum/ammo/bullet/rifle

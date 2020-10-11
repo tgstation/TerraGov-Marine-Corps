@@ -269,7 +269,7 @@
 
 /obj/item/weapon/gun/rifle/m412
 	name = "\improper M412 pulse rifle"
-	desc = "The M412 rifle is a Pulse Industires rifle, billed as a pulse rifle due to its use of electronic firing for faster velocity. A rather common sight in most systems. Uses 10x24mm caseless ammunition."
+	desc = "The M412 rifle is a Pulse Industries rifle, billed as a pulse rifle due to its use of electronic firing for faster velocity. A rather common sight in most systems. Uses 10x24mm caseless ammunition."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "m412"
 	item_state = "m412"
@@ -589,6 +589,7 @@
 /obj/item/weapon/gun/rifle/m412l1_hpr
 	name = "\improper M412L1 heavy pulse rifle"
 	desc = "A large weapon capable of laying down supressing fire, based on the M412 pulse rifle platform. Uses 10x24mm caseless ammunition."
+	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "m412l1"
 	item_state = "m412l1"
 	caliber = "10x24mm caseless" //codex
@@ -599,7 +600,7 @@
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
-	current_mag = /obj/item/ammo_magazine/m41ae2_hpr
+	current_mag = /obj/item/ammo_magazine/m412l1_hpr
 	attachable_allowed = list(
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/reddot,

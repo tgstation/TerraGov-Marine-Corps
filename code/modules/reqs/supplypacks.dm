@@ -1190,24 +1190,24 @@ Imports
 	contains = list(/obj/item/ammo_magazine/rifle/m41a)
 	cost = 5
 
-/datum/supply_packs/imports/m41a1
+/datum/supply_packs/imports/m412
 	name = "M412 Pulse Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/m412)
 	cost = 15
 
-/datum/supply_packs/imports/m41a1/ammo
+/datum/supply_packs/imports/m41a2/ammo
 	name = "M412 Pulse Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle)
 	cost = 5
 
-/datum/supply_packs/imports/m41ae2
+/datum/supply_packs/imports/m412l1
 	name = "M412L1 Heavy Pulse Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/m412l1_hpr)
 	cost = 15
 
-/datum/supply_packs/imports/m41ae2/ammo
+/datum/supply_packs/imports/m412l1/ammo
 	name = "M412L1 Heavy Pulse Rifle Ammo"
-	contains = list(/obj/item/ammo_magazine/m41ae2_hpr)
+	contains = list(/obj/item/ammo_magazine/m412l1_hpr)
 	cost = 5
 
 /datum/supply_packs/imports/type71	//Moff gun
