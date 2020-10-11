@@ -47,10 +47,12 @@
 	keybind_signal = COMSIG_XENOABILITY_LUNGE
 
 /datum/action/xeno_action/activable/lunge/proc/neck_grab(mob/living/owner, mob/living/L)
+	SIGNAL_HANDLER
 	if(!can_use_ability(L, FALSE, XACT_IGNORE_DEAD_TARGET))
 		return COMSIG_WARRIOR_CANT_NECKGRAB
 
 /datum/action/xeno_action/activable/lunge/proc/lunge(mob/living/owner, atom/A)
+	SIGNAL_HANDLER
 	if(can_use_ability(A, FALSE, XACT_IGNORE_SELECTED_ABILITY))
 		use_ability(A)
 		return COMSIG_WARRIOR_USED_LUNGE

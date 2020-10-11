@@ -182,14 +182,17 @@
 	keybind_signal = COMSIG_XENOABILITY_FORWARD_CHARGE
 
 /datum/action/xeno_action/activable/forward_charge/proc/charge_complete()
+	SIGNAL_HANDLER
 	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENO_LIVING_THROW_HIT, COMSIG_XENO_NONE_THROW_HIT))
 
 /datum/action/xeno_action/activable/forward_charge/proc/mob_hit(datum/source, mob/M)
+	SIGNAL_HANDLER
 	if(M.stat || isxeno(M))
 		return
 	return COMPONENT_KEEP_THROWING
 
 /datum/action/xeno_action/activable/forward_charge/proc/obj_hit(datum/source, obj/target, speed)
+	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/X = owner
 	if(istype(target, /obj/structure/table) || istype(target, /obj/structure/rack))
 		var/obj/structure/S = target

@@ -84,6 +84,7 @@
 	return razorwire_untangle(entangled)
 
 /obj/structure/razorwire/proc/razorwire_untangle(mob/living/entangled)
+	SIGNAL_HANDLER
 	entangled.next_move_slowdown += RAZORWIRE_SLOWDOWN //big slowdown
 	do_razorwire_untangle(entangled)
 	visible_message("<span class='danger'>[entangled] disentangles from [src]!</span>")
@@ -97,6 +98,7 @@
 
 ///This proc is used for signals, so if you plan on adding a second argument, or making it return a value, then change those RegisterSignal's referncing it first.
 /obj/structure/razorwire/proc/do_razorwire_untangle(mob/living/entangled)
+	SIGNAL_HANDLER
 	UnregisterSignal(entangled, list(COMSIG_PARENT_QDELETING, COMSIG_LIVING_DO_RESIST, COMSIG_MOVABLE_UNCROSS, COMSIG_MOVABLE_PULL_MOVED))
 	LAZYREMOVE(entangled_list, entangled)
 	DISABLE_BITFIELD(entangled.restrained_flags, RESTRAINED_RAZORWIRE)
@@ -104,6 +106,7 @@
 
 
 /obj/structure/razorwire/proc/on_entangled_uncross(datum/source, atom/movable/uncrosser)
+	SIGNAL_HANDLER
 	razorwire_untangle(uncrosser)
 
 

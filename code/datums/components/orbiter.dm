@@ -123,11 +123,13 @@
 
 
 /datum/component/orbiter/proc/orbiter_move_react(atom/movable/orbiter, atom/oldloc, direction)
+	SIGNAL_HANDLER
 	if(orbiter.loc == get_turf(parent))
 		return
 	end_orbit(orbiter)
 
 /datum/component/orbiter/proc/orbiter_glide_size_update(datum/source, target)
+	SIGNAL_HANDLER
 	var/atom/movable/movable_target = target
 	for(var/orbiter in orbiters)
 		var/atom/movable/movable_orbiter = orbiter

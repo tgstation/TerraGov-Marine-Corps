@@ -152,7 +152,7 @@ They're all essentially identical when it comes to getting the job done.
 /obj/item/ammo_magazine/flamer_fire_act()
 	if(!current_rounds)
 		return
-	explosion(loc, 0, 0, 1, 2, throw_range = FALSE) //blow it up.
+	explosion(loc, 0, 0, 1, 2, throw_range = FALSE, small_animation = TRUE) //blow it up.
 	qdel(src)
 
 //Magazines that actually cannot be removed from the firearm. Functionally the same as the regular thing, but they do have three extra vars.
@@ -391,7 +391,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/big_ammo_box/flamer_fire_act()
 	if(!bullet_amount)
 		return
-	explosion(loc, 0, 0, 1, 2, throw_range = FALSE) //blow it up.
+	explosion(loc, 0, 0, 1, 2, throw_range = FALSE, small_animation = TRUE) //blow it up.
 	qdel(src)
 
 

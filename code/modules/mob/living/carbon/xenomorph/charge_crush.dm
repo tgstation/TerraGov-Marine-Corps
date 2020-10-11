@@ -76,6 +76,7 @@
 
 
 /datum/action/xeno_action/ready_charge/proc/on_dir_change(datum/source, old_dir, new_dir)
+	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/charger = owner
 	if(charger.is_charging == CHARGE_OFF)
 		return
@@ -85,6 +86,7 @@
 
 
 /datum/action/xeno_action/ready_charge/proc/update_charging(datum/source, atom/oldloc, direction, Forced)
+	SIGNAL_HANDLER_DOES_SLEEP
 	if(Forced)
 		return
 
@@ -241,6 +243,7 @@
 
 // Charge is divided into two acts: before and after the crushed thing taking damage, as that can cause it to be deleted.
 /datum/action/xeno_action/ready_charge/proc/do_crush(datum/source, atom/crushed)
+	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/charger = owner
 	if(charger.incapacitated() || charger.now_pushing)
 		return NONE
@@ -331,6 +334,7 @@
 
 
 /datum/action/xeno_action/ready_charge/bull_charge/proc/toggle_charge_type(datum/source, new_charge_type = CHARGE_BULL)
+	SIGNAL_HANDLER
 	if(charge_type == new_charge_type)
 		return
 

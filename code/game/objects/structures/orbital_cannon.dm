@@ -347,7 +347,7 @@
 
 
 /obj/structure/ob_ammo/obj_destruction(damage_flag)
-	explosion(loc, light_impact_range = 2, flash_range = 3, flame_range = 2)
+	explosion(loc, light_impact_range = 2, flash_range = 3, flame_range = 2, small_animation = TRUE)
 	return ..()
 
 
@@ -395,7 +395,7 @@
 	var/total_amt = max(25 - inaccuracy_amt, 20)
 	for(var/i = 1 to total_amt)
 		var/turf/U = pick_n_take(turf_list)
-		explosion(U, 1, 4, 6, 6, throw_range = 0, adminlog = FALSE) //rocket barrage
+		explosion(U, 1, 4, 6, 6, throw_range = 0, adminlog = FALSE, small_animation = TRUE) //rocket barrage
 		sleep(1)
 
 /obj/structure/ob_ammo/warhead/plasmaloss

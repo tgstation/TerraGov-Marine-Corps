@@ -395,3 +395,11 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	rollable_sleeves = TRUE
+
+/obj/item/clothing/under/techpriest
+	name = "Techpriest Robes"
+	desc = "Praise the omnissiah!"
+	icon_state = "tp_bodyrobes"
+	item_state = "tp_bodyrobes"
+	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
+

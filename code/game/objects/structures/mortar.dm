@@ -316,7 +316,7 @@
 
 /obj/item/mortal_shell/incendiary/detonate(turf/T)
 
-	explosion(T, 0, 2, 5, 7, throw_range = 0)
+	explosion(T, 0, 2, 5, 7, throw_range = 0, small_animation = TRUE)
 	flame_radius(3, T)
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
@@ -332,7 +332,7 @@
 
 /obj/item/mortal_shell/smoke/detonate(turf/T)
 
-	explosion(T, 0, 1, 3, 7, throw_range = 0)
+	explosion(T, 0, 1, 3, 7, throw_range = 0, small_animation = TRUE)
 	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
 	forceMove(T) //AAAAAAAA
 	smoke.set_up(6, T, 7)
