@@ -319,11 +319,13 @@
 //M41A PMC VARIANT
 
 /obj/item/weapon/gun/rifle/m412/elite
-	name = "\improper M412E1 battle rifle"
+	name = "\improper M412E battle rifle"
 	desc = "This M412 has seen severe modification, its been given a stock and a longer barrel  Given only to elite units."
-	icon_state = "m41a2"
-	item_state = "m41a2"
+	icon_state = "m412e"
+	item_state = "m412e"
 	current_mag = /obj/item/ammo_magazine/rifle/ap
+
+	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade, /obj/item/attachable/stock/rifle/irremoveable)
 
 
 	burst_delay = 0.2 SECONDS
@@ -585,8 +587,8 @@
 //M41AE2 Heavy Pulse Rifle
 
 /obj/item/weapon/gun/rifle/m412l1_hpr
-    name = "\improper M412L1 heavy pulse rifle"
-    desc = "A large weapon capable of laying down supressing fire, based on the M412 pulse rifle platform. Uses 10x24mm caseless ammunition."
+	name = "\improper M412L1 heavy pulse rifle"
+	desc = "A large weapon capable of laying down supressing fire, based on the M412 pulse rifle platform. Uses 10x24mm caseless ammunition."
 	icon_state = "m412l1"
 	item_state = "m412l1"
 	caliber = "10x24mm caseless" //codex
@@ -594,26 +596,27 @@
 	aim_slowdown = 0.8
 	wield_delay = 2 SECONDS
 	fire_sound =  'sound/weapons/guns/fire/rifle.ogg'
-    dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
-    unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
-    reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
 	current_mag = /obj/item/ammo_magazine/m41ae2_hpr
 	attachable_allowed = list(
-                        /obj/item/attachable/extended_barrel,
-                        /obj/item/attachable/reddot,
-                        /obj/item/attachable/verticalgrip,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/verticalgrip,
                         /obj/item/attachable/angledgrip,
-                        /obj/item/attachable/flashlight,
-                        /obj/item/attachable/bipod,
-                        /obj/item/attachable/stock/rifle,
-                        /obj/item/attachable/compensator,
-                        /obj/item/attachable/magnetic_harness,
-                        /obj/item/attachable/scope)
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/bipod,
+						/obj/item/attachable/stock/rifle,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/scope)
 
- 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 23, "under_x" = 24, "under_y" = 12, "stock_x" = 24, "stock_y" = 14)
+	starting_attachment_types = list(/obj/item/attachable/stock/rifle/irremoveable)
 
 	fire_delay = 0.3 SECONDS
 	burst_amount = 5
