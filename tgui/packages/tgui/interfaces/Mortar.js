@@ -114,18 +114,11 @@ export const Mortar = (props, context) => {
                       name: value,
                     })} />
                 </Table.Cell>
-                <Table.Cell> 
-                  {last_three_inputs["coords_one"]["targ_x"]}
-                </Table.Cell>
-                <Table.Cell>
-                  {last_three_inputs["coords_one"]["targ_y"]}
-                </Table.Cell>
-                <Table.Cell>
-                  {last_three_inputs["coords_one"]["dial_x"]}
-                </Table.Cell>
-                <Table.Cell>
-                  {last_three_inputs["coords_one"]["dial_y"]}
-                </Table.Cell>
+                {last_three_inputs["coords_one"].map(coordsinput => (
+                  <Table.Cell key={"coords_one_" + Object.keys(coordsinput)[0]}>
+                    {Object.values(coordsinput)[0]}
+                  </Table.Cell>
+                ))}
               </Table.Row>
               <Table.Row>
                 <Table.Cell>
@@ -141,18 +134,11 @@ export const Mortar = (props, context) => {
                       name: value,
                     })} />
                 </Table.Cell>
-                <Table.Cell>
-                  {last_three_inputs["coords_two"]["targ_x"]}
-                </Table.Cell>
-                <Table.Cell>
-                  {last_three_inputs["coords_two"]["targ_y"]}
-                </Table.Cell>
-                <Table.Cell>
-                  {last_three_inputs["coords_two"]["dial_x"]}
-                </Table.Cell>
-                <Table.Cell>
-                  {last_three_inputs["coords_two"]["dial_y"]}
-                </Table.Cell>
+                {last_three_inputs["coords_two"].map(coordsinput => (
+                  <Table.Cell key={"coords_two_" + Object.keys(coordsinput)[0]}>
+                    {Object.values(coordsinput)[0]}
+                  </Table.Cell>
+                ))}
               </Table.Row>
               <Table.Row>
                 <Table.Cell>
@@ -168,18 +154,12 @@ export const Mortar = (props, context) => {
                       name: value,
                     })} />
                 </Table.Cell>
-                <Table.Cell>
-                  {last_three_inputs["coords_three"]["targ_x"]}
-                </Table.Cell>
-                <Table.Cell>
-                  {last_three_inputs["coords_three"]["targ_y"]}
-                </Table.Cell>
-                <Table.Cell>
-                  {last_three_inputs["coords_three"]["dial_x"]}
-                </Table.Cell>
-                <Table.Cell>
-                  {last_three_inputs["coords_three"]["dial_y"]}
-                </Table.Cell>
+                {last_three_inputs["coords_three"].map(coordsinput => (
+                  <Table.Cell max key={"coords_three_" 
+                    + Object.keys(coordsinput)[0]}>
+                    {Object.values(coordsinput)[0]}
+                  </Table.Cell>
+                ))}
               </Table.Row>
             </Table>
           </Flex.Item>
