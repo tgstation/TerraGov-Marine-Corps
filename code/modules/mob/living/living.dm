@@ -345,6 +345,7 @@
 
 		if(!L.buckled && !L.anchored)
 			var/mob_swap = FALSE
+			var/mob/living/carbon/xenomorph/X = L
 			//the puller can always swap with its victim if on grab intent
 			if(L.pulledby == src && a_intent == INTENT_GRAB)
 				mob_swap = TRUE
@@ -352,6 +353,8 @@
 			else if((L.restrained() || L.a_intent == INTENT_HELP) && (restrained() || a_intent == INTENT_HELP))
 				mob_swap = TRUE
 			else if(mob_size > L.mob_size && a_intent == INTENT_HELP) //Larger mobs can shove aside smaller ones.
+				mob_swap = TRUE
+			else if((X.xeno_caste.caste_flags & CASTE_ALWAYS_PUSH_PAST) && isxeno(src))
 				mob_swap = TRUE
 			if(mob_swap)
 				//switch our position with L
@@ -386,8 +389,10 @@
 			return
 
 	if(ismovableatom(A))
-		if(signal_procs[1]?.datum_components[/datum/component/bump_attack]?.active && istype(A,/mob/living/carbon/human) && (a_intent == INTENT_HARM || a_intent == INTENT_DISARM))
-			return
+		if(isxeno(src))
+			var/mob/living/carbon/xenomorph/meanie = src
+			if(meanie.xeno_caste.caste_flags & CASTE_CANT_PUSH && (istype(A,/mob/living/carbon/human) || istype(A, /mob/living/carbon/xenomorph)) && (a_intent == INTENT_HARM || a_intent == INTENT_DISARM || a_intent == INTENT_GRAB))
+				return
 		PushAM(A)
 
 
