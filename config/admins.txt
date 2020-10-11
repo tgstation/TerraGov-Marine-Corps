@@ -99,3 +99,4 @@ csolaris = Admin
 devilsaaron = Admin
 shadow_quill = Admin
 cosmicscientist = Admin
+BurnedSweetPotato = Admin
