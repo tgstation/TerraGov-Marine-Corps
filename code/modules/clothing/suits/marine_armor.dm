@@ -150,6 +150,13 @@
 	icon_state = "tanker"
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT)
 
+/obj/item/clothing/suit/storage/marine/M3P/tech
+	name = "\improper M3 pattern technician armor"
+	desc = "A modified and refashioned suit of the older M3 Pattern armor designed to be worn by Ship Technicians. It offers more protection against the exotic dangers that Technicians face."
+	icon_state = "tanker"
+	soft_armor = list("melee" = 45, "bullet" = 55, "laser" = 45, "energy" = 45, "bomb" = 60, "bio" = 10, "rad" = 10, "fire" = 40, "acid" = 65)
+
+
 /obj/item/clothing/suit/storage/marine/leader
 	name = "\improper B12 pattern leader armor"
 	desc = "A lightweight suit of carbon fiber body armor built for quick movement. Use it to toggle the built-in flashlight."
@@ -168,7 +175,7 @@
 	name = "\improper N2 pattern MA armor"
 	desc = "A standard TerraGov Navy N2 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 	icon_state = "mp"
-	soft_armor = list("melee" = 45, "bullet" = 55, "laser" = 55, "energy" = 20, "bomb" = 25, "bio" = 40, "rad" = 10, "fire" = 20, "acid" = 45)
+	soft_armor = list("melee" = 50, "bullet" = 55, "laser" = 55, "energy" = 20, "bomb" = 25, "bio" = 40, "rad" = 10, "fire" = 20, "acid" = 45)
 	slowdown = 0.4
 	flags_item_map_variant = NONE
 	allowed = list(/obj/item/weapon/gun,
