@@ -391,7 +391,7 @@
 	if(ismovableatom(A))
 		if(isxeno(src))
 			var/mob/living/carbon/xenomorph/meanie = src
-			if(meanie.xeno_caste.caste_flags & CASTE_CANT_PUSH && (istype(A,/mob/living/carbon/human) || istype(A, /mob/living/carbon/xenomorph)) && (a_intent == INTENT_HARM || a_intent == INTENT_DISARM || a_intent == INTENT_GRAB))
+			if(meanie.xeno_caste.caste_flags & CASTE_CANT_PUSH && ((istype(A,/mob/living/carbon/human) || istype(A, /mob/living/carbon/xenomorph))) && (a_intent == INTENT_HARM || a_intent == INTENT_DISARM || a_intent == INTENT_GRAB))
 				return
 		PushAM(A)
 
