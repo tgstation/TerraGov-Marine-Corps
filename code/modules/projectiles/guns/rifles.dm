@@ -310,9 +310,13 @@
 
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.15 SECONDS
-	damage_mult = 1.05 //Has smalelr magazines
 	accuracy_mult = 1.15
 	scatter = -10
+	wield_delay = 0.7 SECONDS
+	burst_amount = 3
+	aim_slowdown = 0.4
+	damage_mult = 1.05 //Has smaller magazines
+
 
 
 //-------------------------------------------------------
