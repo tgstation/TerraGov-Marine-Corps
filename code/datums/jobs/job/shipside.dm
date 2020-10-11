@@ -148,9 +148,9 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 1500)
+		if(0 to 3000)
 			new_human.wear_id.paygrade = "O4"
-		if(1501 to INFINITY)
+		if(3001 to INFINITY)
 			new_human.wear_id.paygrade = "O5"
 
 /datum/outfit/job/command/staffofficer
@@ -191,11 +191,13 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 1500)
+		if(0 to 600)
 			new_human.wear_id.paygrade = "WO"
-		if(1501 to 6000)
+		if(601 to 1500)
+			new_human.wear_id.paygrade = "CWO"
+		if(1501 to 3000)
 			new_human.wear_id.paygrade = "O1"
-		if(6001 to INFINITY)
+		if(3001 to INFINITY)
 			new_human.wear_id.paygrade = "O2"
 
 /datum/job/terragov/command/pilot/radio_help_message(mob/M)
@@ -299,9 +301,9 @@ You could use STs help to repair and replace hardpoints."})
 	switch(playtime_mins)
 		if(0 to 1500)
 			new_human.wear_id.paygrade = "O2"
-		if(1501 to 6000)
+		if(1501 to 3000)
 			new_human.wear_id.paygrade = "O3"
-		if(6001 to INFINITY)
+		if(3001 to INFINITY)
 			new_human.wear_id.paygrade = "O4"
 
 /datum/job/terragov/engineering/chief/radio_help_message(mob/M)
@@ -353,12 +355,14 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 1500)
+		if(0 to 600)
 			new_human.wear_id.paygrade = "PO3"
-		if(1501 to 6000)
+		if(601 to 1500)
 			new_human.wear_id.paygrade = "PO2"
-		if(6001 to INFINITY)
+		if(1501 to 3000)
 			new_human.wear_id.paygrade = "PO1"
+		if(3001 to INFINITY)
+			new_human.wear_id.paygrade = "CPO"
 
 /datum/job/terragov/engineering/tech/radio_help_message(mob/M)
 	. = ..()
@@ -417,11 +421,13 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 1500)
+		if(0 to 600)
 			new_human.wear_id.paygrade = "CPO"
-		if(1501 to 6000)
+		if(601 to 1500)
 			new_human.wear_id.paygrade = "WO"
-		if(6001 to INFINITY)
+		if(1501 to 3000)
+			new_human.wear_id.paygrade = "CWO"
+		if(3001 to INFINITY)
 			new_human.wear_id.paygrade = "O1"
 
 /datum/job/terragov/requisitions/officer/radio_help_message(mob/M)
