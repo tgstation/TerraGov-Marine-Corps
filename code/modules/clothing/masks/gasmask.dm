@@ -1,7 +1,7 @@
 
 
 /obj/item/clothing/mask/gas
-	name = "gas mask"
+	name = "Transparent gas mask"
 	desc = "A face-covering mask that can be connected to an air supply. Filters harmful gases from the air."
 	icon_state = "gas_alt"
 	flags_inventory = COVERMOUTH | COVEREYES | ALLOWINTERNALS | BLOCKGASEFFECT | ALLOWREBREATH
@@ -16,9 +16,13 @@
 	var/gas_filter_strength = 1			//For gas mask filters
 	var/list/filtered_gases = list(/datum/reagent/toxin/phoron, "sleeping_agent", "carbon_dioxide")
 
-/obj/item/clothing/mask/gas/coif
-	name = "coifed gas mask"
-	desc = "A face-covering mask that can be connected to an air supply. Has a coif. Filters harmful gases from the air."
+/obj/item/clothing/mask/gas/tactical
+	name = "Tactical gas mask"
+	icon_state = "gas_alt_tactical"
+
+/obj/item/clothing/mask/gas/tactical/coif
+	name = "Tactical coifed gas mask"
+	desc = "A face-covering coifed mask that can be connected to an air supply. Filters harmful gases from the air."
 	icon_state = "gascoif"
 	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
 
