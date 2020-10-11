@@ -1191,22 +1191,22 @@ Imports
 	cost = 5
 
 /datum/supply_packs/imports/m41a1
-	name = "M41A1 Pulse Rifle"
-	contains = list(/obj/item/weapon/gun/rifle/m41a1)
+	name = "M412 Pulse Rifle"
+	contains = list(/obj/item/weapon/gun/rifle/m412)
 	cost = 15
 
 /datum/supply_packs/imports/m41a1/ammo
-	name = "M41A1 Pulse Rifle Ammo"
+	name = "M412 Pulse Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle)
 	cost = 5
 
 /datum/supply_packs/imports/m41ae2
-	name = "M41AE2 Heavy Pulse Rifle"
-	contains = list(/obj/item/weapon/gun/rifle/m41ae2_hpr)
+	name = "M412L1 Heavy Pulse Rifle"
+	contains = list(/obj/item/weapon/gun/rifle/m412l1_hpr)
 	cost = 15
 
 /datum/supply_packs/imports/m41ae2/ammo
-	name = "M41AE2 Heavy Pulse Rifle Ammo"
+	name = "M412L1 Heavy Pulse Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/m41ae2_hpr)
 	cost = 5
 

@@ -26,7 +26,7 @@
 	head = /obj/item/clothing/head/helmet/marine/veteran/PMC/commando
 	mask = /obj/item/clothing/mask/gas/PMC
 	glasses = /obj/item/clothing/glasses/m42_goggles
-	suit_store = /obj/item/weapon/gun/rifle/m41a1/elite
+	suit_store = /obj/item/weapon/gun/rifle/m412/elite
 	r_store = /obj/item/storage/pouch/magazine/large/pmc_rifle
 	l_store = /obj/item/storage/pouch/firstaid/full
 	back = /obj/item/storage/backpack/commando

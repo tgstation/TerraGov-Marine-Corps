@@ -5,14 +5,14 @@
 //M41A PULSE RIFLE AMMUNITION
 
 /obj/item/ammo_magazine/rifle/
-	name = "\improper M41A1 magazine (10x24mm)"
+	name = "\improper M412 magazine (10x24mm)"
 	desc = "A 10mm assault rifle magazine."
 	caliber = "10x24mm caseless"
 	icon_state = "m41a1"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 40
-	gun_type = /obj/item/weapon/gun/rifle/m41a1
+	gun_type = /obj/item/weapon/gun/rifle/m412
 
 /obj/item/ammo_magazine/rifle/extended
 	name = "\improper M41A1 extended magazine (10x24mm)"
@@ -20,21 +20,21 @@
 	icon_state = "m41a1_ext"
 	max_rounds = 60
 	bonus_overlay = "m41a1_ex"
-	gun_type = /obj/item/weapon/gun/rifle/m41a1
+	gun_type = /obj/item/weapon/gun/rifle/m412
 
 /obj/item/ammo_magazine/rifle/incendiary
 	name = "\improper M41A1 incendiary magazine (10x24mm)"
 	desc = "A 10mm assault rifle magazine."
 	icon_state = "m41a1_incendiary"
 	default_ammo = /datum/ammo/bullet/rifle/incendiary
-	gun_type = /obj/item/weapon/gun/rifle/m41a1
+	gun_type = /obj/item/weapon/gun/rifle/m412
 
 /obj/item/ammo_magazine/rifle/ap
 	name = "\improper M41A1 AP magazine (10x24mm)"
 	desc = "A 10mm armor piercing magazine."
 	icon_state = "m41a1_ap"
 	default_ammo = /datum/ammo/bullet/rifle/ap
-	gun_type = /obj/item/weapon/gun/rifle/m41a1
+	gun_type = /obj/item/weapon/gun/rifle/m412
 
 //-------------------------------------------------------
 //T18 Carbine
@@ -191,7 +191,7 @@
     default_ammo = /datum/ammo/bullet/rifle
     w_class = WEIGHT_CLASS_NORMAL
     max_rounds = 200
-    gun_type = /obj/item/weapon/gun/rifle/m41ae2_hpr
+    gun_type = /obj/item/weapon/gun/rifle/m412l1_hpr
 
 //-------------------------------------------------------
 //UPP TYPE 71 RIFLE
