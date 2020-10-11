@@ -855,7 +855,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/stock/rifle
 	name = "\improper M412 solid stock"
-	desc = "A common stock used by the M412 pulse rifle series, used by long rifles this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
+	desc = "A common stock used by the M412 pulse rifle series, used for long rifles. This stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
 	slot = "stock"
 	wield_delay_mod = 0.2 SECONDS
 	melee_mod = 5
