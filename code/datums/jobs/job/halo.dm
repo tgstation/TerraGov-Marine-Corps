@@ -86,14 +86,14 @@
 
 /datum/outfit/job/unsc/medic
 	name = "UNSC Combat Medic"
-	jobtype = /datum/job/unsc/marine
+	jobtype = /datum/job/unsc/marine/medic
 	id = /obj/item/card/id/dogtag
 	ears = /obj/item/radio/headset/unsc
 	back = /obj/item/storage/backpack/marine/corpsman
 
 /datum/outfit/job/unsc/engineer
 	name = "UNSC Combat Engineer"
-	jobtype = /datum/job/unsc/marine
+	jobtype = /datum/job/unsc/marine/engineer
 	id = /obj/item/card/id/dogtag
 	ears = /obj/item/radio/headset/unsc
 	back = /obj/item/storage/backpack/marine/engineerpack
@@ -135,7 +135,7 @@
 	minimal_access = list(ACCESS_INSURRECTIONIST_SOLDIER, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_MEDBAY)
 	max_positions = 6
 	supervisors = "squad leader"
-	outfit = /datum/outfit/job/insurrection
+	outfit = /datum/outfit/job/insurrection/medic
 	skills_type = /datum/skills/combat_medic
 	display_order = JOB_DISPLAY_ORDER_INSURRECTIONIST_MEDIC
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST
@@ -154,11 +154,10 @@
 	minimal_access = list(ACCESS_INSURRECTIONIST_SOLDIER, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_ENGINEERING)
 	max_positions = 6
 	supervisors = "squad leader"
-	outfit = /datum/outfit/job/insurrection
+	outfit = /datum/outfit/job/insurrection/engineer
 	skills_type = /datum/skills/combat_engineer
 	display_order = JOB_DISPLAY_ORDER_INSURRECTIONIST_ENGINEER
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST
-
 
 /datum/job/insurrectionist/engineer/radio_help_message(mob/M)
 	. = ..()
@@ -177,7 +176,6 @@
 	outfit = /datum/outfit/job/insurrection/leader
 	skills_type = /datum/skills/SL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_BOLD_NAME_ON_SELECTION
-
 
 
 /datum/job/insurrectionist/leader/radio_help_message(mob/M)
@@ -207,9 +205,8 @@
 	ears = /obj/item/radio/headset/innie
 	back = /obj/item/storage/backpack/lightpack
 
-
 /datum/outfit/job/insurrection/leader
-	name = "Insurrection Squad Leader"
+	name = "Insurrectionist Warlord"
 	jobtype = /datum/job/insurrectionist/leader
 	id = /obj/item/card/id/dogtag
 	ears = /obj/item/radio/headset/innie
