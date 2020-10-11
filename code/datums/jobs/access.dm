@@ -279,7 +279,7 @@
 			. = size ? "PO3 " : "Petty Officer Third Class"
 		if("PO2")
 			. = size ? "PO2 " : "Petty Officer Second Class"
-		if("PO2")
+		if("PO1")
 			. = size ? "PO1 " : "Petty Officer First Class"
 		if("CPO")
 			. = size ? "CPO " : "Chief Petty Officer"
