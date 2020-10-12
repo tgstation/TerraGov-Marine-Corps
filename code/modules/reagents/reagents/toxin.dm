@@ -593,7 +593,7 @@
 
 /datum/reagent/toxin/xeno_decaytoxin/on_mob_life(mob/living/L, metabolism)
 	if(prob(6))
-		L.visible_message("<span class='warning'>We can feel our body falling apart!</span>")
+		L.visible_message("<span class='warning'>You can feel your body falling apart!</span>")
 	L.adjustToxLoss(1)
 	L.adjustBruteLoss(1)
 	return
