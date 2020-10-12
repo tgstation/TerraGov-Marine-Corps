@@ -148,3 +148,9 @@
 	desc = "A colored, resilient, and insulating cloth to cover your face from the elements. This one is colored Blueberry Blue."
 	icon_state = "delta_bandanna"
 	item_state = "delta_bandanna"
+
+/obj/item/clothing/mask/bandanna/traditional
+	name = "facewraps"
+	desc = "A facewrap to protect your face from the elemets. (You can use the adjust-bandanna verb to move it)"
+	icon_state = "warlord"
+	item_state = "warlord"

@@ -117,6 +117,12 @@
 	icon_state = "urf_gloves"
 	item_state = "urf_gloves"
 
+/obj/item/clothing/gloves/marine/urf/traditional
+	name = "Handwraps"
+	desc = "Traditonal handwraps with light protection."
+	icon_state = "innie_warlord"
+	item_state = "innie_warlord"
+
 /obj/item/clothing/gloves/marine/insulated/odst
 	name = "ODST Gloves"
 	desc = "Gloves issued to in the ODST BDU. Interwoven with titanium with a rubber underlay to protect against shock."

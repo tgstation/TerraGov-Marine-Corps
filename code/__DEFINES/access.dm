@@ -54,13 +54,17 @@ GLOBAL_LIST_EMPTY(all_req_one_access)
 #define ACCESS_ILLEGAL_PIRATE		201
 
 // UNSC marines
-#define ACCESS_UNSC_MARINE      220
-#define ACCESS_UNSC_LEADER      221
+#define ACCESS_UNSC_MARINE			220
+#define ACCESS_UNSC_ENGINEER		221
+#define ACCESS_UNSC_MEDIC	    	222
+#define ACCESS_UNSC_LEADER		    223
 
 //insurrectionist
 
-#define ACCESS_INSURRECTIONIST_SOLDIER      150
-#define ACCESS_INSURRECTIONIST_LEADER     151
+#define ACCESS_INSURRECTIONIST_SOLDIER		150
+#define ACCESS_INSURRECTIONIST_ENGINEER		151
+#define ACCESS_INSURRECTIONIST_MEDIC		152
+#define ACCESS_INSURRECTIONIST_LEADER		153
 
 //Temporary until I turn these into defines/bitflags and develop proper IF tagging.
 #define ACCESS_IFF_MARINE			998
