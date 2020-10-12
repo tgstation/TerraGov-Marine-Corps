@@ -247,7 +247,7 @@
 #define COMSIG_MOB_GUN_FIRED "mob_gun_fired"					//from gun system: (atom/target,obj/item/weapon/gun/gun, mob/living/user)
 #define COMSIG_MOB_GUN_AUTOFIRED "mob_gun_autofired"
 #define COMSIG_MOB_ATTACHMENT_FIRED "mob_attachment_fired"
-#define COMSIG_MOB_TOGGLEMOVEINTENT "mob_togglemoveintent"		//drom base of mob/toggle_move_intent(): (new_intent)
+#define COMSIG_MOB_TOGGLEMOVEINTENT "mob_togglemoveintent"		//from base of mob/toggle_move_intent(): (new_intent)
 
 //mob/dead/observer
 #define COMSIG_OBSERVER_CLICKON "observer_clickon"				//from mob/dead/observer/ClickOn(): (atom/A, params)
@@ -279,7 +279,7 @@
 
 // /mob/living/carbon/human signals
 #define COMSIG_HUMAN_MELEE_UNARMED_ATTACK "human_melee_unarmed_attack"	//from mob/living/carbon/human/UnarmedAttack(): (atom/target)
-#define COMSIG_HUMAN_DAMAGE_TAKEN "human_damage_taken"					//from human damage receiving procs: (mob/living/carbon/human/wearer, damage)
+#define COMSIG_HUMAN_DAMAGE_TAKEN "human_damage_taken"					//from human damage receiving procs: (mob/living/carbon/human/victim, damage, damagetype)
 #define COMSIG_HUMAN_LIMB_FRACTURED "human_limb_fractured"				//from [datum/limb/proc/fracture]: (mob/living/carbon/human/wearer, datum/limb/limb)
 
 // shuttle signals
@@ -290,6 +290,8 @@
 #define COMSIG_HIVE_XENO_DEATH "hive_xeno_death"
 #define COMSIG_HIVE_XENO_MOTHER_PRE_CHECK "hive_xeno_mother_pre_check"		//from datum/hive_status/normal/proc/attempt_to_spawn_larva()
 #define COMSIG_HIVE_XENO_MOTHER_CHECK "hive_xeno_mother_check"				//from /datum/hive_status/normal/proc/spawn_larva()
+
+#define COMSIG_HIVE_XENO_RECURRING_INJECTION "hive_xeno_recurring_injection"
 
 #define COMSIG_XENOACTION_TOGGLECHARGETYPE "xenoaction_togglechargetype"
 
@@ -418,6 +420,11 @@
 #define COMSIG_XENOABILITY_HIDE "xenoability_hide"
 #define COMSIG_XENOABILITY_NEUROTOX_STING "xenoability_neurotox_sting"
 #define COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS "xenoability_inject_egg_neurogas"
+
+#define COMSIG_XENOABILITY_SELECT_REAGENT "xenoability_select_reagent"
+#define COMSIG_XENOABILITY_CREATE_REAGENT_CHARGE "xenoability_create_reagent_charge"
+#define COMSIG_XENOABILITY_REAGENT_STING "xenoability_reagent_sting"
+#define COMSIG_XENOABILITY_TOGGLE_NANOCRYSTAL_CAMOUFLAGE "xenoability_toggle_nanocrystal_camouflage"
 
 #define COMSIG_XENOABILITY_LONG_RANGE_SIGHT "xenoability_long_range_sight"
 #define COMSIG_XENOABILITY_TOGGLE_BOMB "xenoability_toggle_bomb"

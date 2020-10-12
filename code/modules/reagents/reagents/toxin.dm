@@ -476,6 +476,7 @@
 /datum/reagent/toxin/xeno_neurotoxin/overdose_crit_process(mob/living/L, metabolism)
 	L.Losebreath(1) //Can't breathe; for punishing the bullies
 
+
 /datum/reagent/toxin/xeno_growthtoxin
 	name = "Larval Accelerant"
 	description = "A metabolic accelerant that dramatically increases the rate of larval growth in a host."
@@ -506,3 +507,141 @@
 
 /datum/reagent/toxin/xeno_growthtoxin/overdose_crit_process(mob/living/L, metabolism)
 	L.Losebreath(2)
+
+
+/datum/reagent/toxin/xeno_hemodile
+	name = "Hemodile"
+	description = "A stamina draining toxin. Causes increasing stamina loss the longer it is present."
+	reagent_state = LIQUID
+	color = "#94CFD8" // rgb: 148, 207, 216
+	custom_metabolism = 0.048
+	overdose_threshold = REAGENTS_OVERDOSE
+	scannable = TRUE
+	toxpwr = 0
+
+/datum/reagent/toxin/xeno_hemodile/on_mob_life(mob/living/L, metabolism)
+	RegisterSignal(L, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/human_damage_taken)
+	switch(current_cycle)
+		if(15)
+			to_chat(L, "<span class='warning'>You feel shortness of breath.</span>")
+		if(30)
+			to_chat(L, "<span class='warning'>You have trouble gathering strength.</span>")
+	return ..()
+
+/datum/reagent/toxin/xeno_hemodile/proc/human_damage_taken(mob/living/L, damage, damagetype)
+	if(damagetype == STAMINA)
+		switch(current_cycle)
+			if(15 to 29)
+				L.adjustStaminaLoss(damage*0.25)
+			if(30 to INFINITY)
+				L.adjustStaminaLoss(damage*0.5)
+	return
+
+
+/datum/reagent/toxin/xeno_transvitox
+	name = "Transvitox"
+	description = "Heals brute and burn wounds, while producing toxins."
+	reagent_state = LIQUID
+	color = "#42FFA0"
+	custom_metabolism = 0.048
+	overdose_threshold = REAGENTS_OVERDOSE
+	scannable = TRUE
+	toxpwr = 0
+
+/datum/reagent/toxin/xeno_transvitox/on_mob_life(mob/living/L, metabolism)
+	var/transvitox_ratio = 1.1  //Toxin per 1 healed Brute/Burn
+	var/transvitox_heal = 8     //Healed amount
+	switch(current_cycle)
+		if(9)
+			to_chat(L, "<span class='warning'>You feel strangely revitalised.</span>")
+		if(10 to INFINITY)
+			if(L.getBruteLoss())
+				L.adjustToxLoss(min(transvitox_heal*transvitox_ratio, L.getBruteLoss()*transvitox_ratio))
+				L.heal_limb_damage(min(transvitox_heal*transvitox_ratio, L.getBruteLoss()*transvitox_ratio))
+			if(L.getFireLoss())
+				L.adjustToxLoss(min(transvitox_heal*transvitox_ratio, L.getFireLoss()*transvitox_ratio))
+				L.heal_limb_damage(min(transvitox_heal*transvitox_ratio, L.getFireLoss()*transvitox_ratio))
+	return ..()
+
+
+/datum/reagent/toxin/xeno_decaytoxin_catalyst
+	name = "Proto Decay Accelerant"
+	description = "A secretion turning Larval Accelerant's regenerative properties into a bioweapon."
+	reagent_state = LIQUID
+	color = "#00022e" // rgb: 0, 2, 46
+	custom_metabolism = 0.048
+	overdose_threshold = REAGENTS_OVERDOSE
+	purge_list = list(/datum/reagent/medicine)
+	purge_rate = 0
+	scannable = TRUE
+	toxpwr = 0
+
+/datum/reagent/toxin/xeno_decaytoxin_catalyst/on_mob_life(mob/living/L, metabolism)
+	purge_rate = 6
+	sleep(40)
+	purge_rate = 0
+	return..()
+
+
+/datum/reagent/toxin/xeno_decaytoxin
+	name = "Decay Accelerant"
+	description = "A destabilising substance that causes rapid degeneration of the body."
+	reagent_state = LIQUID
+	color = "#802400" // rgb: 128, 36, 0
+	custom_metabolism = REAGENTS_METABOLISM
+	overdose_threshold = REAGENTS_OVERDOSE
+	scannable = TRUE
+	toxpwr = 0
+
+/datum/reagent/toxin/xeno_decaytoxin/on_mob_life(mob/living/L, metabolism)
+	if(prob(6))
+		L.visible_message("<span class='warning'>We can feel our body falling apart!</span>")
+	L.adjustToxLoss(1)
+	L.adjustBruteLoss(1)
+	return
+
+
+///datum/reagent/toxin/xeno_oculos
+//	name = "Oculos"
+//	description = "An eye-imparing chemical, disrupting concentration on far objects."
+//	reagent_state = LIQUID
+//	color = "#99ffee" // rgb: 153, 255, 238
+//	custom_metabolism = REAGENTS_METABOLISM / 10
+//	overdose_threshold = REAGENTS_OVERDOSE
+//	scannable = TRUE
+//	toxpwr = 0
+//
+///datum/reagent/toxin/xeno_oculos/on_mob_life(mob/living/L, metabolism) // can't make it work :^(
+//	switch(current_cycle)
+//		if(9)
+//			to_chat(L, "<span class='warning'>Your eyes and body feel unnaturally relaxed.</span>")
+//			L.visible_message("<span class='warning'>reagent in effect</span>")
+//		if(10 to INFINITY)
+//			L.apply_status_effect(STATUS_EFFECT_GUN_SKILL_ACCURACY_DEBUFF, stacks = 10)
+//			L.visible_message("<span class='warning'>stacks applying</span>")
+//	return..()
+
+
+/datum/reagent/toxin/xeno_praelide
+	name = "Praelide"
+	description = "An harmless substance that coexists with blood. May cause vein ruptures if present in large quantities."
+	reagent_state = LIQUID
+	color = "#802400" // rgb: 128, 36, 0
+	custom_metabolism = 0 //requires several injections to work without a continuous effect
+	overdose_threshold = REAGENTS_OVERDOSE
+	scannable = TRUE
+	toxpwr = 0
+
+/datum/reagent/toxin/xeno_praelide/on_mob_life(mob/living/L, metabolism)
+	if(prob(6) && current_cycle > 7)
+		to_chat(L, "<span class='warning'>You feel a creeping sensation of your veins stretching.</span>")
+	if(src.volume > 10 && current_cycle > 10)
+		RegisterSignal(L, COMSIG_HIVE_XENO_RECURRING_INJECTION, .proc/xeno_praelide_trigger)
+		src.custom_metabolism = 10
+	return
+
+/datum/reagent/toxin/xeno_praelide/proc/xeno_praelide_trigger(mob/living/L, affecting)
+	sleep(80)
+	to_chat(L, "<span class='warning'>Your [affecting] bursts!</span>")
+	L.apply_damage(damage = 16, damagetype = BRUTE, def_zone = affecting, sharp = TRUE)
+	return

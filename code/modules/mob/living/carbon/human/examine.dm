@@ -20,6 +20,22 @@
 			msg += "<span style='font-weight: bold; color: purple;'>You sense this creature is dead.</span>\n"
 		else if(stat || !client)
 			msg += "<span class='xenowarning'>It doesn't seem responsive.</span>\n"
+		if(isxenoafflictor(user))
+			if(reagents.total_volume > 0)
+				var/unknown = 0
+				var/reagentdata[0]
+				for(var/datum/reagent/R in reagents.reagent_list)
+					if(R.scannable)
+						if(R.overdosed)
+							reagentdata["[R.type]"] = "<span class='warning'><b>OD: </b></span> <font color='#9773C4'><b>[round(R.volume, 0.01)]u [R.name]</b></font>"
+						else
+							reagentdata["[R.type]"] =	"<font color='#9773C4'><b>[round(R.volume, 0.01)]u [R.name]</b></font>"
+				if(reagentdata.len)
+					msg += "\n\tToxins:\n"
+					for(var/d in reagentdata)
+						msg += "\t\t [reagentdata[d]]\n"
+				if(unknown)
+					msg += "\t<span class='scanner'> Warning: Unknown substance[(unknown>1)?"s":""] detected in subject's blood.</span>\n"
 		msg += "*---------*</span>"
 		to_chat(user, msg)
 		return

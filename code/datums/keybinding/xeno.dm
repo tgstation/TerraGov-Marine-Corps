@@ -88,6 +88,24 @@
 	description = "A channeled melee attack that injects the target with neurotoxin over a few seconds, temporarily stunning them."
 	keybind_signal = COMSIG_XENOABILITY_NEUROTOX_STING
 
+/datum/keybinding/xeno/select_reagent
+	name = "select_reagent"
+	full_name = "Afflictor: Select Reagent"
+	description = "Switches between available reagents."
+	keybind_signal = COMSIG_XENOABILITY_SELECT_REAGENT
+
+/datum/keybinding/xeno/reagent_sting/
+	name = "reagent_sting"
+	full_name = "Afflictor: Reagent Sting"
+	description = "Injects 10u of selected reagent. Does not notify the target if using Sneak."
+	keybind_signal = COMSIG_XENOABILITY_REAGENT_STING
+
+/datum/keybinding/xeno/xeno_camouflage/
+	name = "toggle_nanocrystal_camouflage"
+	full_name = "Afflictor: Toggle Nanocrystal Camouflage"
+	description = "Blend into the environment, becoming almost completely invisible."
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_NANOCRYSTAL_CAMOUFLAGE
+
 /datum/keybinding/xeno/transfer_plasma
 	name = "transfer_plasma"
 	full_name = "Transfer Plasma"
