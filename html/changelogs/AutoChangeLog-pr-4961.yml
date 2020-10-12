@@ -1,5 +1,0 @@
-author: "Wayland-Smithy"
-delete-after: True
-changes: 
-  - tweak: "The EORD Respawn verb now always respawns you as a Human."
-  - bugfix: "Fixes ghosts getting shoved into SSD Xenos before and after the round, like during EORD."

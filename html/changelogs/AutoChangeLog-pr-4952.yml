@@ -1,5 +1,0 @@
-author: "Wayland-Smithy"
-delete-after: True
-changes: 
-  - rscadd: "Granted most ERT headsets the ability to operate independent of tcomms. (Sectoid, SOM, PMC, etc..)"
-  - bugfix: "Fixes ERT headsets getting access to the ALAMO frequency and it set as their main channel."
