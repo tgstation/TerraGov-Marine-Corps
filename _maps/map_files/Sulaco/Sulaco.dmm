@@ -104,12 +104,6 @@
 /obj/item/radio/intercom/general,
 /turf/open/floor/tile/white,
 /area/sulaco/medbay/surgery_two)
-"aay" = (
-/obj/effect/landmark/start/job/squadspecialist,
-/turf/open/floor/tile/white/warningstripe{
-	dir = 1
-	},
-/area/sulaco/cryosleep)
 "aaz" = (
 /obj/machinery/cryopod,
 /obj/machinery/light{
@@ -127,7 +121,6 @@
 /area/sulaco/cryosleep)
 "aaB" = (
 /obj/machinery/vending/nanomed,
-/obj/effect/landmark/start/job/squadleader,
 /turf/open/floor/tile/white/warningstripe{
 	dir = 1
 	},
@@ -138,16 +131,8 @@
 	dir = 1
 	},
 /area/sulaco/cryosleep)
-"aaD" = (
-/obj/machinery/vending/nanomed,
-/obj/effect/landmark/start/job/squadspecialist,
-/turf/open/floor/tile/white/warningstripe{
-	dir = 1
-	},
-/area/sulaco/cryosleep)
 "aaE" = (
 /obj/machinery/alarm,
-/obj/effect/landmark/start/job/squadleader,
 /turf/open/floor/tile/white/warningstripe{
 	dir = 1
 	},
@@ -162,22 +147,9 @@
 	},
 /area/sulaco/cryosleep)
 "aaG" = (
-/obj/effect/landmark/start/job/squadmarine,
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/open/floor/tile/white/warningstripe{
-	dir = 1
-	},
-/area/sulaco/cryosleep)
-"aaH" = (
-/obj/effect/landmark/start/job/squadengineer,
-/turf/open/floor/tile/white/warningstripe{
-	dir = 1
-	},
-/area/sulaco/cryosleep)
-"aaI" = (
-/obj/effect/landmark/start/job/squadcorpsman,
 /turf/open/floor/tile/white/warningstripe{
 	dir = 1
 	},
@@ -262,10 +234,6 @@
 /obj/item/fuelCell/full,
 /turf/open/floor/plating/mainship,
 /area/sulaco/engineering/engine)
-"aba" = (
-/obj/effect/landmark/start/job/squadmarine,
-/turf/open/floor/tile/white,
-/area/sulaco/cryosleep)
 "abb" = (
 /turf/open/floor/tile/white/warningstripe{
 	dir = 1
@@ -410,12 +378,6 @@
 /obj/machinery/status_display,
 /turf/closed/wall/sulaco,
 /area/sulaco/hallway/central_hall2)
-"abz" = (
-/obj/effect/landmark/start/job/squadmarine,
-/turf/open/floor/tile/white/warningstripe{
-	dir = 2
-	},
-/area/sulaco/cryosleep)
 "abA" = (
 /obj/machinery/camera/autoname,
 /turf/open/floor/plating/plating_catwalk,
@@ -455,12 +417,6 @@
 "abH" = (
 /turf/closed/wall/sulaco,
 /area/sulaco/medbay)
-"abI" = (
-/obj/effect/landmark/start/job/squadcorpsman,
-/turf/open/floor/tile/white/warningstripe{
-	dir = 2
-	},
-/area/sulaco/cryosleep)
 "abJ" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -497,10 +453,6 @@
 	},
 /turf/open/floor/tile/white,
 /area/sulaco/cryosleep)
-"abP" = (
-/obj/effect/landmark/start/job/squadleader,
-/turf/open/floor/tile/white,
-/area/sulaco/cryosleep)
 "abQ" = (
 /turf/open/floor/tile/white/warningstripe{
 	dir = 2
@@ -515,14 +467,7 @@
 	dir = 1
 	},
 /obj/machinery/light,
-/obj/effect/landmark/start/job/squadleader,
 /turf/open/floor/tile/white,
-/area/sulaco/cryosleep)
-"abT" = (
-/obj/effect/landmark/start/job/squadmarine,
-/turf/open/floor/tile/white/warningstripe{
-	dir = 1
-	},
 /area/sulaco/cryosleep)
 "abU" = (
 /obj/structure/table,
@@ -750,24 +695,12 @@
 	},
 /turf/open/floor/tile/white,
 /area/sulaco/cryosleep)
-"acC" = (
-/obj/effect/landmark{
-	name = "JoinLate"
-	},
-/turf/open/floor/tile/white,
-/area/sulaco/cryosleep)
 "acD" = (
 /obj/machinery/cryopod,
 /turf/open/floor/tile/white,
 /area/sulaco/cryosleep)
 "acE" = (
 /obj/machinery/cryopod/right,
-/turf/open/floor/tile/white,
-/area/sulaco/cryosleep)
-"acF" = (
-/obj/effect/landmark{
-	name = "JoinLateCryo"
-	},
 /turf/open/floor/tile/white,
 /area/sulaco/cryosleep)
 "acG" = (
@@ -1005,11 +938,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
-"adv" = (
-/obj/effect/landmark/start/job/medicalofficer,
-/obj/structure/cable,
-/turf/open/floor/tile/white,
-/area/sulaco/medbay/storage2)
 "adw" = (
 /obj/machinery/portable_atmospherics/canister/air,
 /turf/open/floor/plating,
@@ -1043,12 +971,6 @@
 	dir = 8
 	},
 /area/sulaco/bridge)
-"adA" = (
-/obj/effect/landmark/start/latejoin,
-/turf/open/floor/tile/white/warningstripe{
-	dir = 2
-	},
-/area/sulaco/cryosleep)
 "adB" = (
 /obj/structure/sign/ROsign{
 	desc = "STANDARD ISSUE MEDICINE\nDylovene:  Anti-toxin\nBicaridine: Wound stabilization\nDexalin: Oxygen Deprivation\nInaprovaline: Critical stabilization/respiration\nKelotane: Burn damage\nSpaceacillin: Infections\nTramadol: Light Pain Killer\nOxycodone: Strong Pain Killer\nTricordrazine: General treatment";
@@ -1367,7 +1289,6 @@
 "aeG" = (
 /obj/structure/bed/chair/office/light,
 /obj/structure/cable,
-/obj/effect/landmark/start/job/chiefshipengineer,
 /turf/open/floor/tile/yellow/full,
 /area/sulaco/engineering/ce)
 "aeI" = (
@@ -1627,17 +1548,6 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/closed/wall/sulaco,
 /area/sulaco/maintenance/north_solar_maint)
-"afF" = (
-/obj/effect/landmark{
-	name = "JoinLateGateway"
-	},
-/turf/open/floor/tile/white,
-/area/sulaco/cryosleep)
-"afG" = (
-/obj/effect/landmark/start/job/squadmarine,
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/turf/open/floor/tile/white,
-/area/sulaco/cryosleep)
 "afI" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/item/radio/intercom/general{
@@ -1733,7 +1643,6 @@
 /turf/open/floor/plating/platebotc,
 /area/sulaco/engineering/atmos)
 "afX" = (
-/obj/effect/landmark/start/job/medicalofficer,
 /turf/open/floor/tile/white,
 /area/sulaco/medbay/storage2)
 "afY" = (
@@ -2534,7 +2443,6 @@
 "aio" = (
 /obj/structure/bed/chair/office/dark,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/landmark/start/job/cmo,
 /turf/open/floor/tile/white,
 /area/sulaco/medbay)
 "aip" = (
@@ -2660,12 +2568,7 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/sulaco/cargo)
-"aiJ" = (
-/obj/effect/landmark/start/latejoin,
-/turf/open/floor/tile/white,
-/area/sulaco/cryosleep)
 "aiK" = (
-/obj/effect/landmark/start/job/squadmarine,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
@@ -2728,16 +2631,6 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/freezer,
 /area/sulaco/showers)
-"aiR" = (
-/obj/effect/landmark/start/job/squadmarine,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4;
-	layer = 2
-	},
-/turf/open/floor/tile/white/warningstripe{
-	dir = 2
-	},
-/area/sulaco/cryosleep)
 "aiS" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /obj/machinery/door/poddoor/shutters{
@@ -3136,12 +3029,6 @@
 /obj/machinery/cryopod,
 /turf/open/floor/tile/white,
 /area/sulaco/cryosleep)
-"ajX" = (
-/obj/effect/landmark{
-	name = "Observer-Start"
-	},
-/turf/open/floor/tile/white,
-/area/sulaco/cryosleep)
 "ajY" = (
 /obj/structure/mirror,
 /turf/closed/wall/sulaco,
@@ -3203,7 +3090,6 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/obj/effect/landmark/start/job/requisitionsofficer,
 /obj/structure/cable,
 /turf/open/floor,
 /area/sulaco/cargo/office)
@@ -3507,12 +3393,6 @@
 	dir = 8
 	},
 /area/sulaco/cryosleep)
-"ala" = (
-/obj/effect/landmark/start/latejoin,
-/turf/open/floor/tile/white/warningstripe{
-	dir = 1
-	},
-/area/sulaco/cryosleep)
 "alb" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 4
@@ -3566,7 +3446,6 @@
 /turf/open/floor,
 /area/sulaco/cargo/office)
 "alj" = (
-/obj/effect/landmark/start/job/squadmarine,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/white/warningstripe{
 	dir = 1
@@ -3692,13 +3571,6 @@
 /obj/item/storage/backpack/satchel/norm,
 /turf/open/floor/wood,
 /area/sulaco/bridge/office)
-"alE" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/landmark/start/job/shiptech,
-/turf/open/floor/tile/yellow/patch{
-	dir = 4
-	},
-/area/sulaco/engineering)
 "alF" = (
 /obj/structure/table,
 /obj/item/reagent_containers/spray/cleaner{
@@ -3832,7 +3704,6 @@
 /area/sulaco/medbay)
 "alW" = (
 /obj/structure/cable,
-/obj/effect/landmark/start/job/fieldcommander,
 /obj/machinery/power/apc/mainship{
 	dir = 8
 	},
@@ -4051,7 +3922,6 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
-/obj/effect/landmark/start/job/shiptech,
 /turf/open/floor/tile/yellow/patch{
 	dir = 4
 	},
@@ -5941,12 +5811,6 @@
 /obj/structure/bed/chair,
 /turf/open/floor/tile/red/redtaupe,
 /area/sulaco/briefing)
-"asK" = (
-/obj/effect/landmark{
-	name = "Observer-Start"
-	},
-/turf/open/floor/tile/white,
-/area/sulaco/cafeteria)
 "asL" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -6206,7 +6070,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
-/obj/effect/landmark/start/job/staffofficer,
 /turf/open/floor/tile/white,
 /area/sulaco/bridge)
 "atr" = (
@@ -6306,7 +6169,6 @@
 "atD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/obj/effect/landmark/start/job/shiptech,
 /turf/open/floor/tile/yellow/patch{
 	dir = 4
 	},
@@ -6919,14 +6781,6 @@
 	dir = 8;
 	name = "XOs Chair"
 	},
-/obj/effect/landmark/start/job/staffofficer,
-/turf/open/floor/tile/white,
-/area/sulaco/bridge)
-"auV" = (
-/obj/structure/bed/chair{
-	dir = 4
-	},
-/obj/effect/landmark/start/job/staffofficer,
 /turf/open/floor/tile/white,
 /area/sulaco/bridge)
 "auW" = (
@@ -7469,7 +7323,6 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 6
 	},
-/obj/effect/landmark/start/job/staffofficer,
 /obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/sulaco/bridge)
@@ -9625,10 +9478,6 @@
 	},
 /turf/open/floor,
 /area/sulaco/hallway/central_hall)
-"aCC" = (
-/obj/effect/landmark/start/job/captain,
-/turf/open/floor/wood,
-/area/sulaco/cap_office)
 "aCD" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -10672,10 +10521,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/sulaco/engineering/engine)
-"aFT" = (
-/obj/effect/landmark/start/job/researcher,
-/turf/open/floor/tile/white,
-/area/sulaco/research)
 "aFU" = (
 /obj/machinery/suit_storage_unit/standard_unit,
 /obj/machinery/camera/autoname,
@@ -11125,7 +10970,6 @@
 /obj/machinery/power/apc/mainship{
 	dir = 1
 	},
-/mob/living/simple_animal/cat/Jones,
 /turf/open/floor/wood,
 /area/sulaco/cap_office)
 "aHq" = (
@@ -11165,10 +11009,6 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/sulaco/hallway/central_hall3)
-"aHv" = (
-/obj/effect/landmark/start/job/corporateliaison,
-/turf/open/floor/wood,
-/area/sulaco/liaison/quarters)
 "aHw" = (
 /obj/machinery/camera/autoname,
 /turf/open/floor/mainship/red{
@@ -13855,10 +13695,6 @@
 "aQi" = (
 /turf/closed/wall/sulaco,
 /area/sulaco/morgue)
-"aQj" = (
-/obj/effect/landmark/start/job/pilotofficer,
-/turf/open/floor/tile/vault,
-/area/mainship/living/pilotbunks)
 "aQk" = (
 /obj/machinery/computer/pandemic,
 /turf/open/floor/tile/white,
@@ -14332,7 +14168,6 @@
 	},
 /area/sulaco/morgue)
 "aRK" = (
-/obj/effect/landmark/start/job/researcher,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -36596,7 +36431,7 @@ apn
 aqJ
 asc
 atk
-auV
+ava
 awp
 awT
 ays
@@ -40459,7 +40294,7 @@ aBb
 aAW
 aDi
 aDi
-aCC
+aFD
 aFD
 aKn
 aIx
@@ -44156,7 +43991,7 @@ aRI
 aRI
 aRI
 aRh
-aFT
+aRI
 aRK
 aQm
 aRh
@@ -48146,8 +47981,8 @@ aaa
 agH
 acu
 adj
-adv
-adv
+adj
+adj
 adj
 agD
 afX
@@ -48284,7 +48119,7 @@ baf
 aRe
 bdM
 bdM
-aHv
+bdM
 bdM
 beJ
 bdj
@@ -52773,13 +52608,13 @@ aal
 aal
 aal
 aDe
-abz
+abQ
 acD
-abT
-aiJ
-abz
+abb
+aaY
+abQ
 acD
-abT
+abb
 amf
 akW
 aoj
@@ -53030,13 +52865,13 @@ abO
 acB
 adp
 aaY
-abz
+abQ
 acE
-abT
-aiJ
-abz
+abb
+aaY
+abQ
 acE
-abT
+abb
 amg
 akW
 aoG
@@ -53280,20 +53115,20 @@ aaa
 aaa
 aad
 abq
-aay
-aaY
-aaY
-aaY
-acC
-aaY
-aba
-adA
-acC
 abb
-aba
+aaY
+aaY
+aaY
+aaY
+aaY
+aaY
 abQ
-acC
-ala
+aaY
+abb
+aaY
+abQ
+aaY
+abb
 akr
 akW
 aoB
@@ -53538,15 +53373,15 @@ aaa
 aaa
 abq
 aaz
-aaH
+abb
 aaY
-abz
+abQ
 acD
-abT
+abb
 aaY
-abz
+abQ
 acD
-abT
+abb
 abu
 aiK
 ajW
@@ -53795,19 +53630,19 @@ aaa
 aaa
 abq
 aaA
-aaI
+abb
 aaY
-abz
+abQ
 acE
-abT
+abb
 aaY
-abz
+abQ
 acE
-abT
+abb
 aaY
-aiR
+aiL
 acE
-abT
+abb
 amj
 abs
 aoB
@@ -53912,7 +53747,7 @@ aaa
 aaa
 aIZ
 aLB
-aQj
+aQe
 aQe
 aQe
 aRM
@@ -54053,18 +53888,18 @@ aaa
 abq
 aaB
 abb
-aba
+aaY
 abQ
-acF
+aaY
 abb
-aba
-adA
-afF
+aaY
+abQ
+aaY
 abb
-aba
+aaY
 aiL
-ajX
-ala
+aaY
+abb
 amk
 akW
 aoB
@@ -54309,19 +54144,19 @@ aaa
 aam
 abq
 aaC
-aaH
+abb
 aaY
-abz
+abQ
 acD
-abT
+abb
 aaY
-abz
+abQ
 acD
-abT
-aiJ
-aiR
+abb
+aaY
+aiL
 acD
-abT
+abb
 aml
 akW
 aoB
@@ -54426,7 +54261,7 @@ aaa
 aaa
 aIZ
 aLB
-aQj
+aQe
 aQe
 aQe
 aRM
@@ -54566,19 +54401,19 @@ aaa
 aaa
 abq
 aaA
-aaI
+abb
 aaY
-abz
+abQ
 acE
-abT
+abb
 aaY
-abz
+abQ
 acE
-abT
-aiJ
-aiR
+abb
+aaY
+aiL
 acE
-abT
+abb
 amm
 anw
 anw
@@ -54822,19 +54657,19 @@ aaa
 aaa
 aaa
 abq
-aay
 abb
-aba
+abb
 aaY
-aba
+aaY
+aaY
 aaY
 adX
 aeQ
-afG
+aeQ
 aeQ
 aeQ
 aiM
-afG
+aeQ
 aeQ
 amn
 anx
@@ -55080,7 +54915,7 @@ aaa
 aaa
 abq
 aaC
-aaH
+abb
 abu
 abR
 abR
@@ -55337,7 +55172,7 @@ aaa
 aaa
 abq
 aaA
-aaI
+abb
 aaY
 aaY
 aaY
@@ -55593,11 +55428,11 @@ aaa
 aaa
 aaa
 abq
-aaD
+aaB
 abb
 aaY
 aaY
-abP
+aaY
 ads
 adZ
 aea
@@ -55851,9 +55686,9 @@ aaa
 aaa
 abq
 aaC
-aaH
+abb
 aaY
-abI
+abQ
 acD
 ads
 adZ
@@ -56108,9 +55943,9 @@ aaa
 aaa
 abq
 aaF
-aaI
+abb
 aaY
-abI
+abQ
 acE
 ads
 adZ
@@ -56364,7 +56199,7 @@ aaa
 aaa
 aaa
 abq
-aay
+abb
 abb
 aaY
 abQ
@@ -56385,7 +56220,7 @@ anA
 anA
 aqB
 arK
-asK
+any
 atf
 avL
 axx
@@ -56622,9 +56457,9 @@ aaa
 aaa
 abq
 aaC
-aaH
+abb
 aaY
-abI
+abQ
 acD
 ads
 adZ
@@ -56879,9 +56714,9 @@ aaa
 aan
 abq
 aaA
-aaI
+abb
 aaY
-abI
+abQ
 acE
 ads
 adZ
@@ -57139,7 +56974,7 @@ aaE
 abb
 aaY
 aaY
-aba
+aaY
 ads
 adZ
 aea
@@ -57393,7 +57228,7 @@ aaa
 aaa
 abq
 aaC
-aaH
+abb
 aaY
 aaY
 aaY
@@ -57650,7 +57485,7 @@ aaa
 aaa
 abq
 aaA
-aaI
+abb
 aaY
 aaY
 aaY
@@ -63572,7 +63407,7 @@ afQ
 agV
 aib
 ajg
-alE
+ajg
 amJ
 atD
 ajg
