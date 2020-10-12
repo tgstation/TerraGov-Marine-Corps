@@ -5,6 +5,8 @@
 
  This is a fork based off the July-2018 version of ColonialMarines. To see the original, GPL repo, go [here](https://github.com/MrStonedOne/cmhistory)
 
+Code and other contributions are licensed under AGPL unless otherwise specified below
+
 Sprites added in the PR https://github.com/tgstation/TerraGov-Marine-Corps/pull/367 are licensed under CC-BY-NC 3.0
 See commit 36b8db4952be79a79b28a6738889d9e9eb23b12a
 
