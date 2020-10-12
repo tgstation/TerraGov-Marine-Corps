@@ -648,3 +648,16 @@
 	icon_state = "urf_helmet_white"
 	item_state = "urf_helmet_white"
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 22, "bomb" = 12, "bio" = 50, "rad" = 5, "fire" = 22, "acid" = 45)
+
+/obj/item/clothing/head/helmet/marine/urf/blue
+	name = "P1-M combat helmet (blue)"
+	desc = "A general purpose URF combat helmet."
+	icon_state = "urf_helmet_blue"
+	item_state = "urf_helmet_blue"
+	soft_armor = list("melee" = 53, "bullet" = 53, "laser" = 53, "energy" = 25, "bomb" = 15, "bio" = 50, "rad" = 5, "fire" = 25, "acid" = 45)
+
+/obj/item/clothing/head/helmet/marine/urf/blue/traditional
+	name = "Armored Headwear"
+	desc = "A piece of traditonal headwear, many insurrectionist warlords favor this over regular clothing."
+	icon_state = "innie_warlord"
+	item_state = "innie_warlord"

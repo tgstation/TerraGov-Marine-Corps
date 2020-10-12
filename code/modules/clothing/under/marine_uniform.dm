@@ -383,3 +383,11 @@
 	icon_state = "innie_under"
 	item_state = "innie_under"
 	rollable_sleeves = FALSE
+
+/obj/item/clothing/under/marine/urf/traditional
+	name = "traditonal combat fatigues"
+	desc = "A robust set of traditonal combat fatigues that has seen use by insurrectionist warlords."
+	icon_state = "innie_warlord"
+	item_state = "innie_warlord"
+	rollable_sleeves = FALSE
+

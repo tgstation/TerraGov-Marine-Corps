@@ -175,3 +175,16 @@
 	soft_armor = list("melee" = 45, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 10, "rad" = 0, "fire" = 10, "acid" = 25)
 	icon_state = "urf_white"
 	item_state = "urf_white"
+
+/obj/item/clothing/shoes/marine/urf/blue
+	name = "combat boots (blue)"
+	desc = "A pair of combat boots that provides minor protection. May protect against toe stubs.."
+	soft_armor = list("melee" = 48, "bullet" = 53, "laser" = 53, "energy" = 53, "bomb" = 55, "bio" = 10, "rad" = 0, "fire" = 15, "acid" = 25)
+	icon_state = "urf_blue"
+	item_state = "urf_blue"
+
+/obj/item/clothing/shoes/marine/urf/blue/traditional
+	name = "traditonal combat boots"
+	desc = "A pair of traditional combat boots that provides minor protection. May protect against toe stubs."
+	icon_state = "innie_warlord"
+	item_state = "innie_warlord"

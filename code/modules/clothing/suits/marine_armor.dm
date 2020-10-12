@@ -753,3 +753,16 @@
 	desc = "A set of United Rebel Front pattern two medium body armor. Provides decent protection against small arms and bladed objects."
 	icon_state = "urf_armor_white"
 	item_state = "urf_armor_white"
+
+/obj/item/clothing/suit/storage/marine/urf/blue
+	name = "P2-M Body Armor (blue)"
+	desc = "A set of United Rebel Front pattern two medium body armor. Provides decent protection against small arms and bladed objects."
+	icon_state = "urf_armor_blue"
+	item_state = "urf_armor_blue"
+	soft_armor = list("melee" = 53, "bullet" = 53, "laser" = 53, "energy" = 53, "bomb" = 53, "bio" = 53, "rad" = 50, "fire" = 53, "acid" = 50)
+
+/obj/item/clothing/suit/storage/marine/urf/blue/traditional
+	name = "traditional body armor"
+	desc = "A set of traditional United Rebel Front body armor. Provides decent protection against small arms and bladed objects."
+	icon_state = "innie_warlord"
+	item_state = "innie_warlord"
