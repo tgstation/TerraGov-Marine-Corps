@@ -324,7 +324,7 @@
 
 /obj/item/weapon/gun/rifle/m412/elite
 	name = "\improper M412E battle rifle"
-	desc = "This M412 has seen severe modification, its been given a stock and a longer barrel with an intergrated barrel charger, and a red skull on the body for some reason.."
+	desc = "An \"Elite\" modification of the M412 pulse rifle series, given to special operation units. It has been given a stock and a longer barrel with an integrated barrel charger, with a red skull stenciled on the body for some reason."
 	icon_state = "m412e"
 	item_state = "m412e"
 	current_mag = /obj/item/ammo_magazine/rifle/ap
