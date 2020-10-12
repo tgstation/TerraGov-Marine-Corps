@@ -388,7 +388,6 @@
 
 	if(ismovableatom(A))
 		if(isxeno(src))
-			var/mob/living/carbon/xenomorph/meanie = src
 			if(ishuman(A))
 				var/mob/living/carbon/human/H = A
 				if(H.next_push > world.time)
