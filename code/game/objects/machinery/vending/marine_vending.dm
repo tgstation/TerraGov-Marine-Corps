@@ -54,6 +54,8 @@
 						/obj/item/weapon/gun/shotgun/pump/m45 = 30,
 						/obj/item/ammo_magazine/shotgun/eightGauge = 60,
 						/obj/item/ammo_magazine/shotgun/eightGauge/slug = 60,
+						/obj/item/weapon/gun/rifle/br55 = 15,
+						/obj/item/ammo_magazine/rifle/br55 = 60,
 						/obj/item/weapon/gun/rifle/kv32 = 30,
 						/obj/item/ammo_magazine/rifle/kv32 = 120,
 						/obj/item/weapon/gun/smg/m7 = 40,

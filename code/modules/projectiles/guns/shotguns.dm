@@ -881,7 +881,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	pump_sound =  'sound/halo/Shotgun_Reload_Sound_Effect.ogg'
 	max_shells = 9
 	flags_item_map_variant = NONE
-	fire_delay = 20
+	fire_delay = 16
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.85
 	scatter = 20
@@ -889,7 +889,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil = 2
 	recoil_unwielded = 4
 	aim_slowdown = 0.55
-	pump_delay = 14
+	pump_delay = 12
 	caliber = "8g"
 
 //M45
@@ -905,7 +905,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	pump_sound =  'sound/halo/Shotgun_Reload_Sound_Effect.ogg'
 	max_shells = 9
 	flags_item_map_variant = NONE
-	fire_delay = 20
+	fire_delay = 16
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.85
 	scatter = 20
@@ -913,5 +913,5 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil = 2
 	recoil_unwielded = 4
 	aim_slowdown = 0.55
-	pump_delay = 14
+	pump_delay = 12
 	caliber = "8g"

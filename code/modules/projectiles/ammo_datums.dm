@@ -1657,7 +1657,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 
 /datum/ammo/bullet/halosmg //smgs foe today???
 	name = "5x23mm M443 Caseless Full Metal Jacket"
-	damage = 13 // technically a 2s ttk at pb, but will have dmg falloff & worse accuracy at range, truly a short range weapon -this was changed, probably not accurate
+	damage = 15 // technically a 2s ttk at pb, but will have dmg falloff & worse accuracy at range, truly a short range weapon -this was changed, might need recalculating
 	hud_state = "smg"
 	hud_state_empty = "smg_empty"
 	flags_ammo_behavior = AMMO_BALLISTIC
