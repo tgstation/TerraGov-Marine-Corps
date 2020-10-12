@@ -361,7 +361,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		else
 			subsystems_to_check = tickersubsystems
 
-		if (CheckQueue(subsystems_to_check) <= 0)
+		if (!CheckQueue(subsystems_to_check))
 			if (!SoftReset(tickersubsystems, runlevel_sorted_subsystems))
 				log_world("MC: SoftReset() failed, crashing")
 				return
@@ -373,7 +373,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 			continue
 
 		if (queue_head)
-			if (RunQueue() <= 0)
+			if (!RunQueue())
 				if (!SoftReset(tickersubsystems, runlevel_sorted_subsystems))
 					log_world("MC: SoftReset() failed, crashing")
 					return
@@ -402,7 +402,6 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 // This is what decides if something should run.
 /datum/controller/master/proc/CheckQueue(list/subsystemstocheck)
-	. = 0 //so the mc knows if we runtimed
 
 	//we create our variables outside of the loops to save on overhead
 	var/datum/controller/subsystem/SS
@@ -425,30 +424,37 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		if ((SS_flags & (SS_TICKER|SS_KEEP_TIMING)) == SS_KEEP_TIMING && SS.last_fire + (SS.wait * 0.75) > world.time)
 			continue
 		SS.enqueue()
-	. = 1
+	return TRUE //if we runtime we'l return null otherwise
 
 
 // Run thru the queue of subsystems to run, running them while balancing out their allocated tick precentage
 /datum/controller/master/proc/RunQueue()
-	. = 0
-	///The subsystem we're running this run
+	///The subsystem we're running right now
 	var/datum/controller/subsystem/queue_node = queue_head
-	//Cache of queue node flags
+	///Cache of queue node flags
 	var/queue_node_flags
 	///Cache of queue node priority
 	var/queue_node_priority
 	var/queue_node_paused
 
 	var/current_tick_budget = queue_priority_count
+	///tick % used, used for calculating tick remaining
 	var/tick_precentage
+	///How much of the tick we've got left over to do stuff
 	var/tick_remaining
+	///Whether we've started running non-ticker subsystems yet
 	var/ran_non_ticker = FALSE
-	var/bg_calc = FALSE //have we swtiched current_tick_budget to background mode yet?
+	///Whether we've switched to background mode yet
+	var/bg_calc = FALSE
+	///Cache of tick usage
 	var/tick_usage
 
+	if(!(TICK_USAGE < TICK_LIMIT_MC))
+		//message_admins("exist")
+		return TRUE
 	//keep running while we have stuff to run and we haven't gone over a tick
-	//	this is so subsystems paused eariler can use tick time that later subsystems never used
-	while (queue_head && queue_node && TICK_USAGE < TICK_LIMIT_MC)
+	//this is so subsystems paused eariler can use tick time that later subsystems never used
+	while (queue_head && queue_node /*&& TICK_USAGE < TICK_LIMIT_MC*/)
 		queue_node_flags = queue_node.flags
 		queue_node_priority = queue_node.queued_priority
 
@@ -470,12 +476,14 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 				queue_node = queue_node.queue_next
 				continue
 
+		//Checks if we're in background calculation mode yet and sets us to it if we are
 		if (!bg_calc && (queue_node_flags & SS_BACKGROUND))
 			current_tick_budget = queue_priority_count_bg
 			bg_calc = TRUE
 
 		tick_remaining = ((bg_calc) ? (TICK_LIMIT_RUNNING_BACKGROUND) : (TICK_LIMIT_RUNNING)) - TICK_USAGE
 
+		///Checks if we have enough tick to process
 		if (tick_remaining < TICK_MIN_RUNTIME)
 			current_tick_budget -= queue_node_priority
 			queue_node = queue_node.queue_next
@@ -490,6 +498,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 		current_ticklimit = round(TICK_USAGE + tick_precentage)
 
+		//Check for if we ran a non-ticker ss, used for check if we can start processing SS_NO_TICK_CHECK stuff yet
 		if (!(queue_node_flags & SS_TICKER))
 			ran_non_ticker = TRUE
 
@@ -535,6 +544,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		queue_node.last_fire = world.time
 		queue_node.times_fired++
 
+		//Calculate next fire
 		if (queue_node_flags & SS_TICKER)
 			queue_node.next_fire = world.time + (world.tick_lag * queue_node.wait)
 		else if (queue_node_flags & SS_POST_FIRE_TIMING)
@@ -550,15 +560,17 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		queue_node.dequeue()
 
 		queue_node = queue_node.queue_next
-
-	queue_priority_count = 0
-	queue_priority_count_bg = 0
-	. = 1
+	/*
+	if(queue_priority_count)
+		message_admins("Queue non 0 ([queue_priority_count]), purging")
+		queue_priority_count = 0
+		queue_priority_count_bg = 0
+	*/
+	return TRUE
 
 //resets the queue, and all subsystems, while filtering out the subsystem lists
 //	called if any mc's queue procs runtime or exit improperly.
 /datum/controller/master/proc/SoftReset(list/ticker_SS, list/runlevel_SS)
-	. = 0
 	log_world("MC: SoftReset called, resetting MC queue state.")
 	if (!istype(subsystems) || !istype(ticker_SS) || !istype(runlevel_SS))
 		log_world("MC: SoftReset: Bad list contents: '[subsystems]' '[ticker_SS]' '[runlevel_SS]'")
@@ -595,7 +607,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	queue_priority_count = 0
 	queue_priority_count_bg = 0
 	log_world("MC: SoftReset: Finished.")
-	. = 1
+	return TRUE
 
 /// Warns us that the end of tick byond map_update will be laggier then normal, so that we can just skip running subsystems this tick.
 /datum/controller/master/proc/laggy_byond_map_update_incoming()
