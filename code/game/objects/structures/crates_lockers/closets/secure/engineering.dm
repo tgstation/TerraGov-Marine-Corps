@@ -97,7 +97,6 @@
 
 /obj/structure/closet/secure_closet/engineering_personal/Initialize()
 	. = ..()
-
 	new /obj/item/clothing/tie/storage/brown_vest(src)
 	new /obj/item/storage/toolbox/mechanical(src)
 	if(!is_ground_level(z))
@@ -152,4 +151,3 @@
 	new /obj/item/clothing/suit/storage/hazardvest(src)
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/tool/taperoll/engineering(src)
-
