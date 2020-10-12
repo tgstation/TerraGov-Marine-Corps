@@ -320,7 +320,7 @@
 
 
 //-------------------------------------------------------
-//M41A PMC VARIANT
+//M412 PMC VARIANT
 
 /obj/item/weapon/gun/rifle/m412/elite
 	name = "\improper M412E battle rifle"
@@ -329,6 +329,7 @@
 	item_state = "m412e"
 	current_mag = /obj/item/ammo_magazine/rifle/ap
 
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 8, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 9, "stock_y" = 15)
 	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade, /obj/item/attachable/stock/rifle/irremoveable)
 
 
@@ -620,7 +621,7 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 23, "under_x" = 24, "under_y" = 12, "stock_x" = 9, "stock_y" = 15)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 8, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 9, "stock_y" = 15)
 	starting_attachment_types = list(/obj/item/attachable/stock/rifle/irremoveable)
 
 	fire_delay = 0.3 SECONDS
