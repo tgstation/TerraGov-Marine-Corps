@@ -57,13 +57,13 @@
 /datum/xeno_caste/afflictor/mature
 	upgrade_name = "Mature"
 	caste_desc = "A small larva-like creatue with a spiked tail. It looks a little more dangerous."
-	ancient_message = "Our gands evolve. We are able to synthesize Praelide!"
+	ancient_message = "Our gands evolve. We are able to synthesize Praelyx!"
 
 	upgrade = XENO_UPGRADE_ONE
 	available_reagents_define = list(
 		/datum/reagent/toxin/xeno_hemodile,
 		/datum/reagent/toxin/xeno_transvitox,
-		/datum/reagent/toxin/xeno_praelide,
+		/datum/reagent/toxin/xeno_praelyx,
 	)
 	// *** Speed *** //
 	speed = -1
@@ -125,7 +125,7 @@
 		/datum/reagent/toxin/xeno_hemodile,
 		/datum/reagent/toxin/xeno_transvitox,
 		/datum/reagent/toxin/xeno_decaytoxin_catalyst,
-		/datum/reagent/toxin/xeno_praelide,
+		/datum/reagent/toxin/xeno_praelyx,
 	)
 	// *** Melee Attacks *** //
 	melee_damage = 16

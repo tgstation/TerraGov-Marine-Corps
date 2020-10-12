@@ -576,12 +576,10 @@
 	scannable = TRUE
 	toxpwr = 0
 
-/datum/reagent/toxin/xeno_decaytoxin_catalyst/on_mob_life(mob/living/L, metabolism)
+/datum/reagent/toxin/xeno_decaytoxin_catalyst/on_mob_add(mob/living/L, metabolism)
 	purge_rate = 6
 	sleep(40)
 	purge_rate = 0
-	return..()
-
 
 /datum/reagent/toxin/xeno_decaytoxin
 	name = "Decay Accelerant"
@@ -622,8 +620,8 @@
 //	return..()
 
 
-/datum/reagent/toxin/xeno_praelide
-	name = "Praelide"
+/datum/reagent/toxin/xeno_praelyx
+	name = "Praelyx"
 	description = "An harmless substance that coexists with blood. May cause vein ruptures if present in large quantities."
 	reagent_state = LIQUID
 	color = "#802400" // rgb: 128, 36, 0
@@ -632,15 +630,15 @@
 	scannable = TRUE
 	toxpwr = 0
 
-/datum/reagent/toxin/xeno_praelide/on_mob_life(mob/living/L, metabolism)
+/datum/reagent/toxin/xeno_praelyx/on_mob_life(mob/living/L, metabolism)
 	if(prob(6) && current_cycle > 7)
 		to_chat(L, "<span class='warning'>You feel a creeping sensation of your veins stretching.</span>")
 	if(src.volume > 10 && current_cycle > 10)
-		RegisterSignal(L, COMSIG_HIVE_XENO_RECURRING_INJECTION, .proc/xeno_praelide_trigger)
+		RegisterSignal(L, COMSIG_HIVE_XENO_RECURRING_INJECTION, .proc/xeno_praelyx_trigger)
 		src.custom_metabolism = 10
 	return
 
-/datum/reagent/toxin/xeno_praelide/proc/xeno_praelide_trigger(mob/living/L, affecting)
+/datum/reagent/toxin/xeno_praelyx/proc/xeno_praelyx_trigger(mob/living/L, affecting)
 	sleep(80)
 	to_chat(L, "<span class='warning'>Your [affecting] bursts!</span>")
 	L.apply_damage(damage = 16, damagetype = BRUTE, def_zone = affecting, sharp = TRUE)
