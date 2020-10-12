@@ -245,5 +245,3 @@
 
 	var/fire_luminosity = 0 //Luminosity of the current fire while burning
 
-	var/next_push = 0 // Time of next push
-	var/push_delay = 5 // push delay

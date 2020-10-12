@@ -389,10 +389,12 @@
 	if(ismovableatom(A))
 		if(isxeno(src))
 			var/mob/living/carbon/xenomorph/meanie = src
-			if(next_push > world.time)
-				return
-			else
-				next_push = world.time + push_delay
+			if(ishuman(A))
+				var/mob/living/carbon/human/H = A
+				if(H.next_push > world.time)
+					return
+				else
+					H.next_push = world.time + H.push_delay
 		PushAM(A)
 
 
