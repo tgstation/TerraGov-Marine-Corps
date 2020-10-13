@@ -150,6 +150,13 @@
 	icon_state = "tanker"
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT)
 
+/obj/item/clothing/suit/storage/marine/M3P/tech
+	name = "\improper M3 pattern technician armor"
+	desc = "A modified and refashioned suit of the older M3 Pattern armor designed to be worn by Ship Technicians. It offers more protection against the exotic dangers that Technicians face."
+	icon_state = "tanker"
+	soft_armor = list("melee" = 45, "bullet" = 55, "laser" = 45, "energy" = 45, "bomb" = 60, "bio" = 10, "rad" = 10, "fire" = 40, "acid" = 65)
+
+
 /obj/item/clothing/suit/storage/marine/leader
 	name = "\improper B12 pattern leader armor"
 	desc = "A lightweight suit of carbon fiber body armor built for quick movement. Use it to toggle the built-in flashlight."

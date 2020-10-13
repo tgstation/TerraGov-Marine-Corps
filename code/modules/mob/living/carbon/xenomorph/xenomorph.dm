@@ -82,7 +82,7 @@
 	setXenoCasteSpeed(xeno_caste.speed)
 	soft_armor = getArmor(arglist(xeno_caste.soft_armor))
 	hard_armor = getArmor(arglist(xeno_caste.hard_armor))
-
+	warding_aura = 0 //Resets aura for reapplying armor
 
 /mob/living/carbon/xenomorph/set_armor_datum()
 	return //Handled in set_datum()
