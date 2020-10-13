@@ -97,7 +97,7 @@
 /datum/keybinding/xeno/reagent_sting/
 	name = "reagent_sting"
 	full_name = "Afflictor: Reagent Sting"
-	description = "Injects 10u of selected reagent. Does not notify the target if using Sneak."
+	description = "Injects 10u of selected reagent."
 	keybind_signal = COMSIG_XENOABILITY_REAGENT_STING
 
 /datum/keybinding/xeno/xeno_camouflage/
