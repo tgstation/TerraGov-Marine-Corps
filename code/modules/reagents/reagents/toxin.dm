@@ -599,27 +599,6 @@
 	return
 
 
-///datum/reagent/toxin/xeno_oculos
-//	name = "Oculos"
-//	description = "An eye-imparing chemical, disrupting concentration on far objects."
-//	reagent_state = LIQUID
-//	color = "#99ffee" // rgb: 153, 255, 238
-//	custom_metabolism = REAGENTS_METABOLISM / 10
-//	overdose_threshold = REAGENTS_OVERDOSE
-//	scannable = TRUE
-//	toxpwr = 0
-//
-///datum/reagent/toxin/xeno_oculos/on_mob_life(mob/living/L, metabolism) // can't make it work :^(
-//	switch(current_cycle)
-//		if(9)
-//			to_chat(L, "<span class='warning'>Your eyes and body feel unnaturally relaxed.</span>")
-//			L.visible_message("<span class='warning'>reagent in effect</span>")
-//		if(10 to INFINITY)
-//			L.apply_status_effect(STATUS_EFFECT_GUN_SKILL_ACCURACY_DEBUFF, stacks = 10)
-//			L.visible_message("<span class='warning'>stacks applying</span>")
-//	return..()
-
-
 /datum/reagent/toxin/xeno_praelyx
 	name = "Praelyx"
 	description = "An harmless substance that coexists with blood. May cause vein ruptures if present in large quantities."
@@ -635,11 +614,11 @@
 		to_chat(L, "<span class='warning'>You feel a creeping sensation of your veins stretching.</span>")
 	if(src.volume > 10 && current_cycle > 10)
 		RegisterSignal(L, COMSIG_HIVE_XENO_RECURRING_INJECTION, .proc/xeno_praelyx_trigger)
-		src.custom_metabolism = 10
-	return
+	return..()
 
 /datum/reagent/toxin/xeno_praelyx/proc/xeno_praelyx_trigger(mob/living/L, affecting)
-	sleep(80)
 	to_chat(L, "<span class='warning'>Your [affecting] bursts!</span>")
-	L.apply_damage(damage = 16, damagetype = BRUTE, def_zone = affecting, sharp = TRUE)
-	return
+	src.custom_metabolism = 10
+	sleep(10)
+	L.apply_damage(damage = 25, damagetype = BRUTE, def_zone = affecting, sharp = TRUE)
+	return..()
