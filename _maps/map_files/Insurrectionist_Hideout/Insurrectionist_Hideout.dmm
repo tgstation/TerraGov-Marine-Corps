@@ -16,6 +16,10 @@
 /obj/item/weapon/gun/rifle/lmg30cal,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/swordbase/ground/inniecave)
+"bd" = (
+/obj/effect/landmark/start/job/urf_engineer,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
 "bf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/tool/crowbar,
@@ -97,6 +101,15 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/generic,
 /turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"gq" = (
+/obj/effect/landmark/start/job/urf_insurrectionist,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"gv" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/start/job/urf_insurrectionist,
+/turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "gQ" = (
 /obj/structure/window/reinforced,
@@ -356,6 +369,12 @@
 /obj/item/storage/box/nade_box,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/swordbase/ground/inniecave)
+"sI" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/generic,
+/obj/effect/landmark/start/job/urf_insurrectionist,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
 "sN" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -422,6 +441,11 @@
 /obj/item/storage/firstaid/adv,
 /turf/open/floor/plating/asteroidfloor,
 /area/swordbase/ground/inniecave)
+"wc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/start/job/urf_insurrectionist,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
 "wo" = (
 /obj/machinery/bodyscanner,
 /turf/open/floor/plating/asteroidplating,
@@ -436,6 +460,7 @@
 /obj/machinery/light/spot{
 	dir = 1
 	},
+/obj/effect/landmark/start/job/urf_leader,
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "wX" = (
@@ -894,6 +919,11 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/swordbase/ground/inniecave)
+"XM" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/start/job/unsc_medic,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
 "XN" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock{
 	dir = 8
@@ -929,6 +959,11 @@
 	id = "northeast"
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"Zz" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/start/job/urf_engineer,
+/turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "ZW" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1262,12 +1297,12 @@ lm
 nF
 nF
 kd
-cz
+gv
 rt
-cz
-RN
+gv
+Zz
 kd
-re
+wc
 nF
 nF
 tl
@@ -1314,12 +1349,12 @@ lm
 nF
 aA
 kd
-RN
+gq
 kd
-RN
-RN
+gq
+bd
 kd
-RN
+gq
 aA
 tl
 re
@@ -1470,12 +1505,12 @@ lm
 nF
 nF
 kd
-cz
+gv
 kd
-cz
-cz
+gv
+XM
 kd
-cz
+gv
 aA
 Bs
 re
@@ -1522,12 +1557,12 @@ lm
 nF
 aA
 kd
-cz
+gv
 kd
-RN
-cz
+gq
+XM
 kd
-XO
+sI
 nF
 Bs
 cz
