@@ -133,6 +133,7 @@
 		repair_damage(max_integrity * 0.30)
 		visible_message("<span class='notice'>[user] repairs \the [src].</span>")
 		update_icon()
+
 		return
 
 	if(!istype(I, /obj/item/grab))
