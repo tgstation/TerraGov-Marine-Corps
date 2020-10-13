@@ -121,19 +121,14 @@
 
 	if(istype(I, /obj/item/stack/sheet/metal))
 		var/obj/item/stack/sheet/metal/metal_sheets = I
-
-		visible_message("<span class='notice'>[user] begins to repair  \the [src].</span>")
-
+		visible_message("<span class='notice'>[user] begins to repair \the [src].</span>")
 		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
 			return
-
 		if(!metal_sheets.use(1))
 			return
-
 		repair_damage(max_integrity * 0.30)
 		visible_message("<span class='notice'>[user] repairs \the [src].</span>")
 		update_icon()
-
 		return
 
 	if(!istype(I, /obj/item/grab))
