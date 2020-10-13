@@ -16,8 +16,12 @@
 /obj/item/weapon/gun/rifle/lmg30cal,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/swordbase/ground/inniecave)
-"bd" = (
-/obj/effect/landmark/start/job/urf_engineer,
+"ba" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/marine_selector/clothes/insurrection,
+/obj/machinery/light/spot{
+	dir = 1
+	},
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "bf" = (
@@ -44,6 +48,11 @@
 /turf/open/floor/plating/ground/mars/random/cave/rock{
 	dir = 5
 	},
+/area/swordbase/ground/inniecave)
+"bX" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/start/job/unsc_medic,
+/turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "cz" = (
 /obj/effect/decal/cleanable/dirt,
@@ -83,7 +92,9 @@
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "eO" = (
-/obj/machinery/autodoc,
+/obj/machinery/light/spot{
+	dir = 8
+	},
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "fu" = (
@@ -101,15 +112,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/generic,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/swordbase/ground/inniecave)
-"gq" = (
-/obj/effect/landmark/start/job/urf_insurrectionist,
-/turf/open/floor/plating/asteroidplating,
-/area/swordbase/ground/inniecave)
-"gv" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/start/job/urf_insurrectionist,
-/turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "gQ" = (
 /obj/structure/window/reinforced,
@@ -135,7 +137,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/swordbase/ground/inniecave)
 "il" = (
-/obj/machinery/light,
+/obj/machinery/light/spot,
 /turf/open/floor/plating/asteroidfloor,
 /area/swordbase/ground/inniecave)
 "iM" = (
@@ -166,9 +168,6 @@
 /obj/item/folder/red{
 	pixel_x = 7;
 	pixel_y = 3
-	},
-/obj/machinery/light{
-	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -252,6 +251,14 @@
 "nF" = (
 /turf/closed/desertdamrockwall,
 /area/swordbase/ground/inniecave)
+"nU" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/generic,
+/obj/machinery/light/spot{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
 "ob" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -280,10 +287,10 @@
 /obj/item/storage/pill_bottle/dexalin{
 	pixel_x = 7
 	},
-/obj/machinery/light{
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/spot{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "oJ" = (
@@ -351,9 +358,18 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/swordbase/ground/inniecave)
+"rl" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/start/job/urf_engineer,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
 "rt" = (
 /obj/structure/bed/fancy,
 /turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"rJ" = (
+/obj/machinery/autodoc,
+/turf/open/floor/plating/asteroidfloor,
 /area/swordbase/ground/inniecave)
 "rX" = (
 /obj/effect/decal/cleanable/dirt,
@@ -368,12 +384,6 @@
 /obj/structure/rack,
 /obj/item/storage/box/nade_box,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/swordbase/ground/inniecave)
-"sI" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/generic,
-/obj/effect/landmark/start/job/urf_insurrectionist,
-/turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "sN" = (
 /obj/structure/window/reinforced{
@@ -399,6 +409,10 @@
 	name = "ammo pile"
 	},
 /turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"ty" = (
+/obj/machinery/autodoc_console,
+/turf/open/floor/plating/asteroidfloor,
 /area/swordbase/ground/inniecave)
 "tz" = (
 /obj/structure/table/reinforced,
@@ -440,11 +454,6 @@
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/adv,
 /turf/open/floor/plating/asteroidfloor,
-/area/swordbase/ground/inniecave)
-"wc" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/start/job/urf_insurrectionist,
-/turf/open/floor/plating/ground/mars/random/cave,
 /area/swordbase/ground/inniecave)
 "wo" = (
 /obj/machinery/bodyscanner,
@@ -493,11 +502,8 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/swordbase/ground/inniecave)
 "xA" = (
-/obj/machinery/vending/medical,
-/obj/machinery/light{
-	dir = 1
-	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/start/job/urf_insurrectionist,
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "xP" = (
@@ -513,6 +519,10 @@
 /obj/machinery/smartfridge/chemistry,
 /turf/open/floor/plating/asteroidfloor,
 /area/swordbase/ground/inniecave)
+"yJ" = (
+/obj/effect/landmark/start/job/urf_engineer,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
 "zp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/bed/chair/wood/wings{
@@ -520,12 +530,31 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/swordbase/ground/inniecave)
+"Ai" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/start/job/urf_insurrectionist,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"Ar" = (
+/obj/effect/landmark/start/job/urf_insurrectionist,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"AD" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/spot{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
 "AG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
 /obj/item/weapon/gun/rifle/ma3,
 /obj/item/weapon/gun/rifle/ma3,
 /obj/item/weapon/gun/rifle/ma3,
+/obj/machinery/light/spot{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/swordbase/ground/inniecave)
 "Bj" = (
@@ -540,7 +569,7 @@
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "BE" = (
-/obj/machinery/light{
+/obj/machinery/light/spot{
 	dir = 1
 	},
 /turf/open/floor/plating/asteroidfloor,
@@ -577,6 +606,12 @@
 /obj/machinery/marine_selector/clothes/insurrection/leader,
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
+"Ev" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/vending/innieGuns,
+/obj/machinery/light/spot,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
 "EF" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/floodlight/landing/hq,
@@ -587,6 +622,12 @@
 "EM" = (
 /obj/structure/largecrate/supply/supplies/flares,
 /obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"EQ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/generic,
+/obj/effect/landmark/start/job/urf_insurrectionist,
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "Fb" = (
@@ -737,6 +778,12 @@
 	},
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
+"OL" = (
+/obj/machinery/light/spot{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/swordbase/ground/inniecave)
 "OT" = (
 /obj/machinery/floodlight/landing/hq,
 /turf/open/floor/plating/asteroidplating,
@@ -862,6 +909,10 @@
 /obj/machinery/chem_dispenser,
 /turf/open/floor/plating/asteroidfloor,
 /area/swordbase/ground/inniecave)
+"Uc" = (
+/obj/machinery/body_scanconsole,
+/turf/open/floor/plating/asteroidfloor,
+/area/swordbase/ground/inniecave)
 "UM" = (
 /turf/open/floor/plating/asteroidfloor,
 /area/swordbase/ground/inniecave)
@@ -886,10 +937,22 @@
 /obj/item/assembly/signaler,
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
+"VM" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/marine_selector/gear/innieEquipment,
+/obj/machinery/light/spot,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
 "Wk" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/light,
+/obj/machinery/light/spot,
 /turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"Wm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/marine_selector/clothes/insurrection/medic,
+/obj/machinery/light/spot,
+/turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "WI" = (
 /obj/effect/decal/cleanable/dirt,
@@ -919,11 +982,6 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/swordbase/ground/inniecave)
-"XM" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/start/job/unsc_medic,
-/turf/open/floor/plating/asteroidplating,
-/area/swordbase/ground/inniecave)
 "XN" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock{
 	dir = 8
@@ -946,9 +1004,6 @@
 /area/swordbase/ground/inniecave)
 "YH" = (
 /obj/structure/largecrate/supply/medicine/iv,
-/obj/machinery/light{
-	dir = 4
-	},
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "Zd" = (
@@ -959,11 +1014,6 @@
 	id = "northeast"
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/swordbase/ground/inniecave)
-"Zz" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/start/job/urf_engineer,
-/turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "ZW" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1297,12 +1347,12 @@ lm
 nF
 nF
 kd
-gv
+xA
 rt
-gv
-Zz
+xA
+rl
 kd
-wc
+Ai
 nF
 nF
 tl
@@ -1349,12 +1399,12 @@ lm
 nF
 aA
 kd
-gq
+Ar
 kd
-gq
-bd
+Ar
+yJ
 kd
-gq
+Ar
 aA
 tl
 re
@@ -1505,18 +1555,18 @@ lm
 nF
 nF
 kd
-gv
+xA
 kd
-gv
-XM
+xA
+bX
 kd
-gv
+xA
 aA
-Bs
+ba
 re
 re
 cz
-WI
+Ev
 aA
 aH
 re
@@ -1557,12 +1607,12 @@ lm
 nF
 aA
 kd
-gv
+xA
 kd
-gq
-XM
+Ar
+bX
 kd
-sI
+EQ
 nF
 Bs
 cz
@@ -1618,7 +1668,7 @@ nF
 nF
 nF
 aA
-cz
+AD
 cz
 re
 cz
@@ -1676,7 +1726,7 @@ cz
 cz
 cz
 XO
-wB
+VM
 aA
 nF
 lm
@@ -1825,7 +1875,7 @@ rX
 jz
 aA
 aA
-Bs
+ba
 cz
 re
 re
@@ -1936,7 +1986,7 @@ re
 ss
 cz
 cz
-WI
+Ev
 nF
 nF
 nF
@@ -2088,12 +2138,12 @@ nF
 aA
 nF
 nF
-cz
+AD
 cz
 cz
 cz
 re
-vx
+Wm
 nF
 nF
 nF
@@ -2188,14 +2238,14 @@ nF
 nF
 nF
 aA
-fD
+nU
 re
 re
 re
 re
 JW
 re
-re
+Wk
 aA
 nF
 nF
@@ -2401,7 +2451,7 @@ nF
 qn
 re
 cz
-re
+Dx
 cz
 re
 cz
@@ -2547,7 +2597,7 @@ lm
 nF
 nF
 aA
-nF
+rJ
 eO
 wo
 nF
@@ -2559,7 +2609,7 @@ re
 cz
 re
 fu
-cz
+AD
 re
 re
 Pr
@@ -2598,10 +2648,10 @@ lm
 nF
 nF
 aA
-xA
+vE
+ty
 UM
-UM
-UM
+Uc
 nF
 Si
 UM
@@ -2912,7 +2962,7 @@ nF
 aA
 nF
 mO
-UM
+OL
 ql
 nF
 nF

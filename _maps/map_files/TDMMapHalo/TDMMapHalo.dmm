@@ -87,9 +87,7 @@
 	},
 /area/swordbase/ground/armory)
 "aK" = (
-/obj/effect/decal/warning_stripes/thick,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/dark,
+/turf/closed/wall/mainship/white,
 /area/swordbase/ground/mainhall)
 "aL" = (
 /obj/machinery/vending/medical,
@@ -98,6 +96,16 @@
 	},
 /turf/open/floor/mainship/sterile/corner,
 /area/swordbase/ground/medbaysouth)
+"aM" = (
+/turf/open/floor/mainship/mono,
+/area/swordbase/ground/mainhall)
+"aP" = (
+/obj/machinery/door/airlock/multi_tile/medical{
+	dir = 1;
+	name = "Medical Research"
+	},
+/turf/open/floor/mainship/mono,
+/area/swordbase/ground/mainhall)
 "aR" = (
 /turf/open/floor/mainship/sterile/side{
 	dir = 8
@@ -139,6 +147,10 @@
 	},
 /turf/open/ground/desertdam/river/clean/deep_water_clean,
 /area/swordbase/ground/mainhall)
+"bf" = (
+/obj/machinery/light,
+/turf/open/floor/mainship/mono,
+/area/swordbase/ground/mainhall)
 "bq" = (
 /obj/structure/filingcabinet/filingcabinet,
 /turf/open/floor/tile/dark/red2{
@@ -155,6 +167,11 @@
 "bK" = (
 /turf/open/floor/tile/dark/brown2,
 /area/swordbase/ground/armory)
+"bL" = (
+/obj/effect/decal/warning_stripes/thick,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/mainhall)
 "bN" = (
 /obj/item/storage/belt,
 /obj/structure/table,
@@ -10683,7 +10700,7 @@ Yf
 Vx
 Yf
 Yf
-aK
+bL
 eq
 TC
 bu
@@ -11134,10 +11151,10 @@ To
 To
 To
 To
-Vx
-Yf
-Yf
-Vx
+aK
+aM
+aP
+aK
 nw
 nw
 nw
@@ -11256,10 +11273,10 @@ cp
 XI
 nw
 nw
-Vx
-Yf
-Yf
-Vx
+aK
+aM
+aM
+aK
 nw
 nw
 nw
@@ -11378,10 +11395,10 @@ UJ
 XI
 nw
 nw
-Vx
-Yf
-MA
-Vx
+aK
+aM
+bf
+aK
 nw
 nw
 nw
