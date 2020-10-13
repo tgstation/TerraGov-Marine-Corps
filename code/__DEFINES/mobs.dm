@@ -459,7 +459,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define CASTE_ACID_BLOOD (1<<13) //The acid blood effect which damages humans near xenos that take damage
 #define CASTE_CAN_HOLD_JELLY (1<<14)//whether we can hold fireproof jelly in our hands
 
-
 //Charge-Crush
 #define CHARGE_OFF			0
 #define CHARGE_BUILDINGUP	1

@@ -124,5 +124,3 @@
 	///Amount of deciseconds gained from the braindeath timer, usually by CPR.
 	var/revive_grace_time = 0
 
-	var/next_push = 0 // Time of next push
-	var/push_delay = 5 // push delay

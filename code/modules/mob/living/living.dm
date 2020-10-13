@@ -345,7 +345,6 @@
 
 		if(!L.buckled && !L.anchored)
 			var/mob_swap = FALSE
-
 			//the puller can always swap with its victim if on grab intent
 			if(L.pulledby == src && a_intent == INTENT_GRAB)
 				mob_swap = TRUE
@@ -389,10 +388,10 @@
 	if(ismovableatom(A))
 		if(isxeno(src) && ishuman(A))
 			var/mob/living/carbon/human/H = A
-			if(H.next_push > world.time)
+			if(TIMER_COOLDOWN_CHECK(H, COOLDOWN_PUSH_DELAY))
 				return
 			else
-				H.next_push = world.time + H.push_delay
+				TIMER_COOLDOWN_START(H, COOLDOWN_PUSH_DELAY, 5)
 		PushAM(A)
 
 
