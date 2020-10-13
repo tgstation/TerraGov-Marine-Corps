@@ -1,185 +1,3540 @@
-"aj" = (/obj/structure/window/reinforced{dir = 8},/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"aA" = (/turf/closed/wall/r_wall/prison,/area/swordbase/ground/inniecave)
-"aH" = (/obj/effect/decal/cleanable/dirt,/obj/structure/rack,/obj/item/ammo_magazine/rifle/lmg30cal,/obj/item/ammo_magazine/rifle/lmg30cal,/obj/item/weapon/gun/rifle/lmg30cal,/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"bf" = (/obj/effect/decal/cleanable/dirt,/obj/item/tool/crowbar,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"bp" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/floodlight/landing/hq,/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"bJ" = (/obj/effect/decal/cleanable/dirt,/obj/structure/rack,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"bP" = (/obj/machinery/marine_selector/gear/innieEquipment,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"bU" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/ground/mars/random/cave/rock{dir = 5},/area/swordbase/ground/inniecave)
-"cz" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"cI" = (/obj/effect/decal/cleanable/dirt,/obj/structure/rack,/obj/item/tool/kitchen/knife/ritual{pixel_x = -8; pixel_y = 4},/obj/item/weapon/unathiknife{pixel_x = 4; pixel_y = 1},/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"ef" = (/obj/machinery/door/window/southright,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"el" = (/obj/structure/rack,/obj/item/weapon/baton,/obj/item/hailer,/obj/item/restraints/handcuffs,/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"ev" = (/obj/machinery/door/window/southright,/obj/machinery/light/spot{dir = 4},/obj/effect/decal/cleanable/generic,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"eO" = (/obj/machinery/autodoc,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"fu" = (/obj/effect/decal/cleanable/dirt,/turf/closed/wall/r_wall/prison,/area/swordbase/ground/inniecave)
-"fv" = (/obj/effect/decal/cleanable/dirt,/obj/structure/bed/chair/wood/wings{dir = 8},/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"fD" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/generic,/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"gQ" = (/obj/structure/window/reinforced,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"hI" = (/obj/effect/decal/cleanable/dirt,/obj/structure/rack,/obj/item/ammo_magazine/rifle/ma3,/obj/item/ammo_magazine/rifle/ma3,/obj/item/ammo_magazine/rifle/ma3,/obj/item/ammo_magazine/rifle/ma3,/obj/item/ammo_magazine/rifle/ma3,/obj/item/ammo_magazine/rifle/ma3,/obj/item/ammo_magazine/rifle/ma3,/obj/item/ammo_magazine/rifle/ma3,/obj/item/ammo_magazine/rifle/ma3,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"hO" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/marine_selector/clothes/insurrection/engineer,/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"il" = (/obj/machinery/light,/turf/open/floor/plating/asteroidfloor,/area/swordbase/ground/inniecave)
-"iM" = (/turf/open/floor/plating/ground/mars/random/cave/rock{dir = 4},/area/swordbase/ground/inniecave)
-"jb" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/floodlight/landing/hq,/turf/open/floor/plating/ground/mars/random/cave/rock{dir = 5},/area/swordbase/ground/inniecave)
-"jv" = (/obj/machinery/vending/marineFood,/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"jz" = (/obj/item/tool/candle,/turf/open/floor/plating/asteroidfloor,/area/swordbase/ground/inniecave)
-"jO" = (/obj/structure/table/reinforced,/obj/item/clipboard{pixel_x = -6},/obj/item/folder/red{pixel_x = 7; pixel_y = 3},/obj/machinery/light{dir = 8},/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"kc" = (/obj/structure/largecrate/random/barrel,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"kd" = (/obj/effect/decal/cleanable/dirt,/obj/structure/bed/fancy,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"ki" = (/obj/structure/rack,/obj/item/reagent_containers/spray/pepper{pixel_x = -7},/obj/item/reagent_containers/spray/pepper,/obj/item/reagent_containers/spray/pepper{pixel_x = 7},/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"kR" = (/obj/structure/window/reinforced{dir = 8},/obj/effect/decal/cleanable/dirt,/obj/effect/landmark/corpsespawner/clown,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"lm" = (/turf/open/space/basic,/area/space)
-"lO" = (/obj/structure/table/holotable/wood,/obj/item/tool/lighter{pixel_x = 10},/obj/item/storage/fancy/candle_box,/turf/open/floor/plating/asteroidfloor,/area/swordbase/ground/inniecave)
-"mp" = (/obj/machinery/light,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/structure/rack,/obj/item/weapon/gun/launcher/rocket/acl55,/obj/item/ammo_magazine/rocket/m26{pixel_y = -7},/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"mF" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/ground/mars/random/cave/rock{dir = 4},/area/swordbase/ground/inniecave)
-"mO" = (/obj/structure/table/reinforced,/obj/item/storage/belt/medical,/obj/item/storage/belt/medical,/obj/item/storage/belt/medical,/obj/item/storage/belt/medical,/obj/item/storage/belt/medical,/obj/item/clothing/glasses/hud/health,/obj/item/clothing/glasses/hud/health,/obj/item/clothing/glasses/hud/health,/obj/item/clothing/glasses/hud/health,/obj/item/clothing/glasses/hud/health,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"ns" = (/obj/structure/window/reinforced,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"nF" = (/turf/closed/desertdamrockwall,/area/swordbase/ground/inniecave)
-"ob" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"op" = (/obj/structure/table/reinforced,/obj/item/storage/pill_bottle/dylovene,/obj/item/storage/pill_bottle/dylovene,/obj/item/storage/pill_bottle/dylovene,/obj/item/storage/pill_bottle/inaprovaline{pixel_x = -7},/obj/item/storage/pill_bottle/inaprovaline{pixel_x = -7},/obj/item/storage/pill_bottle/inaprovaline{pixel_x = -7},/obj/item/storage/pill_bottle/dexalin{pixel_x = 7},/obj/item/storage/pill_bottle/dexalin{pixel_x = 7},/obj/item/storage/pill_bottle/dexalin{pixel_x = 7},/obj/machinery/light{dir = 1},/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"oJ" = (/obj/structure/table/reinforced,/obj/item/taperecorder,/obj/item/clothing/glasses/sunglasses,/obj/item/clothing/glasses/sunglasses,/obj/item/clothing/glasses/sunglasses,/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"oK" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 1},/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/blood,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"ql" = (/obj/structure/table/reinforced,/obj/machinery/light,/obj/item/storage/firstaid/adv,/obj/item/storage/firstaid/adv,/obj/item/storage/firstaid/adv,/obj/item/storage/firstaid/adv,/obj/item/storage/firstaid/adv,/obj/item/storage/firstaid/adv,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"qn" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/light/spot{dir = 1},/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"qr" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"qC" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/power/apc/mainship{pixel_y = 16},/obj/machinery/vending/marineFood,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"qD" = (/obj/structure/largecrate/supply/supplies/mre,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"qW" = (/obj/machinery/bioprinter{stored_metal = 1000},/turf/open/floor/plating/asteroidfloor,/area/swordbase/ground/inniecave)
-"re" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"rt" = (/obj/structure/bed/fancy,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"rX" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/asteroidfloor,/area/swordbase/ground/inniecave)
-"rZ" = (/obj/structure/largecrate/supply/supplies/metal,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"ss" = (/obj/effect/decal/cleanable/dirt,/obj/structure/rack,/obj/item/storage/box/nade_box,/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"sN" = (/obj/structure/window/reinforced{dir = 4},/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/blood/splatter/animated,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"sR" = (/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 1},/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"tl" = (/obj/effect/decal/cleanable/dirt,/obj/structure/ship_ammo/heavygun{name = "ammo pile"},/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"tz" = (/obj/structure/table/reinforced,/obj/item/reagent_containers/glass/beaker/bluespace,/obj/item/reagent_containers/glass/beaker/bluespace,/obj/item/reagent_containers/glass/beaker/bluespace,/obj/item/reagent_containers/syringe{pixel_y = -7},/obj/item/reagent_containers/syringe{pixel_y = -7},/turf/open/floor/plating/asteroidfloor,/area/swordbase/ground/inniecave)
-"uv" = (/obj/structure/largecrate/supply/supplies/metal,/obj/effect/decal/cleanable/dirt,/obj/machinery/light/spot{dir = 4},/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"uw" = (/obj/effect/decal/cleanable/generic,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"vx" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/marine_selector/clothes/insurrection/medic,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"vE" = (/obj/machinery/vending/medical,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"vX" = (/obj/effect/decal/cleanable/dirt,/obj/structure/table/reinforced,/obj/item/storage/firstaid/adv,/turf/open/floor/plating/asteroidfloor,/area/swordbase/ground/inniecave)
-"wo" = (/obj/machinery/bodyscanner,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"wB" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/marine_selector/gear/innieEquipment,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"wJ" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/light/spot{dir = 1},/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"wX" = (/obj/structure/closet/secure_closet/brig,/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"wY" = (/obj/structure/table/holotable/wood,/obj/item/storage/bible/koran,/turf/open/floor/plating/asteroidfloor,/area/swordbase/ground/inniecave)
-"xf" = (/obj/effect/decal/cleanable/dirt,/obj/structure/rack,/obj/item/explosive/grenade/incendiary/molotov,/obj/item/explosive/grenade/incendiary/molotov,/obj/item/explosive/grenade/incendiary/molotov,/obj/item/explosive/grenade/incendiary/molotov,/obj/item/explosive/grenade/incendiary/molotov,/obj/item/explosive/grenade/incendiary/molotov,/obj/item/explosive/grenade/incendiary/molotov,/obj/item/explosive/grenade/incendiary/molotov,/obj/item/explosive/grenade/incendiary/molotov,/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"xh" = (/obj/effect/decal/cleanable/dirt,/obj/structure/rack,/obj/item/weapon/baseballbat/metal,/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"xA" = (/obj/machinery/vending/medical,/obj/machinery/light{dir = 1},/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"xP" = (/obj/item/tool/crowbar,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"yt" = (/obj/structure/table,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"yG" = (/obj/structure/window/framed/mainship/white/canterbury,/obj/machinery/smartfridge/chemistry,/turf/open/floor/plating/asteroidfloor,/area/swordbase/ground/inniecave)
-"zp" = (/obj/effect/decal/cleanable/dirt,/obj/structure/bed/chair/wood/wings{dir = 4},/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"AG" = (/obj/effect/decal/cleanable/dirt,/obj/structure/rack,/obj/item/weapon/gun/rifle/ma3,/obj/item/weapon/gun/rifle/ma3,/obj/item/weapon/gun/rifle/ma3,/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"Bj" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/machinery/vending/innieGuns,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"Bs" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/marine_selector/clothes/insurrection,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"BE" = (/obj/machinery/light{dir = 1},/turf/open/floor/plating/asteroidfloor,/area/swordbase/ground/inniecave)
-"BY" = (/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/ground/mars/random/cave/rock{dir = 10},/area/swordbase/ground/inniecave)
-"CB" = (/obj/structure/window/reinforced{dir = 4},/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"CN" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/floodlight/landing/hq,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"Dx" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/light/spot{dir = 4},/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"Dz" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/machinery/marine_selector/clothes/insurrection/leader,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"EF" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/floodlight/landing/hq,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"EM" = (/obj/structure/largecrate/supply/supplies/flares,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"Fb" = (/obj/structure/table/reinforced,/obj/structure/paper_bin{pixel_x = -3; pixel_y = 7},/obj/item/tool/pen{pixel_x = 4; pixel_y = 4},/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"Fv" = (/turf/open/floor/carpet,/area/swordbase/ground/inniecave)
-"FE" = (/obj/effect/decal/cleanable/dirt,/obj/structure/table,/obj/item/storage/box/MRE,/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"GA" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/marine_selector/clothes/insurrection/engineer,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"GC" = (/obj/effect/decal/cleanable/dirt,/obj/structure/table/reinforced,/obj/item/explosive/grenade/chem_grenade/incendiary,/turf/open/floor/plating/asteroidfloor,/area/swordbase/ground/inniecave)
-"GP" = (/obj/structure/ladder{height = 1; icon_state = "ladderup"; id = "southeast"},/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"Hi" = (/obj/effect/decal/cleanable/blood/splatter/animated,/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"IE" = (/obj/structure/window/reinforced{dir = 4},/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"Jx" = (/obj/effect/decal/cleanable/dirt,/obj/structure/rack,/obj/item/explosive/grenade/cloakbomb,/obj/item/explosive/grenade/cloakbomb,/obj/item/explosive/grenade/cloakbomb,/obj/item/explosive/grenade/cloakbomb,/obj/item/explosive/grenade/cloakbomb{pixel_x = 5},/obj/item/explosive/grenade/cloakbomb{pixel_x = -5},/obj/structure/rack,/obj/structure/rack,/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"JW" = (/obj/effect/decal/cleanable/dirt,/obj/effect/landmark{name = "Observer-Start"},/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"Kh" = (/obj/structure/largecrate/random/case,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"Ld" = (/obj/structure/window/reinforced,/obj/effect/decal/cleanable/blood/splatter/animated,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"LD" = (/obj/machinery/vending/nanomed,/turf/closed/desertdamrockwall,/area/swordbase/ground/inniecave)
-"LG" = (/obj/machinery/door/window/southright,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"LU" = (/obj/effect/decal/cleanable/generic,/turf/open/floor/plating/asteroidfloor,/area/swordbase/ground/inniecave)
-"LX" = (/obj/effect/decal/cleanable/dirt,/obj/structure/table,/obj/item/tool/candle,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"Mj" = (/obj/structure/table/reinforced,/obj/item/storage/pill_bottle/bicaridine{pixel_x = -7},/obj/item/storage/pill_bottle/bicaridine{pixel_x = -7},/obj/item/storage/pill_bottle/bicaridine{pixel_x = -7},/obj/item/storage/pill_bottle/kelotane,/obj/item/storage/pill_bottle/kelotane,/obj/item/storage/pill_bottle/kelotane,/obj/item/storage/pill_bottle/tramadol{pixel_x = 8},/obj/item/storage/pill_bottle/tramadol{pixel_x = 7},/obj/item/storage/pill_bottle/tramadol{pixel_x = 7},/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"Oa" = (/obj/structure/rack,/obj/item/explosive/grenade/frag/m9,/obj/item/explosive/grenade/frag/m9,/obj/item/explosive/grenade/frag/m9,/obj/item/explosive/grenade/frag/m9,/obj/item/explosive/grenade/frag/m9,/obj/item/explosive/grenade/frag/m9,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"OA" = (/obj/machinery/door/morgue{dir = 1; name = "warlord chambers"},/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"OT" = (/obj/machinery/floodlight/landing/hq,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"Pp" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/table/reinforced,/obj/item/restraints/handcuffs,/obj/item/restraints/handcuffs,/obj/item/restraints/handcuffs,/obj/item/restraints/handcuffs,/obj/item/restraints/handcuffs,/obj/item/restraints/handcuffs,/turf/open/swordbase/snowstone,/area/swordbase/ground/inniecave)
-"Pr" = (/obj/machinery/light/spot,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"PR" = (/obj/structure/window/reinforced{dir = 8},/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"PX" = (/obj/effect/decal/cleanable/dirt,/obj/structure/ladder{height = 1; icon_state = "ladderup"; id = "southwest"},/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"QN" = (/obj/structure/window/reinforced{dir = 8},/obj/effect/decal/cleanable/dirt,/obj/item/bananapeel,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"QY" = (/obj/machinery/chem_master,/turf/open/floor/plating/asteroidfloor,/area/swordbase/ground/inniecave)
-"Rw" = (/obj/structure/table,/obj/item/binoculars,/obj/item/weapon/gun/pistol/heavy/gold{pixel_y = 10},/obj/item/ammo_magazine/pistol/heavy,/obj/item/ammo_magazine/pistol/heavy,/obj/item/ammo_magazine/pistol/heavy,/obj/item/ammo_magazine/pistol/heavy,/obj/item/ammo_magazine/pistol/heavy,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"RB" = (/obj/structure/largecrate/random/barrel,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"RN" = (/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"RO" = (/obj/structure/table/reinforced,/obj/item/storage/pill_bottle/spaceacillin,/obj/item/storage/pill_bottle/spaceacillin,/obj/item/storage/pill_bottle/spaceacillin,/obj/item/storage/pill_bottle/peridaxon{pixel_x = -7},/obj/item/storage/pill_bottle/peridaxon{pixel_x = -7},/obj/item/storage/pill_bottle/peridaxon{pixel_x = -7},/obj/item/storage/pill_bottle/quickclot{pixel_x = 7},/obj/item/storage/pill_bottle/quickclot{pixel_x = 6},/obj/item/storage/pill_bottle/quickclot{pixel_x = 7},/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"Se" = (/obj/structure/closet/wardrobe/chemistry_white,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"Si" = (/obj/structure/table/reinforced,/obj/item/explosive/grenade/chem_grenade,/obj/item/explosive/grenade/chem_grenade,/obj/item/explosive/grenade/chem_grenade,/obj/item/explosive/grenade/chem_grenade,/obj/item/explosive/grenade/chem_grenade,/obj/item/storage/box/beakers{pixel_x = -7; pixel_y = 10},/obj/item/reagent_containers/dropper{pixel_y = 7},/turf/open/floor/plating/asteroidfloor,/area/swordbase/ground/inniecave)
-"Su" = (/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"TE" = (/obj/machinery/chem_dispenser,/turf/open/floor/plating/asteroidfloor,/area/swordbase/ground/inniecave)
-"UM" = (/turf/open/floor/plating/asteroidfloor,/area/swordbase/ground/inniecave)
-"Vs" = (/obj/effect/decal/cleanable/dirt,/obj/structure/rack,/obj/structure/rack,/obj/structure/rack,/obj/item/storage/pouch/explosive/detpack,/obj/item/storage/pouch/explosive/detpack,/obj/item/storage/pouch/explosive/detpack,/obj/item/storage/pouch/explosive/detpack,/obj/item/storage/pouch/explosive/detpack,/obj/item/storage/pouch/explosive/detpack,/obj/item/detpack,/obj/item/detpack,/obj/item/detpack,/obj/item/detpack,/obj/item/detpack,/obj/item/detpack,/obj/item/assembly/signaler,/obj/item/assembly/signaler,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"Wk" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/light,/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"WI" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/vending/innieGuns,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"WJ" = (/obj/effect/decal/cleanable/dirt,/obj/structure/rack,/obj/item/explosive/grenade/frag/m15,/obj/item/explosive/grenade/frag/m15,/obj/item/explosive/grenade/frag/m15,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"Xc" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/light/spot{dir = 8},/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"Xw" = (/obj/machinery/vending/marineFood,/obj/effect/decal/cleanable/dirt,/obj/machinery/light/spot{dir = 8},/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"XN" = (/turf/open/floor/plating/ground/mars/random/cave/rock{dir = 8},/area/swordbase/ground/inniecave)
-"XO" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/generic,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"Yj" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"Yt" = (/obj/structure/largecrate/supply/medicine/medkits,/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"YH" = (/obj/structure/largecrate/supply/medicine/iv,/obj/machinery/light{dir = 4},/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
-"Zd" = (/obj/effect/decal/cleanable/dirt,/obj/structure/ladder{height = 1; icon_state = "ladderup"; id = "northeast"},/turf/open/floor/plating/ground/mars/random/cave,/area/swordbase/ground/inniecave)
-"ZW" = (/obj/effect/decal/cleanable/dirt,/obj/structure/bed/chair/wood/wings{dir = 4},/turf/open/floor/plating/asteroidplating,/area/swordbase/ground/inniecave)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aj" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"aA" = (
+/turf/closed/wall/r_wall/prison,
+/area/swordbase/ground/inniecave)
+"aH" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/rack,
+/obj/item/ammo_magazine/rifle/lmg30cal,
+/obj/item/ammo_magazine/rifle/lmg30cal,
+/obj/item/weapon/gun/rifle/lmg30cal,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"bf" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/tool/crowbar,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"bp" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/floodlight/landing/hq,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"bJ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/rack,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"bP" = (
+/obj/machinery/marine_selector/gear/innieEquipment,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"bU" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/ground/mars/random/cave/rock{
+	dir = 5
+	},
+/area/swordbase/ground/inniecave)
+"cz" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"cI" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/rack,
+/obj/item/tool/kitchen/knife/ritual{
+	pixel_x = -8;
+	pixel_y = 4
+	},
+/obj/item/weapon/unathiknife{
+	pixel_x = 4;
+	pixel_y = 1
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"ef" = (
+/obj/machinery/door/window/southright,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"el" = (
+/obj/structure/rack,
+/obj/item/weapon/baton,
+/obj/item/hailer,
+/obj/item/restraints/handcuffs,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"ev" = (
+/obj/machinery/door/window/southright,
+/obj/machinery/light/spot{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"eO" = (
+/obj/machinery/autodoc,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"fu" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/closed/wall/r_wall/prison,
+/area/swordbase/ground/inniecave)
+"fv" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bed/chair/wood/wings{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"fD" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"gQ" = (
+/obj/structure/window/reinforced,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"hI" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/rack,
+/obj/item/ammo_magazine/rifle/ma3,
+/obj/item/ammo_magazine/rifle/ma3,
+/obj/item/ammo_magazine/rifle/ma3,
+/obj/item/ammo_magazine/rifle/ma3,
+/obj/item/ammo_magazine/rifle/ma3,
+/obj/item/ammo_magazine/rifle/ma3,
+/obj/item/ammo_magazine/rifle/ma3,
+/obj/item/ammo_magazine/rifle/ma3,
+/obj/item/ammo_magazine/rifle/ma3,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"hO" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/marine_selector/clothes/insurrection/engineer,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"il" = (
+/obj/machinery/light,
+/turf/open/floor/plating/asteroidfloor,
+/area/swordbase/ground/inniecave)
+"iM" = (
+/turf/open/floor/plating/ground/mars/random/cave/rock{
+	dir = 4
+	},
+/area/swordbase/ground/inniecave)
+"jb" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/floodlight/landing/hq,
+/turf/open/floor/plating/ground/mars/random/cave/rock{
+	dir = 5
+	},
+/area/swordbase/ground/inniecave)
+"jv" = (
+/obj/machinery/vending/marineFood,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"jz" = (
+/obj/item/tool/candle,
+/turf/open/floor/plating/asteroidfloor,
+/area/swordbase/ground/inniecave)
+"jO" = (
+/obj/structure/table/reinforced,
+/obj/item/clipboard{
+	pixel_x = -6
+	},
+/obj/item/folder/red{
+	pixel_x = 7;
+	pixel_y = 3
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"kc" = (
+/obj/structure/largecrate/random/barrel,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"kd" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bed/fancy,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"ki" = (
+/obj/structure/rack,
+/obj/item/reagent_containers/spray/pepper{
+	pixel_x = -7
+	},
+/obj/item/reagent_containers/spray/pepper,
+/obj/item/reagent_containers/spray/pepper{
+	pixel_x = 7
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"kR" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/corpsespawner/clown,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"lm" = (
+/turf/open/space/basic,
+/area/space)
+"lO" = (
+/obj/structure/table/holotable/wood,
+/obj/item/tool/lighter{
+	pixel_x = 10
+	},
+/obj/item/storage/fancy/candle_box,
+/turf/open/floor/plating/asteroidfloor,
+/area/swordbase/ground/inniecave)
+"mp" = (
+/obj/machinery/light,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/rack,
+/obj/item/weapon/gun/launcher/rocket/acl55,
+/obj/item/ammo_magazine/rocket/m26{
+	pixel_y = -7
+	},
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"mF" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/ground/mars/random/cave/rock{
+	dir = 4
+	},
+/area/swordbase/ground/inniecave)
+"mO" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/belt/medical,
+/obj/item/storage/belt/medical,
+/obj/item/storage/belt/medical,
+/obj/item/storage/belt/medical,
+/obj/item/storage/belt/medical,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
+/obj/item/clothing/glasses/hud/health,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"ns" = (
+/obj/structure/window/reinforced,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"nF" = (
+/turf/closed/desertdamrockwall,
+/area/swordbase/ground/inniecave)
+"ob" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"op" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/pill_bottle/dylovene,
+/obj/item/storage/pill_bottle/dylovene,
+/obj/item/storage/pill_bottle/dylovene,
+/obj/item/storage/pill_bottle/inaprovaline{
+	pixel_x = -7
+	},
+/obj/item/storage/pill_bottle/inaprovaline{
+	pixel_x = -7
+	},
+/obj/item/storage/pill_bottle/inaprovaline{
+	pixel_x = -7
+	},
+/obj/item/storage/pill_bottle/dexalin{
+	pixel_x = 7
+	},
+/obj/item/storage/pill_bottle/dexalin{
+	pixel_x = 7
+	},
+/obj/item/storage/pill_bottle/dexalin{
+	pixel_x = 7
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"oJ" = (
+/obj/structure/table/reinforced,
+/obj/item/taperecorder,
+/obj/item/clothing/glasses/sunglasses,
+/obj/item/clothing/glasses/sunglasses,
+/obj/item/clothing/glasses/sunglasses,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"oK" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"ql" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light,
+/obj/item/storage/firstaid/adv,
+/obj/item/storage/firstaid/adv,
+/obj/item/storage/firstaid/adv,
+/obj/item/storage/firstaid/adv,
+/obj/item/storage/firstaid/adv,
+/obj/item/storage/firstaid/adv,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"qn" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/spot{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"qr" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"qC" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/apc/mainship{
+	pixel_y = 16
+	},
+/obj/machinery/vending/marineFood,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"qD" = (
+/obj/structure/largecrate/supply/supplies/mre,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"qW" = (
+/obj/machinery/bioprinter{
+	stored_metal = 1000
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/swordbase/ground/inniecave)
+"re" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"rt" = (
+/obj/structure/bed/fancy,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"rX" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroidfloor,
+/area/swordbase/ground/inniecave)
+"rZ" = (
+/obj/structure/largecrate/supply/supplies/metal,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"ss" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/rack,
+/obj/item/storage/box/nade_box,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"sN" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/splatter/animated,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"sR" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"tl" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/ship_ammo/heavygun{
+	name = "ammo pile"
+	},
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"tz" = (
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/glass/beaker/bluespace,
+/obj/item/reagent_containers/glass/beaker/bluespace,
+/obj/item/reagent_containers/glass/beaker/bluespace,
+/obj/item/reagent_containers/syringe{
+	pixel_y = -7
+	},
+/obj/item/reagent_containers/syringe{
+	pixel_y = -7
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/swordbase/ground/inniecave)
+"uv" = (
+/obj/structure/largecrate/supply/supplies/metal,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/spot{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"uw" = (
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"vx" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/marine_selector/clothes/insurrection/medic,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"vE" = (
+/obj/machinery/vending/medical,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"vX" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/reinforced,
+/obj/item/storage/firstaid/adv,
+/turf/open/floor/plating/asteroidfloor,
+/area/swordbase/ground/inniecave)
+"wo" = (
+/obj/machinery/bodyscanner,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"wB" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/marine_selector/gear/innieEquipment,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"wJ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/spot{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"wX" = (
+/obj/structure/closet/secure_closet/brig,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"wY" = (
+/obj/structure/table/holotable/wood,
+/obj/item/storage/bible/koran,
+/turf/open/floor/plating/asteroidfloor,
+/area/swordbase/ground/inniecave)
+"xf" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/rack,
+/obj/item/explosive/grenade/incendiary/molotov,
+/obj/item/explosive/grenade/incendiary/molotov,
+/obj/item/explosive/grenade/incendiary/molotov,
+/obj/item/explosive/grenade/incendiary/molotov,
+/obj/item/explosive/grenade/incendiary/molotov,
+/obj/item/explosive/grenade/incendiary/molotov,
+/obj/item/explosive/grenade/incendiary/molotov,
+/obj/item/explosive/grenade/incendiary/molotov,
+/obj/item/explosive/grenade/incendiary/molotov,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"xh" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/rack,
+/obj/item/weapon/baseballbat/metal,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"xA" = (
+/obj/machinery/vending/medical,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"xP" = (
+/obj/item/tool/crowbar,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"yt" = (
+/obj/structure/table,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"yG" = (
+/obj/structure/window/framed/mainship/white/canterbury,
+/obj/machinery/smartfridge/chemistry,
+/turf/open/floor/plating/asteroidfloor,
+/area/swordbase/ground/inniecave)
+"zp" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bed/chair/wood/wings{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"AG" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/rack,
+/obj/item/weapon/gun/rifle/ma3,
+/obj/item/weapon/gun/rifle/ma3,
+/obj/item/weapon/gun/rifle/ma3,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"Bj" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/vending/innieGuns,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"Bs" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/marine_selector/clothes/insurrection,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"BE" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/swordbase/ground/inniecave)
+"BY" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/ground/mars/random/cave/rock{
+	dir = 10
+	},
+/area/swordbase/ground/inniecave)
+"CB" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"CN" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/floodlight/landing/hq,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"Dx" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/spot{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"Dz" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/marine_selector/clothes/insurrection/leader,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"EF" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/floodlight/landing/hq,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"EM" = (
+/obj/structure/largecrate/supply/supplies/flares,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"Fb" = (
+/obj/structure/table/reinforced,
+/obj/structure/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/obj/item/tool/pen{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"Fv" = (
+/turf/open/floor/carpet,
+/area/swordbase/ground/inniecave)
+"FE" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/storage/box/MRE,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"GA" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/marine_selector/clothes/insurrection/engineer,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"GC" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/reinforced,
+/obj/item/explosive/grenade/chem_grenade/incendiary,
+/turf/open/floor/plating/asteroidfloor,
+/area/swordbase/ground/inniecave)
+"GP" = (
+/obj/structure/ladder{
+	height = 1;
+	icon_state = "ladderup";
+	id = "southeast"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"Hi" = (
+/obj/effect/decal/cleanable/blood/splatter/animated,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"IE" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"Jx" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/rack,
+/obj/item/explosive/grenade/cloakbomb,
+/obj/item/explosive/grenade/cloakbomb,
+/obj/item/explosive/grenade/cloakbomb,
+/obj/item/explosive/grenade/cloakbomb,
+/obj/item/explosive/grenade/cloakbomb{
+	pixel_x = 5
+	},
+/obj/item/explosive/grenade/cloakbomb{
+	pixel_x = -5
+	},
+/obj/structure/rack,
+/obj/structure/rack,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"JW" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark{
+	name = "Observer-Start"
+	},
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"Kh" = (
+/obj/structure/largecrate/random/case,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"Ld" = (
+/obj/structure/window/reinforced,
+/obj/effect/decal/cleanable/blood/splatter/animated,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"LD" = (
+/obj/machinery/vending/nanomed,
+/turf/closed/desertdamrockwall,
+/area/swordbase/ground/inniecave)
+"LG" = (
+/obj/machinery/door/window/southright,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"LU" = (
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/plating/asteroidfloor,
+/area/swordbase/ground/inniecave)
+"LX" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/obj/item/tool/candle,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"Mj" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/pill_bottle/bicaridine{
+	pixel_x = -7
+	},
+/obj/item/storage/pill_bottle/bicaridine{
+	pixel_x = -7
+	},
+/obj/item/storage/pill_bottle/bicaridine{
+	pixel_x = -7
+	},
+/obj/item/storage/pill_bottle/kelotane,
+/obj/item/storage/pill_bottle/kelotane,
+/obj/item/storage/pill_bottle/kelotane,
+/obj/item/storage/pill_bottle/tramadol{
+	pixel_x = 8
+	},
+/obj/item/storage/pill_bottle/tramadol{
+	pixel_x = 7
+	},
+/obj/item/storage/pill_bottle/tramadol{
+	pixel_x = 7
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"Oa" = (
+/obj/structure/rack,
+/obj/item/explosive/grenade/frag/m9,
+/obj/item/explosive/grenade/frag/m9,
+/obj/item/explosive/grenade/frag/m9,
+/obj/item/explosive/grenade/frag/m9,
+/obj/item/explosive/grenade/frag/m9,
+/obj/item/explosive/grenade/frag/m9,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"OA" = (
+/obj/machinery/door/morgue{
+	dir = 1;
+	name = "warlord chambers"
+	},
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"OT" = (
+/obj/machinery/floodlight/landing/hq,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"Pp" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/item/restraints/handcuffs,
+/obj/item/restraints/handcuffs,
+/obj/item/restraints/handcuffs,
+/obj/item/restraints/handcuffs,
+/obj/item/restraints/handcuffs,
+/obj/item/restraints/handcuffs,
+/turf/open/swordbase/snowstone,
+/area/swordbase/ground/inniecave)
+"Pr" = (
+/obj/machinery/light/spot,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"PR" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"PX" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/ladder{
+	height = 1;
+	icon_state = "ladderup";
+	id = "southwest"
+	},
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"QN" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/item/bananapeel,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"QY" = (
+/obj/machinery/chem_master,
+/turf/open/floor/plating/asteroidfloor,
+/area/swordbase/ground/inniecave)
+"Rw" = (
+/obj/structure/table,
+/obj/item/binoculars,
+/obj/item/weapon/gun/pistol/heavy/gold{
+	pixel_y = 10
+	},
+/obj/item/ammo_magazine/pistol/heavy,
+/obj/item/ammo_magazine/pistol/heavy,
+/obj/item/ammo_magazine/pistol/heavy,
+/obj/item/ammo_magazine/pistol/heavy,
+/obj/item/ammo_magazine/pistol/heavy,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"RB" = (
+/obj/structure/largecrate/random/barrel,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"RN" = (
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"RO" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/pill_bottle/spaceacillin,
+/obj/item/storage/pill_bottle/spaceacillin,
+/obj/item/storage/pill_bottle/spaceacillin,
+/obj/item/storage/pill_bottle/peridaxon{
+	pixel_x = -7
+	},
+/obj/item/storage/pill_bottle/peridaxon{
+	pixel_x = -7
+	},
+/obj/item/storage/pill_bottle/peridaxon{
+	pixel_x = -7
+	},
+/obj/item/storage/pill_bottle/quickclot{
+	pixel_x = 7
+	},
+/obj/item/storage/pill_bottle/quickclot{
+	pixel_x = 6
+	},
+/obj/item/storage/pill_bottle/quickclot{
+	pixel_x = 7
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"Se" = (
+/obj/structure/closet/wardrobe/chemistry_white,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"Si" = (
+/obj/structure/table/reinforced,
+/obj/item/explosive/grenade/chem_grenade,
+/obj/item/explosive/grenade/chem_grenade,
+/obj/item/explosive/grenade/chem_grenade,
+/obj/item/explosive/grenade/chem_grenade,
+/obj/item/explosive/grenade/chem_grenade,
+/obj/item/storage/box/beakers{
+	pixel_x = -7;
+	pixel_y = 10
+	},
+/obj/item/reagent_containers/dropper{
+	pixel_y = 7
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/swordbase/ground/inniecave)
+"Su" = (
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"TE" = (
+/obj/machinery/chem_dispenser,
+/turf/open/floor/plating/asteroidfloor,
+/area/swordbase/ground/inniecave)
+"UM" = (
+/turf/open/floor/plating/asteroidfloor,
+/area/swordbase/ground/inniecave)
+"Vs" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/rack,
+/obj/structure/rack,
+/obj/structure/rack,
+/obj/item/storage/pouch/explosive/detpack,
+/obj/item/storage/pouch/explosive/detpack,
+/obj/item/storage/pouch/explosive/detpack,
+/obj/item/storage/pouch/explosive/detpack,
+/obj/item/storage/pouch/explosive/detpack,
+/obj/item/storage/pouch/explosive/detpack,
+/obj/item/detpack,
+/obj/item/detpack,
+/obj/item/detpack,
+/obj/item/detpack,
+/obj/item/detpack,
+/obj/item/detpack,
+/obj/item/assembly/signaler,
+/obj/item/assembly/signaler,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"Wk" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"WI" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/vending/innieGuns,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"WJ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/rack,
+/obj/item/explosive/grenade/frag/m15,
+/obj/item/explosive/grenade/frag/m15,
+/obj/item/explosive/grenade/frag/m15,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"Xc" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/spot{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"Xw" = (
+/obj/machinery/vending/marineFood,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/spot{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"XN" = (
+/turf/open/floor/plating/ground/mars/random/cave/rock{
+	dir = 8
+	},
+/area/swordbase/ground/inniecave)
+"XO" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"Yj" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"Yt" = (
+/obj/structure/largecrate/supply/medicine/medkits,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"YH" = (
+/obj/structure/largecrate/supply/medicine/iv,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"Zd" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/ladder{
+	height = 1;
+	icon_state = "ladderup";
+	id = "northeast"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
+"ZW" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bed/chair/wood/wings{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
 
 (1,1,1) = {"
-lmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmlmnFnFnFnFnFnFnFnFnFnFnFnFnFnFlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmnFnFnFaAaAnFnFaAnFnFaAnFnFaAnFnFlmlmlmlmlmlmlmlmlmlmlmnFnFnFnFnFnFnFlmlmlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmnFaAkdkdwJLXkdkdnFFvBEFvjzUMnFnFnFlmlmlmlmlmlmlmlmlmnFnFnFaAaAnFaAnFnFlmlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmnFnFczRNczRNczczaAjzUMUMrXUMjznFnFnFlmlmlmlmlmlmlmnFnFaAnFMjopROYHaAnFnFlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmnFaArtkdRNczkdkdnFFvrXFvUMlOUMaAnFnFnFnFnFnFnFnFnFnFaAxAvEUMUMxPYtnFnFnFlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmnFnFczRNczczczRNUMUMUMUMUMwYUMnFnFnFnFnFnFnFaAnFnFnFnFUMUMUMUMUMUMmOaAnFlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmnFaARNRNczreczczUMFvUMFvUMUMjznFnFnFnFnFnFnFnFreDxaAeOUMUMUMUMrXLUUMnFnFlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmnFnFkdkdczqrkdkdaAjzUMrXrXrXaAnFnFnFnFnFnFnFEFZdYjnFwoUMUMUMUMUMUMqlaAnFlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmnFaAreRNqrreczXOnFFvilFvjznFnFnFnFnFnFnFnFnFYjreBYaAnFnFnFrXUMnFaAnFnFnFlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmnFaAnFaAreRNaAnFnFnFaAnFaAnFnFnFnFnFaAaAnFaArereXOSevXSitzrXrXyGaAnFnFlmlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmnFnFnFtlreRNBsBsnFBsBsnFaAnFnFnFnFnFaAfDoJaAnFobYjczUMUMUMUMUMUMnFnFnFnFlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmnFnFtlreRNmFreczaAczXOBsBsWIaAnFnFaAaArereFbjOnFczobilLUQYTEqWGCaAnFnFnFnFnFnFnFlmlmlmlmlmlm
-lmlmlmlmnFaAAGczOTczrereczreczczczczWIWIaAnFrerererereqnreobaAnFaAnFaALDnFaAnFnFaAnFaAnFlmlmlmlmlmlm
-lmlmlmlmnFaAhIczrereczreczczreczrereczczWInFfDreBYreczrerererereDxnFczreqnxhkicIelelnFnFnFlmlmlmlmlm
-lmlmlmlmnFaAaAWIczXOWIczreczreczreczreczczczczreZWFEfvczRNczczSurerefDCNobobreHiSuelaAnFnFnFlmlmlmlm
-lmlmlmlmnFnFnFaAnFOAaAbPczczczVsJxczssxfreczreJWzpytfvrefubpreRNczczczczczSunsefLGgQLdevnFnFlmlmlmlm
-lmlmlmlmlmlmnFnFRwreaHaAwBczreczczczczczczczrerereSuczczczrefuczczczczwXwXIEsRsNQNoKsRczaAnFlmlmlmlm
-lmlmlmlmlmlmnFaAreRNreaAwBXOreXOreczczrereczaArerererereczRNczreSunFaAaAnFPpPRCBkRCBajRNnFnFlmlmlmlm
-lmlmlmlmlmlmnFnFDzmpBjnFaAwBWIhOhOGAWIczczrenFaAnFreSuczobczrereaAnFaAnFaAnFnFnFaAnFaAnFaAnFlmlmlmlm
-lmlmlmlmlmlmlmnFnFaAnFnFnFaAnFaAaAnFnFvxvxvxnFnFjvSuzpytfvrereXNreqDqCOatltlrZnFnFnFnFnFnFnFlmlmlmlm
-lmlmlmlmlmlmlmlmnFnFnFnFnFnFnFnFnFnFnFnFnFnFnFnFXwczzpytfvrePrrerereczbfKhkcuvnFnFlmlmlmlmlmlmlmlmlm
-lmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmnFnFnFnFnFnFaAfDRNreuwrereaAaAczczRNczXOtlEMnFnFlmlmlmlmlmlmlmlmlm
-lmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmnFnFnFnFnFnFczSurenFSunFbpRBczWJbJnFaAnFnFlmlmlmlmlmlmlmlmlm
-lmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmnFnFnFaABYXOobobczreczbUaAnFnFnFnFnFnFnFlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmnFnFrereqrSuqrrerefDczcznFnFnFnFlmlmlmlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmnFnFreobPXSureaAnFreGPobnFaAnFlmlmlmlmlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmnFaAnFSuWkreiMnFaAXcobjbnFnFnFlmlmlmlmlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmnFnFnFaAnFaAnFnFnFnFobnFnFnFlmlmlmlmlmlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmnFnFnFnFnFlmnFnFaAnFnFlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmnFnFnFlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlm
-lmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlmlm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(2,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(3,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(4,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(5,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(6,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+nF
+aA
+nF
+aA
+nF
+aA
+nF
+aA
+aA
+nF
+nF
+aA
+aA
+aA
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(7,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+nF
+kd
+cz
+rt
+cz
+RN
+kd
+re
+nF
+nF
+tl
+AG
+hI
+aA
+nF
+nF
+nF
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(8,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+aA
+kd
+RN
+kd
+RN
+RN
+kd
+RN
+aA
+tl
+re
+cz
+cz
+WI
+aA
+nF
+aA
+nF
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(9,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+aA
+wJ
+cz
+RN
+cz
+cz
+cz
+qr
+re
+re
+RN
+OT
+re
+cz
+nF
+Rw
+re
+Dz
+nF
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(10,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+nF
+LX
+RN
+cz
+cz
+re
+qr
+re
+RN
+RN
+mF
+cz
+re
+XO
+OA
+re
+RN
+mp
+aA
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(11,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+nF
+kd
+cz
+kd
+cz
+cz
+kd
+cz
+aA
+Bs
+re
+re
+cz
+WI
+aA
+aH
+re
+Bj
+nF
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(12,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+aA
+kd
+cz
+kd
+RN
+cz
+kd
+XO
+nF
+Bs
+cz
+re
+re
+cz
+bP
+aA
+aA
+nF
+nF
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(13,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+nF
+nF
+aA
+nF
+UM
+UM
+aA
+nF
+nF
+nF
+aA
+cz
+cz
+re
+cz
+wB
+wB
+aA
+nF
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(14,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+nF
+Fv
+jz
+Fv
+UM
+Fv
+jz
+Fv
+nF
+Bs
+cz
+re
+cz
+cz
+cz
+cz
+XO
+wB
+aA
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(15,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+aA
+BE
+UM
+rX
+UM
+UM
+UM
+il
+aA
+Bs
+XO
+cz
+re
+re
+cz
+re
+re
+WI
+nF
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(16,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+nF
+Fv
+UM
+Fv
+UM
+Fv
+rX
+Fv
+nF
+nF
+Bs
+cz
+cz
+cz
+Vs
+cz
+XO
+hO
+aA
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(17,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+nF
+jz
+rX
+UM
+UM
+UM
+rX
+jz
+aA
+aA
+Bs
+cz
+re
+re
+Jx
+cz
+re
+hO
+aA
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(18,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+aA
+UM
+UM
+lO
+wY
+UM
+rX
+nF
+nF
+nF
+WI
+cz
+re
+cz
+cz
+cz
+cz
+GA
+nF
+nF
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(19,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+nF
+nF
+jz
+UM
+UM
+jz
+aA
+nF
+nF
+nF
+aA
+WI
+cz
+re
+ss
+cz
+cz
+WI
+nF
+nF
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(20,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+nF
+nF
+aA
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+WI
+cz
+cz
+xf
+cz
+re
+cz
+vx
+nF
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(21,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+aA
+WI
+cz
+re
+cz
+re
+cz
+vx
+nF
+nF
+nF
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(22,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+aA
+nF
+nF
+cz
+cz
+cz
+cz
+re
+vx
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(23,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+nF
+nF
+nF
+nF
+aA
+aA
+aA
+re
+fD
+cz
+re
+re
+aA
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+nF
+aA
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(24,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+nF
+nF
+nF
+nF
+aA
+fD
+re
+re
+re
+re
+JW
+re
+re
+aA
+nF
+nF
+aA
+nF
+aA
+re
+re
+nF
+nF
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(25,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+nF
+nF
+nF
+nF
+nF
+oJ
+re
+re
+BY
+ZW
+zp
+re
+re
+nF
+jv
+Xw
+fD
+nF
+BY
+re
+ob
+Su
+aA
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(26,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+nF
+nF
+nF
+nF
+aA
+aA
+Fb
+re
+re
+FE
+yt
+Su
+re
+re
+Su
+cz
+RN
+nF
+XO
+qr
+PX
+Wk
+nF
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(27,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+aA
+nF
+EF
+Yj
+re
+nF
+jO
+re
+cz
+fv
+fv
+cz
+re
+Su
+zp
+zp
+re
+cz
+ob
+Su
+Su
+re
+aA
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(28,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+nF
+re
+Zd
+re
+re
+ob
+nF
+qn
+re
+cz
+re
+cz
+re
+cz
+yt
+yt
+uw
+Su
+ob
+qr
+re
+iM
+nF
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(29,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+nF
+Dx
+Yj
+BY
+XO
+Yj
+cz
+re
+re
+RN
+fu
+cz
+cz
+ob
+fv
+fv
+re
+re
+cz
+re
+aA
+nF
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(30,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+nF
+nF
+aA
+nF
+aA
+Se
+cz
+ob
+ob
+re
+cz
+bp
+re
+RN
+cz
+re
+re
+re
+nF
+re
+re
+nF
+aA
+nF
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(31,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+nF
+aA
+nF
+eO
+wo
+nF
+vX
+UM
+il
+aA
+re
+cz
+re
+fu
+cz
+re
+re
+Pr
+aA
+Su
+cz
+fD
+re
+Xc
+nF
+nF
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(32,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+nF
+aA
+xA
+UM
+UM
+UM
+nF
+Si
+UM
+LU
+nF
+re
+Su
+RN
+cz
+re
+re
+XN
+re
+aA
+nF
+bU
+cz
+GP
+ob
+ob
+aA
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(33,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+nF
+nF
+vE
+UM
+UM
+UM
+nF
+tz
+UM
+QY
+aA
+Dx
+re
+cz
+cz
+Su
+aA
+re
+re
+cz
+bp
+aA
+cz
+ob
+jb
+nF
+nF
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(34,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+aA
+Mj
+UM
+UM
+UM
+UM
+rX
+rX
+UM
+TE
+nF
+nF
+re
+cz
+cz
+nF
+nF
+qD
+re
+cz
+RB
+nF
+nF
+nF
+nF
+nF
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(35,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+aA
+op
+UM
+UM
+UM
+UM
+UM
+rX
+UM
+qW
+aA
+cz
+fD
+cz
+cz
+aA
+aA
+qC
+cz
+RN
+cz
+nF
+nF
+aA
+nF
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(36,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+nF
+RO
+xP
+UM
+rX
+UM
+nF
+yG
+UM
+GC
+LD
+re
+CN
+cz
+wX
+aA
+nF
+Oa
+bf
+cz
+WJ
+nF
+nF
+nF
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(37,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+aA
+YH
+Yt
+UM
+LU
+UM
+aA
+aA
+nF
+aA
+nF
+qn
+ob
+cz
+wX
+nF
+aA
+tl
+Kh
+XO
+bJ
+nF
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(38,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+nF
+aA
+nF
+mO
+UM
+ql
+nF
+nF
+nF
+nF
+aA
+xh
+ob
+Su
+IE
+Pp
+nF
+tl
+kc
+tl
+nF
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(39,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+nF
+nF
+aA
+nF
+aA
+nF
+nF
+nF
+nF
+nF
+ki
+re
+ns
+sR
+PR
+nF
+rZ
+uv
+EM
+aA
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(40,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+nF
+nF
+nF
+nF
+nF
+lm
+nF
+nF
+nF
+cI
+Hi
+ef
+sN
+CB
+nF
+nF
+nF
+nF
+nF
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(41,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+aA
+el
+Su
+LG
+QN
+kR
+aA
+nF
+nF
+nF
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(42,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+nF
+el
+el
+gQ
+oK
+CB
+nF
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(43,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+aA
+nF
+aA
+Ld
+sR
+aj
+aA
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(44,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+nF
+nF
+nF
+ev
+cz
+RN
+nF
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(45,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+nF
+nF
+aA
+nF
+aA
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(46,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+nF
+nF
+nF
+nF
+nF
+nF
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(47,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(48,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(49,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+"}
+(50,1,1) = {"
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
+lm
 "}

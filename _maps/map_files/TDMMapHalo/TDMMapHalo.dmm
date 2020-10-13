@@ -1,14 +1,14 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ab" = (
+/turf/open/floor/tile/dark/red2{
+	dir = 5
+	},
+/area/swordbase/ground/checkpoint)
 "ae" = (
 /obj/structure/table/mainship,
 /obj/item/facepaint/black,
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/mainhall)
-"af" = (
-/turf/open/floor/tile/dark/red2{
-	dir = 5
-	},
-/area/swordbase/ground/checkpoint)
 "ag" = (
 /obj/structure/cargo_container/nt{
 	dir = 1
@@ -18,11 +18,6 @@
 "ak" = (
 /turf/closed/wall/mainship,
 /area/swordbase/ground/cryogenics)
-"am" = (
-/obj/effect/decal/warning_stripes/thick,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/dark,
-/area/swordbase/ground/mainhall)
 "av" = (
 /turf/open/ground/desertdam/river/toxic/shallow_water_toxic,
 /area/swordbase/ground/outdoors)
@@ -33,10 +28,6 @@
 /obj/structure/flora/desert/grass,
 /turf/open/floor/plating/ground/desertdam/desert,
 /area/swordbase/ground/outdoors)
-"aB" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/dark/red2/corner,
-/area/mainship/shipboard/brig)
 "aD" = (
 /obj/machinery/light{
 	dir = 4
@@ -94,14 +85,6 @@
 	dir = 8
 	},
 /area/swordbase/ground/medbaysouth)
-"aV" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/tile/dark/red2/corner{
-	dir = 1
-	},
-/area/swordbase/ground/firingrange)
 "aX" = (
 /turf/open/floor/tile/dark/red2/corner,
 /area/swordbase/ground/firingrange)
@@ -426,6 +409,11 @@
 	dir = 1
 	},
 /area/swordbase/ground/medbaysouth)
+"eB" = (
+/turf/open/floor/tile/dark/red2{
+	dir = 9
+	},
+/area/mainship/shipboard/brig)
 "eJ" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/yellow2/corner,
@@ -622,6 +610,11 @@
 	dir = 10
 	},
 /area/swordbase/ground/medsci)
+"gC" = (
+/turf/open/floor/tile/dark/red2/corner{
+	dir = 1
+	},
+/area/swordbase/ground/checkpoint)
 "gF" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/metal/large_stack,
@@ -807,12 +800,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/armory)
-"iN" = (
-/obj/effect/landmark{
-	name = "Observer-Start"
-	},
-/turf/open/floor/mainship_hull,
-/area/swordbase/ground/vault)
 "iQ" = (
 /turf/open/floor/tile/dark/red2{
 	dir = 1
@@ -993,6 +980,10 @@
 "kT" = (
 /turf/closed/wall/mainship,
 /area/swordbase/ground/hydro)
+"kZ" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark/red2/corner,
+/area/mainship/shipboard/brig)
 "lg" = (
 /obj/machinery/computer/rdservercontrol,
 /turf/open/floor/tile/dark/purple2{
@@ -1055,6 +1046,14 @@
 	dir = 8
 	},
 /area/swordbase/ground/cryogenics)
+"lH" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/red2/corner{
+	dir = 1
+	},
+/area/swordbase/ground/firingrange)
 "lJ" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger,
@@ -1444,6 +1443,11 @@
 /obj/structure/closet/l3closet/janitor,
 /turf/open/floor/plating,
 /area/swordbase/ground/janitor_closet)
+"qh" = (
+/obj/structure/window/reinforced,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark,
+/area/mainship/shipboard/brig)
 "qm" = (
 /obj/item/reagent_containers/glass/bucket/janibucket,
 /obj/machinery/light/small{
@@ -2004,10 +2008,6 @@
 	dir = 1
 	},
 /area/swordbase/ground/medsci)
-"vQ" = (
-/obj/structure/window/framed/mainship/canterbury,
-/turf/open/floor/tile/dark,
-/area/swordbase/ground/outdoors)
 "vR" = (
 /obj/machinery/light{
 	dir = 8
@@ -2339,11 +2339,6 @@
 	dir = 1
 	},
 /area/swordbase/ground/medbaysouth)
-"yk" = (
-/turf/open/floor/tile/dark/red2{
-	dir = 9
-	},
-/area/mainship/shipboard/brig)
 "yl" = (
 /obj/structure/table/reinforced/prison,
 /obj/item/reagent_containers/food/snacks/monkeysdelight,
@@ -2365,6 +2360,11 @@
 "yt" = (
 /obj/effect/overlay/palmtree_r,
 /turf/open/beach/sand,
+/area/swordbase/ground/mainhall)
+"yu" = (
+/obj/effect/decal/warning_stripes/thick,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/tile/dark,
 /area/swordbase/ground/mainhall)
 "yx" = (
 /obj/structure/table/reinforced/prison,
@@ -3779,6 +3779,10 @@
 	dir = 4
 	},
 /area/swordbase/ground/kitchen)
+"Jv" = (
+/obj/structure/window/framed/mainship/canterbury,
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/outdoors)
 "Jw" = (
 /obj/structure/table/mainship,
 /obj/item/storage/belt/utility/full,
@@ -4393,6 +4397,12 @@
 /obj/structure/closet/crate,
 /turf/open/floor/plating,
 /area/swordbase/ground/storage)
+"ON" = (
+/obj/effect/landmark{
+	name = "Observer-Start"
+	},
+/turf/open/floor/mainship_hull,
+/area/swordbase/ground/vault)
 "OP" = (
 /turf/open/floor/mainship/mono,
 /area/swordbase/ground/outdoors)
@@ -4778,11 +4788,6 @@
 	dir = 4
 	},
 /area/swordbase/ground/science)
-"SH" = (
-/obj/structure/window/reinforced,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/tile/dark,
-/area/mainship/shipboard/brig)
 "SS" = (
 /obj/machinery/r_n_d/server/robotics,
 /turf/open/floor/tile/dark/purple2,
@@ -5202,11 +5207,6 @@
 /obj/item/ammo_magazine/shotgun/eightGauge/slug,
 /obj/structure/table/mainship,
 /turf/open/floor/tile/dark/red2,
-/area/swordbase/ground/checkpoint)
-"WK" = (
-/turf/open/floor/tile/dark/red2/corner{
-	dir = 1
-	},
 /area/swordbase/ground/checkpoint)
 "WO" = (
 /turf/closed/wall/mainship,
@@ -6860,7 +6860,7 @@ Yb
 si
 si
 wu
-iN
+ON
 si
 xF
 Cc
@@ -6994,7 +6994,7 @@ Bd
 WB
 Cc
 az
-aB
+kZ
 FB
 BG
 Nq
@@ -7361,7 +7361,7 @@ WB
 EU
 px
 az
-SH
+qh
 BI
 BS
 WB
@@ -7852,8 +7852,8 @@ az
 az
 az
 zK
-yk
-aV
+eB
+lH
 Sb
 TA
 TA
@@ -10677,7 +10677,7 @@ Yf
 Vx
 Yf
 Yf
-am
+yu
 eq
 TC
 bu
@@ -11415,7 +11415,7 @@ Ii
 Ii
 zR
 AH
-vQ
+Jv
 Kn
 mZ
 mZ
@@ -11537,7 +11537,7 @@ Ku
 ng
 ng
 gS
-vQ
+Jv
 mZ
 mZ
 mZ
@@ -12024,7 +12024,7 @@ ng
 ng
 ng
 WI
-vQ
+Jv
 mZ
 mZ
 mZ
@@ -12140,13 +12140,13 @@ VS
 VS
 VS
 VS
-af
+ab
 qV
 qV
 Ku
 ng
 gS
-vQ
+Jv
 mZ
 xK
 xK
@@ -12387,7 +12387,7 @@ vz
 wh
 Ga
 Is
-WK
+gC
 ng
 IR
 FG
