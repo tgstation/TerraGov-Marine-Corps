@@ -393,8 +393,13 @@
 		charge_datum.do_stop_momentum()
 		return PRECRUSH_STOPPED
 	if(anchored)
-		. = (CHARGE_SPEED(charge_datum) * 36) // 2.1 * 30 = 75.60 Damage to inflict. if its already been hit by one acid spit, a charge will kill it without the crusher taking damage from the razorwire. 2 mature boiler globs are enough too for a charge too.
+		var/charge_damage = (CHARGE_SPEED(charge_datum) * 50)  // 2.1 * 50 = 105 max damage to inflict.
+		var/sunder_factor = clamp(1 - (charger.sunder/100),0.30,1.00) // Then sunder is taken into account. if its already been hit by one acid spit, a charge will kill it without the crusher taking damage from the razorwire. 2 mature boiler globs are enough too for a charge too.
+		. = charge_damage * sunder_factor
+		if(obj_integrity > .)
+			to_chat(charger, "<span class='danger'>Our weakened exoskeleton is less effective against [src]!</span>")
 		charge_datum.speed_down(3)
+		charger.adjust_sunder(15)
 		return
 	return (CHARGE_SPEED(charge_datum) * 20) //Damage to inflict.
 
@@ -470,7 +475,7 @@
 /obj/structure/razorwire/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
 	if(!anchored)
 		return ..()
-	razorwire_tangle(charger, RAZORWIRE_ENTANGLE_DELAY * 0.20) //entangled for only 20% as long or 1 second
+	razorwire_tangle(charger, RAZORWIRE_ENTANGLE_DELAY * 0.10) //entangled for only 10% as long or 0.5 seconds
 	charger.visible_message("<span class='danger'>The barbed wire slices into [charger]!</span>",
 	"<span class='danger'>The barbed wire slices into you!</span>", null, 5)
 	charger.Paralyze(0.5 SECONDS)
