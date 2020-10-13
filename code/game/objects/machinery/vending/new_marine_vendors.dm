@@ -451,7 +451,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/tie/storage/webbing = list(CAT_WEB, "Tactical webbing", 0, "black"),
 		/obj/item/clothing/tie/holster = list(CAT_WEB, "Shoulder handgun holster", 0, "black"),
 		/obj/item/clothing/tie/storage/white_vest = list(CAT_WEB, "Corpsman surgical vest", 0, "black"),
-		/obj/item/storage/belt/medicLifesaver = list(CAT_BEL, "Lifesaver medical belt", 0, "orange"),
+		/obj/item/storage/belt/medicLifesaver = list(CAT_BEL, "Lifesaver medic belt", 0, "orange"),
 		/obj/item/storage/belt/medical = list(CAT_BEL, "Medical belt", 0, "black"),
 		/obj/item/storage/pouch/medical = list(CAT_POU, "Medical pouch", 0, "black"),
 		/obj/item/storage/pouch/medkit = list(CAT_POU, "Medkit pouch", 0, "black"),
