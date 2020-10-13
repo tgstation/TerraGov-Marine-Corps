@@ -387,13 +387,12 @@
 			return
 
 	if(ismovableatom(A))
-		if(isxeno(src))
-			if(ishuman(A))
-				var/mob/living/carbon/human/H = A
-				if(H.next_push > world.time)
-					return
-				else
-					H.next_push = world.time + H.push_delay
+		if(isxeno(src) && ishuman(A))
+			var/mob/living/carbon/human/H = A
+			if(H.next_push > world.time)
+				return
+			else
+				H.next_push = world.time + H.push_delay
 		PushAM(A)
 
 
