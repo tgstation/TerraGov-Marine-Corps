@@ -133,7 +133,6 @@
 
 	if(!istype(I, /obj/item/grab))
 		return
-
 	if(isxeno(user))//I am very tempted to remove this >:)
 		return
 
