@@ -19,8 +19,8 @@
 	max_health = 210
 
 	// *** Evolution *** //
-	evolution_threshold = 80
-	upgrade_threshold = 50
+	evolution_threshold = 180
+	upgrade_threshold = 120
 
 	evolves_to = list(/mob/living/carbon/xenomorph/Defiler)
 
@@ -66,7 +66,7 @@
 		/datum/reagent/toxin/xeno_praelyx,
 	)
 	// *** Speed *** //
-	speed = -1
+	speed = -0.9
 
 	// *** Plasma *** //
 	plasma_max = 180
@@ -76,7 +76,7 @@
 	max_health = 230
 
 	// *** Evolution *** //
-	upgrade_threshold = 100
+	upgrade_threshold = 240
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = XENO_BOMB_RESIST_0, "bio" = 3, "rad" = 3, "fire" = 15, "acid" = 3)
@@ -89,16 +89,14 @@
 	caste_desc = "A small larva-like creatue with a spiked tail. It looks pretty strong."
 
 	upgrade = XENO_UPGRADE_TWO
-
-	// *** Melee Attacks *** //
-	melee_damage = 16
-
-
-	// *** Tackle *** //
-	tackle_damage = 30
+	available_reagents_define = list(
+		/datum/reagent/toxin/xeno_hemodile,
+		/datum/reagent/toxin/xeno_transvitox,
+		/datum/reagent/toxin/xeno_praelyx,
+	)
 
 	// *** Speed *** //
-	speed = -1.2
+	speed = -1.0
 
 	// *** Plasma *** //
 	plasma_max = 220
@@ -108,7 +106,7 @@
 	max_health = 250
 
 	// *** Evolution *** //
-	upgrade_threshold = 200
+	upgrade_threshold = 480
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 20, "acid" = 5)
@@ -127,15 +125,9 @@
 		/datum/reagent/toxin/xeno_decaytoxin_catalyst,
 		/datum/reagent/toxin/xeno_praelyx,
 	)
-	// *** Melee Attacks *** //
-	melee_damage = 16
-
-
-	// *** Tackle *** //
-	tackle_damage = 30
 
 	// *** Speed *** //
-	speed = -1.4
+	speed = -1.2
 
 	// *** Plasma *** //
 	plasma_max = 260
@@ -145,7 +137,7 @@
 	max_health = 270
 
 	// *** Evolution *** //
-	upgrade_threshold = 200
+	upgrade_threshold = 480
 
 	// *** Defense *** //
 	soft_armor = list("melee" = 24, "bullet" = 24, "laser" = 24, "energy" = 124, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 24, "acid" = 7)
