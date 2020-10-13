@@ -39,6 +39,10 @@
 /obj/structure/rack,
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
+"bN" = (
+/obj/effect/landmark/start/latejoin_innie,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
 "bP" = (
 /obj/machinery/marine_selector/gear/innieEquipment,
 /turf/open/floor/plating/asteroidplating,
@@ -51,7 +55,13 @@
 /area/swordbase/ground/inniecave)
 "bX" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/start/job/unsc_medic,
+/obj/effect/landmark/start/job/urf_medic,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"co" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/start/latejoin_innie,
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "cz" = (
@@ -346,6 +356,11 @@
 "qD" = (
 /obj/structure/largecrate/supply/supplies/mre,
 /obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/inniecave)
+"qH" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/start/latejoin_innie,
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "qW" = (
@@ -1452,10 +1467,10 @@ nF
 aA
 wJ
 cz
-RN
+bN
 cz
 cz
-cz
+qH
 qr
 re
 re
@@ -1504,10 +1519,10 @@ nF
 nF
 LX
 RN
-cz
+qH
 cz
 re
-qr
+co
 re
 RN
 RN
