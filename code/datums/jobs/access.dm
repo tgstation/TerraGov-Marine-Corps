@@ -275,8 +275,12 @@
 			. = size ? "WO " : "Warrant Officer"
 		if("CWO")
 			. = size ? "CWO " : "Chief Warrant Officer"
-		if("PO")
-			. = size ? "PO " : "Petty Officer"
+		if("PO3")
+			. = size ? "PO3 " : "Petty Officer Third Class"
+		if("PO2")
+			. = size ? "PO2 " : "Petty Officer Second Class"
+		if("PO1")
+			. = size ? "PO1 " : "Petty Officer First Class"
 		if("CPO")
 			. = size ? "CPO " : "Chief Petty Officer"
 		if("MO4")

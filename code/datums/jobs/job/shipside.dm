@@ -139,6 +139,19 @@ Make the TGMC proud!"})
 	to_chat(M, {"Your job is to monitor the marines, man the CIC, and listen to your superior officers.
 You are in charge of logistics and the overwatch system. You are also in line to take command after the captain."})
 
+/datum/job/terragov/command/staffofficer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 3000)
+			new_human.wear_id.paygrade = "O4"
+		if(3001 to INFINITY)
+			new_human.wear_id.paygrade = "O5"
 
 /datum/outfit/job/command/staffofficer
 	name = STAFF_OFFICER
@@ -169,6 +182,23 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG, /datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
 
+/datum/job/terragov/command/pilot/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 600)
+			new_human.wear_id.paygrade = "WO"
+		if(601 to 1500)
+			new_human.wear_id.paygrade = "CWO"
+		if(1501 to 3000)
+			new_human.wear_id.paygrade = "O1"
+		if(3001 to INFINITY)
+			new_human.wear_id.paygrade = "O2"
 
 /datum/job/terragov/command/pilot/radio_help_message(mob/M)
 	. = ..()
@@ -260,6 +290,21 @@ You could use STs help to repair and replace hardpoints."})
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE, /datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
 
+/datum/job/terragov/engineering/chief/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 1500)
+			new_human.wear_id.paygrade = "O2"
+		if(1501 to 3000)
+			new_human.wear_id.paygrade = "O3"
+		if(3001 to INFINITY)
+			new_human.wear_id.paygrade = "O4"
 
 /datum/job/terragov/engineering/chief/radio_help_message(mob/M)
 	. = ..()
@@ -290,7 +335,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 /datum/job/terragov/engineering/tech
 	title = SHIP_TECH
 	comm_title = "ST"
-	paygrade = "PO"
+	paygrade = "PO3"
 	total_positions = 5
 	supervisors = "the chief ship engineer and the requisitions officer"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CARGO, ACCESS_CIVILIAN_ENGINEERING)
@@ -301,6 +346,23 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE, /datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
 
+/datum/job/terragov/engineering/tech/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 600)
+			new_human.wear_id.paygrade = "PO3"
+		if(601 to 1500)
+			new_human.wear_id.paygrade = "PO2"
+		if(1501 to 3000)
+			new_human.wear_id.paygrade = "PO1"
+		if(3001 to INFINITY)
+			new_human.wear_id.paygrade = "CPO"
 
 /datum/job/terragov/engineering/tech/radio_help_message(mob/M)
 	. = ..()
@@ -316,14 +378,13 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	belt = /obj/item/storage/belt/utility/full
 	ears = /obj/item/radio/headset/mainship/st
 	w_uniform = /obj/item/clothing/under/marine/officer/engi
-	wear_suit = /obj/item/clothing/suit/storage/marine/MP
+	wear_suit = /obj/item/clothing/suit/storage/marine/M3P/tech
 	shoes = /obj/item/clothing/shoes/marine
 	gloves = /obj/item/clothing/gloves/yellow
 	glasses = /obj/item/clothing/glasses/welding/flipped
 	head = /obj/item/clothing/head/tgmccap/req
 	r_store = /obj/item/storage/pouch/general/medium
-	back = /obj/item/storage/backpack/marine/satchel
-
+	back = /obj/item/storage/backpack/marine/engineerpack
 
 
 /datum/job/terragov/requisitions
@@ -351,6 +412,23 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE, /datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
 
+/datum/job/terragov/requisitions/officer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 600)
+			new_human.wear_id.paygrade = "CPO"
+		if(601 to 1500)
+			new_human.wear_id.paygrade = "WO"
+		if(1501 to 3000)
+			new_human.wear_id.paygrade = "CWO"
+		if(3001 to INFINITY)
+			new_human.wear_id.paygrade = "O1"
 
 /datum/job/terragov/requisitions/officer/radio_help_message(mob/M)
 	. = ..()
