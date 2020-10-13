@@ -235,6 +235,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/combat
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
+                        /obj/item/attachable/bayonetknife,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/flashlight,
 						/obj/item/attachable/extended_barrel,
@@ -244,7 +245,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
 	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade/unremovable/invisible)
 
-	fire_delay = 15 //one shot every 1.5 seconds.
+	fire_delay = 9 //one shot every nine tenth seconds.
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.5 //you need to wield this gun for any kind of accuracy
 	scatter = 20
