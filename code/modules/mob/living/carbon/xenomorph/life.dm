@@ -211,15 +211,17 @@
 /mob/living/carbon/xenomorph/proc/handle_aura_receiver()
 	if(frenzy_aura != frenzy_new || warding_aura != warding_new || recovery_aura != recovery_new)
 		set_frenzy_aura(frenzy_new)
-		warding_aura = warding_new
+		if(warding_aura != warding_new)
+			soft_armor = soft_armor.modifyAllRatings(-warding_aura * 2.5)
+			warding_aura = warding_new
+			soft_armor = soft_armor.modifyAllRatings(warding_aura * 2.5)
+		else
+			warding_aura = warding_new
 		recovery_aura = recovery_new
 	hud_set_pheromone()
 	frenzy_new = 0
 	warding_new = 0
 	recovery_new = 0
-	armor_pheromone_bonus = 0
-	if(warding_aura > 0)
-		armor_pheromone_bonus = warding_aura * 2.5 //Bonus armor from pheromones, no matter what the armor was previously.
 
 /mob/living/carbon/xenomorph/handle_regular_hud_updates()
 	if(!client)
@@ -258,7 +260,7 @@
 	var/env_temperature = loc.return_temperature()
 	if(!(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE))
 		if(env_temperature > (T0C + 66))
-			adjustFireLoss((env_temperature - (T0C + 66) ) * 0.2 * clamp(xeno_caste.fire_resist + fire_resist_modifier, 0, 1) ) //Might be too high, check in testing.
+			adjustFireLoss((env_temperature - (T0C + 66) ) * 0.2 * clamp(xeno_caste.fire_resist + fire_resist_modifier, 0, 1)) //Might be too high, check in testing.
 			updatehealth() //unused while atmos is off
 			if(hud_used && hud_used.fire_icon)
 				hud_used.fire_icon.icon_state = "fire2"

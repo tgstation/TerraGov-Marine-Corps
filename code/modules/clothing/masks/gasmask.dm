@@ -16,6 +16,12 @@
 	var/gas_filter_strength = 1			//For gas mask filters
 	var/list/filtered_gases = list(/datum/reagent/toxin/phoron, "sleeping_agent", "carbon_dioxide")
 
+/obj/item/clothing/mask/gas/coif
+	name = "coifed gas mask"
+	desc = "A face-covering mask that can be connected to an air supply. Has a coif. Filters harmful gases from the air."
+	icon_state = "gascoif"
+	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
+
 /obj/item/clothing/mask/gas/PMC
 	name = "\improper M8 pattern armored balaclava"
 	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter."

@@ -114,6 +114,7 @@
 
 
 /mob/living/carbon/xenomorph/proc/devour_grabbed()
+	SIGNAL_HANDLER_DOES_SLEEP
 	var/mob/living/carbon/prey = pulling
 	if(!istype(prey) || isxeno(prey) || issynth(prey))
 		to_chat(src, "<span class='warning'>That wouldn't taste very good.</span>")
@@ -174,6 +175,7 @@
 
 
 /mob/living/carbon/proc/on_devour_by_xeno()
+	SIGNAL_HANDLER
 	RegisterSignal(src, COMSIG_MOVABLE_RELEASED_FROM_STOMACH, .proc/on_release_from_stomach)
 
 
@@ -187,6 +189,7 @@
 
 
 /mob/living/carbon/proc/on_release_from_stomach(mob/living/carbon/prey, mob/living/predator)
+	SIGNAL_HANDLER
 	prey.SetParalyzed(20)
 	prey.adjust_blindness(-1)
 	UnregisterSignal(src, COMSIG_MOVABLE_RELEASED_FROM_STOMACH)

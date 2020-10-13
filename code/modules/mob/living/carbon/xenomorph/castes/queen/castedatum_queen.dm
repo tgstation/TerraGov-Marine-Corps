@@ -29,7 +29,7 @@
 	upgrade_threshold = 350
 
 	// *** Flags *** //
-	caste_flags = CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_HIDE_IN_STATUS
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_HIDE_IN_STATUS|CASTE_CAN_HOLD_JELLY
 
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 
@@ -58,7 +58,6 @@
 		/datum/action/xeno_action/activable/larval_growth_sting,
 		/datum/action/xeno_action/call_of_the_burrowed,
 		/datum/action/xeno_action/activable/screech,
-		/datum/action/xeno_action/activable/tail_sweep,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/shift_spits,

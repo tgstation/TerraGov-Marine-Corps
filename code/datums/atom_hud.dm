@@ -116,6 +116,8 @@ GLOBAL_LIST_INIT(huds, list(
 
 
 /datum/atom_hud/proc/clean_mob_refs(datum/source, force)
+	SIGNAL_HANDLER
+
 	remove_hud_from(source)
 	remove_from_hud(source)
 	next_time_allowed -= source

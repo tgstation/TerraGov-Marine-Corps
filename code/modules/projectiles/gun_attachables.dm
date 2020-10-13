@@ -1621,6 +1621,7 @@ Defined in conflicts.dm of the #defines folder.
 
 
 /obj/item/attachable/bipod/proc/retract_bipod(datum/source)
+	SIGNAL_HANDLER_DOES_SLEEP
 	if(!ismob(source))
 		return
 	activate_attachment(source, TRUE)

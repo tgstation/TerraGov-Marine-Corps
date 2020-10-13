@@ -314,7 +314,7 @@
 	new /obj/item/clothing/gloves/white(src)
 	new /obj/item/clothing/under/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
-	new /obj/item/storage/backpack/marine/satchel/officer_cloak
+	new /obj/item/storage/backpack/marine/satchel/officer_cloak(src)
 
 /obj/structure/closet/secure_closet/pilot_officer
 	name = "pilot officer's locker"
