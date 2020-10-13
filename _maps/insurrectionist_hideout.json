@@ -1,0 +1,6 @@
+{
+    "map_name": "Insurrectionist Hideout",
+    "map_path": "map_files/Insurrectionist_Hideout",
+    "map_file": "Insurrectionist_Hideout.dmm",
+    "traits": [{"Marine Main Ship": true}]
+}
