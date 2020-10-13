@@ -1,0 +1,9 @@
+author: "MacBlaze1"
+delete-after: True
+changes: 
+  - rscadd: "Added new stuff to the ST locker"
+  - rscadd: "Added new ST armor"
+  - balance: "rebalanced new ST armor to fit the ST"
+  - server: "added 1 more ST slot, moving it up to 2"
+  - rscadd: "gives RO, PO, SO, ST, and Chief Engineer paygrades"
+  - rscadd: "gave ST a welderpack,  an etool and a brown webbing vest"
