@@ -1,4 +1,0 @@
-author: "SplinterGP"
-delete-after: True
-changes: 
-  - tweak: "makes xeno resin doors take 60 seconds to auto close instead of 10 seconds, so it doens't closes in a xeno face when they're retreating."
