@@ -19,7 +19,7 @@ export const Mortar = (props, context) => {
           <Flex.Item>
             <Flex direction="row" justify="space-between">
               <Flex.Item>
-                LONGITUDE 
+                LONGITUDE
               </Flex.Item>
               <Flex.Item>
                 LATITUDE
@@ -41,7 +41,7 @@ export const Mortar = (props, context) => {
                   maxValue={255}
                   width="43px"
                   onChange={(e, value) => act("change_target_x", {
-                    target_x: value, 
+                    target_x: value,
                   })} />
               </Flex.Item>
               <Flex.Item>
@@ -114,18 +114,12 @@ export const Mortar = (props, context) => {
                       name: value,
                     })} />
                 </Table.Cell>
-                <Table.Cell> 
-                  {last_three_inputs["coords_one"]["targ_x"]}
-                </Table.Cell>
-                <Table.Cell>
-                  {last_three_inputs["coords_one"]["targ_y"]}
-                </Table.Cell>
-                <Table.Cell>
-                  {last_three_inputs["coords_one"]["dial_x"]}
-                </Table.Cell>
-                <Table.Cell>
-                  {last_three_inputs["coords_one"]["dial_y"]}
-                </Table.Cell>
+                {Object.values(last_three_inputs["coords_one"]).map(
+                  (coordsinput, i) => (
+                    <Table.Cell key={"coords_one_" + i}>
+                      {coordsinput}
+                    </Table.Cell>
+                  ))}
               </Table.Row>
               <Table.Row>
                 <Table.Cell>
@@ -141,18 +135,12 @@ export const Mortar = (props, context) => {
                       name: value,
                     })} />
                 </Table.Cell>
-                <Table.Cell>
-                  {last_three_inputs["coords_two"]["targ_x"]}
-                </Table.Cell>
-                <Table.Cell>
-                  {last_three_inputs["coords_two"]["targ_y"]}
-                </Table.Cell>
-                <Table.Cell>
-                  {last_three_inputs["coords_two"]["dial_x"]}
-                </Table.Cell>
-                <Table.Cell>
-                  {last_three_inputs["coords_two"]["dial_y"]}
-                </Table.Cell>
+                {Object.values(last_three_inputs["coords_two"]).map(
+                  (coordsinput, i) => (
+                    <Table.Cell key={"coords_two_" + i}>
+                      {coordsinput}
+                    </Table.Cell>
+                  ))}
               </Table.Row>
               <Table.Row>
                 <Table.Cell>
@@ -168,18 +156,12 @@ export const Mortar = (props, context) => {
                       name: value,
                     })} />
                 </Table.Cell>
-                <Table.Cell>
-                  {last_three_inputs["coords_three"]["targ_x"]}
-                </Table.Cell>
-                <Table.Cell>
-                  {last_three_inputs["coords_three"]["targ_y"]}
-                </Table.Cell>
-                <Table.Cell>
-                  {last_three_inputs["coords_three"]["dial_x"]}
-                </Table.Cell>
-                <Table.Cell>
-                  {last_three_inputs["coords_three"]["dial_y"]}
-                </Table.Cell>
+                {Object.values(last_three_inputs["coords_three"]).map(
+                  (coordsinput, i) => (
+                    <Table.Cell key={"coords_three_" + i}>
+                      {coordsinput}
+                    </Table.Cell>
+                  ))}
               </Table.Row>
             </Table>
           </Flex.Item>
