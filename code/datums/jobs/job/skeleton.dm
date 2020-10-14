@@ -24,11 +24,12 @@
 	back = /obj/item/weapon/twohanded/spear
 	ears = /obj/item/radio/headset/survivor
 	r_store = /obj/item/flashlight
-	l_store = /obj/item/reagent_containers/food/drinks/milk
-
+	l_store = /obj/item/tool/crowbar/red
 
 /datum/outfit/job/skeleton/basic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
+
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/milk, SLOT_L_HAND)
 
 //Skeleton Chief
 /datum/job/skeleton/leader
@@ -45,8 +46,13 @@
 	wear_suit = /obj/item/clothing/suit/unathi/mantle
 	shoes = /obj/item/clothing/shoes/sandal
 	head = /obj/item/clothing/head/helmet/gladiator
-	belt = /obj/item/tool/crowbar/red
+	belt = /obj/item/weapon/claymore
 	back = /obj/item/weapon/twohanded/glaive
 	ears = /obj/item/radio/headset/survivor
 	r_store = /obj/item/flashlight
 	l_store = /obj/item/reagent_containers/food/drinks/milk
+
+/datum/outfit/job/skeleton/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/milk, SLOT_L_HAND)
