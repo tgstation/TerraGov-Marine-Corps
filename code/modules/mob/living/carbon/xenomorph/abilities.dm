@@ -92,6 +92,18 @@
 /datum/action/xeno_action/plant_weeds/slow
 	cooldown_timer = 12 SECONDS
 
+/datum/action/xeno_action/plant_weeds/slow/action_activate()
+	var/mob/living/carbon/xenomorph/hivemind/hiveminde = owner
+	if(hiveminde)
+		if(!locate(/obj/effect/alien/weeds) in range(1, owner.loc))
+			var/obj/effect/alien/weeds/nearbies = locate() in range(7, hiveminde.loc)
+			if(nearbies)
+				hiveminde.forceMove(get_turf(nearbies))
+			else
+				hiveminde.forceMove(get_turf(hiveminde.core))
+			to_chat(hiveminde, "<span class='xenonotice'>you can't place weeds with no weeds nearby, you got moved to [nearbies ? "the closest weed" : "your core"].</span>")
+			return
+ 	..()
 // Choose Resin
 /datum/action/xeno_action/choose_resin
 	name = "Choose Resin Structure"
