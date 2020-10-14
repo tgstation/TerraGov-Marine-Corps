@@ -454,13 +454,13 @@
 	description = "A debilitating nerve toxin. Impedes motor control in high doses. Causes progressive loss of mobility over time."
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
-	custom_metabolism = REAGENTS_METABOLISM * 2 //otherwise it defaults to half of that
+	custom_metabolism = REAGENTS_METABOLISM * 2
 	purge_list = list(/datum/reagent/medicine)
 	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 1.2 //make this a little more forgiving in light of the lethality
 	scannable = TRUE
-	toxpwr = 0
+	toxpwr = 0.8
 
 
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
