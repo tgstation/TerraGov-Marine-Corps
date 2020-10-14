@@ -233,7 +233,7 @@
 //////////////////////////////////////////
 
 /obj/effect/particle_effect/smoke/plasmaloss
-	alpha = 110
+	alpha = 90
 	opacity = FALSE
 	color = "#791697"
 	smoke_traits = SMOKE_PLASMALOSS
