@@ -194,9 +194,6 @@
 					/obj/item/ammo_magazine/rifle/bolt = 7,
 					)
 	premium = list()
-	
-
-
 
 
 /obj/machinery/vending/marine/cargo_ammo/select_gamemode_equipment(gamemode)
