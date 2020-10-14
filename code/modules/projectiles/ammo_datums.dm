@@ -1212,7 +1212,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 30
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-	sundering = 2,5
+	sundering = 2.5
 
 /datum/ammo/energy/lasgun/M43
 	icon_state = "laser2"
