@@ -678,3 +678,9 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	rifles = SKILL_RIFLES_TRAINED
 	shotguns = SKILL_SHOTGUNS_TRAINED
 	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
+
+/datum/skills/skeleton
+	name = "Skeleton"
+
+	cqc = SKILL_CQC_TRAINED
+	melee_weapons = SKILL_MELEE_TRAINED
