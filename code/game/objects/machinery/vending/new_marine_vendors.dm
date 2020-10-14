@@ -1032,7 +1032,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	icon_state = "marineuniform"
 	req_access = list(ACCESS_UNSC_MARINE)
 	lock_flags = JOB_LOCK
-	vendor_role = /datum/job/unsc/marine
+	vendor_role = /datum/job/unsc/marine/basic
 	listed_products = list(
 		/obj/effect/essentials_set/halo/basic = list(CAT_ESS, "Marine Essentials Set", 0, "white"),
 		/obj/effect/essentials_set/modular/haloMarine/armorPieces = list(CAT_AMR, "UNSC Modular Armor Pieces", 0, "white"),
@@ -1127,7 +1127,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	desc = "An automated requisitions vendor, with a strict limit in how much each marine requests."
 	icon_state = "synth"
 	req_access = list(ACCESS_UNSC_MARINE)
-	vendor_role = /datum/job/unsc/marine
+	vendor_role = /datum/job/unsc/marine/basic
 	lock_flags = JOB_LOCK
 	listed_products = list(
 		/obj/item/storage/pouch/explosive = list(CAT_POU, "Explosive pouch", 15, "black"),
@@ -1158,7 +1158,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	icon_state = "synth"
 	req_access = list(ACCESS_INSURRECTIONIST_SOLDIER)
 	lock_flags = JOB_LOCK
-	vendor_role = /datum/job/insurrectionist
+	vendor_role = /datum/job/insurrectionist/basic
 	listed_products = list(
 		/obj/item/storage/pouch/explosive = list(CAT_POU, "Explosive pouch", 15, "black"),
 		/obj/item/storage/pouch/magazine/large = list(CAT_POU, "Large magazine pouch", 15, "black"),
@@ -1187,7 +1187,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	desc = "An automated closet hooked up to a colossal storage unit of standard-issue uniform and armor."
 	icon_state = "marineuniform"
 	req_access = list(ACCESS_INSURRECTIONIST_SOLDIER)
-	vendor_role = /datum/job/insurrectionist
+	vendor_role = /datum/job/insurrectionist/basic
 	lock_flags = JOB_LOCK
 	listed_products = list(
 		/obj/effect/essentials_set/halo/innie = list (CAT_ESS, "Insurrection Essentials Set", 0, "white"),

@@ -17,7 +17,7 @@
 
 /obj/effect/landmark/start/job/urf_insurrectionist
 	icon_state = "IO"
-	job = /datum/job/insurrectionist
+	job = /datum/job/insurrectionist/basic
 	jobspawn_override = TRUE
 
 /obj/effect/landmark/start/job/unsc_leader
@@ -37,7 +37,7 @@
 
 /obj/effect/landmark/start/job/unsc_marine
 	icon_state = "PFC"
-	job = /datum/job/unsc/marine
+	job = /datum/job/unsc/marine/basic
 	jobspawn_override = TRUE
 
 

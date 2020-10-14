@@ -5,11 +5,11 @@
 	votable = FALSE
 
 	valid_job_types = list(
-		/datum/job/unsc/marine = -1,
+		/datum/job/unsc/marine/basic = -1,
 		/datum/job/unsc/marine/medic = 6,
 		/datum/job/unsc/marine/engineer = 6,
 		/datum/job/unsc/marine/leader = 1,
-		/datum/job/insurrectionist = -1,
+		/datum/job/insurrectionist/basic = -1,
 		/datum/job/insurrectionist/medic = 6,
 		/datum/job/insurrectionist/engineer = 6,
 		/datum/job/insurrectionist/leader = 1,

@@ -37,6 +37,11 @@
 "bJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
+/obj/item/explosive/grenade/frag/m9,
+/obj/item/explosive/grenade/frag/m9,
+/obj/item/explosive/grenade/frag/m9,
+/obj/item/explosive/grenade/frag/m9,
+/obj/item/explosive/grenade/frag/m9,
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "bN" = (
@@ -400,7 +405,12 @@
 "ss" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
-/obj/item/storage/box/nade_box,
+/obj/item/explosive/grenade/frag/m9,
+/obj/item/explosive/grenade/frag/m9,
+/obj/item/explosive/grenade/frag/m9,
+/obj/item/explosive/grenade/frag/m9,
+/obj/item/explosive/grenade/frag/m9,
+/obj/item/explosive/grenade/frag/m9,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/swordbase/ground/inniecave)
 "sN" = (
@@ -502,6 +512,8 @@
 "xf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
+/obj/item/explosive/grenade/incendiary/molotov,
+/obj/item/explosive/grenade/incendiary/molotov,
 /obj/item/explosive/grenade/incendiary/molotov,
 /obj/item/explosive/grenade/incendiary/molotov,
 /obj/item/explosive/grenade/incendiary/molotov,
@@ -701,6 +713,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/swordbase/ground/inniecave)
+"Jp" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/telecomms/relay,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
 "Jx" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/rack,
@@ -800,6 +817,7 @@
 /obj/machinery/light/spot{
 	dir = 4
 	},
+/obj/structure/largecrate/supply/medicine/medkits,
 /turf/open/floor/plating/asteroidfloor,
 /area/swordbase/ground/inniecave)
 "OT" = (
@@ -1017,7 +1035,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/swordbase/ground/inniecave)
 "Yt" = (
-/obj/structure/largecrate/supply/medicine/medkits,
+/obj/structure/largecrate/supply/medicine/blood,
 /turf/open/floor/plating/asteroidplating,
 /area/swordbase/ground/inniecave)
 "YH" = (
@@ -2206,7 +2224,7 @@ nF
 aA
 aA
 aA
-re
+Jp
 fD
 cz
 re

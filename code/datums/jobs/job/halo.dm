@@ -2,7 +2,11 @@
 
 //UNSC
 
-/datum/job/unsc/marine
+/datum/job/unsc/marine/
+	selection_color = "#57994e"
+	job_category = JOB_CAT_UNSC
+
+/datum/job/unsc/marine/basic
 	title = "UNSC Marine"
 	paygrade = "E2"
 	comm_title = "Mar"
@@ -11,8 +15,6 @@
 	faction = FACTION_UNSC
 	max_positions = -1 //infinite
 	supervisors = "squad leader"
-	selection_color = "#57994e"
-	job_category = JOB_CAT_UNSC
 	outfit = /datum/outfit/job/unsc
 	display_order = JOB_DISPLAY_ORDER_UNSC_MARINE
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
@@ -79,7 +81,7 @@
 
 /datum/outfit/job/unsc
 	name = "UNSC Marine"
-	jobtype = /datum/job/unsc/marine
+	jobtype = /datum/job/unsc/marine/basic
 	id = /obj/item/card/id/dogtag
 	ears = /obj/item/radio/headset/unsc
 	back = /obj/item/storage/backpack/marine/satchel
@@ -108,6 +110,10 @@
 //Innies
 
 /datum/job/insurrectionist
+	selection_color = "#ff5757"
+	job_category = JOB_CAT_INSURRECTION
+
+/datum/job/insurrectionist/basic
 	title = "Insurrectionist Fighter"
 	paygrade = "INS"
 	comm_title = "Ins"
@@ -116,8 +122,6 @@
 	faction = FACTION_INSURRECTION
 	max_positions = -1 //infinite
 	supervisors = "squad leader"
-	selection_color = "#ff5757"
-	job_category = JOB_CAT_INSURRECTION
 	outfit = /datum/outfit/job/insurrection
 	display_order = JOB_DISPLAY_ORDER_INSURRECTIONIST
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST
@@ -186,7 +190,7 @@
 
 /datum/outfit/job/insurrection
 	name = "Insurrectionist"
-	jobtype = /datum/job/insurrectionist
+	jobtype = /datum/job/insurrectionist/basic
 	id = /obj/item/card/id/dogtag
 	ears = /obj/item/radio/headset/innie
 	back = /obj/item/storage/backpack/lightpack
