@@ -328,6 +328,24 @@
 	icon_state = "m412e"
 	item_state = "m412e"
 	current_mag = /obj/item/ammo_magazine/rifle/ap
+	attachable_allowed = list(
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/bayonetknife,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/verticalgrip,
+						/obj/item/attachable/angledgrip,
+						/obj/item/attachable/lasersight,
+						/obj/item/attachable/gyro,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/bipod,
+						/obj/item/attachable/burstfire_assembly,
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/attached_gun/grenade,
+						/obj/item/attachable/attached_gun/flamer,
+						/obj/item/attachable/attached_gun/shotgun,
+						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/mini)
 
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 8, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 9, "stock_y" = 15)
 	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade, /obj/item/attachable/stock/rifle/irremoveable)
