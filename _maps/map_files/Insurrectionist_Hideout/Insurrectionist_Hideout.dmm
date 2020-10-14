@@ -267,6 +267,9 @@
 /obj/machinery/light/spot{
 	dir = 1
 	},
+/obj/machinery/power/apc/mainship{
+	pixel_y = 16
+	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/swordbase/ground/inniecave)
 "ob" = (
