@@ -481,6 +481,14 @@
 	icon_state = "marine_under"
 	item_state = "marine_under"
 
+/obj/item/clothing/suit/modular/innie
+	name = "URF Body Armor Harness"
+	desc = "A barebones harness, it can mount and be improved with various pieces of armor and plating."
+	icon_state = "innie_harness"
+	item_state = "innie_harness"
+
+
+
 /obj/item/clothing/head/modular/marine/unscmarine
 	name = "UNSC Combat helmet"
 	desc = "A helmet for UNSC Marines. It can be equipped with a tactical visor that can be toggled."
