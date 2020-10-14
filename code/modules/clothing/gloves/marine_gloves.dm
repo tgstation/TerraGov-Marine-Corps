@@ -117,6 +117,12 @@
 	icon_state = "urf_gloves"
 	item_state = "urf_gloves"
 
+/obj/item/clothing/gloves/marine/urf/black
+	name = "URF combat gloves"
+	desc = "Standard issue URF tactical gloves."
+	icon_state = "urf_gloves_black"
+	item_state = "urf_gloves_black"
+
 /obj/item/clothing/gloves/marine/urf/traditional
 	name = "Handwraps"
 	desc = "Traditonal handwraps with light protection."

@@ -635,6 +635,27 @@
 	item_state = "urf_helmet_black"
 	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 22, "bomb" = 12, "bio" = 50, "rad" = 5, "fire" = 22, "acid" = 45)
 
+/obj/item/clothing/head/helmet/marine/urf/black/engie
+	name = "P2-M combat helmet (black)"
+	desc = "A general purpose URF combat helmet."
+	icon_state = "urf_helmet_black_heavy"
+	item_state = "urf_helmet_black_heavy"
+	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 22, "bomb" = 12, "bio" = 50, "rad" = 5, "fire" = 22, "acid" = 45)
+
+/obj/item/clothing/head/helmet/marine/urf/black/sl
+	name = "P3-M combat helmet (black)"
+	desc = "A general purpose URF combat helmet."
+	icon_state = "urf_helmet_black_sl"
+	item_state = "urf_helmet_black_sl"
+	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 22, "bomb" = 12, "bio" = 50, "rad" = 5, "fire" = 22, "acid" = 45)
+
+/obj/item/clothing/head/helmet/marine/urf/black/medic
+	name = "P1-M medic helmet (black)"
+	desc = "A general purpose URF combat helmet."
+	icon_state = "urf_helmet_black_medic"
+	item_state = "urf_helmet_black_medic"
+	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 22, "bomb" = 12, "bio" = 50, "rad" = 5, "fire" = 22, "acid" = 45)
+
 /obj/item/clothing/head/helmet/marine/urf/green
 	name = "P1-M combat helmet (green)"
 	desc = "A general purpose URF combat helmet."
