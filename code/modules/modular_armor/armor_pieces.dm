@@ -214,7 +214,6 @@
 	soft_armor = list("melee" = 8, "bullet" = 8, "laser" = 8, "energy" = 8, "bomb" = 8, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 9)
 	slowdown = 0.15
 
-
 //URF HALO
 
 /obj/item/armor_module/armor/chest/innie
@@ -251,3 +250,5 @@
 	icon_state = "urf_greaves"
 	soft_armor = list("melee" = 8, "bullet" = 8, "laser" = 8, "energy" = 8, "bomb" = 8, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 9)
 	slowdown = 0.15
+
+
