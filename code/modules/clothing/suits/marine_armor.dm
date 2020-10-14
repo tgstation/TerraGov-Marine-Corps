@@ -410,6 +410,7 @@
 	icon_state = "m_guardarmor"
 	item_state = "m_guardarmor"
 	soft_armor = list("melee" = 75, "bullet" = 65, "laser" = 60, "energy" = 60, "bomb" = 50, "bio" = 0, "rad" = 0, "fire" = 60, "acid" = 60)
+	flags_item_map_variant = NONE // fuck you whoever broke my fucking armor
 
 /obj/item/clothing/suit/storage/marine/imperial/sergeant
 	// SL armour, better than flak, covers more
