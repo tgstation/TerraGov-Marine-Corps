@@ -133,13 +133,13 @@
 					/obj/item/explosive/grenade/frag/m15 = 25,
 					/obj/item/explosive/grenade/incendiary = 25,
 					/obj/item/explosive/grenade/drainbomb = 25,
-					/obj/item/explosive/grenade/smokebomb = 25,
 					/obj/item/explosive/grenade/cloakbomb = 25,
 					/obj/item/storage/box/m94 = 30,
 					/obj/item/storage/box/recoilless_system = 1,
 					)
 
 	premium = list()
+	contraband = list(/obj/item/explosive/grenade/smokebomb = 25)
 
 
 
@@ -194,6 +194,9 @@
 					/obj/item/ammo_magazine/rifle/bolt = 7,
 					)
 	premium = list()
+	
+
+
 
 
 /obj/machinery/vending/marine/cargo_ammo/select_gamemode_equipment(gamemode)
