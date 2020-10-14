@@ -645,6 +645,7 @@
 					/obj/item/tool/weldpack/marinestandard = 10,
 					/obj/item/clothing/gloves/marine = 20,
 					/obj/item/clothing/suit/storage/marine/pasvest = 40,
+					/obj/item/clothing/head/slouch = 40,
 					/obj/item/clothing/head/helmet/marine = 40,
 					/obj/item/clothing/head/helmet/marine/heavy = 10,
 					/obj/item/clothing/glasses/mgoggles = 10,
