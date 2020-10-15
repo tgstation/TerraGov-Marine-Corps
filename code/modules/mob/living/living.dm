@@ -390,8 +390,7 @@
 			var/mob/living/carbon/human/H = A
 			if(!COOLDOWN_CHECK(H,  xeno_push_delay))
 				return
-			else
-				COOLDOWN_START(H, xeno_push_delay, XENO_HUMAN_PUSHED_DELAY)
+			COOLDOWN_START(H, xeno_push_delay, XENO_HUMAN_PUSHED_DELAY)
 		PushAM(A)
 
 
