@@ -1213,6 +1213,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 	vendor_role = /datum/job/insurrectionist/medic
 	listed_products = list(
 		/obj/effect/essentials_set/halo/innie/medic = list(CAT_ESS, "Insurrection Medical Essentials Set", 0, "white"),
+		/obj/effect/essentials_set/halo/innie/medic/two = list(CAT_ESS, "Insurrection Alternative Medical Essentials Set", 0, "white"),
 		/obj/effect/essentials_set/modular/haloinnie/armorPieces = list(CAT_AMR, "URF Modular Armor Pieces", 0, "white"),
 		/obj/item/clothing/tie/storage/brown_vest = list(CAT_WEB, "Tactical brown vest", 0, "orange"),
 		/obj/item/clothing/tie/storage/white_vest/medic = list(CAT_WEB, "Corpsman white vest", 0, "black"),
@@ -1572,7 +1573,6 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 
 /obj/effect/essentials_set/modular/haloinnie/armorPieces
 	spawned_gear_list = list(
-						/obj/item/armor_module/armor/chest/innie,
 						/obj/item/armor_module/armor/arms/innie,
 						/obj/item/armor_module/armor/legs/innie)
 
@@ -1617,9 +1617,26 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 /obj/effect/essentials_set/halo/innie/medic
 	spawned_gear_list = list(
 						/obj/item/clothing/under/marine/urf/red,
+						/obj/item/armor_module/armor/chest/innie,
 						/obj/item/attachable/bayonetknife,
 						/obj/item/clothing/shoes/marine/urf/black,
 						/obj/item/clothing/suit/modular/innie,
+						/obj/item/clothing/gloves/marine/urf/black,
+						/obj/item/clothing/head/helmet/marine/urf/black/medic,
+						/obj/item/bodybag/cryobag,
+						/obj/item/defibrillator,
+						/obj/item/healthanalyzer,
+						/obj/item/roller,
+						/obj/item/reagent_containers/hypospray/advanced/oxycodone,
+						/obj/item/clothing/glasses/hud/health)
+
+/obj/effect/essentials_set/halo/innie/medic/two
+	spawned_gear_list = list(
+						/obj/item/clothing/under/marine/urf/red/two,
+						/obj/item/attachable/bayonetknife,
+						/obj/item/armor_module/armor/chest/innie/two,
+						/obj/item/clothing/shoes/marine/urf/black,
+						/obj/item/clothing/suit/modular/innie/two,
 						/obj/item/clothing/gloves/marine/urf/black,
 						/obj/item/clothing/head/helmet/marine/urf/black/medic,
 						/obj/item/bodybag/cryobag,
