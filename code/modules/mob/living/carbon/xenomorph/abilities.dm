@@ -95,7 +95,7 @@
 /datum/action/xeno_action/plant_weeds/slow/action_activate()
 	var/mob/living/carbon/xenomorph/hivemind/hiveminde = owner
 	if(hiveminde)
-		if(!locate(/obj/effect/alien/weeds) in range(1, owner.loc))
+		if(!locate(/obj/effect/alien/weeds) in range(1, hiveminde.loc))
 			var/obj/effect/alien/weeds/nearbies = locate() in range(7, hiveminde.loc)
 			if(nearbies)
 				hiveminde.forceMove(get_turf(nearbies))
