@@ -63,9 +63,8 @@
 
 	if(user.mob_size == MOB_SIZE_BIG || user.incapacitated() || user.lying_angle || user.buckled || user.anchored)
 		return
-	
-	var/dist = get_dist(user, src)
-	if(dist > 1)
+
+	if(!user.CanReach(src))
 		return
 
 	var/mob_dir = get_dir(user, src)
