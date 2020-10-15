@@ -890,8 +890,8 @@ Defined in conflicts.dm of the #defines folder.
 
 
 /obj/item/attachable/stock/smg
-	name = "M39 submachinegun stock"
-	desc = "A rare stock distributed in small numbers to TGMC forces. Compatible with the M39, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
+	name = "submachinegun stock"
+	desc = "A rare submachinegun stock, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
 	slot = "stock"
 	wield_delay_mod = 0.4 SECONDS
 	melee_mod = 5
