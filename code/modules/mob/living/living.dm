@@ -388,7 +388,7 @@
 	if(ismovableatom(A))
 		if(isxeno(src) && ishuman(A))
 			var/mob/living/carbon/human/H = A
-			if(COOLDOWN_CHECK(H,  push_delay))
+			if(!COOLDOWN_CHECK(H,  push_delay))
 				return
 			else
 				COOLDOWN_START(H, push_delay, HUMAN_PUSHED_DELAY)
