@@ -222,7 +222,7 @@ WEAPONS
 /datum/supply_packs/weapons/specminigun
 	name = "MIC-A7 Vindicator Minigun"
 	contains = list(/obj/item/weapon/gun/minigun)
-	cost = 60
+	cost = 80
 
 /datum/supply_packs/weapons/smartgun
 	name = "T-29 Smart Machinegun"
@@ -1190,24 +1190,24 @@ Imports
 	contains = list(/obj/item/ammo_magazine/rifle/m41a)
 	cost = 5
 
-/datum/supply_packs/imports/m41a1
-	name = "M41A1 Pulse Rifle"
-	contains = list(/obj/item/weapon/gun/rifle/m41a1)
+/datum/supply_packs/imports/m412
+	name = "M412 Pulse Rifle"
+	contains = list(/obj/item/weapon/gun/rifle/m412)
 	cost = 15
 
-/datum/supply_packs/imports/m41a1/ammo
-	name = "M41A1 Pulse Rifle Ammo"
+/datum/supply_packs/imports/m41a2/ammo
+	name = "M412 Pulse Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle)
 	cost = 5
 
-/datum/supply_packs/imports/m41ae2
-	name = "M41AE2 Heavy Pulse Rifle"
-	contains = list(/obj/item/weapon/gun/rifle/m41ae2_hpr)
+/datum/supply_packs/imports/m412l1
+	name = "M412L1 Heavy Pulse Rifle"
+	contains = list(/obj/item/weapon/gun/rifle/m412l1_hpr)
 	cost = 15
 
-/datum/supply_packs/imports/m41ae2/ammo
-	name = "M41AE2 Heavy Pulse Rifle Ammo"
-	contains = list(/obj/item/ammo_magazine/m41ae2_hpr)
+/datum/supply_packs/imports/m412l1/ammo
+	name = "M412L1 Heavy Pulse Rifle Ammo"
+	contains = list(/obj/item/ammo_magazine/m412l1_hpr)
 	cost = 5
 
 /datum/supply_packs/imports/type71	//Moff gun

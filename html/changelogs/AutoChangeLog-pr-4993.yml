@@ -1,0 +1,7 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - rscadd: "Added new M412 series of rifles."
+  - rscdel: "Removed old Pulse rifles
+fix:Some indentation issues that the HPR had"
+  - balance: "M412 has 5% more damage than the AR, M412L1 (the HPR) has slightly better fire delay. M412 families stat is in general consistent with the normal AR family."

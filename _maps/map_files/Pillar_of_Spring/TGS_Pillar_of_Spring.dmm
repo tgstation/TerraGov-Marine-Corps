@@ -757,8 +757,8 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
-/obj/item/weapon/gun/rifle/m41a1{
-	desc = "An outdated rifle for the TerraGov Marine Corps, carried by a few coporate mercenary groups, the M41A1 is a very rare sight in TerraGov systems. Uses 10x24mm caseless ammunition. Inscribed is Moth"
+/obj/item/weapon/gun/rifle/m412{
+	desc = "The M412 rifle is a Pulse Industries rifle, billed as a pulse rifle due to its use of electronic firing for faster velocity. A rather common sight in most systems. Uses 10x24mm caseless ammunition. There is a worn inscription of a moth on it."
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range)
