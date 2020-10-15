@@ -750,7 +750,7 @@
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
 "adp" = (
-/obj/effect/landmark/nuke_spawn,
+/obj/machinery/nuclearbomb,
 /turf/open/shuttle/dropship/three,
 /area/ice_colony/underground/responsehangar)
 "adq" = (

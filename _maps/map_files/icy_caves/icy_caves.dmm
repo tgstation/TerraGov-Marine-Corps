@@ -27,7 +27,7 @@
 /area/lv624/lazarus/console)
 "ag" = (
 /obj/effect/decal/cleanable/blood/xeno,
-/obj/effect/landmark/nuke_spawn,
+/obj/machinery/nuclearbomb,
 /turf/open/floor/plating/dmg3,
 /area/icy_caves/caves/crashed_ship)
 "ah" = (

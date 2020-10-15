@@ -12708,7 +12708,6 @@
 /area/magmoor/medical/lobby)
 "jtH" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/obj/effect/landmark/nuke_spawn,
 /obj/effect/decal/warning_stripes,
 /turf/open/floor/mainship/mono,
 /area/magmoor/security/storage)

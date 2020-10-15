@@ -1517,7 +1517,7 @@
 	},
 /area/outpost/medbay/storage)
 "iq" = (
-/obj/effect/landmark/nuke_spawn,
+/obj/machinery/nuclearbomb,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},

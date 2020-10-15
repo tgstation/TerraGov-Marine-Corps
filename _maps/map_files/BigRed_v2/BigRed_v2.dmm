@@ -6008,7 +6008,7 @@
 /area/bigredv2/caves/lambda_lab)
 "avp" = (
 /obj/machinery/light,
-/obj/effect/landmark/nuke_spawn,
+/obj/machinery/nuclearbomb,
 /turf/open/floor/tile/dark/purple2/corner{
 	dir = 4
 	},

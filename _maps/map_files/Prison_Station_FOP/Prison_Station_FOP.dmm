@@ -14,7 +14,7 @@
 	},
 /area/prison/security/checkpoint/maxsec_highsec)
 "aad" = (
-/obj/effect/landmark/nuke_spawn,
+/obj/machinery/nuclearbomb,
 /turf/open/floor/plating/platebot,
 /area/prison/pirate)
 "acD" = (

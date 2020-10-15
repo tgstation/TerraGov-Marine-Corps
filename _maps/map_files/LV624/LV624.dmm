@@ -309,7 +309,7 @@
 /area/lv624/lazarus/medbay)
 "abC" = (
 /obj/structure/cable,
-/obj/effect/landmark/nuke_spawn,
+/obj/machinery/nuclearbomb,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "abD" = (
