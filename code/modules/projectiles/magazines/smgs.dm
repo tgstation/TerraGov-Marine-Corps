@@ -8,7 +8,7 @@
 //M25 SMG ammo
 
 /obj/item/ammo_magazine/smg/m25
-	name = "\improper M-25 magazine (10x20mm)"
+	name = "\improper MR-25 magazine (10x20mm)"
 	desc = "A 10x20mm caseless submachinegun magazine."
 	caliber = "10x20mm caseless"
 	icon_state = "m25"
@@ -17,12 +17,12 @@
 	gun_type = /obj/item/weapon/gun/smg/m25
 
 /obj/item/ammo_magazine/smg/m25/ap
-	name = "\improper M-25 AP magazine (10x20mm)"
+	name = "\improper MR-25 AP magazine (10x20mm)"
 	icon_state = "m25_ap"
 	default_ammo = /datum/ammo/bullet/smg/ap
 
 /obj/item/ammo_magazine/smg/m25/extended
-	name = "\improper M-25 extended magazine (10x20mm)"
+	name = "\improper MR-25 extended magazine (10x20mm)"
 	icon_state = "m25_ext"
 	max_rounds = 90
 

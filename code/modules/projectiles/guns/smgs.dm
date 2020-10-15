@@ -129,8 +129,8 @@
 //M-25 SMG
 
 /obj/item/weapon/gun/smg/m25
-	name = "\improper M-25 submachinegun"
-	desc = "The RivArms M-25 submachinegun, an update to a classic design. A light firearm capable of effective one-handed use that is ideal for close to medium range engagements. Uses 10x20mm rounds in a high capacity magazine."
+	name = "\improper MR-25 submachinegun"
+	desc = "The RivArms MR-25 submachinegun, an update to a classic design. A light firearm capable of effective one-handed use that is ideal for close to medium range engagements. Uses 10x20mm rounds in a high capacity magazine."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "m25"
 	item_state = "m25"
@@ -165,8 +165,8 @@
 
 
 /obj/item/weapon/gun/smg/m25/elite
-	name = "\improper M25B2 submachinegun"
-	desc = "The RivArms M-25 submachinegun, B2 variant. Has an integrated barrel charger. This reliable weapon fires armor piercing 10x20mm rounds and is used by elite troops."
+	name = "\improper MR25B2 submachinegun"
+	desc = "The RivArms MR-25 submachinegun, B2 variant. Has an integrated barrel charger. This reliable weapon fires armor piercing 10x20mm rounds and is used by elite troops."
 	icon_state = "m39b2"
 	item_state = "m39b2"
 	current_mag = /obj/item/ammo_magazine/smg/m25/ap
