@@ -3,7 +3,7 @@
 	probability = 0
 	spawn_type = /mob/living/carbon/human/species/skeleton
 
-/datum/emergency_call/sectoid/print_backstory(mob/living/carbon/human/H)
+/datum/emergency_call/skeleton/print_backstory(mob/living/carbon/human/H)
 	to_chat(H, "<B>You are a skeleton, risen from beyond the grave.")
 	to_chat(H, "<B>Long have you rested, ejected into the void of space through battle or unfortunate circumstances, but now you have awoken.</B>")
 	to_chat(H, "<B>The distress call has awoken you from your spacebound slumber.</b>")
