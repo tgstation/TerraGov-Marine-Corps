@@ -126,7 +126,7 @@
 	time_to_unequip = 30
   time_to_equip = 45
   allowed = list(/obj/item/weapon/gun/,
-       /obj/item/storage/large_holster/machete)
+      /obj/item/storage/large_holster/machete)
 
 /obj/item/clothing/suit/armor/riot
 	name = "riot suit"
