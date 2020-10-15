@@ -854,10 +854,10 @@ Defined in conflicts.dm of the #defines folder.
 
 
 /obj/item/attachable/stock/rifle
-	name = "\improper M41A1 skeleton stock"
-	desc = "A rare stock distributed in small numbers to TGMC forces. Compatible with the M41A1, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
+	name = "\improper M412 solid stock"
+	desc = "A common stock used by the M412 pulse rifle series, used for long rifles. This stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
 	slot = "stock"
-	wield_delay_mod = 0.6 SECONDS
+	wield_delay_mod = 0.2 SECONDS
 	melee_mod = 5
 	size_mod = 1
 	icon_state = "riflestock"
@@ -868,6 +868,19 @@ Defined in conflicts.dm of the #defines folder.
 	recoil_mod = -3
 	scatter_mod = -10
 	movement_acc_penalty_mod = 0.1
+
+/obj/item/attachable/stock/rifle/irremoveable
+	name = "\improper M412 solid stock"
+	wield_delay_mod = 0 SECONDS
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+	flags_attach_features = NONE
+	accuracy_mod = 0
+	recoil_mod = 0
+	melee_mod = 0
+	scatter_mod = 0
+	movement_acc_penalty_mod = 0
+
 
 /obj/item/attachable/stock/rifle/marksman
 	name = "\improper T-45 marksman stock"

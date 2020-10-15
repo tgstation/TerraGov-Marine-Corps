@@ -610,13 +610,13 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 
 /obj/item/ammobox/ap
-	name = "M41A1 AP Ammo Box"
+	name = "M412 AP Ammo Box"
 	icon_state = "ammoboxap"
 	ammo_type = /datum/ammo/bullet/rifle/ap
 	magazine_type = /obj/item/ammo_magazine/rifle/ap
 
 /obj/item/ammobox/ext
-	name = "M41A1 Extended Ammo Box"
+	name = "M412 Extended Ammo Box"
 	icon_state = "ammoboxext"
 	ammo_type = /datum/ammo/bullet/rifle
 	magazine_type = /obj/item/ammo_magazine/rifle/extended
