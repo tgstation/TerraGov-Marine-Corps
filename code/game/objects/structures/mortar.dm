@@ -301,17 +301,17 @@
 	smoke = null
 	qdel(src)
 
-/obj/item/mortal_shell/tangle_smoke
+/obj/item/mortal_shell/plasmaloss
 	name = "\improper 80mm tangle mortar shell"
 	desc = "An 80mm mortar shell, loaded with plasma-draining Tanglefoot gas. Can be fired at marines more-or-less safely."
 	icon_state = "mortar_ammo_fsh"
 	var/datum/effect_system/smoke_spread/plasmaloss/smoke
 
-/obj/item/mortal_shell/tangle_smoke/Initialize()
+/obj/item/mortal_shell/plasmaloss/Initialize()
 	. = ..()
 	smoke = new(src)
 
-/obj/item/mortal_shell/tangle_smoke/detonate(turf/T)
+/obj/item/mortal_shell/plasmaloss/detonate(turf/T)
 
 	explosion(T, 0, 0, 1, 3, throw_range = 0)
 	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
@@ -381,8 +381,8 @@
 	new /obj/item/mortal_shell/flare(src)
 	new /obj/item/mortal_shell/smoke(src)
 	new /obj/item/mortal_shell/smoke(src)
-	new /obj/item/mortal_shell/tangle_smoke(src)
-	new /obj/item/mortal_shell/tangle_smoke(src)
+	new /obj/item/mortal_shell/plasmaloss(src)
+	new /obj/item/mortal_shell/plasmaloss(src)
 
 /obj/structure/closet/crate/mortar_ammo/mortar_kit
 	name = "\improper M402 mortar kit"
@@ -406,8 +406,8 @@
 	new /obj/item/mortal_shell/incendiary(src)
 	new /obj/item/mortal_shell/incendiary(src)
 	new /obj/item/mortal_shell/incendiary(src)
-	new /obj/item/mortal_shell/tangle_smoke(src)
-	new /obj/item/mortal_shell/tangle_smoke(src)
+	new /obj/item/mortal_shell/plasmaloss(src)
+	new /obj/item/mortal_shell/plasmaloss(src)
 	new /obj/item/mortal_shell/smoke(src)
 	new /obj/item/encryptionkey/engi(src)
 	new /obj/item/encryptionkey/engi(src)
