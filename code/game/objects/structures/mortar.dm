@@ -303,7 +303,7 @@
 
 /obj/item/mortal_shell/tangle_smoke
 	name = "\improper 80mm tangle mortar shell"
-	desc = "An 80mm mortar shell, loaded with Tanglefoot gas. Can be fired at marines more-or-less safely."
+	desc = "An 80mm mortar shell, loaded with plasma-draining Tanglefoot gas. Can be fired at marines more-or-less safely."
 	icon_state = "mortar_ammo_fsh"
 	var/datum/effect_system/smoke_spread/plasmaloss/smoke
 
