@@ -24,6 +24,7 @@
 #define COOLDOWN_CPR		"CPR"
 #define COOLDOWN_IV_PING	"iv_ping"
 #define COOLDOWN_RACK_BOLT	"rack_bolt"
+
 //// COOLDOWN SYSTEMS
 /*
  * We have 2 cooldown systems: timer cooldowns (divided between stoppable and regular) and world.time cooldowns.
