@@ -22,6 +22,11 @@
 /obj/machinery/door/airlock/mainship/marine/general,
 /turf/open/floor/tile/dark/brown2,
 /area/swordbase/ground/armoryhallway)
+"au" = (
+/obj/structure/inflatable/popped,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/swordbase/ground/outdoors)
 "av" = (
 /turf/open/ground/desertdam/river/toxic/shallow_water_toxic,
 /area/swordbase/ground/outdoors)
@@ -36,11 +41,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/red2/corner,
 /area/mainship/shipboard/brig)
-"aC" = (
-/obj/structure/table/mainship,
-/obj/item/storage/firstaid/adv,
-/turf/open/floor/tile/dark,
-/area/swordbase/ground/outdoors)
 "aD" = (
 /obj/machinery/light{
 	dir = 4
@@ -161,18 +161,14 @@
 	dir = 9
 	},
 /area/swordbase/ground/outdoors)
+"br" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/swordbase/ground/storage)
 "bu" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/maingate)
-"by" = (
-/obj/structure/ladder{
-	height = 2;
-	icon_state = "ladderdown";
-	id = "southeast"
-	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/swordbase/ground/outdoors)
 "bE" = (
 /turf/open/floor/plating/asteroidfloor,
 /area/swordbase/ground/outdoors)
@@ -302,6 +298,12 @@
 "df" = (
 /turf/open/floor/tile/dark/brown2/corner,
 /area/swordbase/ground/armoryhallway)
+"dj" = (
+/obj/machinery/door/airlock/multi_tile/glass{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/mainhall)
 "dq" = (
 /obj/structure/sign/examroom,
 /turf/closed/wall/mainship/white,
@@ -321,12 +323,6 @@
 /obj/machinery/telecomms/relay,
 /turf/open/floor/mainship/tcomms,
 /area/swordbase/ground/outdoors)
-"dA" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/table/mainship,
-/obj/item/storage/box/MRE,
-/turf/open/floor/tile/dark,
-/area/swordbase/ground/mainhall)
 "dE" = (
 /obj/machinery/door/airlock/multi_tile/ice{
 	id = "lower main gate";
@@ -630,10 +626,6 @@
 	dir = 5
 	},
 /area/swordbase/ground/outdoors)
-"fY" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/closed/wall/mainship,
-/area/swordbase/ground/mainhall)
 "gb" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -670,11 +662,6 @@
 	dir = 10
 	},
 /area/swordbase/ground/medsci)
-"gB" = (
-/obj/structure/largecrate/supply/supplies/metal,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/swordbase/ground/outdoors)
 "gF" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/metal/large_stack,
@@ -738,10 +725,6 @@
 /obj/machinery/vending/marineFood,
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/mainhall)
-"hk" = (
-/obj/structure/largecrate/random/barrel/red,
-/turf/open/floor/plating,
-/area/swordbase/ground/outdoors)
 "hl" = (
 /turf/closed/wall/mainship/research/containment/wall/purple{
 	dir = 8
@@ -830,10 +813,21 @@
 	dir = 1
 	},
 /area/swordbase/ground/medbaysouth)
+"io" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/mainship,
+/obj/item/storage/box/MRE,
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/mainhall)
 "iu" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/asteroidfloor,
 /area/swordbase/ground/outdoors)
+"iw" = (
+/obj/structure/largecrate/random/barrel/red,
+/obj/effect/decal/cleanable/cobweb2,
+/turf/open/floor/plating,
+/area/swordbase/ground/storage)
 "iy" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/sterile/side,
@@ -956,6 +950,10 @@
 /obj/machinery/computer/operating,
 /turf/closed/wall/mainship/white,
 /area/swordbase/ground/medbaynorth)
+"jG" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/turf/open/floor/mainship/mono,
+/area/swordbase/ground/medsci)
 "jK" = (
 /obj/machinery/power/apc/mainship{
 	dir = 4;
@@ -1020,11 +1018,6 @@
 /obj/structure/xenoautopsy,
 /turf/open/floor/mainship/mono,
 /area/swordbase/ground/medsci)
-"kF" = (
-/turf/open/floor/tile/dark/brown2{
-	dir = 4
-	},
-/area/swordbase/ground/mainhall)
 "kH" = (
 /obj/structure/flora/rock/beachrocks,
 /obj/structure/platform{
@@ -1044,10 +1037,15 @@
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/cryogenics)
 "kN" = (
-/obj/effect/decal/cleanable/blood/oil,
-/obj/structure/closet/crate,
+/obj/item/tool/crowbar,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/swordbase/ground/outdoors)
+"kP" = (
+/turf/open/floor/tile/dark/brown2{
+	dir = 4
+	},
+/area/swordbase/ground/mainhall)
 "kS" = (
 /obj/machinery/telecomms/processor/preset_four,
 /turf/open/floor/mainship/tcomms,
@@ -1055,10 +1053,6 @@
 "kT" = (
 /turf/closed/wall/mainship,
 /area/swordbase/ground/hydro)
-"ld" = (
-/obj/structure/inflatable/popped,
-/turf/open/floor/plating,
-/area/swordbase/ground/outdoors)
 "lg" = (
 /obj/machinery/computer/rdservercontrol,
 /turf/open/floor/tile/dark/purple2{
@@ -1090,6 +1084,10 @@
 	dir = 4
 	},
 /area/swordbase/ground/hydro)
+"ls" = (
+/obj/structure/closet/crate/ammo,
+/turf/open/floor/plating,
+/area/swordbase/ground/outdoors)
 "lt" = (
 /obj/structure/table/mainship,
 /obj/item/facepaint/green,
@@ -1102,11 +1100,6 @@
 /area/swordbase/ground/kitchen)
 "ly" = (
 /turf/open/floor/tile/dark/red2,
-/area/swordbase/ground/outdoors)
-"lB" = (
-/turf/open/floor/tile/dark/brown2{
-	dir = 4
-	},
 /area/swordbase/ground/outdoors)
 "lD" = (
 /obj/structure/table/mainship,
@@ -1145,6 +1138,11 @@
 /obj/machinery/telecomms/bus/preset_four,
 /turf/open/floor/mainship/tcomms,
 /area/swordbase/ground/outdoors)
+"me" = (
+/obj/structure/largecrate/supply/supplies/metal,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/swordbase/ground/outdoors)
 "mh" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
@@ -1166,11 +1164,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/mainhall)
-"mt" = (
-/obj/structure/inflatable/popped,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/swordbase/ground/outdoors)
 "mv" = (
 /turf/open/floor/tile/dark/purple2{
 	dir = 9
@@ -1188,11 +1181,12 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/swordbase/ground/medsci)
-"mE" = (
-/obj/item/tool/crowbar,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/swordbase/ground/outdoors)
+"mG" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/swordbase/ground/mainhall)
 "mH" = (
 /obj/effect/decal/warning_stripes/thick,
 /turf/open/floor/tile/dark,
@@ -1251,6 +1245,14 @@
 /obj/machinery/door/window,
 /turf/open/floor/mainship/mono,
 /area/swordbase/ground/medsci)
+"nf" = (
+/obj/structure/ladder{
+	height = 2;
+	icon_state = "ladderdown";
+	id = "southeast"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/outdoors)
 "ng" = (
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/checkpoint)
@@ -1328,10 +1330,6 @@
 	dir = 1
 	},
 /area/swordbase/ground/hydro)
-"nY" = (
-/obj/structure/closet/crate,
-/turf/open/floor/plating,
-/area/swordbase/ground/outdoors)
 "nZ" = (
 /obj/structure/bed/chair/wood/normal,
 /turf/open/floor/tile/dark,
@@ -1363,10 +1361,6 @@
 	dir = 4
 	},
 /area/swordbase/ground/armory)
-"oh" = (
-/obj/machinery/door/airlock/freezer,
-/turf/open/space/basic,
-/area/swordbase/ground/kitchen)
 "oj" = (
 /obj/machinery/vending/MarineMed,
 /turf/open/floor/mainship/sterile/side,
@@ -1440,6 +1434,12 @@
 	},
 /turf/open/floor/freezer,
 /area/swordbase/ground/kitchen)
+"pr" = (
+/obj/machinery/door/airlock/mainship/secure/free_access{
+	name = "\improper Janitor's Closet"
+	},
+/turf/open/floor/plating,
+/area/swordbase/ground/janitor_closet)
 "pv" = (
 /obj/machinery/power/apc/mainship{
 	pixel_y = 16
@@ -1525,6 +1525,11 @@
 /obj/effect/decal/warning_stripes/thick,
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/mainhall)
+"qa" = (
+/obj/structure/table,
+/obj/item/storage/box/cups,
+/turf/open/floor/mainship/mono,
+/area/swordbase/ground/medsci)
 "qb" = (
 /obj/machinery/telecomms/server/presets/delta,
 /turf/open/floor/mainship/tcomms,
@@ -1548,13 +1553,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/swordbase/ground/outdoors)
-"qu" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/bed/chair/wood/normal{
-	dir = 1
-	},
-/turf/open/floor/tile/dark,
-/area/swordbase/ground/mainhall)
 "qv" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/surgical_tray,
@@ -1627,12 +1625,24 @@
 "qY" = (
 /turf/open/floor/tile/dark/red2/corner,
 /area/swordbase/ground/checkpoint)
+"rb" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/dark/brown2{
+	dir = 8
+	},
+/area/swordbase/ground/outdoors)
 "rf" = (
 /obj/item/tool/warning_cone,
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/plating/asteroidplating,
+/area/swordbase/ground/outdoors)
+"ri" = (
+/obj/structure/inflatable/popped,
+/turf/open/floor/plating,
 /area/swordbase/ground/outdoors)
 "rl" = (
 /obj/machinery/marine_selector/clothes/unscMarine/medic,
@@ -1644,6 +1654,12 @@
 	dir = 6
 	},
 /area/swordbase/ground/hydro)
+"ru" = (
+/obj/effect/decal/cleanable/blood/oil,
+/obj/structure/closet/crate/ammo,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/swordbase/ground/outdoors)
 "rJ" = (
 /obj/machinery/iv_drip,
 /turf/open/floor/mainship/sterile/dark,
@@ -1720,6 +1736,15 @@
 "si" = (
 /turf/open/floor/mainship_hull,
 /area/swordbase/ground/vault)
+"sj" = (
+/obj/machinery/door/airlock/multi_tile/glass{
+	dir = 8;
+	name = "Lounge"
+	},
+/turf/open/floor/tile/dark/brown2{
+	dir = 8
+	},
+/area/swordbase/ground/armoryhallway)
 "sk" = (
 /obj/structure/table/mainship,
 /obj/item/storage/bible,
@@ -1736,6 +1761,17 @@
 	dir = 8
 	},
 /area/swordbase/ground/armoryhallway)
+"sp" = (
+/obj/effect/decal/cleanable/generic,
+/obj/effect/decal/cleanable/molten_item,
+/turf/open/floor/plating,
+/area/swordbase/ground/outdoors)
+"sx" = (
+/obj/machinery/door/airlock/multi_tile/medical{
+	name = "Medical"
+	},
+/turf/open/floor/mainship/mono,
+/area/swordbase/ground/medsci)
 "sy" = (
 /obj/structure/reagent_dispensers/wallmounted/peppertank{
 	dir = 8;
@@ -1849,6 +1885,12 @@
 	dir = 8
 	},
 /area/mainship/shipboard/brig)
+"tl" = (
+/obj/structure/largecrate/guns/russian,
+/obj/effect/decal/cleanable/cobweb,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/swordbase/ground/outdoors)
 "to" = (
 /obj/machinery/light{
 	dir = 1
@@ -1867,12 +1909,22 @@
 	dir = 1
 	},
 /area/swordbase/ground/kitchen)
+"tt" = (
+/turf/open/floor/tile/dark/brown2{
+	dir = 4
+	},
+/area/swordbase/ground/outdoors)
 "tw" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/swordbase/ground/medbaynorth)
+"tx" = (
+/obj/structure/largecrate/guns/russian,
+/obj/effect/decal/cleanable/cobweb2,
+/turf/open/floor/plating,
+/area/swordbase/ground/outdoors)
 "tz" = (
 /obj/machinery/power/apc/mainship{
 	dir = 4;
@@ -1958,11 +2010,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/cryogenics)
-"tY" = (
-/obj/structure/largecrate/random/barrel/red,
-/obj/effect/decal/cleanable/cobweb2,
-/turf/open/floor/plating,
-/area/swordbase/ground/storage)
 "tZ" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
@@ -1982,6 +2029,10 @@
 /obj/structure/cargo_container/ch_red{
 	dir = 1
 	},
+/turf/open/floor/plating,
+/area/swordbase/ground/outdoors)
+"ur" = (
+/obj/effect/decal/cleanable/generic,
 /turf/open/floor/plating,
 /area/swordbase/ground/outdoors)
 "ut" = (
@@ -2244,10 +2295,6 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/mainship_hull,
 /area/swordbase/ground/vault)
-"wG" = (
-/obj/effect/decal/cleanable/generic,
-/turf/open/floor/plating,
-/area/swordbase/ground/outdoors)
 "wK" = (
 /obj/item/disk/nuclear/green,
 /obj/structure/table/reinforced,
@@ -2340,15 +2387,15 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/swordbase/ground/medsci)
-"xm" = (
-/obj/structure/table/mainship,
-/obj/item/facepaint/brown,
-/turf/open/floor/tile/dark,
-/area/swordbase/ground/mainhall)
 "xn" = (
 /obj/structure/barricade/metal,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/swordbase/ground/outdoors)
+"xq" = (
+/obj/structure/table/mainship,
+/obj/item/storage/firstaid/adv,
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/mainhall)
 "xr" = (
 /obj/structure/bed/chair/wheelchair,
 /turf/open/floor/mainship/sterile/side{
@@ -2523,10 +2570,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/purple2/corner,
 /area/swordbase/ground/mainhall)
-"yV" = (
-/obj/effect/decal/cleanable/molten_item,
-/turf/open/floor/plating,
-/area/swordbase/ground/outdoors)
 "yW" = (
 /obj/structure/table/reinforced,
 /obj/item/folder/blue{
@@ -2774,12 +2817,6 @@
 /mob/living/simple_animal/crab/kreb,
 /turf/open/ground/desertdam/river/clean/deep_water_clean,
 /area/swordbase/ground/mainhall)
-"AO" = (
-/obj/machinery/door/airlock/mainship/secure/free_access{
-	name = "\improper Janitor's Closet"
-	},
-/turf/open/floor/plating,
-/area/swordbase/ground/janitor_closet)
 "AT" = (
 /obj/structure/rack,
 /obj/item/storage/box/monkeycubes,
@@ -2890,6 +2927,11 @@
 	dir = 8
 	},
 /area/mainship/shipboard/brig)
+"Bu" = (
+/obj/structure/table/mainship,
+/obj/item/storage/firstaid/adv,
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/outdoors)
 "Bw" = (
 /obj/structure/filingcabinet/filingcabinet,
 /turf/open/floor/tile/dark/red2{
@@ -3085,11 +3127,11 @@
 /turf/open/floor/mainship/mono,
 /area/swordbase/ground/medsci)
 "CR" = (
-/obj/structure/largecrate/guns/russian,
-/obj/effect/decal/cleanable/cobweb,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/swordbase/ground/outdoors)
+/obj/machinery/door/airlock/multi_tile/medical{
+	name = "Medical Research"
+	},
+/turf/open/floor/mainship/mono,
+/area/swordbase/ground/mainhall)
 "CT" = (
 /turf/closed/wall/mainship,
 /area/swordbase/ground/maingate)
@@ -3419,6 +3461,11 @@
 	},
 /turf/open/ground/desertdam/river/clean/deep_water_clean,
 /area/swordbase/ground/mainhall)
+"Fp" = (
+/obj/effect/decal/cleanable/blood/oil,
+/obj/structure/closet/crate,
+/turf/open/floor/plating,
+/area/swordbase/ground/outdoors)
 "Fs" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -3470,12 +3517,6 @@
 	dir = 1
 	},
 /area/swordbase/ground/medbaynorth)
-"FN" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	dir = 1
-	},
-/turf/open/floor/tile/dark,
-/area/swordbase/ground/mainhall)
 "FS" = (
 /obj/structure/table/mainship,
 /obj/item/facepaint/green,
@@ -3486,6 +3527,10 @@
 	dir = 4
 	},
 /area/swordbase/ground/science)
+"FU" = (
+/obj/structure/largecrate/random/barrel/blue,
+/turf/open/floor/plating,
+/area/swordbase/ground/outdoors)
 "FV" = (
 /turf/open/floor/tile/dark/green2{
 	dir = 8
@@ -3544,11 +3589,6 @@
 "Gj" = (
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/hydro)
-"Gl" = (
-/obj/structure/table,
-/obj/item/storage/box/cups,
-/turf/open/floor/mainship/mono,
-/area/swordbase/ground/medsci)
 "Gn" = (
 /turf/open/floor/mainship/sterile/side{
 	dir = 9
@@ -3577,10 +3617,10 @@
 	dir = 10
 	},
 /area/swordbase/ground/armoryhallway)
-"Gw" = (
-/obj/effect/decal/cleanable/dirt,
+"Gx" = (
+/obj/effect/decal/cleanable/molten_item,
 /turf/open/floor/plating,
-/area/swordbase/ground/storage)
+/area/swordbase/ground/outdoors)
 "Gy" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
@@ -3657,7 +3697,6 @@
 /area/swordbase/ground/outdoors)
 "GT" = (
 /obj/structure/largecrate/cow,
-/obj/effect/decal/cleanable/cobweb2,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/swordbase/ground/storage)
@@ -3831,11 +3870,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/armory)
-"IC" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/table/mainship,
-/turf/open/floor/tile/dark,
-/area/swordbase/ground/mainhall)
 "ID" = (
 /obj/machinery/light{
 	dir = 8
@@ -3844,10 +3878,6 @@
 	dir = 8
 	},
 /area/swordbase/ground/armory)
-"IE" = (
-/obj/structure/closet/crate/ammo,
-/turf/open/floor/plating,
-/area/swordbase/ground/outdoors)
 "IF" = (
 /obj/structure/table,
 /obj/item/analyzer/plant_analyzer,
@@ -3855,14 +3885,6 @@
 	dir = 10
 	},
 /area/swordbase/ground/hydro)
-"IJ" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/tile/dark/brown2{
-	dir = 8
-	},
-/area/swordbase/ground/outdoors)
 "IM" = (
 /obj/structure/table/mainship,
 /obj/item/storage/firstaid/adv,
@@ -3957,10 +3979,9 @@
 	},
 /area/swordbase/ground/kitchen)
 "Jt" = (
-/obj/effect/decal/cleanable/cobweb2,
-/obj/structure/largecrate/supply/supplies/sandbags,
-/turf/open/floor/plating,
-/area/swordbase/ground/outdoors)
+/obj/machinery/door/airlock/freezer,
+/turf/open/space/basic,
+/area/swordbase/ground/kitchen)
 "Jw" = (
 /obj/structure/table/mainship,
 /obj/item/storage/firstaid/adv,
@@ -4110,11 +4131,6 @@
 	},
 /turf/open/floor/tile/dark/green2,
 /area/swordbase/ground/hydro)
-"Kt" = (
-/obj/structure/largecrate/supply/supplies/sandbags,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/swordbase/ground/outdoors)
 "Ku" = (
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 4
@@ -4147,6 +4163,10 @@
 /area/swordbase/ground/medbaysouth)
 "KH" = (
 /obj/structure/largecrate/random/case/small,
+/turf/open/floor/plating,
+/area/swordbase/ground/outdoors)
+"KL" = (
+/obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating,
 /area/swordbase/ground/outdoors)
 "KN" = (
@@ -4232,12 +4252,6 @@
 /obj/structure/largecrate/supply/supplies/metal,
 /turf/open/floor/plating,
 /area/swordbase/ground/storage)
-"LT" = (
-/obj/machinery/door/airlock/multi_tile/medical{
-	name = "Medical"
-	},
-/turf/open/floor/mainship/mono,
-/area/swordbase/ground/medsci)
 "LU" = (
 /obj/machinery/light/small,
 /obj/structure/largecrate/supply/supplies/metal,
@@ -4415,11 +4429,6 @@
 /obj/structure/window/framed/mainship,
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/outdoors)
-"Nf" = (
-/obj/effect/decal/cleanable/blood/oil,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/swordbase/ground/outdoors)
 "Ni" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger,
@@ -4486,10 +4495,6 @@
 "ND" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/tile/dark,
-/area/swordbase/ground/outdoors)
-"NE" = (
-/obj/effect/decal/cleanable/blood/oil,
-/turf/open/floor/plating,
 /area/swordbase/ground/outdoors)
 "NF" = (
 /obj/structure/table/mainship,
@@ -4624,6 +4629,13 @@
 /obj/item/storage/toolbox/electrical,
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/science)
+"OZ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bed/chair/wood/normal{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/mainhall)
 "Pc" = (
 /obj/effect/decal/warning_stripes/thick,
 /obj/effect/decal/warning_stripes/thick{
@@ -4725,20 +4737,20 @@
 /obj/machinery/smartfridge/chemistry,
 /turf/open/floor/mainship/sterile/dark,
 /area/swordbase/ground/medbaysouth)
-"PZ" = (
-/obj/structure/largecrate/random/barrel/blue,
-/turf/open/floor/plating,
+"PY" = (
+/obj/machinery/door/airlock/multi_tile/glass{
+	dir = 8;
+	name = "Lounge"
+	},
+/turf/open/floor/tile/dark/brown2{
+	dir = 8
+	},
 /area/swordbase/ground/outdoors)
 "Qa" = (
 /obj/effect/decal/cleanable/cobweb,
 /obj/structure/closet/cabinet,
 /turf/open/floor/wood,
 /area/swordbase/ground/conferenceroom)
-"Qb" = (
-/obj/structure/largecrate/guns/russian,
-/obj/effect/decal/cleanable/cobweb2,
-/turf/open/floor/plating,
-/area/swordbase/ground/outdoors)
 "Qc" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/tile/dark,
@@ -4764,14 +4776,9 @@
 	},
 /turf/open/floor/wood,
 /area/swordbase/ground/conferenceroom)
-"Qs" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	dir = 8;
-	name = "Lounge"
-	},
-/turf/open/floor/tile/dark/brown2{
-	dir = 8
-	},
+"Qq" = (
+/obj/structure/closet/crate,
+/turf/open/floor/plating,
 /area/swordbase/ground/outdoors)
 "Qv" = (
 /turf/closed/wall/mainship/research/containment/wall/west,
@@ -4819,6 +4826,11 @@
 	dir = 4
 	},
 /area/swordbase/ground/medbaysouth)
+"QM" = (
+/obj/effect/decal/cleanable/blood/oil,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/swordbase/ground/outdoors)
 "QO" = (
 /obj/structure/largecrate/random/barrel/red,
 /turf/open/floor/plating,
@@ -4941,12 +4953,6 @@
 /obj/structure/janitorialcart,
 /turf/open/floor/plating,
 /area/swordbase/ground/janitor_closet)
-"RR" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/swordbase/ground/mainhall)
 "RT" = (
 /obj/structure/platform,
 /turf/open/floor/tile/dark/red2{
@@ -4974,12 +4980,6 @@
 	dir = 4
 	},
 /area/swordbase/ground/firingrange)
-"Sf" = (
-/obj/effect/decal/cleanable/blood/oil,
-/obj/structure/closet/crate/ammo,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/swordbase/ground/outdoors)
 "Sh" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger,
@@ -4987,6 +4987,10 @@
 	dir = 5
 	},
 /area/swordbase/ground/firingrange)
+"Si" = (
+/obj/structure/largecrate/cow,
+/turf/open/floor/plating,
+/area/swordbase/ground/outdoors)
 "Sk" = (
 /obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/drinks/coffee,
@@ -5007,13 +5011,24 @@
 	dir = 4
 	},
 /area/swordbase/ground/science)
+"SA" = (
+/obj/structure/table/mainship,
+/obj/item/facepaint/brown,
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/mainhall)
+"SE" = (
+/obj/structure/inflatable/popped,
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/plating,
+/area/swordbase/ground/outdoors)
 "SH" = (
 /obj/structure/window/reinforced,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
 /area/mainship/shipboard/brig)
-"SL" = (
-/obj/structure/largecrate/cow,
+"SI" = (
+/obj/structure/largecrate/supply/supplies/sandbags,
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/swordbase/ground/outdoors)
 "SS" = (
@@ -5146,11 +5161,6 @@
 /obj/item/storage/donut_box,
 /turf/open/floor/carpet,
 /area/swordbase/ground/conferenceroom)
-"Ua" = (
-/obj/structure/inflatable/popped,
-/obj/effect/decal/cleanable/generic,
-/turf/open/floor/plating,
-/area/swordbase/ground/outdoors)
 "Ub" = (
 /obj/machinery/light{
 	dir = 1
@@ -5176,15 +5186,6 @@
 "Ui" = (
 /turf/closed/wall/mainship/white,
 /area/swordbase/ground/medbaysouth)
-"Uk" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	dir = 8;
-	name = "Lounge"
-	},
-/turf/open/floor/tile/dark/brown2{
-	dir = 8
-	},
-/area/swordbase/ground/armoryhallway)
 "Ul" = (
 /obj/structure/bed/chair/sofa,
 /turf/open/floor/tile/dark2,
@@ -5196,10 +5197,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/mainhall)
-"Uo" = (
-/obj/structure/reagent_dispensers/water_cooler,
-/turf/open/floor/mainship/mono,
-/area/swordbase/ground/medsci)
 "Us" = (
 /obj/structure/sign/safety/autodoc,
 /turf/closed/wall/mainship/white,
@@ -5241,6 +5238,11 @@
 	dir = 8
 	},
 /area/swordbase/ground/medbaynorth)
+"UI" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table/mainship,
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/mainhall)
 "UJ" = (
 /turf/closed/wall/mainship/research/containment/wall/south,
 /area/swordbase/ground/medsci)
@@ -5270,11 +5272,6 @@
 /obj/item/target,
 /turf/open/floor/mainship/stripesquare,
 /area/swordbase/ground/firingrange)
-"Vb" = (
-/obj/structure/table/mainship,
-/obj/item/storage/firstaid/adv,
-/turf/open/floor/tile/dark,
-/area/swordbase/ground/mainhall)
 "Ve" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/belt/medical,
@@ -5347,15 +5344,29 @@
 /obj/item/flashlight/lamp,
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/outdoors)
+"VN" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/closed/wall/mainship,
+/area/swordbase/ground/mainhall)
 "VQ" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 1
 	},
 /area/swordbase/ground/medbaynorth)
+"VR" = (
+/obj/effect/decal/cleanable/cobweb2,
+/obj/structure/largecrate/supply/supplies/sandbags,
+/turf/open/floor/plating,
+/area/swordbase/ground/outdoors)
 "VS" = (
 /turf/closed/wall/mainship,
 /area/swordbase/ground/bathroom)
+"VV" = (
+/obj/effect/decal/cleanable/generic,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
+/area/swordbase/ground/outdoors)
 "Wd" = (
 /obj/machinery/door/airlock/multi_tile/medical{
 	dir = 1;
@@ -5519,11 +5530,6 @@
 	dir = 4
 	},
 /area/swordbase/ground/medbaysouth)
-"Xn" = (
-/obj/effect/decal/cleanable/generic,
-/obj/effect/decal/cleanable/molten_item,
-/turf/open/floor/plating,
-/area/swordbase/ground/outdoors)
 "Xp" = (
 /obj/structure/window/framed/mainship/white,
 /turf/open/floor/mainship/mono,
@@ -5586,6 +5592,10 @@
 "XI" = (
 /turf/closed/wall/mainship/white,
 /area/swordbase/ground/medsci)
+"XL" = (
+/obj/structure/largecrate/random/barrel/red,
+/turf/open/floor/plating,
+/area/swordbase/ground/outdoors)
 "XO" = (
 /turf/closed/wall/mainship,
 /area/swordbase/ground/storage)
@@ -5672,12 +5682,6 @@
 	},
 /turf/open/floor/mainship/sterile/plain,
 /area/swordbase/ground/medbaynorth)
-"Yy" = (
-/obj/machinery/door/airlock/multi_tile/medical{
-	name = "Medical Research"
-	},
-/turf/open/floor/mainship/mono,
-/area/swordbase/ground/mainhall)
 "Yz" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	name = "\improper Chemistry"
@@ -5706,11 +5710,6 @@
 	dir = 4
 	},
 /area/swordbase/ground/medbaynorth)
-"YG" = (
-/obj/effect/decal/cleanable/generic,
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating,
-/area/swordbase/ground/outdoors)
 "YI" = (
 /obj/structure/window/framed/prison/reinforced,
 /obj/machinery/door/poddoor/shutters/mainship/open/checkpoint,
@@ -8102,9 +8101,9 @@ LY
 jh
 LB
 LB
-IJ
+rb
 LB
-Qs
+PY
 Yf
 pI
 Yf
@@ -8223,10 +8222,10 @@ nw
 LY
 sf
 PG
-lB
-lB
-lB
-kF
+tt
+tt
+tt
+kP
 Yf
 Yf
 Yf
@@ -8961,7 +8960,7 @@ Vx
 Vx
 Vx
 Yf
-FN
+dj
 Vx
 Vx
 Vx
@@ -9079,7 +9078,7 @@ mh
 YC
 WO
 WO
-Vb
+xq
 NT
 Yf
 Yf
@@ -9201,13 +9200,13 @@ oX
 aE
 Gu
 WO
-IC
-qu
+UI
+OZ
 Yf
 Yf
 Yf
 Yf
-xm
+SA
 Vx
 pf
 sg
@@ -9323,7 +9322,7 @@ dF
 OE
 FD
 WO
-dA
+io
 NT
 Yf
 Yf
@@ -9445,8 +9444,8 @@ yy
 Ah
 Kh
 WO
-fY
-fY
+VN
+VN
 Yf
 Yf
 kI
@@ -9688,7 +9687,7 @@ OE
 zq
 OE
 aE
-Uk
+sj
 Yf
 Yf
 kI
@@ -10062,7 +10061,7 @@ TF
 Yf
 Yf
 Yf
-oh
+Jt
 Cq
 td
 uN
@@ -11164,7 +11163,7 @@ pG
 pG
 pG
 pG
-AO
+pr
 pG
 Mt
 Mt
@@ -11283,13 +11282,13 @@ Yf
 Yf
 Yf
 Vx
-SL
+Si
 AB
 LY
-CR
-SL
-hk
-Kt
+tl
+Si
+XL
+SI
 XO
 GA
 Im
@@ -11405,13 +11404,13 @@ aK
 aM
 aP
 aK
-Sf
-Ua
+ru
+SE
 LY
-yV
-Nf
-YG
-IE
+Gx
+QM
+VV
+ls
 XO
 GC
 Ix
@@ -11524,20 +11523,20 @@ XI
 nw
 nw
 aK
-RR
+mG
 aM
-Yy
+CR
 qt
-NE
+KL
 oP
 TH
 PS
 PS
-nY
+Qq
 Ix
 GL
 zk
-Gw
+br
 XO
 Yf
 Yf
@@ -11649,13 +11648,13 @@ aK
 aM
 aM
 aM
-ld
-SL
-YG
-kN
+ri
+Si
+VV
+Fp
 PS
-SL
-Xn
+Si
+sp
 go
 GT
 Iy
@@ -11771,13 +11770,13 @@ XI
 CJ
 mC
 XI
-mE
-PZ
-wG
+kN
+FU
+ur
 Rb
 LY
-IE
-mt
+ls
+au
 go
 He
 Iz
@@ -11893,13 +11892,13 @@ gl
 CJ
 CJ
 XI
-Jt
-SL
-yV
-gB
+VR
+Si
+Gx
+me
 LY
-Qb
-NE
+tx
+KL
 GL
 QO
 St
@@ -12267,8 +12266,8 @@ yz
 CJ
 vS
 XI
-tY
-Gw
+iw
+br
 OK
 LU
 XO
@@ -13235,7 +13234,7 @@ XI
 XI
 nw
 XI
-Uo
+jG
 CJ
 CJ
 Xp
@@ -13479,7 +13478,7 @@ nw
 nw
 nw
 XI
-Gl
+qa
 CJ
 CJ
 Xp
@@ -13723,7 +13722,7 @@ Yf
 Yf
 Yf
 Yf
-LT
+sx
 CJ
 CJ
 CJ
@@ -14291,7 +14290,7 @@ MR
 nw
 ZW
 MR
-by
+nf
 MR
 nw
 nw
@@ -15591,7 +15590,7 @@ MR
 Nb
 Uv
 ZB
-aC
+Bu
 WG
 Nb
 MR

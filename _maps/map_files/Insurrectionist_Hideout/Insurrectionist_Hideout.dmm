@@ -693,6 +693,11 @@
 /obj/item/explosive/grenade/chem_grenade/incendiary,
 /turf/open/floor/plating/asteroidfloor,
 /area/swordbase/ground/inniecave)
+"GL" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/telecomms/relay,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/swordbase/ground/inniecave)
 "GP" = (
 /obj/structure/ladder{
 	height = 1;
@@ -711,11 +716,6 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/swordbase/ground/inniecave)
-"Jp" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/telecomms/relay,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/swordbase/ground/inniecave)
 "Jx" = (
@@ -2224,7 +2224,7 @@ nF
 aA
 aA
 aA
-Jp
+GL
 fD
 cz
 re
