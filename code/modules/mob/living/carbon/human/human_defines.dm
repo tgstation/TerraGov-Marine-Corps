@@ -123,5 +123,5 @@
 
 	///Amount of deciseconds gained from the braindeath timer, usually by CPR.
 	var/revive_grace_time = 0
-	COOLDOWN_DECLARE(push_delay)
 
+	COOLDOWN_DECLARE(push_delay)
