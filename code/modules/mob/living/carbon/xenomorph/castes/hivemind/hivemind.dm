@@ -55,7 +55,7 @@
 				forceMove(get_turf(nearbiest))
 			else
 				forceMove(get_turf(core))
-			to_chat(src, "<span class='xenonotice'>you had no weeds nearby, you got moved to [nearbiest ? "the closest weed" : "your core"].")
+			to_chat(src, "<span class='xenonotice'>You had no weeds nearby, you got moved to [nearbiest ? "the closest weed" : "your core"].")
 		return FALSE
 
 	// Don't allow them over the timed_late doors
