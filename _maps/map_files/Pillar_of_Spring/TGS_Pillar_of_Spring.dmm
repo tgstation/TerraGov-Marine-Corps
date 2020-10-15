@@ -2335,10 +2335,6 @@
 /obj/machinery/vending/MarineMed/Blood,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
-"ik" = (
-/obj/machinery/computer/cryopod/medical,
-/turf/open/floor/mainship/sterile/dark,
-/area/mainship/medical/lower_medical)
 "il" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -4459,6 +4455,10 @@
 /obj/structure/closet/secure_closet/animal,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
+"pE" = (
+/obj/structure/closet/secure_closet/medical3,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/lower_medical)
 "pF" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2
@@ -14228,6 +14228,15 @@
 	dir = 4
 	},
 /area/mainship/command/self_destruct)
+"XB" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/computer/cryopod/medical{
+	dir = 8
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/lower_medical)
 "XD" = (
 /turf/closed/wall/mainship,
 /area/mainship/medical/medical_science)
@@ -40009,7 +40018,7 @@ bd
 dv
 bd
 bd
-Fg
+XB
 id
 nD
 ek
@@ -42063,7 +42072,7 @@ Hf
 GT
 hx
 Nz
-aY
+pE
 hT
 aY
 aY
@@ -42580,7 +42589,7 @@ bd
 hM
 hU
 mt
-ik
+pE
 nD
 iN
 jT
