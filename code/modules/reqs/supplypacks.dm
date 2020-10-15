@@ -1240,6 +1240,16 @@ Imports
 	contains = list(/obj/item/ammo_magazine/smg/mp7)
 	cost = 5
 
+/datum/supply_packs/imports/m25
+	name = "MR-25 SMG"
+	contains = list(/obj/item/weapon/gun/smg/m25)
+	cost = 15
+
+/datum/supply_packs/imports/m25/ammo
+	name = "MR-25 SMG Ammo"
+	contains = list(/obj/item/ammo_magazine/smg/m25)
+	cost = 5
+
 /datum/supply_packs/imports/skorpion
 	name = "Skorpion SMG"
 	contains = list(/obj/item/weapon/gun/smg/skorpion)

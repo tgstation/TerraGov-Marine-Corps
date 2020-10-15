@@ -167,8 +167,8 @@
 /obj/item/weapon/gun/smg/m25/elite
 	name = "\improper MR-25B2 submachinegun"
 	desc = "The RivArms MR-25 submachinegun, B2 variant. Has an integrated barrel charger. This reliable weapon fires armor piercing 10x20mm rounds and is used by elite troops."
-	icon_state = "m39b2"
-	item_state = "m39b2"
+	icon_state = "m25b2"
+	item_state = "m25b2"
 	current_mag = /obj/item/ammo_magazine/smg/m25/ap
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
