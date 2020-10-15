@@ -63,6 +63,10 @@
 
 	if(user.mob_size == MOB_SIZE_BIG || user.incapacitated() || user.lying_angle || user.buckled || user.anchored)
 		return
+	
+	var/dist = get_dist(user, src)
+	if(dist > 1)
+		return
 
 	var/mob_dir = get_dir(user, src)
 	var/crawl_dir = dir & mob_dir
