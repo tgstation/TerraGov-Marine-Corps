@@ -655,13 +655,13 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	name = "M39 AP Ammo Box"
 	icon_state = "ammoboxm39ap"
 	ammo_type = /datum/ammo/bullet/smg/ap
-	magazine_type = /obj/item/ammo_magazine/smg/m39/ap
+	magazine_type = /obj/item/ammo_magazine/smg/m25/ap
 
 /obj/item/ammobox/m39ext
 	name = "M39 Extended Ammo Box"
 	icon_state = "ammoboxm39ext"
 	ammo_type = /datum/ammo/bullet/smg
-	magazine_type = /obj/item/ammo_magazine/smg/m39/extended
+	magazine_type = /obj/item/ammo_magazine/smg/m25/extended
 
 
 /obj/item/shotgunbox/buckshot

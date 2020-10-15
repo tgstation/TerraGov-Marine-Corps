@@ -128,21 +128,21 @@
 //-------------------------------------------------------
 //M39 SMG
 
-/obj/item/weapon/gun/smg/m39
-	name = "\improper M39 submachinegun"
-	desc = "The Armat Battlefield Systems M39 submachinegun, an outdated design within the TGMC inventory. A light firearm capable of effective one-handed use that is ideal for close to medium range engagements. Uses 10x20mm rounds in a high capacity magazine."
-	icon_state = "m39"
-	item_state = "m39"
+/obj/item/weapon/gun/smg/m25
+	name = "\improper M-25 submachinegun"
+	desc = "The RivArms M-25 submachinegun, an update to a classic design. A light firearm capable of effective one-handed use that is ideal for close to medium range engagements. Uses 10x20mm rounds in a high capacity magazine."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "m25"
+	item_state = "m25"
 	caliber = "10x20mm caseless" //codex
 	max_shells = 60 //codex
 	flags_equip_slot = ITEM_SLOT_BACK
-	current_mag = /obj/item/ammo_magazine/smg/m39
+	current_mag = /obj/item/ammo_magazine/smg/m25
 	type_of_casings = null
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
-						/obj/item/attachable/stock/smg,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/flashlight,
@@ -153,10 +153,9 @@
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/gyro)
 
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT)
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 14, "rail_y" = 22, "under_x" = 24, "under_y" = 16, "stock_x" = 24, "stock_y" = 16)
 
-	accuracy_mult = 0.95
+	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.9
 	scatter = 20
 	fire_delay = 0.175 SECONDS
@@ -165,12 +164,23 @@
 	burst_amount = 3
 
 
-/obj/item/weapon/gun/smg/m39/elite
-	name = "\improper M39B2 submachinegun"
-	desc = "The Armat Battlefield Systems M39 submachinegun, B2 variant. This reliable weapon fires armor piercing 10x20mm rounds and is used by elite troops."
+/obj/item/weapon/gun/smg/m25/elite
+	name = "\improper M25B2 submachinegun"
+	desc = "The RivArms M-25 submachinegun, B2 variant. Has an integrated barrel charger. This reliable weapon fires armor piercing 10x20mm rounds and is used by elite troops."
 	icon_state = "m39b2"
 	item_state = "m39b2"
-	current_mag = /obj/item/ammo_magazine/smg/m39/ap
+	current_mag = /obj/item/ammo_magazine/smg/m25/ap
+	attachable_allowed = list(
+						/obj/item/attachable/suppressor,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/verticalgrip,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/lasersight,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/scope/mini,
+						/obj/item/attachable/burstfire_assembly,
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/gyro)
 
 	flags_item_map_variant = NONE
 

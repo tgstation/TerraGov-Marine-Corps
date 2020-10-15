@@ -283,8 +283,8 @@
 	fill_type = /obj/item/ammo_magazine/smg/skorpion
 	fill_number = 2
 
-/obj/item/storage/pouch/magazine/large/pmc_m39
-	fill_type = /obj/item/ammo_magazine/smg/m39/ap
+/obj/item/storage/pouch/magazine/large/pmc_m25
+	fill_type = /obj/item/ammo_magazine/smg/m25/ap
 	fill_number = 3
 
 /obj/item/storage/pouch/magazine/large/pmc_p90
