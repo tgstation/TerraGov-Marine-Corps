@@ -407,7 +407,7 @@
 
 /obj/item/storage/backpack/marine/satchel/captain_cloak
 	name = "Captain's Cloak"
-	desc = "An opulant cloak detailed with your many accomplishments."
+	desc = "An opulent cloak detailed with your many accomplishments."
 	icon_state = "commander_cloak" //with thanks to Baystation12
 	item_state = "commander_cloak" //with thanks to Baystation12
 
@@ -419,7 +419,7 @@
 
 /obj/item/storage/backpack/marine/satchel/captain_cloak_red
 	name = "Captain's Cloak - Red"
-	desc = "An opulant cloak detailed with your many accomplishments. with fancy red trim."
+	desc = "An opulent cloak detailed with your many accomplishments. with fancy red trim."
 	icon_state = "commander_cloak_red" //with thanks to Baystation12
 	item_state = "commander_cloak_red" //with thanks to Baystation12
 
