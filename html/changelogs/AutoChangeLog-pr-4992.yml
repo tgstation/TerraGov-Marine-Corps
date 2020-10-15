@@ -1,0 +1,4 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - balance: "reduces mining wells ore crates generation time from 5 minutes to 2 minutes."
