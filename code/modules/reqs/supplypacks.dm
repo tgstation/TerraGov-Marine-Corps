@@ -572,9 +572,9 @@ AMMO
 	contains = list(/obj/item/mortal_shell/smoke)
 	cost = 1
 
-/datum/supply_packs/ammo/mortar_ammo_tangle
+/datum/supply_packs/ammo/mortar_ammo_plasmaloss
 	name = "M402 mortar tanglefoot shell"
-	contains = list(/obj/item/mortal_shell/tangle_smoke)
+	contains = list(/obj/item/mortal_shell/plasmaloss)
 	cost = 2
 
 /datum/supply_packs/ammo/minisentry
