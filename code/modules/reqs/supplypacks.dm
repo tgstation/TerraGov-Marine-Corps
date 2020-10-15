@@ -387,11 +387,6 @@ ATTACHMENTS
 	cost = 1
 
 /datum/supply_packs/attachments/stock_smg
-	name = "submachinegun stock attachment crate"
-	contains = list(/obj/item/attachable/stock/smg)
-	cost = 1
-
-/datum/supply_packs/attachments/stock_smg
 	name = "combat shotgun stock attachment crate"
 	contains = list(/obj/item/attachable/stock/tactical)
 	cost = 1
