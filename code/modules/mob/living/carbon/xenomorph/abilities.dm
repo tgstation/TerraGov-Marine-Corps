@@ -103,7 +103,8 @@
 				hiveminde.forceMove(get_turf(hiveminde.core))
 			to_chat(hiveminde, "<span class='xenonotice'>you can't place weeds with no weeds nearby, you got moved to [nearbies ? "the closest weed" : "your core"].</span>")
 			return
- 	..()
+ 	return ..()
+ 
 // Choose Resin
 /datum/action/xeno_action/choose_resin
 	name = "Choose Resin Structure"
