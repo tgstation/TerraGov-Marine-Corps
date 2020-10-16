@@ -4,11 +4,8 @@
 	spawn_type = /mob/living/carbon/human/species/skeleton
 
 /datum/emergency_call/skeleton/print_backstory(mob/living/carbon/human/H)
-	to_chat(H, "<B>You are a skeleton, risen from beyond the grave. \n
-	Long have you rested, ejected into the void of space through battle or unfortunate circumstances, but now you have awoken. \n
-	The distress call has awoken you from your spacebound slumber. \n
-	Wipe out whatever has disturbed your eternal rest, so you may sleep once again.</B>")
-
+	to_chat(user, "TEST TEST TEST TEST TEST \n
+	TEST TEST TEST")
 
 ///datum/emergency_call/skeleton/print_backstory(mob/living/carbon/human/H)
 //	to_chat(H, "<B>You are a skeleton, risen from beyond the grave.")
