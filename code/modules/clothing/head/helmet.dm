@@ -621,6 +621,8 @@
 	anti_hug = 5
 
 
+//Halo//
+
 /obj/item/clothing/head/helmet/marine/urf
 	name = "P1-M combat helmet"
 	desc = "A general purpose URF combat helmet."

@@ -16,5 +16,5 @@
 /obj/item/clothing/gloves/covenant/sangheili/minor
 	name = "Minor Gauntlets"
 	desc = "Gauntlets for a Sangheili Minor."
-	icon_state = "minor_gloves_obj"
+	icon_state = "minor_gloves"
 	item_state = "minor_gloves"

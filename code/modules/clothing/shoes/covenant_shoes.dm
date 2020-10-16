@@ -9,5 +9,5 @@
 /obj/item/clothing/shoes/covenant/sangheili/minor
 	name = "Minor Greaves"
 	desc = "A pair of greaves for Sangheili Minors."
-	icon_state = "minor_legs_obj"
+	icon_state = "minor_legs"
 	item_state = "minor_legs"

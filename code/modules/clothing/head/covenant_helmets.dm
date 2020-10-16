@@ -1,6 +1,7 @@
 //Halo//
 
 /obj/item/clothing/head/covenant/
+	sprite_sheet_id = 1
 
 /obj/item/clothing/head/covenant/sangheili
 	icon = 'icons/obj/clothing/covenant/sangheili.dmi'
@@ -9,5 +10,5 @@
 /obj/item/clothing/head/covenant/sangheili/minor
 	name = "Minor Helmet"
 	desc = "A helmet for a Sangheili Minor."
-	icon_state = "minor_helm_obj"
+	icon_state = "minor_helm"
 	item_state = "minor_helm"
