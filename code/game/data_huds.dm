@@ -325,7 +325,7 @@
 	hud_icons = list(XENO_EMBRYO_HUD)
 
 //active reagent hud that apppears only for xenos
-/datum/atom_hud/xeno_active_reagents
+/datum/atom_hud/xeno_reagents
 	hud_icons = list(XENO_REAGENT_HUD)
 
 //Xeno status hud, for xenos
