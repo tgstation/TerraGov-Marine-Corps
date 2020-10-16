@@ -100,8 +100,6 @@
 	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 15, "bio" = 10, "rad" = 0, "fire" = 20, "acid" = 20)
 
 
-//Halo//
-
 /obj/item/clothing/gloves/marine/unscmarine
 	name = "UNSC combat gloves"
 	desc = "Standard issue UNSC tactical gloves."
