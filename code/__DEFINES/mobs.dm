@@ -190,6 +190,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 /////////////////MOVE DEFINES//////////////////////
 #define MOVE_INTENT_WALK        0
 #define MOVE_INTENT_RUN         1
+#define XENO_HUMAN_PUSHED_DELAY 5
+
 ///////////////////INTERNAL ORGANS DEFINES///////////////////
 
 #define ORGAN_ASSISTED	1
