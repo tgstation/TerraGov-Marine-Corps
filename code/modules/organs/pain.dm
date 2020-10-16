@@ -42,7 +42,7 @@ mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0
 				msg = "<span class='danger'>Your [partname] burns badly!</span>"
 			if(91 to INFINITY)
 				flash_pain()
-				msg = "<span class='HIGHDANGER'>OH GOD! Your [partname] is on fire!</span>"
+				msg = "<span class='highdanger'>OH GOD! Your [partname] is on fire!</span>"
 	else
 		switch(amount)
 			if(1 to 10)
@@ -52,7 +52,7 @@ mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0
 				msg = "<span class='danger'>Your [partname] hurts badly.</span>"
 			if(91 to INFINITY)
 				flash_pain()
-				msg = "<span class='HIGHDANGER'>OH GOD! Your [partname] is hurting terribly!</span>"
+				msg = "<span class='highdanger'>OH GOD! Your [partname] is hurting terribly!</span>"
 	if(msg && (msg != last_pain_message || prob(10)))
 		last_pain_message = msg
 		to_chat(src, msg)
