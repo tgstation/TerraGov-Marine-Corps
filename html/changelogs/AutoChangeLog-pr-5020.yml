@@ -1,0 +1,6 @@
+author: "Hathkar"
+delete-after: True
+changes: 
+  - rscadd: "PoS now has medical lockers for doctors in medbay"
+  - bugfix: "PoS pipenet now provides air to more rooms, and had missing pipes fixed"
+  - imageadd: "OB/Railgun sprite empty space removed"
