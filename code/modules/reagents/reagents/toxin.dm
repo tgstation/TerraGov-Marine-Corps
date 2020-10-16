@@ -593,31 +593,10 @@
 
 /datum/reagent/toxin/xeno_decaytoxin/on_mob_life(mob/living/L, metabolism)
 	if(prob(6))
-		L.visible_message("<span class='warning'>We can feel our body falling apart!</span>")
+		L.visible_message("<span class='warning'>You can feel your body falling apart!</span>")
 	L.adjustToxLoss(1)
 	L.adjustBruteLoss(1)
 	return
-
-
-///datum/reagent/toxin/xeno_oculos
-//	name = "Oculos"
-//	description = "An eye-imparing chemical, disrupting concentration on far objects."
-//	reagent_state = LIQUID
-//	color = "#99ffee" // rgb: 153, 255, 238
-//	custom_metabolism = REAGENTS_METABOLISM / 10
-//	overdose_threshold = REAGENTS_OVERDOSE
-//	scannable = TRUE
-//	toxpwr = 0
-//
-///datum/reagent/toxin/xeno_oculos/on_mob_life(mob/living/L, metabolism) // can't make it work :^(
-//	switch(current_cycle)
-//		if(9)
-//			to_chat(L, "<span class='warning'>Your eyes and body feel unnaturally relaxed.</span>")
-//			L.visible_message("<span class='warning'>reagent in effect</span>")
-//		if(10 to INFINITY)
-//			L.apply_status_effect(STATUS_EFFECT_GUN_SKILL_ACCURACY_DEBUFF, stacks = 10)
-//			L.visible_message("<span class='warning'>stacks applying</span>")
-//	return..()
 
 
 /datum/reagent/toxin/xeno_praelyx
