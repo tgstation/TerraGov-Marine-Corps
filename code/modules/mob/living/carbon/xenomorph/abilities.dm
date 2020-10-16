@@ -166,6 +166,11 @@
 		to_chat(X, "<span class='warning'>We can only shape on weeds. We must find some resin before we start building!</span>")
 		return fail_activate()
 
+	var/obj/machinery/door/poddoor/timed_late/containment/shutter = locate(/obj/machinery/door/poddoor/timed_late/containment) in range(8, owner.loc)
+	if(!shutter?.density)
+		to_chat(owner,"<span class='xenonotice'>You cannot build so close to the strange material.</span>")
+		return fail_activate()
+
 	if(!T.check_alien_construction(X, planned_building = X.selected_resin))
 		return fail_activate()
 
