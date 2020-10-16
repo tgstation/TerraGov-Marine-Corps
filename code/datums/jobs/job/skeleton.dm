@@ -28,7 +28,6 @@
 
 /datum/outfit/job/skeleton/basic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/milk, SLOT_L_HAND)
 
 //Skeleton Chief
