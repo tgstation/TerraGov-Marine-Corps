@@ -301,5 +301,12 @@
 				S = pick("sound/voice/human_male_preburst1.ogg", 'sound/voice/human_male_preburst2.ogg', 'sound/voice/human_male_preburst3.ogg')
 			if("female_preburst")
 				S = pick("sound/voice/human_female_preburst1.ogg", 'sound/voice/human_female_preburst2.ogg', 'sound/voice/human_female_preburst3.ogg')
+			// Halo
+			if("sangheiliscream")
+				S = pick('sound/halo/voice/sangheiliscream1.ogg','sound/halo/voice/sangheiliscream2.ogg','sound/halo/voice/sangheiliscream3.ogg','sound/halo/voice/sangheiliscream4.ogg','sound/halo/voice/sangheiliscream5.ogg','sound/halo/voice/sangheiliscream6.ogg','sound/halo/voice/sangheiliscream7.ogg','sound/halo/voice/sangheiliscream8.ogg','sound/halo/voice/sangheiliscream9.ogg','sound/halo/voice/sangheiliscream10.ogg','sound/halo/voice/sangheiliscream11.ogg')
+			if("unggoyscream")
+				S = pick('sound/halo/voice/unggoyscream1.ogg','sound/halo/voice/unggoyscream2.ogg','sound/halo/voice/unggoyscream3.ogg','sound/halo/voice/unggoyscream4.ogg','sound/halo/voice/unggoyscream5.ogg','sound/halo/voice/unggoyscream6.ogg','sound/halo/voice/unggoyscream7.ogg')
+			if("kigscream")
+				S = pick('sound/halo/voice/kigscream1.ogg','sound/halo/voice/kigscream2.ogg','sound/halo/voice/kigscream3.ogg','sound/halo/voice/kigscream4.ogg','sound/halo/voice/kigscream5.ogg')
 
 	return S

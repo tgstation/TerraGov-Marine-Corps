@@ -63,3 +63,27 @@
 
 /mob/living/carbon/human/species/vatborn
 	race = "Vatborn"
+
+
+//Halo//
+
+/mob/living/carbon/human/species/covenant/sangheili
+	race = "Sangheili"
+
+/datum/species/covenant/sangheili/handle_post_spawn(mob/living/carbon/human/H)
+	. = ..()
+	H.h_style = "Bald"
+
+/mob/living/carbon/human/species/covenant/unggoy
+	race = "Unggoy"
+
+/datum/species/covenant/unggoy/handle_post_spawn(mob/living/carbon/human/H)
+	. = ..()
+	H.h_style = "Bald"
+
+/mob/living/carbon/human/species/covenant/kigyar
+	race = "Kig Yar"
+
+/datum/species/covenant/kigyar/handle_post_spawn(mob/living/carbon/human/H)
+	. = ..()
+	H.h_style = "Bald"
