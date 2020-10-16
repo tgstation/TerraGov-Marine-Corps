@@ -501,6 +501,8 @@
 		basic.remove_from_hud(M)
 		var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
 		XI.remove_from_hud(M)
+		var/datum/atom_hud/xeno_active_reagents/RE = GLOB.huds[DATA_HUD_XENO_REAGENTS]
+		RE.remove_from_hud(M)
 
 	addtimer(CALLBACK(src, .proc/on_cloak), 1)
 	RegisterSignal(M, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/damage_taken)
@@ -547,6 +549,8 @@
 	basic.add_to_hud(user)
 	var/datum/atom_hud/xeno_infection/XI = GLOB.huds[DATA_HUD_XENO_INFECTION]
 	XI.add_to_hud(user)
+	var/datum/atom_hud/xeno_active_reagents/RE = GLOB.huds[DATA_HUD_XENO_REAGENTS]
+	RE.add_to_hud(user)
 
 	addtimer(CALLBACK(src, .proc/on_decloak), 1)
 

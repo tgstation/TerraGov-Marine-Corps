@@ -109,7 +109,7 @@
 
 //medical hud used by ghosts
 /datum/atom_hud/medical/observer
-	hud_icons = list(HEALTH_HUD, XENO_EMBRYO_HUD, STATUS_HUD)
+	hud_icons = list(HEALTH_HUD, XENO_EMBRYO_HUD, XENO_REAGENT_HUD, STATUS_HUD)
 
 
 /datum/atom_hud/medical/pain
@@ -209,13 +209,16 @@
 	var/image/status_hud = hud_list[STATUS_HUD] //Status for med-hud.
 	var/image/infection_hud = hud_list[XENO_EMBRYO_HUD] //State of the xeno embryo.
 	var/image/simple_status_hud = hud_list[STATUS_HUD_SIMPLE] //Status for the naked eye.
+	var/image/xeno_reagent_hud = hud_list[XENO_REAGENT_HUD] // DIsplays active xeno reagents
 
 	if(species.species_flags & IS_SYNTHETIC)
 		simple_status_hud.icon_state = ""
 		status_hud.icon_state = "hudsynth"
 		infection_hud.icon_state = "hudsynth" //Xenos can feel synths are not human.
 		return TRUE
-
+	if(src.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_praelyx))
+		message_admins("praelyx hud test")
+		xeno_reagent_hud.icon_state = "test"
 	if(status_flags & XENO_HOST)
 		var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in src
 		if(E)
@@ -322,6 +325,9 @@
 /datum/atom_hud/xeno_infection
 	hud_icons = list(XENO_EMBRYO_HUD)
 
+//active reagent hud that apppears only for xenos
+/datum/atom_hud/xeno_active_reagents
+	hud_icons = list(XENO_REAGENT_HUD)
 
 //Xeno status hud, for xenos
 /datum/atom_hud/xeno
