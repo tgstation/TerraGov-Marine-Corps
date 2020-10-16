@@ -681,6 +681,5 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 
 /datum/skills/skeleton
 	name = "Skeleton"
-
 	cqc = SKILL_CQC_TRAINED
 	melee_weapons = SKILL_MELEE_TRAINED
