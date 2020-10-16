@@ -75,7 +75,7 @@
 	set instant = TRUE
 	set hidden = TRUE
 
-	for(var/i in 1 to 10)
+	for(var/i in 1 to keys_held.len)
 		if(keys_held[i] == _key)
 			keys_held[i] = null
 			break
