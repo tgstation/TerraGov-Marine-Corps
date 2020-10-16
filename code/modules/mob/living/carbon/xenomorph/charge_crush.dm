@@ -394,7 +394,7 @@
 		return PRECRUSH_STOPPED
 	if(anchored)
 		var/charge_damage = (CHARGE_SPEED(charge_datum) * 50)  // 2.1 * 50 = 105 max damage to inflict.
-		var/sunder_factor = clamp(1 - (charger.sunder/100),0.30,1.00) // Then sunder is taken into account. if its already been hit by one acid spit, a charge will kill it without the crusher taking damage from the razorwire. 2 mature boiler globs are enough too for a charge too.
+		var/sunder_factor = clamp(1 - (charger.sunder/100),0.30,0.90) // Then sunder is taken into account. if its already been hit by one acid spit, a charge will kill it without the crusher taking damage from the razorwire. 2 mature boiler globs are enough too for a charge too.
 		. = charge_damage * sunder_factor
 		if(obj_integrity > .)
 			to_chat(charger, "<span class='danger'>Our weakened exoskeleton is less effective against [src]!</span>")
