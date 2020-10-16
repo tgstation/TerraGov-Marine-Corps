@@ -684,7 +684,6 @@
 	burstscreams = list("neuter" = 'sound/voice/moth_scream.ogg')
 	death_message = "collapses in a pile of bones, with a final rattle..."
 	death_sound = 'sound/voice/skeleton_scream.ogg'
-
 	namepool = /datum/namepool/skeleton
 
 /datum/species/synthetic
