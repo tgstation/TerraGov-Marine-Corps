@@ -11,8 +11,9 @@
 
 
 /datum/emergency_call/skeleton/print_backstory(mob/living/carbon/human/H)
-	to_chat(H, "You are a skeleton.\n
-				help me")
+	to_chat(H, "You are a skeleton.\n")
+			("help me\n")
+			("please")
 
 /datum/emergency_call/skeleton/create_member(datum/mind/M)
 	. = ..()
