@@ -216,9 +216,8 @@
 		status_hud.icon_state = "hudsynth"
 		infection_hud.icon_state = "hudsynth" //Xenos can feel synths are not human.
 		return TRUE
-	if(src.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_praelyx))
-		message_admins("praelyx hud test")
-		xeno_reagent_hud.icon_state = "test"
+	if(src.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
+		xeno_reagent_hud.icon_state = "transvitox_icon"
 	if(status_flags & XENO_HOST)
 		var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in src
 		if(E)
