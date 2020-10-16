@@ -255,8 +255,8 @@
 	icon_state = "upp_beret"
 
 /obj/item/clothing/head/frelancer
-	name = "\improper armored Freelancer cap"
-	desc = "A sturdy freelancer's cap. More protective than it seems."
+	name = "\improper Freelancer helmet"
+	desc = "A sturdy helmet that's probably been sourced from military surplus."
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	sprite_sheet_id = 1
 	icon_state = "freelancer_cap"
@@ -271,6 +271,7 @@
 
 /obj/item/clothing/head/frelancer/beret
 	name = "\improper armored Freelancer beret"
+	desc = "A sturdy freelancer's beret. More protective than it seems."
 	icon_state = "freelancer_beret"
 
 /obj/item/clothing/head/militia
