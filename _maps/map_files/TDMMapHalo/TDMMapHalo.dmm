@@ -412,10 +412,11 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/open/floor/tile/dark/purple2{
-	dir = 4
+/obj/structure/bed/chair/sofa/left{
+	dir = 1
 	},
-/area/swordbase/ground/science)
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/mainhall)
 "ep" = (
 /turf/open/floor/mainship/research/containment/floor2{
 	dir = 5
@@ -704,7 +705,7 @@
 /obj/structure/largecrate/random/barrel/green,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
-/area/swordbase/ground/outdoors)
+/area/swordbase/ground/mainhall)
 "gV" = (
 /obj/structure/flora/desert/bush,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -1380,6 +1381,13 @@
 /obj/machinery/botany,
 /turf/open/floor/tile/dark/green2,
 /area/swordbase/ground/hydro)
+"oy" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/toolbox/syndicate,
+/turf/open/floor/tile/dark/red2{
+	dir = 10
+	},
+/area/swordbase/ground/checkpoint)
 "oP" = (
 /obj/structure/largecrate/random/barrel/green,
 /turf/open/floor/plating,
@@ -1680,6 +1688,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/swordbase/ground/medsci)
+"rV" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/closed/wall/r_wall/prison,
+/area/swordbase/ground/outdoors)
 "rY" = (
 /obj/effect/decal/warning_stripes/thick{
 	dir = 1
@@ -1785,6 +1797,10 @@
 /obj/machinery/computer/security/nuclear,
 /turf/open/floor/mainship_hull,
 /area/swordbase/ground/vault)
+"sF" = (
+/obj/structure/largecrate/random/barrel/red,
+/turf/open/floor/asteroidfloor,
+/area/swordbase/ground/mainhall)
 "sG" = (
 /obj/machinery/light/spot{
 	dir = 8
@@ -1793,6 +1809,10 @@
 	dir = 8
 	},
 /area/swordbase/ground/hydro)
+"sI" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/asteroidfloor,
+/area/swordbase/ground/mainhall)
 "sJ" = (
 /obj/structure/closet/secure_closet/security,
 /turf/open/floor/tile/dark/red2{
@@ -2089,6 +2109,10 @@
 	},
 /turf/open/floor/mainship/sterile/plain,
 /area/swordbase/ground/medbaynorth)
+"vf" = (
+/obj/structure/bed/chair/office/light,
+/turf/open/floor/tile/dark/red2,
+/area/swordbase/ground/checkpoint)
 "vg" = (
 /obj/machinery/cryopod,
 /obj/machinery/light{
@@ -2114,6 +2138,13 @@
 	dir = 1
 	},
 /area/swordbase/ground/armoryhallway)
+"vt" = (
+/obj/structure/table/reinforced,
+/obj/item/weapon/gun/shotgun/pump/m45,
+/turf/open/floor/tile/dark/red2{
+	dir = 8
+	},
+/area/swordbase/ground/checkpoint)
 "vw" = (
 /obj/structure/table/reinforced,
 /obj/item/clothing/head/chefhat,
@@ -2796,7 +2827,7 @@
 	pixel_y = 3
 	},
 /turf/open/floor/tile/dark/red2{
-	dir = 10
+	dir = 8
 	},
 /area/swordbase/ground/checkpoint)
 "AI" = (
@@ -2948,6 +2979,12 @@
 	},
 /turf/open/floor/mainship/sterile,
 /area/swordbase/ground/medbaynorth)
+"By" = (
+/obj/structure/closet/secure_closet/security,
+/turf/open/floor/tile/dark/red2{
+	dir = 6
+	},
+/area/swordbase/ground/checkpoint)
 "Bz" = (
 /obj/machinery/door/window/southright,
 /obj/effect/decal/cleanable/dirt,
@@ -3086,6 +3123,20 @@
 /obj/structure/largecrate/supply/supplies/metal,
 /turf/open/floor/tile/dark/red2{
 	dir = 6
+	},
+/area/swordbase/ground/checkpoint)
+"CB" = (
+/obj/structure/table/reinforced,
+/obj/machinery/power/apc/mainship{
+	dir = 8;
+	pixel_x = 16
+	},
+/obj/item/ammo_magazine/shotgun/eightGauge/slug,
+/obj/machinery/light/spot{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/red2{
+	dir = 4
 	},
 /area/swordbase/ground/checkpoint)
 "CC" = (
@@ -3523,8 +3574,8 @@
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/kitchen)
 "FT" = (
-/turf/open/floor/tile/dark/purple2/corner{
-	dir = 4
+/turf/open/floor/tile/dark/purple2{
+	dir = 1
 	},
 /area/swordbase/ground/science)
 "FU" = (
@@ -3979,9 +4030,12 @@
 	},
 /area/swordbase/ground/kitchen)
 "Jt" = (
-/obj/machinery/door/airlock/freezer,
-/turf/open/space/basic,
-/area/swordbase/ground/kitchen)
+/obj/structure/bed/chair/sofa/right{
+	dir = 1;
+	icon_state = "sofaend_right"
+	},
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/mainhall)
 "Jw" = (
 /obj/structure/table/mainship,
 /obj/item/storage/firstaid/adv,
@@ -3991,7 +4045,7 @@
 	},
 /area/swordbase/ground/checkpoint)
 "Jx" = (
-/obj/machinery/light{
+/obj/machinery/light/spot{
 	dir = 4
 	},
 /turf/open/floor/tile/dark/red2{
@@ -4034,16 +4088,11 @@
 /turf/open/floor/plating,
 /area/swordbase/ground/storage)
 "JI" = (
-/obj/item/storage/toolbox/syndicate,
-/obj/structure/table/reinforced,
-/obj/machinery/power/apc/mainship{
-	dir = 8;
-	pixel_x = 16
+/obj/structure/bed/chair/sofa{
+	dir = 1
 	},
-/turf/open/floor/tile/dark/red2{
-	dir = 4
-	},
-/area/swordbase/ground/checkpoint)
+/turf/open/floor/tile/dark,
+/area/swordbase/ground/mainhall)
 "JO" = (
 /obj/machinery/door/airlock/mainship/marine/general,
 /turf/open/floor/tile/dark,
@@ -4061,11 +4110,9 @@
 	},
 /area/swordbase/ground/checkpoint)
 "JT" = (
-/obj/structure/closet/secure_closet/security,
-/turf/open/floor/tile/dark/red2{
-	dir = 6
-	},
-/area/swordbase/ground/checkpoint)
+/obj/structure/largecrate/random/barrel/blue,
+/turf/open/floor/asteroidfloor,
+/area/swordbase/ground/outdoors)
 "JV" = (
 /obj/effect/decal/cleanable/molten_item,
 /turf/open/floor/plating,
@@ -4205,6 +4252,12 @@
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/swordbase/ground/medicaloffice)
+"Ll" = (
+/obj/machinery/light/spot{
+	dir = 1
+	},
+/turf/open/floor/asteroidfloor,
+/area/swordbase/ground/mainhall)
 "Lo" = (
 /obj/vehicle/train/cargo/trolley,
 /obj/effect/decal/cleanable/dirt,
@@ -4605,6 +4658,10 @@
 "OP" = (
 /turf/open/floor/mainship/mono,
 /area/swordbase/ground/outdoors)
+"OR" = (
+/obj/structure/largecrate/random/barrel/blue,
+/turf/open/floor/asteroidfloor,
+/area/swordbase/ground/mainhall)
 "OT" = (
 /obj/structure/table/holotable/wood,
 /obj/item/reagent_containers/food/drinks/coffee,
@@ -5006,6 +5063,9 @@
 /obj/item/tool/crowbar,
 /turf/open/floor/plating,
 /area/swordbase/ground/storage)
+"Sv" = (
+/turf/open/floor/asteroidfloor,
+/area/swordbase/ground/mainhall)
 "Sz" = (
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
@@ -5530,6 +5590,10 @@
 	dir = 4
 	},
 /area/swordbase/ground/medbaysouth)
+"Xn" = (
+/obj/structure/largecrate/random/case/double,
+/turf/open/floor/asteroidfloor,
+/area/swordbase/ground/mainhall)
 "Xp" = (
 /obj/structure/window/framed/mainship/white,
 /turf/open/floor/mainship/mono,
@@ -5767,11 +5831,9 @@
 	},
 /area/swordbase/ground/medbaynorth)
 "Zd" = (
-/obj/machinery/door/airlock/multi_tile/research,
-/turf/open/floor/tile/dark/purple2{
-	dir = 8
-	},
-/area/swordbase/ground/science)
+/obj/structure/largecrate/random/case/small,
+/turf/open/floor/asteroidfloor,
+/area/swordbase/ground/mainhall)
 "Ze" = (
 /turf/open/floor/tile/dark,
 /area/swordbase/ground/armory)
@@ -8499,7 +8561,7 @@ YN
 YN
 Za
 YE
-Vx
+YE
 nw
 nw
 nw
@@ -8621,7 +8683,7 @@ aX
 AV
 VE
 YE
-Vx
+YE
 nw
 nw
 nw
@@ -8746,8 +8808,8 @@ YE
 Vx
 Vx
 Vx
-nw
-nw
+Vx
+Vx
 nw
 nw
 nw
@@ -8867,8 +8929,8 @@ Yf
 zr
 Yf
 Yf
-Wh
-Wh
+Yf
+Jt
 Wh
 Wh
 Nr
@@ -8883,7 +8945,7 @@ Nr
 nO
 mZ
 mZ
-mZ
+jM
 mZ
 mZ
 mZ
@@ -8989,10 +9051,10 @@ Yf
 Yf
 Yf
 Yf
-Zd
-wz
-Zd
-wz
+Yf
+JI
+Wh
+mv
 wz
 wz
 RM
@@ -9003,7 +9065,7 @@ ZI
 jK
 lg
 nO
-mZ
+JT
 mZ
 mZ
 mZ
@@ -9111,9 +9173,9 @@ Vx
 Yf
 Yf
 Yf
-Sz
+Yf
 en
-Sz
+Wh
 FT
 ZK
 ZK
@@ -9125,7 +9187,7 @@ ZK
 ZK
 SS
 nO
-jx
+mZ
 mZ
 mZ
 mZ
@@ -9369,9 +9431,9 @@ ZK
 ZK
 Hu
 nO
-mZ
-mZ
 iu
+mZ
+mZ
 mZ
 tZ
 jM
@@ -9491,11 +9553,11 @@ Bi
 Sz
 tD
 nO
+nO
+nO
 mZ
-mZ
-mZ
-tZ
-mZ
+rV
+nO
 mZ
 Lr
 eV
@@ -9613,11 +9675,11 @@ QY
 QY
 Wh
 lN
-nO
-mZ
-mZ
-mZ
-tZ
+ok
+Zd
+Sv
+Xn
+rV
 jM
 iu
 nO
@@ -9735,11 +9797,11 @@ MM
 MM
 sG
 RZ
+ok
+Sv
+sI
+Sv
 nO
-mZ
-tZ
-mZ
-mZ
 mZ
 mZ
 nO
@@ -9857,10 +9919,10 @@ Gj
 Gj
 Gj
 Gt
-nO
-mZ
+ok
+Ll
 gU
-mZ
+Sv
 mZ
 tZ
 mZ
@@ -9979,10 +10041,10 @@ IF
 Gj
 Gj
 Zt
-nO
-mZ
-tZ
-tZ
+ok
+Sv
+sI
+sI
 mZ
 tZ
 mZ
@@ -10061,7 +10123,7 @@ TF
 Yf
 Yf
 Yf
-Jt
+pz
 Cq
 td
 uN
@@ -10101,11 +10163,11 @@ Je
 Gj
 Gj
 Gt
+ok
+OR
+Sv
+sF
 nO
-mZ
-mZ
-mZ
-jx
 mZ
 mZ
 nO
@@ -10224,10 +10286,10 @@ Gj
 Gj
 ow
 nO
-mZ
-mZ
-mZ
-mZ
+nO
+nO
+nO
+nO
 mZ
 mZ
 mZ
@@ -10346,13 +10408,13 @@ VK
 Iq
 rp
 nO
-mZ
+nO
 mZ
 mZ
 Kn
 mZ
 mZ
-mZ
+JT
 mZ
 zN
 MR
@@ -11567,8 +11629,8 @@ Et
 Et
 QZ
 LY
-mZ
-mZ
+LY
+LY
 mZ
 mZ
 mZ
@@ -11687,10 +11749,10 @@ Ii
 Ii
 zR
 AH
+Ii
+vt
+oy
 vQ
-Kn
-mZ
-mZ
 mZ
 mZ
 mZ
@@ -11808,11 +11870,11 @@ qV
 Ku
 ng
 ng
-gS
+ng
+ng
+ng
+vf
 vQ
-mZ
-mZ
-mZ
 mZ
 tZ
 mZ
@@ -11929,12 +11991,12 @@ gS
 QZ
 Jl
 Jx
-JI
-JT
-LY
-mZ
-mZ
-mZ
+qV
+qV
+qV
+CB
+By
+vQ
 mZ
 tZ
 mZ
@@ -12052,11 +12114,11 @@ QZ
 QZ
 QZ
 QZ
-QZ
 LY
-mZ
-mZ
-jx
+LY
+LY
+LY
+LY
 tZ
 mZ
 mZ
@@ -12174,8 +12236,8 @@ Ii
 Jm
 Jy
 JR
-LY
-mZ
+vQ
+JT
 mZ
 mZ
 mZ
@@ -13150,7 +13212,7 @@ nw
 nw
 nw
 nw
-LY
+nw
 mZ
 mZ
 mZ
@@ -13272,7 +13334,7 @@ nw
 nw
 nw
 nw
-LY
+nw
 zN
 zN
 zN

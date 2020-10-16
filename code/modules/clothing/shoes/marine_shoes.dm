@@ -144,42 +144,42 @@
 /obj/item/clothing/shoes/marine/unscmarine
 	name = "UNSC marine combat boots"
 	desc = "Standard issue combat boots for combat scenarios or combat situations."
-	soft_armor = list("melee" = 45, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 10, "rad" = 0, "fire" = 10, "acid" = 25)
+	soft_armor = list("melee" = 50, "bullet" = 55, "laser" = 55, "energy" = 55, "bomb" = 55, "bio" = 10, "rad" = 0, "fire" = 10, "acid" = 25)
 	icon_state = "unsc_marine"
 	item_state = "unsc_marine"
 
 /obj/item/clothing/shoes/marine/urf
 	name = "combat boots (brown)"
 	desc = "A pair of combat boots that provides minor protection. May protect against toe stubs."
-	soft_armor = list("melee" = 45, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 10, "rad" = 0, "fire" = 10, "acid" = 25)
+	soft_armor = list("melee" = 50, "bullet" = 55, "laser" = 55, "energy" = 55, "bomb" = 55, "bio" = 10, "rad" = 0, "fire" = 10, "acid" = 25)
 	icon_state = "urf_brown"
 	item_state = "urf_brown"
 
 /obj/item/clothing/shoes/marine/urf/black
 	name = "combat boots (black)"
 	desc = "A pair of combat boots that provides minor protection. May protect against toe stubs."
-	soft_armor = list("melee" = 45, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 10, "rad" = 0, "fire" = 10, "acid" = 25)
+	soft_armor = list("melee" = 50, "bullet" = 55, "laser" = 55, "energy" = 55, "bomb" = 55, "bio" = 10, "rad" = 0, "fire" = 10, "acid" = 25)
 	icon_state = "urf_black"
 	item_state = "urf_black"
 
 /obj/item/clothing/shoes/marine/urf/green
 	name = "combat boots (green)"
 	desc = "A pair of combat boots that provides minor protection. May protect against toe stubs."
-	soft_armor = list("melee" = 45, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 10, "rad" = 0, "fire" = 10, "acid" = 25)
+	soft_armor = list("melee" = 50, "bullet" = 55, "laser" = 55, "energy" = 55, "bomb" = 55, "bio" = 10, "rad" = 0, "fire" = 10, "acid" = 25)
 	icon_state = "urf_green"
 	item_state = "urf_green"
 
 /obj/item/clothing/shoes/marine/urf/white
 	name = "combat boots (white)"
 	desc = "A pair of combat boots that provides minor protection. May protect against toe stubs."
-	soft_armor = list("melee" = 45, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 10, "rad" = 0, "fire" = 10, "acid" = 25)
+	soft_armor = list("melee" = 50, "bullet" = 55, "laser" = 55, "energy" = 55, "bomb" = 55, "bio" = 10, "rad" = 0, "fire" = 10, "acid" = 25)
 	icon_state = "urf_white"
 	item_state = "urf_white"
 
 /obj/item/clothing/shoes/marine/urf/blue
 	name = "combat boots (blue)"
 	desc = "A pair of combat boots that provides minor protection. May protect against toe stubs.."
-	soft_armor = list("melee" = 48, "bullet" = 53, "laser" = 53, "energy" = 53, "bomb" = 55, "bio" = 10, "rad" = 0, "fire" = 15, "acid" = 25)
+	soft_armor = list("melee" = 53, "bullet" = 58, "laser" = 58, "energy" = 58, "bomb" = 60, "bio" = 10, "rad" = 0, "fire" = 15, "acid" = 25)
 	icon_state = "urf_blue"
 	item_state = "urf_blue"
 

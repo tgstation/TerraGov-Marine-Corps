@@ -197,7 +197,7 @@
 	name = "UNSC Marine chest plate"
 	desc = "Attachable chest plate for use with UNSC Marine armor."
 	icon_state = "marine_chest"
-	soft_armor = list("melee" = 12, "bullet" = 12, "laser" = 12, "energy" = 12, "bomb" = 15, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	soft_armor = list("melee" = 17, "bullet" = 17, "laser" = 17, "energy" = 17, "bomb" = 20, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	slowdown = 0.25
 
 /obj/item/armor_module/armor/arms/unsc
@@ -220,14 +220,14 @@
 	name = "URF Body Armor Plate"
 	desc = "Attachable chest plate for use with armors."
 	icon_state = "urf_armor_black"
-	soft_armor = list("melee" = 12, "bullet" = 12, "laser" = 12, "energy" = 12, "bomb" = 15, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	soft_armor = list("melee" = 17, "bullet" = 17, "laser" = 17, "energy" = 17, "bomb" = 20, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	slowdown = 0.20
 
 /obj/item/armor_module/armor/chest/innie/two
 	name = "URF Body Armor Plate"
 	desc = "Attachable chest plate for use with armors."
 	icon_state = "urf_armor_black_two"
-	soft_armor = list("melee" = 12, "bullet" = 12, "laser" = 12, "energy" = 12, "bomb" = 15, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	soft_armor = list("melee" = 17, "bullet" = 17, "laser" = 17, "energy" = 17, "bomb" = 20, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	slowdown = 0.20
 
 /obj/item/armor_module/armor/arms/innie
