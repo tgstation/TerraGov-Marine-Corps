@@ -1573,12 +1573,15 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 
 /obj/effect/essentials_set/modular/haloinnie/armorPieces
 	spawned_gear_list = list(
+						/obj/item/armor_module/armor/chest/innie,
+						/obj/item/armor_module/armor/chest/innie/two,
 						/obj/item/armor_module/armor/arms/innie,
 						/obj/item/armor_module/armor/legs/innie)
 
 /obj/effect/essentials_set/modular/haloinnie/armorPieces/heavy
 	spawned_gear_list = list(
 						/obj/item/armor_module/armor/chest/innie,
+						/obj/item/armor_module/armor/chest/innie/two,
 						/obj/item/armor_module/armor/arms/innie/heavy,
 						/obj/item/armor_module/armor/legs/innie/heavy)
 
