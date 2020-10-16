@@ -39,6 +39,93 @@
 
 	return succeed_activate()
 
+/datum/action/xeno_action/activable/headbite
+	name = "Headbite"
+	action_icon_state = "headbite"
+	mechanics_text = "Permanently kill a target."
+	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED
+	keybind_signal = COMSIG_XENOABILITY_HEADBITE
+	plasma_cost = 100
+
+/datum/action/xeno_action/activable/headbite/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	var/mob/living/carbon/victim = A
+	if(!.)
+		return FALSE
+	if(!owner.Adjacent(A))
+		return FALSE
+	if(locate(/obj/item/alien_embryo) in victim) //Maybe they ate it??
+		var/mob/living/carbon/human/H = victim
+		if(CHECK_BITFIELD(H.status_flags, XENO_HOST))
+			if(victim.stat != DEAD) //Not dead yet.
+				if(!silent)
+					to_chat(owner, "<span class='xenowarning'>The host and child are still alive!</span>")
+				return FALSE
+	if(owner.issamexenohive(victim))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>We can't bring ourselves to harm a fellow sister to this magnitude.</span>")
+		return FALSE
+
+/datum/action/xeno_action/activable/headbite/use_ability(atom/A)
+	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/L = A
+	X.face_atom(L) //Face towards the target so we don't look silly
+
+	GLOB.round_statistics.xeno_headbites++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_headbites")
+
+	var/mob/living/carbon/victim = A
+
+	succeed_activate()
+
+	X.visible_message("<span class='xenowarning'>\The [X] begins slowly lifting \the [victim] into the air.</span>", \
+	"<span class='danger'>We begin focusing our anger as we slowly lift \the [victim] into the air!</span>", null, 20)
+
+	if(!do_after(src, 5 SECONDS, FALSE, victim, BUSY_ICON_DANGER))
+		to_chat(src, "<span class='warning'>You put down \the [victim]. It wasn't worth your time.</span>")
+		return NONE
+
+	X.visible_message("<span class=\The [X] viciously bites into \the [victim]'s head with its inner jaw!</span>", \
+	"<span class='warning'>We suddenly bite into the \the [victim]'s head with our second jaw!</span>", null, 20)
+
+
+	X.visible_message("<span class='xenowarning'>\The [X] begins slowly lifting \the [victim] into the air.</span>", \
+	"<span class='xenowarning'>We begin focusing our anger as we slowly lift \the [victim] into the air.</span>")
+	if(!do_mob(X, victim, 80, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
+		return fail_activate()
+	if(!can_use_ability(victim,TRUE,XACT_IGNORE_PLASMA))
+		return fail_activate()
+	if(victim.loc != X.loc)
+		return fail_activate()
+	X.visible_message("<span class='xenodanger'>\The [X] viciously bites into \the [victim]'s head with its inner jaw!</span>", \
+	"<span class='xenodanger'>We suddenly bite into the \the [victim]'s head with our second jaw!</span>")
+	X.emote("roar")
+
+
+	if(ishuman(victim))
+		var/mob/living/carbon/human/H = victim
+		var/datum/internal_organ/O
+		for(var/i in list("brain")) //This removes (and later garbage collects) the organ. No brain means instant death.
+			O = H.internal_organs_by_name[i]
+			H.internal_organs_by_name -= i
+			H.internal_organs -= O
+
+	victim.headbite = 1
+	victim.update_headbite()
+
+	log_combat(src, null, "was headbitten.")
+	log_game("[key_name(victim)] was headbitten at [AREACOORD(victim.loc)].")
+
+	GLOB.round_statistics.xeno_headbites++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_headbites")
+
+	victim.death()
+
+/mob/living/carbon/human/emote_burstscream()
+	if(species.species_flags & NO_PAIN)
+		return
+	emote("burstscream")
+
 // ***************************************
 // *********** Drone-y abilities
 // ***************************************

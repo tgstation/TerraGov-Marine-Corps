@@ -378,6 +378,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	update_burst()
 	UpdateDamageIcon()
 	update_transform()
+	update_headbite()
 
 
 /* --------------------------------------- */
@@ -881,6 +882,15 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 		standing = image("icon" = 'icons/Xeno/Effects.dmi',"icon_state" = "burst_stand", "layer" =-BURST_LAYER)
 	else if(chestburst == 2)
 		standing = image("icon" = 'icons/Xeno/Effects.dmi',"icon_state" = "bursted_stand", "layer" =-BURST_LAYER)
+
+	overlays_standing[BURST_LAYER]	= standing
+	apply_overlay(BURST_LAYER)
+
+/mob/living/carbon/human/update_headbite()
+	remove_overlay(BURST_LAYER)
+	var/image/standing
+	if(headbite == 1)
+		standing = image("icon" = 'icons/Xeno/Effects.dmi',"icon_state" = "headbite_stand", "layer" =-BURST_LAYER)
 
 	overlays_standing[BURST_LAYER]	= standing
 	apply_overlay(BURST_LAYER)

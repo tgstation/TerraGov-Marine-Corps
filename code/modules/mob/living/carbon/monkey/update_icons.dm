@@ -33,6 +33,7 @@
 	update_fire()
 	update_burst()
 	update_transform()
+	update_headbite()
 
 ////////
 /mob/living/carbon/monkey/update_inv_wear_mask()
@@ -109,7 +110,15 @@
 	overlays_standing[M_BURST_LAYER]	= standing
 	apply_overlay(M_BURST_LAYER)
 
+/mob/living/carbon/monkey/update_headbite()
+	remove_overlay(M_BURST_LAYER)
+	var/image/standing = null
 
+	if(headbite == 1)
+		standing = image("icon" = 'icons/Xeno/Effects.dmi',"icon_state" = "headbite_stand", "layer" =-M_BURST_LAYER)
+
+	overlays_standing[M_BURST_LAYER]	= standing
+	apply_overlay(M_BURST_LAYER)
 
 //Monkey Overlays Indexes////////
 #undef M_MASK_LAYER

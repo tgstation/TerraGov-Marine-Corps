@@ -109,7 +109,7 @@
 /mob/living/carbon/human/proc/is_revivable()
 	var/datum/internal_organ/heart/heart = internal_organs_by_name["heart"]
 
-	if(!heart || heart.is_broken() || !has_brain() || chestburst)
+	if(!heart || heart.is_broken() || !has_brain() || chestburst || headbite)
 		return FALSE
 	return TRUE
 

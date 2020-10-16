@@ -306,6 +306,8 @@
 
 #define COMSIG_XENOMORPH_POUNCE "xenomorph_pounce"
 
+#define COMSIG_XENOMORPH_HEADBITE "headbite"
+
 #define COMSIG_XENOMORPH_GIBBING "xenomorph_gibbing"
 #define COMSIG_XENOMORPH_POSTEVOLVING "xenomorph_evolving"
 #define COMSIG_XENOMORPH_ABILITY_ON_UPGRADE "xenomorph_ability_on_upgrade"
@@ -403,6 +405,7 @@
 
 // xeno abilities for keybindings
 
+#define COMSIG_XENOABILITY_HEADBITE "xenoability_headbite"
 #define COMSIG_XENOABILITY_REGURGITATE "xenoability_regurgitate"
 #define COMSIG_XENOABILITY_DROP_WEEDS "xenoability_drop_weeds"
 #define COMSIG_XENOABILITY_CHOOSE_RESIN "xenoability_choose_resin"
