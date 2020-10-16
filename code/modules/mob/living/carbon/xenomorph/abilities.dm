@@ -167,7 +167,7 @@
 		return fail_activate()
 
 	var/obj/machinery/door/poddoor/timed_late/containment/shutter = locate(/obj/machinery/door/poddoor/timed_late/containment) in range(8, owner.loc)
-	if(!shutter?.density)
+	if(shutter?.density)
 		to_chat(owner,"<span class='xenonotice'>You cannot build so close to the strange material.</span>")
 		return fail_activate()
 
