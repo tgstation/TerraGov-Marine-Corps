@@ -537,3 +537,33 @@
 	A.update_hud(user)
 
 	return TRUE
+
+
+
+//Halo//
+
+/obj/item/weapon/gun/energy/halo/
+
+/obj/item/weapon/gun/energy/halo/plasmapistol
+	name = "Plasma Pistol"
+	desc = "A plasma pistol. Uses covenant energy cells."
+	icon_state = "Plasma Pistol"
+	item_state = "Plasma Pistol"
+	reload_sound = 'sound/weapons/guns/interact/rifle_reload.ogg'
+	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
+	load_method = CELL //codex
+	ammo = /datum/ammo/energy/lasgun
+	flags_equip_slot = ITEM_SLOT_BELT
+	muzzleflash_iconstate = "muzzle_green"
+	w_class = WEIGHT_CLASS_BULKY
+	force = 10
+	overcharge = FALSE
+	flags_gun_features = GUN_CAN_POINTBLANK|GUN_ENERGY|GUN_AMMO_COUNTER
+	wield_delay = 0.3 SECONDS
+	gun_skill_category = GUN_SKILL_PISTOLS
+
+	fire_delay = 0.25
+	accuracy_mult = 1.5
+	accuracy_mult_unwielded = 0.6
+	scatter_unwielded = 2
+	damage_falloff_mult = 0.5

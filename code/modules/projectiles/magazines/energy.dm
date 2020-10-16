@@ -84,3 +84,19 @@
 /obj/item/cell/lasgun/lasrifle/update_icon()
 	var/remaining = CEILING((charge / max(maxcharge, 1)) * 100, 25)
 	icon_state = "[base_ammo_icon]_[remaining]"
+
+
+//Halo//
+
+/obj/item/cell/covenant
+	name = "Covenant Battery"
+	desc = "A specialized high density battery used to power Covenant weaponry."
+	icon = 'icons/obj/items/ammo.dmi'
+	icon_state = "m43"
+	maxcharge = 1000
+	w_class = WEIGHT_CLASS_NORMAL
+	var/base_ammo_icon = "m43"
+	var/gun_type = /obj/item/weapon/gun/energy/lasgun
+	var/reload_delay = 0
+
+

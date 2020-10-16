@@ -978,7 +978,7 @@
 	count_human = TRUE //idk if this is needed
 
 	eyes = "blank_eyes"
-	blood_color = "#82B9D9"
+	blood_color = "#40f5ef"
 	flesh_color = "#4A3859"
 	icon_template = 'icons/halo/mob/r_unggoy.dmi'
 
