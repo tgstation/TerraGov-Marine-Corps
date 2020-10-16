@@ -633,13 +633,13 @@
 /datum/reagent/toxin/xeno_praelyx/on_mob_life(mob/living/L, metabolism)
 	if(prob(6) && current_cycle > 7)
 		to_chat(L, "<span class='warning'>You feel a creeping sensation of your veins stretching.</span>")
-	if(src.volume > 10 && current_cycle > 10)
+	if(src.volume >= 10 && current_cycle > 10)
 		RegisterSignal(L, COMSIG_HIVE_XENO_RECURRING_INJECTION, .proc/xeno_praelyx_trigger)
-		src.custom_metabolism = 10
-	return
+	return..()
 
 /datum/reagent/toxin/xeno_praelyx/proc/xeno_praelyx_trigger(mob/living/L, affecting)
-	sleep(80)
 	to_chat(L, "<span class='warning'>Your [affecting] bursts!</span>")
-	L.apply_damage(damage = 16, damagetype = BRUTE, def_zone = affecting, sharp = TRUE)
-	return
+	src.custom_metabolism = 10
+	sleep(10)
+	L.apply_damage(damage = 25, damagetype = BRUTE, def_zone = affecting, sharp = TRUE)
+	return..()
