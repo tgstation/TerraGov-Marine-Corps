@@ -89,6 +89,7 @@
 
 ///Called by the deletion of the referenced powercell.
 /obj/item/defibrillator/proc/on_cell_deletion(obj/item/cell/source, force)
+	SIGNAL_HANDLER
 	stack_trace("Powercell deleted while powering the defib, this isn't supposed to happen normally.")
 	set_dcell(null)
 

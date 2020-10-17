@@ -146,6 +146,7 @@
 
 
 /datum/action/xeno_action/activable/bombard/proc/on_ranged_attack(mob/living/carbon/xenomorph/X, atom/A, params)
+	SIGNAL_HANDLER_DOES_SLEEP
 	if(can_use_ability(A))
 		use_ability(A)
 

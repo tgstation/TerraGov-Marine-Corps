@@ -514,6 +514,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 //Distress headsets.
 /obj/item/radio/headset/distress
 	name = "operative headset"
+	freerange = TRUE
 	frequency = FREQ_COMMON
 
 

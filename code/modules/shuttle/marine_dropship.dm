@@ -234,6 +234,7 @@
 			addtimer(CALLBACK(src, .proc/request_to, S), 15 SECONDS)
 
 /obj/docking_port/mobile/marine_dropship/proc/start_hijack_timer(datum/source, new_mode)
+	SIGNAL_HANDLER
 	if(new_mode != SHUTTLE_RECHARGING)
 		return
 	UnregisterSignal(src, COMSIG_SHUTTLE_SETMODE)

@@ -239,6 +239,7 @@
 
 
 /obj/effect/detector_blip/proc/on_movement(datum/source, atom/oldloc, direction, Forced)
+	SIGNAL_HANDLER
 	var/mob/user = source
 	if(!user.client || user.z != oldloc.z)
 		remove_blip(user)

@@ -26152,7 +26152,6 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "bFh" = (
-/obj/structure/ship_rail_gun,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 6
 	},
@@ -28056,10 +28055,6 @@
 	dir = 6
 	},
 /area/mainship/engineering/lower_engineering)
-"bMZ" = (
-/obj/structure/orbital_cannon,
-/turf/open/floor/mainship/mono,
-/area/mainship/shipboard/weapon_room)
 "bNa" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
@@ -34557,6 +34552,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
+/obj/structure/orbital_cannon,
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/weapon_room)
 "cjG" = (
@@ -38121,6 +38117,10 @@
 	},
 /turf/open/floor/stairs/rampbottom,
 /area/mainship/living/briefing)
+"vzu" = (
+/obj/structure/ship_rail_gun,
+/turf/open/floor/mainship/tcomms,
+/area/mainship/shipboard/weapon_room)
 "vAb" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/decal/warning_stripes/thin{
@@ -45218,7 +45218,7 @@ bmo
 bnY
 bqa
 bqa
-bqa
+vzu
 bFh
 bwS
 mGX
@@ -45232,7 +45232,7 @@ bqa
 bqa
 bqa
 cjF
-bMZ
+byF
 blp
 bOZ
 bjx

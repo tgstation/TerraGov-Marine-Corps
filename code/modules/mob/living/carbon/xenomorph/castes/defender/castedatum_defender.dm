@@ -43,7 +43,8 @@
 
 	// *** Defender Abilities *** //
 	crest_defense_armor = 22
-	fortify_armor = 52
+	crest_defense_slowdown = 0.8
+	fortify_armor = 50
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
@@ -86,7 +87,8 @@
 
 	// *** Defender Abilities *** //
 	crest_defense_armor = 26
-	fortify_armor = 61
+	crest_defense_slowdown = 0.8
+	fortify_armor = 52
 
 /datum/xeno_caste/defender/elder
 	upgrade_name = "Elder"
@@ -117,13 +119,14 @@
 
 	// *** Defender Abilities *** //
 	crest_defense_armor = 30
-	fortify_armor = 68
+	crest_defense_slowdown = 0.8
+	fortify_armor = 55
 
 /datum/xeno_caste/defender/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "An alien with a heavily armored head crest. It looks like it could stop bullets!"
 	upgrade = XENO_UPGRADE_THREE
-	ancient_message = "We are a incredibly resilient, we can control the battle through sheer force."
+	ancient_message = "We are incredibly resilient, we can control the battle through sheer force."
 
 	// *** Melee Attacks *** //
 	melee_damage = 21
@@ -149,4 +152,5 @@
 
 	// *** Defender Abilities *** //
 	crest_defense_armor = 30
+	crest_defense_slowdown = 0.8
 	fortify_armor = 50
