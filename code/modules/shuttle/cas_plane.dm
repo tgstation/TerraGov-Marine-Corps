@@ -103,7 +103,7 @@
 
 
 /obj/structure/caspart/caschair/resisted_against(datum/source)
-	if(owner.state == PLANE_STATE_PREPARED || owner.state == PLANE_STATE_FLYING || owner.mode == SHUTTLE_IGNITING)
+	if((owner.state == PLANE_STATE_PREPARED || owner.state == PLANE_STATE_FLYING) && owner.mode != SHUTTLE_IDLE)
 		ui_interact(occupant)
 		return
 	INVOKE_ASYNC(src, .proc/eject_user)
@@ -142,8 +142,8 @@
 
 	callTime = 0
 	ignitionTime = 10 SECONDS
-	rechargeTime = 2 MINUTES
-	prearrivalTime = 12 SECONDS
+	rechargeTime = 0
+	prearrivalTime = 10 SECONDS
 
 	///What state our plane is in, i.e can we launch/do we have to deploy stairs etc
 	var/state = PLANE_STATE_DEACTIVATED
