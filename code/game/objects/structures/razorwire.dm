@@ -119,6 +119,22 @@
 /obj/structure/razorwire/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
+	if(istype(I, /obj/item/stack/sheet/metal))
+		var/obj/item/stack/sheet/metal/metal_sheets = I
+
+		visible_message("<span class='notice'>[user] begins to repair  \the [src].</span>")
+
+		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
+			return
+
+		if(!metal_sheets.use(1))
+			return
+
+		repair_damage(max_integrity * 0.30)
+		visible_message("<span class='notice'>[user] repairs \the [src].</span>")
+		update_icon()
+		return
+
 	if(!istype(I, /obj/item/grab))
 		return
 	if(isxeno(user))//I am very tempted to remove this >:)
@@ -163,33 +179,8 @@
 	deconstruct(TRUE)
 	return TRUE
 
-/obj/structure/razorwire/welder_act(mob/living/user, obj/item/I)
-	var/obj/item/tool/weldingtool/WT = I
-	if(!WT.remove_fuel(0, user))
-		return TRUE
-
-	if(obj_integrity >= max_integrity)
-		to_chat(user, "<span class='notice'>[src] is already fully intact.</span>")
-		return TRUE
-
-	var/delay = SKILL_TASK_TOUGH - (1 SECONDS + user.skills.getRating("engineer") * 5)
-	user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
-	"<span class='notice'>You begin repairing the damage to [src].</span>")
-	playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-	var/old_loc = loc
-	if(!do_after(user, delay, TRUE, src, BUSY_ICON_FRIENDLY) || old_loc != loc)
-		return TRUE
-
-	user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
-	"<span class='notice'>You repair [src].</span>")
-	repair_damage(100)
-	update_icon()
-	playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-	return TRUE
-
-
 /obj/structure/razorwire/attack_alien(mob/living/carbon/xenomorph/M)
-	M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_LOW, RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MAX_DAMAGE_MULT_LOW)) //About a third as damaging as actually entering
+	M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MAX_DAMAGE_MULT_LOW, RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED)) //About a third as damaging as actually entering
 	UPDATEHEALTH(M)
 	update_icon()
 	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_RAZORWIRE)

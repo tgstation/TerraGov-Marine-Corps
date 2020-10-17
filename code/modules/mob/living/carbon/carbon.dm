@@ -59,8 +59,9 @@
 			"<span class='danger'>You feel a powerful shock course through your body!</span>", \
 			"<span class='warning'> You hear a heavy electrical crack.</span>" \
 		)
-		if(isxeno(src) && mob_size == MOB_SIZE_BIG)
-			Paralyze(4 SECONDS)
+		if(isxeno(src))
+			if(mob_size != MOB_SIZE_BIG)
+				Paralyze(4 SECONDS)
 		else
 			Paralyze(8 SECONDS)
 	else
