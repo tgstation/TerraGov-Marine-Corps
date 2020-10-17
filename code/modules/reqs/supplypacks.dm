@@ -387,11 +387,6 @@ ATTACHMENTS
 	cost = 1
 
 /datum/supply_packs/attachments/stock_smg
-	name = "submachinegun stock attachment crate"
-	contains = list(/obj/item/attachable/stock/smg)
-	cost = 1
-
-/datum/supply_packs/attachments/stock_smg
 	name = "combat shotgun stock attachment crate"
 	contains = list(/obj/item/attachable/stock/tactical)
 	cost = 1
@@ -1238,6 +1233,16 @@ Imports
 /datum/supply_packs/imports/mp7/ammo
 	name = "MP7 SMG Ammo"
 	contains = list(/obj/item/ammo_magazine/smg/mp7)
+	cost = 5
+
+/datum/supply_packs/imports/m25
+	name = "MR-25 SMG"
+	contains = list(/obj/item/weapon/gun/smg/m25)
+	cost = 15
+
+/datum/supply_packs/imports/m25/ammo
+	name = "MR-25 SMG Ammo"
+	contains = list(/obj/item/ammo_magazine/smg/m25)
 	cost = 5
 
 /datum/supply_packs/imports/skorpion

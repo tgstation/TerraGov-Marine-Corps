@@ -604,8 +604,8 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/big_ammo_box/smg
 	name = "big ammo box (10x20mm)"
 	caliber = "10x20mm"
-	icon_state = "big_ammo_box_m39"
-	base_icon_state = "big_ammo_box_m39"
+	icon_state = "big_ammo_box_m25"
+	base_icon_state = "big_ammo_box_m25"
 	default_ammo = /datum/ammo/bullet/smg
 
 
@@ -623,7 +623,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 /obj/item/ammobox/standard_smg
 	name = "T-90 SMG Ammo Box"
-	icon_state = "ammoboxm39"
+	icon_state = "ammoboxm25"
 	ammo_type = /datum/ammo/bullet/smg
 	magazine_type = /obj/item/ammo_magazine/smg/standard_smg
 
@@ -647,21 +647,21 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 /obj/item/ammobox/standard_lmg
 	name = "T-42 LMG Ammo Box"
-	icon_state = "ammoboxm39ext"
+	icon_state = "ammoboxm25ext"
 	ammo_type = /datum/ammo/bullet/rifle
 	magazine_type = /obj/item/ammo_magazine/standard_lmg
 
-/obj/item/ammobox/m39ap
-	name = "M39 AP Ammo Box"
-	icon_state = "ammoboxm39ap"
+/obj/item/ammobox/m25ap
+	name = "M25 AP Ammo Box"
+	icon_state = "ammoboxm25ap"
 	ammo_type = /datum/ammo/bullet/smg/ap
-	magazine_type = /obj/item/ammo_magazine/smg/m39/ap
+	magazine_type = /obj/item/ammo_magazine/smg/m25/ap
 
-/obj/item/ammobox/m39ext
-	name = "M39 Extended Ammo Box"
-	icon_state = "ammoboxm39ext"
+/obj/item/ammobox/m25ext
+	name = "M25 Extended Ammo Box"
+	icon_state = "ammoboxm25ext"
 	ammo_type = /datum/ammo/bullet/smg
-	magazine_type = /obj/item/ammo_magazine/smg/m39/extended
+	magazine_type = /obj/item/ammo_magazine/smg/m25/extended
 
 
 /obj/item/shotgunbox/buckshot
