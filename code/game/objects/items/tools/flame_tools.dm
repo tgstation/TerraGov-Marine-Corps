@@ -102,7 +102,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	light_power = 0.6
 	light_color = LIGHT_COLOR_FIRE
 	light_on = FALSE
-	var/burnt = 0
+	var/burnt = FALSE
 	var/smoketime = 5
 	w_class = WEIGHT_CLASS_TINY
 	attack_verb = list("burnt", "singed")
@@ -118,7 +118,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/tool/match/Destroy()
 	if(heat)
 		STOP_PROCESSING(SSobj, src)
-	. = ..()
+	return ..()
 
 /obj/item/tool/match/dropped(mob/user)
 	if(heat)
@@ -126,7 +126,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	return ..()
 
 /obj/item/tool/match/proc/light_match()
-	if(heat) return
+	if(heat)
+		return
 	heat = 1000
 	damtype = "burn"
 	icon_state = "match_lit"
@@ -137,11 +138,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/tool/match/proc/burn_out(mob/user)
 	heat = 0
-	burnt = 1
+	burnt = TRUE
 	damtype = "brute"
 	icon_state = "match_burnt"
 	item_state = "cigoff"
-	set_light(0)
+	set_light_on(FALSE)
 	name = "burnt match"
 	desc = "A match. This one has seen better days."
 	STOP_PROCESSING(SSobj, src)

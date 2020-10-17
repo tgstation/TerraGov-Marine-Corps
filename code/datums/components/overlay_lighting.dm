@@ -85,9 +85,9 @@
 	RegisterSignal(parent, COMSIG_ATOM_SET_LIGHT_COLOR, .proc/set_color)
 	RegisterSignal(parent, COMSIG_ATOM_SET_LIGHT_ON, .proc/on_toggle)
 	var/atom/movable/movable_parent = parent
-	check_holder()
 	if(movable_parent.light_on)
 		turn_on()
+	INVOKE_NEXT_TICK(src, .proc/check_holder)
 
 
 /datum/component/overlay_lighting/UnregisterFromParent()
