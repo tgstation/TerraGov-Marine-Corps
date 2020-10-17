@@ -96,12 +96,8 @@
 	var/mob/living/carbon/xenomorph/hivemind/hiveminde = owner
 	if(hiveminde)
 		if(!locate(/obj/effect/alien/weeds) in range(1, hiveminde.loc))
-			var/obj/effect/alien/weeds/nearbies = locate() in range(7, hiveminde.loc)
-			if(nearbies)
-				hiveminde.forceMove(get_turf(nearbies))
-			else
-				hiveminde.forceMove(get_turf(hiveminde.core))
-			to_chat(hiveminde, "<span class='xenonotice'>you can't place weeds with no weeds nearby, you got moved to [nearbies ? "the closest weed" : "your core"].</span>")
+			hiveminde.forceMove(get_turf(hiveminde.core))
+			to_chat(hiveminde, "<span class='xenonotice'>We can't place weeds with no weeds nearby, we got moved to our core.</span>")
 			return
  	return ..()
  

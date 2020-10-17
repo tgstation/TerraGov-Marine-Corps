@@ -48,14 +48,8 @@
 /mob/living/carbon/xenomorph/hivemind/Move(NewLoc, Dir = 0)
 	var/obj/effect/alien/weeds/W = locate() in range(1, NewLoc)
 	if(!W)
-		var/obj/effect/alien/weeds/nearby = locate() in range(1, loc)
-		if(!nearby)
-			var/obj/effect/alien/weeds/nearbiest = locate() in  range(7, loc)
-			if(nearbiest) 	// If we run out of weeds just teleport to some random weeds that aint so far away
-				forceMove(get_turf(nearbiest))
-			else
-				forceMove(get_turf(core))
-			to_chat(src, "<span class='xenonotice'>You had no weeds nearby, you got moved to [nearbiest ? "the closest weed" : "your core"].")
+		forceMove(get_turf(core))
+		to_chat(src, "<span class='xenonotice'>We had no weeds nearby, we got moved to our core.")
 		return FALSE
 
 	// Don't allow them over the timed_late doors
