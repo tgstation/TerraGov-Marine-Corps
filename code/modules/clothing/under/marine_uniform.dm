@@ -1,6 +1,4 @@
-
-//=========================//MARINES\\===================================
-
+/*********MARINES***********/
 
 
 /obj/item/clothing/under/marine
@@ -152,10 +150,10 @@
 	icon_state = "marine_whites" //with thanks to Manezinho
 	rollable_sleeves = FALSE
 
-//=========================//RESPONDERS\\================================
+/*=========================RESPONDERS================================*/
 
 
-//=========================//Imperium\\==================================\\
+/*=========================Imperium=================================*/
 
 /obj/item/clothing/under/marine/imperial
 	name = "\improper Imperial uniform"
@@ -234,7 +232,7 @@
 /obj/item/clothing/under/marine/veteran/dutch/ranger
 	icon_state = "dutch_jumpsuit2"
 
-//===========================//HELGHAST - MERCENARY\\================================
+/*===========================HELGHAST - MERCENARY================================*/
 
 /obj/item/clothing/under/marine/veteran/mercenary
 	name = "mercenary fatigues"

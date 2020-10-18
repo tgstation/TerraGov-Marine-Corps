@@ -80,6 +80,15 @@ OPERATIONS
 	contains = list(/obj/item/bodybag/tarp)
 	cost = 6
 
+/datum/supply_packs/operations/deployablecams
+	name = "3 Deployable Cameras"
+	contains = list(
+		/obj/item/deployable_camera,
+		/obj/item/deployable_camera,
+		/obj/item/deployable_camera,
+	)
+	cost = 6
+
 /datum/supply_packs/operations/exportpad
 	name = "ASRS Bluespace Export Point"
 	contains = list(/obj/machinery/exportpad)
@@ -175,6 +184,12 @@ WEAPONS
 	)
 	cost = 60
 
+/datum/supply_packs/weapons/recoillesskit
+	name = "Recoilless rifle kit"
+	contains = list(/obj/item/storage/box/recoilless_system)
+	cost = 40
+
+
 /datum/supply_packs/weapons/specgrenadier
 	name = "Grenadier Specialist kit"
 	contains = list(/obj/item/weapon/gun/launcher/m92)
@@ -192,7 +207,7 @@ WEAPONS
 
 /datum/supply_packs/weapons/specdemo
 	name = "Demolitionist Specialist kit"
-	contains = list(/obj/item/weapon/gun/launcher/rocket)
+	contains = list(/obj/item/weapon/gun/launcher/rocket/sadar)
 	cost = 90
 
 /datum/supply_packs/weapons/autosniper
@@ -207,7 +222,7 @@ WEAPONS
 /datum/supply_packs/weapons/specminigun
 	name = "MIC-A7 Vindicator Minigun"
 	contains = list(/obj/item/weapon/gun/minigun)
-	cost = 60
+	cost = 80
 
 /datum/supply_packs/weapons/smartgun
 	name = "T-29 Smart Machinegun"
@@ -372,11 +387,6 @@ ATTACHMENTS
 	cost = 1
 
 /datum/supply_packs/attachments/stock_smg
-	name = "submachinegun stock attachment crate"
-	contains = list(/obj/item/attachable/stock/smg)
-	cost = 1
-
-/datum/supply_packs/attachments/stock_smg
 	name = "combat shotgun stock attachment crate"
 	contains = list(/obj/item/attachable/stock/tactical)
 	cost = 1
@@ -499,18 +509,28 @@ AMMO
 
 /datum/supply_packs/ammo/rpg_regular
 	name = "T-152 RPG HE rocket"
-	contains = list(/obj/item/ammo_magazine/rocket)
+	contains = list(/obj/item/ammo_magazine/rocket/sadar)
 	cost = 7
 
 /datum/supply_packs/ammo/rpg_ap
 	name = "T-152 RPG AP rocket"
-	contains = list(/obj/item/ammo_magazine/rocket/ap)
+	contains = list(/obj/item/ammo_magazine/rocket/sadar/ap)
 	cost = 7
 
 /datum/supply_packs/ammo/rpg_wp
 	name = "T-152 RPG WP rocket"
-	contains = list(/obj/item/ammo_magazine/rocket/wp)
+	contains = list(/obj/item/ammo_magazine/rocket/sadar/wp)
 	cost = 7
+
+/datum/supply_packs/ammo/shell_regular
+	name = "T-160 RR HE shell"
+	contains = list(/obj/item/ammo_magazine/rocket/recoilless)
+	cost = 3
+
+/datum/supply_packs/ammo/shell_le
+	name = "T-160 RR LE shell"
+	contains = list(/obj/item/ammo_magazine/rocket/recoilless/light)
+	cost = 3
 
 /datum/supply_packs/ammo/smartmachinegun
 	name = "T-29 smartmachinegun ammo"
@@ -832,9 +852,8 @@ CLOTHING
 /datum/supply_packs/clothing/pouches_general
 	name = "general pouches"
 	contains = list(
-		/obj/item/storage/pouch/general,
-		/obj/item/storage/pouch/general,
-		/obj/item/storage/pouch/general/medium,
+		/obj/item/storage/pouch/general/large,
+		/obj/item/storage/pouch/general/large,
 		/obj/item/storage/pouch/general/large,
 	)
 	cost = 5
@@ -851,9 +870,9 @@ CLOTHING
 /datum/supply_packs/clothing/pouches_ammo
 	name = "ammo pouches"
 	contains = list(
-		/obj/item/storage/pouch/magazine,
 		/obj/item/storage/pouch/magazine/large,
-		/obj/item/storage/pouch/magazine/pistol,
+		/obj/item/storage/pouch/magazine/large,
+		/obj/item/storage/pouch/magazine/pistol/large,
 		/obj/item/storage/pouch/magazine/pistol/large,
 	)
 	cost = 5
@@ -1166,24 +1185,24 @@ Imports
 	contains = list(/obj/item/ammo_magazine/rifle/m41a)
 	cost = 5
 
-/datum/supply_packs/imports/m41a1
-	name = "M41A1 Pulse Rifle"
-	contains = list(/obj/item/weapon/gun/rifle/m41a1)
+/datum/supply_packs/imports/m412
+	name = "M412 Pulse Rifle"
+	contains = list(/obj/item/weapon/gun/rifle/m412)
 	cost = 15
 
-/datum/supply_packs/imports/m41a1/ammo
-	name = "M41A1 Pulse Rifle Ammo"
+/datum/supply_packs/imports/m41a2/ammo
+	name = "M412 Pulse Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle)
 	cost = 5
 
-/datum/supply_packs/imports/m41ae2
-	name = "M41AE2 Heavy Pulse Rifle"
-	contains = list(/obj/item/weapon/gun/rifle/m41ae2_hpr)
+/datum/supply_packs/imports/m412l1
+	name = "M412L1 Heavy Pulse Rifle"
+	contains = list(/obj/item/weapon/gun/rifle/m412l1_hpr)
 	cost = 15
 
-/datum/supply_packs/imports/m41ae2/ammo
-	name = "M41AE2 Heavy Pulse Rifle Ammo"
-	contains = list(/obj/item/ammo_magazine/m41ae2_hpr)
+/datum/supply_packs/imports/m412l1/ammo
+	name = "M412L1 Heavy Pulse Rifle Ammo"
+	contains = list(/obj/item/ammo_magazine/m412l1_hpr)
 	cost = 5
 
 /datum/supply_packs/imports/type71	//Moff gun
@@ -1214,6 +1233,16 @@ Imports
 /datum/supply_packs/imports/mp7/ammo
 	name = "MP7 SMG Ammo"
 	contains = list(/obj/item/ammo_magazine/smg/mp7)
+	cost = 5
+
+/datum/supply_packs/imports/m25
+	name = "MR-25 SMG"
+	contains = list(/obj/item/weapon/gun/smg/m25)
+	cost = 15
+
+/datum/supply_packs/imports/m25/ammo
+	name = "MR-25 SMG Ammo"
+	contains = list(/obj/item/ammo_magazine/smg/m25)
 	cost = 5
 
 /datum/supply_packs/imports/skorpion

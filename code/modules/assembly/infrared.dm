@@ -186,6 +186,7 @@
 
 
 /obj/item/assembly/infra/proc/check_exit(datum/source, atom/movable/offender)
+	SIGNAL_HANDLER_DOES_SLEEP
 	if(QDELETED(src))
 		return
 	if(offender == src || istype(offender,/obj/effect/beam/i_beam))

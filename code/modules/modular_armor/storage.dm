@@ -157,6 +157,7 @@
 		/obj/item/tool/crowbar,
 		/obj/item/tool/screwdriver,
 		/obj/item/multitool,
+		/obj/item/binoculars/tactical/range,
 		)
 	cant_hold = list()
 
@@ -172,6 +173,7 @@
 	storage_slots = 5
 	max_w_class = WEIGHT_CLASS_SMALL
 	can_hold = list(
+		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/reagent_containers/pill,
 		/obj/item/reagent_containers/syringe,

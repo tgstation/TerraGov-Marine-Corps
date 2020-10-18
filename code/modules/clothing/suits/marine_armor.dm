@@ -150,6 +150,13 @@
 	icon_state = "tanker"
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT)
 
+/obj/item/clothing/suit/storage/marine/M3P/tech
+	name = "\improper M3 pattern technician armor"
+	desc = "A modified and refashioned suit of the older M3 Pattern armor designed to be worn by Ship Technicians. It offers more protection against the exotic dangers that Technicians face."
+	icon_state = "tanker"
+	soft_armor = list("melee" = 45, "bullet" = 55, "laser" = 45, "energy" = 45, "bomb" = 60, "bio" = 10, "rad" = 10, "fire" = 40, "acid" = 65)
+
+
 /obj/item/clothing/suit/storage/marine/leader
 	name = "\improper B12 pattern leader armor"
 	desc = "A lightweight suit of carbon fiber body armor built for quick movement. Use it to toggle the built-in flashlight."
@@ -245,9 +252,10 @@
 /obj/item/clothing/suit/storage/marine/pasvest
 	name = "\improper PAS-11 pattern armored vest"
 	desc = "A somewhat outdated but robust armored vest, still in use despite the rise of exoskeleton armor due to ease of use and manufacturing. Tougher than it looks. Use it to toggle the built-in flashlight."
-	icon_state = "marinevest"
+	icon_state = "3"
+	item_state = "armor"
 	soft_armor = list("melee" = 40, "bullet" = 60, "laser" = 60, "energy" = 45, "bomb" = 45, "bio" = 45, "rad" = 45, "fire" = 45, "acid" = 50)
-	slowdown = 0.5 //a bit less 
+	slowdown = 0.5 //a bit less
 	light_strength = 5 //Same as Jaeger Frame
 
 
@@ -320,7 +328,7 @@
 	icon_state = "marine_sniperm"
 
 
-//=============================//PMCS\\==================================
+/*=============================PMCS==================================*/
 
 /obj/item/clothing/suit/storage/marine/veteran
 	flags_armor_features = ARMOR_LAMP_OVERLAY
@@ -378,7 +386,7 @@
 	soft_armor = list("melee" = 90, "bullet" = 120, "laser" = 200, "energy" = 90, "bomb" = 90, "bio" = 100, "rad" = 100, "fire" = 90, "acid" = 90)
 	resistance_flags = UNACIDABLE
 
-//===========================//DISTRESS\\================================
+/*===========================DISTRESS================================*/
 
 /obj/item/clothing/suit/storage/marine/veteran/wolves
 	name = "\improper H1 Steel Wolves vest"
@@ -401,7 +409,7 @@
 	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
 
 
-//===========================//I.o.M\\================================
+/*===========================I.o.M================================*/
 
 /obj/item/clothing/suit/storage/marine/imperial
 	name = "\improper Imperial Guard flak armour"
@@ -462,7 +470,7 @@
 	item_state = "commissar_coat"
 	soft_armor = list("melee" = 75, "bullet" = 60, "laser" = 55, "energy" = 40, "bomb" = 45, "bio" = 15, "rad" = 15, "fire" = 40, "acid" = 40)
 
-//===========================//U.S.L\\================================
+/*===========================U.S.L================================*/
 
 
 /obj/item/clothing/suit/storage/faction
@@ -621,7 +629,7 @@
 	flags_cold_protection = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_heat_protection =CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 
-//===========================//HELGHAST - MERCENARY\\================================
+/*===========================HELGHAST - MERCENARY================================*/
 
 /obj/item/clothing/suit/storage/marine/veteran/mercenary
 	name = "\improper K12 ceramic plated armor"

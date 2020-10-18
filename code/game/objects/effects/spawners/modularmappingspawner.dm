@@ -34,13 +34,23 @@
 	template.load(get_turf(src), centered = template.keepcentered)
 	qdel(src)
 
-//////////////////Types\\\\\\\\\\\\\\\
+/*********Types********/
 
-//////////Prison / Fiona penitentiary\\\\\\
+/*****Prison / Fiona penitentiary****/
 /obj/effect/spawner/modularmap/prison/civressouth
 	mapid = "southcivres"
 	spawner_width = 9
 	spawner_height = 11
+
+/obj/effect/spawner/modularmap/lv624/hydroroad
+	mapid = "hydroroad"
+	spawner_height = 20
+	spawner_width = 20
+
+/obj/effect/spawner/modularmap/lv624/domes
+	mapid = "lvdome"
+	spawner_height = 15
+	spawner_width = 15
 
 /************BIG RED******/
 /obj/effect/spawner/modularmap/bigred/operations //todo decrease y by one
