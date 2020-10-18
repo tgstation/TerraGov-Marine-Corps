@@ -460,7 +460,7 @@
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 1.2 //make this a little more forgiving in light of the lethality
 	scannable = TRUE
-	toxpwr = 0.8
+	toxpwr = 0
 
 
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
