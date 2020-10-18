@@ -30,9 +30,11 @@
 	UnregisterSignal(parent, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED, COMSIG_ITEM_TOGGLE_ACTION, COMSIG_CLOTHING_MECHANICS_INFO))
 
 /datum/component/clothing_tint/proc/mechanics_info()
+	SIGNAL_HANDLER
 	return COMPONENT_CLOTHING_MECHANICS_TINTED
 
 /datum/component/clothing_tint/proc/toggle_tint(datum/source, mob/user)
+	SIGNAL_HANDLER
 	if(!user)
 		return
 	tint_state = !tint_state
@@ -56,9 +58,11 @@
 	mob_tinted = FALSE
 
 /datum/component/clothing_tint/proc/equipped_to_slot(datum/source, mob/user)
+	SIGNAL_HANDLER
 	tinted_mob = user
 	add_tint()
 
 /datum/component/clothing_tint/proc/removed_from_slot(datum/source, mob/user)
+	SIGNAL_HANDLER
 	remove_tint()
 	tinted_mob = null

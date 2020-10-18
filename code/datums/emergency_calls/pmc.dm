@@ -40,7 +40,7 @@
 	if(prob(50))
 		var/datum/job/J = SSjob.GetJobType(/datum/job/pmc/gunner)
 		H.apply_assigned_role_to_spawn(J)
-		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a Nanostrasen heavy gunner assigned to this team to respond to the TGMC distress signal sent out nearby. Be the back guard of your squad!</span></p>")
+		to_chat(H, "<p style='font-size:1.5em'><span class='notice'>You are a Nanotrasen heavy gunner assigned to this team to respond to the TGMC distress signal sent out nearby. Be the back guard of your squad!</span></p>")
 		return
 
 	if(prob(30))

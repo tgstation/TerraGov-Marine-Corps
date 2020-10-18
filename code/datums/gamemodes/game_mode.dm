@@ -324,6 +324,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 
 
 /datum/game_mode/proc/grant_eord_respawn(datum/dcs, mob/source)
+	SIGNAL_HANDLER
 	source.verbs += /mob/proc/eord_respawn
 
 /datum/game_mode/proc/end_of_round_deathmatch()
@@ -623,14 +624,16 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 	to_chat(xeno_candidate, "<span class='warning'>This is unavailable in this gamemode.</span>")
 	return FALSE
 
-/datum/game_mode/proc/transfer_xeno(mob/xeno_candidate, mob/living/carbon/xenomorph/X)
+/datum/game_mode/proc/transfer_xeno(mob/xeno_candidate, mob/living/carbon/xenomorph/X, silent = FALSE)
 	if(QDELETED(X))
 		stack_trace("[xeno_candidate] was put into a qdeleted mob [X]")
 		return
-	message_admins("[key_name(xeno_candidate)] has joined as [ADMIN_TPMONTY(X)].")
+	if(!silent)
+		message_admins("[key_name(xeno_candidate)] has joined as [ADMIN_TPMONTY(X)].")
 	xeno_candidate.mind.transfer_to(X, TRUE)
 	if(X.is_ventcrawling)  //If we are in a vent, fetch a fresh vent map
 		X.add_ventcrawl(X.loc)
+		X.get_up()
 
 
 /datum/game_mode/proc/attempt_to_join_as_xeno(mob/xeno_candidate, instant_join = FALSE)
