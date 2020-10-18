@@ -2,14 +2,17 @@
 "aZ" = (
 /turf/open/space/basic,
 /area/space)
+"bY" = (
+/obj/structure/window/reinforced/toughened{
+	dir = 1
+	},
+/obj/structure/table/mainship,
+/turf/open/floor/mainship/floor,
+/area/space)
 "ca" = (
 /turf/open/floor/mainship/orange{
 	dir = 9
 	},
-/area/space)
-"cS" = (
-/obj/structure/window/reinforced/toughened,
-/turf/open/floor/mainship/floor,
 /area/space)
 "dr" = (
 /turf/open/floor/mainship/blue{
@@ -64,14 +67,15 @@
 "lS" = (
 /turf/open/floor/mainship_hull,
 /area/space)
-"lV" = (
-/obj/structure/table/mainship,
-/turf/open/floor/mainship/floor,
-/area/space)
 "os" = (
 /obj/machinery/alarm{
 	dir = 4
 	},
+/turf/open/floor/mainship/floor,
+/area/space)
+"qG" = (
+/obj/structure/window/reinforced/toughened,
+/obj/structure/table/mainship,
 /turf/open/floor/mainship/floor,
 /area/space)
 "rt" = (
@@ -82,12 +86,6 @@
 /turf/open/floor/mainship_hull/dir{
 	dir = 4
 	},
-/area/space)
-"rI" = (
-/obj/structure/window/reinforced/toughened{
-	dir = 1
-	},
-/turf/open/floor/mainship/floor,
 /area/space)
 "sG" = (
 /obj/structure/window/framed/mainship/hull,
@@ -125,6 +123,10 @@
 	dir = 6
 	},
 /area/space)
+"zW" = (
+/obj/machinery/disposal,
+/turf/open/floor/mainship/floor,
+/area/space)
 "Ai" = (
 /obj/machinery/door/window/secure/southleft/bridge,
 /turf/open/floor/mainship/floor,
@@ -134,6 +136,17 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/floor,
+/area/space)
+"BD" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/secure_data,
+/turf/open/floor/mainship/floor,
+/area/space)
+"Hw" = (
+/obj/machinery/computer/crew,
+/turf/open/floor/mainship/blue{
+	dir = 9
+	},
 /area/space)
 "Ip" = (
 /obj/structure/window/reinforced/toughened,
@@ -168,6 +181,13 @@
 	dir = 1
 	},
 /area/space)
+"Pa" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/security,
+/turf/open/floor/mainship/red{
+	dir = 10
+	},
+/area/space)
 "TB" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -177,10 +197,6 @@
 "TC" = (
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/red,
-/area/space)
-"TF" = (
-/obj/machinery/computer/crew,
-/turf/open/floor/mainship/floor,
 /area/space)
 "VQ" = (
 /obj/structure/prop/mainship/mapping_computer,
@@ -202,21 +218,9 @@
 	dir = 5
 	},
 /area/space)
-"Yi" = (
-/obj/structure/table/mainship,
-/turf/open/floor/mainship/blue{
-	dir = 9
-	},
-/area/space)
 "Zb" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating/mainship,
-/area/space)
-"Ze" = (
-/obj/structure/table/mainship,
-/turf/open/floor/mainship/red{
-	dir = 10
-	},
 /area/space)
 
 (1,1,1) = {"
@@ -41963,7 +41967,7 @@ aZ
 KE
 lS
 tH
-TF
+Wp
 Wp
 rt
 TB
@@ -42220,11 +42224,11 @@ aZ
 KE
 lS
 sG
-jO
 Wp
-rI
+Wp
+bY
 AQ
-cS
+qG
 Wp
 Wp
 Kh
@@ -42477,13 +42481,13 @@ aZ
 KE
 lS
 sG
-lV
+jO
 Wp
 hS
 xx
 Ip
 Wp
-lV
+BD
 Zb
 Wp
 Wp
@@ -42734,13 +42738,13 @@ aZ
 KE
 lS
 sG
-Yi
+Hw
 dr
 Ln
-Wp
+zW
 ca
 JV
-Ze
+Pa
 Zb
 Wp
 Wp
