@@ -23,6 +23,7 @@
 	var/freqlock = FALSE  // Frequency lock to stop the user from untuning specialist radios.
 	var/use_command = FALSE  // If true, broadcasts will be large and BOLD.
 	var/command = FALSE  // If true, use_command can be toggled at will.
+	var/independent = FALSE  // If true, can say/hear over non common channels without working tcomms equipment (for ERTs mostly).
 
 	materials = list(/datum/material/metal = 25, /datum/material/glass = 25)
 
@@ -194,7 +195,14 @@
 	// Construct the signal
 	var/datum/signal/subspace/vocal/signal = new(src, freq, speaker, language, message, spans)
 
-	// All radios make an attempt to use the subspace system first
+	if (independent && freq >= MIN_ERT_FREQ && freq <= MAX_ERT_FREQ)
+		signal.data["compression"] = 0
+		signal.transmission_method = TRANSMISSION_SUPERSPACE
+		signal.levels = list(0)  // reaches all Z-levels
+		signal.broadcast()
+		return
+
+	// All non-independent radios make an attempt to use the subspace system first
 	signal.send_to_receivers()
 
 	// If the radio is subspace-only, that's all it can do
@@ -279,11 +287,15 @@
 
 /obj/item/radio/proc/recalculateChannels()
 	channels = list()
+	independent = FALSE
 
 	if(keyslot)
 		for(var/ch_name in keyslot.channels)
 			if(!(ch_name in channels))
 				channels[ch_name] = keyslot.channels[ch_name]
+
+		if(keyslot.independent)
+			independent = TRUE
 
 	for(var/ch_name in channels)
 		secure_radio_connections[ch_name] = add_radio(src, GLOB.radiochannels[ch_name])

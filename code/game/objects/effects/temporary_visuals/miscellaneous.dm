@@ -3,6 +3,12 @@
 	icon_state = "empdisable"
 	duration = 0.5 SECONDS
 
+/obj/effect/temp_visual/explosion
+	name = "explosion"
+	icon = 'icons/effects/explosion.dmi'
+	icon_state = "grenade"
+	duration = 0.8 SECONDS
+
 //unsorted miscellaneous temporary visuals
 /obj/effect/temp_visual/dir_setting/bloodsplatter
 	icon = 'icons/effects/blood.dmi'

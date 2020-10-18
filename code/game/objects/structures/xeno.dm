@@ -223,7 +223,7 @@
 	hardness = 1.5
 	layer = RESIN_STRUCTURE_LAYER
 	max_integrity = 80
-	var/close_delay = 100
+	var/close_delay = 60 SECONDS
 
 	tiles_with = list(/turf/closed, /obj/structure/mineral_door/resin)
 
@@ -753,6 +753,7 @@ TUNNEL
 	var/datum/effect_system/smoke_spread/xeno/acid/A = new(get_turf(src))
 	A.set_up(clamp(charges,0,2),src)
 	A.start()
+	creator = null
 	return ..()
 
 /obj/effect/alien/resin/acidwell/examine(mob/user)
@@ -803,7 +804,7 @@ TUNNEL
 		charges++
 		ccharging = FALSE
 		update_icon()
-		to_chat(M,"<span class='xenonotice'>You fill up by one [src].</span>")
+		to_chat(M,"<span class='xenonotice'>We fill up by one [src].</span>")
 	else
 		to_chat(M, "<span class='xenowarning'>We begin removing [src]...</span>")
 		if(do_after(M, 5 SECONDS, FALSE, src, BUSY_ICON_BUILD))
@@ -837,3 +838,137 @@ TUNNEL
 		charges = 0
 		update_icon()
 		return
+
+/obj/structure/resin_jelly_pod
+	name = "Resin jelly pod"
+	desc = "A large resin pod. Inside is a thick, viscous fluid that looks like it doesnt burn easily."
+	icon = 'icons/Xeno/resinpod.dmi'
+	icon_state = "resinpod"
+	density = FALSE
+	opacity = FALSE
+	anchored = TRUE
+	max_integrity = 250
+	layer = RESIN_STRUCTURE_LAYER
+	pixel_x = -16
+	pixel_y = -16
+
+	hit_sound = "alien_resin_move"
+	destroy_sound = "alien_resin_move"
+	///How many actual jellies the pod has stored
+	var/chargesleft = 0
+	///Max amount of jellies the pod can hold
+	var/maxcharges = 10
+	///Every 5 times this number seconds we will create a jelly
+	var/recharge_rate = 10
+	///Countdown to the next time we generate a jelly
+	var/nextjelly = 0
+
+/obj/structure/resin_jelly_pod/Initialize()
+	. = ..()
+	add_overlay(image(icon, "resinpod_inside", layer + 0.01, dir))
+	START_PROCESSING(SSslowprocess, src)
+
+/obj/structure/resin_jelly_pod/Destroy()
+	STOP_PROCESSING(SSslowprocess, src)
+	return ..()
+
+/obj/effect/alien/resin/resin_jelly_pod/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			take_damage(210)
+		if(EXPLODE_HEAVY)
+			take_damage(140)
+		if(EXPLODE_LIGHT)
+			take_damage(70)
+
+/obj/structure/resin_jelly_pod/examine(mob/user, distance, infix, suffix)
+	. = ..()
+	if(isxeno(user))
+		to_chat(user, "It has [chargesleft] jelly globules remaining[datum_flags & DF_ISPROCESSING ? ", and will create a new jelly in [(recharge_rate-nextjelly)*5] seconds": " and seems latent"].")
+
+/obj/structure/resin_jelly_pod/process()
+	if(nextjelly <= recharge_rate)
+		nextjelly++
+		return
+	nextjelly = 0
+	chargesleft++
+	if(chargesleft >= maxcharges)
+		return PROCESS_KILL
+
+/obj/structure/resin_jelly_pod/attack_alien(mob/living/carbon/xenomorph/X)
+	if(X.a_intent == INTENT_HARM && isxenohivelord(X))
+		to_chat(X, "<span class='xenowarning'>We begin tearing at the [src]...</span>")
+		if(do_after(X, HIVELORD_TUNNEL_DISMANTLE_TIME, FALSE, src, BUSY_ICON_BUILD))
+			deconstruct(FALSE)
+		return
+
+	if(!chargesleft)
+		to_chat(X, "<span class='xenonotice'>We reach into \the [src], but only find dregs of resin. We should wait some more.</span>")
+		return
+	to_chat(X, "<span class='xenonotice'>We retrieve a resin jelly from \the [src].</span>")
+	new /obj/item/resin_jelly(loc)
+	chargesleft--
+	if(!(datum_flags & DF_ISPROCESSING) && (chargesleft < maxcharges))
+		START_PROCESSING(SSslowprocess, src)
+
+/obj/item/resin_jelly
+	name = "resin jelly"
+	desc = "A foul, viscous resin jelly that doesnt seem to burn easily."
+	icon = 'icons/unused/Marine_Research.dmi'
+	icon_state = "biomass"
+	soft_armor = list("fire" = 200)
+	var/immune_time = 15 SECONDS
+
+/obj/item/resin_jelly/attack_alien(mob/living/carbon/xenomorph/X)
+	if(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_JELLY)
+		return attack_hand(X)
+	if(X.action_busy)
+		return
+	X.visible_message("<span class='notice'>[X] starts to cover themselves in a foul substance...</span>", "<span class='xenonotice'>We begin to cover ourselves in a foul substance...</span>")
+	if(!do_after(X, 2 SECONDS, TRUE, X, BUSY_ICON_MEDICAL))
+		return
+	activate_jelly(X)
+
+/obj/item/resin_jelly/attack_self(mob/user)
+	if(!isxeno(user))
+		return
+	if(user.action_busy)
+		return
+	user.visible_message("<span class='notice'>[user] starts to cover themselves in a foul substance...</span>", "<span class='xenonotice'>We begin to cover ourselves in a foul substance...</span>")
+	if(!do_after(user, 2 SECONDS, TRUE, user, BUSY_ICON_MEDICAL))
+		return
+	activate_jelly(user)
+
+/obj/item/resin_jelly/attack(mob/living/M, mob/living/user)
+	if(!isxeno(user))
+		return TRUE
+	if(!isxeno(M))
+		to_chat(user, "<span class='xenonotice'>We cannot apply the [src] to this creature.</span>")
+		return FALSE
+	if(user.action_busy)
+		return
+	if(!do_after(user, 1 SECONDS, TRUE, M, BUSY_ICON_MEDICAL))
+		return FALSE
+	user.visible_message("<span class='notice'>[user] smears a viscous substance on [M].</span>","<span class='xenonotice'>We carefully smear [src] onto [user].</span>")
+	activate_jelly(M)
+	return FALSE
+
+/obj/item/resin_jelly/proc/activate_jelly(mob/living/carbon/xenomorph/user)
+	if(user.fire_resist_modifier >= 1)
+		user.visible_message("<span class='notice'>[user]'s chitin shrugs off the [src].</span>", "<span class='xenonotice'>The [src] slides off our chitin, as we are already immune to fire.</span>")
+		qdel(src)
+		return
+	user.visible_message("<span class='notice'>[user]'s chitin begins to gleam with an unseemly glow...</span>", "<span class='xenonotice'>We feel powerful as we are covered in [src]!</span>")
+	user.emote("roar")
+	var/anger_filter = filter(type = "outline", size = 1, color = COLOR_RED)
+	user.filters += anger_filter
+	user.fire_resist_modifier += 1
+	forceMove(user)//keep it here till the timer finishes
+	user.temporarilyRemoveItemFromInventory(src)
+	addtimer(CALLBACK(src, .proc/deactivate_jelly, anger_filter, user), immune_time)
+
+/obj/item/resin_jelly/proc/deactivate_jelly(anger_filter, mob/living/carbon/xenomorph/user)
+	user.filters -= anger_filter
+	user.fire_resist_modifier -= 1
+	to_chat(user, "<span class='xenonotice'>We feel more vulnerable again.</span>")
+	qdel(src)

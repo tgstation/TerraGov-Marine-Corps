@@ -114,6 +114,7 @@
 	shield_equipped(parent, holder_mob, slot)
 
 /datum/component/shield/proc/toggle_shield/(datum/source, new_state)
+	SIGNAL_HANDLER
 	if(active == new_state)
 		return
 	active = new_state
@@ -128,12 +129,14 @@
 	UnregisterSignal(parent, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
 
 /datum/component/shield/proc/shield_equipped(datum/source, mob/living/user, slot)
+	SIGNAL_HANDLER
 	if(!(slot_flags & slot))
 		shield_detatch_from_user()
 		return
 	shield_affect_user(user)
 
 /datum/component/shield/proc/shield_dropped(datum/source, mob/user)
+	SIGNAL_HANDLER
 	shield_detatch_from_user()
 
 /datum/component/shield/proc/shield_affect_user(mob/living/user)
@@ -158,6 +161,7 @@
 	affected = null
 
 /datum/component/shield/proc/on_attack_cb_shields_call(datum/source, list/affecting_shields, dam_type)
+	SIGNAL_HANDLER
 	if(cover.getRating(dam_type) <= 0)
 		return
 	affecting_shields[intercept_damage_cb] = layer
