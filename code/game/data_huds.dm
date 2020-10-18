@@ -209,7 +209,7 @@
 	var/image/status_hud = hud_list[STATUS_HUD] //Status for med-hud.
 	var/image/infection_hud = hud_list[XENO_EMBRYO_HUD] //State of the xeno embryo.
 	var/image/simple_status_hud = hud_list[STATUS_HUD_SIMPLE] //Status for the naked eye.
-	var/image/xeno_reagent = hud_list[XENO_REAGENT_HUD] // DIsplays active xeno reagents
+	var/image/xeno_reagent = hud_list[XENO_REAGENT_HUD] // Displays active xeno reagents
 
 	if(src.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
 		xeno_reagent.icon_state = "transvitox_icon"
