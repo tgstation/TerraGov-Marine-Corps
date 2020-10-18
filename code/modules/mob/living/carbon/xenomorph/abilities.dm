@@ -90,7 +90,7 @@
 	return TRUE
 
 /datum/action/xeno_action/plant_weeds/slow
-	cooldown_timer = 12 SECONDS
+	cooldown_timer = 30 SECONDS
 
 // Choose Resin
 /datum/action/xeno_action/choose_resin
