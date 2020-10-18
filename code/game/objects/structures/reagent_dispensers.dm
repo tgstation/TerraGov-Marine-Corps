@@ -103,6 +103,7 @@
 		user.visible_message("[user] wrenches [src]'s faucet [modded ? "closed" : "open"].", \
 		"You wrench [src]'s faucet [modded ? "closed" : "open"]")
 		modded = !modded
+		log_attack("[key_name(user)] has wrenched [src] [modded ? "closed" : "open"] in [AREACOORD(user)]")
 		if(modded)
 			leak_fuel(amount_per_transfer_from_this)
 
@@ -159,11 +160,11 @@
 		return
 	exploding = TRUE
 	if (reagents.total_volume > 500)
-		explosion(loc, light_impact_range = 4, flame_range = 4)
+		explosion(loc, light_impact_range = 4, flame_range = 4, small_animation = TRUE)
 	else if (reagents.total_volume > 100)
-		explosion(loc, light_impact_range = 3, flame_range = 3)
+		explosion(loc, light_impact_range = 3, flame_range = 3, small_animation = TRUE)
 	else
-		explosion(loc, light_impact_range = 2, flame_range = 2)
+		explosion(loc, light_impact_range = 2, flame_range = 2, small_animation = TRUE)
 	qdel(src)
 
 /obj/structure/reagent_dispensers/fueltank/fire_act(temperature, volume)

@@ -249,4 +249,5 @@
 
 ///Called by the deletion of the connected bodyscanner.
 /obj/machinery/body_scanconsole/proc/on_bodyscanner_deletion(obj/machinery/bodyscanner/source, force)
+	SIGNAL_HANDLER
 	set_connected(null)

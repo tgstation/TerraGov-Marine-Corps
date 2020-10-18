@@ -359,6 +359,7 @@
 
 //For the holster hotkey
 /mob/living/carbon/human/proc/do_holster()
+	SIGNAL_HANDLER
 	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
 
 	if(incapacitated() || lying_angle)

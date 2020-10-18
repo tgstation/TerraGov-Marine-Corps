@@ -142,20 +142,21 @@
 	Hook into the examine of the parent to show additional information about the suit_autodoc
 */
 /datum/component/suit_autodoc/proc/examine(datum/source, mob/user)
+	SIGNAL_HANDLER
 	var/details
-	if(COOLDOWN_CHECK(src, COOLDOWN_CHEM_BURN))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_BURN))
 		details += "Its burn treatment injector is currently refilling.</br>"
 
-	if(COOLDOWN_CHECK(src, COOLDOWN_CHEM_BRUTE))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_BRUTE))
 		details += "Its trauma treatment injector is currently refilling.</br>"
 
-	if(COOLDOWN_CHECK(src, COOLDOWN_CHEM_OXY))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_OXY))
 		details += "Its oxygenating injector is currently refilling.</br>"
 
-	if(COOLDOWN_CHECK(src, COOLDOWN_CHEM_TOX))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_TOX))
 		details += "Its anti-toxin injector is currently refilling.</br>"
 
-	if(COOLDOWN_CHECK(src, COOLDOWN_CHEM_PAIN))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_PAIN))
 		details += "Its painkiller injector is currently refilling.</br>"
 
 	if(details)
@@ -166,6 +167,7 @@
 	Disables the autodoc and removes actions when dropped
 */
 /datum/component/suit_autodoc/proc/dropped(datum/source, mob/user)
+	SIGNAL_HANDLER
 	if(!iscarbon(user))
 		return
 	remove_actions()
@@ -177,6 +179,7 @@
 	Enable the autodoc and give appropriate actions
 */
 /datum/component/suit_autodoc/proc/equipped(datum/source, mob/equipper, slot)
+	SIGNAL_HANDLER
 	if(!iscarbon(equipper)) // living can equip stuff but only carbon has traumatic shock
 		return
 	wearer = equipper
@@ -220,6 +223,7 @@
 	Proc for the damange taken signal, calls treat_injuries
 */
 /datum/component/suit_autodoc/proc/damage_taken(datum/source, mob/living/carbon/human/wearer, damage)
+	SIGNAL_HANDLER
 	treat_injuries()
 
 /**
@@ -235,7 +239,7 @@
 	chemicals into the user and sets the cooldown again
 */
 /datum/component/suit_autodoc/proc/inject_chems(list/chems, mob/living/carbon/human/H, cooldown_type, damage, threshold, treatment_message, message_prefix)
-	if(!length(chems) || COOLDOWN_CHECK(src, cooldown_type) || damage < threshold)
+	if(!length(chems) || TIMER_COOLDOWN_CHECK(src, cooldown_type) || damage < threshold)
 		return
 
 	var/drugs
@@ -252,7 +256,7 @@
 
 	if(LAZYLEN(drugs))
 		. = "[message_prefix] administered. <span class='bold'>Dosage:[drugs]</span><br/>"
-		COOLDOWN_START(src, cooldown_type, chem_cooldown)
+		TIMER_COOLDOWN_START(src, cooldown_type, chem_cooldown)
 		addtimer(CALLBACK(src, .proc/nextuse_ready, treatment_message), chem_cooldown)
 
 /**
@@ -324,9 +328,10 @@
 	This will enable or disable the suit
 */
 /datum/component/suit_autodoc/proc/action_toggle(datum/source)
-	if(COOLDOWN_CHECK(src, COOLDOWN_TOGGLE))
+	SIGNAL_HANDLER
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_TOGGLE))
 		return
-	COOLDOWN_START(src, COOLDOWN_TOGGLE, 2 SECONDS)
+	TIMER_COOLDOWN_START(src, COOLDOWN_TOGGLE, 2 SECONDS)
 	if(enabled)
 		disable()
 	else
@@ -336,12 +341,14 @@
 	Proc to handle the internal analyzer scanning the user
 */
 /datum/component/suit_autodoc/proc/scan_user(datum/source)
+	SIGNAL_HANDLER_DOES_SLEEP
 	analyzer.attack(wearer, wearer, TRUE)
 
 /**
 	Proc to show the suit configuration page
 */
 /datum/component/suit_autodoc/proc/configure(datum/source)
+	SIGNAL_HANDLER_DOES_SLEEP
 	interact(wearer)
 
 /**

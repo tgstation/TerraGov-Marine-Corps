@@ -101,6 +101,9 @@
 /turf/open/ground/coast
 	name = "coastline"
 	icon_state = "beach"
+	shoefootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	mediumxenofootstep = FOOTSTEP_SAND
 
 /turf/open/ground/coast/corner
 	icon_state = "beachcorner"
@@ -129,14 +132,14 @@
 /turf/open/ground/desertdam //Basic groundmap turf parent
 	name = "desert dirt"
 	icon = 'icons/turf/desertdam_map.dmi'
-	icon_state = "desert1"
+	icon_state = "desert0"
 	shoefootstep = FOOTSTEP_SAND
 	barefootstep = FOOTSTEP_SAND
 	mediumxenofootstep = FOOTSTEP_SAND
 
 //River
 /turf/open/ground/desertdam/river
-	icon_state = "shallow_water_clean"
+	name = "river"
 	shoefootstep = FOOTSTEP_WATER
 	barefootstep = FOOTSTEP_WATER
 	mediumxenofootstep = FOOTSTEP_WATER
@@ -144,78 +147,94 @@
 
 //shallow water
 /turf/open/ground/desertdam/river/clean/shallow
-	name = "river"
 	icon_state = "shallow_water_clean"
 
 //shallow water transition to deep
 /turf/open/ground/desertdam/river/clean/shallow_edge
-	name = "river"
+	icon_state = "shallow_to_deep_clean_water"
+
+/turf/open/ground/desertdam/river/clean/shallow_edge/alt
 	icon_state = "shallow_to_deep_clean_water1"
 
 //deep water
 /turf/open/ground/desertdam/river/clean/deep_water_clean
-	name = "river"
 	icon_state = "deep_water_clean"
 
 //shallow water coast
 /turf/open/ground/desertdam/river/clean/shallow_water_desert_coast
-	name = "river"
-	icon_state = "shallow_water_desert_coast1"
+	icon_state = "shallow_water_desert_coast"
+
+/turf/open/ground/desertdam/river/clean/shallow_water_desert_coast/edge
+	icon_state = "shallow_water_desert_coast_edge"
 
 //desert floor waterway
 /turf/open/ground/desertdam/river/clean/shallow_water_desert_waterway
-	name = "river"
-	icon_state = "desert_waterway1"
+	icon_state = "desert_waterway"
+
+/turf/open/ground/desertdam/river/clean/shallow_water_desert_waterway/edge
+	icon_state = "desert_waterway_edge"
 
 //shallow water cave coast
 /turf/open/ground/desertdam/river/clean/shallow_water_cave_coast
-	name = "river"
-	icon_state = "shallow_water_cave_coast1"
+	icon_state = "shallow_water_cave_coast"
 
 //cave floor waterway
 /turf/open/ground/desertdam/river/clean/shallow_water_cave_waterway
-	name = "river"
-	icon_state = "shallow_water_cave_waterway1"
+	icon_state = "shallow_water_cave_waterway"
+
+/turf/open/ground/desertdam/river/clean/shallow_water_cave_waterway/edge
+	icon_state = "shallow_water_cave_waterway_edge"
 
 //TOXIC
 /turf/open/ground/desertdam/river/toxic
+	name = "toxic river"
 	icon_state = "shallow_water_toxic"
 
 //shallow water
 /turf/open/ground/desertdam/river/toxic/shallow_water_toxic
-	name = "river"
 	icon_state = "shallow_water_toxic"
 
 //shallow water transition to deep
 /turf/open/ground/desertdam/river/toxic/shallow_edge_toxic
-	name = "river"
+	icon_state = "shallow_to_deep_toxic_water"
+
+/turf/open/ground/desertdam/river/toxic/shallow_edge_toxic/alt
 	icon_state = "shallow_to_deep_toxic_water1"
+
+/turf/open/ground/desertdam/river/toxic/shallow_edge_toxic/edge
+	icon_state = "shallow_to_deep_toxic_edge"
 
 //deep water
 /turf/open/ground/desertdam/river/toxic/deep_water_toxic
-	name = "river"
 	icon_state = "deep_water_toxic"
 
 //shallow water coast
 /turf/open/ground/desertdam/river/toxic/shallow_water_desert_coast_toxic
-	name = "river"
-	icon_state = "shallow_water_desert_coast_toxic1"
+	icon_state = "shallow_water_desert_coast_toxic"
+
+/turf/open/ground/desertdam/river/toxic/shallow_water_desert_coast_toxic/edge
+	icon_state = "shallow_water_desert_coast_toxic_edge"
 
 //desert floor waterway
 /turf/open/ground/desertdam/river/toxic/shallow_water_desert_waterway_toxic
-	name = "river"
-	icon_state = "desert_waterway_toxic1"
+	icon_state = "desert_waterway_toxic"
+
+/turf/open/ground/desertdam/river/toxic/shallow_water_desert_waterway_toxic/edge
+	icon_state = "desert_waterway_toxic_edge"
 
 //shallow water cave coast
 /turf/open/ground/desertdam/river/toxic/shallow_water_cave_coast_toxic
-	name = "river"
-	icon_state = "shallow_water_cave_coast_toxic1"
+	icon_state = "shallow_water_cave_coast_toxic"
+
+/turf/open/ground/desertdam/river/toxic/shallow_water_cave_coast_toxic/edge
+	icon_state = "shallow_water_cave_coast_toxic_edge"
 
 //cave floor waterway
 /turf/open/ground/desertdam/river/toxic/shallow_water_cave_waterway_toxic
-	name = "river"
-	icon_state = "shallow_water_cave_waterway_toxic1"
+	icon_state = "shallow_water_cave_waterway_toxic"
 
+/turf/open/ground/desertdam/river/toxic/shallow_water_cave_waterway_toxic/edge
+	icon_state = "shallow_water_cave_waterway_toxic_edge"
 
 // Jungle turfs (Whiksey Outpost)
 

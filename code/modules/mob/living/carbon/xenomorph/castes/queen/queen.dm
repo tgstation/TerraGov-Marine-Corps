@@ -81,13 +81,13 @@
 /mob/living/carbon/xenomorph/queen/generate_name()
 	switch(upgrade)
 		if(XENO_UPGRADE_ZERO)
-			name = "[hive.prefix]Queen"			 //Young
+			name = "[hive.prefix]Queen ([nicknumber])"			 //Young
 		if(XENO_UPGRADE_ONE)
-			name = "[hive.prefix]Elder Queen"	 //Mature
+			name = "[hive.prefix]Elder Queen ([nicknumber])"	 //Mature
 		if(XENO_UPGRADE_TWO)
-			name = "[hive.prefix]Elder Empress"	 //Elder
+			name = "[hive.prefix]Elder Empress ([nicknumber])"	 //Elder
 		if(XENO_UPGRADE_THREE)
-			name = "[hive.prefix]Ancient Empress" //Ancient
+			name = "[hive.prefix]Ancient Empress ([nicknumber])" //Ancient
 
 	real_name = name
 	if(mind)

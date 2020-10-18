@@ -49,6 +49,7 @@
 /area/lavaland/medical
 	name = "Medical Clinic"
 	icon_state = "lava_med"
+	outside = FALSE
 
 /area/lavaland/medical/chemistry
 	name = "Medical Clinic Chemistry"
@@ -59,6 +60,8 @@
 	icon_state = "lava_cmo"
 
 //"Engineer"
+/area/lavaland/engie
+	outside = FALSE
 
 /area/lavaland/engie/one
 	name = "Generator One"
@@ -85,6 +88,7 @@
 /area/lavaland/security
 	name = "Prison Facility"
 	icon_state = "lava_sec_prison"
+	outside = FALSE
 
 /area/lavaland/security/storage
 	name = "Prison Facility Storage"
@@ -103,6 +107,7 @@
 /area/lavaland/civilian
 	name = "Civilian Housing"
 	icon_state = "lava_civ"
+	outside = FALSE
 
 /area/lavaland/civilian/cook
 	name = "Civilian Kitchen"

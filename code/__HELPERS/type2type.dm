@@ -179,11 +179,6 @@
 	while(found)
 
 
-//Splits the text of a file at seperator and returns them in a list.
-/proc/file2list(filename, seperator = "\n")
-	return text2list(return_file_text(filename),seperator)
-
-
 //Turns a direction into text
 /proc/num2dir(direction)
 	switch(direction)
@@ -372,7 +367,7 @@
 
 //Splits the text of a file at seperator and returns them in a list.
 //returns an empty list if the file doesn't exist
-/world/proc/file2list(filename, seperator = "\n", trim = TRUE)
+/proc/file2list(filename, seperator = "\n", trim = TRUE)
 	if(trim)
 		return splittext(trim(file2text(filename)),seperator)
 	return splittext(file2text(filename),seperator)
@@ -406,10 +401,10 @@
 	if(last_slash == 1)
 		switch(child)
 			if(/datum)
-				return
-			if(/obj || /mob)
+				return null
+			if(/obj, /mob)
 				return /atom/movable
-			if(/area || /turf)
+			if(/area, /turf)
 				return /atom
 			else
 				return /datum
@@ -461,3 +456,8 @@
 				r += (1 << i)
 
 	return r
+
+/// Return html to load a url.
+/// for use inside of browse() calls to html assets that might be loaded on a cdn.
+/proc/url2htmlloader(url)
+	return {"<html><head><meta http-equiv="refresh" content="0;URL='[url]'"/></head><body onLoad="parent.location='[url]'"></body></html>"}

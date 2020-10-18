@@ -14,7 +14,7 @@
 		return
 	if(!check_plasma(50))
 		return
-	if(COOLDOWN_CHECK(src, COOLDOWN_ORDER))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ORDER))
 		return
 	plasma_stored -= 50
 	var/txt = stripped_input(src, "Set the hive's orders to what? Leave blank to clear it.", "Hive Orders")
@@ -25,7 +25,7 @@
 	else
 		hive.hive_orders = ""
 
-	COOLDOWN_START(src, COOLDOWN_ORDER, 15 SECONDS)
+	TIMER_COOLDOWN_START(src, COOLDOWN_ORDER, 15 SECONDS)
 
 // ***************************************
 // *********** Hive message
@@ -168,79 +168,6 @@
 		return ..()
 	return TRUE
 
-
-// ***************************************
-// *********** Tail sweep
-// ***************************************
-/datum/action/xeno_action/activable/tail_sweep
-	name = "Tail Sweep"
-	action_icon_state = "tail_sweep"
-	mechanics_text = "Hit all adjacent units around you, knocking them away and down."
-	ability_name = "tail sweep"
-	plasma_cost = 35
-	cooldown_timer = 12 SECONDS
-	keybind_flags = XACT_KEYBIND_USE_ABILITY
-	keybind_signal = COMSIG_XENOABILITY_TAIL_SWEEP
-
-/datum/action/xeno_action/activable/tail_sweep/can_use_ability(atom/A, silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
-		return FALSE
-	var/mob/living/carbon/xenomorph/X = owner
-	if(X.crest_defense && X.plasma_stored < (plasma_cost * 2))
-		if(!silent)
-			to_chat(X, "<span class='xenowarning'>We don't have enough plasma, we need [(plasma_cost * 2) - X.plasma_stored] more plasma!</span>")
-		return FALSE
-
-/datum/action/xeno_action/activable/tail_sweep/on_cooldown_finish()
-	var/mob/living/carbon/xenomorph/X = owner
-	to_chat(X, "<span class='notice'>We gather enough strength to tail sweep again.</span>")
-	return ..()
-
-/datum/action/xeno_action/activable/tail_sweep/use_ability()
-	var/mob/living/carbon/xenomorph/X = owner
-
-	GLOB.round_statistics.defender_tail_sweeps++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_tail_sweeps")
-	X.visible_message("<span class='xenowarning'>\The [X] sweeps its tail in a wide circle!</span>", \
-	"<span class='xenowarning'>We sweep our tail in a wide circle!</span>")
-
-	X.spin(4, 1)
-
-	var/sweep_range = 1
-	var/list/L = orange(sweep_range, X)		// Not actually the fruit
-
-	for (var/mob/living/carbon/human/H in L)
-		step_away(H, src, sweep_range, 2)
-		if(H.stat != DEAD && !isnestedhost(H) ) //No bully
-			var/damage = X.xeno_caste.melee_damage
-			var/affecting = H.get_limb(ran_zone(null, 0))
-			if(!affecting) //Still nothing??
-				affecting = H.get_limb("chest") //Gotta have a torso?!
-			var/armor_block = H.run_armor_check(affecting, "melee")
-			H.apply_damage(damage, BRUTE, affecting, armor_block) //Crap base damage after armour...
-			H.apply_damage(damage, STAMINA) //...But some sweet armour ignoring Stamina
-			UPDATEHEALTH(H)
-			H.Paralyze(20)
-		GLOB.round_statistics.defender_tail_sweep_hits++
-		SSblackbox.record_feedback("tally", "round_statistics", 1, "tail_sweep_hits")
-		shake_camera(H, 2, 1)
-
-		to_chat(H, "<span class='xenowarning'>We are struck by \the [X]'s tail sweep!</span>")
-		playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
-
-	succeed_activate()
-	add_cooldown()
-
-/datum/action/xeno_action/activable/tail_sweep/ai_should_use(target)
-	if(!iscarbon(target))
-		return ..()
-	if(get_dist(target, owner) > 1)
-		return ..()
-	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
-		return ..()
-	return TRUE
-
 // ***************************************
 // *********** Gut
 // ***************************************
@@ -255,7 +182,7 @@
 	if(!.)
 		return FALSE
 	var/mob/living/carbon/xenomorph/queen/X = owner
-	if(COOLDOWN_CHECK(X, COOLDOWN_GUT))
+	if(TIMER_COOLDOWN_CHECK(X, COOLDOWN_GUT))
 		return FALSE
 	if(!iscarbon(A))
 		return FALSE
@@ -288,7 +215,7 @@
 
 	succeed_activate()
 
-	COOLDOWN_START(X, COOLDOWN_GUT, 5 SECONDS)
+	TIMER_COOLDOWN_START(X, COOLDOWN_GUT, 5 SECONDS)
 
 	X.visible_message("<span class='xenowarning'>\The [X] begins slowly lifting \the [victim] into the air.</span>", \
 	"<span class='xenowarning'>We begin focusing our anger as we slowly lift \the [victim] into the air.</span>")
@@ -381,24 +308,30 @@
 
 
 /datum/action/xeno_action/watch_xeno/proc/on_list_xeno_selection(datum/source, mob/living/carbon/xenomorph/selected_xeno)
+	SIGNAL_HANDLER_DOES_SLEEP
 	select_xeno(selected_xeno)
 
 /datum/action/xeno_action/watch_xeno/proc/on_xeno_evolution(datum/source, mob/living/carbon/xenomorph/new_xeno)
+	SIGNAL_HANDLER
 	start_overwatch(new_xeno)
 
 /datum/action/xeno_action/watch_xeno/proc/on_xeno_death(datum/source, mob/living/carbon/xenomorph/dead_xeno)
+	SIGNAL_HANDLER
 	if(overwatch_active)
 		stop_overwatch()
 
 /datum/action/xeno_action/watch_xeno/proc/on_owner_death(mob/source, gibbing)
+	SIGNAL_HANDLER
 	if(overwatch_active)
 		stop_overwatch()
 
 /datum/action/xeno_action/watch_xeno/proc/on_movement(datum/source, atom/oldloc, direction, Forced)
+	SIGNAL_HANDLER
 	if(overwatch_active)
 		stop_overwatch()
 
 /datum/action/xeno_action/watch_xeno/proc/on_ctrl_middle_click(datum/source, atom/A)
+	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/queen/watcher = owner
 	if(!watcher.check_state())
 		return

@@ -19,8 +19,6 @@
 			xenoinfo += "<tr><td>[leadprefix][X.name] "
 		if(!X.client)
 			xenoinfo += " <i>(SSD)</i>"
-		else if(X.client.prefs.xeno_name && X.client.prefs.xeno_name != "Undefined")
-			xenoinfo += "- [X.client.prefs.xeno_name]"
 
 		var/area/A = get_area(X)
 		xenoinfo += " <b><font color=green>([A ? A.name : null])</b></td></tr>"
@@ -483,9 +481,9 @@
 	if(isnestedhost(src))
 		return
 
-	if(COOLDOWN_CHECK(src, COOLDOWN_ACID))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ACID))
 		return
-	COOLDOWN_START(src, COOLDOWN_ACID, 2 SECONDS)
+	TIMER_COOLDOWN_START(src, COOLDOWN_ACID, 2 SECONDS)
 
 	if(isxenopraetorian(X))
 		GLOB.round_statistics.praetorian_spray_direct_hits++

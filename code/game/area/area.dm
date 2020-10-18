@@ -12,8 +12,6 @@
 
 	var/unique = TRUE
 
-	var/powerupdate = 10
-
 	var/requires_power = TRUE
 	var/always_unpowered = FALSE
 
@@ -21,11 +19,9 @@
 	var/power_light = TRUE
 	var/power_environ = TRUE
 
-	var/used_equip = 0
-	var/used_light = 0
-	var/used_environ = 0
-
-	var/has_gravity = TRUE
+	var/used_equip = FALSE
+	var/used_light = FALSE
+	var/used_environ = FALSE
 
 	var/global/global_uid = 0
 	var/uid
@@ -39,16 +35,22 @@
 	var/pressure = ONE_ATMOSPHERE
 	var/temperature = T20C
 
-	var/ceiling = CEILING_NONE //the material the ceiling is made of. Used for debris from airstrikes and orbital beacons in ceiling_debris()
-	var/fake_zlevel // for multilevel maps in the same z level
+	///the material the ceiling is made of. Used for debris from airstrikes and orbital beacons in ceiling_debris()
+	var/ceiling = CEILING_NONE
+	///Used in designating the "level" of maps pretending to be multi-z one Z
+	var/fake_zlevel
+	///Is this area considered inside or outside
+	var/outside = TRUE
 
+	///Cameras in this area
 	var/list/cameras
-	var/list/all_doors = list()		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
+	///Keeps a lit of adjacent firelocks, used for alarms/ZAS
+	var/list/all_fire_doors
 	var/air_doors_activated = FALSE
 	var/list/ambience = list('sound/ambience/ambigen1.ogg', 'sound/ambience/ambigen3.ogg', 'sound/ambience/ambigen4.ogg', \
 		'sound/ambience/ambigen5.ogg', 'sound/ambience/ambigen6.ogg', 'sound/ambience/ambigen7.ogg', 'sound/ambience/ambigen8.ogg',\
 		'sound/ambience/ambigen9.ogg', 'sound/ambience/ambigen10.ogg', 'sound/ambience/ambigen11.ogg', 'sound/ambience/ambigen12.ogg',\
-		'sound/ambience/ambigen14.ogg')
+		'sound/ambience/ambigen14.ogg', 'sound/ambience/ambiatmos.ogg', 'sound/ambience/ambiatmos2.ogg')
 
 
 
@@ -202,7 +204,7 @@
 
 
 /area/proc/air_doors_close()
-	for(var/obj/machinery/door/firedoor/E in all_doors)
+	for(var/obj/machinery/door/firedoor/E in all_fire_doors)
 		if(E.blocked)
 			continue
 
@@ -213,7 +215,7 @@
 
 
 /area/proc/air_doors_open()
-	for(var/obj/machinery/door/firedoor/E in all_doors)
+	for(var/obj/machinery/door/firedoor/E in all_fire_doors)
 		if(E.blocked)
 			continue
 
@@ -230,7 +232,7 @@
 		flags_alarm_state |= ALARM_WARNING_FIRE
 		update_icon()
 		mouse_opacity = 0
-		for(var/obj/machinery/door/firedoor/D in all_doors)
+		for(var/obj/machinery/door/firedoor/D in all_fire_doors)
 			if(!D.blocked)
 				if(D.operating)
 					D.nextstate = FIREDOOR_CLOSED
@@ -247,7 +249,7 @@
 		mouse_opacity = 0
 		update_icon()
 
-		for(var/obj/machinery/door/firedoor/D in all_doors)
+		for(var/obj/machinery/door/firedoor/D in all_fire_doors)
 			if(!D.blocked)
 				if(D.operating)
 					D.nextstate = OPEN

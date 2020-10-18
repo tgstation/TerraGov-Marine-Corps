@@ -42,19 +42,6 @@
 		max(list_y))
 
 
-
-// Like view but bypasses luminosity check
-/proc/hear(range, atom/source)
-
-	var/lum = source.luminosity
-	source.luminosity = 6
-
-	var/list/heard = view(range, source)
-	source.luminosity = lum
-
-	return heard
-
-
 /proc/trange(rad = 0, turf/centre = null) //alternative to range (ONLY processes turfs and thus less intensive)
 	if(!centre)
 		return
@@ -78,7 +65,7 @@
 		if(!speaker)
 			continue
 
-		for(var/turf/T in hear(R.canhear_range,speaker))
+		for(var/turf/T in get_hear(R.canhear_range,speaker))
 			speaker_coverage[T] = T
 
 

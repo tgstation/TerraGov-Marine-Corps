@@ -95,7 +95,7 @@
 	if(next_move > world.time)
 		return FALSE
 
-	if(COOLDOWN_CHECK(src, COOLDOWN_POINT))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_POINT))
 		return FALSE
 
 	next_move = world.time + 2

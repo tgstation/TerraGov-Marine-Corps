@@ -406,8 +406,28 @@
 
 /datum/reagent/consumable/larvajelly
 	name = "Larva Jelly"
-	description = "The blood and guts of a xenomorph larva blended into a paste."
+	description = "The blood and guts of a xenomorph larva blended into a paste. Drinking this is bad for you."
+	reagent_state = LIQUID
+	nutriment_factor = 0
+	color = "#66801e"
+	taste_description = "burning"
+
+/datum/reagent/consumable/larvajelly/on_mob_life(mob/living/L, metabolism)
+	L.adjustBruteLoss(-REM)
+	L.adjustFireLoss(2*REM)
+	L.adjustToxLoss(2*REM)
+	return ..()
+
+/datum/reagent/consumable/larvajellyprepared
+	name = "Prepared Larva Jelly"
+	description = "A delicious blend of xenomorphic entrails and acid, denatured by exposure to high-frequency radiation. Probably has some uses."
 	reagent_state = LIQUID
 	nutriment_factor = 1
 	color = "#66801e"
-	taste_description = "burning"
+	taste_description = "victory"
+
+/datum/reagent/consumable/larvajellyprepared/on_mob_life(mob/living/L, metabolism)
+	L.adjustBruteLoss(-REM)
+	return ..()
+
+

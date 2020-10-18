@@ -60,8 +60,8 @@
 					"<span class='boldnotice'>You feel a breath of fresh air enter your lungs. It feels good.</span>",
 					vision_distance = 3)
 				to_chat(H, "<span class='warning'>Repeat at least every 7 seconds.</span>")
-			else if(stat == DEAD && check_tod(src) && !COOLDOWN_CHECK(src, COOLDOWN_CPR))
-				COOLDOWN_START(src, COOLDOWN_CPR, 7 SECONDS)
+			else if(stat == DEAD && check_tod(src) && !TIMER_COOLDOWN_CHECK(src, COOLDOWN_CPR))
+				TIMER_COOLDOWN_START(src, COOLDOWN_CPR, 7 SECONDS)
 				revive_grace_time += 5 SECONDS
 				visible_message("<span class='warning'> [H] performs CPR on [src]!</span>", vision_distance = 3)
 				to_chat(H, "<span class='warning'>The patient gains a little more time. Repeat every 7 seconds.</span>")

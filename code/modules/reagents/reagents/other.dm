@@ -18,7 +18,7 @@
 	name = "Synthetic Blood"
 	color = "#EEEEEE"
 	taste_description = "sludge"
-	description = "A synthetic blood-like liquid used by all Synthetics."
+	description = "A white blood-like liquid used by all Synthetics."
 
 /datum/reagent/blood/xeno_blood
 	name = "Acid Blood"
@@ -341,7 +341,7 @@
 	taste_description = "the colour blue and regret"
 
 /datum/reagent/radium/on_mob_life(mob/living/L, metabolism)
-	L.apply_effect(2*REM/L.metabolism_efficiency, IRRADIATE)
+	L.apply_effect(2*REM/L.metabolism_efficiency, AGONY)
 	return ..()
 
 /datum/reagent/radium/reaction_turf(turf/T, volume)
@@ -392,7 +392,7 @@
 	taste_description = "the inside of a reactor"
 
 /datum/reagent/uranium/on_mob_life(mob/living/L, metabolism)
-	L.apply_effect(1/L.metabolism_efficiency, IRRADIATE)
+	L.apply_effect(1/L.metabolism_efficiency, AGONY)//WHAT THE HELL DID YOU THINK WOULD HAPPEN
 	return ..()
 
 /datum/reagent/uranium/reaction_turf(turf/T, reac_volume)

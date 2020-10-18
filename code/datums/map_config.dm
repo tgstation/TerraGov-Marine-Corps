@@ -116,11 +116,12 @@
 
 	traits = json["traits"]
 	if (islist(traits))
-		// "Station" is set by default, but it's assumed if you're setting
+		// "Ground" is set by default, but it's assumed if you're setting
 		// traits you want to customize which level is cross-linked
+		// we only set ground if not mainship
 		for (var/level in traits)
-			if (!(ZTRAIT_STATION in level))
-				level[ZTRAIT_STATION] = TRUE
+			if (!(ZTRAIT_GROUND in level) && !(ZTRAIT_MARINE_MAIN_SHIP in level))
+				level[ZTRAIT_GROUND] = TRUE
 	// "traits": null or absent -> default
 	else if (!isnull(traits))
 		log_world("map_config traits is not a list!")

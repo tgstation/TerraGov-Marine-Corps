@@ -82,7 +82,7 @@
 	setXenoCasteSpeed(xeno_caste.speed)
 	soft_armor = getArmor(arglist(xeno_caste.soft_armor))
 	hard_armor = getArmor(arglist(xeno_caste.hard_armor))
-
+	warding_aura = 0 //Resets aura for reapplying armor
 
 /mob/living/carbon/xenomorph/set_armor_datum()
 	return //Handled in set_datum()
@@ -90,7 +90,7 @@
 
 /mob/living/carbon/xenomorph/proc/generate_nicknumber()
 	//We don't have a nicknumber yet, assign one to stick with us
-	if(!nicknumber)
+	if(!nicknumber || nicknumber == "Undefined")
 		var/tempnumber = rand(1, 999)
 		var/list/xenolist = hive.get_all_xenos(FALSE)
 		while(tempnumber in xenolist)
@@ -206,9 +206,7 @@
 
 	vis_contents -= wound_overlay
 	QDEL_NULL(wound_overlay)
-
-	. = ..()
-
+	return ..()
 
 
 /mob/living/carbon/xenomorph/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
@@ -268,10 +266,10 @@
 /mob/living/carbon/xenomorph/point_to_atom(atom/A, turf/T)
 	//xeno leader get a bit arrow and less cooldown
 	if(queen_chosen_lead || isxenoqueen(src))
-		COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)
+		TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)
 		new /obj/effect/overlay/temp/point/big(T)
 	else
-		COOLDOWN_START(src, COOLDOWN_POINT, 5 SECONDS)
+		TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 5 SECONDS)
 		new /obj/effect/overlay/temp/point(T)
 	visible_message("<b>[src]</b> points to [A]")
 	return 1

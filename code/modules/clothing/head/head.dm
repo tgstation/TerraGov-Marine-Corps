@@ -119,6 +119,12 @@
 	item_state = "booniehat"
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 5, "acid" = 5)
 
+/obj/item/clothing/head/slouch
+	name = "\improper TGMC slouch hat"
+	desc = "A nice slouch hat worn by some TGMC troopers while on planets with hot weather, or just for style. While it has limited combat functionality, some prefer to wear it instead of the standard issue helmet."
+	icon_state = "slouch_hat"
+	icon = 'icons/obj/clothing/cm_hats.dmi'
+	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 5, "acid" = 5)
 
 /obj/item/clothing/head/headband
 	name = "\improper TGMC headband"
@@ -154,7 +160,7 @@
 	icon_state = "cmohat"
 
 
-//============================//BERETS\\=================================\\
+/*============================BERETS=================================*/
 //Berets have armor, so they have their own category. PMC caps are helmets, so they're in helmets.dm.
 
 /obj/item/clothing/head/beret/marine
@@ -188,8 +194,8 @@
 	desc = "A beret with the lieutenant insignia emblazoned on it. It inspires a feeling of respect."
 	icon_state = "hosberet"
 
-//==========================//PROTECTIVE\\===============================\\
-//=======================================================================\\
+/*=========================PROTECTIVE===============================
+=======================================================================*/
 
 /obj/item/clothing/head/ushanka
 	name = "ushanka"
@@ -237,11 +243,12 @@
 	siemens_coefficient = 2.0
 	//anti_hug = 2
 	flags_armor_protection = HEAD
-	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 45, "energy" = 55, "bomb" = 45, "bio" = 10, "rad" = 10, "fire" = 55, "acid" = 55)
+	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 55, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 55, "acid" = 55)
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS
+	flags_armor_features = ARMOR_NO_DECAP
 
 /obj/item/clothing/head/uppcap/beret
 	name = "\improper armored USL beret"
@@ -255,11 +262,12 @@
 	icon_state = "freelancer_cap"
 	siemens_coefficient = 2.0
 	flags_armor_protection = HEAD
-	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 45, "energy" = 55, "bomb" = 45, "bio" = 10, "rad" = 10, "fire" = 55, "acid" = 55)
+	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 55, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 55, "acid" = 55)
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS
+	flags_armor_features = ARMOR_NO_DECAP
 
 /obj/item/clothing/head/frelancer/beret
 	name = "\improper armored Freelancer beret"
@@ -273,14 +281,15 @@
 	icon_state = "rebel_hood"
 	siemens_coefficient = 2.0
 	flags_armor_protection = HEAD|CHEST
-	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 45, "energy" = 35, "bomb" = 45, "bio" = 20, "rad" = 30, "fire" = 35, "acid" = 35)
+	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
+	flags_armor_features = ARMOR_NO_DECAP
 
 /obj/item/clothing/head/admiral
-	name = "\improper armored Admiral cap"
+	name = "\improper armored admiral cap"
 	desc = "A sturdy admiral's cap. More protective than it seems. Please don't ditch this for a helmet like a punk."
 	icon_state = "admiral_helmet"
 	siemens_coefficient = 2.0
@@ -298,3 +307,4 @@
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	icon_state = "commissar_cap"
 	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = 15, "bio" = 10, "rad" = 0, "fire" = 20, "acid" = 20)
+	flags_armor_features = ARMOR_NO_DECAP

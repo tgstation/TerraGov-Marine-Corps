@@ -22,8 +22,10 @@
 /mob/living/silicon/ai/ClickOn(atom/A, location, params)
 	if(world.time <= next_click)
 		return
-
 	next_click = world.time + 1
+
+	if(!can_interact_with(A))
+		return
 
 	if(multicam_on)
 		var/turf/T = get_turf(A)
@@ -42,15 +44,23 @@
 	var/turf/pixel_turf = get_turf_pixel(A)
 	if(isnull(pixel_turf))
 		return
-
-	if(!can_see(A) && isturf(A))
+	if(!can_see(A))
+		if(isturf(A)) //On unmodified clients clicking the static overlay clicks the turf underneath
+			return //So there's no point messaging admins
+		message_admins("[ADMIN_LOOKUPFLW(src)] might be running a modified client! (failed can_see on AI click of [A] (Turf Loc: [ADMIN_VERBOSEJMP(pixel_turf)]))")
+		var/message = "[key_name(src)] might be running a modified client! (failed can_see on AI click of [A] (Turf Loc: [AREACOORD(pixel_turf)]))"
+		log_admin(message)
+		send2tgs_adminless_only("NOCHEAT", message)
 		return
 
 	var/list/modifiers = params2list(params)
 	if(modifiers["shift"] && modifiers["ctrl"])
 		CtrlShiftClickOn(A)
 		return
-	if(modifiers["shift"] && ShiftClickOn(A))
+	if(modifiers["middle"])
+		return
+	if(modifiers["shift"])
+		ShiftClickOn(A)
 		return
 	if(modifiers["alt"]) // alt and alt-gr (rightalt)
 		AltClickOn(A)
@@ -63,7 +73,6 @@
 		return
 
 	A.attack_ai(src)
-
 
 /*
 	AI has no need for the UnarmedAttack() and RangedAttack() procs,

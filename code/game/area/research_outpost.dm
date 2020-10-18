@@ -15,11 +15,13 @@
 	name = "Landing Zone 1"
 	ceiling = CEILING_NONE
 	icon_state="red"
+	outside = FALSE
 
 /area/outpost/lz2
 	name = "Landing Zone 2"
 	ceiling = CEILING_NONE
 	icon_state="red"
+	outside = FALSE
 
 
 
@@ -29,6 +31,7 @@
 	name = "Cargo Bay"
 	icon_state="orange"
 	ceiling = CEILING_GLASS
+	outside = FALSE
 
 /area/outpost/cargo/office
 	name = "Cargo Office"
@@ -48,6 +51,7 @@
 	name = "Caves"
 	icon_state="cave"
 	ceiling = CEILING_NONE
+	outside = FALSE
 
 /area/outpost/caves/central
 	name = "Central Caves"
@@ -157,6 +161,7 @@
 	name = "Arrivals"
 	icon_state="entry"
 	ceiling = CEILING_GLASS
+	outside = FALSE
 
 /area/outpost/arrivals/security
 	name = "Arrivals Security Outpost"
@@ -171,6 +176,7 @@
 	name = "Hallway"
 	icon_state="green"
 	ceiling = CEILING_GLASS
+	outside = FALSE
 
 /area/outpost/hallway/northern
 	name = "Northern Hallway"
@@ -215,6 +221,7 @@
 	name="Medbay"
 	icon_state="blue"
 	ceiling = CEILING_GLASS
+	outside = FALSE
 
 /area/outpost/medbay/security
 	name="Medbay Security Outpost"
@@ -244,7 +251,7 @@
 	name = "Dormitiories"
 	icon_state="Sleep"
 	ceiling = CEILING_GLASS
-
+	outside = FALSE
 
 
 // Brig
@@ -253,6 +260,7 @@
 	name = "Brig"
 	icon_state="brig"
 	ceiling = CEILING_METAL
+	outside = FALSE
 
 /area/outpost/brig/gear_room
 	name = "Brig Gear Room"
@@ -271,12 +279,13 @@
 
 
 
-// Science, man turns himself into a pickle, this is somehow a funny joke and you should laugh.
+// Science, man turns himself into a pickle, this is somehow a funny joke and you should laugh. //ha ha very funny
 
 /area/outpost/science
 	name = "Science Department"
 	icon_state="purple"
 	ceiling = CEILING_METAL
+	outside = FALSE
 
 /area/outpost/science/research
 	name = "Research and Development"
@@ -317,17 +326,19 @@
 	name = "Xenobiology"
 	icon_state="purple"
 	ceiling = CEILING_METAL
+	outside = FALSE
 
 
 
 // Engineering
 
-/area/outpost/engineering/hallway
+/area/outpost/engineering
 	name = "Engineering Hallway"
 	icon_state="engine"
 	ceiling = CEILING_GLASS
+	outside = FALSE
 
-/area/outpost/engineering
+/area/outpost/engineering/hallway
 	name = "Engineering Hallway"
 	icon_state="engine"
 	ceiling = CEILING_GLASS

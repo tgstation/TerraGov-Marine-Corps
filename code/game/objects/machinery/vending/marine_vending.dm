@@ -48,6 +48,7 @@
 					/obj/item/ammo_magazine/rifle/tx15_slug = 25,
 					/obj/item/ammo_magazine/rifle/tx15_flechette = 25,
 					/obj/item/weapon/gun/launcher/m92/standardmarine = 10,
+					/obj/item/weapon/gun/launcher/m81 = 15,
 					/obj/item/explosive/grenade/frag = 30,
 					/obj/item/attachable/bayonetknife = 20,
 					/obj/item/weapon/throwing_knife = 5,
@@ -121,9 +122,11 @@
 					/obj/item/weapon/gun/shotgun/combat/standardmarine = 10,
 					/obj/item/weapon/gun/rifle/standard_autoshotgun = 10,
 					/obj/item/weapon/gun/launcher/m92/standardmarine = 10,
+					/obj/item/weapon/gun/launcher/m81 = 15,
 					/obj/item/weapon/gun/pistol/standard_pocketpistol = 20,
 					/obj/item/weapon/gun/shotgun/double/marine = 5,
 					/obj/item/weapon/gun/shotgun/pump/ksg = 5,
+					/obj/item/weapon/gun/shotgun/pump/cmb = 5,
 					/obj/item/weapon/gun/shotgun/pump/bolt = 5,
 					/obj/item/weapon/gun/flamer/marinestandard = 2,
 					/obj/item/explosive/mine = 5,
@@ -131,7 +134,8 @@
 					/obj/item/explosive/grenade/incendiary = 25,
 					/obj/item/explosive/grenade/smokebomb = 25,
 					/obj/item/explosive/grenade/cloakbomb = 25,
-					/obj/item/storage/box/m94 = 30
+					/obj/item/storage/box/m94 = 30,
+					/obj/item/storage/box/recoilless_system = 1,
 					)
 
 	premium = list()
@@ -434,9 +438,10 @@
 						/obj/item/storage/firstaid/adv = 4,
 						/obj/item/storage/pouch/medical = 4,
 						/obj/item/storage/pouch/medkit = 4,
-						/obj/item/storage/pouch/magazine = 4,
-						/obj/item/storage/pouch/pistol = 4,
-						/obj/item/clothing/mask/gas = 4
+						/obj/item/storage/pouch/magazine/large = 4,
+						/obj/item/storage/pouch/magazine/pistol/large = 4,
+						/obj/item/clothing/mask/gas = 4,
+						/obj/item/storage/pouch/pistol = 4
 					)
 	contraband = list(/obj/item/reagent_containers/blood/OMinus = 1)
 
@@ -510,17 +515,12 @@
 	wrenchable = FALSE
 	tokensupport = TOKEN_ENGI
 
-	products = list(
-					/obj/item/coin/marine/engineer = 1,
-					)
 	contraband = list(/obj/item/cell/super = 1)
 
-	premium = list(
-					/obj/item/storage/box/sentry = 1,
-					/obj/item/storage/box/standard_hmg = 1
-					)
 	shared = list(
 				/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
+				/obj/item/storage/box/sentry = 3,
+				/obj/item/storage/box/standard_hmg = 1
 				)
 	prices = list()
 
@@ -539,7 +539,7 @@
 						/obj/item/clothing/tie/storage/webbing = 1,
 						/obj/item/storage/box/t26_system = 1,
 						/obj/item/smartgun_powerpack = 1,
-						/obj/item/storage/pouch/magazine = 1,
+						/obj/item/storage/pouch/magazine/large = 1,
 						/obj/item/clothing/mask/gas = 1
 			)
 	contraband = list()
@@ -573,7 +573,7 @@
 						/obj/item/ammo_magazine/flamer_tank = 8,
 						/obj/item/storage/pouch/magazine/large = 1,
 						/obj/item/storage/pouch/general/large = 1,
-						/obj/item/storage/pouch/pistol = 1,
+						/obj/item/storage/pouch/magazine/pistol/large = 1,
 						/obj/item/clothing/mask/gas = 1,
 						/obj/item/whistle = 1,
 						/obj/item/storage/box/zipcuffs = 2
@@ -598,7 +598,7 @@
 						/obj/item/attachable/flashlight = 25,
 						/obj/item/attachable/magnetic_harness = 25,
 						/obj/item/attachable/reddot = 25,
-						/obj/item/attachable/scope = 25,
+						/obj/item/attachable/scope/marine = 25,
 						/obj/item/attachable/scope/mini = 25,
 
 						/obj/item/attachable/angledgrip = 25,
@@ -646,7 +646,9 @@
 					/obj/item/tool/weldpack/marinestandard = 10,
 					/obj/item/clothing/gloves/marine = 20,
 					/obj/item/clothing/suit/storage/marine/pasvest = 40,
+					/obj/item/clothing/head/slouch = 40,
 					/obj/item/clothing/head/helmet/marine = 40,
+					/obj/item/clothing/head/helmet/marine/heavy = 10,
 					/obj/item/clothing/glasses/mgoggles = 10,
 					/obj/item/clothing/glasses/mgoggles/prescription = 10,
 					/obj/item/clothing/mask/rebreather/scarf = 10,
@@ -654,10 +656,11 @@
 					/obj/item/clothing/mask/bandanna/green = 10,
 					/obj/item/clothing/mask/bandanna/white = 10,
 					/obj/item/clothing/mask/bandanna/black = 10,
-					/obj/item/clothing/mask/bandanna = 10,
 					/obj/item/clothing/mask/rebreather = 10,
 					/obj/item/clothing/mask/breath = 10,
 					/obj/item/clothing/mask/gas = 10,
+					/obj/item/clothing/mask/gas/tactical = 10,
+					/obj/item/clothing/mask/gas/tactical/coif = 10,
 					/obj/item/storage/belt/marine = 10,
 					/obj/item/storage/belt/shotgun = 10,
 					/obj/item/storage/belt/grenade = 10,
@@ -667,14 +670,9 @@
 					/obj/item/storage/belt/gun/pistol/standard_pistol = 10,
 					/obj/item/storage/belt/gun/revolver/standard_revolver = 10,
 					/obj/item/armor_module/storage/general = 20,
-					/obj/item/armor_module/storage/ammo_mag = 20,
 					/obj/item/armor_module/storage/engineering = 20,
 					/obj/item/armor_module/storage/medical = 20,
-					/obj/item/armor_module/storage/integrated = 20,
-					/obj/item/storage/pouch/pistol = 10,
-					/obj/item/storage/pouch/magazine = 10,
 					/obj/item/storage/pouch/magazine/large = 5,
-					/obj/item/storage/pouch/magazine/pistol = 10,
 					/obj/item/storage/pouch/magazine/pistol/large = 5,
 					/obj/item/storage/pouch/shotgun = 10,
 					/obj/item/storage/pouch/flare = 10,
@@ -682,8 +680,7 @@
 					/obj/item/storage/pouch/explosive = 10,
 					/obj/item/storage/pouch/firstaid = 10,
 					/obj/item/storage/pouch/syringe = 5,
-					/obj/item/storage/pouch/medical = 5,
-					/obj/item/storage/pouch/medkit = 10,
+					/obj/item/storage/pouch/medkit = 15,
 					/obj/item/storage/pouch/autoinjector = 10,
 					/obj/item/storage/pouch/construction = 10,
 					/obj/item/storage/pouch/electronics = 10,
@@ -691,6 +688,7 @@
 					/obj/item/storage/pouch/field_pouch = 10,
 					/obj/item/storage/pouch/general/large = 10,
 					/obj/item/storage/pouch/document = 10,
+					/obj/item/clothing/tie/storage/black_vest = 10,
 					/obj/item/clothing/tie/storage/brown_vest = 10,
 					/obj/item/clothing/tie/storage/white_vest/medic = 10,
 					/obj/item/clothing/tie/storage/webbing = 10,
@@ -701,18 +699,30 @@
 					/obj/item/clothing/shoes/white = 50,
 					/obj/item/clothing/gloves/white = 50,
 					/obj/item/clothing/suit/modular = 20,
-					/obj/item/armor_module/armor/chest/marine = 20,
 					/obj/item/armor_module/armor/chest/marine/skirmisher = 20,
+					/obj/item/armor_module/armor/chest/marine = 20,
+					/obj/item/armor_module/armor/chest/marine/eva = 20,
 					/obj/item/armor_module/armor/chest/marine/assault = 20,
-					/obj/item/armor_module/armor/arms/marine = 20,
+					/obj/item/armor_module/armor/chest/marine/assault/eod = 20,
 					/obj/item/armor_module/armor/arms/marine/skirmisher = 20,
+					/obj/item/armor_module/armor/arms/marine = 20,
+					/obj/item/armor_module/armor/arms/marine/eva = 20,
 					/obj/item/armor_module/armor/arms/marine/assault = 20,
-					/obj/item/armor_module/armor/legs/marine = 20,
+					/obj/item/armor_module/armor/arms/marine/eod = 20,
 					/obj/item/armor_module/armor/legs/marine/skirmisher = 20,
+					/obj/item/armor_module/armor/legs/marine = 20,
+					/obj/item/armor_module/armor/legs/marine/eva = 20,
 					/obj/item/armor_module/armor/legs/marine/assault = 20,
-					/obj/item/clothing/head/modular/marine = 20,
+					/obj/item/armor_module/armor/legs/marine/eod = 20,
 					/obj/item/clothing/head/modular/marine/skirmisher = 20,
+					/obj/item/clothing/head/modular/marine = 20,
+					/obj/item/clothing/head/modular/marine/eva = 20,
+					/obj/item/clothing/head/modular/marine/eva/skull = 20,
 					/obj/item/clothing/head/modular/marine/assault = 20,
+					/obj/item/clothing/head/modular/marine/eod = 20,
+					/obj/item/helmet_module/welding = 20,
+					/obj/item/helmet_module/binoculars = 20,
+					/obj/item/helmet_module/antenna = 20,
 					/obj/item/facepaint/green = 20
 					)
 
@@ -736,23 +746,22 @@
 /obj/machinery/vending/uniform_supply/Initialize()
 	. = ..()
 	var/products2[]
-	if(squad_tag != null) //probably some better way to slide this in but no sleep is no sleep.
-		switch(squad_tag)
-			if("Alpha")
-				products2 = list(/obj/item/radio/headset/mainship/marine/alpha = 20,
+	switch(squad_tag)
+		if("Alpha")
+			products2 = list(/obj/item/radio/headset/mainship/marine/alpha = 20,
 								/obj/item/clothing/mask/bandanna/alpha = 10)
-			if("Bravo")
-				products2 = list(/obj/item/radio/headset/mainship/marine/bravo = 20,
-								/obj/item/clothing/mask/bandanna/bravo = 10)
-			if("Charlie")
-				products2 = list(/obj/item/radio/headset/mainship/marine/charlie = 20,
-								/obj/item/clothing/mask/bandanna/charlie = 10)
-			if("Delta")
-				products2 = list(/obj/item/radio/headset/mainship/marine/delta = 20,
-								/obj/item/clothing/mask/bandanna/delta = 10)
-	else
-		products2 = list(/obj/item/radio/headset/mainship = 20,
-						/obj/item/clothing/mask/bandanna = 10)
+		if("Bravo")
+			products2 = list(/obj/item/radio/headset/mainship/marine/bravo = 20,
+							/obj/item/clothing/mask/bandanna/bravo = 10)
+		if("Charlie")
+			products2 = list(/obj/item/radio/headset/mainship/marine/charlie = 20,
+							/obj/item/clothing/mask/bandanna/charlie = 10)
+		if("Delta")
+			products2 = list(/obj/item/radio/headset/mainship/marine/delta = 20,
+							/obj/item/clothing/mask/bandanna/delta = 10)
+		else
+			products2 = list(/obj/item/radio/headset/mainship/marine/generic = 20,
+							/obj/item/clothing/mask/bandanna = 10)
 	build_inventory(products2)
 	GLOB.marine_vendors.Add(src)
 

@@ -245,6 +245,7 @@
 			addtimer(CALLBACK(src, .proc/request_to, S), 15 SECONDS)
 
 /obj/docking_port/mobile/marine_dropship/proc/start_hijack_timer(datum/source, new_mode)
+	SIGNAL_HANDLER
 	if(new_mode != SHUTTLE_RECHARGING)
 		return
 	UnregisterSignal(src, COMSIG_SHUTTLE_SETMODE)
@@ -449,7 +450,6 @@
 
 	var/datum/browser/popup = new(X, "computer", M ? M.name : "shuttle", 300, 200)
 	popup.set_content("<center>[dat]</center>")
-	popup.set_title_image(X.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
 
@@ -994,7 +994,6 @@
 
 	var/datum/browser/popup = new(user, "computer", M ? M.name : "shuttle", 300, 200)
 	popup.set_content("<center>[dat]</center>")
-	popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
 
@@ -1037,7 +1036,6 @@
 
 	var/datum/browser/popup = new(user, "computer", M ? M.name : "shuttle", 300, 200)
 	popup.set_content("<center>[dat]</center>")
-	popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
 
