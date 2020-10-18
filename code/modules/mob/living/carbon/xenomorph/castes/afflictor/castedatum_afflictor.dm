@@ -43,7 +43,7 @@
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/xenohide,
 		/datum/action/xeno_action/select_reagent,
-		/datum/action/xeno_action/activable/reagent_slash/afflictor,
+		/datum/action/xeno_action/activable/reagent_slash,
 		/datum/action/xeno_action/xeno_camouflage,
 		)
 

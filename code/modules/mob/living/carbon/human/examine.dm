@@ -21,9 +21,9 @@
 		else if(stat || !client)
 			msg += "<span class='xenowarning'>It doesn't seem responsive.</span>\n"
 		if(!isxenoafflictor(user))
-			if(src.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
+			if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
 				msg += "Transvitox: brute/burn injuries converted to 110% toxin\n"
-			if(src.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
+			if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
 				msg += "Hemodile: extra 50% stamina damage received\n"
 		if(isxenoafflictor(user))
 			if(reagents.total_volume > 0)

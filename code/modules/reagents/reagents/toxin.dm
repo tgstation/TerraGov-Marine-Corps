@@ -530,7 +530,6 @@
 /datum/reagent/toxin/xeno_hemodile/proc/human_damage_taken(mob/living/L, damage, damagetype)
 	if(damagetype == STAMINA)
 		L.adjustStaminaLoss(damage*0.5)
-	return
 
 
 /datum/reagent/toxin/xeno_transvitox //converts brute/burn to tox damage
@@ -543,19 +542,17 @@
 	scannable = TRUE
 	toxpwr = 0
 
-/datum/reagent/toxin/xeno_transvitox/on_mob_life(mob/living/L, metabolism)
-	var/transvitox_ratio = 1.1  //Toxin per 1 healed Brute/Burn
-	var/transvitox_heal = 8     //Healed amount
+/datum/reagent/toxin/xeno_transvitox/on_mob_life(mob/living/L, metabolism) //Converts 1 brute/burn into 1.1 toxin at a rate of 8 per tick.
 	switch(current_cycle)
 		if(2)
 			to_chat(L, "<span class='warning'>You feel both sick and revitalised.</span>")
 		if(2 to INFINITY)
 			if(L.getBruteLoss())
-				L.adjustToxLoss(min(transvitox_heal*transvitox_ratio, L.getBruteLoss()*transvitox_ratio))
-				L.heal_limb_damage(min(transvitox_heal*transvitox_ratio, L.getBruteLoss()*transvitox_ratio))
+				L.adjustToxLoss(min(8*1.1, L.getBruteLoss()*1.1))
+				L.heal_limb_damage(min(8*1.1, L.getBruteLoss()*1.1))
 			if(L.getFireLoss())
-				L.adjustToxLoss(min(transvitox_heal*transvitox_ratio, L.getFireLoss()*transvitox_ratio))
-				L.heal_limb_damage(min(transvitox_heal*transvitox_ratio, L.getFireLoss()*transvitox_ratio))
+				L.adjustToxLoss(min(8*1.1, L.getFireLoss()*1.1))
+				L.heal_limb_damage(min(8*1.1, L.getFireLoss()*1.1))
 	return ..()
 
 /datum/reagent/toxin/xeno_decaytoxin
@@ -573,7 +570,6 @@
 	for(var/datum/reagent/R in L.reagents.reagent_list)
 		if(istype(R, /datum/reagent/medicine))
 			toxin_damage += 1
-	message_admins("[toxin_damage] count")
 	L.adjustToxLoss(toxin_damage)
 	L.adjustBruteLoss(1)
 	if(prob(6))
@@ -591,18 +587,15 @@
 	scannable = TRUE
 	toxpwr = 0
 
-/datum/reagent/toxin/xeno_praelyx/on_mob_add(mob/living/L, metabolism)
+/datum/reagent/toxin/xeno_praelyx/on_mob_add(mob/living/L, metabolism, affecting)
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox) || L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_decaytoxin) || L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
 		RegisterSignal(L, COMSIG_HIVE_XENO_RECURRING_INJECTION, .proc/xeno_praelyx_trigger)
 
 /datum/reagent/toxin/xeno_praelyx/on_mob_life(mob/living/L, metabolism)
-	if(prob(6))
-		to_chat(L, "<span class='warning'>You feel a creeping sensation of your veins stretching.</span>")
-	RegisterSignal(L, COMSIG_HIVE_XENO_RECURRING_INJECTION, .proc/xeno_praelyx_trigger) //this doesn't need a reagent condition as it requires praelyx to be already present to trigger
-	return..()
+	return ..()
 
 /datum/reagent/toxin/xeno_praelyx/proc/xeno_praelyx_trigger(mob/living/L, affecting)
 	to_chat(L, "<span class='warning'>Your [affecting] bursts!</span>")
 	src.custom_metabolism = 10
-	L.apply_damage(damage = 25, damagetype = BRUTE, def_zone = affecting, sharp = TRUE)
+	L.apply_damage(damage = 20, damagetype = BRUTE, def_zone = affecting, sharp = TRUE)
 	return..()

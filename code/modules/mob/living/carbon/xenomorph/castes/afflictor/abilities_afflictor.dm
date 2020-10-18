@@ -5,7 +5,10 @@
 /datum/action/xeno_action/select_reagent
 	name = "Select Reagent"
 	action_icon_state = "select_reagent0"
-	mechanics_text = "Switches between available reagents. Transvitox and Hemodile available at first with more unlocked at further maturity. Transvitox converts brute/burn damage to 110% toxin damage. Hemodile increases stamina damage received by 50%. Praelyx deals 25 damage (not affected by armor) to selected limb when one of the reagents is already present. Decay Accelerant deals 1 Brute per tick and 1 additional Toxin for each unique medical reagent present"
+	mechanics_text = "Switches between available reagents. Transvitox and Hemodile available at first with more unlocked at further maturity. \
+	Transvitox converts brute/burn damage to 110% toxin damage. Hemodile increases stamina damage received by 50%. \
+	Praelyx deals 25 damage (not affected by armor) to selected limb when one of the reagents is already present. \
+	Decay Accelerant deals 1 Brute per tick and 1 additional Toxin for each unique medical reagent present"
 	use_state_flags = XACT_USE_BUSY
 	keybind_signal = COMSIG_XENOABILITY_SELECT_REAGENT
 
@@ -54,11 +57,6 @@
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We need to be closer to [A].</span>")
 		return FALSE
-	//var/mob/living/carbon/C = A
-	//if (isnestedhost(C)) /Allowed to inject hosts for now
-	//	if(!silent)
-	//		to_chat(owner, "<span class='warning'>Ashamed, we reconsider bullying the poor, nested host with our stinger.</span>")
-	//	return FALSE
 
 /datum/action/xeno_action/activable/reagent_slash/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
@@ -69,7 +67,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	succeed_activate()
 	add_cooldown()
-	X.recurring_injection(A, X.selected_reagent, XENO_REAGENT_STING_CHANNEL_TIME, count = 1, transfer_amount = 15)
+	X.recurring_injection(A, X.selected_reagent, XENO_REAGENT_STING_CHANNEL_TIME, count = 1, transfer_amount = 15, is_reagent_slash = TRUE)
 
 
 // ***************************************
@@ -96,9 +94,7 @@
 	// TODO: attack_alien() overrides are a mess and need a lot of work to make them require parentcalling
 	RegisterSignal(L, list(
 		COMSIG_XENOMORPH_GRAB,
-		COMSIG_XENOMORPH_ATTACK_BARRICADE,
 		COMSIG_XENOMORPH_ATTACK_CLOSET,
-		COMSIG_XENOMORPH_ATTACK_RAZORWIRE,
 		COMSIG_XENOMORPH_ATTACK_BED,
 		COMSIG_XENOMORPH_ATTACK_NEST,
 		COMSIG_XENOMORPH_ATTACK_TABLE,
@@ -160,15 +156,12 @@
 /datum/action/xeno_action/xeno_camouflage/action_activate()
 	if(stealth)
 		cancel_stealth()
-		add_cooldown()
-		return TRUE
-
+	else
+		stealth = TRUE
 	succeed_activate()
 	to_chat(owner, "<span class='xenodanger'>We blend in with the scenery...</span>")
 	last_stealth = world.time
-	stealth = TRUE
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/handle_stealth)
-	handle_stealth()
 	add_cooldown()
 	addtimer(CALLBACK(src, .proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY) //Short delay before we can sneak attack.
 
