@@ -588,9 +588,6 @@
 	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox) || L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_decaytoxin) || L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
 		RegisterSignal(L, COMSIG_HIVE_XENO_RECURRING_INJECTION, .proc/xeno_praelyx_trigger)
 
-/datum/reagent/toxin/xeno_praelyx/on_mob_life(mob/living/L, metabolism)
-	return ..()
-
 /datum/reagent/toxin/xeno_praelyx/proc/xeno_praelyx_trigger(mob/living/L, affecting)
 	to_chat(L, "<span class='warning'>Your [affecting] bursts!</span>")
 	custom_metabolism = 10
