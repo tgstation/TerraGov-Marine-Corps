@@ -1,9 +1,0 @@
-author: "MacBlaze1"
-delete-after: True
-changes: 
-  - rscdel: "Removed the ability to repair razorwire with a welder"
-  - balance: "crushers at full charge now deal 94.5 damage to razorwire, instead of 105. The razorwire still has 100 health."
-  - balance: "you can now attack razorwire even when it is electrified."
-  - balance: "you take a bit more damage from sharp parts of the razorwire when attacking, now you take 24 to 32 damage instead of 16 to 24 damage."
-  - balance: "one spit from a spitter or praetorian or 2 mature boiler acid globs are enough to allow a crusher to charge through it"
-  - balance: "big xenos do not get stunned when attacking electrified razorwire, other xenos now get stunned for only 4 seconds, down from 8."
