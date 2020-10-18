@@ -597,5 +597,10 @@
 /datum/reagent/toxin/xeno_praelyx/proc/xeno_praelyx_trigger(mob/living/L, affecting)
 	to_chat(L, "<span class='warning'>Your [affecting] bursts!</span>")
 	src.custom_metabolism = 10
+<<<<<<< HEAD
 	L.apply_damage(damage = 20, damagetype = BRUTE, def_zone = affecting, sharp = TRUE)
-	return..()
+	return ..()
+=======
+	L.apply_damage(damage = 25, damagetype = BRUTE, def_zone = affecting, sharp = TRUE)
+	return ..()
+>>>>>>> 0a0d6652035fa0bf89bec26e2dadddaed1c68bbc
