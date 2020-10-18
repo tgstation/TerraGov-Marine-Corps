@@ -211,15 +211,17 @@
 /mob/living/carbon/xenomorph/proc/handle_aura_receiver()
 	if(frenzy_aura != frenzy_new || warding_aura != warding_new || recovery_aura != recovery_new)
 		set_frenzy_aura(frenzy_new)
-		warding_aura = warding_new
+		if(warding_aura != warding_new)
+			soft_armor = soft_armor.modifyAllRatings(-warding_aura * 2.5)
+			warding_aura = warding_new
+			soft_armor = soft_armor.modifyAllRatings(warding_aura * 2.5)
+		else
+			warding_aura = warding_new
 		recovery_aura = recovery_new
 	hud_set_pheromone()
 	frenzy_new = 0
 	warding_new = 0
 	recovery_new = 0
-	armor_pheromone_bonus = 0
-	if(warding_aura > 0)
-		armor_pheromone_bonus = warding_aura * 2.5 //Bonus armor from pheromones, no matter what the armor was previously.
 
 /mob/living/carbon/xenomorph/handle_regular_hud_updates()
 	if(!client)

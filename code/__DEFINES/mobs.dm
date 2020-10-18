@@ -190,6 +190,8 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 /////////////////MOVE DEFINES//////////////////////
 #define MOVE_INTENT_WALK        0
 #define MOVE_INTENT_RUN         1
+#define XENO_HUMAN_PUSHED_DELAY 5
+
 ///////////////////INTERNAL ORGANS DEFINES///////////////////
 
 #define ORGAN_ASSISTED	1
@@ -417,10 +419,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define XENO_SLOWDOWN_REGEN 0.4
 #define QUEEN_DEATH_TIMER 5 MINUTES
-#define DEFENDER_CRESTDEFENSE_ARMOR 30
-#define DEFENDER_CRESTDEFENSE_SLOWDOWN 0.8
-#define DEFENDER_FORTIFY_ARMOR 60
-#define WARRIOR_AGILITY_ARMOR 30
 #define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
 #define XENO_EXPLOSION_RESIST_3_MODIFIER	0.25 //multiplies top level explosive damage by this amount.
 

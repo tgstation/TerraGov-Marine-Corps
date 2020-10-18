@@ -514,17 +514,12 @@
 	wrenchable = FALSE
 	tokensupport = TOKEN_ENGI
 
-	products = list(
-					/obj/item/coin/marine/engineer = 1,
-					)
 	contraband = list(/obj/item/cell/super = 1)
 
-	premium = list(
-					/obj/item/storage/box/sentry = 1,
-					/obj/item/storage/box/standard_hmg = 1
-					)
 	shared = list(
 				/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
+				/obj/item/storage/box/sentry = 3,
+				/obj/item/storage/box/standard_hmg = 1
 				)
 	prices = list()
 
@@ -650,6 +645,7 @@
 					/obj/item/tool/weldpack/marinestandard = 10,
 					/obj/item/clothing/gloves/marine = 20,
 					/obj/item/clothing/suit/storage/marine/pasvest = 40,
+					/obj/item/clothing/head/slouch = 40,
 					/obj/item/clothing/head/helmet/marine = 40,
 					/obj/item/clothing/head/helmet/marine/heavy = 10,
 					/obj/item/clothing/glasses/mgoggles = 10,
@@ -662,7 +658,8 @@
 					/obj/item/clothing/mask/rebreather = 10,
 					/obj/item/clothing/mask/breath = 10,
 					/obj/item/clothing/mask/gas = 10,
-					/obj/item/clothing/mask/gas/coif = 10,
+					/obj/item/clothing/mask/gas/tactical = 10,
+					/obj/item/clothing/mask/gas/tactical/coif = 10,
 					/obj/item/storage/belt/marine = 10,
 					/obj/item/storage/belt/shotgun = 10,
 					/obj/item/storage/belt/grenade = 10,

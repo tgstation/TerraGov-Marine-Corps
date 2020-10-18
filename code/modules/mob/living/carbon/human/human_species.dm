@@ -66,3 +66,6 @@
 
 /mob/living/carbon/human/species/vatborn
 	race = "Vatborn"
+
+/mob/living/carbon/human/species/skeleton
+	race = "Skeleton"
