@@ -206,6 +206,11 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	for(var/obj/structure/mineral_door/D in loc)
 		if(D.density)
 			return TRUE
+	for(var/obj/structure/barricade/D in loc)
+		if(!D.density)
+			continue
+		if(D.dir == direction)
+			return TRUE
 	return FALSE
 
 

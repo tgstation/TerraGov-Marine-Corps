@@ -71,8 +71,6 @@
 					continue
 				if (AdjT in results) // Ignore existing turfs
 					continue
-				if (DirBlocked(T,direction))
-					continue
 				if(AdjT.density || LinkBlocked(T, AdjT) || TurfBlockedNonWindow(AdjT))
 					if(include_edge)
 						results += AdjT
