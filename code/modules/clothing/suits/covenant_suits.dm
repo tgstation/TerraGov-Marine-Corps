@@ -5,7 +5,7 @@
 
 /obj/item/clothing/suit/covenant/sangheili
 	name = "sangheili combat harness"
-	icon = 'icons/obj/clothing/covenant/sangheili.dmi'
+	icon = 'icons/mob/species/sangheili/suit.dmi'
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	allowed = list(/obj/item/weapon/gun/,
 		/obj/item/tank/emergency_oxygen,

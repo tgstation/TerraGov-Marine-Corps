@@ -3,7 +3,7 @@
 /obj/item/clothing/gloves/covenant/
 
 /obj/item/clothing/gloves/covenant/sangheili
-	icon = 'icons/obj/clothing/covenant/sangheili.dmi'
+	icon = 'icons/mob/species/sangheili/gloves.dmi'
 	siemens_coefficient = 0
 	permeability_coefficient = 0
 	flags_cold_protection = HANDS

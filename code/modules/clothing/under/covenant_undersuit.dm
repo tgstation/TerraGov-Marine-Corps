@@ -4,7 +4,7 @@
 
 /obj/item/clothing/under/covenant
 	name = "covenant undersuit"
-	icon = 'icons/obj/clothing/covenant/sangheili.dmi'
+	icon = 'icons/mob/species/sangheili/uniform.dmi'
 	sprite_sheet_id = 1
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	flags_cold_protection = CHEST|GROIN|LEGS|ARMS
