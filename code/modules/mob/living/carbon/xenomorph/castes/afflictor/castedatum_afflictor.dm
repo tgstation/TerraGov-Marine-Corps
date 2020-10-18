@@ -30,6 +30,7 @@
 	upgrade_threshold = 120
 
 	evolves_to = list(/mob/living/carbon/xenomorph/Defiler)
+	deevolves_to = /mob/living/carbon/xenomorph/sentinel
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
@@ -41,7 +42,6 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
-		/datum/action/xeno_action/xenohide,
 		/datum/action/xeno_action/select_reagent,
 		/datum/action/xeno_action/activable/reagent_slash,
 		/datum/action/xeno_action/xeno_camouflage,

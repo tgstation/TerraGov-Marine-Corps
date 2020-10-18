@@ -8,7 +8,7 @@
 	health = 100
 	maxHealth = 100
 	plasma_stored = 50
-	flags_pass = PASSTABLE | PASSMOB
+	flags_pass = PASSTABLE
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_ZERO
 	inherent_verbs = list(
@@ -20,8 +20,6 @@
 // ***************************************
 // *********** Mob overrides
 // ***************************************
-/mob/living/carbon/xenomorph/afflictor/start_pulling(atom/movable/AM, suppress_message = FALSE)
-	return
 
 /mob/living/carbon/xenomorph/afflictor/apply_alpha_channel(image/I)
 	I.alpha = src.alpha

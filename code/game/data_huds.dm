@@ -220,6 +220,9 @@
 	if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile) && reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
 		xeno_reagent.icon_state = "hemodile_transvitox_icon"
 
+	if(!reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile) && !reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
+		xeno_reagent.icon_state = ""
+
 	if(species.species_flags & IS_SYNTHETIC)
 		simple_status_hud.icon_state = ""
 		status_hud.icon_state = "hudsynth"
