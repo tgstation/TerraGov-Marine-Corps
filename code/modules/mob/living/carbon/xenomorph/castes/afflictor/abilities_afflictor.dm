@@ -35,17 +35,19 @@
 // ***************************************
 // *********** Reagent slash
 // ***************************************
-/datum/action/xeno_action/activable/reagent_slash/afflictor
+/datum/action/xeno_action/activable/reagent_slash
 	name = "Reagent Slash"
 	mechanics_text = "Deals damage and injects 15u of selected reagent."
 	ability_name = "reagent slash"
-	cooldown_timer = 6 SECONDS
+	COOLDOWN_DECLARE(reagent_slash_cooldown)
 	plasma_cost = 40
 	keybind_signal = COMSIG_XENOABILITY_REAGENT_STING
 
 /datum/action/xeno_action/activable/reagent_slash/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
-	var/max_range = 1
+	if(!COOLDOWN_CHECK(src, reagent_slash_cooldown))
+		to_chat(owner, "<span class='warning'>[COOLDOWN_TIMELEFT(src, reagent_slash_cooldown) / 10] seconds left</span>")
+		return FALSE
 	if(!.)
 		return FALSE
 
@@ -53,20 +55,15 @@
 		if(!silent)
 			to_chat(owner, "<span class='warning'>Our sting won't affect this target!</span>")
 		return FALSE
-	if(get_dist(owner, A) > max_range)
+	if(get_dist(owner, A) > 1)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We need to be closer to [A].</span>")
 		return FALSE
 
-/datum/action/xeno_action/activable/reagent_slash/on_cooldown_finish()
-	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
-	to_chat(owner, "<span class='xenodanger'>We feel our glands refill. We can use our Reagent Sting again.</span>")
-	return ..()
-
 /datum/action/xeno_action/activable/reagent_slash/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	succeed_activate()
-	add_cooldown()
+	COOLDOWN_START(src, reagent_slash_cooldown, 6 SECONDS)
 	X.recurring_injection(A, X.selected_reagent, XENO_REAGENT_STING_CHANNEL_TIME, count = 1, transfer_amount = 15, is_reagent_slash = TRUE)
 
 
@@ -80,7 +77,7 @@
 	ability_name = "stealth"
 	plasma_cost = 10
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_NANOCRYSTAL_CAMOUFLAGE
-	cooldown_timer = AFFLICTOR_CAMOUFLAGE_COOLDOWN
+	COOLDOWN_DECLARE(xeno_camouflage_cooldown)
 	var/can_sneak_attack = FALSE
 	var/last_stealth = null
 	var/stealth = FALSE
@@ -140,6 +137,9 @@
 
 /datum/action/xeno_action/xeno_camouflage/can_use_action(silent = FALSE, override_flags)
 	. = ..()
+	if(!COOLDOWN_CHECK(src, xeno_camouflage_cooldown))
+		to_chat(owner, "<span class='warning'>[COOLDOWN_TIMELEFT(src, xeno_camouflage_cooldown) / 10] seconds left</span>")
+		return FALSE
 	if(!.)
 		return FALSE
 	var/mob/living/carbon/xenomorph/stealthy_beno = owner
@@ -147,11 +147,6 @@
 		to_chat(stealthy_beno, "<span class='warning'>We're too busy being on fire to camouflage!</span>")
 		return FALSE
 	return TRUE
-
-/datum/action/xeno_action/xeno_camouflage/on_cooldown_finish()
-	to_chat(owner, "<span class='xenodanger'><b>We're ready to camouflage again.</b></span>")
-	playsound(owner, "sound/effects/xeno_newlarva.ogg", 25, 0, 1)
-	return ..()
 
 /datum/action/xeno_action/xeno_camouflage/action_activate()
 	if(stealth)
@@ -162,8 +157,7 @@
 	to_chat(owner, "<span class='xenodanger'>We blend in with the scenery...</span>")
 	last_stealth = world.time
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/handle_stealth)
-	add_cooldown()
-	addtimer(CALLBACK(src, .proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY) //Short delay before we can sneak attack.
+	COOLDOWN_START(src, xeno_camouflage_cooldown, 7 SECONDS)
 
 /datum/action/xeno_action/xeno_camouflage/proc/cancel_stealth() //This happens if we take damage, attack, pounce, toggle stealth off, and do other such exciting stealth breaking activities.
 	SIGNAL_HANDLER
@@ -174,12 +168,6 @@
 	stealth = FALSE
 	can_sneak_attack = FALSE
 	owner.alpha = 255 //no transparency/translucency
-
-/datum/action/xeno_action/xeno_camouflage/proc/sneak_attack_cooldown()
-	if(!stealth || can_sneak_attack)
-		return
-	can_sneak_attack = TRUE
-	playsound(owner, "sound/effects/xeno_newlarva.ogg", 25, 0, 1)
 
 /datum/action/xeno_action/xeno_camouflage/proc/handle_stealth()
 	SIGNAL_HANDLER
@@ -226,9 +214,3 @@
 	if(!stealth || !can_sneak_attack)
 		return
 	return COMSIG_ACCURATE_ZONE
-
-// ***************************************
-// *********** Afflictor Pounce
-// ***************************************
-/datum/action/xeno_action/activable/pounce/afflictor
-	victim_paralyze_time = 0.5 SECONDS
