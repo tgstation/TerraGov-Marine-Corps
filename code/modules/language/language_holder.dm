@@ -131,6 +131,7 @@
 
 /datum/language_holder/moth
 	languages = list(/datum/language/common, /datum/language/moth)
+	selected_default_language = /datum/language/moth
 
 
 /datum/language_holder/vox
@@ -153,12 +154,13 @@
 
 	for(var/i in H.languages)
 		var/datum/language/L = i
-		body += "[initial(L.name)] - Key: ,[initial(L.key)]"
+		body += "<b>[initial(L.name)]</b> - Key: <b>,[initial(L.key)]</b>"
 		if(H.selected_default_language == L)
 			body += " - Default"
 		else
 			body += " - <a href='?src=[REF(src)];default_language=[L]'>Set as Default</a>"
-		body += "<br>"
+		body += "<br><b>Description:</b> <i>[initial(L.desc)]</i>"
+		body += "<br><br>"
 
 
 	var/datum/browser/popup = new(src, "languages", "<div align='center'>Language Menu</div>", 550, 615)

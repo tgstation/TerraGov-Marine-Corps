@@ -435,6 +435,7 @@
 	desc = "The TL-24 is the rather rare autorevolver used by the TGMC issued in rather small numbers to backline personnel and officers it uses recoil to spin the cylinder. Uses heavy .454 rounds."
 	icon_state = "mateba"
 	item_state = "mateba"
+	fire_animation = "mateba_fire"
 	muzzleflash_iconstate = "muzzle_flash"
 	caliber = ".454 Casull" //codex
 	max_shells = 6 //codex

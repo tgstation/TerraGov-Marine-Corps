@@ -775,12 +775,13 @@
 	. = ..()
 	if(!deployed_table)
 		deployed_table = new(src)
+		RegisterSignal(deployed_table, COMSIG_PARENT_ATTACKBY, /atom/.proc/attackby)//if something (like a powerloader) clicks on the deployed thing relay it
 
 /obj/structure/dropship_equipment/operatingtable/examine(mob/user)
 	. = ..()
 	if(!deployed_table)
 		to_chat(user, "Its table is broken.")
-		
+
 /obj/structure/dropship_equipment/operatingtable/Destroy()
 	QDEL_NULL(deployed_table)
 	return ..()
@@ -788,7 +789,7 @@
 /obj/structure/dropship_equipment/operatingtable/update_equipment()
 	if(!deployed_table)
 		return
-	deployed_table.layer = ABOVE_OBJ_LAYER
+	deployed_table.layer = ABOVE_OBJ_LAYER + 0.01 //make sure its directly ABOVE the layer
 	deployed_table.loc = loc
 	icon_state = "table2-idle"
 

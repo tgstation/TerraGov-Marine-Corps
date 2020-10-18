@@ -92,7 +92,7 @@
 
 
 /turf/Destroy(force)
-	. = QDEL_HINT_IWILLGC
+
 	if(!changing_turf)
 		stack_trace("Incorrect turf deletion")
 	changing_turf = FALSE
@@ -104,11 +104,13 @@
 			qdel(A)
 		for(var/I in B.vars)
 			B.vars[I] = null
-		return
+		return QDEL_HINT_IWILLGC
 	visibilityChanged()
 	DISABLE_BITFIELD(flags_atom, INITIALIZED)
+	soft_armor = null
+	hard_armor = null
 	..()
-
+	return QDEL_HINT_IWILLGC
 
 /turf/Enter(atom/movable/mover, atom/oldloc)
 	// Do not call ..()
@@ -236,7 +238,7 @@
 			// no warning though because this can happen naturaly as a result of it being built on top of
 			path = /turf/open/space
 
-	if(!GLOB.use_preloader && path == type && !(flags & CHANGETURF_FORCEOP)) // Don't no-op if the map loader requires it to be reconstructed
+	if(!GLOB.use_preloader && path == type && !(flags & CHANGETURF_FORCEOP) && (baseturfs == new_baseturfs)) // Don't no-op if the map loader requires it to be reconstructed
 		return src
 	if(flags & CHANGETURF_SKIP)
 		return new path(src)
@@ -497,11 +499,6 @@
 /turf/open/floor/plating/ground/snow/is_weedable()
 	return !slayer && ..()
 
-
-/turf/open/floor/plating/plating_catwalk/is_weedable() //covered catwalks are unweedable
-	. = ..()
-	if(covered)
-		return FALSE
 
 
 /turf/proc/check_alien_construction(mob/living/builder, silent = FALSE, planned_building)

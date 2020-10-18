@@ -51,7 +51,6 @@
 /area/shuttle/canterbury/cic)
 "aj" = (
 /obj/structure/bed/chair/dropship/pilot{
-	icon_state = "pilot_chair";
 	dir = 1
 	},
 /obj/effect/landmark/start/job/crash/fieldcommander,
@@ -82,7 +81,6 @@
 	dir = 1
 	},
 /obj/item/radio/intercom{
-	anyai = 1;
 	dir = 4;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -187,7 +185,6 @@
 	},
 /obj/machinery/door/poddoor/shutters/transit,
 /obj/machinery/door_control{
-	dir = 2;
 	id = "port_umbilical_outer";
 	name = "outer door-control";
 	pixel_y = 32
@@ -241,7 +238,6 @@
 /area/shuttle/canterbury)
 "aI" = (
 /obj/machinery/marine_turret{
-	icon_state = "sentry_base";
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -273,7 +269,7 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "aN" = (
-/obj/machinery/vending/marine/cargo_guns,
+/obj/machinery/autolathe,
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "aO" = (
@@ -305,9 +301,9 @@
 /obj/item/fuelCell/full,
 /obj/item/tool/extinguisher/mini,
 /obj/item/stack/sheet/glass{
+	amount = 50;
 	pixel_x = 3;
-	pixel_y = 3;
-	amount = 50
+	pixel_y = 3
 	},
 /obj/item/t_scanner,
 /obj/item/tool/extinguisher,
@@ -578,7 +574,6 @@
 /area/shuttle/canterbury/medical)
 "bM" = (
 /obj/machinery/marine_turret{
-	icon_state = "sentry_base";
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
@@ -635,7 +630,6 @@
 /obj/item/tank/anesthetic,
 /obj/item/clothing/mask/breath/medical,
 /obj/item/radio/intercom{
-	anyai = 1;
 	dir = 4;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -653,7 +647,6 @@
 /area/shuttle/canterbury/medical)
 "cc" = (
 /obj/machinery/computer/cryopod{
-	icon_state = "cellconsole";
 	dir = 8
 	},
 /turf/open/floor/mainship,
@@ -685,7 +678,6 @@
 /area/shuttle/canterbury/medical)
 "ci" = (
 /obj/item/radio/intercom{
-	anyai = 1;
 	dir = 4;
 	freerange = 1;
 	name = "General Listening Channel";
@@ -695,12 +687,10 @@
 /area/shuttle/canterbury)
 "ck" = (
 /obj/item/radio/intercom{
-	name = "General Listening Channel";
-	icon_state = "intercom";
 	dir = 1;
-	pixel_y = -28;
 	freerange = 1;
-	anyai = 1
+	name = "General Listening Channel";
+	pixel_y = -28
 	},
 /obj/structure/barricade/plasteel{
 	dir = 8
@@ -722,7 +712,6 @@
 "co" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 1;
-	icon_state = "pdoor1";
 	id = "aft_engine_podlock"
 	},
 /obj/machinery/door/poddoor/shutters/transit{
@@ -733,7 +722,6 @@
 "cp" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 1;
-	icon_state = "pdoor1";
 	id = "aft_engine_podlock"
 	},
 /obj/machinery/door/poddoor/shutters/transit{
@@ -862,12 +850,10 @@
 /area/shuttle/canterbury)
 "cW" = (
 /obj/item/radio/intercom{
-	name = "General Listening Channel";
-	icon_state = "intercom";
 	dir = 1;
-	pixel_y = -28;
 	freerange = 1;
-	anyai = 1
+	name = "General Listening Channel";
+	pixel_y = -28
 	},
 /obj/structure/barricade/plasteel{
 	dir = 4

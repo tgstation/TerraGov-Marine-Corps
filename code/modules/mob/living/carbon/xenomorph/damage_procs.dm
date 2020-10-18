@@ -132,6 +132,9 @@
 
 	if(updating_health)
 		updatehealth()
+
+	regen_power = -xeno_caste.regen_delay //Remember, this is in deciseconds.
+
 	return damage
 
 

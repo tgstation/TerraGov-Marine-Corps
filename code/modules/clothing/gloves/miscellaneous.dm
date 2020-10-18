@@ -42,7 +42,7 @@
 
 /obj/item/clothing/gloves/ruggedgloves
 	desc = "A pair of gloves used by workers in dangerous environments."
-	name = "Rugged Gloves"
+	name = "rugged gloves"
 	icon_state = "black"
 	item_state = "swat_gl"
 	siemens_coefficient = 0
@@ -100,3 +100,9 @@
 	desc = "These look pretty fancy."
 	icon_state = "latex"
 	item_state = "lgloves"
+
+/obj/item/clothing/gloves/techpriest
+	name = "Techpriest gloves"
+	desc = "Praise the Omnissiah!"
+	icon_state = "tp_gloves"
+	item_state = "tp_gloves"

@@ -1,10 +1,10 @@
 //This is the lowest supported version, anything below this is completely obsolete and the entire savefile will be wiped.
-#define SAVEFILE_VERSION_MIN	38
+#define SAVEFILE_VERSION_MIN 38
 //This is the current version, anything below this will attempt to update (if it's not obsolete)
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX	41
+#define SAVEFILE_VERSION_MAX 42
 
 /datum/preferences/proc/savefile_needs_update(savefile/S)
 	var/savefile_version
@@ -29,6 +29,23 @@
 		key_bindings = (!focus_chat) ? deepCopyList(GLOB.hotkey_keybinding_list_by_key) : deepCopyList(GLOB.classic_keybinding_list_by_key)
 		parent.update_movement_keys(src)
 		to_chat(parent, "<span class='userdanger'>Empty keybindings, setting default to [!focus_chat ? "Hotkey" : "Classic"] mode</span>")
+
+	// Add missing keybindings for T L O M for when they were removed as defaults
+	if(current_version < 42)
+		var/list/missing_keybinds = list(
+			"T" = "say",
+			"M" = "me",
+			"O" = "ooc",
+			"L" = "looc",
+		)
+		for(var/key in missing_keybinds)
+			var/kb_path = missing_keybinds[key]
+			if(!(key in key_bindings) || !islist(key_bindings[key]))
+				key_bindings[key] = list()
+			if(!(kb_path in key_bindings[key]))
+				key_bindings[key] += list(kb_path)
+
+		to_chat(parent, "<span class='userdanger'>Forced keybindings for say (T), me (M), ooc (O), looc (L) have been applied.</span>")
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!

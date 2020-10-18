@@ -918,7 +918,6 @@
 /area/deathmatch)
 "dD" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	dir = 4;
 	name = "\improper General Store"
 	},
 /turf/open/floor/tile/bar,
@@ -997,7 +996,6 @@
 /area/deathmatch)
 "dU" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	dir = 4;
 	name = "\improper Civilian Housing"
 	},
 /turf/open/floor/wood/broken,

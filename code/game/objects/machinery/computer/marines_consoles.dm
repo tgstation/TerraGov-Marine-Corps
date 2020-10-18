@@ -18,10 +18,9 @@
 	if(istype(I, /obj/item/card/id))
 		var/obj/item/card/id/idcard = I
 		if(ACCESS_MARINE_LOGISTICS in idcard.access)
-			if(scan || modify)
+			if(scan && modify)
 				to_chat(user, "Both slots are full already. Remove a card first.")
 				return
-
 			if(!scan)
 				user.drop_held_item()
 				idcard.forceMove(src)
@@ -30,16 +29,14 @@
 				user.drop_held_item()
 				idcard.forceMove(src)
 				modify = idcard
-
 		else
 			if(modify)
-				to_chat(user, "Both slots are full already. Remove a card first.")
+				to_chat(user, "The modifying slot is full already. Remove a card first.")
 				return
-
 			user.drop_held_item()
 			idcard.forceMove(src)
 			modify = idcard
-
+	updateUsrDialog()
 
 /obj/machinery/computer/marine_card/interact(mob/user)
 	. = ..()
@@ -100,7 +97,7 @@
 		header += "<hr>"
 
 		var/jobs_all = ""
-		var/list/alljobs = (GLOB.jobs_regular_all - SYNTHETIC + "Custom")
+		var/list/alljobs = (GLOB.jobs_regular_all - list(SYNTHETIC, SILICON_AI) + "Custom")
 		for(var/job in alljobs)
 			jobs_all += "<a href='?src=\ref[src];choice=assign;assign_target=[job]'>[replacetext(job, " ", "&nbsp")]</a> " //make sure there isn't a line break in the middle of a job
 
@@ -175,10 +172,10 @@
 			accesses += "<div align='center'><b>Access</b></div>"
 			accesses += "<table style='width:100%'>"
 			accesses += "<tr>"
-			for(var/i in 1 to 6)
+			for(var/i in 1 to 8)
 				accesses += "<td style='width:14%'><b>[get_region_accesses_name(i)]:</b></td>"
 			accesses += "</tr><tr>"
-			for(var/i in 1 to 6)
+			for(var/i in 1 to 8)
 				accesses += "<td style='width:14%' valign='top'>"
 				for(var/A in get_region_accesses(i))
 					if(A in modify.access)
@@ -194,7 +191,7 @@
 			body += "<a href='?src=\ref[src];choice=mode;mode_target=1'>Access Crew Manifest</a>"
 		dat = "<tt>[header][body]<hr><br></tt>"
 
-	var/datum/browser/popup = new(user, "id_com", "<div align='center'>Identification Card Modifier</div>", 625, 500)
+	var/datum/browser/popup = new(user, "id_com", "<div align='center'>Identification Card Modifier</div>", 800, 650)
 	popup.set_content(dat)
 	popup.open()
 

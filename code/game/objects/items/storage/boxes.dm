@@ -167,6 +167,13 @@
 	spawn_type = /obj/item/card/id
 	spawn_number = 7
 
+/obj/item/storage/box/ids/dogtag
+	name = "box of spare Dogtags"
+	desc = "Has so many empty Dogtags."
+	icon_state = "id"
+	spawn_type = /obj/item/card/id/dogtag
+	spawn_number = 7
+
 /obj/item/storage/box/handcuffs
 	name = "box of handcuffs"
 	desc = "A box full of handcuffs."
@@ -454,7 +461,7 @@
 					/obj/item/ammo_magazine/acp,
 					/obj/item/ammo_magazine/standard_lmg,
 					/obj/item/ammo_magazine/standard_smartmachinegun,
-					/obj/item/ammo_magazine/m41ae2_hpr,
+					/obj/item/ammo_magazine/m412l1_hpr,
 					/obj/item/ammo_magazine/shotgun,
 					/obj/item/ammo_magazine/sniper)
 

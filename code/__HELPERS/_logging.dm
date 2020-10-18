@@ -80,6 +80,9 @@
 		WRITE_LOG(GLOB.world_game_log, "ACCESS: [text]")
 
 
+/proc/log_asset(text)
+	WRITE_LOG(GLOB.world_asset_log, "ASSET: [text]")
+
 /proc/log_attack(text)
 	LAZYADD(GLOB.attack_log, "\[[stationTimestamp()]\] ATTACK: [text]")
 	if(CONFIG_GET(flag/log_attack))

@@ -10,6 +10,9 @@ SUBSYSTEM_DEF(mapping)
 
 	var/list/shuttle_templates = list()
 
+	///list of all modular mapping templates
+	var/list/modular_templates = list()
+
 	var/list/areas_in_z = list()
 
 	var/list/turf/unused_turfs = list()				//Not actually unused turfs they're unused but reserved for use for whatever requests them. "[zlevel_of_turf]" = list(turfs)
@@ -95,6 +98,7 @@ SUBSYSTEM_DEF(mapping)
 	initialized = SSmapping.initialized
 	map_templates = SSmapping.map_templates
 	shuttle_templates = SSmapping.shuttle_templates
+	modular_templates = SSmapping.modular_templates
 	unused_turfs = SSmapping.unused_turfs
 	turf_reservations = SSmapping.turf_reservations
 	used_turfs = SSmapping.used_turfs
@@ -216,10 +220,11 @@ SUBSYSTEM_DEF(mapping)
 		map_templates[T.name] = T
 
 	preloadShuttleTemplates()
+	preloadModularTemplates()
 
 /proc/generateMapList(filename)
 	. = list()
-	var/list/Lines = world.file2list(filename)
+	var/list/Lines = file2list(filename)
 
 	if(!Lines.len)
 		return
@@ -261,6 +266,16 @@ SUBSYSTEM_DEF(mapping)
 
 		shuttle_templates[S.shuttle_id] = S
 		map_templates[S.shuttle_id] = S
+
+/datum/controller/subsystem/mapping/proc/preloadModularTemplates()
+	for(var/item in subtypesof(/datum/map_template/modular))
+		var/datum/map_template/modular/modular_type = item
+
+		var/datum/map_template/modular/M = new modular_type()
+
+		LAZYINITLIST(modular_templates[M.modular_id])
+		modular_templates[M.modular_id] += M
+		map_templates[M.type] = M
 
 /datum/controller/subsystem/mapping/proc/RequestBlockReservation(width, height, z, type = /datum/turf_reservation, turf_type_override)
 	UNTIL(initialized && !clearing_reserved_turfs)
