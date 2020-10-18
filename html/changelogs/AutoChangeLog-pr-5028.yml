@@ -1,0 +1,4 @@
+author: "Tennessee116"
+delete-after: True
+changes: 
+  - bugfix: "Fixed issue where mobs can crawl through acid holes at any distance"

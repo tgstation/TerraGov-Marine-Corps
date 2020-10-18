@@ -267,8 +267,8 @@
 	icon_state = "ert_medical"
 
 
-//==========================// MARINE BACKPACKS\\================================\\
-//=======================================================================\\
+/*========================== MARINE BACKPACKS ================================
+==========================================================================*/
 
 /obj/item/storage/backpack/marine
 	name = "\improper lightweight IMP backpack"
@@ -407,19 +407,19 @@
 
 /obj/item/storage/backpack/marine/satchel/captain_cloak
 	name = "Captain's Cloak"
-	desc = "An opulant cloak detailed with your many accomplishments."
+	desc = "An opulent cloak detailed with your many accomplishments."
 	icon_state = "commander_cloak" //with thanks to Baystation12
 	item_state = "commander_cloak" //with thanks to Baystation12
 
 /obj/item/storage/backpack/marine/satchel/officer_cloak_red
 	name = "Officer Cloak - Red"
-	desc = "A dashing cloak as befitting an officer. with fancy red trim."
+	desc = "A dashing cloak as befitting an officer, with fancy red trim."
 	icon_state = "officer_cloak_red" //with thanks to Baystation12
 	item_state = "officer_cloak_red" //with thanks to Baystation12
 
 /obj/item/storage/backpack/marine/satchel/captain_cloak_red
 	name = "Captain's Cloak - Red"
-	desc = "An opulant cloak detailed with your many accomplishments. with fancy red trim."
+	desc = "An opulent cloak detailed with your many accomplishments, with fancy red trim."
 	icon_state = "commander_cloak_red" //with thanks to Baystation12
 	item_state = "commander_cloak_red" //with thanks to Baystation12
 
@@ -613,12 +613,14 @@
 		camo_off(user)
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/damage_taken(datum/source, damage)
+	SIGNAL_HANDLER
 	var/mob/living/carbon/human/wearer = source
 	if(damage >= 15)
 		to_chat(wearer, "<span class='danger'>Your cloak shimmers from the damage!</span>")
 		apply_shimmer()
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/action_taken() //This is used by multiple signals passing different parameters.
+	SIGNAL_HANDLER
 	to_chat(wearer, "<span class='danger'>Your cloak shimmers from your actions!</span>")
 	apply_shimmer()
 
@@ -807,3 +809,16 @@
 	desc = "A rucksack with origins dating back to the mining colonies."
 	icon_state = "som_lightpack"
 	item_state = "som_lightpack"
+
+/obj/item/storage/backpack/rpg
+	name = "\improper TGMC rocket bag"
+	desc = "This backpack can hold 5 67mm shells or 80mm rockets."
+	icon_state = "som_lightpack"
+	item_state = "som_lightpack"
+	w_class = WEIGHT_CLASS_HUGE
+	storage_slots = 5 //It can hold 5 rockets.
+	max_storage_space = 21
+	max_w_class = 4
+	can_hold = list(
+		/obj/item/ammo_magazine/rocket
+	)

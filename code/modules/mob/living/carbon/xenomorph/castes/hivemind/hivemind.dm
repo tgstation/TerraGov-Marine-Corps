@@ -38,6 +38,13 @@
     core = new(loc)
     core.parent = src
 
+/mob/living/carbon/xenomorph/hivemind/Destroy()
+	if(!QDELETED(core))
+		QDEL_NULL(core)
+	else
+		core = null
+	return ..()
+
 /mob/living/carbon/xenomorph/hivemind/Move(NewLoc, Dir = 0)
 	var/obj/effect/alien/weeds/W = locate() in range("3x3", NewLoc)
 	if(!W)
@@ -141,7 +148,10 @@
 	to_chat(parent, "<span class='xenohighdanger'>Your core has been destroyed!</span>")
 	xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... \the [parent] has been slain!</span>", 2, parent.hivenumber)
 	parent.ghostize()
-	QDEL_NULL(parent)
+	if(!QDELETED(parent))
+		QDEL_NULL(parent)
+	else
+		parent = null
 	return ..()
 
 //hivemind cores

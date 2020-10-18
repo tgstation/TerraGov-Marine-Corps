@@ -1,0 +1,4 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - bugfix: "fixed error on tactical gas mask"

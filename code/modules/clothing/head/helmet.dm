@@ -131,7 +131,7 @@
 	desc = "Ave, Imperator, morituri te salutant."
 	icon_state = "gladiator"
 	item_state = "gladiator"
-	flags_inventory = COVEREYES|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEALLHAIR
 	siemens_coefficient = 1
 
@@ -183,8 +183,8 @@
 
 
 
-//===========================//MARINES HELMETS\\=================================\\
-//=======================================================================\\
+/*===========================MARINES HELMETS=================================
+=======================================================================*/
 
 
 /obj/item/clothing/head/helmet/marine
@@ -389,8 +389,8 @@
 	flags_marine_helmet = NONE
 	flags_item_map_variant = (ITEM_ICE_VARIANT)
 
-//=============================//PMCS\\==================================\\
-//=======================================================================\\
+/*=============================PMCS==================================
+=======================================================================*/
 
 /obj/item/clothing/head/helmet/marine/veteran
 	flags_item = SYNTH_RESTRICTED
@@ -443,10 +443,10 @@
 	anti_hug = 50
 	resistance_flags = UNACIDABLE
 
-//==========================//DISTRESS\\=================================\\
-//=======================================================================\\
+/*==========================DISTRESS=================================
+=======================================================================*/
 
-//=========================//Imperium\\==================================\\
+/*=========================Imperium==================================*/
 
 /obj/item/clothing/head/helmet/marine/imperial
 	name = "\improper Imperial Guard flak helmet"
@@ -568,8 +568,8 @@
 	desc = "A cowl worn to conceal the face of a marksman in the jungle."
 	icon_state = "duragm"
 
-//===========================//HELGHAST - MERCENARY\\================================\\
-//=====================================================================\\
+/*===========================HELGHAST - MERCENARY================================
+=====================================================================*/
 
 /obj/item/clothing/head/helmet/marine/veteran/mercenary
 	name = "\improper K12 ceramic helmet"

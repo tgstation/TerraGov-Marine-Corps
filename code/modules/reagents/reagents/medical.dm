@@ -332,7 +332,6 @@
 	L.reagents.remove_all_type(/datum/reagent/toxin, 5*REM, 0, 1)
 	L.setCloneLoss(0)
 	L.setOxyLoss(0)
-	L.radiation = 0
 	L.heal_limb_damage(5, 5)
 	L.adjustToxLoss(-5)
 	L.hallucination = 0
@@ -430,10 +429,6 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
 
-/datum/reagent/medicine/hyronalin/on_mob_life(mob/living/L, metabolism)
-	L.radiation = max(L.radiation-3*REM,0)
-	return ..()
-
 /datum/reagent/medicine/hyronalin/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(4*REM, TOX)
 
@@ -449,7 +444,6 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2
 
 /datum/reagent/medicine/arithrazine/on_mob_life(mob/living/L)
-	L.radiation = max(L.radiation-7*REM,0)
 	L.adjustToxLoss(-1*REM)
 	if(prob(15))
 		L.take_limb_damage(2*REM, 0)
@@ -471,7 +465,6 @@
 	scannable = TRUE
 
 /datum/reagent/medicine/russianred/on_mob_life(mob/living/L, metabolism)
-	L.radiation = max(L.radiation - 10 * REM, 0)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.drunkenness = max(C.drunkenness - 2)

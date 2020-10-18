@@ -171,11 +171,13 @@
   *
   */
 /datum/weather/proc/can_weather_act(mob/living/L)
-	var/turf/mob_turf = get_turf(L)
+	if(!isturf(L.loc))
+		return FALSE
+	var/turf/mob_turf = L.loc
 	if(L && !(mob_turf.z in impacted_z_levels))
-		return
+		return FALSE
 	if(!(get_area(L) in impacted_areas))
-		return
+		return FALSE
 	return TRUE
 
 /**

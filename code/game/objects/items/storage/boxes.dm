@@ -461,7 +461,7 @@
 					/obj/item/ammo_magazine/acp,
 					/obj/item/ammo_magazine/standard_lmg,
 					/obj/item/ammo_magazine/standard_smartmachinegun,
-					/obj/item/ammo_magazine/m41ae2_hpr,
+					/obj/item/ammo_magazine/m412l1_hpr,
 					/obj/item/ammo_magazine/shotgun,
 					/obj/item/ammo_magazine/sniper)
 

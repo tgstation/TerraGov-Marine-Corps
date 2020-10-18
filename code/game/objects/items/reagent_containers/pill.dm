@@ -212,6 +212,11 @@
 	list_reagents = list(/datum/reagent/medicine/tricordrazine = 15)
 	pill_id = 9
 
+/obj/item/reagent_containers/pill/leporazine
+	pill_desc = "A hypervene pill. A purge medication used to treat overdoses and rapidly remove toxins. Causes pain and vomiting."
+	list_reagents = list(/datum/reagent/medicine/leporazine = 10)
+	pill_id = 21
+
 /obj/item/reagent_containers/pill/hypervene
 	pill_desc = "A hypervene pill. A purge medication used to treat overdoses and rapidly remove toxins. Causes pain and vomiting."
 	list_reagents = list(/datum/reagent/medicine/hypervene = 12)
