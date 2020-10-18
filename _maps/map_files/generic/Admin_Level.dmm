@@ -1849,6 +1849,14 @@
 /obj/machinery/light,
 /turf/open/floor,
 /area/tdome)
+"Hq" = (
+/obj/structure/prop/mainship/toolboxforacause2020,
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
+"Mw" = (
+/obj/structure/prop/mainship/toolboxforacause2020,
+/turf/open/floor/tile/red/redblue/full,
+/area/tdome/tdomeobserve)
 "OG" = (
 /turf/open/ai_visible,
 /area/ai_multicam_room)
@@ -2835,7 +2843,7 @@ ab
 vc
 ak
 ak
-ak
+Mw
 aA
 Cf
 aE
@@ -4924,7 +4932,7 @@ eX
 eX
 eX
 fg
-eX
+Hq
 eX
 eX
 eX
