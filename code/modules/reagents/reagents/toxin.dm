@@ -605,4 +605,4 @@
 	to_chat(L, "<span class='warning'>Your [affecting] bursts!</span>")
 	src.custom_metabolism = 10
 	L.apply_damage(damage = 25, damagetype = BRUTE, def_zone = affecting, sharp = TRUE)
-	return..()
+	return ..()
