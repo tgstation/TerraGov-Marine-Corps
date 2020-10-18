@@ -519,17 +519,17 @@
 	scannable = TRUE
 	toxpwr = 0
 
+/datum/reagent/toxin/xeno_hemodile/on_mob_add(mob/living/L, metabolism, affecting)
+	to_chat(L, "<span class='warning'>You have trouble catching your breath.</span>")
+	RegisterSignal(L, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/hemodile_human_damage_taken)
+
 /datum/reagent/toxin/xeno_hemodile/on_mob_life(mob/living/L, metabolism)
-	switch(current_cycle)
-		if(2)
-			to_chat(L, "<span class='warning'>You have trouble catching your breath.</span>")
-		if(2 to INFINITY)
-			RegisterSignal(L, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/human_damage_taken)
 	return ..()
 
-/datum/reagent/toxin/xeno_hemodile/proc/human_damage_taken(mob/living/L, damage, damagetype)
-	if(damagetype == STAMINA)
+/datum/reagent/toxin/xeno_hemodile/proc/hemodile_human_damage_taken(mob/living/L, damage, damagetype)
+	if(damagetype == STAMINA && current_cycle > 2)
 		L.adjustStaminaLoss(damage*0.5)
+	return ..()
 
 
 /datum/reagent/toxin/xeno_transvitox //converts brute/burn to tox damage
