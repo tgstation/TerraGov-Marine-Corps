@@ -523,9 +523,6 @@
 	to_chat(L, "<span class='warning'>You have trouble catching your breath.</span>")
 	RegisterSignal(L, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/hemodile_human_damage_taken)
 
-/datum/reagent/toxin/xeno_hemodile/on_mob_life(mob/living/L, metabolism)
-	return ..()
-
 /datum/reagent/toxin/xeno_hemodile/proc/hemodile_human_damage_taken(mob/living/L, damage, damagetype)
 	if(damagetype == STAMINA && current_cycle > 2)
 		L.adjustStaminaLoss(damage*0.5)
