@@ -20,16 +20,20 @@
 			msg += "<span style='font-weight: bold; color: purple;'>You sense this creature is dead.</span>\n"
 		else if(stat || !client)
 			msg += "<span class='xenowarning'>It doesn't seem responsive.</span>\n"
+		if(!isxenoafflictor(user))
+			if(src.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
+				msg += "Transvitox: brute/burn injuries converted to 110% toxin\n"
+			if(src.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
+				msg += "Hemodile: extra 50% stamina damage received\n"
 		if(isxenoafflictor(user))
 			if(reagents.total_volume > 0)
 				var/unknown = 0
 				var/reagentdata[0]
 				for(var/datum/reagent/R in reagents.reagent_list)
-					if(R.scannable)
-						if(R.overdosed)
-							reagentdata["[R.type]"] = "<span class='warning'><b>OD: </b></span> <font color='#9773C4'><b>[round(R.volume, 0.01)]u [R.name]</b></font>"
-						else
-							reagentdata["[R.type]"] =	"<font color='#9773C4'><b>[round(R.volume, 0.01)]u [R.name]</b></font>"
+					if(R.overdosed)
+						reagentdata["[R.type]"] = "<span class='warning'><b>OD: </b></span> <font color='#9773C4'><b>[round(R.volume, 0.01)]u [R.name]</b></font>"
+					else
+						reagentdata["[R.type]"] =	"<font color='#9773C4'><b>[round(R.volume, 0.01)]u [R.name]</b></font>"
 				if(reagentdata.len)
 					msg += "\n\tToxins:\n"
 					for(var/d in reagentdata)

@@ -94,10 +94,10 @@
 	description = "Switches between available reagents."
 	keybind_signal = COMSIG_XENOABILITY_SELECT_REAGENT
 
-/datum/keybinding/xeno/reagent_sting/
-	name = "reagent_sting"
-	full_name = "Afflictor: Reagent Sting"
-	description = "Injects 10u of selected reagent."
+/datum/keybinding/xeno/reagent_slash/
+	name = "reagent_slash"
+	full_name = "Afflictor: Reagent Slash"
+	description = "Deals damage and injects 15u of selected reagent. Range is increased by 1 when standing still for 2 seconds."
 	keybind_signal = COMSIG_XENOABILITY_REAGENT_STING
 
 /datum/keybinding/xeno/xeno_camouflage/

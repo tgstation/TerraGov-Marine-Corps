@@ -509,42 +509,37 @@
 	L.Losebreath(2)
 
 
-/datum/reagent/toxin/xeno_hemodile
+/datum/reagent/toxin/xeno_hemodile //receives 50% increased stamina damage
 	name = "Hemodile"
 	description = "A stamina draining toxin. Causes increasing stamina loss the longer it is present."
 	reagent_state = LIQUID
 	color = "#94CFD8" // rgb: 148, 207, 216
-	custom_metabolism = 0.048
-	overdose_threshold = REAGENTS_OVERDOSE
+	custom_metabolism = 0.25
+	overdose_threshold = 10000
 	scannable = TRUE
 	toxpwr = 0
 
 /datum/reagent/toxin/xeno_hemodile/on_mob_life(mob/living/L, metabolism)
-	RegisterSignal(L, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/human_damage_taken)
 	switch(current_cycle)
-		if(15)
-			to_chat(L, "<span class='warning'>You feel shortness of breath.</span>")
-		if(30)
-			to_chat(L, "<span class='warning'>You have trouble gathering strength.</span>")
+		if(2)
+			to_chat(L, "<span class='warning'>You have trouble catching your breath.</span>")
+		if(2 to INFINITY)
+			RegisterSignal(L, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/human_damage_taken)
 	return ..()
 
 /datum/reagent/toxin/xeno_hemodile/proc/human_damage_taken(mob/living/L, damage, damagetype)
 	if(damagetype == STAMINA)
-		switch(current_cycle)
-			if(15 to 29)
-				L.adjustStaminaLoss(damage*0.25)
-			if(30 to INFINITY)
-				L.adjustStaminaLoss(damage*0.5)
+		L.adjustStaminaLoss(damage*0.5)
 	return
 
 
-/datum/reagent/toxin/xeno_transvitox
+/datum/reagent/toxin/xeno_transvitox //converts brute/burn to tox damage
 	name = "Transvitox"
 	description = "Heals brute and burn wounds, while producing toxins."
 	reagent_state = LIQUID
 	color = "#42FFA0"
-	custom_metabolism = 0.048
-	overdose_threshold = REAGENTS_OVERDOSE
+	custom_metabolism = 0.25
+	overdose_threshold = 10000
 	scannable = TRUE
 	toxpwr = 0
 
@@ -552,9 +547,9 @@
 	var/transvitox_ratio = 1.1  //Toxin per 1 healed Brute/Burn
 	var/transvitox_heal = 8     //Healed amount
 	switch(current_cycle)
-		if(9)
-			to_chat(L, "<span class='warning'>You feel strangely revitalised.</span>")
-		if(10 to INFINITY)
+		if(2)
+			to_chat(L, "<span class='warning'>You feel both sick and revitalised.</span>")
+		if(2 to INFINITY)
 			if(L.getBruteLoss())
 				L.adjustToxLoss(min(transvitox_heal*transvitox_ratio, L.getBruteLoss()*transvitox_ratio))
 				L.heal_limb_damage(min(transvitox_heal*transvitox_ratio, L.getBruteLoss()*transvitox_ratio))
@@ -563,62 +558,51 @@
 				L.heal_limb_damage(min(transvitox_heal*transvitox_ratio, L.getFireLoss()*transvitox_ratio))
 	return ..()
 
-
-/datum/reagent/toxin/xeno_decaytoxin_catalyst
-	name = "Proto Decay Accelerant"
-	description = "A secretion turning Larval Accelerant's regenerative properties into a bioweapon."
-	reagent_state = LIQUID
-	color = "#00022e" // rgb: 0, 2, 46
-	custom_metabolism = 0.048
-	overdose_threshold = REAGENTS_OVERDOSE
-	purge_list = list(/datum/reagent/medicine)
-	purge_rate = 0
-	scannable = TRUE
-	toxpwr = 0
-
-/datum/reagent/toxin/xeno_decaytoxin_catalyst/on_mob_add(mob/living/L, metabolism)
-	purge_rate = 6
-	sleep(40)
-	purge_rate = 0
-
 /datum/reagent/toxin/xeno_decaytoxin
 	name = "Decay Accelerant"
 	description = "A destabilising substance that causes rapid degeneration of the body."
 	reagent_state = LIQUID
 	color = "#802400" // rgb: 128, 36, 0
-	custom_metabolism = REAGENTS_METABOLISM
-	overdose_threshold = REAGENTS_OVERDOSE
+	custom_metabolism = 0.25
+	overdose_threshold = 10000
 	scannable = TRUE
 	toxpwr = 0
 
 /datum/reagent/toxin/xeno_decaytoxin/on_mob_life(mob/living/L, metabolism)
-	if(prob(6))
-		L.visible_message("<span class='warning'>You can feel your body falling apart!</span>")
-	L.adjustToxLoss(1)
+	var/toxin_damage = 0
+	for(var/datum/reagent/R in L.reagents.reagent_list)
+		if(istype(R, /datum/reagent/medicine))
+			toxin_damage += 1
+	message_admins("[toxin_damage] count")
+	L.adjustToxLoss(toxin_damage)
 	L.adjustBruteLoss(1)
-	return
+	if(prob(6))
+		to_chat(L, "<span class='warning'>You can feel your body falling apart!</span>")
+	return..()
 
 
-/datum/reagent/toxin/xeno_praelyx
+/datum/reagent/toxin/xeno_praelyx //deals damage if certain reagents are present on application or when injected more than once
 	name = "Praelyx"
 	description = "An harmless substance that coexists with blood. May cause vein ruptures if present in large quantities."
 	reagent_state = LIQUID
 	color = "#802400" // rgb: 128, 36, 0
-	custom_metabolism = 0 //requires several injections to work without a continuous effect
-	overdose_threshold = REAGENTS_OVERDOSE
+	custom_metabolism = 1
+	overdose_threshold = 10000
 	scannable = TRUE
 	toxpwr = 0
 
-/datum/reagent/toxin/xeno_praelyx/on_mob_life(mob/living/L, metabolism)
-	if(prob(6) && current_cycle > 7)
-		to_chat(L, "<span class='warning'>You feel a creeping sensation of your veins stretching.</span>")
-	if(src.volume >= 10 && current_cycle > 10)
+/datum/reagent/toxin/xeno_praelyx/on_mob_add(mob/living/L, metabolism)
+	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox) || L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_decaytoxin) || L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
 		RegisterSignal(L, COMSIG_HIVE_XENO_RECURRING_INJECTION, .proc/xeno_praelyx_trigger)
+
+/datum/reagent/toxin/xeno_praelyx/on_mob_life(mob/living/L, metabolism)
+	if(prob(6))
+		to_chat(L, "<span class='warning'>You feel a creeping sensation of your veins stretching.</span>")
+	RegisterSignal(L, COMSIG_HIVE_XENO_RECURRING_INJECTION, .proc/xeno_praelyx_trigger) //this doesn't need a reagent condition as it requires praelyx to be already present to trigger
 	return..()
 
 /datum/reagent/toxin/xeno_praelyx/proc/xeno_praelyx_trigger(mob/living/L, affecting)
 	to_chat(L, "<span class='warning'>Your [affecting] bursts!</span>")
 	src.custom_metabolism = 10
-	sleep(10)
 	L.apply_damage(damage = 25, damagetype = BRUTE, def_zone = affecting, sharp = TRUE)
 	return..()

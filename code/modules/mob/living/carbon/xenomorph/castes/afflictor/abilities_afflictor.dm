@@ -1,6 +1,3 @@
-/datum/action/xeno_action/activable/pounce/panther
-	victim_paralyze_time = 4.5 SECONDS
-
 // ***************************************
 // *********** Reagent selection
 // ***************************************
@@ -8,7 +5,7 @@
 /datum/action/xeno_action/select_reagent
 	name = "Select Reagent"
 	action_icon_state = "select_reagent0"
-	mechanics_text = "Switches between available reagents."
+	mechanics_text = "Switches between available reagents. Transvitox and Hemodile available at first with more unlocked at further maturity. Transvitox converts brute/burn damage to 110% toxin damage. Hemodile increases stamina damage received by 50%. Praelyx deals 25 damage (not affected by armor) to selected limb when one of the reagents is already present. Decay Accelerant deals 1 Brute per tick and 1 additional Toxin for each unique medical reagent present"
 	use_state_flags = XACT_USE_BUSY
 	keybind_signal = COMSIG_XENOABILITY_SELECT_REAGENT
 
@@ -33,18 +30,19 @@
 	return succeed_activate()
 
 // ***************************************
-// *********** Reagent sting
+// *********** Reagent slash
 // ***************************************
-/datum/action/xeno_action/activable/reagent_sting/afflictor
-	name = "Reagent Sting"
-	mechanics_text = "Injects 10u of selected reagent."
-	ability_name = "reagent sting"
+/datum/action/xeno_action/activable/reagent_slash/afflictor
+	name = "Reagent Slash"
+	mechanics_text = "Deals damage and injects 15u of selected reagent."
+	ability_name = "reagent slash"
 	cooldown_timer = 6 SECONDS
 	plasma_cost = 40
 	keybind_signal = COMSIG_XENOABILITY_REAGENT_STING
 
-/datum/action/xeno_action/activable/reagent_sting/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/xeno_action/activable/reagent_slash/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
+	var/max_range = 1
 	if(!.)
 		return FALSE
 
@@ -52,11 +50,9 @@
 		if(!silent)
 			to_chat(owner, "<span class='warning'>Our sting won't affect this target!</span>")
 		return FALSE
-	if(!owner.Adjacent(A))
-		var/mob/living/carbon/xenomorph/X = owner
-		if(!silent && world.time > (X.recent_notice + X.notice_delay)) //anti-notice spam
-			to_chat(X, "<span class='warning'>We can't reach this target!</span>")
-			X.recent_notice = world.time //anti-notice spam
+	if(get_dist(owner, A) > max_range)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>We need to be closer to [A].</span>")
 		return FALSE
 	//var/mob/living/carbon/C = A
 	//if (isnestedhost(C)) /Allowed to inject hosts for now
@@ -64,16 +60,17 @@
 	//		to_chat(owner, "<span class='warning'>Ashamed, we reconsider bullying the poor, nested host with our stinger.</span>")
 	//	return FALSE
 
-/datum/action/xeno_action/activable/reagent_sting/on_cooldown_finish()
+/datum/action/xeno_action/activable/reagent_slash/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
 	to_chat(owner, "<span class='xenodanger'>We feel our glands refill. We can use our Reagent Sting again.</span>")
 	return ..()
 
-/datum/action/xeno_action/activable/reagent_sting/use_ability(atom/A)
+/datum/action/xeno_action/activable/reagent_slash/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	succeed_activate()
 	add_cooldown()
-	X.recurring_injection(A, X.selected_reagent, XENO_REAGENT_STING_CHANNEL_TIME, count = 1)
+	X.recurring_injection(A, X.selected_reagent, XENO_REAGENT_STING_CHANNEL_TIME, count = 1, transfer_amount = 15)
+
 
 // ***************************************
 // *********** NANOCRYSTAL CAMOUFLAGE
@@ -116,7 +113,7 @@
 
 	RegisterSignal(L, list(SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), SIGNAL_ADDTRAIT(TRAIT_FLOORED)), .proc/cancel_stealth)
 
-	RegisterSignal(src, COMSIG_XENOMORPH_TAKING_DAMAGE, .proc/damage_taken)
+	RegisterSignal(src, list(COMSIG_XENOMORPH_TAKING_DAMAGE, COMSIG_HIVE_XENO_RECURRING_INJECTION), .proc/damage_taken)
 
 /datum/action/xeno_action/xeno_camouflage/remove_action(mob/living/L)
 	UnregisterSignal(L, list(

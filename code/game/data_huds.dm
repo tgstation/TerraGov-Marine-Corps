@@ -211,12 +211,20 @@
 	var/image/simple_status_hud = hud_list[STATUS_HUD_SIMPLE] //Status for the naked eye.
 	var/image/xeno_reagent = hud_list[XENO_REAGENT_HUD] // DIsplays active xeno reagents
 
+	if(src.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
+		xeno_reagent.icon_state = "transvitox_icon"
+
+	if(src.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
+		xeno_reagent.icon_state = "hemodile_icon"
+
+	if(src.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile) && src.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
+		xeno_reagent.icon_state = "hemodile_transvitox_icon"
+
 	if(species.species_flags & IS_SYNTHETIC)
 		simple_status_hud.icon_state = ""
 		status_hud.icon_state = "hudsynth"
 		infection_hud.icon_state = "hudsynth" //Xenos can feel synths are not human.
 		return TRUE
-	xeno_reagent.icon_state = "transvitox_icon"
 	if(status_flags & XENO_HOST)
 		var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in src
 		if(E)

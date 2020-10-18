@@ -1453,7 +1453,6 @@
 #include "code\modules\reagents\reactions\food_drink.dm"
 #include "code\modules\reagents\reactions\medical.dm"
 #include "code\modules\reagents\reactions\other.dm"
-#include "code\modules\reagents\reactions\toxin.dm"
 #include "code\modules\reagents\reagents\alcohol.dm"
 #include "code\modules\reagents\reagents\cloning.dm"
 #include "code\modules\reagents\reagents\drink.dm"

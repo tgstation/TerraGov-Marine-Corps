@@ -595,6 +595,7 @@
 		return FALSE
 	var/datum/reagent/body_tox
 	var/i = 1
+	var/datum/limb/affecting = src.zone_selected
 	do
 		face_atom(C)
 		if(stagger)
@@ -603,19 +604,25 @@
 		if(!isxenoafflictor(src) && CHECK_BITFIELD(C.status_flags, XENO_HOST) && body_tox && body_tox.volume > body_tox.overdose_threshold)
 			to_chat(src, "<span class='warning'>We sense the infected host is saturated with [body_tox.name] and cease our attempt to inoculate it further to preserve the little one inside.</span>")
 			return FALSE
+		do_attack_animation(C)
 		if(!isxenoafflictor(src))
-			do_attack_animation(C)
 			playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
 			playsound(C, "alien_drool", 15, TRUE)
 			to_chat(C, "<span class='danger'>You feel a tiny prick.</span>")
+		else
+			playsound(C, "alien_claw_flesh", 15, TRUE)
+			C.apply_damage(damage = 10, damagetype = BRUTE, def_zone = affecting, sharp = TRUE)
+			to_chat(C, "<span class='danger'>The [src] swipes at you!</span>")
 		C.reagents.add_reagent(toxin, transfer_amount)
 		if(!body_tox) //Let's check this each time because depending on the metabolization rate it can disappear between stings.
 			body_tox = C.reagents.get_reagent(toxin)
-		to_chat(src, "<span class='xenonotice'>Our stinger injects the victim with [body_tox.name]!</span>")
+		if(isxenoafflictor(src))
+			to_chat(src, "<span class='xenonotice'>We slash [C] with [body_tox.name]!</span>")
+		else
+			to_chat(src, "<span class='xenonotice'>Our stinger injects the victim with [body_tox.name]!</span>")
 		if(body_tox.volume > body_tox.overdose_threshold)
 			to_chat(src, "<span class='danger'>We sense the host is saturated with [body_tox.name].</span>")
 	while(i++ < count && do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
-	var/datum/limb/affecting = src.zone_selected
 	SEND_SIGNAL(C, COMSIG_HIVE_XENO_RECURRING_INJECTION, affecting)
 	return TRUE
 

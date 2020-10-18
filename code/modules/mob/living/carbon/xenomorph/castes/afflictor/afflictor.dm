@@ -2,7 +2,7 @@
 	caste_base_type = /mob/living/carbon/xenomorph/afflictor
 	name = "Afflictor"
 	desc = "A small snake-like creature with a dangerously looking tail."
-	icon = 'icons/Xeno/1x1_Xenos.dmi'
+	icon = 'icons/Xeno/48x48_Xenos.dmi'
 	icon_state = "Afflictor Walking"
 	speak_emote = list("hisses")
 	health = 100
@@ -15,17 +15,13 @@
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 		)
 
+
+
 // ***************************************
 // *********** Mob overrides
 // ***************************************
-/mob/living/carbon/xenomorph/afflictor/a_intent_change()
-	return
-
 /mob/living/carbon/xenomorph/afflictor/start_pulling(atom/movable/AM, suppress_message = FALSE)
 	return
-
-/mob/living/carbon/xenomorph/afflictor/pull_response(mob/puller)
-	return TRUE
 
 /mob/living/carbon/xenomorph/afflictor/apply_alpha_channel(image/I)
 	I.alpha = src.alpha
