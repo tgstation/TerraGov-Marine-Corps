@@ -45,7 +45,7 @@
 	while(dy > dx)
 
 
-/proc/filled_turfs(atom/center, radius = 3, type = "circle", include_edge = TRUE, barricade_block = FALSE)
+/proc/filled_turfs(atom/center, radius = 3, type = "circle", include_edge = TRUE)
 	var/turf/center_turf = get_turf(center)
 	if(radius < 0 || !center)
 		return
@@ -71,9 +71,8 @@
 					continue
 				if (AdjT in results) // Ignore existing turfs
 					continue
-				if (barricade_block)
-					if (locate(/obj/structure/barricade) in AdjT)
-						continue
+				if (DirBlocked(T,direction))
+					continue
 				if(AdjT.density || LinkBlocked(T, AdjT) || TurfBlockedNonWindow(AdjT))
 					if(include_edge)
 						results += AdjT
