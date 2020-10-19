@@ -1066,3 +1066,4 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/srs99)
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/srs99)
+
