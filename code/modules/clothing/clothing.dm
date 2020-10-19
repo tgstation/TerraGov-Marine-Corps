@@ -89,7 +89,9 @@
 
 	/// Strength of the armor light used by [proc/set_light()]
 	var/light_strength = 5
-
+	sprite_sheets = list(
+	"Sangheili" = 'icons/mob/species/sangheili/suit.dmi',
+	)
 /obj/item/clothing/suit/dropped(mob/user)
 	turn_off_light(user)
 	return ..()
@@ -145,7 +147,10 @@
 	flags_armor_protection = HANDS
 	flags_equip_slot = ITEM_SLOT_GLOVES
 	attack_verb = list("challenged")
-	sprite_sheets = list("Vox" = 'icons/mob/species/vox/gloves.dmi')
+	sprite_sheets = list(
+	"Vox" = 'icons/mob/species/vox/gloves.dmi',
+	"Sangheili" = 'icons/mob/species/sangheili/gloves.dmi',
+	)
 
 
 /obj/item/clothing/gloves/update_clothing_icon()
@@ -192,7 +197,8 @@
 	icon = 'icons/obj/clothing/masks.dmi'
 	flags_equip_slot = ITEM_SLOT_MASK
 	flags_armor_protection = FACE|EYES
-	sprite_sheets = list("Vox" = 'icons/mob/species/vox/masks.dmi')
+	sprite_sheets = list(
+	"Vox" = 'icons/mob/species/vox/masks.dmi')
 	var/anti_hug = 0
 	var/toggleable = FALSE
 	active = TRUE
@@ -224,7 +230,10 @@
 	flags_equip_slot = ITEM_SLOT_FEET
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
-	sprite_sheets = list("Vox" = 'icons/mob/species/vox/shoes.dmi')
+	sprite_sheets = list(
+	"Vox" = 'icons/mob/species/vox/shoes.dmi',
+	"Sangheili" = 'icons/mob/species/sangheili/shoes.dmi',
+	)
 
 
 /obj/item/clothing/shoes/update_clothing_icon()
