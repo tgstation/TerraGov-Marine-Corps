@@ -4,6 +4,7 @@
 	required_players = 0
 	votable = FALSE
 
+//we need seperate gamemodes for urf/covvies
 	valid_job_types = list(
 		/datum/job/unsc/marine/basic = -1,
 		/datum/job/unsc/marine/medic = 6,
@@ -13,6 +14,12 @@
 		/datum/job/insurrectionist/medic = 6,
 		/datum/job/insurrectionist/engineer = 6,
 		/datum/job/insurrectionist/leader = 1,
+		/datum/job/covenant/sangheili/minor = -1,
+		/datum/job/covenant/sangheili/ranger = -1,
+		/datum/job/covenant/sangheili/officer = -1,
+		/datum/job/covenant/sangheili/specops = -1,
+		/datum/job/covenant/sangheili/ultra = -1,
+		/datum/job/covenant/sangheili/general = -1
 	)
 
 /datum/game_mode/extended/announce()
