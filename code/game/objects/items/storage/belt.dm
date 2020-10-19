@@ -645,7 +645,7 @@
 
 /obj/item/storage/belt/gun/m4a3/fieldcommander/Initialize()
 	. = ..()
-	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/m1911/custom(src)
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/standard_heavypistol/m1911/custom(src)
 	new /obj/ammo_magazine/pistol/standard_heavypistol(src)
 	new /obj/ammo_magazine/pistol/standard_heavypistol(src)
 	new /obj/ammo_magazine/pistol/standard_heavypistol(src)
