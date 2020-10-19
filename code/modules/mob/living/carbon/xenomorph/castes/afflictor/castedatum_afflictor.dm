@@ -136,4 +136,4 @@
 	upgrade_threshold = 480
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 24, "bullet" = 24, "laser" = 24, "energy" = 124, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 24, "acid" = 7)
+	soft_armor = list("melee" = 24, "bullet" = 24, "laser" = 24, "energy" = 24, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 24, "acid" = 7)

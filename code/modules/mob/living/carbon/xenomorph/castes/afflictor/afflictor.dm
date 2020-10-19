@@ -1,7 +1,7 @@
 /mob/living/carbon/xenomorph/afflictor
 	caste_base_type = /mob/living/carbon/xenomorph/afflictor
 	name = "Afflictor"
-	desc = "A small snake-like creature with a dangerously looking tail."
+	desc = "You don't feel so well..."
 	icon = 'icons/Xeno/48x48_Xenos.dmi'
 	icon_state = "Afflictor Walking"
 	speak_emote = list("hisses")
