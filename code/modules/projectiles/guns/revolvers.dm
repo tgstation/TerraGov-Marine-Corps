@@ -395,8 +395,6 @@
 	damage_mult = 1.05
 	recoil = 0
 	recoil_unwielded = 0
-
-
 //-------------------------------------------------------
 //357 REVOLVER //Based on the generic S&W 357.
 
