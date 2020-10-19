@@ -89,6 +89,7 @@
 					/obj/item/storage/box/nade_box = 2,
 					/obj/item/storage/box/nade_box/HIDP = 2,
 					/obj/item/storage/box/nade_box/M15 = 2,
+					/obj/item/storage/box/nade_box/plasma_drain_gas = 2,
 					/obj/item/ammo_magazine/sniper = 3,
 					/obj/item/ammo_magazine/rifle/m4ra = 3,
 					/obj/item/ammo_magazine/rocket = 3,
@@ -131,13 +132,14 @@
 					/obj/item/explosive/mine = 5,
 					/obj/item/explosive/grenade/frag/m15 = 25,
 					/obj/item/explosive/grenade/incendiary = 25,
-					/obj/item/explosive/grenade/smokebomb = 25,
+					/obj/item/explosive/grenade/drainbomb = 25,
 					/obj/item/explosive/grenade/cloakbomb = 25,
 					/obj/item/storage/box/m94 = 30,
 					/obj/item/storage/box/recoilless_system = 1,
 					)
 
 	premium = list()
+	contraband = list(/obj/item/explosive/grenade/smokebomb = 25)
 
 
 
