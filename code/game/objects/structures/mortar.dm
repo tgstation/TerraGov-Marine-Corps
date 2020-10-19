@@ -312,7 +312,6 @@
 	smoke = new(src)
 
 /obj/item/mortal_shell/plasmaloss/detonate(turf/T)
-
 	explosion(T, 0, 0, 1, 3, throw_range = 0)
 	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
 	forceMove(T)
