@@ -455,7 +455,7 @@
 
 
 /obj/structure/barricade/metal/welder_act(mob/living/user, obj/item/I)
-	if(user.action_busy)
+	if(user.action_busy >= 3 || user.actioned_list.Find(src))
 		return FALSE
 
 	var/obj/item/tool/weldingtool/WT = I
