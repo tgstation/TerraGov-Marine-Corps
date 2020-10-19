@@ -140,6 +140,7 @@
 	return TRUE
 
 /datum/keybinding/carbon/specialclick/proc/specialclicky(datum/source, atom/A, params)
+	SIGNAL_HANDLER
 	var/mob/living/carbon/user = source
 	if(!user.client || !(user.client.eye == user || user.client.eye == user.loc))
 		UnregisterSignal(user, (COMSIG_MOB_CLICKON))

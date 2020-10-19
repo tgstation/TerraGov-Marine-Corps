@@ -1,7 +1,6 @@
 /datum/component/bump_attack
 	var/active = TRUE
 	var/bump_action_path
-	var/cross_action_path
 	var/datum/action/bump_attack_toggle/toggle_action
 
 
@@ -13,20 +12,16 @@
 	var/toggle_path
 	if(ishuman(parent))
 		bump_action_path = .proc/human_bump_action
-		cross_action_path = .proc/human_bump_action
 	else if(isxeno(parent))
 		bump_action_path = .proc/xeno_bump_action
-		cross_action_path = .proc/xeno_bump_action
 	else
 		bump_action_path = .proc/living_bump_action
-		cross_action_path = .proc/living_bump_action
 	toggle_path = .proc/living_activation_toggle
 	toggle_action.give_action(parent)
 	toggle_action.update_button_icon(active)
 	RegisterSignal(toggle_action, COMSIG_ACTION_TRIGGER, toggle_path)
 	if(active)
 		RegisterSignal(parent, COMSIG_MOVABLE_BUMP, bump_action_path)
-		RegisterSignal(parent, COMSIG_MOVABLE_CROSSED, cross_action_path)
 
 /datum/component/bump_attack/Destroy(force, silent)
 	QDEL_NULL(toggle_action)
@@ -39,9 +34,8 @@
 	to_chat(bumper, "<span class='notice'>You will now [active ? "attack" : "push"] enemies who are in your way.</span>")
 	if(active)
 		RegisterSignal(bumper, COMSIG_MOVABLE_BUMP, bump_action_path)
-		RegisterSignal(bumper, COMSIG_MOVABLE_CROSSED, cross_action_path)
 	else
-		UnregisterSignal(bumper, list(COMSIG_MOVABLE_BUMP, COMSIG_MOVABLE_CROSSED))
+		UnregisterSignal(bumper, COMSIG_MOVABLE_BUMP)
 	toggle_action.update_button_icon(active)
 
 
@@ -66,6 +60,7 @@
 
 
 /datum/component/bump_attack/proc/living_bump_action(datum/source, atom/target)
+	SIGNAL_HANDLER
 	. = living_bump_action_checks(target)
 	if(!isnull(.))
 		return
@@ -73,6 +68,7 @@
 
 
 /datum/component/bump_attack/proc/human_bump_action(datum/source, atom/target)
+	SIGNAL_HANDLER
 	var/mob/living/carbon/human/bumper = parent
 	. = carbon_bump_action_checks(target)
 	if(!isnull(.))
@@ -84,6 +80,7 @@
 
 
 /datum/component/bump_attack/proc/xeno_bump_action(datum/source, atom/target)
+	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/bumper = parent
 	. = carbon_bump_action_checks(target)
 	if(!isnull(.))

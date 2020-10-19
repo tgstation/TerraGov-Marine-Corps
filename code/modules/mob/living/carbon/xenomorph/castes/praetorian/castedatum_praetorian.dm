@@ -12,7 +12,7 @@
 	melee_damage = 20
 
 	// *** Tackle *** //
-	tackle_damage = 40
+	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = -0.2
@@ -68,7 +68,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Tackle *** //
-	tackle_damage = 42
+	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = -0.3
@@ -102,7 +102,7 @@
 	melee_damage = 23
 
 	// *** Tackle *** //
-	tackle_damage = 47
+	tackle_damage = 28
 
 	// *** Speed *** //
 	speed = -0.4
@@ -129,15 +129,15 @@
 
 /datum/xeno_caste/praetorian/ancient
 	upgrade_name = "Ancient"
-	caste_desc = "Its mouth looks like a minigun."
+	caste_desc = "The maw of this creature drips with acid."
 	upgrade = XENO_UPGRADE_THREE
-	ancient_message = "We are the strongest range fighter around. Our spit is devestating and we can fire nearly a constant stream."
+	ancient_message = "We are the strongest ranged fighter around. Our spit is devastating and we can fire nearly a constant stream."
 
 	// *** Melee Attacks *** //
 	melee_damage = 23
 
 	// *** Tackle *** //
-	tackle_damage = 50
+	tackle_damage = 28
 
 	// *** Speed *** //
 	speed = -0.5

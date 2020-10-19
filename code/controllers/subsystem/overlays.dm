@@ -46,6 +46,8 @@ SUBSYSTEM_DEF(overlays)
 			STAT_START_STOPWATCH
 			var/atom/A = thing
 			COMPILE_OVERLAYS(A)
+			UNSETEMPTY(A.add_overlays)
+			UNSETEMPTY(A.remove_overlays)
 			STAT_STOP_STOPWATCH
 			STAT_LOG_ENTRY(stats, A.type)
 		if(mc_check)
@@ -113,9 +115,8 @@ SUBSYSTEM_DEF(overlays)
 /atom/proc/cut_overlays(priority = FALSE)
 	LAZYINITLIST(priority_overlays)
 	LAZYINITLIST(remove_overlays)
-	LAZYINITLIST(add_overlays)
 	remove_overlays = overlays.Copy()
-	add_overlays.Cut()
+	add_overlays = null
 
 	if(priority)
 		priority_overlays.Cut()
@@ -128,7 +129,7 @@ SUBSYSTEM_DEF(overlays)
 	if(!overlays)
 		return
 	overlays = build_appearance_list(overlays)
-	LAZYINITLIST(add_overlays) //always initialized after this point
+	LAZYINITLIST(add_overlays)
 	LAZYINITLIST(priority_overlays)
 	LAZYINITLIST(remove_overlays)
 	var/a_len = add_overlays.len
@@ -149,6 +150,7 @@ SUBSYSTEM_DEF(overlays)
 	//If not already queued and there is work to be done
 	if(NOT_QUEUED_ALREADY && (fa_len != a_len || fr_len != r_len || fp_len != p_len))
 		QUEUE_FOR_COMPILE
+	UNSETEMPTY(add_overlays)
 
 /atom/proc/add_overlay(list/overlays, priority = FALSE)
 	if(!overlays)

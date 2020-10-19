@@ -97,22 +97,32 @@
 /area/lv624/ground/sand9
 	name = "\improper South Eastern Barrens"
 	icon_state = "southeast"
-//	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
+	ambience = list('sound/ambience/ambimine.ogg','sound/ambience/ambigen10.ogg','sound/ambience/ambigen4.ogg','sound/ambience/ambisin4.ogg')
+
+/area/lv624/ground/tfort
+	name = "\improper Table Fort"
+	icon_state = "purple"
+	outside = FALSE
 
 /area/lv624/ground/river1
 	name = "\improper Western River"
 	icon_state = "blueold"
-//	ambience = list('sound/ambience/jungle_amb1.ogg')
+	ambience = list('sound/ambience/jungle_amb1.ogg')
 
 /area/lv624/ground/river2
 	name = "\improper Central River"
 	icon_state = "purple"
-//	ambience = list('sound/ambience/jungle_amb1.ogg')
+	ambience = list('sound/ambience/jungle_amb1.ogg')
 
 /area/lv624/ground/river3
 	name = "\improper Eastern River"
 	icon_state = "bluenew"
-//	ambience = list('sound/ambience/jungle_amb1.ogg')
+	ambience = list('sound/ambience/jungle_amb1.ogg')
+
+/area/lv624/ground/filtration
+	name = "\improper Filtration Plant"
+	icon_state = "green"
+	outside = FALSE
 
 /area/lv624/ground/compound
 	name = "\improper Nanotrasen Compound"
@@ -137,8 +147,17 @@
 /area/lv624/ground/compound/sw
 	name = "\improper Southwest NT Compound"
 	icon_state = "southwest"
-
 //	ambience = list('sound/ambience/jungle_amb1.ogg')
+
+/area/lv624/ground/shelter
+	name = "\improper Rain shelter"
+	icon_state = "blue"
+	outside = FALSE
+
+/area/lv624/ground/ruin
+	name = "\improper Unknown structure"
+	icon_state = "red"
+	outside = FALSE
 
 /area/lv624/ground/caves //Does not actually exist
 	name ="Caves"

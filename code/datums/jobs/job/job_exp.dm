@@ -128,6 +128,12 @@ GLOBAL_PROTECT(exp_to_update)
 	return return_text
 
 
+/client/proc/get_exp(role)
+	var/list/play_records = prefs.exp
+	if(!length(play_records))
+		return 0
+	return text2num(play_records[role])
+
 /client/proc/get_exp_living()
 	if(!prefs.exp)
 		return "No data"

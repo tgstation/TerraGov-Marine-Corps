@@ -32,9 +32,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/structure/cable,
 /obj/machinery/power/apc/hyper{
 	dir = 4
@@ -396,9 +394,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bn" = (
@@ -509,15 +505,12 @@
 /area/shuttle/big_ert)
 "bC" = (
 /obj/machinery/door/airlock/mainship/command{
-	dir = 4;
 	name = "\improper Bridge"
 	},
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bD" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -525,9 +518,7 @@
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bE" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -549,9 +540,7 @@
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bG" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
@@ -579,9 +568,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/mainship/tcomms,
 /area/shuttle/big_ert)
 "bK" = (
@@ -619,18 +606,14 @@
 /turf/open/floor/mainship/plate,
 /area/shuttle/big_ert)
 "bL" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bM" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bN" = (
@@ -661,9 +644,7 @@
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bP" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 9
 	},
@@ -677,22 +658,16 @@
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bR" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/mainship/tcomms,
 /area/shuttle/big_ert)
 "bS" = (
 /obj/structure/bed/chair/office/light,
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "bT" = (
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
@@ -752,7 +727,7 @@
 /obj/item/ammo_magazine/smg/standard_smg,
 /obj/item/ammo_magazine/smg/standard_smg,
 /obj/item/ammo_magazine/smg/standard_smg,
-/obj/item/weapon/gun/smg/m39/elite,
+/obj/item/weapon/gun/smg/m25/elite,
 /turf/open/floor/mainship/plate,
 /area/shuttle/big_ert)
 "cc" = (
@@ -809,9 +784,7 @@
 /obj/effect/decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
@@ -831,8 +804,7 @@
 /area/shuttle/big_ert)
 "ck" = (
 /obj/structure/closet/secure_closet/securecom{
-	desc = "You could probably get thrown out an airlock just by looking at this...";
-	name = "captain's secure box"
+	desc = "You could probably get thrown out an airlock just by looking at this..."
 	},
 /turf/open/floor/mainship/plate,
 /area/shuttle/big_ert)
@@ -873,25 +845,21 @@
 /obj/structure/rack,
 /obj/item/ammo_magazine/smg/standard_smg,
 /obj/item/ammo_magazine/smg/standard_smg,
-/obj/item/weapon/gun/smg/m39/elite,
+/obj/item/weapon/gun/smg/m25/elite,
 /turf/open/floor/mainship/plate,
 /area/shuttle/big_ert)
 "cs" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
 	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "ct" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 4
 	},
-/obj/effect/decal/warning_stripes/thin{
-	dir = 2
-	},
+/obj/effect/decal/warning_stripes/thin,
 /turf/open/floor/plating/mainship,
 /area/shuttle/big_ert)
 "cu" = (
@@ -930,7 +898,6 @@
 /area/shuttle/big_ert)
 "cy" = (
 /obj/machinery/door/airlock/mainship/generic{
-	dir = 4;
 	name = "Restroom"
 	},
 /turf/open/floor/plating/mainship,
@@ -1000,7 +967,6 @@
 /area/shuttle/big_ert)
 "cF" = (
 /obj/structure/toilet{
-	icon_state = "toilet00";
 	dir = 1
 	},
 /turf/open/floor/freezer,

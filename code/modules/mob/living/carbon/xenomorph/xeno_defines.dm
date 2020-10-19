@@ -32,6 +32,10 @@
 	// *** Speed *** //
 	var/speed = 1
 
+	// *** Regeneration Delay ***//
+	var/regen_delay = 10 SECONDS //Time after you take damage before you can regen.
+	var/regen_ramp_amount = 0.005 //Regeneration power increases by this amount evey decisecond.
+
 	// *** Plasma *** //
 	var/plasma_max = 10
 	var/plasma_gain = 5
@@ -84,7 +88,7 @@
 
 	// *** Warrior Abilities *** //
 	var/agility_speed_increase = 0 // this opens up possibilities for balancing
-
+	var/agility_speed_armor = 0 //Same as above
 
 	// *** Boiler Abilities *** //
 	var/max_ammo = 0
@@ -100,6 +104,7 @@
 	// *** Defender Abilities *** //
 	var/crest_defense_armor = 0
 	var/fortify_armor = 0
+	var/crest_defense_slowdown = 0
 
 	// *** Queen Abilities *** //
 	var/queen_leader_limit = 0 //Amount of leaders allowed
@@ -159,8 +164,6 @@
 	var/upgrade_stored = 0 //How much upgrade points they have stored.
 	var/upgrade = XENO_UPGRADE_INVALID  //This will track their upgrade level.
 
-	var/armor_bonus = 0
-	var/armor_pheromone_bonus = 0
 	var/sunder = 0 // sunder affects armour values and does a % removal before dmg is applied. 50 sunder == 50% effective armour values
 	var/fire_resist_modifier = 0
 
@@ -175,6 +178,11 @@
 	var/frenzy_aura = 0 //Strength of aura we are affected by. NOT THE ONE WE ARE EMITTING
 	var/warding_aura = 0
 	var/recovery_aura = 0
+
+	var/regen_power = 0 //Resets to -xeno_caste.regen_delay when you take damage.
+	//Negative values act as a delay while values greater than 0 act as a multiplier.
+	//Will increase by 10 every decisecond if under 0. Increases by xeno_caste.regen_ramp_amount every decisecond.
+	//If you want to balance this, look at the xeno_caste defines mentioned above.
 
 	var/is_zoomed = 0
 	var/zoom_turf = null

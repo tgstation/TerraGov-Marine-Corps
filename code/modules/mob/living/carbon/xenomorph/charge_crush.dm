@@ -76,6 +76,7 @@
 
 
 /datum/action/xeno_action/ready_charge/proc/on_dir_change(datum/source, old_dir, new_dir)
+	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/charger = owner
 	if(charger.is_charging == CHARGE_OFF)
 		return
@@ -85,6 +86,7 @@
 
 
 /datum/action/xeno_action/ready_charge/proc/update_charging(datum/source, atom/oldloc, direction, Forced)
+	SIGNAL_HANDLER_DOES_SLEEP
 	if(Forced)
 		return
 
@@ -241,6 +243,7 @@
 
 // Charge is divided into two acts: before and after the crushed thing taking damage, as that can cause it to be deleted.
 /datum/action/xeno_action/ready_charge/proc/do_crush(datum/source, atom/crushed)
+	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/charger = owner
 	if(charger.incapacitated() || charger.now_pushing)
 		return NONE
@@ -331,6 +334,7 @@
 
 
 /datum/action/xeno_action/ready_charge/bull_charge/proc/toggle_charge_type(datum/source, new_charge_type = CHARGE_BULL)
+	SIGNAL_HANDLER
 	if(charge_type == new_charge_type)
 		return
 
@@ -389,8 +393,10 @@
 		charge_datum.do_stop_momentum()
 		return PRECRUSH_STOPPED
 	if(anchored)
-		. = (CHARGE_SPEED(charge_datum) * 50) //Damage to inflict. 3 rams, 2 times taking damage.
+		var/charge_damage = (CHARGE_SPEED(charge_datum) * 45)  // 2.1 * 45 = 94.5 max damage to inflict.
+		. = charge_damage
 		charge_datum.speed_down(3)
+		charger.adjust_sunder(10)
 		return
 	return (CHARGE_SPEED(charge_datum) * 20) //Damage to inflict.
 
@@ -466,7 +472,7 @@
 /obj/structure/razorwire/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/xeno_action/ready_charge/charge_datum)
 	if(!anchored)
 		return ..()
-	razorwire_tangle(charger, RAZORWIRE_ENTANGLE_DELAY * 0.20) //entangled for only 20% as long or 1 second
+	razorwire_tangle(charger, RAZORWIRE_ENTANGLE_DELAY * 0.10) //entangled for only 10% as long or 0.5 seconds
 	charger.visible_message("<span class='danger'>The barbed wire slices into [charger]!</span>",
 	"<span class='danger'>The barbed wire slices into you!</span>", null, 5)
 	charger.Paralyze(0.5 SECONDS)

@@ -13,6 +13,12 @@
 	var/stump = 0
 	max_integrity = 100
 
+/obj/structure/bush/stickervines
+	name = "dense sticker vines"
+	desc = "Pretty thick vines with sharp stickers on them, it'll take something sharp and a lot of determination to clear away."
+	icon = 'icons/turf/ground_map.dmi'
+	icon_state = "thickvines"
+
 /obj/structure/bush/Initialize()
 	. = ..()
 	if(prob(75))

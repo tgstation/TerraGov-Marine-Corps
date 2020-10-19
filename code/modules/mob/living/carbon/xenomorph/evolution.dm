@@ -143,6 +143,10 @@
 		to_chat(src, "<span class='warning'>Nuh-uhh.</span>")
 		return
 
+	if(!forced && !(new_caste_type in xeno_caste.evolves_to))
+		to_chat(src, "<span class='warning'>We can't evolve to that caste from our current one.</span>")
+		return
+
 	// used below
 	var/tierzeros //Larva and burrowed larva if it's a certain kinda hive
 	var/tierones
@@ -305,6 +309,7 @@
 	new_xeno.nicknumber = nicknumber
 	new_xeno.hivenumber = hivenumber
 	new_xeno.transfer_to_hive(hivenumber)
+	transfer_observers_to(new_xeno)
 
 	if(new_xeno.health - getBruteLoss(src) - getFireLoss(src) > 0) //Cmon, don't kill the new one! Shouldnt be possible though
 		new_xeno.bruteloss = src.bruteloss //Transfers the damage over.

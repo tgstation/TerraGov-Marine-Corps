@@ -1,6 +1,6 @@
 //Colonial Liberation Front
 /datum/emergency_call/clf
-	name = "CLF"
+	name = "CLF Cell"
 	probability = 0
 
 

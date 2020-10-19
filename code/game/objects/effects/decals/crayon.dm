@@ -1,7 +1,7 @@
 /obj/effect/decal/cleanable/crayon
 	name = "rune"
 	desc = "A rune drawn in crayon."
-	icon = 'icons/obj/rune.dmi'
+	icon = 'icons/effects/crayondecal.dmi'
 	layer = ABOVE_TURF_LAYER
 	anchored = TRUE
 

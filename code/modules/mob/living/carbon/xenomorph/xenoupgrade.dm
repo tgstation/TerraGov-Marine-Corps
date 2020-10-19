@@ -12,6 +12,7 @@
 	var/selected_ability_type = selected_ability?.type
 	remove_abilities()
 	add_abilities()
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE)
 	if(selected_ability_type)
 		for(var/datum/action/xeno_action/activable/activable_ability in actions)
 			if(selected_ability_type != activable_ability.type)

@@ -41,6 +41,7 @@
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN)
 
 /mob/living/carbon/human/proc/human_z_changed(datum/source, old_z, new_z)
+	SIGNAL_HANDLER
 	LAZYREMOVE(GLOB.humans_by_zlevel["[old_z]"], src)
 	LAZYADD(GLOB.humans_by_zlevel["[new_z]"], src)
 
@@ -759,6 +760,7 @@
 
 
 /mob/living/carbon/human/proc/fireman_carry_grabbed()
+	SIGNAL_HANDLER_DOES_SLEEP
 	var/mob/living/grabbed = pulling
 	if(!istype(grabbed))
 		return NONE

@@ -240,13 +240,14 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 		icon_state = "platingdmg[pick(1, 2, 3)]"
 		broken = 1
 	else if(is_wood_floor())
-		icon_state = "wood-broken"
+		icon_state = "wood-broken[pick(1,2,3,4,5,6,7)]"
 		broken = 1
 	else if(is_carpet_floor())
 		icon_state = "carpet-broken"
 		broken = 1
 	else if(is_grass_floor())
-		icon_state = "sand[pick("1", "2", "3")]"
+		icon = 'icons/turf/ground_map.dmi'
+		icon_state = "sand"
 		broken = 1
 
 /turf/open/floor/proc/burn_tile()
@@ -263,7 +264,7 @@ GLOBAL_LIST_INIT(wood_icons, list("wood", "wood-broken"))
 		icon_state = "panelscorched"
 		burnt = 1
 	else if(is_wood_floor())
-		icon_state = "wood-broken"
+		icon_state = "wood-broken1"
 		burnt = 1
 	else if(is_carpet_floor())
 		icon_state = "carpet-broken"

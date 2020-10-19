@@ -1273,7 +1273,7 @@
 	icon_state = "larvasoup"
 	trash = /obj/item/trash/snack_bowl
 	filling_color = "#66801e"
-	list_reagents = list(/datum/reagent/consumable/larvajelly = 10)
+	list_reagents = list(/datum/reagent/consumable/larvajellyprepared = 1, /datum/reagent/consumable/nutriment = 4)
 	bitesize = 5
 	tastes = list("burning" = 1)
 
