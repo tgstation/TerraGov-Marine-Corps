@@ -1,7 +1,9 @@
 //halo//
 
 /obj/item/clothing/suit/covenant/
-	sprite_sheet_id = 2 //Sets which sheet to use. Defaults to 0
+
+
+//	var/list/species_allowed = list("Sangheili","Unggoy", "Kigyar")
 
 /obj/item/clothing/suit/covenant/sangheili
 	name = "sangheili combat harness"
@@ -23,6 +25,7 @@
 	blood_overlay_type = "suit"
 	shield_state = "shield-blue"
 	sprite_sheets = list("Sangheili" = 'icons/mob/species/sangheili/suit.dmi')
+//	species_allowed = "Sangheili"
 
 /obj/item/clothing/suit/covenant/sangheili/minor
 	name = "Minor Sangheili Combat Harness"

@@ -2,10 +2,14 @@
 
 /obj/item/clothing/shoes/covenant/
 
+
+//	var/list/species_allowed = list("Sangheili","Unggoy", "Kigyar")
+
 /obj/item/clothing/shoes/covenant/sangheili
 	icon = 'icons/obj/clothing/covenant/sangheili.dmi'
 	soft_armor = list("melee" = 45, "bullet" = 50, "laser" = 50, "energy" = 50, "bomb" = 50, "bio" = 10, "rad" = 0, "fire" = 10, "acid" = 25)
 	sprite_sheets = list("Sangheili" = 'icons/mob/species/sangheili/shoes.dmi')
+//	species_allowed = "Sangheili"
 
 /obj/item/clothing/shoes/covenant/sangheili/minor
 	name = "Minor Greaves"

@@ -2,6 +2,9 @@
 
 /obj/item/clothing/gloves/covenant/
 
+
+//	var/list/species_allowed = list("Sangheili","Unggoy", "Kigyar")
+
 /obj/item/clothing/gloves/covenant/sangheili
 	icon = 'icons/obj/clothing/covenant/sangheili.dmi'
 	siemens_coefficient = 0
@@ -13,6 +16,7 @@
 	flags_armor_protection = HANDS
 	soft_armor = list("melee" = 15, "bullet" = 20, "laser" = 15, "energy" = 20, "bomb" = 20, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 20)
 	sprite_sheets = list("Sangheili" = 'icons/mob/species/sangheili/gloves.dmi')
+//	species_allowed = "Sangheili"
 
 /obj/item/clothing/gloves/covenant/sangheili/minor
 	name = "Minor Gauntlets"

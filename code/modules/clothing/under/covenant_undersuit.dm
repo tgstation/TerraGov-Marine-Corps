@@ -25,7 +25,10 @@
 	rolled_sleeves = FALSE //are the sleeves currently rolled?
 	sprite_sheets = list("Sangheili" = 'icons/mob/species/sangheili/uniform.dmi')
 
+//	var/list/species_allowed = list("Sangheili","Unggoy", "Kigyar")
+
 /obj/item/clothing/under/covenant/sangheili
 	name = "Sangheili undersuit"
 	icon_state = "sangheili_suit"
 	item_state = "sangheili_suit"
+//	species_allowed = "Sangheili"

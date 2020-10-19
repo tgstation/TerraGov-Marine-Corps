@@ -673,7 +673,7 @@
 	slowdown = 1.3 //Slower than later synths
 	total_health = 200 //But more durable
 	insulated = 1
-	brute_mod = 0.60 //but more durable
+	brute_mod = 0.60 //previous comment
 	burn_mod = 0.90 //previous comment
 
 	cold_level_1 = -1
@@ -949,7 +949,7 @@
 	icobase = 'icons/halo/mob/r_sangheili.dmi'
 	deform = 'icons/halo/mob/r_sangheili.dmi'
 	unarmed_type = /datum/unarmed_attack/punch/strong //stronger punches
-	count_human = TRUE
+//	count_human = TRUE I think this has something to do with what clothing they can wear, but I'm unsure.
 
 	speech_sounds = list('sound/halo/worting.ogg')
 	speech_chance = 20
@@ -975,7 +975,7 @@
 	icobase = 'icons/halo/mob/r_unggoy.dmi'
 	deform = 'icons/halo/mob/r_unggoy.dmi'
 	unarmed_type = /datum/unarmed_attack/punch
-	count_human = TRUE //idk if this is needed
+//	count_human = TRUE
 
 	eyes = "blank_eyes"
 	blood_color = "#40f5ef"
@@ -998,7 +998,7 @@
 	icobase = 'icons/halo/mob/r_kig-yar.dmi'
 	deform = 'icons/halo/mob/r_kig-yar.dmi'
 	unarmed_type = /datum/unarmed_attack/punch
-	count_human = TRUE //idk if this is needed
+//	count_human = TRUE
 
 	eyes = "blank_eyes"
 	blood_color = "#82B9D9"

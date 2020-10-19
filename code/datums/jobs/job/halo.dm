@@ -220,11 +220,16 @@
 //Covenant
 
 /datum/job/covenant
-	selection_color = "#5F2A9C"
+	selection_color = "#944FBD"
 	job_category = JOB_CAT_COVENANT
 	faction = FACTION_COVENANT
 
 /datum/job/covenant/sangheili/
+
+/datum/job/covenant/sangheili/return_spawn_type(datum/preferences/prefs)
+	if(prefs && prefs.species == "Sangheili")
+		return /mob/living/carbon/human/species/covenant/sangheili
+
 
 /datum/job/covenant/sangheili/radio_help_message(mob/M)
 	. = ..()
@@ -235,8 +240,8 @@
 	title = "Sangheili Minor"
 	paygrade = "MINOR"
 	comm_title = "Sangheili Minor"
-	access = list(ACCESS_COVENANT, ACCESS_COVENANT_SANGMINOR)
-	minimal_access = list(ACCESS_COVENANT, ACCESS_MARINE_DROPSHIP)
+	access = list(ACCESS_COVENANT, ACCESS_COVENANT_SANGMINOR, ACCESS_MARINE_DROPSHIP)
+	minimal_access = list(ACCESS_COVENANT, ACCESS_COVENANT_SANGMINOR, ACCESS_MARINE_DROPSHIP)
 	max_positions = -1 //infinite
 	supervisors = "Sangheili Officer, Sangheili Ultra, Sangheili General"
 	outfit = /datum/outfit/job/covenant/sangheili/minor
@@ -248,8 +253,8 @@
 	title = "Sangheili Ranger"
 	paygrade = "RANGER"
 	comm_title = "Sangheili Ranger"
-	access = list(ACCESS_COVENANT, ACCESS_COVENANT_SANGRANGER)
-	minimal_access = list(ACCESS_COVENANT, ACCESS_MARINE_DROPSHIP)//might cause troubles in the future, making this have access_covenant
+	access = list(ACCESS_COVENANT, ACCESS_COVENANT_SANGRANGER, ACCESS_MARINE_DROPSHIP)
+	minimal_access = list(ACCESS_COVENANT, ACCESS_COVENANT_SANGRANGER, ACCESS_MARINE_DROPSHIP)//might cause troubles in the future, making this have access_covenant
 	max_positions = -1
 	supervisors = "Sangheili Officer, Sangheili Ultra, Sangheili General"
 	outfit = /datum/outfit/job/covenant/sangheili/ranger
@@ -261,8 +266,8 @@
 	title = "Sangheili Officer"
 	paygrade = "OFFICER"
 	comm_title = "Sangheili Officer"
-	access = list(ACCESS_COVENANT, ACCESS_COVENANT_SANGOFFICER)
-	minimal_access = list(ACCESS_COVENANT, ACCESS_MARINE_DROPSHIP)
+	access = list(ACCESS_COVENANT, ACCESS_COVENANT_SANGOFFICER, ACCESS_MARINE_DROPSHIP)
+	minimal_access = list(ACCESS_COVENANT,ACCESS_COVENANT_SANGOFFICER, ACCESS_MARINE_DROPSHIP)
 	max_positions = -1
 	supervisors = "Sangheili Ultra, Sangheili General"
 	display_order = JOB_DISPLAY_ORDER_COVENANT_SANG_OFFICER
@@ -275,8 +280,8 @@
 	title = "Special Operations Sangheili"
 	paygrade = "SPECOPS"
 	comm_title = "Sangheili Ranger"
-	access = list(ACCESS_COVENANT, ACCESS_COVENANT_SANGSPEC)
-	minimal_access = list(ACCESS_COVENANT, ACCESS_MARINE_DROPSHIP)
+	access = list(ACCESS_COVENANT, ACCESS_COVENANT_SANGSPEC, ACCESS_MARINE_DROPSHIP)
+	minimal_access = list(ACCESS_COVENANT, ACCESS_COVENANT_SANGSPEC, ACCESS_MARINE_DROPSHIP)
 	max_positions = -1
 	supervisors = "Sangheili Ultra, Sangheili General"
 	outfit = /datum/outfit/job/covenant/sangheili/specops
@@ -287,8 +292,8 @@
 	title = "Sangheili Ultra"
 	paygrade = "ULTRA"
 	comm_title = "Sangheili Ultra"
-	access = list(ACCESS_COVENANT, ACCESS_COVENANT_SANGULTRA)
-	minimal_access = list(ACCESS_COVENANT, ACCESS_MARINE_DROPSHIP)
+	access = list(ACCESS_COVENANT, ACCESS_COVENANT_SANGULTRA, ACCESS_MARINE_DROPSHIP)
+	minimal_access = list(ACCESS_COVENANT, ACCESS_COVENANT_SANGULTRA, ACCESS_MARINE_DROPSHIP)
 	max_positions = 1
 	supervisors = "Sangheili General"
 	display_order = JOB_DISPLAY_ORDER_COVENANT_SANG_ULTRA
@@ -300,8 +305,8 @@
 	title = "Sangheili General"
 	paygrade = "GENERAL"
 	comm_title = "Sangheili General"
-	access = list(ACCESS_COVENANT, ACCESS_COVENANT_SANGGENERAL)
-	minimal_access = list(ACCESS_COVENANT, ACCESS_MARINE_DROPSHIP)
+	access = list(ACCESS_COVENANT, ACCESS_COVENANT_SANGGENERAL, ACCESS_MARINE_DROPSHIP)
+	minimal_access = list(ACCESS_COVENANT, ACCESS_COVENANT_SANGGENERAL, ACCESS_MARINE_DROPSHIP)
 	max_positions = -1
 	supervisors = ""
 	display_order = JOB_DISPLAY_ORDER_COVENANT_SANG_GENERAL
