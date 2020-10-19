@@ -1369,6 +1369,11 @@ Imports
 	contains = list(/obj/item/ammo_magazine/revolver/small)
 	cost = 3
 
+/datum/supply_packs/imports/revsaa
+	name = "Single Action Army Revolver"
+	contains = list(/obj/item/weapon/gun/revolver/saa)
+	cost = 7
+
 /datum/supply_packs/imports/beretta92fs
 	name = "Beretta 92FS Handgun"
 	contains = list(/obj/item/weapon/gun/pistol/b92fs)

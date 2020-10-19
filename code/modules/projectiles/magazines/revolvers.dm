@@ -106,6 +106,14 @@
 	gun_type = /obj/item/weapon/gun/revolver/m44
 
 //-------------------------------------------------------
+//SAA REVOLVER //
+
+/obj/item/ammo_magazine/internal/revolver/saa
+	caliber = ".44"
+	max_rounds = 6
+	gun_type = /obj/item/weapon/gun/revolver/saa
+
+//-------------------------------------------------------
 //RUSSIAN REVOLVER //
 
 /obj/item/ammo_magazine/internal/revolver/upp
