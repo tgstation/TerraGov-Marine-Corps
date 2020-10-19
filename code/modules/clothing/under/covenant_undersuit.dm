@@ -4,7 +4,7 @@
 
 /obj/item/clothing/under/covenant
 	name = "covenant undersuit"
-	icon = 'icons/mob/species/sangheili/uniform.dmi'
+	icon = 'icons/obj/clothing/covenant/sangheili.dmi'
 	sprite_sheet_id = 1
 	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	flags_cold_protection = CHEST|GROIN|LEGS|ARMS
@@ -23,7 +23,7 @@
 	displays_id = 1
 	rollable_sleeves = FALSE //can we roll the sleeves on this uniform?
 	rolled_sleeves = FALSE //are the sleeves currently rolled?
-	sprite_sheets = list("Vox" = 'icons/mob/species/vox/uniform.dmi')
+	sprite_sheets = list("Sangheili" = 'icons/mob/species/sangheili/uniform.dmi')
 
 /obj/item/clothing/under/covenant/sangheili
 	name = "Sangheili undersuit"

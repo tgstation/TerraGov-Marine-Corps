@@ -5,7 +5,7 @@
 
 /obj/item/clothing/suit/covenant/sangheili
 	name = "sangheili combat harness"
-	icon = 'icons/mob/species/sangheili/suit.dmi'
+	icon = 'icons/obj/clothing/covenant/sangheili.dmi'
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	allowed = list(/obj/item/weapon/gun/,
 		/obj/item/tank/emergency_oxygen,
@@ -22,6 +22,7 @@
 	supporting_limbs = NONE
 	blood_overlay_type = "suit"
 	shield_state = "shield-blue"
+	sprite_sheets = list("Sangheili" = 'icons/mob/species/sangheili/suit.dmi')
 
 /obj/item/clothing/suit/covenant/sangheili/minor
 	name = "Minor Sangheili Combat Harness"
