@@ -1,0 +1,6 @@
+{
+    "map_name": "UNSC Frigate Saratoga",
+    "map_path": "map_files/UNSC_Frigate_Saratoga",
+    "map_file": "UNSC_Frigate_Saratoga.dmm",
+    "traits": [{"Marine Main Ship": true}]
+}
