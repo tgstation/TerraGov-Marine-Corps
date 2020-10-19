@@ -1711,6 +1711,10 @@
 /obj/effect/landmark/newplayer_start,
 /turf/open/floor,
 /area/start)
+"jM" = (
+/obj/structure/prop/mainship/toolboxforacause2020,
+/turf/open/floor/mainship/mono,
+/area/deathmatch)
 "kx" = (
 /turf/closed/wall/indestructible/splashscreen,
 /area/start)
@@ -1840,6 +1844,10 @@
 	},
 /turf/open/floor,
 /area/tdome)
+"Db" = (
+/obj/structure/prop/mainship/toolboxforacause2020,
+/turf/open/floor/tile/red/redblue/full,
+/area/tdome/tdomeobserve)
 "Dh" = (
 /obj/machinery/light,
 /turf/open/floor/tile/red/yellowfull,
@@ -1849,14 +1857,6 @@
 /obj/machinery/light,
 /turf/open/floor,
 /area/tdome)
-"Hq" = (
-/obj/structure/prop/mainship/toolboxforacause2020,
-/turf/open/floor/mainship/mono,
-/area/deathmatch)
-"Mw" = (
-/obj/structure/prop/mainship/toolboxforacause2020,
-/turf/open/floor/tile/red/redblue/full,
-/area/tdome/tdomeobserve)
 "OG" = (
 /turf/open/ai_visible,
 /area/ai_multicam_room)
@@ -2843,7 +2843,7 @@ ab
 vc
 ak
 ak
-Mw
+Db
 aA
 Cf
 aE
@@ -4932,7 +4932,7 @@ eX
 eX
 eX
 fg
-Hq
+jM
 eX
 eX
 eX
