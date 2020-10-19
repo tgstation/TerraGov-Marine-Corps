@@ -1224,6 +1224,24 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
     accuracy_var_low = 3
     accuracy_var_high = 3
 
+/datum/ammo/energy/plasmapistol
+	name = "green plasma bolt"
+	icon_state = "plasmapistol"
+	hud_state = "plasmapistol"
+	damage = 20
+
+/datum/ammo/energy/plasmarifle
+	name = "blue plasma bolt"
+	icon_state = "plasmarifle"
+	hud_state = "plasmapistol"
+	damage = 20
+
+/datum/ammo/energy/needles
+	name = "blamite needle"
+	icon_state = "needler"
+	hud_state = "needle"
+	flags_ammo_behavior = AMMO_BALLISTIC
+	damage = 20
 /*
 //================================================
 					Xeno Spits
@@ -1759,7 +1777,6 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 20
 	damage_falloff = 4
 	penetration = 0
-//Plasma
 
 //Special
 
