@@ -69,3 +69,19 @@
 	gloves = /obj/item/clothing/gloves/marine/officer/chief/sa
 	glasses = /obj/item/clothing/glasses/sunglasses/sa/nodrop
 	back = /obj/item/storage/backpack/marine/satchel
+
+/datum/job/spatial_agent/galaxy_red
+	outfit = /datum/outfit/job/other/spatial_agent/galaxy_red
+
+/datum/outfit/job/other/spatial_agent/galaxy_red
+	w_uniform = /obj/item/clothing/under/liaison_suit/galaxy_red
+	belt = null
+	back = null
+
+/datum/job/spatial_agent/galaxy_blue
+	outfit = /datum/outfit/job/other/spatial_agent/galaxy_blue
+
+/datum/outfit/job/other/spatial_agent/galaxy_blue
+	w_uniform = /obj/item/clothing/under/liaison_suit/galaxy_blue
+	belt = null
+	back = null

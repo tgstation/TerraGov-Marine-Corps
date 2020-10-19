@@ -27,7 +27,6 @@ SUBSYSTEM_DEF(ping)
 				return
 			continue
 
-		// softPang isn't handled anywhere but it'll always reset the opts.lastPang.
-		C.chatOutput.ehjax_send(data = C.is_afk(29) ? "softPang" : "pang")
+		C.chatOutput.ehjax_send(data = "softPang")
 		if(MC_TICK_CHECK)
 			return

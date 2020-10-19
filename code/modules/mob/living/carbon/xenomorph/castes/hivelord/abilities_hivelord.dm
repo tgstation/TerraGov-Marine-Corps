@@ -29,8 +29,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	// 	var/turf/closed/wall/resin/WR = A
 	// 	var/oldname = WR.name
 	// 	if(WR.thicken())
-	// 		owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a thick substance and thickens [oldname].</span>", \
-	// 		"<span class='xenonotice'>You regurgitate some resin and thicken [oldname].</span>", null, 5)
+	// 		owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a thick substance and thickens [oldname].</span>","<span class='xenonotice'>You regurgitate some resin and thicken [oldname].</span>", null, 5)
 	// 		playsound(owner.loc, "alien_resin_build", 25)
 	// 		return succeed_activate()
 	// 	to_chat(owner, "<span class='xenowarning'>[WR] can't be made thicker.</span>")
@@ -40,8 +39,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	// 	var/obj/structure/mineral_door/resin/DR = A
 	// 	var/oldname = DR.name
 	// 	if(DR.thicken())
-	// 		owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a thick substance and thickens [oldname].</span>", \
-	// 			"<span class='xenonotice'>We regurgitate some resin and thicken [oldname].</span>", null, 5)
+	// 		owner.visible_message("<span class='xenonotice'>\The [owner] regurgitates a thick substance and thickens [oldname].</span>", "<span class='xenonotice'>We regurgitate some resin and thicken [oldname].</span>", null, 5)
 	// 		playsound(owner.loc, "alien_resin_build", 25)
 	// 		return succeed_activate()
 	// 	to_chat(owner, "<span class='xenowarning'>[DR] can't be made thicker.</span>")
@@ -100,6 +98,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 
 /datum/action/xeno_action/toggle_speed/proc/resinwalk_on_moved(datum/source, atom/oldloc, direction, Forced = FALSE)
+	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/walker = owner
 	if(!isturf(walker.loc) || !walker.check_plasma(10, TRUE))
 		to_chat(owner, "<span class='warning'>We feel dizzy as the world slows down.</span>")
@@ -212,3 +211,63 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT * 4
 	transfer_delay = 0.5 SECONDS
 	max_range = 7
+
+
+/datum/action/xeno_action/place_jelly_pod
+	name = "Place Resin Jelly pod"
+	action_icon_state = "haunt"
+	mechanics_text = "Place down a dispenser that allows xenos to retrieve fireproof jelly."
+	plasma_cost = 500
+	cooldown_timer = 3 MINUTES
+	keybind_signal = COMSIG_XENOABILITY_PLACE_JELLY_POD
+
+/datum/action/xeno_action/place_jelly_pod/can_use_action(silent = FALSE, override_flags)
+	. = ..()
+	var/turf/T = get_turf(owner)
+	if(!T || !T.is_weedable() || T.density)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>We can't do that here.</span>")
+		return FALSE
+
+	if(!(locate(/obj/effect/alien/weeds) in T))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>We can only shape on weeds. We must find some resin before we start building!</span>")
+		return FALSE
+
+	if(!T.check_alien_construction(owner, silent))
+		return FALSE
+
+	if(locate(/obj/effect/alien/weeds/node) in T)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>There is a resin node in the way!</span>")
+		return FALSE
+
+/datum/action/xeno_action/place_jelly_pod/action_activate()
+	var/turf/T = get_turf(owner)
+
+	succeed_activate()
+
+	playsound(T, "alien_resin_build", 25)
+	var/obj/structure/resin_jelly_pod/pod = new(T)
+	to_chat(owner, "<span class='xenonotice'>We shape some resin into \a [pod].</span>")
+
+/datum/action/xeno_action/create_jelly
+	name = "Create Resin Jelly"
+	action_icon_state = "gut"
+	mechanics_text = "Create a fireproof jelly."
+	plasma_cost = 100
+	cooldown_timer = 1 MINUTES
+	keybind_signal = COMSIG_XENOABILITY_CREATE_JELLY
+
+/datum/action/xeno_action/create_jelly/can_use_action(silent = FALSE, override_flags)
+	. = ..()
+	if(owner.l_hand || owner.r_hand)
+		if(!silent)
+			to_chat(owner, "<span class='xenonotice'>We require free hands for this!</span>")
+		return FALSE
+
+/datum/action/xeno_action/create_jelly/action_activate()
+	var/obj/item/resin_jelly/jelly = new(owner.loc)
+	owner.put_in_hands(jelly)
+	to_chat(owner, "<span class='xenonotice'>We create a globule of resin from our ovipostor.</span>")
+	succeed_activate()

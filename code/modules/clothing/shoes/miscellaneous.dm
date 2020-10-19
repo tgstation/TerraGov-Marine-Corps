@@ -22,6 +22,7 @@
 	icon_state = "swat"
 	soft_armor = list("melee" = 80, "bullet" = 60, "laser" = 50, "energy" = 25, "bomb" = 50, "bio" = 10, "rad" = 0, "fire" = 25, "acid" = 25)
 	flags_inventory = NOSLIPPING
+	flags_item = SYNTH_RESTRICTED
 	siemens_coefficient = 0.6
 
 /obj/item/clothing/shoes/ruggedboot
@@ -30,12 +31,14 @@
 	icon_state = "swat"
 	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 25, "bomb" = 20, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 20)
 	flags_inventory = NOSLIPPING
+	flags_item = SYNTH_RESTRICTED
 	siemens_coefficient = 0.6
 
 /obj/item/clothing/shoes/combat //Basically SWAT shoes combined with galoshes.
 	name = "combat boots"
 	desc = "When you REALLY want to turn up the heat"
 	icon_state = "swat"
+	flags_item = SYNTH_RESTRICTED
 	soft_armor = list("melee" = 80, "bullet" = 60, "laser" = 50, "energy" = 25, "bomb" = 50, "bio" = 10, "rad" = 0, "fire" = 25, "acid" = 25)
 	flags_inventory = NOSLIPPING
 	siemens_coefficient = 0.6
@@ -83,7 +86,7 @@
 	desc = "The prankster's standard-issue clowning shoes. Damn they're huge!"
 	name = "clown shoes"
 	icon_state = "clown"
-	item_state = "clown_shoes"
+	item_state = "clown"
 	slowdown = SHOES_SLOWDOWN + 1
 
 
@@ -152,4 +155,12 @@
 	flags_heat_protection = FEET
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
+
+/obj/item/clothing/shoes/techpriest
+	name = "Techpriest boots"
+	desc = "Praise the machine spirit!"
+	icon_state = "tp_boots"
+	item_state = "tp_boots"
+	flags_inventory = NOSLIPPING
+
 

@@ -18,7 +18,7 @@
 	savage_cooldown = 30 SECONDS
 
 	// *** Tackle *** //
-	tackle_damage = 20
+	tackle_damage = 17
 
 	// *** Speed *** //
 	speed = -1.3
@@ -69,7 +69,7 @@
 	savage_cooldown = 30 SECONDS
 
 	// *** Tackle *** //
-	tackle_damage = 25
+	tackle_damage = 17
 
 	// *** Speed *** //
 	speed = -1.3
@@ -102,7 +102,7 @@
 	savage_cooldown = 30 SECONDS
 
 	// *** Tackle *** //
-	tackle_damage = 30
+	tackle_damage = 21
 
 	// *** Speed *** //
 	speed = -1.4
@@ -125,7 +125,7 @@
 
 /datum/xeno_caste/runner/ancient
 	upgrade_name = "Ancient"
-	caste_desc = "Not what you want to run into in a dark alley. It looks fucking deadly."
+	caste_desc = "Not what you want to run into in a dark alley. It looks extremely deadly."
 	ancient_message = "We are the fastest assassin of all time. Our speed is unmatched."
 	upgrade = XENO_UPGRADE_THREE
 	wound_type = "runner" //used to match appropriate wound overlays
@@ -136,7 +136,7 @@
 	melee_damage = 21
 
 	// *** Tackle *** //
-	tackle_damage = 35
+	tackle_damage = 21
 
 	// *** Speed *** //
 	speed = -1.5

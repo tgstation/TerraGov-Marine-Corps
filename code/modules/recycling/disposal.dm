@@ -1228,6 +1228,13 @@
 	. = ..()
 	update()
 
+//Water Pipe, just for decor
+/obj/structure/disposalpipe/water_pipe
+	icon_state = "water_pipe"
+	dpdir = 0 //Makes this not a real pipe
+	desc = "A inlet or outlet for fluids."
+
+
 //Called when welded, for broken pipe, remove and turn into scrap
 /obj/structure/disposalpipe/broken/welded()
 	qdel(src)

@@ -26,7 +26,7 @@
 	if(world.time < (SSticker.round_start_time + 5 SECONDS))
 		return FALSE
 
-/datum/game_mode/distress/process()
+/datum/game_mode/offduty/process()
 	if(round_finished)
 		return FALSE
 

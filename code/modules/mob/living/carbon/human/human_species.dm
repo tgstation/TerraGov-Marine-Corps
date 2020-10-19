@@ -48,7 +48,7 @@
 /mob/living/carbon/human/species/synthetic
 	race = "Synthetic"
 
-/mob/living/carbon/human/species/synthetic/old
+/mob/living/carbon/human/species/early_synthetic
 	race = "Early Synthetic"
 
 /mob/living/carbon/human/species/moth
@@ -58,8 +58,14 @@
 	. = ..()
 	H.moth_wings = pick(GLOB.moth_wings_list - "Burnt Off")
 
+/mob/living/carbon/human/species/vatgrown
+	race = "Vat-Grown"
+
 /mob/living/carbon/human/species/sectoid
 	race = "Sectoid"
 
 /mob/living/carbon/human/species/vatborn
 	race = "Vatborn"
+
+/mob/living/carbon/human/species/skeleton
+	race = "Skeleton"

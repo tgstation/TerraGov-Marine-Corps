@@ -108,3 +108,5 @@
 
 /datum/config_entry/flag/events_disallowed
 	config_entry_value = FALSE
+
+/datum/config_entry/flag/aggressive_changelog

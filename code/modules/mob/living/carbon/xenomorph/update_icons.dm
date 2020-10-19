@@ -152,5 +152,6 @@
 	return ..()
 
 /atom/movable/vis_obj/xeno_wounds/proc/on_dir_change(mob/living/carbon/xenomorph/source, olddir, newdir)
+	SIGNAL_HANDLER
 	if(newdir != dir)
 		dir = newdir
