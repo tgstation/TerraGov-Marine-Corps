@@ -19,3 +19,33 @@
 	desc = "Gauntlets for a Sangheili Minor."
 	icon_state = "minor_gloves"
 	item_state = "minor_gloves"
+
+/obj/item/clothing/gloves/covenant/sangheili/ranger
+	name = "Ranger Gauntlets"
+	desc = "Gauntlets for a Sangheili Ranger."
+	icon_state = "ranger_gloves"
+	item_state = "ranger_gloves"
+
+/obj/item/clothing/gloves/covenant/sangheili/officer
+	name = "Officer Gauntlets"
+	desc = "Gauntlets for a Sangheili Officer."
+	icon_state = "officer_gloves"
+	item_state = "officer_gloves"
+
+/obj/item/clothing/gloves/covenant/sangheili/specops
+	name = "Special Ops Gauntlets"
+	desc = "Gauntlets for a Special Operations Sangheili."
+	icon_state = "specops_gloves"
+	item_state = "specops_gloves"
+
+/obj/item/clothing/gloves/covenant/sangheili/ultra
+	name = "Ultra Gauntlets"
+	desc = "Gauntlets for a Sangheili Ultra."
+	icon_state = "ultra_gloves"
+	item_state = "ultra_gloves"
+
+/obj/item/clothing/gloves/covenant/sangheili/general
+	name = "General Gauntlets"
+	desc = "Gauntlets for a Sangheili General."
+	icon_state = "general_gloves"
+	item_state = "general_gloves"
