@@ -951,6 +951,7 @@
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/m392,/obj/item/attachable/unremovable/m392barrel)
 	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/m392,/obj/item/attachable/unremovable/m392barrel)
+	burst_amount = 1
 
 /obj/item/weapon/gun/rifle/br55
 	name = "BR55 Service Rifle"
