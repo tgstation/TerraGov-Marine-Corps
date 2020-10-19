@@ -347,15 +347,15 @@
 	recoil_unwielded = 1
 
 //-------------------------------------------------------
-//M44 MAGNUM REVOLVER //Not actually cannon, but close enough.
+//M-44, based off the SAA.
 
 /obj/item/weapon/gun/revolver/m44
-	name = "\improper M44 combat revolver"
-	desc = "A bulky revolver, occasionally carried by civilian law enforcement. Uses .44 Magnum rounds."
+	name = "\improper M-44 SAA revolver"
+	desc = "A uncommon revolver occasionally carried by civilian law enforcement that's very clearly based off a modernized Single Action Army. Uses .44 Magnum rounds."
 	icon_state = "m44"
 	item_state = "m44"
 	caliber = ".44 Magnum" //codex
-	max_shells = 7 //codex
+	max_shells = 6 //codex
 	current_mag = /obj/item/ammo_magazine/internal/revolver/m44
 	force = 8
 	attachable_allowed = list(
@@ -496,29 +496,5 @@
 	burst_delay = 0.5 SECONDS
 	scatter_unwielded = 20
 	damage_mult = 1.05
-
-//-------------------------------------------------------
-//SAA Revolver
-
-/obj/item/weapon/gun/revolver/saa
-	name = "\improper Single Action Army revolver"
-	desc = "This revoler is a certified classic, being well known throughout the world for being a very dangerous gun to go up against. This one has been modified with a swing out cylinder and has been rechambered. Fires .44 in a 6 shot cylinder."
-	icon_state = "saa"
-	item_state = "saa"
-	caliber = ".44 Magnum" //codex
-	max_shells = 6 //codex
-	current_mag = /obj/item/ammo_magazine/internal/revolver/saa
-	force = 8
-	attachable_allowed = list(
-						/obj/item/attachable/bayonet,
-						/obj/item/attachable/flashlight)
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 22,"rail_x" = 13, "rail_y" = 23, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 19)
-	fire_delay = 0.3
-	accuracy_mult_unwielded = 1 //very accurate
-	accuracy_mult = 1.2
-	scatter_unwielded = 5
-	scatter = 0
-	recoil = 0
-	recoil_unwielded = 2
 
 
