@@ -57,7 +57,7 @@
 	caliber = ".45 ACP"
 	icon_state = ".45"
 	max_rounds = 10
-	gun_type = /obj/item/weapon/gun/pistol/m1911
+	gun_type = /obj/item/ammo_magazine/pistol/standard_heavypistol
 
 /obj/item/ammo_magazine/acp
 	name = "box of .45 ACP"

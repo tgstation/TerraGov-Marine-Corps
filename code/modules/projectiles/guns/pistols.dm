@@ -133,7 +133,7 @@
 //-------------------------------------------------------
 //M1911
 
-/obj/item/weapon/gun/pistol/m1911
+/obj/item/weapon/gun/pistol/standard_heavypistol/m1911
 	name = "\improper M1911 service pistol"
 	desc = "A M1911 chambered in .45 ACP. An archaic weapon, yet its popular and extremely reliable mechanism provided a template for many semi-automatic pistols to come."
 	icon_state = "m1911"
@@ -144,7 +144,7 @@
 	unload_sound = 'sound/weapons/guns/interact/colt_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/colt_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/colt_cocked.ogg'
-	current_mag = /obj/item/ammo_magazine/pistol/m1911
+	current_mag = /obj/item/ammo_magazine/pistol/standard_heavypistol
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
 	fire_delay = 0.2 SECONDS
@@ -153,7 +153,7 @@
 	damage_mult = 1.15
 	recoil_unwielded = 2
 
-/obj/item/weapon/gun/pistol/m1911/custom
+/obj/item/weapon/gun/pistol/standard_heavypistol/m1911/custom
 	name = "\improper M1911A1 custom pistol"
 	desc = "A 20th century military firearm that received several modifications. It seems to have been lovingly taken care of and passed down the family. Lacks an auto magazine eject feature."
 	icon_state = "m1911c"
