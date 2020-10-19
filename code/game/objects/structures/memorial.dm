@@ -16,7 +16,7 @@ This memorial has been designed for him and any future contributors to perish.
 	icon_state = "memorial"
 	density = TRUE
 	anchored = TRUE
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
 
 /obj/structure/prop/mainship/valmoric
 	name = "Tomb of the Unknown Soldier"
@@ -25,4 +25,4 @@ This memorial has been designed for him and any future contributors to perish.
 	icon_state = "memorial2"
 	density = TRUE
 	anchored = TRUE
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL

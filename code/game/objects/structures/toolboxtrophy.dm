@@ -13,4 +13,4 @@ We salute you.
 	icon_state = "toolboxtrophy"
 	density = TRUE
 	anchored = TRUE
-	resistance_flags = UNACIDABLE|INDESTRUCTIBLE
+	resistance_flags = RESIST_ALL
