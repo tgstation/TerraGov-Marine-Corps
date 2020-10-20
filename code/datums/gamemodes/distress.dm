@@ -320,7 +320,7 @@
 
 /datum/game_mode/infestation/distress/proc/on_nuclear_explosion(datum/source, z_level)
 	SIGNAL_HANDLER
-	planet_nuked = CRASH_NUKE_INPROGRESS
+	planet_nuked = CRASH_NUKE_INPROGRESS  //to do: other conditions for nuke blowing up on the ship somehow
 	INVOKE_ASYNC(src, .proc/play_cinematic, z_level)
 
 /datum/game_mode/infestation/distress/proc/on_nuke_started(obj/machinery/nuclearbomb/nuke)
