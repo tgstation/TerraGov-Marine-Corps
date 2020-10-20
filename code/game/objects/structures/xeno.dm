@@ -914,9 +914,11 @@ TUNNEL
 	X.visible_message("<span class='notice'>[X] starts to cover themselves in a foul substance...</span>", "<span class='xenonotice'>We begin to cover ourselves in a foul substance...</span>")
 	if(!do_after(X, 2 SECONDS, TRUE, X, BUSY_ICON_MEDICAL))
 		return
+	if(X.fire_resist_modifier <= -20)
+		return
 	activate_jelly(X)
 
-/obj/item/resin_jelly/attack_self(mob/user)
+/obj/item/resin_jelly/attack_self(mob/living/carbon/xenomorph/user)
 	if(!isxeno(user))
 		return
 	if(user.action_busy)
@@ -924,38 +926,39 @@ TUNNEL
 	user.visible_message("<span class='notice'>[user] starts to cover themselves in a foul substance...</span>", "<span class='xenonotice'>We begin to cover ourselves in a foul substance...</span>")
 	if(!do_after(user, 2 SECONDS, TRUE, user, BUSY_ICON_MEDICAL))
 		return
+	if(user.fire_resist_modifier <= -20)
+		return
 	activate_jelly(user)
 
-/obj/item/resin_jelly/attack(mob/living/M, mob/living/user)
+/obj/item/resin_jelly/attack(mob/living/carbon/xenomorph/M, mob/living/user)
 	if(!isxeno(user))
 		return TRUE
 	if(!isxeno(M))
 		to_chat(user, "<span class='xenonotice'>We cannot apply the [src] to this creature.</span>")
 		return FALSE
 	if(user.action_busy)
-		return
+		return FALSE
 	if(!do_after(user, 1 SECONDS, TRUE, M, BUSY_ICON_MEDICAL))
+		return FALSE
+	if(M.fire_resist_modifier <= -20)
 		return FALSE
 	user.visible_message("<span class='notice'>[user] smears a viscous substance on [M].</span>","<span class='xenonotice'>We carefully smear [src] onto [user].</span>")
 	activate_jelly(M)
+	user.temporarilyRemoveItemFromInventory(src)
 	return FALSE
 
 /obj/item/resin_jelly/proc/activate_jelly(mob/living/carbon/xenomorph/user)
-	if(user.fire_resist_modifier >= 1)
-		user.visible_message("<span class='notice'>[user]'s chitin shrugs off the [src].</span>", "<span class='xenonotice'>The [src] slides off our chitin, as we are already immune to fire.</span>")
-		qdel(src)
-		return
 	user.visible_message("<span class='notice'>[user]'s chitin begins to gleam with an unseemly glow...</span>", "<span class='xenonotice'>We feel powerful as we are covered in [src]!</span>")
 	user.emote("roar")
 	var/anger_filter = filter(type = "outline", size = 1, color = COLOR_RED)
 	user.filters += anger_filter
-	user.fire_resist_modifier += 1
+	user.fire_resist_modifier -= 20
 	forceMove(user)//keep it here till the timer finishes
 	user.temporarilyRemoveItemFromInventory(src)
 	addtimer(CALLBACK(src, .proc/deactivate_jelly, anger_filter, user), immune_time)
 
 /obj/item/resin_jelly/proc/deactivate_jelly(anger_filter, mob/living/carbon/xenomorph/user)
 	user.filters -= anger_filter
-	user.fire_resist_modifier -= 1
+	user.fire_resist_modifier += 20
 	to_chat(user, "<span class='xenonotice'>We feel more vulnerable again.</span>")
 	qdel(src)
