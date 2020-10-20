@@ -92,7 +92,7 @@
 					/obj/item/storage/box/nade_box/plasma_drain_gas = 2,
 					/obj/item/ammo_magazine/sniper = 3,
 					/obj/item/ammo_magazine/rifle/m4ra = 3,
-					/obj/item/ammo_magazine/rocket = 3,
+					/obj/item/ammo_magazine/rocket/sadar = 3,
 					/obj/item/ammo_magazine/minigun = 2,
 					/obj/item/ammo_magazine/shotgun/mbx900 = 2,
 					/obj/item/bodybag/tarp = 2,
