@@ -1,0 +1,5 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - bugfix: "The Hivemind camera mob no longer steals left-clicks from mobs/objects on the same tile."
+  - admin: "Hivemind camera mobs can still be accessed from the right-click menu (while a ghost) for ease of administration."

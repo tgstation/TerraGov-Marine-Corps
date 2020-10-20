@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - bugfix: "Operational Supplies Vendors no longer contain SADAR ammo that can be loaded in the RR."

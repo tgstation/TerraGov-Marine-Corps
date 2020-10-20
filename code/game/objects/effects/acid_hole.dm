@@ -44,6 +44,8 @@
 /obj/effect/acid_hole/specialclick(mob/living/carbon/user)
 	if(!isxeno(user))
 		return
+	if(!user.CanReach(src))
+		return
 	if(holed_wall)
 		if(user.mob_size == MOB_SIZE_BIG)
 			expand_hole(user)
@@ -62,9 +64,6 @@
 /obj/effect/acid_hole/proc/use_wall_hole(mob/user)
 
 	if(user.mob_size == MOB_SIZE_BIG || user.incapacitated() || user.lying_angle || user.buckled || user.anchored)
-		return
-
-	if(!user.CanReach(src))
 		return
 
 	var/mob_dir = get_dir(user, src)

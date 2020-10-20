@@ -332,6 +332,13 @@
 	new /obj/item/detpack(src)
 	new /obj/item/assembly/signaler(src)
 
+/obj/item/storage/pouch/explosive/razorburn/Initialize()
+	. = ..()
+	new /obj/item/explosive/grenade/chem_grenade/razorburn_smol(src)
+	new /obj/item/explosive/grenade/chem_grenade/razorburn_smol(src)
+	new /obj/item/explosive/grenade/chem_grenade/razorburn_smol(src)
+	new /obj/item/explosive/grenade/chem_grenade/razorburn_large(src)
+
 /obj/item/storage/pouch/explosive/upp
 	fill_type = /obj/item/explosive/grenade/frag/upp
 	fill_number = 4
@@ -413,7 +420,7 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine (src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
 
 

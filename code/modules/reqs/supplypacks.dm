@@ -567,10 +567,10 @@ AMMO
 	contains = list(/obj/item/mortal_shell/smoke)
 	cost = 1
 
-/datum/supply_packs/ammo/mortar_ammo_flash
-	name = "M402 mortar flash shell"
-	contains = list(/obj/item/mortal_shell/flash)
-	cost = 1
+/datum/supply_packs/ammo/mortar_ammo_plasmaloss
+	name = "M402 mortar tanglefoot shell"
+	contains = list(/obj/item/mortal_shell/plasmaloss)
+	cost = 2
 
 /datum/supply_packs/ammo/minisentry
 	name = "UA-580 point defense sentry ammo"
@@ -730,6 +730,7 @@ ARMOR
 		/obj/item/armor_module/attachable/tyr_extra_armor,
 		/obj/item/armor_module/attachable/mimir_environment_protection,
 		/obj/item/armor_module/attachable/better_shoulder_lamp,
+		/obj/item/armor_module/attachable/hlin_explosive_armor
 	)
 	cost = 40
 
@@ -785,6 +786,12 @@ ARMOR
 		/obj/item/helmet_module/antenna
 	)
 	cost = 5
+/datum/supply_packs/armor/modular/attachments/hlin_bombimmune
+	name = "Jaeger Hlin module"
+	contains = list(
+		/obj/item/armor_module/attachable/hlin_explosive_armor
+	)
+	cost = 12
 
 /*******************************************************************************
 CLOTHING

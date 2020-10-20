@@ -388,6 +388,12 @@
 	spawn_number = 15
 	spawn_type = /obj/item/explosive/grenade/phosphorus
 
+/obj/item/storage/box/nade_box/plasma_drain_gas
+	name = "\improper M40-T gas grenade box"
+	desc = "A secure box holding 25 M40-T gas grenades. 100% safe to use around masked marines."
+	icon_state = "marinebox"
+	spawn_type = /obj/item/explosive/grenade/drainbomb
+
 //ITEMS-----------------------------------//
 /obj/item/storage/box/lightstick
 	name = "box of lightsticks"
