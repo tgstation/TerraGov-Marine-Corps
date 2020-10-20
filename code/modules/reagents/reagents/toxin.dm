@@ -514,7 +514,7 @@
 	description = "A stamina draining toxin. Causes increasing stamina loss the longer it is present."
 	reagent_state = LIQUID
 	color = "#94CFD8" // rgb: 148, 207, 216
-	custom_metabolism = 0.25
+	custom_metabolism = 0.5
 	overdose_threshold = 10000
 	scannable = TRUE
 	toxpwr = 0
@@ -534,22 +534,21 @@
 	description = "Heals brute and burn wounds, while producing toxins."
 	reagent_state = LIQUID
 	color = "#42FFA0"
-	custom_metabolism = 0.25
+	custom_metabolism = 0.5
 	overdose_threshold = 10000
 	scannable = TRUE
 	toxpwr = 0
 
 /datum/reagent/toxin/xeno_transvitox/on_mob_life(mob/living/L, metabolism) //Converts 1 brute/burn into 1.1 toxin at a rate of 8 per tick.
-	switch(current_cycle)
-		if(2)
-			to_chat(L, "<span class='warning'>You feel both sick and revitalised.</span>")
-		if(2 to INFINITY)
-			if(L.getBruteLoss())
-				L.adjustToxLoss(min(8*1.1, L.getBruteLoss()*1.1))
-				L.heal_limb_damage(min(8*1.1, L.getBruteLoss()*1.1))
-			if(L.getFireLoss())
-				L.adjustToxLoss(min(8*1.1, L.getFireLoss()*1.1))
-				L.heal_limb_damage(min(8*1.1, L.getFireLoss()*1.1))
+	if(prob(25))
+		to_chat(L, "<span class='warning'>You are strangely revitalised.</span>")
+	if(current_cycle > 2)
+		if(L.getBruteLoss())
+			L.adjustToxLoss(min(8*1.1, L.getBruteLoss()*1.1))
+			L.heal_limb_damage(min(8*1.1, L.getBruteLoss()*1.1))
+		if(L.getFireLoss())
+			L.adjustToxLoss(min(8*1.1, L.getFireLoss()*1.1))
+			L.heal_limb_damage(min(8*1.1, L.getFireLoss()*1.1))
 	return ..()
 
 /datum/reagent/toxin/xeno_decaytoxin
@@ -557,7 +556,7 @@
 	description = "A destabilising substance that causes rapid degeneration of the body."
 	reagent_state = LIQUID
 	color = "#802400" // rgb: 128, 36, 0
-	custom_metabolism = 0.25
+	custom_metabolism = 0.5
 	overdose_threshold = 10000
 	scannable = TRUE
 	toxpwr = 0
@@ -569,7 +568,7 @@
 			toxin_damage += 1
 	L.adjustToxLoss(toxin_damage)
 	L.adjustBruteLoss(1)
-	if(prob(6))
+	if(prob(25))
 		to_chat(L, "<span class='warning'>You can feel your body falling apart!</span>")
 	return..()
 

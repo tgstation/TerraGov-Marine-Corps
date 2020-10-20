@@ -7,7 +7,7 @@
 	action_icon_state = "select_reagent0"
 	mechanics_text = "Switches between available reagents. Transvitox and Hemodile available at first with more unlocked at further maturity. \
 	Transvitox converts brute/burn damage to 110% toxin damage. Hemodile increases stamina damage received by 50%. \
-	Praelyx deals 25 damage (not affected by armor) to selected limb when one of the reagents is already present. \
+	Praelyx deals 20 damage (not affected by armor) to selected limb when one of the reagents is already present. \
 	Decay Accelerant deals 1 Brute per tick and 1 additional Toxin for each unique medical reagent present"
 	use_state_flags = XACT_USE_BUSY
 	keybind_signal = COMSIG_XENOABILITY_SELECT_REAGENT
@@ -73,7 +73,7 @@
 /datum/action/xeno_action/xeno_camouflage
 	name = "Toggle Nanocrystal Camouflage"
 	action_icon_state = "stealth_on"
-	mechanics_text = "Become harder to see, almost invisible if you stand still. Uses plasma to move."
+	mechanics_text = "Become harder to see, better camouflage when walking and almost invisible if you stand still. Uses plasma to move, more when running."
 	ability_name = "stealth"
 	plasma_cost = 10
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_NANOCRYSTAL_CAMOUFLAGE

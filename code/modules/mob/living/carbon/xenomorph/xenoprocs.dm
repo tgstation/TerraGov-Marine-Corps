@@ -611,8 +611,9 @@
 		if(is_reagent_slash)
 			to_chat(src, "<span class='xenonotice'>We slash [C] with [body_tox.name]!</span>")
 			playsound(C, "alien_claw_flesh", 15, TRUE)
+			playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
 			C.apply_damage(damage = 10, damagetype = BRUTE, def_zone = affecting, sharp = TRUE)
-			to_chat(C, "<span class='danger'>The [src] swipes at you!</span>")
+			to_chat(C, "<span class='danger'><p style='font-size:1.1em'>The [src] swipes at you!</span>")
 		else
 			to_chat(src, "<span class='xenonotice'>Our stinger injects the victim with [body_tox.name]!</span>")
 			playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
