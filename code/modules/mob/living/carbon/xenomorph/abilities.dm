@@ -39,6 +39,8 @@
 
 	return succeed_activate()
 
+// Headbite
+
 /datum/action/xeno_action/activable/headbite
 	name = "Headbite"
 	action_icon_state = "headbite"
@@ -50,21 +52,30 @@
 /datum/action/xeno_action/activable/headbite/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	var/mob/living/carbon/victim = A
+	var/mob/living/carbon/xenomorph/X = owner
 	if(!.)
 		return FALSE
 	if(!owner.Adjacent(A))
 		return FALSE
-	if(locate(/obj/item/alien_embryo) in victim) //Maybe they ate it??
-		var/mob/living/carbon/human/H = victim
-		if(CHECK_BITFIELD(H.status_flags, XENO_HOST))
-			if(victim.stat != DEAD) //Not dead yet.
-				if(!silent)
-					to_chat(owner, "<span class='xenowarning'>The host and child are still alive!</span>")
-				return FALSE
-	if(owner.issamexenohive(victim))
-		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't bring ourselves to harm a fellow sister to this magnitude.</span>")
-		return FALSE
+	if(X.action_busy || !do_after(X, 20, TRUE, target, BUSY_ICON_DANGER))
+		return
+
+	X.visible_message("<span class='xenowarning'>\The [X] begins slowly lifting \the [victim] into the air.</span>", \
+	"<span class='danger'>We begin focusing our anger as we slowly lift \the [victim] into the air!</span>", null, 20)
+	if(!do_after(src, 5 SECONDS, FALSE, victim, BUSY_ICON_DANGER))
+		to_chat(src, "<span class='warning'>We put down \the [victim].</span>")
+		return NONE
+	X.visible_message("<span class='xenowarning'>\The [X] begins slowly lifting \the [victim] into the air.</span>", \
+	"<span class='xenowarning'>We begin focusing our anger as we slowly lift \the [victim] into the air.</span>")
+	if(!do_mob(X, victim, 80, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
+		return fail_activate()
+	if(!can_use_ability(victim,TRUE,XACT_IGNORE_PLASMA))
+		return fail_activate()
+	if(victim.loc != X.loc)
+		return fail_activate()
+
+	succeed_activate()
+
 
 /datum/action/xeno_action/activable/headbite/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -75,15 +86,6 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_headbites")
 
 	var/mob/living/carbon/victim = A
-
-	succeed_activate()
-
-	X.visible_message("<span class='xenowarning'>\The [X] begins slowly lifting \the [victim] into the air.</span>", \
-	"<span class='danger'>We begin focusing our anger as we slowly lift \the [victim] into the air!</span>", null, 20)
-
-	if(!do_after(src, 5 SECONDS, FALSE, victim, BUSY_ICON_DANGER))
-		to_chat(src, "<span class='warning'>You put down \the [victim]. It wasn't worth your time.</span>")
-		return NONE
 
 	X.visible_message("<span class=\The [X] viciously bites into \the [victim]'s head with its inner jaw!</span>", \
 	"<span class='warning'>We suddenly bite into the \the [victim]'s head with our second jaw!</span>", null, 20)
