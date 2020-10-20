@@ -45,7 +45,7 @@
 
 	// Discord hack, fix the mention if it's only numbers (fuck you IRC trolls)
 	var/regex/discord_id_regex = regex(@"^[0-9]+$")
-	if(discord_id_regex.Find(sender))
+	if(findtext(sender, discord_id_regex))
 		sender = "<@[sender]>"
 
 	user.mention = sender
