@@ -1738,19 +1738,6 @@
 	dir = 5
 	},
 /area/bigredv2/outside/space_port)
-"agt" = (
-/obj/structure/cable,
-/obj/machinery/power/apc{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/admin_building)
-"agu" = (
-/obj/machinery/alarm{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/admin_building)
 "agv" = (
 /turf/open/floor/plating/dmg2,
 /area/bigredv2/outside/space_port)
@@ -4367,15 +4354,6 @@
 /obj/structure/bedsheetbin,
 /turf/open/floor/freezer,
 /area/bigredv2/outside/general_offices)
-"apQ" = (
-/obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/shutters/mainship{
-	dir = 2;
-	id = "Operations";
-	name = "\improper Operations Shutters"
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/admin_building)
 "apS" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -10727,14 +10705,6 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/general_store)
-"aMF" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access{
-	name = "\improper Operations"
-	},
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/admin_building)
 "aMH" = (
 /obj/machinery/light{
 	dir = 8
@@ -10924,117 +10894,6 @@
 	dir = 4
 	},
 /area/bigredv2/outside/c)
-"aNx" = (
-/obj/structure/table,
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/admin_building)
-"aNy" = (
-/obj/structure/table,
-/obj/structure/paper_bin,
-/obj/item/tool/pen,
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/admin_building)
-"aNz" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/obj/structure/barricade/wooden{
-	dir = 1
-	},
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/admin_building)
-"aNA" = (
-/obj/structure/barricade/wooden{
-	dir = 1
-	},
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/admin_building)
-"aNB" = (
-/obj/machinery/computer/security,
-/obj/structure/table,
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/admin_building)
-"aNC" = (
-/obj/machinery/computer/station_alert,
-/obj/structure/table,
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/admin_building)
-"aND" = (
-/obj/structure/table,
-/obj/machinery/faxmachine,
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/admin_building)
-"aNE" = (
-/obj/structure/table,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/floor/tile/white/warningstripe{
-	dir = 4
-	},
-/area/bigredv2/outside/admin_building)
-"aNF" = (
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/admin_building)
-"aNG" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 6
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/admin_building)
-"aNI" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 10
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark/red2{
-	dir = 9
-	},
-/area/bigredv2/outside/admin_building)
-"aNJ" = (
-/turf/open/floor/tile/dark/red2{
-	dir = 5
-	},
-/area/bigredv2/outside/admin_building)
-"aNK" = (
-/turf/open/floor/tile/dark/red2{
-	dir = 9
-	},
-/area/bigredv2/outside/admin_building)
-"aNL" = (
-/turf/open/floor/tile/dark/red2{
-	dir = 1
-	},
-/area/bigredv2/outside/admin_building)
-"aNM" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/vending/cola,
-/turf/open/floor/tile/dark/red2{
-	dir = 1
-	},
-/area/bigredv2/outside/admin_building)
-"aNN" = (
-/obj/machinery/vending/coffee,
-/turf/open/floor/tile/dark/red2{
-	dir = 1
-	},
-/area/bigredv2/outside/admin_building)
-"aNO" = (
-/obj/structure/closet/secure_closet/personal/cabinet,
-/turf/open/floor/wood,
-/area/bigredv2/outside/admin_building)
-"aNP" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/bigredv2/outside/admin_building)
-"aNQ" = (
-/obj/structure/bed,
-/turf/open/floor/wood,
-/area/bigredv2/outside/admin_building)
 "aNV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
@@ -11175,70 +11034,6 @@
 	dir = 8
 	},
 /area/bigredv2/outside/c)
-"aOF" = (
-/obj/machinery/computer/atmos_alert,
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/admin_building)
-"aOG" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 1
-	},
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/admin_building)
-"aOH" = (
-/obj/structure/table,
-/obj/item/flashlight/lamp,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/floor/tile/white/warningstripe{
-	dir = 4
-	},
-/area/bigredv2/outside/admin_building)
-"aOI" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/admin_building)
-"aOJ" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/turf/open/floor/tile/dark/red2{
-	dir = 8
-	},
-/area/bigredv2/outside/admin_building)
-"aOK" = (
-/turf/open/floor/tile/dark/red2{
-	dir = 4
-	},
-/area/bigredv2/outside/admin_building)
-"aOL" = (
-/turf/open/floor/tile/dark/red2{
-	dir = 8
-	},
-/area/bigredv2/outside/admin_building)
-"aON" = (
-/obj/machinery/door/airlock/mainship/generic{
-	name = "\improper Operations Bedroom"
-	},
-/turf/open/floor/wood,
-/area/bigredv2/outside/admin_building)
-"aOO" = (
-/turf/open/floor/wood,
-/area/bigredv2/outside/admin_building)
-"aOP" = (
-/obj/structure/table/woodentable,
-/obj/item/binoculars,
-/turf/open/floor/wood,
-/area/bigredv2/outside/admin_building)
-"aOQ" = (
-/obj/structure/window/framed/colony/reinforced,
-/obj/machinery/door/poddoor/shutters/mainship{
-	id = "Operations";
-	name = "\improper Operations Shutters"
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/admin_building)
 "aOR" = (
 /obj/effect/decal/cleanable/blood/gibs/down,
 /turf/open/floor/marking/asteroidwarning{
@@ -11430,84 +11225,6 @@
 	},
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
-"aPK" = (
-/obj/machinery/computer/communications,
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/admin_building)
-"aPL" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 8
-	},
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/admin_building)
-"aPM" = (
-/obj/effect/landmark/start/job/survivor,
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/admin_building)
-"aPN" = (
-/obj/machinery/atmospherics/components/unary/vent_pump,
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/admin_building)
-"aPO" = (
-/obj/structure/table,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/item/phone,
-/turf/open/floor/tile/white/warningstripe{
-	dir = 4
-	},
-/area/bigredv2/outside/admin_building)
-"aPP" = (
-/turf/open/floor/stairs/rampbottom{
-	dir = 1
-	},
-/area/bigredv2/outside/admin_building)
-"aPQ" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/turf/open/floor/stairs/rampbottom{
-	dir = 1
-	},
-/area/bigredv2/outside/admin_building)
-"aPR" = (
-/obj/machinery/atmospherics/pipe/manifold/green/hidden{
-	dir = 8
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark/red2{
-	dir = 8
-	},
-/area/bigredv2/outside/admin_building)
-"aPS" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/admin_building)
-"aPU" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/admin_building)
-"aPV" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 8;
-	on = 1
-	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/admin_building)
-"aPW" = (
-/obj/structure/coatrack,
-/turf/open/floor/wood,
-/area/bigredv2/outside/admin_building)
-"aPX" = (
-/obj/structure/table/woodentable,
-/obj/item/tool/lighter/zippo,
-/turf/open/floor/wood,
-/area/bigredv2/outside/admin_building)
 "aPY" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/wood,
@@ -11687,81 +11404,6 @@
 /obj/item/flashlight,
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
-"aQV" = (
-/obj/structure/table,
-/obj/item/paper,
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/admin_building)
-"aQX" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 5
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/admin_building)
-"aQY" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/admin_building)
-"aRa" = (
-/obj/machinery/atmospherics/pipe/manifold/green/hidden,
-/obj/structure/cable,
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/admin_building)
-"aRb" = (
-/obj/machinery/light,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/admin_building)
-"aRc" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 9
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/admin_building)
-"aRd" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/dark/red2{
-	dir = 8
-	},
-/area/bigredv2/outside/admin_building)
-"aRe" = (
-/obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access{
-	dir = 1;
-	name = "\improper Operations"
-	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/admin_building)
-"aRf" = (
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/admin_building)
-"aRg" = (
-/obj/structure/cable,
-/turf/open/floor/tile/dark/red2,
-/area/bigredv2/outside/admin_building)
-"aRh" = (
-/obj/machinery/door_control{
-	id = "Operations";
-	name = "Storm Shutters";
-	pixel_y = -32
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark/red2,
-/area/bigredv2/outside/admin_building)
-"aRi" = (
-/obj/structure/cable,
-/turf/open/floor/tile/dark/red2/corner{
-	dir = 8
-	},
-/area/bigredv2/outside/admin_building)
 "aRj" = (
 /obj/structure/barricade/wooden,
 /turf/open/floor/wood,
@@ -11931,45 +11573,6 @@
 	},
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
-"aRT" = (
-/obj/machinery/photocopier,
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/admin_building)
-"aRU" = (
-/obj/machinery/light,
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/admin_building)
-"aRV" = (
-/obj/structure/sign/safety/computer,
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/admin_building)
-"aRX" = (
-/obj/machinery/lapvend,
-/turf/open/floor/tile/white,
-/area/bigredv2/outside/admin_building)
-"aRY" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/dark/red2{
-	dir = 8
-	},
-/area/bigredv2/outside/admin_building)
-"aRZ" = (
-/obj/structure/cable,
-/obj/machinery/door/airlock/mainship/command/free_access{
-	dir = 1;
-	name = "\improper Operations Maintenance"
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/admin_building)
-"aSa" = (
-/obj/structure/cable,
-/turf/open/floor/tile/dark/red2{
-	dir = 8
-	},
-/area/bigredv2/outside/admin_building)
 "aSc" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	name = "\improper Bar"
@@ -12159,62 +11762,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
-"aSQ" = (
-/obj/structure/cable,
-/obj/machinery/door/airlock/mainship/command/free_access{
-	dir = 1;
-	name = "\improper Operations"
-	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/admin_building)
-"aSR" = (
-/obj/machinery/atmospherics/components/unary/vent_pump,
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 8
-	},
-/area/bigredv2/outside/admin_building)
-"aSS" = (
-/obj/structure/rack,
-/obj/item/weapon/gun/smg/mp7,
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 8
-	},
-/area/bigredv2/outside/admin_building)
-"aST" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 6
-	},
-/turf/open/floor/tile/dark/red2{
-	dir = 9
-	},
-/area/bigredv2/outside/admin_building)
-"aSV" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/red2{
-	dir = 1
-	},
-/area/bigredv2/outside/admin_building)
-"aSW" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 9
-	},
-/turf/open/floor/tile/dark/red2/corner{
-	dir = 1
-	},
-/area/bigredv2/outside/admin_building)
-"aSY" = (
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/bigredv2/outside/admin_building)
-"aTa" = (
-/turf/open/floor/plating,
-/area/bigredv2/outside/admin_building)
-"aTb" = (
-/obj/structure/table/woodentable,
-/turf/open/floor/wood,
-/area/bigredv2/outside/admin_building)
 "aTc" = (
 /obj/effect/decal/cleanable/blood/gibs/body,
 /turf/open/floor/marking/asteroidwarning,
@@ -12456,48 +12003,6 @@
 /obj/item/weapon/gun/pistol/holdout,
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
-"aTX" = (
-/obj/machinery/computer3/server,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/admin_building)
-"aTY" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 8
-	},
-/area/bigredv2/outside/admin_building)
-"aTZ" = (
-/obj/structure/rack,
-/obj/item/weapon/gun/smg/mp7,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 8
-	},
-/area/bigredv2/outside/admin_building)
-"aUa" = (
-/turf/open/floor/tile/dark/red2/corner,
-/area/bigredv2/outside/admin_building)
-"aUb" = (
-/turf/open/floor/tile/dark/red2,
-/area/bigredv2/outside/admin_building)
-"aUc" = (
-/turf/open/floor/tile/dark/red2{
-	dir = 6
-	},
-/area/bigredv2/outside/admin_building)
-"aUe" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/admin_building)
-"aUg" = (
-/obj/structure/table/woodentable,
-/obj/item/camera,
-/turf/open/floor/wood,
-/area/bigredv2/outside/admin_building)
 "aUh" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -12793,28 +12298,6 @@
 	},
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
-"aVj" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/admin_building)
-"aVk" = (
-/obj/structure/rack,
-/obj/item/weapon/gun/pistol/vp70,
-/turf/open/floor/tile/red/redtaupecorner{
-	dir = 8
-	},
-/area/bigredv2/outside/admin_building)
-"aVm" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark/red2{
-	dir = 8
-	},
-/area/bigredv2/outside/admin_building)
 "aVo" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -12936,52 +12419,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/yellow/full,
 /area/bigredv2/outside/general_store)
-"aVQ" = (
-/obj/machinery/constructable_frame/state_2,
-/turf/open/floor/podhatch/floor,
-/area/bigredv2/outside/admin_building)
-"aVR" = (
-/turf/open/floor/podhatch/floor,
-/area/bigredv2/outside/admin_building)
-"aVS" = (
-/obj/structure/sign/safety/computer,
-/turf/open/floor/podhatch/floor,
-/area/bigredv2/outside/admin_building)
-"aVT" = (
-/obj/machinery/computer3/server,
-/turf/open/floor/tile/dark/blue2{
-	dir = 9
-	},
-/area/bigredv2/outside/admin_building)
-"aVU" = (
-/turf/open/floor/tile/dark/blue2{
-	dir = 1
-	},
-/area/bigredv2/outside/admin_building)
-"aVV" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/photocopier,
-/turf/open/floor/tile/dark/blue2{
-	dir = 1
-	},
-/area/bigredv2/outside/admin_building)
-"aVW" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/blue2{
-	dir = 1
-	},
-/area/bigredv2/outside/admin_building)
-"aVX" = (
-/obj/machinery/computer/security,
-/obj/structure/table,
-/turf/open/floor/tile/dark/blue2{
-	dir = 5
-	},
-/area/bigredv2/outside/admin_building)
 "aVZ" = (
 /obj/structure/table/reinforced,
 /obj/machinery/microwave,
@@ -13119,43 +12556,6 @@
 /obj/structure/bed,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/bigredv2/outside/general_store)
-"aWC" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/mainship/security/glass/free_access{
-	dir = 1;
-	name = "\improper Operations Armory"
-	},
-/turf/open/floor,
-/area/bigredv2/outside/admin_building)
-"aWD" = (
-/obj/machinery/computer3/server,
-/turf/open/floor/tile/dark/blue2{
-	dir = 8
-	},
-/area/bigredv2/outside/admin_building)
-"aWE" = (
-/turf/open/floor{
-	icon_state = "darkbluecorners2"
-	},
-/area/bigredv2/outside/admin_building)
-"aWF" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/blue2,
-/area/bigredv2/outside/admin_building)
-"aWG" = (
-/obj/machinery/computer/communications,
-/obj/structure/table,
-/turf/open/floor/tile/dark/blue2{
-	dir = 6
-	},
-/area/bigredv2/outside/admin_building)
-"aWH" = (
-/obj/structure/table/woodentable,
-/obj/item/pinpointer,
-/turf/open/floor/wood,
-/area/bigredv2/outside/admin_building)
 "aWI" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 6
@@ -13261,54 +12661,6 @@
 /obj/structure/rack,
 /turf/open/floor/plating,
 /area/bigredv2/outside/general_store)
-"aXf" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/tile/dark/red2{
-	dir = 1
-	},
-/area/bigredv2/outside/admin_building)
-"aXh" = (
-/obj/structure/cable,
-/turf/open/floor/tile/dark/red2{
-	dir = 1
-	},
-/area/bigredv2/outside/admin_building)
-"aXj" = (
-/obj/machinery/atmospherics/pipe/manifold/green/hidden{
-	dir = 8
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/admin_building)
-"aXk" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/red2{
-	dir = 4
-	},
-/area/bigredv2/outside/admin_building)
-"aXl" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/admin_building)
-"aXm" = (
-/obj/structure/table,
-/obj/structure/paper_bin,
-/obj/item/tool/pen,
-/turf/open/floor/tile/dark/blue2{
-	dir = 4
-	},
-/area/bigredv2/outside/admin_building)
-"aXn" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/spray/cleaner,
-/turf/open/floor/wood,
-/area/bigredv2/outside/admin_building)
 "aXp" = (
 /turf/closed/wall,
 /area/bigredv2/outside/office_complex)
@@ -13414,45 +12766,6 @@
 "aXK" = (
 /turf/closed/wall,
 /area/bigredv2/outside/cargo)
-"aXL" = (
-/turf/open/floor/tile/dark/red2{
-	dir = 10
-	},
-/area/bigredv2/outside/admin_building)
-"aXM" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/turf/open/floor/tile/dark/red2/corner{
-	dir = 8
-	},
-/area/bigredv2/outside/admin_building)
-"aXN" = (
-/obj/structure/table,
-/obj/machinery/faxmachine,
-/turf/open/floor/tile/dark/blue2{
-	dir = 10
-	},
-/area/bigredv2/outside/admin_building)
-"aXO" = (
-/turf/open/floor/tile/dark/blue2,
-/area/bigredv2/outside/admin_building)
-"aXP" = (
-/obj/structure/table,
-/obj/item/tool/pen,
-/turf/open/floor/tile/dark/blue2,
-/area/bigredv2/outside/admin_building)
-"aXQ" = (
-/obj/structure/table,
-/turf/open/floor/tile/dark/blue2{
-	dir = 6
-	},
-/area/bigredv2/outside/admin_building)
-"aXR" = (
-/obj/structure/cable,
-/turf/open/floor/tile/dark/red2/corner{
-	dir = 1
-	},
-/area/bigredv2/outside/admin_building)
 "aXS" = (
 /obj/machinery/vending/snack,
 /turf/open/floor,
@@ -13506,66 +12819,6 @@
 /obj/structure/rack,
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
-"aYg" = (
-/obj/structure/window/framed/colony,
-/turf/open/floor/plating,
-/area/bigredv2/outside/admin_building)
-"aYh" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark/red2{
-	dir = 8
-	},
-/area/bigredv2/outside/admin_building)
-"aYi" = (
-/obj/effect/spawner/random/toolbox,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/admin_building)
-"aYj" = (
-/obj/structure/window/reinforced,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/admin_building)
-"aYk" = (
-/obj/effect/landmark/start/job/survivor,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/admin_building)
-"aYl" = (
-/obj/item/cell/hyper/empty,
-/turf/open/floor/tile/dark/red2{
-	dir = 4
-	},
-/area/bigredv2/outside/admin_building)
-"aYm" = (
-/obj/machinery/door/airlock/mainship/command/free_access{
-	dir = 1;
-	name = "\improper Operations Office"
-	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/admin_building)
-"aYo" = (
-/obj/machinery/door/airlock/mainship/generic{
-	name = "\improper Operations Toilet"
-	},
-/turf/open/floor/freezer,
-/area/bigredv2/outside/admin_building)
-"aYp" = (
-/turf/open/floor/freezer,
-/area/bigredv2/outside/admin_building)
-"aYq" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/freezer,
-/area/bigredv2/outside/admin_building)
-"aYr" = (
-/obj/structure/toilet{
-	dir = 8
-	},
-/turf/open/floor/freezer,
-/area/bigredv2/outside/admin_building)
 "aYs" = (
 /obj/machinery/vending/cola,
 /turf/open/floor,
@@ -13675,46 +12928,6 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
-"aYL" = (
-/turf/open/floor/carpet/edge2,
-/area/bigredv2/outside/admin_building)
-"aYO" = (
-/turf/open/floor,
-/area/bigredv2/outside/admin_building)
-"aYP" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/admin_building)
-"aYQ" = (
-/turf/open/ground/jungle/clear,
-/area/bigredv2/outside/admin_building)
-"aYR" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/admin_building)
-"aYS" = (
-/turf/open/floor/tile/dark/red2/corner{
-	dir = 4
-	},
-/area/bigredv2/outside/admin_building)
-"aYT" = (
-/obj/machinery/atm{
-	name = "Weyland Yutani Automatic Teller Machine";
-	pixel_y = 30
-	},
-/turf/open/floor/tile/dark/red2{
-	dir = 1
-	},
-/area/bigredv2/outside/admin_building)
-"aYW" = (
-/turf/open/floor/tile/dark/red2/corner{
-	dir = 1
-	},
-/area/bigredv2/outside/admin_building)
 "aYX" = (
 /obj/machinery/robotic_fabricator,
 /turf/open/floor/tile/white,
@@ -13852,25 +13065,6 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/cargo)
-"aZz" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/carpet/edge2,
-/area/bigredv2/outside/admin_building)
-"aZA" = (
-/turf/open/floor/carpet,
-/area/bigredv2/outside/admin_building)
-"aZB" = (
-/obj/structure/bed/chair/comfy/black,
-/turf/open/floor/carpet,
-/area/bigredv2/outside/admin_building)
-"aZD" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/admin_building)
 "aZE" = (
 /turf/open/floor/tile/white/warningstripe,
 /area/bigredv2/outside/office_complex)
@@ -13925,50 +13119,6 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
-"aZT" = (
-/obj/structure/table,
-/obj/machinery/computer3/laptop/secure_data,
-/turf/open/floor/carpet,
-/area/bigredv2/outside/admin_building)
-"aZU" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 8
-	},
-/turf/open/floor/carpet,
-/area/bigredv2/outside/admin_building)
-"aZW" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark/red2/corner,
-/area/bigredv2/outside/admin_building)
-"aZX" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark/red2,
-/area/bigredv2/outside/admin_building)
-"aZY" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/machinery/door_control{
-	id = "Operations";
-	name = "Storm Shutters";
-	pixel_y = -32
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark/red2,
-/area/bigredv2/outside/admin_building)
-"aZZ" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 10
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/admin_building)
 "baa" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/marking/asteroidwarning{
@@ -14105,27 +13255,6 @@
 "baF" = (
 /turf/open/floor/marking/bot,
 /area/bigredv2/outside/cargo)
-"baG" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 4
-	},
-/turf/open/floor/carpet,
-/area/bigredv2/outside/admin_building)
-"baH" = (
-/obj/structure/table,
-/turf/open/floor/carpet,
-/area/bigredv2/outside/admin_building)
-"baI" = (
-/obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access{
-	name = "\improper Operations"
-	},
-/turf/open/floor,
-/area/bigredv2/outside/admin_building)
-"baJ" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/turf/open/floor,
-/area/bigredv2/outside/admin_building)
 "baK" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/tech_supply,
@@ -14223,59 +13352,6 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
-"bbj" = (
-/obj/structure/table,
-/obj/item/alienjar,
-/turf/open/floor/carpet,
-/area/bigredv2/outside/admin_building)
-"bbk" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/spawner/random/toolbox,
-/turf/open/floor/tile/dark/red2{
-	dir = 4
-	},
-/area/bigredv2/outside/admin_building)
-"bbl" = (
-/obj/structure/bed/chair{
-	dir = 4
-	},
-/turf/open/floor/carpet/edge2,
-/area/bigredv2/outside/admin_building)
-"bbm" = (
-/obj/structure/table,
-/obj/machinery/computer/med_data/laptop,
-/turf/open/floor/carpet/edge2,
-/area/bigredv2/outside/admin_building)
-"bbn" = (
-/obj/structure/safe,
-/turf/open/floor/wood,
-/area/bigredv2/outside/admin_building)
-"bbo" = (
-/obj/structure/bed/chair,
-/turf/open/floor,
-/area/bigredv2/outside/admin_building)
-"bbp" = (
-/obj/structure/bed/chair,
-/obj/machinery/atm{
-	name = "Weyland Yutani Automatic Teller Machine";
-	pixel_y = 30
-	},
-/turf/open/floor,
-/area/bigredv2/outside/admin_building)
-"bbq" = (
-/obj/structure/bed/chair,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor,
-/area/bigredv2/outside/admin_building)
-"bbr" = (
-/obj/structure/table,
-/obj/item/tool/pen/red,
-/turf/open/floor,
-/area/bigredv2/outside/admin_building)
 "bbu" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -14389,32 +13465,6 @@
 /obj/item/reagent_containers/food/drinks/bottle/sake,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
-"bbX" = (
-/obj/structure/table,
-/obj/item/ashtray/bronze,
-/turf/open/floor/carpet/edge2,
-/area/bigredv2/outside/admin_building)
-"bbY" = (
-/obj/structure/bed/chair/office/dark,
-/turf/open/floor/wood,
-/area/bigredv2/outside/admin_building)
-"bbZ" = (
-/obj/structure/table,
-/obj/machinery/computer/security/wooden_tv,
-/turf/open/floor/wood,
-/area/bigredv2/outside/admin_building)
-"bcb" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/turf/open/floor/grimy,
-/area/bigredv2/outside/admin_building)
-"bcc" = (
-/turf/open/floor/grimy,
-/area/bigredv2/outside/admin_building)
-"bcd" = (
-/obj/effect/landmark/start/job/survivor,
-/turf/open/floor/plating,
-/area/bigredv2/outside/admin_building)
 "bce" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/tech_supply,
@@ -14538,93 +13588,6 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
-"bcE" = (
-/obj/structure/table,
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 4;
-	on = 1
-	},
-/turf/open/floor/carpet,
-/area/bigredv2/outside/admin_building)
-"bcI" = (
-/obj/machinery/atmospherics/pipe/manifold/green/hidden{
-	dir = 8
-	},
-/turf/open/floor/tile/dark/red2{
-	dir = 8
-	},
-/area/bigredv2/outside/admin_building)
-"bcJ" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/red2{
-	dir = 4
-	},
-/area/bigredv2/outside/admin_building)
-"bcK" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/machinery/door/airlock/mainship/command/free_access{
-	name = "\improper Operations Office"
-	},
-/turf/open/floor/wood,
-/area/bigredv2/outside/admin_building)
-"bcL" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/bigredv2/outside/admin_building)
-"bcM" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/carpet/edge2,
-/area/bigredv2/outside/admin_building)
-"bcO" = (
-/obj/structure/table,
-/obj/item/clothing/mask/cigarette/cigar,
-/turf/open/floor/wood,
-/area/bigredv2/outside/admin_building)
-"bcP" = (
-/obj/structure/table,
-/obj/machinery/faxmachine,
-/turf/open/floor/wood,
-/area/bigredv2/outside/admin_building)
-"bcQ" = (
-/obj/machinery/vending/cola,
-/turf/open/floor,
-/area/bigredv2/outside/admin_building)
-"bcR" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 5
-	},
-/turf/open/floor/grimy,
-/area/bigredv2/outside/admin_building)
-"bcS" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/grimy,
-/area/bigredv2/outside/admin_building)
-"bcU" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/admin_building)
-"bcV" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 10
-	},
-/turf/open/floor/plating,
-/area/bigredv2/outside/admin_building)
 "bcW" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor,
@@ -14673,45 +13636,6 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
-"bdm" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor,
-/area/bigredv2/outside/admin_building)
-"bdn" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/machinery/door/airlock/mainship/command/free_access{
-	name = "\improper Operations Meeting Room"
-	},
-/turf/open/floor,
-/area/bigredv2/outside/admin_building)
-"bdo" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 9
-	},
-/turf/open/floor/tile/dark,
-/area/bigredv2/outside/admin_building)
-"bdq" = (
-/obj/structure/table,
-/obj/item/trash/snack_bowl,
-/turf/open/floor/wood,
-/area/bigredv2/outside/admin_building)
-"bdr" = (
-/obj/machinery/vending/snack,
-/turf/open/floor,
-/area/bigredv2/outside/admin_building)
-"bds" = (
-/obj/effect/spawner/random/toolbox,
-/turf/open/floor/grimy,
-/area/bigredv2/outside/admin_building)
-"bdt" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/plating,
-/area/bigredv2/outside/admin_building)
 "bdu" = (
 /obj/machinery/photocopier,
 /turf/open/floor/tile/white,
@@ -14802,30 +13726,6 @@
 /obj/effect/spawner/random/tool,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
-"bdO" = (
-/obj/machinery/vending/coffee,
-/turf/open/floor,
-/area/bigredv2/outside/admin_building)
-"bdP" = (
-/obj/machinery/photocopier,
-/turf/open/floor/wood,
-/area/bigredv2/outside/admin_building)
-"bdQ" = (
-/obj/structure/filingcabinet/medical,
-/turf/open/floor/wood,
-/area/bigredv2/outside/admin_building)
-"bdR" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/filingcabinet/medical,
-/turf/open/floor/wood,
-/area/bigredv2/outside/admin_building)
-"bdS" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor,
-/area/bigredv2/outside/admin_building)
 "bdT" = (
 /obj/item/mass_spectrometer,
 /turf/open/floor/tile/white,
@@ -14891,19 +13791,6 @@
 /obj/item/tool/lighter/random,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
-"bej" = (
-/obj/machinery/deployable/barrier,
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access{
-	name = "\improper Operations"
-	},
-/turf/open/floor,
-/area/bigredv2/outside/admin_building)
-"bek" = (
-/obj/machinery/deployable/barrier,
-/turf/open/floor,
-/area/bigredv2/outside/admin_building)
 "bel" = (
 /obj/machinery/autolathe,
 /turf/open/floor/tile/white,
@@ -20866,10 +19753,6 @@
 	},
 /turf/open/floor/tile/whiteyellow/full,
 /area/bigredv2/outside/office_complex)
-"eWE" = (
-/obj/machinery/computer/intel_computer,
-/turf/open/floor/podhatch/floor,
-/area/bigredv2/outside/admin_building)
 "eXF" = (
 /obj/effect/alien/weeds/node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
@@ -21031,6 +19914,10 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
+"ggJ" = (
+/obj/effect/spawner/modularmap/bigred/operations,
+/turf/open/space/basic,
+/area/bigredv2/outside/c)
 "ggV" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	name = "\improper Chief Engineer's Office"
@@ -21145,13 +20032,6 @@
 /obj/structure/cable,
 /turf/open/floor/asteroidfloor,
 /area/shuttle/drop2/lz2)
-"hiJ" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 4;
-	on = 1
-	},
-/turf/open/floor/carpet/edge2,
-/area/bigredv2/outside/admin_building)
 "hkk" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -22206,6 +21086,12 @@
 	},
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/nw)
+"rLF" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 10
+	},
+/area/bigredv2/outside/c)
 "rMV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22236,6 +21122,9 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/sw)
+"rSn" = (
+/turf/open/space/basic,
+/area/bigredv2/outside/c)
 "rUT" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -22265,12 +21154,6 @@
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"swt" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 8
-	},
-/turf/open/floor/carpet/edge2,
-/area/bigredv2/outside/admin_building)
 "sBV" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
 	dir = 1
@@ -22767,11 +21650,7 @@
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
 "xCx" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 8;
-	on = 1
-	},
-/turf/open/floor/carpet/edge2,
+/turf/open/space/basic,
 /area/bigredv2/outside/admin_building)
 "xEN" = (
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -39219,30 +38098,30 @@ aJk
 aBR
 aLd
 aKl
-aMc
-aMe
-aMe
-aMe
-aOQ
-aOQ
-aMe
-aMe
-aMe
-aMe
-aMe
-aOQ
-aOQ
-aMe
-aMe
-aMe
-aMe
-aMe
-aMe
-aMe
-aMe
-aMe
-aMe
-aHF
+rSn
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+ggJ
 aHD
 aBR
 aBR
@@ -39436,30 +38315,30 @@ aJk
 aKl
 aIn
 aIn
-aMe
-aMe
-aOF
-aPK
-aQV
-aRT
-aKn
-eWE
-aNF
-aVQ
-aKn
-aNK
-aXL
-aKn
-aYL
-aZz
-aYL
-aYL
-aYL
-aYL
-aZz
-aYL
-aMe
-aMe
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
 aHD
 aBR
 aBR
@@ -39653,30 +38532,30 @@ apC
 aoe
 aFM
 aFM
-aMe
-aNx
-aMf
-aPL
-aMf
-aMf
-aKn
-aVR
-aNF
-aVR
-aKn
-aNL
-aUb
-aYg
-aYL
-aZA
-aZA
-baG
-aZA
-baG
-aZA
-aYL
-bdO
-aMe
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
 aHD
 aBR
 aBR
@@ -39870,30 +38749,30 @@ apC
 aKn
 aLe
 aMe
-aMe
-aNy
-aOG
-aMf
-aMf
-aRU
-aKn
-aVR
-aNF
-aVR
-aKn
-aXf
-aUb
-aYg
-aYL
-aZB
-aZT
-baH
-bbj
-baH
-bcE
-aYL
-aYO
-aMe
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
 aHD
 aBR
 aBR
@@ -40087,30 +38966,30 @@ aJl
 aKo
 aKo
 aKo
-aMF
-aNz
-aKo
-aKo
-aQX
-aRV
-aKn
-aVR
-aNF
-aVS
-aKn
-aNL
-aUb
-aYg
-aYL
-aZA
-aZU
-aZA
-aZU
-aZA
-aZU
-hiJ
-aYO
-apQ
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
 aHD
 aBR
 aBR
@@ -40304,30 +39183,30 @@ aqw
 aKp
 aLg
 aMf
-aMf
-aNA
-aMf
-aMf
-aQY
-aLg
-aSQ
-aRf
-aRf
-aRf
-aSQ
-aXh
-aUb
-aYg
-aYL
-aYL
-aYL
-aYL
-aYL
-aYL
-aYL
-bcM
-aYO
-apQ
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
 aHD
 aBR
 aBR
@@ -40521,30 +39400,30 @@ apC
 aKn
 aLh
 aMe
-aMe
-aNB
-aOG
-aPM
-aQY
-aRX
-aKn
-aTX
-aVj
-aTX
-aKn
-aXh
-aUb
-aYg
-aYO
-aYO
-aYO
-aYO
-aYO
-aYO
-aYO
-bdm
-aYO
-aMe
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
 aHD
 aBR
 aBR
@@ -40738,30 +39617,30 @@ apC
 aoq
 aLi
 aMg
-aMe
-aNC
-aMf
-aPN
-aRa
-aKn
-aKn
-aKn
-aKn
-aKn
-aKn
-aXh
-aUb
-aKn
-aYg
-aYg
-aYg
-aYg
-aYg
-aYg
-aKn
-bdn
-aKn
-aMe
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
 aHD
 aBR
 aBR
@@ -40955,30 +39834,30 @@ apC
 aIn
 aIo
 aJm
-apQ
-aND
-aMf
-aMf
-aQY
-aKn
-aSR
-aTY
-aTY
-aTY
-aWC
-aXj
-aXM
-aYh
-aOJ
-aOJ
-aPR
-aRd
-aRd
-aRd
-bcI
-bdo
-aXL
-aMe
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
 aHD
 aBR
 aBR
@@ -41172,31 +40051,31 @@ apC
 aIn
 aLk
 aBR
-apQ
-aNE
-aOH
-aPO
-aQY
-aKn
-aSS
-aTZ
-aVk
-aVk
-aKn
-aSV
-aNF
-aYi
-aYP
-aNF
-aPS
-aNF
-aNF
-aNF
-aPU
-aNF
-aUb
-aMe
-vsq
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+aHD
 aBR
 aBR
 aBR
@@ -41389,30 +40268,30 @@ apC
 aIp
 aLl
 aBR
-aMe
-aNF
-aNF
-aPP
-aRb
-aKn
-aKn
-aKn
-aKn
-aKn
-aKn
-aSV
-aNF
-aYj
-aYQ
-aZD
-aZW
-aOK
-bbk
-aOK
-bcJ
-aOK
-aUc
-aMe
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
 aHD
 aBR
 aBR
@@ -41606,30 +40485,30 @@ aBR
 aBR
 aLl
 aBR
-aMe
-aNF
-aNF
-aPP
-aQY
-aKn
-aST
-aRd
-aRd
-aRd
-aRd
-aSW
-aNF
-aYk
-aYR
-aNF
-aZX
-aKn
-aKn
-aKn
-bcK
-aKn
-aKn
-aMe
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
 aHD
 aBR
 aBR
@@ -41823,30 +40702,30 @@ aBR
 aBR
 aLl
 aBS
-aMe
-aNG
-aOI
-aPQ
-aRc
-aKn
-aSV
-aUa
-aOK
-aOK
-aOK
-aXk
-aOK
-aYl
-aYS
-aNF
-aZX
-aKn
-aOO
-aOO
-bcL
-aOO
-bdP
-aMe
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
 aHD
 aBR
 aBR
@@ -42040,30 +40919,30 @@ aBR
 aBR
 aLl
 aMc
-aMe
-aPS
-aRe
-aKn
-aKn
-aKn
-aSV
-aUb
-aKn
-aKn
-aKn
-aKn
-aKn
-aKn
-aYT
-aNF
-aZX
-aKn
-bbl
-bbl
-bcM
-aKn
-aKn
-aMe
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
 aHD
 aIm
 aBR
@@ -42257,33 +41136,33 @@ aBR
 aBR
 aLl
 aMc
-apQ
-aNI
-aOJ
-aPR
-aRd
-aRY
-aSW
-aUb
-aKn
-aVT
-aWD
-aWD
-aXN
-aKn
-aXf
-aNF
-aZY
-aKn
-bbm
-bbX
 xCx
-aKn
-bdQ
-aMe
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
 aHD
 aIn
-aIm
+rLF
 aBR
 aMc
 bgG
@@ -42474,30 +41353,30 @@ aBR
 aBR
 aLl
 aMc
-apQ
-aNJ
-aOK
-aPS
-aNF
-aOK
-aOK
-aUc
-aKn
-aVU
-aNF
-aNF
-aXO
-aKn
-aNL
-aNF
-aZX
-aKn
-swt
-aYL
-aYL
-aOO
-aOO
-aMe
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
 aHD
 aIn
 aIp
@@ -42691,30 +41570,30 @@ aBR
 aBR
 aLl
 aMc
-aMe
-aKn
-aKn
-aPS
-aRe
-aKn
-aKn
-aKn
-aKn
-aVV
-aNF
-aNF
-aNF
-aYm
-aNF
-aNF
-aZX
-aKn
-aKn
-aKn
-aKn
-aKn
-aOO
-aMe
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
 aHD
 aWJ
 giI
@@ -42908,30 +41787,30 @@ aBR
 aBR
 aLl
 aMc
-apQ
-aNK
-aOL
-aPS
-aNF
-aKn
-aTa
-aTa
-aKn
-aVU
-aNF
-aXl
-aXP
-aKn
-aNL
-aNF
-aZX
-aKn
-aNQ
-aOO
-aOO
-aOO
-aOO
-aMe
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
 aHD
 aWJ
 aBR
@@ -43125,30 +42004,30 @@ aBR
 aBR
 aLl
 aMc
-apQ
-aNL
-aNF
-aPS
-aRf
-aRZ
-aSY
-agt
-aKn
-aVU
-aWE
-aXm
-aXQ
-aKn
-aNL
-aNF
-aZX
-aKn
-aOO
-bbY
-bcO
-aOO
-aOO
-aMe
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
 aHD
 aIn
 aIm
@@ -43342,30 +42221,30 @@ aBR
 aBR
 aLl
 aMc
-aMe
-aNM
-aNF
-aPU
-aRg
-aKn
-aTa
-agu
-aKn
-aVW
-aWF
-aKn
-aKn
-aKn
-aXf
-aNF
-aZX
-aKn
-bbn
-bbZ
-bcP
-bdq
-bdR
-aMe
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
 aHD
 aIn
 aIn
@@ -43559,30 +42438,30 @@ aBR
 aBR
 aLl
 aMc
-aMe
-aNN
-aNF
-aPU
-aRg
-aKn
-aTa
-aUe
-aKn
-aVX
-aWG
-aKn
-aNK
-aOL
-aYW
-aNF
-aZX
-aKn
-aKn
-aKn
-aKn
-aKn
-aKn
-aMe
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
 beB
 beZ
 bfI
@@ -43776,30 +42655,30 @@ aBR
 aBR
 aLl
 aMc
-apQ
-aNL
-aNF
-aPU
-aRh
-aKn
-aKn
-aKn
-aKn
-aKn
-aKn
-aKn
-aNL
-aNF
-aNF
-aNF
-aPS
-baI
-aYO
-aYO
-bcQ
-bdr
-bdO
-aMe
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
 beC
 bfa
 bfa
@@ -43993,30 +42872,30 @@ aBR
 aBR
 aLl
 aMc
-apQ
-aNL
-aNF
-aPV
-aRi
-aSa
-aSa
-aSa
-aVm
-aSa
-aSa
-aSa
-aXR
-aRf
-aRf
-aRf
-aZZ
-baJ
-baJ
-bcb
-bcR
-bcc
-aYO
-aMe
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
 aTh
 aIn
 aIn
@@ -44210,30 +43089,30 @@ aBR
 aBR
 aLl
 aMc
-aMe
-aNJ
-aNF
-aOK
-aOK
-aOK
-aNF
-aOK
-aOK
-aOK
-aNF
-aOK
-aOK
-aNF
-aOK
-aYS
-aUb
-aKn
-bbo
-bcc
-bcS
-bcc
-aYO
-apQ
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
 aTh
 aIn
 aIp
@@ -44427,30 +43306,30 @@ aIm
 aBR
 aLn
 aMc
-aMe
-aKn
-aON
-aKn
-aKn
-aKn
-aON
-aKn
-aKn
-aKn
-aON
-aKn
-aKn
-aYo
-aKn
-aNL
-aUb
-aKn
-bbp
-bcc
-bcS
-bcc
-aYO
-apQ
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
 aTh
 aWJ
 aBR
@@ -44644,30 +43523,30 @@ aIo
 aKs
 aIo
 aMc
-aMe
-aNO
-aOO
-aPW
-aKn
-aNO
-aOO
-aPW
-aKn
-aNO
-aOO
-aPW
-aKn
-aYp
-aKn
-aNL
-aUb
-hVF
-bbq
-bcd
-bcU
-bds
-aYO
-aMe
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
 beD
 aIn
 aKl
@@ -44861,30 +43740,30 @@ aIn
 aIn
 aIn
 aMc
-aMe
-aNP
-aOO
-aOO
-aKn
-aNP
-aOO
-aOO
-aKn
-aNP
-aOO
-aOO
-aKn
-aYq
-aKn
-aNL
-aUb
-aKn
-bbo
-aTa
-bcV
-bdt
-bdS
-bej
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
 beE
 aFM
 aFM
@@ -45078,30 +43957,30 @@ aJm
 aJm
 aJm
 aMc
-aMe
-aNQ
-aOP
-aPX
-aKn
-aNQ
-aTb
-aUg
-aKn
-aNQ
-aWH
-aXn
-aKn
-aYr
-aKn
-aNJ
-aUc
-aKn
-bbr
-aYO
-aYO
-aTa
-aYO
-bek
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
 beF
 aMg
 aMg
@@ -45295,30 +44174,30 @@ aBR
 aBR
 aBR
 aMc
-aMe
-aMe
-aOQ
-aMe
-aMe
-aMe
-aOQ
-aMe
-aMe
-aMe
-aOQ
-aMe
-aMe
-aMe
-aMe
-aMe
-aMe
-aMe
-aMe
-aMe
-aMe
-aMe
-aMe
-aMe
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
+xCx
 beF
 bfb
 aIn
