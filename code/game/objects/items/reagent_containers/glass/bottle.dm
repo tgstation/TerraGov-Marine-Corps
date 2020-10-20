@@ -243,6 +243,3 @@
 	list_reagents = list(/datum/reagent/medicine/lemoline = 10)
 
 
-
-
-

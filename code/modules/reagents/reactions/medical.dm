@@ -26,7 +26,6 @@
 	results = list(/datum/reagent/medicine/dermaline = 3)
 	required_reagents = list(/datum/reagent/oxygen = 1, /datum/reagent/phosphorus = 1, /datum/reagent/medicine/kelotane = 1, /datum/reagent/medicine/lemoline = 1)
 
-
 /datum/chemical_reaction/dexalinplus
 	name = "Dexalin Plus"
 	results = list(/datum/reagent/medicine/dexalinplus = 3)
