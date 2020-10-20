@@ -1077,7 +1077,7 @@
 
 /datum/reagent/medicine/lemoline
 	name = "Lemoline"
-	description = "A concentrated set of powders used to enchance other medicine in chemical recipes. Has no use on its own."
+	description = "A concentrated set of powders used to enhance other medicine in chemical recipes. Has no use on its own."
 	reagent_state = LIQUID
 	color = "#66801e"
 	taste_description = "piss"
