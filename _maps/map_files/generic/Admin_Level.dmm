@@ -1549,8 +1549,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
 "gc" = (
-/obj/structure/rack,
-/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
+/obj/structure/prop/mainship/toolboxforacause2020,
 /turf/open/floor/wood,
 /area/deathmatch)
 "ge" = (
@@ -1711,10 +1710,10 @@
 /obj/effect/landmark/newplayer_start,
 /turf/open/floor,
 /area/start)
-"jM" = (
+"kw" = (
 /obj/structure/prop/mainship/toolboxforacause2020,
-/turf/open/floor/mainship/mono,
-/area/deathmatch)
+/turf/open/floor/tile/red/redblue/full,
+/area/tdome/tdomeobserve)
 "kx" = (
 /turf/closed/wall/indestructible/splashscreen,
 /area/start)
@@ -1844,10 +1843,6 @@
 	},
 /turf/open/floor,
 /area/tdome)
-"Db" = (
-/obj/structure/prop/mainship/toolboxforacause2020,
-/turf/open/floor/tile/red/redblue/full,
-/area/tdome/tdomeobserve)
 "Dh" = (
 /obj/machinery/light,
 /turf/open/floor/tile/red/yellowfull,
@@ -2843,7 +2838,7 @@ ab
 vc
 ak
 ak
-Db
+kw
 aA
 Cf
 aE
@@ -4932,7 +4927,7 @@ eX
 eX
 eX
 fg
-jM
+eX
 eX
 eX
 eX
