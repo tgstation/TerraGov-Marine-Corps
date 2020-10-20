@@ -1075,5 +1075,11 @@
 	if(prob(5))
 		L.adjustBruteLoss(2400*REM) //the big oof. No, it's not kill or gib, I want them to nugget.
 
+/datum/reagent/medicine/lemoline
+	name = "Lemoline"
+	description = "A concentrated set of powders used to enchance other medicine in chemical recipes. Has no use on its own."
+	reagent_state = LIQUID
+	color = "#66801e"
+	taste_description = "piss"
 
 

@@ -21,6 +21,12 @@
 	required_reagents = list(/datum/reagent/oxygen = 1, /datum/reagent/phosphorus = 1, /datum/reagent/medicine/kelotane = 1)
 	required_catalysts = list(/datum/reagent/consumable/larvajelly = 5)
 
+/datum/chemical_reaction/dermalime
+	name = "Dermaline"
+	results = list(/datum/reagent/medicine/dermaline = 3)
+	required_reagents = list(/datum/reagent/oxygen = 1, /datum/reagent/phosphorus = 1, /datum/reagent/medicine/kelotane = 1, /datum/reagent/medicine/lemoline = 1)
+
+
 /datum/chemical_reaction/dexalinplus
 	name = "Dexalin Plus"
 	results = list(/datum/reagent/medicine/dexalinplus = 3)
@@ -36,6 +42,11 @@
 	results = list(/datum/reagent/medicine/meralyne = 3)
 	required_reagents = list(/datum/reagent/medicine/inaprovaline = 1, /datum/reagent/medicine/bicaridine = 1, /datum/reagent/iron = 1)
 	required_catalysts = list(/datum/reagent/consumable/larvajelly = 5)
+
+/datum/chemical_reaction/meralime
+	name = "Meralyne"
+	results = list(/datum/reagent/medicine/meralyne = 3)
+	required_reagents = list(/datum/reagent/medicine/inaprovaline = 1, /datum/reagent/medicine/bicaridine = 1, /datum/reagent/iron = 1, /datum/reagent/medicine/lemoline = 1)
 
 /datum/chemical_reaction/ryetalyn
 	name = "Ryetalyn"
