@@ -45,20 +45,19 @@
 
 /datum/action/xeno_action/activable/reagent_slash/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
-	if(!COOLDOWN_CHECK(src, reagent_slash_cooldown))
-		to_chat(owner, "<span class='warning'>[COOLDOWN_TIMELEFT(src, reagent_slash_cooldown) / 10] seconds left</span>")
-		return FALSE
 	if(!.)
+		return
+	if(COOLDOWN_TIMELEFT(src, reagent_slash_cooldown) > 0)
+		to_chat(owner, "<span class='warning'>Reagent Slash [COOLDOWN_TIMELEFT(src, reagent_slash_cooldown) / 10] seconds left</span>")
 		return FALSE
-
 	if(!A?.can_sting())
 		if(!silent)
 			to_chat(owner, "<span class='warning'>Our sting won't affect this target!</span>")
 		return FALSE
 	if(get_dist(owner, A) > 1)
-		if(!silent)
-			to_chat(owner, "<span class='warning'>We need to be closer to [A].</span>")
+		to_chat(owner, "<span class='warning'>We need to be closer to [A].</span>")
 		return FALSE
+	return TRUE
 
 /datum/action/xeno_action/activable/reagent_slash/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -139,9 +138,6 @@
 
 /datum/action/xeno_action/xeno_camouflage/can_use_action(silent = FALSE, override_flags)
 	. = ..()
-	if(!COOLDOWN_CHECK(src, xeno_camouflage_cooldown))
-		to_chat(owner, "<span class='warning'>[COOLDOWN_TIMELEFT(src, xeno_camouflage_cooldown) / 10] seconds left</span>")
-		return FALSE
 	if(!.)
 		return FALSE
 	var/mob/living/carbon/xenomorph/stealthy_beno = owner
@@ -151,15 +147,17 @@
 	return TRUE
 
 /datum/action/xeno_action/xeno_camouflage/action_activate()
+	if(COOLDOWN_TIMELEFT(src,xeno_camouflage_cooldown) > 0)
+		to_chat(owner, "<span class='warning'>Camouflage [COOLDOWN_TIMELEFT(src, xeno_camouflage_cooldown) / 10] seconds left</span>")
+		return
 	if(stealth)
 		cancel_stealth()
 	else
 		stealth = TRUE
+		to_chat(owner, "<span class='xenodanger'>We blend in with the scenery...</span>")
 	succeed_activate()
-	to_chat(owner, "<span class='xenodanger'>We blend in with the scenery...</span>")
 	last_stealth = world.time
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/handle_stealth)
-	COOLDOWN_START(src, xeno_camouflage_cooldown, 7 SECONDS)
 
 /datum/action/xeno_action/xeno_camouflage/proc/cancel_stealth() //This happens if we take damage, attack, pounce, toggle stealth off, and do other such exciting stealth breaking activities.
 	SIGNAL_HANDLER
@@ -168,6 +166,7 @@
 	to_chat(owner, "<span class='xenodanger'>Our carapace relaxes.</span>")
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED) //This should be handled on the ability datum or a component.
 	stealth = FALSE
+	COOLDOWN_START(src, xeno_camouflage_cooldown, 7 SECONDS)
 	can_sneak_attack = FALSE
 	owner.alpha = 255 //no transparency/translucency
 
