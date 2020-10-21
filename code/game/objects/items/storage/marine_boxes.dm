@@ -285,7 +285,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "rocket_case"
 	w_class = WEIGHT_CLASS_HUGE
-	storage_slots = 6
+	storage_slots = 8
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
@@ -293,6 +293,8 @@
 /obj/item/storage/box/recoilless_system/Initialize(mapload, ...)
 	. = ..()
 	new /obj/item/weapon/gun/launcher/rocket/recoillessrifle(src)
+	new /obj/item/attachable/scope/recoilless(src)
+	new /obj/item/ammo_magazine/rocket/recoilless/heat(src)
 	new /obj/item/ammo_magazine/rocket/recoilless(src)
 	new /obj/item/ammo_magazine/rocket/recoilless(src)
 	new /obj/item/ammo_magazine/rocket/recoilless/light(src)
