@@ -1,0 +1,5 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - balance: "xeno warding pheromones now increases the amount of health healed at crit passively at half value of before."
+  - balance: "xeno warding pheromones now only reduce up to 50% of crit damage."
