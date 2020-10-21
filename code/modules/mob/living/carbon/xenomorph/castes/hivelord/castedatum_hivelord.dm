@@ -115,27 +115,27 @@
 	tackle_damage = 25
 
 	// *** Speed *** //
-	speed = 0.2
+	speed = 0.1
 
 	// *** Plasma *** //
-	plasma_max = 1000
-	plasma_gain = 63
+	plasma_max = 1200
+	plasma_gain = 65
 
 	// *** Health *** //
-	max_health = 340
+	max_health = 350 * 0.6
 
 	// *** Evolution *** //
 	upgrade_threshold = 480
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 25, "acid" = 18)
+	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 20, "rad" = 20, "fire" = 30, "acid" = 20)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/sticky)
 
 	// *** Pheromones *** //
-	aura_strength = 2.8
+	aura_strength = 3
 
 /datum/xeno_caste/hivelord/ancient
 	upgrade_name = "Ancient"

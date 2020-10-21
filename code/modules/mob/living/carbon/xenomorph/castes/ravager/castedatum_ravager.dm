@@ -84,27 +84,27 @@
 
 	upgrade = XENO_UPGRADE_TWO
 
-	// *** Melee Attacks *** //
+// *** Melee Attacks *** //
 	melee_damage = 32
 
 	// *** Tackle *** //
 	tackle_damage = 32
 
 	// *** Speed *** //
-	speed = -0.9
+	speed = -1
 
 	// *** Plasma *** //
-	plasma_max = 550
-	plasma_gain = 35
+	plasma_max = 600
+	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 330
+	max_health = 350 * 0.6
 
 	// *** Evolution *** //
 	upgrade_threshold = 1000
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 45, "bullet" = 50, "laser" = 45, "energy" = 45, "bomb" = XENO_BOMB_RESIST_1, "bio" = 38, "rad" = 38, "fire" = 65, "acid" = 38)
+	soft_armor = list("melee" = 50, "bullet" = 55, "laser" = 50, "energy" = 50, "bomb" = XENO_BOMB_RESIST_1, "bio" = 40, "rad" = 40, "fire" = 70, "acid" = 40)
 
 /datum/xeno_caste/ravager/ancient
 	upgrade_name = "Ancient"

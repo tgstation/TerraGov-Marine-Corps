@@ -98,23 +98,23 @@
 	tackle_damage = 30
 
 	// *** Speed *** //
-	speed = -1.2
+	speed = -1.4
 
 	// *** Plasma *** //
 	plasma_max = 200
 	plasma_gain = 3
 
 	// *** Health *** //
-	max_health = 250
+	max_health = 270 * 0.6
 
 	// *** Evolution *** //
 	upgrade_threshold = 200
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 20, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = XENO_BOMB_RESIST_0, "bio" = 5, "rad" = 5, "fire" = 20, "acid" = 5)
+	soft_armor = list("melee" = 24, "bullet" = 24, "laser" = 24, "energy" = 124, "bomb" = XENO_BOMB_RESIST_0, "bio" = 7, "rad" = 7, "fire" = 24, "acid" = 7)
 
 	// *** Ranged Attack *** //
-	pounce_delay = 45.0 SECONDS
+	pounce_delay = 35.0 SECONDS
 
 /datum/xeno_caste/panther/ancient
 	upgrade_name = "Ancient"

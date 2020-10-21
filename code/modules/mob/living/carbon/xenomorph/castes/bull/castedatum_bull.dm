@@ -89,20 +89,20 @@
 	tackle_damage = 26
 
 	// *** Speed *** //
-	speed = -0.9
+	speed = -1
 
 	// *** Plasma *** //
-	plasma_max = 260
-	plasma_gain = 22
+	plasma_max = 270
+	plasma_gain = 24
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 325 * 0.6
 
 	// *** Evolution *** //
 	upgrade_threshold = 480
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 35, "bullet" = 45, "laser" = 35, "energy" = 35, "bomb" = XENO_BOMB_RESIST_0, "bio" = 30, "rad" = 30, "fire" = 45, "acid" = 30)
+	soft_armor = list("melee" = 40, "bullet" = 50, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_0, "bio" = 33, "rad" = 33, "fire" = 50, "acid" = 33)
 
 /datum/xeno_caste/bull/ancient
 	upgrade_name = "Ancient"

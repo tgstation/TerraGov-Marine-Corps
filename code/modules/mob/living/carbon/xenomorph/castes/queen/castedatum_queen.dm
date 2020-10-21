@@ -120,29 +120,29 @@
 	tackle_damage = 28
 
 	// *** Speed *** //
-	speed = -0.2
+	speed = -0.3
 
 	// *** Plasma *** //
-	plasma_max = 1100
-	plasma_gain = 60
+	plasma_max = 1200
+	plasma_gain = 70
 
 	// *** Health *** //
-	max_health = 475
+	max_health = 500 * 0.6
 
 	// *** Evolution *** //
 	upgrade_threshold = 1000
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 60, "bullet" = 60, "laser" = 60, "energy" = 60, "bomb" = XENO_BOMB_RESIST_3, "bio" = 55, "rad" = 55, "fire" = 100, "acid" = 55)
+	soft_armor = list("melee" = 65, "bullet" = 65, "laser" = 65, "energy" = 65, "bomb" = XENO_BOMB_RESIST_3, "bio" = 60, "rad" = 60, "fire" = 100, "acid" = 60)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.2 SECONDS
+	spit_delay = 1.1 SECONDS
 
 	// *** Pheromones *** //
-	aura_strength = 4.5
+	aura_strength = 5
 
 	// *** Queen Abilities *** //
-	queen_leader_limit = 3
+	queen_leader_limit = 4
 
 /datum/xeno_caste/queen/ancient
 	caste_desc = "The most perfect Xeno form imaginable."

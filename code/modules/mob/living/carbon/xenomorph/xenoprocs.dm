@@ -260,7 +260,7 @@
 					var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 					var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 					var/upgrade_points = 1 + (stored_larva/6)
-					upgrade_stored = min(upgrade_stored + upgrade_points, xeno_caste.upgrade_threshold)
+					upgrade_stored = 0
 
 /mob/living/carbon/xenomorph/proc/update_evolving()
 	if(!client || !ckey) // stop evolve progress for ssd/ghosted xenos

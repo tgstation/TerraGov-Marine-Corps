@@ -97,23 +97,23 @@
 	tackle_damage = 32
 
 	// *** Speed *** //
-	speed = -1.4
+	speed = -1.5
 
 	// *** Plasma *** //
 	plasma_max = 200
 	plasma_gain = 18
 
 	// *** Health *** //
-	max_health = 270
+	max_health = 290 * 0.6
 
 	// *** Evolution *** //
 	upgrade_threshold = 480
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 25, "bullet" = 25, "laser" = 25, "energy" = 25, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 25, "acid" = 18)
+	soft_armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 30, "bomb" = XENO_BOMB_RESIST_0, "bio" = 18, "rad" = 18, "fire" = 30, "acid" = 18)
 
 	// *** Ranged Attack *** //
-	pounce_delay = 11.0 SECONDS
+	pounce_delay = 10.0 SECONDS
 
 /datum/xeno_caste/hunter/ancient
 	upgrade_name = "Ancient"

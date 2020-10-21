@@ -48,6 +48,10 @@
 	max_rounds = 32
 	gun_type = /obj/item/weapon/gun/rifle/standard_carbine
 
+/obj/item/ammo_magazine/rifle/standard_carbine/deescalated
+	default_ammo = /datum/ammo/bullet/rifle/deescalated
+	gun_type = /obj/item/weapon/gun/rifle/standard_carbine/deescalated
+
 //-------------------------------------------------------
 //T12 Assault Rifle
 
@@ -60,6 +64,11 @@
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 50
 	gun_type = /obj/item/weapon/gun/rifle/standard_assaultrifle
+
+/obj/item/ammo_magazine/rifle/standard_assaultrifle/deescalated
+	gun_type = /obj/item/weapon/gun/rifle/standard_assaultrifle/deescalated
+	default_ammo = /datum/ammo/bullet/rifle/deescalated
+	
 
 //-------------------------------------------------------
 //T37 DMR
@@ -178,6 +187,8 @@
 	max_rounds = 250
 	gun_type = /obj/item/weapon/gun/rifle/standard_gpmg
 	reload_delay = 3 SECONDS
+
+/obj/item/ammo_magazine/standard_gpmg/deescalated
 
 //-------------------------------------------------------
 //M412L1 HEAVY PULSE RIFLE

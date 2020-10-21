@@ -102,25 +102,25 @@
 	tackle_damage = 26
 
 	// *** Speed *** //
-	speed = -0.4
+	speed = -0.5
 
 	// *** Plasma *** //
-	plasma_max = 190
-	plasma_gain = 14
+	plasma_max = 200
+	plasma_gain = 15
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 320 * 0.6
 
 	// *** Evolution *** //
 	upgrade_threshold = 240
 
 	// *** Defense *** //
-	soft_armor = list("melee" = 35, "bullet" = 35, "laser" = 30, "energy" = 28, "bomb" = XENO_BOMB_RESIST_2, "bio" = 28, "rad" = 28, "fire" = 35, "acid" = 28)
+	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 40, "bomb" = XENO_BOMB_RESIST_2, "bio" = 30, "rad" = 30, "fire" = 40, "acid" = 30)
 
 	// *** Defender Abilities *** //
 	crest_defense_armor = 30
 	crest_defense_slowdown = 0.8
-	fortify_armor = 55
+	fortify_armor = 50
 
 /datum/xeno_caste/defender/ancient
 	upgrade_name = "Ancient"

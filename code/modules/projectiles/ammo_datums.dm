@@ -447,6 +447,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	penetration = 5
 	sundering = 0.5
 
+/datum/ammo/bullet/rifle/deescalated
+	damage = 15
+	penetration = 0
+
 /datum/ammo/bullet/rifle/ap
 	name = "armor-piercing rifle bullet"
 	hud_state = "rifle_ap"
@@ -463,6 +467,12 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accuracy = -10
 
 /datum/ammo/bullet/rifle/machinegun
+	name = "machinegun bullet"
+	hud_state = "rifle_heavy"
+	damage = 20
+	penetration = 10
+
+/datum/ammo/bullet/rifle/machinegun/deescalated
 	name = "machinegun bullet"
 	hud_state = "rifle_heavy"
 	damage = 20

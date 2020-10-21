@@ -95,6 +95,9 @@
 /obj/item/weapon/gun/rifle/standard_carbine/engineer
     starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/t18barrel, /obj/item/attachable/angledgrip)
 
+/obj/item/weapon/gun/rifle/standard_carbine/deescalated
+	damage_falloff_mult =  0.25	
+	current_mag = /obj/item/ammo_magazine/rifle/standard_carbine/deescalated
 //-------------------------------------------------------
 //T-12 Assault Rifle
 
@@ -148,6 +151,11 @@
     burst_amount = 3
     aim_slowdown = 0.4
     damage_falloff_mult = 0.5
+
+/obj/item/weapon/gun/rifle/standard_assaultrifle/deescalated
+	damage_falloff_mult =  0.25	
+	current_mag = /obj/item/ammo_magazine/rifle/standard_assaultrifle/deescalated
+
 
 /obj/item/weapon/gun/rifle/standard_assaultrifle/rifleman
     starting_attachment_types = list(/obj/item/attachable/stock/t18stock, /obj/item/attachable/reddot, /obj/item/attachable/t12barrel, /obj/item/attachable/attached_gun/grenade)
@@ -605,6 +613,9 @@
 
 /obj/item/weapon/gun/rifle/standard_lmg/autorifleman
 	starting_attachment_types = list(/obj/item/attachable/verticalgrip, /obj/item/attachable/t42barrel, /obj/item/attachable/reddot)
+
+/obj/item/weapon/gun/rifle/standard_gpmg/deescalated
+	current_mag = /obj/item/ammo_magazine/rifle/standard_gpmg/deescalated
 
 //-------------------------------------------------------
 //M41AE2 Heavy Pulse Rifle
