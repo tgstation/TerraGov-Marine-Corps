@@ -735,6 +735,17 @@ Defined in conflicts.dm of the #defines folder.
 	scope_zoom_mod = TRUE
 	has_nightvision = FALSE
 
+/obj/item/attachable/scope/recoilless
+	name = "T-160 rail scope"
+	aim_speed_mod = 0
+	icon_state = "160scope"
+	attach_icon = "160scope_a"
+	wield_delay_mod = 0.4 SECONDS
+	zoom_offset = 6
+	zoom_viewsize = 7
+	desc = "A rail mounted zoom sight scope specialized for the T-160 Recoiless Rifle . Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+	flags_attach_features = ATTACH_ACTIVATION
+
 /obj/item/attachable/scope/mini/m4ra
 	name = "T-45 rail scope"
 	aim_speed_mod = 0
