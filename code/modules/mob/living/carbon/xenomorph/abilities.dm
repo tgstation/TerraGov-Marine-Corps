@@ -94,11 +94,10 @@
 
 /datum/action/xeno_action/plant_weeds/slow/action_activate()
 	var/mob/living/carbon/xenomorph/hivemind/hiveminde = owner
-	if(hiveminde)
-		if(!locate(/obj/effect/alien/weeds) in range(1, hiveminde.loc))
-			hiveminde.forceMove(get_turf(hiveminde.core))
-			to_chat(hiveminde, "<span class='xenonotice'>We can't place weeds with no weeds nearby, we got moved to our core.</span>")
-			return
+	if(!locate(/obj/effect/alien/weeds) in range(1, hiveminde.loc))
+		hiveminde.forceMove(get_turf(hiveminde.core))
+		to_chat(hiveminde, "<span class='xenonotice'>We can't place weeds with no weeds nearby, we got moved to our core.</span>")
+		return
  	return ..()
  
 // Choose Resin
