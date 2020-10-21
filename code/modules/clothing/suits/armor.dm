@@ -120,11 +120,17 @@
 	item_state = "bulletproof"
 	blood_overlay_type = "armor"
 	flags_armor_protection = CHEST
-	soft_armor = list("melee" = 20, "bullet" = 50, "laser" = 25, "energy" = 10, "bomb" = 15, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
+	soft_armor = list("melee" = 30, "bullet" = 55, "laser" = 0, "energy" = 0, "bomb" = 30, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 15)
+	hard_armor = list("melee" = 0, "bullet" = 20, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 5)
 	siemens_coefficient = 0.7
 	permeability_coefficient = 0.9
-	time_to_unequip = 20
+	time_to_unequip = 45
 	time_to_equip = 20
+	allowed = list(/obj/item/weapon/gun/,
+		/obj/item/flashlight,
+		/obj/item/storage/large_holster/machete,
+		/obj/item/storage/belt/gun/m4a3,
+		/obj/item/storage/belt/gun/m44)
 
 /obj/item/clothing/suit/armor/riot
 	name = "riot suit"
