@@ -106,7 +106,7 @@
 	return ..()
 
 
-/proc/do_after(mob/user, delay, needhand = TRUE, atom/target, user_display, target_display, prog_bar = PROGRESS_GENERIC, datum/callback/extra_checks, ignore_turf_checks = FALSE)
+/proc/do_after(mob/user, delay, needhand = TRUE, atom/target, user_display, target_display, prog_bar = PROGRESS_GENERIC, datum/callback/extra_checks, ignore_turf_checks = FALSE, target_can_move = FALSE)
 	if(!user)
 		return FALSE
 
@@ -137,7 +137,7 @@
 			break
 
 		if(!QDELETED(Tloc) && (QDELETED(target) || Tloc != target.loc))
-			if((!ignore_turf_checks && Uloc != Tloc) || Tloc != user)
+			if((!ignore_turf_checks && Uloc != Tloc) || (Tloc != user && !target_can_move))
 				. = FALSE
 				break
 

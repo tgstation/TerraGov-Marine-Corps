@@ -63,7 +63,10 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	succeed_activate()
 	COOLDOWN_START(src, reagent_slash_cooldown, 6 SECONDS)
-	X.recurring_injection(A, X.selected_reagent, XENO_REAGENT_STING_CHANNEL_TIME, count = 1, transfer_amount = 15, is_reagent_slash = TRUE)
+	X.recurring_injection(A, X.selected_reagent, XENO_REAGENT_STING_CHANNEL_TIME, count = 4, transfer_amount = 4, is_reagent_slash = TRUE)
+	button.overlays += cooldown_image
+	sleep(59)
+	button.overlays -= cooldown_image
 
 
 // ***************************************
@@ -169,6 +172,9 @@
 	COOLDOWN_START(src, xeno_camouflage_cooldown, 7 SECONDS)
 	can_sneak_attack = FALSE
 	owner.alpha = 255 //no transparency/translucency
+	button.overlays += cooldown_image
+	sleep(69)
+	button.overlays -= cooldown_image
 
 /datum/action/xeno_action/xeno_camouflage/proc/handle_stealth()
 	SIGNAL_HANDLER

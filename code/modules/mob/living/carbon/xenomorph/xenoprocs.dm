@@ -604,24 +604,27 @@
 		if(!is_reagent_slash && CHECK_BITFIELD(C.status_flags, XENO_HOST) && body_tox && body_tox.volume > body_tox.overdose_threshold)
 			to_chat(src, "<span class='warning'>We sense the infected host is saturated with [body_tox.name] and cease our attempt to inoculate it further to preserve the little one inside.</span>")
 			return FALSE
-		do_attack_animation(C)
 		C.reagents.add_reagent(toxin, transfer_amount)
 		if(!body_tox) //Let's check this each time because depending on the metabolization rate it can disappear between stings.
 			body_tox = C.reagents.get_reagent(toxin)
 		if(is_reagent_slash)
+			if(get_dist(src, C) > 1)
+				to_chat(src, "<span class='warning'>We need to be closer to [C].</span>")
+				return
 			to_chat(src, "<span class='xenonotice'>We slash [C] with [body_tox.name]!</span>")
 			playsound(C, "alien_claw_flesh", 15, TRUE)
 			playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
-			C.apply_damage(damage = 10, damagetype = BRUTE, def_zone = affecting, sharp = TRUE)
-			to_chat(C, "<span class='danger'><p style='font-size:1.1em'>The [src] swipes at you!</span>")
+			C.apply_damage(damage = 4, damagetype = BRUTE, def_zone = affecting, sharp = TRUE)
+			to_chat(C, "<span class='danger'>The [src] swipes at you!</span>")
 		else
 			to_chat(src, "<span class='xenonotice'>Our stinger injects the victim with [body_tox.name]!</span>")
 			playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
 			playsound(C, "alien_drool", 15, TRUE)
 			to_chat(C, "<span class='danger'>You feel a tiny prick.</span>")
+		do_attack_animation(C)
 		if(body_tox.volume > body_tox.overdose_threshold)
 			to_chat(src, "<span class='danger'>We sense the host is saturated with [body_tox.name].</span>")
-	while(i++ < count && do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
+	while(i++ < count && do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE, ignore_turf_checks = is_reagent_slash, target_can_move = is_reagent_slash))
 	SEND_SIGNAL(C, COMSIG_HIVE_XENO_RECURRING_INJECTION, affecting)
 	return TRUE
 
