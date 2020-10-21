@@ -68,7 +68,7 @@
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/gyro)
 
-	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 17,"rail_x" = 9, "rail_y" = 20, "under_x" = 21, "under_y" = 12, "stock_x" = 24, "stock_y" = 10)
+	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 19,"rail_x" = 14, "rail_y" = 20, "under_x" = 21, "under_y" = 12, "stock_x" = 24, "stock_y" = 10)
 
 	accuracy_mult = 1.5
 	accuracy_mult_unwielded = 0.85
@@ -109,7 +109,7 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_LOAD_INTO_CHAMBER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 24, "stock_y" = 10)
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 15,"rail_x" = 25, "rail_y" = 22, "under_x" = 17, "under_y" = 17, "stock_x" = 24, "stock_y" = 10)
 
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.8
@@ -215,7 +215,7 @@
 						/obj/item/attachable/scope/mini)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 28, "under_y" = 17, "stock_x" = 28, "stock_y" = 17)
+	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 19,"rail_x" = 14, "rail_y" = 21, "under_x" = 28, "under_y" = 17, "stock_x" = 28, "stock_y" = 17)
 
 	fire_delay = 0.2 SECONDS
 	burst_delay = 0.2 SECONDS
@@ -248,7 +248,7 @@
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/scope)
 
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 28, "under_y" = 17, "stock_x" = 28, "stock_y" = 17)
+	attachable_offset = list("muzzle_x" = 26, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 28, "under_y" = 17, "stock_x" = 28, "stock_y" = 17)
 
 	fire_delay = 0.3 SECONDS
 	burst_delay = 0.2 SECONDS
@@ -311,7 +311,7 @@
 						/obj/item/attachable/flashlight)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 19, "under_x" = 26, "under_y" = 15, "stock_x" = 26, "stock_y" = 15)
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 19, "under_x" = 26, "under_y" = 15, "stock_x" = 26, "stock_y" = 15)
 
 	fire_delay = 0.125 SECONDS
 	burst_amount = 6
@@ -338,7 +338,7 @@
 	reload_sound = 'sound/weapons/guns/interact/uzi_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/uzi_cocked.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/uzi
-	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
+	attachable_offset = list("muzzle_x" = 26, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
 
 	fire_delay = 0.175 SECONDS
 	burst_amount = 4
@@ -369,7 +369,7 @@
 						/obj/item/attachable/scope,
 						/obj/item/attachable/scope/mini)
 
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 20, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
+	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 20, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
 
 	fire_delay = 0.175 SECONDS
 	burst_delay = 0.2 SECONDS

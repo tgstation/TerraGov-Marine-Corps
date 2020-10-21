@@ -58,7 +58,7 @@
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/standard_pistol
 
-	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17)
+	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 18, "rail_y" = 22, "under_x" = 18, "under_y" = 14, "stock_x" = 21, "stock_y" = 17)
 
 	fire_delay = 0.125 SECONDS
 	accuracy_mult = 1.1
@@ -80,7 +80,7 @@
 	current_mag = /obj/item/ammo_magazine/pistol
 
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
-	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
+	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.15
@@ -123,7 +123,7 @@
 						/obj/item/attachable/heavy_barrel)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
+	attachable_offset = list("muzzle_x" = 26, "muzzle_y" = 19,"rail_x" = 8, "rail_y" = 21, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.20 //Has a forced laser sight.
@@ -390,7 +390,7 @@
 						/obj/item/attachable/heavy_barrel)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
-	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 21, "rail_y" = 13, "under_x" = 17, "under_y" = 15, "stock_x" = 22, "stock_y" = 17)
+	attachable_offset = list("muzzle_x" = 26, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 14, "under_x" = 15, "under_y" = 17, "stock_x" = 22, "stock_y" = 17)
 
 	fire_delay = 0.125 SECONDS
 	recoil = -2
