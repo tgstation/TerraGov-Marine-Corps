@@ -21,10 +21,8 @@ SUBSYSTEM_DEF(render)
 	for(var/i in GLOB.cached_images)
 		if(length(GLOB.cached_images[i]) >= MINIMUM_RENDER_AMOUNT)
 			continue
-		continue
 		for(var/atom/o as() in GLOB.cached_images[i])
 			SEND_SIGNAL(o, COMSIG_ATOM_RENDER_CACHE_EMPTIED)
-			o.render_target = null
 		GLOB.cached_images -= i
 		qdel(i)
 
