@@ -1,6 +1,0 @@
-author: "XSlayer300"
-delete-after: True
-changes: 
-  - rscadd: "Added the Toolbox Trophy for Toolbox for a Cause 2020 in both EORD and Thunderdome arena. It is indestructable and unacidable."
-  - tweak: "In addition to the toolbox trophy, all memorials are now indestructable and unacidable."
-  - bugfix: "Fixed those invisible wooden windows at EORD, along with the other windows that got the typo."
