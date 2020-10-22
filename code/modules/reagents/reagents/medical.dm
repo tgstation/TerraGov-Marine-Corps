@@ -422,12 +422,18 @@
 
 /datum/reagent/medicine/hyronalin
 	name = "Hyronalin"
-	description = "Hyronalin is a medicinal drug used to counter the effect of radiation poisoning."
+	description = "Hyronalin is a medicinal drug used to counter the effect of toxin poisoning."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = REAGENTS_METABOLISM * 0.25
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
+
+/datum/reagent/medicine/hyroalin/on_mob_life(mob/living/L)
+	L.adjustToxLoss(-3*REM)
+	if(prob(50))
+		L.take_limb_damage(2*REM, 0)
+	return ..()
 
 /datum/reagent/medicine/hyronalin/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(4*REM, TOX)
@@ -437,16 +443,16 @@
 
 /datum/reagent/medicine/arithrazine
 	name = "Arithrazine"
-	description = "Arithrazine is an unstable medication used for the most extreme cases of radiation poisoning."
+	description = "Arithrazine is an unstable emergency medication used for the most extreme cases of toxin poisoning."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = REAGENTS_METABOLISM * 0.25
 	overdose_threshold = REAGENTS_OVERDOSE/2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2
 
 /datum/reagent/medicine/arithrazine/on_mob_life(mob/living/L)
-	L.adjustToxLoss(-1*REM)
-	if(prob(15))
-		L.take_limb_damage(2*REM, 0)
+	L.adjustToxLoss(-4*REM)
+	if(prob(50))
+		L.take_limb_damage(3*REM, 0)
 	return ..()
 
 /datum/reagent/medicine/arithrazine/overdose_process(mob/living/L, metabolism)
@@ -457,7 +463,7 @@
 
 /datum/reagent/medicine/russianred
 	name = "Russian Red"
-	description = "An emergency radiation treatment, however it has extreme side effects."
+	description = "An emergency toxin treatment, however it has extreme side effects."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = REAGENTS_METABOLISM * 5
 	overdose_threshold = REAGENTS_OVERDOSE/3
@@ -468,8 +474,8 @@
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.drunkenness = max(C.drunkenness - 2)
-	L.adjustToxLoss(-1*REM)
-	if(prob(50))
+	L.adjustToxLoss(-5*REM)
+	if(prob(75))
 		L.take_limb_damage(6*REM, 0)
 	return ..()
 
