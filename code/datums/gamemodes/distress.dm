@@ -38,6 +38,7 @@
 	var/bioscan_current_interval = 45 MINUTES
 	var/bioscan_ongoing_interval = 20 MINUTES
 	var/orphan_hive_timer
+	var/planet_nuked = CRASH_NUKE_NONE
 
 
 /datum/game_mode/infestation/distress/announce()

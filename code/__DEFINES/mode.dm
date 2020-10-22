@@ -60,6 +60,25 @@
 #define MODE_BATTLEFIELD_DRAW_STALEMATE "DRAW: Stalemate"
 #define MODE_BATTLEFIELD_DRAW_DEATH		"DRAW: My Friends Are Dead"
 
+// Distress
+#define MODE_DISTRESS_X_MAJOR		"Xenomorph Major Victory"
+#define MODE_DISTRESS_M_MAJOR		"Marine Major Victory"
+#define MODE_DISTRESS_M_MAJOR_NUKE		"Marine Nuclear Major Victory"
+#define MODE_DISTRESS_X_MINOR		"Xenomorph Minor Victory"
+#define MODE_DISTRESS_M_MINOR		"Marine Minor Victory"
+#define MODE_DISTRESS_DRAW_DEATH	"DRAW: Mutual Annihilation"
+
+#define DISTRESS_DRAW (1 << 0)
+#define DISTRESS_XENO_MAJOR (1 << 1)
+#define DISTRESS_XENO_MINOR (1 << 2)
+#define DISTRESS_MARINE_MINOR (1 << 3)
+#define DISTRESS_MARINE_MAJOR (1 << 4)
+#define DISTRESS_MARINE_MAJOR_NUKE (1 << 5)
+
+#define DISTRESS_NUKE_NONE "DISTRESS_NUKE_NONE"
+#define DISTRESS_NUKE_INPROGRESS "DISTRESS_NUKE_INPROGRESS"
+#define DISTRESS_NUKE_COMPLETED "DISTRESS_NUKE_COMPLETED"
+
 // Crash gamemode
 #define MODE_CRASH_X_MAJOR		"Xenomorph Major Victory"
 #define MODE_CRASH_M_MAJOR		"Marine Major Victory"
