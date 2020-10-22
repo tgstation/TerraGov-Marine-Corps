@@ -164,29 +164,29 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 
 
 
-/proc/LinkBlocked(turf/A, turf/B)
+/proc/LinkBlocked(turf/A, turf/B, check_barricades = FALSE)
 	if(isnull(A) || isnull(B))
 		return TRUE
 	var/adir = get_dir(A, B)
 	var/rdir = get_dir(B, A)
 	if(adir & (adir - 1))//is diagonal direction
 		var/turf/iStep = get_step(A, adir & (NORTH|SOUTH))
-		if(!iStep.density && !LinkBlocked(A, iStep) && !LinkBlocked(iStep, B))
+		if(!iStep.density && !LinkBlocked(A, iStep, check_barricades) && !LinkBlocked(iStep, B, check_barricades))
 			return FALSE
 
 		var/turf/pStep = get_step(A,adir & (EAST|WEST))
-		if(!pStep.density && !LinkBlocked(A, pStep) && !LinkBlocked(pStep, B))
+		if(!pStep.density && !LinkBlocked(A, pStep, check_barricades) && !LinkBlocked(pStep, B, check_barricades))
 			return FALSE
 		return TRUE
 
-	if(DirBlocked(A, adir))
+	if(DirBlocked(A, adir, check_barricades))
 		return TRUE
-	if(DirBlocked(B, rdir))
+	if(DirBlocked(B, rdir, check_barricades))
 		return TRUE
 	return FALSE
 
 
-/proc/DirBlocked(turf/loc, direction)
+/proc/DirBlocked(turf/loc, direction, check_barricades = FALSE)
 	for(var/obj/structure/window/D in loc)
 		if(!D.density)
 			continue
@@ -206,11 +206,12 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	for(var/obj/structure/mineral_door/D in loc)
 		if(D.density)
 			return TRUE
-	for(var/obj/structure/barricade/B in loc)
-		if(!B.density)
-			continue
-		if(B.dir == direction)
-			return TRUE
+	if (check_barricades)
+		for(var/obj/structure/barricade/B in loc)
+			if(!B.density)
+				continue
+			if(B.dir == direction)
+				return TRUE
 	return FALSE
 
 

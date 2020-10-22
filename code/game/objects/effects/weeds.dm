@@ -165,7 +165,7 @@
 	update_icon()
 
 	// Generate our full graph before adding to SSweeds
-	node_turfs = filled_turfs(src, node_range, "square")
+	node_turfs = filled_turfs(src, node_range, "square", TRUE, TRUE)
 	SSweeds.add_node(src)
 
 
