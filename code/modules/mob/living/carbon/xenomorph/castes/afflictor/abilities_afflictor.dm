@@ -37,7 +37,7 @@
 // ***************************************
 /datum/action/xeno_action/activable/reagent_slash
 	name = "Reagent Slash"
-	mechanics_text = "Deals damage and injects 15u of selected reagent."
+	mechanics_text = "Deals damage 4 times and injects 4u of selected reagent per slash. Can move next to target while slashing."
 	ability_name = "reagent slash"
 	COOLDOWN_DECLARE(reagent_slash_cooldown)
 	plasma_cost = 40
@@ -50,24 +50,41 @@
 	if(COOLDOWN_TIMELEFT(src, reagent_slash_cooldown) > 0)
 		to_chat(owner, "<span class='warning'>Reagent Slash [COOLDOWN_TIMELEFT(src, reagent_slash_cooldown) / 10] seconds left</span>")
 		return FALSE
-	if(!A?.can_sting())
-		if(!silent)
-			to_chat(owner, "<span class='warning'>Our sting won't affect this target!</span>")
-		return FALSE
 	if(get_dist(owner, A) > 1)
-		to_chat(owner, "<span class='warning'>We need to be closer to [A].</span>")
+		to_chat(owner, "<span class='warning'>We need to be next to our prey.</span>")
 		return FALSE
 	return TRUE
 
+/datum/action/xeno_action/activable/reagent_slash/proc/figure_out_living_target(atom/A)
+	var/clickDir = get_dir(owner, A)
+	var/turf/presumedPos = get_step(owner, clickDir)
+	var/mob/living/L = locate() in presumedPos
+	if((presumedPos == get_turf(A) && L == null) || L == owner)
+		to_chat(owner, "<span class='warning'>Our slash won't affect this target!</span>")
+		return A
+	return L
+
 /datum/action/xeno_action/activable/reagent_slash/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
+	var/atom/T
+	if(isturf(A))
+		T = A
+	else
+		T = get_turf(A)
+	var/atom/hold = figure_out_living_target(T,	owner)
+	var/atom/Z = hold
+	if(X.is_ventcrawling)
+		return
+	if(isnull(Z))
+		return
+	if(isturf(Z))
+		return
 	succeed_activate()
 	COOLDOWN_START(src, reagent_slash_cooldown, 6 SECONDS)
-	X.recurring_injection(A, X.selected_reagent, XENO_REAGENT_STING_CHANNEL_TIME, count = 4, transfer_amount = 4, is_reagent_slash = TRUE)
+	X.recurring_injection(Z, X.selected_reagent, XENO_REAGENT_STING_CHANNEL_TIME, count = 4, transfer_amount = 4, is_reagent_slash = TRUE)
 	button.overlays += cooldown_image
 	sleep(59)
 	button.overlays -= cooldown_image
-
 
 // ***************************************
 // *********** NANOCRYSTAL CAMOUFLAGE
