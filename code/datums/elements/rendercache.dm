@@ -26,7 +26,7 @@ GLOBAL_LIST_EMPTY(cached_images)
 
 /datum/element/rendercache/Detach(atom/source, force)
 	. = ..()
-	source.render_target = null
+	source.render_source = null
 	GLOB.cached_images[cached_image] -= source
 	UnregisterSignal(source, list(COMSIG_ATOM_LATEUPDATE_ICON, COMSIG_ATOM_DIR_CHANGE, COMSIG_ATOM_RENDER_CACHE_EMPTIED))
 	if(!length(GLOB.cached_images[cached_image]))
