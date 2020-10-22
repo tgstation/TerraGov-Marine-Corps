@@ -433,6 +433,8 @@
 	L.adjustToxLoss(-3*REM)
 	if(prob(50))
 		L.take_limb_damage(2*REM, 0)
+	if(prob(75))
+		L.take_limb_damage(5*REM, 0)
 	return ..()
 
 /datum/reagent/medicine/hyronalin/overdose_process(mob/living/L, metabolism)
@@ -450,9 +452,9 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2
 
 /datum/reagent/medicine/arithrazine/on_mob_life(mob/living/L)
-	L.adjustToxLoss(-4*REM)
-	if(prob(50))
-		L.take_limb_damage(3*REM, 0)
+	L.adjustToxLoss(-5*REM)
+	if(prob(75))
+		L.take_limb_damage(10*REM, 0)
 	return ..()
 
 /datum/reagent/medicine/arithrazine/overdose_process(mob/living/L, metabolism)
@@ -474,9 +476,9 @@
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.drunkenness = max(C.drunkenness - 2)
-	L.adjustToxLoss(-5*REM)
+	L.adjustToxLoss(-6*REM)
 	if(prob(75))
-		L.take_limb_damage(6*REM, 0)
+		L.take_limb_damage(12*REM, 0)
 	return ..()
 
 /datum/reagent/medicine/russianred/overdose_process(mob/living/L, metabolism)
