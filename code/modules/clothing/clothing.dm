@@ -81,7 +81,7 @@
 
 	// Strength of the armor light used by [proc/set_light()]
 	light_power = 3
-	light_range = 3
+	light_range = 4
 	light_system = MOVABLE_LIGHT
 	light_on = FALSE
 
