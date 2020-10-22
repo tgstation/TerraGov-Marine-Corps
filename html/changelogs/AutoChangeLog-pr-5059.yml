@@ -1,0 +1,4 @@
+author: "Hathkar"
+delete-after: True
+changes: 
+  - bugfix: "Added missing shutters to Magmoor"
