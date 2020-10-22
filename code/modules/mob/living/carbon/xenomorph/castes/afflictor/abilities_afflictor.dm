@@ -79,9 +79,14 @@
 		return
 	if(isturf(Z))
 		return
+	var/slash_count = 4
+	var/reagent_transfer_amount = 4
+	if(X.selected_reagent == /datum/reagent/toxin/xeno_praelyx)
+		slash_count = 1
+		reagent_transfer_amount = 16
 	succeed_activate()
 	COOLDOWN_START(src, reagent_slash_cooldown, 6 SECONDS)
-	X.recurring_injection(Z, X.selected_reagent, XENO_REAGENT_STING_CHANNEL_TIME, count = 4, transfer_amount = 4, is_reagent_slash = TRUE)
+	X.recurring_injection(Z, X.selected_reagent, XENO_REAGENT_STING_CHANNEL_TIME, count = slash_count, transfer_amount = reagent_transfer_amount, is_reagent_slash = TRUE)
 	button.overlays += cooldown_image
 	sleep(59)
 	button.overlays -= cooldown_image

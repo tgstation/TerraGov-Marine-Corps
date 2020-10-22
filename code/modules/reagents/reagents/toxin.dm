@@ -520,13 +520,16 @@
 	toxpwr = 0
 
 /datum/reagent/toxin/xeno_hemodile/on_mob_add(mob/living/L, metabolism, affecting)
-	to_chat(L, "<span class='warning'>You have trouble catching your breath.</span>")
 	RegisterSignal(L, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/hemodile_human_damage_taken)
+
+/datum/reagent/toxin/xeno_hemodile/on_mob_life(mob/living/L, metabolism)
+	if(prob(25))
+		to_chat(L, "<span class='warning'>You have trouble catching your breath.</span>")
+	return ..()
 
 /datum/reagent/toxin/xeno_hemodile/proc/hemodile_human_damage_taken(mob/living/L, damage, damagetype)
 	if(damagetype == STAMINA && current_cycle > 2)
 		L.adjustStaminaLoss(damage*0.5)
-	return ..()
 
 
 /datum/reagent/toxin/xeno_transvitox //converts brute/burn to tox damage
@@ -572,7 +575,7 @@
 	L.adjustBruteLoss(1)
 	if(prob(25))
 		to_chat(L, "<span class='warning'>You can feel your body falling apart!</span>")
-	return..()
+	return ..()
 
 
 /datum/reagent/toxin/xeno_praelyx //deals damage if certain reagents are present on application or when injected more than once
@@ -593,4 +596,3 @@
 	to_chat(L, "<span class='warning'>Your [affecting] bursts!</span>")
 	custom_metabolism = 10
 	L.apply_damage(damage = 20, damagetype = BRUTE, def_zone = affecting, sharp = TRUE)
-	return ..()
