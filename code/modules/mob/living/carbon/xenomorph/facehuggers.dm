@@ -53,6 +53,7 @@
 	. = ..()
 	if(stat == CONSCIOUS)
 		lifetimer = addtimer(CALLBACK(src, .proc/check_lifecycle), FACEHUGGER_DEATH, TIMER_STOPPABLE)
+	RegisterSignal(src, COMSIG_MOVABLE_PRE_THROW, .proc/check_barricade)
 
 /obj/item/clothing/mask/facehugger/Destroy()
 	. = ..()
@@ -231,6 +232,16 @@
 		HasProximity(finder)
 		return TRUE
 	return FALSE
+
+/obj/item/clothing/mask/facehugger/proc/check_barricade(datum/source, atom/target, range, thrower, spin)
+	var/mob/living/carbon/xenomorph/X = source
+	var/list/turf_between = getline(target,X)
+	for(var/turf/t in turf_between)
+		var/obj/structure/barricade/found = locate(/obj/structure/barricade) in t.loc
+		if(found)
+			if(!found.density)
+				continue
+			return COMPONENT_CANCEL_THROW
 
 /obj/item/clothing/mask/facehugger/throw_at(atom/target, range, speed)
 	. = ..()
@@ -562,6 +573,7 @@
 /obj/item/clothing/mask/facehugger/dead/Initialize()
 	. = ..()
 	update_icon()
+	UnregisterSignal(src,COMSIG_MOVABLE_PRE_THROW)
 
 #undef FACEHUGGER_DEATH
 #undef JUMP_COOLDOWN
