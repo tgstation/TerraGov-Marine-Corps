@@ -566,6 +566,8 @@
 	for(var/datum/reagent/R in L.reagents.reagent_list)
 		if(istype(R, /datum/reagent/medicine))
 			toxin_damage += 1
+	if(L.getToxLoss() > 40)
+		toxin_damage *= 0.5
 	L.adjustToxLoss(toxin_damage)
 	L.adjustBruteLoss(1)
 	if(prob(25))
