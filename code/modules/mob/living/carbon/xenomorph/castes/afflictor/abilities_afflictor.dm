@@ -59,7 +59,7 @@
 	var/clickDir = get_dir(owner, A)
 	var/turf/presumedPos = get_step(owner, clickDir)
 	var/mob/living/L = locate() in presumedPos
-	if((presumedPos == get_turf(A) && L == null) || L == owner)
+	if((presumedPos == get_turf(A) && L == null) || L == owner || istype(L, /mob/living/carbon/xenomorph))
 		to_chat(owner, "<span class='warning'>Our slash won't affect this target!</span>")
 		return A
 	return L
