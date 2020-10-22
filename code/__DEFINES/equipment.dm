@@ -25,6 +25,8 @@
 #define PREVENT_CONTENTS_EXPLOSION	(1<<13)
 /// was this spawned by an admin? used for stat tracking stuff.
 #define ADMIN_SPAWNED			(1<<14)
+/// Whether we want it to use cached rendering, add this to frequently rendered appearances
+#define SMART_RENDERING			(1<<15)
 
 //turf-only flags
 #define NOJAUNT_1					(1<<0)

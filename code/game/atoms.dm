@@ -284,6 +284,7 @@ directive is properly returned.
 		if(length(new_overlays))
 			managed_overlays = new_overlays
 			add_overlay(new_overlays)
+	SEND_SIGNAL(src, COMSIG_ATOM_LATEUPDATE_ICON)
 
 /// Updates the icon state of the atom
 /atom/proc/update_icon_state()
@@ -511,7 +512,8 @@ Proc for attack log creation, because really why not
 	if(flags_atom & INITIALIZED)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	flags_atom |= INITIALIZED
-
+	if(CHECK_BITFIELD(flags_atom, SMART_RENDERING))
+		AddElement(/datum/element/rendercache, appearance)
 	if(light_power && light_range)
 		update_light()
 	if(loc)

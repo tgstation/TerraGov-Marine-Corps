@@ -7,6 +7,7 @@
 	shoefootstep = FOOTSTEP_PLATING
 	barefootstep = FOOTSTEP_PLATING
 	mediumxenofootstep = FOOTSTEP_PLATING
+	flags_atom = SMART_RENDERING
 
 /turf/open/floor/plating/mainship
 	icon = 'icons/turf/mainship.dmi'
@@ -38,6 +39,7 @@
 	var/base_state = "plating" //Post mapping
 	name = "catwalk"
 	desc = "Cats really don't like these things."
+	flags_atom = NONE
 	var/covered = TRUE
 	shoefootstep = FOOTSTEP_CATWALK
 	barefootstep = FOOTSTEP_CATWALK

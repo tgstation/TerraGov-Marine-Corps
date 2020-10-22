@@ -7,6 +7,7 @@
 /turf/open/floor/mainship
 	icon = 'icons/turf/mainship.dmi'
 	icon_state = "default"
+	flags_atom = SMART_RENDERING
 
 /turf/open/floor/mainship/stripesquare
 	icon_state = "test_floor4"

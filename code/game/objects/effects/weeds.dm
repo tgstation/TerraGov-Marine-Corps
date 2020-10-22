@@ -28,7 +28,6 @@
 			CRASH("Weed craeted with non-weed node. Type: [node.type]")
 		parent_node = node
 
-	update_sprite()
 	update_neighbours()
 
 /obj/effect/alien/weeds/Destroy()
@@ -66,9 +65,10 @@
 
 			var/obj/effect/alien/weeds/W = locate() in T
 			if(W)
-				W.update_sprite()
+				W.update_icon()
+				update_icon()
 
-/obj/effect/alien/weeds/proc/update_sprite()
+/obj/effect/alien/weeds/update_icon_state()
 	var/my_dir = 0
 	for (var/check_dir in GLOB.cardinals)
 		var/turf/check = get_step(src, check_dir)
@@ -96,7 +96,7 @@
 	plane = GAME_PLANE
 	icon_state = "weedwall"
 
-/obj/effect/alien/weeds/weedwall/update_sprite()
+/obj/effect/alien/weeds/weedwall/update_icon_state()
 	if(iswallturf(loc))
 		var/turf/closed/wall/W = loc
 		if(W.junctiontype)
@@ -108,7 +108,7 @@
 /obj/effect/alien/weeds/weedwall/window
 	layer = ABOVE_TABLE_LAYER
 
-/obj/effect/alien/weeds/weedwall/window/update_sprite()
+/obj/effect/alien/weeds/weedwall/window/update_icon_state()
 	var/obj/structure/window/framed/F = locate() in loc
 	if(F && F.junction)
 		icon_state = "weedwall[F.junction]"
@@ -122,7 +122,7 @@
 /obj/effect/alien/weeds/weedwall/frame
 	layer = ABOVE_TABLE_LAYER
 
-/obj/effect/alien/weeds/weedwall/frame/update_sprite()
+/obj/effect/alien/weeds/weedwall/frame/update_icon_state()
 	var/obj/structure/window_frame/WF = locate() in loc
 	if(WF && WF.junction)
 		icon_state = "weedframe[WF.junction]"
@@ -142,6 +142,7 @@
 	icon_state = "weednode"
 	max_integrity = 60
 	ignore_weed_destruction = TRUE
+	flags_atom = NONE
 	var/node_icon = "weednode"
 	var/node_range = NODERANGE
 	var/node_turfs = list() // list of all potential turfs that we can expand to
@@ -150,17 +151,13 @@
 	. = ..()
 	SSweeds_decay.decay_weeds(node_turfs)
 
-
-/obj/effect/alien/weeds/node/update_icon()
-	overlays.Cut()
-	overlays += node_icon
-
 /obj/effect/alien/weeds/node/Initialize(mapload, obj/effect/alien/weeds/node/node)
 	for(var/obj/effect/alien/weeds/W in loc)
 		if(W != src)
 			qdel(W) //replaces the previous weed
 			break
 	. = ..()
+	add_overlay(node_icon)
 
 	update_icon()
 

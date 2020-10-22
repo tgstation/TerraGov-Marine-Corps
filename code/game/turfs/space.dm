@@ -7,6 +7,7 @@
 	can_bloody = FALSE
 	light_power = 0.25
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
+	flags_atom = SMART_RENDERING
 
 
 /turf/open/space/basic/New()	//Do not convert to Initialize
@@ -37,9 +38,10 @@
 
 	if(opacity)
 		has_opaque_atom = TRUE
-	
-	update_icon()
 
+	update_icon()
+	if(CHECK_BITFIELD(flags_atom, SMART_RENDERING))
+		AddElement(/datum/element/rendercache, appearance)
 	return INITIALIZE_HINT_NORMAL
 
 

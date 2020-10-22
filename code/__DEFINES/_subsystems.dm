@@ -70,6 +70,7 @@
 #define INIT_ORDER_LIGHTING			-20
 #define INIT_ORDER_SHUTTLE			-21
 #define INIT_ORDER_PATH				-50
+#define INIT_ORDER_RENDER			-55
 #define INIT_ORDER_EXPLOSIONS		-69
 #define INIT_ORDER_CHAT				-100 //Should be last to ensure chat remains smooth during init.
 

@@ -8,6 +8,10 @@
 	world.update_status()
 	client.images = list()
 	client.screen = list()				//remove hud items just in case
+	if(SSrender.initialized)
+		for(var/cachedimage in GLOB.cached_images)
+			src << cachedimage
+	vis_contents |= SSrender.render_target
 
 	if(!hud_used)
 		create_mob_hud()

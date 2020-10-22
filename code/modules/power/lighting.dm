@@ -224,8 +224,7 @@
 		return TRUE
 	return FALSE
 
-/obj/machinery/light/update_icon()
-
+/obj/machinery/light/update_icon_state()
 	switch(status)		// set icon_states
 		if(LIGHT_OK)
 			icon_state = "[base_state][on]"
@@ -238,7 +237,6 @@
 		if(LIGHT_BROKEN)
 			icon_state = "[base_state]-broken"
 			on = FALSE
-	return
 
 // update the icon_state and luminosity of the light depending on its state
 /obj/machinery/light/proc/update(trigger = TRUE)

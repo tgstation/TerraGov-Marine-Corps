@@ -7,6 +7,7 @@
 	plane = BLACKNESS_PLANE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	invisibility = INVISIBILITY_LIGHTING
+	flags_atom = SMART_RENDERING
 
 	var/flags_alarm_state = NONE
 

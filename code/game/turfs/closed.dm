@@ -13,6 +13,7 @@
 	name = "rock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock"
+	flags_atom = SMART_RENDERING
 
 /turf/closed/mineral/Initialize(mapload)
 	. = ..()
@@ -42,6 +43,7 @@
 	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "wall2"
 	desc = "Some thick jungle."
+	flags_atom = SMART_RENDERING
 
 /turf/closed/gm/tree
 	name = "dense jungle trees"

@@ -87,7 +87,8 @@
 		hard_armor = getArmor()
 	else if (!istype(hard_armor, /datum/armor))
 		stack_trace("Invalid type [hard_armor.type] found in .hard_armor during /turf Initialize()")
-
+	if(CHECK_BITFIELD(flags_atom, SMART_RENDERING))
+		AddElement(/datum/element/rendercache, appearance)
 	return INITIALIZE_HINT_NORMAL
 
 
