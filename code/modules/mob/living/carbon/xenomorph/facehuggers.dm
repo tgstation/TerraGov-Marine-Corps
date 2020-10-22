@@ -241,7 +241,7 @@
 		if(found)
 			if(!found.density)
 				continue
-			to_chat(usr,"<span class='danger'>The facehugger isnt able to be thrown over the barricade!</span>")
+			to_chat(usr,"<span class='danger'>You fumble your attempted throw over the barricade!</span>")
 			return COMPONENT_CANCEL_THROW
 
 /obj/item/clothing/mask/facehugger/throw_at(atom/target, range, speed)
