@@ -432,7 +432,7 @@
 /datum/reagent/medicine/hyroalin/on_mob_life(mob/living/L)
 	L.adjustToxLoss(-4*REM)
 	if(prob(50))
-		L.take_limb_damage(5*REM, 0)
+		L.take_limb_damage(6*REM, 0)
 	return ..()
 
 /datum/reagent/medicine/hyronalin/overdose_process(mob/living/L, metabolism)
@@ -474,9 +474,9 @@
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.drunkenness = max(C.drunkenness - 2)
-	L.adjustToxLoss(-6*REM)
+	L.adjustToxLoss(-10*REM) //Removes toxins at a rapid rate.
 	if(prob(75))
-		L.take_limb_damage(15*REM, 0)
+		L.take_limb_damage(15*REM, 0) //Its gonna hurt though
 	return ..()
 
 /datum/reagent/medicine/russianred/overdose_process(mob/living/L, metabolism)
