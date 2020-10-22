@@ -39,7 +39,7 @@
 	name = "Reagent Slash"
 	mechanics_text = "Deals damage 4 times and injects 4u of selected reagent per slash. Can move next to target while slashing."
 	ability_name = "reagent slash"
-	COOLDOWN_DECLARE(reagent_slash_cooldown)
+	cooldown_timer = 6 SECONDS
 	plasma_cost = 40
 	keybind_signal = COMSIG_XENOABILITY_REAGENT_STING
 
@@ -47,9 +47,6 @@
 	. = ..()
 	if(!.)
 		return
-	if(COOLDOWN_TIMELEFT(src, reagent_slash_cooldown) > 0)
-		to_chat(owner, "<span class='warning'>Reagent Slash [COOLDOWN_TIMELEFT(src, reagent_slash_cooldown) / 10] seconds left</span>")
-		return FALSE
 	if(get_dist(owner, A) > 1)
 		to_chat(owner, "<span class='warning'>We need to be next to our prey.</span>")
 		return FALSE
@@ -85,11 +82,8 @@
 		slash_count = 1
 		reagent_transfer_amount = 16
 	succeed_activate()
-	COOLDOWN_START(src, reagent_slash_cooldown, 6 SECONDS)
 	X.recurring_injection(Z, X.selected_reagent, XENO_REAGENT_STING_CHANNEL_TIME, count = slash_count, transfer_amount = reagent_transfer_amount, is_reagent_slash = TRUE)
-	button.overlays += cooldown_image
-	sleep(59)
-	button.overlays -= cooldown_image
+	add_cooldown()
 
 // ***************************************
 // *********** NANOCRYSTAL CAMOUFLAGE
@@ -98,10 +92,10 @@
 	name = "Toggle Nanocrystal Camouflage"
 	action_icon_state = "stealth_on"
 	mechanics_text = "Become harder to see, better camouflage when walking and almost invisible if you stand still. Uses plasma to move, more when running."
-	ability_name = "stealth"
+	ability_name = "nanocrystal camouflage"
 	plasma_cost = 10
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_NANOCRYSTAL_CAMOUFLAGE
-	COOLDOWN_DECLARE(xeno_camouflage_cooldown)
+	cooldown_timer = 7 SECONDS
 	var/can_sneak_attack = FALSE
 	var/last_stealth = null
 	var/stealth = FALSE
@@ -172,9 +166,6 @@
 	return TRUE
 
 /datum/action/xeno_action/xeno_camouflage/action_activate()
-	if(COOLDOWN_TIMELEFT(src,xeno_camouflage_cooldown) > 0)
-		to_chat(owner, "<span class='warning'>Camouflage [COOLDOWN_TIMELEFT(src, xeno_camouflage_cooldown) / 10] seconds left</span>")
-		return
 	if(stealth)
 		cancel_stealth()
 	else
@@ -191,12 +182,9 @@
 	to_chat(owner, "<span class='xenodanger'>Our carapace relaxes.</span>")
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED) //This should be handled on the ability datum or a component.
 	stealth = FALSE
-	COOLDOWN_START(src, xeno_camouflage_cooldown, 7 SECONDS)
 	can_sneak_attack = FALSE
 	owner.alpha = 255 //no transparency/translucency
-	button.overlays += cooldown_image
-	sleep(69)
-	button.overlays -= cooldown_image
+	add_cooldown()
 
 /datum/action/xeno_action/xeno_camouflage/proc/handle_stealth()
 	SIGNAL_HANDLER
