@@ -234,13 +234,14 @@
 	return FALSE
 
 /obj/item/clothing/mask/facehugger/proc/check_barricade(datum/source, atom/target, range, thrower, spin)
-	var/mob/living/carbon/xenomorph/X = source
-	var/list/turf_between = getline(target,X)
-	for(var/turf/t in turf_between)
-		var/obj/structure/barricade/found = locate(/obj/structure/barricade) in t.loc
+	var/mob/living/carbon/xenomorph/X = usr
+	var/list/turf_between = getline(X,target)
+	for(var/turf/T in turf_between)
+		var/obj/structure/barricade/found = locate() in T
 		if(found)
 			if(!found.density)
 				continue
+			to_chat(usr,"<span class='danger'>The facehugger isnt able to be thrown over the barricade!</span>")
 			return COMPONENT_CANCEL_THROW
 
 /obj/item/clothing/mask/facehugger/throw_at(atom/target, range, speed)
