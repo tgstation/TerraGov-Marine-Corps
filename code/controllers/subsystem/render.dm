@@ -32,6 +32,18 @@ SUBSYSTEM_DEF(render)
 			user << cachedimage
 	return ..()
 
+////debug
+/datum/controller/subsystem/render/proc/clear()
+	to_chat(world, "<span class='warning'>Clearing cache in 5 seconds.</span>")
+	sleep(5 SECONDS)
+	for(var/i in GLOB.cached_images)
+		for(var/atom/b as() in GLOB.cached_images[i])
+			SEND_SIGNAL(b, COMSIG_ATOM_RENDER_CACHE_EMPTIED)
+		GLOB.cached_images -= i
+		qdel(i)
+	to_chat(world, "<span class='warning'>Cache clear.</span>")
+///debug end
+
 /atom/movable/render_target
 	name = ""
 	icon = null
