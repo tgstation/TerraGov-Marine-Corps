@@ -1,0 +1,5 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - tweak: "when hiveminds move with no weed nearby they wont go straight to core, they'll go to the closest weed in 7 tiles."
+  - bugfix: "hiveminds are not able to build weeds with no weeds nearby anymore."
