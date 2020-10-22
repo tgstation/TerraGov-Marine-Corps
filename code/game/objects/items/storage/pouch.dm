@@ -283,8 +283,8 @@
 	fill_type = /obj/item/ammo_magazine/smg/skorpion
 	fill_number = 2
 
-/obj/item/storage/pouch/magazine/large/pmc_m39
-	fill_type = /obj/item/ammo_magazine/smg/m39/ap
+/obj/item/storage/pouch/magazine/large/pmc_m25
+	fill_type = /obj/item/ammo_magazine/smg/m25/ap
 	fill_number = 3
 
 /obj/item/storage/pouch/magazine/large/pmc_p90
@@ -331,6 +331,13 @@
 	new /obj/item/detpack(src)
 	new /obj/item/detpack(src)
 	new /obj/item/assembly/signaler(src)
+
+/obj/item/storage/pouch/explosive/razorburn/Initialize()
+	. = ..()
+	new /obj/item/explosive/grenade/chem_grenade/razorburn_smol(src)
+	new /obj/item/explosive/grenade/chem_grenade/razorburn_smol(src)
+	new /obj/item/explosive/grenade/chem_grenade/razorburn_smol(src)
+	new /obj/item/explosive/grenade/chem_grenade/razorburn_large(src)
 
 /obj/item/storage/pouch/explosive/upp
 	fill_type = /obj/item/explosive/grenade/frag/upp
@@ -413,7 +420,7 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced (src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine (src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
 
 

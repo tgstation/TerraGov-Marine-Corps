@@ -1188,7 +1188,7 @@
 	rounds_max = 500
 	knockdown_threshold = 100 //lighter, not as well secured.
 	work_time = 10 //significantly faster than the big sentry
-	ammo = /datum/ammo/bullet/turret/mini //Similar to M39 AP rounds.
+	ammo = /datum/ammo/bullet/turret/mini //Similar to M25 AP rounds.
 	magazine_type = /obj/item/ammo_magazine/minisentry
 
 /obj/item/storage/box/sentry/Initialize(mapload, ...)

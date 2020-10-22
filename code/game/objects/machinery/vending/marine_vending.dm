@@ -89,9 +89,10 @@
 					/obj/item/storage/box/nade_box = 2,
 					/obj/item/storage/box/nade_box/HIDP = 2,
 					/obj/item/storage/box/nade_box/M15 = 2,
-					/obj/item/ammo_magazine/sniper = 3,
+					/obj/item/storage/box/nade_box/plasma_drain_gas = 2,
+					/obj/item/ammo_magazine/rifle/autosniper = 3,
 					/obj/item/ammo_magazine/rifle/m4ra = 3,
-					/obj/item/ammo_magazine/rocket = 3,
+					/obj/item/ammo_magazine/rocket/sadar = 3,
 					/obj/item/ammo_magazine/minigun = 2,
 					/obj/item/ammo_magazine/shotgun/mbx900 = 2,
 					/obj/item/bodybag/tarp = 2,
@@ -131,13 +132,14 @@
 					/obj/item/explosive/mine = 5,
 					/obj/item/explosive/grenade/frag/m15 = 25,
 					/obj/item/explosive/grenade/incendiary = 25,
-					/obj/item/explosive/grenade/smokebomb = 25,
+					/obj/item/explosive/grenade/drainbomb = 25,
 					/obj/item/explosive/grenade/cloakbomb = 25,
 					/obj/item/storage/box/m94 = 30,
 					/obj/item/storage/box/recoilless_system = 1,
 					)
 
 	premium = list()
+	contraband = list(/obj/item/explosive/grenade/smokebomb = 25)
 
 
 
@@ -645,6 +647,7 @@
 					/obj/item/tool/weldpack/marinestandard = 10,
 					/obj/item/clothing/gloves/marine = 20,
 					/obj/item/clothing/suit/storage/marine/pasvest = 40,
+					/obj/item/clothing/head/slouch = 40,
 					/obj/item/clothing/head/helmet/marine = 40,
 					/obj/item/clothing/head/helmet/marine/heavy = 10,
 					/obj/item/clothing/glasses/mgoggles = 10,
@@ -657,7 +660,8 @@
 					/obj/item/clothing/mask/rebreather = 10,
 					/obj/item/clothing/mask/breath = 10,
 					/obj/item/clothing/mask/gas = 10,
-					/obj/item/clothing/mask/gas/coif = 10,
+					/obj/item/clothing/mask/gas/tactical = 10,
+					/obj/item/clothing/mask/gas/tactical/coif = 10,
 					/obj/item/storage/belt/marine = 10,
 					/obj/item/storage/belt/shotgun = 10,
 					/obj/item/storage/belt/grenade = 10,
