@@ -45,12 +45,10 @@
 	return ..()
 
 /mob/living/carbon/xenomorph/hivemind/Move(NewLoc, Dir = 0)
-	var/obj/effect/alien/weeds/W = locate() in range("3x3", NewLoc)
+	var/obj/effect/alien/weeds/W = locate() in range(1, NewLoc)
 	if(!W)
-		var/obj/effect/alien/weeds/nearby = locate() in range("3x3", loc)
-		if(!nearby)
-			// If we run out of weeds just teleport to some random weeds.
-			forceMove(get_turf(core))
+		forceMove(get_turf(core))
+		to_chat(src, "<span class='xenonotice'>We had no weeds nearby, we got moved to our core.")
 		return FALSE
 
 	// Don't allow them over the timed_late doors
@@ -59,8 +57,8 @@
 		return FALSE
 
 	// Hiveminds are scared of fire.
-	var/obj/flamer_fire/fire_obj = locate() in range("3x3", NewLoc)
-	if(istype(fire_obj))
+	var/obj/flamer_fire/fire_obj = locate() in range(1, NewLoc)
+	if(fire_obj)
 		return FALSE
 
 	forceMove(NewLoc)
