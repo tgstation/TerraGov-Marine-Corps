@@ -38,7 +38,8 @@
 	var/bioscan_current_interval = 45 MINUTES
 	var/bioscan_ongoing_interval = 20 MINUTES
 	var/orphan_hive_timer
-	var/planet_nuked = CRASH_NUKE_NONE
+	var/planet_nuked = DISTRESS_NUKE_NONE
+	var/marines_evac = DISTRESS_EVAC_NONE
 
 
 /datum/game_mode/infestation/distress/announce()
@@ -107,36 +108,43 @@
 	if(world.time < (SSticker.round_start_time + 5 SECONDS))
 		return FALSE
 
-	var/living_player_list[] = count_humans_and_xenos(count_flags = COUNT_IGNORE_ALIVE_SSD|COUNT_IGNORE_XENO_SPECIAL_AREA)
+	var/list/living_player_list = count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
 	var/num_humans = living_player_list[1]
+
+	if(num_humans && planet_nuked == DISTRESS_NUKE_NONE)
+		return FALSE
+
 	var/num_xenos = living_player_list[2]
 
-	if(SSevacuation.dest_status == NUKE_EXPLOSION_FINISHED)
-		message_admins("Round finished: [MODE_GENERIC_DRAW_NUKE]") //ship blows, no one wins
-		round_finished = MODE_GENERIC_DRAW_NUKE
-		return TRUE
-	if(!num_humans)
-		if(!num_xenos)
-			message_admins("Round finished: [MODE_INFESTATION_DRAW_DEATH]") //everyone died at the same time, no one wins
-			round_finished = MODE_INFESTATION_DRAW_DEATH
-			return TRUE
-		if(round_stage == DISTRESS_DROPSHIP_CRASHED)
-			message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped our marines, xeno major victory
-			round_finished = MODE_INFESTATION_X_MAJOR
-			return TRUE
-		message_admins("Round finished: [MODE_INFESTATION_X_MAJOR]") //xenos wiped out ALL the marines without hijacking, xeno major victory
-		round_finished = MODE_INFESTATION_X_MAJOR
-		return TRUE
-	if(!num_xenos)
-		if(round_stage == DISTRESS_DROPSHIP_CRASHED)
-			message_admins("Round finished: [MODE_INFESTATION_X_MINOR]") //xenos hijacked the shuttle and won groundside but died on the ship, minor victory
-			round_finished = MODE_INFESTATION_M_MINOR
-			return TRUE
-		message_admins("Round finished: [MODE_INFESTATION_M_MAJOR]") //marines win big or go home
-		round_finished = MODE_INFESTATION_M_MAJOR
-		return TRUE
-	return FALSE
+	// Draw, ship blew up after xeno hijack
+	var/victory_options = (SSevacuation.dest_status == NUKE_EXPLOSION_FINISHED) << 0
+	// XENO Major (All marines killed)
+	victory_options |= (planet_nuked == DISTRESS_NUKE_NONE && num_humans == 0 && num_xenos > 0) << 1
+	// XENO Minor (Xenos hijacked the Alamo but died shipside)
+	victory_options |= (planet_nuked == DISTRESS_NUKE_NONE && (DISTRESS_DROPSHIP_CRASHED || (num_xenos == 0)))	<< 2
+	// Marine minor (Planet nuked, Alamo didn't evac)
+	victory_options |= (planet_nuked == DISTRESS_NUKE_COMPLETED && marines_evac == DISTRESS_EVAC_NONE) << 3
+	// Marine Major (Planet nuked, marines evac, or they wiped the xenos out)
+	victory_options |= ((planet_nuked == DISTRESS_NUKE_COMPLETED && marines_evac != DISTRESS_EVAC_NONE) || (planet_nuked == DISTRESS_NUKE_NONE && num_xenos == 0)) << 4
 
+	switch(victory_options)
+		if(DISTRESS_DRAW)
+			message_admins("Round finished: [MODE_DISTRESS_DRAW_DEATH]")
+			round_finished = MODE_DISTRESS_DRAW_DEATH
+		if(DISTRESS_XENO_MAJOR)
+			message_admins("Round finished: [MODE_DISTRESS_X_MAJOR]")
+			round_finished = MODE_DISTRESS_X_MAJOR
+		if(DISTRESS_XENO_MINOR)
+			message_admins("Round finished: [MODE_DISTRESS_X_MINOR]")
+			round_finished = MODE_DISTRESS_X_MINOR
+		if(DISTRESS_MARINE_MINOR)
+			message_admins("Round finished: [MODE_DISTRESS_M_MINOR]")
+			round_finished = MODE_DISTRESS_M_MINOR
+		if(DISTRESS_MARINE_MAJOR)
+			message_admins("Round finished: [MODE_DISTRESS_M_MAJOR]")
+			round_finished = MODE_DISTRESS_M_MAJOR
+		else
+			return FALSE
 
 /datum/game_mode/infestation/distress/declare_completion()
 	. = ..()
@@ -147,23 +155,23 @@
 	var/sound/human_track
 	var/sound/ghost_track
 	switch(round_finished)
-		if(MODE_INFESTATION_X_MAJOR)
+		if(MODE_DISTRESS_X_MAJOR)
 			xeno_track = pick('sound/theme/winning_triumph1.ogg', 'sound/theme/winning_triumph2.ogg')
 			human_track = pick('sound/theme/sad_loss1.ogg', 'sound/theme/sad_loss2.ogg')
 			ghost_track = xeno_track
-		if(MODE_INFESTATION_M_MAJOR)
+		if(MODE_DISTRESS_M_MAJOR)
 			xeno_track = pick('sound/theme/sad_loss1.ogg', 'sound/theme/sad_loss2.ogg')
 			human_track = pick('sound/theme/winning_triumph1.ogg', 'sound/theme/winning_triumph2.ogg')
 			ghost_track = human_track
-		if(MODE_INFESTATION_X_MINOR)
+		if(MODE_DISTRESS_X_MINOR)
 			xeno_track = pick('sound/theme/neutral_hopeful1.ogg', 'sound/theme/neutral_hopeful2.ogg')
 			human_track = pick('sound/theme/neutral_melancholy1.ogg', 'sound/theme/neutral_melancholy2.ogg')
 			ghost_track = xeno_track
-		if(MODE_INFESTATION_M_MINOR)
+		if(MODE_DISTRESS_M_MINOR)
 			xeno_track = pick('sound/theme/neutral_melancholy1.ogg', 'sound/theme/neutral_melancholy2.ogg')
 			human_track = pick('sound/theme/neutral_hopeful1.ogg', 'sound/theme/neutral_hopeful2.ogg')
 			ghost_track = human_track
-		if(MODE_INFESTATION_DRAW_DEATH)
+		if(MODE_DISTRESS_DRAW_DEATH)
 			ghost_track = pick('sound/theme/nuclear_detonation1.ogg', 'sound/theme/nuclear_detonation2.ogg')
 			xeno_track = ghost_track
 			human_track = ghost_track
@@ -291,3 +299,51 @@
 /datum/game_mode/infestation/distress/spawn_larva(mob/xeno_candidate, mob/living/carbon/xenomorph/mother)
 	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	return HS.spawn_larva(xeno_candidate, mother)
+
+/datum/game_mode/infestation/distress/proc/on_nuclear_diffuse(obj/machinery/nuclearbomb/bomb, mob/living/carbon/xenomorph/X)
+	var/list/living_player_list = count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
+	var/num_humans = living_player_list[1]
+	if(!num_humans) // no humans left on planet to try and restart it.
+		addtimer(VARSET_CALLBACK(src, marines_evac, DISTRESS_EVAC_COMPLETED), 10 SECONDS)
+
+	priority_announce("WARNING. WARNING. Planetary Nuke deactivated. WARNING. WARNING. Self destruct failed. WARNING. WARNING.", "Priority Alert")
+
+/datum/game_mode/infestation/distress/proc/on_nuclear_explosion(datum/source, z_level)
+	planet_nuked = DISTRESS_NUKE_INPROGRESS
+	INVOKE_ASYNC(src, .proc/play_cinematic, z_level)
+
+/datum/game_mode/infestation/distress/proc/on_nuke_started(obj/machinery/nuclearbomb/nuke)
+	var/datum/hive_status/normal/HS = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	var/area_name = get_area_name(nuke)
+	HS.xeno_message("An overwhelming wave of dread ripples throughout the hive... A nuke has been activated[area_name ? " in [area_name]":""]!")
+
+/datum/game_mode/infestation/distress/proc/play_cinematic(z_level)
+	GLOB.enter_allowed = FALSE
+	priority_announce("DANGER. DANGER. Planetary Nuke Activated. DANGER. DANGER. Self destruct in progress. DANGER. DANGER.", "Priority Alert")
+	var/sound/S = sound(pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg'), channel = CHANNEL_CINEMATIC)
+	SEND_SOUND(world, S)
+
+	for(var/x in GLOB.player_list)
+		var/mob/M = x
+		if(isobserver(M) || isnewplayer(M))
+			continue
+		shake_camera(M, 110, 4)
+
+	var/datum/cinematic/crash_nuke/C = /datum/cinematic/crash_nuke
+	var/nuketime = initial(C.runtime) + initial(C.cleanup_time)
+	addtimer(VARSET_CALLBACK(src, planet_nuked, DISTRESS_NUKE_COMPLETED), nuketime)
+	addtimer(CALLBACK(src, .proc/do_nuke_z_level, z_level), nuketime * 0.5)
+
+	Cinematic(CINEMATIC_CRASH_NUKE, world)
+
+
+/datum/game_mode/infestation/distress/proc/do_nuke_z_level(z_level)
+	if(!z_level)
+		return
+	for(var/i in GLOB.alive_living_list)
+		var/mob/living/victim = i
+		var/turf/victim_turf = get_turf(victim) //Sneaky people on lockers.
+		if(QDELETED(victim_turf) || victim_turf.z != z_level)
+			continue
+		victim.adjustFireLoss(victim.maxHealth*2)
+		CHECK_TICK
