@@ -1376,6 +1376,16 @@ Imports
 	contains = list(/obj/item/ammo_magazine/revolver/small)
 	cost = 3
 
+/datum/supply_packs/imports/rev44
+	name = "M-44 SAA Revolver"
+	contains = list(/obj/item/weapon/gun/revolver/m44)
+	cost = 7
+
+/datum/supply_packs/imports/rev357/ammo
+	name = "M-44 SAA Revolver Ammo"
+	contains = list(/obj/item/ammo_magazine/revolver)
+	cost = 3
+
 /datum/supply_packs/imports/beretta92fs
 	name = "Beretta 92FS Handgun"
 	contains = list(/obj/item/weapon/gun/pistol/b92fs)
