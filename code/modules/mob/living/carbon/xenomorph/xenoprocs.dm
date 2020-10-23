@@ -611,11 +611,10 @@
 			if(get_dist(src, C) > 1)
 				to_chat(src, "<span class='warning'>We need to be closer to [C].</span>")
 				return
-			to_chat(src, "<span class='xenonotice'>We slash [C] with [body_tox.name]!</span>")
 			playsound(C, "alien_claw_flesh", 15, TRUE)
 			playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
 			C.apply_damage(damage = 4, damagetype = BRUTE, def_zone = affecting, sharp = TRUE)
-			to_chat(C, "<span class='danger'>The [src] swipes at you!</span>")
+			visible_message(C, "<span class='danger'>The [src] swipes at [C]!</span>")
 		else
 			to_chat(src, "<span class='xenonotice'>Our stinger injects the victim with [body_tox.name]!</span>")
 			playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
