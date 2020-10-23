@@ -1,0 +1,4 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - bugfix: "fixed pmtls m412e not having an empty sprite"
