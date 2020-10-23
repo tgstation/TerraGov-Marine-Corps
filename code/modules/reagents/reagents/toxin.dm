@@ -476,7 +476,6 @@
 /datum/reagent/toxin/xeno_neurotoxin/overdose_crit_process(mob/living/L, metabolism)
 	L.Losebreath(1) //Can't breathe; for punishing the bullies
 
-
 /datum/reagent/toxin/xeno_growthtoxin
 	name = "Larval Accelerant"
 	description = "A metabolic accelerant that dramatically increases the rate of larval growth in a host."

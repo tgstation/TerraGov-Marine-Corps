@@ -22,5 +22,5 @@
 // ***************************************
 
 /mob/living/carbon/xenomorph/afflictor/apply_alpha_channel(image/I)
-	I.alpha = src.alpha
+	I.alpha = alpha
 	return I
