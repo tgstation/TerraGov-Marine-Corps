@@ -169,22 +169,25 @@ should be alright.
 		var/obj/item/B = owner.belt	//if they don't have a magharness, are they wearing a harness belt?
 		if(!istype(B, /obj/item/belt_harness))
 			return FALSE
-	var/obj/item/I = owner.wear_suit
-	if(!is_type_in_list(I, list(/obj/item/clothing/suit/storage, /obj/item/clothing/suit/armor, /obj/item/clothing/suit/modular)))
-		return FALSE
 	addtimer(CALLBACK(src, .proc/harness_return, user), 0.3 SECONDS, TIMER_UNIQUE)
 	return TRUE
 
 
 /obj/item/weapon/gun/proc/harness_return(mob/living/carbon/human/user)
-	if(!isturf(loc) || QDELETED(user) || !isnull(user.s_store))
+	if(!isturf(loc) || QDELETED(user) || !isnull(user.s_store) && !isnull(user.back))
 		return
 
-	user.equip_to_slot_if_possible(src, SLOT_S_STORE)
+	user.equip_to_slot_if_possible(src, SLOT_S_STORE, TRUE, FALSE, FALSE)
 	if(user.s_store == src)
 		var/obj/item/I = user.wear_suit
 		to_chat(user, "<span class='warning'>[src] snaps into place on [I].</span>")
-	user.update_inv_s_store()
+		user.update_inv_s_store()
+		return
+	
+	user.equip_to_slot_if_possible(src, SLOT_BACK, TRUE, FALSE, FALSE)
+	if(user.back == src)
+		to_chat(user, "<span class='warning'>[src] snaps into place on your back.</span>")
+	user.update_inv_back()
 
 
 /obj/item/weapon/gun/attack_self(mob/user)
