@@ -11,7 +11,7 @@
 	mob_size = MOB_SIZE_BIG
 	var/list/huggers = list()
 	var/eggs_cur = 0
-	tier = XENO_TIER_TWO
+	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_ZERO
 	pixel_x = -16 //Needed for 2x2
 	old_x = -16

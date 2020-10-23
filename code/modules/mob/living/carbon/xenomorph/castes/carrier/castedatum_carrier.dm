@@ -6,7 +6,7 @@
 
 	caste_type_path = /mob/living/carbon/xenomorph/carrier
 
-	tier = XENO_TIER_TWO
+	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "carrier" //used to match appropriate wound overlays
 
@@ -30,9 +30,7 @@
 	evolution_threshold = 180
 	upgrade_threshold = 120
 
-	deevolves_to = /mob/living/carbon/xenomorph/drone
-
-	evolves_to = list(/mob/living/carbon/xenomorph/Defiler)
+	deevolves_to = /mob/living/carbon/xenomorph/hivelord
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER

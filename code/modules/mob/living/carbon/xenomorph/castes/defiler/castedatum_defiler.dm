@@ -29,7 +29,7 @@
 	// *** Evolution *** //
 	upgrade_threshold = 250
 
-	deevolves_to = /mob/living/carbon/xenomorph/carrier
+	deevolves_to = /mob/living/carbon/xenomorph/hivelord
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_VENT_CRAWL
