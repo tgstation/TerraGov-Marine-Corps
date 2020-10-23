@@ -194,6 +194,7 @@
 
 
 /obj/item/clothing/suit/straight_jacket/proc/on_removal(datum/source, mob/living/user)
+	SIGNAL_HANDLER
 	DISABLE_BITFIELD(user.restrained_flags, RESTRAINED_STRAIGHTJACKET)
 	UnregisterSignal(src, COMSIG_ITEM_DROPPED)
 
@@ -380,3 +381,11 @@
 	icon_state = "rebel_armor"
 	item_state = "rebel_armor"
 	flags_armor_protection = CHEST|GROIN|LEGS
+
+/obj/item/clothing/suit/techpriest
+	name = "Techpriest Robes"
+	desc = "Praise the omnissiah!"
+	icon_state = "tp_bodyrobes"
+	item_state = "tp_bodyrobes"
+	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
+

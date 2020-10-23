@@ -1,7 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - rscadd: "Adds hivelord Jelly and Jelly node hivelord abilities"
-  - rscadd: "Xenos can use Jelly inhand to become fire immune for a short duration (and will glow red during this time), or have it used on them by a queen or hivelord, which apply it faster."
-  - rscadd: "The Jelly node will produce jelly on a timer and can be harvested by clicking on it"
-  - bugfix: "fire multipliers will be applied correctly"

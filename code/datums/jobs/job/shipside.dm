@@ -34,6 +34,7 @@
 While you may support Nanotrasen, you report to the TGMC High Command, not the corporate office.
 Your primary task is the safety of the ship and her crew, and ensuring the survival and success of the marines.
 Your first order of business should be briefing the marines on the mission they are about to undertake.
+You should not be voluntarily leaving your vessel under any circumstances. A captain goes down with their ship.
 If you require any help, use <b>mentorhelp</b> to ask mentors about what you're supposed to do.
 Godspeed, captain! And remember, you are not above the law."})
 
@@ -77,7 +78,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	comm_title = "FCDR"
 	total_positions = 1
 	skills_type = /datum/skills/FO
-	access = list (ACCESS_IFF_MARINE, ACCESS_MARINE_CAPTAIN, ACCESS_MARINE_COMMANDER, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_ARMORY, ACCESS_MARINE_WO, ACCESS_MARINE_CMO, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDPREP, ACCESS_MARINE_ENGPREP,ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_SPECPREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_TANK, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_REMOTEBUILD)
+	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
 	display_order = JOB_DISPLAY_ORDER_EXECUTIVE_OFFICER
 	outfit = /datum/outfit/job/command/fieldcommander
@@ -139,6 +140,19 @@ Make the TGMC proud!"})
 	to_chat(M, {"Your job is to monitor the marines, man the CIC, and listen to your superior officers.
 You are in charge of logistics and the overwatch system. You are also in line to take command after the captain."})
 
+/datum/job/terragov/command/staffofficer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 3000)
+			new_human.wear_id.paygrade = "O4"
+		if(3001 to INFINITY)
+			new_human.wear_id.paygrade = "O5"
 
 /datum/outfit/job/command/staffofficer
 	name = STAFF_OFFICER
@@ -161,14 +175,31 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	paygrade = "WO"
 	comm_title = "PO"
 	total_positions = 2
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PILOT)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PILOT, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
+	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PILOT, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
 	skills_type = /datum/skills/pilot
 	display_order = JOB_DISPLAY_ORDER_PILOT_OFFICER
 	outfit = /datum/outfit/job/command/pilot
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE_STRONG, /datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
 
+/datum/job/terragov/command/pilot/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 600)
+			new_human.wear_id.paygrade = "WO"
+		if(601 to 1500)
+			new_human.wear_id.paygrade = "CWO"
+		if(1501 to 3000)
+			new_human.wear_id.paygrade = "O1"
+		if(3001 to INFINITY)
+			new_human.wear_id.paygrade = "O2"
 
 /datum/job/terragov/command/pilot/radio_help_message(mob/M)
 	. = ..()
@@ -201,7 +232,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	paygrade = "E7"
 	comm_title = "TC"
 	total_positions = 0
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_TANK)
+	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_TANK)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_TANK, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
 	skills_type = /datum/skills/tank_crew
 	display_order = JOB_DISPLAY_ORDER_TANK_CREWMAN
@@ -250,8 +281,8 @@ You could use STs help to repair and replace hardpoints."})
 	comm_title = "CSE"
 	selection_color = "#ffeeaa"
 	total_positions = 1
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
+	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_PREP)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_BRIDGE, ACCESS_CIVILIAN_ENGINEERING, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
 	skills_type = /datum/skills/CE
 	display_order = JOB_DISPLAY_ORDER_CHIEF_ENGINEER
 	outfit = /datum/outfit/job/engineering/chief
@@ -260,6 +291,21 @@ You could use STs help to repair and replace hardpoints."})
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE, /datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
 
+/datum/job/terragov/engineering/chief/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 1500)
+			new_human.wear_id.paygrade = "O2"
+		if(1501 to 3000)
+			new_human.wear_id.paygrade = "O3"
+		if(3001 to INFINITY)
+			new_human.wear_id.paygrade = "O4"
 
 /datum/job/terragov/engineering/chief/radio_help_message(mob/M)
 	. = ..()
@@ -290,7 +336,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 /datum/job/terragov/engineering/tech
 	title = SHIP_TECH
 	comm_title = "ST"
-	paygrade = "PO"
+	paygrade = "PO3"
 	total_positions = 5
 	supervisors = "the chief ship engineer and the requisitions officer"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CARGO, ACCESS_CIVILIAN_ENGINEERING)
@@ -301,6 +347,23 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE, /datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
 
+/datum/job/terragov/engineering/tech/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 600)
+			new_human.wear_id.paygrade = "PO3"
+		if(601 to 1500)
+			new_human.wear_id.paygrade = "PO2"
+		if(1501 to 3000)
+			new_human.wear_id.paygrade = "PO1"
+		if(3001 to INFINITY)
+			new_human.wear_id.paygrade = "CPO"
 
 /datum/job/terragov/engineering/tech/radio_help_message(mob/M)
 	. = ..()
@@ -316,14 +379,13 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	belt = /obj/item/storage/belt/utility/full
 	ears = /obj/item/radio/headset/mainship/st
 	w_uniform = /obj/item/clothing/under/marine/officer/engi
-	wear_suit = /obj/item/clothing/suit/storage/marine/MP
+	wear_suit = /obj/item/clothing/suit/storage/marine/M3P/tech
 	shoes = /obj/item/clothing/shoes/marine
 	gloves = /obj/item/clothing/gloves/yellow
 	glasses = /obj/item/clothing/glasses/welding/flipped
 	head = /obj/item/clothing/head/tgmccap/req
 	r_store = /obj/item/storage/pouch/general/medium
-	back = /obj/item/storage/backpack/marine/satchel
-
+	back = /obj/item/storage/backpack/marine/engineerpack
 
 
 /datum/job/terragov/requisitions
@@ -342,7 +404,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	selection_color = "#9990B2"
 	total_positions = 1
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_BRAVO, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_DELTA, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS)
 	skills_type = /datum/skills/RO
 	display_order = JOB_DISPLAY_ORDER_REQUISITIONS_OFFICER
 	outfit = /datum/outfit/job/requisitions/officer
@@ -351,6 +413,23 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_ISCOMMAND|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_SHIPSIDE, /datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
 
+/datum/job/terragov/requisitions/officer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 600)
+			new_human.wear_id.paygrade = "CPO"
+		if(601 to 1500)
+			new_human.wear_id.paygrade = "WO"
+		if(1501 to 3000)
+			new_human.wear_id.paygrade = "CWO"
+		if(3001 to INFINITY)
+			new_human.wear_id.paygrade = "O1"
 
 /datum/job/terragov/requisitions/officer/radio_help_message(mob/M)
 	. = ..()
@@ -391,8 +470,8 @@ A happy ship is a well-functioning ship."})
 	total_positions = 1
 	supervisors = "the acting captain"
 	selection_color = "#99FF99"
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CHEMISTRY)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP)
+	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CHEMISTRY)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_CMO, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_CHEMISTRY, ACCESS_MARINE_CARGO, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS)
 	skills_type = /datum/skills/CMO
 	display_order = JOB_DISPLAY_ORDER_CHIEF_MEDICAL_OFFICER
 	outfit = /datum/outfit/job/medical/professor
@@ -425,7 +504,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	head = /obj/item/clothing/head/cmo
 	suit_store = /obj/item/flashlight/pen
 	r_store = /obj/item/storage/pouch/medkit/full
-	l_store = /obj/item/storage/pouch/medical/full
+	l_store = /obj/item/storage/pouch/autoinjector/advanced/full
 	back = /obj/item/storage/backpack/marine/satchel
 
 
@@ -465,7 +544,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/surgery/green
 	r_store = /obj/item/storage/pouch/medkit/full
-	l_store = /obj/item/storage/pouch/medical/full
+	l_store = /obj/item/storage/pouch/autoinjector/advanced/full
 	back = /obj/item/storage/backpack/marine/satchel
 
 
@@ -508,7 +587,7 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 	mask = /obj/item/clothing/mask/surgical
 	suit_store = /obj/item/flashlight/pen
 	r_store = /obj/item/storage/pouch/medkit/full
-	l_store = /obj/item/storage/pouch/medical/full
+	l_store = /obj/item/storage/pouch/autoinjector/advanced/full
 	back = /obj/item/storage/backpack/marine/satchel
 
 
@@ -524,7 +603,7 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 	comm_title = "CL"
 	supervisors = "the NT corporate office"
 	total_positions = 1
-	access = list(ACCESS_IFF_MARINE, ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_LOGISTICS)
+	access = list(ACCESS_IFF_MARINE, ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_MEDBAY)
 	skills_type = /datum/skills/civilian
 	display_order = JOB_DISPLAY_ORDER_CORPORATE_LIAISON

@@ -40,12 +40,14 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 500)
+		if(0 to 600)
 			new_human.wear_id.paygrade = "E1"
-		if(501 to 10000)
+		if(601 to 6600)
 			new_human.wear_id.paygrade = "E2"
-		if(10001 to INFINITY)
+		if(6601 to 18000)
 			new_human.wear_id.paygrade = "E3"
+		if(18001 to INFINITY)
+			new_human.wear_id.paygrade = "E3E"
 
 /datum/job/terragov/squad/standard/radio_help_message(mob/M)
 	. = ..()
@@ -95,6 +97,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	outfit = /datum/outfit/job/marine/engineer
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/specialist = SPEC_POINTS_MEDIUM, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_MEDIUM)
+	exp_requirements = XP_REQ_INTERMEDIATE
 
 /datum/job/terragov/squad/engineer/radio_help_message(mob/M)
 	. = ..()
@@ -144,11 +147,11 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 500)
+		if(0 to 1500)
 			new_human.wear_id.paygrade = "E3"
-		if(501 to 10000)
+		if(1501 to 6000)
 			new_human.wear_id.paygrade = "E4"
-		if(10001 to INFINITY)
+		if(6001 to INFINITY)
 			new_human.wear_id.paygrade = "E5"
 
 //Squad Corpsman
@@ -164,6 +167,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	outfit = /datum/outfit/job/marine/corpsman
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/specialist = SPEC_POINTS_MEDIUM, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_MEDIUM)
+	exp_requirements = XP_REQ_INTERMEDIATE
 
 /datum/job/terragov/squad/corpsman/radio_help_message(mob/M)
 	. = ..()
@@ -224,11 +228,11 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 500)
+		if(0 to 1500)
 			new_human.wear_id.paygrade = "E3"
-		if(501 to 10000)
+		if(1501 to 6000)
 			new_human.wear_id.paygrade = "E4"
-		if(10001 to INFINITY)
+		if(6001 to INFINITY)
 			new_human.wear_id.paygrade = "E5"
 
 //Squad Smartgunner
@@ -259,11 +263,11 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 500)
+		if(0 to 1500)
 			new_human.wear_id.paygrade = "E3"
-		if(501 to 10000)
+		if(1501 to 6000)
 			new_human.wear_id.paygrade = "E4"
-		if(10001 to INFINITY)
+		if(6001 to INFINITY)
 			new_human.wear_id.paygrade = "E5"
 
 /datum/outfit/job/marine/smartgunner
@@ -421,11 +425,11 @@ You are also in charge of communicating with command and letting them know about
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 500)
+		if(0 to 3000)
 			new_human.wear_id.paygrade = "E5"
-		if(501 to 10000)
+		if(3001 to 7500)
 			new_human.wear_id.paygrade = "E6"
-		if(10001 to INFINITY)
+		if(7501 to INFINITY)
 			new_human.wear_id.paygrade = "E7"
 
 

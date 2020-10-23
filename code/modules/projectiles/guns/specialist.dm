@@ -178,6 +178,7 @@
 
 
 /obj/item/weapon/gun/rifle/sniper/M42A/proc/scan_turf_for_target(datum/source, turf/target_turf)
+	SIGNAL_HANDLER
 	if(QDELETED(laser_target) || !isturf(laser_target.loc))
 		return NONE
 	if(get_turf(laser_target) == target_turf)
@@ -765,12 +766,13 @@
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_POLICE|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	req_access = list(ACCESS_MARINE_BRIG)
 
+
 //-------------------------------------------------------
 //M5 RPG
 
 /obj/item/weapon/gun/launcher/rocket
-	name = "\improper T-152 rocket launcher"
-	desc = "The T-152 is the primary anti-armor weapon of the TGMC. Used to take out light-tanks and enemy structures, the T-152 rocket launcher is a dangerous weapon with a variety of combat uses. Uses a variety of 84mm rockets."
+	name = "\improper M-5 rocket launcher"
+	desc = "The M-5 is the primary anti-armor used around the galaxy. Used to take out light-tanks and enemy structures, the M-5 rocket launcher is a dangerous weapon with a variety of combat uses. Uses a variety of 84mm rockets."
 	icon_state = "m5"
 	item_state = "m5"
 	max_shells = 1 //codex
@@ -928,6 +930,41 @@
 		return 0
 	else
 		return current_mag.current_rounds
+
+//-------------------------------------------------------
+//T-152 RPG
+
+/obj/item/weapon/gun/launcher/rocket/sadar
+	name = "\improper T-152 rocket launcher"
+	desc = "The T-152 is the primary anti-armor weapon of the TGMC. Used to take out light-tanks and enemy structures, the T-152 rocket launcher is a dangerous weapon with a variety of combat uses. Uses a variety of 84mm rockets."
+	icon_state = "m5"
+	item_state = "m5"
+	max_shells = 1 //codex
+	caliber = "84mm rockets" //codex
+	load_method = SINGLE_CASING //codex
+	materials = list(/datum/material/metal = 10000)
+	current_mag = /obj/item/ammo_magazine/rocket/sadar
+	flags_equip_slot = NONE
+	w_class = WEIGHT_CLASS_HUGE
+	force = 15
+	wield_delay = 12
+	wield_penalty = 1.6 SECONDS
+	aim_slowdown = 1.75
+	general_codex_key = "explosive weapons"
+	attachable_allowed = list(
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/scope/mini)
+
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	gun_skill_category = GUN_SKILL_FIREARMS
+	dry_fire_sound = 'sound/weapons/guns/fire/launcher_empty.ogg'
+	reload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
+	unload_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+
+	fire_delay = 1 SECONDS
+	recoil = 3
+	scatter = -100
 
 //-------------------------------------------------------
 //M5 RPG'S MEAN FUCKING COUSIN

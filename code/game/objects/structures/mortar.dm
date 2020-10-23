@@ -277,15 +277,15 @@
 
 /obj/item/mortal_shell/incendiary/detonate(turf/T)
 
-	explosion(T, 0, 2, 5, 7, throw_range = 0)
+	explosion(T, 0, 2, 5, 7, throw_range = 0, small_animation = TRUE)
 	flame_radius(3, T)
 	playsound(T, 'sound/weapons/guns/fire/flamethrower2.ogg', 35, 1, 4)
 
 /obj/item/mortal_shell/smoke
 	name = "\improper 80mm smoke mortar shell"
-	desc = "An 80mm mortar shell, loaded with smoke dispersal agents."
+	desc = "An 80mm mortar shell, loaded with smoke dispersal agents. Can be fired at marines more-or-less safely."
 	icon_state = "mortar_ammo_smk"
-	var/datum/effect_system/smoke_spread/bad/smoke
+	var/datum/effect_system/smoke_spread/tactical/smoke
 
 /obj/item/mortal_shell/smoke/Initialize()
 	. = ..()
@@ -293,25 +293,32 @@
 
 /obj/item/mortal_shell/smoke/detonate(turf/T)
 
-	explosion(T, 0, 1, 3, 7, throw_range = 0)
+	explosion(T, 0, 0, 1, 3, throw_range = 0, small_animation = TRUE)
 	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
 	forceMove(T) //AAAAAAAA
-	smoke.set_up(6, T, 7)
+	smoke.set_up(10, T, 11)
 	smoke.start()
 	smoke = null
 	qdel(src)
 
-/obj/item/mortal_shell/flash
-	name = "\improper 80mm flash mortar shell"
-	desc = "An 80mm mortar shell, loaded with a flash powder charge."
+/obj/item/mortal_shell/plasmaloss
+	name = "\improper 80mm tangle mortar shell"
+	desc = "An 80mm mortar shell, loaded with plasma-draining Tanglefoot gas. Can be fired at marines more-or-less safely."
 	icon_state = "mortar_ammo_fsh"
+	var/datum/effect_system/smoke_spread/plasmaloss/smoke
 
-/obj/item/mortal_shell/flash/detonate(turf/T)
+/obj/item/mortal_shell/plasmaloss/Initialize()
+	. = ..()
+	smoke = new(src)
 
-	explosion(T, 0, 1, 2, 7, throw_range = 0)
-	var/obj/item/explosive/grenade/flashbang/flash = new(T)
-	flash.icon_state = ""
-	flash.prime()
+/obj/item/mortal_shell/plasmaloss/detonate(turf/T)
+	explosion(T, 0, 0, 1, 3, throw_range = 0)
+	playsound(T, 'sound/effects/smoke.ogg', 25, 1, 4)
+	forceMove(T)
+	smoke.set_up(10, T, 11)
+	smoke.start()
+	smoke = null
+	qdel(src)
 
 /obj/item/mortal_shell/flare
 	name = "\improper 80mm flare mortar shell"
@@ -373,8 +380,8 @@
 	new /obj/item/mortal_shell/flare(src)
 	new /obj/item/mortal_shell/smoke(src)
 	new /obj/item/mortal_shell/smoke(src)
-	new /obj/item/mortal_shell/flash(src)
-	new /obj/item/mortal_shell/flash(src)
+	new /obj/item/mortal_shell/plasmaloss(src)
+	new /obj/item/mortal_shell/plasmaloss(src)
 
 /obj/structure/closet/crate/mortar_ammo/mortar_kit
 	name = "\improper M402 mortar kit"
@@ -390,7 +397,6 @@
 	new /obj/item/mortal_shell/he(src)
 	new /obj/item/mortal_shell/he(src)
 	new /obj/item/mortal_shell/he(src)
-	new /obj/item/mortal_shell/he(src)
 	new /obj/item/mortal_shell/incendiary(src)
 	new /obj/item/mortal_shell/incendiary(src)
 	new /obj/item/mortal_shell/incendiary(src)
@@ -399,7 +405,9 @@
 	new /obj/item/mortal_shell/incendiary(src)
 	new /obj/item/mortal_shell/incendiary(src)
 	new /obj/item/mortal_shell/incendiary(src)
-	new /obj/item/mortal_shell/incendiary(src)
+	new /obj/item/mortal_shell/plasmaloss(src)
+	new /obj/item/mortal_shell/plasmaloss(src)
+	new /obj/item/mortal_shell/smoke(src)
 	new /obj/item/encryptionkey/engi(src)
 	new /obj/item/encryptionkey/engi(src)
 	new /obj/item/binoculars/tactical/range(src)

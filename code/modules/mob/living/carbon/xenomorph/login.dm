@@ -11,4 +11,9 @@
 
 	if(client.prefs?.xeno_name != "Undefined")
 		nicknumber = client.prefs.xeno_name
-		generate_name()
+	else
+		//Reset the nicknumber, otherwise we could keep the old minds custom name/random number
+		nicknumber = 0
+		generate_nicknumber()
+
+	generate_name()

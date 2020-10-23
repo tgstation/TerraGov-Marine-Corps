@@ -58,7 +58,6 @@
 		/datum/action/xeno_action/activable/larval_growth_sting,
 		/datum/action/xeno_action/call_of_the_burrowed,
 		/datum/action/xeno_action/activable/screech,
-		/datum/action/xeno_action/activable/tail_sweep,
 		/datum/action/xeno_action/activable/corrosive_acid/strong,
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/shift_spits,
@@ -77,7 +76,7 @@
 	upgrade = XENO_UPGRADE_ZERO
 
 /datum/xeno_caste/queen/mature
-	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
+	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs."
 
 	upgrade = XENO_UPGRADE_ONE
 

@@ -82,7 +82,7 @@
 	setXenoCasteSpeed(xeno_caste.speed)
 	soft_armor = getArmor(arglist(xeno_caste.soft_armor))
 	hard_armor = getArmor(arglist(xeno_caste.hard_armor))
-
+	warding_aura = 0 //Resets aura for reapplying armor
 
 /mob/living/carbon/xenomorph/set_armor_datum()
 	return //Handled in set_datum()
@@ -205,8 +205,8 @@
 	remove_from_hive()
 
 	vis_contents -= wound_overlay
-	. = ..()
 	QDEL_NULL(wound_overlay)
+	return ..()
 
 
 /mob/living/carbon/xenomorph/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)

@@ -546,10 +546,13 @@ Note that amputating the affected organ does in fact remove the infection from t
 		if(W.internal && owner.bodytemperature >= 170 && !HAS_TRAIT(owner, TRAIT_STASIS))
 			var/bicardose = owner.reagents.get_reagent_amount(/datum/reagent/medicine/bicaridine)
 			var/inaprovaline = owner.reagents.get_reagent_amount(/datum/reagent/medicine/inaprovaline)
+			var/old_qc = owner.reagents.get_reagent_amount(/datum/reagent/medicine/quickclotplus)
 			if(!(W.can_autoheal() || (bicardose && inaprovaline) || owner.reagents.get_reagent_amount(/datum/reagent/medicine/quickclot)))	//bicaridine and inaprovaline stop internal wounds from growing bigger with time, unless it is so small that it is already healing
 				W.open_wound(0.1 * wound_update_accuracy)
 			if(bicardose >= 30)	//overdose of bicaridine begins healing IB
 				W.damage = max(0, W.damage - 0.2)
+			if(old_qc >= 5)	//overdose of QC+ heals IB extremely fast.
+				W.damage = max(0, W.damage - 5)
 
 			if(W.damage <= 0)
 				wounds -= W // otherwise we are stuck with a 0 damage IB for a while
@@ -1260,10 +1263,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return
 	if(type == "brute")
 		owner.visible_message("<span class='warning'> You hear a sickening cracking sound coming from \the [owner]'s face.</span>",	\
-		"<span class='danger'>Your face becomes unrecognizible mangled mess!</span>",	\
+		"<span class='danger'>Your face becomes an unrecognizible mangled mess!</span>",	\
 		"<span class='warning'> You hear a sickening crack.</span>")
 	else
-		owner.visible_message("<span class='warning'> [owner]'s face melts away, turning into mangled mess!</span>",	\
+		owner.visible_message("<span class='warning'> [owner]'s face melts away, turning into a mangled mess!</span>",	\
 		"<span class='danger'>Your face melts off!</span>",	\
 		"<span class='warning'> You hear a sickening sizzle.</span>")
 	disfigured = 1

@@ -60,6 +60,7 @@
 
 
 /datum/component/bump_attack/proc/living_bump_action(datum/source, atom/target)
+	SIGNAL_HANDLER
 	. = living_bump_action_checks(target)
 	if(!isnull(.))
 		return
@@ -67,6 +68,7 @@
 
 
 /datum/component/bump_attack/proc/human_bump_action(datum/source, atom/target)
+	SIGNAL_HANDLER
 	var/mob/living/carbon/human/bumper = parent
 	. = carbon_bump_action_checks(target)
 	if(!isnull(.))
@@ -78,6 +80,7 @@
 
 
 /datum/component/bump_attack/proc/xeno_bump_action(datum/source, atom/target)
+	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/bumper = parent
 	. = carbon_bump_action_checks(target)
 	if(!isnull(.))
