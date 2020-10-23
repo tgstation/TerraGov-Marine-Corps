@@ -93,17 +93,14 @@
 	action_icon_state = "stealth_on"
 	mechanics_text = "Become harder to see, better camouflage when walking and almost invisible if you stand still. Uses plasma to move, more when running."
 	ability_name = "nanocrystal camouflage"
-	plasma_cost = 10
+	plasma_cost = 40
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_NANOCRYSTAL_CAMOUFLAGE
 	cooldown_timer = 7 SECONDS
-	var/can_sneak_attack = FALSE
-	var/last_stealth = null
 	var/stealth = FALSE
-	var/stealth_alpha_multiplier = 1
+	COOLDOWN_DECLARE(deep_stealth)
 
 /datum/action/xeno_action/xeno_camouflage/give_action(mob/living/L)
 	. = ..()
-	RegisterSignal(L, COMSIG_XENOMORPH_ZONE_SELECT, .proc/sneak_attack_zone)
 	RegisterSignal(L, COMSIG_XENOMORPH_PLASMA_REGEN, .proc/plasma_regen)
 
 	// TODO: attack_alien() overrides are a mess and need a lot of work to make them require parentcalling
@@ -126,7 +123,7 @@
 
 	RegisterSignal(L, list(SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), SIGNAL_ADDTRAIT(TRAIT_FLOORED)), .proc/cancel_stealth)
 
-	RegisterSignal(src, list(COMSIG_XENOMORPH_TAKING_DAMAGE, COMSIG_HIVE_XENO_RECURRING_INJECTION), .proc/damage_taken)
+	RegisterSignal(L, list(COMSIG_XENOMORPH_TAKING_DAMAGE, COMSIG_HIVE_XENO_RECURRING_INJECTION), .proc/damage_taken)
 
 /datum/action/xeno_action/xeno_camouflage/remove_action(mob/living/L)
 	UnregisterSignal(L, list(
@@ -172,8 +169,7 @@
 		stealth = TRUE
 		to_chat(owner, "<span class='xenodanger'>We blend in with the scenery...</span>")
 	succeed_activate()
-	last_stealth = world.time
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/handle_stealth)
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/deep_stealth_cooldown)
 
 /datum/action/xeno_action/xeno_camouflage/proc/cancel_stealth() //This happens if we take damage, attack, pounce, toggle stealth off, and do other such exciting stealth breaking activities.
 	SIGNAL_HANDLER
@@ -182,7 +178,6 @@
 	to_chat(owner, "<span class='xenodanger'>Our carapace relaxes.</span>")
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED) //This should be handled on the ability datum or a component.
 	stealth = FALSE
-	can_sneak_attack = FALSE
 	owner.alpha = 255 //no transparency/translucency
 	add_cooldown()
 
@@ -190,27 +185,26 @@
 	SIGNAL_HANDLER
 	if(!stealth)
 		return
-
 	var/mob/living/carbon/xenomorph/xenoowner = owner
-	//Initial stealth
-	if(last_stealth > world.time - AFFLICTOR_CAMOUFLAGE_INITIAL_DELAY) //We don't start out at max invisibility
-		owner.alpha = AFFLICTOR_CAMOUFLAGE_RUN_ALPHA * stealth_alpha_multiplier
-		return
 	//Stationary stealth
-	else if(owner.last_move_intent < world.time - AFFLICTOR_CAMOUFLAGE_STEALTH_DELAY) //If we're standing still for 2 seconds we become almost completely invisible
-		owner.alpha = AFFLICTOR_CAMOUFLAGE_STILL_ALPHA * stealth_alpha_multiplier
+	if(COOLDOWN_CHECK(src, deep_stealth)) //If we're standing still for 1 seconds we become almost completely invisible
+		owner.alpha = AFFLICTOR_CAMOUFLAGE_STILL_ALPHA
 	//Walking stealth
 	else if(owner.m_intent == MOVE_INTENT_WALK)
 		xenoowner.use_plasma(AFFLICTOR_CAMOUFLAGE_WALK_PLASMADRAIN)
-		owner.alpha = AFFLICTOR_CAMOUFLAGE_WALK_ALPHA * stealth_alpha_multiplier
+		owner.alpha = AFFLICTOR_CAMOUFLAGE_WALK_ALPHA
 	//Running stealth
-	else
+	else if(owner.m_intent == MOVE_INTENT_RUN)
 		xenoowner.use_plasma(AFFLICTOR_CAMOUFLAGE_RUN_PLASMADRAIN)
-		owner.alpha = AFFLICTOR_CAMOUFLAGE_RUN_ALPHA * stealth_alpha_multiplier
+		owner.alpha = AFFLICTOR_CAMOUFLAGE_RUN_ALPHA
 	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
 	if(!xenoowner.plasma_stored)
 		to_chat(xenoowner, "<span class='xenodanger'>We lack sufficient plasma to remain camouflaged.</span>")
 		cancel_stealth()
+
+/datum/action/xeno_action/xeno_camouflage/proc/deep_stealth_cooldown()
+	COOLDOWN_START(src, deep_stealth, 1 SECONDS)
+	handle_stealth()
 
 /datum/action/xeno_action/xeno_camouflage/proc/damage_taken(mob/living/carbon/xenomorph/X, damage_taken)
 	SIGNAL_HANDLER
@@ -225,9 +219,3 @@
 		plasma_mod += 0.0
 	else
 		plasma_mod += 0.5
-
-/datum/action/xeno_action/xeno_camouflage/proc/sneak_attack_zone()
-	SIGNAL_HANDLER
-	if(!stealth || !can_sneak_attack)
-		return
-	return COMSIG_ACCURATE_ZONE
