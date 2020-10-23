@@ -158,7 +158,7 @@
 		visible_message("<span class='danger'>[M] [M.attacktext] [src]!</span>")
 		log_combat(M, src, "attacked")
 		var/damage = M.melee_damage
-		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
+		var/dam_zone = pick("chest", "l_hand", "r_hand")
 		var/datum/limb/affecting = get_limb(ran_zone(dam_zone))
 		var/armor = run_armor_check(affecting, "melee")
 		if(apply_damage(damage, BRUTE, affecting, armor))
@@ -435,7 +435,7 @@
 
 				if(do_mob(usr, src, HUMAN_STRIP_DELAY, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 					var/limbcount = 0
-					for(var/organ in list("l_leg","r_leg","l_arm","r_arm","r_hand","l_hand","r_foot","l_foot","chest","head","groin"))
+					for(var/organ in list("l_arm","r_arm","r_hand","l_hand","chest","head","groin"))
 						var/datum/limb/o = get_limb(organ)
 						if (o && o.limb_status & LIMB_SPLINTED)
 							o.remove_limb_flags(LIMB_SPLINTED)

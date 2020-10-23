@@ -800,17 +800,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 			if(limb_status & LIMB_ROBOT)
 				organ = new /obj/item/robot_parts/l_arm(owner.loc)
 			else
-				organ = new /obj/item/limb/l_arm(owner.loc, owner)
-		if(LEG_RIGHT)
-			if(limb_status & LIMB_ROBOT)
-				organ = new /obj/item/robot_parts/r_leg(owner.loc)
-			else
-				organ = new /obj/item/limb/r_leg(owner.loc, owner)
-		if(LEG_LEFT)
-			if(limb_status & LIMB_ROBOT)
-				organ = new /obj/item/robot_parts/l_leg(owner.loc)
-			else
-				organ = new /obj/item/limb/l_leg(owner.loc, owner)
 		if(HAND_RIGHT)
 			if(!(limb_status & LIMB_ROBOT))
 				organ= new /obj/item/limb/r_hand(owner.loc, owner)
@@ -821,14 +810,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 				organ= new /obj/item/limb/l_hand(owner.loc, owner)
 			owner.dropItemToGround(owner.gloves, force = TRUE)
 			owner.dropItemToGround(owner.l_hand, force = TRUE)
-		if(FOOT_RIGHT)
-			if(!(limb_status & LIMB_ROBOT))
-				organ= new /obj/item/limb/r_foot/(owner.loc, owner)
-			owner.dropItemToGround(owner.shoes, force = TRUE)
-		if(FOOT_LEFT)
-			if(!(limb_status & LIMB_ROBOT))
-				organ = new /obj/item/limb/l_foot(owner.loc, owner)
-			owner.dropItemToGround(owner.shoes, force = TRUE)
 
 	if(delete_limb)
 		QDEL_NULL(organ)
@@ -1145,15 +1126,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 		..()
 		process_grasp(owner.l_hand, "left hand")
 
-/datum/limb/l_leg
-	name = "l_leg"
-	display_name = "left leg"
-	icon_name = "l_leg"
-	max_damage = 100
-	min_broken_damage = 50
-	body_part = LEG_LEFT
-	cover_index = 14
-	icon_position = LEFT
 
 /datum/limb/r_arm
 	name = "r_arm"
@@ -1167,36 +1139,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 	process()
 		..()
 		process_grasp(owner.r_hand, "right hand")
-
-/datum/limb/r_leg
-	name = "r_leg"
-	display_name = "right leg"
-	icon_name = "r_leg"
-	max_damage = 100
-	min_broken_damage = 50
-	body_part = LEG_RIGHT
-	cover_index = 14
-	icon_position = RIGHT
-
-/datum/limb/foot/l_foot
-	name = "l_foot"
-	display_name = "left foot"
-	icon_name = "l_foot"
-	max_damage = 75
-	min_broken_damage = 37
-	body_part = FOOT_LEFT
-	cover_index = 4
-	icon_position = LEFT
-
-/datum/limb/foot/r_foot
-	name = "r_foot"
-	display_name = "right foot"
-	icon_name = "r_foot"
-	max_damage = 75
-	min_broken_damage = 37
-	body_part = FOOT_RIGHT
-	cover_index = 4
-	icon_position = RIGHT
 
 /datum/limb/hand/r_hand
 	name = "r_hand"
