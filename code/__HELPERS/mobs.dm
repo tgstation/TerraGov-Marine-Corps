@@ -125,7 +125,7 @@
 	var/datum/progressbar/P = prog_bar ? new prog_bar(user, delay, progtarget, user_display, target_display) : null
 
 	user.action_busy++
-	user.actioned_list.Add(target)
+	user.do_afters[target]++
 	var/endtime = world.time + delay
 	var/starttime = world.time
 	. = TRUE
@@ -148,7 +148,7 @@
 	if(P)
 		qdel(P)
 	user.action_busy--
-	user.actioned_list.Remove(target)
+	user.do_afters -= target
 
 
 /mob/proc/do_after_coefficent() // This gets added to the delay on a do_after, default 1

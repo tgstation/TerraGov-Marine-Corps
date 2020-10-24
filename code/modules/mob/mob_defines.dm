@@ -79,7 +79,9 @@
 	var/obj/item/clothing/mask/wear_mask //Carbon
 	var/turf/listed_turf	//the current turf being examined in the stat panel
 	var/dextrous = FALSE //Has enough dexterity to interact with advanced objects?
-	var/list/actioned_list = list()
+
+	///list that stores the atom targets of our current do_afters
+	var/list/do_afters = list()
 	/// The machine the mob is interacting with (this is very bad old code btw)
 	var/obj/machinery/machine = null
 
