@@ -33,7 +33,8 @@
 	var/emergency = FALSE
 
 	tiles_with = list(
-		/turf/closed/wall)
+		/turf/closed/wall,
+	)
 
 /obj/machinery/door/airlock/bumpopen(mob/living/user) //Airlocks now zap you when you 'bump' them open when they're electrified. --NeoFite
 	if(issilicon(user))

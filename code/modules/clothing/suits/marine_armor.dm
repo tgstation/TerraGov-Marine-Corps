@@ -19,14 +19,16 @@
 	siemens_coefficient = 0.7
 	permeability_coefficient = 0.8
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
-	allowed = list(/obj/item/weapon/gun/,
+	allowed = list(
+		/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/storage/bible,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/large_holster/machete,
 		/obj/item/weapon/claymore,
 		/obj/item/storage/belt/gun,
-		/obj/item/storage/belt/knifepouch)
+		/obj/item/storage/belt/knifepouch,
+	)
 	var/locate_cooldown = 0 //Cooldown for SL locator
 	var/list/armor_overlays
 	actions_types = list(/datum/action/item_action/toggle)
@@ -43,7 +45,7 @@
 		/obj/item/ammo_magazine/rifle,
 		/obj/item/ammo_magazine/smg,
 		/obj/item/ammo_magazine/sniper,
-		/obj/item/cell/lasgun
+		/obj/item/cell/lasgun,
 	)
 	max_storage_space = 6
 
@@ -178,10 +180,11 @@
 	soft_armor = list("melee" = 45, "bullet" = 55, "laser" = 55, "energy" = 20, "bomb" = 25, "bio" = 40, "rad" = 10, "fire" = 20, "acid" = 45)
 	slowdown = 0.4
 	flags_item_map_variant = NONE
-	allowed = list(/obj/item/weapon/gun,
+	allowed = list(
+		/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/flashlight,
-		/obj/item/ammo_magazine/,
+		/obj/item/ammo_magazine,
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/tool/lighter,
 		/obj/item/weapon/baton,
@@ -193,7 +196,8 @@
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/hailer,
 		/obj/item/storage/large_holster/machete,
-		/obj/item/storage/belt/gun)
+		/obj/item/storage/belt/gun,
+	)
 
 /obj/item/clothing/suit/storage/marine/MP/WO
 	icon_state = "warrant_officer"
@@ -222,15 +226,17 @@
 	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
 	soft_armor = list("melee" = 45, "bullet" = 65, "laser" = 65, "energy" = 35, "bomb" = 35, "bio" = 30, "rad" = 10, "fire" = 35, "acid" = 45)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-	allowed = list(/obj/item/tank/emergency_oxygen,
-					/obj/item/flashlight,
-					/obj/item/ammo_magazine,
-					/obj/item/explosive/mine,
-					/obj/item/weapon/combat_knife,
-					/obj/item/attachable/bayonetknife,
-					/obj/item/weapon/gun/smartgun,
-					/obj/item/weapon/gun/rifle/standard_smartmachinegun,
-					/obj/item/storage/belt/sparepouch)
+	allowed = list(
+		/obj/item/tank/emergency_oxygen,
+		/obj/item/flashlight,
+		/obj/item/ammo_magazine,
+		/obj/item/explosive/mine,
+		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/weapon/gun/smartgun,
+		/obj/item/weapon/gun/rifle/standard_smartmachinegun,
+		/obj/item/storage/belt/sparepouch,
+	)
 	pockets = /obj/item/storage/internal/suit/marine/smartgunner
 
 /obj/item/storage/internal/suit/marine/smartgunner
@@ -239,7 +245,7 @@
 		/obj/item/ammo_magazine/standard_smartmachinegun,
 		/obj/item/ammo_magazine/smg,
 		/obj/item/ammo_magazine/sniper,
-		/obj/item/cell/lasgun
+		/obj/item/cell/lasgun,
 	)
 	max_storage_space = 6
 
@@ -342,10 +348,11 @@
 	icon_state = "pmc_armor"
 	soft_armor = list("melee" = 45, "bullet" = 60, "laser" = 60, "energy" = 38, "bomb" = 40, "bio" = 15, "rad" = 15, "fire" = 38, "acid" = 45)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-	allowed = list(/obj/item/weapon/gun,
+	allowed = list(
+		/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/flashlight,
-		/obj/item/ammo_magazine/,
+		/obj/item/ammo_magazine,
 		/obj/item/weapon/baton,
 		/obj/item/restraints/handcuffs,
 		/obj/item/storage/fancy/cigarettes,
@@ -353,7 +360,8 @@
 		/obj/item/explosive/grenade,
 		/obj/item/storage/bible,
 		/obj/item/weapon/claymore/mercsword/machete,
-		/obj/item/weapon/combat_knife)
+		/obj/item/weapon/combat_knife,
+	)
 	flags_item_map_variant = NONE
 
 
@@ -486,7 +494,8 @@
 	soft_armor = list("melee" = 50, "bullet" = 40, "laser" = 35, "energy" = 20, "bomb" = 25, "bio" = 10, "rad" = 10, "fire" = 20, "acid" = 20)
 	siemens_coefficient = 0.7
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
-	allowed = list(/obj/item/weapon/gun,
+	allowed = list(
+		/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/flashlight,
 		/obj/item/ammo_magazine,
@@ -495,7 +504,8 @@
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/storage/belt/sparepouch,
-		/obj/item/storage/large_holster/machete)
+		/obj/item/storage/large_holster/machete,
+	)
 	flags_armor_features = ARMOR_LAMP_OVERLAY
 	flags_item = SYNTH_RESTRICTED
 	var/locate_cooldown = 0 //Cooldown for SL locator
@@ -595,7 +605,8 @@
 	flags_heat_protection =CHEST|GROIN|ARMS|LEGS|FEET|HANDS
 	flags_item = SYNTH_RESTRICTED
 	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 30, "bomb" = 60, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 30)
-	allowed = list(/obj/item/weapon/gun,
+	allowed = list(
+		/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/flashlight,
 		/obj/item/ammo_magazine,
@@ -605,7 +616,8 @@
 		/obj/item/attachable/bayonetknife,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/large_holster/machete,
-		/obj/item/weapon/baseballbat)
+		/obj/item/weapon/baseballbat,
+	)
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/suit/storage/CMB
@@ -614,11 +626,13 @@
 	icon_state = "CMB_jacket"
 	blood_overlay_type = "coat"
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 20, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
-	allowed = list(/obj/item/weapon/gun/,
+	allowed = list(
+		/obj/item/weapon/gun/,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/large_holster/machete,
-		/obj/item/storage/belt/gun)
+		/obj/item/storage/belt/gun,
+	)
 
 /obj/item/clothing/suit/storage/RO
 	name = "\improper RO jacket"
@@ -637,10 +651,11 @@
 	icon_state = "mercenary_heavy_armor"
 	soft_armor = list("melee" = 75, "bullet" = 62, "laser" = 42, "energy" = 38, "bomb" = 40, "bio" = 15, "rad" = 15, "fire" = 38, "acid" = 38)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-	allowed = list(/obj/item/weapon/gun,
+	allowed = list(
+		/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/flashlight,
-		/obj/item/ammo_magazine/,
+		/obj/item/ammo_magazine,
 		/obj/item/weapon/baton,
 		/obj/item/restraints/handcuffs,
 		/obj/item/storage/fancy/cigarettes,
@@ -648,7 +663,8 @@
 		/obj/item/explosive/grenade,
 		/obj/item/storage/bible,
 		/obj/item/weapon/claymore/mercsword/machete,
-		/obj/item/weapon/combat_knife)
+		/obj/item/weapon/combat_knife,
+	)
 
 /obj/item/clothing/suit/storage/marine/veteran/mercenary/miner
 	name = "\improper Y8 armored miner vest"
@@ -656,10 +672,11 @@
 	icon_state = "mercenary_miner_armor"
 	soft_armor = list("melee" = 50, "bullet" = 42, "laser" = 42, "energy" = 38, "bomb" = 25, "bio" = 15, "rad" = 15, "fire" = 38, "acid" = 38)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-	allowed = list(/obj/item/weapon/gun,
+	allowed = list(
+		/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/flashlight,
-		/obj/item/ammo_magazine/,
+		/obj/item/ammo_magazine,
 		/obj/item/weapon/baton,
 		/obj/item/restraints/handcuffs,
 		/obj/item/storage/fancy/cigarettes,
@@ -667,7 +684,8 @@
 		/obj/item/explosive/grenade,
 		/obj/item/storage/bible,
 		/obj/item/weapon/claymore/mercsword/machete,
-		/obj/item/weapon/combat_knife)
+		/obj/item/weapon/combat_knife,
+	)
 
 /obj/item/clothing/suit/storage/marine/veteran/mercenary/engineer
 	name = "\improper Z7 armored engineer vest"
@@ -675,10 +693,11 @@
 	icon_state = "mercenary_engineer_armor"
 	soft_armor = list("melee" = 55, "bullet" = 52, "laser" = 42, "energy" = 38, "bomb" = 30, "bio" = 15, "rad" = 15, "fire" = 38, "acid" = 38)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-	allowed = list(/obj/item/weapon/gun,
+	allowed = list(
+		/obj/item/weapon/gun,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/flashlight,
-		/obj/item/ammo_magazine/,
+		/obj/item/ammo_magazine,
 		/obj/item/weapon/baton,
 		/obj/item/restraints/handcuffs,
 		/obj/item/storage/fancy/cigarettes,
@@ -686,7 +705,8 @@
 		/obj/item/explosive/grenade,
 		/obj/item/storage/bible,
 		/obj/item/weapon/claymore/mercsword/machete,
-		/obj/item/weapon/combat_knife)
+		/obj/item/weapon/combat_knife,
+	)
 
 
 

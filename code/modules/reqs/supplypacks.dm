@@ -180,7 +180,7 @@ WEAPONS
 	contains = list(
 		/obj/item/weapon/gun/energy/lasgun/tesla,
 		/obj/item/cell/lasgun/tesla,
-		/obj/item/cell/lasgun/tesla
+		/obj/item/cell/lasgun/tesla,
 	)
 	cost = 60
 
@@ -403,7 +403,7 @@ AMMO
 	contains = list(
 		/obj/item/cell/lasgun/tesla,
 		/obj/item/cell/lasgun/tesla,
-		/obj/item/cell/lasgun/tesla
+		/obj/item/cell/lasgun/tesla,
 	)
 	cost = 30
 
@@ -626,9 +626,7 @@ ARMOR
 
 /datum/supply_packs/armor/marine_shield
 	name = "TL-172 Defensive Shield"
-	contains = list(
-		/obj/item/weapon/shield/riot/marine
-	)
+	contains = list(/obj/item/weapon/shield/riot/marine)
 	cost = 10
 
 /datum/supply_packs/armor/b18
@@ -730,7 +728,7 @@ ARMOR
 		/obj/item/armor_module/attachable/tyr_extra_armor,
 		/obj/item/armor_module/attachable/mimir_environment_protection,
 		/obj/item/armor_module/attachable/better_shoulder_lamp,
-		/obj/item/armor_module/attachable/hlin_explosive_armor
+		/obj/item/armor_module/attachable/hlin_explosive_armor,
 	)
 	cost = 40
 
@@ -756,47 +754,23 @@ ARMOR
 	cost = 12
 
 /datum/supply_packs/armor/modular/attachments/tyr_extra_armor
-	name = "Jaeger tyr mark 2 modules"
+	name = "Jaeger tyr modules"
 	contains = list(
 		/obj/item/armor_module/attachable/tyr_extra_armor,
 	)
 	cost = 12
 
 /datum/supply_packs/armor/modular/attachments/mimir_environment_protection
-	name = "Jaeger mimir mark 2 module"
+	name = "Jaeger mimir module"
 	contains = list(
-		/obj/item/armor_module/attachable/mimir_environment_protection
+		/obj/item/armor_module/attachable/mimir_environment_protection,
 	)
 	cost = 12
 
 /datum/supply_packs/armor/modular/attachments/mimir_helmet_protection
-	name = "Jaeger helmet mimir mark 2 module"
-	contains = list(
-		/obj/item/helmet_module/attachable/mimir_environment_protection
-	)
+	name = "Jaeger helmet mimir module"
+	contains = list(/obj/item/helmet_module/attachable/mimir_environment_protection)
 	cost = 5
-
-/datum/supply_packs/armor/modular/attachments/tyr_extra_armor/mark1
-	name = "Jaeger tyr mark 2 modules"
-	contains = list(
-		/obj/item/armor_module/attachable/tyr_extra_armor/mark1
-	)
-	cost = 12
-
-/datum/supply_packs/armor/modular/attachments/mimir_environment_protection/mark1
-	name = "Jaeger mimir mark 2 module"
-	contains = list(
-		/obj/item/armor_module/attachable/mimir_environment_protection/mark1
-	)
-	cost = 12
-
-/datum/supply_packs/armor/modular/attachments/mimir_helmet_protection/mark1
-	name = "Jaeger helmet mimir mark 2 module"
-	contains = list(
-		/obj/item/helmet_module/attachable/mimir_environment_protection/mark1
-	)
-	cost = 5
-
 /datum/supply_packs/armor/modular/attachments/generic_helmet_modules
 	name = "Generic Jaeger helmet modules"
 	contains = list(
@@ -805,14 +779,12 @@ ARMOR
 		/obj/item/helmet_module/binoculars,
 		/obj/item/helmet_module/binoculars,
 		/obj/item/helmet_module/antenna,
-		/obj/item/helmet_module/antenna
+		/obj/item/helmet_module/antenna,
 	)
 	cost = 5
 /datum/supply_packs/armor/modular/attachments/hlin_bombimmune
 	name = "Jaeger Hlin module"
-	contains = list(
-		/obj/item/armor_module/attachable/hlin_explosive_armor
-	)
+	contains = list(/obj/item/armor_module/attachable/hlin_explosive_armor)
 	cost = 12
 
 /*******************************************************************************
@@ -1286,8 +1258,7 @@ Imports
 
 /datum/supply_packs/imports/uzi
 	name = "GAL-9 SMG"
-	contains = list(
-		/obj/item/weapon/gun/smg/uzi)
+	contains = list(/obj/item/weapon/gun/smg/uzi)
 	cost = 10
 
 /datum/supply_packs/imports/uzi/ammo

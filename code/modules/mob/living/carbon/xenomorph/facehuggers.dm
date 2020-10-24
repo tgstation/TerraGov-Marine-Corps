@@ -520,8 +520,8 @@
 	kill_hugger()
 
 /obj/item/clothing/mask/facehugger/dropped(mob/user)
-    . = ..()
-    go_idle()
+	. = ..()
+	go_idle()
 
 /obj/item/clothing/mask/facehugger/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
@@ -531,8 +531,8 @@
 		go_idle()
 
 /obj/item/clothing/mask/facehugger/dropped(mob/user)
-    . = ..()
-    go_idle()
+	. = ..()
+	go_idle()
 
 /obj/item/clothing/mask/facehugger/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
