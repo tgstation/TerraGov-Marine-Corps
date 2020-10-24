@@ -14,6 +14,8 @@
 		/datum/job/insurrectionist/medic = 6,
 		/datum/job/insurrectionist/engineer = 6,
 		/datum/job/insurrectionist/leader = 1,
+		/datum/job/gcpd/chief = 1,
+		/datum/job/gcpd/cop = 4,
 		/datum/job/covenant/sangheili/minor = -1,
 		/datum/job/covenant/sangheili/ranger = -1,
 		/datum/job/covenant/sangheili/officer = -1,
@@ -42,3 +44,5 @@
 
 	announce_medal_awards()
 	announce_round_stats()
+
+

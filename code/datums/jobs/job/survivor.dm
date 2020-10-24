@@ -280,22 +280,3 @@
 
 
 
-//Halo survivors
-
-//Colonial Police
-/datum/job/survivor/gcpd
-	title = "Colonial Police Survivor"
-	skills_type = /datum/skills/civilian/survivor/gcpd
-	outfit = /datum/outfit/job/survivor/gcpd
-
-/datum/outfit/job/survivor/gcpd
-	name = "Colonial Police Survivor"
-	jobtype = /datum/job/survivor/gcpd
-
-	w_uniform = /obj/item/clothing/under/marine/gcpd
-	wear_suit = /obj/item/clothing/suit/storage/marine/gcpd
-	glasses = /obj/item/clothing/glasses/hud/security/gcpd
-	ears = /obj/item/radio/headset/gcpd
-	shoes = /obj/item/clothing/shoes/marine/gcpd
-	head = /obj/item/clothing/head/tgmccap/gcpd
-	back = /obj/item/storage/backpack/satchel/sec

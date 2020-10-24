@@ -358,3 +358,50 @@
 	id = /obj/item/card/id/dogtag
 	ears = /obj/item/radio/headset/unsc
 	back = /obj/item/storage/backpack/marine/satchel
+
+//GCPD
+
+/datum/job/gcpd/chief
+	title = "Colonial Police Chief"
+	access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
+	minimal_access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
+	display_order = JOB_DISPLAY_ORDER_GCPD_CHIEF
+	skills_type = /datum/skills/civilian/survivor/gcpd
+	faction = FACTION_GCPD
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_PROVIDES_BANK_ACCOUNT
+	outfit = /datum/outfit/job/gcpd/chief
+
+
+/datum/job/gcpd/cop
+	title = "Colonial Police Officer"
+	access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
+	minimal_access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
+	display_order = JOB_DISPLAY_ORDER_GCPD_CHIEF
+	skills_type = /datum/skills/civilian/survivor/gcpd
+	faction = FACTION_GCPD
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_PROVIDES_BANK_ACCOUNT
+	outfit = /datum/outfit/job/gcpd/cop
+
+/datum/outfit/job/gcpd/cop
+	name = "Colonial Police Officer"
+	jobtype = /datum/job/gcpd/cop
+
+	w_uniform = /obj/item/clothing/under/marine/gcpd
+	wear_suit = /obj/item/clothing/suit/storage/marine/gcpd
+	glasses = /obj/item/clothing/glasses/hud/security/gcpd
+	ears = /obj/item/radio/headset/gcpd
+	shoes = /obj/item/clothing/shoes/marine/gcpd
+	head = /obj/item/clothing/head/tgmccap/gcpd
+	back = /obj/item/storage/backpack/satchel/sec
+
+/datum/outfit/job/gcpd/chief
+	name = "Colonial Police Chief"
+	jobtype = /datum/job/gcpd/chief
+
+	w_uniform = /obj/item/clothing/under/marine/gcpd
+	wear_suit = /obj/item/clothing/suit/storage/marine/gcpd_h
+	glasses = /obj/item/clothing/glasses/hud/security/gcpd
+	ears = /obj/item/radio/headset/gcpd
+	shoes = /obj/item/clothing/shoes/marine/gcpd
+	head = /obj/item/clothing/head/helmet/marine/gcpd
+	back = /obj/item/storage/backpack/satchel/sec

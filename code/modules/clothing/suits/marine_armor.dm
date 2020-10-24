@@ -778,3 +778,25 @@
 	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
 	soft_armor = list("melee" = 55, "bullet" = 40, "laser" = 30, "energy" = 45, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	flags_item_map_variant = NONE
+
+/obj/item/clothing/suit/storage/marine/gcpd_h
+	name = "PD-H Body Armor"
+	desc = "A set of Heavy Colonial Police protective body armor. Provides great protection against small arms and bladed objects."
+	icon_state = "gcpd_h"
+	item_state = "gcpd_h"
+	slowdown = SLOWDOWN_ARMOR_HEAVY
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	soft_armor = list("melee" = 65, "bullet" = 70, "laser" = 70, "energy" = 40, "bomb" = 30, "bio" = 10, "rad" = 10, "fire" = 40, "acid" = 60)
+	flags_item_map_variant = NONE
+
+/obj/item/clothing/suit/storage/marine/gcpd_l
+	name = "PD-H Body Armor"
+	desc = "A set of Light Colonial Police protective body armor. Provides great protection against small arms and bladed objects."
+	icon_state = "gcpd_l"
+	item_state = "gcpd_l"
+	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	soft_armor = list("melee" = 40, "bullet" = 40, "laser" = 40, "energy" = 30, "bomb" = 60, "bio" = 30, "rad" = 30, "fire" = 30, "acid" = 30)
+	flags_item_map_variant = NONE
+
+

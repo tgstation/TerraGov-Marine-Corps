@@ -79,3 +79,15 @@
 	icon_state = "IO"
 	job = /datum/job/insurrectionist/basic
 	jobspawn_override = TRUE
+
+//GCPD//
+
+/obj/effect/landmark/start/job/gcpd_chief
+	icon_state = "SL"
+	job = /datum/job/gcpd/chief
+	jobspawn_override = TRUE
+
+/obj/effect/landmark/start/job/gcpd_cop
+	icon_state = "SL"
+	job = /datum/job/gcpd/chief
+	jobspawn_override = TRUE
