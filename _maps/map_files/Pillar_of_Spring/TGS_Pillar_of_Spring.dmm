@@ -6710,12 +6710,6 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/living/cafeteria_starboard)
-"xp" = (
-/obj/docking_port/stationary/ert/target{
-	name = "Hangar"
-	},
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "xs" = (
 /obj/structure/rack,
 /obj/structure/ob_ammo/ob_fuel,
@@ -47438,7 +47432,7 @@ aN
 GH
 RF
 bh
-xp
+bh
 bh
 bh
 bh
