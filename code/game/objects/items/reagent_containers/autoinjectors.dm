@@ -144,7 +144,7 @@
 	desc = "An auto-injector freshly loaded with a safe-to-use hyperzine mix."
 	amount_per_transfer_from_this = 25
 	volume = 25
-	icon_state = "autoinjector-8" 
+	icon_state = "autoinjector-8"
 	list_reagents = list(/datum/reagent/medicine/hyperzine = 5,
 						/datum/reagent/medicine/dexalin = 10,
 						/datum/reagent/medicine/inaprovaline = 10)
@@ -188,7 +188,7 @@
 	desc = "An auto-injector loaded with 3 doses of Peridaxon Plus, a chemical that heals organs while causing a buildup of toxins. Use with antitoxin. !DO NOT USE IN ACTIVE COMBAT!"
 	amount_per_transfer_from_this = 3
 	volume = 9
-	icon_state = "autoinjector-8" 
+	icon_state = "autoinjector-8"
 	list_reagents = list(/datum/reagent/medicine/peridaxon_plus = 3,
 						/datum/reagent/medicine/arithrazine = 6)
 
@@ -201,7 +201,7 @@
 	list_reagents = list(/datum/reagent/medicine/roulettium = 1)
 
 /obj/item/reagent_containers/hypospray/autoinjector/hyronalin
-	name = "Roulettium autoinjector"
+	name = "Hyronalin autoinjector"
 	desc = "An auto-injector loaded with one shot of roulettium, an extremely powerful panacea. !THIS HAS A CHANCE OF UNRECOVERABLE DEATH!"
 	amount_per_transfer_from_this = 5
 	volume = 20
@@ -209,7 +209,7 @@
 	list_reagents = list(/datum/reagent/medicine/hyronalin = 20)
 
 /obj/item/reagent_containers/hypospray/autoinjector/arithrazine
-	name = "Roulettium autoinjector"
+	name = "Arithazine autoinjector"
 	desc = "An auto-injector loaded with one shot of roulettium, an extremely powerful panacea. !THIS HAS A CHANCE OF UNRECOVERABLE DEATH!"
 	amount_per_transfer_from_this = 5
 	volume = 20
