@@ -578,17 +578,6 @@
 		L.adjustBruteLoss(2)
 	if(prob(25))
 		to_chat(L, "<span class='warning'>You can feel your body falling apart!</span>")
-//	var/toxin_damage = 0
-//	for(var/datum/reagent/R in L.reagents.reagent_list)
-//		if(istype(R, /datum/reagent/medicine))
-//			toxin_damage += 0.5
-//	if(L.getToxLoss() > 20)
-//		toxin_damage *= 0.5
-//	L.adjustToxLoss(toxin_damage)
-//	L.adjustBruteLoss(1)
-//	if(prob(25))
-//		to_chat(L, "<span class='warning'>You can feel your body falling apart!</span>")
-//	return ..()
 
 
 /datum/reagent/toxin/xeno_praelyx //deals damage if certain reagents are present on application or when injected more than once
