@@ -596,6 +596,7 @@
 	var/datum/reagent/body_tox
 	var/i = 1
 	var/datum/limb/affecting = zone_selected
+	SEND_SIGNAL(src, COMSIG_HIVE_XENO_RECURRING_INJECTION)
 	do
 		face_atom(C)
 		if(stagger)

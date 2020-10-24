@@ -82,7 +82,7 @@
 		slash_count = 1
 		reagent_transfer_amount = 16
 	succeed_activate()
-	X.recurring_injection(Z, X.selected_reagent, XENO_REAGENT_STING_CHANNEL_TIME, count = slash_count, transfer_amount = reagent_transfer_amount, is_reagent_slash = TRUE)
+	X.recurring_injection(Z, X.selected_reagent, channel_time = 1.2 SECONDS, count = slash_count, transfer_amount = reagent_transfer_amount, is_reagent_slash = TRUE)
 	add_cooldown()
 
 // ***************************************
@@ -124,10 +124,11 @@
 
 	RegisterSignal(L, list(SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), SIGNAL_ADDTRAIT(TRAIT_FLOORED)), .proc/cancel_stealth)
 
-	RegisterSignal(L, list(COMSIG_XENOMORPH_TAKING_DAMAGE, COMSIG_HIVE_XENO_RECURRING_INJECTION), .proc/damage_taken)
+	RegisterSignal(L, list(COMSIG_XENOMORPH_TAKING_DAMAGE), .proc/damage_taken)
 
 /datum/action/xeno_action/xeno_camouflage/remove_action(mob/living/L)
 	UnregisterSignal(L, list(
+		COMSIG_HIVE_XENO_RECURRING_INJECTION,
 		COMSIG_XENOMORPH_POUNCE,
 		COMSIG_XENO_LIVING_THROW_HIT,
 		COMSIG_XENOMORPH_ATTACK_LIVING,

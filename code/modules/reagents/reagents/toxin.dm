@@ -524,7 +524,7 @@
 /datum/reagent/toxin/xeno_hemodile/on_mob_life(mob/living/L, metabolism)
 	if(prob(25))
 		to_chat(L, "<span class='warning'>You feel your legs tense up.</span>")
-	if(!L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
+	if(!L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin) && !L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_praelyx))
 		L.add_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE, TRUE, 0, NONE, TRUE, 1.4)
 	else
 		L.add_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE, TRUE, 0, NONE, TRUE, 4)
@@ -596,5 +596,4 @@
 
 /datum/reagent/toxin/xeno_praelyx/proc/xeno_praelyx_trigger(mob/living/L, affecting)
 	to_chat(L, "<span class='warning'>Your [affecting] bursts!</span>")
-	custom_metabolism = 10
 	L.apply_damage(damage = 20, damagetype = BRUTE, def_zone = affecting, sharp = TRUE)
