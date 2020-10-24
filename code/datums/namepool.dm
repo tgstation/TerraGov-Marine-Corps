@@ -51,3 +51,8 @@ GLOBAL_LIST_EMPTY_TYPED(namepool, /datum/namepool)
 		. = "[ascii2text(rand(65, 90))]" //65 to 87 is (uppercase) A to Z
 
 	. += "-[rand(1,999)]"
+
+/datum/namepool/skeleton
+	firstname_male_pool = "names/skeleton"
+	firstname_female_pool = "names/skeleton"
+	lastname_pool = "names/skeleton"

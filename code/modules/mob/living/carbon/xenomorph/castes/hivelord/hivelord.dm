@@ -27,4 +27,4 @@
 	. = ..()
 
 	if(statpanel("Game"))
-		stat("Active Tunnel Sets:", "[LAZYLEN(tunnels) * 0.5] / [HIVELORD_TUNNEL_SET_LIMIT]")
+		stat("Active Tunnel Sets:", "[LAZYLEN(tunnels)] / [HIVELORD_TUNNEL_SET_LIMIT]")

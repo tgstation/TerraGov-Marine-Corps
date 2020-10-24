@@ -576,6 +576,8 @@
 
 // override this proc to give different idling-on-fire effects
 /mob/living/flamer_fire_act(burnlevel, firelevel)
+	if(!burnlevel)
+		return
 	if(hard_armor.getRating("fire") >= 100)
 		to_chat(src, "<span class='warning'>Your suit protects you from most of the flames.</span>")
 		adjustFireLoss(rand(0, burnlevel * 0.25)) //Does small burn damage to a person wearing one of the suits.

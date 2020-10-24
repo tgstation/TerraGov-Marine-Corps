@@ -141,3 +141,21 @@
 	parent.gas_transfer_coefficient -= siemens_coefficient_mod
 	parent.slowdown -= slowdown
 	return ..()
+
+/obj/item/armor_module/attachable/hlin_explosive_armor
+	name = "Hlin Explosive Compensation Module"
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Uses a complex set of armor plating and compensation to lessen the effect of explosions, at the cost of making the user slower."
+	icon_state = "mod_boomimmune_icon"
+	item_state = "mod_boomimmune"
+	soft_armor = list("bomb" = 95)
+	slowdown = 0.2
+
+/obj/item/armor_module/attachable/hlin_explosive_armor/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
+	. = ..()
+	parent.soft_armor = parent.soft_armor.attachArmor(soft_armor)
+	parent.slowdown += slowdown
+
+/obj/item/armor_module/attachable/hlin_explosive_armor/do_detach(mob/living/user, obj/item/clothing/suit/modular/parent)
+	parent.soft_armor = parent.soft_armor.detachArmor(soft_armor)
+	parent.slowdown -= slowdown
+	return ..()

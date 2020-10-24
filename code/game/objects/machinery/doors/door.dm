@@ -185,6 +185,7 @@
 
 
 /obj/machinery/door/proc/open()
+	SIGNAL_HANDLER_DOES_SLEEP
 	if(!density)
 		return TRUE
 	if(operating > 0 || !loc)

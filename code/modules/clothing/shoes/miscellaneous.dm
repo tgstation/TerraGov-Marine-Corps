@@ -86,7 +86,7 @@
 	desc = "The prankster's standard-issue clowning shoes. Damn they're huge!"
 	name = "clown shoes"
 	icon_state = "clown"
-	item_state = "clown_shoes"
+	item_state = "clown"
 	slowdown = SHOES_SLOWDOWN + 1
 
 
@@ -155,4 +155,12 @@
 	flags_heat_protection = FEET
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
+
+/obj/item/clothing/shoes/techpriest
+	name = "Techpriest boots"
+	desc = "Praise the machine spirit!"
+	icon_state = "tp_boots"
+	item_state = "tp_boots"
+	flags_inventory = NOSLIPPING
+
 

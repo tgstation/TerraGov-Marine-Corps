@@ -44,6 +44,8 @@
 /obj/effect/acid_hole/specialclick(mob/living/carbon/user)
 	if(!isxeno(user))
 		return
+	if(!user.CanReach(src))
+		return
 	if(holed_wall)
 		if(user.mob_size == MOB_SIZE_BIG)
 			expand_hole(user)

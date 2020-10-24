@@ -247,7 +247,7 @@
 
 /obj/structure/ship_ammo/rocket/keeper/detonate_on(turf/impact)
 	impact.ceiling_debris_check(3)
-	explosion(impact, 4, 5, 5, 6) //tighter blast radius, but more devastating near center
+	explosion(impact, 4, 5, 5, 6, small_animation = TRUE) //tighter blast radius, but more devastating near center
 	qdel(src)
 
 
@@ -272,7 +272,7 @@
 		var/list/coords = impact_coords[i]
 		var/turf/detonation_target = locate(impact.x+coords[1],impact.y+coords[2],impact.z)
 		detonation_target.ceiling_debris_check(2)
-		explosion(detonation_target, 2, 3, 4, adminlog = FALSE)
+		explosion(detonation_target, 2, 3, 4, adminlog = FALSE, small_animation = TRUE)
 	qdel(src)
 
 /obj/structure/ship_ammo/rocket/napalm
@@ -284,7 +284,7 @@
 
 /obj/structure/ship_ammo/rocket/napalm/detonate_on(turf/impact)
 	impact.ceiling_debris_check(3)
-	explosion(impact, 2, 3, 4, 6) //relatively weak
+	explosion(impact, 2, 3, 4, 6, small_animation = TRUE) //relatively weak
 	flame_radius(5, impact, 60, 30) //cooking for a long time
 	qdel(src)
 
@@ -307,7 +307,7 @@
 /obj/structure/ship_ammo/minirocket/detonate_on(turf/impact)
 	impact.ceiling_debris_check(2)
 
-	explosion(impact, 0, 2, 4, 5, adminlog = FALSE)//no messaging admin, that'd spam them.
+	explosion(impact, 0, 2, 4, 5, adminlog = FALSE, small_animation = TRUE)//no messaging admin, that'd spam them.
 	var/datum/effect_system/expl_particles/P
 	P.set_up(4, 0, impact)
 	P.start()

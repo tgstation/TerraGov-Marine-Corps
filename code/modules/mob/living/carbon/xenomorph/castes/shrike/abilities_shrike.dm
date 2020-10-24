@@ -48,6 +48,7 @@
 
 
 /datum/action/xeno_action/call_of_the_burrowed/proc/is_burrowed_larva_host(datum/source, list/mothers, list/silos) //Should only register while a viable candidate.
+	SIGNAL_HANDLER
 	if(!owner.incapacitated())
 		mothers += owner //Adding them to the list.
 

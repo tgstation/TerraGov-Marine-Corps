@@ -33,8 +33,8 @@
 	item_state = "champion"
 	storage_slots = 1
 	can_hold = list(
-		/obj/item/clothing/mask/luchador
-		)
+		/obj/item/clothing/mask/luchador,
+	)
 
 
 
@@ -61,7 +61,8 @@
 		/obj/item/stack/cable_coil,
 		/obj/item/t_scanner,
 		/obj/item/analyzer,
-		/obj/item/tool/taperoll/engineering)
+		/obj/item/tool/taperoll/engineering,
+	)
 
 
 /obj/item/storage/belt/utility/full/Initialize()
@@ -117,7 +118,8 @@
 		/obj/item/bodybag,
 		/obj/item/defibrillator,
 		/obj/item/storage/pill_bottle/packet,
-		/obj/item/roller)
+		/obj/item/roller,
+	)
 
 /obj/item/storage/belt/medical/Initialize()
 	. = ..()
@@ -130,8 +132,8 @@
 	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/inaprovaline(src)
 	new /obj/item/storage/pill_bottle/dexalin(src)
-	new /obj/item/storage/pill_bottle/peridaxon(src)
-	new /obj/item/storage/pill_bottle/quickclot(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus(src)
 	new /obj/item/storage/pill_bottle/spaceacillin(src)
 	new /obj/item/storage/pill_bottle/hypervene(src)
 	new /obj/item/healthanalyzer(src)
@@ -153,7 +155,7 @@
 		/obj/item/storage/syringe_case,
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/storage/pill_bottle/packet,
-		/obj/item/stack/medical
+		/obj/item/stack/medical,
 	)
 
 /obj/item/storage/belt/combatLifesaver/Initialize()  //The belt, with all it's magic inside!
@@ -177,6 +179,49 @@
 	new /obj/item/storage/syringe_case/combat(src)
 	new /obj/item/storage/syringe_case/combat(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/quickclot(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
+
+/obj/item/storage/belt/medicLifesaver
+	name = "\improper M276 pattern lifesaver medic bag"
+	desc = "The M276 is the standard load-bearing equipment of the TGMC. This configuration mounts a duffel bag filled with a range of injectors and light medical supplies and is common among medics."
+	icon_state = "medicalbag"
+	item_state = "medicbag"
+	storage_slots = 21 //can hold 3 "rows" of very limited medical equipment, but it *should* give a decent boost to squad medics.
+	max_storage_space = 42
+	max_w_class = 2
+	can_hold = list(
+		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/storage/pill_bottle,
+		/obj/item/storage/syringe_case,
+		/obj/item/reagent_containers/hypospray/autoinjector,
+		/obj/item/storage/pill_bottle/packet,
+		/obj/item/stack/medical,
+	)
+
+/obj/item/storage/belt/medicLifesaver/Initialize()  //The belt, with all it's magic inside!
+	. = ..()
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/storage/pill_bottle/bicaridine(src)
+	new /obj/item/storage/pill_bottle/kelotane(src)
+	new /obj/item/storage/pill_bottle/dylovene(src)
+	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/storage/pill_bottle/inaprovaline(src)
+	new /obj/item/storage/pill_bottle/peridaxon(src)
+	new /obj/item/storage/pill_bottle/quickclot(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
+	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/hypervene(src)
 
@@ -220,8 +265,8 @@
 		/obj/item/flashlight,
 		/obj/item/radio/headset,
 		/obj/item/weapon,
-		/obj/item/tool/taperoll/police
-		)
+		/obj/item/tool/taperoll/police,
+	)
 
 
 
@@ -275,8 +320,8 @@
 		/obj/item/ammo_magazine/handful,
 		/obj/item/explosive/grenade,
 		/obj/item/explosive/mine,
-		/obj/item/reagent_containers/food/snacks
-		)
+		/obj/item/reagent_containers/food/snacks,
+	)
 
 /obj/item/storage/belt/marine/t18/Initialize()
 	. = ..()
@@ -357,8 +402,8 @@
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/ammo_magazine/handful,
 		/obj/item/explosive/grenade,
-		/obj/item/tool/crowbar
-		)
+		/obj/item/tool/crowbar,
+	)
 
 /obj/item/storage/belt/shotgun
 	name = "\improper shotgun shell load rig"
@@ -506,8 +551,8 @@
 	var/drawSound = 'sound/weapons/guns/misc/pistol_draw.ogg'
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
-		/obj/item/ammo_magazine/pistol
-		)
+		/obj/item/ammo_magazine/pistol,
+	)
 
 /obj/item/storage/belt/gun/Destroy()
 	if(gun_underlay)
@@ -575,8 +620,8 @@
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry the M4A3 comfortably secure. It also contains side pouches that can store 9mm or .45 magazines."
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
-		/obj/item/ammo_magazine/pistol
-		)
+		/obj/item/ammo_magazine/pistol,
+	)
 
 /obj/item/storage/belt/gun/m4a3/full/Initialize()
 	. = ..()
@@ -639,8 +684,8 @@
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry the M4A3 comfortably secure. It also contains side pouches that can store 9mm or .45 magazines."
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
-		/obj/item/ammo_magazine/pistol
-		)
+		/obj/item/ammo_magazine/pistol,
+	)
 
 /obj/item/storage/belt/gun/pistol/standard_pistol
 	name = "\improper T457 pattern pistol holster rig"
@@ -655,8 +700,8 @@
 	item_state = "tp44_holster"
 	can_hold = list(
 		/obj/item/weapon/gun/revolver,
-		/obj/item/ammo_magazine/revolver
-		)
+		/obj/item/ammo_magazine/revolver,
+	)
 
 /obj/item/storage/belt/gun/m44
 	name = "\improper M276 pattern M44 holster rig"
@@ -665,8 +710,8 @@
 	item_state = "m44_holster"
 	can_hold = list(
 		/obj/item/weapon/gun/revolver,
-		/obj/item/ammo_magazine/revolver
-		)
+		/obj/item/ammo_magazine/revolver,
+	)
 
 /obj/item/storage/belt/gun/m44/full/Initialize()
 	. = ..()
@@ -686,8 +731,8 @@
 	item_state = "mateba_holster"
 	can_hold = list(
 		/obj/item/weapon/gun/revolver/mateba,
-		/obj/item/ammo_magazine/revolver/mateba
-		)
+		/obj/item/ammo_magazine/revolver/mateba,
+	)
 
 /obj/item/storage/belt/gun/mateba/full/Initialize()
 	. = ..()
@@ -736,8 +781,8 @@
 	can_hold = list(
 		/obj/item/weapon/gun/pistol/c99,
 		/obj/item/ammo_magazine/pistol/c99,
-		/obj/item/ammo_magazine/pistol/c99t
-		)
+		/obj/item/ammo_magazine/pistol/c99t,
+	)
 
 /obj/item/storage/belt/gun/korovin/standard/Initialize()
 	. = ..()

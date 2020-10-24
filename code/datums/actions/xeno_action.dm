@@ -25,11 +25,12 @@
 	X.xeno_abilities += src
 	if(keybind_signal)
 		RegisterSignal(L, keybind_signal, .proc/keybind_activation)
-
+	RegisterSignal(L, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE, .proc/on_xeno_upgrade)
 
 /datum/action/xeno_action/remove_action(mob/living/L)
 	if(keybind_signal)
 		UnregisterSignal(L, keybind_signal)
+	UnregisterSignal(L, COMSIG_XENOMORPH_ABILITY_ON_UPGRADE)
 	if(cooldown_id)
 		deltimer(cooldown_id)
 	var/mob/living/carbon/xenomorph/X = L
@@ -38,9 +39,13 @@
 
 
 /datum/action/xeno_action/proc/keybind_activation()
+	SIGNAL_HANDLER_DOES_SLEEP
 	if(can_use_action())
 		action_activate()
 	return COMSIG_KB_ACTIVATED
+
+/datum/action/xeno_action/proc/on_xeno_upgrade()
+	return
 
 /datum/action/xeno_action/can_use_action(silent = FALSE, override_flags)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -131,6 +136,7 @@
 
 
 /datum/action/xeno_action/proc/add_cooldown()
+	SIGNAL_HANDLER
 	if(cooldown_id) // stop doubling up
 		return
 	last_use = world.time

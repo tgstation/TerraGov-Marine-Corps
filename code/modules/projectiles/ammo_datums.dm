@@ -1219,7 +1219,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 30
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-	sundering = 0.75
+	sundering = 2.5
 
 /datum/ammo/energy/lasgun/M43
 	icon_state = "laser2"
@@ -1231,7 +1231,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 42
 	max_range = 40
 	penetration = 20
-	sundering = 5
+	sundering = 10
 
 /datum/ammo/energy/lasgun/M43/heat
 	name = "microwave heat bolt"
@@ -1256,7 +1256,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 42
 	damage_falloff = 10
 	penetration = 0
-	sundering = 2.5
+	sundering = 5
 
 /datum/ammo/energy/lasgun/M43/spread
 	name = "additional laser blast"

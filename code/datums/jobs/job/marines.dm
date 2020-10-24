@@ -29,7 +29,11 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	outfit = /datum/outfit/job/marine/standard
 	total_positions = -1
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
-	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR)
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
+		/datum/job/terragov/squad/specialist = SPEC_POINTS_REGULAR,
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_REGULAR,
+	)
 
 /datum/job/terragov/squad/standard/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -97,6 +101,7 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	outfit = /datum/outfit/job/marine/engineer
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/specialist = SPEC_POINTS_MEDIUM, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_MEDIUM)
+	exp_requirements = XP_REQ_INTERMEDIATE
 
 /datum/job/terragov/squad/engineer/radio_help_message(mob/M)
 	. = ..()
@@ -166,6 +171,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	outfit = /datum/outfit/job/marine/corpsman
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_PROVIDES_SQUAD_HUD
 	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/specialist = SPEC_POINTS_MEDIUM, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_MEDIUM)
+	exp_requirements = XP_REQ_INTERMEDIATE
 
 /datum/job/terragov/squad/corpsman/radio_help_message(mob/M)
 	. = ..()
@@ -356,7 +362,11 @@ You can serve a variety of roles, so choose carefully."})
 	exp_requirements = XP_REQ_EXPERIENCED
 	exp_type = EXP_TYPE_REGULAR_ALL
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_ADDTOMANIFEST|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD
-	jobworth = list(/datum/job/xenomorph = LARVA_POINTS_REGULAR, /datum/job/terragov/squad/specialist = SPEC_POINTS_HIGH, /datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_HIGH)
+	jobworth = list(
+		/datum/job/xenomorph = LARVA_POINTS_REGULAR,
+		/datum/job/terragov/squad/specialist = SPEC_POINTS_HIGH,
+		/datum/job/terragov/squad/smartgunner = SMARTIE_POINTS_HIGH,
+	)
 
 
 /datum/job/terragov/squad/leader/radio_help_message(mob/M)
