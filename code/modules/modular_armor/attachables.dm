@@ -28,11 +28,12 @@
 
 /** Shoulder lamp strength module */
 /obj/item/armor_module/attachable/better_shoulder_lamp
-	name = "\improper Baldur Light Amplification System"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Substantially increases the power output of the Jaeger Combat Exoskeleton's mounted flashlight. Doesn’t really slow you down."
+	name = "\improper Mark 2 Baldur Light Amplification System"
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Substantially increases the power output of the Jaeger Combat Exoskeleton's mounted flashlight. Slows you down minorly."
 	icon_state = "mod_lamp_icon"
 	item_state = "mod_lamp"
-	var/power_boost = 3 /// The boost to armor shoulder light
+	slowdown = 0.2
+	var/power_boost = 5 /// The boost to armor shoulder light
 
 /obj/item/armor_module/attachable/better_shoulder_lamp/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
@@ -42,6 +43,10 @@
 	parent.set_light_range(parent.light_range - power_boost)
 	return ..()
 
+/obj/item/armor_module/attachable/better_shoulder_lamp/mark1
+	name = "\improper Mark 1 Baldur Light Amplification Mark 1 System"
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Substantially increases the power output of the Jaeger Combat Exoskeleton's mounted flashlight. Slows you down minorly."
+	power_boost = 3 /// The boost to armor shoulder light
 
 /** Mini autodoc module */
 /obj/item/armor_module/attachable/valkyrie_autodoc
@@ -95,7 +100,7 @@
 
 /** Extra armor module */
 /obj/item/armor_module/attachable/tyr_extra_armor
-	name = "\improper Tyr Armor Reinforcement"
+	name = "\improper Mark 2 Tyr Armor Reinforcement"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. A substantial amount of additional armor plating designed to fit inside some of the vulnerable portions of the Jaeger Combat Exoskeleton conventional armor patterns. Will definitely impact mobility."
 	icon_state = "mod_armor_icon"
 	item_state = "mod_armor"
@@ -113,7 +118,7 @@
 	return ..()
 
 /obj/item/armor_module/attachable/tyr_extra_armor/mark1
-	name = "\improper Tyr Armor Reinforcement"
+	name = "\improper Mark 1 Tyr Armor Reinforcement"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. A substantial amount of additional armor plating designed to fit inside some of the vulnerable portions of the Jaeger Combat Exoskeleton conventional armor patterns. This older version has worse protection. Will definitely impact mobility."
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
 	slowdown = 0.3
@@ -121,7 +126,7 @@
 
 /** Environment protecttion module */
 /obj/item/armor_module/attachable/mimir_environment_protection
-	name = "\improper Mimir Environmental Resistance System Mark 2"
+	name = "\improper Mark 2 Mimir Environmental Resistance System"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. When activated, this system provides substantial resistance to environmental hazards, such as gases, and radiological exposure. This newer version provides resistance to acid. Best paired with the Mimir Environmental Helmet System and a gas mask. Will impact mobility." // Add the toggable thing to the description when you are done, okay? ~XS300
 	icon_state = "mod_biohazard_icon"
 	item_state = "mod_biohazard"
@@ -150,7 +155,7 @@
 
 // The mark 1 version, made to protect you from just gas.
 /obj/item/armor_module/attachable/mimir_environment_protection/mark1
-	name = "\improper Mimir Environmental Resistance System Mark 1"
+	name = "\improper Mark 1 Mimir Environmental Resistance System"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. When activated, this system provides substantial resistance to environmental hazards, such as gases and radiological exposure. This older version provides no protection to acid. Best paired with the Mimir Environmental Helmet System. Will impact mobility." // Add the toggable thing to the description when you are done, okay? ~XS300
 	icon_state = "mod_biohazard_icon"
 	item_state = "mod_biohazard"
