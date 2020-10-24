@@ -1396,9 +1396,9 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 /obj/effect/essentials_set/mimir
 	desc = "A set of anti-gas gear setup to protect one from gas threats."
 	spawned_gear_list = list(
-						/obj/item/helmet_module/attachable/mimir_environment_protection/mark1,
-						/obj/item/clothing/mask/gas/tactical,
-						/obj/item/armor_module/attachable/mimir_environment_protection/mark1,
+		/obj/item/helmet_module/attachable/mimir_environment_protection/mark1,
+		/obj/item/clothing/mask/gas/tactical,
+		/obj/item/armor_module/attachable/mimir_environment_protection/mark1,
 						)
 
 #undef MARINE_CAN_BUY_UNIFORM
