@@ -732,8 +732,17 @@ ARMOR
 	)
 	cost = 40
 
+/datum/supply_packs/armor/modular/attachments/mixed
+	name = "Jaeger surplus mark 1 modules"
+	contains = list(
+		/obj/item/armor_module/attachable/tyr_extra_armor/mark1,
+		/obj/item/armor_module/attachable/mimir_environment_protection/mark1,
+		/obj/item/armor_module/attachable/better_shoulder_lamp/mark1,,
+	)
+	cost = 3
+
 /datum/supply_packs/armor/modular/attachments/lamp
-	name = "Jaeger baldur modules"
+	name = "Jaeger baldur mark 2 modules"
 	contains = list(
 		/obj/item/armor_module/attachable/better_shoulder_lamp,
 	)
@@ -761,7 +770,7 @@ ARMOR
 	cost = 12
 
 /datum/supply_packs/armor/modular/attachments/mimir_environment_protection
-	name = "Jaeger mimir module"
+	name = "Jaeger mimir mark 2 module"
 	contains = list(
 		/obj/item/armor_module/attachable/mimir_environment_protection,
 	)
