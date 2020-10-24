@@ -113,6 +113,8 @@
 
 #define ABOVE_MOB_LAYER 4.1
 
+#define FACEHUGGER_LAYER 4.45
+
 #define ABOVE_ALL_MOB_LAYER 4.5
 
 //#define FLY_LAYER 5
