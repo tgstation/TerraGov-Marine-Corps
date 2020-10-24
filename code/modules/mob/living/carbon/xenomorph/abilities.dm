@@ -93,7 +93,7 @@
 	cooldown_timer = 12 SECONDS
 
 /datum/action/xeno_action/plant_weeds/slow/action_activate()
-	if(locate(/obj/effect/alien/weeds) in range(2, owner.loc))
+	if(locate(/obj/effect/alien/weeds) in range(1, owner.loc))
 		return ..()
 	var/mob/living/carbon/xenomorph/hivemind/hiveminde = owner
 	hiveminde.forceMove(get_turf(hiveminde.core))
