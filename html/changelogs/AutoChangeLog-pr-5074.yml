@@ -1,0 +1,4 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - tweak: "harness now puts gun on back slot if they can't put on suit storage."
