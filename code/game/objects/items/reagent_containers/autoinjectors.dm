@@ -202,7 +202,7 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/hyronalin
 	name = "Hyronalin autoinjector"
-	desc = "An auto-injector loaded with one shot of roulettium, an extremely powerful panacea. !THIS HAS A CHANCE OF UNRECOVERABLE DEATH!"
+	desc = "An auto-injector loaded with 20 units of hyronalin, a minorly unstable chemical that heals toxins at the cost of minor brute damage. DO NOT TAKE WITH NEURALINE."
 	amount_per_transfer_from_this = 5
 	volume = 20
 	icon_state = "autoinjector-6"
@@ -210,7 +210,7 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/arithrazine
 	name = "Arithazine autoinjector"
-	desc = "An auto-injector loaded with one shot of roulettium, an extremely powerful panacea. !THIS HAS A CHANCE OF UNRECOVERABLE DEATH!"
+	desc = "An auto-injector loaded with 20 units of arithrazine, a moderately unstable chemical that heals toxins at the cost of moderate brute damage. DO NOT TAKE WITH NEURALINE."
 	amount_per_transfer_from_this = 5
 	volume = 20
 	icon_state = "autoinjector-6"
