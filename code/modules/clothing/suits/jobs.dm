@@ -136,7 +136,7 @@
 		/obj/item/taperecorder,
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
-		/obj/item/storage/large_holster/machete
+		/obj/item/storage/large_holster/machete,
 	)
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 25, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
@@ -261,7 +261,7 @@
 		/obj/item/healthanalyzer,
 		/obj/item/flashlight,
 		/obj/item/radio,
-		/obj/item/tank/emergency_oxygen
+		/obj/item/tank/emergency_oxygen,
 	)
 	flags_armor_protection = CHEST|ARMS
 

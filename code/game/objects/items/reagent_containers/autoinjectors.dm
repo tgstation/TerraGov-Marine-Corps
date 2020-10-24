@@ -158,10 +158,12 @@
 /obj/item/reagent_containers/hypospray/autoinjector/hyperzine/expired
 	name = "expired hyperzine autoinjector"
 	desc = "An auto-injector said to be loaded with a safe-to-use hyperzine mix, 3 months past it's expiration date."
-	list_reagents = list(/datum/reagent/medicine/hyperzine = 4,
-						/datum/reagent/medicine/dexalin = 8,
-						/datum/reagent/medicine/inaprovaline = 8,
-						/datum/reagent/toxin = 5)
+	list_reagents = list(
+		/datum/reagent/medicine/hyperzine = 4,
+		/datum/reagent/medicine/dexalin = 8,
+		/datum/reagent/medicine/inaprovaline = 8,
+		/datum/reagent/toxin = 5,
+	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/synaptizine
 	name = "Synaptizine autoinjector"
@@ -199,8 +201,10 @@
 	amount_per_transfer_from_this = 3
 	volume = 9
 	icon_state = "autoinjector-8"
-	list_reagents = list(/datum/reagent/medicine/peridaxon_plus = 3,
-						/datum/reagent/medicine/arithrazine = 6)
+	list_reagents = list(
+		/datum/reagent/medicine/peridaxon_plus = 3,
+		/datum/reagent/medicine/arithrazine = 6,
+	)
 
 /obj/item/reagent_containers/hypospray/autoinjector/roulettium
 	name = "Roulettium autoinjector"

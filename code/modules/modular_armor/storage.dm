@@ -158,7 +158,7 @@
 		/obj/item/tool/screwdriver,
 		/obj/item/multitool,
 		/obj/item/binoculars/tactical/range,
-		)
+	)
 	cant_hold = list()
 
 /obj/item/armor_module/storage/medical

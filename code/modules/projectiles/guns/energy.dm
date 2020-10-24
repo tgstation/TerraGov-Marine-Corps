@@ -445,22 +445,23 @@
 	cell_type = /obj/item/cell/lasgun/lasrifle
 	charge_cost = 20
 	attachable_allowed = list(
-						/obj/item/attachable/bayonet,
-						/obj/item/attachable/bayonetknife,
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/verticalgrip,
-						/obj/item/attachable/angledgrip,
-						/obj/item/attachable/lasersight,
-						/obj/item/attachable/gyro,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/bipod,
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/attached_gun/grenade,
-						/obj/item/attachable/scope,
-						/obj/item/attachable/scope/marine,
-						/obj/item/attachable/attached_gun/flamer,
-						/obj/item/attachable/attached_gun/shotgun,
-						/obj/item/attachable/scope/mini)
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/attached_gun/grenade,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/attachable/attached_gun/shotgun,
+		/obj/item/attachable/scope/mini,
+	)
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 34, "muzzle_y" = 14,"rail_x" = 18, "rail_y" = 18, "under_x" = 23, "under_y" = 10, "stock_x" = 22, "stock_y" = 12)
 
@@ -470,11 +471,12 @@
 	fire_delay = 3
 	var/mode_index = 1
 	var/static/list/datum/lasrifle/base/mode_list = list(
-						/datum/lasrifle/base/standard,
-						/datum/lasrifle/base/auto,
-						/datum/lasrifle/base/overcharge,
-						/datum/lasrifle/base/heat,
-						/datum/lasrifle/base/spread)
+		/datum/lasrifle/base/standard,
+		/datum/lasrifle/base/auto,
+		/datum/lasrifle/base/overcharge,
+		/datum/lasrifle/base/heat,
+		/datum/lasrifle/base/spread,
+	)
 
 /datum/lasrifle/base
 	var/charge_cost = 0

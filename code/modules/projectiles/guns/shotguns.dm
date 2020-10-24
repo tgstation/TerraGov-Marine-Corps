@@ -446,13 +446,14 @@ can cause issues with ammo types getting mixed up during the burst.
 	reload_sound = 'sound/weapons/guns/interact/shotgun_db_insert.ogg'
 	cocked_sound = null //We don't want this.
 	attachable_allowed = list(
-						/obj/item/attachable/bayonet,
-						/obj/item/attachable/bayonetknife,
-						/obj/item/attachable/verticalgrip,
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/gyro,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/magnetic_harness)
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 19, "under_x" = 21, "under_y" = 13, "stock_x" = 13, "stock_y" = 16)
@@ -682,13 +683,14 @@ can cause issues with ammo types getting mixed up during the burst.
 	type_of_casings = "cartridge"
 	pump_sound = 'sound/weapons/guns/interact/working_the_bolt.ogg'
 	attachable_allowed = list(
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/scope/mini,
-						/obj/item/attachable/bayonetknife,
-						/obj/item/attachable/scope,
-						/obj/item/attachable/scope/marine,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/bayonet)
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/bayonet,
+	)
 	flags_item_map_variant = NONE
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG|GUN_AMMO_COUNTER
 	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 14)

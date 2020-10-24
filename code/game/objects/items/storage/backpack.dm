@@ -820,6 +820,4 @@
 	storage_slots = 5 //It can hold 5 rockets.
 	max_storage_space = 21
 	max_w_class = 4
-	can_hold = list(
-		/obj/item/ammo_magazine/rocket
-	)
+	can_hold = list(/obj/item/ammo_magazine/rocket)

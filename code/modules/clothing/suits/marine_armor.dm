@@ -27,7 +27,8 @@
 		/obj/item/storage/large_holster/machete,
 		/obj/item/weapon/claymore,
 		/obj/item/storage/belt/gun,
-		/obj/item/storage/belt/knifepouch)
+		/obj/item/storage/belt/knifepouch,
+	)
 	var/locate_cooldown = 0 //Cooldown for SL locator
 	var/list/armor_overlays
 	actions_types = list(/datum/action/item_action/toggle)
@@ -225,15 +226,17 @@
 	flags_heat_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
 	soft_armor = list("melee" = 45, "bullet" = 65, "laser" = 65, "energy" = 35, "bomb" = 35, "bio" = 30, "rad" = 10, "fire" = 35, "acid" = 45)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-	allowed = list(/obj/item/tank/emergency_oxygen,
-					/obj/item/flashlight,
-					/obj/item/ammo_magazine,
-					/obj/item/explosive/mine,
-					/obj/item/weapon/combat_knife,
-					/obj/item/attachable/bayonetknife,
-					/obj/item/weapon/gun/smartgun,
-					/obj/item/weapon/gun/rifle/standard_smartmachinegun,
-					/obj/item/storage/belt/sparepouch)
+	allowed = list(
+		/obj/item/tank/emergency_oxygen,
+		/obj/item/flashlight,
+		/obj/item/ammo_magazine,
+		/obj/item/explosive/mine,
+		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/weapon/gun/smartgun,
+		/obj/item/weapon/gun/rifle/standard_smartmachinegun,
+		/obj/item/storage/belt/sparepouch,
+	)
 	pockets = /obj/item/storage/internal/suit/marine/smartgunner
 
 /obj/item/storage/internal/suit/marine/smartgunner
@@ -623,7 +626,8 @@
 	icon_state = "CMB_jacket"
 	blood_overlay_type = "coat"
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 20, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
-	allowed = list(/obj/item/weapon/gun/,
+	allowed = list(
+		/obj/item/weapon/gun/,
 		/obj/item/tank/emergency_oxygen,
 		/obj/item/storage/belt/sparepouch,
 		/obj/item/storage/large_holster/machete,

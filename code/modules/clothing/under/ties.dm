@@ -552,8 +552,8 @@
 	can_hold = list(
 		/obj/item/tool/surgery,
 		/obj/item/stack/medical/advanced/bruise_pack,
-		/obj/item/stack/nanopaste
-		)
+		/obj/item/stack/nanopaste,
+	)
 
 /obj/item/clothing/tie/storage/white_vest/medic
 	name = "corpsman webbing"

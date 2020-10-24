@@ -128,11 +128,13 @@
 	permeability_coefficient = 0.9
 	time_to_unequip = 20
 	time_to_equip = 20
-	allowed = list(/obj/item/weapon/gun/,
+	allowed = list(
+		/obj/item/weapon/gun/,
 		/obj/item/flashlight,
 		/obj/item/storage/large_holster/machete,
 		/obj/item/storage/belt/gun/m4a3,
-		/obj/item/storage/belt/gun/m44)
+		/obj/item/storage/belt/gun/m44,
+	)
 
 /obj/item/clothing/suit/armor/riot
 	name = "riot suit"

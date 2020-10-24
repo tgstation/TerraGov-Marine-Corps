@@ -56,11 +56,12 @@
 
 /obj/effect/landmark/supplyspawner/turrets
 	name = "defensive gun emplacement supplies"
-	supply = list(/obj/structure/largecrate/supply/weapons/sentries = 2,
-				/obj/structure/largecrate/supply/weapons/standard_hmg = 2,
-				/obj/structure/largecrate/supply/ammo/sentry = 1,
-				/obj/structure/largecrate/supply/ammo/standard_hmg = 1
-				)
+	supply = list(
+		/obj/structure/largecrate/supply/weapons/sentries = 2,
+		/obj/structure/largecrate/supply/weapons/standard_hmg = 2,
+		/obj/structure/largecrate/supply/ammo/sentry = 1,
+		/obj/structure/largecrate/supply/ammo/standard_hmg = 1,
+	)
 
 /obj/effect/landmark/supplyspawner/food
 	name = "food crate supplies"

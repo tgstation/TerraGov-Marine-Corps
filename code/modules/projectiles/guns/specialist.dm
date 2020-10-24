@@ -621,9 +621,10 @@
 	aim_slowdown = 1.2
 	general_codex_key = "explosive weapons"
 	attachable_allowed = list(
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/flashlight,
-						/obj/item/attachable/scope/mini)
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/scope/mini,
+	)
 
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	starting_attachment_types = list(/obj/item/attachable/stock/t70stock)
@@ -956,8 +957,9 @@
 	aim_slowdown = 1.75
 	general_codex_key = "explosive weapons"
 	attachable_allowed = list(
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/scope/mini)
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/mini,
+	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_FIREARMS
@@ -1016,8 +1018,9 @@
 	aim_slowdown = 1
 	general_codex_key = "explosive weapons"
 	attachable_allowed = list(
-						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/scope/mini)
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/mini,
+	)
 
 	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_FIREARMS
@@ -1089,8 +1092,7 @@
 	aim_slowdown = 0.8
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
-	attachable_allowed = list(
-						/obj/item/attachable/flashlight)
+	attachable_allowed = list(/obj/item/attachable/flashlight)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
 
 	fire_delay = 0.175 SECONDS

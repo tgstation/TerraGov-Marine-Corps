@@ -352,7 +352,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/attachable/extended_barrel = list(CAT_ATT, "Extended barrel", 0,"orange"),
 		/obj/item/attachable/compensator = list(CAT_ATT, "Recoil compensator", 0,"black"),
 		/obj/item/attachable/magnetic_harness = list(CAT_ATT, "Magnetic harness", 0,"orange"),
- 		/obj/item/attachable/reddot = list(CAT_ATT, "Red dot sight", 0,"black"),
+		/obj/item/attachable/reddot = list(CAT_ATT, "Red dot sight", 0,"black"),
 		/obj/item/attachable/lasersight = list(CAT_ATT, "Laser sight", 0,"black"),
 		/obj/item/attachable/verticalgrip = list(CAT_ATT, "Vertical grip", 0,"black"),
 		/obj/item/attachable/scope/mini = list(CAT_ATT, "Mini scope", 0,"black"),
@@ -1151,139 +1151,139 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 
 /obj/effect/essentials_set/basic
 	spawned_gear_list = list(
-						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine/full,
-						/obj/item/storage/box/MRE,
-						)
+		/obj/item/clothing/under/marine,
+		/obj/item/clothing/shoes/marine/full,
+		/obj/item/storage/box/MRE,
+	)
 
 /obj/effect/essentials_set/basicmodular
 	spawned_gear_list = list(
-						/obj/item/clothing/under/marine/jaeger,
-						/obj/item/clothing/suit/modular,
-						/obj/item/clothing/shoes/marine/full,
-						/obj/item/storage/box/MRE,
-						/obj/item/facepaint/green,
-						)
+		/obj/item/clothing/under/marine/jaeger,
+		/obj/item/clothing/suit/modular,
+		/obj/item/clothing/shoes/marine/full,
+		/obj/item/storage/box/MRE,
+		/obj/item/facepaint/green,
+	)
 
 /obj/effect/essentials_set/basic_smartgunner
 	spawned_gear_list = list(
-						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine/full,
-						/obj/item/storage/box/MRE
-						)
+		/obj/item/clothing/under/marine,
+		/obj/item/clothing/shoes/marine/full,
+		/obj/item/storage/box/MRE,
+	)
 
 /obj/effect/essentials_set/basic_smartgunnermodular
 	spawned_gear_list = list(
-						/obj/item/clothing/under/marine/jaeger,
-						/obj/item/clothing/suit/modular,
-						/obj/item/clothing/shoes/marine/full,
-						/obj/item/storage/box/MRE,
-						/obj/item/facepaint/green,
-						)
+		/obj/item/clothing/under/marine/jaeger,
+		/obj/item/clothing/suit/modular,
+		/obj/item/clothing/shoes/marine/full,
+		/obj/item/storage/box/MRE,
+		/obj/item/facepaint/green,
+	)
 
 /obj/effect/essentials_set/basic_specialist
 	spawned_gear_list = list(
-						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine/full,
-						/obj/item/storage/box/MRE
-						)
+		/obj/item/clothing/under/marine,
+		/obj/item/clothing/shoes/marine/full,
+		/obj/item/storage/box/MRE,
+	)
 
 /obj/effect/essentials_set/basic_squadleader
 	spawned_gear_list = list(
-						/obj/item/clothing/suit/storage/marine/pasvest,
-						/obj/item/clothing/head/helmet/marine/leader,
-						/obj/item/clothing/glasses/hud/health,
-						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine/full,
-						/obj/item/storage/box/MRE
-						)
+		/obj/item/clothing/suit/storage/marine/pasvest,
+		/obj/item/clothing/head/helmet/marine/leader,
+		/obj/item/clothing/glasses/hud/health,
+		/obj/item/clothing/under/marine,
+		/obj/item/clothing/shoes/marine/full,
+		/obj/item/storage/box/MRE,
+	)
 
 /obj/effect/essentials_set/basic_commander
 	spawned_gear_list = list(
-						/obj/item/clothing/suit/storage/marine/pasvest,
-						/obj/item/clothing/head/helmet/marine/leader,
-						/obj/item/clothing/glasses/hud/health,
-						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine/full,
-						/obj/item/storage/box/MRE
-						)
+		/obj/item/clothing/suit/storage/marine/pasvest,
+		/obj/item/clothing/head/helmet/marine/leader,
+		/obj/item/clothing/glasses/hud/health,
+		/obj/item/clothing/under/marine,
+		/obj/item/clothing/shoes/marine/full,
+		/obj/item/storage/box/MRE,
+	)
 
 /obj/effect/essentials_set/basic_squadleadermodular
 	spawned_gear_list = list(
-						/obj/item/clothing/under/marine/jaeger,
-						/obj/item/clothing/suit/modular,
-						/obj/item/clothing/head/helmet/marine/leader,
-						/obj/item/clothing/glasses/hud/health,
-						/obj/item/clothing/shoes/marine/full,
-						/obj/item/storage/box/MRE,
-						/obj/item/facepaint/green,
-						)
+		/obj/item/clothing/under/marine/jaeger,
+		/obj/item/clothing/suit/modular,
+		/obj/item/clothing/head/helmet/marine/leader,
+		/obj/item/clothing/glasses/hud/health,
+		/obj/item/clothing/shoes/marine/full,
+		/obj/item/storage/box/MRE,
+		/obj/item/facepaint/green,
+	)
 
 /obj/effect/essentials_set/basic_medic
 	spawned_gear_list = list(
-						/obj/item/clothing/head/helmet/marine/corpsman,
-						/obj/item/clothing/glasses/hud/health,
-						/obj/item/clothing/under/marine/corpsman,
-						/obj/item/clothing/shoes/marine/full,
-						/obj/item/storage/box/MRE
-						)
+		/obj/item/clothing/head/helmet/marine/corpsman,
+		/obj/item/clothing/glasses/hud/health,
+		/obj/item/clothing/under/marine/corpsman,
+		/obj/item/clothing/shoes/marine/full,
+		/obj/item/storage/box/MRE,
+	)
 
 /obj/effect/essentials_set/basic_medicmodular
 	spawned_gear_list = list(
-						/obj/item/clothing/under/marine/jaeger,
-						/obj/item/clothing/suit/modular,
-						/obj/item/clothing/head/helmet/marine/corpsman,
-						/obj/item/clothing/glasses/hud/health,
-						/obj/item/clothing/shoes/marine/full,
-						/obj/item/storage/box/MRE,
-						/obj/item/facepaint/green,
-						)
+		/obj/item/clothing/under/marine/jaeger,
+		/obj/item/clothing/suit/modular,
+		/obj/item/clothing/head/helmet/marine/corpsman,
+		/obj/item/clothing/glasses/hud/health,
+		/obj/item/clothing/shoes/marine/full,
+		/obj/item/storage/box/MRE,
+		/obj/item/facepaint/green,
+	)
 
 /obj/effect/essentials_set/basic_engineer
 	spawned_gear_list = list(
-						/obj/item/clothing/head/helmet/marine/tech,
-						/obj/item/clothing/glasses/welding,
-						/obj/item/clothing/under/marine/engineer,
-						/obj/item/clothing/shoes/marine/full,
-						/obj/item/storage/box/MRE,
-						/obj/item/clothing/gloves/marine/insulated,
-						)
+		/obj/item/clothing/head/helmet/marine/tech,
+		/obj/item/clothing/glasses/welding,
+		/obj/item/clothing/under/marine/engineer,
+		/obj/item/clothing/shoes/marine/full,
+		/obj/item/storage/box/MRE,
+		/obj/item/clothing/gloves/marine/insulated,
+	)
 
 /obj/effect/essentials_set/basic_engineermodular
 	spawned_gear_list = list(
-						/obj/item/clothing/under/marine/jaeger,
-						/obj/item/clothing/suit/modular,
-						/obj/item/clothing/head/helmet/marine/tech,
-						/obj/item/clothing/glasses/welding,
-						/obj/item/clothing/shoes/marine/full,
-						/obj/item/storage/box/MRE,
-						/obj/item/clothing/gloves/marine/insulated,
-						/obj/item/facepaint/green,
-						)
+		/obj/item/clothing/under/marine/jaeger,
+		/obj/item/clothing/suit/modular,
+		/obj/item/clothing/head/helmet/marine/tech,
+		/obj/item/clothing/glasses/welding,
+		/obj/item/clothing/shoes/marine/full,
+		/obj/item/storage/box/MRE,
+		/obj/item/clothing/gloves/marine/insulated,
+		/obj/item/facepaint/green,
+	)
 
 /obj/effect/essentials_set/medic
 	spawned_gear_list = list(
-						/obj/item/bodybag/cryobag,
-						/obj/item/defibrillator,
-						/obj/item/healthanalyzer,
-						/obj/item/roller/medevac,
-						/obj/item/medevac_beacon,
-						/obj/item/roller,
-						/obj/item/reagent_containers/hypospray/advanced/oxycodone,
-						/obj/item/storage/firstaid/adv,
-						)
+		/obj/item/bodybag/cryobag,
+		/obj/item/defibrillator,
+		/obj/item/healthanalyzer,
+		/obj/item/roller/medevac,
+		/obj/item/medevac_beacon,
+		/obj/item/roller,
+		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
+		/obj/item/storage/firstaid/adv,
+	)
 
 /obj/effect/essentials_set/engi
 	spawned_gear_list = list(
-						/obj/item/explosive/plastique,
-						/obj/item/explosive/grenade/chem_grenade/razorburn_smol,
-						/obj/item/stack/sandbags_empty = 25,
-						/obj/item/stack/sheet/metal/small_stack,
-						/obj/item/cell/high,
-						/obj/item/tool/shovel/etool,
-						/obj/item/lightreplacer,
-						/obj/item/circuitboard/general,
-						)
+		/obj/item/explosive/plastique,
+		/obj/item/explosive/grenade/chem_grenade/razorburn_smol,
+		/obj/item/stack/sandbags_empty = 25,
+		/obj/item/stack/sheet/metal/small_stack,
+		/obj/item/cell/high,
+		/obj/item/tool/shovel/etool,
+		/obj/item/lightreplacer,
+		/obj/item/circuitboard/general,
+	)
 
 /obj/effect/essentials_set/leader
 	spawned_gear_list = list(
@@ -1299,15 +1299,15 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 
 /obj/effect/essentials_set/commander
 	spawned_gear_list = list(
-						/obj/item/squad_beacon,
-						/obj/item/squad_beacon/bomb,
-						/obj/item/healthanalyzer,
-						/obj/item/roller/medevac,
-						/obj/item/medevac_beacon,
-						/obj/item/whistle,
-						/obj/item/radio,
-						/obj/item/motiondetector,
-						)
+		/obj/item/squad_beacon,
+		/obj/item/squad_beacon/bomb,
+		/obj/item/healthanalyzer,
+		/obj/item/roller/medevac,
+		/obj/item/medevac_beacon,
+		/obj/item/whistle,
+		/obj/item/radio,
+		/obj/item/motiondetector,
+	)
 
 /obj/effect/essentials_set/synth
 	spawned_gear_list = list(
@@ -1325,48 +1325,48 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 /obj/effect/essentials_set/modular/infantry
 	desc = "A set of medium Infantry pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
 	spawned_gear_list = list(
-						/obj/item/clothing/head/modular/marine,
-						/obj/item/armor_module/armor/chest/marine,
-						/obj/item/armor_module/armor/arms/marine,
-						/obj/item/armor_module/armor/legs/marine,
-						)
+		/obj/item/clothing/head/modular/marine,
+		/obj/item/armor_module/armor/chest/marine,
+		/obj/item/armor_module/armor/arms/marine,
+		/obj/item/armor_module/armor/legs/marine,
+	)
 
 /obj/effect/essentials_set/modular/eva
 	desc = "A set of medium EVA pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
 	spawned_gear_list = list(
-						/obj/item/clothing/head/modular/marine/eva,
-						/obj/item/clothing/head/modular/marine/eva/skull,
-						/obj/item/armor_module/armor/chest/marine/eva,
-						/obj/item/armor_module/armor/arms/marine/eva,
-						/obj/item/armor_module/armor/legs/marine/eva,
-						)
+		/obj/item/clothing/head/modular/marine/eva,
+		/obj/item/clothing/head/modular/marine/eva/skull,
+		/obj/item/armor_module/armor/chest/marine/eva,
+		/obj/item/armor_module/armor/arms/marine/eva,
+		/obj/item/armor_module/armor/legs/marine/eva,
+	)
 
 /obj/effect/essentials_set/modular/skirmisher
 	desc = "A set of light Skirmisher pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
 	spawned_gear_list = list(
-						/obj/item/clothing/head/modular/marine/skirmisher,
-						/obj/item/armor_module/armor/chest/marine/skirmisher,
-						/obj/item/armor_module/armor/arms/marine/skirmisher,
-						/obj/item/armor_module/armor/legs/marine/skirmisher,
-						)
+		/obj/item/clothing/head/modular/marine/skirmisher,
+		/obj/item/armor_module/armor/chest/marine/skirmisher,
+		/obj/item/armor_module/armor/arms/marine/skirmisher,
+		/obj/item/armor_module/armor/legs/marine/skirmisher,
+	)
 
 /obj/effect/essentials_set/modular/assault
 	desc = "A set of heavy Assault pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
 	spawned_gear_list = list(
-						/obj/item/clothing/head/modular/marine/assault,
-						/obj/item/armor_module/armor/chest/marine/assault,
-						/obj/item/armor_module/armor/arms/marine/assault,
-						/obj/item/armor_module/armor/legs/marine/assault,
-						)
+		/obj/item/clothing/head/modular/marine/assault,
+		/obj/item/armor_module/armor/chest/marine/assault,
+		/obj/item/armor_module/armor/arms/marine/assault,
+		/obj/item/armor_module/armor/legs/marine/assault,
+	)
 
 /obj/effect/essentials_set/modular/eod
 	desc = "A set of heavy EOD pattern Jaeger armor, including an exoskeleton, helmet, and armor plates."
 	spawned_gear_list = list(
-						/obj/item/clothing/head/modular/marine/eod,
-						/obj/item/armor_module/armor/chest/marine/assault/eod,
-						/obj/item/armor_module/armor/arms/marine/eod,
-						/obj/item/armor_module/armor/legs/marine/eod,
-						)
+		/obj/item/clothing/head/modular/marine/eod,
+		/obj/item/armor_module/armor/chest/marine/assault/eod,
+		/obj/item/armor_module/armor/arms/marine/eod,
+		/obj/item/armor_module/armor/legs/marine/eod,
+	)
 
 #undef MARINE_CAN_BUY_UNIFORM
 #undef MARINE_CAN_BUY_SHOES

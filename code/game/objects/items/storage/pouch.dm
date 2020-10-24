@@ -123,7 +123,8 @@
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical/bruise_pack,
 		/obj/item/storage/pill_bottle/packet/tricordrazine,
-		/obj/item/stack/medical/splint)
+		/obj/item/stack/medical/splint,
+	)
 
 /obj/item/storage/pouch/firstaid/full
 	desc = "Standard marine first-aid pouch. Contains a painkiller autoinjector, a soothing pill packet, splints, some ointment, and some bandages."
@@ -165,7 +166,8 @@
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical/bruise_pack,
 		/obj/item/storage/pill_bottle/packet/tricordrazine,
-		/obj/item/stack/medical/splint)
+		/obj/item/stack/medical/splint,
+	)
 
 
 /obj/item/storage/pouch/firstaid/som/full
@@ -247,7 +249,8 @@
 	can_hold = list(
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/ammo_magazine/revolver,
-		/obj/item/ammo_magazine/smg/standard_machinepistol)
+		/obj/item/ammo_magazine/smg/standard_machinepistol,
+	)
 
 /obj/item/storage/pouch/magazine/pistol/large
 	name = "pistol magazine pouch"
@@ -377,7 +380,8 @@
 		/obj/item/stack/medical,
 		/obj/item/flashlight/pen,
 		/obj/item/storage/pill_bottle/packet,
-		/obj/item/reagent_containers/hypospray)
+		/obj/item/reagent_containers/hypospray,
+	)
 
 /obj/item/storage/pouch/medical/full/Initialize()
 	. = ..()
@@ -460,7 +464,8 @@
 		/obj/item/stack/medical,
 		/obj/item/flashlight/pen,
 		/obj/item/storage/pill_bottle/packet,
-		/obj/item/reagent_containers/hypospray)
+		/obj/item/reagent_containers/hypospray,
+	)
 
 /obj/item/storage/pouch/medkit/full/Initialize()
 	. = ..()
