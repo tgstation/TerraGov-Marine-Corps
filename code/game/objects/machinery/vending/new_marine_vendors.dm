@@ -16,10 +16,11 @@
 
 #define MARINE_CAN_BUY_WEBBING		(1 << 15)
 #define MARINE_CAN_BUY_MODULE		(1 << 16)
+#define MARINE_CAN_BUY_ARMORMOD		(1 << 17)
 
 
 
-#define MARINE_CAN_BUY_ALL			((1 << 17) - 1)
+#define MARINE_CAN_BUY_ALL			((1 << 18) - 1)
 
 #define MARINE_TOTAL_BUY_POINTS		45
 
@@ -37,6 +38,7 @@
 #define CAT_MAS "MASKS"
 #define CAT_ATT "GUN ATTACHMENTS"
 #define CAT_MOD "JAEGER STORAGE MODULES"
+#define CAT_ARMMOD "JAEGER ARMOR MODULES"
 
 #define CAT_MEDSUP "MEDICAL SUPPLIES"
 #define CAT_ENGSUP "ENGINEERING SUPPLIES"
@@ -48,6 +50,7 @@
 
 GLOBAL_LIST_INIT(marine_selector_cats, list(
 		CAT_MOD = list(MARINE_CAN_BUY_MODULE),
+		CAT_ARMMOD = list(MARINE_CAN_BUY_ARMORMOD),
 		CAT_STD = list(MARINE_CAN_BUY_UNIFORM),
 		CAT_SHO = list(MARINE_CAN_BUY_SHOES),
 		CAT_HEL = list(MARINE_CAN_BUY_HELMET),
@@ -298,6 +301,7 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		CAT_MAS = list(MARINE_CAN_BUY_MASK),
 		CAT_ATT = list(MARINE_CAN_BUY_ATTACHMENT,MARINE_CAN_BUY_ATTACHMENT2),
 		CAT_MOD = list(MARINE_CAN_BUY_MODULE),
+		CAT_ARMMOD = list(MARINE_CAN_BUY_ARMORMOD),
 	)
 
 	listed_products = list(
@@ -359,6 +363,8 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/attachable/angledgrip = list(CAT_ATT, "Angled grip", 0,"orange"),
 		/obj/item/attachable/stock/t35stock = list(CAT_ATT, "T-35 stock", 0,"black"),
 		/obj/item/attachable/stock/t19stock = list(CAT_ATT, "T-19 machine pistol stock", 0,"black"),
+		/obj/effect/essentials_set/mimir = list(CAT_ARMMOD, "Mark 1 Mimir Resistance set", 0,"black"),
+		/obj/item/armor_module/attachable/tyr_extra_armor/mark1 = list(CAT_ARMMOD, "Tyr mark 1 extra armor module", 0,"black"),
 	)
 
 
@@ -432,6 +438,8 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/mask/gas/tactical/coif = list(CAT_MAS, "Tactical coifed gas mask", 0,"black"),
 		/obj/item/clothing/mask/rebreather/scarf = list(CAT_MAS, "Heat absorbent coif", 0, "black"),
 		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
+		/obj/effect/essentials_set/mimir = list(CAT_ARMMOD, "Mark 1 Mimir Resistance set", 0,"black"),
+		/obj/item/armor_module/attachable/tyr_extra_armor/mark1 = list(CAT_ARMMOD, "Tyr mark 1 extra armor module", 0,"black"),
 	)
 
 /obj/machinery/marine_selector/clothes/engi/alpha
@@ -496,6 +504,8 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/mask/gas/tactical/coif = list(CAT_MAS, "Tactical coifed gas mask", 0,"black"),
 		/obj/item/clothing/mask/rebreather/scarf = list(CAT_MAS, "Heat absorbent coif", 0, "black"),
 		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
+		/obj/effect/essentials_set/mimir = list(CAT_ARMMOD, "Mark 1 Mimir Resistance set", 0,"black"),
+		/obj/item/armor_module/attachable/tyr_extra_armor/mark1 = list(CAT_ARMMOD, "Tyr mark 1 extra armor module", 0,"black"),
 	)
 
 
@@ -568,6 +578,8 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/mask/gas/tactical/coif = list(CAT_MAS, "Tactical coifed gas mask", 0,"black"),
 		/obj/item/clothing/mask/rebreather/scarf = list(CAT_MAS, "Heat absorbent coif", 0, "black"),
 		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
+		/obj/effect/essentials_set/mimir = list(CAT_ARMMOD, "Mark 1 Mimir Resistance set", 0,"black"),
+		/obj/item/armor_module/attachable/tyr_extra_armor/mark1 = list(CAT_ARMMOD, "Tyr mark 1 extra armor module", 0,"black"),
 	)
 
 
@@ -631,6 +643,8 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/mask/gas/tactical/coif = list(CAT_MAS, "Tactical coifed gas mask", 0,"black"),
 		/obj/item/clothing/mask/rebreather/scarf = list(CAT_MAS, "Heat absorbent coif", 0, "black"),
 		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
+		/obj/effect/essentials_set/mimir = list(CAT_ARMMOD, "Mark 1 Mimir Resistance set", 0,"black"),
+		/obj/item/armor_module/attachable/tyr_extra_armor/mark1 = list(CAT_ARMMOD, "Tyr mark 1 extra armor module", 0,"black"),
 	)
 
 /obj/machinery/marine_selector/clothes/specialist/Initialize()
@@ -711,6 +725,8 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/mask/gas/tactical/coif = list(CAT_MAS, "Tactical coifed gas mask", 0,"black"),
 		/obj/item/clothing/mask/rebreather/scarf = list(CAT_MAS, "Heat absorbent coif", 0, "black"),
 		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
+		/obj/effect/essentials_set/mimir = list(CAT_ARMMOD, "Mark 1 Mimir Resistance set", 0,"black"),
+		/obj/item/armor_module/attachable/tyr_extra_armor/mark1 = list(CAT_ARMMOD, "Tyr mark 1 extra armor module", 0,"black"),
 	)
 
 
@@ -785,6 +801,8 @@ GLOBAL_LIST_INIT(marine_selector_cats, list(
 		/obj/item/clothing/head/headband/red = list(CAT_HEL, "FC Headband", 0, "black"),
 		/obj/item/clothing/head/tgmcberet/fc = list(CAT_HEL, "FC Beret", 0, "black"),
 		/obj/item/clothing/head/helmet/marine/leader = list(CAT_HEL, "FC Helmet", 0, "black"),
+		/obj/effect/essentials_set/mimir = list(CAT_ARMMOD, "Mark 1 Mimir Resistance set", 0,"black"),
+		/obj/item/armor_module/attachable/tyr_extra_armor/mark1 = list(CAT_ARMMOD, "Tyr mark 1 extra armor module", 0,"black"),
 	)
 
 
@@ -1366,6 +1384,14 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 						/obj/item/armor_module/armor/chest/marine/assault/eod,
 						/obj/item/armor_module/armor/arms/marine/eod,
 						/obj/item/armor_module/armor/legs/marine/eod,
+						)
+
+/obj/effect/essentials_set/mimir
+	desc = "A set of anti-gas gear setup to protect one from gas threats."
+	spawned_gear_list = list(
+						/obj/item/helmet_module/attachable/mimir_environment_protection/mark1,
+						/obj/item/clothing/mask/gas/tactical,
+						/obj/item/armor_module/attachable/mimir_environment_protection/mark1,
 						)
 
 #undef MARINE_CAN_BUY_UNIFORM

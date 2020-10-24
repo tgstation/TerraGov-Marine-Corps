@@ -99,7 +99,7 @@
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. A substantial amount of additional armor plating designed to fit inside some of the vulnerable portions of the Jaeger Combat Exoskeleton conventional armor patterns. Will definitely impact mobility."
 	icon_state = "mod_armor_icon"
 	item_state = "mod_armor"
-	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 15, "bio" = 15, "rad" = 15, "fire" = 15, "acid" = 15)
 	slowdown = 0.3
 
 /obj/item/armor_module/attachable/tyr_extra_armor/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
@@ -112,11 +112,17 @@
 	parent.slowdown -= slowdown
 	return ..()
 
+/obj/item/armor_module/attachable/tyr_extra_armor/mark1
+	name = "\improper Tyr Armor Reinforcement"
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. A substantial amount of additional armor plating designed to fit inside some of the vulnerable portions of the Jaeger Combat Exoskeleton conventional armor patterns. This older version has worse protection. Will definitely impact mobility."
+	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 10, "fire" = 10, "acid" = 10)
+	slowdown = 0.3
+
 
 /** Environment protecttion module */
 /obj/item/armor_module/attachable/mimir_environment_protection
-	name = "\improper Mimir Environmental Resistance System"
-	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. When activated, this system provides substantial resistance to environmental hazards, such as gases, acidic elements, and radiological exposure. Best paired with the Mimir Environmental Helmet System. Will impact mobility." // Add the toggable thing to the description when you are done, okay? ~XS300
+	name = "\improper Mimir Environmental Resistance System Mark 2"
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. When activated, this system provides substantial resistance to environmental hazards, such as gases, and radiological exposure. This newer version provides resistance to acid. Best paired with the Mimir Environmental Helmet System and a gas mask. Will impact mobility." // Add the toggable thing to the description when you are done, okay? ~XS300
 	icon_state = "mod_biohazard_icon"
 	item_state = "mod_biohazard"
 	soft_armor = list("bio" = 20, "rad" = 50, "acid" = 20)
@@ -141,6 +147,16 @@
 	parent.gas_transfer_coefficient -= siemens_coefficient_mod
 	parent.slowdown -= slowdown
 	return ..()
+
+// The mark 1 version, made to protect you from just gas.
+/obj/item/armor_module/attachable/mimir_environment_protection/mark1
+	name = "\improper Mimir Environmental Resistance System Mark 1"
+	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. When activated, this system provides substantial resistance to environmental hazards, such as gases and radiological exposure. This older version provides no protection to acid. Best paired with the Mimir Environmental Helmet System. Will impact mobility." // Add the toggable thing to the description when you are done, okay? ~XS300
+	icon_state = "mod_biohazard_icon"
+	item_state = "mod_biohazard"
+	soft_armor = null //None, nada. This is made to protect you from gas and nothing else.
+	slowdown = 0.2 //So it isn't literally 100% better than running stock jaeger.
+	module_type = ARMOR_MODULE_TOGGLE
 
 /obj/item/armor_module/attachable/hlin_explosive_armor
 	name = "Hlin Explosive Compensation Module"
