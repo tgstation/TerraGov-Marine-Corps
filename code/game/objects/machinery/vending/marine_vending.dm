@@ -136,6 +136,7 @@
 					/obj/item/explosive/grenade/cloakbomb = 25,
 					/obj/item/storage/box/m94 = 30,
 					/obj/item/storage/box/recoilless_system = 1,
+					/obj/item/weapon/shield/riot/marine = 3,
 					)
 
 	premium = list()
