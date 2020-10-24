@@ -156,9 +156,9 @@
 	///Action to stop the eye
 	var/datum/action/innate/camera_off/cas/off_action
 	///Number for how much fuel we have left, this x15 seconds is how much time we have while flying
-	var/fuel_left = 30
+	var/fuel_left = 40
 	///How much fuel we can hold maximum
-	var/fuel_max = 30
+	var/fuel_max = 40
 	///Our currently selected weapon we will fire
 	var/obj/structure/dropship_equipment/weapon/active_weapon
 
@@ -174,10 +174,10 @@
 
 /obj/docking_port/mobile/marine_dropship/casplane/process()
 	fuel_left--
-	if((fuel_left <= 0) && (state == PLANE_STATE_FLYING))
+	if((fuel_left <= 10) && (state == PLANE_STATE_FLYING))
+		to_chat(chair.occupant, "<span class='warning'>Out of fuel, landing.</span>")
 		SSshuttle.moveShuttle(id, "casplane", TRUE)
 		end_cas_mission(chair.occupant)
-		turn_off_engines()
 
 
 /obj/docking_port/mobile/marine_dropship/casplane/on_ignition()
@@ -192,6 +192,9 @@
 
 /obj/docking_port/mobile/marine_dropship/casplane/on_prearrival()
 	. = ..()
+	if(fuel_left <= 10)
+		turn_off_engines()
+		return
 	for(var/i in engines)
 		var/obj/structure/caspart/internalengine/engine = i
 		engine.cut_overlays()
