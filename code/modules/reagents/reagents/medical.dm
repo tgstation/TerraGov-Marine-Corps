@@ -429,10 +429,12 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
 
-/datum/reagent/medicine/hyroalin/on_mob_life(mob/living/L)
+/datum/reagent/medicine/hyronalin/on_mob_life(mob/living/L)
 	L.adjustToxLoss(-3*REM)
 	if(prob(50))
 		L.take_limb_damage(2*REM, 0)
+	if(L.reagents.get_reagent_amount(/datum/reagent/medicine/neuraline)) //powergamer be gone.
+		L.adjustToxLoss(10)
 	return ..()
 
 /datum/reagent/medicine/hyronalin/overdose_process(mob/living/L, metabolism)
@@ -453,6 +455,8 @@
 	L.adjustToxLoss(-4*REM)
 	if(prob(50))
 		L.take_limb_damage(3*REM, 0)
+	if(L.reagents.get_reagent_amount(/datum/reagent/medicine/neuraline)) //powergamer be gone.
+		L.adjustToxLoss(10)
 	return ..()
 
 /datum/reagent/medicine/arithrazine/overdose_process(mob/living/L, metabolism)
@@ -477,6 +481,8 @@
 	L.adjustToxLoss(-5*REM)
 	if(prob(75))
 		L.take_limb_damage(6*REM, 0)
+	if(L.reagents.get_reagent_amount(/datum/reagent/medicine/neuraline)) //powergamer be gone.
+		L.adjustToxLoss(10)
 	return ..()
 
 /datum/reagent/medicine/russianred/overdose_process(mob/living/L, metabolism)

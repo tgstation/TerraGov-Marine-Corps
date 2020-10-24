@@ -199,3 +199,19 @@
 	volume = 1
 	icon_state = "autoinjector-6"
 	list_reagents = list(/datum/reagent/medicine/roulettium = 1)
+
+/obj/item/reagent_containers/hypospray/autoinjector/hyronalin
+	name = "Roulettium autoinjector"
+	desc = "An auto-injector loaded with one shot of roulettium, an extremely powerful panacea. !THIS HAS A CHANCE OF UNRECOVERABLE DEATH!"
+	amount_per_transfer_from_this = 5
+	volume = 20
+	icon_state = "autoinjector-6"
+	list_reagents = list(/datum/reagent/medicine/hyronalin = 20)
+
+/obj/item/reagent_containers/hypospray/autoinjector/arithrazine
+	name = "Roulettium autoinjector"
+	desc = "An auto-injector loaded with one shot of roulettium, an extremely powerful panacea. !THIS HAS A CHANCE OF UNRECOVERABLE DEATH!"
+	amount_per_transfer_from_this = 5
+	volume = 20
+	icon_state = "autoinjector-6"
+	list_reagents = list(/datum/reagent/medicine/arithrazine = 20)
