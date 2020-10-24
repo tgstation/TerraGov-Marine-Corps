@@ -766,3 +766,15 @@
 	desc = "A set of traditional United Rebel Front body armor. Provides decent protection against small arms and bladed objects."
 	icon_state = "innie_warlord"
 	item_state = "innie_warlord"
+
+//gcpd
+
+/obj/item/clothing/suit/storage/marine/gcpd
+	name = "PD-M Body Armor"
+	desc = "A set of Colonial Police protective body armor. Provides decent protection against small arms and bladed objects."
+	icon_state = "gcpd_m"
+	item_state = "gcpd_m"
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS|HANDS|FEET
+	soft_armor = list("melee" = 55, "bullet" = 40, "laser" = 30, "energy" = 45, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
+	flags_item_map_variant = NONE

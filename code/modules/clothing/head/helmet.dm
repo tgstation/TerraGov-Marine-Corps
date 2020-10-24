@@ -684,3 +684,28 @@
 	desc = "A piece of traditonal headwear, many insurrectionist warlords favor this over regular clothing."
 	icon_state = "innie_warlord"
 	item_state = "innie_warlord"
+
+//gcpd
+
+
+/obj/item/clothing/head/helmet/marine/gcpd
+	name = "PD-M combat helmet"
+	desc = "A Colonial Police combat helmet."
+	icon_state = "gcpd_helmet"
+	item_state = "gcpd_helmet"
+	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 22, "bomb" = 12, "bio" = 50, "rad" = 5, "fire" = 22, "acid" = 45)
+
+/obj/item/clothing/head/helmet/marine/gcpd/visor
+	name = "PD-V combat helmet"
+	desc = "A Colonial Police combat helmet, this one has a visor."
+	icon_state = "gcpd_helmet_visor"
+	item_state = "gcpd_helmet_visor"
+	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 22, "bomb" = 12, "bio" = 50, "rad" = 5, "fire" = 22, "acid" = 45)
+
+/obj/item/clothing/head/helmet/marine/gcpd/goggles
+	name = "PD-V combat helmet"
+	desc = "A Colonial Police combat helmet, this one has a pair of goggles."
+	icon_state = "gcpd_helmet_g"
+	item_state = "gcpd_helmet_g"
+	soft_armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 22, "bomb" = 12, "bio" = 50, "rad" = 5, "fire" = 22, "acid" = 45)
+

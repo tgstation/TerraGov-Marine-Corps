@@ -39,9 +39,14 @@
 			to_chat(M, "<span class='notice'>You are a survivor of the attack on the colony. You worked or lived in the archaeology colony, and managed to avoid the alien attacks...until now.</span>")
 		if(MAP_LV_624)
 			to_chat(M, "<span class='notice'>You are a survivor of the attack on the colony. You suspected something was wrong and tried to warn others, but it was too late...</span>")
+		if(MAP_UNSC_OUTPOST_HOTEL)
+			to_chat(M, "<span class='notice'>You are a survivor of the attack on the colony. You survived where others died.</span>")
 		else
 			to_chat(M, "<span class='notice'>Through a miracle you managed to survive the attack. But are you truly safe now?</span>")
 
+
+
+//CM Survivors
 
 //Assistant
 /datum/job/survivor/assistant
@@ -93,6 +98,7 @@
 	back = /obj/item/storage/backpack/satchel/med
 
 
+/*
 //Liaison
 /datum/job/survivor/liaison
 	title = "Liaison Survivor"
@@ -124,7 +130,7 @@
 	wear_suit = /obj/item/clothing/suit/armor/bulletproof
 	shoes = /obj/item/clothing/shoes/marine
 	back = /obj/item/storage/backpack/satchel/sec
-
+*/
 
 //Civilian
 /datum/job/survivor/civilian
@@ -240,7 +246,7 @@
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel
 
-
+/*
 //Colonial Marshal
 /datum/job/survivor/marshal
 	title = "Colonial Marshal Survivor"
@@ -256,7 +262,7 @@
 	wear_suit = /obj/item/clothing/suit/storage/CMB
 	shoes = /obj/item/clothing/shoes/jackboots
 	back = /obj/item/storage/backpack/satchel/sec
-
+*/
 
 // Rambo Survivor
 /datum/job/survivor/rambo
@@ -273,3 +279,23 @@
 	shoes = /obj/item/clothing/shoes/ruggedboot
 	back = /obj/item/storage/backpack/satchel/rugged
 	gloves = /obj/item/clothing/gloves/ruggedgloves
+
+
+
+//Halo survivors
+
+//Colonial Police
+/datum/job/survivor/gcpd
+	title = "Colonial Police Survivor"
+	skills_type = /datum/skills/civilian/survivor/marshal
+	outfit = /datum/outfit/job/survivor/marshal
+
+/datum/outfit/job/survivor/gcpd
+	name = "Colonial Police Survivor"
+	jobtype = /datum/job/survivor/gcpd
+
+	w_uniform = /obj/item/clothing/under/marine/gcpd
+	wear_suit = /obj/item/clothing/suit/storage/marine/gcpd
+	shoes = /obj/item/clothing/shoes/marine/gcpd
+	head = /obj/item/clothing/head/helmet/marine/gcpd/visor
+	back = /obj/item/storage/backpack/satchel/sec

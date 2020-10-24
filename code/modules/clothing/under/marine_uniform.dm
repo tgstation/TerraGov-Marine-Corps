@@ -405,3 +405,12 @@
 	item_state = "innie_warlord"
 	rollable_sleeves = FALSE
 
+//gcpd
+
+/obj/item/clothing/under/marine/gcpd
+	name = "Colonial Police Uniform"
+	desc = "A standard-issuse Colonial Police uniform."
+	icon_state = "gcpd_jumpsuit"
+	item_state = "gcpd_jumpsuit"
+	rollable_sleeves = false
+

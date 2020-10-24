@@ -188,3 +188,12 @@
 	desc = "A pair of traditional combat boots that provides minor protection. May protect against toe stubs."
 	icon_state = "innie_warlord"
 	item_state = "innie_warlord"
+
+//gcpd
+
+/obj/item/clothing/shoes/marine/gcpd
+	name = "Colonial Police patrol boots"
+	desc = "A pair of Colonial Police patrol boots, they don't look like they offer much protection."
+	icon_state = "gcpd_boots"
+	item_state = "gcpd_boots"
+	soft_armor = list("melee" = 25, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 25)
