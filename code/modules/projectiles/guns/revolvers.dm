@@ -347,15 +347,15 @@
 	recoil_unwielded = 1
 
 //-------------------------------------------------------
-//M44 MAGNUM REVOLVER //Not actually cannon, but close enough.
+//M-44, based off the SAA.
 
 /obj/item/weapon/gun/revolver/m44
-	name = "\improper M44 combat revolver"
-	desc = "A bulky revolver, occasionally carried by civilian law enforcement. Uses .44 Magnum rounds."
+	name = "\improper M-44 SAA revolver"
+	desc = "A uncommon revolver occasionally carried by civilian law enforcement that's very clearly based off a modernized Single Action Army. Uses .44 Magnum rounds."
 	icon_state = "m44"
 	item_state = "m44"
 	caliber = ".44 Magnum" //codex
-	max_shells = 7 //codex
+	max_shells = 6 //codex
 	current_mag = /obj/item/ammo_magazine/internal/revolver/m44
 	force = 8
 	attachable_allowed = list(
@@ -370,7 +370,7 @@
 						/obj/item/attachable/scope,
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/scope/mini)
-	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 17, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 19)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 22,"rail_x" = 17, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 19)
 
 //-------------------------------------------------------
 //RUSSIAN REVOLVER //Based on the 7.62mm Russian revolvers.

@@ -9057,6 +9057,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
+/obj/structure/orbital_cannon,
 /turf/open/floor/prison/red{
 	dir = 8
 	},
@@ -9213,12 +9214,6 @@
 	},
 /turf/open/floor/freezer,
 /area/sulaco/cap_office)
-"aKo" = (
-/obj/structure/orbital_cannon,
-/turf/open/floor/prison/red{
-	dir = 8
-	},
-/area/mainship/shipboard/weapon_room)
 "aKr" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 6
@@ -10166,13 +10161,10 @@
 /turf/open/floor/plating/platebotc,
 /area/sulaco/medbay/hangar)
 "aPC" = (
+/obj/structure/ship_rail_gun,
 /turf/open/floor/prison/red{
 	dir = 10
 	},
-/area/mainship/shipboard/weapon_room)
-"aPE" = (
-/obj/structure/ship_rail_gun,
-/turf/closed/wall/mainship/gray/outer,
 /area/mainship/shipboard/weapon_room)
 "aPF" = (
 /turf/open/floor/prison/bright_clean,
@@ -13783,12 +13775,12 @@
 /area/sulaco/maintenance/lower_maint)
 "gvt" = (
 /obj/structure/table/mainship,
-/obj/item/weapon/gun/smg/m39,
-/obj/item/ammo_magazine/smg/m39,
+/obj/item/weapon/gun/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
-/obj/item/ammo_magazine/smg/m39,
-/obj/item/ammo_magazine/smg/m39,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
 /turf/open/floor/prison/red/corner{
 	dir = 1
 	},
@@ -39407,13 +39399,13 @@ aIz
 nwU
 aGD
 aJz
-aKo
+aGD
 aGD
 aOT
 aGD
 aGD
 aPC
-aPE
+aIz
 mDu
 qDO
 aaa

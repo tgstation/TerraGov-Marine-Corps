@@ -666,6 +666,26 @@
 		)
 	special_death_message = "You have shut down."
 
+/datum/species/skeleton
+	name = "Skeleton"
+	name_plural = "skeletons"
+	icobase = 'icons/mob/human_races/r_skeleton.dmi'
+	deform = 'icons/mob/human_races/r_skeleton.dmi'
+	unarmed_type = /datum/unarmed_attack/punch
+	speech_verb_override = "rattles"
+	show_paygrade = TRUE
+	count_human = TRUE
+
+	species_flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_CHEM_METABOLIZATION|DETACHABLE_HEAD // Where we're going, we don't NEED underwear.
+
+	screams = list("neuter" = 'sound/voice/skeleton_scream.ogg') // RATTLE ME BONES
+	paincries = list("neuter" = 'sound/voice/skeleton_scream.ogg')
+	goredcries = list("neuter" = 'sound/voice/skeleton_scream.ogg')
+	burstscreams = list("neuter" = 'sound/voice/moth_scream.ogg')
+	death_message = "collapses in a pile of bones, with a final rattle..."
+	death_sound = 'sound/voice/skeleton_scream.ogg'
+	namepool = /datum/namepool/skeleton
+
 /datum/species/synthetic
 	name = "Synthetic"
 	name_plural = "synthetics"

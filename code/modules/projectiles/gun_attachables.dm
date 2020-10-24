@@ -888,23 +888,6 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "m4markstock"
 	flags_attach_features = NONE
 
-
-/obj/item/attachable/stock/smg
-	name = "M39 submachinegun stock"
-	desc = "A rare stock distributed in small numbers to TGMC forces. Compatible with the M39, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
-	slot = "stock"
-	wield_delay_mod = 0.4 SECONDS
-	melee_mod = 5
-	size_mod = 1
-	icon_state = "smgstock"
-	attach_icon = "smgstock_a"
-	pixel_shift_x = 39
-	pixel_shift_y = 11
-	accuracy_mod = 0.15
-	recoil_mod = -3
-	scatter_mod = -20
-	movement_acc_penalty_mod = 0.1
-
 /obj/item/attachable/stock/sx16
 	name = "SX-16 Stock"
 	desc = "The standard stock for the SX-16. Can be removed to make the gun smaller and easier to wield."

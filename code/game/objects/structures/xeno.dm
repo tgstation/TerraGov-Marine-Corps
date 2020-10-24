@@ -615,10 +615,8 @@ TUNNEL
 
 	max_integrity = 140
 	var/mob/living/carbon/xenomorph/hivelord/creator = null
-	var/obj/structure/tunnel/other = null
-	var/id = null //For mapping
 
-/obj/structure/tunnel/Initialize()
+/obj/structure/tunnel/Initialize(mapload)
 	. = ..()
 	GLOB.xeno_tunnels += src
 
@@ -627,29 +625,17 @@ TUNNEL
 	GLOB.xeno_tunnels -= src
 	if(creator)
 		creator.tunnels -= src
-	if(other)
-		other.other = null
-		qdel(other)
 	return ..()
 
 /obj/structure/tunnel/examine(mob/user)
-	..()
+	. = ..()
 	if(!isxeno(user) && !isobserver(user))
 		return
-
-	if(!other)
-		to_chat(user, "<span class='warning'>It does not seem to lead anywhere.</span>")
-	else
-		var/area/A = get_area(other)
-		to_chat(user, "<span class='info'>It seems to lead to <b>[A.name]</b>.</span>")
-		if(tunnel_desc)
-			to_chat(user, "<span class='info'>The Hivelord scent reads: \'[tunnel_desc]\'</span>")
+	if(tunnel_desc)
+		to_chat(user, "<span class='info'>The Hivelord scent reads: \'[tunnel_desc]\'</span>")
 
 /obj/structure/tunnel/deconstruct(disassembled = TRUE)
 	visible_message("<span class='danger'>[src] suddenly collapses!</span>")
-	if(isturf(other?.loc))
-		visible_message("<span class='danger'>[other] suddenly collapses!</span>")
-		QDEL_NULL(other)
 	return ..()
 
 /obj/structure/tunnel/ex_act(severity)
@@ -689,32 +675,33 @@ TUNNEL
 		to_chat(M, "<span class='xenowarning'>We can't climb through a tunnel while immobile.</span>")
 		return FALSE
 
-	if(!other || !isturf(other.loc))
-		to_chat(M, "<span class='warning'>\The [src] doesn't seem to lead anywhere.</span>")
-		return
-
 	if(LAZYLEN(M.stomach_contents))
 		to_chat(M, "<span class='warning'>We must spit out the host inside of us first.</span>")
 		return
 
-	var/distance = get_dist( get_turf(src), get_turf(other) )
+	var/obj/structure/tunnel/targettunnel = input(M, "Choose a tunnel to crawl to", "Tunnel") as null|anything in GLOB.xeno_tunnels
+	if(!targettunnel)
+		return
+	if(targettunnel.z != z)
+		to_chat(M, "<span class='warning'>That tunnel isn't connected to this one!</span>")
+		return
+	var/distance = get_dist(get_turf(src), get_turf(targettunnel))
 	var/tunnel_time = clamp(distance, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_SMALL_MAX_TRAVEL_TIME)
-	var/area/A = get_area(other)
 
 	if(M.mob_size == MOB_SIZE_BIG) //Big xenos take longer
 		tunnel_time = clamp(distance * 1.5, HIVELORD_TUNNEL_MIN_TRAVEL_TIME, HIVELORD_TUNNEL_LARGE_MAX_TRAVEL_TIME)
 		M.visible_message("<span class='xenonotice'>[M] begins heaving their huge bulk down into \the [src].</span>", \
-		"<span class='xenonotice'>We begin heaving our monstrous bulk into \the [src] to <b>[A.name] (X: [A.x], Y: [A.y])</b>.</span>")
+		"<span class='xenonotice'>We begin heaving our monstrous bulk into \the [src] to <b>[targettunnel.tunnel_desc]</b>.</span>")
 	else
 		M.visible_message("<span class='xenonotice'>\The [M] begins crawling down into \the [src].</span>", \
-		"<span class='xenonotice'>We begin crawling down into \the [src] to <b>[A.name] (X: [A.x], Y: [A.y])</b>.</span>")
+		"<span class='xenonotice'>We begin crawling down into \the [src] to <b>[targettunnel.tunnel_desc]</b>.</span>")
 
 	if(isxenolarva(M)) //Larva can zip through near-instantly, they are wormlike after all
 		tunnel_time = 5
 
 	if(do_after(M, tunnel_time, FALSE, src, BUSY_ICON_GENERIC))
-		if(other && isturf(other.loc)) //Make sure the end tunnel is still there
-			M.forceMove(other.loc)
+		if(targettunnel && isturf(targettunnel.loc)) //Make sure the end tunnel is still there
+			M.forceMove(targettunnel.loc)
 			M.visible_message("<span class='xenonotice'>\The [M] pops out of \the [src].</span>", \
 			"<span class='xenonotice'>We pop out through the other side!</span>")
 		else
@@ -927,9 +914,11 @@ TUNNEL
 	X.visible_message("<span class='notice'>[X] starts to cover themselves in a foul substance...</span>", "<span class='xenonotice'>We begin to cover ourselves in a foul substance...</span>")
 	if(!do_after(X, 2 SECONDS, TRUE, X, BUSY_ICON_MEDICAL))
 		return
+	if(X.fire_resist_modifier <= -20)
+		return
 	activate_jelly(X)
 
-/obj/item/resin_jelly/attack_self(mob/user)
+/obj/item/resin_jelly/attack_self(mob/living/carbon/xenomorph/user)
 	if(!isxeno(user))
 		return
 	if(user.action_busy)
@@ -937,38 +926,39 @@ TUNNEL
 	user.visible_message("<span class='notice'>[user] starts to cover themselves in a foul substance...</span>", "<span class='xenonotice'>We begin to cover ourselves in a foul substance...</span>")
 	if(!do_after(user, 2 SECONDS, TRUE, user, BUSY_ICON_MEDICAL))
 		return
+	if(user.fire_resist_modifier <= -20)
+		return
 	activate_jelly(user)
 
-/obj/item/resin_jelly/attack(mob/living/M, mob/living/user)
+/obj/item/resin_jelly/attack(mob/living/carbon/xenomorph/M, mob/living/user)
 	if(!isxeno(user))
 		return TRUE
 	if(!isxeno(M))
 		to_chat(user, "<span class='xenonotice'>We cannot apply the [src] to this creature.</span>")
 		return FALSE
 	if(user.action_busy)
-		return
+		return FALSE
 	if(!do_after(user, 1 SECONDS, TRUE, M, BUSY_ICON_MEDICAL))
+		return FALSE
+	if(M.fire_resist_modifier <= -20)
 		return FALSE
 	user.visible_message("<span class='notice'>[user] smears a viscous substance on [M].</span>","<span class='xenonotice'>We carefully smear [src] onto [user].</span>")
 	activate_jelly(M)
+	user.temporarilyRemoveItemFromInventory(src)
 	return FALSE
 
 /obj/item/resin_jelly/proc/activate_jelly(mob/living/carbon/xenomorph/user)
-	if(user.fire_resist_modifier >= 1)
-		user.visible_message("<span class='notice'>[user]'s chitin shrugs off the [src].</span>", "<span class='xenonotice'>The [src] slides off our chitin, as we are already immune to fire.</span>")
-		qdel(src)
-		return
 	user.visible_message("<span class='notice'>[user]'s chitin begins to gleam with an unseemly glow...</span>", "<span class='xenonotice'>We feel powerful as we are covered in [src]!</span>")
 	user.emote("roar")
 	var/anger_filter = filter(type = "outline", size = 1, color = COLOR_RED)
 	user.filters += anger_filter
-	user.fire_resist_modifier += 1
+	user.fire_resist_modifier -= 20
 	forceMove(user)//keep it here till the timer finishes
 	user.temporarilyRemoveItemFromInventory(src)
 	addtimer(CALLBACK(src, .proc/deactivate_jelly, anger_filter, user), immune_time)
 
 /obj/item/resin_jelly/proc/deactivate_jelly(anger_filter, mob/living/carbon/xenomorph/user)
 	user.filters -= anger_filter
-	user.fire_resist_modifier -= 1
+	user.fire_resist_modifier += 20
 	to_chat(user, "<span class='xenonotice'>We feel more vulnerable again.</span>")
 	qdel(src)

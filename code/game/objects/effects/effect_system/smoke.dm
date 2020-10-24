@@ -207,7 +207,7 @@
 /////////////////////////////////////////////
 
 /obj/effect/particle_effect/smoke/tactical
-	alpha = 145
+	alpha = 110
 	opacity = FALSE
 	smoke_traits = SMOKE_CAMO
 
@@ -233,6 +233,8 @@
 //////////////////////////////////////////
 
 /obj/effect/particle_effect/smoke/plasmaloss
+	alpha = 90
+	opacity = FALSE
 	color = "#791697"
 	smoke_traits = SMOKE_PLASMALOSS
 

@@ -117,7 +117,7 @@
 /datum/xeno_caste/sentinel/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "Neurotoxin Factory, don't let it get you."
-	ancient_message = "We are the stun master. Our stunning is legendary and causes massive quantities of salt."
+	ancient_message = "We are the stun master. We will take down any opponent."
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
