@@ -238,7 +238,7 @@
 	var/list/turf_between = getline(X,target)
 	for(var/turf/T in turf_between)
 		var/obj/structure/barricade/found = locate() in T
-		if(found)
+		if(found && found.is_wired)
 			if(!found.density)
 				continue
 			to_chat(usr,"<span class='danger'>You fumble your attempted throw over the barricade!</span>")
