@@ -244,6 +244,16 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	pistols = SKILL_PISTOLS_TRAINED
 	police = SKILL_POLICE_MP
 
+//Halo
+
+/datum/skills/civilian/survivor/gcpd
+	name = "Survivor Colonial Police"
+	cqc = SKILL_CQC_MP
+	firearms = SKILL_FIREARMS_DEFAULT
+	melee_weapons = SKILL_MELEE_DEFAULT
+	pistols = SKILL_PISTOLS_TRAINED
+	police = SKILL_POLICE_MP
+
 /datum/skills/civilian/survivor/prisoner
 	name = "Survivor Prisoner"
 	cqc = SKILL_CQC_DEFAULT
