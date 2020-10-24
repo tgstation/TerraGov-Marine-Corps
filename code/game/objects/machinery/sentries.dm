@@ -1014,7 +1014,7 @@
 		if(path.len)
 			var/blocked = FALSE
 			for(T in path)
-				if(T.opacity || T.density && T.throwpass == FALSE)
+				if(IS_OPAQUE_TURF(T) || T.density && T.throwpass == FALSE)
 					blocked = TRUE
 					break //LoF Broken; stop checking; we can't proceed further.
 

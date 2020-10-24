@@ -63,4 +63,4 @@
 
 /obj/item/lightstick/red/anchored/Initialize(mapload, ...)
 	. = ..()
-	set_light(2, l_color = LIGHT_COLOR_RED)
+	set_light(2, l_color = COLOR_RED)
