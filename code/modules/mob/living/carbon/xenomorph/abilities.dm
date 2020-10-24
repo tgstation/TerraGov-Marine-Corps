@@ -957,7 +957,7 @@
 	// we do this check here so we can clear the mobs afterwards
 	var/list/mob/living/valid_mobs = list()
 	for(var/thing in get_turf(A))
-		if(!isliving(thing))
+		if(!ishuman(thing))
 			continue
 		var/mob/living/turf_mob = thing
 		if(turf_mob.stat == DEAD && turf_mob.chestburst == 0)
