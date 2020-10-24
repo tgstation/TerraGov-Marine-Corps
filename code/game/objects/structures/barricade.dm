@@ -731,6 +731,8 @@
 			"<span class='notice'>You take [src]'s armor plates apart.</span>")
 			playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 			new /obj/item/stack/sheet/metal(loc, CADE_UPGRADE_REQUIRED_SHEETS)
+			barricade_upgrade_type = null
+			update_icon()
 			return TRUE
 
 
