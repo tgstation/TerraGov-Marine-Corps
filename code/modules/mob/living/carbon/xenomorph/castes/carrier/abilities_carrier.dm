@@ -45,7 +45,10 @@
 		if(istype(A, /turf/open) || istype(A, /mob/living/) || istype(A, /obj/effect/alien/weeds) || istype(A, /obj/effect/alien/resin))
 			X.dropItemToGround(F)
 			playsound(X, 'sound/effects/throw.ogg', 30, 1)
-			F.throw_at(A, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
+			if(!(F.throw_at(A, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)))
+				var/obj/structure/barricade/B = F.find_barricade(X, A)
+				var/atom/AA = get_step(B, get_dir(B,X))
+				F.throw_at(AA, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
 			X.visible_message("<span class='xenowarning'>\The [X] throws something towards \the [A]!</span>", \
 			"<span class='xenowarning'>We throw a facehugger towards \the [A]!</span>")
 		add_cooldown()
@@ -59,7 +62,10 @@
 		X.dropItemToGround(F)
 		F.go_active(TRUE)
 		playsound(X, 'sound/effects/throw.ogg', 30, TRUE)
-		F.throw_at(A, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
+		if(!(F.throw_at(A, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)))
+			var/obj/structure/barricade/B = F.find_barricade(X, A)
+			var/atom/AA = get_step(B, get_dir(B,X))
+			F.throw_at(AA, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
 		X.visible_message("<span class='xenowarning'>\The [X] throws something towards \the [A]!</span>", \
 		"<span class='xenowarning'>We throw a facehugger towards \the [A]!</span>")
 		add_cooldown()

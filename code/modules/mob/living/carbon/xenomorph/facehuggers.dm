@@ -244,6 +244,14 @@
 			to_chat(usr,"<span class='danger'>You fumble your attempted throw over the barricade!</span>")
 			return COMPONENT_CANCEL_THROW
 
+/obj/item/clothing/mask/facehugger/proc/find_barricade(mob/living/carbon/xenomorph/X, atom/target)
+	var/list/turf_between = getline(X,target)
+	for(var/turf/T in turf_between)
+		var/obj/structure/barricade/found = locate() in T
+		if(found)
+			return found
+	return null
+
 /obj/item/clothing/mask/facehugger/throw_at(atom/target, range, speed)
 	. = ..()
 	update_icon()
