@@ -80,8 +80,6 @@
 			keys_held[i] = null
 			break
 
-	if(!keys_held[_key])
-		return
 	keys_held -= _key
 	var/movement = movement_keys[_key]
 	if(!(next_move_dir_add & movement))
