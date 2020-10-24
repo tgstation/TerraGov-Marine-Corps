@@ -544,7 +544,7 @@
 /datum/reagent/toxin/xeno_transvitox/on_mob_life(mob/living/L, metabolism) //Converts 1 brute/burn into 1.1 toxin at a rate of 8 per tick.
 	if(prob(25))
 		to_chat(L, "<span class='warning'>You are strangely revitalised.</span>")
-	if(current_cycle > 2)
+	if(current_cycle > 2 && (L.getToxLoss() < (L.getBruteLoss() + L.getFireLoss())))
 		if(L.getBruteLoss())
 			L.adjustToxLoss(min(8*1.1, L.getBruteLoss()*1.1))
 			L.heal_limb_damage(min(8*1.1, L.getBruteLoss()*1.1))
@@ -558,23 +558,30 @@
 	description = "A destabilising substance that causes rapid degeneration of the body."
 	reagent_state = LIQUID
 	color = "#802400" // rgb: 128, 36, 0
-	custom_metabolism = 0.5
+	custom_metabolism = 0.75
 	overdose_threshold = 10000
 	scannable = TRUE
+	purge_list = list(/datum/reagent/medicine)
+	purge_rate = 0
 	toxpwr = 0
 
 /datum/reagent/toxin/xeno_decaytoxin/on_mob_life(mob/living/L, metabolism)
-	var/toxin_damage = 0
-	for(var/datum/reagent/R in L.reagents.reagent_list)
-		if(istype(R, /datum/reagent/medicine))
-			toxin_damage += 1
-	if(L.getToxLoss() > 40)
-		toxin_damage *= 0.5
-	L.adjustToxLoss(toxin_damage)
-	L.adjustBruteLoss(1)
+	if((L.getBruteLoss() + L.getFireLoss()) < L.getToxLoss())
+		L.adjustFireLoss(2)
+		L.adjustBruteLoss(2)
 	if(prob(25))
 		to_chat(L, "<span class='warning'>You can feel your body falling apart!</span>")
-	return ..()
+//	var/toxin_damage = 0
+//	for(var/datum/reagent/R in L.reagents.reagent_list)
+//		if(istype(R, /datum/reagent/medicine))
+//			toxin_damage += 0.5
+//	if(L.getToxLoss() > 20)
+//		toxin_damage *= 0.5
+//	L.adjustToxLoss(toxin_damage)
+//	L.adjustBruteLoss(1)
+//	if(prob(25))
+//		to_chat(L, "<span class='warning'>You can feel your body falling apart!</span>")
+//	return ..()
 
 
 /datum/reagent/toxin/xeno_praelyx //deals damage if certain reagents are present on application or when injected more than once

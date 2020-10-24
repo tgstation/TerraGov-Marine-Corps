@@ -105,6 +105,7 @@
 
 	// TODO: attack_alien() overrides are a mess and need a lot of work to make them require parentcalling
 	RegisterSignal(L, list(
+		COMSIG_HIVE_XENO_RECURRING_INJECTION,
 		COMSIG_XENOMORPH_GRAB,
 		COMSIG_XENOMORPH_ATTACK_BARRICADE,
 		COMSIG_XENOMORPH_ATTACK_CLOSET,
@@ -172,7 +173,6 @@
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/deep_stealth_cooldown)
 
 /datum/action/xeno_action/xeno_camouflage/proc/cancel_stealth() //This happens if we take damage, attack, pounce, toggle stealth off, and do other such exciting stealth breaking activities.
-	SIGNAL_HANDLER
 	if(!stealth)//sanity check/safeguard
 		return
 	to_chat(owner, "<span class='xenodanger'>Our carapace relaxes.</span>")
@@ -182,7 +182,6 @@
 	add_cooldown()
 
 /datum/action/xeno_action/xeno_camouflage/proc/handle_stealth()
-	SIGNAL_HANDLER
 	if(!stealth)
 		return
 	var/mob/living/carbon/xenomorph/xenoowner = owner
@@ -207,12 +206,10 @@
 	handle_stealth()
 
 /datum/action/xeno_action/xeno_camouflage/proc/damage_taken(mob/living/carbon/xenomorph/X, damage_taken)
-	SIGNAL_HANDLER
 	if(damage_taken > 15)
 		cancel_stealth()
 
 /datum/action/xeno_action/xeno_camouflage/proc/plasma_regen(datum/source, list/plasma_mod)
-	SIGNAL_HANDLER
 	handle_stealth()
 
 	if(stealth && owner.last_move_intent > world.time - 20) //Stealth halves the rate of plasma recovery on weeds, and eliminates it entirely while moving
