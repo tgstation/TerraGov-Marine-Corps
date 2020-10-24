@@ -564,3 +564,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/innie
 	name = "Insurrectionist Headset"
 	keyslot = /obj/item/encryptionkey/innie
+
+/obj/item/radio/headset/gcpd
+	name = "Colonial Police Headset"
+	keyslot = /obj/item/encryptionkey/sec

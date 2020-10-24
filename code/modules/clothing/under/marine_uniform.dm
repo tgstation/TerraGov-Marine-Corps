@@ -412,5 +412,5 @@
 	desc = "A standard-issuse Colonial Police uniform."
 	icon_state = "gcpd_jumpsuit"
 	item_state = "gcpd_jumpsuit"
-	rollable_sleeves = false
+	rollable_sleeves = TRUE
 

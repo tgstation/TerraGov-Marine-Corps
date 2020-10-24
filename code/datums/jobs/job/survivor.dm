@@ -294,6 +294,8 @@
 
 	w_uniform = /obj/item/clothing/under/marine/gcpd
 	wear_suit = /obj/item/clothing/suit/storage/marine/gcpd
+	glasses = /obj/item/clothing/glasses/hud/security/gcpd
+	ears = /obj/item/radio/headset/gcpd
 	shoes = /obj/item/clothing/shoes/marine/gcpd
-	head = /obj/item/clothing/head/helmet/marine/gcpd/visor
+	head = /obj/item/clothing/head/helmet/marine/gcpd
 	back = /obj/item/storage/backpack/satchel/sec
