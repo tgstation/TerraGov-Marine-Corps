@@ -508,8 +508,8 @@
 	if(!suppress_message)
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, TRUE, 7)
 
-	if(hud_used?.pull_icon)
-		hud_used.pull_icon.icon_state = "pull"
+
+	hud_used?.pull_icon?.icon_state = "pull"
 
 	if(ismob(AM))
 		var/mob/pulled_mob = AM
