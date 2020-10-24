@@ -214,6 +214,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 				return TRUE
 	return FALSE
 
+
 /proc/TurfBlockedNonWindow(turf/loc)
 	for(var/obj/O in loc)
 		if(O.density && !istype(O, /obj/structure/window))
