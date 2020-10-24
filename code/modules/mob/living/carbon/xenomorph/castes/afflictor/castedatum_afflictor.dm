@@ -45,7 +45,7 @@
 		/datum/action/xeno_action/select_reagent,
 		/datum/action/xeno_action/activable/reagent_slash,
 		/datum/action/xeno_action/xeno_camouflage,
-		)
+	)
 
 /datum/xeno_caste/afflictor/young
 	upgrade_name = "Young"
