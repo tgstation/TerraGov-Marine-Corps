@@ -111,6 +111,14 @@
 	desc = "It's a fancy hat for a not-so-fancy military supply clerk."
 	icon_state = "cargocap"
 
+//gcpd
+
+/obj/item/clothing/head/tgmccap/gcpd
+	name = "Colonial Police cap"
+	desc = "A nice looking hat with the CPD logo on it."
+	icon_state = "gcpd_hat"
+
+
 
 /obj/item/clothing/head/boonie
 	name = "Boonie Hat"

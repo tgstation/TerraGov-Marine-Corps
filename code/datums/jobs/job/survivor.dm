@@ -297,5 +297,5 @@
 	glasses = /obj/item/clothing/glasses/hud/security/gcpd
 	ears = /obj/item/radio/headset/gcpd
 	shoes = /obj/item/clothing/shoes/marine/gcpd
-	head = /obj/item/clothing/head/helmet/marine/gcpd
+	head = /obj/item/clothing/head/tgmccap/gcpd
 	back = /obj/item/storage/backpack/satchel/sec

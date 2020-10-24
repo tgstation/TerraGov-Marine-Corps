@@ -197,3 +197,5 @@
 	icon_state = "gcpd_boots"
 	item_state = "gcpd_boots"
 	soft_armor = list("melee" = 25, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 25)
+
+
