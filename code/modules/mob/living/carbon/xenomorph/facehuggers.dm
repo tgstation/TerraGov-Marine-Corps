@@ -241,7 +241,7 @@
 		if(found && found.is_wired)
 			if(!found.density)
 				continue
-			to_chat(usr,"<span class='danger'>You fumble your attempted throw over the barricade!</span>")
+			to_chat(usr,"<span class='danger'>You fumble your attempted throw over the [found]!</span>")
 			return COMPONENT_CANCEL_THROW
 
 /obj/item/clothing/mask/facehugger/proc/find_barricade(mob/living/carbon/xenomorph/X, atom/target)
