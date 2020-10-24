@@ -523,12 +523,19 @@
 
 /datum/reagent/toxin/xeno_hemodile/on_mob_life(mob/living/L, metabolism)
 	if(prob(25))
-		to_chat(L, "<span class='warning'>You have trouble catching your breath.</span>")
+		to_chat(L, "<span class='warning'>You feel your legs tense up.</span>")
+	if(!L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
+		L.add_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE, TRUE, 0, NONE, TRUE, 1.4)
+	else
+		L.add_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE, TRUE, 0, NONE, TRUE, 4)
 	return ..()
 
 /datum/reagent/toxin/xeno_hemodile/proc/hemodile_human_damage_taken(mob/living/L, damage, damagetype)
 	if(damagetype == STAMINA && current_cycle > 2)
 		L.adjustStaminaLoss(damage*0.5)
+
+/datum/reagent/toxin/xeno_hemodile/on_mob_delete(mob/living/L, metabolism)
+	L.remove_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE)
 
 
 /datum/reagent/toxin/xeno_transvitox //converts brute/burn to tox damage
