@@ -721,7 +721,7 @@ ARMOR
 	cost = 3
 
 /datum/supply_packs/armor/modular/attachments/mixed
-	name = "Jaeger experimental modules"
+	name = "Jaeger experimental mark 2 modules"
 	contains = list(
 		/obj/item/armor_module/attachable/valkyrie_autodoc,
 		/obj/item/armor_module/attachable/fire_proof,
@@ -763,7 +763,7 @@ ARMOR
 	cost = 12
 
 /datum/supply_packs/armor/modular/attachments/tyr_extra_armor
-	name = "Jaeger tyr modules"
+	name = "Jaeger tyr mark 2 modules"
 	contains = list(
 		/obj/item/armor_module/attachable/tyr_extra_armor,
 	)
