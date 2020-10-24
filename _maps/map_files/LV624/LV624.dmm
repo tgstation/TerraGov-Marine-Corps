@@ -8814,24 +8814,13 @@
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/ground/jungle6)
-"aOm" = (
-/obj/structure/table,
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
-/area/lv624/ground/compound/c)
-"aOn" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/open/floor/tile/white,
-/area/lv624/ground/compound/c)
 "aOo" = (
 /obj/item/clothing/mask/facehugger/dead,
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
-/area/lv624/ground/compound/c)
+/area/lv624/lazarus/research)
 "aOp" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor,
@@ -30647,7 +30636,7 @@ aGb
 aLy
 aGd
 aNo
-aOm
+aFp
 aEO
 aMm
 aNk
@@ -30826,7 +30815,7 @@ aKT
 aLz
 aKd
 aKd
-aOn
+aKd
 awU
 aOi
 aQR
