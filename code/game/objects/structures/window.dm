@@ -22,6 +22,9 @@
 	var/damageable = TRUE
 	var/deconstructable = TRUE
 
+//I hate this as much as you do
+/obj/structure/window/full
+	dir = 10
 
 /obj/structure/window/Initialize(mapload, start_dir, constructed)
 	..()
