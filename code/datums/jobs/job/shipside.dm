@@ -504,7 +504,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	head = /obj/item/clothing/head/cmo
 	suit_store = /obj/item/flashlight/pen
 	r_store = /obj/item/storage/pouch/medkit/full
-	l_store = /obj/item/storage/pouch/medical/full
+	l_store = /obj/item/storage/pouch/autoinjector/advanced/full
 	back = /obj/item/storage/backpack/marine/satchel
 
 
@@ -544,7 +544,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/surgery/green
 	r_store = /obj/item/storage/pouch/medkit/full
-	l_store = /obj/item/storage/pouch/medical/full
+	l_store = /obj/item/storage/pouch/autoinjector/advanced/full
 	back = /obj/item/storage/backpack/marine/satchel
 
 
@@ -587,7 +587,7 @@ While the Corporate Liaison is not your boss, it would be wise to consult them o
 	mask = /obj/item/clothing/mask/surgical
 	suit_store = /obj/item/flashlight/pen
 	r_store = /obj/item/storage/pouch/medkit/full
-	l_store = /obj/item/storage/pouch/medical/full
+	l_store = /obj/item/storage/pouch/autoinjector/advanced/full
 	back = /obj/item/storage/backpack/marine/satchel
 
 

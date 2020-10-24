@@ -1,0 +1,1864 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ab" = (
+/obj/machinery/floodlight,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/floor/mainship/floor,
+/area/space)
+"ad" = (
+/turf/open/floor/tile/white,
+/area/space)
+"ag" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/open/floor/tile/blue,
+/area/space)
+"av" = (
+/obj/item/fuelCell/random,
+/obj/item/fuelCell/random,
+/obj/structure/rack,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/blue,
+/area/space)
+"ay" = (
+/turf/open/floor/mainship/white/corner{
+	dir = 8
+	},
+/area/space)
+"aF" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/asteroidfloor,
+/area/space)
+"bl" = (
+/turf/open/floor/mainship/white,
+/area/space)
+"bC" = (
+/obj/vehicle/powerloader,
+/obj/structure/cable,
+/turf/open/floor/tile/blue,
+/area/space)
+"bE" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/blue,
+/area/space)
+"cu" = (
+/turf/open/floor/mainship/terragov/west{
+	dir = 8
+	},
+/area/space)
+"cD" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/blue,
+/area/space)
+"cH" = (
+/obj/machinery/light,
+/turf/open/floor/tile/dark/blue2,
+/area/space)
+"cY" = (
+/obj/vehicle/train/cargo/trolley,
+/turf/open/floor/tile/blue,
+/area/space)
+"dg" = (
+/obj/structure/cargo_container/green{
+	dir = 1
+	},
+/turf/open/floor/tile/blue,
+/area/space)
+"di" = (
+/obj/structure/closet/secure_closet/guncabinet/explosives,
+/turf/open/floor/tile/dark/blue2,
+/area/space)
+"do" = (
+/turf/open/floor/mainship/white{
+	dir = 6
+	},
+/area/space)
+"dG" = (
+/obj/item/fuelCell/random,
+/obj/item/fuelCell/random,
+/obj/structure/rack,
+/turf/open/floor/tile/blue,
+/area/space)
+"dH" = (
+/obj/structure/cable,
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/space)
+"dK" = (
+/obj/structure/prop/mainship/sensor_computer2/sd,
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/space)
+"ep" = (
+/turf/open/floor/mainship/floor,
+/area/space)
+"eq" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/mainship/security/free_access{
+	name = "\improper High Security Research storage"
+	},
+/turf/open/floor/tile/red/whitered/full,
+/area/space)
+"eA" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/turf/open/floor/tile/dark/red2{
+	dir = 1
+	},
+/area/space)
+"eG" = (
+/obj/structure/cable,
+/turf/open/floor/tile/red/whitered/full,
+/area/space)
+"eX" = (
+/turf/open/floor/mainship/white/full,
+/area/space)
+"fc" = (
+/obj/item/organ/brain/prosthetic,
+/obj/item/organ/brain/prosthetic{
+	pixel_x = -4;
+	pixel_y = 6
+	},
+/obj/structure/table/reinforced/prison,
+/turf/open/floor/tile/red/whitered/full,
+/area/space)
+"fk" = (
+/obj/machinery/computer3/server,
+/turf/open/floor/tile/red/whitered/full,
+/area/space)
+"fx" = (
+/turf/open/floor/mainship/office,
+/area/space)
+"fI" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/tile/blue,
+/area/space)
+"fS" = (
+/obj/machinery/light,
+/turf/open/floor/tile/dark/red2,
+/area/space)
+"fY" = (
+/obj/structure/rack,
+/obj/item/weapon/gun/smg/mp7,
+/turf/open/floor/mainship/office,
+/area/space)
+"gk" = (
+/obj/structure/table/reinforced/prison,
+/obj/machinery/computer3/laptop/secure_data,
+/turf/open/floor/tile/dark/red2,
+/area/space)
+"gB" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/machinery/door/airlock/mainship/security/free_access{
+	dir = 2;
+	name = "\improper High Security Research storage"
+	},
+/turf/open/floor/mainship/floor,
+/area/space)
+"gQ" = (
+/obj/structure/table/reinforced/prison,
+/obj/machinery/door/window/westleft,
+/obj/machinery/door/window,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/mainship/floor,
+/area/space)
+"ht" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/turf/open/floor/mainship/floor,
+/area/space)
+"hx" = (
+/obj/vehicle/train/cargo/trolley,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/blue,
+/area/space)
+"ia" = (
+/obj/structure/rack,
+/obj/item/weapon/gun/smg/skorpion/upp,
+/obj/item/weapon/gun/smg/skorpion/upp,
+/turf/open/floor/mainship/office,
+/area/space)
+"in" = (
+/obj/item/organ/brain/xeno,
+/obj/structure/table/reinforced/prison,
+/obj/item/flashlight/slime{
+	pixel_x = -9;
+	pixel_y = -6
+	},
+/turf/open/floor/tile/red/whitered/full,
+/area/space)
+"iy" = (
+/obj/structure/largecrate/random/case,
+/turf/open/floor/tile/blue,
+/area/space)
+"iA" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/tile/dark/red2{
+	dir = 5
+	},
+/area/space)
+"iH" = (
+/turf/open/floor/tile/dark/red2{
+	dir = 4
+	},
+/area/space)
+"iO" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/open/floor/asteroidfloor,
+/area/space)
+"jj" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship/office,
+/area/space)
+"jN" = (
+/obj/effect/spawner/random/toolbox,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/blue,
+/area/space)
+"kj" = (
+/obj/structure/largecrate/random/barrel/blue,
+/turf/open/floor/tile/blue,
+/area/space)
+"kH" = (
+/obj/structure/largecrate/random/case/double,
+/turf/open/floor/asteroidfloor,
+/area/space)
+"kP" = (
+/obj/structure/cargo_container/green{
+	dir = 4
+	},
+/turf/open/floor/tile/blue,
+/area/space)
+"kQ" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/machinery/power/apc/drained,
+/turf/open/floor/tile/dark/red2{
+	dir = 1
+	},
+/area/space)
+"lj" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/machinery/door/airlock/mainship/maint/free_access{
+	dir = 2
+	},
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/space)
+"lu" = (
+/turf/open/floor/mainship/terragov/west{
+	dir = 4
+	},
+/area/space)
+"lA" = (
+/obj/structure/closet/secure_closet/guncabinet/mp_armory,
+/turf/open/floor/tile/dark/blue2,
+/area/space)
+"mg" = (
+/obj/structure/largecrate/random/barrel/red,
+/turf/open/floor/tile/blue,
+/area/space)
+"mv" = (
+/turf/open/floor/mainship/terragov/west,
+/area/space)
+"mH" = (
+/obj/structure/rack,
+/obj/item/weapon/gun/revolver/standard_revolver,
+/obj/item/weapon/gun/revolver/standard_revolver,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/office,
+/area/space)
+"na" = (
+/obj/item/explosive/grenade/frag/training{
+	pixel_x = 7
+	},
+/obj/item/explosive/grenade/frag/training,
+/obj/item/explosive/grenade/frag/training{
+	pixel_x = -5
+	},
+/obj/item/explosive/grenade/frag/training{
+	pixel_x = -10
+	},
+/obj/structure/table/reinforced/prison,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 5
+	},
+/area/space)
+"ny" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/drained{
+	dir = 8
+	},
+/turf/open/floor/tile/red/whitered/full,
+/area/space)
+"nA" = (
+/obj/item/restraints/handcuffs{
+	pixel_x = 4;
+	pixel_y = 6
+	},
+/obj/item/restraints/handcuffs,
+/obj/item/tool/stamp/internalaffairs{
+	pixel_x = -8
+	},
+/obj/structure/table/reinforced/prison,
+/obj/item/clothing/head/beret/marine/captain{
+	pixel_x = -7;
+	pixel_y = 11
+	},
+/turf/open/floor/tile/red/whitered/full,
+/area/space)
+"nP" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4;
+	on = 1
+	},
+/turf/open/floor/mainship/office,
+/area/space)
+"ov" = (
+/obj/structure/reagent_dispensers/wallmounted/peppertank{
+	pixel_y = 15
+	},
+/turf/open/floor/tile/red/whitered/full,
+/area/space)
+"oT" = (
+/obj/effect/spawner/random/tool,
+/turf/open/floor/tile/blue,
+/area/space)
+"ph" = (
+/turf/open/floor/mainship/terragov/west{
+	dir = 10
+	},
+/area/space)
+"pk" = (
+/obj/structure/largecrate/guns/merc,
+/turf/open/floor/tile/dark/blue2,
+/area/space)
+"pz" = (
+/turf/open/floor/mainship/white{
+	dir = 10
+	},
+/area/space)
+"qi" = (
+/obj/machinery/door/airlock/mainship/command/officer{
+	dir = 2
+	},
+/turf/open/floor/mainship/floor,
+/area/space)
+"qx" = (
+/turf/open/floor/mainship/white{
+	dir = 9
+	},
+/area/space)
+"qy" = (
+/turf/open/floor/mainship/white{
+	dir = 4
+	},
+/area/space)
+"ru" = (
+/obj/structure/largecrate/random/barrel/blue,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/asteroidfloor,
+/area/space)
+"tq" = (
+/obj/effect/spawner/random/toolbox,
+/turf/open/floor/tile/blue,
+/area/space)
+"tB" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/space)
+"tI" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/floor/mainship/floor,
+/area/space)
+"tU" = (
+/obj/machinery/atmospherics/components/unary/tank/toxins,
+/turf/open/floor/asteroidfloor,
+/area/space)
+"uK" = (
+/obj/machinery/prop/mainship/computer/PC,
+/obj/structure/table/reinforced/prison,
+/turf/open/floor/tile/red/whitered/full,
+/area/space)
+"ve" = (
+/obj/structure/rack,
+/obj/item/weapon/gun/rifle/standard_gpmg,
+/turf/open/floor/mainship/office,
+/area/space)
+"vf" = (
+/obj/structure/table/reinforced/prison,
+/obj/machinery/faxmachine,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/red2{
+	dir = 6
+	},
+/area/space)
+"vq" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/space)
+"vD" = (
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor/tile/blue,
+/area/space)
+"wa" = (
+/obj/structure/rack,
+/obj/item/weapon/gun/pistol/m1911/custom,
+/obj/item/weapon/gun/pistol/m1911/custom,
+/turf/open/floor/mainship/office,
+/area/space)
+"wi" = (
+/obj/structure/rack,
+/obj/item/weapon/gun/smg/standard_smg/nonstandard,
+/turf/open/floor/mainship/office,
+/area/space)
+"wU" = (
+/obj/structure/largecrate/random/barrel/green,
+/turf/open/floor/tile/blue,
+/area/space)
+"wY" = (
+/obj/structure/cryofeed,
+/turf/open/floor/tile/dark/red2{
+	dir = 9
+	},
+/area/space)
+"xC" = (
+/obj/structure/rack,
+/obj/item/weapon/gun/rifle/standard_br,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/office,
+/area/space)
+"xL" = (
+/obj/vehicle/powerloader,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/blue,
+/area/space)
+"xT" = (
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/space)
+"yq" = (
+/turf/open/floor/tile/blue,
+/area/space)
+"yt" = (
+/turf/open/floor/mainship/white{
+	dir = 5
+	},
+/area/space)
+"zy" = (
+/obj/item/book/manual/ripley_build_and_repair,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/blue,
+/area/space)
+"Ap" = (
+/obj/machinery/door/airlock/mainship/security/glass/free_access{
+	dir = 1;
+	name = "\improper Operations Armory"
+	},
+/turf/open/floor/mainship/floor,
+/area/space)
+"Ar" = (
+/obj/structure/cable,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/mainship/floor,
+/area/space)
+"AM" = (
+/obj/structure/window/reinforced/tinted/frosted{
+	dir = 8
+	},
+/obj/structure/table/reinforced/prison,
+/obj/item/paper/Court,
+/obj/item/paper/Toxin{
+	pixel_x = -5
+	},
+/obj/item/newspaper,
+/turf/open/floor/tile/dark/red2{
+	dir = 1
+	},
+/area/space)
+"Bu" = (
+/obj/structure/table/reinforced/prison,
+/obj/machinery/computer/security/wooden_tv,
+/turf/open/floor/tile/dark/red2,
+/area/space)
+"Bz" = (
+/turf/open/floor/mainship/white{
+	dir = 8
+	},
+/area/space)
+"BJ" = (
+/obj/effect/spawner/random/toolbox,
+/obj/structure/largecrate/random/secure,
+/turf/open/floor/tile/blue,
+/area/space)
+"Ck" = (
+/obj/machinery/floodlight,
+/obj/structure/cable,
+/turf/open/floor/mainship/floor,
+/area/space)
+"Cu" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/turf/open/floor/mainship/floor,
+/area/space)
+"CB" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/turf/open/floor/tile/blue,
+/area/space)
+"CS" = (
+/obj/structure/largecrate/random/barrel,
+/turf/open/floor/tile/blue,
+/area/space)
+"CU" = (
+/turf/open/floor/tile/dark,
+/area/space)
+"CW" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/mainship/floor,
+/area/space)
+"Dw" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/floor,
+/area/space)
+"DL" = (
+/obj/effect/spawner/random/tool,
+/obj/structure/largecrate/random/barrel,
+/turf/open/floor/tile/blue,
+/area/space)
+"Fk" = (
+/obj/machinery/power/fusion_engine/random,
+/obj/structure/cable,
+/turf/open/floor/tile/blue,
+/area/space)
+"FD" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1;
+	on = 1
+	},
+/turf/open/floor/tile/dark,
+/area/space)
+"FY" = (
+/obj/vehicle/powerloader,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/open/floor/tile/blue,
+/area/space)
+"Gd" = (
+/turf/open/floor/mainship/white{
+	dir = 1
+	},
+/area/space)
+"Gr" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/red2{
+	dir = 1
+	},
+/area/space)
+"GK" = (
+/obj/structure/prop/mainship/sensor_computer1/sd,
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/space)
+"GX" = (
+/obj/item/facepaint/black{
+	pixel_x = -3;
+	pixel_y = -3
+	},
+/obj/item/facepaint/green{
+	pixel_x = 3;
+	pixel_y = 5
+	},
+/obj/item/facepaint/sniper{
+	pixel_x = -7;
+	pixel_y = 4
+	},
+/obj/structure/rack,
+/turf/open/floor/tile/dark/blue2{
+	dir = 6
+	},
+/area/space)
+"Hg" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/blue,
+/area/space)
+"Hw" = (
+/obj/structure/largecrate/random/case/double,
+/turf/open/floor/tile/blue,
+/area/space)
+"HK" = (
+/obj/structure/cargo_container/horizontal,
+/turf/open/floor/tile/blue,
+/area/space)
+"HW" = (
+/turf/open/floor/asteroidfloor,
+/area/space)
+"Id" = (
+/obj/structure/ship_ammo/heavygun,
+/turf/open/floor/tile/dark/blue2,
+/area/space)
+"Ik" = (
+/obj/machinery/prop/mainship/computer,
+/obj/structure/table/reinforced/prison,
+/turf/open/floor/tile/red/whitered/full,
+/area/space)
+"IG" = (
+/obj/structure/table/reinforced/prison,
+/obj/item/alienjar,
+/turf/open/floor/tile/red/whitered/full,
+/area/space)
+"IL" = (
+/obj/structure/cargo_container/horizontal{
+	dir = 4
+	},
+/turf/open/floor/tile/blue,
+/area/space)
+"IN" = (
+/obj/structure/cable,
+/turf/open/floor/mainship/office,
+/area/space)
+"Jj" = (
+/obj/item/explosive/grenade/frag/training{
+	pixel_x = 7
+	},
+/obj/item/explosive/grenade/frag/training,
+/obj/item/explosive/grenade/frag/training{
+	pixel_x = -5
+	},
+/obj/item/explosive/grenade/frag/training{
+	pixel_x = -10
+	},
+/obj/structure/table/reinforced/prison,
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/space)
+"Jv" = (
+/obj/structure/window/reinforced/tinted/frosted{
+	dir = 8
+	},
+/obj/structure/table/reinforced/prison,
+/obj/structure/paper_bin,
+/turf/open/floor/tile/dark/red2,
+/area/space)
+"JB" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8;
+	on = 1
+	},
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/tile/blue,
+/area/space)
+"JJ" = (
+/turf/open/floor/tile/red/whitered/full,
+/area/space)
+"Kb" = (
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/space)
+"KC" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access{
+	name = "\improper Operations"
+	},
+/turf/open/floor/tile/white,
+/area/space)
+"KP" = (
+/obj/structure/fence,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/asteroidfloor,
+/area/space)
+"KW" = (
+/obj/machinery/atmospherics/components/unary/tank,
+/turf/open/floor/asteroidfloor,
+/area/space)
+"Lf" = (
+/obj/item/clothing/shoes/veteran/PMC/commando{
+	pixel_x = 8
+	},
+/obj/item/clothing/shoes/veteran/PMC/commando{
+	pixel_x = -8
+	},
+/obj/item/clothing/shoes/veteran/PMC/commando,
+/obj/structure/table/reinforced/prison,
+/turf/open/floor/tile/dark/red2,
+/area/space)
+"Li" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/blue,
+/area/space)
+"LE" = (
+/obj/structure/rack,
+/obj/item/attachable/attached_gun/flamer/unremovable,
+/obj/item/attachable/attached_gun/flamer/unremovable,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/office,
+/area/space)
+"LV" = (
+/obj/structure/fence,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 1
+	},
+/area/space)
+"Mc" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/dark/red2{
+	dir = 1
+	},
+/area/space)
+"Mk" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/mainship/floor,
+/area/space)
+"Mr" = (
+/turf/open/floor/mainship/terragov/west{
+	dir = 1
+	},
+/area/space)
+"My" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/sign/safety/computer,
+/turf/open/floor/mainship/floor,
+/area/space)
+"MJ" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/blue,
+/area/space)
+"NB" = (
+/obj/structure/prop/mainship/mission_planning_system{
+	desc = "This gathers all information about the Self-Destruct and pools it into one repository.";
+	name = "self destruct information tower"
+	},
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/space)
+"NC" = (
+/turf/open/floor/marking/asteroidwarning,
+/area/space)
+"NO" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/mainship/office,
+/area/space)
+"NQ" = (
+/obj/machinery/light,
+/turf/open/floor/tile/dark/blue2{
+	dir = 10
+	},
+/area/space)
+"NR" = (
+/obj/structure/window/reinforced/tinted/frosted{
+	dir = 8
+	},
+/obj/structure/table/reinforced/prison,
+/obj/item/paper/sop,
+/turf/open/floor/tile/dark,
+/area/space)
+"NW" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship/office,
+/area/space)
+"Oa" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/largecrate/random/secure,
+/turf/open/floor/tile/blue,
+/area/space)
+"Ol" = (
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/mainship/floor,
+/area/space)
+"Om" = (
+/turf/open/floor/mainship/terragov/west{
+	dir = 9
+	},
+/area/space)
+"Ow" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/tile/red/whitered/full,
+/area/space)
+"OI" = (
+/obj/structure/largecrate/random/case/small,
+/turf/open/floor/asteroidfloor,
+/area/space)
+"OO" = (
+/obj/machinery/computer/forensic_scanning,
+/turf/open/floor/tile/dark/red2,
+/area/space)
+"Pr" = (
+/obj/structure/dropship_equipment/weapon/laser_beam_gun,
+/turf/open/floor/tile/blue,
+/area/space)
+"PQ" = (
+/obj/structure/cryofeed,
+/turf/open/floor/tile/dark/red2{
+	dir = 8
+	},
+/area/space)
+"Qc" = (
+/turf/open/floor/tile/dark/blue2{
+	dir = 4
+	},
+/area/space)
+"Qe" = (
+/obj/structure/largecrate/random/barrel/white,
+/turf/open/floor/asteroidfloor,
+/area/space)
+"Qn" = (
+/obj/effect/spawner/random/tech_supply,
+/obj/effect/spawner/random/tech_supply,
+/obj/structure/rack,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/blue,
+/area/space)
+"Qo" = (
+/obj/structure/cryofeed,
+/turf/open/floor/tile/dark/red2{
+	dir = 10
+	},
+/area/space)
+"Qw" = (
+/turf/open/floor/mainship/terragov/west{
+	dir = 6
+	},
+/area/space)
+"Sz" = (
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/space/basic,
+/area/space)
+"SD" = (
+/obj/machinery/light,
+/turf/open/floor/tile/blue,
+/area/space)
+"SJ" = (
+/obj/machinery/floodlight,
+/turf/open/floor/mainship/floor,
+/area/space)
+"SK" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/blue,
+/area/space)
+"SM" = (
+/obj/structure/cable,
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/space)
+"SW" = (
+/obj/structure/largecrate/random/secure,
+/turf/open/floor/tile/blue,
+/area/space)
+"SZ" = (
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/tile/dark,
+/area/space)
+"Ta" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/blue,
+/area/space)
+"TE" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/mainship/floor,
+/area/space)
+"TQ" = (
+/obj/machinery/power/apc/drained,
+/obj/structure/cable,
+/turf/open/floor/mainship/office,
+/area/space)
+"Ue" = (
+/obj/structure/cargo_container/green,
+/turf/open/floor/tile/blue,
+/area/space)
+"Ur" = (
+/obj/structure/largecrate/random/case/small,
+/turf/open/floor/tile/blue,
+/area/space)
+"UD" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/tile/dark/red2{
+	dir = 1
+	},
+/area/space)
+"UL" = (
+/obj/structure/prop/mainship/mapping_computer,
+/turf/open/floor/tile/dark/blue2{
+	dir = 9
+	},
+/area/space)
+"US" = (
+/obj/structure/fence,
+/turf/open/floor/marking/asteroidwarning{
+	dir = 4
+	},
+/area/space)
+"UX" = (
+/turf/open/floor/mainship/white/corner{
+	dir = 1
+	},
+/area/space)
+"UY" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/turf/open/floor/mainship/floor,
+/area/space)
+"Vu" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1;
+	on = 1
+	},
+/turf/open/floor/tile/red/whitered/full,
+/area/space)
+"VB" = (
+/obj/structure/fence,
+/turf/open/floor/asteroidfloor,
+/area/space)
+"VY" = (
+/obj/vehicle/train/cargo/engine,
+/turf/open/floor/tile/blue,
+/area/space)
+"Wj" = (
+/obj/structure/largecrate/random/barrel/white,
+/turf/open/floor/tile/blue,
+/area/space)
+"WE" = (
+/obj/structure/fence,
+/turf/open/floor/mainship/floor,
+/area/space)
+"Xj" = (
+/turf/open/floor/mainship/terragov/west{
+	dir = 5
+	},
+/area/space)
+"Xv" = (
+/turf/open/floor/mainship/white/corner,
+/area/space)
+"Xz" = (
+/obj/structure/rack,
+/obj/item/weapon/gun/shotgun/combat/standardmarine,
+/obj/item/weapon/gun/shotgun/combat/standardmarine,
+/turf/open/floor/mainship/office,
+/area/space)
+"XD" = (
+/turf/open/floor/mainship/white/corner{
+	dir = 4
+	},
+/area/space)
+"XN" = (
+/obj/structure/cargo_container/horizontal{
+	dir = 1
+	},
+/turf/open/floor/tile/blue,
+/area/space)
+"Yd" = (
+/turf/open/floor/mainship/terragov{
+	dir = 8
+	},
+/area/space)
+"Ym" = (
+/obj/machinery/computer3/server/rack,
+/turf/open/floor/tile/red/whitered/full,
+/area/space)
+"Yp" = (
+/turf/closed/wall/r_wall,
+/area/space)
+"Yr" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/green/hidden{
+	dir = 8
+	},
+/turf/open/floor/mainship/floor,
+/area/space)
+"Yu" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/tile/red/whitered/full,
+/area/space)
+"YF" = (
+/turf/closed/wall,
+/area/space)
+"Zi" = (
+/obj/structure/largecrate/random/case/double,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/blue,
+/area/space)
+"Zj" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/mainship/floor,
+/area/space)
+
+(1,1,1) = {"
+Yp
+Yp
+Yp
+Yp
+Yp
+HW
+HW
+HW
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
+HW
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
+"}
+(2,1,1) = {"
+Yp
+wY
+PQ
+Qo
+YF
+US
+US
+US
+Yp
+xC
+wi
+Xz
+ia
+ve
+mH
+Yp
+US
+Yp
+Ym
+Ym
+Ym
+Ym
+fk
+Yp
+"}
+(3,1,1) = {"
+Yp
+AM
+NR
+Jv
+YF
+ep
+ep
+ep
+Ap
+fx
+fx
+fx
+nP
+fx
+fx
+Yp
+Cu
+gB
+Yu
+Yu
+Vu
+JJ
+JJ
+Yp
+"}
+(4,1,1) = {"
+Yp
+Mc
+CU
+fS
+YF
+ep
+ep
+ep
+Yp
+TQ
+IN
+IN
+jj
+fx
+wa
+Yp
+CW
+YF
+ov
+JJ
+Ik
+JJ
+in
+Yp
+"}
+(5,1,1) = {"
+KC
+eA
+CU
+Lf
+YF
+ep
+ep
+ep
+Ol
+NW
+fY
+fY
+NO
+fx
+LE
+Yp
+My
+YF
+nA
+JJ
+uK
+JJ
+fc
+Yp
+"}
+(6,1,1) = {"
+ad
+Gr
+FD
+OO
+YF
+ep
+ep
+ep
+YF
+YF
+YF
+YF
+Mk
+Ol
+Yp
+Yp
+CW
+YF
+Ow
+eG
+ny
+eG
+IG
+Yp
+"}
+(7,1,1) = {"
+Yp
+kQ
+CU
+Bu
+YF
+UY
+Zj
+Zj
+Zj
+Ck
+Zj
+Zj
+Ar
+Zj
+Zj
+Zj
+tI
+YF
+YF
+YF
+YF
+eq
+Yp
+Yp
+"}
+(8,1,1) = {"
+Yp
+UD
+CU
+gk
+YF
+TE
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+Dw
+ep
+YF
+UL
+tB
+dH
+NQ
+Yp
+"}
+(9,1,1) = {"
+Yp
+iA
+iH
+vf
+YF
+TE
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+ep
+Dw
+Dw
+vq
+SM
+Kb
+CU
+lA
+Yp
+"}
+(10,1,1) = {"
+Yp
+gQ
+Sz
+YF
+YF
+TE
+ep
+ep
+Xv
+qy
+qy
+qy
+qy
+qy
+qy
+qy
+XD
+ep
+SZ
+xT
+CU
+CU
+lA
+Yp
+"}
+(11,1,1) = {"
+NC
+ht
+Zj
+Zj
+Yr
+ab
+ep
+ep
+bl
+eX
+eX
+eX
+eX
+eX
+eX
+eX
+Gd
+ep
+YF
+NB
+CU
+CU
+di
+Yp
+"}
+(12,1,1) = {"
+NC
+ep
+ep
+ep
+TE
+ep
+ep
+ep
+bl
+eX
+qx
+Bz
+Bz
+Bz
+pz
+eX
+Gd
+ep
+YF
+GK
+CU
+CU
+Id
+Yp
+"}
+(13,1,1) = {"
+NC
+ep
+ep
+ep
+TE
+ep
+ep
+ep
+bl
+eX
+Gd
+Om
+cu
+ph
+bl
+eX
+Gd
+ep
+YF
+dK
+CU
+CU
+pk
+Yp
+"}
+(14,1,1) = {"
+WE
+SJ
+ep
+ep
+TE
+ep
+ep
+ep
+bl
+eX
+Gd
+Mr
+Yd
+mv
+bl
+eX
+Gd
+ep
+qi
+xT
+CU
+CU
+pk
+Yp
+"}
+(15,1,1) = {"
+WE
+ep
+ep
+ep
+TE
+ep
+ep
+ep
+bl
+eX
+Gd
+Xj
+lu
+Qw
+bl
+eX
+Gd
+ep
+YF
+Jj
+CU
+CU
+cH
+Yp
+"}
+(16,1,1) = {"
+WE
+ep
+ep
+ep
+TE
+ep
+ep
+ep
+bl
+eX
+yt
+qy
+qy
+qy
+do
+eX
+Gd
+ep
+YF
+na
+Qc
+Qc
+GX
+Yp
+"}
+(17,1,1) = {"
+WE
+ep
+ep
+ep
+TE
+ep
+ep
+ep
+bl
+eX
+eX
+eX
+eX
+eX
+eX
+eX
+Gd
+ep
+YF
+YF
+Sz
+Sz
+Yp
+Yp
+"}
+(18,1,1) = {"
+WE
+ep
+ep
+ep
+TE
+ep
+ep
+ep
+ay
+Bz
+Bz
+Bz
+Bz
+Bz
+Bz
+Bz
+UX
+ep
+LV
+HW
+HW
+HW
+HW
+HW
+"}
+(19,1,1) = {"
+Yp
+Yp
+ep
+ep
+TE
+YF
+Ol
+Ol
+YF
+YF
+YF
+YF
+YF
+YF
+Ol
+Ol
+Ol
+YF
+YF
+HW
+VB
+VB
+VB
+HW
+"}
+(20,1,1) = {"
+Yp
+yq
+yq
+yq
+fI
+bE
+bE
+bE
+bE
+Hg
+bE
+CB
+bE
+bE
+bE
+bE
+bE
+bC
+YF
+HW
+HW
+iO
+VB
+HW
+"}
+(21,1,1) = {"
+Yp
+hx
+Hw
+Wj
+jN
+XN
+IL
+HK
+yq
+oT
+kj
+yq
+yq
+yq
+yq
+yq
+yq
+zy
+YF
+HW
+HW
+kH
+VB
+HW
+"}
+(22,1,1) = {"
+Yp
+cY
+yq
+yq
+cD
+yq
+yq
+yq
+yq
+yq
+yq
+BJ
+SD
+YF
+Qn
+yq
+yq
+FY
+YF
+iO
+HW
+Qe
+VB
+HW
+"}
+(23,1,1) = {"
+Yp
+cY
+DL
+wU
+cD
+yq
+tq
+yq
+Ue
+yq
+yq
+Wj
+yq
+YF
+dG
+yq
+yq
+SK
+YF
+KW
+HW
+iO
+VB
+HW
+"}
+(24,1,1) = {"
+Yp
+cY
+Wj
+CS
+cD
+yq
+yq
+yq
+dg
+tq
+yq
+yq
+yq
+YF
+dG
+oT
+yq
+xL
+YF
+KW
+HW
+HW
+VB
+HW
+"}
+(25,1,1) = {"
+Yp
+VY
+yq
+oT
+JB
+mg
+iy
+yq
+kP
+yq
+yq
+Hw
+tq
+YF
+dG
+yq
+yq
+SK
+YF
+tU
+HW
+HW
+VB
+HW
+"}
+(26,1,1) = {"
+Yp
+Zi
+yq
+yq
+yq
+yq
+yq
+yq
+yq
+yq
+iy
+kj
+SD
+YF
+av
+yq
+yq
+ag
+YF
+tU
+HW
+OI
+VB
+HW
+"}
+(27,1,1) = {"
+Yp
+SW
+Hw
+yq
+yq
+yq
+yq
+yq
+tq
+yq
+Ur
+Hw
+yq
+YF
+yq
+vD
+Ta
+Li
+lj
+aF
+aF
+ru
+KP
+aF
+"}
+(28,1,1) = {"
+Yp
+Oa
+SW
+SW
+yq
+Pr
+yq
+MJ
+yq
+yq
+yq
+MJ
+yq
+YF
+Fk
+Fk
+Fk
+Fk
+Yp
+VB
+VB
+VB
+VB
+HW
+"}
+(29,1,1) = {"
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
+Yp
+HW
+HW
+HW
+HW
+HW
+"}

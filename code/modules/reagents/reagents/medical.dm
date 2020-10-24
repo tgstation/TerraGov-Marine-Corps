@@ -293,8 +293,8 @@
 	description = "Dylovene is a broad-spectrum antitoxin."
 	color = "#A8F59C"
 	scannable = TRUE
-	purge_list = list(/datum/reagent/toxin, /datum/reagent/toxin/xeno_neurotoxin, /datum/reagent/consumable/drink/atomiccoffee, /datum/reagent/consumable/larvajelly, /datum/reagent/medicine/paracetamol)
-	purge_rate = 2
+	purge_list = list(/datum/reagent/toxin, /datum/reagent/toxin/xeno_neurotoxin, /datum/reagent/consumable/drink/atomiccoffee, /datum/reagent/medicine/paracetamol, /datum/reagent/medicine/larvaway)
+	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "a roll of gauze"
@@ -422,12 +422,18 @@
 
 /datum/reagent/medicine/hyronalin
 	name = "Hyronalin"
-	description = "Hyronalin is a medicinal drug used to counter the effect of radiation poisoning."
+	description = "Hyronalin is a medicinal drug used to counter the effect of toxin poisoning."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = REAGENTS_METABOLISM * 0.25
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
+
+/datum/reagent/medicine/hyroalin/on_mob_life(mob/living/L)
+	L.adjustToxLoss(-3*REM)
+	if(prob(50))
+		L.take_limb_damage(2*REM, 0)
+	return ..()
 
 /datum/reagent/medicine/hyronalin/overdose_process(mob/living/L, metabolism)
 	L.apply_damage(4*REM, TOX)
@@ -437,16 +443,16 @@
 
 /datum/reagent/medicine/arithrazine
 	name = "Arithrazine"
-	description = "Arithrazine is an unstable medication used for the most extreme cases of radiation poisoning."
+	description = "Arithrazine is an unstable emergency medication used for the most extreme cases of toxin poisoning."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = REAGENTS_METABOLISM * 0.25
 	overdose_threshold = REAGENTS_OVERDOSE/2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2
 
 /datum/reagent/medicine/arithrazine/on_mob_life(mob/living/L)
-	L.adjustToxLoss(-1*REM)
-	if(prob(15))
-		L.take_limb_damage(2*REM, 0)
+	L.adjustToxLoss(-4*REM)
+	if(prob(50))
+		L.take_limb_damage(3*REM, 0)
 	return ..()
 
 /datum/reagent/medicine/arithrazine/overdose_process(mob/living/L, metabolism)
@@ -457,7 +463,7 @@
 
 /datum/reagent/medicine/russianred
 	name = "Russian Red"
-	description = "An emergency radiation treatment, however it has extreme side effects."
+	description = "An emergency toxin treatment, however it has extreme side effects."
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	custom_metabolism = REAGENTS_METABOLISM * 5
 	overdose_threshold = REAGENTS_OVERDOSE/3
@@ -468,8 +474,8 @@
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.drunkenness = max(C.drunkenness - 2)
-	L.adjustToxLoss(-1*REM)
-	if(prob(50))
+	L.adjustToxLoss(-5*REM)
+	if(prob(75))
 		L.take_limb_damage(6*REM, 0)
 	return ..()
 
@@ -554,7 +560,7 @@
 
 /datum/reagent/medicine/peridaxon_plus
 	name = "Peridaxon Plus"
-	description = "Used to heal severely damaged internal organs in the field. EXTREMELY toxic. Medicate cautiously."
+	description = "Used to heal severely damaged internal organs in the field. Moderately toxic. Do not self-administer."
 	color = "#C845DC"
 	overdose_threshold = REAGENTS_OVERDOSE/30
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/25
@@ -655,6 +661,39 @@
 
 /datum/reagent/medicine/quickclot/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damages(0, 4*REM, 4*REM)
+
+
+/datum/reagent/medicine/quickclotplus
+	name = "Quick Clot Plus"
+	description = "A chemical designed to quickly and painfully remove internal bleeding by encouraging coagulation. Should not be self-administered."
+	color = "#CC00FF"
+	overdose_threshold = REAGENTS_OVERDOSE/5 //Was 4, now 6 //Now 15 //Now 6 again, yay oldQC
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/5 //10u
+	scannable = TRUE
+	custom_metabolism = REAGENTS_METABOLISM * 2.5
+
+/datum/reagent/medicine/quickclotplus/on_mob_life(mob/living/L, metabolism)
+	var/mob/living/carbon/human/H = L
+	for(var/datum/limb/X in H.limbs)
+		for(var/datum/wound/W in X.wounds)
+			if(W.internal)
+				W.damage = max(0, W.damage - (5*REM))
+				X.update_damages()
+				if (X.update_icon())
+					X.owner.UpdateDamageIcon(1)
+	L.reagents.add_reagent(/datum/reagent/toxin,5)
+	L.reagent_shock_modifier -= PAIN_REDUCTION_FULL
+	L.adjustStaminaLoss(30*REM)
+	return ..()
+
+
+/datum/reagent/medicine/quickclotplus/overdose_process(mob/living/L, metabolism)
+	L.apply_damage(3*REM, TOX)
+	L.blood_volume -= 4
+
+/datum/reagent/medicine/quickclotplus/overdose_crit_process(mob/living/L, metabolism)
+	L.blood_volume -= 20
+
 
 /datum/reagent/medicine/hyperzine
 	name = "Hyperzine"
@@ -939,6 +978,36 @@
 
 /datum/reagent/medicine/polyhexanide/overdose_crit_process(mob/living/L, metabolism)
 	L.apply_damage(4*REM, TOX)
+
+/datum/reagent/medicine/larvaway
+	name = "Larvaway"
+	description = "A proprietary blend of antibiotics and antifungal agents designed to inhibit the growth of xenomorph embryos. Builds up toxicity over time."
+	color = "#C8A5DC" // rgb: 200, 165, 220
+	custom_metabolism = REAGENTS_METABOLISM * 0.5
+	overdose_threshold = REAGENTS_OVERDOSE * 0.5
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 0.5
+	scannable = TRUE
+
+/datum/reagent/medicine/larvaway/on_mob_life(mob/living/L, metabolism)
+	switch(current_cycle)
+		if(1 to 100)
+			L.adjustToxLoss(REM)
+			if(prob(25))
+				L.adjustStaminaLoss(REM)
+		if(101 to 200)
+			L.adjustToxLoss(2 * REM)
+			if(prob(25))
+				L.adjustStaminaLoss(40*REM)
+		if(201 to INFINITY)
+			L.adjustToxLoss(6*REM)
+	return ..()
+
+/datum/reagent/medicine/larvaway/overdose_process(mob/living/L, metabolism)
+	L.apply_damage(2*REM, TOX)
+
+/datum/reagent/medicine/larvaway/overdose_crit_process(mob/living/L, metabolism)
+	L.apply_damage(4*REM, TOX)
+
 
 /datum/reagent/medicine/ethylredoxrazine	// FUCK YOU, ALCOHOL
 	name = "Ethylredoxrazine"
