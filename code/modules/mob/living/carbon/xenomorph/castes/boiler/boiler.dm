@@ -18,9 +18,11 @@
 	//Boiler ammo
 	var/corrosive_ammo = 0
 	var/neuro_ammo = 0
+	light_system = MOVABLE_LIGHT
+
 
 ///updates the boiler's glow, based on its base glow/color, and its ammo reserves. More green ammo = more green glow; more yellow = more yellow.
-/mob/living/carbon/xenomorph/boiler/proc/updateBoilerGlow()
+/mob/living/carbon/xenomorph/boiler/proc/update_boiler_glow()
 	var/current_ammo = corrosive_ammo + neuro_ammo
 	var/ammo_glow = BOILER_LUMINOSITY_AMMO * current_ammo
 	var/glow = BOILER_LUMINOSITY_BASE + ammo_glow
@@ -28,7 +30,7 @@
 	if(current_ammo)
 		var/ammo_color = BlendRGB(BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR, BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR, neuro_ammo/current_ammo)
 		color = BlendRGB(color, ammo_color, ammo_glow/glow)
-	set_light(glow, l_color = color)
+	set_light_range_power_color(glow, color = color)
 
 // ***************************************
 // *********** Init
@@ -37,7 +39,7 @@
 	. = ..()
 	smoke = new /datum/effect_system/smoke_spread/xeno/acid(src)
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas]
-	updateBoilerGlow()
+	update_boiler_glow()
 	RegisterSignal(src, COMSIG_XENOMORPH_GIBBING, .proc/gib_explode)
 
 

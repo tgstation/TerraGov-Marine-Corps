@@ -60,7 +60,7 @@
 	var/equip_delay = 0.5 SECONDS
 
 	/// Misc stats
-	light_strength = 5
+	light_range = 5
 
 
 /obj/item/clothing/suit/modular/Destroy()
@@ -100,7 +100,7 @@
 
 
 /obj/item/clothing/suit/modular/item_action_slot_check(mob/user, slot)
-	if(!light_strength) // No light no ability
+	if(!light_range) // No light no ability
 		return FALSE
 	if(!ishuman(user))
 		return FALSE
