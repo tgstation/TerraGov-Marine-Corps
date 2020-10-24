@@ -22,7 +22,7 @@ if grep -nP 'step_[xy]' _maps/**/*.dmm;	then
     st=1
 fi;
 echo "Checking for stacked cables"
-if grep -nP '"\w+" = \(\n([^)]+\n)*/obj/structure/cable,\n([^)]+\n)*/obj/structure/cable,\n([^)]+\n)*/area/.+\)' _maps/**/*.dmm;	then
+if pcregrep -nM '"\w+" = \(\n([^)]+\n)*/obj/structure/cable,\n([^)]+\n)*/obj/structure/cable,\n([^)]+\n)*/area/.+\)' _maps/**/*.dmm;	then
     echo "found multiple cables on the same tile, please remove them."
     st=1
 fi;
