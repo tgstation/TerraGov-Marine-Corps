@@ -354,7 +354,8 @@
 		/obj/structure/girder,
 		/obj/structure/window_frame)
 	tiles_with = list(
-		/turf/closed/wall)
+		/turf/closed/wall,
+	)
 
 /obj/structure/window/framed/Initialize()
 	relativewall()

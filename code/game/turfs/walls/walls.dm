@@ -14,7 +14,8 @@
 		/obj/structure/window/framed,
 		/obj/structure/window_frame,
 		/obj/structure/girder,
-		/obj/machinery/door)
+		/obj/machinery/door,
+	)
 
 	soft_armor = list("melee" = 0, "bullet" = 50, "laser" = 50, "energy" = 100, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
 
