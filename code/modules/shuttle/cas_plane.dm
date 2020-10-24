@@ -6,6 +6,8 @@
 #define LOW_FUEL_THRESHOLD		5
 #define FUEL_PER_CAN_POUR		3
 
+#define LOW_FUEL_LANDING_THRESHOLD 4
+
 /obj/structure/caspart/caschair
 	name = "\improper Condor Jet pilot seat"
 	icon_state = "chair"
@@ -174,7 +176,7 @@
 
 /obj/docking_port/mobile/marine_dropship/casplane/process()
 	fuel_left--
-	if((fuel_left <= 10) && (state == PLANE_STATE_FLYING))
+	if((fuel_left <= LOW_FUEL_LANDING_THRESHOLD) && (state == PLANE_STATE_FLYING))
 		to_chat(chair.occupant, "<span class='warning'>Out of fuel, landing.</span>")
 		SSshuttle.moveShuttle(id, "casplane", TRUE)
 		end_cas_mission(chair.occupant)
@@ -192,7 +194,7 @@
 
 /obj/docking_port/mobile/marine_dropship/casplane/on_prearrival()
 	. = ..()
-	if(fuel_left <= 10)
+	if(fuel_left <= LOW_FUEL_LANDING_THRESHOLD)
 		turn_off_engines()
 		return
 	for(var/i in engines)
