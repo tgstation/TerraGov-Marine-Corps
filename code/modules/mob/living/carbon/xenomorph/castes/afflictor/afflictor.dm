@@ -13,7 +13,7 @@
 	upgrade = XENO_UPGRADE_ZERO
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
-		)
+	)
 
 
 
