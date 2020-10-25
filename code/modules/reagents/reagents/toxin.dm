@@ -525,9 +525,9 @@
 	if(prob(25))
 		to_chat(L, "<span class='warning'>You feel your legs tense up.</span>")
 	if(!L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin) && !L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_praelyx))
-		L.add_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE, TRUE, 0, NONE, TRUE, 1.4)
+		L.add_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE, TRUE, 0, NONE, TRUE, 1)
 	else
-		L.add_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE, TRUE, 0, NONE, TRUE, 4)
+		L.add_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE, TRUE, 0, NONE, TRUE, 3)
 	return ..()
 
 /datum/reagent/toxin/xeno_hemodile/proc/hemodile_human_damage_taken(mob/living/L, damage, damagetype)
@@ -564,7 +564,7 @@
 			if(BURN)
 				L.heal_limb_damage(0, damage*0.5)
 
-/datum/reagent/toxin/xeno_praelyx //deals damage if certain reagents are present on application or when injected more than once
+/datum/reagent/toxin/xeno_praelyx //deals damage if certain reagents are present on application
 	name = "Praelyx"
 	description = "An harmless substance when by itself that coexists with blood."
 	reagent_state = LIQUID
