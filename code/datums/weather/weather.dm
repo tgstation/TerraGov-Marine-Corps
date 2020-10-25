@@ -12,7 +12,7 @@
 	var/name = "space wind"
 	/// description of weather
 	var/desc = "Heavy gusts of wind blanket the area, periodically knocking down anyone caught in the open."
-    /// The message displayed in chat to foreshadow the weather's beginning
+	/// The message displayed in chat to foreshadow the weather's beginning
 	var/telegraph_message = "<span class='warning'>The wind begins to pick up.</span>"
 	/// In deciseconds, how long from the beginning of the telegraph until the weather begins
 	var/telegraph_duration = 300
@@ -56,14 +56,14 @@
 	/// The list of z-levels that this weather is actively affecting
 	var/impacted_z_levels
 
-    /// Since it's above everything else, this is the layer used by default. TURF_LAYER is below mobs and walls if you need to use that.
+	/// Since it's above everything else, this is the layer used by default. TURF_LAYER is below mobs and walls if you need to use that.
 	var/overlay_layer = AREA_LAYER
 	/// Plane for the overlay
 	var/overlay_plane = BLACKNESS_PLANE
 	/// If the weather has no purpose other than looks
 	var/aesthetic = FALSE
 
-    /// The stage of the weather, from 1-4
+	/// The stage of the weather, from 1-4
 	var/stage = END_STAGE
 
 	/// Weight amongst other eligible weather. If zero, will never happen randomly.

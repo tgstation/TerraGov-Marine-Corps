@@ -6,7 +6,8 @@
 		/turf/closed/wall/resin/regenerating/thick,
 		/obj/structure/bed/nest,
 		/obj/effect/alien/resin/sticky,
-		/obj/structure/mineral_door/resin/thick)
+		/obj/structure/mineral_door/resin/thick,
+	)
 
 /datum/action/xeno_action/activable/secrete_resin/hivelord
 	plasma_cost = 100
