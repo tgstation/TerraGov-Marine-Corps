@@ -82,8 +82,38 @@
 		slash_count = 1
 		reagent_transfer_amount = 16
 	succeed_activate()
-	X.recurring_injection(Z, X.selected_reagent, channel_time = 1.2 SECONDS, count = slash_count, transfer_amount = reagent_transfer_amount, is_reagent_slash = TRUE)
+	slash_action(Z, X.selected_reagent, channel_time = 1.2 SECONDS, count = slash_count, transfer_amount = reagent_transfer_amount)
 	add_cooldown()
+
+/datum/action/xeno_action/activable/reagent_slash/proc/slash_action(mob/living/carbon/C, toxin = /datum/reagent/toxin/xeno_neurotoxin, channel_time = 1 SECONDS, transfer_amount = 4, count = 3)
+	var/mob/living/carbon/xenomorph/X = owner
+	if(!C?.can_sting())
+		return FALSE
+	var/datum/reagent/body_tox
+	var/i = 1
+	SEND_SIGNAL(X, COMSIG_HIVE_XENO_REAGENT_SLASH)
+	do
+		X.face_atom(C)
+		if(X.stagger)
+			return FALSE
+		body_tox = C.reagents.get_reagent(toxin)
+		C.reagents.add_reagent(toxin, transfer_amount)
+		if(!body_tox) //Let's check this each time because depending on the metabolization rate it can disappear between stings.
+			body_tox = C.reagents.get_reagent(toxin)
+		if(get_dist(X, C) > 1)
+			to_chat(X, "<span class='warning'>We need to be closer to [C].</span>")
+			return
+		playsound(C, "alien_claw_flesh", 25, TRUE)
+		playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
+		var/dam_bonus = 0
+		C.attack_alien_harm(X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
+		X.visible_message(C, "<span class='danger'>The [X] swipes at [C]!</span>")
+		X.do_attack_animation(C)
+		if(body_tox.volume > body_tox.overdose_threshold)
+			to_chat(X, "<span class='danger'>We sense the host is saturated with [body_tox.name].</span>")
+	while(i++ < count && do_after(X, channel_time, TRUE, C, BUSY_ICON_HOSTILE, ignore_turf_checks = TRUE, target_can_move = TRUE))
+	return TRUE
+
 
 // ***************************************
 // *********** NANOCRYSTAL CAMOUFLAGE
@@ -105,7 +135,7 @@
 
 	// TODO: attack_alien() overrides are a mess and need a lot of work to make them require parentcalling
 	RegisterSignal(L, list(
-		COMSIG_HIVE_XENO_RECURRING_INJECTION,
+		COMSIG_HIVE_XENO_REAGENT_SLASH,
 		COMSIG_XENOMORPH_GRAB,
 		COMSIG_XENOMORPH_ATTACK_BARRICADE,
 		COMSIG_XENOMORPH_ATTACK_CLOSET,
@@ -128,7 +158,7 @@
 
 /datum/action/xeno_action/xeno_camouflage/remove_action(mob/living/L)
 	UnregisterSignal(L, list(
-		COMSIG_HIVE_XENO_RECURRING_INJECTION,
+		COMSIG_HIVE_XENO_REAGENT_SLASH,
 		COMSIG_XENOMORPH_POUNCE,
 		COMSIG_XENO_LIVING_THROW_HIT,
 		COMSIG_XENOMORPH_ATTACK_LIVING,

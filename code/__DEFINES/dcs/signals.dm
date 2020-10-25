@@ -291,7 +291,7 @@
 #define COMSIG_HIVE_XENO_MOTHER_PRE_CHECK "hive_xeno_mother_pre_check"		//from datum/hive_status/normal/proc/attempt_to_spawn_larva()
 #define COMSIG_HIVE_XENO_MOTHER_CHECK "hive_xeno_mother_check"				//from /datum/hive_status/normal/proc/spawn_larva()
 
-#define COMSIG_HIVE_XENO_RECURRING_INJECTION "hive_xeno_recurring_injection"
+#define COMSIG_HIVE_XENO_REAGENT_SLASH "hive_xeno_reagent_slash"
 
 #define COMSIG_XENOACTION_TOGGLECHARGETYPE "xenoaction_togglechargetype"
 

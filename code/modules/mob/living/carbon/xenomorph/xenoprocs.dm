@@ -590,42 +590,30 @@
 	to_chat(src, "<span class='notice'>You have [xeno_mobhud ? "enabled" : "disabled"] the Xeno Status HUD.</span>")
 
 
-/mob/living/carbon/xenomorph/proc/recurring_injection(mob/living/carbon/C, toxin = /datum/reagent/toxin/xeno_neurotoxin, channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 3, is_reagent_slash = FALSE)
+/mob/living/carbon/xenomorph/proc/recurring_injection(mob/living/carbon/C, toxin = /datum/reagent/toxin/xeno_neurotoxin, channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 3)
 	if(!C?.can_sting() || !toxin)
 		return FALSE
 	var/datum/reagent/body_tox
 	var/i = 1
-	var/datum/limb/affecting = zone_selected
-	SEND_SIGNAL(src, COMSIG_HIVE_XENO_RECURRING_INJECTION)
 	do
 		face_atom(C)
 		if(stagger)
 			return FALSE
 		body_tox = C.reagents.get_reagent(toxin)
-		if(!is_reagent_slash && CHECK_BITFIELD(C.status_flags, XENO_HOST) && body_tox && body_tox.volume > body_tox.overdose_threshold)
+		if(CHECK_BITFIELD(C.status_flags, XENO_HOST) && body_tox && body_tox.volume > body_tox.overdose_threshold)
 			to_chat(src, "<span class='warning'>We sense the infected host is saturated with [body_tox.name] and cease our attempt to inoculate it further to preserve the little one inside.</span>")
 			return FALSE
+		do_attack_animation(C)
+		playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
+		playsound(C, "alien_drool", 15, TRUE)
 		C.reagents.add_reagent(toxin, transfer_amount)
 		if(!body_tox) //Let's check this each time because depending on the metabolization rate it can disappear between stings.
 			body_tox = C.reagents.get_reagent(toxin)
-		if(is_reagent_slash)
-			if(get_dist(src, C) > 1)
-				to_chat(src, "<span class='warning'>We need to be closer to [C].</span>")
-				return
-			playsound(C, "alien_claw_flesh", 15, TRUE)
-			playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
-			C.apply_damage(damage = 4, damagetype = BRUTE, def_zone = affecting, sharp = TRUE)
-			visible_message(C, "<span class='danger'>The [src] swipes at [C]!</span>")
-		else
-			to_chat(src, "<span class='xenonotice'>Our stinger injects the victim with [body_tox.name]!</span>")
-			playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
-			playsound(C, "alien_drool", 15, TRUE)
-			to_chat(C, "<span class='danger'>You feel a tiny prick.</span>")
-		do_attack_animation(C)
+		to_chat(C, "<span class='danger'>You feel a tiny prick.</span>")
+		to_chat(src, "<span class='xenowarning'>Our stinger injects our victim with [body_tox.name]!</span>")
 		if(body_tox.volume > body_tox.overdose_threshold)
 			to_chat(src, "<span class='danger'>We sense the host is saturated with [body_tox.name].</span>")
-	while(i++ < count && do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE, ignore_turf_checks = is_reagent_slash, target_can_move = is_reagent_slash))
-	SEND_SIGNAL(C, COMSIG_HIVE_XENO_RECURRING_INJECTION, affecting)
+	while(i++ < count && do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
 	return TRUE
 
 
