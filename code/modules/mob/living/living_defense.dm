@@ -147,7 +147,7 @@
 
 /mob/living/carbon/xenomorph/IgniteMob()
 	. = ..()
-	if(!. || fire_resist_modifier <= 10)	//having high fire resist makes you immune
+	if(!. || fire_resist_modifier <= -1)	//having high fire resist makes you immune
 		return
 	var/fire_light = min(fire_stacks,5)
 	if(fire_light > fire_luminosity) // light up xenos if new light source thats bigger hits them
