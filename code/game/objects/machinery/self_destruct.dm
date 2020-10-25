@@ -41,7 +41,7 @@
 	. = ..()
 	if(!.)
 		return
-	if(marine_only_activate && !ismarinejob(user?.job))
+	if(marine_only_activate && !isterragovjob(user?.job))
 		to_chat(user, "<span class='warning'>The [src] beeps, \"Marine Retinal scan failed!\".</span>")
 		return FALSE
 	return TRUE
