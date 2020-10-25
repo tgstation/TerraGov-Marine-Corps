@@ -138,7 +138,7 @@
 //gcpd
 
 /obj/item/clothing/gloves/marine/gcpd
-	name = "URF combat gloves"
-	desc = "Standard issue URF tactical gloves."
+	name = "Colonial Police protective gloves"
+	desc = "Standard issue CPD tactical gloves."
 	icon_state = "gcpd_gloves"
 	item_state = "gcpd_gloves"

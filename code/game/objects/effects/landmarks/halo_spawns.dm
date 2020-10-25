@@ -83,11 +83,20 @@
 //GCPD//
 
 /obj/effect/landmark/start/job/gcpd_chief
-	icon_state = "SL"
+	icon_state = "CL"
 	job = /datum/job/gcpd/chief
 	jobspawn_override = TRUE
 
 /obj/effect/landmark/start/job/gcpd_cop
-	icon_state = "SL"
+	icon_state = "CL"
 	job = /datum/job/gcpd/chief
 	jobspawn_override = TRUE
+
+//COLONIST//
+
+/obj/effect/landmark/start/job/halo_colonist
+	icon_state = "CL"
+	job = /datum/job/civ/colonist
+	jobspawn_override = TRUE
+
+

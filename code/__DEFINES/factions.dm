@@ -22,5 +22,8 @@
 #define FACTION_INSURRECTION "Insurrection"
 #define FACTION_COVENANT "Covenant"
 #define FACTION_GCPD "Colonial Police"
+#define FACTION_COLONIST "Colonist"
+
+
 
 

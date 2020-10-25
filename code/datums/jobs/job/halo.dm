@@ -217,6 +217,10 @@
 	back = /obj/item/storage/backpack/lightpack
 	l_hand = /obj/item/storage/bible/koran
 
+
+/*
+
+//temporarily disabled for now
 //Covenant
 
 /datum/job/covenant
@@ -359,27 +363,33 @@
 	ears = /obj/item/radio/headset/unsc
 	back = /obj/item/storage/backpack/marine/satchel
 
+*/
+
 //GCPD
+
+/datum/job/gcpd
+	selection_color = "#d9d9d9"
+	job_category = JOB_CAT_GCPD
+	faction = FACTION_GCPD
 
 /datum/job/gcpd/chief
 	title = "Colonial Police Chief"
-	access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
-	minimal_access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
+	access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS, ACCESS_MARINE_BRIG)
+	minimal_access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS, ACCESS_MARINE_BRIG)
 	display_order = JOB_DISPLAY_ORDER_GCPD_CHIEF
 	skills_type = /datum/skills/civilian/survivor/gcpd
 	faction = FACTION_GCPD
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_PROVIDES_BANK_ACCOUNT
+	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_PROVIDES_BANK_ACCOUNT
 	outfit = /datum/outfit/job/gcpd/chief
-
 
 /datum/job/gcpd/cop
 	title = "Colonial Police Officer"
-	access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
-	minimal_access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
+	access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS, ACCESS_MARINE_BRIG)
+	minimal_access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS, ACCESS_MARINE_BRIG)
 	display_order = JOB_DISPLAY_ORDER_GCPD_CHIEF
 	skills_type = /datum/skills/civilian/survivor/gcpd
 	faction = FACTION_GCPD
-	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_PROVIDES_BANK_ACCOUNT
+	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_PROVIDES_BANK_ACCOUNT
 	outfit = /datum/outfit/job/gcpd/cop
 
 /datum/outfit/job/gcpd/cop
@@ -387,21 +397,83 @@
 	jobtype = /datum/job/gcpd/cop
 
 	w_uniform = /obj/item/clothing/under/marine/gcpd
-	wear_suit = /obj/item/clothing/suit/storage/marine/gcpd
+	wear_suit = /obj/item/clothing/suit/storage/marine/gcpd_l
 	glasses = /obj/item/clothing/glasses/hud/security/gcpd
 	ears = /obj/item/radio/headset/gcpd
 	shoes = /obj/item/clothing/shoes/marine/gcpd
-	head = /obj/item/clothing/head/tgmccap/gcpd
+	head = /obj/item/clothing/head/soft/gcpd
+	gloves = /obj/item/clothing/gloves/marine/gcpd
 	back = /obj/item/storage/backpack/satchel/sec
+	belt = /obj/item/storage/belt/security
+	l_store = /obj/item/storage/pouch/firstaid/full
+	r_store = /obj/item/flash
+
+/datum/outfit/job/gcpd/cop/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang, SLOT_IN_SUIT)
+
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/m6/m6b_security, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/taser, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/weapon/baton, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/restraints/handcuffs, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/m6, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/m6, SLOT_IN_BELT)
 
 /datum/outfit/job/gcpd/chief
 	name = "Colonial Police Chief"
 	jobtype = /datum/job/gcpd/chief
 
 	w_uniform = /obj/item/clothing/under/marine/gcpd
-	wear_suit = /obj/item/clothing/suit/storage/marine/gcpd_h
+	wear_suit = /obj/item/clothing/suit/storage/marine/gcpd
 	glasses = /obj/item/clothing/glasses/hud/security/gcpd
 	ears = /obj/item/radio/headset/gcpd
 	shoes = /obj/item/clothing/shoes/marine/gcpd
 	head = /obj/item/clothing/head/helmet/marine/gcpd
+	gloves = /obj/item/clothing/gloves/marine/gcpd
 	back = /obj/item/storage/backpack/satchel/sec
+	belt = /obj/item/storage/belt/security
+	l_store = /obj/item/storage/pouch/firstaid/full
+	r_store = /obj/item/flash
+
+/datum/outfit/job/gcpd/chief/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang, SLOT_IN_SUIT)
+
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/m6/m6b_security, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/taser, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/weapon/baton, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/restraints/handcuffs, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/m6, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/m6, SLOT_IN_BELT)
+
+
+
+//colonists
+
+/datum/job/civ
+	selection_color = "#d9d9d9"
+	job_category = JOB_CAT_COLONIST
+	faction = FACTION_COLONIST
+
+/datum/job/civ/colonist
+	title = "Colonist"
+	access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
+	minimal_access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
+	display_order = JOB_DISPLAY_ORDER_COLONIST
+	skills_type = /datum/skills/civilian
+	faction = FACTION_TERRAGOV
+	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_PROVIDES_BANK_ACCOUNT
+	outfit = /datum/outfit/job/civ/colonist
+
+/datum/outfit/job/civ/colonist
+	name = "Colonist"
+	jobtype = /datum/job/civ/colonist
+
+	w_uniform = /obj/item/clothing/under/serviceoveralls
+	shoes = /obj/item/clothing/shoes/black
+
+	back = /obj/item/storage/backpack/satchel/norm
+
+

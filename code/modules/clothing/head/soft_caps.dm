@@ -96,6 +96,15 @@
 
 
 
+//gcpd
+
+/obj/item/clothing/head/soft/gcpd
+	name = "Colonial Police cap"
+	desc = "A nice looking hat with the CPD logo on it."
+	icon_state = "gcpdsoft"
+	cap_color = "gcpd"
+
+
 //marine cap
 
 /obj/item/clothing/head/soft/marine
@@ -130,3 +139,4 @@
 	name = "marine police sergeant cap"
 	icon_state = "greensoft"
 	cap_color = "green"
+
