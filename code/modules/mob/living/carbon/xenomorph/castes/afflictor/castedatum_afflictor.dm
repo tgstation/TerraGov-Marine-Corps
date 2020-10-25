@@ -53,19 +53,17 @@
 	upgrade = XENO_UPGRADE_ZERO
 	available_reagents_define = list(
 		/datum/reagent/toxin/xeno_hemodile,
-		/datum/reagent/toxin/xeno_transvitox,
 	)
 
 /datum/xeno_caste/afflictor/mature
 	upgrade_name = "Mature"
 	caste_desc = "A dark, slender creature with scythe-like claws, coated with some kind of liquid. It looks a little more dangerous."
-	ancient_message = "Our gands evolve. We are able to synthesize Praelyx!"
+	ancient_message = "Our gands evolve. We are able to synthesize Transvitox!"
 
 	upgrade = XENO_UPGRADE_ONE
 	available_reagents_define = list(
 		/datum/reagent/toxin/xeno_hemodile,
 		/datum/reagent/toxin/xeno_transvitox,
-		/datum/reagent/toxin/xeno_praelyx,
 	)
 	// *** Speed *** //
 	speed = -1
@@ -91,7 +89,6 @@
 	available_reagents_define = list(
 		/datum/reagent/toxin/xeno_hemodile,
 		/datum/reagent/toxin/xeno_transvitox,
-		/datum/reagent/toxin/xeno_praelyx,
 	)
 
 	// *** Speed *** //
@@ -113,12 +110,11 @@
 /datum/xeno_caste/afflictor/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "It appears to be changing colours."
-	ancient_message = "We are the ultimate apothecary. All will fall before our poisons. Decay Accelerant available."
+	ancient_message = "We are the ultimate apothecary. All will fall before our poisons. Praelyx available."
 	upgrade = XENO_UPGRADE_THREE
 	available_reagents_define = list(
 		/datum/reagent/toxin/xeno_hemodile,
 		/datum/reagent/toxin/xeno_transvitox,
-		/datum/reagent/toxin/xeno_decaytoxin,
 		/datum/reagent/toxin/xeno_praelyx,
 	)
 

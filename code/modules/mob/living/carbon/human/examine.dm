@@ -22,9 +22,9 @@
 			msg += "<span class='xenowarning'>It doesn't seem responsive.</span>\n"
 		if(!isxenoafflictor(user))
 			if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
-				msg += "Transvitox: brute/burn injuries converted to 110% toxin\n"
+				msg += "Transvitox: 50% brute/burn injuries converted to toxin\n"
 			if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
-				msg += "Hemodile: extra 50% stamina damage received\n"
+				msg += "Hemodile: extra 50% stamina damage received and slowed by 25% (inject neurotoxin for 50% slow)\n"
 		if(isxenoafflictor(user))
 			if(reagents.total_volume > 0)
 				var/unknown = 0

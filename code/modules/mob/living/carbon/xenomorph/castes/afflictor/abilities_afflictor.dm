@@ -5,10 +5,9 @@
 /datum/action/xeno_action/select_reagent
 	name = "Select Reagent"
 	action_icon_state = "select_reagent0"
-	mechanics_text = "Switches between available reagents. Transvitox and Hemodile available at first with more unlocked at further maturity. \
-	Transvitox converts brute/burn damage to 110% toxin damage. Hemodile increases stamina damage received by 50%. \
-	Praelyx deals 20 damage (not affected by armor) to selected limb when one of the reagents is already present. \
-	Decay Accelerant deals 1 Brute per tick and 1 additional Toxin for each unique medical reagent present"
+	mechanics_text = "Switches between available reagents. Hemodile available at first with more unlocked at further maturity. \
+	Transvitox converts 50% of brute/burn damage received to 60% toxin damage up to 45. Hemodile increases stamina damage received by 50% and causes a 25% slow (increased to 50% if Praelyx or Neurotoxin are present). \
+	Praelyx makes Reagent Slash deal 10 bonus brute damage (bypassing armor) to selected limb while healing 6 toxin damage."
 	use_state_flags = XACT_USE_BUSY
 	keybind_signal = COMSIG_XENOABILITY_SELECT_REAGENT
 
@@ -28,7 +27,7 @@
 	else
 		X.selected_reagent = available_reagents[i+1]
 	var/atom/A = X.selected_reagent
-	to_chat(X, "<span class='notice'>We will now inject <b>[initial(A.name)]</b>.</span>")
+	to_chat(X, "<span class='notice'>We will now slash with <b>[initial(A.name)]</b>.</span>")
 	update_button_icon()
 	return succeed_activate()
 
@@ -37,7 +36,7 @@
 // ***************************************
 /datum/action/xeno_action/activable/reagent_slash
 	name = "Reagent Slash"
-	mechanics_text = "Deals damage 4 times and injects 4u of selected reagent per slash. Can move next to target while slashing."
+	mechanics_text = "Deals damage 4 times and injects 4u of selected reagent per slash. Can move while slashing."
 	ability_name = "reagent slash"
 	cooldown_timer = 6 SECONDS
 	plasma_cost = 40
@@ -52,7 +51,7 @@
 		return FALSE
 	return TRUE
 
-/datum/action/xeno_action/activable/reagent_slash/proc/figure_out_living_target(atom/A)
+/datum/action/xeno_action/activable/reagent_slash/proc/figure_out_living_target(atom/A) //aim assist
 	var/clickDir = get_dir(owner, A)
 	var/turf/presumedPos = get_step(owner, clickDir)
 	var/mob/living/L = locate() in presumedPos
@@ -76,17 +75,18 @@
 		return
 	if(isturf(Z))
 		return
+	if(!Z?.can_sting())
+		to_chat(owner, "<span class='warning'>Our slash won't affect this target!</span>")
+		return FALSE
 	var/slash_count = 4
 	var/reagent_transfer_amount = 4
-	if(X.selected_reagent == /datum/reagent/toxin/xeno_praelyx)
-		slash_count = 1
-		reagent_transfer_amount = 16
 	succeed_activate()
 	slash_action(Z, X.selected_reagent, channel_time = 1.2 SECONDS, count = slash_count, transfer_amount = reagent_transfer_amount)
 	add_cooldown()
 
 /datum/action/xeno_action/activable/reagent_slash/proc/slash_action(mob/living/carbon/C, toxin = /datum/reagent/toxin/xeno_neurotoxin, channel_time = 1 SECONDS, transfer_amount = 4, count = 3)
 	var/mob/living/carbon/xenomorph/X = owner
+	var/datum/limb/affecting = X.zone_selected
 	if(!C?.can_sting())
 		return FALSE
 	var/datum/reagent/body_tox
@@ -105,12 +105,12 @@
 			return
 		playsound(C, "alien_claw_flesh", 25, TRUE)
 		playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
-		var/dam_bonus = 0
-		C.attack_alien_harm(X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
+		if(C.getToxLoss() > 6 && toxin == /datum/reagent/toxin/xeno_praelyx)
+			C.apply_damage(damage = 10, damagetype = BRUTE, def_zone = affecting, sharp = TRUE)
+			C.adjustToxLoss(-6)
+		C.attack_alien_harm(X, dam_bonus = 0, set_location = affecting, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
 		X.visible_message(C, "<span class='danger'>The [X] swipes at [C]!</span>")
 		X.do_attack_animation(C)
-		if(body_tox.volume > body_tox.overdose_threshold)
-			to_chat(X, "<span class='danger'>We sense the host is saturated with [body_tox.name].</span>")
 	while(i++ < count && do_after(X, channel_time, TRUE, C, BUSY_ICON_HOSTILE, ignore_turf_checks = TRUE, target_can_move = TRUE))
 	return TRUE
 

@@ -508,9 +508,9 @@
 	L.Losebreath(2)
 
 
-/datum/reagent/toxin/xeno_hemodile //receives 50% increased stamina damage
+/datum/reagent/toxin/xeno_hemodile
 	name = "Hemodile"
-	description = "A stamina draining toxin. Causes increasing stamina loss the longer it is present."
+	description = "A stamina draining toxin. Causes increased stamina loss and slower movement."
 	reagent_state = LIQUID
 	color = "#94CFD8" // rgb: 148, 207, 216
 	custom_metabolism = 0.5
@@ -537,7 +537,6 @@
 /datum/reagent/toxin/xeno_hemodile/on_mob_delete(mob/living/L, metabolism)
 	L.remove_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE)
 
-
 /datum/reagent/toxin/xeno_transvitox //converts brute/burn to tox damage
 	name = "Transvitox"
 	description = "Heals brute and burn wounds, while producing toxins."
@@ -548,52 +547,29 @@
 	scannable = TRUE
 	toxpwr = 0
 
+/datum/reagent/toxin/xeno_transvitox/on_mob_add(mob/living/L, metabolism, affecting)
+	RegisterSignal(L, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/transvitox_human_damage_taken)
+
 /datum/reagent/toxin/xeno_transvitox/on_mob_life(mob/living/L, metabolism) //Converts 1 brute/burn into 1.1 toxin at a rate of 8 per tick.
 	if(prob(25))
 		to_chat(L, "<span class='warning'>You are strangely revitalised.</span>")
-	if(current_cycle > 2 && (L.getToxLoss() < (L.getBruteLoss() + L.getFireLoss())))
-		if(L.getBruteLoss())
-			L.adjustToxLoss(min(8*1.1, L.getBruteLoss()*1.1))
-			L.heal_limb_damage(min(8*1.1, L.getBruteLoss()*1.1))
-		if(L.getFireLoss())
-			L.adjustToxLoss(min(8*1.1, L.getFireLoss()*1.1))
-			L.heal_limb_damage(min(8*1.1, L.getFireLoss()*1.1))
 	return ..()
 
-/datum/reagent/toxin/xeno_decaytoxin
-	name = "Decay Accelerant"
-	description = "A destabilising substance that causes rapid degeneration of the body."
-	reagent_state = LIQUID
-	color = "#802400" // rgb: 128, 36, 0
-	custom_metabolism = 0.75
-	overdose_threshold = 10000
-	scannable = TRUE
-	purge_list = list(/datum/reagent/medicine)
-	purge_rate = 0
-	toxpwr = 0
-
-/datum/reagent/toxin/xeno_decaytoxin/on_mob_life(mob/living/L, metabolism)
-	if((L.getBruteLoss() + L.getFireLoss()) < L.getToxLoss())
-		L.adjustFireLoss(2)
-		L.adjustBruteLoss(2)
-	if(prob(25))
-		to_chat(L, "<span class='warning'>You can feel your body falling apart!</span>")
-
+/datum/reagent/toxin/xeno_transvitox/proc/transvitox_human_damage_taken(mob/living/L, damage, damagetype)
+	if((damagetype == BRUTE || damagetype == BURN) && current_cycle > 2 && L.getToxLoss() < 45)
+		L.adjustToxLoss(damage*0.6)
+		switch(damagetype)
+			if(BRUTE)
+				L.heal_limb_damage(damage*0.5)
+			if(BURN)
+				L.heal_limb_damage(0, damage*0.5)
 
 /datum/reagent/toxin/xeno_praelyx //deals damage if certain reagents are present on application or when injected more than once
 	name = "Praelyx"
-	description = "An harmless substance that coexists with blood. May cause vein ruptures if present in large quantities."
+	description = "An harmless substance when by itself that coexists with blood."
 	reagent_state = LIQUID
 	color = "#802400" // rgb: 128, 36, 0
-	custom_metabolism = 1
+	custom_metabolism = 0.5
 	overdose_threshold = 10000
 	scannable = TRUE
 	toxpwr = 0
-
-/datum/reagent/toxin/xeno_praelyx/on_mob_add(mob/living/L, metabolism, affecting)
-	if(L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox) || L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_decaytoxin) || L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
-		RegisterSignal(L, COMSIG_HIVE_XENO_RECURRING_INJECTION, .proc/xeno_praelyx_trigger)
-
-/datum/reagent/toxin/xeno_praelyx/proc/xeno_praelyx_trigger(mob/living/L, affecting)
-	to_chat(L, "<span class='warning'>Your [affecting] bursts!</span>")
-	L.apply_damage(damage = 20, damagetype = BRUTE, def_zone = affecting, sharp = TRUE)
