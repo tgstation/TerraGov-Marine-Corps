@@ -51,8 +51,8 @@
 		/turf/closed/wall/mainship/outer/canterbury,
 		/obj/machinery/door/poddoor/shutters/transit,
 		/obj/machinery/door/airlock/mainship/marine/canterbury,
-		/obj/machinery/door/airlock/mainship/command/canterbury
-		)
+		/obj/machinery/door/airlock/mainship/command/canterbury,
+	)
 
 /turf/closed/wall/mainship/white
 	walltype = "wwall"
