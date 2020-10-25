@@ -7,7 +7,6 @@
 	use_power = NO_POWER_USE
 	var/list/components
 	var/list/req_components
-	var/list/req_component_names
 	var/state = 1
 
 
@@ -18,7 +17,8 @@
 		var/first = 1
 		for(var/I in req_components)
 			if(req_components[I] > 0)
-				D += "[first?"":", "][num2text(req_components[I])] [req_component_names[I]]"
+				var/atom/A = I
+				D += "[first?"":", "][num2text(req_components[I])] [initial(A.name)]"
 				first = 0
 		if(first) // nothing needs to be added, then
 			D += "nothing"
@@ -78,11 +78,6 @@
 				req_components = circuit.req_components.Copy()
 				for(var/A in circuit.req_components)
 					req_components[A] = circuit.req_components[A]
-				req_component_names = circuit.req_components.Copy()
-				for(var/A in req_components)
-					var/cp = text2path(A)
-					var/obj/ct = new cp() // have to quickly instantiate it get name
-					req_component_names[A] = ct.name
 				if(circuit.frame_desc)
 					desc = circuit.frame_desc
 				else

@@ -9,7 +9,7 @@
 /datum/asset/group/tgui
 	children = list(
 		/datum/asset/simple/tgui,
-		/datum/asset/simple/namespaced/fontawesome
+		/datum/asset/simple/namespaced/fontawesome,
 	)
 
 /datum/asset/simple/namespaced/changelog
@@ -93,7 +93,7 @@
 		/datum/asset/simple/jquery,
 		/datum/asset/simple/namespaced/goonchat,
 		/datum/asset/spritesheet/chat,
-		/datum/asset/simple/namespaced/fontawesome
+		/datum/asset/simple/namespaced/fontawesome,
 	)
 
 /datum/asset/simple/namespaced/common
@@ -109,7 +109,7 @@
 /datum/asset/group/permissions
 	children = list(
 		/datum/asset/simple/permissions,
-		/datum/asset/simple/namespaced/common
+		/datum/asset/simple/namespaced/common,
 	)
 
 /datum/asset/simple/notes
