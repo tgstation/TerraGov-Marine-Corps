@@ -52,7 +52,7 @@
 /datum/action/xeno_action/activable/headbite/can_use_ability(mob/M, silent = FALSE, override_flags) //usable only on mobs, no clue what silent or override_flags does
 	. = ..() //do after checking the below stuff
 	if(!.)
-		return FALSE
+		return
 	var/mob/living/carbon/victim = M //target of ability
 	if(owner.action_busy) //can't use if busy
 		return FALSE
@@ -68,7 +68,6 @@
 		return FALSE
 	if(!can_use_ability(victim,TRUE,XACT_IGNORE_PLASMA)) //can't use without enough plasma
 		return fail_activate()
-
 	succeed_activate() //dew it
 
 
