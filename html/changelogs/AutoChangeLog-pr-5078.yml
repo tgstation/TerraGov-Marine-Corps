@@ -1,6 +1,0 @@
-author: "Hathkar"
-delete-after: True
-changes: 
-  - tweak: "Totally reworks the Big Red Barracks modular map"
-  - balance: "Removed deathsquad boots from Big Red Barracks modular map"
-  - bugfix: "Big Red's barrack's modular map now has oxygen"
