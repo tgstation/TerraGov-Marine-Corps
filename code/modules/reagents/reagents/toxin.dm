@@ -564,7 +564,7 @@
 			if(BURN)
 				L.heal_limb_damage(0, damage*0.5)
 
-/datum/reagent/toxin/xeno_praelyx //deals damage if certain reagents are present on application
+/datum/reagent/toxin/xeno_praelyx //used for interractions with reagent slash and hemodile
 	name = "Praelyx"
 	description = "An harmless substance when by itself that coexists with blood."
 	reagent_state = LIQUID
