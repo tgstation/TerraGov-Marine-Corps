@@ -97,7 +97,7 @@
 		return ..()
 	var/mob/living/carbon/xenomorph/hivemind/hiveminde = owner
 	hiveminde.forceMove(get_turf(hiveminde.core))
-	to_chat(hiveminde, "<span class='xenonotice'>We can't plant a node without any weeds nearby, so we got moved to our core.</span>")
+	to_chat(hiveminde, "<span class='xenonotice'>We can't plant a node without weeds nearby, we've been moved back to our core.</span>")
 	return fail_activate()
 
 // Choose Resin
