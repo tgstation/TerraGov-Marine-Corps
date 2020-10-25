@@ -4,9 +4,9 @@
 /datum/surgery_step/cut_limb
 	can_infect = 1
 	allowed_tools = list(
-	/obj/item/tool/surgery/circular_saw = 100, \
-	/obj/item/tool/hatchet = 75,       \
-	/obj/item/weapon/claymore = 75
+		/obj/item/tool/surgery/circular_saw = 100,
+		/obj/item/tool/hatchet = 75,
+		/obj/item/weapon/claymore = 75,
 	)
 
 	min_duration = 90

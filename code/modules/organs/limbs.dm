@@ -91,32 +91,32 @@
 
 //Germs
 /datum/limb/proc/handle_antibiotics()
-    var/spaceacillin = owner.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
-    var/polyhexanide = owner.reagents.get_reagent_amount(/datum/reagent/medicine/polyhexanide)
+	var/spaceacillin = owner.reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)
+	var/polyhexanide = owner.reagents.get_reagent_amount(/datum/reagent/medicine/polyhexanide)
 
-    var/spaceacillin_curve = list(0,4,3,2)
-    var/polyhexanide_curve = list(0,1,1,10)
+	var/spaceacillin_curve = list(0,4,3,2)
+	var/polyhexanide_curve = list(0,1,1,10)
 
-    if (!germ_level || (spaceacillin + polyhexanide) < MIN_ANTIBIOTICS)
-        return
+	if (!germ_level || (spaceacillin + polyhexanide) < MIN_ANTIBIOTICS)
+		return
 
-    var/infection_level = 0
-    switch(germ_level)
-        if(-INFINITY to 10)
-            germ_level = 0
-            return // cure instantly
-        if(11 to INFECTION_LEVEL_ONE)
-            infection_level = 1
-        if(INFECTION_LEVEL_ONE - 1 to INFECTION_LEVEL_TWO)
-            infection_level = 2
-        if(INFECTION_LEVEL_TWO - 1 to INFINITY)
-            infection_level = 3
+	var/infection_level = 0
+	switch(germ_level)
+		if(-INFINITY to 10)
+			germ_level = 0
+			return // cure instantly
+		if(11 to INFECTION_LEVEL_ONE)
+			infection_level = 1
+		if(INFECTION_LEVEL_ONE - 1 to INFECTION_LEVEL_TWO)
+			infection_level = 2
+		if(INFECTION_LEVEL_TWO - 1 to INFINITY)
+			infection_level = 3
 
-    if (spaceacillin >= MIN_ANTIBIOTICS)
-        germ_level -= spaceacillin_curve[infection_level]
+	if (spaceacillin >= MIN_ANTIBIOTICS)
+		germ_level -= spaceacillin_curve[infection_level]
 
-    if (polyhexanide >= MIN_ANTIBIOTICS)
-        germ_level -= polyhexanide_curve[infection_level]
+	if (polyhexanide >= MIN_ANTIBIOTICS)
+		germ_level -= polyhexanide_curve[infection_level]
 
 
 
