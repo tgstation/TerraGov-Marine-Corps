@@ -889,7 +889,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 /mob/living/carbon/human/update_headbite()
 	remove_overlay(BURST_LAYER)
 	var/image/standing
-	if(headbite == 1)
+	if(headbitten == TRUE)
 		standing = image("icon" = 'icons/Xeno/Effects.dmi',"icon_state" = "headbite_stand", "layer" =-BURST_LAYER)
 
 	overlays_standing[BURST_LAYER]	= standing

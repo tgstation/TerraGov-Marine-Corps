@@ -45,66 +45,51 @@
 	name = "Headbite"
 	action_icon_state = "headbite"
 	mechanics_text = "Permanently kill a target."
-	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED
+	use_state_flags = XACT_USE_STAGGERED|XACT_USE_FORTIFIED|XACT_USE_CRESTED //can't use while staggered, defender fortified or crest down
 	keybind_signal = COMSIG_XENOABILITY_HEADBITE
 	plasma_cost = 100
 
-/datum/action/xeno_action/activable/headbite/can_use_ability(atom/A, silent = FALSE, override_flags)
-	. = ..()
-	var/mob/living/carbon/victim = A
-	var/mob/living/carbon/xenomorph/X = owner
+/datum/action/xeno_action/activable/headbite/can_use_ability(mob/M, silent = FALSE, override_flags) //usable only on mobs, no clue what silent or override_flags does
+	. = ..() //do after checking the below stuff
 	if(!.)
 		return FALSE
-	if(!owner.Adjacent(A))
+	var/mob/living/carbon/victim = M //target of ability
+	if(owner.action_busy) //can't use if busy
 		return FALSE
-	if(X.action_busy || !do_after(X, 20, TRUE, target, BUSY_ICON_DANGER))
-		return
-
-	X.visible_message("<span class='xenowarning'>\The [X] begins slowly lifting \the [victim] into the air.</span>", \
-	"<span class='danger'>We begin focusing our anger as we slowly lift \the [victim] into the air!</span>", null, 20)
-	if(!do_after(src, 5 SECONDS, FALSE, victim, BUSY_ICON_DANGER))
-		to_chat(src, "<span class='warning'>We put down \the [victim].</span>")
-		return NONE
-	X.visible_message("<span class='xenowarning'>\The [X] begins slowly lifting \the [victim] into the air.</span>", \
-	"<span class='xenowarning'>We begin focusing our anger as we slowly lift \the [victim] into the air.</span>")
-	if(!do_mob(X, victim, 80, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
-		return fail_activate()
-	if(!can_use_ability(victim,TRUE,XACT_IGNORE_PLASMA))
-		return fail_activate()
-	if(victim.loc != X.loc)
+	if(!owner.Adjacent(M)) //checks if owner next to target
+		return FALSE
+	if(owner.issamexenohive(victim)) //checks if target and victim are in the same hive
+		if(!silent)
+			to_chat(owner, "<span class='warning'>We can't bring ourselves to harm a fellow sister to this magnitude.</span>")
+		return FALSE
+	if(issynth(victim)) //checks if target is a synth
+		if(!silent)
+			to_chat(owner, "<span class='warning'>We have no reason to headbite a non-living creature.</span>")
+		return FALSE
+	if(!can_use_ability(victim,TRUE,XACT_IGNORE_PLASMA)) //can't use without enough plasma
 		return fail_activate()
 
-	succeed_activate()
+	succeed_activate() //dew it
 
 
-/datum/action/xeno_action/activable/headbite/use_ability(atom/A)
+/datum/action/xeno_action/activable/headbite/use_ability(mob/M)
 	var/mob/living/carbon/xenomorph/X = owner
-	var/mob/living/L = A
-	X.face_atom(L) //Face towards the target so we don't look silly
+	var/mob/living/carbon/victim = M
+	X.face_atom(M) //Face towards the target so we don't look silly
 
-	GLOB.round_statistics.xeno_headbites++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_headbites")
+	X.visible_message("<span class='xenowarning'>\The [X] begins opening its mouth and extending a second jaw towards \the [victim].</span>", \
+	"<span class='danger'>We preparing our second jaw for a finishing blow on \the [victim]!</span>", null, 20)
+	if(!do_after(src, 5 SECONDS, FALSE, victim, BUSY_ICON_DANGER))
+		X.visible_message("<span class='xenowarning'>\The [X] retracts its inner jaw.</span>", \
+		"<span class='danger'>We retract our inner jaw.</span>", null, 20)
+		return FALSE
 
-	var/mob/living/carbon/victim = A
-
-	X.visible_message("<span class=\The [X] viciously bites into \the [victim]'s head with its inner jaw!</span>", \
-	"<span class='warning'>We suddenly bite into the \the [victim]'s head with our second jaw!</span>", null, 20)
-
-
-	X.visible_message("<span class='xenowarning'>\The [X] begins slowly lifting \the [victim] into the air.</span>", \
-	"<span class='xenowarning'>We begin focusing our anger as we slowly lift \the [victim] into the air.</span>")
-	if(!do_mob(X, victim, 80, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
-		return fail_activate()
-	if(!can_use_ability(victim,TRUE,XACT_IGNORE_PLASMA))
-		return fail_activate()
-	if(victim.loc != X.loc)
-		return fail_activate()
 	X.visible_message("<span class='xenodanger'>\The [X] viciously bites into \the [victim]'s head with its inner jaw!</span>", \
 	"<span class='xenodanger'>We suddenly bite into the \the [victim]'s head with our second jaw!</span>")
 	X.emote("roar")
 
-
 	if(ishuman(victim))
+		victim.emote_burstscream()
 		var/mob/living/carbon/human/H = victim
 		var/datum/internal_organ/O
 		for(var/i in list("brain")) //This removes (and later garbage collects) the organ. No brain means instant death.
@@ -112,7 +97,7 @@
 			H.internal_organs_by_name -= i
 			H.internal_organs -= O
 
-	victim.headbite = 1
+	victim.headbitten = TRUE
 	victim.update_headbite()
 
 	log_combat(src, null, "was headbitten.")
@@ -122,11 +107,6 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_headbites")
 
 	victim.death()
-
-/mob/living/carbon/human/emote_burstscream()
-	if(species.species_flags & NO_PAIN)
-		return
-	emote("burstscream")
 
 // ***************************************
 // *********** Drone-y abilities

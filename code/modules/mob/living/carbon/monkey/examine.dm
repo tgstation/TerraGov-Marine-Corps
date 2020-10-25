@@ -37,7 +37,7 @@
 
 	if(chestburst == 2)
 		msg += "<span class='warning'><b>It has a big hole in its chest!</b></span>\n"
-	if(headbite == 1)
+	if(headbitten == TRUE)
 		msg += "<span class='warning'><b>It has a big hole in its head!</b></span>\n"
 
 	msg += "*---------*</span>"
