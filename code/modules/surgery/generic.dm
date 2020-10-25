@@ -25,9 +25,7 @@
 
 /datum/surgery_step/generic/incision_manager
 	priority = 0.1 //Attempt before generic scalpel step
-	allowed_tools = list(
-	/obj/item/tool/surgery/scalpel/manager = 100
-	)
+	allowed_tools = list(/obj/item/tool/surgery/scalpel/manager = 100)
 
 	min_duration = INCISION_MANAGER_MIN_DURATION
 	max_duration = INCISION_MANAGER_MAX_DURATION
@@ -64,10 +62,10 @@
 /datum/surgery_step/generic/cut_with_laser
 	priority = 0.1 //Attempt before generic scalpel step
 	allowed_tools = list(
-	/obj/item/tool/surgery/scalpel/laser3 = 95, \
-	/obj/item/tool/surgery/scalpel/laser2 = 85, \
-	/obj/item/tool/surgery/scalpel/laser1 = 75, \
-	/obj/item/weapon/energy/sword = 5
+		/obj/item/tool/surgery/scalpel/laser3 = 95,
+		/obj/item/tool/surgery/scalpel/laser2 = 85,
+		/obj/item/tool/surgery/scalpel/laser1 = 75,
+		/obj/item/weapon/energy/sword = 5,
 	)
 
 	min_duration = 60
@@ -105,12 +103,12 @@
 
 /datum/surgery_step/generic/cut_open
 	allowed_tools = list(
-	/obj/item/tool/surgery/scalpel = 100,         \
-	/obj/item/tool/kitchen/knife = 75,     \
-	/obj/item/shard = 50,            \
-	/obj/item/weapon/combat_knife = 25,     \
-	/obj/item/weapon/throwing_knife = 15,   \
-	/obj/item/weapon/claymore/mercsword = 1
+		/obj/item/tool/surgery/scalpel = 100,
+		/obj/item/tool/kitchen/knife = 75,
+		/obj/item/shard = 50,
+		/obj/item/weapon/combat_knife = 25,
+		/obj/item/weapon/throwing_knife = 15,
+		/obj/item/weapon/claymore/mercsword = 1,
 	)
 
 	min_duration = 60
@@ -144,9 +142,9 @@
 
 /datum/surgery_step/generic/clamp_bleeders
 	allowed_tools = list(
-	/obj/item/tool/surgery/hemostat = 100,         \
-	/obj/item/stack/cable_coil = 75,         \
-	/obj/item/assembly/mousetrap = 20
+		/obj/item/tool/surgery/hemostat = 100,
+		/obj/item/stack/cable_coil = 75,
+		/obj/item/assembly/mousetrap = 20,
 	)
 
 	min_duration = 40
@@ -178,9 +176,9 @@
 
 /datum/surgery_step/generic/retract_skin
 	allowed_tools = list(
-	/obj/item/tool/surgery/retractor = 100,          \
-	/obj/item/tool/crowbar = 75,             \
-	/obj/item/tool/kitchen/utensil/fork = 50
+		/obj/item/tool/surgery/retractor = 100,
+		/obj/item/tool/crowbar = 75,
+		/obj/item/tool/kitchen/utensil/fork = 50,
 	)
 
 	min_duration = 30
@@ -225,10 +223,10 @@
 
 /datum/surgery_step/generic/cauterize
 	allowed_tools = list(
-	/obj/item/tool/surgery/cautery = 100,         \
-	/obj/item/clothing/mask/cigarette = 75,	\
-	/obj/item/tool/lighter = 50,    \
-	/obj/item/tool/weldingtool = 25
+		/obj/item/tool/surgery/cautery = 100,
+		/obj/item/clothing/mask/cigarette = 75,
+		/obj/item/tool/lighter = 50,
+		/obj/item/tool/weldingtool = 25,
 	)
 
 	min_duration = CAUTERY_MIN_DURATION
