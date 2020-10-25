@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - bugfix: "fixed being able to build directional glass on barricades"
+  - refactor: "standardized glass code"

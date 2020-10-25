@@ -117,7 +117,7 @@
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a EOD armor piece."
 	icon_state = "eod_chest"
 
- /** Legs pieces */
+// Legs pieces
 /obj/item/armor_module/armor/legs
 	icon_state = "infantry_legs"
 
