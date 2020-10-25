@@ -147,21 +147,22 @@
 
 /mob/living/carbon/xenomorph/IgniteMob()
 	. = ..()
-	if(.)
-		var/fire_light = min(fire_stacks,5)
-		if(fire_light > fire_luminosity) // light up xenos if new light source thats bigger hits them
-			set_light_range(fire_light) //update range
-			set_light_color(LIGHT_COLOR_LAVA)
-			fire_luminosity = fire_light
-			set_light_on(TRUE) //And activate it
-		var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
-		var/obj/item/clothing/mask/facehugger/G = get_inactive_held_item()
-		if(istype(F))
-			F.kill_hugger()
-			dropItemToGround(F)
-		if(istype(G))
-			G.kill_hugger()
-			dropItemToGround(G)
+	if(!. || fire_resist_modifier <= 10)	//having high fire resist makes you immune
+		return
+	var/fire_light = min(fire_stacks,5)
+	if(fire_light > fire_luminosity) // light up xenos if new light source thats bigger hits them
+		set_light_range(fire_light) //update range
+		set_light_color(LIGHT_COLOR_LAVA)
+		fire_luminosity = fire_light
+		set_light_on(TRUE) //And activate it
+	var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
+	var/obj/item/clothing/mask/facehugger/G = get_inactive_held_item()
+	if(istype(F))
+		F.kill_hugger()
+		dropItemToGround(F)
+	if(istype(G))
+		G.kill_hugger()
+		dropItemToGround(G)
 
 
 /mob/living/proc/ExtinguishMob()
