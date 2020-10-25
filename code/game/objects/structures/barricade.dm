@@ -720,8 +720,8 @@
 				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 					return TRUE
 
-			user.visible_message("<span class='notice'>[user] starts unseating [src]'s armor plates.</span>",
-			"<span class='notice'>You start unseating [src]'s armor plates.</span>")
+			user.visible_message("<span class='notice'>[user] starts disassembling [src]'s armor plates.</span>",
+			"<span class='notice'>You start disassembling [src]'s armor plates.</span>")
 
 			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 			if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
