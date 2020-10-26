@@ -226,6 +226,11 @@
 	if(stat == CONSCIOUS)
 		HasProximity(target)
 
+/obj/item/clothing/mask/facehugger/Uncross(atom/movable/AM)
+	. = ..()
+	if(. && stat == CONSCIOUS && isxeno(AM)) //shuffle hug prevention, if a xeno steps off go_idle()
+		go_idle()
+
 /obj/item/clothing/mask/facehugger/on_found(mob/finder)
 	if(stat == CONSCIOUS)
 		HasProximity(finder)
