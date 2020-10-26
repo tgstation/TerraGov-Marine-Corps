@@ -827,5 +827,3 @@
 	new /obj/item/ammo_magazine/shotgun(src)
 	new_gun.on_enter_storage(src)
 
-
-
