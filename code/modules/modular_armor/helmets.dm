@@ -51,13 +51,6 @@
 	var/permeability_coefficient_mod = -1
 	var/gas_transfer_coefficient_mod = -1
 
-/obj/item/helmet_module/attachable/mimir_environment_protection/mark1 //gas protection
-	name = "Mark 1 Mimir Environmental Helmet System"
-	desc = "Designed for mounting on a Jaeger Helmet. When attached, this system provides substantial resistance to environmental hazards, such as gases and radiological exposure. This older version has no acidic resistance. Best paired with the Mimir Environmental Resistance System and a gas mask."
-	icon_state = "mimir_head_obj"
-	item_state = "mimir_head"
-	soft_armor = null
-
 /obj/item/helmet_module/attachable/mimir_environment_protection/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
 	. = ..()
 	parent.soft_armor = parent.soft_armor.attachArmor(soft_armor)
@@ -71,6 +64,13 @@
 	parent.permeability_coefficient -= permeability_coefficient_mod
 	parent.gas_transfer_coefficient -= siemens_coefficient_mod
 	return ..()
+
+/obj/item/helmet_module/attachable/mimir_environment_protection/mark1 //gas protection
+	name = "Mark 1 Mimir Environmental Helmet System"
+	desc = "Designed for mounting on a Jaeger Helmet. When attached, this system provides substantial resistance to environmental hazards, such as gases and radiological exposure. This older version has no acidic resistance. Best paired with the Mimir Environmental Resistance System and a gas mask."
+	icon_state = "mimir_head_obj"
+	item_state = "mimir_head"
+	soft_armor = null
 
 /obj/item/helmet_module/binoculars
 	name = "Binocular Helmet Module"
