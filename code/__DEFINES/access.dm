@@ -58,8 +58,8 @@ GLOBAL_LIST_EMPTY(all_req_one_access)
 #define ACCESS_IFF_PMC				999
 //=================================================
 
-#define PAYGRADES_MARINE list("C","CMN","E1","E2","E3","E3E","E4","E5","E6","E7","E8","E8E","E9","E9E","O1","O2","O3","O4","O5","O6","WO","CWO","PO3","PO2","PO1","CPO","LtCol")
-#define PAYGRADES_OFFICER list("O1","O2","O3","O4","O5","O6","WO","CWO","CPO","MAJ", "LtCol")
+#define PAYGRADES_MARINE list("C","CMN","E1","E2","E3","E3E","E4","E5","E6","E7","E8","E8E","E9","E9E","O1","O2","O3","O4","O5","O6","WO","CWO","PO3","PO2","PO1","CPO")
+#define PAYGRADES_OFFICER list("O1","O2","O3","O4","O5","O6","WO","CWO","CPO","MAJ","LtCol")
 #define PAYGRADES_ENLISTED list("C","CMN","E1","E2","E3", "E3E","E4","E5","E6","E7","E8","E9","PO3","PO2","PO1")
 
 //Just marines
