@@ -826,3 +826,4 @@
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/shotgun/double/marine(src)
 	new /obj/item/ammo_magazine/shotgun(src)
 	new_gun.on_enter_storage(src)
+
