@@ -805,3 +805,27 @@
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new /obj/item/ammo_magazine/pistol/c99(src)
 	new_gun.on_enter_storage(src)
+
+/obj/item/storage/belt/gun/ts34
+	name = "\improper M276 pattern TS-34 shotgun holster rig"
+	desc = "A purpose built belt-holster assembly that holds a TS-34 shotgun and one shell box."
+	icon_state = "ts34_holster"
+	item_state = "ts34_holster"
+	max_w_class = 4 //So it can hold the shotgun.
+	w_class = WEIGHT_CLASS_BULKY
+	storage_slots = 2
+	max_storage_space = 8
+	can_hold = list(
+		/obj/item/weapon/gun/shotgun/double/marine,
+		/obj/item/ammo_magazine/shotgun,
+		/obj/item/ammo_magazine/handful,
+	)
+
+/obj/item/storage/belt/gun/ts34/full/Initialize()
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/shotgun/double/marine(src)
+	new /obj/item/ammo_magazine/shotgun(src)
+	new_gun.on_enter_storage(src)
+
+
+

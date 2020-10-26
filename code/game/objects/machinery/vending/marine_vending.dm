@@ -125,7 +125,7 @@
 		/obj/item/weapon/gun/launcher/m92/standardmarine = 10,
 		/obj/item/weapon/gun/launcher/m81 = 15,
 		/obj/item/weapon/gun/pistol/standard_pocketpistol = 20,
-		/obj/item/weapon/gun/shotgun/double/marine = 5,
+		/obj/item/storage/belt/gun/ts34/full = 5,
 		/obj/item/weapon/gun/shotgun/pump/ksg = 5,
 		/obj/item/weapon/gun/shotgun/pump/cmb = 5,
 		/obj/item/weapon/gun/shotgun/pump/bolt = 5,
