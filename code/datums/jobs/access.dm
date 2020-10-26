@@ -285,6 +285,8 @@
 			. = size ? "CPO " : "Chief Petty Officer"
 		if("MO4")
 			. = size ? "MAJ " : "Major"
+		if("MO5")
+			. = size ? "LtCol " : "Lieutenant Colonel"
 		if("UPP1")
 			. = size ? "UGNR " : "USL Gunner"
 		if("UPP2")
