@@ -1,0 +1,4 @@
+author: "Shadow-Quill"
+delete-after: True
+changes: 
+  - spellcheck: "Re-worded the error when attempting to plant a weed node without weeds nearby as the hivemind."
