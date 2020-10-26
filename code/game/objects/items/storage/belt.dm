@@ -808,12 +808,12 @@
 
 /obj/item/storage/belt/gun/ts34
 	name = "\improper M276 pattern TS-34 shotgun holster rig"
-	desc = "A purpose built belt-holster assembly that holds a TS-34 shotgun and one shell box."
+	desc = "A purpose built belt-holster assembly that holds a TS-34 shotgun and one shell box or 2 handfuls."
 	icon_state = "ts34_holster"
 	item_state = "ts34_holster"
 	max_w_class = 4 //So it can hold the shotgun.
 	w_class = WEIGHT_CLASS_BULKY
-	storage_slots = 2
+	storage_slots = 3
 	max_storage_space = 8
 	can_hold = list(
 		/obj/item/weapon/gun/shotgun/double/marine,
