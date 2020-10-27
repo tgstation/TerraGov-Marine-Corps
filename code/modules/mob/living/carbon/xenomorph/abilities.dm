@@ -53,43 +53,43 @@
 	. = ..() //do after checking the below stuff
 	if(!.)
 		return
+	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/victim = M //target of ability
-	if(owner.action_busy) //can't use if busy
+	if(X.action_busy) //can't use if busy
 		return FALSE
-	if(!owner.Adjacent(M)) //checks if owner next to target
+	if(!X.Adjacent(victim)) //checks if owner next to target
 		return FALSE
-	if(owner.issamexenohive(victim)) //checks if target and victim are in the same hive
+	if(X.issamexenohive(victim)) //checks if target and victim are in the same hive
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We can't bring ourselves to harm a fellow sister to this magnitude.</span>")
+			to_chat(X, "<span class='warning'>We can't bring ourselves to harm a fellow sister to this magnitude.</span>")
 		return FALSE
 	if(issynth(victim)) //checks if target is a synth
 		if(!silent)
-			to_chat(owner, "<span class='warning'>We have no reason to headbite a non-living creature.</span>")
+			to_chat(X, "<span class='warning'>We have no reason to headbite a non-living creature.</span>")
 		return FALSE
 	if(!can_use_ability(victim,TRUE,XACT_IGNORE_PLASMA)) //can't use without enough plasma
 		return fail_activate()
+	X.face_atom(victim) //Face towards the target so we don't look silly
+	X.visible_message("<span class='xenowarning'>\The [X] begins opening its mouth and extending a second jaw towards \the [victim].</span>", \
+	"<span class='danger'>We prepare our second jaw for a finishing blow on \the [victim]!</span>", null, 20)
+	if(!do_after(X, 10 SECONDS, FALSE, victim, BUSY_ICON_DANGER))
+		X.visible_message("<span class='xenowarning'>\The [X] retracts its inner jaw.</span>", \
+		"<span class='danger'>We retract our inner jaw.</span>", null, 20)
+		return FALSE
 	succeed_activate() //dew it
 
 
 /datum/action/xeno_action/activable/headbite/use_ability(mob/M)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/victim = M
-	X.face_atom(M) //Face towards the target so we don't look silly
-
-	X.visible_message("<span class='xenowarning'>\The [X] begins opening its mouth and extending a second jaw towards \the [victim].</span>", \
-	"<span class='danger'>We preparing our second jaw for a finishing blow on \the [victim]!</span>", null, 20)
-	if(!do_after(src, 5 SECONDS, FALSE, victim, BUSY_ICON_DANGER))
-		X.visible_message("<span class='xenowarning'>\The [X] retracts its inner jaw.</span>", \
-		"<span class='danger'>We retract our inner jaw.</span>", null, 20)
-		return FALSE
 
 	X.visible_message("<span class='xenodanger'>\The [X] viciously bites into \the [victim]'s head with its inner jaw!</span>", \
 	"<span class='xenodanger'>We suddenly bite into the \the [victim]'s head with our second jaw!</span>")
 	X.emote("roar")
 
 	if(ishuman(victim))
-		victim.emote_burstscream()
 		var/mob/living/carbon/human/H = victim
+		victim.emote_burstscream()
 		var/datum/internal_organ/O
 		for(var/i in list("brain")) //This removes (and later garbage collects) the organ. No brain means instant death.
 			O = H.internal_organs_by_name[i]
