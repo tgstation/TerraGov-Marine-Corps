@@ -260,9 +260,9 @@
 		if("O5")
 			. = size ? "CDR " : "Commander"
 		if("O6")
-			. = size ? "CPT " : "Captain"
-		if("O7")
 			. = size ? "COMM " : "Commodore"
+		if("O7")
+			. = size ? "CPT " : "Captain"
 		if("O8")
 			. = size ? "RADM " : "Rear Admiral"
 		if("O9")
