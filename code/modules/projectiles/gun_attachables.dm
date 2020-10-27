@@ -361,6 +361,33 @@ Defined in conflicts.dm of the #defines folder.
 	. = ..()
 	AddElement(/datum/element/scalping)
 
+/obj/item/attachable/bayonetsword
+	name = "M-23 machete"
+	desc = "A sharp machete that is the standard issue combat machete of the TerraGov Marine Corps can be attached to a variety of weapons at will or used as a standard machete. Impedes movement when attached."
+	icon_state = "bayonetsword"
+	item_state = "bayonetsword"
+	attach_icon = "bayonetknife_a"
+	force = 60
+	throwforce = 20
+	throw_speed = 3
+	throw_range = 6
+	attack_speed = 12
+	attach_delay = 10 //Bayonets attach/detach quickly.
+	detach_delay = 10
+	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	melee_mod = 40
+	slot = "muzzle"
+	pixel_shift_x = 14 //Below the muzzle.
+	pixel_shift_y = 18
+	accuracy_mod = -0.2
+	accuracy_unwielded_mod = -0.1
+	aim_speed_mod = 0.2
+	size_mod = 1
+
+/obj/item/attachable/bayonetsword/Initialize()
+	. = ..()
+	AddElement(/datum/element/scalping)
+
 /obj/item/attachable/extended_barrel
 	name = "extended barrel"
 	desc = "A lengthened barrel allows for lessened scatter, greater accuracy and muzzle velocity due to increased stabilization and shockwave exposure."

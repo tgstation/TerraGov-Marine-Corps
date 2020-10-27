@@ -100,6 +100,19 @@
 	icon_state = "officer_sheath_full"
 	new /obj/item/weapon/claymore/mercsword/officersword(src)
 
+/obj/item/storage/large_holster/bayonetsword
+	name = "\improper M5 pattern M-23 machete scabbard"
+	desc = "A large leather scabbard used to carry a M-23 machete. It can be strapped to the back, waist or armor."
+	base_icon = "machete_holster"
+	icon_state = "machete_holster"
+	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
+	can_hold = list(/obj/item/attachable/bayonetsword)
+
+/obj/item/storage/large_holster/bayonetsword/full/Initialize()
+	. = ..()
+	icon_state = "machete_holster_full"
+	new /obj/item/attachable/bayonetsword(src)
+
 /obj/item/storage/large_holster/t35
 	name = "\improper L44 T-35 scabbard"
 	desc = "A large leather holster allowing the storage of an T-35 Shotgun. It contains harnesses that allow it to be secured to the back for easy storage."
