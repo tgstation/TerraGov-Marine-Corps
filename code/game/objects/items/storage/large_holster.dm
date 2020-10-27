@@ -101,8 +101,8 @@
 	new /obj/item/weapon/claymore/mercsword/officersword(src)
 
 /obj/item/storage/large_holster/bayonetsword
-	name = "\improper M5 pattern M-23 machete scabbard"
-	desc = "A large leather scabbard used to carry a M-23 machete. It can be strapped to the back, waist or armor."
+	name = "\improper M5 pattern M-23 sword scabbard"
+	desc = "A large leather scabbard used to carry a M-23 sword. It can be strapped to the back, waist or armor."
 	base_icon = "machete_holster"
 	icon_state = "machete_holster"
 	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK

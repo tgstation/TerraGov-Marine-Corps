@@ -362,11 +362,12 @@ Defined in conflicts.dm of the #defines folder.
 	AddElement(/datum/element/scalping)
 
 /obj/item/attachable/bayonetsword
-	name = "M-23 machete"
-	desc = "A sharp machete that is the standard issue combat machete of the TerraGov Marine Corps can be attached to a variety of weapons at will or used as a standard machete. Impedes movement when attached."
+	name = "M-23 sword bayonet"
+	desc = "A sharp sword bayonet that is the standard issue combat utility blade of the TerraGov Marine Corps can be attached to a variety of weapons at will or used as a standard machete. Impedes movement when attached."
 	icon_state = "bayonetsword"
 	item_state = "bayonetsword"
 	attach_icon = "bayonetknife_a"
+	w_class = WEIGHT_CLASS_BULKY
 	force = 60
 	throwforce = 20
 	throw_speed = 3
@@ -382,7 +383,7 @@ Defined in conflicts.dm of the #defines folder.
 	accuracy_mod = -0.2
 	accuracy_unwielded_mod = -0.1
 	aim_speed_mod = 0.2
-	size_mod = 1
+	size_mod = 2
 
 /obj/item/attachable/bayonetsword/Initialize()
 	. = ..()

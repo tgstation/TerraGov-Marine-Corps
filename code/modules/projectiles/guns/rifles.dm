@@ -69,7 +69,6 @@
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/bayonetknife,
 		/obj/item/attachable/bayonetsword,
-		/obj/item/attachable/bayonetsword,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/attached_gun/grenade,
 		/obj/item/attachable/attached_gun/flamer,
