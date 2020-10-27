@@ -1,8 +1,8 @@
- /**
+/**
   * tgui state: physical_state
   *
   * Short-circuits the default state to only check physical distance.
- **/
+  **/
 
 GLOBAL_DATUM_INIT(physical_state, /datum/ui_state/physical, new)
 

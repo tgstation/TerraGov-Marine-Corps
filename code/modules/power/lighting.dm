@@ -144,7 +144,7 @@
 	var/on_gs = FALSE
 	var/brightness = 8			// luminosity when on, also used in power calculation
 	var/bulb_power = 1			// basically the alpha of the emitted light source
-	var/bulb_colour = LIGHT_COLOR_WHITE
+	var/bulb_colour = COLOR_WHITE
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
 	var/flickering = FALSE
 	var/light_type = /obj/item/light_bulb/tube		// the type of light item

@@ -327,37 +327,30 @@
 
 /obj/item/mortal_shell/flare/detonate(turf/T)
 
-	//TODO: Add flare sound
 	new /obj/item/flashlight/flare/on/illumination(T)
 	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4)
 
 //Special flare subtype for the illumination flare shell
 //Acts like a flare, just even stronger, and set length
 /obj/item/flashlight/flare/on/illumination
-
 	name = "illumination flare"
 	desc = "It's really bright, and unreachable."
 	icon_state = "" //No sprite
 	invisibility = INVISIBILITY_MAXIMUM //Can't be seen or found, it's "up in the sky"
+	resistance_flags = RESIST_ALL
 	mouse_opacity = 0
-	brightness_on = 7 //Way brighter than most lights
+	light_range = 7 //Way brighter than most lights
 
-	New()
-
-		..()
-		fuel = rand(400, 500) // Half the duration of a flare, but justified since it's invincible
+/obj/item/flashlight/flare/on/illumination/Initialize()
+	. = ..()
+	fuel = rand(400, 500) // Half the duration of a flare, but justified since it's invincible
 
 /obj/item/flashlight/flare/on/illumination/turn_off()
 
 	..()
 	qdel(src)
 
-/obj/item/flashlight/flare/on/illumination/ex_act(severity)
-
-	return //Nope
-
 /obj/structure/closet/crate/mortar_ammo
-
 	name = "\improper M402 mortar ammo crate"
 	desc = "A crate containing live mortar shells with various payloads. DO NOT DROP. KEEP AWAY FROM FIRE SOURCES."
 	icon = 'icons/Marine/mortar.dmi'
