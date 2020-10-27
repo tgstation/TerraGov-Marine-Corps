@@ -78,7 +78,7 @@ Godspeed, captain! And remember, you are not above the law."})
 /datum/job/terragov/command/fieldcommander
 	title = FIELD_COMMANDER
 	req_admin_notify = TRUE
-	paygrade = "MO4"
+	paygrade = "O3"
 	comm_title = "FCDR"
 	total_positions = 1
 	skills_type = /datum/skills/FO
@@ -106,6 +106,22 @@ Godspeed, captain! And remember, you are not above the law."})
 Your duties are to ensure marines hold when ordered, and push when they are cowering behind barricades.
 Do not ask your men to do anything you would not do side by side with them.
 Make the TGMC proud!"})
+
+/datum/job/terragov/command/fieldcommander/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+	. = ..()
+	if(!ishuman(new_mob))
+		return
+	var/mob/living/carbon/human/new_human = new_mob
+	var/playtime_mins = user?.client?.get_exp(title)
+	if(!playtime_mins || playtime_mins < 1 )
+		return
+	switch(playtime_mins)
+		if(0 to 600)
+			new_human.wear_id.paygrade = "O3"
+		if(601 to 6600)
+			new_human.wear_id.paygrade = "MO4"
+		if(6601 to 18000)
+			new_human.wear_id.paygrade = "MO5"
 
 
 /datum/outfit/job/command/fieldcommander
