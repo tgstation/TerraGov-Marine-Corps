@@ -127,7 +127,7 @@
 
 /obj/item/weapon/shield/riot/marine
 	name = "\improper TL-172 defensive shield"
-	desc = "A heavy shield adept at blocking blunt or sharp objects from connecting with the shield wielder. Looks very robust."
+	desc = "A heavy shield adept at blocking blunt or sharp objects from connecting with the shield wielder. Looks very robust. Alt click to tighten the strap."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "marine_shield"
 	flags_equip_slot = ITEM_SLOT_BACK
