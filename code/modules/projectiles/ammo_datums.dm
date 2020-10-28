@@ -894,6 +894,11 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	accurate_range_min = 2
 	damage_falloff = 0.25
 
+/datum/ammo/bullet/sniper/pfc/deescalated
+	damage = 100
+	penetration = 0
+	sundering = 15
+
 /datum/ammo/bullet/sniper/auto
 	name = "high caliber rifle bullet"
 	hud_state = "minigun"

@@ -304,6 +304,10 @@
 	max_rounds = 7
 	gun_type = /obj/item/weapon/gun/rifle/chambered
 
+/obj/item/ammo_magazine/rifle/chamberedrifle/deescalated
+	default_ammo = /datum/ammo/bullet/sniper/pfc/deescalated
+	gun_type = /obj/item/weapon/gun/rifle/chambered/deescalated
+
 //-------------------------------------------------------
 //Marine magazine automatic sniper, or the T-81.
 /obj/item/ammo_magazine/rifle/autosniper

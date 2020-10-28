@@ -615,7 +615,7 @@
 	starting_attachment_types = list(/obj/item/attachable/verticalgrip, /obj/item/attachable/t42barrel, /obj/item/attachable/reddot)
 
 /obj/item/weapon/gun/rifle/standard_gpmg/deescalated
-	current_mag = /obj/item/ammo_magazine/rifle/standard_gpmg/deescalated
+	current_mag = /obj/item/ammo_magazine/standard_gpmg/deescalated
 
 //-------------------------------------------------------
 //M41AE2 Heavy Pulse Rifle
@@ -952,6 +952,10 @@
 /obj/item/weapon/gun/rifle/chambered/reload_into_chamber(mob/user)
 	. = ..()
 	racked_bolt = FALSE
+
+/obj/item/weapon/gun/rifle/chambered/deescalated
+	current_mag = /obj/item/ammo_magazine/rifle/chamberedrifle/deescalated
+
 
 //-------------------------------------------------------
 //T-81 Auto-Sniper
