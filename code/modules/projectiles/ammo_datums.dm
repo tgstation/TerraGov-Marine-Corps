@@ -1270,6 +1270,16 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 10
 	penetration = 0
 
+/datum/ammo/energy/lasgun/M43/disabler
+	name = "disabler bolt"
+	icon_state = "pulse"
+	hud_state = "pulse"
+	damage = 5
+	penetration = 20
+
+/datum/ammo/energy/lasgun/M43/disabler/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, stagger = 0.5, slowdown = 0.75)
+
 /datum/ammo/energy/lasgun/pulsebolt
 	name = "pulse bolt"
 	icon_state = "pulse2"
