@@ -47,8 +47,8 @@
 		/datum/action/xeno_action/toggle_agility,
 		/datum/action/xeno_action/activable/fling,
 		/datum/action/xeno_action/activable/lunge,
-		/datum/action/xeno_action/activable/punch
-		)
+		/datum/action/xeno_action/activable/punch,
+	)
 
 /datum/xeno_caste/warrior/young
 	upgrade_name = "Young"

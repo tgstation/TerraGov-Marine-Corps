@@ -68,15 +68,15 @@
 		/datum/action/xeno_action/set_xeno_lead,
 		/datum/action/xeno_action/activable/queen_give_plasma,
 		/datum/action/xeno_action/queen_order,
-		/datum/action/xeno_action/deevolve
-		)
+		/datum/action/xeno_action/deevolve,
+	)
 
 
 /datum/xeno_caste/queen/young
 	upgrade = XENO_UPGRADE_ZERO
 
 /datum/xeno_caste/queen/mature
-	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
+	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs."
 
 	upgrade = XENO_UPGRADE_ONE
 

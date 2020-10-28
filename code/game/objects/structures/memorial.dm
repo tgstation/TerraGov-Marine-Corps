@@ -16,11 +16,13 @@ This memorial has been designed for him and any future contributors to perish.
 	icon_state = "memorial"
 	density = TRUE
 	anchored = TRUE
+	resistance_flags = RESIST_ALL
 
 /obj/structure/prop/mainship/valmoric
 	name = "Tomb of the Unknown Soldier"
-	desc = "HERE RESTS IN\nHONORED GLORY\nA SOLDIER\nKNOWN BUT TO GOD"
+	desc = "<i>HERE RESTS IN\nHONORED GLORY\nA SOLDIER\nKNOWN BUT TO GOD</i>"
 	icon = 'icons/obj/structures/memorial.dmi'
 	icon_state = "memorial2"
 	density = TRUE
 	anchored = TRUE
+	resistance_flags = RESIST_ALL

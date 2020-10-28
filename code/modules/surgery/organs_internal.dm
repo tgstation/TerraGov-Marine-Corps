@@ -13,9 +13,9 @@
 
 /datum/surgery_step/internal/remove_embryo
 	allowed_tools = list(
-	/obj/item/tool/surgery/hemostat = 100,           \
-	/obj/item/tool/wirecutters = 75,         \
-	/obj/item/tool/kitchen/utensil/fork = 20
+		/obj/item/tool/surgery/hemostat = 100,
+		/obj/item/tool/wirecutters = 75,
+		/obj/item/tool/kitchen/utensil/fork = 20,
 	)
 	blood_level = 2
 
@@ -61,9 +61,9 @@
 
 /datum/surgery_step/internal/fix_organ
 	allowed_tools = list(
-	/obj/item/stack/medical/advanced/bruise_pack= 100, \
-	/obj/item/stack/medical/bruise_pack = 20,          \
-	/obj/item/stack/medical/bruise_pack/tajaran = 70,  \
+		/obj/item/stack/medical/advanced/bruise_pack= 100,
+		/obj/item/stack/medical/bruise_pack = 20,
+		/obj/item/stack/medical/bruise_pack/tajaran = 70,
 	)
 
 	min_duration = FIX_ORGAN_MIN_DURATION
@@ -129,9 +129,9 @@
 
 /datum/surgery_step/internal/fix_organ_robotic //For artificial organs
 	allowed_tools = list(
-	/obj/item/stack/nanopaste = 100,   \
-	/obj/item/tool/surgery/bonegel = 30,     \
-	/obj/item/tool/screwdriver = 70, \
+		/obj/item/stack/nanopaste = 100,
+		/obj/item/tool/surgery/bonegel = 30,
+		/obj/item/tool/screwdriver = 70,
 	)
 
 	min_duration = 60
@@ -420,8 +420,8 @@
 
 /datum/surgery_step/internal/attach_organ
 	allowed_tools = list(
-	/obj/item/tool/surgery/FixOVein = 100, \
-	/obj/item/stack/cable_coil = 75
+		/obj/item/tool/surgery/FixOVein = 100,
+		/obj/item/stack/cable_coil = 75,
 	)
 
 	min_duration = 60

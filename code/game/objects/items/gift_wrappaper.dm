@@ -84,7 +84,8 @@
 		/obj/item/attachable/quickfire,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/stock/rifle,
-		/obj/item/attachable/scope)
+		/obj/item/attachable/scope,
+	)
 
 
 /obj/item/gift/marine/Initialize(mapload, ...)

@@ -361,10 +361,8 @@
 	taste_description = "iron"
 
 /datum/reagent/iron/on_mob_life(mob/living/L, metabolism)
-	if(iscarbon(L))
-		var/mob/living/carbon/C = L
-		if(C.blood_volume < BLOOD_VOLUME_NORMAL)
-			C.blood_volume += 0.8
+	if(L.blood_volume < BLOOD_VOLUME_NORMAL)
+		L.blood_volume += 0.8
 	return ..()
 
 /datum/reagent/iron/overdose_process(mob/living/L, metabolism)
@@ -549,12 +547,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/datum/reagent/nanites
-	name = "Nanomachines"
-	description = "Microscopic construction robots."
-	taste_description = "sludge"
-	reagent_state = LIQUID
-	color = "#535E66" // rgb: 83, 94, 102
 
 /datum/reagent/xenomicrobes
 	name = "Xenomicrobes"

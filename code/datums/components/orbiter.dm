@@ -128,12 +128,11 @@
 		return
 	end_orbit(orbiter)
 
-/datum/component/orbiter/proc/orbiter_glide_size_update(datum/source, target)
+/datum/component/orbiter/proc/orbiter_glide_size_update(datum/source, new_size)
 	SIGNAL_HANDLER
-	var/atom/movable/movable_target = target
 	for(var/orbiter in orbiters)
 		var/atom/movable/movable_orbiter = orbiter
-		movable_orbiter.glide_size = movable_target.glide_size
+		movable_orbiter.glide_size = new_size
 
 /////////////////////
 

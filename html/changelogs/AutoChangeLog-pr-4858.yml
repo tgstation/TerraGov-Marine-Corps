@@ -1,6 +1,0 @@
-author: "SplinterGP"
-delete-after: True
-changes: 
-  - bugfix: "fixes warrior not losing armor on agility mode."
-  - bugfix: "fixes warding xeno aura not giving armor."
-  - bugfix: "fixes defender crest defense and fortify abilities not working."
