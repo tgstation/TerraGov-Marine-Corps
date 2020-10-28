@@ -50,7 +50,8 @@
 	if(!isatom(parent) || isarea(parent) || !get_turf(parent))
 		return COMPONENT_INCOMPATIBLE
 	move_react(parent)
-	orbiter_glide_size_update(src, parent)
+	var/atom/movable/movable_parent = parent
+	orbiter_glide_size_update(src, movable_parent.glide_size)
 
 /datum/component/orbiter/proc/begin_orbit(atom/movable/orbiter, radius, clockwise, rotation_speed, rotation_segments, pre_rotation)
 	if(orbiter.orbiting)
@@ -82,7 +83,8 @@
 	orbiter.SpinAnimation(rotation_speed, -1, clockwise, rotation_segments, parallel = FALSE)
 
 	orbiter.forceMove(get_turf(parent))
-	orbiter_glide_size_update(src, parent)
+	var/atom/movable/movable_parent = parent
+	orbiter.glide_size = movable_parent.glide_size
 	to_chat(orbiter, "<span class='notice'>Now orbiting [parent].</span>")
 
 /datum/component/orbiter/proc/end_orbit(atom/movable/orbiter, refreshing=FALSE)
