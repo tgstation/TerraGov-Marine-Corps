@@ -52,7 +52,7 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 			new_human.wear_id.paygrade = "E3"
 		if(18001 to 60000)
 			new_human.wear_id.paygrade = "E3E"
-		if(60000 to INFINITY)
+		if(60001 to INFINITY)
 			new_human.wear_id.paygrade = "E8" //If you play way too much TGMC. 1000 hours.
 
 /datum/job/terragov/squad/standard/radio_help_message(mob/M)
