@@ -498,7 +498,7 @@
 
 /datum/lasrifle/base/disabler
 	charge_cost = 80
-	ammo = /datum/ammo/energy/lasgun/M43
+	ammo = /datum/ammo/energy/lasgun/M43/disabler
 	fire_delay = 10
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the Lasrifle's charge mode to disabler fire."
