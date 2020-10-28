@@ -14,7 +14,7 @@
 	melee_damage = 20
 
 	// *** Tackle *** //
-	tackle_damage = 30
+	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = -0.3
@@ -62,8 +62,8 @@
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_fling,
 		/datum/action/xeno_action/activable/unrelenting_force,
-		/datum/action/xeno_action/toggle_pheromones
-		)
+		/datum/action/xeno_action/toggle_pheromones,
+	)
 
 /datum/xeno_caste/shrike/young
 	upgrade_name = "Young"
@@ -77,7 +77,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Tackle *** //
-	tackle_damage = 35
+	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = -0.4
@@ -108,7 +108,7 @@
 	melee_damage = 23
 
 	// *** Tackle *** //
-	tackle_damage = 40
+	tackle_damage = 28
 
 	// *** Speed *** //
 	speed = -0.5
@@ -139,7 +139,7 @@
 	melee_damage = 23
 
 	// *** Tackle *** //
-	tackle_damage = 45
+	tackle_damage = 28
 
 	// *** Speed *** //
 	speed = -0.6

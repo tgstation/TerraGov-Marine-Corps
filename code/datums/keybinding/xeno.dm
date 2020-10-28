@@ -250,6 +250,18 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_BUILD_TUNNEL
 
+/datum/keybinding/xeno/place_jelly_pod
+	name = "place_jelly_pod"
+	full_name = "Hivelord: Place Jelly Pod"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_PLACE_JELLY_POD
+
+/datum/keybinding/xeno/create_jelly
+	name = "create_jelly"
+	full_name = "Hivelord: Create Jelly"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_CREATE_JELLY
+
 /datum/keybinding/xeno/toggle_stealth
 	name = "toggle_stealth"
 	full_name = "Hunter: Toggle Stealth"

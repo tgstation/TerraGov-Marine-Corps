@@ -106,7 +106,7 @@
 
 /mob/living/carbon/xenomorph/proc/update_wounds()
 	var/health_thresholds
-	wound_overlay.layer = src.layer + 0.3
+	wound_overlay.layer = layer + 0.3
 	if(health > health_threshold_crit)
 		health_thresholds = CEILING((health * 4) / (maxHealth), 1) //From 1 to 4, in 25% chunks
 		if(health_thresholds > 3)
@@ -152,5 +152,6 @@
 	return ..()
 
 /atom/movable/vis_obj/xeno_wounds/proc/on_dir_change(mob/living/carbon/xenomorph/source, olddir, newdir)
+	SIGNAL_HANDLER
 	if(newdir != dir)
 		dir = newdir

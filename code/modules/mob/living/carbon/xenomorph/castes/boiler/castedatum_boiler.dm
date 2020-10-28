@@ -14,7 +14,7 @@
 	melee_damage = 17
 
 	// *** Tackle *** //
-	tackle_damage = 25
+	tackle_damage = 21
 
 	// *** Speed *** //
 	speed = 0.3
@@ -58,8 +58,8 @@
 		/datum/action/xeno_action/activable/bombard,
 		/datum/action/xeno_action/toggle_long_range,
 		/datum/action/xeno_action/toggle_bomb,
-		/datum/action/xeno_action/activable/spray_acid/line/boiler
-		)
+		/datum/action/xeno_action/activable/spray_acid/line/boiler,
+	)
 
 /datum/xeno_caste/boiler/young
 	upgrade_name = "Young"
@@ -72,7 +72,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Tackle *** //
-	tackle_damage = 25
+	tackle_damage = 21
 
 	// *** Speed *** //
 	speed = 0.2
@@ -108,7 +108,7 @@
 	melee_damage = 20
 
 	// *** Tackle *** //
-	tackle_damage = 30
+	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = 0.1
@@ -145,7 +145,7 @@
 	melee_damage = 20
 
 	// *** Tackle *** //
-	tackle_damage = 30
+	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = 0.1

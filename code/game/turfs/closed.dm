@@ -43,6 +43,12 @@
 	icon_state = "wall2"
 	desc = "Some thick jungle."
 
+/turf/closed/gm/tree
+	name = "dense jungle trees"
+	icon_state = "jungletree"
+	desc = "Some thick jungle trees."
+
+
 	//Not yet
 /turf/closed/gm/ex_act(severity)
 	switch(severity)
@@ -120,7 +126,58 @@
 /turf/closed/ice/intersection
 	icon_state = "Intersection"
 
+//volcanic glass wall
+/turf/closed/glass/thin
+	name = "volcanic glass wall"
+	icon = 'icons/turf/icewalllight.dmi'
+	icon_state = "Single"
+	desc = "Hardened volcanic glass."
+	opacity = FALSE
 
+/turf/closed/glass/thin/single
+	icon_state = "Single"
+
+/turf/closed/glass/thin/end
+	icon_state = "End"
+
+/turf/closed/glass/thin/straight
+	icon_state = "Straight"
+
+/turf/closed/glass/thin/corner
+	icon_state = "Corner"
+
+/turf/closed/glass/thin/junction
+	icon_state = "T_Junction"
+
+/turf/closed/glass/thin/intersection
+	icon_state = "Intersection"
+
+/turf/closed/attackby(obj/item/I, mob/user, params)
+	. = ..()
+
+	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
+		var/obj/item/tool/pickaxe/plasmacutter/P = I
+		if(!ismineralturf(src) && !istype(src, /turf/closed/gm/dense) && !istype(src, /turf/closed/glass) && !istype(src, /turf/closed/desertdamrockwall) && !istype(src, /turf/closed/brock))
+			to_chat(user, "<span class='warning'>[P] can't cut through this!</span>")
+			return
+		if(!P.start_cut(user, name, src))
+			return
+
+		if(!do_after(user, PLASMACUTTER_CUT_DELAY, TRUE, src, BUSY_ICON_FRIENDLY))
+			return
+
+		P.cut_apart(user, name, src)
+
+		if(ismineralturf(src) || istype(src, /turf/closed/desertdamrockwall))
+			ChangeTurf(/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor)
+		else if(istype(src, /turf/closed/gm/dense))
+			ChangeTurf(/turf/open/ground/jungle/clear)
+		else if(istype(src, /turf/closed/brock))
+			var/choice = rand(1,50)
+			if(choice == 50)
+				ChangeTurf(/turf/open/lavaland/basalt/glowing)
+			else
+				ChangeTurf(/turf/open/lavaland/basalt)
 
 //Ice Thin Wall
 /turf/closed/ice/thin
@@ -276,6 +333,9 @@
 
 /turf/closed/shuttle/wall3/diagonal
 	icon_state = "diagonalWall3"
+
+/turf/closed/shuttle/wall4/diagonal
+	icon_state = "diag_gray"
 
 /turf/closed/shuttle/wall3/diagonal/white
 	icon_state = "diagonalWall3white"

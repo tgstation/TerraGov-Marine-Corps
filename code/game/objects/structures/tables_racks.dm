@@ -304,7 +304,15 @@
 		return
 
 	if(user.a_intent != INTENT_HARM)
-		return user.transferItemToLoc(I, loc)
+		if(user.transferItemToLoc(I, loc))
+			var/list/click_params = params2list(params)
+			//Center the icon where the user clicked.
+			if(!click_params || !click_params["icon-x"] || !click_params["icon-y"])
+				return
+			//Clamp it so that the icon never moves more than 16 pixels in either direction (thus leaving the table turf)
+			I.pixel_x = clamp(text2num(click_params["icon-x"]) - 16, -(world.icon_size/2), world.icon_size/2)
+			I.pixel_y = clamp(text2num(click_params["icon-y"]) - 16, -(world.icon_size/2), world.icon_size/2)
+			return TRUE
 
 
 /obj/structure/table/proc/straight_table_check(direction)

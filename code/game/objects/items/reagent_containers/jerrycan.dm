@@ -23,6 +23,8 @@
 	new /obj/effect/decal/cleanable/liquid_fuel(A, fuel_usage/2)
 	reagents.remove_reagent(/datum/reagent/fuel, fuel_usage)
 	user.visible_message("<span class='notice'>[user] splashes some fuel on \the [A]</span>", "<span class='notice'>You splash some fuel on [A]</span>")
+	log_attack("[key_name(user)] has splashed fuel on  [A] in [AREACOORD(user)]")
+	A.add_fingerprint(user, "attack_turf", "doused with fuel from [src]")
 
 /obj/item/reagent_containers/jerrycan/attack(mob/living/M, mob/living/user)
 	. = ..()
@@ -33,7 +35,7 @@
 	reagents.remove_reagent(/datum/reagent/fuel, fuel_usage)
 	user.visible_message("<span class='notice'>[user] splashes some fuel on [M]</span>", "<span class='notice'>You splash some fuel on [M]</span>", ignored_mob = M)
 	to_chat(M, "<span class='warning'>[user] drenches you in fuel from [src]!<span>")
-	log_attack("[user] has doused [M] in fuel")
+	log_attack("[key_name(user)] has doused [M] in fuel in [AREACOORD(user)]")
 
 /obj/item/reagent_containers/jerrycan/afterattack(obj/O as obj, mob/user as mob, proximity)
 	if(!proximity)

@@ -15,7 +15,7 @@
 	attack_delay = 7
 
 	// *** Tackle *** //
-	tackle_damage = 30
+	tackle_damage = 28
 
 	// *** Speed *** //
 	speed = -1.2
@@ -64,7 +64,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Tackle *** //
-	tackle_damage = 35
+	tackle_damage = 28
 
 	// *** Speed *** //
 	speed = -1.3
@@ -94,7 +94,7 @@
 	melee_damage = 26
 
 	// *** Tackle *** //
-	tackle_damage = 40
+	tackle_damage = 32
 
 	// *** Speed *** //
 	speed = -1.4
@@ -117,7 +117,7 @@
 
 /datum/xeno_caste/hunter/ancient
 	upgrade_name = "Ancient"
-	caste_desc = "A fast, powerful front line combatant. It looks pretty strong."
+	caste_desc = "A fast, powerful front line combatant. It looks extremely deadly."
 	upgrade = XENO_UPGRADE_THREE
 	ancient_message = "We are the epitome of the hunter. Few can stand against us in open combat."
 
@@ -125,7 +125,7 @@
 	melee_damage = 26
 
 	// *** Tackle *** //
-	tackle_damage = 45
+	tackle_damage = 32
 
 	// *** Speed *** //
 	speed = -1.5

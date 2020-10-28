@@ -533,10 +533,10 @@
 
 	var/mob/living/living_user = user
 
-	if(living_user.stat || COOLDOWN_CHECK(living_user, COOLDOWN_DISPOSAL))
+	if(living_user.stat || TIMER_COOLDOWN_CHECK(living_user, COOLDOWN_DISPOSAL))
 		return
 
-	COOLDOWN_START(living_user, COOLDOWN_DISPOSAL, 10 SECONDS)
+	TIMER_COOLDOWN_START(living_user, COOLDOWN_DISPOSAL, 10 SECONDS)
 
 	playsound(loc, 'sound/effects/clang.ogg', 25)
 
@@ -1227,6 +1227,13 @@
 /obj/structure/disposalpipe/broken/Initialize()
 	. = ..()
 	update()
+
+//Water Pipe, just for decor
+/obj/structure/disposalpipe/water_pipe
+	icon_state = "water_pipe"
+	dpdir = 0 //Makes this not a real pipe
+	desc = "A inlet or outlet for fluids."
+
 
 //Called when welded, for broken pipe, remove and turn into scrap
 /obj/structure/disposalpipe/broken/welded()

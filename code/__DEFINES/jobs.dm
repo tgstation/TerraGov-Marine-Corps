@@ -59,6 +59,7 @@
 #define SQUAD_CORPSMAN "Squad Corpsman"
 #define SQUAD_ENGINEER "Squad Engineer"
 #define SQUAD_MARINE "Squad Marine"
+#define SQUAD_VATGROWN "Squad VatGrown"
 #define SILICON_AI "AI"
 
 #define JOB_CAT_COMMAND "Command"

@@ -2,6 +2,7 @@
 ## Anything after a "#" is commented out, uncomment things to enable them, comment to disable them.
 
 $include dbconfig.txt
+$include resources.txt
 
 ## Server name: This appears at the top of the screen in-game.
 SERVER_NAME Something
@@ -20,6 +21,9 @@ ADMIN_LEGACY_SYSTEM
 
 ## Add a # infront of this to disable the shutdown server verb.
 ALLOW_SHUTDOWN
+
+## Uncomment to have the changelog file automatically open when a user connects and hasn't seen the latest changelog
+#AGGRESSIVE_CHANGELOG
 
 ## If you use /tg/station-server 3 and you want to allow the shutdown server verb,
 ##	the server needs to be able to tell tgs3 that the shutdown is not a crash.
@@ -119,3 +123,12 @@ LOBBY_MUSIC 12 https://youtu.be/guXqg_Bnl74 1 180
 LOBBY_MUSIC 13 https://youtu.be/JUNROUfqJr0 1 180
 #I know the darkness from inside
 LOBBY_MUSIC 14 https://youtu.be/Zo60Lx5KXEI 1 180
+
+## TOPIC RATE LIMITING
+## This allows you to limit how many topic calls (clicking on an interface window) the client can do in any given game second and/or game minute.
+## Admins are exempt from these limits.
+## Hitting the minute limit notifies admins.
+## Set to 0 or comment out to disable.
+SECOND_TOPIC_LIMIT 10
+
+MINUTE_TOPIC_LIMIT 100

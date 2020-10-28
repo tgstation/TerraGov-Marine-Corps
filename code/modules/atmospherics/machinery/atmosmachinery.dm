@@ -246,9 +246,9 @@
 
 
 /obj/machinery/atmospherics/proc/climb_out(mob/living/user, turf/T)
-	if(COOLDOWN_CHECK(user, COOLDOWN_VENTCRAWL))
+	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_VENTCRAWL))
 		return FALSE
-	COOLDOWN_START(user, COOLDOWN_VENTCRAWL, 2 SECONDS)
+	TIMER_COOLDOWN_START(user, COOLDOWN_VENTCRAWL, 2 SECONDS)
 	if(!isxenohunter(user) ) //Hunters silently enter/exit/move through vents.
 		visible_message("<span class='warning'>You hear something squeezing through the ducts.</span>")
 	to_chat(user, "<span class='notice'>You begin to climb out of [src]</span>")
@@ -284,9 +284,9 @@
 					user.update_pipe_vision(target_move)
 				user.forceMove(target_move)
 				user.client.eye = target_move  //Byond only updates the eye every tick, This smooths out the movement
-				if(COOLDOWN_CHECK(user, COOLDOWN_VENTSOUND))
+				if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_VENTSOUND))
 					return
-				COOLDOWN_START(user, COOLDOWN_VENTSOUND, 3 SECONDS)
+				TIMER_COOLDOWN_START(user, COOLDOWN_VENTSOUND, 3 SECONDS)
 				playsound(src, pick('sound/effects/alien_ventcrawl1.ogg','sound/effects/alien_ventcrawl2.ogg'), 50, TRUE, -3)
 	else if((direction & initialize_directions) || is_type_in_typecache(src, GLOB.ventcrawl_machinery) && can_crawl_through()) //if we move in a way the pipe can connect, but doesn't - or we're in a vent
 		climb_out(user, src.loc)

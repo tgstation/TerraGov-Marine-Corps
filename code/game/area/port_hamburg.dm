@@ -5,6 +5,7 @@
 /area/port_hamburg/mine
 	name = "Mine"
 	icon_state = "green"
+	outside = FALSE
 
 /area/port_hamburg/cargo
 	name = "Cargo area -1"
@@ -14,6 +15,7 @@
 
 /area/port_hamburg/abandoned_dorm
 	name = "Abandoned Dorm"
+	outside = FALSE
 
 /area/port_hamburg/cargo_jungle
 	name = "Cargo Bay Area Jungle"

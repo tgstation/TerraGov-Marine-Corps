@@ -61,6 +61,7 @@
 	return
 
 /obj/structure/closet/proc/shuttle_crush()
+	SIGNAL_HANDLER
 	for(var/mob/living/L in contents)
 		L.gib()
 	for(var/atom/movable/AM in contents)
@@ -351,11 +352,11 @@
 		return FALSE
 	if(user.action_busy) //Already resisting or doing something like it.
 		return FALSE
-	if(COOLDOWN_CHECK(user, COOLDOWN_RESIST))
+	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_RESIST))
 		return FALSE
 	//okay, so the closet is either welded or locked... resist!!!
 	user.changeNext_move(CLICK_CD_BREAKOUT)
-	COOLDOWN_START(user, COOLDOWN_RESIST, CLICK_CD_BREAKOUT)
+	TIMER_COOLDOWN_START(user, COOLDOWN_RESIST, CLICK_CD_BREAKOUT)
 	user.visible_message("<span class='warning'>[src] begins to shake violently!</span>", \
 		"<span class='notice'>You lean on the back of [src] and start pushing the door open... (this will take about [DisplayTimeText(breakout_time)].)</span>", \
 		"<span class='italics'>You hear banging from [src].</span>")
@@ -480,6 +481,7 @@
 
 
 /mob/living/proc/on_closet_dump(datum/source, obj/structure/closet/origin)
+	SIGNAL_HANDLER
 	SetStun(origin.closet_stun_delay)//Action delay when going out of a closet
 	if(!lying_angle && IsStun())
 		visible_message("<span class='warning'>[src] suddenly gets out of [origin]!</span>",

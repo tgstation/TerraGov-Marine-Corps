@@ -37,9 +37,11 @@
 	RegisterSignal(src, list(COMSIG_KB_QUICKEQUIP, COMSIG_CLICK_QUICKEQUIP), .proc/do_quick_equip)
 	RegisterSignal(src, COMSIG_KB_HOLSTER, .proc/do_holster)
 	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, .proc/do_unique_action)
+	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, .proc/fireman_carry_grabbed) // Fireman carry
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN)
 
 /mob/living/carbon/human/proc/human_z_changed(datum/source, old_z, new_z)
+	SIGNAL_HANDLER
 	LAZYREMOVE(GLOB.humans_by_zlevel["[old_z]"], src)
 	LAZYADD(GLOB.humans_by_zlevel["[new_z]"], src)
 
@@ -757,15 +759,16 @@
 	return ..()
 
 
-/mob/living/carbon/human/mouse_buckle_handling(atom/movable/dropping, mob/living/user)
-	. = ..()
-	if(!isliving(.))
-		return
-	if(pulling == . && grab_state >= GRAB_AGGRESSIVE && stat == CONSCIOUS && user != . && can_be_firemanned(.))
+/mob/living/carbon/human/proc/fireman_carry_grabbed()
+	SIGNAL_HANDLER_DOES_SLEEP
+	var/mob/living/grabbed = pulling
+	if(!istype(grabbed))
+		return NONE
+	if(/*grab_state >= GRAB_AGGRESSIVE &&*/ stat == CONSCIOUS && can_be_firemanned(grabbed))
 		//If you dragged them to you and you're aggressively grabbing try to fireman carry them
-		fireman_carry(.)
-		return TRUE
-	return FALSE
+		fireman_carry(grabbed)
+		return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
+	return NONE
 
 //src is the user that will be carrying, target is the mob to be carried
 /mob/living/carbon/human/proc/can_be_firemanned(mob/living/carbon/target)
@@ -777,7 +780,8 @@
 		return
 	visible_message("<span class='notice'>[src] starts lifting [target] onto [p_their()] back...</span>",
 	"<span class='notice'>You start to lift [target] onto your back...</span>")
-	if(!do_mob(src, target, 5 SECONDS, target_display = BUSY_ICON_HOSTILE))
+	var/delay = 1 SECONDS + LERP(0 SECONDS, 4 SECONDS, skills.getPercent("medical", SKILL_MEDICAL_MASTER))
+	if(!do_mob(src, target, delay, target_display = BUSY_ICON_HOSTILE))
 		visible_message("<span class='warning'>[src] fails to fireman carry [target]!</span>")
 		return
 	//Second check to make sure they're still valid to be carried
@@ -1003,7 +1007,7 @@
 			light_off++
 	if(flares)
 		for(var/obj/item/flashlight/flare/F in contents)
-			if(F.on)
+			if(F.light_on)
 				goes_out++
 			F.turn_off(src)
 		for(var/obj/item/explosive/grenade/flare/FL in contents)

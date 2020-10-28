@@ -4,12 +4,12 @@
 
 /obj/item/restraints/resisted_against(datum/source)
 	var/mob/living/carbon/perp = source
-	if(COOLDOWN_CHECK(perp, COOLDOWN_RESIST))
+	if(TIMER_COOLDOWN_CHECK(perp, COOLDOWN_RESIST))
 		return FALSE
 
 	perp.changeNext_move(CLICK_CD_RESIST)
 
-	COOLDOWN_START(perp, COOLDOWN_RESIST, CLICK_CD_BREAKOUT)
+	TIMER_COOLDOWN_START(perp, COOLDOWN_RESIST, CLICK_CD_BREAKOUT)
 
 	perp.resist_restraints(src)
 

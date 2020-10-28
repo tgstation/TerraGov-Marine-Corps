@@ -247,7 +247,7 @@
 
 /obj/structure/ship_ammo/rocket/keeper/detonate_on(turf/impact)
 	impact.ceiling_debris_check(3)
-	explosion(impact, 4, 5, 5, 6) //tighter blast radius, but more devastating near center
+	explosion(impact, 4, 5, 5, 6, small_animation = TRUE) //tighter blast radius, but more devastating near center
 	qdel(src)
 
 
@@ -272,7 +272,7 @@
 		var/list/coords = impact_coords[i]
 		var/turf/detonation_target = locate(impact.x+coords[1],impact.y+coords[2],impact.z)
 		detonation_target.ceiling_debris_check(2)
-		explosion(detonation_target, 2, 3, 4, adminlog = FALSE)
+		explosion(detonation_target, 2, 3, 4, adminlog = FALSE, small_animation = TRUE)
 	qdel(src)
 
 /obj/structure/ship_ammo/rocket/napalm
@@ -284,7 +284,7 @@
 
 /obj/structure/ship_ammo/rocket/napalm/detonate_on(turf/impact)
 	impact.ceiling_debris_check(3)
-	explosion(impact, 2, 3, 4, 6) //relatively weak
+	explosion(impact, 2, 3, 4, 6, small_animation = TRUE) //relatively weak
 	flame_radius(5, impact, 60, 30) //cooking for a long time
 	qdel(src)
 
@@ -307,7 +307,7 @@
 /obj/structure/ship_ammo/minirocket/detonate_on(turf/impact)
 	impact.ceiling_debris_check(2)
 
-	explosion(impact, 0, 2, 4, 5, adminlog = FALSE)//no messaging admin, that'd spam them.
+	explosion(impact, 0, 2, 4, 5, adminlog = FALSE, small_animation = TRUE)//no messaging admin, that'd spam them.
 	var/datum/effect_system/expl_particles/P
 	P.set_up(4, 0, impact)
 	P.start()
@@ -358,19 +358,21 @@
 		qdel(src) //deleted after last minirocket is fired and impact the ground.
 
 /obj/structure/ship_ammo/minirocket/illumination/proc/drop_cas_flare(turf/impact)
-	new/obj/item/flashlight/flare/on/cas(impact)
+	new /obj/effect/cas_flare(impact)
 
-/obj/item/flashlight/flare/on/cas
+/obj/effect/cas_flare
 	name = "illumination flare"
 	desc = "Report this if you actually see this FUCK"
 	icon_state = "" //No sprite
 	invisibility = INVISIBILITY_MAXIMUM
-	mouse_opacity = 0
-	brightness_on = 7 //Magnesium/sodium fires (White star) really are bright
+	resistance_flags = RESIST_ALL
+	light_system = STATIC_LIGHT
+	light_power = 7 //Magnesium/sodium fires (White star) really are bright
 
-/obj/item/flashlight/flare/on/cas/Initialize()
+/obj/effect/cas_flare/Initialize()
 	. = ..()
 	var/turf/T = get_turf(src)
-	fuel = rand(700, 900) // About the same burn time as a flare, considering it requires it's own CAS run.
-	T.visible_message("<span class='warning'>You see a tiny flash, and then a blindingly bright light from the flare as it lights off in the sky!</span>")
+	set_light(light_power)
+	T.visible_message("<span class='warning'>You see a tiny flash, and then a blindingly bright light from a flare as it lights off in the sky!</span>")
 	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4) // stolen from the mortar i'm not even sorry
+	QDEL_IN(src, rand(700, 900)) // About the same burn time as a flare, considering it requires it's own CAS run.

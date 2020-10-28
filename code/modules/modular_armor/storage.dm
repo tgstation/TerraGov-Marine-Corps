@@ -49,11 +49,11 @@
 	max_w_class = WEIGHT_CLASS_TINY
 	bypass_w_limit = list(
 		/obj/item/clothing/glasses,
-		/obj/item/reagent_containers/food/drinks/flask
+		/obj/item/reagent_containers/food/drinks/flask,
 	)
 
 	cant_hold = list(
-		/obj/item/stack
+		/obj/item/stack,
 	)
 
 /obj/item/armor_module/storage/do_attach(mob/living/user, obj/item/clothing/suit/modular/parent)
@@ -78,10 +78,11 @@
 
 /obj/item/storage/internal/modular/general
 	max_storage_space = 10
-	storage_slots = 3
+	storage_slots = 2
 	max_w_class = WEIGHT_CLASS_NORMAL
 	can_hold = list(
 		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
 		/obj/item/flashlight/flare,
 		/obj/item/explosive/grenade/flare,
 		/obj/item/ammo_magazine/rifle,
@@ -93,8 +94,8 @@
 		/obj/item/ammo_magazine/handful,
 		/obj/item/explosive/grenade,
 		/obj/item/explosive/mine,
-		/obj/item/reagent_containers/food/snacks
-		)
+		/obj/item/reagent_containers/food/snacks,
+	)
 
 /obj/item/armor_module/storage/ammo_mag
 	name = "Magazine Storage module"
@@ -109,6 +110,7 @@
 	max_w_class = WEIGHT_CLASS_NORMAL
 	can_hold = list(
 		/obj/item/weapon/combat_knife,
+		/obj/item/attachable/bayonetknife,
 		/obj/item/flashlight/flare,
 		/obj/item/explosive/grenade/flare,
 		/obj/item/ammo_magazine/rifle,
@@ -120,8 +122,8 @@
 		/obj/item/ammo_magazine/handful,
 		/obj/item/explosive/grenade,
 		/obj/item/explosive/mine,
-		/obj/item/reagent_containers/food/snacks
-		)
+		/obj/item/reagent_containers/food/snacks,
+	)
 
 /obj/item/armor_module/storage/engineering
 	name = "Engineering Storage module"
@@ -148,7 +150,15 @@
 		/obj/item/stack/rods,
 		/obj/item/stack/cable_coil,
 		/obj/item/tool/shovel/etool,
-		/obj/item/stack/sandbags_empty)
+		/obj/item/stack/sandbags_empty,
+		/obj/item/tool/wrench,
+		/obj/item/tool/weldingtool,
+		/obj/item/tool/wirecutters,
+		/obj/item/tool/crowbar,
+		/obj/item/tool/screwdriver,
+		/obj/item/multitool,
+		/obj/item/binoculars/tactical/range,
+	)
 	cant_hold = list()
 
 /obj/item/armor_module/storage/medical
@@ -163,13 +173,14 @@
 	storage_slots = 5
 	max_w_class = WEIGHT_CLASS_SMALL
 	can_hold = list(
+		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/reagent_containers/pill,
 		/obj/item/reagent_containers/syringe,
 		/obj/item/storage/pill_bottle,
 		/obj/item/clothing/gloves/latex,
 		/obj/item/reagent_containers/hypospray/autoinjector,
-		/obj/item/stack/medical
+		/obj/item/stack/medical,
 	)
 
 /obj/item/armor_module/storage/integrated

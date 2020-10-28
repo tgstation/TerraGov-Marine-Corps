@@ -97,7 +97,9 @@
 	GLOB.offered_mob_list -= src
 	SSmobs.stop_processing(src)
 	job = null
-	return ..()
+	. = ..()
+	hard_armor = null
+	soft_armor = null
 
 
 //This proc is used for mobs which are affected by pressure to calculate the amount of pressure that actually
@@ -245,9 +247,9 @@
 /mob/living/proc/do_resist_grab()
 	if(restrained(RESTRAINED_NECKGRAB))
 		return FALSE
-	if(COOLDOWN_CHECK(src, COOLDOWN_RESIST))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_RESIST))
 		return FALSE
-	COOLDOWN_START(src, COOLDOWN_RESIST, CLICK_CD_RESIST)
+	TIMER_COOLDOWN_START(src, COOLDOWN_RESIST, CLICK_CD_RESIST)
 	if(pulledby.grab_state >= GRAB_AGGRESSIVE)
 		visible_message("<span class='danger'>[src] resists against [pulledby]'s grip!</span>")
 	return resist_grab()
@@ -256,9 +258,9 @@
 /mob/living/proc/do_move_resist_grab()
 	if(restrained(RESTRAINED_NECKGRAB))
 		return FALSE
-	if(COOLDOWN_CHECK(src, COOLDOWN_RESIST))
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_RESIST))
 		return FALSE
-	COOLDOWN_START(src, COOLDOWN_RESIST, CLICK_CD_RESIST)
+	TIMER_COOLDOWN_START(src, COOLDOWN_RESIST, CLICK_CD_RESIST)
 	if(pulledby.grab_state >= GRAB_AGGRESSIVE)
 		visible_message("<span class='danger'>[src] struggles to break free of [pulledby]'s grip!</span>", null, null, 5)
 	return resist_grab()
@@ -384,6 +386,11 @@
 			return
 
 	if(ismovableatom(A))
+		if(isxeno(src) && ishuman(A))
+			var/mob/living/carbon/human/H = A
+			if(!COOLDOWN_CHECK(H,  xeno_push_delay))
+				return
+			COOLDOWN_START(H, xeno_push_delay, XENO_HUMAN_PUSHED_DELAY)
 		PushAM(A)
 
 
@@ -576,9 +583,14 @@ below 100 is not dizzy
 		log_game("[key_name(M)] has taken over [key_name_admin(src)].")
 		message_admins("[key_name_admin(M)] has taken over [ADMIN_TPMONTY(src)].")
 
+	GLOB.offered_mob_list -= src
+
+	if(isxeno(src))
+		SSticker.mode.transfer_xeno(M, src, TRUE)
+		return TRUE
+
 	M.mind.transfer_to(src, TRUE)
 	fully_replace_character_name(M.real_name, real_name)
-	GLOB.offered_mob_list -= src
 	return TRUE
 
 
@@ -640,11 +652,11 @@ below 100 is not dizzy
 	var/turf/our_tile = get_turf(src)
 	//Squad Leaders and above have reduced cooldown and get a bigger arrow
 	if(skills.getRating("leadership") < SKILL_LEAD_TRAINED)
-		COOLDOWN_START(src, COOLDOWN_POINT, 2.5 SECONDS)
+		TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 2.5 SECONDS)
 		var/obj/visual = new /obj/effect/overlay/temp/point(our_tile, invisibility)
 		animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y, time = 1.7, easing = EASE_OUT)
 	else
-		COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)
+		TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)
 		var/obj/visual = new /obj/effect/overlay/temp/point/big(our_tile, invisibility)
 		animate(visual, pixel_x = (tile.x - our_tile.x) * world.icon_size + A.pixel_x, pixel_y = (tile.y - our_tile.y) * world.icon_size + A.pixel_y, time = 1.7, easing = EASE_OUT)
 	visible_message("<b>[src]</b> points to [A]")

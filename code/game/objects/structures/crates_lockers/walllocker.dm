@@ -51,6 +51,11 @@
 	icon_opened = "hydrantopen"
 	overlay_welded = "hydrant-medical_welded"
 
+/obj/structure/closet/walllocker/hydrant/extinguisher
+
+/obj/structure/closet/walllocker/hydrant/extinguisher/PopulateContents()
+	new /obj/item/tool/extinguisher(src)
+
 /obj/structure/closet/walllocker/hydrant/full // spawners
 
 /obj/structure/closet/walllocker/hydrant/full/PopulateContents()

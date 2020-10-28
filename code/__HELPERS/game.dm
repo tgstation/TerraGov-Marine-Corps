@@ -21,13 +21,13 @@
 		. += T
 
 /**
- * Get a bounding box of a list of atoms.
- *
- * Arguments:
- * - atoms - List of atoms. Can accept output of view() and range() procs.
- *
- * Returns: list(x1, y1, x2, y2)
- */
+  * Get a bounding box of a list of atoms.
+  *
+  * Arguments:
+  * - atoms - List of atoms. Can accept output of view() and range() procs.
+  *
+  * Returns: list(x1, y1, x2, y2)
+  */
 /proc/get_bbox_of_atoms(list/atoms)
 	var/list/list_x = list()
 	var/list/list_y = list()
@@ -40,19 +40,6 @@
 		min(list_y),
 		max(list_x),
 		max(list_y))
-
-
-
-// Like view but bypasses luminosity check
-/proc/hear(range, atom/source)
-
-	var/lum = source.luminosity
-	source.luminosity = 6
-
-	var/list/heard = view(range, source)
-	source.luminosity = lum
-
-	return heard
 
 
 /proc/trange(rad = 0, turf/centre = null) //alternative to range (ONLY processes turfs and thus less intensive)
@@ -78,7 +65,7 @@
 		if(!speaker)
 			continue
 
-		for(var/turf/T in hear(R.canhear_range,speaker))
+		for(var/turf/T in get_hear(R.canhear_range,speaker))
 			speaker_coverage[T] = T
 
 

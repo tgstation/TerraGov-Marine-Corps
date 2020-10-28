@@ -12,7 +12,7 @@
 	melee_damage = 17
 
 	// *** Tackle *** //
-	tackle_damage = 30
+	tackle_damage = 21
 
 	// *** Speed *** //
 	speed = 0.4
@@ -33,7 +33,7 @@
 	evolves_to = list(/mob/living/carbon/xenomorph/Defiler)
 
 	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER|CASTE_CAN_HOLD_JELLY
 
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 
@@ -63,7 +63,9 @@
 		/datum/action/xeno_action/build_tunnel,
 		/datum/action/xeno_action/toggle_speed,
 		/datum/action/xeno_action/toggle_pheromones,
-		/datum/action/xeno_action/activable/xeno_spit
+		/datum/action/xeno_action/activable/xeno_spit,
+		/datum/action/xeno_action/create_jelly,
+		/datum/action/xeno_action/place_jelly_pod
 		)
 
 /datum/xeno_caste/hivelord/young
@@ -77,7 +79,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Tackle *** //
-	tackle_damage = 35
+	tackle_damage = 21
 
 	// *** Speed *** //
 	speed = 0.3
@@ -111,7 +113,7 @@
 	melee_damage = 20
 
 	// *** Tackle *** //
-	tackle_damage = 40
+	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = 0.2
@@ -146,7 +148,7 @@
 	melee_damage = 20
 
 	// *** Tackle *** //
-	tackle_damage = 45
+	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = 0.1

@@ -100,11 +100,14 @@ steam.start() -- spawns the effect
 	icon_state = "sparks"
 	anchored = TRUE
 	mouse_opacity = 0
+	light_on = TRUE
+	light_power = 1
+	light_range = 1
+	light_color = COLOR_VERY_SOFT_YELLOW
 
 /obj/effect/particle_effect/sparks/Initialize()
 	. = ..()
 	playsound(src.loc, "sparks", 25, 1)
-	set_light(1)
 	QDEL_IN(src, 10 SECONDS)
 
 

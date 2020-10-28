@@ -17,7 +17,7 @@
 	old_x = -16
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
-		)
+	)
 
 // ***************************************
 // *********** Death
@@ -29,7 +29,7 @@
 		for(var/i in 1 to 3)
 			var/obj/item/clothing/mask/facehugger/F = pick_n_take(huggers)
 			if(!F)
-				return
+				break
 			if(prob(chance))
 				F.forceMove(loc)
 				step_away(F,src,1)

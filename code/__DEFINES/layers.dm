@@ -21,6 +21,11 @@
 #define PLANE_SPACE -95
 #define PLANE_SPACE_PARALLAX -90
 
+
+#define OPENSPACE_LAYER 18 //Openspace layer over all
+#define OPENSPACE_PLANE -4 //Openspace plane below all turfs
+#define OPENSPACE_BACKDROP_PLANE -3 //Black square just over openspace plane to guaranteed cover all in openspace turf
+
 #define FLOOR_PLANE -2
 #define GAME_PLANE -1
 #define BLACKNESS_PLANE 0 //To keep from conflicts with SEE_BLACKNESS internals
@@ -54,6 +59,7 @@
 #define UNDERFLOOR_OBJ_LAYER 2.5 //bluespace beacon, navigation beacon, etc
 
 #define CATWALK_LAYER 2.51 //catwalk overlay of /turf/open/floor/plating/plating_catwalk
+#define XENO_WEEDS_LAYER 2.52 //weed layer so that it goes above catwalks
 
 #define ATMOS_DEVICE_LAYER 2.53 //vents, connector ports, atmos devices that should be above pipe layer.
 
@@ -132,14 +138,31 @@
 
 #define POINT_LAYER 12
 
-#define CHAT_LAYER 12.1
+#define EMISSIVE_BLOCKER_PLANE 12
+#define EMISSIVE_BLOCKER_LAYER 12
+#define EMISSIVE_BLOCKER_RENDER_TARGET "*EMISSIVE_BLOCKER_PLANE"
+
+#define CHAT_LAYER 12.0001 // Do not insert layers between these two values
+#define CHAT_LAYER_MAX 12.9999
+
+
+#define EMISSIVE_PLANE 13
+#define EMISSIVE_LAYER 13
+#define EMISSIVE_RENDER_TARGET "*EMISSIVE_PLANE"
+
+#define EMISSIVE_UNBLOCKABLE_PLANE 14
+#define EMISSIVE_UNBLOCKABLE_LAYER 14
+#define EMISSIVE_UNBLOCKABLE_RENDER_TARGET "*EMISSIVE_UNBLOCKABLE_PLANE"
 
 #define LIGHTING_PLANE 15
 
-#define ABOVE_LIGHTING_PLANE 16
-#define ABOVE_LIGHTING_LAYER 16
+#define O_LIGHTING_VISUAL_PLANE 16
+#define O_LIGHTING_VISUAL_LAYER 16
+#define O_LIGHTING_VISUAL_RENDER_TARGET "O_LIGHT_VISUAL_PLANE"
 
-#define FLOOR_OPENSPACE_PLANE 17
+#define ABOVE_LIGHTING_PLANE 17
+#define ABOVE_LIGHTING_LAYER 17
+
 
 #define BELOW_FULLSCREEN_LAYER 17.9 //blip from motion detector
 

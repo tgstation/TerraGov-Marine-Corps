@@ -355,6 +355,10 @@
 		if(H.species && !(slot in mob_equip))
 			return FALSE
 
+		if(issynth(H) && CHECK_BITFIELD(flags_item, SYNTH_RESTRICTED) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+			to_chat(H, "<span class='warning'>Your programming prevents you from wearing this.</span>")
+			return FALSE
+
 		switch(slot)
 			if(SLOT_L_HAND)
 				if(H.l_hand)
@@ -679,7 +683,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.visible_message("<span class='notice'>[user] looks up from [zoom_device].</span>",
 		"<span class='notice'>You look up from [zoom_device].</span>")
 		zoom = FALSE
-		COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)
+		TIMER_COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)
 
 		if(user.interactee == src)
 			user.unset_interaction()
@@ -691,9 +695,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			user.client.pixel_y = 0
 
 	else //Otherwise we want to zoom in.
-		if(COOLDOWN_CHECK(user, COOLDOWN_ZOOM)) //If we are spamming the zoom, cut it out
+		if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_ZOOM)) //If we are spamming the zoom, cut it out
 			return
-		COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)
+		TIMER_COOLDOWN_START(user, COOLDOWN_ZOOM, 2 SECONDS)
 
 		if(user.client)
 			user.client.change_view(VIEW_NUM_TO_STRING(viewsize))
@@ -865,7 +869,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 				sleep(2)
 			qdel(W)
 
-	if(isspaceturf(user.loc) || user.lastarea.has_gravity == 0)
+	if(isspaceturf(user.loc))
 		user.inertia_dir = get_dir(target, user)
 		step(user, user.inertia_dir)
 

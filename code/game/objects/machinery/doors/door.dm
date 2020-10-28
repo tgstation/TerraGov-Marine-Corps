@@ -67,9 +67,9 @@
 
 	if(ismob(AM))
 		var/mob/M = AM
-		if(COOLDOWN_CHECK(M, COOLDOWN_BUMP))
+		if(TIMER_COOLDOWN_CHECK(M, COOLDOWN_BUMP))
 			return	//This is to prevent shock spam.
-		COOLDOWN_START(M, COOLDOWN_BUMP, openspeed)
+		TIMER_COOLDOWN_START(M, COOLDOWN_BUMP, openspeed)
 		if(!M.restrained() && M.mob_size > MOB_SIZE_SMALL)
 			bumpopen(M)
 		return
@@ -185,6 +185,7 @@
 
 
 /obj/machinery/door/proc/open()
+	SIGNAL_HANDLER_DOES_SLEEP
 	if(!density)
 		return TRUE
 	if(operating > 0 || !loc)

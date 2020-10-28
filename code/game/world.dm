@@ -28,8 +28,6 @@ GLOBAL_VAR(restart_counter)
 
 	load_admins()
 
-	SetupExternalRSC()
-
 	populate_seed_list()
 	populate_gear_list()
 	make_datum_references_lists()
@@ -97,6 +95,7 @@ GLOBAL_VAR(restart_counter)
 		GLOB.log_directory = "data/logs/[override_dir]"
 
 	GLOB.world_game_log = "[GLOB.log_directory]/game.log"
+	GLOB.world_asset_log = "[GLOB.log_directory]/asset.log"
 	GLOB.world_attack_log = "[GLOB.log_directory]/attack.log"
 	GLOB.world_manifest_log = "[GLOB.log_directory]/manifest.log"
 	GLOB.world_href_log = "[GLOB.log_directory]/hrefs.log"
@@ -132,6 +131,8 @@ GLOBAL_VAR(restart_counter)
 	log_runtime(GLOB.revdata.get_log_message())
 
 /world/Topic(T, addr, master, key)
+	TGS_TOPIC	//redirect to server tools if necessary
+
 	var/static/list/bannedsourceaddrs = list()
 
 	var/static/list/lasttimeaddr = list()
@@ -157,10 +158,6 @@ GLOBAL_VAR(restart_counter)
 				return
 
 		lasttimeaddr[addr] = world.time + 2 SECONDS
-
-
-	TGS_TOPIC	//redirect to server tools if necessary
-
 
 	var/list/input = params2list(T)
 	var/datum/world_topic/handler
@@ -201,7 +198,8 @@ GLOBAL_VAR(restart_counter)
 
 /world/Reboot(ping)
 	if(ping)
-		send2update(CONFIG_GET(string/restart_message))
+		// TODO: Replace the second arguments of send2chat with custom config tags. See __HELPERS/chat.dm
+		send2chat(CONFIG_GET(string/restart_message), "")
 		var/list/msg = list()
 
 		if(GLOB.round_id)
@@ -232,7 +230,7 @@ GLOBAL_VAR(restart_counter)
 			msg += "Players: [length(GLOB.clients)]"
 
 		if(length(msg))
-			send2update(msg.Join(" | "))
+			send2chat(msg.Join(" | "), "")
 
 	Master.Shutdown()
 	TgsReboot()
@@ -320,12 +318,6 @@ GLOBAL_VAR(restart_counter)
 	maxz++
 	SSmobs.MaxZChanged()
 	SSidlenpcpool.MaxZChanged()
-
-
-/world/proc/SetupExternalRSC()
-	if(!CONFIG_GET(string/resource_url))
-		return
-	GLOB.external_rsc_url = CONFIG_GET(string/resource_url)
 
 
 /world/proc/update_hub_visibility(new_visibility)

@@ -20,7 +20,7 @@
 			"<span class='notice'>We start focusing your sight to look off into the distance.</span>", null, 5)
 		if(!do_after(X, 1 SECONDS, FALSE, null, BUSY_ICON_GENERIC) || X.is_zoomed)
 			return
-		X.zoom_in()
+		X.zoom_in(11)
 		..()
 
 // ***************************************
@@ -84,7 +84,7 @@
 	else
 		X.neuro_ammo++
 		to_chat(X, "<span class='notice'>We prepare a neurotoxic gas globule.</span>")
-	X.updateBoilerGlow() 
+	X.update_boiler_glow()
 	update_button_icon()
 
 /datum/action/xeno_action/create_boiler_bomb/update_button_icon()
@@ -146,6 +146,7 @@
 
 
 /datum/action/xeno_action/activable/bombard/proc/on_ranged_attack(mob/living/carbon/xenomorph/X, atom/A, params)
+	SIGNAL_HANDLER_DOES_SLEEP
 	if(can_use_ability(A))
 		use_ability(A)
 
@@ -232,7 +233,7 @@
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "boiler_neuro_smokes")
 		X.neuro_ammo--
 
-	X.updateBoilerGlow()
+	X.update_boiler_glow()
 	update_button_icon()
 	add_cooldown()
 	X.reset_bombard_pointer()

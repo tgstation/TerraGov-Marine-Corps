@@ -6,15 +6,17 @@
 	action_icon_state = "charge"
 	mechanics_text = "Charge up to 4 tiles and viciously attack your target."
 	ability_name = "charge"
-	cooldown_timer = 6 SECONDS //Balanced by the inability to use either ability more than twice in a row without needing a lengthy plasma charge
-	plasma_cost = 250
+	cooldown_timer = 10 SECONDS //Balanced by the inability to use either ability more than twice in a row without needing a lengthy plasma charge
+	plasma_cost = 300
 	keybind_flags = XACT_KEYBIND_USE_ABILITY | XACT_IGNORE_SELECTED_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_RAVAGER_CHARGE
 
 /datum/action/xeno_action/activable/charge/proc/charge_complete()
+	SIGNAL_HANDLER
 	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENO_NONE_THROW_HIT, COMSIG_XENO_LIVING_THROW_HIT))
 
 /datum/action/xeno_action/activable/charge/proc/obj_hit(datum/source, obj/target, speed)
+	SIGNAL_HANDLER
 	var/mob/living/carbon/xenomorph/ravager/X = owner
 	if(istype(target, /obj/structure/table) || istype(target, /obj/structure/rack))
 		var/obj/structure/S = target
@@ -26,6 +28,7 @@
 	charge_complete()
 
 /datum/action/xeno_action/activable/charge/proc/mob_hit(datum/source, mob/M)
+	SIGNAL_HANDLER
 	if(M.stat || isxeno(M))
 		return
 	return COMPONENT_KEEP_THROWING //Ravagers plow straight through humans; we only stop on hitting a dense turf

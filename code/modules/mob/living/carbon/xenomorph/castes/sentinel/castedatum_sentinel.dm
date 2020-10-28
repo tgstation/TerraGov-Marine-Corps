@@ -11,7 +11,7 @@
 	melee_damage = 16
 
 	// *** Tackle *** //
-	tackle_damage = 25
+	tackle_damage = 20
 
 	// *** Speed *** //
 	speed = -0.8
@@ -45,8 +45,8 @@
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/activable/corrosive_acid/drone,
 		/datum/action/xeno_action/activable/xeno_spit,
-		/datum/action/xeno_action/activable/neurotox_sting
-		)
+		/datum/action/xeno_action/activable/neurotox_sting,
+	)
 
 /datum/xeno_caste/sentinel/young
 	upgrade_name = "Young"
@@ -60,10 +60,10 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Tackle *** //
-	tackle_damage = 30
+	tackle_damage = 20
 
 	// *** Speed *** //
-	speed = -0.95
+	speed = -0.8
 
 	// *** Plasma *** //
 	plasma_max = 450
@@ -92,7 +92,7 @@
 	melee_damage = 17
 
 	// *** Tackle *** //
-	tackle_damage = 35
+	tackle_damage = 21
 
 	// *** Speed *** //
 	speed = -0.8
@@ -117,14 +117,14 @@
 /datum/xeno_caste/sentinel/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "Neurotoxin Factory, don't let it get you."
-	ancient_message = "We are the stun master. Our stunning is legendary and causes massive quantities of salt."
+	ancient_message = "We are the stun master. We will take down any opponent."
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //
 	melee_damage = 17
 
 	// *** Tackle *** //
-	tackle_damage = 40
+	tackle_damage = 21
 
 	// *** Speed *** //
 	speed = -0.8

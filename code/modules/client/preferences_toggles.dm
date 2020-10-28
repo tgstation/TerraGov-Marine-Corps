@@ -291,3 +291,21 @@ GLOBAL_LIST_INIT(ghost_others_options, list(GHOST_OTHERS_SIMPLE, GHOST_OTHERS_DE
 			pick_ghost_orbit()
 		if("Ghosts of others")
 			pick_ghost_other_form()
+
+
+/client/verb/toggle_deadchat_arrivalrattle()
+	set category = "Preferences"
+	set name = "Toggle Deadchat arrivalrattles"
+	set desc = "Announces when a player spawns for the first time."
+
+	TOGGLE_BITFIELD(prefs.toggles_deadchat, DISABLE_ARRIVALRATTLE)
+	to_chat(usr, "<span class='notice'>New spawn announcements have been [(prefs.toggles_deadchat & DISABLE_ARRIVALRATTLE) ? "disabled" : "enabled"].</span>")
+
+
+/client/verb/toggle_deadchat_deathrattle()
+	set category = "Preferences"
+	set name = "Toggle Deadchat deathrattles"
+	set desc = "Announces when a player dies."
+
+	TOGGLE_BITFIELD(prefs.toggles_deadchat, DISABLE_DEATHRATTLE)
+	to_chat(usr, "<span class='notice'>Death announcements have been [(prefs.toggles_deadchat & DISABLE_DEATHRATTLE) ? "disabled" : "enabled"].</span>")

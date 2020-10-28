@@ -17,6 +17,11 @@
 	max_integrity = RAZORWIRE_MAX_HEALTH
 	var/soak = 5
 
+/obj/structure/razorwire/foam
+	desc = "A bundle of barbed wire supported by metal rods, crudely built by iron-consuming nanites. Weld them to bring them to their full strength."
+	max_integrity = RAZORWIRE_MAX_HEALTH
+	obj_integrity = RAZORWIRE_MAX_HEALTH/2
+
 /obj/structure/razorwire/deconstruct(disassembled = TRUE)
 	if(disassembled)
 		if(obj_integrity > max_integrity * 0.5)
@@ -59,7 +64,7 @@
 /obj/structure/razorwire/proc/razorwire_tangle(mob/living/entangled, duration = RAZORWIRE_ENTANGLE_DELAY)
 	if(QDELETED(src)) //Sanity check so that you can't get entangled if the razorwire is destroyed; this happens apparently.
 		CRASH("QDELETED razorwire called razorwire_tangle()")
-	COOLDOWN_START(entangled, COOLDOWN_ENTANGLE, duration)
+	TIMER_COOLDOWN_START(entangled, COOLDOWN_ENTANGLE, duration)
 	entangled.visible_message("<span class='danger'>[entangled] gets entangled in the barbed wire!</span>",
 	"<span class='danger'>You got entangled in the barbed wire! Resist to untangle yourself after [duration * 0.1] seconds since you were entangled!</span>", null, null, 5)
 	do_razorwire_tangle(entangled)
@@ -77,13 +82,14 @@
 
 /obj/structure/razorwire/resisted_against(datum/source)
 	var/mob/living/entangled = source
-	if(COOLDOWN_CHECK(entangled, COOLDOWN_ENTANGLE))
+	if(TIMER_COOLDOWN_CHECK(entangled, COOLDOWN_ENTANGLE))
 		entangled.visible_message("<span class='danger'>[entangled] attempts to disentangle itself from [src] but is unsuccessful!</span>",
 		"<span class='warning'>You fail to disentangle yourself!</span>")
 		return FALSE
 	return razorwire_untangle(entangled)
 
 /obj/structure/razorwire/proc/razorwire_untangle(mob/living/entangled)
+	SIGNAL_HANDLER
 	entangled.next_move_slowdown += RAZORWIRE_SLOWDOWN //big slowdown
 	do_razorwire_untangle(entangled)
 	visible_message("<span class='danger'>[entangled] disentangles from [src]!</span>")
@@ -97,6 +103,7 @@
 
 ///This proc is used for signals, so if you plan on adding a second argument, or making it return a value, then change those RegisterSignal's referncing it first.
 /obj/structure/razorwire/proc/do_razorwire_untangle(mob/living/entangled)
+	SIGNAL_HANDLER
 	UnregisterSignal(entangled, list(COMSIG_PARENT_QDELETING, COMSIG_LIVING_DO_RESIST, COMSIG_MOVABLE_UNCROSS, COMSIG_MOVABLE_PULL_MOVED))
 	LAZYREMOVE(entangled_list, entangled)
 	DISABLE_BITFIELD(entangled.restrained_flags, RESTRAINED_RAZORWIRE)
@@ -104,6 +111,7 @@
 
 
 /obj/structure/razorwire/proc/on_entangled_uncross(datum/source, atom/movable/uncrosser)
+	SIGNAL_HANDLER
 	razorwire_untangle(uncrosser)
 
 
@@ -116,71 +124,68 @@
 /obj/structure/razorwire/attackby(obj/item/I, mob/user, params)
 	. = ..()
 
-	if(istype(I, /obj/item/grab))
-		if(isxeno(user))
+	if(istype(I, /obj/item/stack/sheet/metal))
+		var/obj/item/stack/sheet/metal/metal_sheets = I
+
+		visible_message("<span class='notice'>[user] begins to repair  \the [src].</span>")
+
+		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
 			return
 
-		var/obj/item/grab/G = I
-		if(!isliving(G.grabbed_thing))
+		if(!metal_sheets.use(1))
 			return
 
-		var/mob/living/M = G.grabbed_thing
-		if(user.a_intent == INTENT_HARM)
-			if(user.grab_state <= GRAB_AGGRESSIVE)
-				to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
-				return
-
-			var/armor_block = null
-			var/def_zone = ran_zone()
-			M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, TRUE)
-			UPDATEHEALTH(M)
-			user.visible_message("<span class='danger'>[user] spartas [M]'s into [src]!</span>",
-			"<span class='danger'>You sparta [M]'s against [src]!</span>")
-			log_combat(user, M, "spartaed", "", "against \the [src]")
-			playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
-
-		else if(user.grab_state >= GRAB_AGGRESSIVE)
-			M.forceMove(loc)
-			M.Paralyze(10 SECONDS)
-			user.visible_message("<span class='danger'>[user] throws [M] on [src].</span>",
-			"<span class='danger'>You throw [M] on [src].</span>")
+		repair_damage(max_integrity * 0.30)
+		visible_message("<span class='notice'>[user] repairs \the [src].</span>")
+		update_icon()
 		return
 
-	else if(iswirecutter(I))
-		user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
-		"<span class='notice'>You start disassembling [src].</span>")
-		var/delay_disassembly = SKILL_TASK_AVERAGE - (0.5 SECONDS + user.skills.getRating("engineer"))
+	if(!istype(I, /obj/item/grab))
+		return
+	if(isxeno(user))//I am very tempted to remove this >:)
+		return
 
-		if(!do_after(user, delay_disassembly, TRUE, src, BUSY_ICON_BUILD))
+	var/obj/item/grab/G = I
+	if(!isliving(G.grabbed_thing))
+		return
+
+	var/mob/living/M = G.grabbed_thing
+	if(user.a_intent == INTENT_HARM)
+		if(user.grab_state <= GRAB_AGGRESSIVE)
+			to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
 			return
 
-		user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
-		"<span class='notice'>You disassemble [src].</span>")
-		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-		deconstruct(TRUE)
+		var/armor_block = null
+		var/def_zone = ran_zone()
+		M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, TRUE)
+		UPDATEHEALTH(M)
+		user.visible_message("<span class='danger'>[user] spartas [M]'s into [src]!</span>",
+		"<span class='danger'>You sparta [M]'s against [src]!</span>")
+		log_combat(user, M, "spartaed", "", "against \the [src]")
+		playsound(src, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 
-	else if(iswelder(I))
-		var/obj/item/tool/weldingtool/WT = I
-		if(!WT.remove_fuel(0, user))
-			return
+	else if(user.grab_state >= GRAB_AGGRESSIVE)
+		M.forceMove(loc)
+		M.Paralyze(10 SECONDS)
+		user.visible_message("<span class='danger'>[user] throws [M] on [src].</span>",
+		"<span class='danger'>You throw [M] on [src].</span>")
 
-		var/delay = SKILL_TASK_TOUGH - (1 SECONDS + user.skills.getRating("engineer") * 5)
-		user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
-		"<span class='notice'>You begin repairing the damage to [src].</span>")
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-		var/old_loc = loc
-		if(!do_after(user, delay, TRUE, src, BUSY_ICON_FRIENDLY) || old_loc != loc)
-			return
+/obj/structure/razorwire/wirecutter_act(mob/living/user, obj/item/I)
+	user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
+	"<span class='notice'>You start disassembling [src].</span>")
+	var/delay_disassembly = SKILL_TASK_AVERAGE - (0.5 SECONDS + user.skills.getRating("engineer"))
 
-		user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
-		"<span class='notice'>You repair [src].</span>")
-		repair_damage(100)
-		update_icon()
-		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
+	if(!do_after(user, delay_disassembly, TRUE, src, BUSY_ICON_BUILD))
+		return TRUE
 
+	user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
+	"<span class='notice'>You disassemble [src].</span>")
+	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
+	deconstruct(TRUE)
+	return TRUE
 
 /obj/structure/razorwire/attack_alien(mob/living/carbon/xenomorph/M)
-	M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_LOW, RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MAX_DAMAGE_MULT_LOW)) //About a third as damaging as actually entering
+	M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MAX_DAMAGE_MULT_LOW, RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED)) //About a third as damaging as actually entering
 	UPDATEHEALTH(M)
 	update_icon()
 	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_RAZORWIRE)

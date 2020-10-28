@@ -206,6 +206,11 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	for(var/obj/structure/mineral_door/D in loc)
 		if(D.density)
 			return TRUE
+	for(var/obj/structure/barricade/B in loc)
+		if(!B.density)
+			continue
+		if(B.dir == direction)
+			return TRUE
 	return FALSE
 
 
@@ -525,12 +530,8 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		return FALSE
 	current = get_step_towards(source, target_turf)
 	while((current != target_turf))
-		if(current.opacity)
+		if(IS_OPAQUE_TURF(current))
 			return FALSE
-		for(var/thing in current)
-			var/atom/A = thing
-			if(A.opacity)
-				return FALSE
 		current = get_step_towards(current, target_turf)
 	return TRUE
 
@@ -734,8 +735,8 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	O.contents.Cut()
 
 	for(var/V in original.vars - GLOB.duplicate_forbidden_vars)
-		if(istype(original.vars[V], /datum)) // this would reference the original's object, that will break when it is used or deleted.
-			continue
+		if(istype(original.vars[V], /datum) || ismob(original.vars[V]))
+			continue // this would reference the original's object, that will break when it is used or deleted.
 		else if(islist(original.vars[V]))
 			var/list/L = original.vars[V]
 			O.vars[V] = L.Copy()
@@ -752,6 +753,11 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		if(ismachinery(O))
 			var/obj/machinery/M = O
 			M.power_change()
+
+	if(ismob(O)) //Overlays are carried over despite disallowing them, if a fix is found remove this.
+		var/mob/M = O
+		M.cut_overlays()
+		M.regenerate_icons()
 
 	return O
 
@@ -1328,7 +1334,7 @@ will handle it, but:
 		used_key_list[input_key] = 1
 	return input_key
 
-//Returns a list of all items of interest with their name
+///Returns a list of all items of interest with their name
 /proc/getpois(mobs_only=FALSE,skip_mindless=FALSE)
 	var/list/mobs = sortmobs()
 	var/list/namecounts = list()
@@ -1351,7 +1357,7 @@ will handle it, but:
 
 	return pois
 
-//Returns the left and right dir of the input dir, used for AI stutter step while attacking
+///Returns the left and right dir of the input dir, used for AI stutter step while attacking
 /proc/LeftAndRightOfDir(direction, diagonal_check = FALSE)
 	if(diagonal_check)
 		if(ISDIAGONALDIR(direction))
@@ -1363,3 +1369,28 @@ will handle it, but:
 	return call(source, proctype)(arglist(arguments))
 
 #define TURF_FROM_COORDS_LIST(List) (locate(List[1], List[2], List[3]))
+
+
+///Takes: Area type as text string or as typepath OR an instance of the area. Returns: A list of all areas of that type in the world.
+/proc/get_areas(areatype, subtypes=TRUE)
+	if(istext(areatype))
+		areatype = text2path(areatype)
+	else if(isarea(areatype))
+		var/area/areatemp = areatype
+		areatype = areatemp.type
+	else if(!ispath(areatype))
+		return null
+
+	var/list/areas = list()
+	if(subtypes)
+		var/list/cache = typecacheof(areatype)
+		for(var/V in GLOB.sorted_areas)
+			var/area/A = V
+			if(cache[A.type])
+				areas += V
+	else
+		for(var/V in GLOB.sorted_areas)
+			var/area/A = V
+			if(A.type == areatype)
+				areas += V
+	return areas

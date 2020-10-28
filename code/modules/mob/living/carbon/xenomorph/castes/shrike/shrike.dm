@@ -19,8 +19,8 @@
 	var/shrike_flags = SHRIKE_FLAG_PAIN_HUD_ON
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
-		/mob/living/carbon/xenomorph/proc/calldown_dropship
-		)
+		/mob/living/carbon/xenomorph/proc/calldown_dropship,
+	)
 
 // ***************************************
 // *********** Life overrides
@@ -28,18 +28,6 @@
 /mob/living/carbon/xenomorph/shrike/handle_decay()
 	if(prob(20+abs(3*upgrade_as_number())))
 		use_plasma(min(rand(1,2), plasma_stored))
-
-
-// ***************************************
-// *********** Name
-// ***************************************
-/mob/living/carbon/xenomorph/shrike/generate_name()
-	name = "[hive.prefix][xeno_caste.upgrade_name] [xeno_caste.display_name]" //No number, shrikes are unique.
-
-	//Update linked data so they show up properly
-	real_name = name
-	if(mind)
-		mind.name = name
 
 
 // ***************************************

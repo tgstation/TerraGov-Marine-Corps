@@ -14,7 +14,7 @@
 	melee_damage = 17
 
 	// *** Tackle *** //
-	tackle_damage = 30
+	tackle_damage = 21
 
 	// *** Speed *** //
 	speed = 0
@@ -58,8 +58,8 @@
 		/datum/action/xeno_action/activable/retrieve_egg,
 		/datum/action/xeno_action/place_trap,
 		/datum/action/xeno_action/spawn_hugger,
-		/datum/action/xeno_action/toggle_pheromones
-		)
+		/datum/action/xeno_action/toggle_pheromones,
+	)
 
 /datum/xeno_caste/carrier/young
 	upgrade_name = "Young"
@@ -73,7 +73,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Tackle *** //
-	tackle_damage = 35
+	tackle_damage = 21
 
 	// *** Speed *** //
 	speed = -0.1
@@ -109,7 +109,7 @@
 	melee_damage = 20
 
 	// *** Tackle *** //
-	tackle_damage = 40
+	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = -0.2
@@ -145,7 +145,7 @@
 	melee_damage = 20
 
 	// *** Tackle *** //
-	tackle_damage = 45
+	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = -0.3

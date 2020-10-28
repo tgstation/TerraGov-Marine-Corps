@@ -12,6 +12,7 @@
 
 //Refresh abilities-to-consider list
 /datum/ai_behavior/carbon/proc/refresh_abilities()
+	SIGNAL_HANDLER
 	ability_list = list()
 	for(var/datum/action/action in mob_parent.actions)
 		if(action.ai_should_start_consider())
@@ -25,10 +26,12 @@
 
 //Attempt to deal with a obstacle
 /datum/ai_behavior/carbon/proc/deal_with_obstacle()
+	SIGNAL_HANDLER_DOES_SLEEP
 
 //Signal wrappers; this can apply to both humans, xenos and other carbons that attack
 
 /datum/ai_behavior/carbon/proc/reason_target_killed(mob/source, gibbing)
+	SIGNAL_HANDLER
 	change_state(REASON_TARGET_KILLED)
 
 //Processing; this is for abilities so we don't need to make endless xeno types to code specifically for what abilities they spawn with

@@ -50,7 +50,7 @@
 		return FALSE
 	if(ishuman(buckling_mob))
 		var/mob/living/carbon/human/H = buckling_mob
-		if(COOLDOWN_CHECK(H, COOLDOWN_NEST))
+		if(TIMER_COOLDOWN_CHECK(H, COOLDOWN_NEST))
 			to_chat(user, "<span class='warning'>[H] was recently unbuckled. Wait a bit.</span>")
 			return FALSE
 		if(!H.lying_angle)
@@ -59,7 +59,7 @@
 
 	user.visible_message("<span class='warning'>[user] pins [buckling_mob] into [src], preparing the securing resin.</span>",
 	"<span class='warning'>[user] pins [buckling_mob] into [src], preparing the securing resin.</span>")
-	
+
 	if(!do_mob(user, buckling_mob, 1.5 SECONDS, BUSY_ICON_HOSTILE))
 		return FALSE
 	if(QDELETED(src))
@@ -88,7 +88,7 @@
 			"<span class='notice'>\The [user] pulls you free from \the [src].</span>",
 			"<span class='notice'>You hear squelching.</span>")
 		playsound(loc, "alien_resin_move", 50)
-		COOLDOWN_START(user, COOLDOWN_NEST, NEST_UNBUCKLED_COOLDOWN)
+		TIMER_COOLDOWN_START(user, COOLDOWN_NEST, NEST_UNBUCKLED_COOLDOWN)
 		silent = TRUE
 		return ..()
 

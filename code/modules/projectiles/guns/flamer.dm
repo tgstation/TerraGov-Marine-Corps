@@ -25,7 +25,7 @@
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
-	fire_delay = 20
+	fire_delay = 4
 
 
 /obj/item/weapon/gun/flamer/unique_action(mob/user)
@@ -455,6 +455,10 @@
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "red_2"
 	layer = BELOW_OBJ_LAYER
+	light_system = MOVABLE_LIGHT
+	light_on = TRUE
+	light_power = 3
+	light_color = LIGHT_COLOR_LAVA
 	var/firelevel = 12 //Tracks how much "fire" there is. Basically the timer of how long the fire burns
 	var/burnlevel = 10 //Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature.
 	var/flame_color = "red"
@@ -517,7 +521,7 @@
 /mob/living/carbon/xenomorph/flamer_fire_crossed(burnlevel, firelevel, fire_mod = 1)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
-	fire_mod = fire_resist
+	fire_mod = clamp(xeno_caste.fire_resist + fire_resist_modifier, 0, 1)
 	return ..()
 
 
@@ -541,7 +545,7 @@
 		if(25 to INFINITY) //Change the icons and luminosity based on the fire's intensity
 			icon_state = "[flame_color]_3"
 			light_intensity = 6
-	set_light(light_intensity, null, light_color)
+	set_light_range_power_color(light_intensity, light_power, light_color)
 
 /obj/flamer_fire/process()
 	var/turf/T = loc
@@ -572,6 +576,8 @@
 
 // override this proc to give different idling-on-fire effects
 /mob/living/flamer_fire_act(burnlevel, firelevel)
+	if(!burnlevel)
+		return
 	if(hard_armor.getRating("fire") >= 100)
 		to_chat(src, "<span class='warning'>Your suit protects you from most of the flames.</span>")
 		adjustFireLoss(rand(0, burnlevel * 0.25)) //Does small burn damage to a person wearing one of the suits.
@@ -585,6 +591,7 @@
 /mob/living/carbon/xenomorph/flamer_fire_act(burnlevel, firelevel)
 	if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 		return
+	burnlevel *= clamp(xeno_caste.fire_resist + fire_resist_modifier, 0, 1)
 	. = ..()
 	updatehealth()
 

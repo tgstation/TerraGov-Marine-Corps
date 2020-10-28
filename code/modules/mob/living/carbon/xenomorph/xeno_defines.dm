@@ -32,6 +32,10 @@
 	// *** Speed *** //
 	var/speed = 1
 
+	// *** Regeneration Delay ***//
+	var/regen_delay = 10 SECONDS //Time after you take damage before you can regen.
+	var/regen_ramp_amount = 0.005 //Regeneration power increases by this amount evey decisecond.
+
 	// *** Plasma *** //
 	var/plasma_max = 10
 	var/plasma_gain = 5
@@ -84,7 +88,7 @@
 
 	// *** Warrior Abilities *** //
 	var/agility_speed_increase = 0 // this opens up possibilities for balancing
-
+	var/agility_speed_armor = 0 //Same as above
 
 	// *** Boiler Abilities *** //
 	var/max_ammo = 0
@@ -100,6 +104,7 @@
 	// *** Defender Abilities *** //
 	var/crest_defense_armor = 0
 	var/fortify_armor = 0
+	var/crest_defense_slowdown = 0
 
 	// *** Queen Abilities *** //
 	var/queen_leader_limit = 0 //Amount of leaders allowed
@@ -159,8 +164,6 @@
 	var/upgrade_stored = 0 //How much upgrade points they have stored.
 	var/upgrade = XENO_UPGRADE_INVALID  //This will track their upgrade level.
 
-	var/armor_bonus = 0
-	var/armor_pheromone_bonus = 0
 	var/sunder = 0 // sunder affects armour values and does a % removal before dmg is applied. 50 sunder == 50% effective armour values
 	var/fire_resist_modifier = 0
 
@@ -176,6 +179,11 @@
 	var/warding_aura = 0
 	var/recovery_aura = 0
 
+	var/regen_power = 0 //Resets to -xeno_caste.regen_delay when you take damage.
+	//Negative values act as a delay while values greater than 0 act as a multiplier.
+	//Will increase by 10 every decisecond if under 0. Increases by xeno_caste.regen_ramp_amount every decisecond.
+	//If you want to balance this, look at the xeno_caste defines mentioned above.
+
 	var/is_zoomed = 0
 	var/zoom_turf = null
 	var/attack_delay = 0 //Bonus or pen to time in between attacks. + makes slashes slower.
@@ -188,7 +196,7 @@
 	var/selected_resin = /obj/structure/bed/nest //which resin structure to build when we secrete resin
 
 	//Naming variables
-	var/nicknumber = 0 //The number after the name. Saved right here so it transfers between castes.
+	var/nicknumber = 0 //The number/name after the xeno type. Saved right here so it transfers between castes.
 
 	//This list of inherent verbs lets us take any proc basically anywhere and add them.
 	//If they're not a xeno subtype it might crash or do weird things, like using human verb procs

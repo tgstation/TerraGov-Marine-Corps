@@ -12,7 +12,7 @@
 	melee_damage = 19
 
 	// *** Tackle *** //
-	tackle_damage = 30
+	tackle_damage = 23
 
 	// *** Speed *** //
 	speed = -0.7
@@ -43,8 +43,8 @@
 		/datum/action/xeno_action/ready_charge/bull_charge,
 		/datum/action/xeno_action/activable/bull_charge,
 		/datum/action/xeno_action/activable/bull_charge/headbutt,
-		/datum/action/xeno_action/activable/bull_charge/gore
-		)
+		/datum/action/xeno_action/activable/bull_charge/gore,
+	)
 
 /datum/xeno_caste/bull/young
 	upgrade_name = "Young"
@@ -58,7 +58,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Tackle *** //
-	tackle_damage = 35
+	tackle_damage = 23
 
 	// *** Speed *** //
 	speed = -0.8
@@ -86,7 +86,7 @@
 	melee_damage = 21
 
 	// *** Tackle *** //
-	tackle_damage = 40
+	tackle_damage = 26
 
 	// *** Speed *** //
 	speed = -0.9
@@ -114,7 +114,7 @@
 	melee_damage = 21
 
 	// *** Tackle *** //
-	tackle_damage = 45
+	tackle_damage = 26
 
 	// *** Speed *** //
 	speed = -1

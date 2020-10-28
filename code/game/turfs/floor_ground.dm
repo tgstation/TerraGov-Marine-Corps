@@ -28,10 +28,13 @@
 	if(rand(0,15) == 0)
 		icon_state = "desert[pick("0","1","2","3")]"
 
+/turf/open/floor/plating/ground/dirt/desert
+	name = "desert"
+	icon_state = "desert5"
 
-/turf/open/floor/plating/ground/dirt2
-	name = "dirt"
-	icon_state = "dirt"
+/turf/open/floor/plating/ground/dirt/desert/Initialize()
+	. = ..()
+	icon_state = "desert[pick("5","6")]"
 
 /turf/open/floor/plating/ground/dirtgrassborder
 	name = "grass"
@@ -43,6 +46,13 @@
 /turf/open/floor/plating/ground/dirtgrassborder/corner
 	icon_state = "grassdirt_corner"
 
+/turf/open/floor/plating/ground/dirtgrassborder/corner2
+	icon_state = "grassdirt_corner2"
+
+/turf/open/floor/plating/ground/dirt2
+	name = "dirt"
+	icon_state = "dirt"
+
 /turf/open/floor/plating/ground/dirtgrassborder2
 	name = "grass"
 	icon_state = "grassdirt2_edge"
@@ -51,7 +61,10 @@
 	mediumxenofootstep = FOOTSTEP_SAND
 
 /turf/open/floor/plating/ground/dirtgrassborder2/corner
-	icon_state = "grassdirt_corner2"
+	icon_state = "grassdirt2_corner"
+
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2
+	icon_state = "grassdirt2_corner2"
 
 /turf/open/ground/grass
 	name = "grass"
@@ -63,13 +76,36 @@
 /turf/open/ground/grass/grass2
 	icon_state = "grass2"
 
+/turf/open/ground/grass/grass3
+	icon_state = "grass3"
+
+/turf/open/ground/grass/grassalt
+	icon_state = "dgrass0"
+
+/turf/open/ground/grass/grassalt/Initialize()
+	. = ..()
+	icon_state = "dgrass[pick("0","1","2","3","4")]"
+
+/turf/open/ground/grass/grassalt/tall
+	icon_state = "fullgrass0"
+
+/turf/open/ground/grass/grassalt/tall/Initialize()
+	. = ..()
+	icon_state = "fullgrass[pick("0","1","2","3","4")]"
 
 // Big Red
 
+
+
 /turf/open/floor/plating/ground/mars
 	icon = 'icons/turf/bigred.dmi'
+	icon_state = "mars_sand"
+	mediumxenofootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	shoefootstep = FOOTSTEP_SAND
 
 /turf/open/floor/plating/ground/mars/random/cave
+
 	name = "cave"
 	icon_state = "mars_cave"
 
@@ -84,9 +120,6 @@
 /turf/open/floor/plating/ground/mars/random/sand
 	name = "sand"
 	icon_state = "mars_sand"
-	shoefootstep = FOOTSTEP_SAND
-	barefootstep = FOOTSTEP_SAND
-	mediumxenofootstep = FOOTSTEP_SAND
 
 /turf/open/floor/plating/ground/mars/random/Initialize()
 	. = ..()
@@ -99,6 +132,13 @@
 	name = "cave"
 	icon_state = "mars_cave_to_dirt"
 
+/turf/open/floor/plating/ground/mars/alt
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "mars1"
+
+/turf/open/floor/plating/ground/mars/alt/Initialize()
+	. = ..()
+	icon_state = "mars[pick("1","2","3","4","5")]"
 
 //Ice Colony grounds
 
@@ -107,6 +147,9 @@
 	name = "ice floor"
 	icon = 'icons/turf/ice.dmi'
 	icon_state = "ice_floor"
+	shoefootstep = FOOTSTEP_ICE
+	barefootstep = FOOTSTEP_ICE
+	mediumxenofootstep = FOOTSTEP_ICE
 
 //Randomize ice floor sprite
 /turf/open/floor/plating/ground/ice/Initialize()
@@ -114,49 +157,94 @@
 	setDir(pick(NORTH,SOUTH,EAST,WEST,NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST))
 
 // Colony tiles
-/turf/open/floor/plating/ground/asphalt
-	name = "asphalt"
-	icon = 'icons/turf/asphalt.dmi'
-	icon_state = "asphalt"
+/turf/open/floor/plating/ground/concrete
+	name = "concrete"
+	icon = 'icons/turf/concrete.dmi'
+	icon_state = "concrete0"
+	mediumxenofootstep = FOOTSTEP_CONCRETE
+	barefootstep = FOOTSTEP_CONCRETE
+	shoefootstep = FOOTSTEP_CONCRETE
 
+/turf/open/floor/plating/ground/concrete/lines
+	icon_state = "concrete_lines"
+
+/turf/open/floor/plating/ground/concrete/edge
+	icon_state = "concrete_edge"
 
 //Desert Map
 
 /turf/open/floor/plating/ground/desertdam //Basic groundmap turf parent
-	name = "desert dirt"
+	name = "desert"
 	icon = 'icons/turf/desertdam_map.dmi'
-	icon_state = "desert1"
+	icon_state = "desert0"
 
 //desert floor
 /turf/open/floor/plating/ground/desertdam/desert
 	name = "desert"
-	icon_state = "desert1"
+	icon_state = "desert0"
+	mediumxenofootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	shoefootstep = FOOTSTEP_SAND
+
+/turf/open/floor/plating/ground/desertdam/desert/Initialize()
+	. = ..()
+	icon_state = "desert[pick("0","1","2","3","4","5","6","7")]"
+
 
 //asphalt road
-/turf/open/floor/plating/ground/desertdam/asphault
-	name = "asphault"
-	icon_state = "sunbleached_asphalt1"
+/turf/open/floor/plating/ground/desertdam/asphalt
+	name = "asphalt"
+	icon_state = "sunbleached_asphalt"
+	shoefootstep = FOOTSTEP_CONCRETE
+	barefootstep = FOOTSTEP_CONCRETE
+	mediumxenofootstep = FOOTSTEP_CONCRETE
+
+/turf/open/floor/plating/ground/desertdam/asphalt/corner
+	name = "asphalt"
+	icon_state = "sunbleached_asphalt_corner"
+
+/turf/open/floor/plating/ground/desertdam/asphalt/edge
+	name = "asphalt"
+	icon_state = "sunbleached_asphalt_edge"
+
 
 //CAVE
 /turf/open/floor/plating/ground/desertdam/cave
-	icon_state = "outer_cave_floor1"
+	name = "cave"
+	icon_state = "outer_cave_floor"
+	shoefootstep = FOOTSTEP_SAND
+	barefootstep = FOOTSTEP_SAND
+	mediumxenofootstep = FOOTSTEP_SAND
 
 //desert floor to outer cave floor transition
 /turf/open/floor/plating/ground/desertdam/cave/desert_into_outer_cave_floor
-	name = "cave"
-	icon_state = "outer_cave_transition1"
+	icon_state = "outer_cave_transition"
 
 //outer cave floor
 /turf/open/floor/plating/ground/desertdam/cave/outer_cave_floor
-	name = "cave"
-	icon_state = "outer_cave_floor1"
+	icon_state = "outer_cave_floor"
 
 //outer to inner cave floor transition
 /turf/open/floor/plating/ground/desertdam/cave/outer_cave_to_inner_cave
-	name = "cave"
-	icon_state = "outer_cave_to_inner1"
+	icon_state = "outer_cave_to_inner"
+
+/turf/open/floor/plating/ground/desertdam/cave/outer_cave_to_inner_cave/alt
+	icon_state = "outer_cave_to_inner2"
 
 //inner cave floor
 /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
 	name = "cave"
-	icon_state = "inner_cave_1"
+	icon_state = "inner_cave_full0"
+
+/turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor/Initialize()
+	. = ..()
+	icon_state = "inner_cave_full[pick("0","1")]"
+
+/turf/open/floor/plating/ground/desertdam/cave/inner_cave/corners
+	name = "cave"
+	icon_state = "inner_cavecorners"
+
+/turf/open/floor/plating/ground/desertdam/cave/inner_cave/sides
+	name = "cave"
+	icon_state = "inner_cavesides"
+

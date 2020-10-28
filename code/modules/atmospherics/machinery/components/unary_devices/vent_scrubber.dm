@@ -12,7 +12,7 @@
 	can_unwrench = FALSE
 	welded = FALSE
 	level = 1
-	layer = GAS_SCRUBBER_LAYER
+	layer = ATMOS_DEVICE_LAYER
 
 	var/id_tag = null
 	var/scrubbing = SCRUBBING //0 = siphoning, 1 = scrubbing

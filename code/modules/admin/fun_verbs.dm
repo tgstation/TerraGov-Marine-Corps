@@ -580,9 +580,9 @@
 			new /obj/effect/overlay/temp/blinking_laser (usr.loc)
 			addtimer(CALLBACK(GLOBAL_PROC, .proc/delayed_detonate_bomb_napalm, get_turf(usr.loc)), 1 SECONDS)
 		if("Small Bomb")
-			explosion(usr.loc, 1, 2, 3, 3)
+			explosion(usr.loc, 1, 2, 3, 3, small_animation = TRUE)
 		if("Medium Bomb")
-			explosion(usr.loc, 2, 3, 4, 4)
+			explosion(usr.loc, 2, 3, 4, 4, small_animation = TRUE)
 		if("Big Bomb")
 			explosion(usr.loc, 3, 5, 7, 5)
 		if("Maxcap")
@@ -1164,3 +1164,26 @@
 
 	log_admin("[key_name(usr)] has [usr.client.holder.ghost_interact ? "enabled" : "disabled"] ghost interact.")
 	message_admins("[ADMIN_TPMONTY(usr)] has [usr.client.holder.ghost_interact ? "enabled" : "disabled"] ghost interact.")
+
+/client/proc/run_weather()
+	set category = "Fun"
+	set name = "Run Weather"
+	set desc = "Triggers a weather on the z-level you choose."
+
+	if(!holder)
+		return
+
+	var/weather_type = input("Choose a weather", "Weather")  as null|anything in subtypesof(/datum/weather)
+	if(!weather_type)
+		return
+
+	var/turf/T = get_turf(mob)
+	var/z_level = input("Z-Level to target?", "Z-Level", T?.z) as num|null
+	if(!isnum(z_level))
+		return
+
+	SSweather.run_weather(weather_type, z_level)
+
+	message_admins("[key_name_admin(usr)] started weather of type [weather_type] on the z-level [z_level].")
+	log_admin("[key_name(usr)] started weather of type [weather_type] on the z-level [z_level].")
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Run Weather")

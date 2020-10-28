@@ -2222,7 +2222,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("nicknumber")
 				previous = X.nicknumber
 
-				change = input("Select a nicknumber.", "Xeno Panel", previous) as null|num
+				change = input("Select a nicknumber.", "Xeno Panel", previous)
 				if(!change || change == previous)
 					return
 

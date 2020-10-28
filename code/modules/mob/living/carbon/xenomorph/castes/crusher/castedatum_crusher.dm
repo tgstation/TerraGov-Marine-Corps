@@ -14,7 +14,7 @@
 	attack_delay = 8
 
 	// *** Tackle *** //
-	tackle_damage = 40
+	tackle_damage = 26
 
 	// *** Speed *** //
 	speed = 0.1
@@ -44,7 +44,7 @@
 		/datum/action/xeno_action/activable/stomp,
 		/datum/action/xeno_action/ready_charge,
 		/datum/action/xeno_action/activable/cresttoss,
-		)
+	)
 
 /datum/xeno_caste/crusher/young
 	upgrade_name = "Young"
@@ -58,7 +58,7 @@
 	upgrade = XENO_UPGRADE_ONE
 
 	// *** Tackle *** //
-	tackle_damage = 45
+	tackle_damage = 26
 
 	// *** Speed *** //
 	speed = 0.1
@@ -86,7 +86,7 @@
 	melee_damage = 24
 
 	// *** Tackle *** //
-	tackle_damage = 50
+	tackle_damage = 30
 
 	// *** Speed *** //
 	speed = 0.1
@@ -114,7 +114,7 @@
 	melee_damage = 24
 
 	// *** Tackle *** //
-	tackle_damage = 55
+	tackle_damage = 30
 
 	// *** Speed *** //
 	speed = 0.1
