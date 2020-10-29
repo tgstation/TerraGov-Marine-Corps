@@ -86,6 +86,7 @@ MEDICAL_OFFICER, MEDICAL_RESEARCHER, SQUAD_LEADER, SQUAD_SPECIALIST, SQUAD_SMART
 #define ROLE_XENOMORPH "Xenomorph"
 #define ROLE_XENO_QUEEN "Xeno Queen"
 #define ROLE_ERT "Emergency Response Team"
+#define ROLE_SURVIVOR  "Survivor"
 
 
 //Playtime tracking system, see jobs_exp.dm
