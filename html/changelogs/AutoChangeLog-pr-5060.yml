@@ -1,0 +1,4 @@
+author: "yeeyeh"
+delete-after: True
+changes: 
+  - rscadd: "Hivemind now has access to psychic whisper."

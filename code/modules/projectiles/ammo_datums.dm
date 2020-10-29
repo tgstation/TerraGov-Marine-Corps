@@ -36,6 +36,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/armor_type					= "bullet"	// Does this have an override for the armor type the ammo should test? Bullet by default
 	var/sundering					= 0 		// How many stacks of sundering to apply to a mob on hit
 	var/flags_ammo_behavior = NONE
+	///Determines what color our bullet will be when it flies
+	var/bullet_color = COLOR_WHITE
 
 
 /datum/ammo/proc/do_at_max_range(obj/projectile/proj)
@@ -204,6 +206,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shell_speed = 3
 	damage = 10
 	shrapnel_chance = 10
+	bullet_color = COLOR_VERY_SOFT_YELLOW
 
 /*
 //================================================
@@ -592,6 +595,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 40
 	penetration = 20
 	sundering = 2
+	bullet_color = COLOR_TAN_ORANGE
 
 /datum/ammo/bullet/shotgun/incendiary/on_hit_mob(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)
@@ -1025,6 +1029,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 200
 	penetration = 100
 	sundering = 100
+	bullet_color = LIGHT_COLOR_FIRE
 
 /datum/ammo/rocket/drop_nade(turf/T)
 	explosion(T, 0, 4, 6, 5)
@@ -1170,6 +1175,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_ENERGY
 	armor_type = "energy"
 	accuracy = 20
+	bullet_color = COLOR_VIVID_RED
 
 /datum/ammo/energy/emitter //Damage is determined in emitter.dm
 	name = "emitter bolt"
@@ -1189,6 +1195,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	flags_ammo_behavior = AMMO_ENERGY
 	max_range = 15
 	accurate_range = 10
+	bullet_color = COLOR_VIVID_YELLOW
 
 /datum/ammo/energy/tesla
 	name = "energy ball"
@@ -1212,7 +1219,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 30
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-	sundering = 0.75
+	sundering = 2.5
 
 /datum/ammo/energy/lasgun/M43
 	icon_state = "laser2"
@@ -1224,7 +1231,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 42
 	max_range = 40
 	penetration = 20
-	sundering = 5
+	sundering = 10
 
 /datum/ammo/energy/lasgun/M43/heat
 	name = "microwave heat bolt"
@@ -1249,7 +1256,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 42
 	damage_falloff = 10
 	penetration = 0
-	sundering = 2.5
+	sundering = 5
 
 /datum/ammo/energy/lasgun/M43/spread
 	name = "additional laser blast"
@@ -1271,6 +1278,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 40
 	penetration = 100
 	sundering = 100
+	bullet_color = COLOR_BLUE
 
 /datum/ammo/energy/lasgun/M43/practice
 	name = "practice laser bolt"
@@ -1325,6 +1333,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	max_range = 15
 	accuracy_var_low = 3
 	accuracy_var_high = 3
+	bullet_color = COLOR_LIME
 
 /datum/ammo/xeno/toxin
 	name = "neurotoxic spit"
@@ -1403,6 +1412,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	sound_bounce = "alien_resin_build3"
 	damage = 20 //minor; this is mostly just to provide confirmation of a hit
 	max_range = 40
+	bullet_color = COLOR_PURPLE
 
 
 /datum/ammo/xeno/sticky/on_hit_mob(mob/M,obj/projectile/P)
@@ -1450,6 +1460,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	armor_type = "acid"
 	damage = 18
 	max_range = 8
+	bullet_color = COLOR_PALE_GREEN_GRAY
 
 /datum/ammo/xeno/acid/on_shield_block(mob/victim, obj/projectile/proj)
 	airburst(victim, proj)
@@ -1500,6 +1511,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	armor_type = "bio"
 	accuracy_var_high = 10
 	max_range = 30
+	bullet_color = BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR
 
 /datum/ammo/xeno/boiler_gas/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	drop_nade(get_turf(proj), proj.firer)
@@ -1541,6 +1553,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage = 50
 	damage_type = BURN
 	penetration = 40
+	bullet_color = BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR
 
 /datum/ammo/xeno/boiler_gas/corrosive/on_hit_mob(mob/living/victim, obj/projectile/proj)
 	drop_nade(get_turf(proj), proj.firer)
@@ -1585,6 +1598,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	armor_type = "fire"
 	max_range = 6
 	damage = 50
+	bullet_color = LIGHT_COLOR_FIRE
 	var/fire_color = "red"
 	var/burnlevel = 24
 	var/burntime = 17
@@ -1615,6 +1629,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	burnlevel = 10
 	burntime = 50
 	fire_delay = 35
+	bullet_color = LIGHT_COLOR_GREEN
 
 /datum/ammo/flamethrower/blue
 	name = "blue flame"
@@ -1624,6 +1639,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	burnlevel = 36
 	burntime = 40
 	fire_delay = 35
+	bullet_color = COLOR_NAVY
 
 /datum/ammo/flare
 	name = "flare"
@@ -1655,8 +1671,8 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "\improper toy rocket"
 	damage = 1
 
-	on_hit_mob(mob/M,obj/projectile/P)
-		to_chat(M, "<font size=6 color=red>NO BUGS</font>")
+/datum/ammo/rocket/toy/on_hit_mob(mob/M,obj/projectile/P)
+	to_chat(M, "<font size=6 color=red>NO BUGS</font>")
 
 /datum/ammo/rocket/toy/on_hit_obj(obj/O,obj/projectile/P)
 	return
