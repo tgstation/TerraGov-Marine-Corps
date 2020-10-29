@@ -91,10 +91,10 @@
 //To successfully stop taking all pressure damage you must have both a suit and head item with this flag.
 #define BLOCKSHARPOBJ 	(1<<6)  //From /tg: prevents syringes, parapens and hypos if the external suit or helmet (if targeting head) has this flag. Example: space suits, biosuit, bombsuits, thick suits that cover your body.
 #define NOPRESSUREDMAGE (1<<7) //This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage.
-//SUITS AND HELMETS====================================================================================
 
 #define NOQUICKEQUIP	(1<<8) // Prevents the item from being handled via quick-equip hotkeys. Can still manipulate the inventory and be inserted into the slot from the hand, however.
 
+//SUITS AND HELMETS====================================================================================
 //vision obscuring facegear and etc.
 #define TINT_NONE 0
 #define TINT_1 1
