@@ -211,6 +211,8 @@
 	"<span class='danger'>We strike [target] with [flavour] precision!</span>")
 	target.adjust_stagger(staggerslow_stacks)
 	target.add_slowdown(staggerslow_stacks)
+	if(iscarbon(target))
+		sneak_attack_inject(source, target, inject_amount)
 
 	cancel_stealth()
 	return COMPONENT_BYPASS_SHIELDS
@@ -239,6 +241,8 @@
 	target.ParalyzeNoChain(paralyze_time)
 	target.adjust_stagger(staggerslow_stacks)
 	target.add_slowdown(staggerslow_stacks)
+	if(iscarbon(target))
+		sneak_attack_inject(source, target, inject_amount, /datum/reagent/toxin/xeno_neurotoxin)
 
 	cancel_stealth()
 	return COMPONENT_BYPASS_SHIELDS
