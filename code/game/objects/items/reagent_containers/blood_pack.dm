@@ -52,3 +52,10 @@
 	name = "Empty BloodPack"
 	desc = "Seems pretty useless... Maybe if there were a way to fill it?"
 	icon_state = "empty"
+
+/obj/item/reagent_containers/blood/OMinus/medic
+	name = "O- emergency bloodbag"
+	desc = "An emergency blood bag meant to be used by syringes to inject blood into patients that have bloodloss. Requires a regular syringe to function."
+	icon_state = "bottle"
+	volume = 100
+	init_reagent_flags = AMOUNT_ESTIMEE|DRAWABLE

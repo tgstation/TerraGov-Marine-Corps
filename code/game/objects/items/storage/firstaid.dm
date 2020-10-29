@@ -158,6 +158,7 @@
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/paper,
 		/obj/item/reagent_containers/syringe,
+		/obj/item/reagent_containers/blood/OMinus/medic,
 		/obj/item/reagent_containers/hypospray/autoinjector,
 	)
 
@@ -251,6 +252,15 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/combat(src)
 
+/obj/item/storage/syringe_case/blood
+	name = "syringe case (blood)"
+	desc = "It's a medical case for storing blood bags and syringes."
+
+/obj/item/storage/syringe_case/blood/PopulateContents()
+	. = ..()
+	new /obj/item/reagent_containers/syringe(src)
+	new /obj/item/reagent_containers/blood/OMinus/medic(src)
+	new /obj/item/reagent_containers/blood/OMinus/medic(src)
 
 /*
 * Pill Bottles
