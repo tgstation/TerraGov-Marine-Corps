@@ -437,6 +437,19 @@
 	meltprob = 30
 	taste_multi = 1.5
 
+/datum/reagent/toxin/acid/xeno_acid
+	name = "Xenomorph acid"
+	description = "Neon green, lethal and utterly corrosive. Do not ingest."
+	color = "#8E18A9" // rgb: 142, 24, 169
+	toxpwr = 4
+	meltprob = 30
+	taste_multi = 1.5
+	custom_metabolism = REAGENTS_METABOLISM
+
+/datum/reagent/toxin/acid/on_mob_life(mob/living/L, metabolism)
+	L.take_limb_damage(toxpwr * REM, toxpwr * REM) //REM being 0.5, so 4 damage per tick, 20 damage per second
+	return ..()
+
 /datum/reagent/toxin/nanites
 	name = "Nanomachines"
 	description = "Microscopic construction robots designed to tear iron out of the surroundings and build jagged structures of wire when mixed into a foam. Drinking this is a bad idea."

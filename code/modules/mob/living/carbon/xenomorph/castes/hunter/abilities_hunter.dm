@@ -178,19 +178,25 @@
 	if(!stealth || !can_sneak_attack)
 		return
 
-	var/staggerslow_stacks = 2
+	var/staggerslow_stacks = 4
 	var/flavour
-	if(owner.m_intent == MOVE_INTENT_RUN && ( owner.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
+	var/inject_amount = XENO_ACID_SNEAK_ATTACK_INJECT_AMOUNT
+
+	if(owner.m_intent == MOVE_INTENT_RUN && ( owner.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //We penalize running with a compromised sneak attack, unless they've been stationary; walking is fine.
 		flavour = "vicious"
+		inject_amount *= 0.5 //inject half as much acid injected if we're running and not stationary
+		staggerslow_stacks *= 0.5 //half as much stagger slow if we're running and not stationary
+		armor_mod += HUNTER_SNEAK_SLASH_ARMOR_PEN * 0.5
 	else
 		armor_mod += HUNTER_SNEAK_SLASH_ARMOR_PEN
-		staggerslow_stacks *= 2
 		flavour = "deadly"
 
 	owner.visible_message("<span class='danger'>\The [owner] strikes [target] with [flavour] precision!</span>", \
 	"<span class='danger'>We strike [target] with [flavour] precision!</span>")
 	target.adjust_stagger(staggerslow_stacks)
 	target.add_slowdown(staggerslow_stacks)
+	if(iscarbon(target))
+		sneak_attack_inject(source, target, inject_amount)
 
 	cancel_stealth()
 
@@ -201,9 +207,12 @@
 
 	var/staggerslow_stacks = 2
 	var/flavour
-	if(owner.m_intent == MOVE_INTENT_RUN && ( owner.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
+	var/inject_amount = XENO_NEURO_SNEAK_ATTACK_INJECT_AMOUNT
+
+	if(owner.m_intent == MOVE_INTENT_RUN && ( owner.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) )  //We penalize running with a compromised sneak attack, unless they've been stationary; walking is fine.
 		pain_mod += (0.75 * tackle_pain)
 		flavour = "vicious"
+		inject_amount *= 0.5
 	else
 		pain_mod += (2.5 * tackle_pain)
 		staggerslow_stacks *= 2
@@ -214,8 +223,18 @@
 	target.ParalyzeNoChain(1.5 SECONDS)
 	target.adjust_stagger(staggerslow_stacks)
 	target.add_slowdown(staggerslow_stacks)
+	if(iscarbon(target))
+		sneak_attack_inject(source, target, inject_amount, /datum/reagent/toxin/xeno_neurotoxin)
 
 	cancel_stealth()
+
+/datum/action/xeno_action/stealth/proc/sneak_attack_inject(datum/source, mob/living/carbon/C, transfer_amount = XENO_ACID_SNEAK_ATTACK_INJECT_AMOUNT, toxin = /datum/reagent/toxin/acid/xeno_acid)
+	if(!C?.can_sting() || !toxin)
+		return FALSE
+	C.reagents.add_reagent(toxin, transfer_amount)
+	to_chat(C, "<span class='danger'>You feel a tiny prick.</span>")
+	to_chat(owner, "<span class='xenowarning'>Our stinger injects our victim with [toxin.name]!</span>")
+
 
 /datum/action/xeno_action/stealth/proc/damage_taken(mob/living/carbon/xenomorph/X, damage_taken)
 	SIGNAL_HANDLER
