@@ -1,0 +1,4 @@
+author: "Hughgent, Tiviplus"
+delete-after: True
+changes: 
+  - bugfix: "Travis no longer fails always."
