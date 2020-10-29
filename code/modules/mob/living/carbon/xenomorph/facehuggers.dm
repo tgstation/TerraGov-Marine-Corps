@@ -405,7 +405,7 @@
 				if(istype(H.wear_ear, /obj/item/radio/headset/mainship/marine))
 					var/obj/item/radio/headset/mainship/marine/R = H.wear_ear
 					if(R.camera.status)
-						R.camera.status = FALSE //Turn camera off.
+						R.camera.toggle_cam(null, FALSE) //Turn camera off.
 						to_chat(H, "<span class='danger'>Your headset camera flickers off; you'll need to reactivate it by rebooting your headset HUD!<span>")
 
 	if(blocked)
