@@ -93,6 +93,8 @@
 #define NOPRESSUREDMAGE (1<<7) //This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage.
 //SUITS AND HELMETS====================================================================================
 
+#define NOQUICKEQUIP	(1<<8) // Prevents the item from being handled via quick-equip hotkeys. Can still manipulate the inventory and be inserted into the slot from the hand, however.
+
 //vision obscuring facegear and etc.
 #define TINT_NONE 0
 #define TINT_1 1
