@@ -365,6 +365,7 @@
 	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_BULKY
 	time_to_equip = 2 SECONDS
+	flags_inventory = NOQUICKEQUIP
 
 /obj/item/belt_harness/marine
 	name = "\improper M45 pattern belt harness"
