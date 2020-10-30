@@ -114,6 +114,7 @@
 
 
 /mob/living/carbon/xenomorph/proc/devour_grabbed()
+	SIGNAL_HANDLER_DOES_SLEEP
 	var/mob/living/carbon/prey = pulling
 	if(!istype(prey) || isxeno(prey) || issynth(prey))
 		to_chat(src, "<span class='warning'>That wouldn't taste very good.</span>")
@@ -174,6 +175,7 @@
 
 
 /mob/living/carbon/proc/on_devour_by_xeno()
+	SIGNAL_HANDLER
 	RegisterSignal(src, COMSIG_MOVABLE_RELEASED_FROM_STOMACH, .proc/on_release_from_stomach)
 
 
@@ -181,12 +183,13 @@
 	if(istype(wear_ear, /obj/item/radio/headset/mainship/marine))
 		var/obj/item/radio/headset/mainship/marine/marine_headset = wear_ear
 		if(marine_headset.camera.status)
-			marine_headset.camera.status = FALSE //Turn camera off.
+			marine_headset.camera.toggle_cam(null, FALSE) //Turn camera off.
 			to_chat(src, "<span class='danger'>Your headset camera flickers off as you are devoured; you'll need to reactivate it by rebooting your headset HUD!<span>")
 	return ..()
 
 
 /mob/living/carbon/proc/on_release_from_stomach(mob/living/carbon/prey, mob/living/predator)
+	SIGNAL_HANDLER
 	prey.SetParalyzed(20)
 	prey.adjust_blindness(-1)
 	UnregisterSignal(src, COMSIG_MOVABLE_RELEASED_FROM_STOMACH)

@@ -504,6 +504,7 @@ mob/proc/get_standard_bodytemperature()
 
 /// Try to perform a unique action on the current active held item.
 /mob/living/carbon/human/proc/do_unique_action()
+	SIGNAL_HANDLER
 	. = COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
 	if(incapacitated() || lying_angle)
 		return

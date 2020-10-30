@@ -1,5 +1,0 @@
-author: "XSlayer300"
-delete-after: True
-changes: 
-  - tweak: "Laval Outpost's containment shutters are now expanded by one tile, no more rushing for benos."
-  - bugfix: "Fixed Lava Outpost's basalt rocks for having no sprite."

@@ -97,7 +97,8 @@
 	can_hold = list(
 		/obj/item/reagent_containers/food/snacks/grown,
 		/obj/item/seeds,
-		/obj/item/grown)
+		/obj/item/grown,
+	)
 
 
 // -----------------------------
@@ -251,4 +252,5 @@
 	w_class = WEIGHT_CLASS_SMALL
 	can_hold = list(
 		/obj/item/coin,
-		/obj/item/spacecash)
+		/obj/item/spacecash,
+	)

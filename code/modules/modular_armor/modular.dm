@@ -25,7 +25,7 @@
 		/obj/item/storage/large_holster/machete,
 		/obj/item/weapon/claymore,
 		/obj/item/storage/belt/gun,
-		/obj/item/storage/belt/knifepouch
+		/obj/item/storage/belt/knifepouch,
 	)
 	flags_equip_slot = ITEM_SLOT_OCLOTHING
 	w_class = WEIGHT_CLASS_BULKY
@@ -60,7 +60,7 @@
 	var/equip_delay = 0.5 SECONDS
 
 	/// Misc stats
-	light_strength = 5
+	light_range = 5
 
 
 /obj/item/clothing/suit/modular/Destroy()
@@ -100,7 +100,7 @@
 
 
 /obj/item/clothing/suit/modular/item_action_slot_check(mob/user, slot)
-	if(!light_strength) // No light no ability
+	if(!light_range) // No light no ability
 		return FALSE
 	if(!ishuman(user))
 		return FALSE
@@ -466,10 +466,25 @@
 
 /obj/item/clothing/head/modular/marine/skirmisher
 	name = "Jaeger Pattern Skirmisher Helmet"
-	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings."
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Skirmisher markings."
 	icon_state = "skirmisher_helmet"
 
 /obj/item/clothing/head/modular/marine/assault
 	name = "Jaeger Pattern Assault Helmet"
-	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Infantry markings."
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has Assault markings."
 	icon_state = "assault_helmet"
+
+/obj/item/clothing/head/modular/marine/eva
+	name = "Jaeger Pattern EVA Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EVA markings."
+	icon_state = "eva_helmet"
+
+/obj/item/clothing/head/modular/marine/eva/skull
+	name = "Jaeger Pattern EVA Skull Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EVA markings and a skull on the visor."
+	icon_state = "eva_skull_helmet"
+
+/obj/item/clothing/head/modular/marine/eod
+	name = "Jaeger Pattern EOD Helmet"
+	desc = "Usually paired with the Jaeger Combat Exoskeleton. Can mount utility functions on the helmet hard points. Has EOD markings"
+	icon_state = "eod_helmet"

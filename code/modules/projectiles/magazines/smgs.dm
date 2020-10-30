@@ -5,27 +5,26 @@
 	max_rounds = 30
 
 //-------------------------------------------------------
-//M39 SMG ammo
+//M25 SMG ammo
 
-/obj/item/ammo_magazine/smg/m39
-	name = "\improper M39 magazine (10x20mm)"
+/obj/item/ammo_magazine/smg/m25
+	name = "\improper MR-25 magazine (10x20mm)"
 	desc = "A 10x20mm caseless submachinegun magazine."
 	caliber = "10x20mm caseless"
-	icon_state = "m39"
+	icon_state = "m25"
 	max_rounds = 60
 	w_class = WEIGHT_CLASS_SMALL
-	gun_type = /obj/item/weapon/gun/smg/m39
+	gun_type = /obj/item/weapon/gun/smg/m25
 
-/obj/item/ammo_magazine/smg/m39/ap
-	name = "\improper M39 AP magazine (10x20mm)"
-	icon_state = "m39_ap"
+/obj/item/ammo_magazine/smg/m25/ap
+	name = "\improper MR-25 AP magazine (10x20mm)"
+	icon_state = "m25_ap"
 	default_ammo = /datum/ammo/bullet/smg/ap
 
-/obj/item/ammo_magazine/smg/m39/extended
-	name = "\improper M39 extended magazine (10x20mm)"
-	icon_state = "m39_ext"
+/obj/item/ammo_magazine/smg/m25/extended
+	name = "\improper MR-25 extended magazine (10x20mm)"
+	icon_state = "m25_ext"
 	max_rounds = 90
-	bonus_overlay = "m39_ex"
 
 //-------------------------------------------------------
 //T-19 Machinepistol ammo

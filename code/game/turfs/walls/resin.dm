@@ -1,8 +1,8 @@
 /**
- * Resin walls
- *
- * Used mostly be xenomorphs
- */
+  * Resin walls
+  *
+  * Used mostly be xenomorphs
+  */
 /turf/closed/wall/resin
 	name = "resin wall"
 	desc = "Weird slime solidified into a wall."
@@ -150,8 +150,8 @@
 	return FALSE
 
 /**
- * Regenerating walls that start with lower health, but grow to a much higher hp over time
- */
+  * Regenerating walls that start with lower health, but grow to a much higher hp over time
+  */
 /turf/closed/wall/resin/regenerating
 	max_integrity = 100
 
@@ -171,9 +171,9 @@
 	START_PROCESSING(SSslowprocess, src)
 
 /**
- * Try to start processing on the wall.
- * Will return early if the wall is already at max upgradable health.
- */
+  * Try to start processing on the wall.
+  * Will return early if the wall is already at max upgradable health.
+  */
 /turf/closed/wall/resin/regenerating/proc/start_healing()
 	if(wall_integrity == max_upgradable_health)
 		return

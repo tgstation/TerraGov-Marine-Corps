@@ -6,7 +6,7 @@
 	icon_state = "marine"
 	item_state = "marine"
 	flags_armor_protection = FEET
-	soft_armor = list("melee" = 15, "bullet" = 20, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 0, "fire" = 10, "acid" = 25)
+	soft_armor = list("melee" = 30, "bullet" = 20, "laser" = 10, "energy" = 10, "bomb" = 10, "bio" = 10, "rad" = 0, "fire" = 10, "acid" = 25)
 	flags_cold_protection = FEET
 	flags_heat_protection = FEET
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
@@ -22,7 +22,7 @@
 		/obj/item/weapon/combat_knife,
 		/obj/item/weapon/gun/pistol/standard_pocketpistol,
 		/obj/item/attachable/bayonetknife,
-		/obj/item/weapon/throwing_knife
+		/obj/item/weapon/throwing_knife,
 	)
 
 /obj/item/clothing/shoes/marine/Initialize()
@@ -65,8 +65,8 @@
 	pockets = /obj/item/storage/internal/shoes/boot_knife/full
 
 /obj/item/storage/internal/shoes/boot_knife/full/Initialize()
-    . = ..()
-    new /obj/item/attachable/bayonetknife(src)
+	. = ..()
+	new /obj/item/attachable/bayonetknife(src)
 
 /obj/item/clothing/shoes/marine/pyro
 	name = "flame-resistant combat boots"
@@ -79,7 +79,7 @@
 	name = "chief officer shoes"
 	desc = "Only a small amount of monkeys, kittens, and orphans were killed in making this."
 	icon_state = "laceups"
-	soft_armor = list("melee" = 25, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 25)
+	soft_armor = list("melee" = 35, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 25)
 	flags_inventory = NOSLIPPING
 	siemens_coefficient = 0.6
 
@@ -99,7 +99,7 @@
 	icon_state = "jackboots"
 	item_state = "jackboots"
 	flags_armor_protection = FEET
-	soft_armor = list("melee" = 15, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 15)
+	soft_armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 15)
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	flags_cold_protection = FEET
@@ -113,7 +113,7 @@
 	icon_state = "commando_boots"
 	permeability_coefficient = 0.01
 	flags_armor_protection = FEET
-	soft_armor = list("melee" = 25, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 25)
+	soft_armor = list("melee" = 40, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 25)
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
 	flags_cold_protection = FEET
@@ -127,7 +127,7 @@
 	name = "guardsmen combat boots"
 	desc = "A pair of boots issued to the Imperial Guard, just like anything else they use, they are mass produced."
 	//icon_state = ""
-	soft_armor = list("melee" = 25, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 25)
+	soft_armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 25)
 
 
 /obj/item/clothing/shoes/marine/som
@@ -135,7 +135,7 @@
 	desc = "Shoes with origins dating back to the old mining colonies."
 	icon_state = "som"
 	item_state = "som"
-	soft_armor = list("melee" = 25, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 25)
+	soft_armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 25)
 
 
 /obj/item/clothing/shoes/sectoid
@@ -144,5 +144,5 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "shield-blue"
 	flags_item = NODROP|DELONDROP
-	soft_armor = list("melee" = 25, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 25)
+	soft_armor = list("melee" = 30, "bullet" = 20, "laser" = 20, "energy" = 20, "bomb" = 30, "bio" = 20, "rad" = 20, "fire" = 20, "acid" = 25)
 	flags_inventory = NOSLIPPING

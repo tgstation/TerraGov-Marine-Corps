@@ -23,7 +23,6 @@
 	var/closed = FALSE
 	var/can_wire = FALSE
 	var/is_wired = FALSE
-	var/image/wired_overlay
 	flags_barrier = HANDLE_BARRIER_CHANCE
 
 /obj/structure/barricade/Initialize()
@@ -71,7 +70,7 @@
 	if(closed)
 		return TRUE
 
-	if(mover && mover.throwing)
+	if(mover?.throwing)
 		if(is_wired && iscarbon(mover)) //Leaping mob against barbed wire fails
 			if(get_dir(loc, target) & dir)
 				return FALSE
@@ -85,8 +84,11 @@
 		deconstruct(FALSE)
 		return FALSE
 
+	if((mover.flags_atom & ON_BORDER) && get_dir(loc, target) & dir)
+		return FALSE
+
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-	if(S && S.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
+	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
 		return TRUE
 
 	if(get_dir(loc, target) & dir)
@@ -133,12 +135,6 @@
 
 
 /obj/structure/barricade/proc/wire()
-	if(!closed)
-		wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[barricade_type]_wire")
-	else
-		wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[barricade_type]_closed_wire")
-
-	overlays += wired_overlay
 	can_wire = FALSE
 	is_wired = TRUE
 	climbable = FALSE
@@ -158,11 +154,11 @@
 	playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE)
 	user.visible_message("<span class='notice'>[user] removes the barbed wire on [src].</span>",
 	"<span class='notice'>You remove the barbed wire on [src].</span>")
-	overlays -= wired_overlay
 	modify_max_integrity(max_integrity - 50)
 	can_wire = TRUE
 	is_wired = FALSE
 	climbable = TRUE
+	update_icon()
 	new /obj/item/stack/barbed_wire(loc)
 
 
@@ -197,6 +193,7 @@
 	update_icon()
 
 /obj/structure/barricade/update_icon()
+	. = ..()
 	var/damage_state
 	var/percentage = (obj_integrity / max_integrity) * 100
 	switch(percentage)
@@ -229,16 +226,15 @@
 			icon_state = "[barricade_type]_closed"
 		layer = OBJ_LAYER
 
-/obj/structure/barricade/proc/update_overlay()
+/obj/structure/barricade/update_overlays()
+	. = ..()
+	cut_overlays()
 	if(!is_wired)
 		return
-
-	overlays -= wired_overlay
 	if(!closed)
-		wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_wire")
+		overlays += image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_wire")
 	else
-		wired_overlay = image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_closed_wire")
-	overlays += wired_overlay
+		overlays += image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_closed_wire")
 
 
 /obj/structure/barricade/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -654,6 +650,10 @@
 // PLASTEEL
 /*----------------------*/
 
+#define BARRICADE_PLASTEEL_LOOSE 0
+#define BARRICADE_PLASTEEL_ANCHORED 1
+#define BARRICADE_PLASTEEL_FIRM 2
+
 /obj/structure/barricade/plasteel
 	name = "plasteel barricade"
 	desc = "A very sturdy barricade made out of plasteel panels, the pinnacle of strongpoints. Use a blowtorch to repair. Can be flipped down to create a path."
@@ -673,9 +673,12 @@
 	can_wire = TRUE
 	climbable = TRUE
 
-	var/build_state = 2 //2 is fully secured, 1 is after screw, 0 is after wrench. Crowbar disassembles
-	var/tool_cooldown = 0 //Delay to apply tools to prevent spamming
+	///What state is our barricade in for construction steps?
+	var/build_state = BARRICADE_PLASTEEL_FIRM
 	var/busy = FALSE //Standard busy check
+	///ehther we react with other cades next to us ie when opening or so
+	var/linked = FALSE
+	COOLDOWN_DECLARE(tool_cooldown) //Delay to apply tools to prevent spamming
 
 /obj/structure/barricade/plasteel/handle_barrier_chance(mob/living/M)
 	if(closed)
@@ -684,14 +687,14 @@
 		return FALSE
 
 /obj/structure/barricade/plasteel/examine(mob/user)
-	..()
+	. = ..()
 
 	switch(build_state)
-		if(2)
+		if(BARRICADE_PLASTEEL_FIRM)
 			to_chat(user, "<span class='info'>The protection panel is still tighly screwed in place.</span>")
-		if(1)
+		if(BARRICADE_PLASTEEL_ANCHORED)
 			to_chat(user, "<span class='info'>The protection panel has been removed, you can see the anchor bolts.</span>")
-		if(0)
+		if(BARRICADE_PLASTEEL_LOOSE)
 			to_chat(user, "<span class='info'>The protection panel has been removed and the anchor bolts loosened. It's ready to be taken apart.</span>")
 
 /obj/structure/barricade/plasteel/attackby(obj/item/I, mob/user, params)
@@ -718,12 +721,13 @@
 		visible_message("<span class='notice'>[user] repairs the base of [src].</span>")
 		return
 
+	if(busy || !COOLDOWN_CHECK(src, tool_cooldown))
+		return
+
+	COOLDOWN_START(src, tool_cooldown, 1 SECONDS)
+
 	if(iswelder(I))
 		var/obj/item/tool/weldingtool/WT = I
-		if(busy || tool_cooldown > world.time)
-			return
-
-		tool_cooldown = world.time + 10
 
 		if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to repair [src].</span>",
@@ -760,12 +764,12 @@
 		update_icon()
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 
+	if(user.action_busy) // you can only build one cade at once but repair multiple at once
+		return
+
 	switch(build_state)
-		if(2) //Fully constructed step. Use screwdriver to remove the protection panels to reveal the bolts
+		if(BARRICADE_PLASTEEL_FIRM) //Fully constructed step. Use screwdriver to remove the protection panels to reveal the bolts
 			if(isscrewdriver(I))
-				if(busy || tool_cooldown > world.time || user.action_busy)
-					return
-				tool_cooldown = world.time + 10
 				if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
@@ -785,12 +789,16 @@
 
 				"<span class='notice'>You remove [src]'s protection panels, exposing the anchor bolts.</span>")
 				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-				build_state = 1
-		if(1) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
+				build_state = BARRICADE_PLASTEEL_ANCHORED
+			else if(iscrowbar(I))
+				user.visible_message("<span class='notice'> [user] [linked ? "un" : "" ]links [src].", "<span class='notice'>You [linked ? "un" : "" ]link [src].</span>")
+				linked = !linked
+				for(var/direction in GLOB.cardinals)
+					for(var/obj/structure/barricade/plasteel/cade in get_step(src, direction))
+						cade.update_icon()
+				update_icon()
+		if(BARRICADE_PLASTEEL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
 			if(isscrewdriver(I))
-				if(busy || tool_cooldown > world.time || user.action_busy)
-					return
-				tool_cooldown = world.time + 10
 				if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to assemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to assemble [src].</span>")
@@ -800,12 +808,9 @@
 				user.visible_message("<span class='notice'>[user] set [src]'s protection panel back.</span>",
 				"<span class='notice'>You set [src]'s protection panel back.</span>")
 				playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-				build_state = 2
+				build_state = BARRICADE_PLASTEEL_FIRM
 
 			else if(iswrench(I))
-				if(busy || tool_cooldown > world.time || user.action_busy)
-					return
-				tool_cooldown = world.time + 10
 				if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
@@ -817,13 +822,10 @@
 				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 				anchored = FALSE
 				modify_max_integrity(initial(max_integrity) * 0.5)
-				build_state = 0
+				build_state = BARRICADE_PLASTEEL_LOOSE
 				update_icon() //unanchored changes layer
-		if(0) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to rescure anchor bolts
+		if(BARRICADE_PLASTEEL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to rescure anchor bolts
 			if(iswrench(I))
-				if(busy || tool_cooldown > world.time || user.action_busy)
-					return
-				tool_cooldown = world.time + 10
 				if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to assemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to assemble [src].</span>")
@@ -835,13 +837,10 @@
 				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 				anchored = TRUE
 				modify_max_integrity(initial(max_integrity))
-				build_state = 1
+				build_state = BARRICADE_PLASTEEL_ANCHORED
 				update_icon() //unanchored changes layer
 
 			else if(iscrowbar(I))
-				if(busy || tool_cooldown > world.time)
-					return
-				tool_cooldown = world.time + 10
 				if(user.skills.getRating("engineer") < SKILL_ENGINEER_PLASTEEL)
 					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
 					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
@@ -877,19 +876,36 @@
 	if(isxeno(user))
 		return
 
-	playsound(src.loc, 'sound/items/ratchet.ogg', 25, 1)
+	toggle_open(null, user)
+
+/obj/structure/barricade/plasteel/proc/toggle_open(state, mob/living/user)
+	if(state == closed)
+		return
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 	closed = !closed
 	density = !density
 
-	if(closed)
-		user.visible_message("<span class='notice'>[user] flips [src] open.</span>",
-		"<span class='notice'>You flip [src] open.</span>")
-	else
-		user.visible_message("<span class='notice'>[user] flips [src] closed.</span>",
-		"<span class='notice'>You flip [src] closed.</span>")
+	user?.visible_message("<span class='notice'>[user] flips [src] [closed ? "closed" :"open"].</span>",
+		"<span class='notice'>You flip [src] [closed ? "closed" :"open"].</span>")
+
+	if(!linked)
+		update_icon()
+		return
+	for(var/direction in GLOB.cardinals)
+		for(var/obj/structure/barricade/plasteel/cade in get_step(src, direction))
+			if(((dir & (NORTH|SOUTH) && get_dir(src, cade) & (EAST|WEST)) || (dir & (EAST|WEST) && get_dir(src, cade) & (NORTH|SOUTH))) && dir == cade.dir && cade.linked)
+				cade.toggle_open(closed)
 
 	update_icon()
-	update_overlay()
+
+/obj/structure/barricade/plasteel/update_overlays()
+	. = ..()
+	if(!linked)
+		return
+	for(var/direction in GLOB.cardinals)
+		for(var/obj/structure/barricade/plasteel/cade in get_step(src, direction))
+			if(((dir & (NORTH|SOUTH) && get_dir(src, cade) & (EAST|WEST)) || (dir & (EAST|WEST) && get_dir(src, cade) & (NORTH|SOUTH))) && dir == cade.dir && cade.linked && cade.closed == src.closed)
+				overlays += image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_[closed ? "closed" : "open"]_connection_[get_dir(src, cade)]")
 
 /obj/structure/barricade/plasteel/ex_act(severity)
 	switch(severity)
@@ -901,6 +917,10 @@
 			take_damage(rand(50, 150))
 
 	update_icon()
+
+#undef BARRICADE_PLASTEEL_LOOSE
+#undef BARRICADE_PLASTEEL_ANCHORED
+#undef BARRICADE_PLASTEEL_FIRM
 
 /*----------------------*/
 // SANDBAGS

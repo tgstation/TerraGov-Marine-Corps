@@ -50,6 +50,10 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	if(usr.client == parent.current_user)
 		parent.finished = TRUE
 
+/obj/screen/radial/Destroy()
+	parent = null
+	return ..()
+
 /datum/radial_menu
 	var/list/choices = list() //List of choice id's
 	var/list/choices_icons = list() //choice_id -> icon
@@ -278,6 +282,9 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	Reset()
 	hide()
 	QDEL_NULL(custom_check_callback)
+	current_user = null
+	QDEL_LIST(elements)
+	QDEL_NULL(close_button)
 	return ..()
 
 /*
