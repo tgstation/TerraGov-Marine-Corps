@@ -426,7 +426,7 @@
 /obj/item/clothing/head/helmet/marine/veteran/PMC/gunner
 	name = "\improper PMC gunner helmet"
 	desc = "A modification of the standard helmet used by a lot of security firms, has a visor for added protection."
-	icon_state = "heavy_helmet"
+	icon_state = "pmc_heavyhelmet"
 	flags_armor_protection = HEAD|FACE|EYES
 	soft_armor = list("melee" = 65, "bullet" = 75, "laser" = 75, "energy" = 60, "bomb" = 70, "bio" = 50, "rad" = 50, "fire" = 60, "acid" = 60)
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
