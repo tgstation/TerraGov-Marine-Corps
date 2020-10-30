@@ -730,6 +730,15 @@
 			user.visible_message("<span class='notice'>[user] takes [src]'s armor plates apart.</span>",
 			"<span class='notice'>You take [src]'s armor plates apart.</span>")
 			playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
+
+			switch(choice)
+				if(CADE_TYPE_BOMB)
+					soft_armor = soft_armor.modifyRating(bomb = -50)
+				if(CADE_TYPE_MELEE)
+					soft_armor = soft_armor.modifyRating(melee = -50, bullet = -30)
+				if(CADE_TYPE_ACID)
+					soft_armor = soft_armor.modifyRating(bio = 0, acid = -30)
+
 			new /obj/item/stack/sheet/metal(loc, CADE_UPGRADE_REQUIRED_SHEETS)
 			barricade_upgrade_type = null
 			update_icon()
