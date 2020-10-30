@@ -1,4 +1,0 @@
-author: "Wayland-Smithy"
-delete-after: True
-changes: 
-  - bugfix: "Fixed ghost orbits of big mobs broken by last fix. Sorry about that ghost gang."
