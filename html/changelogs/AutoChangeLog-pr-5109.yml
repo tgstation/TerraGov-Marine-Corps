@@ -1,0 +1,5 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - rscadd: "Added new green scrub sprites and cmo scrub sprites, new RO sprites for his jumpsuit and new Cargo tech sprites by Jeff.
+del:Old jumpsuit sprites for RO/CMO/CT. Git will remember them. Nobody else will."
