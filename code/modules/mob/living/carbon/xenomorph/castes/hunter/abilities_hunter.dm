@@ -184,9 +184,9 @@
 
 	if(owner.m_intent == MOVE_INTENT_RUN && ( owner.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //We penalize running with a compromised sneak attack, unless they've been stationary; walking is fine.
 		flavour = "vicious"
-		inject_amount *= 0.5 //inject half as much acid injected if we're running and not stationary
-		staggerslow_stacks *= 0.5 //half as much stagger slow if we're running and not stationary
-		armor_mod += HUNTER_SNEAK_SLASH_ARMOR_PEN * 0.5
+		inject_amount *= HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER //inject half as much acid injected if we're running and not stationary
+		staggerslow_stacks *= HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER //half as much stagger slow if we're running and not stationary
+		armor_mod += (1 - (1 - HUNTER_SNEAK_SLASH_ARMOR_PEN) * HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER) //We halve the penetration.
 	else
 		armor_mod += HUNTER_SNEAK_SLASH_ARMOR_PEN
 		flavour = "deadly"
@@ -205,17 +205,21 @@
 	if(!stealth || !can_sneak_attack)
 		return
 
-	var/staggerslow_stacks = 2
+	var/staggerslow_stacks = 4
 	var/flavour
 	var/inject_amount = XENO_NEURO_SNEAK_ATTACK_INJECT_AMOUNT
 
 	if(owner.m_intent == MOVE_INTENT_RUN && ( owner.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) )  //We penalize running with a compromised sneak attack, unless they've been stationary; walking is fine.
 		pain_mod += (0.75 * tackle_pain)
 		flavour = "vicious"
-		inject_amount *= 0.5
+		pain_mod += (HUNTER_SNEAK_ATTACK_DISARM_MULTIPLIER * HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER)
+		inject_amount *= HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER
+		staggerslow_stacks *= HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER
 	else
 		pain_mod += (2.5 * tackle_pain)
 		staggerslow_stacks *= 2
+		pain_mod += HUNTER_SNEAK_ATTACK_DISARM_MULTIPLIER
+
 		flavour = "deadly"
 
 	owner.visible_message("<span class='danger'>\The [owner] strikes [target] with [flavour] precision!</span>", \
