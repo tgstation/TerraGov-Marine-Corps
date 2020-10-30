@@ -53,6 +53,7 @@
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/activable/secrete_resin,
+		/datum/action/xeno_action/activable/build_silo,
 		/datum/action/xeno_action/place_acidwell,
 		/datum/action/xeno_action/lay_egg,
 		/datum/action/xeno_action/activable/larval_growth_sting,
@@ -68,8 +69,8 @@
 		/datum/action/xeno_action/set_xeno_lead,
 		/datum/action/xeno_action/activable/queen_give_plasma,
 		/datum/action/xeno_action/queen_order,
-		/datum/action/xeno_action/deevolve
-		)
+		/datum/action/xeno_action/deevolve,
+	)
 
 
 /datum/xeno_caste/queen/young

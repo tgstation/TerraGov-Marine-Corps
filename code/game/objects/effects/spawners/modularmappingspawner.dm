@@ -51,3 +51,9 @@
 	mapid = "lvdome"
 	spawner_height = 15
 	spawner_width = 15
+
+/************BIG RED******/
+/obj/effect/spawner/modularmap/bigred/operations //todo decrease y by one
+	mapid = "broperations"
+	spawner_width = 29
+	spawner_height = 25

@@ -54,8 +54,8 @@
 		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/activable/spray_acid/cone,
-		/datum/action/xeno_action/toggle_pheromones
-		)
+		/datum/action/xeno_action/toggle_pheromones,
+	)
 
 /datum/xeno_caste/praetorian/young
 	upgrade_name = "Young"

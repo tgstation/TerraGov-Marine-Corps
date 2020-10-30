@@ -206,6 +206,11 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	for(var/obj/structure/mineral_door/D in loc)
 		if(D.density)
 			return TRUE
+	for(var/obj/structure/barricade/B in loc)
+		if(!B.density)
+			continue
+		if(B.dir == direction)
+			return TRUE
 	return FALSE
 
 
@@ -525,12 +530,8 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		return FALSE
 	current = get_step_towards(source, target_turf)
 	while((current != target_turf))
-		if(current.opacity)
+		if(IS_OPAQUE_TURF(current))
 			return FALSE
-		for(var/thing in current)
-			var/atom/A = thing
-			if(A.opacity)
-				return FALSE
 		current = get_step_towards(current, target_turf)
 	return TRUE
 

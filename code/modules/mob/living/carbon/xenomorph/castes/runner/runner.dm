@@ -14,7 +14,7 @@
 	old_x = -16
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
-		)
+	)
 
 /mob/living/carbon/xenomorph/runner/set_stat()
 	. = ..()

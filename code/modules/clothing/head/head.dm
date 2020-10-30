@@ -110,6 +110,7 @@
 	name = "\improper TGMC requisition cap"
 	desc = "It's a fancy hat for a not-so-fancy military supply clerk."
 	icon_state = "cargocap"
+	flags_item_map_variant = null
 
 
 /obj/item/clothing/head/boonie

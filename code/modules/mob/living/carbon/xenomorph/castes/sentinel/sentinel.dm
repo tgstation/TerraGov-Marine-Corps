@@ -13,5 +13,5 @@
 	upgrade = XENO_UPGRADE_ZERO
 	pull_speed = -2
 	inherent_verbs = list(
-		/mob/living/carbon/xenomorph/proc/vent_crawl
-		)
+		/mob/living/carbon/xenomorph/proc/vent_crawl,
+	)
