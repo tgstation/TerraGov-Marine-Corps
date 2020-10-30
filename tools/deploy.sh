@@ -11,8 +11,6 @@ fi
 
 mkdir -p \
     $1/_maps \
-    $1/icons/runtime \
-    $1/sound/runtime \
     $1/strings
 
 if [ -d ".git" ]; then
