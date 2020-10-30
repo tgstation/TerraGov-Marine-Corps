@@ -51,7 +51,13 @@
 		/datum/action/xeno_action/return_to_core,
 		/datum/action/xeno_action/plant_weeds/slow,
 		/datum/action/xeno_action/psychic_whisper,
+		/datum/action/xeno_action/activable/psychic_cure,
 	)
+
+	// *** Core Durability *** //
+	core_regeneration = 25
+	core_maximum_hitpoints = 600
+
 
 /datum/xeno_caste/hivemind/young
 	upgrade_name = "Young"
@@ -77,6 +83,9 @@
 		/datum/action/xeno_action/activable/psychic_cure,
 	)
 
+	// *** Core Durability *** //
+	core_regeneration = 40
+	core_maximum_hitpoints = 800
 
 /datum/xeno_caste/hivemind/elder
 	upgrade_name = "Elder"
@@ -100,6 +109,10 @@
 		/datum/action/xeno_action/activable/psychic_cure,
 		/datum/action/xeno_action/toggle_pheromones,
 	)
+
+	// *** Core Durability *** //
+	core_regeneration = 45
+	core_maximum_hitpoints = 900
 
 /datum/xeno_caste/hivemind/ancient
 	upgrade_name = "Ancient"
@@ -126,3 +139,7 @@
 		/datum/action/xeno_action/toggle_pheromones,
 		/datum/action/xeno_action/activable/secrete_resin/slow,
 	)
+
+	// *** Core Durability *** //
+	core_regeneration = 50
+	core_maximum_hitpoints = 1000

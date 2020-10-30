@@ -161,6 +161,21 @@
 /obj/effect/alien/hivemindcore/Initialize(mapload)
 	. = ..()
 	set_light(7, 5, LIGHT_COLOR_PURPLE)
+	START_PROCESSING(SSprocessing, src)
+
+/obj/effect/alien/hivemindcore/examine(mob/user)
+	. = ..()
+	if(!isxeno(user))
+		return
+	var/list/details = list()
+	details +=("This [name] belongs to [parent.name].</br>")
+	details +=("It has [max_integrity] of [parent.xeno_caste.core_maximum_hitpoints] integrity remaining.</br>")
+
+	to_chat(user, "<span class='xenowarning'>[details.Join(" ")]</span>")
+
+
+/obj/effect/alien/hivemindcore/process()
+	max_integrity = clamp(max_integrity, max_integrity + parent.xeno_caste.core_regeneration, parent.xeno_caste.core_maximum_hitpoints) //Core regenerates.
 
 /obj/effect/alien/hivemindcore/Destroy()
 	if(isnull(parent))
@@ -168,6 +183,7 @@
 	parent.playsound_local(parent, get_sfx("alien_help"), 30, TRUE)
 	to_chat(parent, "<span class='xenohighdanger'>Your core has been destroyed!</span>")
 	xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... \the [parent] has been slain!</span>", 2, parent.hivenumber)
+	STOP_PROCESSING(SSprocessing, src)
 	parent.ghostize()
 	if(!QDELETED(parent))
 		QDEL_NULL(parent)

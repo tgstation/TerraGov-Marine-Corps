@@ -167,6 +167,12 @@
 	///Amount of leaders allowed
 	var/queen_leader_limit = 0
 
+	// *** Hivemind Abilities *** //
+
+	var/core_regeneration = 25
+	var/core_maximum_hitpoints = 600
+
+
 	///the 'abilities' available to a caste.
 	var/list/actions
 
