@@ -22,8 +22,6 @@ fi
 
 cp tgmc.dmb tgmc.rsc $1/
 cp -r _maps/* $1/_maps/
-cp -r icons/runtime/* $1/icons/runtime/
-cp -r sound/runtime/* $1/sound/runtime/
 cp -r strings/* $1/strings/
 
 #remove .dm files from _maps
