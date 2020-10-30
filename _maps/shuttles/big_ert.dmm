@@ -727,7 +727,7 @@
 /obj/item/ammo_magazine/smg/standard_smg,
 /obj/item/ammo_magazine/smg/standard_smg,
 /obj/item/ammo_magazine/smg/standard_smg,
-/obj/item/weapon/gun/smg/m39/elite,
+/obj/item/weapon/gun/smg/m25/elite,
 /turf/open/floor/mainship/plate,
 /area/shuttle/big_ert)
 "cc" = (
@@ -845,7 +845,7 @@
 /obj/structure/rack,
 /obj/item/ammo_magazine/smg/standard_smg,
 /obj/item/ammo_magazine/smg/standard_smg,
-/obj/item/weapon/gun/smg/m39/elite,
+/obj/item/weapon/gun/smg/m25/elite,
 /turf/open/floor/mainship/plate,
 /area/shuttle/big_ert)
 "cs" = (

@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes: 
+  - balance: "Resin Jelly will now stop xenos from igniting"

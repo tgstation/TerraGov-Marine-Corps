@@ -34,7 +34,11 @@
 	evolution_threshold = 80
 	upgrade_threshold = 60
 
-	evolves_to = list(/mob/living/carbon/xenomorph/hunter, /mob/living/carbon/xenomorph/bull, /mob/living/carbon/xenomorph/panther)
+	evolves_to = list(
+		/mob/living/carbon/xenomorph/hunter,
+		/mob/living/carbon/xenomorph/bull,
+		/mob/living/carbon/xenomorph/panther,
+	)
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
@@ -53,7 +57,7 @@
 		/datum/action/xeno_action/xenohide,
 		/datum/action/xeno_action/activable/pounce,
 		/datum/action/xeno_action/toggle_savage,
-		)
+	)
 
 /datum/xeno_caste/runner/young
 	upgrade_name = "Young"
@@ -125,7 +129,7 @@
 
 /datum/xeno_caste/runner/ancient
 	upgrade_name = "Ancient"
-	caste_desc = "Not what you want to run into in a dark alley. It looks fucking deadly."
+	caste_desc = "Not what you want to run into in a dark alley. It looks extremely deadly."
 	ancient_message = "We are the fastest assassin of all time. Our speed is unmatched."
 	upgrade = XENO_UPGRADE_THREE
 	wound_type = "runner" //used to match appropriate wound overlays

@@ -17,13 +17,13 @@
 			xhr.onreadystatechange = function () {
 				if (xhr.readyState === 4) {
 					var status = xhr.status;
-    				if (status >= 200 && status < 400) {
+					if (status >= 200 && status < 400) {
 						sendbyond('asset_cache_preload_data=' + encodeURIComponent(xhr.responseText));
 					}
 				}
 			};
 			xhr.send(null);
 			</script>
-	
+
 </body>
 </html>

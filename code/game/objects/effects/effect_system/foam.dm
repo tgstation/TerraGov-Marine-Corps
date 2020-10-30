@@ -5,6 +5,10 @@
 // Similar to smoke, but spreads out more
 // metal foams leave behind a foamed metal wall
 
+#define METAL_FOAM 1
+#define RAZOR_FOAM 2
+
+
 //foam effect
 
 /obj/effect/particle_effect/foam
@@ -33,8 +37,10 @@
 		STOP_PROCESSING(SSobj, src)
 		sleep(30)
 
-		if(metal)
-			new /obj/structure/foamedmetal(loc)
+		if(metal == RAZOR_FOAM)
+			new /obj/structure/razorwire/foam(loc)
+		else if(metal == METAL_FOAM)
+			new /obj/structure/foamedmetal(loc)		
 
 		flick("[icon_state]-disolve", src)
 		QDEL_IN(src, 5)
@@ -99,7 +105,7 @@
 /datum/effect_system/foam_spread
 	var/amount = 5				// the size of the foam spread.
 	var/list/carried_reagents	// the IDs of reagents present when the foam was mixed
-	var/metal = 0				// 0=foam, 1=metalfoam, 2=ironfoam
+	var/metal = 0				// 0=foam, 1=metalfoam, 2=razorburn
 
 
 
@@ -153,8 +159,15 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "metalfoam"
 	density = TRUE
-	opacity = TRUE 	// changed in New()
+	opacity = FALSE 	// changed in New()
 	anchored = TRUE
 	name = "foamed metal"
 	desc = "A lightweight foamed metal wall."
 	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 200
+
+/obj/structure/foamedmetal/fire_act() //flamerwallhacks go BRRR
+	take_damage(10, BURN, "fire")
+
+#undef METAL_FOAM
+#undef RAZOR_FOAM

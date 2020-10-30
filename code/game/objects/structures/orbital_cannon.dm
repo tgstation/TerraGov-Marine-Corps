@@ -31,7 +31,7 @@
 			amt = pick_n_take(L)
 			GLOB.marine_main_ship?.ob_type_fuel_requirements += amt
 
-	var/turf/T = locate(x+1,y+2,z)
+	var/turf/T = locate(x+1,y+1,z)
 	var/obj/structure/orbital_tray/O = new(T)
 	tray = O
 	tray.linked_ob = src
@@ -112,7 +112,7 @@
 
 	ob_cannon_busy = FALSE
 
-	var/turf/T = locate(x+1,y+2,z)
+	var/turf/T = locate(x+1,y+1,z)
 
 	tray.forceMove(T)
 	loaded_tray = FALSE
