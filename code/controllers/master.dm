@@ -449,14 +449,15 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	///Cache of tick usage
 	var/tick_usage
 
-	if(!(TICK_USAGE < TICK_LIMIT_MC))
-		//message_admins("exist")
-		return TRUE
 	//keep running while we have stuff to run and we haven't gone over a tick
 	//this is so subsystems paused eariler can use tick time that later subsystems never used
 	while (queue_head && queue_node /*&& TICK_USAGE < TICK_LIMIT_MC*/)
 		queue_node_flags = queue_node.flags
 		queue_node_priority = queue_node.queued_priority
+
+		if(TICK_USAGE > TICK_LIMIT_MC)
+			//message_admins("exist")
+			continue
 
 		if (!(queue_node_flags & SS_TICKER) && skip_ticks)
 			queue_node = queue_node.queue_next
