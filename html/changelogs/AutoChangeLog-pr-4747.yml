@@ -1,6 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes: 
-  - refactor: "Lighting lag is dead"
-  - rscadd: "bullets now glow"
-  - balance: "most marine armor and rail lights nerfed, flares buffed"

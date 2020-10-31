@@ -20111,10 +20111,6 @@
 /obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/general_offices)
-"hVF" = (
-/obj/docking_port/stationary/crashmode,
-/turf/closed/wall,
-/area/bigredv2/outside/admin_building)
 "hXl" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2

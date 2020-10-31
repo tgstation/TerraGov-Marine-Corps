@@ -125,7 +125,7 @@
 		/obj/item/weapon/gun/launcher/m92/standardmarine = 10,
 		/obj/item/weapon/gun/launcher/m81 = 15,
 		/obj/item/weapon/gun/pistol/standard_pocketpistol = 20,
-		/obj/item/weapon/gun/shotgun/double/marine = 5,
+		/obj/item/storage/belt/gun/ts34/full = 5,
 		/obj/item/weapon/gun/shotgun/pump/ksg = 5,
 		/obj/item/weapon/gun/shotgun/pump/cmb = 5,
 		/obj/item/weapon/gun/shotgun/pump/bolt = 5,
@@ -137,6 +137,7 @@
 		/obj/item/explosive/grenade/cloakbomb = 25,
 		/obj/item/storage/box/m94 = 30,
 		/obj/item/storage/box/recoilless_system = 1,
+		/obj/item/weapon/shield/riot/marine = 3,
 	)
 
 	premium = list()

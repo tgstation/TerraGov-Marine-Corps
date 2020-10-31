@@ -1,4 +1,0 @@
-author: "Wayland/spookydonut"
-delete-after: True
-changes: 
-  - bugfix: "Fixed a bug with keybinds registering signals becoming stuck on."
