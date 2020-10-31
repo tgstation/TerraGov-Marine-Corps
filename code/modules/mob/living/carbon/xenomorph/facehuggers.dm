@@ -226,6 +226,11 @@
 	if(stat == CONSCIOUS)
 		HasProximity(target)
 
+/obj/item/clothing/mask/facehugger/Uncross(atom/movable/AM)
+	. = ..()
+	if(. && stat == CONSCIOUS && isxeno(AM)) //shuffle hug prevention, if a xeno steps off go_idle()
+		go_idle()
+
 /obj/item/clothing/mask/facehugger/on_found(mob/finder)
 	if(stat == CONSCIOUS)
 		HasProximity(finder)
@@ -405,7 +410,7 @@
 				if(istype(H.wear_ear, /obj/item/radio/headset/mainship/marine))
 					var/obj/item/radio/headset/mainship/marine/R = H.wear_ear
 					if(R.camera.status)
-						R.camera.status = FALSE //Turn camera off.
+						R.camera.toggle_cam(null, FALSE) //Turn camera off.
 						to_chat(H, "<span class='danger'>Your headset camera flickers off; you'll need to reactivate it by rebooting your headset HUD!<span>")
 
 	if(blocked)
