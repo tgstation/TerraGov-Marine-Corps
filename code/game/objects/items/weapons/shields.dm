@@ -138,17 +138,17 @@
 	slowdown = 0.2
 
 /obj/item/weapon/shield/riot/marine/AltClick(mob/user)
-    if(!can_interact(user))
-        return ..()
-    if(!ishuman(user))
-        return ..()
-    if(!(user.l_hand == src || user.r_hand == src))
-        return ..()
-    TOGGLE_BITFIELD(flags_item, NODROP)
-    if(CHECK_BITFIELD(flags_item, NODROP))
-        to_chat(user, "<span class='warning'>You tighten the strap of [src] around your hand!</span>")
-    else
-        to_chat(user, "<span class='notice'>You loosen the strap of [src] around your hand!</span>")
+	if(!can_interact(user))
+		return ..()
+	if(!ishuman(user))
+		return ..()
+	if(!(user.l_hand == src || user.r_hand == src))
+		return ..()
+	TOGGLE_BITFIELD(flags_item, NODROP)
+	if(CHECK_BITFIELD(flags_item, NODROP))
+		to_chat(user, "<span class='warning'>You tighten the strap of [src] around your hand!</span>")
+	else
+		to_chat(user, "<span class='notice'>You loosen the strap of [src] around your hand!</span>")
 
 /obj/item/weapon/shield/energy
 	name = "energy combat shield"
