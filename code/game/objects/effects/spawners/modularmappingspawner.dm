@@ -29,10 +29,9 @@
 	if(!template)
 		stack_trace("Mapping error: room loaded with no template")
 		message_admins("Warning, modular mapping error, please report this to coders and get it fixed ASAP")
-		qdel(src)
-		return
+		return INITIALIZE_HINT_QDEL
 	template.load(get_turf(src), centered = template.keepcentered)
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /*********Types********/
 
