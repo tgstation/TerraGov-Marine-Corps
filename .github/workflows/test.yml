@@ -85,7 +85,7 @@ jobs:
         run: |
           bash tools/ci/install_byond.sh
           source $HOME/BYOND/byond/bin/byondsetup
-          bash tools/ci/dm.sh -DCIBUILDING tgmc.dme
+          bash tools/ci/dm.sh -DCIBUILDING -DUNIT_TESTS tgmc.dme
           bash tools/ci/run_server.sh
   test_windows:
     runs-on: windows-latest
