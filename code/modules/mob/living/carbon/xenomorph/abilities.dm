@@ -30,7 +30,7 @@
 	var/mob/living/carbon/xenomorph/devourer = owner
 	if(!LAZYLEN(devourer.stomach_contents))
 		if(!silent)
-			to_chat(devourer, "<span class='warning'>There's nothing in our belly that needs regurgitating.</span>")
+			to_chat(devourer, "<span class='warning'>There's nothing in our stomach that needs regurgitating.</span>")
 		return FALSE
 
 /datum/action/xeno_action/regurgitate/action_activate()
@@ -49,15 +49,21 @@
 	keybind_signal = COMSIG_XENOABILITY_HEADBITE
 	plasma_cost = 100
 
-/datum/action/xeno_action/activable/headbite/can_use_ability(mob/M, silent = FALSE, override_flags)
+/datum/action/xeno_action/activable/headbite/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..() //do after checking the below stuff
 	if(!.)
 		return
+	if(!iscarbon(A))
+		return FALSE
 	var/mob/living/carbon/xenomorph/X = owner
-	var/mob/living/carbon/victim = M //target of ability
+	var/mob/living/carbon/victim = A //target of ability
 	if(X.action_busy) //can't use if busy
 		return FALSE
 	if(!X.Adjacent(victim)) //checks if owner next to target
+		return FALSE
+	if(victim.headbitten)
+		if(!silent)
+			to_chat(X, "<span class='warning'>This creature has already been headbitten.</span>")
 		return FALSE
 	if(X.issamexenohive(victim)) //checks if target and victim are in the same hive
 		if(!silent)
@@ -65,10 +71,8 @@
 		return FALSE
 	if(issynth(victim)) //checks if target is a synth
 		if(!silent)
-			to_chat(X, "<span class='warning'>We have no reason to headbite a non-living creature.</span>")
+			to_chat(X, "<span class='warning'>We don't know if this non-living creature has vital organs in the head.</span>")
 		return FALSE
-	if(!can_use_ability(victim,TRUE,XACT_IGNORE_PLASMA)) //can't use without enough plasma
-		return fail_activate()
 	X.face_atom(victim) //Face towards the target so we don't look silly
 	X.visible_message("<span class='xenowarning'>\The [X] begins opening its mouth and extending a second jaw towards \the [victim].</span>", \
 	"<span class='danger'>We prepare our second jaw for a finishing blow on \the [victim]!</span>", null, 20)
