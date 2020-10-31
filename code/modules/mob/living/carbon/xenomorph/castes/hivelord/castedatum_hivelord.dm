@@ -52,6 +52,7 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/activable/headbite,
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/activable/psychic_cure/drone,
 		/datum/action/xeno_action/place_acidwell,
