@@ -49,7 +49,7 @@
 	keybind_signal = COMSIG_XENOABILITY_HEADBITE
 	plasma_cost = 100
 
-/datum/action/xeno_action/activable/headbite/can_use_ability(mob/M, silent = FALSE, override_flags) //usable only on mobs, no clue what silent or override_flags does
+/datum/action/xeno_action/activable/headbite/can_use_ability(mob/M, silent = FALSE, override_flags)
 	. = ..() //do after checking the below stuff
 	if(!.)
 		return
@@ -96,6 +96,7 @@
 			H.internal_organs_by_name -= i
 			H.internal_organs -= O
 
+	victim.death()
 	victim.headbitten = TRUE
 	victim.update_headbite()
 
@@ -105,7 +106,6 @@
 	GLOB.round_statistics.xeno_headbites++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_headbites")
 
-	victim.death()
 
 // ***************************************
 // *********** Drone-y abilities
