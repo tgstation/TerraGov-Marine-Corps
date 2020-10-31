@@ -55,7 +55,7 @@
 		/obj/item/storage/box/m94 = 5,
 		/obj/item/attachable/flashlight = 10,
 		/obj/item/explosive/grenade/mirage = 5,
-					/obj/item/weapon/powerfist = 3
+		/obj/item/weapon/powerfist = 3
 	)
 	prices = list()
 
