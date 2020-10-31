@@ -105,7 +105,7 @@
 
 
 /obj/structure/caspart/caschair/resisted_against(datum/source)
-	if((owner.state == PLANE_STATE_PREPARED || owner.state == PLANE_STATE_FLYING) && owner.mode != SHUTTLE_IDLE)
+	if(owner.state)
 		ui_interact(occupant)
 		return
 	INVOKE_ASYNC(src, .proc/eject_user)
@@ -435,3 +435,4 @@
 #undef PLANE_STATE_PREPARED
 #undef PLANE_STATE_FLYING
 #undef FUEL_PER_CAN_POUR
+#undef LOW_FUEL_LANDING_THRESHOLD
