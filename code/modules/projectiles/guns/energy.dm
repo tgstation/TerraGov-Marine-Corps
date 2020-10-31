@@ -494,7 +494,7 @@
 	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
 	message_to_user = "You set the Lasrifle's charge mode to standard fire."
 	fire_mode = GUN_FIREMODE_AUTOMATIC
-	icon_state = "tx73_auto"
+	icon_state = "tx73"
 
 /datum/lasrifle/base/disabler
 	charge_cost = 80
