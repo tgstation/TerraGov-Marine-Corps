@@ -62,8 +62,9 @@ GLOBAL_VAR(restart_counter)
 
 	world.tick_lag = CONFIG_GET(number/ticklag)
 
-	if(TEST_RUN_PARAMETER in params)
-		HandleTestRun()
+	#ifdef UNIT_TESTS
+	HandleTestRun()
+	#endif
 
 	return ..()
 
@@ -106,6 +107,10 @@ GLOBAL_VAR(restart_counter)
 	GLOB.world_debug_log = "[GLOB.log_directory]/debug.log"
 	GLOB.world_paper_log = "[GLOB.log_directory]/paper.log"
 
+#ifdef UNIT_TESTS
+	GLOB.test_log = "[GLOB.log_directory]/tests.log"
+	start_log(GLOB.test_log)
+#endif
 	start_log(GLOB.world_game_log)
 	start_log(GLOB.world_attack_log)
 	start_log(GLOB.world_manifest_log)
@@ -131,6 +136,8 @@ GLOBAL_VAR(restart_counter)
 	log_runtime(GLOB.revdata.get_log_message())
 
 /world/Topic(T, addr, master, key)
+	TGS_TOPIC	//redirect to server tools if necessary
+
 	var/static/list/bannedsourceaddrs = list()
 
 	var/static/list/lasttimeaddr = list()
@@ -156,10 +163,6 @@ GLOBAL_VAR(restart_counter)
 				return
 
 		lasttimeaddr[addr] = world.time + 2 SECONDS
-
-
-	TGS_TOPIC	//redirect to server tools if necessary
-
 
 	var/list/input = params2list(T)
 	var/datum/world_topic/handler
@@ -200,7 +203,8 @@ GLOBAL_VAR(restart_counter)
 
 /world/Reboot(ping)
 	if(ping)
-		send2update(CONFIG_GET(string/restart_message))
+		// TODO: Replace the second arguments of send2chat with custom config tags. See __HELPERS/chat.dm
+		send2chat(CONFIG_GET(string/restart_message), "")
 		var/list/msg = list()
 
 		if(GLOB.round_id)
@@ -231,14 +235,15 @@ GLOBAL_VAR(restart_counter)
 			msg += "Players: [length(GLOB.clients)]"
 
 		if(length(msg))
-			send2update(msg.Join(" | "))
+			send2chat(msg.Join(" | "), "")
 
 	Master.Shutdown()
 	TgsReboot()
 
-	if(TEST_RUN_PARAMETER in params)
-		FinishTestRun()
-		return
+	#ifdef UNIT_TESTS
+	FinishTestRun()
+	return
+	#endif
 
 	if(TgsAvailable())
 		var/do_hard_reboot

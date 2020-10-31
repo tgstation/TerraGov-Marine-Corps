@@ -223,9 +223,11 @@
 	max_w_class = 1
 	bypass_w_limit = list(
 		/obj/item/clothing/glasses,
-		/obj/item/reagent_containers/food/drinks/flask)
+		/obj/item/reagent_containers/food/drinks/flask,
+	)
 	cant_hold = list(
-		/obj/item/stack/)
+		/obj/item/stack,
+	)
 	max_storage_space = 2
 
 /obj/item/clothing/head/helmet/marine/Initialize()

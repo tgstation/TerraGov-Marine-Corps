@@ -126,6 +126,7 @@
 		return
 
 	if(href_list["depart"])
+		log_game("[key_name(usr)] has departed an ERT shuttle")
 		var/obj/docking_port/mobile/ert/M = SSshuttle.getShuttle(shuttleId)
 		M.on_ignition()
 		M.departing = TRUE

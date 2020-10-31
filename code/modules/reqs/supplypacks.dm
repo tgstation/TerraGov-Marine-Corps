@@ -180,7 +180,7 @@ WEAPONS
 	contains = list(
 		/obj/item/weapon/gun/energy/lasgun/tesla,
 		/obj/item/cell/lasgun/tesla,
-		/obj/item/cell/lasgun/tesla
+		/obj/item/cell/lasgun/tesla,
 	)
 	cost = 60
 
@@ -403,7 +403,7 @@ AMMO
 	contains = list(
 		/obj/item/cell/lasgun/tesla,
 		/obj/item/cell/lasgun/tesla,
-		/obj/item/cell/lasgun/tesla
+		/obj/item/cell/lasgun/tesla,
 	)
 	cost = 30
 
@@ -567,10 +567,10 @@ AMMO
 	contains = list(/obj/item/mortal_shell/smoke)
 	cost = 1
 
-/datum/supply_packs/ammo/mortar_ammo_flash
-	name = "M402 mortar flash shell"
-	contains = list(/obj/item/mortal_shell/flash)
-	cost = 1
+/datum/supply_packs/ammo/mortar_ammo_plasmaloss
+	name = "M402 mortar tanglefoot shell"
+	contains = list(/obj/item/mortal_shell/plasmaloss)
+	cost = 2
 
 /datum/supply_packs/ammo/minisentry
 	name = "UA-580 point defense sentry ammo"
@@ -626,9 +626,7 @@ ARMOR
 
 /datum/supply_packs/armor/marine_shield
 	name = "TL-172 Defensive Shield"
-	contains = list(
-		/obj/item/weapon/shield/riot/marine
-	)
+	contains = list(/obj/item/weapon/shield/riot/marine)
 	cost = 10
 
 /datum/supply_packs/armor/b18
@@ -730,6 +728,7 @@ ARMOR
 		/obj/item/armor_module/attachable/tyr_extra_armor,
 		/obj/item/armor_module/attachable/mimir_environment_protection,
 		/obj/item/armor_module/attachable/better_shoulder_lamp,
+		/obj/item/armor_module/attachable/hlin_explosive_armor,
 	)
 	cost = 40
 
@@ -764,15 +763,13 @@ ARMOR
 /datum/supply_packs/armor/modular/attachments/mimir_environment_protection
 	name = "Jaeger mimir module"
 	contains = list(
-		/obj/item/armor_module/attachable/mimir_environment_protection
+		/obj/item/armor_module/attachable/mimir_environment_protection,
 	)
 	cost = 12
 
 /datum/supply_packs/armor/modular/attachments/mimir_helmet_protection
 	name = "Jaeger helmet mimir module"
-	contains = list(
-		/obj/item/helmet_module/attachable/mimir_environment_protection
-	)
+	contains = list(/obj/item/helmet_module/attachable/mimir_environment_protection)
 	cost = 5
 /datum/supply_packs/armor/modular/attachments/generic_helmet_modules
 	name = "Generic Jaeger helmet modules"
@@ -782,9 +779,13 @@ ARMOR
 		/obj/item/helmet_module/binoculars,
 		/obj/item/helmet_module/binoculars,
 		/obj/item/helmet_module/antenna,
-		/obj/item/helmet_module/antenna
+		/obj/item/helmet_module/antenna,
 	)
 	cost = 5
+/datum/supply_packs/armor/modular/attachments/hlin_bombimmune
+	name = "Jaeger Hlin module"
+	contains = list(/obj/item/armor_module/attachable/hlin_explosive_armor)
+	cost = 12
 
 /*******************************************************************************
 CLOTHING
@@ -1257,8 +1258,7 @@ Imports
 
 /datum/supply_packs/imports/uzi
 	name = "GAL-9 SMG"
-	contains = list(
-		/obj/item/weapon/gun/smg/uzi)
+	contains = list(/obj/item/weapon/gun/smg/uzi)
 	cost = 10
 
 /datum/supply_packs/imports/uzi/ammo
@@ -1367,6 +1367,16 @@ Imports
 /datum/supply_packs/imports/rev357/ammo
 	name = "Smith and Wesson 357 Revolver Ammo"
 	contains = list(/obj/item/ammo_magazine/revolver/small)
+	cost = 3
+
+/datum/supply_packs/imports/rev44
+	name = "M-44 SAA Revolver"
+	contains = list(/obj/item/weapon/gun/revolver/m44)
+	cost = 7
+
+/datum/supply_packs/imports/rev357/ammo
+	name = "M-44 SAA Revolver Ammo"
+	contains = list(/obj/item/ammo_magazine/revolver)
 	cost = 3
 
 /datum/supply_packs/imports/beretta92fs

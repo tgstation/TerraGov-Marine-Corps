@@ -854,7 +854,7 @@
 	if(!area.requires_power)
 		return
 
-	lastused_light = area.usage(STATIC_LIGHT)
+	lastused_light = area.usage(STATIC_LIGHTS)
 	lastused_light += area.usage(LIGHT)
 	lastused_equip = area.usage(EQUIP)
 	lastused_equip += area.usage(STATIC_EQUIP)

@@ -567,7 +567,7 @@ Defined in conflicts.dm of the #defines folder.
 	desc = "A simple flashlight used for mounting on a firearm. \nHas no drawbacks, but isn't particuraly useful outside of providing a light source."
 	icon_state = "flashlight"
 	attach_icon = "flashlight_a"
-	light_mod = 8
+	light_mod = 6
 	slot = "rail"
 	materials = list(/datum/material/metal = 100, /datum/material/glass = 20)
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
@@ -584,11 +584,15 @@ Defined in conflicts.dm of the #defines folder.
 	if(master_gun.flags_gun_features & GUN_FLASHLIGHT_ON)
 		icon_state = "flashlight"
 		attach_icon = "flashlight_a"
-		master_gun.set_light(0)
+		master_gun.set_light_range(0)
+		master_gun.set_light_power(0)
+		master_gun.set_light_on(FALSE)
 	else
 		icon_state = "flashlight-on"
 		attach_icon = "flashlight_a-on"
-		master_gun.set_light(light_mod)
+		master_gun.set_light_range(light_mod)
+		master_gun.set_light_power(3)
+		master_gun.set_light_on(TRUE)
 
 	master_gun.flags_gun_features ^= GUN_FLASHLIGHT_ON
 
