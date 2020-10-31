@@ -731,7 +731,7 @@
 			"<span class='notice'>You take [src]'s armor plates apart.</span>")
 			playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 
-			switch(choice)
+			switch(barricade_upgrade_type)
 				if(CADE_TYPE_BOMB)
 					soft_armor = soft_armor.modifyRating(bomb = -50)
 				if(CADE_TYPE_MELEE)
