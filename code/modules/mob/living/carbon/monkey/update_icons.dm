@@ -114,7 +114,7 @@
 	remove_overlay(M_BURST_LAYER)
 	var/image/standing = null
 
-	if(headbitten == TRUE)
+	if(headbitten)
 		standing = image("icon" = 'icons/Xeno/Effects.dmi',"icon_state" = "headbite_stand", "layer" =-M_BURST_LAYER)
 
 	overlays_standing[M_BURST_LAYER]	= standing

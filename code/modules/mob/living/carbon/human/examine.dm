@@ -12,7 +12,7 @@
 			msg += "This creature is impregnated and [reagents.get_reagent_amount(/datum/reagent/toxin/xeno_growthtoxin) > 0 ? "" : "not"] inoculated with Larval Accelerant. \n"
 		else if(chestburst == 2)
 			msg += "A larva escaped from this creature.\n"
-		else if (headbitten == TRUE)
+		if (headbitten)
 			msg += "This creature has been purged of vital organs in the head.\n"
 		if(istype(wear_mask, /obj/item/clothing/mask/facehugger))
 			msg += "It has a little one on its face.\n"
@@ -448,7 +448,7 @@
 	if(chestburst == 2)
 		msg += "<span class='warning'><b>[t_He] has a giant hole in [t_his] chest!</b></span>\n"
 
-	if(headbitten == TRUE)
+	if(headbitten)
 		msg += "<span class='warning'><b>[t_He] has a giant hole in [t_his] head!</b></span>\n"
 
 
