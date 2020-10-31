@@ -127,12 +127,15 @@
 
 /obj/item/weapon/shield/riot/marine
 	name = "\improper TL-172 defensive shield"
-	desc = "A heavy shield adept at blocking blunt or sharp objects from connecting with the shield wielder."
+	desc = "A heavy shield adept at blocking blunt or sharp objects from connecting with the shield wielder. Looks very robust."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "marine_shield"
 	flags_equip_slot = ITEM_SLOT_BACK
-	force = 10
-	slowdown = 0.1
+	max_integrity = 1500 //This isn't going to break.
+	soft_armor = list("melee" = 45, "bullet" = 50, "laser" = 0, "energy" = 100, "bomb" = 30, "bio" = 100, "rad" = 100, "fire" = 0, "acid" = 35)
+	hard_armor = list("melee" = 5, "bullet" = 5, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 0, "acid" = 0)
+	force = 20
+	slowdown = 0.2
 
 /obj/item/weapon/shield/energy
 	name = "energy combat shield"

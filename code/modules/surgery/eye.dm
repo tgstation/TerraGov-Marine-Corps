@@ -23,9 +23,9 @@
 
 /datum/surgery_step/eye/cut_open
 	allowed_tools = list(
-	/obj/item/tool/surgery/scalpel = 100,		\
-	/obj/item/tool/kitchen/knife = 75,	\
-	/obj/item/shard = 50, 		\
+		/obj/item/tool/surgery/scalpel = 100,
+		/obj/item/tool/kitchen/knife = 75,
+		/obj/item/shard = 50,
 	)
 
 	min_duration = EYE_CUT_MIN_DURATION
@@ -56,8 +56,8 @@
 
 /datum/surgery_step/eye/lift_eyes
 	allowed_tools = list(
-	/obj/item/tool/surgery/retractor = 100,          \
-	/obj/item/tool/kitchen/utensil/fork = 50
+		/obj/item/tool/surgery/retractor = 100,
+		/obj/item/tool/kitchen/utensil/fork = 50,
 	)
 
 	min_duration = EYE_LIFT_MIN_DURATION
@@ -84,9 +84,9 @@
 
 /datum/surgery_step/eye/mend_eyes
 	allowed_tools = list(
-	/obj/item/tool/surgery/hemostat = 100,         \
-	/obj/item/stack/cable_coil = 75,         \
-	/obj/item/assembly/mousetrap = 10 //I don't know. Don't ask me. But I'm leaving it because hilarity.
+		/obj/item/tool/surgery/hemostat = 100,
+		/obj/item/stack/cable_coil = 75,
+		/obj/item/assembly/mousetrap = 10,
 	)
 
 	min_duration = EYE_MEND_MIN_DURATION
@@ -114,10 +114,10 @@
 
 /datum/surgery_step/eye/cauterize
 	allowed_tools = list(
-	/obj/item/tool/surgery/cautery = 100,			\
-	/obj/item/clothing/mask/cigarette = 75,	\
-	/obj/item/tool/lighter = 50,    \
-	/obj/item/tool/weldingtool = 25
+		/obj/item/tool/surgery/cautery = 100,
+		/obj/item/clothing/mask/cigarette = 75,
+		/obj/item/tool/lighter = 50,
+		/obj/item/tool/weldingtool = 25,
 	)
 
 	min_duration = EYE_CAUTERISE_MIN_DURATION

@@ -437,12 +437,24 @@
 	meltprob = 30
 	taste_multi = 1.5
 
+/datum/reagent/toxin/nanites
+	name = "Nanomachines"
+	description = "Microscopic construction robots designed to tear iron out of the surroundings and build jagged structures of wire when mixed into a foam. Drinking this is a bad idea."
+	taste_description = "poor life choices, followed by burning agony"
+	reagent_state = LIQUID
+	color = "#535E66" // rgb: 83, 94, 102
+
+/datum/reagent/toxin/nanites/on_mob_life(mob/living/L, metabolism)
+	L.apply_damages(10*REM, 6*REM, 6*REM) //DO NOT DRINK THIS. Seriously!
+	L.blood_volume -= 10
+	return ..()
+
 /datum/reagent/toxin/xeno_neurotoxin
 	name = "Neurotoxin"
 	description = "A debilitating nerve toxin. Impedes motor control in high doses. Causes progressive loss of mobility over time."
 	reagent_state = LIQUID
 	color = "#CF3600" // rgb: 207, 54, 0
-	custom_metabolism = REAGENTS_METABOLISM * 2 //otherwise it defaults to half of that
+	custom_metabolism = REAGENTS_METABOLISM * 2
 	purge_list = list(/datum/reagent/medicine)
 	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE

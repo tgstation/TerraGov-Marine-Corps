@@ -1,6 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes: 
-  - rscadd: "Added new MR-25 sprites to replace the m39 1:1. Added the ability to order it in req"
-  - rscdel: "Removed old M39 sprites, git will remember them. Nobody else will. SMG stock is entirely pointless now, its being sent to the shadowrealm."
-  - tweak: "changed a bit of lore surrounding the m39s replacement."

@@ -1,4 +1,0 @@
-author: "Hathkar"
-delete-after: True
-changes: 
-  - bugfix: "Self destruct cinematic should now show the ship blowing up"

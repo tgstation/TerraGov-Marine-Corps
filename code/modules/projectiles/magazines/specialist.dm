@@ -104,8 +104,8 @@ obj/item/ammo_magazine/rifle/m4ra/smart
 //M5 RPG
 
 /obj/item/ammo_magazine/rocket
-	name = "\improper 84mm high-explosive rocket"
-	desc = "A rocket tube for the T-152 rocket launcher."
+	name = "\improper generic high-explosive rocket"
+	desc = "A precursor to all kinds of rocket ammo unfit for normal use. How did you get this anyway?"
 	caliber = "rocket"
 	icon_state = "rocket"
 	w_class = WEIGHT_CLASS_NORMAL

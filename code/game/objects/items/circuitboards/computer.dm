@@ -41,7 +41,7 @@
 
 /obj/item/circuitboard/computer/cryopodcontrol
 	name = "Circuit board (Cryogenic Oversight Console)"
-	build_path = "/obj/machinery/computer/cryopod"
+	build_path = /obj/machinery/computer/cryopod
 
 /obj/item/circuitboard/computer/med_data
 	name = "Circuit board (Medical Records)"

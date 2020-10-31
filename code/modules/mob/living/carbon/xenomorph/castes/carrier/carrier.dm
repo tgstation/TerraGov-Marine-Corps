@@ -17,7 +17,7 @@
 	old_x = -16
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
-		)
+	)
 
 // ***************************************
 // *********** Death
