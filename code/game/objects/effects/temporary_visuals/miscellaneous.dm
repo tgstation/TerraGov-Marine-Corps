@@ -54,3 +54,8 @@
 			target_pixel_y = -16
 			layer = ABOVE_MOB_LAYER
 	animate(src, pixel_x = target_pixel_x, pixel_y = target_pixel_y, alpha = 0, time = duration)
+
+/obj/effect/temp_visual/telepathy
+	name = "telepathic force"
+	icon_state = "spooky"
+	duration = 0.5 SECONDS

@@ -440,3 +440,15 @@
 	full_name = "Inject Egg (Neurogas)"
 	description = "Inject an egg with neurogas, killing the little one inside"
 	keybind_signal = COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS
+
+/datum/keybinding/xeno/reposition_core
+	name = "reposition_core"
+	full_name = "Hivemind: Reposition Core"
+	description = "Reposition your core to another location on weeds."
+	keybind_signal = COMSIG_XENOABILITY_REPOSITION_CORE
+
+/datum/keybinding/xeno/mind_wrack
+	name = "mind_wrack"
+	full_name = "Hivemind: Mind Wrack"
+	description = "Blast a target's mind with psychic energy."
+	keybind_signal = COMSIG_XENOABILITY_MIND_WRACK

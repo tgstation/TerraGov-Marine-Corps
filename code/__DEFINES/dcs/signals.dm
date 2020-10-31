@@ -531,6 +531,8 @@
 #define COMSIG_XENOABILITY_PUNCH "xenoability_punch"
 
 #define COMSIG_XENOABILITY_REPOSITION_CORE "xenoability_reposition_core"
+#define COMSIG_XENOABILITY_MIND_WRACK "xenoability_mind_wrack"
+
 
 // human signals for keybindings
 #define COMSIG_KB_QUICKEQUIP "keybinding_quickequip"

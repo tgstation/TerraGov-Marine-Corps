@@ -157,6 +157,7 @@
 	icon = 'icons/Xeno/weeds.dmi'
 	icon_state = "weed_hivemind4"
 	var/mob/living/carbon/xenomorph/hivemind/parent
+	var/core_regeneration = 25
 
 /obj/effect/alien/hivemindcore/Initialize(mapload)
 	. = ..()
@@ -169,13 +170,13 @@
 		return
 	var/list/details = list()
 	details +=("This [name] belongs to [parent.name].</br>")
-	details +=("It has [max_integrity] of [parent.xeno_caste.core_maximum_hitpoints] integrity remaining.</br>")
+	details +=("It has [obj_integrity] of [max_integrity] integrity remaining.</br>")
 
 	to_chat(user, "<span class='xenowarning'>[details.Join(" ")]</span>")
 
 
 /obj/effect/alien/hivemindcore/process()
-	max_integrity = clamp(max_integrity, max_integrity + parent.xeno_caste.core_regeneration, parent.xeno_caste.core_maximum_hitpoints) //Core regenerates.
+	obj_integrity = clamp(obj_integrity, obj_integrity + parent.xeno_caste.core_regeneration, parent.xeno_caste.core_maximum_hitpoints) //Core regenerates.
 
 /obj/effect/alien/hivemindcore/Destroy()
 	if(isnull(parent))
@@ -210,8 +211,14 @@
 	var/health_percent = round((max_integrity / obj_integrity) * 100)
 	switch(health_percent)
 		if(-INFINITY to 25)
-			to_chat(parent, "<span class='xenohighdanger'>Your core is under attack, and dangerous low on health!</span>")
+			to_chat(parent, "<span class='xenohighdanger'>Your core is under attack, and is dangerously low on health!</span>")
 		if(26 to 75)
-			to_chat(parent, "<span class='xenodanger'>Your core is under attack, and low on health!</span>")
+			to_chat(parent, "<span class='xenodanger'>Your core is under attack, and is low on health!</span>")
 		if(76 to INFINITY)
 			to_chat(parent, "<span class='xenodanger'>Your core is under attack!</span>")
+
+/mob/living/carbon/xenomorph/hivemind/upgrade_xeno(newlevel) //where we also upgrade the max health of our core and restore it to maximum health
+	. = ..()
+	to_chat(src, "<span class='xenonotice'>Our core strengthens, and becomes more resilient!</span>")
+	core.max_integrity = src.xeno_caste.core_maximum_hitpoints
+	core.obj_integrity = core.max_integrity
