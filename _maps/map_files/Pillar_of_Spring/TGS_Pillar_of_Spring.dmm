@@ -7308,9 +7308,9 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/engineering/lower_engineering)
 "zk" = (
+/obj/machinery/light/small,
 /obj/structure/closet/secure_closet/pilot_officer,
 /obj/item/clothing/mask/rebreather/scarf,
-/obj/machinery/light/small,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
 "zl" = (
@@ -10736,7 +10736,9 @@
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
 "Ju" = (
-/obj/machinery/vending/marine/cargo_ammo,
+/obj/structure/bed/chair{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
 "Jv" = (
@@ -14117,7 +14119,15 @@
 /turf/open/shuttle/escapepod/zero,
 /area/mainship/command/self_destruct)
 "WM" = (
-/obj/machinery/vending/marine/cargo_guns,
+/obj/structure/table/mainship,
+/obj/item/weapon/gun/pistol/standard_pistol,
+/obj/item/ammo_magazine/pistol/standard_pistol,
+/obj/item/ammo_magazine/pistol/standard_pistol,
+/obj/item/ammo_magazine/pistol/standard_pistol,
+/obj/item/reagent_containers/food/snacks/donut/jelly{
+	pixel_x = 9;
+	pixel_y = -3
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/pilotbunks)
 "WN" = (
@@ -47710,7 +47720,7 @@ lo
 mU
 WM
 ZE
-Ju
+kl
 mU
 XN
 gd
@@ -47965,7 +47975,7 @@ bh
 gC
 af
 mU
-kl
+Ju
 Oz
 zk
 mU
