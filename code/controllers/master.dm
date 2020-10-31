@@ -452,11 +452,13 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	//keep running while we have stuff to run and we haven't gone over a tick
 	//this is so subsystems paused eariler can use tick time that later subsystems never used
 	while (queue_head && queue_node)
-		//if(TICK_USAGE >= TICK_LIMIT_MC)
-		//	message_admins("exist")
-		//	return 1
 		queue_node_flags = queue_node.flags
 		queue_node_priority = queue_node.queued_priority
+
+		if(TICK_USAGE >= TICK_LIMIT_MC)
+			current_tick_budget -= queue_node_priority
+			queue_node = queue_node.queue_next
+			continue
 
 		if (!(queue_node_flags & SS_TICKER) && skip_ticks)
 			queue_node = queue_node.queue_next
@@ -488,8 +490,6 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 			current_tick_budget -= queue_node_priority
 			queue_node = queue_node.queue_next
 			continue
-		if(TICK_CHECK)
-			return 1
 
 		if (current_tick_budget > 0 && queue_node_priority > 0)
 			tick_precentage = tick_remaining / (current_tick_budget / queue_node_priority)
