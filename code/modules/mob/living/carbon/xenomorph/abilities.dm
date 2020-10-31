@@ -49,7 +49,7 @@
 	keybind_signal = COMSIG_XENOABILITY_HEADBITE
 	plasma_cost = 100
 
-/datum/action/xeno_action/activable/headbite/can_use_ability(mob/M, silent = FALSE, override_flags) //usable only on mobs, no clue what silent or override_flags does
+/datum/action/xeno_action/activable/headbite/can_use_ability(mob/M, silent = FALSE, override_flags)
 	. = ..() //do after checking the below stuff
 	if(!.)
 		return
