@@ -1074,7 +1074,6 @@
 	var/datum/game_mode/infestation/crash/C = SSticker.mode
 	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_INPROGRESS), M.ignitionTime + 10 SECONDS)
 	addtimer(VARSET_CALLBACK(C, marines_evac, CRASH_EVAC_COMPLETED), 2 MINUTES)
-	return TRUE
 
 	var/datum/game_mode/infestation/distress/D = SSticker.mode
 	addtimer(VARSET_CALLBACK(D, marines_evac, DISTRESS_EVAC_INPROGRESS), M.ignitionTime + 10 SECONDS)
