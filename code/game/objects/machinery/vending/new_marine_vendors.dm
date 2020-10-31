@@ -1399,7 +1399,7 @@ GLOBAL_LIST_INIT(available_specialist_sets, list("Scout Set", "Sniper Set", "Dem
 		/obj/item/helmet_module/attachable/mimir_environment_protection/mark1,
 		/obj/item/clothing/mask/gas/tactical,
 		/obj/item/armor_module/attachable/mimir_environment_protection/mark1,
-						)
+	)
 
 #undef MARINE_CAN_BUY_UNIFORM
 #undef MARINE_CAN_BUY_SHOES
