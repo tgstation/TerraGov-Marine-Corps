@@ -74,8 +74,8 @@
 /datum/action/xeno_action/activable/headbite/use_ability(mob/M)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/victim = M
-	X.face_atom(M) //Face towards the target so we don't look silly
 
+	X.face_atom(M) //Face towards the target so we don't look silly
 	X.visible_message("<span class='xenowarning'>\The [X] begins opening its mouth and extending a second jaw towards \the [victim].</span>", \
 	"<span class='danger'>We preparing our second jaw for a finishing blow on \the [victim]!</span>", null, 20)
 	if(!do_after(src, 5 SECONDS, FALSE, victim, BUSY_ICON_DANGER))
