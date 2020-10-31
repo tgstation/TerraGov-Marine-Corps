@@ -24,11 +24,11 @@
 	storage_slots = 4
 	max_storage_space = 16
 	bypass_w_limit = list(
-					/obj/item/turret_top,
-					/obj/item/turret_tripod,
-					/obj/item/cell,
-					/obj/item/ammo_magazine/sentry,
-					)
+		/obj/item/turret_top,
+		/obj/item/turret_tripod,
+		/obj/item/cell,
+		/obj/item/ammo_magazine/sentry,
+	)
 
 /obj/item/storage/box/sentry/Initialize()
 	. = ..()
@@ -1014,7 +1014,7 @@
 		if(path.len)
 			var/blocked = FALSE
 			for(T in path)
-				if(T.opacity || T.density && T.throwpass == FALSE)
+				if(IS_OPAQUE_TURF(T) || T.density && T.throwpass == FALSE)
 					blocked = TRUE
 					break //LoF Broken; stop checking; we can't proceed further.
 
