@@ -16,8 +16,8 @@
 	gib_chance = 25
 	hud_type = /datum/hud/larva
 	inherent_verbs = list(
-		/mob/living/carbon/xenomorph/proc/vent_crawl
-		)
+		/mob/living/carbon/xenomorph/proc/vent_crawl,
+	)
 
 	var/base_icon_state = "Larva"
 

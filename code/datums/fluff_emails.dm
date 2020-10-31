@@ -50,7 +50,7 @@
 	entry_text = {"<html>
 					Why were we issued these damn snow uniforms in the first place? We've been around the sector almost three dozen times and we've
 					yet to put them to use. They even issued us bulky kits to repaint our rifles, pistols and shotguns to match the cold weather gear,
-					and masks to keep us warm. But what's the point? They're just taking up a forth of the cargo hold, half infested with moths we picked
+					and masks to keep us warm. But what's the point? They're just taking up a fourth of the cargo hold, half infested with moths we picked
 					up six months ago from Bernice 378 (that base is a sanitation nightmare), and they need to be steamed on a regular basis.
 					For all the effort it's been worth to me, the moment the "Falling Falcons" have the misfortune of falling on what is probably
 					the last ice planet in the galaxy, I'm making sure we stay there for another two cycles.

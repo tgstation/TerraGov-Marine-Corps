@@ -151,7 +151,8 @@
 	tiles_with = list(
 		/turf/closed/wall,
 		/obj/machinery/door/airlock,
-		/obj/structure/grille/mainship)
+		/obj/structure/grille/mainship,
+	)
 
 /obj/structure/grille/mainship/Initialize()
 	. = ..()

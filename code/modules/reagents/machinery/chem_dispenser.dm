@@ -320,7 +320,7 @@
 		/datum/reagent/consumable/sugar,
 		/datum/reagent/consumable/drink/orangejuice,
 		/datum/reagent/consumable/drink/lemonjuice,
-		/datum/reagent/consumable/drink/watermelonjuice
+		/datum/reagent/consumable/drink/watermelonjuice,
 	)
 
 	emagged_message = list(
@@ -329,7 +329,7 @@
 	)
 	emagged_reagents = list(
 		/datum/reagent/consumable/ethanol/thirteenloko,
-		/datum/reagent/consumable/drink/grapesoda
+		/datum/reagent/consumable/drink/grapesoda,
 	)
 
 
@@ -357,15 +357,16 @@
 		/datum/reagent/consumable/ethanol/vermouth,
 		/datum/reagent/consumable/ethanol/cognac,
 		/datum/reagent/consumable/ethanol/ale,
-		/datum/reagent/consumable/ethanol/mead)
+		/datum/reagent/consumable/ethanol/mead,
+	)
 
 	emagged_message = list(
-			"You disable the 'nanotrasen-are-cheap-bastards' lock, enabling hidden and very expensive boozes.",
-			"You re-enable the 'nanotrasen-are-cheap-bastards' lock, disabling hidden and very expensive boozes.",
+		"You disable the 'nanotrasen-are-cheap-bastards' lock, enabling hidden and very expensive boozes.",
+		"You re-enable the 'nanotrasen-are-cheap-bastards' lock, disabling hidden and very expensive boozes.",
 	)
 	emagged_reagents = list(
 		/datum/reagent/consumable/ethanol/goldschlager,
 		/datum/reagent/consumable/ethanol/patron,
 		/datum/reagent/consumable/drink/watermelonjuice,
-		/datum/reagent/consumable/drink/berryjuice
+		/datum/reagent/consumable/drink/berryjuice,
 	)

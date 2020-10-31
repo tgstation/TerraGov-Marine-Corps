@@ -126,7 +126,7 @@
 	upgrade_name = "Ancient"
 	caste_desc = "An alien with a heavily armored head crest. It looks like it could stop bullets!"
 	upgrade = XENO_UPGRADE_THREE
-	ancient_message = "We are a incredibly resilient, we can control the battle through sheer force."
+	ancient_message = "We are incredibly resilient, we can control the battle through sheer force."
 
 	// *** Melee Attacks *** //
 	melee_damage = 21
