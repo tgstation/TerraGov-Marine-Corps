@@ -45,8 +45,8 @@
 	return
 
 //This is used so the mc knows when the subsystem sleeps. do not override.
-/datum/controller/subsystem/proc/ignite(resumed = 0)
-	set waitfor = 0
+/datum/controller/subsystem/proc/ignite(resumed = FALSE)
+	set waitfor = FALSE
 	. = SS_SLEEPING
 	fire(resumed)
 	. = state

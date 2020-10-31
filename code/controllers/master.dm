@@ -400,7 +400,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 
 
-// This is what decides if something should run.
+/// This is what decides if something should run.
 /datum/controller/master/proc/CheckQueue(list/subsystemstocheck)
 
 	//we create our variables outside of the loops to save on overhead
@@ -446,18 +446,17 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	var/ran_non_ticker = FALSE
 	///Whether we've switched to background mode yet
 	var/bg_calc = FALSE
-	///Cache of tick usage
+	///How much of a tick we-re using in this queue node
 	var/tick_usage
 
 	//keep running while we have stuff to run and we haven't gone over a tick
 	//this is so subsystems paused eariler can use tick time that later subsystems never used
-	while (queue_head && queue_node /*&& TICK_USAGE < TICK_LIMIT_MC*/)
+	while (queue_head && queue_node)
+		//if(TICK_USAGE >= TICK_LIMIT_MC)
+		//	message_admins("exist")
+		//	return 1
 		queue_node_flags = queue_node.flags
 		queue_node_priority = queue_node.queued_priority
-
-		if(TICK_USAGE > TICK_LIMIT_MC)
-			//message_admins("exist")
-			continue
 
 		if (!(queue_node_flags & SS_TICKER) && skip_ticks)
 			queue_node = queue_node.queue_next
@@ -484,11 +483,13 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 		tick_remaining = ((bg_calc) ? (TICK_LIMIT_RUNNING_BACKGROUND) : (TICK_LIMIT_RUNNING)) - TICK_USAGE
 
-		///Checks if we have enough tick to process
+		//Checks if we have enough tick to process
 		if (tick_remaining < TICK_MIN_RUNTIME)
 			current_tick_budget -= queue_node_priority
 			queue_node = queue_node.queue_next
 			continue
+		if(TICK_CHECK)
+			return 1
 
 		if (current_tick_budget > 0 && queue_node_priority > 0)
 			tick_precentage = tick_remaining / (current_tick_budget / queue_node_priority)
