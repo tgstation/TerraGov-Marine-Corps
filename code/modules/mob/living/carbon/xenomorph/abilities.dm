@@ -96,6 +96,7 @@
 			H.internal_organs_by_name -= i
 			H.internal_organs -= O
 
+	victim.death()
 	victim.headbitten = TRUE
 	victim.update_headbite()
 
@@ -105,7 +106,6 @@
 	GLOB.round_statistics.xeno_headbites++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_headbites")
 
-	victim.death()
 
 // ***************************************
 // *********** Drone-y abilities
