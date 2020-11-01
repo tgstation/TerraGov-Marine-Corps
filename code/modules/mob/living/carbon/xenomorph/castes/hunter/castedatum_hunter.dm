@@ -118,7 +118,7 @@
 
 /datum/xeno_caste/hunter/ancient
 	upgrade_name = "Ancient"
-	caste_desc = "A fast, powerful front line combatant. It looks pretty strong."
+	caste_desc = "A fast, powerful front line combatant. It looks extremely deadly."
 	upgrade = XENO_UPGRADE_THREE
 	ancient_message = "We are the epitome of the hunter. Few can stand against us in open combat."
 

@@ -55,8 +55,8 @@
 		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/activable/spray_acid/cone,
-		/datum/action/xeno_action/toggle_pheromones
-		)
+		/datum/action/xeno_action/toggle_pheromones,
+	)
 
 /datum/xeno_caste/praetorian/young
 	upgrade_name = "Young"
@@ -130,9 +130,9 @@
 
 /datum/xeno_caste/praetorian/ancient
 	upgrade_name = "Ancient"
-	caste_desc = "Its mouth looks like a minigun."
+	caste_desc = "The maw of this creature drips with acid."
 	upgrade = XENO_UPGRADE_THREE
-	ancient_message = "We are the strongest range fighter around. Our spit is devestating and we can fire nearly a constant stream."
+	ancient_message = "We are the strongest ranged fighter around. Our spit is devastating and we can fire nearly a constant stream."
 
 	// *** Melee Attacks *** //
 	melee_damage = 23

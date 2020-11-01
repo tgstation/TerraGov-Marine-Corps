@@ -59,8 +59,8 @@
 		/datum/action/xeno_action/activable/bombard,
 		/datum/action/xeno_action/toggle_long_range,
 		/datum/action/xeno_action/toggle_bomb,
-		/datum/action/xeno_action/activable/spray_acid/line/boiler
-		)
+		/datum/action/xeno_action/activable/spray_acid/line/boiler,
+	)
 
 /datum/xeno_caste/boiler/young
 	upgrade_name = "Young"

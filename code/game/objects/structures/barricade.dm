@@ -70,7 +70,7 @@
 	if(closed)
 		return TRUE
 
-	if(mover && mover.throwing)
+	if(mover?.throwing)
 		if(is_wired && iscarbon(mover)) //Leaping mob against barbed wire fails
 			if(get_dir(loc, target) & dir)
 				return FALSE
@@ -84,8 +84,11 @@
 		deconstruct(FALSE)
 		return FALSE
 
+	if((mover.flags_atom & ON_BORDER) && get_dir(loc, target) & dir)
+		return FALSE
+
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-	if(S && S.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
+	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
 		return TRUE
 
 	if(get_dir(loc, target) & dir)

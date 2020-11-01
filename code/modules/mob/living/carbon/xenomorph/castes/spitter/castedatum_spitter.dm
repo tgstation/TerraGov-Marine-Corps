@@ -27,7 +27,10 @@
 	evolution_threshold = 180
 	upgrade_threshold = 120
 
-	evolves_to = list(/mob/living/carbon/xenomorph/boiler, /mob/living/carbon/xenomorph/praetorian)
+	evolves_to = list(
+		/mob/living/carbon/xenomorph/boiler,
+		/mob/living/carbon/xenomorph/praetorian,
+	)
 	deevolves_to = /mob/living/carbon/xenomorph/sentinel
 
 	// *** Flags *** //
@@ -50,7 +53,7 @@
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/activable/xeno_spit,
 		/datum/action/xeno_action/activable/spray_acid/line,
-		)
+	)
 
 /datum/xeno_caste/spitter/young
 	upgrade_name = "Young"
@@ -123,7 +126,7 @@
 /datum/xeno_caste/spitter/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "A ranged destruction machine."
-	ancient_message = "We are a master of ranged stuns and damage. Let's go fourth and generate salt."
+	ancient_message = "We are a master of ranged stuns and damage. Go forth and conquer."
 	upgrade = XENO_UPGRADE_THREE
 
 	// *** Melee Attacks *** //

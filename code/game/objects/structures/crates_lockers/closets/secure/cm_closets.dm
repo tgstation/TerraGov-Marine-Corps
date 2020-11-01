@@ -333,7 +333,7 @@
 	new /obj/item/clothing/under/marine/officer/pilot(src)
 	new /obj/item/clothing/shoes/marine(src)
 	new /obj/item/clothing/suit/armor/vest/pilot(src)
-	new /obj/item/storage/large_holster/m39(src)
+	new /obj/item/storage/large_holster/m25(src)
 	new /obj/item/storage/backpack/marine/satchel(src)
 	new /obj/item/clothing/gloves/yellow(src)
 	new /obj/item/clothing/glasses/sunglasses/aviator/yellow(src)

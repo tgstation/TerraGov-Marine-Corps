@@ -123,6 +123,20 @@
 #define COMSIG_ATOM_ORBIT_BEGIN "atom_orbit_begin"				//called when an atom starts orbiting another atom: (atom)
 #define COMSIG_ATOM_ORBIT_STOP "atom_orbit_stop"				//called when an atom stops orbiting another atom: (atom)
 
+///from base of atom/set_opacity(): (new_opacity)
+#define COMSIG_ATOM_SET_OPACITY "atom_set_opacity"
+
+///Called right before the atom changes the value of light_range to a different one, from base atom/set_light_range(): (new_range)
+#define COMSIG_ATOM_SET_LIGHT_RANGE "atom_set_light_range"
+///Called right before the atom changes the value of light_power to a different one, from base atom/set_light_power(): (new_power)
+#define COMSIG_ATOM_SET_LIGHT_POWER "atom_set_light_power"
+///Called right before the atom changes the value of light_color to a different one, from base atom/set_light_color(): (new_color)
+#define COMSIG_ATOM_SET_LIGHT_COLOR "atom_set_light_color"
+///Called right before the atom changes the value of light_on to a different one, from base atom/set_light_on(): (new_value)
+#define COMSIG_ATOM_SET_LIGHT_ON "atom_set_light_on"
+///Called right before the atom changes the value of light_flags to a different one, from base atom/set_light_flags(): (new_value)
+#define COMSIG_ATOM_SET_LIGHT_FLAGS "atom_set_light_flags"
+
 // /atom/movable signals
 #define COMSIG_MOVABLE_PRE_MOVE "movable_pre_move"					//from base of atom/movable/Moved(): (/atom)
 #define COMSIG_MOVABLE_MOVED "movable_moved"					//from base of atom/movable/Moved(): (/atom, dir)
@@ -410,6 +424,7 @@
 #define COMSIG_XENOABILITY_DROP_WEEDS "xenoability_drop_weeds"
 #define COMSIG_XENOABILITY_CHOOSE_RESIN "xenoability_choose_resin"
 #define COMSIG_XENOABILITY_SECRETE_RESIN "xenoability_secrete_resin"
+#define COMSIG_XENOABILITY_SECRETE_RESIN_SILO "xenoability_secrete_resin_silo"
 #define COMSIG_XENOABILITY_EMIT_RECOVERY "xenoability_emit_recovery"
 #define COMSIG_XENOABILITY_EMIT_WARDING "xenoability_emit_warding"
 #define COMSIG_XENOABILITY_EMIT_FRENZY "xenoability_emit_frenzy"

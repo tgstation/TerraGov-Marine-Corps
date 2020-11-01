@@ -455,6 +455,10 @@
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "red_2"
 	layer = BELOW_OBJ_LAYER
+	light_system = MOVABLE_LIGHT
+	light_on = TRUE
+	light_power = 3
+	light_color = LIGHT_COLOR_LAVA
 	var/firelevel = 12 //Tracks how much "fire" there is. Basically the timer of how long the fire burns
 	var/burnlevel = 10 //Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature.
 	var/flame_color = "red"
@@ -541,7 +545,7 @@
 		if(25 to INFINITY) //Change the icons and luminosity based on the fire's intensity
 			icon_state = "[flame_color]_3"
 			light_intensity = 6
-	set_light(light_intensity, null, light_color)
+	set_light_range_power_color(light_intensity, light_power, light_color)
 
 /obj/flamer_fire/process()
 	var/turf/T = loc
@@ -572,6 +576,8 @@
 
 // override this proc to give different idling-on-fire effects
 /mob/living/flamer_fire_act(burnlevel, firelevel)
+	if(!burnlevel)
+		return
 	if(hard_armor.getRating("fire") >= 100)
 		to_chat(src, "<span class='warning'>Your suit protects you from most of the flames.</span>")
 		adjustFireLoss(rand(0, burnlevel * 0.25)) //Does small burn damage to a person wearing one of the suits.

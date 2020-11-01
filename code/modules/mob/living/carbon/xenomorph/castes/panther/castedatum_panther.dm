@@ -33,7 +33,11 @@
 	evolution_threshold = 80
 	upgrade_threshold = 50
 
-	evolves_to = list(/mob/living/carbon/xenomorph/hunter, /mob/living/carbon/xenomorph/bull, /mob/living/carbon/xenomorph/runner)
+	evolves_to = list(
+		/mob/living/carbon/xenomorph/hunter,
+		/mob/living/carbon/xenomorph/bull,
+		/mob/living/carbon/xenomorph/runner,
+	)
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
@@ -53,7 +57,7 @@
 		/datum/action/xeno_action/xenohide,
 		/datum/action/xeno_action/activable/pounce/panther,
 		/datum/action/xeno_action/activable/neurotox_sting/panther,
-		)
+	)
 
 /datum/xeno_caste/panther/young
 	upgrade_name = "Young"

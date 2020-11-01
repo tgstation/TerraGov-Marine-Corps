@@ -164,6 +164,14 @@
 /datum/action/xeno_action/plant_weeds/slow
 	cooldown_timer = 12 SECONDS
 
+/datum/action/xeno_action/plant_weeds/slow/action_activate()
+	if(locate(/obj/effect/alien/weeds) in range(1, owner.loc))
+		return ..()
+	var/mob/living/carbon/xenomorph/hivemind/hiveminde = owner
+	hiveminde.forceMove(get_turf(hiveminde.core))
+	to_chat(hiveminde, "<span class='xenonotice'>We can't plant a node without weeds nearby, we've been moved back to our core.</span>")
+	return fail_activate()
+
 // Choose Resin
 /datum/action/xeno_action/choose_resin
 	name = "Choose Resin Structure"
@@ -983,6 +991,77 @@
 
 	succeed_activate()
 	add_cooldown()
+
+
+////////////////////
+/// Build silo
+///////////////////
+/datum/action/xeno_action/activable/build_silo
+	name = "Secrete resin silo"
+	action_icon_state = "secrete_resin"
+	mechanics_text = "Builds whatever you’ve selected with (choose resin structure) on your tile."
+	ability_name = "secrete resin"
+	plasma_cost = 150
+	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SILO
+	cooldown_timer = 120 SECONDS
+
+	/// How long does it take to build
+	var/build_time = 10 SECONDS
+
+	/// how many dead / non-chestbursted mobs are required to build the silo
+	var/required_mobs = 3
+
+/datum/action/xeno_action/activable/build_silo/can_use_ability(atom/A, silent, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(length(GLOB.xeno_resin_silos) > 5)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>The Hive can't support another silo.</span>")
+		return
+
+
+	if(!in_range(owner, A))
+		if(!silent)
+			to_chat(owner, "<span class='warning'>We need to get closer!.</span>")
+		return FALSE
+	var/obj/structure/bed/nest/found_nest = locate() in get_turf(A)
+	if(!found_nest)
+		if(!silent)
+			to_chat(owner, "<span class='warning'>You must build a resin nest and have [required_mobs] bodies for a silo!</span>")
+		return FALSE
+
+
+/datum/action/xeno_action/activable/build_silo/use_ability(atom/A)
+	// we do this check here so we can clear the mobs afterwards
+	var/list/mob/living/valid_mobs = list()
+	for(var/thing in get_turf(A))
+		if(!ishuman(thing))
+			continue
+		var/mob/living/turf_mob = thing
+		if(turf_mob.stat == DEAD && turf_mob.chestburst == 0)
+			valid_mobs += turf_mob
+
+	if(length(valid_mobs) < required_mobs)
+		to_chat(owner, "<span class='warning'>There are not enough dead bodies, you need [required_mobs] bodies for a silo!</span>")
+		return fail_activate()
+
+	if(!do_after(owner, build_time, TRUE, A, BUSY_ICON_BUILD))
+		return fail_activate()
+
+	var/obj/structure/resin/silo/hivesilo = new(get_step(A, SOUTHWEST))
+
+	// Throw the mobs inside the silo
+	for(var/iter in valid_mobs)
+		var/mob/living/to_move = iter
+		to_move.forceMove(hivesilo)
+
+	// Just to protect against two people doing the action at the same time
+	if(!QDELETED(A))
+		qdel(A)
+
+	succeed_activate()
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////

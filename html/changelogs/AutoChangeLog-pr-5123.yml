@@ -1,0 +1,6 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - rscadd: "Added new pmc sprites"
+  - rscdel: "Removed old pmc sprites, git will remember them, nobody else will."
+  - tweak: "Lore"
