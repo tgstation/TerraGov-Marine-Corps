@@ -65,6 +65,8 @@
 		if(!silent)
 			to_chat(X, "<span class='warning'>This creature has already been headbitten.</span>")
 		return FALSE
+	if(!victim.chestburst == 0)
+		return FALSE
 	if(X.issamexenohive(victim)) //checks if target and victim are in the same hive
 		if(!silent)
 			to_chat(X, "<span class='warning'>We can't bring ourselves to harm a fellow sister to this magnitude.</span>")
@@ -100,6 +102,7 @@
 			H.internal_organs_by_name -= i
 			H.internal_organs -= O
 
+	X.do_attack_animation(src, ATTACK_EFFECT_BITE)
 	victim.death()
 	victim.headbitten = TRUE
 	victim.update_headbite()

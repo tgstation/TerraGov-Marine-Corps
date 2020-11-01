@@ -90,3 +90,55 @@
 	SIGNAL_HANDLER
 	if(associated_hive)
 		silos += src
+
+
+//Corpse recyclinging
+obj/structure/resin/silo/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	var/obj/item/grab/G = I
+	var/mob/M
+	if(ismob(G.grabbed_thing))
+		M = G.grabbed_thing
+	var/mob/living/M = G.grabbed_thing
+
+	if(!isliving(G.grabbed_thing))
+		return
+
+	if(!istype(I, /obj/item/grab))
+		return
+
+	else if(isxeno(user))
+		return
+
+	if(!isliving(G.grabbed_thing))
+		return
+
+	if(!(M.stat == DEAD)) //No living mobs
+		to_chat(user, "<span class='warning'>[src] immediately rejects [M]. [M.p_they(TRUE)] still has a spark of life left!</span>")
+		return
+
+	if(!(ishuman(M) || ismonkey(M)))
+		to_chat(user, "<span class='warning'>There is no way [src] will accept [M]!</span>")
+		return
+
+	if(istype(I, /obj/item/grab))
+		var/obj/item/grab/G = I
+		if(!ismob(G.grabbed_thing))
+			return
+		var/mob/M = G.grabbed_thing
+		to_chat(user, "<span class='notice'>We place [M] into the [src].</span>")
+		M.forceMove(loc)
+
+	// we do this check here so we can clear the mobs afterwards
+	var/list/mob/living/valid_mobs = list()
+	for(var/thing in get_turf(A))
+		if(!ishuman(thing))
+			continue
+		var/mob/living/turf_mob = thing
+		if(turf_mob.stat == DEAD && turf_mob.chestburst == 0)
+			valid_mobs += turf_mob
+
+	// Throw the mobs inside the silo
+	for(var/iter in valid_mobs)
+		var/mob/living/to_move = iter
+		to_move.forceMove(hivesilo)
