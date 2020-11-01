@@ -1,0 +1,641 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ar" = (
+/obj/item/stack/sheet/glass{
+	amount = 30
+	},
+/obj/structure/rack,
+/turf/open/floor/plating/warning{
+	dir = 8
+	},
+/area/lv624/lazarus/robotics)
+"bi" = (
+/obj/item/clothing/mask/gas,
+/obj/structure/rack,
+/turf/open/floor/tile/vault,
+/area/lv624/lazarus/robotics)
+"cl" = (
+/obj/structure/table,
+/obj/item/weapon/gun/pistol/highpower,
+/obj/item/ammo_magazine/pistol/highpower,
+/obj/item/ammo_magazine/pistol/highpower,
+/turf/open/floor/tile/vault,
+/area/lv624/lazarus/robotics)
+"cx" = (
+/obj/item/stool,
+/turf/open/floor/plating/platebot,
+/area/lv624/lazarus/robotics)
+"cV" = (
+/obj/machinery/vending/robotics,
+/turf/open/floor/plating/platebot,
+/area/lv624/lazarus/robotics)
+"dj" = (
+/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plating/platebot,
+/area/lv624/lazarus/robotics)
+"ex" = (
+/obj/structure/largecrate/random,
+/turf/open/floor/plating/warning{
+	dir = 4
+	},
+/area/lv624/lazarus/robotics)
+"eC" = (
+/obj/structure/dispenser/oxygen,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plating/platebot,
+/area/lv624/lazarus/robotics)
+"eY" = (
+/obj/machinery/light/small,
+/turf/open/floor/tile/vault,
+/area/lv624/lazarus/robotics)
+"hh" = (
+/turf/open/floor/plating/platebot,
+/area/lv624/lazarus/robotics)
+"hi" = (
+/obj/machinery/door/airlock/mainship/engineering/free_access{
+	dir = 1;
+	name = "\improper Robotics Dome"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating,
+/area/lv624/lazarus/robotics)
+"hk" = (
+/obj/machinery/optable,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plating/platebot,
+/area/lv624/lazarus/robotics)
+"jg" = (
+/turf/open/floor/tile/vault,
+/area/lv624/lazarus/robotics)
+"jz" = (
+/obj/structure/largecrate,
+/turf/open/floor/plating/platebot,
+/area/lv624/lazarus/robotics)
+"jA" = (
+/turf/open/floor/plating/warning,
+/area/lv624/lazarus/robotics)
+"jP" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/lv624/lazarus/robotics)
+"jX" = (
+/obj/structure/table,
+/obj/item/stack/sheet/plasteel{
+	amount = 10
+	},
+/turf/open/floor/plating/platebot,
+/area/lv624/lazarus/robotics)
+"km" = (
+/obj/item/storage/belt/utility/full,
+/turf/open/floor/tile/vault,
+/area/lv624/lazarus/robotics)
+"la" = (
+/turf/template_noop,
+/area/template_noop)
+"mp" = (
+/obj/machinery/door/airlock/mainship/engineering/free_access{
+	name = "\improper Robotics Dome"
+	},
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/lv624/lazarus/robotics)
+"mZ" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/tile/vault,
+/area/lv624/lazarus/robotics)
+"nv" = (
+/obj/item/mecha_parts/chassis/gygax,
+/turf/open/floor/tile/vault,
+/area/lv624/lazarus/robotics)
+"pu" = (
+/obj/structure/cable,
+/turf/open/floor/plating/warning{
+	dir = 4
+	},
+/area/lv624/lazarus/robotics)
+"pQ" = (
+/obj/structure/largecrate/random,
+/turf/open/floor/tile/vault,
+/area/lv624/lazarus/robotics)
+"qx" = (
+/turf/open/floor/plating/warning{
+	dir = 4
+	},
+/area/lv624/lazarus/robotics)
+"qA" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/lv624/lazarus/robotics)
+"qE" = (
+/obj/structure/girder,
+/turf/open/floor/plating/platebot,
+/area/lv624/lazarus/robotics)
+"qQ" = (
+/obj/structure/computerframe,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/plating/platebot,
+/area/lv624/lazarus/robotics)
+"so" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/lv624/lazarus/robotics)
+"tz" = (
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay,
+/obj/structure/largecrate/random,
+/turf/open/floor/plating/platebot,
+/area/lv624/lazarus/robotics)
+"tX" = (
+/obj/machinery/door/airlock/mainship/engineering/free_access{
+	name = "\improper Robotics Dome"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/lv624/lazarus/robotics)
+"vO" = (
+/obj/machinery/mecha_part_fabricator,
+/turf/open/floor/plating/platebot,
+/area/lv624/lazarus/robotics)
+"wh" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp,
+/turf/open/floor/plating/platebot,
+/area/lv624/lazarus/robotics)
+"yH" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/lv624/lazarus/robotics)
+"zl" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/tile/vault,
+/area/lv624/lazarus/robotics)
+"zr" = (
+/obj/structure/barricade/wooden{
+	dir = 1
+	},
+/turf/open/floor/plating/warning{
+	dir = 1
+	},
+/area/lv624/lazarus/robotics)
+"zI" = (
+/obj/effect/decal/cleanable/blood/oil,
+/obj/item/stack/sheet/metal{
+	amount = 30;
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/structure/rack,
+/turf/open/floor/plating/warning{
+	dir = 8
+	},
+/area/lv624/lazarus/robotics)
+"zW" = (
+/obj/machinery/constructable_frame/state_2,
+/turf/open/floor/tile/vault,
+/area/lv624/lazarus/robotics)
+"BJ" = (
+/turf/open/floor/plating/warning{
+	dir = 8
+	},
+/area/lv624/lazarus/robotics)
+"Cx" = (
+/obj/structure/computerframe,
+/turf/open/floor/plating/platebot,
+/area/lv624/lazarus/robotics)
+"CR" = (
+/obj/machinery/door/airlock/mainship/engineering/free_access{
+	dir = 1;
+	name = "\improper Robotics Dome"
+	},
+/turf/open/floor/plating/platebot,
+/area/lv624/lazarus/robotics)
+"Di" = (
+/obj/machinery/recharge_station,
+/turf/open/floor/plating/platebot,
+/area/lv624/lazarus/robotics)
+"Dy" = (
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/plating,
+/area/lv624/lazarus/robotics)
+"DP" = (
+/turf/closed/wall,
+/area/lv624/lazarus/robotics)
+"EM" = (
+/obj/structure/largecrate,
+/obj/item/mecha_parts/mecha_equipment/repair_droid{
+	pixel_y = -10
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plating/platebot,
+/area/lv624/lazarus/robotics)
+"Gz" = (
+/obj/machinery/door/airlock/mainship/engineering/free_access{
+	dir = 1;
+	name = "\improper Robotics Dome"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/lv624/lazarus/robotics)
+"GE" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/warning{
+	dir = 1
+	},
+/area/lv624/lazarus/robotics)
+"Ix" = (
+/obj/structure/largecrate/random,
+/turf/open/floor/plating/platebot,
+/area/lv624/lazarus/robotics)
+"IY" = (
+/obj/machinery/door/airlock/mainship/engineering/free_access{
+	name = "\improper Robotics Dome"
+	},
+/turf/open/floor/plating,
+/area/lv624/lazarus/robotics)
+"Jv" = (
+/obj/machinery/autolathe,
+/turf/open/floor/tile/vault,
+/area/lv624/lazarus/robotics)
+"JD" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/plating/warning,
+/area/lv624/lazarus/robotics)
+"Ne" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/turf/open/floor/plating/warning,
+/area/lv624/lazarus/robotics)
+"Ny" = (
+/obj/machinery/vending/tool,
+/turf/open/floor/tile/vault,
+/area/lv624/lazarus/robotics)
+"NM" = (
+/obj/structure/largecrate,
+/obj/item/mecha_parts/part/gygax_armour,
+/turf/open/floor/plating/platebot,
+/area/lv624/lazarus/robotics)
+"Ot" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4;
+	on = 1
+	},
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/lv624/lazarus/robotics)
+"OD" = (
+/obj/item/multitool,
+/obj/structure/extinguisher_cabinet{
+	dir = 1
+	},
+/obj/structure/rack,
+/turf/open/floor/tile/vault,
+/area/lv624/lazarus/robotics)
+"OF" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/machinery/vending/engineering,
+/turf/open/floor/tile/vault,
+/area/lv624/lazarus/robotics)
+"PQ" = (
+/obj/effect/decal/remains/human,
+/turf/open/floor/tile/vault,
+/area/lv624/lazarus/robotics)
+"TB" = (
+/obj/structure/cable,
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/lv624/lazarus/robotics)
+"Uu" = (
+/obj/machinery/vending/coffee,
+/turf/open/floor/tile/vault,
+/area/lv624/lazarus/robotics)
+"Uv" = (
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/lv624/lazarus/robotics)
+"Wq" = (
+/obj/structure/ore_box,
+/turf/open/floor/plating/platebot,
+/area/lv624/lazarus/robotics)
+"Xc" = (
+/obj/machinery/power/apc/drained,
+/obj/structure/cable,
+/turf/open/floor/tile/vault,
+/area/lv624/lazarus/robotics)
+"XO" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/tile/vault,
+/area/lv624/lazarus/robotics)
+"Yr" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/lv624/lazarus/robotics)
+"Yu" = (
+/obj/item/mecha_parts/part/gygax_torso,
+/turf/open/floor/tile/vault,
+/area/lv624/lazarus/robotics)
+"YK" = (
+/obj/structure/table,
+/obj/item/mecha_parts/mecha_equipment/tool/drill,
+/turf/open/floor/tile/vault,
+/area/lv624/lazarus/robotics)
+"ZQ" = (
+/obj/structure/table,
+/obj/item/weapon/gun/pistol/holdout,
+/turf/open/floor/plating/platebot,
+/area/lv624/lazarus/robotics)
+
+(1,1,1) = {"
+la
+la
+la
+la
+la
+DP
+Dy
+IY
+Dy
+DP
+la
+la
+la
+la
+la
+"}
+(2,1,1) = {"
+la
+DP
+Dy
+Dy
+Dy
+DP
+ar
+BJ
+zI
+DP
+Dy
+Dy
+Dy
+DP
+la
+"}
+(3,1,1) = {"
+la
+Dy
+hh
+ZQ
+Cx
+DP
+cl
+qA
+Jv
+DP
+tz
+NM
+Ix
+Dy
+la
+"}
+(4,1,1) = {"
+la
+Dy
+Di
+cx
+hh
+CR
+jg
+Uv
+jg
+CR
+hh
+hh
+Ix
+Dy
+la
+"}
+(5,1,1) = {"
+la
+Dy
+cV
+hh
+hk
+DP
+OD
+Uv
+eY
+DP
+EM
+hh
+jz
+Dy
+la
+"}
+(6,1,1) = {"
+DP
+DP
+DP
+mp
+DP
+DP
+bi
+Ot
+Ny
+DP
+DP
+mp
+DP
+DP
+DP
+"}
+(7,1,1) = {"
+Dy
+zr
+jg
+XO
+mZ
+jg
+jg
+so
+nv
+zW
+jg
+PQ
+jg
+JD
+Dy
+"}
+(8,1,1) = {"
+hi
+GE
+yH
+yH
+yH
+yH
+yH
+Yr
+jP
+jP
+jP
+jP
+jP
+Ne
+Gz
+"}
+(9,1,1) = {"
+Dy
+zr
+jg
+jg
+jg
+PQ
+Yu
+TB
+km
+jg
+zl
+jg
+Uu
+jA
+Dy
+"}
+(10,1,1) = {"
+DP
+DP
+DP
+mp
+DP
+DP
+Xc
+TB
+XO
+DP
+DP
+mp
+DP
+DP
+DP
+"}
+(11,1,1) = {"
+la
+Dy
+dj
+hh
+eC
+DP
+OF
+TB
+zW
+DP
+qQ
+hh
+Wq
+Dy
+la
+"}
+(12,1,1) = {"
+la
+Dy
+vO
+hh
+hh
+CR
+jg
+TB
+PQ
+CR
+hh
+cx
+Ix
+Dy
+la
+"}
+(13,1,1) = {"
+la
+Dy
+qE
+Di
+jX
+DP
+pQ
+TB
+YK
+DP
+wh
+Di
+Ix
+Dy
+la
+"}
+(14,1,1) = {"
+la
+DP
+Dy
+Dy
+Dy
+DP
+ex
+pu
+qx
+DP
+Dy
+Dy
+Dy
+DP
+la
+"}
+(15,1,1) = {"
+la
+la
+la
+la
+la
+DP
+Dy
+tX
+Dy
+DP
+la
+la
+la
+la
+la
+"}

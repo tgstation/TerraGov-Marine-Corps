@@ -117,7 +117,7 @@
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides high protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a EOD armor piece."
 	icon_state = "eod_chest"
 
- /** Legs pieces */
+// Legs pieces
 /obj/item/armor_module/armor/legs
 	icon_state = "infantry_legs"
 
@@ -204,11 +204,11 @@
 	icon_state = "assault_arms"
 
 /obj/item/armor_module/armor/arms/marine/eva
-	name = "\improper Jaegger Pattern EVA arm plates"
+	name = "\improper Jaeger Pattern EVA arm plates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a EVA armor piece."
 	icon_state = "eva_arms"
 
 /obj/item/armor_module/armor/arms/marine/eod
-	name = "\improper Jaegger Pattern EOD arm plates"
+	name = "\improper Jaeger Pattern EOD arm plates"
 	desc = "Designed for use with the Jaeger Combat Exoskeleton. It provides protection and encumbrance when attached and is fairly easy to attach and remove from armor. Click on the armor frame to attach it. This armor appears to be marked as a EOD armor piece."
 	icon_state = "eod_arms"

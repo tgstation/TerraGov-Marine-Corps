@@ -9,13 +9,11 @@
 	underslug_launchable = TRUE
 
 /obj/item/explosive/grenade/frag/prime()
-	explosion(loc, light_impact_range = 4)
+	explosion(loc, light_impact_range = 4, small_animation = TRUE)
 	qdel(src)
 
 /obj/item/explosive/grenade/frag/flamer_fire_act()
-	var/turf/T = loc
-	qdel(src)
-	explosion(T, light_impact_range = 4)
+	prime()
 
 
 
@@ -50,7 +48,7 @@
 	underslug_launchable = FALSE
 
 /obj/item/explosive/grenade/frag/PMC/prime()
-	explosion(loc, light_impact_range = 5)
+	explosion(loc, light_impact_range = 5, small_animation = TRUE)
 	qdel(src)
 
 
@@ -63,7 +61,7 @@
 	underslug_launchable = FALSE
 
 /obj/item/explosive/grenade/frag/m15/prime()
-	explosion(loc, light_impact_range = 5)
+	explosion(loc, light_impact_range = 5, small_animation = TRUE)
 	qdel(src)
 
 
@@ -81,7 +79,7 @@
 	underslug_launchable = FALSE
 
 /obj/item/explosive/grenade/frag/stick/prime()
-	explosion(loc, light_impact_range = 4)
+	explosion(loc, light_impact_range = 4, small_animation = TRUE)
 	del(src)
 
 
@@ -96,7 +94,7 @@
 	underslug_launchable = FALSE
 
 /obj/item/explosive/grenade/frag/upp/prime()
-	explosion(loc, light_impact_range = 4)
+	explosion(loc, light_impact_range = 4, small_animation = TRUE)
 	del(src)
 
 
@@ -108,7 +106,7 @@
 	underslug_launchable = FALSE
 
 /obj/item/explosive/grenade/frag/sectoid/prime()
-	explosion(loc, light_impact_range = 6)
+	explosion(loc, light_impact_range = 6)// no animation cus space tech and so
 	qdel(src)
 
 
@@ -177,7 +175,7 @@
 
 /obj/item/explosive/grenade/smokebomb/prime()
 	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(3, loc, 7)
+	smoke.set_up(7, loc, 11)
 	smoke.start()
 	qdel(src)
 
@@ -199,7 +197,27 @@
 
 /obj/item/explosive/grenade/cloakbomb/prime()
 	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(3, loc, 9)
+	smoke.set_up(7, loc, 11)
+	smoke.start()
+	qdel(src)
+
+/obj/item/explosive/grenade/drainbomb
+	name = "\improper M40-T smoke grenade"
+	desc = "The M40-T is a small, but powerful Tanglefoot grenade, designed to remove plasma with minimal side effects. Based off the same platform as the M40 HEDP. It is set to detonate in 2 seconds."
+	icon_state = "grenade_smoke"
+	det_time = 20
+	item_state = "grenade_smoke"
+	hud_state = "grenade_smoke"
+	underslug_launchable = TRUE
+	var/datum/effect_system/smoke_spread/plasmaloss/smoke
+
+/obj/item/explosive/grenade/drainbomb/Initialize()
+	. = ..()
+	smoke = new(src)
+
+/obj/item/explosive/grenade/drainbomb/prime()
+	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
+	smoke.set_up(7, loc, 11)
 	smoke.start()
 	qdel(src)
 
@@ -220,7 +238,7 @@
 
 /obj/item/explosive/grenade/phosphorus/prime()
 	playsound(loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(5, loc, 7)
+	smoke.set_up(6, loc, 7)
 	smoke.start()
 	flame_radius(4, get_turf(src))
 	flame_radius(1, get_turf(src), burn_intensity = 45, burn_duration = 75, burn_damage = 15, fire_stacks = 75)	//The closer to the middle you are the more it hurts
@@ -267,11 +285,13 @@
 	underslug_launchable = TRUE
 	w_class = WEIGHT_CLASS_SMALL
 	hud_state = "grenade_frag"
+	light_system = MOVABLE_LIGHT
+	light_range = 6
+	light_color = LIGHT_COLOR_FLARE
+	light_on = FALSE
 	var/fuel = 0
 	var/lower_fuel_limit = 800
 	var/upper_fuel_limit = 1000
-	var/flare_brightness = 5
-	var/flare_color= LIGHT_COLOR_FLARE
 
 /obj/item/explosive/grenade/flare/Initialize()
 	. = ..()
@@ -285,7 +305,7 @@
 
 /obj/item/explosive/grenade/flare/Destroy()
 	turn_off()
-	. = ..()
+	return ..()
 
 /obj/item/explosive/grenade/flare/process()
 	fuel = max(fuel - 1, 0)
@@ -347,10 +367,10 @@
 /obj/item/explosive/grenade/flare/proc/update_brightness()
 	if(active && fuel > 0)
 		icon_state = "[initial(icon_state)]_active"
-		set_light(flare_brightness, l_color = flare_color)
+		set_light_on(TRUE)
 	else
 		icon_state = initial(icon_state)
-		set_light(0)
+		set_light_on(FALSE)
 
 /obj/item/explosive/grenade/flare/throw_impact(atom/hit_atom, speed)
 	. = ..()
@@ -381,8 +401,8 @@
 	hud_state = "grenade_frag"
 	lower_fuel_limit = 25
 	upper_fuel_limit = 30
-	flare_brightness = 3
-	flare_color= LIGHT_COLOR_GREEN
+	light_power = 3
+	light_color = LIGHT_COLOR_GREEN
 	var/datum/squad/user_squad
 	var/obj/effect/overlay/temp/laser_target/target
 

@@ -53,7 +53,7 @@
 		/datum/reagent/medicine/spaceacillin,
 		/datum/reagent/medicine/tricordrazine)
 	var/static/list/default_pain_chems = list(
-		/datum/reagent/medicine/oxycodone,
+		/datum/reagent/medicine/hydrocodone,
 		/datum/reagent/medicine/tramadol)
 
 	var/datum/action/suit_autodoc/toggle/toggle_action
@@ -142,6 +142,7 @@
 	Hook into the examine of the parent to show additional information about the suit_autodoc
 */
 /datum/component/suit_autodoc/proc/examine(datum/source, mob/user)
+	SIGNAL_HANDLER
 	var/details
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_CHEM_BURN))
 		details += "Its burn treatment injector is currently refilling.</br>"
@@ -166,6 +167,7 @@
 	Disables the autodoc and removes actions when dropped
 */
 /datum/component/suit_autodoc/proc/dropped(datum/source, mob/user)
+	SIGNAL_HANDLER
 	if(!iscarbon(user))
 		return
 	remove_actions()
@@ -177,6 +179,7 @@
 	Enable the autodoc and give appropriate actions
 */
 /datum/component/suit_autodoc/proc/equipped(datum/source, mob/equipper, slot)
+	SIGNAL_HANDLER
 	if(!iscarbon(equipper)) // living can equip stuff but only carbon has traumatic shock
 		return
 	wearer = equipper
@@ -220,6 +223,7 @@
 	Proc for the damange taken signal, calls treat_injuries
 */
 /datum/component/suit_autodoc/proc/damage_taken(datum/source, mob/living/carbon/human/wearer, damage)
+	SIGNAL_HANDLER
 	treat_injuries()
 
 /**
@@ -324,6 +328,7 @@
 	This will enable or disable the suit
 */
 /datum/component/suit_autodoc/proc/action_toggle(datum/source)
+	SIGNAL_HANDLER
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_TOGGLE))
 		return
 	TIMER_COOLDOWN_START(src, COOLDOWN_TOGGLE, 2 SECONDS)
@@ -336,12 +341,14 @@
 	Proc to handle the internal analyzer scanning the user
 */
 /datum/component/suit_autodoc/proc/scan_user(datum/source)
+	SIGNAL_HANDLER_DOES_SLEEP
 	analyzer.attack(wearer, wearer, TRUE)
 
 /**
 	Proc to show the suit configuration page
 */
 /datum/component/suit_autodoc/proc/configure(datum/source)
+	SIGNAL_HANDLER_DOES_SLEEP
 	interact(wearer)
 
 /**

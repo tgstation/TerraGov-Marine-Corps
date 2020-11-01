@@ -23,7 +23,8 @@
 		/obj/item/photo,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/tool/screwdriver,
-		/obj/item/tool/stamp)
+		/obj/item/tool/stamp,
+	)
 	flags_equip_slot = ITEM_SLOT_ID
 
 	var/obj/item/card/id/front_id = null

@@ -180,6 +180,7 @@
 
 ///Called by the deletion of the referenced powercell.
 /obj/machinery/power/apc/proc/on_cell_deletion(obj/item/cell/source, force)
+	SIGNAL_HANDLER
 	set_cell(null)
 
 
@@ -853,7 +854,7 @@
 	if(!area.requires_power)
 		return
 
-	lastused_light = area.usage(STATIC_LIGHT)
+	lastused_light = area.usage(STATIC_LIGHTS)
 	lastused_light += area.usage(LIGHT)
 	lastused_equip = area.usage(EQUIP)
 	lastused_equip += area.usage(STATIC_EQUIP)

@@ -36,9 +36,11 @@ The main purpose of this is to handle cleanup and setting up the initial ai beha
 
 //Removes registered signals and action states, useful for scenarios like when the parent is destroyed or a client is taking over
 /datum/component/ai_controller/proc/handle_combat_log()
+	SIGNAL_HANDLER
 	return DONT_LOG
 
 /datum/component/ai_controller/proc/clean_up()
+	SIGNAL_HANDLER
 	STOP_PROCESSING(SSprocessing, ai_behavior)
 	ai_behavior.unregister_action_signals(ai_behavior.cur_action)
 	parent.RemoveElement(/datum/element/pathfinder)
