@@ -11,7 +11,7 @@
 	mechanics_text = "Reposition your core to a target location on weeds. The further away the location is the longer this will take up to a maximum of 60 seconds. 3 minute cooldown."
 	ability_name = "reposition core"
 	plasma_cost = 150
-	cooldown_timer = 180 SECONDS
+	cooldown_timer = 300 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_REPOSITION_CORE
 
@@ -22,6 +22,21 @@
 	owner.playsound_local(owner.loc, 'sound/voice/alien_drool1.ogg', 50, TRUE)
 	to_chat(owner, "<span class='xenonotice'>We regain the strength to reposition our neural core.</span>")
 	return ..()
+
+/datum/action/xeno_action/activable/reposition_core/can_use_ability(atom/target, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(QDELETED(target))
+		return FALSE
+	var/turf/target_turf = target
+	var/mob/living/carbon/xenomorph/hivemind/X = owner
+
+	if(!istype(X))
+		return FALSE
+
+	if(!check_build_location(target_turf, X))
+		return FALSE
 
 /datum/action/xeno_action/activable/reposition_core/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/hivemind/X = owner
@@ -42,25 +57,64 @@
 			to_chat(X, "<span class='xenodanger'>We abort transferring our consciousness, expending our precious plasma for naught.</span>")
 			return fail_activate()
 
-	if(!check_build_location(target_turf, X)) //Check target turf for suitability after completion
-		return fail_activate()
+ 	if(!can_use_ability(target_turf))
+ 		return fail_activate()
 
 	core.forceMove(get_turf(target_turf)) //Move the core
-	core.obj_integrity = core.max_integrity //Reset the core's health
-	to_chat(owner, "<span class='xenodanger'>We succeed in transferring our consciousness to a new neural core!</span>")
+	core.obj_integrity = 1 //Reset the core's health to 1; travelling is hard, exhausting work!
+	to_chat(X, "<span class='xenodanger'>We succeed in transferring our consciousness to a new neural core!</span>")
 
 	add_cooldown()
 
 	GLOB.round_statistics.hivemind_reposition_core_uses++ //Increment the statistics
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "hivemind_reposition_core_uses")
 
+	//Now we handle announcements
 	if(!is_centcom_level(core))
-		var/area/core_new_area = get_area(core)
-		xeno_message("Hive: \The [X] has <b>transferred its core</b>[A? " to [sanitize(core_new_area.name)]":""]!", 3, X.hivenumber) //Let the hive know the Hivemind's new location.
+		var/area/new_core_area = get_area(core)
+		xeno_message("Hive: \ [X] has <b>transferred its core</b>[A? " to [sanitize(new_core_area.name)]":""]!", 3, X.hivenumber) //Let the hive know the Hivemind's new location.
+		notify_ghosts("\The [X] has <b>transferred its core</b>[A? " to [sanitize(new_core_area.name)]":""]!", source = X, action = NOTIFY_ORBIT)
+
+	var/list/decoy_area_list = list()
+	var/area/real_area = get_area(core) //Set our real area
+	var/list/buffer_list = list() //Buffer list for randomization
+	var/list/details = list() //The actual final list for the announcement
+
+	for(var/area/core_areas in world) //Build the list of areas on the core's Z.
+		if(core_areas.z != core.z) //Must be on the same Z
+			continue
+		decoy_area_list += core_areas //Add to the list of potential decoys
+
+	decoy_area_list -= real_area //Remove the real area from our decoy list.
+	buffer_list += sanitize(real_area.name) //Add the real location to our buffer list
+
+	var/decoys
+	var/area/decoy_area
+	while(decoys < HIVEMIND_REPOSITION_CORE_DECOY_NUMBER) //Populate our list of areas
+		decoy_area = pick(decoy_area_list) //Pick random area for our  decoy.
+		decoy_area_list -= decoy_area //Remove it from our list of possible decoy options
+		buffer_list += sanitize(decoy_area.name)
+		++decoys
+
+	var/buffer_list_pick
+	while(buffer_list.len > 0) //Now populate our randomized order list for the announcement
+		buffer_list_pick = pick(buffer_list) //Get random entry in the list
+		buffer_list -= buffer_list_pick //Remove that random entry from the buffer
+		if(buffer_list.len > 0) //Add that random entry to the final list of areas
+			details += ("[buffer_list_pick], ")
+		else
+			details += ("[buffer_list_pick].")
+
+	priority_announce("Attention: Anomalous energy readings detected in the following areas: [details.Join(" ")] Further investigation advised.", "Priority Alert", sound = 'sound/AI/commandreport.ogg')
+
 
 /datum/action/xeno_action/activable/reposition_core/proc/check_build_location(turf/target_turf, mob/living/carbon/xenomorph/hivemind/X)
 
 	if(!X || !target_turf) //Sanity
+		return FALSE
+
+	if(target_turf.z != X.core.z)
+		to_chat(X, "<span class='xenodanger'>We cannot transfer our core here.</span>")
 		return FALSE
 
 	if(target_turf.density) //Check to see if there's room
@@ -87,7 +141,7 @@
 /datum/action/xeno_action/activable/mind_wrack
 	name = "Mind Wrack"
 	action_icon_state = "screech"
-	mechanics_text = "Afflicts the target's mind with disorienting and painful psychic energy. Effect is greater the closer the target is to your core, and the more xenos that are within 3 tiles when used."
+	mechanics_text = "Afflicts the target's mind with disorienting and painful psychic energy. Effect is greater the closer the target is to your core, and the more xenos that are within 5 tiles when used. Must have a core or other xeno within 5 tiles to use."
 	ability_name = "mind wrack"
 	plasma_cost = 100
 	keybind_signal = COMSIG_XENOABILITY_MIND_WRACK
@@ -98,31 +152,44 @@
 	to_chat(owner, "<span class='xenonotice'>We regain the strength to assault the minds of our enemies.</span>")
 	return ..()
 
+/datum/action/xeno_action/activable/mind_wrack/can_use_ability(atom/target, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(QDELETED(target))
+		return FALSE
 
-/datum/action/xeno_action/activable/mind_wrack/use_ability(atom/A)
+	var/mob/living/carbon/C = target
 	var/mob/living/carbon/xenomorph/hivemind/X = owner
-	var/mob/living/carbon/victim = A
 
-	if(!istype(victim) )
+	var/distance = get_dist(owner, C)
+
+	if(!iscarbon(target)) //only items and mobs can be flung.
+		to_chat(X, "<span class='xenowarning'>Our mind cannot interface with such an entity!</spam>")
 		return FALSE
 
-	if(victim.stat == DEAD)
-		to_chat(X, "<span class='xenonotice'>Even we cannot touch the minds of the dead...</span>")
-		return FALSE
-
-	if(isxeno(victim))
-		var/mob/living/carbon/xenomorph/alien = victim
+	if(isxeno(C))
+		var/mob/living/carbon/xenomorph/alien = C
 		if(alien.hivenumber == X.hivenumber)
 			to_chat(X, "<span class='xenonotice'>We would not assail the minds of our sisters!</span>")
 			return FALSE
 
-	if(!X.line_of_sight(victim))
-		to_chat(X, "<span class='xenowarning'>We can't focus our psychic energy properly without a clear line of sight!</span>")
+	if(distance > HIVEMIND_MIND_WRACK_MAX_RANGE)
+		to_chat(X, "<span class='xenowarning'>They are too far for us to reach their minds! The target must be [distance - HIVEMIND_MIND_WRACK_MAX_RANGE] tiles closer!</spam>")
+
+	if(!owner.line_of_sight(target, HIVEMIND_MIND_WRACK_MAX_RANGE))
+		if(!silent)
+			to_chat(X, "<span class='xenowarning'>We can't focus our psychic energy properly without a clear line of sight!</span>")
 		return FALSE
 
-	var/distance = get_dist(X, victim)
-	if(distance > 7)
-		to_chat(X, "<span class='xenowarning'>They are too far for us to reach their minds! The target must be [distance - 7] tiles closer!</spam>")
+	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && C.stat == DEAD)
+		to_chat(X, "<span class='xenonotice'>Even we cannot touch the minds of the dead...</span>")
+		return FALSE
+
+
+/datum/action/xeno_action/activable/mind_wrack/use_ability(atom/A)
+	var/mob/living/carbon/xenomorph/hivemind/X = owner
+	var/mob/living/carbon/victim = A
 
 	var/power_level //What does the scouter say about it?
 	for(var/mob/living/carbon/xenomorph/ally in range(HIVEMIND_MIND_WRACK_POWER_CHORUS_RANGE, X ) ) //For each friendly xeno nearby, effect is more powerful
@@ -156,8 +223,7 @@
 	victim.hallucination = clamp(power_level, victim.hallucination + power_level, 200) //I want the hallucination effect to *eventually* go away; capped at 200 stacks.
 	victim.Confused(power_level * 0.025)
 	victim.set_drugginess(power_level * 0.025) //visuals
-	victim.adjustStaminaLoss(power_level * 0.25)
-	victim.adjustBrainLoss(power_level * 0.2, TRUE) //dain brammage
+	victim.adjustStaminaLoss(power_level * 0.5)
 	victim.adjust_stagger(power_level * 0.05)
 	victim.add_slowdown(power_level * 0.05)
 
@@ -168,7 +234,6 @@
 
 
 /datum/action/xeno_action/activable/mind_wrack/proc/calculate_power(power_level, mob/living/carbon/xenomorph/hivemind/X)
-	. = ..()
 	if(isnull(X))
 		return
 	switch(power_level)

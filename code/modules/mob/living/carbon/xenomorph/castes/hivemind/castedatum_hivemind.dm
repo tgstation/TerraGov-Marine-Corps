@@ -57,7 +57,7 @@
 	)
 
 	// *** Core Durability *** //
-	core_regeneration = 25
+	core_regeneration = 5
 	core_maximum_hitpoints = 600
 
 
@@ -93,7 +93,7 @@
 	)
 
 	// *** Core Durability *** //
-	core_regeneration = 40
+	core_regeneration = 10
 	core_maximum_hitpoints = 800
 
 /datum/xeno_caste/hivemind/elder
@@ -128,7 +128,7 @@
 	)
 
 	// *** Core Durability *** //
-	core_regeneration = 45
+	core_regeneration = 13
 	core_maximum_hitpoints = 900
 
 /datum/xeno_caste/hivemind/ancient
@@ -164,5 +164,5 @@
 	)
 
 	// *** Core Durability *** //
-	core_regeneration = 50
+	core_regeneration = 15
 	core_maximum_hitpoints = 1000

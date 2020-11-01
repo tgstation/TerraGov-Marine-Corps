@@ -542,14 +542,18 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 
 //Hivemind defines
-#define HIVEMIND_REPOSITION_CORE_DELAY_MOD		1 SECONDS
-#define HIVEMIND_REPOSITION_CORE_DELAY_MIN		10 SECONDS
-#define HIVEMIND_MIND_WRACK_POWER_MULTIPLIER	30
-#define HIVEMIND_MIND_WRACK_POWER_MINIMUM		50
-#define HIVEMIND_MIND_WRACK_POWER_MAXIMUM		300
-#define HIVEMIND_MIND_WRACK_POWER_MAX_CHORUS	4
-#define HIVEMIND_MIND_WRACK_POWER_CHORUS_RANGE  5
-#define HIVEMIND_MIND_WRACK_POWER_DISTANCE		26
+#define HIVEMIND_REPOSITION_CORE_DELAY_MOD		1 SECONDS //Amount of time Reposition's Core channel takes to execute per tile of distance to the new location.
+#define HIVEMIND_REPOSITION_CORE_DELAY_MIN		10 SECONDS //Minimum duration of Reposition's Core channel
+#define HIVEMIND_REPOSITION_CORE_DECOY_NUMBER	2 //Number of decoys given when the Hivemind Repositions
+#define HIVEMIND_MIND_WRACK_POWER_MULTIPLIER	30 //The amount each level of power is multiplied by.
+#define HIVEMIND_MIND_WRACK_POWER_MINIMUM		50 //The minimum power rating of Mind Wrack.
+#define HIVEMIND_MIND_WRACK_POWER_MAXIMUM		300 //The maximum power rating of Mind Wrack.
+#define HIVEMIND_MIND_WRACK_POWER_MAX_CHORUS	4 //The maximum number of xenos and cores that can contribute to Hivemind's power, minus 1.
+#define HIVEMIND_MIND_WRACK_POWER_CHORUS_RANGE  5 //How close xenos and cores have to be in tiles to the Hivemind to contribute to Mind Wrack's power
+#define HIVEMIND_MIND_WRACK_MAX_RANGE			5 //How close the target has to be to the Hivemind in tiles to be targeted with Mind Wrack
+#define HIVEMIND_MIND_WRACK_POWER_DISTANCE		26 //The distance at which Mind Wrack starts to gain falloff bonuses/penalties to strength.
+
+
 
 
 //misc
