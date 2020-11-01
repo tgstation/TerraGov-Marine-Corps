@@ -50,9 +50,9 @@
 	)
 
 	available_reagents_define = list(
-	/datum/reagent/toxin/xeno_hemodile,
-	/datum/reagent/toxin/xeno_transvitox,
-	/datum/reagent/toxin/xeno_neurotoxin,
+		/datum/reagent/toxin/xeno_hemodile,
+		/datum/reagent/toxin/xeno_transvitox,
+		/datum/reagent/toxin/xeno_neurotoxin,
 	)
 
 	// *** Pheromones *** //
@@ -153,4 +153,3 @@
 
 	// *** Pheromones *** //
 	aura_strength = 2.6 //Defilers aura begins at 1.7 and ends at 2.6. It's .1 better than a carrier at ancient.
-
