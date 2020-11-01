@@ -155,9 +155,116 @@
 
 	succeed_activate()
 	add_cooldown()
-	
+
 	new /obj/effect/alien/egg/gas(A.loc)
 	qdel(alien_egg)
 
 	GLOB.round_statistics.defiler_inject_egg_neurogas++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defiler_inject_egg_neurogas")
+
+// ***************************************
+// *********** Reagent selection
+// ***************************************
+/datum/action/xeno_action/select_reagent
+	name = "Select Reagent"
+	action_icon_state = "select_reagent0"
+	mechanics_text = "WIP"
+	use_state_flags = XACT_USE_BUSY
+
+/datum/action/xeno_action/select_reagent/update_button_icon()
+	var/mob/living/carbon/xenomorph/X = owner
+	var/atom/A = X.selected_reagent
+	button.overlays.Cut()
+	button.overlays += image('icons/mob/actions.dmi', button, initial(A.name))
+	return ..()
+
+/datum/action/xeno_action/select_reagent/action_activate()
+	var/mob/living/carbon/xenomorph/X = owner
+	var/list/available_reagents = X.xeno_caste.available_reagents_define
+	var/i = available_reagents.Find(X.selected_reagent)
+	if(length(available_reagents) == i)
+		X.selected_reagent = available_reagents[1]
+	else
+		X.selected_reagent = available_reagents[i+1]
+	var/atom/A = X.selected_reagent
+	to_chat(X, "<span class='notice'>We will now slash with <b>[initial(A.name)]</b>.</span>")
+	update_button_icon()
+	return succeed_activate()
+
+// ***************************************
+// *********** Reagent slash
+// ***************************************
+/datum/action/xeno_action/activable/reagent_slash
+	name = "Reagent Slash"
+	mechanics_text = "Deals damage 4 times and injects 4u of selected reagent per slash. Can move while slashing."
+	ability_name = "reagent slash"
+	cooldown_timer = 6 SECONDS
+	plasma_cost = 40
+
+/datum/action/xeno_action/activable/reagent_slash/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return
+	if(get_dist(owner, A) > 1)
+		to_chat(owner, "<span class='warning'>We need to be next to our prey.</span>")
+		return FALSE
+	return TRUE
+
+/datum/action/xeno_action/activable/reagent_slash/proc/figure_out_living_target(atom/A) //aim assist
+	var/clickDir = get_dir(owner, A)
+	var/turf/presumedPos = get_step(owner, clickDir)
+	var/mob/living/L = locate() in presumedPos
+	if((presumedPos == get_turf(A) && L == null) || L == owner || istype(L, /mob/living/carbon/xenomorph))
+		to_chat(owner, "<span class='warning'>Our slash won't affect this target!</span>")
+		return A
+	return L
+
+/datum/action/xeno_action/activable/reagent_slash/use_ability(atom/A)
+	var/mob/living/carbon/xenomorph/X = owner
+	var/atom/T
+	if(isturf(A))
+		T = A
+	else
+		T = get_turf(A)
+	var/atom/hold = figure_out_living_target(T,	owner)
+	var/atom/Z = hold
+	if(X.is_ventcrawling)
+		return
+	if(isnull(Z))
+		return
+	if(isturf(Z))
+		return
+	if(!Z?.can_sting())
+		to_chat(owner, "<span class='warning'>Our slash won't affect this target!</span>")
+		return FALSE
+	var/slash_count = 4
+	var/reagent_transfer_amount = 4
+	succeed_activate()
+	slash_action(Z, X.selected_reagent, channel_time = 1.2 SECONDS, count = slash_count, transfer_amount = reagent_transfer_amount)
+	add_cooldown()
+
+/datum/action/xeno_action/activable/reagent_slash/proc/slash_action(mob/living/carbon/C, toxin = /datum/reagent/toxin/xeno_neurotoxin, channel_time = 1 SECONDS, transfer_amount = 4, count = 3)
+	var/mob/living/carbon/xenomorph/X = owner
+	var/datum/limb/affecting = X.zone_selected
+	if(!C?.can_sting())
+		return FALSE
+	var/datum/reagent/body_tox
+	var/i = 1
+	do
+		X.face_atom(C)
+		if(X.stagger)
+			return FALSE
+		body_tox = C.reagents.get_reagent(toxin)
+		C.reagents.add_reagent(toxin, transfer_amount)
+		if(!body_tox) //Let's check this each time because depending on the metabolization rate it can disappear between slashes.
+			body_tox = C.reagents.get_reagent(toxin)
+		if(get_dist(X, C) > 1)
+			to_chat(X, "<span class='warning'>We need to be closer to [C].</span>")
+			return
+		playsound(C, "alien_claw_flesh", 25, TRUE)
+		playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
+		C.attack_alien_harm(X, dam_bonus = -14, set_location = affecting, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null) //dam_bonus influences slash amount using attack damage as a base, it's low because you can slash while the effect is going on
+		X.visible_message(C, "<span class='danger'>The [X] swipes at [C]!</span>")
+		X.do_attack_animation(C)
+	while(i++ < count && do_after(X, channel_time, TRUE, null, BUSY_ICON_HOSTILE, ignore_turf_checks = TRUE))
+	return TRUE

@@ -518,3 +518,59 @@
 
 /datum/reagent/toxin/xeno_growthtoxin/overdose_crit_process(mob/living/L, metabolism)
 	L.Losebreath(2)
+
+/datum/reagent/toxin/xeno_hemodile //slows by 25% and 50% based on base movement speed of marine with shoes on and deals an additional 20% of damage received as stamina damage
+	name = "Hemodile"
+	description = "A stamina draining toxin. Causes increased stamina loss and slower movement."
+	reagent_state = LIQUID
+	color = "#94CFD8" // rgb: 148, 207, 216
+	custom_metabolism = 0.5
+	overdose_threshold = 10000
+	scannable = TRUE
+	toxpwr = 0
+
+/datum/reagent/toxin/xeno_hemodile/on_mob_add(mob/living/L, metabolism, affecting)
+	RegisterSignal(L, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/hemodile_human_damage_taken)
+
+/datum/reagent/toxin/xeno_hemodile/on_mob_life(mob/living/L, metabolism)
+	if(prob(25))
+		to_chat(L, "<span class='warning'>You feel your legs tense up.</span>")
+	if(!L.reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
+		L.add_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE, TRUE, 0, NONE, TRUE, 1)
+	else
+		L.add_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE, TRUE, 0, NONE, TRUE, 3)
+	return ..()
+
+/datum/reagent/toxin/xeno_hemodile/proc/hemodile_human_damage_taken(mob/living/L, damage)
+	L.adjustStaminaLoss(damage*0.2)
+
+/datum/reagent/toxin/xeno_hemodile/on_mob_delete(mob/living/L, metabolism)
+	L.remove_movespeed_modifier(MOVESPEED_ID_XENO_HEMODILE)
+
+/datum/reagent/toxin/xeno_transvitox //when damage is received, converts brute/burn equal to 50% of damage received to tox damage
+	name = "Transvitox"
+	description = "Heals brute and burn wounds, while producing toxins."
+	reagent_state = LIQUID
+	color = "#42FFA0"
+	custom_metabolism = 0.5
+	overdose_threshold = 10000
+	scannable = TRUE
+	toxpwr = 0
+
+/datum/reagent/toxin/xeno_transvitox/on_mob_add(mob/living/L, metabolism, affecting)
+	RegisterSignal(L, COMSIG_HUMAN_DAMAGE_TAKEN, .proc/transvitox_human_damage_taken)
+
+/datum/reagent/toxin/xeno_transvitox/on_mob_life(mob/living/L, metabolism)
+	if(prob(25))
+		to_chat(L, "<span class='warning'>You notice being strangely revitalised.</span>")
+	return ..()
+
+/datum/reagent/toxin/xeno_transvitox/proc/transvitox_human_damage_taken(mob/living/L, damage)
+	var/healed_brute = 0
+	var/dam = damage/2
+	if(((L.getBruteLoss() + L.getFireLoss()) >= dam) && current_cycle > 2 && L.getToxLoss() < 45)
+		L.adjustToxLoss(dam)
+		if(L.getBruteLoss())
+			healed_brute = min(dam, L.getBruteLoss())
+			L.heal_limb_damage(healed_brute)
+		L.heal_limb_damage(0, dam - healed_brute)
