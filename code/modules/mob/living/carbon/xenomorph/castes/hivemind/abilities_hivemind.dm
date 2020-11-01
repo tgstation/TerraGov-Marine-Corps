@@ -33,9 +33,6 @@
 	var/turf/target_turf = target
 	var/mob/living/carbon/xenomorph/hivemind/X = owner
 
-	if(!X.hivemind_weed_vibecheck()) //If no weeds are within range, we get yeeted back to Brazil
-		return FALSE
-
 	if(!istype(X))
 		return FALSE
 
@@ -61,10 +58,11 @@
 			to_chat(X, "<span class='xenodanger'>We abort transferring our consciousness, expending our precious plasma for naught.</span>")
 			return fail_activate()
 
-	if(!can_use_ability(target_turf))
+	if(!can_use_ability(target_turf, FALSE, XACT_IGNORE_PLASMA))
 		return fail_activate()
 
 	core.forceMove(get_turf(target_turf)) //Move the core
+	playsound(core.loc, "alien_resin_build", 50)
 	core.obj_integrity = 1 //Reset the core's health to 1; travelling is hard, exhausting work!
 	to_chat(X, "<span class='xenodanger'>We succeed in transferring our consciousness to a new neural core!</span>")
 
@@ -165,9 +163,6 @@
 
 	var/mob/living/carbon/C = target
 	var/mob/living/carbon/xenomorph/hivemind/X = owner
-
-	if(!X.hivemind_weed_vibecheck()) //If no weeds are within range, we get yeeted back to Brazil
-		return FALSE
 
 	var/distance = get_dist(owner, C)
 
