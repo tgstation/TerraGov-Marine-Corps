@@ -109,6 +109,9 @@
 			to_chat(owner, "<span class='warning'>We don't have enough plasma, we need [plasma_cost - X.plasma_stored] more.</span>")
 		return FALSE
 
+	if(!X.hivemind_weed_vibecheck()) //Vibe check Hiveminds and send them to Brazil if they fail because no nearby weeds.
+		return FALSE
+
 	return TRUE
 
 /datum/action/xeno_action/fail_activate()
@@ -205,6 +208,7 @@
 	on_activation()
 
 /datum/action/xeno_action/activable/action_activate()
+
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.selected_ability == src)
 		to_chat(X, "You will no longer use [ability_name] with [X.middle_mouse_toggle ? "middle-click" :"shift-click"].")
@@ -244,6 +248,9 @@
 		return FALSE
 	. = can_use_action(silent, override_flags)
 	if(!CHECK_BITFIELD(flags_to_check, XACT_TARGET_SELF) && A == owner)
+		return FALSE
+
+	if(!X.hivemind_weed_vibecheck()) //Vibe check Hiveminds and send them to Brazil if they fail because no nearby weeds.
 		return FALSE
 
 /datum/action/xeno_action/activable/proc/can_activate()

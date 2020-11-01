@@ -222,3 +222,17 @@
 	to_chat(src, "<span class='xenonotice'>Our core strengthens, and becomes more resilient!</span>")
 	core.max_integrity = src.xeno_caste.core_maximum_hitpoints
 	core.obj_integrity = core.max_integrity
+
+/mob/living/carbon/xenomorph/proc/hivemind_weed_vibecheck()
+	if(!src) //Sanity
+		return FALSE
+	if(!istype(src, /mob/living/carbon/xenomorph/hivemind)) //Not a hivemind, we don't care
+		return TRUE
+	var/mob/living/carbon/xenomorph/hivemind/H = src
+	if(!H.core) //Sanity check for a core.
+		return FALSE
+	if(locate(/obj/effect/alien/weeds) in range(1, src.loc))
+		return TRUE
+	H.forceMove(get_turf(H.core))
+	to_chat(src, "<span class='xenonotice'>We lacked weeds to sustain our presence and our consciousness was shunted to our core.</span>")
+	return FALSE
