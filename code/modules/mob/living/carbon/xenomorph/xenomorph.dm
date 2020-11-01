@@ -261,6 +261,8 @@
 	hud_to_add = GLOB.huds[DATA_HUD_BASIC]
 	hud_to_add.add_hud_to(src)
 
+	hud_to_add = GLOB.huds[DATA_HUD_XENO_REAGENTS]
+	hud_to_add.add_hud_to(src)
 
 
 /mob/living/carbon/xenomorph/point_to_atom(atom/A, turf/T)
