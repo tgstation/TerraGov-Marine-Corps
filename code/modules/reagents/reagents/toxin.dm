@@ -567,8 +567,8 @@
 
 /datum/reagent/toxin/xeno_transvitox/proc/transvitox_human_damage_taken(mob/living/L, damage)
 	var/healed_brute = 0
-	var/dam = damage/2
-	if(((L.getBruteLoss() + L.getFireLoss()) >= dam) && current_cycle > 2 && L.getToxLoss() < 45)
+	var/dam = min(damage*0.4, 45 - L.getToxLoss()) // hard caps damage conversion to not exceed 45 tox
+	if(((L.getBruteLoss() + L.getFireLoss()) >= dam) && current_cycle > 2)
 		L.adjustToxLoss(dam)
 		if(L.getBruteLoss())
 			healed_brute = min(dam, L.getBruteLoss())
