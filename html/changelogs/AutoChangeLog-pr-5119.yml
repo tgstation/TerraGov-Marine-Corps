@@ -1,5 +1,0 @@
-author: "GameMaster85"
-delete-after: True
-changes: 
-  - code_imp: "Added NOQUICKEQUIP flag_inventory bitflag functionality to prevent unequip via quick-equip hotkey."
-  - bugfix: "The belt mag harness can't be unequipped via quick-equip hotkey. You now must click it manually."

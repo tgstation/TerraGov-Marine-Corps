@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - balance: "Xenos will now disable dead marine headset cameras when slashing just like they do with lights."

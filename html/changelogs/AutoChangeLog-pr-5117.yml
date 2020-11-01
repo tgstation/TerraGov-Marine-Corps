@@ -1,0 +1,4 @@
+author: "2whatever2"
+delete-after: True
+changes: 
+  - balance: "Zaps from tesla bolts now stagger for 2 seconds and slows for 0.5 seconds unaffected by total amount of xenos hit"
