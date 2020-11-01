@@ -519,7 +519,7 @@
 
 /obj/item/weapon/gun/rifle/famas
 	name = "\improper FAMAS assault rifle"
-	desc = "A light, versatile fast firing assault rifle with a 24 round magazine and short range scope, chambered to fire the 5.56x45mm NATO cartridge in 24 round magazines"
+	desc = "A light, versatile fast firing assault rifle with a 24 round magazine and short range scope, chambered to fire the 5.56x45mm NATO cartridge in 24 round magazines."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "famas"
 	item_state = "famas"
