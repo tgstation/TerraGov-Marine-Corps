@@ -168,7 +168,7 @@
 /datum/action/xeno_action/select_reagent
 	name = "Select Reagent"
 	action_icon_state = "select_reagent0"
-	mechanics_text = "WIP"
+	mechanics_text = "Selects which reagent to inject. Hemodile slows by 25%, increased to 50% with neurotoxin present, and deals 20% of dmage received as stamina damage. Transvitox after ~4s converts brute/burn damage to toxin based on 40% of damage received up to 45 toxin on target."
 	use_state_flags = XACT_USE_BUSY
 
 /datum/action/xeno_action/select_reagent/update_button_icon()
@@ -196,10 +196,10 @@
 // ***************************************
 /datum/action/xeno_action/activable/reagent_slash
 	name = "Reagent Slash"
-	mechanics_text = "Deals damage 4 times and injects 4u of selected reagent per slash. Can move while slashing."
+	mechanics_text = "Deals damage 4 times and injects 3u of selected reagent per slash. Can move while slashing."
 	ability_name = "reagent slash"
 	cooldown_timer = 6 SECONDS
-	plasma_cost = 40
+	plasma_cost = 100
 
 /datum/action/xeno_action/activable/reagent_slash/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -208,39 +208,17 @@
 	if(get_dist(owner, A) > 1)
 		to_chat(owner, "<span class='warning'>We need to be next to our prey.</span>")
 		return FALSE
-	return TRUE
-
-/datum/action/xeno_action/activable/reagent_slash/proc/figure_out_living_target(atom/A) //aim assist
-	var/clickDir = get_dir(owner, A)
-	var/turf/presumedPos = get_step(owner, clickDir)
-	var/mob/living/L = locate() in presumedPos
-	if((presumedPos == get_turf(A) && L == null) || L == owner || istype(L, /mob/living/carbon/xenomorph))
+	if(!A?.can_sting())
 		to_chat(owner, "<span class='warning'>Our slash won't affect this target!</span>")
-		return A
-	return L
+		return FALSE
+	return TRUE
 
 /datum/action/xeno_action/activable/reagent_slash/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
-	var/atom/T
-	if(isturf(A))
-		T = A
-	else
-		T = get_turf(A)
-	var/atom/hold = figure_out_living_target(T,	owner)
-	var/atom/Z = hold
-	if(X.is_ventcrawling)
-		return
-	if(isnull(Z))
-		return
-	if(isturf(Z))
-		return
-	if(!Z?.can_sting())
-		to_chat(owner, "<span class='warning'>Our slash won't affect this target!</span>")
-		return FALSE
 	var/slash_count = 4
-	var/reagent_transfer_amount = 4
+	var/reagent_transfer_amount = 3
 	succeed_activate()
-	slash_action(Z, X.selected_reagent, channel_time = 1.2 SECONDS, count = slash_count, transfer_amount = reagent_transfer_amount)
+	slash_action(A, X.selected_reagent, channel_time = 1.2 SECONDS, count = slash_count, transfer_amount = reagent_transfer_amount)
 	add_cooldown()
 
 /datum/action/xeno_action/activable/reagent_slash/proc/slash_action(mob/living/carbon/C, toxin = /datum/reagent/toxin/xeno_neurotoxin, channel_time = 1 SECONDS, transfer_amount = 4, count = 3)
@@ -263,7 +241,7 @@
 			return
 		playsound(C, "alien_claw_flesh", 25, TRUE)
 		playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
-		C.attack_alien_harm(X, dam_bonus = -14, set_location = affecting, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null) //dam_bonus influences slash amount using attack damage as a base, it's low because you can slash while the effect is going on
+		C.attack_alien_harm(X, dam_bonus = -17, set_location = affecting, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null) //dam_bonus influences slash amount using attack damage as a base, it's low because you can slash while the effect is going on
 		X.visible_message(C, "<span class='danger'>The [X] swipes at [C]!</span>")
 		X.do_attack_animation(C)
 	while(i++ < count && do_after(X, channel_time, TRUE, null, BUSY_ICON_HOSTILE, ignore_turf_checks = TRUE))
