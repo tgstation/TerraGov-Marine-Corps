@@ -11978,6 +11978,10 @@
 /obj/item/ammo_magazine/pistol/b92fs,
 /obj/item/ammo_magazine/pistol/b92fs,
 /obj/item/ammo_magazine/pistol/b92fs,
+/obj/item/weapon/gun/rifle/m412,
+/obj/item/ammo_magazine/rifle,
+/obj/item/ammo_magazine/rifle,
+/obj/item/ammo_magazine/rifle,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/security)
 "bdM" = (
@@ -14525,6 +14529,7 @@
 /obj/structure/rack,
 /obj/item/ammo_magazine/shotgun,
 /obj/item/ammo_magazine/shotgun/buckshot,
+/obj/item/ammo_magazine/shotgun/flechette,
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "bqe" = (
