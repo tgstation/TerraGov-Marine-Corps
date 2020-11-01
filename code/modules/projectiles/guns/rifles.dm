@@ -514,6 +514,56 @@
 	wield_delay = 0.5 SECONDS
 	damage_mult = 1.2
 
+//-------------------------------------------------------
+//FAMAS rifle, based on the F1
+
+/obj/item/weapon/gun/rifle/famas
+	name = "\improper FAMAS assault rifle"
+	desc = "A light, versatile fast firing assault rifle with a 24 round magazine, chambered to fire the 5.56x45mm NATO cartridge in 24 round magazines."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "famas"
+	item_state = "famas"
+	muzzleflash_iconstate = "muzzle_flash_medium"
+	caliber = "5.56x45mm" //codex
+	max_shells = 24 //codex
+	fire_sound = 'sound/weapons/guns/fire/m16-1.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m16_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m16_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/m16_cocked.ogg'
+	current_mag = /obj/item/ammo_magazine/rifle/famas
+	aim_slowdown = 0.4
+	type_of_casings = "cartridge"
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/bipod,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/burstfire_assembly,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/attached_gun/grenade,
+		/obj/item/attachable/attached_gun/flamer,
+		/obj/item/attachable/attached_gun/shotgun,
+	)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 4, "rail_y" = 18, "under_x" = 22, "under_y" = 15, "stock_x" = 19, "stock_y" = 13)
+
+	fire_delay = 0.15 SECONDS
+	burst_delay = 0.15 SECONDS
+	accuracy_mult = 1.25
+	wield_delay = 0.5 SECONDS
+	damage_mult = 1.2
+	scatter = 5
+
 
 
 //-------------------------------------------------------
