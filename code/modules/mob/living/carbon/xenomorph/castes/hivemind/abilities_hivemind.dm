@@ -11,7 +11,7 @@
 	mechanics_text = "Reposition your core to a target location on weeds. The further away the location is the longer this will take up to a maximum of 60 seconds. 3 minute cooldown."
 	ability_name = "reposition core"
 	plasma_cost = 150
-	cooldown_timer = 300 SECONDS
+	cooldown_timer = 600 SECONDS
 	keybind_flags = XACT_KEYBIND_USE_ABILITY
 	keybind_signal = COMSIG_XENOABILITY_REPOSITION_CORE
 
