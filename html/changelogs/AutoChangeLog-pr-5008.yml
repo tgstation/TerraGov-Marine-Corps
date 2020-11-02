@@ -1,6 +1,0 @@
-author: "fernandos13"
-delete-after: True
-changes: 
-  - rscadd: "BC and gyro to the medic attachment list"
-  - rscdel: "Removes generic pouches from the medic preparation vendor"
-  - rscdel: "Removes medkits from the point medic vendor"
