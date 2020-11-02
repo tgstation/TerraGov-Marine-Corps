@@ -39,8 +39,9 @@
 
 	return succeed_activate()
 
+//*********
 // Headbite
-
+//*********
 /datum/action/xeno_action/activable/headbite
 	name = "Headbite"
 	action_icon_state = "headbite"
@@ -102,7 +103,7 @@
 			H.internal_organs_by_name -= i
 			H.internal_organs -= O
 
-	X.do_attack_animation(src, ATTACK_EFFECT_BITE)
+	X.do_attack_animation(victim, ATTACK_EFFECT_BITE)
 	victim.death()
 	victim.headbitten = TRUE
 	victim.update_headbite()

@@ -68,6 +68,11 @@
 		UnregisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
 		associated_hive.xeno_message("<span class='xenoannounce'>A resin silo has been destroyed at [silo_area]!</span>", 2, TRUE)
 		associated_hive = null
+	for(var/i in contents)
+		var/atom/movable/AM = i
+		AM.forceMove(loc)
+	corpses = null
+	playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
 	return ..()
 
 
@@ -97,11 +102,7 @@
 //*******************
 /obj/structure/resin/silo/attackby(obj/item/I, mob/user, params)
 	. = ..()
-
-	if(!isxeno(user))
-		return
-
-	else if(!istype(I, /obj/item/grab))
+	if(!isxeno(user)) //only xenos can deposit corpses
 		return
 
 	if(!istype(I, /obj/item/grab))
@@ -113,31 +114,41 @@
 	if(ismob(G.grabbed_thing))
 		M = G.grabbed_thing
 
-	if(!M)
-		return
-
-	var/mob/living/carbon/victim = M //Xenos already got a larva from this corpse
-	if(!victim.chestburst == 0)
-		to_chat(user, "<span class='notice'>[M] has already been used to incubate a sister!</span>")
-		return
-
-	if(victim.stat == DEAD)
-		to_chat(user, "<span class='notice'>[M] is still alive!</span>")
-		return
-
-	else if(!(ishuman(M) || !ismonkey(M))) //humans and monkeys only for now
-		to_chat(user, "<span class='notice'>[src] is compatible with humanoid anatomies only!</span>")
-		return
-
-	visible_message("[user] starts putting [M] into [src].", 3)
-
-	if(!do_after(user, 10, FALSE, M, BUSY_ICON_DANGER) || QDELETED(src))
-		return
-
 	if(!M || !G)
 		return
 
-	M.forceMove(src)
-	corpses += M
+	var/mob/living/carbon/victim = M
+	if(!(ishuman(victim) || ismonkey(victim))) //humans and monkeys only for now
+		to_chat(user, "<span class='notice'>[src] can only process humanoid anatomies!</span>")
+		return
 
-	add_job_points(3)
+	if(!victim.chestburst == 0)
+		to_chat(user, "<span class='notice'>[M] has already been exhausted to incubate a sister!</span>")
+		return
+
+	if(issynth(victim))
+		to_chat(user, "<span class='notice'>[M] has no useful biomass for us.</span>")
+		return
+
+	if(ishuman(victim))
+		var/mob/living/carbon/human/H = victim
+		if(check_tod(H))
+			to_chat(user, "<span class='notice'>[M] still has some signs of life. We should headbite it to finish it off.</span>")
+			return
+
+	visible_message("[user] starts putting [M] into [src].", 3)
+
+	if(!do_after(user, 20, FALSE, M, BUSY_ICON_DANGER) || QDELETED(src))
+		return
+
+	M.forceMove(src)
+	playsound(loc, 'sound/effects/blobattack.ogg', 25)
+	corpses += M
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	xeno_job.add_job_points(3.3)
+
+	log_combat(src, null, "was consumed by a resin silo.")
+	log_game("[key_name(M)] was consumed by a resin silo at [AREACOORD(M.loc)].")
+
+	GLOB.round_statistics.xeno_silo_corpses++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_silo_corpses")
