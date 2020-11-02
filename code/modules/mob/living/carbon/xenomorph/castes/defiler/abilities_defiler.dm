@@ -200,6 +200,7 @@
 	ability_name = "reagent slash"
 	cooldown_timer = 6 SECONDS
 	plasma_cost = 100
+	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/reagent_slash/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
