@@ -381,6 +381,7 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_x = 14 //Below the muzzle.
 	pixel_shift_y = 18
 	accuracy_mod = -0.2
+	wield_delay_mod = 0.2 SECONDS
 	accuracy_unwielded_mod = -0.1
 	aim_speed_mod = 0.2
 	size_mod = 2
