@@ -62,7 +62,7 @@
 	silo_area = get_area(src)
 
 
-/obj/structure/resin/silo/Destroy()
+/obj/structure/resin/silo/Destroy() //to do: have destroyed silo eject stored corpses
 	GLOB.xeno_resin_silos -= src
 	if(associated_hive)
 		UnregisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
@@ -140,5 +140,4 @@
 	M.forceMove(src)
 	corpses += M
 
-//add larva points, somehow
-//datum/job/xenomorph = LARVA_POINTS_REGULAR //from what I can tell this is 3 points out of the 10 needed for a xeno
+	add_job_points(3)
