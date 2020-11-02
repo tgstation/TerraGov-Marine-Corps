@@ -38,6 +38,7 @@
 	core.parent = src
 	RegisterSignal(src, COMSIG_LIVING_WEEDS_ADJACENT_REMOVED, .proc/check_weeds_and_move)
 	RegisterSignal(src, COMSIG_XENOMORPH_CORE_RETURN, .proc/return_to_core)
+	hivemind_core_alert() //Alert the hive and marines
 
 /mob/living/carbon/xenomorph/hivemind/Destroy()
 	if(!QDELETED(core))
@@ -236,3 +237,65 @@
 	H.forceMove(get_turf(H.core))
 	to_chat(src, "<span class='xenonotice'>We lacked weeds to sustain our presence and our consciousness was shunted to our core.</span>")
 	return FALSE
+
+/mob/living/carbon/xenomorph/hivemind/proc/hivemind_core_alert()
+
+	if(!src) //Sanity check
+		return FALSE
+
+	var/mob/living/carbon/xenomorph/hivemind/X = src
+	var/obj/effect/alien/hivemindcore/core = X.core
+
+	if(!core) //Sanity check
+		return FALSE
+
+	var/list/decoy_area_list = list()
+	var/area/real_area = get_area(core) //Set our real area
+	var/list/buffer_list = list() //Buffer list for randomization
+	var/list/details = list() //The actual final list for the announcement
+
+	for(var/area/core_areas in world) //Build the list of areas on the core's Z.
+		if(core_areas.z != core.z) //Must be on the same Z
+			continue
+		decoy_area_list += core_areas //Add to the list of potential decoys
+
+	decoy_area_list -= real_area //Remove the real area from our decoy list.
+	buffer_list += sanitize(real_area.name) //Add the real location to our buffer list
+
+	var/decoys
+	var/area/decoy_area
+	while(decoys < HIVEMIND_REPOSITION_CORE_DECOY_NUMBER) //Populate our list of areas
+		decoy_area = pick(decoy_area_list) //Pick random area for our  decoy.
+		decoy_area_list -= decoy_area //Remove it from our list of possible decoy options
+		buffer_list += sanitize(decoy_area.name)
+		++decoys
+
+	var/buffer_list_pick
+	while(buffer_list.len > 0) //Now populate our randomized order list for the announcement
+		buffer_list_pick = pick(buffer_list) //Get random entry in the list
+		buffer_list -= buffer_list_pick //Remove that random entry from the buffer
+		if(buffer_list.len > 0) //Add that random entry to the final list of areas
+			details += ("[buffer_list_pick], ")
+		else
+			details += ("[buffer_list_pick].")
+
+	if(!is_centcom_level(core))
+		var/hivemind_message = "<span class='alert'>[sanitize(X.name)] has moved its core to [sanitize(real_area.name)]!</span>" //Alert our fellow benos
+		notify_ghosts(hivemind_message, source = X, action = NOTIFY_ORBIT)
+		INVOKE_ASYNC(src, .proc/do_hive_message, hivemind_message)
+
+	priority_announce("Attention: Anomalous energy readings detected in the following areas: [details.Join(" ")] Further investigation advised.", "Priority Alert", sound = 'sound/AI/commandreport.ogg') //Alert marines with hints
+	return TRUE
+
+/mob/living/carbon/xenomorph/hivemind/proc/do_hive_message(hivemind_message)
+	var/sound/queen_sound = sound(get_sfx("queen"), wait = 0,volume = 50, channel = CHANNEL_ANNOUNCEMENTS)
+	if(SSticker?.mode)
+		hive.xeno_message("[hivemind_message]")
+		for(var/i in hive.get_watchable_xenos())
+			var/mob/living/carbon/xenomorph/X = i
+			SEND_SOUND(X, queen_sound)
+
+	for(var/i in GLOB.observer_list)
+		var/mob/dead/observer/G = i
+		SEND_SOUND(G, queen_sound)
+		to_chat(G, "[hivemind_message]")

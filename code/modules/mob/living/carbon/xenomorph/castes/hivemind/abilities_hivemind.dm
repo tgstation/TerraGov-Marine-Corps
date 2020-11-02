@@ -71,44 +71,7 @@
 	GLOB.round_statistics.hivemind_reposition_core_uses++ //Increment the statistics
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "hivemind_reposition_core_uses")
 
-	//Now we handle announcements
-	if(!is_centcom_level(core))
-		var/area/new_core_area = get_area(core)
-		xeno_message("Hive: \ [X] has <b>transferred its core</b>[A? " to [sanitize(new_core_area.name)]":""]!", 3, X.hivenumber) //Let the hive know the Hivemind's new location.
-		notify_ghosts("\The [X] has <b>transferred its core</b>[A? " to [sanitize(new_core_area.name)]":""]!", source = X, action = NOTIFY_ORBIT)
-
-	var/list/decoy_area_list = list()
-	var/area/real_area = get_area(core) //Set our real area
-	var/list/buffer_list = list() //Buffer list for randomization
-	var/list/details = list() //The actual final list for the announcement
-
-	for(var/area/core_areas in world) //Build the list of areas on the core's Z.
-		if(core_areas.z != core.z) //Must be on the same Z
-			continue
-		decoy_area_list += core_areas //Add to the list of potential decoys
-
-	decoy_area_list -= real_area //Remove the real area from our decoy list.
-	buffer_list += sanitize(real_area.name) //Add the real location to our buffer list
-
-	var/decoys
-	var/area/decoy_area
-	while(decoys < HIVEMIND_REPOSITION_CORE_DECOY_NUMBER) //Populate our list of areas
-		decoy_area = pick(decoy_area_list) //Pick random area for our  decoy.
-		decoy_area_list -= decoy_area //Remove it from our list of possible decoy options
-		buffer_list += sanitize(decoy_area.name)
-		++decoys
-
-	var/buffer_list_pick
-	while(buffer_list.len > 0) //Now populate our randomized order list for the announcement
-		buffer_list_pick = pick(buffer_list) //Get random entry in the list
-		buffer_list -= buffer_list_pick //Remove that random entry from the buffer
-		if(buffer_list.len > 0) //Add that random entry to the final list of areas
-			details += ("[buffer_list_pick], ")
-		else
-			details += ("[buffer_list_pick].")
-
-	priority_announce("Attention: Anomalous energy readings detected in the following areas: [details.Join(" ")] Further investigation advised.", "Priority Alert", sound = 'sound/AI/commandreport.ogg')
-
+	X.hivemind_core_alert() //Alert the hive and marines
 
 /datum/action/xeno_action/activable/reposition_core/proc/check_build_location(turf/target_turf, mob/living/carbon/xenomorph/hivemind/X)
 
