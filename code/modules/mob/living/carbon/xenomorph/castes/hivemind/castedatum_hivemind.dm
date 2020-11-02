@@ -49,6 +49,7 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/plant_weeds/slow,
+		/datum/action/xeno_action/psychic_whisper,
 	)
 
 /datum/xeno_caste/hivemind/young
@@ -70,6 +71,7 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/plant_weeds/slow,
+		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_cure,
 	)
 
@@ -91,6 +93,7 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/plant_weeds/slow,
+		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_cure,
 		/datum/action/xeno_action/toggle_pheromones,
 	)
@@ -113,6 +116,7 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/xeno_action/plant_weeds/slow,
+		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_cure,
 		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/toggle_pheromones,

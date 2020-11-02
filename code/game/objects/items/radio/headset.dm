@@ -216,6 +216,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/proc/enable_squadhud()
 	squadhud.add_hud_to(wearer)
 	headset_hud_on = TRUE
+	if(!camera.status)
+		camera.toggle_cam(null, FALSE)
 	if(wearer.mind && wearer.assigned_squad && !sl_direction)
 		enable_sl_direction()
 	to_chat(wearer, "<span class='notice'>You toggle the Squad HUD on.</span>")
@@ -225,6 +227,8 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 /obj/item/radio/headset/mainship/proc/disable_squadhud()
 	squadhud.remove_hud_from(wearer)
 	headset_hud_on = FALSE
+	if(camera.status)
+		camera.toggle_cam(null, FALSE)
 	if(sl_direction)
 		disable_sl_direction()
 	to_chat(wearer, "<span class='notice'>You toggle the Squad HUD off.</span>")

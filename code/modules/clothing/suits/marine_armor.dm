@@ -344,7 +344,7 @@
 
 /obj/item/clothing/suit/storage/marine/veteran/PMC
 	name = "\improper M4 pattern PMC armor"
-	desc = "A modification of the standard Armat Systems M3 armor. Designed for high-profile security operators and corporate mercenaries in mind."
+	desc = "A common armor vest that is designed for high-profile security operators and corporate mercenaries in mind."
 	icon_state = "pmc_armor"
 	soft_armor = list("melee" = 45, "bullet" = 60, "laser" = 60, "energy" = 38, "bomb" = 40, "bio" = 15, "rad" = 15, "fire" = 38, "acid" = 45)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
@@ -367,7 +367,7 @@
 
 /obj/item/clothing/suit/storage/marine/veteran/PMC/leader
 	name = "\improper M4 pattern PMC leader armor"
-	desc = "A modification of the standard Armat Systems M3 armor. Designed for high-profile security operators and corporate mercenaries in mind. This particular suit looks like it belongs to a high-ranking officer."
+	desc = "A modification of the M4 body armor, it is designed for high-profile security operators and corporate mercenaries in mind. This particular suit looks like it belongs to a high-ranking officer."
 	icon_state = "officer_armor"
 	soft_armor = list("melee" = 50, "bullet" = 65, "laser" = 65, "energy" = 65, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 45)
 
@@ -381,10 +381,11 @@
 
 /obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC
 	name = "\improper PMC gunner armor"
-	desc = "A modification of the standard Armat Systems M3 armor. Hooked up with harnesses and straps allowing the user to carry an M56 Smartgun."
-	icon_state = "heavy_armor"
+	desc = "A modification of the standard M4 body armor. Hooked up with harnesses and straps allowing the user to carry a smartgun."
+	icon_state = "pmc_heavyarmor"
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	soft_armor = list("melee" = 55, "bullet" = 70, "laser" = 70, "energy" = 70, "bomb" = 70, "bio" = 30, "rad" = 20, "fire" = 65, "acid" = 65)
+	flags_item_map_variant = NONE
 
 /obj/item/clothing/suit/storage/marine/veteran/PMC/commando
 	name = "\improper PMC commando armor"

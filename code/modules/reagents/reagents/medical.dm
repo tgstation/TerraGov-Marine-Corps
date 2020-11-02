@@ -140,6 +140,19 @@
 		if(E)
 			E.take_damage(6*REM, TRUE)
 
+/datum/reagent/medicine/hydrocodone
+	name = "Hydrocodone"
+	description = "An effective and very addictive painkiller only made by autodocs."
+	color = "#C805DC"
+	custom_metabolism = REAGENTS_METABOLISM * 1.25
+	overdose_threshold = REAGENTS_OVERDOSE * 0.66
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 0.66
+	scannable = TRUE
+
+/datum/reagent/medicine/oxycodone/on_mob_life(mob/living/L, metabolism)
+	L.reagent_pain_modifier += PAIN_REDUCTION_FULL
+	return ..()
+
 /datum/reagent/medicine/leporazine
 	name = "Leporazine"
 	description = "Leporazine can be use to stabilize an individuals body temperature."
