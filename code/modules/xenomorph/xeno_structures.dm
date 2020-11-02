@@ -35,6 +35,7 @@
 	var/turf/center_turf
 	var/datum/hive_status/associated_hive
 	var/silo_area
+	var/list/corpses = list()
 
 
 /obj/structure/resin/silo/Initialize()
@@ -91,54 +92,53 @@
 	if(associated_hive)
 		silos += src
 
-
+//*******************
 //Corpse recyclinging
-obj/structure/resin/silo/attackby(obj/item/I, mob/user, params)
+//*******************
+/obj/structure/resin/silo/attackby(obj/item/I, mob/user, params)
 	. = ..()
-	var/obj/item/grab/G = I
-	var/mob/M
-	if(ismob(G.grabbed_thing))
-		M = G.grabbed_thing
-	var/mob/living/M = G.grabbed_thing
 
-	if(!isliving(G.grabbed_thing))
+	if(!isxeno(user))
+		return
+
+	else if(!istype(I, /obj/item/grab))
 		return
 
 	if(!istype(I, /obj/item/grab))
 		return
 
-	else if(isxeno(user))
+	var/obj/item/grab/G = I
+
+	var/mob/M
+	if(ismob(G.grabbed_thing))
+		M = G.grabbed_thing
+
+	if(!M)
 		return
 
-	if(!isliving(G.grabbed_thing))
+	var/mob/living/carbon/victim = M //Xenos already got a larva from this corpse
+	if(!victim.chestburst == 0)
+		to_chat(user, "<span class='notice'>[M] has already been used to incubate a sister!</span>")
 		return
 
-	if(!(M.stat == DEAD)) //No living mobs
-		to_chat(user, "<span class='warning'>[src] immediately rejects [M]. [M.p_they(TRUE)] still has a spark of life left!</span>")
+	if(victim.stat == DEAD)
+		to_chat(user, "<span class='notice'>[M] is still alive!</span>")
 		return
 
-	if(!(ishuman(M) || ismonkey(M)))
-		to_chat(user, "<span class='warning'>There is no way [src] will accept [M]!</span>")
+	else if(!(ishuman(M) || !ismonkey(M))) //humans and monkeys only for now
+		to_chat(user, "<span class='notice'>[src] is compatible with humanoid anatomies only!</span>")
 		return
 
-	if(istype(I, /obj/item/grab))
-		var/obj/item/grab/G = I
-		if(!ismob(G.grabbed_thing))
-			return
-		var/mob/M = G.grabbed_thing
-		to_chat(user, "<span class='notice'>We place [M] into the [src].</span>")
-		M.forceMove(loc)
+	visible_message("[user] starts putting [M] into [src].", 3)
 
-	// we do this check here so we can clear the mobs afterwards
-	var/list/mob/living/valid_mobs = list()
-	for(var/thing in get_turf(A))
-		if(!ishuman(thing))
-			continue
-		var/mob/living/turf_mob = thing
-		if(turf_mob.stat == DEAD && turf_mob.chestburst == 0)
-			valid_mobs += turf_mob
+	if(!do_after(user, 10, FALSE, M, BUSY_ICON_DANGER) || QDELETED(src))
+		return
 
-	// Throw the mobs inside the silo
-	for(var/iter in valid_mobs)
-		var/mob/living/to_move = iter
-		to_move.forceMove(hivesilo)
+	if(!M || !G)
+		return
+
+	M.forceMove(src)
+	corpses += M
+
+//add larva points, somehow
+//datum/job/xenomorph = LARVA_POINTS_REGULAR //from what I can tell this is 3 points out of the 10 needed for a xeno
