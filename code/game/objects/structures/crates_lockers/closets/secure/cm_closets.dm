@@ -329,7 +329,7 @@
 /obj/structure/closet/secure_closet/pilot_officer/PopulateContents()
 	new /obj/item/attachable/stock/vp70(src)
 	new /obj/item/clothing/head/helmet/marine/pilot(src)
-	new /obj/item/clothing/head/helmet/marine/pilot/blue(src)
+	new /obj/item/clothing/head/helmet/marine/pilot/green(src)
 	new /obj/item/radio/headset/mainship/mcom(src)
 	new /obj/item/clothing/under/marine/officer/pilot(src)
 	new /obj/item/clothing/shoes/marine(src)
