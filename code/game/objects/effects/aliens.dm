@@ -96,6 +96,12 @@
 	for(var/mob/living/carbon/human/H in loc)
 		H.acid_spray_crossed(slow_amt)
 
+	for(var/atom/A in loc) //Infrastructure for other interactions
+		A.acidspray_act()
+
+/atom/proc/acidspray_act()
+	return
+
 //Medium-strength acid
 /obj/effect/xenomorph/acid
 	name = "acid"

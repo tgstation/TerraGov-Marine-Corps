@@ -66,7 +66,7 @@
 	var/foldedbag_path = /obj/item/bodybag
 	var/obj/item/bodybag/foldedbag_instance = null
 	var/obj/structure/bed/roller/roller_buckled //the roller bed this bodybag is attached to.
-	var/mob/living/carbon/human/bodybag_occupant
+	var/mob/living/bodybag_occupant
 
 
 /obj/structure/closet/bodybag/Initialize(mapload, foldedbag)

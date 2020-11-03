@@ -18,6 +18,15 @@
 	icon_state = "jungletarp_folded"
 	w_class = WEIGHT_CLASS_NORMAL
 	unfoldedbag_path = /obj/structure/closet/bodybag/tarp
+	var/serial_number //Randomized serial number used to stop point macros and such.
+
+/obj/item/bodybag/tarp/Initialize(mapload, unfoldedbag)
+	. = ..()
+	serial_number = "SN-[pick(1000,100000)]" //Set the serial number
+
+/obj/item/bodybag/tarp/deploy_bodybag(mob/user, atom/location)
+	. = ..()
+	unfoldedbag_instance.name = "\improper [serial_number] [name]" //Set the name with the serial number
 
 /obj/item/bodybag/tarp/unique_action(mob/user)
 	deploy_bodybag(user, get_turf(user))
@@ -27,7 +36,6 @@
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "snowtarp_folded"
 	unfoldedbag_path = /obj/structure/closet/bodybag/tarp/snow
-
 
 /obj/structure/closet/bodybag/tarp
 	name = "\improper V1 thermal-dampening tarp"
@@ -40,7 +48,7 @@
 	open_sound = 'sound/effects/vegetation_walk_1.ogg'
 	close_sound = 'sound/effects/vegetation_walk_2.ogg'
 	foldedbag_path = /obj/item/bodybag/tarp
-	closet_stun_delay = 0
+	closet_stun_delay = 0.5 SECONDS //Short delay to prevent ambushes from being too degenerate.
 	var/list/tarp_triggers = list()
 
 
@@ -76,7 +84,6 @@
 	. = ..()
 	if(bodybag_occupant)
 		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED), .proc/on_bodybag_occupant_death)
-		deploy_triggers()
 
 /obj/structure/closet/bodybag/tarp/proc/on_bodybag_occupant_death(mob/source, gibbing)
 	SIGNAL_HANDLER
@@ -87,74 +94,54 @@
 	return //Shouldn't be revealing who's inside.
 
 
-/obj/structure/closet/bodybag/tarp/fire_act(exposed_temperature, exposed_volume)
-	var/mob/M = locate() in src //need to be occupied
-	if(exposed_temperature > 300 && !opened && M)
-		to_chat(M, "<span class='danger'>The intense heat forces you out of [src]!</span>")
+/obj/structure/closet/bodybag/fire_act(exposed_temperature, exposed_volume)
+	if(exposed_temperature > 300 && !opened && bodybag_occupant)
+		to_chat(bodybag_occupant, "<span class='danger'>The intense heat forces you out of [sanitize(src.name)]!</span>")
 		open()
-		M.fire_act(exposed_temperature, exposed_volume)
+		bodybag_occupant.fire_act(exposed_temperature, exposed_volume)
 
-/obj/structure/closet/bodybag/tarp/flamer_fire_act()
-	var/mob/M = locate() in src //need to be occupied
-	if(!opened && M)
-		to_chat(M, "<span class='danger'>The intense heat forces you out of [src]!</span>")
+/obj/structure/closet/bodybag/flamer_fire_act()
+	if(!opened && bodybag_occupant)
+		to_chat(bodybag_occupant, "<span class='danger'>The intense heat forces you out of [sanitize(src.name)]!</span>")
 		open()
-		M.flamer_fire_act()
+		bodybag_occupant.flamer_fire_act()
 
-/obj/structure/closet/bodybag/tarp/ex_act(severity)
-	var/mob/M = locate() in src //need to be occupied
-	if(!opened && M)
-		to_chat(M, "<span class='danger'>The shockwave blows [src] open!</span>")
+/obj/structure/closet/bodybag/ex_act(severity)
+	if(!opened && bodybag_occupant)
+		to_chat(bodybag_occupant, "<span class='danger'>The shockwave blows [sanitize(src.name)] open!</span>")
 		open()
-		M.ex_act(severity)
+		bodybag_occupant.ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			visible_message("<span class='danger'>\The shockwave blows [src] apart!</span>")
+			visible_message("<span class='danger'>\The shockwave blows [sanitize(src.name)] apart!</span>")
 			qdel(src) //blown apart
 
-/obj/structure/closet/bodybag/tarp/bullet_act(obj/projectile/proj)
-	var/mob/M = locate() in src //need to be occupied
-	if(!opened && M)
-		M.bullet_act(proj) //tarp isn't bullet proof; concealment, not cover; pass it on to the occupant.
+/obj/structure/closet/bodybag/bullet_act(obj/projectile/proj)
+	if(!opened && bodybag_occupant)
+		bodybag_occupant.bullet_act(proj) //tarp isn't bullet proof; concealment, not cover; pass it on to the occupant.
+		to_chat(bodybag_occupant, "<span class='danger'>The projectile disrupts the camoflague [sanitize(src.name)]!</span>")
+		open() //Yeah, this is a bit harder to justify, but better than snowflaking a loss of alpha.
 
-/obj/structure/closet/bodybag/tarp/Crossed(mob/living/L)
+/obj/structure/closet/bodybag/acidspray_act()
 	. = ..()
-	if(!istype(L) || L.stat != CONSCIOUS || opened || (L.status_flags & INCORPOREAL))
+	if(!opened && bodybag_occupant)
+		var/obj/effect/xenomorph/spray/S = locate() in range(0, src) //get the acid Hans
+		if(!S) //Sanity
+			return
+
+		S.Crossed(bodybag_occupant) //tarp isn't acid proof; pass it on to the occupant
+		to_chat(bodybag_occupant, "<span class='danger'>The sizzling acid forces us out of [sanitize(src.name)]!</span>")
+		open() //Get out
+
+/obj/structure/closet/bodybag/tarp/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
 		return
-	// Walking on the tarp reveals it
-	open()
-	L.visible_message("<span class='notice'>[L] stepped on \the [src], revealing it!</span>", "<span class='notice'>You stepped on \the [src], revealing it!</span>")
 
-/obj/structure/closet/bodybag/tarp/proc/trigger_open()
-	if(locate(/mob/living/carbon/xenomorph) in viewers(2,get_turf(src)))
-		open()
-
-/obj/structure/closet/bodybag/tarp/proc/deploy_triggers()
-	QDEL_LIST(tarp_triggers)
-	var/list/turf/target_locations = filled_turfs(src, 2, "circle", FALSE)
-	for(var/turf/trigger_location in target_locations)
-		var/obj/effect/tarp_trigger/TT = new /obj/effect/tarp_trigger(trigger_location, src)
-		TT.linked_tarp = src
-		tarp_triggers += TT
-
-/obj/effect/tarp_trigger
-	name = "tarp trigger"
-	icon = 'icons/effects/effects.dmi'
-	anchored = TRUE
-	mouse_opacity = 0
-	invisibility = INVISIBILITY_MAXIMUM
-	var/obj/structure/closet/bodybag/tarp/linked_tarp
-
-/obj/effect/tarp_trigger/Initialize(mapload, obj/structure/closet/bodybag/tarp/source_tarp)
-	. = ..()
-	linked_tarp = source_tarp
-
-/obj/effect/tarp_trigger/Crossed(atom/A)
-	. = ..()
-	if(!linked_tarp) //something went very wrong
-		qdel(src)
-	else if(isxeno(A))
-		addtimer(CALLBACK(linked_tarp, /obj/structure/closet/bodybag/tarp.proc/trigger_open), 5 SECONDS)
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID || SMOKE_BLISTERING ) && !opened && bodybag_occupant)
+		bodybag_occupant.effect_smoke(S) //tarp *definitely* isn't acid/phosphorous smoke proof, lol.
+		to_chat(bodybag_occupant, "<span class='danger'>The scathing smoke forces us out of [sanitize(src.name)]!</span>")
+		open() //Get out
 
 /obj/structure/closet/bodybag/tarp/snow
 	icon_state = "snowtarp_closed"
