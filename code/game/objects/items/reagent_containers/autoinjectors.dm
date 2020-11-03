@@ -213,3 +213,11 @@
 	volume = 1
 	icon_state = "autoinjector-6"
 	list_reagents = list(/datum/reagent/medicine/roulettium = 1)
+
+/obj/item/reagent_containers/hypospray/autoinjector/hydrocodone //made for debugging
+	name = "Hydrocodone autoinjector"
+	desc = "An auto-injector loaded with hydrocodone. Do not mix with blood."
+	amount_per_transfer_from_this = 5
+	volume = 100
+	icon_state = "autoinjector-6"
+	list_reagents = list(/datum/reagent/medicine/hydrocodone = 100)
