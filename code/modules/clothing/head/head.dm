@@ -41,11 +41,10 @@
 	sprite_sheet_id = 1
 	icon_state = "beret"
 	soft_armor = list("melee" = 15, "bullet" = 15, "laser" = 15, "energy" = 15, "bomb" = 10, "bio" = 5, "rad" = 0, "fire" = 5, "acid" = 5)
-	flags_item_map_variant = NONE
+	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 
 /obj/item/clothing/head/tgmcberet/tan
 	icon_state = "berettan"
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 
 /obj/item/clothing/head/tgmcberet/red
 	icon_state = "beretred"
