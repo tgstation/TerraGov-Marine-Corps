@@ -66,6 +66,7 @@ SUBSYSTEM_DEF(codex)
 	if(entry && istype(presenting_to) && presenting_to.client)
 		var/list/dat = list()
 		if(entry.lore_text)
+			dat += "<h3>Lore Information</h3>"
 			dat += "<font color='#abdb9b'>[entry.lore_text]</font>"
 		if(entry.mechanics_text)
 			dat += "<h3>OOC Information</h3>"
