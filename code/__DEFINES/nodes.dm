@@ -7,3 +7,14 @@
 //DEFINES for AI behavior to utilize to show off what it's currently doing
 #define MOVING_TO_NODE "moving_to_a_node" //Move to a node
 #define MOVING_TO_ATOM "moving_to_an_atom" //We want to move to this thing and probably hit it; can be just about anything like a mob or machinery
+
+//Weight types for nodes
+#define NODE_LAST_VISITED "node_last_visited" //Set to world.time when visited by an AI
+
+
+/*Identifier tags
+Ultilized for having AI look at weights based on if they're a "marine human" or a "xenomorph" or something else
+This is mainly used for deciding what weights are to be looked at when determing a node waypoint of going towards
+*/
+
+#define IDENTIFIER_XENO "identifies_xeno"
