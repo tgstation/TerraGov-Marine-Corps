@@ -241,6 +241,15 @@
 
 /mob/living/carbon/human/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null)
 	if(stat == DEAD)
+		if(istype(wear_ear, /obj/item/radio/headset/mainship))
+			var/obj/item/radio/headset/mainship/cam_headset = wear_ear
+			if(cam_headset.camera.status)
+				cam_headset.camera.toggle_cam(null, FALSE)
+				playsound(loc, "alien_claw_metal", 25, 1)
+				X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+				to_chat(X, "<span class='warning'>We disable the creatures hivemind sight apparatus.</span>")
+				return FALSE
+
 		if(length(light_sources) || locate(/obj/effect/overlay/light_visible) in vis_contents)
 			playsound(loc, "alien_claw_metal", 25, 1)
 			X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
