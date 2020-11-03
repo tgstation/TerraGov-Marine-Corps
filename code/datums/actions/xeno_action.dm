@@ -9,6 +9,7 @@
 	var/image/cooldown_image
 	var/keybind_signal
 	var/cooldown_id
+	var/target_flags = NONE
 
 /datum/action/xeno_action/New(Target)
 	. = ..()
@@ -53,57 +54,57 @@
 		return FALSE
 	var/flags_to_check = use_state_flags|override_flags
 
-	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_COOLDOWN) && !action_cooldown_check())
+	if(!(flags_to_check & XACT_IGNORE_COOLDOWN) && !action_cooldown_check())
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We can't use [ability_name] yet, we must wait [cooldown_remaining()] seconds!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_INCAP) && X.incapacitated())
+	if(!(flags_to_check & XACT_USE_INCAP) && X.incapacitated())
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We can't do this while incapacitated!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_LYING) && X.lying_angle)
+	if(!(flags_to_check & XACT_USE_LYING) && X.lying_angle)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We can't do this while lying down!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_BUCKLED) && X.buckled)
+	if(!(flags_to_check & XACT_USE_BUCKLED) && X.buckled)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We can't do this while buckled!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_STAGGERED) && X.stagger)
+	if(!(flags_to_check & XACT_USE_STAGGERED) && X.stagger)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We can't do this while staggered!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_FORTIFIED) && X.fortify)
+	if(!(flags_to_check & XACT_USE_FORTIFIED) && X.fortify)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We can't do this while fortified!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_CRESTED) && X.crest_defense)
+	if(!(flags_to_check & XACT_USE_CRESTED) && X.crest_defense)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We can't do this while in crest defense!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_NOTTURF) && !isturf(X.loc))
+	if(!(flags_to_check & XACT_USE_NOTTURF) && !isturf(X.loc))
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We can't do this here!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_BUSY) && X.action_busy)
+	if(!(flags_to_check & XACT_USE_BUSY) && X.action_busy)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We're busy doing something right now!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(flags_to_check, XACT_USE_AGILITY) && X.agility)
+	if(!(flags_to_check & XACT_USE_AGILITY) && X.agility)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We can't do this in agility mode!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(flags_to_check, XACT_IGNORE_PLASMA) && X.plasma_stored < plasma_cost)
+	if(!(flags_to_check & XACT_IGNORE_PLASMA) && X.plasma_stored < plasma_cost)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>We don't have enough plasma, we need [plasma_cost - X.plasma_stored] more.</span>")
 		return FALSE

@@ -103,6 +103,7 @@
 	mechanics_text = "Launch a glob of neurotoxin or acid. Must remain stationary for a few seconds to use."
 	ability_name = "bombard"
 	keybind_signal = COMSIG_XENOABILITY_BOMBARD
+	target_flags = XABB_TURF_TARGET
 
 /datum/action/xeno_action/activable/bombard/get_cooldown()
 	var/mob/living/carbon/xenomorph/boiler/X = owner

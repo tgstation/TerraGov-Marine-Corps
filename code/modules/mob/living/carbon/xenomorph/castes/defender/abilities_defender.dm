@@ -10,6 +10,7 @@
 	use_state_flags = XACT_USE_CRESTED
 	cooldown_timer = 6 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_HEADBUTT
+	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/headbutt/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
