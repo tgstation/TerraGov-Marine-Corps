@@ -50,6 +50,10 @@
 	icon_state = "beretred"
 	flags_item_map_variant = NONE
 
+/obj/item/clothing/head/tgmcberet/red2
+	icon_state = "beretred2"
+	flags_item_map_variant = NONE
+
 /obj/item/clothing/head/tgmcberet/green
 	icon_state = "beretgreen"
 	flags_item_map_variant = NONE
