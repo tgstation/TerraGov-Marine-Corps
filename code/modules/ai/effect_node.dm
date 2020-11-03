@@ -99,7 +99,7 @@ the node has been visited by a particular thing, while something like NODE_ENEMY
 	//If there's no adjacent nodes then let's throw a runtime (for mappers) and at admins (if they by any chance were spawning these in)
 	if(!length(adjacent_nodes))
 		message_admins("[ADMIN_VERBOSEJMP(src.loc)] was unable to connect to any considered-adjacent nodes; place them correctly if you were spawning these in, otherwise report this.")
-		stack_trace("An ai node was initialized but no considered-adjacent nodes were nearby; this can be because of a mapping/admin spawning issue. X Y Z coords is [src.x] [src.y] [src.z]")
+		stack_trace("An ai node was initialized but there were no considered-adjacent nodes nearby; this can be because of a mapping/admin spawning issue. X Y Z coords is [src.x] [src.y] [src.z]")
 
 /obj/effect/ai_node/debug //A debug version of the AINode; makes it visible to allow for easy var editing
 	icon_state = "x6" //Pure white 'X' with black borders
