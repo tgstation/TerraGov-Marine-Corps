@@ -38081,6 +38081,11 @@
 	dir = 1
 	},
 /area/mainship/living/briefing)
+"vqs" = (
+/turf/open/floor/mainship{
+	icon_state = "green"
+	},
+/area/mainship/squads/req)
 "vsq" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/mainship/cargo,
@@ -78111,7 +78116,7 @@ art
 bre
 bre
 buE
-wKa
+vqs
 rkW
 bwf
 bAG

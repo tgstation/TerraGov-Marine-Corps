@@ -18087,6 +18087,9 @@
 /obj/structure/closet/walllocker/hydrant,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
+"wdt" = (
+/turf/open/floor/prison,
+/area/sulaco/marine)
 "wec" = (
 /obj/structure/cable,
 /turf/open/floor/prison/sterilewhite,
@@ -53530,6 +53533,7 @@ aDI
 aEX
 aGc
 aBk
+wdt
 aIg
 aIJ
 aGH
@@ -58413,7 +58417,7 @@ aCb
 aDb
 cPw
 aBk
-aBk
+wdt
 aKb
 aKb
 aKK
