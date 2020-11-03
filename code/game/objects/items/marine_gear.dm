@@ -22,20 +22,29 @@
 
 /obj/item/bodybag/tarp/Initialize(mapload, unfoldedbag)
 	. = ..()
-	serial_number = "SN-[pick(1000,100000)]" //Set the serial number
+	sleep(1)
+	if(!serial_number)
+		serial_number = "SN-[rand(1000,100000)]" //Set the serial number
+		name = "\improper [serial_number] [name]"
 
 /obj/item/bodybag/tarp/deploy_bodybag(mob/user, atom/location)
 	. = ..()
-	unfoldedbag_instance.name = "\improper [serial_number] [name]" //Set the name with the serial number
+	var/obj/structure/closet/bodybag/tarp/unfolded_tarp = unfoldedbag_instance
+	if(!unfolded_tarp.serial_number)
+		unfolded_tarp.serial_number = serial_number //Set the serial number
+		unfolded_tarp.name = "\improper [serial_number] [unfolded_tarp.name]" //Set the name with the serial number
+
 
 /obj/item/bodybag/tarp/unique_action(mob/user)
 	deploy_bodybag(user, get_turf(user))
 	unfoldedbag_instance.close()
 
+
 /obj/item/bodybag/tarp/snow
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "snowtarp_folded"
 	unfoldedbag_path = /obj/structure/closet/bodybag/tarp/snow
+
 
 /obj/structure/closet/bodybag/tarp
 	name = "\improper V1 thermal-dampening tarp"
@@ -49,8 +58,10 @@
 	close_sound = 'sound/effects/vegetation_walk_2.ogg'
 	foldedbag_path = /obj/item/bodybag/tarp
 	closet_stun_delay = 0.5 SECONDS //Short delay to prevent ambushes from being too degenerate.
-	var/list/tarp_triggers = list()
+	var/serial_number //Randomized serial number used to stop point macros and such.
 
+/obj/structure/closet/bodybag/tarp/Initialize(mapload, foldedbag)
+	. = ..()
 
 /obj/structure/closet/bodybag/tarp/close()
 	. = ..()
@@ -68,7 +79,6 @@
 		animate(src) //Cancel the fade out if still ongoing.
 	if(bodybag_occupant)
 		UnregisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED))
-	QDEL_LIST(tarp_triggers)
 	return ..()
 
 
@@ -85,6 +95,7 @@
 	if(bodybag_occupant)
 		RegisterSignal(bodybag_occupant, list(COMSIG_MOB_DEATH, COMSIG_PARENT_PREQDELETED), .proc/on_bodybag_occupant_death)
 
+
 /obj/structure/closet/bodybag/tarp/proc/on_bodybag_occupant_death(mob/source, gibbing)
 	SIGNAL_HANDLER
 	open()
@@ -94,11 +105,20 @@
 	return //Shouldn't be revealing who's inside.
 
 
+/obj/structure/closet/bodybag/tarp/MouseDrop(over_object, src_location, over_location)
+	. = ..()
+	var/obj/item/bodybag/tarp/folded_tarp = foldedbag_instance
+	if(!folded_tarp.serial_number)
+		folded_tarp.serial_number = serial_number //Set the serial number
+		folded_tarp.name = "\improper [serial_number] [folded_tarp.name]" //Set the name with the serial number
+
+
 /obj/structure/closet/bodybag/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > 300 && !opened && bodybag_occupant)
 		to_chat(bodybag_occupant, "<span class='danger'>The intense heat forces you out of [sanitize(src.name)]!</span>")
 		open()
 		bodybag_occupant.fire_act(exposed_temperature, exposed_volume)
+
 
 /obj/structure/closet/bodybag/flamer_fire_act()
 	if(!opened && bodybag_occupant)
