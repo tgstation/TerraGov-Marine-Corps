@@ -38082,6 +38082,7 @@
 	},
 /area/mainship/living/briefing)
 "vqs" = (
+/obj/machinery/vending/clothing_supply,
 /turf/open/floor/mainship{
 	icon_state = "green"
 	},

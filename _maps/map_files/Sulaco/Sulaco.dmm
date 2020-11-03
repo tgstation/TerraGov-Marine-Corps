@@ -3893,6 +3893,7 @@
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 9
 	},
+/obj/machinery/vending/clothing_supply,
 /turf/open/floor/prison/red{
 	dir = 1
 	},
@@ -5251,6 +5252,7 @@
 /obj/machinery/camera/autoname{
 	dir = 8
 	},
+/obj/machinery/vending/clothing_supply,
 /turf/open/floor/prison/red{
 	dir = 1
 	},
@@ -8740,6 +8742,7 @@
 /area/sulaco/marine)
 "aIf" = (
 /obj/machinery/light,
+/obj/machinery/vending/clothing_supply,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "aIg" = (
@@ -18088,6 +18091,7 @@
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
 "wdt" = (
+/obj/machinery/vending/clothing_supply,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "wec" = (
@@ -53532,7 +53536,6 @@ akW
 aDI
 aEX
 aGc
-aBk
 wdt
 aIg
 aIJ
@@ -55076,7 +55079,7 @@ aDK
 aFa
 aGf
 aBk
-aBk
+wdt
 aJS
 aJV
 aKE

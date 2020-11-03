@@ -14413,6 +14413,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "YD" = (
+/obj/machinery/vending/clothing_supply,
 /turf/open/floor/mainship,
 /area/mainship/living/cafeteria_starboard)
 "YE" = (
