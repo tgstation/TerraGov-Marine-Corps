@@ -1,0 +1,5 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - rscadd: "Added new pilot sprites, new jumpsuit/2 helmets and a new flak sprite"
+  - rscdel: "Removed old pilot sprites, git will remember them, nobody else will."
