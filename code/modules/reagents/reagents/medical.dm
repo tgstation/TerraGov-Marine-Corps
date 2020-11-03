@@ -159,7 +159,6 @@
 /datum/reagent/medicine/hydrocodone/overdose_crit_process(mob/living/L, metabolism)
 	L.adjustBrainLoss(3*REM, TRUE)
 
-
 /datum/reagent/medicine/leporazine
 	name = "Leporazine"
 	description = "Leporazine can be use to stabilize an individuals body temperature."
