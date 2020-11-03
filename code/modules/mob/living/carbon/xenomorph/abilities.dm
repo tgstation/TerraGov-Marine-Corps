@@ -74,11 +74,11 @@
 		return FALSE
 	if(issynth(victim)) //checks if target is a synth
 		if(!silent)
-			to_chat(X, "<span class='warning'>We don't know if this non-living creature has vital organs in the head.</span>")
+			to_chat(X, "<span class='warning'>We have no reason to bite this non-living thing.</span>")
 		return FALSE
 	X.face_atom(victim) //Face towards the target so we don't look silly
 	X.visible_message("<span class='xenowarning'>\The [X] begins opening its mouth and extending a second jaw towards \the [victim].</span>", \
-	"<span class='danger'>We prepare our second jaw for a finishing blow on \the [victim]!</span>", null, 20)
+	"<span class='danger'>We prepare our inner jaw for a finishing blow on \the [victim]!</span>", null, 20)
 	if(!do_after(X, 10 SECONDS, FALSE, victim, BUSY_ICON_DANGER))
 		X.visible_message("<span class='xenowarning'>\The [X] retracts its inner jaw.</span>", \
 		"<span class='danger'>We retract our inner jaw.</span>", null, 20)
@@ -92,7 +92,6 @@
 
 	X.visible_message("<span class='xenodanger'>\The [X] viciously bites into \the [victim]'s head with its inner jaw!</span>", \
 	"<span class='xenodanger'>We suddenly bite into the \the [victim]'s head with our second jaw!</span>")
-	X.emote("roar")
 
 	if(ishuman(victim))
 		var/mob/living/carbon/human/H = victim
@@ -104,6 +103,8 @@
 			H.internal_organs -= O
 
 	X.do_attack_animation(victim, ATTACK_EFFECT_BITE)
+	var/headbite_sound = pick(1, 2) == 1 ? 'sound/weapons/alien_tail_attack.ogg' : 'sound/weapons/alien_bite1.ogg'
+	playsound(victim, headbite_sound, 50)
 	victim.death()
 	victim.headbitten = TRUE
 	victim.update_headbite()
