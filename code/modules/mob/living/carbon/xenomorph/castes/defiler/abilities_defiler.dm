@@ -97,6 +97,11 @@
 /datum/action/xeno_action/activable/emit_neurogas/proc/dispense_gas(count = 3)
 	var/mob/living/carbon/xenomorph/Defiler/X = owner
 	set waitfor = FALSE
+	var/datum/effect_system/smoke_spread/xeno/neuro/N = new(X)
+	if(X.selected_reagent == /datum/reagent/toxin/xeno_hemodile)
+		N.smoke_type = /obj/effect/particle_effect/smoke/xeno/hemodile
+	else if(X.selected_reagent == /datum/reagent/toxin/xeno_transvitox)
+		N.smoke_type = /obj/effect/particle_effect/smoke/xeno/transvitox
 	while(count)
 		if(X.stagger) //If we got staggered, return
 			to_chat(X, "<span class='xenowarning'>We try to emit neurogas but are staggered!</span>")
@@ -106,7 +111,6 @@
 			return
 		var/turf/T = get_turf(X)
 		playsound(T, 'sound/effects/smoke.ogg', 25)
-		var/datum/effect_system/smoke_spread/xeno/neuro/N = new(X)
 		if(count > 1)
 			N.set_up(2, T)
 		else //last emission is larger

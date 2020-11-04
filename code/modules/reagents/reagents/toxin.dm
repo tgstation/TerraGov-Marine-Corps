@@ -523,7 +523,7 @@
 	name = "Hemodile"
 	description = "A stamina draining toxin. Causes increased stamina loss and slower movement."
 	reagent_state = LIQUID
-	color = "#94CFD8" // rgb: 148, 207, 216
+	color = "#602CFF"
 	custom_metabolism = 0.4
 	overdose_threshold = 10000
 	scannable = TRUE
@@ -551,7 +551,7 @@
 	name = "Transvitox"
 	description = "Heals brute and burn wounds, while producing toxins."
 	reagent_state = LIQUID
-	color = "#42FFA0"
+	color = "#94FF00"
 	custom_metabolism = 0.4
 	overdose_threshold = 10000
 	scannable = TRUE

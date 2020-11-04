@@ -41,6 +41,12 @@
 		reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, reagent_amount)
 		if(prob(10 * S.strength)) //Likely to momentarily freeze up/fall due to arms/hands seizing up
 			to_chat(src, "<span class='danger'>You feel your body going numb and lifeless!</span>")
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_HEMODILE))
+		var/reagent_amount = 5 + S.strength * 2
+		reagents.add_reagent(/datum/reagent/toxin/xeno_hemodile, reagent_amount)
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_TRANSVITOX))
+		var/reagent_amount = 5 + S.strength * 2
+		reagents.add_reagent(/datum/reagent/toxin/xeno_transvitox, reagent_amount)
 	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_CHEM))
 		S.pre_chem_effect(src)
 
@@ -52,3 +58,13 @@
 		reagents.add_reagent(/datum/reagent/toxin/xeno_neurotoxin, round(reagent_amount * protection, 0.1))
 		if(prob(10 * S.strength * protection))
 			to_chat(src, "<span class='danger'>Your body goes numb where the gas touches it!</span>")
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_HEMODILE) && (internal || has_smoke_protection())) //either inhaled or this.
+		var/reagent_amount = 3 + S.strength
+		reagents.add_reagent(/datum/reagent/toxin/xeno_hemodile, round(reagent_amount * protection, 0.1))
+		if(prob(10 * S.strength * protection))
+			to_chat(src, "<span class='danger'>Your muscles' strength drains away where the gas makes contact!</span>")
+	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_TRANSVITOX) && (internal || has_smoke_protection())) //either inhaled or this.
+		var/reagent_amount = 3 + S.strength
+		reagents.add_reagent(/datum/reagent/toxin/xeno_transvitox, round(reagent_amount * protection, 0.1))
+		if(prob(10 * S.strength * protection))
+			to_chat(src, "<span class='danger'>Your exposed wounds coagulate with a dark green tint!</span>")

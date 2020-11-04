@@ -131,7 +131,9 @@
 #define SMOKE_XENO			(1<<9)
 #define SMOKE_XENO_ACID		(1<<10)
 #define SMOKE_XENO_NEURO	(1<<11)
-#define SMOKE_CHEM			(1<<12)
+#define SMOKE_XENO_HEMODILE (1<<12)
+#define SMOKE_XENO_TRANSVITOX (1<<13)
+#define SMOKE_CHEM			(1<<14)
 
 
 //Incapacitated
