@@ -1,0 +1,4 @@
+author: "Wayland-Smithy"
+delete-after: True
+changes: 
+  - tweak: "Big mobs will now always trample light sticks on the first crossing."
