@@ -142,7 +142,12 @@
 		return
 
 	M.forceMove(src)
-	playsound(loc, 'sound/effects/blobattack.ogg', 25)
+
+	if(prob(1)) //1% chance to play
+		playsound(loc, 'sound/machines/blender.ogg', 25) //grind up hosts for nutrition for the larva
+	else
+		playsound(loc, 'sound/effects/blobattack.ogg', 25)
+
 	corpses += M
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	xeno_job.add_job_points(3.3)
