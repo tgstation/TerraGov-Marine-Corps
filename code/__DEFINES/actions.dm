@@ -13,4 +13,9 @@
 #define XACT_IGNORE_DEAD_TARGET	(1 << 12) // bypass checks of a dead target
 #define XACT_IGNORE_SELECTED_ABILITY	(1 << 13) // bypass the check of the selected ability
 
+#define XABB_TURF_TARGET		(1 << 0) // ability targets turfs
+#define XABB_MOB_TARGET			(1 << 1) // ability targets mobs
+#define XABB_OBJ_TARGET			(1 << 2) // ability targets objects
+#define XABB_WALL_TARGET		(1 << 3) // ability targets walls
+
 #define XACT_KEYBIND_USE_ABILITY (1 << 0) // immediately activate even if selectable

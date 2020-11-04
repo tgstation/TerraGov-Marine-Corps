@@ -6715,12 +6715,6 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/living/cafeteria_starboard)
-"xp" = (
-/obj/docking_port/stationary/ert/target{
-	name = "Hangar"
-	},
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "xs" = (
 /obj/structure/rack,
 /obj/structure/ob_ammo/ob_fuel,
@@ -13730,6 +13724,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
+"UM" = (
+/obj/docking_port/stationary/marine_dropship/cas,
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "UO" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
@@ -46930,7 +46928,7 @@ bh
 bh
 bh
 bh
-bh
+UM
 bh
 bh
 bh
@@ -47439,7 +47437,7 @@ aN
 GH
 RF
 bh
-xp
+bh
 bh
 bh
 bh

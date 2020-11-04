@@ -57,6 +57,7 @@
 	plasma_cost = 25
 	cooldown_timer = 20 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_LUNGE
+	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/lunge/proc/neck_grab(mob/living/owner, mob/living/L)
 	SIGNAL_HANDLER
@@ -148,6 +149,7 @@
 	plasma_cost = 18
 	cooldown_timer = 20 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_FLING
+	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/fling/on_cooldown_finish()
 	to_chat(owner, "<span class='notice'>We gather enough strength to fling something again.</span>")
@@ -218,6 +220,7 @@
 	plasma_cost = 12
 	cooldown_timer = 10 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_PUNCH
+	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/punch/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner

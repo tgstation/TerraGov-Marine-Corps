@@ -406,6 +406,7 @@
 	plasma_cost = 150
 	cooldown_timer = 12 SECONDS
 	keybind_signal = COMSIG_XENOABILITY_LARVAL_GROWTH_STING
+	target_flags = XABB_MOB_TARGET
 
 /datum/action/xeno_action/activable/larval_growth_sting/on_cooldown_finish()
 	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)

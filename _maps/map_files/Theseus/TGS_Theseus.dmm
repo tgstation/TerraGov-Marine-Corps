@@ -35706,6 +35706,10 @@
 /obj/item/tool/lighter/zippo,
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
+"hcq" = (
+/obj/docking_port/stationary/marine_dropship/cas,
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "hem" = (
 /obj/structure/cable,
 /obj/machinery/status_display{
@@ -54732,7 +54736,7 @@ bqk
 blA
 blA
 blA
-blA
+hcq
 blA
 blA
 blA
