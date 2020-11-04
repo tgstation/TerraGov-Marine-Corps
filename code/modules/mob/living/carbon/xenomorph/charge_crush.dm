@@ -29,6 +29,7 @@
 	var/max_steps_buildup = 14
 	var/crush_living_damage = 20
 	var/next_special_attack = 0 //Little var to keep track on special attack timers.
+	var/plasma_use_multiplier = 1
 
 
 /datum/action/xeno_action/ready_charge/give_action(mob/living/L)
@@ -189,7 +190,7 @@
 		charger.add_movespeed_modifier(MOVESPEED_ID_XENO_CHARGE, TRUE, 100, NONE, TRUE, -CHARGE_SPEED(src))
 
 	if(valid_steps_taken > steps_for_charge)
-		charger.plasma_stored -= round(CHARGE_SPEED(src)) //Eats up plasma the faster you go.
+		charger.plasma_stored -= round(CHARGE_SPEED(src) * plasma_use_multiplier) //Eats up plasma the faster you go. //now uses a multiplier
 
 		switch(charge_type)
 			if(CHARGE_CRUSH) //Xeno Crusher
@@ -207,7 +208,7 @@
 						continue
 					charger.visible_message("<span class='danger'>[charger] runs [victim] over!</span>",
 						"<span class='danger'>We run [victim] over!</span>", null, 5)
-					victim.take_overall_damage(CHARGE_SPEED(src) * 10, blocked = victim.run_armor_check("chest", "melee"))
+					victim.take_overall_damage(CHARGE_SPEED(src) * 10, blocked = victim.run_armor_check("chest", "melee")) //This should not use take_overall_damage, this is a direct damage proc.
 					animation_flash_color(victim)
 			if(CHARGE_BULL, CHARGE_BULL_HEADBUTT, CHARGE_BULL_GORE) //Xeno Bull
 				if(MODULUS(valid_steps_taken, 4) == 0)
@@ -318,9 +319,10 @@
 /datum/action/xeno_action/ready_charge/bull_charge
 	charge_type = CHARGE_BULL
 	speed_per_step = 0.1
-	steps_for_charge = 5
+	steps_for_charge = 6
 	max_steps_buildup = 10
-	crush_living_damage = 30
+	crush_living_damage = 15
+	plasma_use_multiplier = 1.8
 
 
 /datum/action/xeno_action/ready_charge/bull_charge/give_action(mob/living/L)
