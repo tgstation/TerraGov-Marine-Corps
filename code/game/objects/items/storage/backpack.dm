@@ -375,11 +375,16 @@
 
 /obj/item/storage/backpack/marine/satchel
 	name = "\improper TGMC satchel"
-	desc = "A heavy-duty satchel carried by some TGMC soldiers and support personnel."
+	desc = "A heavy-duty satchel carried by some TGMC soldiers and support personnel. This one is in black."
 	icon_state = "marinesat"
 	worn_accessible = TRUE
 	storage_slots = null
 	max_storage_space = 15
+
+/obj/item/storage/backpack/marine/satchel/green
+	name = "\improper TGMC satchel"
+	desc = "A heavy-duty satchel carried by some TGMC soldiers and support personnel. This one is in green."
+	icon_state = "marinesat_green"
 
 
 /obj/item/storage/backpack/marine/satchel/corpsman
