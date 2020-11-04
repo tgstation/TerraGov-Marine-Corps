@@ -654,7 +654,7 @@
 	new /obj/item/ammo_magazine/pistol/m1911(src)
 	new_gun.on_enter_storage(src)
 
-/obj/item/storage/belt/gun/m4a3/vp70/Initialize()
+/obj/item/storage/belt/gun/m4a3/m18/Initialize()
 	. = ..()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/m18(src)
 	new /obj/item/ammo_magazine/pistol/m18(src)

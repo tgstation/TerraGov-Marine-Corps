@@ -436,10 +436,10 @@
 	scatter = 10
 
 //-------------------------------------------------------
-//Blocc 18.
+//5-7..
 
 /obj/item/weapon/gun/pistol/m18
-	name = "\improper M-18 combat pistol"
+	name = "\improper M-1857 combat pistol"
 	desc = "An uncommon automatic sidearm used widely across the galaxy. Some can be found in TGMC hands in very small numbers. Fires 9mm armor piercing rounds and is capable of 3-round burst or automatic fire."
 	icon_state = "m18"
 	item_state = "m18"

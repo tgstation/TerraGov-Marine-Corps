@@ -245,7 +245,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	jobtype = /datum/job/terragov/command/pilot
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/m4a3/vp70
+	belt = /obj/item/storage/belt/gun/m4a3/m18
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/pilot
 	wear_suit = /obj/item/clothing/suit/armor/vest/pilot
@@ -292,7 +292,7 @@ You could use STs help to repair and replace hardpoints."})
 	jobtype = /datum/job/terragov/command/tank_crew
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/m4a3/vp70
+	belt = /obj/item/storage/belt/gun/m4a3/m18
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/tanker
 	wear_suit = /obj/item/clothing/suit/storage/marine/M3P/tanker

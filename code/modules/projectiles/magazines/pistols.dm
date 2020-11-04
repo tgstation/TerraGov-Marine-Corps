@@ -193,10 +193,10 @@
 
 
 //-------------------------------------------------------
-//Blocc 18.
+//5-7.
 
 /obj/item/ammo_magazine/pistol/m18
-	name = "\improper M-18 AP magazine (9mm)"
+	name = "\improper M-1857 AP magazine (9mm)"
 	default_ammo = /datum/ammo/bullet/pistol/ap
 	caliber = "9x19mm Parabellum"
 	icon_state = "m18"

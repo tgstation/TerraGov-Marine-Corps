@@ -17,7 +17,7 @@
 	jobtype = /datum/job/pmc/standard
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/m4a3/vp70
+	belt = /obj/item/storage/belt/gun/m4a3/m18
 	ears = /obj/item/radio/headset/distress/PMC
 	w_uniform = /obj/item/clothing/under/marine/veteran/PMC
 	shoes = /obj/item/clothing/shoes/veteran/PMC
@@ -60,7 +60,7 @@
 	jobtype = /datum/job/pmc/gunner
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/m4a3/vp70
+	belt = /obj/item/storage/belt/gun/m4a3/m18
 	ears = /obj/item/radio/headset/distress/PMC
 	w_uniform = /obj/item/clothing/under/marine/veteran/PMC
 	shoes = /obj/item/clothing/shoes/veteran/PMC
@@ -101,7 +101,7 @@
 	jobtype = /datum/job/pmc/sniper
 
 	id = /obj/item/card/id/silver
-	belt = /obj/item/storage/belt/gun/m4a3/vp70
+	belt = /obj/item/storage/belt/gun/m4a3/m18
 	ears = /obj/item/radio/headset/distress/PMC
 	w_uniform = /obj/item/clothing/under/marine/veteran/PMC
 	shoes = /obj/item/clothing/shoes/veteran/PMC
