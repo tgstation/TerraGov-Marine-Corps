@@ -195,15 +195,6 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	succeed_activate()
 	playsound(T, 'sound/weapons/pierce.ogg', 25, 1)
 
-/obj/structure/tunnel/proc/hud_set_xeno_tunnel()
-	var/image/holder = hud_list[XENO_TUNNEL_HUD]
-	if(!holder)
-		return
-
-	holder.icon_state = "hudtraitor"
-	holder.overlays += image("icon" = 'icons/mob/hud.dmi', src, icon_state = "hudtraitor")
-
-	hud_list[XENO_TUNNEL_HUD] = holder
 
 // ***************************************
 // *********** plasma transfer

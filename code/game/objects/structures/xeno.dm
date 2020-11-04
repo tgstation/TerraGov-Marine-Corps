@@ -625,9 +625,15 @@ TUNNEL
 	prepare_huds()
 
 /obj/structure/tunnel/Destroy()
+	if(!QDELETED(creator))
+		to_chat(creator, "<span class='xenoannounce'>You sense your [sanitize(name)] at [tunnel_desc] has been destroyed!</span>") //Alert creator
+
+	xeno_message("<span class='xenoannounce'>Hive tunnel [sanitize(name)] at [tunnel_desc] has been destroyed!</span>", 2, creator.hivenumber) //Also alert hive because tunnels matter.
+
 	GLOB.xeno_tunnels -= src
 	if(creator)
 		creator.tunnels -= src
+
 	return ..()
 
 /obj/structure/tunnel/examine(mob/user)
@@ -711,6 +717,17 @@ TUNNEL
 			to_chat(M, "<span class='warning'>\The [src] ended unexpectedly, so we return back up.</span>")
 	else
 		to_chat(M, "<span class='warning'>Our crawling was interrupted!</span>")
+
+/obj/structure/tunnel/proc/hud_set_xeno_tunnel()
+	var/image/holder = hud_list[XENO_TUNNEL_HUD]
+	if(!holder)
+		return
+
+	holder.icon_state = "hudtraitor"
+	holder.overlays += image('icons/mob/hud.dmi', src, "hudtraitor")
+
+	hud_list[XENO_TUNNEL_HUD] = holder
+
 
 //Resin Water Well
 /obj/effect/alien/resin/acidwell
