@@ -15,8 +15,8 @@
 
 /datum/surgery_step/open_encased/saw
 	allowed_tools = list(
-	/obj/item/tool/surgery/circular_saw = 100, \
-	/obj/item/tool/hatchet = 75
+		/obj/item/tool/surgery/circular_saw = 100,
+		/obj/item/tool/hatchet = 75,
 	)
 
 	min_duration = SAW_OPEN_ENCASED_MIN_DURATION
@@ -45,8 +45,8 @@
 
 /datum/surgery_step/open_encased/retract
 	allowed_tools = list(
-	/obj/item/tool/surgery/retractor = 100, \
-	/obj/item/tool/crowbar = 75
+		/obj/item/tool/surgery/retractor = 100,
+		/obj/item/tool/crowbar = 75,
 	)
 
 	min_duration = RETRACT_OPEN_ENCASED_MIN_DURATION
@@ -79,8 +79,8 @@
 
 /datum/surgery_step/open_encased/close
 	allowed_tools = list(
-	/obj/item/tool/surgery/retractor = 100, \
-	/obj/item/tool/crowbar = 75
+		/obj/item/tool/surgery/retractor = 100,
+		/obj/item/tool/crowbar = 75,
 	)
 
 	min_duration = RETRACT_CLOSE_ENCASED_MIN_DURATION
@@ -109,8 +109,8 @@
 
 /datum/surgery_step/open_encased/mend
 	allowed_tools = list(
-	/obj/item/tool/surgery/bonegel = 100,	\
-	/obj/item/tool/screwdriver = 75
+		/obj/item/tool/surgery/bonegel = 100,
+		/obj/item/tool/screwdriver = 75,
 	)
 
 	min_duration = BONEGEL_CLOSE_ENCASED_MIN_DURATION

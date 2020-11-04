@@ -6,8 +6,8 @@
 
 /datum/surgery_step/fix_vein
 	allowed_tools = list(
-	/obj/item/tool/surgery/FixOVein = 100, \
-	/obj/item/stack/cable_coil = 75
+		/obj/item/tool/surgery/FixOVein = 100,
+		/obj/item/stack/cable_coil = 75,
 	)
 	can_infect = 1
 	blood_level = 1

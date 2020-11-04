@@ -90,11 +90,11 @@
 	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
 
 /obj/item/clothing/under/marine/officer/pilot
-	name = "pilot officer bodysuit"
-	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented, survival-friendly pilot bodysuit. Fly the marines onwards to glory."
+	name = "pilot officer flightsuit"
+	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented, survival-friendly pilot flightsuit. Fly the marines onwards to glory."
 	icon_state = "pilot_flightsuit"
 	flags_cold_protection = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
-	flags_item_map_variant = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT)
+	flags_item_map_variant = null
 
 /obj/item/clothing/under/marine/officer/tanker
 	name = "tank crewman officer uniform"

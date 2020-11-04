@@ -12,8 +12,8 @@
 
 /datum/surgery_step/bone/glue_bone
 	allowed_tools = list(
-	/obj/item/tool/surgery/bonegel = 100,	  \
-	/obj/item/tool/screwdriver = 75
+		/obj/item/tool/surgery/bonegel = 100,
+		/obj/item/tool/screwdriver = 75,
 	)
 	can_infect = 1
 	blood_level = 1
@@ -40,8 +40,8 @@
 
 /datum/surgery_step/bone/set_bone
 	allowed_tools = list(
-	/obj/item/tool/surgery/bonesetter = 100, \
-	/obj/item/tool/wrench = 75	   \
+		/obj/item/tool/surgery/bonesetter = 100,
+		/obj/item/tool/wrench = 75,
 	)
 
 	min_duration = BONESETTER_MIN_DURATION

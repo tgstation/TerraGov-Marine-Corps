@@ -151,6 +151,17 @@
 	max_rounds = 30 //Also comes in 30 and 100 round Beta-C mag.
 	gun_type = /obj/item/weapon/gun/rifle/m16
 
+//-------------------------------------------------------
+//FAMAS RIFLE
+
+/obj/item/ammo_magazine/rifle/famas
+	name = "\improper FAMAS magazine (5.56x45mm)"
+	desc = "A 5.56x45mm magazine for the FAMAS assault rifle."
+	caliber = "5.56x45mm"
+	icon_state = "famas"
+	default_ammo = /datum/ammo/bullet/rifle
+	max_rounds = 24
+	gun_type = /obj/item/weapon/gun/rifle/famas
 
 //-------------------------------------------------------
 //T-42 Light Machine Gun
@@ -183,14 +194,14 @@
 //M412L1 HEAVY PULSE RIFLE
 
 /obj/item/ammo_magazine/m412l1_hpr
-    name = "\improper M412L1 box magazine (10x24mm)"
-    desc = "A semi-rectangular box of rounds for the M412L1 heavy pulse rifle."
-    icon_state = "m412l1"
-    caliber = "10x24mm caseless"
-    default_ammo = /datum/ammo/bullet/rifle
-    w_class = WEIGHT_CLASS_NORMAL
-    max_rounds = 200
-    gun_type = /obj/item/weapon/gun/rifle/m412l1_hpr
+	name = "\improper M412L1 box magazine (10x24mm)"
+	desc = "A semi-rectangular box of rounds for the M412L1 heavy pulse rifle."
+	icon_state = "m412l1"
+	caliber = "10x24mm caseless"
+	default_ammo = /datum/ammo/bullet/rifle
+	w_class = WEIGHT_CLASS_NORMAL
+	max_rounds = 200
+	gun_type = /obj/item/weapon/gun/rifle/m412l1_hpr
 
 //-------------------------------------------------------
 //UPP TYPE 71 RIFLE
