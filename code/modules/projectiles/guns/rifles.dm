@@ -278,7 +278,7 @@
 	icon_state = "m412"
 	item_state = "m412"
 	muzzleflash_iconstate = "muzzle_flash_medium"
-	fire_sound = "m412.ogg"
+	fire_sound = "sound/weapons/guns/fire/m412.ogg"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
