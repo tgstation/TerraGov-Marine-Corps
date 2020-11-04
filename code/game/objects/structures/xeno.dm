@@ -616,10 +616,13 @@ TUNNEL
 	max_integrity = 140
 	var/mob/living/carbon/xenomorph/hivelord/creator = null
 
+	hud_possible = list(XENO_TUNNEL_HUD)
+
+
 /obj/structure/tunnel/Initialize(mapload)
 	. = ..()
 	GLOB.xeno_tunnels += src
-
+	prepare_huds()
 
 /obj/structure/tunnel/Destroy()
 	GLOB.xeno_tunnels -= src

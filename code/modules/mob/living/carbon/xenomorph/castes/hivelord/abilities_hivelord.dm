@@ -167,6 +167,8 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	X.visible_message("<span class='xenonotice'>\The [X] digs out a tunnel entrance.</span>", \
 	"<span class='xenonotice'>We dig out a tunnel, connecting it to our network.</span>", null, 5)
 	var/obj/structure/tunnel/newt = new(T)
+	newt.hud_set_xeno_tunnel() //Add to HUD.
+
 	playsound(T, 'sound/weapons/pierce.ogg', 25, 1)
 
 
@@ -177,19 +179,31 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	add_cooldown()
 
-	to_chat(X, "<span class='xenonotice'>We dig our tunnel to the nearest tunnel intersection, connecting it to the network. We now have [LAZYLEN(X.tunnels)] of [HIVELORD_TUNNEL_SET_LIMIT] tunnel sets.</span>")
+	to_chat(X, "<span class='xenonotice'>We dig out a tunnel, connecting it to our hive's network. We now have [LAZYLEN(X.tunnels)] of [HIVELORD_TUNNEL_SET_LIMIT] tunnels.</span>")
 
 	var/msg = stripped_input(X, "Add a description to the tunnel:", "Tunnel Description")
-	newt.tunnel_desc = "[get_area(newt)] (X: [newt.x], Y: [newt.y]) [msg]"
-	newt.name += " [msg]"
+	newt.tunnel_desc = sanitize("[get_area(newt)] (X: [newt.x], Y: [newt.y]) [msg]")
+	newt.name += sanitize(" [msg]")
+
+	xeno_message("<span class='xenoannounce'>[sanitize(X.name)] has built a new tunnel named [newt.name] at [newt.tunnel_desc]!</span>", 2, X.hivenumber)
 
 	if(LAZYLEN(X.tunnels) > HIVELORD_TUNNEL_SET_LIMIT) //if we exceed the limit, delete the oldest tunnel set.
 		var/obj/structure/tunnel/old_tunnel = X.tunnels[1]
 		old_tunnel.deconstruct(FALSE)
-		to_chat(X, "<span class='xenodanger'>Having exceeding our tunnel set limit, our oldest tunnel set has collapsed.</span>")
+		to_chat(X, "<span class='xenodanger'>Having exceeding our tunnel limit, our oldest tunnel has collapsed.</span>")
 
 	succeed_activate()
 	playsound(T, 'sound/weapons/pierce.ogg', 25, 1)
+
+/obj/structure/tunnel/proc/hud_set_xeno_tunnel()
+	var/image/holder = hud_list[XENO_TUNNEL_HUD]
+	if(!holder)
+		return
+
+	holder.icon_state = "hudtraitor"
+	holder.overlays += image("icon" = 'icons/mob/hud.dmi', src, icon_state = "hudtraitor")
+
+	hud_list[XENO_TUNNEL_HUD] = holder
 
 // ***************************************
 // *********** plasma transfer
