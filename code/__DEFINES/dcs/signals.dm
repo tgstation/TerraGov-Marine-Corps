@@ -299,6 +299,8 @@
 // shuttle signals
 #define COMSIG_SHUTTLE_SETMODE "shuttle_setmode"
 
+#define COMSIG_DROPSHIP_EQUIPMENT_UNEQUIPPED "shuttle_equipment_unequipped"
+
 // xeno stuff
 #define COMSIG_HIVE_BECOME_RULER "hive_become_ruler"
 #define COMSIG_HIVE_XENO_DEATH "hive_xeno_death"
