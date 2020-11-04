@@ -5,27 +5,26 @@
 	max_rounds = 30
 
 //-------------------------------------------------------
-//M39 SMG ammo
+//M25 SMG ammo
 
-/obj/item/ammo_magazine/smg/m39
-	name = "\improper M39 magazine (10x20mm)"
+/obj/item/ammo_magazine/smg/m25
+	name = "\improper MR-25 magazine (10x20mm)"
 	desc = "A 10x20mm caseless submachinegun magazine."
 	caliber = "10x20mm caseless"
-	icon_state = "m39"
+	icon_state = "m25"
 	max_rounds = 60
 	w_class = WEIGHT_CLASS_SMALL
-	gun_type = /obj/item/weapon/gun/smg/m39
+	gun_type = /obj/item/weapon/gun/smg/m25
 
-/obj/item/ammo_magazine/smg/m39/ap
-	name = "\improper M39 AP magazine (10x20mm)"
-	icon_state = "m39_ap"
+/obj/item/ammo_magazine/smg/m25/ap
+	name = "\improper MR-25 AP magazine (10x20mm)"
+	icon_state = "m25_ap"
 	default_ammo = /datum/ammo/bullet/smg/ap
 
-/obj/item/ammo_magazine/smg/m39/extended
-	name = "\improper M39 extended magazine (10x20mm)"
-	icon_state = "m39_ext"
+/obj/item/ammo_magazine/smg/m25/extended
+	name = "\improper MR-25 extended magazine (10x20mm)"
+	icon_state = "m25_ext"
 	max_rounds = 90
-	bonus_overlay = "m39_ex"
 
 //-------------------------------------------------------
 //T-19 Machinepistol ammo
@@ -124,15 +123,3 @@
 	icon_state = "uzi_ext"
 	max_rounds = 50
 	bonus_overlay = "uzi_ex"
-
-//-------------------------------------------------------
-//FP9000 //Based on the FN P90
-
-/obj/item/ammo_magazine/smg/p90
-	name = "\improper FN FP9000 magazine (5.7x28mm)"
-	desc = "A magazine for the FN FP9000 SMG."
-	default_ammo = /datum/ammo/bullet/smg/ap
-	caliber = "5.7x28mm"
-	icon_state = "FP9000"
-	max_rounds = 50
-	gun_type = /obj/item/weapon/gun/smg/p90

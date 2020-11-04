@@ -131,7 +131,7 @@
 	desc = "Ave, Imperator, morituri te salutant."
 	icon_state = "gladiator"
 	item_state = "gladiator"
-	flags_inventory = COVEREYES|BLOCKSHARPOBJ
+	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEALLHAIR
 	siemens_coefficient = 1
 
@@ -223,9 +223,11 @@
 	max_w_class = 1
 	bypass_w_limit = list(
 		/obj/item/clothing/glasses,
-		/obj/item/reagent_containers/food/drinks/flask)
+		/obj/item/reagent_containers/food/drinks/flask,
+	)
 	cant_hold = list(
-		/obj/item/stack/)
+		/obj/item/stack,
+	)
 	max_storage_space = 2
 
 /obj/item/clothing/head/helmet/marine/Initialize()
@@ -367,14 +369,19 @@
 
 /obj/item/clothing/head/helmet/marine/pilot
 	name = "\improper M30 tactical helmet"
-	desc = "The M30 tactical helmet has an left eyepiece filter used to filter tactical data. It is required to fly the Alamo and Normandy dropships manually and in safety."
-	icon_state = "helmetp"
+	desc = "The M30 tactical helmet has an left eyepiece filter used to filter tactical data. It is used by pilots in the TGN. This one is in gunmetal blue."
+	icon_state = "helmetp2"
 	soft_armor = list("melee" = 65, "bullet" = 65, "laser" = 35, "energy" = 45, "bomb" = 30, "bio" = 45, "rad" = 15, "fire" = 45, "acid" = 45)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
 	flags_marine_helmet = NONE
-	flags_item_map_variant = (ITEM_ICE_VARIANT)
+	flags_item_map_variant = null
+
+obj/item/clothing/head/helmet/marine/pilot/green
+	name = "\improper M30 tactical helmet"
+	desc = "The M30 tactical helmet has an left eyepiece filter used to filter tactical data. It is used by pilots in the TGN. This one is in green."
+	icon_state = "helmetp"
 
 
 /obj/item/clothing/head/helmet/marine/tanker
@@ -396,9 +403,9 @@
 	flags_item = SYNTH_RESTRICTED
 
 /obj/item/clothing/head/helmet/marine/veteran/PMC
-	name = "\improper PMC tactical cap"
-	desc = "A protective cap made from flexible kevlar. Standard issue for most security forms in the place of a helmet."
-	icon_state = "pmc_hat"
+	name = "\improper PMC tactical helmet"
+	desc = "A protective helmet made from flexible aramid materials. Standard issue protection for a lot of security firms."
+	icon_state = "pmc_helmet"
 	soft_armor = list("melee" = 55, "bullet" = 55, "laser" = 55, "energy" = 50, "bomb" = 50, "bio" = 50, "rad" = 50, "fire" = 50, "acid" = 50)
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	flags_inventory = BLOCKSHARPOBJ
@@ -423,8 +430,8 @@
 
 /obj/item/clothing/head/helmet/marine/veteran/PMC/gunner
 	name = "\improper PMC gunner helmet"
-	desc = "A modification of the standard Armat Systems M3 armor."
-	icon_state = "heavy_helmet"
+	desc = "A modification of the standard helmet used by a lot of security firms, has a visor for added protection."
+	icon_state = "pmc_heavyhelmet"
 	flags_armor_protection = HEAD|FACE|EYES
 	soft_armor = list("melee" = 65, "bullet" = 75, "laser" = 75, "energy" = 60, "bomb" = 70, "bio" = 50, "rad" = 50, "fire" = 60, "acid" = 60)
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ

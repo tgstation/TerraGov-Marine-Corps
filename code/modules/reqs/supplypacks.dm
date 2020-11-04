@@ -180,7 +180,7 @@ WEAPONS
 	contains = list(
 		/obj/item/weapon/gun/energy/lasgun/tesla,
 		/obj/item/cell/lasgun/tesla,
-		/obj/item/cell/lasgun/tesla
+		/obj/item/cell/lasgun/tesla,
 	)
 	cost = 60
 
@@ -222,7 +222,7 @@ WEAPONS
 /datum/supply_packs/weapons/specminigun
 	name = "MIC-A7 Vindicator Minigun"
 	contains = list(/obj/item/weapon/gun/minigun)
-	cost = 60
+	cost = 80
 
 /datum/supply_packs/weapons/smartgun
 	name = "T-29 Smart Machinegun"
@@ -387,11 +387,6 @@ ATTACHMENTS
 	cost = 1
 
 /datum/supply_packs/attachments/stock_smg
-	name = "submachinegun stock attachment crate"
-	contains = list(/obj/item/attachable/stock/smg)
-	cost = 1
-
-/datum/supply_packs/attachments/stock_smg
 	name = "combat shotgun stock attachment crate"
 	contains = list(/obj/item/attachable/stock/tactical)
 	cost = 1
@@ -408,7 +403,7 @@ AMMO
 	contains = list(
 		/obj/item/cell/lasgun/tesla,
 		/obj/item/cell/lasgun/tesla,
-		/obj/item/cell/lasgun/tesla
+		/obj/item/cell/lasgun/tesla,
 	)
 	cost = 30
 
@@ -572,10 +567,10 @@ AMMO
 	contains = list(/obj/item/mortal_shell/smoke)
 	cost = 1
 
-/datum/supply_packs/ammo/mortar_ammo_flash
-	name = "M402 mortar flash shell"
-	contains = list(/obj/item/mortal_shell/flash)
-	cost = 1
+/datum/supply_packs/ammo/mortar_ammo_plasmaloss
+	name = "M402 mortar tanglefoot shell"
+	contains = list(/obj/item/mortal_shell/plasmaloss)
+	cost = 2
 
 /datum/supply_packs/ammo/minisentry
 	name = "UA-580 point defense sentry ammo"
@@ -631,9 +626,7 @@ ARMOR
 
 /datum/supply_packs/armor/marine_shield
 	name = "TL-172 Defensive Shield"
-	contains = list(
-		/obj/item/weapon/shield/riot/marine
-	)
+	contains = list(/obj/item/weapon/shield/riot/marine)
 	cost = 10
 
 /datum/supply_packs/armor/b18
@@ -735,6 +728,7 @@ ARMOR
 		/obj/item/armor_module/attachable/tyr_extra_armor,
 		/obj/item/armor_module/attachable/mimir_environment_protection,
 		/obj/item/armor_module/attachable/better_shoulder_lamp,
+		/obj/item/armor_module/attachable/hlin_explosive_armor,
 	)
 	cost = 40
 
@@ -769,15 +763,13 @@ ARMOR
 /datum/supply_packs/armor/modular/attachments/mimir_environment_protection
 	name = "Jaeger mimir module"
 	contains = list(
-		/obj/item/armor_module/attachable/mimir_environment_protection
+		/obj/item/armor_module/attachable/mimir_environment_protection,
 	)
 	cost = 12
 
 /datum/supply_packs/armor/modular/attachments/mimir_helmet_protection
 	name = "Jaeger helmet mimir module"
-	contains = list(
-		/obj/item/helmet_module/attachable/mimir_environment_protection
-	)
+	contains = list(/obj/item/helmet_module/attachable/mimir_environment_protection)
 	cost = 5
 /datum/supply_packs/armor/modular/attachments/generic_helmet_modules
 	name = "Generic Jaeger helmet modules"
@@ -787,9 +779,13 @@ ARMOR
 		/obj/item/helmet_module/binoculars,
 		/obj/item/helmet_module/binoculars,
 		/obj/item/helmet_module/antenna,
-		/obj/item/helmet_module/antenna
+		/obj/item/helmet_module/antenna,
 	)
 	cost = 5
+/datum/supply_packs/armor/modular/attachments/hlin_bombimmune
+	name = "Jaeger Hlin module"
+	contains = list(/obj/item/armor_module/attachable/hlin_explosive_armor)
+	cost = 12
 
 /*******************************************************************************
 CLOTHING
@@ -1190,24 +1186,24 @@ Imports
 	contains = list(/obj/item/ammo_magazine/rifle/m41a)
 	cost = 5
 
-/datum/supply_packs/imports/m41a1
-	name = "M41A1 Pulse Rifle"
-	contains = list(/obj/item/weapon/gun/rifle/m41a1)
+/datum/supply_packs/imports/m412
+	name = "M412 Pulse Rifle"
+	contains = list(/obj/item/weapon/gun/rifle/m412)
 	cost = 15
 
-/datum/supply_packs/imports/m41a1/ammo
-	name = "M41A1 Pulse Rifle Ammo"
+/datum/supply_packs/imports/m41a2/ammo
+	name = "M412 Pulse Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle)
 	cost = 5
 
-/datum/supply_packs/imports/m41ae2
-	name = "M41AE2 Heavy Pulse Rifle"
-	contains = list(/obj/item/weapon/gun/rifle/m41ae2_hpr)
+/datum/supply_packs/imports/m412l1
+	name = "M412L1 Heavy Pulse Rifle"
+	contains = list(/obj/item/weapon/gun/rifle/m412l1_hpr)
 	cost = 15
 
-/datum/supply_packs/imports/m41ae2/ammo
-	name = "M41AE2 Heavy Pulse Rifle Ammo"
-	contains = list(/obj/item/ammo_magazine/m41ae2_hpr)
+/datum/supply_packs/imports/m412l1/ammo
+	name = "M412L1 Heavy Pulse Rifle Ammo"
+	contains = list(/obj/item/ammo_magazine/m412l1_hpr)
 	cost = 5
 
 /datum/supply_packs/imports/type71	//Moff gun
@@ -1240,6 +1236,16 @@ Imports
 	contains = list(/obj/item/ammo_magazine/smg/mp7)
 	cost = 5
 
+/datum/supply_packs/imports/m25
+	name = "MR-25 SMG"
+	contains = list(/obj/item/weapon/gun/smg/m25)
+	cost = 15
+
+/datum/supply_packs/imports/m25/ammo
+	name = "MR-25 SMG Ammo"
+	contains = list(/obj/item/ammo_magazine/smg/m25)
+	cost = 5
+
 /datum/supply_packs/imports/skorpion
 	name = "Skorpion SMG"
 	contains = list(/obj/item/weapon/gun/smg/skorpion)
@@ -1252,8 +1258,7 @@ Imports
 
 /datum/supply_packs/imports/uzi
 	name = "GAL-9 SMG"
-	contains = list(
-		/obj/item/weapon/gun/smg/uzi)
+	contains = list(/obj/item/weapon/gun/smg/uzi)
 	cost = 10
 
 /datum/supply_packs/imports/uzi/ammo
@@ -1269,16 +1274,6 @@ Imports
 /datum/supply_packs/imports/ppsh/ammo
 	name = "PPSH SMG Ammo Drum"
 	contains = list(/obj/item/ammo_magazine/smg/ppsh/extended)
-	cost = 5
-
-/datum/supply_packs/imports/p90
-	name = "FN P9000 SMG"
-	contains = list(/obj/item/weapon/gun/smg/p90)
-	cost = 15
-
-/datum/supply_packs/imports/p90/ammo
-	name = "FN P9000 SMG Ammo"
-	contains = list(/obj/item/ammo_magazine/smg/p90)
 	cost = 5
 
 /datum/supply_packs/imports/sawnoff
@@ -1354,6 +1349,16 @@ Imports
 	contains = list(/obj/item/ammo_magazine/rifle/m16)
 	cost = 5
 
+/datum/supply_packs/imports/famas //bread joke here
+	name = "FAMAS Assault Rifle"
+	contains = list(/obj/item/weapon/gun/rifle/famas)
+	cost = 15
+
+/datum/supply_packs/imports/m16/ammo
+	name = "FAMAS Assault Rifle Ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/famas)
+	cost = 5
+
 /datum/supply_packs/imports/rev357
 	name = "Smith and Wesson 357 Revolver"
 	contains = list(/obj/item/weapon/gun/revolver/small)
@@ -1362,6 +1367,16 @@ Imports
 /datum/supply_packs/imports/rev357/ammo
 	name = "Smith and Wesson 357 Revolver Ammo"
 	contains = list(/obj/item/ammo_magazine/revolver/small)
+	cost = 3
+
+/datum/supply_packs/imports/rev44
+	name = "M-44 SAA Revolver"
+	contains = list(/obj/item/weapon/gun/revolver/m44)
+	cost = 7
+
+/datum/supply_packs/imports/rev357/ammo
+	name = "M-44 SAA Revolver Ammo"
+	contains = list(/obj/item/ammo_magazine/revolver)
 	cost = 3
 
 /datum/supply_packs/imports/beretta92fs

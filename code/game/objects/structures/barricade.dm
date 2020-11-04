@@ -10,18 +10,28 @@
 	flags_atom = ON_BORDER
 	resistance_flags = XENO_DAMAGEABLE
 	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
-	var/stack_type //The type of stack the barricade dropped when disassembled if any.
-	var/stack_amount = 5 //The amount of stack dropped when disassembled at full health
-	var/destroyed_stack_amount //to specify a non-zero amount of stack to drop when destroyed
-	max_integrity = 100 //Pretty tough. Changes sprites at 300 and 150
-	var/crusher_resistant = TRUE //Whether a crusher can ram through it.
+	max_integrity = 100
+	///The type of stack the barricade dropped when disassembled if any.
+	var/stack_type
+	///The amount of stack dropped when disassembled at full health
+	var/stack_amount = 5
+	///to specify a non-zero amount of stack to drop when destroyed
+	var/destroyed_stack_amount = 0
+	///Whether a crusher can ram through it.
+	var/crusher_resistant = TRUE
 	var/base_acid_damage = 2
-	var/barricade_resistance = 5 //How much force an item needs to even damage it at all.
+	///How much force an item needs to even damage it at all.
+	var/barricade_resistance = 5
+	///Whether things can be thrown over
 	var/allow_thrown_objs = TRUE
 	var/barricade_type = "barricade" //"metal", "plasteel", etc.
+	///Whether this barricade has damaged states
 	var/can_change_dmg_state = TRUE
+	///Whether we can open/close this barrricade and thus go over it
 	var/closed = FALSE
+	///Can this barricade type be wired
 	var/can_wire = FALSE
+	///is this barriade wired?
 	var/is_wired = FALSE
 	flags_barrier = HANDLE_BARRIER_CHANCE
 
@@ -33,8 +43,7 @@
 	return prob(max(30,(100.0*obj_integrity)/max_integrity))
 
 /obj/structure/barricade/examine(mob/user)
-	..()
-
+	. = ..()
 	if(is_wired)
 		to_chat(user, "<span class='info'>There is a length of wire strewn across the top of this barricade.</span>")
 	switch((obj_integrity / max_integrity) * 100)
@@ -70,7 +79,7 @@
 	if(closed)
 		return TRUE
 
-	if(mover && mover.throwing)
+	if(mover?.throwing)
 		if(is_wired && iscarbon(mover)) //Leaping mob against barbed wire fails
 			if(get_dir(loc, target) & dir)
 				return FALSE
@@ -84,8 +93,11 @@
 		deconstruct(FALSE)
 		return FALSE
 
+	if((mover.flags_atom & ON_BORDER) && get_dir(loc, target) & dir)
+		return FALSE
+
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
-	if(S && S.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
+	if(S?.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
 		return TRUE
 
 	if(get_dir(loc, target) & dir)
@@ -225,13 +237,11 @@
 
 /obj/structure/barricade/update_overlays()
 	. = ..()
-	cut_overlays()
-	if(!is_wired)
-		return
-	if(!closed)
-		overlays += image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_wire")
-	else
-		overlays += image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_closed_wire")
+	if(is_wired)
+		if(!closed)
+			. += image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_wire")
+		else
+			. += image('icons/Marine/barricades.dmi', icon_state = "[src.barricade_type]_closed_wire")
 
 
 /obj/structure/barricade/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -401,6 +411,12 @@
 #define BARRICADE_METAL_ANCHORED 1
 #define BARRICADE_METAL_FIRM 2
 
+#define CADE_TYPE_BOMB	"concussive armor"
+#define CADE_TYPE_MELEE	"ballistic armor"
+#define CADE_TYPE_ACID	"caustic armor"
+
+#define CADE_UPGRADE_REQUIRED_SHEETS 2
+
 /obj/structure/barricade/metal
 	name = "metal barricade"
 	desc = "A sturdy and easily assembled barricade made of metal plates, often used for quick fortifications. Use a blowtorch to repair."
@@ -416,8 +432,33 @@
 	hit_sound = "sound/effects/metalhit.ogg"
 	barricade_type = "metal"
 	can_wire = TRUE
+	///Build state of the barricade
 	var/build_state = BARRICADE_METAL_FIRM
+	///The type of upgrade and corresponding overlay we have attached
+	var/barricade_upgrade_type
 
+/obj/structure/barricade/metal/update_overlays()
+	. = ..()
+	if(!barricade_upgrade_type)
+		return
+	var/damage_state
+	var/percentage = (obj_integrity / max_integrity) * 100
+	switch(percentage)
+		if(-INFINITY to 25)
+			damage_state = 3
+		if(25 to 50)
+			damage_state = 2
+		if(50 to 75)
+			damage_state = 1
+		if(75 to INFINITY)
+			damage_state = 0
+	switch(barricade_upgrade_type)
+		if(CADE_TYPE_BOMB)
+			. += image('icons/Marine/barricades.dmi', icon_state = "+explosive_upgrade_[damage_state]")
+		if(CADE_TYPE_MELEE)
+			. += image('icons/Marine/barricades.dmi', icon_state = "+brute_upgrade_[damage_state]")
+		if(CADE_TYPE_ACID)
+			. += image('icons/Marine/barricades.dmi', icon_state = "+burn_upgrade_[damage_state]")
 
 /obj/structure/barricade/metal/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -425,22 +466,70 @@
 	if(istype(I, /obj/item/stack/sheet/metal))
 		var/obj/item/stack/sheet/metal/metal_sheets = I
 		if(obj_integrity > max_integrity * 0.3)
-			return
+			return attempt_barricade_upgrade(I, user, params)
 
 		if(metal_sheets.get_amount() < 2)
 			to_chat(user, "<span class='warning'>You need two metal sheets to repair the base of [src].</span>")
-			return
+			return FALSE
 
 		visible_message("<span class='notice'>[user] begins to repair the base of [src].</span>")
 
 		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
-			return
+			return FALSE
 
 		if(!metal_sheets.use(2))
-			return
+			return FALSE
 
 		repair_damage(max_integrity * 0.3)
 		visible_message("<span class='notice'>[user] repairs the base of [src].</span>")
+
+
+
+/obj/structure/barricade/metal/proc/attempt_barricade_upgrade(obj/item/stack/sheet/metal/metal_sheets, mob/user, params)
+	if(barricade_upgrade_type)
+		to_chat(user, "<span class='warning'>[src] is already upgraded.</span>")
+		return FALSE
+	if(obj_integrity < max_integrity)
+		to_chat(user, "<span class='warning'>You need [src] to be at full health before you can upgrade it.</span>")
+		return FALSE
+
+	if(metal_sheets.get_amount() < CADE_UPGRADE_REQUIRED_SHEETS)
+		to_chat(user, "<span class='warning'>You need at least [CADE_UPGRADE_REQUIRED_SHEETS] metal sheets to repair the base of [src].</span>")
+		return FALSE
+
+	var/static/list/cade_types = list(CADE_TYPE_BOMB = image(icon = 'icons/Marine/barricades.dmi', icon_state = "explosive_obj"), CADE_TYPE_MELEE = image(icon = 'icons/Marine/barricades.dmi', icon_state = "brute_obj"), CADE_TYPE_ACID = image(icon = 'icons/Marine/barricades.dmi', icon_state = "burn_obj"))
+	var/choice = show_radial_menu(user, src, cade_types, require_near = TRUE, tooltips = TRUE)
+
+	if(user.skills.getRating("construction") < SKILL_CONSTRUCTION_METAL)
+		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to attach armor plates to [src].</span>",
+		"<span class='notice'>You fumble around figuring out how to attach armor plates on [src].</span>")
+		var/fumbling_time = 2 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating("construction") )
+		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+			return FALSE
+
+	user.visible_message("<span class='notice'>[user] begins attaching [choice] to [src].</span>",
+		"<span class='notice'>You begin attaching [choice] to [src].</span>")
+	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+		return FALSE
+
+	if(!metal_sheets.use(CADE_UPGRADE_REQUIRED_SHEETS))
+		return FALSE
+
+	switch(choice)
+		if(CADE_TYPE_BOMB)
+			soft_armor = soft_armor.modifyRating(bomb = 50)
+		if(CADE_TYPE_MELEE)
+			soft_armor = soft_armor.modifyRating(melee = 50, bullet = 30)
+		if(CADE_TYPE_ACID)
+			soft_armor = soft_armor.modifyRating(bio = 0, acid = 30)
+
+	barricade_upgrade_type = choice
+
+	user.visible_message("<span class='notice'>[user] attaches [choice] to [src].</span>",
+		"<span class='notice'>You attach [choice] to [src].</span>")
+
+	playsound(loc, 'sound/items/screwdriver.ogg', 25, TRUE)
+	update_icon()
 
 
 /obj/structure/barricade/metal/examine(mob/user)
@@ -453,6 +542,7 @@
 		if(BARRICADE_METAL_LOOSE)
 			to_chat(user, "<span class='info'>The protection panel has been removed and the anchor bolts loosened. It's ready to be taken apart.</span>")
 
+	to_chat(user, "<span class='info'>It is [barricade_upgrade_type ? "upgraded with [barricade_upgrade_type]" : "not upgraded"].</span>")
 
 /obj/structure/barricade/metal/welder_act(mob/living/user, obj/item/I)
 	if(user.action_busy)
@@ -624,6 +714,37 @@
 				deconstructed = FALSE
 				break
 			deconstruct(deconstructed)
+			return TRUE
+		if(BARRICADE_METAL_FIRM)
+			if(user.skills.getRating("construction") < SKILL_CONSTRUCTION_METAL)
+				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src]'s armor plates.</span>",
+				"<span class='notice'>You fumble around figuring out how to disassemble [src]'s armor plates..</span>")
+				var/fumbling_time = 5 SECONDS * ( SKILL_CONSTRUCTION_METAL - user.skills.getRating("construction") )
+				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+					return TRUE
+
+			user.visible_message("<span class='notice'>[user] starts disassembling [src]'s armor plates.</span>",
+			"<span class='notice'>You start disassembling [src]'s armor plates.</span>")
+
+			playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
+			if(!do_after(user, 5 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+				return TRUE
+
+			user.visible_message("<span class='notice'>[user] takes [src]'s armor plates apart.</span>",
+			"<span class='notice'>You take [src]'s armor plates apart.</span>")
+			playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
+
+			switch(barricade_upgrade_type)
+				if(CADE_TYPE_BOMB)
+					soft_armor = soft_armor.modifyRating(bomb = -50)
+				if(CADE_TYPE_MELEE)
+					soft_armor = soft_armor.modifyRating(melee = -50, bullet = -30)
+				if(CADE_TYPE_ACID)
+					soft_armor = soft_armor.modifyRating(bio = 0, acid = -30)
+
+			new /obj/item/stack/sheet/metal(loc, CADE_UPGRADE_REQUIRED_SHEETS)
+			barricade_upgrade_type = null
+			update_icon()
 			return TRUE
 
 

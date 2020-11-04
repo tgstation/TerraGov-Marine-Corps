@@ -22,7 +22,7 @@
 		/obj/item/weapon/combat_knife,
 		/obj/item/weapon/gun/pistol/standard_pocketpistol,
 		/obj/item/attachable/bayonetknife,
-		/obj/item/weapon/throwing_knife
+		/obj/item/weapon/throwing_knife,
 	)
 
 /obj/item/clothing/shoes/marine/Initialize()
@@ -65,8 +65,8 @@
 	pockets = /obj/item/storage/internal/shoes/boot_knife/full
 
 /obj/item/storage/internal/shoes/boot_knife/full/Initialize()
-    . = ..()
-    new /obj/item/attachable/bayonetknife(src)
+	. = ..()
+	new /obj/item/attachable/bayonetknife(src)
 
 /obj/item/clothing/shoes/marine/pyro
 	name = "flame-resistant combat boots"

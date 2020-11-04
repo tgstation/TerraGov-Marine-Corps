@@ -2,106 +2,50 @@
 // see code/datums/recipe.dm
 
 
-/* No telebacon. just no...
-/datum/recipe/telebacon
-	items = list(
-		/obj/item/reagent_containers/food/snacks/meat,
-		/obj/item/assembly/signaler
-	)
-	result = /obj/item/reagent_containers/food/snacks/telebacon
-
-I said no!
-/datum/recipe/syntitelebacon
-	items = list(
-		/obj/item/reagent_containers/food/snacks/meat/syntiflesh,
-		/obj/item/assembly/signaler
-	)
-	result = /obj/item/reagent_containers/food/snacks/telebacon
-*/
-
 /datum/recipe/friedegg
 	reagents = list(/datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/consumable/blackpepper = 1)
 	items = list(
-		/obj/item/reagent_containers/food/snacks/egg
+		/obj/item/reagent_containers/food/snacks/egg,
 	)
 	result = /obj/item/reagent_containers/food/snacks/friedegg
 
 /datum/recipe/boiledegg
 	reagents = list(/datum/reagent/water = 5)
 	items = list(
-		/obj/item/reagent_containers/food/snacks/egg
+		/obj/item/reagent_containers/food/snacks/egg,
 	)
 	result = /obj/item/reagent_containers/food/snacks/boiledegg
 
 
-/*
-/datum/recipe/bananaphone
-	reagents = list(/datum/reagent/consumable/psilocybin = 5) //Trippin' balls, man.
-	items = list(
-		/obj/item/reagent_containers/food/snacks/grown/banana,
-		/obj/item/radio
-	)
-	result = /obj/item/reagent_containers/food/snacks/bananaphone
-*/
-
 /datum/recipe/jellydonut
 	reagents = list(/datum/reagent/consumable/drink/berryjuice = 5, /datum/reagent/consumable/sugar = 5)
 	items = list(
-		/obj/item/reagent_containers/food/snacks/dough
+		/obj/item/reagent_containers/food/snacks/dough,
 	)
 	result = /obj/item/reagent_containers/food/snacks/donut/jelly
 
 /datum/recipe/jellydonut/cherry
 	reagents = list(/datum/reagent/consumable/cherryjelly = 5, /datum/reagent/consumable/sugar = 5)
 	items = list(
-		/obj/item/reagent_containers/food/snacks/dough
+		/obj/item/reagent_containers/food/snacks/dough,
 	)
 	result = /obj/item/reagent_containers/food/snacks/donut/cherryjelly
 
 /datum/recipe/donut
 	reagents = list(/datum/reagent/consumable/sugar = 5)
 	items = list(
-		/obj/item/reagent_containers/food/snacks/dough
+		/obj/item/reagent_containers/food/snacks/dough,
 	)
 	result = /obj/item/reagent_containers/food/snacks/donut/normal
 
-/* what is this
-/datum/recipe/human
-	//invalid recipe
-	make_food(var/obj/container as obj)
-		var/human_name
-		var/human_job
-		for (var/obj/item/reagent_containers/food/snacks/meat/human/HM in container)
-			if (!HM.subjectname)
-				continue
-			human_name = HM.subjectname
-			human_job = HM.subjectjob
-			break
-		var/lastname_index = findtext(human_name, " ")
-		if (lastname_index)
-			human_name = copytext(human_name,lastname_index+1)
-
-		var/obj/item/reagent_containers/food/snacks/human/HB = ..(container)
-		HB.name = human_name+HB.name
-		HB.job = human_job
-		return HB
-*/
 
 /datum/recipe/human/burger
 	items = list(
 		/obj/item/reagent_containers/food/snacks/meat/human,
-		/obj/item/reagent_containers/food/snacks/bun
+		/obj/item/reagent_containers/food/snacks/bun,
 	)
 	result = /obj/item/reagent_containers/food/snacks/human/burger
 
-/* Duplicated by plainburger
-/datum/recipe/monkeyburger
-	items = list(
-		/obj/item/reagent_containers/food/snacks/bun,
-		/obj/item/reagent_containers/food/snacks/meat/monkey
-	)
-	result = /obj/item/reagent_containers/food/snacks/monkeyburger
-*/
 
 /datum/recipe/plainburger
 	items = list(
@@ -113,35 +57,35 @@ I said no!
 /datum/recipe/syntiburger
 	items = list(
 		/obj/item/reagent_containers/food/snacks/bun,
-		/obj/item/reagent_containers/food/snacks/meat/syntiflesh
+		/obj/item/reagent_containers/food/snacks/meat/syntiflesh,
 	)
 	result = /obj/item/reagent_containers/food/snacks/monkeyburger
 
 /datum/recipe/brainburger
 	items = list(
 		/obj/item/reagent_containers/food/snacks/bun,
-		/obj/item/organ/brain
+		/obj/item/organ/brain,
 	)
 	result = /obj/item/reagent_containers/food/snacks/brainburger
 
 /datum/recipe/xenoburger
 	items = list(
 		/obj/item/reagent_containers/food/snacks/bun,
-		/obj/item/reagent_containers/food/snacks/xenomeat
+		/obj/item/reagent_containers/food/snacks/xenomeat,
 	)
 	result = /obj/item/reagent_containers/food/snacks/xenoburger
 
 /datum/recipe/fishburger
 	items = list(
 		/obj/item/reagent_containers/food/snacks/bun,
-		/obj/item/reagent_containers/food/snacks/carpmeat
+		/obj/item/reagent_containers/food/snacks/carpmeat,
 	)
 	result = /obj/item/reagent_containers/food/snacks/fishburger
 
 /datum/recipe/tofuburger
 	items = list(
 		/obj/item/reagent_containers/food/snacks/bun,
-		/obj/item/reagent_containers/food/snacks/tofu
+		/obj/item/reagent_containers/food/snacks/tofu,
 	)
 	result = /obj/item/reagent_containers/food/snacks/tofuburger
 
@@ -163,14 +107,14 @@ I said no!
 /datum/recipe/mimeburger
 	items = list(
 		/obj/item/reagent_containers/food/snacks/bun,
-		/obj/item/clothing/head/beret
+		/obj/item/clothing/head/beret,
 	)
 	result = /obj/item/reagent_containers/food/snacks/mimeburger
 
 /datum/recipe/hotdog
 	items = list(
 		/obj/item/reagent_containers/food/snacks/bun,
-		/obj/item/reagent_containers/food/snacks/sausage
+		/obj/item/reagent_containers/food/snacks/sausage,
 	)
 	result = /obj/item/reagent_containers/food/snacks/hotdog
 
@@ -178,14 +122,14 @@ I said no!
 	reagents = list(/datum/reagent/consumable/sugar = 10)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/dough,
-		/obj/item/reagent_containers/food/snacks/dough
+		/obj/item/reagent_containers/food/snacks/dough,
 	)
 	result = /obj/item/reagent_containers/food/snacks/waffles
 
 /datum/recipe/donkpocket
 	items = list(
 		/obj/item/reagent_containers/food/snacks/dough,
-		/obj/item/reagent_containers/food/snacks/meatball
+		/obj/item/reagent_containers/food/snacks/meatball,
 	)
 	result = /obj/item/reagent_containers/food/snacks/donkpocket //SPECIAL
 	proc/warm_up(var/obj/item/reagent_containers/food/snacks/donkpocket/being_cooked)
@@ -202,7 +146,7 @@ I said no!
 /datum/recipe/donkpocket/warm
 	reagents = list() //This is necessary since this is a child object of the above recipe and we don't want donk pockets to need flour
 	items = list(
-		/obj/item/reagent_containers/food/snacks/donkpocket
+		/obj/item/reagent_containers/food/snacks/donkpocket,
 	)
 	result = /obj/item/reagent_containers/food/snacks/donkpocket //SPECIAL
 	make_food(var/obj/container as obj)
@@ -283,7 +227,7 @@ I said no!
 	items = list(
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
 		/obj/item/reagent_containers/food/snacks/cheesewedge,
-		/obj/item/reagent_containers/food/snacks/grown/eggplant
+		/obj/item/reagent_containers/food/snacks/grown/eggplant,
 	)
 	result = /obj/item/reagent_containers/food/snacks/eggplantparm
 
@@ -292,7 +236,7 @@ I said no!
 		/obj/item/reagent_containers/food/snacks/flour,
 		/obj/item/reagent_containers/food/snacks/flour,
 		/obj/item/reagent_containers/food/snacks/flour,
-		/obj/item/reagent_containers/food/snacks/grown/soybeans
+		/obj/item/reagent_containers/food/snacks/grown/soybeans,
 	)
 	result = /obj/item/reagent_containers/food/snacks/soylenviridians
 
@@ -392,7 +336,7 @@ I said no!
 /datum/recipe/chaosdonut
 	reagents = list(/datum/reagent/consumable/frostoil = 5, /datum/reagent/consumable/capsaicin = 5, /datum/reagent/consumable/sugar = 5)
 	items = list(
-		/obj/item/reagent_containers/food/snacks/dough
+		/obj/item/reagent_containers/food/snacks/dough,
 	)
 	result = /obj/item/reagent_containers/food/snacks/donut/chaos
 
@@ -466,7 +410,7 @@ I said no!
 
 /datum/recipe/popcorn
 	items = list(
-		/obj/item/reagent_containers/food/snacks/grown/corn
+		/obj/item/reagent_containers/food/snacks/grown/corn,
 	)
 	result = /obj/item/reagent_containers/food/snacks/popcorn
 
@@ -504,14 +448,14 @@ I said no!
 /datum/recipe/meatsteak
 	reagents = list(/datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/consumable/blackpepper = 1)
 	items = list(
-		/obj/item/reagent_containers/food/snacks/meat
+		/obj/item/reagent_containers/food/snacks/meat,
 	)
 	result = /obj/item/reagent_containers/food/snacks/meatsteak
 
 /datum/recipe/syntisteak
 	reagents = list(/datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/consumable/blackpepper = 1)
 	items = list(
-		/obj/item/reagent_containers/food/snacks/meat/syntiflesh
+		/obj/item/reagent_containers/food/snacks/meat/syntiflesh,
 	)
 	result = /obj/item/reagent_containers/food/snacks/meatsteak
 
@@ -729,14 +673,14 @@ I said no!
 		/obj/item/reagent_containers/food/snacks/dough,
 		/obj/item/reagent_containers/food/snacks/dough,
 		/obj/item/reagent_containers/food/snacks/dough,
-		/obj/item/clothing/head/cakehat
+		/obj/item/clothing/head/cakehat,
 	)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/birthdaycake
 
 /datum/recipe/bread
 	items = list(
 		/obj/item/reagent_containers/food/snacks/dough,
-		/obj/item/reagent_containers/food/snacks/egg
+		/obj/item/reagent_containers/food/snacks/egg,
 	)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/bread
 
@@ -751,7 +695,7 @@ I said no!
 
 /datum/recipe/toastedsandwich
 	items = list(
-		/obj/item/reagent_containers/food/snacks/sandwich
+		/obj/item/reagent_containers/food/snacks/sandwich,
 	)
 	result = /obj/item/reagent_containers/food/snacks/toastedsandwich
 
@@ -816,12 +760,6 @@ I said no!
 		/obj/item/reagent_containers/food/snacks/grown/tomato,
 	)
 	result = /obj/item/reagent_containers/food/snacks/stewedsoymeat
-
-/*/datum/recipe/spagetti We have the processor now
-	items = list(
-		/obj/item/reagent_containers/food/snacks/doughslice
-	)
-	result= /obj/item/reagent_containers/food/snacks/spagetti*/
 
 /datum/recipe/boiledspagetti
 	reagents = list(/datum/reagent/water = 5)
@@ -889,7 +827,7 @@ I said no!
 /datum/recipe/candiedapple
 	reagents = list(/datum/reagent/water = 5, /datum/reagent/consumable/sugar = 5)
 	items = list(
-		/obj/item/reagent_containers/food/snacks/grown/apple
+		/obj/item/reagent_containers/food/snacks/grown/apple,
 	)
 	result = /obj/item/reagent_containers/food/snacks/candiedapple
 
@@ -914,7 +852,7 @@ I said no!
 /datum/recipe/jellyburger
 	reagents = list(/datum/reagent/consumable/cherryjelly = 5)
 	items = list(
-		/obj/item/reagent_containers/food/snacks/bun
+		/obj/item/reagent_containers/food/snacks/bun,
 	)
 	result = /obj/item/reagent_containers/food/snacks/jellyburger/cherry
 
@@ -1007,7 +945,7 @@ I said no!
 		/obj/item/reagent_containers/food/snacks/egg,
 		/obj/item/reagent_containers/food/snacks/egg,
 		/obj/item/reagent_containers/food/snacks/egg,
-		/obj/item/organ/brain
+		/obj/item/organ/brain,
 	)
 	result = /obj/item/reagent_containers/food/snacks/sliceable/braincake
 
@@ -1132,7 +1070,7 @@ I said no!
 /datum/recipe/cracker
 	reagents = list(/datum/reagent/consumable/sodiumchloride = 1)
 	items = list(
-		/obj/item/reagent_containers/food/snacks/doughslice
+		/obj/item/reagent_containers/food/snacks/doughslice,
 	)
 	result = /obj/item/reagent_containers/food/snacks/cracker
 
@@ -1159,37 +1097,37 @@ I said no!
 	items = list(
 		/obj/item/reagent_containers/food/snacks/doughslice,
 		/obj/item/reagent_containers/food/snacks/cutlet,
-		/obj/item/reagent_containers/food/snacks/cheesewedge
+		/obj/item/reagent_containers/food/snacks/cheesewedge,
 	)
 	result = /obj/item/reagent_containers/food/snacks/taco
 
 /datum/recipe/bun
 	items = list(
-		/obj/item/reagent_containers/food/snacks/dough
+		/obj/item/reagent_containers/food/snacks/dough,
 	)
 	result = /obj/item/reagent_containers/food/snacks/bun
 
 /datum/recipe/flatbread
 	items = list(
-		/obj/item/reagent_containers/food/snacks/sliceable/flatdough
+		/obj/item/reagent_containers/food/snacks/sliceable/flatdough,
 	)
 	result = /obj/item/reagent_containers/food/snacks/flatbread
 
 /datum/recipe/meatball
 	items = list(
-		/obj/item/reagent_containers/food/snacks/rawmeatball
+		/obj/item/reagent_containers/food/snacks/rawmeatball,
 	)
 	result = /obj/item/reagent_containers/food/snacks/meatball
 
 /datum/recipe/cutlet
 	items = list(
-		/obj/item/reagent_containers/food/snacks/rawcutlet
+		/obj/item/reagent_containers/food/snacks/rawcutlet,
 	)
 	result = /obj/item/reagent_containers/food/snacks/cutlet
 
 /datum/recipe/fries
 	items = list(
-		/obj/item/reagent_containers/food/snacks/rawsticks
+		/obj/item/reagent_containers/food/snacks/rawsticks,
 	)
 	result = /obj/item/reagent_containers/food/snacks/fries
 

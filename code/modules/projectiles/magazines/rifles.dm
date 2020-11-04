@@ -5,36 +5,35 @@
 //M41A PULSE RIFLE AMMUNITION
 
 /obj/item/ammo_magazine/rifle/
-	name = "\improper M41A1 magazine (10x24mm)"
+	name = "\improper M412 magazine (10x24mm)"
 	desc = "A 10mm assault rifle magazine."
 	caliber = "10x24mm caseless"
-	icon_state = "m41a1"
+	icon_state = "m412"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 40
-	gun_type = /obj/item/weapon/gun/rifle/m41a1
+	gun_type = /obj/item/weapon/gun/rifle/m412
 
 /obj/item/ammo_magazine/rifle/extended
-	name = "\improper M41A1 extended magazine (10x24mm)"
+	name = "\improper M412 extended magazine (10x24mm)"
 	desc = "A 10mm assault extended rifle magazine."
-	icon_state = "m41a1_ext"
+	icon_state = "m412_ext"
 	max_rounds = 60
-	bonus_overlay = "m41a1_ex"
-	gun_type = /obj/item/weapon/gun/rifle/m41a1
+	gun_type = /obj/item/weapon/gun/rifle/m412
 
 /obj/item/ammo_magazine/rifle/incendiary
-	name = "\improper M41A1 incendiary magazine (10x24mm)"
+	name = "\improper M412 incendiary magazine (10x24mm)"
 	desc = "A 10mm assault rifle magazine."
-	icon_state = "m41a1_incendiary"
+	icon_state = "m412_incendiary"
 	default_ammo = /datum/ammo/bullet/rifle/incendiary
-	gun_type = /obj/item/weapon/gun/rifle/m41a1
+	gun_type = /obj/item/weapon/gun/rifle/m412
 
 /obj/item/ammo_magazine/rifle/ap
-	name = "\improper M41A1 AP magazine (10x24mm)"
+	name = "\improper M412 AP magazine (10x24mm)"
 	desc = "A 10mm armor piercing magazine."
-	icon_state = "m41a1_ap"
+	icon_state = "m412_ap"
 	default_ammo = /datum/ammo/bullet/rifle/ap
-	gun_type = /obj/item/weapon/gun/rifle/m41a1
+	gun_type = /obj/item/weapon/gun/rifle/m412
 
 //-------------------------------------------------------
 //T18 Carbine
@@ -152,6 +151,17 @@
 	max_rounds = 30 //Also comes in 30 and 100 round Beta-C mag.
 	gun_type = /obj/item/weapon/gun/rifle/m16
 
+//-------------------------------------------------------
+//FAMAS RIFLE
+
+/obj/item/ammo_magazine/rifle/famas
+	name = "\improper FAMAS magazine (5.56x45mm)"
+	desc = "A 5.56x45mm magazine for the FAMAS assault rifle."
+	caliber = "5.56x45mm"
+	icon_state = "famas"
+	default_ammo = /datum/ammo/bullet/rifle
+	max_rounds = 24
+	gun_type = /obj/item/weapon/gun/rifle/famas
 
 //-------------------------------------------------------
 //T-42 Light Machine Gun
@@ -181,17 +191,17 @@
 	reload_delay = 3 SECONDS
 
 //-------------------------------------------------------
-//M41AE2 HEAVY PULSE RIFLE
+//M412L1 HEAVY PULSE RIFLE
 
-/obj/item/ammo_magazine/m41ae2_hpr
-    name = "\improper M41AE2 box magazine (10x24mm)"
-    desc = "A semi-rectangular box of rounds for the M41AE2 heavy pulse rifle."
-    icon_state = "m41ae2"
-    caliber = "10x24mm caseless"
-    default_ammo = /datum/ammo/bullet/rifle
-    w_class = WEIGHT_CLASS_NORMAL
-    max_rounds = 200
-    gun_type = /obj/item/weapon/gun/rifle/m41ae2_hpr
+/obj/item/ammo_magazine/m412l1_hpr
+	name = "\improper M412L1 box magazine (10x24mm)"
+	desc = "A semi-rectangular box of rounds for the M412L1 heavy pulse rifle."
+	icon_state = "m412l1"
+	caliber = "10x24mm caseless"
+	default_ammo = /datum/ammo/bullet/rifle
+	w_class = WEIGHT_CLASS_NORMAL
+	max_rounds = 200
+	gun_type = /obj/item/weapon/gun/rifle/m412l1_hpr
 
 //-------------------------------------------------------
 //UPP TYPE 71 RIFLE

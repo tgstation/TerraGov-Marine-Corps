@@ -1558,6 +1558,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/orbital_cannon,
 /turf/open/floor/mainship,
 /area/mainship/shipboard/weapon_room)
 "agJ" = (
@@ -1581,15 +1582,6 @@
 /obj/structure/closet/crate/weapon,
 /turf/open/floor/mainship,
 /area/mainship/squads/req)
-"agS" = (
-/obj/structure/orbital_cannon,
-/turf/open/floor/mainship,
-/area/mainship/shipboard/weapon_room)
-"agT" = (
-/obj/machinery/computer/orbital_cannon_console,
-/obj/structure/bed/chair/ob_chair,
-/turf/open/floor/mainship,
-/area/mainship/shipboard/weapon_room)
 "agU" = (
 /obj/structure/prop/mainship/cannon_cable_connector,
 /turf/open/floor/mainship,
@@ -2062,10 +2054,6 @@
 	dir = 4
 	},
 /area/mainship/medical/medical_science)
-"aiB" = (
-/obj/structure/ship_rail_gun,
-/turf/closed/wall/mainship,
-/area/mainship/shipboard/weapon_room)
 "aiD" = (
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship,
@@ -2420,6 +2408,10 @@
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
 /area/mainship/command/telecomms)
+"aPt" = (
+/obj/docking_port/stationary/marine_dropship/cas,
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "bgb" = (
 /turf/closed/wall/mainship,
 /area/mainship/hallways/hangar)
@@ -2480,6 +2472,10 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/medical/medical_science)
+"gsp" = (
+/obj/structure/ship_rail_gun,
+/turf/open/floor/mainship,
+/area/mainship/shipboard/weapon_room)
 "gOE" = (
 /obj/machinery/light,
 /turf/open/floor/mainship,
@@ -2565,6 +2561,11 @@
 /obj/structure/closet/secure_closet/medical3,
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
+"ung" = (
+/obj/structure/bed/chair/ob_chair,
+/obj/machinery/computer/orbital_cannon_console,
+/turf/open/floor/mainship,
+/area/mainship/shipboard/weapon_room)
 "way" = (
 /obj/structure/cable,
 /obj/machinery/landinglight/ds1/delaytwo,
@@ -3667,13 +3668,13 @@ aji
 agB
 agB
 agH
-agS
+agB
 ahb
 ahr
 agB
 agB
-agB
-aiB
+gsp
+agG
 aaa
 aaa
 aaa
@@ -3786,8 +3787,8 @@ ajb
 aji
 agB
 agB
+ung
 agB
-agT
 ahc
 ahs
 agB
@@ -3845,9 +3846,9 @@ aji
 aji
 aji
 agB
-agB
 agO
 agU
+agB
 ahc
 agB
 agB
@@ -4977,7 +4978,7 @@ bOu
 bOu
 bOu
 bOu
-bOu
+aPt
 bOu
 bOu
 bOu

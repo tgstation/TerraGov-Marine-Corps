@@ -150,13 +150,14 @@
 	tiles_with = list(
 		/turf/closed/wall,
 		/obj/structure/window/framed/mainship,
-		/obj/machinery/door/airlock)
+		/obj/machinery/door/airlock,
+	)
 
 /obj/machinery/door/poddoor/mainship/open
-    density = FALSE
-    opacity = FALSE
-    layer = PODDOOR_OPEN_LAYER
-    icon_state = "pdoor0"
+	density = FALSE
+	opacity = FALSE
+	layer = PODDOOR_OPEN_LAYER
+	icon_state = "pdoor0"
 
 
 /obj/machinery/door/poddoor/mainship/ai
