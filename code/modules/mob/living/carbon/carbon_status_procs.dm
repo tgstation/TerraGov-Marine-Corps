@@ -37,7 +37,7 @@
 
 
 /mob/living/carbon/proc/adjust_nutrition(amount)
-	if(IS_SYNTHETIC in species.species_flags) //robots don't eat
+	if(species.species_flags & IS_SYNTHETIC) //robots don't eat
 		return
 	. = nutrition
 	nutrition = max(nutrition + amount, 0)
