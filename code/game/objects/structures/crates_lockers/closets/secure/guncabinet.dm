@@ -63,7 +63,7 @@
 
 /obj/structure/closet/secure_closet/guncabinet/pmc_m39/PopulateContents()
 	new /obj/item/storage/pouch/magazine/large/pmc_m25(src)
-	new /obj/item/weapon/gun/smg/standard_smg(src)
+	new /obj/item/weapon/gun/smg/m25/elite(src)
 
 
 /obj/structure/closet/secure_closet/guncabinet/lmg/PopulateContents()

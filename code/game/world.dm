@@ -62,8 +62,9 @@ GLOBAL_VAR(restart_counter)
 
 	world.tick_lag = CONFIG_GET(number/ticklag)
 
-	if(TEST_RUN_PARAMETER in params)
-		HandleTestRun()
+	#ifdef UNIT_TESTS
+	HandleTestRun()
+	#endif
 
 	return ..()
 
@@ -106,6 +107,10 @@ GLOBAL_VAR(restart_counter)
 	GLOB.world_debug_log = "[GLOB.log_directory]/debug.log"
 	GLOB.world_paper_log = "[GLOB.log_directory]/paper.log"
 
+#ifdef UNIT_TESTS
+	GLOB.test_log = "[GLOB.log_directory]/tests.log"
+	start_log(GLOB.test_log)
+#endif
 	start_log(GLOB.world_game_log)
 	start_log(GLOB.world_attack_log)
 	start_log(GLOB.world_manifest_log)
@@ -235,9 +240,10 @@ GLOBAL_VAR(restart_counter)
 	Master.Shutdown()
 	TgsReboot()
 
-	if(TEST_RUN_PARAMETER in params)
-		FinishTestRun()
-		return
+	#ifdef UNIT_TESTS
+	FinishTestRun()
+	return
+	#endif
 
 	if(TgsAvailable())
 		var/do_hard_reboot
