@@ -769,13 +769,13 @@
 	dir = 8
 	},
 /obj/structure/table/mainship,
-/obj/item/ammo_magazine/pistol/vp70{
+/obj/item/ammo_magazine/pistol/m18{
 	pixel_x = 5
 	},
-/obj/item/ammo_magazine/pistol/vp70{
+/obj/item/ammo_magazine/pistol/m18{
 	pixel_x = 5
 	},
-/obj/item/weapon/gun/pistol/vp70{
+/obj/item/weapon/gun/pistol/m18{
 	pixel_y = 4
 	},
 /turf/open/floor/mainship/plate,
