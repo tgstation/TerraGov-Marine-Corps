@@ -1276,16 +1276,6 @@ Imports
 	contains = list(/obj/item/ammo_magazine/smg/ppsh/extended)
 	cost = 5
 
-/datum/supply_packs/imports/p90
-	name = "FN P9000 SMG"
-	contains = list(/obj/item/weapon/gun/smg/p90)
-	cost = 15
-
-/datum/supply_packs/imports/p90/ammo
-	name = "FN P9000 SMG Ammo"
-	contains = list(/obj/item/ammo_magazine/smg/p90)
-	cost = 5
-
 /datum/supply_packs/imports/sawnoff
 	name = "Sawn Off Shotgun"
 	contains = list(/obj/item/weapon/gun/shotgun/double/sawn)
@@ -1357,6 +1347,16 @@ Imports
 /datum/supply_packs/imports/m16/ammo
 	name = "FN M16A Assault Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/m16)
+	cost = 5
+
+/datum/supply_packs/imports/famas //bread joke here
+	name = "FAMAS Assault Rifle"
+	contains = list(/obj/item/weapon/gun/rifle/famas)
+	cost = 15
+
+/datum/supply_packs/imports/m16/ammo
+	name = "FAMAS Assault Rifle Ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/famas)
 	cost = 5
 
 /datum/supply_packs/imports/rev357
