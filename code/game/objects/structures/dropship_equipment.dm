@@ -146,7 +146,7 @@
 	resistance_flags = XENO_DAMAGEABLE
 	///on what kind of base this can be installed.
 	var/equip_category
-	//the ship base the equipment is currently installed on.
+	///the ship base the equipment is currently installed on.
 	var/obj/effect/attach_point/ship_base
 	///whether it uses ammo
 	var/dropship_equipment_flags = NONE
