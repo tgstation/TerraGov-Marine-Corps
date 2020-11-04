@@ -103,13 +103,6 @@
 					continue
 				statpanel(listed_turf.name, null, A)
 
-
-/mob/proc/prepare_huds()
-	hud_list = new
-	for(var/hud in hud_possible) //Providing huds.
-		hud_list[hud] = image('icons/mob/hud.dmi', src, "")
-
-
 /mob/proc/show_message(msg, type, alt_msg, alt_type)
 	if(!client)
 		return

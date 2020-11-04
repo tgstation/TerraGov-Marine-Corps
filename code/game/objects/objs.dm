@@ -32,8 +32,6 @@
 	///Optimization for dynamic explosion block values, for things whose explosion block is dependent on certain conditions.
 	var/real_explosion_block
 
-	var/list/hud_possible //HUD images that this mob can provide.
-
 /obj/Initialize()
 	. = ..()
 	if(islist(soft_armor))
@@ -180,8 +178,3 @@
 			setAnchored(var_value)
 			return TRUE
 	return ..()
-
-/obj/proc/prepare_huds()
-	hud_list = new
-	for(var/hud in hud_possible) //Providing huds.
-		hud_list[hud] = image('icons/mob/hud.dmi', src, "")
