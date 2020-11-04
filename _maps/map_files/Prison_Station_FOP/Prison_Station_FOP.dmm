@@ -6781,7 +6781,9 @@
 /area/prison/hangar_storage/research)
 "awi" = (
 /obj/structure/table/woodentable,
-/obj/item/flashlight/lamp,
+/obj/item/flashlight/lamp{
+	on = 0
+	},
 /turf/open/floor/wood,
 /area/prison/residential/north)
 "awj" = (
@@ -9554,7 +9556,9 @@
 /area/prison/quarters/research)
 "aEC" = (
 /obj/structure/table,
-/obj/item/flashlight/lamp,
+/obj/item/flashlight/lamp{
+	on = 0
+	},
 /turf/open/floor/wood,
 /area/prison/quarters/research)
 "aED" = (
@@ -9738,7 +9742,9 @@
 /area/prison/security/checkpoint/maxsec)
 "aFn" = (
 /obj/structure/table/reinforced,
-/obj/item/flashlight/lamp,
+/obj/item/flashlight/lamp{
+	on = 0
+	},
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/checkpoint/maxsec)
 "aFo" = (
@@ -10090,7 +10096,9 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4
 	},
-/obj/item/flashlight/lamp,
+/obj/item/flashlight/lamp{
+	on = 0
+	},
 /turf/open/floor/wood,
 /area/prison/chapel)
 "aGu" = (
@@ -11054,7 +11062,9 @@
 /area/prison/medbay)
 "aJc" = (
 /obj/structure/table/reinforced,
-/obj/item/flashlight/lamp,
+/obj/item/flashlight/lamp{
+	on = 0
+	},
 /turf/open/floor/prison/whitegreen/full,
 /area/prison/medbay)
 "aJd" = (
@@ -12399,7 +12409,9 @@
 /area/prison/quarters/research)
 "aMR" = (
 /obj/structure/table/woodentable,
-/obj/item/flashlight/lamp,
+/obj/item/flashlight/lamp{
+	on = 0
+	},
 /turf/open/floor/carpet,
 /area/prison/quarters/research)
 "aMS" = (
@@ -12770,7 +12782,9 @@
 /area/prison/security/monitoring/lowsec/ne)
 "aOi" = (
 /obj/structure/table/reinforced,
-/obj/item/flashlight/lamp,
+/obj/item/flashlight/lamp{
+	on = 0
+	},
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/monitoring/lowsec/ne)
 "aOj" = (
@@ -14387,7 +14401,9 @@
 /area/prison/security/checkpoint/highsec/n)
 "aTe" = (
 /obj/structure/table/reinforced,
-/obj/item/flashlight/lamp,
+/obj/item/flashlight/lamp{
+	on = 0
+	},
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/checkpoint/highsec/n)
 "aTf" = (
@@ -15874,7 +15890,9 @@
 /area/prison/hangar/main)
 "aXv" = (
 /obj/structure/table/woodentable,
-/obj/item/flashlight/lamp,
+/obj/item/flashlight/lamp{
+	on = 0
+	},
 /turf/open/floor/wood,
 /area/prison/residential/central)
 "aXw" = (
@@ -16817,7 +16835,9 @@
 /area/prison/command/quarters)
 "baB" = (
 /obj/structure/table/woodentable,
-/obj/item/flashlight/lamp,
+/obj/item/flashlight/lamp{
+	on = 0
+	},
 /turf/open/floor/carpet,
 /area/prison/command/quarters)
 "baC" = (
@@ -17539,7 +17559,9 @@
 /area/prison/residential/central)
 "bcR" = (
 /obj/structure/table,
-/obj/item/flashlight/lamp,
+/obj/item/flashlight/lamp{
+	on = 0
+	},
 /turf/open/floor/prison/blue/full,
 /area/prison/residential/central)
 "bcS" = (
@@ -18853,7 +18875,9 @@
 /area/prison/security/monitoring/highsec)
 "bgB" = (
 /obj/structure/table/reinforced,
-/obj/item/flashlight/lamp,
+/obj/item/flashlight/lamp{
+	on = 0
+	},
 /obj/machinery/light{
 	dir = 4
 	},
@@ -20148,7 +20172,9 @@
 /area/prison/cellblock/vip)
 "bkf" = (
 /obj/structure/table/reinforced,
-/obj/item/flashlight/lamp,
+/obj/item/flashlight/lamp{
+	on = 0
+	},
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/checkpoint/vip)
 "bkg" = (
@@ -24827,7 +24853,9 @@
 /area/prison/visitation)
 "bzc" = (
 /obj/structure/table/reinforced,
-/obj/item/flashlight/lamp,
+/obj/item/flashlight/lamp{
+	on = 0
+	},
 /turf/open/floor/prison/darkred/full,
 /area/prison/visitation)
 "bzd" = (
@@ -25429,7 +25457,9 @@
 /area/prison/security/checkpoint/highsec/s)
 "bBc" = (
 /obj/structure/table/reinforced,
-/obj/item/flashlight/lamp,
+/obj/item/flashlight/lamp{
+	on = 0
+	},
 /turf/open/floor/prison/darkred{
 	dir = 8
 	},
@@ -26234,7 +26264,9 @@
 /area/prison/cellblock/highsec/south/north)
 "bDJ" = (
 /obj/structure/table/reinforced,
-/obj/item/flashlight/lamp,
+/obj/item/flashlight/lamp{
+	on = 0
+	},
 /turf/open/floor/prison/darkred{
 	dir = 10
 	},
@@ -27736,7 +27768,9 @@
 /area/prison/maintenance/hangar_barracks)
 "bIf" = (
 /obj/structure/table/woodentable,
-/obj/item/flashlight/lamp,
+/obj/item/flashlight/lamp{
+	on = 0
+	},
 /turf/open/floor/wood,
 /area/prison/residential/south)
 "bIg" = (
@@ -28283,7 +28317,9 @@
 /area/prison/security/checkpoint/highsec/s)
 "bJM" = (
 /obj/structure/table/reinforced,
-/obj/item/flashlight/lamp,
+/obj/item/flashlight/lamp{
+	on = 0
+	},
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/monitoring/lowsec/sw)
 "bJN" = (
@@ -31640,7 +31676,9 @@
 /area/prison/security/checkpoint/medsec)
 "bUq" = (
 /obj/structure/table/reinforced,
-/obj/item/flashlight/lamp,
+/obj/item/flashlight/lamp{
+	on = 0
+	},
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/checkpoint/medsec)
 "bUr" = (
@@ -31725,7 +31763,9 @@
 /area/prison/library)
 "bUD" = (
 /obj/structure/table/reinforced,
-/obj/item/flashlight/lamp,
+/obj/item/flashlight/lamp{
+	on = 0
+	},
 /turf/open/floor/wood,
 /area/prison/library)
 "bUE" = (
@@ -33517,7 +33557,9 @@
 /area/prison/security/head)
 "caT" = (
 /obj/structure/table/woodentable,
-/obj/item/flashlight/lamp,
+/obj/item/flashlight/lamp{
+	on = 0
+	},
 /turf/open/floor/carpet,
 /area/prison/security/head)
 "caU" = (
@@ -36222,7 +36264,9 @@
 /area/prison/cellblock/protective)
 "ciQ" = (
 /obj/structure/table/reinforced,
-/obj/item/flashlight/lamp,
+/obj/item/flashlight/lamp{
+	on = 0
+	},
 /turf/open/floor/prison,
 /area/prison/engineering)
 "ciR" = (
@@ -36623,7 +36667,9 @@
 /area/prison/security/head)
 "ckh" = (
 /obj/structure/table/woodentable,
-/obj/item/flashlight/lamp,
+/obj/item/flashlight/lamp{
+	on = 0
+	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
@@ -37426,7 +37472,9 @@
 /area/prison/security/monitoring/protective)
 "cmu" = (
 /obj/structure/table/reinforced,
-/obj/item/flashlight/lamp,
+/obj/item/flashlight/lamp{
+	on = 0
+	},
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/monitoring/protective)
 "cmv" = (
@@ -39754,7 +39802,9 @@
 /area/prison/pirate)
 "cuj" = (
 /obj/structure/table/woodentable,
-/obj/item/flashlight/lamp,
+/obj/item/flashlight/lamp{
+	on = 0
+	},
 /turf/open/floor/carpet,
 /area/prison/pirate)
 "cuk" = (
@@ -41147,7 +41197,9 @@
 /area/prison/security/monitoring/medsec/south)
 "czz" = (
 /obj/structure/table/reinforced,
-/obj/item/flashlight/lamp,
+/obj/item/flashlight/lamp{
+	on = 0
+	},
 /turf/open/floor/prison/darkred{
 	dir = 1
 	},

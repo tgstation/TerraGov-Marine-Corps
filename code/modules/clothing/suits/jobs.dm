@@ -136,7 +136,7 @@
 		/obj/item/taperecorder,
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
-		/obj/item/storage/large_holster/machete,
+		/obj/item/storage/large_holster/machete
 	)
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 25, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
@@ -159,7 +159,7 @@
 		/obj/item/weapon/baton,
 		/obj/item/restraints/handcuffs,
 		/obj/item/detective_scanner,
-		/obj/item/taperecorder,
+		/obj/item/taperecorder
 	)
 	soft_armor = list("melee" = 10, "bullet" = 10, "laser" = 15, "energy" = 10, "bomb" = 0, "bio" = 0, "rad" = 0, "fire" = 10, "acid" = 10)
 
@@ -187,14 +187,16 @@
 		/obj/item/pipe_painter,
 		/obj/item/radio,
 		/obj/item/t_scanner,
+
 		/obj/item/tool/crowbar,
 		/obj/item/tool/screwdriver,
 		/obj/item/tool/weldingtool,
 		/obj/item/tool/wirecutters,
 		/obj/item/tool/wrench,
 		/obj/item/tank/emergency_oxygen,
+
 		/obj/item/clothing/mask/gas,
-		/obj/item/tool/taperoll/engineering,
+		/obj/item/tool/taperoll/engineering
 	)
 	flags_armor_protection = CHEST
 
@@ -261,7 +263,7 @@
 		/obj/item/healthanalyzer,
 		/obj/item/flashlight,
 		/obj/item/radio,
-		/obj/item/tank/emergency_oxygen,
+		/obj/item/tank/emergency_oxygen
 	)
 	flags_armor_protection = CHEST|ARMS
 

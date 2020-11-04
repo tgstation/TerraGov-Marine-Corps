@@ -43,8 +43,8 @@
 		/datum/action/xeno_action/ready_charge/bull_charge,
 		/datum/action/xeno_action/activable/bull_charge,
 		/datum/action/xeno_action/activable/bull_charge/headbutt,
-		/datum/action/xeno_action/activable/bull_charge/gore,
-	)
+		/datum/action/xeno_action/activable/bull_charge/gore
+		)
 
 /datum/xeno_caste/bull/young
 	upgrade_name = "Young"

@@ -32,12 +32,12 @@
 	if(!IS_DYNAMIC_LIGHTING(src) && IS_DYNAMIC_LIGHTING(A))
 		add_overlay(/obj/effect/fullbright)
 
-	if(light_system == STATIC_LIGHT && light_power && light_range)
+	if(light_power && light_range)
 		update_light()
 
 	if(opacity)
-		directional_opacity = ALL_CARDINALS
-
+		has_opaque_atom = TRUE
+	
 	update_icon()
 
 	return INITIALIZE_HINT_NORMAL

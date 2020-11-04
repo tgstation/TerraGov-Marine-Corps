@@ -20,7 +20,7 @@
 		#include "map_files\Research_Outpost\Research_Outpost.dmm"
 		#include "map_files\Lava_Outpost\LavaOutpost.dmm"
 		#include "map_files\Magmoor_Digsite_IV\Magmoor_Digsite_IV.dmm"
-		#ifdef CIBUILDING
+		#ifdef TRAVISBUILDING
 			#include "templates.dm"
 		#endif
 	#endif

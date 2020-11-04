@@ -78,7 +78,7 @@
 	var/ff_limit = CONFIG_GET(number/ff_damage_threshold)
 	if(friendly_fire[FF_DAMAGE_OUTGOING] < ff_limit)
 		return
-	send2adminchat("FF ALERT", "[key_name(src)] was kicked for excessive friendly fire. [friendly_fire[FF_DAMAGE_OUTGOING]] damage witin [ff_cooldown / 10] seconds")
+	send2tgs("FF ALERT", "[key_name(src)] was kicked for excessive friendly fire. [friendly_fire[FF_DAMAGE_OUTGOING]] damage witin [ff_cooldown / 10] seconds")
 	create_message("note", ckey(client.key), "SYSTEM", "Autokicked due to excessive friendly fire. [friendly_fire[FF_DAMAGE_OUTGOING]] damage within [ff_cooldown / 10] seconds.", null, null, FALSE, FALSE, null, FALSE, "Minor")
 	ghostize(FALSE) // make them a ghost (so they can't return to the round)
 	qdel(client) // Disconnect the client

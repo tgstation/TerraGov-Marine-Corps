@@ -530,8 +530,12 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		return FALSE
 	current = get_step_towards(source, target_turf)
 	while((current != target_turf))
-		if(IS_OPAQUE_TURF(current))
+		if(current.opacity)
 			return FALSE
+		for(var/thing in current)
+			var/atom/A = thing
+			if(A.opacity)
+				return FALSE
 		current = get_step_towards(current, target_turf)
 	return TRUE
 

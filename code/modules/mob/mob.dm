@@ -380,8 +380,6 @@
 		put_in_hands(W)
 		return TRUE
 	else
-		if(CHECK_BITFIELD(I.flags_inventory, NOQUICKEQUIP))
-			return FALSE
 		temporarilyRemoveItemFromInventory(I)
 		put_in_hands(I)
 		return TRUE

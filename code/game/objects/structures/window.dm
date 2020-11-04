@@ -22,9 +22,6 @@
 	var/damageable = TRUE
 	var/deconstructable = TRUE
 
-//I hate this as much as you do
-/obj/structure/window/full
-	dir = 10
 
 /obj/structure/window/Initialize(mapload, start_dir, constructed)
 	..()
@@ -357,8 +354,7 @@
 		/obj/structure/girder,
 		/obj/structure/window_frame)
 	tiles_with = list(
-		/turf/closed/wall,
-	)
+		/turf/closed/wall)
 
 /obj/structure/window/framed/Initialize()
 	relativewall()

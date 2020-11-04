@@ -53,7 +53,7 @@
 		/datum/reagent/medicine/spaceacillin,
 		/datum/reagent/medicine/tricordrazine)
 	var/static/list/default_pain_chems = list(
-		/datum/reagent/medicine/hydrocodone,
+		/datum/reagent/medicine/oxycodone,
 		/datum/reagent/medicine/tramadol)
 
 	var/datum/action/suit_autodoc/toggle/toggle_action

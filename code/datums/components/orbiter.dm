@@ -50,8 +50,7 @@
 	if(!isatom(parent) || isarea(parent) || !get_turf(parent))
 		return COMPONENT_INCOMPATIBLE
 	move_react(parent)
-	var/atom/movable/movable_parent = parent
-	orbiter_glide_size_update(src, movable_parent.glide_size)
+	orbiter_glide_size_update(src, parent)
 
 /datum/component/orbiter/proc/begin_orbit(atom/movable/orbiter, radius, clockwise, rotation_speed, rotation_segments, pre_rotation)
 	if(orbiter.orbiting)
@@ -83,8 +82,7 @@
 	orbiter.SpinAnimation(rotation_speed, -1, clockwise, rotation_segments, parallel = FALSE)
 
 	orbiter.forceMove(get_turf(parent))
-	var/atom/movable/movable_parent = parent
-	orbiter.glide_size = movable_parent.glide_size
+	orbiter_glide_size_update(src, parent)
 	to_chat(orbiter, "<span class='notice'>Now orbiting [parent].</span>")
 
 /datum/component/orbiter/proc/end_orbit(atom/movable/orbiter, refreshing=FALSE)
@@ -130,11 +128,12 @@
 		return
 	end_orbit(orbiter)
 
-/datum/component/orbiter/proc/orbiter_glide_size_update(datum/source, new_size)
+/datum/component/orbiter/proc/orbiter_glide_size_update(datum/source, target)
 	SIGNAL_HANDLER
+	var/atom/movable/movable_target = target
 	for(var/orbiter in orbiters)
 		var/atom/movable/movable_orbiter = orbiter
-		movable_orbiter.glide_size = new_size
+		movable_orbiter.glide_size = movable_target.glide_size
 
 /////////////////////
 

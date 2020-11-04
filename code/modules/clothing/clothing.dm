@@ -79,11 +79,8 @@
 	var/shield_state = "shield-blue"
 
 
-	// Strength of the armor light used by [proc/set_light()]
-	light_power = 3
-	light_range = 4
-	light_system = MOVABLE_LIGHT
-	light_on = FALSE
+	/// Strength of the armor light used by [proc/set_light()]
+	var/light_strength = 5
 
 /obj/item/clothing/suit/dropped(mob/user)
 	turn_off_light(user)
@@ -110,9 +107,9 @@
 /obj/item/clothing/suit/proc/toggle_armor_light(mob/user)
 	TIMER_COOLDOWN_START(src, COOLDOWN_ARMOR_LIGHT, 2.5 SECONDS)
 	if(flags_armor_features & ARMOR_LAMP_ON)
-		set_light_on(FALSE)
+		set_light(0)
 	else
-		set_light_on(TRUE)
+		set_light(light_strength)
 	flags_armor_features ^= ARMOR_LAMP_ON
 	playsound(src, 'sound/items/flashlight.ogg', 15, TRUE)
 	update_icon(user)

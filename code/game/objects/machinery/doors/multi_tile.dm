@@ -81,8 +81,7 @@
 	tiles_with = list(
 		/turf/closed/wall,
 		/obj/structure/window/framed/mainship,
-		/obj/machinery/door/airlock,
-	)
+		/obj/machinery/door/airlock)
 
 /obj/machinery/door/airlock/multi_tile/mainship/generic
 	name = "\improper Airlock"
@@ -94,10 +93,10 @@
 	name = "\improper Canteen"
 
 /obj/machinery/door/airlock/multi_tile/mainship/generic/cryo
-	name = "\improper Cryogenics Bay"
+	name = "\improper Cryogenics Bay"	
 
 /obj/machinery/door/airlock/multi_tile/mainship/generic/garden
-	name = "\improper Garden"
+	name = "\improper Garden"	
 
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor
 	name = "\improper Medical Airlock"

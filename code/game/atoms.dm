@@ -39,23 +39,6 @@
 
 	var/datum/wires/wires = null
 
-	//light stuff
-
-	///Light systems, both shouldn't be active at the same time.
-	var/light_system = STATIC_LIGHT
-	///Range of the light in tiles. Zero means no light.
-	var/light_range = 0
-	///Intensity of the light. The stronger, the less shadows you will see on the lit area.
-	var/light_power = 1
-	///Hexadecimal RGB string representing the colour of the light. White by default.
-	var/light_color = COLOR_WHITE
-	///Boolean variable for toggleable lights. Has no effect without the proper light_system, light_range and light_power values.
-	var/light_on = TRUE
-	///Our light source. Don't fuck with this directly unless you have a good reason!
-	var/tmp/datum/light_source/light
-	///Any light sources that are "inside" of us, for example, if src here was a mob that's carrying a flashlight, that flashlight's light source would be part of this list.
-	var/tmp/list/light_sources
-
 	// popup chat messages
 
 	/// Last name used to calculate a color for the chatmessage overlays
@@ -133,11 +116,11 @@ directive is properly returned.
 	//Outputs: Boolean if can pass.
 	if(density)
 		if( (flags_atom & ON_BORDER) && !(get_dir(loc, target) & dir) )
-			return TRUE
+			return 1
 		else
-			return FALSE
+			return 0
 	else
-		return TRUE
+		return 1
 
 
 /atom/proc/CheckExit(atom/movable/mover, turf/target)
@@ -513,52 +496,29 @@ Proc for attack log creation, because really why not
 			color = C
 			return
 
-/**
-  * The primary method that objects are setup in SS13 with
-  *
-  * we don't use New as we have better control over when this is called and we can choose
-  * to delay calls or hook other logic in and so forth
-  *
-  * During roundstart map parsing, atoms are queued for intialization in the base atom/New(),
-  * After the map has loaded, then Initalize is called on all atoms one by one. NB: this
-  * is also true for loading map templates as well, so they don't Initalize until all objects
-  * in the map file are parsed and present in the world
-  *
-  * If you're creating an object at any point after SSInit has run then this proc will be
-  * immediately be called from New.
-  *
-  * mapload: This parameter is true if the atom being loaded is either being intialized during
-  * the Atom subsystem intialization, or if the atom is being loaded from the map template.
-  * If the item is being created at runtime any time after the Atom subsystem is intialized then
-  * it's false.
-  *
-  * You must always call the parent of this proc, otherwise failures will occur as the item
-  * will not be seen as initalized (this can lead to all sorts of strange behaviour, like
-  * the item being completely unclickable)
-  *
-  * You must not sleep in this proc, or any subprocs
-  *
-  * Any parameters from new are passed through (excluding loc), naturally if you're loading from a map
-  * there are no other arguments
-  *
-  * Must return an [initialization hint][INITIALIZE_HINT_NORMAL] or a runtime will occur.
-  *
-  * Note: the following functions don't call the base for optimization and must copypasta handling:
-  * * [/turf/Initialize]
-  * * [/turf/open/space/Initialize]
-  */
+//Called after New if the map is being loaded. mapload = TRUE
+//Called from base of New if the map is not being loaded. mapload = FALSE
+//This base must be called or derivatives must set initialized to TRUE
+//must not sleep
+//Other parameters are passed from New (excluding loc), this does not happen if mapload is TRUE
+//Must return an Initialize hint. Defined in __DEFINES/subsystems.dm
+
+//Note: the following functions don't call the base for optimization and must copypasta:
+// /turf/Initialize
+// /turf/open/space/Initialize
+
 /atom/proc/Initialize(mapload, ...)
 	if(flags_atom & INITIALIZED)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	flags_atom |= INITIALIZED
 
-	if(light_system == STATIC_LIGHT && light_power && light_range)
+	if(light_power && light_range)
 		update_light()
 	if(loc)
 		SEND_SIGNAL(loc, COMSIG_ATOM_INITIALIZED_ON, src) //required since spawning something doesn't call Move hence it doesn't call Entered.
 		if(isturf(loc) && opacity)
 			var/turf/T = loc
-			T.directional_opacity = ALL_CARDINALS // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
+			T.has_opaque_atom = TRUE // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
 
 	return INITIALIZE_HINT_NORMAL
 

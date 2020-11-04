@@ -469,7 +469,9 @@
 /area/desert/interior/command/office)
 "bY" = (
 /obj/structure/table/reinforced,
-/obj/item/flashlight/lamp,
+/obj/item/flashlight/lamp{
+	on = 0
+	},
 /turf/open/floor/tile/red/full,
 /area/desert/interior/command/office)
 "bZ" = (

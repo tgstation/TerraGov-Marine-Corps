@@ -183,7 +183,7 @@
 	if(istype(wear_ear, /obj/item/radio/headset/mainship/marine))
 		var/obj/item/radio/headset/mainship/marine/marine_headset = wear_ear
 		if(marine_headset.camera.status)
-			marine_headset.camera.toggle_cam(null, FALSE) //Turn camera off.
+			marine_headset.camera.status = FALSE //Turn camera off.
 			to_chat(src, "<span class='danger'>Your headset camera flickers off as you are devoured; you'll need to reactivate it by rebooting your headset HUD!<span>")
 	return ..()
 

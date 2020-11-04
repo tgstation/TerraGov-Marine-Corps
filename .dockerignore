@@ -1,5 +1,6 @@
 .dockerignore
 .editorconfig
+.travis.yml
 GPLv3.txt
 LICENSE
 README.md

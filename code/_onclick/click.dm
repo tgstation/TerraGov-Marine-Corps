@@ -297,25 +297,11 @@
 	if(held_thing && SEND_SIGNAL(held_thing, COMSIG_ITEM_MIDDLECLICKON, A, src) & COMPONENT_ITEM_CLICKON_BYPASS)
 		return FALSE
 
-#define TARGET_FLAGS_MACRO(flagname, typepath) \
-if(selected_ability.target_flags & flagname){\
-	. = locate(typepath) in get_turf(A);\
-	if(.){\
-		return;}}
-
-/mob/living/carbon/xenomorph/proc/ability_target(atom/A)
-	TARGET_FLAGS_MACRO(XABB_MOB_TARGET, /mob/living)
-	TARGET_FLAGS_MACRO(XABB_OBJ_TARGET, /obj)
-	TARGET_FLAGS_MACRO(XABB_WALL_TARGET, /turf/closed/wall)
-	if(selected_ability.target_flags & XABB_TURF_TARGET)
-		return get_turf(A)
-	return A
 
 /mob/living/carbon/xenomorph/MiddleClickOn(atom/A)
 	. = ..()
 	if(!middle_mouse_toggle || !selected_ability)
 		return
-	A = ability_target(A)
 	if(selected_ability.can_use_ability(A))
 		selected_ability.use_ability(A)
 
@@ -346,7 +332,6 @@ if(selected_ability.target_flags & flagname){\
 /mob/living/carbon/xenomorph/ShiftClickOn(atom/A)
 	if(!selected_ability || middle_mouse_toggle)
 		return ..()
-	A = ability_target(A)
 	if(selected_ability.can_use_ability(A))
 		selected_ability.use_ability(A)
 	return TRUE

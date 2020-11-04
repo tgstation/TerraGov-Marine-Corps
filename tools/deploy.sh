@@ -11,7 +11,9 @@ fi
 
 mkdir -p \
     $1/_maps \
-    $1/strings
+    $1/icons \
+    $1/strings \
+    $1/config
 
 if [ -d ".git" ]; then
   mkdir -p $1/.git/logs
@@ -19,8 +21,11 @@ if [ -d ".git" ]; then
 fi
 
 cp tgmc.dmb tgmc.rsc $1/
+cp -r config/* $1/config/
 cp -r _maps/* $1/_maps/
 cp -r strings/* $1/strings/
+cp config/maps.txt $1/config/maps.txt
+cp config/shipmaps.txt $1/config/maps.txt
 
 #remove .dm files from _maps
 
@@ -28,5 +33,5 @@ cp -r strings/* $1/strings/
 #find $1/_maps -name "*.dm" -type f -delete
 
 #dlls on windows
-cp *.dll $1/ || true
-cp *.so $1/ || true
+cp rust_g* $1/ || true
+cp *BSQL.* $1/ || true

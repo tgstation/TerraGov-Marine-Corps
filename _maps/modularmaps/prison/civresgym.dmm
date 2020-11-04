@@ -1,50 +1,50 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/open/floor/prison/bright_clean/two,
-/area/template_noop)
+/area/space)
 "e" = (
 /obj/machinery/light/small{
 	dir = 8
 	},
 /turf/open/floor/prison/bright_clean/two,
-/area/template_noop)
+/area/space)
 "i" = (
 /obj/structure/bed/chair/sofa/left,
 /turf/open/floor/prison/bright_clean/two,
-/area/template_noop)
+/area/space)
 "m" = (
 /obj/item/toy/inflatable_duck,
 /turf/open/nostromowater,
-/area/template_noop)
+/area/space)
 "n" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
 /turf/open/floor/prison/bright_clean/two,
-/area/template_noop)
+/area/space)
 "o" = (
 /obj/structure/bed/chair/sofa,
 /turf/open/floor/prison/bright_clean/two,
-/area/template_noop)
+/area/space)
 "r" = (
 /obj/machinery/holopad,
 /turf/open/floor/prison/bright_clean/two,
-/area/template_noop)
+/area/space)
 "v" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
 /turf/open/floor/prison/bright_clean/two,
-/area/template_noop)
+/area/space)
 "x" = (
 /turf/open/nostromowater,
-/area/template_noop)
+/area/space)
 "C" = (
 /obj/machinery/light/small{
 	dir = 4
 	},
 /turf/open/floor/prison/bright_clean/two,
-/area/template_noop)
+/area/space)
 "D" = (
 /obj/item/clothing/under/lightbrown,
 /obj/item/clothing/shoes/ruggedboot{
@@ -52,15 +52,15 @@
 	pixel_y = -9
 	},
 /turf/open/floor/prison/bright_clean/two,
-/area/template_noop)
+/area/space)
 "E" = (
 /obj/effect/landmark/corpsespawner/scientist,
 /turf/open/floor/prison/bright_clean/two,
-/area/template_noop)
+/area/space)
 "F" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/prison/bright_clean/two,
-/area/template_noop)
+/area/space)
 "I" = (
 /obj/structure/bed/chair/sofa/right,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -68,27 +68,27 @@
 	on = 1
 	},
 /turf/open/floor/prison/bright_clean/two,
-/area/template_noop)
+/area/space)
 "M" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
 	},
 /turf/open/floor/prison/bright_clean/two,
-/area/template_noop)
+/area/space)
 "N" = (
 /obj/structure/closet/athletic_mixed,
 /turf/open/floor/prison/bright_clean/two,
-/area/template_noop)
+/area/space)
 "V" = (
 /obj/machinery/light/small,
 /turf/open/floor/prison/bright_clean/two,
-/area/template_noop)
+/area/space)
 "Z" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber{
 	dir = 4
 	},
 /turf/open/floor/prison/bright_clean/two,
-/area/template_noop)
+/area/space)
 
 (1,1,1) = {"
 N

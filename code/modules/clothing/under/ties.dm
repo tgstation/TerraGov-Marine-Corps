@@ -501,14 +501,12 @@
 		/obj/item/ammo_magazine/rifle,
 		/obj/item/ammo_magazine/smg,
 		/obj/item/ammo_magazine/sniper,
-		/obj/item/cell/lasgun,
-	)
+		/obj/item/cell/lasgun)
 	cant_hold = list(
 		/obj/item/stack/razorwire,
 		/obj/item/stack/sheet,
 		/obj/item/stack/sandbags,
-		/obj/item/stack/snow,
-	)
+		/obj/item/stack/snow)
 
 /obj/item/clothing/tie/storage/black_vest
 	name = "black webbing vest"
@@ -523,8 +521,7 @@
 		/obj/item/stack/sheet,
 		/obj/item/ammo_magazine/smg/standard_smg,
 		/obj/item/stack/sandbags,
-		/obj/item/stack/snow,
-	)
+		/obj/item/stack/snow)
 
 /obj/item/clothing/tie/storage/brown_vest
 	name = "brown webbing vest"
@@ -552,8 +549,8 @@
 	can_hold = list(
 		/obj/item/tool/surgery,
 		/obj/item/stack/medical/advanced/bruise_pack,
-		/obj/item/stack/nanopaste,
-	)
+		/obj/item/stack/nanopaste
+		)
 
 /obj/item/clothing/tie/storage/white_vest/medic
 	name = "corpsman webbing"
@@ -563,19 +560,18 @@
 /obj/item/storage/internal/tie/white_vest/medic
 	storage_slots = 6 //one more than the brown webbing but you lose out on being able to hold non-medic stuff
 	can_hold = list(
-		/obj/item/stack/medical,
-		/obj/item/healthanalyzer,
-		/obj/item/reagent_containers/dropper,
-		/obj/item/reagent_containers/glass/beaker,
-		/obj/item/reagent_containers/glass/bottle,
-		/obj/item/reagent_containers/pill,
-		/obj/item/reagent_containers/syringe,
-		/obj/item/storage/pill_bottle,
-		/obj/item/reagent_containers/hypospray,
-		/obj/item/bodybag,
-		/obj/item/roller,
-		/obj/item/clothing/glasses/hud/health,
-	)
+	/obj/item/stack/medical,
+	/obj/item/healthanalyzer,
+	/obj/item/reagent_containers/dropper,
+	/obj/item/reagent_containers/glass/beaker,
+	/obj/item/reagent_containers/glass/bottle,
+	/obj/item/reagent_containers/pill,
+	/obj/item/reagent_containers/syringe,
+	/obj/item/storage/pill_bottle,
+	/obj/item/reagent_containers/hypospray,
+	/obj/item/bodybag,
+	/obj/item/roller,
+	/obj/item/clothing/glasses/hud/health)
 
 /obj/item/clothing/tie/storage/knifeharness
 	name = "decorated harness"
@@ -591,8 +587,7 @@
 		/obj/item/tool/kitchen/utensil/knife,
 		/obj/item/tool/kitchen/utensil/pknife,
 		/obj/item/tool/kitchen/knife,
-		/obj/item/tool/kitchen/knife/ritual,
-	)
+		/obj/item/tool/kitchen/knife/ritual)
 
 /obj/item/clothing/tie/storage/knifeharness/Initialize()
 	. = ..()

@@ -9,26 +9,28 @@
 	anchored = TRUE
 	density = TRUE
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
-	/// list of the target x and y, and the dialing we can do to them
-	var/list/coords = list("name"= "", "targ_x" = 0, "targ_y" = 0, "dial_x" = 0, "dial_y" = 0)
-	/// saved last three inputs that were actually used to fire a round
-	var/list/last_three_inputs = list(
-		"coords_one" = list("name"="Target 1", "targ_x" = 0, "targ_y" = 0, "dial_x" = 0, "dial_y" = 0),
-		"coords_two" = list("name"="Target 2", "targ_x" = 0, "targ_y" = 0, "dial_x" = 0, "dial_y" = 0),
-		"coords_three" = list("name"="Target 3", "targ_x" = 0, "targ_y" = 0, "dial_x" = 0, "dial_y" = 0)
-		)
+	var/targ_x = 0 //Initial target coordinates
+	var/targ_y = 0
 	var/offset_x = 0 //Automatic offset from target
 	var/offset_y = 0
 	var/offset_per_turfs = 10 //Number of turfs to offset from target by 1
+	var/dial_x = 0 //Dial adjustment from target
+	var/dial_y = 0
 	var/travel_time = 45 //Constant, assuming perfect parabolic trajectory. ONLY THE DELAY BEFORE INCOMING WARNING WHICH ADDS 45 TICKS
 	var/busy = 0
 	var/firing = 0 //Used for deconstruction and aiming sanity
 	var/fixed = 0 //If set to 1, can't unanchor and move the mortar, used for map spawns and WO
+
 /obj/structure/mortar/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
-	
+	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
+		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
+		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
+		var/fumbling_time = 4 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
+		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+			return
 	if(busy)
 		to_chat(user, "<span class='warning'>Someone else is currently using [src].</span>")
 		return
@@ -36,108 +38,73 @@
 		to_chat(user, "<span class='warning'>[src]'s barrel is still steaming hot. Wait a few seconds and stop firing it.</span>")
 		return
 
-	if(user.skills.getRating("engineer") < SKILL_ENGINEER_ENGI)
-		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
-		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
-		var/fumbling_time = 4 SECONDS * ( SKILL_ENGINEER_ENGI - user.skills.getRating("engineer") )
-		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
-			return
-	ui_interact(user)
-
-
-/obj/structure/mortar/ui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/ui_state/state = GLOB.default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
-	if(!ui)
-		ui = new(user, src, ui_key, "Mortar", name, 450, 180, master_ui, state)
-		ui.open()
-
-/obj/structure/mortar/ui_data(mob/user)
-	. = list()
-	.["X"] = coords["targ_x"]
-	.["Y"] = coords["targ_y"]
-	.["DX"] = coords["dial_x"]
-	.["DY"] = coords["dial_y"]
-	.["last_three_inputs"] = last_three_inputs
-
-/obj/structure/mortar/ui_act(action, params)
-	. = ..()
-	if(.)
+	var/choice = alert(user, "Would you like to set the mortar's target coordinates, or dial the mortar? Setting coordinates will make you lose your fire adjustment.", "Mortar Dialing", "Target", "Dial", "Cancel")
+	if(choice == "Cancel")
 		return
-	. = TRUE
-	var/new_name = ""
-	switch(action)
-		if("change_target_x")
-			coords["targ_x"] = clamp(text2num(params["target_x"]), 0, world.maxx)
-		if("change_target_y")
-			coords["targ_y"] = clamp(text2num(params["target_y"]), 0, world.maxy)
-		if("change_dial_x")
-			coords["dial_x"] = clamp(text2num(params["dial_one"]), -10, 10)
-		if("change_dial_y")
-			coords["dial_y"] = clamp(text2num(params["dial_two"]), -10, 10)
-		if("set_saved_coord_one")
-			coords = get_new_list("coords_one")
-		if("set_saved_coord_two")
-			coords = get_new_list("coords_two")
-		if("set_saved_coord_three")
-			coords = get_new_list("coords_three")
-		if("change_saved_coord_one")
-			new_name = params["name"]
-			coords["name"] = new_name
-			last_three_inputs["coords_one"] = get_new_list("coords")
-		if("change_saved_coord_two")
-			new_name = params["name"]
-			coords["name"] = new_name
-			last_three_inputs["coords_two"] = get_new_list("coords")
-		if("change_saved_coord_three")
-			new_name = params["name"]
-			coords["name"] = new_name
-			last_three_inputs["coords_three"] = get_new_list("coords")
-		if("change_saved_one_name")
-			new_name = params["name"]
-			last_three_inputs["coords_one"]["name"] = new_name
-		if("change_saved_two_name")
-			new_name = params["name"]
-			last_three_inputs["coords_two"]["name"] = new_name
-		if("change_saved_three_name")
-			new_name = params["name"]
-			last_three_inputs["coords_three"]["name"] = new_name
-	if((coords["targ_x"] != 0 && coords["targ_y"] != 0))
-		usr.visible_message("<span class='notice'>[usr] adjusts [src]'s firing angle and distance.</span>",
-		"<span class='notice'>You adjust [src]'s firing angle and distance to match the new coordinates.</span>")
+	if(choice == "Target")
+		var/temp_targ_x = input("Set longitude of strike from 0 to [world.maxx].") as num
+		if(dial_x + temp_targ_x > world.maxx || dial_x + temp_targ_x < 0)
+			to_chat(user, "<span class='warning'>You cannot aim at this coordinate, it is outside of the area of operations.</span>")
+			return
+		var/temp_targ_y = input("Set latitude of strike from 0 to [world.maxy].") as num
+		if(dial_y + temp_targ_y > world.maxy || dial_y + temp_targ_y < 0)
+			to_chat(user, "<span class='warning'>You cannot aim at this coordinate, it is outside of the area of operations.</span>")
+			return
+		var/turf/T = locate(temp_targ_x + dial_x, temp_targ_y + dial_y, z)
+		if(get_dist(loc, T) < 7)
+			to_chat(user, "<span class='warning'>You cannot aim at this coordinate, it is too close to your mortar.</span>")
+			return
+		if(busy)
+			to_chat(user, "<span class='warning'>Someone else is currently using this mortar.</span>")
+			return
+		user.visible_message("<span class='notice'>[user] starts adjusting [src]'s firing angle and distance.</span>",
+		"<span class='notice'>You start adjusting [src]'s firing angle and distance to match the new coordinates.</span>")
+		busy = 1
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-		// allows for offsetting using the dial, I had accidentally misplaced this.
-		var/offset_x_max = round(abs((coords["targ_x"] + coords["dial_x"]) - x)/offset_per_turfs) //Offset of mortar shot, grows by 1 every 10 tiles travelled
-		var/offset_y_max = round(abs((coords["targ_y"] + coords["dial_y"]) - y)/offset_per_turfs)
-		offset_x = rand(-offset_x_max, offset_x_max)
-		offset_y = rand(-offset_y_max, offset_y_max)
-
-/**
-  * this proc is used because pointers suck and references would break the saving of coordinates.
-  *
-  */
-/obj/structure/mortar/proc/get_new_list(str)
-	var/list/target_data = list()
-	switch(str)
-		if("coords_three")
-			target_data.Add(last_three_inputs["coords_three"])
-		if("coords_two")
-			target_data.Add(last_three_inputs["coords_two"])
-		if("coords_one")
-			target_data.Add(last_three_inputs["coords_one"])
-		if("coords")
-			target_data.Add(coords)
-	return target_data
-
-/**
-  * checks if we are entering in the exact same coordinates, 
-  * and does not save them again.
-  */
-/obj/structure/mortar/proc/check_bombard_spam()
-	var/list/temp = get_new_list("coords")
-	for(var/i in temp)
-		if(!(last_three_inputs["coords_one"][i] == temp[i]) && !(last_three_inputs["coords_two"][i] == temp[i]) && !(last_three_inputs["coords_three"][i] == temp[i]))
-			return FALSE
-	return TRUE
+		if(do_after(user, 30, TRUE, src, BUSY_ICON_GENERIC))
+			user.visible_message("<span class='notice'>[user] finishes adjusting [src]'s firing angle and distance.</span>",
+			"<span class='notice'>You finish adjusting [src]'s firing angle and distance to match the new coordinates.</span>")
+			busy = 0
+			targ_x = temp_targ_x
+			targ_y = temp_targ_y
+			var/offset_x_max = round(abs((targ_x + dial_x) - x)/offset_per_turfs) //Offset of mortar shot, grows by 1 every 10 tiles travelled
+			var/offset_y_max = round(abs((targ_y + dial_y) - y)/offset_per_turfs)
+			offset_x = rand(-offset_x_max, offset_x_max)
+			offset_y = rand(-offset_y_max, offset_y_max)
+		else busy = 0
+	if(choice == "Dial")
+		var/temp_dial_x = input("Set longitude adjustement from -10 to 10.") as num
+		if(temp_dial_x + targ_x > world.maxx || temp_dial_x + targ_x < 0)
+			to_chat(user, "<span class='warning'>You cannot dial to this coordinate, it is outside of the area of operations.</span>")
+			return
+		if(temp_dial_x < -10 || temp_dial_x > 10)
+			to_chat(user, "<span class='warning'>You cannot dial to this coordinate, it is too far away. You need to set [src] up instead.</span>")
+			return
+		var/temp_dial_y = input("Set latitude adjustement from -10 to 10.") as num
+		if(temp_dial_y + targ_y > world.maxy || temp_dial_y + targ_y < 0)
+			to_chat(user, "<span class='warning'>You cannot dial to this coordinate, it is outside of the area of operations.</span>")
+			return
+		var/turf/T = locate(targ_x + temp_dial_x, targ_y + temp_dial_y, z)
+		if(get_dist(loc, T) < 10)
+			to_chat(user, "<span class='warning'>You cannot dial to this coordinate, it is too close to your mortar.</span>")
+			return
+		if(temp_dial_y < -10 || temp_dial_y > 10)
+			to_chat(user, "<span class='warning'>You cannot dial to this coordinate, it is too far away. You need to set [src] up instead.</span>")
+			return
+		if(busy)
+			to_chat(user, "<span class='warning'>Someone else is currently using this mortar.</span>")
+			return
+		user.visible_message("<span class='notice'>[user] starts dialing [src]'s firing angle and distance.</span>",
+		"<span class='notice'>You start dialing [src]'s firing angle and distance to match the new coordinates.</span>")
+		busy = 1
+		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+		if(do_after(user, 15, TRUE, src, BUSY_ICON_GENERIC))
+			user.visible_message("<span class='notice'>[user] finishes dialing [src]'s firing angle and distance.</span>",
+			"<span class='notice'>You finish dialing [src]'s firing angle and distance to match the new coordinates.</span>")
+			busy = 0
+			dial_x = temp_dial_x
+			dial_y = temp_dial_y
+		else busy = 0
 
 /obj/structure/mortar/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -164,16 +131,11 @@
 			to_chat(user, "<span class='warning'>You cannot fire [src] here.</span>")
 			return
 
-		if(coords["targ_x"] == 0 && coords["targ_y"] == 0) //Mortar wasn't set
+		if(targ_x == 0 && targ_y == 0) //Mortar wasn't set
 			to_chat(user, "<span class='warning'>[src] needs to be aimed first.</span>")
 			return
 
-		var/turf/selfown = locate((coords["targ_x"] + coords["dial_x"]), (coords["targ_y"] + coords["dial_y"]), z)
-		if(get_dist(loc, selfown) < 7)
-			to_chat(usr, "<span class='warning'>You cannot target this coordinate, it is too close to your mortar.</span>")
-			return		
-
-		var/turf/T = locate(coords["targ_x"] + coords["dial_x"] + offset_x, coords["targ_y"]  + coords["dial_x"] + offset_y, z)
+		var/turf/T = locate(targ_x + dial_x + offset_x, targ_y + dial_y + offset_y, z)
 		if(!isturf(T))
 			to_chat(user, "<span class='warning'>You cannot fire [src] to this target.</span>")
 			return
@@ -192,7 +154,6 @@
 			return
 
 		busy = FALSE
-
 		user.visible_message("<span class='notice'>[user] loads \a [mortar_shell.name] into [src].</span>",
 		"<span class='notice'>You load \a [mortar_shell.name] into [src].</span>")
 		visible_message("[icon2html(src, viewers(src))] <span class='danger'>The [name] fires!</span>")
@@ -366,30 +327,37 @@
 
 /obj/item/mortal_shell/flare/detonate(turf/T)
 
+	//TODO: Add flare sound
 	new /obj/item/flashlight/flare/on/illumination(T)
 	playsound(T, 'sound/weapons/guns/fire/flare.ogg', 50, 1, 4)
 
 //Special flare subtype for the illumination flare shell
 //Acts like a flare, just even stronger, and set length
 /obj/item/flashlight/flare/on/illumination
+
 	name = "illumination flare"
 	desc = "It's really bright, and unreachable."
 	icon_state = "" //No sprite
 	invisibility = INVISIBILITY_MAXIMUM //Can't be seen or found, it's "up in the sky"
-	resistance_flags = RESIST_ALL
 	mouse_opacity = 0
-	light_range = 7 //Way brighter than most lights
+	brightness_on = 7 //Way brighter than most lights
 
-/obj/item/flashlight/flare/on/illumination/Initialize()
-	. = ..()
-	fuel = rand(400, 500) // Half the duration of a flare, but justified since it's invincible
+	New()
+
+		..()
+		fuel = rand(400, 500) // Half the duration of a flare, but justified since it's invincible
 
 /obj/item/flashlight/flare/on/illumination/turn_off()
 
 	..()
 	qdel(src)
 
+/obj/item/flashlight/flare/on/illumination/ex_act(severity)
+
+	return //Nope
+
 /obj/structure/closet/crate/mortar_ammo
+
 	name = "\improper M402 mortar ammo crate"
 	desc = "A crate containing live mortar shells with various payloads. DO NOT DROP. KEEP AWAY FROM FIRE SOURCES."
 	icon = 'icons/Marine/mortar.dmi'

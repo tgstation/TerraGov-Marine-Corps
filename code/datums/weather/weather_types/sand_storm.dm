@@ -4,7 +4,6 @@
 	telegraph_message = "<span class='highdanger'>You see a dust cloud rising over the horizon. That can't be good...</span>"
 	telegraph_duration = 300
 	telegraph_overlay = "dust_med"
-	telegraph_sound = 'sound/effects/siren.ogg'
 
 	weather_message = "<span class='highdanger'><i>Hot sand and wind batter you! Get inside!</i></span>"
 	weather_duration_lower = 600
@@ -32,7 +31,6 @@
 
 	telegraph_message = "<span class='boldannounce'>The wind begins to intensify, blowing sand up from the ground...</span>"
 	telegraph_overlay = "dust_low"
-	telegraph_sound = null
 
 	weather_message = "<span class='notice'>Gentle sand wafts down around you like grotesque snow. The storm seems to have passed you by...</span>"
 	weather_overlay = "dust_med"

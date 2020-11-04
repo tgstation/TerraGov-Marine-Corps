@@ -72,8 +72,7 @@
 	can_hold = list(
 		/obj/item/weapon/combat_knife,
 		/obj/item/weapon/throwing_knife,
-		/obj/item/attachable/bayonet,
-	)
+		/obj/item/attachable/bayonet)
 	icon_state = "bayonet"
 	storage_slots = 3
 	draw_mode = 1
@@ -98,8 +97,7 @@
 		/obj/item/stack/medical/bruise_pack,
 		/obj/item/stack/sheet/metal,
 		/obj/item/stack/sheet/plasteel,
-		/obj/item/tool/weldingtool,
-	)
+		/obj/item/tool/weldingtool)
 
 /obj/item/storage/pouch/survival/full/Initialize()
 	. = ..()
@@ -123,8 +121,7 @@
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical/bruise_pack,
 		/obj/item/storage/pill_bottle/packet/tricordrazine,
-		/obj/item/stack/medical/splint,
-	)
+		/obj/item/stack/medical/splint)
 
 /obj/item/storage/pouch/firstaid/full
 	desc = "Standard marine first-aid pouch. Contains a painkiller autoinjector, a soothing pill packet, splints, some ointment, and some bandages."
@@ -166,8 +163,7 @@
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical/bruise_pack,
 		/obj/item/storage/pill_bottle/packet/tricordrazine,
-		/obj/item/stack/medical/splint,
-	)
+		/obj/item/stack/medical/splint)
 
 
 /obj/item/storage/pouch/firstaid/som/full
@@ -190,8 +186,7 @@
 	max_w_class = 3
 	can_hold = list(
 		/obj/item/weapon/gun/pistol,
-		/obj/item/weapon/gun/revolver,
-	)
+		/obj/item/weapon/gun/revolver)
 	draw_mode = 1
 
 /obj/item/storage/pouch/pistol/vp70/Initialize()
@@ -218,8 +213,7 @@
 		/obj/item/ammo_magazine/revolver,
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/ammo_magazine/handful,
-		/obj/item/cell/lasgun,
-	)
+		/obj/item/cell/lasgun)
 
 /obj/item/storage/pouch/magazine/smgfull
 	fill_type = /obj/item/ammo_magazine/smg/standard_machinepistol
@@ -249,8 +243,7 @@
 	can_hold = list(
 		/obj/item/ammo_magazine/pistol,
 		/obj/item/ammo_magazine/revolver,
-		/obj/item/ammo_magazine/smg/standard_machinepistol,
-	)
+		/obj/item/ammo_magazine/smg/standard_machinepistol)
 
 /obj/item/storage/pouch/magazine/pistol/large
 	name = "pistol magazine pouch"
@@ -294,8 +287,8 @@
 	fill_type = /obj/item/ammo_magazine/smg/m25/ap
 	fill_number = 3
 
-/obj/item/storage/pouch/magazine/large/pmc_famas
-	fill_type = /obj/item/ammo_magazine/rifle/famas
+/obj/item/storage/pouch/magazine/large/pmc_p90
+	fill_type = /obj/item/ammo_magazine/smg/p90
 	fill_number = 3
 
 /obj/item/storage/pouch/magazine/large/pmc_lmg
@@ -326,8 +319,7 @@
 		/obj/item/storage/box/explosive_mines,
 		/obj/item/ammo_magazine/rocket,
 		/obj/item/detpack,
-		/obj/item/assembly/signaler,
-	)
+		/obj/item/assembly/signaler)
 
 /obj/item/storage/pouch/explosive/full
 	fill_type = /obj/item/explosive/grenade/frag
@@ -357,8 +349,7 @@
 	icon_state = "explosive"
 	storage_slots = 6
 	can_hold = list(
-		/obj/item/explosive/grenade,
-	)
+		/obj/item/explosive/grenade)
 
 /obj/item/storage/pouch/grenade/slightlyfull
 	fill_type = /obj/item/explosive/grenade/frag
@@ -380,8 +371,7 @@
 		/obj/item/stack/medical,
 		/obj/item/flashlight/pen,
 		/obj/item/storage/pill_bottle/packet,
-		/obj/item/reagent_containers/hypospray,
-	)
+		/obj/item/reagent_containers/hypospray)
 
 /obj/item/storage/pouch/medical/full/Initialize()
 	. = ..()
@@ -402,8 +392,7 @@
 	storage_slots = 7
 	max_storage_space = 14
 	can_hold = list(
-		/obj/item/reagent_containers/hypospray/autoinjector,
-	)
+		/obj/item/reagent_containers/hypospray/autoinjector)
 
 /obj/item/storage/pouch/autoinjector/full/Initialize()
 	. = ..()
@@ -422,8 +411,7 @@
 	storage_slots = 7
 	max_storage_space = 14
 	can_hold = list(
-		/obj/item/reagent_containers/hypospray/autoinjector,
-	)
+		/obj/item/reagent_containers/hypospray/autoinjector)
 
 /obj/item/storage/pouch/autoinjector/advanced/full/Initialize()
 	. = ..()
@@ -464,8 +452,7 @@
 		/obj/item/stack/medical,
 		/obj/item/flashlight/pen,
 		/obj/item/storage/pill_bottle/packet,
-		/obj/item/reagent_containers/hypospray,
-	)
+		/obj/item/reagent_containers/hypospray)
 
 /obj/item/storage/pouch/medkit/full/Initialize()
 	. = ..()
@@ -494,8 +481,7 @@
 	storage_slots = 7
 	can_hold = list(
 		/obj/item/paper,
-		/obj/item/clipboard,
-	)
+		/obj/item/clipboard)
 
 
 /obj/item/storage/pouch/flare
@@ -507,8 +493,7 @@
 	icon_state = "flare"
 	can_hold = list(
 		/obj/item/flashlight/flare,
-		/obj/item/explosive/grenade/flare,
-	)
+		/obj/item/explosive/grenade/flare)
 
 
 /obj/item/storage/pouch/flare/attackby(obj/item/I, mob/user, params)
@@ -567,8 +552,7 @@
 		/obj/item/flashlight,
 		/obj/item/whistle,
 		/obj/item/binoculars,
-		/obj/item/squad_beacon,
-	)
+		/obj/item/squad_beacon)
 
 /obj/item/storage/pouch/field_pouch/full/Initialize()
 	. = ..()
@@ -585,8 +569,7 @@
 	storage_slots = 6
 	can_hold = list(
 		/obj/item/circuitboard,
-		/obj/item/cell,
-	)
+		/obj/item/cell)
 
 /obj/item/storage/pouch/electronics/full/Initialize()
 	. = ..()
@@ -607,8 +590,7 @@
 		/obj/item/stack/rods,
 		/obj/item/stack/cable_coil,
 		/obj/item/tool/shovel/etool,
-		/obj/item/stack/sandbags_empty,
-	)
+		/obj/item/stack/sandbags_empty)
 
 /obj/item/storage/pouch/construction/full/Initialize()
 	. = ..()
@@ -637,8 +619,7 @@
 		/obj/item/multitool,
 		/obj/item/tool/wrench,
 		/obj/item/stack/cable_coil,
-		/obj/item/tool/extinguisher/mini,
-	)
+		/obj/item/tool/extinguisher/mini)
 
 /obj/item/storage/pouch/tools/full/Initialize()
 	. = ..()

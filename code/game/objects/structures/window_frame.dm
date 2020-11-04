@@ -16,8 +16,7 @@
 	var/reinforced = FALSE
 
 	tiles_with = list(
-		/turf/closed/wall,
-	)
+		/turf/closed/wall)
 
 	var/tiles_special[] = list(/obj/machinery/door/airlock,
 		/obj/structure/window/framed,

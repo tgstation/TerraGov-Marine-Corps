@@ -370,8 +370,7 @@
 		/obj/item/ammo_magazine/minisentry,
 		/obj/item/marine_turret/mini,
 		/obj/item/stack/razorwire,
-		/obj/item/stack/sandbags,
-	)
+		/obj/item/stack/sandbags)
 
 /obj/item/storage/backpack/marine/satchel
 	name = "\improper TGMC satchel"
@@ -820,4 +819,6 @@
 	storage_slots = 5 //It can hold 5 rockets.
 	max_storage_space = 21
 	max_w_class = 4
-	can_hold = list(/obj/item/ammo_magazine/rocket)
+	can_hold = list(
+		/obj/item/ammo_magazine/rocket
+	)

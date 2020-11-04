@@ -32,7 +32,7 @@
 	bypass_w_limit = list(
 		/obj/item/standard_hmg,
 		/obj/item/ammo_magazine/standard_hmg,
-	)
+		)
 
 /obj/item/storage/box/standard_hmg/Initialize()
 	. = ..()

@@ -16,8 +16,7 @@
 	throw_range = 8
 	cant_hold = list(
 		/obj/item/ammo_magazine,
-		/obj/item/explosive/grenade,
-	)
+		/obj/item/explosive/grenade)
 	var/empty = FALSE //whether the kit starts empty
 	var/icon_full //icon state to use when kit is full
 	var/possible_icons_full
@@ -158,8 +157,7 @@
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/paper,
 		/obj/item/reagent_containers/syringe,
-		/obj/item/reagent_containers/hypospray/autoinjector,
-	)
+		/obj/item/reagent_containers/hypospray/autoinjector)
 
 /obj/item/storage/syringe_case/regular
 	name = "basic syringe case"
@@ -267,8 +265,7 @@
 	can_hold = list(
 		/obj/item/reagent_containers/pill,
 		/obj/item/toy/dice,
-		/obj/item/paper,
-	)
+		/obj/item/paper)
 	allow_quick_gather = 1
 	use_to_pickup = 1
 	storage_slots = null

@@ -39,32 +39,12 @@
 	var/list/baseturfs = /turf/baseturf_bottom
 	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
 
-	luminosity = 1
-
 	var/changing_turf = FALSE
 
 	/// %-reduction-based armor.
 	var/datum/armor/soft_armor
 	/// Flat-damage-reduction-based armor.
 	var/datum/armor/hard_armor
-
-	var/dynamic_lighting = TRUE
-
-
-	var/tmp/lighting_corners_initialised = FALSE
-
-	///Lumcount added by sources other than lighting datum objects, such as the overlay lighting component.
-	var/dynamic_lumcount = 0
-	///List of light sources affecting this turf.
-	var/tmp/list/datum/light_source/affecting_lights
-	///Our lighting object.
-	var/tmp/atom/movable/lighting_object/lighting_object
-	var/tmp/list/datum/lighting_corner/corners
-
-	///Which directions does this turf block the vision of, taking into account both the turf's opacity and the movable opacity_sources.
-	var/directional_opacity = NONE
-	///Lazylist of movable atoms providing opacity sources.
-	var/list/atom/movable/opacity_sources
 
 
 /turf/Initialize(mapload)
@@ -92,7 +72,7 @@
 		update_light()
 
 	if(opacity)
-		directional_opacity = ALL_CARDINALS
+		has_opaque_atom = TRUE
 
 	if(islist(soft_armor))
 		soft_armor = getArmor(arglist(soft_armor))
@@ -263,11 +243,11 @@
 	if(flags & CHANGETURF_SKIP)
 		return new path(src)
 
+	var/old_opacity = opacity
 	var/old_dynamic_lighting = dynamic_lighting
 	var/old_affecting_lights = affecting_lights
 	var/old_lighting_object = lighting_object
 	var/old_corners = corners
-	var/old_directional_opacity = directional_opacity
 
 	var/list/old_baseturfs = baseturfs
 
@@ -293,11 +273,12 @@
 		W.AfterChange(flags)
 
 	if(SSlighting.initialized)
+		recalc_atom_opacity()
 		lighting_object = old_lighting_object
 		affecting_lights = old_affecting_lights
 		corners = old_corners
-		directional_opacity = old_directional_opacity
-		recalculate_directional_opacity()
+		if(old_opacity != opacity || dynamic_lighting != old_dynamic_lighting)
+			reconsider_lights()
 
 		if(dynamic_lighting != old_dynamic_lighting)
 			if (IS_DYNAMIC_LIGHTING(src))

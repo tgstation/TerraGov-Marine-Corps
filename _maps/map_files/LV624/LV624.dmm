@@ -8814,13 +8814,24 @@
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/lv624/ground/jungle6)
+"aOm" = (
+/obj/structure/table,
+/turf/open/floor/tile/purple/whitepurple{
+	dir = 5
+	},
+/area/lv624/ground/compound/c)
+"aOn" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/tile/white,
+/area/lv624/ground/compound/c)
 "aOo" = (
 /obj/item/clothing/mask/facehugger/dead,
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
-/area/lv624/lazarus/research)
+/area/lv624/ground/compound/c)
 "aOp" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor,
@@ -11859,7 +11870,9 @@
 /area/lv624/lazarus/security)
 "bcS" = (
 /obj/structure/table/reinforced,
-/obj/item/flashlight/lamp,
+/obj/item/flashlight/lamp{
+	on = 0
+	},
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 8
 	},
@@ -11978,10 +11991,6 @@
 /obj/item/ammo_magazine/pistol/b92fs,
 /obj/item/ammo_magazine/pistol/b92fs,
 /obj/item/ammo_magazine/pistol/b92fs,
-/obj/item/weapon/gun/rifle/m412,
-/obj/item/ammo_magazine/rifle,
-/obj/item/ammo_magazine/rifle,
-/obj/item/ammo_magazine/rifle,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/security)
 "bdM" = (
@@ -14529,7 +14538,6 @@
 /obj/structure/rack,
 /obj/item/ammo_magazine/shotgun,
 /obj/item/ammo_magazine/shotgun/buckshot,
-/obj/item/ammo_magazine/shotgun/flechette,
 /turf/open/floor/plating/platebot,
 /area/lv624/lazarus/secure_storage)
 "bqe" = (
@@ -30639,7 +30647,7 @@ aGb
 aLy
 aGd
 aNo
-aFp
+aOm
 aEO
 aMm
 aNk
@@ -30818,7 +30826,7 @@ aKT
 aLz
 aKd
 aKd
-aKd
+aOn
 awU
 aOi
 aQR

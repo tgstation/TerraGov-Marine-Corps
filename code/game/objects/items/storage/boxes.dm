@@ -277,8 +277,7 @@
 	icon_state = "lightmixed"
 	can_hold = list(
 		/obj/item/light_bulb/tube/large,
-		/obj/item/light_bulb/bulb,
-	)
+		/obj/item/light_bulb/bulb)
 
 /obj/item/storage/box/lights/mixed/Initialize(mapload, ...)
 	. = ..()
@@ -460,19 +459,17 @@
 	max_w_class = 4
 	storage_slots = 30
 	max_storage_space = 60	//SMG and pistol sized (tiny and small) mags can fit all 30 slots, normal (LMG and AR) fit 20
-	can_hold = list(
-		/obj/item/ammo_magazine/pistol,
-		/obj/item/ammo_magazine/smg,
-		/obj/item/ammo_magazine/rifle,
-		/obj/item/ammo_magazine/magnum,
-		/obj/item/ammo_magazine/revolver,
-		/obj/item/ammo_magazine/acp,
-		/obj/item/ammo_magazine/standard_lmg,
-		/obj/item/ammo_magazine/standard_smartmachinegun,
-		/obj/item/ammo_magazine/m412l1_hpr,
-		/obj/item/ammo_magazine/shotgun,
-		/obj/item/ammo_magazine/sniper,
-	)
+	can_hold = list(/obj/item/ammo_magazine/pistol,
+					/obj/item/ammo_magazine/smg,
+					/obj/item/ammo_magazine/rifle,
+					/obj/item/ammo_magazine/magnum,
+					/obj/item/ammo_magazine/revolver,
+					/obj/item/ammo_magazine/acp,
+					/obj/item/ammo_magazine/standard_lmg,
+					/obj/item/ammo_magazine/standard_smartmachinegun,
+					/obj/item/ammo_magazine/m412l1_hpr,
+					/obj/item/ammo_magazine/shotgun,
+					/obj/item/ammo_magazine/sniper)
 
 	var/deployed = FALSE
 

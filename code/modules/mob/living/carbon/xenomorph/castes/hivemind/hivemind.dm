@@ -33,9 +33,9 @@
 	var/obj/effect/alien/hivemindcore/core
 
 /mob/living/carbon/xenomorph/hivemind/Initialize(mapload)
-	. = ..()
-	core = new(loc)
-	core.parent = src
+    . = ..()
+    core = new(loc)
+    core.parent = src
 
 /mob/living/carbon/xenomorph/hivemind/Destroy()
 	if(!QDELETED(core))

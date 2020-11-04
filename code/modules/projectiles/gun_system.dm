@@ -13,10 +13,6 @@
 	sprite_sheet_id = 1
 	flags_atom = CONDUCT
 	flags_item = TWOHANDED
-	light_system = MOVABLE_LIGHT
-	light_range = 0
-	light_on = FALSE
-	light_color = COLOR_WHITE
 
 	var/atom/movable/vis_obj/effect/muzzle_flash/muzzle_flash
 	var/muzzleflash_iconstate
@@ -971,11 +967,9 @@ and you're good to go.
 	if(!muzzle_flash || muzzle_flash.applied)
 		return
 	var/prev_light = light_range
-	if(!light_on && (light_range <= muzzle_flash_lum))
-		set_light_range(muzzle_flash_lum)
-		set_light_color(COLOR_VERY_SOFT_YELLOW)
-		set_light_on(TRUE)
-		addtimer(CALLBACK(src, .proc/reset_light_range, prev_light), 1 SECONDS)
+	if(light_range < muzzle_flash_lum)
+		set_light(muzzle_flash_lum)
+		addtimer(CALLBACK(src, /atom.proc/set_light, prev_light), 1 SECONDS)
 
 	//Offset the pixels.
 	switch(angle)
@@ -1051,11 +1045,6 @@ and you're good to go.
 
 	addtimer(CALLBACK(src, .proc/remove_muzzle_flash, flash_loc, muzzle_flash), 0.2 SECONDS)
 
-/obj/item/weapon/gun/proc/reset_light_range(lightrange)
-	set_light_range(lightrange)
-	set_light_color(initial(light_color))
-	if(lightrange <= 0)
-		set_light_on(FALSE)
 
 /obj/item/weapon/gun/proc/remove_muzzle_flash(atom/movable/flash_loc, atom/movable/vis_obj/effect/muzzle_flash/muzzle_flash)
 	if(!QDELETED(flash_loc))
