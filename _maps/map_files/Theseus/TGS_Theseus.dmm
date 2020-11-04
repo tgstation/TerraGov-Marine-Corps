@@ -36675,7 +36675,6 @@
 	},
 /area/mainship/hallways/hangar)
 "mKV" = (
-/obj/structure/closet/l3closet/virology,
 /turf/open/floor/mainship{
 	icon_state = "sterile_green_corner"
 	},
@@ -38299,6 +38298,12 @@
 	dir = 1
 	},
 /area/mainship/shipboard/ex_firing_range)
+"wta" = (
+/obj/structure/closet/l3closet/virology,
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
+/area/mainship/medical/medical_science)
 "wtu" = (
 /obj/machinery/power/monitor,
 /obj/structure/cable,
@@ -70282,7 +70287,7 @@ arM
 xOC
 aoz
 xjZ
-anc
+wta
 aoz
 xjQ
 aDA
