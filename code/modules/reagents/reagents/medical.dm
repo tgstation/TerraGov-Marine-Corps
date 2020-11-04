@@ -145,8 +145,8 @@
 	description = "An effective but very short lasting painkiller only made by autodocs."
 	color = "#C805DC"
 	custom_metabolism = REAGENTS_METABOLISM * 2
-	overdose_threshold = 4 //You aren't using this out of combat. And only the B18 makes it.
-	overdose_crit_threshold = 6
+	overdose_threshold = 10 //You aren't using this out of combat. And only the B18 makes it.
+	overdose_crit_threshold = 15
 	scannable = TRUE
 
 /datum/reagent/medicine/hydrocodone/on_mob_life(mob/living/L, metabolism)
