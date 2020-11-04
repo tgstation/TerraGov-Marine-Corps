@@ -213,41 +213,36 @@
 	if(get_dist(owner, A) > 1)
 		to_chat(owner, "<span class='warning'>We need to be next to our prey.</span>")
 		return FALSE
-	if(!A?.can_sting())
+	if(!A.can_sting())
 		to_chat(owner, "<span class='warning'>Our slash won't affect this target!</span>")
 		return FALSE
 	return TRUE
 
 /datum/action/xeno_action/activable/reagent_slash/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
-	var/slash_count = 4
-	var/reagent_transfer_amount = 3
 	succeed_activate()
-	slash_action(A, X.selected_reagent, channel_time = 1.2 SECONDS, count = slash_count, transfer_amount = reagent_transfer_amount)
+	slash_action(A, X.selected_reagent, channel_time = DEFILER_REAGENT_SLASH_DELAY, count = DEFILER_REAGENT_SLASH_COUNT, transfer_amount = DEFILER_REAGENT_SLASH_U_AMOUNT)
 	add_cooldown()
 
 /datum/action/xeno_action/activable/reagent_slash/proc/slash_action(mob/living/carbon/C, toxin = /datum/reagent/toxin/xeno_neurotoxin, channel_time = 1 SECONDS, transfer_amount = 4, count = 3)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/datum/limb/affecting = X.zone_selected
-	if(!C?.can_sting())
-		return FALSE
 	var/datum/reagent/body_tox
 	var/i = 1
 	do
-		X.face_atom(C)
+		if(get_dist(X, C) > 1)
+			to_chat(X, "<span class='warning'>We need to be closer to [C].</span>")
+			return
 		if(X.stagger)
-			return FALSE
+			return 
+		X.face_atom(C)
 		body_tox = C.reagents.get_reagent(toxin)
 		C.reagents.add_reagent(toxin, transfer_amount)
 		if(!body_tox) //Let's check this each time because depending on the metabolization rate it can disappear between slashes.
 			body_tox = C.reagents.get_reagent(toxin)
-		if(get_dist(X, C) > 1)
-			to_chat(X, "<span class='warning'>We need to be closer to [C].</span>")
-			return
 		playsound(C, "alien_claw_flesh", 25, TRUE)
 		playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
 		C.attack_alien_harm(X, dam_bonus = -17, set_location = affecting, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null) //dam_bonus influences slash amount using attack damage as a base, it's low because you can slash while the effect is going on
 		X.visible_message(C, "<span class='danger'>The [X] swipes at [C]!</span>")
 		X.do_attack_animation(C)
 	while(i++ < count && do_after(X, channel_time, TRUE, null, BUSY_ICON_HOSTILE, ignore_turf_checks = TRUE))
-	return TRUE

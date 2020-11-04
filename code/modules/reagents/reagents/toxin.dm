@@ -570,7 +570,6 @@
 	var/dam = min(damage*0.4, 45 - L.getToxLoss()) // hard caps damage conversion to not exceed 45 tox
 	if(((L.getBruteLoss() + L.getFireLoss()) >= dam) && current_cycle > 2)
 		L.adjustToxLoss(dam)
-		if(L.getBruteLoss())
-			healed_brute = min(dam, L.getBruteLoss())
-			L.heal_limb_damage(healed_brute)
+		healed_brute = min(dam, L.getBruteLoss())
+		L.heal_limb_damage(healed_brute)
 		L.heal_limb_damage(0, dam - healed_brute)
