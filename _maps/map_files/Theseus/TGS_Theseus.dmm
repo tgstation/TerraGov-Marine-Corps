@@ -2875,8 +2875,8 @@
 	},
 /area/mainship/command/corporateliaison)
 "aiO" = (
-/obj/item/weapon/gun/pistol/vp70,
-/obj/item/ammo_magazine/pistol/vp70,
+/obj/item/weapon/gun/pistol/m18,
+/obj/item/ammo_magazine/pistol/m18,
 /obj/structure/closet/cabinet,
 /obj/item/clothing/under/liaison_suit/formal,
 /obj/item/clothing/under/liaison_suit,

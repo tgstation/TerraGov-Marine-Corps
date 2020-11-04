@@ -2499,8 +2499,8 @@
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/hallways/hangar)
 "iS" = (
-/obj/item/weapon/gun/pistol/vp70,
-/obj/item/ammo_magazine/pistol/vp70,
+/obj/item/weapon/gun/pistol/m18,
+/obj/item/ammo_magazine/pistol/m18,
 /obj/structure/closet/cabinet,
 /obj/item/clothing/under/liaison_suit/formal,
 /obj/item/clothing/under/liaison_suit,
