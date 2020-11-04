@@ -931,7 +931,6 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = 0
 	movement_acc_penalty_mod = 0
 
-
 /*
 /obj/item/attachable/stock/vp70 //The gun that uses this no longer exists. So its commented out
 	name = "88 Mod 4 stock and holster"
