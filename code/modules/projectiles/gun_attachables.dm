@@ -931,7 +931,9 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = 0
 	movement_acc_penalty_mod = 0
 
-/obj/item/attachable/stock/vp70
+
+/*
+/obj/item/attachable/stock/vp70 //The gun that uses this no longer exists. So its commented out
 	name = "88 Mod 4 stock and holster"
 	desc = "A rare holster-stock distributed in small numbers to TGMC forces. Compatible with the 88 Mod 4, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
 	slot = "stock"
@@ -978,6 +980,7 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/stock/vp70/emp_act(severity)
 	pockets.emp_act(severity)
 	return ..()
+*/
 
 /obj/item/attachable/stock/revolver
 	name = "\improper M44 magnum sharpshooter stock"
