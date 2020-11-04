@@ -2881,9 +2881,9 @@
 	name = "logistics rubber stamp"
 	},
 /obj/item/storage/box/ids,
-/obj/item/ammo_magazine/pistol/vp70,
-/obj/item/weapon/gun/pistol/vp70,
-/obj/item/ammo_magazine/pistol/vp70,
+/obj/item/ammo_magazine/pistol/m18,
+/obj/item/weapon/gun/pistol/m18,
+/obj/item/ammo_magazine/pistol/m18,
 /turf/open/floor/wood,
 /area/sulaco/bridge/office)
 "akv" = (
@@ -12402,10 +12402,10 @@
 	},
 /obj/item/stack/sheet/mineral/diamond,
 /obj/item/stack/sheet/mineral/gold,
-/obj/item/weapon/gun/pistol/vp70,
-/obj/item/ammo_magazine/pistol/vp70,
-/obj/item/ammo_magazine/pistol/vp70,
-/obj/item/ammo_magazine/pistol/vp70,
+/obj/item/weapon/gun/pistol/m18,
+/obj/item/ammo_magazine/pistol/m18,
+/obj/item/ammo_magazine/pistol/m18,
+/obj/item/ammo_magazine/pistol/m18,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
 "ben" = (
