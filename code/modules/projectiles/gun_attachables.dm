@@ -953,7 +953,7 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/storage/internal/pockets/vp70holster
 	storage_slots = 1
 	max_w_class = 1
-	bypass_w_limit = list(/obj/item/weapon/gun/pistol/vp70)
+	bypass_w_limit = list(/obj/item/weapon/gun/pistol/m18)
 	max_storage_space = 3
 
 /obj/item/attachable/stock/vp70/Initialize()

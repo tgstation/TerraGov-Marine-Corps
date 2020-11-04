@@ -196,7 +196,7 @@
 
 /obj/item/storage/pouch/pistol/vp70/Initialize()
 	. = ..()
-	new /obj/item/weapon/gun/pistol/vp70(src)
+	new /obj/item/weapon/gun/pistol/m18(src)
 
 /obj/item/storage/pouch/pistol/m4a3/Initialize()
 	. = ..()
@@ -271,7 +271,7 @@
 	fill_number = 6
 
 /obj/item/storage/pouch/magazine/pistol/vp70
-	fill_type = /obj/item/ammo_magazine/pistol/vp70
+	fill_type = /obj/item/ammo_magazine/pistol/m18
 	fill_number = 3
 
 /obj/item/storage/pouch/magazine/pistol/pmc_vp78

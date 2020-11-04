@@ -193,15 +193,15 @@
 
 
 //-------------------------------------------------------
-//VP70 //Not actually the VP70, but it's more or less the same thing. VP70 was the standard sidearm in Aliens though.
+//Blocc 18.
 
-/obj/item/ammo_magazine/pistol/vp70
-	name = "\improper 88M4 AP magazine (9mm)"
+/obj/item/ammo_magazine/pistol/m18
+	name = "\improper M-18 AP magazine (9mm)"
 	default_ammo = /datum/ammo/bullet/pistol/ap
 	caliber = "9x19mm Parabellum"
-	icon_state = "88m4"
+	icon_state = "m18"
 	max_rounds = 18
-	gun_type = /obj/item/weapon/gun/pistol/vp70
+	gun_type = /obj/item/weapon/gun/pistol/m18
 
 
 //-------------------------------------------------------

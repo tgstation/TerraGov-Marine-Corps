@@ -224,7 +224,7 @@
 		/obj/item/weapon/gun/pistol/kt42,
 		/obj/item/weapon/gun/pistol/holdout,
 		/obj/item/weapon/gun/pistol/highpower,
-		/obj/item/weapon/gun/pistol/vp70,
+		/obj/item/weapon/gun/pistol/m18,
 		/obj/item/weapon/gun/pistol/vp78,
 		/obj/item/weapon/gun/revolver/standard_revolver,
 		/obj/item/weapon/gun/revolver/m44,

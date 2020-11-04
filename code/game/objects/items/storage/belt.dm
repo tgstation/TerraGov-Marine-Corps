@@ -656,11 +656,11 @@
 
 /obj/item/storage/belt/gun/m4a3/vp70/Initialize()
 	. = ..()
-	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/vp70(src)
-	new /obj/item/ammo_magazine/pistol/vp70(src)
-	new /obj/item/ammo_magazine/pistol/vp70(src)
-	new /obj/item/ammo_magazine/pistol/vp70(src)
-	new /obj/item/ammo_magazine/pistol/vp70(src)
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/m18(src)
+	new /obj/item/ammo_magazine/pistol/m18(src)
+	new /obj/item/ammo_magazine/pistol/m18(src)
+	new /obj/item/ammo_magazine/pistol/m18(src)
+	new /obj/item/ammo_magazine/pistol/m18(src)
 	new_gun.on_enter_storage(src)
 
 /obj/item/storage/belt/gun/m4a3/vp78/Initialize()

@@ -436,13 +436,13 @@
 	scatter = 10
 
 //-------------------------------------------------------
-//VP70 //Not actually the VP70, but it's more or less the same thing. VP70 was the standard sidearm in Aliens though.
+//Blocc 18.
 
-/obj/item/weapon/gun/pistol/vp70
-	name = "\improper 88 Mod 4 combat pistol"
-	desc = "A powerful sidearm issued mainly to Nanotrasen private contractors, but issued to TGMC in very small numbers, based on the original VP70 more than a century ago. Fires 9mm armor piercing rounds and is capable of 3-round burst or automatic fire."
-	icon_state = "88m4"
-	item_state = "88m4"
+/obj/item/weapon/gun/pistol/m18
+	name = "\improper M-18 combat pistol"
+	desc = "An uncommon automatic sidearm used widely across the galaxy. Some can be found in TGMC hands in very small numbers. Fires 9mm armor piercing rounds and is capable of 3-round burst or automatic fire."
+	icon_state = "m18"
+	item_state = "m18"
 	caliber = "9x19mm Parabellum" //codex
 	max_shells = 18 //codex
 	fire_sound = 'sound/weapons/guns/fire/vp70.ogg'
@@ -450,7 +450,7 @@
 	unload_sound = 'sound/weapons/guns/interact/vp70_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/vp70_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/vp70_cocked.ogg'
-	current_mag = /obj/item/ammo_magazine/pistol/vp70
+	current_mag = /obj/item/ammo_magazine/pistol/m18
 	force = 8
 	attachable_allowed = list(
 		/obj/item/attachable/suppressor,
