@@ -623,6 +623,7 @@ TUNNEL
 	. = ..()
 	GLOB.xeno_tunnels += src
 	prepare_huds()
+	hud_set_xeno_tunnel()
 
 /obj/structure/tunnel/Destroy()
 	if(!QDELETED(creator))
@@ -718,7 +719,7 @@ TUNNEL
 	else
 		to_chat(M, "<span class='warning'>Our crawling was interrupted!</span>")
 
-/obj/structure/tunnel/proc/hud_set_xeno_tunnel()
+/obj/structure/tunnel/proc/hud_set_xeno_tunnel() //called upon creation
 	var/image/holder = hud_list[XENO_TUNNEL_HUD]
 	if(!holder)
 		return

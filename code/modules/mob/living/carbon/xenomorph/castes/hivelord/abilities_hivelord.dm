@@ -167,7 +167,6 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	X.visible_message("<span class='xenonotice'>\The [X] digs out a tunnel entrance.</span>", \
 	"<span class='xenonotice'>We dig out a tunnel, connecting it to our network.</span>", null, 5)
 	var/obj/structure/tunnel/newt = new(T)
-	newt.hud_set_xeno_tunnel() //Add to HUD.
 
 	playsound(T, 'sound/weapons/pierce.ogg', 25, 1)
 
@@ -179,12 +178,13 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	add_cooldown()
 
-	to_chat(X, "<span class='xenonotice'>We dig out a tunnel, connecting it to our hive's network. We now have [LAZYLEN(X.tunnels)] of [HIVELORD_TUNNEL_SET_LIMIT] tunnels.</span>")
+	to_chat(X, "<span class='xenonotice'>We now have [LAZYLEN(X.tunnels)] of [HIVELORD_TUNNEL_SET_LIMIT] tunnels.</span>")
 
 	var/msg = stripped_input(X, "Add a description to the tunnel:", "Tunnel Description")
 	newt.tunnel_desc = sanitize("[get_area(newt)] (X: [newt.x], Y: [newt.y]) [msg]")
 	newt.name += sanitize(" [msg]")
 
+	to_chat(X, "<span class='xenoannounce'>[sanitize(X.name)] has built a new tunnel named [newt.name] at [newt.tunnel_desc]!</span>")
 	xeno_message("<span class='xenoannounce'>[sanitize(X.name)] has built a new tunnel named [newt.name] at [newt.tunnel_desc]!</span>", 2, X.hivenumber)
 
 	if(LAZYLEN(X.tunnels) > HIVELORD_TUNNEL_SET_LIMIT) //if we exceed the limit, delete the oldest tunnel set.
