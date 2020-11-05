@@ -575,6 +575,6 @@
 	L.adjustToxLoss(dam)
 	healed_brute = min(dam, L.getBruteLoss())
 	L.heal_limb_damage(healed_brute)
-	if(L.getFireLoss() <= 0)
+	if(!L.getFireLoss())
 		return
 	L.heal_limb_damage(0, dam - healed_brute)
