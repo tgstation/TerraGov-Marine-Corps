@@ -97,10 +97,7 @@
 		H.acid_spray_crossed(slow_amt)
 
 	for(var/atom/A in loc) //Infrastructure for other interactions
-		SEND_SIGNAL(A, COMSIG_ATOM_ACID_SPRAYED, src)
-
-/atom/proc/acidspray_act()
-	return
+		SEND_SIGNAL(A, COMSIG_ATOM_ACIDSPRAY_ACT, src)
 
 //Medium-strength acid
 /obj/effect/xenomorph/acid
