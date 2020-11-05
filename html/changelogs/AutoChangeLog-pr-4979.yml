@@ -1,5 +1,0 @@
-author: "MacBlaze1"
-delete-after: True
-changes: 
-  - rscadd: "Added saving previous coordinates to the mortar, and the ability to go back to them"
-  - rscadd: "Added a new UI for the mortar"

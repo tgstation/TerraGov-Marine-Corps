@@ -218,7 +218,7 @@ directive is properly returned.
 
 
 /atom/proc/examine(mob/user)
-	SHOULD_CALL_PARENT(1)
+	SHOULD_CALL_PARENT(TRUE)
 	if(!istype(src, /obj/item))
 		to_chat(user, "[icon2html(src, user)] That's \a [src].")
 
@@ -652,6 +652,7 @@ Proc for attack log creation, because really why not
 	to_chat(user, "<span class='warning'>Cannot extract [src].</span>")
 	return TRUE
 
+///This proc is called on atoms when they are loaded into a shuttle
 /atom/proc/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
 	return
 
