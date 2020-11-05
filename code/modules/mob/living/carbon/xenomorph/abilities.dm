@@ -66,7 +66,9 @@
 		if(!silent)
 			to_chat(X, "<span class='warning'>This creature has already been headbitten.</span>")
 		return FALSE
-	if(!victim.chestburst == 0)
+	if(victim.chestburst)
+		if(!silent)
+			to_chat(X, "<span class='warning'>This creature has already served its purpose.</span>")
 		return FALSE
 	if(X.issamexenohive(victim)) //checks if target and victim are in the same hive
 		if(!silent)
@@ -109,7 +111,7 @@
 	victim.headbitten = TRUE
 	victim.update_headbite()
 
-	log_combat(src, null, "was headbitten.")
+	log_combat(victim, owner, "was headbitten.")
 	log_game("[key_name(victim)] was headbitten at [AREACOORD(victim.loc)].")
 
 	GLOB.round_statistics.xeno_headbites++

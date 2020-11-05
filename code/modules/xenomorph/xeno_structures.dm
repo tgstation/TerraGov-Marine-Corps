@@ -35,7 +35,6 @@
 	var/turf/center_turf
 	var/datum/hive_status/associated_hive
 	var/silo_area
-	var/list/corpses = list()
 
 
 /obj/structure/resin/silo/Initialize()
@@ -62,7 +61,7 @@
 	silo_area = get_area(src)
 
 
-/obj/structure/resin/silo/Destroy() //to do: have destroyed silo eject stored corpses
+/obj/structure/resin/silo/Destroy()
 	GLOB.xeno_resin_silos -= src
 	if(associated_hive)
 		UnregisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
@@ -71,7 +70,6 @@
 	for(var/i in contents)
 		var/atom/movable/AM = i
 		AM.forceMove(loc)
-	corpses = null
 	playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
 	return ..()
 
@@ -109,51 +107,56 @@
 		return
 
 	var/obj/item/grab/G = I
-
-	var/mob/M
-	if(ismob(G.grabbed_thing))
-		M = G.grabbed_thing
-
-	if(!M || !G)
+	if(!iscarbon(G.grabbed_thing))
 		return
-
-	var/mob/living/carbon/victim = M
+	var/mob/living/carbon/victim = G.grabbed_thing
 	if(!(ishuman(victim) || ismonkey(victim))) //humans and monkeys only for now
 		to_chat(user, "<span class='notice'>[src] can only process humanoid anatomies!</span>")
 		return
 
-	if(!victim.chestburst == 0)
-		to_chat(user, "<span class='notice'>[M] has already been exhausted to incubate a sister!</span>")
+	if(victim.chestburst)
+		to_chat(user, "<span class='notice'>[victim] has already been exhausted to incubate a sister!</span>")
 		return
 
 	if(issynth(victim))
-		to_chat(user, "<span class='notice'>[M] has no useful biomass for us.</span>")
+		to_chat(user, "<span class='notice'>[victim] has no useful biomass for us.</span>")
 		return
 
 	if(ishuman(victim))
 		var/mob/living/carbon/human/H = victim
 		if(check_tod(H))
-			to_chat(user, "<span class='notice'>[M] still has some signs of life. We should headbite it to finish it off.</span>")
+			to_chat(user, "<span class='notice'>[H] still has some signs of life. We should headbite it to finish it off.</span>")
 			return
 
-	visible_message("[user] starts putting [M] into [src].", 3)
+	visible_message("[user] starts putting [victim] into [src].", 3)
 
-	if(!do_after(user, 20, FALSE, M, BUSY_ICON_DANGER) || QDELETED(src))
+	if(!do_after(user, 20, FALSE, victim, BUSY_ICON_DANGER) || QDELETED(src))
 		return
 
-	M.forceMove(src)
+	victim.forceMove(src)
 
-	if(prob(1)) //1% chance to play
-		playsound(loc, 'sound/machines/blender.ogg', 25) //grind up hosts for nutrition for the larva
+	if(prob(5)) //5% chance to play
+		shake(4 SECONDS)
 	else
 		playsound(loc, 'sound/effects/blobattack.ogg', 25)
 
-	corpses += M
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	xeno_job.add_job_points(3.3)
 
-	log_combat(src, null, "was consumed by a resin silo.")
-	log_game("[key_name(M)] was consumed by a resin silo at [AREACOORD(M.loc)].")
+	log_combat(victim, user, "was consumed by a resin silo")
+	log_game("[key_name(victim)] was consumed by a resin silo at [AREACOORD(victim.loc)].")
 
 	GLOB.round_statistics.xeno_silo_corpses++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "xeno_silo_corpses")
+
+/obj/structure/resin/silo/proc/shake(duration)
+	var/offset = prob(50) ? -2 : 2
+	var/old_pixel_x = pixel_x
+	var/shake_sound = pick(1, 2) == 1 ? 'sound/machines/blender.ogg' : 'sound/machines/juicer.ogg'
+	playsound(src, shake_sound, 25, TRUE)
+	animate(src, pixel_x = pixel_x + offset, time = 2, loop = -1) //start shaking
+	addtimer(CALLBACK(src, .proc/stop_shake, old_pixel_x), duration)
+
+/obj/structure/resin/silo/proc/stop_shake(old_px)
+	animate(src)
+	pixel_x = old_px
