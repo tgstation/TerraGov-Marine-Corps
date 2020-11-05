@@ -181,8 +181,8 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	to_chat(X, "<span class='xenonotice'>We now have <b>[LAZYLEN(X.tunnels)] of [HIVELORD_TUNNEL_SET_LIMIT]</b> tunnels.</span>")
 
-	var/msg = stripped_input(X, "Add a description to the tunnel:", "Tunnel Description")
-	newt.tunnel_desc = sanitize("[get_area(newt)] (X: [newt.x], Y: [newt.y]) [msg]")
+	var/msg = stripped_input(X, "Give your tunnel a descriptive name:", "Tunnel Name")
+	newt.tunnel_desc = sanitize("[get_area(newt)] (X: [newt.x], Y: [newt.y])")
 	newt.name += sanitize(" [msg]")
 
 	xeno_message("<span class='xenoannounce'>[sanitize(X.name)] has built a new tunnel named [newt.name] at [newt.tunnel_desc]!</span>", 2, X.hivenumber)

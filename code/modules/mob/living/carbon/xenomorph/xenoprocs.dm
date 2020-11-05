@@ -5,6 +5,40 @@
 
 	check_hive_status(src)
 
+/mob/living/carbon/xenomorph/verb/tunnel_list()
+	set name = "Tunnel List"
+	set desc = "See all currently active tunnels."
+	set category = "Alien"
+
+	check_tunnel_list(src)
+
+
+/proc/check_tunnel_list(mob/user) //Creates a handy list of all xeno tunnels
+	if(!SSticker)
+		return
+	var/dat = "<br>"
+
+	var/datum/hive_status/hive
+	if(isxeno(user))
+		var/mob/living/carbon/xenomorph/xeno_user = user
+		if(xeno_user.hive)
+			hive = xeno_user.hive
+	else
+		hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
+
+	if(!hive)
+		CRASH("couldnt find a hive in check_tunnel_list")
+
+	dat += "<b>List of Hive Tunnels:</b><BR>"
+
+	for(var/obj/structure/tunnel/T in GLOB.xeno_tunnels)
+		if(T.creator.hive == hive)
+			dat += "<b>[T.name]</b> located at: <b><font color=green>([T.tunnel_desc])</b></font><BR>"
+
+	var/datum/browser/popup = new(user, "roundstatus", "<div align='center'>Tunnel List</div>", 600, 600)
+	popup.set_content(dat)
+	popup.open(FALSE)
+
 
 /proc/xeno_status_output(list/xenolist, can_overwatch = FALSE, ignore_leads = TRUE, user)
 	var/xenoinfo = ""
