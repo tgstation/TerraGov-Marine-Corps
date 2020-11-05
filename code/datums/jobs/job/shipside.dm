@@ -67,11 +67,11 @@ Godspeed, captain! And remember, you are not above the law."})
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 500)
+		if(0 to 1500) // starting
 			new_human.wear_id.paygrade = "O6"
-		if(501 to 10000)
+		if(1501 to 7500) // 25hrs
 			new_human.wear_id.paygrade = "O7"
-		if(10001 to INFINITY)
+		if(7501 to INFINITY) //125 hrs
 			new_human.wear_id.paygrade = "O8"
 
 //Field Commander
@@ -116,11 +116,11 @@ Make the TGMC proud!"})
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 600)
+		if(0 to 1500) //starting
 			new_human.wear_id.paygrade = "O3"
-		if(601 to 6600)
+		if(1500 to 7500) // 25 hrs
 			new_human.wear_id.paygrade = "MO4"
-		if(6601 to 18000)
+		if(7501 to INFINITY) // 125 hrs
 			new_human.wear_id.paygrade = "MO5"
 
 
@@ -177,9 +177,9 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 3000)
+		if(0 to 3000) // starting
 			new_human.wear_id.paygrade = "O4"
-		if(3001 to INFINITY)
+		if(3001 to INFINITY) // 50 hrs
 			new_human.wear_id.paygrade = "O5"
 
 /datum/outfit/job/command/staffofficer
@@ -224,13 +224,13 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 1500) // starting
+		if(0 to 600) // starting
 			new_human.wear_id.paygrade = "WO"
-		if(1501 to 3000) // 25 hrs
+		if(601 to 3000) // 10 hrs
 			new_human.wear_id.paygrade = "CWO"
-		if(1501 to 3000)
+		if(3001 to 6000) // 50 hrs
 			new_human.wear_id.paygrade = "O1"
-		if(3001 to INFINITY)
+		if(6001 to INFINITY) // 100 hrs
 			new_human.wear_id.paygrade = "O2"
 
 /datum/job/terragov/command/pilot/radio_help_message(mob/M)
@@ -340,11 +340,11 @@ You could use STs help to repair and replace hardpoints."})
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 1500)
+		if(0 to 1500) // starting
 			new_human.wear_id.paygrade = "O2"
-		if(1501 to 3000)
+		if(1501 to 6000) // 25 hrs
 			new_human.wear_id.paygrade = "O3"
-		if(3001 to INFINITY)
+		if(6001 to INFINITY) // 50 hrs
 			new_human.wear_id.paygrade = "O4"
 
 /datum/job/terragov/engineering/chief/radio_help_message(mob/M)
@@ -400,13 +400,13 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 1500) // starting
+		if(0 to 600) // starting
 			new_human.wear_id.paygrade = "PO3"
-		if(1501 to 3000) // 25 hrs
+		if(601 to 3000) // 10 hrs
 			new_human.wear_id.paygrade = "PO2"
-		if(1501 to 3000)
+		if(3001 to 6000) // 50 hrs
 			new_human.wear_id.paygrade = "PO1"
-		if(3001 to INFINITY)
+		if(6001 to INFINITY) // 100 hrs
 			new_human.wear_id.paygrade = "CPO"
 
 /datum/job/terragov/engineering/tech/radio_help_message(mob/M)
@@ -470,13 +470,13 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 600)
+		if(0 to 600) // starting
 			new_human.wear_id.paygrade = "CPO"
-		if(601 to 1500)
+		if(601 to 1500) // 10 hrs
 			new_human.wear_id.paygrade = "WO"
-		if(1501 to 3000)
+		if(1501 to 6000) // 50 hrs
 			new_human.wear_id.paygrade = "CWO"
-		if(3001 to INFINITY)
+		if(6001 to INFINITY) // 100 hrs
 			new_human.wear_id.paygrade = "O1"
 
 /datum/job/terragov/requisitions/officer/radio_help_message(mob/M)
