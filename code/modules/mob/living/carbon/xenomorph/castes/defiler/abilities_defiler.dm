@@ -227,19 +227,15 @@
 /datum/action/xeno_action/activable/reagent_slash/proc/slash_action(mob/living/carbon/C, toxin = /datum/reagent/toxin/xeno_neurotoxin, channel_time = 1 SECONDS, transfer_amount = 4, count = 3)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/datum/limb/affecting = X.zone_selected
-	var/datum/reagent/body_tox
 	var/i = 1
 	do
 		if(get_dist(X, C) > 1)
 			to_chat(X, "<span class='warning'>We need to be closer to [C].</span>")
 			return
 		if(X.stagger)
-			return 
+			return
 		X.face_atom(C)
-		body_tox = C.reagents.get_reagent(toxin)
 		C.reagents.add_reagent(toxin, transfer_amount)
-		if(!body_tox) //Let's check this each time because depending on the metabolization rate it can disappear between slashes.
-			body_tox = C.reagents.get_reagent(toxin)
 		playsound(C, "alien_claw_flesh", 25, TRUE)
 		playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
 		C.attack_alien_harm(X, dam_bonus = -17, set_location = affecting, random_location = FALSE, no_head = FALSE, no_crit = FALSE, force_intent = null) //dam_bonus influences slash amount using attack damage as a base, it's low because you can slash while the effect is going on
