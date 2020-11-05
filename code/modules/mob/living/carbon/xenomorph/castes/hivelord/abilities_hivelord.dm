@@ -173,18 +173,18 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	newt.creator = X
 
-
 	X.tunnels.Add(newt)
 
 	add_cooldown()
 
-	to_chat(X, "<span class='xenonotice'>We now have [LAZYLEN(X.tunnels)] of [HIVELORD_TUNNEL_SET_LIMIT] tunnels.</span>")
+	newt.hud_set_xeno_tunnel()
+
+	to_chat(X, "<span class='xenonotice'>We now have <b>[LAZYLEN(X.tunnels)] of [HIVELORD_TUNNEL_SET_LIMIT]</b> tunnels.</span>")
 
 	var/msg = stripped_input(X, "Add a description to the tunnel:", "Tunnel Description")
 	newt.tunnel_desc = sanitize("[get_area(newt)] (X: [newt.x], Y: [newt.y]) [msg]")
-	newt.name += sanitize(" [msg]")
+	newt.name += sanitize(" [msg] at [get_area(newt)] (X: [newt.x], Y: [newt.y]) ")
 
-	to_chat(X, "<span class='xenoannounce'>[sanitize(X.name)] has built a new tunnel named [newt.name] at [newt.tunnel_desc]!</span>")
 	xeno_message("<span class='xenoannounce'>[sanitize(X.name)] has built a new tunnel named [newt.name] at [newt.tunnel_desc]!</span>", 2, X.hivenumber)
 
 	if(LAZYLEN(X.tunnels) > HIVELORD_TUNNEL_SET_LIMIT) //if we exceed the limit, delete the oldest tunnel set.
@@ -194,6 +194,7 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 
 	succeed_activate()
 	playsound(T, 'sound/weapons/pierce.ogg', 25, 1)
+
 
 
 // ***************************************
