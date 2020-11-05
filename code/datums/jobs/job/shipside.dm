@@ -224,9 +224,9 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 600)
+		if(0 to 1500) // starting
 			new_human.wear_id.paygrade = "WO"
-		if(601 to 1500)
+		if(1501 to 3000) // 25 hrs
 			new_human.wear_id.paygrade = "CWO"
 		if(1501 to 3000)
 			new_human.wear_id.paygrade = "O1"
@@ -400,9 +400,9 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	if(!playtime_mins || playtime_mins < 1 )
 		return
 	switch(playtime_mins)
-		if(0 to 600)
+		if(0 to 1500) // starting
 			new_human.wear_id.paygrade = "PO3"
-		if(601 to 1500)
+		if(1501 to 3000) // 25 hrs
 			new_human.wear_id.paygrade = "PO2"
 		if(1501 to 3000)
 			new_human.wear_id.paygrade = "PO1"
