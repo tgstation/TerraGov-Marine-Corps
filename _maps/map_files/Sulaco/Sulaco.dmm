@@ -11103,13 +11103,12 @@
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cryosleep)
 "eRL" = (
-/obj/structure/rack,
-/obj/item/flashlight,
 /obj/machinery/door_control{
 	id = "eastblast";
 	name = "Observation Windows";
 	pixel_x = 30
 	},
+/obj/machinery/vending/tool,
 /turf/open/floor/prison,
 /area/sulaco/maintenance/lower_maint)
 "eTC" = (
@@ -14795,7 +14794,6 @@
 /area/sulaco/medbay)
 "qMR" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/mainship/engineering,
 /turf/open/floor/prison,
 /area/sulaco/maintenance/lower_maint)
 "qMX" = (
@@ -16738,7 +16736,6 @@
 /area/sulaco/medbay/surgery_two)
 "wwW" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/mainship/engineering,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
 	dir = 4
 	},
