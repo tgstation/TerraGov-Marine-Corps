@@ -375,7 +375,7 @@
 
 /obj/item/storage/backpack/marine/satchel
 	name = "\improper TGMC satchel"
-	desc = "A heavy-duty satchel carried by some TGMC soldiers and support personnel. This one is in black."
+	desc = "A heavy-duty satchel carried by some TGMC soldiers and support personnel."
 	icon_state = "marinesat"
 	worn_accessible = TRUE
 	storage_slots = null
