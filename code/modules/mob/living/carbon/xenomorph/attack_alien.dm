@@ -60,7 +60,7 @@
 		return FALSE
 
 	if(protection_aura)
-		tackle_pain = tackle_pain * (1 - (0.10 + 0.05 * protection_aura))  //Stamina damage decreased by 10% + 5% per rank of protection aura
+		tackle_pain *= (1 - (0.10 + 0.05 * protection_aura))  //Stamina damage decreased by 10% + 5% per rank of protection aura
 
 	var/list/pain_mod = list()
 
@@ -169,8 +169,8 @@
 		return FALSE
 
 	var/datum/limb/affecting = get_xeno_slash_zone(X, set_location, random_location, no_head)
-	var/armor_block = run_armor_check(affecting, "melee")
-
+	var/armor_block = 0
+	
 	var/list/damage_mod = list()
 	var/list/armor_mod = list()
 
@@ -180,8 +180,8 @@
 	if(!(signal_return & COMSIG_XENOMORPH_BONUS_APPLIED ))
 		damage_mod += dam_bonus
 
-	if(signal_return & COMPONENT_BYPASS_ARMOR)
-		armor_block = 0
+	if(!(signal_return & COMPONENT_BYPASS_ARMOR))
+		armor_block = run_armor_check(affecting, "melee")
 
 	for(var/i in damage_mod)
 		damage += i
