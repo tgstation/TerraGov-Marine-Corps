@@ -1080,7 +1080,7 @@
 /area/bigredv2/outside/marshal_office)
 "adY" = (
 /obj/structure/closet/secure_closet/detective,
-/obj/item/weapon/gun/smg/p90,
+/obj/item/weapon/gun/rifle/famas,
 /turf/open/floor/wood,
 /area/bigredv2/outside/marshal_office)
 "adZ" = (

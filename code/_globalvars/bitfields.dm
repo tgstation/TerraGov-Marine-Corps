@@ -543,5 +543,12 @@ GLOBAL_LIST_INIT(bitfields, list(
 	"lock_flags" = list(
 		"SQUAD_LOCK" = SQUAD_LOCK,
 		"JOB_LOCK" = JOB_LOCK
-		)
+	),
+	"dropship_equipment_flags" = list(
+		"IS_NOT_REMOVABLE" = IS_NOT_REMOVABLE,
+		"USES_AMMO" = USES_AMMO,
+		"IS_WEAPON" = IS_WEAPON,
+		"FIRE_MISSION_ONLY" = FIRE_MISSION_ONLY,
+		"IS_INTERACTABLE" = IS_INTERACTABLE
+	),
 	))
