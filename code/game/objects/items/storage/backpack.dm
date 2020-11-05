@@ -383,7 +383,6 @@
 
 /obj/item/storage/backpack/marine/satchel/green
 	name = "\improper TGMC satchel"
-	desc = "A heavy-duty satchel carried by some TGMC soldiers and support personnel. This one is in green."
 	icon_state = "marinesat_green"
 
 
