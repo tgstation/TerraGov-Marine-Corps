@@ -97,7 +97,7 @@
 		H.acid_spray_crossed(slow_amt)
 
 	for(var/atom/A in loc) //Infrastructure for other interactions
-		A.acidspray_act()
+		SEND_SIGNAL(A, COMSIG_ATOM_ACID_SPRAYED, src)
 
 /atom/proc/acidspray_act()
 	return

@@ -26,7 +26,7 @@
 	if(!serial_number)
 		serial_number = "SN-[rand(1000,100000)]" //Set the serial number
 		name = "\improper [serial_number] [name]"
-
+	RegisterSignal(src, COMSIG_ATOM_ACID_SPRAYED, .proc/acidspray_act)
 /obj/item/bodybag/tarp/deploy_bodybag(mob/user, atom/location)
 	. = ..()
 	var/obj/structure/closet/bodybag/tarp/unfolded_tarp = unfoldedbag_instance
@@ -142,8 +142,7 @@
 		to_chat(bodybag_occupant, "<span class='danger'>The projectile disrupts the camoflague [sanitize(src.name)]!</span>")
 		open() //Yeah, this is a bit harder to justify, but better than snowflaking a loss of alpha.
 
-/obj/structure/closet/bodybag/acidspray_act()
-	. = ..()
+/obj/structure/closet/bodybag/proc/acidspray_act()
 	if(!opened && bodybag_occupant)
 		var/obj/effect/xenomorph/spray/S = locate() in range(0, src) //get the acid Hans
 		if(!S) //Sanity
@@ -158,7 +157,7 @@
 	if(!.)
 		return
 
-	if(CHECK_BITFIELD(S.smoke_traits, SMOKE_XENO_ACID || SMOKE_BLISTERING ) && !opened && bodybag_occupant)
+	if((S.smoke_traits & SMOKE_XENO_ACID|SMOKE_BLISTERING) && !opened && bodybag_occupant)
 		bodybag_occupant.effect_smoke(S) //tarp *definitely* isn't acid/phosphorous smoke proof, lol.
 		to_chat(bodybag_occupant, "<span class='danger'>The scathing smoke forces us out of [sanitize(src.name)]!</span>")
 		open() //Get out
