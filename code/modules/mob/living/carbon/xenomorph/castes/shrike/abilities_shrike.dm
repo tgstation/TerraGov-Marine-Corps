@@ -298,6 +298,7 @@
 	cooldown_timer = 1 MINUTES
 	plasma_cost = 200
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_CURE
+	var/heal_range = SHRIKE_HEAL_RANGE
 
 
 /datum/action/xeno_action/activable/psychic_cure/on_cooldown_finish()
@@ -324,19 +325,12 @@
 
 /datum/action/xeno_action/activable/psychic_cure/proc/check_distance(atom/target, silent)
 	var/dist = get_dist(owner, target)
-	switch(dist)
-		if(-1)
-			if(!silent && target == owner)
-				to_chat(owner, "<span class='warning'>We cannot cure ourselves.</span>")
-			return FALSE
-		if(0 to 3)
-			if(!owner.line_of_sight(target))
-				to_chat(owner, "<span class='warning'>We can't focus properly without a clear line of sight!</span>")
-				return FALSE
-		if(4 to INFINITY)
-			if(!silent)
-				to_chat(owner, "<span class='warning'>Too far, our mind power does not reach it...</span>")
-			return FALSE
+	if(dist > heal_range)
+		to_chat(owner, "<span class='warning'>Too far for our reach... We need to be [dist - heal_range] steps closer!</span>")
+		return FALSE
+	else if(!owner.line_of_sight(target))
+		to_chat(owner, "<span class='warning'>We can't focus properly without a clear line of sight!</span>")
+		return FALSE
 	return TRUE
 
 
