@@ -1,0 +1,7 @@
+author: "Hathkar"
+delete-after: True
+changes: 
+  - imageadd: "Mirrored the slash and red slash sprites, giving a bit more visual variety when attacking."
+  - imageadd: "New animated intel computer icon."
+  - imageadd: "Fixed a white pixel on the panther's forward facing sprite."
+  - imageadd: "Slightly changed the resin pod's animated drip, making it follow the contours of the pod instead of dripping directly down."
