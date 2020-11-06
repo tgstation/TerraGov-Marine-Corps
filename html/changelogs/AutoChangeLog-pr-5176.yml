@@ -1,5 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes: 
-  - rscadd: "Added new backpack sprites"
-  - rscdel: "Removed old backpack sprites, git will remember them. Nobody else will."
