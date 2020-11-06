@@ -157,7 +157,7 @@
 
 		var/armor_block = null
 		var/def_zone = ran_zone()
-		M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * 0.8, RAZORWIRE_BASE_DAMAGE * 1.2), BRUTE, def_zone, armor_block, TRUE)
+		M.apply_damage(RAZORWIRE_BASE_DAMAGE, BRUTE, def_zone, armor_block, TRUE)
 		UPDATEHEALTH(M)
 		user.visible_message("<span class='danger'>[user] spartas [M]'s into [src]!</span>",
 		"<span class='danger'>You sparta [M]'s against [src]!</span>")
@@ -185,7 +185,7 @@
 	return TRUE
 
 /obj/structure/razorwire/attack_alien(mob/living/carbon/xenomorph/M)
-	M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MAX_DAMAGE_MULT_LOW, RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED)) //About a third as damaging as actually entering
+	M.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MAX_DAMAGE_MULT_LOW, RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_MED)) //About a third as damaging as actually entering //This ?
 	UPDATEHEALTH(M)
 	update_icon()
 	SEND_SIGNAL(M, COMSIG_XENOMORPH_ATTACK_RAZORWIRE)

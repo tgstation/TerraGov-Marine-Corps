@@ -464,7 +464,7 @@
 /obj/structure/acid_spray_act(mob/living/carbon/xenomorph/X)
 	if(!is_type_in_typecache(src, GLOB.acid_spray_hit))
 		return TRUE // normal density flag
-	take_damage(45 + SPRAY_STRUCTURE_UPGRADE_BONUS(X), "acid", "acid")
+	take_damage(X.xeno_caste.acid_spray_structure_damage, "acid", "acid")
 	return TRUE // normal density flag
 
 /obj/structure/razorwire/acid_spray_act(mob/living/carbon/xenomorph/X)
@@ -472,7 +472,7 @@
 	return FALSE // not normal density flag
 
 /obj/vehicle/multitile/root/cm_armored/acid_spray_act(mob/living/carbon/xenomorph/X)
-	take_damage_type(45 + SPRAY_STRUCTURE_UPGRADE_BONUS(X), "acid", src)
+	take_damage_type(X.xeno_caste.acid_spray_structure_damage, "acid", src)
 	healthcheck()
 	return TRUE
 
@@ -490,7 +490,7 @@
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "praetorian_spray_direct_hits")
 
 	var/armor_block = run_armor_check("chest", "acid")
-	var/damage = rand(30,40) + SPRAY_MOB_UPGRADE_BONUS(X)
+	var/damage = X.xeno_caste.acid_spray_damage_on_hit
 	apply_acid_spray_damage(damage, armor_block)
 	to_chat(src, "<span class='xenodanger'>\The [X] showers you in corrosive acid!</span>")
 
@@ -499,7 +499,7 @@
 	UPDATEHEALTH(src)
 
 /mob/living/carbon/human/apply_acid_spray_damage(damage, armor_block)
-	take_overall_damage(0, damage, armor_block)
+	take_overall_damage_armored(damage, BURN, "acid")
 	UPDATEHEALTH(src)
 	emote("scream")
 	Paralyze(20)

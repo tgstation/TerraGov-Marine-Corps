@@ -47,6 +47,9 @@
 	max_ammo = 4
 	bomb_strength = 1 //Multiplier to the effectiveness of the boiler glob.
 	acid_delay = 9 SECONDS
+	acid_spray_damage = 16
+	acid_spray_damage_on_hit = 35
+	acid_spray_structure_damage = 45
 	bomb_delay = 30 SECONDS
 
 	actions = list(
@@ -93,6 +96,9 @@
 	// *** Ranged Attack *** //
 	spit_delay = 3 SECONDS
 
+	acid_spray_damage_on_hit = 39
+	acid_spray_structure_damage = 53
+
 	// *** Boiler Abilities *** //
 	max_ammo = 5
 	bomb_strength = 1.1
@@ -128,6 +134,9 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 2 SECONDS
+	
+	acid_spray_damage_on_hit = 43
+	acid_spray_structure_damage = 61
 
 	// *** Boiler Abilities *** //
 	max_ammo = 6
@@ -162,6 +171,9 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 1 SECONDS
+
+	acid_spray_damage_on_hit = 47
+	acid_spray_structure_damage = 69
 
 	// *** Boiler Abilities *** //
 	max_ammo = 7

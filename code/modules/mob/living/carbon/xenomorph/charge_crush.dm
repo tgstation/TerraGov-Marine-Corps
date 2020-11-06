@@ -207,7 +207,7 @@
 						continue
 					charger.visible_message("<span class='danger'>[charger] runs [victim] over!</span>",
 						"<span class='danger'>We run [victim] over!</span>", null, 5)
-					victim.take_overall_damage(CHARGE_SPEED(src) * 10, blocked = victim.run_armor_check("chest", "melee"))
+					victim.take_overall_damage_armored(CHARGE_SPEED(src) * 10, BRUTE, "melee")
 					animation_flash_color(victim)
 			if(CHARGE_BULL, CHARGE_BULL_HEADBUTT, CHARGE_BULL_GORE) //Xeno Bull
 				if(MODULUS(valid_steps_taken, 4) == 0)
@@ -267,7 +267,6 @@
 
 	if(isliving(crushed))
 		var/mob/living/crushed_living = crushed
-
 		playsound(crushed_living.loc, crush_sound, 25, 1)
 		if(crushed_living.buckled)
 			crushed_living.buckled.unbuckle_mob(crushed_living)
@@ -275,7 +274,7 @@
 
 		if(precrush > 0)
 			log_combat(charger, crushed_living, "xeno charged")
-			crushed_living.apply_damage(precrush, BRUTE, "chest", updating_health = TRUE) //There is a chance to do enough damage here to gib certain mobs. Better update immediately.
+			crushed_living.apply_damage(precrush, BRUTE, "chest", crushed_living.run_armor_check("chest", "melee"), updating_health = TRUE, ) //There is a chance to do enough damage here to gib certain mobs. Better update immediately.
 			if(QDELETED(crushed_living))
 				charger.visible_message("<span class='danger'>[charger] anihilates [preserved_name]!</span>",
 				"<span class='xenodanger'>We anihilate [preserved_name]!</span>")
@@ -287,7 +286,7 @@
 		var/obj/crushed_obj = crushed
 		playsound(crushed_obj.loc, "punch", 25, 1)
 		var/crushed_behavior = crushed_obj.crushed_special_behavior()
-		crushed_obj.take_damage(precrush)
+		crushed_obj.take_damage(precrush, BRUTE, "melee")
 		if(QDELETED(crushed_obj))
 			charger.visible_message("<span class='danger'>[charger] crushes [preserved_name]!</span>",
 			"<span class='xenodanger'>We crush [preserved_name]!</span>")

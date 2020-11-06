@@ -501,7 +501,7 @@ GLOBAL_LIST_EMPTY(active_laser_targets)
 /obj/machinery/computer/camera_advanced/overwatch/proc/do_land_bombard(turf/T, user)
 	busy = FALSE
 	var/x_offset = rand(-2,2) //Little bit of randomness.
-	var/y_offset = rand(-2,2)
+	var/y_offset = rand(-2,2) //maybe remove this RNG.
 	var/turf/target = locate(T.x + x_offset,T.y + y_offset,T.z)
 	if(target && istype(target))
 		target.ceiling_debris_check(5)

@@ -204,7 +204,7 @@
 				visible_message("<span class='danger'>[H] [pick(attack.attack_verb)]ed [src]!</span>")
 
 				playsound(loc, "punch", 25, 1)
-				var/damage = rand(5, 10)
+				var/damage = rand(5, 10) //wtf monki so strong.
 				if (prob(40))
 					damage = rand(10, 15)
 					if (!IsUnconscious())

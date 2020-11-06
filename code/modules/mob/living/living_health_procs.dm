@@ -211,6 +211,12 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 		updatehealth()
 	return TRUE
 
+/mob/living/proc/take_overall_damage_armored(damage, damagetype, armortype, sharp = FALSE, edge = FALSE, updating_health = FALSE) //This proc is overrided on humans, otherwise it just applies some damage and checks armor on chest if not human.
+	if(damagetype == BRUTE)
+		return take_overall_damage(damage, 0, run_armor_check("chest", armortype), sharp, edge, updating_health)
+	if(damagetype == BURN)
+		return take_overall_damage(0, damage, run_armor_check("chest", armortype), sharp, edge, updating_health)
+	return FALSE
 
 /mob/living/proc/restore_all_organs()
 	return

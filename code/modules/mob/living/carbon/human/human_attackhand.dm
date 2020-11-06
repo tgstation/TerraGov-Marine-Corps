@@ -99,7 +99,7 @@
 
 			H.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 			var/max_dmg = H.melee_damage + H.skills.getRating("cqc")
-			var/damage = rand(1, max_dmg)
+			var/damage = rand(1, max_dmg) //i get this but wew ? randomness could be reduced with CQC rate.
 
 			var/datum/limb/affecting = get_limb(ran_zone(H.zone_selected))
 			var/armor_block = run_armor_check(affecting, "melee")

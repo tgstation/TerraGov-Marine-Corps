@@ -45,11 +45,18 @@
 	flags_pass = PASSTABLE|PASSMOB|PASSGRILLE
 	var/slow_amt = 0.8
 	var/duration = 10 SECONDS
+	var/acid_damage = 14
 
-/obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS) //Self-deletes
+/obj/effect/xenomorph/spray/New(loc, ...)
+	. = ..()
+	
+
+/obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS, damage = 14) //Self-deletes
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
 	QDEL_IN(src, duration + rand(0, 2 SECONDS))
+	if(damage)
+		acid_damage = damage
 
 /obj/effect/xenomorph/spray/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
@@ -70,17 +77,16 @@
 			H.next_move_slowdown += slow_amt
 			var/datum/limb/affecting = H.get_limb("l_foot")
 			armor_block = H.run_armor_check(affecting, "acid")
-			if(istype(affecting) && affecting.take_damage_limb(0, rand(14, 18), FALSE, FALSE, armor_block, TRUE))
+			if(istype(affecting) && H.apply_damage(acid_damage/2, BURN, "l_foot", armor_block))
 				UPDATEHEALTH(H)
 				H.UpdateDamageIcon()
 			affecting = H.get_limb("r_foot")
 			armor_block = H.run_armor_check(affecting, "acid")
-			if(istype(affecting) && affecting.take_damage_limb(0, rand(14, 18), FALSE, FALSE, armor_block, TRUE))
+			if(istype(affecting) && H.apply_damage(acid_damage/2, BURN, "r_foot", armor_block))
 				UPDATEHEALTH(H)
 				H.UpdateDamageIcon()
 		else
-			armor_block = H.run_armor_check("chest", "acid")
-			H.take_overall_damage(0, rand(12, 14), armor_block)
+			H.take_overall_damage_armored(acid_damage, BURN, "acid") //used to be rand(12, 14)
 			UPDATEHEALTH(H)
 			to_chat(H, "<span class='danger'>You are scalded by the burning acid!</span>")
 

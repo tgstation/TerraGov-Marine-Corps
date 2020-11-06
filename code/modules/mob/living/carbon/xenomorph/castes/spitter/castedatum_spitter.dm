@@ -44,6 +44,9 @@
 	spit_types = list(/datum/ammo/xeno/acid/medium) //Gotta give them their own version of heavy acid; kludgy but necessary as 100 plasma is way too costly.
 
 	acid_delay = 30 SECONDS //30 second delay on acid spray.
+	acid_spray_damage = 16
+	acid_spray_damage_on_hit = 35
+	acid_spray_structure_damage = 45
 
 	// *** Abilities *** //
 	actions = list(
@@ -88,6 +91,8 @@
 	spit_delay = 1.2 SECONDS
 
 	acid_delay = 30 SECONDS //30 second delay on acid spray.
+	acid_spray_damage_on_hit = 39
+	acid_spray_structure_damage = 53
 
 /datum/xeno_caste/spitter/elder
 	upgrade_name = "Elder"
@@ -121,6 +126,8 @@
 	spit_delay = 1.1 SECONDS
 
 	acid_delay = 30 SECONDS //30 second delay on acid spray.
+	acid_spray_damage_on_hit = 43
+	acid_spray_structure_damage = 61
 
 /datum/xeno_caste/spitter/ancient
 	upgrade_name = "Ancient"
@@ -154,4 +161,5 @@
 	spit_delay = 1 SECONDS
 
 	acid_delay = 30 SECONDS //30 second delay on acid spray.
-
+	acid_spray_damage_on_hit = 47
+	acid_spray_structure_damage = 69

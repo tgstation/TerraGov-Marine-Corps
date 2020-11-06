@@ -80,7 +80,11 @@
 	var/charge_type = 0
 	var/pounce_delay = 4 SECONDS
 
+	// *** Acid spray *** //
 	var/acid_spray_range = 0
+	var/acid_spray_damage_on_hit = 0
+	var/acid_spray_damage = 0
+	var/acid_spray_structure_damage = 0
 
 	// *** Pheromones *** //
 	var/aura_strength = 0 //The strength of our aura. Zero means we can't emit one
@@ -105,6 +109,10 @@
 	var/crest_defense_armor = 0
 	var/fortify_armor = 0
 	var/crest_defense_slowdown = 0
+
+	// *** Crusher Abilities *** //
+	var/stomp_damage = 0
+	var/crest_toss_distance = 0
 
 	// *** Queen Abilities *** //
 	var/queen_leader_limit = 0 //Amount of leaders allowed
