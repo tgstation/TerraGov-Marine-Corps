@@ -1,0 +1,4 @@
+author: "E25"
+delete-after: True
+changes: 
+  - tweak: "Moves lore and operation text in codex of guns to the bottom, adds a header for it."
