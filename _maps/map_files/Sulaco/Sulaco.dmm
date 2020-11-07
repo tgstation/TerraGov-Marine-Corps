@@ -581,6 +581,11 @@
 	pixel_y = 4
 	},
 /obj/item/storage/box/syringes,
+/obj/item/storage/pill_bottle/packet/paracetamol,
+/obj/item/storage/pill_bottle/packet/paracetamol,
+/obj/item/storage/pill_bottle/packet/paracetamol,
+/obj/item/storage/pill_bottle/packet/paracetamol,
+/obj/item/storage/pill_bottle/packet/paracetamol,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
