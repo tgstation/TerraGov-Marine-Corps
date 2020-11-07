@@ -1,0 +1,7 @@
+author: "E25"
+delete-after: True
+changes: 
+  - tweak: "Marine ranks are now 0/10/100/300/1000 hours."
+  - tweak: "All Command ranks are now 0/25/125 hours."
+  - tweak: "PO, RO and Ship engie ranks are now 0/25/50/100 hours."
+  - bugfix: "Fixed Field Commander's max rank not extending out to infinity."
