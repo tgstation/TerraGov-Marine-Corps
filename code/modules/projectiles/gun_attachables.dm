@@ -635,11 +635,12 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/magnetic_harness
 	name = "magnetic harness"
-	desc = "A magnetically attached harness kit that attaches to the rail mount of a weapon. When dropped, the weapon will sling to a TGMC armor."
+	desc = "A magnetically attached harness kit that attaches to the rail mount of a weapon. When dropped, the weapon will sling to a TGMC armor. Is heavy and will slow you down a bit."
 	icon_state = "magnetic"
 	attach_icon = "magnetic_a"
 	slot = "rail"
 	pixel_shift_x = 13
+	aim_speed_mod = 0.2
 
 
 /obj/item/attachable/scope
