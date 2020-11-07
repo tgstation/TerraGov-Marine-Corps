@@ -87,7 +87,7 @@ if pcregrep -nM '^(\t)[\w_]+ = list\(\n(\1\t[^\s)]+( ?= ?[\w\d]+)?,\n)*\1\t[^\s)
     st=1
 fi;
 if pcregrep -nM '^(\t)[\w_]+ = list\(\n(\1\t[^\s)]+( ?= ?[\w\d]+)?,\n)+\1\t\)' code/**/*.dm; then
-    echo ") in a long list should match identation of the opening list line"
+    echo "the ) in a long list should match identation of the opening list line"
     st=1
 fi;
 nl='

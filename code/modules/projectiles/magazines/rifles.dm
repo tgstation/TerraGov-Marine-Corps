@@ -151,6 +151,17 @@
 	max_rounds = 30 //Also comes in 30 and 100 round Beta-C mag.
 	gun_type = /obj/item/weapon/gun/rifle/m16
 
+//-------------------------------------------------------
+//FAMAS RIFLE
+
+/obj/item/ammo_magazine/rifle/famas
+	name = "\improper FAMAS magazine (5.56x45mm)"
+	desc = "A 5.56x45mm magazine for the FAMAS assault rifle."
+	caliber = "5.56x45mm"
+	icon_state = "famas"
+	default_ammo = /datum/ammo/bullet/rifle
+	max_rounds = 24
+	gun_type = /obj/item/weapon/gun/rifle/famas
 
 //-------------------------------------------------------
 //T-42 Light Machine Gun

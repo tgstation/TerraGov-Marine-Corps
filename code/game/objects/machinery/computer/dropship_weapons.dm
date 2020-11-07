@@ -37,7 +37,7 @@
 	var/element_nbr = 1
 	for(var/X in shuttle.equipments)
 		var/obj/structure/dropship_equipment/E = X
-		.["equipment_data"] += list(list("name"= sanitize(copytext(E.name,1,MAX_MESSAGE_LEN)), "eqp_tag" = element_nbr, "is_weapon" = E.is_weapon, "is_interactable" = E.is_interactable))
+		.["equipment_data"] += list(list("name"= sanitize(copytext(E.name,1,MAX_MESSAGE_LEN)), "eqp_tag" = element_nbr, "is_weapon" = (E.dropship_equipment_flags & IS_WEAPON), "is_interactable" = (E.dropship_equipment_flags & IS_INTERACTABLE)))
 		element_nbr++
 
 	.["selected_eqp_name"] = ""
@@ -92,15 +92,14 @@
 						return
 					if(shuttle.mode == SHUTTLE_HIJACK_LOCK)
 						return
-
-					if(!selected_equipment?.is_weapon)
+					if(!(selected_equipment?.dropship_equipment_flags & IS_WEAPON))
 						to_chat(L, "<span class='warning'>No weapon selected.</span>")
 						return
 					var/obj/structure/dropship_equipment/weapon/DEW = selected_equipment
 					if(!DEW.ammo_equipped || DEW.ammo_equipped.ammo_count <= 0)
 						to_chat(L, "<span class='warning'>[DEW] has no ammo.</span>")
 						return
-					if(DEW.last_fired > world.time - DEW.firing_delay)
+					if(!COOLDOWN_CHECK(DEW, last_fired))
 						to_chat(L, "<span class='warning'>[DEW] just fired, wait for it to cool down.</span>")
 						return
 					if(QDELETED(LT)) // Quick final check on the Laser target

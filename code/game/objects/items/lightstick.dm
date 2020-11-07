@@ -11,7 +11,9 @@
 
 /obj/item/lightstick/Crossed(mob/living/L)
 	. = ..()
-	if(!anchored || !istype(L) || isxenolarva(L) || prob(80))
+	if(!anchored || !istype(L) || isxenolarva(L))
+		return
+	if(L.mob_size != MOB_SIZE_BIG && prob(80))
 		return
 	visible_message("<span class='danger'>[L] tramples the [src]!</span>")
 	playsound(src, 'sound/weapons/genhit.ogg', 25, 1)

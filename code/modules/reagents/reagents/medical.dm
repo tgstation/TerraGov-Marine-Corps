@@ -142,16 +142,22 @@
 
 /datum/reagent/medicine/hydrocodone
 	name = "Hydrocodone"
-	description = "An effective and very addictive painkiller only made by autodocs."
+	description = "An effective but very short lasting painkiller only made by autodocs."
 	color = "#C805DC"
-	custom_metabolism = REAGENTS_METABOLISM * 1.25
-	overdose_threshold = REAGENTS_OVERDOSE * 0.66
-	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 0.66
+	custom_metabolism = REAGENTS_METABOLISM * 2
+	overdose_threshold = REAGENTS_OVERDOSE*0.6 //You aren't using this out of combat. And only the B18 makes it.
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL*0.5
 	scannable = TRUE
 
-/datum/reagent/medicine/oxycodone/on_mob_life(mob/living/L, metabolism)
+/datum/reagent/medicine/hydrocodone/on_mob_life(mob/living/L, metabolism)
 	L.reagent_pain_modifier += PAIN_REDUCTION_FULL
 	return ..()
+
+/datum/reagent/medicine/hydrocodone/overdose_process(mob/living/L, metabolism)
+	L.adjustToxLoss(5*REM, TRUE)
+
+/datum/reagent/medicine/hydrocodone/overdose_crit_process(mob/living/L, metabolism)
+	L.adjustBrainLoss(3*REM, TRUE)
 
 /datum/reagent/medicine/leporazine
 	name = "Leporazine"

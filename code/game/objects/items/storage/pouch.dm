@@ -294,8 +294,8 @@
 	fill_type = /obj/item/ammo_magazine/smg/m25/ap
 	fill_number = 3
 
-/obj/item/storage/pouch/magazine/large/pmc_p90
-	fill_type = /obj/item/ammo_magazine/smg/p90
+/obj/item/storage/pouch/magazine/large/pmc_famas
+	fill_type = /obj/item/ammo_magazine/rifle/famas
 	fill_number = 3
 
 /obj/item/storage/pouch/magazine/large/pmc_lmg

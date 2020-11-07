@@ -299,6 +299,8 @@
 // shuttle signals
 #define COMSIG_SHUTTLE_SETMODE "shuttle_setmode"
 
+#define COMSIG_DROPSHIP_EQUIPMENT_UNEQUIPPED "shuttle_equipment_unequipped"
+
 // xeno stuff
 #define COMSIG_HIVE_BECOME_RULER "hive_become_ruler"
 #define COMSIG_HIVE_XENO_DEATH "hive_xeno_death"
@@ -341,6 +343,8 @@
 
 #define COMSIG_XENOMORPH_ATTACK_HUMAN "xenomorph_attack_human"
 #define COMSIG_XENOMORPH_DISARM_HUMAN "xenomorph_disarm_human"
+	#define COMPONENT_BYPASS_SHIELDS (1<<0)
+	#define COMPONENT_BYPASS_ARMOR (1<<1)
 
 #define COMSIG_XENOMORPH_THROW_HIT "xenomorph_throw_hit"
 
