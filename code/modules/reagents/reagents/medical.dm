@@ -409,6 +409,8 @@
 	name = "Neuraline"
 	description = "A chemical cocktail tailored to enhance or dampen specific neural processes."
 	color = "#C8A5DC" // rgb: 200, 165, 220
+	purge_list = list(/datum/reagent/medicine/dermaline, /datum/reagent/medicine/meralyne)
+	purge_rate = 15
 	custom_metabolism = REAGENTS_METABOLISM * 2
 	overdose_threshold = 5
 	overdose_crit_threshold = 6
