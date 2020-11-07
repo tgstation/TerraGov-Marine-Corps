@@ -1520,16 +1520,17 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/angledgrip
 	name = "angled grip"
-	desc = "A custom-built improved foregrip for less recoil, and faster wielding time. \nHowever, it also increases weapon size, and slightly hinders unwielded firing."
+	desc = "A custom-built improved foregrip for less recoil, and faster wielding time. \nHowever, it also increases weapon size, scatter and slightly hinders unwielded firing."
 	icon_state = "angledgrip"
 	attach_icon = "angledgrip_a"
-	wield_delay_mod = -0.3 SECONDS
+	wield_delay_mod = -0.1 SECONDS
 	size_mod = 1
 	slot = "under"
 	pixel_shift_x = 20
 	recoil_mod = -1
 	accuracy_unwielded_mod = -0.1
 	scatter_unwielded_mod = 5
+	scatter_mod = 10
 
 
 
