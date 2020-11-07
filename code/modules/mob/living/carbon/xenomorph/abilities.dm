@@ -1005,8 +1005,8 @@
 ///////////////////
 /datum/action/xeno_action/activable/build_silo
 	name = "Secrete resin silo"
-	action_icon_state = "secrete_resin"
-	mechanics_text = "Builds whatever you’ve selected with (choose resin structure) on your tile."
+	action_icon_state = "resin_silo"
+	mechanics_text = "Creates a new resin silo on a tile with a nest."
 	ability_name = "secrete resin"
 	plasma_cost = 150
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN_SILO
@@ -1026,7 +1026,7 @@
 	if(length(GLOB.xeno_resin_silos) > 5)
 		if(!silent)
 			to_chat(owner, "<span class='warning'>The Hive can't support another silo.</span>")
-		return
+		return FALSE
 
 
 	if(!in_range(owner, A))
@@ -1062,6 +1062,8 @@
 	// Throw the mobs inside the silo
 	for(var/iter in valid_mobs)
 		var/mob/living/to_move = iter
+		to_move.chestburst = 2 //So you can't reuse corpses if the silo is destroyed
+		to_move.update_burst()
 		to_move.forceMove(hivesilo)
 
 	// Just to protect against two people doing the action at the same time

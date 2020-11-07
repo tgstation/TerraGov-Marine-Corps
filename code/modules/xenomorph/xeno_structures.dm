@@ -133,6 +133,8 @@
 	if(!do_after(user, 20, FALSE, victim, BUSY_ICON_DANGER) || QDELETED(src))
 		return
 
+	victim.chestburst = 2 //So you can't reuse corpses if the silo is destroyed
+	victim.update_burst()
 	victim.forceMove(src)
 
 	if(prob(5)) //5% chance to play
