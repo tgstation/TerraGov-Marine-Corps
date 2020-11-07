@@ -42,20 +42,12 @@
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/ready_charge/bull_charge,
 		/datum/action/xeno_action/activable/bull_charge,
-		/datum/action/xeno_action/activable/bull_charge/headbutt,
-		/datum/action/xeno_action/activable/bull_charge/gore,
 	)
 
 /datum/xeno_caste/bull/young
 	upgrade_name = "Young"
 
 	upgrade = XENO_UPGRADE_ZERO
-	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/regurgitate,
-		/datum/action/xeno_action/ready_charge/bull_charge,
-		/datum/action/xeno_action/activable/bull_charge,
-	)
 
 /datum/xeno_caste/bull/mature
 	upgrade_name = "Mature"
