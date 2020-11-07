@@ -195,6 +195,17 @@
 	icon_state = "autoinjector-6"
 	list_reagents = list(/datum/reagent/medicine/neuraline = 12)
 
+/obj/item/reagent_containers/hypospray/autoinjector/neuraline_expired
+	name = "Expired neuraline autoinjector"
+	desc = "An auto-injector loaded with 2 doses of neuraline, an extremely powerful stimulant. This one is expired by 2 months.. !DO NOT USE MORE THAN ONCE AT A TIME!"
+	amount_per_transfer_from_this = 6
+	volume = 12
+	icon_state = "autoinjector-1"
+	list_reagents = list(
+		/datum/reagent/medicine/neuraline = 6,
+		/datum/reagent/toxin = 6,
+	)
+
 /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus
 	name = "Peridaxon Plus autoinjector"
 	desc = "An auto-injector loaded with 3 doses of Peridaxon Plus, a chemical that heals organs while causing a buildup of toxins. Use with antitoxin. !DO NOT USE IN ACTIVE COMBAT!"
