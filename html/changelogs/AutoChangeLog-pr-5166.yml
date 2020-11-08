@@ -1,0 +1,4 @@
+author: "Hughgent"
+delete-after: True
+changes: 
+  - bugfix: "Tactical binos cannot laze things the user cannot see."

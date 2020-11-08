@@ -391,7 +391,6 @@ GLOBAL_LIST_INIT(cable_coil_recipes, list(new/datum/stack_recipe("cable restrain
 	color = "yellow"
 	var/cable_color = "yellow"
 	desc = "A coil of insulated power cable."
-	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 3
 	throw_range = 5

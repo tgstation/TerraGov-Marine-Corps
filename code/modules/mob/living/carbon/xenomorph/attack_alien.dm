@@ -58,7 +58,23 @@
 		X.visible_message("<span class='danger'>\The [X] shoves at [src], narroly missing!</span>",
 		"<span class='danger'>Our tackle against [src] narroly misses!</span>")
 		return FALSE
-	tackle_pain = check_shields(COMBAT_MELEE_ATTACK, tackle_pain, "melee")
+
+	if(protection_aura)
+		tackle_pain *= (1 - (0.10 + 0.05 * protection_aura))  //Stamina damage decreased by 10% + 5% per rank of protection aura
+
+	var/list/pain_mod = list()
+
+	var/signal_return = SEND_SIGNAL(X, COMSIG_XENOMORPH_DISARM_HUMAN, src, tackle_pain, pain_mod)
+
+	for(var/i in pain_mod)
+		tackle_pain += i
+
+	if(dam_bonus)
+		tackle_pain += dam_bonus
+
+	if(!(signal_return & COMPONENT_BYPASS_SHIELDS))
+		tackle_pain = check_shields(COMBAT_MELEE_ATTACK, tackle_pain, "melee")
+
 	if(!tackle_pain)
 		X.do_attack_animation(src)
 		X.visible_message("<span class='danger'>\The [X]'s tackle is blocked by [src]'s shield!</span>", \
@@ -71,22 +87,11 @@
 		X.visible_message("<span class='danger'>\The [X] slams [src] to the ground!</span>", \
 		"<span class='danger'>We slam [src] to the ground!</span>", null, 5)
 
-	var/armor_block = run_armor_check("chest", "melee")
+	var/armor_block = 0
+	if(!(signal_return & COMPONENT_BYPASS_ARMOR))
+		armor_block = run_armor_check("chest", "melee")
 
 	playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, TRUE)
-
-	if(protection_aura)
-		tackle_pain = tackle_pain * (1 - (0.10 + 0.05 * protection_aura))  //Stamina damage decreased by 10% + 5% per rank of protection aura
-
-	var/list/pain_mod = list()
-
-	SEND_SIGNAL(X, COMSIG_XENOMORPH_DISARM_HUMAN, src, tackle_pain, pain_mod)
-
-	for(var/i in pain_mod)
-		tackle_pain += i
-
-	if(dam_bonus)
-		tackle_pain += dam_bonus
 
 	apply_damage(tackle_pain, STAMINA, "chest", armor_block)
 	updateshock()
@@ -163,7 +168,30 @@
 	if(!damage)
 		return FALSE
 
-	damage = check_shields(COMBAT_MELEE_ATTACK, damage, "melee")
+	var/datum/limb/affecting = get_xeno_slash_zone(X, set_location, random_location, no_head)
+	var/armor_block = 0
+	
+	var/list/damage_mod = list()
+	var/list/armor_mod = list()
+
+	var/signal_return = SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_LIVING, src, damage, damage_mod, armor_mod)
+
+	// if we don't get any non-stacking bonuses dont apply dam_bonus
+	if(!(signal_return & COMSIG_XENOMORPH_BONUS_APPLIED ))
+		damage_mod += dam_bonus
+
+	if(!(signal_return & COMPONENT_BYPASS_ARMOR))
+		armor_block = run_armor_check(affecting, "melee")
+
+	for(var/i in damage_mod)
+		damage += i
+
+	for(var/i in armor_mod)
+		armor_block *= i
+
+	if(!(signal_return & COMPONENT_BYPASS_SHIELDS))
+		damage = check_shields(COMBAT_MELEE_ATTACK, damage, "melee")
+
 	if(!damage)
 		X.visible_message("<span class='danger'>\The [X]'s slash is blocked by [src]'s shield!</span>",
 			"<span class='danger'>Our slash is blocked by [src]'s shield!</span>", null, COMBAT_MESSAGE_RANGE)
@@ -193,22 +221,6 @@
 		log_combat(X, src, log, addition = "while they were infected")
 	else //Normal xenomorph friendship with benefits
 		log_combat(X, src, log)
-
-	var/datum/limb/affecting = get_xeno_slash_zone(X, set_location, random_location, no_head)
-	var/armor_block = run_armor_check(affecting, "melee")
-
-	var/list/damage_mod = list()
-	var/list/armor_mod = list()
-
-	// if we don't get any non-stacking bonuses dont apply dam_bonus
-	if(!( SEND_SIGNAL(X, COMSIG_XENOMORPH_ATTACK_LIVING, src, damage, damage_mod, armor_mod) & COMSIG_XENOMORPH_BONUS_APPLIED ))
-		damage_mod += dam_bonus
-
-	for(var/i in damage_mod)
-		damage += i
-
-	for(var/i in armor_mod)
-		armor_block *= i
 
 	apply_damage(damage, BRUTE, affecting, armor_block, TRUE, TRUE) //This should slicey dicey
 	UPDATEHEALTH(src)
