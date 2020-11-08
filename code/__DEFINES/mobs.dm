@@ -438,9 +438,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define XENO_NEURO_CHANNEL_TIME				1.5 SECONDS
 #define XENO_NEURO_AMOUNT_RECCURING_PANTHER 3
 
-#define XENO_ACID_SNEAK_ATTACK_INJECT_AMOUNT		5
-#define XENO_NEURO_SNEAK_ATTACK_INJECT_AMOUNT		10
-
 #define CANNOT_HOLD_EGGS 0
 #define CAN_HOLD_TWO_HANDS 1
 #define CAN_HOLD_ONE_HAND 2
@@ -497,6 +494,12 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_SNEAK_ATTACK_DISARM_MULTIPLIER	2 //Tackle damage multiplier for Disarm sneak attack
 #define HUNTER_SNEAK_ATTACK_STAGGERSLOW_STACKS	4 //Stacks of stagger and slow applied to the target
 #define HUNTER_SNEAK_ATTACK_PARALYZE_TIME		1.5 SECONDS //Stacks of stagger and slow applied to the target
+#define HUNTER_STINGER_PLASMA_COST				50 //Plasma cost of the Sneak Attack sting.
+#define HUNTER_STINGER_COOLDOWN					30 SECONDS //Cooldown of the Sneak Attack sting.
+#define HUNTER_SNEAK_ATTACK_INJECT_AMOUNT		10 //Base amount to inject on Sneak Attack
+#define HUNTER_MARK_PLASMA_COST					75 //Plasma cost of the Hunter's Mark
+#define HUNTER_MARK_COOLDOWN					60 SECONDS //Cooldown of the Hunter's Mark
+#define HUNTER_PSYCHIC_TRACE_COOLDOWN			3 SECONDS //Cooldown of the Hunter's Psychic Trace
 
 #define HUNTER_STINGER_WINDUP					0.3 SECONDS //Windup of the Sneak Attack sting.
 #define HUNTER_SNEAK_ATTACK_INJECT_AMOUNT		10 //Base amount to inject on Sneak Attack
