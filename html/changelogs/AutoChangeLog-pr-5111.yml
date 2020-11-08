@@ -1,6 +1,0 @@
-author: "Pariah919"
-delete-after: True
-changes: 
-  - rscadd: "Added disabler mode to lasgun"
-  - rscdel: "Removed pulse mode from lasgun."
-  - balance: "removed redundant pulse mode from lasgun, made regular mode fire and automatic and as fast as pulse mode, gave lasgun a new fire mode and type. Disabler shots that slow benos."
