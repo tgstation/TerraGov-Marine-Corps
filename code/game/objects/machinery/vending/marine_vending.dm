@@ -710,7 +710,6 @@
 		/obj/item/storage/backpack/marine/satchel = 10,
 		/obj/item/tool/weldpack/marinestandard = 10,
 		/obj/item/clothing/gloves/marine = 20,
-		/obj/item/clothing/suit/storage/marine/pasvest = 40,
 		/obj/item/clothing/head/slouch = 40,
 		/obj/item/clothing/glasses/mgoggles = 10,
 		/obj/item/clothing/glasses/mgoggles/prescription = 10,
