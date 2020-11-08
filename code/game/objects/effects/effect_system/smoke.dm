@@ -271,6 +271,18 @@
 	color = "#ffbf58" //Mustard orange?
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH
 
+/obj/effect/particle_effect/smoke/xeno/hemodile
+	alpha = 40
+	opacity = FALSE
+	color = "#0287A1"
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_HEMODILE|SMOKE_GASP
+
+/obj/effect/particle_effect/smoke/xeno/transvitox
+	alpha = 60
+	opacity = FALSE
+	color = "#C0FF94"
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_TRANSVITOX|SMOKE_COUGH
+
 /////////////////////////////////////////////
 // Smoke spreads
 /////////////////////////////////////////////
