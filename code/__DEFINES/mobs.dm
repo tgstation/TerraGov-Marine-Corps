@@ -496,9 +496,11 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_SNEAK_ATTACK_PARALYZE_TIME		1.5 SECONDS //Stacks of stagger and slow applied to the target
 #define HUNTER_STINGER_PLASMA_COST				50 //Plasma cost of the Sneak Attack sting.
 #define HUNTER_STINGER_COOLDOWN					30 SECONDS //Cooldown of the Sneak Attack sting.
+#define HUNTER_STINGER_WINDUP					0.3 SECONDS //Windup of the Sneak Attack sting.
 #define HUNTER_SNEAK_ATTACK_INJECT_AMOUNT		10 //Base amount to inject on Sneak Attack
 #define HUNTER_MARK_PLASMA_COST					75 //Plasma cost of the Hunter's Mark
 #define HUNTER_MARK_COOLDOWN					60 SECONDS //Cooldown of the Hunter's Mark
+#define HUNTER_MARK_WINDUP						1 SECONDS //Windup of the Hunter's Mark
 #define HUNTER_PSYCHIC_TRACE_COOLDOWN			3 SECONDS //Cooldown of the Hunter's Psychic Trace
 
 #define HUNTER_STINGER_WINDUP					0.3 SECONDS //Windup of the Sneak Attack sting.
