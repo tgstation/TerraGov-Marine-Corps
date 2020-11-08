@@ -99,10 +99,9 @@
 		var/mob/living/carbon/human/H = victim
 		victim.emote_burstscream()
 		var/datum/internal_organ/O
-		for(var/i in list("brain")) //This removes (and later garbage collects) the organ. No brain means instant death.
-			O = H.internal_organs_by_name[i]
-			H.internal_organs_by_name -= i
-			H.internal_organs -= O
+		O = H.internal_organs_by_name["brain"] //This removes (and later garbage collects) the organ. No brain means instant death.
+		H.internal_organs_by_name -= "brain"
+		H.internal_organs -= O
 
 	X.do_attack_animation(victim, ATTACK_EFFECT_BITE)
 	playsound(victim, pick( 'sound/weapons/alien_tail_attack.ogg', 'sound/weapons/alien_bite1.ogg'), 50)
