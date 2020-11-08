@@ -1,0 +1,13 @@
+author: "Hathkar"
+delete-after: True
+changes: 
+  - rscadd: "Xenomorphs have developed new efficient ways of recycling corpses into resin silos to feed burrowed larva"
+  - rscadd: "New xeno ability Headbite: Removes the target's brain after a 10 second channel"
+  - rscadd: "End of round stat tracking for both of the above"
+  - tweak: "Devour takes longer to complete"
+  - tweak: "Devour can be used on corpses"
+  - balance: "Made all corpses that spawn on maps be chestburst victims"
+  - imageadd: "Ability icon for headbite"
+  - imageadd: "Overlay for headbite on bodies"
+  - imageadd: "New icon for silo creation"
+  - spellcheck: "Fixed some spelling errors in xeno abilities"

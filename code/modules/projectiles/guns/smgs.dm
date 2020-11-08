@@ -355,36 +355,3 @@
 	scatter_unwielded = 60
 	aim_slowdown = 0.15
 	wield_delay = 0.5 SECONDS
-
-//-------------------------------------------------------
-//FP9000 //Based on the FN P90
-
-/obj/item/weapon/gun/smg/p90
-	name = "\improper FN FP9000 submachinegun"
-	desc = "An archaic design, but one that's stood the test of time. Fires fast 5.7mm armor piercing rounds."
-	icon_state = "FP9000"
-	item_state = "FP9000"
-	caliber = "5.7x28mm" //codex
-	max_shells = 50 //codex
-	fire_sound = 'sound/weapons/guns/fire/p90.ogg'
-	unload_sound = 'sound/weapons/guns/interact/p90_unload.ogg'
-	reload_sound = 'sound/weapons/guns/interact/p90_reload.ogg'
-	cocked_sound = 'sound/weapons/guns/interact/p90_cocked.ogg'
-	current_mag = /obj/item/ammo_magazine/smg/p90
-	attachable_allowed = list(
-		/obj/item/attachable/suppressor,
-		/obj/item/attachable/lasersight,
-		/obj/item/attachable/scope,
-		/obj/item/attachable/scope/mini,
-	)
-
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 20, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
-
-	fire_delay = 0.175 SECONDS
-	burst_delay = 0.2 SECONDS
-	accuracy_mult = 1.15
-	accuracy_mult_unwielded = 0.65
-	scatter_unwielded = 60
-	scatter = 10
-	aim_slowdown = 0.5
-	wield_delay = 0.65 SECONDS

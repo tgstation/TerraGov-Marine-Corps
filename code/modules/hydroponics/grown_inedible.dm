@@ -167,7 +167,6 @@
 	icon_state = "corncob"
 	item_state = "corncob"
 	w_class = WEIGHT_CLASS_SMALL
-	throwforce = 0
 	throw_speed = 4
 	throw_range = 20
 
