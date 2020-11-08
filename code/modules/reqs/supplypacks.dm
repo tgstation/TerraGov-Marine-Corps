@@ -433,8 +433,13 @@ AMMO
 	cost = 20
 
 /datum/supply_packs/ammo/boxsmg
-	name = "T-19 SMG Ammo Box"
+	name = "T-90 SMG Ammo Box"
 	contains = list(/obj/item/ammobox/standard_smg)
+	cost = 20
+
+/datum/supply_packs/ammo/boxmachpistol
+	name = "T-19 Machine Pistol Ammo Box"
+	contains = list(/obj/item/ammobox/standard_machinepistol)
 	cost = 20
 
 /datum/supply_packs/ammo/boxlmg

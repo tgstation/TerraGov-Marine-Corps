@@ -623,9 +623,17 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 /obj/item/ammobox/standard_smg
 	name = "T-90 SMG Ammo Box"
+	desc = "A box filled with smg ammo and a loader for T-90 magazines"
 	icon_state = "ammoboxm25"
 	ammo_type = /datum/ammo/bullet/smg
 	magazine_type = /obj/item/ammo_magazine/smg/standard_smg
+
+/obj/item/ammobox/standard_machinepistol
+	name = "T-19 SMG Ammo Box"
+	desc = "A box filled with smg ammo and a loader for T-19 magazines"
+	icon_state = "ammoboxm25"
+	ammo_type = /datum/ammo/bullet/smg
+	magazine_type = /obj/item/ammo_magazine/smg/standard_machinepistol
 
 /obj/item/ammobox/standard_pistol
 	name = "TP-14 Pistol Ammo Box"
