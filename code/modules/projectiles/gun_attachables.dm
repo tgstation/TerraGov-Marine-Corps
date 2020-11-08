@@ -1407,7 +1407,7 @@ Defined in conflicts.dm of the #defines folder.
 	playsound(user, 'sound/weapons/guns/fire/flamethrower2.ogg', 50, 1)
 	var/fire_delay = attachment_firing_delay
 	if(!user.skills.getRating("firearms")) //no training in any firearms
-		fire_delay += 3 //untrained humans fire more slowly.
+		fire_delay += 0.3 SECONDS //untrained humans fire more slowly.
 	COOLDOWN_START(src, last_fired, fire_delay)
 	for(var/turf/T in turfs)
 		if(T == user.loc)
