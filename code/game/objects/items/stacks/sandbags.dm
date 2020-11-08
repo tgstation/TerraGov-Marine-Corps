@@ -8,7 +8,6 @@
 	icon_state = "sandbag_stack"
 	w_class = WEIGHT_CLASS_NORMAL
 	force = 2
-	throwforce = 0
 	throw_speed = 5
 	throw_range = 20
 	max_amount = 50
