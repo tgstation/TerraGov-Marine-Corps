@@ -1,4 +1,0 @@
-author: "Hughgent"
-delete-after: True
-changes: 
-  - balance: "vending machines with power cells no longer give free power by restocking batteries"

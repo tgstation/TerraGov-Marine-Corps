@@ -1,4 +1,0 @@
-author: "Hathkar"
-delete-after: True
-changes: 
-  - bugfix: "When destroyed, resin silos drop the corpses used to create them"
