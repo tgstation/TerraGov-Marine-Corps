@@ -458,7 +458,7 @@
 
 /datum/action/xeno_action/activable/hunter_mark/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
-	to_chat(X, "<span class='xenowarning'><b>We are able to mark another with a psychic connection.</b></span>")
+	to_chat(X, "<span class='xenowarning'><b>We are able to impose our psychic mark again.</b></span>")
 	X.playsound_local(X, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
