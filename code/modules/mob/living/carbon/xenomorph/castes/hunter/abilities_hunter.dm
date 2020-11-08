@@ -78,7 +78,7 @@
 		return
 
 	stealth = TRUE //So we can properly reset
-	cancel_stealth(TRUE) //Silent cancel
+	cancel_stealth(TRUE, FALSE) //Silent cancel, don't change move intent
 
 	//Now we reset Stealth:
 	stealth = TRUE
@@ -116,12 +116,15 @@
 	add_cooldown()
 	addtimer(CALLBACK(src, .proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY) //Short delay before we can sneak attack.
 
-/datum/action/xeno_action/stealth/proc/cancel_stealth(silent = FALSE) //This happens if we take damage, attack, pounce, toggle stealth off, and do other such exciting stealth breaking activities.
+/datum/action/xeno_action/stealth/proc/cancel_stealth(silent = FALSE, change_move_intent = TRUE) //This happens if we take damage, attack, pounce, toggle stealth off, and do other such exciting stealth breaking activities.
 	SIGNAL_HANDLER
 	if(!stealth)//sanity check/safeguard
 		return
 	if(!silent)
 		to_chat(owner, "<span class='xenodanger'>We emerge from the shadows.</span>")
+	if(change_move_intent) //By default we swap to running after sneak attack for quick get-aways
+		owner.m_intent = MOVE_INTENT_RUN
+
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED) //This should be handled on the ability datum or a component.
 	stealth = FALSE
 	can_sneak_attack = FALSE
@@ -389,7 +392,7 @@
 
 	to_chat(X, "<span class='xenodanger'>We prepare to sting our quarry...</span>")
 
-	if(!do_after(X, 0.5 SECONDS, TRUE, target, BUSY_ICON_HOSTILE)) //Slight wind up
+	if(!do_after(X, HUNTER_STINGER_WINDUP, TRUE, target, BUSY_ICON_HOSTILE)) //Slight wind up
 		return fail_activate()
 
 	C.attack_alien(X) //We auto-sneak attack as part of this ability.
@@ -457,7 +460,7 @@
 /datum/action/xeno_action/activable/hunter_mark/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
 	to_chat(X, "<span class='xenowarning'><b>We are able to mark another with a psychic connection.</b></span>")
-	X.playsound_local(X.loc, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	X.playsound_local(X, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
 
@@ -476,7 +479,11 @@
 
 	to_chat(X, "<span class='xenodanger'>We prepare to psychically mark [name] as our quarry.</span>")
 
-	if(!do_after(X, 1 SECONDS, TRUE, target, BUSY_ICON_HOSTILE)) //Slight wind up
+	if(!do_after(X, HUNTER_MARK_WINDUP, TRUE, target, BUSY_ICON_HOSTILE)) //Slight wind up
+		return fail_activate()
+
+	if(!X.line_of_sight(M)) //Need line of sight.
+		to_chat(X, "<span class='xenowarning'>We lost line of sight to the target!</span>")
 		return fail_activate()
 
 	var/datum/action/xeno_action/psychic_trace/P = locate() in X.xeno_abilities //Gotta reference the datum
