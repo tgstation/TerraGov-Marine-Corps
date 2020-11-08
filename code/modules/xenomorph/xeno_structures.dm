@@ -69,7 +69,7 @@
 		associated_hive = null
 	for(var/i in contents)
 		var/atom/movable/AM = i
-		AM.forceMove(loc)
+		AM.forceMove(get_step(center_turf, pick(CARDINAL_ALL_DIRS)))
 	playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
 	return ..()
 
