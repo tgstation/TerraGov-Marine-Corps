@@ -67,5 +67,5 @@
 /mob/proc/update_burst()
 	return
 
-mob/proc/update_headbite()
+/mob/proc/update_headbite()
 	return
