@@ -105,8 +105,7 @@
 			H.internal_organs -= O
 
 	X.do_attack_animation(victim, ATTACK_EFFECT_BITE)
-	var/headbite_sound = pick(1, 2) == 1 ? 'sound/weapons/alien_tail_attack.ogg' : 'sound/weapons/alien_bite1.ogg'
-	playsound(victim, headbite_sound, 50)
+	playsound(victim, pick( 'sound/weapons/alien_tail_attack.ogg', 'sound/weapons/alien_bite1.ogg'), 50)
 	victim.death()
 	victim.headbitten = TRUE
 	victim.update_headbite()
