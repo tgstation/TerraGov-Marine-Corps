@@ -1270,6 +1270,17 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	damage_falloff = 10
 	penetration = 0
 
+/datum/ammo/energy/lasgun/M43/disabler
+	name = "disabler bolt"
+	hud_state = "laser_disabler"
+	damage = 45
+	penetration = 0
+	damage_type = STAMINA
+	bullet_color = COLOR_BLUE
+
+/datum/ammo/energy/lasgun/M43/disabler/on_hit_mob(mob/M,obj/projectile/P)
+	staggerstun(M, P, stagger = 0.5, slowdown = 0.75)
+
 /datum/ammo/energy/lasgun/pulsebolt
 	name = "pulse bolt"
 	icon_state = "pulse2"

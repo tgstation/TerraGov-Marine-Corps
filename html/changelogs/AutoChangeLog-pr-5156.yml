@@ -1,0 +1,9 @@
+author: "SplinterGP"
+delete-after: True
+changes: 
+  - balance: "bulls use 80% more plasma when charging."
+  - balance: "bulls regen plasma a bit slower on advanced ages."
+  - balance: "bulls only starts with basic charge, the headbutt is unlocked at mature and gore at ancient."
+  - balance: "bull now has -0.7 slowdown on all ages except -0.8 on ancient, before was -0.7 ramping up to -1.0 on ancient"
+  - balance: "bulls now deals less damage than it used to on charging."
+  - balance: "bulls now needs 6 steps to charge instead of 5."

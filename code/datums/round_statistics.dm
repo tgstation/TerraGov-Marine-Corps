@@ -60,3 +60,5 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/drone_salvage_plasma = 0
 	var/xeno_unarmed_attacks = 0
 	var/xeno_bump_attacks = 0
+	var/xeno_headbites = 0
+	var/xeno_silo_corpses = 0
