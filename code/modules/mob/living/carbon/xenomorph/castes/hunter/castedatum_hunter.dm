@@ -52,6 +52,10 @@
 		/datum/action/xeno_action/activable/haunt,
 		/datum/action/xeno_action/activable/pounce/hunter,
 		/datum/action/xeno_action/stealth,
+		/datum/action/xeno_action/activable/sneak_stinger,
+		/datum/action/xeno_action/activable/hunter_mark,
+		/datum/action/xeno_action/psychic_trace
+
 	)
 
 /datum/xeno_caste/hunter/young

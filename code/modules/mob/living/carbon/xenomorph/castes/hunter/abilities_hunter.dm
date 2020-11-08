@@ -84,7 +84,7 @@
 
 /datum/action/xeno_action/stealth/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'><b>We're ready to use Stealth again.</b></span>")
-	playsound(owner, "sound/effects/xeno_newlarva.ogg", 25, 0, 1)
+	owner.playsound_local(owner.loc, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
 /datum/action/xeno_action/stealth/action_activate()
@@ -117,7 +117,7 @@
 		return
 	can_sneak_attack = TRUE
 	to_chat(owner, "<span class='xenodanger'>We're ready to use Sneak Attack while stealthed.</span>")
-	playsound(owner, "sound/effects/xeno_newlarva.ogg", 25, 0, 1)
+	owner.playsound_local(owner.loc, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 
 /datum/action/xeno_action/stealth/proc/handle_stealth()
 	SIGNAL_HANDLER
@@ -178,66 +178,54 @@
 	if(!stealth || !can_sneak_attack)
 		return
 
-	var/staggerslow_stacks = 4
+	var/mob/living/carbon/xenomorph/hunter/H = owner
+	var/staggerslow_stacks = HUNTER_SNEAK_ATTACK_STAGGERSLOW_STACKS
 	var/flavour
-	var/inject_amount = XENO_ACID_SNEAK_ATTACK_INJECT_AMOUNT
 
-	if(owner.m_intent == MOVE_INTENT_RUN && ( owner.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //We penalize running with a compromised sneak attack, unless they've been stationary; walking is fine.
+	if(H.m_intent == MOVE_INTENT_RUN && ( owner.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //We penalize running with a compromised sneak attack, unless they've been stationary; walking is fine.
 		flavour = "vicious"
-		inject_amount *= HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER //inject half as much acid injected if we're running and not stationary
 		staggerslow_stacks *= HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER //half as much stagger slow if we're running and not stationary
 		armor_mod += (1 - (1 - HUNTER_SNEAK_SLASH_ARMOR_PEN) * HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER) //We halve the penetration.
 	else
 		armor_mod += HUNTER_SNEAK_SLASH_ARMOR_PEN
 		flavour = "deadly"
 
-	owner.visible_message("<span class='danger'>\The [owner] strikes [target] with [flavour] precision!</span>", \
+	H.visible_message("<span class='danger'>\The [H] strikes [target] with [flavour] precision!</span>", \
 	"<span class='danger'>We strike [target] with [flavour] precision!</span>")
 	target.adjust_stagger(staggerslow_stacks)
 	target.add_slowdown(staggerslow_stacks)
-	if(iscarbon(target))
-		sneak_attack_inject(source, target, inject_amount)
 
 	cancel_stealth()
+	return COMPONENT_BYPASS_SHIELDS
 
 /datum/action/xeno_action/stealth/proc/sneak_attack_disarm(datum/source, mob/living/target, tackle_pain, list/pain_mod)
 	SIGNAL_HANDLER
 	if(!stealth || !can_sneak_attack)
 		return
 
-	var/staggerslow_stacks = 4
+	var/mob/living/carbon/xenomorph/hunter/H = owner
+	var/staggerslow_stacks = HUNTER_SNEAK_ATTACK_STAGGERSLOW_STACKS
+	var/paralyze_time = HUNTER_SNEAK_ATTACK_PARALYZE_TIME
 	var/flavour
-	var/inject_amount = XENO_NEURO_SNEAK_ATTACK_INJECT_AMOUNT
 
-	if(owner.m_intent == MOVE_INTENT_RUN && ( owner.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) )  //We penalize running with a compromised sneak attack, unless they've been stationary; walking is fine.
-		pain_mod += (0.75 * tackle_pain)
+	if(H.m_intent == MOVE_INTENT_RUN && ( H.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) )  //We penalize running with a compromised sneak attack, unless they've been stationary; walking is fine.
+		pain_mod += (HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER * tackle_pain)
 		flavour = "vicious"
-		pain_mod += (HUNTER_SNEAK_ATTACK_DISARM_MULTIPLIER * HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER)
-		inject_amount *= HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER
-		staggerslow_stacks *= HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER
+		staggerslow_stacks *= HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER //Penalize staggerslow
+		paralyze_time *= HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER
 	else
-		pain_mod += (2.5 * tackle_pain)
-		staggerslow_stacks *= 2
-		pain_mod += HUNTER_SNEAK_ATTACK_DISARM_MULTIPLIER
+		pain_mod += (HUNTER_SNEAK_ATTACK_DISARM_MULTIPLIER * tackle_pain)
 
 		flavour = "deadly"
 
-	owner.visible_message("<span class='danger'>\The [owner] strikes [target] with [flavour] precision!</span>", \
+	H.visible_message("<span class='danger'>\The [H] strikes [target] with [flavour] precision!</span>", \
 	"<span class='danger'>We strike [target] with [flavour] precision!</span>")
-	target.ParalyzeNoChain(1.5 SECONDS)
+	target.ParalyzeNoChain(paralyze_time)
 	target.adjust_stagger(staggerslow_stacks)
 	target.add_slowdown(staggerslow_stacks)
-	if(iscarbon(target))
-		sneak_attack_inject(source, target, inject_amount, /datum/reagent/toxin/xeno_neurotoxin)
 
 	cancel_stealth()
-
-/datum/action/xeno_action/stealth/proc/sneak_attack_inject(datum/source, mob/living/carbon/C, transfer_amount = XENO_ACID_SNEAK_ATTACK_INJECT_AMOUNT, toxin = /datum/reagent/toxin/acid/xeno_acid)
-	if(!C?.can_sting() || !toxin)
-		return FALSE
-	C.reagents.add_reagent(toxin, transfer_amount)
-	to_chat(C, "<span class='danger'>You feel a tiny prick.</span>")
-	to_chat(owner, "<span class='xenowarning'>Our stinger injects our victim with [toxin.name]!</span>")
+	return COMPONENT_BYPASS_SHIELDS
 
 
 /datum/action/xeno_action/stealth/proc/damage_taken(mob/living/carbon/xenomorph/X, damage_taken)
@@ -311,3 +299,262 @@
 	to_chat(X, "<span class='notice'>We reach out into mind of the creature, infecting their thoughts...</span>")
 	victim.hallucination += 100
 	add_cooldown()
+
+// ***************************************
+// *********** Sneak Stinger
+// ***************************************
+/datum/action/xeno_action/activable/sneak_stinger
+	name = "Stealth Stinger"
+	action_icon_state = "neuro_sting"
+	mechanics_text = "Use on an adjacent target while stealthed and your sneak attack is ready, while stationary or off run intent. Injects Acid while on Harm intent and Neurotoxin while on any other intent."
+	plasma_cost = HUNTER_STINGER_PLASMA_COST
+	keybind_signal = COMSIG_XENOABILITY_STEALTH_STINGER
+	cooldown_timer = HUNTER_STINGER_COOLDOWN
+
+/datum/action/xeno_action/activable/sneak_stinger/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(QDELETED(A))
+		return FALSE
+
+	var/mob/living/carbon/xenomorph/hunter/X = owner
+	var/mob/living/carbon/human/C = A
+
+	if(!A?.can_sting())
+		to_chat(X, "<span class='xenowarning'>We cannot sting this target!</span>")
+		return FALSE
+
+	if(X.on_fire)
+		to_chat(X, "<span class='xenowarning'>We're too busy being on fire to sting them!</span>")
+		return FALSE
+
+	if(X.m_intent == MOVE_INTENT_RUN && ( X.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) )//We can't sprint up to the target and use this.
+		to_chat(X, "<span class='xenowarning'>We must be stalking or stationary to properly sting the target!</span>")
+		return FALSE
+
+	if(!X.Adjacent(C))
+		to_chat(X, "<span class='xenowarning'>We must be adjacent to the target.</span>")
+		return FALSE
+
+	if(isnestedhost(C)) //no bully
+		to_chat(X, "<span class='xenowarning'>We refrain from unnecessarily bullying the host.</span>")
+		return FALSE
+
+	if(C.stat == DEAD)
+		to_chat(X, "<span class='xenowarning'>We care not for the deceased!</span>")
+		return FALSE
+
+	var/datum/action/xeno_action/stealth/S = locate() in X.xeno_abilities //Gotta reference the datum for whether we're stealthed/able to sneak attack
+
+	if(!S) //Sanity; should not be possible.
+		to_chat(X, "<span class='xenowarning'>We somehow don't have the ability to stealth!</span>")
+		return FALSE
+
+	if(!S.stealth || !S.can_sneak_attack)
+		to_chat(X, "<span class='xenowarning'>We must be able to sneak attack the target to properly sting it!</span>")
+		return FALSE
+
+	return TRUE
+
+
+/datum/action/xeno_action/activable/sneak_stinger/on_cooldown_finish()
+	var/mob/living/carbon/xenomorph/X = owner
+	to_chat(X, "<span class='xenowarning'><b>We can now sting our victims again as our toxin glands refill.</b></span>")
+	X.playsound_local(X.loc, 'sound/voice/alien_drool1.ogg', 25, 0, 1)
+	return ..()
+
+
+/datum/action/xeno_action/activable/sneak_stinger/use_ability(atom/A)
+	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/living/carbon/C = A
+
+	X.face_atom(C)
+
+	to_chat(X, "<span class='xenodanger'>We prepare to sting our quarry...</span>")
+
+	if(!do_after(X, 0.5 SECONDS, TRUE, target, BUSY_ICON_HOSTILE)) //Slight wind up
+		return fail_activate()
+
+	C.attack_alien(X) //We auto-sneak attack as part of this ability.
+	var/datum/reagent/toxin = /datum/reagent/toxin/acid/xeno_acid
+	var/transfer_amount = HUNTER_SNEAK_ATTACK_INJECT_AMOUNT
+	if(X.a_intent != INTENT_HARM) //Inject neurotoxin instead of acid while on disarm intent
+		toxin = /datum/reagent/toxin/xeno_neurotoxin
+		transfer_amount *= 0.5 //We inject only half the regular amount for neurotoxin
+
+	C.reagents.add_reagent(toxin, transfer_amount)
+	to_chat(C, "<span class='danger'>You feel a tiny prick.</span>") //Fluff
+	to_chat(X, "<span class='xenowarning'>Our stinger silently injects our victim!</span>")
+	X.playsound_local(C, 'sound/effects/spray3.ogg', 5, 0, 1)
+	C.playsound_local(C, 'sound/effects/spray3.ogg', 5, 0, 1)
+
+	succeed_activate()
+
+	GLOB.round_statistics.hunter_stings++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "hunter_stings") //Statistics
+	add_cooldown()
+
+
+// ***************************************
+// *********** Hunter's Mark
+// ***************************************
+/datum/action/xeno_action/activable/hunter_mark
+	name = "Hunter's Mark"
+	action_icon_state = "hunter_mark"
+	mechanics_text = "Psychically mark a creature you have line of sight to, allowing you to sense its direction, distance and location."
+	plasma_cost = HUNTER_STINGER_PLASMA_COST
+	keybind_signal = COMSIG_XENOABILITY_HUNTER_MARK
+	cooldown_timer = HUNTER_MARK_COOLDOWN
+	var/mob/hunter_mark_target
+
+/datum/action/xeno_action/activable/hunter_mark/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(QDELETED(A))
+		return FALSE
+
+	var/mob/living/carbon/xenomorph/hunter/X = owner
+	var/mob/C = A
+
+	if(!istype(C))
+		to_chat(X, "<span class='xenowarning'>We cannot psychically mark this target!</span>")
+		return FALSE
+
+	if(C == X)
+		to_chat(X, "<span class='xenowarning'>Why would we target ourselves?</span>")
+		return FALSE
+
+	if(X.on_fire)
+		to_chat(X, "<span class='xenowarning'>We're too busy being on fire to mark them!</span>")
+		return FALSE
+
+	if(!X.line_of_sight(C)) //Need line of sight.
+		to_chat(X, "<span class='xenowarning'>We require line of sight to mark them!</span>")
+		return FALSE
+
+	return TRUE
+
+
+/datum/action/xeno_action/activable/hunter_mark/on_cooldown_finish()
+	var/mob/living/carbon/xenomorph/X = owner
+	to_chat(X, "<span class='xenowarning'><b>We are able to mark another with a psychic connection.</b></span>")
+	X.playsound_local(X.loc, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	return ..()
+
+
+/datum/action/xeno_action/activable/hunter_mark/use_ability(atom/A)
+	var/mob/living/carbon/xenomorph/X = owner
+	var/mob/M = A
+
+	if(!istype(M)) //Sanity
+		fail_activate()
+
+	hunter_mark_target = M //Set our target
+
+	X.face_atom(M) //Face towards the target so we don't look silly
+
+	var/name = sanitize(M.name)
+
+	to_chat(X, "<span class='xenodanger'>We prepare to psychically mark [name] as our quarry.</span>")
+
+	if(!do_after(X, 1 SECONDS, TRUE, target, BUSY_ICON_HOSTILE)) //Slight wind up
+		return fail_activate()
+
+	var/datum/action/xeno_action/psychic_trace/P = locate() in X.xeno_abilities //Gotta reference the datum
+	P.trace_target = hunter_mark_target //Set Psychic Trace's target
+
+	to_chat(X, "<span class='xenodanger'>We psychically mark [name] as our quarry.</span>")
+	X.playsound_local(X, 'sound/effects/ghost.ogg', 25, 0, 1)
+
+	succeed_activate()
+
+	GLOB.round_statistics.hunter_marks++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "hunter_marks") //Statistics
+	add_cooldown()
+
+
+// ***************************************
+// *********** Psychic Trace
+// ***************************************
+/datum/action/xeno_action/psychic_trace
+	name = "Psychic Trace"
+	action_icon_state = "toggle_queen_zoom"
+	mechanics_text = "Psychically ping the creature you marked, letting you know its direction, distance and location, and general condition."
+	plasma_cost = 1 //Token amount
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_TRACE
+	cooldown_timer = HUNTER_PSYCHIC_TRACE_COOLDOWN
+	var/mob/trace_target
+
+/datum/action/xeno_action/psychic_trace/action_activate()
+
+	var/mob/living/carbon/xenomorph/hunter/X = owner
+	var/mob/M = trace_target
+
+	if(X.on_fire)
+		to_chat(X, "<span class='xenowarning'>We're too busy being on fire to trace!</span>")
+		return fail_activate()
+
+	if(!istype(M))
+		to_chat(X, "<span class='xenowarning'>We have no target we can trace!</span>")
+		return fail_activate()
+
+	if(M.z != X.z)
+		to_chat(X, "<span class='xenowarning'>Our target is too far away, and is beyond our senses!</span>")
+		return fail_activate()
+
+	var/name = sanitize(M.name)
+	var/area = sanitize(get_area(M))
+	var/distance = sanitize(get_dist(X, M))
+	var/condition = sanitize(calculate_mark_health())
+
+	to_chat(X, "<span class='xenodanger'>We sense our quarry [name] is currently located in [area] and is [distance] tiles away. It is [condition] and [M.status_flags & XENO_HOST ? "impregnated" : "barren"].</span>")
+	X.playsound_local(X, 'sound/effects/ghost2.ogg', 10, 0, 1)
+
+
+	var/obj/screen/hunter_tracker/T = new /obj/screen/hunter_tracker //Prepare the tracker object and set its parameters
+	T.hunter = X
+	T.target = M
+	T.add_hud(X)
+	T.color = X.hive.color
+	T.process() //Ping immediately after parameters have been set
+
+	add_cooldown()
+
+	return succeed_activate()
+
+/datum/action/xeno_action/psychic_trace/on_cooldown_finish() //Superficial cooldown to stop unnecessary spam; no notification needed to prevent spam.
+	return ..()
+
+
+/datum/action/xeno_action/psychic_trace/proc/calculate_mark_health() //Where we calculate the approximate health of our trace target
+
+	if(!istype(trace_target) || !isliving(trace_target)) //Sanity
+		return "indeterminant"
+
+	if(trace_target.stat == DEAD)
+		return "deceased"
+
+	var/mob/living/L = trace_target
+
+	var/percentage = round(L.health * 100 / L.maxHealth)
+	switch(percentage)
+		if(100 to INFINITY)
+			return "in perfect health"
+		if(76 to 99)
+			return "slightly injured"
+		if(51 to 75)
+			return "moderately injured"
+		if(26 to 50)
+			return "badly injured"
+		if(1 to 25)
+			return "severely injured"
+		if(-51 to 0)
+			return "critically injured"
+		if(-99 to -50)
+			return "on the verge of death"
+		else
+			return "deceased"

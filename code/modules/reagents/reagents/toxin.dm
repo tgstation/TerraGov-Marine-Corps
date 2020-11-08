@@ -441,13 +441,14 @@
 	name = "Xenomorph acid"
 	description = "Neon green, lethal and utterly corrosive. Do not ingest."
 	color = "#8E18A9" // rgb: 142, 24, 169
-	toxpwr = 4
+	toxpwr = 1.5
 	meltprob = 30
 	taste_multi = 1.5
 	custom_metabolism = REAGENTS_METABOLISM
 
 /datum/reagent/toxin/acid/on_mob_life(mob/living/L, metabolism)
-	L.take_limb_damage(toxpwr * REM, toxpwr * REM) //REM being 0.5, so 4 damage per tick, 20 damage per second
+	var/acid_damage = 2 * toxpwr * REM
+	L.take_limb_damage(acid_damage, acid_damage) //REM being 0.5, so 3 damage per tick, 15 damage per second
 	return ..()
 
 /datum/reagent/toxin/nanites
