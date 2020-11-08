@@ -64,8 +64,8 @@
 	var/chat_color
 	/// A luminescence-shifted value of the last color calculated for chatmessage overlays
 	var/chat_color_darkened
-
-	var/list/hud_possible //HUD images that this mob can provide.
+	///HUD images that this mob can provide.
+	var/list/hud_possible
 
 /*
 We actually care what this returns, since it can return different directives.
