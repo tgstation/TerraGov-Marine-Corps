@@ -10188,6 +10188,11 @@
 "bvZ" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/liaison)
+"bBR" = (
+/obj/machinery/computer/droppod_control,
+/obj/structure/table/mainship,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "bCk" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/cyan/hidden/layer1,
@@ -10301,9 +10306,8 @@
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "bWf" = (
-/obj/machinery/camera/autoname,
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
+/turf/closed/wall/mainship/gray/outer,
+/area/sulaco/hangar/droppod)
 "bWL" = (
 /turf/open/floor/prison,
 /area/sulaco/engineering)
@@ -10615,6 +10619,12 @@
 /obj/machinery/vending/dress_supply,
 /turf/open/floor/prison/red/full,
 /area/sulaco/bridge)
+"djm" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "dka" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 4
@@ -11745,6 +11755,10 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/self_destruct)
+"hhX" = (
+/obj/machinery/door_control/mainship/droppod,
+/turf/closed/wall/mainship/gray/outer,
+/area/sulaco/hangar)
 "hih" = (
 /obj/machinery/vending/medical,
 /turf/open/floor/prison/whitegreen/corner{
@@ -12542,6 +12556,10 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
+"jQS" = (
+/obj/machinery/camera/autoname,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "jRa" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 8
@@ -13804,6 +13822,12 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint2)
+"nWa" = (
+/obj/machinery/door/poddoor/mainship/droppod{
+	dir = 2
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "nWn" = (
 /turf/open/floor/prison/red/full{
 	dir = 8
@@ -14098,6 +14122,10 @@
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/liaison/quarters)
+"oKG" = (
+/obj/structure/window/framed/mainship/gray/toughened/hull,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "oLd" = (
 /obj/structure/cable,
 /turf/open/floor/prison,
@@ -14354,6 +14382,11 @@
 /obj/structure/cable,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/storage2)
+"ptb" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/toolbox,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "ptg" = (
 /obj/structure/table/mainship,
 /obj/item/storage/belt/utility/full,
@@ -14529,6 +14562,10 @@
 	dir = 1
 	},
 /area/sulaco/medbay/west)
+"pOy" = (
+/obj/machinery/light,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "pOF" = (
 /obj/structure/window/framed/mainship/gray/toughened,
 /obj/structure/sign/directions/engineering{
@@ -14756,6 +14793,12 @@
 "qDO" = (
 /turf/open/floor/mainship_hull/gray/dir,
 /area/space)
+"qHe" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "qIv" = (
 /obj/machinery/power/port_gen/pacman,
 /turf/open/floor/prison,
@@ -15584,6 +15627,9 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/darkyellow,
 /area/sulaco/engineering/engine)
+"sLp" = (
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "sLY" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating/platebotc,
@@ -15782,6 +15828,10 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/engineering/storage)
+"tqK" = (
+/obj/structure/table/mainship,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "ttp" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /obj/machinery/door/poddoor/open/bridge,
@@ -15793,6 +15843,11 @@
 	},
 /turf/open/floor/plating,
 /area/sulaco/briefing)
+"tur" = (
+/obj/structure/dropprop,
+/obj/structure/droppod,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "tus" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -17183,6 +17238,19 @@
 	},
 /turf/open/floor/prison/plate,
 /area/shuttle/distress/arrive_1)
+"xTj" = (
+/obj/structure/table/mainship,
+/obj/item/clipboard,
+/obj/item/tool/pen{
+	pixel_x = 4;
+	pixel_y = 4
+	},
+/obj/structure/paper_bin{
+	pixel_x = -3;
+	pixel_y = 7
+	},
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar/droppod)
 "xUM" = (
 /obj/structure/ladder{
 	height = 2;
@@ -50101,10 +50169,10 @@ aaa
 aaa
 nzi
 mDu
-mDu
-mDu
-mDu
-bFa
+bWf
+tur
+djm
+tur
 bFa
 aPU
 aQx
@@ -50357,11 +50425,11 @@ aaa
 aaa
 aaa
 tZr
-vDU
-vDU
 mDu
-mDu
-mDu
+bWf
+tur
+sLp
+tur
 bFa
 bFa
 aPY
@@ -50614,13 +50682,13 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-tZr
-mDu
-mDu
-mDu
-bFa
+nzi
+bWf
+tur
+sLp
+tqK
+ptb
+bWf
 aQg
 tWu
 aPY
@@ -50871,13 +50939,13 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-tZr
-mDu
-mDu
-bFa
+nzi
+oKG
+tur
+sLp
+bBR
+sLp
+bWf
 aPY
 aQu
 aPY
@@ -51128,13 +51196,13 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
 nzi
-mDu
-bFa
+oKG
+tur
+sLp
+xTj
+sLp
+bWf
 bFa
 aQv
 aPY
@@ -51385,13 +51453,13 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
 nzi
-mDu
-mDu
+oKG
+tur
+sLp
+sLp
+sLp
+pOy
 bFa
 aQI
 vVE
@@ -51642,14 +51710,14 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-tZr
-mDu
-mDu
-aSN
+nzi
+oKG
+tur
+sLp
+tur
+sLp
+sLp
+nWa
 aPF
 aPF
 rts
@@ -51899,14 +51967,14 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
-mDu
-aSN
+bWf
+tur
+sLp
+tur
+sLp
+sLp
+nWa
 gHU
 aPF
 rts
@@ -52156,14 +52224,14 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
-mDu
-aSN
+bWf
+tur
+sLp
+tur
+sLp
+sLp
+nWa
 aPF
 aPF
 rts
@@ -52413,15 +52481,15 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
-mDu
-bFa
 bWf
+tur
+sLp
+tur
+sLp
+tur
+hhX
+aPF
 aPF
 rts
 aPZ
@@ -52670,15 +52738,15 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
-mDu
+bWf
+tur
+sLp
+tur
+sLp
+tur
 bFa
-aPF
+jQS
 gHU
 rts
 aPZ
@@ -52927,14 +52995,14 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
-mDu
-aSN
+bWf
+tur
+sLp
+tur
+qHe
+tur
+bFa
 aPF
 aPF
 rts
@@ -53184,14 +53252,14 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
 nzi
-mDu
-aSN
+bWf
+oKG
+oKG
+oKG
+bWf
+bWf
+bFa
 aPF
 aPF
 rcb
@@ -53441,14 +53509,14 @@ aaa
 aaa
 aaa
 aaa
-aaa
-aaa
-aaa
-aaa
-aaa
-nzi
+tZr
+vDU
+vDU
+vDU
+vDU
 mDu
-aSN
+mDu
+bFa
 aPF
 aPF
 aYw
