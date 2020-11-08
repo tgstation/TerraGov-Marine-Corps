@@ -278,7 +278,7 @@
 	icon_state = "m412"
 	item_state = "m412"
 	muzzleflash_iconstate = "muzzle_flash_medium"
-	fire_sound = "gun_pulse"
+	fire_sound = "sound/weapons/guns/fire/m412.ogg"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
@@ -371,7 +371,7 @@
 	desc = "An older design of the pulse rifle made by Pulse Industries. A rather unknown weapon of its time. It invented the use of electronic firing in the modern era though. Uses 10x24mm caseless ammunition."
 	icon_state = "m41a"
 	item_state = "m41a"
-	fire_sound = "gun_pulse"
+	fire_sound = "sound/weapons/guns/fire/m412.ogg"
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/m41a_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/m41a_reload.ogg'
