@@ -529,11 +529,11 @@
 		return fail_activate()
 
 	var/name = sanitize(M.name)
-	var/area = sanitize(get_area(M))
+	var/area = sanitize("[get_area(M)] (X: [M.x], Y: [M.y])")
 	var/distance = sanitize(get_dist(X, M))
 	var/condition = sanitize(calculate_mark_health())
 
-	to_chat(X, "<span class='xenodanger'>We sense our quarry [name] is currently located in [area] and is [distance] tiles away. It is [condition] and [M.status_flags & XENO_HOST ? "impregnated" : "barren"].</span>")
+	to_chat(X, "<span class='xenodanger'>We sense our quarry <b>[name]</b> is currently located in <b>[area]</b> and is <b>[distance]</b> tiles away. It is <b>[condition]</b> and <b>[M.status_flags & XENO_HOST ? "impregnated" : "barren"]</b>.</span>")
 	X.playsound_local(X, 'sound/effects/ghost2.ogg', 10, 0, 1)
 
 
