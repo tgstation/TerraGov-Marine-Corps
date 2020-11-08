@@ -763,7 +763,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	screen_loc = ui_sl_dir
 	var/mob/living/carbon/xenomorph/hunter/hunter
-	var/mob/target
+	var/mob/living/target
 
 /obj/screen/hunter_tracker/proc/add_hud()
 	if(!hunter?.client)
@@ -782,11 +782,9 @@
 
 /obj/screen/hunter_tracker/process() //We ping the target, revealing its direction with an arrow
 
-	var/obj/screen/hunter_tracker/LL_dir = src
-
 	if(target.z != hunter.z || get_dist(hunter, target) < 1 || hunter == target)
-		LL_dir.icon_state = ""
+		icon_state = ""
 	else
-		LL_dir.icon_state = "SL_locator"
-		LL_dir.transform = 0 //Reset and 0 out
-		LL_dir.transform = turn(LL_dir.transform, Get_Angle(hunter, target))
+		icon_state = "SL_locator"
+		transform = 0 //Reset and 0 out
+		transform = turn(transform, Get_Angle(hunter, target))
