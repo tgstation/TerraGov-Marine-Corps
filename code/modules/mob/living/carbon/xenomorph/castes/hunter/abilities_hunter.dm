@@ -72,6 +72,20 @@
 		COMSIG_XENOMORPH_PLASMA_REGEN))
 	return ..()
 
+/datum/action/xeno_action/stealth/on_xeno_upgrade()
+
+	if(owner.alpha > HUNTER_STEALTH_RUN_ALPHA * stealth_alpha_multiplier) //If we actually have stealth translucency, assume we were stealthed pre-upgrade for reset and continue
+		return
+
+	stealth = TRUE //So we can properly reset
+	cancel_stealth(TRUE) //Silent cancel
+
+	//Now we reset Stealth:
+	stealth = TRUE
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/handle_stealth)
+	handle_stealth()
+
+
 /datum/action/xeno_action/stealth/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
@@ -84,7 +98,7 @@
 
 /datum/action/xeno_action/stealth/on_cooldown_finish()
 	to_chat(owner, "<span class='xenodanger'><b>We're ready to use Stealth again.</b></span>")
-	owner.playsound_local(owner.loc, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 	return ..()
 
 /datum/action/xeno_action/stealth/action_activate()
@@ -102,11 +116,12 @@
 	add_cooldown()
 	addtimer(CALLBACK(src, .proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY) //Short delay before we can sneak attack.
 
-/datum/action/xeno_action/stealth/proc/cancel_stealth() //This happens if we take damage, attack, pounce, toggle stealth off, and do other such exciting stealth breaking activities.
+/datum/action/xeno_action/stealth/proc/cancel_stealth(silent = FALSE) //This happens if we take damage, attack, pounce, toggle stealth off, and do other such exciting stealth breaking activities.
 	SIGNAL_HANDLER
 	if(!stealth)//sanity check/safeguard
 		return
-	to_chat(owner, "<span class='xenodanger'>We emerge from the shadows.</span>")
+	if(!silent)
+		to_chat(owner, "<span class='xenodanger'>We emerge from the shadows.</span>")
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED) //This should be handled on the ability datum or a component.
 	stealth = FALSE
 	can_sneak_attack = FALSE
@@ -117,7 +132,7 @@
 		return
 	can_sneak_attack = TRUE
 	to_chat(owner, "<span class='xenodanger'>We're ready to use Sneak Attack while stealthed.</span>")
-	owner.playsound_local(owner.loc, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
 
 /datum/action/xeno_action/stealth/proc/handle_stealth()
 	SIGNAL_HANDLER
