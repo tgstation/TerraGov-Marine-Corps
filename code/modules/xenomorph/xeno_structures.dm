@@ -67,10 +67,6 @@
 		UnregisterSignal(associated_hive, list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
 		associated_hive.xeno_message("<span class='xenoannounce'>A resin silo has been destroyed at [silo_area]!</span>", 2, TRUE)
 		associated_hive = null
-	for(var/i in contents)
-		var/atom/movable/AM = i
-		AM.forceMove(loc)
-	playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
 	return ..()
 
 
