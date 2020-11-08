@@ -679,7 +679,7 @@ to_chat will check for valid clients itself already so no need to double check f
 		boarder.gib()
 		left_behind++
 	if(left_behind)
-		xeno_message("[left_behind > 1 ? "[left_behind] sisters" : "One sister"] perished due to being too slow to board the bird. The freeing of their psychic link allows us to call borrowed, at least.")
+		xeno_message("[left_behind > 1 ? "[left_behind] sisters" : "One sister"] perished due to being too slow to board the bird. The freeing of their psychic link allows us to call burrowed, at least.")
 		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 		xeno_job.add_job_positions(left_behind)
 		if(difference > 0)
