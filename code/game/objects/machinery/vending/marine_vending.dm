@@ -636,7 +636,7 @@
 
 
 
-/obj/machinery/vending/uniform_supply
+/obj/machinery/vending/armor_supply
 	name = "\improper Surplus Armor Equipment Vendor"
 	desc = "A automated equipment rack hooked up to a colossal storage of armor and accessories."
 	icon_state = "marineuniform"
@@ -651,6 +651,7 @@
 		/obj/item/clothing/under/marine/jaeger = 30,
 		/obj/item/clothing/gloves/marine = 20,
 		/obj/item/clothing/suit/storage/marine/pasvest = 40,
+		/obj/item/clothing/suit/armor/vest/pilot = 20,
 		/obj/item/clothing/head/helmet/marine = 40,
 		/obj/item/clothing/head/helmet/marine/heavy = 10,
 		/obj/item/clothing/mask/rebreather = 10,
@@ -692,7 +693,7 @@
 
 	prices = list()
 
-/obj/machinery/vending/clothing_supply
+/obj/machinery/vending/uniform_supply
 	name = "\improper Surplus Clothing Vendor"
 	desc = "A automated equipment rack hooked up to a colossal storage of clothing and accessories."
 	icon_state = "marineuniform"
@@ -731,6 +732,7 @@
 		/obj/item/storage/belt/sparepouch = 10,
 		/obj/item/storage/belt/gun/pistol/standard_pistol = 10,
 		/obj/item/storage/belt/gun/revolver/standard_revolver = 10,
+		/obj/item/storage/pouch/pistol = 10,
 		/obj/item/storage/pouch/magazine/large = 5,
 		/obj/item/storage/pouch/magazine/pistol/large = 5,
 		/obj/item/storage/pouch/shotgun = 10,
