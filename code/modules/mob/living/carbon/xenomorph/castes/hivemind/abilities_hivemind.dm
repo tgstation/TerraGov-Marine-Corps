@@ -31,7 +31,7 @@
 		return FALSE
 
 	var/mob/living/carbon/xenomorph/hivemind/X = owner
-	var/turf/open/T = get_turf(target)
+	var/turf/T = get_turf(target)
 
 	if(!istype(X) || !istype(T))
 		return FALSE
@@ -46,14 +46,10 @@
 /datum/action/xeno_action/activable/reposition_core/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/hivemind/X = owner
 	var/obj/effect/alien/hivemindcore/core = X.core
-	var/turf/open/target_turf = get_turf(X)
-	var/distance = get_dist(target_turf, get_turf(core))
+	var/turf/T = get_turf(X)
+	var/distance = get_dist(T, get_turf(core))
 
 	var/delay = max(HIVEMIND_REPOSITION_CORE_DELAY_MIN, HIVEMIND_REPOSITION_CORE_DELAY_MOD * distance) //Calculate the distance scaling delay before we complete the reposition
-
-
-	if(!check_build_location(target_turf, X)) //Check target turf for suitability
-		return fail_activate()
 
 	to_chat(owner, "<span class='xenodanger'>We begin the process of transfering our consciousness... We estimate this will require [delay * 0.1] seconds.</span>")
 
@@ -63,10 +59,10 @@
 			to_chat(X, "<span class='xenodanger'>We abort transferring our consciousness, expending our precious plasma for naught.</span>")
 			return fail_activate()
 
-	if(!can_use_ability(target_turf, FALSE, XACT_IGNORE_PLASMA))
+	if(!can_use_ability(T, FALSE, XACT_IGNORE_PLASMA))
 		return fail_activate()
 
-	core.forceMove(get_turf(target_turf)) //Move the core
+	core.forceMove(get_turf(T)) //Move the core
 	playsound(core.loc, "alien_resin_build", 50)
 	core.obj_integrity = 1 //Reset the core's health to 1; travelling is hard, exhausting work!
 	to_chat(X, "<span class='xenodanger'>We succeed in transferring our consciousness to a new neural core!</span>")
@@ -78,7 +74,7 @@
 
 	X.hivemind_core_alert() //Alert the hive and marines
 
-/datum/action/xeno_action/activable/reposition_core/proc/check_build_location(turf/open/T, mob/living/carbon/xenomorph/hivemind/X)
+/datum/action/xeno_action/activable/reposition_core/proc/check_build_location(turf/T, mob/living/carbon/xenomorph/hivemind/X)
 
 	if(!X || !T) //Sanity
 		return FALSE
