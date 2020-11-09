@@ -48,6 +48,7 @@
 
 	// *** Abilities *** //
 	actions = list(
+		/datum/action/xeno_action/return_to_core,
 		/datum/action/xeno_action/plant_weeds/slow,
 		/datum/action/xeno_action/psychic_whisper,
 	)
