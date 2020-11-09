@@ -58,6 +58,8 @@
 /mob/living/carbon/xenomorph/hivemind/proc/check_weeds(turf/T)
 	SHOULD_BE_PURE(TRUE)
 	. = TRUE
+	if(locate(/obj/flamer_fire) in T)
+		return FALSE
 	for(var/obj/effect/alien/weeds/W in range(1, T ? T : get_turf(src)))
 		if(QDESTROYING(W))
 			continue
@@ -98,8 +100,7 @@
 		var/mob/living/carbon/xenomorph/xeno = locate(href_list["hivemind_jump"])
 		if(!istype(xeno))
 			return
-		var/obj/effect/alien/weeds/nearby_weed = locate() in range("3x3", get_turf(xeno))
-		if(!istype(nearby_weed))
+		if(!check_weeds(get_turf(xeno)))
 			to_chat(src, "<span class='warning'>They are not near any weeds we can jump to.</span>")
 			return
 		forceMove(get_turf(nearby_weed))
