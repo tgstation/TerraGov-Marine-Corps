@@ -485,6 +485,7 @@
 		return fail_activate()
 
 	X.hunter_mark_target = M //Set our target
+	RegisterSignal(X.hunter_mark_target, COMSIG_PARENT_PREQDELETED, .proc/unset_target) //For var clean up
 
 	to_chat(X, "<span class='xenodanger'>We psychically mark [name] as our quarry.</span>")
 	X.playsound_local(X, 'sound/effects/ghost.ogg', 25, 0, 1)
@@ -495,6 +496,10 @@
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "hunter_marks") //Statistics
 	add_cooldown()
 
+/datum/action/xeno_action/activable/hunter_mark/proc/unset_target()
+	var/mob/living/carbon/xenomorph/X = owner
+	UnregisterSignal(X.hunter_mark_target, COMSIG_PARENT_PREQDELETED)
+	X.hunter_mark_target = null
 
 // ***************************************
 // *********** Psychic Trace
