@@ -120,21 +120,21 @@
 
 
 //-------------------------------------------------------
-//MAR-40 AK CLONE //AK47 and FN FAL together as one.
+// AKM magazines
 
 /obj/item/ammo_magazine/rifle/ak47
-	name = "\improper AK magazine (7.62x39mm)"
+	name = "\improper AKM magazine (7.62x39mm)"
 	desc = "A 7.62x39mm magazine for the Kalashnikov series of firearms."
 	caliber = "7.62x39mm"
-	icon_state = "ak47"
+	icon_state = "akm"
 	default_ammo = /datum/ammo/bullet/rifle/ak47
-	max_rounds = 40
+	max_rounds = 30
 	gun_type = /obj/item/weapon/gun/rifle/ak47
 
 /obj/item/ammo_magazine/rifle/ak47/extended
-	name = "\improper AK extended magazine (7.62x39mm)"
+	name = "\improper AKM extended magazine (7.62x39mm)"
 	desc = "A 7.62x39mm Kalashnikov magazine, this one carries more rounds than the average magazine."
-	max_rounds = 60
+	max_rounds = 40
 	bonus_overlay = "ak47_ex"
 
 

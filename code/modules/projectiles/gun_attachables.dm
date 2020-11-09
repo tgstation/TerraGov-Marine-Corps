@@ -846,17 +846,6 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_y = 13
 	flags_attach_features = NONE
 
-
-/obj/item/attachable/stock/ak47
-	name = "AK-47 Wooden Stock"
-	desc = "A metallic stock with a wooden paint coating, made to fit the AK-47 replica."
-	icon_state = "ak47stock"
-	wield_delay_mod = 0.4 SECONDS
-	pixel_shift_x = 32
-	pixel_shift_y = 13
-	flags_attach_features = NONE
-
-
 /obj/item/attachable/stock/rifle
 	name = "\improper M412 solid stock"
 	desc = "A common stock used by the M412 pulse rifle series, used for long rifles. This stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."

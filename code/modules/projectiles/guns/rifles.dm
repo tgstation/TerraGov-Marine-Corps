@@ -415,13 +415,14 @@
 //-------------------------------------------------------
 
 /obj/item/weapon/gun/rifle/ak47
-	name = "\improper AK-47 assault rifle"
-	desc = "A crude, cheaply produced assault rifle capable of automatic fire. A replicant of the 1947 Kalashnikov rifle made with wood coloured plating, chambering the orginal 7.62x39mm round. Despite lacking attachment points, remains a popular product on the black market with its cheap cost and armor punching rounds."
-	icon_state = "ak47"
-	item_state = "ak47"
+	name = "\improper AKM assault rifle"
+	desc = "A cheaply produced assault rifle capable of automatic fire. An effective copy of the 1947 Kalashnikov rifle made with wood and plating, chambering the orginal 7.62x39mm round. Has been modernized to take attachments, remains a popular product on the black market with its cheap cost and strong power."
+	icon = 'icons/Marine/gun64.dmi'
+	icon_state = "akm"
+	item_state = "akm"
 	caliber = "7.62x39mm" //codex
 	muzzleflash_iconstate = "muzzle_flash_medium"
-	max_shells = 40 //codex
+	max_shells = 30 //codex
 	fire_sound = 'sound/weapons/guns/fire/ak47-1.ogg'
 	unload_sound = 'sound/weapons/guns/interact/ak47_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ak47_reload.ogg'
@@ -432,12 +433,15 @@
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
 		/obj/item/attachable/flashlight,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/magnetic_harness,
 	)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 17, "under_x" = 24, "under_y" = 13, "stock_x" = 17, "stock_y" = 12)
-	starting_attachment_types = list(/obj/item/attachable/stock/ak47)
 
 	accuracy_mult = 1
 	burst_amount = 1
@@ -448,12 +452,11 @@
 
 
 /obj/item/weapon/gun/rifle/ak47/carbine
-	name = "\improper AK-47U battle carbine"
-	desc = "A crude, cheaply produced battle carbine copy capable of automatic fire, a shortened version of the Kalashnikov rifle. Commonly found in the hands of criminals or mercenaries."
-	icon_state = "mar30"
-	item_state = "mar30"
+	name = "\improper AKM-U battle carbine"
+	desc = "A shortened version of the Kalashnikov rifle. Commonly found in the hands of criminals or mercenaries."
+	icon_state = "akmu"
+	item_state = "akmu"
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	starting_attachment_types = null
 
 	fire_delay = 0.25 SECONDS
 	burst_amount = 3
