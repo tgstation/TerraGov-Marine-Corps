@@ -397,7 +397,7 @@
 	},
 /area/sulaco/medbay)
 "acr" = (
-/obj/machinery/sleeper,
+/obj/machinery/bodyscanner,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -1942,18 +1942,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/north_solar_maint)
-"alL" = (
-/obj/machinery/bodyscanner,
-/turf/open/floor/prison/whitegreen/corner{
-	dir = 4
-	},
-/area/sulaco/medbay/west)
-"alM" = (
-/obj/machinery/body_scanconsole,
-/turf/open/floor/prison/whitegreen/corner{
-	dir = 1
-	},
-/area/sulaco/medbay/west)
 "alN" = (
 /obj/machinery/door/airlock/mainship/command/FCDRquarters{
 	dir = 1
@@ -11126,6 +11114,12 @@
 	},
 /turf/open/floor/prison,
 /area/sulaco/hallway/central_hall2)
+"eTR" = (
+/obj/machinery/cloning/vats,
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 8
+	},
+/area/sulaco/medbay/west)
 "eVy" = (
 /obj/machinery/door/airlock/mainship/engineering/CSEoffice{
 	dir = 2
@@ -14173,6 +14167,10 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_main_hall)
+"oRC" = (
+/obj/machinery/cloning_console/vats,
+/turf/open/floor/prison/whitegreen/corner,
+/area/sulaco/medbay/west)
 "oRM" = (
 /obj/effect/landmark/start/latejoin,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
@@ -43443,8 +43441,8 @@ aWG
 aXy
 aWG
 amz
-alL
-adI
+lrG
+eTR
 lrG
 aiq
 lrG
@@ -43700,8 +43698,8 @@ iAq
 tvS
 aWG
 amz
-alM
-adH
+hto
+oRC
 hto
 air
 hto
