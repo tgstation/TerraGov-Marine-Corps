@@ -103,7 +103,7 @@
 		if(!check_weeds(get_turf(xeno)))
 			to_chat(src, "<span class='warning'>They are not near any weeds we can jump to.</span>")
 			return
-		forceMove(get_turf(nearby_weed))
+		forceMove(get_turf(xeno))
 
 /// Hivemind just doesn't have any icons to update, disabled for now
 /mob/living/carbon/xenomorph/hivemind/update_icons()
