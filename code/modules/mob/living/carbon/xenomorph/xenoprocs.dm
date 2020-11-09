@@ -14,8 +14,6 @@
 
 
 /proc/check_tunnel_list(mob/user) //Creates a handy list of all xeno tunnels
-	if(!SSticker)
-		return
 	var/dat = "<br>"
 
 	var/datum/hive_status/hive

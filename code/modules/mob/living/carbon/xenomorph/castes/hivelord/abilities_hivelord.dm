@@ -182,10 +182,10 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	to_chat(X, "<span class='xenonotice'>We now have <b>[LAZYLEN(X.tunnels)] of [HIVELORD_TUNNEL_SET_LIMIT]</b> tunnels.</span>")
 
 	var/msg = stripped_input(X, "Give your tunnel a descriptive name:", "Tunnel Name")
-	newt.tunnel_desc = sanitize("[get_area(newt)] (X: [newt.x], Y: [newt.y])")
-	newt.name += sanitize(" [msg]")
+	newt.tunnel_desc = "[get_area(newt)] (X: [newt.x], Y: [newt.y])"
+	newt.name += " [msg]"
 
-	xeno_message("<span class='xenoannounce'>[sanitize(X.name)] has built a new tunnel named [newt.name] at [newt.tunnel_desc]!</span>", 2, X.hivenumber)
+	xeno_message("<span class='xenoannounce'>[X.name] has built a new tunnel named [newt.name] at [newt.tunnel_desc]!</span>", 2, X.hivenumber)
 
 	if(LAZYLEN(X.tunnels) > HIVELORD_TUNNEL_SET_LIMIT) //if we exceed the limit, delete the oldest tunnel set.
 		var/obj/structure/tunnel/old_tunnel = X.tunnels[1]
