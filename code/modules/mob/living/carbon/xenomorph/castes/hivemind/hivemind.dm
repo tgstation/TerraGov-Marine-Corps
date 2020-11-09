@@ -169,11 +169,7 @@
 	. = ..()
 	if(!isxeno(user))
 		return
-	var/list/details = list()
-	details +=("This [name] belongs to [parent.name].</br>")
-	details +=("It has [obj_integrity] of [max_integrity] integrity remaining.</br>")
-
-	to_chat(user, "<span class='xenowarning'>[details.Join(" ")]</span>")
+	to_chat(user, "<span class='xenowarning'>This [name] belongs to [parent.name].\n It has [obj_integrity] of [max_integrity] integrity remaining.</br></span>")
 
 
 /obj/effect/alien/hivemindcore/process()
@@ -224,38 +220,21 @@
 	core.max_integrity = src.xeno_caste.core_maximum_hitpoints
 	core.obj_integrity = core.max_integrity
 
-/mob/living/carbon/xenomorph/proc/hivemind_weed_vibecheck()
-	if(!src) //Sanity
-		return FALSE
-	if(!istype(src, /mob/living/carbon/xenomorph/hivemind)) //Not a hivemind, we don't care
-		return TRUE
-	var/mob/living/carbon/xenomorph/hivemind/H = src
-	if(!H.core) //Sanity check for a core.
-		return FALSE
-	if(locate(/obj/effect/alien/weeds) in range(1, src.loc))
-		return TRUE
-	H.forceMove(get_turf(H.core))
-	to_chat(src, "<span class='xenonotice'>We lacked weeds to sustain our presence and our consciousness was shunted to our core.</span>")
-	return FALSE
 
 /mob/living/carbon/xenomorph/hivemind/proc/hivemind_core_alert()
 
-	if(!src) //Sanity check
-		return FALSE
+	var/obj/effect/alien/hivemindcore/the_core = core
 
-	var/mob/living/carbon/xenomorph/hivemind/X = src
-	var/obj/effect/alien/hivemindcore/core = X.core
-
-	if(!core) //Sanity check
+	if(!the_core) //Sanity check
 		return FALSE
 
 	var/list/decoy_area_list = list()
-	var/area/real_area = get_area(core) //Set our real area
+	var/area/real_area = get_area(the_core) //Set our real area
 	var/list/buffer_list = list() //Buffer list for randomization
 	var/list/details = list() //The actual final list for the announcement
 
 	for(var/area/core_areas in world) //Build the list of areas on the core's Z.
-		if(core_areas.z != core.z) //Must be on the same Z
+		if(core_areas.z != the_core.z) //Must be on the same Z
 			continue
 		decoy_area_list += core_areas //Add to the list of potential decoys
 
@@ -271,7 +250,7 @@
 		++decoys
 
 	var/buffer_list_pick
-	while(buffer_list.len > 0) //Now populate our randomized order list for the announcement
+	while(length(buffer_list) > 0) //Now populate our randomized order list for the announcement
 		buffer_list_pick = pick(buffer_list) //Get random entry in the list
 		buffer_list -= buffer_list_pick //Remove that random entry from the buffer
 		if(buffer_list.len > 0) //Add that random entry to the final list of areas
@@ -279,23 +258,13 @@
 		else
 			details += ("[buffer_list_pick].")
 
-	if(!is_centcom_level(core))
-		var/hivemind_message = "<span class='alert'>[sanitize(X.name)] has moved its core to [sanitize(real_area.name)]!</span>" //Alert our fellow benos
-		notify_ghosts(hivemind_message, source = X, action = NOTIFY_ORBIT)
-		INVOKE_ASYNC(src, .proc/do_hive_message, hivemind_message)
+	if(is_centcom_level(core))
+		return FALSE
+
+	var/hivemind_message = "<span class='alert'>[name] has moved its core to [real_area.name]!</span>" //Alert our fellow benos
+	notify_ghosts(hivemind_message, source = src, action = NOTIFY_ORBIT)
+	INVOKE_ASYNC(hive, /datum/hive_status/proc/do_hive_message, hivemind_message, src)
 
 	priority_announce("Attention: Anomalous energy readings detected in the following areas: [details.Join(" ")] Further investigation advised.", "Priority Alert", sound = 'sound/AI/commandreport.ogg') //Alert marines with hints
+
 	return TRUE
-
-/mob/living/carbon/xenomorph/hivemind/proc/do_hive_message(hivemind_message)
-	var/sound/queen_sound = sound(get_sfx("queen"), wait = 0,volume = 50, channel = CHANNEL_ANNOUNCEMENTS)
-	if(SSticker?.mode)
-		hive.xeno_message("[hivemind_message]")
-		for(var/i in hive.get_watchable_xenos())
-			var/mob/living/carbon/xenomorph/X = i
-			SEND_SOUND(X, queen_sound)
-
-	for(var/i in GLOB.observer_list)
-		var/mob/dead/observer/G = i
-		SEND_SOUND(G, queen_sound)
-		to_chat(G, "[hivemind_message]")

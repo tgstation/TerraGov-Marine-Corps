@@ -30,19 +30,23 @@
 	if(QDELETED(target))
 		return FALSE
 
-	var/turf/target_turf = target
 	var/mob/living/carbon/xenomorph/hivemind/X = owner
+	var/turf/open/T = get_turf(target)
 
-	if(!istype(X))
+	if(!istype(X) || !istype(T))
 		return FALSE
 
-	if(!check_build_location(target_turf, X))
+	if(!X.Adjacent(T))
+		to_chat(owner, "<span class='xenodanger'>We can only reposition to a space adjacent to us!</span>")
+		return FALSE
+
+	if(!check_build_location(T, X))
 		return FALSE
 
 /datum/action/xeno_action/activable/reposition_core/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/hivemind/X = owner
 	var/obj/effect/alien/hivemindcore/core = X.core
-	var/turf/target_turf = get_turf(X)
+	var/turf/open/target_turf = get_turf(X)
 	var/distance = get_dist(target_turf, get_turf(core))
 
 	var/delay = max(HIVEMIND_REPOSITION_CORE_DELAY_MIN, HIVEMIND_REPOSITION_CORE_DELAY_MOD * distance) //Calculate the distance scaling delay before we complete the reposition
@@ -50,6 +54,7 @@
 
 	if(!check_build_location(target_turf, X)) //Check target turf for suitability
 		return fail_activate()
+
 	to_chat(owner, "<span class='xenodanger'>We begin the process of transfering our consciousness... We estimate this will require [delay * 0.1] seconds.</span>")
 
 	succeed_activate()
@@ -73,26 +78,26 @@
 
 	X.hivemind_core_alert() //Alert the hive and marines
 
-/datum/action/xeno_action/activable/reposition_core/proc/check_build_location(turf/target_turf, mob/living/carbon/xenomorph/hivemind/X)
+/datum/action/xeno_action/activable/reposition_core/proc/check_build_location(turf/open/T, mob/living/carbon/xenomorph/hivemind/X)
 
-	if(!X || !target_turf) //Sanity
+	if(!X || !T) //Sanity
 		return FALSE
 
-	if(target_turf.z != X.core.z)
+	if(T.z != X.core.z)
 		to_chat(X, "<span class='xenodanger'>We cannot transfer our core here.</span>")
 		return FALSE
 
-	if(target_turf.density) //Check to see if there's room
+	if(T.density) //Check to see if there's room
 		to_chat(X, "<span class='xenodanger'>We require adequate room to transfer our core.</span>")
 		return FALSE
 
-	var/obj/effect/alien/weeds/W = locate() in range(0, target_turf) //Make sure we actually have weeds at our destination.
-	if(!W)
+	if(!locate(/obj/effect/alien/weeds) in T) //Make sure we actually have weeds at our destination.
+		to_chat(X, "<span class='xenodanger'>[T.name] [T.x] [T.y]</span>")
 		to_chat(X, "<span class='xenodanger'>There are no weeds for us to transfer our consciousness to!</span>")
 		return FALSE
 
-	for(var/obj/structure/O in target_turf.contents)
-		if(O.density && !(O.flags_atom = ON_BORDER))
+	for(var/obj/structure/O in T.contents)
+		if(O.density && !CHECK_BITFIELD(O.flags_atom, ON_BORDER))
 			to_chat(X, "<span class='xenodanger'>An object is occupying this space!</span>")
 			return FALSE
 
@@ -110,10 +115,10 @@
 	ability_name = "mind wrack"
 	plasma_cost = 100
 	keybind_signal = COMSIG_XENOABILITY_MIND_WRACK
-	cooldown_timer = 30 SECONDS
+	cooldown_timer = 60 SECONDS
 
 /datum/action/xeno_action/activable/mind_wrack/on_cooldown_finish()
-	owner.playsound_local(owner.loc, 'sound/voice/alien_drool1.ogg', 50, TRUE)
+	owner.playsound_local(owner, 'sound/effects/ghost2.ogg', 25, TRUE)
 	to_chat(owner, "<span class='xenonotice'>We regain the strength to assault the minds of our enemies.</span>")
 	return ..()
 
@@ -124,17 +129,17 @@
 	if(QDELETED(target))
 		return FALSE
 
-	var/mob/living/carbon/C = target
+	var/mob/living/L = target
 	var/mob/living/carbon/xenomorph/hivemind/X = owner
 
-	var/distance = get_dist(owner, C)
+	var/distance = get_dist(owner, L)
 
-	if(!iscarbon(target)) //only items and mobs can be flung.
+	if(!isliving(target))
 		to_chat(X, "<span class='xenowarning'>Our mind cannot interface with such an entity!</spam>")
 		return FALSE
 
-	if(isxeno(C))
-		var/mob/living/carbon/xenomorph/alien = C
+	if(isxeno(L))
+		var/mob/living/carbon/xenomorph/alien = L
 		if(alien.hivenumber == X.hivenumber)
 			to_chat(X, "<span class='xenonotice'>We would not assail the minds of our sisters!</span>")
 			return FALSE
@@ -147,25 +152,24 @@
 			to_chat(X, "<span class='xenowarning'>We can't focus our psychic energy properly without a clear line of sight!</span>")
 		return FALSE
 
-	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && C.stat == DEAD)
+	if(!CHECK_BITFIELD(use_state_flags|override_flags, XACT_IGNORE_DEAD_TARGET) && L.stat == DEAD)
 		to_chat(X, "<span class='xenonotice'>Even we cannot touch the minds of the dead...</span>")
 		return FALSE
 
 
 /datum/action/xeno_action/activable/mind_wrack/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/hivemind/X = owner
-	var/mob/living/carbon/victim = A
+	var/mob/living/victim = A
 
-	var/power_level //What does the scouter say about it?
+	var/power_level = 0 //What does the scouter say about it?
 	for(var/mob/living/carbon/xenomorph/ally in range(HIVEMIND_MIND_WRACK_POWER_CHORUS_RANGE, X ) ) //For each friendly xeno nearby, effect is more powerful
 		if(istype(ally) && ally.hivenumber == X.hivenumber)
 			++power_level //Increment the power level for each Xeno nearby
 		if(power_level > HIVEMIND_MIND_WRACK_POWER_MAX_CHORUS)
 			break
 
-	for(var/obj/effect/alien/hivemindcore/node_core in range(HIVEMIND_MIND_WRACK_POWER_CHORUS_RANGE, get_turf(X) ) ) //If our core is nearby, the effect is *especially* powerful.
-		if(node_core == X.core)
-			power_level = max(power_level, power_level + 2)
+	if(get_dist(X, X.core) <= HIVEMIND_MIND_WRACK_POWER_CHORUS_RANGE) //If our core is nearby, the effect is *especially* powerful.
+		power_level += 5
 
 	if(power_level < 2) //We need at least one core or xeno other than us.
 		to_chat(owner, "<span class='xenodanger'>We require our core or a sister nearby to relay our psychic energy!</span>")
@@ -178,10 +182,10 @@
 
 	power_level = clamp(HIVEMIND_MIND_WRACK_POWER_MINIMUM, power_level * HIVEMIND_MIND_WRACK_POWER_MULTIPLIER + proximity_offset, HIVEMIND_MIND_WRACK_POWER_MAXIMUM)
 
-	X.playsound_local(X.loc, 'sound/magic/invoke_general.ogg', 50, TRUE)
-	victim.playsound_local(victim.loc, pick('sound/voice/alien_distantroar_3.ogg','sound/voice/alien_queen_command.ogg','sound/voice/alien_queen_command2.ogg','sound/voice/alien_queen_command3.ogg'), 50, TRUE)
+	X.playsound_local(X, 'sound/magic/invoke_general.ogg', 50, TRUE)
+	victim.playsound_local(victim, pick('sound/effects/ghost2.ogg','sound/effects/ghost.ogg','sound/voice/alien_distantroar_3.ogg','sound/voice/alien_queen_command.ogg','sound/voice/alien_queen_command2.ogg','sound/voice/alien_queen_command3.ogg'), clamp(25, power_level * 0.5, 75), TRUE)
 	to_chat(X, "<span class='danger'>We scour the mind of this unfortunate creature with [calculate_power(power_level, X)] power.</span>")
-	to_chat(victim, "<span class='danger'>Your mind is suddenly overwhelmed by alien thoughts as unworldly screaming fills your ears. Your brain feels as though it's on fire and your world convulses!</span>")
+	to_chat(victim, "<span class='danger'>Your thoughts are suddenly overwhelmed by an alien presence as unworldly screaming fills your mind. Your brain feels as though it's on fire and your world convulses!</span>")
 	new /obj/effect/temp_visual/telepathy(get_turf(victim))
 	shake_camera(victim, power_level * 0.01 SECONDS, 1)
 	victim.ParalyzeNoChain(0.5 SECONDS)

@@ -89,7 +89,7 @@
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_cure,
 		/datum/action/xeno_action/toggle_pheromones,
-		// /datum/action/xeno_action/activable/mind_wrack, //Commenting this out for now until I submit a follow up PR that allows the Hivemind to manifest in a destructibe avatar.
+		/datum/action/xeno_action/activable/mind_wrack,
 		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/activable/secrete_resin/slow
 	)
@@ -124,7 +124,7 @@
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_cure,
 		/datum/action/xeno_action/toggle_pheromones,
-		// /datum/action/xeno_action/activable/mind_wrack, //Commenting this out for now until I submit a follow up PR that allows the Hivemind to manifest in a destructibe avatar.
+		/datum/action/xeno_action/activable/mind_wrack,
 		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/activable/secrete_resin/slow
 	)
@@ -160,7 +160,7 @@
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/activable/psychic_cure,
 		/datum/action/xeno_action/toggle_pheromones,
-		// /datum/action/xeno_action/activable/mind_wrack, //Commenting this out for now until I submit a follow up PR that allows the Hivemind to manifest in a destructibe avatar.
+		/datum/action/xeno_action/activable/mind_wrack,
 		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/activable/secrete_resin/slow
 	)

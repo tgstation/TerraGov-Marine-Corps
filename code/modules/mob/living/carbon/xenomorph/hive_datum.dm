@@ -1075,3 +1075,19 @@ to_chat will check for valid clients itself already so no need to double check f
 			var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[text2path(params["path"])][XENO_UPGRADE_BASETYPE]
 			xeno.do_evolve(caste.caste_type_path, caste.display_name) // All the checks for can or can't are handled inside do_evolve
 			return
+
+
+/datum/hive_status/proc/do_hive_message(hivemind_message, mob/living/carbon/xenomorph/X)
+	if(!isxeno(X)) //Sanity
+		return
+
+	var/sound/queen_sound = sound(get_sfx("queen"), wait = 0,volume = 50, channel = CHANNEL_ANNOUNCEMENTS)
+	X.hive.xeno_message("[hivemind_message]")
+	for(var/i in X.hive.get_watchable_xenos())
+		var/mob/living/carbon/xenomorph/X2 = i
+		SEND_SOUND(X2, queen_sound)
+
+	for(var/i in GLOB.observer_list)
+		var/mob/dead/observer/G = i
+		SEND_SOUND(G, queen_sound)
+		to_chat(G, "[hivemind_message]")
