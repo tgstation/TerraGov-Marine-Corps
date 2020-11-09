@@ -17175,6 +17175,7 @@
 "xPO" = (
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden,
+/obj/structure/cable,
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "xTi" = (
