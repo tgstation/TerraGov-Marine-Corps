@@ -67,7 +67,7 @@
 	)
 
 /datum/xeno_caste/shrike/young
-	upgrade_name = "Young"
+	upgrade_name = "Yung"
 
 	upgrade = XENO_UPGRADE_ZERO
 

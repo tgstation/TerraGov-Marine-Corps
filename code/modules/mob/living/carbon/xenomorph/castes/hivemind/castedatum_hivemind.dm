@@ -53,7 +53,7 @@
 	)
 
 /datum/xeno_caste/hivemind/young
-	upgrade_name = "Young"
+	upgrade_name = "Yung"
 
 	upgrade = XENO_UPGRADE_ZERO
 

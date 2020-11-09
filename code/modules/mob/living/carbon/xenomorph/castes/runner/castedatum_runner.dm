@@ -61,7 +61,7 @@
 	)
 
 /datum/xeno_caste/runner/young
-	upgrade_name = "Young"
+	upgrade_name = "Yung"
 
 	upgrade = XENO_UPGRADE_ZERO
 

@@ -54,7 +54,7 @@
 	aura_allowed = list("frenzy", "warding", "recovery")
 
 /datum/xeno_caste/defiler/young
-	upgrade_name = "Young"
+	upgrade_name = "Yung"
 
 	upgrade = XENO_UPGRADE_ZERO
 
