@@ -1,4 +1,51 @@
 // ***************************************
+// *********** Drain blood
+// ***************************************
+/datum/action/xeno_action/activable/quick_taste
+	name = "Quick Sip"
+	action_icon_state = "quick_sip"
+	mechanics_text = "Hold a marine for 1s while draining 2% of their blood."
+	ability_name = "quick sip"
+	cooldown_timer = 20 SECONDS
+	plasma_cost = 300
+
+/datum/action/xeno_action/activable/quick_sip/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return
+	if(!A.can_sting())
+		to_chat(owner, "<span class='warning'>This just won't do!</span>")
+		return FALSE
+	if(owner.blood_bank >= 100)
+		to_chat(owner, "<span class='warning'>Somehow we feel sated for now...</span>")
+		return FALSE
+	if(get_dist(owner, A) > 2)
+		to_chat(owner, "<span class='warning'>Ugh... it is outside of our reach!</span>")
+		return FALSE
+	return TRUE
+
+/datum/action/xeno_action/activable/quick_sip/use_ability(atom/A)
+	var/mob/living/carbon/xenomorph/X = owner
+	succeed_activate()
+	sip_action(A, channel_time = 1 SECONDS, sip_amount = 2)
+	add_cooldown()
+
+/datum/action/xeno_action/activable/reagent_slash/proc/slash_action(mob/living/carbon/C, channel_time = 1 SECONDS, sip_amount = 2)
+	var/mob/living/carbon/xenomorph/X = owner
+	var/i = 1
+
+	do_after(X, channel_time, TRUE, null, BUSY_ICON_HOSTILE, ignore_turf_checks = FALSE)
+	C.blood_volume -= 2
+	X.blood_bank += 2
+	X.face_atom(C)
+	C.reagents.add_reagent(toxin, transfer_amount)
+	playsound(C, "alien_claw_flesh", 25, TRUE)
+	playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
+	C.apply_damage(damage = 20, damagetype = BRUTE, def_zone = BODY_ZONE_HEAD, blocked = 0, sharp = TRUE, edge = FALSE, updating_health = TRUE, C)
+	X.visible_message(C, "<span class='danger'>The [X] swipes at [C]!</span>")
+	X.do_attack_animation(C)
+
+// ***************************************
 // *********** Charge
 // ***************************************
 /datum/action/xeno_action/activable/charge
