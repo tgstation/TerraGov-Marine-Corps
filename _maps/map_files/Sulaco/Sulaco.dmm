@@ -1145,14 +1145,6 @@
 	dir = 1
 	},
 /area/sulaco/engineering/atmos)
-"ahj" = (
-/obj/structure/ladder{
-	height = 2;
-	icon_state = "ladderdown";
-	id = "cargo"
-	},
-/turf/open/floor/prison/plate,
-/area/sulaco/cargo)
 "ahm" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/siphon/on{
 	dir = 8;
@@ -11632,14 +11624,6 @@
 	},
 /turf/open/floor/prison/bright_clean,
 /area/mainship/command/self_destruct)
-"gPa" = (
-/obj/structure/ladder{
-	height = 2;
-	icon_state = "ladderdown";
-	id = "firing"
-	},
-/turf/open/floor/prison,
-/area/sulaco/hangar/one)
 "gPi" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -41629,7 +41613,7 @@ abV
 hSX
 fCm
 kVY
-ahj
+bPM
 eul
 amB
 amd
@@ -43943,7 +43927,7 @@ uPG
 bhA
 bgd
 aRj
-gPa
+bhA
 alx
 cjh
 rEe
