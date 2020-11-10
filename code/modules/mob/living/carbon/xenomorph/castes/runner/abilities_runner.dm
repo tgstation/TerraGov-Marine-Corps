@@ -194,3 +194,71 @@
 	if(!can_use_ability(target, override_flags = XACT_IGNORE_SELECTED_ABILITY))
 		return ..()
 	return TRUE
+
+// ***************************************
+// *********** Evasion
+// ***************************************
+/datum/action/xeno_action/evasion
+	name = "Evasion"
+	action_icon_state = "unburrow"
+	mechanics_text = "Take evasive action, forcing non-friendly projectiles that would hit you to miss so long as you keep moving."
+	plasma_cost = 20
+	cooldown_timer = 30 SECONDS
+	keybind_signal = COMSIG_XENOABILITY_EVASION
+
+
+/datum/action/xeno_action/evasion/action_activate()
+	var/mob/living/carbon/xenomorph/runner/R = owner
+
+	R.do_jitter_animation(2000)
+	R.visible_message("<span class='warning'>[R.name] begins to move erratically!</span>", \
+	"<span class='xenodanger'>We move erratically, making us impossible to hit with projectiles; the next [RUNNER_EVASION_STACKS] projectiles that would hit us will now miss.</span>")
+
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, R, "<span class='highdanger'>We begin to slow as we tire.</span>"), RUNNER_EVASION_DURATION * 0.7)
+	addtimer(CALLBACK(R, /mob/.proc/playsound_local, R, 'sound/voice/hiss4.ogg', 50), RUNNER_EVASION_DURATION * 0.7)
+	addtimer(CALLBACK(src, .proc/evasion_deactivate), RUNNER_EVASION_DURATION)
+
+	R.evasion_stacks = RUNNER_EVASION_STACKS
+
+	succeed_activate()
+
+	GLOB.round_statistics.runner_evasions++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_evasions") //Statistics
+
+/datum/action/xeno_action/evasion/proc/evasion_deactivate()
+
+	var/mob/living/carbon/xenomorph/runner/R = owner
+	if(R.evasion_stacks) //If our evasion stacks are already depleted, don't tell us again.
+		R.evasion_stacks = 0
+		R.visible_message("<span class='warning'>[R.name] stops moving erratically.</span>", \
+		"<span class='highdanger'>We stop moving erratically; projectiles will hit us normally again!</span>")
+	R.playsound_local(R, 'sound/voice/hiss5.ogg', 50)
+	add_cooldown()
+
+
+/datum/action/xeno_action/evasion/on_cooldown_finish()
+	to_chat(owner, "<span class='xenonotice'>We are able to take evasive action again.</span>")
+	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	return ..()
+
+
+/mob/living/carbon/xenomorph/runner/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
+
+	if(evasion_stacks && (last_move_intent > (world.time - RUNNER_EVASION_RUN_DELAY) ) ) //Gotta keep moving to benefit from evasion!
+
+		do_jitter_animation(2000) //Dodgy animation!
+		visible_message("<span class='warning'>[name] effortlessly dodge the [proj.name]!</span>", \
+		"<span class='xenodanger'>We effortlessly dodge the [proj.name]!</span>")
+
+		if(issamexenohive(proj.firer)) //We automatically dodge allied projectiles at no cost
+			return FALSE
+
+		evasion_stacks--
+		if(evasion_stacks <= RUNNER_EVASION_DANGER_THRESHOLD)
+			to_chat(src, "<span class='highdanger'>We [evasion_stacks > 0 ? "can dodge only [evasion_stacks] more projectiles!" : "can't dodge any more projectiles!"] </span>")
+			if(!evasion_stacks) //Audio warning
+				playsound_local(src, 'sound/voice/hiss5.ogg', 50)
+
+		return FALSE
+
+	return ..()

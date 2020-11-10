@@ -294,6 +294,7 @@
 	//Runner vars
 	var/savage = FALSE
 	var/savage_used = FALSE
+	var/evasion_stacks = 0
 
 	// *** Ravager vars *** //
 	var/ignore_pain = FALSE // when true the rav will not go into crit or take crit damage.

@@ -540,6 +540,12 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define DRONE_SALVAGE_UPGRADE_FILTER_LIST	list(XENO_UPGRADE_THREE, XENO_UPGRADE_INVALID)
 #define DRONE_SALVAGE_EVOLUTION_FILTER_LIST	list(XENO_TIER_ZERO, XENO_TIER_THREE, XENO_TIER_FOUR)
 
+//Runner defines
+#define RUNNER_EVASION_STACKS				10 //How many projectiles we auto-dodge
+#define RUNNER_EVASION_DURATION				10 SECONDS //How long Evasion lasts.
+#define RUNNER_EVASION_RUN_DELAY			0.5 SECONDS //If the time since the Runner last moved is equal to or greater than this, its Evasion ends.
+#define RUNNER_EVASION_DANGER_THRESHOLD		5 //If we have this number of dodges remaining or fewer, warn the user.
+
 //misc
 
 #define STANDARD_SLOWDOWN_REGEN 0.3
