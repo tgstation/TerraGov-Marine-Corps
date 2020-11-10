@@ -423,7 +423,7 @@
 	caliber = "7.62x39mm" //codex
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	max_shells = 30 //codex
-	fire_sound = 'sound/weapons/guns/fire/ak47-1.ogg'
+	fire_sound = 'sound/weapons/guns/fire/ak47_01.ogg'
 	unload_sound = 'sound/weapons/guns/interact/ak47_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/ak47_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/ak47_cocked.ogg'
@@ -441,7 +441,7 @@
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_LOAD_INTO_CHAMBER|GUN_AMMO_COUNTER
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_AUTOMATIC)
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 17, "under_x" = 24, "under_y" = 13, "stock_x" = 17, "stock_y" = 12)
+	attachable_offset = list("muzzle_x" = 43, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 20, "under_x" = 28, "under_y" = 13, "stock_x" = 17, "stock_y" = 12)
 
 	accuracy_mult = 1
 	burst_amount = 1
