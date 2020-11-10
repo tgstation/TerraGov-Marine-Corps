@@ -251,8 +251,8 @@
 
 /datum/keybinding/xeno/salvage_plasma
 	name = "salvage_plasma"
-	full_name = "Drone: Salvage Plasma"
-	description = ""
+	full_name = "Drone: Salvage Biomass"
+	description = "Salvage plasma, upgrade and evolution points from the corpse of another xenomorph, gibbing it."
 	keybind_signal = COMSIG_XENOABILITY_SALVAGE_PLASMA
 
 /datum/keybinding/xeno/resin_walker
