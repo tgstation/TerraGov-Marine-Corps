@@ -1,0 +1,4 @@
+author: "Isy232"
+delete-after: True
+changes: 
+  - bugfix: "Removes a light in a wall on prison"
