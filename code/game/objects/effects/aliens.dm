@@ -61,9 +61,9 @@
 	. = ..()
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
-		H.acid_spray_crossed(slow_amt)
+		H.acid_spray_crossed(acid_damage, slow_amt)
 
-/mob/living/carbon/human/proc/acid_spray_crossed(slow_amt)
+/mob/living/carbon/human/proc/acid_spray_crossed(acid_damage, slow_amt)
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ACID))
 		return
 
