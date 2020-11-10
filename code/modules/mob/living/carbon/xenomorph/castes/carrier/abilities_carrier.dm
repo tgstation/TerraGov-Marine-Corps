@@ -244,7 +244,7 @@
 /datum/action/xeno_action/psychic_wave/action_activate()
 	var/mob/living/carbon/xenomorph/carrier/X = owner
 
-	if(!do_after(X, 1 SECONDS, FALSE, X, BUSY_ICON_DANGER))
+	if(!do_after(X, 0.5 SECONDS, FALSE, X, BUSY_ICON_DANGER))
 		return fail_activate()
 	var/huggers = length(X.huggers)
 	X.visible_message("<span class='warning'>[X] crushes the huggers on it's back, releasing a burst of energy!</span>",\
