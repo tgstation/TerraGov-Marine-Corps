@@ -1,0 +1,5 @@
+author: "Slotbot"
+delete-after: True
+changes: 
+  - refactor: "changed acidic salve/psychic cure's range code"
+  - tweak: "increased hivelord's acidic salve range by 1"
