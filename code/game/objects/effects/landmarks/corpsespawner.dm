@@ -112,6 +112,8 @@
 
 // I'll work on making a list of corpses people request for maps, or that I think will be commonly used. Syndicate operatives for example.
 
+/obj/effect/landmark/corpsespawner/
+	xenovictim = TRUE
 
 /obj/effect/landmark/corpsespawner/syndicatesoldier
 	name = "Syndicate Operative"
@@ -217,7 +219,6 @@
 	corpseid = 1
 	corpseidjob = "Medical Doctor"
 //	corpseidaccess = "Medical Doctor"
-	xenovictim = TRUE
 
 /obj/effect/landmark/corpsespawner/engineer
 	name = "Engineer"
@@ -230,7 +231,6 @@
 	corpseid = 1
 	corpseidjob = "Station Engineer"
 //	corpseidaccess = "Station Engineer"
-	xenovictim = TRUE
 
 /obj/effect/landmark/corpsespawner/engineer/rig
 	corpsesuit = /obj/item/clothing/suit/space/rig/engineering
@@ -257,7 +257,6 @@
 	corpseid = 1
 	corpseidjob = "Scientist"
 //	corpseidaccess = "Scientist"
-	xenovictim = TRUE
 
 /obj/effect/landmark/corpsespawner/miner
 	corpseuniform = /obj/item/clothing/under/colonist
@@ -267,7 +266,6 @@
 	corpseid = 1
 	corpseidjob = "Shaft Miner"
 //	corpseidaccess = "Shaft Miner"
-	xenovictim = TRUE
 
 /obj/effect/landmark/corpsespawner/miner/rig
 	corpsesuit = /obj/item/clothing/suit/space/rig/mining
@@ -302,13 +300,11 @@
 	corpsemask = /obj/item/clothing/mask/gas/PMC/damaged
 	corpseradio = /obj/item/radio/headset/survivor
 	corpsesuit = /obj/item/clothing/suit/storage/marine/veteran/PMC
-	xenovictim = TRUE
 
 /obj/effect/landmark/corpsespawner/colonist
 	name = "Colonist"
 	corpseuniform = /obj/item/clothing/under/colonist
 	corpseshoes = /obj/item/clothing/shoes/black
-	xenovictim = TRUE
 
 
 /////////////////Officers//////////////////////

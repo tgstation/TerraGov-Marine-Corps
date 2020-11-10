@@ -1,0 +1,4 @@
+author: "Hathkar"
+delete-after: True
+changes: 
+  - imageadd: "Adds a missing sprite for the intel computer when it has no power."

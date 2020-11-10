@@ -258,3 +258,10 @@ GLOBAL_LIST_INIT(thickenable_resin, typecacheof(list(
 	owner.put_in_hands(jelly)
 	to_chat(owner, "<span class='xenonotice'>We create a globule of resin from our ovipostor.</span>")
 	succeed_activate()
+
+// ***************************************
+// *********** Acidic salve
+// ***************************************
+
+/datum/action/xeno_action/activable/psychic_cure/acidic_salve/hivelord
+	heal_range = HIVELORD_HEAL_RANGE

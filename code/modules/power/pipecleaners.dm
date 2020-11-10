@@ -182,7 +182,6 @@ By design, d1 is the smallest direction and d2 is the highest
 	amount = MAXCOIL
 	merge_type = /obj/item/stack/pipe_cleaner_coil // This is here to let its children merge between themselves
 	var/pipe_cleaner_color = "red"
-	throwforce = 0
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 3
 	throw_range = 5

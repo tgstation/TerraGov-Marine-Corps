@@ -14,11 +14,6 @@
 	. = ..()
 	var/list/traits = list()
 
-	var/list/entries = SScodex.retrieve_entries_for_string(general_codex_key)
-	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
-	if(general_entry && general_entry.mechanics_text)
-		traits += general_entry.mechanics_text
-
 	if(flags_gun_features & GUN_WIELDED_FIRING_ONLY)
 		traits += "This can only be fired with a two-handed grip."
 	else
@@ -96,6 +91,12 @@
 	if(burst_amount > 1)
 		traits += "Shots fired on burst mode: [burst_amount]"
 		traits += "Time between burst-fire: [(min((burst_delay * 2), (fire_delay * 3))) / 10] seconds"
+
+	traits += "<br>"
+	var/list/entries = SScodex.retrieve_entries_for_string(general_codex_key)
+	var/datum/codex_entry/general_entry = LAZYACCESS(entries, 1)
+	if(general_entry && general_entry.mechanics_text)
+		traits += general_entry.mechanics_text
 
 	. += jointext(traits, "<br>")
 

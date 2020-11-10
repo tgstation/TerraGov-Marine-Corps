@@ -236,6 +236,10 @@
 	icon_state = "bottle2"
 	list_reagents = list(/datum/reagent/medicine/polyhexanide = 30)
 
-
+/obj/item/reagent_containers/glass/bottle/lemoline
+	name = "\improper Lemoline bottle"
+	desc = "A small bottle. Contains 10 units of lemoline, a reagent used in the creation of advanced medicine."
+	icon_state = "bottle-5"
+	list_reagents = list(/datum/reagent/medicine/lemoline = 10)
 
 
