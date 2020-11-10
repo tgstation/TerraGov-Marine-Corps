@@ -7646,10 +7646,6 @@
 "aMF" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/marine/bravo)
-"aMI" = (
-/obj/docking_port/stationary/marine_dropship/minidropship,
-/turf/open/floor/plating,
-/area/sulaco/hangar)
 "aMK" = (
 /obj/machinery/dropship_part_fabricator,
 /turf/open/floor/prison,
@@ -15943,6 +15939,10 @@
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/maintenance/lower_maint)
+"tVK" = (
+/obj/docking_port/stationary/marine_dropship/minidropship,
+/turf/open/floor/plating,
+/area/sulaco/hangar)
 "tWu" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
@@ -48568,7 +48568,7 @@ aPZ
 aPZ
 aPZ
 aPZ
-aMI
+tVK
 aPZ
 aPZ
 aPZ
