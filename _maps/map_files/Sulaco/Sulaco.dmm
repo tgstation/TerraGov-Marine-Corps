@@ -15939,10 +15939,6 @@
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/maintenance/lower_maint)
-"tVK" = (
-/obj/docking_port/stationary/marine_dropship/minidropship,
-/turf/open/floor/plating,
-/area/sulaco/hangar)
 "tWu" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 4
@@ -17001,6 +16997,10 @@
 	dir = 8
 	},
 /area/sulaco/medbay/surgery_two)
+"wZO" = (
+/obj/docking_port/stationary/marine_dropship/minidropship,
+/turf/open/floor/plating,
+/area/sulaco/hangar)
 "xbD" = (
 /obj/structure/window/framed/mainship/gray/toughened,
 /turf/open/floor/plating/platebotc,
@@ -48568,7 +48568,7 @@ aPZ
 aPZ
 aPZ
 aPZ
-tVK
+wZO
 aPZ
 aPZ
 aPZ
