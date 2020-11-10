@@ -224,6 +224,8 @@
 
 	GLOB.round_statistics.runner_evasions++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_evasions") //Statistics
+	add_cooldown()
+
 
 /datum/action/xeno_action/evasion/proc/evasion_deactivate()
 
@@ -233,7 +235,6 @@
 		R.visible_message("<span class='warning'>[R.name] stops moving erratically.</span>", \
 		"<span class='highdanger'>We stop moving erratically; projectiles will hit us normally again!</span>")
 	R.playsound_local(R, 'sound/voice/hiss5.ogg', 50)
-	add_cooldown()
 
 
 /datum/action/xeno_action/evasion/on_cooldown_finish()
