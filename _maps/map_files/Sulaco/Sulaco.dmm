@@ -10109,6 +10109,10 @@
 "bPM" = (
 /turf/open/floor/prison/plate,
 /area/sulaco/cargo)
+"bSz" = (
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/closed/wall/mainship/gray,
+/area/sulaco/hangar)
 "bVz" = (
 /obj/machinery/light{
 	dir = 1
@@ -10721,17 +10725,6 @@
 	dir = 1
 	},
 /area/sulaco/cargo)
-"ecj" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden{
-	dir = 4
-	},
-/obj/docking_port/stationary/marine_dropship/crash_target,
-/turf/open/floor/freezer,
-/area/sulaco/showers)
 "eck" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -11887,10 +11880,6 @@
 	dir = 4
 	},
 /area/sulaco/marine/charlie)
-"hYU" = (
-/obj/docking_port/stationary/marine_dropship/crash_target,
-/turf/open/floor/prison/red,
-/area/sulaco/hallway/central_hall)
 "iaI" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 4
@@ -12894,6 +12883,7 @@
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
 	dir = 1
 	},
+/obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria)
 "lpY" = (
@@ -13503,12 +13493,6 @@
 	dir = 8
 	},
 /area/sulaco/medbay/surgery_two)
-"mWe" = (
-/obj/machinery/door/firedoor,
-/obj/structure/window/framed/mainship/gray/toughened,
-/obj/docking_port/stationary/marine_dropship/crash_target,
-/turf/open/floor/plating/platebotc,
-/area/sulaco/hangar)
 "mYf" = (
 /turf/open/floor/prison/red,
 /area/sulaco/hallway/central_hall3)
@@ -13580,6 +13564,10 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/sulaco/telecomms)
+"niS" = (
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/closed/wall/mainship/gray,
+/area/sulaco/bridge/quarters)
 "nrN" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/cyan/hidden/layer1{
@@ -13665,6 +13653,10 @@
 	dir = 8
 	},
 /area/sulaco/hangar/one)
+"nGL" = (
+/obj/docking_port/stationary/marine_dropship/crash_target,
+/turf/open/floor/freezer,
+/area/sulaco/showers)
 "nHz" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -16249,13 +16241,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison/red,
 /area/sulaco/hallway/central_hall3)
-"uHq" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
-/obj/machinery/atmospherics/pipe/simple/yellow/hidden,
-/obj/docking_port/stationary/marine_dropship/crash_target,
-/turf/open/floor/prison/sterilewhite,
-/area/sulaco/cafeteria)
 "uIN" = (
 /obj/effect/decal/warning_stripes/thin{
 	dir = 10
@@ -37852,8 +37837,8 @@ aea
 agI
 ads
 aiO
-ecj
-aea
+gXd
+nGL
 aea
 ang
 any
@@ -39147,7 +39132,7 @@ any
 any
 lod
 sdn
-uHq
+sdn
 sdn
 sdn
 sdn
@@ -43914,8 +43899,8 @@ alQ
 amH
 aol
 edm
-hYU
-asQ
+arc
+niS
 asQ
 asQ
 azU
@@ -48396,7 +48381,7 @@ aPZ
 aPZ
 aSl
 aSv
-mWe
+aJR
 iAq
 aSU
 uLr
@@ -48653,7 +48638,7 @@ aPZ
 aPZ
 aSl
 aSw
-aPY
+bSz
 aTA
 aXA
 aWx
