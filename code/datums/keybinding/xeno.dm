@@ -176,7 +176,13 @@
 	full_name = "Carrier: Spawn Hugger"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_SPAWN_HUGGER
-
+/*
+/datum/keybinding/xeno/psychic_wave
+	name = "psychic_wave"
+	full_name = "Carrier: Psychic Wave"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_WAVE
+*/
 /datum/keybinding/xeno/stomp
 	name = "stomp"
 	full_name = "Crusher: Stomp"

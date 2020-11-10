@@ -59,6 +59,7 @@
 		/datum/action/xeno_action/activable/retrieve_egg,
 		/datum/action/xeno_action/place_trap,
 		/datum/action/xeno_action/spawn_hugger,
+		/datum/action/xeno_action/psychic_wave,
 		/datum/action/xeno_action/toggle_pheromones,
 	)
 
