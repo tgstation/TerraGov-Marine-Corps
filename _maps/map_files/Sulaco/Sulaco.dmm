@@ -7646,6 +7646,10 @@
 "aMF" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/marine/bravo)
+"aMI" = (
+/obj/docking_port/stationary/marine_dropship/minidropship,
+/turf/open/floor/plating,
+/area/sulaco/hangar)
 "aMK" = (
 /obj/machinery/dropship_part_fabricator,
 /turf/open/floor/prison,
@@ -16997,10 +17001,6 @@
 	dir = 8
 	},
 /area/sulaco/medbay/surgery_two)
-"wZO" = (
-/obj/docking_port/stationary/marine_dropship/minidropship,
-/turf/open/floor/plating,
-/area/sulaco/hangar)
 "xbD" = (
 /obj/structure/window/framed/mainship/gray/toughened,
 /turf/open/floor/plating/platebotc,
@@ -48568,7 +48568,7 @@ aPZ
 aPZ
 aPZ
 aPZ
-wZO
+aMI
 aPZ
 aPZ
 aPZ
