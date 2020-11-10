@@ -448,7 +448,7 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	scannable = TRUE
 
-/datum/reagent/medicine/hyroalin/on_mob_life(mob/living/L)
+/datum/reagent/medicine/hyronalin/on_mob_life(mob/living/L)
 	L.adjustToxLoss(-3*REM)
 	if(prob(50))
 		L.take_limb_damage(2*REM, 0)
@@ -1100,5 +1100,11 @@
 	if(prob(5))
 		L.adjustBruteLoss(2400*REM) //the big oof. No, it's not kill or gib, I want them to nugget.
 
+/datum/reagent/medicine/lemoline
+	name = "Lemoline"
+	description = "A concentrated set of powders used to enhance other medicine in chemical recipes. Has no use on its own."
+	reagent_state = LIQUID
+	color = "#66801e"
+	taste_description = "piss"
 
 

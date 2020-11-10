@@ -376,6 +376,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define REST_HALLOSS_RECOVERY_RATE -32
 
 // Human Overlay Indexes
+#define HEADBITE_LAYER			30
 #define LASER_LAYER				29 //For sniper targeting laser
 #define MOTH_WINGS_LAYER		28
 #define MUTANTRACE_LAYER		27
@@ -405,7 +406,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define TARGETED_LAYER			2 //for target sprites when held at gun point, and holo cards.
 #define FIRE_LAYER				1 //If you're on fire
 
-#define TOTAL_LAYERS			29
+#define TOTAL_LAYERS			30
 
 #define MOTH_WINGS_BEHIND_LAYER	1
 
@@ -417,6 +418,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define HIVE_CAN_HIJACK (1<<0)
 
+#define XENO_PULL_CHARGE_TIME 2 SECONDS
 #define XENO_SLOWDOWN_REGEN 0.4
 #define QUEEN_DEATH_TIMER 5 MINUTES
 #define XENO_DEADHUMAN_DRAG_SLOWDOWN 2

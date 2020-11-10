@@ -7647,7 +7647,9 @@
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/marine/bravo)
 "aMI" = (
-/obj/docking_port/stationary/marine_dropship/minidropship,
+/obj/docking_port/stationary/ert/target{
+	name = "Hangar"
+	},
 /turf/open/floor/plating,
 /area/sulaco/hangar)
 "aMK" = (
@@ -48559,16 +48561,16 @@ nzi
 mDu
 bFa
 aXS
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
-aPZ
 aMI
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
+aPZ
 aPZ
 aPZ
 aPZ

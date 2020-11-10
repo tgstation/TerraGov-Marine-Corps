@@ -77,25 +77,9 @@
 	slowdown = 0.1
 
 /obj/item/storage/internal/modular/general
-	max_storage_space = 10
+	max_storage_space = 6
 	storage_slots = 2
 	max_w_class = WEIGHT_CLASS_NORMAL
-	can_hold = list(
-		/obj/item/weapon/combat_knife,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/flashlight/flare,
-		/obj/item/explosive/grenade/flare,
-		/obj/item/ammo_magazine/rifle,
-		/obj/item/cell/lasgun,
-		/obj/item/ammo_magazine/smg,
-		/obj/item/ammo_magazine/pistol,
-		/obj/item/ammo_magazine/revolver,
-		/obj/item/ammo_magazine/sniper,
-		/obj/item/ammo_magazine/handful,
-		/obj/item/explosive/grenade,
-		/obj/item/explosive/mine,
-		/obj/item/reagent_containers/food/snacks,
-	)
 
 /obj/item/armor_module/storage/ammo_mag
 	name = "Magazine Storage module"
