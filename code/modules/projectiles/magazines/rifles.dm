@@ -135,7 +135,6 @@
 	name = "\improper AKM extended magazine (7.62x39mm)"
 	desc = "A 7.62x39mm Kalashnikov magazine, this one carries more rounds than the average magazine."
 	max_rounds = 40
-	bonus_overlay = "ak47_ex"
 
 
 
