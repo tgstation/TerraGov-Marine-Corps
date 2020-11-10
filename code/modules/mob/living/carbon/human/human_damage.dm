@@ -369,7 +369,7 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 		return //we don't wanna kill gods...or do we ?
 
 	var/list/datum/limb/parts = get_damageable_limbs()
-	damage = damage / parts.len //damage all limbs equally.
+	damage = damage / parts.lenght() //damage all limbs equally.
 	while(parts.len)
 		var/datum/limb/picked = pick_n_take(parts)
 

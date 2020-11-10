@@ -398,7 +398,7 @@
 		hugger.hivenumber = hivenumber
 		if(!hugger.stasis)
 			hugger.go_idle(TRUE)
-	addtimer(CALLBACK(src, .proc/Grow), rand(EGG_MIN_GROWTH_TIME, EGG_MAX_GROWTH_TIME)) //This maybe ?
+	addtimer(CALLBACK(src, .proc/Grow), rand(EGG_MIN_GROWTH_TIME, EGG_MAX_GROWTH_TIME))
 
 /obj/effect/alien/egg/Destroy()
 	QDEL_LIST(egg_triggers)

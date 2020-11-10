@@ -689,9 +689,8 @@
 	. = locate(/obj/effect/xenomorph/spray) in T
 	if(!.)
 		var/damage
-		if(isxeno(owner))
-			var/mob/living/carbon/xenomorph/X = owner
-			damage = X.xeno_caste.acid_spray_damage
+		var/mob/living/carbon/xenomorph/X = owner
+		damage = X.xeno_caste.acid_spray_damage
 
 		. = new /obj/effect/xenomorph/spray(T, damage)
 

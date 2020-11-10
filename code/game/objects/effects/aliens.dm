@@ -47,16 +47,11 @@
 	var/duration = 10 SECONDS
 	var/acid_damage = 14
 
-/obj/effect/xenomorph/spray/New(loc, ...)
-	. = ..()
-	
-
 /obj/effect/xenomorph/spray/Initialize(mapload, duration = 10 SECONDS, damage = 14) //Self-deletes
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
 	QDEL_IN(src, duration + rand(0, 2 SECONDS))
-	if(damage)
-		acid_damage = damage
+	acid_damage = damage
 
 /obj/effect/xenomorph/spray/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
