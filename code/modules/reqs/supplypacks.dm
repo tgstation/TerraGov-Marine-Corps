@@ -1340,16 +1340,6 @@ Imports
 	contains = list(/obj/item/ammo_magazine/rifle/ak47)
 	cost = 5
 
-/datum/supply_packs/imports/ak47u
-	name = "AK-47U Battle Carbine"
-	contains = list(/obj/item/weapon/gun/rifle/ak47/carbine)
-	cost = 15
-
-/datum/supply_packs/imports/ak47u/ammo
-	name = "AK-47U Battle Carbine Ammo"
-	contains = list(/obj/item/ammo_magazine/rifle/ak47)
-	cost = 5
-
 /datum/supply_packs/imports/m16	//Vietnam time
 	name = "FN M16A Assault Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/m16)

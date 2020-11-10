@@ -288,7 +288,7 @@
 		/obj/item/weapon/gun/rifle/m412,
 		/obj/item/weapon/gun/rifle/m41a,
 		/obj/item/weapon/gun/rifle/ak47,
-		/obj/item/weapon/gun/rifle/ak47/carbine,
+		/obj/item/weapon/gun/rifle/ak47/som,
 		/obj/item/weapon/gun/rifle/m16,
 		/obj/item/weapon/gun/rifle/famas,
 		/obj/item/weapon/gun/rifle/standard_lmg,

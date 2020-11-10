@@ -416,7 +416,7 @@
 
 /obj/item/weapon/gun/rifle/ak47
 	name = "\improper AKM assault rifle"
-	desc = "A cheaply produced assault rifle capable of automatic fire. An effective copy of the 1947 Kalashnikov rifle made with wood and plating, chambering the orginal 7.62x39mm round. Has been modernized to take attachments, remains a popular product on the black market with its cheap cost and strong power."
+	desc = "A cheaply produced assault rifle capable of automatic fire. An effective descendant of the 1947 Kalashnikov rifle made with wood and plating, chambering the orginal 7.62x39mm round. Has been modernized to take attachments, remains a popular product on the black market with its cheap cost and strong power."
 	icon = 'icons/Marine/gun64.dmi'
 	icon_state = "akm"
 	item_state = "akm"
@@ -451,16 +451,16 @@
 
 
 
-/obj/item/weapon/gun/rifle/ak47/carbine
-	name = "\improper AKM-U battle carbine"
-	desc = "A shortened version of the Kalashnikov rifle. Commonly found in the hands of criminals or mercenaries."
-	icon_state = "akmu"
-	item_state = "akmu"
+/obj/item/weapon/gun/rifle/ak47/som
+	name = "\improper AK-202 asasult rifle"
+	desc = "A improved variant of an AKM rifle. Made in cherry and used by SoM. Has a burst fire function."
+	icon_state = "akm_som"
+	item_state = "akm_som"
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 
 	fire_delay = 0.25 SECONDS
 	burst_amount = 3
-	accuracy_mult = 1
+	accuracy_mult = 1.3
 	accuracy_mult_unwielded = 0.5
 
 

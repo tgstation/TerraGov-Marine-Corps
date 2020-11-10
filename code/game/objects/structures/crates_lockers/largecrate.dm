@@ -264,7 +264,7 @@
 		/obj/item/weapon/gun/pistol/c99 = /obj/item/ammo_magazine/pistol/c99,
 		/obj/item/weapon/gun/pistol/kt42 = /obj/item/ammo_magazine/pistol/automatic,
 		/obj/item/weapon/gun/rifle/ak47 = /obj/item/ammo_magazine/rifle/ak47,
-		/obj/item/weapon/gun/rifle/ak47/carbine = /obj/item/ammo_magazine/rifle/ak47/extended,
+		/obj/item/weapon/gun/rifle/ak47/som = /obj/item/ammo_magazine/rifle/ak47/extended,
 		/obj/item/weapon/gun/rifle/sniper/svd = /obj/item/ammo_magazine/sniper/svd,
 		/obj/item/weapon/gun/smg/ppsh = /obj/item/ammo_magazine/smg/ppsh,
 		/obj/item/weapon/gun/rifle/type71 = /obj/item/ammo_magazine/rifle/type71,

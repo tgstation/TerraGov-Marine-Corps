@@ -30,7 +30,7 @@
 	wear_suit = /obj/item/clothing/suit/storage/marine/som
 	gloves = /obj/item/clothing/gloves/marine/som
 	head = /obj/item/clothing/head/helmet/marine/som
-	suit_store = /obj/item/weapon/gun/rifle/ak47
+	suit_store = /obj/item/weapon/gun/rifle/ak47/som
 	r_store = /obj/item/storage/pouch/general/som
 	l_store = /obj/item/storage/pouch/pistol
 	back = /obj/item/storage/backpack/lightpack/som
