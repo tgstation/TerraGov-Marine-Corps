@@ -196,11 +196,10 @@
 	if(!stealth || !can_sneak_attack)
 		return
 
-	var/mob/living/carbon/xenomorph/hunter/huntah = owner
 	var/staggerslow_stacks = HUNTER_SNEAK_ATTACK_STAGGERSLOW_STACKS
 	var/flavour
 
-	if(huntah.m_intent == MOVE_INTENT_RUN && ( huntah.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //We penalize running with a compromised sneak attack, unless they've been stationary; walking is fine.
+	if(owner.m_intent == MOVE_INTENT_RUN && ( owner.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //We penalize running with a compromised sneak attack, unless they've been stationary; walking is fine.
 		flavour = "vicious"
 		staggerslow_stacks *= HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER //half as much stagger slow if we're running and not stationary
 		armor_mod += (1 - (1 - HUNTER_SNEAK_SLASH_ARMOR_PEN) * HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER) //We halve the penetration.
@@ -208,7 +207,7 @@
 		armor_mod += HUNTER_SNEAK_SLASH_ARMOR_PEN
 		flavour = "deadly"
 
-	huntah.visible_message("<span class='danger'>\The [huntah] strikes [target] with [flavour] precision!</span>", \
+	owner.visible_message("<span class='danger'>\The [owner] strikes [target] with [flavour] precision!</span>", \
 	"<span class='danger'>We strike [target] with [flavour] precision!</span>")
 	target.adjust_stagger(staggerslow_stacks)
 	target.add_slowdown(staggerslow_stacks)
@@ -221,13 +220,12 @@
 	if(!stealth || !can_sneak_attack)
 		return
 
-	var/mob/living/carbon/xenomorph/hunter/huntah = owner
 	var/staggerslow_stacks = HUNTER_SNEAK_ATTACK_STAGGERSLOW_STACKS
 	var/paralyze_time = HUNTER_SNEAK_ATTACK_PARALYZE_TIME
 	var/flavour
 
-	if(huntah.m_intent == MOVE_INTENT_RUN && ( huntah.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) )  //We penalize running with a compromised sneak attack, unless they've been stationary; walking is fine.
-		pain_mod += (HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER * tackle_pain)
+	if(owner.m_intent == MOVE_INTENT_RUN && ( owner.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) )  //We penalize running with a compromised sneak attack, unless they've been stationary; walking is fine.
+		pain_mod += (HUNTER_SNEAK_ATTACK_DISARM_MULTIPLIER * HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER * tackle_pain)
 		flavour = "vicious"
 		staggerslow_stacks *= HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER //Penalize staggerslow
 		paralyze_time *= HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER
@@ -236,7 +234,7 @@
 
 		flavour = "deadly"
 
-	huntah.visible_message("<span class='danger'>\The [huntah] strikes [target] with [flavour] precision!</span>", \
+	owner.visible_message("<span class='danger'>\The [owner] strikes [target] with [flavour] precision!</span>", \
 	"<span class='danger'>We strike [target] with [flavour] precision!</span>")
 	target.ParalyzeNoChain(paralyze_time)
 	target.adjust_stagger(staggerslow_stacks)
@@ -313,7 +311,7 @@
 		to_chat(X, "<span class='warning'>They are too far for us to reach their minds!</spam>")
 
 	succeed_activate()
-	X.playsound_local(X.loc, 'sound/voice/4_xeno_roars.ogg', 30, TRUE)
+	X.playsound_local(X, 'sound/voice/4_xeno_roars.ogg', 30, TRUE)
 	to_chat(X, "<span class='notice'>We reach out into mind of the creature, infecting their thoughts...</span>")
 	victim.hallucination += 100
 	add_cooldown()
@@ -379,8 +377,8 @@
 
 /datum/action/xeno_action/activable/sneak_stinger/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
-	to_chat(X, "<span class='xenowarning'><b>We can now sting our victims again as our toxin glands refill.</b></span>")
-	X.playsound_local(X.loc, 'sound/voice/alien_drool1.ogg', 25, 0, 1)
+	to_chat(X, "<span class='xenowarning'><b>Our toxin glands refill, allowing us to sting our victims.</b></span>")
+	X.playsound_local(X, 'sound/voice/alien_drool1.ogg', 25, 0, 1)
 	return ..()
 
 
@@ -400,7 +398,6 @@
 	var/transfer_amount = HUNTER_SNEAK_ATTACK_INJECT_AMOUNT
 	if(X.a_intent != INTENT_HARM) //Inject neurotoxin instead of acid while on disarm intent
 		toxin = /datum/reagent/toxin/xeno_neurotoxin
-		transfer_amount *= 0.5 //We inject only half the regular amount for neurotoxin
 
 	C.reagents.add_reagent(toxin, transfer_amount)
 	to_chat(C, "<span class='danger'>You feel a tiny prick.</span>") //Fluff

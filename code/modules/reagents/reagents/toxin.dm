@@ -440,7 +440,7 @@
 /datum/reagent/toxin/acid/xeno_acid
 	name = "Xenomorph acid"
 	description = "Neon green, lethal and utterly corrosive. Do not ingest."
-	color = "#8E18A9" // rgb: 142, 24, 169
+	color = "#39FF14" // rgb: 57, 255, 20
 	toxpwr = 1.5
 	meltprob = 30
 	taste_multi = 1.5
@@ -455,6 +455,7 @@
 		if(prob(meltprob * 0.5)) //Internal acid is pretty painful
 			if(!H.species || !CHECK_BITFIELD(H.species.species_flags, NO_PAIN))
 				H.emote("scream")
+				to_chat(pick("<span class='highdanger'>Your blood feels like it's on fire!</span>","<span class='highdanger'>It feels like your flesh is burning from the inside out!</span>"))
 
 	return ..()
 
