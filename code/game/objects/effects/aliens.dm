@@ -69,7 +69,7 @@
 
 	TIMER_COOLDOWN_START(src, COOLDOWN_ACID, 1 SECONDS)
 	if(HAS_TRAIT(src, TRAIT_FLOORED))
-		take_overall_damage(0, rand(12, 14), run_armor_check(BODY_ZONE_CHEST, "acid"))
+		take_overall_damage_armored(acid_damage, BURN, "acid")
 		UPDATEHEALTH(src)
 		to_chat(src, "<span class='danger'>You are scalded by the burning acid!</span>")
 		return
@@ -79,12 +79,12 @@
 	next_move_slowdown += slow_amt
 	var/datum/limb/affecting = get_limb(BODY_ZONE_PRECISE_L_FOOT)
 	var/armor_block = run_armor_check(affecting, "acid")
-	if(istype(affecting) && affecting.take_damage_limb(0, rand(14, 18), FALSE, FALSE, armor_block, TRUE))
+	if(istype(affecting) && affecting.take_damage_limb(0, acid_damage/2, FALSE, FALSE, armor_block, TRUE))
 		UPDATEHEALTH(src)
 		UpdateDamageIcon()
 	affecting = get_limb(BODY_ZONE_PRECISE_R_FOOT)
 	armor_block = run_armor_check(affecting, "acid")
-	if(istype(affecting) && affecting.take_damage_limb(0, rand(14, 18), FALSE, FALSE, armor_block, TRUE))
+	if(istype(affecting) && affecting.take_damage_limb(0, acid_damage/2, FALSE, FALSE, armor_block, TRUE))
 		UPDATEHEALTH(src)
 		UpdateDamageIcon()
 
