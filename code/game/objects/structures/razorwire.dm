@@ -56,7 +56,7 @@
 	var/armor_block = null
 	var/def_zone = ran_zone()
 	armor_block = M.run_armor_check(def_zone, "melee")
-	M.apply_damage(RAZORWIRE_BASE_DAMAGE), BRUTE, def_zone, armor_block, TRUE)
+	M.apply_damage(RAZORWIRE_BASE_DAMAGE, BRUTE, def_zone, armor_block, TRUE)
 	UPDATEHEALTH(M)
 	razorwire_tangle(M)
 
