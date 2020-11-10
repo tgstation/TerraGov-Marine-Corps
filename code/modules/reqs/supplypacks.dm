@@ -433,8 +433,13 @@ AMMO
 	cost = 20
 
 /datum/supply_packs/ammo/boxsmg
-	name = "T-19 SMG Ammo Box"
+	name = "T-90 SMG Ammo Box"
 	contains = list(/obj/item/ammobox/standard_smg)
+	cost = 20
+
+/datum/supply_packs/ammo/boxmachpistol
+	name = "T-19 Machine Pistol Ammo Box"
+	contains = list(/obj/item/ammobox/standard_machinepistol)
 	cost = 20
 
 /datum/supply_packs/ammo/boxlmg
@@ -721,7 +726,7 @@ ARMOR
 	cost = 3
 
 /datum/supply_packs/armor/modular/attachments/mixed
-	name = "Jaeger experimental modules"
+	name = "Jaeger experimental mark 2 modules"
 	contains = list(
 		/obj/item/armor_module/attachable/valkyrie_autodoc,
 		/obj/item/armor_module/attachable/fire_proof,
@@ -754,7 +759,7 @@ ARMOR
 	cost = 12
 
 /datum/supply_packs/armor/modular/attachments/tyr_extra_armor
-	name = "Jaeger tyr modules"
+	name = "Jaeger tyr mark 2 modules"
 	contains = list(
 		/obj/item/armor_module/attachable/tyr_extra_armor,
 	)
@@ -1019,6 +1024,12 @@ MEDICAL
 	containertype = /obj/structure/closet/crate/secure/surgery
 	access = ACCESS_MARINE_MEDBAY
 
+/datum/supply_packs/medical/lemolime
+	name = "lemoline"
+	notes = "Contains 1 bottle of lemoline with 10 units."
+	contains = list(/obj/item/reagent_containers/glass/bottle/lemoline)
+	cost = 50
+
 /*******************************************************************************
 ENGINEERING
 *******************************************************************************/
@@ -1276,16 +1287,6 @@ Imports
 	contains = list(/obj/item/ammo_magazine/smg/ppsh/extended)
 	cost = 5
 
-/datum/supply_packs/imports/p90
-	name = "FN P9000 SMG"
-	contains = list(/obj/item/weapon/gun/smg/p90)
-	cost = 15
-
-/datum/supply_packs/imports/p90/ammo
-	name = "FN P9000 SMG Ammo"
-	contains = list(/obj/item/ammo_magazine/smg/p90)
-	cost = 5
-
 /datum/supply_packs/imports/sawnoff
 	name = "Sawn Off Shotgun"
 	contains = list(/obj/item/weapon/gun/shotgun/double/sawn)
@@ -1357,6 +1358,16 @@ Imports
 /datum/supply_packs/imports/m16/ammo
 	name = "FN M16A Assault Rifle Ammo"
 	contains = list(/obj/item/ammo_magazine/rifle/m16)
+	cost = 5
+
+/datum/supply_packs/imports/famas //bread joke here
+	name = "FAMAS Assault Rifle"
+	contains = list(/obj/item/weapon/gun/rifle/famas)
+	cost = 15
+
+/datum/supply_packs/imports/m16/ammo
+	name = "FAMAS Assault Rifle Ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/famas)
 	cost = 5
 
 /datum/supply_packs/imports/rev357

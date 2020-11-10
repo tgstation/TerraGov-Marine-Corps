@@ -8,7 +8,6 @@
 	icon_state = "snow_stack"
 	w_class = WEIGHT_CLASS_HUGE
 	force = 2
-	throwforce = 0
 	throw_speed = 5
 	throw_range = 1
 	max_amount = 25

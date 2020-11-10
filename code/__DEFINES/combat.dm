@@ -2,7 +2,7 @@
 #define ATTACK_EFFECT_PUNCH		"punch"
 #define ATTACK_EFFECT_KICK		"kick"
 #define ATTACK_EFFECT_SMASH		"smash"
-#define ATTACK_EFFECT_CLAW		"claw"
+#define ATTACK_EFFECT_CLAW		pick("claw","claw2")
 #define ATTACK_EFFECT_DISARM	"disarm"
 #define ATTACK_EFFECT_DISARM2	"disarm_2"
 #define ATTACK_EFFECT_BITE		"bite"
@@ -10,7 +10,7 @@
 #define ATTACK_EFFECT_MECHTOXIN	"mech_toxin"
 #define ATTACK_EFFECT_BOOP		"boop" //Honk
 #define ATTACK_EFFECT_GRAB		"grab"
-#define ATTACK_EFFECT_REDSLASH	"redslash"
+#define ATTACK_EFFECT_REDSLASH	pick("redslash","redslash2")
 #define ATTACK_EFFECT_REDSTAB	"redstab"
 #define ATTACK_EFFECT_YELLOWPUNCH	"yellowpunch"
 

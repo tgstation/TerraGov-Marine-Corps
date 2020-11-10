@@ -61,30 +61,32 @@
 	. = ..()
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
-		var/armor_block
-		if(TIMER_COOLDOWN_CHECK(H, COOLDOWN_ACID))
-			return
-		TIMER_COOLDOWN_START(H, COOLDOWN_ACID, 1 SECONDS)
-		if(!H.lying_angle)
-			to_chat(H, "<span class='danger'>Your feet scald and burn! Argh!</span>")
-			if(!(H.species.species_flags & NO_PAIN))
-				H.emote("pain")
-			H.next_move_slowdown += slow_amt
-			var/datum/limb/affecting = H.get_limb("l_foot")
-			armor_block = H.run_armor_check(affecting, "acid")
-			if(istype(affecting) && H.apply_damage(acid_damage/2, BURN, "l_foot", armor_block))
-				UPDATEHEALTH(H)
-				H.UpdateDamageIcon()
-			affecting = H.get_limb("r_foot")
-			armor_block = H.run_armor_check(affecting, "acid")
-			if(istype(affecting) && H.apply_damage(acid_damage/2, BURN, "r_foot", armor_block))
-				UPDATEHEALTH(H)
-				H.UpdateDamageIcon()
-		else
-			H.take_overall_damage_armored(acid_damage, BURN, "acid") //used to be rand(12, 14)
-			UPDATEHEALTH(H)
-			to_chat(H, "<span class='danger'>You are scalded by the burning acid!</span>")
+		H.acid_spray_crossed(slow_amt)
 
+/mob/living/carbon/human/proc/acid_spray_crossed(slow_amt)
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_ACID))
+		return
+
+	TIMER_COOLDOWN_START(src, COOLDOWN_ACID, 1 SECONDS)
+	if(HAS_TRAIT(src, TRAIT_FLOORED))
+		take_overall_damage(0, rand(12, 14), run_armor_check(BODY_ZONE_CHEST, "acid"))
+		UPDATEHEALTH(src)
+		to_chat(src, "<span class='danger'>You are scalded by the burning acid!</span>")
+		return
+	to_chat(src, "<span class='danger'>Your feet scald and burn! Argh!</span>")
+	if(!(species.species_flags & NO_PAIN))
+		emote("pain")
+	next_move_slowdown += slow_amt
+	var/datum/limb/affecting = get_limb(BODY_ZONE_PRECISE_L_FOOT)
+	var/armor_block = run_armor_check(affecting, "acid")
+	if(istype(affecting) && affecting.take_damage_limb(0, rand(14, 18), FALSE, FALSE, armor_block, TRUE))
+		UPDATEHEALTH(src)
+		UpdateDamageIcon()
+	affecting = get_limb(BODY_ZONE_PRECISE_R_FOOT)
+	armor_block = run_armor_check(affecting, "acid")
+	if(istype(affecting) && affecting.take_damage_limb(0, rand(14, 18), FALSE, FALSE, armor_block, TRUE))
+		UPDATEHEALTH(src)
+		UpdateDamageIcon()
 
 /obj/effect/xenomorph/spray/process()
 	var/turf/T = loc
@@ -93,10 +95,8 @@
 		qdel(src)
 		return
 
-	for(var/mob/living/carbon/M in loc)
-		if(isxeno(M))
-			continue
-		Crossed(M)
+	for(var/mob/living/carbon/human/H in loc)
+		H.acid_spray_crossed(slow_amt)
 
 //Medium-strength acid
 /obj/effect/xenomorph/acid
