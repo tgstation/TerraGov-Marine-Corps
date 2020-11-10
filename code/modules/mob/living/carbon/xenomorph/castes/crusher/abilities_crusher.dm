@@ -97,7 +97,7 @@
 	X.face_atom(L) //Face towards the target so we don't look silly
 
 	var/facing = get_dir(X, L)
-	var/toss_distance = X.xeno_caste.crest_toss_distance //rand(3,5)//no more random.
+	var/toss_distance = X.xeno_caste.crest_toss_distance
 	var/turf/T = X.loc
 	var/turf/temp = X.loc
 	if(X.a_intent == INTENT_HARM) //If we use the ability on hurt intent, we throw them in front; otherwise we throw them behind.
