@@ -225,12 +225,12 @@
 	var/flavour
 
 	if(owner.m_intent == MOVE_INTENT_RUN && ( owner.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) )  //We penalize running with a compromised sneak attack, unless they've been stationary; walking is fine.
-		pain_mod += (HUNTER_SNEAK_ATTACK_DISARM_MULTIPLIER * HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER * tackle_pain)
+		pain_mod += (HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER * tackle_pain)
 		flavour = "vicious"
 		staggerslow_stacks *= HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER //Penalize staggerslow
 		paralyze_time *= HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER
 	else
-		pain_mod += (HUNTER_SNEAK_ATTACK_DISARM_MULTIPLIER * tackle_pain)
+		pain_mod += (tackle_pain)
 
 		flavour = "deadly"
 

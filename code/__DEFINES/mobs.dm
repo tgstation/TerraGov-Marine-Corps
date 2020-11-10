@@ -491,7 +491,6 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HUNTER_SNEAKATTACK_WALK_INCREASE		1
 #define HUNTER_SNEAKATTACK_MULTI_RECOVER_DELAY	10
 #define HUNTER_SNEAK_ATTACK_RUNNING_MULTIPLIER	0.5 //Penalty multiplier for using sneak attack while running
-#define HUNTER_SNEAK_ATTACK_DISARM_MULTIPLIER	1.5 //Tackle damage multiplier for Disarm sneak attack
 #define HUNTER_SNEAK_ATTACK_STAGGERSLOW_STACKS	4 //Stacks of stagger and slow applied to the target
 #define HUNTER_SNEAK_ATTACK_PARALYZE_TIME		1.5 SECONDS //Stacks of stagger and slow applied to the target
 #define HUNTER_STINGER_PLASMA_COST				50 //Plasma cost of the Sneak Attack sting.
