@@ -9717,12 +9717,6 @@
 "aMF" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/sulaco/marine/bravo)
-"aMI" = (
-/obj/docking_port/stationary/ert/target{
-	name = "Hangar"
-	},
-/turf/open/floor/plating,
-/area/sulaco/hangar)
 "aMK" = (
 /obj/machinery/dropship_part_fabricator,
 /turf/open/floor/prison,
@@ -13418,6 +13412,10 @@
 	dir = 5
 	},
 /area/space)
+"feQ" = (
+/obj/docking_port/stationary/marine_dropship/minidropship,
+/turf/open/floor/plating,
+/area/sulaco/hangar)
 "fhh" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
@@ -50016,7 +50014,6 @@ nzi
 mDu
 bFa
 aXS
-aMI
 aPZ
 aPZ
 aPZ
@@ -50026,6 +50023,7 @@ aPZ
 aPZ
 aPZ
 aPZ
+feQ
 aPZ
 aPZ
 aPZ
