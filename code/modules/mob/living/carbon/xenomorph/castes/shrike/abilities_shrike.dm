@@ -115,7 +115,6 @@
 	succeed_activate()
 	add_cooldown()
 	if(ishuman(victim))
-		victim.apply_effects(1, 2) 	// Stun
 		shake_camera(victim, 2, 1)
 
 	var/facing = get_dir(owner, victim)
