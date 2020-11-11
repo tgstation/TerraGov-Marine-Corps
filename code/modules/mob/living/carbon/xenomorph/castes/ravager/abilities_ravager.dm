@@ -1,49 +1,166 @@
 // ***************************************
 // *********** Drain blood
 // ***************************************
-/datum/action/xeno_action/activable/quick_taste
-	name = "Quick Sip"
-	action_icon_state = "quick_sip"
+/datum/action/xeno_action/activable/sample
+	name = "Sample"
+	action_icon_state = "sample"
 	mechanics_text = "Hold a marine for 1s while draining 2% of their blood."
-	ability_name = "quick sip"
-	cooldown_timer = 20 SECONDS
-	plasma_cost = 300
+	ability_name = "sample"
+	cooldown_timer = 2 SECONDS
+	plasma_cost = 200
 
-/datum/action/xeno_action/activable/quick_sip/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/xeno_action/activable/sample/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
+	var/mob/living/carbon/xenomorph/X = owner
 	if(!.)
 		return
 	if(!A.can_sting())
-		to_chat(owner, "<span class='warning'>This just won't do!</span>")
+		to_chat(owner, "<span class='warning'>This won't do!</span>")
 		return FALSE
-	if(owner.blood_bank >= 100)
+	if(X.blood_bank >= 100)
 		to_chat(owner, "<span class='warning'>Somehow we feel sated for now...</span>")
 		return FALSE
-	if(get_dist(owner, A) > 2)
-		to_chat(owner, "<span class='warning'>Ugh... it is outside of our reach!</span>")
+	if(get_dist(owner, A) > 1)
+		to_chat(owner, "<span class='warning'>It is outside of our reach! We need to be</span>")
 		return FALSE
 	return TRUE
 
-/datum/action/xeno_action/activable/quick_sip/use_ability(atom/A)
+/datum/action/xeno_action/activable/sample/use_ability(mob/living/carbon/A)
 	var/mob/living/carbon/xenomorph/X = owner
+	X.face_atom(A)
+	X.emote("roar")
+	X.visible_message(A, "<span class='danger'>The [X] grabs [A]!</span>")
+	X.start_pulling(A)
+	A.setGrabState(GRAB_NECK)
+	A.drop_all_held_items()
+	if(!do_after(X, 1 SECONDS, TRUE, A, BUSY_ICON_HOSTILE, ignore_turf_checks = FALSE))
+		A.drop_all_held_items()
+		X.stop_pulling(A)
+		return
+	A.emote("scream")
+	A.apply_damage(damage = 20, damagetype = BRUTE, def_zone = BODY_ZONE_HEAD, blocked = 0, sharp = TRUE, edge = FALSE, updating_health = TRUE)
+	X.visible_message(A, "<span class='danger'>The [X] bites into [A]!</span>")
+	playsound(A, "alien_claw_flesh", 25, TRUE)
+	A.blood_volume -= 10
+	X.blood_bank += 10
+	to_chat(X, "<span class='notice'>Blood bank: [X.blood_bank]%</span>")
+	X.stop_pulling(A)
 	succeed_activate()
-	sip_action(A, channel_time = 1 SECONDS, sip_amount = 2)
 	add_cooldown()
 
-/datum/action/xeno_action/activable/reagent_slash/proc/slash_action(mob/living/carbon/C, channel_time = 1 SECONDS, sip_amount = 2)
-	var/mob/living/carbon/xenomorph/X = owner
-	var/i = 1
+// ***************************************
+// *********** Rejuvenate/Transfusion
+// ***************************************
+/datum/action/xeno_action/activable/rejuvenate
+	name = "Rejuvenate/Transfusion"
+	action_icon_state = "Rejuvenate"
+	mechanics_text = "When activated on self after 20s of not taking damage drains 10 blood and restores 40% health/plasma over 5s. When activated on another xenomorph - restores 30% of their health after 2s. When activated on a dead human you grab them and heal by draining their blood"
+	ability_name = "rejuvenate"
+	cooldown_timer = 2 SECONDS
+	plasma_cost = 0
+	use_state_flags = XACT_TARGET_SELF
+	COOLDOWN_DECLARE(rejuvenate_self_cooldown)
 
-	do_after(X, channel_time, TRUE, null, BUSY_ICON_HOSTILE, ignore_turf_checks = FALSE)
-	C.blood_volume -= 2
-	X.blood_bank += 2
-	X.face_atom(C)
-	C.reagents.add_reagent(toxin, transfer_amount)
-	playsound(C, "alien_claw_flesh", 25, TRUE)
-	playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
-	C.apply_damage(damage = 20, damagetype = BRUTE, def_zone = BODY_ZONE_HEAD, blocked = 0, sharp = TRUE, edge = FALSE, updating_health = TRUE, C)
-	X.visible_message(C, "<span class='danger'>The [X] swipes at [C]!</span>")
-	X.do_attack_animation(C)
+/datum/action/xeno_action/activable/rejuvenate/can_use_ability(atom/target, silent = FALSE, override_flags) //it is set up to only return true on specific xeno or human targets
+	. = ..()
+	var/mob/living/carbon/xenomorph/X = owner
+	if(!.)
+		return
+	if(ishuman(target))
+		if(isdead(target))
+			to_chat(X, "<span class='notice'>We can only use still, dead hosts to heal.</span>")
+			return FALSE
+		else if(get_dist(X, target) > 1)
+			to_chat(X, "<span class='notice'>We need to be next to our meal.</span>")
+			return FALSE
+		return TRUE
+	if(isxeno(target))
+		if(get_dist(X, target) == -1)
+			if(!COOLDOWN_CHECK(src, rejuvenate_self_cooldown))
+				to_chat(X, "<span class='notice'>We need to rest another [COOLDOWN_TIMELEFT(src, rejuvenate_self_cooldown)] seconds before we can revitalize ourselves.</span>")
+				return FALSE
+			if(X.blood_bank < 10)
+				to_chat(X, "<span class='notice'>We need [10 - X.blood_bank]u more blood to revitalize ourselves.</span>")
+				return FALSE
+		else
+			if(!X.line_of_sight(target) || get_dist(X, target) > 2)
+				to_chat(X, "<span class='notice'>Beyond our reach, we must be close and our way clear.</span>")
+				return FALSE
+			if(X.blood_bank < 5)
+				to_chat(X, "<span class='notice'>We need [5 - X.blood_bank]u more blood to restore a sister.</span>")
+				return FALSE
+			if(isdead(target))
+				to_chat(X, "<span class='notice'>We can only help living sisters.</span>")
+				return FALSE
+		return TRUE
+	to_chat(X, "<span class='notice'>We can only drain or restore familiar biological lifeforms.</span>")
+	return FALSE
+
+/datum/action/xeno_action/activable/rejuvenate/use_ability(atom/A)
+	var/mob/living/carbon/xenomorph/ravager/X = owner
+	if(isxeno(A) && get_dist(X, A) == -1)
+		var/mob/living/carbon/xenomorph/target = A
+		X.blood_bank -= 10
+		to_chat(X, "<span class='notice'>Blood bank: [X.blood_bank]%</span>")
+		to_chat(X, "<span class='notice'>We tap into our reserves for nourishment.</span>")
+		for(var/i in 1 to 5)
+			X.adjustBruteLoss(-X.maxHealth*0.1)
+			X.adjustFireLoss(-X.maxHealth*0.1)
+			target.gain_plasma(X.xeno_caste.plasma_max*0.1)
+			new /obj/effect/temp_visual/telekinesis(get_turf(X))
+			do_after(X, 1 SECONDS, FALSE, null, , ignore_turf_checks = TRUE)
+		COOLDOWN_START(src, rejuvenate_self_cooldown, 20 SECONDS)
+	else if(ishuman(A))
+		var/mob/living/carbon/human/target = A
+		while(X.health < X.maxHealth && do_after(X, 2 SECONDS, TRUE, A, BUSY_ICON_HOSTILE, ignore_turf_checks = FALSE))
+			X.adjustBruteLoss(-X.maxHealth*0.08)
+			X.adjustFireLoss(-X.maxHealth*0.08)
+			X.adjust_sunder(-1.5)
+			target.blood_volume -= 2
+	else
+		var/mob/living/carbon/xenomorph/target = A
+		if(!do_mob(X, A, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+			return
+		if(!X.line_of_sight(target) || get_dist(X, target) > 2)
+			to_chat(X, "<span class='notice'>Beyond our reach, we must be close and our way clear.</span>")
+			return
+		target.adjustBruteLoss(-X.maxHealth*0.3)
+		target.adjustFireLoss(-X.maxHealth*0.3)
+		X.blood_bank -= 5
+		to_chat(X, "<span class='notice'>Blood bank: [X.blood_bank]%</span>")
+	succeed_activate()
+	add_cooldown()
+
+// ***************************************
+// *********** Carnage
+// ***************************************
+/datum/action/xeno_action/carnage
+	name = "Carnage"
+	action_icon_state = "Carnage"
+	mechanics_text = ""
+	ability_name = "carnage"
+	cooldown_timer = 40 SECONDS
+	plasma_cost = 0
+	COOLDOWN_DECLARE(carnage_duration)
+
+/datum/action/xeno_action/carnage/action_activate()
+	COOLDOWN_START(src, carnage_duration, 20 SECONDS)
+	RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/carnage_slash)
+	succeed_activate()
+	add_cooldown()
+
+/datum/action/xeno_action/carnage/proc/carnage_slash(datum/source, mob/living/target, damage)
+	SIGNAL_HANDLER
+	var/mob/living/carbon/xenomorph/ravager/X = owner
+	if(COOLDOWN_CHECK(src, carnage_duration))
+		UnregisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, .proc/carnage_slash)
+		return
+	X.blood_bank += 5
+	to_chat(X, "<span class='notice'>Blood bank: [X.blood_bank]%</span>")
+	for(var/mob/living/carbon/xenomorph/H in range(4, owner))
+		H.emote("roar")
+		H.adjustBruteLoss(-damage*0.4)
+		H.adjustFireLoss(-damage*0.4)
 
 // ***************************************
 // *********** Charge

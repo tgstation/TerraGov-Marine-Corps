@@ -90,9 +90,6 @@
 	var/agility_speed_increase = 0 // this opens up possibilities for balancing
 	var/agility_speed_armor = 0 //Same as above
 
-	// *** Ravager Abilities *** //
-	var/blood_bank = 0
-
 	// *** Boiler Abilities *** //
 	var/max_ammo = 0
 	var/bomb_strength = 0
@@ -224,6 +221,9 @@
 
 	// Warrior vars
 	var/agility = 0		// 0 - upright, 1 - all fours
+
+	// *** Ravager vars *** //
+	var/blood_bank = 0
 
 	// Defender vars
 	var/fortify = 0

@@ -47,6 +47,9 @@
 		/datum/action/xeno_action/activable/charge,
 		/datum/action/xeno_action/activable/ravage,
 		/datum/action/xeno_action/activable/ignore_pain,
+		/datum/action/xeno_action/activable/sample,
+		/datum/action/xeno_action/carnage,
+		/datum/action/xeno_action/activable/rejuvenate,
 	)
 
 /datum/xeno_caste/ravager/young
