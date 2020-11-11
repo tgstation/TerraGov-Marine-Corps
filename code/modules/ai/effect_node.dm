@@ -9,10 +9,8 @@
 	invisibility = INVISIBILITY_OBSERVER //Visible towards ghosts
 	var/list/adjacent_nodes //list of adjacent landmark nodes
 
-	/*
-	List of weights for scoring stuff happening here; ultilizes "identifiers" to differentiate different kinds
-	of AI types looking at the same node.
-	*/
+	///List of weights for scoring stuff happening here; ultilizes "identifiers" to differentiate different kinds of AI types looking at the same node.
+
 	var/list/weights = list(
 							IDENTIFIER_XENO = list(NODE_LAST_VISITED = 0)
 							)
@@ -24,9 +22,11 @@
 /obj/effect/ai_node/LateInitialize()
 	MakeAdjacents()
 
+///Adds to the specific weight of a specific identifier of this node
 /obj/effect/ai_node/proc/increment_weight(identifier, name, amount)
-	weights[identifier][name] = max(0, weights[name] + amount)
+	weights[identifier][name] += amount
 
+///Sets the specific weight of a specific identifier of this node
 /obj/effect/ai_node/proc/set_weight(identifier, name, amount)
 	weights[identifier][name] = amount
 
@@ -38,7 +38,7 @@
 		node.adjacent_nodes -= src
 	. = ..()
 
-//Returns a node that is in the direction of this node; must be in the src's adjacent node list
+///Returns a node that is in the direction of this node; must be in the src's adjacent node list
 /obj/effect/ai_node/proc/GetNodeInDirInAdj(dir)
 
 	if(!length(adjacent_nodes))
@@ -50,21 +50,19 @@
 			continue
 		return node
 
-/*
-Parameter call example
-GetBestAdjNode(list(NODE_LAST_VISITED = -1), IDENTIFIER_XENO)
-Returns an adjacent node that was last visited; when a AI visits a node, it will set NODE_LAST_VISITED to world.time
-
-The score is calculated by what weights are inside of the list/weight_modifiers
-The highest number after multiplying each list/weight by the ones in the above parameter will be the node that's chosen; any nodes that have the same score won't override that node
-
-Generally the number that the weight has before being multiplied by weight modifiers is the "user friendly" edition; NODE_LAST_VISITED represents in deciseconds the time before
-the node has been visited by a particular thing, while something like NODE_ENEMY_COUNT represents the amount of enemies
+/**
+  * A proc that gets the "best" adjacent node in src based on score
+  * The score is calculated by what weights are inside of the list/weight_modifiers
+  * The highest number after multiplying each list/weight by the ones in the above parameter will be the node that's chosen; any nodes that have the same score won't override that node
+  * Generally the number that the weight has before being multiplied by weight modifiers is the "user friendly" edition; NODE_LAST_VISITED represents in deciseconds the time before
+  * the node has been visited by a particular thing, while something like NODE_ENEMY_COUNT represents the amount of enemies
+  * Parameter call example
+  * GetBestAdjNode(list(NODE_LAST_VISITED = -1), IDENTIFIER_XENO)
+  * Returns an adjacent node that was last visited; when a AI visits a node, it will set NODE_LAST_VISITED to world.time
 */
-
 /obj/effect/ai_node/proc/GetBestAdjNode(list/weight_modifiers, identifier)
 	//No weight modifiers, return a adjacent random node
-	if(!weight_modifiers || !length(weight_modifiers) || !identifier)
+	if(!length(weight_modifiers) || !identifier)
 		return pick(adjacent_nodes)
 
 	var/obj/effect/ai_node/node_to_return
@@ -84,7 +82,7 @@ the node has been visited by a particular thing, while something like NODE_ENEMY
 	else //Just in case no applicable scores are located
 		return pick(adjacent_nodes)
 
-//Clears and remakes adjacencies
+///Clears the adjacencies of src and repopulates it, it will consider nodes "adjacent" to src should it be less 15 turfs away and get_dir(src, potential_adjacent_node) returns a cardinal direction
 /obj/effect/ai_node/proc/MakeAdjacents()
 	adjacent_nodes = list()
 	for(var/atom/node in GLOB.allnodes)
