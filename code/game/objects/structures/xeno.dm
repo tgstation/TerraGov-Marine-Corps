@@ -719,11 +719,8 @@ TUNNEL
 		to_chat(M, "<span class='warning'>Our crawling was interrupted!</span>")
 
 /obj/structure/tunnel/proc/hud_set_xeno_tunnel() //called by the Dig Tunnel ability after creation; make this handy overlay exclusively visible to xenos of the same hive.
-	var/image/tunneloverlay = image('icons/mob/hud.dmi', src, "hudtraitor")
-
-	for(var/mob/living/carbon/xenomorph/X in creator.hive.get_all_xenos()) //Set hive specific image visibility
-		X.client.images += tunneloverlay
-
+	var/image/holder = hud_list[XENO_TUNNEL_HUD]
+	holder.icon_state = "traitorhud"
 
 //Resin Water Well
 /obj/effect/alien/resin/acidwell
