@@ -15,7 +15,7 @@
 	*/
 	var/list/weights = list(
 							IDENTIFIER_XENO = list(NODE_LAST_VISITED = 0)
-						)
+							)
 
 /obj/effect/ai_node/Initialize()
 	. = ..()
