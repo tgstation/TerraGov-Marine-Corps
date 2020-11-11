@@ -297,12 +297,6 @@
 	dir = 4
 	},
 /area/sulaco/medbay/west)
-"acd" = (
-/obj/machinery/atmospherics/components/unary/cryo_cell,
-/turf/open/floor/prison/whitegreen/corner{
-	dir = 1
-	},
-/area/sulaco/medbay/west)
 "ace" = (
 /obj/structure/target_stake,
 /turf/open/floor/prison/red{
@@ -390,12 +384,6 @@
 	dir = 4
 	},
 /area/sulaco/medbay)
-"acp" = (
-/obj/machinery/sleep_console,
-/turf/open/floor/prison/whitegreen/corner{
-	dir = 1
-	},
-/area/sulaco/medbay)
 "acr" = (
 /obj/machinery/bodyscanner,
 /turf/open/floor/prison/whitegreen/corner{
@@ -433,7 +421,6 @@
 "acw" = (
 /obj/structure/ladder{
 	height = 2;
-	icon_state = "ladderdown";
 	id = "hall3"
 	},
 /obj/machinery/camera/autoname,
@@ -563,7 +550,6 @@
 "ady" = (
 /obj/structure/ladder{
 	height = 2;
-	icon_state = "ladderdown";
 	id = "hall4"
 	},
 /obj/machinery/light{
@@ -598,6 +584,8 @@
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/glass/beaker/bluespace,
 /obj/item/reagent_containers/glass/beaker/bluespace,
+/obj/machinery/reagentgrinder,
+/obj/item/stack/sheet/mineral/phoron,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 1
 	},
@@ -614,7 +602,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/atmospherics/components/unary/cryo_cell,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/medbay/west)
 "adK" = (
@@ -3318,7 +3305,6 @@
 "asD" = (
 /obj/structure/ladder{
 	height = 2;
-	icon_state = "ladderdown";
 	id = "hall1"
 	},
 /turf/open/floor/prison,
@@ -3326,7 +3312,6 @@
 "asE" = (
 /obj/structure/ladder{
 	height = 2;
-	icon_state = "ladderdown";
 	id = "hall2"
 	},
 /turf/open/floor/prison,
@@ -3354,7 +3339,6 @@
 	},
 /obj/structure/ladder{
 	height = 2;
-	icon_state = "ladderdown";
 	id = "hall10"
 	},
 /turf/open/floor/prison,
@@ -3966,7 +3950,6 @@
 "avf" = (
 /obj/structure/ladder{
 	height = 2;
-	icon_state = "ladderdown";
 	id = "hall7"
 	},
 /obj/structure/sign/directions/engineering{
@@ -4021,7 +4004,6 @@
 "avn" = (
 /obj/structure/ladder{
 	height = 2;
-	icon_state = "ladderdown";
 	id = "hall8"
 	},
 /turf/open/floor/prison,
@@ -4728,7 +4710,6 @@
 "ayI" = (
 /obj/structure/ladder{
 	height = 2;
-	icon_state = "ladderdown";
 	id = "hall5"
 	},
 /turf/open/floor/prison,
@@ -4737,7 +4718,6 @@
 /obj/machinery/light,
 /obj/structure/ladder{
 	height = 2;
-	icon_state = "ladderdown";
 	id = "hall6"
 	},
 /turf/open/floor/prison,
@@ -4756,7 +4736,6 @@
 "ayM" = (
 /obj/structure/ladder{
 	height = 2;
-	icon_state = "ladderdown";
 	id = "hall9"
 	},
 /obj/structure/cable,
@@ -6447,7 +6426,6 @@
 "aHh" = (
 /obj/structure/ladder{
 	height = 2;
-	icon_state = "ladderdown";
 	id = "hub2"
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -7546,7 +7524,6 @@
 "aMW" = (
 /obj/structure/ladder{
 	height = 1;
-	icon_state = "ladderup";
 	id = "hub2"
 	},
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -8752,7 +8729,6 @@
 "aUF" = (
 /obj/structure/ladder{
 	height = 1;
-	icon_state = "ladderup";
 	id = "hall8"
 	},
 /obj/machinery/light,
@@ -9297,7 +9273,6 @@
 "aZf" = (
 /obj/structure/ladder{
 	height = 1;
-	icon_state = "ladderup";
 	id = "hall5"
 	},
 /turf/open/floor/prison/marked,
@@ -9305,7 +9280,6 @@
 "aZg" = (
 /obj/structure/ladder{
 	height = 1;
-	icon_state = "ladderup";
 	id = "hall6"
 	},
 /turf/open/floor/prison/marked,
@@ -9313,7 +9287,6 @@
 "aZh" = (
 /obj/structure/ladder{
 	height = 1;
-	icon_state = "ladderup";
 	id = "hall7"
 	},
 /turf/open/floor/prison/marked,
@@ -9321,7 +9294,6 @@
 "aZj" = (
 /obj/structure/ladder{
 	height = 1;
-	icon_state = "ladderup";
 	id = "hall9"
 	},
 /turf/open/floor/prison/marked,
@@ -9575,7 +9547,6 @@
 /obj/effect/decal/cleanable/cobweb2,
 /obj/structure/ladder{
 	height = 2;
-	icon_state = "ladderdown";
 	id = "hub1"
 	},
 /turf/open/floor/plating,
@@ -11424,6 +11395,12 @@
 	dir = 1
 	},
 /area/sulaco/medbay/surgery_two)
+"gwQ" = (
+/obj/machinery/atmospherics/components/unary/cryo_cell,
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 8
+	},
+/area/sulaco/medbay/west)
 "gAL" = (
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/prison/sterilewhite,
@@ -11607,7 +11584,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/ladder{
 	height = 2;
-	icon_state = "ladderdown";
 	id = "morgue"
 	},
 /turf/open/floor/cult,
@@ -12380,7 +12356,6 @@
 	},
 /obj/structure/ladder{
 	height = 1;
-	icon_state = "ladderup";
 	id = "medsci"
 	},
 /turf/open/floor/prison/whitegreen/corner{
@@ -12627,6 +12602,7 @@
 /area/space)
 "kHl" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/machinery/sleeper,
 /turf/open/floor/prison/whitegreen/corner,
 /area/sulaco/medbay/west)
 "kJu" = (
@@ -13172,6 +13148,12 @@
 	dir = 4
 	},
 /area/space)
+"mbB" = (
+/obj/machinery/atmospherics/components/unary/cryo_cell,
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 4
+	},
+/area/sulaco/medbay)
 "mbL" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -13957,7 +13939,6 @@
 "oxw" = (
 /obj/structure/ladder{
 	height = 2;
-	icon_state = "ladderdown";
 	id = "medsci"
 	},
 /turf/open/floor/prison/whitegreen{
@@ -14544,7 +14525,6 @@
 /turf/open/floor/plating,
 /area/sulaco/maintenance/north_solar_maint)
 "pNd" = (
-/obj/machinery/iv_drip,
 /obj/structure/sign/directions/science{
 	dir = 1
 	},
@@ -14758,6 +14738,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden{
 	dir = 5
 	},
+/obj/structure/cable,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
@@ -15728,6 +15709,12 @@
 "sQE" = (
 /turf/open/floor/grass,
 /area/mainship/living/starboard_garden)
+"sSE" = (
+/obj/machinery/sleep_console,
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 8
+	},
+/area/sulaco/medbay/west)
 "sTR" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
@@ -16301,7 +16288,6 @@
 	},
 /obj/structure/ladder{
 	height = 1;
-	icon_state = "ladderup";
 	id = "hub1"
 	},
 /turf/open/floor/plating,
@@ -16532,6 +16518,12 @@
 	dir = 4
 	},
 /area/sulaco/showers)
+"vCj" = (
+/obj/machinery/iv_drip,
+/turf/open/floor/prison/whitegreen/corner{
+	dir = 8
+	},
+/area/sulaco/medbay/west)
 "vCN" = (
 /obj/structure/prop/mainship/sensor_computer3/sd,
 /turf/open/floor/mainship/tcomms,
@@ -17247,7 +17239,6 @@
 "xUM" = (
 /obj/structure/ladder{
 	height = 2;
-	icon_state = "ladderdown";
 	id = "hub3"
 	},
 /turf/open/floor/plating,
@@ -42478,7 +42469,7 @@ abD
 jDD
 abD
 woB
-adI
+vCj
 iFn
 xDJ
 saj
@@ -42992,7 +42983,7 @@ abD
 lrG
 adI
 lrG
-adI
+sSE
 lrG
 adI
 lvN
@@ -43504,7 +43495,7 @@ aXy
 aWG
 amz
 lrG
-eTR
+gwQ
 lrG
 aiq
 lrG
@@ -43512,7 +43503,7 @@ adI
 xgx
 hUh
 lrG
-adI
+eTR
 epP
 aew
 mDu
@@ -43761,7 +43752,7 @@ tvS
 aWG
 amz
 hto
-oRC
+adH
 hto
 air
 hto
@@ -43769,8 +43760,8 @@ adH
 afw
 adH
 adJ
-adH
-acd
+oRC
+hto
 aew
 mDu
 mDu
@@ -46595,7 +46586,7 @@ ahR
 adf
 esb
 adf
-aco
+mbB
 adf
 aco
 aeZ
@@ -46852,7 +46843,7 @@ abH
 abH
 lbq
 ade
-acp
+kMl
 ade
 kxt
 aeZ
