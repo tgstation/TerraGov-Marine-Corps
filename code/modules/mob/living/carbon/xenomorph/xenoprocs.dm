@@ -31,11 +31,22 @@
 
 	for(var/obj/structure/tunnel/T in GLOB.xeno_tunnels)
 		if(T.creator.hive == hive)
+			T.set_tunnel_overlay_for_client(user.client)
 			dat += "<b>[T.name]</b> located at: <b><font color=green>([T.tunnel_desc])</b></font><BR>"
 
 	var/datum/browser/popup = new(user, "roundstatus", "<div align='center'>Tunnel List</div>", 600, 600)
 	popup.set_content(dat)
 	popup.open(FALSE)
+
+
+/obj/structure/tunnel/proc/set_tunnel_overlay_for_client(client/C) //called by check_tunnel_list; allows clients that joined after a tunnel was created to see it
+
+	if(!C) //sanity
+		return
+
+	var/image/tunneloverlay = image('icons/mob/hud.dmi', src, "hudtraitor")
+	C.images -= tunneloverlay
+	C.images += tunneloverlay
 
 
 /proc/xeno_status_output(list/xenolist, can_overwatch = FALSE, ignore_leads = TRUE, user)
