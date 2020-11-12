@@ -20,7 +20,7 @@
 	GLOB.allnodes += src
 
 /obj/effect/ai_node/LateInitialize()
-	MakeAdjacents()
+	make_adjacents()
 
 ///Adds to the specific weight of a specific identifier of this node
 /obj/effect/ai_node/proc/increment_weight(identifier, name, amount)
@@ -39,7 +39,7 @@
 	. = ..()
 
 ///Returns a node that is in the direction of this node; must be in the src's adjacent node list
-/obj/effect/ai_node/proc/GetNodeInDirInAdj(dir)
+/obj/effect/ai_node/proc/get_node_in_dir_in_adj(dir)
 
 	if(!length(adjacent_nodes))
 		return
@@ -60,7 +60,7 @@
   * GetBestAdjNode(list(NODE_LAST_VISITED = -1), IDENTIFIER_XENO)
   * Returns an adjacent node that was last visited; when a AI visits a node, it will set NODE_LAST_VISITED to world.time
 */
-/obj/effect/ai_node/proc/GetBestAdjNode(list/weight_modifiers, identifier)
+/obj/effect/ai_node/proc/get_best_adj_node(list/weight_modifiers, identifier)
 	//No weight modifiers, return a adjacent random node
 	if(!length(weight_modifiers) || !identifier)
 		return pick(adjacent_nodes)
@@ -68,7 +68,8 @@
 	var/obj/effect/ai_node/node_to_return
 	var/current_best_node_score = -INFINITY
 	var/current_score
-	for(var/obj/effect/ai_node/node in shuffle(adjacent_nodes)) //We keep a score for the nodes and see which one is best
+	for(var/thing in shuffle_inplace(adjacent_nodes)) //We keep a score for the nodes and see which one is best
+		var/obj/effect/ai_node/node = thing
 		current_score = 0
 		for(var/weight in weight_modifiers)
 			current_score += NODE_GET_VALUE_OF_WEIGHT(identifier, node, weight) * weight_modifiers[weight]
@@ -83,7 +84,7 @@
 		return pick(adjacent_nodes)
 
 ///Clears the adjacencies of src and repopulates it, it will consider nodes "adjacent" to src should it be less 15 turfs away and get_dir(src, potential_adjacent_node) returns a cardinal direction
-/obj/effect/ai_node/proc/MakeAdjacents()
+/obj/effect/ai_node/proc/make_adjacents()
 	adjacent_nodes = list()
 	for(var/atom/node in GLOB.allnodes)
 		if(node == src)
@@ -96,8 +97,8 @@
 
 	//If there's no adjacent nodes then let's throw a runtime (for mappers) and at admins (if they by any chance were spawning these in)
 	if(!length(adjacent_nodes))
-		message_admins("[ADMIN_VERBOSEJMP(src.loc)] was unable to connect to any considered-adjacent nodes; place them correctly if you were spawning these in, otherwise report this.")
-		stack_trace("An ai node was initialized but there were no considered-adjacent nodes nearby; this can be because of a mapping/admin spawning issue. X Y Z coords is [src.x] [src.y] [src.z]")
+		message_admins("[ADMIN_VERBOSEJMP(loc)] was unable to connect to any considered-adjacent nodes; place them correctly if you were spawning these in, otherwise report this.")
+		CRASH("An ai node was repopulating it's node adjacencies but there were no considered-adjacent nodes nearby; this can be because of a mapping/admin spawning issue. X Y Z coords is [src.x] [src.y] [src.z]")
 
 /obj/effect/ai_node/debug //A debug version of the AINode; makes it visible to allow for easy var editing
 	icon_state = "x6" //Pure white 'X' with black borders

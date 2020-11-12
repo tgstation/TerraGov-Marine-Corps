@@ -7,7 +7,7 @@
     if(startnode == destination)
         return startnode
     //Null value returned means no node in that direction
-    return startnode.GetNodeInDirInAdj(get_dir(startnode, destination))
+    return startnode.get_node_in_dir_in_adj(get_dir(startnode, destination))
 
 //Returns a list of humans via get_dist and same z level method, very cheap compared to range()
 /proc/cheap_get_humans_near(atom/movable/source, distance)
