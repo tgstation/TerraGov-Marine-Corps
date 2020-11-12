@@ -52,7 +52,7 @@ map whiskey_outpost_v2
 endmap
 
 map magmoor_digsite_iv
-	minplayers 20
+	minplayers 60
 endmap
 
 map marine_hq
