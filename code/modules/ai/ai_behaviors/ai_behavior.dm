@@ -51,7 +51,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 					current_node.set_weight(identifier, NODE_LAST_VISITED, world.time) //We recently visited this node, update the time
 
 			if(identifier)
-				atom_to_walk_to = current_node.GetBestAdjNode(list(NODE_LAST_VISITED = -1), identifier)
+				atom_to_walk_to = current_node.get_best_adj_node(list(NODE_LAST_VISITED = -1), identifier)
 			else
 				atom_to_walk_to = pick(current_node.adjacent_nodes)
 			mob_parent.AddElement(/datum/element/pathfinder, atom_to_walk_to, distance_to_maintain, sidestep_prob)
