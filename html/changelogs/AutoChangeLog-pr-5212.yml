@@ -1,0 +1,4 @@
+author: "Isy232"
+delete-after: True
+changes: 
+  - rscdel: "Removes LZ 2 phoron miner on Prison."
