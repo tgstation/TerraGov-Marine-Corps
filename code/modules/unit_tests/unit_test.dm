@@ -64,7 +64,7 @@ GLOBAL_VAR(test_log)
 	return instance
 
 /proc/RunUnitTests()
-	CHECK_TICK
+	//CHECK_TICK
 
 	for(var/I in subtypesof(/datum/unit_test))
 		var/datum/unit_test/test = new I
@@ -87,7 +87,7 @@ GLOBAL_VAR(test_log)
 			log_entry += "\tREASON #[J]: [fail_reasons[J]]"
 		log_test(log_entry.Join("\n"))
 
-		CHECK_TICK
+		//CHECK_TICK
 
 	log_test("test")
 	SSticker.force_ending = TRUE
