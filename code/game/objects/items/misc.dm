@@ -12,12 +12,12 @@
 	hitsound = 'sound/weapons/ring.ogg'
 
 /obj/item/phoronboxcompact
-	name = 'compressed phoron box'
+	name = "compressed phoron box"
 	desc = "A medium sized and very heavy box , filled to the brim with compressed phoron crystals"
-	icon_state = "resources_phoron_compact"
+	icon = 'icons/obj/items/items.dmi'
+	icon_state = "phoronbox_compact"
 	max_integrity = 20
 	w_class = WEIGHT_CLASS_BULKY
-	storage_slots = 24
 	force = 5
 	throw_range = 3
 	throwforce = 15 // Heavy box. heavy damage.

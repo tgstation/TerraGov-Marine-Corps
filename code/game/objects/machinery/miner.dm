@@ -5,6 +5,11 @@
 
 #define MINER_REQUIRED_PLASTEEL_SHEETS 5
 
+#define MINER_RESISTANT	"reinforced components"
+#define MINER_COMPACTOR	"upgraded crystalizer module"
+#define MINER_OVERCLOCKED "high-efficiency drill"
+
+
 ///Resource generator that produces a certain material that can be repaired by marines and attacked by xenos, Intended as an objective for marines to play towards to get more req gear
 /obj/machinery/miner
 	name = "\improper Nanotrasen phoron Mining Well"
@@ -45,29 +50,25 @@
 	start_processing()
 
 /obj/machinery/miner/update_icon()
-	if(miner_upgrade_type)
-		add_overlay(miner_upgrade_type)
-	remove_overlays(list(MINER_RESISTANT,MINER_COMPACTOR,MINER_OVERCLOCKED)
 	switch(miner_status)
 		if(MINER_RUNNING)
-			icon_state = "mining_drill_active"
+			icon_state = "mining_drill_active_[miner_upgrade_type]"
 		if(MINER_SMALL_DAMAGE)
-			icon_state = "mining_drill_braced"
+			icon_state = "mining_drill_braced_[miner_upgrade_type]"
 		if(MINER_MEDIUM_DAMAGE)
-			icon_state = "mining_drill"
+			icon_state = "mining_drill_[miner_upgrade_type]"
 		if(MINER_DESTROYED)
-			icon_state = "mining_drill_error"
+			icon_state = "mining_drill_error_[miner_upgrade_type]"
 
-/obj/machinery/miner/proc/attempt_upgrade(obj/item/I,mob/user,params)
+/obj/machinery/miner/proc/attempt_upgrade(obj/item/plastee,mob/user,params)
 	if(miner_upgrade_type)
 		return FALSE
 	if(user.skills.getRating("construction")<SKILL_CONSTRUCTION_ADVANCED)
 		to_chat(user, "<span class='info'>You can't figure out how to assemble the complex module.</span>")
 		return FALSE
-	var/static/list/modules = list(MINER_RESISTANT = image(icon = 'icons',icon_state = "undamaged?"),MINER_COMPACTOR = image(icon = 'icons',icon_state = "undamaged?"),MINER_OVERCLOCKED = image(icon = 'icons', icon_state = "undamaged?")
+	var/static/list/modules = list(MINER_RESISTANT = image(icon = 'icons/obj/mining_drill.dmi',icon_state = "mining_drill_balls"),MINER_COMPACTOR = image(icon = 'icons/obj/mining_drill.dmi',icon_state = "mining_drill_balls"),MINER_OVERCLOCKED = image(icon = 'icons/obj/mining_drill.dmi', icon_state = "mining_drill_balls"))
 	var/choice = show_radial_menu(user, src, modules, require_near = TRUE, tooltips = TRUE)
-		user.visible_message("<span class='notice'>[user] begins attaching a module to [src]'s sockets'.</span>",
-		"<span class='notice'>You begin attaching a module to [src].</span>")
+	user.visible_message("<span class='notice'>[user] begins attaching a module to [src]'s sockets.</span>")
 	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		return FALSE
 	if(!plastee.use(MINER_REQUIRED_PLASTEEL_SHEETS))
@@ -77,27 +78,31 @@
 		if(MINER_RESISTANT)
 			max_miner_integrity = 500
 			miner_integrity = 500
+			miner_upgrade_type = "balls"
 		if(MINER_COMPACTOR)
 			mineral_produced = /obj/item/phoronboxcompact
+			miner_upgrade_type = "compat"
 		if(MINER_OVERCLOCKED)
 			required_ticks = 50
-		user.visible_message("<span class='notice'>[user] attaches a module to the [src]!</span>",
-		miner_upgrade_type = choice
-		playsound(loc, 'sound/items/welder.ogg', 25, TRUE)
-		update_icon()
+			miner_upgrade_type = "overc"
+
+	user.visible_message("<span class='notice'>[user] attaches the [choice] to the [src]!</span>")
+
+	playsound(loc,'sound/items/screwdriver.ogg', 25, TRUE)
+	update_icon()
 
 /obj/machinery/miner/attackby(obj/item/I,mob/user,params)
 	. = ..()
 
-	if(istype(I,obj/item/stack/sheet/plasteel))
+	if(istype(I,/obj/item/stack/sheet/plasteel))
 		var/obj/item/stack/sheet/plasteel/plastee = I
 		if(plastee.get_amount() < MINER_REQUIRED_PLASTEEL_SHEETS)
 			to_chat(user, "<span class='info'>You require 5 plasteel sheets to attach a module to [src]'s module sockets.</span>")
 			return FALSE
-		if(miner_integrity<100)
+		if(!(miner_status == MINER_RUNNING))
 			to_chat(user, "<span class='info'>[src]'s module sockets seem bolted down.</span>")
 			return FALSE
-		src.attempt_upgrade(user,plastee)
+		src.attempt_upgrade(plastee,user)
 
 
 
@@ -182,6 +187,9 @@
 	. = ..()
 	if(!ishuman(user))
 		return
+	if(!miner_upgrade_type)
+		to_chat(user, "<span class='info'>[src]'s module sockets seem empty , a upgrade could be installed.</span>")
+
 	switch(miner_status)
 		if(MINER_DESTROYED)
 			to_chat(user, "<span class='info'>It's heavily damaged, and you can see internal workings.</span>\n<span class='info'>Use a blowtorch, then wirecutters, then a wrench to repair it.</span>")
@@ -191,8 +199,6 @@
 			to_chat(user, "<span class='info'>It's lightly damaged, and you can see some dents and loose piping.</span>\n<span class='info'>Use a wrench to repair it.</span>")
 		if(MINER_RUNNING)
 			to_chat(user, "<span class='info'>[src]'s storage module displays [stored_mineral] crates are ready to be deposited.</span>")
-		if(!miner_upgrade_type)
-			to_chat(user, "<span class='info'>[src]'s module sockets seem empty , a upgrade could be installed.</span>")
 
 /obj/machinery/miner/attack_hand(mob/living/user)
 	if(miner_status != MINER_RUNNING)
