@@ -65,11 +65,12 @@ SUBSYSTEM_DEF(codex)
 /datum/controller/subsystem/codex/proc/present_codex_entry(mob/presenting_to, datum/codex_entry/entry)
 	if(entry && istype(presenting_to) && presenting_to.client)
 		var/list/dat = list()
-		if(entry.lore_text)
-			dat += "<font color='#abdb9b'>[entry.lore_text]</font>"
 		if(entry.mechanics_text)
 			dat += "<h3>OOC Information</h3>"
 			dat += "<font color='#9ebcd8'>[entry.mechanics_text]</font>"
+		if(entry.lore_text)
+			dat += "<h3>Lore Information</h3>"
+			dat += "<font color='#abdb9b'>[entry.lore_text]</font>"
 		var/datum/browser/popup = new(presenting_to, "codex", "Codex - [entry.display_name]")
 		popup.set_content(jointext(dat, null))
 		popup.open()

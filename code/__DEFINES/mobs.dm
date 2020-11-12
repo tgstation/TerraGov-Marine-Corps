@@ -376,6 +376,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define REST_HALLOSS_RECOVERY_RATE -32
 
 // Human Overlay Indexes
+#define HEADBITE_LAYER			30
 #define LASER_LAYER				29 //For sniper targeting laser
 #define MOTH_WINGS_LAYER		28
 #define MUTANTRACE_LAYER		27
@@ -405,7 +406,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define TARGETED_LAYER			2 //for target sprites when held at gun point, and holo cards.
 #define FIRE_LAYER				1 //If you're on fire
 
-#define TOTAL_LAYERS			29
+#define TOTAL_LAYERS			30
 
 #define MOTH_WINGS_BEHIND_LAYER	1
 
@@ -417,6 +418,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 
 #define HIVE_CAN_HIJACK (1<<0)
 
+#define XENO_PULL_CHARGE_TIME 2 SECONDS
 #define XENO_SLOWDOWN_REGEN 0.4
 #define QUEEN_DEATH_TIMER 5 MINUTES
 #define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
@@ -515,6 +517,9 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define DEFILER_CLAW_AMOUNT					6.5
 #define DEFILER_STING_AMOUNT_RECURRING		10
 
+//Drone defines
+#define DRONE_HEAL_RANGE		1
+
 //Boiler defines
 #define BOILER_LUMINOSITY_BASE						0
 #define BOILER_LUMINOSITY_BASE_COLOR				LIGHT_COLOR_GREEN
@@ -530,11 +535,13 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define HIVELORD_TUNNEL_LARGE_MAX_TRAVEL_TIME	6 SECONDS
 #define HIVELORD_TUNNEL_DIG_TIME				10 SECONDS
 #define HIVELORD_TUNNEL_SET_LIMIT				8
+#define HIVELORD_HEAL_RANGE						2
 
 //Shrike defines
 
 #define SHRIKE_FLAG_PAIN_HUD_ON		(1<<0)
 #define SHRIKE_CURE_HEAL_MULTIPLIER	10
+#define SHRIKE_HEAL_RANGE 			3
 
 //misc
 

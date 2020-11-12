@@ -202,10 +202,10 @@
 	var/staggerslow_stacks = 2
 	var/flavour
 	if(owner.m_intent == MOVE_INTENT_RUN && ( owner.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
-		pain_mod += 1.75
+		pain_mod += (0.75 * tackle_pain)
 		flavour = "vicious"
 	else
-		pain_mod += 3.5
+		pain_mod += (2.5 * tackle_pain)
 		staggerslow_stacks *= 2
 		flavour = "deadly"
 

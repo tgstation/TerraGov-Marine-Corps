@@ -377,6 +377,7 @@
 /turf/closed/shuttle/dropship2/transparent
 	opacity = FALSE
 
+
 /turf/closed/shuttle/escapepod
 	name = "wall"
 	icon = 'icons/turf/escapepods.dmi'
