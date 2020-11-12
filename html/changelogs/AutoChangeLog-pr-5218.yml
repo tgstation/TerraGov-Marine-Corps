@@ -1,0 +1,4 @@
+author: "Pariah919"
+delete-after: True
+changes: 
+  - bugfix: "fixed cl not getting their briefcase on sulaco/pos"
