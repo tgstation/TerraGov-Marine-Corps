@@ -3728,6 +3728,7 @@
 	pixel_y = 5
 	},
 /obj/item/storage/box/drinkingglasses,
+/obj/item/portable_vendor/corporate,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "mZ" = (

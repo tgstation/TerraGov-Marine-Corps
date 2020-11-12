@@ -10088,6 +10088,7 @@
 /obj/structure/rack,
 /obj/item/radio,
 /obj/item/storage/briefcase,
+/obj/item/portable_vendor/corporate,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters)
 "beJ" = (
