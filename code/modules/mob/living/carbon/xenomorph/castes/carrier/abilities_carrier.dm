@@ -246,7 +246,7 @@
 
 	if(!do_after(X, 0.5 SECONDS, FALSE, X, BUSY_ICON_DANGER))
 		return fail_activate()
-	var/huggers = length(X.huggers)
+	var/total_huggers = length(X.huggers)
 	X.visible_message("<span class='warning'>[X] crushes the huggers on it's back, releasing a burst of energy!</span>",\
 		"<span class='xenowarning'>We contract our spines, crushing [huggers] little ones and releasing their psychic energy!</span>")
 	new /obj/effect/overlay/temp/emp_pulse(X.loc)
@@ -255,7 +255,7 @@
 		if(victim == X)
 			continue
 		var/target = victim.loc
-		for(var/i=1 to huggers)
+		for(var/i=1 to total_huggers)
 			var/temp = get_step_away(target, owner)
 			if(!temp)
 				break
