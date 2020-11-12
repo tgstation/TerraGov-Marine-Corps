@@ -16,11 +16,21 @@
 	desc = "A medium sized and very heavy box , filled to the brim with compressed phoron crystals"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "phoronbox_compact"
+	item_state = "phoronbox_compact"
 	max_integrity = 20
-	w_class = WEIGHT_CLASS_BULKY
+	w_class = WEIGHT_CLASS_HUGE
+	flags_item = TWOHANDED
 	force = 5
 	throw_range = 3
 	throwforce = 15 // Heavy box. heavy damage.
+
+/obj/item/phoronboxcompact/pickup(mob/user)
+			. = ..()
+   			src.wield(user)
+
+/obj/item/phoronboxcompact/dropped(mob/user)
+	. = ..()
+	src.unwield(user)
 
 /obj/item/clock
 	name = "digital clock"
