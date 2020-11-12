@@ -81,14 +81,12 @@ GLOBAL_VAR(test_log)
 		var/list/log_entry = list("[test.succeeded ? "PASS" : "FAIL"]: [I] [duration / 10]s")
 		var/list/fail_reasons = test.fail_reasons
 
-		log_test("mark2")
 		qdel(test)
 
 		for(var/J in 1 to LAZYLEN(fail_reasons))
 			log_entry += "\tREASON #[J]: [fail_reasons[J]]"
 		log_test(log_entry.Join("\n"))
 
-		log_test("mark")
 		CHECK_TICK
 
 	log_test("test")
