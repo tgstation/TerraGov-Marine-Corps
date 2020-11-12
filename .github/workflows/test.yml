@@ -74,7 +74,6 @@ jobs:
           sudo dpkg --add-architecture i386
           sudo apt update
           sudo apt install libstdc++6:i386 gcc-multilib g++-7 g++-7-multilib libmariadb-client-lgpl-dev:i386 libmariadbd-dev
-          tools/ci/build_bsql.sh
       - name: Install rust-g
         run: |
           sudo dpkg --add-architecture i386

@@ -1,10 +1,6 @@
 #define strip_improper(input_text) replacetext(replacetext(input_text, "\proper", ""), "\improper", "")
 
 
-// Run all strings to be used in an SQL query through this proc first to properly escape out injection attempts.
-/proc/sanitizeSQL(t)
-	return SSdbcore.Quote("[t]")
-
 
 /proc/format_table_name(table)
 	return CONFIG_GET(string/feedback_tableprefix) + table

@@ -89,7 +89,7 @@
 			sql += ", "
 		sql += "commit_hash = '[GLOB.revdata.originmastercommit]'"
 	if(sql)
-		var/datum/DBQuery/query_round_game_mode = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET [sql] WHERE id = [GLOB.round_id]")
+		var/datum/DBQuery/query_round_game_mode = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET [sql] WHERE id = :roundid", list("roundid" = GLOB.round_id))
 		query_round_game_mode.Execute()
 		qdel(query_round_game_mode)
 
