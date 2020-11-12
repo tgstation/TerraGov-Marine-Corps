@@ -495,12 +495,6 @@
 	},
 /turf/open/floor/plating,
 /area/prison/cellblock/maxsec/north)
-"adT" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/closed/wall/r_wall/prison,
-/area/prison/cellblock/maxsec/north)
 "adU" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -73039,7 +73033,7 @@ acK
 acO
 adc
 acO
-adT
+add
 adW
 aem
 add
