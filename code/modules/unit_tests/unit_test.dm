@@ -89,6 +89,5 @@ GLOBAL_VAR(test_log)
 
 		CHECK_TICK
 
-	log_test("test")
 	SSticker.force_ending = TRUE
 	SSticker.fire()

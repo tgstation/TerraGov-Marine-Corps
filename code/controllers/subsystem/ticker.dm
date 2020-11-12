@@ -98,9 +98,7 @@ SUBSYSTEM_DEF(ticker)
 		if(GAME_STATE_PLAYING)
 			mode.process(wait * 0.1)
 			check_queue()
-			log_test("mark")
 			if(!roundend_check_paused && mode.check_finished(force_ending) || force_ending)
-				log_test("ending")
 				current_state = GAME_STATE_FINISHED
 				GLOB.ooc_allowed = TRUE
 				GLOB.dooc_allowed = TRUE
