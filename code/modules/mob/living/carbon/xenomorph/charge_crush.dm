@@ -275,7 +275,7 @@
 
 		if(precrush > 0)
 			log_combat(charger, crushed_living, "xeno charged")
-			crushed_living.apply_damage(precrush, BRUTE, "chest", crushed_living.run_armor_check("chest", "melee"), updating_health = TRUE, ) //There is a chance to do enough damage here to gib certain mobs. Better update immediately.
+			crushed_living.apply_damage(precrush, BRUTE, BODY_ZONE_CHEST, crushed_living.run_armor_check(BODY_ZONE_CHEST, "melee"), updating_health = TRUE, ) //There is a chance to do enough damage here to gib certain mobs. Better update immediately.
 			if(QDELETED(crushed_living))
 				charger.visible_message("<span class='danger'>[charger] anihilates [preserved_name]!</span>",
 				"<span class='xenodanger'>We anihilate [preserved_name]!</span>")
@@ -549,7 +549,7 @@
 		if(CHARGE_BULL_GORE)
 			if(world.time > charge_datum.next_special_attack)
 				charge_datum.next_special_attack = world.time + 2 SECONDS
-				INVOKE_ASYNC(src, /atom/.proc/attack_alien, charger,  0, "chest", FALSE, FALSE, FALSE, INTENT_HARM) //Free gore attack.
+				INVOKE_ASYNC(src, /atom/.proc/attack_alien, charger,  0, BODY_ZONE_CHEST, FALSE, FALSE, FALSE, INTENT_HARM) //Free gore attack.
 				emote_gored()
 				var/turf/destination = get_step(loc, charger.dir)
 				if(destination)
