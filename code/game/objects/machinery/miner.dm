@@ -3,7 +3,7 @@
 #define MINER_MEDIUM_DAMAGE	2
 #define MINER_DESTROYED	3
 
-#define MINER_REQUIRED_PLASTEEL_SHEETS 5
+#define MINER_REQUIRED_PLASTEEL_SHEETS 20
 
 #define MINER_RESISTANT	"reinforced components"
 #define MINER_COMPACTOR	"upgraded crystalizer module"
@@ -69,7 +69,7 @@
 	var/static/list/modules = list(MINER_RESISTANT = image(icon = 'icons/obj/mining_drill.dmi',icon_state = "mining_drill_balls"),MINER_COMPACTOR = image(icon = 'icons/obj/mining_drill.dmi',icon_state = "mining_drill_balls"),MINER_OVERCLOCKED = image(icon = 'icons/obj/mining_drill.dmi', icon_state = "mining_drill_balls"))
 	var/choice = show_radial_menu(user, src, modules, require_near = TRUE, tooltips = TRUE)
 	user.visible_message("<span class='notice'>[user] begins attaching a module to [src]'s sockets.</span>")
-	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+	if(!do_after(user, 15 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 		return FALSE
 	if(!plastee.use(MINER_REQUIRED_PLASTEEL_SHEETS))
 		return FALSE
@@ -104,15 +104,28 @@
 			return FALSE
 		src.attempt_upgrade(plastee,user)
 
-
-
-
 /obj/machinery/miner/welder_act(mob/living/user, obj/item/I)
 	. = ..()
+	var/obj/item/tool/weldingtool/weldingtool = I
+	if((miner_status = MINER_RUNNING)&&miner_upgrade_type)
+		if(!weldingtool.remove_fuel(2,user))
+			to_chat(user, "<span class='info'>You need more welding fuel to complete this task!</span>")
+			return FALSE
+		to_chat(user, "<span class='info'>You begin uninstalling the [miner_upgrade_type] from the miner</span>")
+		user.visible_message("<span class='notice'>[user] begins dismantling the [miner_upgrade_type]</span>")
+		if(!do_after(user, 30 SECONDS, TRUE, src, BUSY_ICON_BUILD))
+			return FALSE
+		user.visible_message("<span class='notice'>[user] dismantles the [miner_upgrade_type] from the miner</span>")
+		var/obj/item/stack/sheet/plasteel/stack = /obj/item/stack/sheet/plasteel
+		stack = new /obj/item/stack/sheet/plasteel
+		stack.amount = MINER_REQUIRED_PLASTEEL_SHEETS - round(1/3*MINER_REQUIRED_PLASTEEL_SHEETS)
+		miner_upgrade_type = ""
+		max_miner_integrity = 100
+		miner_integrity = 100
+		mineral_produced = /obj/structure/ore_box/phoron
+		required_ticks = 70
 	if(miner_status != MINER_DESTROYED)
 		return
-	var/obj/item/tool/weldingtool/weldingtool = I
-
 	if(!weldingtool.remove_fuel(1, user))
 		to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 		return FALSE
