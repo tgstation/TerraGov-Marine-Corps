@@ -1,0 +1,4 @@
+author: "Hathkar"
+delete-after: True
+changes: 
+  - tweak: "Distress shutters open automatically at 30 minutes, down from 40 minutes"
