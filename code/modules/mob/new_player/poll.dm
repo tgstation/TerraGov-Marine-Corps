@@ -2,7 +2,7 @@
   * Shows a list of currently running polls a player can vote/has voted on
   *
   */
-/mob/dead/new_player/proc/handle_playeR_DBRANKSing()
+/mob/new_player/proc/handle_playeR_DBRANKSing()
 	var/list/output = list("<div align='center'><B>Player polls</B><hr><table>")
 	var/rs = REF(src)
 	for(var/p in GLOB.polls)
@@ -17,7 +17,7 @@
   * Redirects a player to the correct poll window based on poll type.
   *
   */
-/mob/dead/new_player/proc/poll_player(datum/poll_question/poll)
+/mob/new_player/proc/poll_player(datum/poll_question/poll)
 	if(!poll)
 		return
 	if(!SSdbcore.Connect())
@@ -41,7 +41,7 @@
   * If already voted on, the option a player voted for is pre-selected.
   *
   */
-/mob/dead/new_player/proc/poll_player_option(datum/poll_question/poll)
+/mob/new_player/proc/poll_player_option(datum/poll_question/poll)
 	var/datum/db_query/query_option_get_voted = SSdbcore.NewQuery({"
 		SELECT optionid FROM [format_table_name("poll_vote")]
 		WHERE pollid = :pollid AND ckey = :ckey AND deleted = 0
@@ -85,7 +85,7 @@
   * If already responded to, the saved response of a player is shown.
   *
   */
-/mob/dead/new_player/proc/poll_player_text(datum/poll_question/poll)
+/mob/new_player/proc/poll_player_text(datum/poll_question/poll)
 	var/datum/db_query/query_text_get_replytext = SSdbcore.NewQuery({"
 		SELECT replytext FROM [format_table_name("poll_textreply")]
 		WHERE pollid = :pollid AND ckey = :ckey AND deleted = 0
@@ -122,7 +122,7 @@
   * If already voted on, the options a player voted for are pre-selected.
   *
   */
-/mob/dead/new_player/proc/poll_player_rating(datum/poll_question/poll)
+/mob/new_player/proc/poll_player_rating(datum/poll_question/poll)
 	var/datum/db_query/query_rating_get_votes = SSdbcore.NewQuery({"
 		SELECT optionid, rating FROM [format_table_name("poll_vote")]
 		WHERE pollid = :pollid AND ckey = :ckey AND deleted = 0
@@ -177,7 +177,7 @@
   * If already voted on, the options a player voted for are pre-selected.
   *
   */
-/mob/dead/new_player/proc/poll_player_multi(datum/poll_question/poll)
+/mob/new_player/proc/poll_player_multi(datum/poll_question/poll)
 	var/datum/db_query/query_multi_get_votes = SSdbcore.NewQuery({"
 		SELECT optionid FROM [format_table_name("poll_vote")]
 		WHERE pollid = :pollid AND ckey = :ckey AND deleted = 0
@@ -221,7 +221,7 @@
   * If already voted on, the options are sorted how a player voted for them, otherwise they are randomly shuffled.
   *
   */
-/mob/dead/new_player/proc/poll_player_irv(datum/poll_question/poll)
+/mob/new_player/proc/poll_player_irv(datum/poll_question/poll)
 	var/datum/asset/irv_assets = get_asset_datum(/datum/asset/group/irv)
 	irv_assets.send(src)
 	var/datum/db_query/query_irv_get_votes = SSdbcore.NewQuery({"
@@ -311,7 +311,7 @@
   * Increments the vote count when successful.
   *
   */
-/mob/dead/new_player/proc/vote_on_poll_handler(datum/poll_question/poll, href_list)
+/mob/new_player/proc/vote_on_poll_handler(datum/poll_question/poll, href_list)
 	if(!SSdbcore.Connect())
 		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>")
 		return
@@ -378,7 +378,7 @@
   * Processes vote form data and saves results to the database for an option type poll.
   *
   */
-/mob/dead/new_player/proc/vote_on_poll_option(datum/poll_question/poll, href_list, admin_rank, sql_poll_id, vote_id)
+/mob/new_player/proc/vote_on_poll_option(datum/poll_question/poll, href_list, admin_rank, sql_poll_id, vote_id)
 	if(!SSdbcore.Connect())
 		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>")
 		return
@@ -410,7 +410,7 @@
   * Processes response form data and saves results to the database for a text response type poll.
   *
   */
-/mob/dead/new_player/proc/vote_on_poll_text(href_list, admin_rank, sql_poll_id, vote_id)
+/mob/new_player/proc/vote_on_poll_text(href_list, admin_rank, sql_poll_id, vote_id)
 	if(!SSdbcore.Connect())
 		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>")
 		return
@@ -442,7 +442,7 @@
   * Processes vote form data and saves results to the database for a rating type poll.
   *
   */
-/mob/dead/new_player/proc/vote_on_poll_rating(datum/poll_question/poll, list/href_list, admin_rank, sql_poll_id)
+/mob/new_player/proc/vote_on_poll_rating(datum/poll_question/poll, list/href_list, admin_rank, sql_poll_id)
 	if(!SSdbcore.Connect())
 		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>")
 		return
@@ -485,7 +485,7 @@
   * Processes vote form data and saves results to the database for a multiple choice type poll.
   *
   */
-/mob/dead/new_player/proc/vote_on_poll_multi(datum/poll_question/poll, list/href_list, admin_rank, sql_poll_id)
+/mob/new_player/proc/vote_on_poll_multi(datum/poll_question/poll, list/href_list, admin_rank, sql_poll_id)
 	if(!SSdbcore.Connect())
 		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>")
 		return
@@ -532,7 +532,7 @@
   * Processes vote form data and saves results to the database for an IRV type poll.
   *
   */
-/mob/dead/new_player/proc/vote_on_poll_irv(datum/poll_question/poll, list/href_list, admin_rank, sql_poll_id)
+/mob/new_player/proc/vote_on_poll_irv(datum/poll_question/poll, list/href_list, admin_rank, sql_poll_id)
 	if(!SSdbcore.Connect())
 		to_chat(src, "<span class='danger'>Failed to establish database connection.</span>")
 		return

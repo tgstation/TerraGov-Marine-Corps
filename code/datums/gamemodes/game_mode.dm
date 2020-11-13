@@ -559,7 +559,6 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 		return "" // append nothing
 
 	var/isadmin = check_rights(R_ADMIN, FALSE)
-	var/newpoll = FALSE
 	var/datum/db_query/query_get_new_polls = SSdbcore.NewQuery({"
 		SELECT id FROM [format_table_name("poll_question")]
 		WHERE (adminonly = 0 OR :isadmin = 1)

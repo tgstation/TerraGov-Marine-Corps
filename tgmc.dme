@@ -890,7 +890,6 @@
 #include "code\modules\admin\panels\note_panel.dm"
 #include "code\modules\admin\panels\permission_panel.dm"
 #include "code\modules\admin\panels\player_panel.dm"
-#include "code\modules\admin\panels\poll_panel.dm"
 #include "code\modules\admin\panels\secrets_panel.dm"
 #include "code\modules\admin\SDQL2\SDQL_2.dm"
 #include "code\modules\admin\SDQL2\SDQL_2_parser.dm"

@@ -447,20 +447,17 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		message_admins("[ADMIN_TPMONTY(usr)] revived [ADMIN_TPMONTY(L)].")
 
 
-
 	else if(href_list["editrightsbrowser"])
 		if(!check_rights(R_PERMISSIONS))
 			return
-		permissions_edit(0)
-
+		edit_admin_permissions(0)
 
 	else if(href_list["editrightsbrowserlog"])
 		if(!check_rights(R_PERMISSIONS))
 			return
-		permissions_edit(1, href_list["editrightstarget"], href_list["editrightsoperation"], href_list["editrightspage"])
+		edit_admin_permissions(1, href_list["editrightstarget"], href_list["editrightsoperation"], href_list["editrightspage"])
 
-
-	else if(href_list["editrightsbrowsermanage"])
+	if(href_list["editrightsbrowsermanage"])
 		if(!check_rights(R_PERMISSIONS))
 			return
 		if(href_list["editrightschange"])
@@ -469,8 +466,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			remove_admin(ckey(href_list["editrightsremove"]), href_list["editrightsremove"], TRUE)
 		else if(href_list["editrightsremoverank"])
 			remove_rank(href_list["editrightsremoverank"])
-		permissions_edit(2)
-
+		edit_admin_permissions(2)
 
 	else if(href_list["editrights"])
 		if(!check_rights(R_PERMISSIONS))
