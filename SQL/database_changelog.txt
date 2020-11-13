@@ -17,7 +17,7 @@ Added the `deleted` column to tables 'poll_option', 'poll_textreply' and 'poll_v
 Changes table 'poll_question' column `createdby_ckey` to be NOT NULL and index `idx_pquest_time_admin` to be `idx_pquest_time_deleted_id` and 'poll_textreply' column `adminrank` to have no default.
 Added procedure `set_poll_deleted` that's called when deleting a poll to set deleted to true on each poll table where rows matching a poll_id argument.
 
-Created missing stickyban tables `stickyban_matched_ckey`, `stickyban_matched_ip` and `stickyban_matched_cid` and added column `deleted_ckey` to `messages` . These missing was causing queries to fail.
+Created missing stickyban tables `stickyban_matched_cid` and `stickyban_matched_ip`, added columm `last_matched` to `stickyban_matched_ckey` and added column `deleted_ckey` to `messages` . These missing was causing queries to fail.
 
 ALTER TABLE `stickyban_matched_ckey`
 	ADD COLUMN `last_matched` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP AFTER `first_matched`
