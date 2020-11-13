@@ -57,6 +57,7 @@
 	var/movement_acc_penalty_mult = 5				//Multiplier. Increased and decreased through attachments. Multiplies the accuracy/scatter penalty of the projectile when firing onehanded while moving.
 	var/fire_delay = 6							//For regular shots, how long to wait before firing again.
 	var/shell_speed_mod	= 0						//Modifies the speed of projectiles fired.
+	var/iff_signal = ACCESS_IFF_MARINE
 
 	//Burst fire.
 	var/burst_amount 	= 1						//How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.
@@ -558,6 +559,13 @@ and you're good to go.
 
 	if(SEND_SIGNAL(src, COMSIG_GUN_FIRE, target, user) & COMPONENT_GUN_FIRED)
 		return
+
+	if(!CHECK_BITFIELD(flags_gun_features, GUN_HAS_IFF))
+		ammo.iff_signal = 0
+	else
+		ammo.iff_signal = iff_signal
+
+	message_admins("[ammo.iff_signal]")
 
 	var/turf/targloc = get_turf(target)
 
