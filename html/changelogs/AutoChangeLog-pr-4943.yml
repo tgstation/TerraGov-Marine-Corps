@@ -1,0 +1,4 @@
+author: "Hughgent"
+delete-after: True
+changes: 
+  - tweak: "Marines can now create requests regardless of available points."
