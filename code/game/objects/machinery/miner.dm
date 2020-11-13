@@ -124,6 +124,7 @@
 		miner_integrity = 100
 		mineral_produced = /obj/structure/ore_box/phoron
 		required_ticks = 70
+		update_icon()
 	if(miner_status != MINER_DESTROYED)
 		return
 	if(!weldingtool.remove_fuel(1, user))

@@ -10,8 +10,8 @@
 	. = 20
 	SSpoints.supply_points += .
 
-/obj/item/phoronboxcompact
-	. = 15 // Please never go above 20 , it'd make the miner compactor upgrade too good.
+/obj/item/phoronboxcompact/supply_export()
+	. = 15
 	SSpoints.supply_points += .
 
 /obj/structure/ore_box/platinum/supply_export()
