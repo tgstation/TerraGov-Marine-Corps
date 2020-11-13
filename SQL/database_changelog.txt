@@ -19,14 +19,8 @@ Added procedure `set_poll_deleted` that's called when deleting a poll to set del
 
 Created missing stickyban tables `stickyban_matched_ckey`, `stickyban_matched_ip` and `stickyban_matched_cid` and added column `deleted_ckey` to `messages` . These missing was causing queries to fail.
 
-CREATE TABLE `stickyban_matched_ckey` (
-	`stickyban` VARCHAR(32) NOT NULL,
-	`matched_ckey` VARCHAR(32) NOT NULL,
-	`first_matched` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	`last_matched` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-	`exempt` TINYINT(1) NOT NULL DEFAULT '0',
-	PRIMARY KEY (`stickyban`, `matched_ckey`)
-) ENGINE=InnoDB;
+ALTER TABLE `stickyban_matched_ckey`
+	ADD COLUMN `last_matched` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP AFTER `first_matched`
 
 CREATE TABLE `stickyban_matched_ip` (
 	`stickyban` VARCHAR(32) NOT NULL,
@@ -44,7 +38,8 @@ CREATE TABLE `stickyban_matched_cid` (
 	PRIMARY KEY (`stickyban`, `matched_cid`)
 ) ENGINE=InnoDB;
 
-ALTER TABLE `messages` ADD COLUMN `deleted_ckey` VARCHAR(32) NULL DEFAULT NULL AFTER `deleted`;
+ALTER TABLE `messages`
+	ADD COLUMN `deleted_ckey` VARCHAR(32) NULL DEFAULT NULL AFTER `deleted`;
 
 ALTER TABLE `poll_option`
 	ADD COLUMN `deleted` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' AFTER `default_percentage_calc`;
