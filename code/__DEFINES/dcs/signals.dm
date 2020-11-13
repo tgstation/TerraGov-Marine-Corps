@@ -572,6 +572,14 @@
 #define COMSIG_XENOABILITY_PUNCH "xenoability_punch"
 #define COMSIG_XENOABILITY_GRAPPLE_TOSS "xenoability_grapple_toss"
 
+#define COMSIG_XENOABILITY_PLACE_WARP_BEACON "xenoability_place_warp_beacon"
+#define COMSIG_XENOABILITY_HYPERPOSITION "xenoability_hyperposition"
+#define COMSIG_XENOABILITY_PHASE_SHIFT "xenoability_phase_shift"
+#define COMSIG_XENOABILITY_BLINK "xenoability_blink"
+#define COMSIG_XENOABILITY_BANISH "xenoability_banish"
+#define COMSIG_XENOABILITY_RECALL "xenoability_recall"
+
+
 // remote control signals
 #define COMSIG_REMOTECONTROL_TOGGLE "remotecontrol_toggle"
 #define COMSIG_REMOTECONTROL_UNLINK "remotecontrol_unlink"

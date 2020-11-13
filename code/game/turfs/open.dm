@@ -347,6 +347,9 @@
 
 		else if (isliving(thing))
 			var/mob/living/L = thing
+			if(L.status_flags & GODMODE) //Invulnerable mobs shouldn't care/take damage
+				continue
+
 			if(L.stat == DEAD)
 				continue
 

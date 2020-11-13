@@ -180,3 +180,14 @@
 		if(4) visible_message("<span class='xenowarning'>\The [acid_t]\s structure is being melted by the acid!</span>")
 		if(2) visible_message("<span class='xenowarning'>\The [acid_t] is struggling to withstand the acid!</span>")
 		if(0 to 1) visible_message("<span class='xenowarning'>\The [acid_t] begins to crumble under the acid!</span>")
+
+/obj/effect/alien/warp_beacon
+	name = "warp beacon"
+	desc = "A strange rift in space and time. You probably shouldn't touch this."
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "anom"
+	density = FALSE
+	opacity = FALSE
+	anchored = TRUE
+
+/obj/effect/alien/warp_beacon/Initialize()

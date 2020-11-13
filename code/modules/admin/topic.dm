@@ -412,6 +412,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/shrike, location, null, delmob)
 			if("queen")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/queen, location, null, delmob)
+			if("tindalos")
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/tindalos, location, null, delmob)
 			if("human")
 				newmob = M.change_mob_type(/mob/living/carbon/human, location, null, delmob)
 			if("monkey")

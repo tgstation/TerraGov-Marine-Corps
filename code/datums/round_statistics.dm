@@ -66,3 +66,7 @@ GLOBAL_DATUM_INIT(round_statistics, /datum/round_statistics, new)
 	var/hivelord_healing_infusions = 0
 	var/spitter_acid_sprays = 0
 	var/spitter_scatter_spits = 0
+	var/tindalos_hyperpositions = 0
+	var/tindalos_phase_shifts = 0
+	var/tindalos_blinks = 0
+	var/tindalos_banishes = 0

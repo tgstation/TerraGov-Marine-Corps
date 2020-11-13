@@ -355,3 +355,12 @@
 
 //----SHRIKE END----//
 //============//
+
+/mob/living/carbon/xenomorph/tindalos/mature
+	upgrade = XENO_UPGRADE_ONE
+
+/mob/living/carbon/xenomorph/tindalos/elder
+	upgrade = XENO_UPGRADE_TWO
+
+/mob/living/carbon/xenomorph/tindalos/ancient
+	upgrade = XENO_UPGRADE_THREE

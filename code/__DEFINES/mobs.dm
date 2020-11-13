@@ -569,6 +569,37 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define RUNNER_EVASION_RUN_DELAY					0.5 SECONDS //If the time since the Runner last moved is equal to or greater than this, its Evasion ends.
 #define RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD	120 //If we dodge this much damage times our streak count plus 1 while evading, refresh the cooldown of Evasion.
 
+//Tindalos defines
+
+#define TINDALOS_PLACE_WARP_BEACON_PLASMA_COST	150
+#define TINDALOS_PLACE_WARP_BEACON_COOLDOWN		60 SECONDS
+#define TINDALOS_PLACE_WARP_BEACON_WINDUP		3 SECONDS
+
+#define TINDALOS_HYPERPOSITION_PLASMA_COST		25
+#define TINDALOS_HYPERPOSITION_COOLDOWN			5 SECONDS
+#define TINDALOS_HYPERPOSITION_MIN_WINDUP		1 SECONDS
+#define TINDALOS_HYPERPOSITION_MAX_WINDUP		10 SECONDS
+
+#define TINDALOS_PHASE_SHIFT_BLOCKERS			list(/obj/flamer_fire, /obj/effect/particle_effect/smoke/plasmaloss)
+#define TINDALOS_PHASE_SHIFT_PLASMA_COST		75
+#define TINDALOS_PHASE_SHIFT_COOLDOWN			20 SECONDS
+#define TINDALOS_PHASE_SHIFT_WINDUP				1 SECONDS
+#define TINDALOS_PHASE_SHIFT_DURATION			5 SECONDS
+#define TINDALOS_PHASE_SHIFT_ALPHA				128 //50% transparency
+
+#define TINDALOS_BLINK_PLASMA_COST				50
+#define TINDALOS_BLINK_COOLDOWN					0.5 SECONDS
+#define TINDALOS_BLINK_DRAG_MULTIPLIER			20 //The amount we multiply the cooldown by when we teleport while dragging a target
+#define TINDALOS_BLINK_RANGE					3
+
+#define TINDALOS_BANISH_PLASMA_COST				100
+#define TINDALOS_BANISH_COOLDOWN				20 SECONDS
+#define TINDALOS_BANISH_BASE_DURATION			10 SECONDS
+#define TINDALOS_BANISH_RANGE					3
+
+#define TINDALOS_TELEPORT_DEBUFF_STACKS			1 //Stagger and slow stacks applied to adjacent living hostiles before/after a teleport
+#define TINDALOS_TELEPORT_DEBUFF_MSG			"<span class='warning'>You feel nauseous as the world warps around you!</span>"
+
 //misc
 
 #define STANDARD_SLOWDOWN_REGEN 0.3

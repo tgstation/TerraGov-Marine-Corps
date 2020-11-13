@@ -459,3 +459,40 @@
 	description = "Imbues a target xeno with healing energy, restoring extra Sunder and Health once every 2 seconds up to 5 times whenever it regenerates normally. 60 second duration."
 	keybind_signal = COMSIG_XENOABILITY_HEALING_INFUSION
 
+/*
+/datum/keybinding/xeno/place_warp_beacon
+	name = "place_warp_beacon"
+	full_name = "Tindalos: Place Warp Beacon"
+	description = "Create a rift in space/time that you can swap locations with using the Hyperposition ability."
+	keybind_signal = COMSIG_XENOABILITY_PLACE_WARP_BEACON
+
+/datum/keybinding/xeno/hyperposition
+	name = "hyperposition"
+	full_name = "Tindalos: Hyperposition"
+	description = "Swap locations with your warp beacon after a delay that scales with your distance from it."
+	keybind_signal = COMSIG_XENOABILITY_HYPERPOSITION
+
+/datum/keybinding/xeno/phase_shift
+	name = "phase_shift"
+	full_name = "Tindalos: Phase Shift"
+	description = "Move out of phase with reality for a short duration after a short delay, gaining invulnerability and the ability to move through all physical obstacles."
+	keybind_signal = COMSIG_XENOABILITY_PHASE_SHIFT
+
+/datum/keybinding/xeno/blink
+	name = "blink"
+	full_name = "Tindalos: Blink"
+	description = "Teleport to a space a short distance away within line of sight. Can teleport mobs you're dragging with you at the cost of higher cooldown."
+	keybind_signal = COMSIG_XENOABILITY_BLINK
+
+/datum/keybinding/xeno/banish
+	name = "banish"
+	full_name = "Tindalos: Banish"
+	description = "Banish a creature or object a short distance away within line of sight to null space. Can target oneself and allies. Can be manually cancelled with Recall."
+	keybind_signal = COMSIG_XENOABILITY_BANISH
+
+/datum/keybinding/xeno/recall
+	name = "recall"
+	full_name = "Tindalos: Recall"
+	description = "Manually cancels your active banishment."
+	keybind_signal = COMSIG_XENOABILITY_BANISH
+*/
