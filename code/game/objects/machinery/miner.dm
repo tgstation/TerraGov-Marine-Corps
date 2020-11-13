@@ -107,7 +107,7 @@
 /obj/machinery/miner/welder_act(mob/living/user, obj/item/I)
 	. = ..()
 	var/obj/item/tool/weldingtool/weldingtool = I
-	if((miner_status = MINER_RUNNING)&&miner_upgrade_type)
+	if((miner_status == MINER_RUNNING)&&miner_upgrade_type)
 		if(!weldingtool.remove_fuel(2,user))
 			to_chat(user, "<span class='info'>You need more welding fuel to complete this task!</span>")
 			return FALSE
