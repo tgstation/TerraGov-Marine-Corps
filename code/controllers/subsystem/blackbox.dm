@@ -61,19 +61,26 @@ SUBSYSTEM_DEF(blackbox)
 /datum/controller/subsystem/blackbox/Shutdown()
 	sealed = FALSE
 
-	if(!SSdbcore.Connect())
+	if (!SSdbcore.Connect())
 		return
 
+	var/list/special_columns = list(
+		"datetime" = "NOW()"
+	)
 	var/list/sqlrowlist = list()
+	for (var/datum/feedback_variable/FV in feedback)
+		sqlrowlist += list(list(
+			"round_id" = GLOB.round_id,
+			"key_name" = FV.key,
+			"key_type" = FV.key_type,
+			"version" = versions[FV.key] || 1,
+			"json" = json_encode(FV.json)
+		))
 
-	for(var/i in feedback)
-		var/datum/feedback_variable/FV = i
-		sqlrowlist += list(list("datetime" = "Now()", "round_id" = GLOB.round_id, "key_name" =  "'[sanitizeSQL(FV.key)]'", "key_type" = "'[FV.key_type]'", "version" = "[FV.version]", "json" = "'[sanitizeSQL(json_encode(FV.json))]'"))
-
-	if(!length(sqlrowlist))
+	if (!length(sqlrowlist))
 		return
 
-	SSdbcore.MassInsert(format_table_name("feedback"), sqlrowlist, ignore_errors = TRUE, delayed = TRUE)
+	SSdbcore.MassInsert(format_table_name("feedback"), sqlrowlist, ignore_errors = TRUE, delayed = TRUE, special_columns = special_columns)
 
 
 /datum/controller/subsystem/blackbox/proc/Seal()
@@ -183,7 +190,7 @@ SUBSYSTEM_DEF(blackbox)
 	if(!SSdbcore.Connect())
 		return
 
-	var/datum/DBQuery/query_report_death = SSdbcore.NewQuery({"INSERT INTO [format_table_name("death")]
+	var/datum/db_query/query_report_death = SSdbcore.NewQuery({"INSERT INTO [format_table_name("death")]
 		(pod, x_coord, y_coord, z_coord, mapname, server_ip, server_port, round_id, tod, job, special, name, byondkey, laname, lakey, bruteloss, fireloss, brainloss, oxyloss, toxloss, cloneloss, staminaloss, last_words, suicide)
 		VALUES (:pod, :x_coord, :y_coord, :z_coord, :map, INET_ATON(:world.internet_address), :port, :round_id, :time, :job, :sqlspecial, :name, :key, :laname, :lakey, :brute, :fire, :brain, :oxy, :tox, :clone, :stamina, :last_words, :suicide)
 		"}, list(

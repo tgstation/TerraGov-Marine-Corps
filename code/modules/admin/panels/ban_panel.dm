@@ -54,7 +54,7 @@
 
 //checks client ban cache or DB ban table if ckey is banned from one or more roles
 //doesn't return any details, use only for if statements
-/proc/is_banned_from(player_ckey, roles)
+/proc/is_banned_from(player_ckey, list/roles)
 	if(!player_ckey)
 		return
 	var/client/C = GLOB.directory[player_ckey]
@@ -140,7 +140,6 @@
 		return
 	if(C && istype(C))
 		C.ban_cache = list()
-		var/player_key = sanitizeSQL(C.ckey)
 		var/is_admin = FALSE
 		if(GLOB.admin_datums[C.ckey] || GLOB.deadmins[C.ckey])
 			is_admin = TRUE
@@ -474,9 +473,7 @@
 	if(!SSdbcore.Connect())
 		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
 		return
-	var/player_ckey = sanitizeSQL(ckey(player_key))
-	player_ip = sanitizeSQL(player_ip)
-	player_cid = sanitizeSQL(player_cid)
+	var/player_ckey = ckey(player_key)
 	if(player_ckey)
 		var/datum/db_query/query_create_ban_get_player = SSdbcore.NewQuery({"
 			SELECT byond_key, INET_NTOA(ip), computerid FROM [format_table_name("player")] WHERE ckey = :player_ckey
@@ -501,7 +498,7 @@
 					qdel(query_create_ban_get_player)
 					return
 		qdel(query_create_ban_get_player)
-	var/admin_ckey = sanitizeSQL(usr.client.ckey)
+	var/admin_ckey = usr.client.ckey
 	if(applies_to_admins)
 		var/datum/db_query/query_check_adminban_count = SSdbcore.NewQuery({"
 			SELECT COUNT(DISTINCT bantime)
@@ -512,30 +509,28 @@
 				unbanned_datetime IS NULL AND
 				(expiration_time IS NULL OR expiration_time > NOW())
 		"}, list("admin_ckey" = admin_ckey))
+		if(!query_check_adminban_count.warn_execute()) //count distinct bantime to treat rolebans made at the same time as one ban
+			qdel(query_check_adminban_count)
+			return
 		if(query_check_adminban_count.NextRow())
 			var/adminban_count = text2num(query_check_adminban_count.item[1])
-			var/max_adminbans = 0
-			if(check_rights(R_PERMISSIONS, FALSE))
-				max_adminbans = MAX_ADMINBANS_PER_ADMIN
-			if(R_DBRANKS && (R_DBRANKS & rank.can_edit_rights)) //edit rights are a more effective way to check hierarchical rank since many non-headmins have R_PERMISSIONS now
+			var/max_adminbans = MAX_ADMINBANS_PER_ADMIN
+			if(R_EVERYTHING && !(R_EVERYTHING & rank.can_edit_rights)) //edit rights are a more effective way to check hierarchical rank since many non-headmins have R_PERMISSIONS now
 				max_adminbans = MAX_ADMINBANS_PER_HEADMIN
 			if(adminban_count >= max_adminbans)
 				to_chat(usr, "<span class='danger'>You've already logged [max_adminbans] admin ban(s) or more. Do not abuse this function!</span>")
 				qdel(query_check_adminban_count)
 				return
 		qdel(query_check_adminban_count)
-	var/admin_ip = sanitizeSQL(usr.client.address)
-	var/admin_cid = sanitizeSQL(usr.client.computer_id)
+	var/admin_ip = usr.client.address
+	var/admin_cid = usr.client.computer_id
 	duration = text2num(duration)
-	if(interval)
-		interval = sanitizeSQL(interval)
-	else
+	if (!(interval in list("SECOND", "MINUTE", "HOUR", "DAY", "WEEK", "MONTH", "YEAR")))
 		interval = "MINUTE"
 	var/time_message = "[duration] [lowertext(interval)]" //no DisplayTimeText because our duration is of variable interval type
 	if(duration > 1) //pluralize the interval if necessary
 		time_message += "s"
 	var/note_reason = "Banned from [roles_to_ban[1] == "Server" ? "the server" : " Roles: [roles_to_ban.Join(", ")]"] [isnull(duration) ? "permanently" : "for [time_message]"] - [reason]"
-	reason = sanitizeSQL(reason)
 	var/list/clients_online = GLOB.clients.Copy()
 	var/list/admins_online = list()
 	for(var/client/C in clients_online)
@@ -544,44 +539,52 @@
 	var/who = clients_online.Join(", ")
 	var/adminwho = admins_online.Join(", ")
 	var/kn = key_name(usr)
-	var/kna = ADMIN_TPMONTY(usr)
-	var/sql_ban
+	var/kna = key_name_admin(usr)
+
+	var/special_columns = list(
+		"bantime" = "NOW()",
+		"server_ip" = "INET_ATON(?)",
+		"ip" = "INET_ATON(?)",
+		"a_ip" = "INET_ATON(?)",
+		"expiration_time" = "IF(? IS NULL, NULL, NOW() + INTERVAL ? [interval])"
+	)
+	var/sql_ban = list()
 	for(var/role in roles_to_ban)
-		sql_ban += list(list("bantime" = "NOW()",
-		"server_ip" = "INET_ATON(IF('[world.internet_address]' LIKE '', '0', '[world.internet_address]'))",
-		"server_port" = sanitizeSQL(world.port),
-		"round_id" = sanitizeSQL(GLOB.round_id),
-		"role" = "'[sanitizeSQL(role)]'",
-		"expiration_time" = "IF('[duration]' LIKE '', NULL, NOW() + INTERVAL [duration ? "[duration]" : "0"] [interval])",
-		"applies_to_admins" = sanitizeSQL(applies_to_admins),
-		"reason" = "'[reason]'",
-		"ckey" = "IF('[player_ckey]' LIKE '', NULL, '[player_ckey]')",
-		"ip" = "INET_ATON(IF('[player_ip]' LIKE '', NULL, '[player_ip]'))",
-		"computerid" = "IF('[player_cid]' LIKE '', NULL, '[player_cid]')",
-		"a_ckey" = "'[admin_ckey]'",
-		"a_ip" = "INET_ATON(IF('[admin_ip]' LIKE '', NULL, '[admin_ip]'))",
-		"a_computerid" = "'[admin_cid]'",
-		"who" = "'[who]'",
-		"adminwho" = "'[adminwho]'"
+		sql_ban += list(list(
+			"server_ip" = world.internet_address || 0,
+			"server_port" = world.port,
+			"round_id" = GLOB.round_id,
+			"role" = role,
+			"expiration_time" = duration,
+			"applies_to_admins" = applies_to_admins,
+			"reason" = reason,
+			"ckey" = player_ckey || null,
+			"ip" = player_ip || null,
+			"computerid" = player_cid || null,
+			"a_ckey" = admin_ckey,
+			"a_ip" = admin_ip || null,
+			"a_computerid" = admin_cid,
+			"who" = who,
+			"adminwho" = adminwho,
 		))
-	if(!SSdbcore.MassInsert(format_table_name("ban"), sql_ban, warn = 1))
+	if(!SSdbcore.MassInsert(format_table_name("ban"), sql_ban, warn = TRUE, special_columns = special_columns))
 		return
 	var/target = ban_target_string(player_key, player_ip, player_cid)
-	var/msg = "has created a [isnull(duration) ? "permanent" : "temporary [time_message]"] [applies_to_admins ? "admin " : ""][roles_to_ban[1] == "Server" ? "server ban" : "role ban from [length(roles_to_ban)] roles"] for [target]."
+	var/msg = "has created a [isnull(duration) ? "permanent" : "temporary [time_message]"] [applies_to_admins ? "admin " : ""][roles_to_ban[1] == "Server" ? "server ban" : "role ban from [roles_to_ban.len] roles"] for [target]."
 	log_admin_private("[kn] [msg][roles_to_ban[1] == "Server" ? "" : " Roles: [roles_to_ban.Join(", ")]"] Reason: [reason]")
 	message_admins("[kna] [msg][roles_to_ban[1] == "Server" ? "" : " Roles: [roles_to_ban.Join("\n")]"]\nReason: [reason]")
 	if(applies_to_admins)
-		send2adminchat("BAN ALERT", "[kn] [msg] | Reason: [reason]")
+		send2adminchat("BAN ALERT","[kn] [msg]")
 	if(player_ckey)
 		create_message("note", player_ckey, admin_ckey, note_reason, null, null, 0, 0, null, 0, severity)
 	var/client/C = GLOB.directory[player_ckey]
-	var/datum/admin_help/AH = admin_ticket_log(player_ckey, "[kn] [msg][roles_to_ban[1] == "Server" ? "" : " Roles: [roles_to_ban.Join(", ")]"] Reason: [reason]")
+	var/datum/admin_help/AH = admin_ticket_log(player_ckey, "[kna] [msg]")
 	var/appeal_url = "No ban appeal url set!"
 	appeal_url = CONFIG_GET(string/banappeals)
 	var/is_admin = FALSE
 	if(C)
 		build_ban_cache(C)
-		to_chat_immediate(C, "<span class='boldannounce'>You have been [applies_to_admins ? "admin " : ""]banned by [usr.client.key] from [roles_to_ban[1] == "Server" ? "the server" : " Roles: [roles_to_ban.Join(", ")]"].\nReason: [reason]</span><br><span class='danger'>This ban is [isnull(duration) ? "permanent." : "temporary, it will be removed in [time_message]."] The round ID is [GLOB.round_id].</span><br><span class='danger'>To appeal this ban go to [appeal_url]</span>")
+		to_chat(C, "<span class='boldannounce'>You have been [applies_to_admins ? "admin " : ""]banned by [usr.client.key] from [roles_to_ban[1] == "Server" ? "the server" : " Roles: [roles_to_ban.Join(", ")]"].\nReason: [reason]</span><br><span class='danger'>This ban is [isnull(duration) ? "permanent." : "temporary, it will be removed in [time_message]."] The round ID is [GLOB.round_id].</span><br><span class='danger'>To appeal this ban go to [appeal_url]</span>")
 		if(GLOB.admin_datums[C.ckey] || GLOB.deadmins[C.ckey])
 			is_admin = TRUE
 		if(roles_to_ban[1] == "Server" && (!is_admin || (is_admin && applies_to_admins)))
@@ -591,7 +594,7 @@
 	for(var/client/i in GLOB.clients - C)
 		if(i.address == player_ip || i.computer_id == player_cid)
 			build_ban_cache(i)
-			to_chat_immediate(i, "<span class='boldannounce'>You have been [applies_to_admins ? "admin " : ""]banned by [usr.client.key] from [roles_to_ban[1] == "Server" ? "the server" : " Roles: [roles_to_ban.Join(", ")]"].\nReason: [reason]</span><br><span class='danger'>This ban is [isnull(duration) ? "permanent." : "temporary, it will be removed in [time_message]."] The round ID is [GLOB.round_id].</span><br><span class='danger'>To appeal this ban go to [appeal_url]</span>")
+			to_chat(i, "<span class='boldannounce'>You have been [applies_to_admins ? "admin " : ""]banned by [usr.client.key] from [roles_to_ban[1] == "Server" ? "the server" : " Roles: [roles_to_ban.Join(", ")]"].\nReason: [reason]</span><br><span class='danger'>This ban is [isnull(duration) ? "permanent." : "temporary, it will be removed in [time_message]."] The round ID is [GLOB.round_id].</span><br><span class='danger'>To appeal this ban go to [appeal_url]</span>")
 			if(GLOB.admin_datums[i.ckey] || GLOB.deadmins[i.ckey])
 				is_admin = TRUE
 			if(roles_to_ban[1] == "Server" && (!is_admin || (is_admin && applies_to_admins)))
@@ -797,10 +800,7 @@
 	if(!SSdbcore.Connect())
 		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
 		return
-	ban_id = sanitizeSQL(ban_id)
-	var/player_ckey = sanitizeSQL(ckey(player_key))
-	player_ip = sanitizeSQL(player_ip)
-	player_cid = sanitizeSQL(player_cid)
+	var/player_ckey = ckey(player_key)
 	var/bantime
 	if(player_ckey)
 		var/datum/db_query/query_edit_ban_get_player = SSdbcore.NewQuery({"
@@ -824,9 +824,10 @@
 				if(cid_check)
 					player_cid = query_edit_ban_get_player.item[4]
 		else
-			if(alert(usr, "[player_key]/([player_ckey]) has not been seen before, unable to use IP and CID from last connection. Are you sure you want to edit a ban for them?", "Unknown key", "Yes", "No", "Cancel") != "Yes")
-				qdel(query_edit_ban_get_player)
-				return
+			if(use_last_connection)
+				if(alert(usr, "[player_key]/([player_ckey]) has not been seen before, unable to use IP and CID from last connection. Are you sure you want to edit a ban for them?", "Unknown key", "Yes", "No", "Cancel") != "Yes")
+					qdel(query_edit_ban_get_player)
+					return
 			else
 				if(alert(usr, "[player_key]/([player_ckey]) has not been seen before, are you sure you want to edit a ban for them?", "Unknown key", "Yes", "No", "Cancel") != "Yes")
 					qdel(query_edit_ban_get_player)
@@ -836,12 +837,11 @@
 		var/datum/db_query/query_check_adminban_count = SSdbcore.NewQuery({"
 			SELECT COUNT(DISTINCT bantime)
 			FROM [format_table_name("ban")]
-			WHERE
-				a_ckey = :admin_ckey AND
-				applies_to_admins = 1 AND
-				unbanned_datetime IS NULL AND
-				(expiration_time IS NULL OR expiration_time > NOW())
-		"}, list("admin_ckey" = admin_ckey))
+			WHERE a_ckey = :admin_ckey
+				AND applies_to_admins = 1
+				AND unbanned_datetime IS NULL
+				AND (expiration_time IS NULL OR expiration_time > NOW())
+		"}, list("admin_ckey" = usr.client.ckey))
 		if(!query_check_adminban_count.warn_execute()) //count distinct bantime to treat rolebans made at the same time as one ban
 			qdel(query_check_adminban_count)
 			return
@@ -855,11 +855,8 @@
 				qdel(query_check_adminban_count)
 				return
 		qdel(query_check_adminban_count)
-	applies_to_admins = sanitizeSQL(applies_to_admins)
-	duration = sanitizeSQL(duration)
-	if(interval)
-		interval = sanitizeSQL(interval)
-	else
+
+	if (!(interval in list("SECOND", "MINUTE", "HOUR", "DAY", "WEEK", "MONTH", "YEAR")))
 		interval = "MINUTE"
 
 	var/list/changes_text = list()
@@ -913,6 +910,8 @@
 	qdel(query_edit_ban)
 
 	var/changes_keys_text = jointext(changes_keys, ", ")
+	var/kn = key_name(usr)
+	var/kna = key_name_admin(usr)
 	log_admin_private("[kn] has edited the [changes_keys_text] of a ban for [old_key ? "[old_key]" : "[old_ip]-[old_cid]"].") //if a ban doesn't have a key it must have an ip and/or a cid to have reached this point normally
 	message_admins("[kna] has edited the [changes_keys_text] of a ban for [old_key ? "[old_key]" : "[old_ip]-[old_cid]"].")
 	if(changes["Applies to admins"])
@@ -920,12 +919,12 @@
 	var/client/C = GLOB.directory[old_key]
 	if(C)
 		build_ban_cache(C)
-		to_chat(C, "<span class='boldannounce'>[usr.client.key] has edited the [changes_keys_text] of a ban for your key.")
+		to_chat(C, "<span class='boldannounce'>[usr.client.key] has edited the [changes_keys_text] of a ban for your key.</span>")
 	for(var/client/i in GLOB.clients - C)
 		if(i.address == old_ip || i.computer_id == old_cid)
 			build_ban_cache(i)
-			to_chat(i, "<span class='boldannounce'>[usr.client.key] has edited the [changes_keys_text] of a ban for your IP or CID.")
-	usr.client.holder.unban_panel(player_key, null, null, null, page)
+			to_chat(i, "<span class='boldannounce'>[usr.client.key] has edited the [changes_keys_text] of a ban for your IP or CID.</span>")
+	unban_panel(player_key, null, null, null, page)
 
 
 /datum/admins/proc/ban_log(ban_id)
@@ -934,7 +933,6 @@
 	if(!SSdbcore.Connect())
 		to_chat(usr, "<span class='danger'>Failed to establish database connection.</span>")
 		return
-	ban_id = sanitizeSQL(ban_id)
 	var/datum/db_query/query_get_ban_edits = SSdbcore.NewQuery({"
 		SELECT edits FROM [format_table_name("ban")] WHERE id = :ban_id
 	"}, list("ban_id" = ban_id))
