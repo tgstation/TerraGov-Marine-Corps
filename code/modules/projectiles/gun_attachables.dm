@@ -1573,7 +1573,6 @@ Defined in conflicts.dm of the #defines folder.
 	var/deployment_scatter_mod = -20
 	var/deployment_burst_scatter_mod = -3
 
-
 /obj/item/attachable/bipod/activate_attachment(mob/living/user, turn_off)
 	if(bipod_deployed)
 		bipod_deployed = FALSE
@@ -1584,6 +1583,7 @@ Defined in conflicts.dm of the #defines folder.
 		master_gun.recoil -= deployment_recoil_mod
 		master_gun.scatter -= deployment_scatter_mod
 		master_gun.burst_scatter_mult -= deployment_burst_scatter_mod
+		master_gun.modify_fire_delay(-master_gun.fire_delay/2)
 		DISABLE_BITFIELD(master_gun.flags_gun_features, GUN_HAS_IFF)
 		icon_state = "bipod"
 		attach_icon = "bipod_a"
@@ -1610,6 +1610,7 @@ Defined in conflicts.dm of the #defines folder.
 		master_gun.recoil += deployment_recoil_mod
 		master_gun.scatter += deployment_scatter_mod
 		master_gun.burst_scatter_mult += deployment_burst_scatter_mod
+		master_gun.modify_fire_delay(master_gun.fire_delay)
 		if(!CHECK_BITFIELD(master_gun.flags_gun_features, GUN_HAS_IFF))
 			ENABLE_BITFIELD(master_gun.flags_gun_features, GUN_HAS_IFF)
 		icon_state = "bipod-on"
