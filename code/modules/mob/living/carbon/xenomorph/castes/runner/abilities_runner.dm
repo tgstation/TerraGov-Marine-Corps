@@ -229,11 +229,15 @@
 
 /datum/action/xeno_action/evasion/proc/evasion_deactivate()
 
+	if(!owner) //Sanity, as this is a deferred proc
+		return
+
 	var/mob/living/carbon/xenomorph/runner/R = owner
 	if(R.evasion_stacks) //If our evasion stacks are already depleted, don't tell us again.
 		R.evasion_stacks = 0
 		R.visible_message("<span class='warning'>[R.name] stops moving erratically.</span>", \
 		"<span class='highdanger'>We stop moving erratically; projectiles will hit us normally again!</span>")
+
 	R.playsound_local(R, 'sound/voice/hiss5.ogg', 50)
 
 
