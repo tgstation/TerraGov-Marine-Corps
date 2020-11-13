@@ -11,27 +11,6 @@
 	attack_verb = list("called", "rang")
 	hitsound = 'sound/weapons/ring.ogg'
 
-/obj/item/phoronboxcompact
-	name = "compressed phoron box"
-	desc = "A medium sized and very heavy box , filled to the brim with compressed phoron crystals"
-	icon = 'icons/obj/items/items.dmi'
-	icon_state = "phoronbox_compact"
-	item_state = "phoronbox_compact"
-	max_integrity = 20
-	w_class = WEIGHT_CLASS_HUGE
-	flags_item = TWOHANDED
-	force = 5
-	throw_range = 3
-	throwforce = 15 // Heavy box. heavy damage.
-
-/obj/item/phoronboxcompact/pickup(mob/user)
-	. = ..()
- 	src.wield(user)
-
-/obj/item/phoronboxcompact/dropped(mob/user)
-	. = ..()
-	unwield(user)
-
 /obj/item/clock
 	name = "digital clock"
 	desc = "A battery powered clock, able to keep time within about 5 seconds... it was never that accurate."
@@ -136,3 +115,37 @@
 	gender = PLURAL
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "ectoplasm"
+
+
+/obj/item/compactorebox
+	name = "compressed ore box"
+	desc = "A heavy and preety solid box, filled to the brim with ore, you probably shouldn't see it"
+	icon = 'icons/obj/items/items.dmi'
+	icon_state = "phoronbox_compact"
+	item_state = "phoronbox_compact"
+	max_integrity = 20
+	w_class = WEIGHT_CLASS_HUGE
+	flags_item = TWOHANDED
+	force = 5
+	throw_range = 3
+	throwforce = 15 // Heavy box. heavy damage.
+
+/obj/item/compactorebox/pickup(mob/user)
+	. = ..()
+ 	src.wield(user)
+
+/obj/item/compactorebox/dropped(mob/user)
+	. = ..()
+	unwield(user)
+
+/obj/item/compactorebox/phoron
+	name = "compressed phoron box"
+	desc = "A heavy and preety solid box , filled to the brim with compressed phoron crystals"
+
+/obj/item/compactorebox/platinum
+	name = "compressed platinum box"
+	desc = "A Very heavy and solid box , filled with pure titanium"
+	icon_state = "platinumbox_compact"
+	item_state = "platinumbox_comact"
+
+

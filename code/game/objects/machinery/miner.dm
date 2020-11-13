@@ -52,7 +52,10 @@
 /obj/machinery/miner/update_icon()
 	switch(miner_status)
 		if(MINER_RUNNING)
-			icon_state = "mining_drill_active_[miner_upgrade_type]"
+			if((mineral_produced == /obj/item/compactorebox/platinum)&&(miner_upgrade_type == MINER_COMPACTOR))
+				icon_state = "mining_drill_active_platinum_[miner_upgrade_type]"
+			else
+				icon_state = "mining_drill_active_[miner_upgrade_type]"
 		if(MINER_SMALL_DAMAGE)
 			icon_state = "mining_drill_braced_[miner_upgrade_type]"
 		if(MINER_MEDIUM_DAMAGE)
@@ -80,9 +83,9 @@
 			miner_integrity = 300
 		if(MINER_COMPACTOR)
 			if(mineral_produced == /obj/structure/ore_box/platinum)
-				mineral_produced = /obj/item/platinumboxcompact
+				mineral_produced = /obj/item/compactorebox/platinum
 			else
-				mineral_produced = /obj/item/phoronboxcompact
+				mineral_produced = /obj/item/compactorebox/phoron
 		if(MINER_OVERCLOCKED)
 			required_ticks = 35
 
@@ -97,7 +100,7 @@
 	if(istype(I,/obj/item/stack/sheet/plasteel))
 		var/obj/item/stack/sheet/plasteel/plastee = I
 		if(plastee.get_amount() < MINER_REQUIRED_PLASTEEL_SHEETS)
-			to_chat(user, "<span class='info'>You require 5 plasteel sheets to attach a module to [src]'s module sockets.</span>")
+			to_chat(user, "<span class='info'>You require 20 plasteel sheets to attach a module to [src]'s module sockets.</span>")
 			return FALSE
 		if(!(miner_status == MINER_RUNNING))
 			to_chat(user, "<span class='info'>[src]'s module sockets seem bolted down.</span>")
@@ -112,7 +115,7 @@
 			to_chat(user, "<span class='info'>You need more welding fuel to complete this task!</span>")
 			return FALSE
 		to_chat(user, "<span class='info'>You begin uninstalling the [miner_upgrade_type] from the miner</span>")
-		user.visible_message("<span class='notice'>[user] begins dismantling the [miner_upgrade_type]</span>")
+		user.visible_message("<span class='notice'>[user] begins dismantling the [miner_upgrade_type] from the miner</span>")
 		if(!do_after(user, 30 SECONDS, TRUE, src, BUSY_ICON_BUILD))
 			return FALSE
 		user.visible_message("<span class='notice'>[user] dismantles the [miner_upgrade_type] from the miner</span>")
@@ -123,7 +126,10 @@
 		miner_upgrade_type = ""
 		max_miner_integrity = 100
 		miner_integrity = 100
-		mineral_produced = /obj/structure/ore_box/phoron
+		if(mineral_produced == /obj/item/compactorebox/phoron)
+			mineral_produced = /obj/structure/ore_box/phoron
+		else
+			mineral_produced = /obj/structure/ore_box/platinum
 		required_ticks = 70
 		update_icon()
 	if(miner_status != MINER_DESTROYED)
@@ -184,7 +190,7 @@
 		if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
-	user.visible_message("<span class='notice'>[user] starts repairing [src]'s tubing and plating.</span>",
+	user.visible_message("<spFan class='notice'>[user] starts repairing [src]'s tubing and plating.</span>",
 	"<span class='notice'>You start repairing [src]'s tubing and plating.</span>")
 	if(!do_after(user, 150, TRUE, src, BUSY_ICON_BUILD))
 		return FALSE
@@ -204,6 +210,8 @@
 		return
 	if(!miner_upgrade_type)
 		to_chat(user, "<span class='info'>[src]'s module sockets seem empty , a upgrade could be installed.</span>")
+	else
+		to_chat(user, "<span class='info'>[src]'s module sockets to be occupied by the [miner_upgrade_type] .</span>")
 
 	switch(miner_status)
 		if(MINER_DESTROYED)
