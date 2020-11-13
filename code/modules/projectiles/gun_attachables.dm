@@ -1225,11 +1225,11 @@
 /obj/item/attachable/attached_gun
 	attachment_action_type = /datum/action/item_action/toggle
 	//Some attachments may be fired. So here are the variables related to that.
-	///the ammo datum that an attachment gun fires
-	var/datum/ammo/ammo = null //If it has a default bullet-like ammo.
+	///the ammo datum that an attachment gun fires, If it has a default bullet-like ammo
+	var/datum/ammo/ammo = null
 	///the type of casing an attachment gun leaves behind, if any.
 	var/type_of_casings = null
-	///Sound to play when firing it alternately
+	///Sound to play when firing the attachment gun.
 	var/fire_sound = null
 
 
