@@ -132,7 +132,7 @@
 
 /obj/item/compactorebox/pickup(mob/user)
 	. = ..()
- 	src.wield(user)
+ 	wield(user)
 
 /obj/item/compactorebox/dropped(mob/user)
 	. = ..()
