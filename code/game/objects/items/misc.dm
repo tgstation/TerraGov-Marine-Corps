@@ -25,12 +25,12 @@
 	throwforce = 15 // Heavy box. heavy damage.
 
 /obj/item/phoronboxcompact/pickup(mob/user)
-			. = ..()
-   			src.wield(user)
+	. = ..()
+ 	wield(user)
 
 /obj/item/phoronboxcompact/dropped(mob/user)
 	. = ..()
-	src.unwield(user)
+	unwield(user)
 
 /obj/item/clock
 	name = "digital clock"
