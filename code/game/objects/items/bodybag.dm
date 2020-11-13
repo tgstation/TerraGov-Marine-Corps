@@ -81,6 +81,8 @@
 		if(!isnull(foldedbag_instance.loc))
 			stack_trace("[src] destroyed while the [foldedbag_instance] foldedbag_instance was neither destroyed nor in nullspace. This shouldn't happen.")
 		QDEL_NULL(foldedbag_instance)
+
+	UnregisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, .proc/acidspray_act)
 	return ..()
 
 
@@ -214,14 +216,6 @@
 		to_chat(bodybag_occupant, "<span class='danger'>You jolt out of [sanitize(src.name)] upon being hit!</span>")
 		open()
 
-
-/obj/structure/closet/bodybag/fire_act(exposed_temperature, exposed_volume)
-	if(exposed_temperature > 300 && !opened && bodybag_occupant)
-		to_chat(bodybag_occupant, "<span class='danger'>The intense heat forces you out of [sanitize(src.name)]!</span>")
-		open()
-		bodybag_occupant.fire_act(exposed_temperature, exposed_volume)
-
-
 /obj/structure/closet/bodybag/flamer_fire_act()
 	if(!opened && bodybag_occupant)
 		to_chat(bodybag_occupant, "<span class='danger'>The intense heat forces you out of [sanitize(src.name)]!</span>")
@@ -244,7 +238,10 @@
 		if(!S) //Sanity
 			return
 
-		S.Crossed(bodybag_occupant) //tarp isn't acid proof; pass it on to the occupant
+		if(ishuman(bodybag_occupant))
+			var/mob/living/carbon/human/H = bodybag_occupant
+			H.acid_spray_crossed(S.slow_amt) //tarp isn't acid proof; pass it on to the occupant
+
 		to_chat(bodybag_occupant, "<span class='danger'>The sizzling acid forces us out of [sanitize(src.name)]!</span>")
 		open() //Get out
 
@@ -424,6 +421,7 @@
 
 /obj/structure/closet/bodybag/tarp/Initialize(mapload, foldedbag)
 	. = ..()
+
 
 /obj/structure/closet/bodybag/tarp/close()
 	. = ..()
