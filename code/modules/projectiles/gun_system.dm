@@ -477,6 +477,12 @@ and you're good to go.
 /obj/item/weapon/gun/proc/load_into_chamber(mob/user)
 	//The workhorse of the bullet procs.
 
+
+	if(!CHECK_BITFIELD(flags_gun_features, GUN_HAS_IFF))
+		ammo.iff_signal = 0
+	else
+		ammo.iff_signal = iff_signal
+
 	//Let's check on the active attachable. It loads ammo on the go, so it never chambers anything
 	if(active_attachable && active_attachable.flags_attach_features & ATTACH_PROJECTILE)
 		if(active_attachable.current_rounds > 0) //If it's still got ammo and stuff.
@@ -559,11 +565,6 @@ and you're good to go.
 
 	if(SEND_SIGNAL(src, COMSIG_GUN_FIRE, target, user) & COMPONENT_GUN_FIRED)
 		return
-
-	if(!CHECK_BITFIELD(flags_gun_features, GUN_HAS_IFF))
-		ammo.iff_signal = 0
-	else
-		ammo.iff_signal = iff_signal
 
 	var/turf/targloc = get_turf(target)
 

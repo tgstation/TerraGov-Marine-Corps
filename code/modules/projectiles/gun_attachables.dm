@@ -1583,8 +1583,8 @@ Defined in conflicts.dm of the #defines folder.
 		master_gun.recoil -= deployment_recoil_mod
 		master_gun.scatter -= deployment_scatter_mod
 		master_gun.burst_scatter_mult -= deployment_burst_scatter_mod
-		master_gun.modify_fire_delay(-master_gun.fire_delay/2)
 		DISABLE_BITFIELD(master_gun.flags_gun_features, GUN_HAS_IFF)
+		master_gun.modify_fire_delay(-master_gun.fire_delay/2)
 		icon_state = "bipod"
 		attach_icon = "bipod_a"
 		UnregisterSignal(master_gun, list(COMSIG_ITEM_DROPPED, COMSIG_ITEM_EQUIPPED))
@@ -1610,9 +1610,9 @@ Defined in conflicts.dm of the #defines folder.
 		master_gun.recoil += deployment_recoil_mod
 		master_gun.scatter += deployment_scatter_mod
 		master_gun.burst_scatter_mult += deployment_burst_scatter_mod
-		master_gun.modify_fire_delay(master_gun.fire_delay)
 		if(!CHECK_BITFIELD(master_gun.flags_gun_features, GUN_HAS_IFF))
 			ENABLE_BITFIELD(master_gun.flags_gun_features, GUN_HAS_IFF)
+		master_gun.modify_fire_delay(master_gun.fire_delay)
 		icon_state = "bipod-on"
 		attach_icon = "bipod_a-on"
 
