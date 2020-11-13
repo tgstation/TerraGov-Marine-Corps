@@ -574,7 +574,7 @@ Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip 
 			WHERE ckey = :ckey
 			AND deleted = 0
 		)
-	"}, list("isadmin" = isadmin, "ckey" = ckey))
+	"}, list("isadmin" = isadmin, "ckey" = NP.ckey))
 	var/rs = REF(src)
 	if(!query_get_new_polls.Execute())
 		qdel(query_get_new_polls)

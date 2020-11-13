@@ -73,7 +73,7 @@ SUBSYSTEM_DEF(blackbox)
 			"round_id" = GLOB.round_id,
 			"key_name" = FV.key,
 			"key_type" = FV.key_type,
-			"version" = versions[FV.key] || 1,
+			"version" = FV.version,
 			"json" = json_encode(FV.json)
 		))
 
@@ -203,7 +203,7 @@ SUBSYSTEM_DEF(blackbox)
 			"lakey" = L.ckey,
 			"brute" = L.getBruteLoss(),
 			"fire" = L.getFireLoss(),
-			"brain" = L.GetBrainLoss(),
+			"brain" = -1, //L.GetBrainLoss(),
 			"oxy" = L.getOxyLoss(),
 			"tox" = L.getToxLoss(),
 			"clone" = L.getCloneLoss(),
