@@ -195,6 +195,7 @@
 	name = "Blink"
 	action_icon_state = "blink"
 	mechanics_text = "We teleport ourselves a short distance to a location within line of sight."
+	use_state_flags = XABB_TURF_TARGET
 	plasma_cost = TINDALOS_BLINK_PLASMA_COST
 	cooldown_timer = TINDALOS_BLINK_COOLDOWN
 	keybind_signal = COMSIG_XENOABILITY_BLINK
